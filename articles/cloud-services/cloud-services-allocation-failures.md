@@ -1,5 +1,5 @@
 ---
-title: "針對雲端服務配置失敗進行疑難排解 | Microsoft Docs"
+title: "雲端服務配置失敗 aaaTroubleshooting |Microsoft 文件"
 description: "疑難排解在 Azure 中部署雲端服務時發生的配置失敗"
 services: azure-service-management, cloud-services
 documentationcenter: 
@@ -15,59 +15,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/26/2017
 ms.author: v-six
-ms.openlocfilehash: 3379b6d9bea874abecae7e56d30cfb15e6b0c2fc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: dfd5cc4663ccc6ed1b27ca9df579182737363b0e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshooting-allocation-failure-when-you-deploy-cloud-services-in-azure"></a>疑難排解在 Azure 中部署雲端服務時發生的配置失敗
 ## <a name="summary"></a>摘要
-當您部署執行個體至雲端服務或加入新的 Web 或背景工作角色執行個體時，Microsoft Azure 會配置計算資源。 執行這些作業時，即使尚未達到 Azure 訂用帳戶限制，也可能偶爾發生錯誤。 本文說明一些常見配置失敗的原因，並建議可能的補救方法。 規劃服務的部署時，本資訊可能也很有用。
+當您部署雲端服務的執行個體 tooa 或加入新的 web 或背景工作角色執行個體時，Microsoft Azure 配置計算資源。 您到達 hello Azure 訂用帳戶限制之前執行這些作業時，您偶爾可能會收到錯誤。 本文說明 hello 一些 hello 的一般配置失敗的原因，並建議可能的補救措施。 當您計劃 hello 部署您的服務，hello 資訊可能也很有用。
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
 ### <a name="background--how-allocation-works"></a>背景 – 配置的運作方式
-Azure 資料中心的伺服器分割成叢集。 在多個叢集中嘗試新的雲端服務配置要求。 當第一個執行個體部署至雲端服務 (在預備或生產環境) 後，該雲端服務會釘選至某個叢集。 雲端服務的任何進一步的部署會發生在相同的叢集中。 在本文中，這種情況稱為「釘選到叢集」。 下圖 1 說明在多個叢集中嘗試一般配置的情況。圖 2 說明釘選到叢集 2 來配置的情況，因為現有的雲端服務 CS_1 裝載於此處。
+在 Azure 資料中心的 hello 伺服器會分割成叢集。 在多個叢集中嘗試新的雲端服務配置要求。 Hello 第一個執行個體與部署的 tooa 雲端服務 （在預備環境或生產），為雲端服務時取得釘選的 tooa 叢集。 任何其他部署的 hello 雲端服務將會發生在 hello 相同叢集。 在本文中，我們將參照 toothis 為 「 已釘選的 tooa 叢集 」。 下面圖 1 說明 hello 案例的標準配置，而不會嘗試在多個叢集。圖 2 說明 hello 裝載的已釘選的 tooCluster 2，其中是 hello 現有雲端服務 CS_1 因為發生配置的大小寫。
 
 ![配置圖表](./media/cloud-services-allocation-failure/Allocation1.png)
 
 ### <a name="why-allocation-failure-happens"></a>配置失敗的原因
-當配置要求已釘選到叢集時，由於可用的資源集區僅限於某個叢集，很可能找不到可用的資源。 此外，如果配置要求已釘選到叢集，但該叢集不支援您所要求的資源類型，即使叢集有可用的資源，您的要求仍會失敗。 下圖 3 說明由於唯一候選叢集沒有可用的資源，導致已釘選的配置失敗的情況。 圖 4 說明因唯一候選叢集不支援所要求的 VM 大小 (雖然叢集有可用的資源)，而導致已釘選的配置失敗的情況。
+釘選的 tooa 叢集配置要求時，有更高版本可能會因為 hello 可用的資源集區是有限的 tooa 叢集失敗 toofind 釋出資源。 此外，如果您配置的要求是已釘選的 tooa 叢集但 hello 您要求的資源類型不支援該叢集，您的要求將會失敗，hello 叢集在沒有可用的資源。 圖 3 說明 hello 案例，其中已釘選的配置失敗，因為 hello 只有候選叢集沒有可用的資源。 圖 4 說明其中釘選的配置失敗，因為只有候選群集 hello 不支援的 hello 情況 hello 即使 hello 叢集已釋放資源，請要求 VM 大小。
 
 ![釘選配置失敗](./media/cloud-services-allocation-failure/Allocation2.png)
 
 ## <a name="troubleshooting-allocation-failure-for-cloud-services"></a>雲端服務配置失敗的疑難排解
 ### <a name="error-message"></a>錯誤訊息
-您可能會看到下列錯誤訊息：
+您可能會看到下列錯誤訊息的 hello:
 
-    "Azure operation '{operation id}' failed with code Compute.ConstrainedAllocationFailed. Details: Allocation failed; unable to satisfy constraints in request. The requested new service deployment is bound to an Affinity Group, or it targets a Virtual Network, or there is an existing deployment under this hosted service. Any of these conditions constrains the new deployment to specific Azure resources. Please retry later or try reducing the VM size or number of role instances. Alternatively, if possible, remove the aforementioned constraints or try deploying to a different region."
+    "Azure operation '{operation id}' failed with code Compute.ConstrainedAllocationFailed. Details: Allocation failed; unable toosatisfy constraints in request. hello requested new service deployment is bound tooan Affinity Group, or it targets a Virtual Network, or there is an existing deployment under this hosted service. Any of these conditions constrains hello new deployment toospecific Azure resources. Please retry later or try reducing hello VM size or number of role instances. Alternatively, if possible, remove hello aforementioned constraints or try deploying tooa different region."
 
 ### <a name="common-issues"></a>常見問題
-以下是造成配置要求釘選到單一叢集的常見配置案例。
+以下是 hello 配置的常見案例會造成配置要求 toobe 釘選的 tooa 單一叢集。
 
-* 部署至預備位置 - 如果某個雲端服務在任一位置含有部署，則整個雲端服務都會釘選到特定的叢集。  這表示如果某個部署已存在生產位置，則新的預備部署只能配置在與生產位置相同的叢集中。 如果叢集逼近容量上限，則要求可能會失敗。
-* 調整 - 將新的執行個體加入現有的雲端服務必須配置到相同叢集中。  小型的調整要求通常可配置，但並不盡然。 如果叢集逼近容量上限，則要求可能會失敗。
-* 同質群組 - 部署到空的雲端服務的新部署可經由該區域中任一叢集的網狀架構配置，除非雲端服務已釘選到某個同質群組。 將在相同的叢集中嘗試部署到相同的同質群組。 如果叢集逼近容量上限，則要求可能會失敗。
-* 同質群組 vNet - 較舊的虛擬網路是繫結至同質群組而不是區域，而這些虛擬網路中的雲端服務會釘選到該同質群組叢集。 將在釘選的叢集中嘗試部署到這種類型的虛擬網路。 如果叢集逼近容量上限，則要求可能會失敗。
+* 部署 tooStaging 位置-如果雲端服務部署中任一個位置，然後 hello 整個雲端服務是已釘選的 tooa 特定叢集。  這表示，如果部署已經存在於 hello 生產位置，然後新的預備環境部署只可配置在 hello 相同叢集為 hello 生產位置。 如果 hello 叢集已接近其容量，hello 要求可能會失敗。
+* 調整-加入新執行個體 tooan 現有的雲端服務必須配置中的 hello 相同叢集。  小型的調整要求通常可配置，但並不盡然。 如果 hello 叢集已接近其容量，hello 要求可能會失敗。
+* 親和性群組-新的部署 tooan 空的雲端服務可以將任何在該區域中，叢集中的 hello 網狀架構由配置，除非 hello 雲端服務是已釘選的 tooan 同質群組。 部署 toohello 相同同質群組將會在 hello 嘗試相同的叢集。 如果 hello 叢集已接近其容量，hello 要求可能會失敗。
+* 同質群組 vNet 的較舊的虛擬網路繫結的 tooaffinity 群組，而不是地區，而且這些虛擬網路中的雲端服務會釘選的 toohello 同質群組的叢集。 釘選的 hello 叢集上，將會嘗試部署的虛擬網路的 toothis 類型。 如果 hello 叢集已接近其容量，hello 要求可能會失敗。
 
 ## <a name="solutions"></a>解決方案
-1. 重新部署到新的雲端服務 - 此解決方案可能是最成功的，因為它可讓平台從該區域的所有叢集中選擇。
+1. 重新部署 tooa 新的雲端服務-此解決方案為它可讓所有的叢集，在該區域中的 hello 平台 toochoose 可能 toobe 最成功。
 
-   * 將工作負載部署到新的雲端服務  
-   * 更新 CNAME 或 A 記錄，以將流量指向新的雲端服務
-   * 一旦流向舊網站的流量為零，您就可以刪除舊的雲端服務。 此解決方案不需要停機。
-2. 刪除生產和預備位置 - 這個解決方案將會保留現有的 DNS 名稱，但會造成您的應用程式的停機時間。
+   * Hello 工作負載 tooa 新雲端服務部署  
+   * 更新 hello 或 CNAME 記錄 toopoint 流量 toohello 新的雲端服務
+   * 一旦零流量即將 toohello 舊的站台，您可以刪除 hello 舊的雲端服務。 此解決方案不需要停機。
+2. 刪除生產和預備位置-這個解決方案將會保留現有的 DNS 名稱，但會導致停機時間 tooyour 應用程式。
 
-   * 刪除現有雲端服務的生產和預備位置，讓雲端服務是空白的，然後
-   * 在現有的雲端服務中建立新的部署。 這會重新嘗試在區域中的所有叢集上配置。 請確定雲端服務未繫結至同質群組。
-3. 保留的 IP - 此方案將會保留現有的 IP 位址，但是會導致您的應用程式停止運作。  
+   * 刪除 hello 生產和預備位置的現有雲端服務，以便 hello 雲端服務是空的然後按一下
+   * Hello 現有雲端服務中建立新的部署。 這會重新嘗試 tooallocation hello 區域中的所有叢集上。 確定 hello 雲端服務不是繫結的 tooan 同質群組。
+3. 保留的 IP-此方案將會保留您現有的 IP 位址，但是會造成停機時間 tooyour 應用程式。  
 
    * 使用 Powershell 為您現有的部署建立 ReservedIP
 
      ```
      New-AzureReservedIP -ReservedIPName {new reserved IP name} -Location {location} -ServiceName {existing service name}
      ```
-   * 請遵循上述的 #2，務必在服務的 CSCFG 中指定新 ReservedIP。
-4. 移除新部署中的同質群組 - 不再建議使用同質群組。 請遵循上述 #1 的步驟以部署新的雲端服務。 請確定雲端服務不在同質群組中。
-5. 轉換至區域虛擬網路 - 請參閱 [如何從同質群組移轉至區域虛擬網路 (VNet)](../virtual-network/virtual-networks-migrate-to-regional-vnet.md)。
+   * 請遵循 corresponding，進行確定 toospecify hello hello 服務 CSCFG 中新的 ReservedIP #2。
+4. 移除新部署中的同質群組 - 不再建議使用同質群組。 請遵循上面 toodeploy 新的雲端服務的 #1 的步驟。 請確定雲端服務不在同質群組中。
+5. 轉換 tooa 區域虛擬網路-請參閱[如何從同質群組 tooa 區域虛擬網路 (VNet) toomigrate](../virtual-network/virtual-networks-migrate-to-regional-vnet.md)。

@@ -1,6 +1,6 @@
 ---
-title: "建立 Azure RemoteApp 映像 | Microsoft Docs"
-description: "了解可用來建立 Azure RemoteApp 之映像的選項"
+title: "Azure RemoteApp 映像 aaaCreate |Microsoft 文件"
+description: "了解可用來建立的 Azure RemoteApp 映像的 hello 選項"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,27 +13,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 4b8ba6f264f982e03930c5ad4ccdb2d80f2c8665
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 54e63b6fa13addfcda96ce581910e1ac48d91e70
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-azure-remoteapp-image"></a>建立 Azure RemoteApp 映像
 > [!IMPORTANT]
-> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 讀取 hello[公告](https://go.microsoft.com/fwlink/?linkid=821148)如需詳細資訊。
 > 
 > 
 
-Azure RemoteApp 使用映像保留與使用者共用的應用程式。 (我們使用您的映像來建立 VM - 這是使用者登入 Azure RemoteApp 時存取的內容。)若要使用選擇的應用程式建立 Azure RemoteApp 集合 (不論是雲端還是混合式)，請從建立已安裝這些應用程式的映像開始。 接著，建立使用該映像的集合，並將使用者指派給集合，然後將應用程式發佈給那些使用者。
+Azure RemoteApp 使用映像 toohold hello 應用程式，您與您的使用者共用。 （我們接受您的映像並使用它 toocreate Vm 層的什麼 hello 當使用者存取他們登入 Azure RemoteApp。）toocreate 與您所選擇的應用程式的 Azure RemoteApp 集合，不論是雲端或混合式，開始您以建立映像與安裝這些應用程式。 接著，建立集合，其中會使用該映像、 將使用者指派 toohello 集合和發佈應用程式 toothose 使用者。
 
-您有幾個選項可建立或使用映像。 映像的基本 [需求](remoteapp-imagereqs.md) 是它執行 Windows Server 2012 R2 並已安裝遠端桌面工作階段主機 (RDSH) 角色。 如何達成就是有趣的地方。
+您有幾個選項可建立或使用映像。 基本的 hello[需求](remoteapp-imagereqs.md)的映像的是執行 Windows Server 2012 R2 且已安裝的 hello 遠端桌面工作階段主機 (RDSH) 角色。 如何達成就是有趣的地方。
 
-如果是映像，則您有下列選擇：
+您有下列選項，當 tooimages hello:
 
-* 您可以匯入和使用 [根據 Azure 虛擬機器的映像](remoteapp-image-on-azurevm.md)。 這適用於需要自訂設定的特定業務應用程式。 您可以自訂要用於應用程式的映像。
+* 您可以匯入和使用 [根據 Azure 虛擬機器的映像](remoteapp-image-on-azurevm.md)。 這適用於需要自訂設定的特定業務應用程式。 您可以自訂 hello 映像 toowork hello 應用程式。
 * 您可以 [建立和上傳自訂映像](remoteapp-create-custom-image.md)。 如果您已經有用於內部部署遠端桌面服務部署的映像，則這十分不錯。
-* 您可以使用 RemoteApp 訂用帳戶中所含的其中一個 [範本映像](remoteapp-images.md) 。 這些映像是由 RemoteApp 小組所建立和維護，並且包含一些可提供給您使用者的標準應用程式 (如 Office 套件)。 請注意，只有 Office 365 Pro Plus 映像才能用於生產設定中。
+* 您可以使用其中一個 hello[範本映像](remoteapp-images.md)納入 RemoteApp 訂用帳戶。 這些映像所建立，且由 hello RemoteApp 團隊負責維護，且包含一些標準應用程式 （例如 hello Office 套件），您可以將可用的 tooyour 使用者。 請注意只有 hello Office 365 Pro Plus 映像可用於生產設定。
 
-不論在何處取得映像或如何建立映像，您都會想要確定您了解 [應用程式需求](remoteapp-appreqs.md) ，確保您的應用程式在 RemoteApp 中運作良好。 然後，下一步是建立[雲端](remoteapp-create-cloud-deployment.md)或[混合式](remoteapp-create-hybrid-deployment.md) 集合。
+不論您用來取得您的映像，或您建立的方式，您需要確定您了解 hello toomake[應用程式需求](remoteapp-appreqs.md)您的應用程式都適用於 RemoteApp 的 tooensure。 接著，hello 下一個步驟就是 toocreate[雲端](remoteapp-create-cloud-deployment.md)或[混合式](remoteapp-create-hybrid-deployment.md)集合。
 

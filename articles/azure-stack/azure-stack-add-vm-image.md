@@ -1,6 +1,6 @@
 ---
-title: "將 VM 映像新增到 Azure Stack | Microsoft Docs"
-description: "新增您組織的自訂 Windows 或 Linux VM 映像以供租用戶使用"
+title: "aaaAdding VM 映像 tooAzure 堆疊 |Microsoft 文件"
+description: "加入您的組織自訂 Windows 或 Linux VM 映像的租用戶 toouse"
 services: azure-stack
 documentationcenter: 
 author: SnehaGunda
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/10/2017
 ms.author: sngun
-ms.openlocfilehash: 793f6c0f1ad92cec4cbb56662685ca151f90b48c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 26dd6c289664c4d64d5932f4396ae778f3f1e1f1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="make-a-custom-virtual-machine-image-available-in-azure-stack"></a>在 Azure Stack 中提供自訂虛擬機器映像
 
-Azure 的堆疊可讓雲端系統管理員可讓使用者使用自訂的虛擬機器映像。 這些映像可供 Azure Resource Manager 範本參考，或藉由建立 Marketplace 項目新增到 Azure Marketplace UI。 
+Azure 的堆疊可讓雲端系統管理員 toomake 自訂虛擬機器映像可用 tootheir 使用者。 這些映像可以參考 Azure 資源管理員範本，或加入 toothe Azure Marketplace UI hello 建立 Marketplace 項目。 
 
-## <a name="add-a-vm-image-to-marketplace-with-powershell"></a>使用 PowerShell 將 VM 映像新增到市集
+## <a name="add-a-vm-image-toomarketplace-with-powershell"></a>新增 VM 映像 toomarketplace 使用 PowerShell
 
-從[開發套件](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-remote-desktop)，或從 Windows 型外部用戶端 (如果您是[透過 VPN 連線](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn))，執行下列先決條件
+執行下列必要條件 hello 從 hello[開發套件](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-remote-desktop)，或從 Windows 的外部用戶端如果您是[透過 VPN 連線](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn)
 
 * [安裝適用於 Azure Stack 的 PowerShell](azure-stack-powershell-install.md)。  
 
-* 下載[與 Azure Stack 搭配運作所需的工具](azure-stack-powershell-download.md)。  
+* 下載 hello [Azure 堆疊的工具需要的 toowork](azure-stack-powershell-download.md)。  
 
 * 準備 VHD 格式 (非 VHDX) 的 Windows 或 Linux 作業系統虛擬硬碟映像。
    
-   * 針對 Windows 映像，[將 Windows VM 映像上傳至 Azure 供 Resource Manager 部署使用](../virtual-machines/windows/upload-generalized-managed.md)一文的**準備 VHD 以供上傳**一節中包含了映像準備指示。
-   * 針對 Linux 映像，請依照[在 Azure Stack 上部署 Linux 虛擬機器](azure-stack-linux.md)一文所述的步驟，準備映像或使用現有的 Azure Stack Linux 映像。  
+   * 針對 Windows 映像，hello 文章[上傳資源管理員部署的 Windows VM 映像 tooAzure](../virtual-machines/windows/upload-generalized-managed.md)包含映像準備指示在 hello**準備 hello VHD 上傳**> 一節。
+   * 針對 Linux 映像，請遵循 hello 步驟來準備 hello 映像，或使用現有 Azure 堆疊 Linux 映像，如 hello 文章所述[Azure 堆疊上部署的 Linux 虛擬機器](azure-stack-linux.md)。  
 
-現在，執行下列步驟以將映像新增到 Azure Stack 市集：
+現在，執行下列步驟 tooadd hello 映像 toohello 堆疊 Azure marketplace 的 hello:
 
-1. 匯入 Connect 和 ComputeAdmin 模組：
+1. 匯入 hello 連接和 ComputeAdmin 模組：
    
    ```powershell
    Set-ExecutionPolicy RemoteSigned
 
-   # import the Connect and ComputeAdmin modules
+   # import hello Connect and ComputeAdmin modules
    Import-Module .\Connect\AzureStack.Connect.psm1
    Import-Module .\ComputeAdmin\AzureStack.ComputeAdmin.psm1
    ``` 
 
-2. 登入您的 Azure Stack 環境。 根據部署您 Azure Stack 環境時使用的是 AAD 還是 AD FS (請務必取代 AAD 租用戶名稱) 而定，執行下列指令碼： 
+2. 登入 tooyour Azure 堆疊環境。 如果您的 Azure 堆疊環境部署使用 AAD 或 AD FS （請確定 tooreplace hello AAD 租用戶名稱），取決於指令碼執行的 hello 下列： 
 
-   a. **Azure Active Directory** - 使用下列 Cmdlet：
+   a. **Azure Active Directory**，使用下列 cmdlet 的 hello:
 
    ```PowerShell
-   # Create the Azure Stack cloud administrator's AzureRM environment by using the following cmdlet:
+   # Create hello Azure Stack cloud administrator's AzureRM environment by using hello following cmdlet:
    Add-AzureRMEnvironment `
      -Name "AzureStackAdmin" `
      -ArmEndpoint "https://adminmanagement.local.azurestack.external" 
@@ -72,10 +72,10 @@ Azure 的堆疊可讓雲端系統管理員可讓使用者使用自訂的虛擬�
      -TenantId $TenantID 
    ```
 
-   b. **Active Directory 同盟服務** - 使用下列 Cmdlet：
+   b. **Active Directory Federation Services**，使用下列 cmdlet 的 hello:
     
    ```PowerShell
-   # Create the Azure Stack cloud administrator's AzureRM environment by using the following cmdlet:
+   # Create hello Azure Stack cloud administrator's AzureRM environment by using hello following cmdlet:
    Add-AzureRMEnvironment `
      -Name "AzureStackAdmin" `
      -ArmEndpoint "https://adminmanagement.local.azurestack.external"
@@ -94,7 +94,7 @@ Azure 的堆疊可讓雲端系統管理員可讓使用者使用自訂的虛擬�
      -TenantId $TenantID 
    ```
     
-3. 叫用 `Add-AzsVMImage` Cmdlet 來新增 VM 映像。 在 Add-AzsVMImage Cmdlet 中，將 osType 指定為 Windows 或 Linux。 請包含 VM 映像的發行者、供應項目、SKU 及版本。 如需有關所允許參數的資訊，請參閱[參數](#parameters)一節。 Azure Resource Manager 範本會使用這些參數來參考 VM 映像。 以下是此指令碼的範例引動過程：
+3. 藉由叫用 hello 新增 hello VM 映像`Add-AzsVMImage`cmdlet。 在 hello 新增 AzsVMImage cmdlet 中，指定 hello osType 為 Windows 或 Linux。 包含 hello 發行者、 方案、 SKU 和 hello VM 映像的版本。 請參閱 hello[參數](#parameters)hello 允許參數的相關資訊的區段。 這些參數會使用 Azure Resource Manager 範本 tooreference hello VM 映像。 以下是 hello 指令碼的範例引動過程：
      
      ```powershell
      Add-AzsVMImage `
@@ -106,20 +106,20 @@ Azure 的堆疊可讓雲端系統管理員可讓使用者使用自訂的虛擬�
        -osDiskLocalPath 'C:\Users\AzureStackAdmin\Desktop\UbuntuServer.vhd' `
      ```
 
-命令會執行下列動作：
+hello 命令沒有 hello 遵循：
 
-* 向 Azure Stack 環境進行驗證
-* 將本機 VHD 上傳到新建立的臨時儲存體帳戶
-* 將 VM 映像新增到 VM 映像存放庫並
+* 驗證 toohello Azure 堆疊環境
+* 上傳 hello 新建立的暫存儲存體帳戶本機 VHD tooa
+* 新增 hello VM 映像 toohello VM 映像儲存機制和
 * 建立 Marketplace 項目
 
-若要確認命令執行成功，請在入口網站中移至 [Marketplace]，然後確認 [虛擬機器] 類別中有該 VM 映像。
+hello 命令執行成功的 tooverify 移 tooMarketplace 在 hello 入口網站，然後確認 hello VM 映像位於 hello**虛擬機器**類別目錄。
 
 ![已成功新增 VM 映像](./media/azure-stack-add-vm-image/image5.PNG) 
 
 ## <a name="remove-a-vm-image-with-powershell"></a>使用 PowerShell 來移除 VM 映像
 
-當您已不再需要先前上傳的虛擬機器映像時，您可以使用下列 Cmdlet 將它從市集中刪除：
+當您不再需要 hello 您先前已上傳的虛擬機器映像時，則您可以使用下列 cmdlet 的 hello hello 商場刪除它：
 
 ```powershell
 Remove-AzsVMImage `
@@ -133,50 +133,50 @@ Remove-AzsVMImage `
 
 | 參數 | 說明 |
 | --- | --- |
-| **publisher** |部署映像時，使用者所使用 VM 映像的發行者名稱區段。 例如 ‘Microsoft’。 請勿在此欄位中包含空格或其他特殊字元。 |
-| **offer** |部署 VM 映像時，使用者所使用 VM 映像的供應項目名稱區段。 例如 ‘WindowsServer’。 請勿在此欄位中包含空格或其他特殊字元。 |
-| **sku** |部署 VM 映像時，使用者所使用 VM 映像的 SKU 名稱區段。 例如 ‘Datacenter2016’。 請勿在此欄位中包含空格或其他特殊字元。 |
-| **version** |部署 VM 映像時，使用者所使用 VM 映像的版本。 版本的格式為 *\#.\#.\#*。 例如 ‘1.0.0’。 請勿在此欄位中包含空格或其他特殊字元。 |
-| **osType** |映像的 osType 必須是 ‘Windows’ 或 ‘Linux’。 |
-| **osDiskLocalPath** |您以 VM 映像形式上傳到 Azure Stack 之 OS 磁碟 VHD 的本機路徑。 |
-| **dataDiskLocalPaths** |可以與 VM 映像一起上傳之資料磁碟的本機路徑陣列 (選擇性)。 |
-| **CreateGalleryItem** |可決定是否要在 Marketplace 中建立項目的布林值旗標。 預設會設定為 true。 |
-| **title** |Marketplace 項目的顯示名稱。 預設會設定為 VM 映像的 Publisher-Offer-Sku。 |
-| **description** |Marketplace 項目的描述。 |
-| **位置** |應作為 VM 映像發行目的地的位置。 此值預設會設定為 local。|
+| **publisher** |hello 發行者名稱的使用者部署 hello 映像時所使用的 hello VM 映像的區段。 例如 ‘Microsoft’。 請勿在此欄位中包含空格或其他特殊字元。 |
+| **offer** |hello 供應項目名稱 hello 使用者部署 hello VM 映像時所使用的 VM 映像的區段。 例如 ‘WindowsServer’。 請勿在此欄位中包含空格或其他特殊字元。 |
+| **sku** |hello SKU 名稱 hello 使用者部署 hello VM 映像時所使用的 VM 映像的區段。 例如 ‘Datacenter2016’。 請勿在此欄位中包含空格或其他特殊字元。 |
+| **version** |hello 版的 hello 使用者部署 hello VM 映像時所使用的 VM 映像。 這一版的 hello 格式 *\#。\#。\#*. 例如 ‘1.0.0’。 請勿在此欄位中包含空格或其他特殊字元。 |
+| **osType** |hello osType hello 映像必須是 'Windows' 或 'Linux'。 |
+| **osDiskLocalPath** |hello 本機路徑 toohello OS 磁碟的 VM 映像 tooAzure 堆疊為您上傳的 VHD。 |
+| **dataDiskLocalPaths** |選擇性的 hello 可以 hello VM 映像的過程中上傳的資料磁碟的本機路徑陣列。 |
+| **CreateGalleryItem** |布林旗標來判斷是否 toocreate Marketplace 中的項目。 根據預設，此屬性設定 tootrue。 |
+| **title** |hello 的顯示名稱 Marketplace 項目。 根據預設，此屬性設定 toohello 發行者-優惠-Sku hello VM 映像。 |
+| **description** |hello 描述 hello Marketplace 項目。 |
+| **位置** |應經過發佈 hello 位置 toowhich hello VM 映像。 根據預設，這個值會設定 toolocal。|
 | **osDiskBlobURI** |此指令碼也可視需要接受 osDisk 的 Blob 儲存體 URI。 |
-| **dataDiskBlobURIs** |此指令碼也可視需要接受 Blob 儲存體 URI 陣列，以將資料磁碟新增到映像。 |
+| **dataDiskBlobURIs** |（選擇性） 此指令碼也會接受 Blob 儲存體 Uri 的陣列新增資料磁碟 toohello 映像。 |
 
-## <a name="add-a-vm-image-through-the-portal"></a>透過入口網站新增 VM 映像
+## <a name="add-a-vm-image-through-hello-portal"></a>新增 VM 映像透過 hello 入口網站
 
 > [!NOTE]
-> 此方法需要個別建立 Marketplace 項目。
+> 此方法需要個別建立 hello Marketplace 項目。
 
-對映像的其中一個需求就是必須可藉由 Blob 儲存體 URI 參考它們。 準備 VHD 格式 (非 VHDX) 的 Windows 或 Linux 作業系統映像，然後將該映像上傳到 Azure 或 Azure Stack 中的儲存體帳戶。 如果您的映像已經上傳到 Azure 或 Azure Stack 中的 Blob 儲存體，則您可以略過步驟 1。
+對映像的其中一個需求就是必須可藉由 Blob 儲存體 URI 參考它們。 準備 Windows 或 Linux 作業系統映像 VHD 格式 (不 VHDX)，然後再上傳 hello 映像 tooa Azure 或 Azure 堆疊中的儲存體帳戶。 如果您的映像已經上傳的 toohello Azure 或 Azure 堆疊中的 Blob 儲存體，您可以略過步驟 1。
 
-1. [將 Windows VM 映像上傳至 Azure 供 Resource Manager 部署使用](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-upload-image/)，或如果是 Linux 映像，則依照[在 Azure Stack 上部署 Linux 虛擬機器](azure-stack-linux.md)一文所述的指示操作。 上傳映像之前，您應該先了解下列考量：
+1. [上傳資源管理員部署的 Windows VM 映像 tooAzure](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-upload-image/)或 Linux 映像，請遵循 hello 中所述的 hello 指示[Azure 堆疊上部署的 Linux 虛擬機器](azure-stack-linux.md)發行項。 您應該了解 hello 您上傳 hello 映像之前，下列考量：
 
-   * 將映像上傳到 Azure Stack Blob 儲存體比上傳到 Azure Blob 儲存體有效率，因為將映像推送到 Azure Stack 映像存放庫所需的時間較短。 
+   * 因為它會接受較少時間 toopush hello 映像 toohello Azure 堆疊映像儲存機制，很效率 tooupload 映像 tooAzure 堆疊 Blob 儲存體比 tooAzure Blob 儲存體。 
    
-   * 上傳 [Windows VM 映像](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-upload-image/)時，請務必以[設定 Azure Stack 操作員的 PowerShell 環境](azure-stack-powershell-configure-admin.md)步驟取代「登入 Azure」步驟。  
+   * 上傳 hello 時[Windows VM 映像](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-upload-image/)，請確定 toosubstitute hello**登入 tooAzure**步驟以 hello[設定 hello Azure 堆疊操作員的 PowerShell 環境](azure-stack-powershell-configure-admin.md)步驟。  
 
-   * 記下您上傳映像的 Blob 儲存體 URI，其格式如下：*&lt;storageAccount&gt;/&lt;blobContainer&gt;/&lt;targetVHDName&gt;*.vhd
+   * 請記下 hello Blob 儲存體您上傳 hello 映像，也就是在 hello 遵循格式的 URI:  *&lt;storageAccount&gt;/&lt;blobContainer&gt; / &lt;targetVHDName&gt;*.vhd
 
-   * 若要讓 Blob 可供匿名存取，請移至將 VM 映像 VHD 上傳到 **Blob** 時的儲存體帳戶 Blob 容器，然後選取 [存取原則]。 如果您想要的話，也可以改為產生容器的共用存取簽章，然後將它包含在 Blob URI 中。
+   * toomake hello blob 可匿名存取，請移 toohello 儲存體帳戶 blob 容器其中 hello VM 映像 VHD 上傳太**Blob，** ，然後選取 **存取原則**。 如果您想，您就可以改為產生 hello 容器的共用的存取簽章，並將它包含在 hello blob URI。
 
-   ![瀏覽至儲存體帳戶 Blob](./media/azure-stack-add-vm-image/image1.png)
+   ![瀏覽 toostorage 帳戶的 blob](./media/azure-stack-add-vm-image/image1.png)
 
-   ![將 Blob 存取權設定為公用](./media/azure-stack-add-vm-image/image2.png)
+   ![設定 blob 存取 toopublic](./media/azure-stack-add-vm-image/image2.png)
 
-2. Azure 堆疊雲端系統管理員身分登入 > 從功能表中，按一下 **更多服務** > **資源提供者**> 選取**計算** >  **VM 映像** > **新增**
+2. 登入 tooAzure 雲端系統管理員身分的堆疊 > hello 功能表中按一下**更多服務** > **資源提供者**> 選取**計算** >  **VM 映像** > **新增**
 
-3. 在 [新增 VM 映像] 刀鋒視窗上，輸入虛擬機器映像的發行者、供應項目、SKU 及版本。 這些名稱區段指的是 Resource Manager 範本中的 VM 映像。 請務必正確選取 **osType**。 針對 [OD 磁碟 Blob URI]，請輸入上傳映像的 Blob URI，然後按一下 [建立] 來開始建立 VM 映像。
+3. 在 hello**新增 VM 映像**刀鋒視窗中，輸入 hello 發行者、 方案、 SKU 和 hello 虛擬機器映像的版本。 這些名稱區段，請參閱 toohello 資源管理員範本中的 VM 映像。 請確定 tooselect **osType**正確。 如**OD 磁碟 Blob URI**、 輸入 hello 已在上傳映像的 Blob URI，然後按一下**建立**toobegin 建立 VM 映像。
    
-   ![開始建立映像](./media/azure-stack-add-vm-image/image4.png)
+   ![開始 toocreate hello 映像](./media/azure-stack-add-vm-image/image4.png)
 
-   成功建立映像時，VM 映像狀態會變更為「成功」。
+   當成功建立 hello 映像時，hello VM 映像的狀態會變更 too'Succeeded'。
 
-4. 若要更容易在 UI 中將虛擬機器映像提供給使用者取用，最好是[建立 Marketplace 項目](azure-stack-create-and-publish-marketplace-item.md)。
+4. toomake hello 虛擬機器映像更輕易地可供使用者使用 hello UI 中，建議您最好太[建立 Marketplace 項目](azure-stack-create-and-publish-marketplace-item.md)。
 
 ## <a name="next-steps"></a>後續步驟
 

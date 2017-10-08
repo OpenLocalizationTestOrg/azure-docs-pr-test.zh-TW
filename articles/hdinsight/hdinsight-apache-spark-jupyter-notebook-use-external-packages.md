@@ -1,6 +1,6 @@
 ---
-title: "在 Azure HDInsight 上的 Spark 中搭配 Jupyter 使用自訂 Maven 套件 | Microsoft Docs"
-description: "說明如何設定讓 HDInsight Spark 叢集隨附之 Jupyter Notebook 使用自訂 Maven 套件的逐步指示。"
+title: "使用 Azure HDInsight 上的 Spark 中 Jupyter aaaUse 自訂 Maven 套件 |Microsoft 文件"
+description: "上如何 tooconfigure Jupyter 筆記本適用於 HDInsight Spark 叢集 toouse 自訂的 Maven 封裝的逐步指示。"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,11 +16,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: 0bcfe220e60e34937c667c7b416065d5f3dc8d63
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ba8ac13716bc94ab082a18fe02d4a40b2f1e09e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-external-packages-with-jupyter-notebooks-in-apache-spark-clusters-on-hdinsight"></a>在 HDInsight 上的 Apache Spark 叢集中搭配 Jupyter Notebook 使用外部封裝
 > [!div class="op_single_selector"]
@@ -29,69 +29,69 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-了解如何在 HDInsight 上的 Apache Spark 叢集中，將 Jupyter Notebook 設定為使用外部、社群提供的 **maven** 封裝 (不是叢集中現成的)。 
+了解如何 tooconfigure Jupyter 筆記本 HDInsight toouse 外部、 Apache Spark 叢集中社群貢獻**maven**不封裝在 hello 叢集中包含的方塊外。 
 
-您可以搜尋 [Maven 儲存機制](http://search.maven.org/) 來取得可用套件的完整清單。 您也可以從其他來源取得可用套件清單。 例如，從 [Spark 套件](http://spark-packages.org/)可以取得社群提供套件的完整清單。
+您可以搜尋 hello [Maven 儲存機制](http://search.maven.org/)如 hello 的封裝所提供的完整清單。 您也可以從其他來源取得可用套件清單。 例如，從 [Spark 套件](http://spark-packages.org/)可以取得社群提供套件的完整清單。
 
-在這篇文章中，您將了解如何搭配 Jupyter Notebook 使用 [spark-csv](http://search.maven.org/#artifactdetails%7Ccom.databricks%7Cspark-csv_2.10%7C1.4.0%7Cjar) 套件。
+在本文中，您將學習如何 toouse hello [spark csv](http://search.maven.org/#artifactdetails%7Ccom.databricks%7Cspark-csv_2.10%7C1.4.0%7Cjar)與 hello Jupyter 筆記本的封裝。
 
 
 
 ## <a name="prerequisites"></a>必要條件
-您必須滿足以下條件：
+您必須擁有 hello 下列：
 
 * HDInsight 上的 Apache Spark 叢集。 如需指示，請參閱 [在 Azure HDInsight 中建立 Apache Spark 叢集](hdinsight-apache-spark-jupyter-spark-sql.md)。
 
 ## <a name="use-external-packages-with-jupyter-notebooks"></a>搭配 Jupyter Notebook 使用外部套件
-1. 在 [Azure 入口網站](https://portal.azure.com/)的開始面板中，按一下您的 Spark 叢集磚 (如果您已將其釘選到開始面板)。 您也可以按一下 [瀏覽全部] > [HDInsight 叢集] 來瀏覽至您的叢集。   
-2. 在 Spark 叢集刀鋒視窗中按一下 [快速連結]，然後在 [叢集儀表板] 刀鋒視窗中按一下 [Jupyter Notebook]。 出現提示時，輸入叢集的系統管理員認證。
+1. 從 hello [Azure 入口網站](https://portal.azure.com/)，從 hello 開始面板中，按一下 Spark 叢集中的 hello 磚 （如果您釘選它 toohello 開始面板）。 您也可以導覽 tooyour 叢集下的**瀏覽所有** > **HDInsight 叢集**。   
+2. 從 hello Spark 叢集刀鋒視窗中，按一下 **快速連結**，然後從 hello**叢集儀表板**刀鋒視窗中，按一下  **Jupyter 筆記本**。 如果出現提示，請輸入 hello 叢集 hello 系統管理員認證。
 
     > [!NOTE]
-    > 您也可以在瀏覽器中開啟下列 URL，來連接到您的叢集的 Jupyter Notebook。 使用您叢集的名稱取代 **CLUSTERNAME** ：
+    > 您也可能由下列 URL 在瀏覽器中開啟 hello 叢集到達 hello Jupyter 筆記本。 取代**CLUSTERNAME** hello 名稱，為您的叢集：
     > 
     > `https://CLUSTERNAME.azurehdinsight.net/jupyter`
     > 
 
    
 
-3. 建立新的 Notebook。 按一下 [新增]，然後按一下 [Spark]。
+3. 建立新的 Notebook。 按一下 新增，然後按一下Spark。
    
     ![建立新的 Jupyter Notebook](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/hdinsight-spark-create-notebook.png "建立新的 Jupyter Notebook")
 
-4. 系統隨即會建立新 Notebook，並以 Untitled.pynb 的名稱開啟。 在頂端按一下 Notebook 名稱，然後輸入好記的名稱。
+4. 建立新的記事本，並開啟 hello 名稱 Untitled.pynb。 按一下頂端 hello hello 筆記本名稱並輸入好記的名稱。
    
-    ![提供 Notebook 的名稱](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/hdinsight-spark-name-notebook.png "提供 Notebook 的名稱")
+    ![提供的名稱 hello 筆記本](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/hdinsight-spark-name-notebook.png "提供 hello 筆記本的名稱")
 
-5. 您將使用 `%%configure` magic 來設定讓 Notebook 使用外部套件。 在使用外部套件的 Notebook 中，確定您在第一個程式碼單元中呼叫 `%%configure` magic。 這可確保將核心設定為在啟動工作階段之前即使用此套件。
+5. 您將使用 hello `%%configure` magic tooconfigure hello 筆記本 toouse 外部的封裝。 在使用外部封裝的筆記型電腦，請確定呼叫 hello `%%configure` magic hello 第一個程式碼的資料格。 這可確保該 hello 核心設定的 toouse hello 套件 hello 工作階段開始之前。
 
     >[!IMPORTANT] 
-    >如果您忘記在第一個單元中設定核心，您可以搭配 `-f` 參數使用 `%%configure`，但這會重新啟動工作階段，而所有進度都將遺失。
+    >如果您忘記 tooconfigure hello 核心 hello 第一個資料格，您可以使用 hello`%%configure`以 hello`-f`參數，但會重新啟動 hello 工作階段，並將遺失所有的進度。
 
     | HDInsight 版本 | 命令 |
     |-------------------|---------|
     |HDInsight 3.3 和 HDInsight 3.4 | `%%configure` <br>`{ "packages":["com.databricks:spark-csv_2.10:1.4.0"] }`|
     | HDInsight 3.5 | `%%configure`<br>`{ "conf": {"spark.jars.packages": "com.databricks:spark-csv_2.10:1.4.0" }}`|
 
-6. 對於 Maven 中央儲存機制中的外部套件，上述程式碼片段預期會使用 Maven 座標。 在此程式碼片段中， `com.databricks:spark-csv_2.10:1.4.0` 是 **spark-csv** 套件的 maven 座標。 以下說明如何建立套件的座標。
+6. 上述的 hello 片段預期 hello Maven 中央儲存機制中的外部封裝 hello maven 座標。 在此程式碼片段，`com.databricks:spark-csv_2.10:1.4.0`是 hello maven 座標**spark csv**封裝。 以下是您如何建立封裝的 hello 座標。
    
-    a. 在「Maven 儲存機制」中找出套件。 針對本教學課程，我們使用 [spark-csv](http://search.maven.org/#artifactdetails%7Ccom.databricks%7Cspark-csv_2.10%7C1.4.0%7Cjar)。
+    a. 在 hello Maven 儲存機制中，找出 hello 封裝。 針對本教學課程，我們使用 [spark-csv](http://search.maven.org/#artifactdetails%7Ccom.databricks%7Cspark-csv_2.10%7C1.4.0%7Cjar)。
    
-    b. 從儲存機制收集 [GroupId]、[ArtifactId] 及 [版本] 的值。 確定您收集的值符合您的叢集。 在此案例中，我們使用 Scala 2.10 與 Spark 1.4.0 套件，但您可能必須為叢集中的適當 Scala 或 Spark 版本選取不同的版本。 您可以透過在 Spark Jupyter 核心或 Spark 提交上執行 `scala.util.Properties.versionString` 以查看您叢集上的 Scala 版本。 您可以透過在 Jupyter 筆記本上執行 `sc.version` 以查看您叢集上的 Spark 版本。
+    b. 從 hello 儲存機制，蒐集 hello 值**GroupId**， **ArtifactId**，和**版本**。 請確定您所收集的 hello 值符合您的叢集。 在此情況下，我們使用的是 Scala 2.10 和 Spark 1.4.0 封裝，但您可能 hello 適當 Scala 或 Spark 版本需要 tooselect 不同版本，在您的叢集。 您可以找出 hello Scala 版本在叢集上執行`scala.util.Properties.versionString`或 Spark 送出 hello Spark Jupyter 核心上。 您可以找出 hello Spark 版本在叢集上執行`sc.version`Jupyter 筆記本上。
    
     ![搭配 Jupyter Notebook 使用外部封裝](./media/hdinsight-apache-spark-jupyter-notebook-use-external-packages/use-external-packages-with-jupyter.png "搭配 Jupyter Notebook 使用外部封裝")
    
-    c. 串連三個值，其中以冒號分隔 (**:**)。
+    c. 串連 hello 三個值，並以分號 (**:**)。
    
         com.databricks:spark-csv_2.10:1.4.0
 
-7. 以 `%%configure` magic 執行程式碼單元。 這會將基礎 Livy 工作階段設定為使用您提供的套件。 在 Notebook 的後續單元中，您現在已可以使用套件，如以下所示。
+7. 執行 hello 程式碼的儲存格以 hello`%%configure`識別常數。 這會設定 hello 基礎晚總工作階段 toouse hello 您提供的封裝。 在儲存格中 hello 後續 hello 筆記本，您現在可以使用 hello 封裝，如下所示。
    
         val df = sqlContext.read.format("com.databricks.spark.csv").
         option("header", "true").
         option("inferSchema", "true").
         load("wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
 
-8. 接著，您可以執行程式碼片段 (如以下所示) 以檢視來自您在上一個步驟中所建立之資料框架的資料。
+8. 然後，您可以執行 hello 程式碼片段，類似如下所示，tooview hello hello 資料框架的資料建立 hello 上一個步驟中。
    
         df.show()
    
@@ -103,7 +103,7 @@ ms.lasthandoff: 08/03/2017
 ### <a name="scenarios"></a>案例
 * [Spark 和 BI：在 HDInsight 中搭配使用 Spark 和 BI 工具執行互動式資料分析](hdinsight-apache-spark-use-bi-tools.md)
 * [Spark 和機器學習服務：使用 HDInsight 中的 Spark，利用 HVAC 資料來分析建築物溫度](hdinsight-apache-spark-ipython-notebook-machine-learning.md)
-* [Spark 和機器學習服務：使用 HDInsight 中的 Spark 來預測食品檢查結果](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
+* [機器學習的 Spark： 使用 HDInsight toopredict 食物檢查結果中的 Spark](hdinsight-apache-spark-machine-learning-mllib-ipython.md)
 * [Spark 串流：使用 HDInsight 中的 Spark 來建置即時串流應用程式](hdinsight-apache-spark-eventhub-streaming.md)
 * [使用 HDInsight 中的 Spark 進行網站記錄分析](hdinsight-apache-spark-custom-library-website-log-analysis.md)
 
@@ -114,13 +114,13 @@ ms.lasthandoff: 08/03/2017
 ### <a name="tools-and-extensions"></a>工具和擴充功能
 
 * [在 HDInsight Linux 上的 Apache Spark 叢集中搭配 Jupyter Notebook 使用外部 Python 套件](hdinsight-apache-spark-python-package-installation.md)
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式來建立和提交 Spark Scala 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
-* [使用 IntelliJ IDEA 的 HDInsight Tools 外掛程式遠端偵錯 Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
+* [HDInsight 工具外掛程式用於 IntelliJ 概念 toocreate 並提交 Spark Scala 應用程式](hdinsight-apache-spark-intellij-tool-plugin.md)
+* [從遠端使用 HDInsight Tools 外掛程式 IntelliJ 概念 toodebug Spark 應用程式](hdinsight-apache-spark-intellij-tool-plugin-debug-jobs-remotely.md)
 * [利用 HDInsight 上的 Spark 叢集來使用 Zeppelin Notebook](hdinsight-apache-spark-zeppelin-notebook.md)
 * [HDInsight 的 Spark 叢集中 Jupyter Notebook 可用的核心](hdinsight-apache-spark-jupyter-notebook-kernels.md)
-* [在電腦上安裝 Jupyter 並連接到 HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
+* [在您的電腦上安裝 Jupyter 並連接 tooan HDInsight Spark 叢集](hdinsight-apache-spark-jupyter-notebook-install-locally.md)
 
 ### <a name="manage-resources"></a>管理資源
-* [在 Azure HDInsight 中管理 Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
+* [管理 Azure HDInsight 中的 hello Apache Spark 叢集的資源](hdinsight-apache-spark-resource-manager.md)
 * [追蹤和偵錯在 HDInsight 中的 Apache Spark 叢集上執行的作業](hdinsight-apache-spark-job-debugging.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure 自動化中的角色型存取控制 | Microsoft Docs"
-description: "角色型存取控制 (RBAC) 可以啟用對 Azure 資源的存取權管理。 本文說明如何在 Azure 自動化中設定 RBAC。"
+title: "在 Azure 自動化中的 aaaRole 型存取控制 |Microsoft 文件"
+description: "角色型存取控制 (RBAC) 可以啟用對 Azure 資源的存取權管理。 本文說明如何在 Azure 自動化中的 RBAC 的向上 tooset。"
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 09/12/2016
 ms.author: magoedte;sngun
-ms.openlocfilehash: 17c7e410a9c5b69ab450eb3affd192f1e3cb6e76
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 051438e44d0c5c514d6dbaac5a312344ee311cdf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="role-based-access-control-in-azure-automation"></a>Azure 自動化中的角色型存取控制
 ## <a name="role-based-access-control"></a>角色型存取控制
-角色型存取控制 (RBAC) 可以啟用對 Azure 資源的存取權管理。 您可以使用 [RBAC](../active-directory/role-based-access-control-configure.md)來區隔小組內的職責，僅授與使用者、群組和應用程式執行作業所需的存取量。 使用 Azure 入口網站、Azure 命令列工具或 Azure 管理 API 的使用者，可以獲授與角色型存取權。
+角色型存取控制 (RBAC) 可以啟用對 Azure 資源的存取權管理。 使用[RBAC](../active-directory/role-based-access-control-configure.md)、 您可以在您的小組隔離責任和授與僅 hello 存取 toousers、 群組和應用程式，它們必須 tooperform 他們的工作數量。 可以授與以角色為基礎的存取權 toousers 使用 hello Azure 入口網站、 Azure 命令列工具或 Azure 管理 Api。
 
 ## <a name="rbac-in-automation-accounts"></a>自動化帳戶中的 RBAC
-在 Azure 自動化中，於自動化帳戶範圍將適當的 RBAC 角色指派給使用者、群組和應用程式，即可授與存取權。 以下是自動化帳戶支援的內建角色：  
+在 Azure 自動化中，會授與存取指派適當 RBAC 角色 toousers hello、 群組和應用程式在 hello 自動化帳戶範圍。 下列是 hello 支援自動化帳戶的內建角色：  
 
 | **角色** | **說明** |
 |:--- |:--- |
-| 擁有者 |擁有者角色允許存取自動化帳戶中的所有資源和動作，包括存取提供給其他使用者、群組和應用程式，以管理自動化帳戶。 |
-| 參與者 |參與者角色可讓您管理各個項目，修改其他使用者的自動化帳戶存取權限除外。 |
-| 讀取者 |讀取者角色可讓您檢視自動化帳戶中的所有資源，但無法進行任何變更。 |
-| 自動化運算子 |自動化操作員角色可讓您執行作業的工作，例如啟動、停止、暫停、繼續和排程作業。 如果您想要保護認證資產和 Runbook 等自動化帳戶資源不被檢視或修改，但仍然允許組織的成員來執行這些 Runbook，這個角色會有所幫助。 |
-| 使用者存取系統管理員 |使用者存取系統管理員角色可讓您管理 Azure 自動化帳戶的使用者存取。 |
+| 擁有者 |hello 擁有者角色允許存取 tooall 資源，以及包括提供存取 tooother 使用者、 群組和應用程式 toomanage hello 自動化帳戶的自動化帳戶內的動作。 |
+| 參與者 |hello 參與者角色可讓您 toomanage 以外修改其他使用者的所有內容存取權限 tooan 自動化帳戶。 |
+| 讀取者 |hello 讀取者角色可讓您 tooview 自動化中的所有 hello 資源帳戶，但無法進行任何變更。 |
+| 自動化運算子 |hello 自動化操作員角色可讓您 tooperform 操作工作例如啟動、 停止、 暫停、 繼續和排程作業。 這個角色是如果您想要 tooprotect 您的自動化帳戶資源，例如認證資產和 runbook 進行檢視或修改很有幫助，但是仍然允許這些 runbook 的組織 tooexecute 成員。 |
+| 使用者存取系統管理員 |hello 使用者存取系統管理員角色，可讓您 toomanage 使用者存取 tooAzure 自動化帳戶。 |
 
 > [!NOTE]
-> 您無法授與特定 Runbook 的存取權限，只能授與自動化帳戶內資源和動作的存取權限。  
+> 您無法授與存取權限 tooa 特定 runbook 或 runbook，只 toohello 資源，以及在 hello 自動化帳戶內的動作。  
 > 
 > 
 
-在本文中，我們將逐步引導您如何在 Azure 自動化中設定 RBAC。 但首先，讓我們深入探討授與給參與者、讀取者、自動化操作員和使用者存取系統管理員的個別權限，以便在將自動化帳戶的權限授與給任何人前充分瞭解相關資訊。  否則，可能會造成非預期或不想要的結果。     
+本文章中我們將逐步引導您在 Azure 自動化中的 RBAC 的向上 tooset。 但首先，讓我們來看得更仔細查看 hello 個別權限授與 toohello 參與者，讀取器、 自動化運算子和使用者存取系統管理員，讓我們取得之前授與任何人都了解 rights toohello 自動化帳戶。  否則，可能會造成非預期或不想要的結果。     
 
 ## <a name="contributor-role-permissions"></a>參與者角色權限
-下表顯示參與者角色可以在自動化中執行的特定動作。
+hello 下表顯示 hello 自動化中的 hello 參與者角色可以執行的特定動作。
 
 | **資源類型** | **讀取** | **寫入** | **刪除** | **其他動作** |
 |:--- |:--- |:--- |:--- |:--- |
@@ -67,7 +67,7 @@ ms.lasthandoff: 07/11/2017
 | 自動化 Webhook |![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) |![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) |![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) |![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) |
 
 ## <a name="reader-role-permissions"></a>讀取者角色權限
-下表顯示讀取者角色可以在自動化中執行的特定動作。
+hello 下表顯示 hello 可以在自動化中的 hello 讀取器角色所執行的特定動作。
 
 | **資源類型** | **讀取** | **寫入** | **刪除** | **其他動作** |
 |:--- |:--- |:--- |:--- |:--- |
@@ -79,7 +79,7 @@ ms.lasthandoff: 07/11/2017
 | 角色定義 |![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
 
 ## <a name="automation-operator-role-permissions"></a>自動化操作員角色權限
-下表顯示自動化操作員角色可以在自動化中執行的特定動作。
+hello 下表顯示 hello 可執行的自動化中的 hello 自動化操作員角色的特定動作。
 
 | **資源類型** | **讀取** | **寫入** | **刪除** | **其他動作** |
 |:--- |:--- |:--- |:--- |:--- |
@@ -101,10 +101,10 @@ ms.lasthandoff: 07/11/2017
 | 自動化 Runbook 草稿測試作業 | | | | |
 | 自動化 Webhook | | | | |
 
-如需進一步詳細資訊， [自動化操作員動作](../active-directory/role-based-access-built-in-roles.md#automation-operator) 會列出自動化帳戶和其資源的自動化操作員角色所支援的動作。
+如需詳細資訊，hello[自動化運算子動作](../active-directory/role-based-access-built-in-roles.md#automation-operator)清單 hello hello 自動化帳戶和其資源的 hello 自動化操作員角色所支援的動作。
 
 ## <a name="user-access-administrator-role-permissions"></a>使用者存取系統管理員角色權限
-下表顯示使用者存取系統管理員角色可以在自動化中執行的特定動作。
+hello 下表顯示 hello hello 自動化中的使用者存取系統管理員角色可以執行的特定動作。
 
 | **資源類型** | **讀取** | **寫入** | **刪除** | **其他動作** |
 |:--- |:--- |:--- |:--- |:--- |
@@ -127,106 +127,106 @@ ms.lasthandoff: 07/11/2017
 | 自動化 Webhook |![綠色狀態](media/automation-role-based-access-control/green-checkmark.png) | | | |
 
 ## <a name="configure-rbac-for-your-automation-account-using-azure-portal"></a>使用 Azure 入口網站為您的自動化帳戶設定 RBAC
-1. 登入 [Azure 入口網站](https://portal.azure.com/) ，並從 [自動化帳戶] 刀鋒視窗開啟您的自動化帳戶。  
-2. 按一下右上角的 [存取]  控制項。 這會開啟 [使用者]  刀鋒視窗，您可以在其中加入新使用者、群組及應用程式來管理您的自動化帳戶，並檢視可以為自動化帳戶設定的現有角色。  
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com/)從 hello 自動化帳戶 刀鋒視窗中開啟您的自動化帳戶。  
+2. 按一下 hello**存取**頂端 hello 右下角的控制項。 這會開啟 hello**使用者**刀鋒視窗可以讓您加入新的使用者、 群組和應用程式 toomanage 自動化帳戶，然後檢視現有的角色，可設定為 hello 自動化帳戶。  
    
    ![[存取] 按鈕](media/automation-role-based-access-control/automation-01-access-button.png)  
 
 > [!NOTE]
-> **訂用帳戶管理員** 已經存在做為預設的使用者。 訂用帳戶管理員 Active Directory 群組包含服務系統管理員和 Azure 訂用帳戶的共同管理員。 服務系統管理員為您的 Azure 訂用帳戶和其資源的擁有者，而且會具有對自動化帳戶繼承的擁有者角色。 這表示存取權是由訂用帳戶的**服務系統管理員和共同管理員****繼承**，並且針對所有其他的使用者**指派**。 按一下 [訂用帳戶管理員]  來檢視有關其權限的其他詳細資料。  
+> **訂用帳戶系統管理員 」** hello 預設使用者為已經存在。 hello 訂用帳戶系統管理員 」 的 active directory 群組包含 hello 服務給系統管理員和 co-administrator(s) Azure 訂用帳戶。 hello 服務管理員是 hello 的擁有者 Azure 訂用帳戶以及它的資源，而且會有 hello 擁有者角色繼承 hello 自動化帳戶太。 這表示 hello 存取**繼承**如**服務系統管理員和共同管理員**的訂用帳戶和它的**指派**針對所有 hello 其他使用者。 按一下**訂閱管理員**tooview 更詳細說明有關其權限。  
 > 
 > 
 
 ### <a name="add-a-new-user-and-assign-a-role"></a>加入新使用者並指派角色
-1. 從 [使用者] 刀鋒視窗中，按一下 [新增] 以開啟 [新增存取] 刀鋒視窗，您可以在其中新增使用者、群組或應用程式，並將角色指派給他們。  
+1. 從 hello 使用者 刀鋒視窗中，按一下 **新增**tooopen hello**新增存取 刀鋒視窗**您可以在其中新增使用者、 群組或應用程式，並指派角色 toothem。  
    
    ![新增使用者](media/automation-role-based-access-control/automation-02-add-user.png)  
-2. 從可用角色的清單中選取角色。 我們將選擇 **讀取者** 角色，但是您可以選擇自動化帳戶支援的任何可用的內建角色，或已定義的任何自訂角色。  
+2. 從可用角色的 hello 清單中選取的角色。 我們將選擇 hello**讀取器**角色，但是您可以選擇任何 hello 可用的內建角色支援自動化帳戶或您已定義任何自訂角色。  
    
    ![選取角色](media/automation-role-based-access-control/automation-03-select-role.png)  
-3. 按一下 [新增使用者] 以開啟 [新增使用者] 刀鋒視窗。 如果您已新增任何使用者、群組或應用程式以管理您的訂用帳戶，則會列出這些使用者，您可以選取他們以新增存取權。 如果沒有列出任何使用者，或未列出您有興趣新增的使用者，請按一下 [邀請] 開啟 [邀請來賓] 刀鋒視窗；您可以在此邀請具有有效 Microsoft 帳戶電子郵件地址 (例如 Outlook.com、OneDrive 或 Xbox Live ID) 的使用者。 輸入了使用者的電子郵件地址之後，按一下 [選取] 以新增使用者，然後按一下 [確定]。 
+3. 按一下**將使用者新增**tooopen hello**將使用者新增**刀鋒視窗。 如果您新增任何使用者、 群組或應用程式 toomanage 列出您的訂用帳戶則這些使用者，並選取 tooadd 存取。 如果沒有列出任何使用者，或如果未列出您感興趣加入 hello 使用者再按一下**邀請**tooopen hello**邀請來賓**刀鋒視窗中，您可以在此邀請具有有效的 Microsoft 帳戶的使用者電子郵件地址，例如 Outlook.com、 OneDrive 或 Xbox Live Id。 一旦您已輸入 hello hello 使用者電子郵件地址，按一下 **選取**tooadd hello 使用者，然後按一下**確定**。 
    
    ![新增使用者](media/automation-role-based-access-control/automation-04-add-users.png)  
    
-   現在您應該會看到使用者新增至 [使用者] 刀鋒視窗，並且獲指派**讀取者**角色。  
+   現在您應該會看到新增的 hello 使用者 toohello**使用者**刀鋒視窗的 hello**讀取器**指派角色。  
    
    ![列出使用者](media/automation-role-based-access-control/automation-05-list-users.png)  
    
-   您也可以從 [角色]  刀鋒視窗指派角色給使用者。 
-4. 從 [使用者] 刀鋒視窗按一下 [角色] 以開啟 [角色] 刀鋒視窗。 從這個刀鋒視窗中，您可以檢視角色的名稱、指派給該角色的使用者和群組數目。
+   您也可以指派角色 toohello 使用者從 hello**角色**刀鋒視窗。 
+4. 按一下**角色**從 hello 使用者 刀鋒視窗 tooopen hello**角色 刀鋒視窗**。 您可以從這個刀鋒視窗中，檢視 hello hello 角色，hello 數目的使用者和群組指派 toothat 角色名稱。
    
     ![從 [使用者] 刀鋒視窗指派角色](media/automation-role-based-access-control/automation-06-assign-role-from-users-blade.png)  
    
    > [!NOTE]
-   > 只能在自動化帳戶層級，而非低於自動化帳戶的任何資源中設定以角色為基礎的存取控制。
+   > 以角色為基礎的存取控制只可以在 hello 自動化帳戶層級設定，並不是在下列任何資源 hello 自動化帳戶。
    > 
    > 
    
-    您可以將多個角色指派給使用者、群組或應用程式。 例如，如果我們新增**自動化操作員**角色連同**讀取者角色**給使用者，那麼他們可以檢視所有的自動化資源，以及執行 Runbook 作業。 您可以展開下拉式清單以檢視指派給使用者的角色清單。  
+    您可以指派多個角色 tooa 使用者、 群組或應用程式。 例如，如果我們加入 hello**自動化運算子**角色以及 hello**讀取者角色**toohello 使用者，然後他們可以檢視所有 hello 自動化資源，以及執行 hello runbook 工作。 您可以展開 hello 下拉式 tooview 的角色指派 toohello 使用者清單。  
    
     ![檢視多個角色](media/automation-role-based-access-control/automation-07-view-multiple-roles.png)  
 
 ### <a name="remove-a-user"></a>移除使用者
-您可以移除未管理自動化帳戶的使用者，或不再為組織工作之使用者的存取權限。 以下是移除使用者的步驟： 
+您可以移除 hello 人員不管理 hello 自動化帳戶或使用者不再適用於 hello 組織使用者的存取權限。 下列是 hello 步驟 tooremove 使用者： 
 
-1. 從 [使用者]  刀鋒視窗中，選取您想要移除的角色指派。
-2. 按一下指派詳細資料刀鋒視窗上的 [移除]  按鈕。
-3. 按一下 [是]  以確認移除。 
+1. 從 hello**使用者**刀鋒視窗中，您想 tooremove 選取 hello 角色指派。
+2. 按一下 hello**移除**hello 分派詳細資料 刀鋒視窗中的按鈕。
+3. 按一下**是**tooconfirm 移除。 
    
    ![移除使用者](media/automation-role-based-access-control/automation-08-remove-users.png)  
 
 ## <a name="role-assigned-user"></a>角色指派的使用者
-當獲派角色的使用者登入他們的自動化帳戶時，可以看到擁有者的帳戶列於 **預設目錄**清單中。 若要檢視他們被加入的自動化帳戶，他們必須將預設目錄切換到擁有者的預設目錄。  
+Tooa 角色指派的使用者登入時 tootheir 自動化帳戶，就可以看到 hello 清單中所列的擁有者 hello 帳戶**預設目錄**。 在自動化帳戶加入至訂單 tooview hello，它們必須切換 hello 預設目錄 toohello 擁有者的預設目錄。  
 
 ![預設目錄](media/automation-role-based-access-control/automation-09-default-directory-in-role-assigned-user.png)  
 
 ### <a name="user-experience-for-automation-operator-role"></a>自動化操作員角色的使用者經驗
-當指派為自動化操作員角色的使用者檢視指派給他的自動化帳戶時，只能檢視在自動化帳戶中建立的 Runbook、Runbook 作業和排程的清單，但無法檢視其定義。 他們可以啟動、停止、暫停、繼續或排程 Runbook 作業。 使用者將無法存取其他自動化資源，例如組態、混合式背景工作群組或 DSC 節點。  
+當指派 toohello 自動化操作員角色檢視 hello 自動化帳戶指派給使用者，是時，他們可以只檢視 runbook 的 hello 清單時，runbook 作業和排程 hello 自動化帳戶中建立，但無法檢視其定義。 他們可以啟動、 停止、 暫停、 繼續或排程 hello runbook 工作。 hello 使用者不會有存取 tooother 自動化資源，例如混合式背景工作群組或 DSC 節點的組態。  
 
-![沒有資源的存取權](media/automation-role-based-access-control/automation-10-no-access-to-resources.png)  
+![沒有存取 tooresourcres](media/automation-role-based-access-control/automation-10-no-access-to-resources.png)  
 
-當使用者按一下 Runbook 時，不會提供檢視來源或編輯 Runbook 的命令，因為自動化操作員角色不允許存取它們。  
+當 hello 使用者按一下 hello runbook 時，hello tooview hello 來源，或編輯 hello runbook 的命令不提供為 hello 自動化操作員角色不允許存取 toothem。  
 
-![沒有編輯 Runbook 的存取權](media/automation-role-based-access-control/automation-11-no-access-to-edit-runbook.png)  
+![沒有存取 tooedit runbook](media/automation-role-based-access-control/automation-11-no-access-to-edit-runbook.png)  
 
-使用者將可檢視及建立排程，但無法存取任何其他資產類型。  
+hello 使用者會有存取 tooview 和 toocreate 排程，但不是會存取 tooany 其他資產類型。  
 
-![沒有資產的存取權](media/automation-role-based-access-control/automation-12-no-access-to-assets.png)  
+![沒有存取 tooassets](media/automation-role-based-access-control/automation-12-no-access-to-assets.png)  
 
-這位使用者也沒有存取權可以檢視與 Runbook 相關聯的 Webhook
+此使用者也不具與 runbook 相關聯的存取 tooview hello webhook
 
-![沒有 Webhook 的存取權](media/automation-role-based-access-control/automation-13-no-access-to-webhooks.png)  
+![沒有存取 toowebhooks](media/automation-role-based-access-control/automation-13-no-access-to-webhooks.png)  
 
 ## <a name="configure-rbac-for-your-automation-account-using-azure-powershell"></a>使用 Azure PowerShell 為您的自動化帳戶設定 RBAC
-使用下列 [Azure PowerShell Cmdlet](../active-directory/role-based-access-control-manage-access-powershell.md)也可以將角色型存取設定到自動化帳戶。
+以角色為基礎的存取也可以設定的 tooan 自動化帳戶使用 hello 下列[Azure PowerShell cmdlet](../active-directory/role-based-access-control-manage-access-powershell.md)。
 
-• [Get-AzureRmRoleDefinition](https://msdn.microsoft.com/library/mt603792.aspx) 會列出 Azure Active Directory 中可用的所有 RBAC 角色。 您可以使用這個命令搭配 [名稱] 屬性，列出特定角色可以執行的所有動作。  
+• [Get-AzureRmRoleDefinition](https://msdn.microsoft.com/library/mt603792.aspx) 會列出 Azure Active Directory 中可用的所有 RBAC 角色。 您可以使用這個命令以及 hello**名稱**屬性 toolist 所有 hello 可由特定角色執行的動作。  
     **範例：**  
     ![取得角色定義](media/automation-role-based-access-control/automation-14-get-azurerm-role-definition.png)  
 
-• [Get-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt619413.aspx) 會列出在指定範圍的 Azure AD RBAC 角色指派。 如果沒有任何參數，此命令會傳回在訂用帳戶下所做的所有角色指派。 使用 **ExpandPrincipalGroups** 參數，列出指定使用者以及使用者為其成員之群組的存取權指派。  
-    **範例：**使用下列命令來列出自動化帳戶中的所有使用者以及其角色。
+• [Get AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt619413.aspx)清單在 hello Azure AD RBAC 角色指派指定的範圍。 如果沒有任何參數，此命令會傳回 hello 訂用帳戶底下所做的所有 hello 角色指派。 使用 hello **ExpandPrincipalGroups**參數 toolist 存取指派 hello 可讓您指定使用者，以及 hello 群組 hello 使用者是的成員。  
+    **範例：**使用 hello 下列命令 toolist，hello 的所有使用者和其自動化帳戶內的角色。
 
     Get-AzureRMRoleAssignment -scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>” 
 
 ![取得角色指派](media/automation-role-based-access-control/automation-15-get-azurerm-role-assignment.png)
 
-• [New-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt603580.aspx) 可將使用者、群組和應用程式的存取權指派給特定範圍。  
-    **範例：**使用下列命令來為自動化帳戶範圍內的使用者指派「自動化操作員」角色。
+•[新增 AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt603580.aspx) tooassign 存取 toousers、 群組和應用程式 tooa 特定範圍內。  
+    **範例：**使用 hello 下列命令 tooassign hello"自動化操作員 」 角色 hello 自動化帳戶的範圍中的使用者。
 
-    New-AzureRmRoleAssignment -SignInName <sign-in Id of a user you wish to grant access> -RoleDefinitionName "Automation operator" -Scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>”  
+    New-AzureRmRoleAssignment -SignInName <sign-in Id of a user you wish toogrant access> -RoleDefinitionName "Automation operator" -Scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>”  
 
 ![新角色指派](media/automation-role-based-access-control/automation-16-new-azurerm-role-assignment.png)
 
-• 使用 [Remove-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt603781.aspx) 來移除特定範圍內指定的使用者、群組或應用程式的存取權。  
-    **範例：**使用下列命令，從自動化帳戶範圍內的「自動化操作員」角色移除使用者。
+• 使用[移除 AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt603781.aspx) tooremove 存取指定的使用者、 群組或從特定範圍的應用程式。  
+    **範例：**使用 hello 下列命令 tooremove hello 使用者從 hello 自動化帳戶的範圍中的 hello"自動化操作員 」 角色。
 
-    Remove-AzureRmRoleAssignment -SignInName <sign-in Id of a user you wish to remove> -RoleDefinitionName "Automation Operator" -Scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>”
+    Remove-AzureRmRoleAssignment -SignInName <sign-in Id of a user you wish tooremove> -RoleDefinitionName "Automation Operator" -Scope “/subscriptions/<SubscriptionID>/resourcegroups/<Resource Group Name>/Providers/Microsoft.Automation/automationAccounts/<Automation Account Name>”
 
-在上述範例中，請以您的帳戶詳細資料取代[登入識別碼]、[訂用帳戶識別碼]、[資源群組名稱] 和 [自動化帳戶名稱]。 當系統提示您確認時選擇 [是]  ，然後再繼續移除使用者角色指派。   
+在上述範例 hello，取代**登入識別碼**，**訂用帳戶 Id**，**資源群組名稱**和**自動化帳戶名稱**與您帳戶詳細資料。 選擇**是**時提示 tooconfirm 才能繼續 tooremove 使用者角色指派。   
 
 ## <a name="next-steps"></a>後續步驟
-* 如需針對 Azure 自動化設定 RBAC 的不同方式詳細資訊，請參閱 [使用 Azure PowerShell 管理 RBAC](../active-directory/role-based-access-control-manage-access-powershell.md)。
-* 如需以不同方式啟動 Runbook 的詳細資訊，請參閱 [啟動 Runbook](automation-starting-a-runbook.md)
-* 如需不同 Runbook 類型的詳細資訊，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
+* 如需不同的方式 tooconfigure RBAC Azure 自動化的資訊，請參閱太[管理使用 Azure PowerShell RBAC](../active-directory/role-based-access-control-manage-access-powershell.md)。
+* 如需不同的方式 toostart runbook 的詳細資訊，請參閱[啟動 runbook](automation-starting-a-runbook.md)
+* 如需不同的 runbook 類型資訊，請參閱太[Azure 自動化 runbook 類型](automation-runbook-types.md)
 

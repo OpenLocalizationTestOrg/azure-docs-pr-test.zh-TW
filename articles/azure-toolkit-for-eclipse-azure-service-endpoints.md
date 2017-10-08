@@ -1,6 +1,6 @@
 ---
-title: "Azure 服務端點"
-description: "說明適用於 Eclipse 的 Azure 工具組中 Azure 服務端點的設定。"
+title: "aaaAzure 服務端點"
+description: "描述在 hello Azure Toolkit for Eclipse 中的 hello Azure 服務端點設定。"
 services: 
 documentationcenter: java
 author: rmcmurray
@@ -14,57 +14,57 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: robmcm
-ms.openlocfilehash: 6059c292c2687f1bf3d9be04c03aaaaf6adde945
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 357aa56409a894719077f2c8f302575c8ebb6883
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-service-endpoints"></a>Azure 服務端點
-Azure 服務端點會判斷您的應用程式是否已部署至全域 Azure 平台並由該平台管理，Azure 由位於中國的 21Vianet 或私人 Azure 平台運作。 [ **服務端點** ] 對話方塊可讓您指定要使用的服務端點。 若要在 Eclipse 中開啟 [服務端點] 對話方塊，請依序按一下 [視窗]、[喜好設定]，展開 [Azure]，然後按一下 [服務端點]。 設定 [ **作用中設定** ] 欄位，可決定您目前工作區中的 Azure 專案將使用的 Azure 服務端點。
+Azure 服務端點會判斷您的應用程式是否已部署的 tooand hello 全域 Azure 平台所管理，Azure 由 21Vianet in China 或私人 Azure 平台運作。 hello**服務端點**對話方塊可讓您的服務端點想 toouse toospecify。 tooopen hello**服務端點**對話方塊中的，在 Eclipse 中，按一下**視窗**，按一下 **喜好設定**，依序展開**Azure**，然後按一下**服務端點**。 設定 hello**作用中設定**欄位會決定目前的工作區中的哪一種 Azure 服務端點會用於 hello Azure 專案。
 
-[ **服務端點** ] 對話方塊如下顯示。
+hello 下列範例示範 hello**服務端點**對話方塊。
 
 ![][ic719493]
 
-## <a name="to-set-the-service-endpoints"></a>設定服務端點
-在 [ **服務端點** ] 對話方塊中，執行下列其中一個動作：
+## <a name="tooset-hello-service-endpoints"></a>tooset hello 服務端點
+在 hello**服務端點**對話方塊中，下列動作的 hello 的其中一個執行：
 
-* 如果想使用全域 Azure 平台，請從 [作用中設定] 下拉式清單中，選取 [windowsazure.com]，並按一下 [確定]。
+* 如果您想 toouse hello 全域 Azure 平台，從 hello**作用中設定**下拉式清單中選取**windowsazure.com**按一下**確定**。
 
-* 如果想使用由位於中國的 21Vianet 所運作的 Azure，請從 [作用中設定] 下拉式清單中，選取 [windowsazure.cn (中國)]，並按一下 [確定]。
+* 如果您想的 toouse Azure 由 21Vianet in China 從 hello 運作**作用中設定**下拉式清單中選取**windowsazure.cn （中國）**按一下**確定**。
 
-* 如果想使用私人 Azure 平台：
+* 如果您想 toouse 私人 Azure 平台：
 
   1. 按一下 [ **編輯**]。
 
-  2. 隨即會開啟一個對話方塊，告知您 [ **服務端點** ] 對話方塊將關閉，喜好設定檔案將開啟。 按一下 [確定] 。
+  2. 會開啟一個對話方塊，通知您該 hello**服務端點**會關閉對話方塊，並將開啟 hello 喜好設定設定檔。 按一下 [確定] 。
 
-  3. 在 preferencesets.xml 檔案中，建立新的 `preferenceset` 元素。 針對此新元素，建立 `name`、`blob`、`management`、`portalURL` 和 `publishsettings` 屬性，再為其新增對應至私人 Azure 平台的值。 您可使用為現有 `preferenceset` 元素所提供的值作為範本。 **注意**：用於 `blob` 屬性的值必須在 URL 中包含 "blob" 文字。
+  3. 在 hello preferencesets.xml 檔案中，建立新`preferenceset`項目。 這個新的項目，對於建立`name`， `blob`， `management`，`portalURL`和`publishsettings`屬性，然後新增其對應 tooyour 私人 Azure 平台的值。 您可以使用 hello 值提供給現有的 hello`preferenceset`做為範本的項目。 **請注意**: hello 值為 hello`blob`屬性必須包含"blob"hello URL 中的 hello 文字。
 
   4. 儲存並關閉 preferencesets.xml。
 
-  5. 重新開啟 [ **服務端點** ] 對話方塊。
+  5. 重新開啟 hello**服務端點**對話方塊。
 
-  6. 從 [作用中設定] 下拉式清單中，選取您建立的作用中設定，然後按一下 [確定]。
+  6. 從 hello**作用中設定**下拉式清單中，選取 hello 作用中設定您建立，然後按一下**確定**。
 
-  7. 建立私人 Azure 平台 `preferenceset` 元素後，您可以按一下 [服務端點] 對話方塊中的 [編輯] 按鈕，變更指派給該元素的值。 如有需要，也可以建立多個私人 Azure 平台 `preferenceset` 元素。
+  7. 一旦您已建立私人 Azure 平台`preferenceset`項目，您可以按一下 hello 變更 hello 指派值 tooit**編輯**按鈕在 hello**服務端點**對話方塊。 如有需要，也可以建立多個私人 Azure 平台 `preferenceset` 元素。
 
 ## <a name="see-also"></a>另請參閱
 [適用於 Eclipse 的 Azure 工具組][Azure Toolkit for Eclipse]
 
-[安裝適用於 Eclipse 的 Azure 工具組][Installing the Azure Toolkit for Eclipse] 
+[安裝 Azure Toolkit for Eclipse hello][Installing hello Azure Toolkit for Eclipse] 
 
 [在 Eclipse 中為 Azure 建立 Hello World 應用程式][Creating a Hello World Application for Azure in Eclipse]
 
-如需有關如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心][Azure Java Developer Center]。
+如需有關使用 Azure 與 Java 的詳細資訊，請參閱 hello [Azure Java 開發人員中心][Azure Java Developer Center]。
 
 <!-- URL List -->
 
 [Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
 [Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699529
 [Creating a Hello World Application for Azure in Eclipse]: http://go.microsoft.com/fwlink/?LinkID=699533
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
+[Installing hello Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 
 <!-- IMG List -->
 

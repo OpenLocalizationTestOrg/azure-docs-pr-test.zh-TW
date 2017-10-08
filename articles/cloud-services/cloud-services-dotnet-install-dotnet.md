@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 雲端服務角色上安裝 .NET | Microsoft Docs"
-description: "本文說明如何在雲端服務 Web 和背景工作角色上手動安裝 .NET Framework"
+title: "在 Azure 雲端服務角色 aaaInstall.NET |Microsoft 文件"
+description: "本文說明 toomanually 在雲端服務 web 和背景工作角色上所安裝的.NET Framework hello"
 services: cloud-services
 documentationcenter: .net
 author: thraka
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/24/2017
 ms.author: adegeo
-ms.openlocfilehash: a9cffa275ae6b9315b821d3160b17a997a1523f7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 45f0f30221292f98c591511b091b02ebe1c1272c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="install-net-on-azure-cloud-services-roles"></a>在 Azure 雲端服務角色上安裝 .NET
-本文說明如何安裝未隨附於 Azure 客體 OS 的 .NET Framework 版本。 若要設定雲端服務 web 和背景工作角色，您可以在客體 OS 上使用 .NET。
+本文說明如何 tooinstall 不隨附的.NET Framework 版本 hello Azure 客體作業系統。 您可以使用.NET hello 客體 OS tooconfigure 上將雲端服務 web 和背景工作角色。
 
-例如，您可以在未隨附於任何版本之 .NET 4.6.1 的客體 OS 系列 4 上安裝 .NET 4.6。 (客體 OS 系列 5 會隨附於 .NET 4.6。)如需 Azure 客體 OS 版本的最新資訊，請參閱 [Azure 客體 OS 發行新聞](cloud-services-guestos-update-matrix.md)。 
+比方說，您可以在 hello 客體 OS 系列 4，並未隨附任何版本的.NET 4.6 上安裝.NET 4.6.1。 （.NET 4.6 會帶來 hello 客體 OS 系列 5）。Azure 客體作業系統版本上 hello hello 最新資訊，請參閱 hello [Azure 客體作業系統版次新聞](cloud-services-guestos-update-matrix.md)。 
 
 >[!IMPORTANT]
->Azure SDK 2.9 包含客體 OS 系列 4 或更舊版本部署 .NET 4.6 的限制。 可在 [Microsoft Docs](https://github.com/MicrosoftDocs/azure-cloud-services-files/tree/master/Azure%20Targets%20SDK%202.9) 網站上取得限制的修正程式。
+>hello Azure SDK 2.9 中包含限制 hello 客體 OS 系列 4 或更早版本上部署.NET 4.6。 修正 hello 限制位於 hello [Microsoft 文件](https://github.com/MicrosoftDocs/azure-cloud-services-files/tree/master/Azure%20Targets%20SDK%202.9)站台。
 
-若要在您的 web 和背景工作角色上安裝 .NET，請包括 .NET web 安裝程式作為雲端服務專案的一部分。 啟動安裝程式作為角色啟動工作的一部分。 
+在 web 和背景工作角色中，tooinstall.NET 包含 hello.NET web 安裝程式，做為雲端服務專案的一部分。 啟動 hello installer hello 角色啟動工作的一部分。 
 
-## <a name="add-the-net-installer-to-your-project"></a>將 .NET 安裝程式加入至專案
-若要下載 .NET framework 的 Web 安裝程式，請選擇您需要安裝的版本：
+## <a name="add-hello-net-installer-tooyour-project"></a>新增 hello.NET 安裝程式 tooyour 專案
+toodownload hello web 安裝程式 hello.NET Framework 中，選擇您想 tooinstall hello 版本：
 
 * [.NET 4.7 web 安裝程式](http://go.microsoft.com/fwlink/?LinkId=825298)
 * [.NET 4.6.1 web 安裝程式](http://go.microsoft.com/fwlink/?LinkId=671729)
 
-若要新增 web 角色的安裝程式：
+tooadd hello 安裝程式*web*角色：
   1. 在 [方案總管] 中，於雲端服務專案中的 [角色] 下，以滑鼠右鍵按一下您的 web角色，然後依序選取 [新增] > [新增資料夾]。 建立名為 **bin** 的資料夾。
-  2. 在 bin 資料夾上按一下滑鼠右鍵，並依序選取 [新增] > [現有項目]。 選取 .NET 安裝程式，並將它加入至 bin 資料夾。
+  2. 以滑鼠右鍵按一下 hello bin 資料夾，然後選取**新增** > **現有項目**。 選取 hello.NET 安裝程式，並將它加入 toohello bin 資料夾。
   
-若要新增 worker 角色的安裝程式：
-* 以滑鼠右鍵按一下您的 worker 角色，然後依序選取 [新增] > [現有項目]。 選取 .NET 安裝程式，並將它加入至角色。 
+tooadd hello 安裝程式*工作者*角色：
+* 以滑鼠右鍵按一下您的 worker 角色，然後依序選取 [新增] > [現有項目]。 選取 hello.NET 安裝程式，並將它加入 toohello 角色。 
 
-以這個方式將檔案新增至角色內容資料夾時，檔案就會自動新增至雲端服務套件。 然後檔案就會部署到虛擬機器上的一致位置。 為雲端服務中的每個 Web 和背景工作角色重複此程序，以便所有角色都有安裝程式副本。
+當檔案加入這個方式 toohello 角色內容資料夾中時，使用者在自動新增 tooyour 雲端服務封裝。 hello 檔案就已部署的 tooa hello 虛擬機器上的一致位置。 重複此程序針對雲端服務中的每個 web 和背景工作角色，如此所有角色都有一份 hello 安裝程式。
 
 > [!NOTE]
-> 即使您的應用程式是以 .NET 4.6 為目標，還是應該在雲端服務角色上安裝 .NET 4.6.1。 客體 OS 包含知識庫[更新 3098779](https://support.microsoft.com/kb/3098779) 和[更新 3097997](https://support.microsoft.com/kb/3097997)。 如果 .NET 4.6 是安裝在知識庫更新安裝之上，當您執行 .NET 應用程式時，就可能會發生問題。 若要避免這些問題，請安裝 .NET 4.6.1，而不是 4.6 版。 如需詳細資訊，請參閱[知識庫文章 3118750](https://support.microsoft.com/kb/3118750)。
+> 即使您的應用程式是以 .NET 4.6 為目標，還是應該在雲端服務角色上安裝 .NET 4.6.1。 hello 客體作業系統包括 hello 知識庫[更新 3098779](https://support.microsoft.com/kb/3098779)和[更新 3097997](https://support.microsoft.com/kb/3097997)。 當您執行.NET 應用程式如果之上 hello 知識庫更新安裝.NET 4.6 時，可能會發生問題。 tooavoid 這些問題，安裝.NET 4.6.1，而不是版本 4.6。 如需詳細資訊，請參閱 hello [Knowledge Base 文章 3118750](https://support.microsoft.com/kb/3118750)。
 > 
 > 
 
 ![安裝程式檔案的角色內容][1]
 
 ## <a name="define-startup-tasks-for-your-roles"></a>定義角色的啟動工作
-您可以利用啟動工作，在角色啟動之前執行作業。 將 .NET Framework 安裝為啟動工作的一部分，可確保在執行任何應用程式程式碼之前就已安裝好 Framework。 如需有關啟動工作的詳細資訊，請參閱[在 Azure 中執行啟動工作](cloud-services-startup-tasks.md)。 
+在角色啟動之前，您可以使用啟動工作 tooperform 作業。 安裝.NET Framework hello hello 啟動工作的一部分，可確保該 hello framework 已安裝任何應用程式程式碼執行之前。 如需有關啟動工作的詳細資訊，請參閱[在 Azure 中執行啟動工作](cloud-services-startup-tasks.md)。 
 
-1. 將下列內容新增至所有角色的 **WebRole** 或 **WorkerRole** 節點底下的 ServiceDefinition.csdef 檔案：
+1. 新增下列內容 toohello ServiceDefinition.csdef 檔下 hello hello **WebRole**或**WorkerRole**所有角色的節點：
    
     ```xml
     <LocalResources>
@@ -75,29 +75,29 @@ ms.lasthandoff: 08/29/2017
     </Startup>
     ```
    
-    上述組態會使用系統管理員權限來執行主控台命令 `install.cmd`，以便安裝 .NET Framework。 此設定也會建立名為 **NETFXInstall** 的 **LocalStorage** 元素。 啟動指令碼會將暫存資料夾設定為使用這個本機儲存資源。 
+    hello 前面的組態中執行 hello 主控台命令`install.cmd`與系統管理員權限 tooinstall hello .NET Framework。 hello 組態也會建立**LocalStorage**名**NETFXInstall**。 hello 啟動指令碼設定 hello 暫存資料夾 toouse 這個本機儲存體資源。 
     
     > [!IMPORTANT]
-    > 若要確保正確安裝架構，請將此資源的大小設定為至少 1,024 MB。
+    > tooensure 更正安裝 hello framework，此資源 tooat 組 hello 大小至少 1024 MB。
     
     如需有關啟動工作的詳細資訊，請參閱[常見的 Azure 雲端服務啟動工作](cloud-services-startup-tasks-common.md)。
 
-2. 建立名為 **install.cmd** 的檔案，並將下列安裝指令碼新增至檔案。
+2. 建立名為**install.cmd**並加入 hello 下列安裝指令碼 toohello 檔案。
 
-    指令碼會透過查詢登錄來檢查指定的 .NET Framework 版本是否已在電腦上安裝。 如果未安裝該 .NET 版本，.Net Web 安裝程式就會開啟。 為協助針對任何問題進行疑難排解，該指令碼會將所有活動記錄到 startuptasklog-(目前日期和時間).txt 的檔案 (儲存於 **InstallLogs** 本機儲存體)。
+    hello 指令碼會檢查是否 hello 指定的 hello.NET Framework 版本已安裝在 hello 機器上藉由查詢 hello 登錄。 如果未安裝 hello.NET 版本，會開啟 hello.NET web 安裝程式。 toohelp 疑難排解任何問題，請 hello 指令碼會記錄所有活動 toohello 檔案 startuptasklog-（目前的日期和時間）.txt，其中會儲存在**InstallLogs**本機儲存體。
 
     > [!IMPORTANT]
-    > 使用 Windows 記事本之類的基本文字編輯器來建立 install.cmd 檔案。 如果您是使用 Visual Studio 來建立文字檔案，然後將副檔名變更為 .cmd，檔案可能仍會包含 UTF-8 位元組順序標記。 執行指令碼的第一行時，此標記可能會導致錯誤。 若要避免這個錯誤，請在指令碼的第一行使用 REM 陳述式，位元組順序處理就可以跳過。 
+    > 就像 Windows 記事本 toocreate hello install.cmd 檔案一樣使用基本的文字編輯器。 如果您使用 Visual Studio toocreate 文字檔案，並變更 hello 延伸 too.cmd hello 檔案可能仍會包含 utf-8 位元組順序標記。 Hello 第一行 hello 指令碼執行時，此標記可能會導致錯誤。 tooavoid 這個錯誤，請 hello 第一行 hello hello 位元組順序處理可以略過 REM 陳述式的指令碼。 
     > 
     >
    
     ```cmd
-    REM Set the value of netfx to install appropriate .NET Framework. 
-    REM ***** To install .NET 4.5.2 set the variable netfx to "NDP452" *****
-    REM ***** To install .NET 4.6 set the variable netfx to "NDP46" *****
-    REM ***** To install .NET 4.6.1 set the variable netfx to "NDP461" *****
-    REM ***** To install .NET 4.6.2 set the variable netfx to "NDP462" *****
-    REM ***** To install .NET 4.7 set the variable netfx to "NDP47" *****
+    REM Set hello value of netfx tooinstall appropriate .NET Framework. 
+    REM ***** tooinstall .NET 4.5.2 set hello variable netfx too"NDP452" *****
+    REM ***** tooinstall .NET 4.6 set hello variable netfx too"NDP46" *****
+    REM ***** tooinstall .NET 4.6.1 set hello variable netfx too"NDP461" *****
+    REM ***** tooinstall .NET 4.6.2 set hello variable netfx too"NDP462" *****
+    REM ***** tooinstall .NET 4.7 set hello variable netfx too"NDP47" *****
     set netfx="NDP47"
 
     REM ***** Set script start timestamp *****
@@ -108,7 +108,7 @@ ms.lasthandoff: 08/29/2017
     REM ***** Exit script if running in Emulator *****
     if %ComputeEmulatorRunning%=="true" goto exit
 
-    REM ***** Needed to correctly install .NET 4.6.1, otherwise you may see an out of disk space error *****
+    REM ***** Needed toocorrectly install .NET 4.6.1, otherwise you may see an out of disk space error *****
     set TMP=%PathToNETFXInstall%
     set TEMP=%PathToNETFXInstall%
 
@@ -167,7 +167,7 @@ ms.lasthandoff: 08/29/2017
         echo .NET (%netfx%) install failed with Error Code %ERRORLEVEL%. Further logs can be found in %netfxinstallerlog% >> %startuptasklog%
 
     :restart
-    echo Restarting to complete .NET (%netfx%) installation >> %startuptasklog%
+    echo Restarting toocomplete .NET (%netfx%) installation >> %startuptasklog%
     EXIT /B %ERRORLEVEL%
 
     :installed
@@ -181,20 +181,20 @@ ms.lasthandoff: 08/29/2017
     ```
    
    > [!NOTE]
-   > 此指令碼會示範如何安裝 .NET 4.5.2 或 4.6 版以取得持續性，即使 Azure 客體 OS 上已有 .NET 4.5.2 可供使用。 您應該直接安裝 .NET 4.6.1 而不是 4.6 版，如[知識庫文章 3118750](https://support.microsoft.com/kb/3118750) 中所述。
+   > 此指令碼會示範如何 tooinstall.NET 4.5.2 或 4.6 版本持續性，即使已經裝有.NET 4.5.2 hello Azure 客體作業系統。 您應該直接安裝.NET 4.6.1，而不是版本 4.6 hello 中所述[Knowledge Base 文章 3118750](https://support.microsoft.com/kb/3118750)。
    > 
    > 
 
-3. 將 install.cmd 檔案新增至每個角色，方法是使用 [方案總管] 中的 [新增] > [現有項目]如本主題中稍早所述。 
+3. 新增 hello install.cmd 檔案 tooeach 角色使用**新增** > **現有項目**中**方案總管 中**稍早在本主題中所述。 
 
-    完成此步驟之後，所有角色應該都有 .NET 安裝程式檔案，以及 install.cmd 檔案。
+    完成此步驟之後，所有角色都應該都有 hello.NET 安裝程式檔案和 hello install.cmd 檔案。
 
    ![所有檔案的角色內容][2]
 
-## <a name="configure-diagnostics-to-transfer-startup-logs-to-blob-storage"></a>設定診斷以將啟動記錄傳輸到 Blob 儲存體
-如要簡化針對安裝問題進行疑難排解，您可以設定 Azure 診斷，來將啟動工作指令碼或 .NET 安裝程式所產生的所有記錄檔傳輸到 Azure Blob 儲存體。 您可以使用這種方法，從 Blob 儲存體下載記錄檔，而無需遠端桌面到角色，即可檢視記錄。
+## <a name="configure-diagnostics-tootransfer-startup-logs-tooblob-storage"></a>設定診斷 tootransfer 啟動記錄 tooBlob 存放裝置
+toosimplify 疑難排解安裝問題，您可以設定 Azure 診斷 tootransfer hello 啟動所產生任何記錄檔指令碼或 hello.NET 安裝程式 tooAzure Blob 儲存體。 使用這種方法，您可以從 Blob 儲存體下載 hello 記錄檔，而不是需要 tooremote 桌面連入 hello 角色，以檢視 hello 記錄檔。
 
-若要設定診斷，請開啟 diagnostics.wadcfgx 檔案，並在 [目錄] 節點下新增下列內容： 
+tooconfigure 診斷開啟 hello diagnostics.wadcfgx 檔案，並新增下列內容在 hello hello**目錄**節點： 
 
 ```xml 
 <DataSources>
@@ -204,18 +204,18 @@ ms.lasthandoff: 08/29/2017
 </DataSources>
 ```
 
-這個 XML 會將診斷設定為將 NETFXInstall 資源下 log 目錄中的檔案，傳輸到 **netfx-install** Blob 容器中的診斷儲存體帳戶。
+這段 XML 會在 hello hello 記錄目錄中來設定診斷 tootransfer hello 檔案**NETFXInstall**資源 toohello 診斷儲存體帳戶中 hello **netfx 安裝**blob 容器。
 
 ## <a name="deploy-your-cloud-service"></a>部署您的雲端服務
-部署雲端服務時，啟動工作會安裝 .NET Framework (如果尚未安裝)。 安裝架構時，雲端服務角色會處於忙碌狀態。 如果架構安裝需要重新啟動，服務角色可能也會重新啟動。 
+當您部署雲端服務時，hello 啟動工作安裝 hello.NET Framework，如果尚未安裝。 將雲端服務角色位於 hello*忙碌*hello 架構在安裝時的狀態。 如果 hello framework 安裝需要重新啟動，可能也會重新啟動 hello 服務角色。 
 
 ## <a name="additional-resources"></a>其他資源
-* [安裝 .NET Framework][Installing the .NET Framework]
+* [安裝.NET Framework hello][Installing hello .NET Framework]
 * [判斷安裝的 .NET Framework 版本][How to: Determine Which .NET Framework Versions Are Installed]
 * [針對 .NET Framework 安裝進行疑難排解][Troubleshooting .NET Framework Installations]
 
 [How to: Determine Which .NET Framework Versions Are Installed]: https://msdn.microsoft.com/library/hh925568.aspx
-[Installing the .NET Framework]: https://msdn.microsoft.com/library/5a4x27ek.aspx
+[Installing hello .NET Framework]: https://msdn.microsoft.com/library/5a4x27ek.aspx
 [Troubleshooting .NET Framework Installations]: https://msdn.microsoft.com/library/hh925569.aspx
 
 <!--Image references-->

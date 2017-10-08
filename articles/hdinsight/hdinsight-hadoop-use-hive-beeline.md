@@ -1,6 +1,6 @@
 ---
-title: "使用 Beeline 搭配 Apache Hive - Azure HDInsight | Microsoft Docs"
-description: "了解如何使用 Beeline 用戶端以 Hadoop on HDInsight 執行 Hive 查詢。 Beeline 是透過 JDBC 與 HiveServer2 搭配作業的公用程式。"
+title: "使用 Apache Hive-Azure HDInsight Beeline aaaUse |Microsoft 文件"
+description: "了解 toouse hello Beeline 用戶端 toorun Hive 查詢的 Hadoop HDInsight 上的方式。 Beeline 是透過 JDBC 與 HiveServer2 搭配作業的公用程式。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -17,61 +17,61 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/26/2017
 ms.author: larryfr
-ms.openlocfilehash: 153044aafa3a67ee85bb1997beb821777c938563
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e788ff39f33d928808cfcb83a92f62ac9ae8ca09
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-beeline-client-with-apache-hive"></a>使用 Beeline 用戶端搭配 Apache Hive
+# <a name="use-hello-beeline-client-with-apache-hive"></a>使用 Apache Hive hello Beeline 用戶端
 
-了解如何使用 [Beeline](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline–NewCommandLineShell) 在 HDInsight 上執行 Hive 查詢。
+深入了解如何 toouse [Beeline](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-Beeline–NewCommandLineShell) toorun Hive 查詢 HDInsight 上。
 
-Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 Beeline 會使用 JDBC 連線至 HiveServer2，它是裝載在 HDInsight 叢集上的服務。 您也可以使用 Beeline 透過網際網路從遠端存取 HDInsight 上的 Hive。 下表提供與 Beeline 搭配使用的連接字串：
+Beeline 是包含 hello 的 HDInsight 叢集的前端節點的登錄區用戶端。 Beeline 會使用 JDBC tooconnect tooHiveServer2，您的 HDInsight 叢集上裝載的服務。 您也可以使用 Beeline tooaccess Hive HDInsight 上從遠端透過 hello 網際網路。 下表中的 hello 搭配 Beeline 提供連接字串：
 
 | 您執行 Beeline 的來源 | 參數 |
 | --- | --- | --- |
-| 對前端或邊緣節點的 SSH 連線 | `-u 'jdbc:hive2://headnodehost:10001/;transportMode=http'` |
-| 叢集外部 | `-u 'jdbc:hive2://clustername.azurehdinsight.net:443/;ssl=true;transportMode=http;httpPath=/hive2' -n admin -p password` |
+| SSH 連線 tooa 叢集前端節點或邊緣節點 | `-u 'jdbc:hive2://headnodehost:10001/;transportMode=http'` |
+| 外部 hello 叢集 | `-u 'jdbc:hive2://clustername.azurehdinsight.net:443/;ssl=true;transportMode=http;httpPath=/hive2' -n admin -p password` |
 
 > [!NOTE]
-> 將 `admin` 取代為叢集的叢集登入帳戶。
+> 取代`admin`與 hello 叢集登入帳戶，供您的叢集。
 >
-> 將 `password` 取代為叢集登入帳戶的密碼。
+> 取代`password`hello hello 叢集登入帳戶的密碼。
 >
-> 將 `clustername` 替換為 HDInsight 叢集的名稱。
+> 取代`clustername`hello 名稱，為您的 HDInsight 叢集。
 
 ## <a id="prereq"></a>必要條件
 
 * HDInsight 叢集上以 Linux 為基礎的 Hadoop。
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+  > Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
-* SSH 用戶端或本機 Beeline 用戶端。 本文件中的大部分步驟都假設您從連往叢集的 SSH 工作階段使用 Beeline。 如需從叢集外部執行 Beeline 的相關資訊，請參閱[從遠端使用 Beeline](#remote) 一節。
+* SSH 用戶端或本機 Beeline 用戶端。 大部分的這份文件中的 hello 步驟假設您使用 Beeline 從 SSH 工作階段 toohello 叢集中。 如需從外部 hello 叢集中執行 Beeline 資訊，請參閱 hello[從遠端使用 Beeline](#remote) > 一節。
 
     如需使用 SSH 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
 ## <a id="beeline"></a>使用 BeeLine
 
-1. 啟動 Beeline 時，您必須為 HDInsight 叢集上的 HiveServer2 提供連接字串。 若要從叢集外部執行命令，您也必須提供叢集登入帳戶名稱 (預設為 `admin`) 和密碼。 使用下表來尋找要使用的連接字串格式和參數︰
+1. 啟動 Beeline 時，您必須為 HDInsight 叢集上的 HiveServer2 提供連接字串。 從外部 hello 叢集 toorun hello 命令，您必須提供 hello 叢集登入帳戶名稱 (預設`admin`) 和密碼。 使用下列資料表 toofind hello 連接字串格式和參數 toouse hello:
 
     | 您執行 Beeline 的來源 | 參數 |
     | --- | --- | --- |
-    | 對前端或邊緣節點的 SSH 連線 | `-u 'jdbc:hive2://headnodehost:10001/;transportMode=http'` |
-    | 叢集外部 | `-u 'jdbc:hive2://clustername.azurehdinsight.net:443/;ssl=true;transportMode=http;httpPath=/hive2' -n admin -p password` |
+    | SSH 連線 tooa 叢集前端節點或邊緣節點 | `-u 'jdbc:hive2://headnodehost:10001/;transportMode=http'` |
+    | 外部 hello 叢集 | `-u 'jdbc:hive2://clustername.azurehdinsight.net:443/;ssl=true;transportMode=http;httpPath=/hive2' -n admin -p password` |
 
-    例如，下列命令可用來啟動從連往叢集的 SSH 工作階段啟動 Beeline：
+    比方說，下列命令的 hello 可以是從 SSH 工作階段 toohello 叢集中使用的 toostart Beeline:
 
     ```bash
     beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http'
     ```
 
-    此命令會啟動 Beeline 用戶端，然後連線至叢集前端節點上的 HiveServer2。 命令完成之後，您會看見 `jdbc:hive2://headnodehost:10001/>` 提示字元。
+    此命令啟動 hello Beeline 用戶端，並連接 tooHiveServer2 hello 叢集前端節點上。 Hello 命令完成之後，您會抵達`jdbc:hive2://headnodehost:10001/>`提示字元。
 
-2. Beeline 命令以 `!` 字元開頭，例如 `!help` 顯示說明。 不過，一些命令可以省略 `!`。 例如，`help` 也能運作。
+2. Beeline 命令以 `!` 字元開頭，例如 `!help` 顯示說明。 不過 hello`!`可以省略某些命令。 例如，`help` 也能運作。
 
-    會有一個 `!sql`，用來執行 HiveQL 陳述式。 不過，HiveQL 如此常用，因此您可以省略前面的 `!sql`。 下列兩個陳述式是相等的：
+    沒有`!sql`，而是使用的 tooexecute HiveQL 陳述式。 不過，下列 HiveQL 因此通常用於您可以省略上述 hello `!sql`。 hello 下列兩個陳述式是相等的：
 
     ```hiveql
     !sql show tables;
@@ -80,13 +80,13 @@ Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 
 
     新的叢集上只會列出一個資料表：**hivesampletable**。
 
-3. 使用下列命令來顯示 hivesampletable 的結構描述：
+3. 使用下列命令 toodisplay hello 結構描述的 hello hivesampletable hello:
 
     ```hiveql
     describe hivesampletable;
     ```
 
-    此命令會傳回下列資訊：
+    此命令會傳回下列資訊的 hello:
 
         +-----------------------+------------+----------+--+
         |       col_name        | data_type  | comment  |
@@ -104,9 +104,9 @@ Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 
         | sessionpagevieworder  | bigint     |          |
         +-----------------------+------------+----------+--+
 
-    此資訊描述資料表中的資料行。 我們雖可對此資料執行某些查詢，但讓我們改為建立全新的資料表來示範如何將資料載入 Hive 及套用結構描述。
+    這項資訊會描述 hello hello 資料表中的資料行。 雖然我們無法執行一些查詢，針對此資料，讓我們改為建立全新的資料表 toodemonstrate 如何 Hive tooload 資料，並套用結構描述。
 
-4. 輸入下列陳述式，以使用 HDInsight 叢集隨附的範例資料來建立名為 **log4jLogs** 的資料表：
+4. 輸入下列陳述式 toocreate 資料表名為 hello **log4jLogs**使用所提供與 hello HDInsight 叢集的範例資料：
 
     ```hiveql
     DROP TABLE log4jLogs;
@@ -116,26 +116,26 @@ Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 
     SELECT t4 AS sev, COUNT(*) AS count FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log' GROUP BY t4;
     ```
 
-    這些陳述式會執行下列動作：
+    這些陳述式會執行下列動作的 hello:
 
-    * `DROP TABLE` - 如果資料表存在，則會刪除它。
+    * `DROP TABLE`-如果 hello 資料表存在，會將其刪除。
 
-    * `CREATE EXTERNAL TABLE` - 在 Hive 中建立**外部**資料表。 外部資料表只會將資料表定義儲存在 Hive 中。 資料會留在原來的位置。
+    * `CREATE EXTERNAL TABLE` - 在 Hive 中建立**外部**資料表。 外部資料表只會儲存在登錄區中的 hello 資料表定義。 hello 資料會保留在 hello 原始位置。
 
-    * `ROW FORMAT` - 設定資料格式的方式。 在此情況下，每個記錄中的欄位會以空格隔開。
+    * `ROW FORMAT`的 hello 資料格式化方式。 在此情況下，每個記錄檔中的 hello 欄位會以空格分隔。
 
-    * `STORED AS TEXTFILE LOCATION` - 儲存資料的所在位置以及以何種檔案格式儲存。
+    * `STORED AS TEXTFILE LOCATION`-Hello 資料會儲存以及在何種檔案格式。
 
-    * `SELECT` - 選取其資料行 **t4** 包含值 **[ERROR]** 的所有資料列計數。 此查詢會傳回值 **3** ，因為有 3 個資料列包含此值。
+    * `SELECT`-選取所有資料列計數其中資料行**t4**包含 hello 值**[錯誤]**。 此查詢會傳回值 **3** ，因為有 3 個資料列包含此值。
 
-    * `INPUT__FILE__NAME LIKE '%.log'` - Hive 嘗試將結構描述套用至目錄中的所有檔案。 在此情況下，目錄包含不符合結構描述的檔案。 若要防止結果中出現亂碼資料，此陳述式會告訴 Hive 我們只應該從檔名以 log 結尾的檔案傳回資料。
+    * `INPUT__FILE__NAME LIKE '%.log'`-Hive 嘗試 tooapply hello 結構描述 tooall 檔案 hello 目錄中。 在此情況下，hello 目錄包含不符合 hello 結構描述的檔案。 tooprevent 記憶體回收 hello 結果中的資料，此陳述式會告知登錄區，我們應該只會傳回資料從檔案結尾。 記錄檔。
 
   > [!NOTE]
-  > 當您預期會由外部來源來更新基礎資料時，請使用外部資料表。 例如，自動化的資料上傳程序，或透過其他 MapReduce 作業。
+  > 當您希望產生 hello 由外部來源更新基礎資料 toobe，應該使用外部資料表。 例如，自動化的資料上傳程序，或透過其他 MapReduce 作業。
   >
-  > 捨棄外部資料表並 **不會** 刪除資料，只會刪除資料表定義。
+  > 卸除的外部資料表沒有**不**刪除 hello 資料、 hello 資料表定義。
 
-    此命令的輸出類似下列文字：
+    hello 輸出此命令為類似 toohello 下列文字：
 
         INFO  : Tez session hasn't been created yet. Opening session
         INFO  :
@@ -159,46 +159,46 @@ Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 
         +----------+--------+--+
         1 row selected (47.351 seconds)
 
-5. 若要結束 Beeline，請使用 `!exit`。
+5. tooexit Beeline，使用`!exit`。
 
-## <a id="file"></a>使用 Beeline 執行 HiveQL 檔案
+## <a id="file"></a>使用 Beeline toorun HiveQL 檔案
 
-使用下列步驟建立檔案，然後利用執行該檔案。
+使用下列步驟 toocreate 檔案，然後執行它使用 Beeline hello。
 
-1. 使用以下命令，建立名為 **query.hql** 的檔案：
+1. 使用 hello 下列命令 toocreate 名為**query.hql**:
 
     ```bash
     nano query.hql
     ```
 
-2. 使用下列文字做為檔案的內容。 此查詢將建立名為 **errorLogs** 的新「內部」資料表：
+2. 使用 hello hello hello 檔案內容為下列文字。 此查詢將建立名為 **errorLogs** 的新「內部」資料表：
 
     ```hiveql
     CREATE TABLE IF NOT EXISTS errorLogs (t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string) STORED AS ORC;
     INSERT OVERWRITE TABLE errorLogs SELECT t1, t2, t3, t4, t5, t6, t7 FROM log4jLogs WHERE t4 = '[ERROR]' AND INPUT__FILE__NAME LIKE '%.log';
     ```
 
-    這些陳述式會執行下列動作：
+    這些陳述式會執行下列動作的 hello:
 
-    * **CREATE TABLE IF NOT EXISTS** - 如果資料表尚不存在，則會建立它。 因為未使用 **EXTERNAL** 關鍵字，這個陳述式會建立內部資料表。 內部資料表儲存在 Hive 資料倉儲中，並完全由 Hive 管理。
-    * **STORED AS ORC** - 以最佳化資料列單欄式 (Optimized Row Columnar, ORC) 格式儲存資料。 ORC 格式是高度最佳化且有效率的 Hive 資料儲存格式。
-    * **INSERT OVERWRITE ...SELECT**- 從包含 **[ERROR]** 的 **log4jLogs** 資料表選取資料列，然後將資料插入 **errorLogs** 資料表。
+    * **建立資料表 IF NOT EXISTS** -如果 hello 資料表不存在，就會建立。 因為 hello**外部**不是關鍵字，這個陳述式會建立內部資料表。 內部資料表會儲存在 hello Hive 資料倉儲，而且都完全受登錄區。
+    * **儲存 AS ORC** -hello 資料儲存最佳化的資料列單欄式 (ORC) 格式。 ORC 格式是高度最佳化且有效率的 Hive 資料儲存格式。
+    * **INSERT OVERWRITE ...選取**-選取資料列從 hello **log4jLogs**包含資料表**[錯誤]**，然後插入到 hello hello 資料**錯誤記錄檔**資料表。
 
     > [!NOTE]
-    > 與外部資料表不同之處在於，捨棄內部資料表也會刪除基礎資料。
+    > 不同於外部資料表，卸除內部資料表，將會刪除 hello 基礎資料。
 
-3. 若要儲存檔案，請使用 **Ctrl**+**_X**，然後輸入 **Y**，最後按 **Enter**。
+3. toosave hello 檔案，使用**Ctrl**+**_X**，然後輸入**Y**，最後再**Enter**。
 
-4. 使用下列命令，以使用 Beeline 來執行檔案：
+4. 使用下列 toorun hello 檔使用 Beeline hello:
 
     ```bash
     beeline -u 'jdbc:hive2://headnodehost:10001/;transportMode=http' -i query.hql
     ```
 
     > [!NOTE]
-    > `-i` 參數會啟動 Beeline、執行 query.hql 檔案中的陳述式。 當查詢完成時，您會看到 `jdbc:hive2://headnodehost:10001/>` 提示字元。 您也可以使用 `-f` 參數執行檔案，它會在查詢完成後結束 Beeline。
+    > hello`-i`參數啟動 Beeline，執行 hello hello query.hql 檔案中的陳述式。 Hello 查詢完成之後，到達 hello`jdbc:hive2://headnodehost:10001/>`提示字元。 您也可以執行檔案，使用 hello`-f`結束 Beeline hello 查詢完成後的參數。
 
-5. 若要確認 **errorLogs** 資料表已建立，請使用下列陳述式傳回 **errorLogs** 的所有資料列：
+5. hello 的 tooverify**錯誤記錄檔**建立資料表，請使用下列陳述式 tooreturn 所有 hello 中的資料列的 hello**錯誤記錄檔**:
 
     ```hiveql
     SELECT * from errorLogs;
@@ -217,7 +217,7 @@ Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 
 
 ## <a id="remote"></a>從遠端使用 Beeline
 
-如果您已在本機安裝 Beeline，或是正透過 Docker 映像如 [sutoiku/beeline](https://hub.docker.com/r/sutoiku/beeline/) 使用它，您必須使用下列參數：
+如果您有 Beeline 安裝在本機，或正在使用它透過 Docker 映像例如[sutoiku/beeline](https://hub.docker.com/r/sutoiku/beeline/)，您必須使用下列參數的 hello:
 
 * __連接字串__：`-u 'jdbc:hive2://clustername.azurehdinsight.net:443/;ssl=true;transportMode=http;httpPath=/hive2'`
 
@@ -225,34 +225,34 @@ Beeline 是 Hive 用戶端，隨附於您的 HDInsight 叢集的前端節點。 
 
 * __叢集登入密碼__ `-p 'password'`
 
-將連接字串中的 `clustername` 取代為您的 HDInsight 叢集的名稱。
+取代 hello `clustername` hello hello 名稱，為您的 HDInsight 叢集的連接字串中。
 
-將 `admin` 取代為叢集登入的名稱，以及將 `password` 取代為您的叢集登入的密碼。
+取代`admin`與叢集登入，以及取代 hello 名稱`password`hello 您叢集的登入的密碼。
 
 ## <a id="sparksql"></a>使用 Beeline 搭配 Spark
 
-Spark 提供自己的 HiveServer2 實作，這通常是指 Spark Thrift 伺服器。 此服務會使用 Spark SQL 來解析查詢而不是 Hive，並可能提供更佳的效能 (視您的查詢而定)。
+Spark 提供自己的 HiveServer2，通常是來參考 tooas hello Spark Thrift 伺服器實作。 此服務使用 Spark SQL tooresolve 查詢而不是登錄區，且可能會提供更佳的效能，根據您的查詢。
 
-若要連線到 HDInsight 叢集上 Spark 的 Spark Thrift 伺服器，請使用連接埠 `10002` 而不是 `10001`。 例如， `beeline -u 'jdbc:hive2://headnodehost:10002/;transportMode=http'`。
+tooconnect toohello Spark Thrift 伺服器的 HDInsight 叢集，使用連接埠上的 Spark`10002`而不是`10001`。 例如： `beeline -u 'jdbc:hive2://headnodehost:10002/;transportMode=http'`。
 
 > [!IMPORTANT]
-> 無法透過網際網路直接存取 Spark Thrift 伺服器。 您只能從 SSH 工作階段或在與 HDInsight 叢集相同的 Azure 虛擬網路內連線到它。
+> 無法直接存取 over hello 網際網路 hello Spark Thrift 伺服器。 您只能從為 SSH 工作階段連線 tooit 或內 hello 相同 Azure 虛擬網路如 hello HDInsight 叢集。
 
 ## <a id="summary"></a><a id="nextsteps"></a>後續步驟
 
-如需有關 HDInsight 中 Hive 的更多一般資訊，請參閱下列文件：
+多個一般 HDInsight 中的登錄區的詳細資訊，請參閱下列文件的 hello:
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 
-如需您可以使用 HDInsight 上的 Hadoop 之其他方式的詳細資訊，請參閱下列文件：
+如需詳細資訊之其他方式，您可以使用 Hadoop HDInsight、 請參閱下列文件的 hello:
 
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)
 
-如果您搭配使用 Tez 和 Hive，請參閱下列文件：
+如果您正在使用 Hive Tez，請參閱下列文件的 hello:
 
-* [在以 Windows 為基礎的 HDInsight 上使用 Tez UI](hdinsight-debug-tez-ui.md)
-* [在以 Linux 為基礎的 HDInsight 上使用 Ambari Tez 檢視](hdinsight-debug-ambari-tez-view.md)
+* [使用 Windows 為基礎的 HDInsight 上的 hello Tez UI](hdinsight-debug-tez-ui.md)
+* [使用 hello Ambari Tez 以 Linux 為基礎的 HDInsight 上的檢視](hdinsight-debug-ambari-tez-view.md)
 
 [hdinsight-sdk-documentation]: http://msdnstage.redmond.corp.microsoft.com/library/dn479185.aspx
 

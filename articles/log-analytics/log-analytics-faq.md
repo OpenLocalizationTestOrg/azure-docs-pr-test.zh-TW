@@ -1,6 +1,6 @@
 ---
-title: "Log Analytics 常見問題集 | Microsoft Docs"
-description: "Azure Log Analytics 服務的相關常見問題的解答。"
+title: "aaaLog Analytics 常見問題集 |Microsoft 文件"
+description: "Hello Azure 記錄分析服務相關常見問題的解答 toofrequently。"
 services: log-analytics
 documentationcenter: 
 author: MGoedtel
@@ -14,156 +14,156 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2017
 ms.author: magoedte
-ms.openlocfilehash: 8ddea06b1a90e9b1599466ad4d1c3af7a6dc8ba9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 25931f521cbb6ec840184221c6c1a5794b3445f0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-faq"></a>Log Analytics 常見問題集
-此 Microsoft 常見問題集是 Microsoft Operations Management Suite (OMS) 中 Log Analytics 常見問題的清單。 若您有任何關於 Log Analytics 的其他問題，請前往[討論論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=opinsights)並張貼您的問題。 當問到常見問題時，我們會將其新增至此文章，以便其他人可以快速輕鬆地找到此問題。
+此 Microsoft 常見問題集是 Microsoft Operations Management Suite (OMS) 中 Log Analytics 常見問題的清單。 如果您有任何關於記錄分析的其他問題，請移至 toohello[討論區論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=opinsights)並張貼您的問題。 當常見問題集問題時，我們將其新增 toothis 發行項，讓它可以快速且輕鬆地找到。
 
 ## <a name="general"></a>一般
 
-### <a name="q-does-log-analytics-use-the-same-agent-as-azure-security-center"></a>問： Log Analytics 會使用相同的代理程式作為 Azure 資訊安全中心嗎？
+### <a name="q-does-log-analytics-use-hello-same-agent-as-azure-security-center"></a>問： 記錄分析會使用 hello 以 Azure 資訊安全中心的相同代理程式嗎？
 
-A. 在 2017 年 6 月初，Azure 資訊安全中心開始使用 Microsoft Monitoring Agent 來收集與儲存資料。 若要深入了解，請參閱 [Azure 資訊安全中心平台移轉常見問題集](../security-center/security-center-platform-migration-faq.md)。
+A. Azure 資訊安全中心早期年 6 月 2017，開始使用 hello Microsoft Monitoring Agent toocollect 和存放區資料。 詳細資訊，請參閱 toolearn [Azure 安全性 Center 平台移轉常見問題集](../security-center/security-center-platform-migration-faq.md)。
 
-### <a name="q-what-checks-are-performed-by-the-ad-and-sql-assessment-solutions"></a>問： AD 和 SQL 評估解決方案會執行哪些檢查？
+### <a name="q-what-checks-are-performed-by-hello-ad-and-sql-assessment-solutions"></a>問： Hello AD 和 SQL 評估解決方案會執行哪些檢查？
 
-A. 下列查詢會顯示目前執行的所有檢查的描述：
+A. hello 下列查詢顯示目前執行的所有檢查的描述：
 
 ```
 (Type=SQLAssessmentRecommendation OR Type=ADAssessmentRecommendation) | dedup RecommendationId | select FocusArea, ActionArea, Recommendation, Description | sort Type, FocusArea,ActionArea, Recommendation
 ```
 
-然後可將結果匯出至 Excel 供進一步檢閱。
+hello 結果可以匯出的 tooExcel 供進一步檢閱。
 
 ### <a name="q-why-do-i-see-something-different-than-oms-in-system-center-operations-manager-console"></a>問：為什麼我在 System Center Operations Manager 主控台中看到與 *OMS* 不同的項目？
 
 答：根據您所採用的 Operations Manager 更新彙總套件而定，您可能會看到 *System Center Advisor*、*Operational Insights* 或 *Log Analytics* 節點。
 
-對 *OMS* 文字字串的更新包含在管理組件西，必須手動匯入它。 若要查看目前文字和功能，請遵循最新 System Center Operations Manager 更新彙總套件知識庫文章中的指示，並重新整理主控台。
+太 hello 文字字串更新*OMS*包含需要 toobe 手動方式匯入管理組件中。 toosee hello 目前的文字和功能，依照 hello 指示 hello 最新版 System Center Operations Manager 更新彙總套件知識庫文件並重新整理 hello 主控台。
 
 ### <a name="q-is-there-an-on-premises-version-of-log-analytics"></a>問：Log Analytics 是否有「內部部署」版本？
 
-答：否。 Log Analytics 可以處理並儲存大量資料。 作為一項雲端服務，Log Analytics 在必要時可以向上延展，並避免對您的環境效能的任何影響。
+答：否。 Log Analytics 可以處理並儲存大量資料。 為雲端服務時，記錄分析會無法 tooscale 接如有必要，並避免任何效能影響 tooyour 環境。
 
 其他優點包括：
-- Microsoft 執行 Log Analytics 基礎結構，為您節省成本
+- Microsoft 執行 hello 記錄分析基礎結構，您節省成本
 - 定期部署功能更新和修正程式。
 
 ### <a name="q-how-do-i-troubleshoot-that-log-analytics-is-no-longer-collecting-data"></a>問： 如何針對 Log Analytics 不再收集資料的問題進行疑難排解？
 
-答：如果您在免費定價層並在某天傳送了超過 500 MB 的資料，就會停止收集當天其餘資料。 達到每日限制是 Log Analytics 停止收集資料或資料似乎遺失的常見原因。
+答： 如果您是 hello 免費定價層上，而且已在一天傳送超過 500 MB 的資料，就會停止 hello rest hello 一天的資料收集。 到達 hello 每日限制為記錄分析會停止收集資料，一個常見原因，或出現 toobe 資料遺失。
 
 當資料收集開始及停止時，Log Analytics 會建立 *Operation* 類型的事件。 
 
-在搜尋中執行下列查詢，即可檢查您是否達到每日限制並遺失資料：`Type=Operation OperationCategory="Data Collection Status"`
+執行下列查詢中搜尋 toocheck，如果您是達到 hello 每日限制，而且找不到資料的 hello:`Type=Operation OperationCategory="Data Collection Status"`
 
-當資料收集停止時，*OperationStatus* 為 **Warning**。 當資料收集開始時，*OperationStatus* 為 **Succeeded**。 
+當資料收集會停止，hello *OperationStatus*是**警告**。 當資料收集開始，hello *OperationStatus*是**Succeeded**。 
 
-下表描述資料收集停止的原因，並建議為繼續資料收集所要採取的動作：
+hello 下表描述停止資料收集的原因和建議的動作 tooresume 資料收集：
 
-| 資料收集停止的原因                       | 若要繼續資料收集 |
+| 資料收集停止的原因                       | tooresume 資料收集 |
 | -------------------------------------------------- | ----------------  |
-| 已達免費資料的每日限制<sup>1</sup>       | 請等到隔天自動重新開始收集，或<br> 變更為付費定價層 |
-| Azure 訂用帳戶處於暫停狀態，原因如下： <br> 免費試用已結束 <br> Azure Pass 已過期 <br> 已達每月消費限制 (例如 MSDN 或 Visual Studio 訂閱)                          | 轉換成付費訂閱 <br> 轉換成付費訂閱 <br> 移除限制，或等到限制重設 |
+| 已達免費資料的每日限制<sup>1</sup>       | 等候 hello 下列天集合 tooautomatically 重新啟動，或<br> 變更 tooa 付費定價層 |
+| Azure 訂用帳戶處於暫停狀態，原因如下： <br> 免費試用已結束 <br> Azure Pass 已過期 <br> 已達每月消費限制 (例如 MSDN 或 Visual Studio 訂閱)                          | 轉換 tooa 付費訂用帳戶 <br> 轉換 tooa 付費訂用帳戶 <br> 移除限制，或等到限制重設 |
 
-<sup>1</sup> 如果您的工作區在免費定價層，您每天最多可傳送 500 MB 的資料至服務。 當您達到每日限制時，資料收集就會停止，直到隔天再開始。 在資料收集停止時所傳送的資料不會編製索引，而且無法供搜尋使用。 當資料收集繼續時，只會處理傳送的新資料。 
+<sup>1</sup>如果您的工作區在 hello 免費定價層，您只能 toosending 500 MB 的每個日期 toohello 服務的資料。 達到 hello 每日限制，就會停止資料收集直到隔天 hello。 在資料收集停止時所傳送的資料不會編製索引，而且無法供搜尋使用。 當資料收集繼續時，只會處理傳送的新資料。 
 
-Log Analytics 使用 UTC 時間，而且每天從午夜 UTC 開始。 如果工作區達到每日限制，會在隔天 UTC 的第一個小時繼續處理。
+Log Analytics 使用 UTC 時間，而且每天從午夜 UTC 開始。 如果 hello 工作區已達到 hello 每日限制，處理會繼續在 hello 第一個小時的 hello 下一步的 UTC 日。
 
 ### <a name="q-how-can-i-be-notified-when-data-collection-stops"></a>問： 如何在資料收集停止時收到通知？
 
-答：請使用[建立警示規則](log-analytics-alerts-creating.md#create-an-alert-rule)中所述的步驟，以在資料收集停止時收到通知。
+答： 請使用 hello 中所述的步驟[建立警示規則](log-analytics-alerts-creating.md#create-an-alert-rule)toobe 通知時停止資料收集。
 
-建立要在資料收集停止發出的警示時：
-- 將 [名稱] 設定為「資料收集已停止」
-- 將 [嚴重性] 設定為「警告」
-- 將 [搜尋查詢] 設定為 `Type=Operation OperationCategory="Data Collection Status" OperationStatus=Warning`
-- 將 [時間範圍] 設定為「2 小時」。
-- 將 [警示頻率] 設定為一小時，因為使用量資料每小時只會更新一次。
-- 將 [產生警示的依據] 設定為「結果數目」
-- 將 [結果數目] 設定為「大於 0」
+在建立 hello 警示停止資料收集時，設定:
+- **名稱**太*停止資料收集*
+- **嚴重性**太*警告*
+- **搜尋查詢**太`Type=Operation OperationCategory="Data Collection Status" OperationStatus=Warning`
+- **時間間隔**太*2 小時*。
+- **警示頻率**toobe 一小時後 hello 使用量資料只會更新每小時一次。
+- **產生警示根據**toobe*的結果數目*
+- **結果數目**toobe*大於 0*
 
-使用[將動作新增至警示規則](log-analytics-alerts-actions.md)中所述的步驟來設定警示規則的電子郵件、Webhook 或 Runbook 動作。
+使用中所述的 hello 步驟[新增動作 tooalert 規則](log-analytics-alerts-actions.md)設定電子郵件、 webhook 或 runbook hello 警示規則的動作。
 
 
 ## <a name="configuration"></a>組態
-### <a name="q-can-i-change-the-name-of-the-tableblob-container-used-to-read-from-azure-diagnostics-wad"></a>問： 可以變更用來從 Azure 診斷 (WAD) 讀取的資料表/Blob 容器的名稱嗎？
+### <a name="q-can-i-change-hello-name-of-hello-tableblob-container-used-tooread-from-azure-diagnostics-wad"></a>問： 我可以變更 hello 資料表 /blob 容器使用 tooread hello 名稱從 Azure 診斷 (WAD)？
 
-A. 不可以，目前無法讀取 Azure 儲存體中的任意資料表或容器。
+A. 否，它不是目前 tooread 任意的資料表或容器中的 Azure 儲存體中。
 
-### <a name="q-what-ip-addresses-does-the-log-analytics-service-use-how-do-i-ensure-that-my-firewall-only-allows-traffic-to-the-log-analytics-service"></a>問： Log Analytics 服務使用哪些 IP 位址？ 如何確保我的防火牆只允許對 Log Analytics 服務的流量？
+### <a name="q-what-ip-addresses-does-hello-log-analytics-service-use-how-do-i-ensure-that-my-firewall-only-allows-traffic-toohello-log-analytics-service"></a>問： IP 的位址沒有 hello 記錄分析服務使用嗎？ 如何確定我的防火牆只允許流量 toohello 記錄分析服務？
 
-A. Log Analytics 服務以 Azure 為建置基礎。 Log Analytics IP 位址位於 [Microsoft Azure 資料中心 IP 範圍](http://www.microsoft.com/download/details.aspx?id=41653)內。
+A. hello 記錄分析服務建置在 Azure 之上。 記錄分析 IP 位址皆位於 hello [Microsoft Azure Datacenter IP 範圍](http://www.microsoft.com/download/details.aspx?id=41653)。
 
-進行服務部署時，Log Analytics 服務的實際 IP 位址會變更。 [在 Log Analytics 中設定 Proxy 和防火牆設定](log-analytics-proxy-firewall.md)中記載要允許通過防火牆的 DNS 名稱。
+進行服務部署時，變更的記錄分析服務 hello hello 實際 IP 位址。 hello DNS 名稱 tooallow 通過防火牆會記載於[中記錄分析設定 proxy 和防火牆設定](log-analytics-proxy-firewall.md)。
 
-### <a name="q-i-use-expressroute-for-connecting-to-azure-does-my-log-analytics-traffic-use-my-expressroute-connection"></a>問： 我可以使用 ExpressRoute 連接到 Azure。 我的 Log Analytics 流量是否會使用我的 ExpressRoute 連線？
+### <a name="q-i-use-expressroute-for-connecting-tooazure-does-my-log-analytics-traffic-use-my-expressroute-connection"></a>問： 我使用 ExpressRoute 連線 tooAzure。 我的 Log Analytics 流量是否會使用我的 ExpressRoute 連線？
 
-A. [ExpressRoute 文件](../expressroute/expressroute-faqs.md#supported-services)中描述不同類型的 ExpressRoute 流量。
+A. hello 不同類型的 ExpressRoute 流量描述 hello [ExpressRoute 文件](../expressroute/expressroute-faqs.md#supported-services)。
 
-通往 Log Analytics 的流量都會使用公用互連 ExpressRoute 電路。
+流量 tooLog 分析會使用 hello 公用對等 ExpressRoute 循環。
 
-### <a name="q-is-there-a-simple-and-easy-way-to-move-an-existing-log-analytics-workspace-to-another-log-analytics-workspaceazure-subscription"></a>問： 有簡單且輕鬆的方法，可將現有的 Log Analytics 工作區移至另一個 Log Analytics 工作區/Azure 訂用帳戶嗎？
+### <a name="q-is-there-a-simple-and-easy-way-toomove-an-existing-log-analytics-workspace-tooanother-log-analytics-workspaceazure-subscription"></a>問： 是否有簡單輕鬆的方式 toomove 現有的記錄分析工作區 tooanother 記錄分析工作區 /azure 訂用帳戶？
 
-A. `Move-AzureRmResource` Cmdlet 可讓您將 Log Analytics 工作區及自動化帳戶從一個 Azure 訂用帳戶移至另一個 Azure 訂用帳戶。 如需詳細資訊，請參閱 [Move-AzureRmResource](http://msdn.microsoft.com/library/mt652516.aspx)。
+A. hello `Move-AzureRmResource` cmdlet 可讓您從一個 Azure 訂用帳戶 tooanother 移動記錄分析工作區以及自動化帳戶。 如需詳細資訊，請參閱 [Move-AzureRmResource](http://msdn.microsoft.com/library/mt652516.aspx)。
 
-這項變更也可在 Azure 入口網站進行。
+這項變更也進行 hello Azure 入口網站中。
 
-您無法將資料在不同一個 Log Analytics 工作區間移動，或是變更 Log Analytics 資料儲存所在的區域。
+您無法將資料從一個記錄分析工作區 tooanother，移動或變更記錄分析資料會儲存在 hello 區域。
 
-### <a name="q-how-do-i-add-log-analytics-to-system-center-operations-manager"></a>問：如何將 Log Analytics 新增至 System Center Operations Manager？
+### <a name="q-how-do-i-add-log-analytics-toosystem-center-operations-manager"></a>問： 如何加入記錄分析 tooSystem Center Operations Manager？
 
-答：更新為最新的更新彙總套件和匯入管理組件可讓您將 Operations Manager 連線到 Log Analytics。
+答： 更新 toohello 最新的更新彙總，以及匯入管理組件可讓您 tooconnect Operations Manager tooLog 分析。
 
 >[!NOTE]
->只有 System Center Operations Manager 2012 SP1 和更新版本才能將 Operations Manager 連線到 Log Analytics。
+>hello Operations Manager 連線 tooLog 分析才可使用 System Center Operations Manager 2012 SP1 和更新版本。
 
-### <a name="q-how-can-i-confirm-that-an-agent-is-able-to-communicate-with-log-analytics"></a>問：如何確認代理程式可與 Log Analytics 通訊？
+### <a name="q-how-can-i-confirm-that-an-agent-is-able-toocommunicate-with-log-analytics"></a>問： 如何確認代理程式是可以 toocommunicate 記錄分析？
 
-答：若要確保代理程式可以與 OMS 通訊，請移至：[控制台] > [安全性和設定] > [Microsoft Monitoring Agent]。
+答： tooensure hello 代理程式可以與 OMS 通訊，請移至： 控制台、 安全性和設定， **Microsoft Monitoring Agent**。
 
-在 [Azure Log Analytics (OMS)]  索引標籤中，找出綠色的核取記號。 綠色核取記號圖示可確認代理程式能夠與 OMS 服務進行通訊。
+在 hello **Azure 記錄分析 (OMS)**索引標籤中，找出綠色的核取記號。 綠色核取記號圖示可確認該 hello 代理程式無法 toocommunicate 以 hello OMS 服務。
 
-黃色警告圖示表示代理程式有與 OMS 通訊的問題。 一個常見原因是 Microsoft Monitoring Agent 服務已停止。 使用服務控制管理員來重新啟動服務。
+黃色警告圖示表示 hello 代理程式的通訊出現問題與 OMS。 一個常見的原因是 hello Microsoft Monitoring Agent 服務已停止。 使用服務控制管理員 toorestart hello 服務。
 
 ### <a name="q-how-do-i-stop-an-agent-from-communicating-with-log-analytics"></a>問：如何阻止代理程式與 Log Analytics 通訊？
 
-答：在 System Center Operations Manager 中，從 Advisor 受管理的電腦清單中移除該電腦。 Operations Manager 會將代理程式的設定更新為不再向 Log Analytics 回報。 針對直接連線到 Log Analytics 的代理程式，您可以透過 [控制台] > [安全性和設定] > [Microsoft Monitoring Agent] 來阻止其通訊。
+答： 在 System Center Operations Manager，會移除 hello Advisor 受管理的電腦清單中的 hello 電腦。 Operations Manager 更新 hello hello 代理程式 toono 長報表 tooLog Analytics 的組態。 代理程式已直接連接 tooLog 分析，您可以停止其通訊透過： 控制台、 安全性和設定， **Microsoft Monitoring Agent**。
 在 **Azure Log Analytics (OMS)** 下，移除所有列出的工作區。
 
-### <a name="q-why-am-i-getting-an-error-when-i-try-to-move-my-workspace-from-one-azure-subscription-to-another"></a>問︰當我試著將工作區從某個 Azure 訂用帳戶移到另一個時，為什麼會發生錯誤？
+### <a name="q-why-am-i-getting-an-error-when-i-try-toomove-my-workspace-from-one-azure-subscription-tooanother"></a>問： 為什麼我會收到錯誤當我嘗試 toomove 我的工作區，從一個 Azure 訂用帳戶 tooanother？
 
-答：如果您使用 Azure 入口網站，請確定只選取要移動的工作區。 請勿選取解決方案，移動工作區之後會自動移動解決方案。 
+答： 如果您使用 hello Azure 入口網站，確定只 hello 工作區中已選取 hello 移動。 未選取 hello 解決方案--它們會自動移動 hello 工作區中移動之後。 
 
 請確定您具有這兩個 Azure 訂用帳戶的權限。
 
 ## <a name="agent-data"></a>代理程式資料
-### <a name="q-how-much-data-can-i-send-through-the-agent-to-log-analytics-is-there-a-maximum-amount-of-data-per-customer"></a>問： 我可以透過代理程式傳送多少資料到 Log Analytics？ 是否有每位客戶最大的資料量？
-A. 免費方案每個工作區的每日容量設定為 500 MB。 標準和進階計畫對於所上傳的資料量沒有限制。 作為一項雲端服務，Log Analytics 的設計可自動相應增加，以處理來自客戶的資料量，即使是每日數 TB。
+### <a name="q-how-much-data-can-i-send-through-hello-agent-toolog-analytics-is-there-a-maximum-amount-of-data-per-customer"></a>問： 透過 hello 代理程式 tooLog 分析可以傳送多少資料？ 是否有每位客戶最大的資料量？
+A. hello 免費方案設定每個工作區的每日最高量為 500 MB。 hello 標準和高階計劃對 hello 上傳的資料量沒有限制。 記錄分析作為雲端服務，其設計 toohandle hello 磁碟區的小數位數 tooautomatically 來自客戶 – 即使它是每日 tb。
 
-Log Analytics 代理程式的設計是為了確保它的使用量很小。 我們的其中一個客戶撰寫了一篇部落格，內容是有關他們為我們的代理程式執行的測試以及如何讓其印象深刻。 資料量會視您啟用的解決方案而不同。 您可以在[使用量](log-analytics-usage.md)頁面中找到有關資料量的詳細資訊，並依解決方案查看劃分。
+hello 記錄分析代理程式已設計的 tooensure 其使用量很小。 我們的客戶的其中一個有關 hello 測試他們對我們的代理程式 」 和 「 如何它們深刻撰寫部落格。 hello 資料量會根據您啟用的 hello 解決方案而異。 您可以尋找 hello 資料磁碟區上的詳細的資訊，並依據解決方案 hello 查看 hello 各部分[使用量](log-analytics-usage.md)頁面。
 
-如需詳細資訊，您可以閱讀 [客戶部落格](http://thoughtsonopsmgr.blogspot.com/2015/09/one-small-footprint-for-server-one.html) 以了解 OMS 代理程式的低使用量。
+如需詳細資訊，您可以閱讀[客戶部落格](http://thoughtsonopsmgr.blogspot.com/2015/09/one-small-footprint-for-server-one.html)有關 hello hello OMS 代理程式的低使用量。
 
-### <a name="q-how-much-network-bandwidth-is-used-by-the-microsoft-management-agent-mma-when-sending-data-to-log-analytics"></a>問： 傳送資料到 Log Analytics 時，Microsoft 管理代理程式 (MMA) 使用多少網路頻寬？
+### <a name="q-how-much-network-bandwidth-is-used-by-hello-microsoft-management-agent-mma-when-sending-data-toolog-analytics"></a>問： 傳送資料 tooLog 分析時 hello Microsoft 管理代理程式 (MMA) 會使用多少網路頻寬？
 
-A. 頻寬是關於傳送的資料量的功能。 透過網路傳送資料時，會壓縮資料。
+A. 頻寬是傳送資料的 hello 數量上的函式。 透過 hello 網路傳送時會受到壓縮資料。
 
 ### <a name="q-how-much-data-is-sent-per-agent"></a>問： 每個代理程式會傳送多少資料？
 
-A. 每個代理程式所傳送的資料量取決於：
+A. 每個代理程式傳送資料的 hello 數量而定：
 
-* 您已啟用的解決方案
-* 記錄檔和要收集之效能計數器的數目
-* 記錄檔中的資料量
+* 您已啟用的 hello 解決方案
+* 正在收集計數器的記錄檔和效能的 hello 數目
+* hello hello 記錄檔中的資料量
 
-免費定價層是將數個伺服器上架和量測典型資料量的好方法。 [使用量] [](log-analytics-usage.md) 頁面會顯示整體使用方式。
+hello 免費定價層是很好的方式 tooonboard 幾部量測計與 hello 一般資料量。 整體使用量會顯示在 hello[使用量](log-analytics-usage.md)頁面。
 
-對於可執行 WireData 代理程式的電腦，請使用下列查詢查看正在傳送的資料量：
+無法 toorun hello WireData 代理程式電腦，使用下列查詢 toosee 正在傳送多少資料 hello:
 
 ```
 Type=WireData (ProcessName="C:\\Program Files\\Microsoft Monitoring Agent\\Agent\\MonitoringHost.exe") (Direction=Outbound) | measure Sum(TotalBytes) by Computer
@@ -172,4 +172,4 @@ Type=WireData (ProcessName="C:\\Program Files\\Microsoft Monitoring Agent\\Agent
 
 
 ## <a name="next-steps"></a>後續步驟
-* [開始使用 Log Analytics](log-analytics-get-started.md) 以深入了解 Log Analytics，並幾分鐘內就啟動並執行。
+* [開始使用記錄分析](log-analytics-get-started.md)toolearn 深入了解記錄分析，以及如何取得最新且正在執行，以分鐘為單位。

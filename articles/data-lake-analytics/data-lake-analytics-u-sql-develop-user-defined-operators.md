@@ -1,6 +1,6 @@
 ---
-title: "開發 U-SQL 使用者定義的運算子 (UDO) | Microsoft Docs"
-description: "了解如何開發使用者定義的運算子，以用於和重複用於 Data Lake Analytics 作業中。 "
+title: "aaaDevelop U-SQL 使用者定義運算子 (Udo) |Microsoft 文件"
+description: "了解 toodevelop 使用者定義運算子 toobe 的使用方式，並在 Data Lake Analytics 中，重複使用的工作。 "
 services: data-lake-analytics
 documentationcenter: 
 author: edmacauley
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-ms.openlocfilehash: fdee02fb60b633c26704fc1774dfc3a7825b5e0d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6b86618efd3751cd9a5e91875879d7dd6d6a7b02
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="develop-u-sql-user-defined-operators-udos"></a>開發 U-SQL 使用者定義的運算子 (UDO)
-了解如何開發使用者定義的運算子來處理 U-SQL 作業中的資料。
+了解如何 toodevelop 使用者定義運算子 tooprocess 資料 U-SQL 作業中的。
 
 如需有關開發 U-SQL 一般用途組件的指示，請參閱[針對 Azure Data Lake Analytics 作業開發 U-SQL 組件](data-lake-analytics-u-sql-develop-assemblies.md)
 
 ## <a name="define-and-use-a-user-defined-operator-in-u-sql"></a>在 U-SQL 中定義和使用使用者定義的運算子
-**建立和提交 U-SQL 工作**
+**toocreate 並提交 U SQL 作業**
 
-1. 從 Visual Studio 中，選取 [檔案] > [新增] > [專案] > [U-SQL 專案]。
+1. 從 Visual Studio hello 選取**檔案 > 新增 > 專案 > U-SQL 專案**。
 2. 按一下 [確定] 。 Visual Studio 會建立具有 Script.usql 檔案的解決方案。
 3. 在 [方案總管] 中展開 Script.usql，然後按兩下 **Script.usql.cs**。
-4. 將下列程式碼貼到檔案中：
+4. 貼上下列程式碼到 hello 檔案 hello:
 
         using Microsoft.Analytics.Interfaces;
         using System.Collections.Generic;
@@ -88,7 +88,7 @@ ms.lasthandoff: 07/11/2017
                 }
             }
         }
-6. 開啟 **Script.usql**，並貼上下列 U-SQL 指令碼：
+6. 開啟**Script.usql**，並貼上 hello 遵循 U-SQL 指令碼：
 
         @drivers =
             EXTRACT UserID      string,
@@ -115,21 +115,21 @@ ms.lasthandoff: 07/11/2017
             USING new USQL_UDO.CountryName();    
 
         OUTPUT @drivers_CountryName
-            TO "/Samples/Outputs/Drivers.csv"
+            too"/Samples/Outputs/Drivers.csv"
             USING Outputters.Csv(Encoding.Unicode);
-7. 指定 Data Lake Analytics 帳戶、資料庫和結構描述。
-8. 從 [方案總管] 中，在 [Script.usql] 上按一下滑鼠右鍵，然後按一下 [建置指令碼]。
-9. 從 [方案總管] 中，在 [Script.usql] 上按一下滑鼠右鍵，然後按一下 [提交指令碼]。
-10. 如果您尚未連線至 Azure 訂用帳戶，系統會提示您輸入 Azure 帳戶認證。
-11. 按一下 [提交] 。 提交作業完成時，提交結果和工作連結都可以在 [結果] 視窗中取得。
-12. 按一下 [重新整理] 按鈕，以查看最新的作業狀態並重新整理畫面。
+7. 指定 hello Data Lake Analytics 帳戶、 資料庫和結構描述。
+8. 從 方案總管 中，在 Script.usql 上按一下滑鼠右鍵，然後按一下建置指令碼。
+9. 從 方案總管 中，在 Script.usql 上按一下滑鼠右鍵，然後按一下提交指令碼。
+10. 如果您尚未連接 tooyour Azure 訂用帳戶，您將會提示的 tooenter 您的 Azure 帳戶的認證。
+11. 按一下 [提交] 。 送出結果和工作連結可用 hello [結果] 視窗中完成 hello 送出。
+12. 按一下 hello**重新整理**按鈕 toosee hello 最新作業的狀態並重新整理囉 」 畫面。
 
-**查看輸出**
+**toosee hello 輸出**
 
-1. 從 [伺服器總管] 依序展開 [Azure]、[Data Lake Analytics]、您的 Data Lake Analytics 帳戶、[儲存體帳戶]，以滑鼠右鍵按一下 [預設儲存體]，然後按一下 [總管]。
+1. 從**伺服器總管**，依序展開**Azure**，依序展開**Data Lake Analytics**，依序展開您的資料湖分析帳戶**的儲存體帳戶**hello 預設儲存體，以滑鼠右鍵按一下，然後按**總管**。
 2. 展開範例、展開輸出，然後按兩下 [Drivers.csv] 。
 
 ## <a name="see-also"></a>另請參閱
 * [使用 PowerShell 開始使用 Data Lake Analytics](data-lake-analytics-get-started-powershell.md)
-* [使用 Azure 入口網站開始使用 Data Lake Analytics](data-lake-analytics-get-started-portal.md)
+* [開始使用 Data Lake Analytics 使用 hello Azure 入口網站](data-lake-analytics-get-started-portal.md)
 * [使用適用於 Visual Studio 的 Data Lake 工具來開發 U-SQL 應用程式](data-lake-analytics-data-lake-tools-get-started.md)

@@ -1,6 +1,6 @@
 ---
-title: "Azure 自動化中的圖形化編寫 | Microsoft Docs"
-description: "圖形化編寫可讓您建立 Azure 自動化的 Runbook，而不使用程式碼。 本文章提供圖形化編寫的簡介和開始建立圖形化 Runbook 所需的所有詳細資料。"
+title: "aaaGraphical Azure 自動化中撰寫 |Microsoft 文件"
+description: "圖形化撰寫可讓您 toocreate runbook Azure 自動化而不需要使用程式碼。 本文章提供簡介 toographical 撰寫，而且所有 hello 詳細資料都需要 toostart 建立圖形化 runbook。"
 services: automation
 documentationcenter: 
 author: mgoedtel
@@ -14,158 +14,158 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/14/2017
 ms.author: magoedte;bwren
-ms.openlocfilehash: 417fceb0961165d96ece000f95c8a3f973f4f75b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6ddf18b992d5e5f7f4af95f344007a63ac498549
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="graphical-authoring-in-azure-automation"></a>Azure 自動化中的圖形化編寫
 ## <a name="introduction"></a>簡介
-圖形化編寫可讓您為 Azure 自動化建立 Runbook，而沒有基礎 Windows PowerShell 或 PowerShell 工作流程程式碼的複雜度。 您可以從 Cmdlet 和 Runbook 的程式庫中將活動加入至畫布，並將其連結在一起並加以設定來形成工作流程。  如果您曾經用過 System Center Orchestrator 或 Service Management Automation (SMA)，則這應該看起來很熟悉。   
+圖形化撰寫可讓您 toocreate runbook Azure 自動化不 hello hello 基礎 Windows PowerShell 或 PowerShell 工作流程的程式碼的複雜度。 您從 cmdlet 與 runbook 的程式庫加入活動 toohello 畫布、 連結在一起，並設定 tooform 工作流程。  如果您曾經使用過 System Center Orchestrator 或服務管理自動化 (SMA)，然後這看起來應該熟悉 tooyou。   
 
-本文章提供圖形化編寫的簡介及開始建立圖形化 Runbook 所需的概念。
+本文章提供簡介 toographical 需要 tooget 開始建立圖形化 runbook 的撰寫與 hello 概念。
 
 ## <a name="graphical-runbooks"></a>圖形化 Runbook
-Azure 自動化中的所有 Runbook 都是 Windows PowerShell 工作流程。  圖形化 Runbook 和圖形化 PowerShell 工作流程 Runbook 會產生由自動化背景工作執行的 PowerShell 程式碼，但是您無法檢視它或直接修改它。  圖形化 Runbook 可以轉換為圖形化 PowerShell 工作流程 Runbook，反之亦然，但它們無法轉換為文字式 Runbook。 現有的文字式 Runbook 無法匯入圖形化編輯器。  
+Azure 自動化中的所有 Runbook 都是 Windows PowerShell 工作流程。  圖形化和圖形化 PowerShell 工作流程 runbook 產生 hello 自動化背景工作，所執行的 PowerShell 程式碼，但是您不能 tooview 它，或直接修改它。  圖形化 runbook 可以轉換的 tooa 圖形化 PowerShell 工作流程 runbook，反之亦然，但它們不能是轉換的 tooa 文字 runbook。 現有的文字 runbook 無法匯入 hello 圖形化編輯器中。  
 
 ## <a name="overview-of-graphical-editor"></a>圖形化編輯器概觀
-您可以透過建立或編輯圖形化 Runbook，在 Azure 入口網站中開啟圖形化編輯器。
+您可以開啟 hello Azure 入口網站中的 hello 圖形化編輯器，建立或編輯圖形化 runbook。
 
 ![圖形化工作區](media/automation-graphical-authoring-intro/runbook-graphical-editor.png)
 
-下列各節說明圖形化編輯器中的控制項。
+hello 下列章節說明在 hello 圖形化編輯器中的 hello 控制項。
 
 ### <a name="canvas"></a>畫布
-畫布是您設計 Runbook 的位置。  您會從程式庫控制項中的節點將活動加入至 Runbook，並以連結將它們連接來定義 Runbook 的邏輯。
+hello 畫布是您用來設計您的 runbook。  您從 hello hello 程式庫控制項 toohello runbook 中的節點加入活動，並連接它們的 hello runbook 連結 toodefine hello 邏輯。
 
-您可以使用畫布底部的控制項來放大或縮小。
+您可以在 hello 底部 hello 畫布 toozoom 入和移出使用 hello 控制項。
 
 ![圖形化工作區](media/automation-graphical-authoring-intro/runbook-canvas-controls.png)
 
 ### <a name="library-control"></a>程式庫控制項
-程式庫控制項是您選取 [活動](#activities) 以加入至您的 Runbook 的位置。  您會將它們加入畫布，在畫布中將它們連接到其他活動。  它包含下表所述的四個區段。
+hello 程式庫控制項是您在其中選取[活動](#activities)tooadd tooyour runbook。  您會將其加入連接它們 tooother 活動 toohello 畫布。  它包含 hello 下表中所述的四個區段。
 
 | 區段 | 說明 |
 |:--- |:--- |
-| Cmdlet |包含可以在 Runbook 中使用的所有 Cmdlet。  Cmdlet 是依模組組織。  已在您的自動化帳戶中安裝的所有模組將可供使用。 |
-| Runbook |包含自動化帳戶中的 Runbook。 這些 Runbook 可以加入至畫布以做為子 Runbook。 只會顯示與所編輯之 Runbook 相同核心類型的 Runbook。針對圖形化 Runbook，只會顯示以 PowerShell 為基礎的 Runbook，而針對圖形化 PowerShell 工作流程 Runbook，只會顯示以 PowerShell 工作流程為基礎的 Runbook。 |
-| 資產 |包含您的自動化帳戶中可以在 Runbook 中使用的 [自動化資產](http://msdn.microsoft.com/library/dn939988.aspx) 。  當您將資產加入至 Runbook 時，它會加入工作流程活動，取得所選資產。  如果是變數資產，您可以選取是否要加入活動以取得變數或設定變數。 |
-| Runbook 控制項 |包含可在目前的 Runbook 中使用的 Runbook 控制項活動。 「接合」  會接受多個輸入，並等待所有項目完成，然後再繼續工作流程。 「程式碼」  活動會根據圖形化 Runbook 類型而定，執行一或多行 PowerShell 或 PowerShell 工作流程程式碼。  您可以對很難利用其他活動來達成的自訂程式碼或功能使用此活動。 |
+| Cmdlet |您在 runbook 中包含所有可用的 hello cmdlet。  Cmdlet 是依模組組織。  所有您已安裝在您的自動化帳戶中的 hello 模組會使用。 |
+| Runbook |納入您的自動化帳戶中的 hello runbook。 這些 runbook 可以加入 toohello 畫布 toobe 做為子 runbook。 只有 runbook 的 hello 相同核心類型為 hello 正在編輯的 runbook 會顯示。圖形化 runbook 只能以 PowerShell 為基礎的 runbook 會顯示，而顯示的圖形化 PowerShell 工作流程 runbook 只能 PowerShell-工作流程式 runbook。 |
+| Assets |包含 hello[自動化資產](http://msdn.microsoft.com/library/dn939988.aspx)中您可以使用您在 runbook 中的自動化帳戶。  當您新增的資產 tooa runbook 時，它會將工作流程活動，以取得 hello 選的資產。  在變數的資產的 hello 案例中，您可以選取是否 tooadd 活動 tooget hello hello 變數或設定變數。 |
+| Runbook 控制項 |包含可在目前的 Runbook 中使用的 Runbook 控制項活動。 A*聯合*接受多個輸入，並等待，直到所有已完成之前繼續 hello 工作流程。 A*程式碼*活動執行的 PowerShell 或 PowerShell 工作流程的程式碼，根據 hello 圖形化 runbook 類型的一或多行。  您可以使用此活動的自訂程式碼或困難 tooachieve 與其他活動的功能。 |
 
 ### <a name="configuration-control"></a>組態控制項
-您可以在組態控制項中，針對畫布上所選取的物件提供詳細資料。 此控制項中的可用屬性將取決於所選取的物件類型。  當您在組態控制項中選取一個選項時，即會開啟其他分頁以提供其他資訊。
+hello 組態控制會為您提供詳細資料的 hello 畫布上選取的物件。 此控制項中可用的 hello 屬性將取決於 hello 選取物件類型。  當您在 hello 設定控制項中選取的選項時，就會開啟其他刀鋒視窗中訂單 tooprovide 額外資訊。
 
 ### <a name="test-control"></a>測試控制項
-第一次啟動圖形化編輯器時，不會顯示測試控制項。 當您以互動方式 [測試圖形化 Runbook](#graphical-runbook-procedures)時會開啟。  
+hello 圖形化編輯器初次啟動時，不會顯示 hello 測試控制項。 當您以互動方式 [測試圖形化 Runbook](#graphical-runbook-procedures)時會開啟。  
 
 ## <a name="graphical-runbook-procedures"></a>圖形化 Runbook 程序
 ### <a name="exporting-and-importing-a-graphical-runbook"></a>匯出和匯入圖形化 Runbook
-您可以只匯出圖形化 Runbook 的已發行版本。  如果尚未發行 Runbook，則 [匯出已發行]  按鈕將會停用。  當您按一下 [匯出已發行]  按鈕，Runbook 就會下載到本機電腦。  檔案名稱須符合帶有 *graphrunbook* 副檔名的 Runbook 名稱。
+您可以只匯出 hello 的圖形化 runbook 已發佈的版本。  如果尚未發行 hello runbook，然後 hello**匯出發行**按鈕將會停用。  當您按一下 hello**匯出發行**按鈕，hello runbook 是下載的 tooyour 本機電腦。  hello hello 檔案名稱符合 hello hello runbook 名稱*graphrunbook*延伸模組。
 
 ![匯出已發行](media/automation-graphical-authoring-intro/runbook-export.png)
 
-您可以在加入 Runbook 時選取 [匯入] 選項，藉以匯入圖形化或圖形化 PowerShell 工作流程 Runbook 檔案。   當您選取要匯入的檔案時，您可以保留同一個**名稱**，或提供新名稱。  [Runbook 類型] 欄位將會在評估所選取的檔案類型之後顯示 Runbook 的類型，而且如果您嘗試選取其他不正確的類型，即會顯示訊息，表示可能發生衝突，而且在轉換期間，可能會發生語法錯誤。  
+您可以將圖形化 PowerShell 工作流程的 runbook 檔案匯入選取 hello**匯入**選項新增 runbook 時。   當您選取 hello 檔案 tooimport 時，您可以保留相同的 hello**名稱**或提供一個新。  後選取 hello 檔案，而且如果您嘗試 tooselect 不正確，會看到訊息，記下有可能發生的衝突，並在轉換期間，可能會有不同的類型，它會評估 hello Runbook 類型 欄位會顯示 hello 的 runbook 類型語法錯誤。  
 
 ![匯入 Runbook](media/automation-graphical-authoring-intro/runbook-import-revised20165.png)
 
 ### <a name="testing-a-graphical-runbook"></a>測試圖形化 Runbook
-您可以在 Azure 入口網站中測試 Runbook 的草稿版本，同時讓 Runbook 的已發佈版本保持不變，或是在發佈全新的 Runbook 之前，先進行測試。 這可讓您驗證取代已發行的版本之前，Runbook 正常運作。 當您測試 Runbook 時，草稿 Runbook 會執行，而且它執行的任何動作都會完成。 不會建立工作歷程記錄，但是會在 [測試輸出] 窗格中顯示輸出。 
+離開 hello 發佈版本保持不變，hello runbook，或您可以在已發行前測試新的 runbook 時，您可以在 hello Azure 入口網站中測試 hello 的 runbook 的草稿版本。 這可讓您 tooverify hello runbook，再取代已發行的版本的 hello 正常運作。 當您測試 runbook 時，會執行 hello 草稿 runbook 並完成的它會執行任何動作。 建立工作記錄，但輸出會顯示在 hello 測試輸出窗格。 
 
-開啟 Runbook 的測試控制項，方法是開啟 Runbook 進行編輯，然後按一下 [ **測試窗格** ] 按鈕。
+開啟 hello runbook 進行編輯，以開啟 runbook 的 hello 測試控制項，然後按一下 hello**測試窗格** 按鈕。
 
 ![測試窗格按鈕](media/automation-graphical-authoring-intro/runbook-edit-test-pane.png)
 
-測試控制項將提示輸入任何輸入參數，而您可以按一下 [ **開始** ] 按鈕來啟動 Runbook。
+hello 測試控制項將會提示的任何輸入參數，而且您可以按一下 hello 啟動 hello runbook**啟動** 按鈕。
 
 ![測試控制項按鈕](media/automation-graphical-authoring-intro/runbook-test-start.png)
 
 ### <a name="publishing-a-graphical-runbook"></a>發行圖形化 Runbook
-Azure 自動化中的每個 Runbook 有草稿和已發行的版本。 只可執行已發行版本，而且只可編輯草稿版本。 已發行版本不會受到草稿版本的任何變更影響。 草稿版本就緒可供使用時，您會將它發行，以草稿版本覆寫已發行版本。
+Azure 自動化中的每個 Runbook 有草稿和已發行的版本。 只有 hello 已發佈版本可用 toobe 執行，且 hello 草稿版本可供編輯。 hello 已發佈 」 版本不會受到任何變更 toohello 草稿版本。 準備好 toobe 可用 hello 草稿版本時，您應發佈該使用 hello 草稿版本覆寫 hello 已發佈 」 版本。
 
-您可以開啟 Runbook 進行編輯，然後按一下 [ **發行** ] 按鈕來發行圖形化 Runbook。
+您可以藉由開啟 hello runbook 進行編輯，然後再按一下 hello 發佈圖形化 runbook**發行** 按鈕。
 
 ![發佈按鈕](media/automation-graphical-authoring-intro/runbook-edit-publish.png)
 
-尚未發行 Runbook 時，它的狀態為 **新增**。  發行時，它的狀態為 **已發行**。  如果在發行 Runbook 之後編輯 Runbook，且草稿和已發行版本不同，Runbook 的狀態會是 **編輯中**。
+尚未發行 Runbook 時，它的狀態為 **新增**。  發行時，它的狀態為 **已發行**。  如果已發行，而且 hello 草稿 」 和 「 已發佈的版本不同，您可以編輯 hello runbook、 hello runbook 都有狀態**中編輯**。
 
 ![Runbook 狀態](media/automation-graphical-authoring-intro/runbook-statuses-revised20165.png) 
 
-您也可以選擇還原成 Runbook 的已發行版本。  這樣會棄置上次發行 Runbook 後所進行的任何變更，並以已發行版本取代 Runbook 的草稿版本。
+您也可以 hello 選項 toorevert toohello 已發佈 」 版本的 runbook。  這會擲回了自 hello runbook 的上次發佈，並以 hello 已發佈 」 版本取代 hello hello runbook 草稿版本進行任何變更。
 
-![還原成已發行按鈕](media/automation-graphical-authoring-intro/runbook-edit-revert-published.png)
+![還原 toopublished 按鈕](media/automation-graphical-authoring-intro/runbook-edit-revert-published.png)
 
 ## <a name="activities"></a>活動
-活動是 Runbook 的建置區塊。  活動可以是 PowerShell Cmdlet、子 Runbook 或工作流程活動。  以滑鼠右鍵按一下程式庫控制項的活動，然後選取 [ **加入至畫布**]，即可將活動加入 Runbook。  然後可以按一下並拖曳活動，將它放置在畫布上的任何位置。  活動在畫布上的位置不會以任何方式影響 Runbook 的作業。  您可以配置您的 Runbook，不過您會發現以視覺化方式檢視其作業最適合。 
+活動是 runbook 的 hello 建置組塊。  活動可以是 PowerShell Cmdlet、子 Runbook 或工作流程活動。  您以滑鼠右鍵按一下 hello 控制項程式庫中，選取新增的活動 toohello runbook**新增 toocanvas**。  您可以按一下並拖曳到任何地方 hello 畫布您喜歡的 hello 活動 tooplace。  hello 的 hello hello 活動 hello 畫布上的位置不會影響 hello hello runbook 以任何方式作業。  您將版面配置可能您的 runbook，不過您覺得最適合 toovisualize 其作業。 
 
-![加入至畫布](media/automation-graphical-authoring-intro/add-to-canvas-revised20165.png)
+![新增 toocanvas](media/automation-graphical-authoring-intro/add-to-canvas-revised20165.png)
 
-在組態分頁中的畫布上選取活動以設定其屬性和參數。  您可以將活動的 [ **標籤** ] 變更成對您具意義的內容。  原始的 Cmdlet 仍在執行，您只要變更它將在圖形化編輯器中使用的顯示名稱。  標籤在 Runbook 內必須是唯一的。 
+選取 hello 畫布 tooconfigure hello 活動及其屬性和參數 hello 組態刀鋒視窗中。  您可以變更 hello**標籤**是描述性 tooyou 的 hello 活動 toosomething。  正在執行 hello 原始 cmdlet，您只要變更它將會使用 hello 圖形編輯器的顯示名稱。  hello 標籤內必須是唯一 hello runbook。 
 
 ### <a name="parameter-sets"></a>參數集
-參數集會定義將接受特定 Cmdlet 的值的強制和選擇性參數。  所有的 Cmdlet 至少有一個參數集，而某些則有多個。  如果 Cmdlet 有多個參數集，然後您必須選取可以設定參數之前，將使用參數集。  您可以設定的參數將取決於您選擇的參數集。  您可以變更活動使用的參數集，方法是選取 [ **參數集** ] 並選取其他設定。  在此情況下，您設定的任何參數值都會遺失。
+參數集定義 hello 強制與選用參數，將會接受針對特定 cmdlet 的值。  所有的 Cmdlet 至少有一個參數集，而某些則有多個。  如果 Cmdlet 有多個參數集，然後您必須選取可以設定參數之前，將使用參數集。  您可以設定的 hello 參數將取決於您選擇的 hello 參數集。  您可以變更所選取活動所使用的 hello 參數組**參數設定**並選取 其他設定。  在此情況下，您設定的任何參數值都會遺失。
 
-在下列範例中，Get-AzureRmVM Cmdlet 有三個參數集。  您無法設定參數值，直到您選取其中一個參數集。  ListVirtualMachineInResourceGroupParamSet 參數集適用於傳回資源群組中的所有虛擬機器，並且具有單一選用參數。  GetVirtualMachineInResourceGroupParamSet 適用於指定您想要傳回的虛擬機器，而且具有兩個強制參數和一個選用參數。
+在下列範例的 hello，hello Get AzureRmVM cmdlet 都有三個參數集。  您無法設定參數值，直到您選取其中一個 hello 參數集。  hello ListVirtualMachineInResourceGroupParamSet 參數集傳回的所有虛擬機器的資源群組中，單一的選擇性參數。  hello GetVirtualMachineInResourceGroupParamSet 適用於指定您想 tooreturn，而且有兩個必要和選擇性參數的 hello 的虛擬機器。
 
 ![參數集](media/automation-graphical-authoring-intro/get-azurermvm-parameter-sets.png)
 
 #### <a name="parameter-values"></a>參數值
-當您指定參數的值時，您會選取資料來源，以便判斷將如何指定值。  特定參數可使用的資料來源將取決於該參數的有效值。  例如，Null 不是不允許 null 值的參數可用的選項。
+當您指定參數的值時，您會選取資料來源 toodetermine hello 值指定的方式。  hello 可用於特定參數的資料來源將取決於該參數的 hello 有效值。  例如，Null 不是不允許 null 值的參數可用的選項。
 
 | 資料來源 | 說明 |
 |:--- |:--- |
-| 常數值 |輸入參數的值。  這只適用於下列資料型別：Int32、Int64、String、Boolean、DateTime、Switch。 |
-| 活動輸出 |從優先於工作流程中的目前活動的活動輸出。  將列出所有有效的活動。  對參數值只選取要使用它的輸出的活動。  如果活動會輸出具有多個屬性的物件，您可以在選取活動之後輸入名稱屬性。 |
-| Runbook 輸入 |選取 Runbook 的輸入參數做為活動參數的輸入。 |
+| 常數值 |輸入 hello 參數的值。  這只適用於下列資料類型的 hello: Int32、 Int64、 字串、 Boolean、 DateTime、 交換器。 |
+| 活動輸出 |活動前面 hello 工作流程中的 hello 目前活動的輸出。  將列出所有有效的活動。  選取剛才 hello 活動 toouse hello 參數值的輸出。  如果 hello 活動輸出具有多個屬性的物件，然後您可以輸入 hello hello 屬性名稱選取 hello 活動之後。 |
+| Runbook 輸入 |選取 runbook 的輸入的參數做為輸入的 toohello 活動參數。 |
 | 變數資產 |選取「自動化變數」做為輸入。 |
 | 認證資產 |選取「自動化認證」做為輸入。 |
 | 憑證資產 |選取「自動化憑證」做為輸入。 |
 | 連線資產 |選取「自動化連線」做為輸入。 |
-| PowerShell 運算式 |指定簡單 [PowerShell 運算式](#powershell-expressions)。  在活動和用於參數值的結果之前，將會評估運算式。  您可以使用變數來參照活動或 Runbook 的輸入參數的輸出。 |
+| PowerShell 運算式 |指定簡單 [PowerShell 運算式](#powershell-expressions)。  hello 活動與 hello 結果用於 hello 參數值之前，就會評估 hello 運算式。  您可以使用變數 toorefer toohello 輸出的活動或 runbook 的輸入的參數。 |
 | 未設定 |清除先前設定的任何值。 |
 
 #### <a name="optional-additional-parameters"></a>選擇性的其他參數
-所有的 Cmdlet 可選擇提供額外的參數。  這些是 PowerShell 一般參數或其他自訂參數。  您會看到一個文字方塊，您可以在其中使用 PowerShell 語法提供參數。  例如，若要使用 **Verbose** 一般參數，您會指定 **"-Verbose:$True"**。
+所有指令程式將會有 hello 選項 tooprovide 其他參數。  這些是 PowerShell 一般參數或其他自訂參數。  您會看到一個文字方塊，您可以在其中使用 PowerShell 語法提供參數。  比方說，toouse hello **Verbose**一般參數，您會指定**"-Verbose: $True"**。
 
 ### <a name="retry-activity"></a>重試活動
-**重試行為** 可讓活動執行多次，直到符合特定條件為止 (與迴圈非常類似)。  您可以對應該執行多次的活動、容易出錯且可能需要嘗試一次以上才會成功的活動，或者針對有效資料測試活動輸出資料的活動，來使用這項功能。    
+**重試行**允許執行多次，直到符合特定條件時，活動 toobe 十分類似迴圈。  您可以使用這項功能之活動的應該執行多次，容易發生錯誤，可能需要一個以上的嘗試成功，或測試的有效資料的 hello 活動 hello 輸出資訊。    
 
-當您對活動啟用重試時，您可以設定延遲和條件。  延遲是時間 (以秒或分鐘計算)，Runbook 再次執行活動之前會等待的時間量。  如果未指定延遲，則活動會在完成之後立即再次執行。 
+當您對活動啟用重試時，您可以設定延遲和條件。  hello 延遲是 hello 時間 （以秒數或分鐘為單位） 該 hello runbook 之前會先等待再次執行 hello 活動。  如果未不指定任何延遲，然後 hello 活動會再次執行此作業完成之後，立即。 
 
 ![活動重試延遲](media/automation-graphical-authoring-intro/retry-delay.png)
 
-重試條件是 PowerShell 運算式，在每次活動執行之後評估。  如果運算式解析為 True，則活動會再次執行。  如果運算式解析為 False，則活動不會再次執行，且 Runbook 會移至下一個活動。 
+hello 重試條件是在每個階段 hello 活動執行後會評估的 PowerShell 運算式。  如果 hello 運算式解析 tooTrue，然後 hello 活動會執行一次。  如果 hello 運算式解析 tooFalse 然後 hello 活動不會執行一次，並移 toohello 下一個活動上的 hello runbook。 
 
 ![活動重試延遲](media/automation-graphical-authoring-intro/retry-condition.png)
 
-重試條件可以使用名為 $RetryData 的變數，提供活動重試相關資訊的存取權。  此變數具有下表中的屬性。
+hello 重試條件可以使用名為 $RetryData 提供存取 tooinformation 有關 hello 活動重試。  這個變數具有 hello 下表中的 hello 屬性。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| NumberOfAttempts |活動已執行的次數。 |
-| 輸出 |活動上次執行的輸出。 |
-| TotalDuration |活動第一次開始之後的經過時間。 |
-| StartedAt |活動第一次開始的時間 (UTC 格式)。 |
+| NumberOfAttempts |已執行的 hello 活動的次數。 |
+| 輸出 |輸出 hello 從上次執行的 hello 活動。 |
+| TotalDuration |逾時 hello 活動已啟動後經過 hello 第一次。 |
+| StartedAt |第一次啟動時間以 UTC 格式 hello 活動。 |
 
 以下是活動重試條件的範例。
 
-    # Run the activity exactly 10 times.
+    # Run hello activity exactly 10 times.
     $RetryData.NumberOfAttempts -ge 10 
 
-    # Run the activity repeatedly until it produces any output.
+    # Run hello activity repeatedly until it produces any output.
     $RetryData.Output.Count -ge 1 
 
-    # Run the activity repeatedly until 2 minutes has elapsed. 
+    # Run hello activity repeatedly until 2 minutes has elapsed. 
     $RetryData.TotalDuration.TotalMinutes -ge 2
 
-設定活動的重試條件之後，該活動便會包含兩個視覺提示來提醒您。  一個顯示於活動中，另一個則會在您檢閱活動的組態時顯示。
+設定活動的重試條件之後，hello 活動包含兩個視覺提示 tooremind 您。  其中一個會以 hello 活動 hello 其他時，則您檢閱 hello 活動 hello 組態。
 
 ![活動重試視覺指示器](media/automation-graphical-authoring-intro/runbook-activity-retry-visual-cue.png)
 
 ### <a name="workflow-script-control"></a>工作流程指令碼控制項
-程式碼控制項是一種特殊活動，會根據所編寫的圖形化 Runbook 類型來接受 PowerShell 或 PowerShell 工作流程指令碼，以便提供可能無法使用的功能。  它不能接受參數，但它可以對活動輸出和 Runbook 輸入參數使用變數。  活動的任何輸出會加入至資料匯流排中，除非它在加入至 Runbook 的輸出中沒有連出的連結。
+程式碼控制項是特殊的活動可接受 PowerShell 或 PowerShell 工作流程指令碼，根據訂單 tooprovide 功能，否則無法使用中正在撰寫圖形化 runbook hello 類型而定。  它不能接受參數，但它可以對活動輸出和 Runbook 輸入參數使用變數。  Hello 活動的任何輸出會加入 toohello databus 除非它有沒有傳出中連結的情況下，它會加入 hello runbook 的 toohello 輸出。
 
-例如，下列程式碼會執行使用稱為$NumberOfDays 的 Runbook 輸入變數的日期計算。  然後會將計算的日期時間傳送為輸出，供 Runbook 中後續的活動使用。
+例如 hello 下列程式碼會執行使用名 $NumberOfDays 的 runbook 輸入的變數的日期計算。  接著會做為輸出 toobe hello runbook 中後續活動所使用的傳送計算的日期時間。
 
     $DateTimeNow = (Get-Date).ToUniversalTime()
     $DateTimeStart = ($DateTimeNow).AddDays(-$NumberOfDays)}
@@ -173,32 +173,32 @@ Azure 自動化中的每個 Runbook 有草稿和已發行的版本。 只可執�
 
 
 ## <a name="links-and-workflow"></a>連結和工作流程
-圖形化 Runbook 中的 **連結** 在連接兩個活動。  就會在畫布上顯示為箭號，從來源活動指向目的地活動。  活動會以箭頭的方向執行，在來源活動完成之後，目的地活動就會啟動。  
+圖形化 Runbook 中的 **連結** 在連接兩個活動。  它會顯示 hello 畫布上，為箭號指向 hello 來源活動 toohello 目的地活動。  hello 活動中執行，hello hello 箭頭方向與 hello 目的地活動 hello 來源活動完成之後啟動。  
 
 ### <a name="create-a-link"></a>建立連結
-在兩個活動之間建立連結，方法是選取來源活動，然後按一下圖形底部的圓形。  將箭頭拖曳到目的地活動和版本。
+建立所選取的 hello 來源活動的兩個活動和 hello 圓形之間的連結在 hello hello 圖形的底端。  拖曳 hello 箭號 toohello 目的地活動和版本。
 
 ![建立連結](media/automation-graphical-authoring-intro/create-link-revised20165.png)
 
-在 [組態] 分頁中選取連結來設定其屬性。  這包括下表中說明的連結類型。
+在 hello 組態刀鋒視窗中選取 hello 連結 tooconfigure 其屬性。  這會將包含下表中的 hello hello 連結類型所述。
 
 | 連結類型 | 說明 |
 |:--- |:--- |
-| 管線 |目的地活動會對從來源活動輸出的每一個物件執行一次。  如果來源活動不會產生任何輸出，則不會執行目的地活動。  從來源活動輸出以物件形式提供。 |
-| 順序 |目的地活動只會執行一次。  它會從來源活動接收物件的陣列。  從來源活動輸出以物件陣列形式提供。 |
+| 管線 |hello 目的地活動會執行一次針對每個物件輸出 hello 來源活動。  hello 目的地活動不會執行，如果 hello 來源活動會不產生任何輸出。  Hello 來源活動的輸出可做為物件。 |
+| 順序 |hello 目的地活動只執行一次。  在收到 hello 來源活動的物件陣列。  Hello 來源活動的輸出可做為物件的陣列。 |
 
 ### <a name="starting-activity"></a>啟動活動
-圖形化 Runbook 會從沒有連入連結的任何活動開始。  這通常是只有一個活動，做為 Runbook 的啟動活動。  如果多個活動沒有連入的連結，Runbook 將以平行方式執行它們來開始。  然後，在每個完成時它會遵循連結以執行其他活動。
+圖形化 Runbook 會從沒有連入連結的任何活動開始。  通常這是一個活動會當做 hello 啟動 hello runbook 的活動。  如果多個活動並沒有連入的連結，然後 hello runbook 一開始會以平行方式執行。  它會依照 hello 連結 toorun 其他活動完成時每個。
 
 ### <a name="conditions"></a>條件
-當您指定連結的條件時，只有條件解析為 true 時才會執行目的地活動。  您通常會在條件中使用 $ActivityOutput 變數來擷取從來源活動輸出。  
+當您在連結上指定條件時，如果 hello 條件解析 tootrue 只執行 hello 目的地活動。  您通常會使用 $ActivityOutput 變數 hello 來源活動的條件 tooretrieve hello 輸出中。  
 
-針對管線連結，您會指定單一物件的條件，並且來源活動會對每個物件輸出評估條件。  然後目的地活動會對符合條件的每個物件執行。  例如，透過 Get-AzureRmVm 的來源活動，可對條件式管線連結使用下列語法，僅擷取 *Group1*資源群組中的虛擬機器。  
+管線連結，您指定單一物件、 條件和 hello 條件會評估每個物件輸出 hello 來源活動。  每個物件符合 hello 條件，接著執行 hello 目的地活動。  比方說，Get AzureRmVm 來源活動，請使用下列語法的 hello 可用於條件式管線連結 tooretrieve 中的虛擬機器 hello 資源群組名稱只*Group1*。  
 
     $ActivityOutput['Get Azure VMs'].Name -match "Group1"
 
-針對順序連結，因為單一陣列會傳回包含從來源活動輸出的所有物件，因此只會評估一次條件。  因此，順序連結不能用於篩選 (如管線連結)，但只能判斷下一個活動是否會執行。 例如，在我們的「啟動 VM」Runbook 中採用下列這組活動。<br> ![具有順序的條件式連結](media/automation-graphical-authoring-intro/runbook-conditional-links-sequence.png)<br>
-有三個不同的順序連結，其會驗證提供給兩個 Runbook 輸入參數 (代表 VM 名稱和資源群組) 的值，以判斷要採取哪一個適當的動作 - 啟動單一 VM、啟動資源群組中的所有 VM，或訂用帳戶中的所有 VM。  針對「連接到 Azure」和「取得單一 VM」之間的順序連結，以下是條件邏輯：
+序列連結 hello 條件只會評估一次因為單一陣列會傳回包含所有的物件輸出 hello 來源活動。  因為這個緣故，序列連結不能用於篩選管線連結類似，但是將只會決定要執行 hello 下一個活動。 採用下列一組活動我們啟動 VM runbook 中的 hello。<br> ![具有順序的條件式連結](media/automation-graphical-authoring-intro/runbook-conditional-links-sequence.png)<br>
+有三個要驗證已提供代表 VM 名稱與資源群組名稱中也就是 hello 適當的動作 tootake 順序 toodetermine tootwo runbook 輸入的參數的值-啟動單一 VM 的不同序列連結、 在 hello 中啟動所有的 Vm資源群組或訂用帳戶中的所有 Vm。  Hello 序列連線 tooAzure 和取得單一 VM 之間的連結，以下是 hello 條件邏輯：
 
     <# 
     Both VMName and ResourceGroupName runbook input parameters have values 
@@ -209,110 +209,110 @@ Azure 自動化中的每個 Runbook 有草稿和已發行的版本。 只可執�
     (($ResourceGroupName -ne $null) -and ($ResourceGroupName.Length -gt 0))
     )
 
-使用條件式連結時，可從來源活動提供該分支中的其他活動使用的資料將由條件篩選。  如果活動是多個連結的來源，可用於每個分支中可用活動的資料取決於連接到該分支的連結中的條件。
+當您使用條件式連結時，提供 hello 來源活動 tooother 活動在該分支中的 hello 資料將會篩選 hello 條件。  如果活動是 hello 來源 toomultiple 連結，然後 hello 每個分支中的可用 tooactivities 將取決於連接 toothat 分支 hello 連結中的 hello 條件的資料。
 
-例如，下列 Runbook 中的 **Start-AzureRmVm** 活動會啟動所有虛擬機器。  它有兩個條件式連結。  第一個條件式連結會在 Start-AzureRmVm 活動順利完成時使用運算式 $ActivityOutput['Start-AzureRmVM'].IsSuccessStatusCode -eq $true  來篩選。  第二個會在 Start-AzureRmVm 活動無法啟動虛擬機器時使用運算式 $ActivityOutput['Start-AzureRmVM'].IsSuccessStatusCode -ne $true  來篩選。  
+例如，hello**開始 AzureRmVm**下方 hello runbook 中的活動開始的所有虛擬機器。  它有兩個條件式連結。  hello 的第一個條件式連結會使用 hello 運算式*$ActivityOutput [' 開始-AzureRmVM']。IsSuccessStatusCode-eq $true* toofilter 如果 hello 開始 AzureRmVm 活動順利完成。  hello 第二個使用 hello 運算式*$ActivityOutput [' 開始-AzureRmVM']。IsSuccessStatusCode ne $true* toofilter 如果 hello 開始 AzureRmVm 活動失敗 toostart hello 虛擬機器。  
 
 ![條件式連結範例](media/automation-graphical-authoring-intro/runbook-conditional-links.png)
 
-遵循第一個連結並使用 Get-AzureVM 活動輸出的任何活動，將只會取得 Get-AzureVM 執行時啟動的虛擬機器。  遵循第二個連結的任何活動，將只會取得 Get-AzureVM 執行時已停止的虛擬機器。  遵循第三個連結的任何活動，將會取得所有虛擬機器，不論其執行狀態為何。
+遵循 hello 第一個連結，並使用 Get-azurevm hello 活動輸出的任何活動，才會出現在 hello Get-azurevm 已執行的時間啟動的 hello 虛擬機器。  遵循 hello 第二個連結的任何活動，才會出現在 hello Get-azurevm 已執行的時間停止的 hello hello 虛擬機器。  Hello 第三個連結的任何活動會取得所有虛擬機器，不論其執行狀態。
 
 ### <a name="junctions"></a>接合
-接合是一個特殊的活動，將會等候直到所有內送的分支完成。  這可讓您以平行方式執行多個活動，並確保所有活動已完成再繼續。
+接合是一個特殊的活動，將會等候直到所有內送的分支完成。  這可讓您 toorun 平行的多個活動，並確保所有已在繼續之前完成。
 
-雖然接合可以有無限的數量的連入連結，但這些連結只有一個可以是管線。  內送的順序連結數目不受限制。  您可以使用多個內送的管線連結建立接合，並儲存 Runbook，但是執行時將會失敗。
+雖然接合可以有無限的數量的連入連結，但這些連結只有一個可以是管線。  hello 傳入順序連結數目，不會受到限制。  您仍能繼續使用多個連入管線連結 toocreate hello 連接點，並儲存 hello runbook 中使用，但是執行時，它將會失敗。
 
-下列範例是 Runbook 的一個部分，其會啟動一組虛擬機器，同時下載修補程式以套用到這些機器。  接合用來確保兩個程序都已完成，才繼續 Runbook。
+下列 hello 範例是 runbook 啟動虛擬機器的一組同時下載修補程式 toobe 套用 toothose 機器時的一部分。  連接是使用的 tooensure hello runbook 會繼續執行之前，會完成這兩個處理程序。
 
 ![接合](media/automation-graphical-authoring-intro/runbook-junction.png)
 
 ### <a name="cycles"></a>循環
-循環是目的地活動連結回到其來源活動，或到最後連結回其來源的另一個活動。  圖形化編寫目前不允許循環。  如果您的 Runbook 有循環，它會適當地儲存，但是它執行時會收到錯誤。
+循環時，目的地活動連結回 tooits 來源活動或 tooanother 活動，最後連結回 tooits 來源。  圖形化編寫目前不允許循環。  如果您的 Runbook 有循環，它會適當地儲存，但是它執行時會收到錯誤。
 
 ![循環](media/automation-graphical-authoring-intro/runbook-cycle.png)
 
 ### <a name="sharing-data-between-activities"></a>在活動之間共用資料
-由連出連結活動輸出的任何資料會寫入Runbook 的 *資料匯流排* 。  Runbook 中的任何活動可以在資料匯流排上使用資料來填入參數值，或納入指令碼程式碼。  活動可以存取工作流程中任何先前的活動的輸出。     
+連出連結的活動所輸出的任何資料寫入 toohello *databus* hello runbook。  Hello runbook 中的任何活動可以 hello databus toopopulate 參數值使用的資料，或包含在指令碼中。  活動可以存取任何先前的活動 hello 工作流程中的 hello 的輸出。     
 
-資料如何寫入至資料匯流排取決於活動上的連結類型。  針對 **管線**，資料會輸出為多個物件。  針對 **順序** 連結，資料會輸出為陣列。  如果只有一個值，則會輸出為單一元素陣列。
+Hello 資料寫入 toohello databus 的方式取決於 hello hello 活動上的連結類型。  如**管線**，hello 資料會輸出為多個物件。  如**順序**連結，hello 資料會輸出為陣列。  如果只有一個值，則會輸出為單一元素陣列。
 
-您可以使用兩種方法之一來存取資料匯流排上的資料。  第一個是使用 **活動輸出** 資料來源來填入另一個活動的參數。  如果輸出是物件，您可以指定單一屬性。
+您可以存取使用兩種方法之一 hello databus 上的資料。  第一次使用**活動輸出**資料來源的 toopopulate 另一個活動的參數。  如果 hello 輸出是物件，您可以指定單一的屬性。
 
 ![活動輸出](media/automation-graphical-authoring-intro/activity-output-datasource-revised20165.png)
 
-您也可以在 **PowerShell 運算式**資料來源中，或使用 ActivityOutput 變數從**工作流程指令碼**活動，擷取活動的輸出。  如果輸出是物件，您可以指定單一屬性。  ActivityOutput 變數使用下列語法。
+您也可以擷取的活動中的 hello 輸出**PowerShell 運算式**資料來源或從**工作流程指令碼**ActivityOutput 變數包含的活動。  如果 hello 輸出是物件，您可以指定單一的屬性。  ActivityOutput 變數會使用下列語法的 hello。
 
     $ActivityOutput['Activity Label']
     $ActivityOutput['Activity Label'].PropertyName 
 
 ### <a name="checkpoints"></a>檢查點
-您可以在圖形化 PowerShell 工作流程 Runbook 中設定[檢查點](automation-powershell-workflow.md#checkpoints)，方法是在任何活動上選取「檢查點 Runbook」。  這會導致在執行活動之後設定檢查點。
+您可以在圖形化 PowerShell 工作流程 Runbook 中設定[檢查點](automation-powershell-workflow.md#checkpoints)，方法是在任何活動上選取「檢查點 Runbook」。  這會造成檢查點 toobe hello 活動執行後設定。
 
-![檢查點](media/automation-graphical-authoring-intro/set-checkpoint.png)
+![Checkpoint](media/automation-graphical-authoring-intro/set-checkpoint.png)
 
-檢查點只能在圖形化 PowerShell 工作流程 Runbook 中啟用，無法在圖形化 Runbook 中使用。  如果 Runbook 使用 Azure Cmdlet，當 Runbook 暫停並且在不同的背景工作從這個檢查點開始時，您應該使用 Add-AzureRMAccount 遵循任何檢查點活動。 
+檢查點只能在圖形化 PowerShell 工作流程 Runbook 中啟用，無法在圖形化 Runbook 中使用。  如果 hello runbook 使用 Azure 指令程式，您應該遵循任何檢查點的活動，具有新增 AzureRMAccount，以防 hello runbook 已暫停，重新啟動從這個檢查點，在不同的背景工作上。 
 
-## <a name="authenticating-to-azure-resources"></a>向 Azure 資源驗證
-在管理 Azure 資源之 Azure 自動化中的 Runbook 將需要向 Azure 驗證。  [執行身分帳戶](automation-offering-get-started.md#creating-an-automation-account) (也稱為服務主體) 是使用自動化 Runbook 存取您訂用帳戶中 Azure Resource Manager 資源的預設方法。  您可以將此功能加入至圖形化 Runbook，方法是將 **AzureRunAsConnection** 連線資產 (使用 PowerShell [Get-AutomationConnection](https://technet.microsoft.com/library/dn919922%28v=sc.16%29.aspx) Cmdlet) 和 [Add-AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet 加入至畫布。 下列範例就將此說明。<br>![執行身分驗證活動](media/automation-graphical-authoring-intro/authenticate-run-as-account.png)<br>
-「取得執行身分連線」活動 (亦即 Get-AutomationConnection) 是使用名為 AzureRunAsConnection 的常數值資料來源所設定。<br>![執行身分連線組態](media/automation-graphical-authoring-intro/authenticate-runas-parameterset.png)<br>
-下一個活動 (Add-AzureRmAccount) 會加入已驗證的執行身分帳戶，以便在 Runbook 中使用。<br>
+## <a name="authenticating-tooazure-resources"></a>驗證 tooAzure 資源
+Azure 自動化中管理的 Azure 資源的 Runbook 將需要驗證 tooAzure。  hello[執行身分帳戶](automation-offering-get-started.md#creating-an-automation-account)(也參考的 tooas 服務主體) 是 hello 預設方法 tooaccess 自動化 runbook 您訂用帳戶中的 Azure 資源管理員資源。  您可以新增此功能 tooa 圖形化 runbook 加入 hello **AzureRunAsConnection**連線資產，使用 hello PowerShell [Get-automationconnection](https://technet.microsoft.com/library/dn919922%28v=sc.16%29.aspx) cmdlet，並[新增 AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) cmdlet toohello 畫布。 Hello 下列範例所示。<br>![執行身分驗證活動](media/automation-graphical-authoring-intro/authenticate-run-as-account.png)<br>
+hello 取得執行做為連接活動 (也就是 Get-automationconnection)，設定了名為 AzureRunAsConnection 常數值的資料來源。<br>![執行身分連線組態](media/automation-graphical-authoring-intro/authenticate-runas-parameterset.png)<br>
+hello 下一個活動，新增-AzureRmAccount hello runbook 中新增 hello 驗證執行身分帳戶使用。<br>
 ![Add-AzureRmAccount 參數集](media/automation-graphical-authoring-intro/authenticate-conn-to-azure-parameter-set.png)<br>
-針對 **APPLICATIONID**、**CERTIFICATETHUMBPRINT** 和 **TENANTID** 等參數，您需要針對 Field 路徑指定屬性名稱，因為活動會使用多個屬性來輸出物件。  否則當您執行 Runbook 時，它在嘗試進行驗證便會失敗。  這就是您使用執行身分帳戶驗證 Runbook 時所需的最低限度。
+Hello 參數**APPLICATIONID**， **CERTIFICATETHUMBPRINT**，和**TENANTID**您將需要 toospecify hello 屬性名稱的 hello hello 欄位路徑，因為hello 活動輸出具有多個屬性的物件。  否則，當您執行 hello runbook 時，它將會失敗嘗試 tooauthenticate。  這是您需要在最小的 tooauthenticate hello 與您的 runbook 執行身分帳戶。
 
-若要針對使用 [Azure AD 使用者帳戶](automation-create-aduser-account.md)建立自動化帳戶來管理 Azure 傳統部署或 Azure Resource Manager 資源的訂戶維持回溯相容性，用來驗證的方法是使用 Add-AzureAccount Cmdlet 搭配[認證資產](automation-credentials.md)，其代表可存取 Azure 帳戶的 Active Directory 使用者。
+toomaintain 回溯相容性的訂閱者建立自動化帳戶使用[Azure AD 使用者帳戶](automation-create-aduser-account.md)toomanage Azure 傳統部署或 Azure 資源管理員資源的 hello tooauthenticate 方法是與 hello Add-azureaccount cmdlet[認證資產](automation-credentials.md)，代表具有存取 toohello Azure 帳戶的 Active Directory 使用者。
 
-您可以在 Add-AzureAccount 活動之後，將認證資產加入至畫布，以將這項功能加入至圖形化 Runbook。  Add-AzureAccount 會對其輸入使用認證活動。  下列範例就將此說明。
+您可以加入認證資產 toohello 畫布後面接著 Add-azureaccount 活動來將此功能 tooa 圖形化 runbook。  Add-azureaccount 使用其輸入 hello 認證活動。  Hello 下列範例所示。
 
 ![驗證活動](media/automation-graphical-authoring-intro/authentication-activities.png)
 
-您必須在開始 Runbook 時，和每個檢查點之後進行驗證。  這表示在任何 Checkpoint-Workflow 活動之後加入額外的 Add-AzureAccount 活動。 因為您可以使用相同認證，因此不需要額外的認證活動 
+您尚未 tooauthenticate 在 hello 開頭 hello runbook 並在每個檢查點之後。  這表示在任何 Checkpoint-Workflow 活動之後加入額外的 Add-AzureAccount 活動。 您不需要新增認證活動，因為您可以使用 hello 相同 
 
 ![活動輸出](media/automation-graphical-authoring-intro/authentication-activity-output.png)
 
 ## <a name="runbook-input-and-output"></a>Runbook 輸入和輸出
 ### <a name="runbook-input"></a>Runbook 輸入
-Runbook 可能需要來自使用者的輸入內容 (透過 Azure 入口網站啟動 Runbook 時進行的輸入)；如果目前的 Runbook 為子系，則需要來自另一個 Runbook 的輸入內容。
-例如，如果您有一個會建立虛擬機器的 Runbook，您可能需要在每次啟動 Runbook 時提供資訊，例如虛擬機器的名稱和其他屬性。  
+如果 hello 目前當做子系啟動 hello runbook 透過 hello Azure 入口網站或從另一個 runbook 時，runbook 可能需要從使用者輸入。
+例如，如果您有建立虛擬機器的 runbook，您可能需要 tooprovide 的資訊，例如 hello 名稱 hello 虛擬機器和其他內容每次啟動 hello runbook。  
 
-您透過定義一或多個輸入參數來接受 Runbook 的輸入。  您會在每次啟動 Runbook 時提供值給這些參數。  當您透過 Azure 入口網站啟動 Runbook 時，它會提示您為 Runbook 的每個輸入參數提供值。
+您透過定義一或多個輸入參數來接受 Runbook 的輸入。  您為每個時間 hello runbook 啟動這些參數提供值。  當您啟動 runbook 以 hello Azure 入口網站時，它會提示您 tooprovide hello 每個 hello runbook 的輸入參數的值。
 
-您可以按一下 Runbook 工具列上的 [ **輸入和輸出** ] 按鈕來存取 Runbook 的輸入參數。  
+您可以存取 runbook 的輸入的參數，依序按一下 hello**輸入和輸出**hello runbook 的工具列上的按鈕。  
 
 ![Runbook 輸入輸出](media/automation-graphical-authoring-intro/runbook-edit-input-output.png) 
 
-這會開啟 [輸入和輸出] 控制項，您可以在其中編輯現有的輸入參數，或按一下 [加入輸入] 來建立一個新的。 
+這會開啟 hello**輸入和輸出**控制項，您可以在此編輯現有的輸入的參數，或按一下 建立新**加入輸入**。 
 
 ![加入輸入](media/automation-graphical-authoring-intro/runbook-edit-add-input.png)
 
-下表中的屬性定義每個輸入參數。
+每個輸入的參數是由 hello 下表中的 hello 屬性所定義。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| 名稱 |參數的唯一名稱。  這只能包含數字字元，而且不能包含空格。 |
-| 說明 |輸入參數的選擇性描述。 |
-| 類型 |對參數值預期的資料型別。  提示您輸入時，Azure 入口網站會對每個參數提供適當的資料類型控制。 |
-| 強制 |指定是否必須提供參數的值。  如果您未對未定義預設值的每個強制參數提供值，則無法啟動 Runbook。 |
-| 預設值 |如果未提供其中一個的值，要對參數指定什麼值。  這可以是 Null 或特定值。 |
+| 名稱 |hello 參數 hello 唯一名稱。  這只能包含數字字元，而且不能包含空格。 |
+| 說明 |Hello 輸入參數的選擇性描述。 |
+| 類型 |Hello 參數值所預期的資料類型。  時提示輸入 hello Azure 入口網站會針對每個參數提供適當的控制項 hello 資料類型。 |
+| 強制 |指定是否必須提供 hello 參數的值。  hello runbook 無法啟動，如果您未提供值的每個必要參數，但是沒有定義了預設值。 |
+| 預設值 |指定哪些值用於 hello 參數，如果未提供一個。  這可以是 Null 或特定值。 |
 
 ### <a name="runbook-output"></a>Runbook 輸出
-沒有連出連結的任何活動所建立的資料會加入至 [Runbook 的輸出](http://msdn.microsoft.com/library/azure/dn879148.aspx)。  輸出會隨著 Runbook 工作儲存，並且在 Runbook 用作子項時提供給父 Runbook 使用。  
+連出連結沒有任何活動所建立的資料將會加入 toohello [hello runbook 的輸出](http://msdn.microsoft.com/library/azure/dn879148.aspx)。  hello 輸出儲存與 hello runbook 工作時，則可以使用 tooa 父 runbook hello runbook 可做為子系。  
 
 ## <a name="powershell-expressions"></a>PowerShell 運算式
-圖形化撰寫的優點之一是提供您以 PowerShell 的基本知識建立 Runbook 的能力。  目前，您還是需要稍微了解 PowerShell，以填入某些[參數值](#activities)和設定[連結條件](#links-and-workflow)。  本節提供 PowerShell 運算式的快速簡介，供不熟悉的使用者參考。  PowerShell 的完整詳細資料位於 [使用 Windows PowerShell 撰寫指令碼](http://technet.microsoft.com/library/bb978526.aspx)。 
+圖形化撰寫 hello 優點之一您提供 hello 能力 toobuild 以 PowerShell 的基本知識的 runbook。  目前，您需要使用 tooknow 的位元的 PowerShell 雖然填入某些[參數值](#activities)和設定[連結條件](#links-and-workflow)。  本章節提供的快速介紹 tooPowerShell 運算式可能不熟悉它的使用者。  PowerShell 的完整詳細資料位於 [使用 Windows PowerShell 撰寫指令碼](http://technet.microsoft.com/library/bb978526.aspx)。 
 
 ### <a name="powershell-expression-data-source"></a>PowerShell 運算式資料來源
-您可以使用 PowerShell 運算式做為資料來源，使用一些 PowerShell 程式碼的結果來填入 [活動參數](#activities) 的值。  這可以是執行一些簡單函式的單行程式碼，或執行一些複雜邏輯的多行程式碼。  未指派給變數的任何命令輸出都會輸出到參數值。 
+您可以使用的 PowerShell 運算式做為資料來源 toopopulate hello 值[活動參數](#activities)hello 一些 PowerShell 程式碼的結果。  這可以是執行一些簡單函式的單行程式碼，或執行一些複雜邏輯的多行程式碼。  任何不是命令的輸出指派 tooa 變數是輸出 toohello 參數值。 
 
-例如，下列命令會輸出目前的日期。 
+例如，下列命令的 hello 就能輸出 hello 目前的日期。 
 
     Get-Date
 
-下列命令會從目前的日期建立字串並將它指派給變數。  然後將變數的內容傳送至輸出 
+hello 下列命令建立的字串 hello 從目前的日期並將它指派 tooa 變數。  hello 變數的 hello 內容便會傳送 toohello 輸出 
 
-    $string = "The current date is " + (Get-Date)
+    $string = "hello current date is " + (Get-Date)
     $string
 
-下列命令會評估目前的日期並傳回表示當天是工作日或週末的字串。 
+hello 下列命令目前的日期評估 hello 並傳回指出是否 hello 當天工作日或週末的字串。 
 
     $date = Get-Date
     if (($date.DayOfWeek = "Saturday") -or ($date.DayOfWeek = "Sunday")) { "Weekend" }
@@ -320,54 +320,54 @@ Runbook 可能需要來自使用者的輸入內容 (透過 Azure 入口網站啟
 
 
 ### <a name="activity-output"></a>活動輸出
-若要在 Runbook 中使用上一個活動的輸出，請以下列語法使用 $ActivityOutput 變數。
+toouse hello hello runbook，請使用下列語法的 hello 與使用 hello $ActivityOutput 變數中前一項活動的輸出。
 
     $ActivityOutput['Activity Label'].PropertyName
 
-例如，您可能有一個活動，具有需要虛擬機器名稱的屬性，在此情況下您可以使用下列運算式。
+例如，您可能需要的虛擬機器的 hello 名稱的屬性的活動在此情況下，您可以使用下列運算式 hello。
 
     $ActivityOutput['Get-AzureVm'].Name
 
-如果是需要虛擬機器物件的屬性而非只是單純的屬性，則您要使用下列語法傳回整個物件。
+如果需要 hello 虛擬機器物件，而不是只屬性，則您的 hello 屬性則會傳回 hello 整個物件使用 hello 語法。
 
     $ActivityOutput['Get-AzureVm']
 
-您也可以在更複雜的運算式中使用活動的輸出，例如串連文字到虛擬機器名稱的下列運算式。
+您也可以使用更複雜的運算式，例如 hello 下列會串連文字 toohello 虛擬機器名稱中的 hello 輸出的活動。
 
-    "The computer name is " + $ActivityOutput['Get-AzureVm'].Name
+    "hello computer name is " + $ActivityOutput['Get-AzureVm'].Name
 
 
 ### <a name="conditions"></a>條件
-使用 [比較運算子](https://technet.microsoft.com/library/hh847759.aspx) 來比較值或判斷值是否符合指定的模式。  比較會傳回 $true 或 $false 的值。
+使用[比較運算子](https://technet.microsoft.com/library/hh847759.aspx)toocompare 值，或判斷值是否符合指定的模式。  比較會傳回 $true 或 $false 的值。
 
-例如，下列條件會判斷來自 *Get-AzureVM* 活動的虛擬機器目前是否「已停止」。 
+例如，下列條件的 hello 決定是否 hello 虛擬機器活動的名稱*Get-azurevm*目前*停止*。 
 
     $ActivityOutput["Get-AzureVM"].PowerState –eq "Stopped"
 
-下列條件會檢查相同的虛擬機器是否處於「已停止」 以外的任何狀態。
+hello 以下條件會檢查是否 hello 相同的虛擬機器處於任何狀態以外*停止*。
 
     $ActivityOutput["Get-AzureVM"].PowerState –ne "Stopped"
 
-您可以使用[邏輯運算子](https://technet.microsoft.com/library/hh847789.aspx) (例如 **-and** 或 **-or**) 加入多個條件。  例如，下列條件會檢查上述範例中相同虛擬機器的狀態是否為「已停止」或「正在停止」。
+您可以使用[邏輯運算子](https://technet.microsoft.com/library/hh847789.aspx) (例如 **-and** 或 **-or**) 加入多個條件。  例如，hello 下列條件檢查是否 hello hello 前一個範例中的相同虛擬機器的狀態*停止*或*停止*。
 
     ($ActivityOutput["Get-AzureVM"].PowerState –eq "Stopped") -or ($ActivityOutput["Get-AzureVM"].PowerState –eq "Stopping") 
 
 
 ### <a name="hashtables"></a>雜湊表
-[雜湊表](http://technet.microsoft.com/library/hh847780.aspx) 是傳回一組值時很有用的名稱/值組。  某些活動的屬性可能是雜湊表而不是簡單值。  雜湊表也可能稱為字典。 
+[雜湊表](http://technet.microsoft.com/library/hh847780.aspx) 是傳回一組值時很有用的名稱/值組。  某些活動的屬性可能是雜湊表而不是簡單值。  您可能也會看到如雜湊表稱為 tooas 字典。 
 
-使用下列語法建立雜湊表。  雜湊表可以包含任意數目的項目，但是每個項目都由一個名稱和值定義。
+您可以建立雜湊表以 hello，請使用下列語法。  雜湊表可以包含任意數目的項目，但是每個項目都由一個名稱和值定義。
 
     @{ <name> = <value>; [<name> = <value> ] ...}
 
-例如，下列運算式建立要在活動參數的資料來源中使用的雜湊表，這個雜湊表的值要做為網際網路搜尋。
+例如，hello 下列運算式會建立雜湊表 toobe hello 資料來源中用於預期雜湊表值的網際網路搜尋活動參數。
 
     $query = "Azure Automation"
     $count = 10
     $h = @{'q'=$query; 'lr'='lang_ja';  'count'=$Count}
     $h
 
-下列範例使用稱為 *Get Twitter Connection* 的活動的輸出來填入雜湊表。
+hello 下列範例會使用呼叫活動的輸出*取得 Twitter 連接*toopopulate 雜湊表。
 
     @{'ApiKey'=$ActivityOutput['Get Twitter Connection'].ConsumerAPIKey;
       'ApiSecret'=$ActivityOutput['Get Twitter Connection'].ConsumerAPISecret;
@@ -377,8 +377,8 @@ Runbook 可能需要來自使用者的輸入內容 (透過 Azure 入口網站啟
 
 
 ## <a name="next-steps"></a>後續步驟
-* 若要開始使用 PowerShell 工作流程 Runbook，請參閱 [我的第一個 PowerShell 工作流程 Runbook](automation-first-runbook-textual.md) 
-* 若要開始使用圖形化 Runbook，請參閱 [我的第一個圖形化 Runbook](automation-first-runbook-graphical.md)
-* 若要深入了解 Runbook 類型、其優點和限制，請參閱 [Azure 自動化 Runbook 類型](automation-runbook-types.md)
-* 若要了解如何使用自動化執行身分帳戶進行驗證，請參閱 [設定 Azure 執行身分帳戶](automation-sec-configure-azure-runas-account.md)
+* tooget 開始使用 PowerShell 工作流程 runbook，請參閱[我的第一個 PowerShell 工作流程 runbook](automation-first-runbook-textual.md) 
+* tooget 開始使用圖形化 runbook，請參閱[我的第一個圖形化 runbook](automation-first-runbook-graphical.md)
+* tooknow 深入了解 runbook 類型、 其優點和限制，請參閱[Azure 自動化 runbook 類型](automation-runbook-types.md)
+* toounderstand 如何使用 tooauthenticate hello 自動化執行身分帳戶，請參閱[設定 Azure 執行身分帳戶](automation-sec-configure-azure-runas-account.md)
 

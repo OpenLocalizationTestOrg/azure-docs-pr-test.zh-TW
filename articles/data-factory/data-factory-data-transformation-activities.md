@@ -1,6 +1,6 @@
 ---
 title: "資料轉換︰處理和轉換資料 | Microsoft Docs"
-description: "了解如何使用 Hadoop、Machine Learning 或 Azure Data Lake Analytics 在 Azure Data Factory 中轉換資料或處理資料。"
+description: "深入了解如何 tootransform 資料或處理使用 Hadoop、 機器學習服務或 Azure Data Lake Analytics 的 Azure Data Factory 中的資料。"
 keywords: "資料轉換, 處理資料, 轉換資料, 轉換活動"
 services: data-factory
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: shlo
-ms.openlocfilehash: 7fc30f32b5038467b3474d89311dc51e182c6e8a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 917d617259699b0e71de3a0e0c17463d00f2e0a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transform-data-in-azure-data-factory"></a>Azure Data Factory 中的資料轉換
 > [!div class="op_single_selector"]
@@ -33,9 +33,9 @@ ms.lasthandoff: 07/11/2017
 > * [.NET 自訂](data-factory-use-custom-activities.md)
 
 ## <a name="overview"></a>概觀
-本文說明 Azure Data Factory 中的資料轉換活動，您可用來轉換未經處理資料，並將其處理為預測和見解。 轉換活動會在計算環境中執行，例如 Azure HDInsight 叢集或 Azure Batch。 它會提供每個轉換活動的詳細資訊文章連結。
+本文說明您可以使用 tootransform，並將預測和 insights 處理未經處理資料的 Azure Data Factory 中的資料轉換活動。 轉換活動會在計算環境中執行，例如 Azure HDInsight 叢集或 Azure Batch。 它提供連結 tooarticles 並在每個轉換活動的詳細資訊。
 
-Data Factory 支援下列可個別或與其他活動鏈結而加入至 [管線](data-factory-create-pipelines.md) 的資料轉換活動。
+Data Factory 支援下列資料轉換的活動太可加入的 hello[管線](data-factory-create-pipelines.md)可以個別或鏈結與另一個活動。
 
 > [!NOTE]
 > 如需逐步解說，請參閱 [建立可 Hive 轉換的管線](data-factory-build-your-first-pipeline.md) 。  
@@ -43,48 +43,48 @@ Data Factory 支援下列可個別或與其他活動鏈結而加入至 [管線](
 > 
 
 ## <a name="hdinsight-hive-activity"></a>HDInsight Hive 活動
-Data Factory 管線中的 HDInsight Hive 活動會在您自己或隨選的 Windows/Linux 架構 HDInsight 叢集上執行 Hive 查詢。 如需此活動的詳細資訊，請參閱 [Hive 活動](data-factory-hive-activity.md) 。 
+hello HDInsight Hive 活動 Data Factory 管線中執行您自己的 Hive 查詢或隨 Windows/linux 的 HDInsight 叢集。 如需此活動的詳細資訊，請參閱 [Hive 活動](data-factory-hive-activity.md) 。 
 
 ## <a name="hdinsight-pig-activity"></a>HDInsight Pig 活動
-Data Factory 管線中的 HDInsight Pig 活動會在您自己或隨選的 Windows/Linux 架構 HDInsight 叢集上執行 Pig 查詢。 如需此活動的詳細資訊，請參閱 [Pig 活動](data-factory-pig-activity.md) 。 
+hello HDInsight Pig 活動 Data Factory 管線中執行您自己的 Pig 查詢或隨 Windows/linux 的 HDInsight 叢集。 如需此活動的詳細資訊，請參閱 [Pig 活動](data-factory-pig-activity.md) 。 
 
 ## <a name="hdinsight-mapreduce-activity"></a>HDInsight MapReduce 活動
-Data Factory 管線中的 HDInsight MapReduce 活動會在您自己或隨選的 Windows/Linux 架構 HDInsight 叢集上執行 MapReduce 程式。 如需此活動的詳細資訊，請參閱 [MapReduce 活動](data-factory-map-reduce.md) 。
+hello HDInsight MapReduce 活動 Data Factory 管線中執行您自己的 MapReduce 程式或隨 Windows/linux 的 HDInsight 叢集。 如需此活動的詳細資訊，請參閱 [MapReduce 活動](data-factory-map-reduce.md) 。
 
 ## <a name="hdinsight-streaming-activity"></a>HDInsight 串流活動
-Data Factory 管線中的 HDInsight 串流活動會在您自己或隨選的 Windows/Linux 架構 HDInsight 叢集上執行 Hadoop 串流程式。 如需此活動的詳細資訊，請參閱 [HDInsight 串流活動](data-factory-hadoop-streaming-activity.md) 。
+Data Factory 管線中的 hello HDInsight 串流活動執行您自己的 Hadoop 串流程式或隨 Windows/linux 的 HDInsight 叢集。 如需此活動的詳細資訊，請參閱 [HDInsight 串流活動](data-factory-hadoop-streaming-activity.md) 。
 
 ## <a name="hdinsight-spark-activity"></a>HDInsight Spark 活動
-Data Factory 管線中的 HDInsight Spark 活動會在您自己的 HDInsight 叢集上執行 Spark 程式。 如需詳細資訊，請參閱[從 Azure Data Factory 叫用 Spark 程式](data-factory-spark.md)。 
+hello HDInsight Spark Data Factory 管線中的活動執行您自己的 HDInsight 叢集上的 Spark 程式。 如需詳細資訊，請參閱[從 Azure Data Factory 叫用 Spark 程式](data-factory-spark.md)。 
 
 ## <a name="machine-learning-activities"></a>Machine Learning 活動
-Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 Azure Machine Learning Web 服務進行預測性分析。 在 Azure Data Factory 管線中使用 [批次執行活動](data-factory-azure-ml-batch-execution-activity.md#invoking-a-web-service-using-batch-execution-activity) ，您可以叫用 Machine Learning Web 服務來對批次中的資料進行預測。
+Azure Data Factory 可讓您 tooeasily 建立管線，使用已發行的 Azure Machine Learning web 服務的預測分析。 使用 hello[批次執行活動](data-factory-azure-ml-batch-execution-activity.md#invoking-a-web-service-using-batch-execution-activity)在 Azure Data Factory 管線中，您可以叫用批次中的 hello 資料機器學習 web 服務 toomake 的預測。
 
-經過一段時間，必須使用新的輸入資料集重新訓練 Machine Learning 評分實驗中的預測模型。 完成重新訓練之後，您想要使用已重新訓練的 Machine Learning 模型來更新評分 Web 服務。 您可以使用 [更新資源活動](data-factory-azure-ml-batch-execution-activity.md#updating-models-using-update-resource-activity) ，以新訓練的模型更新 Web 服務。  
+經過一段時間，在 hello 計分實驗需要 toobe 重新定型使用全新的機器學習中的 hello 預測模型的輸入資料集。 您完成定型之後，您會想要計分 web 服務以 hello tooupdate hello 重新定型機器學習模型。 您可以使用 hello[更新資源活動](data-factory-azure-ml-batch-execution-activity.md#updating-models-using-update-resource-activity)tooupdate hello web 服務與 hello 定型新模型。  
 
 如需這些機器學習活動的詳細資料，請參閱 [使用 Machine Learning 活動](data-factory-azure-ml-batch-execution-activity.md) 。 
 
 ## <a name="stored-procedure-activity"></a>預存程序活動
-您可以在 Data Factory 管線中使用 SQL Server 的預存程序活動，以叫用下列其中一個資料存放區中的預存程序：您的企業或 Azure VM 中的 Azure SQL Database、Azure SQL 資料倉儲、SQL Server 資料庫。 如需詳細資料，請參閱 [預存程序活動](data-factory-stored-proc-activity.md) 。  
+您可以使用 Data Factory 管線 tooinvoke 其中一種 hello 下列資料存放區預存程序中的 hello SQL Server 預存程序活動： Azure SQL Database、 Azure SQL 資料倉儲，在您企業中的 SQL Server 資料庫或 Azure VM。 如需詳細資料，請參閱 [預存程序活動](data-factory-stored-proc-activity.md) 。  
 
 ## <a name="data-lake-analytics-u-sql-activity"></a>Data Lake Analytics U-SQL 活動
 Data Lake Analytics U-SQL 活動會在 Azure Data Lake Analytics 叢集上執行 U-SQL 指令碼。 如需詳細資料，請參閱 [U-SQL 活動](data-factory-usql-activity.md) 。 
 
 ## <a name="net-custom-activity"></a>.NET 自訂活動
-如果您需要以 Data Factory 不支援的方法轉換資料，可以利用自己的資料處理邏輯建立自訂活動，然後在管線中使用活動。 您可以將自訂 .NET 活動設定為使用 Azure Batch 服務或 Azure HDInsight 叢集來執行。 如需詳細資訊請參閱 [使用自訂活動](data-factory-use-custom-activities.md) 。 
+如果您需要 tootransform 資料不支援的 Data Factory 的方式，您可以建立您自己的資料處理邏輯的自訂活動，並使用 hello 管線中的 hello 活動。 您可以設定 hello 自訂.NET 活動 toorun 使用 Azure Batch 服務或 Azure HDInsight 叢集。 如需詳細資訊請參閱 [使用自訂活動](data-factory-use-custom-activities.md) 。 
 
-您可以建立自訂活動，以便在已安裝 R 的 HDInsight 叢集上執行 R 指令碼。 請參閱 [使用 Azure Data Factory 執行 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)。 
+您可以建立自訂活動 toorun R 指令碼在您的 HDInsight 叢集上使用 R 安裝。 請參閱 [使用 Azure Data Factory 執行 R 指令碼](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/RunRScriptUsingADFSample)。 
 
 ## <a name="compute-environments"></a>計算環境
-您需要為計算環境建立連結服務，然後在定義轉換活動時使用該連結服務。 Data Factory 支援兩種類型的資計算環境。 
+您建立連結的服務的 hello 計算環境，然後使用連結的 hello 服務定義轉換活動時。 Data Factory 支援兩種類型的資計算環境。 
 
-1. **隨選**：在此情況下，運算環境完全由 Data Factory 進行管理。 Data Factory 服務會在工作提交前自動建立運算環境以處理資料，而在工作完成時予以移除。 您可以針對工作執行、叢集管理及啟動載入動作，設定和控制隨選計算環境的細微設定。 
-2. **攜帶您自己的裝置**：在此情況下，您可以註冊自己的運算環境 (例如 HDInsight 叢集)，做為 Data Factory 中的連結服務。 運算環境由您自行管理，而 Data Factory 會使用它來執行活動。 
+1. **視**: hello 運算環境完全在此情況下，管理由資料處理站。 它會自動建立 hello Data Factory 服務作業送出的 tooprocess 資料之前，移除 hello 工作完成時。 您可以設定及控制細微 hello 視運算環境執行的作業、 叢集管理和啟動載入動作的設定。 
+2. **攜帶您自己的裝置**：在此情況下，您可以註冊自己的運算環境 (例如 HDInsight 叢集)，做為 Data Factory 中的連結服務。 hello 運算環境由您管理和 hello Data Factory 服務會使用它 tooexecute hello 活動。 
 
-如需了解 Data Factory 所支援的計算服務，請參閱 [計算連結服務](data-factory-compute-linked-services.md) 一文。 
+請參閱[計算連結服務](data-factory-compute-linked-services.md)有關的文章 toolearn 計算服務支援的 Data Factory。 
 
 ## <a name="summary"></a>摘要
-Azure Data Factory 支援下列資料轉換活動和活動計算環境。 可將轉換活動個別加入管線，或先與其他活動鏈結再加入管線。
+Azure Data Factory 支援 hello 遵循資料轉換活動與 hello hello 活動的運算環境。 hello 轉換活動可以加入的 toopipelines 可以個別或鏈結與另一個活動。
 
 | 資料轉換活動 | 計算環境 |
 |:--- |:--- |

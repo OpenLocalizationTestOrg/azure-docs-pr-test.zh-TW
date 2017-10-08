@@ -1,5 +1,5 @@
 ---
-title: "搭配使用 Apache Storm 與 Power BI - Azure HDInsight | Microsoft Docs"
+title: "使用 Power BI 的 Azure HDInsight Apache Storm aaaUse |Microsoft 文件"
 description: "使用來自 HDInsight 中的 Apache Storm 叢集上執行的 C# 拓撲的資料建立 Power BI。"
 services: hdinsight
 documentationcenter: 
@@ -16,22 +16,22 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/31/2017
 ms.author: larryfr
-ms.openlocfilehash: 36487c0c34e5a4bb955bbc15c8c96b9e838aeb44
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 194cd8220bd60475af1d64a110e4b23ef92e1bc8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-power-bi-to-visualize-data-from-an-apache-storm-topology"></a>使用 Power BI 視覺化 Apache Storm 拓撲的資料
+# <a name="use-power-bi-toovisualize-data-from-an-apache-storm-topology"></a>使用 Power BI toovisualize 資料從 Apache Storm 拓樸
 
-Power BI 可讓您以視覺化的方式將資料顯示為報告。 本文件提供如何使用 Apache Storm on HDInsight 為 Power BI 產生資料的範例。
+Power BI 可讓您 toovisually 顯示的資料與報表。 本文件提供的範例 toouse Apache Storm 的 Power BI 的 HDInsight toogenerate 資料。
 
 > [!NOTE]
-> 本文件中的步驟仰賴於含有 Visual Studio 的 Windows 開發環境。 已編譯的專案可以提交到以 Linux 為基礎的 HDInsight 叢集。 只有在 2016/10/28 之後建立的以 Linux 為基礎的叢集可支援 SCP.NET 拓撲。
+> hello 本文件中的步驟會仰賴 Windows 與 Visual Studio 開發環境。 hello 已編譯的專案可以提交的 tooa 以 Linux 為基礎的 HDInsight 叢集。 只有在 2016/10/28 之後建立的以 Linux 為基礎的叢集可支援 SCP.NET 拓撲。
 >
-> 若要搭配使用 C# 拓撲與以 Linux 為基礎的叢集，請將專案使用的 Microsoft.SCP.Net.SDK NuGet 套件，更新為 0.10.0.6 版或更新版本。 套件版本也必須符合 HDInsight 上安裝的 Storm 主要版本。 例如，Storm on HDInsight 3.3 和 3.4 版使用 Storm 0.10.x 版，而 HDInsight 3.5 使用 Storm 1.0.x。
+> toouse 以 Linux 為基礎的叢集，而更新 hello Microsoft.SCP.Net.SDK NuGet 封裝使用您的專案 tooversion 0.10.0.6 或更高版本的 C# 拓撲。 hello hello 封裝版本也必須符合安裝在 HDInsight 上的 Storm hello 主要版本。 例如，Storm on HDInsight 3.3 和 3.4 版使用 Storm 0.10.x 版，而 HDInsight 3.5 使用 Storm 1.0.x。
 >
-> 在以 Linux 為基礎之叢集上的 C# 拓撲必須使用 .NET 4.5，並使用 Mono 以在 HDInsight 叢集上執行。 大多能正常運作。 不過您應該查看 [Mono 相容性](http://www.mono-project.com/docs/about-mono/compatibility/)文件，以了解是否可能有不相容之處。
+> C# 拓撲以 Linux 為基礎的叢集上必須使用.NET 4.5，並使用單聲道 toorun hello HDInsight 叢集上。 大多能正常運作。 不過，您應該檢查 hello [Mono 相容性](http://www.mono-project.com/docs/about-mono/compatibility/)潛在的不相容的文件。
 >
 > 如需此專案的 Java 版本 (可在以 Linux 或 Windows 為基礎的 HDInsight 上運作)，請參閱[使用 Storm on HDInsight 處理 Azure 事件中樞的事件 (Java)](hdinsight-storm-develop-java-event-hub-topology.md)。
 
@@ -41,73 +41,73 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。 本文件提�
 * HDInsight 叢集。 如需詳細資訊，請參閱[開始使用 Storm on HDInsight](hdinsight-apache-storm-tutorial-get-started-linux.md)。
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+  > Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
-* Visual Studio (下列其中一個版本)
+* Visual Studio （其中 hello 之後版本）
 
   * [Visual Studio 2012](http://www.microsoft.com/download/details.aspx?id=39305)
   * Visual Studio 2013 [(含 Update 4)](http://www.microsoft.com/download/details.aspx?id=44921) 或 [Visual Studio 2013 Community](http://go.microsoft.com/fwlink/?linkid=517284&clcid=0x409)
   * [Visual Studio 2015](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
   * Visual Studio 2017 (任何版本)
 
-* HDInsight Tools for Visual Studio：如需安裝的相關資訊，請參閱 [開始使用 HDInsight Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md) 。
+* hello HDInsight Tools for Visual Studio： 請參閱[開始使用 hello HDInsight Tools for Visual Studio](hdinsight-hadoop-visual-studio-tools-get-started.md)如需安裝資訊。
 
 ## <a name="how-it-works"></a>運作方式
 
-此範例包含 C# Storm 拓撲，會隨機產生網際網路資訊服務 (IIS) 記錄資料。 然後此資料會寫入至 SQL Database，並且從該處用來在 Power BI 中產生報告。
+此範例包含 C# Storm 拓撲，會隨機產生網際網路資訊服務 (IIS) 記錄資料。 接著會將這項資料寫入 tooa SQL 資料庫，而且從該處使用的 toogenerate Power BI 中的報表。
 
-下列檔案會實作此範例的主要功能︰
+hello 遵循此範例的檔案實作 hello 主要功能：
 
-* **SqlAzureBolt.cs**︰將 Storm 拓撲中產生的資訊寫入 SQL Database。
-* **IISLogsTable.sql**︰用來產生儲存資料所在的資料庫的 Transact-SQL 陳述式。
+* **SqlAzureBolt.cs**： 寫入 hello Storm 拓撲 tooSQL 資料庫中產生的資訊。
+* **IISLogsTable.sql**: hello TRANSACT-SQL 陳述式使用 toogenerate hello 儲存資料庫的 hello 資料中。
 
 > [!WARNING]
-> 在 HDInsight 叢集上啟動拓撲之前，先於 SQL Database 中建立資料表。
+> 建立 SQL Database 中的 hello 資料表，才可以開始您的 HDInsight 叢集 hello 拓撲。
 
-## <a name="download-the-example"></a>下載範例
+## <a name="download-hello-example"></a>下載 hello 範例
 
-下載 [HDInsight C# Storm Power BI 範例](https://github.com/Azure-Samples/hdinsight-dotnet-storm-powerbi)。 若要下載它，請使用 [git](http://git-scm.com/)分岔/複製它，或使用 **下載** 連結下載封存的 .zip。
+下載 hello [HDInsight C# Storm Power BI 範例](https://github.com/Azure-Samples/hdinsight-dotnet-storm-powerbi)。 toodownload，是分叉/複製使用[git](http://git-scm.com/)，或使用 hello**下載**連結 toodownload hello 封存的.zip。
 
 ## <a name="create-a-database"></a>建立資料庫
 
-1. 若要建立 SQL Database，請使用 [SQL Database 教學課程](../sql-database/sql-database-get-started.md)文件中的步驟。
+1. toocreate 資料庫中，使用 hello hello 步驟[SQL Database 教學課程](../sql-database/sql-database-get-started.md)文件。
 
-2. 遵循[使用 Visual Studio 連線至 SQL Database](../sql-database/sql-database-connect-query.md)文件中的步驟，連線至資料庫。
+2. 下列 hello 連接 toohello 資料庫步驟 hello [tooa SQL 資料庫連接使用 Visual Studio](../sql-database/sql-database-connect-query.md)文件。
 
-3. 在 [物件總管] 中，以滑鼠右鍵按一下資料庫，然後選取 [新增查詢]。 將下載的專案中包含的 **IISLogsTable.sql** 檔案的內容，貼上至查詢視窗中，然後使用 Ctrl + Shift + E 來執行查詢。 您應該會收到已成功完成命令的訊息。
+3. 在 [物件總管] 中，以滑鼠右鍵按一下 hello 資料庫，然後選取**新查詢**。 貼上 hello hello 內容**IISLogsTable.sql**檔案包含在 hello hello 查詢視窗中，下載專案，然後使用 Ctrl + Shift + E tooexecute hello 查詢。 您應該會收到 hello 命令已順利完成的訊息。
 
-## <a name="configure-the-sample"></a>設定範例
+## <a name="configure-hello-sample"></a>設定 hello 範例
 
-1. 從 [Azure 入口網站](https://portal.azure.com)中，選取您的 SQL Database。 從 [SQL Database] 刀鋒視窗的 [基本功能] 區段中，選取 [顯示資料庫連接字串]。 從顯示的清單中，複製 **ADO.NET (SQL 驗證)** 資訊。
+1. 從 hello [Azure 入口網站](https://portal.azure.com)，選取您的 SQL 資料庫。 從 hello **Essentials** hello SQL 資料庫刀鋒視窗中，選取部分**顯示資料庫的連接字串**。 從出現的 hello 清單，複製 hello **ADO.NET （SQL 驗證）**資訊。
 
-2. 在 Visual Studio 中開啟範例。 從 [方案總管] 開啟 **App.config** 檔案，然後尋找下列項目：
+2. 開啟 Visual Studio 中的 hello 範例。 從**方案總管 中**，開啟 hello **App.config**檔案，然後再尋找下列項目 hello:
 
         <add key="SqlAzureConnectionString" value="##TOBEFILLED##" />
 
-    將 **##TOBEFILLED##** 值取代為上一個步驟中複製的資料庫連接字串。 將 **{your\_username}** 和 **{your\_password}** 取代為資料庫的使用者名稱和密碼。
+    取代 hello **# # TOBEFILLED # #** hello 上一個步驟中複製的值與 hello 資料庫連接字串。 取代**{您\_使用者名稱}**和**{您\_密碼}** hello 使用者名稱和密碼 hello 資料庫。
 
-3. 儲存並關閉檔案。
+3. 儲存並關閉 hello 檔案。
 
-## <a name="deploy-the-sample"></a>部署範例
+## <a name="deploy-hello-sample"></a>部署 hello 範例
 
-1. 從 [方案總管]，以滑鼠右鍵按一下 **StormToSQL** 專案，然後選取 [提交至 Storm on HDInsight]。 從 [Storm 叢集] 下拉式清單對話方塊選取 HDInsight 叢集。
+1. 從**方案總管 中**，以滑鼠右鍵按一下 hello **StormToSQL**專案，然後選取**提交 HDInsight 上的 tooStorm**。 選取 hello HDInsight 叢集的 hello **Storm 叢集**下拉式清單中的對話方塊。
 
    > [!NOTE]
-   > [ **Storm 叢集** ] 下拉式清單可能需要幾秒鐘的時間來填入伺服器名稱。
+   > 可能需要數秒鐘，讓 hello **Storm 叢集**下拉式 toopopulate 使用伺服器名稱。
    >
-   > 如果出現提示，請輸入您 Azure 訂閱的登入認證。 如果您有多個訂用帳戶，請登入包含 Storm on HDInsight 叢集的訂用帳戶。
+   > 如果出現提示，請輸入您的 Azure 訂閱 hello 登入認證。 如果您有多個訂用帳戶，登入另一個則包含您在 HDInsight 叢集的 Storm toohello。
 
-2. 提交拓撲之後，[拓撲檢視器] 便會隨即出現。 若要檢視此拓撲，請從清單中選取 SqlAzureWriterTopology 項目。
+2. 當已送出 hello 拓樸時，hello__拓撲檢視器__隨即出現。 tooview 此拓撲，從 [hello] 清單選取 hello SqlAzureWriterTopology 項目。
 
-    ![已選取拓撲的拓撲](./media/hdinsight-storm-power-bi-topology/topologyview.png)
+    ![hello 拓撲中，使用選取的 hello 拓撲](./media/hdinsight-storm-power-bi-topology/topologyview.png)
 
-    您可以使用此檢視在拓撲中查看資訊，或按兩下項目 (例如 SqlAzureBolt)，以查看拓撲中元件的特定資訊。
+    您可以使用此檢視 toosee 資訊在 hello 拓撲中，或按兩下 hello 拓撲中的項目 （例如 hello SqlAzureBolt) toosee 資訊特定 tooa 元件。
 
-3. 在拓撲執行幾分鐘之後，返回您用來建立資料庫的 SQL 查詢視窗。 以下列查詢取代現有陳述式：
+3. 之後 hello 拓撲已執行幾分鐘的時間，傳回 toohello 用 toocreate hello 資料庫的 SQL 查詢視窗。 取代下列查詢的 hello hello 現有陳述式：
 
         select * from iislogs;
 
-    使用 Ctrl + Shift + E 來執行查詢，您應該會收到類似下列資料的結果：
+    使用 Ctrl + Shift + E tooexecute hello 查詢，而且您應該會收到下列資料的結果類似 toohello:
 
         1    2016-05-27 17:57:14.797    255.255.255.255    /bar    GET    200
         2    2016-05-27 17:57:14.843    127.0.0.1    /spam/eggs    POST    500
@@ -116,56 +116,56 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。 本文件提�
         5    2016-05-27 17:57:14.853    10.9.8.7    /bar    GET    200
         6    2016-05-27 17:57:14.857    192.168.1.1    /spam    DELETE    200
 
-    這是從 Storm 拓撲寫入的資料。
+    此資料已寫入 hello Storm 拓撲。
 
 ## <a name="create-a-report"></a>建立報表
 
-1. 連接到適用於 Power BI 的 [Azure SQL Database 連接器](https://app.powerbi.com/getdata/bigdata/azure-sql-database-with-live-connect) 。 
+1. 連接 toohello [Azure SQL Database 連接器](https://app.powerbi.com/getdata/bigdata/azure-sql-database-with-live-connect)Power bi。 
 
 2. 在 [資料庫] 內，選取 [Get]。
 
 3. 選取 [Azure SQL Database]，然後選取 [連接]。
 
     > [!NOTE]
-    > 系統可能會要求您下載 Power BI Desktop 以繼續執行。 若是如此，請使用下列步驟來連接：
+    > 您可能會要求 toodownload hello Power BI Desktop toocontinue。 若是如此，請使用下列步驟 tooconnect hello:
     >
     > 1. 開啟 Power BI Desktop 並選取 [取得資料]。
     > 2  選取 __Azure__，然後選取 __Azure SQL Database__。
 
-4. 輸入資訊以連接到您的 Azure SQL Database。 您可以造訪 [Azure 入口網站](https://portal.azure.com)，並且選取您的 SQL Database，以找到此資訊。
+4. 輸入 hello 資訊 tooconnect tooyour Azure SQL Database。 您可以找到此資訊，請瀏覽 hello [Azure 入口網站](https://portal.azure.com)，然後選取您的 SQL 資料庫。
 
    > [!NOTE]
-   > 您也可以從連接對話方塊使用 [啟用進階選項]，設定重新整理間隔和自訂篩選器。
+   > 您也可以透過設定 hello 重新整理間隔，自訂篩選器**啟用進階選項**hello 從連接對話方塊。
 
-5. 連接之後，您會看到新的資料集具有與您連接的資料庫相同的名稱。 選取要開始設計報告的資料集。
+5. 您已連接之後，您會看到新的資料集，以相同的名稱，做為 hello 資料庫連接到您的 hello。 選取 hello 資料集 toobegin 設計報表。
 
-6. 從 [欄位] 展開 [IISLOGS] 項目。 若要建立列出 URI 主體的報告，請選取 **URISTEM** 的核取方塊。
+6. 從**欄位**，依序展開 hello **IISLOGS**項目。 toocreate 源自報表清單 hello URI，選取 hello 核取方塊**URISTEM**。
 
     ![建立報告](./media/hdinsight-storm-power-bi-topology/createreport.png)
 
-7. 接著，將 **方法** 拖曳至報告。 報告將會更新以列出主體和用於 HTTP 要求的對應 HTTP 方法。
+7. 下一步，拖曳**方法**toohello 報表。 源自 hello 報表更新 toolist hello 與 hello 對應的 HTTP 方法使用 hello HTTP 要求。
 
-    ![新增方法資料](./media/hdinsight-storm-power-bi-topology/uristemandmethod.png)
+    ![將資料加入 hello 方法](./media/hdinsight-storm-power-bi-topology/uristemandmethod.png)
 
-8. 從 [視覺效果] 資料行中，選取 [欄位] 圖示，然後選取 [值] 區段中 [方法] 旁的向下箭號。 若要顯示存取 URI 的次數，請選取 [計數]。
+8. 從 hello**視覺效果**資料行中，選取 hello**欄位**圖示，然後選取 hello 向下箭號旁太**方法**在 hello**值**> 一節。 toodisplay 存取的多少次 URI 計數後，選取**計數**。
 
-    ![變更為方法的計數](./media/hdinsight-storm-power-bi-topology/count.png)
+    ![變更 tooa 計數的方法](./media/hdinsight-storm-power-bi-topology/count.png)
 
-9. 接下來，選取 [堆疊直條圖]  以變更資訊的顯示方式。
+9. 接下來，選取 hello**堆疊直條圖**toochange hello 資訊的顯示方式。
 
-    ![變更堆疊圖表](./media/hdinsight-storm-power-bi-topology/stackedcolumn.png)
+    ![變更 tooa 堆疊的圖表](./media/hdinsight-storm-power-bi-topology/stackedcolumn.png)
 
-10. 若要儲存報告，請選取 [儲存] 並輸入報告的名稱。
+10. toosave hello 報表中，選取**儲存**，然後輸入 hello 報表的名稱。
 
-## <a name="stop-the-topology"></a>停止拓撲
+## <a name="stop-hello-topology"></a>停止 hello 拓樸
 
-拓撲會繼續執行，直到您將它停止，或刪除 Storm on HDInsight 叢集為止。 若要停止拓撲，請執行下列步驟：
+hello 拓撲會繼續執行 toorun，直到您將它停止或刪除 hello Storm HDInsight 叢集上。 toostop hello 拓撲中，執行下列步驟的 hello:
 
-1. 在 Visual Studio 中，返回拓撲檢視器並選取拓撲。
+1. 在 Visual Studio 中，傳回 toohello 拓撲檢視器，然後選取 hello 拓撲。
 
-2. 選取 [刪除]  按鈕以停止拓撲。
+2. 選取 hello **Kill**按鈕 toostop hello 拓撲。
 
-    ![拓撲摘要上的刪除按鈕](./media/hdinsight-storm-power-bi-topology/killtopology.png)
+    ![Kill hello 拓樸摘要 按鈕](./media/hdinsight-storm-power-bi-topology/killtopology.png)
 
 ## <a name="delete-your-cluster"></a>刪除叢集
 
@@ -173,6 +173,6 @@ Power BI 可讓您以視覺化的方式將資料顯示為報告。 本文件提�
 
 ## <a name="next-steps"></a>後續步驟
 
-在本文件中，您已學會如何將資料從 Storm 拓撲傳送到 SQL Database，然後使用 Power BI 視覺化資料。 如需如何使用 Storm on HDInsight 以利用其他 Azure 技術的資訊，請參閱下列文件：
+在本文件中，您學到如何 toosend 資料從 Storm 拓撲 tooSQL 資料庫，然後視覺效果顯示 hello 使用 Power BI 的資料。 如需詳細資訊與其他 Azure 技術在 HDInsight 上使用 Storm toowork，請參閱下列文件的 hello:
 
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)

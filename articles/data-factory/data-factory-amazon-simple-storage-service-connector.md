@@ -1,6 +1,6 @@
 ---
-title: "使用 Data Factory 從 Amazon Simple Storage Service 移動資料 | Microsoft Docs"
-description: "了解如何使用 Azure Data Factory 從 Amazon Simple Storage Service (S3) 移動資料。"
+title: "使用 Data Factory 的 aaaMove 資料從 Amazon 簡單的儲存體服務 |Microsoft 文件"
+description: "深入了解如何使用 Azure Data Factory 的 toomove 資料從 Amazon 簡單儲存體服務 (S3)。"
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,52 +14,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2017
 ms.author: jingwang
-ms.openlocfilehash: 3e21f7dfccc3b235071344a28c7d94f65e6bf9ac
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8a8cd2845fd1de74413bd0372f3aabfb4817549b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-from-amazon-simple-storage-service-by-using-azure-data-factory"></a>使用 Azure Data Factory 從 Amazon Simple Storage Service 移動資料
-本文說明如何使用 Azure Data Factory 中的複製活動，從 Amazon Simple Storage Service (S3) 移動資料。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。
+本文說明如何 toouse hello 複製在 Azure Data Factory toomove 資料從 Amazon 簡單儲存體服務 (S3) 活動。 它是在 hello 基礎[資料移動活動](data-factory-data-movement-activities.md)文件： hello 複製活動會提供資料移動的一般概觀。
 
-您可以將資料從 Amazon S3 複製到任何支援的接收資料存放區。 如需複製活動所支援作為接收器的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)表格。 Data Factory 目前只支援將資料從 Amazon S3 移到其他資料存放區，而不支援將資料從其他資料存放區移到 Amazon S3。
+您可以從 Amazon S3 tooany 支援接收資料存放區複製資料。 取得一份資料存放區支援接收由 hello 複製活動時，請參閱 hello[支援資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)資料表。 Data Factory 目前支援從 Amazon S3 tooother 資料存放區的唯一移動資料，但不是將資料從其他資料會儲存 tooAmazon S3。
 
 ## <a name="required-permissions"></a>所需的權限
-若要從 Amazon S3 複製資料，請確定您已獲得下列權限︰
+toocopy 資料從 Amazon S3，請確定您已獲得下列權限的 hello:
 
 * 適用於 Amazon S3 物件作業的 `s3:GetObject` 和 `s3:GetObjectVersion`。
-* 適用於 Amazon S3 貯體作業的 `s3:ListBucket`。 如果您要使用「Data Factory 複製精靈」，則也需要 `s3:ListAllMyBuckets`。
+* 適用於 Amazon S3 貯體作業的 `s3:ListBucket`。 如果您使用 Data Factory 複製精靈中，hello`s3:ListAllMyBuckets`也是必要欄位。
 
-如需有關完整 Amazon S3 權限清單的詳細資料，請參閱[在原則中指定權限 (英文)](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html)。
+如需 hello 的 Amazon S3 權限的完整清單的詳細資訊，請參閱[原則中指定的權限](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html)。
 
 ## <a name="getting-started"></a>開始使用
 您可以藉由使用不同的工具或 API，建立內含複製活動的管線，以從 Amazon S3 來源移動資料。
 
-若要建立管線，最簡單的方式就是使用**複製精靈**。 如需快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
+最簡單方式 toocreate hello 管線為 toouse hello**複製精靈**。 如需快速逐步解說，請參閱[教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md)。
 
-您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API** 及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+您也可以使用下列工具 toocreate 管線 hello: **Azure 入口網站**， **Visual Studio**， **Azure PowerShell**， **Azure Resource Manager 範本**， **.NET API**，和**REST API**。 如需逐步指示 toocreate 具有複製活動的管線，請參閱 hello[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
 
-不論您是使用工具還是 API，都需執行下列步驟，以建立將資料從來源資料存放區移到接收資料存放區的管線：
+無論您是使用工具或 Api，會執行下列步驟 toocreate 移動來源資料中的資料存放區 tooa 接收資料存放區的管線的 hello:
 
-1. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。
-2. 建立**資料集**，代表複製作業的輸入和輸出資料。
+1. 建立**連結的服務**toolink 輸入和輸出資料存放區 tooyour 資料 factory。
+2. 建立**資料集**toorepresent 輸入和輸出 hello 的資料複製作業。
 3. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。
 
-使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具或 API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。 如需相關範例，其中含有用來從 Amazon S3 資料存放區複製資料之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例：將資料從 Amazon S3 複製到 Azure Blob](#json-example-copy-data-from-amazon-s3-to-azure-blob) 一節。
+當您使用 hello 精靈時，會自動為您建立這些 Data Factory 實體 （連結的服務、 資料集和 hello 管線） 的 JSON 定義。 當您使用工具或 Api （除了.NET 應用程式開發介面） 時，您會定義這些 Data Factory 實體使用 hello JSON 格式。 使用 Data Factory 實體的 Amazon S3 資料存放區中的使用的 toocopy 資料的 JSON 定義中的範例，請參閱 hello [JSON 範例： 將資料從 Amazon S3 tooAzure Blob 複製](#json-example-copy-data-from-amazon-s3-to-azure-blob)本文一節。
 
 > [!NOTE]
 > 如需有關針對複製活動支援的檔案和壓縮格式的詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md)。
 
-下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 Amazon S3 特定的 Data Factory 實體。
+hello 下列各節提供有關使用的 toodefine Data Factory 實體特定 tooAmazon S3 的 JSON 屬性的詳細資料。
 
 ## <a name="linked-service-properties"></a>連結服務屬性
-已連結的服務會將資料存放區連結到 Data Factory。 您需建立 **AwsAccessKey** 類型的已連結服務，以將 Amazon S3 資料存放區連結到 Data Factory。 下表提供 Amazon S3 (AwsAccessKey) 已連結服務專屬 JSON 元素的描述。
+連結的服務連結資料儲存區 tooa data factory。 您建立連結的服務型別的**AwsAccessKey** toolink Amazon S3 資料儲存 tooyour 資料 factory。 下表中的 hello 提供描述的 JSON 元素特定 tooAmazon S3 (AwsAccessKey) 連結服務。
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| accessKeyID |密碼存取金鑰的識別碼。 |string |是 |
-| secretAccessKey |密碼存取金鑰本身。 |加密的密碼字串 |是 |
+| accessKeyID |Hello 密碼的存取金鑰的識別碼。 |字串 |是 |
+| secretAccessKey |hello 密碼存取金鑰本身。 |加密的密碼字串 |是 |
 
 下列是一個範例：
 
@@ -77,22 +77,22 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="dataset-properties"></a>資料集屬性
-若要指定資料集以代表 Azure Blob 儲存體中的輸入資料，請將資料集的類型屬性設定成 **AmazonS3**。 請將資料集的 **linkedServiceName** 屬性設定成 Amazon S3 已連結服務的名稱。 如需可供定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)。 
+資料集 toorepresent toospecify 輸入 Azure Blob 儲存體，hello 類型的屬性設定 hello 資料集的資料太**AmazonS3**。 設定 hello **linkedServiceName**連結服務的 hello Amazon S3 hello 資料集 toohello 名稱的內容。 如需定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)。 
 
-所有資料集類型 (例如 SQL 資料庫、Azure Blob 及 Azure 資料表) 的結構、可用性及原則等區段都相似。 每個類型之資料集的 **typeProperties** 區段都不同，可提供資料存放區中資料位置的相關資訊。 **AmazonS3** 類型之資料集 (包括 Amazon S3 資料集) 的 **typeProperties** 區段具有下列屬性：
+所有資料集類型 (例如 SQL 資料庫、Azure Blob 及 Azure 資料表) 的結構、可用性及原則等區段都相似。 hello **typeProperties**章節是不同的每種類型的資料集，並提供 hello hello 資料存放區中的 hello 資料位置的相關資訊。 hello **typeProperties**類型的資料集區段**AmazonS3** （包括 hello Amazon S3 資料集） 具有下列屬性的 hello:
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| bucketName |S3 貯體名稱。 |string |是 |
-| key |S3 物件索引鍵。 |string |否 |
-| prefix |S3 物件索引鍵的前置詞。 系統會選取索引鍵以此前置詞開頭的物件。 只有當索引鍵空白時才適用。 |string |否 |
-| version |如果已啟用 S3 版本設定功能，則為 S3 物件的版本。 |String |否 |
-| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[JSON 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)小節。 <br><br> 如果您想要在檔案型存放區之間依原樣複製檔案 (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 | |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 | |
+| bucketName |hello S3 值區的名稱。 |String |是 |
+| key |hello S3 物件索引鍵。 |String |否 |
+| prefix |Hello S3 物件索引鍵的前置詞。 系統會選取索引鍵以此前置詞開頭的物件。 只有當索引鍵空白時才適用。 |string |否 |
+| 版本 |hello 的 hello S3 物件，如果已啟用 S3 版本控制的版本。 |String |否 |
+| format | 支援下列格式類型的 hello: **TextFormat**， **JsonFormat**， **AvroFormat**， **OrcFormat**， **ParquetFormat**。 設定 hello**類型**下格式 tooone 這些值的屬性。 如需詳細資訊，請參閱 hello[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)， [JSON 格式](data-factory-supported-file-and-compression-formats.md#json-format)， [Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)， [Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)，和[Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)區段。 <br><br> 如果您想要為 toocopy 檔案-之間以檔案為基礎存放區 （二進位複製），略過 hello 格式 > 一節中這兩個輸入和輸出資料集定義。 |否 | |
+| compression | 指定 hello 類型和層級的 hello 資料壓縮。 hello 支援型別： **GZip**， **Deflate**， **BZip2**，和**ZipDeflate**。 hello 支援層級為：**最佳**和**最快**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 | |
 
 
 > [!NOTE]
-> **bucketName + key** 可指定 S3 物件的位置，其中 bucket (貯體) 是 S3 物件的根容器，而 key 是 S3 物件的完整路徑。
+> **bucketName + 鍵**指定 hello hello S3 物件，其中值區是 hello S3 物件的根容器，而索引鍵是 hello 完整路徑 toohello S3 物件位置。
 
 ### <a name="sample-dataset-with-prefix"></a>prefix 的相關範例資料集
 
@@ -143,7 +143,7 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ### <a name="dynamic-paths-for-s3"></a>S3 的動態路徑
-上述範例針對 Amazon S3 資料集內的 **key** 和 **bucketName** 屬性使用固定的值。
+hello 上述範例會使用固定的值為 hello**金鑰**和**bucketName** hello Amazon S3 資料集中的屬性。
 
 ```json
 "key": "testFolder/test.orc",
@@ -157,19 +157,19 @@ ms.lasthandoff: 07/11/2017
 "bucketName": "$$Text.Format('{0:yyyy}', SliceStart)"
 ```
 
-您也可以對 Amazon S3 資料集的 **prefix** 屬性執行相同的操作。 如需支援的函式和變數清單，請參閱 [Data Factory 函式與系統變數](data-factory-functions-variables.md)。
+您可以相同 hello hello**前置詞**Amazon S3 資料集的屬性。 如需支援的函式和變數清單，請參閱 [Data Factory 函式與系統變數](data-factory-functions-variables.md)。
 
 ## <a name="copy-activity-properties"></a>複製活動屬性
-如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。 活動的 **typeProperties** 區段中可用的屬性會隨著每個活動類型而有所不同。 就複製活動而言，屬性會根據來源和接收器的類型而有所不同。 當複製活動中的來源類型為 **FileSystemSource** (其中包括 Azure S3) 時，**typeProperties** 區段中會有下列可用屬性：
+如需可用來定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。 屬性用於 hello **typeProperties** hello 活動的區段會隨每個活動類型。 Hello 複製活動，根據 hello 類型的來源與接收屬性而有所不同。 Hello 複製活動中的來源時的型別**FileSystemSource** （包括 Amazon S3），下列屬性的 hello 位於**typeProperties** > 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| 遞迴 |指定是否要以遞迴方式列出目錄下的 S3 物件。 |true/false |否 |
+| 遞迴 |指定是否 toorecursively 清單 S3 物件 hello 目錄下。 |true/false |否 |
 
-## <a name="json-example-copy-data-from-amazon-s3-to-azure-blob-storage"></a>JSON 範例：將資料從 Amazon S3 複製到 Azure Blob 儲存體
-此範例示範如何將資料從 Amazon S3 複製到 Azure Blob 儲存體。 不過，您可以使用 Data Factory 中的複製活動，將資料直接複製到[任何支援的接收器](data-factory-data-movement-activities.md#supported-data-stores-and-formats)。
+## <a name="json-example-copy-data-from-amazon-s3-tooazure-blob-storage"></a>JSON 範例： 從 Amazon S3 tooAzure Blob 儲存體複製資料
+這個範例示範如何從 Azure Blob 儲存體的 Amazon S3 tooan toocopy 資料。 不過，資料可以複製直接太[任何支援的 hello 接收](data-factory-data-movement-activities.md#supported-data-stores-and-formats)使用 Data Factory 中的 hello 複製活動。
 
-此範例提供下列 Data Factory 實體的 JSON 定義。 您可以透過 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)，使用這些定義來建立管線，以將資料從 Amazon S3 複製到 Blob 儲存體。   
+hello 範例提供下列 Data Factory 實體的 hello 的 JSON 定義。 您可以使用這些定義 toocreate 管線 toocopy 資料從 Amazon S3 tooBlob 儲存體，使用 hello [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)， [Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)，或[PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)。   
 
 * [AwsAccessKey](#linked-service-properties)類型的連結服務。
 * [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)類型的連結服務。
@@ -177,7 +177,7 @@ ms.lasthandoff: 07/11/2017
 * [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
 * 具有使用 [FileSystemSource](#copy-activity-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
 
-此範例會每小時將資料從 Amazon S3 複製到 Azure Blob。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
+hello 範例將資料從 Azure blob 的 Amazon S3 tooan 每小時。 這些範例中使用的 hello JSON 內容所述後面 hello 範例的章節。
 
 ### <a name="amazon-s3-linked-service"></a>Amazon S3 已連結的服務
 
@@ -210,7 +210,7 @@ ms.lasthandoff: 07/11/2017
 
 ### <a name="amazon-s3-input-dataset"></a>Amazon S3 輸入資料集
 
-設定 **"external": true** 會通知 Data Factory 服務該資料集是 Data Factory 外部的資料集。 在不是由管線中的活動所產生的輸入資料集上，請將此屬性設定為 true。
+設定**"external": true**通知 hello Data Factory 服務該 hello 資料集是外部 toohello 資料處理站。 設定此屬性 tootrue 上就不會產生 hello 管線中活動的輸入資料集。
 
 ```json
     {
@@ -237,7 +237,7 @@ ms.lasthandoff: 07/11/2017
 
 ### <a name="azure-blob-output-dataset"></a>Azure Blob 輸出資料集
 
-資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。 根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑。 此資料夾路徑會使用開始時間的年、月、日和小時部分。
+資料會寫入 tooa 新 blob 的每個小時 (頻率： 小時、 interval: 1)。 hello blob 的 hello 資料夾路徑會動態評估 hello 正在處理的 hello 配量的開始時間為基礎。 hello 資料夾路徑會使用 hello 的 hello 開始時間的年、 月、 日和小時部分。
 
 ```json
 {
@@ -298,7 +298,7 @@ ms.lasthandoff: 07/11/2017
 
 ### <a name="copy-activity-in-a-pipeline-with-an-amazon-s3-source-and-a-blob-sink"></a>具有 Amazon S3 來源和 Blob 接收器的管線中複製活動
 
-此管線包含複製活動，該活動已設定為使用輸入和輸出資料集並排定為每小時執行。 在管線 JSON 定義中，**source** 類型設為 **FileSystemSource**，而 **sink** 類型設為 **BlobSink**。
+hello 管線包含設定的 toouse 複製活動 hello 輸入和輸出資料集，並為排程的 toorun 每個小時。 在 hello 管線 JSON 定義中，hello**來源**類型設定得**FileSystemSource**，和**接收**類型設定得**BlobSink**。
 
 ```json
 {
@@ -346,12 +346,12 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 > [!NOTE]
-> 若要將來自來源資料集的資料行與來自接收資料集的資料行對應，請參閱[在 Azure Data Factory 中對應資料集資料行](data-factory-map-columns.md)。
+> 請參閱 < 從接收的資料集、 來源資料集 toocolumns toomap 資料行[Azure Data Factory 中的資料集資料行對應](data-factory-map-columns.md)。
 
 
 ## <a name="next-steps"></a>後續步驟
-請參閱下列文章：
+請參閱下列文章 hello:
 
-* 若要了解影響 Data Factory 中資料移動 (複製活動) 效能的關鍵因素，以及各種最佳化的方法，請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)。
+* 關於金鑰 toolearn 因素影響效能的 Data Factory 中的資料移動 （複製活動） 和各種方式 toooptimize 的請參閱 hello[複製活動效能及微調指南](data-factory-copy-activity-performance.md)。
 
-* 如需使用複製活動來建立管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+* 複製活動與建立管線的逐步指示，請參閱 hello[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。

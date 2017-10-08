@@ -1,6 +1,6 @@
 ---
-title: "匯出 Azure Resource Manager 範本 | Microsoft Docs"
-description: "使用 Azure Resource Manager 從現有資源群組匯出範本。"
+title: "aaaExport Azure Resource Manager 範本 |Microsoft 文件"
+description: "使用 Azure 資源管理 tooexport 現有的資源群組中的範本。"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/06/2017
 ms.author: tomfitz
-ms.openlocfilehash: 1801ef47e5b182e0bcd5b23970a2999633b4a852
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 94daa4812da2fec705044ca31c8e74e6d59bd53f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="export-an-azure-resource-manager-template-from-existing-resources"></a>從現有資源匯出 Azure Resource Manager 範本
-在本文中，您將了解如何從您訂用帳戶中的現有資源匯出 Resource Manager 範本。 您可以使用這個產生的範本，來深入了解範本語法。
+在本文中，您將學習如何 tooexport Resource Manager 範本使用從您的訂用帳戶中現有的資源。 您可以使用該產生的範本 toogain 進一步了解樣板語法。
 
-有兩種方式可以匯出範本：
+有兩種方式 tooexport 範本：
 
-* 您可以匯出**用於部署的實際範本**。 匯出的範本包含與原始範本完全相同的所有參數和變數。 如果您透過入口網站部署資源，而且想要知道範本如何建立這些資源，則這種方法十分有用。 此範本立即可用。 
-* 您可以匯出**代表資源群組目前狀態的已產生範本**。 匯出的範本不是以任何用於部署的範本為基礎。 反而，它所建立的範本是資源群組的快照。 匯出的範本會有許多硬式編碼值，但數量可能不如您通常會定義的參數數量。 當您在部署之後修改資源群組時，這種方法十分有用。 此範本通常需要修改才能使用。
+* 您可以匯出 hello**用於部署的實際範本**。 hello 匯出的範本包含所有 hello 參數和變數，如同它們是出現在 hello 原始範本。 此方法時，很有幫助您部署的 hello 入口網站，透過資源，並想 toosee hello 範本 toocreate 那些資源。 此範本立即可用。 
+* 您可以匯出**產生代表 hello hello 資源群組的目前狀態的範本**。 hello 匯出的範本不根據您用於部署的任何範本。 相反地，它會建立 hello 資源群組的快照集的範本。 hello 匯出的範本有許多的硬式編碼值，可能不一樣多的參數，因為您通常會定義。 當您在部署後修改了 hello 資源群組，則這個方法會很有用。 此範本通常需要修改才能使用。
 
-本主題說明透過入口網站的兩種方法。
+本主題說明這兩種方法，透過 hello 入口網站。
 
 ## <a name="deploy-resources"></a>部署資源
-請開始將可用於匯出為範本的資源部署至 Azure。 如果您的訂用帳戶中已有想要匯出至範本的資源群組，就可以略過本節。 本文的其餘部分假設您已部署本節中所顯示的 Web 應用程式和 SQL 資料庫解決方案。 如果您使用不同的解決方案，則體驗可能會稍有不同，但匯出範本的步驟相同。 
+讓我們開始部署，您可以使用匯出為範本的資源 tooAzure。 如果您已經有資源群組訂閱您想要 tooexport tooa 範本中，您可以略過本節。 hello 本文其餘部分會假設您已部署 hello web 應用程式和本節中所顯示的 SQL 資料庫解決方案。 如果您使用不同的解決方案，您的體驗可能會稍有不同，但 hello 步驟 tooexport 範本是 hello 相同。 
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，選取 [新增]。
+1. 在 hello [Azure 入口網站](https://portal.azure.com)，選取**新增**。
    
       ![選取 [新增]](./media/resource-manager-export-template/new.png)
-2. 搜尋 **Web 應用程式 + SQL**，並從可用的選項加以選取。
+2. 搜尋**web 應用程式 + SQL**和選取從 hello 可用的選項。
    
       ![搜尋 Web 應用程式和 SQL](./media/resource-manager-export-template/webapp-sql.png)
 
@@ -44,83 +44,83 @@ ms.lasthandoff: 07/11/2017
 
       ![選取 [建立]](./media/resource-manager-export-template/create.png)
 
-4. 提供 Web 應用程式和 SQL 資料庫的必要值。 選取 [ **建立**]。
+4. 提供所需的 hello 值 hello web 應用程式和 SQL database。 選取 [ **建立**]。
 
       ![提供 Web 和 SQL 值](./media/resource-manager-export-template/provide-web-values.png)
 
-部署可能需要一會兒的時間。 部署完成後，您的訂用帳戶就會包含解決方案。
+hello 部署可能會花一分鐘。 Hello 部署完成之後，您的訂用帳戶包含 hello 方案。
 
 ## <a name="view-template-from-deployment-history"></a>從部署記錄中檢視範本
-1. 移至您的新資源群組的 [資源群組] 刀鋒視窗。 請注意，刀鋒視窗會顯示最後部署的結果。 選取此連結。
+1. 移 toohello 資源群組刀鋒視窗，新的資源群組。 請注意該 hello 刀鋒視窗會顯示 hello 最後一個部署的 hello 結果。 選取此連結。
    
       ![資源群組刀鋒視窗](./media/resource-manager-export-template/select-deployment.png)
-2. 您會看到群組的部署歷程記錄。 在您的案例中，刀鋒視窗可能只列出一個部署。 選取此部署。
+2. 您會看到 hello 群組部署的歷程記錄。 在您的情況下，hello 刀鋒視窗可能會列出只能有一個部署。 選取此部署。
    
      ![上次部署](./media/resource-manager-export-template/select-history.png)
-3. 刀鋒視窗會顯示部署的摘要。 摘要包含部署和其作業的狀態，與您為參數所提供的值。 若要查看用於部署的範本，請選取 [檢視範本] 。
+3. hello 刀鋒視窗會顯示 hello 部署的摘要。 hello 摘要包含 hello 部署的 hello 狀態及作業以及您為參數提供的 hello 值。 您用於 hello 部署中，選取 toosee hello 範本**檢視範本**。
    
      ![檢視部署摘要](./media/resource-manager-export-template/view-template.png)
-4. Resource Manager 會為您擷取下列七個檔案：
+4. 下列為您的七個檔案的資源管理員擷取 hello:
    
-   1. **範本** - 用於定義解決方案之基礎結構的範本。 當您透過入口網站建立儲存體帳戶時，Resource Manager 會使用範本來部署它，並且儲存該範本供日後參考。
-   2. **參數** - 您可以在部署期間用來傳入值的參數檔案。 它會包含您在第一次部署期間所提供的值。 當您重新部署範本時，即可變更所有這些值。
-   3. **CLI** - 您可以為了部署範本而使用的 Azure 令列介面 (CLI) 指令碼檔案。
-   3. **CLI 2.0** - 您可以為了部署範本而使用的 Azure 令列介面 (CLI) 指令碼檔案。
-   4. **PowerShell** - 您可以為了部署範本而使用的 Azure PowerShell 指令碼檔案。
-   5. **.NET** - 您可以為了部署範本而使用的 .NET 類別。
-   6. **Ruby** - 您可以為了部署範本而使用的 Ruby 類別。
+   1. **範本**-hello 範本可定義您方案的 hello 基礎結構。 當您建立 hello 透過 hello 入口網站的儲存體帳戶時，資源管理員會使用範本 toodeploy 它並儲存供日後參考該範本。
+   2. **參數**-參數檔案，您可以在部署期間在值中使用 toopass。 它包含您在第一次部署的 hello 期間提供的 hello 值。 當您重新部署的 hello 範本時，您可以變更這些值。
+   3. **CLI** -Azure 命令列介面 (CLI) 指令碼檔案，您可以使用 toodeploy hello 範本。
+   3. **CLI 2.0** -Azure 命令列介面 (CLI) 指令碼檔案，您可以使用 toodeploy hello 範本。
+   4. **PowerShell** -您可以使用 toodeploy hello 範本的 Azure PowerShell 指令碼檔案。
+   5. **.NET** -您可以使用 toodeploy hello 範本的.NET 類別。
+   6. **Ruby** -A Ruby 類別，您可以使用 toodeploy hello 範本。
       
-      這些檔案可以透過刀鋒視窗的連結取得。 根據預設，刀鋒視窗會顯示範本。
+      hello 檔可透過連結跨 hello 刀鋒視窗。 根據預設，hello 刀鋒視窗會顯示 hello 範本。
       
        ![檢視範本](./media/resource-manager-export-template/see-template.png)
       
-此範本是用來建立 Web 應用程式和 SQL 資料庫的實際範本。 請注意，其中包含的參數可讓您在部署期間提供不同的值。 若要深入了解範本的結構，請參閱 [編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
+此範本是使用 toocreate hello 實際範本您 web 應用程式和 SQL database。 請注意它包含可讓您 tooprovide 不同的值在部署期間的參數。 toolearn 進一步了解 hello 結構的範本，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
 
-## <a name="export-the-template-from-resource-group"></a>從資源群組匯出範本
-如果您已手動變更資源或在多個部署中新增資源，則從部署記錄中擷取範本並不會反映資源群組的目前狀態。 本節說明您如何匯出反映資源群組目前狀態的範本。 
+## <a name="export-hello-template-from-resource-group"></a>從資源群組匯出 hello 範本
+如果您手動變更您的資源或將資源加入多個部署中，從 hello 部署歷程記錄中擷取範本並不會反映 hello hello 資源群組的目前狀態。 本節說明如何 tooexport 範本，以反映 hello hello 資源群組的目前狀態。 
 
 > [!NOTE]
 > 您無法針對具有超過 200 個資源的資源群組匯出範本。
 > 
 > 
 
-1. 若要檢視資源群組的範本，請選取 [自動化指令碼] 。
+1. 資源群組中，選取 tooview hello 範本**自動化指令碼**。
    
       ![匯出資源群組](./media/resource-manager-export-template/select-automation.png)
    
-     Resource Manager 會評估資源群組中的資源，並產生這些資源的範本。 並非所有的資源類型都支援匯出範本功能。 您可能會看到一則錯誤，指出匯出發生問題。 您會在 [修正匯出問題](#fix-export-issues) 一節中了解如何處理這些問題。
-2. 同樣地，您會看到可用來重新部署解決方案的六個檔案。 不過，此範本目前會稍有不同。 請注意，已產生的範本所包含的參數，會比上一節中範本所包含的參數更少。 此外，許多值 (如位置和 SKU 值) 都是硬式編碼在這個範本中，而不接受參數值。 重複使用此範本之前，您可能會想要編輯範本，以善用參數。 
+     資源管理員會評估 hello hello 資源群組中的資源，並產生這些資源的範本。 並非所有的資源類型都支援 hello 匯出樣板函式。 您可能會看到錯誤指出 hello 匯出問題。 您了解如何 toohandle 那些問題 hello[修正匯出問題](#fix-export-issues)> 一節。
+2. 同樣地，您會看到 hello 六個檔案中，您可以使用 tooredeploy hello 方案。 不過，此時間 hello 範本是稍有不同。 請注意，hello 產生的範本包含比上一節中的 hello 範本較少的參數。 此外，許多 hello 值 （如位置和 SKU 值） 是硬式編碼這個範本，而不會接受參數值。 重複使用此範本之前, 您可能想 tooedit hello 範本 toomake 更妥善運用參數。 
    
-3. 有幾個選項可供您繼續使用此範本。 您可以下載範本，並在本機使用 JSON 編輯器來處理範本。 或者，您可以將範本儲存至程式庫，並透過入口網站處理範本。
+3. 您有幾個選項用於接續 toowork 與此範本。 您可以下載 hello 範本，並使用它在本機 JSON 編輯器。 或者，您可以儲存 hello 範本庫 tooyour 並處理它，透過 hello 入口網站。
    
-     如果您熟悉如何使用 JSON 編輯器，例如 [VS Code](https://code.visualstudio.com/) 或 [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)，您可能會偏好將範本下載到本機並使用該編輯器。 若要在本機上工作，請選取 [下載]。
+     如果您想要使用 JSON 編輯器，例如[VS Code](https://code.visualstudio.com/)或[Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)，您可能會偏好下載本機 hello 範本並使用該編輯器。 toowork 的在本機上，選取**下載**。
    
       ![下載範本](./media/resource-manager-export-template/download-template.png)
    
-     如果您未設定 JSON 編輯器，則可能會偏好透過入口網站來編輯範本。 本主題的其餘部分假設您已將範本儲存至入口網站中的程式庫。 不過，不論是在本機使用 JSON 編輯器進行工作或透過入口網站來進行，您都要對範本進行相同的語法變更。 若要透過入口網站工作，請選取 [新增至程式庫]。
+     如果您未設定使用 JSON 編輯器，您可能會偏好編輯 hello 透過 hello 入口網站的範本。 hello 本主題其餘部分會假設您已儲存 hello 範本庫 tooyour hello 入口網站中。 不過，您可以建立 hello 相同語法變更 toohello 範本是否在本機使用 JSON 編輯器，或透過 hello 入口網站。 toowork 透過 hello 入口網站中，選取**新增 toolibrary**。
    
-      ![新增至程式庫](./media/resource-manager-export-template/add-to-library.png)
+      ![新增 toolibrary](./media/resource-manager-export-template/add-to-library.png)
    
-     在程式庫中新增範本時，請為範本提供名稱和描述。 然後選取 [儲存]。
+     加入時範本庫 toohello，讓 hello 範本的名稱和描述。 然後選取 [儲存]。
    
      ![設定範本值](./media/resource-manager-export-template/save-library-template.png)
-4. 若要檢視程式庫中儲存的範本，請選取 [更多服務]，輸入**範本**來篩選結果，然後選取 [範本]。
+4. tooview 範本儲存在您的程式庫中，選取**更多服務**，型別**範本**toofilter 結果中，選取**範本**。
    
       ![尋找範本](./media/resource-manager-export-template/find-templates.png)
-5. 選取具有您所儲存之名稱的範本。
+5. 選取具有您所儲存的 hello 名稱 hello 範本。
    
       ![選取範本](./media/resource-manager-export-template/select-saved-template.png)
 
-## <a name="customize-the-template"></a>自訂範本
-如果您想要為每個部署建立相同的 Web 應用程式和 SQL 資料庫，匯出的範本就夠用。 但 Resource Manager 提供了一些選項，以便您可以更有彈性地部署範本。 本文說明如何新增資料庫管理員名稱和密碼的參數。 您可以使用這種相同的方法，為範本中的其他值新增更多彈性。
+## <a name="customize-hello-template"></a>自訂 hello 範本
+匯出的 hello 範本運作良好，如果您想 toocreate hello 相同 web 應用程式和每個部署的 SQL 資料庫。 但 Resource Manager 提供了一些選項，以便您可以更有彈性地部署範本。 本文章將示範如何 hello tooadd 參數資料庫管理員名稱和密碼。 您可以使用這個相同的方法 tooadd 更大的彈性，其他 hello 範本中的值。
 
-1. 若要自訂範本，請選取 [編輯]。
+1. toocustomize hello 範本中，選取**編輯**。
    
      ![顯示範本](./media/resource-manager-export-template/select-edit.png)
-2. 選取範本。
+2. 選取 hello 範本。
    
      ![編輯範本](./media/resource-manager-export-template/select-added-template.png)
-3. 為了能夠傳遞您可能想要在部署期間指定的值，請將下列兩個參數新增至範本中的 **parameters** 區段：
+3. toobe 無法 toopass hello 值，您可能會想 toospecify 在部署期間，加入下列兩個參數 toohello hello**參數**hello 範本中的區段：
 
    ```json
    "administratorLogin": {
@@ -131,7 +131,7 @@ ms.lasthandoff: 07/11/2017
    },
    ```
 
-4. 若要使用新的參數，請取代 **resources** 區段中的 SQL Server 定義。 請注意，**administratorLogin** 和 **administratorLoginPassword** 現在使用參數值。
+4. toouse hello 新參數取代 hello 中的 hello SQL 伺服器定義**資源**> 一節。 請注意，**administratorLogin** 和 **administratorLoginPassword** 現在使用參數值。
 
    ```json
    {
@@ -151,28 +151,28 @@ ms.lasthandoff: 07/11/2017
    },
    ```
 
-6. 當您編輯好範本時，選取 [確定]。
-7. 選取 [儲存] 以儲存對範本所做的變更。
+6. 選取**確定**當您完成編輯 hello 範本。
+7. 選取**儲存**toosave hello 變更 toohello 範本。
    
      ![儲存範本](./media/resource-manager-export-template/save-template.png)
-8. 若要重新部署更新過的範本，請選取 [部署]。
+8. tooredeploy hello 更新範本中，選取**部署**。
    
      ![部署範本](./media/resource-manager-export-template/redeploy-template.png)
-9. 提供參數值，並選取要在其中部署資源的資源群組。
+9. 提供參數值，並選取資源群組 toodeploy hello 資源。
 
 
 ## <a name="fix-export-issues"></a>修正匯出問題
-並非所有的資源類型都支援匯出範本功能。 若要解決此問題，請手動將遺漏的資源新增回您的範本。 此錯誤訊息包含無法匯出的資源類型。 在[範本參考](/azure/templates/)中尋找該資源類型。 例如，若要手動新增虛擬網路閘道，請參閱 [Microsoft.Network/virtualNetworkGateways 範本參考](/azure/templates/microsoft.network/virtualnetworkgateways)。
+並非所有的資源類型都支援 hello 匯出樣板函式。 這個問題，請以手動方式 tooresolve hello 遺失資源，將重新加入至您的範本。 hello 錯誤訊息包含無法匯出的 hello 資源類型。 在[範本參考](/azure/templates/)中尋找該資源類型。 例如，toomanually 加入虛擬網路閘道，請參閱[Microsoft.Network/virtualNetworkGateways 範本參考](/azure/templates/microsoft.network/virtualnetworkgateways)。
 
 > [!NOTE]
-> 從資源群組 (而非部署歷程記錄) 匯出時，您只會遇到匯出問題。 如果上一次部署精確地表示資源群組的目前狀態，您應該從部署歷程記錄 (而非資源群組) 匯出範本。 只有在變更未定義於單一範本中的資源群組時，才能從資源群組匯出。
+> 從資源群組 (而非部署歷程記錄) 匯出時，您只會遇到匯出問題。 如果您的最後一個部署準確地呈現 hello hello 資源群組的目前狀態，您應該將 hello 範本匯出從 hello 部署歷程記錄，而不是從 hello 資源群組。 您所做的變更 toohello 資源群組的單一範本中未定義時，只能匯出從資源群組。
 > 
 > 
 
 ## <a name="next-steps"></a>後續步驟
-您已經了解如何從您在入口網站中建立的資源匯出範本。
+您已經學會如何 tooexport 範本，以從您在 hello 入口網站中建立的資源。
 
 * 您可以透過 [PowerShell](resource-group-template-deploy.md)、[Azure CLI](resource-group-template-deploy-cli.md) 或 [REST API](resource-group-template-deploy-rest.md) 部署範本。
-* 若要查看如何透過 PowerShell 匯出範本，請參閱 [搭配使用 Azure PowerShell 與 Azure Resource Manager](powershell-azure-resource-manager.md)。
-* 若要查看如何透過 Azure CLI 匯出範本，請參閱 [搭配使用 Mac、Linux 和 Windows 適用的 Azure CLI 與 Azure Resource Manager](xplat-cli-azure-resource-manager.md)。
+* 如何 tooexport 範本，以透過 PowerShell，請參閱的 toosee[使用 Azure PowerShell 的 Azure Resource Manager](powershell-azure-resource-manager.md)。
+* 如何 tooexport 範本，以透過 Azure CLI，請參閱的 toosee[使用 hello for Mac、 Linux 及 Windows Azure 資源管理員使用 Azure CLI](xplat-cli-azure-resource-manager.md)。
 

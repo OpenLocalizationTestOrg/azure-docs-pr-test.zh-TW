@@ -1,6 +1,6 @@
 ---
 title: "在離線環境中部署 App Service：Azure Stack | Microsoft Docs"
-description: "如何在中斷連線且受 AD FS 保護的 Azure Stack 環境中部署 App Service 的詳細指導方針。"
+description: "如何在中斷連線的 Azure 堆疊環境中的應用程式服務 toodeploy 受到 AD FS 的詳細的指引。"
 services: azure-stack
 documentationcenter: 
 author: apwestgarth
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/3/2017
 ms.author: anwestg
-ms.openlocfilehash: b733851d4459ead1ae437604a27ca7720e2a3a87
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f7992c310532427b5ffb88555faab2679023c876
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-an-app-service-resource-provider-to-a-disconnected-azure-stack-environment-secured-by-ad-fs"></a>將 App Service 資源提供者新增至中斷連線且受 AD FS 保護的 Azure Stack 環境
+# <a name="add-an-app-service-resource-provider-tooa-disconnected-azure-stack-environment-secured-by-ad-fs"></a>新增應用程式服務的資源提供者 tooa 中斷連線 Azure 堆疊環境受到 AD FS
 
-您必須將 [Azure App Service 資源提供者](azure-stack-app-service-overview.md)新增到您的 Azure Stack 部署：
+您必須新增[Azure App Service 資源提供者](azure-stack-app-service-overview.md)tooyour Azure 堆疊部署：
 
 * 如果您在受 Active Directory 同盟服務 (AD FS) 保護的隔離環境中執行 Azure Stack。 
-* 如果您想要讓租用戶能夠使用其 Azure Stack 訂用帳戶來建立 Web、行動裝置版和 API 應用程式 (以及 Azure Functions 應用程式)。 
+* 如果您想 toogive 租用戶 hello 功能 toocreate web、 行動裝置版和 API 應用程式-和 Azure 函式應用程式-使用其 Azure 堆疊訂用帳戶。 
 
-若要這樣做，請依照此文章中的步驟執行。
+toodo 因此，請遵循本文章中的 hello 步驟。
 
-## <a name="download-the-required-components"></a>下載必要元件
+## <a name="download-hello-required-components"></a>下載所需的 hello 元件
 
-1. 下載 [Azure Stack 上的 App Service 預覽安裝程式](http://aka.ms/appsvconmasrc1installer)。
+1. 下載 hello[上 Azure 堆疊 preview 安裝程式的應用程式服務](http://aka.ms/appsvconmasrc1installer)。
 
-2. 下載 [Azure Stack 上的 App Service 部署協助程式指令碼](http://aka.ms/appsvconmasrc1helper)。
+2. 下載 hello [Azure 堆疊部署 helper 指令碼的應用程式服務](http://aka.ms/appsvconmasrc1helper)。
 
-3. 從協助程式指令碼 zip 檔案解壓縮檔案。 隨即出現下列檔案與資料夾結構：
+3. 從 hello helper 指令碼 zip 檔案解壓縮 hello 檔案。 hello 下列檔案和資料夾結構會顯示：
 
    - Create-AppServiceCerts.ps1
    - Create-IdentityApp.ps1
@@ -45,221 +45,221 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="create-an-offline-installation-package"></a>建立離線安裝套件
 
-若要在隔離的環境中部署 App Service，您必須從連線到網際網路的電腦建立離線安裝套件。
+toodeploy 應用程式服務的隔離環境中，您必須從連接 toohello 網際網路的電腦建立離線安裝套件。
 
-1. 從連線到網際網路的電腦，執行 Azure Stack 上的 App Service 預覽安裝程式 (AppService.exe)。
+1. 已連接網際網路 toohello 機器上執行應用程式服務的 hello Azure 堆疊 preview 安裝程式 (AppService.exe) 上。
 
-2. 按一下 [進階] 索引標籤，然後按一下 [建立離線安裝套件]。
+2. 按一下 hello**進階**索引標籤，然後按一下**建立離線安裝套件**。
 
     ![Azure Stack 上的 App Service 會建立離線安裝套件][1]
 
-3. App Service 安裝程式會建立離線安裝套件、顯示路徑，並提供開啟該資料夾的選項。
+3. hello 應用程式服務安裝程式會建立離線安裝套件，顯示 hello 路徑，並提供選項 tooopen hello 資料夾。
 
    ![Azure Stack 上的 App Service 離線安裝套件][2]
 
-4. 將 Azure Stack 上的 App Service 預覽安裝程式 (AppService.exe) 和離線安裝套件複製到 Azure Stack 主機電腦。
+4. 在 Azure 堆疊 preview 安裝程式 (AppService.exe) 和 hello 離線安裝套件 toohello Azure 堆疊主機電腦上複製 hello 應用程式服務。
 
 ## <a name="create-certificates-required-by-app-service-on-azure-stack"></a>建立 Azure Stack 上之 App Service 所需的憑證
 
-這第一個指令碼會搭配 Azure Stack 憑證授權單位運作，以建立 App Service 所需的三個憑證。 在 Azure Stack 主機上執行指令碼，並確定您是以 azurestack\administrator 身分執行 PowerShell。
+此第一個指令碼搭配 hello Azure 堆疊憑證授權單位 toocreate 三個憑證，您必須將應用程式服務。 Hello Azure 堆疊主機上執行 hello 指令碼，請確定您 azurestack\administrator 作為執行 PowerShell。
 
-1. 在以 azurestack\administrator 身分執行的 PowerShell 工作階段中，從您解壓縮協助程式指令碼所在的位置執行 **Create-AppServiceCerts.ps1** 指令碼。  此指令碼會在與 App Service 所需之建立憑證指令碼相同的資料夾中建立三個憑證。
+1. Azurestack\administrator 身分執行的 PowerShell 工作階段，執行 hello**建立 AppServiceCerts.ps1**指令碼從 hello hello helper 指令碼的解壓縮所在的位置。  hello 指令碼會建立三個憑證在 hello 與 hello 相同的資料夾會建立所需的應用程式服務的憑證指令碼。
 
-2. 輸入密碼來保護 .pfx 檔案，並記下密碼。 您需要在 Azure Stack 上的 App Service 安裝程式中輸入此密碼。
+2. 輸入密碼 toosecure hello.pfx 檔案，並記下它。 您需要 tooenter hello 應用程式服務在 Azure 堆疊安裝程式中。
 
 ### <a name="create-appservicecertsps1-parameters"></a>Create-AppServiceCerts.ps1 參數
 
 | 參數 | 必要/選用 | 預設值 | 說明 |
 | --- | --- | --- | --- |
-| pfxPassword | 必要 | Null | 用來保護憑證私密金鑰的密碼 |
+| pfxPassword | 必要 | Null | 使用 tooprotect hello 憑證私密金鑰的密碼 |
 | DomainName | 必要 | local.azurestack.external | Azure Stack 區域和網域尾碼 |
 | CertificateAuthority | 必要 | AzS-CA01.azurestack.local | 憑證授權單位端點 |
 
-## <a name="complete-the-offline-installation-of-app-service-on-azure-stack"></a>完成 Azure Stack 上的 App Service 離線安裝
+## <a name="complete-hello-offline-installation-of-app-service-on-azure-stack"></a>完成 Azure 堆疊上的應用程式服務的 hello 離線安裝
 
 > [!NOTE]
-> 您必須使用已提高權限的帳戶 (本機或網域系統管理員) 來執行安裝程式。 如果您以 azurestack\azurestackuser 身分登入，則系統會提示您提供已提高權限的認證。
+> 您*必須*使用提高權限的帳戶 （本機或網域系統管理員） tooexecute hello 安裝程式。 如果您以 azurestack\azurestackuser 身分登入，則系統會提示您提供已提高權限的認證。
 
 1. 以 azurestack\administrator 身分執行 appservice.exe。
 
-2. 按一下 [進階] 索引標籤，然後按一下 [完成離線安裝]。
+2. 按一下 hello**進階**索引標籤，然後按一下**完成離線安裝**。
 
     ![Azure Stack 上之 App Service 的完成離線安裝][3]
 
-3. 指定您先前建立的離線安裝套件位置，然後按一下 [下一步]。
+3. 指定您先前建立的然後按一下 hello 離線安裝套件 hello 位置**下一步**。
 
     ![Azure Stack 上的 App Service 離線安裝套件位置][4]
 
-4. 檢閱並接受 Microsoft 軟體發行前版本授權條款，然後按一下 [下一步]。
+4. 檢閱並接受 hello Microsoft 發行前版本授權條款，然後按一下**下一步**。
 
-5. 檢閱並接受協力廠商授權條款，然後按一下 [下一步]。
+5. 檢閱並接受 hello 協力廠商授權條款，然後按一下**下一步**。
 
-6. 檢閱 App Service 雲端設定資訊，然後按一下 [下一步]。
+6. 檢閱 hello 應用程式服務雲端組態資訊，然後按一下 **下一步**。
 
     ![Azure Stack 上的 App Service 雲端設定][5]
 
     > [!NOTE]
-    > Azure Stack 上的 App Service 安裝程式提供適用於單一節點 Azure Stack 安裝的預設值。 如果您已在部署 Azure Stack 時自訂選項 (例如，網域尾碼)，就需要據以編輯此視窗中的值。 例如，如果您使用網域尾碼 mycloud.com，則您的管理員 Azure Resource Manager 端點必須變更為 adminmanagement.[region].mycloud.com。
+    > hello 應用程式服務在 Azure 堆疊安裝程式提供單一節點 Azure 堆疊安裝 hello 預設值。 如果您部署 Azure 堆疊 （例如，hello 網域尾碼） 時，您可以自訂選項，會據以需要 tooedit hello 值，此視窗中。 例如，如果您使用 hello 網域尾碼 mycloud.com，您管理 Azure 資源管理員端點需要 toochange tooadminmanagement。[region]。 mycloud.com。
 
-7. 按一下 [Azure Stack 訂用帳戶] 方塊旁邊的 [連線] 按鈕。 輸入您的管理帳戶，例如 azurestackadmin@azurestack.local。 輸入您的密碼，然後按一下 [登入]。
+7. 按一下 hello**連接**按鈕的下一個 toohello **Azure 堆疊訂用帳戶**方塊。 輸入您的管理帳戶，例如 azurestackadmin@azurestack.local。 輸入您的密碼，然後按一下 [登入]。
 
-8. 在 [Azure Stack 訂用帳戶] 方塊中，選取您的訂用帳戶。
+8. 選取您的訂閱中 hello **Azure 堆疊訂用帳戶**方塊。
 
-9. 在 [Azure Stack 位置] 方塊中，選取對應到您要部署之區域的位置。 例如，選取 [本機]。 按一下 [下一步] 。
+9. 在 hello **Azure 堆疊位置**方塊中，選取 hello 對應您要部署的 toohello 區域的位置。 例如，選取 [本機]。 按一下 [下一步] 。
 
     ![Azure Stack 上的 App Service 訂用帳戶選取項目][6]
 
-10. 針對您的 App Service 部署輸入**資源群組名稱**。 根據預設值，它是設定為 **APPSERVICE-LOCAL**。
+10. 輸入 hello**資源群組名稱**為您的應用程式服務部署。 根據預設，此屬性設定太**APPSERVICE 本機**。
 
-11. 輸入您想要 App Service 在安裝期間建立的**儲存體帳戶名稱**。 根據預設值，它是設定為 **appsvclocalstor**。
+11. 輸入 hello**儲存體帳戶名稱**想 App Service toocreate hello 安裝的一部分。 根據預設，此屬性設定太**appsvclocalstor**。
 
-12. 針對用於裝載 App Service 資源提供者資料庫的執行個體，輸入 SQL Server 詳細資料。 按一下 [下一步]，安裝程式即會驗證 SQL 連線屬性。
+12. 輸入 hello 的使用的 toohost hello 應用程式服務資源提供者資料庫的執行個體 hello SQL Server 詳細資料。 按一下**下一步**，和 hello 安裝程式會驗證 hello SQL 連接屬性。
 
-13. 按一下 [App Service 預設 SSL 憑證檔案] 方塊旁邊的 [瀏覽] 按鈕。 移至[稍早建立](#Create-Certificates-To-Be-Used-By-Azure-Stack-Web-Apps)的 **_.appservice.local.AzureStack.external** 憑證。 如果您指定的位置和網域尾碼與您建立憑證時的不同，請選取對應的憑證。
+13. 按一下 hello**瀏覽**按鈕的下一個 toohello**應用程式服務的預設 SSL 憑證檔案**方塊。 移 toohello **_.appservice.local.AzureStack.external**憑證[稍早建立](#Create-Certificates-To-Be-Used-By-Azure-Stack-Web-Apps)。 如果您在建立 hello 憑證時指定不同的位置和網域尾碼，請選取 hello 對應的憑證。
 
-14. 輸入您建立憑證時所設定的憑證密碼。
+14. 輸入當您建立 hello 憑證的 hello 憑證密碼。
 
-15. 按一下 [資源提供者 SSL 憑證檔案] 方塊旁邊的 [瀏覽] 按鈕。 移至[稍早建立](#Create-Certificates-To-Be-Used-By-Azure-Stack-Web-Apps)的 **api.appservice.local.AzureStack.external** 憑證。 如果您指定的位置和網域尾碼與您建立憑證時的不同，請選取對應的憑證。
+15. 按一下 hello**瀏覽**按鈕的下一個 toohello**資源提供者的 SSL 憑證檔案**方塊。 移 toohello **api.appservice.local.AzureStack.external**憑證[稍早建立](#Create-Certificates-To-Be-Used-By-Azure-Stack-Web-Apps)。 如果您在建立 hello 憑證時指定不同的位置和網域尾碼，請選取 hello 對應的憑證。
 
-16. 輸入您建立憑證時所設定的憑證密碼。
+16. 輸入當您建立 hello 憑證的 hello 憑證密碼。
 
-17. 按一下 [資源提供者根憑證檔案] 方塊旁邊的 [瀏覽] 按鈕。 移至[稍早建立](#Create-Certificates-To-Be-Used-By-Azure-Stack-Web-Apps)的 **AzureStackCertificationAuthority** 憑證。
+17. 按一下 hello**瀏覽**按鈕的下一個 toohello**資源提供者的根憑證檔案**方塊。 移 toohello **AzureStackCertificationAuthority**憑證[稍早建立](#Create-Certificates-To-Be-Used-By-Azure-Stack-Web-Apps)。
 
-18. 按一下 [下一步] 。 安裝程式會確認所提供的憑證密碼。
+18. 按一下 [下一步] 。 hello 安裝程式會確認提供的 hello 憑證密碼。
 
     ![Azure Stack 上的 App Service 憑證詳細資料][8]
 
-19. 檢閱 App Service 角色設定。 預設值會使用適用於每個角色的最低建議執行個體 SKU 來填入。 系統會提供核心和記憶體需求的摘要來協助規劃您的部署。 進行選擇之後，按一下 [下一步]。
+19. 檢閱 hello 應用程式服務角色設定。 hello 預設值會填入 hello 最小建議執行個體的 Sku 為每個角色。 在規劃部署時 toohelp 係核心和記憶體需求的摘要。 進行選擇之後，按一下 [下一步]。
 
-    - **控制器**：預設會選取一個標準 A1 執行個體。 這是我們建議的最小值。 控制器角色負責管理和維護 App Service 雲端的健康情況。
-    - **管理**：預設會選取一個標準 A2 執行個體。 為了提供容錯移轉，我們建議兩個執行個體。 管理角色負責 App Service Azure Resource Manager 和 API 端點、入口網站擴充功能 (管理員、租用戶、Functions 入口網站)，以及資料服務。
-    - **發行者**：預設會選取一個標準 A1 執行個體。 這是我們建議的最小值。 發行者角色負責透過 FTP 和 Web 部署來發行內容。
-    - **前端**：預設會選取一個標準 A1 執行個體。 這是我們建議的最小值。 前端角色負責將要求路由傳送到 App Service 應用程式。
-    - **共用背景工作**：預設會選取一個標準 A1 執行個體，但您可能想要新增更多。 身為系統管理員，您可以定義您的供應項目，並選擇任何 SKU 層。 各層必須具有至少一個核心。 共用背景工作角色負責主控 Web、行動裝置版或 API 應用程式及 Azure Functions 應用程式。
+    - **控制器**：預設會選取一個標準 A1 執行個體。 這是建議的 hello 小。 hello 控制器角色負責管理和維護的 hello 雲端應用程式服務的 hello 健全狀況。
+    - **管理**：預設會選取一個標準 A2 執行個體。 tooprovide 容錯移轉時，我們建議兩個執行個體。 hello 管理角色負責 hello 應用程式服務的 Azure 資源管理員和 API 端點、 入口網站擴充功能 （系統管理員、 租用戶，函式的入口網站），以及 hello 資料服務。
+    - **發行者**：預設會選取一個標準 A1 執行個體。 這是建議的 hello 小。 hello 發行者角色會負責透過 FTP 和 web 部署的內容發佈。
+    - **前端**：預設會選取一個標準 A1 執行個體。 這是建議的 hello 小。 hello 前端角色負責路由要求 tooApp 服務應用程式。
+    - **共用背景工作**： 根據預設，已經選取一個標準 A1 執行個體，但是您可能想 tooadd 更多。 身為系統管理員，您可以定義您的供應項目，並選擇任何 SKU 層。 hello 層必須具有至少一個核心。 hello 共用背景工作角色負責主控 web、 行動裝置，或應用程式開發介面應用程式和 Azure 函式應用程式。
 
     ![Azure Stack 上的 App Service 角色設定][9]
 
     > [!NOTE]
-    > 在技術預覽中，App Service 資源提供者安裝程式也會部署要作為簡單檔案伺服器運作的標準 A1 執行個體，以支援 Azure Resource Manager。 這會針對單一節點的連絡點加以保留。 對於生產工作負載，在公開推出時，App Service 安裝程式會讓高可用性檔案伺服器可供使用。
+    > Hello technial preview 中 hello 應用程式服務資源提供者安裝程式也會部署標準 A1 執行個體 toooperate 為簡單的檔案伺服器 toosupport hello Azure 資源管理員。 這會針對單一節點的連絡點加以保留。 對於生產工作負載，在公開上市 hello 應用程式服務安裝程式可讓您 hello 使用高可用性檔案伺服器。
 
-20. 從可以在適用於 App Service 雲端的運算資源提供者中的可用映像中，選擇您的部署 **Windows Server 2016** VM 映像。 按一下 [下一步] 。 
+20. 選擇您的部署**Windows Server 2016**從 hello hello 應用程式服務雲端計算資源提供者中所提供的 VM 映像。 按一下 [下一步] 。 
 
     ![Azure Stack 上的 App Service VM 映像選取項目][10]
 
-21. 針對 App Service 雲端中設定的背景工作角色，輸入使用者名稱和密碼。 針對所有其他的 App Service 角色，輸入使用者名稱和密碼。 按一下 [下一步] 。
+21. Hello hello 雲端應用程式服務中設定的背景工作角色，請輸入使用者名稱和密碼。 針對所有其他的 App Service 角色，輸入使用者名稱和密碼。 按一下 [下一步] 。
 
     ![Azure Stack 上的 App Service 認證項目][11]
 
-22. 在摘要畫面上，確認您所做的選擇。 若要進行變更，請返回畫面並修改您的選擇。 如果設定符合您的需求，請選取核取方塊。 若要開始部署，請按一下 [下一步]。 
+22. 在 hello 摘要畫面中，確認您所做的 hello 選擇。 toomake 變更 hello 畫面，請返回並修改您的選擇。 如果您要如何 hello 設定，請選取 [hello] 核取方塊。 toostart hello 部署中，按一下 **下一步**。 
 
     ![Azure Stack 上的 App Service 選取項目摘要][12]
 
-23. 追蹤安裝進度。 根據預設的選取項目而定，部署 Azure Stack 上的 App Service 大約需要 45 到 60 分鐘。
+23. 追蹤 hello 安裝程序。 Azure 堆疊上的應用程式服務大約需要約 45 too60 分鐘 toodeploy 根據 hello 預設選取項目。
 
     ![Azure Stack 上的 App Service 安裝進度][13]
 
-24. 當安裝程式順利完成之後，請按一下 [結束]。
+24. Hello 安裝程式已順利完成之後，請按一下**結束**。
 
-## <a name="configure-an-ad-fs-service-principal-for-virtual-machine-scale-set-integration-on-worker-tiers-and-sso-for-the-azure-functions-portal-and-advanced-developer-tools"></a>針對背景工作層上的虛擬機器擴展集整合設定 AD FS 服務主體，以及針對 Azure Functions 入口網站設定 SSO 和進階開發人員工具
+## <a name="configure-an-ad-fs-service-principal-for-virtual-machine-scale-set-integration-on-worker-tiers-and-sso-for-hello-azure-functions-portal-and-advanced-developer-tools"></a>設定虛擬機器規模集整合 AD FS 服務主體上背景工作層和 SSO hello Azure 函式的入口網站和進階開發人員工具
 
 >[!NOTE]
-> 這些步驟只適用於 AD FS 保護的 Azure Stack 環境。
+> 這些步驟適用於的 tooAD FS 保護僅限 Azure 堆疊環境。
 
-系統管理員必須設定 SSO 來執行下列動作：
+系統管理員需要 tooconfigure SSO 至：
 
 * 針對背景工作層上的虛擬機器擴展集整合設定服務主體。
-* 啟用 App Service (Kudu) 內的進階開發人員工具。
-* 讓 Azure Functions 入口網站體驗可供使用。 
+* 啟用進階開發人員工具，應用程式服務 (Kudu) 中的 hello。
+* 啟用 hello hello Azure 函式的入口網站體驗。 
 
 請遵循下列步驟：
 
 1. 以 azurestack\azurestackadmin 身分開啟 PowerShell 執行個體。
 
-2. 移至在[先決條件步驟](#Download-Required-Components)中下載並解壓縮的指令碼位置。
+2. 移 hello 指令碼下載並解壓縮在 hello toohello 位置[先決條件步驟](#Download-Required-Components)。
 
 3. [安裝](azure-stack-powershell-install.md)及[設定 Azure Stack PowerShell 環境](azure-stack-powershell-configure-admin.md)。
 
-4. 在同一個 PowerShell 工作階段中，執行 **CreateIdentityApp.ps1** 指令碼。 當系統提示您提供 Azure Active Directory (Azure AD) 租用戶識別碼時，請輸入 **ADFS**。
+4. 在 hello 相同的 PowerShell 工作階段中執行 hello **CreateIdentityApp.ps1**指令碼。 當系統提示您提供 Azure Active Directory (Azure AD) 租用戶識別碼時，請輸入 **ADFS**。
 
-5. 在 [認證] 視窗中，輸入您的 AD FS 服務管理帳戶和密碼。 按一下 [確定] 。
+5. 在 hello**認證**視窗中，輸入您的 AD FS 服務系統管理員帳戶和密碼。 按一下 [確定] 。
 
-6. 輸入[稍早建立的憑證](# Create certificates to be used by App Service on Azure Stack)的憑證檔案路徑和憑證密碼。 根據預設值，針對此步驟建立的憑證是 sso.appservice.local.azurestack.external.pfx。
+6. 輸入 hello hello 憑證檔案的路徑和憑證密碼[稍早建立的憑證](# Create certificates toobe used by App Service on Azure Stack)。 針對此步驟建立預設的 hello 憑證是 sso.appservice.local.azurestack.external.pfx。
 
-7. 指令碼會在租用戶 Azure AD 中建立新的應用程式，並產生新的 PowerShell 指令碼。
+7. hello 指令碼在 hello 租用戶 Azure AD 中建立新的應用程式，並產生新的 PowerShell 指令碼。
 
-8. 使用遠端桌面工作階段，將身分識別應用程式憑證檔案和產生的指令碼複製到 **CN0-VM**。
+8. 複製 hello 識別應用程式的憑證檔案和 hello 產生指令碼 toohello **CN0 VM**使用遠端桌面工作階段。
 
-9. 返回 **CN0-VM**。
+9. 傳回太**CN0 VM**。
 
-10. 開啟系統管理員的 PowerShell 視窗，然後瀏覽到步驟 7 中複製指令碼檔案與憑證的目錄。
+10. 開啟系統管理員 PowerShell 視窗，並瀏覽 toohello hello 指令碼檔案和憑證，已複製在步驟 7 中的目錄。
 
-11. 執行指令碼檔案。 此指令碼檔案會在 Azure Stack 上的 App Service 設定中輸入屬性，並在所有前端與管理角色上起始修復作業。
+11. 執行 hello 指令碼檔案。 此指令碼檔案中 hello 應用程式服務在 Azure 堆疊設定輸入 hello 屬性，並起始所有前端及管理角色上的修復操作。
 
 | 參數 | 必要/選用 | 預設值 | 說明 |
 | --- | --- | --- | --- |
-| DirectoryTenantName | 強制 | Null | 對 AD FS 環境使用 **ADFS** |
-| TenantAzure Resource ManagerEndpoint | 強制 | management.local.azurestack.external | 租用戶 Azure Resource Manager 端點 |
-| AzureStackCredential | 強制 | Null | AD FS 服務管理帳戶 |
-| CertificateFilePath | 強制 | Null | 稍早產生之身分識別應用程式憑證檔案的路徑 |
-| CertificatePassword | 強制 | Null | 用來保護憑證私密金鑰的密碼 |
+| DirectoryTenantName | 強制 | Null | 使用**ADFS** hello AD FS 環境 |
+| TenantAzure Resource ManagerEndpoint | 強制 | management.local.azurestack.external | hello 租用戶 Azure 資源管理員端點 |
+| AzureStackCredential | 強制 | Null | hello AD FS 服務系統管理員帳戶 |
+| CertificateFilePath | 強制 | Null | 路徑 toohello 識別應用程式的憑證檔案先前產生 |
+| CertificatePassword | 強制 | Null | 使用 tooprotect hello 憑證私密金鑰的密碼 |
 | DomainName | 必要 | local.azurestack.external | Azure Stack 區域和網域尾碼 |
 | AdfsMachineName | 選用 | AD FS 電腦名稱，例如 AzS-ADFS01.azurestack.local |
 
 
-## <a name="validate-the-app-service-on-azure-stack-installation"></a>確認 Azure Stack 上的 App Service 安裝
+## <a name="validate-hello-app-service-on-azure-stack-installation"></a>驗證 Azure 堆疊安裝上的 hello 應用程式服務
 
-1. 在 Azure Stack 管理入口網站中，瀏覽到安裝程式所建立的資源群組。 根據預設值，此群組是 **APPSERVICE-LOCAL**。
+1. 在 hello Azure 堆疊管理員入口網站中瀏覽 toohello hello 安裝程式所建立的資源群組。 根據預設值，此群組是 **APPSERVICE-LOCAL**。
 
-2. 找出 **CN0-VM**。 若要連線到 VM，請按一下 [虛擬機器] 刀鋒視窗上的 [連線]。
+2. 找出 hello **CN0 VM**。 按一下 tooconnect toohello VM，**連接**hello 上**虛擬機器**刀鋒視窗。
 
-3. 在此 VM 的桌面上，按兩下 [Web 雲端管理主控台]。
+3. 在此 vm 的 hello 桌面上，按兩下**網站雲端管理主控台**。
 
-4. 移至 [受管理伺服器]。
+4. 跳過**管理的伺服器**。
 
-5. 當所有電腦都針對一或多個背景工作顯示 [就緒] 時，請繼續進行步驟 6。
+5. 當所有 hello 機器顯示**準備**一或多個背景工作，請繼續進行 toostep 6。
 
-6. 關閉遠端桌面電腦，並返回您執行 App Service 安裝程式的電腦。
+6. 關閉遠端桌面的電腦 hello，並傳回 toohello hello 應用程式服務安裝程式的執行所在的電腦。
 
     > [!NOTE]
-    > 您不需要等候一或多個背景工作顯示 [就緒]，就能完成 Azure Stack 上的 App Service 安裝。 不過，您需要至少一個背景工作已就緒可部署 Web、行動裝置版或 API 應用程式，或是 Azure Functions。
+    > 您不需要一或多個工作者 toodisplay toowait**準備**toocomplete hello 安裝 Azure 堆疊上的應用程式服務。 不過，您需要至少一個背景工作的準備 toodeploy 行動、 web API 應用程式或 Azure 函式。
     
     ![Azure Stack 上的 App Service 受管理伺服器狀態][14]
 
 ## <a name="test-drive-app-service-on-azure-stack"></a>測試 Azure Stack 上的 App Service
 
-當您部署並註冊 App Service 資源提供者之後，請測試它，以確定租用戶可以部署 Web、行動裝置版及 API 應用程式。
+您部署及註冊 hello 應用程式服務資源提供者之後，測試 toomake 確定租用戶可以將 web、 mobile 及 API 應用程式部署。
 
 > [!NOTE]
-> 您需要在方案內建立含有 Microsoft.Web 命名空間的供應項目。 然後，您需要具有訂閱此供應項目的租用戶訂用帳戶。 如需詳細資訊，請參閱[建立供應項目](azure-stack-create-offer.md)和[建立方案](azure-stack-create-plan.md)。
+> 您需要 toocreate hello 計劃中的 hello Microsoft.Web 命名空間提供項目。 然後，您需要 toohave 訂閱 toothis 優惠的租用戶訂用帳戶。 如需詳細資訊，請參閱[建立供應項目](azure-stack-create-offer.md)和[建立方案](azure-stack-create-plan.md)。
 >
 
-您必須具有租用戶訂用帳戶，才能建立使用 Azure Stack 上之 App Service 的應用程式。 服務管理員只能在管理入口網站內完成的功能，與 App Service 的資源提供者管理有關。 這些功能包括新增容量、設定部署來源，以及新增背景工作層和 SKU。
+您*必須*有使用 Azure 堆疊上的應用程式服務的租用戶訂用帳戶 toocreate 應用程式。 服務系統管理員可以完成 hello 系統管理入口網站中的 hello 唯一功能是相關的 toohello 資源提供者管理的應用程式服務。 這些功能包括新增容量、設定部署來源，以及新增背景工作層和 SKU。
 
-從第三個技術預覽開始，若要建立 Web、行動裝置版及 API 應用程式，您必須使用租用戶入口網站，並具有租用戶訂用帳戶。  
+Hello 第三個技術預覽、 toocreate web、 行動裝置版及 API 應用程式，您必須使用 hello 租用戶入口網站，並有租用戶的訂用帳戶。  
 
-1. 在 Azure Stack 租用戶入口網站中，按一下 [新增] > [Web + 行動] > [Web 應用程式]。
+1. 在 hello Azure 堆疊租用戶入口網站中，按一下 **新增** > **Web + 行動** > **Web 應用程式**。
 
-2. 在 [Web 應用程式] 刀鋒視窗中，於 [Web 應用程式] 方塊中輸入名稱。
+2. 在 hello **Web 應用程式**刀鋒視窗中，輸入的名稱在 hello **Web 應用程式**方塊。
 
-3. 按一下 [資源群組] 下方的 [新增]。 接著在 [資源群組] 方塊中輸入名稱。
+3. 按一下 [資源群組] 下方的 [新增]。 然後輸入 hello 名稱**資源群組**方塊。
 
 4. 按一下 [App Service 方案/位置] > [新建]。
 
-5. 在 [App Service 方案] 刀鋒視窗中，於 [App Service 方案] 方塊中輸入名稱。
+5. 在 hello **App Service 方案**刀鋒視窗中，輸入的名稱在 hello **App Service 方案**方塊。
 
 6. 按一下 [定價層] > [免費 - 共用] 或 [共用 - 共用] > [選取] > [確定] > [建立]。
 
-7. 新 Web 應用程式的磚隨即出現在儀表板上。 按一下此磚。
+7. 在下一分鐘 hello 新 web 應用程式的磚會顯示 hello 儀表板上。 按一下 hello 磚。
 
-8. 在 [Web 應用程式] 刀鋒視窗中，按一下 [瀏覽] 以檢視此應用程式的預設網站。
+8. 在 hello **Web 應用程式**刀鋒視窗中，按一下 **瀏覽**tooview hello 預設網站，此應用程式。
 
 ## <a name="deploy-a-wordpress-dnn-or-django-website-optional"></a>部署 WordPress、DNN 或 Django 網站 (選擇性)
 
-1. 在 Azure Stack 租用戶入口網站中，按一下 [+]。 移至 Azure Marketplace、部署 Django 網站，然後等待順利完成。 Django Web 平台會使用以檔案系統為基礎的資料庫。 它不需要任何額外的資源提供者，例如 SQL 或 MySQL。
+1. 在 hello Azure 堆疊租用戶入口網站中，按一下   **+** 。 移 toohello Azure Marketplace 中部署如 Django 網站，然後等候順利完成。 hello Django web 平台會使用檔案系統為基礎的資料庫。 它不需要任何額外的資源提供者，例如 SQL 或 MySQL。
 
-2. 如果您也會部署 MySQL 資源提供者，就可以從 Marketplace 部署 WordPress 網站。 當系統提示您提供資料庫參數時，請使用您選擇的使用者名稱和伺服器名稱，以 User1@Server1 形式輸入使用者名稱。
+2. 如果您也會部署 MySQL 資源提供者，您可以部署的 hello Marketplace WordPress 網站。 當系統提示您為資料庫參數時，輸入 hello 使用者名稱做為 *User1@Server1*使用 hello 使用者名稱和您選擇的伺服器名稱。
 
-3. 如果您也會部署 SQL Server 資源提供者，就可以從 Marketplace 部署 DNN 網站。 當系統提示您提供資料庫參數時，請挑選執行 SQL Server 且已連線到您資源提供者之電腦中的資料庫。
+3. 如果您也會部署 SQL Server 資源提供者，您可以部署的 hello Marketplace DNN 網站。 當系統提示您為資料庫參數時，請選取資料庫 hello 電腦是連線的 tooyour 資源提供者的 SQL Server 執行中。
 
 ## <a name="next-steps"></a>後續步驟
 

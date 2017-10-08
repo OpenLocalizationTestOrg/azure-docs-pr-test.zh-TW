@@ -1,6 +1,6 @@
 ---
-title: "將 SQL 資料庫提供給您的 Azure Stack 使用者 | Microsoft Docs"
-description: "此教學課程說明如何安裝 SQL Server 資源提供者，並建立供應項目以讓 Azure Stack 使用者建立 SQL 資料庫。"
+title: "aaaMake SQL 資料庫可用 tooyour Azure 堆疊使用者 |Microsoft 文件"
+description: "教學課程 tooinstall hello SQL Server 資源提供者，並建立提供項目，讓 Azure 堆疊使用者可以建立 SQL 資料庫。"
 services: azure-stack
 documentationcenter: 
 author: ErikjeMS
@@ -15,73 +15,73 @@ ms.topic: article
 ms.date: 7/03/2017
 ms.author: erikje
 ms.custom: mvc
-ms.openlocfilehash: bba8257bc4477f985d1a9399e65a1338d237f134
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 778513ba982981895afe2d57b3b5dda71ead8886
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="make-sql-databases-available-to-your-azure-stack-users"></a>將 SQL 資料庫提供給您的 Azure Stack 使用者
+# <a name="make-sql-databases-available-tooyour-azure-stack-users"></a>將 SQL 資料庫可用 tooyour Azure 堆疊使用者
 
-身為 Azure Stack 雲端系統管理員，您可以建立供應項目以讓您的使用者 (租用戶) 建立 SQL 資料庫，以搭配其雲端原生應用程式、網站與工作負載使用。 透過將對這些自訂隨選雲端式資料庫的存取權提供給您的使用者，您可以節省其時間與資源。 若要設定，您將必須：
+身為 Azure Stack 雲端系統管理員，您可以建立供應項目以讓您的使用者 (租用戶) 建立 SQL 資料庫，以搭配其雲端原生應用程式、網站與工作負載使用。 藉由提供這些自訂、 隨、 以雲端為基礎的資料庫 tooyour 使用者，您可以將它們儲存時間和資源。 tooset 最，您將會：
 
 > [!div class="checklist"]
-> * 部署 SQL Server 資源提供者
+> * 部署 hello SQL Server 資源提供者
 > * 建立優惠
-> * 測試供應項目
+> * 測試 hello 優惠
 
-## <a name="deploy-the-sql-server-resource-provider"></a>部署 SQL Server 資源提供者
+## <a name="deploy-hello-sql-server-resource-provider"></a>部署 hello SQL Server 資源提供者
 
-部署程序於[在 Azure Stack 上使用 SQL 資料庫](azure-stack-sql-resource-provider-deploy.md)文章中詳細說明，而且由下列主要步驟組成：
+hello 部署程序中有詳細說明在 hello [Azure 堆疊發行項上的使用 SQL 資料庫](azure-stack-sql-resource-provider-deploy.md)，包含下列主要步驟 hello:
 
-1.  [部署 SQL 資源提供者]( azure-stack-sql-resource-provider-deploy.md#deploy-the-resource-provider)。
-2.  [驗證部署]( azure-stack-sql-resource-provider-deploy.md#verify-the-deployment-using-the-azure-stack-portal)。
-3.  [透過連線到主控 SQL 伺服器以提供容量]( azure-stack-sql-resource-provider-deploy.md#provide-capacity-by-connecting-to-a-hosting-sql-server)。
+1.  [部署 hello SQL 資源提供者]( azure-stack-sql-resource-provider-deploy.md#deploy-the-resource-provider)。
+2.  [確認 hello 部署]( azure-stack-sql-resource-provider-deploy.md#verify-the-deployment-using-the-azure-stack-portal)。
+3.  [藉由連接 tooa 主控 SQL server 提供的容量]( azure-stack-sql-resource-provider-deploy.md#provide-capacity-by-connecting-to-a-hosting-sql-server)。
 
 ## <a name="create-an-offer"></a>建立優惠
 
-1.  [設定配額](azure-stack-setting-quotas.md)並將它命名為 *SQLServerQuota*。 選取 [命名空間] 欄位的 [Microsoft.SQLAdapter]。
-2.  [建立方案](azure-stack-create-plan.md)。 將它命名為 *TestSQLServerPlan*，選取 [Microsoft.SQLAdapter] 服務，並選取 [SQLServerQuota] 配額。
+1.  [設定配額](azure-stack-setting-quotas.md)並將它命名為 *SQLServerQuota*。 選取**Microsoft.SQLAdapter** hello**命名空間**欄位。
+2.  [建立方案](azure-stack-create-plan.md)。 命名*TestSQLServerPlan*，選取 hello **Microsoft.SQLAdapter**服務，以及**SQLServerQuota**配額。
 
     > [!NOTE]
-    > 若要讓使用者建立其他應用程式，方案中可能需要有其他服務。 例如，Azure Functions 要求方案必須包括 **Microsoft.Storage** 服務，而 Wordpress 則需要 **Microsoft.MySQLAdapter**。
+    > toolet 使用者建立其他應用程式，可能需要其他服務 hello 計劃中。 例如，Azure 函式需要該 hello 計劃包含 hello **Microsoft.Storage**服務，而 Wordpress **Microsoft.MySQLAdapter**。
     > 
     >
 
-3.  [建立供應項目](azure-stack-create-offer.md)，將它命名為 **TestSQLServerOffer**，然後選取 [TestSQLServerPlan] 方案。
+3.  [建立優惠](azure-stack-create-offer.md)，其命名**TestSQLServerOffer**和選取 hello **TestSQLServerPlan**計劃。
 
-## <a name="test-the-offer"></a>測試供應項目
+## <a name="test-hello-offer"></a>測試 hello 優惠
 
-既然您已部署 SQL Server 資源提供者並建立供應項目，您能以使用者身分登入並訂閱該供應項目，然後建立資料庫。
+既然您已部署的 hello SQL Server 資源提供者，以及建立提供項目時，您可以登入的使用者身分，訂閱 toohello 供應項目，並建立資料庫。
 
-### <a name="subscribe-to-the-offer"></a>訂閱該供應項目
-1. 以租用戶身分登入 Azure Stack 入口網站 (https://portal.local.azurestack.external)。
+### <a name="subscribe-toohello-offer"></a>訂閱 toohello 供應項目
+1. 登入 toohello 堆疊 Azure 入口網站 (https://portal.local.azurestack.external) 做為租用戶。
 2. 按一下 [取得訂用帳戶]，然後在 [顯示名稱] 下輸入 **TestSQLServerSubscription**。
 3. 按一下 [選取服務] > [TestSQLServerOffer] > [建立]。
 4. 按一下 [更多服務] > [訂用帳戶] > [TestSQLServerSubscription] > [資源提供者]。
-5. 按一下 **Microsoft.SQLAdapter** 提供者旁的 [註冊]。
+5. 按一下**註冊**下一步 toohello **Microsoft.SQLAdapter**提供者。
 
 ### <a name="create-a-sql-database"></a>建立 SQL 資料庫
 
 1. 按一下 [+] > [資料 + 儲存體] > [SQL Database]。
-2. 將欄位維持為預設值，或您可以使用這些範例：
+2. 保持 hello 或預設值 hello 欄位，您可以使用這些範例：
     - **資料庫名稱**：SQLdb
     - **大小上限 (MB)**：100
     - **訂用帳戶**：TestSQLOffer
     - **資源群組**：SQL-RG
-3. 按一下 [登入設定]，輸入資料庫認證，然後按一下 [確定]。
-4. 按一下 [SKU] > 選取您為 SQL 主控伺服器 建立的 SQL SKU > [確定]。
+3. 按一下**登入設定**hello 資料庫中，輸入認證，然後按**確定**。
+4. 按一下**SKU** > 選取 hello 建立 hello SQL 主控伺服器的 SQL SKU >**確定**。
 5. 按一下 [建立] 。
 
 在本教學課程中，您已了解如何：
 
 > [!div class="checklist"]
-> * 部署 SQL Server 資源提供者
+> * 部署 hello SQL Server 資源提供者
 > * 建立優惠
-> * 測試供應項目
+> * 測試 hello 優惠
 
-請前進到下一個教學課程，以了解如何：
+如何前進 toohello 下一個教學課程 toolearn 至：
 
 > [!div class="nextstepaction"]
-> [將 Web、行動裝置與 API 應用程式提供給您的使用者]( azure-stack-tutorial-app-service.md)
+> [讓 web、 行動裝置、 應用程式開發介面應用程式可用 tooyour 使用者]( azure-stack-tutorial-app-service.md)
 

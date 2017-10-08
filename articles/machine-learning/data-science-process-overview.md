@@ -1,6 +1,6 @@
 ---
-title: "Azure Team Data Science Process 概觀 | Microsoft Docs"
-description: "提供資料科學方法，用以產出預測分析解決方案和智慧型應用程式。"
+title: "aaaAzure 小組資料科學程序概觀 |Microsoft 文件"
+description: "提供資料科學方法 toodeliver 預測分析解決方案和智慧型應用程式。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: bradsev;
-ms.openlocfilehash: 006a1465a7cdced1878111beee709c8da4bc310f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2ba03585a6f6f855faaa3b5c0c75149cad0a88bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="team-data-science-process-overview"></a>Team Data Science Process 概觀
 
-Team Data Science Process (TDSP) 是一種敏捷式反覆資料科學方法，可有效產出預測分析解決方案和智慧型應用程式。 TDSP 有助於改善團隊共同作業和學習。 其中包含 Microsoft 及業界其他公司的最佳做法和結構，有助於順利實作資料科學計劃。 目標是協助公司完全了解其分析程式的優點。
+hello 小組資料科學程序 (TDSP) 會是 agile 反覆資料科學方法 toodeliver 預測性分析方案和智慧型應用程式有效。 TDSP 有助於改善團隊共同作業和學習。 它包含 hello 最佳作法和結構的 Microsoft 和其他 hello 產業中，以便資料科學開發案的 hello 成功實作提煉過程中若是。 hello 目標是 toohelp 公司完全了解的分析程式的 hello 優點。
 
-本文提供 TDSP 和其主要元件的概觀。 本文對於程序提供的一般描述可以使用各種工具實作。 其他連結的主題詳細描述流程的生命週期中涉及的專案工作與角色。 另外也指引如何使用我們團隊實作 TDSP 所用的一組特定 Microsoft 工具和基礎結構實作 TDSP。
+本文提供 TDSP 和其主要元件的概觀。 我們可以實作的 hello 程序的一般描述提供各種工具。 其他連結的主題提供的 hello 專案工作和角色 hello hello 程序生命週期中所涉及的更詳細的描述。 指引也提供 tooimplement hello TDSP 使用一組特定的 Microsoft 工具與基礎結構，我們會在我們的團隊使用 tooimplement hello TDSP 的方式。
 
-## <a name="key-components-of-the-tdsp"></a>TDSP 的重要元件
+## <a name="key-components-of-hello-tdsp"></a>Hello TDSP 的重要元件
 
-TDSP 包含下列主要元件：
+TDSP 共有的 hello 下列主要元件：
 
 - **資料科學生命週期**定義
 - **標準化專案結構**
@@ -38,13 +38,13 @@ TDSP 包含下列主要元件：
 
 ## <a name="data-science-lifecycle"></a>資料科學生命週期
 
-Team Data Science Process (TDSP) 會提供建構資料科學專案開發的生命週期。 生命週期會概述專案在執行時通常會遵循之從開始到完成的步驟。
+hello 小組資料科學程序 (TDSP) 提供資料科學專案的生命週期 toostructure hello 的開發。 hello 生命週期概述 hello 步驟，從開始 toofinish 專案通常會遵循在執行時。
 
-如果您正在使用另一個資料科學生命週期 (例如 [CRISP-DM](https://wikipedia.org/wiki/Cross_Industry_Standard_Process_for_Data_Mining)、[KDD](https://wikipedia.org/wiki/Data_mining#Process) 或您組織本身的自訂程序)，您仍可在這些開發生命週期的內容中使用工作型 TDSP。 大致而言，這些不同的方法有許多共通點。 
+如果您使用另一個資料科學生命週期，例如[CRISP-DM](https://wikipedia.org/wiki/Cross_Industry_Standard_Process_for_Data_Mining)， [KDD](https://wikipedia.org/wiki/Data_mining#Process)或您組織本身的自訂程序，您仍然可以使用以工作為基礎的 TDSP，這些開發 hello 內容中的 hello生命週期。 大致而言，這些不同的方法有許多共通點。 
 
-此生命週期是針對在智慧型應用程式中隨附的資料科學專案所設計。 這些應用程式會部署機器學習服務或人工智慧模型來做預測性分析。 探勘資料科學專案或臨機操作分析專案也可以從使用此程序而獲益。 但是，在這種情況下，可能不需要所述的某些步驟。    
+此生命週期是針對在智慧型應用程式中隨附的資料科學專案所設計。 這些應用程式會部署機器學習服務或人工智慧模型來做預測性分析。 探勘資料科學專案或臨機操作分析專案也可以從使用此程序而獲益。 但是，在這種情況下的部分所述的 hello 步驟可能不需要。    
 
-TDSP 生命週期是由反覆執行的五個主要階段所組成：
+hello TDSP 生命週期包含會反覆執行的五個主要階段：
 
 * **了解商務**
 * **資料取得與認知**
@@ -52,36 +52,36 @@ TDSP 生命週期是由反覆執行的五個主要階段所組成：
 * **部署**
 * **客戶接受度**
 
-以下是 **Team Data Science Process 生命週期**的視覺化呈現。 
+以下是 hello 的視覺表示法**小組資料科學程序生命週期**。 
 
 ![TDSP-Lifecycle](./media/data-science-process-overview/tdsp-lifecycle.png) 
 
-[小組資料科學程序生命週期](data-science-process-lifecycle.md)主題說明 TDSP 生命週期每個階段的目標、工作和文件構件。 這些工作和構件與專案角色相關聯：
+hello 目標、 工作和文件的成品以利在 TDSP hello 生命週期的每個階段所述 hello[小組資料科學程序生命週期](data-science-process-lifecycle.md)主題。 這些工作和構件與專案角色相關聯：
 
 - 解決方案架構師
 - 專案經理
 - 資料科學家
 - 專案負責人 
 
-下圖以格線檢視呈現這些角色 (水平軸) 的生命週期每個階段 (垂直軸) 相關聯的工作 (藍色) 和構件 (綠色)。 
+hello 下列圖表提供 hello 工作 （以藍色） 和 （在 hello 垂直軸） 上的這些角色相關聯 （在 hello 水平軸） 的 hello 生命週期的每個階段 （以綠色） 成品的方格檢視。 
 
 ![TDSP - 角色和工作](./media/data-science-process-overview/tdsp-tasks-by-roles.png)
 
 ## <a name="standardized-project-structure"></a>標準化專案結構
 
-使所有專案共用目錄結構，並使用專案文件的範本讓小組成員能輕易找到其專案的資訊。 Git、TFS 或 Subversion 之類的版本控制系統 (VCS) 儲存所有的程式碼和文件，有助於小組共同作業。 在 Jira、Rally、Visual Studio Team Services 之類的敏捷式軟體開發專案中追蹤工作和功能，追蹤系統，能夠更密切追蹤個別功能的程式碼。 這類追蹤也可讓小組獲得進一步的成本估計。 TDSP 建議在 VCS 上對於每個專案建立個別的儲存機制，以利版本控制、資訊安全和共同作業。 所有專案的標準化結構有助於累積整個組織的機構知識。
+具有共用的目錄結構，並使用適用於專案文件範本的所有專案，可輕鬆有關 hello 小組成員 toofind 其專案。 所有的程式碼和文件會儲存在版本控制系統，(VC) 例如 Git、 TFS 或 Subversion tooenable 小組共同作業。 追蹤工作和功能追蹤系統，例如 Jira 敏捷式軟體開發專案中的，集結，Visual Studio Team Services 可讓更接近追蹤 hello 個別功能的程式碼。 這類追蹤也可讓您小組 tooobtain 更好的成本估計值。 TDSP 建議 hello VC 版本控制、 資訊安全和共同作業上建立個別的儲存機制，每個專案。 hello 標準化 hello 組織內的所有專案有助於建置機構知識的結構。
 
-我們提供資料夾結構提供範本和標準位置的必要文件。 此資料夾結構包括內含資料探索和功能擷取程式碼的檔案，以及記錄模型反覆項目的檔案。 這些範本讓小組成員更容易了解其他人完成的工作，並且更容易將新成員加入至小組中。 Markdown 格式的文件範本很容易檢視和更新。 範本可用來對於每個專案提供重要問題的檢查清單，確保問題獲得妥善定義，而且交付項目符合預期的品質。 範例包括：
+我們 hello 資料夾結構和必要的文件標準位置中提供的範本。 此資料夾結構會組織 hello 檔案包含程式碼進行資料探索和擷取特徵，並會記錄模型反覆項目。 這些範本可讓您更容易為其他人所完成的小組成員 toounderstand 工作及新成員 tooteams tooadd。 它是簡單 tooview 和更新文件範本 markdown 格式。 重要的問題與用於每個專案 tooinsure hello 問題妥善定義，而且該交付項目符合預期的 hello 品質範本 tooprovide 檢查清單。 範例包括：
 
-- 記錄商務問題和專案範圍的專案許可
-- 記錄原始資料結構和統計資料的資料報告
-- 記錄衍生功能的模型報告
+- 專案教授 toodocument hello 商務問題和 hello 專案的範圍
+- 資料會報告 toodocument hello 結構和 hello 原始資料的統計資料
+- 模型報表 toodocument hello 衍生功能
 - 模型效能計量，例如 ROC 曲線或 MSE
 
 
 ![TDSP 目錄](./media/data-science-process-overview/tdsp-dir-structure.png)
 
-可以從 [Github](https://github.com/Azure/Azure-TDSP-ProjectTemplate) 複製目錄結構。
+hello 目錄結構可以被複製從[Github](https://github.com/Azure/Azure-TDSP-ProjectTemplate)。
 
 ## <a name="infrastructure-and-resources-for-data-science-projects"></a>資料科學專案的基礎結構和資源
 
@@ -92,7 +92,7 @@ TDSP 提供管理共用分析和儲存體基礎結構的建議，例如：
 - 巨量資料 (Hadoop 或 Spark) 叢集 
 - 機器學習服務。 
 
-分析和儲存體基礎結構可以在雲端，也可以是內部部署。 這裡儲存著原始資料集和處理後的資料集。 這個基礎架構能夠進行可重現的分析。 它也可避免重複，重複可能會導致不一致和不必要的基礎結構成本。 提供的工具可用來佈建和追蹤共用的資源，並允許每個小組成員安全地連線到這些資源。 讓專案成員建立一致的運算環境也是個不錯的做法。 不同的小組成員可以複寫和驗證實驗。
+hello 分析和儲存體基礎結構可以在 hello 雲端或內部部署中。 這裡儲存著原始資料集和處理後的資料集。 這個基礎架構能夠進行可重現的分析。 它也可避免重複，這可能會導致 tooinconsistencies 及不必要的基礎結構成本。 工具會提供 tooprovision hello 共用的資源、 追蹤，並允許每個小組成員 tooconnect toothose 資源安全。 讓專案成員建立一致的運算環境也是個不錯的做法。 不同的小組成員可以複寫和驗證實驗。
 
 以下是小組處理多個專案並共用各種雲端分析基礎結構元件的範例。
 
@@ -101,9 +101,9 @@ TDSP 提供管理共用分析和儲存體基礎結構的建議，例如：
 
 ## <a name="tools-and-utilities-for-project-execution"></a>專案執行的工具和公用程式
 
-在大部分的組織中引進流程是相當有挑戰性。 對於實作資料科學流程和生命週期所提供的工具有助於降低採用的障礙，並提升採用的一致性。 TDSP 提供一組初始的工具和指令碼，可供團隊快速採用 TDSP。 這也有助於資料科學開發週期中部分常見的工作自動進行，例如資料探索和基準模型。 提供妥善定義的結構，以供個人將共用的工具和公用程式貢獻到小組共用的程式碼儲存機制。 小組或組織內的其他專案接著即可使用這些資源。 TDSP 也計畫向整個社群貢獻工具和公用程式。 可以從 [Github](https://github.com/Azure/Azure-TDSP-Utilities) 複製 TDSP 公用程式。
+在大部分的組織中引進流程是相當有挑戰性。 所提供的工具 tooimplement hello 資料科學程序和生命週期協助較低的 hello 障礙 tooand 增加其採用的 hello 一致性。 TDSP 在團隊內 TDSP toojump 開始採用提供一組初始的工具和指令碼。 這也有助於將部分 hello hello 資料科學生命週期，例如資料探索和基準模型中的常見工作自動化。 提供的個人 toocontribute 共用工具和公用程式到他們的小組共用的程式碼儲存機制，沒有正確定義的結構。 這些資源可以加以利用 hello 小組或 hello 組織內的其他專案。 TDSP 也計劃工具和公用程式 toohello 整個社群的 tooenable hello 比重。 hello TDSP 公用程式可以複製從[Github](https://github.com/Azure/Azure-TDSP-Utilities)。
 
 
 ## <a name="next-steps"></a>後續步驟
 
-[小組資料科學流程：角色和工作](https://github.com/Azure/Microsoft-TDSP/blob/master/Docs/roles-tasks.md)概述依據此流程進行標準化的資料科學團隊之中的重要人員角色及其相關工作。 
+[小組資料科學程序： 角色和工作](https://github.com/Azure/Microsoft-TDSP/blob/master/Docs/roles-tasks.md)概述 hello 金鑰的人員角色，以及如需這個程序標準化資料科學團隊及其相關的工作。 

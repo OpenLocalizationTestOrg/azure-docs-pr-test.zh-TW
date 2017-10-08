@@ -1,6 +1,6 @@
 ---
-title: "使用 Python 來管理 Azure Data Lake Analytics | Microsoft Docs"
-description: "了解如何使用 Python 來建立 Data Lake Store 帳戶及提交作業。 "
+title: "Azure Data Lake Analytics aaaManage 使用 Python |Microsoft 文件"
+description: "了解如何 toouse Python toocreate 資料湖存放區帳戶，並提交工作。 "
 services: data-lake-analytics
 documentationcenter: 
 author: matt1883
@@ -14,31 +14,31 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: saveenr
-ms.openlocfilehash: 31326a32f8748e6cfb8bfe24cda46c511ab59352
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3c0fff155db7c4fd4e84c2562816995eb156be16
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-data-lake-analytics-using-python"></a>使用 Python 來管理 Azure Data Lake Analytics
 
 ## <a name="python-versions"></a>Python 版本
 
 * 使用 64 位元版 Python。
-* 您可以使用在 **[Python.org 下載](https://www.python.org/downloads/)** \(英文\) 找到的標準 Python 散發套件。 
-* 許多開發人員發現使用 **[Anaconda Python 散發套件](https://www.continuum.io/downloads)** \(英文\) 相當便利。  
-* 本文是使用來自標準 Python 散發套件的 Python 3.6 版來撰寫的
+* 您可以使用 hello 位於標準 Python 發佈 **[Python.org 下載](https://www.python.org/downloads/)**。 
+* 許多開發人員認為它方便 toouse hello  **[Anaconda Python 發佈](https://www.continuum.io/downloads)**。  
+* 使用 Python 版本 3.6 hello 標準 Python 發佈撰寫本文時
 
 ## <a name="install-azure-python-sdk"></a>安裝 Azure Python SDK
 
-請安裝下列模組：
+安裝 hello 下列模組：
 
-* **azure-mgmt-resource** 模組包含適用於 Active Directory 等等的其他 Azure 模組。
-* **azure-mgmt-datalake-store** 模組包含 Azure Data Lake Store 帳戶管理作業。
-* **azure-datalake-store** 模組包含 Azure Data Lake Store 檔案系統作業。 
-* **azure-datalake-analytics** 模組包含 Azure Data Lake Analytics 作業。 
+* hello **azure mgmt 資源**模組包含 Active Directory 等其他 Azure 模組。
+* hello **azure mgmt-datalake 市集**模組包含 hello Azure Data Lake Store 帳戶的管理作業。
+* hello **azure datalake 市集**模組包含 hello Azure Data Lake Store 檔案系統作業。 
+* hello **azure datalake 分析**模組包含 hello Azure Data Lake Analytics 的作業。 
 
-請先執行下列命令，以確保您擁有最新的 `pip`：
+首先，請確定您有最新的 hello`pip`藉由執行下列命令的 hello:
 
 ```
 python -m pip install --upgrade pip
@@ -46,7 +46,7 @@ python -m pip install --upgrade pip
 
 本文件是使用 `pip version 9.0.1` 撰寫的。
 
-使用下列 `pip` 命令以從命令列安裝新模組：
+使用下列 hello`pip`命令 tooinstall hello 模組從 hello commandline:
 
 ```
 pip install azure-mgmt-resource
@@ -57,7 +57,7 @@ pip install azure-mgmt-datalake-analytics
 
 ## <a name="create-a-new-python-script"></a>建立新的 Python 指令碼
 
-將下列程式碼貼到指令碼中：
+貼上下列程式碼到 hello 指令碼中的 hello:
 
 ```python
 ## Use this only for Azure AD service-to-service authentication
@@ -92,7 +92,7 @@ from azure.mgmt.datalake.analytics.catalog import DataLakeAnalyticsCatalogManage
 import logging, getpass, pprint, uuid, time
 ```
 
-請執行此指令碼以確認可將模組匯入。
+執行這個指令碼 tooverify 模組匯入該 hello。
 
 ## <a name="authentication"></a>驗證
 
@@ -103,7 +103,7 @@ import logging, getpass, pprint, uuid, time
 ### <a name="interactive-user-authentication-with-a-device-code"></a>使用裝置代碼進行互動式使用者驗證
 
 ```python
-user = input('Enter the user to authenticate with that has permission to subscription: ')
+user = input('Enter hello user tooauthenticate with that has permission toosubscription: ')
 password = getpass.getpass()
 credentials = UserPassCredentials(user, password)
 ```
@@ -120,7 +120,7 @@ credentials = ServicePrincipalCredentials(client_id = 'FILL-IN-HERE', secret = '
 
 ## <a name="common-script-variables"></a>通用指令碼變數
 
-以下是範例中使用的變數。
+Hello 範例中使用這些變數。
 
 ```python
 subid= '<Azure Subscription ID>'
@@ -130,7 +130,7 @@ adls = '<Azure Data Lake Store Account Name>'
 adla = '<Azure Data Lake Analytics Account Name>'
 ```
 
-## <a name="create-the-clients"></a>建立用戶端
+## <a name="create-hello-clients"></a>建立 hello 用戶端
 
 ```python
 resourceClient = ResourceManagementClient(credentials, subid)
@@ -185,7 +185,7 @@ script = """
         ) AS 
               D( customer, amount );
 OUTPUT @a
-    TO "/data.csv"
+    too"/data.csv"
     USING Outputters.Csv();
 """
 
@@ -201,7 +201,7 @@ jobResult = adlaJobClient.job.create(
 )
 ```
 
-## <a name="wait-for-a-job-to-end"></a>等候工作結束
+## <a name="wait-for-a-job-tooend"></a>等候工作 tooend
 
 ```python
 jobResult = adlaJobClient.job.get(adla, jobId)
@@ -228,11 +228,11 @@ for r in recurrences:
 
 ## <a name="manage-compute-policies"></a>管理計算原則
 
-DataLakeAnalyticsAccountManagementClient 物件會提供方法，用以管理 Data Lake Analytics 帳戶的計算原則。
+hello DataLakeAnalyticsAccountManagementClient 物件提供用來管理 hello 方法計算的資料湖分析帳戶原則。
 
 ### <a name="list-compute-policies"></a>列出計算原則
 
-下列程式碼會擷取 Data Lake Analytics 帳戶的計算原則清單。
+下列程式碼的 hello 擷取 Data Lake Analytics 帳戶的計算原則的清單。
 
 ```python
 policies = adlaAccountClient.computePolicies.listByAccount(rg, adla)
@@ -242,7 +242,7 @@ for p in policies:
 
 ### <a name="create-a-new-compute-policy"></a>建立新的計算原則
 
-下列程式碼會為 Data Lake Analytics 帳戶建立新的計算原則，其中是將指定使用者可用的 AU 上限設定為 50，而將作業最低優先順序設定為 250。
+下列程式碼的 hello 建立 Data Lake Analytics 帳戶的新計算原則，設定 hello 最大澳洲可用 toohello 指定使用者 too50 和 hello 最小的工作優先權 too250。
 
 ```python
 userAadObjectId = "3b097601-4912-4d41-b9d2-78672fc2acde"
@@ -252,7 +252,7 @@ adlaAccountClient.computePolicies.createOrUpdate(rg, adla, "GaryMcDaniel", newPo
 
 ## <a name="next-steps"></a>後續步驟
 
-- 若要使用其他工具檢視同一個教學課程，請按一下頁面最上方的索引標籤選取器。
-- 若要了解 U-SQL，請參閱 [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
+- toosee hello 相同教學課程中使用其他工具中，按一下在 hello hello 頁面最上方的 hello 索引標籤選取器。
+- toolearn U-SQL，請參閱[開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
 - 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。
 

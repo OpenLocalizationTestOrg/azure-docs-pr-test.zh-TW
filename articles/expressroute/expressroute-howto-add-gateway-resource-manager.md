@@ -1,6 +1,6 @@
 ---
-title: "將虛擬網路閘道新增到 ExpressRoute 的 VNet：PowerShell：Azure | Microsoft Docs"
-description: "本文會逐步引導您完成將 VNet 閘道新增到已經建立的 ExpressRoute 的 Resource Manager VNet。"
+title: "新增虛擬網路閘道 tooa VNet expressroute: PowerShell: Azure |Microsoft 文件"
+description: "這篇文章會引導您完成新增已建立 ExpressRoute 的資源管理員 VNet 的 VNet 閘道 tooan。"
 documentationcenter: na
 services: expressroute
 author: charwen
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/17/2017
 ms.author: charwen
-ms.openlocfilehash: 3aeddd03e0be548933775164ae790ba208fc13ae
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8983430b426ad7c4af766294fa16427c5e9df5c3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-virtual-network-gateway-for-expressroute-using-powershell"></a>使用 PowerShell 為 ExpressRoute 設定虛擬網路閘道
 > [!div class="op_single_selector"]
@@ -30,14 +30,14 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-本文將逐步引導您完成為既存的 VNet 新增虛擬網路 (VNet) 閘道、調整該閘道大小及移除該閘道的步驟。 此組態的步驟是使用 Resource Manager 部署模型來建立的 VNet 所專用，而在 ExpressRoute 組態中也將使用該部署模型。 如需有關 ExpressRoute 之虛擬網路閘道和閘道組態設定的詳細資訊，請參閱[關於 ExpressRoute 的虛擬網路閘道](expressroute-about-virtual-network-gateways.md)。 
+本文將引導您完成 hello 步驟 tooadd、 調整大小，並移除虛擬網路 (VNet) 閘道預先存在的 vnet。 此組態的 hello 步驟是特別針對使用將用於 ExpressRoute 組態中的 hello Resource Manager 部署模型所建立的 Vnet。 如需有關 ExpressRoute 之虛擬網路閘道和閘道組態設定的詳細資訊，請參閱[關於 ExpressRoute 的虛擬網路閘道](expressroute-about-virtual-network-gateways.md)。 
 
 
 ## <a name="before-beginning"></a>開始之前
-確認您已安裝最新的 Azure PowerShell Cmdlet。 如果您尚未安裝最新的 Cmdlet，您必須先安裝，然後才能開始進行組態步驟。 如需詳細資訊，請參閱[安裝和設定 Azure PowerShell](/powershell/azure/overview)。
+請確認您已安裝最新 Azure PowerShell cmdlet hello。 如果您尚未安裝 hello 最新的 cmdlet，您需要 toodo 如此之前開始 hello 組態步驟。 如需詳細資訊，請參閱[安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
 [!INCLUDE [expressroute-gateway-rm-ps](../../includes/expressroute-gateway-rm-ps-include.md)]
 
 ## <a name="next-steps"></a>後續步驟
-建立 VNet 閘道之後，您可以將 VNet 連結至 ExpressRoute 循環。 請參閱 [將虛擬網路連結到 ExpressRoute 循環](expressroute-howto-linkvnet-arm.md)。
+建立 hello VNet 閘道之後，您可以連結您的 VNet tooan ExpressRoute 電路。 請參閱[連結 ExpressRoute 電路的虛擬網路 tooan](expressroute-howto-linkvnet-arm.md)。
 

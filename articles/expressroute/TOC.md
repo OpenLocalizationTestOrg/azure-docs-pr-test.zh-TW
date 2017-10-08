@@ -13,7 +13,7 @@
 ## [工作流程](expressroute-workflows.md)
 ## [路由需求](expressroute-routing.md)
 ## [QoS 需求](expressroute-qos.md)
-## [關於將線路從傳統移至 Resource Manager](expressroute-move.md)
+## [關於從傳統 tooResource 管理員移動電路](expressroute-move.md)
 
 # 作法
 ## 建立及修改電路
@@ -24,7 +24,7 @@
 ### [Azure 入口網站](expressroute-howto-routing-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-routing-arm.md)
 ### [Azure CLI](howto-routing-cli.md)
-## 將虛擬網路連結到 ExpressRoute 線路
+## 連結虛擬網路 tooan ExpressRoute 電路
 ### [Azure 入口網站](expressroute-howto-linkvnet-portal-resource-manager.md)
 ### [PowerShell](expressroute-howto-linkvnet-arm.md)
 ### [Azure CLI](howto-linkvnet-cli.md)
@@ -35,8 +35,8 @@
 ## 針對 Microsoft 對等互連設定路由篩選
 ### [Azure 入口網站](how-to-routefilter-portal.md)
 ### [PowerShell](how-to-routefilter-powershell.md)
-## [將電路從傳統移到 Resource Manager](expressroute-howto-move-arm.md)
-## [將關聯的虛擬網路從傳統移至 Resource Manager](expressroute-migration-classic-resource-manager.md)
+## [從傳統 tooResource 管理員移動的循環](expressroute-howto-move-arm.md)
+## [從傳統 tooResource Manager 移轉相關聯的虛擬網路](expressroute-migration-classic-resource-manager.md)
 ## 設定 ExpressRoute 的路由器
 ### [設定路由器](expressroute-config-samples-routing.md)
 ### [NAT 的路由設定範例](expressroute-config-samples-nat.md)
@@ -75,12 +75,12 @@
 ## [SLA](https://azure.microsoft.com/support/legal/sla/)
 ## [訂用帳戶與服務限制](../azure-subscription-service-limits.md?toc=%2fazure%2fexpressroute%2ftoc.json)
 ## [影片](https://azure.microsoft.com/documentation/videos/index/?services=expressroute)
-### [將虛擬網路閘道連接到線路](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-connection-between-your-vpn-gateway-and-expressroute-circuit/)
+### [連接虛擬網路閘道 tooa 循環](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-connection-between-your-vpn-gateway-and-expressroute-circuit/)
 ### [為 ExpressRoute 建立虛擬網路](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-virtual-network/)
 ### [為 ExpressRoute 建立虛擬網路閘道](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-a-vpn-gateway-for-your-virtual-network/)
 ### [建立 ExpressRoute 線路](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-an-expressroute-circuit/)
 ### [開發用於連線的網路基礎結構](https://go.microsoft.com/fwlink/p/?LinkId=615124)
-### [如何為您的電路設定私用對等](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-private-peering-for-your-expressroute-circuit/)
+### [如何為您的電路向上私人互連 tooset](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-private-peering-for-your-expressroute-circuit/)
 ### [混合式合作關係：啟用內部部署案例](https://go.microsoft.com/fwlink/p/?LinkId=615125)
 ### [為您的電路設定 Microsoft 對等](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-microsoft-peering-for-your-expressroute-circuit/)
 ### [為您的電路設定公用對等](https://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-set-up-azure-public-peering-for-your-expressroute-circuit/)

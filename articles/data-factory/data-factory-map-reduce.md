@@ -1,6 +1,6 @@
 ---
-title: "從 Azure Data Factory 叫用 MapReduce 程式"
-description: "了解如何從 Azure Data Factory，在 Azure HDInsight 叢集上執行 MapReduce 程式以處理資料。"
+title: "aaaInvoke 從 Azure Data Factory 的 MapReduce 程式"
+description: "了解 Azure HDInsight 上執行 MapReduce 程式 tooprocess 資料從 Azure data factory 的叢集化。"
 services: data-factory
 documentationcenter: 
 author: sharonlo101
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: shlo
-ms.openlocfilehash: 55fc2196cb4ba50eced4a463914ae188217d0fed
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 448ef93a10bd97e7ecd4be4f04f88f8a05decc1d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="invoke-mapreduce-programs-from-data-factory"></a>從 Data Factory 叫用 MapReduce 程式
 > [!div class="op_single_selector" title1="Transformation Activities"]
@@ -33,30 +33,30 @@ ms.lasthandoff: 08/18/2017
 > * [Data Lake Analytics U-SQL 活動](data-factory-usql-activity.md)
 > * [.NET 自訂活動](data-factory-use-custom-activities.md)
 
-Data Factory [管線](data-factory-create-pipelines.md)中的 HDInsight MapReduce 活動會在[您自己](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)或[隨選](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)的 Windows/Linux 架構 HDInsight 叢集上執行 MapReduce 程式。 本文是根據 [資料轉換活動](data-factory-data-transformation-activities.md) 一文，它呈現資料轉換和支援的轉換活動的一般概觀。
+hello Data Factory 中的 HDInsight MapReduce 活動[管線](data-factory-create-pipelines.md)上執行 MapReduce 程式[自己](data-factory-compute-linked-services.md#azure-hdinsight-linked-service)或[隨](data-factory-compute-linked-services.md#azure-hdinsight-on-demand-linked-service)Windows/linux 的 HDInsight 叢集。 這篇文章是根據 hello[資料轉換活動](data-factory-data-transformation-activities.md)發行項，其呈現的資料轉換和支援的 hello 轉換活動的一般概觀。
 
 > [!NOTE] 
-> 如果您是 Azure Data Factory 的新手，請在閱讀本文章之前閱讀 [Azure Data Factory 簡介](data-factory-introduction.md)，以及進行教學課程：[建置您的第一個資料管線](data-factory-build-your-first-pipeline.md)。  
+> 如果您是新 tooAzure Data Factory，閱讀[簡介 tooAzure Data Factory](data-factory-introduction.md)和執行 hello 教學課程：[建置您的第一個資料管線](data-factory-build-your-first-pipeline.md)閱讀本文之前。  
 
 ## <a name="introduction"></a>簡介
-Azure Data Factory 中的「管線」會使用連結的計算服務，來處理連結的儲存體服務中的資料。 它包含一系列活動，其中每個活動都會執行特定的處理作業。 本文說明如何使用「HDInsight MapReduce 活動」。
+Azure Data Factory 中的「管線」會使用連結的計算服務，來處理連結的儲存體服務中的資料。 它包含一系列活動，其中每個活動都會執行特定的處理作業。 本文說明如何使用 hello HDInsight MapReduce 活動。
 
 若要了解如何使用 HDInsight 的 Pig 和 Hive 活動，在 Windows/Linux 型 HDInsight 叢集上從管線執行 Pig/Hive 指令碼，請參閱 [Pig](data-factory-pig-activity.md) 和 [Hive](data-factory-hive-activity.md)。 
 
 ## <a name="json-for-hdinsight-mapreduce-activity"></a>「HDInsight MapReduce 活動」的 JSON
-在 HDInsight 活動的 JSON 定義中： 
+在 hello hello HDInsight 活動的 JSON 定義： 
 
-1. 將 **activity** 的 **type** 設為 **HDInsight**。
-2. 指定 **className** 屬性的類別名稱。
-3. 為 **jarFilePath** 屬性指定包含檔案名稱的 JAR 檔案路徑。
-4. 為 **jarLinkedService** 屬性指定連結服務，此連結服務參考包含 JAR 檔案的 Azure Blob 儲存體。   
-5. 在 **arguments** 區段中，為 MapReduce 程式指定所有引數。 在執行階段，您會看到幾個來自 MapReduce 架構的額外引數 (例如：mapreduce.job.tags)。 若要區分您的引數與 MapReduce 引數，請考慮同時使用選項和值作為引數，如下列範例所示 (-s、--input、--output 等等是後面接著其值的選項)。
+1. 設定 hello**類型**的 hello**活動**太**HDInsight**。
+2. 指定 hello hello 類別名稱**className**屬性。
+3. 指定 hello 路徑 toohello JAR 檔包括檔案名稱 hello **jarFilePath**屬性。
+4. 指定參照 toohello 包含 hello JAR 檔案的 Azure Blob 儲存體之連結的 hello 服務**jarLinkedService**屬性。   
+5. 指定 hello MapReduce 程式的任何引數中 hello**引數**> 一節。 在執行階段，您會看到幾個額外的引數 (例如： mapreduce.job.tags) 從 hello MapReduce 架構。 toodifferentiate hello MapReduce 引數時，您的引數，請考慮使用選項和值做為引數中 hello 下列範例所示 (-s，-輸入、--輸出等，是後面緊跟著其值的選項)。
 
     ```JSON   
     {
         "name": "MahoutMapReduceSamplePipeline",
         "properties": {
-            "description": "Sample Pipeline to Run a Mahout Custom Map Reduce Jar. This job calcuates an Item Similarity Matrix to determine the similarity between 2 items",
+            "description": "Sample Pipeline tooRun a Mahout Custom Map Reduce Jar. This job calcuates an Item Similarity Matrix toodetermine hello similarity between 2 items",
             "activities": [
                 {
                     "type": "HDInsightMapReduce",
@@ -97,7 +97,7 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
                         "interval": 1
                     },
                     "name": "MahoutActivity",
-                    "description": "Custom Map Reduce to generate Mahout result",
+                    "description": "Custom Map Reduce toogenerate Mahout result",
                     "linkedServiceName": "HDInsightLinkedService"
                 }
             ],
@@ -106,16 +106,16 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
         }
     }
     ```
-您可以使用「HDInsight MapReduce 活動」，在 HDInsight 叢集上執行任何 MapReduce Jar 檔案。 在下列管線的範例 JSON 定義中，已設定讓「HDInsight 活動」執行 Mahout JAR 檔案。
+您可以使用 hello HDInsight MapReduce 活動 toorun 在 HDInsight 叢集上的任何 MapReduce jar 檔案。 在 hello 管線，hello HDInsight 活動的下列 JSON 定義範例會設定 toorun 砲象兵 JAR 檔案。
 
 ## <a name="sample-on-github"></a>GitHub 上的範例
-您可以從 [GitHub 上的 Data Factory 範例](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/JSON/MapReduce_Activity_Sample)下載使用「HDInsight MapReduce 活動」的範例。  
+您可以下載範例，以使用 hello HDInsight MapReduce 活動從： [GitHub 上的資料處理站範例](https://github.com/Azure/Azure-DataFactory/tree/master/Samples/JSON/MapReduce_Activity_Sample)。  
 
-## <a name="running-the-word-count-program"></a>執行字數統計程式
-本範例中的管線會在 Azure HDInsight 叢集上執行字數統計 Map/Reduce 程式。   
+## <a name="running-hello-word-count-program"></a>執行 hello 字數統計程式
+這個範例中的 hello 管線執行 Azure HDInsight 叢集上的 hello 字數統計 Map/Reduce 程式。   
 
 ### <a name="linked-services"></a>連結的服務
-首先，建立連結的服務，將 Azure HDInsight 叢集使用的 Azure 儲存體連結到  Azure Data Factory。 如果您複製/貼上下列程式碼，請記得使用 Azure 儲存體的名稱和金鑰來取代**帳戶名稱**和**帳戶金鑰**。 
+首先，您可以建立連結的服務 toolink hello Azure 儲存體，以供 hello Azure HDInsight 叢集的 toohello Azure data factory。 如果您複製/貼上下列程式碼的 hello，別忘了 tooreplace**帳戶名稱**和**帳戶金鑰**hello 名稱與您 Azure 儲存體的索引鍵。 
 
 #### <a name="azure-storage-linked-service"></a>Azure 儲存體連結服務
 
@@ -132,7 +132,7 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 ```
 
 #### <a name="azure-hdinsight-linked-service"></a>Azure HDInsight 連結服務
-接著，建立連結的服務，將 Azure HDInsight 叢集連結到 Azure Data Factory。 如果您複製/貼上下列程式碼，請使用您的 HDInsight 叢集的名稱來取代 **HDInsight 叢集名稱** ，並變更使用者名稱和密碼值。   
+接下來，您建立連結的服務 toolink Azure HDInsight 叢集 toohello Azure data factory。 如果您複製/貼上下列程式碼的 hello，取代**HDInsight 叢集名稱**hello 名稱為您的 HDInsight 叢集和變更的使用者名稱和密碼值。   
 
 ```JSON
 {
@@ -151,7 +151,7 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 
 ### <a name="datasets"></a>資料集
 #### <a name="output-dataset"></a>輸出資料集
-此範例中的管線不需要取得任何輸入。 您需指定「HDInsight MapReduce 活動」的輸出資料集。 這個資料集只是一個驅動管線排程所需的虛設資料集。  
+這個範例中的 hello 管線不接受任何輸入。 您指定 hello HDInsight MapReduce 活動的輸出資料集。 此資料集是只空資料集是必要的 toodrive hello 管線的排程。  
 
 ```JSON
 {
@@ -176,23 +176,23 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 ```
 
 ### <a name="pipeline"></a>管線
-此範例中的管線只含有一個類型為 HDInsightMapReduce 的活動。 JSON 中的幾個重要屬性如下： 
+在此範例中的 hello 管線有只有一個活動的型別： HDInsightMapReduce。 Hello hello JSON 中的重要屬性包括： 
 
 | 屬性 | 注意事項 |
 |:--- |:--- |
-| 類型 |類型必須設為 **HDInsightMapReduce**。 |
-| className |類別的名稱是： **wordcount** |
-| jarFilePath |包含類別的 Jar 檔案路徑。 如果您複製/貼上下列程式碼，請記得變更叢集的名稱。 |
-| jarLinkedService |包含 Jar 檔案的 Azure 儲存體連結服務。 這個連結服務會參考與 HDInsight 叢集關聯的儲存體。 |
-| arguments |字數統計程式會採用輸入和輸出兩個引數。 輸入檔為 davinci.txt 檔案。 |
-| frequency/interval |這些屬性的值符合輸出資料集。 |
-| linkedServiceName |表示您先前建立的 HDInsight 連結服務。 |
+| 類型 |hello 類型必須設定太**HDInsightMapReduce**。 |
+| className |Hello 類別名稱是： **wordcount** |
+| jarFilePath |路徑包含 hello 類別 toohello jar 檔案。 如果您複製/貼上下列程式碼的 hello，別忘了 toochange hello hello 叢集名稱。 |
+| jarLinkedService |Azure 儲存體連結服務，其中包含 hello jar 檔案。 這項連結的服務是指 toohello hello HDInsight 叢集相關聯的存放裝置。 |
+| arguments |hello wordcount 程式會採用兩個引數、 輸入和輸出。 hello 輸入的檔是 hello 而 davinci.txt 檔案。 |
+| frequency/interval |這些屬性的 hello 值符合 hello 輸出資料集。 |
+| linkedServiceName |是指您稍早建立的 toohello HDInsight 連結的服務。 |
 
 ```JSON
 {
     "name": "MRSamplePipeline",
     "properties": {
-        "description": "Sample Pipeline to Run the Word Count Program",
+        "description": "Sample Pipeline tooRun hello Word Count Program",
         "activities": [
             {
                 "type": "HDInsightMapReduce",
@@ -230,7 +230,7 @@ Azure Data Factory 中的「管線」會使用連結的計算服務，來處理�
 ```
 
 ## <a name="run-spark-programs"></a>執行 Spark 程式
-您可以使用 MapReduce 活動，在 HDInsight Spark 叢集上執行 Spark 程式。 如需詳細資訊，請參閱 [從 Azure Data Factory 叫用 Spark 程式](data-factory-spark.md) 。  
+您可以使用 MapReduce 活動 toorun Spark 程式 HDInsight Spark 叢集上。 如需詳細資訊，請參閱 [從 Azure Data Factory 叫用 Spark 程式](data-factory-spark.md) 。  
 
 [developer-reference]: http://go.microsoft.com/fwlink/?LinkId=516908
 [cmdlet-reference]: http://go.microsoft.com/fwlink/?LinkId=517456

@@ -1,6 +1,6 @@
 ---
-title: "從 SQL Server 來回移動資料 | Microsoft Docs"
-description: "了解如何使用 Azure Data Factory，從內部部署或 Azure VM 中的 SQL Server 資料庫來回移動資料。"
+title: "從 SQL Server aaaMove 資料 tooand |Microsoft 文件"
+description: "了解有關如何 toomove 資料至 azure 或從 SQL Server 資料庫也就是在內部部署或 Azure VM 使用 Azure Data Factory 中。"
 services: data-factory
 documentationcenter: 
 author: linda33wj
@@ -14,66 +14,66 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/09/2017
 ms.author: jingwang
-ms.openlocfilehash: 9cd2077d897631457925cda5ef5e6df3c0c33177
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f0cccf56a670e62ec893d75052a81eb26d562050
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-data-to-and-from-sql-server-on-premises-or-on-iaas-azure-vm-using-azure-data-factory"></a>使用 Azure Data Factory 從 SQL Server 內部部署或 IaaS (Azure VM) 上來回移動資料
-本文說明如何使用 Azure Data Factory 中的「複製活動」，將資料移進/移出內部部署 SQL Server 資料庫。 本文是根據[資料移動活動](data-factory-data-movement-activities.md)一文，該文提供使用複製活動來移動資料的一般概觀。 
+# <a name="move-data-tooand-from-sql-server-on-premises-or-on-iaas-azure-vm-using-azure-data-factory"></a>移動資料 tooand 從 SQL Server 內部或 IaaS (Azure VM) 上使用 Azure Data Factory
+本文說明如何 toouse hello Azure Data Factory toomove 資料從內部部署 SQL Server 資料庫中的複製活動。 它是在 hello 基礎[資料移動活動](data-factory-data-movement-activities.md)文件： hello 複製活動會提供資料移動的一般概觀。 
 
 ## <a name="supported-scenarios"></a>支援的案例
-您可以**從 SQL Server 資料庫**將資料複製到下列資料存放區：
+您可以將資料複製**從 SQL Server 資料庫**toohello 下列資料存放區：
 
 [!INCLUDE [data-factory-supported-sink](../../includes/data-factory-supported-sinks.md)]
 
-您可以從下列資料存放區將資料複製**到 SQL Server 資料庫**：
+您可以將資料複製下列資料存放區的 hello **tooa SQL Server 資料庫**:
 
 [!INCLUDE [data-factory-supported-sources](../../includes/data-factory-supported-sources.md)]
 
 ## <a name="supported-sql-server-versions"></a>支援的 SQL Server 版本
-這個 SQL Server 連接器支援使用 SQL 驗證和 Windows 驗證，在裝載於內部部署或在 Azure IaaS 中的下列版本個體間往返複製資料︰SQL Server 2016、SQL Server 2014、SQL Server 2012、SQL Server 2008 R2、SQL Server 2008、SQL Server 2005
+複製資料，從這個 SQL Server 連接器支援 / toohello 下列版本的執行個體裝載內部或在使用 SQL 驗證和 Windows 驗證的 Azure IaaS 中： SQL Server 2016、 SQL Server 2014、 SQL Server 2012、 SQL Server 2008 R2、 SQLServer 2008、 SQL Server 2005
 
 ## <a name="enabling-connectivity"></a>啟用連線
-與裝載於內部部署或 Azure IaaS (基礎結構即為服務) VM 中的 SQL Server 連線所需的概念和步驟都相同。 在這兩種情況下，您都需要使用「資料管理閘道」來進行連線。
+hello 概念及所需的 Vm （基礎結構做為服務） 連線與 SQL Server 裝載內部或在 Azure IaaS 中的步驟是 hello 相同。 在這兩種情況下，您需要連線 toouse 資料管理閘道器。
 
-請參閱 [在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 一文來了解資料管理閘道和設定閘道的逐步指示。 設定閘道器執行個體是與 SQL Server 連線的必要條件。
+請參閱[在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)文章 toolearn 有關資料管理閘道器和 hello 閘道設定的逐步指示。 設定閘道器執行個體是與 SQL Server 連線的必要條件。
 
-雖然您可以將閘道安裝在與 SQL Server 相同的內部部署機器或雲端 VM 執行個體上來獲得較佳的效能，但仍建議您將它們安裝在個別的機器上。 將閘道與 SQL Server 置於個別的機器上可降低發生資源競爭的情況。
+您可以安裝閘道時 hello 相同上內部機器或雲端的 VM 執行個體為 SQL Server hello 以提升效能，我們建議您安裝它們在不同電腦上。 在不同電腦上擁有 hello 閘道和 SQL Server 會減少資源競爭。
 
 ## <a name="getting-started"></a>開始使用
 您可以建立內含複製活動的管線，使用不同的工具/API 將資料移進/移出內部部署 SQL Server 資料庫。
 
-若要建立管線，最簡單的方式就是使用**複製精靈**。 如需使用複製資料精靈建立管線的快速逐步解說，請參閱 [教學課程︰使用複製精靈建立管線](data-factory-copy-data-wizard-tutorial.md) 。
+最簡單方式 toocreate hello 管線為 toouse hello**複製精靈**。 請參閱[教學課程： 建立管線，使用複製精靈](data-factory-copy-data-wizard-tutorial.md)快速逐步解說中建立管線中使用 hello 複製資料精靈 」。
 
-您也可以使用下列工具來建立管線︰**Azure 入口網站**、**Visual Studio**、**Azure PowerShell**、**Azure Resource Manager 範本**、**.NET API** 及 **REST API**。 如需建立內含複製活動之管線的逐步指示，請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
+您也可以使用下列工具 toocreate 管線 hello: **Azure 入口網站**， **Visual Studio**， **Azure PowerShell**， **Azure Resource Manager 範本**， **.NET API**，和**REST API**。 請參閱[複製活動教學課程](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)的逐步指示 toocreate 具有複製活動的管線。 
 
-不論您是使用工具還是 API，都需執行下列步驟來建立將資料從來源資料存放區移到接收資料存放區的管線： 
+無論您是使用 hello 工具或 Api，會執行下列步驟 toocreate 移動來源資料中的資料存放區 tooa 接收資料存放區的管線的 hello: 
 
 1. 建立 **Data Factory**。 資料處理站可包含一或多個管線。 
-2. 建立**連結服務**，將輸入和輸出資料存放區連結到資料處理站。 例如，如果您從 SQL Server 資料庫將資料複製到 Azure Blob 儲存體，您會建立兩個連結服務，將 SQL Server 資料庫和 Azure 儲存體帳戶連結至資料處理站。 有關 SQL Server 資料庫專屬的連結服務屬性，請參閱[連結服務屬性](#linked-service-properties)一節。 
-3. 建立**資料集**，代表複製作業的輸入和輸出資料。 在上一個步驟所述的範例中，您會建立資料集來指定 SQL Server 資料庫中包含輸入資料的 SQL 資料表。 您還會建立另一個資料集來指定 blob 容器和資料夾，以保存從 SQL Server 資料庫複製的資料。 有關 SQL Server 資料庫專屬的資料集屬性，請參閱[資料集屬性](#dataset-properties)一節。
-4. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 在稍早所述的範例中，您使用 SqlSource 作為來源，以及使用 BlobSink 作為複製活動的接收器。 同樣地，如果您是從 Azure Blob 儲存體複製到 SQL Server 資料庫，則需要在複製活動中使用 BlobSource 和 SqlSink。 有關 SQL Server 資料庫專屬的複製活動屬性，請參閱[複製活動屬性](#copy-activity-properties)一節。 如需有關如何使用資料存放區作為來源或接收器的詳細資訊，請在上一節按一下適用於您的資料存放區的連結。 
+2. 建立**連結的服務**toolink 輸入和輸出資料存放區 tooyour 資料 factory。 例如，如果您從 Azure blob 儲存體的 SQL Server 資料庫 tooan 複製資料，您建立兩個連結的服務 toolink 您 SQL Server 資料庫和 Azure 儲存體帳戶 tooyour 資料 factory。 對於特定 tooSQL Server 資料庫的連結的服務屬性，請參閱[連結服務屬性](#linked-service-properties)> 一節。 
+3. 建立**資料集**toorepresent 輸入和輸出 hello 的資料複製作業。 在 hello hello 最後一個步驟中所述的範例，您可以建立資料集 toospecify hello SQL 資料表包含 hello 輸入的資料在 SQL Server 資料庫中。 建立另一個資料集 toospecify hello blob 容器及保存 hello 資料 hello 資料夾 hello 從 SQL Server 資料庫複製。 對於特定 tooSQL Server 資料庫的資料集屬性，請參閱[資料集屬性](#dataset-properties)> 一節。
+4. 建立**管線**，其中含有以一個資料集作為輸入、一個資料集作為輸出的複製活動。 在先前所述 hello 範例中，您使用 SqlSource 作為來源和 BlobSink 做為接收器 hello 複製活動。 同樣地，如果您要從 Azure Blob 儲存體 tooSQL 伺服器資料庫複製，則使用 BlobSource 和 SqlSink 的 hello 複製活動。 複製活動是特定 tooSQL 伺服器資料庫的內容，請參閱[複製活動屬性](#copy-activity-properties)> 一節。 如需如何 toouse 的資料存放區做為來源或接收的詳細資訊，按一下 hello hello 資料存放區上一節中的連結。 
 
-使用精靈時，精靈會自動為您建立這些 Data Factory 實體 (已連結的服務、資料集及管線) 的 JSON 定義。 使用工具/API (.NET API 除外) 時，您需使用 JSON 格式來定義這些 Data Factory 實體。  如需相關範例，其中含有用來將資料複製到內部部署 SQL Server 資料庫 (或從內部部署 SQL Server 資料庫複製資料) 之 Data Factory 實體的 JSON 定義，請參閱本文的 [JSON 範例](#json-examples-for-copying-data-from-and-to-sql-server)一節。 
+當您使用 hello 精靈時，會自動為您建立這些 Data Factory 實體 （連結的服務、 資料集和 hello 管線） 的 JSON 定義。 當您使用 工具/Api （除了.NET 應用程式開發介面） 時，您會定義這些 Data Factory 實體使用 hello JSON 格式。  如需使用的 toocopy 資料，從內部部署 SQL Server 資料庫的 Data Factory 實體的 JSON 定義的範例，請參閱[JSON 範例](#json-examples-for-copying-data-from-and-to-sql-server)本文一節。 
 
-下列各節提供 JSON 屬性的相關詳細資料，這些屬性是用來定義 SQL Server 特有的 Data Factory 實體： 
+hello 下列各節提供有關使用的 toodefine Data Factory 實體特定 tooSQL 伺服器的 JSON 屬性的詳細資料： 
 
 ## <a name="linked-service-properties"></a>連結服務屬性
-您可以建立 **OnPremisesSqlServer** 類型的連結服務，以將內部部署 SQL Server 資料庫連結至資料處理站。 下表提供內部部署 SQL Server 連結服務專屬 JSON 元素的描述。
+您建立連結的服務型別的**OnPremisesSqlServer** toolink 在內部部署 SQL Server 資料庫 tooa 資料 factory。 下表中的 hello 提供 JSON 項目特定 tooon 內部部署 SQL Server 連結服務的描述。
 
-下表提供 SQL Server 連結服務專屬 JSON 元素的描述。
+下表中的 hello 提供 JSON 項目特定 tooSQL 連結的伺服器服務的描述。
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 類型 |類型屬性應設為： **OnPremisesSqlServer**。 |是 |
-| connectionString |指定使用 SQL 驗證或 Windows 驗證連接至內部部署 SQL Server 資料庫所需的 connectionString 資訊。 |是 |
-| gatewayName |Data Factory 服務應該用來連接到內部部署 SQL Server 資料庫的閘道器名稱。 |是 |
+| 類型 |hello 類型屬性應該設定為： **OnPremisesSqlServer**。 |是 |
+| connectionString |指定所需的 connectionString 資訊 tooconnect toohello 在內部部署 SQL Server 資料庫使用 SQL 驗證或 Windows 驗證。 |是 |
+| gatewayName |Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello 在內部部署 SQL Server 資料庫。 |是 |
 | username |如果您使用「Windows 驗證」，請指定使用者名稱。 範例︰**domainname\\username**。 |否 |
-| password |指定您為使用者名稱所指定之使用者帳戶的密碼。 |否 |
+| password |指定 hello hello 使用者名稱所指定的使用者帳戶的密碼。 |否 |
 
-您可以使用 **New-AzureRmDataFactoryEncryptValue** Cmdlet 加密認證，並在連接字串中使用這些認證，如下列範例所示 (**EncryptedCredential** 屬性)：  
+您可以加密認證使用 hello**新增 AzureRmDataFactoryEncryptValue** cmdlet 並將其用於 hello 連接字串 hello 下列範例所示 (**EncryptedCredential**屬性):  
 
 ```JSON
 "connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
@@ -97,7 +97,7 @@ ms.lasthandoff: 07/11/2017
 ```
 **使用 Windows 驗證的 JSON**
 
-資料管理閘道會模擬指定的使用者帳戶，以連線到內部部署 SQL Server 資料庫。 
+資料管理閘道會模擬 hello 指定使用者帳戶 tooconnect toohello 在內部部署 SQL Server 資料庫。 
 
 ```json
 {
@@ -116,73 +116,73 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="dataset-properties"></a>資料集屬性
-範例中使用使用 **SqlServerTable** 類型的資料集來表示 SQL Server 資料庫中的資料表。  
+在 hello 範例中，您已使用的型別資料集**SqlServerTable** toorepresent SQL Server 資料庫中的資料表。  
 
-如需定義資料集的區段和屬性完整清單，請參閱[建立資料集](data-factory-create-datasets.md)一文。 所有資料集類型 (SQL Server、Azure Blob、Azure 資料表等) 的資料集 JSON 區段 (例如 structure、availability 及 policy) 都相似。
+區段和屬性可用來定義資料集的完整清單，請參閱 hello[建立資料集](data-factory-create-datasets.md)發行項。 所有資料集類型 (SQL Server、Azure Blob、Azure 資料表等) 的資料集 JSON 區段 (例如 structure、availability 及 policy) 都相似。
 
-每個資料集類型的 typeProperties 區段都不同，可提供資料存放區中資料的位置相關資訊。 **SqlServerTable** 類型資料集的 **typeProperties** 區段有下列屬性：
+hello typeProperties 章節是不同的資料集的每個型別，並提供 hello hello 資料存放區中的 hello 資料位置的相關資訊。 hello **typeProperties** hello 資料集的類型 > 一節**SqlServerTable**具有下列屬性的 hello:
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |SQL Server Database 執行個體中連結服務所參照的資料表或檢視名稱。 |是 |
+| tableName |參照 hello 資料表或檢視中的連結服務的 hello 的 SQL Server 資料庫執行個體的名稱。 |是 |
 
 ## <a name="copy-activity-properties"></a>複製活動屬性
-如果您要將資料從 SQL Server 資料庫移出，請將複製活動中的來源類型設定為 **SqlSource**。 同樣的，如果您要將資料移進 SQL Server 資料庫，請將複製活動中的接收器類型設定為 **SqlSink**。 本節提供 SqlSource 和 SqlSink 支援的屬性清單。
+如果您要移動的資料從 SQL Server 資料庫，您設定 hello 來源類型 hello 複製活動中太**SqlSource**。 同樣地，如果您要移動資料 tooa SQL Server 資料庫，您設定 hello 接收器類型 hello 複製活動中太**SqlSink**。 本節提供 SqlSource 和 SqlSink 支援的屬性清單。
 
-如需定義活動的區段和屬性完整清單，請參閱[建立管線](data-factory-create-pipelines.md)一文。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
+區段和屬性可用來定義活動的完整清單，請參閱 hello[建立管線](data-factory-create-pipelines.md)發行項。 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。
 
 > [!NOTE]
-> 複製活動只會採用一個輸入，而且只產生一個輸出。
+> hello 複製活動會採用只有 1 個輸入，並產生一個輸出。
 
-而活動的 typeProperties 區段中可用的屬性會隨著每個活動類型而有所不同。 就「複製活動」而言，這些屬性會根據來源和接收器的類型而有所不同。
+而 hello 活動 hello typeProperties 區段中可用的屬性會隨每個活動類型。 複製活動它們而異的來源與接收的 hello 類型。
 
 ### <a name="sqlsource"></a>SqlSource
-當複製活動中的來源類型為 **SqlSource** 時，**typeProperties** 區段會有下列可用屬性：
+複製活動中的來源時的型別**SqlSource**中的下列屬性的 hello 可用**typeProperties** > 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| SqlReaderQuery |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如：select * from MyTable。 可以參考輸入資料集所參考資料庫中的多個資料表。 如果未指定，執行的 SQL 陳述式：select from MyTable。 |否 |
-| sqlReaderStoredProcedureName |從來源資料表讀取資料的預存程序名稱。 |預存程序的名稱。 最後一個 SQL 陳述式必須是預存程序中的 SELECT 陳述式。 |否 |
-| storedProcedureParameters |預存程序的參數。 |名稱/值組。 參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 |否 |
+| SqlReaderQuery |使用自訂查詢 tooread hello 的資料。 |SQL 查詢字串。 例如：select * from MyTable。 從 hello hello 輸入資料集所參考的資料庫，可以參考多個資料表。 如果未指定，hello 執行的 SQL 陳述式： select from MyTable。 |否 |
+| sqlReaderStoredProcedureName |名稱的 hello 預存程序會從 hello 來源資料表讀取資料。 |名稱的 hello 預存程序。 hello 最後一個 SQL 陳述式必須在 hello 預存程序中的 SELECT 陳述式。 |否 |
+| storedProcedureParameters |Hello 參數，預存程序。 |名稱/值組。 名稱和大小寫的參數必須符合 hello 名稱和大小寫的 hello 預存程序參數。 |否 |
 
-如果已為 SqlSource 指定 **sqlReaderQuery** ，複製活動會針對 SQL Server 資料庫來源執行這項查詢以取得資料。
+如果 hello **sqlReaderQuery**指定 hello SqlSource，hello 複製活動會針對 hello 的 SQL Server 資料庫來源 tooget hello 資料執行此查詢。
 
-或者，您可以藉由指定 **sqlReaderStoredProcedureName** 和 **storedProcedureParameters** (如果預存程序接受參數) 來指定預存程序。
+或者，您可以指定預存程序，藉由指定 hello **sqlReaderStoredProcedureName**和**storedProcedureParameters** （如果 hello 預存程序會採用參數）。
 
-如果您未指定 sqlReaderQuery 或 sqlReaderStoredProcedureName，系統就會使用 structure 區段中定義的資料行來建立一個要對「SQL Server 資料庫」執行的 select 查詢。 如果資料集定義沒有結構，則會從資料表中選取所有資料行。
+如果您未指定 sqlReaderQuery 或 sqlReaderStoredProcedureName，hello hello 結構區段中定義的資料行是使用的 toobuild select 查詢 toorun 針對 hello 的 SQL Server 資料庫。 如果您不需要 hello 資料集定義 hello 結構，所有資料行選取的 hello 資料表。
 
 > [!NOTE]
-> 當您使用 **sqlReaderStoredProcedureName** 時，仍必須為資料集 JSON 中的 **tableName** 屬性指定值。 雖然目前尚未針對此資料表來進行驗證。
+> 當您使用**sqlReaderStoredProcedureName**，您仍然需要 toospecify 值 hello **tableName** hello 資料集 JSON 中的屬性。 雖然目前尚未針對此資料表來進行驗證。
 
 ### <a name="sqlsink"></a>管線
-**SqlSink** 支援下列屬性：
+**SqlSink**支援 hello 下列屬性：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| writeBatchTimeout |在逾時前等待批次插入作業完成的時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
-| writeBatchSize |當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 |整數 (資料列數目) |否 (預設值：10000) |
-| sqlWriterCleanupScript |指定要讓「複製活動」執行的查詢，以便清除特定分割的資料。 如需詳細資訊，請參閱[可重複複製](#repeatable-copy)一節。 |查詢陳述式。 |否 |
-| sliceIdentifierColumnName |指定要讓「複製活動」以自動產生的分割識別碼填入的資料行名稱，這可在重新執行時用來清除特定分割的資料。 如需詳細資訊，請參閱[可重複複製](#repeatable-copy)一節。 |資料類型為 binary(32) 之資料行的資料行名稱。 |否 |
-| sqlWriterStoredProcedureName |將資料更新插入 (更新/插入) 目標資料表中的預存程序名稱。 |預存程序的名稱。 |否 |
-| storedProcedureParameters |預存程序的參數。 |名稱/值組。 參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 |否 |
-| sqlWriterTableType |指定要在預存程序中使用的資料表類型名稱。 複製活動可讓正在移動的資料可用於此資料表類型的暫存資料表。 然後，預存程序程式碼可以合併正在複製的資料與現有的資料。 |資料表類型名稱。 |否 |
+| writeBatchTimeout |在逾時之前，請等待 hello 批次插入作業 toocomplete 時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
+| writeBatchSize |當 hello 緩衝區大小到達叫用 writeBatchSize 時，請將資料插入 hello SQL 資料表。 |整數 (資料列數目) |否 (預設值：10000) |
+| sqlWriterCleanupScript |複製活動 tooexecute 查詢指定的特定配量的資料清除。 如需詳細資訊，請參閱[可重複複製](#repeatable-copy)一節。 |查詢陳述式。 |否 |
+| sliceIdentifierColumnName |指定資料行名稱複製活動 toofill 與自動產生配量識別項，也就是使用的 tooclean 何時重新執行的特定配量的資料。 如需詳細資訊，請參閱[可重複複製](#repeatable-copy)一節。 |資料類型為 binary(32) 之資料行的資料行名稱。 |否 |
+| sqlWriterStoredProcedureName |名稱的 hello 預存程序 upserts （更新/插入） 資料到 hello 目標資料表。 |名稱的 hello 預存程序。 |否 |
+| storedProcedureParameters |Hello 參數，預存程序。 |名稱/值組。 名稱和大小寫的參數必須符合 hello 名稱和大小寫的 hello 預存程序參數。 |否 |
+| sqlWriterTableType |指定資料表類型名稱 toobe hello 預存程序中使用。 複製活動移動 hello 資料可讓在暫存資料表與此資料表類型。 預存程序程式碼可以再合併 hello 資料會被複製現有的資料。 |資料表類型名稱。 |否 |
 
 
-## <a name="json-examples-for-copying-data-from-and-to-sql-server"></a>往返 SQL Server 複製資料的 JSON 範例
-以下範例提供可用來使用 [Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md) 建立管線的範例 JSON 定義。 下列範例說明如何將資料複製到 SQL Server 和「Azure Blob 儲存體」，以及從這兩處複製資料。 不過，您可以在 Azure Data Factory 中使用複製活動，從任何來源 **直接** 將資料複製到 [這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats) 所說的任何接收器。     
+## <a name="json-examples-for-copying-data-from-and-toosql-server"></a>用來複製資料與 tooSQL 伺服器 JSON 範例
+hello 下列範例會提供範例 JSON 定義您可以藉由使用 toocreate 管線[Azure 入口網站](data-factory-copy-activity-tutorial-using-azure-portal.md)或[Visual Studio](data-factory-copy-activity-tutorial-using-visual-studio.md)或[Azure PowerShell](data-factory-copy-activity-tutorial-using-powershell.md)。 hello 下列範例顯示如何從 SQL Server 和 Azure Blob 儲存體 toocopy 資料 tooand。 不過，資料可以複製**直接**從任何來源 tooany hello 接收所述的[這裡](data-factory-data-movement-activities.md#supported-data-stores-and-formats)使用 hello Azure Data Factory 中的複製活動。     
 
-## <a name="example-copy-data-from-sql-server-to-azure-blob"></a>範例：將資料從 SQL Server 複製到 Azure Blob
-下列範例顯示︰
+## <a name="example-copy-data-from-sql-server-tooazure-blob"></a>範例： 從 SQL Server tooAzure Blob 複製資料
+下列範例會示範 hello:
 
 1. [OnPremisesSqlServer](#linked-service-properties)類型的連結服務。
 2. [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)類型的連結服務。
 3. [SqlServerTable](#dataset-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
 4. [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
-5. 具有使用 [SqlSource](#copy-activity-properties) 和 [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
+5. hello[管線](data-factory-create-pipelines.md)與使用複製活動[SqlSource](#copy-activity-properties)和[BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties)。
 
-此範例會每小時將時間序列資料從 SQL Server 資料表複製到 Azure Blob。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
+hello 範例將時間序列資料從 SQL Server 資料表 tooan Azure blob 的每個小時。 這些範例中使用的 hello JSON 內容所述後面 hello 範例的章節。
 
-第一步是設定資料管理閘道。 如需相關指示，請參閱 [在內部部署位置和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 。
+第一個步驟中，安裝程式 hello 資料管理閘道器。 hello 中的 hello 指示[在內部部署位置與雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)發行項。
 
 **SQL Server 連結服務**
 ```json
@@ -212,9 +212,9 @@ ms.lasthandoff: 07/11/2017
 ```
 **SQL Server 輸入資料集**
 
-此範例假設您已在 SQL Server 中建立資料表 "MyTable"，其中包含時間序列資料的資料行 (名稱為 "timestampcolumn")。 您可以使用單一資料集來查詢相同資料庫內的多個資料表，但針對資料集的 tableName typeProperty 必須使用單一資料表。
+hello 範例假設您已建立資料表"MyTable"SQL Server 中，而且包含稱為"timestampcolumn 「 時間序列資料的資料行。 您可以透過 hello hello 資料集的 tableName typeProperty 必須使用相同的資料庫，使用單一資料集，但單一資料表內的多個資料表進行查詢。
 
-設定 “external”: ”true” 可讓 Data Factory 服務知道資料集是在 Data Factory 外部，而不是由 Data Factory 中的活動所產生。
+設定"external":"true"會通知 Data Factory 服務的 hello 集外部 toohello 資料處理站，且不產生 hello data factory 中的活動時。
 
 ```json
 {
@@ -242,7 +242,7 @@ ms.lasthandoff: 07/11/2017
 ```
 **Azure Blob 輸出資料集**
 
-資料會每小時寫入至新的 Blob (頻率：小時，間隔：1)。 根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑。 資料夾路徑會使用開始時間的年、月、日和小時部分。
+資料會寫入 tooa 新 blob 的每個小時 (頻率： 小時、 interval: 1)。 hello blob 的 hello 資料夾路徑會動態評估 hello 正在處理的 hello 配量的開始時間為基礎。 hello 資料夾路徑會使用 hello 開始時間的年、 月、 日和小時部分。
 
 ```json
 {
@@ -301,7 +301,7 @@ ms.lasthandoff: 07/11/2017
 ```
 **具有複製活動的管線**
 
-此管線包含「複製活動」，該活動已設定為使用這些輸入和輸出資料集，並且排定為每小時執行。 在管線 JSON 定義中，**source** 類型設為 **SqlSource**，而 **sink** 類型設為 **BlobSink**。 針對 **SqlReaderQuery** 屬性指定的 SQL 查詢會選取過去一小時內要複製的資料。
+hello 管線包含複製活動的設定的 toouse 這些輸入和輸出資料集，而排程的 toorun 每小時。 在 hello 管線 JSON 定義中，hello**來源**類型設定得**SqlSource**和**接收**類型設定得**BlobSink**。 指定 hello SQL 查詢**SqlReaderQuery**屬性選取 hello 資料在過去小時 toocopy hello。
 
 ```json
 {  
@@ -349,22 +349,22 @@ ms.lasthandoff: 07/11/2017
    }
 }
 ```
-在此範例中，已為 SqlSource 指定 **sqlReaderQuery** 。 複製活動會針對 SQL Server 資料庫來源執行這項查詢以取得資料。 或者，您可以藉由指定 **sqlReaderStoredProcedureName** 和 **storedProcedureParameters** (如果預存程序接受參數) 來指定預存程序。 sqlReaderQuery 可以參考輸入資料集所參考之資料庫內的多個資料表。 這不限於只有設定為資料集之 tableName typeProperty 的資料表。
+在此範例中， **sqlReaderQuery** hello SqlSource 指定。 hello 複製活動會針對 hello 的 SQL Server 資料庫來源 tooget hello 資料執行此查詢。 或者，您可以指定預存程序，藉由指定 hello **sqlReaderStoredProcedureName**和**storedProcedureParameters** （如果 hello 預存程序會採用參數）。 hello sqlReaderQuery 參考 hello hello 輸入資料集所參考的資料庫內的多個資料表。 它不是設定為 hello 資料集的 tableName typeProperty 有限的 tooonly hello 資料表。
 
-如果您未指定 sqlReaderQuery 或 sqlReaderStoredProcedureName，系統就會使用 structure 區段中定義的資料行來建立一個要對「SQL Server 資料庫」執行的 select 查詢。 如果資料集定義沒有結構，則會從資料表中選取所有資料行。
+如果您未指定 sqlReaderQuery 或 sqlReaderStoredProcedureName，hello hello 結構區段中定義的資料行是使用的 toobuild select 查詢 toorun 針對 hello 的 SQL Server 資料庫。 如果您不需要 hello 資料集定義 hello 結構，所有資料行選取的 hello 資料表。
 
-如需 SqlSource 和 BlobSink 所支援屬性的清單，請參閱 [SQL 來源](#sqlsource)小節和 [BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties)。
+請參閱 hello [Sql 來源](#sqlsource)區段和[BlobSink](data-factory-azure-blob-connector.md#copy-activity-properties) hello 支援 SqlSource 和 BlobSink 屬性的清單。
 
-## <a name="example-copy-data-from-azure-blob-to-sql-server"></a>範例：將資料從 Azure Blob 複製到 SQL Server
-下列範例顯示︰
+## <a name="example-copy-data-from-azure-blob-toosql-server"></a>範例： 將資料從 Azure Blob tooSQL Server 複製
+下列範例會示範 hello:
 
-1. [OnPremisesSqlServer](#linked-service-properties)類型的連結服務。
-2. [AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties) 類型的連結服務。
+1. hello 連結類型的服務[OnPremisesSqlServer](#linked-service-properties)。
+2. hello 連結類型的服務[AzureStorage](data-factory-azure-blob-connector.md#linked-service-properties)。
 3. [AzureBlob](data-factory-azure-blob-connector.md#dataset-properties) 類型的輸入[資料集](data-factory-create-datasets.md)。
 4. [SqlServerTable](data-factory-sqlserver-connector.md#dataset-properties) 類型的輸出[資料集](data-factory-create-datasets.md)。
-5. 具有使用 [BlobSource](data-factory-azure-blob-connector.md#copy-activity-properties) 和 [SqlSink](#sql-server-copy-activity-type-properties) 之複製活動的[管線](data-factory-create-pipelines.md)。
+5. hello[管線](data-factory-create-pipelines.md)與使用複製活動[BlobSource](data-factory-azure-blob-connector.md#copy-activity-properties)和[SqlSink](#sql-server-copy-activity-type-properties)。
 
-此範例會每小時將時間序列資料從 Azure Blob 複製到 SQL Server 資料表。 範例後面的各節會說明這些範例中使用的 JSON 屬性。
+hello 範例複製時間序列資料從 Azure blob tooa SQL Server 資料表的每個小時。 這些範例中使用的 hello JSON 內容所述後面 hello 範例的章節。
 
 **SQL Server 連結服務**
 
@@ -395,7 +395,7 @@ ms.lasthandoff: 07/11/2017
 ```
 **Azure Blob 輸入資料集**
 
-每小時從新的 Blob 挑選資料 (頻率：小時，間隔：1)。 根據正在處理之配量的開始時間，以動態方式評估 Blob 的資料夾路徑和檔案名稱。 資料夾路徑會使用開始時間的年、月及日部分，而檔案名稱則使用開始時間的小時部分。 “external”: “true” 設定可讓 Data Factory 服務知道資料集是在 Data Factory 外部，而不是由 Data Factory 中的活動所產生。
+每小時從新的 Blob 挑選資料 (頻率：小時，間隔：1)。 hello 資料夾路徑和檔案名稱 hello blob 會動態評估 hello 正在處理的 hello 配量的開始時間為基礎。 年、 月和日的部分 hello 開始時間，會使用 hello 資料夾路徑和檔案名稱會使用 hello hello 開始時間的小時部分。 "external":"true"的設定會在該 hello 集外部 toohello 資料處理站，且不產生 hello data factory 中的活動時通知 hello Data Factory 服務。
 
 ```json
 {
@@ -463,7 +463,7 @@ ms.lasthandoff: 07/11/2017
 ```
 **SQL Server 輸出資料集**
 
-此範例會將資料複製到 SQL Server 中名為 "MyTable" 的資料表。 請在 SQL Server 中建立此資料表，其資料行的數目須與您預期 Blob CSV 檔案要包含的數目相同。 此資料表會每小時加入新的資料列。
+hello 範例會將名為"MyTable"SQL Server 中的資料 tooa 資料表複製。 建立與 SQL Server 中的 hello 資料表如預期般 hello Blob CSV 檔案 toocontain hello 相同數目的資料行。 新的資料列會加入 toohello 資料表的每個小時。
 
 ```json
 {
@@ -483,7 +483,7 @@ ms.lasthandoff: 07/11/2017
 ```
 **具有複製活動的管線**
 
-此管線包含「複製活動」，該活動已設定為使用這些輸入和輸出資料集，並且排定為每小時執行。 在管線 JSON 定義中，**source** 類型設為 **BlobSource**，而 **sink** 類型設為 **SqlSink**。
+hello 管線包含複製活動的設定的 toouse 這些輸入和輸出資料集，而排程的 toorun 每小時。 在 hello 管線 JSON 定義中，hello**來源**類型設定得**BlobSource**和**接收**類型設定得**SqlSink**。
 
 ```json
 {  
@@ -533,32 +533,32 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="troubleshooting-connection-issues"></a>疑難排解連線問題
-1. 將 SQL Server 設定成接受遠端連線。 啟動 [SQL Server Management Studio]、用滑鼠右鍵按一下 [伺服器]，然後按一下 [屬性]。 選取清單中 [連接]，然後核取 [允許此伺服器的遠端連接]。
+1. 設定 SQL Server tooaccept 的遠端連線。 啟動 [SQL Server Management Studio]、用滑鼠右鍵按一下 [伺服器]，然後按一下 [屬性]。 選取**連線**hello 清單和核取**允許遠端連接 toohello 伺服器**。
 
     ![啟用遠端連線](./media/data-factory-sqlserver-connector/AllowRemoteConnections.png)
 
-    如需詳細步驟，請參閱 [設定 remote access 伺服器組態選項](https://msdn.microsoft.com/library/ms191464.aspx) 。
-2. 啟動 [SQL Server 組態管理員] 。 展開您想要之執行個體的 [SQL Server 網路組態]，然後選取 [MSSQLSERVER 的通訊協定]。 您應該會在右窗格中看到通訊協定。 用滑鼠右鍵按一下 [TCP/IP]，然後按一下 [啟用] 來啟用 TCP/IP。
+    請參閱[設定 hello remote access 伺服器組態選項](https://msdn.microsoft.com/library/ms191464.aspx)如需詳細步驟。
+2. 啟動 [SQL Server 組態管理員] 。 展開**SQL Server 網路組態**hello 的執行個體和選取**MSSQLSERVER 的通訊協定**。 您應該會看到 hello 右窗格中的通訊協定。 用滑鼠右鍵按一下 [TCP/IP]，然後按一下 [啟用] 來啟用 TCP/IP。
 
     ![啟用 TCP/IP](./media/data-factory-sqlserver-connector/EnableTCPProptocol.png)
 
     如需啟用 TCP/IP 通訊協定的詳細資料及替代方式，請參閱 [啟用或停用伺服器網路通訊協定](https://msdn.microsoft.com/library/ms191294.aspx) 。
-3. 在相同的視窗中，按兩下 [TCP/IP] 來啟動 [TCP/IP 屬性] 視窗。
-4. 切換到 [IP 位址] 索引標籤。 向下捲動到 [IPAll] 區段。 記下 **TCP 通訊埠** (預設值是 **1433**)。
-5. 在電腦上建立 **Windows 防火牆規則** ，來允許透過此連接埠的連入流量。  
-6. **確認連線**：若要使用完整名稱來連線到 SQL Server，請使用來自不同機器的 SQL Server Management Studio。 例如："<machine><domain>.corp<company>.com,1433"。
+3. 在 hello 相同的視窗中按兩下**TCP/IP** toolaunch **TCP/IP 內容**視窗。
+4. 切換 toohello **IP 位址** 索引標籤。捲動 toosee **IPAll** > 一節。 記下 hello * * TCP 連接埠 * * (預設值是**1433年**)。
+5. 建立**hello Windows 防火牆規則**上透過此連接埠的 hello 機器 tooallow 連入流量。  
+6. **請確認連接**: tooconnect toohello 使用完整限定的名稱，SQL Server 使用 SQL Server Management Studio 從不同的電腦。 例如："<machine><domain>.corp<company>.com,1433"。
 
    > [!IMPORTANT]
 
-   > 如需詳細資訊，請參閱[利用資料管理閘道在內部部署來源和雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)。
+   > 請參閱[在內部部署來源和資料管理閘道與 hello 雲端之間移動資料](data-factory-move-data-between-onprem-and-cloud.md)如需詳細資訊。
    >
    > 如需連接/閘道器相關問題的疑難排解秘訣，請參閱 [針對閘道問題進行疑難排解](data-factory-data-management-gateway.md#troubleshooting-gateway-issues) 。
    >
    >
 
 
-## <a name="identity-columns-in-the-target-database"></a>目標資料庫中的身分識別資料行
-本節提供一個範例，此範例會將資料從沒有身分識別資料行的來源資料表，複製到具有身分識別資料行的目的地資料表。
+## <a name="identity-columns-in-hello-target-database"></a>Hello 目標資料庫中的識別資料行
+本章節提供的範例，但沒有識別資料行 tooa 目的地資料表之 identity 資料行的來源資料表中的資料複製。
 
 **來源資料表：**
 
@@ -580,7 +580,7 @@ create table dbo.TargetTbl
 )
 ```
 
-請注意，目標資料表具有身分識別資料行。
+請注意該 hello 目標資料表有識別資料行。
 
 **來源資料集 JSON 定義**
 
@@ -629,20 +629,20 @@ create table dbo.TargetTbl
 }
 ```
 
-請注意，您的來源資料表與目標資料表的結構描述不同 (目標資料表有一個具有身分識別的額外資料行)。 在此案例中，您必須在目標資料集定義中指定 **structure** 屬性，這不包含身分識別資料行。
+請注意，您的來源資料表與目標資料表的結構描述不同 (目標資料表有一個具有身分識別的額外資料行)。 在此案例中，您需要 toospecify**結構**hello 目標資料集定義，其中不包括 hello 識別資料行中的屬性。
 
 ## <a name="invoke-stored-procedure-from-sql-sink"></a>從 SQL 接收器叫用預存程序
 如需在管線的複製活動中從 SQL 接收器叫用預存程序的範例，請參閱[在複製活動中叫用 SQL 接收器的預存程序](data-factory-invoke-stored-procedure-from-copy-activity.md)一文。
 
 ## <a name="type-mapping-for-sql-server"></a>SQL Server 的類型對應
-如同 [資料移動活動](data-factory-data-movement-activities.md) 一文所述，「複製活動」會藉由含有下列 2 個步驟的方法，執行從來源類型轉換成接收類型的自動類型轉換：
+Hello 中所述[資料移動活動](data-factory-data-movement-activities.md)文件： hello 複製活動會執行自動類型轉換來源類型 toosink 類型以 hello 遵循 2 步驟方法：
 
-1. 從原生來源類型轉換成 .NET 類型
-2. 從 .NET 類型轉換成原生接收類型
+1. 從原生的來源類型 too.NET 類型轉換
+2. 從.NET 型別 toonative 接收器類型轉換
 
-從 SQL Server 來回移動資料時，會使用下列從 SQL 類型到 .NET 類型的對應，以及反向的對應。
+當資料移動太 & 從 SQL server hello 從 SQL 型別 too.NET 類型，反之亦然，會使用下列的對應。
 
-此對應與 ADO.NET 的 SQL Server 資料類型對應相同。
+hello 對應是相同 hello ADO.NET 的 SQL Server 資料類型對應。
 
 | SQL Server Database Engine 類型 | .NET Framework 類型 |
 | --- | --- |
@@ -679,13 +679,13 @@ create table dbo.TargetTbl
 | varchar |String、Char[] |
 | xml |xml |
 
-## <a name="mapping-source-to-sink-columns"></a>將來源對應到接收資料行
-若要將來自來源資料集的資料行與來自接收資料集的資料行對應，請參閱[在 Azure Data Factory 中對應資料集資料行](data-factory-map-columns.md)。
+## <a name="mapping-source-toosink-columns"></a>對應來源 toosink 資料行
+toomap 資料行從來源資料集 toocolumns 從接收的資料集，請參閱[Azure Data Factory 中的資料集資料行對應](data-factory-map-columns.md)。
 
 ## <a name="repeatable-copy"></a>可重複複製
-將資料複製到 SQL Server 資料庫時，複製活動預設會將資料附加至接收資料表。 若要改為執行 UPSERT，請參閱[對 SqlSink 進行可重複的寫入](data-factory-repeatable-copy.md#repeatable-write-to-sqlsink)一文。 
+當複製資料 tooSQL 伺服器資料庫，hello 複製活動將預設附加 toohello 接收資料表。 相反地，請參閱 tooperform UPSERT[可重複寫入 tooSqlSink](data-factory-repeatable-copy.md#repeatable-write-to-sqlsink)發行項。 
 
-從關聯式資料存放區複製資料時，請將可重複性謹記在心，以避免產生非預期的結果。 在 Azure Data Factory 中，您可以手動重新執行配量。 您也可以為資料集設定重試原則，使得在發生失敗時，重新執行配量。 以上述任一方式重新執行配量時，您必須確保不論將配量執行多少次，都會讀取相同的資料。 請參閱[從關聯式來源進行可重複的讀取](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources)。
+複製資料時從關聯式資料存放區，請注意 tooavoid 重複性非預期的結果。 在 Azure Data Factory 中，您可以手動重新執行配量。 您也可以為資料集設定重試原則，使得在發生失敗時，重新執行配量。 當其中一個方式，重新執行配量時，您需要 toomake 確定的 hello 相同的資料如何讀取無論執行多次的配量。 請參閱[從關聯式來源進行可重複的讀取](data-factory-repeatable-copy.md#repeatable-read-from-relational-sources)。
 
 ## <a name="performance-and-tuning"></a>效能和微調
-請參閱[複製活動的效能及微調指南](data-factory-copy-activity-performance.md)一文，以了解在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素，以及各種最佳化的方法。
+請參閱[複製活動效能與調整指南](data-factory-copy-activity-performance.md)toolearn 金鑰的相關因素影響效能的資料移動 （複製活動） 在 Azure Data Factory 和各種方式 toooptimize 它。

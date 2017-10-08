@@ -1,6 +1,6 @@
 ---
-title: "在 HDInsight 中執行 Hadoop 範例 - Azure | Microsoft Docs"
-description: "利用提供的範例開始使用 Azure HDInsight 服務。 使用 PowerShell 指令碼在資料叢集上執行 MapReduce 程式。"
+title: "HDInsight 的 Azure 中的範例 aaaRun hello Hadoop |Microsoft 文件"
+description: "開始使用提供的 hello 範例與 hello Azure HDInsight 服務。 使用 PowerShell 指令碼在資料叢集上執行 MapReduce 程式。"
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,30 +16,30 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: 741cce6f2c81efed1e4bd0547fcb46a231815263
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 544856a2cdfe5154cbd9bf1fb05db081af86cd46
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-hadoop-mapreduce-samples-in-windows-based-hdinsight"></a>在以 Windows 為基礎的 HDInsight 中執行 Hadoop MapReduce 範例
 [!INCLUDE [samples-selector](../../includes/hdinsight-run-samples-selector.md)]
 
-我們提供了一組範例，協助您使用 Azure HDInsight 並開始在 Hadoop 叢集上執行 MapReduce 工作。 這些範例可套用在您所建立的每個 HDInsight 受管理叢集上。 執行這些範例可協助您熟悉使用 Azure PowerShell Cmdlet 在 Hadoop 叢集上執行作業。
+Toohelp 開始使用 Azure HDInsight Hadoop 叢集上執行 MapReduce 工作時，會提供一組的樣本。 這些範例都可以在每個 hello HDInsight 上您所建立的受管理的叢集。 執行這些範例熟悉使用 Azure PowerShell cmdlet toorun 工作在 Hadoop 叢集上。
 
 * [字數統計][hdinsight-sample-wordcount]：計算文字檔中的文字出現次數。
-* [C# 串流字數統計][hdinsight-sample-csharp-streaming]：使用 Hadoop 串流介面計算文字檔中的文字出現次數。
-* [Pi 估算器][hdinsight-sample-pi-estimator]：使用統計 (擬蒙特卡羅法) 方法來估計 Pi 的值。
-* [10-GB Graysort][hdinsight-sample-10gb-graysort]：使用 HDInsight 在 10 GB 檔案上執行一般用途的 GraySort。 有三個工作可執行：Teragen、Terasort 和 Teravalidate，分別用來產生資料、排序資料，以及確認資料已適當排序。
+* [**C# 串流字數統計**][hdinsight-sample-csharp-streaming]： 計數 word 出現在文字檔案，使用 hello Hadoop 串流介面。
+* [**Pi 估計工具**][hdinsight-sample-pi-estimator]： 使用統計 (odd Monte Carlo) 方法 tooestimate hello pi 的值。
+* [10-GB Graysort][hdinsight-sample-10gb-graysort]：使用 HDInsight 在 10 GB 檔案上執行一般用途的 GraySort。 有三個作業 toorun: Teragen toogenerate hello 資料、 Terasort toosort hello 資料，以及 Teravalidate tooconfirm hello 資料的正確排序。
 
 > [!NOTE]
-> 原始程式碼可以在附錄中找到。
+> hello 原始程式碼位於 hello 附錄。
 
-網路上有許多 Hadoop 相關技術 (例如 Java 型 MapReduce 程式設計和串流) 的文件可供參考，此外也有適用於 Windows PowerShell 指令碼之 Cmdlet 的相關文件。 如需有關這些資源的詳細資訊，請參閱：
+很多其他文件存在於 hello web Hadoop 相關的技術，例如 Java 為基礎的 MapReduce 程式設計和串流處理，以及使用 Windows PowerShell 中的 hello cmdlet 的相關文件的指令碼。 如需有關這些資源的詳細資訊，請參閱：
 
 * [在 HDInsight 上開發 Hadoop 的 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce-linux.md)
 * [在 HDInsight 上提交 Hadoop 工作](hdinsight-submit-hadoop-jobs-programmatically.md)
-* [Azure HDInsight 簡介][hdinsight-introduction]
+* [簡介 tooAzure HDInsight][hdinsight-introduction]
 
 時至今日，很多人選擇 Hive 和 Pig 而非 MapReduce。  如需詳細資訊，請參閱：
 
@@ -49,25 +49,25 @@ ms.lasthandoff: 08/18/2017
 **必要條件**：
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
-* **HDInsight 叢集**。 如需可建立此類叢集之各種方式的指示，請參閱 [在 HDInsight 中使用 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+* **HDInsight 叢集**。 如需 hello 各種方式，可以在其中建立此類叢集的指示，請參閱[在 HDInsight 中的建立 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
 * **具有 Azure PowerShell 的工作站**。
 
     > [!IMPORTANT]
-    > 使用 Azure Service Manager 管理 HDInsight 資源的 Azure PowerShell 支援已**被取代**，將會在 2017 年 1 月 1 日前移除。 本文件中的步驟會使用可與 Azure Resource Manager 搭配使用的新 HDInsight Cmdlet。
+    > 使用 Azure Service Manager 管理 HDInsight 資源的 Azure PowerShell 支援已**被取代**，將會在 2017 年 1 月 1 日前移除。 此文件使用 hello 新 HDInsight 的 cmdlet 可與 Azure 資源管理員中的步驟 hello。
     >
-    > 請遵循[安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 中的步驟來安裝最新版的 Azure PowerShell。 如果您需要修改指令碼才能使用適用於 Azure Resource Manager 的新 Cmdlet，請參閱[移轉至以 Azure Resource Manager 為基礎的開發工具 (適用於 HDInsight 叢集)](hdinsight-hadoop-development-using-azure-resource-manager.md)。
+    > 中的 hello 步驟[安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) tooinstall hello 最新版的 Azure PowerShell。 如果您有指令碼的需要 toobe 修改 toouse hello 新的 cmdlet 可與 Azure 資源管理員，請參閱[移轉 tooAzure 資源管理員為基礎的開發工具的 HDInsight 叢集](hdinsight-hadoop-development-using-azure-resource-manager.md)。
 
 ## <a name="hdinsight-sample-wordcount"></a>字數統計 - Java
-如果要提交 MapReduce 專案，您可以先建立 MapReduce 工作定義。 在工作定義中，您指定 MapReduce 程式 jar 檔案和該 jar 檔案的位置，這會是 **wasb:///example/jars/hadoop-mapreduce-examples.jar**、類別名稱和引數。  字數統計 MapReduce 程式會採用兩個引數：用來統計字數的原始程式檔與輸出的位置。
+toosubmit MapReduce 專案，您先建立 MapReduce 工作定義。 Hello 工作定義，在您指定 hello MapReduce 程式 jar 檔案和 hello hello jar 檔案位置，也就是**wasb:///example/jars/hadoop-mapreduce-examples.jar**、 hello 類別名稱和 hello 引數。  hello wordcount MapReduce 程式會採用兩個引數： hello 原始程式檔是使用的 toocount 字和 hello 輸出的位置。
 
-原始程式碼可以在 [附錄 A](#apendix-a---the-word-count-MapReduce-program-in-java)中找到。
+hello 原始程式碼位於 hello[附錄 A](#apendix-a---the-word-count-MapReduce-program-in-java)。
 
-如需開發 Java MapReduce 程式之程序，請參閱 - [在 HDInsight 中針對 Hadoop 開發 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce-linux.md)
+Hello 程序的開發 Java MapReduce 程式，請參閱- [HDInsight 中的 Hadoop 的開發 Java MapReduce 程式](hdinsight-develop-deploy-java-mapreduce-linux.md)
 
-**提交字數統計 MapReduce 工作**
+**toosubmit word 計數 MapReduce 工作**
 
 1. 開啟 **Windows PowerShell ISE**。 如需指示，請參閱[安裝和設定 Azure PowerShell][powershell-install-configure]。
-2. 貼上下列 PowerShell 指令碼：
+2. 貼上下列 PowerShell 指令碼的 hello:
 
     ```powershell
     $subscriptionName = "<Azure Subscription Name>"
@@ -76,14 +76,14 @@ ms.lasthandoff: 08/18/2017
 
     Select-AzureRmSubscription -SubscriptionName $subscriptionName
 
-    # Define the MapReduce job
+    # Define hello MapReduce job
     $mrJobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
                                 -JarFile "wasb:///example/jars/hadoop-mapreduce-examples.jar" `
                                 -ClassName "wordcount" `
                                 -Arguments "wasb:///example/data/gutenberg/davinci.txt", "wasb:///example/data/WordCountOutput"
 
-    # Submit the job and wait for job completion
-    $cred = Get-Credential -Message "Enter the HDInsight cluster HTTP user credential:"
+    # Submit hello job and wait for job completion
+    $cred = Get-Credential -Message "Enter hello HDInsight cluster HTTP user credential:"
     $mrJob = Start-AzureRmHDInsightJob `
                         -ResourceGroupName $resourceGroupName `
                         -ClusterName $clusterName `
@@ -96,7 +96,7 @@ ms.lasthandoff: 08/18/2017
         -HttpCredential $cred `
         -JobId $mrJob.JobId
 
-    # Get the job output
+    # Get hello job output
     $cluster = Get-AzureRmHDInsightCluster -ResourceGroupName $resourceGroupName -ClusterName $clusterName
     $defaultStorageAccount = $cluster.DefaultStorageAccount -replace '.blob.core.windows.net'
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey -ResourceGroupName $resourceGroupName -Name $defaultStorageAccount)[0].Value
@@ -112,36 +112,36 @@ ms.lasthandoff: 08/18/2017
         -JobId $mrJob.JobId `
         -DisplayOutputType StandardError
 
-    # Download the job output to the workstation
+    # Download hello job output toohello workstation
     $storageContext = New-AzureStorageContext -StorageAccountName $defaultStorageAccount -StorageAccountKey $defaultStorageAccountKey
     Get-AzureStorageBlobContent -Container $defaultStorageContainer -Blob example/data/WordCountOutput/part-r-00000 -Context $storageContext -Force
 
-    # Display the output file
+    # Display hello output file
     cat ./example/data/WordCountOutput/part-r-00000 | findstr "there"
     ```
 
-    MapReduce 工作會產生一個名為 *part-r-00000*的檔案，內有文字和字數。 指令碼使用 **findstr** 命令列出包含 "there" 的所有文字。
-3. 設定前三個變數，然後執行指令碼。
+    hello MapReduce 工作會產生名為*一部分-r-00000*，其中包含文字和 hello 計數。 hello 指令碼會使用 hello **findstr** toolist 所有 hello 文字的命令包含*"there"*。
+3. 設定 hello 前三個變數，並執行 hello 指令碼。
 
 ## <a name="hdinsight-sample-csharp-streaming"></a>字數統計 - C# 串流
-Hadoop 提供 MapReduce 一個串流 API，可讓您以 Java 以外的語言撰寫 map 和 reduce 函數。
+Hadoop 提供串流處理的應用程式開發介面 tooMapReduce，可讓您 toowrite 對應和減少 Java 以外的語言中的函式。
 
 > [!NOTE]
-> 本教學課程的步驟只適用於 Windows HDInsight 叢集。 如需 Linux HDInsight 叢集的串流範例，請參閱 [開發適用於 HDInsight 的 Python 串流程式](hdinsight-hadoop-streaming-python.md)。
+> 在此教學課程中的 hello 步驟適用於僅 tooWindows 為基礎的 HDInsight 叢集。 如需 Linux HDInsight 叢集的串流範例，請參閱 [開發適用於 HDInsight 的 Python 串流程式](hdinsight-hadoop-streaming-python.md)。
 
-在範例中，mapper 和 reducer 是從 [stdin][stdin-stdout-stderr] 讀取輸入 (循行) 並將輸出發出到 [stdout][stdin-stdout-stderr] 的可執行檔。 程式會計算內容中的所有文字。
+在 hello 範例、 hello 對應工具和減壓器 hello 是讀取從 hello 輸入的可執行檔[stdin] [ stdin-stdout-stderr] （線條的線條），並發出 hello 輸出太[stdout] [stdin-stdout-stderr]. hello 程式計算所有 hello 文字中的 hello 文字。
 
-在已為 **mappers**指定可執行檔的情況下，當 mapper 初始化時，每個 mapper 工作都會將可執行檔啟動成為個別的處理程序。 當 mapper 工作執行時，它會將輸入傳換成行，並將這些行饋送至處理程序的 [stdin][stdin-stdout-stderr]。
+當可執行檔您針對指定**自行**，每個對應工具 」 工作會啟動可執行檔當做個別處理序的 hello hello 對應工具初始化時。 當 hello 對應工具 」 工作執行時，會將其輸入轉換成線條，而摘要 hello 行 toohello [stdin] [ stdin-stdout-stderr] hello 程序。
 
-同時，mapper 會收集來自處理程序 stdout 的行導向輸出。 它會將每一行轉換成索引鍵/值組，其會做為 mapper 的輸出來收集。 根據預設，從一行的前置詞一直到第一個定位字元即是索引鍵，行的其餘部分 (不包含定位字元) 則為值。 如果行中沒有定位字元，則整行都會被視為索引鍵，而值則為 null。
+在 hello 同時，hello 對應工具會收集 hello 行導向的輸出從 hello stdout hello 程序。 將每一行轉換為索引鍵/值組，可用來收集做為 「 hello 對應工具 」 的 hello 輸出。 根據預設，對齊第一個定位字元 toohello hello 前置詞是 hello 機碼，而 hello 的 hello 行 （不含 hello Tab 字元） 的其餘部分則 hello。 如果 hello 列沒有任何 Tab 字元，整行視為 hello 金鑰和 hello 值為 null。
 
-在已為 **reducers**指定可執行檔的情況下，當 reducer 初始化時，每個 reducer 工作都會將可執行檔啟動成為個別的處理程序。 當 reducer 工作執行時，它會將輸入索引鍵/值組傳換成行，並將這些行饋送至處理程序的 [stdin][stdin-stdout-stderr]。
+當可執行檔您針對指定**reducers**，每個減壓器工作會啟動可執行檔當做個別處理序的 hello hello 減壓器初始化時。 當 hello 減壓器工作執行時，會將其輸入的索引鍵/值組轉換成線條，而摘要 hello 行 toohello [stdin] [ stdin-stdout-stderr] hello 程序。
 
-同時，reducer 會收集來自處理程序 [stdout][stdin-stdout-stderr] 的行導向輸出。 它會將每一行轉換成索引鍵/值組，其會做為 reducer 的輸出來收集。 根據預設，從一行的前置詞一直到第一個定位字元即是索引鍵，行的其餘部分 (不包含定位字元) 則為值。
+在 hello 同時，hello 減壓器 hello 列導向輸出會從收集 hello [stdout] [ stdin-stdout-stderr] hello 程序。 它會轉換為 hello 的 hello 減壓器的輸出會收集每個行 tooa 機碼值組。 根據預設，對齊第一個定位字元 toohello hello 前置詞是 hello 機碼，而 hello 的 hello 行 （不含 hello Tab 字元） 的其餘部分則 hello。
 
-**提交 C# 串流字數統計工作**
+**資料流 word 計數工作 toosubmit C#**
 
-* 遵循[字數統計 - Java](#word-count-java) 中的程序，並使用下行內容取代作業定義：
+* 請依照下列中的 hello 程序[字數統計-Java](#word-count-java)，並取代 hello 行下 hello 工作定義：
 
     ```powershell
     $mrJobDefinition = New-AzureRmHDInsightStreamingMapReduceJobDefinition `
@@ -152,18 +152,18 @@ Hadoop 提供 MapReduce 一個串流 API，可讓您以 Java 以外的語言撰�
                             -OutputPath "/example/data/StreamingOutput/wc.txt"
     ```
 
-    輸出檔案應該為：
+    應該 hello 輸出檔：
 
         example/data/StreamingOutput/wc.txt/part-00000
 
 ## <a name="hdinsight-sample-pi-estimator"></a>PI 估算器
-Pi 估算器會使用統計 (擬蒙特卡羅法) 方法來估計 pi 的值。 單位正方形內隨機散佈的點，也會落在該正方形的內切圓之內，且機率等於圓面積 Pi/4。 Pi 的值可從 4R 的值來估計，其中 R 是圓內點數佔正方形內總點數的比例。 使用的樣本點越多，估計越準確。
+hello pi 估計工具會使用統計 (odd Monte Carlo) 方法 tooestimate hello pi 的值。 內部單位隨機放置點方形也落在該方塊內有與 hello 圓形的可能性相等 toohello 區域的圓形 pi/4。 hello pi 的值可以估計 hello 4R，其中 R 是 hello 比率 hello hello 圓形 toohello 總數 hello 正方形中的點內的點的數字的值。 hello 較大 hello 範例使用的點數，hello 佳 hello 估計值。
 
-此範例的提供指令碼會提交 Hadoop jar 工作，且設定為以 16 個對應的值來執行，每個對應都必須依參數值來計算 1 千萬個樣本點。 這些參數可變更來改善 Pi 的估計值。 Pi 的前 10 位小數是 3.1415926535，供您參考。
+此範例所提供的 hello 指令碼提交 Hadoop jar 作業，設定成 toorun 值 16 的對應，每一個都是必要的 toocompute 10 百萬範例點 hello 參數值。 這些參數值可以變更 pi tooimprove hello 估計值。 如需參考，hello pi 的前 10 個小數位數是 3.1415926535。
 
-**提交 Pi 估算器工作**
+**toosubmit pi 估計工具工作**
 
-* 遵循[字數統計 - Java](#word-count-java) 中的程序，並使用下行內容取代作業定義：
+* 請依照下列中的 hello 程序[字數統計-Java](#word-count-java)，並取代 hello 行下 hello 工作定義：
 
     ```powershell
     $mrJobJobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
@@ -173,25 +173,25 @@ Pi 估算器會使用統計 (擬蒙特卡羅法) 方法來估計 pi 的值。 �
     ```
 
 ## <a name="hdinsight-sample-10gb-graysort"></a>10-GB Graysort
-本範例使用不太大的 10GB 資料，所以執行起來相對較快。 本範例使用 Owen O'Malley 和 Arun Murthy 所開發的 MapReduce 應用程式，此應用程式於 2009 年的年度一般目的 (「耐力賽」) TB 排序效能評定中，以 0.578TB/分鐘 (173 分鐘內達到 100TB) 的速率獲勝。 如需此效能評比和其他排序效能評比的詳細資訊，請參閱 [Sortbenchmark](http://sortbenchmark.org/) 網站。
+本範例使用不太大的 10GB 資料，所以執行起來相對較快。 它會使用由 Owen O'Malley 和 Arun Murthy 贏得 hello 年度一般用途 (「 daytona 」) tb 排序基準在 2009 年率的 0.578 TB/分鐘 (以分鐘為單位 173 100 TB) 所開發的 hello MapReduce 應用程式。 如需有關這個和其他排序基準測試的詳細資訊，請參閱 hello [Sortbenchmark](http://sortbenchmark.org/)站台。
 
 本範例使用三組 MapReduce 程式：
 
-1. **TeraGen** 是可用來產生排序資料列的 MapReduce 程式。
-2. **TeraSort** 可取樣輸入資料並利用 MapReduce 將資料依全序排列。 TeraSort 是 MapReduce 函數的標準排序，但自訂分割器除外，它使用 N-1 個樣本索引鍵的排序清單來定義每次歸納的索引鍵範圍。 尤其是，會傳送使得 sample[i-1] <= key < sample[i] 的所有索引鍵給歸納 i。 這保證歸納 i 的輸出全都小於歸納 i+1 的輸出。
-3. **TeraValidate** 是一個驗證全域排序輸出的 MapReduce 程式。 它會在輸出目錄中為每一個檔案建立一個對應，而每個對應可確保每一個索引鍵一定小於或等於前一個對應。 對應函數也會產生每個檔案的第一個和最後一個索引鍵的記錄，而歸納函數可確保檔案 i 的第一個索引鍵大於檔案 i-1 的最後一個索引鍵。 任何問題皆會回報為具錯誤索引鍵的歸納輸出。
+1. **TeraGen**是您可以使用的資料 toosort toogenerate hello 資料列的 MapReduce 程式。
+2. **TeraSort**範例 hello 輸入的資料，並使用 MapReduce toosort hello 資料到訂單總數。 TeraSort 是標準的 MapReduce 函式，除了使用已排序的清單定義每個減少 hello 索引鍵範圍的取樣 N-1 索引鍵的自訂 partitioner 排序。 特別是，所有的索引鍵這類範例 [i-1] < = 索引鍵 < 範例 [i] 傳送 tooreduce 我。 這保證的 hello 輸出減少 i 全部都是小於 hello 輸出減少 i + 1。
+3. **TeraValidate**是全域排序會驗證該 hello 輸出的 MapReduce 程式。 它在 hello 輸出目錄中，會建立一個對應，每個檔案和每個對應可確保每個索引鍵是否小於或等於前一個 toohello。 hello 對應函式也會產生記錄的 hello 前和最後一個索引鍵的每個檔案，以及 hello reduce 函式可確保該 hello i 檔案的第一個索引鍵大於檔案 i-1 hello 最後一個索引鍵。 任何問題報告做為輸出的 hello 減少 hello 索引鍵次序不對的。
 
-這三個應用程式所使用的輸入和輸出格式會以正確格式讀取和寫入文字檔。 歸納的輸出將複寫設為 1，而不是預設值 3，因為效能評定競賽不需要將輸出資料複寫至多個節點。
+hello 輸入和所有的三個應用程式所使用的輸出格式讀取並寫入 hello 正確格式的 hello 文字檔案。 hello hello 輸出減少複寫設定 too1，而不是 hello 預設為 3，因為 hello 基準內容不需要 hello 輸出資料會複寫 toomultiple 節點上。
 
-範例需要三項工作，各對應至簡介中描述的其中一個 MapReduce 程式：
+Hello 範例中，每個對應 tooone hello MapReduce 程式 hello 簡介 > 中所述的所需三項工作：
 
-1. 執行 **TeraGen** MapReduce 工作來產生要排序的資料。
-2. 執行 **TeraSort** MapReduce 工作來排序資料。
-3. 執行 **TeraValidate** MapReduce 工作來確認資料排序正確。
+1. 產生排序執行 hello hello 資料**TeraGen** MapReduce 工作。
+2. 排序 hello 資料執行 hello **TeraSort** MapReduce 工作。
+3. 確認 hello 資料已經執行 hello 正確排序**TeraValidate** MapReduce 工作。
 
-**提交工作**
+**toosubmit hello 工作**
 
-* 遵循[字數統計 - Java](#word-count-java) 中的程序，並使用下列工作定義：
+* 請依照下列中的 hello 程序[字數統計-Java](#word-count-java)，並使用 hello 遵循工作定義：
 
     ```powershell
     $teragen = New-AzureRmHDInsightMapReduceJobDefinition `
@@ -211,15 +211,15 @@ Pi 估算器會使用統計 (擬蒙特卡羅法) 方法來估計 pi 的值。 �
     ```
 
 ## <a name="next-steps"></a>後續步驟
-透過本文和關於各範例的文章，您已了解如何使用 Azure PowerShell 執行 HDInsight 叢集隨附的範例。 如需透過 HDInsight 使用 Pig、Hive 和 MapReduce 的教學課程，請參閱下列主題：
+從這個發行項與 hello 文件中每個 hello 範例，您學到如何 toorun hello 範例隨附 hello HDInsight 叢集使用 Azure PowerShell。 如需有關搭配使用 Pig、 Hive 和 MapReduce 與 HDInsight 的教學課程，請參閱下列主題中的 hello:
 
-* [開始在 HDInsight 中搭配 Hive 使用 Hadoop 以分析行動電話使用][hdinsight-get-started]
+* [開始使用登錄區中的 Hadoop，HDInsight tooanalyze 行動話筒使用中][hdinsight-get-started]
 * [搭配使用 Pig 與 HDInsight 上的 Hadoop][hdinsight-use-pig]
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop][hdinsight-use-hive]
 * [在 HDInsight 中提交 Hadoop 作業][hdinsight-submit-jobs]
 * [Azure HDInsight SDK 文件][hdinsight-sdk-documentation]
 
-## <a name="appendix-a---the-word-count-source-code"></a>附錄 A - 字數統計原始程式碼
+## <a name="appendix-a---hello-word-count-source-code"></a>附錄 A-hello Word 計數原始程式碼
 
 ```java
 package org.apache.hadoop.examples;
@@ -291,11 +291,11 @@ System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 ```
 
-## <a name="appendix-b---the-word-count-streaming-source-code"></a>附錄 B - 字數統計串流原始程式碼
-MapReduce 程式使用 cat.exe 應用程式做為對應介面以將文字串流至主控台，並使用 wc.exe 應用程式做為縮減介面以計算從文件串流的字數。 mapper 和 reducer 都會從標準輸入資料流 (stdin) 逐行讀取字元並寫入至標準輸出資料流 (stdout)。
+## <a name="appendix-b---hello-word-count-streaming-source-code"></a>附錄 B-hello 字數統計資料流來源的程式碼
+hello MapReduce 程式會使用 hello cat.exe 應用程式做為對應介面 toostream hello 文字到 hello 主控台和 hello wc.exe 應用程式，當做 hello 減少介面 toocount hello 從文件資料流傳送的字組數目。 Hello 對應工具和減壓器字元，由列列 hello 標準輸入資料流 (stdin) 從讀寫 toohello 標準輸出資料流 (stdout)。
 
 ```csharp
-// The source code for the cat.exe (Mapper).
+// hello source code for hello cat.exe (Mapper).
 
 using System;
 using System.IO;
@@ -326,10 +326,10 @@ namespace cat
 }
 ```
 
-cat.cs 檔案中的 mapper 程式碼會使用 [StreamReader][streamreader] 物件，將連入串流的字元讀取至主控台，再由主控台以靜態 [Console.Writeline][console-writeline] 方法將串流寫入標準輸出串流。
+hello hello cat.cs 檔案使用中的對應工具程式碼[StreamReader] [ streamreader] tooread hello 字元的 hello 內送資料流 toohello 主控台中，哪些然後寫入 hello 資料流 toohello 標準輸出資料流的物件以靜態 hello [Console.Writeline] [ console-writeline]方法。
 
 ```csharp
-// The source code for wc.exe (Reducer) is:
+// hello source code for wc.exe (Reducer) is:
 
 using System;
 using System.IO;
@@ -375,28 +375,28 @@ namespace wc
 }
 ```
 
-wc.cs 檔案中的 reducer 程式碼會使用 [StreamReader][streamreader] 物件，從已經由 cat.exe mapper 輸出的標準輸入串流讀取字元。 當它使用 [Console.Writeline][console-writeline] 方法讀取字元時，它會藉由計算空格和每個字尾端的行尾字元來計算字數。 然後使用 [Console.Writeline][console-writeline] 方法將總計寫入標準輸出串流。
+hello 減壓器 hello wc.cs 檔案使用中的程式碼[StreamReader] [ streamreader] hello 標準輸入資料流已由 hello cat.exe 對應工具的輸出物件 tooread 字元。 在讀取 hello 字元以 hello [Console.Writeline] [ console-writeline]方法，它會計算 hello 文字，來計算空格和每個字 hello 結尾行結尾字元。 然後再寫入 hello 總 toohello 標準輸出資料流以 hello [Console.Writeline] [ console-writeline]方法。
 
-## <a name="appendix-c---the-pi-estimator-source-code"></a>附錄 C - Pi 估算器原始程式碼
-以下提供包含 mapper 和 reducer 函數的 Pi 估算器 Java 程式碼以進行檢查。 對應器程式會產生單位正方形內隨機散佈的一定點數，然後計算落在圓內的點數。 Reducer 程式會累計 mapper 所計算的點數，然後從公式 4R 估計 Pi 的值，其中 R 是圓內計算的點數佔正方形內總點數的比例。
+## <a name="appendix-c---hello-pi-estimator-source-code"></a>附錄 C-hello Pi 估計工具的原始程式碼
+使用下列檢查 hello pi 估計工具包含 hello 對應工具和減壓器函式的 Java 程式碼。 hello 對應程式會產生指定的數目的內部單位正方形隨機放置點，並再計算 hello hello 圓圈內的這些點的數目。 hello 減壓器程式會將它們列入計算 hello 對應工具中的點，並接著評估 hello 從 hello 公式 4R，其中 R 是 hello 比例計算 hello 圓形 toohello 總數 hello 正方形中的點內的點的 hello 數目的 pi 值。
 
 ```java
 /**
-* Licensed to the Apache Software Foundation (ASF) under one
-* or more contributor license agreements. See the NOTICE file
+* Licensed toohello Apache Software Foundation (ASF) under one
+* or more contributor license agreements. See hello NOTICE file
 * distributed with this work for additional information
-* regarding copyright ownership. The ASF licenses this file
-* to you under the Apache License, Version 2.0 (the
+* regarding copyright ownership. hello ASF licenses this file
+* tooyou under hello Apache License, Version 2.0 (the
 * "License"); you may not use this file except in compliance
-* with the License. You may obtain a copy of the License at
+* with hello License. You may obtain a copy of hello License at
 *
 * http://www.apache.org/licenses/LICENSE-2.0
 *
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
+* Unless required by applicable law or agreed tooin writing, software
+* distributed under hello License is distributed on an "AS IS" BASIS,
 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or     implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+* See hello License for hello specific language governing permissions and
+* limitations under hello License.
 */
 
 package org.apache.hadoop.examples;
@@ -428,21 +428,21 @@ import org.apache.hadoop.mapred.SequenceFileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-//A Map-reduce program to estimate the value of Pi
+//A Map-reduce program tooestimate hello value of Pi
 //using quasi-Monte Carlo method.
 //
 //Mapper:
 //Generate points in a unit square
-//and then count points inside/outside of the inscribed circle of the square.
+//and then count points inside/outside of hello inscribed circle of hello square.
 //
 //Reducer:
-//Accumulate points inside/outside results from the mappers.
+//Accumulate points inside/outside results from hello mappers.
 //Let numTotal = numInside + numOutside.
-//The fraction numInside/numTotal is a rational approximation of
-//the value (Area of the circle)/(Area of the square),
-//where the area of the inscribed circle is Pi/4
-//and the area of unit square is 1.
-//Then, Pi is estimated value to be 4(numInside/numTotal).
+//hello fraction numInside/numTotal is a rational approximation of
+//hello value (Area of hello circle)/(Area of hello square),
+//where hello area of hello inscribed circle is Pi/4
+//and hello area of unit square is 1.
+//Then, Pi is estimated value toobe 4(numInside/numTotal).
 //
 
 public class PiEstimator extends Configured implements Tool {
@@ -451,8 +451,8 @@ static private final Path TMP_DIR = new Path(
 PiEstimator.class.getSimpleName() + "_TMP_3_141592654");
 
 //2-dimensional Halton sequence {H(i)},
-//where H(i) is a 2-dimensional point and i >= 1 is the index.
-//Halton sequence is used to generate sample points for Pi estimation.
+//where H(i) is a 2-dimensional point and i >= 1 is hello index.
+//Halton sequence is used toogenerate sample points for Pi estimation.
 private static class HaltonSequence {
 // Bases
 static final int[] P = {2, 3};
@@ -464,8 +464,8 @@ private double[] x;
 private double[][] q;
 private int[][] d;
 
-//Initialize to H(startindex),
-//so the sequence begins with H(startindex+1).
+//Initialize tooH(startindex),
+//so hello sequence begins with H(startindex+1).
 HaltonSequence(long startindex) {
 index = startindex;
 x = new double[K.length];
@@ -490,7 +490,7 @@ x[i] += d[i][j] * q[i][j];
 }
 
 //Compute next point.
-//Assume the current point is H(index).
+//Assume hello current point is H(index).
 //Compute H(index+1).
 //@return a 2-dimensional point with coordinates in [0,1)^2
 double[] nextPoint() {
@@ -512,13 +512,13 @@ return x;
 
 //Mapper class for Pi estimation.
 //Generate points in a unit square and then
-//count points inside/outside of the inscribed circle of the square.
+//count points inside/outside of hello inscribed circle of hello square.
 public static class PiMapper extends MapReduceBase
 implements Mapper<LongWritable, LongWritable, BooleanWritable, LongWritable> {
 
 //Map method.
-//@param offset samples starting from the (offset+1)th sample.
-//@param size the number of samples for this map
+//@param offset samples starting from hello (offset+1)th sample.
+//@param size hello number of samples for this map
 //@param out output {ture->numInside, false->numOutside}
 //@param reporter
 public void map(LongWritable offset,
@@ -534,7 +534,7 @@ for(long i = 0; i < size.get(); ) {
 //generate points in a unit square
 final double[] point = haltonsequence.nextPoint();
 
-//count points inside/outside of the inscribed circle of the square
+//count points inside/outside of hello inscribed circle of hello square
 final double x = point[0] - 0.5;
 final double y = point[1] - 0.5;
 if (x*x + y*y > 0.25) {
@@ -557,13 +557,13 @@ out.collect(new BooleanWritable(false), new LongWritable(numOutside));
 }
 
 //Reducer class for Pi estimation.
-//Accumulate points inside/outside results from the mappers.
+//Accumulate points inside/outside results from hello mappers.
 public static class PiReducer extends MapReduceBase
 implements Reducer<BooleanWritable, LongWritable, WritableComparable<?>, Writable> {
 
 private long numInside = 0;
 private long numOutside = 0;
-private JobConf conf; //configuration for accessing the file system
+private JobConf conf; //configuration for accessing hello file system
 
 //Store job configuration.
 @Override
@@ -571,9 +571,9 @@ public void configure(JobConf job) {
 conf = job;
 }
 
-// Accumulate number of points inside/outside results from the mappers.
-// @param isInside Is the points inside?
-// @param values An iterator to a list of point counts
+// Accumulate number of points inside/outside results from hello mappers.
+// @param isInside Is hello points inside?
+// @param values An iterator tooa list of point counts
 // @param output dummy, not used here.
 // @param reporter
 
@@ -588,10 +588,10 @@ for(; values.hasNext(); numOutside += values.next().get());
 }
 }
 
-//Reduce task done, write output to a file.
+//Reduce task done, write output tooa file.
 @Override
 public void close() throws IOException {
-//write output to a file
+//write output tooa file
 Path outDir = new Path(TMP_DIR, "out");
 Path outFile = new Path(outDir, "reduce-out");
 FileSystem fileSys = FileSystem.get(conf);
@@ -604,7 +604,7 @@ writer.close();
 }
 
 //Run a map/reduce job for estimating Pi.
-//@return the estimated value of Pi.
+//@return hello estimated value of Pi.
 public static BigDecimal estimate(int numMaps, long numPoints, JobConf jobConf
 )
 throws IOException {
@@ -624,7 +624,7 @@ jobConf.setReducerClass(PiReducer.class);
 jobConf.setNumReduceTasks(1);
 
 // turn off speculative execution, because DFS doesn't handle
-// multiple writers to the same file.
+// multiple writers toohello same file.
 jobConf.setSpeculativeExecution(false);
 
 //setup input/output directories
@@ -716,26 +716,26 @@ System.exit(ToolRunner.run(null, new PiEstimator(), argv));
 }
 ```
 
-## <a name="appendix-d---the-10gb-graysort-source-code"></a>附錄 D - 10gb Graysort 原始程式碼
-本節顯示 TeraSort MapReduce 程式的程式碼以進行檢查。
+## <a name="appendix-d---hello-10gb-graysort-source-code"></a>附錄 D-hello 10gb graysort 原始程式碼
+hello hello TeraSort MapReduce 程式碼會檢查這一節。
 
 ```java
 /**
-    * Licensed to the Apache Software Foundation (ASF) under one
-    * or more contributor license agreements.  See the NOTICE file
+    * Licensed toohello Apache Software Foundation (ASF) under one
+    * or more contributor license agreements.  See hello NOTICE file
     * distributed with this work for additional information
-    * regarding copyright ownership.  The ASF licenses this file
-    * to you under the Apache License, Version 2.0 (the
+    * regarding copyright ownership.  hello ASF licenses this file
+    * tooyou under hello Apache License, Version 2.0 (the
     * "License"); you may not use this file except in compliance
-    * with the License.  You may obtain a copy of the License at
+    * with hello License.  You may obtain a copy of hello License at
     *
     *     http://www.apache.org/licenses/LICENSE-2.0
     *
-    * Unless required by applicable law or agreed to in writing, software
-    * distributed under the License is distributed on an "AS IS" BASIS,
+    * Unless required by applicable law or agreed tooin writing, software
+    * distributed under hello License is distributed on an "AS IS" BASIS,
     * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    * See the License for the specific language governing permissions and
-    * limitations under the License.
+    * See hello License for hello specific language governing permissions and
+    * limitations under hello License.
     */
 
 package org.apache.hadoop.examples.terasort;
@@ -763,10 +763,10 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 /**
-    * Generates the sampled split points, launches the job,
-    * and waits for it to finish.
+    * Generates hello sampled split points, launches hello job,
+    * and waits for it toofinish.
     * <p>
-    * To run the program:
+    * toorun hello program:
     * <b>bin/hadoop jar hadoop-examples-*.jar terasort in-dir out-dir</b>
     */
 
@@ -798,7 +798,7 @@ public class TeraSort extends Configured implements Tool {
     }
 
     /**
-        * An inner trie node that contains 256 children based on the next
+        * An inner trie node that contains 256 children based on hello next
         * character.
         */
     static class InnerTrieNode extends TrieNode {
@@ -832,7 +832,7 @@ public class TeraSort extends Configured implements Tool {
     }
 
     /**
-        * A leaf trie node that does string compares to figure out where the given
+        * A leaf trie node that does string compares toofigure out where hello given
         * key belongs between lower..upper.
         */
     static class LeafTrieNode extends TrieNode {
@@ -864,11 +864,11 @@ public class TeraSort extends Configured implements Tool {
     }
 
     /**
-        * Read the cut points from the given sequence file.
-        * @param fs the file system
-        * @param p the path to read
-        * @param job the job config
-        * @return the strings to split the partitions on
+        * Read hello cut points from hello given sequence file.
+        * @param fs hello file system
+        * @param p hello path tooread
+        * @param job hello job config
+        * @return hello strings toosplit hello partitions on
         * @throws IOException
         */
     private static Text[] readPartitions(FileSystem fs, Path p,
@@ -886,14 +886,14 @@ public class TeraSort extends Configured implements Tool {
     }
 
     /**
-        * Given a sorted set of cut points, build a trie that will find the correct
+        * Given a sorted set of cut points, build a trie that will find hello correct
         * partition quickly.
-        * @param splits the list of cut points
-        * @param lower the lower bound of partitions 0..numPartitions-1
-        * @param upper the upper bound of partitions 0..numPartitions-1
-        * @param prefix the prefix that we have already checked against
-        * @param maxDepth the maximum depth we will build a trie for
-        * @return the trie node that will divide the splits correctly
+        * @param splits hello list of cut points
+        * @param lower hello lower bound of partitions 0..numPartitions-1
+        * @param upper hello upper bound of partitions 0..numPartitions-1
+        * @param prefix hello prefix that we have already checked against
+        * @param maxDepth hello maximum depth we will build a trie for
+        * @return hello trie node that will divide hello splits correctly
         */
     private static TrieNode buildTrie(Text[] splits, int lower, int upper,
                                         Text prefix, int maxDepth) {
@@ -903,7 +903,7 @@ public class TeraSort extends Configured implements Tool {
         }
         InnerTrieNode result = new InnerTrieNode(depth);
         Text trial = new Text(prefix);
-        // append an extra byte on to the prefix
+        // append an extra byte on toohello prefix
         trial.append(new byte[1], 0, 1);
         int currentBound = lower;
         for(int ch = 0; ch < 255; ++ch) {
@@ -919,7 +919,7 @@ public class TeraSort extends Configured implements Tool {
         result.child[ch] = buildTrie(splits, lower, currentBound, trial,
                                         maxDepth);
         }
-        // pick up the rest
+        // pick up hello rest
         trial.getBytes()[depth] = 127;
         result.child[255] = buildTrie(splits, currentBound, upper, trial,
                                     maxDepth);

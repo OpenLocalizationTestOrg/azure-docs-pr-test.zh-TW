@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 範本之間傳遞複雜的值 | Microsoft Docs"
-description: "示範透過 Azure Resource Manager 範本與連結的範本，使用複雜物件共用狀態資料的建議做法。"
+title: "aaaPass Azure 範本之間的複雜值 |Microsoft 文件"
+description: "顯示建議的方法可搭配 Azure 資源管理員範本和連結的範本中使用複雜物件 tooshare 狀態資料。"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/26/2016
 ms.author: tomfitz
-ms.openlocfilehash: 23cc4321159a87b61c177b11381646af8bd9eb35
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 72df1dee351446cea6ce15269e6db288b1f1db79
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="share-state-to-and-from-azure-resource-manager-templates"></a>在 Azure Resource Manager 範本中共用狀態以及從 Azure Resource Manager 範本共用狀態
-這個主題說明在範本中管理和共用狀態的最佳做法。 本主題所顯示的參數與變數為您可以定義的物件類型範例，方便您用來組織部署需求。 在這些範例中，您可以實作自己的物件與您環境適用的屬性值。
+# <a name="share-state-tooand-from-azure-resource-manager-templates"></a>從 Azure Resource Manager 範本的共用狀態 tooand
+這個主題說明在範本中管理和共用狀態的最佳做法。 hello 參數與本主題所顯示的變數是範例的 hello 類型的物件，您可以定義 tooconveniently 組織您的部署需求。 在這些範例中，您可以實作自己的物件與您環境適用的屬性值。
 
-本主題是較大份白皮書的一部分。 若要閱讀完整的文件，請下載[世界級 Azure Resource Manager 範本注意事項和證明可行的作法](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/World Class ARM Templates - Considerations and Proven Practices.pdf)。
+本主題是較大份白皮書的一部分。 tooread hello 完整紙張，下載[世界類別資源管理員範本考量和證明作法](http://download.microsoft.com/download/8/E/1/8E1DBEFA-CECE-4DC9-A813-93520A5D7CFE/World Class ARM Templates - Considerations and Proven Practices.pdf)。
 
 ## <a name="provide-standard-configuration-settings"></a>提供標準的組態設定
-與其給予可提供總彈性和無數個變化的範本，其實常見的模式是提供可選取已知組態。 實際上，使用者可選取沙箱、小型、中型和大型等標準 T 恤尺寸。 T 恤尺寸的其他範例包括產品供應項目，例如社群版本或企業版本。 在其他情況下，這可能是某種技術的工作負載特定組態，例如，對應減少或沒有 SQL。
+而不是提供範本，提供總彈性和無數的變化，常見的模式是 tooprovide 已知設定的選取範圍。 實際上，使用者可選取沙箱、小型、中型和大型等標準 T 恤尺寸。 T 恤尺寸的其他範例包括產品供應項目，例如社群版本或企業版本。 在其他情況下，這可能是某種技術的工作負載特定組態，例如，對應減少或沒有 SQL。
 
-有了複雜物件，您可以建立變數，其中包含有時也稱為「屬性包」的資料集合，並使用該資料在範本中驅動資源宣告。 這種方法可針對預先為客戶設定好的各種大小提供良好且已知的組態。 如果沒有已知組態，範本的使用者就必須自行判斷叢集大小、納入平台資源限制，以及進行數學運算來識別儲存體帳戶所產生的資料分割和其他資源 (因叢集大小和資源限制而導致)。 除了為客戶提供更好的經驗，一些已知組態可讓您更輕鬆地提供支援，並協助您提供較高的密度等級。
+具有複雜的物件，您可以建立包含集合的資料，有時也稱為 「 屬性包"的變數，並在範本中使用該資料 toodrive hello 資源宣告。 這種方法可針對預先為客戶設定好的各種大小提供良好且已知的組態。 沒有已知的組態，hello 範本的使用者必須決定根據自己的因數中的平台資源條件約束的叢集大小，再執行數學 tooidentify hello 產生資料分割的儲存體帳戶和其他資源 (因為 toocluster 大小和資源的條件約束）。 此外 toomaking hello 客戶更好的體驗，幾個已知的設定會更容易 toosupport，可協助您提供更高的密度。
 
-下列範例將顯示如何定義包含複雜物件以代表資料集合的變數。 此集合定義的值用於虛擬機器大小、網路設定、作業系統設定，以及可用性設定。
+下列範例會示範如何 hello toodefine 變數，其中包含複雜的物件，代表資料的集合。 hello 集合會定義用於虛擬機器大小、 網路設定、 作業系統設定和可用性設定的值。
 
     "variables": {
       "tshirtSize": "[variables(concat('tshirtSize', parameters('tshirtSize')))]",
@@ -109,9 +109,9 @@ ms.lasthandoff: 07/11/2017
       }
     }
 
-請注意，**tshirtSize** 變數會串連您透過參數 (**小**、**中**、**大**) 提供給文字 **tshirtSize** 的 T 恤大小。 您會使用這個變數來擷取該 T 恤大小的相關聯複雜物件變數。
+請注意該 hello **tshirtSize**變數串連您透過參數所提供的 hello t 恤尺寸 (**小**，**媒體**，**大**) toohello 文字**tshirtSize**。 您會將此變數 tooretrieve hello 關聯的複雜物件變數用於該 t 恤尺寸。
 
-您稍後可以在範本中參考這些變數。 參考具名變數和其屬性的能力可簡化範本語法，而且可以讓您更容易了解內容。 下列範例使用如先前所示的物件來設定值，以定義要部署的資源。 例如，VM 大小是透過擷取 `variables('tshirtSize').vmSize` 的值來設定，而磁碟大小的值則是擷取自 `variables('tshirtSize').diskSize`。 此外，連結之範本的 URI 是使用 `variables('tshirtSize').vmTemplate`的值來設定。
+然後，您可以參考這些變數，稍後在 hello 範本中。 hello 能力 tooreference 名為的變數和其屬性可簡化 hello 樣板語法，並讓您輕鬆 toounderstand 內容。 hello 下列範例會使用先前顯示 tooset 值 hello 物件，定義資源 toodeploy。 Hello VM 大小所擷取的 hello 值的設定，例如`variables('tshirtSize').vmSize`而 hello 值為 hello 磁碟大小擷取自`variables('tshirtSize').diskSize`。 此外，在連結的範本設定與 hello 值 hello URI `variables('tshirtSize').vmTemplate`。
 
     "name": "master-node",
     "type": "Microsoft.Resources/deployments",
@@ -166,23 +166,23 @@ ms.lasthandoff: 07/11/2017
       }
     }
 
-## <a name="pass-state-to-a-template"></a>將狀態傳遞至範本
+## <a name="pass-state-tooa-template"></a>傳遞狀態 tooa 範本
 您可以透過於部署期間直接提供的參數，在範本中共用狀態。
 
-下表列出在範本中的常用參數。
+下列資料表列出常用的參數，在範本中的 hello。
 
 | 名稱 | 值 | 說明 |
 | --- | --- | --- |
-| location |來自 Azure 區域之條件約束清單的字串 |部署儲存資源的位置。 |
-| storageAccountNamePrefix |String |放置 VM 磁碟之儲存體帳戶的唯一 DNS 名稱 |
-| domainName |String |可公開存取的 jumpbox VM 網域名稱格式為：**{domainName}.{location}.cloudapp.com** 例如：**mydomainname.westus.cloudapp.azure.com** |
-| adminUsername |String |VM 的使用者名稱 |
-| adminPassword |String |VM 的密碼 |
-| tshirtSize |來自提供 T 恤大小之條件約束清單的字串 |要佈建的具名縮放單位大小。 例如，"Small"、"Medium"、"Large" |
-| virtualNetworkName |String |取用者想使用的虛擬網路名稱。 |
-| enableJumpbox |來自條件約束清單的字串 (enabled/disabled) |識別是否要為環境啟用 JumpBox 的參數。 值："enabled"、"disabled" |
+| location |來自 Azure 區域之條件約束清單的字串 |hello hello 資源部署所在的位置。 |
+| storageAccountNamePrefix |String |Hello 放置 hello VM 磁碟儲存體帳戶的唯一 DNS 名稱 |
+| domainName |String |Hello 可公開存取 jumpbox VM，hello 格式的網域名稱： **{domainName}。 {location}.cloudapp.com**例如： **mydomainname.westus.cloudapp.azure.com** |
+| adminUsername |String |Hello Vm 的使用者名稱 |
+| adminPassword |String |Hello Vm 的密碼 |
+| tshirtSize |來自提供 T 恤大小之條件約束清單的字串 |名為延展單位大小 tooprovision hello。 例如，"Small"、"Medium"、"Large" |
+| virtualNetworkName |String |Hello hello 取用者的虛擬網路名稱想 toouse。 |
+| enableJumpbox |來自條件約束清單的字串 (enabled/disabled) |識別的參數是否 tooenable jumpbox hello 環境。 值："enabled"、"disabled" |
 
-上節中所用的 **tshirtSize** 參數定義如下：
+hello **tshirtSize** hello 前一節中所使用的參數定義為：
 
     "parameters": {
       "tshirtSize": {
@@ -194,21 +194,21 @@ ms.lasthandoff: 07/11/2017
           "Large"
         ],
         "metadata": {
-          "Description": "T-shirt size of the MongoDB deployment"
+          "Description": "T-shirt size of hello MongoDB deployment"
         }
       }
     }
 
 
-## <a name="pass-state-to-linked-templates"></a>將狀態傳遞至連結的範本
-當連線到連結的範本時，您經常混合使用靜態變數與產生的變數。
+## <a name="pass-state-toolinked-templates"></a>傳遞狀態 toolinked 範本
+連接時 toolinked 範本，您通常使用靜態混用，並產生變數。
 
 ### <a name="static-variables"></a>靜態變數
-靜態變數通常用於提供基底值，例如在範本中全程使用的 URL。
+靜態變數通常是使用的 tooprovide 基底值，例如用於整個範本的 Url。
 
-在下面的範本摘要中，`templateBaseUrl` 會指定 GitHub 中範本的根位置。 下一行會建置新的變數 `sharedTemplateUrl` ，它會將 基底 URL 與共用資源範本的已知名稱串連在一起。 在該行下面，使用複雜物件變數儲存 T 恤尺寸，在此將基底 URL 和已知組態範本位置串連在一起，儲存在 `vmTemplate` 屬性中。
+在下列範本摘錄 hello `templateBaseUrl` hello hello 範本的根位置指定在 GitHub 中。 hello 下一行會建立新的變數`sharedTemplateUrl`，串連 hello 與 hello 已知 hello 共用的資源的範本名稱的基底 URL。 線下, 面的複雜物件變數是使用的 toostore t 恤尺寸，其中 hello 基底 URL 是串連的 toohello 已知的組態範本位置，並儲存在 hello`vmTemplate`屬性。
 
-這個方法的優點是，如果範本位置變更，您只需要變更一個地方的靜態變數，就可以將它傳遞到所有連結的範本。
+這種方法的 hello 好處是，如果 hello 範本位置變更，您只需要在一個地方，將它傳遞至連結的 hello 範本整個 toochange hello 靜態變數。
 
     "variables": {
       "templateBaseUrl": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/postgresql-on-ubuntu/",
@@ -230,13 +230,13 @@ ms.lasthandoff: 07/11/2017
     }
 
 ### <a name="generated-variables"></a>產生的變數
-除了靜態變數，有數個變數是動態產生的。 本節將說明一些產生的變數的常見類型。
+在加法 toostatic 變數中，會動態產生數個變數。 本章節識別 hello 常見類型的產生的變數。
 
 #### <a name="tshirtsize"></a>tshirtSize
-您已熟悉這個從上述範例產生的變數。
+您已熟悉上述 hello 範例從這個產生的變數。
 
 #### <a name="networksettings"></a>networkSettings
-在容量、功能或端對端範圍的解決方案範本中，連結的範本通常會建立存在於網路上的資源。 一個直接的方法是使用複雜物件來儲存網路設定，並將其傳送到連結的範本。
+在容量、 功能或已設定領域的端對端解決方案範本 hello 連結的範本通常在網路上建立存在的資源。 其中一個簡單的方法是 toouse 複雜物件 toostore 網路設定，並將其傳遞 toolinked 範本。
 
 通訊網路設定的範例如下所示。
 
@@ -258,7 +258,7 @@ ms.lasthandoff: 07/11/2017
     }
 
 #### <a name="availabilitysettings"></a>availabilitySettings
-連結的範本中所建立的資源通常會放置在可用性集合中。 在下列範例中，已指定可用性集合名稱，以及要使用的容錯網域和更新網域計數。
+連結的範本中所建立的資源通常會放置在可用性集合中。 在下列範例的 hello，hello 可用性設定組名稱指定也 hello 容錯網域和更新網域計數 toouse。
 
     "availabilitySetSettings": {
       "name": "pgsqlAvailabilitySet",
@@ -266,10 +266,10 @@ ms.lasthandoff: 07/11/2017
       "udCount": 5
     }
 
-如果您需要多個可用性集合 (例如，一個用於主要節點，其他用於資料節點)，您可以使用名稱做為前置詞，指定多個可用性集合，或依照稍早所示的模型建立特定 T 恤大小的變數。
+如果您需要多個可用性設定組 （例如，一個主要節點），另一個用於資料節點，您可以使用名稱做為前置詞，指定多個可用性設定組，或遵循 hello 模型建立特定的 t 恤尺寸的變數稍早所示。
 
 #### <a name="storagesettings"></a>storageSettings
-儲存體詳細資料通常會與連結的範本共用。 在下面的範例中， *storageSettings* 物件會提供有關儲存體帳戶和容器名稱的詳細資料。
+儲存體詳細資料通常會與連結的範本共用。 在 hello 範例所示， *storageSettings*物件提供有關 hello 詳細資料儲存體帳戶和容器名稱。
 
     "storageSettings": {
         "vhdStorageAccountName": "[parameters('storageAccountName')]",
@@ -278,9 +278,9 @@ ms.lasthandoff: 07/11/2017
     }
 
 #### <a name="ossettings"></a>osSettings
-利用連結的範本，您可能需要傳遞作業系統設定到各種節點類型，並橫跨不同的已知組態類型。 複雜物件是一種用來儲存及共用作業系統資訊的簡單方式，也讓支援多個作業系統部署的選擇變得更輕鬆。
+連結的範本，您可能需要 toopass 作業系統設定 toovarious 節點類型的各種不同的已知的組態類型。 複雜物件的簡單方法 toostore 和共用作業系統資訊並也可讓您更輕鬆 toosupport 部署多個作業系統選擇。
 
-下列範例顯示 *osSettings*的物件：
+hello 下列範例顯示的物件*osSettings*:
 
     "osSettings": {
       "imageReference": {
@@ -292,7 +292,7 @@ ms.lasthandoff: 07/11/2017
     }
 
 #### <a name="machinesettings"></a>machineSettings
-產生的變數 *machineSettings* 是複雜物件，包含用於建立 VM 的核心變數的混合。 此變數包含系統管理員使用者名稱和密碼、VM 名稱的前置詞，以及作業系統映像參考。
+產生的變數 *machineSettings* 是複雜物件，包含用於建立 VM 的核心變數的混合。 hello 變數包含系統管理員使用者名稱和密碼、 hello VM 名稱的前置詞和作業系統映像參考。
 
     "machineSettings": {
         "adminUsername": "[parameters('adminUsername')]",
@@ -306,17 +306,17 @@ ms.lasthandoff: 07/11/2017
         }
     },
 
-請注意，*osImageReference* 會擷取在主要範本中所定義之 *osSettings* 變數的值。 這表示您可以輕鬆地變更 VM 的作業系統—完全地或根據範本取用者的喜好設定。
+請注意， *osImageReference*擷取 hello 值從 hello *osSettings* hello 主要範本中定義的變數。 這表示您可以輕鬆地變更 hello 作業系統的 vm-完全或根據範本的取用者的 hello 喜好設定。
 
 #### <a name="vmscripts"></a>vmScripts
-*vmScripts* 物件包含要在 VM 執行個體上下載及執行之指令碼的詳細資料，包括外部和內部參考。 外部參考包含基礎結構。
-內部參考包含已安裝的軟體和組態。
+hello *vmScripts*物件包含有關 hello 指令碼 toodownload 詳細資料，並包括內部和外部參考的 VM 執行個體上執行。 外部參考包含 hello 基礎結構。
+內部參考包含 hello 安裝軟體安裝和設定。
 
-您可以使用 *scriptsToDownload* 屬性列出要下載到 VM 的指令碼。 此物件也包含對不同動作類型之命令列引數的參考。 這些動作包括為每個個別節點執行預設安裝、部署所有節點後所執行的安裝，以及可能為給定範本指定的任何其他指令碼。
+使用 hello *scriptsToDownload*屬性 toolist hello 指令碼 toodownload toohello VM。 此物件也會包含參考 toocommand 列的引數為不同的動作類型。 這些動作包括執行 hello 預設安裝中針對每個個別的節點、 執行所有的節點會在部署之後，安裝可能會提供範本的特定 tooa 任何其他指令碼。
 
-這個範例來自用於部署 MongoDB 的範本，需要有仲裁程式以提供高可用性。 *arbiterNodeInstallCommand* 已新增到 *vmScripts* 中以安裝仲裁程式。
+這個範例是使用樣板 toodeploy MongoDB，需要仲裁 toodeliver 高可用性。 hello *arbiterNodeInstallCommand*太已加入*vmScripts* tooinstall hello 仲裁。
 
-您可以在變數區段中找到定義特定文字以搭配適當的值執行指令碼的變數。
+hello 變數區段是您在其中找到 hello 變數定義 hello 特定文字 tooexecute hello 指令碼以 hello 適當的值。
 
     "vmScripts": {
         "scriptsToDownload": [
@@ -330,9 +330,9 @@ ms.lasthandoff: 07/11/2017
 
 
 ## <a name="return-state-from-a-template"></a>從範本傳回狀態
-您不只可以將資料傳遞到範本中，也可以與發出呼叫的範本共用資料。 在已連結範本的 **outputs** 區段中，您可以提供可供來源範本使用的機碼/值組。
+不只可以將資料傳遞至範本，您也可以共用資料回復 toohello 呼叫範本。 在 hello**輸出**> 一節的連結的範本，您可以提供可供 hello 來源範本的索引鍵/值組。
 
-下列範例顯示如何傳遞在連結的範本中產生的私人 IP 位址。
+hello 下列範例顯示如何 toopass hello 產生連結的範本中的私人 IP 位址。
 
     "outputs": {
         "masterip": {
@@ -341,11 +341,11 @@ ms.lasthandoff: 07/11/2017
          }
     }
 
-在主要範本中，您可以透過下列語法使用該資料：
+內 hello 主要範本，您可以使用該資料以 hello，請使用下列語法：
 
     "[reference('master-node').outputs.masterip.value]"
 
-這個運算式可以用在主要範本的輸出區段或資源區段。 因為這個運算式依賴執行階段狀態，所以您無法在變數區段使用它。 若要從主要範本傳回這個值，請使用︰
+您可以使用這個 hello 輸出區段或 hello hello 主要範本的資源 > 一節中的運算式。 您無法使用 hello 運算式 hello 變數區段中，因為它是倚賴 hello 執行階段狀態。 tooreturn hello 主要範本，使用此值：
 
     "outputs": {
       "masterIpAddress": {
@@ -353,10 +353,10 @@ ms.lasthandoff: 07/11/2017
         "type": "string"
       }
 
-如需使用已連結範本的輸出區段傳回虛擬機器之資料磁碟的範例，請參閱 [Creating multiple data disks for a Virtual Machine (為虛擬機器建立多個資料磁碟)](resource-group-create-multiple.md)。
+如需使用 hello 的範例輸出區段的連結的範本 tooreturn 資料磁碟的虛擬機器，請參閱 <<c0> [ 建立多個資料磁碟的虛擬機器](resource-group-create-multiple.md)。
 
 ## <a name="define-authentication-settings-for-virtual-machine"></a>為虛擬機器定義驗證設定
-您可以使用與先前所示的相同組態設定模式，指定虛擬機器的驗證設定。 您要建立在驗證類型中傳遞的參數。
+您可以使用 hello 先前顯示的組態設定 toospecify hello 驗證設定的虛擬機器相同的模式。 您傳遞的參數建立 hello 的驗證類型。
 
     "parameters": {
       "authenticationType": {
@@ -372,7 +372,7 @@ ms.lasthandoff: 07/11/2017
       }
     }
 
-您要加入不同的驗證類型變數，有一個變數會根據參數值，儲存這個部署所用的類型。
+您加入為 hello 不同的驗證類型和變數的 toostore 這個 hello hello 參數值為基礎的部署所使用哪種類型的變數。
 
     "variables": {
       "osProfile": "[variables(concat('osProfile', parameters('authenticationType')))]",
@@ -400,7 +400,7 @@ ms.lasthandoff: 07/11/2017
       }
     }
 
-定義虛擬機器時，您要將 **osProfile** 設成您建立的變數。
+在定義 hello 虛擬機器時，您會設定 hello **osProfile** toohello 您建立的變數。
 
     {
       "type": "Microsoft.Compute/virtualMachines",
@@ -410,5 +410,5 @@ ms.lasthandoff: 07/11/2017
 
 
 ## <a name="next-steps"></a>後續步驟
-* 如要了解範本的各區段，請參閱 [編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)
-* 若要查看範本中可以使用的函數，請參閱 [Azure Resource Manager 範本函數](resource-group-template-functions.md)
+* toolearn 關於 hello 區段 hello 範本，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)
+* toosee hello 函式可用在樣板中，請參閱[Azure 資源管理員範本函式](resource-group-template-functions.md)

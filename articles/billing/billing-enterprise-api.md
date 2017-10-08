@@ -1,6 +1,6 @@
 ---
-title: "Azure 計費企業版 API | Microsoft Docs"
-description: "了解可讓企業 Azure 客戶以程式設計方式提取使用情況資料的報告 API。"
+title: "aaaAzure 計費企業應用程式開發介面 |Microsoft 文件"
+description: "深入了解 hello 報告 Api 以程式設計的方式讓企業 Azure 客戶 toopull 耗用量資料。"
 services: 
 documentationcenter: 
 author: aedwin
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: na
 ms.workload: billing
 ms.date: 04/25/2017
 ms.author: aedwin
-ms.openlocfilehash: e3a5f9bcd6b54a51c29df649f1ae8ac185b153a1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 017cecc57ad6bdeb402b5d9d57fc95df9b033a42
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-reporting-apis-for-enterprise-customers"></a>適用於企業客戶的報告 API 概觀
-報告 API 可讓企業 Azure 客戶以程式設計方式提取使用情況和帳單資料，以使用慣用的資料分析工具進行分析。 
+hello 報告 Api 可讓企業 Azure 客戶 tooprogrammatically 提取耗用量和計費資料到慣用的資料分析工具。 
 
-## <a name="enabling-data-access-to-the-api"></a>啟用對 API 的資料存取
-* **產生或擷取 API 金鑰** - 登入企業入口網站，並遵循 [說明] - [報告 API] 底下的教學課程。 此說明文章的第一節說明如何針對指定的註冊產生或擷取 API 金鑰。
-* **在 API 中傳遞金鑰** - 必須針對每個驗證和授權呼叫傳遞 API 金鑰。 下列屬性必須是針對 HTTP 標頭
+## <a name="enabling-data-access-toohello-api"></a>啟用資料存取 toohello API
+* **產生或擷取 hello API 金鑰**-toohello 企業入口網站，然後遵循 hello 教學課程中說明的記錄檔-Reporting Api。 在此說明文章的 hello 第一節說明 hello toogenerate 或擷取 hello API 金鑰指定註冊的方式。
+* **傳入 hello API 金鑰**-hello API 金鑰需要 toobe 傳遞每個呼叫進行驗證和授權。 hello 下列屬性需要 toobe toohello HTTP 標頭
 
 |要求標頭金鑰 | 值|
 |-|-|
-|Authorization| 以此格式指定值：**bearer {API_KEY}** <br/> 範例：bearer eyr....09|
+|Authorization| 以此格式指定 hello 值： **bearer {API_KEY}** <br/> 範例：bearer eyr....09|
 
 ## <a name="consumption-apis"></a>使用情況 API
-下述 API 的 Swagger 端點可在[這裡](https://consumption.azure.com/swagger/ui/index)取得，它可讓使用者輕鬆進行 API 自我檢查，並且能使用 [AutoRest](https://github.com/Azure/AutoRest) 或 [Swagger CodeGen](http://swagger.io/swagger-codegen/) 產生用戶端 SDK。 自 2014 年 5 月 1 日起的資料可透過此 API 取得。 
+有可用 Swagger 端點[這裡](https://consumption.azure.com/swagger/ui/index)hello Api 低於此應該啟用簡單自我 hello API 和 hello 能力 toogenerate 用戶端 Sdk 的使用說明[AutoRest](https://github.com/Azure/AutoRest)或[Swagger CodeGen](http://swagger.io/swagger-codegen/)。 自 2014 年 5 月 1 日起的資料可透過此 API 取得。 
 
-* **餘額與摘要** - [餘額與摘要 API](billing-enterprise-api-balance-summary.md) 可提供餘額、新購買、Azure Marketplace 服務費用、調整，以及超額部分費用的每月摘要資訊。
+* **平衡和摘要**-hello[平衡和摘要的應用程式開發介面](billing-enterprise-api-balance-summary.md)提供每月餘額、 購買、 Azure Marketplace 服務的費用、 調整及 overage 費用的詳細資訊的摘要。
 
-* **使用量詳細資料** - [使用量詳細資料 API](billing-enterprise-api-usage-detail.md) 可提供註冊之使用量和預估費用的每日明細。 結果也包含執行個體、計量和部門的資訊。 API 可依計費週期或指定開始和結束日期來查詢。 
+* **使用方式詳細資料**-hello[使用量詳細資料 API](billing-enterprise-api-usage-detail.md)提供已使用的數量和所註冊的估計的費用的每日明細。 hello 結果也會包含有關執行個體、 公尺和部門。 您可以查詢 hello API，計費週期或指定的開始和結束日期。 
 
-* **Marketplace 市集費用** - [Marketplace 市集費用 API](billing-enterprise-api-marketplace-storecharge.md) 可針對指定的計費週期或開始和結束日期，傳回以使用量為基礎的 Marketplace 費用每日明細 (不含一次性費用)。
+* **Marketplace 商店電量**-hello [Marketplace 商店電量 API](billing-enterprise-api-marketplace-storecharge.md)傳回依日排列的 hello 基於使用方式的 marketplace 費用明細 hello 指定計費期間或開始和結束日期 （一次費用不包含）.
 
-* **價位表** - [價位表 API](billing-enterprise-api-pricesheet.md) 可針對指定註冊和計費週期的每個計量提供適用的費率。 
+* **價位表**-hello[價位表 API](billing-enterprise-api-pricesheet.md)提供每個計量器 hello 註冊和帳單週期 hello 適用的速率。 
 
 ## <a name="helper-apis"></a>協助程式 API
- **列出計費週期** - [計費週期 API](billing-enterprise-api-billing-periods.md) 會傳回計費週期清單，其中包含所指定註冊的使用情況資料 (以反向時間順序排列)。 每個週期包含指向四組資料 (BalanceSummary、UsageDetails、Marketplace 費用和價位表) 之 API 路由的屬性。
+ **列出計費週期**-hello[計費週期 API](billing-enterprise-api-billing-periods.md)會傳回一份計費週期 hello 依反向時間順序指定註冊都耗用量資料。 每個週期包含指向 hello 四組資料-BalanceSummary、 UsageDetails、 Marketplace 費用及價位表的 toohello API 路由的屬性。
 
 
 ## <a name="api-response-codes"></a>API 回應碼  

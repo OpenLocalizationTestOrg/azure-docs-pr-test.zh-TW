@@ -1,6 +1,6 @@
 ---
-title: "了解在邏輯應用程式中使用 Salesforce 連接器 | Microsoft Docs"
-description: "使用 Azure App Service 建立邏輯應用程式。 Salesforce 連接器提供搭配 Salesforce 物件使用的 API。"
+title: "aaaLearn toouse hello Salesforce 連接器，在您的 logic apps |Microsoft 文件"
+description: "使用 Azure App Service 建立邏輯應用程式。 hello Salesforce 連接器提供的 API toowork Salesforce 物件。"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -15,47 +15,47 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/05/2016
 ms.author: mandia; ladocs
-ms.openlocfilehash: c2e2efd356382df9404f5c4ed54f24758b2cd22b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b14b41fa8a4648b4f0090472dc0f9575bf13a2ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-salesforce-connector"></a>開始使用 Salesforce 連接器
-Salesforce 連接器提供搭配 Salesforce 物件使用的 API。
+# <a name="get-started-with-hello-salesforce-connector"></a>開始使用 hello Salesforce 連接器
+hello Salesforce 連接器提供的 API toowork Salesforce 物件。
 
-若要使用[任何連接器](apis-list.md)，您必須先建立邏輯應用程式。 您可以從[立即建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)來開始。
+toouse[任何連接器](apis-list.md)，您必須先 toocreate 邏輯應用程式。 您可以從[立即建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)來開始。
 
-## <a name="connect-to-salesforce-connector"></a>連接至 Salesforce 連接器
-您必須先建立與服務的連線，才能透過邏輯應用程式存取任何服務。 [連線](connectors-overview.md)可讓邏輯應用程式與另一個服務連線。  
+## <a name="connect-toosalesforce-connector"></a>連接 tooSalesforce 連接器
+邏輯應用程式可以存取任何服務之前，您首先需要 toocreate*連接*toohello 服務。 [連線](connectors-overview.md)可讓邏輯應用程式與另一個服務連線。  
 
-### <a name="create-a-connection-to-salesforce-connector"></a>建立至 Salesforce 連接器的連線
-> [!INCLUDE [Steps to create a connection to Salesforce Connector](../../includes/connectors-create-api-salesforce.md)]
+### <a name="create-a-connection-toosalesforce-connector"></a>建立連接 tooSalesforce 連接器
+> [!INCLUDE [Steps toocreate a connection tooSalesforce Connector](../../includes/connectors-create-api-salesforce.md)]
 > 
 > 
 
 ## <a name="use-a-salesforce-connector-trigger"></a>使用 Salesforce 連接器觸發程序
-觸發程序是可用來啟動邏輯應用程式中所定義之工作流程的事件。 [深入了解觸發程序](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。
+觸發程序是可以使用的 toostart hello 工作流程邏輯應用程式中定義的事件。 [深入了解觸發程序](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。
 
-> [!INCLUDE [Steps to create a Salesforce trigger](../../includes/connectors-create-api-salesforce-trigger.md)]
+> [!INCLUDE [Steps toocreate a Salesforce trigger](../../includes/connectors-create-api-salesforce-trigger.md)]
 > 
 > 
 
 ## <a name="add-a-condition"></a>新增條件
-> [!INCLUDE [Steps to create a Salesforce condition](../../includes/connectors-create-api-salesforce-condition.md)]
+> [!INCLUDE [Steps toocreate a Salesforce condition](../../includes/connectors-create-api-salesforce-condition.md)]
 > 
 > 
 
 ## <a name="use-a-salesforce-connector-action"></a>使用 Salesforce 連接器動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。
+動作是由定義在邏輯應用程式中的 hello 工作流程執行的作業。 [深入了解動作](../logic-apps/logic-apps-what-are-logic-apps.md#logic-app-concepts)。
 
-> [!INCLUDE [Steps to create a Salesforce action](../../includes/connectors-create-api-salesforce-action.md)]
+> [!INCLUDE [Steps toocreate a Salesforce action](../../includes/connectors-create-api-salesforce-action.md)]
 > 
 > 
 
 ## <a name="connector-specific-details"></a>連接器特定的詳細資料
 
-檢視 Swagger 中定義的任何觸發程序和動作，另請參閱[連接器詳細資料](/connectors/salesforce/)的所有限制。 
+檢視任何觸發程序和動作中 hello swagger 定義，另請參閱 hello 的任何限制[連接器詳細資料](/connectors/salesforce/)。 
 
 ## <a name="next-steps"></a>後續步驟
 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)

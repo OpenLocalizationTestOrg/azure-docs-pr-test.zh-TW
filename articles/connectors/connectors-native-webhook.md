@@ -1,6 +1,6 @@
 ---
-title: "適用於 Azure Logic Apps 的 webhook 連接器 | Microsoft Docs"
-description: "如何使用 webhook 動作和觸發程序，從邏輯應用程式執行類似篩選陣列的動作"
+title: "Azure 邏輯應用程式的 aaaWebhook 連接器 |Microsoft 文件"
+description: "Toouse webhook 動作和觸發程序 tooperform 動作要如何篩選陣列從邏輯應用程式"
 services: logic-apps
 author: jeffhollan
 manager: anneta
@@ -15,93 +15,93 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/21/2016
 ms.author: jehollan; LADocs
-ms.openlocfilehash: fbfef291334109c6dcfcde80741874549fb7929f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b2dee12750f3f20f10e7b257da05a79f28f90f43
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-webhook-connector"></a>開始使用 webhook 連接器
+# <a name="get-started-with-hello-webhook-connector"></a>開始使用 hello webhook 連接器
 
-透過使用 webhook 動作和觸發程序，您可以啟動、暫停和繼續流程來執行這些工作︰
+Hello webhook 動作以及觸發程序，您可以啟動、 暫停和繼續流程 tooperform 這些工作：
 
 * 收到項目時，即從 [Azure 事件中樞](https://github.com/logicappsio/EventHubAPI) 觸發
 * 等待核准再繼續工作流程
 
-深入了解關於[如何建立支援 webhook 的自訂 API](../logic-apps/logic-apps-create-api-app.md)。
+深入了解[如何 toocreate 自訂應用程式開發介面支援 webhook](../logic-apps/logic-apps-create-api-app.md)。
 
-## <a name="use-the-webhook-trigger"></a>使用 webhook 觸發程序
+## <a name="use-hello-webhook-trigger"></a>使用 hello webhook 觸發程序
 
-[觸發程序](connectors-overview.md)是啟動邏輯應用程式工作流程的事件。 webhook 觸發程序是以事件為基礎，而不是依賴對新項目進行輪詢。 如同[要求觸發程序](connectors-native-reqres.md)一般，邏輯應用程式會觸發事件發生的瞬間。 webhook 觸發程序會註冊服務的*回呼 URL*，並依需求使用該 URL 來觸發邏輯應用程式。
+[觸發程序](connectors-overview.md)是啟動邏輯應用程式工作流程的事件。 webhook 觸發程序是以事件為基礎，而不是依賴對新項目進行輪詢。 像 hello[要求觸發程序](connectors-native-reqres.md)，hello 邏輯應用程式引發 hello 即時事件發生時。 hello webhook 觸發程序註冊*回呼 URL* tooa 服務，並使用該 URL toofire hello 邏輯應用程式做為所需。
 
-以下是如何在邏輯應用程式設計工具中設定 HTTP 觸發程序的範例。 這個步驟假設您已部署或正在存取的 API 會遵循[邏輯應用程式中的 webhook 訂閱和取消訂閱模式](../logic-apps/logic-apps-create-api-app.md#webhook-triggers)。 每當邏輯應用程式隨新的 webhook 儲存或由停用切換為啟用時，就會進行訂閱呼叫。 每當系統移除並儲存邏輯應用程式 webhook 觸發程序時，就會進行取消訂閱呼叫。
+以下是示範向上 HTTP tooset 觸發程序在 hello 邏輯應用程式的設計工具中的範例。 hello 步驟假設您已部署或正在存取的 API，遵循 hello [webhook 訂閱及取消訂閱中的 logic apps 模式](../logic-apps/logic-apps-create-api-app.md#webhook-triggers)。 hello 訂閱呼叫每當邏輯應用程式不會儲存具有新的 webhook，或從已停用 tooenabled 切換時建立。 hello 取消訂閱呼叫移除並儲存，或從已啟用 toodisabled 切換邏輯應用程式 webhook 觸發程序時進行。
 
-**新增 webhook 觸發程序**
+**tooadd hello webhook 觸發程序**
 
-1. 將 **HTTP Webhook** 觸發程序新增為邏輯應用程式中的第一個步驟。
-2. 填入 webhook 訂閱和取消訂閱呼叫的參數。
+1. 新增 hello **HTTP Webhook** hello 邏輯應用程式中的第一個步驟的觸發程序。
+2. 填寫 hello 參數，如 hello webhook 訂閱及取消訂閱的呼叫。
 
-   此步驟所遵循的模式與 [HTTP 動作](connectors-native-http.md)格式相同。
+   此步驟會遵循相同模式為 hello hello [HTTP 動作](connectors-native-http.md)格式。
 
      ![HTTP 觸發程序](./media/connectors-native-webhook/using-trigger.png)
 
 3. 加入至少一個動作。
-4. 按一下 [儲存] 來發佈邏輯應用程式。 此步驟會呼叫含有觸發此邏輯應用程式所需的回呼 URL 訂閱端點。
-5. 每當服務對回呼 URL 發出 `HTTP POST` 時，就會觸發邏輯應用程式，並包含要求中所傳遞的任何資料。
+4. 按一下**儲存**toopublish hello 邏輯應用程式。 此步驟中呼叫 hello 訂閱 hello 回呼所需的 URL tootrigger 端點此邏輯應用程式。
+5. 每當 hello 服務會`HTTP POST`toohello 回呼 URL，hello 邏輯應用程式引發，並包含傳入 hello 要求任何資料。
 
-## <a name="use-the-webhook-action"></a>使用 webhook 動作
+## <a name="use-hello-webhook-action"></a>使用 hello webhook 動作
 
-[「動作」](connectors-overview.md)是由邏輯應用程式中定義的工作流程所執行的作業。 Webhook 動作會註冊服務的*回呼 URL*，並等到呼叫該 URL 後再繼續。 [傳送核准電子郵件](connectors-create-api-office365-outlook.md)是遵循這個模式的連接器範例。 您可以透過 webhook 動作將此模式擴充到任何服務。 
+[*動作*](connectors-overview.md)作業由執行邏輯應用程式中定義的 hello 工作流程。 Webhook 動作會註冊*回呼 URL*與服務等候直到 hello URL 會繼續進行之前呼叫。 hello [」 傳送核准電子郵件 」](connectors-create-api-office365-outlook.md)是連接器遵循此模式的範例。 您可以在任何服務 hello webhook 動作透過擴充此模式。 
 
-以下是如何在邏輯應用程式設計工具中設定 webhook 動作的範例。 這些步驟假設您已部署或正在存取的 API 會遵循[邏輯應用程式中的 webhook 訂閱和取消訂閱模式](../logic-apps/logic-apps-create-api-app.md#webhook-actions)。 每當邏輯應用程式執行 webhook 動作時，就會進行訂閱呼叫。 每當執行在等待回應時取消，或在邏輯應用程式逾時前取消，就會進行取消訂閱呼叫。
+以下是示範如何設定中的 webhook 動作 tooset hello 邏輯應用程式的設計工具的範例。 這些步驟假設您已部署或正在存取的 API，遵循 hello [webhook 訂閱及取消訂閱邏輯應用程式中使用的模式](../logic-apps/logic-apps-create-api-app.md#webhook-actions)。 hello 訂閱呼叫邏輯應用程式執行 hello webhook 動作時進行。 hello 取消訂閱呼叫時執行取消等待回應，或應用程式逾時之前 hello 邏輯。
 
-**若要新增 webhook 動作**
+**tooadd webhook 動作**
 
 1. 選擇 [新增步驟] > [新增動作]。
 
-2. 在搜尋方塊中，輸入 "webhook" 以找出 **HTTP Webhook** 動作。
+2. 在 [hello] 搜尋方塊中，輸入 「 webhook"toofind hello **HTTP Webhook**動作。
 
     ![選取查詢動作](./media/connectors-native-webhook/using-action-1.png)
 
-3. 填入 webhook 訂閱和取消訂閱呼叫的參數
+3. 填滿 hello 參數中的 hello webhook 訂閱及取消訂閱呼叫
 
-   此步驟所遵循的模式與 [HTTP 動作](connectors-native-http.md)格式相同。
+   此步驟會遵循相同模式為 hello hello [HTTP 動作](connectors-native-http.md)格式。
 
      ![完整查詢動作](./media/connectors-native-webhook/using-action-2.png)
    
-   在執行階段中，邏輯應用程式會進行該步驟之後呼叫訂閱端點。
+   在執行階段，hello 邏輯應用程式呼叫 hello 訂閱到達該步驟之後的端點。
 
-4. 按一下 [儲存] 來發佈邏輯應用程式。
+4. 按一下**儲存**toopublish hello 邏輯應用程式。
 
 ## <a name="technical-details"></a>技術詳細資訊
 
-以下是更多關於 webhook 支援的觸發程序和動作詳細資料。
+以下是詳細資料的 webhook 支援 hello 觸發程序及動作相關。
 
 ## <a name="webhook-triggers"></a>WebHook 觸發程序
 
 | 動作 | 說明 |
 | --- | --- |
-| HTTP Webhook |訂閱服務的回呼 URL，就能視需要呼叫該 URL 以觸發邏輯應用程式。 |
+| HTTP Webhook |訂閱可以呼叫 hello URL toofire 邏輯應用程式所需的回呼 URL tooa 服務。 |
 
 ### <a name="trigger-details"></a>觸發程序詳細資料
 
 #### <a name="http-webhook"></a>HTTP Webhook
 
-訂閱服務的回呼 URL，就能視需要呼叫該 URL 以觸發邏輯應用程式。
+訂閱可以呼叫 hello URL toofire 邏輯應用程式所需的回呼 URL tooa 服務。
 代表必要欄位 * 。
 
 | 顯示名稱 | 屬性名稱 | 說明 |
 | --- | --- | --- |
-| 訂閱方法* |方法 |用於訂閱要求的 HTTP 方法 |
-| 訂閱 URI* |uri |用於訂閱要求的 HTTP URI |
-| 取消訂閱方法* |方法 |用於取消訂閱要求的 HTTP 方法 |
-| 取消訂閱 URI* |uri |用於取消訂閱要求的 HTTP URI |
+| 訂閱方法* |method |訂閱要求的 HTTP 方法 toouse |
+| 訂閱 URI* |uri |訂閱要求的 HTTP URI toouse |
+| 取消訂閱方法* |method |取消訂閱要求的 HTTP 方法 toouse |
+| 取消訂閱 URI* |uri |取消訂閱要求的 HTTP URI toouse |
 | 訂閱本文 |body |訂閱的 HTTP 要求本文 |
 | 訂閱標頭 |headers |訂閱的 HTTP 要求標頭 |
-| 訂閱驗證 |驗證 |訂閱要使用的 HTTP 驗證。 如需詳細資訊，[請參閱 HTTP 連接器](connectors-native-http.md#authentication) |
+| 訂閱驗證 |驗證 |HTTP 驗證 toouse 的訂閱。 如需詳細資訊，[請參閱 HTTP 連接器](connectors-native-http.md#authentication) |
 | 取消訂閱頁面 |body |取消訂閱的 HTTP 要求本文 |
 | 取消訂閱標頭 |headers |取消訂閱的 HTTP 要求標頭 |
-| 取消訂閱驗證 |驗證 |取消訂閱要使用的 HTTP 驗證。 如需詳細資訊，[請參閱 HTTP 連接器](connectors-native-http.md#authentication) |
+| 取消訂閱驗證 |驗證 |HTTP 驗證 toouse 用於取消訂閱。 如需詳細資訊，[請參閱 HTTP 連接器](connectors-native-http.md#authentication) |
 
 **輸出詳細資料**
 
@@ -117,27 +117,27 @@ Webhook 要求
 
 | 動作 | 說明 |
 | --- | --- |
-| HTTP Webhook |訂閱服務的回呼 URL，就能視需要呼叫繼續工作流程步驟的 URL。 |
+| HTTP Webhook |訂閱回呼 URL tooa 服務可以呼叫 hello URL tooresume 視工作流程步驟。 |
 
 ### <a name="action-details"></a>動作詳細資料
 
 #### <a name="http-webhook"></a>HTTP Webhook
 
-訂閱服務的回呼 URL，就能視需要呼叫繼續工作流程步驟的 URL。
+訂閱回呼 URL tooa 服務可以呼叫 hello URL tooresume 視工作流程步驟。
 代表必要欄位 * 。
 
 | 顯示名稱 | 屬性名稱 | 說明 |
 | --- | --- | --- |
-| 訂閱方法* |方法 |用於訂閱要求的 HTTP 方法 |
-| 訂閱 URI* |uri |用於訂閱要求的 HTTP URI |
-| 取消訂閱方法* |方法 |用於取消訂閱要求的 HTTP 方法 |
-| 取消訂閱 URI* |uri |用於取消訂閱要求的 HTTP URI |
+| 訂閱方法* |method |訂閱要求的 HTTP 方法 toouse |
+| 訂閱 URI* |uri |訂閱要求的 HTTP URI toouse |
+| 取消訂閱方法* |method |取消訂閱要求的 HTTP 方法 toouse |
+| 取消訂閱 URI* |uri |取消訂閱要求的 HTTP URI toouse |
 | 訂閱本文 |body |訂閱的 HTTP 要求本文 |
 | 訂閱標頭 |headers |訂閱的 HTTP 要求標頭 |
-| 訂閱驗證 |驗證 |訂閱要使用的 HTTP 驗證。 如需詳細資訊，[請參閱 HTTP 連接器](connectors-native-http.md#authentication) |
+| 訂閱驗證 |驗證 |HTTP 驗證 toouse 的訂閱。 如需詳細資訊，[請參閱 HTTP 連接器](connectors-native-http.md#authentication) |
 | 取消訂閱頁面 |body |取消訂閱的 HTTP 要求本文 |
 | 取消訂閱標頭 |headers |取消訂閱的 HTTP 要求標頭 |
-| 取消訂閱驗證 |驗證 |取消訂閱要使用的 HTTP 驗證。 如需詳細資訊，[請參閱 HTTP 連接器](connectors-native-http.md#authentication) |
+| 取消訂閱驗證 |驗證 |HTTP 驗證 toouse 用於取消訂閱。 如需詳細資訊，[請參閱 HTTP 連接器](connectors-native-http.md#authentication) |
 
 **輸出詳細資料**
 

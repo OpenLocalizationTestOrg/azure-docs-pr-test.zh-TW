@@ -1,6 +1,6 @@
 ---
-title: "將 Azure 資源移至新的訂用帳戶或資源群組 | Microsoft Docs"
-description: "使用 Azure Resource Manager 將資源移到新的資源群組或訂用帳戶。"
+title: "aaaMove Azure 資源 toonew 訂用帳戶或資源群組 |Microsoft 文件"
+description: "使用 Azure Resource Manager toomove 資源 tooa 新資源群組或訂用帳戶。"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: e138f80e808968ab4bf5c11cfd5fd46fe4a1bcce
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 09d35f0afbbcdc0c66779f98a982d878f0807497
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-resources-to-new-resource-group-or-subscription"></a>將資源移動到新的資源群組或訂用帳戶
-本主題說明如何將資源移至新的訂用帳戶或相同訂用帳戶中新的資源群組。 您可以使用入口網站、PowerShell、Azure CLI 或 REST API 來移動資源。 本主題中的移動作業可供您使用而不需要任何 Azure 支援的協助。
+# <a name="move-resources-toonew-resource-group-or-subscription"></a>移動資源 toonew 資源群組或訂用帳戶
+本主題說明您如何 toomove 資源 tooeither 新訂用帳戶或新的資源群組中 hello 相同訂用帳戶。 您可以使用 hello 入口網站、 PowerShell、 Azure CLI 或 hello REST API toomove 資源。 本主題中的 hello 移動作業是使用 tooyou 不需要任何協助從 Azure 支援。
 
-移動資源時，在此作業期間會同時鎖定來源群組和目標群組。 資源群組上的寫入和刪除作業將會封鎖，直到移動完成。 此鎖定表示您無法新增、更新或刪除資源群組中的資源，但不表示資源已遭到凍結。 例如，如果您將 SQL Server 和其資料庫移至新的資源群組，使用該資料庫的應用程式不會發生停機時間。 它仍可對資料庫讀取和寫入。
+當您移動資源，也會 hello 作業期間鎖定 hello 來源群組和 hello 目標群組。 寫入和刪除作業 hello 移動作業完成之前被封鎖於 hello 資源群組。 這個鎖定表示您無法加入、 更新或刪除資源在 hello 資源群組中，但它並不表示已遭到凍結 hello 資源。 比方說，如果您移動 SQL Server 和資料庫 tooa 新資源群組，使用 hello 資料庫的應用程式就會發生任何停機時間。 仍可讀取並寫入 toohello 資料庫。
 
-您無法變更資源的位置。 移動資源只會將它移動到新的資源群組。 新的資源群組可能會有不同的位置，但那樣不會變更資源的位置。
+您無法變更 hello 資源的 hello 位置。 移動資源只會移動它 tooa 新資源群組。 hello 新資源群組可能會有不同的位置，但不會變更 hello 資源的 hello 位置。
 
 > [!NOTE]
-> 本文說明如何在現有的 Azure 帳戶提供項目內移動資源。 如果您真的想要變更 Azure 帳戶提供項目 (例如，從隨用隨付升級為預付)，同時繼續使用現有的資源，請參閱 [切換至不同的 Azure 訂用帳戶優惠](../billing/billing-how-to-switch-azure-offer.md)。
+> 本文說明如何在現有的 Azure toomove 資源帳戶提供項目。 如果您真的想要 toochange 為您的 Azure 帳戶 （例如從隨用隨付 toopre 付費升級） 產品，同時繼續 toowork 與您現有的資源，請參閱[切換您的 Azure 訂用帳戶 tooanother 優惠](../billing/billing-how-to-switch-azure-offer.md)。
 >
 >
 
 ## <a name="checklist-before-moving-resources"></a>移動資源前的檢查清單
-在移動資源之前，要執行的重要步驟如下︰ 藉由驗證這些條件，您可以避免錯誤。
+移動資源之前有一些重要步驟 tooperform。 藉由驗證這些條件，您可以避免錯誤。
 
-1. 來源和目的地的訂用帳戶必須存在於相同的 [Azure Active Directory 租用戶](../active-directory/active-directory-howto-tenant.md)內。 若要檢查這兩個訂用帳戶都有相同的租用戶識別碼，請使用 Azure PowerShell 或 Azure CLI。
+1. hello 來源和目的地訂用帳戶必須存在於 hello 相同[Azure Active Directory 租用戶](../active-directory/active-directory-howto-tenant.md)。 這兩個訂用帳戶擁有 hello 相同 toocheck 租用戶識別碼，請使用 Azure PowerShell 或 Azure CLI。
 
   如果是 Azure PowerShell，請使用：
 
@@ -49,28 +49,28 @@ ms.lasthandoff: 08/29/2017
   az account show --subscription "Example Subscription" --query tenantId
   ```
 
-  如果來源和目的地訂用帳戶的租用戶識別碼不相同，您可以嘗試變更訂用帳戶的目錄。 不過，此選項僅提供給使用 Microsoft 帳戶 (非組織帳戶) 登入的服務系統管理員。 若要嘗試變更目錄，登入到[傳統入口網站](https://manage.windowsazure.com/)，然後選取 [設定]，再選取訂用帳戶。 如果 [編輯目錄] 圖示可用，請選取它來變更相關聯的 Azure Active Directory。
+  如果 hello 租用戶的識別碼 hello 來源和目的地訂用帳戶不是 hello 相同，您可以嘗試 hello 訂用帳戶的 toochange hello 目錄。 不過，這個選項是使用 tooService Microsoft 帳戶 （非組織帳戶） 登入系統管理員。 變更 hello 目錄中，登入 toohello tooattempt[傳統入口網站](https://manage.windowsazure.com/)，然後選取**設定**，選取 hello 訂用帳戶。 如果 hello**編輯目錄**圖示可用，請選取它 toochange hello 相關聯的 Azure Active Directory。
 
   ![編輯目錄](./media/resource-group-move-resources/edit-directory.png)
 
-  如果該圖示不可用，您必須連絡支援人員將資源移動到新的租用戶。
+  如果找不到該圖示，您必須連絡支援 toomove hello 資源 tooa 新的租用戶。
 
-2. 服務必須啟用移動資源的功能。 本主題列出哪些服務可實現移動資源，哪些服務無法實現移動資源。
-3. 必須針對要移動之資源的資源提供者註冊其目的地訂用帳戶。 否則，您會收到錯誤，指出 **未針對資源類型註冊訂用帳戶**。 將資源移至新的訂用帳戶時，可能會因為該訂用帳戶不曾以指定的資源類型使用過而遇到問題。 若要了解如何檢查註冊狀態及註冊資源提供者，請參閱 [資源提供者和類型](resource-manager-supported-services.md)。
+2. hello 服務必須啟用 hello 能力 toomove 資源。 本主題列出哪些服務可實現移動資源，哪些服務無法實現移動資源。
+3. 正在移動的 hello 資源的 hello 資源提供者必須登錄 hello 目的地訂用帳戶。 如果不是，您會收到錯誤，指出該 hello**訂用帳戶未註冊資源類型**。 移動資源 tooa 新訂閱時，可能會遇到這個問題，但從未使用該訂用帳戶與該資源類型。 toolearn 如何 toocheck hello 登錄狀態，並註冊資源提供者，請參閱[資源提供者和類型](resource-manager-supported-services.md)。
 
-## <a name="when-to-call-support"></a>呼叫支援的時機
-您可以透過本主題顯示的自助式作業，移動大部分資源。 使用自助式作業︰
+## <a name="when-toocall-support"></a>當 toocall 支援
+您可以移動透過本主題中的 hello 自助服務作業的最多資源。 使用 hello 自助服務作業：
 
 * 移動 Resource Manager 資源。
-* 根據[傳統部署限制](#classic-deployment-limitations)移動傳統資源。
+* 將根據 toohello 傳統資源移動[傳統部署限制](#classic-deployment-limitations)。
 
 當您需要進行下列作業時，請連絡支援人員︰
 
-* 將資源移至新的 Azure 帳戶 (與 Azure Active Directory 租用戶)。
-* 移動傳統資源，但有限制的問題。
+* 移動資源 tooa 新的 Azure 帳戶 （與 Azure Active Directory 租用戶）。
+* 將傳統資源移動，但發生問題 hello 限制。
 
 ## <a name="services-that-enable-move"></a>啟用移動的服務
-目前啟用移動到新資源群組與訂用帳戶的服務有：
+現在，是啟用移動 tooboth 新的資源群組和訂用帳戶的 hello 服務：
 
 * API 管理
 * App Service 應用程式 (Web 應用程式) - 請參閱 [App Service 限制](#app-service-limitations)
@@ -110,18 +110,18 @@ ms.lasthandoff: 08/29/2017
 * 儲存體
 * 儲存體 (傳統) - 請參閱 [傳統部署限制](#classic-deployment-limitations)
 * 串流分析 - 無法移動執行中狀態的串流分析作業。
-* SQL Database 伺服器 - 資料庫和伺服器必須位於相同的資源群組。 當您移動 SQL 伺服器時，其所有資料庫也會跟著移動。
+* SQL Database 伺服器-hello 資料庫和伺服器必須位於 hello 相同的資源群組。 當您移動 SQL 伺服器時，其所有資料庫也會跟著移動。
 * 流量管理員
 * 虛擬機器
-* 憑證儲存在 Key Vault 中的虛擬機器 - 已啟用移動至相同訂用帳戶中新資源群組的功能，但未啟用跨訂用帳戶之間的移動。
+* 使用憑證儲存在金鑰保存庫位在相同的訂用帳戶移動 toonew 資源群組中的虛擬機器已啟用，但未啟用跨訂用帳戶移動。
 * 虛擬機器 (傳統) - 請參閱 [傳統部署限制](#classic-deployment-limitations)
 * 虛擬機器擴展集
-* 虛擬網路 - 目前，在停用 VNet 對等互連之前，將無法移動對等的虛擬網路。 一旦停用之後，就能成功移動虛擬網路，並接著啟用 VNet 對等互連。 此外，如果虛擬網路包含任何有資源導覽連結的子網路，則無法將虛擬網路移動到其他訂用帳戶。 例如，當 Microsoft.Cache Redis 資源部署到虛擬網路子網路時，該子網路便具有資源導覽連結。
+* 虛擬網路 - 目前，在停用 VNet 對等互連之前，將無法移動對等的虛擬網路。 一旦停用的 hello 能夠順利移動虛擬網路，而且可以啟用 hello VNet 對等互連。 此外，虛擬網路不能移動的 tooa 不同訂用帳戶，如果 hello 虛擬網路包含資源瀏覽連結的任何子網路。 例如，當 Microsoft.Cache Redis 資源部署到虛擬網路子網路時，該子網路便具有資源導覽連結。
 * VPN 閘道
 
 
 ## <a name="services-that-do-not-enable-move"></a>不啟用移動的服務
-目前不啟用移動資源的服務有：
+目前未啟用移動資源的 hello 服務包括：
 
 * AD Domain Services
 * AD 混合式健康狀態服務
@@ -130,26 +130,26 @@ ms.lasthandoff: 08/29/2017
 * BizTalk 服務
 * 容器服務
 * ExpressRoute
-* DevTest Labs - 已啟用移動至相同訂用帳戶中新資源群組的功能，但未啟用跨訂用帳戶之間的移動。
+* DevTest Labs-移動 toonew 資源群組相同的訂用帳戶中已啟用，但不是會啟用跨訂用帳戶移動。
 * Dynamics LCS
 * 從受控磁碟建立的映像
 * 受控磁碟
 * 受管理的應用程式
-* 復原服務保存庫 - 也不會移動與「復原服務」保存庫關聯的「計算」、「網路」及「儲存體」資源，請參閱 [復原服務限制](#recovery-services-limitations)。
+* 復原服務保存庫-不移動 hello 運算、 網路和儲存體資源相關聯也 hello 復原服務保存庫，請參閱[復原服務限制](#recovery-services-limitations)。
 * 安全性
 * 從受控磁碟建立的快照集
 * StorSimple 裝置管理員
 * 使用受控磁碟的虛擬機器
 * 虛擬網路 (傳統) - 請參閱 [傳統部署限制](#classic-deployment-limitations)
-* 從 Marketplace 資源建立的虛擬機器 - 無法在訂用帳戶之間移動。 資源必須先在目前的訂用帳戶中取消佈建，並於新訂用帳戶中再次部署
+* 從 Marketplace 資源建立的虛擬機器 - 無法在訂用帳戶之間移動。 需要 toobe hello 目前訂用帳戶取消佈建和部署一次 hello 新訂用帳戶中的資源
 
 ## <a name="app-service-limitations"></a>App Service 限制
-使用 App Service 應用程式時，您無法只移動 App Service 方案。 若要移動 App Service 應用程式，您的選項如下：
+使用 App Service 應用程式時，您無法只移動 App Service 方案。 toomove App Service 應用程式，您的選項如下：
 
-* 將該資源群組中的 App Service 方案和所有其他 App Service 資源，都移到還沒有 App Service 資源的新資源群組。 這項需求意謂著您甚至必須移動與 App Service 方案沒有關聯的 App Service 資源。
-* 將應用程式移到不同的資源群組，但在原始資源群組中保留所有 App Service 方案。
+* 該資源群組 tooa 新資源群組中已經沒有應用程式服務的資源移動 hello 應用程式服務方案和所有其他應用程式服務資源。 甚至，您必須移動的方式 hello 應用程式服務資源的這項需求不是與 hello 應用程式服務方案相關聯。
+* 移動 hello 應用程式 tooa 不同的資源群組，但保留 hello 原始的資源群組中的所有應用程式服務方案。
 
-App Service 方案不需要與應用程式位於相同的資源群組，應用程式就能正確運作。
+hello 應用程式服務計劃不需要在 tooreside hello 與 hello 應用程式 toofunction 的 hello 應用程式的相同資源群組正確。
 
 例如，如果您的資源群組包含︰
 
@@ -165,65 +165,65 @@ App Service 方案不需要與應用程式位於相同的資源群組，應用�
 
 所有其他組合都會留下移動 App Service 方案時無法留下的資源類型 (任何類型的 App Service 資源)。
 
-如果 Web 應用程式與其 App Service 方案位於不同的資源群組，但您想要將兩者移到新的資源群組，則必須使用兩個步驟來執行移動。 例如：
+如果您 web 應用程式位於不同的資源群組超過其應用程式服務方案，但您想 toomove 這兩個 tooa 新的資源群組，您必須執行兩個步驟中的 hello 移動。 例如：
 
 * **web-a** 位於 **web-group** 中
 * **plan-a** 位於 **plan-group** 中
-* 您想要讓 **web-a** 和 **plan-a** 位於 **combined-group** 中
+* 您想要**web 的**和**計劃的**中的 tooreside**結合群組**
 
-若要完成這項移動，請依下列序列執行兩個不同的移動作業︰
+這將移動，在 hello 下列順序執行兩個不同的移動作業 tooaccomplish:
 
-1. 將 **web-a** 移到 **plan-group**
-2. 將 **web-a** 和 **plan-a** 移到 **combined-group**。
+1. 移動 hello **web 的**太**計劃群組**
+2. 移動**web 的**和**計劃的**太**結合群組**。
 
-您可以將 App Service 憑證移至新資源群組或訂用帳戶，而不會發生任何問題。 不過，如果您的 Web 應用程式包含在外部購買，並上傳至應用程式的 SSL 憑證，您必須在移動 Web 應用程式之前刪除憑證。 例如，您可以執行下列步驟︰
+您可以移動應用程式的服務憑證 tooa 新資源群組或訂用帳戶沒有任何問題。 不過，如果您的 web 應用程式包含您購買外部並上傳 toohello 應用程式的 SSL 憑證，您必須刪除 hello 憑證，才能移動 hello web 應用程式。 比方說，您可以執行下列步驟的 hello:
 
-1. 刪除從 Web 應用程式上傳的憑證
-2. 移動 Web 應用程式
-3. 將憑證上傳至 Web 應用程式
+1. 刪除 hello web 應用程式中的 hello 上傳憑證
+2. 移動 hello web 應用程式
+3. 上傳 hello 憑證 toohello web 應用程式
 
 ## <a name="recovery-services-limitations"></a>復原服務限制
-無法移動用來設定 Azure Site Recovery 相關災害復原的「儲存體」、「網路」或「計算」資源。
+移動 未啟用儲存體、 網路或計算與 Azure Site Recovery 使用 tooset 災害復原的資源。
 
-舉例來說，假設您已設定將內部部署機器複寫到某個儲存體帳戶 (Storage1)，而想要讓受保護的機器在容錯移轉到 Azure 之後，以連接到虛擬網路 (Network1) 的虛擬機器 (VM1) 身分上線。 您無法跨相同訂用帳戶內的資源群組或跨訂用帳戶來移動任何這些 Azure 資源 - Storage1、VM1 及 Network1。
+例如，假設您已設定複寫在內部部署機器 tooa 儲存體帳戶 (Storage1)，而且想 hello 受保護機器 toocome 向上，tooAzure 容錯移轉之後為虛擬機器 (VM1) 附加 tooa 虛擬網路 (Network1)。 您無法移動下列任何 Azure 資源-Storage1，VM1，並 Network1-跨越資源群組內 hello 相同訂用帳戶或訂用帳戶之間。
 
 ## <a name="hdinsight-limitations"></a>HDInsight 限制
 
-您可以將 HDInsight 叢集移至新的訂用帳戶或資源群組。 不過，您無法跨訂用帳戶來移動連結至 HDInsight 叢集的網路資源 (例如虛擬網路、NIC 或負載平衡器)。 此外，您無法將已連接至叢集虛擬機器的 NIC 移至新的資源群組。
+您可以移動 HDInsight 叢集 tooa 新訂用帳戶或資源群組。 不過，您無法跨訂閱 hello 網路功能 （例如 hello 虛擬網路、 NIC 或負載平衡器） 的資源連結的 toohello HDInsight 叢集移動。 此外，您無法移動 tooa 新資源群組是附加的 tooa hello 叢集的虛擬機器的 NIC。
 
-將 HDInsight 叢集移至新的訂用帳戶時，請先移動其他資源 (例如儲存體帳戶)。 然後，移動 HDInsight 叢集本身。
+當您移動 HDInsight 叢集 tooa 新訂閱，第一次移動其他資源 （例如 hello 儲存體帳戶）。 接著，單獨使用時移動 hello HDInsight 叢集。
 
 ## <a name="classic-deployment-limitations"></a>傳統部署限制
-移動透過傳統模型所部署之資源的選項，會根據移動訂用帳戶內的資源還是將資源移到新的訂用帳戶而有所不同。
+hello 的選項移動透過 hello 傳統模型所部署的資源會因根據是否要移動訂用帳戶或 tooa 新訂用帳戶中的 hello 資源。
 
 ### <a name="same-subscription"></a>相同訂用帳戶
-將資源從一個資源群組移到相同訂用帳戶內的另一個資源群組時，適用下列限制︰
+當移動資源從一個資源群組 tooanother 資源群組內套用相同的訂用帳戶，下列限制的 hello hello:
 
 * 無法移動虛擬網路 (傳統)。
-* 虛擬機器 (傳統) 必須與雲端服務一起移動。
-* 只有當移動作業包含雲端服務的所有虛擬機器時，才能移動雲端服務。
+* 必須移動虛擬機器 （傳統） 與 hello 雲端服務。
+* 當 hello 移動包含其所有的虛擬機器時，就只能移動雲端服務。
 * 一次只能移動一個雲端服務。
 * 一次只能移動一個儲存體帳戶 (傳統)。
-* 透過相同的作業，儲存體帳戶 (傳統) 不能與虛擬機器或雲端服務一起移動。
+* 儲存體帳戶 （傳統） 無法在 hello 移動虛擬機器或雲端服務相同的作業。
 
-若要將傳統資源移到相同訂用帳戶內的新資源群組，請透過[入口網站](#use-portal)、[Azure PowerShell](#use-powershell)、[Azure CLI](#use-azure-cli) 或 [REST API](#use-rest-api)，使用標準移動作業。 當您移動 Resource Manager 資源時，您會使用相同的作業。
+toomove 傳統資源 tooa 新資源群組內 hello 相同訂用帳戶，請使用 hello 標準的移動作業透過 hello[入口網站](#use-portal)， [Azure PowerShell](#use-powershell)， [Azure CLI](#use-azure-cli)，或[REST API](#use-rest-api)。 您使用 hello 相同的作業，因為您用來移動資源管理員資源。
 
 ### <a name="new-subscription"></a>新的訂用帳戶
-將資源移到新訂用帳戶時，適用下列限制︰
+當您移動資源 tooa 新訂用帳戶，便會套用下列限制的 hello:
 
-* 必須透過相同的作業移動訂用帳戶中的所有傳統資源。
-* 目標訂用帳戶不得包含任何其他傳統資源。
-* 只能透過適用於傳統移動的個別 REST API 來要求移動。 將傳統資源移到新的訂用帳戶時，標準 Resource Manager 移動命令無法運作。
+* Hello 訂用帳戶中的所有傳統資源必須移動 hello 中相同的作業。
+* hello 目標訂用帳戶不可以包含任何其他傳統資源。
+* 只可以透過傳統移動個別的 REST API 要求 hello 移動。 hello 標準資源管理員移動命令無法運作時移動傳統資源 tooa 新訂用帳戶。
 
-若要將傳統資源移到新的訂用帳戶，請使用傳統資源特定的 REST 作業。 若要使用 REST，請執行下列步驟：
+toomove 傳統資源 tooa 新訂用帳戶，都是特定 tooclassic 資源的使用 hello REST 作業。 toouse 其餘部分，執行下列步驟的 hello:
 
-1. 請檢查來源訂用帳戶是否可以參與跨訂用帳戶移動。 請使用下列作業：
+1. 檢查如果 hello 來源訂用帳戶可以參與跨訂用帳戶移動。 使用 hello 下列操作：
 
   ```HTTP   
   POST https://management.azure.com/subscriptions/{sourceSubscriptionId}/providers/Microsoft.ClassicCompute/validateSubscriptionMoveAvailability?api-version=2016-04-01
   ```
 
-     在要求本文中包含：
+     在 hello 要求主體中，包括：
 
   ```json
   {
@@ -231,7 +231,7 @@ App Service 方案不需要與應用程式位於相同的資源群組，應用�
   }
   ```
 
-     驗證作業的回應格式如下︰
+     hello 回應 hello 驗證作業處於下列格式的 hello:
 
   ```json
   {
@@ -243,13 +243,13 @@ App Service 方案不需要與應用程式位於相同的資源群組，應用�
   }
   ```
 
-2. 請檢查目的地訂用帳戶是否可以參與跨訂用帳戶移動。 請使用下列作業：
+2. 檢查如果 hello 目的地訂用帳戶可以參與跨訂用帳戶移動。 使用 hello 下列操作：
 
   ```HTTP
   POST https://management.azure.com/subscriptions/{destinationSubscriptionId}/providers/Microsoft.ClassicCompute/validateSubscriptionMoveAvailability?api-version=2016-04-01
   ```
 
-     在要求本文中包含：
+     在 hello 要求主體中，包括：
 
   ```json
   {
@@ -257,14 +257,14 @@ App Service 方案不需要與應用程式位於相同的資源群組，應用�
   }
   ```
 
-     回應的格式與來源訂用帳戶驗證的格式相同。
-3. 如果兩個訂用帳戶都通過驗證，使用下列作業將所有傳統資源從某個訂用帳戶移到另一個訂用帳戶︰
+     hello 回應 hello 相同 hello 來源訂用帳戶的驗證格式為。
+3. 如果這兩個訂用帳戶通過驗證時，移動所有傳統資源從一個訂用帳戶 tooanother 訂用帳戶以 hello 下列操作：
 
   ```HTTP
   POST https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.ClassicCompute/moveSubscriptionResources?api-version=2016-04-01
   ```
 
-    在要求本文中包含：
+    在 hello 要求主體中，包括：
 
   ```json
   {
@@ -272,38 +272,38 @@ App Service 方案不需要與應用程式位於相同的資源群組，應用�
   }
   ```
 
-這項作業可能需要幾分鐘的時間執行。
+hello 作業可能會執行幾分鐘的時間。
 
 ## <a name="use-portal"></a>使用入口網站
-若要移動資源，請選取包含這些資源的資源群組，然後選取 [移動] 按鈕。
+toomove 資源，選取包含這些資源，hello 資源群組，然後選取 [hello**移動**] 按鈕。
 
 ![移動資源](./media/resource-group-move-resources/select-move.png)
 
-選擇將資源移動到新的資源群組或新的訂用帳戶。
+選取您要移動 hello 資源 tooa 新資源群組或新的訂用帳戶。
 
-選取要移動的資源和目的地資源群組。 認可您需要更新這些資源的指令碼，然後選取 [確定] 。 如果您在上一個步驟中選取了 [編輯訂用帳戶] 圖示，則也必須選取目的地訂用帳戶。
+選取 hello 資源 toomove 與 hello 目的地資源群組。 了解您需要 tooupdate 指令碼，這些資源並選取**確定**。 如果您選取 hello 編輯訂用帳戶 圖示 hello 上一個步驟中，您也必須選取 hello 目的地訂用帳戶。
 
 ![選取目的地](./media/resource-group-move-resources/select-destination.png)
 
-在 [通知] 中，您會看到移動作業正在執行。
+在**通知**，您會看到該 hello 移動作業正在執行。
 
 ![顯示移動狀態](./media/resource-group-move-resources/show-status.png)
 
-完成後，您會收到結果的通知。
+完成後，就會通知的 hello 結果。
 
 ![顯示移動結果](./media/resource-group-move-resources/show-result.png)
 
 ## <a name="use-powershell"></a>使用 PowerShell
-若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 `Move-AzureRmResource` 命令。
+toomove 現有資源 tooanother 資源群組或訂用帳戶，使用 hello`Move-AzureRmResource`命令。
 
-第一個範例顯示如何將某個資源移動到新的資源群組。
+hello 第一個範例顯示如何 toomove 一個資源 tooa 新資源群組。
 
 ```powershell
 $resource = Get-AzureRmResource -ResourceName ExampleApp -ResourceGroupName OldRG
 Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $resource.ResourceId
 ```
 
-第二個範例顯示如何將多個資源移動到新的資源群組。
+hello 第二個範例會示範如何 toomove 多個資源 tooa 新資源群組。
 
 ```powershell
 $webapp = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExampleSite
@@ -311,14 +311,14 @@ $plan = Get-AzureRmResource -ResourceGroupName OldRG -ResourceName ExamplePlan
 Move-AzureRmResource -DestinationResourceGroupName NewRG -ResourceId $webapp.ResourceId, $plan.ResourceId
 ```
 
-若要移動到新的訂用帳戶，請包含 `DestinationSubscriptionId`參數的值。
+toomove tooa 新訂用帳戶，包含的值 hello`DestinationSubscriptionId`參數。
 
-系統會要求您確認您想要移動指定的資源。
+系統會詢問您想 toomove hello tooconfirm 指定資源。
 
 ```powershell
 Confirm
-Are you sure you want to move these resources to the resource group
-'/subscriptions/{guid}/resourceGroups/newRG' the resources:
+Are you sure you want toomove these resources toohello resource group
+'/subscriptions/{guid}/resourceGroups/newRG' hello resources:
 
 /subscriptions/{guid}/resourceGroups/destinationgroup/providers/Microsoft.Web/serverFarms/exampleplan
 /subscriptions/{guid}/resourceGroups/destinationgroup/providers/Microsoft.Web/sites/examplesite
@@ -326,28 +326,28 @@ Are you sure you want to move these resources to the resource group
 ```
 
 ## <a name="use-azure-cli-20"></a>使用 Azure CLI 2.0
-若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 `az resource move` 命令。 提供要移動之資源的資源識別碼。 您可以使用下列命令取得資源識別碼︰
+toomove 現有資源 tooanother 資源群組或訂用帳戶，使用 hello`az resource move`命令。 提供 hello 資源 hello 資源 toomove Id。 您可以取得的資源識別碼與 hello 下列命令：
 
 ```azurecli
 az resource show -g sourceGroup -n storagedemo --resource-type "Microsoft.Storage/storageAccounts" --query id
 ```
 
-下列範例說明如何將儲存體帳戶移動到新的資源群組。 請在 `--ids` 參數中，為要移動的資源識別碼提供以空格分隔的清單。
+hello 下列範例顯示如何 toomove 儲存體帳戶 tooa 新資源群組。 在 hello`--ids`參數，提供的 hello 資源 Id toomove 以空格分隔清單。
 
 ```azurecli
 az resource move --destination-group newgroup --ids "/subscriptions/{guid}/resourceGroups/sourceGroup/providers/Microsoft.Storage/storageAccounts/storagedemo"
 ```
 
-若要移動到新的訂用帳戶，請提供 `--destination-subscription-id` 參數。
+toomove tooa 新訂用帳戶，提供 hello`--destination-subscription-id`參數。
 
 ## <a name="use-azure-cli-10"></a>使用 Azure CLI 1.0
-若要將現有的資源移動到另一個資源群組或訂用帳戶，請使用 `azure resource move` 命令。 提供要移動之資源的資源識別碼。 您可以使用下列命令取得資源識別碼︰
+toomove 現有資源 tooanother 資源群組或訂用帳戶，使用 hello`azure resource move`命令。 提供 hello 資源 hello 資源 toomove Id。 您可以取得的資源識別碼與 hello 下列命令：
 
 ```azurecli
 azure resource list -g sourceGroup --json
 ```
 
-它會傳回下列格式︰
+它會傳回下列格式的 hello:
 
 ```azurecli
 [
@@ -366,25 +366,25 @@ azure resource list -g sourceGroup --json
 ]
 ```
 
-下列範例說明如何將儲存體帳戶移動到新的資源群組。 請在 `-i` 參數中，為要移動的資源識別碼提供以逗號分隔的清單。
+hello 下列範例顯示如何 toomove 儲存體帳戶 tooa 新資源群組。 在 hello`-i`參數，提供 hello 資源 Id toomove 的逗號分隔清單。
 
 ```azurecli
 azure resource move -i "/subscriptions/{guid}/resourceGroups/sourceGroup/providers/Microsoft.Storage/storageAccounts/storagedemo" -d "destinationGroup"
 ```
 
-系統會要求您確認您想要移動指定的資源。
+系統會詢問您想 toomove hello tooconfirm 指定的資源。
 
 ## <a name="use-rest-api"></a>使用 REST API
-若要將現有的資源移動到另一個資源群組或訂用帳戶，請執行：
+toomove 現有資源 tooanother 資源群組或訂用帳戶，執行：
 
 ```HTTP
 POST https://management.azure.com/subscriptions/{source-subscription-id}/resourcegroups/{source-resource-group-name}/moveResources?api-version={api-version}
 ```
 
-在要求主體中，您可以指定目標資源群組以及要移動的資源。 如需有關 REST 移動作業的詳細資訊，請參閱 [移動資源](https://msdn.microsoft.com/library/azure/mt218710.aspx)。
+在 hello 要求主體中，您可以指定 hello 目標資源群組與 hello 資源 toomove。 如需 hello 移動 REST 作業的詳細資訊，請參閱[資源移](https://msdn.microsoft.com/library/azure/mt218710.aspx)。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要了解用於管理訂用帳戶的 PowerShell Cmdlet，請參閱 [搭配使用 Azure PowerShell 與 Azure Resource Manager](powershell-azure-resource-manager.md)。
-* 若要了解用於管理訂用帳戶的 Azure CLI 命令，請參閱 [搭配使用 Azure CLI 與 Azure Resource Manager](xplat-cli-azure-resource-manager.md)。
-* 若要了解用於管理訂用帳戶的入口網站功能，請參閱 [使用 Azure 入口網站來管理資源](resource-group-portal.md)。
-* 若要了解如何將邏輯組織套用到您的資源，請參閱 [使用標記來組織您的資源](resource-group-using-tags.md)。
+* toolearn 相關 PowerShell cmdlet 來管理您的訂閱，請參閱[使用 Azure PowerShell 與資源管理員](powershell-azure-resource-manager.md)。
+* toolearn 有關 Azure CLI 命令可用於管理您的訂閱，請參閱[使用 hello Azure CLI 與資源管理員](xplat-cli-azure-resource-manager.md)。
+* toolearn 有關入口網站功能來管理您的訂閱，請參閱[使用 hello Azure 入口網站 toomanage 資源](resource-group-portal.md)。
+* toolearn 有關套用邏輯組織 tooyour 資源，請參閱[使用標記 tooorganize 資源](resource-group-using-tags.md)。

@@ -1,5 +1,5 @@
 ---
-title: "Azure 事件中樞常見問題集 | Microsoft Docs"
+title: "aaaAzure 事件中心常見問題集 |Microsoft 文件"
 description: "Azure 事件中樞常見問題集 (FAQ)"
 services: event-hubs
 documentationcenter: na
@@ -14,86 +14,86 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/28/2017
 ms.author: sethm;shvija
-ms.openlocfilehash: e208e970de58505553802a4ed27d7f9da4070866
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: cc0844edcc38ad167cde9497d58d44155fc90b7a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-hubs-frequently-asked-questions"></a>事件中樞常見問題集
 
 ## <a name="general"></a>一般
 
-### <a name="what-is-the-difference-between-event-hubs-basic-and-standard-tiers"></a>事件中樞基本層和標準層之間的差異為何？
+### <a name="what-is-hello-difference-between-event-hubs-basic-and-standard-tiers"></a>Hello 事件中心基本和標準層之間的差異為何？
 
-Azure 事件中樞的標準層提供比基本層更多的功能。 標準層包含下列功能︰
+hello Azure 事件中心標準層級提供沒有 hello 基本層級提供的功能。 下列功能的 hello 隨附於標準：
 * 較長的事件保留期
-* 其他代理連線，超過包含的數目時支付超額費用
+* 其他代理的連線的詳細資訊，與用於多個包含 hello 號碼 overage 電量
 * 超過單一消費者群組
 * [擷取](https://docs.microsoft.com/azure/event-hubs/event-hubs-capture-overview)
 
-如需有關定價層的詳細資訊，包括專用事件中樞，請參閱[事件中樞定價詳細資料](https://azure.microsoft.com/pricing/details/event-hubs/)。
+如需有關定價層，包括事件中心專用的請參閱 hello[事件中心定價詳細資料](https://azure.microsoft.com/pricing/details/event-hubs/)。
 
 ### <a name="what-are-event-hubs-throughput-units"></a>事件中樞輸送量單位是什麼？
 
-您明確選取事件中樞輸送量單位，可以者透過 Azure 入口網站或事件中樞 Resource Manager 範本。 輸送量單位會套用到事件中樞命名空間內的所有事件中樞，以及賦予命名空間下列功能的每個輸送量單位：
+您明確地選取事件中心輸送量單位、 透過 hello Azure 入口網站或事件中心的資源管理員範本。 輸送量單位會套用 tooall 事件中心事件中樞命名空間中的，每個輸送量單位都具備 hello 命名空間 toohello 下列功能：
 
-* 最高每秒 1MB 的輸入事件 (傳送到事件中樞的事件)，但不超過每秒 1000 個輸入事件、管理作業或控制 API 呼叫。
-* 最高每秒 2MB 的輸出事件 (從事件中樞取用的事件)。
-* 最多 84GB 的事件儲存體 (足以應付預設的 24 小時保留期限)。
+* 向上 too1 MB，每秒的輸入事件 （事件傳送到事件中心），但不超過 1000 個的輸入事件、 管理作業或控制 API 呼叫每秒。
+* 向上 too2 MB 每秒的輸出事件 （取用自事件中心）。
+* 向上 too84 GB 的儲存體事件 （足以應付 hello 預設 24 小時的保留期限）。
 
-事件中樞輸送量單位以小時計費，基準為在指定時段內選取之單位的最大數目。
+事件中心輸送量單位會每小時計費，根據 hello hello 指定小時所選單位的數目上限。
 
 ### <a name="how-are-event-hubs-throughput-unit-limits-enforced"></a>事件中樞的輸送量單位限制如何實施？
-如果命名空間內所有事件中樞的輸入輸送量總計或輸入事件率總計超過彙總輸送量單位額度，傳送者將遭受節流處置並會收到錯誤，指出已超過輸入配額。
+如果 hello 輸入輸送量總計或命名空間中的所有事件中心的 hello 總輸入事件率超過 hello 彙總輸送量單位額度，寄件者已節流，以及收到錯誤，指出已超過該 hello 輸入配額。
 
-如果命名空間內所有事件中樞的輸出輸送量總計或輸出事件率總計超過彙總輸送量單位額度，接收者將遭受節流處置並會收到錯誤，指出已超過輸出配額。 輸入和輸出配額採單獨實施，如此一來，傳送者無法使事件取用速率變慢，接收者也不能阻止事件傳送到事件中樞。
+如果 hello 輸出輸送量總計或 hello 輸出事件率總計命名空間中的所有事件中心超過 hello 彙總輸送量單位額度，接收者已節流，以及收到錯誤，指出已超過該 hello 輸出配額。 Ingress 和 egress 強制執行配額分開，如此任何寄件者可能會導致事件耗用量 tooslow 關閉，也不可以接收者防止事件傳送到事件中心。
 
-### <a name="is-there-a-limit-on-the-number-of-throughput-units-that-can-be-selected"></a>可供選取的輸送量單位數目是否有限制？
-每個命名空間的預設配額為 20 個輸送量單位。 您可以藉由提出支援票證來要求較大的輸送量單位配額。 除了 20 個輸送量單位的限制之外，還有 20 和 100 個輸送量單位的組合。 請注意，使用 20 個以上的輸送量單位會排除不需要提出支援票證即可變更輸送量單位數目的能力。
+### <a name="is-there-a-limit-on-hello-number-of-throughput-units-that-can-be-selected"></a>有 hello 可供選取的輸送量單位數目的限制嗎？
+每個命名空間的預設配額為 20 個輸送量單位。 您可以藉由提出支援票證來要求較大的輸送量單位配額。 超過 20 輸送量單位限制 hello，配套中有 20 到 100 個輸送量單位。 請注意，使用超過 20 個輸送量單位移除 hello 能力 toochange hello 輸送量單元數目不提出支援票證。
 
-### <a name="can-i-use-a-single-amqp-connection-to-send-and-receive-from-multiple-event-hubs"></a>我是否可以使用單一 AMQP 連線，從多個事件中樞進行傳送及接收？
-是。只要所有事件中樞都位於相同的命名空間內即可。
+### <a name="can-i-use-a-single-amqp-connection-toosend-and-receive-from-multiple-event-hubs"></a>我可以使用單一 AMQP 連線 toosend 並接收來自多個事件中心？
+是的所有的 hello 事件中心位於 hello 是相同的命名空間。
 
-### <a name="what-is-the-maximum-retention-period-for-events"></a>事件的最大保留期間是多少？
-事件中樞標準層目前支援的最大保留期間為 7 天。 請注意，事件中樞的立意並非作為永久的資料存放區。 大於 24 小時的保留期間乃專為方便地在同一系統上重新執行事件串流的案例而設計。例如，根據現有資料來訓練或驗證新機器學習模型。 如果您需要將訊息保留超過 7 天，請在事件中樞上啟用[事件中樞擷取](https://docs.microsoft.com/azure/event-hubs/event-hubs-capture-overview)，這會將資料從事件中樞提取到您選擇的儲存體帳戶或 Azure Data Lake 服務帳戶。 啟用擷取將會產生費用，費用根據您購買的輸送量單位而定。
+### <a name="what-is-hello-maximum-retention-period-for-events"></a>事件的 hello 最大保留期限是什麼？
+事件中樞標準層目前支援的最大保留期間為 7 天。 請注意，事件中樞的立意並非作為永久的資料存放區。 保留期限才會大於 24 小時適用於案例很方便 tooreplay 事件流入 hello 相同的系統。例如，tootrain 或確認新的機器學習模型上現有的資料。 如果您需要訊息保留超過 7 天，啟用[事件中心擷取](https://docs.microsoft.com/azure/event-hubs/event-hubs-capture-overview)上您的事件中樞會提取 hello 資料，從您的事件中樞 toohello 儲存體帳戶或您所選擇的 Azure 資料湖服務帳戶。 啟用擷取將會產生費用，費用根據您購買的輸送量單位而定。
 
 ### <a name="where-is-azure-event-hubs-available"></a>哪裡可以取得 Azure 事件中樞？
-在所有支援的 Azure 區域皆提供 Azure 事件中樞。 如需清單，請瀏覽 [Azure 區域](https://azure.microsoft.com/regions/)頁面。  
+在所有支援的 Azure 區域皆提供 Azure 事件中樞。 如需清單，請瀏覽 hello [Azure 區域](https://azure.microsoft.com/regions/)頁面。  
 
 ## <a name="best-practices"></a>最佳作法
 
 ### <a name="how-many-partitions-do-i-need"></a>我需要多少個分割區？
-請記住，事件中樞上的分割區計數在設定之後便無法修改。 因此，請務必在開始之前先想清楚您需要多少個分割區。 
+請切記 hello 事件中心上的資料分割計數，不能修改在安裝之後。 這一點之後，它是您開始使用之前需要多少個資料分割有關的重要 toothink。 
 
-事件中樞的設計目的是讓每個取用者群組均可擁有單一分割區讀取器。 在大多數使用案例中，四個分割區的預設設定就已足夠。 如果您想要調整事件處理，可能就要考慮加入額外的分割區。 分割區上並沒有任何特定的輸送量限制，但是，您命名空間中的彙總輸送量會受限於輸送量單位。 當您提高命名空間中的輸送量單位數目時，可能需要額外的分割區，讓並行讀取器能夠達成它們自己的最大輸送量。
+事件中心是設計的 tooallow 每個取用者群組的單一資料分割讀取器。 在大部分的使用情況下，hello 四個磁碟分割的預設值即已足夠。 如果您要尋找 tooscale 您處理的事件，您可能想 tooconsider 加入額外的磁碟分割。 不過，在您的命名空間中的 hello 彙總輸送量受限於 hello 輸送量單元數目的磁碟分割，沒有任何特定輸送量限制。 隨著您增加輸送量單元數目 hello 命名空間中，您可能需要額外的磁碟分割 tooallow 並行讀取器 tooachieve 他們自己的最大輸送量。
 
-不過，如果在您的模型中應用程式對特定分割區具有同質性，則提高分割區數目可能不會為您帶來任何好處。 如需此概念的詳細資訊，請參閱[可用性和一致性](event-hubs-availability-and-consistency.md)。
+不過，如果您的模型，其中您的應用程式的同質 tooa 特定資料分割，增加的資料分割的 hello 數目可能不任何好處 tooyou。 如需此概念的詳細資訊，請參閱[可用性和一致性](event-hubs-availability-and-consistency.md)。
 
 ## <a name="pricing"></a>價格
 
 ### <a name="where-can-i-find-more-pricing-information"></a>哪裡可以找到更多定價資訊？
-如需事件中樞定價的完整資訊，請參閱[事件中樞定價詳細資料](https://azure.microsoft.com/pricing/details/event-hubs/)。
+如需事件中心定價的完整資訊，請參閱 hello[事件中心定價詳細資料](https://azure.microsoft.com/pricing/details/event-hubs/)。
 
 ### <a name="is-there-a-charge-for-retaining-event-hubs-events-for-more-than-24-hours"></a>保留事件中樞事件超過 24 小時需要計費嗎？
-事件中樞標準層允許 24 小時以上的訊息保留期間，最多達 7 天。 如果儲存之事件總數的大小超過選定輸送量單位數目的儲存額度 (每個輸送量單位 84 GB)，超過額度的大小將以已發佈的 Azure Blob 儲存體費率計費。 即使您已將輸送量單位的最大輸入額度用盡，每個輸送量單位的儲存額度依然涵蓋 24 小時保留期間 (預設值) 的所有儲存費用。
+hello 事件中心標準層並允許訊息保留超過 24 小時，最多 7 天的期間。 如果 hello hello 總數的預存的事件大小超過 hello hello 數目所選的輸送量單位 (每個輸送量單位 84 GB) 的儲存額度，收費 hello 大小超過允許的 hello hello 發行 Azure Blob 儲存體費率。 hello 每個輸送量單位的儲存額度涵蓋 24 小時 （hello 預設值） 的保留期限所有儲存體費用，即使 hello 輸送量單位已用完 toohello 最大輸入額度。
 
-### <a name="how-is-the-event-hubs-storage-size-calculated-and-charged"></a>事件中樞儲存空間大小如何計算及收費？
-儲存在所有事件中樞內之事件，包括事件標頭的所有內部負荷或磁碟儲存結構的所有內部負荷，是以全天為單位來測量。 我們會在一天結束時計算儲存空間大小峰值。 每日儲存額度的計算乃以當天選定之輸送量單位的最小數目為基準 (每個輸送量單位提供 84 GB 的額度)。 如果總大小超過計算出來的每日儲存額度，我們會採用 Azure Blob 儲存體費率來計算超出的儲存空間 (依照**本地備援儲存體**費率)。
+### <a name="how-is-hello-event-hubs-storage-size-calculated-and-charged"></a>Hello 事件中心儲存體大小如何計算及收費？
+hello 所有儲存的事件，包括所有的事件中心內事件標頭或磁碟儲存結構的內部負荷的大小總計的 hello 整天測量。 在 hello hello 天結尾，會計算 hello 儲存體大小峰值。 hello 每日的儲存額度是根據 hello 最小數目 （每個輸送量單位提供 84 GB 的額度） hello 天期間選取的輸送量單位計算。 如果 hello 總大小超過 hello 以日計費儲存體額度，使用 Azure Blob 儲存體費率來計費 hello 過多的儲存體 (在 hello**本機備援儲存體**速率)。
 
 ### <a name="how-are-event-hubs-ingress-events-calculated"></a>事件中樞輸入事件的計算方式為何？
-每個傳送到事件中樞的事件都算是可計費訊息。 *輸入事件*的定義為小於或等於 64 KB 的資料單位。 任何大小小於或等於 64 KB 的事件均視為一個可計費事件。 如果事件大於 64 KB，可計費事件的數目乃根據事件大小來計算 (64 KB 的倍數)。 例如，一個傳送到事件中樞的 8 KB 事件將視為一個事件來計費，不過一則傳送到事件中樞的 96 KB 訊息則視為兩個事件來計費。
+每個事件傳送 tooan 事件中心會計入為可計費訊息。 *輸入事件*定義的資料單位，小於或等於為 too64 KB。 小於或等於任何事件 too64 KB 的大小會被視為 toobe 一個可計費事件。 如果 hello 事件大於 64KB，就會根據 toohello 事件大小 64KB 的倍數來計算 hello 可計費的事件數目。 例如，8 KB 的事件傳送 toohello 事件中心計費為一個事件，但傳送 toohello 事件中心的 96 KB 訊息會以兩個事件計費。
 
-自事件中樞取用的事件，以及管理作業和控制呼叫 (如檢查點)，不會計入可計費輸入事件，但會累積在輸送量單位額度內。
+取用自事件中心，以及管理操作和控制呼叫，例如檢查點，都不會計入為可計費輸入事件，但總 toohello 輸送量單位額度累積的事件。
 
-### <a name="do-brokered-connection-charges-apply-to-event-hubs"></a>代理連線費用適用於事件中樞嗎？
-只有在使用 AMQP 通訊協定時才需要支付連線費用。 不論傳送系統或裝置的數目多寡，使用 HTTP 來傳送事件不需要支付連線費用。 如果您打算使用 AMQP (例如，為了實現更有效率的事件串流，或針對 IoT 命令和控制案例啟用雙向通訊)，請參閱[事件中樞定價資訊](https://azure.microsoft.com/pricing/details/event-hubs/)分頁，以取得關於每個服務層中包含多少個連線的詳細資訊。
+### <a name="do-brokered-connection-charges-apply-tooevent-hubs"></a>請勿代理的連線費用 tooEvent 中樞嗎？
+連線費用 適用於只有在使用 hello AMQP 通訊協定時。 沒有任何使用 HTTP，不論 hello 多少傳送系統與裝置的事件傳送的連線費用。 如果您計劃 toouse AMQP (例如 tooachieve 效率事件資料流或 tooenable 雙向通訊 IoT 命令與控制案例中的)，請參閱 hello[事件中心定價資訊](https://azure.microsoft.com/pricing/details/event-hubs/)頁面詳細說明如何許多連接會包含在每個服務層。
 
 ### <a name="how-is-event-hubs-capture-billed"></a>事件中樞擷取如何計費？
-當命名空間中的任何事件中樞有啟用擷取選項時，即會啟用擷取。 事件中樞擷取依據購買的輸送量單位每小時計費。 事件中樞擷取計費會隨著輸送量單位計數的增減，以一小時為增加量反映這些變更。 如需事件中樞擷取計費的詳細資訊，請參閱[事件中樞定價資訊](https://azure.microsoft.com/pricing/details/event-hubs/)。
+Hello 命名空間中的任何事件中樞已啟用的 hello 擷取選項時，會啟用擷取。 事件中樞擷取依據購買的輸送量單位每小時計費。 增加或減少 hello 輸送量單位計數時，事件中心擷取計費會反映這些變更整個小時為單位遞增。 如需事件中樞擷取計費的詳細資訊，請參閱[事件中樞定價資訊](https://azure.microsoft.com/pricing/details/event-hubs/)。
 
-### <a name="will-i-be-billed-for-the-storage-account-i-select-for-event-hubs-capture"></a>我是否需要針對我為事件中樞擷取所選取的儲存體帳戶付費？
-當在事件中樞上啟用擷取時，會使用您提供的儲存體帳戶。 因為這是您的儲存體帳戶，所以針對此設定的任何變更都將由您的 Azure 訂用帳戶支付相關費用。
+### <a name="will-i-be-billed-for-hello-storage-account-i-select-for-event-hubs-capture"></a>將我計費 hello 我選取擷取的事件中心的儲存體帳戶？
+當在事件中樞上啟用擷取時，會使用您提供的儲存體帳戶。 因為這是您的儲存體帳戶時，會使用票據的 tooyour Azure 訂用帳戶此組態的任何變更。
 
 ## <a name="quotas"></a>配額
 
@@ -102,19 +102,19 @@ Azure 事件中樞的標準層提供比基本層更多的功能。 標準層包�
 
 ## <a name="troubleshooting"></a>疑難排解
 
-### <a name="what-are-some-of-the-exceptions-generated-by-event-hubs-and-their-suggested-actions"></a>事件中樞所產生的例外狀況有哪些，其建議的動作為何？
+### <a name="what-are-some-of-hello-exceptions-generated-by-event-hubs-and-their-suggested-actions"></a>有哪些 hello 例外狀況產生的事件中樞與建議的動作？
 如需可能的事件中樞例外狀況清單，請參閱[例外狀況概觀](event-hubs-messaging-exceptions.md)。
 
 ### <a name="diagnostic-logs"></a>診斷記錄檔
-事件中樞支援兩種類型的[診斷記錄](event-hubs-diagnostic-logs.md) - 擷取錯誤記錄和作業記錄 - 兩種記錄都是以 JSON 格式代表，且可以透過 Azure 入口網站開啟。
+事件中心支援兩種[診斷記錄檔](event-hubs-diagnostic-logs.md)-擷取錯誤記錄檔和操作記錄檔-這兩種在 json 中表示，而且可以透過開啟 hello Azure 入口網站。
 
 ### <a name="support-and-sla"></a>支援與 SLA
-事件中樞的技術支援可透過[社群論壇](https://social.msdn.microsoft.com/forums/azure/home)取得。 計費及訂用帳戶管理支援均為免費提供。
+事件中心的技術支援是透過 hello[社群論壇](https://social.msdn.microsoft.com/forums/azure/home)。 計費及訂用帳戶管理支援均為免費提供。
 
-若要深入了解 SLA，請參閱[服務等級協定](https://azure.microsoft.com/support/legal/sla/)頁面。
+toolearn 深入了解我們的 SLA，請參閱 hello[服務等級協定](https://azure.microsoft.com/support/legal/sla/)頁面。
 
 ## <a name="next-steps"></a>後續步驟
-您可以造訪下列連結以深入了解事件中樞︰
+您可以進一步了解事件中心瀏覽下列連結查看 hello:
 
 * [事件中樞概觀](event-hubs-what-is-event-hubs.md)
 * [建立事件中樞](event-hubs-create.md)

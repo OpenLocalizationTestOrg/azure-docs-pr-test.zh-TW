@@ -1,6 +1,6 @@
 ---
-title: "檢視 Azure Data Lake Store 的診斷記錄 | Microsoft Docs"
-description: "了解如何設定及存取 Azure Data Lake Store 的診斷記錄  "
+title: "Azure Data Lake Store aaaViewing 診斷記錄檔 |Microsoft 文件"
+description: "了解如何為 Azure Data Lake Store 的 toosetup 及存取診斷記錄檔 "
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,83 +14,83 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: b7a38ec445ef0ce13f3f1931e8ee246dce6412a5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 11fbf7f517f97abdcaf809c1ebeeb51424ab2c1c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="accessing-diagnostic-logs-for-azure-data-lake-store"></a>存取 Azure Data Lake Store 的診斷記錄
-了解如何啟用 Data Lake Store 帳戶的診斷記錄，以及如何檢視針對帳戶收集的記錄。
+深入了解如何針對您的帳戶收集 tooenable Data Lake Store 帳戶和 tooview hello 的記錄檔的診斷記錄。
 
-組織可以啟用 Azure Data Lake Store 帳戶的診斷記錄，以便收集資料存取稽核記錄，取得如存取資料的使用者清單、資料存取頻率、儲存在帳戶內的資料量等資訊。
+組織可以啟用其帳戶 toocollect 資料存取稽核記錄，提供使用者存取 hello data hello 資料存取的頻率、 資料量的資訊，例如清單會儲存在 hello 的 Azure Data Lake Store 的診斷記錄帳戶等等。
 
 ## <a name="prerequisites"></a>必要條件
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
-* **Azure Data Lake Store 帳戶**。 遵循 [使用 Azure 入口網站開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)的指示。
+* **Azure Data Lake Store 帳戶**。 請遵循指示 hello[開始使用 Azure 資料湖存放區使用 hello Azure 入口網站](data-lake-store-get-started-portal.md)。
 
 ## <a name="enable-diagnostic-logging-for-your-data-lake-store-account"></a>啟用 Data Lake Store 帳戶的診斷記錄
-1. 登入新的 [Azure 入口網站](https://portal.azure.com)。
+1. 登入新 toohello [Azure 入口網站](https://portal.azure.com)。
 2. 開啟 Data Lake Store 帳戶，接著在 Data Lake Store 帳戶刀鋒視窗中依序按一下 [設定] 和 [診斷記錄檔]。
-3. 在 [診斷記錄檔] 刀鋒視窗中，按一下 [開啟診斷]。
+3. 在 hello**診斷記錄檔**刀鋒視窗中，按一下 **開啟診斷**。
 
     ![啟用診斷記錄](./media/data-lake-store-diagnostic-logs/turn-on-diagnostics.png "啟用診斷記錄")
 
-3. 在 [診斷]  刀鋒視窗中，變更下列項目以設定診斷記錄。
+3. 在 hello**診斷**刀鋒視窗中，進行下列變更 tooconfigure 診斷記錄的 hello。
    
     ![啟用診斷記錄](./media/data-lake-store-diagnostic-logs/enable-diagnostic-logs.png "啟用診斷記錄")
    
-   * 將 [狀態] 設定為 [開啟] 以啟用診斷記錄。
-   * 您可以選擇不同的資料儲存/處理方法。
+   * 設定**狀態**太**上**tooenable 診斷記錄。
+   * 您可以選擇 toostore/處理序 hello 資料不同的方式。
      
-        * 選取 [封存至儲存體帳戶] 選項可將記錄儲存到 Azure 儲存體帳戶。 如果您想要保存資料以供日後批次處理，可以使用此選項。 如果您選取此選項，必須提供用來儲存記錄的 Azure 儲存體帳戶。
+        * 選取 hello 選項太**封存 tooa 儲存體帳戶**toostore 記錄 tooan Azure 儲存體帳戶。 如果您想要將在日後會處理批次的 tooarchive hello 資料，您可以使用此選項。 如果您選取這個選項必須提供 Azure 儲存體帳戶 toosave hello 記錄檔。
         
-        * 選取 [串流至事件中樞] 選項可將記錄資料串流到 Azure 事件中樞。 如果您有即時分析內送記錄的下游處理管線，很可能會使用這個選項。 如果您選取此選項，必須提供要使用的 Azure 事件中樞詳細資料。
+        * 選取 hello 選項太**資料流 tooan 事件中心**toostream 記錄資料 tooan Azure 事件中心。 最有可能您會使用這個選項有下游處理管線 tooanalyze 連入即時記錄檔。 如果您選取此選項時，您必須提供 hello Azure 事件中心想 toouse hello 詳細資料。
 
-        * 選取 [傳送至 Log Analytics] 選項可使用 Azure Log Analytics 服務來分析產生的記錄資料。 如果您選取此選項，必須提供要用來執行記錄檔分析的 Operations Management Suite 工作區詳細資料。
+        * 選取 hello 選項太**傳送 tooLog 分析**toouse hello Azure 記錄分析服務 tooanalyze hello 產生記錄檔資料。 如果您選取此選項時，您必須提供 hello 詳細說明 hello Operations Management Suite 工作區，您就可以使用 hello 執行記錄分析。
      
-   * 指定要取得稽核記錄、要求記錄或兩者。
-   * 指定的資料的保留天數。 只有在您使用 Azure 儲存體帳戶來封存記錄資料時，才適用保留期。
+   * 指定是否要 tooget 稽核記錄檔或要求記錄檔或兩者。
+   * 指定必須保留 hello 資料的 hello 天數。 只有適用於您要使用 Azure 儲存體帳戶 tooarchive 記錄資料保留。
    * 按一下 [儲存] 。
 
-一旦您啟用了診斷設定，即可在 [診斷記錄]  索引標籤中查看記錄。
+一旦您啟用了診斷設定，您可以觀看 hello 登入 hello**診斷記錄檔** 索引標籤。
 
 ## <a name="view-diagnostic-logs-for-your-data-lake-store-account"></a>檢視 Data Lake Store 帳戶的診斷記錄
-檢視 Data Lake Store 帳戶的記錄資料有兩種方式。
+有兩種方式的 Data Lake Store 帳戶 tooview hello 記錄資料。
 
-* 從 Data Lake Store 帳戶設定檢視
-* 從儲存資料的 Azure 儲存體帳戶
+* 從 hello Data Lake Store 帳戶檢視設定
+* 從儲存 hello 資料 hello Azure 儲存體帳戶
 
-### <a name="using-the-data-lake-store-settings-view"></a>使用 Data Lake Store 設定檢視
+### <a name="using-hello-data-lake-store-settings-view"></a>使用 hello 資料湖存放區設定檢視
 1. 在 Data Lake Store 帳戶的 [設定] 刀鋒視窗中，按一下 [診斷記錄]。
    
     ![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs.png "檢視診斷記錄") 
-2. 在 [診斷記錄] 刀鋒視窗中，您應該會看到依照 [稽核記錄] 和 [要求記錄] 分類的記錄。
+2. 在 hello**診斷記錄檔**刀鋒視窗中，您應該會看見 hello 記錄依分類**稽核記錄檔**和**要求記錄檔**。
    
-   * 要求記錄能擷取所有以 Data Lake Store 帳戶提出的 API 要求。
-   * 稽核記錄與要求記錄相似，不過能針對以 Data Lake Store 帳戶執行之作業提供更詳細的明細。 例如，要求記錄中的一個上傳 API 呼叫可能會致使稽核記錄出現多個「附加」作業。
-3. 針對每個記錄項目按一下 [下載]  連結來下載記錄。
+   * 要求記錄檔擷取 hello Data Lake Store 帳戶上所做的每個應用程式開發介面要求。
+   * 稽核記錄是類似的 toorequest 記錄，但是提供更詳盡的 hello Data Lake Store 帳戶上所執行的 hello 作業細分。 例如，單一的上傳應用程式開發介面呼叫要求記錄檔中可能會導致 hello 稽核記錄中的多個 「 附加 」 作業。
+3. 按一下 hello**下載**針對每個連結記錄項目 toodownload hello 記錄。
 
-### <a name="from-the-azure-storage-account-that-contains-log-data"></a>從包含記錄資料的 Azure 儲存體帳戶
-1. 開啟與與用於記錄的 Data Lake Store 關聯的Azure 儲存體帳戶刀鋒視窗，然後按一下 [Blob]。 [Blob 服務]  刀鋒視窗會列出兩個容器。
+### <a name="from-hello-azure-storage-account-that-contains-log-data"></a>從 hello Azure 儲存體帳戶，其中包含記錄資料
+1. 開啟記錄，與資料湖存放區相關聯的 hello Azure 儲存體帳戶刀鋒視窗，然後按一下Blob。 hello **Blob 服務**刀鋒視窗會列出兩個容器。
    
     ![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account.png "檢視診斷記錄")
    
-   * 容器 **insights-logs-audit** 包含稽核記錄檔。
-   * 容器 **insights-logs-requests** 包含要求記錄檔。
-2. 在這些容器中，紀錄會儲存在下列結構底下。
+   * hello 容器**insights 記錄檔稽核**包含 hello 稽核記錄檔。
+   * hello 容器**insights 記錄要求**包含 hello 要求記錄檔。
+2. 這些容器中，內 hello 記錄檔會儲存在下列結構的 hello。
    
     ![檢視診斷記錄](./media/data-lake-store-diagnostic-logs/view-diagnostic-logs-storage-account-structure.png "檢視診斷記錄")
    
-    例如，稽核記錄檔的完整路徑可能是 `https://adllogs.blob.core.windows.net/insights-logs-audit/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=04/m=00/PT1H.json`
+    例如，可能是 hello 完整路徑 tooan 稽核記錄檔`https://adllogs.blob.core.windows.net/insights-logs-audit/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=04/m=00/PT1H.json`
    
-    同樣的，要求記錄檔的完整路徑可能是 `https://adllogs.blob.core.windows.net/insights-logs-requests/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=14/m=00/PT1H.json`
+    Hello 完整路徑 tooa 要求記錄檔可能是 similary，`https://adllogs.blob.core.windows.net/insights-logs-requests/resourceId=/SUBSCRIPTIONS/<sub-id>/RESOURCEGROUPS/myresourcegroup/PROVIDERS/MICROSOFT.DATALAKESTORE/ACCOUNTS/mydatalakestore/y=2016/m=07/d=18/h=14/m=00/PT1H.json`
 
-## <a name="understand-the-structure-of-the-log-data"></a>了解記錄資料的結構
-稽核和要求記錄採用 JSON 格式。 在本節中，我們要探討要求和稽核記錄的 JSON 結構。
+## <a name="understand-hello-structure-of-hello-log-data"></a>了解 hello hello 記錄資料結構
+hello 稽核，並要求記錄檔是以 JSON 格式。 在本節中，我們會查看 hello 結構的 JSON 的要求，稽核記錄檔。
 
 ### <a name="request-logs"></a>要求記錄
-以下是採用 JSON 格式之要求記錄中的範例項目。 每個 Blob 會一個名為 **記錄** 的根物件，其中包含記錄檔物件的陣列。
+以下是範例項目 hello JSON 格式要求記錄檔中。 每個 Blob 會一個名為 **記錄** 的根物件，其中包含記錄檔物件的陣列。
 
     {
     "records": 
@@ -116,28 +116,28 @@ ms.lasthandoff: 07/11/2017
 #### <a name="request-log-schema"></a>要求記錄的結構描述
 | Name | 類型 | 說明 |
 | --- | --- | --- |
-| 分析 |String |記錄的時間戳記 (UTC 時間) |
-| resourceId |String |作業發生之資源的識別碼 |
-| category |String |記錄類別。 例如， **要求**。 |
-| operationName |String |記錄的作業名稱。 例如，getfilestatus。 |
-| resultType |String |作業的狀態。例如，200。 |
-| callerIpAddress |String |提出要求之用戶端的 IP 位址 |
-| correlationId |String |用來將一組相關記錄項目分組在一起的記錄識別碼 |
-| 身分識別 |Object |產生記錄的身分識別 |
-| properties |JSON |如需詳細資料，請參閱下文 |
+| 分析 |String |hello 時間戳記 （UTC) 的 hello 記錄檔 |
+| resourceId |String |hello hello 資源作業所需的 ID 將會置於 |
+| category |String |hello 記錄類別目錄。 例如， **要求**。 |
+| operationName |String |Hello 作業所記錄的名稱。 例如，getfilestatus。 |
+| resultType |String |hello 作業的狀態 hello，例如 200。 |
+| callerIpAddress |String |hello 發出 hello 要求的用戶端 hello IP 位址 |
+| correlationId |String |hello 識別碼 hello 記錄檔可以 toogroup 同時使用一組相關的記錄項目 |
+| 身分識別 |Object |產生的 hello 記錄的 hello 身分識別 |
+| 屬性 |JSON |如需詳細資料，請參閱下文 |
 
 #### <a name="request-log-properties-schema"></a>要求記錄屬性結構描述
 | Name | 類型 | 說明 |
 | --- | --- | --- |
-| HttpMethod |String |作業使用的 HTTP 方法。 例如，GET。 |
-| Path |String |執行作業的所在路徑 |
-| RequestContentLength |int |HTTP 要求的內容長度 |
-| ClientRequestId |String |可唯一識別要求的識別碼 |
-| StartTime |String |伺服器接收到要求的時間 |
-| EndTime |String |伺服器傳送回應的時間 |
+| HttpMethod |String |hello HTTP 方法 hello 作業使用。 例如，GET。 |
+| Path |String |hello 路徑 hello 作業上執行 |
+| RequestContentLength |int |hello hello HTTP 要求內容長度 |
+| ClientRequestId |String |hello 可唯一識別這個要求識別碼 |
+| StartTime |String |hello hello 接收伺服器 hello 要求時間 |
+| EndTime |String |hello 的 hello 伺服器送出回應的時間 |
 
 ### <a name="audit-logs"></a>稽核記錄檔
-以下是採用 JSON 格式之稽核記錄中的範例項目。 每個 Blob 會一個名為 **記錄** 的根物件，其中包含記錄檔物件的陣列
+以下是範例項目 hello JSON 格式的稽核記錄檔中。 每個 Blob 會一個名為 **記錄** 的根物件，其中包含記錄檔物件的陣列
 
     {
     "records": 
@@ -162,22 +162,22 @@ ms.lasthandoff: 07/11/2017
 #### <a name="audit-log-schema"></a>稽核記錄的結構描述
 | Name | 類型 | 說明 |
 | --- | --- | --- |
-| 分析 |String |記錄的時間戳記 (UTC 時間) |
-| resourceId |String |作業發生之資源的識別碼 |
-| category |String |記錄類別。 例如， **稽核**。 |
-| operationName |String |記錄的作業名稱。 例如，getfilestatus。 |
-| resultType |String |作業的狀態。例如，200。 |
-| correlationId |String |用來將一組相關記錄項目分組在一起的記錄識別碼 |
-| 身分識別 |Object |產生記錄的身分識別 |
-| properties |JSON |如需詳細資料，請參閱下文 |
+| 分析 |String |hello 時間戳記 （UTC) 的 hello 記錄檔 |
+| resourceId |String |hello hello 資源作業所需的 ID 將會置於 |
+| category |String |hello 記錄類別目錄。 例如， **稽核**。 |
+| operationName |String |Hello 作業所記錄的名稱。 例如，getfilestatus。 |
+| resultType |String |hello 作業的狀態 hello，例如 200。 |
+| correlationId |String |hello 識別碼 hello 記錄檔可以 toogroup 同時使用一組相關的記錄項目 |
+| 身分識別 |Object |產生的 hello 記錄的 hello 身分識別 |
+| 屬性 |JSON |如需詳細資料，請參閱下文 |
 
 #### <a name="audit-log-properties-schema"></a>稽核記錄屬性結構描述
 | Name | 類型 | 說明 |
 | --- | --- | --- |
-| StreamName |String |執行作業的所在路徑 |
+| StreamName |String |hello 路徑 hello 作業上執行 |
 
-## <a name="samples-to-process-the-log-data"></a>處理記錄資料的範例
-Azure Data Lake Store 會提供有關如何處理和分析記錄資料的範例。 您可以在 [https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample](https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample)找到範例。 
+## <a name="samples-tooprocess-hello-log-data"></a>範例 tooprocess hello 記錄資料
+Azure Data Lake Store 提供的範例如何 tooprocess 和分析 hello 記錄資料。 您可以找到在 hello 範例[https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample](https://github.com/Azure/AzureDataLake/tree/master/Samples/AzureDiagnosticsSample)。 
 
 ## <a name="see-also"></a>另請參閱
 * [Azure Data Lake Store 概觀](data-lake-store-overview.md)

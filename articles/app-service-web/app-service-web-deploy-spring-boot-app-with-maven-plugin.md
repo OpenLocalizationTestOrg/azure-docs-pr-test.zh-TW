@@ -1,6 +1,6 @@
 ---
-title: "如何使用適用於 Azure Web 應用程式的 Maven 外掛程式，將 Spring Boot 應用程式部署至 Azure"
-description: "了解如何使用適用於 Azure Web 應用程式的 Maven 外掛程式，將 Spring Boot 應用程式部署至 Azure。"
+title: "Azure Web Apps toodeploy Spring 開機應用程式 tooAzure 的 aaaHow toouse hello Maven 外掛程式"
+description: "了解如何 toouse hello Maven 外掛程式 Azure Web Apps toodeploy Spring 開機應用程式 tooAzure。"
 services: app-service\web
 documentationcenter: java
 author: rmcmurray
@@ -14,38 +14,38 @@ ms.devlang: java
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: robmcm;kevinzha
-ms.openlocfilehash: dceb7edf788bd87b1de04aa435a12cd5853755b9
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 376fe90fe20621e15d7c9856214937c78b66026a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-maven-plugin-for-azure-web-apps-to-deploy-a-spring-boot-app-to-azure"></a>如何使用適用於 Azure Web 應用程式的 Maven 外掛程式，將 Spring Boot 應用程式部署至 Azure
+# <a name="how-toouse-hello-maven-plugin-for-azure-web-apps-toodeploy-a-spring-boot-app-tooazure"></a>如何 toouse hello Maven 外掛程式 Azure Web Apps toodeploy Spring 開機應用程式 tooAzure
 
-針對 [Apache Maven](http://maven.apache.org/) 的[適用於 Azure Web 應用程式的 Maven 外掛程式](https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin)提供 Azure App Service 到 Maven 專案的緊密整合，並且簡化開發人員將 Web 應用程式部署至 Azure App Service 的程序。
+hello [Azure Web 應用程式的 Maven 外掛程式](https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin)如[Apache Maven](http://maven.apache.org/)提供緊密整合到 Maven 專案中，Azure 應用程式服務，並簡化開發人員 toodeploy web 應用程式的 hello 程序tooAzure 應用程式服務。
 
-本文示範如何使用適用於 Azure Web 應用程式的 Maven 外掛程式，將範例 Spring Boot 應用程式部署至 Azure App Services。
+本文將示範使用 Azure Web Apps toodeploy hello Maven 外掛程式範例 Spring 開機應用程式 tooAzure 應用程式服務。
 
 > [!NOTE]
 >
-> 適用於 Azure Web 應用程式的 Maven 外掛程式目前可供預覽。 雖然未來計劃有額外功能，但是現在僅支援 FTP 發佈。
+> hello Azure Web 應用程式的 Maven 外掛程式是目前可供預覽。 現在，只有 FTP 發行支援，雖然 hello 未來計劃的額外功能。
 >
 
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本教學課程中的步驟，您必須具備下列必要條件：
+在順序 toocomplete hello 步驟本教學課程中，您需要下列必要條件 toohave hello:
 
 * Azure 訂用帳戶；如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益]或註冊[免費的 Azure 帳戶]。
-* [Azure 命令列介面 (CLI)]。
+* hello [Azure 命令列介面 (CLI)]。
 * 最新的 [Java 開發套件 (JDK)] 1.7 版或更新版本。
 * Apache 的 [Maven] 建置工具 (第 3 版)。
 * [Git] 用戶端。
 
-## <a name="clone-the-sample-spring-boot-web-app"></a>複製範例 Spring Boot Web 應用程式
+## <a name="clone-hello-sample-spring-boot-web-app"></a>複製 hello 範例 Spring 開機 web 應用程式
 
 在本節中，您會在本機複製已完成 Spring Boot 應用程式，並且進行測試。
 
-1. 開啟命令提示字元或終端機視窗，並建立本機目錄來保存您的 Spring Boot 應用程式，然後變更至該目錄；例如：
+1. 開啟命令提示字元或終端機視窗，並建立本機目錄 toohold 您 Spring 開機應用程式，並變更 toothat 目錄;例如：
    ```shell
    md C:\SpringBoot
    cd C:\SpringBoot
@@ -56,52 +56,52 @@ ms.lasthandoff: 08/18/2017
    cd /users/robert/SpringBoot
    ```
 
-1. 將 [Spring Boot Getting Started] 範例專案複製到您建立的目錄中；例如：
+1. 複製 hello [Spring 開機入門]範例專案到 hello 目錄，您所建立的; 例如：
    ```shell
    git clone https://github.com/microsoft/gs-spring-boot
    ```
 
-1. 將目錄變更至已完成的專案；例如：
+1. 變更目錄已完成的 toohello 專案;例如：
    ```shell
    cd gs-spring-boot/complete
    ```
 
-1. 使用 Maven 建立 JAR 檔案；例如：
+1. 建置使用 Maven; hello JAR 檔案例如：
    ```shell
    mvn clean package
    ```
 
-1. 建立 Web 應用程式後，使用 Maven 啟動 Web 應用程式，例如：
+1. Hello web 應用程式建立後，開始使用 Maven; hello web 應用程式例如：
    ```shell
    mvn spring-boot:run
    ```
 
-1. 測試 Web 應用程式，方法是使用網頁瀏覽器在本機瀏覽它。 例如，如果您有 curl 可用，可以使用下列命令：
+1. 藉由瀏覽 tooit 使用網頁瀏覽器，在本機測試 hello web 應用程式。 例如，您可以使用下列命令，如果您有可用的 curl hello:
    ```shell
    curl http://localhost:8080
    ```
 
-1. 您應該會看到顯示下列訊息：**Greetings from Spring Boot!**
+1. 您應該會看到下列訊息顯示 hello:**從 Spring 開機 Greetings ！**
 
 ## <a name="create-an-azure-service-principal"></a>建立 Azure 服務主體
 
-在本節中，您建立 Azure 服務主體，Maven 外掛程式會在將您的 Web 應用程式部署至 Azure 時使用該服務主體。
+在本節中，您建立 Azure 部署您的 web 應用程式 tooAzure 時 hello Maven 外掛程式使用的服務主體。
 
 1. 開啟命令提示字元。
 
-1. 使用 Azure CLI 登入您的 Azure 帳戶：
+1. 登入您的 Azure 帳戶使用 hello Azure CLI:
    ```shell
    az login
    ```
-   依照指示完成登入程序。
+   請遵循 hello 指示 toocomplete hello 登入程序。
 
 1. 建立 Azure 服務主體：
    ```shell
    az ad sp create-for-rbac --name "uuuuuuuu" --password "pppppppp"
    ```
-   其中 `uuuuuuuu` 是使用者名稱，`pppppppp` 是服務主體的密碼。
+   其中`uuuuuuuu`是 hello 的使用者名稱和`pppppppp`hello hello 服務主體的密碼。
 
-1. Azure 使用 JSON 回應，類似下列範例：
+1. Azure 會使用類似下列範例中的 hello 的 JSON 回應：
    ```json
    {
       "appId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
@@ -114,20 +114,20 @@ ms.lasthandoff: 08/18/2017
 
    > [!NOTE]
    >
-   > 當您設定 Maven 外掛程式以將您的 Web 應用程式部署至 Azure 時，您會使用此 JSON 回應中的值。 `aaaaaaaa`、`uuuuuuuu`、`pppppppp` 和 `tttttttt` 是預留位置值，在此範例中使用，在您於下一節設定 Maven `settings.xml` 檔案時，更方便將這些值對應至個別元素。
+   > 當您設定您的 web 應用程式 tooAzure hello Maven 外掛程式 toodeploy 時，您將使用此 JSON 回應 hello 值。 hello `aaaaaaaa`， `uuuuuuuu`， `pppppppp`，和`tttttttt`預留位置的值，也就是用於此範例 toomake 它更容易 toomap 這些 tootheir 個別項目的值設定您的 Maven 時`settings.xml`hello 中檔案的下一步一節。
    >
    >
 
-## <a name="configure-maven-to-use-your-azure-service-principal"></a>設定 Maven 以使用您的 Azure 服務主體
+## <a name="configure-maven-toouse-your-azure-service-principal"></a>設定您的 Azure 服務主體的 Maven toouse
 
-在本節中，您使用 Azure 服務主體的值，設定將您的 Web 應用程式部署至 Azure 時，Maven 使用的驗證。
+在本節中，您可以使用 hello 值從 Maven 使用部署您的 web 應用程式 tooAzure 時您 Azure 服務主體 tooconfigure hello 的驗證。
 
-1. 在文字編輯器中開啟您的 Maven`settings.xml` 檔案，這個檔案可能在如下列範例的路徑中：
+1. 開啟您的 Maven`settings.xml`檔案文字編輯器中; 這個檔案可能是路徑，如下列範例中的 hello:
    * `/etc/maven/settings.xml`
    * `%ProgramFiles%\apache-maven\3.5.0\conf\settings.xml`
    * `$HOME/.m2/settings.xml`
 
-1. 將本教學課程上一節的 Azure 服務主體設定新增至 settings.xml 檔案中的 `<servers>` 集合；例如：
+1. 從這個教學課程 toohello hello 上一節中新增您的 Azure 服務主體設定`<servers>`中 hello 集合*settings.xml*檔案; 例如：
 
    ```xml
    <servers>
@@ -145,17 +145,17 @@ ms.lasthandoff: 08/18/2017
    其中：
    元素 | 說明
    ---|---|---
-   `<id>` | 指定將您的 Web 應用程式部署至 Azure 時，Maven 用來查閱安全性設定的唯一名稱。
-   `<client>` | 包含服務主體的 `appId` 值。
-   `<tenant>` | 包含服務主體的 `tenant` 值。
-   `<key>` | 包含服務主體的 `password` 值。
-   `<environment>` | 定義目標 Azure 雲端環境，也就是此範例中的 `AZURE`。 (環境的完整清單可於[適用於 Azure Web 應用程式的 Maven 外掛程式]文件中取得)
+   `<id>` | 指定 Maven 使用 toolook 註冊您的安全性設定，當您部署您的 web 應用程式 tooAzure 的唯一名稱。
+   `<client>` | 包含 hello`appId`從您的服務主體的值。
+   `<tenant>` | 包含 hello`tenant`從您的服務主體的值。
+   `<key>` | 包含 hello`password`從您的服務主體的值。
+   `<environment>` | 定義 hello 目標 Azure 雲端環境，也就是`AZURE`在此範例中。 (環境的完整清單位於 hello [Azure Web 應用程式的 Maven 外掛程式]文件)
 
-1. 儲存並關閉 settings.xml 檔案。
+1. 儲存並關閉 hello *settings.xml*檔案。
 
-## <a name="optional-customize-your-pomxml-before-deploying-your-web-app-to-azure"></a>選擇性：將您的 Web 應用程式部署至 Azure 之前自訂 pom.xml
+## <a name="optional-customize-your-pomxml-before-deploying-your-web-app-tooazure"></a>選擇性： 部署您的 web 應用程式 tooAzure 之前自訂您 pom.xml
 
-在文字編輯器中開啟 Spring Boot 應用程式的 `pom.xml` 檔案，然後找出 `azure-webapp-maven-plugin` 的 `<plugin>` 元素。 此元素外觀會類似下列範例：
+開啟 hello`pom.xml`在文字編輯器中，應用程式 Spring 開機檔案，然後找出 hello`<plugin>`元素`azure-webapp-maven-plugin`。 這個項目應該類似下列範例中的 hello:
 
    ```xml
    <plugin>
@@ -191,75 +191,75 @@ ms.lasthandoff: 08/18/2017
    </plugin>
    ```
 
-您可以為 Maven 外掛程式修改數個值，這些元素的詳細描述可於[適用於 Azure Web 應用程式的 Maven 外掛程式]文件中取得。 也就是說，有數個值值得在這篇文章中反白顯示：
+有數個值，您可以修改 hello Maven 外掛程式，而且每個這些元件的詳細的描述在 hello [Azure Web 應用程式的 Maven 外掛程式]文件。 也就是說，有數個值值得在這篇文章中反白顯示：
 
 元素 | 說明
 ---|---|---
-`<version>` | 指定[適用於 Azure Web 應用程式的 Maven 外掛程式]版本。 您應該檢查 [Maven 中央存放庫](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22)中所列的版本，確定您使用最新版本。
-`<authentication>` | 指定 Azure 的驗證資訊，在此範例中包含 `<serverId>` 元素，其中包含 `azure-auth`，Maven 使用該值來查閱 Maven settings.xml 檔案 (您在本文稍早章節中定義) 中的 Azure 服務主體值。
-`<resourceGroup>` | 指定目標資源群組，也就是此範例中的 `maven-plugin`。 如果該資源群組不存在，則系統會在部署期間建立它。
-`<appName>` | 指定 Web 應用程式的目標名稱。 在此範例中，目標名稱是 `maven-web-app-${maven.build.timestamp}`，在此範例中會附加 `${maven.build.timestamp}` 尾碼以避免發生衝突。 (時間戳記是選擇性的；您可以為應用程式名稱指定任何唯一的字串。)
-`<region>` | 指定目標區域，在此範例中是 `westus`。 (完整清單位於[適用於 Azure Web 應用程式的 Maven 外掛程式]文件。)
-`<javaVersion>` | 指定 Web 應用程式的 Java 執行階段版本。 (完整清單位於[適用於 Azure Web 應用程式的 Maven 外掛程式]文件。)
+`<version>` | 指定 hello 版的 hello [Azure Web 應用程式的 Maven 外掛程式]。 您應該檢查 hello 版本列在 hello [Maven 中央儲存機制](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22)您使用的 tooensure hello 最新版本。
+`<authentication>` | 指定 Azure，這在此範例中包含的 hello 驗證資訊`<serverId>`包含項目`azure-auth`;Maven 使用 hello Azure 服務主體值的值 toolook 中您 Maven *settings.xml*在本文的前一節中所定義的檔案。
+`<resourceGroup>` | 指定 hello 目標資源群組，也就是`maven-plugin`在此範例中。 如果不存在，會在部署期間建立 hello 資源群組。
+`<appName>` | 指定 web 應用程式的 hello 目標名稱。 在此範例中，是 hello 目標名稱`maven-web-app-${maven.build.timestamp}`，其中 hello`${maven.build.timestamp}`尾碼會附加在這個範例 tooavoid 衝突。 （hello 時間戳記是選擇性的; 您可以指定任何唯一的字串 hello 應用程式名稱）。
+`<region>` | 指定 hello 目標區域，而在此範例中`westus`。 (完整清單位於 hello [Azure Web 應用程式的 Maven 外掛程式]文件。)
+`<javaVersion>` | 指定 web 應用程式的 hello Java 執行階段版本。 (完整清單位於 hello [Azure Web 應用程式的 Maven 外掛程式]文件。)
 `<deploymentType>` | 指定 Web 應用程式的部署類型。 雖然其他部署類型的支援正在開發中，現在只有 `ftp` 受到支援。
-`<resources>` | 指定當 Maven 將 Web 應用程式部署至 Azure 時使用的資源和目標目的地。 在此範例中，兩個 `<resource>` 元素會指定 Maven 將會部署 Web 應用程式的 JAR 檔案和 Spring Boot 專案的 web.config 檔案。
+`<resources>` | 指定資源和 Maven 使用時部署您的 web 應用程式 tooAzure 目標目的地。 在此範例中，兩個`<resource>`項目會指定 Maven 將部署 hello JAR 檔案，以您的 web 應用程式和 hello *web.config* hello Spring 開機專案檔案。
 
-## <a name="build-and-deploy-your-web-app-to-azure"></a>建置 Web 應用程式並將其部署至 Azure
+## <a name="build-and-deploy-your-web-app-tooazure"></a>建置和部署您的 web 應用程式 tooAzure
 
-一旦您已設定本文上述章節中的所有設定，您已準備好將 Web 應用程式部署至 Azure。 若要這樣做，請使用下列步驟：
+一旦您已設定的所有 hello 設定 hello 前面的本文區段中，您就準備好 toodeploy 您 web 應用程式 tooAzure。 toodo 因此，使用下列步驟的 hello:
 
-1. 如果您對 pom.xml 檔案進行任何變更，從您稍早使用的命令提示字元或終端機視窗，使用 Maven 重新建置 JAR 檔案；例如：
+1. 從 hello 命令提示字元或稍早所使用的終端機視窗，重建 hello JAR 檔案，如果您進行任何變更 toohello 使用 Maven *pom.xml*檔案; 例如：
    ```shell
    mvn clean package
    ```
 
-1. 使用 Maven 將您的 Web 應用程式部署至 Azure；例如：
+1. 部署您的 web 應用程式 tooAzure 使用 Maven;例如：
    ```shell
    mvn azure-webapp:deploy
    ```
 
-Maven 會將您的 Web 應用程式部署至 Azure；如果 Web 應用程式不存在，系統會加以建立。
+Maven 會部署您的 web 應用程式 tooAzure;如果 hello web 應用程式不存在，則會建立。
 
-已部署您的網站時，您就可以使用 [Azure 入口網站]來管理它。
+已部署您的網站，將無法 toomanage 它使用 hello [Azure 入口網站]。
 
 * 您的 Web 應用程式會列在**應用程式服務** 中：
 
    ![列在 Azure 入口網站應用程式服務中的 Web 應用程式][AP01]
 
-* Web 應用程式的 URL 會列在 Web 應用程式的 [概觀] 中：
+* Hello URL 的 web 應用程式將會列在 hello 和**概觀**web 應用程式：
 
-   ![決定 Web 應用程式的 URL][AP02]
+   ![決定您 web 應用程式的 hello URL][AP02]
 
 <!--
-##  OPTIONAL: Configure the embedded Tomcat server to run on a different port
+##  OPTIONAL: Configure hello embedded Tomcat server toorun on a different port
 
-The embedded Tomcat server in the sample Spring Boot application is configured to run on port 8080 by default. However, if you want to run the embedded Tomcat server to run on a different port, such as port 80 for local testing, you can configure the port by using the following steps.
+hello embedded Tomcat server in hello sample Spring Boot application is configured toorun on port 8080 by default. However, if you want toorun hello embedded Tomcat server toorun on a different port, such as port 80 for local testing, you can configure hello port by using hello following steps.
 
-1. Go to the *resources* directory (or create the directory if it does not exist); for example:
+1. Go toohello *resources* directory (or create hello directory if it does not exist); for example:
    ```shell
    cd src/main/resources
    ```
 
-1. Open the *application.yml* file in a text editor if it exists, or create a new YAML file if it does not exist.
+1. Open hello *application.yml* file in a text editor if it exists, or create a new YAML file if it does not exist.
 
-1. Modify the **server** setting so that the server runs on port 80; for example:
+1. Modify hello **server** setting so that hello server runs on port 80; for example:
    ```yaml
    server:
       port: 80
    ```
 
-1. Save and close the *application.yml* file.
+1. Save and close hello *application.yml* file.
 -->
 
 ## <a name="next-steps"></a>後續步驟
 
-如需本文所討論之各種技術的詳細資訊，請參閱下列文章：
+如需有關 hello 本文所討論的各種技術，請參閱下列文章 hello:
 
-* [適用於 Azure Web 應用程式的 Maven 外掛程式]
+* [Azure Web 應用程式的 Maven 外掛程式]
 
-* [從 Azure CLI 登入 Azure](/azure/xplat-cli-connect)
+* [登入從 hello Azure CLI tooAzure](/azure/xplat-cli-connect)
 
-* [如何使用適用於 Azure Web 應用程式的 Maven 外掛程式，將容器化 Spring Boot 應用程式部署至 Azure](app-service-web-deploy-containerized-spring-boot-app-with-maven-plugin.md)
+* [如何 toouse hello Maven 外掛程式 toodeploy Azure Web 應用程式容器化的 Spring 開機應用程式 tooAzure](app-service-web-deploy-containerized-spring-boot-app-with-maven-plugin.md)
 
 * [使用 Azure CLI 2.0 來建立 Azure 服務主體](/cli/azure/create-an-azure-service-principal-azure-cli)
 
@@ -277,9 +277,9 @@ The embedded Tomcat server in the sample Spring Boot application is configured t
 [Maven]: http://maven.apache.org/
 [MSDN 訂戶權益]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
 [Spring Boot]: http://projects.spring.io/spring-boot/
-[Spring Boot Getting Started]: https://github.com/microsoft/gs-spring-boot
+[Spring 開機入門]: https://github.com/microsoft/gs-spring-boot
 [Spring Framework]: https://spring.io/
-[適用於 Azure Web 應用程式的 Maven 外掛程式]: https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin
+[Azure Web 應用程式的 Maven 外掛程式]: https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin
 
 <!-- IMG List -->
 

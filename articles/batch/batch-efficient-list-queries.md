@@ -1,5 +1,5 @@
 ---
-title: "設計有效率的清單查詢 - Azure Batch | Microsoft Docs"
+title: "aaaDesign 有效率清單查詢 Azure 批次 |Microsoft 文件"
 description: "藉由在要求集區、作業、工作和計算節點等 Batch 資源的資訊時篩選查詢，以提高效能。"
 services: batch
 documentationcenter: .net
@@ -15,88 +15,88 @@ ms.workload: big-compute
 ms.date: 08/02/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a80b207f591bd888d4749287527013c5e554fb6e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b7e554119ec9d0e9e8007ccfb1ca80fe142a5e27
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-queries-to-list-batch-resources-efficiently"></a>建立查詢以便有效率地列出 Batch 資源
+# <a name="create-queries-toolist-batch-resources-efficiently"></a>有效率地建立查詢 toolist 批次資源
 
-在此您將了解如何透過減少在使用 [Batch .NET][api_net] 程式庫查詢作業、工作和計算節點時所傳回的資料量，增加 Azure Batch 應用程式的效能。
+這裡您將學習如何 tooincrease Azure Batch 應用程式的效能，藉由減少查詢作業時，會將 hello 服務所傳回之資料的 hello 數量工作、 以及計算節點以 hello[批次.NET] [ api_net]程式庫。
 
-幾乎所有 Batch 應用程式都必須執行某種類型的監視或其他查詢 Batch 服務的作業，並且通常是定期執行。 例如，若要判斷作業中是否有任何剩餘的已排入佇列的工作，您必須取得作業內每項工作的資料。 若要判斷集區中節點的狀態，您必須取得集區中每個節點的資料。 這篇文章說明如何以最有效率的方式執行這類查詢。
+幾乎所有的批次應用程式需要 tooperform 某種類型的查詢通常定期 hello 批次服務的監視或其他作業。 例如，toodetermine 是否有任何其餘作業中的佇列的工作，您必須取得資料 hello 工作中每個工作。 toodetermine hello 狀態的集區中的節點，您必須在 hello 集區中的每個節點上取得資料。 這篇文章說明如何 tooexecute 這類查詢在 hello 最有效率的方式。
 
 > [!NOTE]
-> Batch 服務會針對計算作業中工作的常見案例，提供特殊的 API 支援。 您可以呼叫[取得工作計數][rest_get_task_counts]作業，而非使用清單查詢。 「取得工作計數」會指出多少工作擱置中、執行中或已完成，以及有多少工作成功或失敗。 「取得工作計數」比清單查詢更有效率。 如需詳細資訊，請參閱[依狀態計算作業的工作 (預覽)](batch-get-task-counts.md)。 
+> hello 批次服務會提供特殊的應用程式開發介面支援 hello 常見的案例的計數中的工作的工作。 而不使用這些清單查詢，您可以呼叫 hello[取得工作計數][ rest_get_task_counts]作業。 「取得工作計數」會指出多少工作擱置中、執行中或已完成，以及有多少工作成功或失敗。 「取得工作計數」比清單查詢更有效率。 如需詳細資訊，請參閱[依狀態計算作業的工作 (預覽)](batch-get-task-counts.md)。 
 >
-> 「取得工作計數」作業不適用於早於 2017-06-01.5.1 的 Batch 服務版本。 如果您使用舊版的服務，則改用清單查詢來計算作業中的工作。
+> hello 取得工作計數作業不適用於批次服務版本早於 2017年-06-01.5.1。 如果您使用較舊版本的 hello 服務，然後改用清單查詢 toocount 工作中的工作。
 >
 > 
 
-## <a name="meet-the-detaillevel"></a>認識 DetailLevel
-在生產用 Batch 應用程式中，作業、工作和計算節點等實體的數量可能有數千個。 當您要求這些資源的資訊時，可能會有大量資料必須從 Batch 服務「傳送」到每個查詢上的應用程式。 透過限制項目數量及查詢所傳回的資訊類型，您可以加速查詢，因而提高應用程式的效能。
+## <a name="meet-hello-detaillevel"></a>符合 hello DetailLevel
+在實際執行批次應用程式，像是工作、 工作和計算節點的實體可以在 hello 千分位數字。 當您要求這些資源的詳細資訊時，可能會大量的資料必須 「 通用 hello wire"hello 批次服務 tooyour 應用程式上每個查詢。 藉由限制 hello 項目數目和類型的查詢所傳回的資訊，您可以增加 hello，將查詢的速度，並因此 hello 應用程式的效能。
 
-此 [Batch .NET][api_net] API 程式碼片段會列出與作業相關聯的「每一項」工作，以及各工作的「所有」屬性：
+這[批次.NET] [ api_net]應用程式開發介面程式碼片段清單*每*與作業，連同相關聯的工作*所有*的每個 hello 屬性工作：
 
 ```csharp
-// Get a collection of all of the tasks and all of their properties for job-001
+// Get a collection of all of hello tasks and all of their properties for job-001
 IPagedEnumerable<CloudTask> allTasks =
     batchClient.JobOperations.ListTasks("job-001");
 ```
 
-不過，您可以藉由對查詢套用「詳細資料層級」，以進行更有效率的清單查詢。 在 [JobOperations.ListTasks][net_list_tasks] 方法中提供 [ODATADetailLevel][odata] 物件即可執行此動作。 此程式碼片段只是傳回已完成之工作的識別碼、命令列和計算節點資訊屬性：
+您可以藉由套用 「 詳細資訊層級 」 tooyour 查詢，不過，執行更有效率的清單查詢。 您可以提供[ODATADetailLevel] [ odata]物件 toohello [JobOperations.ListTasks] [ net_list_tasks]方法。 這個程式碼片段會傳回識別碼 hello、 命令列和計算節點資訊屬性的已完成的工作：
 
 ```csharp
 // Configure an ODATADetailLevel specifying a subset of tasks and
-// their properties to return
+// their properties tooreturn
 ODATADetailLevel detailLevel = new ODATADetailLevel();
 detailLevel.FilterClause = "state eq 'completed'";
 detailLevel.SelectClause = "id,commandLine,nodeInfo";
 
-// Supply the ODATADetailLevel to the ListTasks method
+// Supply hello ODATADetailLevel toohello ListTasks method
 IPagedEnumerable<CloudTask> completedTasks =
     batchClient.JobOperations.ListTasks("job-001", detailLevel);
 ```
 
-在此範例案例中，如果作業中有數千個工作，則第二次查詢傳回結果的速度，通常會比第一次快很多。 使用 Batch .NET API 列出項目時，使用 ODATADetailLevel 的詳細資訊如 [下](#efficient-querying-in-batch-net)所示。
+在此範例案例，還有上千款 hello 作業中的工作如果 hello hello 第二個查詢結果通常會是速度快得多超過 hello 傳回第一次。 當您列出 hello 批次.NET API 的項目時，使用 ODATADetailLevel 詳細資訊就會包含[下方](#efficient-querying-in-batch-net)。
 
 > [!IMPORTANT]
-> 我們強烈建議「一律」在 .NET API 清單呼叫中提供 ODATADetailLevel 物件，以確保應用程式發揮最高效率和效能。 透過指定詳細層級，您可以幫助縮短 Batch 服務回應時間、提高網路使用率，以及讓用戶端應用程式的記憶體使用量降到最低。
+> 我們強烈建議您使用您*一律*提供 ODATADetailLevel 物件 tooyour.NET API 清單呼叫 tooensure 最大效率和應用程式的效能。 藉由指定詳細層級，您可以協助 toolower 批次服務的回應時間、 提高網路使用率和記憶體使用量降至最低用戶端應用程式。
 > 
 > 
 
 ## <a name="filter-select-and-expand"></a>篩選、選取及展開
-[Batch .NET][api_net] 和 [Batch REST][api_rest] API 可讓您減少清單中傳回的項目數和每個項目傳回的資訊量。 您可以藉由在執行清單查詢時指定**篩選**、**選取**和**展開字串**來執行此動作。
+hello[批次.NET] [ api_net]和[批次 REST] [ api_rest] Api 提供 hello 能力 tooreduce 項目在清單中，會傳回這兩個 hello 數目以及 hello 與每個傳回的資訊數量。 您可以藉由在執行清單查詢時指定**篩選**、**選取**和**展開字串**來執行此動作。
 
 ### <a name="filter"></a>Filter
-篩選字串是可減少傳回的項目數的運算式。 例如，只列出工作正在執行的作業，或只列出可執行作業的計算節點。
+hello 篩選字串是運算式，可降低 hello 傳回項目數目。 例如，清單只 hello 執行作業或清單只有計算節點是準備 toorun 工作的工作。
 
-* 篩選字串包含一個或多個運算式，而運算式由屬性名稱、運算子和值構成。 可指定的屬性及每個屬性支援的運算子，取決於您查詢的每個實體類型。
-* 多個運算式可以透過邏輯運算子 `and` 和 `or` 結合。
-* 此範例篩選字串只會列出執行中「轉譯」工作： `(state eq 'running') and startswith(id, 'renderTask')`。
+* hello 篩選字串包含一個或多個運算式，包含屬性名稱、 運算子和值的運算式。 hello 屬性可指定是在查詢時，特定 tooeach 實體型別是 hello 運算子所支援的每一個屬性。
+* 使用 hello 邏輯運算子也可以結合多個運算式`and`和`or`。
+* 此範例中篩選字串清單，僅執行 hello 的 「 轉譯 」 工作： `(state eq 'running') and startswith(id, 'renderTask')`。
 
 ### <a name="select"></a>選取
-選取字串限制每個項目傳回的屬性值。 指定屬性名稱的清單，而且查詢結果中只有針對項目傳回的那些屬性值。
+hello 選取字串限制所傳回的每個項目 hello 屬性值。 您指定的屬性名稱清單，而且只有這些屬性的值會傳回 hello hello 查詢結果中的項目。
 
-* 選取字串由屬性名稱的逗號分隔清單組成。 您可以針對查詢的實體類型指定任何屬性。
+* hello 選取字串包含屬性名稱的逗號分隔清單。 您可以指定任何 hello hello 您要查詢的實體類型的屬性。
 * 此範例選取字串會指定應該針對每個工作只傳回三個屬性： `id, state, stateTransitionTime`。
 
 ### <a name="expand"></a>展開
-展開字串減少取得某些資訊所需的 API 呼叫次數。 當您使用展開字串時，可以透過單一 API 呼叫取得每個項目的相關詳細資訊。 不是首先取得實體的清單，然後在清單中要求每個項目的資訊，而是您可以使用展開字串在單一 API 呼叫中取得相同資訊。 較少的 API 呼叫表示較佳的效能。
+hello 展開字串可減少需要的 tooobtain API 呼叫的 hello 數目特定資訊。 當您使用展開字串時，可以透過單一 API 呼叫取得每個項目的相關詳細資訊。 而不是第一次取得 hello 清單中的實體，則要求資訊 hello 清單中的每個項目，您可以使用擴充字串 tooobtain hello 單一 API 呼叫中的相同資訊。 較少的 API 呼叫表示較佳的效能。
 
-* 與選取字串相似，展開字串可以控制清單查詢結果中是否包含特定資料。
-* 只有在用於列出作業、作業排程、作業和集區時，才支援展開字串。 目前，它僅支援統計資訊。
-* 當需要所有屬性但未指定選取字串時， *必須* 使用展開字串來取得統計資料資訊。 如果使用選取字串來取得屬性子集，則可以在選取字串中指定 `stats` ，不需要指定展開字串。
-* 此範例展開字串指定應該在清單中傳回每個項目的統計資料資訊： `stats`。
+* 類似 toohello 選取字串 hello 展開字串控制項是否包含特定資料查詢結果清單中。
+* hello 展開字串僅適用於列出工作、 工作排程、 工作和集區時。 目前，它僅支援統計資訊。
+* Hello 時需要的所有屬性，指定任何選取的字串，會展開字串*必須*使用的 tooget 統計資料資訊。 如果選取的字串是使用的 tooobtain 屬性的子集，則`stats`可以在 hello 選取字串中，指定與 hello 展開字串不需要指定 toobe。
+* 這個範例會展開字串指定應傳回每個項目的 hello 清單中的統計資料資訊： `stats`。
 
 > [!NOTE]
-> 建構任何這三種查詢字串類型時 (篩選、選取和展開)，您必須確定屬性名稱和大小寫符合其對應的 Batch REST API 元素。 例如，使用 .NET [CloudTask](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask) 類別時，即使 .NET 屬性是 [CloudTask.State](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask.state)，也必須指定 **state** 而不是 **State**。 關於 .NET 和 REST API 之間的屬性對應，請參閱下表。
+> 當建構 hello 的任何三個查詢字串型別 （篩選、 選取及展開），您必須確定 hello 屬性名稱和大小寫符合的 REST API 項目與其。 例如，當使用 hello.NET [CloudTask](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask)類別，您必須指定**狀態**而不是**狀態**，即使 hello.NET 屬性是[CloudTask.State](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask.state)。 請參閱下方的 hello 資料表 hello.NET 和 REST Api 之間的屬性對應。
 > 
 > 
 
 ### <a name="rules-for-filter-select-and-expand-strings"></a>篩選、選取和展開字串的規則
-* 篩選、選取和展開字串中的屬性名稱，應該和 [Batch REST][api_rest] API 中的屬性名稱一致，就算是使用 [Batch .NET][api_net] 或其他 Batch SDK 的其中一個也是如此。
+* 屬性名稱，在篩選中，選取和展開字串應該會出現在 hello[批次 REST] [ api_rest] API-只有當您使用時，即使[批次.NET] [ api_net]或其中一個 hello 其他批次 Sdk。
 * 所有屬性名稱都會區分大小寫，但屬性值不會區分大小寫。
 * 日期/時間字串有兩種格式，開頭必須加上 `DateTime`。
   
@@ -106,68 +106,68 @@ IPagedEnumerable<CloudTask> completedTasks =
 * 如果指定無效的屬性或運算子，將會導致 `400 (Bad Request)` 錯誤。
 
 ## <a name="efficient-querying-in-batch-net"></a>在 Batch .NET 中有效率地查詢
-在 [Batch .NET][api_net] API 內，[ODATADetailLevel][odata] 類別用來提供篩選、選取和展開字串給清單作業。 ODataDetailLevel 物件有三個公用字串屬性，可以在建構函式中指定或是直接在物件上設定。 然後您可以將 ODataDetailLevel 物件當做參數傳給各種清單作業，例如 [ListPools][net_list_pools]、[ListJobs][net_list_jobs] 和 [ListTasks][net_list_tasks]。
+在 hello[批次.NET] [ api_net] API、 hello [ODATADetailLevel] [ odata]類別用來提供篩選、 選取和展開的字串toolist 作業。 hello ODataDetailLevel 類別有三個公用的字串屬性，可以指定在 hello 建構函式，或直接 hello 物件上設定。 您接著將 hello ODataDetailLevel 物件當做參數 toohello 各種清單作業，例如[ListPools][net_list_pools]， [ListJobs][net_list_jobs]，和[ListTasks][net_list_tasks]。
 
-* [ODATADetailLevel][odata].[FilterClause][odata_filter]：限制傳回的項目數。
+* [ODATADetailLevel][odata]。[FilterClause][odata_filter]: hello 傳回項目數目限制。
 * [ODATADetailLevel][odata].[SelectClause][odata_select]：指定隨著每個項目一起傳回的屬性值。
 * [ODATADetailLevel][odata].[ExpandClause][odata_expand]：在單一 API 呼叫中擷取所有項目的資料，而不是針對每個項目個別呼叫。
 
-下列程式碼片段使用 Batch .NET API，有效率地向 Batch 服務查詢一組特定集區的統計資料。 在此案例中，Batch 使用者具有測試與生產的集區。 這些測試集區識別碼前面會加上 "test"，而生產集區識別碼則會加上 "prod"。 在程式碼片段中，「myBatchClient」  是適當初始化的 [BatchClient](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.batchclient) 類別的執行個體。
+hello 下列程式碼片段會使用 hello 批次.NET API tooefficiently hello 批次的查詢服務的一組特定的集區的 hello 統計資料。 在此案例中，hello 批次使用者已測試與實際的集區。 hello 測試集區識別碼前面會加上 「 測試 」，並 hello 生產集區識別碼前面會加上"prod"。 在 hello 片段*myBatchClient* hello 的正確初始化執行個體[BatchClient](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.batchclient)類別。
 
 ```csharp
-// First we need an ODATADetailLevel instance on which to set the filter, select,
+// First we need an ODATADetailLevel instance on which tooset hello filter, select,
 // and expand clause strings
 ODATADetailLevel detailLevel = new ODATADetailLevel();
 
-// We want to pull only the "test" pools, so we limit the number of items returned
-// by using a FilterClause and specifying that the pool IDs must start with "test"
+// We want toopull only hello "test" pools, so we limit hello number of items returned
+// by using a FilterClause and specifying that hello pool IDs must start with "test"
 detailLevel.FilterClause = "startswith(id, 'test')";
 
-// To further limit the data that crosses the wire, configure the SelectClause to
-// limit the properties that are returned on each CloudPool object to only
+// toofurther limit hello data that crosses hello wire, configure hello SelectClause to
+// limit hello properties that are returned on each CloudPool object tooonly
 // CloudPool.Id and CloudPool.Statistics
 detailLevel.SelectClause = "id, stats";
 
-// Specify the ExpandClause so that the .NET API pulls the statistics for the
-// CloudPools in a single underlying REST API call. Note that we use the pool's
-// REST API element name "stats" here as opposed to "Statistics" as it appears in
-// the .NET API (CloudPool.Statistics)
+// Specify hello ExpandClause so that hello .NET API pulls hello statistics for the
+// CloudPools in a single underlying REST API call. Note that we use hello pool's
+// REST API element name "stats" here as opposed too"Statistics" as it appears in
+// hello .NET API (CloudPool.Statistics)
 detailLevel.ExpandClause = "stats";
 
-// Now get our collection of pools, minimizing the amount of data that is returned
-// by specifying the detail level that we configured above
+// Now get our collection of pools, minimizing hello amount of data that is returned
+// by specifying hello detail level that we configured above
 List<CloudPool> testPools =
     await myBatchClient.PoolOperations.ListPools(detailLevel).ToListAsync();
 ```
 
 > [!TIP]
-> 使用「選取」和「展開」子句設定的 [ODATADetailLevel][odata] 執行個體，也可以傳給適當的 Get 方法，例如 [PoolOperations.GetPool](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.getpool.aspx)，以限制傳回的資料量。
+> 執行個體[ODATADetailLevel] [ odata] ，設定選取和展開子句也可以傳遞 tooappropriate Get 方法，例如[PoolOperations.GetPool](https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.getpool.aspx)會傳回的資料 toolimit hello 數量。
 > 
 > 
 
-## <a name="batch-rest-to-net-api-mappings"></a>Batch REST 與 .NET API 的對應
-篩選、選取和展開字串中的屬性名稱在名稱和大小寫方面， *必須* 反映其 REST API 對應項目。 下表提供 .NET 和 REST API 對應項目之間的對應。
+## <a name="batch-rest-toonet-api-mappings"></a>批次 REST too.NET API 對應
+篩選、選取和展開字串中的屬性名稱在名稱和大小寫方面， *必須* 反映其 REST API 對應項目。 下列的 hello 表格提供 hello.NET 和 REST API 的對應項目之間的對應。
 
 ### <a name="mappings-for-filter-strings"></a>篩選字串的對應
-* **.NET 清單方法**：此欄的每個 .NET API 方法都接受 [ODATADetailLevel][odata] 物件作為參數。
-* **REST 清單要求**：此資料行的每個 REST API 頁面都連結至一個資料表，其中指定「篩選」字串中允許的屬性和作業。 建構 [ODATADetailLevel.FilterClause][odata_filter] 字串時會使用這些屬性名稱和作業。
+* **清單的.NET 方法**: hello.NET API 方法，這個資料行中的每個接受[ODATADetailLevel] [ odata]物件做為參數。
+* **其餘列出要求**： 每個 REST API 頁面連結的 tooin 此資料行包含資料表中，指定 hello 屬性和作業中允許的*篩選*字串。 建構 [ODATADetailLevel.FilterClause][odata_filter] 字串時會使用這些屬性名稱和作業。
 
 | .NET 清單方法 | REST 清單要求 |
 | --- | --- |
-| [CertificateOperations.ListCertificates][net_list_certs] |[列出帳戶中的憑證][rest_list_certs] |
-| [CloudTask.ListNodeFiles][net_list_task_files] |[列出與作業相關聯的檔案][rest_list_task_files] |
-| [JobOperations.ListJobPreparationAndReleaseTaskStatus][net_list_jobprep_status] |[列出作業準備和工作解除作業的狀態][rest_list_jobprep_status] |
-| [JobOperations.ListJobs][net_list_jobs] |[列出帳戶中的作業][rest_list_jobs] |
-| [JobOperations.ListNodeFiles][net_list_nodefiles] |[列出節點上的檔案][rest_list_nodefiles] |
-| [JobOperations.ListTasks][net_list_tasks] |[列出與工作相關聯的作業][rest_list_tasks] |
-| [JobScheduleOperations.ListJobSchedules][net_list_job_schedules] |[列出帳戶中的作業排程][rest_list_job_schedules] |
-| [JobScheduleOperations.ListJobs][net_list_schedule_jobs] |[列出與作業排程相關聯的作業][rest_list_schedule_jobs] |
-| [PoolOperations.ListComputeNodes][net_list_compute_nodes] |[列出集區中的運算節點][rest_list_compute_nodes] |
-| [PoolOperations.ListPools][net_list_pools] |[列出帳戶中的集區][rest_list_pools] |
+| [CertificateOperations.ListCertificates][net_list_certs] |[列出帳戶中的 hello 憑證][rest_list_certs] |
+| [CloudTask.ListNodeFiles][net_list_task_files] |[列出與工作相關聯的 hello 檔案][rest_list_task_files] |
+| [JobOperations.ListJobPreparationAndReleaseTaskStatus][net_list_jobprep_status] |[列示 hello 的 hello 作業準備及作業版本作業 」 工作的狀態][rest_list_jobprep_status] |
+| [JobOperations.ListJobs][net_list_jobs] |[列出帳戶中的 hello 工作][rest_list_jobs] |
+| [JobOperations.ListNodeFiles][net_list_nodefiles] |[在節點上的清單 hello 檔案][rest_list_nodefiles] |
+| [JobOperations.ListTasks][net_list_tasks] |[列出 hello 工作與工作相關聯][rest_list_tasks] |
+| [JobScheduleOperations.ListJobSchedules][net_list_job_schedules] |[列出帳戶中的 hello 作業排程][rest_list_job_schedules] |
+| [JobScheduleOperations.ListJobs][net_list_schedule_jobs] |[列出 hello 工作相關聯的工作排程][rest_list_schedule_jobs] |
+| [PoolOperations.ListComputeNodes][net_list_compute_nodes] |[清單 hello 計算集區中的節點][rest_list_compute_nodes] |
+| [PoolOperations.ListPools][net_list_pools] |[在帳戶中的清單 hello 集區][rest_list_pools] |
 
 ### <a name="mappings-for-select-strings"></a>選取字串的對應
 * **Batch .NET types**：Batch .NET API 類型。
-* **REST API entities**：此資料行中的每個頁面包含一個或多個資料表，其中列出類型的 REST API 屬性名稱。 建構「選取」  字串時會使用這些屬性名稱。 建構 [ODATADetailLevel.SelectClause][odata_select] 字串時會使用這些相同的屬性名稱。
+* **REST API 實體**： 此資料行中的每個頁面包含一或多個資料表，列出 hello 類型 hello REST API 屬性的名稱。 建構「選取」  字串時會使用這些屬性名稱。 建構 [ODATADetailLevel.SelectClause][odata_select] 字串時會使用這些相同的屬性名稱。
 
 | Batch .NET types | REST API entities |
 | --- | --- |
@@ -179,35 +179,35 @@ List<CloudPool> testPools =
 | [CloudTask][net_task] |[取得作業的相關資訊][rest_get_task] |
 
 ## <a name="example-construct-a-filter-string"></a>範例：建構篩選字串
-建構 [ODATADetailLevel.FilterClause][odata_filter] 的篩選字串時，請參閱「篩選字串的對應」下方的資料表，找出與您想要執行的清單作業相對應的 REST API 文件頁面。 在該頁面的第一個含有多資料列的資料表中，您可以找到可篩選的屬性及其支援的運算子。 假設您想要擷取結束碼不為零的所有作業，[與作業相關聯的清單作業][rest_list_tasks]中的這一列指定適用的屬性字串和允許的運算子：
+當您建構篩選字串[ODATADetailLevel.FilterClause][odata_filter]，請參閱底下 「 篩選字串對應 」 toofind hello REST API 文件頁面對應上方 hello 資料表您想 tooperform toohello 清單作業。 在 hello 第一個多重資料列的資料表在該頁面上，您會發現 hello 可篩選的屬性和其支援的運算子。 如果您想 tooretrieve 其結束碼為非零的所有工作，例如，此資料列上[清單與工作相關聯的 hello 工作][ rest_list_tasks]指定 hello 適用的屬性字串和允許的運算子：
 
 | 屬性 | 允許的作業 | 類型 |
 |:--- |:--- |:--- |
 | `executionInfo/exitCode` |`eq, ge, gt, le , lt` |`Int` |
 
-因此，為了列出具有非零結束碼的所有作業，篩選字串如下：
+因此，會是 hello 篩選條件字串，以列出所有工作，則為非零結束代碼：
 
 `(executionInfo/exitCode lt 0) or (executionInfo/exitCode gt 0)`
 
 ## <a name="example-construct-a-select-string"></a>範例：建構選取字串
-如果要建構 [ODATADetailLevel.SelectClause][odata_select]，請參閱「選取字串的對應」下方的資料表，瀏覽至與您要列出的實體類型相對應的 REST API 頁面。 在該頁面的第一個含有多資料列的資料表中，您可以找到可選取的屬性及其支援的運算子。 假設您只想要擷取清單中每個作業的識別碼和命令列，您可以在[取得作業的相關資訊][rest_get_task]中的適當資料表找到這幾列：
+tooconstruct [ODATADetailLevel.SelectClause][odata_select]，請參閱底下 「 選取的字串對應 」 上方 hello 資料表，並瀏覽 toohello 對應 toohello 型別之實體的 REST API 頁面，您列出。 在 hello 第一個多重資料列的資料表在該頁面上，您會發現 hello 可選取的屬性和其支援的運算子。 如果您想 tooretrieve 只有 hello 識別碼以及每項工作的命令列在清單中，比方說，您會發現這些資料列中 hello 適用的資料表上[取得工作的相關資訊][rest_get_task]:
 
 | 屬性 | 類型 | 注意事項 |
 |:--- |:--- |:--- |
-| `id` |`String` |`The ID of the task.` |
-| `commandLine` |`String` |`The command line of the task.` |
+| `id` |`String` |`hello ID of hello task.` |
+| `commandLine` |`String` |`hello command line of hello task.` |
 
-為了讓每個列出的作業只包含識別碼和命令列，選取字串如下列：
+hello 選取字串，包括唯一識別碼 hello 和命令列與每個列出的工作將會是：
 
 `id, commandLine`
 
 ## <a name="code-samples"></a>程式碼範例
 ### <a name="efficient-list-queries-code-sample"></a>有效率的清單查詢程式碼範例
-請查閱 GitHub 上的 [EfficientListQueries][efficient_query_sample] 範例專案，以了解有效率的清單查詢可如何提升應用程式的效能。 這個 C# 主控台應用程式會建立並將大量工作加入至作業。 然後，它會對 [JobOperations.ListTasks][net_list_tasks] 方法進行多個呼叫，並且傳遞設定了不同屬性值的 [ODATADetailLevel][odata] 物件，來變更要傳回的資料量。 它會產生類似下列的輸出：
+簽出 hello [EfficientListQueries] [ efficient_query_sample] GitHub toosee 效率的範例專案清單查詢可能會影響應用程式中的效能。 此 C# 主控台應用程式建立，並將大量的工作 tooa 作業。 然後，它可讓多個呼叫 toohello [JobOperations.ListTasks] [ net_list_tasks]方法，並傳遞[ODATADetailLevel] [ odata]的物件設定為使用不同的屬性值 toovary hello 數量資料 toobe 傳回。 它會產生類似 toohello 下列輸出：
 
 ```
-Adding 5000 tasks to job jobEffQuery...
-5000 tasks added in 00:00:47.3467587, hit ENTER to query tasks...
+Adding 5000 tasks toojob jobEffQuery...
+5000 tasks added in 00:00:47.3467587, hit ENTER tooquery tasks...
 
 4943 tasks retrieved in 00:00:04.3408081 (ExpandClause:  | FilterClause: state eq 'active' | SelectClause: id,state)
 0 tasks retrieved in 00:00:00.2662920 (ExpandClause:  | FilterClause: state eq 'running' | SelectClause: id,state)
@@ -216,22 +216,22 @@ Adding 5000 tasks to job jobEffQuery...
 5000 tasks retrieved in 00:00:15.1016127 (ExpandClause:  | FilterClause:  | SelectClause: id,state,environmentSettings)
 5000 tasks retrieved in 00:00:17.0548145 (ExpandClause: stats | FilterClause:  | SelectClause: )
 
-Sample complete, hit ENTER to continue...
+Sample complete, hit ENTER toocontinue...
 ```
 
-如同經過的時間所顯示的，您可以透過限制屬性和傳回的項目數目來大幅降低查詢回應時間。 您可以在 GitHub 上的 [azure-batch-samples][github_samples] 儲存機制，找到本範例專案和其他範例專案。
+Hello 經過時間所示，您可以大幅降低查詢回應時間，藉由限制 hello 屬性和項目所傳回的 hello 數目。 您可以在 hello 中找到這個和其他範例專案[azure 批次範例][ github_samples] GitHub 上的儲存機制。
 
 ### <a name="batchmetrics-library-and-code-sample"></a>BatchMetrics 程式庫和程式碼範例
-除了上述的 EfficientListQueries 程式碼範例，您還可以在 [azure-batch-samples][github_samples] GitHub 儲存機制中找到 [BatchMetrics][batch_metrics] 專案。 BatchMetrics 範例專案會示範如何使用 Batch API 有效率地監視 Azure Batch 作業進度。
+此外 toohello EfficientListQueries 程式碼上述範例，您可以找到 hello [BatchMetrics] [ batch_metrics] hello 中的專案[azure 批次範例][ github_samples]GitHub 儲存機制。 hello BatchMetrics 範例專案會示範如何 tooefficiently 監視使用 hello 批次 API 的 Azure 批次工作進度。
 
-[BatchMetrics][batch_metrics] 範例包含可併入自己專案的 .NET 類別庫專案，以及用來運作和示範如何使用程式庫的簡單命令列程式。
+hello [BatchMetrics] [ batch_metrics]範例包含.NET 類別庫專案的可合併到您自己的專案和簡單的命令列程式 tooexercise 和示範 hello 使用 hello程式庫。
 
-專案內的範例應用程式會示範下列作業：
+hello 專案中的 hello 範例應用程式會示範下列作業的 hello:
 
-1. 選取特定屬性以便只下載您需要的屬性
-2. 篩選狀態轉換時間以便只下載上次查詢之後的變更
+1. 您選取特定的屬性順序 toodownload 只有 hello 屬性中需要
+2. 篩選順序 toodownload 狀態轉換時間僅會變更 hello 上次查詢後
 
-例如，下列方法會出現在 BatchMetrics 程式庫。 它會傳回 ODATADetailLevel，指出只應該取得所查詢實體的 `id` 和 `state` 屬性。 它也會指出只應傳回自指定的 `DateTime` 參數之後其狀態已變更的實體。
+例如，下列方法的 hello 會出現在 hello BatchMetrics 程式庫。 它會傳回指定的唯一 hello ODATADetailLevel`id`和`state`應該查詢的 hello 實體取得內容。 它也會指定唯一的實體，其狀態已變更自指定的 hello`DateTime`應傳回參數。
 
 ```csharp
 internal static ODATADetailLevel OnlyChangedAfter(DateTime time)
@@ -245,10 +245,10 @@ internal static ODATADetailLevel OnlyChangedAfter(DateTime time)
 
 ## <a name="next-steps"></a>後續步驟
 ### <a name="parallel-node-tasks"></a>平行節點工作
-[使用並行節點工作最大化 Azure Batch 計算資源使用量](batch-parallel-node-tasks.md) 是另一篇與 Batch 應用程式效能有關的文章。 某些類型的工作負載可以受益於在規模較大但數量較少的計算節點上執行平行工作。 如需這類案例的詳細資訊，請查看 [範例案例](batch-parallel-node-tasks.md#example-scenario) 。
+[Azure Batch 計算資源使用率與並行節點工作最大化](batch-parallel-node-tasks.md)是另一個發行項相關 tooBatch 應用程式效能。 某些類型的工作負載可以受益於在規模較大但數量較少的計算節點上執行平行工作。 簽出 hello[範例案例](batch-parallel-node-tasks.md#example-scenario)如需詳細資訊，在這類案例中的 hello 文件中。
 
 ### <a name="batch-forum"></a>Batch 論壇
-MSDN 上的 [Azure Batch 論壇][forum]是一個很棒的地方，可以討論 Batch 和詢問有關此服務的問題。 請前去查看很有幫助的「便利貼」文章，在建立 Batch 解決方案時，出現問題就張貼。
+hello [Azure Batch 論壇][ forum] MSDN 上會很大的放置 toodiscuss 批次，並詢問 hello 服務有關的問題。 請前去查看很有幫助的「便利貼」文章，在建立 Batch 解決方案時，出現問題就張貼。
 
 [api_net]: http://msdn.microsoft.com/library/azure/mt348682.aspx
 [api_net_listjobs]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.joboperations.listjobs.aspx

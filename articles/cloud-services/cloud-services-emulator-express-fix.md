@@ -1,6 +1,6 @@
 ---
-title: "安裝 Emulator Express 在 Visual Studio 中偵錯雲端服務應用程式 | Microsoft Docs"
-description: "說明如何安裝 C++ 可轉散發套件在 Visual Studio 中啟用 Emulator Express"
+title: "aaaSetup emulator express toodebug Visual Studio 中的雲端服務應用程式 |Microsoft 文件"
+description: "說明如何 tooinstall hello Emulator Express 在 Visual Studio 中的 c + + 可轉散發套件 tooenable"
 services: cloud-services
 documentationcenter: 
 author: cawa
@@ -14,31 +14,31 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 11/02/2016
 ms.author: cawa
-ms.openlocfilehash: 05d672dcb1335c617bb8d8cae43947bcd5e9ab3d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6fb506f0b1384f2e52310799eb5ae2a102d777bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-emulator-express-to-debug-cloud-services-application-in-vs-2017"></a>在 VS 2017 中使用 Emulator Express 偵錯雲端服務應用程式
-這篇文章說明如何在 VS 2017 中使用 Emulator Express 偵錯雲端服務應用程式。
+# <a name="use-emulator-express-toodebug-cloud-services-application-in-vs-2017"></a>使用中 VS 2017 Emulator Express toodebug 雲端服務應用程式
+這篇文章說明如何 toouse Emulator Express toodebug 雲端服務中的應用程式與 2017年。
 
 ## <a name="background-context"></a>背景資訊
-Visual Studio 中依預設會使用 Emulator Express 來偵錯雲端服務 Web 和背景工作角色。 此設定是在雲端服務專案屬性頁中指定。
+Visual Studio 中依預設會使用 Emulator Express 來偵錯雲端服務 Web 和背景工作角色。 此設定指定在 hello 雲端服務專案屬性頁面中。
 
 ![開啟專案屬性][0]
 
 ![預設已選取 Emulator Express][1]
 
-[Visual c + + 可轉散發][ Visual C++ Redistributable]的模擬器需要 Visual Studio express。 目前未隨著 Azure 工作負載一起安裝。 按下 F5 來偵錯雲端服務應用程式時，Visual Studio 會提示安裝此元件，然後繼續偵錯。
+hello [Visual c + + 可轉散發][ Visual C++ Redistributable]的模擬器需要 Visual Studio express。 目前並未安裝以 hello Azure 的工作負載。 在 F5 時軌跡 toodebug 雲端服務應用程式，Visual Studio 會提示 tooinstall 此元件，並繼續進行偵錯。
 
 ![提示安裝 C++ 可轉散發套件][2]
 
-按一下 [是] 以安裝 C++ 可轉散發套件。
+按一下 [是] tooinstall c + + 可轉散發套件。
 
 ![安裝 C++ 可轉散發套件][3]
 
-再按一次 F5 以啟動偵錯工作階段。
+按 F5 再次 toolaunch 偵錯工作階段。
 
 ![開始偵錯][4]
 
@@ -49,19 +49,19 @@ Visual Studio 中依預設會使用 Emulator Express 來偵錯雲端服務 Web �
 > 
 
 ## <a name="manual-workaround"></a>手動因應措施
-您也可以安裝[Visual c + + 可轉散發][ Visual C++ Redistributable]手動方式 Visual Studio 在您的系統上安裝它，則會套用相同的效果。
+您也可以安裝 hello [Visual c + + 可轉散發][ Visual C++ Redistributable]手動方式 Visual Studio 在您的系統上安裝它，則會套用相同的效果。
 
 [vcredist_x86.exe][vcredist_x86.exe]
 
 [vcredist_x64.exe][vcredist_x64.exe]
 
 ## <a name="next-steps"></a>後續步驟
-深入了解使用 Azure 計算模擬器來偵錯您的雲端服務應用程式，Visual Studio 中：[執行和偵錯雲端服務在本機電腦上的使用 Emulator Express][Using Emulator Express to run and debug a cloud service on a local machine]
+深入了解使用 Azure 計算模擬器 toodebug 您在 Visual Studio 中的雲端服務應用程式：[使用 Emulator Express toorun 和偵錯在本機電腦上的雲端服務][Using Emulator Express toorun and debug a cloud service on a local machine]
 
 [Visual C++ Redistributable]:https://www.microsoft.com/en-us/download/details.aspx?id=30679
 [vcredist_x86.exe]:https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x86.exe
 [vcredist_x64.exe]:https://download.microsoft.com/download/1/6/B/16B06F60-3B20-4FF2-B699-5E9B7962F9AE/VSU_4/vcredist_x64.exe
-[Using Emulator Express to run and debug a cloud service on a local machine]:https://azure.microsoft.com/en-us/documentation/articles/vs-azure-tools-emulator-express-debug-run/
+[Using Emulator Express toorun and debug a cloud service on a local machine]:https://azure.microsoft.com/en-us/documentation/articles/vs-azure-tools-emulator-express-debug-run/
 
 [0]: ./media/cloud-services-emulator-express-fix/vs-05.png
 [1]: ./media/cloud-services-emulator-express-fix/vs-06.png

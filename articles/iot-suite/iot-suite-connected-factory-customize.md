@@ -1,6 +1,6 @@
 ---
-title: "自訂 Azure IoT 套件連線工廠 | Microsoft Docs"
-description: "說明如何自訂連線工廠預先設定之解決方案的行為。"
+title: "Azure IoT 套件 aaaCustomize 連接工廠 |Microsoft 文件"
+description: "Hello toocustomize hello 行為連接處理站的方式描述預先設定的解決方案。"
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,72 +15,72 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: dobett
-ms.openlocfilehash: 90a6172dbd887ecda5a9f5d9082a4e136092bc10
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 53f2fef7a76b5d8e6ad023945a7812dc7fabd12c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="customize-how-the-connected-factory-solution-displays-data-from-your-opc-ua-servers"></a>自訂連線工廠解決方案顯示 OPC UA 伺服器資料的方式
+# <a name="customize-how-hello-connected-factory-solution-displays-data-from-your-opc-ua-servers"></a>自訂 hello 從 OPC UA 伺服器所連接的原廠方案顯示資料
 
 ## <a name="introduction"></a>簡介
 
-連線工廠解決方案會彙總並顯示連接到解決方案之 OPC UA 伺服器的資料。 您可以瀏覽並傳送命令至解決方案的 OPC UA 伺服器。 如需 OPC UA 的詳細資訊，請參閱[連線的處理站常見問題集](iot-suite-faq-cf.md)。
+hello 連接的工廠方案彙總，並顯示 hello OPC UA 伺服器已連線的 toohello 方案的資料。 您可以瀏覽並傳送命令 toohello OPC UA 方案中的伺服器。 如需有關 OPC UA 的詳細資訊，請參閱 hello[連接工廠常見問題集](iot-suite-faq-cf.md)。
 
-解決方案中的彙總資料範例包括「整體設備效率 (OEE)」和「關鍵效能指標 (KPI)」，您可以在儀表板的工廠、生產線與工作站層級分別檢視這些資料。 下列螢幕擷取畫面顯示 [Munich (慕尼黑)] 工廠的 [Production line 1 (生產線 1)] 的 [Assembly (組件)] 工作站的 OEE 和 KPI 值：
+Hello 方案中的彙總資料的範例包括 hello 整體設備效率 (OEE) 和關鍵效能指標 (Kpi)，您可以在 hello factory、 線條與站台層級的 hello 儀表板中檢視。 hello 下列螢幕擷取畫面顯示 hello OEE 和 KPI 值 hello**組件**站，在**生產線 1**，在 hello**慕尼黑**factory:
 
-![解決方案中的 OEE 和 KPI 值範例][img-oee-kpi]
+![Hello 方案中的 OEE 和 KPI 值的範例][img-oee-kpi]
 
-解決方案可讓您檢視 OPC UA 伺服器 (稱為「工作站」) 中特定資料項目的詳細資訊。 下列螢幕擷取畫面顯示特定工作站製造的項目數的繪圖︰
+hello 方案可讓您 tooview 的詳細資訊，從特定資料的項目從 hello OPC UA 伺服器，稱為*電台*。 hello 下列螢幕擷取畫面顯示繪圖 hello 的製造的項目，從特定站台的數字：
 
 ![製造項目數的繪圖][img-manufactured-items]
 
-如果您按一下其中一個圖形，可使用 Time Series Insights (TSI) 進一步探索資料︰
+如果您按一下某個 hello 圖形，您可以瀏覽 hello 資料進一步使用時間序列 Insights (TSI):
 
 ![使用 Time Series Insights 探索資料][img-tsi]
 
 本文章說明：
 
-- 解決方案中各種檢視的資料是如何取得的。
-- 如何自訂解決方案顯示資料的方式。
+- Hello 資料的方式進行可用 toohello 各種檢視 hello 方案中。
+- 您可以自訂 hello 方式 hello 方案的方式顯示 hello 資料。
 
 ## <a name="data-sources"></a>資料來源
 
-連線工廠解決方案會顯示連接到解決方案之 OPC UA 伺服器的資料。 預設安裝包含數台執行工廠模擬的 OPC UA 伺服器。 您可以將[透過閘道連線][lnk-connect-cf]的自有 OPC UA 伺服器新增到解決方案。
+hello 連接的工廠方案顯示 hello OPC UA 伺服器已連線的 toohello 方案的資料。 hello 預設安裝包含數個執行的處理站模擬的 OPC UA 伺服器。 您可以新增您自己的 OPC UA 伺服器，[透過閘道連線][ lnk-connect-cf] tooyour 方案。
 
-您可以在儀表板中瀏覽連線的 OPC UA 伺服器可傳送至您的解決方案的資料項目︰
+您可以瀏覽的已連接的 OPC UA 伺服器可以傳送 tooyour 方案 hello 儀表板中的 hello 資料項目：
 
-1. 瀏覽至 [Select an OPC UA server (選取 OPC UA 伺服器)] 檢視︰
+1. 瀏覽 toohello**選取 OPC UA 伺服器**檢視：
 
-    ![瀏覽至 [Select an OPC UA server (選取 OPC UA 伺服器)] 檢視][img-select-server]
+    ![瀏覽 toohello 選取 OPC UA 伺服器檢視][img-select-server]
 
-1. 選取伺服器，然後按一下 [Connect (連線)]。 出現安全性警告時，按一下 [Proceed (繼續)]。
+1. 選取伺服器，然後按一下 [Connect (連線)]。 按一下**繼續**hello 安全性警告出現時。
 
     > [!NOTE]
-    > 這個警告每台伺服器只會出現一次，是建立解決方案儀表板和伺服器之間的信任關係。
+    > 這個警告只出現一次，每個伺服器，而且會建立 hello 方案儀表板與 hello 伺服器之間的信任關係。
 
-1. 您現在可以瀏覽伺服器可傳送至解決方案的資料項目。 正在傳送至解決方案的項目會有綠色的核取記號︰
+1. 您現在即可以瀏覽 hello 資料項目 hello 伺服器可以傳送 toohello 方案。 傳送 toohello 方案的項目具有綠色的核取記號：
 
     ![發行的項目][img-published]
 
-1. 如果您是解決方案的*管理員*，您可以選擇發行資料項目，以在連線工廠解決方案中提供。 身為管理員，您也可以變更 OPC UA 伺服器中的資料項目值及呼叫方法。
+1. 如果您是*管理員*hello 在解決方案中，您可以選擇 toopublish 資料的項目 toomake hello 提供連接出廠解決方案。 身為管理員，您也可以變更 hello 值項目，並呼叫 hello OPC UA 伺服器中的方法。
 
-## <a name="map-the-data"></a>對應資料
+## <a name="map-hello-data"></a>Hello 資料對應
 
-連線工廠解決方案會將 OPC UA 伺服器中的已發行資料項目對應並彙總至解決方案中的各種檢視。 當您佈建連線工廠解決方案時，解決方案會部署到您的 Azure 帳戶。 Visual Studio 連線工廠方案中的 JSON 檔案會儲存此對應資訊。 您可以檢視及修改連線工廠 Visual Studio 解決方案中的這個 JSON 設定檔。 您進行變更之後，可以重新部署解決方案。
+hello 連接工廠方案對應，而彙總 hello 已發佈資料項目 hello OPC UA 伺服器 toohello 從各種檢視 hello 方案中。 hello 連接的工廠方案 tooyour Azure 帳戶時部署您佈建 hello 方案。 Hello 處理站的連線的 Visual Studio 方案中的 JSON 檔案會儲存此對應資訊。 您可以檢視和修改這個 hello 連線 factory Visual Studio 方案中的 JSON 組態檔。 您進行變更之後，您可以重新部署 hello 方案。
 
-您可以使用此組態檔來︰
+您可以使用 hello 設定檔：
 
-- 編輯現有的模擬工廠、生產線和工作站。
-- 從連接到解決方案的實際 OPC UA 伺服器對應資料。
+- 編輯 hello 現有模擬處理站、 生產線條，以及站台。
+- 從實際的 OPC UA 伺服器 toohello 方案連接的資料對應。
 
-若要複製一份連線工廠 Visual Studio 方案，請使用下列 git 命令︰
+tooclone 副本 hello 連線 factory Visual Studio 方案，使用 hello 下列 git 命令：
 
 `git clone https://github.com/Azure/azure-iot-connected-factory.git`
 
-**ContosoTopologyDescription.json** 檔案定義 OPC UA 伺服器資料項目與連線工廠解決方案儀表板檢視之間的對應。 您可以在 Visual Studio 方案的 **WebApp** 專案的 **Contoso\Topology** 資料夾中找到此組態檔。
+hello 檔案**ContosoTopologyDescription.json**定義 hello hello OPC UA 伺服器資料從對應 hello 連接的工廠方案儀表板中的項目 toohello 檢視。 您可以找到這個組態檔中 hello **Contoso\Topology**資料夾中 hello **WebApp** hello Visual Studio 方案中的專案。
 
-JSON 檔案的內容是以工廠、生產線和工作站節點的階層來組織。 此階層定義了連線工廠儀表板中的瀏覽階層。 階層中每個節點的值決定儀表板中顯示的資訊。 例如，慕尼黑工廠的 JSON 檔案包含下列值︰
+hello hello JSON 檔案的內容會組織成原廠生產線上及站台節點的階層。 此階層定義 hello 連接的工廠儀表板中的 hello 導覽階層。 Hello 階層之每個節點的值會決定顯示 hello 儀表板中的 hello 資訊。 例如，hello JSON 檔案包含 hello hello 慕尼黑 factory 的值：
 
 ```json
 "Guid": "73B534AE-7C7E-4877-B826-F1C0EA339F65",
@@ -95,31 +95,31 @@ JSON 檔案的內容是以工廠、生產線和工作站節點的階層來組織
 "Image": "munich.jpg"
 ```
 
-名稱、描述和位置會出現在儀表板的這個檢視中︰
+hello 名稱、 描述和位置會出現在這個檢視表 hello 儀表板中：
 
-![儀表板中的幕尼黑資料][img-munich]
+![慕尼黑 hello 儀表板中的資料][img-munich]
 
-每個工廠、生產線和工作站都有一個映像屬性。 您可以在 **WebApp** 專案的 **Content\img** 資料夾中找到這些 JPEG 檔案。 這些影像檔會顯示在連線工廠儀表板中。
+每個工廠、生產線和工作站都有一個映像屬性。 您可以在 hello 找到這些 JPEG 檔案**Content\img**資料夾中 hello **WebApp**專案。 這些映像檔會顯示 hello 連接的工廠儀表板中。
 
-每個工作站均包含數個詳細屬性，定義與 OPC UA 資料項目的對應。 這些屬性將於下列各節中說明：
+每個站台包含數個定義 hello 從 hello OPC UA 對應資料項目的詳細的屬性。 Hello 下列各節將描述這些屬性：
 
 ### <a name="opcuri"></a>OpcUri
 
-**OpcUri** 值是可唯一識別 OPC UA 伺服器的 OPC UA 應用程式 URI。 例如，慕尼黑生產線 1 的組件工作站的 **OpcUri** 值看起來就像這樣︰**urn:scada2194:ua:munich:productionline0:assemblystation**。
+hello **OpcUri**值為 hello OPC UA 應用程式 URI 可唯一識別 hello OPC UA 伺服器。 例如，hello **OpcUri** hello 慕尼黑生產行 1 上的組件站看起來像 hello 下列值： **urn: scada2194:ua:munich:productionline0:assemblystation**。
 
-您可以在解決方案儀表板中檢視連接的 OPC UA 伺服器的 URI：
+您可以在 hello 方案儀表板中檢視 hello hello 連接 OPC UA 伺服器的 Uri:
 
 ![檢視 OPC UA 伺服器 URI][img-server-uris]
 
 ### <a name="simulation"></a>模擬
 
-**Simulation** 節點是 OPC UA 模擬特有的，會在預設佈建的 OPC UA 伺服器中執行。 它不會使用在實際的 OPC UA 伺服器上。
+hello 資訊在 hello**模擬**節點是特定 toohello OPC UA 模擬執行 hello 的預設佈建的 OPC UA 伺服器。 它不會使用在實際的 OPC UA 伺服器上。
 
 ### <a name="kpi1-and-kpi2"></a>Kpi1 和 Kpi2
 
-這些節點描述工作站中的資料如何影響儀表板中的這兩個 KPI 值。 在預設部署中，這些 KPI 值是每小時的單位及每小時的 kWh。 解決方案會在工作站層級計算 KPI 值，並於生產線和工廠層級彙總這些 KPI 值。
+這些節點會描述如何從 hello 站的資料造成 toohello 兩個 KPI 值 hello 儀表板中。 在預設部署中，這些 KPI 值是每小時的單位及每小時的 kWh。 hello 方案計算 KPI 值層級 hello 的站台，並加以彙總在 hello 生產線和 factory 層級。
 
-每個 KPI 都有最小值、最大值和目標值。 每個 KPI 值也可定義連線工廠解決方案要執行的警示動作。 下列程式碼片段顯示慕尼黑生產線 1 的組件工作站的 KPI 定義︰
+每個 KPI 都有最小值、最大值和目標值。 每個 KPI 值也可以定義警示 hello 連接工廠方案 tooperform 動作。 hello 下列程式碼片段顯示 hello 組件站台的 hello KPI 定義生產線上慕尼黑中為 1:
 
 ```json
 "Kpi1": {
@@ -139,41 +139,41 @@ JSON 檔案的內容是以工廠、生產線和工作站節點的階層來組織
 }
 ```
 
-下列螢幕擷取畫面顯示儀表板中的 KPI 資料。
+hello 下列螢幕擷取畫面顯示 hello KPI 資料 hello 儀表板中。
 
-![儀表板中的 KPI 資訊][lnk-kpi]
+![Hello 儀表板中的 KPI 資訊][lnk-kpi]
 
 ### <a name="opcnodes"></a>OpcNodes
 
-**OpcNodes** 節點識別 OPC UA 伺服器中發行的資料項目，並指定如何處理該資料。
+hello **OpcNodes**節點識別 hello hello OPC UA 伺服器從已發佈的資料項目，並指定如何 tooprocess 該資料。
 
-**NodeId** 值識別 OPC UA 伺服器中特定的 OPC UA NodeID。 慕尼黑生產線 1 的組件工作站中的第一個節點的值為 **ns=2;i=385**。 **NodeId** 值指定要從 OPC UA 伺服器讀取的資料項目，**SymbolicName** 則為該資料提供使用於儀表板中的易記名稱。
+hello **NodeId**值識別 hello hello OPC UA 伺服器從特定的 OPC UA NodeID。 hello 生產線慕尼黑中為 1 的 hello 組件站中的第一個節點的值**ns = 2; 我 = 385**。 A **NodeId**值會指定從 hello OPC UA 伺服器與 hello hello 資料項目 tooread **SymbolicName** hello 儀表板中的使用者易記名稱 toouse 提供該資料。
 
-下表摘要說明每個節點相關聯的其他值︰
+Hello 下表中摘要說明每個節點相關聯的其他值：
 
 | 值 | 說明 |
 | ----- | ----------- |
-| 相關性  | 此資料影響的 KPI 和 OEE 值。 |
-| OpCode     | 資料彙總的方式。 |
-| Units      | 儀表板中使用的單位。  |
-| 可見    | 是否在儀表板中顯示此值。 部分值使用於計算中而不會顯示。  |
-| 最大值    | 觸發儀表板警示的最大值。 |
-| MaximumAlertActions | 回應警示所採取的動作。 例如，傳送命令到工作站。 |
+| 相關性  | 此資料提供給 hello KPI 和 OEE 值。 |
+| OpCode     | Hello 資料彙總方式。 |
+| Units      | hello 單位 toouse hello 儀表板中。  |
+| 可見    | Toodisplay 這中是否有值 hello 儀表板。 部分值使用於計算中而不會顯示。  |
+| 最大值    | hello 最大值，會觸發警示 hello 儀表板中。 |
+| MaximumAlertActions | 在回應 tooan 警示動作 tootake。 例如，傳送命令 tooa 站台。 |
 | ConstValue | 使用於計算的常數值。 |
 
-## <a name="deploy-the-changes"></a>部署變更
+## <a name="deploy-hello-changes"></a>部署 hello 變更
 
-完成 **ContosoTopologyDescription.json** 檔案的變更後，您必須將連線工廠解決方案重新部署到您的 Azure 帳戶。
+當您完成之後變更 toohello **ContosoTopologyDescription.json**檔案中，您就必須重新部署 hello 連接工廠方案 tooyour Azure 帳戶。
 
-**azure-iot-connected-factory** 存放庫包含一個 **build.ps1** PowerShell 指令碼，可用於重新建置並部署解決方案。
+hello **azure-iot-連線-原廠**儲存機制包括**build.ps1** PowerShell 指令碼，您可以使用 toorebuild 並部署 hello 方案。
 
 ## <a name="next-steps"></a>後續步驟
 
-閱讀下列文章，深入了解連線工廠預先設定的解決方案︰
+深入了解 hello 連接工廠預先設定方案的下列文章閱讀 hello:
 
 * [連線處理站預先設定的解決方案逐步解說][lnk-rm-walkthrough]
 * [為連線處理站部署閘道][lnk-connect-cf]
-* [azureiotsuite.com 網站的權限][lnk-permissions]
+* [Hello azureiotsuite.com 網站的權限][lnk-permissions]
 * [連線的處理站常見問題](iot-suite-faq-cf.md)
 * [常見問題集][lnk-faq]
 

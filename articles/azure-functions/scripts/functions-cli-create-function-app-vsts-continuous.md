@@ -1,5 +1,5 @@
 ---
-title: "建立函式應用程式和從 Visual Studio Team Services 部署函式程式碼 | Microsoft Docs"
+title: "aaaCreate 函式應用程式和部署函式程式碼，從 Visual Studio Team Services |Microsoft 文件"
 description: "建立函式應用程式和從 Visual Studio Team Services 部署函式程式碼"
 services: functions
 keywords: 
@@ -9,15 +9,15 @@ ms.date: 04/28/2017
 ms.topic: sample
 ms.service: functions
 ms.custom: mvc
-ms.openlocfilehash: 2ef177b55ad7ffd351156821f429e6ff8fbeccc7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 774bee73025cc9ac46f8b2a6c10edbfa3c2d353b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-an-app-service"></a>建立 App Service
 
-在此案例中，您將學習如何使用[取用方案](../functions-scale.md#consumption-plan)建立函式應用程式及其相關資源，然後從 Visual Studio Team Services (VSTS) 存放庫持續部署您的函式程式碼。 在此範例中，您將需要：
+在此案例中您將學習如何 toocreate 函式的應用程式使用 hello[耗用量計劃](../functions-scale.md#consumption-plan)及其相關資源，並持續部署您的函式程式碼，從 Visual Studio Team Services (VSTS) 儲存機制。 在此範例中，您將需要：
 
 * 一個含有函式程式碼的 VSTS 存放庫 (您必須有此存放庫的系統管理權限)。
 * 您 GitHub 帳戶的[個人存取權杖 (PAT)](https://help.github.com/articles/creating-an-access-token-for-command-line-use)。
@@ -26,19 +26,19 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本主題會要求您執行 Azure CLI 2.0 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇 tooinstall，並在本機上使用 hello CLI，本主題會需要您執行 hello Azure CLI 版本 2.0 或更新版本。 執行`az --version`toofind hello 版本。 如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
 ## <a name="sample-script"></a>範例指令碼
 
 此指令碼範例會建立 Azure 函數應用程式，並從 Visual Studio Team Services 部署函式程式碼。
 
-[!code-azurecli-interactive[主要](../../../cli_scripts/azure-functions/deploy-function-app-with-function-vsts/deploy-function-app-with-function-vsts.sh?highlight=3-4 "Azure 服務")]
+[!code-azurecli-interactive[main](../../../cli_scripts/azure-functions/deploy-function-app-with-function-vsts/deploy-function-app-with-function-vsts.sh?highlight=3-4 "Azure Service")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼使用下列命令來建立資源群組、Web 應用程式、documentdb 和所有相關資源。 下表中的每個命令都會連結至命令特定的文件。
+此指令碼會使用下列命令 toocreate 資源群組、 web 應用程式中，documentdb 和所有相關的資源的 hello。 Hello 資料表連結 toocommand 特定文件中的每個命令。
 
 | 命令 | 注意事項 |
 |---|---|
@@ -49,6 +49,6 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
+如需有關 Azure CLI hello 的詳細資訊，請參閱[Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 
-您可以在 [Azure Functions 文件](../functions-cli-samples.md)中找到其他 Azure Functions CLI 指令碼範例。
+其他 Azure 函式 CLI 指令碼範例可以在 hello [Azure 函式文件](../functions-cli-samples.md)。

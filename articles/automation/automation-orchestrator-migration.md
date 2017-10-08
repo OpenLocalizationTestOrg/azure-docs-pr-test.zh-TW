@@ -1,6 +1,6 @@
 ---
-title: "從 Orchestrator 移轉到 Azure 自動化 |Microsoft Docs"
-description: "描述如何將 Runbook 和整合套件從 System Center Orchestrator 移轉到 Azure 自動化。"
+title: "從 Orchestrator tooAzure 自動化 aaaMigrating |Microsoft 文件"
+description: "描述如何 toomigrate runbook 和整合組件從 System Center Orchestrator tooAzure 自動化。"
 services: automation
 documentationcenter: 
 author: bwren
@@ -14,120 +14,120 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/09/2016
 ms.author: bwren
-ms.openlocfilehash: 457888b4d38875b912ad87d44e96ab727e3ee3ee
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 797b50067ef2aa68470760e99d494b89ab7baacf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="migrating-from-orchestrator-to-azure-automation-beta"></a>從 Orchestrator 移轉到 Azure 自動化 (Beta)
-[System Center Orchestrator](http://technet.microsoft.com/library/hh237242.aspx) 中的 Runbook 是根據來自專為 Orchestrator 編寫的整合套件的活動，而 Azure 自動化中的 Runbook 則是根據 Windows PowerShell。  [圖形化 Runbook](automation-runbook-types.md#graphical-runbooks) 外觀都類似 Orchestrator Runbook，其活動代表 PowerShell Cmdlet、子 Runbook 和資產。
+# <a name="migrating-from-orchestrator-tooazure-automation-beta"></a>從 Orchestrator tooAzure 自動化 (Beta) 移轉
+[System Center Orchestrator](http://technet.microsoft.com/library/hh237242.aspx) 中的 Runbook 是根據來自專為 Orchestrator 編寫的整合套件的活動，而 Azure 自動化中的 Runbook 則是根據 Windows PowerShell。  [圖形化 runbook](automation-runbook-types.md#graphical-runbooks) Azure 自動化中有類似的外觀 tooOrchestrator runbook 活動代表 PowerShell cmdlet、 子系 runbook 和資產。
 
-[System Center Orchestrator 遷移工具組](http://www.microsoft.com/download/details.aspx?id=47323&WT.mc_id=rss_alldownloads_all) 包含工具，可協助您將 Runbook 從 Orchestrator 轉換成 Azure 自動化。  除了轉換 Runbook 本身，您必須將整合模組與 Runbook 用來整合模組與 Windows PowerShell Cmdlet 的活動轉換。  
+hello [System Center Orchestrator 移轉工具組](http://www.microsoft.com/download/details.aspx?id=47323&WT.mc_id=rss_alldownloads_all)包含工具 tooassist 您轉換從 Orchestrator tooAzure 自動化的 runbook。  此外 tooconverting hello runbook 本身，您必須轉換 hello runbook，Windows PowerShell 指令程式搭配使用 toointegration 模組 hello 活動與 hello 整合套件。  
 
-以下是將 Orchestrator Runbook 轉換為 Azure 自動化的基本程序。  下列各節將詳細說明這些步驟。
+以下是 hello 轉換 Orchestrator runbook tooAzure 自動化的基本程序。  Hello 的以下各節中詳細說明每個步驟。
 
-1. 下載 [System Center Orchestrator 遷移工具組](http://www.microsoft.com/download/details.aspx?id=47323&WT.mc_id=rss_alldownloads_all) ，其中包含的本文所討論的工具和模組。
+1. 下載 hello [System Center Orchestrator 移轉工具組](http://www.microsoft.com/download/details.aspx?id=47323&WT.mc_id=rss_alldownloads_all)包含 hello 工具和本文所討論的模組。
 2. 匯入 [標準活動模組](#standard-activities-module) 到 Azure 自動化。  這包括已轉換的 Runbook 可能使用的標準 Orchestrator 活動的轉換版本。
 3. 針對存取 System Center 的 Runbook 所使用的整合套件，將 [System Center Orchestrator 整合模組](#system-center-orchestrator-integration-modules) 匯入至 Azure 自動化。
-4. 使用 [整合套件轉換器](#integration-pack-converter) 轉換自訂和使用協力廠商整合套件，並匯入到 Azure 自動化中。
-5. 使用 [Runbook Converter](#runbook-converter) 轉換 Orchestrator Runbook，並在 Azure 自動化中安裝。
-6. 因為 Runbook Converter不會轉換這些資源，請在 Azure 自動化中手動建立必要的 Orchestrator 資產。
-7. 在本機的資料中心設定 [Hybrid Runbook Worker](#hybrid-runbook-worker) ，以執行將存取本機資源、經轉換的 Runbook。
+4. 轉換的自訂和協力廠商的整合套件使用 hello[整合套件轉換器](#integration-pack-converter)和匯入至 Azure 自動化。
+5. 轉換使用 hello 的 Orchestrator runbook [Runbook 轉換器](#runbook-converter)並安裝在 Azure 自動化中。
+6. 手動因為 hello Runbook 轉換器不會轉換這些資源，請在 Azure 自動化中建立必要的 Orchestrator 資產。
+7. 設定[Hybrid Runbook Worker](#hybrid-runbook-worker)本機資料中心轉換 toorun runbook 將會存取本機資源中。
 
 ## <a name="service-management-automation"></a>服務管理自動化
-[服務管理自動化](http://technet.microsoft.com/library/dn469260.aspx) (SMA) 會在您的本機資料中心 (例如 Orchestrator) 中儲存並執行 Runbook，而它使用與 Azure 自動化相同的整合模組。 [Runbook Converter](#runbook-converter) 會將 Orchestrator Runbook 轉換為圖形化 Runbook，不過 SMA 中並不支援。  您仍然可以將[標準活動模組](#standard-activities-module)和 [System Center Orchestrator 整合模組](#system-center-orchestrator-integration-modules)安裝到 SMA，但是您必須手動[重新編寫您的 Runbook](http://technet.microsoft.com/library/dn469262.aspx)。
+[Service Management Automation](http://technet.microsoft.com/library/dn469260.aspx) (SMA) 會儲存在 Orchestrator，例如本機資料中心執行 runbook 和它會使用 hello Azure 自動化為相同的整合模組。 hello [Runbook 轉換器](#runbook-converter)轉換 Orchestrator runbook toographical runbook 雖然 SMA 中不支援它。  您仍然可以安裝 hello[標準活動模組](#standard-activities-module)和[System Center Orchestrator 整合模組](#system-center-orchestrator-integration-modules)入 SMA，但您必須手動[重寫您的 runbook](http://technet.microsoft.com/library/dn469262.aspx)。
 
 ## <a name="hybrid-runbook-worker"></a>Hybrid Runbook Worker
-Orchestrator 中的 Runbook 會儲存在資料庫伺服器上，並在 Runbook 伺服器上執行，都是在本機資料中心中。  Azure 自動化中的 Runbook 會儲存在 Azure 雲端，也可以在您的本機資料中心使用 [Hybrid Runbook Worker](automation-hybrid-runbook-worker.md)執行。  這是您將通常會執行從 Orchestrator 轉換的 Runbook 的方式，因為它們的設計是用來在本機伺服器上執行的 。
+Orchestrator 中的 Runbook 會儲存在資料庫伺服器上，並在 Runbook 伺服器上執行，都是在本機資料中心中。  Azure 自動化中的 Runbook 會儲存在 hello Azure 雲端，而且可以執行在本機資料中心使用[Hybrid Runbook Worker](automation-hybrid-runbook-worker.md)。  這是如何您通常會執行 runbook，因為它們是在本機伺服器上的設計的 toorun 轉換從 Orchestrator。
 
 ## <a name="integration-pack-converter"></a>整合套件轉換器
-「整合套件轉換器」會將使用 [Orchestrator 整合工具組 (OIT)](http://technet.microsoft.com/library/hh855853.aspx) 所建立的整合套件轉換為基於 Windows PowerShell 的整合模組，以便匯入 Azure 自動化或 Service Management Automation 中。  
+hello 整合套件轉換器會將轉換使用 hello 所建立的整合套件[Orchestrator Integration Toolkit (OIT)](http://technet.microsoft.com/library/hh855853.aspx) toointegration 模組根據可以匯入至 Azure 自動化的 Windows PowerShell 或Service Management Automation。  
 
-執行整合套件轉換器時，您會看到一個精靈，可讓您選取整合套件 (.oip) 檔案。  然後精靈會列出該整合套件所包含的活動，並可讓您選取要移轉的項目。  完成精靈時，它會建立整合模組，其中包含針對原始整合套件中的每個活動相對應的 Cmdlet。
+當您執行 hello 整合組件轉換程式時，您會有一個精靈，可讓您 tooselect 整合組件 (.oip) 檔案。  hello 精靈則列出 hello 該整合套件中包含的活動，並可讓您將移轉之 tooselect。  當您完成 hello 精靈時，它會建立包含對應的 cmdlet 針對每個 hello 原始的整合套件中的 hello 活動的整合模組。
 
 ### <a name="parameters"></a>參數
-整合套件中的活動的任何屬性都會轉換成整合模組中對應的 Cmdlet 的參數。  Windows PowerShell Cmdlet 有一組 [一般參數](http://technet.microsoft.com/library/hh847884.aspx) ，可以搭配所有 Cmdlet 使用。  例如，-Verbose 參數會導致 Cmdlet 輸出其工作的詳細資訊。  沒有 Cmdlet 可以具有與一般參數同名的參數。  如果活動具有與一般參數同名的屬性，精靈會提示您為參數提供另一個名稱。
+Hello 整合套件中之活動的任何屬性都是 cmdlet 的轉換的 tooparameters 的 hello hello 整合模組內對應。  Windows PowerShell Cmdlet 有一組 [一般參數](http://technet.microsoft.com/library/hh847884.aspx) ，可以搭配所有 Cmdlet 使用。  例如，hello-Verbose 參數會造成 cmdlet toooutput 詳細其作業的相關資訊。  任何 cmdlet 可能會不有一個參數，以做為一般的參數名稱相同的 hello。  如果活動沒有屬性，以做為一般的參數名稱相同的 hello，hello 精靈會提示您 tooprovide hello 參數名稱。
 
 ### <a name="monitor-activities"></a>監視器活動
-在 Runbook Orchestrator 中監視從 [監視活動](http://technet.microsoft.com/library/hh403827.aspx) 開始，並持續執行等候特定事件叫用。  Azure 自動化不支援監視 Runbook，因此，將不會轉換整合套件中的任何監視活動。  相反地，會在監視活動的整合模組中建立預留位置 Cmdlet。  此 Cmdlet 不具任何功能，但它可讓您安裝使用它的任何轉換的 Runbook。  此 Runbook 將無法在 Azure 自動化中執行，但可加以安裝，使得您可以修改它。
+監視 Orchestrator 開頭中的 runbook[監視活動](http://technet.microsoft.com/library/hh403827.aspx)和連續執行等候 toobe 叫用特定的事件。  Azure 自動化不支援監視 runbook，因此將不會轉換 hello 整合套件中的任何監視活動。  相反地，預留位置 cmdlet 會建立在 hello 監視活動的 hello 整合模組。  這個 cmdlet 具有任何功能，但它可讓其使用的任何轉換的 runbook toobe 安裝。  此 runbook 將不會在 Azure 自動化中，可以 toorun，但也可以安裝，讓您可以修改它。
 
 ### <a name="integration-packs-that-cannot-be-converted"></a>無法轉換的整合套件
-未使用 OIT 建立的整合套件，無法使用整合套件轉換器來進行轉換。 另外還有一些 Microsoft 提供的整合套件目前無法使用此工具轉換。  這些整合套件的已轉換版本已 [提供下載](#system-center-orchestrator-integration-modules) ，使得可以將它們安裝在 Azure 自動化或 Service Management Automation 中。
+未建立與 OIT 的整合套件無法轉換以 hello 整合套件轉換器。 另外還有一些 Microsoft 提供的整合套件目前無法使用此工具轉換。  這些整合套件的已轉換版本已 [提供下載](#system-center-orchestrator-integration-modules) ，使得可以將它們安裝在 Azure 自動化或 Service Management Automation 中。
 
 ## <a name="standard-activities-module"></a>標準活動模組
-Orchestrator 包含未包含在整合套件中、但會使用許多 Runbook 的一組 [標準活動](http://technet.microsoft.com/library/hh403832.aspx) 。  標準活動模組是包含這些活動的每個對等的 Cmdlet 的整合模組。  您必須在匯入使用標準活動的任何轉換的 Runbook 之前，於 Azure 自動化中安裝此整合模組。
+Orchestrator 包含未包含在整合套件中、但會使用許多 Runbook 的一組 [標準活動](http://technet.microsoft.com/library/hh403832.aspx) 。  hello 標準活動模組是整合模組，其中包含這些活動的每個對等的 cmdlet。  您必須在匯入使用標準活動的任何轉換的 Runbook 之前，於 Azure 自動化中安裝此整合模組。
 
-除了支援轉換的 Runbook，標準活動模組中的 Cmdlet 也可由熟悉 Orchestrator 的其他人在 Azure 自動化中建置新的 Runbook。  雖然所有標準活動的功能都可使用 Cmdlet 執行的，它們的運作方式可能不同。  已轉換的標準活動模組中的 Cmdlet 的運作將會與對應的活動相同，並使用相同的參數。  這可以幫助現有 Orchestrator Runbook 作者轉換至 Azure 自動化 Runbook。
+此外 toosupporting 轉換 runbook、 hello 標準活動模組中的 hello cmdlet 可供其他人熟悉 Orchestrator toobuild 新的 runbook 在 Azure 自動化中。  雖然所有 hello 標準活動的 hello 功能可以執行 cmdlet，它們可能會以不同的方式操作。  hello hello 轉換的標準活動運作模組中 cmdlet hello 相同為其對應的活動和使用 hello 相同的參數。  這可協助 hello 現有 Orchestrator runbook 作者在其轉換 tooAzure 自動化 runbook。
 
 ## <a name="system-center-orchestrator-integration-modules"></a>System Center Orchestrator 整合模組
-Microsoft 提供 [整合套件](http://technet.microsoft.com/library/hh295851.aspx) ，用於建立 Runbook 以自動化 System Center 元件和其他產品。  這些整合套件有一些目前是基於 OIT，但因為已知的問題，目前無法轉換為整合模組。  [System Center Orchestrator 整合模組](https://www.microsoft.com/download/details.aspx?id=49555) 包含這些整合套件的已轉換版本，可以匯入 Azure 自動化和 Service Management Automation 中。  
+Microsoft 提供[整合套件](http://technet.microsoft.com/library/hh295851.aspx)建置 runbook tooautomate System Center 元件和其他產品。  部分這些整合套件目前根據 OIT，但目前不能轉換的 toointegration 模組由於已知問題。  [System Center Orchestrator 整合模組](https://www.microsoft.com/download/details.aspx?id=49555) 包含這些整合套件的已轉換版本，可以匯入 Azure 自動化和 Service Management Automation 中。  
 
-在這個工具的 RTM 版本時，將會發行可使用整合套件轉換器轉換、基於 OIT 之整合套件的更新版本。  也會提供指引，協助您使用來自非基於 OIT 之整合套件的活動轉換 Runbook。
+根據這項工具的 hello RTM 版本，更新 hello OIT 以 hello 將發行的整合套件轉換器可以轉換為基礎的整合套件的版本。  指引也會提供的 tooassist 轉換不使用活動與 hello 整合套件的 runbook，您可以根據 OIT。
 
 ## <a name="runbook-converter"></a>Runbook Converter
-Runbook Converter 會將 Orchestrator Runbook 轉換為可以匯入 Azure 自動化的[圖形化 Runbook](automation-runbook-types.md#graphical-runbooks)。  
+hello Runbook 轉換器轉換的 Orchestrator runbook[圖形化 runbook](automation-runbook-types.md#graphical-runbooks) ，可以匯入 Azure 自動化。  
 
-Runbook Converter 會使用可執行轉換、稱為 **ConvertFrom-SCORunbook** 的 Cmdlet 實作為 PowerShell 模組。  安裝工具時，它會建立可載入 Cmdlet 的 PowerShell 工作階段的捷徑。   
+Runbook 轉換器實作為 PowerShell 模組 cmdlet 呼叫**ConvertFrom SCORunbook**執行 hello 轉換。  當您安裝 hello 工具時，它會建立 hello 指令程式會載入的快顯 tooa PowerShell 工作階段。   
 
-以下是將 Orchestrator Runbook 轉換並匯入 Azure 自動化的基本程序。  以下各節提供使用工具和處理已轉換的 Runbook 的進一步詳細資料。
+以下是 hello 基本程序 tooconvert Orchestrator runbook，並匯入 Azure 自動化。  hello 下列各節提供更多詳細資料使用 hello 工具並使用轉換的 runbook。
 
 1. 從 Orchestrator 匯出一或多個 Runbook。
-2. 取得 Runbook 中所有活動的整合模組。
-3. 轉換所匯出檔案中的 Orchestrator Runbook。
-4. 檢閱記錄檔中的資訊，以驗證轉換並判斷任何必要的手動工作。
+2. 取得 hello runbook 中的所有活動的整合模組。
+3. 將轉換 hello Orchestrator runbook 在 hello 匯出的檔案。
+4. 檢閱記錄檔 toovalidate hello 轉換和 toodetermine 中的資訊的任何必要的手動工作。
 5. 將轉換的 Runbook 匯入至 Azure 自動化。
 6. 在 Azure 自動化中建立任何必要的資產。
-7. 在 Azure 自動化中編輯 Runbook，以修改任何所需的活動。
+7. 編輯 Azure 自動化 toomodify 中的 hello runbook 所需的活動。
 
 ### <a name="using-runbook-converter"></a>使用 Runbook Converter
-**ConvertFrom-SCORunbook** 的語法如下所示：
+hello 語法**ConvertFrom SCORunbook**如下所示：
 
     ConvertFrom-SCORunbook -RunbookPath <string> -Module <string[]> -OutputFolder <string>
 
-* RunbookPath - 包含要轉換之 Runbook 的匯出檔案的路徑。
-* Module - 逗號分隔的整合模組清單，其中包含 Runbook 中的活動。
-* OutputFolder - 建立所轉換圖形的 Runbook 之資料夾的路徑。
+* RunbookPath-路徑 toohello 匯出檔案包含 hello runbook tooconvert。
+* 模組-以逗號分隔整合模組包含 hello runbook 中的活動的清單。
+* OutputFolder-路徑 toohello 資料夾 toocreate 轉換圖形化 runbook。
 
-下列範例命令會在名為 **MyRunbooks.ois_export** 的匯出檔案中轉換 Runbook。  這些 Runbook 使用 Active Directory 和 Data Protection Manager 整合套件。
+下列範例命令會將轉換 hello 名的匯出檔案中的 runbook hello **MyRunbooks.ois_export**。  這些 runbook 使用 hello Active Directory 與 Data Protection Manager 的整合套件。
 
     ConvertFrom-SCORunbook -RunbookPath "c:\runbooks\MyRunbooks.ois_export" -Module c:\ip\SystemCenter_IntegrationModule_ActiveDirectory.zip,c:\ip\SystemCenter_IntegrationModule_DPM.zip -OutputFolder "c:\runbooks"
 
 
 ### <a name="log-files"></a>記錄檔
-Runbook Converter 會在與所轉換的 Runbook 的相同位置中建立下列記錄檔。  如果檔案已經存在，則會以最後一個轉換的資訊加以複寫。
+hello Runbook 轉換器會建立下列記錄檔中 hello hello hello 與相同的位置轉換 runbook。  如果 hello 檔案已經存在，它們將會複寫的 hello 上次的轉換資訊。
 
 | 檔案 | 內容 |
 |:--- |:--- |
-| Runbook Converter - Progress.log |轉換的詳細步驟包括成功轉換的每個活動的資訊，以及未轉換的每個活動的警告。 |
-| Runbook Converter - Summary.log |最後一個轉換的摘要包括任何警告，以及您需要執行的後續工作，例如：建立變數轉換的 Runbook 所需的變數。 |
+| Runbook Converter - Progress.log |Hello 轉換包括成功轉換的每個活動的資訊和警告不會轉換每個活動的詳細的步驟。 |
+| Runbook Converter - Summary.log |最後一個轉換，包括任何警告和待處理工作，您需要建立 hello 轉換 runbook 所需的變數，例如 tooperform hello 摘要。 |
 
 ### <a name="exporting-runbooks-from-orchestrator"></a>從 Orchestrator 匯出 Runbook
-Runbook Converter 可與來自包含一或多個 Runbook 的 Orchestrator 匯出檔案搭配使用。  它會為匯出檔案中的每個 Orchestrator Runbook 建立對應的 Azure 自動化 Runbook。  
+hello Runbook 轉換器可搭配從 Orchestrator 含有一或多個 runbook 的匯出檔案。  它會建立對應的 Azure 自動化 runbook 的每個 Orchestrator runbook hello 匯出檔案中。  
 
-若要從 Orchestrator 匯出 Runbook，請在 Runbook Designer 中的 Runbook 名稱上按一下滑鼠右鍵，然後選取 [匯出] 。  若要匯出資料夾中的所有 Runbook，請在資料夾名稱上按一下滑鼠右鍵，並選取 [匯出] 。
+tooexport 從 Orchestrator，runbook 在 Runbook Designer 中的 hello runbook hello 名稱上按一下滑鼠右鍵，然後選取**匯出**。  tooexport 所有 runbook 在資料夾中，以滑鼠右鍵都按一下 hello 名稱 hello 資料夾，然後選取**匯出**。
 
 ### <a name="runbook-activities"></a>Runbook 活動
-Runbook Converter 會將 Orchestrator Runbook 中的每個活動轉換成 Azure 自動化中的對應活動。  針對無法轉換的這些活動，會在 Runbook 中建立預留位置活動，並帶有警告文字。  將轉換的 Runbook 匯入 Azure 自動化之後，您必須將這些活動取代為可執行所需功能的有效活動。
+hello Runbook 轉換器，將轉換 hello Azure 自動化中的 Orchestrator runbook tooa 對應活動中的每個活動。  無法轉換這些活動，預留位置活動被建立在 hello runbook 警告文字中。  您匯入至 Azure 自動化的 hello 轉換 runbook 之後，您必須將這些活動的任何取代有效執行所需的 hello 功能的活動。
 
-將會轉換 [標準活動模組](#standard-activities-module) 中的任何 Orchestrator 活動。  不過，在此模組有一些標準 Orchestrator 活動，並不會被轉換。  例如， **傳送平台事件** 沒有 Azure 自動化對等項目，因為該事件是 Orchestrator 特有。
+在 hello 任何 Orchestrator 活動[標準活動模組](#standard-activities-module)會轉換。  不過，在此模組有一些標準 Orchestrator 活動，並不會被轉換。  例如，**傳送平台事件**因為 hello 事件是特定 tooOrchestrator 具有任何 Azure 自動化對等項目。
 
-[監視器活動](https://technet.microsoft.com/library/hh403827.aspx) ，因為它們在 Azure 自動化中沒有對等項目。  例外狀況是在 [轉換整合套件](#integration-pack-converter) 中監視活動，將會轉換成預留位置活動。
+[監視活動](https://technet.microsoft.com/library/hh403827.aspx)不會因為在 Azure 自動化中沒有對等的 toothem 轉換。  hello 例外狀況是監視器中的活動[轉換整合套件](#integration-pack-converter)要轉換的 toohello 預留位置活動。
 
-如果您使用 [modules](#integration-pack-converter) 參數提供整合模組路徑，將會轉換來自 **轉換整合套件** 的任何活動。  針對 System Center 整合套件，您可以使用 [System Center Orchestrator 整合模組](#system-center-orchestrator-integration-modules)。
+從任何活動[轉換整合套件](#integration-pack-converter)會被轉換，如果您提供 hello 路徑 toohello 整合模組以 hello**模組**參數。  System Center 整合套件，您可以使用 hello [System Center Orchestrator 整合模組](#system-center-orchestrator-integration-modules)。
 
 ### <a name="orchestrator-resources"></a>Orchestrator 資源
-Runbook Converter 只會轉換 Runbook，而不會轉換其他 Orchestrator 資源，例如計數器、變數或連線。  Azure 自動化中不支援計數器。  支援變數和連線，但是您必須手動建立它們。  記錄檔將會通知您 Runbook 是否需要這類資源，並指定您需要在 Azure 自動化中建立的對應資源，轉換後的 Runbook 才能正常運作。
+hello Runbook 轉換器只能轉換 runbook、 不其他 Orchestrator 資源，例如計數器、 變數或連接。  Azure 自動化中不支援計數器。  支援變數和連線，但是您必須手動建立它們。  hello 記錄檔將會通知您若 hello runbook 需要這類資源，並指定對應的資源，您需要在 Azure 自動化中的 toocreate hello 正確轉換 runbook toooperate。
 
-比方說，Runbook 可能會使用變數來填入活動中的特定值。  已轉換的 Runbook 會轉換活動，並以與 Orchestrator 變數名稱相同的名稱指定 Azure 自動化中的變數資產。  這會記錄在轉換後建立的檔案 **Runbook Converter - Summary.log** 中。  在使用 Runbook 之前，您將必須在 Azure 自動化中手動建立此變數資產。
+比方說，runbook 可能會在活動中使用變數 toopopulate 特定值。  hello 轉換後的 runbook 將轉換 hello 活動，並指定為 hello Orchestrator 變數名稱相同的 hello 在 Azure 自動化變數資產。  這會記錄在 hello **Runbook 轉換程式 Summary.log**建立 hello 轉換後的檔案。  您將需要 toomanually 之前使用 hello runbook 在 Azure 自動化中建立此變數的資產。
 
 ### <a name="input-parameters"></a>輸入參數
-Orchestrator 中的 Runbook 會接受具有 **初始化資料** 活動的輸入參數。  如果要轉換的 Runbook 包含此活動，則會對活動中的每個參數在 Azure 自動化 Runbook 中建立 [輸入參數](automation-graphical-authoring-intro.md#runbook-input-and-output) 。  在擷取並傳回每個參數的轉換 Runbook 中建立 [工作流程指令碼控制項](automation-graphical-authoring-intro.md#activities) 活動。  Runbook 中使用輸入參數的任何活動會參照此活動的輸出。
+中 Orchestrator 的 Runbook 會接受輸入的參數以 hello**初始化資料**活動。  如果正在轉換的 hello runbook 中包含這個活動中，則[輸入的參數](automation-graphical-authoring-intro.md#runbook-input-and-output)在 hello Azure 自動化 runbook 建立的每個參數 hello 活動。  A[工作流程指令碼控制項](automation-graphical-authoring-intro.md#activities)hello 轉換 runbook 擷取並傳回每個參數中建立活動。  Hello runbook 中使用的輸入的參數的任何活動參考此活動 toohello 輸出。
 
-使用此策略的原因是最能與 Orchestrator Runbook 中的功能對映。  新圖形化 Runbook 中的活動應該使用 Runbook 輸入資料來源直接參照輸入參數。
+hello，不會使用這項策略的原因是 hello Orchestrator runbook 中的 toobest 鏡像 hello 功能。  新的圖形化 runbook 中的活動應該直接參考 tooinput 參數使用 Runbook 的輸入的資料來源。
 
 ### <a name="invoke-runbook-activity"></a>叫用 Runbook 活動
-Orchestrator 中的 Runbook 會使用 **叫用 Runbook** 活動來啟動其他 Runbook。 如果要轉換的 Runbook 包含此活動，並且設定了 **等候完成** 選項，則會為它在轉換後的 Runbook 中建立 Runbook 活動。  如果未設定 [等候完成] 選項，則會建立使用 **Start-AzureAutomationRunbook** 來啟動 Runbook 的工作流程指令碼活動。  將轉換的 Runbook 匯入 Azure 自動化之後，您必須以活動中指定的資訊修改此活動。
+中 Orchestrator 的 Runbook 啟動其他 runbook 以 hello**叫用 Runbook**活動。 如果正在轉換的 hello runbook 中包含這個活動與 hello**等候完成**設定選項，然後為它建立之 runbook 活動轉換 hello runbook 中。  如果 hello**等候完成**未設定選項，則工作流程指令碼活動會建立使用**Start-azureautomationrunbook** toostart hello runbook。  您匯入至 Azure 自動化的 hello 轉換 runbook 之後，您必須修改此活動與 hello hello 活動中指定的資訊。
 
 ## <a name="related-articles"></a>相關文章
 * [System Center 2012 - Orchestrator](http://technet.microsoft.com/library/hh237242.aspx)

@@ -1,6 +1,6 @@
 ---
-title: "Azure Log Analytics 中的容器監視解決方案 | Microsoft Docs"
-description: "Log Analytics 中的容器監視方案可協助您在單一位置檢視及管理 Docker 和 Windows 容器主機。"
+title: "aaaContainer 監控 Azure 記錄分析解決方案 |Microsoft 文件"
+description: "hello 容器監視方案中記錄分析可協助您檢視及管理您的 Docker 和 Windows 容器主機的單一位置。"
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2017
 ms.author: magoedte;banders
-ms.openlocfilehash: b2e03531ee401f4552198e5dd50fbfe1d970f0e5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2eed1dd81c22faef78a375fca3ebece9e5300c09
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="container-monitoring-solution-in-log-analytics"></a>Log Analytics 中的容器監視解決方案
 
 ![容器符號](./media/log-analytics-containers/containers-symbol.png)
 
-本文說明如何設定及使用 Log Analytics 中的容器監視方案，協助您在單一位置檢視及管理 Docker 和 Windows 容器主機。 Docker 是用來建立容器的軟體虛擬化系統，自動將軟體部署至其 IT 基礎結構。
+本文說明如何向上 tooset 並用 hello 容器監視方案中記錄分析，可協助您檢視和管理您的 Docker 和 Windows 容器主機的單一位置。 Docker 的軟體虛擬化系統使用 toocreate 容器自動化軟體部署 tootheir IT 基礎結構。
 
-解決方案會顯示哪些容器正在執行、它們正在執行的是哪些容器映像，以及容器執行的位置。 您可以檢視詳細的稽核資訊，其中顯示搭配容器使用的命令。 而且，藉由檢視及搜尋集中式記錄檔，而不需從遠端檢視 Docker 或 Windows 主機，即可針對容器進行疑難排解。 您可能會找到有雜訊且耗用過多主機資源的容器。 而且，您可以檢視容器的集中式 CPU、記憶體、儲存體以及網路使用量和效能資訊。 您可以在執行 Windows 的電腦上集中管理，並從 Windows Server、HYPER-V 和 Docker 容器比較記錄檔。 解決方案支援下列容器協調者：
+hello 方案顯示哪些容器正在執行，它們正在執行時，哪些容器映像和容器執行的位置。 您可以檢視詳細的稽核資訊，其中顯示搭配容器使用的命令。 此外，您可以透過檢視和搜尋而不需要 tooremotely 檢視 Docker 或 Windows 主機的集中式記錄檔來疑難排解容器。 您可能會找到有雜訊且耗用過多主機資源的容器。 而且，您可以檢視容器的集中式 CPU、記憶體、儲存體以及網路使用量和效能資訊。 您可以在執行 Windows 的電腦上集中管理，並從 Windows Server、HYPER-V 和 Docker 容器比較記錄檔。 hello 解決方案支援下列容器 orchestrators hello:
 
 - Docker Swarm
 - DC/OS
@@ -35,16 +35,16 @@ ms.lasthandoff: 08/29/2017
 - Red Hat OpenShift
 
 
-下圖顯示各種容器主機和代理程式與 OMS 之間的關聯性。
+hello 下列圖表顯示 hello 各種容器主機和與 OMS 的代理程式之間的關聯性。
 
 ![容器圖表](./media/log-analytics-containers/containers-diagram.png)
 
 ## <a name="system-requirements"></a>系統需求
 
-開始之前請檢閱下列詳細資料，以確認符合必要條件。
+開始之前，請檢閱下列符合 hello 必要條件的詳細資料 tooverify hello。
 
 ### <a name="container-monitoring-solution-support-for-docker-orchestrator-and-os-platform"></a>容器監視解決方案支援 Docker Orchestrator 和作業系統平台
-下表概述對於使用 Log Analytics 之容器清查、效能和記錄的 Docker 協調流程和作業系統監視支援。   
+hello 表概述 hello Docker 協調流程和監視的容器清查、 效能和記錄檔記錄分析的支援的作業系統。   
 
 | | ACS | Linux | Windows | 容器<br>清查 | 映像<br>清查 | 節點<br>清查 | 容器<br>效能 | 容器<br>Event | Event<br>記錄檔 | 容器<br>記錄檔 |
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
@@ -59,7 +59,7 @@ ms.lasthandoff: 08/29/2017
 
 ### <a name="docker-versions-supported-on-linux"></a>在 Linux 上支援的 Docker 版本
 
-- Docker 1.11 至 1.13
+- Docker 1.11 too1.13
 - Docker CE 和 EE v17.06
 
 ### <a name="x64-linux-distributions-supported-as-container-hosts"></a>x64 Linux 散發套件可支援作為容器主機
@@ -73,8 +73,8 @@ ms.lasthandoff: 08/29/2017
 - SLES 12
 - RHEL 7.2 和 7.3
 - Red Hat OpenShift Container Platform (OCP) 3.4 和 3.5
-- ACS Mesosphere DC/OS 1.7.3 至 1.8.8
-- ACS Kubernetes 1.4.5 至 1.6
+- ACS Mesosphere DC/OS 1.7.3 too1.8.8
+- ACS Kubernetes 1.4.5 too1.6
 - ACS Docker Swarm
 
 ### <a name="supported-windows-operating-system"></a>支援的 Windows 作業系統
@@ -87,41 +87,41 @@ ms.lasthandoff: 08/29/2017
 - Docker 1.12 和 1.13
 - Docker 17.03.0 和更新版本
 
-## <a name="installing-and-configuring-the-solution"></a>安裝和設定方案
-請使用下列資訊來安裝和設定方案。
+## <a name="installing-and-configuring-hello-solution"></a>安裝和設定 hello 方案
+使用下列資訊 tooinstall hello 並設定 hello 方案。
 
-1. 從 [Azure marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.ContainersOMS?tab=Overview) 或使用[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)中所述的程序，將容器監視解決方案新增至您的 OMS 工作區。
+1. 新增 hello 容器監視解決方案 tooyour OMS 工作區從[Azure marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.ContainersOMS?tab=Overview)或使用 hello 程序中所述[hello 解決方案資源庫中的新增記錄分析解決方案](log-analytics-add-solutions.md)。
 
-2. 安裝和使用 Docker 搭配 OMS 代理程式。  以您的作業系統作為基礎，您可以從下列方法選擇：
+2. 安裝和使用 Docker 搭配 OMS 代理程式。  根據您的作業系統，您可以選擇從 hello 下列方法：
 
-  * 在支援的 Linux 作業系統上，安裝和執行 Docker，然後安裝並設定 [OMS Agent for Linux](log-analytics-agent-linux.md)。  
-  * 在 CoreOS 上，您無法執行 OMS Agent for Linux。 相反地，您可以執行 OMS Agent for Linux 的容器化版本。 檢閱 [Linux 容器主機，包括 CoreOS](#for-all-linux-container-hosts-including-coreos) 或 [Azure Government Linux 容器主機，包括 CoreOS](#for-all-azure-government-linux-container-hosts-including-coreos)，如果您正在使用 Azure Government Cloud 中的容器。
-  * 在 Windows Server 2016 和 Windows 10 上，安裝 Docker 引擎及用戶端，然後連接代理程式以收集資訊，並將它傳送至 Log Analytics。  
+  * 在支援 Linux 作業系統上安裝和執行 Docker，然後安裝並設定 hello [OMS Agent for Linux](log-analytics-agent-linux.md)。  
+  * CoreOS，您無法執行 hello OMS Agent for Linux。 相反地，您可執行容器化的版本的 hello OMS Agent for Linux。 檢閱 [Linux 容器主機，包括 CoreOS](#for-all-linux-container-hosts-including-coreos) 或 [Azure Government Linux 容器主機，包括 CoreOS](#for-all-azure-government-linux-container-hosts-including-coreos)，如果您正在使用 Azure Government Cloud 中的容器。
+  * 在 Windows Server 2016 和 Windows 10 中，安裝 hello Docker 引擎與用戶端，然後連接的代理程式 toogather 資訊並傳送它 tooLog 分析。  
 
 ### <a name="container-services"></a>容器服務
 
 - 如果您有 Red Hat OpenShift 環境，請檢閱[針對 Red Hat OpenShift 設定 OMS 代理程式](#configure-an-oms-agent-for-red-hat-openshift)。
-- 如果您有使用 Azure Container Service 的 Kubernetes 叢集，請檢閱[使用 Microsoft Operations Management Suite (OMS) 監視 Azure Container Service 叢集](../container-service/kubernetes/container-service-kubernetes-oms.md)。
+- 如果您有使用 hello Azure 容器服務的 Kubernetes 叢集，檢閱[監視 Azure 容器服務叢集與 Microsoft Operations Management Suite (OMS)](../container-service/kubernetes/container-service-kubernetes-oms.md)。
 - 如果您擁有 Azure Container Service DC/OS 叢集，請深入了解[使用 Operations Management Suite 監視 Azure Container Service DC/OS 叢集](../container-service/dcos-swarm/container-service-monitoring-oms.md)。
 - 如果您有 Docker Swarm 模式環境，詳細資訊請參閱[為 Docker Swarm 設定 OMS 代理程式](#configure-an-oms-agent-for-docker-swarm)。
 - 如果您搭配 Service Fabric 使用容器，請參閱 [Azure Service Fabric 概觀](../service-fabric/service-fabric-overview.md)以深入了解。
-- 檢閱 [Windows 上的 Docker 引擎](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon)文章，以取得有關如何在執行 Windows 的電腦上安裝和設定您 Docker 引擎的資訊。
+- 檢閱 hello [Windows 上的 Docker 引擎](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon)發行項，如需有關如何 tooinstall 和執行 Windows 的電腦上設定 Docker 引擎。
 
 > [!IMPORTANT]
-> 在容器主機上安裝 [OMS Agent for Linux](log-analytics-agent-linux.md)**之前**，Docker 必須已在執行中。 如果您已在安裝 Docker 前安裝此代理程式，您必須重新安裝 OMS Agent for Linux。 如需 Docker 的詳細資訊，請參閱 [Docker 網站](https://www.docker.com)。
+> 必須執行 docker**之前**安裝 hello [OMS Agent for Linux](log-analytics-agent-linux.md)容器主機上。 如果您已經安裝 hello 代理程式安裝 Docker 之前，您需要 tooreinstall hello OMS Agent for Linux。 如需有關 Docker 的詳細資訊，請參閱 hello [Docker 網站](https://www.docker.com)。
 
 
 ## <a name="linux-container-hosts"></a>Linux 容器主機
 
-在您安裝 Docker 之後，使用容器主機的下列設定來設定可搭配 Docker 使用的代理程式。 首先您需要 OMS 工作區識別碼和金鑰，這可以在 Azure 入口網站中找到。 在您的工作區中，按一下 [快速啟動] > [電腦] 來檢視您的 [工作區識別碼] 和 [主索引鍵]。  將兩者複製並貼到您最愛的編輯器。
+安裝 Docker 之後，使用下列設定容器主機 tooconfigure hello 代理程式用於 Docker 的 hello。 首先您需要您的 OMS 工作區識別碼和金鑰，您可以在 hello Azure 入口網站中找到。 在您的工作區中，按一下**快速入門** > **電腦**tooview 您**工作區識別碼**和**主索引鍵**。  將兩者複製並貼到您最愛的編輯器。
 
 ### <a name="for-all-linux-container-hosts-except-coreos"></a>適用於 CoreOS 以外的所有 Linux 容器主機
 
-- 如需如何安裝 OMS Agent for Linux 的詳細資訊和步驟，請參閱[將 Linux 電腦連線至 Operations Management Suite (OMS)](log-analytics-agent-linux.md)。
+- 如需詳細資訊和如何 tooinstall hello 適用於 Linux 的 OMS 代理程式上的步驟，請參閱[連接您的 Linux 電腦 tooOperations Management Suite (OMS)](log-analytics-agent-linux.md)。
 
 ### <a name="for-all-linux-container-hosts-including-coreos"></a>適用於包含 CoreOS 的所有 Linux 容器主機
 
-啟動您要監視的 OMS 容器。 修改並使用下列範例：
+啟動您想 toomonitor hello OMS 容器。 修改並使用下列範例中的 hello:
 
 ```
 sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -e WSID="your workspace id" -e KEY="your key" -h=`hostname` -p 127.0.0.1:25225:25225 --name="omsagent" --restart=always microsoft/oms
@@ -129,36 +129,36 @@ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -e 
 
 ### <a name="for-all-azure-government-linux-container-hosts-including-coreos"></a>適用於包含 CoreOS 的所有 Azure Government Linux 容器主機
 
-啟動您要監視的 OMS 容器。 修改並使用下列範例：
+啟動您想 toomonitor hello OMS 容器。 修改並使用下列範例中的 hello:
 
 ```
 sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v /var/log:/var/log -e WSID="your workspace id" -e KEY="your key" -e DOMAIN="opinsights.azure.us" -p 127.0.0.1:25225:25225 -p 127.0.0.1:25224:25224/udp --name="omsagent" -h=`hostname` --restart=always microsoft/oms
 ```
 
-### <a name="switching-from-using-an-installed-linux-agent-to-one-in-a-container"></a>從使用已安裝的代理程式切換為使用容器中的 Linux 代理程式
-如果您先前使用了直接安裝的代理程式，而且想要改為使用在容器中執行的代理程式，您必須先移除 OMS Agent for Linux。 請參閱[解除安裝 OMS Agent for Linux](log-analytics-agent-linux.md#uninstalling-the-oms-agent-for-linux) 來了解如何順利解除安裝代理程式。  
+### <a name="switching-from-using-an-installed-linux-agent-tooone-in-a-container"></a>從使用已安裝的 Linux 代理程式 tooone 容器中切換
+如果您先前使用 hello 直接安裝代理程式，而想 tooinstead 使用容器中執行的代理程式，您必須先會移除 hello OMS Agent for Linux。 請參閱[解除安裝 hello OMS Agent for Linux](log-analytics-agent-linux.md#uninstalling-the-oms-agent-for-linux) toounderstand toosuccessfully 的解除安裝 hello 代理程式。  
 
 ### <a name="configure-an-oms-agent-for-docker-swarm"></a>為 Docker Swarm 設定 OMS 代理程式
 
-您可以在 Docker Swarm 上以全域服務的方式執行 OMS 代理程式。 使用下列資訊建立 OMS 代理程式服務。 您需要插入 OMS 工作區識別碼與主索引鍵。
+您可以執行以全域服務的 hello OMS 代理程式上 Docker Swarm。 使用下列資訊 toocreate OMS 代理程式服務的 hello。 您需要 tooinsert OMS 工作區識別碼及主索引鍵。
 
-- 在主要節點上執行下列命令。
+- Hello 下列 hello 主要在節點上執行。
 
     ```
     sudo docker service create  --name omsagent --mode global  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock  -e WSID="<WORKSPACE ID>" -e KEY="<PRIMARY KEY>" -p 25225:25225 -p 25224:25224/udp  --restart-condition=on-failure microsoft/oms
     ```
 
 ### <a name="configure-an-oms-agent-for-red-hat-openshift"></a>為 Red Hat Openshift 設定 OMS 代理程式
-有三種方式可將 OMS 代理程式新增至 Red Hat OpenShift 以開始收集容器監視資料。
+有三種方式 tooadd hello OMS Agent tooRed Hat OpenShift toostart 容器監視資料收集。
 
-* 直接在每個 OpenShift 節點上[安裝 OMS Agent for Linux](log-analytics-agent-linux.md)  
+* [安裝 hello OMS Agent for Linux](log-analytics-agent-linux.md)直接在每個 OpenShift 節點上  
 * 在位於 Azure 中的每個 OpenShift 節點上[啟用記錄分析 VM 延伸模組](log-analytics-azure-vm-extension.md)  
-* 安裝 OMS 代理程式作為 OpenShift 精靈集  
+* Hello OMS 代理程式安裝為 OpenShift 精靈集  
 
-在本節中，我們會討論安裝 OMS 代理程式作為 OpenShift 精靈集所需的步驟。  
+在本節中，我們會討論 hello 步驟需要的 tooinstall hello OMS 代理程式 OpenShift 精靈設定。  
 
-1. 登入 OpenShift 主要節點，並從 GitHub 複製 YAML 檔 [ocp-omsagent.yaml](https://github.com/Microsoft/OMS-docker/blob/master/OpenShift/ocp-omsagent.yaml) 到您的主要節點，然後以 OMS 工作區識別碼和主索引鍵修改值。
-2. 執行下列命令來建立 OMS 的專案，並設定使用者帳戶。
+1. 登入 toohello OpenShift 主節點，然後複製 hello yaml 檔案[ocp omsagent.yaml](https://github.com/Microsoft/OMS-docker/blob/master/OpenShift/ocp-omsagent.yaml)從 GitHub tooyour 主要節點和修改 hello 值與您的 OMS 工作區識別碼和主索引鍵。
+2. 執行下列命令 toocreate hello oms 的專案，然後設定 hello 使用者帳戶。
 
     ```
     oadm new-project omslogging --node-selector='zone=default'
@@ -168,15 +168,15 @@ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v 
     oadm policy add-scc-to-user privileged system:serviceaccount:omslogging:omsagent  
     ```
 
-4. 若要部署精靈集，請執行下列命令：
+4. toodeploy hello 精靈集執行 hello 下列：
 
     `oc create -f ocp-omsagent.yaml`
 
-5. 若要驗證它已設定並正常運作，請輸入下列命令：
+5. tooverify 它已設定且運作正常，hello 下列輸入：
 
     `oc describe daemonset omsagent`  
 
-    輸出會像下面這樣：
+    和 hello 輸出應該類似：
 
     ```
     [ocpadmin@khm-0 ~]$ oc describe ds oms  
@@ -194,10 +194,10 @@ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v 
     No events.  
     ```
 
-如果在使用 OMS 代理程式精靈集 YAML 檔案時，您想要使用密碼來保護您的 OMS 工作區識別碼及主索引鍵，請執行下列步驟。
+如果您想 toouse 密碼 toosecure 您的 OMS 工作區識別碼及主要金鑰使用 hello OMS 代理程式協助程式組 yaml 檔案時，，執行下列步驟的 hello。
 
-1. 登入 OpenShift 主要節點，並從 GitHub 複製 YAML 檔 [ocp-ds-omsagent.yaml](https://github.com/Microsoft/OMS-docker/blob/master/OpenShift/ocp-ds-omsagent.yaml) 和密碼產生指令碼 [ocp-secretgen.sh](https://github.com/Microsoft/OMS-docker/blob/master/OpenShift/ocp-secretgen.sh)。  這個指令碼會產生 OMS 工作區識別碼及主索引鍵的密碼 YAML 檔案，來保護您的密碼資訊。  
-2. 執行下列命令來建立 OMS 的專案，並設定使用者帳戶。 密碼產生指令碼會要求您的 OMS 工作區識別碼 <WSID> 和主索引鍵 <KEY>，並且在完成時，它會建立 ocp-secret.yaml 檔案。  
+1. 登入 toohello OpenShift 主節點，然後複製 hello yaml 檔案[ocp-ds-omsagent.yaml](https://github.com/Microsoft/OMS-docker/blob/master/OpenShift/ocp-ds-omsagent.yaml)和密碼產生指令碼[ocp secretgen.sh](https://github.com/Microsoft/OMS-docker/blob/master/OpenShift/ocp-secretgen.sh)從 GitHub。  此指令碼會產生 OMS 工作區識別碼及主要金鑰 toosecure hello 密碼 yaml 檔案您 secrete 資訊。  
+2. 執行下列命令 toocreate hello oms 的專案，然後設定 hello 使用者帳戶。 hello 密碼產生指令碼會要求您的 OMS 工作區識別碼<WSID>和主索引鍵<KEY>和完成時，它會建立 hello ocp secret.yaml 檔案。  
 
     ```
     oadm new-project omslogging --node-selector='zone=default'  
@@ -207,15 +207,15 @@ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v 
     oadm policy add-scc-to-user privileged system:serviceaccount:omslogging:omsagent  
     ```
 
-4. 執行下列命令以開啟密碼檔案：
+4. 執行 hello 下列部署 hello 密碼檔案：
 
     `oc create -f ocp-secret.yaml`
 
-5. 執行下列命令以驗證部署：
+5. 確認執行 hello 下列部署：
 
     `oc describe secret omsagent-secret`  
 
-    輸出會像下面這樣：  
+    和 hello 輸出應該類似：  
 
     ```
     [ocpadmin@khocp-master-0 ~]$ oc describe ds oms  
@@ -233,15 +233,15 @@ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v 
     No events.  
     ```
 
-6. 執行下列命令以部署 OMS 代理程式精靈集 YAML 檔案：
+6. 執行 hello 下列部署 hello OMS 代理程式協助程式組 yaml 檔：
 
     `oc create -f ocp-ds-omsagent.yaml`  
 
-7. 執行下列命令以驗證部署：
+7. 確認執行 hello 下列部署：
 
     `oc describe ds oms`
 
-    輸出會像下面這樣：
+    和 hello 輸出應該類似：
 
     ```
     [ocpadmin@khocp-master-0 ~]$ oc describe secret omsagent-secret  
@@ -264,9 +264,9 @@ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v 
 
 #### <a name="secure-secrets-for-docker-swarm"></a>保護 Docker Swarm 的祕密
 
-針對 Docker Swarm，建立工作區識別碼與主索引鍵的祕密後，您便可為 OMSagent 建立 Docker 服務。 使用下列資訊建立您的祕密資訊。
+Docker Swarm，一旦建立工作區識別碼及主要金鑰的 hello 密碼之後，您可以針對執行 hello 建立的 OMSagent hello Docker 服務。 使用下列資訊 toocreate hello 秘密資訊。
 
-1. 在主要節點上執行下列命令。
+1. Hello 下列 hello 主要在節點上執行。
 
     ```
     echo "WSID" | docker secret create WSID -
@@ -285,7 +285,7 @@ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v 
     l9rh3n987g9c45zffuxdxetd9   KEY                 38 minutes ago      38 minutes ago
     ```
 
-3. 執行下列命令，將祕密掛接至容器化的 OMS 代理程式。
+3. 執行下列命令 toomount hello 密碼 toohello 的 hello 容器化 OMS 代理程式。
 
     ```
     sudo docker service create  --name omsagent --mode global  --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock --secret source=WSID,target=WSID --secret source=KEY,target=KEY  -p 25225:25225 -p 25224:25224/udp --restart-condition=on-failure microsoft/oms
@@ -293,16 +293,16 @@ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v 
 
 #### <a name="secure-secrets-for-kubernetes-with-yaml-files"></a>使用 yaml 檔案保護 Kubernetes 的祕密
 
-針對 Kubernetes，您可以使用指令碼為工作區識別碼與主索引鍵產生密碼 YAML 檔案。 [OMS Docker Kubernetes GitHub](https://github.com/Microsoft/OMS-docker/tree/master/Kubernetes) 頁面含有您可以在有或無祕密資訊的情況下使用的檔案。
+Kubernetes，如中，您可以使用指令碼 toogenerate hello 密碼 yaml 檔案的工作區識別碼和主索引鍵。 在 hello [OMS Docker Kubernetes GitHub](https://github.com/Microsoft/OMS-docker/tree/master/Kubernetes)頁面上，您可以使用，不論您的機密資訊的檔案。
 
-- 預設 OMS 代理程式精靈集 (omsagent.yaml) 沒有密碼資訊
-- OMS 代理程式精靈集YAML 檔案使用密碼資訊 (omsagent-ds-secrets.yaml) 搭配密碼產生指令碼來產生密碼 YAML (omsagentsecret.yaml) 檔案。
+- 預設 OMS 代理程式 DaemonSet hello 沒有機密資訊 (omsagent.yaml)
+- hello OMS 代理程式 DaemonSet yaml 檔案會使用密碼產生指令碼 toogenerate hello 密碼 yaml (omsagentsecret.yaml) 檔案中的機密資訊 (omsagent-ds-secrets.yaml)。
 
-您可以選擇在有或無祕密的情況下建立 omsagent DaemonSet。
+您可以選擇 toocreate omsagent DaemonSets 含密碼。
 
 ##### <a name="default-omsagent-daemonset-yaml-file-without-secrets"></a>沒有祕密的預設 OMSagent DaemonSet yaml 檔案
 
-- 針對預設 OMS 代理程式 DaemonSet yaml 檔案，用您的 WSID 和索引鍵取代 `<WSID>` 和 `<KEY>`。 將檔案複製到您的主要節點，並執行下列命令：
+- Hello 預設 OMS 代理程式 DaemonSet yaml 檔案取代 hello`<WSID>`和`<KEY>`tooyour WSID 和金鑰。 複製 hello 檔案 tooyour 主要節點，然後執行的 hello 下列：
 
     ```
     sudo kubectl create -f omsagent.yaml
@@ -310,22 +310,22 @@ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v 
 
 ##### <a name="default-omsagent-daemonset-yaml-file-with-secrets"></a>有祕密的預設 OMSagent DaemonSet yaml 檔案
 
-1. 若要使用具有祕密資訊的 OMS 代理程式 DaemonSet，請先建立祕密。
-    1. 複製指令碼和祕密範本檔案，並確定它們位於相同的目錄。
+1. toouse 使用機密資訊的 OMS 代理程式 DaemonSet 建立 hello 機密資料第一次。
+    1. 複製 hello 指令碼和密碼的範本檔案，並確定它們是在 hello 相同的目錄。
         - 祕密產生指令碼 - secret-gen.sh
         - 祕密範本 - secret-template.yaml
-    2. 執行指令碼，如下列範例所示。 指令碼會要求 OMS 工作區識別碼與主索引鍵，在您輸入這兩個資訊之後，指令碼會建立一個密碼 YAML 檔案讓您能夠執行它。   
+    2. 執行 hello 指令碼，如下列範例中的 hello。 hello 指令碼會要求輸入 hello，OMS 工作區識別碼及主要金鑰，並輸入它們之後，hello 指令碼建立密碼 yaml 檔案，因此您可以在執行。   
 
         ```
         #> sudo bash ./secret-gen.sh
         ```
 
-    3. 執行以下命令來建立祕密 Pod：
+    3. 建立 hello 密碼 pod 執行 hello 下列：
         ```
         sudo kubectl create -f omsagentsecret.yaml
         ```
 
-    4. 若要確認，請執行下列命令：
+    4. tooverify，執行下列 hello:
 
         ```
         keiko@ubuntu16-13db:~# sudo kubectl get secrets
@@ -361,7 +361,7 @@ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v 
 
     5. 執行 ``` sudo kubectl create -f omsagent-ds-secrets.yaml ``` 以建立您的 omsagent daemon-set
 
-2. 確認 OMS 代理程式 DaemonSet 正在執行，如下所示：
+2. 請確認正在執行 OMS Agent DaemonSet，類似下列的 toohello 該 hello:
 
     ```
     keiko@ubuntu16-13db:~# sudo kubectl get ds omsagent
@@ -373,7 +373,7 @@ sudo docker run --privileged -d -v /var/run/docker.sock:/var/run/docker.sock -v 
     ```
 
 
-針對 Kubernetes，使用指令碼為工作區識別碼與主索引鍵產生祕密 yaml 檔案。 搭配 [omsagent yaml 檔案](https://github.com/Microsoft/OMS-docker/blob/master/Kubernetes/omsagent.yaml)使用下列範例資訊來保護您的祕密資訊。
+Kubernetes，使用指令碼 toogenerate hello 密碼 yaml 檔案中的工作區識別碼及主要金鑰的內容。 下列範例與 hello 的資訊的使用 hello [omsagent yaml 檔案](https://github.com/Microsoft/OMS-docker/blob/master/Kubernetes/omsagent.yaml)toosecure 您的機密資訊。
 
 ```
 keiko@ubuntu16-13db:~# sudo kubectl describe secrets omsagent-secret
@@ -394,11 +394,11 @@ KEY:    88 bytes
 
 ### <a name="preparation-before-installing-windows-agents"></a>安裝 Windows 代理程式之前的準備動作
 
-在執行 Windows 的電腦上安裝代理程式之前，您需要設定 Docker 服務。 組態可讓 Windows 代理程式或 Log Analytics 虛擬機器擴充功能使用 Docker TCP 通訊端，讓代理程式可以從遠端存取的 Docker 精靈並擷取監視資料。
+您在執行 Windows 的電腦上安裝代理程式之前，您會需要 tooconfigure hello Docker 服務。 hello 組態可讓您 hello Windows 代理程式 」 或 「 hello 記錄分析的虛擬機器擴充功能 toouse hello Docker TCP 通訊端以便 hello 代理程式可以從遠端存取 hello Docker 精靈和 toocapture 資料監視。
 
-#### <a name="to-start-docker-and-verify-its-configuration"></a>若要啟動 Docker 並確認其組態
+#### <a name="toostart-docker-and-verify-its-configuration"></a>toostart Docker 並確認其組態
 
-若要設定 Windows Server 的 TCP 具名管道，需要執行一些步驟︰
+沒有所需的步驟 tooset 向上 TCP Windows Server 的具名管道：
 
 1. 在 Windows PowerShell 中啟用 TCP 管道和具名的管道。
 
@@ -409,9 +409,9 @@ KEY:    88 bytes
     Start-Service docker
     ```
 
-2. 使用 TCP 管道和具名管道的組態檔來設定 Docker。 此組態檔位於 C:\ProgramData\docker\config\daemon.json。
+2. 使用 TCP 管道 hello 組態檔來設定 Docker 及具名管道。 hello 設定檔是位於 C:\ProgramData\docker\config\daemon.json。
 
-    在 daemon.json 檔案中，您將需要下列項目：
+    在 hello daemon.json 檔案中，您需要下列 hello:
 
     ```
     {
@@ -419,28 +419,28 @@ KEY:    88 bytes
     }
     ```
 
-如需 Windows 容器使用之 Docker 精靈組態的詳細資訊，請參閱 [Windows 上的 Docker 引擎](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon)。
+如需搭配 Windows 容器的 hello Docker 精靈設定的詳細資訊，請參閱[Windows 上的 Docker 引擎](https://docs.microsoft.com/virtualization/windowscontainers/manage-docker/configure-docker-daemon)。
 
 
 ### <a name="install-windows-agents"></a>安裝 Windows 代理程式
 
-若要啟用 Windows 和 Hyper-V 容器監視，請在容器主機的 Windows 電腦上安裝 Microsoft Monitoring Agent (MMA)。 若需要在內部部署環境中執行 Windows 的電腦，請參閱[連接 Windows 電腦至 Log Analytics](log-analytics-windows-agents.md)。 若需要在 Azure 中執行的虛擬機器，可使用[虛擬機器擴充功能](log-analytics-azure-vm-extension.md)將它們連接至 Log Analytics。
+tooenable Windows 和 HYPER-V 容器監視，請容器主機的 Windows 電腦上安裝 hello Microsoft Monitoring Agent (MMA)。 在內部部署環境中執行 Windows 的電腦，請參閱[連接的 Windows 電腦 tooLog 分析](log-analytics-windows-agents.md)。 虛擬機器的執行在 Azure 中，將它們連接 tooLog 分析使用 hello[虛擬機器擴充功能](log-analytics-azure-vm-extension.md)。
 
 您可以監視 Service Fabric 上執行的 Windows 容器。 不過，Service Fabric 目前只支援 [Azure 中執行的虛擬機器](log-analytics-azure-vm-extension.md)和[在內部部署環境中執行 Windows 的電腦](log-analytics-windows-agents.md)。
 
-您可以確認容器監視解決方案已針對 Windows 正確設定。 若要檢查管理組件是否正確下載，請找出 ContainerManagement.xxx。 這些檔案應在 C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs 資料夾。
+您可以確認該 hello 容器監視解決方案會針對 Windows 設定正確。 toocheck hello 管理組件正常運作，是下載尋找*ContainerManagement.xxx*。 hello 檔案應該在 hello C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs 資料夾。
 
 
 ## <a name="solution-components"></a>方案元件
 
-如果您是使用 Windows 代理程式，當您新增這個解決方案時，就會使用代理程式在每部電腦上安裝下列管理組件。 管理組件不需要任何設定或維護。
+如果您使用 Windows 代理程式，然後 hello 下列管理組件是每部電腦上安裝代理程式時將方案加入。 不不需要 hello 管理組件的任何設定或維護。
 
 - C:\Program Files\Microsoft Monitoring Agent\Agent\Health Service State\Management Packs 中所安裝的 ContainerManagement.xxx
 
 ## <a name="container-data-collection-details"></a>容器資料收集詳細資料
-容器監視解決方案會從使用您已啟用之代理程式的容器主機和容器中，收集各種效能計量和記錄資料。
+hello 容器監視解決方案會從容器主機和容器，使用您所啟用的代理程式收集各種效能度量和記錄資料。
 
-每隔三分鐘會依下列代理程式類型收集資料。
+資料會收集下列代理程式類型的 hello 每隔三分鐘。
 
 - [OMS Agent for Linux](log-analytics-linux-agents.md)
 - [Windows 代理程式](log-analytics-windows-agents.md)
@@ -449,7 +449,7 @@ KEY:    88 bytes
 
 ### <a name="container-records"></a>容器資料列
 
-下表顯示的範例是容器監視解決方案所收集的資料列，以及記錄搜尋結果中所顯示之資料類型。
+hello 下表顯示 hello 容器監視解決方案和會出現在記錄搜尋結果中的 hello 資料型別所收集的記錄的範例。
 
 | 資料類型 | 記錄檔搜尋中的資料類型 | 欄位 |
 | --- | --- | --- |
@@ -463,85 +463,85 @@ KEY:    88 bytes
 | 容器流程 | `Type=ContainerProcess_CL` | TimeGenerated、Computer、Pod_s、Namespace_s、ClassName_s、InstanceID_s、Uid_s、PID_s、PPID_s、C_s、STIME_s、Tty_s、TIME_s、Cmd_s、Id_s、Name_s、SourceSystem |
 | Kubernetes 事件 | `Type=KubeEvents_CL` | TimeGenerated、Computer、Name_s、ObjectKind_s、Namespace_s、Reason_s、Type_s、SourceComponent_s、SourceSystem、Message |
 
-附加到 PodLabel 資料類型的標籤是您自己的自訂標籤。 資料表中所顯示的附加 PodLabel 標籤就是範例。 因此，`PodLabel_deployment_s`、`PodLabel_deploymentconfig_s`、`PodLabel_docker_registry_s` 在環境的資料集中會有所不同，且一般而言會類似 `PodLabel_yourlabel_s`。
+標籤太附加*PodLabel*資料型別是您自己的自訂標籤。 hello hello 表所示的附加的 PodLabel 標籤是範例。 因此，`PodLabel_deployment_s`、`PodLabel_deploymentconfig_s`、`PodLabel_docker_registry_s` 在環境的資料集中會有所不同，且一般而言會類似 `PodLabel_yourlabel_s`。
 
 
 ## <a name="monitor-containers"></a>監視容器
-在 OMS 入口網站中啟用此解決方案之後，[容器] 圖格會顯示容器主機和主機中執行之容器的相關摘要資訊。
+您已啟用 hello OMS 入口網站中的 hello 方案之後，hello**容器**磚會顯示您的容器主機和 hello 容器主機中執行的摘要資訊。
 
 ![容器圖格](./media/log-analytics-containers/containers-title.png)
 
-此圖格顯示環境中有多少容器以及其為失敗、執行中或已停止的概觀。
+hello 磚會顯示您有多少容器的概觀 hello 環境中失敗之是否正在執行或已停止。
 
-### <a name="using-the-containers-dashboard"></a>使用容器儀表板
-按一下 [容器] 圖格。 在這裡，您會看到依下列各項組織的檢視︰
+### <a name="using-hello-containers-dashboard"></a>使用 hello 容器儀表板
+按一下 hello**容器**磚。 在這裡，您會看到依下列各項組織的檢視︰
 
 - **容器事件** - 會顯示容器狀態和包含失敗容器的電腦。
-- **容器記錄** - 會顯示一段時間所產生的容器記錄檔圖表，和包含最大量記錄檔的電腦清單。
-- **Kubernetes 事件** - 會顯示一段時間所產生的 Kubernetes 事件圖表，和 Pod 產生事件的原因清單。 只有在 Linux 環境中才會使用此資料集。
-- **Kubernetes 命名空間清查** - 會顯示命名空間和 Pod 的數目，並顯示其階層。 只有在 Linux 環境中才會使用此資料集。
-- **容器節點清查** - 會顯示容器節點/主機上使用的協調流程類型數目。 還會依容器數目列出電腦節點/主機。 只有在 Linux 環境中才會使用此資料集。
-- **容器映像庫存** - 會顯示已使用的容器映像總數和映像類型的數目。 還會依影像標籤列出映像數目。
-- **容器狀態** - 會顯示具有執行中容器的容器節點/主機電腦總數。 還會依執行中主機的數目列出電腦。
+- **容器的記錄檔**-顯示以 hello 高數目的記錄檔產生一段時間和的電腦清單的容器記錄檔的圖表。
+- **Kubernetes 事件**-顯示 Kubernetes 產生的事件時間和的 hello 原因為何 pod 產生 hello 事件清單的圖表。 只有在 Linux 環境中才會使用此資料集。
+- **Kubernetes 命名空間清查**-顯示命名空間和 pod 的 hello 數目，並顯示其階層。 只有在 Linux 環境中才會使用此資料集。
+- **容器節點清查**-顯示 hello 數目的容器節點主機上使用的協調流程類型。 節點主機方式 hello 電腦也會列出由 hello 數目的容器。 只有在 Linux 環境中才會使用此資料集。
+- **容器映像庫存**-顯示 hello 總數使用容器映像和映像類型數目。 映像的 hello 數目也會列出由 hello 影像標記。
+- **容器狀態**-顯示 hello 總數容器具有執行中的容器節點/主機電腦。 由主機執行中的 hello 數目也會列出電腦。
 - **容器流程** - 會顯示一段時間執行的容器流程折線圖。 還會依容器內的執行命令/流程列出容器。 只有在 Linux 環境中才會使用此資料集。
-- **容器 CPU 效能** - 會顯示一段時間電腦節點/主機的平均 CPU 使用率折線圖。 還會以平均 CPU 使用率作為基礎列出電腦節點/主機。
+- **容器的 CPU 效能**-顯示經過一段時間的電腦節點主控 hello 平均 CPU 使用率的折線圖。 也列出 hello 電腦節點/主控根據平均 CPU 使用率。
 - **容器記憶體效能** - 會顯示一段時間的記憶體使用量折線圖。 還會以執行個體名稱作為基礎列出電腦記憶體使用率。
-- **電腦效能** - 會顯示一段時間的 CPU 效能百分比、一段時間的記憶體使用量百分比，以及一段時間的可用磁碟空間 MB 等折線圖。 您可以將滑鼠停留在圖表中的任一行，以檢視更多詳細資料。
+- **電腦效能**-顯示一段時間的一段時間和可用磁碟空間的 mb 記憶體使用量的百分比 hello %的 CPU 效能隨著時間的折線圖。 您可以將滑鼠停留在任何列中圖表 tooview 更多詳細資料。
 
 
-儀表板中的每個區域都是對所收集資料執行之搜尋的視覺表示方式。
+Hello 儀表板的每個區域是收集的資料執行搜尋的視覺表示法。
 
 ![容器儀表板](./media/log-analytics-containers/containers-dash01.png)
 
 ![容器儀表板](./media/log-analytics-containers/containers-dash02.png)
 
-在 [容器狀態] 區域中，按一下頂端區域，如下所示。
+在 hello**容器狀態**區域中，按一下 hello 最上層區域中，如下所示。
 
 ![容器狀態](./media/log-analytics-containers/containers-status.png)
 
-[記錄搜尋] 隨即開啟，其中顯示您容器狀態的相關資訊。
+此時會開啟 記錄搜尋，顯示 hello 狀態，您的容器的相關資訊。
 
 ![容器的記錄檔搜尋](./media/log-analytics-containers/containers-log-search.png)
 
-在這裡，您可以編輯搜尋查詢來進行修改，以尋找您感興趣的特定資訊。 如需記錄檔搜尋的詳細資訊，請參閱 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md)。
+您可以從這裡編輯 hello 搜尋查詢 toomodify 它您感興趣的 toofind hello 特定資訊。 如需記錄檔搜尋的詳細資訊，請參閱 [Log Analytics 中的記錄檔搜尋](log-analytics-log-searches.md)。
 
 ## <a name="troubleshoot-by-finding-a-failed-container"></a>尋找失敗的容器以進行疑難排解
 
-如果容器已透過非零結束代碼結束，則 Log Analytics 會將容器標示為 [失敗]。 您可以在 [失敗的容器] 區域中，大致了解環境中的錯誤和失敗。
+如果容器已透過非零結束代碼結束，則 Log Analytics 會將容器標示為 [失敗]。 您可以看到的 hello 錯誤或失敗發生在 hello hello 環境概觀**失敗容器**區域。
 
-### <a name="to-find-failed-containers"></a>尋找失敗的容器
-1. 按一下 [容器狀態] 區域。  
+### <a name="toofind-failed-containers"></a>失敗的 toofind 容器
+1. 按一下 hello**容器狀態**區域。  
    ![容器狀態](./media/log-analytics-containers/containers-status.png)
-2. [記錄搜尋] 隨即開啟並顯示如下所示的容器狀態。  
+2. 記錄搜尋會開啟，並顯示 hello 狀態的程式的容器，類似下列的 toohello。  
    ![容器狀態](./media/log-analytics-containers/containers-log-search.png)
-3. 接下來，按一下失敗容器的彙總值，以檢視其他的資訊。 展開 [顯示更多] 以檢視映像識別碼。  
+3. 接下來，按一下失敗的容器 tooview 更多資訊 hello 的彙總資料值。 展開**顯示更多**tooview hello 映像識別碼。  
    ![失敗的容器](./media/log-analytics-containers/containers-state-failed.png)  
-4. 接下來，在搜尋查詢中輸入下列內容。 `Type=ContainerInventory <ImageID>`可查看關於映像的詳細資料，例如停止和失敗映像的映像大小與數目。  
+4. 接著，輸入 hello 下列 hello 搜尋查詢中。 `Type=ContainerInventory <ImageID>`toosee 詳細資料 hello 映像，例如停止和失敗的映像的映像大小與數目。  
    ![失敗的容器](./media/log-analytics-containers/containers-failed04.png)
 
 ## <a name="search-logs-for-container-data"></a>搜尋容器資料的記錄檔
-當您針對特定錯誤進行疑難排解時，這助於查看您的環境中發生此錯誤的位置。 下列記錄檔類型將協助您建立查詢，以傳回您想要的資訊。
+當您正在排除特定的錯誤時，它可讓的 toosee 發生在您的環境中。 下列記錄類型的 hello 將協助您建立查詢，您想要的 tooreturn hello 資訊。
 
 
-- **ContainerImageInventory** – 當您嘗試尋找依照映像組織的資訊，以及檢視映像資訊 (例如映像識別碼或大小) 時，請使用這個類型。
+- **ContainerImageInventory** – 當您嘗試依映像和 tooview 映像資訊，例如映像識別碼或大小 toofind 資訊，請使用此類型。
 - **ContainerInventory** – 當您需要有關容器位置、其名稱，以及所執行映像的資訊時，請使用這個類型。
-- **ContainerLog** – 當您想要尋找特定錯誤記錄檔資訊和項目時，請使用這個類型。
-- **ContainerNodeInventory_CL**  當您需要容器所在之主機/節點的相關資訊時，請使用這個類型。 它會提供 Docker 版本、協調流程類型、儲存體和網路資訊。
-- **ContainerProcess_CL** 使用此類型可快速查看容器內執行的流程。
-- **ContainerServiceLog** – 當您嘗試尋找 Docker 精靈的稽核追蹤資訊 (例如啟動、停止、刪除或提取命令) 時，請使用這個類型。
-- **KubeEvents_CL**  使用此類型可查看 Kubernetes 事件。
-- **KubePodInventory_CL**  當您需要了解叢集階層資訊時，請使用此類型。
+- **ContainerLog** – 當您想 toofind 特定錯誤記錄檔資訊和項目，請使用這個型別。
+- **ContainerNodeInventory_CL**此類型要使用 hello/主控件 節點的資訊位於容器的位置。 它會提供 Docker 版本、協調流程類型、儲存體和網路資訊。
+- **ContainerProcess_CL**使用這個型別 tooquickly 看到 hello hello 容器內執行的處理程序。
+- **ContainerServiceLog** – 當您嘗試 toofind 稽核追蹤資訊的 hello Docker 精靈，例如啟動、 停止、 刪除或提取命令使用這個類型。
+- **KubeEvents_CL**使用這個型別 toosee hello Kubernetes 事件。
+- **KubePodInventory_CL**當您想 toounderstand hello 叢集階層資訊，請使用這個型別。
 
 
-### <a name="to-search-logs-for-container-data"></a>搜尋容器資料的記錄檔
-* 選擇您知道最近失敗的映像並尋找其錯誤記錄檔。 首先，透過 **ContainerInventory** 搜尋來尋找正在執行該映像的容器名稱。 例如，搜尋 `Type=ContainerInventory ubuntu Failed`  
+### <a name="toosearch-logs-for-container-data"></a>toosearch 記錄檔以取得容器資料
+* 選擇的映像，您知道最近失敗，並為其尋找 hello 錯誤記錄檔。 首先，透過 **ContainerInventory** 搜尋來尋找正在執行該映像的容器名稱。 例如，搜尋 `Type=ContainerInventory ubuntu Failed`  
     ![搜尋 Ubuntu 容器](./media/log-analytics-containers/search-ubuntu.png)
 
-  [名稱] 旁的容器名稱，並搜尋其記錄。 在此範例中為 `Type=ContainerLog cranky_stonebreaker`。
+  hello hello 容器的名稱旁邊太**名稱**，然後在搜尋這些記錄檔。 在此範例中為 `Type=ContainerLog cranky_stonebreaker`。
 
 **檢視效能資訊**
 
-當您開始建構查詢時，這有助於先查看各種可能。 例如，若要查看所有效能資料，請輸入下列搜尋查詢，嘗試進行廣泛查詢。
+當您開始 tooconstruct 查詢時，它可以協助 toosee 是什麼可能第一次。 例如，toosee 所有效能資料，再試一次輸入廣泛查詢 hello 下列都搜尋查詢。
 
 ```
 Type=Perf
@@ -549,18 +549,18 @@ Type=Perf
 
 ![容器效能](./media/log-analytics-containers/containers-perf01.png)
 
-您可以輸入查詢右邊的名稱，將您所見的效能資料範圍限制於特定容器。
+您可以為範圍 hello 效能資料，您看見 tooa 特定容器輸入 hello 目的 toohello 查詢的權限。
 
 ```
 Type=Perf <containerName>
 ```
 
-其顯示針對個別容器所收集的效能計量清單。
+顯示 hello 針對個別的容器所收集的效能度量的清單。
 
 ![容器效能](./media/log-analytics-containers/containers-perf03.png)
 
 ## <a name="example-log-search-queries"></a>範例記錄檔搜尋查詢
-從一或兩個範例開始建置查詢，然後加以修改以符合您的環境，通常很實用。 首先，您可以實驗 [查詢範例] 區域，協助您建置更進階的查詢。
+它通常很有用 toobuild 開頭範例或兩個，然後修改這些 toofit 查詢您的環境。 做為起點，您可以試驗 hello**查詢範例**區域 toohelp 建置更進階的查詢。
 
 [!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
@@ -570,7 +570,7 @@ Type=Perf <containerName>
 ## <a name="saving-log-search-queries"></a>儲存記錄檔搜尋查詢
 儲存查詢是 Log Analytics 的標準功能。 藉由儲存查詢，您可將您覺得有用的查詢放在容易取得的地方，以便日後使用。
 
-建立您覺得有用的查詢之後，按一下 [記錄檔搜尋] 頁面頂端的 [我的最愛] 來儲存它。 然後您稍後即可輕易地從 [我的儀表板] 頁面進行存取。
+您建立查詢，您有幫助之後，按一下以儲存它**我的最愛**hello 頁面頂端的 hello 記錄搜尋。 然後您可以輕鬆地存取稍後從 hello**我的儀表板**頁面。
 
 ## <a name="next-steps"></a>後續步驟
-* [搜尋記錄檔](log-analytics-log-searches.md)以檢視詳細的容器資料記錄。
+* [搜尋記錄](log-analytics-log-searches.md)tooview 詳細容器資料記錄。

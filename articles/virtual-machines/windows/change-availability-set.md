@@ -1,6 +1,6 @@
 ---
-title: "變更 VM 可用性設定組 | Microsoft Docs"
-description: "了解如何使用 Azure PowerShell 和 Resource Manager 部署模型來變更虛擬機器的可用性設定組。"
+title: "aaaChange Vm 的可用性設定組 |Microsoft 文件"
+description: "了解 toochange hello 可用性設定虛擬機器使用 Azure PowerShell 及 hello Resource Manager 部署模型的方式。"
 keywords: 
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,19 +16,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/15/2016
 ms.author: drewm
-ms.openlocfilehash: d1daa01191480eaeb81727416b2134b00c698dc3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3b1cc010a6d4c4883f2e34da9cfca4372aec92cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-availability-set-for-a-windows-vm"></a>變更 Windows VM 的可用性設定組
-下列步驟說明如何使用 Azure PowerShell 來變更 VM 的可用性設定組。 只有在建立 VM 時，才能將 VM 新增到可用性設定組中。 若要變更可用性設定組，您必須將虛擬機器刪除後再重新建立。 
+# <a name="change-hello-availability-set-for-a-windows-vm"></a>變更 hello 可用性集合，針對 Windows VM
+hello 下列步驟說明如何 toochange hello 可用性設定組的 VM，使用 Azure PowerShell。 VM 只能加入 tooan 可用性設定組在建立時。 在訂單 toochange hello 可用性設定組，您需要 toodelete，並重新建立 hello 虛擬機器。 
 
-## <a name="change-the-availability-set-using-powershell"></a>使用 PowerShell 來變更可用性設定組
-1. 從要修改的 VM 中擷取下列主要詳細資料。
+## <a name="change-hello-availability-set-using-powershell"></a>變更 hello 可用性集合，使用 PowerShell
+1. 擷取 hello hello VM toobe 修改中的下列索引鍵的詳細資料。
    
-    VM 的名稱
+    Hello VM 的名稱
    
     ```powershell
     $vm = Get-AzureRmVM -ResourceGroupName <Name-of-resource-group> -Name <name-of-VM>
@@ -41,7 +41,7 @@ ms.lasthandoff: 08/18/2017
     $vm.HardwareProfile.VmSize
     ```
    
-    網路主要網路介面和選擇性網路介面 (如果它們存在於 VM 上)
+    如果它們存在於網路主要網路介面和選用網路介面 hello VM
    
     ```powershell
     $vm.NetworkProfile.NetworkInterfaces[0].Id
@@ -67,17 +67,17 @@ ms.lasthandoff: 08/18/2017
     ```powershell
     $vm.Extensions
     ```
-2. 刪除 VM 而不刪除任何磁碟或網路介面。
+2. 刪除 hello VM，但不刪除任何 hello 磁碟或 hello 網路介面。
    
     ```powershell
     Remove-AzureRmVM -ResourceGroupName <resourceGroupName> -Name <vmName> 
     ```
-3. 建立可用性設定組 (如果可用性設定組尚未存在)
+3. 建立 hello 可用性設定組，如果不存在
    
     ```powershell
     New-AzureRmAvailabilitySet -ResourceGroupName <resourceGroupName> -Name <availabilitySetName> -Location "<location>" 
     ```
-4. 使用新的可用性設定組來重新建立 VM
+4. 重新建立 hello VM 使用 hello 新的可用性集合
    
     ```powershell
     $vm2 = New-AzureRmVMConfig -VMName <VM-name> -VMSize <vm-size> -AvailabilitySetId <availability-set-id>
@@ -88,10 +88,10 @@ ms.lasthandoff: 08/18/2017
    
     New-AzureRmVM -ResourceGroupName <resourceGroupName> -Location <location> -VM <vmConfig>
     ``` 
-5. 新增資料磁碟和延伸模組。 如需詳細資訊，請參閱[將資料磁碟連結到 VM](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 和 [Resource Manager 範本中的延伸模組](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#extensions)。 您可以使用 PowerShell 或 Azure CLI 將資料磁碟和延伸模組新增到 VM 中。
+5. 新增資料磁碟和延伸模組。 如需詳細資訊，請參閱[附加資料磁碟 tooVM](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)和[資源管理員範本中的延伸模組](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#extensions)。 資料磁碟和擴充功能可以加入 toohello VM 使用 PowerShell 或 Azure CLI。
 
 ## <a name="example-script"></a>範例指令碼
-下列指令碼提供一個範例，此範例會收集必要資訊、刪除原始 VM，然後在新的可用性設定組中重新建立 VM。
+hello 下列指令碼提供一個範例的收集設定資訊所需的 hello，刪除 hello 原始 VM，然後重新建立新的可用性設定組中。
 
 ```powershell
     #set variables
@@ -103,7 +103,7 @@ ms.lasthandoff: 08/18/2017
     #Get VM Details
     $OriginalVM = get-azurermvm -ResourceGroupName $rg -Name $vmName
 
-    #Output VM details to file
+    #Output VM details toofile
     "VM Name: " | Out-File -FilePath $outFile 
     $OriginalVM.Name | Out-File -FilePath $outFile -Append
 
@@ -127,7 +127,7 @@ ms.lasthandoff: 08/18/2017
     $OriginalVM.StorageProfile.DataDisks | Out-File -FilePath $outFile -Append
     }
 
-    #Remove the original VM
+    #Remove hello original VM
     Remove-AzureRmVM -ResourceGroupName $rg -Name $vmName
 
     #Create new availability set if it does not exist
@@ -136,7 +136,7 @@ ms.lasthandoff: 08/18/2017
     $availset = New-AzureRmAvailabilitySet -ResourceGroupName $rg -Name $newAvailSetName -Location $OriginalVM.Location
     }
 
-    #Create the basic configuration for the replacement VM
+    #Create hello basic configuration for hello replacement VM
     $newVM = New-AzureRmVMConfig -VMName $OriginalVM.Name -VMSize $OriginalVM.HardwareProfile.VmSize -AvailabilitySetId $availSet.Id
     Set-AzureRmVMOSDisk -VM $NewVM -VhdUri $OriginalVM.StorageProfile.OsDisk.Vhd.Uri  -Name $OriginalVM.Name -CreateOption Attach -Windows
 
@@ -150,10 +150,10 @@ ms.lasthandoff: 08/18/2017
         Add-AzureRmVMNetworkInterface -VM $NewVM -Id $nic
     }
 
-    #Create the VM
+    #Create hello VM
     New-AzureRmVM -ResourceGroupName $rg -Location $OriginalVM.Location -VM $NewVM -DisableBginfoExtension
 ```
 
 ## <a name="next-steps"></a>後續步驟
-透過新增額外 [資料磁碟](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，將額外的存放裝置新增到您的 VM。
+新增額外新增額外的儲存體 tooyour VM[資料磁碟](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 

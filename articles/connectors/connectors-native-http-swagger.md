@@ -1,6 +1,6 @@
 ---
-title: "透過適用於 Azure Logic Apps 的 HTTP + Swagger 連接器呼叫 REST 端點 | Microsoft Docs"
-description: "透過 Swagger 搭配 HTTP + Swagger 連接器，從邏輯應用程式連線至 REST 端點"
+title: "aaaCall REST 端點，其中包含 HTTP + Swagger Azure 邏輯應用程式連接器 |Microsoft 文件"
+description: "從邏輯應用程式透過 Swagger hello HTTP + Swagger 連接器連接 tooREST 端點"
 services: logic-apps
 author: jeffhollan
 manager: anneta
@@ -15,81 +15,81 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan; LADocs
-ms.openlocfilehash: 3e9229d94e96aad7b769d0e55d208d856e3b80bc
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: baaa57689ff41fcd052f9d86086e36619ddec46e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-the-http--swagger-action"></a>開始使用 HTTP + Swagger 動作
+# <a name="get-started-with-hello-http--swagger-action"></a>開始使用 hello HTTP + Swagger 動作
 
-當您在邏輯應用程式工作流程中使用 HTTP + Swagger 動作時，可以透過 [Swagger 文件](https://swagger.io)在任一 REST 端點建立第一級的連接器。 您也可以使用第一級的邏輯應用程式設計工具體驗，擴充邏輯應用程式以呼叫任何 REST 端點。
+您可以建立第一級連接器 tooany REST 端點，透過[Swagger 文件](https://swagger.io)當邏輯應用程式工作流程中使用 hello HTTP + Swagger 動作。 您也可以擴充邏輯應用程式 toocall 第一級的邏輯應用程式的設計工具經驗的任何 REST 端點。
 
-若要了解如何利用連接器建立邏輯應用程式，請參閱[建立新的邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
+如何 toocreate 邏輯應用程式使用連接器，請參閱的 toolearn[建立新的邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
 ## <a name="use-http--swagger-as-a-trigger-or-an-action"></a>使用 HTTP + Swagger 做為觸發程序或動作
 
-HTTP + Swagger 觸發程序和動作的功能與 [HTTP 動作](connectors-native-http.md)相同，但能從 [Swagger 中繼資料](https://swagger.io)公開 API 的結構和輸出，因此可以提供較佳的邏輯應用程式設計工具體驗。 您也可以使用 HTTP + Swagger 連接器作為觸發程序。 如果您想要實作輪詢觸發程序，請依照[建立自訂 API 來呼叫邏輯應用程式的其他 API、服務和系統](../logic-apps/logic-apps-create-api-app.md#polling-triggers)中所述的輪詢模式進行。
+hello HTTP + Swagger 觸發程序和動作的工作會將相同 hello 與 hello [HTTP 動作](connectors-native-http.md)但提供較佳的體驗，在邏輯應用程式的設計工具中，藉由公開 hello API 結構和輸出 hello [Swagger 中繼資料](https://swagger.io). 您也可以使用 hello HTTP + Swagger 連接器的觸發程序。 如果您想 tooimplement 輪詢觸發程序，請依照下列所述的 hello 輪詢模式[邏輯應用程式從其他應用程式開發介面、 服務和系統建立自訂的應用程式開發介面 toocall](../logic-apps/logic-apps-create-api-app.md#polling-triggers)。
 
 深入了解 [邏輯應用程式觸發程序和動作](connectors-overview.md)。
 
-以下是如何使用 HTTP + Swagger 作業做為邏輯應用程式中工作流程動作的範例。
+以下是如何 toouse hello HTTP + Swagger 範例操作，因為邏輯應用程式中的工作流程中的動作。
 
-1. 選取 [新增步驟]  按鈕。
+1. 選取 hello**新步驟** 按鈕。
 2. 選取 [新增動作] 。
-3. 在動作搜尋方塊中，輸入 **swagger** 以列出 HTTP + Swagger 動作。
+3. 在 hello 動作搜尋方塊中，輸入**swagger** toolist hello HTTP + Swagger 動作。
    
     ![選取 HTTP + Swagger 動作](./media/connectors-native-http-swagger/using-action-1.png)
-4. 輸入 Swagger 文件的 URL：
+4. 輸入 hello Swagger 文件的 URL:
    
-   * 若要從邏輯應用程式設計工具使用，此 URL 必須是 HTTPS 端點並已啟用 CORS。
-   * 如果 Swagger 文件不符合此需求，您可以使用 [已啟用 CORS 的 Azure 儲存體](#hosting-swagger-from-storage) 來儲存文件。
-5. 按一下 [下一步]  以從 Swagger 文件讀取和轉譯。
-6. 新增 HTTP 呼叫所需的任何參數。
+   * toowork 從 hello 邏輯應用程式的設計工具，hello URL 必須是 HTTPS 端點，並啟用 CORS。
+   * 如果 hello Swagger 文件不符合此需求，您可以使用[Azure 儲存體與啟用 CORS](#hosting-swagger-from-storage) toostore hello 文件。
+5. 按一下**下一步**tooread 和轉譯來自 hello Swagger 文件。
+6. 新增任何所需的 hello HTTP 呼叫的參數。
    
     ![完成 HTTP 動作](./media/connectors-native-http-swagger/using-action-2.png)
-7. 若要儲存並發佈您的邏輯應用程式，請按一下設計工具工具列中的 [儲存]。
+7. toosave 及發行應用程式邏輯，請按一下**儲存**設計工具工具列上。
 
 ### <a name="host-swagger-from-azure-storage"></a>從 Azure 儲存體託管 Swagger
-您可能想要參考未託管的 Swagger 文件，但這並不符合設計工具的安全性及跨原始來源需求。 為解決這個問題，您可以將 Swagger 文件儲存在 Azure 儲存體並啟用 CORS 來參考該文件。  
+您可能想 tooreference Swagger 文件所未裝載，或不符合 hello hello 設計工具的安全性和跨原始需求。 tooresolve 這個問題，您可以在 Azure 儲存體中儲存 hello Swagger 文件，並啟用 CORS tooreference hello 文件。  
 
-以下是在 Azure 儲存體中建立、設定和儲存 Swagger 文件的步驟：
+以下是 hello 步驟 toocreate、 設定和 Swagger 文件儲存在 Azure 儲存體：
 
-1. [使用 Azure Blob 儲存體建立 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md) 若要執行此步驟，請將權限設為 [公用存取]。
+1. [使用 Azure Blob 儲存體建立 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md) tooperform 這步驟，設定權限太**公用存取**。
 
-2. 在 Blob 啟用 CORS。 
+2. 啟用 CORS hello blob 上。 
 
-   您可以使用 [這個 PowerShell 指令碼](https://github.com/logicappsio/EnableCORSAzureBlob/blob/master/EnableCORSAzureBlob.ps1) 自動設定此設定。
+   tooautomatically 設定此設定，您可以使用[這個 PowerShell 指令碼](https://github.com/logicappsio/EnableCORSAzureBlob/blob/master/EnableCORSAzureBlob.ps1)。
 
-3. 將 Swagger 檔案上傳至 Blob。 
+3. Hello Swagger 檔案 toohello blob 上傳。 
 
-   您可以從 [Azure 入口網站](https://portal.azure.com)或 [Azure 儲存體總管](http://storageexplorer.com/)等工具執行這個步驟。
+   您可以執行此步驟中，從 hello [Azure 入口網站](https://portal.azure.com)或從這類工具[Azure 儲存體總管](http://storageexplorer.com/)。
 
-4. 參考 Azure Blob 儲存體中文件的 HTTPS 連結。 
+4. 參考 Azure Blob 儲存體中的 HTTPS 連結 toohello 文件。 
 
-   此連結用此格式：
+   hello 連結會使用此格式：
 
    `https://*storageAccountName*.blob.core.windows.net/*container*/*filename*`
 
 ## <a name="technical-details"></a>技術詳細資訊
-以下是此 HTTP + Swagger 連接器所支援觸發程序和動作的詳細資料。
+以下是 hello 詳細資料 hello 觸發程序和動作這個 HTTP + Swagger 連接器支援。
 
 ## <a name="http--swagger-triggers"></a>HTTP + Swagger 觸發程序
-觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。 [深入了解觸發程序。](connectors-overview.md) HTTP + Swagger 連接器有一個觸發程序。
+觸發程序是可以使用的 toostart hello 工作流程邏輯應用程式中所定義的事件。 [深入了解觸發程序。](connectors-overview.md) hello HTTP + Swagger 連接器有一個觸發程序。
 
 | 觸發程序 | 說明 |
 | --- | --- |
-| HTTP + Swagger |進行 HTTP 呼叫並傳回回應內容 |
+| HTTP + Swagger |進行 HTTP 呼叫，並傳回 hello 回應內容 |
 
 ## <a name="http--swagger-actions"></a>HTTP + Swagger 動作
-動作是由邏輯應用程式中定義的工作流程所執行的作業。 [深入了解動作。](connectors-overview.md) HTTP + Swagger 連接器有一個可能的動作。
+動作是由定義在邏輯應用程式中的 hello 工作流程執行的作業。 [深入了解動作。](connectors-overview.md) hello HTTP + Swagger 連接器有一個可能的動作。
 
 | 動作 | 說明 |
 | --- | --- |
-| HTTP + Swagger |進行 HTTP 呼叫並傳回回應內容 |
+| HTTP + Swagger |進行 HTTP 呼叫，並傳回 hello 回應內容 |
 
 ### <a name="action-details"></a>動作詳細資料
-HTTP + Swagger 連接器隨附一個可能的動作。 以下是關於每個動作、其必要和選擇性輸入欄位，以及與其使用方式相關聯的對應輸出詳細資料的資訊。
+hello HTTP + Swagger 連接器隨附一個可能的動作。 以下是每個 hello 動作、 必要和選擇性的輸入的欄位以及 hello 對應及其使用狀況與相關聯的輸出詳細資料的相關資訊。
 
 #### <a name="http--swagger"></a>HTTP + Swagger
 在 Swagger 中繼資料的協助下提出 HTTP 輸出要求。
@@ -97,11 +97,11 @@ HTTP + Swagger 連接器隨附一個可能的動作。 以下是關於每個動�
 
 | 顯示名稱 | 屬性名稱 | 說明 |
 | --- | --- | --- |
-| 方法 * |method |要使用的 HTTP 指令動詞。 |
-| URI* |uri |HTTP 要求的 URI。 |
-| 標頭 |標頭 |要包含之 HTTP 標頭的 JSON 物件。 |
-| 內文 |內文 |HTTP 要求本文。 |
-| 驗證 |驗證 |用於要求的驗證。 如需詳細資訊，請參閱 [HTTP 連接器](connectors-native-http.md#authentication)。 |
+| 方法 * |method |HTTP 指令動詞 toouse。 |
+| URI* |uri |Hello HTTP 要求的 URI。 |
+| headers |headers |HTTP 標頭 tooinclude JSON 物件。 |
+| 內文 |body |hello HTTP 要求主體。 |
+| 驗證 |驗證 |要求的驗證 toouse。 如需詳細資訊，請參閱 hello [HTTP 連接器](connectors-native-http.md#authentication)。 |
 
 **輸出詳細資料**
 
@@ -114,7 +114,7 @@ HTTP 回應
 | Status Code |整數 |HTTP 狀態碼 |
 
 ### <a name="http-responses"></a>HTTP 回應
-呼叫不同動作時，您可能會收到特定回應。 下表概述對應的回應及說明。
+呼叫 toovarious 動作時，您可能會收到特定的回應。 下表概述對應的回應及說明。
 
 | 名稱 | 說明 |
 | --- | --- |

@@ -1,6 +1,6 @@
 ---
-title: "鏡像 Apache Kafka 主題 - Azure HDInsight | Microsoft Docs"
-description: "了解如何使用 Apache Kafka 的鏡像功能，藉由將主題鏡像處理至次要叢集來維護 HDInsight 叢集上的 Kafka 複本。"
+title: "aaaMirror Apache Kafka 主題 Azure HDInsight |Microsoft 文件"
+description: "深入了解 toouse Apache Kafka 的鏡像功能鏡像主題 tooa 次要叢集 toomaintain Kafka HDInsight 叢集上的複本。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,176 +15,176 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/13/2017
 ms.author: larryfr
-ms.openlocfilehash: e418cb01e1a9168e3662e8d6242903e052b6047b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5ace0251d7402d4d7d9b28726e253ce7091a87ef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-mirrormaker-to-replicate-apache-kafka-topics-with-kafka-on-hdinsight-preview"></a>使用 MirrorMaker，透過 HDInsight 上的 Kafka 來複寫 Apache Kafka 主題 (預覽)
+# <a name="use-mirrormaker-tooreplicate-apache-kafka-topics-with-kafka-on-hdinsight-preview"></a>使用 HDInsight （預覽） 上的 Kafka MirrorMaker tooreplicate Apache Kafka 主題
 
-了解如何使用 Apache Kafka 的鏡像功能，將主題複寫至次要叢集。 鏡像功能可以當作連續程序執行，或間歇地做為在叢集間移轉資料的方法。
+了解如何 toouse Apache Kafka 的鏡像功能 tooreplicate 主題 tooa 次要叢集。 鏡像可執行做為連續的處理序或間歇性使用，做為移轉的方法資料從某個叢集 tooanother。
 
-在此範例中，會使用鏡像來複寫兩個 HDInsight 叢集之間的主題。 這兩個叢集是位於相同區域中的 Azure 虛擬網路。
+在此範例中，鏡像是兩個的 HDInsight 叢集之間使用的 tooreplicate 主題。 這兩個叢集會在 hello Azure 虛擬網路中相同的區域。
 
 > [!WARNING]
-> 但不能將鏡像功能視為達成容錯的方法。 主題中的項目位移在來源與目的地叢集之間有所不同，所以用戶端無法交替使用這兩者。
+> 鏡像應該不會被視為與表示 tooachieve 容錯。 hello 主題內的位移的 tooitems 之間的有所差異 hello 來源和目的地叢集，因此用戶端無法使用兩個 hello 交換使用。
 >
-> 如果您很擔心容錯，您應該為叢集內的主題設定複寫。 如需詳細資訊，請參閱[開始使用 Kafka on HDInsight](hdinsight-apache-kafka-get-started.md)。
+> 如果您擔心容錯功能，您應該在您的叢集內設定 hello 主題的複寫。 如需詳細資訊，請參閱[開始使用 Kafka on HDInsight](hdinsight-apache-kafka-get-started.md)。
 
 ## <a name="how-kafka-mirroring-works"></a>Kafka 鏡像的運作方式
 
-鏡像功能的運作方式是使用 MirrorMaker 工具 (Apache Kafka 的一部分)，取用來源叢集上主題中的記錄，然後在目的地叢集上建立本機複本。 MirrorMaker 會使用一個 (或多個) *取用者*從來源叢集讀取資料，以及使用一個*產生者*來將資料寫入本機 (目的地) 叢集。
+鏡像的運作方式是使用 hello MirrorMaker 工具 （Apache Kafka 的一部分） tooconsume hello 來源叢集上的主題中的記錄，然後再建立 hello 目的地叢集上的 本機複本。 MirrorMaker 使用其中一個 （或以上）*取用者*hello 來源叢集上，從讀取和*生產者*寫入 toohello 本機 （目的地） 叢集。
 
-下圖說明鏡像程序：
+hello 下列圖表說明 hello 鏡像處理序：
 
-![鏡像程序圖表](./media/hdinsight-apache-kafka-mirroring/kafka-mirroring.png)
+![Hello 鏡像處理序的圖表](./media/hdinsight-apache-kafka-mirroring/kafka-mirroring.png)
 
-Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 服務。 Kafka 產生者和取用者必須與 Kafka 叢集中之節點位於相同的 Azure 虛擬網路。 例如，Kafka 來源和目的地叢集均位於 Azure 虛擬網路中。 下圖顯示叢集之間的通訊流動方式︰
+Apache Kafka HDInsight 上不提供存取 toohello Kafka 服務 hello 透過公用網際網路。 Kafka 產生者或取用者必須在 hello 與 hello hello Kafka 叢集節點的相同 Azure 虛擬網路。 針對此範例中，hello Kafka 來源與目的地叢集位於 Azure 的虛擬網路中。 hello 下圖顯示 hello 叢集之間通訊流動的方式：
 
 ![Azure 虛擬網路中的來源和目的地 Kafka 叢集圖表](./media/hdinsight-apache-kafka-mirroring/spark-kafka-vnet.png)
 
-來源與目的地叢集的節點與磁碟分割數目可能有所不同，且主題中的位移也會不同。 鏡像功能會維護用於資料分割的金鑰值，因此會根據每個金鑰保留記錄順序。
+hello 來源和目的地叢集可以在 hello 節點與資料分割的不同，而且 hello 主題內的位移也會不同。 鏡像會維護 hello 金鑰值以用於資料分割，因此會保留每個索引鍵為基礎的記錄順序。
 
 ### <a name="mirroring-across-network-boundaries"></a>跨網路界限鏡像
 
-如果您需要在不同網路中的 Kafka 叢集之間進行鏡像處理，有下列額外考量︰
+如果您需要 toomirror Kafka 不同的網路中的叢集之間，有下列其他考量 hello:
 
-* **閘道**：網路必須能夠在 TCPIP 層級進行通訊。
+* **閘道**: hello 網路必須能夠 toocommunicate 在 hello TCPIP 層級。
 
-* **名稱解析**︰每個網路中的 Kafka 叢集必須能夠使用主機名稱彼此連接。 這可能會要求每個網路中的網域名稱系統 (DNS) 伺服器設定成將要求轉送到其他網路。
+* **名稱解析**: hello Kafka 叢集在每個網路必須能夠 tooconnect tooeach 其他使用主機名稱。 這可能需要為每個網路中的網域名稱系統 (DNS) 伺服器設定 tooforward 要求 toohello 其他網路。
 
-    建立 Azure 虛擬網路 (而不是使用網路提供的自動 DNS) 時，您必須指定自訂 DNS 伺服器和伺服器的 IP 位址。 建立虛擬網路之後，您就必須建立使用該 IP 位址的 Azure 虛擬機器，然後在其上安裝和設定 DNS 軟體。
+    建立 Azure 虛擬網路，而不是使用 DNS 自動提供的 hello 與 hello 網路時，您必須指定自訂 DNS 伺服器和 hello 伺服器 IP 位址 hello。 Hello 已建立虛擬網路之後, 您就必須建立 Azure 虛擬機器使用該 IP 位址，然後安裝並在其上設定 DNS 軟體。
 
     > [!WARNING]
-    > 先建立和設定自訂 DNS 伺服器，然後再將 HDInsight 安裝到虛擬網路中。 HDInsight 不需要進行其他設定，即可使用針對虛擬網路設定的 DNS 伺服器。
+    > 建立並設定自訂 DNS 伺服器 hello 再安裝 HDInsight 到 hello 虛擬網路。 沒有 HDInsight toouse hello DNS 伺服器設定為 hello 虛擬網路所需的其他設定。
 
 如需有關如何連接兩個 Azure 虛擬網路的詳細資訊，請參閱[設定 VNet 對 VNet 連線](../vpn-gateway/vpn-gateway-vnet-vnet-rm-ps.md)。
 
 ## <a name="create-kafka-clusters"></a>建立 Kafka 叢集
 
-雖然您可以手動建立 Azure 虛擬網路和 Kafka 叢集，但使用 Azure Resource Manager 範本更輕鬆。 使用下列步驟將 Azure 虛擬網路和兩個 Kafka 叢集部署到 Azure 訂用帳戶。
+雖然您可以建立 Azure 虛擬網路和 Kafka 叢集以手動方式，很容易 toouse Azure Resource Manager 範本。 Azure 虛擬網路和兩個 Kafka 叢集 tooyour Azure 訂用帳戶，請使用下列步驟 toodeploy hello。
 
-1. 使用以下按鈕，在 Azure 入口網站中登入 Azure 並開啟範本。
+1. 使用下列按鈕 toosign 中 tooAzure 和開啟 hello 範本 hello Azure 入口網站中的 hello。
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json" target="_blank"><img src="./media/hdinsight-apache-kafka-mirroring/deploy-to-azure.png" alt="Deploy to Azure"></a>
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fhditutorialdata.blob.core.windows.net%2Farmtemplates%2Fcreate-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json" target="_blank"><img src="./media/hdinsight-apache-kafka-mirroring/deploy-to-azure.png" alt="Deploy tooAzure"></a>
    
-    Azure Resource Manager 範本位於 **https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json**。
+    hello Azure Resource Manager 範本位於**https://hditutorialdata.blob.core.windows.net/armtemplates/create-linux-based-kafka-mirror-cluster-in-vnet-v2.1.json**。
 
     > [!WARNING]
-    > 若要保證 Kafka 在 HDInsight 上的可用性，您的叢集必須包含至少三個背景工作角色節點。 此範本會建立包含三個背景工作角色節點的 Kafka 叢集。
+    > HDInsight 上 Kafka tooguarantee 可用性，您的叢集必須包含至少三個背景工作節點。 此範本會建立包含三個背景工作角色節點的 Kafka 叢集。
 
-2. 使用下列資訊來填入 [自訂部署] 刀鋒視窗上的項目︰
+2. 使用下列資訊 toopopulate hello 項目上 hello 的 hello**自訂部署**刀鋒視窗中：
     
     ![HDInsight 自訂部署](./media/hdinsight-apache-kafka-mirroring/parameters.png)
     
-    * **資源群組**：建立群組或選取現有的群組。 此群組包含 HDInsight 叢集。
+    * **資源群組**：建立群組或選取現有的群組。 此群組包含 hello HDInsight 叢集。
 
-    * **位置**：選取在地理上靠近您的位置。
+    * **位置**： 選取位置的地理位置關閉 tooyou。
      
-    * **基底叢集名稱**︰此值會做為 Kafka 叢集的基底名稱。 例如，輸入 **hdi** 可建立名為 **source-hdi** 和 **dest-hdi** 的叢集。
+    * **基底叢集名稱**: hello Kafka 叢集 hello 基底名稱為使用此值。 例如，輸入 **hdi** 可建立名為 **source-hdi** 和 **dest-hdi** 的叢集。
 
-    * **叢集登入使用者名稱**：來源和目的地 Kafka 叢集的系統管理員使用者名稱。
+    * **叢集登入使用者名稱**: hello 系統管理員使用者名稱 hello 來源與目的 Kafka 叢集。
 
-    * **叢集登入密碼**：來源和目的地 Kafka 叢集的系統管理員使用者密碼。
+    * **叢集登入密碼**: hello 來源與目的 hello 管理使用者的密碼 Kafka 叢集。
 
-    * **SSH 使用者名稱**：建立來源和目的地 Kafka 叢集的 SSH 使用者。
+    * **SSH 使用者名稱**: hello SSH 使用者 toocreate hello 來源與目的 Kafka 叢集。
 
-    * **SSH 密碼**：來源和目的地 Kafka 叢集的 SSH 使用者密碼。
+    * **SSH 密碼**: hello hello hello 來源和目的地的 SSH 使用者密碼 Kafka 叢集。
 
-3. 讀取**條款及條件**，然後選取 [我同意上方所述的條款及條件]。
+3. 讀取 hello**條款和條件**，然後選取**toohello 條款和條件前面所述，即表示我同意**。
 
-4. 最後，核取 [釘選到儀表板]，然後選取 [購買]。 大約需要 20 分鐘的時間來建立叢集。
+4. 最後，檢查**Pin toodashboard** ，然後選取 **購買**。 它會採用約 20 分鐘 toocreate hello 叢集。
 
-建立資源後，您會重新導向至資源群組的刀鋒視窗，其中內含叢集和 Web 儀表板。
+一旦已建立 hello 資源，您已重新導向的 tooa 刀鋒視窗中的 hello 資源群組含有 hello 叢集和 web 儀表板。
 
-![Vnet 和叢集的資源群組刀鋒視窗](./media/hdinsight-apache-kafka-mirroring/groupblade.png)
+![Hello vnet 與叢集資源群組 刀鋒視窗](./media/hdinsight-apache-kafka-mirroring/groupblade.png)
 
 > [!IMPORTANT]
-> 請注意，HDInsight 叢集的名稱是 **source-BASENAME** 和 **dest-BASENAME**，其中 BASENAME 是您提供給範本的名稱。 連接到叢集時，您會在稍後步驟中使用這些名稱。
+> 請注意，hello hello HDInsight 叢集名稱**來源 BASENAME**和**目的地 BASENAME**，其中 BASENAME 是 hello 提供 toohello 範本的名稱。 連接 toohello 叢集時，您可以使用在稍後步驟中的這些名稱。
 
 ## <a name="create-topics"></a>建立主題
 
-1. 使用 SSH 連接到**來源**叢集：
+1. 連接 toohello**來源**叢集使用 SSH:
 
     ```bash
     ssh sshuser@source-BASENAME-ssh.azurehdinsight.net
     ```
 
-    將 **sshuser** 替換為建立叢集時所使用的 SSH 使用者名稱。 將 **BASENAME** 替換為建立叢集時使用的基底名稱。
+    取代**sshuser** hello 建立 hello 叢集時所使用的 SSH 使用者名稱。 取代**BASENAME** hello 建立 hello 叢集時所使用的基底名稱。
 
     如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-2. 使用下列命令為來源叢集尋找 Zookeeper 主機：
+2. 使用 hello 下列命令 toofind hello 動物園管理員主機 hello 來源叢集：
 
     ```bash
     # Install jq if it is not installed
     sudo apt -y install jq
-    # get the zookeeper hosts for the source cluster
+    # get hello zookeeper hosts for hello source cluster
     export SOURCE_ZKHOSTS=`curl -sS -u admin:$PASSWORD -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")' | cut -d',' -f1,2`
     
-    Replace `$PASSWORD` with the password for the cluster.
+    Replace `$PASSWORD` with hello password for hello cluster.
 
-    Replace `$CLUSTERNAME` with the name of the source cluster.
+    Replace `$CLUSTERNAME` with hello name of hello source cluster.
 
-3. To create a topic named `testtopic`, use the following command:
+3. toocreate a topic named `testtopic`, use hello following command:
 
     ```bash
     /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --create --replication-factor 2 --partitions 8 --topic testtopic --zookeeper $SOURCE_ZKHOSTS
     ```
 
-3. 使用下列命令確認已建立主題：
+3. 已建立下列 hello 主題的命令 tooverify 使用 hello:
 
     ```bash
     /usr/hdp/current/kafka-broker/bin/kafka-topics.sh --list --zookeeper $SOURCE_ZKHOSTS
     ```
 
-    回應包含 `testtopic`。
+    hello 回應包含`testtopic`。
 
-4. 使用下列命令來檢視這個 (**來源**) 叢集的 Zookeeper 主機資訊︰
+4. 遵循這個 tooview hello 動物園管理員主機資訊的使用 hello (hello**來源**) 叢集：
 
     ```bash
     echo $SOURCE_ZKHOSTS
     ```
 
-    此命令會傳回類似以下文字的資訊：
+    這會傳回資訊的類似 toohello 下列文字：
 
     `zk0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:2181,zk1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:2181`
 
-    請儲存此資訊。 此資訊使用於下一節。
+    請儲存此資訊。 它用於 hello 下一節。
 
 ## <a name="configure-mirroring"></a>設定鏡像功能
 
-1. 使用不同的 SSH 工作階段連接到**目的地**叢集：
+1. 連接 toohello**目的地**叢集使用不同的 SSH 工作階段：
 
     ```bash
     ssh sshuser@dest-BASENAME-ssh.azurehdinsight.net
     ```
 
-    將 **sshuser** 替換為建立叢集時所使用的 SSH 使用者名稱。 將 **BASENAME** 替換為建立叢集時使用的基底名稱。
+    取代**sshuser** hello 建立 hello 叢集時所使用的 SSH 使用者名稱。 取代**BASENAME** hello 建立 hello 叢集時所使用的基底名稱。
 
     如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-2. 使用下列命令來建立 `consumer.properties` 檔案，其中描述如何與**來源**叢集通訊︰
+2. 使用 hello 下列命令 toocreate`consumer.properties`檔案，其中描述如何以 hello toocommunicate**來源**叢集：
 
     ```bash
     nano consumer.properties
     ```
 
-    使用下列文字做為 `consumer.properties` 檔案的內容：
+    使用 hello 文字之後做為 hello 內容的 hello`consumer.properties`檔案：
 
     ```yaml
     zookeeper.connect=SOURCE_ZKHOSTS
     group.id=mirrorgroup
     ```
 
-    以**來源**叢集中的 Zookeeper 主機資訊取代 **SOURCE_ZKHOSTS**。
+    取代**SOURCE_ZKHOSTS**以 hello 動物園管理員裝載資訊從 hello**來源**叢集。
 
-    此檔案描述從來源 Kafka 叢集讀取資料時所要使用的取用者資訊。 如需取用者組態詳細資訊，請參閱 kafka.apache.org 上的[取用者組態](https://kafka.apache.org/documentation#consumerconfigs)。
+    讀取 hello 來源 Kafka 叢集時，此檔案會描述 hello 取用者資訊 toouse。 如需取用者組態詳細資訊，請參閱 kafka.apache.org 上的[取用者組態](https://kafka.apache.org/documentation#consumerconfigs)。
 
-    若要儲存檔案，請使用 **Ctrl + X**、**Y** 和 **Enter** 鍵。
+    toosave hello 檔案，使用**Ctrl + X**， **Y**，然後**Enter**。
 
-3. 在設定可與目的地叢集通訊的產生者之前，您必須尋找**目的地**叢集的訊息代理程式主機。 請使用下列命令來擷取此資訊：
+3. 在設定之前進行通訊的 hello 生產者與 hello 目的地叢集，您必須尋找 hello broker 主機 hello**目的地**叢集。 使用下列命令 tooretrieve hello 這項資訊：
 
     ```bash
     sudo apt -y install jq
@@ -192,50 +192,50 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 服務�
     echo $DEST_BROKERHOSTS
     ```
 
-    將 `$PASSWORD` 取代為叢集登入帳戶 (管理員) 的密碼。
+    取代`$PASSWORD`與 hello 叢集 hello 登入帳戶 （管理員） 的密碼。
 
-    將 `$CLUSTERNAME` 取代為目的地叢集的名稱。
+    取代`$CLUSTERNAME`hello hello 目的地叢集名稱。
 
-    這些命令會傳回類似以下的資訊：
+    這些命令會傳回類似 toohello 下列資訊：
 
         wn0-dest.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092,wn1-dest.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092
 
-4. 使用下列命令來建立 `producer.properties` 檔案，其中描述如何與**目的地**叢集通訊︰
+4. 使用 hello 遵循 toocreate`producer.properties`檔案，其中描述如何以 hello toocommunicate**目的地**叢集：
 
     ```bash
     nano producer.properties
     ```
 
-    使用下列文字做為 `producer.properties` 檔案的內容：
+    使用 hello 文字之後做為 hello 內容的 hello`producer.properties`檔案：
 
     ```yaml
     bootstrap.servers=DEST_BROKERS
     compression.type=none
     ```
 
-    以上一個步驟中的訊息代理程式資訊取代 **DEST_BROKERS**。
+    取代**DEST_BROKERS** hello broker hello 上一個步驟的資訊。
 
     如需產生者組態詳細資訊，請參閱 kafka.apache.org 上的[者組態](https://kafka.apache.org/documentation#producerconfigs)。
 
 ## <a name="start-mirrormaker"></a>啟動 MirrorMaker
 
-1. 在連往**目的地**叢集的 SSH 連線中，使用下列命令來啟動 MirrorMaker 程序：
+1. 從 hello SSH 連線 toohello**目的地**叢集，請使用下列命令 toostart hello MirrorMaker 程序的 hello:
 
     ```bash
     /usr/hdp/current/kafka-broker/bin/kafka-run-class.sh kafka.tools.MirrorMaker --consumer.config consumer.properties --producer.config producer.properties --whitelist testtopic --num.streams 4
     ```
 
-    此範例中使用的參數：
+    此範例中使用的 hello 參數如下：
 
-    * **--consumer.config**︰指定包含取用者屬性的檔案。 這些屬性用來建立可從*來源* Kafka 叢集讀取資料的取用者。
+    * **-consumer.config**： 指定包含取用者屬性的 hello 檔案。 這些屬性是使用的 toocreate hello 可讀取的取用者*來源*Kafka 叢集。
 
-    * **--producer.config**︰指定包含產生者屬性的檔案。 這些屬性用來建立可寫入*目的地* Kafka 叢集的產生者。
+    * **-producer.config**： 指定包含生產者屬性 hello 檔案。 這些屬性是使用的 toocreate 寫入 toohello 生產者*目的地*Kafka 叢集。
 
-    * **--whitelist**：MirrorMaker 從來源叢集複寫至目的地的主題清單。
+    * **-白名單**: MirrorMaker 複寫的 hello 來源叢集 toohello 目的地的主題清單。
 
-    * **--num.streams**︰要建立的取用者執行緒數目。
+    * **-num.streams**: hello 的取用者執行緒 toocreate 數目。
 
- 啟動時，MirrorMaker 會傳回類似以下文字的資訊：
+ 在啟動時，MirrorMaker 傳回資訊的類似 toohello 下列文字：
 
     ```json
     {metadata.broker.list=wn1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092,wn0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092, request.timeout.ms=30000, client.id=mirror-group-3, security.protocol=PLAINTEXT}{metadata.broker.list=wn1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092,wn0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092, request.timeout.ms=30000, client.id=mirror-group-0, security.protocol=PLAINTEXT}
@@ -243,20 +243,20 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 服務�
     metadata.broker.list=wn1-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092,wn0-source.aazwc2onlofevkbof0cuixrp5h.gx.internal.cloudapp.net:9092, request.timeout.ms=30000, client.id=mirror-group-1, security.protocol=PLAINTEXT}
     ```
 
-2. 從連往**來源**叢集的 SSH 連線中，使用下列命令來啟動產生者，然後傳送訊息到主題：
+2. 從 hello SSH 連線 toohello**來源**叢集，使用下列命令 toostart 生產者 hello 和傳送訊息 toohello 主題：
 
     ```bash
     SOURCE_BROKERHOSTS=`curl -sS -u admin:$PASSWORD -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/KAFKA/components/KAFKA_BROKER | jq -r '["\(.host_components[].HostRoles.host_name):9092"] | join(",")' | cut -d',' -f1,2`
     /usr/hdp/current/kafka-broker/bin/kafka-console-producer.sh --broker-list $SOURCE_BROKERHOSTS --topic testtopic
     ```
 
-    將 `$PASSWORD` 取代為來源叢集的 (管理員) 密碼。
+    取代`$PASSWORD`hello 來源叢集的 hello （管理員） 登入密碼。
 
-    將 `$CLUSTERNAME` 取代為來源叢集的名稱。
+    取代`$CLUSTERNAME`hello hello 來源叢集名稱。
 
-     當您抵達有游標的空白行時，請輸入一些文字訊息。 這些文字會傳送到**來源**叢集上的主題。 完成後，使用 **Ctrl + C** 結束產生者程序。
+     當您抵達有游標的空白行時，請輸入一些文字訊息。 這些系統會傳送 hello toohello 主題**來源**叢集。 完成後，使用**Ctrl + C** tooend hello 生產者程序。
 
-3. 在連往**目的地**叢集的 SSH 連線中，使用 **Ctrl + C** 來結束 MirrorMaker 程序。 然後使用下列命令確認已建立 `testtopic` 主題，而且主題中的資料已複寫到這個鏡像︰
+3. 從 hello SSH 連線 toohello**目的地**叢集，請使用**Ctrl + C** tooend hello MirrorMaker 程序。 然後使用 hello 下列命令 tooverify 該 hello`testtopic`主題建立，而且已 hello 主題中的資料已複寫的 toothis 鏡像：
 
     ```bash
     DEST_ZKHOSTS=`curl -sS -u admin:$PASSWORD -G https://$CLUSTERNAME.azurehdinsight.net/api/v1/clusters/$CLUSTERNAME/services/ZOOKEEPER/components/ZOOKEEPER_SERVER | jq -r '["\(.host_components[].HostRoles.host_name):2181"] | join(",")' | cut -d',' -f1,2`
@@ -264,24 +264,24 @@ Apache Kafka on HDInsight 不提供透過公用網際網路存取 Kafka 服務�
     /usr/hdp/current/kafka-broker/bin/kafka-console-consumer.sh --zookeeper $DEST_ZKHOSTS --topic testtopic --from-beginning
     ```
 
-    將 `$PASSWORD` 取代為目的地叢集的 (管理員) 密碼。
+    取代`$PASSWORD`hello 目的地叢集 hello （管理員） 登入密碼。
 
-    將 `$CLUSTERNAME` 取代為目的地叢集的名稱。
+    取代`$CLUSTERNAME`hello hello 目的地叢集名稱。
 
-    主題清單現在包含 `testtopic`，它是在 MirrorMaster 將主題從來源叢集鏡射至目的地時所建立。 從主題中擷取的訊息與在來源叢集上所輸入的相同。
+    hello 的主題清單現在包含`testtopic`，這在建立時 MirrorMaster 鏡像處理 hello 來源叢集 toohello 目的地從 hello 主題。 擷取從 hello 主題的 hello 訊息是 hello 與 hello 來源叢集上輸入相同。
 
-## <a name="delete-the-cluster"></a>刪除叢集
+## <a name="delete-hello-cluster"></a>刪除 hello 叢集
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
-因為本文件中的步驟會在相同的 Azure 資源群組中建立兩個叢集，您可以在 Azure 入口網站中刪除資源群組。 刪除資源群組，即可移除依循本文件建立的所有資源、Azure 虛擬網路，以及叢集所使用的儲存體帳戶。
+因為這份文件中的 hello 步驟建立這兩者中的叢集 hello 相同的 Azure 資源群組，您可以刪除 hello hello Azure 入口網站中的資源群組。 正在刪除 hello 資源群組中移除依照此文件、 hello Azure 虛擬網路和 hello 叢集所使用的儲存體帳戶建立的所有資源。
 
 ## <a name="next-steps"></a>後續步驟
 
-在本文件中，您已學會如何使用 MirrorMaker 建立 Kafka 叢集的複本。 使用下列連結來探索使用 Kafka 的其他方式︰
+在本文件中，您學會如何 toouse MirrorMaker toocreate Kafka 複本叢集。 使用下列連結 toodiscover hello 其他方式 toowork 與 Kafka:
 
 * [Apache Kafka MirrorMaker 文件](https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=27846330) (網址為 cwiki.apache.org)。
 * [開始使用 Apache Kafka on HDInsight](hdinsight-apache-kafka-get-started.md)
 * [使用 Apache Spark 搭配 Kafka on HDInsight](hdinsight-apache-spark-with-kafka.md)
-* [使用 Apache Storm 搭配 Kafka on HDInsight](hdinsight-apache-storm-with-kafka.md)
-* [透過 Azure 虛擬網路連線到 Kafka](hdinsight-apache-kafka-connect-vpn-gateway.md)
+* [使用 Apache Storm 搭配 HDInsight 上的 Kafka](hdinsight-apache-storm-with-kafka.md)
+* [透過 Azure 虛擬網路連線 tooKafka](hdinsight-apache-kafka-connect-vpn-gateway.md)

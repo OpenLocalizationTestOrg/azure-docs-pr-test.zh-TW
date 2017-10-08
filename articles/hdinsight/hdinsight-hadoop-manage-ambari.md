@@ -1,6 +1,6 @@
 ---
-title: "使用 Ambari Web UI 監視和管理 Azure HDInsight | Microsoft Docs"
-description: "了解如何使用 Ambari 來監視和管理以 Linux 為基礎的 HDInsight 叢集。 在本文件中，您會學習如何使用 HDInsight 叢集隨附的 Ambari Web UI。"
+title: "aaaMonitor 和管理 Azure HDInsight 使用 Ambari Web UI |Microsoft 文件"
+description: "深入了解如何 toouse Ambari toomonitor 和管理以 Linux 為基礎的 HDInsight 叢集。 在本文件中，您學會如何 toouse hello Ambari Web UI，包含與 HDInsight 叢集。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,63 +16,63 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/31/2017
 ms.author: larryfr
-ms.openlocfilehash: dc0f9ff030f70985dad0f3b74ba0ee3dda1d9f4b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d422c40e63345d7054839a625e115c50dad040f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-hdinsight-clusters-by-using-the-ambari-web-ui"></a>使用 Ambari Web UI 管理 HDInsight 叢集
+# <a name="manage-hdinsight-clusters-by-using-hello-ambari-web-ui"></a>使用 hello Ambari Web UI 來管理 HDInsight 叢集
 
 [!INCLUDE [ambari-selector](../../includes/hdinsight-ambari-selector.md)]
 
-Apache Ambari 提供容易使用的 Web UI 和 REST API，可簡化 Hadoop 叢集的管理和監視。 以 Linux 為基礎的 HDInsight 叢集上有 Ambari，用來監視叢集並進行組態變更。
+Apache Ambari 簡化 hello 的管理和監視 Hadoop 叢集藉由提供簡單 toouse web UI 和 REST API。 Ambari 包含以 Linux 為基礎的 HDInsight 叢集上，而且是使用的 toomonitor hello 叢集並設定變更。
 
-在本文件中，您會學習如何搭配使用 Ambari Web UI 和 HDInsight 叢集。
+在本文件中，您學會如何 toouse hello 與 HDInsight 叢集的 Ambari Web UI。
 
 ## <a id="whatis"></a>什麼是 Ambari？
 
-[Apache Ambari](http://ambari.apache.org) 提供方便使用的 Web UI，簡化 Hadoop 管理。 您可以使用 Ambari 建立、管理及監視 Hadoop 叢集。 開發人員可以使用 [Ambari REST API](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)將這些功能整合到應用程式。
+[Apache Ambari](http://ambari.apache.org) 提供方便使用的 Web UI，簡化 Hadoop 管理。 您可以使用 Ambari 建立、管理及監視 Hadoop 叢集。 開發人員可以這些功能整合到應用程式使用 hello [Ambari REST Api](https://github.com/apache/ambari/blob/trunk/ambari-server/docs/api/v1/index.md)。
 
-使用 Linux 作業系統的 HDInsight 叢集預設會提供 Ambari Web UI。
+與使用 hello Linux 作業系統的 HDInsight 叢集預設會提供 hello Ambari Web UI。
 
 > [!IMPORTANT]
-> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。 
+> Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。 
 
 ## <a name="connectivity"></a>連線能力
 
-Ambari Web UI 位在您的 HDInsight 叢集的 HTTPS://CLUSTERNAME.azurehdidnsight.net，其中 **CLUSTERNAME** 是您的叢集的名稱。
+hello Ambari Web UI 並用於您的 HDInsight 叢集 HTTPS://CLUSTERNAME.azurehdidnsight.net，在其中**CLUSTERNAME**是 hello 叢集的名稱。
 
 > [!IMPORTANT]
-> 連線到 HDInsight 上的 Ambari 需要 HTTPS。 當系統提示要驗證時，請使用您在叢集建立時所提供的系統管理帳戶名稱和密碼。
+> 連接 tooAmbari HDInsight 上的需要 HTTPS。 出現提示時進行驗證，使用 hello 管理帳戶名稱和密碼建立 hello 叢集時，您提供。
 
 ## <a name="ssh-tunnel-proxy"></a>SSH 通道 (Proxy)
 
-雖然您可直接透過網際網路存取叢集適用的 Ambari，但 Ambari Web UI 中的一些連結 (例如 JobTracker 的連結) 並不會在網際網路上公開。 若要存取這些服務，您必須建立 SSH 通道。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH 通道](hdinsight-linux-ambari-ssh-tunnel.md)。
+Ambari 叢集可以存取直接透過網際網路 hello，而某些連結從 hello Ambari Web UI （例如 toohello JobTracker) 不會公開在 hello 網際網路。 tooaccess 這些服務，您必須建立 SSH 通道。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH 通道](hdinsight-linux-ambari-ssh-tunnel.md)。
 
 ## <a name="ambari-web-ui"></a>Ambari Web UI
 
-連線到 Ambari Web UI 時，系統會提示您通過頁面驗證。 使用您在叢集建立期間使用的叢集管理使用者 (預設值是 Admin) 和密碼。
+當連線 toohello Ambari Web UI，您會使用提示的 tooauthenticate toohello page。 使用 hello 叢集系統管理員使用者 （預設系統管理員） 和您在叢集建立期間使用的密碼。
 
-當頁面開啟時，請注意頂端的資訊列。 此列包含下列資訊和控制項：
+當 hello 頁面隨即開啟時，請注意在 hello 最上方的 hello 列。 這個列中的 hello 下列資訊和控制項：
 
 ![ambari-nav](./media/hdinsight-hadoop-manage-ambari/ambari-nav.png)
 
-* **Ambari 標誌** - 開啟儀表板，以供用來監視叢集。
+* **Ambari 標誌**-開啟 hello 儀表板，它可以是使用的 toomonitor hello 叢集。
 
-* **叢集名稱 # 項作業** - 顯示進行中的 Ambari 作業數目。 選取叢集名稱或 [# 項作業] 會顯示背景作業清單。
+* **叢集名稱 # ops** -顯示 hello Ambari 作業數目。 選取的 hello 叢集名稱或**# ops**顯示背景作業的清單。
 
-* **# 個警示** - 顯示叢集的警告或重要警示 (如果有的話)。
+* **# 警示**-顯示警告或重大警示，如果有 hello 叢集。
 
-* **儀表板** - 顯示儀表板。
+* **儀表板**-顯示 hello 儀表板。
 
-* **服務** - 叢集中之服務的資訊和組態設定。
+* **服務**-hello 叢集中的 hello 服務的資訊和組態設定。
 
-* **主機** - 叢集中之節點的資訊和組態設定。
+* **主機**-hello hello 叢集中節點的資訊和組態設定。
 
 * **警示** - 資訊、警告和重要警示的記錄。
 
-* **系統管理員** - 已安裝於叢集的軟體堆疊/服務、服務帳戶資訊及 Kerberos 安全性。
+* **系統管理員**-軟體堆疊/服務安裝在 hello 叢集、 服務帳戶資訊，以及 Kerberos 安全性。
 
 * **系統管理員按鈕** - Ambari 管理、使用者設定和登出。
 
@@ -80,159 +80,159 @@ Ambari Web UI 位在您的 HDInsight 叢集的 HTTPS://CLUSTERNAME.azurehdidnsig
 
 ### <a name="alerts"></a>Alerts
 
-下列清單包含 Ambari 常用的警示狀態︰
+hello 下列清單包含常見 hello 使用 Ambari 警示狀態：
 
 * **確定**
 * **警告**
 * **重要**
 * **未知**
 
-[確定] 以外的警示會導致頁面頂端出現 [# 個警示] 項目，以顯示警示數目。 選取此項目會顯示警示及其狀態。
+警示以外**確定**導致 hello **# 警示**頂端 hello hello 頁面 toodisplay hello 警示數目的項目。 選取此項目會顯示 hello 警示和狀態。
 
-警示分成數個預設群組，您可以從 [ **警示** ] 頁面進行檢視。
+警示會分成數個預設群組，可檢視從 hello**警示**頁面。
 
 ![警示頁面](./media/hdinsight-hadoop-manage-ambari/alerts.png)
 
-您可以使用 [動作] 功能表並選取 [管理警示群組] 來管理這些群組。
+您可以使用 hello 管理 hello 群組**動作**功能表，然後選取**管理警示的群組**。
 
 ![管理警示群組對話方塊](./media/hdinsight-hadoop-manage-ambari/manage-alerts.png)
 
-您也可以管理警示方法，並從 [動作] 功能表中選取 [管理警示通知] 來建立警示通知。 系統會顯示任何目前的通知。 您也可以從這裡建立通知。 在發生特定警示/嚴重性組合時，便可透過**電子郵件**或 **SNMP** 傳送通知。 例如，您可以在 [YARN 預設] 群組中的任何警示設為 [重要] 時傳送電子郵件訊息。
+您也可以管理警示的方法，並從 hello 建立警示通知**動作**功能表選取__管理警示通知__。 系統會顯示任何目前的通知。 您也可以從這裡建立通知。 在發生特定警示/嚴重性組合時，便可透過**電子郵件**或 **SNMP** 傳送通知。 例如，您可以傳送 hello 的電子郵件訊息時 hello 警示的任何**YARN 預設**群組設定得**重大**。
 
 ![建立警示對話方塊](./media/hdinsight-hadoop-manage-ambari/create-alert-notification.png)
 
-最後，從 [動作] 功能表選取 [管理警示設定] 可讓您設定必須發生幾次警示才會傳送通知。 這項設定可以用來防止暫時性錯誤的通知。
+最後，選取__管理警示設定__從 hello__動作__功能表可讓您 tooset hello 警示必須出現次數之前，會傳送通知。 此設定可使用的 tooprevent 暫時性錯誤的通知。
 
 ### <a name="cluster"></a>叢集
 
-儀表板的 [ **度量** ] 索引標籤包含一系列的 Widget，可讓您一目了然地輕鬆監視叢集的狀態。 [ **CPU 使用量**] 等數個 Widget 可在點按後提供其他資訊。
+hello**度量**hello 儀表板 索引標籤包含一系列，可讓您輕鬆 toomonitor hello 狀態，在叢集的一眼 widget。 [ **CPU 使用量**] 等數個 Widget 可在點按後提供其他資訊。
 
 ![儀表板與度量](./media/hdinsight-hadoop-manage-ambari/metrics.png)
 
-[ **熱圖** ] 索引標籤會以綠色到紅色的彩色熱圖顯示度量。
+hello **Heatmaps**  索引標籤會顯示為彩色 heatmaps，從綠色 toored 的度量。
 
 ![儀表板與熱圖](./media/hdinsight-hadoop-manage-ambari/heatmap.png)
 
-如需有關叢集中節點的詳細資訊，請選取 [主機]。 然後選取您感興趣的特定節點。
+如需有關 hello 叢集內的 hello 節點的詳細資訊，請選取**主機**。 然後，選取您感興趣的 hello 特定節點。
 
 ![主機詳細資料](./media/hdinsight-hadoop-manage-ambari/host-details.png)
 
 ### <a name="services"></a>服務
 
-儀表板上的 [ **服務** ] 提要欄位可讓您快速了解叢集上執行之服務的狀態。 各種圖示用來指出狀態或應採取的動作。 例如，需要回收服務時會顯示黃色回收符號。
+hello**服務**hello 儀表板上的資訊看板提供快速了解 hello hello hello 叢集上執行的服務狀態。 不同的圖示是使用的 tooindicate 狀態或應該採取的動作。 例如，如果服務需要 toobe 回收，會顯示黃色回收符號。
 
 ![服務提要欄位](./media/hdinsight-hadoop-manage-ambari/service-bar.png)
 
 > [!NOTE]
-> 不同 HDInsight 叢集類型和版本之間會顯示不同的服務。 這裡顯示的服務可能會不同於您的叢集所顯示的服務。
+> 顯示 hello 服務不同 HDInsight 叢集的型別和版本。 此處顯示的 hello 服務可能不同於 hello 服務顯示為您的叢集。
 
-選取服務便會顯示服務的詳細資訊。
+選取服務會更詳細的資訊顯示 hello 服務上。
 
 ![服務摘要資訊](./media/hdinsight-hadoop-manage-ambari/service-details.png)
 
 #### <a name="quick-links"></a>快速連結
 
-某些服務會在頁面頂端顯示 [ **快速連結** ] 連結。 此連結可用來存取服務特定的 Web UI，例如：
+某些服務顯示**快速連結**hello hello 頁頂端的連結。 這可以是使用的 tooaccess 特定服務的 web Ui，例如：
 
 * **作業記錄** - MapReduce 作業記錄。
 * **資源管理員** - YARN ResourceManager UI。
 * **NameNode** - Hadoop 分散式檔案系統 (HDFS) NameNode UI。
 * **Oozie Web UI** - Oozie UI。
 
-選取任何一個連結便會在瀏覽器中開啟新索引標籤以顯示選取的頁面。
+選取任何這些連結，則會在瀏覽器中顯示 hello 選取的頁面開啟新索引標籤。
 
 > [!NOTE]
-> 對服務選取 [快速連結] 項目可能會傳回「找不到伺服器」的錯誤。 如果您遇到這個錯誤，在對此服務使用 [快速連結] 項目時，您必須使用 SSH 通道。 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH 通道](hdinsight-linux-ambari-ssh-tunnel.md)。
+> 選取 hello**快速連結**服務項目可能會傳回 「 找不到伺服器 」 錯誤。 如果您遇到這個錯誤，您就必須使用 SSH 通道，當使用 hello**快速連結**這個服務項目。 如需相關資訊，請參閱[搭配 HDInsight 使用 SSH 通道](hdinsight-linux-ambari-ssh-tunnel.md)。
 
 ## <a name="management"></a>管理
 
 ### <a name="ambari-users-groups-and-permissions"></a>Ambari 使用者、群組和權限
 
-使用[已加入網域](hdinsight-domain-joined-introduction.md)的 HDInsight 叢集時，支援處理使用者、群組和權限。 如需在已加入網域之叢集上使用 Ambari 管理 UI 的相關資訊，請參閱[管理已加入網域的 HDInsight 叢集](hdinsight-domain-joined-introduction.md)。
+使用[已加入網域](hdinsight-domain-joined-introduction.md)的 HDInsight 叢集時，支援處理使用者、群組和權限。 如需使用 hello Ambari 管理 UI 已加入網域的叢集上的資訊，請參閱[管理已加入網域的 HDInsight 叢集](hdinsight-domain-joined-introduction.md)。
 
 > [!WARNING]
-> 請勿變更以 Linux 為基礎之 HDInsight 叢集上的 Ambari 看門狗 (hdinsightwatchdog) 密碼。 變更密碼會破壞在叢集上使用指令碼動作或執行調整作業的能力。
+> 請勿變更 hello 以 Linux 為基礎的 HDInsight 叢集上的 hello Ambari 監視 (hdinsightwatchdog) 密碼。 變更 hello 密碼符號 hello 能力 toouse 指令碼動作，或執行與您的叢集的調整作業。
 
 ### <a name="hosts"></a>主機
 
-[ **主機** ] 頁面會列出叢集中的所有主機。 若要管理主機，請遵循下列步驟。
+hello**主機**頁面會列出 hello 叢集中所有主機。 toomanage 主機，請遵循下列步驟。
 
 ![主機頁面](./media/hdinsight-hadoop-manage-ambari/hosts.png)
 
 > [!NOTE]
 > 使用 HDInsight 叢集時，請勿新增、解除委任或重新委任主機。
 
-1. 選取您想要管理的主機。
+1. 選取您想 toomanage hello 主機。
 
-2. 使用 [ **動作** ] 功能表，選擇您想要執行的動作：
+2. 使用 hello**動作**想 tooperform 功能表 tooselect hello 動作：
 
-   * **啟動所有元件** - 啟動主機上的所有元件。
+   * **啟動所有元件**-hello 主機上都啟動所有元件。
 
-   * **停止所有元件** - 停止主機上的所有元件。
+   * **停止所有元件**-hello 主機上都停止所有元件。
 
-   * **重新啟動所有元件** - 先停止再啟動主機上的所有元件。
+   * **重新啟動所有元件**-停止並啟動 hello 主機上的所有元件。
 
-   * **開啟維護模式** - 隱藏主機的警示。 如果您執行的動作會產生警示，則應該啟用此模式。 例如，停止和啟動服務。
+   * **啟動維護模式**-會歸併警示 hello 主機。 如果您執行的動作會產生警示，則應該啟用此模式。 例如，停止和啟動服務。
 
-   * **關閉維護模式** - 讓主機恢復正常警示功能。
+   * **將維護模式關閉**-傳回 hello 主機 toonormal 警示。
 
-   * **停止** - 停止主機上的 DataNode 或 NodeManagers。
+   * **停止**-停駐點 DataNode 或 NodeManagers hello 主機上的。
 
-   * **啟動** - 啟動主機上的 DataNode 或 NodeManagers。
+   * **啟動**-啟動 DataNode 或 NodeManagers hello 主機上的。
 
-   * **重新啟動** - 先停止再啟動主機上的 DataNode 或 NodeManagers。
+   * **重新啟動**-停止或啟動 DataNode 或 NodeManagers hello 主機上的。
 
-   * **解除委任** - 從叢集中移除主機。
+   * **解除委任**-從 hello 叢集移除主機。
 
      > [!NOTE]
      > 請勿在 HDInsight 叢集上使用此動作。
 
-   * **重新委任** - 將先前已解除委任的主機加入到叢集中。
+   * **Recommission** -新增先前已解除委任的主機 toohello 叢集。
 
      > [!NOTE]
      > 請勿在 HDInsight 叢集上使用此動作。
 
 ### <a id="service"></a>服務
 
-在 [儀表板] 或 [服務] 頁面中，使用服務清單底部的 [動作] 按鈕來停止和啟動所有服務。
+從 hello**儀表板**或**服務**頁面上，使用 hello**動作**在 hello 服務 toostop hello 清單底部的按鈕，並啟動所有服務。
 
 ![服務動作](./media/hdinsight-hadoop-manage-ambari/service-actions.png)
 
 > [!WARNING]
-> 雖然 [新增服務] 列在此功能表中，但不應用來將服務新增 HDInsight 叢集。 您應該在叢集佈建期間，使用指令碼動作加入新服務。 如需使用指令碼動作的詳細資訊，請參閱 [使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
+> 雖然**加入服務**會列在這個功能表中，不應該使用的 tooadd 服務 toohello HDInsight 叢集。 您應該在叢集佈建期間，使用指令碼動作加入新服務。 如需使用指令碼動作的詳細資訊，請參閱 [使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
-雖然 [ **動作** ] 按鈕可以重新啟動所有服務，但您想要啟動、停止或重新啟動的往往是特定服務。 使用下列步驟可對個別服務執行動作：
+Hello 時**動作**按鈕可以重新啟動所有服務，通常您會想 toostart、 停止或重新都啟動特定的服務。 使用下列步驟 tooperform 動作上的個別服務的 hello:
 
-1. 從 [儀表板] 或 [服務] 頁面選取服務。
+1. 從 hello**儀表板**或**服務**頁面上，選取服務。
 
-2. 從 [摘要] 索引標籤頂端，使用 [服務動作] 按鈕，然後選取要採取的動作。 這會重新啟動所有節點上的服務。
+2. 從 hello 頂端 hello**摘要**索引標籤上，使用 hello**服務動作**按鈕並選取 hello 動作 tootake。 這會重新啟動所有節點上的 hello 服務。
 
     ![服務動作](./media/hdinsight-hadoop-manage-ambari/individual-service-actions.png)
 
    > [!NOTE]
-   > 在叢集執行時重新啟動某些服務可能會產生警示。 若要避免警示，您可以使用 [服務動作] 按鈕來啟用服務的 [維護模式]，然後再執行重新啟動。
+   > Hello 叢集正在執行，請重新啟動某些服務可能會產生警示。 tooavoid 發出警示通知，您可以使用 hello**服務動作**按鈕 tooenable**維護模式**hello 服務，然後再執行 hello 重新啟動。
 
-3. 一旦選取某個動作，頁面頂端的 [# 項作業] 項目便會遞增數字，指出正在進行背景作業。 如果設定為顯示，則會顯示背景作業的清單。
+3. 一旦選取動作，hello **# op**在背景作業發生的 hello 頁面遞增 tooshow hello 最上方的項目。 如果設定 toodisplay，會顯示 hello 背景作業清單。
 
    > [!NOTE]
-   > 如果您已啟用服務的 [維護模式]，請記得在作業完成後使用 [服務動作] 按鈕來將它停用。
+   > 如果您啟用**維護模式**hello 服務，請記住 toodisable 它使用 hello**服務動作**按鈕一旦 hello 作業已完成。
 
-若要設定服務，請使用下列步驟：
+tooconfigure 服務時，使用下列步驟的 hello:
 
-1. 從 [儀表板] 或 [服務] 頁面選取服務。
+1. 從 hello**儀表板**或**服務**頁面上，選取服務。
 
-2. 選取 [ **設定** ] 索引標籤。 隨即會顯示目前的組態。 同時也會顯示先前組態的清單。
+2. 選取 hello **Configs**  索引標籤 hello 的目前組態會顯示。 同時也會顯示先前組態的清單。
 
     ![組態](./media/hdinsight-hadoop-manage-ambari/service-configs.png)
 
-3. 使用顯示的欄位修改組態，然後選取 [ **儲存**]。 或選取先前的組態，然後選取 [ **設為現用** ] 以回復到先前的設定。
+3. 使用 hello 顯示欄位 toomodify hello 組態，然後選取**儲存**。 或選取先前的設定，然後選取**設為現用**tooroll 回 toohello 先前的設定。
 
 ## <a name="ambari-views"></a>Ambari 檢視
 
-Ambari 檢視可讓開發人員使用 [Ambari 檢視架構](https://cwiki.apache.org/confluence/display/AMBARI/Views)將 UI 元素插入 Ambari Web UI 中。 HDInsight 提供下列具有 Hadoop 叢集類型的檢視：
+Ambari 檢視可讓開發人員 tooplug UI 項目到 hello Ambari Web UI 使用 hello [Ambari 檢視 Framework](https://cwiki.apache.org/confluence/display/AMBARI/Views)。 HDInsight 提供下列檢視與 Hadoop 叢集類型的 hello:
 
-* Yarn 佇列管理員：佇列管理員提供簡單的 UI 以用於檢視及修改 YARN 佇列。
+* Yarn 佇列管理員： hello 佇列管理員提供的簡單 UI 的檢視和修改 YARN 佇列。
 
-* Hive 檢視：Hive 檢視可讓您直接從網頁瀏覽器執行 Hive 查詢。 您可以儲存查詢、檢視結果、將結果儲存至叢集存放區，或將結果下載到您本機系統。 如需有關使用 Hive 檢視的詳細資訊，請參閱 [在 HDInsight 上使用 Hive 檢視](hdinsight-hadoop-use-hive-ambari-view.md)。
+* 登錄區檢視： hello hive 控制檔的檢視可讓您直接從您網頁瀏覽器 toorun Hive 查詢。 您可以儲存查詢、 檢視結果、 將結果儲存 toohello 叢集存放裝置，或下載結果 tooyour 本機系統。 如需有關使用 Hive 檢視的詳細資訊，請參閱 [在 HDInsight 上使用 Hive 檢視](hdinsight-hadoop-use-hive-ambari-view.md)。
 
-* Tez 檢視︰[Tez 檢視] 可讓您進一步了解和最佳化工作。 您可以檢視有關 Tez 工作執行方式及使用哪些資源的資訊。
+* Tez 檢視： hello Tez 檢視可讓您 toobetter 了解並最佳化作業。 您可以檢視有關 Tez 工作執行方式及使用哪些資源的資訊。

@@ -1,6 +1,6 @@
 ---
-title: "使用動態遙測 | Microsoft Docs"
-description: "遵循本教學課程以了解如何使用動態遙測搭配遠 Azure IoT 套件端監視預先設定解決方案。"
+title: "aaaUse 動態遙測 |Microsoft 文件"
+description: "請遵循此教學課程 toolearn toouse 動態遙測 hello Azure IoT 套件遠端監視預先方案的設定。"
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 0114f27f9b8ae76e1170d04ddf66e2c4bf20686a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 06cb2a370b67b4950efdfa4c7d906ac92106f4a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-dynamic-telemetry-with-the-remote-monitoring-preconfigured-solution"></a>搭配使用動態遙測與遠端監視預先設定解決方案
+# <a name="use-dynamic-telemetry-with-hello-remote-monitoring-preconfigured-solution"></a>使用動態遙測以 hello 遠端監視預先設定的解決方案
 
-動態遙測可讓您將傳送至遠端監視預先設定解決方案的任何遙測視覺化。 使用預先設定解決方案部署的模擬裝置會傳送溫度與濕度遙測，您可以在儀表板上將這些遙測視覺化。 如果您自訂現有的模擬裝置、建立新的模擬裝置，或將實體裝置連線到預先設定解決方案，您可以傳送其他的遙測值，例如外部溫度、RPM 或風速。 然後，您可以在儀表板上將此額外遙測視覺化。
+動態遙測可讓您 toovisualize 任何傳送遙測 toohello 遠端監視預先設定的解決方案。 使用預先設定的 hello 方案部署的 hello 模擬裝置傳送氣溫和溼度遙測，您可以視覺化 hello 儀表板。 如果您自訂現有的模擬的裝置，建立新的模擬的裝置，或連接實體裝置 toohello 預先設定的解決方案，您可以傳送 hello 外部溫度、 RPM 或 windspeed 其他遙測等值。 然後，您可以視覺化這個 hello 儀表板上的其他遙測。
 
-本教學課程使用簡單的 Node.js 模擬裝置，您可以輕鬆地修改它來實驗動態遙測。
+本教學課程使用簡單 Node.js 模擬的裝置，您可以輕鬆地修改 tooexperiment 與動態遙測。
 
-若要完成本教學課程，您需要：
+toocomplete 本教學課程中，您將需要：
 
 * 有效的 Azure 訂用帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][lnk_free_trial]。
 * [Node.js][lnk-node] 0.12.x 版或更新版本。
@@ -40,10 +40,10 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="add-a-telemetry-type"></a>新增遙測類型
 
-下一個步驟是將 Node.js 模擬裝置產生的遙測以新的一組值取代：
+hello 下一個步驟是由一組新的值與 hello Node.js 模擬裝置產生 tooreplace hello 遙測：
 
-1. 停止 Node.js 模擬裝置，方法是在命令提示字元或殼層中輸入 **Ctrl+C** 。
-2. 在 remote_monitoring.js 檔案中，您可以查看現有溫度、濕度和外部溫度遙測的基底資料值。 加入 **rpm** 的基底資料值，如下所示：
+1. 輸入的停止 hello Node.js 模擬的裝置**Ctrl + C**在命令提示字元或殼層。
+2. 在 hello remote_monitoring.js 檔案中，您可以看到 hello 現有溫度、 溼度，以及外部溫度遙測 hello 基底的資料值。 加入 **rpm** 的基底資料值，如下所示：
 
     ```nodejs
     // Sensors data
@@ -53,7 +53,7 @@ ms.lasthandoff: 08/29/2017
     var rpm = 200;
     ```
 
-3. Node.js 模擬裝置會使用 remote_monitoring.js 檔案中的 **generateRandomIncrement** 函式，對基底資料值加上隨機增量。 在現有的隨機設定後方加上一行程式碼，將 **rpm** 的值隨機化，如下所示：
+3. hello Node.js 模擬的裝置會使用 hello **generateRandomIncrement**函式在 hello remote_monitoring.js 檔案 tooadd 隨機遞增 toohello 基底的資料值。 隨機化 hello **rpm**值加入一行程式碼，請在 hello 現有隨機後，如下所示：
 
     ```nodejs
     temperature += generateRandomIncrement();
@@ -62,7 +62,7 @@ ms.lasthandoff: 08/29/2017
     rpm += generateRandomIncrement();
     ```
 
-4. 將新的 rpm 值加入到裝置送給 IoT 中樞的 JSON 承載：
+4. 加入 hello 新 rpm 值 toohello JSON 裝載 hello 裝置傳送 tooIoT 中樞：
 
     ```nodejs
     var data = JSON.stringify({
@@ -74,20 +74,20 @@ ms.lasthandoff: 08/29/2017
     });
     ```
 
-5. 使用下列命令，執行 Node.js 模擬裝置：
+5. 執行 hello Node.js 模擬的裝置使用 hello 下列命令：
 
     `node remote_monitoring.js`
 
-6. 觀察儀表板圖表上所顯示的新 RPM 遙測類型：
+6. 觀察在 hello 儀表板中的 hello 圖表顯示的 hello 新 RPM 遙測類型：
 
-![新增 RPM 到儀表板][image3]
+![新增 RPM toohello 儀表板][image3]
 
 > [!NOTE]
-> 您可能需要在儀表板中的 [裝置] 頁面停用 Node.js 裝置，然後再啟用以立即查看變更。
+> 您可能需要 toodisable，然後啟用 hello Node.js 裝置 hello**裝置**hello 儀表板 toosee hello 變更立即在頁面。
 
-## <a name="customize-the-dashboard-display"></a>自訂儀表板顯示
+## <a name="customize-hello-dashboard-display"></a>自訂 hello 儀表板顯示
 
-**Device-Info** 訊息可能包含裝置可傳送給 IoT 中樞的遙測相關中繼資料。 此中繼資料可指定裝置傳送的遙測類型。 修改 remote_monitoring.js 檔案中的 **deviceMetaData** 值，以在 **Commands** 定義後方包含 **Telemetry** 定義。 以下程式碼片段會顯示 **Commands** 定義 (請務必在 **Commands** 定義後方新增 `,`)：
+hello**裝置資訊**訊息可以包含中繼資料相關 hello 遙測 hello 裝置皆可傳送 tooIoT 中樞。 此中繼資料，可以指定 hello 裝置所傳送的 hello 遙測類型。 修改 hello **deviceMetaData**中 hello remote_monitoring.js 檔案 tooinclude 值**遙測**定義下列 hello**命令**定義。 hello 下列程式碼片段顯示 hello**命令**定義 (可確定 tooadd`,`之後 hello**命令**定義):
 
 ```nodejs
 'Commands': [{
@@ -119,10 +119,10 @@ ms.lasthandoff: 08/29/2017
 ```
 
 > [!NOTE]
-> 遠端監視解決方案會使用區分大小寫的配對，來比對中繼資料定義與遙測串流中的資料。
+> hello 遠端監視解決方案會使用不區分大小寫的相符項目 toocompare hello 中繼資料定義與 hello 遙測資料流中的資料。
 
 
-以上方程式碼片段所示方式加入 **Telemetry** 定義，並不會變更儀表板的行為。 不過，中繼資料也可以包含 **DisplayName** 屬性來自訂儀表板中的顯示。 更新 **Telemetry** 中繼資料定義，如下列程式碼片段所示：
+加入**遙測**定義中所示 hello 上述程式碼片段不會變更 hello 儀表板的 hello 行為。 不過，也可以包含 hello 中繼資料**DisplayName**屬性 toocustomize hello 顯示 hello 儀表板中的。 更新 hello**遙測**中繼資料定義 hello 下列程式碼片段所示：
 
 ```nodejs
 'Telemetry': [
@@ -144,18 +144,18 @@ ms.lasthandoff: 08/29/2017
 ]
 ```
 
-下列螢幕擷取畫面說明這項變更如何修改儀表板上的圖表圖例：
+hello 下列螢幕擷取畫面顯示這項變更如何修改 hello hello 儀表板上的圖表圖例：
 
-![自訂圖表圖例][image4]
+![自訂 hello 圖表圖例][image4]
 
 > [!NOTE]
-> 您可能需要在儀表板中的 [裝置] 頁面停用 Node.js 裝置，然後再啟用以立即查看變更。
+> 您可能需要 toodisable，然後啟用 hello Node.js 裝置 hello**裝置**hello 儀表板 toosee hello 變更立即在頁面。
 
-## <a name="filter-the-telemetry-types"></a>篩選遙測類型
+## <a name="filter-hello-telemetry-types"></a>篩選 hello 遙測類型
 
-根據預設，儀表板上的圖表會顯示遙測串流中的每個資料數列。 您可以使用 **Device-Info** 中繼資料，來隱藏圖表上特定遙測類型的顯示。 
+根據預設，hello 儀表板上的 hello 圖表可顯示 hello 遙測資料流中的每個資料數列。 您可以使用 hello**裝置資訊**中繼資料 toosuppress hello hello 圖表上的特定遙測類型顯示。 
 
-若要讓圖表只顯示溫度和濕度遙測，請從 **Device-Info** **Telemetry** 中繼資料省略 **ExternalTemperature**，如下所示：
+toomake hello 圖表顯示只有氣溫和溼度遙測，省略**ExternalTemperature**從 hello**裝置資訊****遙測**中繼資料，如下所示：
 
 ```nodejs
 'Telemetry': [
@@ -177,22 +177,22 @@ ms.lasthandoff: 08/29/2017
 ]
 ```
 
-**Outdoor Temperature (戶外溫度)** 不會再顯示在圖表上：
+hello**室外溫度**不會再顯示 hello 圖表上：
 
-![篩選儀表板上的遙測][image5]
+![Hello 儀表板上的篩選器 hello 遙測][image5]
 
-這項變更只會影響圖表顯示。 **ExternalTemperature** 資料值仍會儲存，並可供任何後端處理使用。
+這項變更只會影響 hello 圖表顯示。 hello **ExternalTemperature**資料值仍會儲存並可供任何後端處理。
 
 > [!NOTE]
-> 您可能需要在儀表板中的 [裝置] 頁面停用 Node.js 裝置，然後再啟用以立即查看變更。
+> 您可能需要 toodisable，然後啟用 hello Node.js 裝置 hello**裝置**hello 儀表板 toosee hello 變更立即在頁面。
 
 ## <a name="handle-errors"></a>處理錯誤
 
-針對要在圖表上顯示的資料串流，其在 **Device-Info** 中繼資料中的 **Type** 必須符合遙測值的資料類型。 例如，如果中繼資料指定濕度資料的 **Type** 必須為 **int**，而在遙測串流中找到 **double**，則濕度遙測將不會顯示在圖表上。 不過，**濕度**的值仍會儲存，並可供任何後端處理使用。
+如 hello 圖表上的資料流 toodisplay 其**類型**在 hello**裝置資訊**中繼資料必須符合 hello hello 遙測值資料型別。 例如，如果 hello 中繼資料會指定該 hello**類型**溼度的資料是**int**和**雙**則 hello 溼度遙測不會位於 hello 遙測資料流不會顯示 hello 圖表上。 不過，hello**溼度**值仍會儲存並可供任何後端處理。
 
 ## <a name="next-steps"></a>後續步驟
 
-既然您已了解如何使用動態的遙測，您可以進一步了解預先設定的解決方案如何使用裝置資訊︰[遠端監視預先設定解決方案中的裝置資訊中繼資料][lnk-devinfo]。
+既然您已經看到如何 toouse 動態遙測，您可以了解 hello 預先設定的解決方案如何使用裝置資訊： [hello 遠端監視裝置資訊的中繼資料已預先設定的解決方案][lnk-devinfo].
 
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 

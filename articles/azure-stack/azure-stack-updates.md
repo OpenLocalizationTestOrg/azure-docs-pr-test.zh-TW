@@ -1,6 +1,6 @@
 ---
-title: "管理 Azure Stack 中的更新 | Microsoft Docs"
-description: "了解如何管理 Azure Stack 中的更新"
+title: "在 Azure 堆疊 aaaManage 更新 |Microsoft 文件"
+description: "了解 toomanage Azure 堆疊中的更新方式"
 services: azure-stack
 documentationcenter: 
 author: twooley
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: twooley
-ms.openlocfilehash: 1462079c1aac9031e8ea195282555c0707480ec8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 549b442db758af6c34de5c70d082f5375293d01e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-updates-in-azure-stack"></a>管理 Azure Stack 中的更新
 
-在 Azure Stack 開發套件中，您可以預覽在多節點環境中管理 Azure Stack 更新的體驗。 因為虛擬機器在開發套件中並非高度可用，您無法透過 [更新] 圖格套用更新。
+在 hello Azure 堆疊開發套件，您可以預覽管理 Azure 堆疊更新，在多節點的環境中的 hello 經驗。 因為虛擬機器不是高可用性 hello 開發套件中，您無法套用更新 hello**更新**磚。
 
-在 Azure Stack 系統管理員入口網站中，您可以判斷 Azure Stack 的目前版本 (或組建編號)。
+Hello Azure 堆疊管理員入口網站，您可以判斷 hello 目前版本 （或組建編號） 中的 Azure 堆疊。
 
-## <a name="determine-the-current-version"></a>判斷目前版本
+## <a name="determine-hello-current-version"></a>判斷 hello 目前版本
 
-若要判斷 Azure Stack 的目前版本，請在系統管理員入口網站中執行下列其中一個動作：
+toodetermine hello 最新版 Azure 堆疊執行 hello 管理員入口網站中的 hello 下列任一動作：
 
-- 在儀表板上，在 [更新] 圖格檢視目前的版本。
-- 在 [區域管理] 圖格上，按一下區域名稱 (例如 [本機])。 在 [更新] 圖格中檢視目前的版本。
+- Hello 儀表板，檢視 hello 目前版本中 hello**更新**磚。
+- 在 hello**區域管理**磚中，按一下 hello 區域名稱 (例如**本機**)。 檢視 hello 目前的版本 hello**更新**磚。
 
    ![預設儀表板上的 [更新] 圖格](./media/azure-stack-updates/image1.png)
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT Edge 概觀 | Microsoft Docs"
-description: "說明諸如閘道、模組和代理程式等 Azure IoT Edge 中的重要架構概念。"
+title: "Azure IoT 邊緣的 aaaOverview |Microsoft 文件"
+description: "描述 hello 架構的關鍵概念 Azure IoT 邊緣閘道、 模組和代理程式等。"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -13,52 +13,52 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/02/2017
 ms.author: dobett
-ms.openlocfilehash: ecdd56c91a8fc2011b3d7abe93b9d27c1e1e0bef
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 32debc0d4f40cfd7f2cce7cf8c76b12ec18ee2dc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-edge-architectural-concepts"></a>Azure IoT Edge 架構概念
 
-檢查任何範例程式碼或使用 IoT Edge 建立專屬現場閘道之前，您應該了解可加強 IoT Edge 架構的重要概念。
+您檢查任何範例程式碼，或建立您自己使用 IoT 邊緣的欄位閘道之前，您應該了解 hello underpin IoT 邊緣 hello 架構的重要概念。
 
 ## <a name="iot-edge-modules"></a>IoT Edge 模組
 
-建立和組合「IoT Edge 模組」，即可使用 Azure IoT Edge 來建置閘道。 模組使用「訊息」  來彼此交換資料。 模組會接收訊息、對其執行某個動作、選擇性地將其轉換為新的訊息，然後發佈它，以供其他模組處理。 某些模組可能只會產生新的訊息，且永遠不會處理內送訊息。 一連串的模組可建立資料處理管線，而每個模組都會執行該管線中某個點的資料轉換。
+建立和組合「IoT Edge 模組」，即可使用 Azure IoT Edge 來建置閘道。 模組使用*訊息*tooexchange 彼此的資料。 模組接收訊息、 執行一些動作，選擇性地將它轉換成新的訊息，且然後發行它的其他模組 tooprocess。 某些模組可能只會產生新的訊息，且永遠不會處理內送訊息。 模組的鏈結會在一處，該管線中的 hello 資料上執行轉換每個模組建立資料處理管線。
 
 ![使用 Azure IoT Edge 所建置之閘道中的模組鏈結][1]
 
-IoT Edge 包含下列元件：
+IoT 邊緣包含下列元件的 hello:
 
 * 可執行常見閘道函式的預先撰寫模組。
-* 開發人員可用來撰寫自訂模組的介面。
-* 部署和執行一組模組所需的基礎結構。
+* hello 介面的開發人員可以使用 toowrite 自訂模組。
+* hello 基礎結構需要 toodeploy 和執行模組的設定。
 
-SDK 提供一個抽象層，可讓您建置要在各種作業系統和平台上執行的閘道。
+hello SDK 提供一個抽象層，可讓您 toobuild 閘道 toorun 各種作業系統與平台上。
 
 ![Azure IoT Edge 抽象層][2]
 
 ## <a name="messages"></a>訊息
 
-雖然考量到彼此傳遞訊息的模組是概念化閘道運作方式的便利方式，但是它不會精確地反映所發生的事情。 IoT Edge 模組會使用訊息代理程式來互相進行通訊。 模組會將訊息發佈到訊息代理程式 (使用諸如匯流排或發佈/訂閱等傳訊模式)，然後讓訊息代理程式將訊息路由至與它連線的模組。
+雖然改善模組傳遞的郵件 tooeach 其他很方便的方式 tooconceptualize 閘道函式，它不會精確地反映會發生什麼事。 IoT 邊緣模組使用 broker toocommunicate 彼此。 模組發佈訊息 toohello broker （使用例如匯流排上，或發行/訂閱傳訊模式），然後讓 hello broker 路由 hello 訊息 toohello 模組連接的 tooit。
 
-模組使用 **Broker_Publish** 函式將訊息發佈到訊息代理程式。 訊息代理程式會叫用回呼函式，以將訊息傳遞到模組。 訊息包含一組索引鍵/值屬性以及傳遞為記憶體區塊的內容。
+模組會使用 hello **Broker_Publish**函式 toopublish 訊息 toohello 代理程式。 hello broker 也會藉由叫用的回呼函式傳遞訊息 tooa 模組。 訊息包含一組索引鍵/值屬性以及傳遞為記憶體區塊的內容。
 
-![Azure IoT Edge 中的訊息代理程式角色][3]
+![hello Broker Azure IoT Edge 中的 hello 角色][3]
 
 ## <a name="message-routing-and-filtering"></a>訊息路由和篩選
 
-有兩種方式可將訊息導向正確的 IoT Edge 模組：
+有兩種方式 toodirect 訊息 toohello 正確 IoT 邊緣模組：
 
-* 您可將一組連結傳遞給訊息代理程式，讓訊息代理程式知道每個模組的來源和接收。
-* 模組可以篩選訊息的屬性。
+* 您可以將傳遞的一組連結可以傳遞 toohello broker 讓 hello broker 知道 hello 來源和接收的每個模組。
+* 模組可以篩選 hello hello 訊息屬性。
 
-模組只應對其為適用對象的訊息採取動作。 連結和訊息篩選可有效地建立訊息管線。
+如果 hello 訊息用於訊息只應處理模組。 連結和訊息篩選可有效地建立訊息管線。
 
 ## <a name="next-steps"></a>後續步驟
 
-若要查看這些套用在您可以執行之範例中的概念，請參閱[瀏覽 Azure IoT Edge 架構][lnk-hello-world]。
+請參閱 toosee 套用在範例中，您可以執行這些概念[瀏覽 Azure IoT 邊緣架構][lnk-hello-world]。
 
 <!-- Images -->
 [1]: media/iot-hub-iot-edge-overview/modules.png

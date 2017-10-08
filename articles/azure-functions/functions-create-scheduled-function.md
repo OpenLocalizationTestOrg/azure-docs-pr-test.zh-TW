@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中建立會按照排程來執行的函式 | Microsoft Docs"
-description: "了解如何在 Azure 中建立函式，並使其按照您定義的排程來執行。"
+title: "在 Azure 中的排程執行的函式 aaaCreate |Microsoft 文件"
+description: "了解如何 toocreate azure 中執行的函式根據您定義的排程。"
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -16,21 +16,21 @@ ms.workload: na
 ms.date: 05/31/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 03cc5e71e8eb20002cf58e713fc0fc92a9129874
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 793b06a65a154466dfd4c121bcc88082227cd597
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-function-in-azure-that-is-triggered-by-a-timer"></a>在 Azure 中建立由計時器觸發的函式
 
-了解如何使用 Azure Functions 來建立函式，並使其按照您定義的排程來執行。
+了解如何 toouse Azure 函式 toocreate 執行的函式以您定義的排程。
 
-![在 Azure 入口網站中建立函式應用程式](./media/functions-create-scheduled-function/function-app-in-portal-editor.png)
+![在 hello Azure 入口網站中建立函式應用程式](./media/functions-create-scheduled-function/function-app-in-portal-editor.png)
 
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本教學課程：
+toocomplete 本教學課程：
 
 + 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
@@ -42,40 +42,40 @@ ms.lasthandoff: 08/29/2017
 
 ![已成功建立函式應用程式。](./media/functions-create-first-azure-function/function-app-create-success.png)
 
-接下來，您要在新的函式應用程式中建立函式。
+接下來，您會在 hello 新函式應用程式中建立函式。
 
 <a name="create-function"></a>
 
 ## <a name="create-a-timer-triggered-function"></a>建立由計時器觸發的函式
 
-1. 展開函式應用程式，然後按一下 [Functions] 旁的 [+] 按鈕。 如果這是您函式應用程式中的第一個函式，請選取 [自訂函式]。 這會顯示一組完整的函式範本。
+1. 展開您的函式應用程式，然後按一下 hello  **+** 太下一步按鈕**函式**。 如果 hello 函式應用程式中的第一個函式，請選取**自訂函式**。 這會顯示 hello 組完整的函式樣板。
 
-    ![Azure 入口網站中的 Functions 快速入門](./media/functions-create-scheduled-function/add-first-function.png)
+    ![在 Azure 入口網站的 hello 函式 [快速入門] 頁面](./media/functions-create-scheduled-function/add-first-function.png)
 
-2. 針對所需語言選取 **TimerTrigger** 的範本。 然後使用表格中所指定的設定︰
+2. 選取 hello **TimerTrigger**所需語言的範本。 然後使用 hello 資料表中所指定的 hello 設定：
 
-    ![在 Azure 入口網站中建立計時器觸發函式。](./media/functions-create-scheduled-function/functions-create-timer-trigger.png)
+    ![Hello Azure 入口網站中建立計時器觸發函式。](./media/functions-create-scheduled-function/functions-create-timer-trigger.png)
 
     | 設定 | 建議的值 | 說明 |
     |---|---|---|
-    | **函式命名** | TimerTriggerCSharp1 | 定義計時器觸發函式的名稱。 |
-    | **[排程](http://en.wikipedia.org/wiki/Cron#CRON_expression)** | 0 \*/1 \* \* \* \* | 含有六個欄位的 [CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)，它會將函式排程為每分鐘執行一次。 |
+    | **函式命名** | TimerTriggerCSharp1 | 定義 hello 計時器觸發函式的名稱。 |
+    | **[排程](http://en.wikipedia.org/wiki/Cron#CRON_expression)** | 0 \*/1 \* \* \* \* | 六個欄位[CRON 運算式](http://en.wikipedia.org/wiki/Cron#CRON_expression)，它會排程函式 toorun 每隔一分鐘。 |
 
 2. 按一下 [建立] 。 系統隨即會以您所選的語言建立函式，並讓它每分鐘執行一次。
 
-3. 檢視寫入到記錄的追蹤資訊以確認執行情形。
+3. 藉由檢視追蹤資訊寫入 toohello 記錄檔，請確認執行。
 
-    ![Azure 入口網站中的函式記錄檢視器。](./media/functions-create-scheduled-function/functions-timer-trigger-view-logs2.png)
+    ![函式會記錄檢視器中 hello Azure 入口網站。](./media/functions-create-scheduled-function/functions-timer-trigger-view-logs2.png)
 
-現在，您可以變更函式的排程，使其降低執行頻率，例如降低為每小時一次。 
+現在，您可以變更 hello 函式的排程，使其執行較少，例如每個小時一次。 
 
-## <a name="update-the-timer-schedule"></a>更新計時器排程
+## <a name="update-hello-timer-schedule"></a>更新 hello 計時器排程
 
-1. 展開您的函式，然後按一下 [整合]。 您可以在這裡定義函式的輸入和輸出繫結，以及設定排程。 
+1. 展開您的函式，然後按一下 [整合]。 這是定義輸入和輸出繫結您的函式和也設定 hello 排程位置。 
 
-2. 輸入 `0 0 */1 * * *` 作為新的 [排程] 值，然後按一下 [儲存]。  
+2. 輸入 `0 0 */1 * * *` 作為新的 排程 值，然後按一下儲存。  
 
-![函式便會在 Azure 入口網站中更新計時器排程。](./media/functions-create-scheduled-function/functions-timer-trigger-change-schedule.png)
+![函式會更新計時器 hello Azure 入口網站中的排程。](./media/functions-create-scheduled-function/functions-timer-trigger-change-schedule.png)
 
 您現在已擁有每小時執行一次的函式。 
 

@@ -22,7 +22,7 @@
 ## 建立範本
 ### [範本的最佳做法](resource-manager-template-best-practices.md)
 ### [範本區段](resource-group-authoring-templates.md)
-### [連結至其他範本](resource-group-linked-templates.md)
+### [連結 tooother 範本](resource-group-linked-templates.md)
 ### [定義資源間的相依性](resource-group-define-dependencies.md)
 ### [建立多個執行個體](resource-group-create-multiple.md)
 ### [設定位置](resource-manager-template-location.md)
@@ -53,8 +53,8 @@
 ### [Azure CLI](xplat-cli-azure-resource-manager.md)
 ### [入口網站](resource-group-portal.md)
 ### [REST API](resource-manager-rest-api.md)
-### [使用標籤來整理資源](resource-group-using-tags.md)
-### [將資源移至新群組或訂用帳戶](resource-group-move-resources.md)
+### [使用標記 tooorganize 資源](resource-group-using-tags.md)
+### [移動資源 toonew 群組或訂用帳戶](resource-group-move-resources.md)
 ### [治理範例](resource-manager-subscription-examples.md)
 
 ## 控制存取權
@@ -63,13 +63,13 @@
 #### [Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 #### [Azure CLI 1.0](resource-group-authenticate-service-principal-cli.md)
 #### [入口網站](resource-group-create-service-principal-portal.md)
-### [驗證 API 以存取訂閱帳戶](resource-manager-api-authentication.md)
+### [驗證應用程式開發介面 tooaccess 訂用帳戶](resource-manager-api-authentication.md)
 ### [鎖定資源](resource-group-lock-resources.md)
 
 ## 設定資源原則
 ### [資源原則是什麼？](resource-manager-policy.md)
-### [使用入口網站指派原則](resource-manager-policy-portal.md)
-### [使用指令碼指派原則](resource-manager-policy-create-assign.md)
+### [使用入口網站 tooassign 原則](resource-manager-policy-portal.md)
+### [使用指令碼 tooassign 原則](resource-manager-policy-create-assign.md)
 ### 範例
 #### [標記](resource-manager-policy-tags.md)
 #### [命名慣例](resource-manager-policy-naming-convention.md)

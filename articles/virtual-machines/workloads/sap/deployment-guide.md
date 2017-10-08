@@ -1,6 +1,6 @@
 ---
-title: "適用於 SAP NetWeaver 的 Azure 虛擬機器部署 | Microsoft Docs"
-description: "了解如何在 Azure 中的 Linux 虛擬機器上部署 SAP 軟體。"
+title: "虛擬機器部署的 SAP NetWeaver aaaAzure |Microsoft 文件"
+description: "了解如何 toodeploy SAP Azure 中 Linux 虛擬機器上的軟體。"
 services: virtual-machines-linux,virtual-machines-windows
 documentationcenter: 
 author: MSSedusch
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 11/08/2016
 ms.author: sedusch
-ms.openlocfilehash: 7d0400c834767736f63bc30a7bc2495dc6ee6e36
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 42f1d8a3eff51e113729dbfe2848b67deaf06936
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-virtual-machines-deployment-for-sap-netweaver"></a>適用於 SAP NetWeaver 的 Azure 虛擬機器部署
 [767598]:https://launchpad.support.sap.com/#/notes/767598
@@ -86,9 +86,9 @@ ms.lasthandoff: 08/29/2017
 [dbms-guide-3]:dbms-guide.md#871dfc27-e509-4222-9370-ab1de77021c3 (High availability and disaster recovery with Azure VMs)
 [dbms-guide-5.5.1]:dbms-guide.md#0fef0e79-d3fe-4ae2-85af-73666a6f7268 (SQL Server 2012 SP1 CU4 and later)
 [dbms-guide-5.5.2]:dbms-guide.md#f9071eff-9d72-4f47-9da4-1852d782087b (SQL Server 2012 SP1 CU3 and earlier releases)
-[dbms-guide-5.6]:dbms-guide.md#1b353e38-21b3-4310-aeb6-a77e7c8e81c8 (Using a SQL Server image from the Azure Marketplace)
+[dbms-guide-5.6]:dbms-guide.md#1b353e38-21b3-4310-aeb6-a77e7c8e81c8 (Using a SQL Server image from hello Azure Marketplace)
 [dbms-guide-5.8]:dbms-guide.md#9053f720-6f3b-4483-904d-15dc54141e30 (General SQL Server for SAP on Azure summary)
-[dbms-guide-5]:dbms-guide.md#3264829e-075e-4d25-966e-a49dad878737 (Specifics to SQL Server RDBMS)
+[dbms-guide-5]:dbms-guide.md#3264829e-075e-4d25-966e-a49dad878737 (Specifics tooSQL Server RDBMS)
 [dbms-guide-8.4.1]:dbms-guide.md#b48cfe3b-48e9-4f5b-a783-1d29155bd573 (Storage configuration)
 [dbms-guide-8.4.2]:dbms-guide.md#23c78d3b-ca5a-4e72-8a24-645d141a3f5d (Backup and restore)
 [dbms-guide-8.4.3]:dbms-guide.md#77cd2fbb-307e-4cbf-a65f-745553f72d2c (Performance considerations for backup and restore)
@@ -108,24 +108,24 @@ ms.lasthandoff: 08/29/2017
 [deployment-guide]:deployment-guide.md (Azure Virtual Machines deployment for SAP)
 [deployment-guide-2.2]:deployment-guide.md#42ee2bdb-1efc-4ec7-ab31-fe4c22769b94 (SAP resources)
 [deployment-guide-3.1.2]:deployment-guide.md#3688666f-281f-425b-a312-a77e7db2dfab (Deploying a VM by using a custom image)
-[deployment-guide-3.2]:deployment-guide.md#db477013-9060-4602-9ad4-b0316f8bb281 (Scenario 1: Deploying a VM from the Azure Marketplace for SAP)
+[deployment-guide-3.2]:deployment-guide.md#db477013-9060-4602-9ad4-b0316f8bb281 (Scenario 1: Deploying a VM from hello Azure Marketplace for SAP)
 [deployment-guide-3.3]:deployment-guide.md#54a1fc6d-24fd-4feb-9c57-ac588a55dff2 (Scenario 2: Deploying a VM with a custom image for SAP)
 [deployment-guide-3.4]:deployment-guide.md#a9a60133-a763-4de8-8986-ac0fa33aa8c1 (Scenario 3: Moving a VM from on-premises using a non-generalized Azure VHD with SAP)
 [deployment-guide-3]:deployment-guide.md#b3253ee3-d63b-4d74-a49b-185e76c4088e (Deployment scenarios of VMs for SAP on Microsoft Azure)
 [deployment-guide-4.1]:deployment-guide.md#604bcec2-8b6e-48d2-a944-61b0f5dee2f7 (Deploying Azure PowerShell cmdlets)
 [deployment-guide-4.2]:deployment-guide.md#7ccf6c3e-97ae-4a7a-9c75-e82c37beb18e (Download and import SAP-relevant PowerShell cmdlets)
-[deployment-guide-4.3]:deployment-guide.md#31d9ecd6-b136-4c73-b61e-da4a29bbc9cc (Join a VM to an on-premises domain - Windows only)
+[deployment-guide-4.3]:deployment-guide.md#31d9ecd6-b136-4c73-b61e-da4a29bbc9cc (Join a VM tooan on-premises domain - Windows only)
 [deployment-guide-4.4.2]:deployment-guide.md#6889ff12-eaaf-4f3c-97e1-7c9edc7f7542 (Linux)
-[deployment-guide-4.4]:deployment-guide.md#c7cbb0dc-52a4-49db-8e03-83e7edc2927d (Download, install, and enable the Azure VM Agent)
+[deployment-guide-4.4]:deployment-guide.md#c7cbb0dc-52a4-49db-8e03-83e7edc2927d (Download, install, and enable hello Azure VM Agent)
 [deployment-guide-4.5.1]:deployment-guide.md#987cf279-d713-4b4c-8143-6b11589bb9d4 (Azure PowerShell)
 [deployment-guide-4.5.2]:deployment-guide.md#408f3779-f422-4413-82f8-c57a23b4fc2f (Azure CLI)
-[deployment-guide-4.5]:deployment-guide.md#d98edcd3-f2a1-49f7-b26a-07448ceb60ca (Configure the Azure Enhanced Monitoring Extension for SAP)
+[deployment-guide-4.5]:deployment-guide.md#d98edcd3-f2a1-49f7-b26a-07448ceb60ca (Configure hello Azure Enhanced Monitoring Extension for SAP)
 [deployment-guide-5.1]:deployment-guide.md#bb61ce92-8c5c-461f-8c53-39f5e5ed91f2 (Readiness check for Azure Enhanced Monitoring for SAP)
-[deployment-guide-5.2]:deployment-guide.md#e2d592ff-b4ea-4a53-a91a-e5521edb6cd1 (Health check for the Azure monitoring infrastructure)
+[deployment-guide-5.2]:deployment-guide.md#e2d592ff-b4ea-4a53-a91a-e5521edb6cd1 (Health check for hello Azure monitoring infrastructure)
 [deployment-guide-5.3]:deployment-guide.md#fe25a7da-4e4e-4388-8907-8abc2d33cfd8 (Troubleshooting Azure monitoring for SAP)
 
 [deployment-guide-configure-monitoring-scenario-1]:deployment-guide.md#ec323ac3-1de9-4c3a-b770-4ff701def65b (Configure monitoring)
-[deployment-guide-configure-proxy]:deployment-guide.md#baccae00-6f79-4307-ade4-40292ce4e02d (Configure the proxy)
+[deployment-guide-configure-proxy]:deployment-guide.md#baccae00-6f79-4307-ade4-40292ce4e02d (Configure hello proxy)
 [deployment-guide-figure-100]:media/virtual-machines-shared-sap-deployment-guide/100-deploy-vm-image.png
 [deployment-guide-figure-1000]:media/virtual-machines-shared-sap-deployment-guide/1000-service-properties.png
 [deployment-guide-figure-11]:deployment-guide.md#figure-11
@@ -182,21 +182,21 @@ ms.lasthandoff: 08/29/2017
 [planning-guide-11]:planning-guide.md#7cf991a1-badd-40a9-944e-7baae842a058 (High availability and disaster recovery for SAP NetWeaver running on Azure Virtual Machines)
 [planning-guide-11.4.1]:planning-guide.md#5d9d36f9-9058-435d-8367-5ad05f00de77 (High availability for SAP Application Servers)
 [planning-guide-11.5]:planning-guide.md#4e165b58-74ca-474f-a7f4-5e695a93204f (Using Autostart for SAP instances)
-[planning-guide-2.1]:planning-guide.md#1625df66-4cc6-4d60-9202-de8a0b77f803 (Cloud-only - Virtual Machine deployments in Azure without dependencies on the on-premises customer network)
-[planning-guide-2.2]:planning-guide.md#f5b3b18c-302c-4bd8-9ab2-c388f1ab3d10 (Cross-premises - Deployment of single or multiple SAP VMs in Azure fully integrated with the on-premises network)
+[planning-guide-2.1]:planning-guide.md#1625df66-4cc6-4d60-9202-de8a0b77f803 (Cloud-only - Virtual Machine deployments in Azure without dependencies on hello on-premises customer network)
+[planning-guide-2.2]:planning-guide.md#f5b3b18c-302c-4bd8-9ab2-c388f1ab3d10 (Cross-premises - Deployment of single or multiple SAP VMs in Azure fully integrated with hello on-premises network)
 [planning-guide-3.1]:planning-guide.md#be80d1b9-a463-4845-bd35-f4cebdb5424a (Azure regions)
 [planning-guide-3.2.1]:planning-guide.md#df49dc09-141b-4f34-a4a2-990913b30358 (Fault domains)
 [planning-guide-3.2.2]:planning-guide.md#fc1ac8b2-e54a-487c-8581-d3cc6625e560 (Upgrade domains)
 [planning-guide-3.2.3]:planning-guide.md#18810088-f9be-4c97-958a-27996255c665 (Azure availability sets)
 [planning-guide-3.2]:planning-guide.md#8d8ad4b8-6093-4b91-ac36-ea56d80dbf77 (Microsoft Azure virtual machines concept)
 [planning-guide-3.3.2]:planning-guide.md#ff5ad0f9-f7f4-4022-9102-af07aef3bc92 (Azure Premium Storage)
-[planning-guide-5.1.1]:planning-guide.md#4d175f1b-7353-4137-9d2f-817683c26e53 (Moving a VM from on-premises to Azure with a non-generalized disk)
+[planning-guide-5.1.1]:planning-guide.md#4d175f1b-7353-4137-9d2f-817683c26e53 (Moving a VM from on-premises tooAzure with a non-generalized disk)
 [planning-guide-5.1.2]:planning-guide.md#e18f7839-c0e2-4385-b1e6-4538453a285c (Deploying a VM with a customer specific image)
-[planning-guide-5.2.1]:planning-guide.md#1b287330-944b-495d-9ea7-94b83aff73ef (Preparation for moving a VM from on-premises to Azure with a non-generalized disk)
+[planning-guide-5.2.1]:planning-guide.md#1b287330-944b-495d-9ea7-94b83aff73ef (Preparation for moving a VM from on-premises tooAzure with a non-generalized disk)
 [planning-guide-5.2.2]:planning-guide.md#57f32b1c-0cba-4e57-ab6e-c39fe22b6ec3 (Preparation for deploying a VM with a customer specific image for SAP)
 [planning-guide-5.2]:planning-guide.md#6ffb9f41-a292-40bf-9e70-8204448559e7 (Preparing VMs with SAP for Azure)
 [planning-guide-5.3.1]:planning-guide.md#6e835de8-40b1-4b71-9f18-d45b20959b79 (Difference between an Azure disk and an Azure image)
-[planning-guide-5.3.2]:planning-guide.md#a43e40e6-1acc-4633-9816-8f095d5a7b6a (Uploading a VHD from on-premises to Azure)
+[planning-guide-5.3.2]:planning-guide.md#a43e40e6-1acc-4633-9816-8f095d5a7b6a (Uploading a VHD from on-premises tooAzure)
 [planning-guide-5.4.2]:planning-guide.md#9789b076-2011-4afa-b2fe-b07a8aba58a1 (Copying disks between Azure Storage accounts)
 [planning-guide-5.5.1]:planning-guide.md#4efec401-91e0-40c0-8e64-f2dceadff646 (VM/VHD structure for SAP deployments)
 [planning-guide-5.5.3]:planning-guide.md#17e0d543-7e8c-4160-a7da-dd7117a1ad9d (Setting automount for attached disks)
@@ -261,7 +261,7 @@ ms.lasthandoff: 08/29/2017
 [virtual-machines-azure-resource-manager-architecture]:../../../resource-manager-deployment-model.md
 [virtual-machines-azurerm-versus-azuresm]:virtual-machines-linux-compare-deployment-models.md
 [virtual-machines-windows-classic-configure-oracle-data-guard]:../../virtual-machines-windows-classic-configure-oracle-data-guard.md
-[virtual-machines-linux-cli-deploy-templates]:../../linux/cli-deploy-templates.md (Deploy and manage virtual machines by using Azure Resource Manager templates and the Azure CLI)
+[virtual-machines-linux-cli-deploy-templates]:../../linux/cli-deploy-templates.md (Deploy and manage virtual machines by using Azure Resource Manager templates and hello Azure CLI)
 [virtual-machines-deploy-rmtemplates-powershell]:../../virtual-machines-windows-ps-manage.md (Manage virtual machines by using Azure Resource Manager and PowerShell)
 [virtual-machines-windows-agent-user-guide]:../../windows/agent-user-guide.md
 [virtual-machines-linux-agent-user-guide]:../../linux/agent-user-guide.md
@@ -310,67 +310,67 @@ ms.lasthandoff: 08/29/2017
 
 [!INCLUDE [learn-about-deployment-models](../../../../includes/learn-about-deployment-models-rm-include.md)]
 
-對於需要在最短的時間內處理計算和儲存資源，而不需要漫長的採購週期的組織而言，Azure 虛擬機器是適用的解決方案。 您可以使用 Azure 虛擬機器在 Azure 中部署傳統應用程式，例如 SAP NetWeaver 架構應用程式。 擴充應用程式的可靠性與可用性，不需其他內部部署資源。 「Azure 虛擬機器」支援跨單位連線能力，貴公司可將「Azure 虛擬機器」整合到其內部部署網域、私人雲端，以及 SAP 系統環境中。
+Azure 虛擬機器是 hello 解決方案需要運算和存放裝置資源，最少的時間，而不冗長的採購循環的組織。 您可以在 Azure 中使用 Azure 虛擬機器 toodeploy 古典應用程式，例如 SAP NetWeaver 架構的應用程式。 擴充應用程式的可靠性與可用性，不需其他內部部署資源。 「Azure 虛擬機器」支援跨單位連線能力，貴公司可將「Azure 虛擬機器」整合到其內部部署網域、私人雲端，以及 SAP 系統環境中。
 
-在本文中，我們將討論在 Azure 中的虛擬機器 (VM) 上部署 SAP 應用程式的步驟，包括替代部署選項和疑難排解。 本文是以 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]為基礎。 本文也可補充 SAP 安裝文件和 SAP Note 的不足，而這些是安裝及部署 SAP 軟體的主要資源。
+在本文中，我們將討論 hello 步驟 toodeploy SAP 應用程式在 Azure 中，包括替代的部署選項與疑難排解虛擬機器 (Vm) 上。 這篇文章中的 hello 資訊為基礎[Azure 虛擬機器規劃和實作的 SAP NetWeaver][planning-guide]。 它也可 SAP 安裝文件集和 SAP 附註，也就是安裝和部署 SAP 軟體的 hello 主要資源。
 
 ## <a name="prerequisites"></a>必要條件
-針對 SAP 軟體部署設定 Azure 虛擬機器，牽涉到多個步驟和資源。 開始之前，請確定您符合在 Azure 中的虛擬機器上安裝 SAP 軟體的必要條件。
+針對 SAP 軟體部署設定 Azure 虛擬機器，牽涉到多個步驟和資源。 開始之前，請確定您符合 hello Azure 中的虛擬機器上安裝 SAP 軟體的必要條件。
 
 ### <a name="local-computer"></a>本機電腦
-若要管理 Windows 或 Linux VM，您可以使用 PowerShell 指令碼和 Azure 入口網站。 對於這兩種工具，您需有執行 Windows 7 或更新 Windows 版本的本機電腦。 如果您只想管理 Linux VM，而且想要使用 Linux 電腦進行這項工作，您可以使用 Azure CLI。
+toomanage Windows 或 Linux Vm，您可以使用 PowerShell 指令碼和 hello Azure 入口網站。 對於這兩種工具，您需有執行 Windows 7 或更新 Windows 版本的本機電腦。 如果您想 toomanage 僅 Linux Vm，而且您想 toouse Linux 電腦，這項工作，您可以使用 Azure CLI。
 
 ### <a name="internet-connection"></a>網際網路連線
-若要下載並執行 SAP 軟體部署所需的工具和指令碼，您必須連線到網際網路。 執行 Azure Enhanced Monitoring Extension for SAP 的 Azure VM 也必須能夠存取網際網路。 如果 Azure VM 是 Azure 虛擬網路或內部部署網域的一部分，請務必如[設定 Proxy][deployment-guide-configure-proxy] 所述，設定相關的 Proxy 設定。
+toodownload 執行的 hello 工具及指令碼所需的 SAP 軟體部署，您必須是連接 toohello 網際網路。 hello 執行 hello Azure 強化監視功能延伸模組適用於 SAP 的 Azure VM 也需要存取 toohello 網際網路。 如果 hello Azure VM 的 Azure 虛擬網路或內部部署網域的一部分，請確定，hello 相關的 proxy 設定，如所述[設定 hello proxy][deployment-guide-configure-proxy]。
 
 ### <a name="microsoft-azure-subscription"></a>Microsoft Azure 訂用帳戶
 您需要使用中的 Azure 帳戶。
 
 ### <a name="topology-and-networking"></a>拓撲和網路
-您需要在 Azure 中定義 SAP 部署的拓撲和架構：
+您需要 toodefine hello 拓樸和 hello Azure 中 SAP 部署的架構：
 
-* 要使用的 Azure 儲存體帳戶
-* 您想要部署 SAP 系統的虛擬網路
-* 您想要部署 SAP 系統的資源群組
-* 您想要部署 SAP 系統的 Azure 區域
+* 使用 azure 儲存體帳戶 toobe
+* 您想要 toodeploy hello SAP 系統的虛擬網路
+* 您希望 toodeploy hello SAP 系統的資源群組 toowhich
+* 您想 toodeploy hello SAP 系統的 azure 地區
 * SAP 組態 (兩層或三層)
-* VM 大小以及要掛接到 VM 的額外資料磁碟數目
+* VM 大小和其他資料磁碟 toobe hello 號碼掛接 toohello Vm
 * SAP Correction and Transport System (CTS) 組態
 
-開始 SAP 軟體部署程序之前，如有必要請先建立及設定 Azure 儲存體帳戶或 Azure 虛擬網路。 如需有關如何建立及設定這些資源的詳細資訊，請參閱 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]。
+建立並設定 Azure 儲存體帳戶 （如有必要） 或 Azure 虛擬網路，才能開始 hello SAP 軟體部署程序。 如需有關資訊 toocreate 和設定這些資源，請參閱[Azure 虛擬機器規劃和實作的 SAP NetWeaver][planning-guide]。
 
 ### <a name="sap-sizing"></a>SAP 大小調整
-了解下列資訊，以便進行 SAP 大小調整︰
+了解下列資訊，如 SAP 調整大小的 hello:
 
-* 預估的 SAP 工作負載 (例如，使用 SAP Quick Sizer 工具) 和 SAP Application Performance Standard (SAPS) 數字
-* SAP 系統所需的 CPU 資源和記憶體耗用量
+* 預計的 SAP 工作負載，比方說，使用 hello SAP 快速 Sizer 工具，與 hello SAP 應用程式的效能標準 (SAP)
+* 需要 CPU 資源和記憶體耗用量的 hello SAP 系統
 * 每秒所需的輸入/輸出 (I/O) 作業
 * Azure 中 VM 之間最終通訊所需的網路頻寬
-* 內部部署資產與已部署 Azure 的 SAP 系統之間所需的網路頻寬
+* 在內部部署資產和 hello Azure 部署 SAP 系統之間的所需的網路頻寬
 
 ### <a name="resource-groups"></a>資源群組
-在 Azure Resource Manager 中，您可以使用資源群組來管理 Azure 訂用帳戶中的所有應用程式資源。 如需詳細資訊，請參閱 [Azure Resource Manager概觀][resource-group-overview]。
+Azure 資源管理員 中，您可以使用資源群組 toomanage hello 應用程式的所有資源在您的 Azure 訂用帳戶。 如需詳細資訊，請參閱 [Azure Resource Manager概觀][resource-group-overview]。
 
 ## <a name="resources"></a>資源
 
 ### <a name="42ee2bdb-1efc-4ec7-ab31-fe4c22769b94"></a>SAP 資源
-當您設定 SAP 軟體部署時，您需要下列 SAP 資源︰
+當您設定 SAP 軟體部署時，您需要遵循 SAP 資源 hello:
 
 * SAP Note [1928533]，其中包含：
-  * SAP 軟體部署支援的 Azure VM 大小清單
+  * Hello 部署 SAP 軟體所支援的 Azure VM 大小的清單
   * Azure VM 大小的重要容量資訊
   * 支援的 SAP 軟體，以及作業系統 (OS) 與資料庫組合
   * Microsoft Azure 上 Windows 和 Linux 所需的 SAP 核心版本
 
 * SAP Note [2015553] 列出 Azure 中 SAP 支援的 SAP 軟體部署先決條件。
 * SAP Note [2178632] 包含在 Azure 中針對 SAP 回報的所有監視計量詳細資訊。
-* SAP Note [1409604] 包含 Azure 中 Windows 所需的 SAP Host Agent 版本。
-* SAP Note [2191498] 包含 Azure 中 Linux 所需的 SAP Host Agent 版本。
+* SAP 附註[1409604] hello 需 SAP Host Agent 版本 Windows Azure 中。
+* SAP 附註[2191498]具有 hello 必要 SAP Host Agent 版本適用於在 Azure 中的 Linux。
 * SAP Note [2243692] 包含 Azure 中 Linux 上的 SAP 授權相關資訊。
 * SAP Note [1984787] 包含 SUSE LINUX Enterprise Server 12 的一般資訊。
 * SAP Note [2002167] 包含 Red Hat Enterprise Linux 7.x 的一般資訊。
 * SAP Note [2069760] 包含 Oracle Linux 7.x 的一般資訊。
-* SAP Note [1999351] 包含 Azure Enhanced Monitoring Extension for SAP 的其他疑難排解資訊。
+* SAP 附註[1999351] hello Azure 強化監視功能延伸模組適用於 SAP 的其他疑難排解資訊。
 * SAP Note [1597355] 包含 Linux 交換空間的一般資訊。
 * [Azure SCN 上的 SAP 頁面](https://wiki.scn.sap.com/wiki/x/Pia7Gg)包含新聞和實用資源的集合。
 * [SAP Community WIKI](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) 包含 Linux 所需的所有 SAP Note。
@@ -385,48 +385,48 @@ ms.lasthandoff: 08/29/2017
 * [SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署][dbms-guide]
 
 ## <a name="b3253ee3-d63b-4d74-a49b-185e76c4088e"></a>Azure VM 上的 SAP 軟體部署案例
-您有多個選項可用於在 Azure 中部署 VM 和相關聯的磁碟。 一定要了解部署選項之間的差異，因為您可能必須根據您選擇的部署類型，採取不同的步驟來準備您的 VM 進行部署。
+您有多個選項可用於在 Azure 中部署 VM 和相關聯的磁碟。 部署選項之間的重要 toounderstand hello 差異是因為您可能需要不同的步驟 tooprepare 根據您所選擇的 hello 部署類型的部署 Vm。
 
-### <a name="db477013-9060-4602-9ad4-b0316f8bb281"></a>案例 1：從 Azure Marketplace 為 SAP 部署 VM
-您可以使用 Azure Marketplace 中由 Microsoft 或協力廠商提供的映像來部署 VM。 Marketplace 會提供 Windows Server 的一些標準 OS 映像以及不同的 Linux 散發套件。 您也可以部署包含資料庫管理系統 (DBMS) SKU 的映像，例如，Microsoft SQL Server。 如需使用映像搭配 DBMS SKU 的詳細資訊，請參閱[適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署][dbms-guide]。
+### <a name="db477013-9060-4602-9ad4-b0316f8bb281"></a>案例 1： 部署從 hello 適用於 SAP 的 Azure Marketplace 中的 VM
+您可以使用由 Microsoft 提供的映像，或由協力廠商 hello Azure Marketplace toodeploy 在您的 VM。 hello Marketplace 提供了一些標準的 OS 映像的 Windows Server 和其他 Linux 散發套件。 您也可以部署包含資料庫管理系統 (DBMS) SKU 的映像，例如，Microsoft SQL Server。 如需使用映像搭配 DBMS SKU 的詳細資訊，請參閱[適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署][dbms-guide]。
 
-下列流程圖顯示從 Azure Marketplace 部署 VM 的 SAP 特定步驟順序：
+hello 下列流程圖顯示 hello SAP 特定的序列，部署將 VM 從 hello Azure Marketplace 的步驟：
 
-![使用 Azure Marketplace 中的 VM 映像部署適用於 SAP 系統之 VM 的流程圖][deployment-guide-figure-100]
+![使用 VM 映像從 hello Azure Marketplace 的 SAP 系統部署 VM 的流程圖][deployment-guide-figure-100]
 
-#### <a name="create-a-virtual-machine-by-using-the-azure-portal"></a>使用 Azure 入口網站建立虛擬機器
-透過 Azure Marketplace 中的映像建立新虛擬機器的最簡單方式，就是使用 Azure 入口網站。
+#### <a name="create-a-virtual-machine-by-using-hello-azure-portal"></a>使用 hello Azure 入口網站建立虛擬機器
+最簡單方式 toocreate hello hello Azure Marketplace 中的影像與新的虛擬機器是使用 hello Azure 入口網站。
 
-1.  移至 <https://portal.azure.com/#create/hub>。  或者，在 Azure 入口網站功能表中，選取 [+ 新增]。
-2.  選取 [計算]，然後選取您想要部署的作業系統類型。 例如，Windows Server 2012 R2、SUSE Linux Enterprise Server 12 (SLES 12)、Red Hat Enterprise Linux 7.2 (RHEL 7.2) 或 Oracle Linux 7.2。 預設清單檢視不會顯示所有支援的作業系統。 選取 [查看全部] 以取得完整清單。 如需 SAP 軟體部署支援的作業系統詳細資訊，請參閱 SAP Note [1928533]。
-3.  在下一頁上檢閱條款及條件。
-4.  在 [選取部署模型] 方塊中，選取 [Resource Manager]。
+1.  跳過<https://portal.azure.com/#create/hub>。  或者，您也可以在 hello Azure 入口網站功能表，選取**+ 新增**。
+2.  選取**計算**，然後選取您想要 toodeploy 作業系統的 hello 類型。 例如，Windows Server 2012 R2、SUSE Linux Enterprise Server 12 (SLES 12)、Red Hat Enterprise Linux 7.2 (RHEL 7.2) 或 Oracle Linux 7.2。 hello 預設清單檢視不會顯示所有支援的作業系統。 選取 [查看全部] 以取得完整清單。 如需 SAP 軟體部署支援的作業系統詳細資訊，請參閱 SAP Note [1928533]。
+3.  在 hello 下一個頁面上，檢閱 條款和條件。
+4.  在 hello**選取部署模型**方塊中，選取**資源管理員**。
 5.  選取 [ **建立**]。
 
-除了所有必要的資源 (例如網路介面或儲存體帳戶) 以外，此精靈會引導您完成必要參數設定以建立虛擬機器。 其中一些參數包括︰
+hello 精靈會引導您完成設定所需的 hello 參數 toocreate hello 虛擬機器，此外 tooall 所需的資源，如網路介面和儲存體帳戶。 其中一些參數包括︰
 
 1. **基本**：
- * **名稱**：資源名稱 (虛擬機器名稱)。
- * **VM 磁碟類型**：選取作業系統磁碟的磁碟類型。 如果您想要使用進階儲存體作為您的資料磁碟，建議您作業系統磁碟也使用進階儲存體。
- * **使用者名稱和密碼**或 **SSH 公用金鑰**︰輸入在佈建期間建立之使用者的使用者名稱和密碼。 對於 Linux 虛擬機器，您可以輸入要用來登入電腦的公開安全殼層 (SSH) 金鑰。
- * **訂用帳戶**：選取您想要用來佈建新虛擬機器的訂用帳戶。
- * **資源群組**：VM 的資源群組名稱。 您可以輸入新資源群組的名稱，或現有資源群組的名稱。
- * **位置**︰部署新虛擬機器的位置。 如果您想要將虛擬機器連線到內部部署網路，請務必選取將 Azure 連線到內部部署網路的虛擬網路位置。 如需詳細資訊，請參閱 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]中的 [Microsoft Azure 網路][planning-guide-microsoft-azure-networking]。
+ * **名稱**: hello hello 資源 （hello 虛擬機器名稱） 名稱。
+ * **VM 磁碟類型**： 選取 hello 的 hello OS 磁碟的磁碟類型。 如果您想 toouse 高階儲存體的資料磁碟時，建議使用進階儲存體的 hello 作業系統磁碟。
+ * **使用者名稱和密碼**或**SSH 公開金鑰**: hello 使用者名稱和密碼的 hello 佈建期間建立的 hello 使用者輸入。 針對 Linux 虛擬機器，您可以輸入 hello toohello 機器用於 toosign 公開安全殼層 (SSH) 金鑰。
+ * **訂用帳戶**： 選取您想要 toouse tooprovision hello 新虛擬機器的 hello 訂用帳戶。
+ * **資源群組**: hello hello 資源群組名稱 hello VM。 您可以輸入新資源群組或 hello 名稱的資源群組已存在的任何一個 hello 名稱。
+ * **位置**: toodeploy hello 新的虛擬機器的位置。 如果您想 tooconnect hello 虛擬機器 tooyour 在內部部署網路，請確定您選取 hello hello Azure tooyour 在內部部署網路連線的虛擬網路位置。 如需詳細資訊，請參閱 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]中的 [Microsoft Azure 網路][planning-guide-microsoft-azure-networking]。
 2. ：
 
-     如需支援的 VM 類型清單，請參閱 SAP Note [1928533]。 如果您想要使用進階儲存體，請務必選取正確的 VM 類型。 並非所有 VM 類型都支援進階儲存體。 如需詳細資訊，請參閱[Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]中的[儲存體：Microsoft Azure 儲存體和資料磁碟][planning-guide-storage-microsoft-azure-storage-and-data-disks]和 [Azure 進階儲存體][planning-guide-azure-premium-storage]。
+     如需支援的 VM 類型清單，請參閱 SAP Note [1928533]。 請確定您選取 hello 正確的 VM 類型，如果您想 toouse Azure 高階儲存體。 並非所有 VM 類型都支援進階儲存體。 如需詳細資訊，請參閱[Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]中的[儲存體：Microsoft Azure 儲存體和資料磁碟][planning-guide-storage-microsoft-azure-storage-and-data-disks]和 [Azure 進階儲存體][planning-guide-azure-premium-storage]。
 
 3. **設定**：
   * **儲存體**
-    * **磁碟類型**：選取作業系統磁碟的磁碟類型。 如果您想要使用進階儲存體作為您的資料磁碟，建議您作業系統磁碟也使用進階儲存體。
-    * **使用受管理的磁碟**：如果您想要使用受管理的磁碟，請選取 [是]。 如需受控磁碟的詳細資訊，請參閱規劃指南中的[受管理磁碟][planning-guide-managed-disks]。
+    * **磁碟類型**： 選取 hello 的 hello OS 磁碟的磁碟類型。 如果您想 toouse 高階儲存體的資料磁碟時，建議使用進階儲存體的 hello 作業系統磁碟。
+    * **使用受管理的磁碟**： 如果您想 toouse 管理磁碟，請選取 [是]。 如需有關管理磁碟的詳細資訊，請參閱第章[管理磁碟][ planning-guide-managed-disks] hello 規劃指南中。
     * **儲存體帳戶**：選取現有的儲存體帳戶或建立新的儲存體帳戶。 並非所有的儲存體類型都適用於執行 SAP 應用程式。 如需儲存體類型的詳細資訊，請參閱[適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署][dbms-guide]中的 [Microsoft Azure 儲存體][dbms-guide-2.3]。
   * **網路**
-    * **虛擬網路**和**子網路**：若要整合虛擬機器與內部網路，請選取連線到內部部署網路的虛擬網路。
-    * **公用 IP 位址**︰選取您想要使用的公用 IP 位址，或輸入參數來建立新的公用 IP 位址。 您可以使用公用 IP 位址，透過網際網路存取您的虛擬機器。 請務必也建立網路安全性群組，以便對您的虛擬機器進行安全的存取。
+    * **虛擬網路**和**子網路**: toointegrate hello 虛擬機器與您的內部網路連線的 tooyour 在內部部署網路選取 hello 虛擬網路。
+    * **公用 IP 位址**： 選取 hello 公用 IP 位址，您想 toouse，或輸入參數 toocreate 新的公用 IP 位址。 您可以透過 hello 網際網路使用公用 IP 位址 tooaccess 您的虛擬機器。 請確定，您也可以建立網路安全性群組 toohelp 安全存取 tooyour 虛擬機器。
     * **網路安全性群組**：如需詳細資訊，請參閱[使用網路安全性群組控制網路流量流程][virtual-networks-nsg]。
-  * **擴充功能**：您可以將虛擬機器擴充功能新增至部署中，藉此安裝安裝。 您不需要在此步驟新增擴充功能。 稍後會安裝 SAP 支援所需的擴充功能。 請參閱本指南的[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5]。
-  * **高可用性**：選取可用性設定組，或輸入參數來建立新的可用性設定組。 如需詳細資訊，請參閱 [Azure 可用性設定組][planning-guide-3.2.3]。
+  * **擴充功能**： 您可以藉由加入 toohello 部署中安裝虛擬機器擴充功能。 您不需要在此步驟中 tooadd 擴充功能。 所需的 SAP 支援的 hello 延伸模組會安裝更新版本。 請參閱第章[設定 hello Azure 強化監視功能延伸模組適用於 SAP] [ deployment-guide-4.5]本指南中。
+  * **高可用性**： 選擇可用性設定組，或輸入 hello 參數 toocreate 新的可用性設定。 如需詳細資訊，請參閱 [Azure 可用性設定組][planning-guide-3.2.3]。
   * **監視**
     * **開機診斷**︰您可以選取 [停用] 開機診斷。
     * **客體 OS 診斷**︰您可以選取 [停用] 監視診斷。
@@ -435,129 +435,129 @@ ms.lasthandoff: 08/29/2017
 
   檢閱您的選取項目，然後選取 [確定]。
 
-您的虛擬機器會部署於您選取的資源群組中。
+您的虛擬機器部署在您選取的 hello 資源群組。
 
 #### <a name="create-a-virtual-machine-by-using-a-template"></a>使用範本建立虛擬機器
-您可以使用 [azure-quickstart-templates GitHub repository][azure-quickstart-templates-github] 中發佈的其中一個 SAP 範本來建立虛擬機器。 您可以也使用 [Azure 入口網站][virtual-machines-windows-tutorial]、[PowerShell][virtual-machines-ps-create-preconfigure-windows-resource-manager-vms] 或 [Azure CLI][virtual-machines-linux-tutorial] 來手動建立虛擬機器。
+您可以使用其中一種在 hello 發行 hello SAP 範本建立虛擬機器[azure-快速入門範本 GitHub 儲存機制][azure-quickstart-templates-github]。 您也可以手動建立虛擬機器使用 hello [Azure 入口網站][virtual-machines-windows-tutorial]， [PowerShell][virtual-machines-ps-create-preconfigure-windows-resource-manager-vms]，或[Azure CLI][virtual-machines-linux-tutorial].
 
 * [**兩層組態 (僅只一部虛擬機器) 範本** (sap-2-tier-marketplace-image)][sap-templates-2-tier-marketplace-image]
 
-  若只要使用一部虛擬機器建立一個兩層系統，請使用此範本。
+  toocreate 兩層式系統使用只有一部虛擬機器，請使用此範本。
 * [**兩層組態 (僅只一部虛擬機器) 範本 - 受管理磁碟** (sap-2-tier-marketplace-image-md)][sap-templates-2-tier-marketplace-image-md]
 
-  若只要使用一部虛擬機器和受管理磁碟建立一個兩層系統，請使用此範本。
+  toocreate 兩層式系統使用只有一個虛擬機器和受管理的磁碟，請使用此範本。
 * [**三層組態 (多部虛擬機器) 範本** (sap-3-tier-marketplace-image)][sap-templates-3-tier-marketplace-image]
 
-  若要使用多部虛擬機器建立一個三層系統，請使用此範本。
+  toocreate 三層式系統使用多部虛擬機器，請使用此範本。
 * [**三層組態 (多部虛擬機器) 範本 - 受管理磁碟** (sap-3-tier-marketplace-image-md)][sap-templates-3-tier-marketplace-image-md]
 
-  若要使用多部虛擬機器和受管理磁碟建立一個三層系統，請使用此範本。
+  toocreate 三層式系統使用多個虛擬機器和受管理的磁碟，請使用此範本。
 
-在 Azure 入口網站中，輸入範本的下列參數：
+在 hello Azure 入口網站中，輸入下列 hello 範本參數的 hello:
 
 1. **基本**：
-  * **訂用帳戶**：用來部署範本的訂用帳戶。
-  * **資源群組**：用來部署範本的資源群組。 您可以建立新的資源群組，也可以選取訂用帳戶中的現有資源群組。
-  * **位置**︰部署範本的位置。 如果您選取了現有的資源群組，則會使用該資源群組的位置。
+  * **訂用帳戶**: hello 訂用帳戶 toouse toodeploy hello 範本。
+  * **資源群組**: hello 資源群組 toouse toodeploy hello 範本。 您可以建立新的資源群組，或者您可以選取現有的資源群組 hello 訂用帳戶中。
+  * **位置**: toodeploy hello 範本的位置。 如果您選取現有的資源群組時，會使用該資源群組中的 hello 位置。
 
 2. **設定**：
-  * **SAP 系統識別碼**：SAP 系統識別碼 (SID)。
-  * **OS 類型**：您想要部署的作業系統，例如，Windows Server 2012 R2、SUSE Linux Enterprise Server 12 (SLES 12)、Red Hat Enterprise Linux 7.2 (RHEL 7.2) 或 Oracle Linux 7.2。
+  * **SAP 系統識別碼**: hello SAP 系統識別碼 (SID)。
+  * **OS 類型**: hello 作業系統 toodeploy，例如、 Windows Server 2012 R2、 SUSE Linux Enterprise Server 12 (SLES 12)、 Red Hat Enterprise Linux 7.2 (RHEL 7.2) 或 Oracle Linux 7.2。
 
-    清單檢視不會顯示所有支援的作業系統。 如需 SAP 軟體部署支援的作業系統詳細資訊，請參閱 SAP Note [1928533]。
-  * **SAP 系統大小**：SAP 系統的大小。
+    hello 清單檢視不會顯示所有支援的作業系統。 如需 SAP 軟體部署支援的作業系統詳細資訊，請參閱 SAP Note [1928533]。
+  * **SAP 系統大小**: hello hello SAP 系統的大小。
 
-    新系統所提供的 SAP 數量。 如果您不確定系統需要多少 SAP，請詢問您的 SAP 技術合作夥伴或系統整合者。
-  * **系統可用性**：(僅限三層範本) 系統可用性。
+    提供的 SAPS hello 新系統的 hello 數目。 如果您不確定需要多少的 SAPS hello 系統，請要求您 SAP 技術合作夥伴或系統整合者。
+  * **系統可用性**（三層式範本）： hello 系統可用性。
 
     選取適合高可用性安裝組態的 **HA**。 為 ABAP SAP Central Services (ASCS) 建立兩部資料庫伺服器和兩部伺服器。
-  * **儲存體類型**：(僅限兩層範本) 要使用的儲存體類型。
+  * **儲存體類型**（僅限兩層式範本）： hello 的儲存體 toouse 型別。
 
     對於大型系統，我們強烈建議使用 Azure 進階儲存體。 如需儲存體類型的詳細資訊，請參閱下列資源：
       * [針對 SAP DBMS 執行個體使用 Azure 進階 SSD 儲存體][2367194]
       * [適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署][dbms-guide]中的 [Microsoft Azure 儲存體][dbms-guide-2.3]
       * [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體][storage-premium-storage-preview-portal]
-      * [Microsoft Azure 儲存體簡介][storage-introduction]
+      * [簡介 tooMicrosoft Azure 儲存體][storage-introduction]
   * **管理員使用者名稱**和**管理員密碼**：使用者名稱和密碼。
-    建立新的使用者，以便登入虛擬機器。
-  * **新的或現有的子網路**︰決定要建立新的虛擬網路和子網路，還是使用現有的子網路。 如果您已經有連線到內部部署網路的虛擬網路，請選取 [現有]。
-  * **子網路識別碼**：虛擬機器將要連線的子網路識別碼。 選取將虛擬機器連線到內部部署網路之虛擬私人網路 (VPN) 或 ExpressRoute 虛擬網路的子網路。 識別碼通常如下所示：/subscriptions/&lt;訂用帳戶識別碼>/resourceGroups/&lt;資源群組名稱>/providers/Microsoft.Network/virtualNetworks/&lt;虛擬網路名稱>/subnets/&lt;子網路名稱>
+    建立新的使用者，登入 toohello 虛擬機器。
+  * **新的或現有的子網路**︰決定要建立新的虛擬網路和子網路，還是使用現有的子網路。 如果您已經連接的 tooyour 在內部部署網路的虛擬網路，選取**現有**。
+  * **子網路識別碼**: hello 識別碼 hello 子網路 hello 虛擬機器會連接到。 選取您的虛擬私人網路 (VPN) 或 Azure ExpressRoute 虛擬網路 toouse tooconnect hello 虛擬機器 tooyour 在內部部署網路的 hello 子網路。 hello 識別碼通常看起來像這樣： /subscriptions/&lt;訂用帳戶 id > /resourceGroups/&lt;資源群組名稱 > /providers/Microsoft.Network/virtualNetworks/&lt;虛擬網路名稱 > /subnets/&lt;子網路名稱 >
 
 3. **條款及條件**：  
-    檢閱並接受法律條款。
+    檢閱並接受 hello 法律條款。
 
 4.  選取 [購買]。
 
-使用 Azure Marketplace 中的映像時，預設會部署 Azure VM 代理程式。
+當您使用從 hello Azure Marketplace 映像時，預設會部署 hello Azure VM 代理程式。
 
 #### <a name="configure-proxy-settings"></a>進行 Proxy 設定
-根據內部部署網路的設定方式，您可能需要在您的 VM 上設定 Proxy。 如果 VM 已透過 VPN 或 ExpressRoute 連線到內部部署網路，VM 可能無法存取網際網路，而且無法下載所需的擴充功能或收集監視資料。 如需詳細資訊，請參閱[設定 Proxy][deployment-guide-configure-proxy]。
+根據您在內部部署網路的設定方式，您可能需要在 VM 上的 tooset hello proxy。 如果 VM 是透過 VPN 或 ExpressRoute 連線的 tooyour 在內部部署網路，hello VM 可能不是可以 tooaccess hello 網際網路，和不可以 toodownload hello 所需的擴充功能或收集的監視資料。 如需詳細資訊，請參閱[設定 hello proxy][deployment-guide-configure-proxy]。
 
 #### <a name="join-a-domain-windows-only"></a>加入網域 (僅限 Windows)
-如果 Azure 部署連線到內部部署 Active Directory 或 DNS 執行個體，透過 Azure 站對站 VPN 連線或 ExpressRoute (在 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]中稱為「跨單位」)，則 VM 應該加入內部部署網域。 如需這項工作相關考量的詳細資訊，請參閱[將 VM 加入內部部署網域 (僅限 Windows)][deployment-guide-4.3]。
+如果您的 Azure 部署連接的 tooan 在內部部署 Active Directory 或 DNS 執行個體已透過 Azure 站台對站 VPN 連線或 ExpressRoute (這稱為*跨單位*中[規劃 Azure 虛擬機器與實作的 SAP NetWeaver][planning-guide])，預期該 hello VM 加入內部網域。 如需考量這項工作的詳細資訊，請參閱[加入 VM tooan 在內部部署網域 (僅限 Windows)][deployment-guide-4.3]。
 
 #### <a name="ec323ac3-1de9-4c3a-b770-4ff701def65b"></a>設定監視
-若要確保 SAP 支援您的環境，請如[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 所述，設定 Azure Enhanced Monitoring Extension for SAP。 請從 [SAP 資源][deployment-guide-2.2]所列的資源中，檢查 SAP 監視的必要條件，以及所需的最低 SAP 核心和 SAP Host Agent 版本。
+確定 SAP 支援您的環境中所述設定 hello Azure Monitoring Extension for SAP toobe[設定 hello Azure 強化監視功能延伸模組適用於 SAP][deployment-guide-4.5]。 檢查 SAP monitoring，和最低要求版本的 SAP 核心與 SAP Host Agent，在 hello 中列出的資源中的 hello 必要條件[SAP 資源][deployment-guide-2.2]。
 
 #### <a name="monitoring-check"></a>監視檢查
 如[針對設定端對端監視進行檢查及疑難排解][deployment-guide-troubleshooting-chapter]所述，檢查監視是否正常運作。
 
 #### <a name="post-deployment-steps"></a>部署後步驟
-建立 VM 及部署 VM 之後，您需要在 VM 中安裝所需的軟體元件。 由於這類 VM 部署中的部署/軟體安裝順序，要安裝的軟體必須已可在 Azure 中或另一部 VM 上使用，或成為可以附加的磁碟。 否則，考慮使用可提供內部部署資產 (安裝共用) 連線的跨單位案例。
+在建立之後 hello VM 及 hello VM 的部署，您需要在 hello VM tooinstall hello 必要軟體元件。 在這種類型的 VM 部署的 hello 部署/軟體安裝順序，因為安裝 hello 軟體 toobe 必須已經是可供使用，在 Azure 中，另一個在 VM 上，或為可附加的磁碟。 或者，請考慮使用跨單位案例中，哪些連線 toohello 內部部署資產 （安裝共用） 指定。
 
-在 Azure 中部署您的 VM 之後，請遵循相同的指導方針和工具在 VM 上安裝 SAP 軟體，就像在內部部署環境中所做的一樣。 若要在 Azure VM 上安裝 SAP 軟體，SAP 和 Microsoft 建議將 SAP 安裝媒體上傳並儲存在 Azure VHD 或受管理磁碟上，或建立作為檔案伺服器並包含所有必要 SAP 安裝媒體的 Azure VM。
+部署在 Azure VM 之後，後續 hello 相同指導方針和工具 tooinstall hello SAP 軟體在您為您的 VM 會在內部部署環境中。 tooinstall Azure VM 上的 SAP 軟體，同時 SAP 和 Microsoft 建議您上傳，並將 hello SAP 安裝媒體儲存在 Azure Vhd 或受管理的磁碟，或您建立 Azure VM，為檔案伺服器具有所有 hello 運作所需的 SAP 安裝媒體。
 
 ### <a name="54a1fc6d-24fd-4feb-9c57-ac588a55dff2"></a>案例 2：使用自訂映像為 SAP 部署 VM
-因為不同版本的作業系統或 DBMS 有不同的修補需求，所以您在 Azure Marketplace 中找到的映像可能無法滿足您的需求。 您可以改為使用自己的 OS/DBMS VM 映像來建立 VM，稍後再加以部署。
-您可以使用不同的步驟來建立適用於 Linux 的私人映像，而不是建立適用於 Windows 的映像。
+因為不同版本的作業系統或 DBMS 擁有不同修補程式需求，您在 hello Azure Marketplace 中找到的 hello 映像可能無法滿足您的需求。 Toocreate VM 而可以使用您自己 OS/DBMS VM 映像，您可以稍後再部署。
+您使用不同的步驟 toocreate 私人映像適用於 Linux 比 windows toocreate 其中一個。
 
 - - -
 > ![Windows][Logo_Windows] Windows
 >
-> 若要準備可用來部署多部虛擬機器的 Windows 映像，必須在內部部署 VM 上將 Windows 設定 (如 Windows SID 和主機名稱) 抽象化或一般化。 您可以使用 [sysprep](https://msdn.microsoft.com/library/hh825084.aspx) 來執行此作業。
+> 您可以使用多個虛擬機器、 hello Windows 設定 （例如 Windows SID 和主機名稱） 必須是抽象或一般化的 toodeploy hello 的 Windows 映像 tooprepare 內部部署 VM。 您可以使用[sysprep](https://msdn.microsoft.com/library/hh825084.aspx) toodo 這。
 >
 > ![Linux][Logo_Linux] Linux
 >
-> 若要準備可用來部署多部虛擬機器的 Linux 映像，必須在內部部署 VM 上抽象化或一般化一些 Linux 設定。 您可以使用 `waagent -deprovision` 來執行此作業。 如需詳細資訊，請參閱[擷取在 Azure 上執行的 Linux 虛擬機器][virtual-machines-linux-capture-image]和 [Azure Linux 代理程式使用者指南][virtual-machines-linux-agent-user-guide-command-line-options]。
+> tooprepare Linux 映像，您可以使用 toodeploy 多部虛擬機器，某些 Linux 設定必須是抽象或一般化上 hello 內部部署 VM。 您可以使用`waagent -deprovision`toodo 這。 如需詳細資訊，請參閱[擷取 Linux 虛擬機器在 Azure 上執行][ virtual-machines-linux-capture-image]和 hello [Azure Linux 代理程式使用者指南][virtual-machines-linux-agent-user-guide-command-line-options]。
 >
 >
 
 - - -
-您可以準備和建立自訂映像，然後使用它來建立多個新 VM。 如需詳細資訊，請參閱 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]。 藉由使用 SAP Software Provision Manager 來安裝新的 SAP 系統、從附加至虛擬機器的磁碟還原資料庫備份，或直接從 Azure 儲存體還原資料庫備份 (如果 DBMS 支援的話)，來設定您的資料庫內容。 如需詳細資訊，請參閱[適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署][dbms-guide]。 如果您已在內部部署 VM (特別針對二層系統) 中安裝 SAP 系統，您可以在部署 Azure VM 之後，使用 SAP Software Provisioning Manager 支援的「系統重新命名」程序來調整 SAP 系統設定 (SAP Note [1619720])。 否則，您可以在部署 Azure VM 之後安裝 SAP 軟體。
+您可以準備和建立自訂映像，，然後使用它 toocreate 多個新的 Vm。 如需詳細資訊，請參閱 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]。 設定您的資料庫內容，透過 SAP Software Provisioning Manager tooinstall 新 SAP 系統 （會從附加的 toohello 虛擬機器的磁碟還原資料庫備份） 或還原資料庫備份，直接從 Azure 儲存體，如果您的 DBMS支援它。 如需詳細資訊，請參閱[適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署][dbms-guide]。 如果您已在內部部署 VM （特別是針對兩層式系統） 上安裝 SAP 系統，您可以使用 hello 系統重新命名程序支援的 SAP 軟體佈建 hello 部署的 hello Azure VM 後調整 hello SAP 系統設定管理員 (SAP 附註[1619720])。 否則，您也可以在您部署的 hello Azure VM 之後安裝 hello SAP 軟體。
 
-下列流程圖顯示從自訂映像部署 VM 的 SAP 特定步驟順序：
+hello 下列流程圖顯示 hello SAP 特定的序列，部署將 VM 從自訂映像的步驟：
 
 ![使用私人 Marketplace 中的 VM 映像部署適用於 SAP 系統之 VM 的流程圖][deployment-guide-figure-300]
 
-#### <a name="create-a-virtual-machine-by-using-the-azure-portal"></a>使用 Azure 入口網站建立虛擬機器
-要從受管理磁碟映像建立新的虛擬機器，最簡單方式就是使用 Azure 入口網站。 如需如何建立受管理磁碟映像的詳細資訊，請參閱[在 Azure 中擷取一般化 VM 的受管理映像](https://docs.microsoft.com/azure/virtual-machines/windows/capture-image-resource)。
+#### <a name="create-a-virtual-machine-by-using-hello-azure-portal"></a>使用 hello Azure 入口網站建立虛擬機器
+最簡單方式 toocreate hello 中受管理的磁碟映像的新虛擬機器是使用 hello Azure 入口網站。 如需有關如何 toocreate 管理磁碟映像，讀取[擷取受管理的 Azure 中的一般化 VM 映像](https://docs.microsoft.com/azure/virtual-machines/windows/capture-image-resource)
 
-1.  移至 <https://ms.portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.Compute%2Fimages>。 或者，在 Azure 入口網站的功能表中選取 [映像]。
-2.  選取要部署的受管理磁碟映像，然後按一下 [建立 VM]。
+1.  跳過<https://ms.portal.azure.com/#blade/HubsExtension/Resources/resourceType/Microsoft.Compute%2Fimages>。 或者，您也可以在 hello Azure 入口網站功能表，選取**映像**。
+2.  選取 hello 管理磁碟映像 toodeploy 然後按一下**建立 VM**
 
-除了所有必要的資源 (例如網路介面或儲存體帳戶) 以外，此精靈會引導您完成必要參數設定以建立虛擬機器。 其中一些參數包括︰
+hello 精靈會引導您完成設定所需的 hello 參數 toocreate hello 虛擬機器，此外 tooall 所需的資源，如網路介面和儲存體帳戶。 其中一些參數包括︰
 
 1. **基本**：
- * **名稱**：資源名稱 (虛擬機器名稱)。
- * **VM 磁碟類型**：選取作業系統磁碟的磁碟類型。 如果您想要使用進階儲存體作為您的資料磁碟，建議您作業系統磁碟也使用進階儲存體。
- * **使用者名稱和密碼**或 **SSH 公用金鑰**︰輸入在佈建期間建立之使用者的使用者名稱和密碼。 對於 Linux 虛擬機器，您可以輸入要用來登入電腦的公開安全殼層 (SSH) 金鑰。
- * **訂用帳戶**：選取您想要用來佈建新虛擬機器的訂用帳戶。
- * **資源群組**：VM 的資源群組名稱。 您可以輸入新資源群組的名稱，或現有資源群組的名稱。
- * **位置**︰部署新虛擬機器的位置。 如果您想要將虛擬機器連線到內部部署網路，請務必選取將 Azure 連線到內部部署網路的虛擬網路位置。 如需詳細資訊，請參閱 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]中的 [Microsoft Azure 網路][planning-guide-microsoft-azure-networking]。
+ * **名稱**: hello hello 資源 （hello 虛擬機器名稱） 名稱。
+ * **VM 磁碟類型**： 選取 hello 的 hello OS 磁碟的磁碟類型。 如果您想 toouse 高階儲存體的資料磁碟時，建議使用進階儲存體的 hello 作業系統磁碟。
+ * **使用者名稱和密碼**或**SSH 公開金鑰**: hello 使用者名稱和密碼的 hello 佈建期間建立的 hello 使用者輸入。 針對 Linux 虛擬機器，您可以輸入 hello toohello 機器用於 toosign 公開安全殼層 (SSH) 金鑰。
+ * **訂用帳戶**： 選取您想要 toouse tooprovision hello 新虛擬機器的 hello 訂用帳戶。
+ * **資源群組**: hello hello 資源群組名稱 hello VM。 您可以輸入新資源群組或 hello 名稱的資源群組已存在的任何一個 hello 名稱。
+ * **位置**: toodeploy hello 新的虛擬機器的位置。 如果您想 tooconnect hello 虛擬機器 tooyour 在內部部署網路，請確定您選取 hello hello Azure tooyour 在內部部署網路連線的虛擬網路位置。 如需詳細資訊，請參閱 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]中的 [Microsoft Azure 網路][planning-guide-microsoft-azure-networking]。
 2. ：
 
-     如需支援的 VM 類型清單，請參閱 SAP Note [1928533]。 如果您想要使用進階儲存體，請務必選取正確的 VM 類型。 並非所有 VM 類型都支援進階儲存體。 如需詳細資訊，請參閱[Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]中的[儲存體：Microsoft Azure 儲存體和資料磁碟][planning-guide-storage-microsoft-azure-storage-and-data-disks]和 [Azure 進階儲存體][planning-guide-azure-premium-storage]。
+     如需支援的 VM 類型清單，請參閱 SAP Note [1928533]。 請確定您選取 hello 正確的 VM 類型，如果您想 toouse Azure 高階儲存體。 並非所有 VM 類型都支援進階儲存體。 如需詳細資訊，請參閱[Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]中的[儲存體：Microsoft Azure 儲存體和資料磁碟][planning-guide-storage-microsoft-azure-storage-and-data-disks]和 [Azure 進階儲存體][planning-guide-azure-premium-storage]。
 
 3. **設定**：
   * **儲存體**
-    * **磁碟類型**：選取作業系統磁碟的磁碟類型。 如果您想要使用進階儲存體作為您的資料磁碟，建議您作業系統磁碟也使用進階儲存體。
-    * **使用受管理的磁碟**：如果您想要使用受管理的磁碟，請選取 [是]。 如需受控磁碟的詳細資訊，請參閱規劃指南中的[受管理磁碟][planning-guide-managed-disks]。
+    * **磁碟類型**： 選取 hello 的 hello OS 磁碟的磁碟類型。 如果您想 toouse 高階儲存體的資料磁碟時，建議使用進階儲存體的 hello 作業系統磁碟。
+    * **使用受管理的磁碟**： 如果您想 toouse 管理磁碟，請選取 [是]。 如需有關管理磁碟的詳細資訊，請參閱第章[管理磁碟][ planning-guide-managed-disks] hello 規劃指南中。
   * **網路**
-    * **虛擬網路**和**子網路**：若要整合虛擬機器與內部網路，請選取連線到內部部署網路的虛擬網路。
-    * **公用 IP 位址**︰選取您想要使用的公用 IP 位址，或輸入參數來建立新的公用 IP 位址。 您可以使用公用 IP 位址，透過網際網路存取您的虛擬機器。 請務必也建立網路安全性群組，以便對您的虛擬機器進行安全的存取。
+    * **虛擬網路**和**子網路**: toointegrate hello 虛擬機器與您的內部網路連線的 tooyour 在內部部署網路選取 hello 虛擬網路。
+    * **公用 IP 位址**： 選取 hello 公用 IP 位址，您想 toouse，或輸入參數 toocreate 新的公用 IP 位址。 您可以透過 hello 網際網路使用公用 IP 位址 tooaccess 您的虛擬機器。 請確定，您也可以建立網路安全性群組 toohelp 安全存取 tooyour 虛擬機器。
     * **網路安全性群組**：如需詳細資訊，請參閱[使用網路安全性群組控制網路流量流程][virtual-networks-nsg]。
-  * **擴充功能**：您可以將虛擬機器擴充功能新增至部署中，藉此安裝安裝。 您不需要在此步驟新增擴充功能。 稍後會安裝 SAP 支援所需的擴充功能。 請參閱本指南的[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5]。
-  * **高可用性**：選取可用性設定組，或輸入參數來建立新的可用性設定組。 如需詳細資訊，請參閱 [Azure 可用性設定組][planning-guide-3.2.3]。
+  * **擴充功能**： 您可以藉由加入 toohello 部署中安裝虛擬機器擴充功能。 您不需要在此步驟中 tooadd 延伸模組。 所需的 SAP 支援的 hello 延伸模組會安裝更新版本。 請參閱第章[設定 hello Azure 強化監視功能延伸模組適用於 SAP] [ deployment-guide-4.5]本指南中。
+  * **高可用性**： 選擇可用性設定組，或輸入 hello 參數 toocreate 新的可用性設定。 如需詳細資訊，請參閱 [Azure 可用性設定組][planning-guide-3.2.3]。
   * **監視**
     * **開機診斷**︰您可以選取 [停用] 開機診斷。
     * **客體 OS 診斷**︰您可以選取 [停用] 監視診斷。
@@ -566,83 +566,83 @@ ms.lasthandoff: 08/29/2017
 
   檢閱您的選取項目，然後選取 [確定]。
 
-您的虛擬機器會部署於您選取的資源群組中。
+您的虛擬機器部署在您選取的 hello 資源群組。
 #### <a name="create-a-virtual-machine-by-using-a-template"></a>使用範本建立虛擬機器
-若要透過 Azure 入口網站使用私人 OS 映像來建立部署，請使用下列其中一個 SAP 範本。 這些是 [azure-quickstart-templates GitHub 儲存機制][azure-quickstart-templates-github]中發佈的範本。 您可以也使用 [PowerShell][virtual-machines-upload-image-windows-resource-manager] 手動建立虛擬機器。
+toocreate 使用私用 hello Azure 入口網站，從作業系統映像的部署使用其中一個 hello 遵循 SAP 範本。 在 hello 中發佈這些範本[azure-快速入門範本 GitHub 儲存機制][azure-quickstart-templates-github]。 您可以也使用 [PowerShell][virtual-machines-upload-image-windows-resource-manager] 手動建立虛擬機器。
 
 * [**兩層組態 (僅限一部虛擬機器) 範本** (sap-2-tier-user-image)][sap-templates-2-tier-user-image]
 
-  若只要使用一部虛擬機器建立一個兩層系統，請使用此範本。
+  toocreate 兩層式系統使用只有一部虛擬機器，請使用此範本。
 * [**兩層組態 (僅只一部虛擬機器) 範本 - 受管理磁碟映像** (sap-2-tier-user-image-md)][sap-templates-2-tier-user-image-md]
 
-  若只要使用一部虛擬機器和受管理磁碟映像建立一個兩層系統，請使用此範本。
+  toocreate 兩層式系統使用只有一部虛擬機器和受管理的磁碟映像，請使用此範本。
 * [**三層組態 (多部虛擬機器) 範本** (sap-3-tier-user-image)][sap-templates-3-tier-user-image]
 
-  若要使用多部虛擬機器或自己的 OS 映像建立一個三層系統，請使用此範本。
+  toocreate 三層式系統使用多部虛擬機器或您自己的作業系統映像，請使用此範本。
 * [**三層組態 (多部虛擬機器) 範本 - 受管理磁碟映像** (sap-3-tier-user-image-md)][sap-templates-3-tier-user-image-md]
 
-  若要使用多部虛擬機器或自己的 OS 映像和受管理磁碟映像建立一個三層系統，請使用此範本。
+  toocreate 三層式系統使用多部虛擬機器或您自己的作業系統映像和受管理的磁碟映像，請使用此範本。
 
-在 Azure 入口網站中，輸入範本的下列參數：
+在 hello Azure 入口網站中，輸入下列 hello 範本參數的 hello:
 
 1. **基本**：
-  * **訂用帳戶**：用來部署範本的訂用帳戶。
-  * **資源群組**：用來部署範本的資源群組。 您可以建立新的資源群組，或選取訂用帳戶中的現有資源群組。
-  * **位置**︰部署範本的位置。 如果您選取了現有的資源群組，則會使用該資源群組的位置。
+  * **訂用帳戶**: hello 訂用帳戶 toouse toodeploy hello 範本。
+  * **資源群組**: hello 資源群組 toouse toodeploy hello 範本。 您可以建立新的資源群組，或選取現有的資源群組 hello 訂用帳戶中。
+  * **位置**: toodeploy hello 範本的位置。 如果您選取現有的資源群組時，會使用該資源群組中的 hello 位置。
 2. **設定**：
-  * **SAP 系統識別碼**：SAP 系統識別碼。
-  * **OS 類型**：您想要部署的作業系統類型 (Windows 或 Linux)。
-  * **SAP 系統大小**：SAP 系統的大小。
+  * **SAP 系統識別碼**: hello SAP 系統識別碼。
+  * **OS 類型**: hello 想 toodeploy （Windows 或 Linux） 的作業系統類型。
+  * **SAP 系統大小**: hello hello SAP 系統的大小。
 
-    新系統所提供的 SAP 數量。 如果您不確定系統需要多少 SAP，請詢問您的 SAP 技術合作夥伴或系統整合者。
-  * **系統可用性**：(僅限三層範本) 系統可用性。
+    提供的 SAPS hello 新系統的 hello 數目。 如果您不確定需要多少的 SAPS hello 系統，請要求您 SAP 技術合作夥伴或系統整合者。
+  * **系統可用性**（三層式範本）： hello 系統可用性。
 
     選取適合高可用性安裝組態的 **HA**。 為 ASCS 建立兩部資料庫伺服器和兩部伺服器。
-  * **儲存體類型**：(僅限兩層範本) 要使用的儲存體類型。
+  * **儲存體類型**（僅限兩層式範本）： hello 的儲存體 toouse 型別。
 
-    對於大型系統，我們強烈建議使用 Azure 進階儲存體。 如需儲存體類型的詳細資訊，請參閱下列資源：
+    對於大型系統，我們強烈建議使用 Azure 進階儲存體。 如需存放裝置類型的詳細資訊，請參閱下列資源的 hello:
       * [針對 SAP DBMS 執行個體使用 Azure 進階 SSD 儲存體][2367194]
       * [適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署][dbms-guide]中的 [Microsoft Azure 儲存體][dbms-guide-2.3]
       * [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體][storage-premium-storage-preview-portal]
-      * [Microsoft Azure 儲存體簡介][storage-introduction]
-  * **使用者映像 VHD URI** (僅限非受管理磁碟映像範本)：私人 OS 映像 VHD 的 URI，例如 https://&lt;accountname>.blob.core.windows.net/vhds/userimage.vhd。
-  * **使用者映像儲存體帳戶** (僅限非受管理磁碟映像範本)：私人 OS 映像儲存所在的儲存體帳戶名稱，例如 &lt;accountname> in https://&lt;accountname>.blob.core.windows.net/vhds/userimage.vhd。
-  * **userImageId** (僅限非受管理磁碟映像範本)：您想要使用的受管理磁碟映像的識別碼。
-  * **管理員使用者名稱**和**管理員密碼**：使用者名稱和密碼。
+      * [簡介 tooMicrosoft Azure 儲存體][storage-introduction]
+  * **使用者映像 VHD URI** （僅限不受管理的磁碟映像範本）： hello 的 hello 私人 OS 映像 VHD，例如 https:// URI&lt;accountname >.blob.core.windows.net/vhds/userimage.vhd。
+  * **使用者映像儲存體帳戶**（僅限不受管理的磁碟映像範本）： hello hello 私人 OS 映像儲存的位置，例如的 hello 儲存體帳戶名稱&lt;accountname > 中 https://&lt;accountname >。blob.core.windows.net/vhds/userimage.vhd。
+  * **userImageId** （僅限受管理的磁碟映像範本）： hello 想 toouse 的受管理的磁碟映像的識別碼
+  * **系統管理員使用者名稱**和**系統管理員密碼**: hello 使用者名稱和密碼。
 
-    建立新的使用者，以便登入虛擬機器。
-  * **新的或現有的子網路**︰決定要建立新的虛擬網路和子網路，還是使用現有的子網路。 如果您已經有連線到內部部署網路的虛擬網路，請選取 [現有]。
-  * **子網路識別碼**：虛擬機器將要連線的子網路識別碼。 選取用於將虛擬機器連線到內部部署網路之 VPN 或 ExpressRoute 虛擬網路的子網路。 識別碼通常看起來像這樣︰
+    建立新的使用者，登入 toohello 虛擬機器。
+  * **新的或現有的子網路**︰決定要建立新的虛擬網路和子網路，還是使用現有的子網路。 如果您已經連接的 tooyour 在內部部署網路的虛擬網路，選取**現有**。
+  * **子網路識別碼**: hello 識別碼 hello 子網路 toowhich hello 虛擬機器會連接到。 選取您的 VPN 或 ExpressRoute 虛擬網路 toouse tooconnect hello 虛擬機器 tooyour 在內部部署網路的 hello 子網路。 hello 識別碼通常看起來像這樣：
 
     /subscriptions/&lt;訂用帳戶識別碼>/resourceGroups/&lt;資源群組名稱>/providers/Microsoft.Network/virtualNetworks/&lt;虛擬網路名稱>/subnets/&lt;子網路名稱>
 
 3. **條款及條件**：  
-    檢閱並接受法律條款。
+    檢閱並接受 hello 法律條款。
 
 4.  選取 [購買]。
 
-#### <a name="install-the-vm-agent-linux-only"></a>安裝 VM 代理程式 (僅限 Linux)
-若要使用上一節所述的範本，必須已在使用者映像中安裝 Linux 代理程式，否則部署會失敗。 如[下載、安裝和啟用 Azure VM 代理程式][deployment-guide-4.4]所述，下載 VM 代理程式並安裝於使用者映像中。 如果您未使用範本，稍後也可以安裝 VM 代理程式。
+#### <a name="install-hello-vm-agent-linux-only"></a>安裝 VM 代理程式 (只有 Linux) hello
+toouse hello 範本 hello 前面一節中所述，hello hello 使用者映像或 hello 部署中必須已安裝 Linux 代理程式將會失敗。 下載並安裝 hello 使用者映像中的 hello VM 代理程式中所述[下載、 安裝及啟用 hello Azure VM 代理程式][deployment-guide-4.4]。 如果您不使用 hello 範本，您也可以安裝 hello VM 代理程式更新版本。
 
 #### <a name="join-a-domain-windows-only"></a>加入網域 (僅限 Windows)
-如果 Azure 部署連線到內部部署 Active Directory 或 DNS 執行個體，透過 Azure 站對站 VPN 連線或 Azure ExpressRoute (在[Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]中稱為「跨單位」)，則 VM 應該加入內部部署網域。 如需這個步驟相關考量的詳細資訊，請參閱[將 VM 加入內部部署網域 (僅限 Windows)][deployment-guide-4.3]。
+如果您的 Azure 部署連接的 tooan 在內部部署 Active Directory 或 DNS 執行個體已透過 Azure 站台對站 VPN 連線或 Azure ExpressRoute (這稱為*跨單位*中[Azure 虛擬機器規劃和實作的 SAP NetWeaver][planning-guide])，預期該 hello VM 加入內部網域。 如需這個步驟的考量的詳細資訊，請參閱[加入 VM tooan 在內部部署網域 (僅限 Windows)][deployment-guide-4.3]。
 
 #### <a name="configure-proxy-settings"></a>進行 Proxy 設定
-根據內部部署網路的設定方式，您可能需要在您的 VM 上設定 Proxy。 如果 VM 已透過 VPN 或 ExpressRoute 連線到內部部署網路，VM 可能無法存取網際網路，而且無法下載所需的擴充功能或收集監視資料。 如需詳細資訊，請參閱[設定 Proxy][deployment-guide-configure-proxy]。
+根據您在內部部署網路的設定方式，您可能需要在 VM 上的 tooset hello proxy。 如果 VM 是透過 VPN 或 ExpressRoute 連線的 tooyour 在內部部署網路，hello VM 可能不是可以 tooaccess hello 網際網路，和不可以 toodownload hello 所需的擴充功能或收集的監視資料。 如需詳細資訊，請參閱[設定 hello proxy][deployment-guide-configure-proxy]。
 
 #### <a name="configure-monitoring"></a>設定監視
-若要確保 SAP 支援您的環境，請如[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 所述，設定 Azure Enhanced Monitoring Extension for SAP。 請從 [SAP 資源][deployment-guide-2.2]所列的資源中，檢查 SAP 監視的必要條件，以及所需的最低 SAP 核心和 SAP Host Agent 版本。
+確定 SAP 支援您的環境中所述設定 hello Azure Monitoring Extension for SAP toobe[設定 hello Azure 強化監視功能延伸模組適用於 SAP][deployment-guide-4.5]。 檢查 SAP monitoring，和最低要求版本的 SAP 核心與 SAP Host Agent，在 hello 中列出的資源中的 hello 必要條件[SAP 資源][deployment-guide-2.2]。
 
 #### <a name="monitoring-check"></a>監視檢查
 如[針對設定端對端監視進行檢查及疑難排解][deployment-guide-troubleshooting-chapter]所述，檢查監視是否正常運作。
 
 
 ### <a name="a9a60133-a763-4de8-8986-ac0fa33aa8c1"></a>案例 3：使用非一般化 Azure VHD 搭配 SAP 來移動內部部署 VM
-在此情況下，您會規劃將特定 SAP 系統從內部部署環境移至 Azure。 將包含 OS、SAP 二進位檔和最終 DBMS 二進位檔的 VHD，以及包含 DBMS 資料和記錄檔的 VHD 上傳至 Azure，即可達成。 不同於[案例 2：使用 SAP 適用的自訂映像部署 VM][deployment-guide-3.3] 中所述的案例，在此情況下，您可以在 Azure VM 中保留主機名稱、SAP SID 和 SAP 使用者帳戶，因為這些項目設定於內部部署環境中。 您不需要將 OS 一般化。 此案例最適用於跨單位案例，其中部分的 SAP 架構是在內部部署執行，部分則在 Azure 上執行。
+在此案例中，您計劃 toomove 特定 SAP 系統從內部部署環境 tooAzure。 您可以執行這項操作 hello hello OS，hello SAP 二進位檔，VHD 上傳及最終 hello DBMS 二進位檔，再加上 hello Vhd hello 資料和記錄檔的 hello tooAzure 的 DBMS。 不同於中所述的 hello 案例[案例 2： 使用部署 VM 的自訂映像為 SAP][deployment-guide-3.3]、 在此情況下，保留 hello 主機名稱、 SAP SID 和 SAP 使用者帳戶在 hello Azure VM 中，所以它們在 hello 在內部部署環境中設定。 您不需要 toogeneralize hello OS。 此案例適用於最常 toocross 內部部署案例，其中 hello SAP 環境的一部分執行的內部部署和在 Azure 上執行的一部分。
 
-在此案例中，**不會**在部署期間自動安裝 VM 代理程式。 由於 VM 代理程式和 Azure Enhanced Monitoring Extension for SAP 是在 Azure 上執行 SAP NetWeaver 的必要元件，因此在建立虛擬機器之後，您必須手動下載、安裝和啟用這兩個元件。
+在此案例中，hello VM 代理程式是**不**在部署期間自動安裝。 因為 hello VM 代理程式 」 和 「 hello Azure 強化監視功能延伸模組適用於 SAP 必要的 toorun SAP NetWeaver on Azure，您需要 toodownload、 安裝和啟用這兩個元件建立 hello 虛擬機器之後，以手動方式。
 
-如需 Azure VM 代理程式的詳細資訊，請參閱下列資源。
+如需 hello Azure VM 代理程式的詳細資訊，請參閱下列資源的 hello。
 
 - - -
 > ![Windows][Logo_Windows] Windows
@@ -657,160 +657,160 @@ ms.lasthandoff: 08/29/2017
 
 - - -
 
-下列流程圖說明使用非一般化 Azure VHD 移動內部部署 VM 的步驟順序︰
+下列流程圖顯示 hello 順序的步驟，使用非一般化 Azure VHD 移動內部部署 VM 的 hello:
 
 ![使用 VM 磁碟部署適用於 SAP 系統之 VM 的流程圖][deployment-guide-figure-400]
 
-如果磁碟已上傳並在 Azure 中定義 (請參閱 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide])，請執行後面幾節所述的工作。
+如果已上傳並在 Azure 中定義 hello 磁碟 (請參閱[Azure 虛擬機器規劃和實作的 SAP NetWeaver][planning-guide])，請勿 hello 工作中所述 hello 接下來的幾個章節。
 
 #### <a name="create-a-virtual-machine"></a>建立虛擬機器
-若要透過 Azure 入口網站使用私人 OS 磁碟來建立部署，請使用 [azure-quickstart-templates Github 儲存機制][azure-quickstart-templates-github]中所發佈的 SAP 範本。 您可以也使用 PowerShell 手動建立虛擬機器。
+toocreate 使用私用的作業系統磁碟，透過 hello Azure 入口網站的部署使用 hello SAP 範本發行在 hello [azure-快速入門範本 GitHub 儲存機制][azure-quickstart-templates-github]。 您可以也使用 PowerShell 手動建立虛擬機器。
 
 * [**兩層組態 (僅限一部虛擬機器) 範本**  (sap-2-tier-user-disk)][sap-templates-2-tier-os-disk]
 
-  若只要使用一部虛擬機器建立一個兩層系統，請使用此範本。
+  toocreate 兩層式系統使用只有一部虛擬機器，請使用此範本。
 * [**兩層組態 (僅限一部虛擬機器) 範本 - 受管理磁碟** (sap-2-tier-user-disk-md)][sap-templates-2-tier-os-disk-md]
 
-  若只要使用一部虛擬機器和受管理磁碟建立一個兩層系統，請使用此範本。
+  toocreate 兩層式系統使用只有一部虛擬機器和受管理的磁碟，請使用此範本。
 
-在 Azure 入口網站中，輸入範本的下列參數：
+在 hello Azure 入口網站中，輸入下列 hello 範本參數的 hello:
 
 1. **基本**：
-  * **訂用帳戶**：用來部署範本的訂用帳戶。
-  * **資源群組**：用來部署範本的資源群組。 您可以建立新的資源群組，或選取訂用帳戶中的現有資源群組。
-  * **位置**︰部署範本的位置。 如果您選取了現有的資源群組，則會使用該資源群組的位置。
+  * **訂用帳戶**: hello 訂用帳戶 toouse toodeploy hello 範本。
+  * **資源群組**: hello 資源群組 toouse toodeploy hello 範本。 您可以建立新的資源群組，或選取現有的資源群組 hello 訂用帳戶中。
+  * **位置**: toodeploy hello 範本的位置。 如果您選取現有的資源群組時，會使用該資源群組中的 hello 位置。
 2. **設定**：
-  * **SAP 系統識別碼**：SAP 系統識別碼。
-  * **OS 類型**：您想要部署的作業系統類型 (Windows 或 Linux)。
-  * **SAP 系統大小**：SAP 系統的大小。
+  * **SAP 系統識別碼**: hello SAP 系統識別碼。
+  * **OS 類型**: hello 想 toodeploy （Windows 或 Linux） 的作業系統類型。
+  * **SAP 系統大小**: hello hello SAP 系統的大小。
 
-    新系統所提供的 SAP 數量。 如果您不確定系統需要多少 SAP，請詢問您的 SAP 技術合作夥伴或系統整合者。
-  * **儲存體類型**：(僅限兩層範本) 要使用的儲存體類型。
+    提供的 SAPS hello 新系統的 hello 數目。 如果您不確定需要多少的 SAPS hello 系統，請要求您 SAP 技術合作夥伴或系統整合者。
+  * **儲存體類型**（僅限兩層式範本）： hello 的儲存體 toouse 型別。
 
-    對於大型系統，我們強烈建議使用 Azure 進階儲存體。 如需儲存體類型的詳細資訊，請參閱下列資源：
+    對於大型系統，我們強烈建議使用 Azure 進階儲存體。 如需存放裝置類型的詳細資訊，請參閱下列資源的 hello:
       * [針對 SAP DBMS 執行個體使用 Azure 進階 SSD 儲存體][2367194]
       * [適用於 SAP NetWeaver 的 Azure 虛擬機器 DBMS 部署][dbms-guide]中的 [Microsoft Azure 儲存體][dbms-guide-2.3]
       * [進階儲存體：Azure 虛擬機器工作負載適用的高效能儲存體][storage-premium-storage-preview-portal]
-      * [Microsoft Azure 儲存體簡介][storage-introduction]
-  * **OS 磁碟 VHD URI** (僅限非受管理磁碟範本)：私人 OS 磁碟的 URI，例如 https://&lt;accountname>.blob.core.windows.net/vhds/osdisk.vhd。
-  * **作業系統磁碟受管理磁碟識別碼** (僅限非受管理磁碟範本)：作業系統磁碟 /subscriptions/92d102f7-81a5-4df7-9877-54987ba97dd9/resourceGroups/group/providers/Microsoft.Compute/disks/WIN 的受管理磁碟識別碼
-  * **新的或現有的子網路**︰決定要建立新的虛擬網路和子網路，還是使用現有的子網路。 如果您已經有連線到內部部署網路的虛擬網路，請選取 [現有]。
-  * **子網路識別碼**：虛擬機器將要連線的子網路識別碼。 選取用於將虛擬機器連線到內部部署網路之 VPN 或 Azure ExpressRoute 虛擬網路的子網路。 識別碼通常看起來像這樣︰
+      * [簡介 tooMicrosoft Azure 儲存體][storage-introduction]
+  * **作業系統磁碟 VHD URI** （僅限 unmanaged 的磁碟範本）： hello 的 hello 的私用作業系統磁碟，而例如 https:// URI&lt;accountname >.blob.core.windows.net/vhds/osdisk.vhd。
+  * **作業系統磁碟管理磁碟識別碼**（僅限受管理的磁碟範本）： hello hello 管理磁碟作業系統磁碟的識別碼，/subscriptions/92d102f7-81a5-4df7-9877-54987ba97dd9/resourceGroups/group/providers/Microsoft.Compute/disks/WIN
+  * **新的或現有的子網路**︰決定要建立新的虛擬網路和子網路，還是使用現有的子網路。 如果您已經連接的 tooyour 在內部部署網路的虛擬網路，選取**現有**。
+  * **子網路識別碼**: hello 識別碼 hello 子網路 toowhich hello 虛擬機器會連接到。 選取您的 VPN、 Azure ExpressRoute 虛擬網路 toouse tooconnect hello 虛擬機器 tooyour 在內部部署網路的 hello 子網路。 hello 識別碼通常看起來像這樣：
 
     /subscriptions/&lt;訂用帳戶識別碼>/resourceGroups/&lt;資源群組名稱>/providers/Microsoft.Network/virtualNetworks/&lt;虛擬網路名稱>/subnets/&lt;子網路名稱>
 
 3. **條款及條件**：  
-    檢閱並接受法律條款。
+    檢閱並接受 hello 法律條款。
 
 4.  選取 [購買]。
 
-#### <a name="install-the-vm-agent"></a>安裝 VM 代理程式
-若要使用上一節所述的範本，必須在 OS 磁碟上安裝 VM 代理程式，否則部署會失敗。 如[下載、安裝和啟用 Azure VM 代理程式][deployment-guide-4.4]所述，下載 VM 代理程式並安裝於 VM 中。
+#### <a name="install-hello-vm-agent"></a>安裝 VM 代理程式 hello
+範本中所述的 toouse hello hello 上一節、 hello VM 代理程式必須安裝在 hello 作業系統磁碟或 hello 部署將會失敗。 下載並安裝在 hello VM 中的 hello VM 代理程式中所述[下載、 安裝及啟用 hello Azure VM 代理程式][deployment-guide-4.4]。
 
-如果您未使用上一節所述的範本，則之後也可以安裝 VM 代理程式。
+如果您不使用 hello 範本 hello 前面一節中所述，您也可以安裝 hello VM 代理程式之後。
 
 #### <a name="join-a-domain-windows-only"></a>加入網域 (僅限 Windows)
-如果 Azure 部署連線到內部部署 Active Directory 或 DNS 執行個體，透過 Azure 站對站 VPN 連線或 ExpressRoute (在 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide]中稱為「跨單位」)，則 VM 應該加入內部部署網域。 如需這項工作相關考量的詳細資訊，請參閱[將 VM 加入內部部署網域 (僅限 Windows)][deployment-guide-4.3]。
+如果您的 Azure 部署連接的 tooan 在內部部署 Active Directory 或 DNS 執行個體已透過 Azure 站台對站 VPN 連線或 ExpressRoute (這稱為*跨單位*中[規劃 Azure 虛擬機器與實作的 SAP NetWeaver][planning-guide])，預期該 hello VM 加入內部網域。 如需考量這項工作的詳細資訊，請參閱[加入 VM tooan 在內部部署網域 (僅限 Windows)][deployment-guide-4.3]。
 
 #### <a name="configure-proxy-settings"></a>進行 Proxy 設定
-根據內部部署網路的設定方式，您可能需要在您的 VM 上設定 Proxy。 如果 VM 已透過 VPN 或 ExpressRoute 連線到內部部署網路，VM 可能無法存取網際網路，而且無法下載所需的擴充功能或收集監視資料。 如需詳細資訊，請參閱[設定 Proxy][deployment-guide-configure-proxy]。
+根據您在內部部署網路的設定方式，您可能需要在 VM 上的 tooset hello proxy。 如果 VM 是透過 VPN 或 ExpressRoute 連線的 tooyour 在內部部署網路，hello VM 可能不是可以 tooaccess hello 網際網路，和不可以 toodownload hello 所需的擴充功能或收集的監視資料。 如需詳細資訊，請參閱[設定 hello proxy][deployment-guide-configure-proxy]。
 
 #### <a name="configure-monitoring"></a>設定監視
-若要確保 SAP 支援您的環境，請如[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 所述，設定 Azure Enhanced Monitoring Extension for SAP。 請從 [SAP 資源][deployment-guide-2.2]所列的資源中，檢查 SAP 監視的必要條件，以及所需的最低 SAP 核心和 SAP Host Agent 版本。
+確定 SAP 支援您的環境中所述設定 hello Azure Monitoring Extension for SAP toobe[設定 hello Azure 強化監視功能延伸模組適用於 SAP][deployment-guide-4.5]。 檢查 SAP monitoring，和最低要求版本的 SAP 核心與 SAP Host Agent，在 hello 中列出的資源中的 hello 必要條件[SAP 資源][deployment-guide-2.2]。
 
 #### <a name="monitoring-check"></a>監視檢查
 如[針對設定端對端監視進行檢查及疑難排解][deployment-guide-troubleshooting-chapter]所述，檢查監視是否正常運作。
 
-## <a name="update-the-monitoring-configuration-for-sap"></a>更新 SAP 的監視組態
-在下列任何一個案例中，更新 SAP 監視組態︰
-* 聯合 Microsoft/SAP 小組延伸監視功能，並要求增加或減少計數器。
-* Microsoft 推出新版本的基礎 Azure 基礎結構來提供監視資料，而 Azure Enhanced Monitoring Extension for SAP 必須配合這些變更。
-* 您將額外的資料磁碟掛接到 Azure VM 或是移除資料磁碟。 在此案例中，更新儲存體相關資料的集合。 藉由新增或刪除端點或將 IP 位址指派給 VM 來變更組態，就不會影響監視組態。
-* 您可變更 Azure VM 的大小 (例如從大小 A5 變更成任何其他 VM 大小)。
-* 您可以在 Azure VM 中新增網路介面。
+## <a name="update-hello-monitoring-configuration-for-sap"></a>更新 hello 適用於 SAP 的監視設定
+更新任何下列案例的 hello hello SAP 監視組態：
+* hello 聯合 Microsoft/SAP 小組擴充監視功能的 hello，並要求更多或較少的計數器。
+* Microsoft 導入了新版本的 hello 基礎的 Azure 基礎結構，提供 hello 監控資料，並針對 SAP 需求 toobe hello Azure 強化監視功能延伸模組調整 toothose 變更。
+* 裝載其他資料磁碟 tooyour Azure VM，或移除資料磁碟。 在此案例中，更新儲存體相關資料的 hello 集合。 變更組態，藉由加入或刪除端點或指派 IP 位址 tooa VM 不會影響 hello 監視設定。
+* 您變更 hello 您 Azure VM 的大小，例如大小 A5 tooany 從其他 VM 大小。
+* 您加入新的網路介面 tooyour Azure VM。
 
-若要更新監視設定，請依照[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 中的步驟來更新監視基礎結構。
+中的監視設定，監視基礎結構，可遵循 hello 更新 hello tooupdate 步驟[設定 hello Azure 強化監視功能延伸模組適用於 SAP][deployment-guide-4.5]。
 
 ## <a name="detailed-tasks-for-sap-software-deployment"></a>SAP 軟體部署的詳細工作
-本節包含在設定和部署程序中執行特定工作的詳細步驟。
+本節詳述執行 hello 組態和部署程序中的特定工作的步驟。
 
 ### <a name="604bcec2-8b6e-48d2-a944-61b0f5dee2f7"></a>部署 Azure PowerShell Cmdlet
-1.  前往 [Microsoft Azure 下載](https://azure.microsoft.com/downloads/)。
+1.  跳過[Microsoft Azure 下載](https://azure.microsoft.com/downloads/)。
 2.  在**命令列工具**的 **PowerShell** 之下，選取 [Windows 安裝]。
-3.  在 [Microsoft 下載管理員] 對話方塊中，針對已下載的檔案 (例如，WindowsAzurePowershellGet.3f.3f.3fnew.exe) 選取 [執行]。
-4.  若要執行 Microsoft Web Platform Installer (Microsoft Web PI)，請選取 [是]。
+3.  在 hello Microsoft 下載管理員對話方塊中，hello 下載檔案 (例如，WindowsAzurePowershellGet.3f.3f.3fnew.exe) 選取**執行**。
+4.  選取 Microsoft Web Platform Installer (Microsoft Web PI) toorun**是**。
 5.  如下所示的頁面隨即出現︰
 
   ![Azure PowerShell Cmdlet 的安裝頁面][deployment-guide-figure-500]<a name="figure-5"></a>
 
-6.  選取 [安裝]，然後接受 Microsoft 軟體授權條款。
-7.  已安裝 PowerShell。 選取 [完成]以關閉安裝精靈。
+6.  選取**安裝**，然後接受 hello Microsoft 軟體授權條款。
+7.  已安裝 PowerShell。 選取**完成**tooclose hello 安裝精靈。
 
-經常檢查 PowerShell Cmdlet 的更新 (通常每個月更新一次)。 檢查更新的最簡單方式是繼續執行安裝步驟，直到步驟 5 所示的安裝頁面為止。 Cmdlet 的發行日期和版次號碼包含在步驟 5 所示的頁面上。 除非 SAP Note [1928533] 或 SAP Note [2015553] 另外指定，否則建議使用最新版的 Azure PowerShell Cmdlet。
+經常檢查有無更新 toohello PowerShell cmdlet，這通常每月更新。 hello 最簡單方式 toocheck 更新為先前的安裝步驟，在步驟 5 中所顯示的 toohello 安裝網頁註冊的 toodo hello。 hello 發行日期] 和 [發行 hello cmdlet 包含一些步驟 5 所示的 hello 頁面上。 除非在 SAP 附註中指定，否則[1928533]或 SAP Note [2015553]，我們建議您搭配 hello 最新版 Azure PowerShell cmdlet。
 
-若要檢查電腦上安裝的 Azure PowerShell Cmdlet 版本，請執行此 PowerShell 命令︰
+toocheck hello 版的 hello Azure PowerShell cmdlet 安裝在您的電腦上執行這個 PowerShell 命令：
 ```powershell
 (Get-Module AzureRm.Compute).Version
 ```
-結果如下所示：
+hello 結果看起來像這樣：
 
 ![Azure PowerShell Cmdlet 版本檢查的結果][deployment-guide-figure-600]
 <a name="figure-6"></a>
 
-如果電腦上安裝的 Azure Cmdlet 版本是最新版本，則安裝精靈的第一頁會將 **(已安裝)** 新增至產品標題 (請參閱下列螢幕擷取畫面)。 您的 PowerShell Azure Cmdlet 都是最新的。 若要關閉安裝精靈，請選取 [結束]。
+Hello hello 安裝精靈的第一頁 hello 目前版本在電腦上安裝的 hello Azure cmdlet 版本時，將代表它**（安裝）** toohello 產品標題 （請參閱下列螢幕擷取畫面的 hello）。 您的 PowerShell Azure Cmdlet 都是最新的。 tooclose hello 安裝精靈中，選取**結束**。
 
-![Azure PowerShell Cmdlet 的安裝頁面，表示已安裝最新版的 Azure PowerShell Cmdlet][deployment-guide-figure-700]
+![安裝 Azure PowerShell cmdlet，指出該 hello 最新版本的 Azure PowerShell cmdlet 的安裝頁面][deployment-guide-figure-700]
 <a name="figure-7"></a>
 
 ### <a name="1ded9453-1330-442a-86ea-e0fd8ae8cab3"></a>部署 Azure CLI
-1.  前往 [Microsoft Azure 下載](https://azure.microsoft.com/downloads/)。
-2.  在**命令列工具**的 **Azure 命令列介面**之下，選取您作業系統的 [安裝] 連結。
-3.  在 [Microsoft 下載管理員] 對話方塊中，針對已下載的檔案 (例如，WindowsAzureXPlatCLI.3f.3f.3fnew.exe) 選取 [執行]。
-4.  若要執行 Microsoft Web Platform Installer (Microsoft Web PI)，請選取 [是]。
+1.  跳過[Microsoft Azure 下載](https://azure.microsoft.com/downloads/)。
+2.  在下**命令列工具**下**Azure 命令列介面**，選取 hello**安裝**適用於您作業系統的連結。
+3.  在 hello Microsoft 下載管理員對話方塊中，hello 下載檔案 (例如，WindowsAzureXPlatCLI.3f.3f.3fnew.exe) 選取**執行**。
+4.  選取 Microsoft Web Platform Installer (Microsoft Web PI) toorun**是**。
 5.  如下所示的頁面隨即出現︰
 
   ![Azure PowerShell Cmdlet 的安裝頁面][deployment-guide-figure-500]<a name="figure-5"></a>
 
-6.  選取 [安裝]，然後接受 Microsoft 軟體授權條款。
-7.  已安裝 Azure CLI。 選取 [完成]以關閉安裝精靈。
+6.  選取**安裝**，然後接受 hello Microsoft 軟體授權條款。
+7.  已安裝 Azure CLI。 選取**完成**tooclose hello 安裝精靈。
 
-經常檢查 Azure CLI 的更新 (通常每個月更新一次)。 檢查更新的最簡單方式是繼續執行安裝步驟，直到步驟 5 所示的安裝頁面為止。
+經常檢查有無更新 tooAzure CLI，通常每月更新。 hello 最簡單方式 toocheck 更新為先前的安裝步驟，在步驟 5 中所顯示的 toohello 安裝網頁註冊的 toodo hello。
 
-若要檢查電腦上安裝的 Azure CLI 版本，請執行此命令︰
+您的電腦已安裝的 Azure CLI toocheck hello 版本會執行下列命令：
 ```
 azure --version
 ```
 
-結果如下所示：
+hello 結果看起來像這樣：
 
 ![Azure CLI 版本檢查的結果][deployment-guide-figure-760]
 <a name="0ad010e6-f9b5-4c21-9c09-bb2e5efb3fda"></a>
 
-### <a name="31d9ecd6-b136-4c73-b61e-da4a29bbc9cc"></a>將 VM 加入內部部署網域 (僅限 Windows)
-如果在跨單位案例 (於 Azure 擴充內部部署 Active Directory 和 DNS) 中部署 SAP VM，則必須將 VM 加入內部部署網域。 將 VM 加入內部部署網域的詳細步驟，以及成為內部部署網域成員所需的其他軟體，因客戶而有所不同。 通常要將 VM 加入內部部署網域，您必須安裝其他軟體 (例如反惡意程式碼軟體以及備份或監視軟體)。
+### <a name="31d9ecd6-b136-4c73-b61e-da4a29bbc9cc"></a>加入 VM tooan 在內部部署網域 (僅限 Windows)
+如果您將 SAP Vm 部署在跨內部單位案例中，在內部部署 Active Directory 和 DNS 在 Azure 中，擴充其中預期 hello Vm 加入內部網域。 hello 採取 toojoin VM tooan 在內部部署網域的詳細的步驟和 hello 需要其他軟體 toobe 在內部部署網域的成員會因客戶。 通常，toojoin VM tooan 內部部署網域，您需要 tooinstall 其他軟體，例如反惡意程式碼軟體及備份或監視軟體。
 
-在此案例中，您需要確定如果在 VM 加入您環境中的網域時強制使用網際網路 Proxy 設定，則客體 VM 中的 Windows 本機系統帳戶 (S-1-5-18) 會有相同的 Proxy 設定。 最簡單的選項是使用適用於網域內系統的網域群組原則來強制使用 Proxy。
+在此案例中，您也需要 toomake 確定 VM 加入您的環境中的網域時，會強制執行網際網路 proxy 設定，如果有本機系統帳戶 (S-1-5-18) hello 客體 VM 中的 hello Windows hello 相同的 proxy 設定。 hello 最簡單的選項是使用網域群組原則，套用在 hello 網域 toosystems tooforce hello proxy。
 
-### <a name="c7cbb0dc-52a4-49db-8e03-83e7edc2927d"></a>下載、安裝和啟用 Azure VM 代理程式
-對於從未一般化的 OS 映像 (例如不是源自於 Windows 系統準備 (或 sysprep) 工具的映像) 部署的虛擬機器，您必須手動下載、安裝和啟用 Azure VM 代理程式。
+### <a name="c7cbb0dc-52a4-49db-8e03-83e7edc2927d"></a>下載、 安裝及啟用 hello Azure VM 代理程式
+從無法一般化 （例如映像中的 hello Windows 系統準備或 sysprep 工具不會產生） 的作業系統映像部署的虛擬機器，您需要 toomanually 下載、 安裝和啟用 hello Azure VM 代理程式。
 
-如果您從 Azure Marketplace 部署 VM，就不需要執行此步驟。 Azure Marketplace 中的映像已經有 Azure VM 代理程式。
+如果您部署的 hello Azure Marketplace 的 VM 時，就不需要此步驟。 Hello Azure Marketplace 映像已擁有 hello Azure VM 代理程式。
 
 #### <a name="b2db5c9a-a076-42c6-9835-16945868e866"></a>Windows
-1.  下載 Azure VM 代理程式︰
-  1.  下載 [Azure VM 代理程式安裝程式套件](https://go.microsoft.com/fwlink/?LinkId=394789)。
-  2.  在個人電腦或伺服器本機上儲存 VM 代理程式 MSI 套件。
-2.  安裝 Azure VM 代理程式︰
-  1.  使用遠端桌面通訊協定 (RDP) 連線到已部署的 Azure VM。
-  2.  在 VM 上開啟「Windows 檔案總管」視窗，然後選取 VM 代理程式之 MSI 檔案的目標目錄。
-  3.  將 Azure VM 代理程式安裝程式 MSI 檔案從本機電腦/伺服器拖放到 VM 上 VM 代理程式的目標目錄。
-  4.  按兩下 VM 上的 MSI 檔案。
-3.  對於加入內部部署網域的 VM，請確定最終網際網路 Proxy 設定也適用於 VM 中的 Windows 本機系統帳戶 (S-1-5-18)，如[設定 Proxy][deployment-guide-configure-proxy] 所述。 VM 代理程式會在此內容中執行，而且必須可以連線到 Azure。
+1.  下載 hello Azure VM 代理程式：
+  1.  下載 hello [Azure VM 代理程式安裝程式套件](https://go.microsoft.com/fwlink/?LinkId=394789)。
+  2.  在個人電腦或伺服器上的本機儲存 hello VM 代理程式 MSI 封裝。
+2.  安裝 hello Azure VM 代理程式：
+  1.  連接 toohello 使用遠端桌面通訊協定 (RDP) 來部署 Azure VM。
+  2.  開啟 hello VM 上的 Windows 檔案總管 視窗，然後選取 hello hello 的 hello VM 代理程式的 MSI 檔案的目標目錄。
+  3.  拖曳 hello hello VM 代理程式在 hello VM 上的本機電腦/伺服器 toohello 目標目錄中的 Azure VM 代理程式安裝程式 MSI 檔案。
+  4.  按兩下 hello hello VM 上的 MSI 檔案。
+3.  對於聯結的 tooon 內部網域的 Vm，請確定最終網際網路 proxy 設定，也適用於 VM，hello toohello Windows 本機系統帳戶 (S-1-5-18) 中所述[設定 hello proxy] [ deployment-guide-configure-proxy]. hello VM 代理程式在此內容中執行，並需要 toobe 無法 tooconnect tooAzure。
 
-更新 Azure VM 代理程式時，並不需要使用者介入。 VM 代理程式會自動更新，不需要重新啟動 VM。
+不不需要的 tooupdate hello Azure VM 代理程式的任何使用者互動。 hello VM 代理程式會自動更新，而且不需要在 VM 重新啟動。
 
 #### <a name="6889ff12-eaaf-4f3c-97e1-7c9edc7f7542"></a>Linux
-使用下列命令來安裝適用於 Linux 的 VM 代理程式：
+使用下列命令 tooinstall hello VM 代理程式適用於 Linux 的 hello:
 
 * **SUSE Linux Enterprise Server (SLES)**
 
@@ -824,111 +824,111 @@ azure --version
   sudo yum install WALinuxAgent
   ```
 
-如果已安裝代理程式，若要更新 Azure Linux 代理程式，請執行[將 VM 上的 Azure Linux 代理程式更新為 GitHub 中的最新版本][virtual-machines-linux-update-agent]所述的步驟。
+如果已安裝 hello 代理程式，tooupdate hello Azure Linux 代理程式，請勿 hello 中所述步驟[來自 GitHub 的 VM toohello 最新版本更新 hello Azure Linux 代理程式][virtual-machines-linux-update-agent]。
 
-### <a name="baccae00-6f79-4307-ade4-40292ce4e02d"></a>設定 Proxy
-在 Windows 中設定 Proxy 所採取的步驟，不同於您在 Linux 中設定 Proxy 的方式。
+### <a name="baccae00-6f79-4307-ade4-40292ce4e02d"></a>設定 hello proxy
+hello 步驟 tooconfigure hello proxy 在 Windows 中是不同於您在 Linux 中設定 hello proxy 的 hello 方式。
 
 #### <a name="windows"></a>Windows
-您也必須針對本機系統帳戶進行正確的 Proxy 設定，才能存取網際網路。 如果您的 Proxy 設定不是透過群組原則設定，您可以為本機系統帳戶進行這些設定。
+Proxy 設定必須正確設定，如 hello tooaccess hello 網際網路的本機系統帳戶。 如果您的 proxy 設定未由群組原則設定，您可以設定 hello hello 本機系統帳戶。
 
-1. 移至 [開始]，輸入 **gpedit.msc**，然後選取 **Enter**。
-2. 選取 [電腦設定] > [系統管理範本] > [Windows 元件] > [Internet Explorer]。 請確定 [為每台電腦建立 Proxy 設定 - 而不是每個使用者] 設定已停用或未設定。
-3. 在 [控制台] 中，移至 [網路和共用中心] > [網際網路選項]。
-4. 在 [連線] 索引標籤上，選取 [區域網路設定] 按鈕。
-5. 清除 [自動偵測設定] 核取方塊。
-6. 選取 [為您的 LAN 使用 Proxy 伺服器] 核取方塊，然後輸入 Proxy 位址和連接埠
-7. 選取 [進階] 按鈕。
-8. 在 [例外狀況] 方塊中，輸入 IP 位址 **168.63.129.16**。 選取 [確定] 。
+1. 跳過**啟動**，輸入**gpedit.msc**，然後選取**Enter**。
+2. 選取 [電腦設定] > [系統管理範本] > [Windows 元件] > [Internet Explorer]。 請確定該 hello 設定**設定每部電腦 （而非個別使用者） 建立 proxy**已停用或未設定。
+3. 在**控制台**，跳過**網路和共用中心** > **網際網路選項**。
+4. 在 [hello**連線**索引標籤，選取 hello **LAN 設定**] 按鈕。
+5. 清除 hello**自動偵測設定**核取方塊。
+6. 選取 hello**您的區域網路使用 proxy 伺服器**核取方塊，，，然後輸入 hello proxy 位址和連接埠。
+7. 選取 hello**進階** 按鈕。
+8. 在 hello**例外狀況**方塊中，輸入 hello IP 位址**168.63.129.16**。 選取 [確定] 。
 
 #### <a name="linux"></a>Linux
-在 Microsoft Azure 客體代理程式的組態檔 (位於 \\etc\\waagent.conf) 中設定正確的 Proxy。
+Microsoft Azure 客體代理程式，也就是位於 hello hello 設定檔中設定 hello 正確的 proxy\\等\\waagent.conf。
 
-設定下列參數︰
+設定下列參數的 hello:
 
-1.  **HTTP Proxy 主機**。 例如，將它設為 **proxy.corp.local**。
+1.  **HTTP Proxy 主機**。 例如，設定太**proxy.corp.local**。
   ```
   HttpProxy.Host=<proxy host>
 
   ```
-2.  **HTTP Proxy 連接埠**。 例如，將它設定為 **80**。
+2.  **HTTP Proxy 連接埠**。 例如，設定太**80**。
   ```
-  HttpProxy.Port=<port of the proxy host>
+  HttpProxy.Port=<port of hello proxy host>
 
   ```
-3.  重新啟動代理程式。
+3.  重新啟動 hello 代理程式。
 
   ```
   sudo service waagent restart
   ```
 
-\\etc\\waagent.conf 中的 Proxy 設定也適用於所需的 VM 擴充功能。 如果您想要使用 Azure 儲存機制，請確定這些儲存機制的流量不會經過內部部署內部網路。 如果您已建立使用者定義的路由來啟用強制通道，請務必新增路由，以將傳送給儲存機制的流量直接遞送到網際網路，而不透過站對站 VPN 連線。
+hello 中的 proxy 設定\\等\\waagent.conf 也適用於需要 toohello VM 擴充功能。 如果您想 toouse hello Azure 儲存機制，請確定 hello 流量 toothese 儲存機制不經過您的內部部署內部網路。 如果您建立使用者定義的路由 tooenable 強制通道，請確定您新增的路由，路由傳送流量 toohello 儲存機制直接 toohello 網際網路，而不是透過您的站對站 VPN 連線。
 
 * **SLES**
 
-  您也需要新增 \\etc\\regionserverclnt.cfg 中所列 IP 位址的路由。 下圖顯示一個範例：
+  您也需要 tooadd 路由 hello IP 位址列於\\等\\regionserverclnt.cfg。 hello 下圖顯示範例：
 
   ![強制通道][deployment-guide-figure-50]
 
 
 * **RHEL**
 
-  您還需要一併為 \\etc\\yum.repos.d\\rhui-load-balancers 中所列的主機 IP 位址新增路由。 如需範例，請參閱上圖。
+  您也需要 tooadd 路由 hello hello 主機 IP 位址列於\\等\\yum.repos.d\\rhui 負載平衡器。 如需範例，請參閱上述圖 hello。
 
 * **Oracle Linux**
 
-  Azure 上沒有任何 Oracle Linux 的存放庫。 您要為 Oracle Linux 設定您自己的存放庫，或使用公用存放庫。
+  Azure 上沒有任何 Oracle Linux 的存放庫。 您需要適用於 Oracle Linux tooconfigure 您自己的儲存機制，或使用 hello 公用儲存機制。
 
 如需有關使用者定義的路由詳細資訊，請參閱[使用者定義的路由和 IP 轉送][virtual-networks-udr-overview]。
 
-### <a name="d98edcd3-f2a1-49f7-b26a-07448ceb60ca"></a>設定 Azure Enhanced Monitoring Extension for SAP
-在您如 [SAP on Azure 的 VM 部署案例][deployment-guide-3]所述準備好 VM 之後，Azure VM 代理程式就會安裝於虛擬機器上。 下一個步驟是部署 Azure Enhanced Monitoring Extension for SAP (位於全球 Azure 資料中心的 Azure 擴充功能儲存機制)。 如需詳細資訊，請參閱 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide-9.1]。
+### <a name="d98edcd3-f2a1-49f7-b26a-07448ceb60ca"></a>設定 Azure 強化監視功能延伸模組適用於 SAP hello
+當您已備妥 hello VM 中所述[在 Azure 上 SAP 的 Vm 部署案例][deployment-guide-3]，hello hello 虛擬機器安裝 Azure VM 代理程式。 hello 下一個步驟為 toodeploy hello Azure 增強 Monitoring Extension for SAP，在 hello 全球 Azure 資料中心中的 hello Azure Extension Repository 中可用。 如需詳細資訊，請參閱 [Azure 虛擬機器 (VM) 上的 SAP NetWeaver - 規劃和實作指南][planning-guide-9.1]。
 
-您可以使用 PowerShell 或 Azure CLI 安裝和設定 Azure Enhanced Monitoring Extension for SAP。 若要使用 Windows 電腦在 Windows 或 Linux VM 上安裝該擴充功能，請參閱 [Azure PowerShell][deployment-guide-4.5.1]。 若要使用 Linux 桌上型電腦在 Linux VM 上安裝該擴充功能，請參閱 [Azure CLI][deployment-guide-4.5.2]。
+您可以使用 PowerShell 或 Azure CLI tooinstall，並設定 hello Azure 強化監視功能延伸模組適用於 SAP。 tooinstall hello 擴充功能在 Windows 或 Linux VM 上的使用一部 Windows 電腦，請參閱[Azure PowerShell][deployment-guide-4.5.1]。 請參閱 < 使用 Linux 桌面，Linux VM 上的 tooinstall hello 延伸[Azure CLI][deployment-guide-4.5.2]。
 
 #### <a name="987cf279-d713-4b4c-8143-6b11589bb9d4"></a>適用於 Linux 和 Windows VM 的 Azure PowerShell
-若要使用 PowerShell 安裝 Azure Enhanced Monitoring Extension for SAP：
+使用 PowerShell tooinstall hello Azure 強化監視功能延伸模組的 SAP:
 
-1. 確定您已安裝最新版的 Azure PowerShell Cmdlet。 如需詳細資訊，請參閱[部署 Azure PowerShell Cmdlet][deployment-guide-4.1]。  
-2. 執行下列 PowerShell Cmdlet。
-    如需可用環境的清單，請執行 `commandlet Get-AzureRmEnvironment`。 如果您想要使用全域 Azure，則您的環境是 **AzureCloud**。 若為中國的 Azure，請選取 **AzureChinaCloud**。
+1. 請確定您已安裝 hello hello Azure PowerShell cmdlet 的最新版本。 如需詳細資訊，請參閱[部署 Azure PowerShell Cmdlet][deployment-guide-4.1]。  
+2. 執行下列 PowerShell cmdlet 的 hello。
+    如需可用環境的清單，請執行 `commandlet Get-AzureRmEnvironment`。 如果您想要 toouse 全域 Azure 中，您的環境是**AzureCloud**。 若為中國的 Azure，請選取 **AzureChinaCloud**。
 
     ```powershell
-    $env = Get-AzureRmEnvironment -Name <name of the environment>
+    $env = Get-AzureRmEnvironment -Name <name of hello environment>
     Login-AzureRmAccount -Environment $env
     Set-AzureRmContext -SubscriptionName <subscription name>
 
     Set-AzureRmVMAEMExtension -ResourceGroupName <resource group name> -VMName <virtual machine name>
     ```
 
-輸入您的帳戶資料並識別 Azure 虛擬機器之後，指令碼會部署所需的擴充功能，並啟用所需的功能。 這可能需要數分鐘的時間。
+您輸入您的帳戶資料，並找出 hello Azure 虛擬機器之後，hello 指令碼部署所需的 hello 擴充功能，並提供所需的 hello 功能。 這可能需要數分鐘的時間。
 如需有關 `Set-AzureRmVMAEMExtension` 的詳細資訊，請參閱 [Set-AzureRmVMAEMExtension][msdn-set-azurermvmaemextension]。
 
 ![成功執行 SAP 特定 Azure Cmdlet Set-AzureRmVMAEMExtension][deployment-guide-figure-900]
 
-`Set-AzureRmVMAEMExtension` 設定可以進行設定 SAP 主機監視的所有步驟。
+hello`Set-AzureRmVMAEMExtension`設定可以進行適用於 SAP 的監視所有的 hello 步驟 tooconfigure 主機。
 
-指令碼輸出包含下列資訊︰
+hello 指令碼輸出包含下列資訊的 hello:
 
-* 確認已設定 OS 磁碟和所有額外資料磁碟的監視。
-* 接下來的兩則訊息會確認特定儲存體帳戶的儲存體計量組態。
-* 其中一行輸出會提供監視組態的實際更新狀態。
-* 另一行輸出會確認已部署或已更新組態。
-* 輸出的最後一行是參考資訊。 其顯示測試監視組態的選項。
-* 若要確認 Azure Enhanced Monitoring 的所有步驟是否已成功執行，以及「Azure 基礎結構」是否提供必要的資料，請繼續進行 Azure Enhanced Monitoring Extension for SAP 的整備檢查 (如 [Azure Enhanced Monitoring for SAP 整備檢查][deployment-guide-5.1]所述)。
-* 等候 15-30 分鐘的時間，讓 Azure 診斷收集相關的資料。
+* 確認 hello OS 磁碟和所有其他資料磁碟的監視已設定。
+* hello 下面兩個訊息會確認特定儲存體帳戶的儲存體度量 hello 組態。
+* 一行輸出提供 hello hello hello 監視組態的實際的更新狀態。
+* 另一行輸出會確認該 hello 組態已部署或更新。
+* hello 輸出最後一行是參考。 它會顯示測試的 hello 監視設定的選項。
+* 中所述，hello 整備檢查，如 hello Azure 強化監視功能延伸模組 for SAP，繼續 toocheck 成功，已執行的 Azure 強化監視功能的所有步驟，和該 hello Azure 基礎結構提供 hello 必要的資料[Azure 強化監視功能適用於 SAP 的整備檢查][deployment-guide-5.1]。
+* 等候 15-30 分鐘，讓 Azure 診斷 toocollect hello 相關資料。
 
 #### <a name="408f3779-f422-4413-82f8-c57a23b4fc2f"></a>適用於 Linux VM 的 Azure CLI
-若要使用 Azure CLI 安裝 Azure Enhanced Monitoring Extension for SAP：
+使用 Azure CLI tooinstall hello Azure 強化監視功能延伸模組的 SAP:
 
-1. 如[安裝 Azure CLI 1.0][azure-cli] 所述，安裝 Azure CLI 1.0。
+1. 中所述，安裝 Azure CLI 1.0，[安裝 hello Azure CLI 1.0][azure-cli]。
 2. 使用您的 Azure 帳戶進行登入：
 
   ```
   azure login
   ```
 
-3. 切換到 Azure Resource Manager 模式：
+3. 切換 tooAzure Resource Manager 模式：
 
   ```
   azure config mode arm
@@ -940,12 +940,12 @@ azure --version
   azure vm enable-aem <resource-group-name> <vm-name>
   ```
 
-5. 確認 Azure Enhanced Monitoring Extension 在 Azure Linux VM 上為作用中狀態。 檢查 \\var\\lib\\AzureEnhancedMonitor\\PerfCounters 檔案是否存在。 如果存在，在命令提示字元中執行此命令，以顯示 Azure Enhanced Monitor 所收集的資訊︰
+5. 請確認該 hello Azure 強化監視功能延伸模組是在 hello Azure Linux VM 上作用。 檢查是否 hello 檔案\\var\\lib\\AzureEnhancedMonitor\\PerfCounters 存在。 如果存在的話，在命令提示字元執行這個命令 toodisplay 所收集資訊的 hello Azure 強化監視：
 ```
 cat /var/lib/AzureEnhancedMonitor/PerfCounters
 ```
 
-輸出如下所示：
+hello 輸出看起來像這樣：
 ```
 2;cpu;Current Hw Frequency;;0;2194.659;MHz;60;1444036656;saplnxmon;
 2;cpu;Max Hw Frequency;;0;2194.659;MHz;0;1444036656;saplnxmon;
@@ -954,180 +954,180 @@ cat /var/lib/AzureEnhancedMonitor/PerfCounters
 ```
 
 ## <a name="564adb4f-5c95-4041-9616-6635e83a810b"></a>針對端對端監視進行檢查及疑難排解
-部署 Azure VM 並設定相關 Azure 監視基礎結構之後，請檢查 Azure Enhanced Monitoring Extension 的所有元件是否如預期般運作。
+您部署 Azure VM，並設定 hello 相關 Azure 監視基礎結構之後，請檢查所有的 hello 元件的 hello Azure 強化監視功能延伸模組是否如預期般運作。
 
-如 [Azure Enhanced Monitoring Extension for SAP 整備檢查][deployment-guide-5.1]所述，執行 Azure Enhanced Monitoring Extension for SAP 整備檢查。 如果所有整備檢查結果均為正向，而且所有相關效能計數器都呈現 OK 狀態，表示已成功設定 Azure 監視。 您可以繼續安裝 SAP Host Agent (如 [SAP 資源][deployment-guide-2.2]中的 SAP Note 所述)。 如果整備檢查指出遺失計數器，請執行 Azure 監視基礎結構的健康狀態檢查 (如 [Azure 監視基礎結構組態的健康狀態檢查][deployment-guide-5.2]所述)。 如需其他疑難排解選項，請參閱[針對適用於 SAP 的 Azure 監視進行疑難排解][deployment-guide-5.3]。
+中所述執行 hello Azure 強化監視功能延伸模組適用於 SAP 的 hello 整備檢查[hello Azure 強化監視功能延伸模組適用於 SAP 的整備檢查][deployment-guide-5.1]。 如果所有整備檢查結果均為正向，而且所有相關效能計數器都呈現 OK 狀態，表示已成功設定 Azure 監視。 您可以繼續執行的 SAP Host Agent 的 hello 安裝中的 hello SAP 附註所述[SAP 資源][deployment-guide-2.2]。 如果 hello 整備檢查指出的計數器遺失，則執行中所述的 hello hello Azure 監視基礎結構的健全狀況檢查[的 Azure 監視基礎結構設定健全狀況檢查][ deployment-guide-5.2]. 如需其他疑難排解選項，請參閱[針對適用於 SAP 的 Azure 監視進行疑難排解][deployment-guide-5.3]。
 
-### <a name="bb61ce92-8c5c-461f-8c53-39f5e5ed91f2"></a>Azure Enhanced Monitoring Extension for SAP 整備檢查
-這項檢查可確保基礎 Azure 監視基礎結構提供 SAP 應用程式內所顯示的所有效能計量。
+### <a name="bb61ce92-8c5c-461f-8c53-39f5e5ed91f2"></a>Hello Azure 強化監視功能延伸模組適用於 SAP 的整備檢查
+這項檢查可確保您的 SAP 應用程式中出現的所有效能度量所都提供的 hello Azure 監視基礎結構的基礎。
 
-#### <a name="run-the-readiness-check-on-a-windows-vm"></a>在 Windows VM 上執行整備檢查
+#### <a name="run-hello-readiness-check-on-a-windows-vm"></a>執行 Windows VM 上的 hello 整備檢查
 
-1.  登入 Azure 虛擬機器 (不一定要使用管理帳戶)。
+1.  登入 toohello Azure 虛擬機器 （使用系統管理員帳戶不是必要）。
 2.  開啟命令提示字元視窗。
-3.  在命令提示字元，將目錄切換到 Azure Enhanced Monitoring Extension for SAP 的安裝資料夾：C:\\Packages\\Plugins\\Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\&lt;版本>\\drop
+3.  Hello 命令提示字元，變更 hello 目錄 toohello 的 hello Azure 強化監視功能延伸模組適用於 SAP 的安裝資料夾： c:\\封裝\\外掛程式\\Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\&lt;版本 >\\卸除
 
-  監視擴充功能路徑中的「版本」可能會有所不同。 如果您在安裝資料夾中看到多個監視擴充功能版本的資料夾，請檢查 AzureEnhancedMonitoring Windows 服務的組態，然後切換至「可執行檔的路徑」所表示的資料夾。
+  hello*版本*hello 路徑 toohello 中監視功能延伸模組可能會不同。 如果您看見 hello 監視 hello 安裝資料夾中，核取 hello hello AzureEnhancedMonitoring Windows 服務組態中的擴充功能的多個版本的資料夾，而且交換器 toohello 資料夾再指示為*路徑 tooexecutable*.
 
-  ![執行 Azure Enhanced Monitoring Extension for SAP 之服務的屬性][deployment-guide-figure-1000]
+  ![服務執行中的屬性 hello Azure 強化監視功能延伸模組的 SAP][deployment-guide-figure-1000]
 
-4.  在命令視窗中，執行不含任何參數的 **azperflib.exe**。
+4.  在 hello 命令提示字元中執行**azperflib.exe**不含任何參數。
 
   > [!NOTE]
-  > Azperflib.exe 會以迴圈形式執行，並每隔 60 秒更新收集到的計數器。 若要完成迴圈，請關閉命令提示字元視窗。
+  > Azperflib.exe 會以迴圈執行，並更新 hello 收集計數器每隔 60 秒。 tooend hello 迴圈，關閉 hello 命令提示字元視窗。
   >
   >
 
-如果未安裝 Azure Enhanced Monitoring Extension 或 AzureEnhancedMonitoring 服務未執行，即表示尚未正確設定擴充功能。 如需如何部署擴充功能的詳細資訊，請參閱[針對適用於 SAP 的 Azure 監視基礎結構進行疑難排解][deployment-guide-5.3]。
+如果未安裝 Azure 強化監視功能延伸模組，hello 或 hello AzureEnhancedMonitoring 服務未執行，hello 延伸模組已不正確設定。 如需如何 toodeploy hello 擴充功能的詳細資訊，請參閱[疑難排解 hello 適用於 SAP 的 Azure 監視基礎結構][deployment-guide-5.3]。
 
-##### <a name="check-the-output-of-azperflibexe"></a>檢查 azperflib.exe 的輸出
-Azperflib.exe 輸出會顯示適用於 SAP 的所有已填入 Azure 效能計數器。 在所收集計數器的清單底部，摘要和健康狀態指標會顯示 Azure 監視的狀態。
+##### <a name="check-hello-output-of-azperflibexe"></a>查看 azperflib.exe hello 輸出
+Azperflib.exe 輸出會顯示適用於 SAP 的所有已填入 Azure 效能計數器。 在 hello hello 收集的計數器清單底部，摘要和健全狀況指示器會顯示 hello 的 Azure 監視的狀態。
 
 ![執行 azperflib.exe 的健康狀態檢查輸出，其表示沒有任何問題][deployment-guide-figure-1100]
 <a name="figure-11"></a>
 
-請檢查針對 **Counters total** 傳回的結果 (其回報是空的)，以及針對 **Health status** 傳回的結果 (如上圖所示)。
+檢查傳回的 hello hello 結果**Counters total**輸出，會針對為空的以及報告**健全狀況狀態**、 hello 前圖所示。
 
-解譯結果值，如下所示︰
+解譯 hello 結果值，如下所示：
 
 | Azperflib.exe 結果值 | Azure 監視健康狀態 |
 | --- | --- |
-| **API 呼叫 - 無法使用** | 無法使用的計數器有可能不適用於虛擬機器組態，或發生錯誤。 請參閱 **Health status**。 |
-| **Counters total - empty** |下列兩個 Azure 儲存體計數器可以空白： <ul><li>儲存體讀取 Op 延遲伺服器毫秒</li><li>儲存體讀取 Op 延遲 E2E 毫秒</li></ul>所有其他計數器都必須具有值。 |
+| **API 呼叫 - 無法使用** | 沒有可用的計數器可能不適用 toohello 虛擬機器設定，或錯誤。 請參閱 **Health status**。 |
+| **Counters total - empty** |下列兩個 Azure 儲存體計數器 hello 可以是空的： <ul><li>儲存體讀取 Op 延遲伺服器毫秒</li><li>儲存體讀取 Op 延遲 E2E 毫秒</li></ul>所有其他計數器都必須具有值。 |
 | **Health status** |只有在傳回狀態顯示 [OK] 時，才算正常。 |
 | **診斷** |健康狀態的相關詳細資訊。 |
 
-如果 [Health status] 值不是 [OK]，請依照 [Azure 監視基礎結構組態的健康狀態檢查][deployment-guide-5.2]中的指示執行。
+如果 hello**健全狀況狀態**值不是**確定**，請依照下列中的 hello 指示[的 Azure 監視基礎結構設定健全狀況檢查][ deployment-guide-5.2].
 
-#### <a name="run-the-readiness-check-on-a-linux-vm"></a>在 Linux VM 上執行整備檢查
+#### <a name="run-hello-readiness-check-on-a-linux-vm"></a>執行 Linux VM 上的 hello 整備檢查
 
-1.  使用 SSH 來連線到 Azure 虛擬機器。
+1.  使用 SSH 連線 toohello Azure 虛擬機器。
 
-2.  檢查 Azure Enhanced Monitoring Extension 的輸出。
+2.  檢查 hello 的 hello Azure 強化監視功能延伸模組的輸出。
 
   a.  執行 `more /var/lib/AzureEnhancedMonitor/PerfCounters`
 
-   **預期的結果**：傳回效能計數器的清單。 此檔案不得是空的。
+   **預期的結果**：傳回效能計數器的清單。 hello 檔案不能空白。
 
- b.這是另一個 C# 主控台應用程式。 執行 `cat /var/lib/AzureEnhancedMonitor/PerfCounters | grep Error`
+ b. 執行 `cat /var/lib/AzureEnhancedMonitor/PerfCounters | grep Error`
 
-   **預期的結果**：傳回**無**錯誤的一行，例如 **3;config;Error;;0;0;none;0;1456416792;tst-servercs;**
+   **預期的結果**： 傳回 hello 錯誤所在的同一行**無**，例如**3; 組態。錯誤;，則為 0，則為 0;無、 0、 1456416792、 tst servercs;**
 
   c. 執行 `more /var/lib/AzureEnhancedMonitor/LatestErrorRecord`
 
     **預期的結果**：傳回為空白或不存在。
 
-如果上述檢查不成功，請執行下列額外的檢查︰
+如果 hello 上述檢查未成功，執行這些額外的檢查：
 
-1.  確定已安裝並啟用 waagent。
+1.  請確定該 hello waagent 已安裝並啟用。
 
   a.  執行 `sudo ls -al /var/lib/waagent/`
 
-      **預期的結果**：列出 waagent 目錄的內容。
+      **預期的結果**： 列出 hello hello waagent 目錄內容。
 
   b.  執行 `ps -ax | grep waagent`
 
    **預期的結果**：顯示類似下列一個項目：`python /usr/sbin/waagent -daemon`
 
-3.   確定已安裝並啟用 Azure Enhanced Monitoring Extension。
+3.   請確定該 hello Azure 強化監視功能延伸模組是已安裝且正在執行。
 
   a.  執行 `sudo sh -c 'ls -al /var/lib/waagent/Microsoft.OSTCExtensions.AzureEnhancedMonitorForLinux-*/'`
 
-    **預期的結果**：列出 Azure Enhanced Monitoring Extension 目錄的內容。
+    **預期的結果**： 列出 hello hello Azure 強化監視功能延伸模組目錄內容。
 
-  b.這是另一個 C# 主控台應用程式。 執行 `ps -ax | grep AzureEnhanced`
+  b. 執行 `ps -ax | grep AzureEnhanced`
 
      **預期的結果**：顯示類似下列一個項目：`python /var/lib/waagent/Microsoft.OSTCExtensions.AzureEnhancedMonitorForLinux-2.0.0.2/handler.py daemon`
 
-3. 安裝 SAP Host Agent (如 SAP Note [1031096] 所述) 並檢查 `saposcol` 的輸出。
+3. SAP 附註所述安裝 SAP Host Agent [1031096]，並檢查 hello 輸出`saposcol`。
 
   a.  執行 `/usr/sap/hostctrl/exe/saposcol -d`
 
   b.  執行 `dump ccm`
 
-  c.  檢查 **Virtualization_Configuration\Enhanced Monitoring Access** 計量是否為 **true**。
+  c.  檢查是否 hello **Virtualization_Configuration\Enhanced 監視存取**度量是**true**。
 
 如果您已安裝 SAP NetWeaver ABAP 應用程式伺服器，請開啟交易 ST06，並檢查是否已啟用增強監視。
 
-如果上述任何檢查失敗，而且如需如何重新部署擴充功能的詳細資訊，請參閱[針對適用於 SAP 的 Azure 監視基礎結構進行疑難排解][deployment-guide-5.3]。
+如果任何這些檢查失敗，而且如需如何 tooredeploy hello 擴充功能的詳細資訊，請參閱[疑難排解 hello 適用於 SAP 的 Azure 監視基礎結構][deployment-guide-5.3]。
 
-### <a name="e2d592ff-b4ea-4a53-a91a-e5521edb6cd1"></a>Azure 監視基礎結構組態的健康狀態檢查
-如果未正確提供部分監視資料 (如上面 [Azure Enhanced Monitoring for SAP 整備檢查][deployment-guide-5.1]所述測試所指出)，請執行`Test-AzureRmVMAEMExtension` Cmdlet，以檢查適用於 SAP 的 Azure 監視基礎結構和監視」擴充功能是否設定正確。
+### <a name="e2d592ff-b4ea-4a53-a91a-e5521edb6cd1"></a>健全狀況檢查 hello Azure 監視基礎結構設定
+如果部分監視資料的 hello 沒有指示地正確傳遞 hello 測試中所述[Azure 強化監視功能適用於 SAP 的整備檢查][deployment-guide-5.1]中執行的 hello `Test-AzureRmVMAEMExtension` cmdlet toocheck是否 hello Azure 監視基礎結構和 hello SAP 的監視功能延伸模組已正確設定。
 
-1.  確定您已安裝最新版的 Azure PowerShell Cmdlet (如[部署 Azure PowerShell Cmdlet][deployment-guide-4.1]所述)。
-2.  執行下列 PowerShell Cmdlet。 如需可用環境的清單，請執行 `Get-AzureRmEnvironment` Cmdlet。 若要使用公用 Azure，請選取 **AzureCloud** 環境。 若為中國的 Azure，請選取 **AzureChinaCloud**。
+1.  確定您已安裝 hello hello Azure PowerShell cmdlet，最新版本中所述[部署 Azure PowerShell cmdlet][deployment-guide-4.1]。
+2.  執行下列 PowerShell cmdlet 的 hello。 如需可用環境的清單，執行 hello cmdlet `Get-AzureRmEnvironment`。 toouse 全域 Azure，選取 hello **AzureCloud**環境。 若為中國的 Azure，請選取 **AzureChinaCloud**。
   ```powershell
-  $env = Get-AzureRmEnvironment -Name <name of the environment>
+  $env = Get-AzureRmEnvironment -Name <name of hello environment>
   Login-AzureRmAccount -Environment $env
   Set-AzureRmContext -SubscriptionName <subscription name>
   Test-AzureRmVMAEMExtension -ResourceGroupName <resource group name> -VMName <virtual machine name>
   ```
 
-3.  輸入您的帳戶資料並識別 Azure 虛擬機器。
+3.  輸入您的帳戶資料，並找出 hello Azure 虛擬機器。
 
   ![SAP 特定 Azure Cmdlet Test-VMConfigForSAP_GUI 的輸入頁面][deployment-guide-figure-1200]
 
-4. 指令碼會測試您所選虛擬機器的組態。
+4. 您選取 hello 指令碼測試 hello hello 虛擬機器設定。
 
-  ![適用於 SAP 之 Azure 監視基礎結構的成功測試輸出][deployment-guide-figure-1300]
+  ![順利完成測試的 hello Azure 監視基礎結構，適用於 SAP 的輸出][deployment-guide-figure-1300]
 
-確定每個健康狀態檢查的結果都 [OK]。 如果部分檢查未顯示 [OK]，請執行更新 Cmdlet (如[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 所述)。 請等待 15 分鐘，然後重複 [Azure Enhanced Monitoring for SAP 整備檢查][deployment-guide-5.1]和 [Azure 監視基礎結構組態的健康狀態檢查][deployment-guide-5.2]所述的檢查。 如果檢查仍然指出部分或所有計數器有問題，請參閱[針對適用於 SAP 的 Azure 監視基礎結構進行疑難排解][deployment-guide-5.3]。
+確定每個健康狀態檢查的結果都 [OK]。 如果部分檢查不會顯示**確定**，執行 hello 更新指令程式中所述[設定 hello Azure 強化監視功能延伸模組適用於 SAP][deployment-guide-4.5]。 請稍候 15 分鐘，並說明重複 hello 檢查[Azure 強化監視功能適用於 SAP 的整備檢查][ deployment-guide-5.1]和[的 Azure 監視基礎結構組態健全狀況檢查][deployment-guide-5.2]. 如果 hello 檢查仍指出某些或全部計數器有問題，請參閱[疑難排解 hello 適用於 SAP 的 Azure 監視基礎結構][deployment-guide-5.3]。
 
-### <a name="fe25a7da-4e4e-4388-8907-8abc2d33cfd8"></a>針對適用於 SAP 的 Azure 監視基礎結構進行疑難排解
+### <a name="fe25a7da-4e4e-4388-8907-8abc2d33cfd8"></a>疑難排解 hello 適用於 SAP 的 Azure 監視基礎結構
 
 #### <a name="windowslogowindows-azure-performance-counters-do-not-show-up-at-all"></a>![Windows][Logo_Windows] 完全未顯示 Azure 效能計數器
-AzureEnhancedMonitoring Windows 服務會收集 Azure 中的效能計量。 如果尚未正確安裝服務，或未在 VM 中執行服務，則不會收集任何效能計量。
+hello AzureEnhancedMonitoring Windows 服務會收集在 Azure 中的效能度量。 如果 hello 服務的安裝不正確或不在 VM 中執行，您可以收集效能度量。
 
-##### <a name="the-installation-directory-of-the-azure-enhanced-monitoring-extension-is-empty"></a>Azure Enhanced Monitoring Extension 的安裝目錄是空的
+##### <a name="hello-installation-directory-of-hello-azure-enhanced-monitoring-extension-is-empty"></a>hello Azure 強化監視功能延伸模組的安裝目錄是 hello 的空的
 
 ###### <a name="issue"></a>問題
-安裝目錄 \\Packages\\Plugins\\Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\&lt;版本>\\drop 是空的。
+hello 安裝目錄 c:\\封裝\\外掛程式\\Microsoft.AzureCAT.AzureEnhancedMonitoring.AzureCATExtensionHandler\\&lt;版本 >\\drop 是空白。
 
 ###### <a name="solution"></a>方案
-未安裝此擴充功能。 判斷這是否為 Proxy 問題 (如先前所述)。 您可能需要重新啟動電腦，或重新執行 `Set-AzureRmVMAEMExtension` 組態指令碼。
+未安裝 hello 延伸模組。 判斷這是否為 Proxy 問題 (如先前所述)。 您可能需要 toorestart hello 機器或重新執行的 hello`Set-AzureRmVMAEMExtension`組態指令碼。
 
 ##### <a name="service-for-azure-enhanced-monitoring-does-not-exist"></a>Azure Enhanced Monitoring 的服務不存在
 
 ###### <a name="issue"></a>問題
-AzureEnhancedMonitoring Windows 服務不存在。
+hello AzureEnhancedMonitoring Windows 服務不存在。
 
 Azperflib.exe 輸出會擲回錯誤︰
 
-![執行 azperflib.exe 即表示 Azure Enhanced Monitoring Extension for SAP 的服務未執行][deployment-guide-figure-1400]
+![執行 azperflib.exe 指出適用於 SAP 的 Azure 強化監視功能延伸模組的 hello 的 hello 服務未執行][deployment-guide-figure-1400]
 <a name="figure-14"></a>
 
 ###### <a name="solution"></a>方案
-如果服務不存在，即表示尚未正確安裝 Azure Enhanced Monitoring Extension for SAP。 請使用 [Azure 中適用於 SAP 的 VM 部署案例][deployment-guide-3]中針對您的部署案例所述的步驟，重新部署此擴充功能。
+如果 hello 服務不存在，hello Azure 強化監視功能延伸模組適用於 SAP 尚未安裝正確。 使用您的部署案例中所述的 hello 步驟來重新部署 hello 延伸[在 Azure 中 SAP 的 Vm 部署案例][deployment-guide-3]。
 
-部署此擴充功能之後，請在一小時後再度檢查 Azure VM 中是否提供 Azure 效能計數器。
+在一小時後部署 hello 延伸之後，再次檢查 hello Azure VM 中是否提供 hello Azure 效能計數器。
 
-##### <a name="service-for-azure-enhanced-monitoring-exists-but-fails-to-start"></a>Azure Enhanced Monitoring 的服務存在，但無法啟動
+##### <a name="service-for-azure-enhanced-monitoring-exists-but-fails-toostart"></a>Azure 強化監視功能的服務存在，但失敗 toostart
 
 ###### <a name="issue"></a>問題
-AzureEnhancedMonitoring Windows 服務存在並已啟用，但無法啟動。 如需詳細資訊，請檢查應用程式事件記錄檔。
+hello AzureEnhancedMonitoring Windows 服務存在並已啟用，但失敗 toostart。 如需詳細資訊，請檢查 hello 應用程式事件記錄檔。
 
 ###### <a name="solution"></a>方案
-組態不正確。 如[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 所述，重新啟動 VM 的監視擴充功能。
+hello 設定不正確。 中所述，重新啟動監視 hello VM 延伸模組的 hello[設定 hello Azure 強化監視功能延伸模組適用於 SAP][deployment-guide-4.5]。
 
 #### <a name="windowslogowindows-some-azure-performance-counters-are-missing"></a>![Windows][Logo_Windows] 遺失部分 Azure 效能計數器
-AzureEnhancedMonitoring Windows 服務會收集 Azure 中的效能計量。 此服務會從數個來源取得資料。 有些組態資料是在本機收集，而有些效能計量是從 Azure 診斷讀取而來。 您會從登入儲存體訂用帳戶的層級使用儲存體計數器。
+hello AzureEnhancedMonitoring Windows 服務會收集在 Azure 中的效能度量。 hello 服務從多個來源取得資料。 有些組態資料是在本機收集，而有些效能計量是從 Azure 診斷讀取而來。 儲存體計數器是從您登入 hello 儲存體訂用帳戶層級來使用。
 
-如果使用 SAP Note [1999351] 進行疑難排解並未解決問題，請重新執行 `Set-AzureRmVMAEMExtension` 組態指令碼。 因為儲存體分析或診斷計數器在啟用後可能未立即建立，所以您可能必須等待一個小時的時間。 如果問題仍然存在，請在元件 BC-OP-NT-AZR (適用於 Windows) 或 BC-OP-LNX-AZR (適用於 Linux 虛擬機器) 上開啟 SAP 客戶支援訊息。
+如果使用 SAP Note 疑難排解[1999351]未解決 hello 問題，請重新執行 hello`Set-AzureRmVMAEMExtension`組態指令碼。 因為儲存體分析或診斷計數器可能不在啟用後，立即建立，您可能需要一小時 toowait。 如果 hello 問題持續發生，請開啟 hello 元件 BC OP-NT AZR 適用於 Windows 或 BC-OP-LNX-AZR Linux 虛擬機器上的 SAP 客戶支援訊息。
 
 #### <a name="linuxlogolinux-azure-performance-counters-do-not-show-up-at-all"></a>![Linux][Logo_Linux] 完全未顯示 Azure 效能計數器
-Daemon 會收集在 Azure 中的效能計量。 如果未執行 Daemon，則不會收集任何效能計量。
+Daemon 會收集在 Azure 中的效能計量。 如果 hello 服務精靈未執行，您可以收集效能度量。
 
-##### <a name="the-installation-directory-of-the-azure-enhanced-monitoring-extension-is-empty"></a>Azure Enhanced Monitoring Extension 的安裝目錄是空白
+##### <a name="hello-installation-directory-of-hello-azure-enhanced-monitoring-extension-is-empty"></a>hello Azure 強化監視功能延伸模組的安裝目錄是 hello 的空的
 
 ###### <a name="issue"></a>問題
-\\var\\lib\\waagent\\ 目錄未包含 Azure Enhanced Monitoring Extension 的子目錄。
+hello 目錄\\var\\lib\\waagent\\沒有 hello Azure 強化監視功能延伸模組的子目錄。
 
 ###### <a name="solution"></a>方案
-未安裝此擴充功能。 判斷這是否為 Proxy 問題 (如先前所述)。 您可能需要重新啟動電腦及/或重新執行 `Set-AzureRmVMAEMExtension` 組態指令碼。
+未安裝 hello 延伸模組。 判斷這是否為 Proxy 問題 (如先前所述)。 您可能需要 toorestart hello 電腦及 （或） 重新執行的 hello`Set-AzureRmVMAEMExtension`組態指令碼。
 
 #### <a name="linuxlogolinux-some-azure-performance-counters-are-missing"></a>![Linux][Logo_Linux] 遺失部分 Azure 效能計數器
-Azure 中的效能計量是由 Daemon 收集，而 Daemon 會從數個來源取得資料。 有些組態資料是在本機收集，而有些效能計量是從 Azure 診斷讀取而來。 儲存體計數器來自您儲存體訂用帳戶中的記錄檔。
+Azure 中的效能計量是由 Daemon 收集，而 Daemon 會從數個來源取得資料。 有些組態資料是在本機收集，而有些效能計量是從 Azure 診斷讀取而來。 儲存體計數器來自儲存體訂用帳戶中的 hello 記錄檔。
 
 如需完整且最新的已知問題清單，請參閱 SAP Note [1999351]，其中包含適用於 Enhanced Azure Monitoring for SAP 的其他疑難排解資訊。
 
-如果使用 SAP Note [1999351] 進行排解疑難並未解決問題，請重新執行 `Set-AzureRmVMAEMExtension` 組態指令碼 (如[設定 Azure Enhanced Monitoring Extension for SAP][deployment-guide-4.5] 所述)。 因為儲存體分析或診斷計數器在啟用後可能未立即建立，所以您可能必須等待一個小時的時間。 如果問題仍然存在，請在元件 BC-OP-NT-AZR (適用於 Windows) 或 BC-OP-LNX-AZR (適用於 Linux 虛擬機器) 上開啟 SAP 客戶支援訊息。
+如果使用 SAP Note 疑難排解[1999351]並未解決 hello 問題，請重新執行 hello`Set-AzureRmVMAEMExtension`組態指令碼中所述[設定 hello Azure 強化監視功能延伸模組適用於 SAP][deployment-guide-4.5]. 因為儲存體分析或診斷計數器可能不在啟用後，立即建立，您可能必須 toowait 一小時。 如果 hello 問題持續發生，請開啟 hello 元件 BC OP-NT AZR 適用於 Windows 或 BC-OP-LNX-AZR Linux 虛擬機器上的 SAP 客戶支援訊息。

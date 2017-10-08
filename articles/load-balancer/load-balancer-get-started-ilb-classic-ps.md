@@ -1,6 +1,6 @@
 ---
-title: "建立 Azure 內部負載平衡器 - PowerShell 傳統 | Microsoft Docs"
-description: "了解如何在傳統部署模型中使用 PowerShell 建立內部負載平衡器"
+title: "aaaCreate Azure 內部負載平衡器-PowerShell 傳統 |Microsoft 文件"
+description: "了解 toocreate 內部負載平衡器在 hello 傳統部署模型中使用 PowerShell 的方式"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: f701fb3564c62cf8088cc4362a10c5e2c2301ae6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 382db80c42ffab09905513019b72e85a4f9dfeff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-creating-an-internal-load-balancer-classic-using-powershell"></a>開始使用 PowerShell 建立內部負載平衡器 (傳統)
 
@@ -31,7 +31,7 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-ilb-intro-include.md](../../includes/load-balancer-get-started-ilb-intro-include.md)]
 
 > [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。  本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 了解如何[使用 Resource Manager 模型執行這些步驟](load-balancer-get-started-ilb-arm-ps.md)。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。  本文說明如何使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。 了解如何太[使用 hello 資源管理員的模型執行這些步驟](load-balancer-get-started-ilb-arm-ps.md)。
 
 [!INCLUDE [load-balancer-get-started-ilb-scenario-include.md](../../includes/load-balancer-get-started-ilb-scenario-include.md)]
 
@@ -39,28 +39,28 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="create-an-internal-load-balancer-set-for-virtual-machines"></a>建立虛擬機器的內部負載平衡器集
 
-若要建立內部負載平衡器集，以及向其傳送流量的伺服器，您必須執行下列動作：
+內部負載平衡器設定和 hello 伺服器，則會傳送其流量 tooit toocreate，您有 toodo hello 下列：
 
-1. 建立將會是連入流量端點的內部負載平衡執行個體，連入流量會在負載平衡集合的不同伺服器之間進行負載平衡。
-2. 新增對應到虛擬機器 (將會接收連入流量) 的端點。
-3. 設定即將傳送流量進行負荷平衡的伺服器將其流量傳送到內部負載平衡執行個體的虛擬 IP (VIP) 位址。
+1. 建立執行個體的內部負載平衡一組負載平衡的 hello 伺服器之間取得平衡的連入流量 toobe 負載 hello 端點。
+2. 新增對應 toohello 將接收 hello 連入流量的虛擬機器端點。
+3. 設定將用來傳送嗨流量 toobe 負載平衡 toosend 其流量 toohello 虛擬 IP (VIP) 位址 hello 內部負載平衡的執行個體的 hello 伺服器。
 
 ### <a name="step-1-create-an-internal-load-balancing-instance"></a>步驟 1︰建立內部負載平衡執行個體
 
-在現有的雲端服務或在區域虛擬網路下部署的雲端服務中，您可以使用下列 Windows PowerShell 命令來建立內部負載平衡執行個體：
+對於現有的雲端服務或部署在區域虛擬網路的雲端服務，您可以建立內部負載平衡的執行個體，以下列 Windows PowerShell 命令的 hello:
 
 ```powershell
 $svc="<Cloud Service Name>"
 $ilb="<Name of your ILB instance>"
-$subnet="<Name of the subnet within your virtual network>"
-$IP="<The IPv4 address to use on the subnet-optional>"
+$subnet="<Name of hello subnet within your virtual network>"
+$IP="<hello IPv4 address toouse on hello subnet-optional>"
 
 Add-AzureInternalLoadBalancer -ServiceName $svc -InternalLoadBalancerName $ilb –SubnetName $subnet –StaticVNetIPAddress $IP
 ```
 
-請注意，使用 [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx) Windows PowerShell Cmdlet 會使用 DefaultProbe 參數集。 如需其他參數集的詳細資訊，請參閱 [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx)。
+請注意，這種使用 hello [Add-azureendpoint](https://msdn.microsoft.com/library/dn495300.aspx) Windows PowerShell cmdlet 會使用 hello DefaultProbe 參數集。 如需其他參數集的詳細資訊，請參閱 [Add-AzureEndpoint](https://msdn.microsoft.com/library/dn495300.aspx)。
 
-### <a name="step-2-add-endpoints-to-the-internal-load-balancing-instance"></a>步驟 2：將端點加入至內部負載平衡執行個體
+### <a name="step-2-add-endpoints-toohello-internal-load-balancing-instance"></a>步驟 2： 新增端點 toohello 內部負載平衡執行個體
 
 下列是一個範例：
 
@@ -76,47 +76,47 @@ $ilb="ilbset"
 Get-AzureVM –ServiceName $svc –Name $vmname | Add-AzureEndpoint -Name $epname -Lbset $lbsetname -Protocol $prot -LocalPort $locport -PublicPort $pubport –DefaultProbe -InternalLoadBalancerName $ilb | Update-AzureVM
 ```
 
-### <a name="step-3-configure-your-servers-to-send-their-traffic-to-the-new-internal-load-balancing-endpoint"></a>步驟 3：設定您的伺服器將其流量傳送到新的內部負載平衡端點
+### <a name="step-3-configure-your-servers-toosend-their-traffic-toohello-new-internal-load-balancing-endpoint"></a>步驟 3： 設定伺服器 toosend 其流量 toohello 新內部負載平衡的端點
 
-您必須設定其流量即將進行負載平衡的伺服器使用內部負載平衡執行個體的新 IP 位址 (VIP)。 這是內部負載平衡執行個體所接聽的位址。 在大部分情況下，您只需要針對內部負載平衡執行個體的 VIP 新增或修改 DNS 記錄。
+您有太設定 hello 伺服器的流量是進行 toobe 負載平衡 toouse hello 新 IP 位址 (hello VIP) hello 內部負載平衡的執行個體。 這是內部負載平衡的 hello 執行個體所接聽的 hello 位址。 在大部分情況下，您需要 toojust 加入或修改 hello 內部負載平衡的執行個體的 hello VIP 的 DNS 記錄。
 
-如果您在建立內部負載平衡執行個體的過程中指定 IP 位址，則您已具有 VIP。 否則，您可以使用下列命令查看 VIP：
+如果您指定 hello IP 位址 hello hello 內部負載平衡的執行個體建立期間，您已經有 hello VIP。 否則，您可以看到 hello VIP 從 hello 下列命令：
 
 ```powershell
 $svc="<Cloud Service Name>"
 Get-AzureService -ServiceName $svc | Get-AzureInternalLoadBalancer
 ```
 
-若要使用這些命令，請填入值並移除 < 和 >。 下列是一個範例：
+toouse 這些命令中，填寫 hello 值，然後移除 hello < 和 >。 下列是一個範例：
 
 ```powershell
 $svc="mytestcloud"
 Get-AzureService -ServiceName $svc | Get-AzureInternalLoadBalancer
 ```
 
-在 Get-AzureInternalLoadBalancer 命令的顯示中，請記下 IP 位址，並對伺服器或 DNS 記錄進行必要的變更，以確保流量會被傳送到 VIP。
+從 hello 顯示 hello Get-azureinternalloadbalancer 命令，記下 hello IP 位址以 hello 必要的變更 tooyour 伺服器或資料流取得傳送 toohello VIP 的 DNS 記錄 tooensure。
 
 > [!NOTE]
-> Microsoft Azure 平台會對各種管理案例使用靜態、可公開路由傳送的 IPv4 位址。 IP 位址是 168.63.129.16。 此 IP 位址不應該遭到任何防火牆封鎖，因為可能會造成非預期的行為。
-> 採用 Azure 內部負載平衡，來自負載平衡器的監視探查會使用此 IP 位址，藉此判斷虛擬機器在負載平衡集的健全狀態。 如果網路安全性群組已用來限制傳輸至內部負載平衡集中 Azure 虛擬機器的流量，或已套用至虛擬網路子網路，請確定您已新增網路安全性規則，允許來自 168.63.129.16 的流量。
+> hello Microsoft Azure 平台會使用各種不同的系統管理情況靜態、 可公開路由傳送的 IPv4 位址。 hello IP 位址是 168.63.129.16。 此 IP 位址不應該遭到任何防火牆封鎖，因為可能會造成非預期的行為。
+> 內部負載平衡尊重 tooAzure，此 IP 位址會使用藉由監視 hello 負載平衡器 toodetermine hello 健全狀況狀態的虛擬機器負載平衡集的探查。 如果網路安全性小組使用的 toorestrict 內部負載平衡集內的流量 tooAzure 虛擬機器或套用的 tooa 虛擬網路子網路，請確定網路安全性規則從 168.63.129.16 加入 tooallow 流量。
 
 ## <a name="example-of-internal-load-balancing"></a>內部負載平衡的範例
 
-若要為兩個範例組態逐步完成建立負載平衡集合的端對端程序，請參閱下列各節。
+您完成 hello 結束 tooend 程序建立一組負載平衡的兩個範例設定，請參閱 toostep hello 下列各節。
 
 ### <a name="an-internet-facing-multi-tier-application"></a>網際網路面向的多層式應用程式
 
-您想要為一組網際網路面向的 Web 伺服器提供負載平衡資料庫服務。 這兩組伺服器都會裝載於單一 Azure 雲端服務。 進入 TCP 通訊埠 1433 的 Web 伺服器流量必須分配到資料庫層中的兩部虛擬機器。 圖 1 顯示組態。
+您想 tooprovide 一組網際網路對向 web 伺服器的負載平衡資料庫服務。 這兩組伺服器都會裝載於單一 Azure 雲端服務。 網頁伺服器流量 tooTCP 連接埠 1433年必須分散 hello 資料庫層中的兩部虛擬機器。 圖 1 顯示 hello 設定。
 
-![資料庫層的內部負載平衡集合](./media/load-balancer-internal-getstarted/IC736321.png)
+![Hello 資料庫層的內部負載平衡集](./media/load-balancer-internal-getstarted/IC736321.png)
 
-組態包含下列各項：
+hello 設定包含下列 hello:
 
-* 裝載虛擬機器的現有雲端服務會命名為 mytestcloud。
-* 兩個現有的資料庫伺服器會命名為 DB1、DB2。
-* Web 層中的 Web 伺服器會使用私人 IP 位址連接到資料庫層中的資料庫伺服器。 另一個選項是為虛擬網路使用您自己的 DNS，並手動註冊內部負載平衡器集的 A 記錄。
+* hello 現有的雲端服務裝載 hello 虛擬機器名為 mytestcloud。
+* hello 兩個現有資料庫伺服器則命名為 DB1 中，DB2。
+* Hello web 層中的 web 伺服器連接 toohello hello 資料庫層中的資料庫伺服器使用 hello 私人 IP 位址。 另一個選項是 toouse hello 虛擬網路的 DNS，並以手動方式註冊 hello 內部負載平衡器集 A 記錄。
 
-下列命令會設定名為 **ILBset** 的新內部負載平衡執行個體，並將端點新增至對應到兩部資料庫伺服器的虛擬機器：
+hello comandos siguientes configuran 新內部負載平衡的執行個體名為**ILBset**加入對應 toohello 兩個資料庫伺服器的端點 toohello 虛擬機器：
 
 ```powershell
 $svc="mytestcloud"
@@ -137,16 +137,16 @@ Get-AzureVM –ServiceName $svc –Name $vmname | Add-AzureEndpoint -Name $epnam
 
 ## <a name="remove-an-internal-load-balancing-configuration"></a>移除內部負載平衡組態
 
-若要將虛擬機器從內部負載平衡器執行個體的端點中移除，請使用下列命令：
+tooremove 為內部負載平衡器執行個體，下列命令使用 hello 從端點的虛擬機器：
 
 ```powershell
 $svc="<Cloud service name>"
-$vmname="<Name of the VM>"
-$epname="<Name of the endpoint>"
+$vmname="<Name of hello VM>"
+$epname="<Name of hello endpoint>"
 Get-AzureVM -ServiceName $svc -Name $vmname | Remove-AzureEndpoint -Name $epname | Update-AzureVM
 ```
 
-若要使用這些命令，請填入值並移除 < 和 >。
+toouse 這些命令中，填寫 hello 值，並移除 hello < 和 >。
 
 下列是一個範例：
 
@@ -157,14 +157,14 @@ $epname="TCP-1433-1433"
 Get-AzureVM -ServiceName $svc -Name $vmname | Remove-AzureEndpoint -Name $epname | Update-AzureVM
 ```
 
-若要將內部負載平衡器執行個體從雲端服務中移除，請使用下列命令：
+tooremove 內部負載平衡器執行個體從雲端服務，下列命令使用 hello:
 
 ```powershell
 $svc="<Cloud service name>"
 Remove-AzureInternalLoadBalancer -ServiceName $svc
 ```
 
-若要使用這些命令，請填入值並移除 < 和 >。
+這些命令，toouse 填入 hello 值，並移除 hello < 和 >。
 
 下列是一個範例：
 
@@ -175,7 +175,7 @@ Remove-AzureInternalLoadBalancer -ServiceName $svc
 
 ## <a name="additional-information-about-internal-load-balancer-cmdlets"></a>內部負載平衡器 Cmdlet 的其他資訊
 
-若要取得內部負載平衡 Cmdlet 的詳細資訊，請在 Windows PowerShell 提示字元中執行下列命令：
+tooobtain 內部負載平衡 cmdlet，執行下列命令在 Windows PowerShell 提示字元中的 hello 相關的其他資訊：
 
 ```powershell
 Get-Help New-AzureInternalLoadBalancerConfig -full

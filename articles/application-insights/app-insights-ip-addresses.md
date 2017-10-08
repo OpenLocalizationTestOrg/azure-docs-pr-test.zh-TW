@@ -1,5 +1,5 @@
 ---
-title: "Application Insights 使用的 IP 位址 | Microsoft Docs"
+title: "使用 Application Insights aaaIP 位址 |Microsoft 文件"
 description: "Application Insights 所需的伺服器防火牆例外狀況"
 services: application-insights
 documentationcenter: .net
@@ -13,22 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/11/2017
 ms.author: bwren
-ms.openlocfilehash: 3bb076c63223fc1567c6b7b25c1a513bbc81ed58
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2c101b8da2ba9594fbff607f4f7551cda80c3c25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="ip-addresses-used-by-application-insights"></a>Application Insights 使用的 IP 位址
-[Azure Application Insights](app-insights-overview.md) 服務會使用一些 IP 位址。 如果您所監視的應用程式裝載於防火牆後面，您可能需要知道這些位址。
+hello [Azure Application Insights](app-insights-overview.md)服務使用的 IP 位址數目。 如果您要監視的 hello 應用程式裝載在防火牆後面您可能需要指定 tooknow 這些位址。
 
 > [!NOTE]
-> 雖然這些位址是靜態的，但可能隨時需要變更。
+> 雖然這些位址是靜態的所以我們需要 toochange 其時間 tootime。
 > 
 > 
 
 ## <a name="outgoing-ports"></a>連出連接埠
-您需要在伺服器防火牆開啟某些連出連接埠，以允許 Application Insights SDK 和/或狀態監視器將資料傳送至入口網站：
+某些伺服器的防火牆 tooallow hello Application Insights SDK 中的外寄連接埠和/或狀態監視器 toosend 資料 toohello 入口網站，您會需要 tooopen:
 
 | 目的 | URL | IP | 連接埠 |
 | --- | --- | --- | --- |
@@ -56,7 +56,7 @@ ms.lasthandoff: 08/18/2017
 | 當機資料 |gate.hockeyapp.net |104.45.136.42 |80、443 |
 
 ## <a name="availability-tests"></a>可用性集合
-這是用來執行 [可用性 Web 測試](app-insights-monitor-web-app-availability.md) 的位址清單。 如果您想要在您的應用程式上執行 Web 測試，但您的 Web 伺服器限於為特定用戶端提供服務，則您必須允許來自我們的可用性測試伺服器的連入流量。
+這是從中位址 hello 清單[可用性 web 測試](app-insights-monitor-web-app-availability.md)執行。 如果您想 toorun web 測試在您的應用程式，但是您 web 伺服器是受限制的 tooserving 特定用戶端，則您必須從可用性測試伺服器 toopermit 連入流量。
 
 為來自這些位址 (IP 位址會依照位置分組) 的連入流量開啟連接埠 80 (http) 和 443 (https)︰
 

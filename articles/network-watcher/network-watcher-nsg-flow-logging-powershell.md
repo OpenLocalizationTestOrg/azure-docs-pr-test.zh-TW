@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員管理網路安全性群組流量記錄 - PowerShell | Microsoft Docs"
-description: "此頁面說明如何使用 PowerShell 在 Azure 網路監看員中管理網路安全性群組流量記錄"
+title: "aaaManage 網路安全性群組流程記錄與 Azure 網路監看員-PowerShell |Microsoft 文件"
+description: "此頁面說明 toomanage 網路安全性群組資料流程中使用 PowerShell 的 Azure 網路監看員的記錄檔"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 9fa2e2e1c09b119bd2a1e149fd2cc080957af296
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 987e8728fb6459fd6ff8eb5cd3d36ff855f2ccfc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-network-security-group-flow-logs-with-powershell"></a>使用 PowerShell 設定網路安全性群組流量記錄
 
@@ -29,11 +29,11 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-nsg-flow-logging-cli.md)
 > - [REST API](network-watcher-nsg-flow-logging-rest.md)
 
-網路安全性群組流量記錄是網路監看員的一項功能，可讓您檢視透過網路安全性群組傳輸之輸入和輸出 IP 流量的相關資訊。 這些流量記錄是以 json 格式撰寫，會顯示每一規則的輸出和輸入流量、流量套用至的 NIC、有關流量的 5 個 Tuple 資訊 (來源/目的地 IP、來源/目的地連接埠、通訊協定)，以及流量是被允許或拒絕。
+網路安全性小組流程記錄檔是 tooview ingress 和 egress IP 流量，透過網路安全性群組相關的資訊可讓您的網路監看員的功能。 這些流程記錄檔會寫入以 json 格式，並顯示輸出和輸入每個規則為基礎的流量，hello NIC hello 流程適用於，5 個 tuple hello 流程 （來源/目的地 IP，來源/目的地連接埠通訊協定） 的資訊，並允許流量，如果 hello 或被拒絕。
 
 ## <a name="register-insights-provider"></a>註冊 Insights 提供者
 
-若要讓流量記錄成功運作，必須註冊 **Microsoft.Insights** 提供者。 如果您不確定是否已註冊 **Microsoft.Insights** 提供者，請執行下列程式碼。
+為了讓流量記錄 toowork 成功，hello **Microsoft.Insights**必須註冊提供者。 如果您不確定是否 hello **Microsoft.Insights**提供者是已註冊，請執行的 hello 下列指令碼。
 
 ```powershell
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Insights
@@ -41,7 +41,7 @@ Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Insights
 
 ## <a name="enable-network-security-group-flow-logs"></a>啟用網路安全性群組流量記錄
 
-用來啟用流量記錄的命令如下列範例所示︰
+hello 命令 tooenable 流程記錄檔以 hello 下列範例所示：
 
 ```powershell
 $NW = Get-AzurermNetworkWatcher -ResourceGroupName NetworkWatcherRg -Name NetworkWatcher_westcentralus
@@ -53,7 +53,7 @@ Set-AzureRmNetworkWatcherConfigFlowLog -NetworkWatcher $NW -TargetResourceId $ns
 
 ## <a name="disable-network-security-group-flow-logs"></a>停用網路安全性群組流量記錄
 
-使用下列範例來停用流量記錄︰
+下列範例 toodisable 流程記錄檔使用 hello:
 
 ```powershell
 Set-AzureRmNetworkWatcherConfigFlowLog -NetworkWatcher $NW -TargetResourceId $nsg.Id -StorageAccountId $storageAccount.Id -EnableFlowLog $false
@@ -61,18 +61,18 @@ Set-AzureRmNetworkWatcherConfigFlowLog -NetworkWatcher $NW -TargetResourceId $ns
 
 ## <a name="download-a-flow-log"></a>下載流量記錄
 
-流量記錄的儲存位置會在建立時定義。 若要存取這些儲存至儲存體帳戶的流量記錄，Microsoft Azure 儲存體總管是很便利的工具，您可以在這裡下載︰http://storageexplorer.com/
+hello 流程記錄檔的儲存位置是在建立時定義。 這些非固定格式儲存的記錄檔 tooa 儲存體帳戶是 Microsoft Azure 儲存體總管 中，這可以在這裡下載方便的工具 tooaccess: http://storageexplorer.com/
 
-如果指定了儲存體帳戶，封包擷取檔案便會儲存到儲存體帳戶的下列位置︰
+如果指定的儲存體帳戶，則封包擷取檔案會儲存在下列位置的 hello tooa 儲存體帳戶：
 
 ```
 https://{storageAccountName}.blob.core.windows.net/insights-logs-networksecuritygroupflowevent/resourceId%3D/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.network/networksecuritygroups/{nsgName}/{year}/{month}/{day}/PT1H.json
 ```
 
-如需記錄結構的相關資訊，請造訪[網路安全性群組流量記錄概觀](network-watcher-nsg-flow-logging-overview.md)
+Hello 結構 hello 記錄檔的相關資訊請造訪[網路安全性群組流程記錄概觀](network-watcher-nsg-flow-logging-overview.md)
 
 ## <a name="next-steps"></a>後續步驟
 
-了解如何[使用 PowerBI 視覺化 NSG 流量記錄](network-watcher-visualize-nsg-flow-logs-power-bi.md)
+了解如何太[視覺化與 PowerBI NSG 流程記錄](network-watcher-visualize-nsg-flow-logs-power-bi.md)
 
-了解如何[使用開放原始碼工具視覺化 NSG 流量記錄](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)
+了解如何太[視覺化 NSG 流程記錄與開放原始碼工具](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)

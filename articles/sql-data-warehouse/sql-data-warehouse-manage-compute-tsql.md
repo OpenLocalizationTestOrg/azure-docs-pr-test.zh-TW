@@ -1,6 +1,6 @@
 ---
-title: "在 Azure SQL 資料倉儲中暫停、繼續、使用 T-SQL 調整 | Microsoft Docs"
-description: "透過調整 DWU 以相應放大效能的 Transact-SQL (T-SQL) 工作。 透過在非尖峰時間進行縮減以節省成本。"
+title: "aaaPause，繼續，請利用 Azure SQL 資料倉儲中的 T-SQL 調整 |Microsoft 文件"
+description: "藉由調整 Dwu TRANSACT-SQL (T-SQL) 工作 tooscale 外延展效能。 透過在非尖峰時間進行縮減以節省成本。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 03/30/2017
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 9221d72ecf8ab2ba8b04e4bc97eeef7157817cca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 84c6868acb673221d8853319ac9a05bb98b2b7c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-compute-power-in-azure-sql-data-warehouse-t-sql"></a>管理 Azure SQL 資料倉儲中的計算能力 (T-SQL)
 > [!div class="op_single_selector"]
@@ -33,11 +33,11 @@ ms.lasthandoff: 07/11/2017
 <a name="current-dwu-bk"></a>
 
 ## <a name="view-current-dwu-settings"></a>檢視目前的 DWU 設定
-若要檢視您的資料庫的目前 DWU 設定︰
+tooview hello 目前的 DWU 設定您的資料庫：
 
 1. 在 Visual Studio 中開啟 [SQL Server 物件總管]。
-2. 連接到與邏輯 SQL Database 伺服器相關聯的 master 資料庫。
-3. 從 sys.database_service_objectives 動態管理檢視中選取。 下列是一個範例： 
+2. 連接 toohello hello 邏輯 SQL Database 伺服器相關聯的主要資料庫。
+3. 選取從 hello sys.database_service_objectives 動態管理檢視。 下列是一個範例： 
 
 ```sql
 SELECT
@@ -56,10 +56,10 @@ JOIN
 ## <a name="scale-compute"></a>調整計算
 [!INCLUDE [SQL Data Warehouse scale DWUs description](../../includes/sql-data-warehouse-scale-dwus-description.md)]
 
-若要變更 DWU︰
+toochange hello dwu 調整：
 
-1. 連接到與您的邏輯 SQL Database 伺服器相關聯的 master 資料庫。
-2. 使用 [ALTER DATABASE][ALTER DATABASE] TSQL 陳述式。 下例範例會將資料庫 MySQLDW 的服務等級目標設定為 DW1000。 
+1. 連接邏輯的 SQL Database 伺服器相關聯的 toohello master 資料庫。
+2. 使用 hello [ALTER DATABASE] [ ALTER DATABASE] TSQL 陳述式。 hello 下列範例會設定 hello 服務等級目標 tooDW1000 hello 資料庫 MySQLDW。 
 
 ```Sql
 ALTER DATABASE MySQLDW
@@ -71,8 +71,8 @@ MODIFY (SERVICE_OBJECTIVE = 'DW1000')
 
 ## <a name="check-database-state-and-operation-progress"></a>檢查資料庫狀態和作業進度
 
-1. 連接到與您的邏輯 SQL Database 伺服器相關聯的 master 資料庫。
-2. 送出查詢以檢查資料庫狀態
+1. 連接邏輯的 SQL Database 伺服器相關聯的 toohello master 資料庫。
+2. 提交查詢 toocheck 資料庫狀態
 
 ```sql
 SELECT *
@@ -80,7 +80,7 @@ FROM
 sys.databases
 ```
 
-3. 送出查詢以檢查作業的狀態
+3. 提交作業的查詢 toocheck 狀態
 
 ```sql
 SELECT *
@@ -92,7 +92,7 @@ AND
     major_resource_id = 'MySQLDW'
 ```
 
-此 DMV 會傳回您「SQL 資料倉儲」上各種管理作業的相關資訊，例如作業和作業的狀態 (不是 IN_PROGRESS 就是 COMPLETED)。
+此 DMV 會傳回您的 SQL 資料倉儲，例如 hello hello 作業將會是 IN_PROGRESS 或完成的作業和 hello 狀態上的各種管理操作的相關資訊。
 
 
 

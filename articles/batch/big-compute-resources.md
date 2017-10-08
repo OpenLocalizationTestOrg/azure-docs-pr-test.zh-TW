@@ -1,6 +1,6 @@
 ---
-title: "Azure 雲端中的 Batch 和 HPC 資源 | Microsoft Docs"
-description: "列出技術資源協助您在 Azure 中執行大規模平行、批次和高效能運算 (HPC) 工作負載。"
+title: "在 hello Azure 雲端中的批次和 HPC aaaResources |Microsoft 文件"
+description: "列出您執行大規模的平行、 批次和高效能運算 (HPC) 工作負載在 Azure 中的技術資源 toohelp。"
 services: batch, cloud-services, virtual-machines
 documentationcenter: 
 author: dlepow
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: NA
 ms.workload: big-compute
 ms.date: 03/17/2017
 ms.author: danlep
-ms.openlocfilehash: 18be9f503b57117a7e8f5f0a4e9c93614cc7755b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: ab8ba24678bd7ec090306b501d29ca63c4fb83ee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="big-compute-in-azure-technical-resources-for-batch-and-high-performance-computing"></a>Azure 中的大量運算：批次和高效能運算的技術資源
-本文章是技術資源指南，旨在協助您於 Azure 中執行大規模平行、批次和高效能運算 (HPC) 工作負載。 使用各種 Azure 服務擴充您現有的批次或 HPC 工作負載至 Azure 雲端，或建置新的大量計算解決方案。
+這是您在 Azure 中執行大規模的平行、 批次和高效能運算 (HPC) 工作負載指南 tootechnical 資源 toohelp。 擴充您現有的批次或 HPC 工作負載 toohello Azure 的雲端，或建立新 Big Compute 解決方案使用的 Azure 服務。
 
 ## <a name="solutions-options"></a>方案選項
-了解在 Azure 中的大量計算選項，並為您的工作負載和商務需求選擇正確的方法。
+了解在 Azure 中 Big Compute 的選項，然後選擇 hello 正確的方法，針對您的工作負載和商務需求。
 
 * [批次和 HPC 解決方案](batch-hpc-solutions.md)
-* [影片：Azure 和 HPC 在雲端的大量運算](https://azure.microsoft.com/documentation/videos/teched-europe-2014-big-compute-in-the-cloud-with-high-performance-computing-on-azure/)
+* [影片： 使用 Azure 和 HPC hello 雲端中的 Big Compute](https://azure.microsoft.com/documentation/videos/teched-europe-2014-big-compute-in-the-cloud-with-high-performance-computing-on-azure/)
 
 ## <a name="azure-batch"></a>Azure Batch
-[Batch](https://azure.microsoft.com/services/batch/) 是一種平台服務，可以輕鬆地從雲端啟用 Linux 和 Windows 應用程式，不必設定和管理叢集及工作排程器即可執行工作。 使用 SDK 透過各種不同語言、接移資料至 Azure和建立工作執行管線，將用戶端應用程式與 Azure 批次整合。
+[批次](https://azure.microsoft.com/services/batch/)是平台服務，可讓您輕鬆 toocloud 啟用您的 Linux 和 Windows 應用程式和執行的工作，而不設定和管理叢集和作業的排程器。 使用 Azure 批次中的 hello SDK toointegrate 用戶端應用程式，透過不同的語言，階段資料 tooAzure，並建立工作執行管線檔案。
 
-* [文件](https://azure.microsoft.com/documentation/services/batch/)
+* [Documentation](https://azure.microsoft.com/documentation/services/batch/)
 * [.NET](https://msdn.microsoft.com/library/azure/mt348682.aspx)、[Python](http://azure-sdk-for-python.readthedocs.io/latest/)、[Node.js](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/)、[Java](http://azure.github.io/azure-sdk-for-java/) 和 [REST](https://msdn.microsoft.com/library/azure/dn820158.aspx) API 參考
 * [Batch 管理 .NET 程式庫](https://msdn.microsoft.com/library/mt463120.aspx) 參考
 * 教學課程：開始使用[適用於 .NET 的 Azure Batch 程式庫](batch-dotnet-get-started.md)和 [Batch Python 用戶端](batch-python-tutorial.md)
@@ -40,7 +40,7 @@ ms.lasthandoff: 08/03/2017
 * [批次影片](https://azure.microsoft.com/documentation/videos/index/?services=batch)
 
 ## <a name="hpc-cluster-solutions"></a>HPC 叢集解決方案
-部署或擴充您現有的 Windows 或 Linux HPC 叢集至 Azure，以執行您的計算密集工作負載。  
+部署或擴充您現有 Windows 或 Linux HPC 叢集 tooAzure toorun 您大量計算的工作負載。  
 
 ### <a name="microsoft-hpc-pack"></a>Microsoft HPC Pack
 HPC Pack 是建置在 Microsoft Azure 和 Windows Server 技術上的 Microsoft 免費 HPC 解決方案，可執行 Windows 和 Linux HPC 工作負載。  
@@ -49,12 +49,12 @@ HPC Pack 是建置在 Microsoft Azure 和 Windows Server 技術上的 Microsoft 
 * [下載 HPC Pack 2012 R2 Update 3](https://www.microsoft.com/download/details.aspx?id=49922)
 * [Documentation](https://technet.microsoft.com/library/jj899572.aspx)
 * Azure 中的 HPC Pack 叢集選項：[Linux](../virtual-machines/linux/hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 和 [Windows](../virtual-machines/windows/hpcpack-cluster-options.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 
-* [使用 HPC Pack 將暴增的工作負載移至 Azure 背景工作執行個體](https://technet.microsoft.com/library/gg481749.aspx)
-* [使用 HPC Pack 將暴增的工作負載移至 Azure Batch](https://technet.microsoft.com/library/mt612877.aspx)
+* [TooAzure 背景工作執行個體使用 HPC Pack 高載](https://technet.microsoft.com/library/gg481749.aspx)
+* [TooAzure 批次使用 HPC Pack 高載](https://technet.microsoft.com/library/mt612877.aspx)
 * [Windows HPC 論壇](https://social.microsoft.com/Forums/home?category=windowshpc)
 
 ### <a name="linux-and-oss-cluster-solutions"></a>Linux 與 OSS 叢集解決方案
-使用這些 Azure 範本來部署 Linux HPC 叢集。
+使用這些 Linux HPC 叢集的 Azure 範本 toodeploy。
 
 * [加速 SLURM 叢集](https://azure.microsoft.com/documentation/templates/slurm/)和[部落格文章](http://blogs.technet.com/b/windowshpc/archive/2015/06/06/deploy-a-slurm-cluster-on-azure.aspx)
 * [加速扭力叢集](https://azure.microsoft.com/documentation/templates/torque-cluster/)
@@ -69,23 +69,23 @@ HPC Pack 是建置在 Microsoft Azure 和 Windows Server 技術上的 Microsoft 
 
 
 ## <a name="microsoft-mpi"></a>Microsoft MPI
-[Microsoft MPI](https://msdn.microsoft.com/library/bb524831.aspx) (MS-MPI) 是為了在 Windows 平台上開發及執行平行應用程式，Microsoft 實作的訊息傳遞介面標準。
+[Microsoft MPI](https://msdn.microsoft.com/library/bb524831.aspx) (MS-MPI) 是 Microsoft 實作的 hello 標準開發和 hello Windows 平台上執行平行應用程式訊息傳遞介面。
 
 * [下載 MS-MPI](http://go.microsoft.com/FWLink/p/?LinkID=389556)
 * [MS-MPI 參考資料](https://msdn.microsoft.com/library/dn473458.aspx)
 * [MPI 論壇](https://social.microsoft.com/Forums/en-us/home?forum=windowshpcmpi)
 
 ## <a name="compute-intensive-instances"></a>計算密集型執行個體
-Azure 提供[各種大小的 VM](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (包括能夠連接到後端 RDMA 網路的[計算密集型 H 系列](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)執行個體) 來執行您的 Linux 和 Windows HPC 工作負載。 
+Azure 提供[範圍的 VM 大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，包括[需要大量計算 H 數列](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)能夠連線 tooa 後端 RDMA 網路，toorun Linux 和 Windows HPC 工作負載的執行個體。 
 
-* [設定 Linux RDMA 叢集以執行 MPI 應用程式](../virtual-machines/linux/classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [使用 Microsoft HPC Pack 設定 Windows RDMA 叢集以執行 MPI 應用程式](../virtual-machines/windows/classic/hpcpack-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [設定 Linux RDMA 叢集 toorun MPI 應用程式](../virtual-machines/linux/classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [設定 Windows RDMA 叢集使用 Microsoft HPC Pack toorun MPI 應用程式](../virtual-machines/windows/classic/hpcpack-rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 針對 GPU 密集的工作負載，請參閱 [NC 和 NV 大小 (英文)](https://azure.microsoft.com/blog/azure-n-series-general-availability-on-december-1/)。
 
 ## <a name="samples-and-demos"></a>範例和示範
 * [Azure Batch C# 和 Python 程式碼範例](https://github.com/Azure/azure-batch-samples)
-* [Batch Shipyard](https://azure.github.io/batch-shipyard/) 工具組，以便將批次樣式 Dockerized 工作負載輕鬆部署至 Azure Batch
+* [批次造船廠](https://azure.github.io/batch-shipyard/)工具組，以便於部署的批次樣式 Dockerized 工作負載 tooAzure 批次
 * [doAzureParallel (英文)](http://www.github.com/Azure/doAzureParallel) R 套件 (以 Azure Batch 為基礎而建置)
 * [測試磁碟機 SUSE Linux Enterprise Server for HPC](https://azure.microsoft.com/marketplace/partners/suse/suselinuxenterpriseserver12optimizedforhighperformancecompute/)
 
@@ -119,6 +119,6 @@ Azure 提供[各種大小的 VM](../virtual-machines/windows/sizes.md?toc=%2fazu
 * [UberCloud](https://simulation.azure.com/casestudies/Team-182-ABB-UC-Final.pdf)
 
 ## <a name="next-steps"></a>後續步驟
-* 如需最新公告，請參閱 [Microsoft HPC 和 Batch 小組部落格](http://blogs.technet.com/b/windowshpc/)以及[Azure 部落格](https://azure.microsoft.com/blog/tag/hpc/)。
-* 另請參閱 [Batch 的新功能](https://azure.microsoft.com/updates/?service=batch)或訂閱 [RSS 摘要](https://azure.microsoft.com/updates/feed/?service=batch)。
+* 最新的 hello 公告，請參閱 hello [Microsoft HPC 和批次小組部落格](http://blogs.technet.com/b/windowshpc/)和 hello [Azure 部落格](https://azure.microsoft.com/blog/tag/hpc/)。
+* 另請參閱[批次中最新消息](https://azure.microsoft.com/updates/?service=batch)或訂閱 toohello [RSS 摘要](https://azure.microsoft.com/updates/feed/?service=batch)。
 

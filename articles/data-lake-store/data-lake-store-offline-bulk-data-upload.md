@@ -1,6 +1,6 @@
 ---
-title: "使用離線方法將大量資料上傳到 Data Lake Store | Microsoft Docs"
-description: "使用 AdlCopy 工具將資料從 Azure 儲存體 Blob 複製到 Data Lake Store"
+title: "aaaUpload 大量資料至資料湖存放區使用的離線方法 |Microsoft 文件"
+description: "使用 hello AdlCopy 工具 toocopy 資料從 Azure 儲存體 blob tooData 湖存放區"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/10/2017
 ms.author: nitinme
-ms.openlocfilehash: b469c0ebe9838a1ea986cff3043e3008941e9aa9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 42ef75142a26ebfab05d89614782a54c244c4bcb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-azure-importexport-service-for-offline-copy-of-data-to-data-lake-store"></a>使用 Azure 匯入/匯出服務將資料離線複製到 Data Lake Store
-在本文中，您將深入了解如何使用離線複製方法 (例如 [Azure 匯入/匯出服務](../storage/common/storage-import-export-service.md)) 將大型資料集 (>200 GB) 複製到 Azure Data Lake Store 中。 具體來說，作為本文中範例的檔案是 339,420,860,416 個位元組，或在磁碟上大約是 319 GB。 讓我將此檔案稱為 319GB.tsv。
+# <a name="use-hello-azure-importexport-service-for-offline-copy-of-data-toodata-lake-store"></a>使用資料 tooData 湖存放區的離線複本的 hello Azure 匯入/匯出服務
+在本文中，您將學習如何 toocopy 大量的資料設定 (> 200 GB) 到使用離線複製方法，例如 hello Azure Data Lake Store [Azure 匯入/匯出服務](../storage/common/storage-import-export-service.md)。 具體而言，用做為範例，本文章中的 hello 檔案是 339,420,860,416 位元組或約 319 GB 的磁碟上。 讓我將此檔案稱為 319GB.tsv。
 
-Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，更安全地傳輸大量資料至 Azure Blob 儲存體。
+hello Azure 匯入/匯出服務可協助您 tootransfer 大量的更多安全地 tooAzure Blob 儲存體傳送的硬碟磁碟機 tooan Azure 資料中心內的資料。
 
 ## <a name="prerequisites"></a>必要條件
-開始之前，您必須具備下列條件：
+在開始之前，您必須擁有 hello 下列：
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 * **Azure 儲存體帳戶**。
-* **Azure 資料湖儲存區帳戶**。 如需有關如何建立帳戶的詳細指示，請參閱 [開始使用 Azure 資料湖儲存區](data-lake-store-get-started-portal.md)
+* **Azure Data Lake Store 帳戶**。 如需有關指示 toocreate 一個，請參閱[開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)
 
-## <a name="preparing-the-data"></a>準備資料
-開始使用「匯入/匯出服務」之前，請將要傳輸的資料檔分割成大小**小於 200 GB 的複本**。 匯入工具不適用於大於 200 GB 的檔案。 在本教學課程中，我們將檔案分割成每個 100 GB 的區塊。 您可以使用 [Cygwin](https://cygwin.com/install.html) 來達成此目的。 Cygwin 支援 Linux 命令。 在此情況下，請使用下列命令：
+## <a name="preparing-hello-data"></a>準備 hello 資料
+在使用之前 hello 匯入/匯出服務，中斷 hello 資料檔案 toobe 傳輸**小於 200 gb 的複製**的大小。 hello 匯入工具不適用於檔案大於 200 GB。 在本教學課程中，我們必須 hello 檔案分割為 100 GB 的區塊中。 您可以使用 [Cygwin](https://cygwin.com/install.html) 來達成此目的。 Cygwin 支援 Linux 命令。 在此情況下，使用下列命令的 hello:
 
     split -b 100m 319GB.tsv
 
-分割作業會建立帶有以下名稱的檔案。
+hello split 作業會以下列名稱的 hello 建立檔案。
 
     319GB.tsv-part-aa
 
@@ -48,28 +48,28 @@ Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，更安
     319GB.tsv-part-ad
 
 ## <a name="get-disks-ready-with-data"></a>備妥資料磁碟
-依照[使用 Azure 匯入/匯出服務](../storage/common/storage-import-export-service.md)的指示 (在**準備磁碟機**一節底下) 來準備您的硬碟。 以下是整體順序︰
+請依照下列中的 hello 指示[使用 hello Azure 匯入/匯出服務](../storage/common/storage-import-export-service.md)(下 hello**準備磁碟機時**> 一節) tooprepare 硬碟機。 以下是 hello 整體順序：
 
-1. 取得符合 Auzre 匯入/匯出服務使用需求的硬碟。
-2. 識別當資料被送至 Azure 資料中心時，將用來複製資料的 Azure 儲存體帳戶。
-3. 使用 [Azure 匯入/匯出工具](http://go.microsoft.com/fwlink/?LinkID=301900&clcid=0x409)，這是一個命令列公用程式。 以下是一個有關如何使用該工具的簡單程式碼片段。
+1. 取得符合 hello 需求 toobe hello Azure 匯入/匯出服務所使用的硬碟。
+2. 識別 Azure 儲存體帳戶之後已出貨的 toohello Azure 資料中心位置複製 hello 資料。
+3. 使用 hello [Azure 匯入/匯出工具](http://go.microsoft.com/fwlink/?LinkID=301900&clcid=0x409)，命令列公用程式。 以下是範例程式碼片段顯示如何 toouse hello 工具。
 
     ````
     WAImportExport PrepImport /sk:<StorageAccountKey> /t: <TargetDriveLetter> /format /encrypt /logdir:e:\myexportimportjob\logdir /j:e:\myexportimportjob\journal1.jrn /id:myexportimportjob /srcdir:F:\demo\ExImContainer /dstdir:importcontainer/vf1/
     ````
-    如需更多範例程式碼片段，請參閱[使用 Azure 匯入/匯出服務](../storage/common/storage-import-export-service.md)。
-4. 前述命令會在指定的位置建立日誌檔案。 使用此日誌檔案從 [Azure 傳統入口網站](https://manage.windowsazure.com)建立匯入作業。
+    請參閱[使用 hello Azure 匯入/匯出服務](../storage/common/storage-import-export-service.md)for 詳細的範例程式碼片段。
+4. hello 前述的命令建立日誌檔案中的，於 hello 指定的位置。 使用這個日誌檔 toocreate 匯入工作從 hello [Azure 傳統入口網站](https://manage.windowsazure.com)。
 
 ## <a name="create-an-import-job"></a>建立匯入作業
-您現在可以依照[使用 Azure 匯入/匯出服務](../storage/common/storage-import-export-service.md)的指示 (在**準備磁碟機**一節底下) 來建立匯入作業。 針對此匯入作業，除了其他詳細資料之外，也請提供在準備磁碟機時建立的日誌檔。
+您現在可以建立匯入工作使用中的 hello 指示[使用 hello Azure 匯入/匯出服務](../storage/common/storage-import-export-service.md)(下 hello**建立 hello 匯入工作**> 一節)。 這個匯入工作，與其他詳細資料，也提供 hello 準備 hello 磁碟機期間建立的日誌檔。
 
-## <a name="physically-ship-the-disks"></a>實際寄送磁碟
-您現在可以將磁碟實際寄送至 Azure 資料中心。 在此，資料將在這裡複製到您建立匯入作業時所提供的 Azure 儲存體 Blob。 此外，如果您在建立作業時選擇了稍後提供追蹤資訊，您現在便可返回您的匯入作業並更新追蹤號碼。
+## <a name="physically-ship-hello-disks"></a>實際寄送 hello 磁碟機
+您可以現在實際送出 hello 磁碟 tooan Azure 資料中心。 Hello 資料，複製 toohello 建立 hello 匯入工作時您所提供的 Azure 儲存體 blob。 此外，在建立 hello 作業時，如果您選擇 tooprovide hello 追蹤資訊之後，您現在可以移回 tooyour 匯入作業並更新 hello 追蹤號碼。
 
-## <a name="copy-data-from-azure-storage-blobs-to-azure-data-lake-store"></a>將資料從 Azure 儲存體 Blob 複製到 Azure Data Lake Store
-匯入作業的狀態顯示為完成之後，您可以確認您指定的 Azure 儲存體 Blob 中是否有該資料。 接下來，您可以使用各種方法將該資料從 Blob 移至 Azure Data Lake Store。 如需所有可用的上傳資料選項，請參閱[將資料內嵌到 Data Lake Store](data-lake-store-data-scenarios.md#ingest-data-into-data-lake-store)。
+## <a name="copy-data-from-azure-storage-blobs-tooazure-data-lake-store"></a>從 Azure 儲存體 blob tooAzure 資料湖存放區複製資料
+Hello hello 狀態之後匯入工作會顯示已完成，您可以確認是否已指定 hello Azure 儲存體 blob 中可用 hello 資料。 然後，您可以使用各種不同的方法 toomove hello 資料 blob tooAzure 資料湖存放區。 如需所有 hello 可用於將資料上傳選項，請參閱[擷取資料至資料湖存放區](data-lake-store-data-scenarios.md#ingest-data-into-data-lake-store)。
 
-在本節中，我們會提供您可用來建立 Azure Data Factory 管線以供複製資料的 JSON 定義。 您可以從 [Azure 入口網站](../data-factory/data-factory-copy-activity-tutorial-using-azure-portal.md)、[Visual Studio](../data-factory/data-factory-copy-activity-tutorial-using-visual-studio.md) 或 [Azure PowerShell](../data-factory/data-factory-copy-activity-tutorial-using-powershell.md) 使用這些 JSON 定義。
+在本節中，我們提供您 hello JSON 定義，您可以使用 toocreate Azure Data Factory 管線用來複製資料。 您可以使用這些 JSON 定義從 hello [Azure 入口網站](../data-factory/data-factory-copy-activity-tutorial-using-azure-portal.md)，或[Visual Studio](../data-factory/data-factory-copy-activity-tutorial-using-visual-studio.md)，或[Azure PowerShell](../data-factory/data-factory-copy-activity-tutorial-using-powershell.md)。
 
 ### <a name="source-linked-service-azure-storage-blob"></a>來源連結服務 (Azure 儲存體 Blob)
 ````
@@ -93,9 +93,9 @@ Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，更安
         "type": "AzureDataLakeStore",
         "description": "",
         "typeProperties": {
-            "authorization": "<Click 'Authorize' to allow this data factory and the activities it runs to access this Data Lake Store with your access rights>",
+            "authorization": "<Click 'Authorize' tooallow this data factory and hello activities it runs tooaccess this Data Lake Store with your access rights>",
             "dataLakeStoreUri": "https://<adls_account_name>.azuredatalakestore.net/webhdfs/v1",
-            "sessionId": "<OAuth session id from the OAuth authorization session. Each session id is unique and may only be used once>"
+            "sessionId": "<OAuth session id from hello OAuth authorization session. Each session id is unique and may only be used once>"
         }
     }
 }
@@ -187,23 +187,23 @@ Azure 匯入/匯出服務可讓您將硬碟運送到 Azure 資料中心，更安
     }
 }
 ````
-如需詳細資訊，請參閱[使用 Azure Data Factory 將資料從 Azure 儲存體 Blob 移到 Azure Data Lake Store](../data-factory/data-factory-azure-datalake-connector.md)。
+如需詳細資訊，請參閱[移動資料從 Azure 儲存體 blob 使用 Azure Data Factory tooAzure Data Lake Store](../data-factory/data-factory-azure-datalake-connector.md)。
 
-## <a name="reconstruct-the-data-files-in-azure-data-lake-store"></a>在 Azure Data Lake Store 中重新建構資料檔
-我們從 319 GB 的檔案開始著手並將它分割成數個較小的檔案，以便使用 Azure 匯入/匯出服務來傳輸它。 現在，該資料在 Azure Data Lake Store 中，我們可以將檔案重新建構成其原始大小。 您可以使用下列 Azure PowerShell Cmdlet 來這麼做。
+## <a name="reconstruct-hello-data-files-in-azure-data-lake-store"></a>重新建構 hello Azure 資料湖存放區中的資料檔案
+我們已開始 319 gb，並進入它較小的大小的檔案，讓它無法使用傳送 hello Azure 匯入/匯出服務的檔案。 既然 hello 資料是在 Azure 資料湖存放區中，我們可以重新建構 hello 檔案 tooits 原始大小。 您可以使用下列 Azure PowerShell cmldts toodo 因此 hello。
 
 ````
-# Login to our account
+# Login tooour account
 Login-AzureRmAccount
 
 # List your subscriptions
 Get-AzureRmSubscription
 
-# Switch to the subscription you want to work with
+# Switch toohello subscription you want toowork with
 Set-AzureRmContext –SubscriptionId
 Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.DataLakeStore"
 
-# Join  the files
+# Join  hello files
 Join-AzureRmDataLakeStoreItem -AccountName "<adls_account_name" -Paths "/importeddatafeb8job/319GB.tsv-part-aa","/importeddatafeb8job/319GB.tsv-part-ab", "/importeddatafeb8job/319GB.tsv-part-ac", "/importeddatafeb8job/319GB.tsv-part-ad" -Destination "/importeddatafeb8job/MergedFile.csv”
 ````
 

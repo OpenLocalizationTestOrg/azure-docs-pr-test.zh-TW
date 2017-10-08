@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Cosmos DB 進行 Java 應用程式開發教學課程 | Microsoft Docs"
-description: "本 Java Web 應用程式教學課程示範如何使用 Azure Cosmos DB 和 DocumentDB API，來儲存和存取 Azure 網站上所託管的 Java 應用程式資料。"
+title: "aaaJava 應用程式開發人員教學課程使用 Azure Cosmos DB |Microsoft 文件"
+description: "此 Java web 應用程式教學課程會示範如何 toouse hello Azure Cosmos DB hello DocumentDB API toostore 及和 Azure 網站上主控的 Java 應用程式存取資料。"
 keywords: "應用程式開發、資料庫教學課程、java 應用程式、java web 應用程式教學課程、documentdb、azure、Microsoft azure"
 services: cosmos-db
 documentationcenter: java
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 08/22/2017
 ms.author: denlee
-ms.openlocfilehash: 292115b5603c6f05a5eab3492d4b3e2096b58ed2
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e073de23beb0037ee1e37b48a69e8fe7cdc3fc1d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="build-a-java-web-application-using-azure-cosmos-db-and-the-documentdb-api"></a>使用 Azure Cosmos DB 和 DocumentDB API 來建置 Java Web 應用程式
+# <a name="build-a-java-web-application-using-azure-cosmos-db-and-hello-documentdb-api"></a>建置 Java web 應用程式使用 Azure Cosmos DB 和 hello DocumentDB API
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-dotnet-application.md)
 > * [Node.js](documentdb-nodejs-application.md)
@@ -30,88 +30,88 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-本 Java Web 應用程式教學課程示範如何使用 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 服務，來儲存和存取 Azure App Service Web Apps 上所託管的 Java 應用程式資料。 在本主題中，您將了解：
+此 Java web 應用程式教學課程會示範如何 toouse hello [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)服務 toostore 及存取資料，從裝載於 Azure App Service Web 應用程式的 Java 應用程式。 在本主題中，您將了解：
 
-* 如何在 Eclipse 中建置基本的 JavaServer Pages (JSP) 應用程式。
-* 如何透過 [Azure Cosmos DB Java SDK](https://github.com/Azure/azure-documentdb-java)，使用 Azure Cosmos DB 服務。
+* 如何 toobuild 在 Eclipse 中的基本 JavaServer 頁面 (JSP) 應用程式。
+* 以 hello Azure Cosmos DB toowork 服務使用 hello [Azure Cosmos DB Java SDK](https://github.com/Azure/azure-documentdb-java)。
 
-本 Java 應用程式教學課程會示範如何建立以 Web 為基礎的工作管理應用程式，方便您建立、抓取以及將工作標示為完成，如下圖所示。 在 Azure Cosmos DB 中，[待辦事項] 清單中的每項工作都會以 JSON 文件的形式儲存。
+此 Java 應用程式教學課程會示範影響工作以 web 為基礎的 toocreate 工作管理應用程式，可讓您 toocreate、 擷取、 並將標記為完成，hello 下列影像所示。 每個 hello ToDo 清單中的 hello 工作會儲存為 Azure Cosmos DB 中的 JSON 文件。
 
 ![我的待辦事項清單 Java 應用程式](./media/documentdb-java-application/image1.png)
 
 > [!TIP]
-> 本應用程式開發教學課程假設您先前已有使用 Java 的經驗。 如果您不熟悉 Java 或[必備工具](#Prerequisites)，我們建議您從 GitHub 下載完整的[待辦事項](https://github.com/Azure-Samples/documentdb-java-todo-app)專案，並使用[本文結尾的指示](#GetProject)開始建置。 建置完成後，您可以檢閱文件，以加深對專案內容中程式碼的了解。  
+> 本應用程式開發教學課程假設您先前已有使用 Java 的經驗。 如果您是新 tooJava 或 hello[必要條件工具](#Prerequisites)，我們建議您下載完整的 hello [todo](https://github.com/Azure-Samples/documentdb-java-todo-app)專案從 GitHub 及建置使用[hello 這個 hello 結尾的指示發行項](#GetProject)。 一旦建立它，您可以檢閱 hello 文章 toogain 深入了解 hello hello hello 專案內容中的程式碼。  
 > 
 > 
 
 ## <a id="Prerequisites"></a>針對此 Java Web 應用程式教學課程的必要條件
-開始進行本應用程式開發教學課程之前，您必須具備下列條件：
+在開始此應用程式開發人員教學課程之前，您必須擁有 hello 下列：
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)
 
     或
 
-    本機安裝的 [Azure Cosmos DB 模擬器](local-emulator.md)。
+    Hello 的本機安裝[Azure Cosmos DB 模擬器](local-emulator.md)。
 * [Java Development Kit (JDK) 7+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)。
 * [Eclipse IDE for Java EE Developers。](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/lunasr1)
 * [已啟用某個 Java Runtime Environment (例如 Tomcat 或 Jetty) 的 Azure 網站。](../app-service-web/web-sites-java-get-started.md)
 
-如果您是第一次安裝這些工具，coreservlets.com 提供了安裝程序的的逐步解說，請參閱其 [教學課程：安裝 TomCat7 並與 Eclipse 搭配使用](http://www.coreservlets.com/Apache-Tomcat-Tutorial/tomcat-7-with-eclipse.html) 一文中的 [快速入門] 區段。
+如果您要安裝這些工具 hello 第一次，coreservlets.com 提供 hello hello 快速入門 區段中的安裝程序的逐步解說，其[教學課程： 安裝 TomCat7 和使用 Eclipse 向](http://www.coreservlets.com/Apache-Tomcat-Tutorial/tomcat-7-with-eclipse.html)發行項。
 
 ## <a id="CreateDB"></a>步驟 1：建立 Azure Cosmos DB 帳戶
-我們將從建立 Azure Cosmos DB 帳戶開始著手。 如果您已經擁有帳戶，或如果您正在使用 Azure Cosmos DB 模擬器來進行本教學課程，可以跳到[步驟 2：建立 Java JSP 應用程式](#CreateJSP)。
+我們將從建立 Azure Cosmos DB 帳戶開始著手。 如果您已經有帳戶，或如果您使用 hello Azure Cosmos DB 模擬器本教學課程中，您可以跳過[步驟 2： 建立 hello Java JSP 應用程式](#CreateJSP)。
 
 [!INCLUDE [create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 [!INCLUDE [keys](../../includes/cosmos-db-keys.md)]
 
-## <a id="CreateJSP"></a>步驟 2：建立 Java JSP 應用程式
-建立 JSP 應用程式：
+## <a id="CreateJSP"></a>步驟 2： 建立 hello Java JSP 應用程式
+toocreate hello JSP 應用程式：
 
-1. 首先，我們將從建立 Java 專案開始。 啟動 Eclipse，依序按一下 [檔案]、[新增] 和 [動態 Web 專案]。 如果您在可用專案中沒有看到 [動態 Web 專案]，請執行下列動作：依序按一下 [檔案]、[新增]、[專案]，展開 [Web]，按一下 [動態 Web 專案]，然後按 [下一步]。
+1. 首先，我們將從建立 Java 專案開始。 啟動 Eclipse，依序按一下 [檔案]、[新增] 和 [動態 Web 專案]。 如果您沒有看到**動態 Web 專案**列為可用的專案，請執行下列 hello： 按一下**檔案**，按一下 **新增**，按一下 **專案**...，展開**Web**，按一下 **動態 Web 專案**，然後按一下**下一步**。
    
     ![JSP Java 應用程式開發](./media/documentdb-java-application/image10.png)
-2. 在 [專案名稱] 方塊中輸入專案名稱，然後在 [目標執行階段] 下拉式選單中，選擇性地選取值 (例如 Apache Tomcat v7.0)，然後按一下 [完成]。 選取目標執行階段可讓您透過 Eclipse 在本機執行專案。
-3. 在 Eclipse 的 [專案總管] 檢視中，展開您的專案。 在 [WebContent] 上按一下滑鼠右鍵、按一下 [新增]，然後按一下 [JSP 檔案]。
-4. 在 [新增 JSP 檔案] 對話方塊中，將檔案命名為 **index.jsp**。 將上層資料夾保持為 **WebContent**，如下圖所示，然後按 [下一步]。
+2. 輸入專案名稱在 hello**專案名稱**] 方塊中，在 hello**目標執行階段**下拉式選單，選擇性地選取 [值 (例如 Apache Tomcat v7.0)，然後按一下**完成**. 選取目標執行階段可讓您 toorun 您在本機透過 Eclipse 的專案。
+3. 在 Eclipse 中，在 hello [專案總管] 檢視中，展開您的專案。 在 WebContent 上按一下滑鼠右鍵、按一下 新增，然後按一下JSP 檔案。
+4. 在 hello**新增 JSP 檔案**對話方塊中，名稱 hello 檔**index.jsp**。 保留 hello 父資料夾為**WebContent**示 hello 遵循圖例，然後按一下**下一步**。
    
     ![建立新的 JSP 檔案 - Java Web 應用程式教學課程](./media/documentdb-java-application/image11.png)
-5. 在 [選取 JSP 範本] 對話方塊中，基於本教學課程的目的，選取 [新增 JSP 檔案 (html)]，然後按一下 [完成]。
-6. 在 Eclipse 中開啟 index.jsp 檔案時，請加入文字以顯示 **Hello World!**。 (在現有 <body> 元素內)。 您已更新的 <body> 內容看起來應該與下列程式碼類似：
+5. 在 hello**選取 JSP 範本**對話方塊中的，為了這個教學課程，請選取在 hello**新增 JSP 檔案 (html)**，然後按一下**完成**。
+6. 在 Eclipse 中，開啟 hello index.jsp 檔案，當新增文字 toodisplay **Hello World ！** 在現有的 hello<body>項目。 您已更新<body>內容應該看起來像下列程式碼的 hello:
    
         <body>
             <% out.println("Hello World!"); %>
         </body>
-7. 儲存 index.jsp 檔案。
-8. 如果您在步驟 2 中已設定目標執行階段，就可以依序按一下 [專案] 和 [執行]，即可在本機執行您的 JSP 應用程式：
+7. 儲存 hello index.jsp 檔案。
+8. 如果您在步驟 2 中設定目標執行階段，您可以按一下**專案**然後**執行**toorun JSP 應用程式在本機上：
    
     ![Hello World – Java 應用程式教學課程](./media/documentdb-java-application/image12.png)
 
-## <a id="InstallSDK"></a>步驟 3：安裝 DocumentDB Java SDK
-導入 DocumentDB Java SDK 及其相依性的最簡單方式就是透過 [Apache Maven](http://maven.apache.org/)。
+## <a id="InstallSDK"></a>步驟 3： 安裝 hello DocumentDB Java SDK
+hello hello DocumentDB Java SDK 和其相依性中的最簡單方式 toopull 是透過[Apache Maven](http://maven.apache.org/)。
 
-若要這樣做，您必須完成下列步驟以將專案轉換成 maven 專案：
+toodo，您將需要 tooconvert 專案 tooa maven 專案藉由完成下列步驟的 hello:
 
-1. 在 [專案總管] 中，以滑鼠右鍵按一下您的專案，按一下 [設定]，然後按一下 [轉換成 Maven 專案]。
-2. 在 [建立新的 POM] 視窗中，接受預設值，然後按一下 [完成]。
-3. 在 [專案總管] 中，開啟 pom.xml 檔案。
-4. 在 [相依性] 窗格的 [相依性] 索引標籤中，按一下 [新增]。
-5. 在 [選取相依性]  視窗中，執行下列動作：
+1. 以滑鼠右鍵按一下 hello 專案總管 中的專案中，按一下**設定**，按一下 **轉換 tooMaven 專案**。
+2. 在 hello**建立新的 POM**視窗中，接受 hello 預設值，然後按一下**完成**。
+3. 在**Project Explorer**，開啟 hello pom.xml 檔案。
+4. 在 hello**相依性**索引標籤上，在 hello**相依性** 窗格中，按一下 **新增**。
+5. 在 hello**選取相依性**視窗中，執行下列 hello:
    
-   * 在 [群組識別碼] 方塊中，輸入 com.microsoft.azure。
-   * 在 [構件識別碼] 方塊中，輸入 azure-documentdb。
-   * 在 [版本] 方塊中，輸入 1.5.1。
+   * 在 hello**群組識別碼**方塊中，輸入 com.microsoft.azure。
+   * 在 hello**成品 Id**方塊中，輸入 azure documentdb。
+   * 在 hello**版本**方塊中，輸入 1.5.1。
      
    ![安裝 DocumentDB Java 應用程式 SDK](./media/documentdb-java-application/image13.png)
      
-   * 或透過文字編輯器，將群組識別碼和構件識別碼的相依性 XML 直接新增至 pom.xml：
+   * 群組識別碼和成品 Id 加入 hello 相依 XML 或文字編輯器透過直接 toohello pom.xml:
      
         <dependency> <groupId>com.microsoft.azure</groupId> <artifactId>azure-documentdb</artifactId> <version>1.9.1</version> </dependency>
-6. 按一下 [確定]，Maven 便會開始安裝 DocumentDB Java SDK。
-7. 儲存 pom.xml 檔案。
+6. 按一下**確定**Maven 安裝 hello DocumentDB Java SDK。
+7. 儲存 hello pom.xml 檔案。
 
-## <a id="UseService"></a>步驟 4：在 Java 應用程式中使用 Azure Cosmos DB 服務
-1. 首先，讓我們在 TodoItem.java 中定義 TodoItem 物件：
+## <a id="UseService"></a>步驟 4： 使用 Java 應用程式中的 hello Azure Cosmos DB 服務
+1. 首先，我們定義 TodoItem.java hello TodoItem 物件：
    
         @Data
         @Builder
@@ -122,8 +122,8 @@ ms.lasthandoff: 08/29/2017
             private String name;
         }
    
-    在此專案中，我們會使用 [Project Lombok](http://projectlombok.org/) 來產生建構函式、getter、setter 及產生器。 或者，您也可以手動撰寫此程式碼，或讓 IDE 產生它。
-2. 若要叫用 Azure Cosmos DB 服務，您必須將新的 **DocumentClient**具現化。 一般而言，最好是重複使用 **DocumentClient** ，而不要針對每個後續要求建構新的用戶端。 我們可以將用戶端包裝在 **DocumentClientFactory**中以重複使用用戶端。 您必須在 DocumentClientFactory.java 中，貼上您在[步驟 1](#CreateDB) 中儲存到剪貼簿的 URI 和主要金鑰值。 將 [YOUR\_ENDPOINT\_HERE] 以您的 URI 取代，並將 [YOUR\_KEY\_HERE] 以您的主要金鑰取代。
+    在此專案中，我們會使用[專案 Lombok](http://projectlombok.org/) toogenerate hello 建構函式、 getter、 setter 和產生器。 或者，您可以手動撰寫此程式碼，或有 hello IDE 產生它。
+2. tooinvoke hello Azure Cosmos 資料庫服務，您必須具現化新**DocumentClient**。 一般而言，最好是最佳 tooreuse hello **DocumentClient** -而不是比建構新的用戶端針對每個後續的要求。 我們可以換行中的 hello 用戶端連線，重複使用 hello 用戶端**DocumentClientFactory**。 DocumentClientFactory.java，在您需要 toopaste hello URI 與主索引鍵的值儲存在 tooyour 剪貼簿[步驟 1](#CreateDB)。 將 [YOUR\_ENDPOINT\_HERE] 以您的 URI 取代，並將 [YOUR\_KEY\_HERE] 以您的主要金鑰取代。
    
         private static final String HOST = "[YOUR_ENDPOINT_HERE]";
         private static final String MASTER_KEY = "[YOUR_KEY_HERE]";
@@ -134,45 +134,45 @@ ms.lasthandoff: 08/29/2017
         public static DocumentClient getDocumentClient() {
             return documentClient;
         }
-3. 現在，讓我們建立「資料存取物件」(DAO)，以將我們的待辦事項提取保存至 Azure Cosmos DB。
+3. 現在讓我們來建立資料存取物件 (DAO) tooabstract 保存我們 ToDo 項目 tooAzure Cosmos DB。
    
-    為了將 ToDo 項目儲存至集合，用戶端必須知道要保存至哪個資料庫和集合 (會被自我連結參照)。 一般而言，最好是儘可能快取資料庫和集合，以避免對資料庫進行額外的來回存取。
+    若要 toosave ToDo 項目 tooa 集合，hello 用戶端必須 tooknow 哪一個資料庫與集合 toopersist 太 （做為參考的自我連結）。 一般情況下，它是最佳的 toocache hello 資料庫與集合盡可能 tooavoid 額外往返 toohello 資料庫。
    
-    下列程式碼說明如何抓取我們的資料庫和集合 (如果存在)，或建立一個新的資料庫或集合 (如果不存在)：
+    hello 下列程式碼說明如何 tooretrieve 我們的資料庫，如果它存在，或如果不存在，請建立一個新的集合：
    
         public class DocDbDao implements TodoDao {
-            // The name of our database.
+            // hello name of our database.
             private static final String DATABASE_ID = "TodoDB";
    
-            // The name of our collection.
+            // hello name of our collection.
             private static final String COLLECTION_ID = "TodoCollection";
    
-            // The Azure Cosmos DB Client
+            // hello Azure Cosmos DB Client
             private static DocumentClient documentClient = DocumentClientFactory
                     .getDocumentClient();
    
-            // Cache for the database object, so we don't have to query for it to
+            // Cache for hello database object, so we don't have tooquery for it to
             // retrieve self links.
             private static Database databaseCache;
    
-            // Cache for the collection object, so we don't have to query for it to
+            // Cache for hello collection object, so we don't have tooquery for it to
             // retrieve self links.
             private static DocumentCollection collectionCache;
    
             private Database getTodoDatabase() {
                 if (databaseCache == null) {
-                    // Get the database if it exists
+                    // Get hello database if it exists
                     List<Database> databaseList = documentClient
                             .queryDatabases(
                                     "SELECT * FROM root r WHERE r.id='" + DATABASE_ID
                                             + "'", null).getQueryIterable().toList();
    
                     if (databaseList.size() > 0) {
-                        // Cache the database object so we won't have to query for it
-                        // later to retrieve the selfLink.
+                        // Cache hello database object so we won't have tooquery for it
+                        // later tooretrieve hello selfLink.
                         databaseCache = databaseList.get(0);
                     } else {
-                        // Create the database if it doesn't exist.
+                        // Create hello database if it doesn't exist.
                         try {
                             Database databaseDefinition = new Database();
                             databaseDefinition.setId(DATABASE_ID);
@@ -180,8 +180,8 @@ ms.lasthandoff: 08/29/2017
                             databaseCache = documentClient.createDatabase(
                                     databaseDefinition, null).getResource();
                         } catch (DocumentClientException e) {
-                            // TODO: Something has gone terribly wrong - the app wasn't
-                            // able to query or create the collection.
+                            // TODO: Something has gone terribly wrong - hello app wasn't
+                            // able tooquery or create hello collection.
                             // Verify your connection, endpoint, and key.
                             e.printStackTrace();
                         }
@@ -193,7 +193,7 @@ ms.lasthandoff: 08/29/2017
    
             private DocumentCollection getTodoCollection() {
                 if (collectionCache == null) {
-                    // Get the collection if it exists.
+                    // Get hello collection if it exists.
                     List<DocumentCollection> collectionList = documentClient
                             .queryCollections(
                                     getTodoDatabase().getSelfLink(),
@@ -201,11 +201,11 @@ ms.lasthandoff: 08/29/2017
                                             + "'", null).getQueryIterable().toList();
    
                     if (collectionList.size() > 0) {
-                        // Cache the collection object so we won't have to query for it
-                        // later to retrieve the selfLink.
+                        // Cache hello collection object so we won't have tooquery for it
+                        // later tooretrieve hello selfLink.
                         collectionCache = collectionList.get(0);
                     } else {
-                        // Create the collection if it doesn't exist.
+                        // Create hello collection if it doesn't exist.
                         try {
                             DocumentCollection collectionDefinition = new DocumentCollection();
                             collectionDefinition.setId(COLLECTION_ID);
@@ -214,8 +214,8 @@ ms.lasthandoff: 08/29/2017
                                     getTodoDatabase().getSelfLink(),
                                     collectionDefinition, null).getResource();
                         } catch (DocumentClientException e) {
-                            // TODO: Something has gone terribly wrong - the app wasn't
-                            // able to query or create the collection.
+                            // TODO: Something has gone terribly wrong - hello app wasn't
+                            // able tooquery or create hello collection.
                             // Verify your connection, endpoint, and key.
                             e.printStackTrace();
                         }
@@ -225,22 +225,22 @@ ms.lasthandoff: 08/29/2017
                 return collectionCache;
             }
         }
-4. 下一步是撰寫一些程式碼以將 TodoItems 保存至集合。 在此範例中，我們將使用 [Gson](https://code.google.com/p/google-gson/) 將 TodoItem Plain Old Java Objects (POJO) 序列化及還原序列化成 JSON 文件。
+4. hello 下一個步驟為 toowrite toohello 集合中的某些程式碼 toopersist hello TodoItems。 在此範例中，我們將使用[Gson](https://code.google.com/p/google-gson/) tooserialize 和還原序列化 TodoItem 純舊 Java 物件 (POJOs) tooJSON 文件。
    
         // We'll use Gson for POJO <=> JSON serialization for this example.
         private static Gson gson = new Gson();
    
         @Override
         public TodoItem createTodoItem(TodoItem todoItem) {
-            // Serialize the TodoItem as a JSON Document.
+            // Serialize hello TodoItem as a JSON Document.
             Document todoItemDocument = new Document(gson.toJson(todoItem));
    
-            // Annotate the document as a TodoItem for retrieval (so that we can
-            // store multiple entity types in the collection).
+            // Annotate hello document as a TodoItem for retrieval (so that we can
+            // store multiple entity types in hello collection).
             todoItemDocument.set("entityType", "todoItem");
    
             try {
-                // Persist the document using the DocumentClient.
+                // Persist hello document using hello DocumentClient.
                 todoItemDocument = documentClient.createDocument(
                         getTodoCollection().getSelfLink(), todoItemDocument, null,
                         false).getResource();
@@ -251,10 +251,10 @@ ms.lasthandoff: 08/29/2017
    
             return gson.fromJson(todoItemDocument.toString(), TodoItem.class);
         }
-5. 與 Azure Cosmos DB 資料庫和集合相同，文件也會由自我連結參照。 下列 helper 函式可讓我們依另一個屬性 (例如 "id") 抓取文件，而不是依自我連結：
+5. 與 Azure Cosmos DB 資料庫和集合相同，文件也會由自我連結參照。 hello 下列 helper 函式可讓我們擷取文件的其他屬性 (例如"id")，而不是自我連結：
    
         private Document getDocumentById(String id) {
-            // Retrieve the document using the DocumentClient.
+            // Retrieve hello document using hello DocumentClient.
             List<Document> documentList = documentClient
                     .queryDocuments(getTodoCollection().getSelfLink(),
                             "SELECT * FROM root r WHERE r.id='" + id + "'", null)
@@ -266,33 +266,33 @@ ms.lasthandoff: 08/29/2017
                 return null;
             }
         }
-6. 我們可以使用步驟 5 中的 helper 方法來依 id 抓取 TodoItem JSON 文件，然後再將其還原序列化成 POJO：
+6. 我們可以在步驟 5 tooretrieve TodoItem JSON 文件中使用識別碼 hello helper 方法，然後將它還原序列化 tooa POJO:
    
         @Override
         public TodoItem readTodoItem(String id) {
-            // Retrieve the document by id using our helper method.
+            // Retrieve hello document by id using our helper method.
             Document todoItemDocument = getDocumentById(id);
    
             if (todoItemDocument != null) {
-                // De-serialize the document in to a TodoItem.
+                // De-serialize hello document in tooa TodoItem.
                 return gson.fromJson(todoItemDocument.toString(), TodoItem.class);
             } else {
                 return null;
             }
         }
-7. 我們也可以使用 DocumentDB SQL，以 DocumentClient 取得集合或 TodoItems 的清單：
+7. 我們也可以使用 hello DocumentClient tooget 集合或使用 DocumentDB SQL TodoItems 的清單：
    
         @Override
         public List<TodoItem> readTodoItems() {
             List<TodoItem> todoItems = new ArrayList<TodoItem>();
    
-            // Retrieve the TodoItem documents
+            // Retrieve hello TodoItem documents
             List<Document> documentList = documentClient
                     .queryDocuments(getTodoCollection().getSelfLink(),
                             "SELECT * FROM root r WHERE r.entityType = 'todoItem'",
                             null).getQueryIterable().toList();
    
-            // De-serialize the documents in to TodoItems.
+            // De-serialize hello documents in tooTodoItems.
             for (Document todoItemDocument : documentList) {
                 todoItems.add(gson.fromJson(todoItemDocument.toString(),
                         TodoItem.class));
@@ -300,21 +300,21 @@ ms.lasthandoff: 08/29/2017
    
             return todoItems;
         }
-8. 以 DocumentClient 更新文件的方法有很多個。 在我們的待辦事項清單應用程式中，我們希望能夠切換顯示 TodoItem 是否已完成。 這個目的可以藉由更新文件中的 "complete" 屬性來達成：
+8. 有許多方式 tooupdate 文件以 hello DocumentClient。 在 Todo 清單應用程式中，我們想要 toobe 無法 tootoggle 是否已完成的 TodoItem。 這可以藉由更新 hello hello 文件中的 「 完成 」 屬性來達成：
    
         @Override
         public TodoItem updateTodoItem(String id, boolean isComplete) {
-            // Retrieve the document from the database
+            // Retrieve hello document from hello database
             Document todoItemDocument = getDocumentById(id);
    
-            // You can update the document as a JSON document directly.
-            // For more complex operations - you could de-serialize the document in
-            // to a POJO, update the POJO, and then re-serialize the POJO back in to
+            // You can update hello document as a JSON document directly.
+            // For more complex operations - you could de-serialize hello document in
+            // tooa POJO, update hello POJO, and then re-serialize hello POJO back in to
             // a document.
             todoItemDocument.set("complete", isComplete);
    
             try {
-                // Persist/replace the updated document.
+                // Persist/replace hello updated document.
                 todoItemDocument = documentClient.replaceDocument(todoItemDocument,
                         null).getResource();
             } catch (DocumentClientException e) {
@@ -324,17 +324,17 @@ ms.lasthandoff: 08/29/2017
    
             return gson.fromJson(todoItemDocument.toString(), TodoItem.class);
         }
-9. 最後，我們希望能夠從清單中刪除 TodoItem。 若要這樣做，我們可以使用我們稍早撰寫的 helper 方法來抓取自我連結，然後告訴用戶端將它刪除：
+9. 最後，我們想 hello 能力 toodelete TodoItem 從我們的清單。 toodo，我們可以使用我們稍早所說明的 hello helper 方法 tooretrieve hello 自我連結，然後告訴 hello 用戶端 toodelete 它：
    
         @Override
         public boolean deleteTodoItem(String id) {
-            // Azure Cosmos DB refers to documents by self link rather than id.
+            // Azure Cosmos DB refers toodocuments by self link rather than id.
    
-            // Query for the document to retrieve the self link.
+            // Query for hello document tooretrieve hello self link.
             Document todoItemDocument = getDocumentById(id);
    
             try {
-                // Delete the document by self link.
+                // Delete hello document by self link.
                 documentClient.deleteDocument(todoItemDocument.getSelfLink(), null);
             } catch (DocumentClientException e) {
                 e.printStackTrace();
@@ -344,10 +344,10 @@ ms.lasthandoff: 08/29/2017
             return true;
         }
 
-## <a id="Wire"></a>步驟 5：將 Java 應用程式開發專案的其他部分串接在一起
-既然我們已經完成主要的部分，剩下的就是建置一個快速的使用者介面，然後將其串接到我們的 DAO。
+## <a id="Wire"></a>步驟 5： 接線 hello hello Java 應用程式開發專案的其餘部分一起
+我們已經完成 hello 有趣 bits-剩下的是 toobuild 快速的使用者介面，和裝設 tooour DAO。
 
-1. 首先，讓我們著手建置一個控制器來呼叫我們的 DAO：
+1. 首先，讓我們開始建置我們 DAO 控制器 toocall:
    
         public class TodoItemController {
             public static TodoItemController getInstance() {
@@ -389,8 +389,8 @@ ms.lasthandoff: 08/29/2017
             }
         }
    
-    在較複雜的應用程式中，除了 DAO 之外，控制器可能還有複雜的商務邏輯。
-2. 接著，我們將建立一個可將 HTTP 要求遞送至控制器的 Servlet：
+    在更複雜的應用程式，hello 控制器可能包含複雜的商務邏輯 hello DAO 之上。
+2. 接下來，我們將建立 servlet tooroute HTTP 要求 toohello 控制器：
    
         public class TodoServlet extends HttpServlet {
             // API Keys
@@ -452,7 +452,7 @@ ms.lasthandoff: 08/29/2017
                 doGet(request, response);
             }
         }
-3. 我們需要一個可對使用者顯示的 Web 使用者介面。 讓我們重新撰寫稍早建立的 index.jsp：
+3. 我們需要 web 使用者介面 toodisplay toohello 使用者。 讓我們重新撰寫 hello index.jsp 我們稍早建立：
     ```html
         <html>
         <head>
@@ -464,7 +464,7 @@ ms.lasthandoff: 08/29/2017
           <link href="//ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
    
           <style>
-            /* Add padding to body for fixed nav bar */
+            /* Add padding toobody for fixed nav bar */
             body {
               padding-top: 50px;
             }
@@ -486,7 +486,7 @@ ms.lasthandoff: 08/29/2017
    
             <hr/>
    
-            <!-- The ToDo List -->
+            <!-- hello ToDo List -->
             <div class = "todoList">
               <table class="table table-bordered table-striped" id="todoItems">
                 <thead>
@@ -534,18 +534,18 @@ ms.lasthandoff: 08/29/2017
    
           </div>
    
-          <!-- Placed at the end of the document so the pages load faster -->
+          <!-- Placed at hello end of hello document so hello pages load faster -->
           <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
           <script src="//ajax.aspnetcdn.com/ajax/bootstrap/3.2.0/bootstrap.min.js"></script>
           <script src="assets/todo.js"></script>
         </body>
         </html>
     ```
-4. 最後，撰寫一些用戶端 JavaScript，以將 Web 使用者介面與 Servlet 繫結在一起：
+4. 最後，某些用戶端 JavaScript tootie hello web 使用者介面和寫 hello servlet 一起：
    
         var todoApp = {
           /*
-           * API methods to call Java backend.
+           * API methods toocall Java backend.
            */
           apiEndpoint: "api",
    
@@ -625,7 +625,7 @@ ms.lasthandoff: 08/29/2017
               $(this).text("Updating...");
               $(this).prop("disabled", true);
    
-              // Call api to update todo items.
+              // Call api tooupdate todo items.
               $.each(todoApp.ui_updateId(), function(index, value) {
                 todoApp.updateTodoItem(value.name, value.value);
                 $(value).remove();
@@ -699,7 +699,7 @@ ms.lasthandoff: 08/29/2017
           },
    
           /*
-           * Install the TodoApp
+           * Install hello TodoApp
            */
           install: function() {
             todoApp.bindCreateButton();
@@ -713,47 +713,47 @@ ms.lasthandoff: 08/29/2017
         $(document).ready(function() {
           todoApp.install();
         });
-5. 好極了！ 現在只剩下測試應用程式。 在本機執行應用程式，並填入項目名稱和類別，然後按一下 [ **新增工作**] 來新增一些待辦事項。
-6. 當項目出現時，您可以切換勾選核取方塊，然後按一下 [更新工作] ，來更新其完成狀態。
+5. 好極了！ 現在，剩下的是 tootest hello 應用程式。 在本機執行 hello 應用程式，並加入一些 Todo 項目填入 hello 項目名稱和類別目錄，然後按一下**加入工作**。
+6. Hello 項目出現時，您可以更新是否已完成切換 hello 核取方塊，然後按一下**更新工作**。
 
-## <a id="Deploy"></a>步驟 6：將 Java 應用程式部署至 Azure 網站
+## <a id="Deploy"></a>步驟 6： 部署您的 Java 應用程式 tooAzure 網站
 Azure 網站讓部署 Java 應用程式變得相當簡單，您只需將應用程式匯出成 WAR 檔案，然後透過原始檔控制 (例如 Git) 或 FTP 上傳它即可。
 
-1. 若要將應用程式匯出成 WAR 檔案，請以滑鼠右鍵按一下您在**專案總管**中的專案，按一下 [匯出]，然後按一下 [WAR 檔案]。
-2. 在 [WAR 匯出]  視窗中，執行下列動作：
+1. tooexport 應用程式為 WAR 檔案，以滑鼠右鍵按一下您的專案中**專案總管**，按一下 **匯出**，然後按一下 **WAR 檔案**。
+2. 在 hello**匯出 WAR**視窗中，執行下列 hello:
    
-   * 在 [Web 專案] 方塊中，輸入 azure-documentdb-java-sample。
-   * 在 [目的地] 方塊中，選擇用來儲存 WAR 檔案的目的地。
+   * 在 hello Web 專案中，輸入 azure documentdb 的 java 範例。
+   * 在 hello 目的地方塊中，選擇目的地 toosave hello WAR 檔案。
    * 按一下 [完成] 。
-3. 現在您手上已經有了 WAR 檔案，您只需將它上傳至您 Azure 網站的 **webapps** 目錄即可。 如需上傳檔案的相關指示，請參閱[將 Java 應用程式新增至 Azure App Service Web Apps](../app-service-web/web-sites-java-add-app.md)。
+3. 既然您手中有 WAR 檔案，您可以直接將它上傳 tooyour Azure 網站的**webapps**目錄。 上傳 hello 檔案的指示，請參閱[新增 App Service Web 應用程式的 Java 應用程式 tooAzure](../app-service-web/web-sites-java-add-app.md)。
    
-    將 WAR 檔案上傳至 webapps 目錄之後，執行階段環境便會偵測到您已新增它，並自動將其載入。
-4. 若要檢視您已完成的產品，請瀏覽至 http://YOUR\_SITE\_NAME.azurewebsites.net/azure-java-sample/，並開始新增您的工作！
+    一旦 hello WAR 檔案已上傳的 toohello webapps 目錄，hello 執行階段環境會偵測您已新增，並會自動載入。
+4. tooview 成品，瀏覽 toohttp://YOUR\_網站\_NAME.azurewebsites.net/azure-java-sample/ 並開始將您的工作 ！
 
-## <a id="GetProject"></a>從 GitHub 取得的專案
-本教學課程中的所有範例都包含在 GitHub 上的 [待辦事項](https://github.com/Azure-Samples/documentdb-java-todo-app) 專案中。 若要將 todo 專案匯入 Eclipse，請確認您擁有 [必要條件](#Prerequisites) 區段中所列出的軟體和資源，然後執行下列動作：
+## <a id="GetProject"></a>從 GitHub 取得 hello 專案
+在本教學課程的所有 hello 範例都包含在 hello [todo](https://github.com/Azure-Samples/documentdb-java-todo-app) GitHub 上的專案。 tooimport hello todo 專案 Eclipse 中，請確定您有 hello 軟體和 hello 中列出的資源[必要條件](#Prerequisites)區段，然後執行下列 hello:
 
-1. 安裝 [專案 Lombok](http://projectlombok.org/)。 Lombok 可用來在專案中產生建構函式、getter、setter。 下載 lombok.jar 檔案之後，請連按兩下進行安裝，或從命令列進行安裝。
-2. 如果 Eclipse 為開啟狀態，請將它關閉並重新啟動以載入 Lombok。
-3. 在 Eclipse 的 [檔案] 功能表上，按一下 [匯入]。
-4. 在 [匯入] 視窗中，依序按一下 [Git]、[使用 Git 的專案] 和 [下一步]。
-5. 在 [選取儲存機制來源] 畫面上，按一下 [複製 URI]。
-6. 在 [來源 Git 存放庫] 畫面的 [URI] 方塊中，輸入 https://github.com/Azure-Samples/java-todo-app.git，然後按 [下一步]。
-7. 在 [分支選取] 畫面上，確定已選取 [主要]，然後按 [下一步]。
-8. 在 [本機目的地] 畫面上，按一下 [瀏覽] 以選取可以複製儲存機制的資料夾，然後按 [下一步]。
-9. 在 [選取要用於匯入專案的精靈] 畫面上，確定已選取 [匯入現有的專案]，然後按 [下一步]。
-10. 在 [匯入專案] 畫面上，取消選取 **DocumentDB** 專案，然後按一下 [完成]。 DocumentDB 專案包含 Azure Cosmos DB Java SDK，我們將會改成新增為相依性。
-11. 在 [專案總管] 中，瀏覽至 azure-documentdb-java-sample\src\com.microsoft.azure.documentdb.sample.dao\DocumentClientFactory.java，並將 [主機] 和 [MASTER_KEY] 值取代為您 Azure Cosmos DB 帳戶的 [URI] 和 [主要金鑰]，然後儲存檔案。 如需詳細資訊，請參閱[步驟 1。建立 Azure Cosmos DB 資料庫帳戶](#CreateDB)。
-12. 在 [專案總管] 中，以滑鼠右鍵按一下 **azure-documentdb-java-sample**，按一下 [組建路徑]，然後按一下 [設定組建路徑]。
-13. 在 [Java 組建路徑] 畫面的右側窗格中，選取 [程式庫] 索引標籤，然後按一下 [新增外部 JAR]。 瀏覽至 lombok.jar 檔案的位置，按一下 [開啟]，然後按一下 [確定]。
-14. 使用步驟 12 重新開啟 [屬性] 視窗，然後在左側窗格中按一下 [目標執行階段]。
-15. 在 [目標執行階段] 畫面上，按一下 [新增]，選取 [Apache Tomcat v7.0]，然後按一下 [確定]。
-16. 使用步驟 12 重新開啟 [屬性] 視窗，然後在左側窗格中按一下 [專案 Facet]。
-17. 在 [專案 Facet] 畫面上，選取 [動態 Web 模組] 和 [Java]，然後按一下 [確定]。
-18. 在螢幕底部的 [伺服器] 索引標籤上，以滑鼠右鍵按一下 [在 localhost 的 Tomcat v7.0 伺服器]，然後按一下 [新增和移除]。
-19. 在 [新增和移除] 視窗中，將 [azure-documentdb-java-sample] 移至 [已設定] 方塊，然後按一下 [完成]。
-20. 在 [伺服器] 索引標籤上，以滑鼠右鍵按一下 [Tomcat v7.0 Server at localhost] \(在 localhost 的 Tomcat v7.0 伺服器)，然後按一下 [重新啟動]。
-21. 在瀏覽器中，瀏覽至 http://localhost:8080/azure-documentdb-java-sample/，並開始新增至您的工作清單。 請注意，如果您之前變更預設的連接埠值，請將 8080 變更為您所選取的值。
-22. 若要將您的專案部署至 Azure 網站，請參閱[步驟 6：將應用程式部署至 Azure 網站](#Deploy)。
+1. 安裝 [專案 Lombok](http://projectlombok.org/)。 Lombok 是使用的 toogenerate 建構函式、 getter、 setter hello 專案中。 一旦您已下載 hello lombok.jar 檔案，請按兩下該 tooinstall 它，或從 hello 命令列安裝它。
+2. 如果 Eclipse 已開啟，關閉它，並重新啟動它 tooload Lombok。
+3. 在 Eclipse 中，在 hello**檔案**功能表上，按一下 **匯入**。
+4. 在 hello**匯入**視窗中，按一下**Git**，按一下**從 Git 專案**，然後按一下**下一步**。
+5. 在 hello**選取儲存機制來源**畫面上，按一下**複製 URI**。
+6. 在 hello**來源 Git 儲存機制**畫面中 hello **URI**方塊、 輸入 https://github.com/Azure-Samples/java-todo-app.git，，然後按一下**下一步**。
+7. 在 hello**分支選取**畫面上，確認**主要**已選取，然後按一下**下一步**。
+8. 在 hello**本機目的地**畫面上，按一下**瀏覽**tooselect hello 儲存機制可複製、，然後按一下資料夾**下一步**。
+9. 在 hello**選取匯入專案精靈 toouse**畫面上，確認**匯入現有專案**已選取，然後按一下**下一步**。
+10. 在 hello**匯入專案**螢幕、 取消選取 hello **DocumentDB**專案，然後再按一下**完成**。 hello DocumentDB 專案包含 hello Azure Cosmos DB Java SDK，我們將會改為加入做為相依性。
+11. 在**Project Explorer**、 瀏覽 tooazure-documentdb-java-sample\src\com.microsoft.azure.documentdb.sample.dao\DocumentClientFactory.java 及 hello 主機和 MASTER_KEY 值取代為 hello URI 和主索引鍵您 Azure Cosmos DB 帳戶，然後儲存 hello 檔案。 如需詳細資訊，請參閱[步驟 1。建立 Azure Cosmos DB 資料庫帳戶](#CreateDB)。
+12. 在**專案總管 中**，以滑鼠右鍵按一下 hello **azure documentdb 的 java 範例**，按一下**組建路徑**，然後按一下**設定組建路徑**.
+13. 在 hello **Java 組建路徑**畫面上，hello 右窗格中，選取 hello**文件庫**索引標籤，然後再按一下**新增外部 Jar**。 瀏覽 toohello hello lombok.jar 檔案位置，然後按一下**開啟**，然後按一下**確定**。
+14. 使用步驟 12 tooopen hello**屬性**視窗一次，然後在 hello 左窗格按一下**目標執行階段**。
+15. Hello 上**目標執行階段**畫面上，按一下**新增**，選取**Apache Tomcat v7.0**，然後按一下**確定**。
+16. 使用步驟 12 tooopen hello**屬性**視窗一次，然後在 hello 左窗格按一下**專案 Facet**。
+17. 在 hello**專案 Facet**畫面上，選取**動態 Web 模組**和**Java**，然後按一下 **確定**。
+18. 在 hello**伺服器**底部 hello 囉 」 畫面索引標籤上，以滑鼠右鍵按一下**Tomcat v7.0 伺服器在 localhost** ，然後按一下**加入和移除**。
+19. 在 hello**加入和移除**視窗中，移動**azure documentdb 的 java 範例**toohello**設定**方塊，然後再按一下**完成**。
+20. 在 hello**伺服器**索引標籤上，以滑鼠右鍵按一下**Tomcat v7.0 伺服器在 localhost**，然後按一下**重新啟動**。
+21. 在瀏覽器中，瀏覽 toohttp://localhost:8080 / azure documentdb 的 java 範例 / 然後開始將加入 tooyour 工作清單。 請注意，如果您變更預設的連接埠值變更所選 8080 toohello 值。
+22. toodeploy 您專案 tooan Azure 網站上，請參閱[步驟 6。部署您的應用程式 tooAzure 網站](#Deploy)。
 
 [1]: media/documentdb-java-application/keys.png

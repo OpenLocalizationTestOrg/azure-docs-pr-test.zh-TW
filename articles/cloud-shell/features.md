@@ -1,5 +1,5 @@
 ---
-title: "Azure Cloud Shell (預覽) 功能 | Microsoft Docs"
+title: "aaaAzure 雲端殼層 （預覽） 功能 |Microsoft 文件"
 description: "Azure Cloud Shell 的功能概觀"
 services: 
 documentationcenter: 
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: juluk
-ms.openlocfilehash: 67f03d5857e37b253ac57536e289b5468d69e9b5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 65482ca6caeac01dda18a6b12eabe943e3d68a96
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="features-and-tools-for-azure-cloud-shell"></a>Azure Cloud Shell 的功能和工具
-Azure Cloud Shell 是以瀏覽器為基礎的殼層經驗，用於管理和開發 Azure 資源。
+Azure 雲端殼層瀏覽器為基礎的殼層經驗 toomanage 且開發的 Azure 資源。
 
-Cloud Shell 提供可從瀏覽器存取、預先設定的殼層功能來管理 Azure 資源，您不需要另外自行安裝、版本控制和維護電腦。
+雲端殼層，提供存取瀏覽器預先設定的管理不需要安裝、 版本控制，與自行維護電腦的 hello 成本的 Azure 資源的殼層經驗。
 
 Cloud Shell 依照要求而佈建電腦，因此，不會在工作階段之間保存電腦狀態。 由於 Cloud Shell 是針對互動式工作階段而建置，所以殼層會在殼層閒置 20 分鐘後自動終止。
 
@@ -50,14 +50,14 @@ Cloud Shell 依照要求而佈建電腦，因此，不會在工作階段之間�
 |Python     |2.7 和 3.5 (預設)|
 
 ## <a name="secure-automatic-authentication"></a>安全的自動驗證
-Cloud Shell 會安全地自動驗證 Azure CLI 2.0 的帳戶存取。
+雲端殼層安全地自動驗證 hello Azure CLI 2.0 的帳戶存取權。
 
 ## <a name="azure-files-persistence"></a>Azure 檔案持續性
 因為 Cloud Shell 會依照要求而使用暫時電腦來配置，所以不會在工作階段之間保存位於您 $Home 外面的檔案和電腦狀態。
-若要在工作階段之間保存檔案，Cloud Shell 會在第一次啟動時逐步引導您連結 Azure 檔案共用。
+跨工作階段，雲端殼層會逐步引導您透過附加 Azure 的檔案共用上第一次啟動 toopersist 檔案。
 完成後，Cloud Shell 會自動連結儲存體，供所有未來的工作階段使用。
 
-[深入了解將 Azure 檔案共用連結至 Cloud Shell。](persisting-shell-storage.md)
+[深入了解附加 Azure 檔案共用 tooCloud 殼層。](persisting-shell-storage.md)
 
 ## <a name="next-steps"></a>後續步驟
 [Cloud Shell 快速入門](quickstart.md) <br>

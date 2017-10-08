@@ -1,6 +1,6 @@
 ---
-title: "重新啟動用已停用的 Azure 訂用帳戶 | Microsoft Docs"
-description: "描述當您何時可能有停用的 Azure 訂用帳戶，以及如何重新啟動它。"
+title: "aaaReactivate 停用 Azure 訂用帳戶 |Microsoft 文件"
+description: "說明何時您可能必須停用 Azure 訂用帳戶及如何 tooreactivate 它。"
 keywords: "Azure 訂用帳戶已停用"
 services: 
 documentationcenter: 
@@ -16,51 +16,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/13/2017
 ms.author: genli
-ms.openlocfilehash: 0603786292cf29c2eff60bbc90a72c9cd1ea2860
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c9712304dd25431a7b66a33a2c5816f1547cfee
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="why-is-my-azure-subscription-disabled-and-how-do-i-reactivate-it"></a>我的 Azure 訂用帳戶為何停用，以及如何重新啟動它？
-您的 Azure 訂用帳戶停用的原因可能是達到消費限制、帳單逾期、到達信用卡限制，或因為帳戶管理員已取消您的訂用帳戶。 查看您適用的問題，並遵循此文章中的步驟，以讓您的訂用帳戶重新啟動。
+您可能會有 Azure 訂用帳戶停用，因為您達到消費限制、 有過期的帳單，叫用您的信用卡的限制，或因為 hello 訂用帳戶已取消 hello 帳戶系統管理員。 查看哪些問題適用於 tooyou 並重新啟動您的訂閱這個發行項 tooget 中的 hello 步驟。
 
 ## <a name="you-reached-your-spending-limit"></a>您已達到消費限制
-當您用完訂用帳戶隨附的每月金額之後，我們將在該帳務月份的剩餘時間內停用您的服務。 已停用您的服務，以防止您不小心衍生超出您的訂用帳戶所隨附金額的費用。 您可以移除消費限制，並[為您的 Microsoft Azure 訂用帳戶設定帳單通知](billing-set-up-alerts.md)，協助您監視及管理 Azure 帳戶的計費活動。
+當您的使用量耗盡 hello 隨附於您的訂用帳戶每月的數量時，就會停用您的服務，該帳務月份 hello 其餘部分。 您不小心產生超過支付的費用 hello 量包含與您的訂用帳戶已停用的 tooprotect 為您的服務。 您可以移除消費限制的 hello 和[設定計費方式 Microsoft Azure 訂用帳戶的警示](billing-set-up-alerts.md)toohelp 您監視及管理您的 Azure 帳戶計費的活動。
 
-若要移除消費限制，
+您的消費限制 tooremove，
 
-1. 登入 [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)。
+1. 登入 toohello [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)。
 2. 按一下 [訂用帳戶]。
 3. 選取一個訂用帳戶。
-4. 按一下 [此訂用帳戶已達消費限制，並已停用以避免收費]。
+4. 按一下**訂用帳戶已達到 hello 消費限制，且已停用的 tooprevent 費用**。
 
-    如果沒有看到該選項，請按一下 [訂用帳戶狀態] 區域中的 [移除消費限制]。
-5. 選取下列其中一個選項：
+    如果您沒有看到該選項，按一下**移除消費限制**hello 訂用帳戶中**狀態**區域。
+5. 選取其中一個 hello 下列選項：
 
 | 選項 | 效果 |
 | --- | --- |
-| 無限期移除消費限制 |移除消費限制，直到您將它重新開啟。 |
-| 移除目前計費週期的消費限制 |移除消費限制，但消費限制會在下一個計費週期重新啟動。 |
+| 無限期移除消費限制 |移除消費限制，再重新開啟直到 hello。 |
+| 移除目前計費週期 hello 的消費限制 |移除消費限制的 hello 但 hello hello 的下一個計費週期消費限制會重新啟動。 |
 
-如果您有免費試用版訂用帳戶，而且您移除消費限制，在免費試用結束時會將您的訂用帳戶轉換為隨用隨付。
+如果您有免費試用訂用帳戶，而且您移除消費限制的 hello，訂用帳戶將轉換 tooPay-為-您-移至結尾 hello hello 免費試用版。
 
 ## <a name="your-bill-is-past-due"></a>您的帳單逾期未繳
-全額支付您未付的差額。 請參閱 [為什麼會收到 Azure 訂用帳戶有逾期未付帳款的通知？](billing-azure-subscription-past-due-balance.md#how-to-resolve-the-issue)
+全額支付您未付的差額。 請參閱 hello 文件[為什麼已收到通知，您的 Azure 訂閱的逾期應付平衡？](billing-azure-subscription-past-due-balance.md#how-to-resolve-the-issue)
 
-## <a name="the-bill-exceeds-your-credit-card-limit"></a>帳單超出您的信用卡額度
-若要解決此問題，請[切換為不同的信用卡](billing-how-to-change-credit-card.md)。 或如果您代表企業，您可以[切換為按發票付款](https://azure.microsoft.com/pricing/invoicing/)。
+## <a name="hello-bill-exceeds-your-credit-card-limit"></a>hello bill 超過您的信用卡限制
+tooresolve 這個問題，請[交換器 tooa 不同的信用卡](billing-how-to-change-credit-card.md)。 如果您代表商業，也可以[切換發票 toopay](https://azure.microsoft.com/pricing/invoicing/)。
 
-## <a name="the-subscription-was-canceled-by-the-account-administrator"></a>訂用帳戶已被帳戶管理員取消
-如果您是帳戶管理員，請使用下列步驟來重新啟用您的「隨用隨付」訂用帳戶：
+## <a name="hello-subscription-was-canceled-by-hello-account-administrator"></a>hello 訂用帳戶已取消 hello 帳戶管理員
+如果您 hello 帳戶系統管理員，重新啟用隨用隨付訂用帳戶，使用下列步驟的 hello:
 
-1. 登入 [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)。
-2. 選取已取消的訂用帳戶。
+1. 登入 toohello [Azure 帳戶中心](https://account.windowsazure.com/Home/Index)。
+2. 選取 hello 取消訂用帳戶。
 3. 按一下 [重新啟動]。
 
-![在右窗格中顯示重新啟動連結的螢幕擷取畫面。](./media/billing-how-to-cancel-azure-subscription/reactivate-sub.png)
+![顯示的螢幕擷取畫面重新啟動 hello 右窗格上的連結。](./media/billing-how-to-cancel-azure-subscription/reactivate-sub.png)
 
-對於其他訂用帳戶類型，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以將您的訂用帳戶重新啟動。
+對於其他訂用帳戶類型，[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)toohave 重新啟動您的訂用帳戶。
 
 ## <a name="need-help-contact-support"></a>需要協助嗎？ 請連絡支援人員。
-如果仍需要協助，請[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)以快速解決您的問題。
+如果您仍需要協助，[連絡支援人員](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)tooget 快速解決您的問題。

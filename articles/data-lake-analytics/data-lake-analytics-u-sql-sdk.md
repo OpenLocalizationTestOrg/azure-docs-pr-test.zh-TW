@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Data Lake U-SQL SDK 調整 U-SQL 本機執行和測試 | Microsoft Docs"
-description: "了解如何使用 Azure Data Lake U-SQL SDK 在本機工作站上使用命令列及程式設計介面來調整 U-SQL 作業本機執行和測試。"
+title: "aaaScale U-SQL 本機執行和測試 Azure 資料湖 U-SQL sdk |Microsoft 文件"
+description: "了解如何 toouse 本機的 Azure 資料湖 U-SQL SDK tooscale U-SQL 作業執行及測試命令列與您的本機工作站上的程式設計介面。"
 services: data-lake-analytics
 documentationcenter: 
 author: 
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 03/01/2017
 ms.author: yanacai
-ms.openlocfilehash: 55242bcf644ca0e7f30cfe7eada2130451c36e64
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2b0a16229789268e333f723ff6fc2c3efdc29905
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scale-u-sql-local-run-and-test-with-azure-data-lake-u-sql-sdk"></a>使用 Azure Data Lake U-SQL SDK 調整 U-SQL 本機執行和測試
 
-在開發 U-SQL 指令碼時，通常會在本機執行並測試 U-SQL 指令碼，然後才送出至雲端。 Azure Data Lake 針對此案例提供稱為 Azure Data Lake U-SQL SDK 的 Nuget 套件，讓您可以輕鬆地調整 U-SQL 本機執行和測試。 此外，也可以將此 U-SQL 測試與 CI (持續整合) 系統整合以自動化編譯和測試。
+在開發 U-SQL 指令碼時，是通用 toorun，並在本機測試 U-SQL 指令碼之前送出 toocloud。 Azure Data Lake 針對此案例提供稱為 Azure Data Lake U-SQL SDK 的 Nuget 套件，讓您可以輕鬆地調整 U-SQL 本機執行和測試。 它也是可能 toointegrate 此 U-SQL 測試 CI （連續整合） 系統 tooautomate hello 編譯和測試。
 
-如果您在意要如何使用 GUI 工具來手動本機執行並針對 U-SQL 指令碼進行偵錯，您可以使用 Azure Data Lake Tools for Visual Studio 來執行。 您可以在[這裡](data-lake-analytics-data-lake-tools-local-run.md)深入了解。
+如果您在意如何 toomanually 本機執行和偵錯 U-SQL 指令碼的 GUI 工具，則您可以使用 Azure 資料湖 Tools for Visual Studio 的。 您可以在[這裡](data-lake-analytics-data-lake-tools-local-run.md)深入了解。
 
 ## <a name="install-azure-data-lake-u-sql-sdk"></a>安裝 Azure Data Lake U-SQL SDK
 
-您可以在 Nuget.org 上的[這裡](https://www.nuget.org/packages/Microsoft.Azure.DataLake.USQL.SDK/)取得 Azure Data Lake U-SQL SDK。 在使用它之前，您必須確定您具有下列相依性。
+您可以取得 hello Azure 資料湖 U-SQL SDK[這裡](https://www.nuget.org/packages/Microsoft.Azure.DataLake.USQL.SDK/)Nuget.org 上。然後再將它，您需要 toomake 確定您有相依性，如下所示。
 
 ### <a name="dependencies"></a>相依項目
 
-Data Lake U-SQL SDK 需要下列相依性︰
+hello 資料湖 U-SQL SDK 需要下列相依性的 hello:
 
 - [Microsoft .NET Framework 4.6 或更新版本](https://www.microsoft.com/download/details.aspx?id=17851)。
-- Microsoft Visual C++ 14 和 Windows SDK 10.0.10240.0 或更新版本 (在本文中稱為 CppSDK)。 有兩種方式可取得 CppSDK：
+- Microsoft Visual C++ 14 和 Windows SDK 10.0.10240.0 或更新版本 (在本文中稱為 CppSDK)。 有兩種方式 tooget CppSDK:
 
-    - 安裝 [Visual Studio Community 版本](https://developer.microsoft.com/downloads/vs-thankyou)。 在 Program Files 資料夾下應該會有 \Windows Kits\10 資料夾，例如 C:\Program Files (x86)\Windows Kits\10。 您也會在 \Windows Kits\10\Lib 下找到 Windows 10 SDK 版本。 如果您看不見這些資料夾，請重新安裝 Visual Studio，並務必在安裝期間選取 Windows 10 SDK。 如果您已經隨 Visual Studio 一起安裝此項目，U-SQL 本機編譯器會自動尋找它。
+    - 安裝 [Visual Studio Community 版本](https://developer.microsoft.com/downloads/vs-thankyou)。 您必須在 hello Program Files 資料夾，例如，C:\Program Files (x86) \Windows Kits\10\ \Windows Kits\10 資料夾。 您也可以找到下 \Windows Kits\10\Lib hello Windows 10 SDK 版本。 如果您沒有看到這些資料夾，請重新安裝 Visual Studio 並確定 tooselect hello Windows 10 SDK hello 安裝期間。 如果您有這與 Visual Studio 一起安裝，hello U-SQL 本機編譯器會自動找到它。
 
     ![Data Lake Tools for Visual Studio 本機執行的 Windows 10 SDK](./media/data-lake-analytics-data-lake-tools-local-run/data-lake-tools-for-visual-studio-local-run-windows-10-sdk.png)
 
-    - 安裝 [Data Lake Tools for Visual Studio](http://aka.ms/adltoolsvs)。 您可以在 C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\ADL Tools\X.X.XXXX.X\CppSDK 找到預先封裝的 Visual C++ 和 Windows SDK 檔案。 在此情況下，U-SQL 本機編譯器就無法自動找到相依性。 您必須為它指定 CppSDK 路徑。 您可以將檔案複製到另一個位置，或直接使用它。
+    - 安裝 [Data Lake Tools for Visual Studio](http://aka.ms/adltoolsvs)。 您可以找到 hello 套裝位於 C:\Program Files (x86) \Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\ADL Tools\X.X.XXXX.X\CppSDK 的 Visual c + + 和 Windows SDK 檔案。 在此情況下，hello U-SQL 本機編譯器無法自動找到 hello 相依性。 您為它需要 toospecify hello CppSDK 路徑。 您可以複製 hello 檔案 tooanother 位置，或使用原狀。
 
 ## <a name="understand-basic-concepts"></a>了解基本概念
 
 ### <a name="data-root"></a>資料根
 
-資料根資料夾是本機計算帳戶的「本機存放區」。 它就相當於 Data Lake Analytics 帳戶的 Azure Data Lake Store 帳戶。 切換到不同的資料根資料夾，就如同切換到不同的存放區帳戶。 如果您想要存取具有不同資料根資料夾的常用共用資料，便必須在指令碼中使用絕對路徑。 或者，您可以在資料根資料夾下建立檔案系統符號連結 (例如 NTFS 上的 **mklink**)，來指向共用資料。
+hello 資料根資料夾是 hello 本機計算帳戶 「 本機存放區 」。 它是 Data Lake Analytics 帳戶的對等 toohello Azure Data Lake Store 帳戶。 切換 tooa 不同的資料根資料夾，就如同切換 tooa 不同儲存體帳戶。 如果您想 tooaccess 共用資料使用不同的資料根資料夾，您必須在您的指令碼中使用絕對路徑。 或者，建立檔案系統中的符號連結 (比方說， **mklink**上 NTFS) 下 hello 資料根資料夾 toopoint toohello 共用資料。
 
-資料根資料夾是用來︰
+hello 資料根資料夾用來：
 
 - 儲存本機中繼資料，包括資料庫、資料表、資料表值函式 (TVF)，以及組件。
-- 查詢在 U-SQL 中定義為相對路徑的輸入和輸出路徑。 使用相對路徑能夠更容易將 U-SQL 專案部署至 Azure。
+- 查閱 hello 輸入和輸出路徑定義為 U SQL 中的相對路徑。 使用相對路徑會更容易 toodeploy 您 U-SQL 專案 tooAzure。
 
 ### <a name="file-path-in-u-sql"></a>U-SQL 中的檔案路徑
 
-您可以在 U-SQL 指令碼中使用相對路徑和本機絕對路徑。 相對路徑是相對於指定的資料根資料夾路徑。 我們建議您使用 "/" 做為路徑分隔符號，讓您的指令碼與伺服器端相容。 以下是一些相對路徑及其對等絕對路徑的範例。 在這些範例中，C:\LocalRunDataRoot 是資料根資料夾。
+您可以在 U-SQL 指令碼中使用相對路徑和本機絕對路徑。 hello 相對路徑是相對 toohello 指定的資料根資料夾路徑。 我們建議您使用"/"作為 hello 路徑分隔符號 toomake 相容 hello 伺服器端指令碼。 以下是一些相對路徑及其對等絕對路徑的範例。 在這些範例中，C:\LocalRunDataRoot 會為 hello 資料根資料夾。
 
 |相對路徑|絕對路徑|
 |-------------|-------------|
@@ -66,7 +66,7 @@ Data Lake U-SQL SDK 需要下列相依性︰
 
 ### <a name="working-directory"></a>工作目錄
 
-當在本機執行 U-SQL 指令碼時，系統會在編譯期間於目前執行的目錄下建立一個工作目錄。 除了編譯輸出，本機執行所需的執行階段檔案會陰影複製到這個工作目錄。 工作目錄根資料夾稱為 "ScopeWorkDir"，而在工作目錄下的檔案如下：
+當在本機執行 hello U-SQL 指令碼，在目前的執行目錄下的編譯期間建立的工作目錄。 此外會輸出 toohello 編譯，hello 所需的本機執行的執行階段檔案會陰影複製的 toothis 工作目錄。 工作目錄的根資料夾的 hello 稱為 「 ScopeWorkDir"和 hello 工作目錄下的 hello 檔案如下：
 
 |目錄/檔案|目錄/檔案|目錄/檔案|定義|說明|
 |--------------|--------------|--------------|----------|-----------|
@@ -80,20 +80,20 @@ Data Lake U-SQL SDK 需要下列相依性︰
 | | |xxxxxxxx.xxx[1..n]\_\*.*|執行記錄檔|執行步驟的記錄檔|
 
 
-## <a name="use-the-sdk-from-the-command-line"></a>從命令列使用 SDK
+## <a name="use-hello-sdk-from-hello-command-line"></a>從 hello 命令列使用 hello SDK
 
-### <a name="command-line-interface-of-the-helper-application"></a>輔助應用程式的命令列介面
+### <a name="command-line-interface-of-hello-helper-application"></a>Hello 協助應用程式的命令列介面
 
-在 SDK directory\build\runtime 底下，LocalRunHelper.exe 是命令列輔助應用程式，能為大部分最常使用的本機執行函式提供介面。 請注意，命令和引數參數都區分大小寫。 若要叫用此應用程式︰
+SDK directory\build\runtime 下 LocalRunHelper.exe 是提供介面 toomost hello 常用的本機執行的函式的 hello 協助程式命令列應用程式。 請注意，兩者 hello 命令 hello 引數的參數會區分大小寫。 tooinvoke 它：
 
     LocalRunHelper.exe <command> <Required-Command-Arguments> [Optional-Command-Arguments]
 
-不使用引數執行 LocalRunHelper.exe，或使用 **help** 參數顯示說明資訊︰
+不使用引數，或以 hello 執行 LocalRunHelper.exe**協助**切換 tooshow hello 說明資訊：
 
     > LocalRunHelper.exe help
 
         Command 'help' :  Show usage information
-        Command 'compile' :  Compile the script
+        Command 'compile' :  Compile hello script
         Required Arguments :
             -Script param
                     Script File Path
@@ -101,61 +101,61 @@ Data Lake U-SQL SDK 需要下列相依性︰
             -Shallow [default value 'False']
                     Shallow compile
 
-在說明資訊中︰
+Hello 說明中的資訊：
 
--  **Command** 提供命令的名稱。  
+-  **命令**提供 hello 命令的名稱。  
 -  **Required Argument** 列出必須提供的引數。  
--  **Optional Argument** 列出選擇性的引數，並具有預設值。  選擇性的布林引數沒有參數，如果出現參數則表示其預設值的負值。
+-  **Optional Argument** 列出選擇性的引數，並具有預設值。  選擇性布林值的引數並不需要參數，而且其外觀表示負數 tootheir 預設值。
 
 ### <a name="return-value-and-logging"></a>傳回值和記錄
 
-如果成功，輔助應用程式會傳回 **0**；如果失敗，則會傳回 **-1**。 根據預設，協助程式會將所有訊息傳送到目前的主控台。 不過，大部分的命令都支援 **-MessageOut path_to_log_file** 選擇性引數，該引數會將輸出重新導向至記錄檔。
+hello 協助應用程式會傳回**0**成功和**-1**失敗。 根據預設，hello helper 會傳送所有訊息 toohello 目前的主控台。 不過，大部分的 hello 命令支援 hello **-MessageOut path_to_log_file** hello 將重新導向的選擇性引數輸出 tooa 記錄檔。
 
 ### <a name="environment-variable-configuring"></a>環境變數設定
 
-U-SQL 本機執行需要指定的資料根做為本機儲存體帳戶，以及針對相依性指定的 CppSDK 路徑。 您可以針對它們在命令列中設定引數，或是設定環境變數。
+U-SQL 本機執行需要指定的資料根做為本機儲存體帳戶，以及針對相依性指定的 CppSDK 路徑。 您可以為它們的命令列或設定環境變數中的兩個組 hello 引數。
 
-- 設定 **SCOPE_CPP_SDK** 環境變數。
+- 設定 hello **SCOPE_CPP_SDK**環境變數。
 
-    如果您是透過安裝 Data Lake Tools for Visual Studio 來取得 Microsoft Visual C++ 和 Windows SDK，請確認您有下列資料夾︰
+    如果您取得 Microsoft Visual c + + 和 hello Windows SDK 安裝 Data Lake Tools for Visual Studio，請確認您擁有 hello 下列資料夾：
 
         C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Extensions\Microsoft\Microsoft Azure Data Lake Tools for Visual Studio 2015\X.X.XXXX.X\CppSDK
 
-    定義一個名為 **SCOPE_CPP_SDK** 的新環境變數來指向此目錄。 或將資料夾複製到其他位置，並依同樣方式將 **SCOPE_CPP_SDK** 指定為該資料夾。
+    定義新的環境變數，呼叫**SCOPE_CPP_SDK** toopoint toothis 目錄。 或複製 hello 資料夾 toohello 其他位置，並指定**SCOPE_CPP_SDK**的。
 
-    除了設定環境變數，您可以在使用命令列時指定 **-CppSDK** 引數。 這個引數會覆寫預設的 CppSDK 環境變數。
+    在加法 toosetting hello 環境變數中，您可以指定 hello **-CppSDK**當您使用 hello 命令列引數。 這個引數會覆寫預設的 CppSDK 環境變數。
 
-- 設定 **LOCALRUN_DATAROOT** 環境變數。
+- 設定 hello **LOCALRUN_DATAROOT**環境變數。
 
-    定義一個名為 **LOCALRUN_DATAROOT** 的新環境變數指向資料根目錄。
+    定義新的環境變數，呼叫**LOCALRUN_DATAROOT** ，以指 toohello 資料根目錄。
 
-    除了設定環境變數，您可以在使用命令列時對資料根目錄路徑指定 **-DataRoot** 引數。 這個引數會覆寫預設的資料根環境變數。 您必須將這個引數加入您要執行的每個命令列，以覆寫所有作業的預設資料根環境變數。
+    在加法 toosetting hello 環境變數中，您可以指定 hello **-DataRoot** hello 資料根路徑，當您使用命令列引數。 這個引數會覆寫預設的資料根環境變數。 您需要 tooadd 您正在執行，讓您可以覆寫 hello 預設資料根目錄的所有作業的環境變數的這個引數 tooevery 命令列。
 
 ### <a name="sdk-command-line-usage-samples"></a>SDK 命令列使用範例
 
 #### <a name="compile-and-run"></a>編譯和執行
 
-**run** 命令用來編譯指令碼，然後執行編譯的結果。 其命令列引數結合 **compile** 和 **excute** 的引數。
+hello**執行**命令用來 toocompile hello 指令碼，然後執行 已編譯的結果。 其命令列引數結合 **compile** 和 **excute** 的引數。
 
     LocalRunHelper run -Script path_to_usql_script.usql [optional_arguments]
 
-下列為 **run** 的選擇性引數：
+hello 以下是選擇性的引數**執行**:
 
 
 |引數|預設值|說明|
 |--------|-------------|-----------|
-|-CodeBehind|False|指令碼具有.cs 程式碼後置|
+|-CodeBehind|False|hello 指令碼有.cs 程式碼後置|
 |-CppSDK| |CppSDK 目錄|
-|-DataRoot| DataRoot 環境變數|本機執行的 DataRoot，預設為 'LOCALRUN_DATAROOT' 環境變數|
-|-MessageOut| |將主控台上的訊息傾印成檔案|
-|-Parallel|1|使用指定的平行處理原則執行計畫|
-|-References| |列出程式碼後置額外的參考組件或資料檔案的路徑，以 ';' 分隔|
+|-DataRoot| DataRoot 環境變數|本機執行，DataRoot 太預設 'LOCALRUN_DATAROOT' 環境變數|
+|-MessageOut| |傾印主控台 tooa 檔案上的訊息|
+|-Parallel|1|執行 hello 計劃與 hello 指定平行處理原則|
+|-References| |清單的路徑 tooextra 參考組件或資料檔案中的程式碼後置，以分隔 ';'|
 |-UdoRedirect|False|產生 Udo 組件重新導向設定|
-|-UseDatabase|master|供程式碼後置暫時註冊組件使用的資料庫|
+|-UseDatabase|master|程式碼後置暫存組件註冊資料庫 toouse|
 |-Verbose|False|顯示詳細的執行階段輸出|
 |-WorkDir|目前的目錄|編譯器使用方式和輸出的目錄|
-|-RunScopeCEP|0|要使用的 ScopeCEP 模式|
-|-ScopeCEPTempPath|temp|用於串流資料的暫存路徑|
+|-RunScopeCEP|0|ScopeCEP 模式 toouse|
+|-ScopeCEPTempPath|temp|暫存路徑 toouse 串流處理資料|
 |-OptFlags| |最佳化工具旗標的逗號分隔清單|
 
 
@@ -163,30 +163,30 @@ U-SQL 本機執行需要指定的資料根做為本機儲存體帳戶，以及�
 
     LocalRunHelper run -Script d:\test\test1.usql -WorkDir d:\test\bin -CodeBehind -References "d:\asm\ref1.dll;d:\asm\ref2.dll" -UseDatabase testDB –Parallel 5 -Verbose
 
-除了結合 **compile** 和 **excute**，您可以分別編譯和執行已編譯的可執行檔。
+除了結合**編譯**和**執行**，您可以編譯並分開執行 hello 編譯可執行檔。
 
 #### <a name="compile-a-u-sql-script"></a>編譯 U-SQL 指令碼
 
-**compile** 命令用來將 U-SQL 指令碼編譯為可執行檔。
+hello**編譯**命令是使用的 toocompile U-SQL 指令碼 tooexecutables。
 
     LocalRunHelper compile -Script path_to_usql_script.usql [optional_arguments]
 
-下列為 **compile** 的選擇性引數：
+hello 以下是選擇性的引數**編譯**:
 
 
 |引數|說明|
 |--------|-----------|
-| -CodeBehind [預設值 'False']|指令碼具有.cs 程式碼後置|
+| -CodeBehind [預設值 'False']|hello 指令碼有.cs 程式碼後置|
 | -CppSDK [預設值 '']|CppSDK 目錄|
-| -DataRoot [預設值 'DataRoot environment variable']|本機執行的 DataRoot，預設為 'LOCALRUN_DATAROOT' 環境變數|
-| -MessageOut [預設值 '']|將主控台上的訊息傾印成檔案|
-| -References [預設值 '']|列出程式碼後置額外的參考組件或資料檔案的路徑，以 ';' 分隔|
+| -DataRoot [預設值 'DataRoot environment variable']|本機執行，DataRoot 太預設 'LOCALRUN_DATAROOT' 環境變數|
+| -MessageOut [預設值 '']|傾印主控台 tooa 檔案上的訊息|
+| -References [預設值 '']|清單的路徑 tooextra 參考組件或資料檔案中的程式碼後置，以分隔 ';'|
 | -Shallow [預設值 'False']|淺層編譯|
 | -UdoRedirect [預設值 'False']|產生 Udo 組件重新導向設定|
-| -UseDatabase [預設值 'master']|供程式碼後置暫時註冊組件使用的資料庫|
+| -UseDatabase [預設值 'master']|程式碼後置暫存組件註冊資料庫 toouse|
 | -WorkDir [預設值 'Current Directory']|編譯器使用方式和輸出的目錄|
-| -RunScopeCEP [預設值 '0']|要使用的 ScopeCEP 模式|
-| -ScopeCEPTempPath [預設值 'temp']|用於串流資料的暫存路徑|
+| -RunScopeCEP [預設值 '0']|ScopeCEP 模式 toouse|
+| -ScopeCEPTempPath [預設值 'temp']|暫存路徑 toouse 串流處理資料|
 | -OptFlags [預設值 '']|最佳化工具旗標的逗號分隔清單|
 
 
@@ -196,7 +196,7 @@ U-SQL 本機執行需要指定的資料根做為本機儲存體帳戶，以及�
 
     LocalRunHelper compile -Script d:\test\test1.usql
 
-編譯 U-SQL 指令碼並設定資料根資料夾。 請注意，這將會覆寫設定環境變數。
+編譯 U-SQL 指令碼，並設定 hello 資料根資料夾。 請注意這會覆寫 hello 設定環境變數。
 
     LocalRunHelper compile -Script d:\test\test1.usql –DataRoot c:\DataRoot
 
@@ -206,48 +206,48 @@ U-SQL 本機執行需要指定的資料根做為本機儲存體帳戶，以及�
 
 #### <a name="execute-compiled-results"></a>執行編譯的結果
 
-**execute** 命令用來執行編譯的結果。   
+hello**執行**命令是使用的 tooexecute 編譯結果。   
 
     LocalRunHelper execute -Algebra path_to_compiled_algebra_file [optional_arguments]
 
-下列為 **execute** 的選擇性引數：
+hello 以下是選擇性的引數**執行**:
 
 |引數|說明|
 |--------|-----------|
-|-DataRoot [預設值 '']|中繼資料執行的資料根。 它預設為 **LOCALRUN_DATAROOT** 環境變數。|
-|-MessageOut [預設值 '']|將主控台上的訊息傾印成檔案。|
-|-Parallel [預設值 '1']|使用指定的平行處理原則層級執行產生本機執行步驟的指示器。|
-|-Verbose [預設值 'False']|顯示詳細執行階段輸出的指示器。|
+|-DataRoot [預設值 '']|中繼資料執行的資料根。 它會預設 toohello **LOCALRUN_DATAROOT**環境變數。|
+|-MessageOut [預設值 '']|傾印 hello 主控台 tooa 檔案上的訊息。|
+|-Parallel [預設值 '1']|指標 toorun hello 產生以 hello 的本機執行步驟指定平行處理原則層級。|
+|-Verbose [預設值 'False']|指標 tooshow 詳細的執行階段的輸出。|
 
 以下是使用範例︰
 
     LocalRunHelper execute -Algebra d:\test\workdir\C6A101DDCB470506\Script_66AE4909AA0ED06C\__script__.abr –DataRoot c:\DataRoot –Parallel 5
 
 
-## <a name="use-the-sdk-with-programming-interfaces"></a>透過程式設計介面使用 SDK
+## <a name="use-hello-sdk-with-programming-interfaces"></a>使用程式設計介面中的 hello SDK
 
-程式設計介面都位於 LocalRunHelper.exe 中。 您可以使用它們來整合 U-SQL SDK 的功能性及 C# 測試架構，以調整您的 U-SQL 指令碼本機測試。 在此文章中，我將會使用標準 C# 單元測試專案來示範如何使用這些介面來測試您的 U-SQL 指令碼。
+hello 程式設計介面都位於 hello LocalRunHelper.exe。 您可以使用它們的 hello U-SQL SDK toointegrate hello 功能，且 hello C# 測試 framework tooscale U-SQL 指令碼的本機測試。 在本文中，我將會如何使用 hello 標準 C# 單元測試專案 tooshow toouse 這些介面 tootest U-SQL 指令碼。
 
 ### <a name="step-1-create-c-unit-test-project-and-configuration"></a>步驟 1︰建立 C# 單元測試專案和設定
 
 - 透過 [檔案] > [新增] > [專案] > [Visual C#] > [測試] > [單元測試專案] 來建立 C# 單元測試專案。
-- 加入 LocalRunHelper.exe 做為專案的參考。 LocalRunHelper.exe 位於 Nuget 套件中的 \build\runtime\LocalRunHelper.exe。
+- 新增 LocalRunHelper.exe hello 專案的參考。 hello LocalRunHelper.exe 位於 \build\runtime\LocalRunHelper.exe Nuget 封裝中。
 
     ![Azure Data Lake U-SQL SDK 加入參考](./media/data-lake-analytics-u-sql-sdk/data-lake-analytics-u-sql-sdk-add-reference.png)
 
-- U-SQL SDK「僅」支援 x64 環境，請務必將建置平台目標設定為 [x64]。 您可以透過 [專案屬性] > [建置] > [平台目標] 來設定。
+- U-SQL SDK**只**支援 x64 環境，請確定 tooset 組建平台目標為 x64。 您可以透過 [專案屬性] > [建置] > [平台目標] 來設定。
 
     ![Azure Data Lake U-SQL SDK 設定 x64 專案](./media/data-lake-analytics-u-sql-sdk/data-lake-analytics-u-sql-sdk-configure-x64.png)
 
-- 請務必將測試環境設定為 [x64]。 在 Visual Studio 中，您可以透過 [測試] > [測試設定] > [預設處理器架構] > [x64] 來設定。
+- 請確定 tooset 您的測試環境為 x64。 在 Visual Studio 中，您可以透過 [測試] > [測試設定] > [預設處理器架構] > [x64] 來設定。
 
     ![Azure Data Lake U-SQL SDK 設定 x64 測試環境](./media/data-lake-analytics-u-sql-sdk/data-lake-analytics-u-sql-sdk-configure-test-x64.png)
 
-- 請務必將 NugetPackage\build\runtime\ 下的所有相依性檔案複製到專案工作目錄 (通常位於 ProjectFolder\bin\x64\Debug 之下)。
+- 請確定 toocopy 通常是在 ProjectFolder\bin\x64\Debug NugetPackage\build\runtime\ tooproject 工作目錄下的所有相依性檔案。
 
 ### <a name="step-2-create-u-sql-script-test-case"></a>步驟 2：建立 U-SQL 指令碼測試案例
 
-以下是 U-SQL 指令碼測試的範例程式碼。 若要進行測試，您需要準備指令碼、輸入檔和預期的輸出檔。
+以下是 hello U-SQL 指令碼測試的範例程式碼。 為了測試，您需要 tooprepare 指令碼中，輸入的檔和預期的輸出檔。
 
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -264,12 +264,12 @@ U-SQL 本機執行需要指定的資料根做為本機儲存體帳戶，以及�
             [TestMethod]
             public void TestUSQLScript()
             {
-                //Specify the local run message output path
+                //Specify hello local run message output path
                 StreamWriter MessageOutput = new StreamWriter("../../../log.txt");
 
                 LocalRunHelper localrun = new LocalRunHelper(MessageOutput);
 
-                //Configure the DateRoot path, Script Path and CPPSDK path
+                //Configure hello DateRoot path, Script Path and CPPSDK path
                 localrun.DataRoot = "../../../";
                 localrun.ScriptPath = "../../../Script/Script.usql";
                 localrun.CppSdkDir = "../../../CppSDK";
@@ -285,7 +285,7 @@ U-SQL 本機執行需要指定的資料根做為本機儲存體帳戶，以及�
 
                 Test.Helpers.FileAssert.AreEqual(Result, ExpectedResult);
 
-                //Don't forget to close MessageOutput to get logs into file
+                //Don't forget tooclose MessageOutput tooget logs into file
                 MessageOutput.Close();
             }
         }
@@ -331,7 +331,7 @@ U-SQL 本機執行需要指定的資料根做為本機儲存體帳戶，以及�
 
 ### <a name="programming-interfaces-in-localrunhelperexe"></a>LocalRunHelper.exe 中的程式設計介面
 
-LocalRunHelper.exe 提供 U-SQL 本機編譯、執行等等的程式設計介面。介面如下所列。
+LocalRunHelper.exe 提供 hello 程式設計介面的 U-SQL 本機編譯、 執行、 列出等 hello 介面，如下所示。
 
 **建構函式**
 
@@ -339,31 +339,31 @@ public LocalRunHelper([System.IO.TextWriter messageOutput = null])
 
 |參數|類型|說明|
 |---------|----|-----------|
-|messageOutput|System.IO.TextWriter|針對輸出訊息，請設為 null 以使用主控台|
+|messageOutput|System.IO.TextWriter|對於輸出訊息，設定 toonull toouse 主控台|
 
 **屬性**
 
 |屬性|類型|說明|
 |--------|----|-----------|
-|AlgebraPath|字串|代數檔案的路徑 (代數檔案是其中一個編譯結果)|
-|CodeBehindReferences|string|如果指令碼具有其他程式碼後置參考，請指定路徑並以 ';' 分隔|
+|AlgebraPath|字串|hello 路徑 tooalgebra 檔案 （代數檔案是其中一個 hello 編譯結果）|
+|CodeBehindReferences|字串|如果 hello 指令碼額外的程式碼參考之後，請指定 hello 路徑，並以 ';'|
 |CppSdkDir|字串|CppSDK 目錄|
 |CurrentDir|字串|目前的目錄|
 |DataRoot|string|資料根路徑|
-|DebuggerMailPath|字串|偵錯工具郵件槽的路徑|
-|GenerateUdoRedirect|布林|是否要產生載入重新導向覆寫設定的組件|
-|HasCodeBehind|布林|指令碼是否具有程式碼後置|
+|DebuggerMailPath|字串|hello 路徑 toodebugger 槽|
+|GenerateUdoRedirect|布林|如果我們想要載入的 toogenerate 組件重新導向會覆寫設定|
+|HasCodeBehind|布林|如果 hello 指令碼後置程式碼|
 |InputDir|string|輸入資料的目錄|
 |MessagePath|字串|訊息傾印檔案路徑|
 |OutputDir|string|輸出資料的目錄|
-|平行處理原則|int|執行代數的平行處理原則|
-|ParentPid|int|服務監視器結束的父項 PID，設定為 0 或負數以略過|
+|平行處理原則|int|平行處理原則 toorun hello 代數|
+|ParentPid|int|哪些 hello 服務會監視 tooexit、 組 too0 或負 tooignore hello 父系的 PID|
 |ResultPath|字串|結果傾印檔案路徑|
 |RuntimeDir|字串|執行階段目錄|
-|ScriptPath|string|尋找指令碼的位置|
+|ScriptPath|字串|其中 toofind hello 指令碼|
 |Shallow|布林|是否進行淺層編譯|
 |TempDir|字串|Temp 目錄|
-|UseDataBase|字串|指定程式碼後置暫存組件註冊要使用的資料庫，預設為 master|
+|UseDataBase|字串|指定程式碼後置暫存組件註冊時，根據預設，主要的 hello 資料庫 toouse|
 |WorkDir|字串|慣用的工作目錄|
 
 
@@ -371,27 +371,27 @@ public LocalRunHelper([System.IO.TextWriter messageOutput = null])
 
 |方法|說明|傳回|參數|
 |------|-----------|------|---------|
-|public bool DoCompile()|編譯 U-SQL 指令碼|成功時為 True| |
-|public bool DoExec()|執行編譯的結果|成功時為 True| |
-|public bool DoRun()|執行 U-SQL 指令碼 (編譯 + 執行)|成功時為 True| |
-|public bool IsValidRuntimeDir(string path)|檢查指定的路徑是否為有效的執行階段路徑|有效則為 True|執行階段目錄的路徑|
+|public bool DoCompile()|編譯 hello U-SQL 指令碼|成功時為 True| |
+|public bool DoExec()|執行 hello 編譯結果|成功時為 True| |
+|public bool DoRun()|執行 hello U-SQL 指令碼 （編譯 + 執行）|成功時為 True| |
+|public bool IsValidRuntimeDir(string path)|檢查指定路徑的 hello 是否為有效的執行階段的路徑|有效則為 True|hello 目錄路徑的執行階段|
 
 
 ## <a name="faq-about-common-issue"></a>有關常見問題的常見問題集
 
 ### <a name="error-1"></a>錯誤 1：
-E_CSC_SYSTEM_INTERNAL: 內部錯誤! 無法載入檔案或組件 'ScopeEngineManaged.dll' 或其相依性的其中之一。 找不到指定的模組。
+E_CSC_SYSTEM_INTERNAL: 內部錯誤! 無法載入檔案或組件 'ScopeEngineManaged.dll' 或其相依性的其中之一。 找不到 hello 指定的模組。
 
-請檢查下列項目：
+請檢查下列 hello:
 
-- 確定您使用 x64 環境。 建置目標平台和測試環境應該要是 x64，請參閱上方的＜步驟 1︰建立 C# 單元測試專案和設定＞。
-- 確定您已經將 NugetPackage\build\runtime\ 下的所有相依性檔案複製到專案工作目錄。
+- 確定您使用 x64 環境。 hello 建置目標平台與 hello 測試環境應該是 x64，請參閱太**步驟 1： 建立 C# 單元測試專案和組態**上方。
+- 請確定您已複製 NugetPackage\build\runtime\ tooproject 工作目錄下的所有相依性檔案。
 
 
 ## <a name="next-steps"></a>後續步驟
 
-* 若要了解 U-SQL，請參閱 [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
-* 若要記錄診斷資訊，請參閱 [為 Azure Data Lake Analytics 存取診斷記錄檔](data-lake-analytics-diagnostic-logs.md)。
-* 若要了解更複雜的查詢，請參閱 [使用 Azure Data Lake Analytics 來分析網站記錄檔](data-lake-analytics-analyze-weblogs.md)。
-* 若要檢視作業詳細資料，請參閱[針對 Azure Data Lake Analytics 作業使用作業瀏覽器和作業檢視](data-lake-analytics-data-lake-tools-view-jobs.md)。
-* 若要使用頂點執行檢視，請參閱[在 Data Lake Tools for Visual Studio 中使用頂點執行檢視](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)。
+* toolearn U-SQL，請參閱[開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
+* toolog 診斷資訊，請參閱[存取診斷記錄檔的 Azure Data Lake Analytics](data-lake-analytics-diagnostic-logs.md)。
+* toosee 更複雜的查詢，請參閱[分析網站記錄檔，使用 Azure Data Lake Analytics](data-lake-analytics-analyze-weblogs.md)。
+* tooview 作業的詳細資訊，請參閱[使用作業瀏覽器和 Azure Data Lake Analytics 工作的工作檢視](data-lake-analytics-data-lake-tools-view-jobs.md)。
+* toouse hello 頂點執行檢視，請參閱[使用 hello 頂點資料湖 Tools for Visual Studio 中的執行檢視](data-lake-analytics-data-lake-tools-use-vertex-execution-view.md)。

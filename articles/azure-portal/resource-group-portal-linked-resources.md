@@ -1,6 +1,6 @@
 ---
-title: "磚庫中相關的資源與連結的資源"
-description: "了解 Azure Preview 入口網站磚庫中的相關資源和連結資源。"
+title: "aaaRelated 和連結的資源，在 hello 並排組件庫"
+description: "深入了解相關和連結會顯示在 hello hello Azure 預覽入口網站的 並排顯示組件庫中的資源。"
 services: azure-portal
 documentationcenter: 
 author: adamabdelhamed
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/16/2015
 ms.author: adamab
-ms.openlocfilehash: efa7bce26c2c4c153b083e0e34d689a11d27dd16
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c8f99be8e23dc9641ec3cd3169604b33a4b049f4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="related-and-linked-resources-in-the-tile-gallery"></a>磚庫中相關的資源與連結的資源
-磚庫可讓您尋找磚的特定資源，並將其拖曳到您目前的刀鋒視窗。 您可以使用磚庫建立跨越資源的管理檢視。 對於任何指定的資源，相關的資源會在它的資源群組中包含所有資源，以及連結到資源或從資源連結而來的任何資源。
+# <a name="related-and-linked-resources-in-hello-tile-gallery"></a>Hello 並排組件庫中的連結與相關資源
+hello 磚圖庫可讓您的特定資源的 toofind 磚，並將其拖曳至您目前的刀鋒視窗。 使用 hello 磚資源庫，您可以建立跨越資源的管理檢視。 對於任何指定的資源，hello 與相關資源在其資源群組和任何連結 tooor 從 hello 資源的資源包括 hello 的所有資源。
 
 ## <a name="linked-resources-in-resource-manager"></a>Resource Manager 中連結的資源
-連結是 Resource Manager 的一項功能。  它可讓您宣告資源之間的關聯性，即使它們不是存放在相同的資源群組。 連結不會影響資源的執行階段、計費，以及以角色為基礎的存取。  它只是一個可以用來表示關聯性的機制，以便如磚庫等工具可以提供豐富的管理體驗。  您的工具可以使用連結 API 檢查連結，同時提供自訂的關聯性管理體驗。 
+連結是 hello 資源管理員的功能。  它可讓您 toodeclare 資源之間的關聯性即使它們不在 hello 相同資源群組。 連結您的資源不會影響帳單及不影響的角色型存取的 hello 執行階段任何影響。  它是只是您可以使用 toorepresent 關聯性，讓工具 hello 磚圖庫可以提供豐富的管理體驗的機制。  您的工具可以檢查 hello 連結使用 hello 連結應用程式開發介面，並提供自訂的關聯性的管理也體驗。 
 
 ## <a name="how-do-i-link-my-resources"></a>如何連結我的資源？
-當您透過入口網站或透過 Azure PowerShell 或 Azure CLI 部署範本建立資源時，就會自動為某些相依的資源建立連結。 您也可以使用[連結的資源 REST API](/rest/api/resources/resourcelinks)，以程式設計方式連結資源。
+當您建立資源，透過 hello 入口網站，或藉由部署範本，以透過 Azure PowerShell 或 Azure CLI 時，某些相依的資源時，會自動建立連結。 您也以程式設計方式可以將資源連結使用 hello[連結資源的 REST API](/rest/api/resources/resourcelinks)。
 
 ## <a name="next-steps"></a>後續步驟
-* 如果您需要撰寫 Resource Manager 範本的簡介，請參閱[撰寫範本](../azure-resource-manager/resource-group-authoring-templates.md)。
-* 若要深入了解如何透過入口網站使用資源群組，請參閱[使用 Azure 入口網站管理 Azure 資源](../azure-resource-manager/resource-group-portal.md)。
+* 如果您需要簡介 toowriting 資源管理員範本，請參閱[撰寫樣板](../azure-resource-manager/resource-group-authoring-templates.md)。
+* toounderstand 進一步了解使用資源群組，透過 hello 入口網站，請參閱[使用 hello Azure 入口網站 toomanage 您的 Azure 資源](../azure-resource-manager/resource-group-portal.md)。
 

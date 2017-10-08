@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 上瀏覽 SQL Server 虛擬機器中的資料 | Microsoft Docs"
-description: "如何瀏覽儲存在 Azure 上 SQL Server VM 中的資料。"
+title: "aaaExplore 資料在 SQL Server 虛擬機器在 Azure 上 |Microsoft 文件"
+description: "如何儲存在 Azure 上的 SQL Server VM 的 tooexplore 資料。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev
-ms.openlocfilehash: a2be21ef15b9209db1e97150e0297558fa69a7be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fcc449fc0d0e49be9b673cfb2de347cf44804017
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explore-data-in-sql-server-virtual-machine-on-azure"></a>在 Azure 上瀏覽 SQL Server 虛擬機器中的資料
-本文件涵蓋如何瀏覽儲存在 Azure 上 SQL Server VM 中的資料。 使用 SQL整理資料或使用 Python 這類程式設計語言，即可完成此動作。
+本文件涵蓋如何 tooexplore 資料儲存在 Azure 上的 SQL Server VM。 使用 SQL整理資料或使用 Python 這類程式設計語言，即可完成此動作。
 
-下列 **功能表** 所連結的主題會說明如何從各種不同的儲存體環境使用工具來瀏覽資料。 此工作是 Cortana 分析程序 (CAP) 中的一個步驟。
+hello 下列**功能表**連結 tootopics 描述 toouse 工具 tooexplore 資料，從不同的儲存體環境的方式。 這項工作是 hello Cortana 分析程序 (CAP) 的步驟。
 
 [!INCLUDE [cap-explore-data-selector](../../includes/cap-explore-data-selector.md)]
 
 > [!NOTE]
-> 本文件中的 SQL 陳述式範例假設資料位於 SQL Server 中。 如果不是，請參閱雲端資料科學程序圖，以了解如何將資料移至 SQL Server。
+> 這份文件中的 hello 範例 SQL 陳述式會假設資料是在 SQL Server。 如果沒有，請參閱 toohello 雲端資料科學程序對應 toolearn 如何 toomove 您資料 tooSQL 伺服器。
 > 
 > 
 
 ## <a name="sql-dataexploration"></a>使用 SQL 指令碼瀏覽 SQL 資料
-以下是數個 SQL 指令碼範例，可用來探索儲存於 SQL Server 中的資料。
+以下是一些範例 SQL 指令碼可能是 SQL Server 中的使用的 tooexplore 資料存放區。
 
-1. 取得每天的觀察計數
+1. 取得每日的觀察值的 hello 計數
    
     `SELECT CONVERT(date, <date_columnname>) as date, count(*) as c from <tablename> group by CONVERT(date, <date_columnname>)` 
-2. 取得類別資料行中的層級
+2. 取得類別的資料行中的 hello 層級
    
     `select  distinct <column_name> from <databasename>`
-3. 取得兩個類別資料行組合中的層級數目 
+3. 取得 hello 層級數目的兩個類別資料行組合中 
    
     `select <column_a>, <column_b>,count(*) from <tablename> group by <column_a>, <column_b>`
-4. 取得數值資料行的分佈 
+4. 取得數值資料行的 hello 發佈
    
     `select <column_name>, count(*) from <tablename> group by <column_name>`
 
 > [!NOTE]
-> 如需實用範例，您可以使用 [NYC 計程車資料集](http://www.andresmh.com/nyctaxitrips/)，並參考標題為[使用 IPython Notebook 和 SQL Server 來處理有爭議的 NYC 資料](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/iPythonNotebooks/machine-Learning-data-science-process-sql-walkthrough.ipynb)的 IPNB，以進行端對端逐步解說。
+> 如需實用範例，您可以使用 hello [NYC 計程車資料集](http://www.andresmh.com/nyctaxitrips/)和參考 toohello IPNB 標題為[NYC 資料 wrangling 使用 IPython 筆記型電腦和 SQL Server](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/DataScienceProcess/iPythonNotebooks/machine-Learning-data-science-process-sql-walkthrough.ipynb)的端對端逐步解說。
 > 
 > 
 
 ## <a name="python"></a>使用 Python 瀏覽 SQL 資料
-當資料位於 SQL Server 時，使用 Python 來瀏覽資料與產生特徵，類似於使用 Python 來處理 Azure Blob 中的資料，如 [在資料科學環境中處理 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)中所述。 資料必須從資料庫載入 Pandas 資料框架，然後就能進一步處理。 我們將在本節中說明連接到資料庫以及將資料載入資料框架的程序。
+使用 Python tooexplore 資料，並產生功能，資料是 SQL Server 中的 hello 類似 tooprocessing 資料時使用 Python，Azure blob 中所述[資料科學環境中的程序的 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)。 hello 資料需要 toobe hello 資料庫載入熊資料框架，然後可以進一步處理。 我們的文件連接 toohello 資料庫以及 hello 資料載入 hello 本節中的資料框架的 hello 程的序。
 
-下列連接字串格式可用來使用 pyodbc (使用您的特定值來取代 servername、dbname、username 和 password)，從 Python 連接到 SQL Server 資料庫：
+下列連接字串格式的 hello 可以是使用的 tooconnect tooa SQL Server 資料庫，來自 Python 使用 pyodbc （取代 servername、 dbname、 username 和 password 的特定值）：
 
-    #Set up the SQL Azure connection
+    #Set up hello SQL Azure connection
     import pyodbc    
     conn = pyodbc.connect('DRIVER={SQL Server};SERVER=<servername>;DATABASE=<dbname>;UID=<username>;PWD=<password>')
 
-Python 中的 [Pandas 程式庫](http://pandas.pydata.org/) 提供一組豐富的資料結構和資料分析工具，可用來對 Python 程式設計進行資料操作。 下列程式碼會將從 SQL Server 資料庫傳回的結果讀取至 Pandas 資料框架：
+hello[熊程式庫](http://pandas.pydata.org/)Python 中提供一組豐富的資料結構和資料分析工具的 Python 程式設計資料操作。 hello 下列程式碼會讀取從 SQL Server 資料庫傳回至熊資料框架的 hello 結果：
 
-    # Query database and load the returned results in pandas data frame
+    # Query database and load hello returned results in pandas data frame
     data_frame = pd.read_sql('''select <columnname1>, <cloumnname2>... from <tablename>''', conn)
 
-現在您可以利用 [在資料科學環境中處理 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)主題中說明的方式來使用 Pandas 資料框架。
+現在您可以在 hello 主題涵蓋與 hello 熊資料框架[資料科學環境中的程序的 Azure Blob 資料](machine-learning-data-science-process-data-blob.md)。
 
 ## <a name="cortana-analytics-process-in-action-example"></a>Cortana 分析程序實務範例
-如需使用公用資料集進行 Cortana Analytics 程序的端對端逐步解說範例，請參閱 [Team Data Science Process 實務：使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)。
+如需端對端逐步解說的範例 hello Cortana 分析程序，使用公用的資料集，請參閱[hello 動作中的資料科學的小組流程： 使用 SQL Server](machine-learning-data-science-process-sql-walkthrough.md)。
 

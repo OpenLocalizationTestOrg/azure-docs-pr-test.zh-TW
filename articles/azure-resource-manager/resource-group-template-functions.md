@@ -1,6 +1,6 @@
 ---
-title: "Resource Manager 範本函數 | Microsoft Docs"
-description: "描述要在 Azure 資源管理員範本中用來擷取值、搭配字串和數字使用，並擷取部署資訊的函數。"
+title: "aaaResource 管理員樣板函式 |Microsoft 文件"
+description: "描述 hello 函式 toouse Azure Resource Manager 範本 tooretrieve 值，與字串和數字，並擷取部署的資訊。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 1324bed07e991e9d84cb6832afe78bdb2d3348fa
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: d1b2e68a33d75058f83d6972dadb33a6390d49b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-resource-manager-template-functions"></a>Azure 資源管理員範本函數
-本主題描述您可以在Azure Resource Manager 範本中使用的所有函式。
+本主題描述所有您可以使用 Azure Resource Manager 範本中的 hello 函式。
 
-您要在範本中新增函式，方法是分別將它們以括弧括住：`[` 和 `]`。 在部署期間，會評估運算式。 雖然是以字串常值撰寫，評估運算式的結果，可能會是不同的 JSON 類型 (例如陣列、物件或整數)。 和在 JavaScript 中相同，函式呼叫的格式為 `functionName(arg1,arg2,arg3)`。 您可以使用點與 [index] 運算子來參考屬性。
+您要在範本中新增函式，方法是分別將它們以括弧括住：`[` 和 `]`。 在部署期間，會評估 hello 運算式。 寫入字串常值，同時 hello 運算式的評估 hello 結果可以是不同的 JSON 型別，例如陣列、 物件或整數。 和在 JavaScript 中相同，函式呼叫的格式為 `functionName(arg1,arg2,arg3)`。 您可以使用 hello 點和 [index] 運算子，以參考屬性。
 
 範本運算式不能超過 24,576 個字元。
 
-範本函數和其參數不區分大小寫。 例如，Resource Manager 在解析 **variables('var1')** 和 **VARIABLES('VAR1')** 時，會將它們視為相同。 評估時，除非函式明確修改大小寫 (例如 toUpper 或 toLower)，否則函式將會保留大小寫。 特定資源類型可能有與評估函式方式無關的大小寫需求。
+範本函數和其參數不區分大小寫。 例如，資源管理員會解析**variables('var1')**和**VARIABLES('VAR1')**為 hello 相同。 評估時，除非用戶 hello 函式會修改 （例如 toUpper 或 toLower） 的情況下，hello 函式會保留 hello 案例。 特定資源類型可能有與評估函式方式無關的大小寫需求。
 
 <a id="array" />
 <a id="coalesce" />
@@ -87,7 +87,7 @@ Resource Manager 提供了幾個可在範本中進行比較的函式。
 <a id="variables" />
 
 ## <a name="deployment-value-functions"></a>部署值函式
-資源管理員提供下列函式，以從與部署相關的範本和值的區段中取得值：
+資源管理員提供 hello 下列函數來取得從 hello 範本的區段值和值相關的 toohello 部署：
 
 * [部署](resource-group-template-functions-deployment.md#deployment)
 * [參數](resource-group-template-functions-deployment.md#parameters)
@@ -105,7 +105,7 @@ Resource Manager 提供了幾個可在範本中進行比較的函式。
 <a id="sub" />
 
 ## <a name="logical-functions"></a>邏輯函式
-Resource Manager 提供下列函式以使用邏輯條件：
+資源管理員提供下列函數使用的邏輯條件的 hello:
 
 * [and](resource-group-template-functions-logical.md#and)
 * [bool](resource-group-template-functions-logical.md#bool)
@@ -114,7 +114,7 @@ Resource Manager 提供下列函式以使用邏輯條件：
 * [or](resource-group-template-functions-logical.md#or)
 
 ## <a name="numeric-functions"></a>數值函式
-資源管理員提供下列函式以使用整數：
+資源管理員提供 hello 遵循使用整數的功能：
 
 * [新增](resource-group-template-functions-numeric.md#add)
 * [copyIndex](resource-group-template-functions-numeric.md#copyindex)
@@ -136,7 +136,7 @@ Resource Manager 提供下列函式以使用邏輯條件：
 <a id="subscription" />
 
 ## <a name="resource-functions"></a>資源函式
-資源管理員提供下列函式以取得資源值：
+資源管理員提供下列函數來取得資源值 hello:
 
 * [listKeys 和 list{Value}](resource-group-template-functions-resource.md#listkeys)
 * [提供者](resource-group-template-functions-resource.md#providers)
@@ -176,7 +176,7 @@ Resource Manager 提供下列函式以使用邏輯條件：
 <a id="uricomponenttostring" />
 
 ## <a name="string-functions"></a>字串函數
-資源管理員提供下列函式以使用字串：
+資源管理員提供下列函數使用字串 hello:
 
 * [base64](resource-group-template-functions-string.md#base64)
 * [base64ToJson](resource-group-template-functions-string.md#base64tojson)
@@ -210,8 +210,8 @@ Resource Manager 提供下列函式以使用邏輯條件：
 
 
 ## <a name="next-steps"></a>後續步驟
-* 如需有關 Azure 資源管理員範本中各區段的說明，請參閱 [編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)
-* 若要合併多個範本，請參閱 [透過 Azure 資源管理員使用連結的範本](resource-group-linked-templates.md)
-* 建立資源類型時若要逐一查看指定的次數，請參閱 [在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)
-* 若要了解如何部署已建立的範本，請參閱[使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)
+* 如需 Azure Resource Manager 範本中的 hello 各節的說明，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)
+* toomerge 多個範本，請參閱[使用連結的範本與 Azure 資源管理員](resource-group-linked-templates.md)
+* tooiterate 指定次數時建立的資源類型，請參閱[Azure 資源管理員中建立多個執行個體的資源](resource-group-create-multiple.md)
+* toosee 如何 toodeploy hello 範本建立之後，請參閱[部署應用程式使用 Azure Resource Manager 範本](resource-group-template-deploy.md)
 

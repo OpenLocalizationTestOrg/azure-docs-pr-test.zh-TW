@@ -1,5 +1,5 @@
 ---
-title: "Azure CLI 指令碼範例 - 在 Batch 中加入應用程式 | Microsoft Docs"
+title: "aaaAzure CLI 指令碼範例的批次中加入的應用程式 |Microsoft 文件"
 description: "Azure CLI 指令碼範例 - 在 Batch 中加入應用程式"
 services: batch
 documentationcenter: 
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/02/2017
 ms.author: antisch
-ms.openlocfilehash: 5d057eaf32867aedc95d58c5185e2be1f9385ec0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cb33b3a7b30610011b19954a987995cc5f0257c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="adding-applications-to-azure-batch-with-azure-cli"></a>使用 Azure CLI 將應用程式加入 Azure Batch
+# <a name="adding-applications-tooazure-batch-with-azure-cli"></a>新增應用程式 tooAzure 批次使用 Azure CLI
 
-此指令碼示範如何設定應用程式，以搭配 Azure Batch 集區或作業使用。 設定應用程式，將可執行檔及任何相依性封裝到 .zip 檔案。 在此範例中，可執行的 zip 檔案稱為 'my-application-exe.zip'。
+此指令碼示範如何 tooset 組成應用程式適用於 Azure Batch 集區或工作。 tooset 組成應用程式，封裝可執行檔，以及任何相依性，成.zip 檔。 在此範例中的 hello 可執行 zip 檔稱為 ' 我的應用程式-exe.zip'。
 
 ## <a name="prerequisites"></a>必要條件
 
-- 如果您尚未安裝 Azure CLI，請使用 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)中所提供的指示來安裝 Azure CLI。
-- 建立 Batch 帳戶 (如果您還沒有帳戶的話)。 如需用以建立帳戶的指令碼範例，請參閱[使用 Azure CLI 建立 Batch 帳戶](https://docs.microsoft.com/azure/batch/scripts/batch-cli-sample-create-account)。
+- 安裝 hello Azure CLI 使用 hello 中提供的 hello 指示[Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)，如果您有不這麼做。
+- 建立 Batch 帳戶 (如果您還沒有帳戶的話)。 請參閱[建立 Batch 帳戶以 hello Azure CLI](https://docs.microsoft.com/azure/batch/scripts/batch-cli-sample-create-account)建立帳戶的範例指令碼。
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-azurecli[主要](../../../cli_scripts/batch/add-application/add-application.sh "加入應用程式")]
+[!code-azurecli[main](../../../cli_scripts/batch/add-application/add-application.sh "Add Application")]
 
 ## <a name="clean-up-application"></a>清除應用程式
 
-執行上述範例指令碼之後，請執行下列命令以移除應用程式和其所有已上傳的應用程式封裝。
+執行 hello 上面的範例指令碼之後，執行下列命令 tooremove hello 應用程式和所有其上傳應用程式套件。
 
 ```azurecli
 az batch application package delete -g myresourcegroup -n mybatchaccount --application-id myapp --version 1.0 --yes
@@ -44,17 +44,17 @@ az batch application delete -g myresourcegroup -n mybatchaccount --application-i
 
 ## <a name="script-explanation"></a>指令碼說明
 
-這個指令碼使用下列命令來建立應用程式和上傳應用程式封裝。
-下表中的每個命令都會連結至命令特定的文件。
+應用程式和上傳應用程式套件，此指令碼會使用下列命令 toocreate hello。
+Hello 資料表連結 toocommand 特定文件中的每個命令。
 
 | 命令 | 注意事項 |
 |---|---|
 | [az batch application create](https://docs.microsoft.com/cli/azure/batch/application#create) | 建立應用程式。  |
 | [az batch application set](https://docs.microsoft.com/cli/azure/batch/application#set) | 更新應用程式的屬性。  |
-| [az batch application package create](https://docs.microsoft.com/cli/azure/batch/application/package#create) | 將應用程式封裝加入指定的應用程式。  |
+| [az batch application package create](https://docs.microsoft.com/cli/azure/batch/application/package#create) | 將指定的應用程式封裝 toohello 應用程式。  |
 
 ## <a name="next-steps"></a>後續步驟
 
-如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
+如需有關 Azure CLI hello 的詳細資訊，請參閱[Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 
-您可以在 [Azure Batch CLI 文件](../batch-cli-samples.md)中找到其他的 Batch CLI 指令碼範例。
+其他批次 CLI 指令碼範例可以在 hello [Azure 批次 CLI 文件](../batch-cli-samples.md)。

@@ -1,6 +1,6 @@
 ---
-title: "將來自線上資料來源的資料匯入 Machine Learning Studio | Microsoft Docs"
-description: "如何從各種線上來源將訓練資料匯入 Azure Machine Learning Studio。"
+title: "從線上資料來源的 Machine Learning Studio aaaImport 資料 |Microsoft 文件"
+description: "如何 tooimport 定型資料從各種不同的線上來源的 Azure Machine Learning Studio。"
 keywords: "匯入資料、資料格式、資料類型、資料來源、定型資料"
 services: machine-learning
 documentationcenter: 
@@ -15,17 +15,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: bradsev;garye
-ms.openlocfilehash: 16d4586d82ed256a90d8eb6be4aab927aed1200a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: aae6907cdd0b4dc373ae08c2569caa276c198b49
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="import-data-into-azure-machine-learning-studio-from-various-online-data-sources-with-the-import-data-module"></a>使用「匯入資料」模組從各種線上資料來源將資料匯入 Azure Machine Learning Studio 中
-本文說明對從不同來源匯入線上資料的支援，以及將資料從這些來源移至 Azure 機器學習服務實驗所需的資訊。
+# <a name="import-data-into-azure-machine-learning-studio-from-various-online-data-sources-with-hello-import-data-module"></a>資料匯入至 Azure Machine Learning Studio 從與 hello 資料匯入模組的各種線上資料來源
+這篇文章描述 hello 支援從各種來源匯入線上資料及 hello 所需的資訊來自這些來源的 toomove 資料至 Azure 機器學習實驗。
 
 > [!NOTE]
-> 本文提供有關[匯入資料][import-data]模組的一般資訊。 如需您可以存取的資料類型、格式、參數及常見問題解答的詳細資訊，請參閱[匯入資料][import-data]模組的模組參考主題。
+> 本文章提供一般資訊 hello[匯入資料][ import-data]模組。 格式、 參數和答案 toocommon 問題，如需詳細的資料，您可以存取的 hello 類型的相關資訊，請參閱 hello hello 模組參考主題[匯入資料][ import-data]模組。
 > 
 > 
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 08/29/2017
 [!INCLUDE [import-data-into-aml-studio-selector](../../includes/machine-learning-import-data-into-aml-studio.md)]
 
 ## <a name="introduction"></a>簡介
-使用[匯入資料][import-data]模組，您可以在 [Azure Machine Learning Studio](https://studio.azureml.net/Home) 中進行實驗時，從其中一個線上資料來源存取資料：
+使用 hello[匯入資料][ import-data]模組，您可以從數個線上資料來源的其中一個存取資料，您的實驗執行時[Azure Machine Learning Studio](https://studio.azureml.net/Home):
 
 * 使用 HTTP 的 Web URL
 * 使用 HiveQL 的 Hadoop
@@ -45,32 +45,32 @@ ms.lasthandoff: 08/29/2017
 * 資料摘要提供者，目前為 OData
 * Azure CosmosDB (先前稱為 DocumentDB)
 
-若要在您的 Studio 實驗中存取線上資料來源，請將[匯入資料][import-data]模組新增至您的實驗、選取 [資料來源]，然後提供存取資料所需的參數。 下表列舉支援的線上資料來源。 此表格也會摘錄支援的檔案格式和用來存取資料的參數。
+tooaccess 線上資料來源中 Studio 實驗中，新增 hello[匯入資料][ import-data]模組 tooyour、 選取 hello**資料來源**，然後提供所需的 hello 參數tooaccess hello 資料。 支援的 hello 線上資料來源會分項 hello 如下表中。 此資料表也摘要了 hello 所支援的檔案格式，並使用的 tooaccess 參數 hello 資料。
 
-請注意，這項訓練資料會在您的實驗執行時存取，因此只有在該實驗中才可使用。 相較之下，已儲存在資料集模組中的資料則可供工作區中的任何實驗使用。
+請注意，這項訓練資料會在您的實驗執行時存取，因此只有在該實驗中才可使用。 相較之下，已將其儲存在資料集的模組中的資料，則可用 tooany 實驗工作區中。
 
 > [!IMPORTANT]
-> [匯入資料][import-data]和[匯出資料][export-data]模組目前只能從使用傳統部署模型所建立的 Azure 儲存體讀取和寫入資料。 換句話說，目前尚未支援可提供經常性儲存體存取層或非經常性儲存體存取層的新 Azure Blob 儲存體帳戶類型。 
+> 目前，hello[匯入資料][ import-data]和[匯出資料][ export-data]模組可以讀取和寫入資料只能從 Azure 儲存體使用 hello 建立傳統部署模型。 換句話說，hello 新的 Azure Blob 儲存體帳戶類型，提供最忙碌的儲存體的存取層，或不支援項很棒的儲存體的存取層。 
 > 
 > 一般而言，任何您可能已在這個服務選項變成可供使用之前建立的 Azure 儲存體帳戶應該不會受到影響。 
-> 如果您需要建立新的帳戶，請將部署模型選取為 [傳統] 或使用資源管理員，然後將 [帳戶種類] 選取為 [一般用途] 而不是 [Blob 儲存體]。 
+> 如果您需要 toocreate 新帳戶，請選取**傳統**hello 部署模型，或使用資源管理員，然後選取**一般用途**而**Blob 儲存體**的**帳戶類型**。 
 > 
 > 如需詳細資訊，請參閱 [Azure Blob 儲存體︰經常性存取與非經常性存取儲存層](../storage/blobs/storage-blob-storage-tiers.md)。
 > 
 > 
 
 ## <a name="supported-online-data-sources"></a>支援的線上資料來源
-Azure 機器學習服務的 **匯入資料** 模組支援下列資料來源：
+Azure Machine Learning**匯入資料**模組支援下列資料來源的 hello:
 
 | 資料來源 | 說明 | 參數 |
 | --- | --- | --- |
-| 透過 HTTP 的 Web URL |從任何使用 HTTP 的 Web URL 中讀取逗號分隔值 (CSV)、tab 分隔值 (TSV)、屬性關聯檔案格式 (ARFF) 和支援向量機器 (SVM-light) 格式的資料 |<b>URL</b>：指定檔案的完整名稱，包括網站 URL 和檔案名稱與任何副檔名。 <br/><br/><b>資料格式</b>：指定其中一個支援的資料格式：CSV、TSV、ARFF 或 SVM-light。 如果資料有標頭資料列，將會用來指派資料行名稱。 |
-| Hadoop/HDFS |從 Hadoop 中的分散式儲存體讀取資料。 您可以使用 HiveQL (類似 SQL 的查詢語言) 指定您要的資料。 HiveQL 也可以在您將資料新增至 Machine Learning Studio 之前，用來彙總資料及執行資料篩選。 |<b>Hive 資料庫查詢</b>︰指定用來產生資料的 Hive 查詢。<br/><br/><b>HCatalog 伺服器 URI</b>：使用 *&lt;您的叢集名稱&gt;.azurehdinsight.net* 格式指定叢集的名稱。<br/><br/><b>Hadoop 使用者帳戶名稱</b>︰指定用來佈建叢集的 Hadoop 使用者帳戶名稱。<br/><br/><b>Hadoop 使用者帳戶密碼</b>︰指定佈建叢集時使用的認證。 如需詳細資訊，請參閱[在 HDInsight 中建立 Hadoop 叢集](../hdinsight/hdinsight-provision-clusters.md)。<br/><br/><b>輸出資料的位置</b>：指定資料要儲存在 Hadoop 分散式檔案系統 (HDFS) 還是 Azure 中。 <br/><ul>如果您將輸出資料儲存在 HDFS 中，請指定 HDFS 伺服器 URI。 (請確實使用沒有 HTTPS:// 前置詞的 HDInsight 叢集名稱)。 <br/><br/>如果您將輸出資料儲存在 Azure 中，則必須指定 Azure 儲存體帳戶名稱、儲存體存取金鑰和儲存體容器名稱。</ul> |
-| SQL Database |讀取儲存在 Azure SQL Database 或執行於 Azure 虛擬機器之 SQL Server 資料庫中的資料。 |<b>資料庫伺服器名稱</b>︰指定資料庫執行所在的伺服器名稱。<br/><ul>若為 Azure SQL Database，請輸入所產生的伺服器名稱。 其格式通常為 &lt;generated_identifier&gt;.database.windows.net。 <br/><br/>若為裝載於 Azure 虛擬機器上的 SQL Server，請輸入 tcp:&lt;Virtual Machine DNS Name&gt;, 1433</ul><br/><b>資料庫名稱</b>︰在伺服器上指定資料庫的名稱。 <br/><br/><b>伺服器使用者帳戶名稱</b>：指定具有資料庫存取權限之帳戶的使用者名稱。 <br/><br/><b>伺服器使用者帳戶密碼</b>：指定使用者帳戶的密碼。<br/><br/><b>接受任何伺服器憑證</b>：如果您想要在讀取資料前跳過檢閱網站憑證，請使用這個選項 (較不安全)。<br/><br/><b>資料庫查詢</b>：輸入 SQL 陳述式，描述您要讀取的資料。 |
-| 內部部署 SQL Database |讀取內部部署 SQL Database 中儲存的資料。 |<b>資料閘道</b>︰指定其可存取 SQL Server 資料庫之電腦上安裝的資料管理閘道的名稱。 如需設定閘道的相關資訊，請參閱[使用來自內部部署 SQL Server 的資料，利用 Azure Machine Learning 執行進階分析](machine-learning-use-data-from-an-on-premises-sql-server.md)。<br/><br/><b>資料庫伺服器名稱</b>︰指定資料庫執行所在的伺服器名稱。<br/><br/><b>資料庫名稱</b>︰在伺服器上指定資料庫的名稱。 <br/><br/><b>伺服器使用者帳戶名稱</b>：指定具有資料庫存取權限之帳戶的使用者名稱。 <br/><br/><b>使用者名稱和密碼</b>︰按一下 [輸入值]<b></b> 來輸入資料庫認證。 根據您內部部署 SQL Server 的設定方式而定，您可以使用 Windows 整合式驗證或 SQL Server 驗證。<br/><br/><b>資料庫查詢</b>：輸入 SQL 陳述式，描述您要讀取的資料。 |
-| Azure 資料表 |從 Azure 儲存體中的表格服務讀取資料。<br/><br/>如果您不常讀取大量資料，請使用 Azure 表格服務。 它可提供有彈性、非關聯式 (NoSQL)、具有超高延展性、經濟的且高度可用的儲存解決方案。 |**匯入資料**中的選項會依據您存取的是公開資訊，還是需要登入認證的私人儲存體帳戶而有所不同。 這取決於值有可能是 "PublicOrSAS" 或 "Account" 的<b>驗證類型</b>，兩者都有其本身的參數集。 <br/><br/><b>公用或共用存取簽章 (SAS) URI</b>︰參數為︰<br/><br/><ul><b>資料表 URI</b>︰指定資料表的公用或 SAS URL。<br/><br/><b>指定要為屬性名稱掃描的資料列</b>：值為 <i>TopN</i>，用以掃描指定的資料列數，或是 <i>ScanAll</i>，用以取得資料表中的所有資料列。 <br/><br/>如果資料是同質且可預測的，建議您選取 *TopN*，並且輸入 N 的數目。對於大型資料表，這可能會使讀取速度更快。<br/><br/>如果資料已透過隨著資料表的深度和位置而異的屬性集進行結構化，請選擇 *ScanAll* 選項以掃描所有資料列。 這可確保產生的屬性和中繼資料轉換具有完整性。<br/><br/></ul><b>私人儲存體帳戶</b>︰參數為︰ <br/><br/><ul><b>帳戶名稱</b>︰指定包含要讀取之資料表的帳戶名稱。<br/><br/><b>帳戶金鑰</b>︰指定與帳戶相關聯的儲存體金鑰。<br/><br/><b>資料表名稱</b>︰指定包含要讀取之資料的資料表名稱。<br/><br/><b>要為屬性名稱掃描的資料列</b>：值為 <i>TopN</i>，用以掃描指定的資料列數，或是 <i>ScanAll</i>，用以取得資料表中的所有資料列。<br/><br/>如果資料是同質且可預測的，建議您選取 *TopN*，並且輸入 N 的數目。對於大型資料表，這可能會使讀取速度更快。<br/><br/>如果資料已透過隨著資料表的深度和位置而異的屬性集進行結構化，請選擇 *ScanAll* 選項以掃描所有資料列。 這可確保產生的屬性和中繼資料轉換具有完整性。<br/><br/> |
-| Azure Blob 儲存體 |讀取儲存在 Azure 儲存體之 Blob 服務中的資料，包括影像、非結構化文字或二進位資料。<br/><br/>您可以使用 Blob 服務來對外公開資料，或私下儲存應用程式資料。 您可以使用 HTTP 或 HTTPS 連線從任何地方存取您的資料。 |**匯入資料**模組中的選項會依據您存取的是公開資訊，還是需要登入認證的私人儲存體帳戶而有所不同。 這取決於<b>驗證類型</b>，其可能的值有「PublicOrSAS」或「帳戶」。<br/><br/><b>公用或共用存取簽章 (SAS) URI</b>︰參數為︰<br/><br/><ul><b>URI</b>︰指定儲存體 Blob 的公用或 SAS URL。<br/><br/><b>檔案格式</b>：指定 Blob 服務中的資料格式。 支援的格式為 CSV、TSV 和 ARFF。<br/><br/></ul><b>私人儲存體帳戶</b>︰參數為︰ <br/><br/><ul><b>帳戶名稱</b>︰指定包含要讀取之 blob 的帳戶名稱。<br/><br/><b>帳戶金鑰</b>︰指定與帳戶相關聯的儲存體金鑰。<br/><br/><b>容器、目錄或 Blob 的路徑</b>︰指定包含要讀取之資料的 Blob 名稱。<br/><br/><b>Blob 檔案格式</b>：指定 Blob 服務中的資料格式。 支援的資料格式包括 CSV、TSV、ARFF、具有指定編碼方式的 CSV，以及 Excel。 <br/><br/><ul>如果格式為 CSV 或 TSV，請務必指出檔案是否包含標頭列。<br/><br/>您可以使用 [Excel] 選項，從 Excel 活頁簿讀取資料。 在 <i>Excel 資料格式</i>選項中，指出資料是否在 Excel 工作表範圍中，或是在 Excel 資料表中。 在 [Excel 工作表或內嵌的資料表]<i></i> 選項中，指定您要讀取的工作表或資料表名稱。</ul><br/> |
-| 資料摘要提供者 |從支援的摘要提供者讀取資料。 目前僅支援開放式資料通訊協定 (OData) 格式。 |<b>資料內容類型</b>︰指定 OData 格式。<br/><br/><b>來源 URL</b>︰指定資料摘要的完整 URL。 <br/>例如，下列 URL 會讀取自 Northwind 範例資料庫︰http://services.odata.org/northwind/northwind.svc/ |
+| 透過 HTTP 的 Web URL |從任何使用 HTTP 的 Web URL 中讀取逗號分隔值 (CSV)、tab 分隔值 (TSV)、屬性關聯檔案格式 (ARFF) 和支援向量機器 (SVM-light) 格式的資料 |<b>URL</b>： 指定 hello hello 檔案，包括 hello 網站 URL 和 hello 檔案名稱，以及任何擴充功能的完整名稱。 <br/><br/><b>資料格式</b>： 指定其中一個支援的 hello 資料格式： CSV、 TSV、 ARFF 或 SVM light。 如果 hello 資料有標頭資料列，則使用的 tooassign 資料行名稱。 |
+| Hadoop/HDFS |從 Hadoop 中的分散式儲存體讀取資料。 您指定您想要利用 HiveQL，類似 SQL 的查詢語言的 hello 資料。 HiveQL 也可以是使用的 tooaggregate 資料，並執行新增 hello 資料 tooMachine Learning Studio 之前篩選資料。 |<b>Hive 資料庫查詢</b>： 指定 hello Hive 查詢使用 toogenerate hello 資料。<br/><br/><b>HCatalog 伺服器 URI </b> ： 叢集使用 hello 格式的指定的 hello 名稱*&lt;叢集名稱&gt;。.azurehdinsight.net。*<br/><br/><b>Hadoop 使用者帳戶名稱</b>： 指定 hello Hadoop 使用者帳戶使用 tooprovision hello 叢集的名稱。<br/><br/><b>Hadoop 使用者帳戶密碼</b>： 指定 hello 佈建 hello 叢集時所使用的認證。 如需詳細資訊，請參閱[在 HDInsight 中建立 Hadoop 叢集](../hdinsight/hdinsight-provision-clusters.md)。<br/><br/><b>輸出資料的位置</b>： 指定是否 hello 資料會儲存在 Hadoop 分散式檔案系統 (HDFS) 還是 Azure 中。 <br/><ul>如果您將輸出資料儲存在 HDFS 中，指定 hello HDFS 伺服器 URI。 （不含 hello HTTPS:// 前置詞是確定 toouse hello HDInsight 叢集名稱）。 <br/><br/>如果您在 Azure 中儲存您的輸出資料，您必須指定 hello Azure 儲存體帳戶名稱、 儲存體存取金鑰和儲存體容器名稱。</ul> |
+| SQL Database |讀取儲存在 Azure SQL Database 或執行於 Azure 虛擬機器之 SQL Server 資料庫中的資料。 |<b>資料庫伺服器名稱</b>： 指定 hello hello 伺服器正在執行哪些 hello 資料庫名稱。<br/><ul>Azure SQL Database 時輸入 hello 伺服器名稱所產生。 通常，它包含 hello 表單 *&lt;generated_identifier&gt;。.database.windows.net。* <br/><br/>若為裝載於 Azure 虛擬機器上的 SQL Server，請輸入 tcp:&lt;Virtual Machine DNS Name&gt;, 1433</ul><br/><b>資料庫名稱</b>: hello 伺服器上指定 hello hello 資料庫名稱。 <br/><br/><b>伺服器的使用者帳戶名稱</b>： 指定具有 hello 資料庫的存取權限的帳戶的使用者名稱。 <br/><br/><b>伺服器使用者帳戶密碼</b>： 指定 hello hello 使用者帳戶的密碼。<br/><br/><b>接受任何伺服器憑證</b>： 如果您想 tooskip 讀取資料之前，檢閱 hello 站台憑證，請使用此選項 （較不安全）。<br/><br/><b>資料庫查詢</b>： 輸入 SQL 陳述式描述您想要 tooread hello 資料。 |
+| 內部部署 SQL Database |讀取內部部署 SQL Database 中儲存的資料。 |<b>部署資料閘道</b>： 指定 hello hello 它可以在其中存取您的 SQL Server 資料庫的電腦上安裝資料管理閘道器名稱。 Hello 閘道設定的詳細資訊，請參閱[執行進階分析與 Azure Machine Learning 使用的資料從內部部署 SQL server](machine-learning-use-data-from-an-on-premises-sql-server.md)。<br/><br/><b>資料庫伺服器名稱</b>： 指定 hello hello 伺服器正在執行哪些 hello 資料庫名稱。<br/><br/><b>資料庫名稱</b>: hello 伺服器上指定 hello hello 資料庫名稱。 <br/><br/><b>伺服器的使用者帳戶名稱</b>： 指定具有 hello 資料庫的存取權限的帳戶的使用者名稱。 <br/><br/><b>使用者名稱和密碼</b>： 按一下<b>輸入值</b>tooenter 資料庫認證。 根據您內部部署 SQL Server 的設定方式而定，您可以使用 Windows 整合式驗證或 SQL Server 驗證。<br/><br/><b>資料庫查詢</b>： 輸入 SQL 陳述式描述您想要 tooread hello 資料。 |
+| Azure 資料表 |從 hello Azure 儲存體中的資料表服務讀取資料。<br/><br/>如果您不常讀取大量的資料，請使用 hello Azure 資料表服務。 它可提供有彈性、非關聯式 (NoSQL)、具有超高延展性、經濟的且高度可用的儲存解決方案。 |hello 選項在 hello**匯入資料**依據您要存取公用資訊還是需要登入認證的私人儲存體帳戶。 這由 hello<b>驗證類型</b>且可以包含每一個都有它自己的參數集 」 PublicOrSAS"或"Account"的值。 <br/><br/><b>公用或共用存取簽章 (SAS) URI</b>: hello 參數：<br/><br/><ul><b>資料表 URI</b>: hello 資料表指定 hello 公用或 SAS URL。<br/><br/><b>指定屬性名稱的 hello 列 tooscan</b>: hello 的值為<i>TopN</i> tooscan hello 指定資料列數目或<i>ScanAll</i> tooget 所有 hello 資料表中的資料都列。 <br/><br/>如果是同質性且可預測 hello 資料，建議您選取*TopN*並輸入 n 的數字對於大型資料表，這會導致加快讀取速度。<br/><br/>如果 hello 資料使用不同 hello 深度和位置 hello 資料表為基礎的屬性集的結構化，請選擇 hello *ScanAll*選項 tooscan 所有資料列。 這可確保產生的屬性和中繼資料轉換的 hello 完整性。<br/><br/></ul><b>私用儲存體帳戶</b>: hello 參數： <br/><br/><ul><b>帳戶名稱</b>： 指定 hello 包含 hello 資料表 tooread hello 帳戶名稱。<br/><br/><b>帳戶金鑰</b>： 指定 hello hello 帳戶相關聯的儲存體金鑰。<br/><br/><b>資料表名稱</b>： 指定 hello 包含 hello 資料 tooread hello 資料表名稱。<br/><br/><b>屬性名稱的資料列 tooscan</b>: hello 的值為<i>TopN</i> tooscan hello 指定資料列數目或<i>ScanAll</i> tooget 所有 hello 資料表中的資料都列。<br/><br/>如果是同質性且可預測 hello 資料，我們建議您選取*TopN*並輸入 n 的數字對於大型資料表，這會導致加快讀取速度。<br/><br/>如果 hello 資料使用不同 hello 深度和位置 hello 資料表為基礎的屬性集的結構化，請選擇 hello *ScanAll*選項 tooscan 所有資料列。 這可確保產生的屬性和中繼資料轉換的 hello 完整性。<br/><br/> |
+| Azure Blob 儲存體 |會讀取儲存在 Azure 儲存體，包括影像、 非結構化的文字或二進位資料中的 hello Blob 服務中的資料。<br/><br/>您可以使用 hello Blob 服務 toopublicly 公開資料或 tooprivately 市集應用程式資料。 您可以使用 HTTP 或 HTTPS 連線從任何地方存取您的資料。 |hello 選項在 hello**匯入資料**模組變更根據您要存取公用資訊還是需要登入認證的私人儲存體帳戶。 這由 hello<b>驗證類型</b>且可以包含的 「 PublicOrSAS"或"Account"的值。<br/><br/><b>公用或共用存取簽章 (SAS) URI</b>: hello 參數：<br/><br/><ul><b>URI</b>: hello 儲存體 blob 指定 hello 公用或 SAS URL。<br/><br/><b>檔案格式</b>: hello Blob 服務中指定 hello hello 資料格式。 hello 支援的格式為 CSV、 TSV 和 ARFF。<br/><br/></ul><b>私用儲存體帳戶</b>: hello 參數： <br/><br/><ul><b>帳戶名稱</b>： 指定 hello hello 帳戶包含您想要 tooread hello blob 名稱。<br/><br/><b>帳戶金鑰</b>： 指定 hello hello 帳戶相關聯的儲存體金鑰。<br/><br/><b>路徑 toocontainer、 目錄或 blob </b> ： 指定包含 hello 資料 tooread hello blob hello 名稱。<br/><br/><b>Blob 檔案格式</b>: hello blob 服務中指定 hello hello 資料格式。 hello 支援的資料格式包括 CSV、 TSV、 ARFF、 CSV 與指定的編碼方式和 Excel。 <br/><br/><ul>如果 hello 格式為 CSV 或 TSV，是確定 tooindicate 是否 hello 檔案包含標頭資料列。<br/><br/>您可以使用 hello Excel 選項 tooread 資料從 Excel 活頁簿。 在 hello <i>Excel 資料格式</i>選項，指出是否 hello 資料在 Excel 工作表範圍，或在 Excel 資料表。 在 hello <i>Excel 工作表或內嵌的資料表</i>選項，請指定 hello hello 工作表或您想要從 tooread 的資料表名稱。</ul><br/> |
+| 資料摘要提供者 |從支援的摘要提供者讀取資料。 支援目前只有 hello 開放式資料通訊協定 (OData) 格式。 |<b>資料內容類型</b>： 指定 hello OData 格式。<br/><br/><b>來源 URL</b>： 指定 hello hello 資料摘要的完整 URL。 <br/>例如，hello hello Northwind 範例資料庫中的下列 URL 讀取： http://services.odata.org/northwind/northwind.svc/ |
 
 ## <a name="next-steps"></a>後續步驟
 

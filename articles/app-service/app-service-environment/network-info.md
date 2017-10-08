@@ -1,6 +1,6 @@
 ---
-title: "Azure App Service Environment 的網路考量"
-description: "說明 ASE 網路流量與如何使用 ASE 設定 NSG 和 UDR"
+title: "Azure App Service 環境 aaaNetworking 考量"
+description: "說明 hello ASE 網路流量以及 tooset Nsg 和 UDRs 與您 ASE"
 services: app-service
 documentationcenter: na
 author: ccompy
@@ -13,11 +13,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/08/2017
 ms.author: ccompy
-ms.openlocfilehash: 3be0d7a202ff53f5532fd7169a50a04cfaf88832
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d4d3000f4d4d75814b1e6d47079d967334eb1a3b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="networking-considerations-for-an-app-service-environment"></a>App Service Environment 的網路考量 #
 
@@ -25,16 +25,16 @@ ms.lasthandoff: 08/29/2017
 
  Azure [App Service Environment][Intro] 是將 Azure App Service 部署到您 Azure 虛擬網路 (VNet) 中子網路的一種部署。 App Service Environment (ASE) 有二種部署類型：
 
-- **外部 ASE**：會在可存取網際網路的 IP 位址上公開 ASE 裝載的應用程式。 如需詳細資訊，請參閱[建立外部 ASE][MakeExternalASE]。
-- **ILB ASE**：會在您 VNet 內部的 IP 位址上公開 ASE 裝載的應用程式。 內部端點是一個內部負載平衡器 (ILB)，這就是它稱為 ILB ASE 的原因。 如需詳細資訊，請參閱[建立和使用 ILB ASE][MakeILBASE]。
+- **外部 ASE**： 公開 hello ASE 裝載應用程式的可存取網際網路的 IP 位址。 如需詳細資訊，請參閱[建立外部 ASE][MakeExternalASE]。
+- **ILB ASE**： 公開 hello ASE 裝載您的 VNet 內的 IP 位址上的應用程式。 內部負載平衡器 (ILB)，這就是為什麼它稱為 ILB ASE hello 內部端點。 如需詳細資訊，請參閱[建立和使用 ILB ASE][MakeILBASE]。
 
-App Service Environment 現在有兩個版本：ASEv1 和 ASEv2。 如需 ASEv1 的資訊，請參閱 [App Service Environment v1 簡介][ASEv1Intro]。 ASEv1 可以部署至傳統或 Resource Manager VNet 中。 ASEv2 只能部署至 Resource Manager VNet 中。
+App Service Environment 現在有兩個版本：ASEv1 和 ASEv2。 如需 ASEv1 資訊，請參閱[簡介 tooApp Service 環境 v1][ASEv1Intro]。 ASEv1 可以部署至傳統或 Resource Manager VNet 中。 ASEv2 只能部署至 Resource Manager VNet 中。
 
-來自 ASE 並傳送至網際網路的所有呼叫，都會透過為 ASE 指派的 VIP 離開 VNet。 然後，此 VIP 的公用 IP 就會成為來自 ASE 並傳送至網際網路之所有呼叫的來源 IP。 如果 ASE 中的應用程式會呼叫位於 VNet 中或跨 VPN 的資源，則來源 IP 就會是 ASE 所用子網路中的其中一個 IP。 因為 ASE 是位於 VNet 之內，所以它也可以存取 VNet 內的資源，而不需要任何額外設定。 如果 VNet 是連線至您的內部部署網路，您 ASE 中的應用程式也會擁有該處資源的存取權。 您不再需要設定 ASE 或您的應用程式。
+從 ase 中移 toohello 的所有呼叫網際網路都離開 hello VNet 透過 hello ASE 指派的 VIP。 hello 此 VIP 的公用 IP 然後 hello 的來源 IP 是從 hello ASE 移 toohello 的所有呼叫網際網路。 如果您 ASE 中的 hello 應用程式進行呼叫 tooresources VNet 中或透過 VPN，hello 來源 IP 是 hello 的由您 ASE hello 子網路中 Ip 的其中一個。 因為 hello ASE hello VNet 內，它也可以存取 hello VNet，而不需要任何額外的設定中的資源。 如果 hello VNet 連接的 tooyour 在內部部署網路，您 ASE 中的應用程式也那里可以存取 tooresources。 您不需要 tooconfigure hello ASE 或您的應用程式任何進一步。
 
 ![外部 ASE][1] 
 
-如果您有外部 ASE，公用 VIP 也會是您 ASE 應用程式針對以下項目進行解析的端點：
+如果您有外部 ASE，hello 公用 VIP 也是 ASE 應用程式解決 toofor hello 端點：
 
 * HTTP/S。 
 * FTP/S。 
@@ -43,40 +43,40 @@ App Service Environment 現在有兩個版本：ASEv1 和 ASEv2。 如需 ASEv1 
 
 ![ILB ASE][2]
 
-如果您有 ILB ASE，則 ILB 的 IP 位址就會是 HTTP/S、FTP/S、Web 部署和遠端偵錯的端點。
+如果您有 ILB ASE，hello ILB 的 IP 位址會是 hello 的 HTTP/S、 FTP/S、 web 部署和遠端偵錯的 hello 端點。
 
-一般的應用程式存取連接埠為：
+hello 一般應用程式存取連接埠是：
 
-| 使用 | 從 | 收件人 |
+| 使用 | 從 | 太|
 |----------|---------|-------------|
 |  HTTP/HTTPS  | 可由使用者設定 |  80、443 |
 |  FTP/FTPS    | 可由使用者設定 |  21、990、10001-10020 |
 |  Visual Studio 遠端偵錯  |  可由使用者設定 |  4016、4018、4020、4022 |
 
-這適用於您位於外部 ASE 或 ILB ASE 上的情況。 如果您是在外部 ASE 中，就會叫用公用 VIP 上的那些連接埠。 如果您是在 ILB ASE 中，就會叫用 ILB 上的那些連接埠。 如果您鎖定連接埠 443，可能會影響在入口網站中公開的某些功能。 如需詳細資訊，請參閱[入口網站相依性](#portaldep)。
+這適用於您位於外部 ASE 或 ILB ASE 上的情況。 如果您在外部 ase 中，您會遇到 hello 公用 VIP 的這些通訊埠。 如果您在 ILB ase 中，您會遇到 hello ILB 這些通訊埠。 若您鎖定連接埠 443，則可能會影響某些 hello 入口網站中公開的功能。 如需詳細資訊，請參閱[入口網站相依性](#portaldep)。
 
 ## <a name="ase-dependencies"></a>ASE 相依性 ##
 
 ASE 輸入存取相依性為：
 
-| 使用 | 從 | 收件人 |
+| 使用 | 從 | 太|
 |-----|------|----|
 | 管理 | App Service 管理位址 | ASE 子網路：454、455 |
 |  ASE 內部通訊 | ASE 子網路：所有連接埠 | ASE 子網路：所有連接埠
 |  允許 Azure Load Balancer 輸入 | Azure Load Balancer | ASE 子網路：所有連接埠
 |  應用程式指派的 IP 位址 | 應用程式指派的位址 | ASE 子網路：所有連接埠
 
-除了系統監控以外，輸入流量也提供了 ASE 的命令與控制。 此流量的來源 IP 列於 [ASE 管理位址][ASEManagement]文件中。 網路安全性設定需在連接埠 454 和 455 上允許來自所有 IP 的存取。
+hello 輸入的流量提供命令和控制的 hello ASE 中新增 toosystem 監視。 此流量的 hello 來源 Ip 會列在 hello [ASE 管理位址][ ASEManagement]文件。 hello 網路安全性設定必須從所有 Ip 連接埠 454 和 455 上 tooallow 存取。
 
-ASE 子網路中有許多用於內部元件通訊的連接埠，您可以變更這些連接埠。  ASE 子網路的所有連接埠都必須能夠從 ASE 子網路存取。 
+Hello ASE 子網路有許多連接埠所使用的內部元件通訊，以及他們可以變更。  這需要所有的 hello hello ASE 子網路 toobe 存取從 hello ASE 子網路中的連接埠。 
 
-您必須開啟最小連接埠 454、455 和 16001，才能在 Azure Load Balancer 與 ASE 子網路之間進行通訊。 16001 連接埠可用來保持負載平衡器與 ASE 之間的流量運作。 如果您使用 ILB ASE，則可以將流量僅鎖定於 454、455、16001 連接埠。  如果您使用外部 ASE，則需要考慮一般應用程式存取連接埠。  如果您使用應用程式指派的位址，則需要在所有連接埠將它開啟。  將位址指派給特定應用程式時，負載平衡器會使用事先不知道的連接埠將 HTTP 和 HTTPS 流量傳送至 ASE。
+Hello 和之間的通訊 hello Azure 負載平衡器 hello ASE 子網路 hello 最小連接埠開啟該需要 toobe 為 454、 455 和 16001。 保持運作流量 hello 負載平衡器與 hello ASE 之間會使用 hello 16001 連接埠。 如果您使用 ILB ase 中，您可以鎖定下 toojust hello 454，455，16001 連接埠的流量。  如果您使用外部 ase 中則需要 tootake 到帳戶 hello 一般應用程式存取連接埠。  如果您使用的指派的應用程式位址則需要 tooopen 它 tooall 連接埠。  將位址指派 tooa 特定的應用程式，然後 hello 負載平衡器將會使用預先 toosend HTTP 和 HTTPS 流量 toohello ASE 未知的連接埠。
 
-如果您使用應用程式指派的 IP 位址，則需要允許將來自應用程式指派之 IP 的流量傳送至 ASE 子網路。
+如果您使用指派的應用程式的 IP 位址則需要 tooallow hello Ip 指派 tooyour 應用程式 toohello ASE 子網路流量。
 
-對於輸出存取，ASE 取決於多個外部系統。 那些系統相依性會以 DNS 名稱定義，且不會對應至一組固定的 IP 位址。 因此，ASE 需要透過不同的連接埠進行從 ASE 子網路至所有外部 IP 的輸出存取。 ASE 具有下列輸出相依性：
+對於輸出存取，ASE 取決於多個外部系統。 這些系統相依性所定義的 DNS 名稱，而不要對應 tooa 固定的一組 IP 位址。 因此，hello ASE 必須能夠存取外部 hello ASE 子網路 tooall 從各種不同的連接埠上的外部 Ip。 Ase 中具有下列輸出相依性的 hello:
 
-| 使用 | 從 | 收件人 |
+| 使用 | 從 | 太|
 |-----|------|----|
 | Azure 儲存體 | ASE 子網路 | table.core.windows.net、blob.core.windows.net、queue.core.windows.net、file.core.windows.net：80、443、445 (只有 ASEv1 才需要 445) |
 | Azure SQL Database | ASE 子網路 | database.windows.net：1433、11000-11999、14000-14999 (如需詳細資訊，請參閱 [SQL Database V12 連接埠用法](../../sql-database/sql-database-develop-direct-route-ports-adonet-v12.md))|
@@ -87,19 +87,19 @@ ASE 子網路中有許多用於內部元件通訊的連接埠，您可以變更�
 | Azure DNS                     | ASE 子網路            |  網際網路：53
 | ASE 內部通訊    | ASE 子網路：所有連接埠 |  ASE 子網路：所有連接埠
 
-如果 ASE 失去對這些相依性的存取，它會停止運作。 當停止運作時間達到一定的長度之後，ASE 就會暫停。
+如果 hello ASE 失去存取 toothese 相依性，它會停止運作。 發生的長時間不夠，hello ASE 已暫停。
 
 ### <a name="customer-dns"></a>客戶 DNS ###
 
-如果已經使用客戶定義的 DNS 伺服器設定 VNet，租用戶工作負載就會使用該伺服器。 基於管理目的，ASE 仍需要和 Azure DNS 通訊。 
+如果 hello 的 VNet 設定的客戶定義的 DNS 伺服器，hello 租用戶工作負載會使用它。 hello ASE 仍然需要使用 Azure DNS toocommunicate 進行管理。 
 
-如果 VNet 在 VPN 的另一端使用客戶 DNS 進行設定，DNS 伺服器必須能夠從包含 ASE 的子網路中進行連線。
+如果 hello 的 VNet 設定的 DNS 客戶上 hello VPN 的另一端，hello DNS 伺服器必須是包含 hello ASE hello 子網路觸達。
 
 <a name="portaldep"></a>
 
 ## <a name="portal-dependencies"></a>入口網站相依性 ##
 
-除了 ASE 功能性相依性之外，還有幾個額外項目和入口網站體驗有關。 Azure 入口網站的部分功能需要能夠直接存取「SCM 網站」。 Azure App Service 中的每個應用程式都有兩個 URL。 第一個 URL 是用來存取您的應用程式。 第二個 URL 則是用來存取 SCM 網站，也稱為「Kudu 主控台」。 使用 SCM 網站的功能包括：
+在加法 toohello ASE 功能相依性，有幾個額外的項目相關的 toohello 入口網站體驗。 部份 hello Azure 入口網站中的 hello 功能取決於直接存取 too_SCM site_。 Azure App Service 中的每個應用程式都有兩個 URL。 hello 第一個 URL 是 tooaccess 您的應用程式。 hello 第二個 URL 是 tooaccess hello SCM 站台，這也稱為 hello _Kudu 主控台_。 使用 hello SCM 站台的功能包括：
 
 -   Web Job
 -   Functions
@@ -109,62 +109,62 @@ ASE 子網路中有許多用於內部元件通訊的連接埠，您可以變更�
 -   處理序總管
 -   主控台
 
-當您使用 ILB ASE 時，無法從 VNet 外部透過網際網路存取 SCM 網站。 當您的應用程式裝載於 ILB ASE 時，將無法從入口網站使用某些功能。  
+當您使用 ILB ASE 時，hello SCM 站台不是從 hello VNet 之外存取網際網路。 當您的應用程式裝載於 ILB ase 中時，某些功能將無法運作，從 hello 入口網站。  
 
-那些需要依賴 SCM 網站的功能中，有許多功能也會在 Kudo 主控台中直接提供。 您可以直接與它連線，不需要使用入口網站。 如果應用程式是裝載在 ILB ASE 中，請使用發行認證登入。 存取 ILB ASE 所裝載應用程式之 SCM 網站的 URL 具有以下格式： 
+許多相依於 hello SCM 站台的這些功能也會提供直接在 hello Kudu 主控台中。 您可以連接 tooit 直接而不是使用 hello 入口網站。 如果您的應用程式裝載在 ILB ase 中，使用在您發行認證 toosign。 hello URL tooaccess hello SCM 的站台在 ILB ase 中裝載的應用程式具有下列格式的 hello: 
 
 ```
-<appname>.scm.<domain name the ILB ASE was created with> 
+<appname>.scm.<domain name hello ILB ASE was created with> 
 ```
 
-如果 ILB ASE 的網域名稱為 *contoso.net* 中，且應用程式名稱為 *testapp*，則應用程式已連線至 *testapp.contoso.net*。 與它搭配的 SCM 網站已經連線至 *testapp.scm.contoso.net*。
+如果 ILB ASE hello 網域名稱*contoso.net*和您的應用程式名稱是*testapp*，hello 應用程式已達*testapp.contoso.net*。 hello SCM 站台，它會在達到*testapp.scm.contoso.net*。
 
 ### <a name="functions-and-web-jobs"></a>函式和 Web 工作 ###
 
-函式和 Web 工作都相依於 SCM 網站，但受到支援可用於入口網站，即使您的應用程式在 ILB ASE 中，只要您的瀏覽器可以到達 SCM 網站就沒問題。  如果您搭配 ILB ASE 使用自我簽署憑證，您必須啟用瀏覽器以信任該憑證。  若是 IE 和 Edge，這表示憑證必須在電腦信任存放區中。  如果您使用 Chrome，則表示您假設瀏覽器會直接到達 SCM 網站，而過早接受瀏覽器中的憑證。  最佳解決方法是使用瀏覽器信任鏈結中的商業憑證。  
+函式和 Web 工作相依於 hello SCM 站台，但即使您的應用程式中 ILB ase 中，只要您的瀏覽器可以到達 hello SCM 站台支援在 hello 入口網站使用。  如果您使用 ILB ASE 使用自我簽署的憑證，您將需要 tooenable 憑證您瀏覽器 tootrust。  IE 與表示 hello 憑證的邊緣具有 toobe 在 hello 電腦信任存放區。  如果您使用 Chrome，則這表示您接受 hello 瀏覽器中的 hello 憑證稍早假定直接叫用 hello scm 站台。  hello 最好的解決方案是 toouse hello 瀏覽器信任鏈結中的商業憑證。  
 
 ## <a name="ase-ip-addresses"></a>ASE IP 位址 ##
 
-ASE 有一些 IP 位址需要注意。 如下：
+Ase 中有幾個 IP 位址 toobe 留意。 如下：
 
 - **公用輸入 IP 位址**：用於外部 ASE 中的應用程式流量，以及外部 ASE 和 ILB ASE 中的管理流量。
-- **輸出公用 IP**：用來作為 ASE 輸出連線離開 VNet 時的「來源」IP (不會透過 VPN 進行路由)。
+- **輸出的公用 IP**： 做為 hello"from"IP hello ASE 傳出連線該保持 hello VNet，這不 VPN 下路由傳送。
 - **ILB IP 位址**：如果您是使用 ILB ASE。
 - **應用程式指派之以 IP 為主的 SSL 位址**：只有在使用外部 ASE 並已設定以 IP 為主的 SSL 時才能使用。
 
-在 Azure 入口網站中，所有這些 IP 位址都可以很容易地在 ASEv2 的 ASE UI 中看出來。 如果您有 ILB ASE，系統便會列出 ILB 的 IP。
+所有這些 IP 位址會輕鬆地顯示在 ASEv2 hello Azure 入口網站中從 hello ASE UI。 如果您有 ILB ase 中時，會列出 hello hello ILB 的 IP。
 
 ![IP 位址][3]
 
 ### <a name="app-assigned-ip-addresses"></a>應用程式指派的 IP 位址 ###
 
-在外部 ASE 的情況下，您可以將 IP 位址指派給個別的應用程式。 您無法在 ILB ASE 的情況下那樣做。 如需如何讓應用程式有自己 IP 位址的設定方式詳細資訊，請參閱[將現有的自訂 SSL 憑證繫結至 Azure Web Apps](../../app-service-web/app-service-web-tutorial-custom-ssl.md)。
+使用外部 ase 中，您可以指派 IP 位址 tooindividual 應用程式。 您無法在 ILB ASE 的情況下那樣做。 如需有關如何 tooconfigure 應用程式 toohave 它自己的 IP 位址，請參閱[繫結現有自訂 SSL 憑證 tooAzure web 應用程式](../../app-service-web/app-service-web-tutorial-custom-ssl.md)。
 
-當應用程式有自己以 IP 為主的 SSL 位址時，ASE 會保留兩個連接埠以對應至該 IP 位址。 一個連接埠供 HTTP 流量使用，另一個連接埠則供 HTTPS 使用。 那些連接埠會列在 ASE UI 的 IP 位址區段中。 流量必須能夠從 VIP 觸達那些連接埠，否則會無法存取應用程式。 在您設定網路安全性群組 (NSG) 時，請務必記住這項重要需求。
+當應用程式有它自己的 IP SSL 位址時，hello ASE 會保留兩個連接埠 toomap toothat IP 位址。 一個連接埠是 HTTP 流量，hello 其他連接埠是 https。 這些連接埠會列在 hello ASE hello IP 位址區段中的 UI。 流量必須是能夠 tooreach 這些連接埠的 hello VIP 或 hello 應用程式都無法存取。 這項需求是重要 tooremember，當您設定網路安全性群組 (Nsg)。
 
 ## <a name="network-security-groups"></a>網路安全性群組 ##
 
-[網路安全性群組][NSGs]提供控制 VNet 內網路存取的能力。 使用入口網站時，會有一個會拒絕一切內容的最低優先順序隱含拒絕規則。 您所建立的是您的允許規則。
+[網路安全性群組][ NSGs]提供 hello 能力 toocontrol VNet 中的網路存取。 當您使用 hello 入口網站時，就會隱含拒絕規則在 hello 最低優先順序 toodeny 的所有項目。 您所建立的是您的允許規則。
 
-在 ASE 中，您不會有存取用來裝載 ASE 本身之 VM 的存取權。 它們處於由 Microsoft 管理的訂用帳戶之中。 如果想要針對 ASE 上的應用程式限制存取，請在 ASE 子網路上設定 NSG。 這樣做時，請特別注意 ASE 相依性。 如果您封鎖任何相依性，ASE 會停止運作。
+在 ase 中，您不需要存取 toohello Vm 使用 toohost hello ASE 本身。 它們處於由 Microsoft 管理的訂用帳戶之中。 如果您想在 hello ASE toorestrict 存取 toohello 應用程式，設定 Nsg hello ASE 子網路上。 這樣做，請特別注意 toohello ASE 相依性。 如果您封鎖任何相依性，hello ASE 會停止運作。
 
-NSG 可以透過 Azure 入口網站或 PowerShell 來設定。 這裡的資訊僅針對 Azure 入口網站說明。 您會在入口網站中的 [網路] 底下，以最上層資源的形式建立及管理 NSG。
+透過 hello Azure 入口網站或 PowerShell，可以設定 Nsg。 這裡 hello 資訊會顯示 hello Azure 入口網站。 您建立和管理 Nsg hello 入口網站中，為受到最上層資源**網路**。
 
-將輸入和輸出需求納入考量時，NSG 看起來應類似此範例中顯示的 NSG。 VNet 位址範圍為 _192.168.250.0/16_，且 ASE 所在的子網路為 _192.168.251.128/25_。
+當 hello 輸入和輸出需求會納入考量時，hello Nsg 看起來應該類似這個範例所示的 toohello Nsg。 hello VNet 位址範圍是_192.168.250.0/16_，而且 hello 子網路中的 hello ASE _192.168.251.128/25_。
 
-讓 ASE 能夠運作的前兩個輸入需求顯示在此範例中清單的最上方。 它們能啟用 ASE 管理，並允許 ASE 和自己通訊。 其他項目都是租用戶設定項目，而且可以管理對 ASE 裝載應用程式的網路存取。 
+hello 前兩個輸入的需求 hello ASE toofunction 會顯示在 hello 在此範例中的 hello 清單最上方。 它們啟用 ASE 管理，並允許 hello ASE toocommunicate 與其本身。 hello 其他項目可設定的所有租用戶都與可控制網路存取 toohello ASE 裝載應用程式。 
 
 ![輸入安全性規則][4]
 
-預設規則可讓 VNet 中的 IP 與 ASE 子網路通訊。 另一個預設規則可讓負載平衡器 (也稱為公用 VIP) 和 ASE 通訊。 您可以選取 [新增] 圖示旁邊的 [預設規則] 來查看預設規則。 如果您在顯示的 NSG 規則後面加入拒絕其他任何內容的規則，便可以防止 VIP 和 ASE 之間產生流量。 若要防止來自 VNet 內部的流量，請新增您自己的規則來允許輸入。 使用來源等於 AzureLoadBalancer，目的地為 **Any**，以及 **\*** 的連接埠範圍。 由於 NSG 規則是套用至 ASE 子網路，因此不需要特別指定目的地。
+預設規則可讓 hello VNet tootalk toohello ASE 子網路中的 hello Ip。 另一個預設規則可讓 hello 負載平衡器，也稱為 hello 公用 VIP，以 hello ASE toocommunicate。 toosee hello 預設規則，選取**預設規則**下一步 toohello**新增**圖示。 如果您將的拒絕所有其他項目規則 hello NSG 規則顯示之後，您可以防止 hello VIP 與 hello ASE 之間的流量。 tooprevent 流量從內部 hello VNet，新增您自己的規則 tooallow 輸入。 來源相等 tooAzureLoadBalancer 用於目的地為**任何**，而且連接埠範圍為 **\*** 。 Hello NSG 規則是套用的 toohello ASE 子網路，因為您不需要 toobe 特定 hello 目的地中。
 
-如果指派 IP 位址給應用程式，請確定維持開啟連接埠。 若要查看連接埠，請選取 [App Service Environment] > [IP 位址]。  
+如果您指派的 IP 位址 tooyour 應用程式，請確定您開啟的連接埠的 hello。 toosee hello 連接埠，選取**App Service 環境** > **IP 位址**。  
 
-下列輸出規則中顯示的所有項目都是需要的項目，但不包含最後一個項目。 它們可啟用針對本文章之前所提到之 ASE 相依性的網路存取。 如果封鎖它們任何一項，ASE 會停止運作。 清單中的最後一個項目可讓 ASE 和 VNet 中的其他資源通訊。
+需要所有 hello 遵循規則的輸出所示的 hello 項目，除了 hello 最後一個項目。 它們可讓網路存取 toohello ASE 相依性已依照本文稍早記下。 如果封鎖它們任何一項，ASE 會停止運作。 hello hello 清單中的最後一個項目可讓您 ASE toocommunicate，與您的 VNet 中的其他資源。
 
 ![輸出安全性規則][5]
 
-定義 NSG 之後，請將它們指派給 ASE 所在的子網路。 如果您不記得 ASE VNet 或子網路，可以從 ASE 管理入口網站查看。 若要將 NSG 指派給子網路，請移至子網路 UI 並選取 NSG。
+Nsg 定義後，請將它們指派您 ASE 所在 toohello 子網路。 如果您不記得 hello ASE VNet 或子網路，您可以從 hello ASE 管理入口網站中看到它。 tooassign hello NSG tooyour 子網路 toohello 子網路 UI，請選取 hello NSG。
 
 ## <a name="routes"></a>路由 ##
 
@@ -176,51 +176,51 @@ NSG 可以透過 Azure 入口網站或 PowerShell 來設定。 這裡的資訊�
 
 BGP 路由會覆寫系統路由。 UDR 會覆寫 BGP 路由。 如需 Azure 虛擬網路中關於路由的詳細資訊，請參閱[使用者定義路由概觀][UDRs]。
 
-ASE 用來管理系統的 Azure SQL 資料庫具備防火牆。 它需要透過通訊由 ASE 公用 VIP 產生。 從 ASE 連線到 SQL 資料庫的連線如果是透過 ExpressRoute 連線傳送及送出到其他 IP 位址，該連線將會遭到拒絕。
+hello Azure SQL database hello ASE 使用 toomanage hello 系統有防火牆。 它需要從 hello ASE 公用 VIP 通訊 toooriginate。 如果他們傳送 hello ExpressRoute 連接並查詢其他 IP 位址，將會拒絕從 hello ASE 連線 toohello SQL 資料庫。
 
-如果針對內送管理要求的回覆是透過 ExpressRoute 傳送，回覆位址將會和原始目的地不同。 這會中斷 TCP 通訊。
+如果回覆 tooincoming 管理要求會傳送 hello ExpressRoute，hello 回覆地址是 hello 原始目的地不同。 不符的情形會中斷 hello TCP 通訊。
 
-若要在搭配 ExpressRoute 設定 VNet 時讓 ASE 能夠運作，最簡單的方式為：
+針對 ASE toowork 時透過 ExpressRoute，您的 VNet 設定 hello 最簡單的事 toodo 是：
 
--   設定 ExpressRoute 來通告 _0.0.0.0/0_。 根據預設，它會使用強制通道將所有輸出流量傳送至內部部署網路。
--   建立 UDR。 並以「0.0.0.0/0」的位址首碼及「網際網路」的下一個躍點類型，將它套用至包含 ASE 的子網路。
+-   設定 ExpressRoute tooadvertise _0.0.0.0/0_。 根據預設，它會使用強制通道將所有輸出流量傳送至內部部署網路。
+-   建立 UDR。 將它套用 toohello 子網路，其中包含的位址前置詞的 hello ASE _0.0.0.0/0_和下個躍點類型_網際網路_。
 
-如果您做了這兩項變更，則 (來自 ASE 子網路) 將出發到網際網路的流量，將不會被強制經由 ExpressRoute 傳輸，並使 ASE 能夠運作。 
+如果您進行這兩個變更時，源自 hello ASE 子網路的網際網路目的地流量運作不下 hello ExpressRoute 和 hello ASE 來強制。 
 
 > [!IMPORTANT]
-> UDR 中定義的路由必須足夠明確，以優先於 ExpressRoute 組態所通告的任何路由。 前面的範例使用廣泛的 0.0.0.0/0 位址範圍。 因此有可能會不小心由使用更明確位址範圍的路由通告所覆寫。
+> hello UDR 中定義的路由必須夠特定 tootake 優先順序透過通告 hello ExpressRoute 組態的任何路由。 hello 前述範例使用 hello 廣泛 0.0.0.0/0 位址範圍。 因此有可能會不小心由使用更明確位址範圍的路由通告所覆寫。
 >
-> 針對從公用對等互連路徑至私人對等互連路徑的路由進行交叉通告的 ExpressRoute 設定，不支援 ASE。 已設定公用對等互連的 ExpressRoute 設定，會收到來自 Microsoft 的路由通告。 通告中會包含一大組 Microsoft Azure IP 位址範圍。 如果位址範圍在私人對等互連路徑上交叉通告，來自 ASE 子網路的所有輸出網路封包都會使用強制通道傳送至客戶的內部部署網路基礎結構。 ASE 目前不支援這個網路流量。 此問題的一個解決方案是停止從公用對等互連路徑至私人對等互連路徑的交叉通告路由。
+> ASEs 不支援跨通告從 hello 公用互連路徑 toohello 私用對等互連路徑的路由的 ExpressRoute 組態。 已設定公用對等互連的 ExpressRoute 設定，會收到來自 Microsoft 的路由通告。 hello 公告包含 Microsoft Azure IP 位址範圍的大型集合。 如果 hello 位址範圍是跨通告 hello 私用對等互連路徑上，從 hello ASE 的子網路的所有輸出網路封包將會強制通道的 tooa 客戶的內部部署網路基礎結構。 ASE 目前不支援這個網路流量。 一個方案 toothis 問題就是從 hello 公用互連路徑 toohello 私用對等互連路徑 toostop 跨廣告路由。
 
-若要建立 UDR，請遵循下列步驟：
+toocreate UDR，請遵循下列步驟：
 
-1. 移至 Azure 入口網站。 選取 [網路] > [路由表]。
+1. 移 toohello Azure 入口網站。 選取 [網路] > [路由表]。
 
-2. 在和您 VNet 相同的區域內建立一個新的路由表。
+2. 在 hello 中建立新的路由表相同的區域 VNet。
 
 3. 從您的路由表 UI 內，選取 [路由] > [新增]。
 
-4. 將 [下一個躍點類型] 設為 [網際網路]，將 [位址首碼] 設為 **0.0.0.0/0**。 選取 [ **儲存**]。
+4. 設定 hello**下個躍點類型**太**網際網路**和 hello**位址首碼**太**0.0.0.0/0**。 選取 [ **儲存**]。
 
-    您就會看到類似以下的畫面：
+    接著您看到類似下列 hello:
 
     ![功能性路由][6]
 
-5. 建立新的路由表之後，請移至包含您 ASE 的子網路。 從在入口網站取得的清單中選取您的路由表。 儲存變更之後，應該就會看見 NSG 和路由已註明了您的子網路。
+5. 建立 hello 新的路由表之後，請包含您 ASE toohello 子網路。 從 hello 入口網站中的 hello 清單中選取路由表。 儲存 hello 變更之後，您應該看見 hello Nsg 以及記下與您的子網路的路由。
 
     ![NSG 和路由][7]
 
 ### <a name="deploy-into-existing-azure-virtual-networks-that-are-integrated-with-expressroute"></a>部署到與 ExpressRoute 整合的現有 Azure 虛擬網路 ###
 
-若要將 ASE 部署到與 ExpressRoute 整合的 VNet，請預先設定您想要部署 ASE 的子網路。 然後使用 Resource Manager 範本來部署。 在已設定 ExpressRoute 的 VNet 中建立 ASE：
+toodeploy VNet 與 ExpressRoute，整合到您 ASE 預先設定您想要部署的 hello ASE hello 子網路。 然後使用 資源管理員範本 toodeploy 它。 在 VNet 中的 toocreate ase 中已經有設定 ExpressRoute:
 
-- 建立子網路以裝載 ASE。
+- 建立子網路 toohost hello ASE。
 
     > [!NOTE]
-    > 除了 ASE 以外，子網路中可能沒有其他項目。 請務必選擇預留未來成長空間的位址空間。 您之後無法變更此設定。 我們建議使用包含 128 個位址的 `/25` 大小。
+    > 沒有其他可以在 hello 子網路但 hello ASE 中。 為確定 toochoose 容許未來成長的位址空間。 您之後無法變更此設定。 我們建議使用包含 128 個位址的 `/25` 大小。
 
-- 依照之前的描述建立 UDR (例如，路由表)，並在子網路上加以設定。
-- 依照[使用 Resource Manager 範本建立 ASE][MakeASEfromTemplate] 中的描述，使用 Resource Manager 範本建立 ASE。
+- 稍早所述，建立 UDRs （例如，路由表），並將其設定 hello 子網路上。
+- 使用資源管理員範本中所述建立 hello ASE[建立 ase 中使用資源管理員範本][MakeASEfromTemplate]。
 
 <!--Image references-->
 [1]: ./media/network_considerations_with_an_app_service_environment/networkase-overflow.png

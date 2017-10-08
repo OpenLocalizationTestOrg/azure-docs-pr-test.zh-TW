@@ -1,6 +1,6 @@
 ---
-title: "在 Azure App Service 中部署 ASP.NET MVC 5 行動 Web 應用程式"
-description: "指導您如何使用 ASP.NET MVC 5 Web 應用程式的行動功能，將 Web 應用程式部署到 Azure App Service 的教學課程。"
+title: "Azure App Service 中的 ASP.NET MVC 5 aaaDeploy 行動 web 應用程式"
+description: "此教學課程將教導您如何使用行動應用程式服務的 web 應用程式 tooAzure toodeploy 功能在 ASP.NET MVC 5 web 應用程式。"
 services: app-service
 documentationcenter: .net
 author: cephalin
@@ -14,56 +14,56 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 01/12/2016
 ms.author: cephalin
-ms.openlocfilehash: c98e9b485c52a82e5be5c0f6b0b67912d1e890b9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 01119c07246c0252fd357562774a2e90b3ef77d0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-an-aspnet-mvc-5-mobile-web-app-in-azure-app-service"></a>在 Azure App Service 中部署 ASP.NET MVC 5 行動 Web 應用程式
-本教學課程指導您如何建置行動便利的 ASP.NET MVC 5 Web 應用程式，並將其部署至 Azure App Service 的基本做法。 在本教學課程中，您需要 [Visual Studio Express 2013 for Web][Visual Studio Express 2013] 或 Professional Edition 的 Visual Studio (如果您已具備此版本)。 您可以使用 [Visual Studio 2015] ，但螢幕擷取畫面將會不同，且您必須使用 ASP.NET 4.x 範本。
+本教學課程將教導您 hello toobuild ASP.NET MVC 5 web 應用程式是行動設備友善的基本概念，並將其部署 tooAzure 應用程式服務。 此教學課程中，您需要[Visual Studio Express 2013 for Web] [ Visual Studio Express 2013]或 hello professional 版的 Visual Studio，如果您已經有的。 您可以使用[Visual Studio 2015]但 hello 螢幕擷取畫面會不同，而且您必須使用 hello ASP.NET 4.x 範本。
 
 [!INCLUDE [create-account-and-websites-note](../../includes/create-account-and-websites-note.md)]
 
 ## <a name="what-youll-build"></a>您要建置的內容
-在本教學課程中，您將把行動功能新增至[入門專案][StarterProject]裡提供的簡單會議清單應用程式。 如同在 Internet Explorer 11 F12 開發人員工具的瀏覽器模擬器中所見，以下螢幕擷取畫面示範完成的應用程式中的 ASP.NET 工作階段。
+此教學課程中，您將新增 mobile 功能 toohello 簡單會議清單的應用程式提供中 hello[入門專案][StarterProject]。 hello 下列螢幕擷取畫面顯示 hello ASP.NET 工作階段中完成的 hello 應用程式，Internet Explorer 11 F12 開發人員工具中的 hello 瀏覽器模擬器中所見。
 
 ![][FixedSessionsByTag]
 
-您可以利用 Internet Explorer 11 F12 開發人員工具和 [Fiddler 工具][Fiddler]來偵錯應用程式。 
+您可以使用 hello Internet Explorer 11 F12 開發者工具與 hello [Fiddler 工具][ Fiddler] toohelp 偵錯應用程式。 
 
 ## <a name="skills-youll-learn"></a>您要學習的技術
 以下是您要學習的內容：
 
-* 如何使用 Visual Studio 2013，將 Web 應用程式直接發行到 Azure App Service 中的 Web 應用程式。
-* ASP.NET MVC 5 範本如何使用 CSS Bootstrap 架構，改善行動裝置的顯示畫面。
-* 如何以特定的行動瀏覽器做為目標，建立行動專用的檢視，例如 iPhone 和 Android。
-* 如何建立回應靈敏的檢視 (可回應各種裝置中不同瀏覽器的檢視)。
+* 如何 toouse Visual Studio 2013 toopublish web 應用程式直接 tooa web 應用程式在 Azure App Service 中的。
+* ASP.NET MVC 5 hello 範本若要改善顯示行動裝置上的所使用的 hello CSS 啟動安裝程式架構
+* 如何 toocreate 行動特定檢視 tootarget 特定行動瀏覽器，例如 hello iPhone 和 Android
+* 如何 toocreate 回應的檢視表 （跨裝置回應 toodifferent 瀏覽器的檢視）
 
-## <a name="set-up-the-development-environment"></a>設定開發環境
-安裝 Azure SDK for .NET 2.5.1 或更新版本，以設定您的開發環境。  
+## <a name="set-up-hello-development-environment"></a>設定 hello 開發環境
+設定您的開發環境，藉由安裝 hello Azure SDK for.net 2.5.1 或更新版本。 
 
-1. 若要安裝 Azure SDK for .NET，請按一下底下連結： 如果您尚未安裝 Visual Studio 2013，按下該連結會進行安裝。 本教學課程需要 Visual Studio 2013。 [Azure SDK for Visual Studio 2013][AzureSDKVs2013]
-2. 在 [Web Platform Installer] 視窗中，按一下 [安裝]  並繼續進行安裝。
+1. tooinstall hello Azure SDK for.NET 中，按一下下方的 hello 連結。 如果您沒有 Visual Studio 2013 尚未安裝，它將會安裝 hello 連結。 本教學課程需要 Visual Studio 2013。 [Azure SDK for Visual Studio 2013][AzureSDKVs2013]
+2. 在 hello Web Platform Installer 視窗中，按一下 **安裝**並繼續進行 hello 安裝。
 
-您還需要一個行動瀏覽器模擬器。 下列任一項目都可使用：
+您還需要一個行動瀏覽器模擬器。 Hello 下列任何一項工作將會：
 
 * [Internet Explorer 11 F12 開發人員工具][EmulatorIE11]中的瀏覽器模擬器 (使用於所有行動瀏覽器螢幕擷取畫面中)。 它具有 Windows Phone 8、Windows Phone 7 和 Apple iPad 的使用者代理程式字串預設項目。
 * [Google Chrome DevTools][EmulatorChrome] (英文) 中的瀏覽器模擬器。 它包含許多 Android 裝置，以及 Apple iPhone、Apple iPad 和 Amazon Kindle Fire 的預設項目。 它也會模擬觸控事件。
 * [Opera Mobile 模擬器][EmulatorOpera]
 
-此處提供具有 C\# 原始程式碼的 Visual Studio 專案來幫助您完成本主題：
+Visual Studio 專案以 C\#原始碼是本主題提供 tooaccompany:
 
 * [入門專案下載][StarterProject]
 * [完成專案下載][CompletedProject]
 
-## <a name="bkmk_DeployStarterProject"></a>將入門專案部署至 Azure Web 應用程式
-1. 下載會議清單應用程式[入門專案][StarterProject] (英文)。
-2. 接著在 Windows 檔案總管中，以滑鼠右鍵按一下以下載的 ZIP 檔案並選擇 [內容] 。
-3. 在 [內容] 對話方塊中，選擇 [解除封鎖] 按鈕。 (取消封鎖後，當您嘗試使用從網路下載的 .zip 檔案時，就不會出現安全性警告。)
-4. 以滑鼠右鍵按一下 ZIP 檔案並選取 [全部解壓縮]  來解壓縮檔案。 
-5. 在 Visual Studio 中，開啟 C#\Mvc5Mobile.sln 檔案。
-6. 在 [方案總管] 中，於專案上按一下滑鼠右鍵，再按一下 [發行] 。
+## <a name="bkmk_DeployStarterProject"></a>部署 hello 入門專案 tooan Azure web 應用程式
+1. 下載 hello 會議清單應用程式[入門專案][StarterProject]。
+2. 在 Windows 檔案總管中，以滑鼠右鍵按一下 hello 下載 ZIP 檔案，然後選擇 *屬性*。
+3. 在 [hello**屬性**對話方塊方塊中，選擇 hello**解除封鎖**] 按鈕。 (解除封鎖可避免安全性警告，發生於您嘗試 toouse *.zip*您已經從 hello web 下載的檔案。)
+4. Hello ZIP 檔案上按一下滑鼠右鍵，然後選取**全部解壓縮**解壓縮 hello 檔案。 
+5. 在 Visual Studio 中，開啟 hello *C#\Mvc5Mobile.sln*檔案。
+6. 在 方案總管 hello 專案上按一下滑鼠右鍵，然後按一下**發行**。
    
    ![][DeployClickPublish]
 7. 在 [發佈 Web] 中，按一下 [Microsoft Azure App Service] 。
@@ -72,44 +72,44 @@ ms.lasthandoff: 08/29/2017
 8. 如果您尚未登入 Azure，請按一下 [新增帳戶] 。
    
    ![][DeploySignIn]
-9. 依照提示來登入您的 Azure 帳戶。
-10. [App Service] 對話方塊現在應該會顯示您已登入。 按一下 [新增] 。
+9. 遵循 hello 提示 toolog 到您的 Azure 帳戶。
+10. hello 應用程式服務 對話方塊應顯示您為登入。 按一下 [新增] 。
     
     ![][DeployNewWebsite]  
-11. 在 [Web 應用程式名稱]  欄位中，指定唯一的應用程式名稱前置詞。 您的完整 Web 應用程式名稱將是 &lt;prefix>.azurewebsites.net。 另外，請在 [資源群組] 中選取或指定新的資源群組名稱。 然後，按一下 [新增]  來建立新的 App Service 方案。
+11. 在 hello **Web 應用程式名稱**欄位中，指定唯一的應用程式名稱前置詞。 您的完整 Web 應用程式名稱將是 &lt;prefix>.azurewebsites.net。 另外，請在 [資源群組] 中選取或指定新的資源群組名稱。 然後，按一下 **新增**toocreate 新的應用程式服務方案。
     
     ![][DeploySiteSettings]
-12. 設定新的 App Service 方案並按一下 [確定] 。 
+12. 設定 hello 新的 App Service 方案，按一下**確定**。 
     
     ![](./media/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/deploy-to-azure-website-7a.png)
-13. 返回 [建立 App Service] 對話方塊中，按一下 [建立] 。
+13. 在 hello 建立應用程式服務 對話方塊中，按一下 **建立**。
     
     ![](./media/web-sites-dotnet-deploy-aspnet-mvc-mobile-app/deploy-to-azure-website-7b.png) 
-14. Azure 資源建立之後，隨即會將新應用程式的設定填入 [發佈 Web] 對話方塊中。 按一下 [發行] 。
+14. Hello Azure 資源建立之後，hello 發行 Web 對話方塊將會填入您新的應用程式的 hello 設定。 按一下 [發行] 。
     
     ![][DeployPublishSite]
     
-    當 Visual Studio 完成將入門專案發行至 Azure Web 應用程式之後，隨即會開啟桌面瀏覽器以顯示作用中的 Web 應用程式。
-15. 啟動行動瀏覽器模擬器，將會議應用程式的 URL (*<prefix>*.azurewebsites.net) 複製到模擬器中，然後按一下右上角的按鈕，並選取 [ **依標籤瀏覽**]。 若您使用 Internet Explorer 11 做為預設瀏覽器，只要輸入 `F12`，再按鍵 `Ctrl+8`，然後將瀏覽器設定檔變更為 **Windows Phone** 即可。 下圖顯示直向模式的 *AllTags* 檢視 (透過選擇 [ **依標籤瀏覽**])。
+    Visual Studio 完成發行 hello 入門專案 toohello Azure web 應用程式時，一旦 hello 桌面瀏覽器會開啟 toodisplay hello 即時 web 應用程式。
+15. 啟動您的行動電話瀏覽器模擬器，複製 hello hello 會議應用程式的 URL (*<prefix>*。 名稱是.azurewebsites.net) 到 hello 模擬器，然後按一下右上方按鈕並選取**標記瀏覽**. 如果您使用 Internet Explorer 11 和 hello 的預設瀏覽器，您只需要 tootype `F12`，然後`Ctrl+8`，然後將變更 hello 瀏覽器的設定檔太**Windows Phone**。 下圖顯示 hello *AllTags*直向模式中的檢視 (從選擇**標記來瀏覽**)。
     
     ![][AllTags]
 
 > [!TIP]
-> 當您在 Visual Studio 中偵錯 MVC 5 應用程式時，可以再次將 Web 應用程式發行至 Azure，直接從行動瀏覽器或瀏覽器模擬器確認作用中的 Web 應用程式。
+> 雖然您可以將 MVC 5 應用程式與 Visual Studio 內偵錯，您可以發佈您的 web 應用程式 tooAzure 再次 tooverify hello 即時 web 應用程式直接從您的行動瀏覽器或瀏覽器模擬器。
 > 
 > 
 
-該顯示內容在行動裝置上非常清楚易讀。 您也可以看到一些 Bootstrap CSS 架構所套用的視覺效果。
-按一下 [ **ASP.NET** ] 連結。
+hello 顯示是很容易閱讀，行動裝置上。 您也已經可以看見 hello hello Bootstrap CSS framework 所套用的視覺效果的部分。
+按一下 hello **ASP.NET**連結。
 
 ![][SessionsByTagASP.NET]
 
-ASP.NET 標籤檢視會縮放至適合螢幕的大小，而這是 Bootstrap 自動為您執行的效果。 但您可以改善此檢視，使其更適合行動瀏覽器。 例如，[ **日期** ] 欄非常難以閱讀。 您將在稍後的教學課程中變更 *AllTags* 檢視，使其更適合行動用途。
+hello ASP.NET 標記檢視是縮放納入 toohello 畫面上，啟動程序會為您自動執行。 不過，您也可以改善這個檢視 toobetter 勝利 hello 行動瀏覽器。 例如，hello**日期**資料行是難以閱讀。 稍後在 hello 教學課程中，您要變更 hello *AllTags*檢視 toomake 它行動設備友善。
 
 ## <a name="bkmk_bootstrap"></a> Bootstrap CSS 架構
-MVC 5 範本中的新功能是內建的 Bootstrap 支援。 您已經看到它是如何即時改善應用程式中的不同檢視。 例如，頂端的導覽列會在瀏覽器寬度較小時自動摺疊。 嘗試在桌面瀏覽器上重新調整瀏覽器視窗的大小，並觀察導覽列如何改變它的外觀與風格。 這就是內建於 Bootstrap 中回應靈敏的 Web 設計。
+新增在 hello MVC 5 範本是內建的啟動程序支援。 您已看到它立即改善 hello 應用程式中的不同檢視的方式。 比方說，hello hello 頂端的巡覽列時，會自動摺疊 hello 瀏覽器寬度是較小。 在 hello 桌面瀏覽器，請嘗試調整大小 hello 瀏覽器視窗中，查看 hello 導覽列如何變更其外觀與風格。 這是啟動安裝程式已內建的 hello 回應的 web 設計。
 
-若要查看 Web 應用程式沒有 Bootstrap 時的外觀，請開啟 App\_Start\\BundleConfig.cs，並註解化包含 bootstrap.js 和 bootstrap.css 的行。 以下程式碼顯示在執行這些變更之後， `RegisterBundles` 方法的最後兩個陳述式：
+toosee hello Web 應用程式看起來沒有啟動程序，會如何開啟*應用程式\_啟動\\BundleConfig.cs*和註解包含的 hello 行*bootstrap.js*和*bootstrap.css*。 hello 下列程式碼顯示 hello 最後兩個陳述式的 hello `RegisterBundles` hello 變更之後的方法：
 
      bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
               //"~/Scripts/bootstrap.js",
@@ -119,29 +119,29 @@ MVC 5 範本中的新功能是內建的 Bootstrap 支援。 您已經看到它�
               //"~/Content/bootstrap.css",
               "~/Content/site.css"));
 
-按下 `Ctrl+F5` 執行應用程式。
+按`Ctrl+F5`toorun hello 應用程式。
 
-您會發現可摺疊的導覽列現在只是一般的未排序清單。 再按一下 [依標籤瀏覽]，然後按一下 [ASP.NET]。
-您現在可以在行動模擬器檢視中看到檢視已不再縮放至適合螢幕的大小，且您必須橫向捲動才能看到右邊的表格。
+觀察該 hello 可摺疊導覽列是現在只有一般的未排序的清單。 再按一下 [依標籤瀏覽]，然後按一下 [ASP.NET]。
+在 hello 行動模擬器檢視中，您可以看到它不再縮放納入 toohello 畫面上，且您必須在順序 toosee hello 右邊 hello 資料表側邊捲動。
 
 ![][SessionsByTagASP.NETNoBootstrap]
 
-復原這些變更，並重新整理行動瀏覽器，以確認適合行動的顯示畫面已還原。
+復原您的變更，並重新整理 hello 行動瀏覽器 tooverify hello 行動設備友善顯示已還原。
 
-Bootstrap 並非專屬於 ASP.NET MVC 5，您也可以在所有 Web 應用程式中利用這些功能。 但它目前內建於 ASP.NET MVC 5 專案範本中，所以 MVC 5 Web 應用程式可根據預設利用 Bootstrap。
+啟動載入器不是特定 tooASP.NET MVC 5，您可在任何 web 應用程式中使用這些功能。 但它目前內建於 ASP.NET MVC 5 專案範本中，所以 MVC 5 Web 應用程式可根據預設利用 Bootstrap。
 
-如需 Bootstrap 的詳細資訊，請移至 [Bootstrap][BootstrapSite] 網站。
+如需有關啟動程序的詳細資訊，請移至 toothe [Bootstrap] [ BootstrapSite]站台。
 
-您將在下一節看到如何提供行動瀏覽器專用的檢視。
+Hello 下一節中，您會看到如何 tooprovide mobile 瀏覽器中的特定檢視。
 
-## <a name="bkmk_overrideviews"></a> 覆寫檢視、配置與部分檢視
-您可以覆寫大多數的行動瀏覽器、個別行動瀏覽器或任何特定瀏覽器的所有檢視，包含配置及部分檢視。 若要提供行動裝置專屬的檢視，您可以複製檢視檔案並將 *.Mobile* 新增至檔案名稱。 例如，若要建立行動 [索引] 檢視，您可以將 Views\\Home\\Index.cshtml 複製到 Views\\Home\\Index.Mobile.cshtml。
+## <a name="bkmk_overrideviews"></a>覆寫 hello 檢視、 配置和部分檢視
+您可以覆寫大多數的行動瀏覽器、個別行動瀏覽器或任何特定瀏覽器的所有檢視，包含配置及部分檢視。 tooprovide 行動特定檢視中，您可以複製檢視檔案，並新增*。Mobile* toohello 檔案名稱。 例如，toocreate 行動*索引* 檢視中，您可以複製*檢視\\首頁\\Index.cshtml*來*檢視\\首頁\\Index.Mobile.cshtml*。
 
 本節將建立行動裝置專屬的配置檔案。
 
-一開始，請將 Views\\Shared\\\_Layout.cshtml 複製到 Views\\Shared\\\_Layout.Mobile.cshtml。 開啟 \_Layout.Mobile.cshtml，並將標題從 **MVC5 Application** 變更為 **MVC5 Application (Mobile)**。
+toostart，複製*檢視\\共用\\\_Layout.cshtml*至*檢視\\共用\\\_Layout.Mobile.cshtml*. 開啟 *\_Layout.Mobile.cshtml*並將變更從 hello 標題**MVC5 應用程式**太**MVC5 應用程式 （行動裝置版）**。
 
-在每個導覽列的 `Html.ActionLink` 呼叫當中，移除每個 *ActionLink*連結中的「Browse by」。 以下程式碼顯示行動配置檔案的已完成之 `<ul class="nav navbar-nav">` 標籤。
+在每個`Html.ActionLink`呼叫 hello 導覽列中，移除 瀏覽方式 」 中每個連結*ActionLink*。 hello 下列程式碼顯示 hello 完成`<ul class="nav navbar-nav">`hello 行動配置檔案標記。
 
     <ul class="nav navbar-nav">
         <li>@Html.ActionLink("Home", "Index", "Home")</li>
@@ -150,22 +150,22 @@ Bootstrap 並非專屬於 ASP.NET MVC 5，您也可以在所有 Web 應用程式
         <li>@Html.ActionLink("Tag", "AllTags", "Home")</li>
     </ul>
 
-將 Views\\Home\\AllTags.cshtml 檔案複製到 Views\\Home\\AllTags.Mobile.cshtml。 開啟新檔案並將 `<h2>` 元素從 "Tags" 變更為 "Tags (M)"：
+複製 hello*檢視\\首頁\\AllTags.cshtml*檔案*檢視\\首頁\\AllTags.Mobile.cshtml*。 開啟 hello 新檔案，並變更`<h2>`"Tags"中的項目太"標記 (M)":
 
     <h2>Tags (M)</h2>
 
-使用桌面瀏覽器及行動瀏覽器模擬器，瀏覽至標籤頁面。 行動瀏覽器模擬器會顯示您執行的兩項變更 (\_Layout.Mobile.cshtml 的標題及 AllTags.Mobile.cshtml 的標題)。
+瀏覽 toohello 標記頁面使用桌面瀏覽器，並使用行動電話瀏覽器模擬器。 hello 行動瀏覽器模擬器顯示 hello 兩個您所做的變更 (hello 標題與 *\_Layout.Mobile.cshtml*和從 hello 標題*AllTags.Mobile.cshtml*)。
 
 ![][AllTagsMobile_LayoutMobile]
 
-相較之下，桌面顯示則沒有變更 (\_Layout.cshtml 和 AllTags.cshtml 的標題)。
+相反地，未變更 hello 桌面顯示 (其標題中從 *\_Layout.cshtml*和*AllTags.cshtml*)。
 
 ![][AllTagsMobile_LayoutMobileDesktop]
 
 ## <a name="bkmk_browserviews"></a> 建立瀏覽器專用的檢視
-除了行動與桌面專用的檢視之外，您還可以為個別瀏覽器建立檢視。 例如，您可以為 iPhone 或 Android 瀏覽器建立專用的檢視。 在本節中，您要建立 iPhone 瀏覽器的配置，以及 iPhone 版的 *AllTags* 檢視。
+此外 toomobile 專屬和桌面特定檢視中，您可以建立個別的瀏覽器的檢視。 例如，您可以建立專門用於 hello iPhone 或 hello Android 瀏覽器的檢視。 在本節中，您要建立 hello iPhone 瀏覽器和 iPhone 版的 hello 的版面配置*AllTags*檢視。
 
-開啟 Global.asax 檔案，並將以下程式碼加入 `Application_Start` 方法的底部。
+開啟 hello *Global.asax*檔案，然後加入下列程式碼 toohello 底部 hello`Application_Start`方法。
 
     DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode("iPhone")
     {
@@ -173,51 +173,51 @@ Bootstrap 並非專屬於 ASP.NET MVC 5，您也可以在所有 Web 應用程式
             ("iPhone", StringComparison.OrdinalIgnoreCase) >= 0)
     });
 
-此程式碼會定義要比對每個連入要求且名為 "iPhone" 的新顯示模式。 若連入的要求符合您定義的條件 (亦即使用者代理程式包含 "iPhone" 字串)，則 ASP.NET MVC 會尋找名稱包含 "iPhone" 字尾的檢視。
+此程式碼會定義要比對每個連入要求且名為 "iPhone" 的新顯示模式。 如果 hello 傳入要求符合您定義 （亦即，如果 hello 使用者代理程式包含 hello 字串"iPhone"） 的條件，ASP.NET MVC 會尋找其名稱中包含"iPhone"後置詞的檢視。
 
 > [!NOTE]
-> 新增行動瀏覽器專用的顯示模式時，例如 iPhone 和 Android，請務必將第一個引數設為 `0` (插入於清單的頂端)，才能確保瀏覽器的專用模式會優先於行動範本 (*.Mobile.cshtml)。 若位於清單頂端的是行動範本，則會優先選取該行動範本，而不是您想要的顯示模式 (第一個相符的會成功，而行動範本符合所有行動瀏覽器)。 
+> 當新增行動裝置的特定瀏覽器顯示模式，例如適用於 iPhone 和 Android，是確定 tooset hello 第一個引數太`0`（hello hello 清單頂端插入） toomake 確定該 hello 瀏覽器特定模式的優先順序高於 hello 行動範本(*.Mobile.cshtml)。 如果 hello 行動範本 hello hello 清單頂端相反地，它會選取透過您想要的顯示模式 （hello 第一個相符項目 wins，以及 hello 行動範本符合所有的行動瀏覽器）。 
 > 
 > 
 
-以滑鼠右鍵按一下程式碼的 `DefaultDisplayMode`，選擇 [解析]，然後選擇 `using System.Web.WebPages;`。 這麼做會將參考加入定義 `DisplayModeProvider` 和 `DefaultDisplayMode` 類型的 `System.Web.WebPages` 命名空間。
+Hello 程式碼中，以滑鼠右鍵按一下`DefaultDisplayMode`，選擇**解決**，然後選擇  `using System.Web.WebPages;`。 這會將參考 toothe`System.Web.WebPages`命名空間，這是 where`DisplayModeProvider`和`DefaultDisplayMode`類型定義。
 
 ![][ResolveDefaultDisplayMode]
 
-或者，您可以手動將以下的行加入檔案的 `using` 區段即可。
+或者，您可以只手動加入下列行 toothe hello `using` hello 檔案區段。
 
     using System.Web.WebPages;
 
-儲存變更。 將 Views\\Shared\\\_Layout.Mobile.cshtml 檔案複製到 Views\\Shared\\\_Layout.iPhone.cshtml。 開啟新檔案，然後將標題從 `MVC5 Application (Mobile)` 變更為 `MVC5 Application (iPhone)`。
+儲存 hello 的變更。 將 Views\\Shared\\\_Layout.Mobile.cshtml 檔案複製到 Views\\Shared\\\_Layout.iPhone.cshtml。 開啟 hello 新檔案，然後變更 從 hello 標題`MVC5 Application (Mobile)`至`MVC5 Application (iPhone)`。
 
-將 Views\\Home\\AllTags.Mobile.cshtml 檔案複製到 Views\\Home\\AllTags.iPhone.cshtml。 在新檔案中，將 `<h2>` 元素從「Tags (M)」變更為「Tags (iPhone)」。
+複製 hello*檢視\\首頁\\AllTags.Mobile.cshtml*檔案*檢視\\首頁\\AllTags.iPhone.cshtml*。 在 hello 新檔案，變更 hello`<h2>`項目從 「 標記 (M) 」 太 」 標記 (iPhone) 」。
 
-執行應用程式。 執行行動瀏覽器模擬器，請確認其使用者代理程式設為「iPhone」，然後瀏覽至 *AllTags* 檢視。 若您使用 Internet Explorer 11 F12 開發人員工具中的模擬器，請將模擬設為以下內容：
+執行 hello 應用程式。 執行行動瀏覽器模擬器，請確定其使用者代理程式設定得 「 iPhone"，並瀏覽 toohello *AllTags*檢視。 如果您使用 Internet Explorer 11 F12 開發人員工具中的 hello 模擬器，請設定模擬 toohello 下列：
 
 * 瀏覽器設定檔 = **Windows Phone**
 * 使用者代理程式字串 =  **Custom**
 * 自訂字串 = **Apple-iPhone5C1/1001.525**
 
-以下螢幕擷取畫面顯示在 Internet Explorer 11 F12 開發人員工具的模擬器中，使用自訂使用者代理程式字串 (此為 iPhone 5C 使用者代理程式字串) 呈現的 *AllTags* 檢視。
+hello 下列螢幕擷取畫面顯示 hello *AllTags*檢視呈現在 Internet Explorer 11 F12 開發人員工具與 hello 自訂使用者代理字串中的模擬器 （此為 iPhone 5 C 使用者代理字串）。
 
 ![][AllTagsIPhone_LayoutIPhone]
 
-在行動瀏覽器中，選取 [演講者] 連結。 由於沒有行動檢視 (AllSpeakers.Mobile.cshtml)，預設的演講者檢視 (AllSpeakers.cshtml) 會透過行動配置檢視 (\_Layout.Mobile.cshtml) 來呈現。 如下所示，標題 **MVC5 Application (Mobile)** 定義於 \_Layout.Mobile.cshtml 中。
+在 hello 行動瀏覽器中，選取 hello**喇叭**連結。 因為不是行動檢視 (*AllSpeakers.Mobile.cshtml*)，檢視 hello 預設喇叭 (*AllSpeakers.cshtml*) 呈現使用 hello 行動版面配置檢視 ( *\_Layout.Mobile.cshtml*)。 如下所示 hello 標題**MVC5 應用程式 （行動裝置版）**中定義 *\_Layout.Mobile.cshtml*。
 
 ![][AllSpeakers_LayoutMobile]
 
-您可以在 Views\\\_ViewStart.cshtml 檔案中，將 `RequireConsistentDisplayMode` 設為 `true`，即可全域停用預設 (非行動) 檢視，使其無法在行動配置內呈現，如下所示：
+您可以藉由設定全域停用預設的 （非行動電話） 檢視行動配置內呈現`RequireConsistentDisplayMode`至`true`在 hello*檢視\\\_ViewStart.cshtml*檔案，就像這樣：
 
     @{
         Layout = "~/Views/Shared/_Layout.cshtml";
         DisplayModeProvider.Instance.RequireConsistentDisplayMode = true;
     }
 
-當 `RequireConsistentDisplayMode` 設為 `true` 時，行動配置 (\_Layout.Mobile.cshtml) 僅能用於行動檢視 (例如，檢視檔案的格式為 **ViewName**.Mobile.cshtml)。 若行動配置不適用於您的非行動檢視，您可以將 `RequireConsistentDisplayMode` 設為 `true`。 以下螢幕擷取畫面顯示當 `RequireConsistentDisplayMode` 設為 `true` 時，[演講者] 頁面的呈現方式 (頂端導覽列中沒有「(Mobile)」字串)。
+當`RequireConsistentDisplayMode`設定得`true`，hello 行動配置 (*\_Layout.Mobile.cshtml*) 只適用於行動檢視 (也就是當檢視表檔案是 hello 表單 ***ViewName**.Mobile.cshtml*)。 您可能會想 tooset`RequireConsistentDisplayMode`太`true`如果您的行動配置效果不佳非行動檢視。 hello 螢幕擷取畫面所示方式 hello*喇叭*頁面轉譯時`RequireConsistentDisplayMode`設定得`true`（不含 hello hello 頂端導覽列中的 hello 字串 」 （行動裝置版） 」）。
 
 ![][AllSpeakers_LayoutMobileOverridden]
 
-您可以在檢視檔案中將 `RequireConsistentDisplayMode` 設為 `false`，以停用特定檢視中的一致顯示模式。 Views\\Home\\AllSpeakers.cshtml 檔案中的以下標記會將 `RequireConsistentDisplayMode` 設為 `false`：
+您可以藉由設定停用特定檢視中的一致的顯示模式`RequireConsistentDisplayMode`太`false`hello 檢視檔案中。 下列標記中 hello*檢視\\首頁\\AllSpeakers.cshtml*檔案集`RequireConsistentDisplayMode`太`false`:
 
     @model IEnumerable<string>
 
@@ -226,13 +226,13 @@ Bootstrap 並非專屬於 ASP.NET MVC 5，您也可以在所有 Web 應用程式
         DisplayModeProvider.Instance.RequireConsistentDisplayMode = false;
     }
 
-在本節中，我們已了解如何建立行動配置和檢視，以及如何為特定裝置 (例如 iPhone) 建立配置和檢視。
-不過，Bootstrap CSS 架構的主要優點是回應靈敏的配置，這表示單一樣式表可以套用到桌面、電話和平板電腦瀏覽器中，並建立一致的外觀及操作。 您將在下一節看到如何利用 Bootstrap 建立適合行動裝置的檢視。
+本節中，我們已看到如何 toocreate 行動版面配置和檢視與 toocreate 版面配置和特定裝置，例如檢視 hello iPhone。
+不過，hello hello Bootstrap CSS framework 主要優點是回應式配置，這表示單一樣式表可以套桌面、 電話和平板電腦瀏覽器 toocreate 一致的外觀及操作。 Hello 下一節中您會看到 tooleverage 啟動 toocreate 行動設備友善的載入檢視。
 
-## <a name="bkmk_Improvespeakerslist"></a> 改善演講者清單
-如您適才所見，行動裝置上的 [ *演講者* ] 檢視已可讀取，但是連結卻非常微小而不容易點選。 在本節中，您要使 *AllSpeakers* 檢視適合行動用途，以顯示大尺寸又容易點選的連結，並包含可快速找到演講者的搜尋方塊。
+## <a name="bkmk_Improvespeakerslist"></a>改善 hello 喇叭清單
+如您剛才所見，hello*喇叭*檢視是可讀取，但 hello 連結都很小，而且難以 tootap 行動裝置上的。 在本節中，您要進行 hello *AllSpeakers*檢視行動設備友善，其中顯示大型、 簡單點選連結，並包含搜尋方塊 tooquickly 尋找喇叭。
 
-您可以使用 Bootstrap [連結清單群組][linked list group]樣式改善 [演講者] 檢視。 在 Views\\Home\\AllSpeakers.cshtml 中，使用以下程式碼取代 Razor 檔案的內容。
+您可以使用啟動程序 hello[連結的清單群組][ linked list group]樣式以改善 hello*喇叭*檢視。 在*檢視\\首頁\\AllSpeakers.cshtml*，hello hello Razor 檔案的內容取代 hello 的下列程式碼。
 
      @model IEnumerable<string>
 
@@ -249,17 +249,17 @@ Bootstrap 並非專屬於 ASP.NET MVC 5，您也可以在所有 Web 應用程式
         }
     </div>
 
-`<div>` 標籤中的 `class="list-group"` 屬性會套用 Bootstrap 清單樣式，且 `class="input-group-item"` 屬性會將 Bootstrap 清單項目樣式套用至每個連結。
+hello`class="list-group"`中 hello 屬性`<div>`標記，套用的啟動程序清單樣式和 hello`class="input-group-item"`屬性適用於啟動程序的清單項目樣式 tooeach 連結。
 
-重新整理行動瀏覽器。 更新的檢視如下所示：
+重新整理 hello 行動瀏覽器。 hello 更新檢視看起來像這樣：
 
 ![][AllSpeakersFixed]
 
-Bootstrap [連結清單群組][linked list group]樣式讓每個連結的整個方塊都可以點選，以提供更好的使用者體驗。 切換成桌面檢視，會發現此檢視也有一致的外觀與風格。
+啟動程序 hello[連結的清單群組][ linked list group]樣式使 hello 整個方塊的每個連結點選，也就是更好的使用者經驗。 切換 toothe 桌面檢視，並觀察 hello 一致的外觀及操作。
 
 ![][AllSpeakersFixedDesktop]
 
-雖然已經改善行動瀏覽器檢視，但要瀏覽冗長的演講者清單還是很不方便。 Bootstrap 並沒有現成的搜尋篩選功能，但您可以用數行程式碼來新增此功能。 首先要先將搜尋方塊新增至檢視，然後與 JavaScript 程式碼連結，以取得篩選功能。 在 Views\\Home\\AllSpeakers.cshtml 中，在 \<h2\> 標籤後面加入 \<form\> 標籤，如下所示：
+雖然 hello 行動瀏覽器檢視已經改善，很難瀏覽 hello 長串喇叭。 Bootstrap 並沒有現成的搜尋篩選功能，但您可以用數行程式碼來新增此功能。 您第一次會新增搜尋方塊 toohello 檢視，然後以 hello hello 篩選函數的 JavaScript 程式碼連結。 在*檢視\\首頁\\AllSpeakers.cshtml*，新增\<表單\>標記後方 hello \<h2\>標記，如下所示：
 
     @model IEnumerable<string>
 
@@ -284,23 +284,23 @@ Bootstrap [連結清單群組][linked list group]樣式讓每個連結的整個�
         }
     </div>
 
-請注意，`<form>` 和 `<input>` 標籤都已套用 Bootstrap 樣式。 `<span>` 元素會將 Bootstrap [glyphicon][glyphicon] 新增至搜尋方塊。
+請注意該 hello`<form>`和`<input>`這兩個標記有 hello 啟動程序所套用的樣式 toothem。 hello`<span>`項目會新增啟動載入器[glyphicon] [ glyphicon] toothe [搜尋] 方塊。
 
-在 Scripts 資料夾中，加入名為 filter.js 的 JavaScript 檔案。 開啟該檔案，並將以下程式碼貼入其中：
+在 hello*指令碼*資料夾中，加入 JavaScript 檔案，稱為*filter.js*。 開啟 hello 檔案並貼上下列程式碼中的 hello:
 
     $(function () {
 
-        // reset the search form when the page loads
+        // reset hello search form when hello page loads
         $("form").each(function () {
             this.reset();
         });
 
-        // wire up the events to the <input> element for search/filter
+        // wire up hello events toohello <input> element for search/filter
         $("input").bind("keyup change", function () {
             var searchtxt = this.value.toLowerCase();
             var items = $(".list-group-item");
 
-            // show all speakers that begin with the typed text and hide others
+            // show all speakers that begin with hello typed text and hide others
             for (var i = 0; i < items.length; i++) {
                 var val = items[i].text.toLowerCase();
                 val = val.substring(0, searchtxt.length);
@@ -314,41 +314,41 @@ Bootstrap [連結清單群組][linked list group]樣式讓每個連結的整個�
         });
     });
 
-您也需要在註冊的套件中包含 filter.js。 開啟 App\_Start\\BundleConfig.cs，並變更第一組套件。 變更第一個 `bundles.Add` 陳述式 (針對 **jquery** 套件)，使其包含 Scripts\\filter.js，如下所示：
+您也需要 tooinclude filter.js 中您已註冊的組合。 開啟*應用程式\_啟動\\BundleConfig.cs*並變更 hello 第一個組合。 變更第一個`bundles.Add`陳述式 (hello **jquery**組合) tooinclude*指令碼\\filter.js*、，如下所示：
 
      bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/filter.js"));
 
-**jquery** 套件已經由預設的 \_Layout 檢視呈現。 您可以在稍後利用相同的 JavaScript 程式碼，將篩選功能套用至其他清單檢視。
+hello **jquery**配套已呈現 hello 預設*\_配置*檢視。 稍後，您可以利用 hello 相同的 JavaScript 程式碼 tooapply 篩選功能 tooother 清單檢視。
 
-請重新整理行動瀏覽器，並移至 *AllSpeakers* 檢視。 在搜尋方塊中，輸入 "sc"。 此時應該會根據您的搜尋字串，篩選出演講者清單。
+重新整理 hello 行動瀏覽器並移 toohello *AllSpeakers*檢視。 在搜尋方塊中，輸入 "sc"。 hello 喇叭清單應立即篩選根據 tooyour 搜尋字串。
 
 ![][AllSpeakersFixedSearchBySC]
 
-## <a name="bkmk_improvetags"></a> 改善標籤清單
-就像 [演講者] 檢視，您可以在行動裝置上閱讀 [標籤] 檢視，但連結卻非常微小而不容易點選。 若您使用先前描述的程式碼變更 (但在 Views\\Home\\AllTags.cshtml 中要包含以下 `Html.ActionLink` 方法語法)，就可以像修正 [演講者] 檢視一樣修正[標籤] 檢視：
+## <a name="bkmk_improvetags"></a>改善 hello 標籤清單
+像 hello*喇叭*檢視，hello*標記* 檢視來得容易讀懂，但 hello 連結是小型且難度增加 tootap 行動裝置上的。 您可以修正 hello*標記*檢視 hello 相同方式修正 hello*喇叭*檢視時，如果您使用更早版本，但 hello 下列所述的 hello 程式碼變更`Html.ActionLink`方法語法中的*檢視\\首頁\\AllTags.cshtml*:
 
     @Html.ActionLink(tag, 
                      "SessionsByTag", 
                      new { tag }, 
                      new { @class = "list-group-item" })
 
-重新整理後的桌面瀏覽器外觀如下：
+hello 重新整理桌面瀏覽器的外觀，如下所示：
 
 ![][AllTagsFixedDesktop]
 
-而重新整理後的行動瀏覽器外觀如下： 
+與 hello 重新整理行動瀏覽器的外觀，如下所示： 
 
 ![][AllTagsFixed]
 
 > [!NOTE]
-> 若您發現行動瀏覽器中仍顯示原始的清單格式，想知道設好的 Bootstrap 樣式有什麼問題，這其實是您先前建立行動專用檢視的動作所產生的結果。 然而，既然您使用 Bootstrap CSS 架構建立回應靈敏的 Web 設計，請移除這些行動專用的檢視和行動專用的配置檢視。 完成移除後，再重新整理行動瀏覽器，就會顯示 Bootstrap 樣式。
+> 如果您注意到 hello 原始清單格式處於仍有 hello 行動瀏覽器並不知道哪種情形的 tooyour nice 啟動載入器樣式，這是您先前動作 toocreate 行動特定檢視的成品。 不過，現在您要使用 hello Bootstrap CSS framework toocreate 回應的 web 設計，回到並移除這些行動裝置的特定檢視和 hello 行動特定版面配置檢視。 一旦您這樣做，hello 重新整理行動瀏覽器會顯示 hello 啟動程序的樣式。
 > 
 > 
 
-## <a name="bkmk_improvedates"></a> 改善日期清單
-若您使用先前描述的程式碼變更 (但在 Views\\Home\\AllDates.cshtml 中要包含以下 `Html.ActionLink` 方法語法)，就可以像改善 [演講者] 和 [標籤] 檢視一樣改善 [日期] 檢視：
+## <a name="bkmk_improvedates"></a>改善 hello 日期 清單
+您可以改善 hello*日期*檢視像改善 hello*喇叭*和*標記*檢視如果使用 hello 程式碼變更描述更早版本，但以 hello 遵循`Html.ActionLink`方法語法中的*檢視\\首頁\\AllDates.cshtml*:
 
     @Html.ActionLink(date.ToString("ddd, MMM dd, h:mm tt"), 
                      "SessionsByDate", 
@@ -359,7 +359,7 @@ Bootstrap [連結清單群組][linked list group]樣式讓每個連結的整個�
 
 ![][AllDatesFixed]
 
-您可以依照日期，組織時間日期值，以進一步改善 [ *日期* ] 檢視。 這可以透過 Bootstrap [面板][panels]樣式來完成。 以下列程式碼取代 Views\\Home\\AllDates.cshtml 檔案的內容：
+您可以進一步改善 hello*日期*檢視依日期組織 hello 日期時間值。 這可以使用 hello 啟動程序來完成[面板][ panels]樣式設定。 取代 hello hello 內容*檢視\\首頁\\AllDates.cshtml*以下列程式碼檔案：
 
     @model IEnumerable<DateTime>
 
@@ -387,26 +387,26 @@ Bootstrap [連結清單群組][linked list group]樣式讓每個連結的整個�
         </div>
     }
 
-此程式碼會為清單中每個不同的日期建立個別 `<div class="panel panel-primary">` 標籤，並分別為連結使用如上所述的[連結清單群組][linked list group]。 以下是此程式碼執行時行動瀏覽器的樣貌：
+此程式碼會建立個別`<div class="panel panel-primary">`標記每個不同日期 hello 清單，並使用 hello[連結的清單群組][ linked list group]與之前的各個連結。 以下是 hello 行動瀏覽器時執行此程式碼看起來像：
 
 ![][AllDatesFixed2]
 
-切換成桌面瀏覽器。 然後會再次發現有一致的外觀。
+切換 toohello 桌面瀏覽器。 同樣地，請注意 hello 一致的外觀。
 
 ![][AllDatesFixed2Desktop]
 
-## <a name="bkmk_improvesessionstable"></a> 改善 SessionsTable 檢視
-您要在本節中使 *SessionsTable* 檢視更適合行動用途。 這項變更比先前的變更更加廣泛。
+## <a name="bkmk_improvesessionstable"></a>改善 hello SessionsTable 檢視
+在本節中，您要進行 hello *SessionsTable*檢視更多的行動設備友善。 這項變更是更廣泛的 hello 先前的變更。
 
-在行動瀏覽器中，點選 [標籤] 按鈕，然後在搜尋方塊中輸入 `asp`。
+在 hello 行動瀏覽器中，點選 hello**標記**按鈕，然後輸入`asp`搜尋 方塊中。
 
 ![][AllTagsFixedSearchByASP]
 
-點選 **ASP.NET** 連結。
+點選 hello **ASP.NET**連結。
 
 ![][SessionsTableTagASP.NET]
 
-如您所見，顯示畫面會格式化為表格，目前這表格設計為可在桌面瀏覽器中檢視。 但在行動瀏覽器上則有點難以閱讀。 若要修正此問題，請開啟 Views\\Home\\SessionsTable.cshtml，然後使用下列程式碼取代檔案內容：
+如您所見，hello 顯示會格式化為資料表，也就是目前設計的 toobe hello 桌面瀏覽器中檢視。 不過，它會有點困難 tooread 行動瀏覽器上。 toofix，開啟*檢視\\首頁\\SessionsTable.cshtml* ，然後將檔案的 hello 內容取代下列程式碼的 hello:
 
     @model IEnumerable<Mvc5Mobile.Models.Session>
 
@@ -439,40 +439,40 @@ Bootstrap [連結清單群組][linked list group]樣式讓每個連結的整個�
         </div>
     </div>
 
-此程式碼會執行 3 個動作：
+hello 程式碼會執行 3 件事：
 
-* 使用 Bootstrap [自訂連結清單群組][custom linked list group]，以垂直方式格式化工作階段資訊，使您可以在行動瀏覽器上閱讀所有資訊 (使用 list-group-item-text 之類的類別)
-* 將[方格系統][grid system]套用至配置，讓工作階段項目能在桌面瀏覽器中水平流動，並在行動瀏覽器中垂直流動 (使用 col-md-4 類別)
-* 使用[回應靈敏的公用程式][responsive utilities]，於行動瀏覽器中檢視時，隱藏工作階段標籤 (使用 hidden-xs 類別)
+* 使用 hello Bootstrap[自訂連結的清單群組][ custom linked list group] tooformat hello 工作階段資訊，使這項資訊可在行動裝置瀏覽器 （例如使用類別讀取清單群組的項目-文字）
+* 適用於 hello[方格系統][ grid system] toothe 版面配置，因此該 hello 工作階段的項目 hello 桌面瀏覽器中水平及垂直 hello 行動瀏覽器 （使用 hello col-md-4 類別） 中的資料流程
+* 使用 hello[回應公用程式][ responsive utilities]隱藏 hello 工作階段標記時 （使用 hello 隱藏 xs 類別） 的 hello 行動瀏覽器中檢視
 
-您也可以點選標題連結，以進入個別工作階段。 下圖反映了程式碼變更。
+您也可以點選標題連結 toogo toohello 個別工作階段。 hello 圖會反映 hello 程式碼變更。
 
 ![][FixedSessionsByTag]
 
-您自動套用的 Bootstrap 方格系統會在行動瀏覽器中自動以垂直方式排列工作階段。 此外，請注意標籤並未顯示。 切換成桌面瀏覽器。
+您在自動套用的 hello 啟動程序的方格系統排列垂直在 hello 行動瀏覽器工作階段。 另外而且請注意，不會顯示 hello 標記。 切換 toohello 桌面瀏覽器。
 
 ![][SessionsTableFixedTagASP.NETDesktop]
 
-在桌面瀏覽器，您會發現有顯示標籤。 而且您還會看到套用的 Bootstrap 方格系統以兩欄方式排列工作階段項目。 若您放大瀏覽器，會發現排列變更為三欄式。
+在 hello 桌面瀏覽器，請注意，現在會顯示 hello 標記。 此外，您可以看到您所套用的 hello 啟動程序的方格系統排列 hello 兩個資料行中的工作階段項目。 如果您放大瀏覽器，您會看到 hello 排列方式變更 toothree 資料行。
 
-## <a name="bkmk_improvesessionbycode"></a> 改善 SessionByCode 檢視
-最後，您要修正 *SessionByCode* 檢視，使其適合行動用途。
+## <a name="bkmk_improvesessionbycode"></a>改善 hello SessionByCode 檢視
+最後，您將會修正 hello *SessionByCode*檢視 toomake 它行動設備友善。
 
-在行動瀏覽器中，點選 [標籤] 按鈕，然後在搜尋方塊中輸入 `asp`。
+在 hello 行動瀏覽器中，點選 hello**標記**按鈕，然後輸入`asp`搜尋 方塊中。
 
 ![][AllTagsFixedSearchByASP]
 
-點選 **ASP.NET** 連結。 隨即會顯示 ASP.NET 標籤的工作階段。
+點選 hello **ASP.NET**連結。 會顯示 hello ASP.NET 標記的工作階段。
 
 ![][FixedSessionsByTag]
 
-選擇 **使用 ASP.NET 和 AngularJS 建置單一頁面應用程式** 連結。
+選擇 hello**建置單一頁面應用程式使用 ASP.NET 和 AngularJS**連結。
 
 ![][SessionByCode3-644]
 
-預設的桌面檢視雖然不錯，但您可以使用一些 Bootstrap GUI 元件輕鬆地改善它的外觀。
+hello 預設桌面檢視沒有問題，但您可以輕鬆地改善 hello 外觀，使用一些啟動安裝程式 GUI 元件。
 
-開啟 Views\\Home\\SessionByCode.cshtml，並以下列標記取代內容：
+開啟*檢視\\首頁\\SessionByCode.cshtml*並且 hello 內容取代 hello 下列標記：
 
     @model Mvc5Mobile.Models.Session
 
@@ -512,20 +512,20 @@ Bootstrap [連結清單群組][linked list group]樣式讓每個連結的整個�
         }
     </div>
 
-新的標記會使用 Bootstrap 的面板樣式改善行動檢視。 
+hello 新標記會使用啟動程序的面板樣式 tooimprove hello 行動檢視。 
 
-重新整理行動瀏覽器。 下圖反映您剛做的程式碼變更：
+重新整理 hello 行動瀏覽器。 hello 圖會反映 hello 您剛建立的程式碼變更：
 
 ![][SessionByCodeFixed3-644]
 
 ## <a name="wrap-up-and-review"></a>總結與複習
-本教學課程已示範如何使用 ASP.NET MVC 5 開發適合行動的 Web 應用程式。 其中包含：
+本教學課程示範了如何 toouse ASP.NET MVC 5 toodevelop 行動設備友善 Web 應用程式。 其中包含：
 
-* 將 ASP.NET MVC 5 應用程式部署至 App Service Web 應用程式
-* 使用 Bootstrap 建立 MVC 5 應用程式中回應靈敏的 Web 配置
+* 部署 ASP.NET MVC 5 應用程式 tooan App Service web 應用程式
+* 用於 MVC 5 應用程式的啟動程序 toocreate 回應 web 版面配置
 * 以全域方式覆寫個別檢視的配置、檢視和部分檢視
 * 使用 `RequireConsistentDisplayMode` 屬性，控制配置和部分覆寫的強制執行
-* 建立以特定瀏覽器做為目標的檢視，例如 iPhone 瀏覽器
+* 建立目標特定瀏覽器，例如 hello iPhone 瀏覽器的檢視
 * 在 Razor 程式碼中套用 Boostrap 樣式
 
 ## <a name="see-also"></a>另請參閱
@@ -533,23 +533,23 @@ Bootstrap [連結清單群組][linked list group]樣式讓每個連結的整個�
 * [Bootstrap][BootstrapSite]
 * [官方 Bootstrap 部落格][Official Bootstrap Blog]
 * [Tutorial Republic 的 Twitter Bootstrap 教學課程][Twitter Bootstrap Tutorial from Tutorial Republic]
-* [Bootstrap 練習場][The Bootstrap Playground]
+* [啟動程序遊樂場 hello][hello Bootstrap Playground]
 * [W3C 推薦的行動 Web 應用程式最佳做法][W3C Recommendation Mobile Web Application Best Practices]
 * [W3C 針對媒體查詢的候選推薦做法][W3C Candidate Recommendation for media queries]
 
 ## <a name="whats-changed"></a>變更的項目
-* 如需從網站變更為 App Service 的指南，請參閱： [Azure App Service 及其對現有 Azure 服務的影響](http://go.microsoft.com/fwlink/?LinkId=529714)
+* 從網站 tooApp 服務變更如指南 toohello: [Azure 應用程式服務和其對影響現有的 Azure 服務](http://go.microsoft.com/fwlink/?LinkId=529714)
 
 <!-- Internal Links -->
-[Deploy the starter project to an Azure web app]: #bkmk_DeployStarterProject
+[Deploy hello starter project tooan Azure web app]: #bkmk_DeployStarterProject
 [Bootstrap CSS Framework]: #bkmk_bootstrap
-[Override the Views, Layouts, and Partial Views]: #bkmk_overrideviews
+[Override hello Views, Layouts, and Partial Views]: #bkmk_overrideviews
 [Create Browser-Specific Views]:#bkmk_browserviews
-[Improve the Speakers List]: #bkmk_Improvespeakerslist
-[Improve the Tags List]: #bkmk_improvetags
-[Improve the Dates List]: #bkmk_improvedates
-[Improve the SessionsTable View]: #bkmk_improvesessionstable
-[Improve the SessionByCode View]: #bkmk_improvesessionbycode
+[Improve hello Speakers List]: #bkmk_Improvespeakerslist
+[Improve hello Tags List]: #bkmk_improvetags
+[Improve hello Dates List]: #bkmk_improvedates
+[Improve hello SessionsTable View]: #bkmk_improvesessionstable
+[Improve hello SessionByCode View]: #bkmk_improvesessionbycode
 
 <!-- External Links -->
 [Visual Studio Express 2013]: http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-web
@@ -571,7 +571,7 @@ Bootstrap [連結清單群組][linked list group]樣式讓每個連結的整個�
 [responsive utilities]: http://getbootstrap.com/css/#responsive-utilities
 [Official Bootstrap Blog]: http://blog.getbootstrap.com/
 [Twitter Bootstrap Tutorial from Tutorial Republic]: http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/
-[The Bootstrap Playground]: http://www.bootply.com/
+[hello Bootstrap Playground]: http://www.bootply.com/
 [W3C Recommendation Mobile Web Application Best Practices]: http://www.w3.org/TR/mwabp/
 [W3C Candidate Recommendation for media queries]: http://www.w3.org/TR/css3-mediaqueries/
 

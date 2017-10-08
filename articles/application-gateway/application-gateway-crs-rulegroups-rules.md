@@ -1,5 +1,5 @@
 ---
-title: "Azure 應用程式閘道 Web 應用程式防火牆 CRS 規則群組與規則 | Microsoft Docs"
+title: "aaaAzure 應用程式閘道 web 應用程式防火牆 CRS 規則群組與規則 |Microsoft 文件"
 description: "此頁面提供關於 Web 應用程式防火牆 CRS 規則群組與規則的資訊。"
 documentationcenter: na
 services: application-gateway
@@ -15,17 +15,17 @@ ms.custom:
 ms.workload: infrastructure-services
 ms.date: 03/28/2017
 ms.author: gwallace
-ms.openlocfilehash: 9f4445b7ceb5b39c7907b1ca4c7bf0ad52ba8212
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6be139847392baeb235bc48b079335c1e0d8287b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="list-of-web-application-firewall-crs-rule-groups-and-rules-offered"></a>提供的 web 應用程式防火牆 CRS 規則群組與規則的清單
 
-應用程式閘道 web 應用程式防火牆 (WAF) 會保護 web 應用程式免於一般安全性弱點和攻擊。 這是透過根據 OWASP 核心規則集 2.2.9 或 3.0 所定義的規則來完成。 可依規則基礎在規則上停用這些規則。 這篇文章包含目前的規則和提供的規則集。
+應用程式閘道 web 應用程式防火牆 (WAF) 會保護 web 應用程式免於一般安全性弱點和攻擊。 這是透過定義 hello OWASP 核心規則集 2.2.9 或 3.0 為基礎的規則。 可依規則基礎在規則上停用這些規則。 本文章包含 hello 目前規則與提供的 ruleset。
 
-下表是規則群組以及使用應用程式閘道搭配 web 應用程式防火牆時可供使用的規則。  每個資料表代表特定 CRS 版本的規則群組中找到的規則。
+下表中的 hello 是 hello 規則群組與應用程式閘道與 web 應用程式的防火牆時有可用的規則。  每個表格代表 hello 發現特定 CRS 版本規則群組中的規則。
 
 ##<a name="owasp30"></a> OWASP_3.0
 
@@ -110,7 +110,7 @@ ms.lasthandoff: 07/11/2017
 |920011|規則 920011|
 |920012|規則 920012|
 |920100|無效的 HTTP 要求列|
-|920130|無法剖析要求內文。|
+|920130|無法 tooparse 要求主體。|
 |920140|多部分要求內文的嚴格驗證失敗 =     PE %@{REQBODY_PROCESSOR_ERROR}     BQ %@{MULTIPART_BOUNDARY_QUOTED}     BW %@{MULTIPART_BOUNDARY_WHITESPACE}     DB %@{MULTIPART_DATA_BEFORE}     DA %@{MULTIPART_DATA_AFTER}     HF %@{MULTIPART_HEADER_FOLDING}     LF %@{MULTIPART_LF_LINE}     SM %@{MULTIPART_SEMICOLON_MISSING}     IQ %@{MULTIPART_INVALID_QUOTING}     IH %@{MULTIPART_INVALID_HEADER_FOLDING}     FLE %@{MULTIPART_FILE_LIMIT_EXCEEDED}|
 |920160|內容長度 HTTP 標頭不是數值。|
 |920170|具有內文內容的 GET 或 HEAD 要求。|
@@ -342,7 +342,7 @@ ms.lasthandoff: 07/11/2017
 |---|---|
 |960911|無效的 HTTP 要求列|
 |981227|Apache 錯誤 = 要求中無效的 URI。|
-|960912|無法剖析要求內文。|
+|960912|無法 tooparse 要求主體。|
 |960914|多部分要求內文的嚴格驗證失敗 =     PE %@{REQBODY_PROCESSOR_ERROR}     BQ %@{MULTIPART_BOUNDARY_QUOTED}     BW %@{MULTIPART_BOUNDARY_WHITESPACE}     DB %@{MULTIPART_DATA_BEFORE}     DA %@{MULTIPART_DATA_AFTER}     HF %@{MULTIPART_HEADER_FOLDING}     LF %@{MULTIPART_LF_LINE}     SM %@{MULTIPART_SEMICOLON_MISSING}     IQ %@{MULTIPART_INVALID_QUOTING}     IH %@{MULTIPART_INVALID_HEADER_FOLDING}     FLE %@{MULTIPART_FILE_LIMIT_EXCEEDED}|
 |960915|多部分剖析偵測到可能的不相符界限。|
 |960016|內容長度 HTTP 標頭不是數值。|
@@ -400,9 +400,9 @@ ms.lasthandoff: 07/11/2017
 
 |RuleId|說明|
 |---|---|
-|990002|要求會指出安全性掃描程式掃描的網站|
-|990901|要求會指出安全性掃描程式掃描的網站|
-|990902|要求會指出安全性掃描程式掃描的網站|
+|990002|要求，表示安全性掃描程式掃描 hello 站台|
+|990901|要求，表示安全性掃描程式掃描 hello 站台|
+|990902|要求，表示安全性掃描程式掃描 hello 站台|
 |990012|惡意網站編目程式|
 
 ### <a name="crs40"></a> crs_40_generic_attacks
@@ -592,6 +592,6 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-了解如何停用 WAF 規則，請造訪︰[自訂 WAF 規則](application-gateway-customize-waf-rules-portal.md)
+了解 toodisable WAF 造訪規則的方式：[自訂 WAF 規則](application-gateway-customize-waf-rules-portal.md)
 
 [1]: ./media/application-gateway-integration-security-center/figure1.png

@@ -1,6 +1,6 @@
 ---
-title: "使用傳統部署模型管理 Azure 備份保存庫與 Azure 伺服器 | Microsoft Azure"
-description: "使用本教學課程了解如何管理 Azure 備份保存庫與伺服器。"
+title: "aaaManage Azure 備份保存庫與伺服器 Azure 使用 hello 傳統部署模型 |Microsoft 文件"
+description: "使用此教學課程 toolearn toomanage Azure Backup 的保存庫和伺服器。"
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -14,79 +14,79 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/14/2017
 ms.author: markgal;
-ms.openlocfilehash: 91451b2cdc42ed05ef7c1ba9c66ad5b4b45dd788
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6c38b04f4a76604bfd639a9b2d58237ce44e2386
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-azure-backup-vaults-and-servers-using-the-classic-deployment-model"></a>使用傳統部署模型管理 Azure 備份保存庫與伺服器
+# <a name="manage-azure-backup-vaults-and-servers-using-hello-classic-deployment-model"></a>管理 Azure 備份保存庫使用和伺服器 hello 傳統部署模型
 > [!div class="op_single_selector"]
 > * [資源管理員](backup-azure-manage-windows-server.md)
 > * [傳統](backup-azure-manage-windows-server-classic.md)
 >
 >
 
-在本文中，您將了解透過 Azure 傳統入口網站和 Microsoft Azure 備份代理程式提供之備份管理工作的概觀。
+在本文中，您會發現 hello 備份管理工作可透過 hello Azure 傳統入口網站和 hello Microsoft Azure 備份代理程式的概觀。
 
 > [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文件涵蓋使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。
 
 > [!IMPORTANT]
-> 您現在可以將備份保存庫升級至復原服務保存庫。 如需詳細資訊，請參閱[將備份保存庫升級至復原服務保存庫](backup-azure-upgrade-backup-to-recovery-services.md)文章。 Microsoft 鼓勵您將備份保存庫升級至復原服務保存庫。<br/> 在 2017 年 10 月 15 日之後，您就不能使用 PowerShell 建立備份保存庫。 **在 2017 年 11 月 1 日以前**：
->- 所有其餘的備份保存庫都會自動升級至復原服務保存庫。
->- 您將無法在傳統入口網站中存取您的備份資料。 相反地，使用 Azure 入口網站來存取您在復原服務保存庫中的備份資料。
+> 您現在可以升級您備份保存庫 tooRecovery 服務保存庫。 如需詳細資訊，請參閱 hello 文章[升級復原服務保存庫備份保存庫 tooa](backup-azure-upgrade-backup-to-recovery-services.md)。 Microsoft 會鼓勵 tooupgrade 您備份保存庫 tooRecovery 服務保存庫。<br/> 2017 年 10 月 15 之後，您無法使用 PowerShell toocreate 備份保存庫。 **在 2017 年 11 月 1 日以前**：
+>- 所有剩餘的備份保存庫會自動升級的 tooRecovery 服務保存庫。
+>- 您將無法 tooaccess hello 傳統入口網站中無法備份資料。 相反地，使用 Azure 入口網站 tooaccess hello 備份資料復原服務保存庫中。
 >
 
 ## <a name="management-portal-tasks"></a>管理入口網站工作
-1. 登入 [管理入口網站](https://manage.windowsazure.com)。
-2. 按一下 [復原服務] ，然後按一下備份保存庫的名稱以檢視 [快速啟動] 頁面。
+1. 登入 toohello[管理入口網站](https://manage.windowsazure.com)。
+2. 按一下**復原服務**，然後按一下 [備份保存庫 tooview hello 快速入門] 頁面的 hello 名稱。
 
     ![復原服務](./media/backup-azure-manage-windows-server-classic/rs-left-nav.png)
 
-藉由選取 [快速啟動] 頁面頂端的選項，您可以看到可用的管理工作。
+藉由選取 hello 選項在 hello hello 快速入門 頁面的頂端，您可以看到 hello 可用的管理工作。
 
 ![管理索引標籤](./media/backup-azure-manage-windows-server-classic/qs-page.png)
 
 ### <a name="dashboard"></a>儀表板
-選取 [儀表板] 以查看伺服器的使用量概觀。 **使用量概觀**包括︰
+選取**儀表板**hello 伺服器 toosee hello 使用量概觀。 hello**使用量概觀**包括：
 
-* 已向雲端註冊的 Windows Server 數目
-* 雲端中受保護的 Azure 虛擬機器數目
-* Azure 中已使用的儲存體總計
-* 最近的工作狀態
+* 已登錄的 Windows 伺服器的 hello 數 toocloud
+* Azure 雲端中受保護的虛擬機器的 hello 數目
+* hello Azure 中已使用的總儲存體
+* hello 的最近工作的狀態
 
-您可以在儀表板下方執行下列工作：
+在 hello hello 儀表板底部，您可以執行下列工作的 hello:
 
-* **管理憑證** - 如果已使用憑證註冊伺服器，則可使用這個選項來更新憑證。 如果使用保存庫認證，則請勿使用 [管理憑證] 。
-* **刪除** - 刪除目前的備份保存庫。 如果您有不再使用的備份保存庫，可將之刪除來釋出儲存空間。 **刪除** 才會啟用。
+* **管理憑證**-如果憑證是使用的 tooregister hello 伺服器，請使用此 tooupdate hello 憑證。 如果使用保存庫認證，則請勿使用 [管理憑證] 。
+* **刪除**-刪除 hello 目前備份保存庫。 如果不再使用備份保存庫，您可以刪除它 toofree 出儲存空間。 **刪除**hello 保存庫中刪除所有已註冊的伺服器之後，才會啟用。
 
 ![備份儀表板工作](./media/backup-azure-manage-windows-server-classic/dashboard-tasks.png)
 
 ## <a name="registered-items"></a>已註冊的項目
-選取 [已註冊的項目]  ，以檢視已註冊至此保存庫的伺服器名稱。
+選取**註冊的項目**tooview hello hello 的伺服器名稱註冊 toothis 保存庫。
 
 ![已註冊的項目](./media/backup-azure-manage-windows-server-classic/registered-items.png)
 
-**類型** 篩選預設為 Azure 虛擬機器。 若要檢視已註冊至此保存庫的伺服器名稱，可從下拉式功能表中選取 [Windows Server]  。
+hello**類型**篩選器預設 tooAzure 虛擬機器。 tooview hello 名稱 hello 伺服器的已註冊的 toothis 保存庫中，選取**Windows server** hello 從下拉功能表。
 
-您可以在其中執行下列工作：
+從這裡您可以執行下列工作的 hello:
 
-* **允許重新註冊** - 為伺服器選取此選項時，您可以使用內部部署 Microsoft Azure 備份代理程式中的**註冊精靈**，再次向備份保存庫註冊伺服器。 如果憑證中有錯誤，或必須重建伺服器，您可能需要重新註冊。
-* **刪除** - 從備份保存庫中刪除伺服器。 所有與該伺服器相關聯的已儲存資料都將立即刪除。
+* **允許重新註冊**-時選取此選項的伺服器，您可以使用 hello**登錄精靈**hello 在內部部署 Microsoft Azure 備份代理程式 tooregister hello 伺服器 hello 備份保存庫第二個階段中. 您可能需要由於 hello 憑證或伺服器是否有 toobe 重建 tooan 錯誤 toore 暫存器。
+* **刪除**-從 hello 備份保存庫刪除伺服器。 所有儲存的 hello hello 伺服器相關聯的資料會立即刪除。
 
     ![已註冊的項目工作](./media/backup-azure-manage-windows-server-classic/registered-items-tasks.png)
 
 ## <a name="protected-items"></a>受保護項目
-選取 [受保護項目]  ，以檢視已從伺服器備份的項目。
+選取**受保護項目**tooview hello 項目從 hello 伺服器備份。
 
 ![受保護項目](./media/backup-azure-manage-windows-server-classic/protected-items.png)
 
 ## <a name="configure"></a>設定
-從 [設定]  索引標籤，您可以選取適當的儲存體備援選項。 選取儲存體備援選項的最佳時機，就在建立保存庫之後，以及任何電腦註冊至保存庫之前。
+從 hello**設定** 索引標籤，您可以選取 hello 適當的儲存體備援選項。 建立保存庫之後，權限，而之前的任何機器註冊的 tooit hello 最佳時間 tooselect hello 儲存體備援選項。
 
 > [!WARNING]
-> 一旦項目已註冊至保存庫，儲存體備援選項即遭到鎖定且無法修改。
+> 一旦項目已註冊的 toohello 保存庫，hello 儲存體備援選項已鎖定且無法修改。
 >
 >
 
@@ -96,11 +96,11 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="microsoft-azure-backup-agent-tasks"></a>Microsoft Azure 備份代理程式工作
 ### <a name="console"></a>主控台
-開啟 **Microsoft Azure 備份代理程式** (透過在電腦中搜尋「Microsoft Azure 備份」即可找到)。
+開啟 hello **Microsoft Azure 備份代理程式**(您可以藉由搜尋電腦上找到它*Microsoft Azure 備份*)。
 
 ![備份代理程式](./media/backup-azure-manage-windows-server-classic/snap-in-search.png)
 
-從可在備份代理程式主控台右側取得的 [動作]  ，您可以執行下列管理工作︰
+從 hello**動作**位於 hello hello 備份代理程式 」 主控台的權限可以執行下列管理工作的 hello:
 
 * 註冊伺服器
 * 排程備份
@@ -110,75 +110,75 @@ ms.lasthandoff: 08/29/2017
 ![代理程式主控台動作](./media/backup-azure-manage-windows-server-classic/console-actions.png)
 
 > [!NOTE]
-> 若要 **復原資料**，請參閱 [將檔案還原到 Windows Server 或 Windows 用戶端電腦](backup-azure-restore-windows-server.md)。
+> 太**復原資料**，請參閱[還原檔案 tooa Windows server 或 Windows 用戶端電腦](backup-azure-restore-windows-server.md)。
 >
 >
 
 ### <a name="modify-an-existing-backup"></a>修改現有備份
-1. 在 Microsoft Azure 備份代理程式中，按一下 [排程備份] 。
+1. Hello Microsoft Azure Backup agent 中按一下**排程備份**。
 
     ![Windows Server 備份排程](./media/backup-azure-manage-windows-server-classic/schedule-backup.png)
-2. 在**排程備份精靈**中，讓 [變更備份項目或時間] 選項保留選取狀態，然後按 [下一步]。
+2. 在 [hello**排程備份精靈**保留 hello**變更 toobackup 項目或時間**選取的選項，然後按一下**下一步]**。
 
     ![修改排定的備份](./media/backup-azure-manage-windows-server-classic/modify-or-stop-a-scheduled-backup.png)
-3. 如果您想要新增或變更項目，在 [選取要備份的項目] 畫面中按一下 [新增項目]。
+3. 如果您想 tooadd 或變更項目，在 hello**選取項目 tooBackup**畫面上，按一下**新增的項目**。
 
-    您也可以在這個精靈頁面中設定 [排除設定]  。 如果您想要排除檔案或檔案類型，請參閱新增 [排除設定](#exclusion-settings)的程序。
-4. 選取要備份的檔案和資料夾，然後按一下 [確定] 。
+    您也可以設定**排除設定**在 hello 精靈的這個頁面。 如果您想要 tooexclude 檔案或檔案類型讀取 hello 加入程序[排除設定](#exclusion-settings)。
+4. 選取 hello 檔案和資料夾，您想 tooback 和按一下**好**。
 
     ![新增項目](./media/backup-azure-manage-windows-server-classic/add-items-modify.png)
-5. 指定 [備份排程]，然後按 [下一步]。
+5. 指定 hello**備份排程**按一下**下一步**。
 
     您可以排程每日 (一天最多 3 次) 或每週備份。
 
     ![指定備份排程](./media/backup-azure-manage-windows-server-classic/specify-backup-schedule-modify-close.png)
 
    > [!NOTE]
-   > 這篇 [文章](backup-azure-backup-cloud-as-tape.md)中會詳細說明指定備份排程。
+   > 指定 hello 備份排程中會詳細說明此[文章](backup-azure-backup-cloud-as-tape.md)。
    >
    >
-6. 選取備份複本的 [保留原則]，然後按 [下一步]。
+6. 選取 hello**保留原則**hello 備份複本，然後按一下**下一步**。
 
     ![選取保留原則](./media/backup-azure-manage-windows-server-classic/select-retention-policy-modify.png)
-7. 在 [確認] 畫面上檢閱資訊，然後按一下 [完成]。
-8. 當精靈完成 [備份排程] 的建立之後，按一下 [關閉]。
+7. 在 hello**確認**畫面檢閱 hello 資訊，然後按一下**完成**。
+8. 一旦 hello 精靈可讓您完成建立 hello**備份排程**，按一下 **關閉**。
 
-    修改保護之後，您可以藉由移至 [工作]  索引標籤並確認變更反映於備份工作中，來確定可正確觸發備份。
+    之後修改的保護，您可以確認備份正確的觸發移 toohello 由**作業** 索引標籤，並確認變更會反映在 hello 備份作業。
 
 ### <a name="enable-network-throttling"></a>啟用網路節流
-Azure 備份代理程式提供 [節流] 索引標籤，可讓您控制在資料傳輸期間使用網路頻寬的方式。 如果您需要在上班時間內備份資料，但不希望備份程序干擾其他網際網路流量，這樣的控制會很有幫助。 資料傳輸的節流適用於備份和還原活動。  
+hello Azure 備份代理程式提供節流索引標籤可讓您 toocontrol 資料傳輸期間的網路頻寬使用方式。 如果您需要 tooback 資料在工作時間，但不是想將備份程序 toointerfere hello 與其他的網際網路流量，此控制項可以是很有幫助。 節流的資料傳輸 tooback 套用設定，並還原活動。  
 
-啟用節流︰
+tooenable 節流：
 
-1. 在**備份代理程式**中，按一下 [變更屬性]。
-2. 選取 [啟用備份作業的網際網路頻寬使用節流功能]  核取方塊。
+1. 在 hello **Backup agent**，按一下 **變更屬性**。
+2. 選取 hello**啟用網際網路頻寬使用節流設定的備份操作**核取方塊。
 
     ![網路節流](./media/backup-azure-manage-windows-server-classic/throttling-dialog.png)
-3. 一旦啟用節流之後，請指定允許在 [工作時間] 和 [非工作時間] 進行備份資料傳輸的頻寬。
+3. 一旦您已啟用節流設定，指定允許頻寬的備份資料傳輸期間的 hello**上班**和**非工作小時**。
 
-    頻寬值從每秒 512 KB (Kbps) 開始，並可高達每秒 1023 MB (Mbps)。 您也可以指定 [工作時間] 的開始和完成時間，以及一週中有哪幾天視為工作天。 指定工作時間以外的時間會視為非工作時間。
+    hello 頻寬值 512 kb/秒 (Kbps) 為開頭，而且可以向上 too1023 mb / 秒 (Mbps)。 您可以指定 hello 開始和完成**上班**，而 hello 一週的哪幾天會被視為工作天。 指定工作時數的 hello 之外的 hello 時間是視為的 toobe 非工作小時。
 4. 按一下 [確定] 。
 
 ## <a name="exclusion-settings"></a>排除設定
-1. 開啟 **Microsoft Azure 備份代理程式** (透過在電腦中搜尋「Microsoft Azure 備份」即可找到)。
+1. 開啟 hello **Microsoft Azure 備份代理程式**(您可以藉由搜尋電腦上找到它*Microsoft Azure 備份*)。
 
     ![開啟備份代理程式](./media/backup-azure-manage-windows-server-classic/snap-in-search.png)
-2. 在 Microsoft Azure 備份代理程式中，按一下 [排程備份] 。
+2. Hello Microsoft Azure Backup agent 中按一下**排程備份**。
 
     ![Windows Server 備份排程](./media/backup-azure-manage-windows-server-classic/schedule-backup.png)
-3. 在排程備份精靈中，讓 [變更備份項目或時間] 選項保留選取狀態，然後按 [下一步]。
+3. 在 排程備份精靈 hello 保留 hello**變更 toobackup 項目或時間**選取的選項，然後按一下**下一步**。
 
     ![修改排程](./media/backup-azure-manage-windows-server-classic/modify-or-stop-a-scheduled-backup.png)
 4. 按一下 [排除設定] 。
 
-    ![選取要排除的項目](./media/backup-azure-manage-windows-server-classic/exclusion-settings.png)
+    ![選取項目 tooexclude](./media/backup-azure-manage-windows-server-classic/exclusion-settings.png)
 5. 按一下 [新增排除] 。
 
     ![新增排除項目](./media/backup-azure-manage-windows-server-classic/add-exclusion.png)
-6. 選取位置，然後按一下 [確定] 。
+6. 選取 hello 位置，然後按一下 **確定**。
 
     ![選取要排除的位置](./media/backup-azure-manage-windows-server-classic/exclusion-location.png)
-7. 在 [檔案類型]  欄位中新增副檔名。
+7. Hello 檔案延伸模組增益集 hello**檔案類型**欄位。
 
     ![依檔案類型排除](./media/backup-azure-manage-windows-server-classic/exclude-file-type.png)
 
@@ -186,15 +186,15 @@ Azure 備份代理程式提供 [節流] 索引標籤，可讓您控制在資料�
 
     ![檔案類型範例](./media/backup-azure-manage-windows-server-classic/exclude-mp3.png)
 
-    若要新增其他副檔名，可按一下 [新增排除]  ，然後輸入另一個副檔名 (新增 .jpeg 副檔名)。
+    tooadd 另一個延伸模組中，按一下**新增排除**，然後輸入另一個檔案類型副檔名 （新增.jpeg 副檔名）。
 
     ![另一個檔案類型範例](./media/backup-azure-manage-windows-server-classic/exclude-jpg.png)
-8. 當您已新增所有副檔名之後，按一下 [確定] 。
-9. 按 [下一步] 繼續執行排程備份精靈， 直到出現 [確認] 頁面，然後按一下 [完成]。
+8. 當您新增所有 hello 擴充功能之後時，按一下**確定**。
+9. 繼續透過 hello 排程備份精靈]，依序按一下**下一步**直到 hello**確認頁面**，然後按一下 [**完成**。
 
     ![排除確認](./media/backup-azure-manage-windows-server-classic/finish-exclusions.png)
 
 ## <a name="next-steps"></a>後續步驟
 * [從 Azure 還原 Windows Server 或 Windows 用戶端](backup-azure-restore-windows-server.md)
-* 若要深入了解 Azure 備份，請參閱 [Azure 備份概觀](backup-introduction-to-azure-backup.md)
-* 瀏覽 [Azure 備份論壇](http://go.microsoft.com/fwlink/p/?LinkId=290933)
+* toolearn 進一步了解 Azure 備份，請參閱[Azure 備份概觀](backup-introduction-to-azure-backup.md)
+* 請瀏覽 hello [Azure 備份論壇](http://go.microsoft.com/fwlink/p/?LinkId=290933)

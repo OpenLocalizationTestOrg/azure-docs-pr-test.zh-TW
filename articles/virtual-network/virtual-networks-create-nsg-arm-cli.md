@@ -1,6 +1,6 @@
 ---
-title: "建立網路安全性群組 - Azure CLI 2.0 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 2.0 建立和部署網路安全性群組。"
+title: "aaaCreate 網路安全性群組-Azure CLI 2.0 |Microsoft 文件"
+description: "深入了解如何 toocreate 及部署使用 hello Azure CLI 2.0 的網路安全性群組。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,36 +16,36 @@ ms.workload: infrastructure-services
 ms.date: 02/17/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8efb3ab66d07875b51f723fed5594bcb477ed025
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 30b1d60676331bf5e2bbbb046c747477be9d3338
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-network-security-groups-using-the-azure-cli-20"></a>使用 Azure CLI 2.0 建立網路安全性群組
+# <a name="create-network-security-groups-using-hello-azure-cli-20"></a>建立網路安全性群組，使用 Azure CLI 2.0 hello
 
 [!INCLUDE [virtual-networks-create-nsg-selectors-arm-include](../../includes/virtual-networks-create-nsg-selectors-arm-include.md)]
 
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本 
+## <a name="cli-versions-toocomplete-hello-task"></a>CLI 版本 toocomplete hello 工作 
 
-您可以使用下列其中一個 CLI 版本來完成工作︰ 
+您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本： 
 
-- [Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI 
-- [Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) - 適用於資源管理部署模型的新一代 CLI (本文章)
+- [Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – 我們 CLI hello 傳統和資源管理部署模型 
+- [Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) -hello 資源管理部署模型 （即本文） 我們下一個層代 CLI
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-以下的 Azure CLI 2.0 命令範例是假設您已根據上述案例建立簡單的環境。 
+hello 範例 Azure CLI 2.0 命令下列預期已經根據上述的 hello 案例建立簡單的環境。 
 
-## <a name="create-the-nsg-for-the-frontend-subnet"></a>建立 `FrontEnd` 子網路的 NSG
+## <a name="create-hello-nsg-for-hello-frontend-subnet"></a>建立 hello NSG hello`FrontEnd`子網路
 
-若要根據上述案例建立名為 *NSG-FrontEnd* 的 NSG，請依照下列步驟執行。
+toocreate NSG 名為*NSG 前端*根據上述的 hello 情況，請遵循 hello 步驟下列。
 
-1. 安裝及設定最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) (若您尚未這麼做)，並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。 
+1. 如果您尚未，安裝並設定最新的 hello [Azure CLI 2.0](/cli/azure/install-az-cli2) tooan Azure 帳戶使用登入和[az 登入](/cli/azure/#login)。 
 
-2. 使用 [az network nsg create](/cli/azure/network/nsg#create) 命令建立 NSG。 
+2. 建立使用 hello NSG [az 網路 nsg 建立](/cli/azure/network/nsg#create)命令。 
 
     ```azurecli
     az network nsg create \
@@ -56,11 +56,11 @@ ms.lasthandoff: 07/11/2017
 
     參數：
    
-   * `--resource-group`：要在其中建立 NSG 之資源群組的名稱。 在本文案例中為 *TestRG*。
-   * `--location`：要在其中建立新 NSG 的 Azure 區域。 在本文案例中為 *westus*。
-   * `--name`：新 NSG 的名稱。 在本文案例中為 *NSG-FrontEnd*。
+   * `--resource-group`: Hello hello NSG 建立所在的資源群組名稱。 在本文案例中為 *TestRG*。
+   * `--location`: Azure hello 新的 NSG 建立所在的區域。 在本文案例中為 *westus*。
+   * `--name`: Hello 名稱新的 NSG。 在本文案例中為 *NSG-FrontEnd*。
 
-    預期的輸出會是相當多的資訊，包括所有預設規則的清單。 下列範例顯示搭配使用 JMESPATH 查詢篩選和 `table` 輸出格式的預設規則︰
+    hello 預期輸出為相當多的資訊，包括所有 hello 預設規則的清單。 hello 下列範例示範使用 JMESPATH 查詢篩選器以 hello hello 預設規則`table`輸出格式：
 
     ```azurecli
     az network nsg show \
@@ -77,16 +77,16 @@ ms.lasthandoff: 07/11/2017
         Allow     Allow inbound traffic from all VMs in VNET              *                Inbound           65000
         Allow     Allow inbound traffic from azure load balancer          *                Inbound           65001
         Deny      Deny all inbound traffic                                *                Inbound           65500
-        Allow     Allow outbound traffic from all VMs to all VMs in VNET  *                Outbound          65000
-        Allow     Allow outbound traffic from all VMs to Internet         *                Outbound          65001
+        Allow     Allow outbound traffic from all VMs tooall VMs in VNET  *                Outbound          65000
+        Allow     Allow outbound traffic from all VMs tooInternet         *                Outbound          65001
         Deny      Deny all outbound traffic                               *                Outbound          65500
 
 
 
-3. 使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create) 命令來建立規則，允許從網際網路存取連接埠 3389 (RDP)。
+3. 建立一個規則，允許存取 tooport 3389 (RDP) 從 hello 網際網路以 hello [az 網路 nsg 規則建立](/cli/azure/network/nsg/rule#create)命令。
 
     > [!NOTE]
-    > 根據您所使用的殼層，您可能需要修改下列引數中的 `*` 字元，以免在執行之前就展開引數。
+    > 根據您使用的 hello 殼層，您可能需要 toomodify hello `*` hello 引數，因此為未 tooexpand hello 引數後面之前執行中的字元。
    
     ```azurecli
     az network nsg rule create \
@@ -126,21 +126,21 @@ ms.lasthandoff: 07/11/2017
 
     參數：
 
-    * `--resource-group testrg`：要使用的資源群組。 請注意，此參數不區分大小寫。
-    * `--nsg-name NSG-FrontEnd`：要在其中建立規則之 NSG 的名稱。
-    * `--name rdp-rule`：新規則的名稱。
-    * `--access Allow`：規則 (拒絕或允許) 的存取層級。
+    * `--resource-group testrg`: hello 資源群組 toouse。 請注意，此參數不區分大小寫。
+    * `--nsg-name NSG-FrontEnd`: Hello NSG 中的 hello 建立規則的名稱。
+    * `--name rdp-rule`: Hello 新規則的名稱。
+    * `--access Allow`： hello 規則 （拒絕或允許） 存取層級。
     * `--protocol Tcp`︰通訊協定 (Tcp、Udp 或 *)。
-    * `--direction Inbound`：連線 (輸入或輸出) 的方向。
-    * `--priority 100`：規則的優先順序。
+    * `--direction Inbound`: Hello 連線 （輸入或輸出） 的方向。
+    * `--priority 100`: Hello 規則的優先順序。
     * `--source-address-prefix Internet`：CIDR 中的來源位址首碼或使用預設標籤。
-    * `--source-port-range "*"`：來源連接埠或連接埠範圍。 開啟了連線的連接埠。
+    * `--source-port-range "*"`：來源連接埠或連接埠範圍。 開啟 hello 連接的連接埠。
     * `--destination-address-prefix "*"`：CIDR 中的目的地位址首碼或使用預設標籤。
-    * `--destination-port-range 3389`：目的地連接埠或連接埠範圍。 收到連線要求的連接埠。
+    * `--destination-port-range 3389`：目的地連接埠或連接埠範圍。 收到 hello 連線要求的連接埠。
 
 
 
-4. 使用 **az network nsg rule create**  命令來建立規則，允許從網際網路存取連接埠 80 (HTTP)。
+4. 建立一個規則，允許從 hello 網際網路存取 tooport 80 (HTTP) **az 網路 nsg 規則建立**命令。
    
     ```azurecli
     az network nsg rule create \
@@ -178,7 +178,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-5. 使用 [az network vnet subnet update](/cli/azure/network/vnet/subnet#update) 命令，將 NSG 繫結至 **FrontEnd** 子網路。
+5. 繫結 hello NSG toohello**前端**子網路與 hello [az 網路 vnet 子網路更新](/cli/azure/network/vnet/subnet#update)命令。
         
     ```azurecli
     az network vnet subnet update \
@@ -231,10 +231,10 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-## <a name="create-the-nsg-for-the-backend-subnet"></a>建立 `BackEnd` 子網路的 NSG
-若要根據上述案例建立名為 *NSG-BackEnd* 的 NSG，請依照下列步驟執行。
+## <a name="create-hello-nsg-for-hello-backend-subnet"></a>建立 hello NSG hello`BackEnd`子網路
+toocreate NSG 名為*NSG 後端*根據上述的 hello 情況，請遵循 hello 步驟下列。
 
-1. 使用 **az network nsg create** 建立 `NSG-BackEnd` NSG。
+1. 建立 hello `NSG-BackEnd` NSG 與**az 網路 nsg 建立**。
    
     ```azurecli
     az network nsg create \
@@ -243,9 +243,9 @@ ms.lasthandoff: 07/11/2017
     --location centralus
     ```
    
-    和前面的步驟 2 一樣，預期的輸出會相當大，其中會包括預設規則。
+    依照步驟 2，上述，hello 預期的輸出為非常大，包括預設規則。
    
-2. 使用 **az network nsg rule create** 命令來建立允許從 `FrontEnd` 子網路存取連接埠 1433 (SQL)。
+2. 建立一個規則，允許存取 tooport 1433 (SQL) 從 hello`FrontEnd`子網路與 hello **az 網路 nsg 規則建立**命令。
    
     ```azurecli
     az network nsg rule create \
@@ -283,7 +283,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-3. 使用 **az network nsg rule create** 命令來建立拒絕存取網際網路的規則。
+3. 建立規則，拒絕存取 toohello 網際網路使用 hello **az 網路 nsg 規則建立**命令。
    
     ```azurecli
     az network nsg rule create \
@@ -321,7 +321,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-4. 使用 **az network vnet subnet set** 命令將 NSG 繫結至 `BackEnd` 子網路。
+4. 繫結 hello NSG toohello`BackEnd`子網路使用 hello **az 網路 vnet 子網路集合**命令。
    
     ```azurecli
     az network vnet subnet update \

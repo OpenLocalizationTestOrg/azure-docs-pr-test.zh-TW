@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager 範本函式 - 資源 | Microsoft Docs"
-description: "描述 Azure Resource Manager 範本中用來擷取資源相關值的函式。"
+title: "aaaAzure 資源管理員範本函式-資源 |Microsoft 文件"
+description: "描述 Azure Resource Manager 範本 tooretrieve 值中的 hello 函式 toouse 相關資源。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/09/2017
 ms.author: tomfitz
-ms.openlocfilehash: 494ade55f21c19d9c68d5cc52756528401d9bb77
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c9d524b338b8b7ea6d8c9e0135d48e4fb8f167c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-functions-for-azure-resource-manager-templates"></a>Azure Resource Manager 範本的資源函式
 
-資源管理員提供下列函式以取得資源值：
+資源管理員提供下列函數來取得資源值 hello:
 
 * [listKeys 和 list{Value}](#listkeys)
 * [提供者](#providers)
@@ -31,7 +31,7 @@ ms.lasthandoff: 08/18/2017
 * [resourceId](#resourceid)
 * [訂用帳戶](#subscription)
 
-若要從參數、變數或目前的部署中取得值，請參閱 [部署值函式](resource-group-template-functions-deployment.md)。
+tooget 值參數、 變數或 hello 目前部署中，請參閱[部署值函式](resource-group-template-functions-deployment.md)。
 
 <a id="listkeys" />
 <a id="list" />
@@ -41,18 +41,18 @@ ms.lasthandoff: 08/18/2017
 
 `list{Value}(resourceName or resourceIdentifier, apiVersion)`
 
-對支援 list 作業的任何資源類型傳回值。 最常見的用法是 `listKeys`。 
+傳回 hello 任何支援 hello 清單作業的資源類型的值。 hello 最常見的用法是`listKeys`。 
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| resourceName 或 resourceIdentifier |是 |字串 |資源的唯一識別碼。 |
-| apiVersion |是 |字串 |資源執行階段狀態的 API 版本。 一般而言，格式為 **yyyy-mm-dd**。 |
+| resourceName 或 resourceIdentifier |是 |字串 |Hello 資源的唯一識別碼。 |
+| apiVersion |是 |字串 |資源執行階段狀態的 API 版本。 一般來說，在 hello 格式**yyyy-mm-dd**。 |
 
 ### <a name="return-value"></a>傳回值
 
-從 listKeys 傳回的物件具有下列格式︰
+hello 傳回來自 Listkey 物件具有下列格式的 hello:
 
 ```json
 {
@@ -71,32 +71,32 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-其他 list 函式具有不同的傳回格式。 若要查看函式的格式，請將函式放入 [輸出] 區段，如範本範例所示。 
+其他 list 函式具有不同的傳回格式。 在函式、 toosee hello 格式包含在 hello 輸出區段 hello 範例範本中所示。 
 
 ### <a name="remarks"></a>備註
 
-開頭為 **list** 的任何作業都可在您的範本中用為函式。 可用作業不只包含 listKeys，還包含像 `list`、`listAdminKeys` 和 `listStatus` 等作業。 不過若 **list** 作業需要要求本文中的值，則無法使用。 舉例來說，[List Account SAS](/rest/api/storagerp/storageaccounts#StorageAccounts_ListAccountSAS) 作業需要要求本文之參數，例如 *signedExpiry*，所以您無法在範本中使用此作業。
+開頭為 **list** 的任何作業都可在您的範本中用為函式。 hello 可用的作業包括不僅 Listkey，但等作業也`list`， `listAdminKeys`，和`listStatus`。 不過，您無法使用**清單**需要在 hello 中的值的作業要求本文。 比方說，hello[清單帳戶 SAS](/rest/api/storagerp/storageaccounts#StorageAccounts_ListAccountSAS)作業需要要求主體參數喜歡*signedExpiry*，因此您無法在樣板內使用它。
 
-為判斷哪一個資源類型具有 list 作業，您可以使用下列選項：
+toodetermine 哪些資源類型都有清單作業，您有下列選項的 hello:
 
-* 檢視資源提供者的 [REST API 作業](/rest/api/)，並尋找 list 作業。 例如，儲存體帳戶具有 [listKeys 作業](/rest/api/storagerp/storageaccounts#StorageAccounts_ListKeys)。
-* 使用 [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) PowerShell Cmdlet。 下列範例會取得儲存體帳戶的所有 list 作業︰
+* 檢視 hello [REST API 作業](/rest/api/)資源提供者，以及尋找清單作業。 例如，儲存體帳戶有 hello [Listkey 作業](/rest/api/storagerp/storageaccounts#StorageAccounts_ListKeys)。
+* 使用 hello [Get AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) PowerShell cmdlet。 hello 下列範例會取得所有儲存體帳戶的清單作業：
 
   ```powershell
   Get-AzureRmProviderOperation -OperationSearchString "Microsoft.Storage/*" | where {$_.Operation -like "*list*"} | FT Operation
   ```
-* 使用下列 Azure CLI 命令可只篩選出 list 作業：
+* 使用下列 Azure CLI 命令 toofilter 只 hello 列出作業的 hello:
 
   ```azurecli
   az provider operation show --namespace Microsoft.Storage --query "resourceTypes[?name=='storageAccounts'].operations[].name | [?contains(@, 'list')]"
   ```
 
-使用 [resourceId 函式](#resourceid)或 `{providerNamespace}/{resourceType}/{resourceName}` 格式來指定資源。
+使用任一個 hello 指定 hello 資源[resourceId 函數](#resourceid)，或 hello 格式`{providerNamespace}/{resourceType}/{resourceName}`。
 
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何在 outputs 區段中從儲存體帳戶傳回主要和次要金鑰。
+hello 下列範例顯示如何 tooreturn hello 主要和次要金鑰從 hello 的儲存體帳戶會輸出一節。
 
 ```json
 {
@@ -122,18 +122,18 @@ ms.lasthandoff: 08/18/2017
 ## <a name="providers"></a>提供者
 `providers(providerNamespace, [resourceType])`
 
-傳回資源提供者和其所支援資源類型的相關資訊。 如果未提供資源類型，則函式會傳回資源提供者所有的支援類型。
+傳回資源提供者和其所支援資源類型的相關資訊。 如果您未提供資源類型，hello 函式會傳回所有支援的 hello 型別 hello 資源提供者。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| providerNamespace |是 |字串 |提供者的命名空間 |
-| resourceType |否 |字串 |所指定命名空間內的資源類型。 |
+| providerNamespace |是 |字串 |Hello 提供者命名空間 |
+| resourceType |否 |字串 |指定命名空間內 hello 資源 hello 型別。 |
 
 ### <a name="return-value"></a>傳回值
 
-每個支援類型都會以下列格式傳回： 
+每個支援的型別會傳回在 hello 下列格式： 
 
 ```json
 {
@@ -143,11 +143,11 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-不保證所傳回的值會有陣列順序。
+Hello 排序陣列傳回不保證值。
 
 ### <a name="example"></a>範例
 
-下列範例顯示如何使用 provider 函數：
+hello 下列範例顯示如何 toouse hello 提供者函式：
 
 ```json
 {
@@ -163,7 +163,7 @@ ms.lasthandoff: 08/18/2017
 }
 ```
 
-上述範例會以下列格式傳回物件︰
+hello 上述範例會傳回物件中 hello 下列格式：
 
 ```json
 {
@@ -197,21 +197,21 @@ ms.lasthandoff: 08/18/2017
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
 | resourceName 或 resourceIdentifier |是 |string |資源的名稱或唯一識別碼。 |
-| apiVersion |否 |字串 |指定的資源的 API 版本。 如果在相同的範本內未供應資源，則請包含此參數。 一般而言，格式為 **yyyy-mm-dd**。 |
+| apiVersion |否 |字串 |API 版的 hello 指定的資源。 Hello 資源不會提供相同的範本中時包含此參數。 一般來說，在 hello 格式**yyyy-mm-dd**。 |
 
 ### <a name="return-value"></a>傳回值
 
-每種資源類型都會針對 reference 函式傳回不同屬性。 此函式不會傳回單一的預先定義格式。 若要查看資源類型的屬性，請在輸出區段中傳回物件，如範例所示。
+每個資源類型傳回 hello 參考函式的不同屬性。 hello 函式不會傳回單一的預先定義的格式。 資源類型，toosee hello 屬性傳回 hello 中的 hello 物件輸出區段中 hello 範例所示。
 
 ### <a name="remarks"></a>備註
 
-reference 函數會從執行階段狀態衍生其值，因此不能用在 variables 區段中。 它可以用於範本的 outputs 區段中。 
+hello 參考函式衍生其值從執行階段的狀態，並因此不能用在 hello 變數區段。 它可以用於範本的 outputs 區段中。 
 
-如果在相同的範本內佈建所參考的資源，則可使用 reference 函式來隱含宣告一個資源相依於另一個資源。 您不需要同時使用 dependsOn 屬性。 所參考的資源完成部署之前不會評估函式。
+利用 hello 參考的函式，您隱含地宣告一個資源依存於另一個資源如果 hello 參考資源相同的範本內佈建。 您不需要 tooalso 使用 hello dependsOn 屬性。 hello 函式之前不會評估 hello 參照的資源已完成部署。
 
-若要查看資源類型的屬性名稱和值，請建立一個會在 outputs 區段中傳回物件的範本。 如果您有一個該類型的現有資源，您的範本就會傳回物件，而不會部署任何新資源。 
+toosee hello 屬性名稱和值的資源類型，建立傳回 hello 輸出區段中的 hello 物件的範本。 如果您有現有的資源，該類型時，您的範本會傳回 hello 物件而不會部署任何新的資源。 
 
-一般而言，您可以使用 **reference** 函式從物件傳回特定值，例如 Blob 端點 URI 或完整網域名稱。
+一般而言，您可以使用 hello**參考**函式 tooreturn 特定值的物件，例如 hello blob 端點 URI 或完整的網域名稱。
 
 ```json
 "outputs": {
@@ -228,7 +228,7 @@ reference 函數會從執行階段狀態衍生其值，因此不能用在 variab
 
 ### <a name="example"></a>範例
 
-若要部署並參考相同範本中的資源，請使用：
+hello toodeploy 和參考 hello 資源相同的範本，使用：
 
 ```json
 {
@@ -263,7 +263,7 @@ reference 函數會從執行階段狀態衍生其值，因此不能用在 variab
 }
 ``` 
 
-上述範例會以下列格式傳回物件︰
+hello 上述範例會傳回物件中 hello 下列格式：
 
 ```json
 {
@@ -281,7 +281,7 @@ reference 函數會從執行階段狀態衍生其值，因此不能用在 variab
 }
 ```
 
-下列範例參照了本範本中未部署之儲存體帳戶。 此儲存體帳戶已經存在在同樣的資源群組中。
+hello 下列範例會參考未部署此範本中的儲存體帳戶。 hello 儲存體帳戶已經存在於 hello 相同資源群組。
 
 ```json
 {
@@ -307,11 +307,11 @@ reference 函數會從執行階段狀態衍生其值，因此不能用在 variab
 ## <a name="resourcegroup"></a>resourceGroup
 `resourceGroup()`
 
-傳回代表目前資源群組的物件。 
+傳回代表 hello 目前的資源群組的物件。 
 
 ### <a name="return-value"></a>傳回值
 
-傳回的物件會使用下列格式：
+hello 傳回的物件處於 hello 下列格式：
 
 ```json
 {
@@ -328,7 +328,7 @@ reference 函數會從執行階段狀態衍生其值，因此不能用在 variab
 
 ### <a name="remarks"></a>備註
 
-resourceGroup 函式的常見用法是在和資源群組相同的位置中建立資源。 下列範例使用資源群組位置來指派網站的位置。
+Hello resourceGroup 函式的常見用法是在 hello toocreate 資源與 hello 資源群組相同的位置。 hello 下列範例會使用 hello 資源群組位置 tooassign hello 位置的網站。
 
 ```json
 "resources": [
@@ -344,7 +344,7 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
 
 ### <a name="example"></a>範例
 
-下列範本會傳回資源群組的屬性。
+hello 下列範本會傳回 hello hello 資源群組的屬性。
 
 ```json
 {
@@ -360,7 +360,7 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
 }
 ```
 
-上述範例會以下列格式傳回物件︰
+hello 上述範例會傳回物件中 hello 下列格式：
 
 ```json
 {
@@ -378,21 +378,21 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
 ## <a name="resourceid"></a>resourceId
 `resourceId([subscriptionId], [resourceGroupName], resourceType, resourceName1, [resourceName2]...)`
 
-傳回資源的唯一識別碼。 如果資源名稱不確定或未佈建在相同的範本內，請使用此函數。 
+傳回 hello 資源的唯一識別碼。 Hello 資源名稱模稜兩可或 hello 內不會佈建時，會使用此函式相同的範本。 
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| subscriptionId |否 |字串 (GUID 格式) |預設值為目前的訂用帳戶。 需要擷取另一個訂用帳戶中的資源群組時，請指定此值。 |
-| resourceGroupName |否 |字串 |預設值為目前資源群組。 需要擷取另一個訂用帳戶中的資源群組時，請指定此值。 |
+| subscriptionId |否 |字串 (GUID 格式) |預設值為 hello 目前訂用帳戶。 當您需要 tooretrieve 其他訂用帳戶中的資源時，請指定這個值。 |
+| resourceGroupName |否 |字串 |預設值為目前資源群組。 當您需要 tooretrieve 另一個資源群組中的資源時，請指定這個值。 |
 | resourceType |是 |字串 |資源的類型 (包括資源提供者命名空間)。 |
 | resourceName1 |是 |string |資源的名稱。 |
 | resourceName2 |否 |string |如果是巢狀資源，則為下一個資源名稱區段。 |
 
 ### <a name="return-value"></a>傳回值
 
-識別碼會以下列格式傳回：
+hello 識別碼會傳入 hello 下列格式：
 
 ```json
 /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}
@@ -400,33 +400,33 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
 
 ### <a name="remarks"></a>備註
 
-您指定的參數值取決於資源是否在相同的訂用帳戶和資源群組中作為目前的部署。
+hello 參數所指定的值取決於 hello 資源是在 hello 與 hello 目前部署的相同訂用帳戶和資源群組。
 
-若要在相同的訂用帳戶和資源群組中取得儲存體帳戶的資源識別碼，請使用：
+tooget hello 資源識別碼 hello 的儲存體帳戶的相同訂用帳戶和資源群組中，使用：
 
 ```json
 "[resourceId('Microsoft.Storage/storageAccounts','examplestorage')]"
 ```
 
-若要在相同的訂用帳戶但不同的資源群組中取得儲存體帳戶的資源識別碼，請使用：
+儲存體帳戶中的 tooget hello 資源識別碼 hello 相同訂用帳戶，但不同的資源群組，請使用：
 
 ```json
 "[resourceId('otherResourceGroup', 'Microsoft.Storage/storageAccounts','examplestorage')]"
 ```
 
-若要在不同的訂用帳戶和資源群組中取得儲存體帳戶的資源識別碼，請使用：
+使用不同訂用帳戶和資源群組中的儲存體帳戶的 tooget hello 的資源 ID:
 
 ```json
 "[resourceId('xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx', 'otherResourceGroup', 'Microsoft.Storage/storageAccounts','examplestorage')]"
 ```
 
-若要在不同的資源群組中取得資料庫的資源識別碼，請使用：
+tooget hello 資源資料庫識別碼，在不同的資源群組中，使用：
 
 ```json
 "[resourceId('otherResourceGroup', 'Microsoft.SQL/servers/databases', parameters('serverName'), parameters('databaseName'))]"
 ```
 
-通常，在替代資源群組中使用儲存體帳戶或虛擬網路時，需要使用此函數。 下列範例顯示如何輕鬆地使用外部資源群組中的資源：
+通常，您需要 toouse 此函式時使用替代的資源群組中的儲存體帳戶或虛擬網路。 hello 下列範例顯示如何從外部的資源群組的資源可以輕鬆地加以使用：
 
 ```json
 {
@@ -473,7 +473,7 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
 
 ### <a name="example"></a>範例
 
-下列範例會傳回資源群組中儲存體帳戶的資源識別碼：
+hello 下列範例會傳回儲存體帳戶的 hello 資源識別碼 hello 資源群組中：
 
 ```json
 {
@@ -501,7 +501,7 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
 }
 ```
 
-先前範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -515,11 +515,11 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
 ## <a name="subscription"></a>訂用帳戶
 `subscription()`
 
-傳回目前部署的訂用帳戶詳細資料。 
+傳回有關 hello 目前部署的 hello 訂用帳戶的詳細資料。 
 
 ### <a name="return-value"></a>傳回值
 
-此函式會傳回下列格式︰
+hello 函式會傳回下列格式的 hello:
 
 ```json
 {
@@ -532,7 +532,7 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
 
 ### <a name="example"></a>範例
 
-下列範例顯示在 outputs 區段中所呼叫的 subscription 函式。 
+hello 下列範例顯示 hello 訂用帳戶函式，呼叫 hello 輸出區段中。 
 
 ```json
 {
@@ -549,8 +549,8 @@ resourceGroup 函式的常見用法是在和資源群組相同的位置中建立
 ```
 
 ## <a name="next-steps"></a>後續步驟
-* 如需有關 Azure Resource Manager 範本中各區段的說明，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
-* 若要合併多個範本，請參閱[透過 Azure Resource Manager 使用連結的範本](resource-group-linked-templates.md)。
-* 若要依指定的次數重複建立資源類型，請參閱 [在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
-* 若要了解如何部署已建立的範本，請參閱[使用 Azure Resource Manager 範本部署應用程式](resource-group-template-deploy.md)。
+* 如需 Azure Resource Manager 範本中的 hello 各節的說明，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
+* toomerge 多個範本，請參閱[使用連結的範本與 Azure 資源管理員](resource-group-linked-templates.md)。
+* tooiterate 指定次數時建立的資源類型，請參閱[Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
+* toosee 如何 toodeploy hello 範本建立之後，請參閱[部署應用程式使用 Azure Resource Manager 範本](resource-group-template-deploy.md)。
 

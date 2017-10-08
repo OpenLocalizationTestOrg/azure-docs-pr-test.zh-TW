@@ -1,6 +1,6 @@
 ---
-title: "預設 TEMP 資料夾對角色而言太小 | Microsoft Docs"
-description: "雲端服務角色的 TEMP 資料夾空間量有限。 本文提供關於如何避免用盡空間的一些建議。"
+title: "aaaDefault TEMP 資料夾大小會太小角色 |Microsoft 文件"
+description: "雲端服務角色具有有限的 hello TEMP 資料夾的空間。 本文提供一些建議如何 tooavoid 空間用盡。"
 services: cloud-services
 documentationcenter: 
 author: simonxjx
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 7/26/2017
 ms.author: v-six
-ms.openlocfilehash: 577d090a009eb2331b401273257c7cc7c1eea772
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 307dc20f3264e29d122a6616be0028d2ec1282c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="default-temp-folder-size-is-too-small-on-a-cloud-service-webworker-role"></a>雲端服務 Web/背景工作角色的預設 TEMP 資料夾太小
-雲端服務背景工作角色或 Web 角色的預設暫存目錄大小上限為 100 MB，可能會在某個時間點達到。 本文說明如何避免用盡暫存目錄的空間。
+hello 的雲端服務工作者或 web 角色的暫存目錄大小上限為 100 MB，可能會變成完整在某個時間點的預設值。 本文說明如何 tooavoid hello 暫存目錄空間用盡。
 
 [!INCLUDE [support-disclaimer](../../includes/support-disclaimer.md)]
 
 ## <a name="why-do-i-run-out-of-space"></a>為何會用盡空間？
-您應用程式中執行的程式碼可以使用標準 Windows 環境變數 TEMP 和 TMP。 TEMP 和 TMP 都會指向大小上限為 100 MB 的單一目錄。 任何儲存在此目錄中的資料都不會跨雲端服務的生命週期而保存；如果雲端服務中的角色執行個體被回收，就會清除目錄。
+hello 標準 Windows 環境變數 TEMP 和 TMP 可執行應用程式中的可用 toocode。 TEMP 和 TMP 都會指向大小上限為 100 MB tooa 單一目錄。 儲存此目錄中所有資料都不會保存 hello 雲端服務; hello 生命週期裡如果雲端服務中的 hello 角色執行個體被回收時，會清除 hello 目錄。
 
-## <a name="suggestion-to-fix-the-problem"></a>修正此問題的建議
-實作下列其中一個替代方案：
+## <a name="suggestion-toofix-hello-problem"></a>建議 toofix hello 問題
+實作其中一個 hello 下列替代項目：
 
-* 設定本機儲存資源並直接加以存取，而不要使用 TEMP 或 TMP。 若要從您應用程式內執行的程式碼存取本機儲存資源，請呼叫 [RoleEnvironment.GetLocalResource](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.getlocalresource.aspx) 方法。
-* 設定本機儲存資源，並將 TEMP 和 TMP 目錄指向本機儲存資源的路徑。 此修改應在 [RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx) 方法內執行。
+* 設定本機儲存資源並直接加以存取，而不要使用 TEMP 或 TMP。 執行您的應用程式呼叫 hello 內的程式碼中的本機儲存體資源 tooaccess [RoleEnvironment.GetLocalResource](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleenvironment.getlocalresource.aspx)方法。
+* 設定一個本機儲存體資源，並指向 hello TEMP 和 TMP 目錄 toopoint toohello hello 本機儲存體資源路徑。 應該執行這項修改內 hello [RoleEntryPoint.OnStart](https://msdn.microsoft.com/library/microsoft.windowsazure.serviceruntime.roleentrypoint.onstart.aspx)方法。
 
-下列程式碼範例說明如何在 OnStart 方法內修改 TEMP 和 TMP 的目標目錄：
+hello 下列程式碼範例示範如何 toomodify hello TEMP 和 TMP 從 hello OnStart 方法內目標目錄：
 
 ```csharp
 using System;
@@ -47,8 +47,8 @@ namespace WorkerRole1
     {
         public override bool OnStart()
         {
-            // The local resource declaration must have been added to the
-            // service definition file for the role named WorkerRole1:
+            // hello local resource declaration must have been added toothe
+            // service definition file for hello role named WorkerRole1:
             //
             // <LocalResources>
             //    <LocalStorage name="CustomTempLocalStore"
@@ -61,7 +61,7 @@ namespace WorkerRole1
             Environment.SetEnvironmentVariable("TMP", customTempLocalResourcePath);
             Environment.SetEnvironmentVariable("TEMP", customTempLocalResourcePath);
 
-            // The rest of your startup code goes here…
+            // hello rest of your startup code goes here…
 
             return base.OnStart();
         }
@@ -70,8 +70,8 @@ namespace WorkerRole1
 ```
 
 ## <a name="next-steps"></a>後續步驟
-請參閱說明 [如何增加 Azure Web 角色 ASP.NET 暫存資料夾大小](http://blogs.msdn.com/b/kwill/archive/2011/07/18/how-to-increase-the-size-of-the-windows-azure-web-role-asp-net-temporary-folder.aspx)的部落格。
+閱讀部落格說明[tooincrease 如何 hello hello Azure Web 角色 ASP.NET 暫存資料夾的大小](http://blogs.msdn.com/b/kwill/archive/2011/07/18/how-to-increase-the-size-of-the-windows-azure-web-role-asp-net-temporary-folder.aspx)。
 
 檢視更多雲端服務的 [疑難排解文章](/?tag=top-support-issue&product=cloud-services) 。
 
-若要了解如何利用 Azure PaaS 電腦診斷資料，對雲端服務角色的問題進行疑難排解，請檢視 [Kevin Williamson 的部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。
+toolearn 如何使用 Azure PaaS 電腦診斷資料，會發出 tootroubleshoot 雲端服務角色檢視[Kevin Williamson 部落格系列](http://blogs.msdn.com/b/kwill/archive/2013/08/09/windows-azure-paas-compute-diagnostics-data.aspx)。

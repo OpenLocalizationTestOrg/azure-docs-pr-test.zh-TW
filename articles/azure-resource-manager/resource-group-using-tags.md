@@ -1,6 +1,6 @@
 ---
-title: "針對邏輯組織標記 Azure 資源 | Microsoft Docs"
-description: "示範如何套用標籤以針對計費及管理來組織 Azure 資源。"
+title: "aaaTag Azure 邏輯組織的資源 |Microsoft 文件"
+description: "示範如何 tooapply 標記 tooorganize Azure 帳單及管理資源。"
 services: azure-resource-manager
 documentationcenter: 
 author: tfitzmac
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: tomfitz
-ms.openlocfilehash: 4f52c30614ad39da8a34ff6ecfb707b75400517f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e07470463d160f8cefe5c80bc91e66a96af6ca45
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-tags-to-organize-your-azure-resources"></a>使用標記來組織 Azure 資源
+# <a name="use-tags-tooorganize-your-azure-resources"></a>使用標記 tooorganize 您的 Azure 資源
 [!INCLUDE [resource-manager-tag-introduction](../../includes/resource-manager-tag-introduction.md)]
 
 > [!NOTE]
-> 您只能將標籤套用到支援 Azure Resource Manager 作業的資源。 如果您透過傳統部署模型 (例如透過 Azure 傳統入口網站) 建立虛擬機器、虛擬網路或儲存體帳戶，就無法將標籤套用至該資源。 若要支援標記，請透過資源管理員重新部署這些資源。 所有其他資源皆支援標記。
+> 您可以套用標籤只有 tooresources 支援 Azure 資源管理員作業。 如果您建立虛擬機器、 虛擬網路或透過 hello 傳統部署模型 (例如透過 hello Azure 傳統入口網站) 的儲存體帳戶，則無法套用標籤 toothat 資源。 toosupport 標記，重新部署這些資源透過資源管理員。 所有其他資源皆支援標記。
 > 
 > 
 
 ## <a name="policies-for-tag-consistency"></a>標籤一致性原則
 
-您可以使用資源原則來建立組織適用的標準規則。 您可以建立原則，以確保會為資源標記適當的值。 如需詳細資訊，請參閱[套用標籤的資源原則](resource-manager-policy-tags.md)。
+您可以為您的組織使用資源原則 toocreate 標準規則。 您可以建立原則，確保資源都會加上 hello 適當的值。 如需詳細資訊，請參閱[套用標籤的資源原則](resource-manager-policy-tags.md)。
 
 ## <a name="powershell"></a>PowerShell
 [!INCLUDE [resource-manager-tag-resources-powershell](../../includes/resource-manager-tag-resources-powershell.md)]
 
 ## <a name="azure-cli"></a>Azure CLI
 
-若要查看*資源群組*的現有標籤，請使用：
+toosee hello 的現有標籤*資源群組*，使用：
 
 ```azurecli
 az group show -n examplegroup --query tags
 ```
 
-該指令碼會傳回下列格式︰
+該指令碼會傳回下列格式的 hello:
 
 ```json
 {
@@ -52,45 +52,45 @@ az group show -n examplegroup --query tags
 }
 ```
 
-若要查看「具有指定之資源識別碼的資源」的現有標記，請使用：
+toosee hello 的現有標籤*資源具有指定的資源識別碼*，使用：
 
 ```azurecli
 az resource show --id {resource-id} --query tags
 ```
 
-或者，若要查看「具有指定之名稱、類型和資源群組的資源」的現有標籤，請使用：
+或 toosee hello 的現有標籤*具有指定的名稱、 類型和資源群組的資源*，使用：
 
 ```azurecli
 az resource show -n examplevnet -g examplegroup --resource-type "Microsoft.Network/virtualNetworks" --query tags
 ```
 
-若要取得「具有特定標籤的資源群組」，請使用 `az group list`：
+具有特定標記的 tooget 資源群組使用`az group list`:
 
 ```azurecli
 az group list --tag Dept=IT
 ```
 
-若要取得「具有特定標籤和值的所有資源」，請使用 `az resource list`：
+tooget hello 具有所有資源，特定的標記和值，都使用`az resource list`:
 
 ```azurecli
 az resource list --tag Dept=Finance
 ```
 
-每當您將標記套用到資源或資源群組時，即會覆寫該資源或資源群組上現有的標記。 因此，您必須視該資源或資源群組是否具備現有標籤來使用不同的方法。 
+每次您套用標籤 tooa 資源或資源群組，您就會覆寫 hello 現有資源或資源群組上的標記。 因此，您必須使用不同的方式根據 hello 資源或資源群組是否擁有現有的標記。 
 
-若要將標籤新增至*不具現有標籤的資源群組*，請使用：
+tooadd 標記 tooa*沒有現有的標記的資源群組*，使用：
 
 ```azurecli
 az group update -n examplegroup --set tags.Environment=Test tags.Dept=IT
 ```
 
-若要將標籤新增至*沒有現有標籤的資源*，請使用：
+tooadd 標記 tooa*沒有現有的標記資源*，使用：
 
 ```azurecli
 az resource tag --tags Dept=IT Environment=Test -g examplegroup -n examplevnet --resource-type "Microsoft.Network/virtualNetworks"
 ``` 
 
-若要將標籤新增至已經具有標籤的資源，請擷取現有的標籤、將該值重新格式化，然後重新套用現有和新的標籤： 
+tooadd 標記 tooa 資源已有標籤，擷取 hello 現有的標記、 重新格式化該值，然後重新套用 hello 現有和新標籤： 
 
 ```azurecli
 jsonrtag=$(az resource show -g examplegroup -n examplevnet --resource-type "Microsoft.Network/virtualNetworks" --query tags)
@@ -98,7 +98,7 @@ rt=$(echo $jsonrtag | tr -d '"{},' | sed 's/: /=/g')
 az resource tag --tags $rt Project=Redesign -g examplegroup -n examplevnet --resource-type "Microsoft.Network/virtualNetworks"
 ```
 
-若要將所有標籤從資源群組套用至其資源，而*不在資源上保留現有的標籤*，請使用下列指令碼︰
+資源群組 tooits，從資源標記的所有 tooapply 和*不會保留現有的都標記 hello 資源*，使用下列指令碼的 hello:
 
 ```azurecli
 groups=$(az group list --query [].name --output tsv)
@@ -114,7 +114,7 @@ do
 done
 ```
 
-若要將所有標籤從資源群組套用至其資源，並*在資源上保留現有的標籤*，請使用下列指令碼：
+資源群組 tooits，從資源標記的所有 tooapply 和*保留資源上的現有都標籤*，使用下列指令碼的 hello:
 
 ```azurecli
 groups=$(az group list --query [].name --output tsv)
@@ -142,23 +142,23 @@ done
 
 
 ## <a name="rest-api"></a>REST API
-Azure 入口網站和 PowerShell 在幕後都使用 [Resource Manager REST API](https://docs.microsoft.com/rest/api/resources/) 。 如果您需要將標籤整合到另一個環境中，則可以在資源識別碼上利用 **GET** 來取得標籤，並使用 **PATCH** 呼叫來更新一組標籤。
+hello Azure 入口網站和 PowerShell 使用 hello[資源管理員 REST API](https://docs.microsoft.com/rest/api/resources/)幕後 hello。 如果您需要 toointegrate 標記成另一個環境，您可以使用來取得標記**取得**hello 資源識別碼和更新 hello 組上所使用的標記**修補**呼叫。
 
 ## <a name="tags-and-billing"></a>標記與計費
-您可以使用標籤將您的計費資料分組。 例如，如果您執行不同組織的多個 VM，您可以使用標籤根據成本中心將使用情況分組。 您也可以使用標籤來根據執行階段環境將成本分類。例如，在生產環境中執行之 VM 的計費使用量。
+您可以使用標記 toogroup 計費資料。 比方說，如果您執行於不同的組織多個 Vm，請依成本中心使用 hello 標記 toogroup 使用量。 您也可以使用標記 toocategorize 成本的執行階段環境，例如 hello 計費使用量 hello 實際執行環境中執行的 vm。
 
 
-您可以透過 [Azure 資源使用狀況和 RateCard API](../billing/billing-usage-rate-card-overview.md) 或使用狀況逗號分隔值 (CSV) 檔案，擷取關於標記的資訊。 您可以從 [Azure 帳戶入口網站](https://account.windowsazure.com/)或 [EA 入口網站](https://ea.azure.com)下載使用量檔案。 如需以程式設計方式存取帳單資訊的詳細資訊，請參閱 [深入了解 Microsoft Azure 資源耗用量](../billing/billing-usage-rate-card-overview.md)。 若為 REST API 作業，請參閱 [Azure 計費 REST API 參考](https://msdn.microsoft.com/library/azure/1ea5b323-54bb-423d-916f-190de96c6a3c)。
+您可以擷取有關透過 hello 標記資訊[Azure 資源使用量和 RateCard Api](../billing/billing-usage-rate-card-overview.md)或 hello 使用量逗點分隔值 (CSV) 檔案。 您可以下載 hello 使用量檔案從 hello [Azure 帳戶入口網站](https://account.windowsazure.com/)或[EA 入口網站](https://ea.azure.com)。 如需有關以程式設計方式存取 toobilling 資訊的詳細資訊，請參閱[深入了解您的 Microsoft Azure 資源耗用量](../billing/billing-usage-rate-card-overview.md)。 若為 REST API 作業，請參閱 [Azure 計費 REST API 參考](https://msdn.microsoft.com/library/azure/1ea5b323-54bb-423d-916f-190de96c6a3c)。
 
 
-當您下載服務 (支援附計費的標記) 的使用狀況 CSV 時，標記會出現在 [標記]  資料行。 如需詳細資訊，請參閱[了解 Microsoft Azure 帳單](../billing/billing-understand-your-bill.md)。
+當您下載之服務的支援和計費標籤 hello 使用 CSV 時，hello 標籤會顯示在 hello**標記**資料行。 如需詳細資訊，請參閱[了解 Microsoft Azure 帳單](../billing/billing-understand-your-bill.md)。
 
 ![查看計費中的標記](./media/resource-group-using-tags/billing_csv.png)
 
 ## <a name="next-steps"></a>後續步驟
-* 您可以使用自訂原則，在訂用帳戶內套用限制和慣例。 您所定義的原則可能需要所有資源都具有特定標籤的值。 如需詳細資訊，請參閱 [使用原則來管理資源和控制存取](resource-manager-policy.md)。
-* 如需在部署資源時使用 Azure PowerShell 的簡介，請參閱 [搭配使用 Azure PowerShell 與 Azure Resource Manager](powershell-azure-resource-manager.md)。
-* 如需在部署資源時使用 Azure CLI 的簡介，請參閱[使用適用於 Mac、Linux 和 Windows 的 Azure CLI 搭配 Azure Resource Manager](xplat-cli-azure-resource-manager.md)。
-* 如需使用入口網站的簡介，請參閱[使用 Azure 入口網站來管理您的 Azure 資源](resource-group-portal.md)。  
-* 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
+* 您可以使用自訂原則，在訂用帳戶內套用限制和慣例。 您所定義的原則可能需要所有資源都具有特定標籤的值。 如需詳細資訊，請參閱[原則 toomanage 資源及控制存取](resource-manager-policy.md)。
+* 如簡介 toousing Azure PowerShell 時您要部署資源，請參閱[使用 Azure PowerShell 的 Azure Resource Manager](powershell-azure-resource-manager.md)。
+* 如簡介 toousing hello Azure CLI 時您要部署資源，請參閱[使用 hello for Mac、 Linux 及 Windows Azure 資源管理員使用 Azure CLI](xplat-cli-azure-resource-manager.md)。
+* 如簡介 toousing hello 入口網站中，請參閱[使用 hello Azure 入口網站 toomanage 您的 Azure 資源](resource-group-portal.md)。  
+* 如需指引企業可以如何使用資源管理員 tooeffectively 管理訂用帳戶，請參閱[Azure 企業版 scaffold-精準的訂閱控管](resource-manager-subscription-governance.md)。
 

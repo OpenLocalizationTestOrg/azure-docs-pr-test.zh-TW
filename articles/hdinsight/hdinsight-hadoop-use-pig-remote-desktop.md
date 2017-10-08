@@ -1,6 +1,6 @@
 ---
-title: "在 HDInsight 中搭配使用 Hadoop Pig 與遠端桌面 - Azure | Microsoft Docs"
-description: "學習如何使用 Pig 命令，從連往 HDInsight 中 Windows 型 Hadoop 叢集的遠端桌面連線執行 Pig Latin 陳述式。"
+title: "aaaUse HDInsight 的 Azure 中的遠端桌面的 Hadoop Pig |Microsoft 文件"
+description: "了解如何 toouse hello Pig 命令 toorun Pig 拉丁陳述式從 HDInsight 中的遠端桌面連線 tooa Windows 為基礎的 Hadoop 叢集。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,86 +16,86 @@ ms.workload: big-data
 ms.date: 01/17/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 5e8d4fbd8afc54c8bbc1a9a71c66d7022a7d5986
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2a4565fa827cd45fdbe6194b0486df93a6561084
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-pig-jobs-from-a-remote-desktop-connection"></a>從遠端桌面連線執行 Pig 工作
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
-本文件逐步解說如何使用 Pig 命令，從連往 Windows 型 HDInsight 叢集的遠端桌面連線執行 Pig Latin 陳述式。 Pig Latin 可讓您透過描述資料轉換來建立 MapReduce 應用程式，而不是建立對應和縮減函數。
+本文件提供逐步解說使用 hello Pig 命令 toorun Pig 拉丁陳述式從遠端桌面連線 tooa Windows 為基礎的 HDInsight 叢集。 Pig 拉丁可讓您透過描述資料轉換的 toocreate MapReduce 應用程式，而非對應並減少函式。
 
 > [!IMPORTANT]
-> 只有在使用 Windows 作為作業系統的 HDInsight 叢集上才能使用「遠端桌面」。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+> 只有在使用 Windows 做為 hello 作業系統的 HDInsight 叢集上使用遠端桌面。 Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 >
-> 針對 HDInsight 3.4 或更新版本，請參閱[使用 Pig 搭配 HDInsight 和 SSH](hdinsight-hadoop-use-pig-ssh.md)，以了解如何從命令列以互動方式直接在叢集上執行 Pig 工作。
+> HDInsight 3.4 或更高，請參閱[HDInsight 和 SSH 搭配使用 Pig](hdinsight-hadoop-use-pig-ssh.md)有關以互動方式執行 Pig 工作直接在 hello 叢集從命令列。
 
 ## <a id="prereq"></a>必要條件
-若要完成本文中的步驟，您需要下列項目。
+toocomplete hello 本文中的步驟，您將需要下列 hello。
 
 * Windows 型 HDInsight (HDInsight 上的 Hadoop) 叢集
 * 執行 Windows 10、Windows 8 或 Windows 7 的用戶端電腦
 
 ## <a id="connect"></a>使用遠端桌面連線
-依照 [使用 RDP 連線到 HDInsight 叢集](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)中的指示，為 HDInsight 叢集啟用遠端桌面，然後進行連線。
+Hello HDInsight 叢集，啟用遠端桌面，然後依照指示 hello 連接 tooit[連接使用 RDP tooHDInsight 叢集](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)。
 
-## <a id="pig"></a>使用 Pig 命令
-1. 在具有遠端桌面連線後，使用桌面上的圖示來啟動 **Hadoop 命令列** 。
-2. 使用下列命令來啟動 Pig 命令：
+## <a id="pig"></a>使用 hello Pig 命令
+1. 您有遠端桌面連線之後，請啟動 hello **Hadoop 命令列**hello 桌面上使用 hello 圖示。
+2. 使用下列 toostart hello Pig 命令 hello:
 
         %pig_home%\bin\pig
 
     您會看到 `grunt>` 提示字元。
-3. 輸入下列陳述式：
+3. 輸入下列陳述式的 hello:
 
         LOGS = LOAD 'wasb:///example/data/sample.log';
 
-    此命令會將 sample.log 檔案的內容載入至 LOGS 檔案。 您可以使用下列命令檢視檔案的內容：
+    此命令會載入 hello 記錄檔中的 hello hello sample.log 檔案內容。 您可以使用下列命令的 hello 檢視 hello hello 檔案內容：
 
         DUMP LOGS;
-4. 套用規則運算式以僅擷取每筆記錄的記錄層級，來轉換資料：
+4. Hello 資料轉換從每一筆記錄套用的規則運算式 tooextract 只有 hello 記錄層級：
 
         LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
 
-    轉換之後，您可以使用 **DUMP** 來檢視資料。 在此案例中為 `DUMP LEVELS;`。
-5. 使用下列陳述式，繼續套用轉換。 使用 `DUMP` 檢視每個步驟後的轉換結果。
+    您可以使用**傾印**tooview hello hello 轉換後的資料。 在此案例中為 `DUMP LEVELS;`。
+5. 繼續使用下列陳述式的 hello 套用轉換。 使用`DUMP`tooview hello 結果的每個步驟之後的 hello 轉換。
 
     <table>
     <tr>
     <th>陳述式</th><th>作用</th>
     </tr>
     <tr>
-    <td>FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;</td><td>移除含有記錄層級之 Null 值的資料列，並將結果儲存到 FILTEREDLEVELS。</td>
+    <td>FILTEREDLEVELS = FILTER LEVELS by LOGLEVEL is not null;</td><td>移除包含 hello 記錄層級的 null 值的資料列，並將 hello 結果儲存到 FILTEREDLEVELS。</td>
     </tr>
     <tr>
-    <td>GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;</td><td>依記錄層級對資料列進行分組，並將結果儲存到 GROUPEDLEVELS。</td>
+    <td>GROUPEDLEVELS = GROUP FILTEREDLEVELS by LOGLEVEL;</td><td>群組 hello 的記錄層級的資料列，並將 hello 結果儲存到 GROUPEDLEVELS。</td>
     </tr>
     <tr>
     <td>FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;</td><td>建立一組新的資料，其中包含每個唯一記錄層級值和其發生次數。 這會儲存到 FREQUENCIES</td>
     </tr>
     <tr>
-    <td>RESULT = order FREQUENCIES by COUNT desc;</td><td>依計數排序記錄層級 (遞減)，並且儲存到 RESULT</td>
+    <td>RESULT = order FREQUENCIES by COUNT desc;</td><td>訂單 hello 記錄層級計數 （遞減），並儲存成結果</td>
     </tr>
     </table>
-6.您也可以使用 `STORE` 陳述式儲存轉換結果。 例如，下列命令會將 `RESULT` 儲存到叢集之預設儲存體容器中的 **/example/data/pigout** 目錄：
+6.您也可以儲存轉換的 hello 結果使用 hello`STORE`陳述式。 例如，下列命令的 hello 儲存 hello `RESULT` toohello **/example/data/pigout**目錄中為您的叢集 hello 預設儲存體容器：
 
         STORE RESULT into 'wasb:///example/data/pigout'
 
    > [!NOTE]
-   > 資料會儲存到所指定目錄中名為 **part-nnnnn**的檔案中。 如果目錄已經存在，則會收到錯誤訊息。
+   > hello 資料會儲存在名為的檔案中的 hello 指定目錄**一部分 nnnnn**。 如果 hello 目錄已經存在，您會收到錯誤訊息。
    >
    >
-7. 若要結束 grunt 提示字元，請輸入下列陳述式。
+7. tooexit hello 提示字元中，grunt 輸入 hello 陳述式之後。
 
         QUIT;
 
 ### <a name="pig-latin-batch-files"></a>Pig Latin 批次檔
-您也可以使用 Pig 命令執行檔案中所含的 Pig Latin。
+您也可以使用 hello Pig 命令 toorun Pig 拉丁包含在檔案中。
 
-1. 結束 grunt 提示字元之後，請開啟**記事本**，並在 **%PIG_HOME%** 目錄中建立名為 **pigbatch.pig** 的新檔案。
-2. 在 **pigbatch.pig** 檔案中輸入或貼上下列數行，然後予以儲存：
+1. 結束 hello grunt 提示字元後, 開啟**記事本**並建立新的檔案命名為**pigbatch.pig**在 hello **%pig_home%**目錄。
+2. 型別或貼上 hello 下列各行至 hello **pigbatch.pig**檔案，並將其儲存：
 
         LOGS = LOAD 'wasb:///example/data/sample.log';
         LEVELS = foreach LOGS generate REGEX_EXTRACT($0, '(TRACE|DEBUG|INFO|WARN|ERROR|FATAL)', 1)  as LOGLEVEL;
@@ -104,11 +104,11 @@ ms.lasthandoff: 08/03/2017
         FREQUENCIES = foreach GROUPEDLEVELS generate group as LOGLEVEL, COUNT(FILTEREDLEVELS.LOGLEVEL) as COUNT;
         RESULT = order FREQUENCIES by COUNT desc;
         DUMP RESULT;
-3. 使用下列命令，以使用 pig 命令來執行 **pigbatch.pig** 檔案。
+3. 使用 hello 遵循 toorun hello **pigbatch.pig**使用 hello pig 命令的檔案。
 
         pig %PIG_HOME%\pigbatch.pig
 
-    批次工作完成後，您應該會看到下列輸出，而輸出應該會與先前步驟中使用 `DUMP RESULT;` 時相同：
+    Hello 批次工作完成時，您應該會看到下列輸出，應該是 hello 相同做為當您使用的 hello `DUMP RESULT;` hello 前述步驟中：
 
         (TRACE,816)
         (DEBUG,434)
@@ -118,7 +118,7 @@ ms.lasthandoff: 08/03/2017
         (FATAL,2)
 
 ## <a id="summary"></a>摘要
-如您所見，Pig 命令可讓您以互動方式執行 MapReduce 作業，或執行批次檔中所儲存的 Pig Latin 工作。
+如您所見，hello Pig 命令可讓您 toointeractively 執行 MapReduce 作業，或執行批次檔中儲存的 Pig 拉丁作業。
 
 ## <a id="nextsteps"></a>接續步驟
 如需 HDInsight 中 Pig 的一般資訊：

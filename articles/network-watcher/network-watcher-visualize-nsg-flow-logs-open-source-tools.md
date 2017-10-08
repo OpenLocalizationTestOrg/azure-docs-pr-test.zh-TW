@@ -1,6 +1,6 @@
 ---
-title: "使用開放原始碼工具將 Azure 網路監看員 NSG 流量記錄視覺化 | Microsoft Docs"
-description: "此頁面說明如何使用開放原始碼工具將 NSG 流量記錄視覺化。"
+title: "使用開放原始碼工具記錄檔的 Azure 網路監看員 NSG 流程 aaaVisualize |Microsoft 文件"
+description: "此頁面描述 toouse 如何開啟來源工具 toovisualize NSG 流程記錄檔。"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 20f60ccd9108a7473705c2368f28d3152d0dd614
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 47cb529d4a1e00e8c4c0fa6885cbf72aed3e74c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="visualize-azure-network-watcher-nsg-flow-logs-using-open-source-tools"></a>使用開放原始碼工具將 Azure 網路監看員 NSG 流量記錄視覺化
 
-網路安全性群組流量記錄提供的資訊可用於了解網路安全性群組上的輸入和輸出 IP 流量。 這些流量記錄顯示每一個規則的輸出和輸入流量、套用流量的 NIC、有關流量的 5 Tuple 資訊 (來源/目的地 IP、來源/目的地連接埠、通訊協定)，以及允許或拒絕流量。
+網路安全性群組流量記錄提供的資訊可用於了解網路安全性群組上的輸入和輸出 IP 流量。 這些流程記錄檔會顯示輸出，以每個規則為基礎的輸入的流量，hello NIC hello 流程套，5 tuple 資訊 hello 流程 (來源/目的地 IP，來源/目的地連接埠通訊協定)，和如果允許或拒絕 hello 流量。
 
-這些流量記錄難以手動剖析和獲得見解。 不過，有幾種開放原始碼工具可協助您將此資料視覺化。 本文提供的解決方案使用「彈性堆疊」將這些記錄視覺化，該功能可讓您快速編製索引並以視覺化方式在 Kibana 儀表板上呈現流量記錄。
+這些流程記錄檔可以是難以 toomanually 剖析，並從中獲得見解。 不過，有幾種開放原始碼工具可協助您將此資料視覺化。 這篇文章會提供方案 toovisualize 使用 hello 彈性堆疊，以 tooquickly 索引可讓您，以視覺化方式檢視程式 Kibana 儀表板上的流量記錄這些記錄。
 
 ## <a name="scenario"></a>案例
 
-在本文中，我們將設定一個解決方案，讓您使用「彈性堆疊」將網路安全性群組流量記錄視覺化。  Logstash 輸入外掛程式會直接從為了容納流量記錄而設定的儲存體 Blob 取得流量記錄。 然後，使用「彈性堆疊」，替流量記錄編製索引並用來建立 Kibana 儀表板，以將資訊視覺化。
+在本文中，我們將設定可讓您使用 hello 彈性堆疊 toovisualize 網路安全性小組流程記錄的解決方案。  Logstash 輸入的外掛程式會直接從 hello 設定為包含 hello 流程記錄檔的儲存體 blob 取得 hello 流程記錄檔。 然後，使用 hello 彈性堆疊，hello 流程記錄檔會編製索引並使用 toocreate Kibana 儀表板 toovisualize hello 資訊。
 
 ![案例][scenario]
 
 ## <a name="steps"></a>步驟
 
 ### <a name="enable-network-security-group-flow-logging"></a>啟用網路安全性群組流量記錄
-在此案例中，您必須在您的帳戶中至少一個網路安全性群組上啟用「網路安全性群組流量記錄」。 如需有關啟用網路安全性流量記錄的指示，請參閱下列文章︰[網路安全性群組的流量記錄簡介](network-watcher-nsg-flow-logging-overview.md)。
+在此案例中，您必須在您的帳戶中至少一個網路安全性群組上啟用「網路安全性群組流量記錄」。 如需有關啟用網路安全性流程記錄檔的指示，請參閱下列文章 toohello[網路安全性群組的簡介 tooflow 記錄](network-watcher-nsg-flow-logging-overview.md)。
 
 
-### <a name="set-up-the-elastic-stack"></a>設定彈性堆疊
-藉由連線 NSG 流量記錄與彈性堆疊，我們可以建立 Kibana 儀表板，以便從記錄搜尋、繪圖、分析和洞察。
+### <a name="set-up-hello-elastic-stack"></a>設定彈性堆疊 hello
+藉由連接 NSG hello 彈性堆疊的記錄檔，我們可以建立 Kibana 儀表板，讓我們 toosearch、 圖形、 分析和洞察從我們的記錄檔。
 
 #### <a name="install-elasticsearch"></a>安裝 Elasticsearch
 
-1. 5.0 版和更新版本的彈性堆疊需要 Java 8。 執行命令 `java -version` 來檢查您的版本。 如果您沒有安裝 Java，請參閱 [Oracle 網站](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)上的文件
-1. 針對您的系統下載正確的二進位套件︰
+1. hello 彈性堆疊從 5.0 版和更新版本需要 Java 8。 執行 hello 命令`java -version`toocheck 您的版本。 如果您沒有安裝，請參閱 toodocumentation java [Oracle 的網站](http://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html)
+1. 下載 hello 二進位的正確封裝您的系統：
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.2.0.deb
@@ -54,13 +54,13 @@ ms.lasthandoff: 07/11/2017
 
     可在 [Elasticsearch 安裝](https://www.elastic.co/guide/en/beats/libbeat/5.2/elasticsearch-installation.html)找到其他安裝方法
 
-1. 使用下列命令確認 Elasticsearch 正在執行︰
+1. 請確認 Elasticsearch 正以 hello 命令：
 
     ```
     curl http://127.0.0.1:9200
     ```
 
-    您應該會看到如下所示的回應：
+    您應該會看到回應類似 toothis:
 
     ```
     {
@@ -77,23 +77,23 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-如需安裝彈性搜尋的進一步指示，請參閱[安裝](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)頁面
+如需有關安裝彈性的搜尋的進一步指示，請參閱 toohello 頁面[安裝](https://www.elastic.co/guide/en/elasticsearch/reference/5.2/_installation.html)
 
 ### <a name="install-logstash"></a>安裝 Logstash
 
-1. 若要安裝 Logstash，請執行下列命令︰
+1. tooinstall Logstash 執行 hello 下列命令：
 
     ```
     curl -L -O https://artifacts.elastic.co/downloads/logstash/logstash-5.2.0.deb
     sudo dpkg -i logstash-5.2.0.deb
     ```
-1. 接下來，我們必須設定 Logstash 以存取並剖析流量記錄。 建立 logstash.conf 檔案，使用︰
+1. 接著，我們需要 tooconfigure Logstash tooaccess 及剖析 hello 流程記錄。 建立 logstash.conf 檔案，使用︰
 
     ```
     sudo touch /etc/logstash/conf.d/logstash.conf
     ```
 
-1. 將下列內容新增至檔案：
+1. 加入下列內容 toohello 檔 hello:
 
   ```
     input {
@@ -151,94 +151,94 @@ ms.lasthandoff: 07/11/2017
 
   ```
 
-如需安裝 Logstash 的進一步指示，請參閱[正式文件](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)
+如需安裝 Logstash 的進一步指示，請參閱 toohello[官方文件集](https://www.elastic.co/guide/en/beats/libbeat/5.2/logstash-installation.html)
 
-### <a name="install-the-logstash-input-plugin-for-azure-blob-storage"></a>安裝 Azure blob 儲存體的 Logstash 輸入外掛程式
+### <a name="install-hello-logstash-input-plugin-for-azure-blob-storage"></a>安裝 Azure blob 儲存體的 hello Logstash 輸入的外掛程式
 
-此 Logstash 外掛程式可讓您直接從流量記錄的指定儲存體帳戶存取它們。 若要安裝此外掛程式，請從預設的 Logstash 安裝目錄 (在此案例中為 /usr/share/logstash/bin) 執行下列命令：
+此 Logstash 外掛程式可讓您 toodirectly 存取 hello 流程記錄檔從其指定的儲存體帳戶。 tooinstall 此外掛程式中，從 hello 預設 Logstash （在此案例的 /usr/share/logstash/bin) 的安裝目錄執行 hello 命令：
 
 ```
 logstash-plugin install logstash-input-azureblob
 ```
 
-若要啟動 Logstash，請執行命令︰
+toostart Logstash 執行 hello 命令：
 
 ```
 sudo /etc/init.d/logstash start
 ```
 
-如需此外掛程式的詳細資訊，請參閱[這裡 (英文)](https://github.com/Azure/azure-diagnostics-tools/tree/master/Logstash/logstash-input-azureblob) 的文件
+如需有關此外掛程式的詳細資訊，請參閱 toodocumentation[這裡](https://github.com/Azure/azure-diagnostics-tools/tree/master/Logstash/logstash-input-azureblob)
 
 ### <a name="install-kibana"></a>安裝 Kibana
 
-1. 執行下列命令以安裝 Kibana：
+1. 執行下列命令 tooinstall Kibana hello:
 
   ```
   curl -L -O https://artifacts.elastic.co/downloads/kibana/kibana-5.2.0-linux-x86_64.tar.gz
   tar xzvf kibana-5.2.0-linux-x86_64.tar.gz
   ```
 
-1. 若要執行 Kibana，請使用這些命令︰
+1. toorun Kibana 使用 hello 命令：
 
   ```
   cd kibana-5.2.0-linux-x86_64/
   ./bin/kibana
   ```
 
-1. 若要檢視 Kibana Web 介面，請瀏覽至`http://localhost:5601`
-1. 在此案例中，用於流量記錄的索引模式為 "nsg-flow-logs"。 您可以變更 logstash.conf 檔案的 [輸出] 區段中的索引模式。
+1. tooview Kibana web 介面，請瀏覽過`http://localhost:5601`
+1. 此案例中，用於 hello 流程記錄檔的 hello 索引模式是 「 nsg 流程-記錄檔 」。 您可以變更 logstash.conf 檔案 hello 「 輸出 」 一節中的 hello 索引模式。
 
-1. 如果您想要從遠端檢視 Kibana 儀表板，建立輸入 NSG 規則以允許存取**連接埠 5601**。
+1. 如果要從遠端 tooview hello Kibana 儀表板，請建立輸入的 NSG 規則允許存取太**連接埠 5601**。
 
 ### <a name="create-a-kibana-dashboard"></a>建立 Kibana 儀表板
 
-在本文中，我們提供了範例儀表板，讓您檢視警示中的趨勢和詳細資料。
+如本文中，我們已提供為您 tooview 趨勢的範例儀表板和中的警示詳細資料。
 
 ![圖 1][1]
 
-1. 下載儀表板檔案 ([這裡](https://aka.ms/networkwatchernsgflowlogdashboard))、視覺效果檔案 ([這裡](https://aka.ms/networkwatchernsgflowlogvisualizations))，以及儲存的搜尋檔案 ([這裡](https://aka.ms/networkwatchernsgflowlogsearch))。
+1. 下載 hello 儀表板檔案[這裡](https://aka.ms/networkwatchernsgflowlogdashboard)，hello 視覺效果檔案[這裡](https://aka.ms/networkwatchernsgflowlogvisualizations)，和儲存的 hello 搜尋檔案[這裡](https://aka.ms/networkwatchernsgflowlogsearch)。
 
-1. 在 Kibana 的 [管理] 索引標籤下，瀏覽至 [儲存的物件] 並匯入這三個檔案。 然後您可以從 [儀表板] 索引標籤開啟並載入範例儀表板。
+1. 在 hello**管理** 索引標籤的 Kibana，瀏覽過**儲存物件**並匯入所有的三個檔案。 然後從 hello**儀表板** 索引標籤，您可以開啟和負載 hello 範例儀表板。
 
 您也可以針對自己感興趣的計量，量身製作自己的視覺效果和儀表板。 從 Kibana 的[正式文件](https://www.elastic.co/guide/en/kibana/current/visualize.html)深入了解如何建立 Kibana 視覺效果。
 
 ### <a name="visualize-nsg-flow-logs"></a>將 NSG 流量記錄視覺化
 
-範例儀表板會提供流量記錄的數個視覺效果︰
+hello 範例儀表板會提供數個視覺效果的 hello 流程記錄檔：
 
-1. 一段時間各決策/方向的流量 - 顯示一段期間內流量數目的時間序列圖。 您可以編輯這些視覺效果的時間單位和範圍。 「各決策的流量」顯示允許或拒絕所做決策的比例，而「各方向的流量」則顯示輸入和輸出流量的比例。 使用這些視覺效果，您可以檢查一段時間的流量趨勢，並尋找任何突增狀況或不尋常的模式。
+1. 流程決策/方向一段時間的時間序列圖形顯示 hello 時間週期的 hello 流程數目。 您可以編輯 hello 時間單位，而且這些視覺效果的範圍。 流程決策顯示 hello 比例的允許或拒絕流量的輸入和輸出流量的方向顯示 hello 比例時所做的決定。 使用這些視覺效果，您可以檢查一段時間的流量趨勢，並尋找任何突增狀況或不尋常的模式。
 
   ![圖 2][2]
 
-1. 各目的地/來源連接埠的流量 – 圓形圖，可顯示個別連接埠的流量分解。 在此檢視中，您可以查看最常使用的連接埠。 如果您按一下圓形圖內的特定連接埠，則儀表板的其餘部分會進一步篩選至該連接埠的流量。
+1. 流程由目的地/來源的連接埠-圓形圖顯示 hello 分解的流量 tootheir 個別連接埠。 在此檢視中，您可以查看最常使用的連接埠。 如果您按一下 hello 圓形圖內的特定連接埠上，hello 儀表板的 hello rest 會篩選 tooflows 連接埠的清單。
 
   ![圖 3][3]
 
-1. 流量數目和最早記錄時間 – 顯示已記錄流量數目和最舊記錄擷取日期之計量。
+1. 流程和最早記錄時間 – 顯示您的流量 hello 數目記錄和 hello 最早的記錄檔的 hello 日期擷取度量的數目。
 
   ![圖 4][4]
 
-1. 各 NSG 和規則的流量 – 長條圖，可顯示每個 NSG 內的流量分布，以及每個 NSG 內的規則。 您可以在這裡查看哪些 NSG 和規則產生最多流量。
+1. NSG 的規則-橫條圖，顯示您的流程中每個 NSG，hello 發佈，以及 hello 發佈中每個 NSG 規則的流量。 從這裡您可以看到哪些 NSG 及規則產生 hello 大部分的流量。
 
   ![圖 5][5]
 
-1. 前 10 個來源/目的地 IP – 長條圖，可顯示前 10 個來源和目的地 IP。 您可以調整這些圖表以顯示更多或更少的 IP 排名。 您可以在這裡查看最常出現的 IP，以及針對每個 IP 進行的流量決策 (允許或拒絕)。
+1. 前 10 個來源/目的地 Ip – 顯示 hello 前 10 個來源和目的地 Ip 的橫條圖。 您可以調整這些圖表 tooshow 增加或減少最上層的 Ip。 從這裡您可以查看最常進行 Ip hello 以及 hello 流量決策 （允許或拒絕） 進行向每個 IP。
 
   ![圖 6][6]
 
-1. 流量 Tuple – 下表顯示每個流量 Tuple 內含的資訊，以及其對應的 NGS 和規則。
+1. 下表顯示您流程 Tuple – hello 中的每個流程 tuple，以及對應 NGS 和規則所包含的資訊。
 
   ![圖 7][7]
 
-使用儀表板頂端的查詢列，您可以根據任何流量參數 (例如訂用帳戶識別碼、資源群組、規則或任何其他感興趣的變數)，進一步篩選儀表板。 如需 Kibana 查詢與篩選器的詳細資訊，請參閱[正式文件](https://www.elastic.co/guide/en/beats/packetbeat/current/kibana-queries-filters.html)
+使用 hello 查詢列在 hello hello 儀表板的頂端，您可以篩選向下 hello hello 的流量，例如訂用帳戶 ID、 資源群組、 規則或感興趣的任何其他變數的任何參數為基礎的儀表板。 如需詳細資訊 Kibana 的查詢和篩選，請參閱 toohello[官方文件集](https://www.elastic.co/guide/en/beats/packetbeat/current/kibana-queries-filters.html)
 
 ## <a name="conclusion"></a>結論
 
-結合網路安全性群組流量記錄與彈性堆疊，我們提供功能強大且可自訂的方式來將網路流量視覺化。 這些儀表板可讓您快速取得和分享您的網路流量深入解析，以及進一步篩選和調查任何潛在的異常狀況。 您可以使用 Kibana 量身製作這些儀表板並建立特定視覺效果，以符合任何安全性、稽核和合規性需求。
+藉由結合 hello 網路安全性小組流程記錄檔以 hello 彈性堆疊，我們已隨附於強大、 可自訂的方式 toovisualize 我們網路流量。 這些儀表板 tooquickly 改善可讓您共用深入了解您的網路流量，以及篩選向下以及調查任何潛在的異常狀況。 使用 Kibana，您可以修改這些儀表板，並建立特定視覺效果 toomeet 任何安全性、 稽核及相容性的需求。
 
 ## <a name="next-steps"></a>後續步驟
 
-若要了解如何利用 Power BI 將 NSG 流量記錄視覺化，請瀏覽[利用 Power BI 將 NSG 流量記錄視覺](network-watcher-visualize-nsg-flow-logs-power-bi.md)
+了解 toovisualize NSG 流程記錄的方式有了 Power BI 瀏覽[視覺化 NSG 流動 Power BI 的記錄檔](network-watcher-visualize-nsg-flow-logs-power-bi.md)
 
 
 <!--Image references-->

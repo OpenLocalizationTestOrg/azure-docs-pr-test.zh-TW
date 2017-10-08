@@ -1,5 +1,5 @@
 ---
-title: "Azure Mobile Engagement iOS SDK 整合 | Microsoft Docs"
+title: "Mobile Engagement iOS SDK 整合 aaaAzure |Microsoft 文件"
 description: "Azure Mobile Engagement iOS SDK 的最新更新與程序"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,13 +14,13 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: piyushjo
-ms.openlocfilehash: 01fdbb43c21ac6932e8462f4a6507fc63e50542d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 66ce34efabede7d882caa8a91431a8df71e4fb59
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-integrate-engagement-on-ios"></a>如何在 iOS 上整合 Engagement
+# <a name="how-toointegrate-engagement-on-ios"></a>如何在 iOS 上的 tooIntegrate Engagement
 > [!div class="op_single_selector"]
 > * [Windows Universal](mobile-engagement-windows-store-integrate-engagement.md)
 > * [Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md)
@@ -29,24 +29,24 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-此程序描述在您的 iOS 應用程式中，啟動 Engagement 的分析和監視功能時，最簡單的方法。
+此程序描述 hello 最簡單方式 tooactivate Engagement 分析及監視您的 iOS 應用程式中的函式。
 
-Engagement SDK 需要 iOS 7 以上和 Xcode 8 以上版本：應用程式的部署目標必須至少為 iOS 7。
+hello Engagement SDK 需要 iOS7 + 和 Xcode 8 +: hello 部署目標的應用程式至少必須為 iOS 7。
 
 > [!NOTE]
-> 如果您實際上是仰賴 XCode 7，則可以使用 [iOS Engagement SDK v3.2.4](https://aka.ms/r6oouh)。 這個舊版本的觸達模組在 iOS 10 裝置上執行時有已知錯誤，請參閱 [觸達模組整合](mobile-engagement-ios-integrate-engagement-reach.md) 以取得詳細資訊。 如果您選擇使用 SDK v3.2.4，請直接跳過下一個步驟中的 `UserNotifications.framework` 匯入。
+> 如果您真的依賴 XCode 7，則您可能使用 hello [iOS Engagement SDK v3.2.4](https://aka.ms/r6oouh)。 沒有已知的錯誤之前的版本中的 hello 觸達模組，請參閱 iOS 10 裝置上執行時[hello 觸達模組整合](mobile-engagement-ios-integrate-engagement-reach.md)如需詳細資訊。 若您選擇 toouse hello SDK v3.2.4 則直接略過 hello `UserNotifications.framework` hello 下一個步驟中匯入。
 >
 >
 
-下列步驟便足以啟用計算使用者、工作階段、活動、當機和技術等所有統計資料時需要的記錄檔報告。 用來計算事件、錯誤及工作等其他統計資料所需的記錄檔報告必須使用 Engagement API 手動完成 (請參閱[如何在 iOS 應用程式中使用進階的 Mobile Engagement 標記 API](mobile-engagement-ios-use-engagement-api.md))，因為這些是與應用程式相依的統計資料。
+hello 步驟所記錄的足夠 tooactivate hello 報表所需 toocompute 關於使用者、 工作階段、 活動、 當機和 Technicals 的所有統計資料。 hello 報表的記錄檔所需 toocompute 其他統計資料像是事件、 錯誤和作業必須完成手動使用 hello Engagement 應用程式開發介面 (請參閱[toouse hello 進階 Mobile Engagement 應用程式開發介面中 iOS 應用程式所標記的方式](mobile-engagement-ios-use-engagement-api.md)自這些統計資料所相依的應用程式。
 
-## <a name="embed-the-engagement-sdk-into-your-ios-project"></a>將 Engagement SDK 嵌入您的 iOS 專案
-* 從 [這裡](http://aka.ms/qk2rnj)下載 iOS SDK。
-* 將 Engagement SDK 加入您的 iOS 專案：在 Xcode 中，以滑鼠右鍵按一下專案，然後選取 [新增檔案至]，再選擇 `EngagementSDK` 資料夾。
-* Engagement 需要額外的架構才能運作：在專案總管中，開啟專案窗格並選取正確的目標。 然後，開啟 [建置階段] 索引標籤，在 [連結二進位檔與程式庫] 功能表中加入下列架構：
+## <a name="embed-hello-engagement-sdk-into-your-ios-project"></a>內嵌至 iOS 專案中的 hello Engagement SDK
+* 下載 hello iOS SDK 從[這裡](http://aka.ms/qk2rnj)。
+* 新增 hello Engagement SDK tooyour iOS 專案： 在 Xcode 中，以滑鼠右鍵按一下您的專案並選取**」 太新增檔案..."**選擇 hello`EngagementSDK`資料夾。
+* Engagement 會需要額外的架構 toowork: hello 專案總管 中開啟您專案的窗格，然後選取 hello 正確的目標。 然後，開啟 hello **建置階段** 索引標籤和 hello **< 連結二進位與媒體櫃**功能表上，新增這些架構：
 
-  * `UserNotifications.framework`：將連結設為`Optional`
-  * `AdSupport.framework`：將連結設為`Optional`
+  * `UserNotifications.framework`-為設定 hello 連結`Optional`
+  * `AdSupport.framework`-為設定 hello 連結`Optional`
   * `SystemConfiguration.framework`
   * `CoreTelephony.framework`
   * `CFNetwork.framework`
@@ -54,18 +54,18 @@ Engagement SDK 需要 iOS 7 以上和 Xcode 8 以上版本：應用程式的部�
   * `libxml2.dylib`
 
 > [!NOTE]
-> AdSupport 架構可以移除。 Engagement 需要此架構來收集 IDFA。 但您可以停用 IDFA 集合 \<ios-sdk-engagement-idfa\>，以符合關於此識別碼的新 Apple 原則。
+> 您可以移除 hello AdSupport 架構。 Engagement 會需要這個 framework toocollect hello IDFA。 不過，您可以停用 IDFA 收集\<ios sdk-engagement idfa\> toocomply hello 新 Apple 原則有關此識別碼。
 >
 >
 
-## <a name="initialize-the-engagement-sdk"></a>初始化 Engagement SDK
-您需要修改應用程式委派：
+## <a name="initialize-hello-engagement-sdk"></a>初始化 hello Engagement SDK
+您需要 toomodify 您應用程式的委派：
 
-* 在實作檔案頂端匯入 Engagement 代理程式：
+* 在實作檔 hello 頂端，匯入 hello Engagement 代理程式：
 
       [...]
       #import "EngagementAgent.h"
-* 在 '**applicationDidFinishLaunching:**' 或 '**application:didFinishLaunchingWithOptions:**' 方法內初始化 Engagement：
+* 初始化 Engagement hello 方法內 '**applicationDidFinishLaunching:**'**: Didfinishlaunchingwithoptions<:**':
 
       - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
       {
@@ -76,7 +76,7 @@ Engagement SDK 需要 iOS 7 以上和 Xcode 8 以上版本：應用程式的部�
 
 ## <a name="basic-reporting"></a>基本報告
 ### <a name="recommended-method-overload-your-uiviewcontroller-classes"></a>建議使用的方法：多載您的 `UIViewController` 類別
-若要啟動 Engagement 需要的所有記錄檔報告，來計算使用者、工作階段、活動、當機和技術統計資料，您只需要讓所有 `UIViewController` 子類別繼承自 `EngagementViewController` 類別 (`UITableViewController` -\>`EngagementTableViewController` 也是相同的規則)。
+訂單 tooactivate hello Engagement toocompute 使用者、 工作階段、 活動、 當機和技術的統計資料所需的所有 hello 記錄檔的報表，您可以只在所有您`UIViewController`子類別是繼承自 hello`EngagementViewController`類別 （相同的規則如`UITableViewController`  - \> `EngagementTableViewController`)。
 
 **沒有 Engagement：**
 
@@ -104,24 +104,24 @@ Engagement SDK 需要 iOS 7 以上和 Xcode 8 以上版本：應用程式的部�
     @property (nonatomic, retain) IBOutlet UITextField* myTextField2;
 
 ### <a name="alternate-method-call-startactivity-manually"></a>替代方法：手動呼叫 `startActivity()`
-如果您無法或不想要多載 `UIViewController` 類別，可以改用直接呼叫 `EngagementAgent` 的方法來開始活動。
+如果您無法或不想 toooverload 您`UIViewController`類別，您可以改為啟動您的活動藉由呼叫`EngagementAgent`的直接的方法。
 
 > [!IMPORTANT]
-> iOS SDK 會在應用程式關閉時自動呼叫 `endActivity()` 方法。 因此，「強烈」建議每當使用者的活動變更時便呼叫 `startActivity` 方法，並且「絕對不要」呼叫 `endActivity` 方法，因為呼叫此方法會強制結束目前的工作階段。
+> hello iOS SDK 會自動呼叫 hello `endActivity()` hello 應用程式關閉時的方法。 因此，它是*高*建議 toocall hello`startActivity`每當 hello 使用者的 hello 活動變更時，方法和太*永不*呼叫 hello`endActivity`方法，因為呼叫這個方法會強制hello 目前工作階段 toobe 結束。
 >
 >
 
 ## <a name="location-reporting"></a>位置報告
-Apple 服務條款不允許應用程式只為了統計資料的目的而使用位置追蹤。 因此，建議您只有當應用程式也會因為另一個原因而使用位置追蹤時，才啟用位置報告。
+Apple 服務條款不允許應用程式統計資料的目的只追蹤 toouse 位置。 因此，建議 tooenable 位置報告只有當您的應用程式也會使用 hello 位置追蹤，因為其他原因。
 
-從 iOS 8 開始，您必須提供應用程式如何使用位置服務的描述，方法是在應用程式的 Info.plist 檔案中設定索引鍵 [NSLocationWhenInUseUsageDescription] 或 [NSLocationAlwaysUsageDescription] 的字串。 如果您想要在背景以 Engagement 報告位置，請加入 NSLocationAlwaysUsageDescription 索引鍵。 在其他情況下，請加入 NSLocationWhenInUseUsageDescription 索引鍵。 請注意，在 iOS 11 上，您同時需要 NSLocationAlwaysAndWhenInUseUsageDescription 和 NSLocationWhenInUseUsageDescription 來報告背景位置。
+從 iOS 8 開始，您必須提供您的應用程式藉由設定 hello 索引鍵的字串所使用的位置服務的描述[NSLocationWhenInUseUsageDescription]或[NSLocationAlwaysUsageDescription]您的應用程式 Info.plist 檔案中。 如果您想在 hello 背景與 Engagement tooreport 位置，請新增 hello 金鑰 NSLocationAlwaysUsageDescription。 在其他情況下，加入 hello 機碼 NSLocationWhenInUseUsageDescription。 請注意，您需要在 iOS 11 NSLocationAlwaysAndWhenInUseUsageDescription 和 NSLocationWhenInUseUsageDescription tooreport 背景位置。
 
 ### <a name="lazy-area-location-reporting"></a>簡易區域位置報告
-延遲區域位置報告允許報告國家、地區以及與裝置相關聯的位置。 這類位置報告只會使用網路位置 (根據基地台識別碼或 WIFI)。 每個工作階段最多報告一次裝置區域。 絕不會使用 GPS，因此這類位置報告對於電池的影響很小 (但不是沒有)。
+延遲區域位置回報允許 tooreport hello 國家/地區、 區域和位置相關聯 toodevices。 這類位置報告只會使用網路位置 (根據基地台識別碼或 WIFI)。 裝置 hello 區域會報告每個工作階段最多一次。 hello GPS 從未使用過，，因此這種類型的報表位置會有很少 (不 toosay 沒有) hello 電池的影響。
 
-報告的區域用來計算關於使用者、工作階段、事件與錯誤的地理統計資料。 它們也可用來做為觸達活動的準則。 針對裝置報告的最後已知區域可以藉由 [裝置 API]來擷取。
+報告的區域是使用的 toocompute 有關使用者、 工作階段、 事件和錯誤地理統計資料。 它們也可用來做為觸達活動的準則。 最後一個已知區域所報告的裝置可以擷取感謝您 toohello hello[裝置 API]。
 
-若要啟用延遲區域位置報告，請在初始化 Engagement 代理程式之後加入下面這一行：
+tooenable 延遲區域位置回報，加入下列一行之後初始化 hello Engagement 代理程式的 hello:
 
     - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     {
@@ -131,60 +131,60 @@ Apple 服務條款不允許應用程式只為了統計資料的目的而使用�
     }
 
 ### <a name="real-time-location-reporting"></a>即時位置報告
-即時位置報告允許報告與裝置相關聯的緯度和經度。 根據預設，這類位置報告只會使用網路位置 (根據基地台識別碼或 WIFI)，且只會在應用程式於前景中執行 (也就是在工作階段) 時，報告才會為作用中。
+即時位置回報允許 tooreport hello 緯度和經度相關聯 toodevices。 根據預設，這類位置報告只會使用網路位置 （根據資料格識別碼或 WIFI），而且 hello reporting 僅 active hello 應用程式在前景中執行 （也就是在工作階段） 時。
 
-即時位置「不會」  用來計算統計資料。 其唯一用途，是允許在觸達活動中使用即時地理圍欄 \<Reach-Audience-geofencing\> 準則。
+即時位置*不*用 toocompute 統計資料。 其唯一用途就是即時地理圍欄 tooallow hello 使用\<觸達觀眾-地理圍欄\>觸達活動中的準則。
 
-若要啟用即時位置報告，請在初始化 Engagement 代理程式之後加入下面這一行：
+tooenable 即時位置回報，加入下列一行之後初始化 hello Engagement 代理程式的 hello:
 
     [[EngagementAgent shared] setRealtimeLocationReport:YES];
 
 #### <a name="gps-based-reporting"></a>GPS 的報告
-根據預設，即時位置報告只會使用網路位置。 若要啟用 GPS 位置 (精準度大為提高)，請加入：
+根據預設，即時位置報告只會使用網路位置。 GPS tooenable hello 使用基礎 （也就是更精確） 的位置，加入：
 
     [[EngagementAgent shared] setFineRealtimeLocationReport:YES];
 
 #### <a name="background-reporting"></a>背景報告
-根據預設，即時位置報告只在應用程式在前景中執行 (也就是在工作階段) 時才會為作用中。 若要也在背景中啟用報告，請加入：
+根據預設，即時位置回報作用中時才 hello 應用程式在前景中執行 （也就是在工作階段）。 tooenable hello reporting 也在背景中，加入：
 
     [[EngagementAgent shared] setBackgroundRealtimeLocationReport:YES withLaunchOptions:launchOptions];
 
 > [!NOTE]
-> 當應用程式在背景中執行，即使啟用 GPS，也只會報告網路位置。
+> 當背景中執行 hello 應用程式時，會報告只有基礎的網路位置，即使您啟用 hello GPS。
 >
 >
 
-實作此函數會在應用程式進入背景時呼叫 [startMonitoringSignificantLocationChanges] 。 請注意，如果新的位置事件抵達，它會自動重新啟動您的應用程式到背景中。
+此函式實作會呼叫[startMonitoringSignificantLocationChanges]應用程式進入 hello 背景。 請注意，它會自動重新啟動應用程式分成 hello 背景如果新的位置事件抵達。
 
 ## <a name="advanced-reporting"></a>進階報告
-此外，如果您想要報告應用程式的特定事件、錯誤和工作，必須透過 `EngagementAgent` 類別的方法使用 Engagement API。 此類別的物件可以透過呼叫 `[EngagementAgent shared]` 靜態方法來擷取。
+（選擇性） 如果您想 tooreport 應用程式特定事件、 錯誤和工作，您需要透過 hello 方法的 hello toouse hello Engagement API`EngagementAgent`類別。 這個類別的物件可以擷取由呼叫 hello`[EngagementAgent shared]`靜態方法。
 
-Engagement API 可允許使用所有 Engagement 的進階功能，詳情請見＜如何在 iOS 上使用 Engagement API＞(以及 `EngagementAgent` 類別的技術文件)。
+hello Engagement API 允許 toouse 所有參與的進階功能，並會詳細說明 hello 如何 tooUse 在 iOS 上的行動應用程式開發介面 (以及在 hello hello 的技術文件中`EngagementAgent`類別)。
 
 ## <a name="disable-idfa-collection"></a>停用 IDFA 集合
-根據預設，Engagement 會使用 [IDFA] 來唯一識別使用者。 但是，如果您未在應用程式中的其他地方使用廣告，您可能會遭到應用程式市集審查程序拒絕。 您可以在 pch 檔案 (或是在應用程式的 `Build Settings` 中) 加入前置處理器巨集 `ENGAGEMENT_DISABLE_IDFA`，藉此停用 IDFA 集合。 如此可確保應用程式組建中沒有任何對 `ASIdentifierManager`、`advertisingIdentifier` 或 `isAdvertisingTrackingEnabled` 的參考。
+根據預設，部署將會使用 hello [IDFA] toouniquely 識別使用者。 但是，如果您不使用廣告 hello 應用程式中的其他位置，您可能會拒絕的 hello App Store 檢閱程序。 藉由新增 hello 前置處理器巨集可以停用 IDFA 收集`ENGAGEMENT_DISABLE_IDFA`pch 檔案中 (或在 hello`Build Settings`應用程式)。 這可確保沒有任何參考太`ASIdentifierManager`，`advertisingIdentifier`或`isAdvertisingTrackingEnabled`hello 應用程式組建中。
 
-**prefix.pch** 檔案中的整合：
+Hello 中的整合**prefix.pch**檔案：
 
     #define ENGAGEMENT_DISABLE_IDFA
     ...
 
-您可以藉由檢查 Engagement 測試記錄檔，確認 IDFA 集合已在應用程式中正確停用。 請參閱 Integration Test\<ios-sdk-engagement-test-idfa\> 文件以取得進一步資訊。
+您可以確認 hello IDFA 收集已正確地停用應用程式中藉由檢查 hello Engagement 測試記錄。 請參閱整合測試的 hello\<ios-sdk-部署-測試-idfa\>文件的進一步資訊。
 
 ## <a name="disable-log-reporting"></a>停用記錄報告
 ### <a name="using-a-method-call"></a>使用方法呼叫
-如果您想要 Engagement 停止傳送記錄檔，可以呼叫：
+如果您想 Engagement toostop 傳送記錄檔，您可以呼叫：
 
     [[EngagementAgent shared] setEnabled:NO];
 
-這個呼叫是持續性的：它會使用 `NSUserDefaults` 來存放資訊。
+這個呼叫是持續性： 它會使用`NSUserDefaults`toostore hello 資訊。
 
-您可以使用 `YES`呼叫相同函數，即可再次啟用記錄報告。
+您可以啟用記錄 reporting 再次呼叫相同函式與 hello `YES`。
 
 ### <a name="integration-in-your-settings-bundle"></a>設定組合中的整合
-如不呼叫此函數，您也可以直接在現有的 `Settings.bundle` 檔案中整合此設定。 字串 `engagement_agent_enabled` 必須當做喜好設定識別碼，而且必須與切換開關相關聯 (`PSToggleSwitchSpecifier`)。
+如不呼叫此函數，您也可以直接在現有的 `Settings.bundle` 檔案中整合此設定。 hello 字串`engagement_agent_enabled`必須使用為 hello 喜好設定識別項，且必須關聯的 tooa 切換參數 (`PSToggleSwitchSpecifier`)。
 
-以下 `Settings.bundle` 範例說明如何實作：
+下列範例中的 hello`Settings.bundle`示範如何 tooimplement 它：
 
     <dict>
         <key>PreferenceSpecifiers</key>

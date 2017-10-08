@@ -1,6 +1,6 @@
 ---
-title: "教學課程 - 使用適用於 .NET 的 Azure Batch 用戶端程式庫 | Microsoft Docs"
-description: "了解 Azure Batch 的基本概念和使用 .NET 建置簡單的解決方案。"
+title: "aaaTutorial-使用 hello Azure 批次用戶端程式庫適用於.NET |Microsoft 文件"
+description: "深入了解 hello Azure Batch 基本概念，並建立使用適用於.NET 的簡易解決方案。"
 services: batch
 documentationcenter: .net
 author: tamram
@@ -15,13 +15,13 @@ ms.workload: big-compute
 ms.date: 06/28/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: cf8fdca51a6a4ad1b7cd4fe6980543199f6b36e0
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 06062b3886a8081bd9a831824a981503ef55f9b7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-building-solutions-with-the-batch-client-library-for-net"></a>開始使用適用於.NET 的 Batch 用戶端程式庫來建置解決方案
+# <a name="get-started-building-solutions-with-hello-batch-client-library-for-net"></a>開始建置適用於.NET 的解決方案與 hello 批次的用戶端程式庫
 
 > [!div class="op_single_selector"]
 > * [.NET](batch-dotnet-get-started.md)
@@ -30,12 +30,12 @@ ms.lasthandoff: 08/29/2017
 >
 >
 
-在我們逐步討論 C# 範例應用程式時，了解本文中 [Azure Batch][azure_batch] 和 [Batch .NET][net_api] 程式庫的基本概念。 我們將看看此範例應用程式如何利用 Batch 服務來處理雲端的平行工作負載，和如何與 [Azure 儲存體](../storage/common/storage-introduction.md)互動來預備和擷取檔案。 您將了解常見的 Batch 應用程式工作流程，並取得 Batch 的主要元件，例如作業、工作、集區和計算節點。
+了解 hello 基本概念的[Azure Batch] [ azure_batch]和 hello[批次.NET] [ net_api]本文章中的程式庫我們討論 C# 範例應用程式步驟的步驟。 我們會審視如何 hello 範例應用程式會利用 hello 批次服務 tooprocess 平行的工作負載中 hello 雲端，以及它如何與互動[Azure 儲存體](../storage/common/storage-introduction.md)檔案暫存和擷取。 您將了解常見的批次應用程式工作流程和基底的 hello 主要元件批次的工作、 工作、 集區，例如了解計算節點。
 
 ![Batch 方案工作流程 (基本)][11]<br/>
 
 ## <a name="prerequisites"></a>必要條件
-本文假設您已具備 C# 和 Visual Studio 的使用知識。 而且假設您可以滿足針對 Azure Batch 和儲存體服務所指定的帳戶建立需求。
+本文假設您已具備 C# 和 Visual Studio 的使用知識。 它也假設您使用的是可以 toosatisfy hello 帳戶建立所指定需求的下面針對 Azure hello 批次和儲存體服務。
 
 ### <a name="accounts"></a>帳戶
 * **Azure 帳戶**：如果您沒有 Azure 訂用帳戶，請[建立免費的 Azure 帳戶][azure_free_account]。
@@ -43,54 +43,54 @@ ms.lasthandoff: 08/29/2017
 * **儲存體帳戶**：請參閱[關於 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)中的[建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)。
 
 > [!IMPORTANT]
-> Batch 目前「僅」支援**一般用途**的儲存體帳戶類型，如[關於 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)中的步驟 #5 [建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)所述。
+> 目前批次支援*只*hello**一般用途**儲存體帳戶類型，如步驟 5 中所述[建立儲存體帳戶](../storage/common/storage-create-storage-account.md#create-a-storage-account)中[關於 Azure儲存體帳戶](../storage/common/storage-create-storage-account.md)。
 >
 >
 
 ### <a name="visual-studio"></a>Visual Studio
-您必須擁有 **Visual Studio 2015 或更新版本**才能建置範例專案。 您可以在 [Visual Studio 產品概觀][visual_studio]中找到免費試用版的 Visual Studio。
+您必須擁有**2015年或更新版本的 Visual Studio** toobuild hello 範例專案。 您可以在 hello 找到免費及試用版本的 Visual Studio[的 Visual Studio 產品概觀][visual_studio]。
 
 ### <a name="dotnettutorial-code-sample"></a> 程式碼範例
-[DotNetTutorial][github_dotnettutorial] 範例是在 GitHub 上 [azure-batch-samples][github_samples] 儲存機制中找到的許多程式碼範例之一。 按一下儲存機制首頁上的 [複製或下載] > [下載 ZIP]，或按一下 [azure-batch-samples-master.zip][github_samples_zip] 直接下載連結，即可下載所有範例。 將 ZIP 檔案的內容解壓縮後，您可以在下列資料夾中找到方案：
+hello [DotNetTutorial] [ github_dotnettutorial]範例是一個在 hello 中找到多個批次的程式碼範例的 hello [azure 批次範例][ github_samples]上的儲存機制GitHub。 您可以按一下 下載所有 hello 範例**複製或都下載 > 都下載 ZIP** hello 儲存機制首頁上，或按一下 hello [azure 批次範例-master.zip] [ github_samples_zip]直接下載連結。 一旦您已擷取 hello hello ZIP 檔案的內容，您可以找到下列資料夾的 hello hello 方案：
 
 `\azure-batch-samples\CSharp\ArticleProjects\DotNetTutorial`
 
 ### <a name="azure-batch-explorer-optional"></a>Azure Batch 總管 (選用)
-[Azure Batch Explorer][github_batchexplorer] 是 GitHub 上 [azure-batch-samples][github_samples] 儲存機制隨附的免費公用程式。 雖然不一定要完成此教學課程，但是在您開發和偵錯 Batch 解決方案時卻很實用。
+hello [Azure 批次總管][ github_batchexplorer]是免費的公用程式隨附的 hello [azure 批次範例][ github_samples] GitHub 上的儲存機制。 時不需要 toocomplete 本教學課程中，它可以時很實用開發及偵錯您批次的解決方案。
 
 ## <a name="dotnettutorial-sample-project-overview"></a>DotNetTutorial 範例專案概觀
-DotNetTutorial 程式碼範例是由兩個專案所組成的 Visual Studio 方案：**DotNetTutorial** 和 **TaskApplication**。
+hello *DotNetTutorial*程式碼範例是包含兩個專案的 Visual Studio 方案： **DotNetTutorial**和**TaskApplication**。
 
-* **DotNetTutorial** 是與 Batch 和儲存體服務進行互動，以在計算節點 (虛擬機器) 上執行平行工作負載的用戶端應用程式。 DotNetTutorial 會在本機工作站上執行。
-* **TaskApplication** 是在 Azure 中的計算節點上執行進而執行實際工作的程式。 在範例中， `TaskApplication.exe` 會剖析從 Azure 儲存體下載的檔案 (輸入檔) 中的文字。 然後產生文字檔 (輸出檔)，其中包含出現在輸入檔中的前三個單字清單。 在它建立輸出檔之後，TaskApplication 會將檔案上傳至 Azure 儲存體。 如此檔案即可供用戶端應用程式下載。 TaskApplication 會在 Batch 服務中的多個計算節點上平行執行。
+* **DotNetTutorial**是平行計算節點 （虛擬機器） 上的工作負載之互動 hello 批次和儲存體服務 tooexecute hello 用戶端應用程式。 DotNetTutorial 會在本機工作站上執行。
+* **TaskApplication**是 hello Azure tooperform hello 實際工作中的計算節點執行的程式。 在 hello 範例`TaskApplication.exe`剖析 hello 下載自 Azure 儲存體 （hello 輸入檔） 的檔案中的文字。 然後它會產生文字檔案 （hello 輸出檔），其中包含出現在 hello 輸入檔中的 hello 前三個單字的清單。 它會建立 hello 輸出檔後，TaskApplication 會上傳 hello 檔案 tooAzure 儲存體。 這使得可用 toohello 下載的用戶端應用程式。 Hello 批次服務中的多個計算節點上，以平行方式執行 TaskApplication。
 
-下圖說明用戶端應用程式 (DotNetTutorial) 所執行的主要作業，以及工作所執行的應用程式 (TaskApplication)。 此基本工作流程通常由使用 Batch 建立的許多計算方案所組成。 雖然不會示範 Batch 服務中可用的每項功能，但幾乎每個 Batch 案例都包含此工作流程的某些部分。
+hello 下列圖表說明 hello hello 用戶端應用程式，所執行的主要作業*DotNetTutorial*，和 hello 應用程式所執行的 hello 工作*TaskApplication*. 此基本工作流程通常由使用 Batch 建立的許多計算方案所組成。 雖然它不會示範 hello 批次服務中可用的每一項功能，幾乎每個批次案例包含此工作流程的部分。
 
 ![Batch 範例工作流程][8]<br/>
 
 [**步驟 1.**](#step-1-create-storage-containers) 在 Azure Blob 儲存體中建立**容器**。<br/>
-[**步驟 2.**](#step-2-upload-task-application-and-data-files) 將工作應用程式和輸入檔案上傳至容器。<br/>
+[**步驟 2.**](#step-2-upload-task-application-and-data-files) 上傳工作應用程式檔案和 toocontainers 輸入的檔。<br/>
 [**步驟 3.**](#step-3-create-batch-pool) 建立 Batch **集區**。<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;**3a.** 集區 **StartTask** 會在節點加入集區時將工作二進位檔 (TaskApplication) 下載至這些節點。<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;**3a.** hello 集區**StartTask**下載 hello 工作二進位檔案 (TaskApplication) toonodes，因為它們加入 hello 集區。<br/>
 [**步驟 4.**](#step-4-create-batch-job) 建立 Batch **作業**。<br/>
-[**步驟 5.**](#step-5-add-tasks-to-job) 將 **工作** 加入至作業。<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;**5a.** 工作會排程在節點上執行。<br/>
+[**步驟 5.**](#step-5-add-tasks-to-job) 新增**工作**toohello 作業。<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;**5a.** hello 工作是排定的 tooexecute 節點上。<br/>
     &nbsp;&nbsp;&nbsp;&nbsp;**5b.** 每項工作會從 Azure 儲存體下載其輸入資料，然後開始執行。<br/>
 [**步驟 6.**](#step-6-monitor-tasks) 監視工作。<br/>
-  &nbsp;&nbsp;&nbsp;&nbsp;**6a.** 當工作完成時，它們會將其輸出資料上傳至 Azure 儲存體。<br/>
+  &nbsp;&nbsp;&nbsp;&nbsp;**6a.** 工作完成後，它們上傳其輸出資料 tooAzure 儲存體。<br/>
 [**步驟 7.**](#step-7-download-task-output) 從儲存體下載工作輸出。
 
-如上所述，並非每個 Batch 方案都會執行這些確切步驟，也有可能包含更多步驟，但 DotNetTutorial  範例應用程式會示範在 Batch 方案中找到的一般程序。
+如所述，並非每個批次解決方案會執行這些確切步驟，並可能包含更多，但 hello *DotNetTutorial*範例應用程式示範一般程序，在批次方案中找到。
 
-## <a name="build-the-dotnettutorial-sample-project"></a>建置 DotNetTutorial  範例專案
-您必須先在 DotNetTutorial*`Program.cs` 專案的*  檔案中指定 Batch 和儲存體帳戶認證，才可以成功執行範例。 如果您尚未這麼做，請在 `DotNetTutorial.sln` 方案檔案上連按兩下，以在 Visual Studio 中開啟方案。 或者使用 [檔案] > [開啟] > [專案/方案] 功能表，在 Visual Studio 中開啟方案。
+## <a name="build-hello-dotnettutorial-sample-project"></a>建置 hello *DotNetTutorial*範例專案
+您可以順利執行 hello 範例之前，您必須指定批次和儲存體帳戶認證在 hello *DotNetTutorial*專案的`Program.cs`檔案。 如果您尚未執行此動作 hello 方案在 Visual Studio 中按兩下開啟 hello`DotNetTutorial.sln`方案檔。 或從 Visual Studio 內使用開啟 hello**檔案 > 開啟 > 專案/方案**功能表。
 
-開啟 DotNetTutorial 專案中的 `Program.cs`。 然後，如檔案頂端附近所指定新增您的認證：
+開啟`Program.cs`內 hello *DotNetTutorial*專案。 指定 hello hello 檔案的頂端附近，然後加入您的認證：
 
 ```csharp
-// Update the Batch and Storage account credential strings below with the values
-// unique to your accounts. These are used when constructing connection strings
-// for the Batch and Storage client objects.
+// Update hello Batch and Storage account credential strings below with hello values
+// unique tooyour accounts. These are used when constructing connection strings
+// for hello Batch and Storage client objects.
 
 // Batch account credentials
 private const string BatchAccountName = "";
@@ -103,58 +103,58 @@ private const string StorageAccountKey  = "";
 ```
 
 > [!IMPORTANT]
-> 如上所述，目前您必須在 Azure 儲存體中指定**一般用途**儲存體帳戶的認證。 Batch 應用程式會使用**一般用途**儲存體帳戶中的 blob 儲存體。 請勿指定透過選取「Blob 儲存體」  帳戶類型所建立的儲存體帳戶認證。
+> 如上面所述，您目前必須指定 hello 認證**一般用途**Azure 儲存體中的儲存體帳戶。 批次應用程式使用 blob 儲存體中 hello**一般用途**儲存體帳戶。 未指定儲存體帳戶所建立的選取 hello hello 認證*Blob 儲存體*帳戶類型。
 >
 >
 
-您可以在 [Azure 入口網站][azure_portal]中每項服務的帳戶刀鋒視窗中尋找您的 Batch 和儲存體帳戶認證：
+您可以找到您的批次和儲存體帳戶認證中的每個服務的 hello 帳戶 刀鋒視窗中 hello [Azure 入口網站][azure_portal]:
 
-![入口網站中的 Batch 認證][9]
-![入口網站中的儲存體認證][10]<br/>
+![批次 hello 入口網站中的認證][9]
+![hello 入口網站中的儲存體認證][10]<br/>
 
-您現已使用認證更新專案，以滑鼠右鍵按一下 [方案總管] 中的方案，然後按一下 [建置方案] 。 出現提示時，請確認任何 NuGet 封裝的還原。
+既然您已使用您的認證更新 hello 專案，以滑鼠右鍵按一下方案總管 中的 hello 方案，然後按一下**建置方案**。 如果系統提示您，確認 hello 任何的 NuGet 封裝還原。
 
 > [!TIP]
-> 如果未自動還原 NuGet 套件，或看到有關套件還原失敗的錯誤，請確定您已安裝 [NuGet 套件管理員][nuget_packagemgr]。 然後啟用遺失封裝的下載。 若要啟用套件下載，請參閱[在建置期間啟用套件還原][nuget_restore]。
+> 如果 hello NuGet 封裝不會自動還原，或如果您看到失敗 toorestore hello 封裝相關的錯誤，請確定您擁有 hello [NuGet 套件管理員][ nuget_packagemgr]安裝。 再啟用 hello 下載遺漏的套件。 請參閱[啟用封裝還原建置期間][ nuget_restore] tooenable 套件下載。
 >
 >
 
-在下列各節中，我們會將範例應用程式細分為用來處理 Batch 服務中工作負載的數個步驟，並詳細討論這些步驟。 建議您在進行本文的其餘部分時參閱 Visual Studio 中開啟的方案，因為並不會討論範例中的每一行程式碼。
+在下列各節的 hello，我們可分為 hello 範例應用程式，它會執行 tooprocess hello 步驟 hello 批次服務中的工作負載，並討論這些步驟，在詳細資料。 我們鼓勵您 toorefer toohello 開啟的方案在 Visual Studio 工作透過 hello 本文其餘部分，因為討論 hello 範例中的程式碼不是每個列時。
 
-瀏覽至 DotNetTutorial*`Program.cs` 專案的*  檔案中 `MainAsync` 方法的頂端，開始進行步驟 1。 以下每個步驟大致會依 `MainAsync`中的方法呼叫進展而定。
+瀏覽 toohello 頂端 hello`MainAsync`方法在 hello *DotNetTutorial*專案的`Program.cs`檔案 toostart 與步驟 1。 然後大致如下所示 hello 進展方法的呼叫中的每個步驟下方`MainAsync`。
 
 ## <a name="step-1-create-storage-containers"></a>步驟 1：建立儲存體容器
 ![在 Azure 儲存體中建立容器][1]
 <br/>
 
-Batch 包含與 Azure 儲存體進行互動的內建支援。 儲存體帳戶內的容器會提供在您的 Batch 帳戶中執行的工作所需的檔案。 容器也會提供一個位置來儲存工作所產生的輸出資料。 DotNetTutorial  用戶端應用程式首先會在 [Azure Blob 儲存體](../storage/common/storage-introduction.md)中建立三個容器：
+Batch 包含與 Azure 儲存體進行互動的內建支援。 在儲存體帳戶的容器會提供在您的 Batch 帳戶中執行的 hello 工作所需的 hello 檔案。 hello 容器也會提供 hello 工作產生的地方 toostore hello 輸出資料。 首先 hello hello *DotNetTutorial*用戶端應用程式會建立三個容器在[Azure Blob 儲存體](../storage/common/storage-introduction.md):
 
-* **應用程式**：此容器將存放工作所執行的應用程式，以及其相依性 (如 DLL)。
-* **輸入**：工作會從「輸入」容器下載所要處理的資料檔案。
-* **輸出**：當工作完成輸入檔案的處理時，它們會將結果上傳至「輸出」容器。
+* **應用程式**： 此容器會儲存 hello hello 工作，以及任何相依性，例如 Dll 所執行的應用程式。
+* **輸入**： 工作會從 hello 下載 hello 資料檔案 tooprocess*輸入*容器。
+* **輸出**： 當工作完成時輸入的檔案處理時，他們會將上傳 hello 結果 toohello*輸出*容器。
 
-為了與儲存體帳戶進行互動並建立容器，我們使用 [Azure Storage Client Library for .NET][net_api_storage]。 我們使用 [CloudStorageAccount][net_cloudstorageaccount] 建立帳戶的參考，並從中建立 [CloudBlobClient][net_cloudblobclient]：
+在順序 toointeract 與儲存體帳戶，並建立容器，我們使用 hello[適用於.NET 的 Azure 儲存體用戶端程式庫][net_api_storage]。 我們建立了具有參考 toohello 帳戶[CloudStorageAccount][net_cloudstorageaccount]，並從該建立[CloudBlobClient][net_cloudblobclient]:
 
 ```csharp
-// Construct the Storage account connection string
+// Construct hello Storage account connection string
 string storageConnectionString = String.Format(
     "DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}",
     StorageAccountName,
     StorageAccountKey);
 
-// Retrieve the storage account
+// Retrieve hello storage account
 CloudStorageAccount storageAccount =
     CloudStorageAccount.Parse(storageConnectionString);
 
-// Create the blob client, for use in obtaining references to
+// Create hello blob client, for use in obtaining references to
 // blob storage containers
 CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
 ```
 
-我們在整個應用程式中使用 `blobClient` 參考，並將它當作參數傳遞給數個方法。 此範例是在緊接上述的程式碼區塊中，我們會在其中呼叫 `CreateContainerIfNotExistAsync` 以實際建立容器。
+我們使用 hello`blobClient`參考整個 hello 應用程式並將它傳遞為參數 tooseveral 方法。 舉例來說，這是在 hello 緊接 hello 以上版本，在呼叫的程式碼區塊`CreateContainerIfNotExistAsync`tooactually 建立 hello 容器。
 
 ```csharp
-// Use the blob client to create the containers in Azure Storage if they don't
+// Use hello blob client toocreate hello containers in Azure Storage if they don't
 // yet exist
 const string appContainerName    = "application";
 const string inputContainerName  = "input";
@@ -184,30 +184,30 @@ private static async Task CreateContainerIfNotExistAsync(
 }
 ```
 
-建立容器之後，應用程式現在即可上傳工作所要使用的檔案。
+一旦已建立 hello 容器，hello 應用程式現在可以將 hello 工作所使用的 hello 檔案上傳。
 
 > [!TIP]
-> [如何使用 .NET 的 Blob 儲存體](../storage/blobs/storage-dotnet-how-to-use-blobs.md)提供使用 Azure 儲存體容器和 Blob 的概觀。 當您開始使用 Batch 時，此概觀應在您的閱讀清單的頂端附近。
+> [如何從.NET 的 Blob 儲存體 toouse](../storage/blobs/storage-dotnet-how-to-use-blobs.md)提供使用 Azure 儲存體容器和 blob 的良好概觀。 當您使用批次開始使用，它應該是 hello 讀取清單頂端附近。
 >
 >
 
 ## <a name="step-2-upload-task-application-and-data-files"></a>步驟 2：上傳工作應用程式和資料檔案
-![將工作應用程式和輸入 (資料) 檔案上傳至容器][2]
+![上傳工作應用程式，並輸入 （資料） 檔 toocontainers][2]
 <br/>
 
-在檔案上傳作業中，DotNetTutorial 會先定義**應用程式**和**輸入**檔案路徑的集合 (因為其存在於本機電腦上)。 然後將這些檔案上傳到在上一個步驟中建立的容器。
+Hello 檔案中上傳作業， *DotNetTutorial*的集合會先定義**應用程式**和**輸入**存在於 hello 本機電腦上檔案路徑。 然後它上傳您在 hello 上一個步驟中建立這些檔案 toohello 容器。
 
 ```csharp
-// Paths to the executable and its dependencies that will be executed by the tasks
+// Paths toohello executable and its dependencies that will be executed by hello tasks
 List<string> applicationFilePaths = new List<string>
 {
-    // The DotNetTutorial project includes a project reference to TaskApplication,
-    // allowing us to determine the path of the task application binary dynamically
+    // hello DotNetTutorial project includes a project reference tooTaskApplication,
+    // allowing us toodetermine hello path of hello task application binary dynamically
     typeof(TaskApplication.Program).Assembly.Location,
     "Microsoft.WindowsAzure.Storage.dll"
 };
 
-// The collection of data files that are to be processed by the tasks
+// hello collection of data files that are toobe processed by hello tasks
 List<string> inputFilePaths = new List<string>
 {
     @"..\..\taskdata1.txt",
@@ -215,26 +215,26 @@ List<string> inputFilePaths = new List<string>
     @"..\..\taskdata3.txt"
 };
 
-// Upload the application and its dependencies to Azure Storage. This is the
-// application that will process the data files, and will be executed by each
-// of the tasks on the compute nodes.
+// Upload hello application and its dependencies tooAzure Storage. This is the
+// application that will process hello data files, and will be executed by each
+// of hello tasks on hello compute nodes.
 List<ResourceFile> applicationFiles = await UploadFilesToContainerAsync(
     blobClient,
     appContainerName,
     applicationFilePaths);
 
-// Upload the data files. This is the data that will be processed by each of
-// the tasks that are executed on the compute nodes within the pool.
+// Upload hello data files. This is hello data that will be processed by each of
+// hello tasks that are executed on hello compute nodes within hello pool.
 List<ResourceFile> inputFiles = await UploadFilesToContainerAsync(
     blobClient,
     inputContainerName,
     inputFilePaths);
 ```
 
-`Program.cs` 中有個方法涉及上傳程序：
+有兩種方法在`Program.cs`hello 上傳程序涉及：
 
-* `UploadFilesToContainerAsync`：此方法會傳回 [ResourceFile][net_resourcefile] 物件的集合 (下面討論)，並在內部呼叫 `UploadFileToContainerAsync` 以上傳在 filePaths 參數中傳入的每個檔案。
-* `UploadFileToContainerAsync`：這是實際執行檔案上傳並建立 [ResourceFile][net_resourcefile] 物件的方法。 上傳檔案之後，它會取得此檔案的共用存取簽章 (SAS) 並傳回代表它的 ResourceFile 物件。 下面也會討論共用存取簽章。
+* `UploadFilesToContainerAsync`： 這個方法傳回的集合[ResourceFile] [ net_resourcefile] （討論如下） 的物件，並在內部呼叫`UploadFileToContainerAsync`tooupload 每個檔案，傳入 hello *filePaths*參數。
+* `UploadFileToContainerAsync`： 這是實際執行 hello 檔案上傳，並建立 hello hello 方法[ResourceFile] [ net_resourcefile]物件。 上傳之後 hello 檔案，它會取得 hello 檔案的共用的存取簽章 (SAS)，並傳回 ResourceFile 物件，表示它。 下面也會討論共用存取簽章。
 
 ```csharp
 private static async Task<ResourceFile> UploadFileToContainerAsync(
@@ -243,7 +243,7 @@ private static async Task<ResourceFile> UploadFileToContainerAsync(
     string filePath)
 {
         Console.WriteLine(
-            "Uploading file {0} to container [{1}]...", filePath, containerName);
+            "Uploading file {0} toocontainer [{1}]...", filePath, containerName);
 
         string blobName = Path.GetFileName(filePath);
 
@@ -251,8 +251,8 @@ private static async Task<ResourceFile> UploadFileToContainerAsync(
         CloudBlockBlob blobData = container.GetBlockBlobReference(blobName);
         await blobData.UploadFromFileAsync(filePath);
 
-        // Set the expiry time and permissions for the blob shared access signature.
-        // In this case, no start time is specified, so the shared access signature
+        // Set hello expiry time and permissions for hello blob shared access signature.
+        // In this case, no start time is specified, so hello shared access signature
         // becomes valid immediately
         SharedAccessBlobPolicy sasConstraints = new SharedAccessBlobPolicy
         {
@@ -260,7 +260,7 @@ private static async Task<ResourceFile> UploadFileToContainerAsync(
                 Permissions = SharedAccessBlobPermissions.Read
         };
 
-        // Construct the SAS URL for blob
+        // Construct hello SAS URL for blob
         string sasBlobToken = blobData.GetSharedAccessSignature(sasConstraints);
         string blobSasUri = String.Format("{0}{1}", blobData.Uri, sasBlobToken);
 
@@ -269,23 +269,23 @@ private static async Task<ResourceFile> UploadFileToContainerAsync(
 ```
 
 ### <a name="resourcefiles"></a>ResourceFiles
-[ResourceFile][net_resourcefile] 提供 Batch 中的工作，以及 Azure 儲存體中會在工作執行前下載到計算節點之檔案的 URL。 [ResourceFile.BlobSource][net_resourcefile_blobsource] 屬性會指定 Azure 儲存體中現有檔案的完整 URL。 此 URL 也可能包含可供安全存取檔案的共用存取簽章 (SAS)。 Batch .NET 中的大部分工作類型都包含 ResourceFiles  屬性，包括：
+A [ResourceFile] [ net_resourcefile]提供批次中的工作會下載的 tooa 的 Azure 儲存體中的 hello URL tooa 檔案與計算節點，才能執行該工作。 hello [ResourceFile.BlobSource] [ net_resourcefile_blobsource]存在於 Azure 儲存體中，屬性會指定 hello 的 hello 檔案的完整 URL。 hello URL 也可能包括提供安全的 access toohello 檔案的共用的存取簽章 (SAS)。 Batch .NET 中的大部分工作類型都包含 ResourceFiles  屬性，包括：
 
 * [CloudTask][net_task]
 * [StartTask][net_pool_starttask]
 * [JobPreparationTask][net_jobpreptask]
 * [JobReleaseTask][net_jobreltask]
 
-DotNetTutorial 範例應用程式不會使用 JobPreparationTask 或 JobReleaseTask 工作類型，但您可以在 [在 Azure Batch 計算節點上執行作業準備和完成工作](batch-job-prep-release.md)中深入了解。
+hello DotNetTutorial 範例應用程式不會使用 hello JobPreparationTask 或 JobReleaseTask 工作類型，但您可以深入資訊，請在[執行作業準備與完成工作上 Azure Batch 計算節點](batch-job-prep-release.md)。
 
 ### <a name="shared-access-signature-sas"></a>共用存取簽章 (SAS)
-共用存取簽章納入為 URL 的一部分時，便可安全存取 Azure 儲存體中容器和 Blob 的字串。 DotNetTutorial 應用程式會使用 Blob 和容器共用存取簽章 URL，並示範如何從儲存體服務取得這些共用存取簽章字串。
+共用的存取簽章字串的 — 包含為 URL 的一部分時，提供安全地存取 toocontainers 和 Azure 儲存體中的 blob。 hello DotNetTutorial 應用程式會使用這兩個 blob 和容器共用存取簽章 Url，並示範如何 tooobtain 這些共用存取簽章字串 hello 儲存體服務。
 
-* **Blob 共用存取簽章**：DotNetTutorial 中集區的 StartTask 會在從儲存體下載應用程式二進位檔和輸入資料檔案時，使用 Blob 共用存取簽章 (請參閱下面步驟 3)。 DotNetTutorial 的 `Program.cs` 中的 `UploadFileToContainerAsync` 方法包含可取得各 Blob 共用存取簽章的程式碼。 呼叫 [CloudBlob.GetSharedAccessSignature][net_sas_blob] 即可完成。
-* **容器共用存取簽章**：每個工作在計算節點上完成其工作時，便會將其輸出檔案上傳至 Azure 儲存體中的「輸出」容器。 若要這樣做，TaskApplication 會使用容器共用存取簽章，其在上傳檔案時提供寫入容器以成為路徑的一部分的存取權。 取得容器共用存取簽章與取得 Blob 共用存取簽章的方式很類似。 在 DotNetTutorial 中，您會發現 `GetContainerSasUrl` 協助程式方法會呼叫 [CloudBlobContainer.GetSharedAccessSignature][net_sas_container] 來進行此操作。 您將在「步驟 6：監視工作」中進一步了解 TaskApplication 如何使用容器共用存取簽章。
+* **Blob 共用的存取簽章**: hello 集區 StartTask DotNetTutorial 中的從儲存體下載 hello 應用程式二進位檔和輸入的資料檔時，請使用 blob 共用存取簽章 （請參閱下面步驟 #3）。 hello`UploadFileToContainerAsync`方法中 DotNetTutorial 的`Program.cs`包含 hello 程式碼會取得每個 blob 的共用的存取簽章。 呼叫 [CloudBlob.GetSharedAccessSignature][net_sas_blob] 即可完成。
+* **容器共用存取簽章**： 為每項工作完成其工作 hello 計算節點上的上, 傳其輸出檔 toohello*輸出*Azure 儲存體容器中的。 toodo TaskApplication 因此，使用容器的共用的存取簽章時，會提供寫入存取 toohello 容器 hello 路徑 hello 檔案上傳。 取得 hello 容器共用的存取簽章是以類似的方式做為當取得 hello blob 共用存取簽章。 在 DotNetTutorial，您會發現該 hello `GetContainerSasUrl` helper 方法會呼叫[CloudBlobContainer.GetSharedAccessSignature] [ net_sas_container] toodo 如此。 您會先深入 TaskApplication 如何使用 hello 容器共用存取簽章中的 「 步驟 6： 監視工作。 」
 
 > [!TIP]
-> 查看有關共用存取簽章的兩部分系列[第 1 部分：了解共用存取簽章 (SAS) 模型](../storage/common/storage-dotnet-shared-access-signature-part-1.md)和[第 2 部分：建立和使用共用存取簽章 (SAS) 與 Blob 儲存體](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md)，進一步了解如何提供您儲存體帳戶中資料的安全存取。
+> 簽出 hello 兩段式序列上的共用的存取簽章，[第 1 部分： 了解 hello 共用存取簽章 (SAS) 模型](../storage/common/storage-dotnet-shared-access-signature-part-1.md)和[第 2 部分： 建立和使用共用的存取簽章 (SAS) 使用 Blob 儲存體](../storage/blobs/storage-dotnet-shared-access-signature-part-2.md)，深入了解提供儲存體帳戶中的安全存取 toodata toolearn。
 >
 >
 
@@ -295,7 +295,7 @@ DotNetTutorial 範例應用程式不會使用 JobPreparationTask 或 JobReleaseT
 
 Batch **集區** 是 Batch 執行作業工作所在的計算節點 (虛擬機器) 集合。
 
-透過 Azure 儲存體 API 將應用程式和資料檔案上傳至儲存體帳戶之後，DotNetTutorial 會透過 Batch .NET 程式庫所提供的 API 開始呼叫 Batch 服務。 程式碼會先建立 [BatchClient][net_batchclient]：
+上傳 hello 應用程式及資料檔案 toohello 與 Azure 儲存體 Api，儲存體帳戶之後*DotNetTutorial*開始進行呼叫 toohello 批次服務的 hello 批次.NET 程式庫所提供的 Api。 hello 程式碼會先建立[BatchClient][net_batchclient]:
 
 ```csharp
 BatchSharedKeyCredentials cred = new BatchSharedKeyCredentials(
@@ -308,7 +308,7 @@ using (BatchClient batchClient = BatchClient.Open(cred))
     ...
 ```
 
-接著，範例會呼叫 `CreatePoolIfNotExistsAsync` 以在 Batch 帳戶中建立計算節點集區。 `CreatePoolIfNotExistsAsync` 會使用 [BatchClient.PoolOperations.CreatePool][net_pool_create] 方法在 Batch 服務中建立新集區：
+接下來，hello 範例建立集區的運算節點 hello 批次帳戶的呼叫中太`CreatePoolIfNotExistsAsync`。 `CreatePoolIfNotExistsAsync`使用 hello [BatchClient.PoolOperations.CreatePool] [ net_pool_create]方法 toocreate hello 批次服務中的新集區：
 
 ```csharp
 private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, string poolId, IList<ResourceFile> resourceFiles)
@@ -318,7 +318,7 @@ private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, str
     {
         Console.WriteLine("Creating pool [{0}]...", poolId);
 
-        // Create the unbound pool. Until we call CloudPool.Commit() or CommitAsync(), no pool is actually created in the
+        // Create hello unbound pool. Until we call CloudPool.Commit() or CommitAsync(), no pool is actually created in the
         // Batch service. This CloudPool instance is therefore considered "unbound," and we can modify its properties.
         pool = batchClient.PoolOperations.CreatePool(
             poolId: poolId,
@@ -326,18 +326,18 @@ private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, str
             virtualMachineSize: "small",                                                // single-core, 1.75 GB memory, 225 GB disk
             cloudServiceConfiguration: new CloudServiceConfiguration(osFamily: "4"));   // Windows Server 2012 R2
 
-        // Create and assign the StartTask that will be executed when compute nodes join the pool.
-        // In this case, we copy the StartTask's resource files (that will be automatically downloaded
-        // to the node by the StartTask) into the shared directory that all tasks will have access to.
+        // Create and assign hello StartTask that will be executed when compute nodes join hello pool.
+        // In this case, we copy hello StartTask's resource files (that will be automatically downloaded
+        // toohello node by hello StartTask) into hello shared directory that all tasks will have access to.
         pool.StartTask = new StartTask
         {
-            // Specify a command line for the StartTask that copies the task application files to the
+            // Specify a command line for hello StartTask that copies hello task application files toothe
             // node's shared directory. Every compute node in a Batch pool is configured with a number
             // of pre-defined environment variables that can be referenced by commands or applications
             // run by tasks.
 
             // Since a successful execution of robocopy can return a non-zero exit code (e.g. 1 when one or
-            // more files were successfully copied) we need to manually exit with a 0 for Batch to recognize
+            // more files were successfully copied) we need toomanually exit with a 0 for Batch toorecognize
             // StartTask execution success.
             CommandLine = "cmd /c (robocopy %AZ_BATCH_TASK_WORKING_DIR% %AZ_BATCH_NODE_SHARED_DIR%) ^& IF %ERRORLEVEL% LEQ 1 exit 0",
             ResourceFiles = resourceFiles,
@@ -348,10 +348,10 @@ private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, str
     }
     catch (BatchException be)
     {
-        // Swallow the specific error code PoolExists since that is expected if the pool already exists
+        // Swallow hello specific error code PoolExists since that is expected if hello pool already exists
         if (be.RequestInformation?.BatchError != null && be.RequestInformation.BatchError.Code == BatchErrorCodeStrings.PoolExists)
         {
-            Console.WriteLine("The pool {0} already existed when we tried to create it", poolId);
+            Console.WriteLine("hello pool {0} already existed when we tried toocreate it", poolId);
         }
         else
         {
@@ -361,42 +361,42 @@ private static async Task CreatePoolIfNotExistAsync(BatchClient batchClient, str
 }
 ```
 
-利用 [CreatePool][net_pool_create] 建立集區時，您會指定數個參數，例如計算節點數目、[節點大小](../cloud-services/cloud-services-sizes-specs.md)以及節點的作業系統。 在 DotNetTutorial 中，我們使用 [CloudServiceConfiguration][net_cloudserviceconfiguration] 以從[雲端服務](../cloud-services/cloud-services-guestos-update-matrix.md)指定 Windows Server 2012 R2。 
+當您建立的集區[CreatePool][net_pool_create]，您指定數個參數 hello 的運算節點數目，例如 hello [hello 節點大小](../cloud-services/cloud-services-sizes-specs.md)，和 hello 節點的作業系統系統。 在*DotNetTutorial*，我們使用[CloudServiceConfiguration] [ net_cloudserviceconfiguration] toospecify Windows Server 2012 R2 從[雲端服務](../cloud-services/cloud-services-guestos-update-matrix.md)。 
 
-您也可以為集區指定 [VirtualMachineConfiguration][net_virtualmachineconfiguration]，以建立 Azure 虛擬機器 (VM) 計算節點的集區。 您可以從 Windows 或 [Linux 映像](batch-linux-nodes.md)建立 VM 計算節點的集區。 VM 映像的來源可以是：
+您也可以建立 Azure 虛擬機器 (Vm) 的計算節點的集區，藉由指定 hello [VirtualMachineConfiguration] [ net_virtualmachineconfiguration]集區。 您可以從 Windows 或 [Linux 映像](batch-linux-nodes.md)建立 VM 計算節點的集區。 您的 VM 映像的 hello 來源可以是：
 
-- [Azure 虛擬機器 Marketplace][vm_marketplace]，其中提供立即可用的 Windows 和 Linux 映像。 
+- hello [Azure 虛擬機器 Marketplace][vm_marketplace]，這樣會提供已備妥要使用的 Windows 和 Linux 映像。 
 - 您準備和提供的自訂映像。 如需自訂映像的詳細資訊，請參閱[使用 Batch 開發大規模的平行計算解決方案](batch-api-basics.md#pool)。
 
 > [!IMPORTANT]
-> 您需對 Batch 中的計算資源付費。 若要將成本降到最低，您可以在執行範例前，將 `targetDedicatedComputeNodes` 降為 1。
+> 您需對 Batch 中的計算資源付費。 您可以降低 toominimize 成本`targetDedicatedComputeNodes`too1 之前執行 hello 範例。
 >
 >
 
-透過這些實體節點屬性，您也可以指定集區的 [StartTask][net_pool_starttask]。 StartTask 會在每個節點加入集區以及每次重新啟動節點時，於該節點上執行。 StartTask 特別適合用於在工作執行前，在計算節點上安裝應用程式。 例如，如果您的工作使用 Python 指令碼來處理資料，您可以使用 StartTask 在計算節點上安裝 Python。
+這些實體節點的屬性，以及您也可以指定[StartTask] [ net_pool_starttask] hello 集區。 hello StartTask 執行每個節點上，該節點加入 hello 集區，以及每次重新啟動節點。 hello StartTask 為計算節點 toohello 先前執行的工作上安裝應用程式特別有用。 例如，如果您的工作會使用 Python 指令碼來處理資料，您可以使用 StartTask tooinstall Python hello 計算節點上。
 
-在此範例應用程式中，StartTask 會將它從儲存體下載的檔案 (使用 [StartTask][net_starttask].[ResourceFiles][net_starttask_resourcefiles] 屬性所指定)，從 StartTask 工作目錄複製到在節點上執行的「所有」工作可以存取的共用目錄。 基本上，這會在節點加入集區時複製 `TaskApplication.exe` 和其相依性到每個節點上的共用目錄，以便在節點上執行的任何工作都能存取它。
+在此範例應用程式，hello StartTask 會複製它會從儲存體下載的 hello 檔案 (其指定使用 hello [StartTask][net_starttask]。[ResourceFiles] [ net_starttask_resourcefiles]屬性) 從 hello StartTask 工作目錄 toohello 共用目錄的*所有*hello 節點上執行的工作可以存取。 基本上，這會將複製`TaskApplication.exe`和其相依性 toohello 共用目錄，每個節點上的為 hello 節點加入 hello 集區，以便在 hello 節點執行任何工作可以存取它。
 
 > [!TIP]
-> Azure Batch 的 **應用程式封裝** 功能提供了另一種方式來將應用程式放到集區中的計算節點上。 如需詳細資訊，請參閱[使用 Batch 應用程式套件將應用程式部署至計算節點](batch-application-packages.md)。
+> hello**應用程式封裝**Azure Batch 功能提供其他方式 tooget 到集區中的 hello 計算節點上的應用程式。 請參閱[部署與批次應用程式套件的應用程式 toocompute 節點](batch-application-packages.md)如需詳細資訊。
 >
 >
 
-此外，在上述程式碼片段中值得注意的是在 StartTask 的 CommandLine 屬性中使用的兩個環境變數：`%AZ_BATCH_TASK_WORKING_DIR%` 和 `%AZ_BATCH_NODE_SHARED_DIR%`。 Batch 集區中的每個計算節點都會自動以 Batch 特有的數個環境變數進行設定。 工作所執行的任何程序都可以存取這些環境變數。
+也在 hello 上述程式碼片段的值得注意的是兩個環境中的變數 hello hello 使用*CommandLine* hello StartTask 屬性：`%AZ_BATCH_TASK_WORKING_DIR%`和`%AZ_BATCH_NODE_SHARED_DIR%`。 批次集區中每個運算節點會自動設定成有特定 tooBatch 的數個環境變數中。 任何處理程序所執行的工作有存取 toothese 環境變數。
 
 > [!TIP]
-> 若要深入了解 Batch 集區中計算節點上可用的環境變數，以及有關工作的工作目錄資訊，請參閱[適用於開發人員的 Batch 功能概觀](batch-api-basics.md)中的[工作的環境設定](batch-api-basics.md#environment-settings-for-tasks)和[檔案和目錄](batch-api-basics.md#files-and-directories)章節。
+> toofind 深入了解 hello 環境變數所提供的計算節點的批次集區和工作的工作目錄的詳細資訊，請參閱 「 hello[工作的環境設定](batch-api-basics.md#environment-settings-for-tasks)和[檔案和目錄](batch-api-basics.md#files-and-directories)章節 hello[批次功能概觀，讓開發人員](batch-api-basics.md)。
 >
 >
 
 ## <a name="step-4-create-batch-job"></a>步驟 4：建立 Batch 作業
 ![建立 Batch 作業][4]<br/>
 
-Batch **作業** 是與計算節點集區相關聯的工作集合。 作業中的工作會在相關聯集區的計算節點上執行。
+Batch **作業** 是與計算節點集區相關聯的工作集合。 作業中的 hello 工作執行相關聯的 hello 集區的計算節點上。
 
-您不僅可使用作業來組織及追蹤相關工作負載中的工作，也可以強加特定條件約束，例如作業 (並延伸至其工作) 的最大執行階段，以及相對於 Batch 帳戶中其他作業的作業優先順序。 不過，在此範例中，作業只與在步驟 3 建立的集區相關聯。 不會設定任何其他屬性。
+您可以使用工作，不只對組織及追蹤相關的工作負載中的工作，也在 hello 批次中的關聯性 tooother 作業中的工作優先順序以及諸特定條件約束-例如 hello 最大 runtime hello 作業 （和延伸模組，其工作）帳戶。 在此範例中，不過，hello 作業是只能搭配步驟 #3 中建立的 hello 集區相關聯。 不會設定任何其他屬性。
 
-所有 Batch 作業都會與特定集區相關聯。 此關聯表示將會在哪些節點上執行作業的工作。 您可使用 [CloudJob.PoolInformation][net_job_poolinfo] 屬性來指定此關聯，如下列程式碼片段所示。
+所有 Batch 作業都會與特定集區相關聯。 這項關聯指示 hello 作業 」 工作，也會執行哪些節點。 指定此使用 hello [CloudJob.PoolInformation] [ net_job_poolinfo]屬性 hello 下列程式碼片段所示。
 
 ```csharp
 private static async Task CreateJobAsync(
@@ -414,15 +414,15 @@ private static async Task CreateJobAsync(
 }
 ```
 
-現已建立一個作業，便會加入工作來進行工作。
+已建立工作，工作會新增 tooperform hello 工作。
 
-## <a name="step-5-add-tasks-to-job"></a>步驟 5：將工作加入至作業
-![將工作加入至作業][5]<br/>
-*(1) 工作已新增至作業，(2) 工作已排定在節點上執行，以及 (3) 工作會下載要處理的資料檔案*
+## <a name="step-5-add-tasks-toojob"></a>步驟 5： 加入工作 toojob
+![新增工作 toojob][5]<br/>
+*（1） 工作已加入 toohello 作業、 （2) hello 工作是排定的 toorun 節點上，以及 （3) hello 工作下載 hello 資料檔案 tooprocess*
 
-Batch **工作** 是在計算節點上執行的個別工作單位。 工作有一個命令列，可執行您在該命令列中指定的指令碼或可執行檔。
+批次**工作**是 hello 個別的工作單位 hello 上所執行的計算節點。 工作已命令列，並執行 hello 指令碼或您在該命令列中指定的可執行檔。
 
-若要實際進行工作，必須將工作加入至作業。 每個 [CloudTask][net_task] 都是使用命令列屬性以及工作在其命令列自動執行前下載至節點的 [ResourceFiles][net_task_resourcefiles] (如同集區的 StartTask) 進行設定。 在 DotNetTutorial  範例專案中，每個工作只會處理一個檔案。 因此其 ResourceFiles 集合只包含單一元素。
+tooactually 執行工作、 工作必須加入 tooa 作業。 每個[CloudTask] [ net_task]使用命令列屬性來設定和[ResourceFiles] [ net_task_resourcefiles] （如同 hello 集區 StartTask），hello 工作會在其命令列會自動在執行之前下載 toohello 節點。 在 hello *DotNetTutorial*範例專案，每項工作會處理一個檔案。 因此其 ResourceFiles 集合只包含單一元素。
 
 ```csharp
 private static async Task<List<CloudTask>> AddTasksAsync(
@@ -431,14 +431,14 @@ private static async Task<List<CloudTask>> AddTasksAsync(
     List<ResourceFile> inputFiles,
     string outputContainerSasUrl)
 {
-    Console.WriteLine("Adding {0} tasks to job [{1}]...", inputFiles.Count, jobId);
+    Console.WriteLine("Adding {0} tasks toojob [{1}]...", inputFiles.Count, jobId);
 
-    // Create a collection to hold the tasks that we'll be adding to the job
+    // Create a collection toohold hello tasks that we'll be adding toohello job
     List<CloudTask> tasks = new List<CloudTask>();
 
-    // Create each of the tasks. Because we copied the task application to the
-    // node's shared directory with the pool's StartTask, we can access it via
-    // the shared directory on the node that the task runs on.
+    // Create each of hello tasks. Because we copied hello task application toothe
+    // node's shared directory with hello pool's StartTask, we can access it via
+    // hello shared directory on hello node that hello task runs on.
     foreach (ResourceFile inputFile in inputFiles)
     {
         string taskId = "topNtask" + inputFiles.IndexOf(inputFile);
@@ -452,9 +452,9 @@ private static async Task<List<CloudTask>> AddTasksAsync(
         tasks.Add(task);
     }
 
-    // Add the tasks as a collection, as opposed to issuing a separate AddTask call
-    // for each. Bulk task submission helps to ensure efficient underlying API calls
-    // to the Batch service.
+    // Add hello tasks as a collection, as opposed tooissuing a separate AddTask call
+    // for each. Bulk task submission helps tooensure efficient underlying API calls
+    // toohello Batch service.
     await batchClient.JobOperations.AddTaskAsync(jobId, tasks);
 
     return tasks;
@@ -462,15 +462,15 @@ private static async Task<List<CloudTask>> AddTasksAsync(
 ```
 
 > [!IMPORTANT]
-> 當工作存取環境變數 (例如 `%AZ_BATCH_NODE_SHARED_DIR%`) 或執行在節點的 `PATH` 中找不到的應用程式時，工作命令列的前面必須加上 `cmd /c`。 這麼做可明確地執行命令解譯器，並指示它在執行命令之後終止。 如果您的工作在節點的 `PATH` 中執行應用程式 (例如 robocopy.exe 或 powershell.exe)，而且未使用任何環境變數，這就不是必要條件。
+> 當他們存取環境變數例如`%AZ_BATCH_NODE_SHARED_DIR%`或執行應用程式中的 hello 節點找不到`PATH`，工作的命令列必須在前面加上`cmd /c`。 明確地將執行 hello 命令直譯器，並指示它 tooterminate 之後執行您的命令。 這項需求是不必要，如果您的工作執行應用程式中的 hello 節點`PATH`(例如*robocopy.exe*或*powershell.exe*)，而且不可用任何環境變數。
 >
 >
 
-在上述程式碼片段中的 `foreach` 迴圈內，您可以看到已建構工作的命令列，以致有三個命令列引數傳遞至 TaskApplication.exe：
+在 hello `foreach` hello 上述程式碼片段中的迴圈，您可以看到建構 hello hello 工作的命令列時，三個命令列引數會傳遞太*TaskApplication.exe*:
 
-1. **第一個引數** 是要處理之檔案的路徑。 這是節點上現有檔案的本機路徑。 第一次在上述 `UploadFileToContainerAsync` 中建立 ResourceFile 物件時，檔案名稱會用於此屬性 (做為 ResourceFile 建構函式的參數)。 這表示可以在與 TaskApplication.exe 相同的目錄中找到檔案。
-2. **第二個引數**指定最前面 N 個單字應該寫入輸出檔案。 在此範例中，此為硬式編碼，所以前 3 個單字會寫入輸出檔案。
-3. **第三個引數**是共用存取簽章 (SAS)，可提供 Azure 儲存體中**輸出**容器的寫入存取權。  將輸出檔上傳至 Azure 儲存體時，會使用此共用存取簽章 URL。 您可以在 TaskApplication 專案的 `Program.cs` 檔案的 `UploadFileToContainer` 方法中找到其程式碼：
+1. hello**第一個引數**是 hello 檔案 tooprocess hello 路徑。 這是 hello 本機路徑 toohello 檔案存在於 hello 節點。 當 hello 中的 ResourceFile 物件`UploadFileToContainerAsync`初次建立上述中 hello 檔案名稱已用於此屬性 （做為參數 toohello ResourceFile 建構函式）。 這表示該 hello 檔案位於 hello 相同目錄做為*TaskApplication.exe*。
+2. hello**第二個引數**指定該 hello 頂端*N*字詞應該寫 toohello 輸出檔。 在 hello 範例中，這是硬式編碼，讓 hello 前三個單字都會寫入 toohello 輸出檔。
+3. hello**第三個引數**hello 共用的存取簽章 (SAS) 提供寫入存取 toohello**輸出**Azure 儲存體容器中的。 *TaskApplication.exe*當它上傳 hello 輸出檔案 tooAzure 儲存體時，會使用此共用存取簽章 URL。 您可以在 hello 這個尋找 hello 程式碼`UploadFileToContainer`方法在 hello TaskApplication 專案的`Program.cs`檔案：
 
 ```csharp
 // NOTE: From project TaskApplication Program.cs
@@ -479,10 +479,10 @@ private static void UploadFileToContainer(string filePath, string containerSas)
 {
         string blobName = Path.GetFileName(filePath);
 
-        // Obtain a reference to the container using the SAS URI.
+        // Obtain a reference toohello container using hello SAS URI.
         CloudBlobContainer container = new CloudBlobContainer(new Uri(containerSas));
 
-        // Upload the file (as a new blob) to the container
+        // Upload hello file (as a new blob) toohello container
         try
         {
                 CloudBlockBlob blob = container.GetBlockBlobReference(blobName);
@@ -498,10 +498,10 @@ private static void UploadFileToContainer(string filePath, string containerSas)
                 Console.WriteLine("Additional error information: " + e.Message);
                 Console.WriteLine();
 
-                // Indicate that a failure has occurred so that when the Batch service
-                // sets the CloudTask.ExecutionInformation.ExitCode for the task that
+                // Indicate that a failure has occurred so that when hello Batch service
+                // sets hello CloudTask.ExecutionInformation.ExitCode for hello task that
                 // executed this application, it properly indicates that there was a
-                // problem with the task.
+                // problem with hello task.
                 Environment.ExitCode = -1;
         }
 }
@@ -509,17 +509,17 @@ private static void UploadFileToContainer(string filePath, string containerSas)
 
 ## <a name="step-6-monitor-tasks"></a>步驟 6：監視工作
 ![監視工作][6]<br/>
-*用戶端應用程式 (1) 會監視工作的完成和成功狀態，以及 (2) 將結果資料上傳至 Azure 儲存體的工作*
+*hello 用戶端應用程式 （1） 監視 hello 完成及成功狀態的工作和 （2) hello 工作上傳結果資料 tooAzure 儲存體*
 
-工作新增至作業時，會自動排入佇列及排程，以便在與作業相關聯的集區中的計算節點上執行。 根據您指定的設定，Batch 會為您處理所有工作佇列、排程、重試和其他工作管理責任。
+當工作區加入 tooa 工作時，他們會自動排入佇列，排定在 hello 與 hello 工作相關聯的集區的計算節點上執行。 根據您指定的 hello 設定，批次工作的所有佇列、 排程、 重試和其他工作的系統管理工作會為您處理。
 
-監視工作執行的方法有許多種。 DotNetTutorial 顯示了一個只報告完成和工作失敗或成功狀態的簡單範例。 DotNetTutorial 的 `Program.cs` 中的 `MonitorTasks` 方法內，有三個 Batch .NET 概念值得討論。 底下依其出現的順序列出：
+有多種方法 toomonitoring 工作執行。 DotNetTutorial 顯示了一個只報告完成和工作失敗或成功狀態的簡單範例。 在 hello`MonitorTasks`中 DotNetTutorial 的方法`Program.cs`，有三個批次.NET 概念保證討論。 底下依其出現的順序列出：
 
-1. **ODATADetailLevel**：一定要在清單作業 (例如取得作業的工作清單) 中指定 [ODATADetailLevel][net_odatadetaillevel]，以確保 Batch 應用程式效能。 如果您計劃在 Batch 應用程式內進行任何類型的狀態監視，請將 [有效率地查詢 Azure Batch 服務](batch-efficient-list-queries.md) 加入至您的閱讀清單。
-2. **TaskStateMonitor**：[TaskStateMonitor][net_taskstatemonitor] 提供給 Batch .NET 應用程可用來監視工作狀態的協助公用程式。 在 `MonitorTasks` 中，DotNetTutorial 會等候所有工作在時限內達到 [TaskState.Completed][net_taskstate]。 然後終止作業。
-3. **TerminateJobAsync**：透過 [JobOperations.TerminateJobAsync][net_joboperations_terminatejob] 終止作業 (或封鎖 JobOperations.TerminateJob) 會將該作業標記為已完成。 如果您的 Batch 方案使用 [JobReleaseTask][net_jobreltask]，請務必這樣做。 如 [作業準備和完成工作](batch-job-prep-release.md)中所述，這是一種特殊的工作類型。
+1. **ODATADetailLevel**：一定要在清單作業 (例如取得作業的工作清單) 中指定 [ODATADetailLevel][net_odatadetaillevel]，以確保 Batch 應用程式效能。 新增[有效率地查詢 hello Azure Batch 服務](batch-efficient-list-queries.md)tooyour 讀取清單，如果您計劃執行任何類型的批次應用程式中監視狀態。
+2. **TaskStateMonitor**：[TaskStateMonitor][net_taskstatemonitor] 提供給 Batch .NET 應用程可用來監視工作狀態的協助公用程式。 在`MonitorTasks`， *DotNetTutorial*等候所有工作 tooreach [TaskState.Completed] [ net_taskstate]時間限制內。 然後它會終止 hello 作業。
+3. **TerminateJobAsync**： 終止與作業[JobOperations.TerminateJobAsync] [ net_joboperations_terminatejob] （或 hello 封鎖 JobOperations.TerminateJob） 將工作標示為已完成。 它是不可或缺的 toodo 因此如果您的批次方案使用[JobReleaseTask][net_jobreltask]。 如 [作業準備和完成工作](batch-job-prep-release.md)中所述，這是一種特殊的工作類型。
 
-DotNetTutorial 的 `Program.cs` 中的 `MonitorTasks` 方法如下所示：
+hello`MonitorTasks`方法從*DotNetTutorial*的`Program.cs`下方會出現：
 
 ```csharp
 private static async Task<bool> MonitorTasks(
@@ -529,12 +529,12 @@ private static async Task<bool> MonitorTasks(
 {
     bool allTasksSuccessful = true;
     const string successMessage = "All tasks reached state Completed.";
-    const string failureMessage = "One or more tasks failed to reach the Completed state within the timeout period.";
+    const string failureMessage = "One or more tasks failed tooreach hello Completed state within hello timeout period.";
 
-    // Obtain the collection of tasks currently managed by the job. Note that we use
-    // a detail level to  specify that only the "id" property of each task should be
-    // populated. Using a detail level for all list operations helps to lower
-    // response time from the Batch service.
+    // Obtain hello collection of tasks currently managed by hello job. Note that we use
+    // a detail level too specify that only hello "id" property of each task should be
+    // populated. Using a detail level for all list operations helps toolower
+    // response time from hello Batch service.
     ODATADetailLevel detail = new ODATADetailLevel(selectClause: "id");
     List<CloudTask> tasks =
         await batchClient.JobOperations.ListTasks(JobId, detail).ToListAsync();
@@ -542,8 +542,8 @@ private static async Task<bool> MonitorTasks(
     Console.WriteLine("Awaiting task completion, timeout in {0}...",
         timeout.ToString());
 
-    // We use a TaskStateMonitor to monitor the state of our tasks. In this case, we
-    // will wait for all tasks to reach the Completed state.
+    // We use a TaskStateMonitor toomonitor hello state of our tasks. In this case, we
+    // will wait for all tasks tooreach hello Completed state.
     TaskStateMonitor taskStateMonitor
         = batchClient.Utilities.CreateTaskStateMonitor();
 
@@ -560,32 +560,32 @@ private static async Task<bool> MonitorTasks(
 
     await batchClient.JobOperations.TerminateJobAsync(jobId, successMessage);
 
-    // All tasks have reached the "Completed" state, however, this does not
+    // All tasks have reached hello "Completed" state, however, this does not
     // guarantee all tasks completed successfully. Here we further check each task's
-    // ExecutionInfo property to ensure that it did not encounter a failure
+    // ExecutionInfo property tooensure that it did not encounter a failure
     // or return a non-zero exit code.
 
-    // Update the detail level to populate only the task id and executionInfo
-    // properties. We refresh the tasks below, and need only this information for
+    // Update hello detail level toopopulate only hello task id and executionInfo
+    // properties. We refresh hello tasks below, and need only this information for
     // each task.
     detail.SelectClause = "id, executionInfo";
 
     foreach (CloudTask task in tasks)
     {
-        // Populate the task's properties with the latest info from the Batch service
+        // Populate hello task's properties with hello latest info from hello Batch service
         await task.RefreshAsync(detail);
 
         if (task.ExecutionInformation.Result == TaskExecutionResult.Failure)
         {
-            // A task with failure information set indicates there was a problem with the task. It is important to note that
-            // the task's state can be "Completed," yet still have encountered a failure.
+            // A task with failure information set indicates there was a problem with hello task. It is important toonote that
+            // hello task's state can be "Completed," yet still have encountered a failure.
 
             allTasksSuccessful = false;
 
             Console.WriteLine("WARNING: Task [{0}] encountered a failure: {1}", task.Id, task.ExecutionInformation.FailureInformation.Message);
             if (task.ExecutionInformation.ExitCode != 0)
             {
-                // A non-zero exit code may indicate that the application executed by the task encountered an error
+                // A non-zero exit code may indicate that hello application executed by hello task encountered an error
                 // during execution. As not every application returns non-zero on failure by default (e.g. robocopy),
                 // your implementation of error checking may differ from this example.
 
@@ -596,7 +596,7 @@ private static async Task<bool> MonitorTasks(
 
     if (allTasksSuccessful)
     {
-        Console.WriteLine("Success! All tasks completed successfully within the specified timeout period.");
+        Console.WriteLine("Success! All tasks completed successfully within hello specified timeout period.");
     }
 
     return allTasksSuccessful;
@@ -606,7 +606,7 @@ private static async Task<bool> MonitorTasks(
 ## <a name="step-7-download-task-output"></a>步驟 7：下載工作輸出
 ![從儲存體下載工作輸出][7]<br/>
 
-現已完成作業，可以從 Azure 儲存體下載工作的輸出。 在 DotNetTutorial*`Program.cs` 的*  中呼叫 `DownloadBlobsFromContainerAsync` 即可完成此操作：
+既然 hello 作業已完成，您可以從 Azure 儲存體下載 hello hello 工作輸出。 這是透過呼叫太`DownloadBlobsFromContainerAsync`中*DotNetTutorial*的`Program.cs`:
 
 ```csharp
 private static async Task DownloadBlobsFromContainerAsync(
@@ -616,33 +616,33 @@ private static async Task DownloadBlobsFromContainerAsync(
 {
         Console.WriteLine("Downloading all files from container [{0}]...", containerName);
 
-        // Retrieve a reference to a previously created container
+        // Retrieve a reference tooa previously created container
         CloudBlobContainer container = blobClient.GetContainerReference(containerName);
 
-        // Get a flat listing of all the block blobs in the specified container
+        // Get a flat listing of all hello block blobs in hello specified container
         foreach (IListBlobItem item in container.ListBlobs(
                     prefix: null,
                     useFlatBlobListing: true))
         {
-                // Retrieve reference to the current blob
+                // Retrieve reference toohello current blob
                 CloudBlob blob = (CloudBlob)item;
 
-                // Save blob contents to a file in the specified folder
+                // Save blob contents tooa file in hello specified folder
                 string localOutputFile = Path.Combine(directoryPath, blob.Name);
                 await blob.DownloadToFileAsync(localOutputFile, FileMode.Create);
         }
 
-        Console.WriteLine("All files downloaded to {0}", directoryPath);
+        Console.WriteLine("All files downloaded too{0}", directoryPath);
 }
 ```
 
 > [!NOTE]
-> 在 DotNetTutorial 應用程式中呼叫 `DownloadBlobsFromContainerAsync`，可讓您指定檔案應下載到您的 `%TEMP%` 資料夾。 您可隨意修改此輸出位置。
+> 太 hello 呼叫`DownloadBlobsFromContainerAsync`在 hello *DotNetTutorial*應用程式指定 hello 檔案應該下載的 tooyour`%TEMP%`資料夾。 感覺可用 toomodify 這輸出位置。
 >
 >
 
 ## <a name="step-8-delete-containers"></a>步驟 8：刪除容器
-因為您需對位於 Azure 儲存體中的資料付費，所以建議您移除您的 Batch 作業不再需要的 Blob。 在 DotNetTutorial 的 `Program.cs` 中，呼叫協助程式方法 `DeleteContainerAsync` 三次即可辦到：
+因為您必須支付位於 Azure 儲存體中的資料，永遠是個不錯的主意 tooremove blob 不再需要的批次作業。 在 DotNetTutorial 的`Program.cs`，做法是使用三個呼叫 toohello helper 方法`DeleteContainerAsync`:
 
 ```csharp
 // Clean up Storage resources
@@ -651,7 +651,7 @@ await DeleteContainerAsync(blobClient, inputContainerName);
 await DeleteContainerAsync(blobClient, outputContainerName);
 ```
 
-此方法本身只會取得容器的參考，然後呼叫 [CloudBlobContainer.DeleteIfExistsAsync][net_container_delete]：
+hello 方法本身只會取得參考 toohello 容器，然後再呼叫[CloudBlobContainer.DeleteIfExistsAsync][net_container_delete]:
 
 ```csharp
 private static async Task DeleteContainerAsync(
@@ -672,13 +672,13 @@ private static async Task DeleteContainerAsync(
 }
 ```
 
-## <a name="step-9-delete-the-job-and-the-pool"></a>步驟 9：刪除作業和集區
-在最後一個步驟中，系統會提示您刪除 DotNetTutorial 應用程式所建立的作業和集區。 雖然您不需支付作業和工作的費用，但您「需」支付計算節點的費用。 因此，我們建議您只在必要時配置節點。 刪除未使用的集區可成為您維護程序的一部分。
+## <a name="step-9-delete-hello-job-and-hello-pool"></a>步驟 9： 刪除 hello 作業和 hello 集區
+在 hello 最後一個步驟中，您提示的 toodelete hello 作業和 hello 集區所建立的 hello DotNetTutorial 應用程式。 雖然您不需支付作業和工作的費用，但您「需」支付計算節點的費用。 因此，我們建議您只在必要時配置節點。 刪除未使用的集區可成為您維護程序的一部分。
 
-BatchClient 的 [JobOperations][net_joboperations] 和 [PoolOperations][net_pooloperations] 兩者都有對應的刪除方法 (在使用者確認刪除時呼叫)：
+hello BatchClient 的[JobOperations] [ net_joboperations]和[PoolOperations] [ net_pooloperations]兩者都有對應的刪除動作方法，如果呼叫hello 使用者確認刪除項目：
 
 ```csharp
-// Clean up the resources we've created in the Batch account if the user so chooses
+// Clean up hello resources we've created in hello Batch account if hello user so chooses
 Console.WriteLine();
 Console.WriteLine("Delete job? [yes] no");
 string response = Console.ReadLine().ToLower();
@@ -696,14 +696,14 @@ if (response != "n" && response != "no")
 ```
 
 > [!IMPORTANT]
-> 請記住，您需支付計算資源的費用，而刪除未使用的集區會將成本降到最低。 另外請注意，刪除集區也會刪除該集區內的所有計算節點，而刪除集區後，將無法復原節點上的任何資料。
+> 請記住，您需支付計算資源的費用，而刪除未使用的集區會將成本降到最低。 此外，請注意，刪除集區會刪除所有的運算節點區內，而且之後刪除 hello 集區 hello 節點上的任何資料將無法復原。
 >
 >
 
-## <a name="run-the-dotnettutorial-sample"></a>執行 DotNetTutorial  範例
-當您執行範例應用程式時，主控台輸出大致如下。 在執行期間，啟動集區的計算節點時，您將在 `Awaiting task completion, timeout in 00:30:00...` 遇到暫停。 在執行期間和之後，使用 [Azure 入口網站][azure_portal]來監視集區、計算節點、作業和工作。 使用 [Azure 入口網站][azure_portal]或 [Azure 儲存體總管][storage_explorers]來檢視應用程式所建立的儲存體資源 (容器和 Blob)。
+## <a name="run-hello-dotnettutorial-sample"></a>執行 hello *DotNetTutorial*範例
+當您執行 hello 範例應用程式時，hello 主控台輸出會是類似 toohello 下列。 在執行期間，就會發生在暫停`Awaiting task completion, timeout in 00:30:00...`時 hello 集區的計算節點都已啟動。 使用 hello [Azure 入口網站][ azure_portal] toomonitor 集區、 計算節點、 工作和工作期間和之後執行。 使用 hello [Azure 入口網站][ azure_portal]或 hello [Azure 儲存體總管][ storage_explorers] tooview hello 存放資源 （容器和 blob） 的hello 應用程式所建立。
 
-以預設設定執行應用程式時，一般的執行時間 **大約 5 分鐘** 。
+一般的執行時間是**大約 5 分鐘**當您執行 hello 應用程式在其預設組態。
 
 ```
 Sample start: 1/8/2016 09:42:58 AM
@@ -711,18 +711,18 @@ Sample start: 1/8/2016 09:42:58 AM
 Container [application] created.
 Container [input] created.
 Container [output] created.
-Uploading file C:\repos\azure-batch-samples\CSharp\ArticleProjects\DotNetTutorial\bin\Debug\TaskApplication.exe to container [application]...
-Uploading file Microsoft.WindowsAzure.Storage.dll to container [application]...
-Uploading file ..\..\taskdata1.txt to container [input]...
-Uploading file ..\..\taskdata2.txt to container [input]...
-Uploading file ..\..\taskdata3.txt to container [input]...
+Uploading file C:\repos\azure-batch-samples\CSharp\ArticleProjects\DotNetTutorial\bin\Debug\TaskApplication.exe toocontainer [application]...
+Uploading file Microsoft.WindowsAzure.Storage.dll toocontainer [application]...
+Uploading file ..\..\taskdata1.txt toocontainer [input]...
+Uploading file ..\..\taskdata2.txt toocontainer [input]...
+Uploading file ..\..\taskdata3.txt toocontainer [input]...
 Creating pool [DotNetTutorialPool]...
 Creating job [DotNetTutorialJob]...
-Adding 3 tasks to job [DotNetTutorialJob]...
+Adding 3 tasks toojob [DotNetTutorialJob]...
 Awaiting task completion, timeout in 00:30:00...
-Success! All tasks completed successfully within the specified timeout period.
+Success! All tasks completed successfully within hello specified timeout period.
 Downloading all files from container [output]...
-All files downloaded to C:\Users\USERNAME\AppData\Local\Temp
+All files downloaded tooC:\Users\USERNAME\AppData\Local\Temp
 Container [application] deleted.
 Container [input] deleted.
 Container [output] deleted.
@@ -733,18 +733,18 @@ Elapsed time: 00:04:48.5358142
 Delete job? [yes] no: yes
 Delete pool? [yes] no: yes
 
-Sample complete, hit ENTER to exit...
+Sample complete, hit ENTER tooexit...
 ```
 
 ## <a name="next-steps"></a>後續步驟
-您可隨意變更 DotNetTutorial 和 TaskApplication，以試驗不同的計算案例。 例如，嘗試將執行延遲新增至 TaskApplication (例如使用 [Thread.Sleep][net_thread_sleep])，以模擬長時間執行的工作並在入口網站中監視這些工作。 嘗試新增更多工作，或調整計算節點的數目。 新增邏輯來檢查並允許使用現有的集區加速執行時間 (提示：簽出 [azure-batch-samples][github_samples] 中 [Microsoft.Azure.Batch.Samples.Common][github_samples_common] 專案的 `ArticleHelpers.cs`)。
+太覺得可用 toomake 變更*DotNetTutorial*和*TaskApplication*不同 tooexperiment 計算案例。 例如，再次嘗試新增執行延遲太*TaskApplication*，例如如同[Thread.Sleep][net_thread_sleep]，toosimulate 長時間執行工作，並在 hello 入口網站中監視它們。 再試一次新增更多工作，或調整 hello 的運算節點數目。 新增的邏輯 toocheck 並允許 hello 使用現有的集區 toospeed 執行時間 (*提示*： 簽出`ArticleHelpers.cs`在 hello [Microsoft.Azure.Batch.Samples.Common] [ github_samples_common]專案中[azure 批次範例][github_samples])。
 
-既然您已熟悉 Batch 方案的基本工作流程，現在可以深入了解 Batch 服務的其他功能。
+既然您已熟悉 hello 批次解決方案的基本工作流程，它是 hello 的時間 toodig 中 toohello 批次服務的額外功能。
 
-* 如果您不熟悉這項服務，我們建議檢閱 [Azure Batch 功能概觀](batch-api-basics.md) 一文。
-* 從 [Batch 學習路徑][batch_learning_path]中的**深入開發**之下的其他 Batch 開發文章著手。
-* 使用 [TopNWords][github_topnwords] 範例，查看處理「前 N 個單字」工作負載的不同實作方式。
-* 檢閱 Batch .NET [版本資訊](https://github.com/Azure/azure-sdk-for-net/blob/psSdkJson6/src/SDKs/Batch/DataPlane/changelog.md#azurebatch-release-notes)，以取得文件庫中的最新變更。
+* 檢閱 hello [Azure Batch 概觀功能](batch-api-basics.md)發行項，我們建議您是否新增 toohello 服務。
+* 開始在 hello 底下其他批次開發文件**深入開發**在 hello[批次學習路徑][batch_learning_path]。
+* 簽出使用批次中 hello 處理 hello 「 前 n 個單字"工作負載的不同實作[TopNWords] [ github_topnwords]範例。
+* 檢閱 hello 批次.NET[版本資訊](https://github.com/Azure/azure-sdk-for-net/blob/psSdkJson6/src/SDKs/Batch/DataPlane/changelog.md#azurebatch-release-notes)hello hello 文件庫中的最新變更。
 
 [azure_batch]: https://azure.microsoft.com/services/batch/
 [azure_free_account]: https://azure.microsoft.com/free/
@@ -795,10 +795,10 @@ Sample complete, hit ENTER to exit...
 [vm_marketplace]: https://azure.microsoft.com/marketplace/virtual-machines/
 
 [1]: ./media/batch-dotnet-get-started/batch_workflow_01_sm.png "在 Azure 儲存體中建立容器"
-[2]: ./media/batch-dotnet-get-started/batch_workflow_02_sm.png "將工作應用程式和輸入 (資料) 檔案上傳至容器"
+[2]: ./media/batch-dotnet-get-started/batch_workflow_02_sm.png "上傳工作應用程式，並輸入 （資料） 檔 toocontainers"
 [3]: ./media/batch-dotnet-get-started/batch_workflow_03_sm.png "建立 Batch 集區"
 [4]: ./media/batch-dotnet-get-started/batch_workflow_04_sm.png "建立 Batch 作業"
-[5]: ./media/batch-dotnet-get-started/batch_workflow_05_sm.png "將工作新增至作業"
+[5]: ./media/batch-dotnet-get-started/batch_workflow_05_sm.png "新增工作 toojob"
 [6]: ./media/batch-dotnet-get-started/batch_workflow_06_sm.png "監視工作"
 [7]: ./media/batch-dotnet-get-started/batch_workflow_07_sm.png "從儲存體下載工作輸出"
 [8]: ./media/batch-dotnet-get-started/batch_workflow_sm.png "Batch 方案工作流程 (完整圖表)"

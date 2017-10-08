@@ -1,6 +1,6 @@
 ---
-title: "與 Azure SQL Database 的資料相依路由 | Microsoft Docs"
-description: "如何在 .NET 應用程式中將 ShardMapManager 類別用於資料相依路由 (Azure SQL Database 中的分區化資料庫的一項功能)"
+title: "相依路由與 Azure SQL Database aaaData |Microsoft 文件"
+description: "如何 toouse hello ShardMapManager 資料依存路由，在 Azure SQL Database 分區化資料庫的一項功能的.NET 應用程式中的類別"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -15,34 +15,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/27/2017
 ms.author: ddove
-ms.openlocfilehash: 6b68bbb0133afd1493acdb58f79f3eeaf6a8d7cd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 34014508ae01905686791fe096bb275cb84f53b4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="data-dependent-routing"></a>資料相依路由
-**資料相依路由** 是可使用查詢中的資料，將要求路由至適當的資料庫。 這是使用分區化資料庫時的一種基本模式。 要求內容也可能會用於路由要求，特別是如果分區化索引鍵不是查詢的一部分。 在使用資料相依路由的應用程式中，每個特定的查詢或交易會限制每個要求只能存取單一資料庫。 針對 Azure SQL Database Elastic 工具，此路由會在 ADO.NET 應用程式中使用 **[ShardMapManager 類別](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx)**來完成。
+**資料依存路由**hello 能力 toouse hello 資料查詢 tooroute hello 要求 tooan 適當資料庫中。 這是使用分區化資料庫時的一種基本模式。 hello 要求內容也可能使用的 tooroute hello 要求，特別是當 hello 分區化索引鍵不是 hello 查詢的一部分。 每個特定的查詢或交易中使用資料依存路由的應用程式是受限制的 tooaccessing 單一資料庫，每個要求。 Hello Azure SQL Database 彈性的工具，在以 hello 完成此路由 **[ShardMapManager 類別](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanager.aspx)** ADO.NET 應用程式中。
 
-應用程式不需要在分區化環境中追蹤不同的連接字串或與不同資料片段相關聯的 DB 位置。 相反地， [分區對應管理員](sql-database-elastic-scale-shard-map-management.md) 會根據分區對應中的資料和分區化索引鍵的值 (應用程式要求的目標)，在必要時開啟正確資料庫的連接。 此索引鍵通常是 customer_id、tenant_id、date_key，或作為資料庫要求基本參數的其他一些特定的識別項)。 
+hello 應用程式不需要 tootrack，不同的連接字串或不同的配量的 hello 分區化環境中的資料與相關聯的 DB 位置。 相反地，hello[分區對應管理員](sql-database-elastic-scale-shard-map-management.md)開啟連線 toohello 正確的資料庫需要時，根據 hello 分區對應和 hello 的 hello hello 應用程式要求目標的 hello 分區化索引鍵的值中的 hello 資料。 hello 索引鍵通常是 hello *customer_id*， *tenant_id*， *date_key*，或某些其他特定識別碼 hello 資料庫要求的基本參數)。 
 
 如需詳細資訊，請參閱 [Scaling Out SQL Server with Data Dependent Routing (使用資料相依路由相應放大 SQL Server)](https://technet.microsoft.com/library/cc966448.aspx)。
 
-## <a name="download-the-client-library"></a>下載用戶端程式庫
-若要取得類別，請安裝 [彈性資料庫用戶端程式庫](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)。 
+## <a name="download-hello-client-library"></a>下載 hello 用戶端程式庫
+tooget hello 類別安裝 hello[彈性資料庫用戶端程式庫](http://www.nuget.org/packages/Microsoft.Azure.SqlDatabase.ElasticScale.Client/)。 
 
 ## <a name="using-a-shardmapmanager-in-a-data-dependent-routing-application"></a>在資料相依路由應用程式中使用 ShardMapManager
-應用程式應該在初始化期間，使用 Factory 呼叫 **[GetSQLShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.getsqlshardmapmanager.aspx)** 來具現化 **ShardMapManager**。 此範例中會初始化 **ShardMapManager** 及其包含的特定 **ShardMap**。 這個範例示範 GetSqlShardMapManager 和 [GetRangeShardMap](https://msdn.microsoft.com/library/azure/dn824173.aspx) 方法。
+應用程式應該具現化 hello **ShardMapManager**在初始化期間，使用 hello factory 呼叫 **[GetSQLShardMapManager](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmapmanagerfactory.getsqlshardmapmanager.aspx)**。 此範例中會初始化 **ShardMapManager** 及其包含的特定 **ShardMap**。 此範例中會顯示 hello GetSqlShardMapManager 和[GetRangeShardMap](https://msdn.microsoft.com/library/azure/dn824173.aspx)方法。
 
     ShardMapManager smm = ShardMapManagerFactory.GetSqlShardMapManager(smmConnnectionString, 
                       ShardMapManagerLoadPolicy.Lazy);
     RangeShardMap<int> customerShardMap = smm.GetRangeShardMap<int>("customerMap"); 
 
-### <a name="use-lowest-privilege-credentials-possible-for-getting-the-shard-map"></a>盡可能使用最低權限的認證來取得分區對應
-如果應用程式不會自行操作分區對應，用於 Factory 方法中的認證在 **全域分區對應** 資料庫上應該只有唯讀權限。 這些認證通常不同於用來對分區對應管理員開啟連接的認證。 另請參閱 [用來存取彈性資料庫用戶端程式庫的認證](sql-database-elastic-scale-manage-credentials.md)。 
+### <a name="use-lowest-privilege-credentials-possible-for-getting-hello-shard-map"></a>使用最低權限認證可能讓 hello 分區對應
+如果應用程式不操作 hello 分區對應本身，hello hello factory 方法中使用的認證上至少應有只唯讀權限 hello**全域分區對應**資料庫。 這些認證所用認證 tooopen 連線 toohello 分區對應管理員通常不同。 另請參閱[使用 tooaccess hello 彈性資料庫用戶端程式庫的認證](sql-database-elastic-scale-manage-credentials.md)。 
 
-## <a name="call-the-openconnectionforkey-method"></a>呼叫 OpenConnectionForKey 方法
-**[ShardMap.OpenConnectionForKey 方法](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx)** 傳回的 ADO.Net 連接可根據 **key** 參數的值，對適當的資料庫發出命令。 **ShardMapManager** 會將分區資訊快取在應用程式中，因此這些要求通常不需要針對**全域分區對應**資料庫進行資料庫尋查。 
+## <a name="call-hello-openconnectionforkey-method"></a>呼叫 hello OpenConnectionForKey 方法
+hello  **[ShardMap.OpenConnectionForKey 方法](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkey.aspx)**傳回準備好發行的 hello hello 值為基礎的命令 toohello 適當資料庫的 ADO.Net 連接**金鑰**參數。 分區資訊快取 hello 應用程式中的 hello **ShardMapManager**，因此這些要求通常不包含針對 hello 資料庫尋查**全域分區對應**資料庫。 
 
     // Syntax: 
     public SqlConnection OpenConnectionForKey<TKey>(
@@ -52,21 +52,21 @@ ms.lasthandoff: 07/11/2017
     )
 
 
-* **key** 參數做為分區對應中的查閱索引鍵，以決定要求的適當資料庫。 
-* **connectionString** 只用來傳遞使用者認證給所需的連接。 此 *connectionString* 中不含任何資料庫名稱或伺服器名稱，因為此方法會使用 **ShardMap**來決定資料庫和伺服器。 
-* 若分區對應所在的環境可能變更，且資料列可能會移動到其他的資料庫成為分割或合併作業的結果，則 **[connectionOptions](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.connectionoptions.aspx)** 應設為 **ConnectionOptions.Validate**。 這牽涉到在將連接傳遞至應用程式之前，對目標資料庫上的本機分區對應 (不是全域分區對應) 的簡短查詢。 
+* hello**金鑰**參數作為查閱索引鍵到 hello 分區對應 toodetermine hello 適當資料庫 hello 要求。 
+* hello **connectionString**是使用的 toopass hello 想要連接的唯一 hello 使用者認證。 沒有資料庫名稱或伺服器名稱包含在此*connectionString*因為 hello 方法會判斷 hello 資料庫和伺服器 hello **ShardMap**。 
+* hello  **[connectionOptions](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.connectionoptions.aspx)** 應該設定太**ConnectionOptions.Validate**如果分區對應所在的環境可能會變更，且資料列可能會移動 tooother 資料庫分割或合併作業的結果。 這項作業包括簡短查詢 toohello 本機分區對應 hello 連線前的 hello 目標資料庫 （不 toohello 全域分區對應） 會傳遞 toohello 應用程式。 
 
-如果本機分區對應驗證失敗 (表示快取不正確)，分區對應管理員會查詢全域分區對應來取得查閱的新正確值、更新快取，然後取得並傳回適當的資料庫連接。 
+Hello 分區對應管理員 hello hello 本機分區對應的驗證，就會失敗 （表示 hello 快取不正確），如果將查詢 hello 全域分區對應 tooobtain hello 新正確值 hello 查閱而言，更新 hello 快取，以及取得並傳回 hello適當的資料庫連接。 
 
-唯有當應用程式在線上，分區對應的變更是非預期之時，才使用 **ConnectionOptions.None** 。 在此情況下，快取的值可假定為永遠正確，可放心地略過對於目標資料庫的額外往返驗證呼叫。 這會減少資料庫流量。 也可透過組態檔中的值來設定 **connectionOptions** ，以指出在一段時間內是否預期有分區化變更。  
+唯有當應用程式在線上，分區對應的變更是非預期之時，才使用 **ConnectionOptions.None** 。 在此情況下，快取的 hello 值可以假設 tooalways 正確，以及可以放心地略過 hello 額外反覆存取驗證呼叫 toohello 目標資料庫。 這會減少資料庫流量。 hello **connectionOptions**可能也透過組態檔 tooindicate 中的值是否應該分區化變更或設定不會在一段時間。  
 
-此範例會利用名為 **customerShardMap** 的 **ShardMap** 物件，使用整數索引鍵值 **CustomerID**。  
+這個範例會使用整數索引鍵的 hello 值**CustomerID**，並使用**ShardMap**名為物件**customerShardMap**。  
 
     int customerId = 12345; 
     int newPersonId = 4321; 
 
-    // Connect to the shard for that customer ID. No need to call a SqlConnection 
-    // constructor followed by the Open method.
+    // Connect toohello shard for that customer ID. No need toocall a SqlConnection 
+    // constructor followed by hello Open method.
     using (SqlConnection conn = customerShardMap.OpenConnectionForKey(customerId, 
         Configuration.GetCredentialsConnectionString(), ConnectionOptions.Validate)) 
     { 
@@ -81,14 +81,14 @@ ms.lasthandoff: 07/11/2017
         cmd.ExecuteNonQuery(); 
     }  
 
-**OpenConnectionForKey** 方法會傳回新的已開啟連接至正確的資料庫。 以這種方式使用連接仍可充分利用 ADO.Net 連接共用。 只要一次一個分區就可滿足交易和要求，則已經使用 ADO.Net 的應用程式中只需要如此修改。 
+hello **OpenConnectionForKey**方法會傳回新的連接已經開啟 toohello 正確資料庫。 以這種方式使用連接仍可充分利用 ADO.Net 連接共用。 只要交易和要求都可藉由一個分區一次，這應該是 hello 只有修改需要已經使用 ADO.Net 應用程式中。 
 
-如果您的應用程式將非同步程式設計與 ADO.Net 搭配使用，則也可以使用 **[OpenConnectionForKeyAsync method](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkeyasync.aspx)**。 其行為相當於 ADO.Net **[Connection.OpenAsync](https://msdn.microsoft.com/library/hh223688\(v=vs.110\).aspx)** 方法的資料相依路由。
+hello  **[OpenConnectionForKeyAsync 方法](https://msdn.microsoft.com/library/azure/microsoft.azure.sqldatabase.elasticscale.shardmanagement.shardmap.openconnectionforkeyasync.aspx)**也會提供，若您的應用程式會使用非同步程式設計與 ADO.Net。 其行為是 hello 資料依存路由 ADO 的對等。網路的 **[Connection.OpenAsync](https://msdn.microsoft.com/library/hh223688\(v=vs.110\).aspx)** 方法。
 
 ## <a name="integrating-with-transient-fault-handling"></a>與暫時性錯誤處理整合
-在雲端中開發資料存取應用程式時，最佳做法就是確保應用程式會攔截暫時性錯誤，並且將作業重試數次之後才會擲回錯誤。 [暫時性錯誤處理](https://msdn.microsoft.com/library/dn440719\(v=pandp.60\).aspx)中討論雲端應用程式的暫時性錯誤處理。 
+開發 hello 雲端中的資料存取應用程式中的最佳做法是的 tooensure 暫時性失敗所捕捉 hello 應用程式，而且 hello 作業會擲回錯誤之前項目重試數次。 [暫時性錯誤處理](https://msdn.microsoft.com/library/dn440719\(v=pandp.60\).aspx)中討論雲端應用程式的暫時性錯誤處理。 
 
-暫時性錯誤處理可以自然地與資料相依路由模式並存。 主要需求是重試整個資料存取要求，包括用以取得資料相依路由連接的 **using** 區塊。 上述範例可以改寫如下 (請注意反白顯示的變更)。 
+暫時性錯誤處理可以同時存在自然 hello 資料依存路由的模式。 hello 關鍵需求是 tooretry hello 整個資料存取的要求包括 hello**使用**取得 hello 資料依存路由連接的區塊。 上述的 hello 範例可以改寫如下 （請注意反白顯示的變更）。 
 
 ### <a name="example---data-dependent-routing-with-transient-fault-handling"></a>範例 - 資料相依路由與暫時性錯誤處理
 <pre><code>int customerId = 12345; 
@@ -96,7 +96,7 @@ int newPersonId = 4321;
 
 <span style="background-color:  #FFFF00">Configuration.SqlRetryPolicy.ExecuteAction(() =&gt; </span> 
 <span style="background-color:  #FFFF00">    { </span>
-        // Connect to the shard for a customer ID. 
+        // Connect toohello shard for a customer ID. 
         using (SqlConnection conn = customerShardMap.OpenConnectionForKey(customerId,  
         Configuration.GetCredentialsConnectionString(), ConnectionOptions.Validate)) 
         { 
@@ -117,13 +117,13 @@ int newPersonId = 4321;
 </code></pre>
 
 
-當您建置彈性資料庫範例應用程式時，自動會下載實作暫時性錯誤處理所需的封裝。 另外也可以從 [企業程式庫 - 暫時性錯誤處理應用程式區塊](http://www.nuget.org/packages/EnterpriseLibrary.TransientFaultHandling/)(英文) 取得封裝。 請使用 6.0 版或更新版本。 
+封裝需要 tooimplement 暫時性錯誤處理會自動下載當您建置 hello 彈性資料庫範例應用程式。 另外也可以從 [企業程式庫 - 暫時性錯誤處理應用程式區塊](http://www.nuget.org/packages/EnterpriseLibrary.TransientFaultHandling/)(英文) 取得封裝。 請使用 6.0 版或更新版本。 
 
 ## <a name="transactional-consistency"></a>交易一致性
-對於分區範圍內的所有作業，都保證交易式屬性。 例如，透過資料相依路由提交的交易，都在連接的目標分區範圍內執行。 目前無法將多個連接編列到交易中，因此對於跨分區執行的作業，不提供交易式保證。
+所有作業本機 tooa 分區都保證交易的內容。 例如，透過資料依存路由送出的交易執行 hello 目標分區 hello 連線 hello 範圍內。 目前無法將多個連接編列到交易中，因此對於跨分區執行的作業，不提供交易式保證。
 
 ## <a name="next-steps"></a>後續步驟
-若要中斷連結分區或重新附加分區，請參閱 [使用 RecoveryManager 類別來修正分區對應問題](sql-database-elastic-database-recovery-manager.md)
+toodetach 分區或 tooreattach 分區，請參閱[使用 hello RecoveryManager 類別 toofix 分區對應問題](sql-database-elastic-database-recovery-manager.md)
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

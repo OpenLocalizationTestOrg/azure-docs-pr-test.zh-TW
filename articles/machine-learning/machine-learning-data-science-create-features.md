@@ -1,6 +1,6 @@
 ---
-title: "資料科學特徵工程設計 | Microsoft Docs"
-description: "說明機器學習服務的資料增強程序中特性工程設計的目的，並提供其角色的範例。"
+title: "在資料科學 aaaFeature 工程 |Microsoft 文件"
+description: "說明 hello 特徵設計的用途，並提供其角色在機器學習的 hello 資料增強功能程序中的範例。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,79 +14,79 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/24/2017
 ms.author: zhangya;bradsev
-ms.openlocfilehash: f586e8087a246f3bedf5010e8f6ce7aea1c1ec6a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: af40ea9cc9395bc87fe695eeaef26aa71e0ec9e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="feature-engineering-in-data-science"></a>資料科學特徵工程設計
-本主題說明在機器學習服務的資料增強程序中特徵工程設計的目的，並提供其角色的範例。 用來說明此程序的範例是取自 Azure Machine Learning Studio。 
+本主題說明 hello 特徵設計的用途，並提供其角色在機器學習的 hello 資料增強功能程序中的範例。 使用此程序會從 Azure Machine Learning Studio 繪製的 tooillustrate hello 範例。 
 
 [!INCLUDE [cap-create-features-data-selector](../../includes/cap-create-features-selector.md)]
 
-這個 **功能表** 所連結的主題會說明如何在各種環境中建立資料的特徵。 此工作是 [Team Data Science Process (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)中的一個步驟。
+這**功能表**連結 tootopics 描述 toocreate 各種環境中的資料的功能。 這項工作是在 hello 步驟[小組資料科學程序 (TDSP)](https://azure.microsoft.com/documentation/learning-paths/cortana-analytics-process/)。
 
-特徵工程設計藉由以協助學習程序的原始資料來建立特徵，以嘗試增加學習演算法的預測能力。 特徵的工程設計與選取是何謂 [Team Data Science Process 生命週期？](data-science-process-overview.md)中所概述 TDSP 程序的其中一部分。 特徵工程設計和選取屬於 TDSP 的 **開發特徵** 步驟。 
+功能工程嘗試 tooincrease hello 預測檢定力的學習演算法，建立從原始資料，可協助進行 hello 學習程序的功能。 hello 工程和選取的功能是一個一部分 hello TDSP 述 hello [hello 小組資料科學程序生命週期是什麼？](data-science-process-overview.md) 功能工程及選取項目是部分 hello**開發功能**hello TDSP 的步驟。 
 
-* **特性工程設計**：此程序嘗試從資料中的現有原始特性建立其他相關特性，以及增加學習演算法的預測功效。
-* **特性選取**：此程序嘗試選取主要的原始資料特性子集，以縮小定型問題的維度。
+* **功能工程**： 這個處理序嘗試 toocreate 其他相關的功能從 hello 現有未經處理的功能在 hello 資料和 tooincrease hello hello 學習演算法的預測能力。
+* **特徵選取**： 此程序中 hello 訓練問題嘗試 tooreduce hello 維度性選取 hello 索引鍵子集的原始資料的功能。
 
-通常會先套用**特性工程設計**以產生其他特定，然後執行**特性選取**步驟以排除不相關、多餘或高度相關的特性。
+通常**功能工程**套用第一個 toogenerate 額外的功能，然後在 hello**特徵選取**步驟是執行的 tooeliminate 無關、 備援性，或高度相關功能。
 
-從收集的原始資料擷取特性，通常可以增強機器學習服務中使用的定型資料。 學習環境中工程設計特性範例，分類手寫字元的影像的方式是是建立從原始位元分配資料建構的位元密度對應。 相較於直接使用原始分配，此對應有助於更有效地找出字元的界限。
+擷取從 hello 未經處理資料收集功能通常可增進 hello 定型資料，在機器學習中使用。 學習如何 tooclassify hello 映像的手寫字元，就建立從 hello 未經處理的位元發佈資料所建構的位元密度地圖的 hello 內容的工程功能的範例。 這個對應可協助找出 hello 邊緣 hello 字元比只直接使用 hello 原始發佈更有效率。
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="creating-features-from-your-data---feature-engineering"></a>從您的資料建立特性 - 特性工程設計
-定型資料包含由範例所組成的矩陣 (資料列中儲存的記錄或 觀察)，而每個範例都有一組特性 (資料行中儲存的變數或欄位)。 在實驗設計中指定的特性預計會將資料中的模式特性化。 儘管許多原始資料欄位都可以直接包含在選取用來將模型定型的特性集中，但通常還是需要從原始資料中的特性建構其他 (經過工程設計的) 特性，才能產生增強的定型資料集。
+hello 定型資料包含的範例 （記錄或儲存在資料列的觀察值） 所組成的矩陣，每一個都有一組功能 （變數或資料行中儲存的欄位）。 預期的 toocharacterize hello 模式 hello 資料中會收到 hello hello 實驗設計中指定的功能。 雖然許多 hello 未經處理資料欄位包含可以直接在 hello 選取的功能集使用 tootrain 模型時，它通常是 toobe 建構自 hello hello 未經處理資料 toogenerate 增強功能不需要額外的 （工程） 功能的 hello 案例定型資料集。
 
-應建立何種特性，才能在模型定型時增強資料集？ 經過工程設計的特性可增強定型，還會提供用以區分資料中模式的資訊。 我們期望新特性可提供原始或現有特性集中未清楚擷取或顯而易見的其他資訊。 但此程序是一種藝術。 健全且有建設性的決策通常需要一些網域.專業知識。
+定型模型時，何種功能應建立 tooenhance hello 資料集？ 增強 hello 訓練的工程的功能提供更好的差異 hello hello 資料模式的資訊。 我們預期 hello 新功能 tooprovide 額外的資訊不清楚地擷取或輕鬆地呈現 hello 原始的或現有的功能集。 但此程序是一種藝術。 健全且有建設性的決策通常需要一些網域.專業知識。
 
-從 Azure 機器學習著手時，最簡單的方式是透過 Studio 中提供的範例具體地領會此程序。 以下呈現兩個範例：
+從 Azure Machine Learning 開始，時，最簡單的 toograsp hello Studio 中提供的具體使用範例的這個程序。 以下呈現兩個範例：
 
-* 在已知目標值的監督實驗中的 [單車租用數量預測](http://gallery.cortanaintelligence.com/Experiment/Regression-Demand-estimation-4) 迴歸範例
+* 迴歸範例[hello 自行車出租數目的預測](http://gallery.cortanaintelligence.com/Experiment/Regression-Demand-estimation-4)受監督的實驗稱為 hello 目標值
 * 使用 [特性雜湊](https://msdn.microsoft.com/library/azure/c9a82660-2d9c-411d-8122-4d9e0b3ce92a/)
 
 ## <a name="example-1-adding-temporal-features-for-regression-model"></a>範例 1：新增迴歸模型的暫時特性
-讓我們在 Azure Machine Learning Studio 中使用「單車的需求預測」實驗，示範如何設計迴歸工作的特性。 這項實驗的目標在於預測單車需求，也就是再特定月份/日期/小時內單車租用的數量。 資料集「單車租用 UCI 資料集」作為原始輸入資料使用。 此資料集是以在美國華盛頓特區維護單車出租網路的 Capital Bikeshare 公司所提供的實際資料為基礎。 此資料集代表 2011 年和 2012 年中特定一個小時內的單車租用數量，總共包含 17379 個資料列和 17 個資料行。 原始特性集包含天氣條件 (溫度/溼度/風速) 和當天的類型 (假日/工作日)。 要預測的欄位為 "cnt"，代表特定小時內單位租用的計數，其範圍是 1 至 977。
+讓我們使用 hello 實驗 」 需求預測自行車的 「 Azure Machine Learning Studio toodemonstrate tooengineer 功能如何在迴歸工作。 此實驗 hello 目標是 toopredict hello hello bikes，也就是 hello 自行車出租數目特定的月/日/一小時內的要求。 hello 資料集"Bike 以租用方式佔用 UCI 資料集 」 作為 hello 未經處理的輸入資料。 此資料集根據從 hello 資本 Bikeshare 公司維護在 hello 美國華盛頓特區的自行車以租用方式佔用網路的實際資料。 hello 資料集代表 hello 自行車出租數目 hello 2011 年和 2012 年中的一天的某個特定時間內，而且包含 17379 資料列和 17 的資料行。 hello 未經處理的功能集包含天氣 （溫度/溼度/風速） 和 hello 類型 hello 天 （假日/週間日）。 hello 欄位 toopredict 是"cnt"，表示特定的一小時內 hello 自行車出租和其範圍從 1 too977 範圍的計數。
 
-為了達到在定型資料中建構有效特性的目的，會使用相同的演算法建立四個各有不同定型資料集的迴歸模型， 這四個資料集代表相同的原始輸入資料，但設定的特性數量增加。 這些特性可分為四類：
+建構有效的功能，hello 定型資料中的 hello 目標，四個迴歸模型會使用建立 hello 相同的演算法，但四個不同的訓練資料集。 hello 四個資料集代表 hello 相同原始的輸入的資料，但有越來越多的功能設定。 這些特性可分為四類：
 
-1. A = 預測日的天氣 + 假日 + 工作日 + 週末特性
-2. B = 過去的 12 小時以來，每小時租出的單車數量
-3. C = 過去的 12 天以來，每天在同一個時間租出的單車數量
-4. D = 過去的 12 週以來，在同一天同一個時間租出的單車數量
+1. A = 天氣 + 假日 + 週間日 + 週末功能 hello 預測一天
+2. B = bikes，先前的 12 小時內每個 hello 已出租數目
+3. C = 已出租 hello 的每個先前的 12 天 hello 在相同的自行車的小時
+4. D = 已出租 hello 的每個先前的 12 週，在 hello 相同的自行車的小時和 hello 同一天
 
-除了已存在於原先原始資料中的特性集 A 以外，其他三個特性集是透過特性工程設計程序來建立。 特性集 B 會擷取最近的單車需求。 特性集 C 會擷取某一個小時的單車需求。 特性集 D 會擷取一週當中某一天某一個小時的單車需求。 四個定型資料集分別包含特性集 A、A+B、A+B+C 和 A+B+C+D。
+功能集 A 存在於 hello 原始未經處理資料，除了 hello 功能其他三組透過建立 hello 工程程序的功能。 功能設定 B 擷取最新的 hello 自行車需求。 功能設定的特定小時 C 擷取的自行車 hello 需求。 功能設定的自行車 D 擷取要求在特定小時與 hello 一週的特定天數。 hello 四個定型資料集每個包含功能 set A、 A + B、 A + B + C 和 A + B + C + D、 分別。
 
-在 Azure 機器學習實驗中，這四個定型資料集是透過預先處理的輸入資料集中的分支形成。 除了最左邊的分支以外，每個分支都包含 [執行 R 指令碼](https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/) 模組，其中有一組衍生特性 (特性集 B、C 和 D) 會分別建構並附加至匯入的資料集 。 下圖示範左邊第二個分支中用來建立特性集 B 的 R 指令碼。
+Hello Azure 機器學習實驗中，在這些四個定型資料集的格式透過 hello 預先處理輸入資料集的四個分支。 除了 hello 左大部分的分支，每個分支包含[執行 R 指令碼](https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/)模組中的一組衍生 （功能集 B、 C 以及 D） 的功能是分別建構和附加 toohello 匯入資料集。 下列圖 hello 示範 hello R 指令碼會使用 toocreate 功能集 B hello 第二個左分支中。
 
 ![建立特性](./media/machine-learning-data-science-create-features/addFeature-Rscripts.png)
 
-四個模型的效能結果比較彙總在下表中。 特性 A+B+C 所呈現的結果最理想。 請注意，當定型資料中包含其他特性集時，錯誤率會降低。 這證實了我們的推測：特性集 B、C 會針對迴歸工作提供其他相關資訊。 但新增 D 特性似乎不會讓錯誤率降低。
+hello hello 效能結果的 hello hello 下表中摘要說明四種模型的比較。 hello 獲得最佳結果會顯示功能 A + B + C。 請注意，hello 錯誤速率降低 hello 定型資料中包含額外的功能集。 它會確認我們假設，hello 功能集 B，C 提供 hello 迴歸工作的其他相關資訊的結果。 但是加入 hello D 功能似乎不 tooprovide 其他致使 hello 錯誤率。
 
 ![結果比較](./media/machine-learning-data-science-create-features/result1.png)
 
 ## <a name="example2"></a> 範例 2：在文字採礦中建立特性
-特性工程設計廣泛運用於文字採礦的相關工作，例如文件分類和情感分析。 例如，當我們想要將文件分為數個類別時，通常會假設包含在一個文件類別中的文字/片語比較不可能出現在其他文件類別中。 換言之，文字/片語分配的次數能夠描述不同的文件類別。 在文字採礦應用程式中，因為個別的文字內容通常可作為輸入資料，所以建立文字/片語次數相關特性時需要特性工程設計程序。
+在工作的相關 tootext 採礦，例如文件分類和情緒分析廣泛套用特徵設計。 比方說，當我們想 tooclassify 文件分成數個類別，一般假設是 hello 字/片語包含在一個文件類別目錄會比較不可能 toooccur 另一個文件類別目錄中。 換句話說，hello hello 文字/片語發佈頻率是無法 toocharacterize 不同的文件類別。 在文字採礦應用程式，因為文字內容的各個部分通常做為輸入資料 hello，工程程序的 hello 功能會是需要的 toocreate hello 功能涉及 word/片語頻率。
 
-為了達成此工作，會套用名為 **特性雜湊** 的技術，有效地將任意文字特性變成索引。 此方法不會將每個文字特性 (文字/片語) 關聯至特定索引，而是將雜湊函數套用至特性並直接使用其雜湊值作為索引。
+tooachieve 這項工作，稱為技術**特徵雜湊**是套用的 tooefficiently 索引到任意文字功能。 而不是建立關聯，每個文字功能 （單字/片語） tooa 特定的索引，此方法的功能套用雜湊函式 toohello 功能，並為索引中直接使用其雜湊值。
 
-Azure 機器學習中有一個 [特性雜湊](https://msdn.microsoft.com/library/azure/c9a82660-2d9c-411d-8122-4d9e0b3ce92a/) 模組，方便建立這些文字/片語特性。 下圖顯示使用此模組的範例。 輸入資料集包含兩個資料行：1 至 5 的書籍評比，以及實際評論內容。 此 [特性雜湊](https://msdn.microsoft.com/library/azure/c9a82660-2d9c-411d-8122-4d9e0b3ce92a/) 模組的目標在於擷取一些新特性，以顯示特定書籍評論中對應文字/片語的發生次數。 若要使用此模組，我們必須完成下列步驟：
+Azure 機器學習中有一個 [特性雜湊](https://msdn.microsoft.com/library/azure/c9a82660-2d9c-411d-8122-4d9e0b3ce92a/) 模組，方便建立這些文字/片語特性。 下圖顯示使用此模組的範例。 hello 輸入資料集包含兩個資料行： hello 書籍評等範圍從 1 too5，和 hello 實際的檢閱內容。 這個 hello 目標[特徵雜湊](https://msdn.microsoft.com/library/azure/c9a82660-2d9c-411d-8122-4d9e0b3ce92a/)模組是 tooretrieve 顯示 hello 出現頻率的 hello 對應關鍵字的新功能的一大堆 / 離開 hello 特定書籍檢閱中。 toouse 本單元中，我們需要 toocomplete hello 下列步驟：
 
-* 第一步，選取包含輸入文字的資料行 (此例中的 "Col2")。
-* 第二步，將 "Hashing bitsize" 設定為 8，表示將建立 2^8=256 個特性。 所有文字中的文字/片語會雜湊至 256 個索引。 "Hashing bitsize" 參數的範圍是 1 至 31。 如果將此值設定為較大的數字，文字/片語比較不可能雜湊至相同的索引。
-* 第三步，將 "N-grams" 參數設定為 2。 這麼做可從輸入文字中取得 unigrams (適用於每一個文字的特性) 和 bigrams (適用於每一對相鄰文字的特性) 的發生次數。 "N-grams" 參數的範圍是 0 至 10，這表示要包含在一個特性中的循序文字數目上限。  
+* 首先，選取 包含 hello 輸入的文字的 hello 資料行 (在此範例中為"Col2")。
+* 接下來，設定 hello 「 雜湊位元大小 」 too8 表示 2 ^8 = 256 功能將會建立。 hello word/階段中所有的 hello 文字將 too256 雜湊的索引。 hello 參數 「 雜湊位元大小 」 的範圍從 1 too31。 hello 文字 / 離開會比較不可能 toobe 雜湊成 hello 相同索引如果要設定其 toobe 更大的數目。
+* 第三，設定 hello 參數 」 N 字母組"too2。 這會取得 hello 出現頻率單字母組 （每個單字的功能） 和雙字母組 （每個單字相鄰的配對的功能） 從 hello 輸入文字。 hello"N 字母組 」 範圍是從 0 too10，指出 hello 最大數目循序字 toobe 包含在一項功能。  
 
 ![「特性雜湊」模組](./media/machine-learning-data-science-create-features/feature-Hashing1.png)
 
-下圖顯示這些新特性的外觀。
+hello 如下圖所示什麼 hello 這些新功能的樣子。
 
 ![「特性雜湊」範例](./media/machine-learning-data-science-create-features/feature-Hashing2.png)
 
 ## <a name="conclusion"></a>結論
-工程設計和選取的特性可提高下列定型程序的效率：嘗試擷取資料中內含的重要資訊。 此外，還可改善這些模型的功效，正確地分類輸入資料以及更精確地預測感興趣的結果。 特性工程設計和選取也可結合起來，讓學習更易於以運算方式處理。 其作法是提高而後減少校正或定型模型所需的特性數量。 從數學的角度來看，選取用來定型模型的特性是極小的一組獨立變數，可供解釋資料中的模式，然後成功地預測結果。
+工程與所選取的功能會提高 hello 效率 hello 培訓程序，從而試著 hello 資料中包含 tooextract hello 金鑰資訊。 它們也改善 hello 電源，這些模型 tooclassify hello 輸入資料的精確和 toopredict 結果感興趣多穩當地。 特徵設計和選取範圍也可以結合 toomake hello 學習更多計算容易處理。 它是藉由增強，則減少 hello 一些功能需要 toocalibrate 」 或 「 定型模型。 Hello 功能選取的 tootrain hello 模型數學上來說，是最基本的獨立變數說明 hello 資料中的 hello 模式，然後預測結果成功。
 
-請注意，不一定要執行特性工程設計和特性選取。 需要與否取決於我們所擁有或收集的資料、我們挑選的演算法，以及實驗的目標。
+請注意，它不一定一定 tooperform 工程或功能特徵。 是否需要與否，取決於 hello 資料我們或者收集，我們挑選，hello 演算法，然後再 hello hello 實驗的目標。
 

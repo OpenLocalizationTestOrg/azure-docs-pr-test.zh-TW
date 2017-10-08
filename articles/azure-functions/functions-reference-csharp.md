@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions C# 指令碼開發人員參考 | Microsoft Docs"
-description: "了解如何使用 C# 開發 Azure Functions。"
+title: "aaaAzure 函式 C# 指令碼開發人員參考資料 |Microsoft 文件"
+description: "了解如何 toodevelop Azure 函式使用 C#。"
 services: functions
 documentationcenter: na
 author: lindydonna
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 06/07/2017
 ms.author: donnam
-ms.openlocfilehash: 83a351ce0279ada8ce7fe0513497349471334a86
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 27a8f4eb77497a373ff4031539e2e930585e48e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-functions-c-script-developer-reference"></a>Azure Functions C# 指令碼開發人員參考
 > [!div class="op_single_selector"]
@@ -30,17 +30,17 @@ ms.lasthandoff: 08/29/2017
 >
 >
 
-Azure Functions 的 C# 指令碼體驗是以 Azure WebJobs SDK 為基礎。 資料會透過方法引數流入您的 C# 函式。 引數名稱會指定於 `function.json`中，而且有預先定義的名稱可用來存取函式記錄器和取消權杖等項目。
+hello Azure WebJobs SDK 是以基礎 hello Azure 函式的 C# 指令碼體驗。 資料會透過方法引數流入您的 C# 函式。 中指定的引數名稱`function.json`，而且沒有預先定義的存取像是 hello 函式記錄器和取消語彙基元名稱。
 
-本文假設您已經讀過 [Azure Functions 開發人員參考](functions-reference.md)。
+本文章假設，您已閱讀 hello [Azure 函式的開發人員參考](functions-reference.md)。
 
 如需使用 C# 類別庫的詳細資訊，請參閱[使用 .NET 類別庫搭配 Azure Functions](functions-dotnet-class-library.md)。
 
 ## <a name="how-csx-works"></a>.csx 的運作方式
-`.csx` 格式允許撰寫較少「重複使用」文字，只專注於撰寫 C# 函式。 像往常一樣，在檔案開頭包含任何組件參考和命名空間。 只需定義 `Run` 方法，而不用在命名空間和類別中包裝所有項目。 如果您需要包含任何類別，例如若要定義純舊 CLR 物件 (POCO) 物件，您可以包含相同檔案內的類別。   
+hello`.csx`格式可讓您 toowrite 小於 「 重複使用 」，並專注於撰寫只是 C# 函式。 像往常一樣包含任何組件參考和在 hello 檔案 hello 開頭的命名空間。 只需定義 `Run` 方法，而不用在命名空間和類別中包裝所有項目。 如果您需要 tooinclude 任何類別，用於執行個體 toodefine 純舊 CLR 物件 (POCO) 物件，您可以包含內部的類別 hello 相同的檔案。   
 
-## <a name="binding-to-arguments"></a>繫結至引數
-各種繫結會透過 *function.json* 組態中的 `name` 屬性繫結至 C# 函式。 每個繫結都有自己支援的類型；例如，Blob 觸發程序可以支援字串、POCO 或 CloudBlockBlob。 支援的類型會記錄在每個繫結的參考中。 POCO 物件的每個屬性必須定義 getter 和 setter。
+## <a name="binding-tooarguments"></a>繫結 tooarguments
+hello 各種繫結是繫結的 tooa C# 函式，透過 hello`name`屬性在 hello *function.json*組態。 每個繫結都有自己支援的類型；例如，Blob 觸發程序可以支援字串、POCO 或 CloudBlockBlob。 hello 支援類型會記錄在每個繫結的 hello 參考。 POCO 物件的每個屬性必須定義 getter 和 setter。
 
 ```csharp
 public static void Run(string myBlob, out MyClass myQueueItem)
@@ -59,7 +59,7 @@ public class MyClass
 
 ## <a name="using-method-return-value-for-output-binding"></a>使用輸出繫結的方法傳回值
 
-您可以使用 function.json 中的名稱 `$return`，使用輸出繫結的方法傳回值：
+您可以使用方法的傳回值的輸出繫結使用 hello 名稱`$return`中*function.json*:
 
 ```json
 {
@@ -80,7 +80,7 @@ public static string Run(string input, TraceWriter log)
 
 ## <a name="writing-multiple-output-values"></a>撰寫多個輸出值
 
-若要多個值寫入至輸出繫結，請使用 [`ICollector`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs) 或 [`IAsyncCollector`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs) 類型。 這些類型是在方法完成時，寫入至輸出繫結的唯寫集合。
+toowrite 多個值 tooan 輸出繫結，請使用 hello [ `ICollector` ](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs)或[ `IAsyncCollector` ](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs)型別。 這些類型是唯寫的集合寫入的 toohello 輸出繫結 hello 方法完成時。
 
 這個範例會使用 `ICollector` 寫入多個佇列訊息：
 
@@ -93,9 +93,9 @@ public static void Run(ICollector<string> myQueueItem, TraceWriter log)
 ```
 
 ## <a name="logging"></a>記錄
-若要使用 C# 將輸出記錄至串流記錄，請包含 `TraceWriter` 類型的引數。 建議您將它命名為 `log`。 避免在 Azure Functions 中使用 `Console.Write`。 
+toolog 輸出 tooyour C# 中的資料流記錄，包含一個引數的型別`TraceWriter`。 建議您將它命名為 `log`。 避免在 Azure Functions 中使用 `Console.Write`。 
 
-`TraceWriter` 已定義於 [Azure WebJobs SDK](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.Host/TraceWriter.cs)。 可以在 [host\.json] 中設定 `TraceWriter` 的記錄層級。
+`TraceWriter`定義在 hello [Azure WebJobs SDK](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.Host/TraceWriter.cs)。 hello 記錄層級`TraceWriter`可在設定[主機\.json]。
 
 ```csharp
 public static void Run(string myBlob, TraceWriter log)
@@ -105,7 +105,7 @@ public static void Run(string myBlob, TraceWriter log)
 ```
 
 ## <a name="async"></a>非同步處理
-若要讓函式變成非同步，請使用 `async` 關鍵字並傳回 `Task` 物件。
+toomake 非同步函式使用 hello`async`關鍵字，並傳回`Task`物件。
 
 ```csharp
 public async static Task ProcessQueueMessageAsync(
@@ -118,7 +118,7 @@ public async static Task ProcessQueueMessageAsync(
 ```
 
 ## <a name="cancellation-token"></a>取消權杖
-某些作業需要正常關機。 雖然撰寫能夠處理當機情況的程式碼一律是最理想的做法，但是如果您想要處理順利關機要求，您可以定義 [`CancellationToken`](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx) 類型的引數。  提供 `CancellationToken` ，表示已觸發主機關機。
+某些作業需要正常關機。 它一律是損毀，萬一您想要 toohandle 正常關機的要求，可以處理的最佳 toowrite 代碼定義[ `CancellationToken` ](https://msdn.microsoft.com/library/system.threading.cancellationtoken.aspx)型別引數。  A`CancellationToken`提供 toosignal 主機關機時觸發。
 
 ```csharp
 public async static Task ProcessQueueMessageAsyncCancellationToken(
@@ -132,7 +132,7 @@ public async static Task ProcessQueueMessageAsyncCancellationToken(
 ```
 
 ## <a name="importing-namespaces"></a>匯入命名空間
-如果您需要匯入命名空間，可以如往常一樣利用 `using` 子句。
+如果您需要 tooimport 命名空間，您可以像往常一樣，以 hello`using`子句。
 
 ```csharp
 using System.Net;
@@ -141,7 +141,7 @@ using System.Threading.Tasks;
 public static Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 ```
 
-下列命名空間會自動匯入，所以是選擇性的︰
+hello 下列命名空間會自動匯入，因此選擇性：
 
 * `System`
 * `System.Collections.Generic`
@@ -153,7 +153,7 @@ public static Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter 
 * `Microsoft.Azure.WebJobs.Host`
 
 ## <a name="referencing-external-assemblies"></a>參考外部組件
-若為架構組件，請使用 `#r "AssemblyName"` 指示詞加入參考。
+針對 framework 組件，請將參考加入使用 hello`#r "AssemblyName"`指示詞。
 
 ```csharp
 #r "System.Web.Http"
@@ -165,7 +165,7 @@ using System.Threading.Tasks;
 public static Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 ```
 
-Azure Functions 裝載環境會自動加入下列組件︰
+hello 下列組件會自動加入裝載環境的 hello Azure 函式：
 
 * `mscorlib`
 * `System`
@@ -178,7 +178,7 @@ Azure Functions 裝載環境會自動加入下列組件︰
 * `System.Web.Http`
 * `System.Net.Http.Formatting`
 
-simple-name 可能會參考下列組件 (例如，`#r "AssemblyName"`)：
+hello 參考下列組件可能是由簡單名稱 (例如， `#r "AssemblyName"`):
 
 * `Newtonsoft.Json`
 * `Microsoft.WindowsAzure.Storage`
@@ -189,18 +189,18 @@ simple-name 可能會參考下列組件 (例如，`#r "AssemblyName"`)：
 
 ## <a name="referencing-custom-assemblies"></a>參考自訂組件
 
-若要參考自訂組件，您可以使用「共用」組件或「私人」組件：
-- 共用組件會共用於函式應用程式內的所有函式。 若要參考自訂組件上，請將組件上傳至應用程式函式，例如在函式應用程式根目錄的 `bin` 資料夾中。 
-- 私人組件屬於所指定函式的內容，而且支援不同版本的側載。 應該在函式目錄的 `bin` 資料夾中上傳私人組件。 使用檔案名稱 (例如 `#r "MyAssembly.dll"`) 進行參照。 
+tooreference 自訂組件，您可以使用*共用*組件或*私人*組件：
+- 共用組件會共用於函式應用程式內的所有函式。 tooreference 自訂組件上, 傳 hello 組件 tooyour 函式應用程式，例如`bin`hello 函式應用程式根目錄中的資料夾。 
+- 私人組件屬於所指定函式的內容，而且支援不同版本的側載。 應該在私用組件上傳`bin`hello 函式的目錄資料夾中。 參考使用 hello 檔案名稱，例如`#r "MyAssembly.dll"`。 
 
-如需如何將檔案上傳至函數資料夾的資訊，請參閱以下的＜封裝管理＞小節。
+上如何 tooupload 檔案 tooyour 函數資料夾的資訊，請參閱 hello 下列封裝管理上的一節。
 
 ### <a name="watched-directories"></a>監看的目錄
 
-系統會自動監看包含函式指令碼檔案之目錄中的組件變更。 若要監看其他目錄中的組件變更，將它們新增至 [host\.json] 中的 `watchDirectories` 清單。
+變更 tooassemblies 自動監看 hello 目錄，包含 hello 函式的指令碼檔案。 toowatch 組件中的變更其他目錄，將它們加入 toohello`watchDirectories`清單中[主機\.json]。
 
 ## <a name="using-nuget-packages"></a>使用 NuGet 套件
-若要在 C# 函式中使用 NuGet 套件，請將 project.json  檔案上傳至函式應用程式檔案系統中的函式資料夾。 以下是範例 project.json  檔案，該檔案會加入對 Microsoft.ProjectOxford.Face 1.1.0 版的參考：
+在 C# 函式，toouse NuGet 封裝上傳*project.json* hello 函式應用程式的檔案系統中檔案 toohello 函式的資料夾。 以下是範例*project.json*會新增參考 tooMicrosoft.ProjectOxford.Face 版本 1.1.0 的檔案：
 
 ```json
 {
@@ -214,18 +214,18 @@ simple-name 可能會參考下列組件 (例如，`#r "AssemblyName"`)：
 }
 ```
 
-只支援 .NET Framework 4.6，因此請確認您的 *project.json* 檔案指定 `net46`，如以下所示。
+只有 hello.NET Framework 4.6 支援，因此請確定您*project.json*檔案會指定`net46`如下所示。
 
-當您上傳 project.json  檔案時，執行階段會取得封裝並自動加入對封裝組件的參考。 您不需要加入 `#r "AssemblyName"` 指示詞。 若要使用 NuGet 套件中定義的類型，請將所需的 `using` 陳述式新增到 *run.csx* 檔案 
+當您上傳*project.json*檔案中，hello 執行階段取得 hello 封裝，並會自動將參考 toohello 封裝組件。 您不需要 tooadd`#r "AssemblyName"`指示詞。 hello 的 NuGet 封裝中定義的 toouse hello 型別新增所需的 hello`using`陳述式 tooyour *run.csx*檔案 
 
-在 Functions 執行階段中，NuGet 還原會透過比較 `project.json` 和 `project.lock.json` 來運作。 如果檔案的日期和時間戳記**不**相符，會執行 NuGet 還原，且 NuGet 會下載更新的套件。 不過，如果檔案的日期和時間戳記**相符**，NuGet 不會執行還原。 因此，不應該部署 `project.lock.json`，因為它會導致 NuGet 略過還原。 若要避免部署鎖定檔案，請將 `project.lock.json` 加入至 `.gitignore` 檔案。
+在 hello 函式的執行階段，NuGet 還原的運作方式是比較`project.json`和`project.lock.json`。 如果 hello hello 檔案的日期和時間戳記**不**相符項目，NuGet 還原執行並 NuGet 下載已更新的封裝。 不過，如果 hello hello 檔案的日期和時間戳記**不要**NuGet 相符項目，不會執行還原。 因此，`project.lock.json`不應部署因為它會導致 NuGet tooskip 封裝還原。 部署 hello 鎖定 tooavoid file、 add hello `project.lock.json` toohello`.gitignore`檔案。
 
-若要使用自訂 NuGet 摘要，請在函式應用程式根目錄的 *Nuget.Config* 檔案中指定摘要。 如需詳細資訊，請參閱[設定 NuGet 行為](/nuget/consume-packages/configuring-nuget-behavior)。
+toouse 自訂 NuGet 摘要中，指定摘要中的 hello *Nuget.Config* hello 函式應用程式根目錄中的檔案。 如需詳細資訊，請參閱[設定 NuGet 行為](/nuget/consume-packages/configuring-nuget-behavior)。
 
 ### <a name="using-a-projectjson-file"></a>使用 project.json 檔案
-1. 在 Azure 入口網站中開啟函式。 [記錄] 索引標籤會顯示套件安裝輸出。
-2. 若要上傳 project.json 檔案，請使用 Azure Functions 開發人員參考主題的[如何更新函式應用程式檔案](functions-reference.md#fileupdate)所述的其中一個方法。
-3. 上傳 project.json  檔案之後，您會在函式的串流記錄檔中看到如下列範例所示的輸出：
+1. 開啟 hello Azure 入口網站中的 hello 函式。 hello 記錄 索引標籤會顯示 hello 封裝安裝輸出。
+2. tooupload project.json 檔案中，使用其中一種 hello 中所述的 hello 方法[tooupdate 運作應用程式檔案的方式](functions-reference.md#fileupdate)hello Azure 函式開發人員參考主題。
+3. 之後 hello *project.json*上傳檔案時，您會看到類似下列範例函式中的 hello 輸出的資料流記錄：
 
 ```
 2016-04-04T19:02:48.745 Restoring packages.
@@ -245,7 +245,7 @@ simple-name 可能會參考下列組件 (例如，`#r "AssemblyName"`)：
 ```
 
 ## <a name="environment-variables"></a>環境變數
-若要取得環境變數或應用程式設定值，請使用 `System.Environment.GetEnvironmentVariable`，如下列程式碼範例所示：
+tooget 環境變數或應用程式設定值，使用`System.Environment.GetEnvironmentVariable`hello 下列程式碼範例所示：
 
 ```csharp
 public static void Run(TimerInfo myTimer, TraceWriter log)
@@ -263,7 +263,7 @@ public static string GetEnvironmentVariable(string name)
 ```
 
 ## <a name="reusing-csx-code"></a>重複使用 .csx 程式碼
-您可以在您的 *run.csx* 檔案中使用其他 *.csx* 檔案中定義的類別和方法。 若要這樣做，請在您的 *run.csx* 檔案中使用 `#load` 指示詞。 在下列範例中，名為 `MyLogger` 的記錄常式已在 *myLogger.csx* 中共用，並使用 `#load` 指示詞載入至 *run.csx*︰
+您可以在您的 *run.csx* 檔案中使用其他 *.csx* 檔案中定義的類別和方法。 可使用 toodo`#load`指示詞中的您*run.csx*檔案。 在下列範例的 hello，記錄常式命名為`MyLogger`中共用*myLogger.csx*並載入*run.csx*使用 hello`#load`指示詞：
 
 範例 run.csx ：
 
@@ -286,7 +286,7 @@ public static void MyLogger(TraceWriter log, string logtext)
 }
 ```
 
-當您想要在使用一個 POCO 物件的函式之間使引數成為強式類型，使用共用的 *.csx* 是常見的模式。 在下列簡化的範例中，HTTP 觸發程序和佇列觸發程序共用一個名為 `Order` 的 POCO 物件，來使排序資料成為強式類型︰
+使用共用*.csx*是常見的模式，當您想 toostrongly 時輸入您使用 POCO 物件的函式之間的引數。 Hello 下列簡化的範例，在 HTTP 觸發程序和佇列觸發程序共用名為 POCO 物件`Order`toostrongly 類型 hello 訂單資料：
 
 HTTP 觸發程序的範例 *run.csx*︰
 
@@ -299,7 +299,7 @@ public static async Task<HttpResponseMessage> Run(Order req, IAsyncCollector<Ord
 {
     log.Info("C# HTTP trigger function received an order.");
     log.Info(req.ToString());
-    log.Info("Submitting to processing queue.");
+    log.Info("Submitting tooprocessing queue.");
 
     if (req.orderId == null)
     {
@@ -351,25 +351,25 @@ public class Order
 }
 ```
 
-您可以使用包含 `#load` 指示詞的相對路徑：
+您可以使用相對路徑，以 hello`#load`指示詞：
 
-* `#load "mylogger.csx"` 會載入位於函式資料夾中的檔案。
-* `#load "loadedfiles\mylogger.csx"` 會載入位於函式資料夾的資料夾中的檔案。
-* `#load "..\shared\mylogger.csx"` 會載入位於與函式資料夾相同層級的資料夾中的檔案 (也就是在 [wwwroot] 的正下方)。
+* `#load "mylogger.csx"`載入檔案，位於 hello 函式資料夾。
+* `#load "loadedfiles\mylogger.csx"`載入檔案，位於 hello 函式資料夾中的資料夾。
+* `#load "..\shared\mylogger.csx"`載入位於的 hello 相同層級為 hello 函式的資料夾，也就是在資料夾中的檔案直接在*wwwroot*。
 
-`#load` 指示詞只適用於 *.csx* (C# 指令碼) 檔案，不適用於 *.cs* 檔案。
+hello`#load`指示詞只適用於*.csx* （C# 指令碼） 檔案，不能搭配*.cs*檔案。
 
 <a name="imperative-bindings"></a> 
 
 ## <a name="binding-at-runtime-via-imperative-bindings"></a>透過命令式繫結在執行階段繫結
 
-在 C# 和其他 .NET 語言中，您可以使用相對於 *function.json* 中[*宣告式*](https://en.wikipedia.org/wiki/Declarative_programming)繫結的[命令式](https://en.wikipedia.org/wiki/Imperative_programming)繫結模式。 當繫結參數需要在執行階段而不是設計階段中計算時，命令式繫結非常有用。 利用此模式，您可以快速在您的函式程式碼中繫結至支援的輸入和輸出繫結。
+在 C# 和其他.NET 語言，您可以使用[命令式](https://en.wikipedia.org/wiki/Imperative_programming)繫結模式，但不要 toohello [*宣告式*](https://en.wikipedia.org/wiki/Declarative_programming)中的繫結*function.json*. 命令式的繫結時，必須在執行階段，而不是設計階段計算 toobe 繫結參數。 此模式中，您可以繫結 toosupported 輸入，並輸出函式程式碼中的繫結上作業。
 
 定義命令式繫結，如下所示︰
 
 - **請勿**在 *function.json* 中為您所需的命令式繫結併入項目。
 - 傳入輸入參數 [`Binder binder`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs.Host/Bindings/Runtime/Binder.cs) 或 [`IBinder binder`](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IBinder.cs)。
-- 使用下列 C# 模式來執行資料繫結。
+- 使用下列 C# 模式 tooperform hello 資料繫結的 hello。
 
 ```cs
 using (var output = await binder.BindAsync<T>(new BindingTypeAttribute(...)))
@@ -378,9 +378,9 @@ using (var output = await binder.BindAsync<T>(new BindingTypeAttribute(...)))
 }
 ```
 
-其中 `BindingTypeAttribute` 是可定義繫結的.NET 屬性，而 `T` 是該繫結類型支援的輸入或輸出類型。 `T` 也不能是 `out` 參數類型 (例如 `out JObject`)。 例如，Mobile Apps 資料表輸出繫結支援[六個輸出類型](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions.MobileApps/MobileTableAttribute.cs#L17-L22)，但您只可以對 `T` 使用 [ICollector<T>](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs) 或 [IAsyncCollector<T>](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs)。
+其中`BindingTypeAttribute`hello.NET 屬性可定義您的繫結和`T`是 hello 該繫結類型所支援的輸入或輸出類型。 `T` 也不能是 `out` 參數類型 (例如 `out JObject`)。 例如，Mobile Apps 資料表輸出繫結支援[六個輸出類型](https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions.MobileApps/MobileTableAttribute.cs#L17-L22)，但您只可以對 `T` 使用 [ICollector<T>](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/ICollector.cs) 或 [IAsyncCollector<T>](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/IAsyncCollector.cs)。
 
-下列範例程式碼會使用在執行階段定義的 blob 路徑來建立[儲存體 blob 輸出繫結](functions-bindings-storage-blob.md#using-a-blob-output-binding)，然後將字串寫入 blob。
+下列範例程式碼的 hello 建立[儲存體 blob 輸出繫結](functions-bindings-storage-blob.md#using-a-blob-output-binding)與 blob 路徑，定義在執行階段，然後字串 toohello 將 blob 寫入。
 
 ```cs
 using Microsoft.Azure.WebJobs;
@@ -395,8 +395,8 @@ public static async Task Run(string input, Binder binder)
 }
 ```
 
-[BlobAttribute](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/BlobAttribute.cs) 會定義[儲存體 blob](functions-bindings-storage-blob.md) 輸入或輸出繫結，而 [TextWriter](https://msdn.microsoft.com/library/system.io.textwriter.aspx) 是支援的輸出繫結類型。
-此程式碼會依原樣取得儲存體帳戶連接字串的預設應用程式設定 (也就是 `AzureWebJobsStorage`)。 您可以指定要使用的自訂應用程式設定，方法是新增 [StorageAccountAttribute](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/StorageAccountAttribute.cs) 並將屬性陣列傳遞至 `BindAsync<T>()`。 例如，
+[BlobAttribute](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/BlobAttribute.cs)定義 hello[儲存體 blob](functions-bindings-storage-blob.md)輸入或輸出繫結，以及[TextWriter](https://msdn.microsoft.com/library/system.io.textwriter.aspx)是支援的輸出繫結型別。
+Hello 程式碼，取得儲存體帳戶連接字串 hello hello 預設應用程式設定 (也就是`AzureWebJobsStorage`)。 您可以加入，以指定自訂應用程式設定 toouse [StorageAccountAttribute](https://github.com/Azure/azure-webjobs-sdk/blob/master/src/Microsoft.Azure.WebJobs/StorageAccountAttribute.cs)並傳遞到 hello 屬性陣列`BindAsync<T>()`。 例如，
 
 ```cs
 using Microsoft.Azure.WebJobs;
@@ -417,7 +417,7 @@ public static async Task Run(string input, Binder binder)
 }
 ```
 
-下表列出每個繫結類型的 .NET 屬性，以及定義它們的套件。
+hello 下表列出針對其定義每個繫結型別和 hello 封裝 hello.NET 屬性。
 
 > [!div class="mx-codeBreakAll"]
 | 繫結 | 屬性 | 新增參考 |
@@ -435,9 +435,9 @@ public static async Task Run(string input, Binder binder)
 
 
 ## <a name="next-steps"></a>後續步驟
-如需詳細資訊，請參閱下列資源：
+如需詳細資訊，請參閱下列資源的 hello:
 
-* [Azure Functions 的最佳做法](functions-best-practices.md)
+* [Azure Functions 的最佳作法](functions-best-practices.md)
 * [Azure Functions 開發人員參考](functions-reference.md)
 * [Azure Functions F# 開發人員參考](functions-reference-fsharp.md)
 * [Azure Functions NodeJS 開發人員參考](functions-reference-node.md)

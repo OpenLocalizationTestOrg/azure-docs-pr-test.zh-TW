@@ -1,6 +1,6 @@
 ---
-title: "檢視 Azure DevTest Labs 中的每月估計實驗室成本趨勢 | Microsoft Docs"
-description: "了解 Azure DevTest Labs 每月估計成本趨勢圖表。"
+title: "aaaView hello 每月實驗室估計的成本趨勢 Azure DevTest Labs |Microsoft 文件"
+description: "深入了解 hello Azure DevTest Labs 每月估計的成本趨勢圖。"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/25/2016
 ms.author: tarcher
-ms.openlocfilehash: b3ad1ead522908d4b41b7cca98d20ac91664998e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 47c7dd4cf91b76de74b502c50f05e79cd501ee35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="view-the-monthly-estimated-lab-cost-trend-in-azure-devtest-labs"></a>檢視 Azure DevTest Labs 中的每月估計實驗室成本趨勢
-研測實驗室的成本管理功能可協助您追蹤實驗室成本。 本文會示範如何使用「每月估計成本趨勢」  圖表，來檢視目前日曆月份的到目前為止的估計成本，以及目前日曆月份的預計月底成本。 在本文中，您將學習如何在 Azure 入口網站中檢視每月估計成本趨勢圖表。
+# <a name="view-hello-monthly-estimated-lab-cost-trend-in-azure-devtest-labs"></a>檢視 hello 每月實驗室估計的成本趨勢 Azure DevTest Labs
+DevTest Labs hello 成本管理功能可協助您追蹤您的實驗室 hello 成本。 本文將說明如何 toouse hello**每月估計成本趨勢**圖表 tooview hello 行事曆月份的預估的成本與日期和月份 hello hello 規劃的結束月份的成本。 在本文中，您學會如何 tooview hello hello Azure 入口網站中的每月估計的成本趨勢圖。
 
-## <a name="viewing-the-monthly-estimated-cost-trend-chart"></a>檢視每月估計成本趨勢圖表
-若要檢視「每月估計成本趨勢」圖表，請遵循下列步驟︰ 
+## <a name="viewing-hello-monthly-estimated-cost-trend-chart"></a>檢視 hello 每月估計成本趨勢圖表
+tooview hello 每月估計成本趨勢圖表，請遵循下列步驟： 
 
-1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
-2. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
-3. 從實驗室清單中，選取所需的實驗室。   
-4. 在實驗室的刀鋒視窗上，選取 [成本設定] 。
-5. 在實驗室的 [成本設定] 刀鋒視窗中，選取 [實驗室成本趨勢]。
-6. 下列螢幕擷取畫面顯示成本圖表範例。 
+1. 登入 toohello [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+2. 選取**更服務**，然後選取**DevTest Labs**從 hello 清單。
+3. 從 hello 清單的實驗室中，選取 hello 所需的實驗室。   
+4. 在 hello 實驗室刀鋒視窗中，選取 **成本設定**。
+5. 在 hello 實驗室**成本設定**刀鋒視窗中，選取**實驗室成本趨勢**。
+6. hello 下列螢幕擷取畫面顯示成本圖表的範例。 
    
     ![成本圖表](./media/devtest-lab-configure-cost-management/graph.png)
 
-**估計成本** 值是到目前行事曆月份為止累計的預估成本。 **預計成本** 是目前行事曆月份整個月的估計成本，是以前五天的實驗室成本來計算。
+hello**估計成本**值為 hello 行事曆月份的預估的成本與日期。 hello**預計成本**hello 估計的成本 hello 整個目前的日曆月份中，使用計算 hello 實驗室成本 hello 前五天。
 
-成本金額會無條件進位到下一個整數。 例如： 
+hello 成本金額會無條件進位 toohello 下一個整數。 例如： 
 
-* 5.01 會無條件進位到 6 
-* 5.50 會無條件進位到 6
-* 5.99 會無條件進位到 6
+* 5.01 會無條件進位 too6 
+* 5.50 too6 向上四捨五入
+* 5.99 會無條件進位 too6
 
-如圖表上方所述，您在圖表中看到的成本是使用[隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/)優惠費率的*估計*成本。
-此外，以下「未」  併入成本計算︰
+指出 hello 圖表之上，即在 hello 圖表中的 hello 成本是*估計*成本使用[隨用隨付](https://azure.microsoft.com/offers/ms-azr-0003p/)提供率。
+此外，hello 如下*不*納入成本計算 hello:
 
-* 目前不支援 CSP 和 Dreamspark 訂用帳戶，因為 Azure DevTest Labs 使用 [Azure 計費 API](../billing/billing-usage-rate-card-overview.md) 來計算實驗室成本，而 Azure 計費 API 並不支援 CSP 或 Dreamspark 訂用帳戶。
-* 您的優惠費率。 目前，我們無法使用您與 Microsoft 或 Microsoft 合作夥伴協議的優惠費率 (顯示於您的訂用帳戶下方)。 我們將使用隨用隨付費率。
+* CSP 和 Dreamspark 訂用帳戶目前不支援使用作為 Azure DevTest Labs 使用 hello [Azure 計費 Api](../billing/billing-usage-rate-card-overview.md) toocalculate hello 實驗室成本，不支援的 CSP 或 Dreamspark 訂用帳戶。
+* 您的優惠費率。 目前，我們不能 toouse （您的訂用帳戶底下顯示），您有與交涉 Microsoft 或 Microsoft 合作夥伴您服務費率。 我們將使用隨用隨付費率。
 * 您的稅率
 * 您的折扣
-* 您的帳單貨幣。 目前，實驗室成本只會以美元貨幣顯示。
+* 您的帳單貨幣。 目前，hello 實驗室成本只會顯示在美金貨幣。
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ## <a name="related-blog-posts"></a>相關部落格文章
-* [讓 DevTest Labs 成本不失控的另外兩項須知](https://blogs.msdn.microsoft.com/devtestlab/2016/06/21/keep-your-cost-on-track/)
+* [兩個的多個項目 tookeep 上處於 DevTest Labs 追蹤成本](https://blogs.msdn.microsoft.com/devtestlab/2016/06/21/keep-your-cost-on-track/)
 * [為何要設定成本臨界值？](https://blogs.msdn.microsoft.com/devtestlab/2016/04/11/why-cost-thresholds/)
 
 ## <a name="next-steps"></a>後續步驟
-以下是接下來要嘗試的一些事項：
+以下是一些事情 tootry 下一步：
 
-* [定義實驗室原則](devtest-lab-set-lab-policy.md) - 了解如何設定用來管理您實驗室及其 VM 使用方式的各種原則。 
-* [建立自訂映像](devtest-lab-create-template.md) - 當您建立 VM 時，您要指定一個基本映像，它可以是自訂映像或 Marketplace 映像。 本文會示範如何從 VHD 檔案建立自訂的映像。
-* [設定 Marketplace 映像](devtest-lab-configure-marketplace-images.md) - DevTest Labs 支援根據 Azure Marketplace 映像建立 VM。 本文會示範在實驗室中建立 VM 時，如何指定可以使用哪些 Azure Marketplace 映像 (如果有的話)。
-* [在實驗室中建立 VM](devtest-lab-add-vm-with-artifacts.md) - 示範如何從基本映像 (自訂或 Marketplace) 建立 VM，以及如何使用 VM 中的構件。
+* [定義 lab 原則](devtest-lab-set-lab-policy.md)-了解如何 tooset hello 所使用的各種原則如何使用您的實驗室和其 Vm toogovern。 
+* [建立自訂映像](devtest-lab-create-template.md) - 當您建立 VM 時，您要指定一個基本映像，它可以是自訂映像或 Marketplace 映像。 本文說明如何 toocreate 自訂映像從 VHD 檔案。
+* [設定 Marketplace 映像](devtest-lab-configure-marketplace-images.md) - DevTest Labs 支援根據 Azure Marketplace 映像建立 VM。 本文將說明如何 toospecify 它，如果有的話，可以是 Azure Marketplace 映像在實驗室中建立 Vm 時使用。
+* [在實驗室中建立的 VM](devtest-lab-add-vm-with-artifacts.md) -說明如何 toocreate 將 VM 的基本映像從 (可能是自訂或 Marketplace)，以及如何 toowork 連同成品放在 VM 中。
 

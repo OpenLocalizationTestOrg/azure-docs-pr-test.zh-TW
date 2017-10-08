@@ -1,5 +1,5 @@
 ---
-title: "Azure Data Factory - JSON 指令碼參考 | Microsoft Docs"
+title: "aaaAzure Data Factory-JSON 指令碼參考 |Microsoft 文件"
 description: "提供 Data Factory 實體的 JSON 結構描述。"
 services: data-factory
 documentationcenter: 
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 805106c0a5cdbff1f143f22a2ae59f6d2a0bf126
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 813fd752bb0ecb1b513d022b9f302325105dac31
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-factory---json-scripting-reference"></a>Azure Data Factory - JSON 指令碼參考
 本文提供 JSON 結構描述和範例來定義 Azure Data Factory 實體 (管線、活動、資料集和連結服務)。  
 
 ## <a name="pipeline"></a>管線 
-管線定義的高階結構如下所示︰ 
+如需管線定義 hello 高階結構如下所示： 
 
 ```json
 {
@@ -38,22 +38,22 @@ ms.lasthandoff: 08/03/2017
 } 
 ```
 
-下表說明管線 JSON 定義內的屬性：
+下表描述 hello 管線 JSON 定義中的 hello 屬性：
 
 | 屬性 | 說明 | 必要
 -------- | ----------- | --------
-| 名稱 | 管線的名稱。 指定一個名稱，以表示活動或管線設定要進行的動作<br/><ul><li>字元數目上限︰260</li><li>開頭必須為字母、數字或底線 (_)</li><li>不允許使用下列字元：“.”、“+”、“?”、“/”、“<”、”>”、”*”、”%”、”&”、”:”、”\\”</li></ul> |是 |
-| 說明 |說明活動或管線用途的文字 | 否 |
+| 名稱 | Hello 管線的名稱。 指定代表 hello 活動的 hello 動作的名稱或管線是設定的 toodo<br/><ul><li>字元數目上限︰260</li><li>開頭必須為字母、數字或底線 (_)</li><li>不允許使用下列字元：“.”、“+”、“?”、“/”、“<”、”>”、”*”、”%”、”&”、”:”、”\\”</li></ul> |是 |
+| 說明 |描述使用何種 hello 活動或管線做為文字 | 否 |
 | 活動 | 包含活動清單。 | 是 |
-| start |管線的開始日期時間。 必須使用 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如︰2014-10-14T16:32:41。 <br/><br/>您可以指定本地時間，如 EST 時間。 範例如下︰`2016-02-27T06:00:00**-05:00`，這是 6 AM EST。<br/><br/>管線的 start 和 end 屬性共同指定管線的作用中期間。 輸出配量只會在作用中期間內產生。 |否<br/><br/>如果您指定 end 屬性的值，也必須指定 start 屬性的值。<br/><br/>開始和結束時間都可以是空白來建立管線。 必須指定兩個值，才能設定執行管線的作用中時間。 如果您建立管線時未指定開始和結束時間，您可以在稍後使用 Set-AzureRmDataFactoryPipelineActivePeriod Cmdlet 進行設定。 |
-| end |管線的結束日期時間。 如果已指定，則必須使用 ISO 格式。 例如：2014-10-14T17:32:41 <br/><br/>您可以指定本地時間，如 EST 時間。 範例如下︰`2016-02-27T06:00:00**-05:00`，這是美加東部標準時間上午 6 點。<br/><br/>若要無限期地執行管線，請指定 9999-09-09 做為 end 屬性的值。 |否 <br/><br/>如果您指定 start 屬性的值，也必須指定 end 屬性的值。<br/><br/>請參閱 **start** 屬性的註釋。 |
-| isPaused |如果設為 true，管線不會執行。 預設值 = false。 您可以使用此屬性來啟用或停用。 |否 |
-| pipelineMode |排程管線執行的方法。 允許的值包括：scheduled (預設值)、onetime。<br/><br/>‘Scheduled’ 表示管線會根據其作用中期間 (開始和結束時間) 依指定的時間間隔執行。 ‘Onetime’ 表示管線只會執行一次。 目前，Onetime 管線在建立之後即無法進行修改/更新。 如需 onetime 設定的詳細資料，請參閱 [Onetime 管線](data-factory-create-pipelines.md#onetime-pipeline)。 |否 |
-| expirationTime |建立之後，管線有效且應該保持佈建的期間。 如果管線沒有任何作用中、失敗或擱置執行，則會在到達到期時間之後自動予以刪除。 |否 |
+| start |開始日期-時間 hello 管線。 必須使用 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如︰2014-10-14T16:32:41。 <br/><br/>很可能 toospecify 本地時間，例如預估時間。 範例如下︰`2016-02-27T06:00:00**-05:00`，這是 6 AM EST。<br/><br/>hello 開始和結束屬性一起指定 hello 管線的作用期間。 輸出配量只會在作用中期間內產生。 |否<br/><br/>如果您指定 hello 結束屬性的值，您必須指定 hello 開始屬性值。<br/><br/>hello 開始和結束時間可以是空的 toocreate 管線。 您必須指定這兩個值的作用中期間 hello 管線 toorun tooset。 如果您未指定開始和結束時間時建立管線，您可以設定它們使用 hello 組 AzureRmDataFactoryPipelineActivePeriod 指令程式更新版本。 |
+| end |結束日期與時間 hello 管線。 如果已指定，則必須使用 ISO 格式。 例如：2014-10-14T17:32:41 <br/><br/>很可能 toospecify 本地時間，例如預估時間。 範例如下︰`2016-02-27T06:00:00**-05:00`，這是 6 AM EST。<br/><br/>toorun hello 管線無限期地指定 9999-09-09 hello hello end 屬性的值。 |否 <br/><br/>如果您指定 hello 開始屬性的值，您必須指定 hello end 屬性的值。<br/><br/>請參閱備註 hello**啟動**屬性。 |
+| isPaused |如果組 tootrue hello 管線不會執行。 預設值 = false。 您可以使用這個屬性 tooenable 或停用。 |否 |
+| pipelineMode |hello 管線的可執行的排程 hello 方法。 允許的值包括：scheduled (預設值)、onetime。<br/><br/>排程' 表示該 hello 管線 tooits 作用期間 （開始和結束時間），根據指定的時間間隔執行。 '一次' 表示該 hello 管線只執行一次。 目前，Onetime 管線在建立之後即無法進行修改/更新。 如需 onetime 設定的詳細資料，請參閱 [Onetime 管線](data-factory-create-pipelines.md#onetime-pipeline)。 |否 |
+| expirationTime |長時間後建立的 hello 管線有效，且應保持已佈建。 如果它沒有任何作用中、 失敗，或暫止執行，hello 管線則會自動刪除到達 hello 到期時間。 |否 |
 
 
 ## <a name="activity"></a>活動 
-管線定義 (activities 元素) 內活動的高階結構如下所示︰
+hello 管線定義 （活動項目） 中活動的高階結構如下所示：
 
 ```json
 {
@@ -76,46 +76,46 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-下表說明活動 JSON 定義內的屬性：
+下列表格說明 hello 活動 JSON 定義中的 hello 屬性：
 
 | Tag | 說明 | 必要 |
 | --- | --- | --- |
-| 名稱 |活動的名稱。 指定名稱，代表活動設定要進行的動作<br/><ul><li>字元數目上限︰260</li><li>開頭必須為字母、數字或底線 (_)</li><li>不允許使用下列字元：“.”、“+”、“?”、“/”、“<”、”>”、”*”、”%”、”&”、”:”、”\\”</li></ul> |是 |
-| 說明 |說明活動用途的文字。 |是 |
-| 類型 |指定活動的類型。 如需了解不同類型的活動，請參閱[資料存放區](#data-stores)和[資料轉換活動](#data-transformation-activities)小節。 |是 |
-| 輸入 |活動所使用的輸入資料表<br/><br/>`// one input table`<br/>`"inputs":  [ { "name": "inputtable1"  } ],`<br/><br/>`// two input tables` <br/>`"inputs":  [ { "name": "inputtable1"  }, { "name": "inputtable2"  } ],` |是 |
-| 輸出 |活動所使用的輸出資料表。<br/><br/>`// one output table`<br/>`"outputs":  [ { "name": “outputtable1” } ],`<br/><br/>`//two output tables`<br/>`"outputs":  [ { "name": “outputtable1” }, { "name": “outputtable2” }  ],` |是 |
-| linkedServiceName |活動所使用的連結服務名稱。 <br/><br/>活動可能會要求您指定可連結至所需計算環境的連結服務。 |對於 HDInsight 活動、Azure Machine Learning 活動和預存程序活動而言為必要。 <br/><br/>否：所有其他 |
-| typeProperties |typeProperties 區段中的屬性會視活動的類型而定。 |否 |
-| 原則 |會影響活動之執行階段行為的原則。 如果未指定，則會使用預設原則。 |否 |
-| scheduler |“scheduler” 屬性用來定義所要的活動排程。 其子屬性與 [資料集中的可用性屬性](data-factory-create-datasets.md#dataset-availability)中的屬性相同。 |否 |
+| 名稱 |Hello 活動名稱。 指定代表 hello 動作 hello 活動的名稱設定 toodo<br/><ul><li>字元數目上限︰260</li><li>開頭必須為字母、數字或底線 (_)</li><li>不允許使用下列字元：“.”、“+”、“?”、“/”、“<”、”>”、”*”、”%”、”&”、”:”、”\\”</li></ul> |是 |
+| 說明 |描述用於 hello 活動的文字。 |是 |
+| 類型 |指定 hello hello 活動型別。 請參閱 hello[資料存放區](#data-stores)和[資料轉換活動](#data-transformation-activities)區段的不同類型的活動。 |是 |
+| 輸入 |Hello 活動所使用的輸入的資料表<br/><br/>`// one input table`<br/>`"inputs":  [ { "name": "inputtable1"  } ],`<br/><br/>`// two input tables` <br/>`"inputs":  [ { "name": "inputtable1"  }, { "name": "inputtable2"  } ],` |是 |
+| 輸出 |使用的 hello 活動的輸出的資料表。<br/><br/>`// one output table`<br/>`"outputs":  [ { "name": “outputtable1” } ],`<br/><br/>`//two output tables`<br/>`"outputs":  [ { "name": “outputtable1” }, { "name": “outputtable2” }  ],` |是 |
+| linkedServiceName |Hello 活動所使用的 hello 連結服務名稱。 <br/><br/>活動可能會要求您指定連結 toohello 必要的運算環境的 hello 連結服務。 |對於 HDInsight 活動、Azure Machine Learning 活動和預存程序活動而言為必要。 <br/><br/>否：所有其他 |
+| typeProperties |Hello typeProperties > 一節中的屬性取決於 hello 活動的類型。 |否 |
+| 原則 |影響 hello hello 活動執行階段行為的原則。 如果未指定，則會使用預設原則。 |否 |
+| scheduler |「 排程器 」 屬性是使用的 toodefine 預期 hello 活動的排程。 及其子屬性會 hello 與 hello hello 於相同[可用性屬性集中](data-factory-create-datasets.md#dataset-availability)。 |否 |
 
 ### <a name="policies"></a>原則
-原則會影響活動的執行階段行為，特別是在處理資料表配量的時候。 下表提供詳細資料。
+特別是當處理資料表的 hello 配量時，原則會影響 hello 執行階段行為的活動。 下表中的 hello 提供 hello 詳細資料。
 
 | 屬性 | 允許的值 | 預設值 | 說明 |
 | --- | --- | --- | --- |
-| 並行 |整數  <br/><br/>最大值：10 |1 |活動的並行執行數目。<br/><br/>它可決定不同配量上可以發生的平行活動執行數目。 例如，如果活動需要處理大量可用的資料，具有較大的並行值會加快資料處理。 |
-| executionPriorityOrder |NewestFirst<br/><br/>OldestFirst |OldestFirst |決定正在處理之資料配量的順序。<br/><br/>例如，如果您有 2 個配量 (一個發生在下午 4 點，另一個發生在下午 5 點)，而兩者都暫停執行。 如果您將 executionPriorityOrder 設為 NewestFirst，則會先處理下午 5 點的配量。 同樣地，如果您將 executionPriorityOrder 設為 OldestFIrst，則會處理下午 4 點的配量。 |
-| retry |整數 <br/><br/>最大值可以是 10 |0 |在配量的資料處理標示為 [失敗] 前的重試次數。 資料配量的活動執行會一直重試，直到指定的重試計數為止。 在失敗後會儘速完成重試。 |
-| timeout |TimeSpan |00:00:00 |活動的逾時。 範例︰00:10:00 (意指逾時 10 分鐘)<br/><br/>如果您未指定值 (或值為 0)，代表無限逾時。<br/><br/>如果配量的資料處理時間超過逾時值，該活動會遭到取消，且系統會嘗試重試處理。 重試次數取決於 retry 屬性。 若發生逾時，狀態會設為 TimedOut。 |
-| delay |TimeSpan |00:00:00 |指定配量之資料處理開始之前的延遲。<br/><br/>資料配量的活動執行會在 Delay 超出預期執行時間後開始。<br/><br/>範例︰00:10:00 (意指延遲 10 分鐘) |
-| longRetry |整數 <br/><br/>最大值：10 |1 |配量執行失敗之前的長時間重試嘗試次數。<br/><br/>多個 longRetry 嘗試之間以 longRetryInterval 隔開。 所以如果您需要指定重試嘗試之間的時間，請使用 longRetry。 如果您指定 Retry 和 longRetry 兩者，每個 longRetry 嘗試都包含 Retry 嘗試，且最大嘗試次數是 Retry * longRetry。<br/><br/>例如，如果活動原則的設定如下︰<br/>Retry：3<br/>longRetry：2<br/>longRetryInterval：01:00:00<br/><br/>假設只有一個要執行的配量 (狀態是 Waiting)，且活動執行每次都失敗。 一開始會有 3 次連續執行嘗試。 在每次嘗試之後，配量狀態會是 Retry。 在前 3 次嘗試結束之後，配量狀態會是 LongRetry。<br/><br/>一個小時 (也就是 longRetryInteval 的值) 之後，會有另一組 3 次連續執行嘗試。 在那之後，配量狀態會是 Failed，不會再嘗試重試。 因此全部已進行 6 次嘗試。<br/><br/>如果任何執行成功，配量狀態會是 Ready 且不會再嘗試重試。<br/><br/>longRetry 可能用於下列情況：相依資料達到不具決定性的次數，或進行資料處理的整體環境很脆弱。 在這類情況下逐一進行重試並沒有幫助，而在一段時間後進行重試則會導致所要的結果。<br/><br/>提醒：請勿設定較大的 longRetry 或 longRetryInterval 值。 較大的值通常表示其他系統問題。 |
-| longRetryInterval |TimeSpan |00:00:00 |長時間重試嘗試之間的延遲 |
+| 並行 |整數  <br/><br/>最大值：10 |1 |並行執行的 hello 活動的數目。<br/><br/>它決定不同配量上可能發生的平行活動執行的 hello 次數。 例如，如果活動需要透過 toogo 大量可用的資料，具有較大的並行值就會加快 hello 資料處理。 |
+| executionPriorityOrder |NewestFirst<br/><br/>OldestFirst |OldestFirst |判斷正在處理的資料配量順序 hello。<br/><br/>例如，如果您有 2 個配量 (一個發生在下午 4 點，另一個發生在下午 5 點)，而兩者都暫停執行。 如果您設定 hello executionpriorityorder 設 toobe NewestFirst，會先處理下午 5 點的 hello 配量。 同樣地如果您設定 hello executionpriorityorder 設 toobe OldestFIrst，然後在下午 4 點 hello 配量會處理。 |
+| retry |整數 <br/><br/>最大值可以是 10 |0 |Hello hello 配量的資料處理之前的重試的數目會標示為失敗。 資料配量的活動執行會重試總 toohello 指定重試計數。 hello 重試會儘速 hello 失敗後進行。 |
+| timeout |TimeSpan |00:00:00 |Hello 活動的逾時。 範例︰00:10:00 (意指逾時 10 分鐘)<br/><br/>如果未指定值，或為 0，hello 逾時是無限的。<br/><br/>如果配量的 hello 資料處理時間超過 hello 逾時值，則會取消，並 hello 系統會嘗試 tooretry hello 處理。 hello 重試次數取決於 hello 重試屬性。 發生逾時，hello 狀態會設定 tooTimedOut。 |
+| delay |TimeSpan |00:00:00 |指定 hello hello 配量開始的資料處理之前的延遲。<br/><br/>hello 延遲 hello 預期執行時間過去後，會啟動 hello 執行之活動的資料配量。<br/><br/>範例︰00:10:00 (意指延遲 10 分鐘) |
+| longRetry |整數 <br/><br/>最大值：10 |1 |hello 的長時間重試次數 hello 配量執行失敗。<br/><br/>多個 longRetry 嘗試之間以 longRetryInterval 隔開。 因此，如果您需要 toospecify 重試嘗試之間的時間，請使用 longRetry。 如果指定 Retry 和 longRetry，每個 longRetry 嘗試包含重試次數和 hello 最大嘗試次數為重試 * longRetry。<br/><br/>例如，如果我們有下列 hello 活動原則中的設定的 hello:<br/>Retry：3<br/>longRetry：2<br/>longRetryInterval：01:00:00<br/><br/>假設有一個配量 tooexecute （等待狀態），就會失敗的每次 hello 活動執行。 一開始會有 3 次連續執行嘗試。 每次嘗試之後, hello 配量狀態會是 Retry。 前 3 的嘗試次數已超過之後，hello 配量狀態就會是 LongRetry。<br/><br/>一個小時 (也就是 longRetryInteval 的值) 之後，會有另一組 3 次連續執行嘗試。 之後，hello 配量狀態會變成 Failed，而且會嘗試重試。 因此全部已進行 6 次嘗試。<br/><br/>如果執行成功，hello 配量狀態就會是 Ready，無需重試嘗試。<br/><br/>在位置相依的資料到達在不具決定性的時間或 hello 整體環境穩定底下的資料處理發生的情況下可用 longRetry。 在這種情況下，逐一進行重試可能無法幫助，這樣導致 hello 的時間間隔之後想要的輸出。<br/><br/>提醒：請勿設定較大的 longRetry 或 longRetryInterval 值。 較大的值通常表示其他系統問題。 |
+| longRetryInterval |TimeSpan |00:00:00 |hello 長時間重試嘗試之間的延遲 |
 
 ### <a name="typeproperties-section"></a>typeProperties 區段
-每個活動的 typeProperties 區段不同。 轉換活動只有 type 屬性。 如需在管線中定義轉換活動的 JSON 範例，請參閱本文中的[資料轉換活動](#data-transformation-activities)一節。 
+hello typeProperties 區段是不同的每個活動。 轉換活動都只是 hello 類型屬性。 如需在管線中定義轉換活動的 JSON 範例，請參閱本文中的[資料轉換活動](#data-transformation-activities)一節。 
 
-**複製活動**的 typeProperties 區段中有兩個子區段︰**source** 和 **sink**。 如需示範如何使用資料存放區作為來源和/或接收的 JSON 範例，請參閱本文中的[資料存放區](#data-stores)一節。 
+**複製活動**hello typeProperties > 一節中有兩個子區段：**來源**和**接收**。 請參閱[資料存放區](#data-stores)區段在本文中針對 JSON 範例 toouse 資料將儲存為來源及/或接收的方式，顯示。 
 
 ### <a name="sample-copy-pipeline"></a>範例複製管線
-在以下的範例管線中， **Copy** in the **活動** 類型的活動。 在此範例中， [Copy 活動](data-factory-data-movement-activities.md) 會將資料從 Azure Blob 儲存體複製到 Azure SQL 資料庫。 
+在下列範例管線 hello，沒有一個活動的型別**複製**在 hello**活動**> 一節。 在此範例中，hello[複製活動](data-factory-data-movement-activities.md)將資料從 Azure Blob 儲存體 tooan Azure SQL database 複製。 
 
 ```json
 {
   "name": "CopyPipeline",
   "properties": {
-    "description": "Copy data from a blob to Azure SQL table",
+    "description": "Copy data from a blob tooAzure SQL table",
     "activities": [
       {
         "name": "CopyFromBlobToSQL",
@@ -154,18 +154,18 @@ ms.lasthandoff: 08/03/2017
 } 
 ```
 
-請注意下列幾點：
+請注意下列點 hello:
 
-* 在活動區段中，只會有一個 **type** 設為 **Copy** 的活動。
-* 活動的輸入設定為 **InputDataset**，活動的輸出則設定為 **OutputDataset**。
-* 在 **typeProperties** 區段中，來源類型指定為 **BlobSource**，接收類型指定為 **SqlSink**。
+* 在 [hello 活動] 區段中，沒有一個活動其**類型**設定得**複製**。
+* 輸入 hello 活動設定太**InputDataset**和輸出 hello 活動設定太**OutputDataset**。
+* 在 [hello **typeProperties** ] 區段中， **BlobSource**指定 hello 來源類型為和**SqlSink**指定為 hello 接收器類型。
 
-如需示範如何使用資料存放區作為來源和/或接收的 JSON 範例，請參閱本文中的[資料存放區](#data-stores)一節。    
+請參閱[資料存放區](#data-stores)區段在本文中針對 JSON 範例 toouse 資料將儲存為來源及/或接收的方式，顯示。    
 
-如需建立此管線的完整逐步解說，請參閱 [教學課程：將資料從 Blob 儲存體複製到 SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
+建立此管線的完整逐步解說，請參閱[教學課程： 將資料從 Blob 儲存體 tooSQL 資料庫複製](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。 
 
 ### <a name="sample-transformation-pipeline"></a>範例轉換管線
-在以下的範例管線中， **CopyActivity** in the **活動** 類型的活動。 在此範例中， [HDInsight Hive 活動](data-factory-hive-activity.md) 會執行 Azure HDInsight Hadoop 叢集上的 Hive 指令碼檔案，來轉換 Azure Blob 儲存體的資料。 
+在下列範例管線 hello，沒有一個活動的型別**HDInsightHive**在 hello**活動**> 一節。 在此範例中，hello [HDInsight Hive 活動](data-factory-hive-activity.md)執行 Azure HDInsight Hadoop 叢集上的 Hive 指令碼檔案來轉換資料從 Azure Blob 儲存體。 
 
 ```json
 {
@@ -212,37 +212,37 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-請注意下列幾點： 
+請注意下列點 hello: 
 
-* 在活動區段中，只會有一個 **type** 設為 **HDInsightHive** 的活動。
-* Hive 指令碼檔案 **partitionweblogs.hql** 儲存於 Azure 儲存體帳戶 (透過名為 **AzureStorageLinkedService** 的 scriptLinkedService 指定)，且位於 **adfgetstarted** 容器的 **script** 資料夾中。
-* **defines** 區段用來指定執行階段設定，該設定將傳遞到 Hive 指令碼作為 Hive 設定值 (例如，`${hiveconf:inputtable}`、`${hiveconf:partitionedtable}`)。
+* 在 [hello 活動] 區段中，沒有一個活動其**類型**設定得**HDInsightHive**。
+* hello Hive 指令碼檔案， **partitionweblogs.hql**，儲存在 hello Azure 儲存體帳戶 (由 hello scriptLinkedService，稱為**AzureStorageLinkedService**)，然後在**指令碼**hello 容器中的資料夾**adfgetstarted**。
+* hello**定義**區段是做為 Hive 組態值傳遞 toohello hive 指令碼使用的 toospecify hello 執行階段設定 (例如`${hiveconf:inputtable}`， `${hiveconf:partitionedtable}`)。
 
 如需在管線中定義轉換活動的 JSON 範例，請參閱本文中的[資料轉換活動](#data-transformation-activities)一節。
 
-如需建立此管線的完整逐步解說，請參閱 [教學課程：使用 Hadoop 叢集建置您的第一個管線來處理資料](data-factory-build-your-first-pipeline.md)。 
+建立此管線的完整逐步解說，請參閱[教學課程： 建立第一個管線 tooprocess 資料使用 Hadoop 叢集](data-factory-build-your-first-pipeline.md)。 
 
 ## <a name="linked-service"></a>連結服務
-連結服務定義的高階結構如下所示︰
+如需連結的服務定義 hello 高階結構如下所示：
 
 ```json
 {
-    "name": "<name of the linked service>",
+    "name": "<name of hello linked service>",
     "properties": {
-        "type": "<type of the linked service>",
+        "type": "<type of hello linked service>",
         "typeProperties": {
         }
     }
 }
 ```
 
-下表說明活動 JSON 定義內的屬性：
+下列表格說明 hello 活動 JSON 定義中的 hello 屬性：
 
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- | 
-| 名稱 | 連結服務的名稱。 | 是 | 
-| properties - type | 連結服務的類型。 例如︰Azure 儲存體、Azure SQL Database。 |
-| typeProperties | TypeProperties 區段中的元素隨著每個資料存放區或計算環境而不同。 關於所有資料存放區連結服務，請參閱[資料存放區](#datastores)一節，關於所有計算連結服務，請參閱[計算環境](#compute-environments)一節 |   
+| 名稱 | Hello 連結服務名稱。 | 是 | 
+| properties - type | Hello 連結服務類型。 例如︰Azure 儲存體、Azure SQL Database。 |
+| typeProperties | hello typeProperties 區段具有不同的每個資料存放區或計算環境的項目。 請參閱[資料存放區](#datastores)區段中針對所有的 hello 資料存放區連結的服務和[計算環境](#compute-environments)所有 hello 計算連結的服務 |   
 
 ## <a name="dataset"></a>Dataset 
 Azure Data Factory 中的資料集定義如下：
@@ -252,12 +252,12 @@ Azure Data Factory 中的資料集定義如下：
     "name": "<name of dataset>",
     "properties": {
         "type": "<type of dataset: AzureBlob, AzureSql etc...>",
-        "external": <boolean flag to indicate external data. only for input datasets>,
-        "linkedServiceName": "<Name of the linked service that refers to a data store.>",
+        "external": <boolean flag tooindicate external data. only for input datasets>,
+        "linkedServiceName": "<Name of hello linked service that refers tooa data store.>",
         "structure": [
             {
-                "name": "<Name of the column>",
-                "type": "<Name of the type>"
+                "name": "<Name of hello column>",
+                "type": "<Name of hello type>"
             }
         ],
         "typeProperties": {
@@ -265,8 +265,8 @@ Azure Data Factory 中的資料集定義如下：
             "<type specific property 2>": "<value 2>",
         },
         "availability": {
-            "frequency": "<Specifies the time unit for data slice production. Supported frequency: Minute, Hour, Day, Week, Month>",
-            "interval": "<Specifies the interval within the defined frequency. For example, frequency set to 'Hour' and interval set to 1 indicates that new data slices should be produced hourly>"
+            "frequency": "<Specifies hello time unit for data slice production. Supported frequency: Minute, Hour, Day, Week, Month>",
+            "interval": "<Specifies hello interval within hello defined frequency. For example, frequency set too'Hour' and interval set too1 indicates that new data slices should be produced hourly>"
         },
        "policy":
         {      
@@ -275,28 +275,28 @@ Azure Data Factory 中的資料集定義如下：
 }
 ```
 
-下表描述上述 JSON 的屬性：   
+hello 下表描述上方 JSON hello 中的屬性：   
 
 | 屬性 | 說明 | 必要 | 預設值 |
 | --- | --- | --- | --- |
-| 名稱 | 資料集的名稱。 請參閱 [Azure Data Factory - 命名規則](data-factory-naming-rules.md) ，以了解命名規則。 |是 |NA |
-| 類型 | 資料集的類型。 指定 Azure Data Factory 支援的其中一個類型 (例如︰AzureBlob、AzureSqlTable)。 關於 Data Factory 支援的所有資料存放區和資料集類型，請參閱[資料存放區](#data-stores)一節。 | 
-| structure | 資料集的結構描述。 它包含資料行、其類型等。 | 否 |NA |
-| typeProperties | 對應至所選類型的屬性。 關於支援的類型和其屬性，請參閱[資料存放區](#data-stores)一節。 |是 |NA |
-| external | 用來指定資料集是否由 Data Factory 管線明確產生的布林值旗標。 |否 |false |
-| availability | 定義處理時間範圍或資料集生產的切割模型。 如需資料集切割模型的詳細資訊，請參閱 [排程和執行](data-factory-scheduling-and-execution.md) 一文。 |是 |NA |
-| 原則 |定義資料集配量必須符合的準則或條件。 <br/><br/>如需詳細資訊，請參閱 [資料集原則](#Policy) 一節。 |否 |NA |
+| 名稱 | Hello 資料集的名稱。 請參閱 [Azure Data Factory - 命名規則](data-factory-naming-rules.md) ，以了解命名規則。 |是 |NA |
+| 類型 | hello 資料集的類型。 指定一個支援的 Azure Data Factory 的 hello 類型 (例如： AzureBlob、 AzureSqlTable)。 請參閱[資料存放區](#data-stores)區段中針對所有 hello 資料存放區和資料處理站所支援的資料集類型。 | 
+| structure | Hello 資料集的結構描述。 它包含資料行、其類型等。 | 否 |NA |
+| typeProperties | 屬性對應 toohello 選取型別。 關於支援的類型和其屬性，請參閱[資料存放區](#data-stores)一節。 |是 |NA |
+| external | 布林值旗標 toospecify，是否與否，資料 factory 管線所明確產生資料集。 |否 |false |
+| Availability | 定義處理期間，或者 hello 配量模型 hello 資料集的生產環境的 hello。 Hello 資料集配量模型的詳細資訊，請參閱[排程與執行](data-factory-scheduling-and-execution.md)發行項。 |是 |NA |
+| 原則 |定義 hello 準則或 hello hello 資料集配量，都必須符合的條件。 <br/><br/>如需詳細資訊，請參閱 [資料集原則](#Policy) 一節。 |否 |NA |
 
-**structure** 區段中的每個資料行包含下列屬性︰
+每個資料行中 hello**結構**區段包含下列屬性的 hello:
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 名稱 |資料行的名稱。 |是 |
-| 類型 |資料行的資料類型。  |否 |
-| culture |.NET 型文化特性是在已指定類型 (type) 且是 .NET 類型 `Datetime` 或 `Datetimeoffset` 時使用。 預設值為 `en-us`。 |否 |
-| format |格式字串是在已指定類型且是 .NET 類型 `Datetime` 或 `Datetimeoffset` 時使用。 |否 |
+| 名稱 |Hello 資料行名稱。 |是 |
+| 類型 |Hello 資料行資料類型。  |否 |
+| culture |.NET 基礎類型指定且為.NET 型別時使用的文化特性 toobe`Datetime`或`Datetimeoffset`。 預設值為 `en-us`。 |否 |
+| format |格式化指定類型，並為.NET 型別時所使用的字串 toobe`Datetime`或`Datetimeoffset`。 |否 |
 
-在下列範例中，資料集有三個資料行 `slicetimestamp`、`projectname` 及 `pageviews`，類型分別為：String、String 及 Decimal。
+在下列範例的 hello，hello 資料集有三個資料行`slicetimestamp`， `projectname`，和`pageviews`，而且它們的型別： 字串、 字串和小數點分別。
 
 ```json
 structure:  
@@ -307,17 +307,17 @@ structure:
 ]
 ```
 
-下表描述您在 **availability** 區段中可使用的屬性：
+hello 下表描述您可以使用在 hello 屬性**可用性**> 一節：
 
 | 屬性 | 說明 | 必要 | 預設值 |
 | --- | --- | --- | --- |
-| frequency |指定資料集配量生產的時間單位。<br/><br/><b>支援的頻率</b>：Minute、Hour、Day、Week、Month |是 |NA |
-| interval |指定頻率的倍數<br/><br/>「頻率 x 間隔」會決定產生配量的頻率。<br/><br/>如果您需要將資料集以每小時為單位來切割，請將 <b>Frequency</b> 設定為 <b>Hour</b>，將 <b>interval</b> 設定為 <b>1</b>。<br/><br/><b>注意</b>：如果您將 Frequency 指定為 Minute，建議您將 interval 設定為不小於 15 |是 |NA |
-| style |指定是否應該在間隔開始/結束時產生配量。<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>如果 Frequency 設為 Month，style 設為 EndOfInterval，則會在當月最後一天產生配量。 如果 style 設為 StartOfInterval，則會在每月的第一天產生配量。<br/><br/>如果 Frequency 設為 Day，style 設為 EndOfInterval，則會在當天最後一個小時產生配量。<br/><br/>如果 Frequency 設為 Hour，style 設為 EndOfInterval，則會在每小時結束時產生配量。 例如，若為下午 1 – 2 點期間的配量，此配量會在下午 2 點產生。 |否 |EndOfInterval |
-| anchorDateTime |定義排程器用來計算資料集配量界限的時間絕對位置。 <br/><br/><b>注意</b>：如果 AnchorDateTime 有比頻率更細微的日期部分，則系統會忽略那些更細微的部分。 <br/><br/>例如，如果 <b>interval</b> 為 <b>hourly</b> (frequency: hour 且 interval: 1)，而且 <b>AnchorDateTime</b> 包含<b>分鐘和秒鐘</b>，則會忽略 AnchorDateTime 的<b>分鐘和秒鐘</b>部分。 |否 |01/01/0001 |
-| Offset |所有資料集配量的開始和結束移位所依據的時間範圍。 <br/><br/><b>注意</b>︰如果同時指定 anchorDateTime 和 offset，結果會是合併的位移。 |否 |NA |
+| frequency |指定資料集配量實際執行環境的 hello 時間單位。<br/><br/><b>支援的頻率</b>：Minute、Hour、Day、Week、Month |是 |NA |
+| interval |指定頻率的倍數<br/><br/>[頻率 x 間隔] 判斷頻率 hello 產生配量。<br/><br/>如果您需要 hello 配量每小時的資料集 toobe，設定<b>頻率</b>太<b>小時</b>，和<b>間隔</b>太<b>1</b>。<br/><br/><b>請注意</b>： 如果您將 Frequency 指定為 Minute，我們建議您設定小於 15 的 hello 間隔 toono |是 |NA |
+| style |指定是否應該在 hello 開始/結束 hello 間隔產生 hello 配量。<ul><li>StartOfInterval</li><li>EndOfInterval</li></ul><br/><br/>如果頻率設定 tooMonth 樣式設定 tooEndOfInterval，hello 當月最後一天產生 hello 配量。 如果 hello 樣式設定 tooStartOfInterval，hello 點產生配量 hello 當月第一日。<br/><br/>如果頻率設定 tooDay tooEndOfInterval 設定樣式時，會產生 hello 的 hello 當日的前一個小時 hello 配量。<br/><br/>如果頻率設定 tooHour 樣式設定 tooEndOfInterval，hello 配量會產生在 hello hello 小時結尾。 例如，1 PM – 2 PM 期間的配量，hello 配量會在 2 PM 產生。 |否 |EndOfInterval |
+| anchorDateTime |定義中使用的排程器 toocompute 資料集配量界限時間 hello 絕對位置。 <br/><br/><b>請注意</b>： 如果 hello AnchorDateTime 具有比 hello 頻率較精細的日期部分，則 hello 更精細的部分會被忽略。 <br/><br/>例如，如果 hello<b>間隔</b>是<b>每小時</b>(頻率： hour，interval: 1) 和 hello <b>AnchorDateTime</b>包含<b>分鐘和秒鐘</b>然後 hello<b>分鐘和秒鐘</b>hello AnchorDateTime 的部分會被忽略。 |否 |01/01/0001 |
+| Offset |哪些 hello 的所有資料集配量的開始與結束移位的 Timespan。 <br/><br/><b>請注意</b>: hello 結果指定 anchorDateTime 和 offset，如果是合併的 hello 移位。 |否 |NA |
 
-下列 availability 區段指定輸出資料集是每小時產生 (或) 輸入資料集是每小時可用：
+下列可用性一節的 hello 指定該 hello 輸出資料集則為產生每小時 （或） 的輸入資料集是每小時可用：
 
 ```json
 "availability":    
@@ -327,12 +327,12 @@ structure:
 }
 ```
 
-資料集中的 **policy** 區段定義資料集配量必須符合的準則或條件。
+hello**原則**資料集定義中的區段會定義 hello 準則或 hello 資料集配量的 hello 條件必須滿足。
 
-| 原則名稱 | 說明 | 適用於 | 必要 | 預設值 |
+| 原則名稱 | 說明 | 套用太| 必要 | 預設值 |
 | --- | --- | --- | --- | --- |
-| minimumSizeMB |驗證 **Azure Blob** 中的資料是否符合最小的大小需求 (以 MB 為單位)。 |Azure Blob |否 |NA |
-| minimumRows |驗證 **Azure SQL Database** 或 **Azure 資料表**中的資料是否包含最小的資料列數。 |<ul><li>Azure SQL Database</li><li>Azure 資料表</li></ul> |否 |NA |
+| minimumSizeMB |驗證中的 hello 資料**Azure blob**符合 hello 最小大小需求 （以 mb 為單位）。 |Azure Blob |否 |NA |
+| minimumRows |驗證中的 hello 資料**Azure SQL database**或**Azure 資料表**包含 hello 最小數目的資料列。 |<ul><li>Azure SQL Database</li><li>Azure 資料表</li></ul> |否 |NA |
 
 **範例：**
 
@@ -347,24 +347,24 @@ structure:
 }
 ```
 
-除非資料集是由 Azure Data Factory 產生，否則應該標示為 **外部**。 除非會使用活動或管線鏈結，否則此設定通常會套用到管線中第一個活動的輸入。
+除非資料集是由 Azure Data Factory 產生，否則應該標示為 **外部**。 除非正在使用活動或管線鏈結，這項設定通常適用於 toohello 輸入管線中的第一個活動。
 
 | 名稱 | 說明 | 必要 | 預設值 |
 | --- | --- | --- | --- |
-| dataDelay |延遲指定配量之外部資料可用性檢查的時間。 例如，如果是每小時有資料可用，則可以使用 dataDelay 來延遲查看「外部資料是否可用，且對應的配量是否已就緒」的檢查。<br/><br/>僅適用於目前的時間。  例如，如果現在時間是下午 1:00，且此值是 10 分鐘，驗證就會在下午 1:10 開始。<br/><br/>此設定不會影響過去配量 (配量結束時間 + dataDelay < 現在的配量) 的處理方式而不產生任何延遲。<br/><br/>時間若大於 23:59 小時，則必須使用 `day.hours:minutes:seconds` 格式指定。 例如，若要指定 24 小時，請不要使用 24:00:00；請改用 1.00:00:00。 如果您使用 24:00:00，這會視同 24 天 (24.00:00:00)。 如為 1 天又 4 小時，請指定 1:04:00:00。 |否 |0 |
-| retryInterval |失敗與下一步重試嘗試之間的等待時間。 如果嘗試失敗，則下一次嘗試是在 retryInterval 之後。 <br/><br/>如果現在是下午 1:00，我們會開始第一次嘗試。 如果完成第一次驗證檢查的持續時間是 1 分鐘且作業失敗，則下一次重試會在 1:00 + 1 分鐘 (持續時間) + 1 分鐘 (重試間隔) = 1:02 PM。 <br/><br/>若是過去的配量，則不會有任何延遲。 重試會立即發生。 |否 |00:01:00 (1 分鐘) |
-| retryTimeout |每次重試嘗試的逾時。<br/><br/>如果此屬性設為 10 分鐘，則必須在 10 分鐘內完成驗證。 如果花超過 10 分鐘來執行驗證，則重試會逾時。<br/><br/>如果驗證的所有嘗試都逾時，配量會標示為 TimedOut。 |否 |00:10:00 (10 分鐘) |
-| maximumRetry |檢查外部資料可用性的次數。 允許的最大值為 10。 |否 |3 |
+| dataDelay |時間 toodelay hello hello 可用性檢查的 hello hello 指定配量的外部資料。 例如，如果 hello 資料可每小時、 hello 檢查 toosee hello 外部資料而且 hello 對應配量已備妥可以延遲使用 dataDelay。<br/><br/>僅適用於 toohello 目前的時間。  例如，如果它是 1:00 PM 現在，這個值為 10 分鐘 hello 驗證就會開始 1:10 PM。<br/><br/>此設定不會影響在 hello 過去的配量 (以配量結束的時間 + dataDelay 的配量 < 現在) 會處理沒有任何延遲。<br/><br/>時間大於 23:59 小時需要使用 hello toospecified`day.hours:minutes:seconds`格式。 例如，toospecify 24 小時，請勿使用 24:00:00。請改用 1.00:00:00。 如果您使用 24:00:00，這會視同 24 天 (24.00:00:00)。 如為 1 天又 4 小時，請指定 1:04:00:00。 |否 |0 |
+| retryInterval |hello 失敗與 hello 下一次的重試嘗試之間的等待時間。 如果嘗試會失敗，retryInterval 之後便為 hello 下一步 再試一次。 <br/><br/>如果是 1:00 PM 現在，我們會開始 hello 第一次嘗試。 Hello 下次重試 hello 持續時間 toocomplete hello 第一次驗證檢查是 1 分鐘而且 hello 作業失敗，如果是在 1:00 + 1 分鐘 （持續時間） + 1 分鐘 （重試間隔） = 1: 02PM。 <br/><br/>在 hello 過去的配量，沒有任何延遲。 hello 重試會立即發生。 |否 |00:01:00 (1 分鐘) |
+| retryTimeout |每次重試的 hello 逾時。<br/><br/>如果這個屬性設定 too10 分鐘 hello 驗證需求 toobe 10 分鐘內完成。 如果需花時間超過 10 分鐘 tooperform hello 驗證，hello 重試逾時。<br/><br/>如果所有嘗試都 hello 驗證都逾時，hello 配量會標示為已逾時。 |否 |00:10:00 (10 分鐘) |
+| maximumRetry |次數 toocheck hello hello 外部資料可用性。 hello 允許最大值為 10。 |否 |3 |
 
 
 ## <a name="data-stores"></a>資料存放區
-[連結服務](#linked-service)一節描述所有連結服務類型通用的 JSON 元素。 本節提供每個資料存放區特有的 JSON 元素的詳細資料。
+hello[連結服務](#linked-service)> 一節提供描述常見的 tooall 類型的連結服務的 JSON 元素。 本節提供有關屬於特定 tooeach 資料存放區的 JSON 元素的詳細資料。
 
-[資料集](#dataset)一節描述所有資料集類型通用的 JSON 元素。 本節提供每個資料存放區特有的 JSON 元素的詳細資料。
+hello[資料集](#dataset)是常見的資料集的 tooall 類型的 JSON 元素 > 一節提供描述。 本節提供有關屬於特定 tooeach 資料存放區的 JSON 元素的詳細資料。
 
-[活動](#activity)一節描述所有活動類型通用的 JSON 元素。 本節詳細說明複製活動中作為來源/接收之每個資料存放區特有的 JSON 元素。  
+hello[活動](#activity)是常見的活動 tooall 類型的 JSON 元素 > 一節提供描述。 本節提供有關特定 tooeach 資料存放區時，它會當做來源/接收器複製活動中使用的 JSON 元素的詳細資料。  
 
-按一下您感興趣之存放區的連結，以查看連結服務的 JSON 結構描述、資料集，以及複製活動的來源/接收。
+按一下 hello hello 存放區中，使用您感興趣 toosee hello JSON 結構描述連結的服務，資料集，以及 hello 來源/接收器 hello 複製活動的連結。
 
 | 類別 | 資料存放區 
 |:--- |:--- |
@@ -404,11 +404,11 @@ structure:
 有兩種連結服務類型︰Azure 儲存體連結服務和 Azure 儲存體 SAS 連結服務。
 
 #### <a name="azure-storage-linked-service"></a>Azure 儲存體連結服務
-若要使用**帳戶金鑰**將 Azure 儲存體帳戶連結至資料處理站，請建立 Azure 儲存體連結服務。 若要定義 Azure 儲存體連結服務，請將連結服務的**類型**設為 **AzureStorage**。 然後，您可以在 **typeProperties** 區段中指定下列屬性：  
+toolink 您 Azure 儲存體帳戶 tooa 的 data factory 使用 hello**帳戶金鑰**，建立 Azure 儲存體連結服務。 toodefine Azure 儲存體連結服務，設定 hello**類型**hello 的連結服務太**AzureStorage**。 然後，您可以指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| connectionString |針對 connectionString 屬性指定連接到 Azure 儲存體所需的資訊。 |是 |
+| connectionString |指定所需的資訊 tooconnect tooAzure 儲存體 hello connectionString 屬性。 |是 |
 
 ##### <a name="example"></a>範例  
 
@@ -425,11 +425,11 @@ structure:
 ```
 
 #### <a name="azure-storage-sas-linked-service"></a>Azure 儲存體 SAS 連結服務
-Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Azure 儲存體帳戶連結到 Azure Data Factory。 它提供受限制/時間界限存取權，讓資料處理站存取儲存體中的所有/特定資源 (blob/容器)。 若要使用共用存取簽章將 Azure 儲存體帳戶連結至資料處理站，請建立 Azure 儲存體 SAS 連結服務。 若要定義 Azure 儲存體 SAS 連結服務，請將連結服務的**類型**設為 **AzureStorageSas**。 然後，您可以在 **typeProperties** 區段中指定下列屬性：   
+hello Azure 儲存體 SAS 連結服務可讓您 Azure 儲存體帳戶 tooan Azure data factory toolink 使用共用存取簽章 (SAS)。 它提供 hello 資料 factory 限制/時間繫結存取 tooall/特定資源 （blob/容器） hello 儲存體中。 toolink 使用共用存取簽章、 您 Azure 儲存體帳戶 tooa data factory 建立 Azure 儲存體 SAS 連結服務。 Azure 儲存體 SAS toodefine 連結服務，設定 hello**類型**hello 的連結服務太**AzureStorageSas**。 然後，您可以指定下列屬性在 hello **typeProperties** > 一節：   
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| sasUri |指定 Azure 儲存體資源 (例如 Blob、容器或資料表) 的共用存取簽章 URI。 |是 |
+| sasUri |指定共用存取簽章 URI toohello Azure 儲存體資源，例如 blob、 容器或資料表。 |是 |
 
 ##### <a name="example"></a>範例
 
@@ -448,15 +448,15 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需這些連結服務的詳細資訊，請參閱 [Azure Blob 儲存體連接器](data-factory-azure-blob-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 Azure Blob 資料集，請將資料集的 **type** 設為 **AzureBlob**。 然後，在 **typeProperties** 區段中指定下列 Azure Blob 特定屬性︰ 
+toodefine Azure Blob 資料集設定 hello**類型**hello 資料集太**AzureBlob**。 然後，指定下列 Azure Blob 中 hello 的特定屬性的 hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| folderPath |Blob 儲存體中容器和資料夾的路徑。 範例：myblobcontainer\myblobfolder\ |是 |
-| fileName |Blob 的名稱。 fileName 是選擇性的，而且區分大小寫。<br/><br/>如果您指定檔案名稱，活動 (包括複製) 適用於特定的 Blob。<br/><br/>如果您未指定 fileName，複製會包含 folderPath 中的所有 Blob 以做為輸入資料集。<br/><br/>沒有為輸出資料集指定 fileName 時，所產生的檔案名稱會是下列格式：Data.<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |否 |
-| partitionedBy |partitionedBy 是選擇性的屬性。 您可以用來指定時間序列資料的動態 folderPath 和 filename。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
-| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
+| folderPath |路徑 toohello 容器，並且在 hello blob 儲存體中的資料夾。 範例：myblobcontainer\myblobfolder\ |是 |
+| fileName |Hello blob 名稱。 fileName 是選擇性的，而且區分大小寫。<br/><br/>如果您在上指定的檔名、 hello 活動 （包括複製） 運作 hello 特定 Blob。<br/><br/>若未指定檔名，複本會輸入資料集的 hello folderPath 中包含所有 Blob。<br/><br/>當檔案名稱未指定輸出資料集時，會在遵循此格式的 hello hello hello 產生檔案名稱： 資料。<Guid>.txt (例如:: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |否 |
+| partitionedBy |partitionedBy 是選擇性的屬性。 您可以使用它 toospecify 動態 folderPath 和 filename 時間序列資料的。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
+| format | 支援下列格式類型的 hello: **TextFormat**， **JsonFormat**， **AvroFormat**， **OrcFormat**， **ParquetFormat**。 設定 hello**類型**下格式 tooone 這些值的屬性。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想太**複製檔做為-是**之間以檔案為基礎存放區 （二進位複製），略過這兩個輸入和輸出資料集定義中的 hello 格式 > 一節。 |否 |
+| compression | 指定 hello 類型和層級的 hello 資料壓縮。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
 
 #### <a name="example"></a>範例
 
@@ -488,11 +488,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure Blob 連接器](data-factory-azure-blob-connector.md#dataset-properties)文件。
 
 ### <a name="blobsource-in-copy-activity"></a>複製活動中的 BlobSource
-如果您從 Azure Blob 儲存體複製資料，請將複製活動的 **source type** 設為 **BlobSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 Azure Blob 儲存體複製資料，設定 hello**來源類型**的 hello 複製活動太**BlobSource**，並指定下列屬性在 hello * * 來源 * * 區段：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| 遞迴 |表示是否從子資料夾，或只有從指定的資料夾，以遞迴方式讀取資料。 |True (預設值)、False |否 |
+| 遞迴 |指出是否 hello 讀取資料以遞迴方式從 hello 子資料夾，或只能從 hello 指定的資料夾。 |True (預設值)、False |否 |
 
 #### <a name="example-blobsource"></a>範例︰BlobSource**
 ```json
@@ -531,11 +531,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 }
 ```
 ### <a name="blobsink-in-copy-activity"></a>複製活動中的 BlobSink
-如果您將資料複製到 Azure Blob 儲存體，請將複製活動的 **sink type** 設為 **BlobSink**，並在 **sink** 區段中指定下列屬性︰
+如果您要複製資料 tooan Azure Blob 儲存體，請設定 hello**接收器類型**的 hello 複製活動太**BlobSink**，並指定下列屬性在 hello**接收**> 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| copyBehavior |當來源為 BlobSource 或 FileSystem 時，定義複製行為。 |<b>PreserveHierarchy</b>：保留目標資料夾中的檔案階層。 來源檔案到來源資料夾的相對路徑，與目標檔案到目標資料夾的相對路徑相同。<br/><br/><b>FlattenHierarchy</b>：來自來源資料夾的所有檔案都在目標資料夾的第一層中。 目標檔案會有自動產生的名稱。 <br/><br/><b>MergeFiles (預設值)</b>：將來自來源資料夾的所有檔案合併成一個檔案。 如果已指定檔案/Blob 名稱，合併檔案名稱會是指定的名稱；否則，就會是自動產生的檔案名稱。 |否 |
+| copyBehavior |Hello 來源 BlobSource 或檔案系統時，請定義 hello 複製行為。 |<b>PreserveHierarchy</b>： 保留 hello hello 目標資料夾中的檔案階層。 hello 的來源檔案 toosource 資料夾的相對路徑會是相同 toohello 的目標檔案 tootarget 資料夾的相對路徑。<br/><br/><b>FlattenHierarchy</b>: hello 來源資料夾中的所有檔案都位於 hello 第一次層級的目標資料夾。 hello 目標檔案已自動產生的名稱。 <br/><br/><b>MergeFiles （預設值）：</b>合併 hello 來源資料夾 tooone 檔案中的所有檔案。 如果指定 hello/Blob 檔案的名稱，則 hello 合併的檔案名稱就是指定之名稱; hello否則，將會自動產生的檔案名稱。 |否 |
 
 #### <a name="example-blobsink"></a>範例︰BlobSink
 
@@ -581,19 +581,19 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 ## <a name="azure-data-lake-store"></a>Azure Data Lake Store
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Azure Data Lake Store 連結服務，請將連結服務的 type 設為 **AzureDataLakeStore**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine 連結 Azure Data Lake Store 服務，hello 集 hello 類型的連結服務太**AzureDataLakeStore**，並指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| 類型 | type 屬性必須設為： **AzureDataLakeStore** | 是 |
-| dataLakeStoreUri | 指定有關 Azure Data Lake Store 帳戶的資訊。 它的格式如下：`https://[accountname].azuredatalakestore.net/webhdfs/v1` 或 `adl://[accountname].azuredatalakestore.net/`。 | 是 |
-| subscriptionId | Data Lake Store 所屬的 Azure 訂用帳戶識別碼。 | 接收 (Sink) 的必要項目 |
-| resourceGroupName | Data Lake Store 所屬的 Azure 資源群組名稱。 | 接收 (Sink) 的必要項目 |
-| servicePrincipalId | 指定應用程式的用戶端識別碼。 | 是 (適用於服務主體驗證) |
-| servicePrincipalKey | 指定應用程式的金鑰。 | 是 (適用於服務主體驗證) |
-| tenant | 指定您的應用程式所在租用戶的資訊 (網域名稱或租用戶識別碼)。 將滑鼠游標暫留在 Azure 入口網站右上角，即可擷取它。 | 是 (適用於服務主體驗證) |
-| 授權 | 按一下 [Data Factory 編輯器] 中的 [授權] 按鈕，然後輸入您的認證，此動作會將自動產生的授權 URL 指派給此屬性。 | 是 (適用於使用者認證驗證)|
-| sessionId | OAuth 授權工作階段的 OAuth 工作階段識別碼。 每個工作階段識別碼都是唯一的，只能使用一次。 當您使用 Data Factory 編輯器時便會自動產生此設定。 | 是 (適用於使用者認證驗證) |
+| 類型 | hello 類型屬性必須設定為： **AzureDataLakeStore** | 是 |
+| dataLakeStoreUri | 指定 hello Azure Data Lake Store 帳戶的相關資訊。 在下列格式的 hello:`https://[accountname].azuredatalakestore.net/webhdfs/v1`或`adl://[accountname].azuredatalakestore.net/`。 | 是 |
+| subscriptionId | 所屬的 azure 訂用帳戶 Id toowhich 資料湖存放區。 | 接收 (Sink) 的必要項目 |
+| resourceGroupName | 所屬的 azure 資源群組名稱 toowhich 資料湖存放區。 | 接收 (Sink) 的必要項目 |
+| servicePrincipalId | 指定 hello 應用程式的用戶端識別碼。 | 是 (適用於服務主體驗證) |
+| servicePrincipalKey | 指定 hello 應用程式的金鑰。 | 是 (適用於服務主體驗證) |
+| tenant | 指定在您的應用程式所在的 hello 租用戶資訊 (網域名稱或租用戶 ID)。 您可以透過暫留在 hello 右上角的 hello Azure 入口網站中的 hello 滑鼠擷取它。 | 是 (適用於服務主體驗證) |
+| 授權 | 按一下**授權**按鈕在 hello **Data Factory 編輯器**並輸入您 hello 自動產生的授權 URL toothis 屬性指派的認證。 | 是 (適用於使用者認證驗證)|
+| sessionId | 從 hello OAuth 授權工作階段的 OAuth 工作階段識別碼。 每個工作階段識別碼都是唯一的，只能使用一次。 當您使用 Data Factory 編輯器時便會自動產生此設定。 | 是 (適用於使用者認證驗證) |
 
 #### <a name="example-using-service-principal-authentication"></a>範例：使用服務主體驗證
 ```json
@@ -631,15 +631,15 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure Data Lake Store 連接器](data-factory-azure-datalake-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 Azure Data Lake Store 資料集，請將資料集的 **type** 設為 **AzureDataLakeStore**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine Azure 資料湖存放區資料集設定 hello**類型**hello 資料集太**AzureDataLakeStore**，並指定下列屬性在 hello hello **typeProperties**> 一節： 
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| folderPath |Azure Data Lake Store 中容器與資料夾的路徑。 |是 |
-| fileName |Azure Data Lake Store 中的檔案名稱。 fileName 是選擇性的，而且區分大小寫。 <br/><br/>如果您指定檔案名稱，活動 (包括複製) 適用於特定的檔案。<br/><br/>如果您未指定 fileName，複製會包含 folderPath 中的所有檔案以做為輸入資料集。<br/><br/>沒有為輸出資料集指定 fileName 時，所產生的檔案名稱會是下列格式：Data<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |否 |
-| partitionedBy |partitionedBy 是選擇性的屬性。 您可以用來指定時間序列資料的動態 folderPath 和 filename。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
-| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
+| folderPath |路徑 toohello 容器和資料夾在 hello Azure 資料湖存放區。 |是 |
+| fileName |Hello Azure 資料湖存放區中的 hello 檔案的名稱。 fileName 是選擇性的，而且區分大小寫。 <br/><br/>如果您指定的檔名，hello 活動 （包括複製） 適用於 hello 特定檔案。<br/><br/>若未指定檔名，複本會輸入資料集的 hello folderPath 中包含所有檔案。<br/><br/>當檔案名稱未指定輸出資料集時，會在遵循此格式的 hello hello hello 產生檔案名稱： 資料。<Guid>.txt (例如:: Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt |否 |
+| partitionedBy |partitionedBy 是選擇性的屬性。 您可以使用它 toospecify 動態 folderPath 和 filename 時間序列資料的。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
+| format | 支援下列格式類型的 hello: **TextFormat**， **JsonFormat**， **AvroFormat**， **OrcFormat**， **ParquetFormat**。 設定 hello**類型**下格式 tooone 這些值的屬性。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想太**複製檔做為-是**之間以檔案為基礎存放區 （二進位複製），略過這兩個輸入和輸出資料集定義中的 hello 格式 > 一節。 |否 |
+| compression | 指定 hello 類型和層級的 hello 資料壓縮。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
 
 #### <a name="example"></a>範例
 ```json
@@ -676,13 +676,13 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure Data Lake Store 連接器](data-factory-azure-datalake-connector.md#dataset-properties)文件。 
 
 ### <a name="azure-data-lake-store-source-in-copy-activity"></a>複製活動中的 Azure Data Lake Store 來源
-如果您從 Azure Data Lake Store 複製資料，請將複製活動的 **source type** 設為 **AzureDataLakeStoreSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 Azure 資料湖存放區複製資料，設定 hello**來源類型**的 hello 複製活動太**AzureDataLakeStoreSource**，並指定下列屬性在 hello**來源** > 一節：
 
-**AzureDataLakeStoreSource** 支援下列屬性 **typeProperties** 區段：
+**AzureDataLakeStoreSource**支援下列屬性的 hello **typeProperties** > 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| 遞迴 |表示是否從子資料夾，或只有從指定的資料夾，以遞迴方式讀取資料。 |True (預設值)、False |否 |
+| 遞迴 |指出是否 hello 讀取資料以遞迴方式從 hello 子資料夾，或只能從 hello 指定的資料夾。 |True (預設值)、False |否 |
 
 #### <a name="example-azuredatalakestoresource"></a>範例：AzureDataLakeStoreSource
 
@@ -725,11 +725,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure Data Lake Store 連接器](data-factory-azure-datalake-connector.md#copy-activity-properties)文件。
 
 ### <a name="azure-data-lake-store-sink-in-copy-activity"></a>複製活動中的 Azure Data Lake Store 接收
-如果您將資料複製到 Azure Data Lake Store，請將複製活動的 **sink type** 設為 **AzureDataLakeStoreSink**，並在 **sink** 區段中指定下列屬性︰
+如果您要複製資料 tooan Azure 資料湖存放區，請設定 hello**接收器類型**的 hello 複製活動太**AzureDataLakeStoreSink**，並指定下列屬性在 hello**接收**> 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| copyBehavior |指定複製行為。 |<b>PreserveHierarchy</b>：保留目標資料夾中的檔案階層。 來源檔案到來源資料夾的相對路徑，與目標檔案到目標資料夾的相對路徑相同。<br/><br/><b>FlattenHierarchy</b>：來源資料夾的中所有檔案都會建立在目標資料夾的第一個層級中。 建立的目標檔案會具有自動產生的名稱。<br/><br/><b>MergeFiles</b>：將來源資料夾的所有檔案合併為一個檔案。 如果已指定檔案/Blob 名稱，合併檔案名稱會是指定的名稱；否則，就會是自動產生的檔案名稱。 |否 |
+| copyBehavior |指定 hello 複製行為。 |<b>PreserveHierarchy</b>： 保留 hello hello 目標資料夾中的檔案階層。 hello 的來源檔案 toosource 資料夾的相對路徑會是相同 toohello 的目標檔案 tootarget 資料夾的相對路徑。<br/><br/><b>FlattenHierarchy</b>: hello 第一個層級的目標資料夾中建立 hello 來源資料夾中的所有檔案。 會使用自動產生的名稱建立 hello 目標檔案。<br/><br/><b>MergeFiles</b>： 合併 hello 來源資料夾 tooone 檔案中的所有檔案。 如果指定 hello/Blob 檔案的名稱，則 hello 合併的檔案名稱就是指定之名稱; hello否則，將會自動產生的檔案名稱。 |否 |
 
 #### <a name="example-azuredatalakestoresink"></a>範例：AzureDataLakeStoreSink
 ```json
@@ -777,11 +777,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 ## <a name="azure-cosmos-db"></a>Azure Cosmos DB  
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Azure Cosmos DB 連結服務，請將連結服務的 **type** 設定為 **DocumentDb**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine Azure Cosmos DB 的連結服務，設定 hello**類型**hello 的連結服務太**DocumentDb**，並指定下列屬性在 hello **typeProperties**區段：  
 
 | **屬性** | **說明** | **必要** |
 | --- | --- | --- |
-| connectionString |指定連接到 Azure Cosmos DB 資料庫所需的資訊。 |是 |
+| connectionString |指定所需 tooconnect tooAzure Cosmos DB 資料庫的資訊。 |是 |
 
 #### <a name="example"></a>範例
 
@@ -799,11 +799,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure Cosmos DB 連接器](data-factory-azure-documentdb-connector.md#linked-service-properties)一文。
 
 ### <a name="dataset"></a>Dataset
-若要定義 Azure Cosmos DB 資料集，請將資料集的 **type** 設定為 **DocumentDbCollection**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine Azure Cosmos DB 資料集設定 hello**類型**hello 資料集太**DocumentDbCollection**，並指定下列屬性在 hello hello **typeProperties**區段： 
 
 | **屬性** | **說明** | **必要** |
 | --- | --- | --- |
-| collectionName |Azure Cosmos DB 集合的名稱。 |是 |
+| collectionName |Hello Azure Cosmos DB 集合的名稱。 |是 |
 
 #### <a name="example"></a>範例
 
@@ -827,13 +827,13 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure Cosmos DB 連接器](data-factory-azure-documentdb-connector.md#dataset-properties)一文。
 
 ### <a name="azure-cosmos-db-collection-source-in-copy-activity"></a>複製活動中的 Azure Cosmos DB 集合來源
-如果您要從 Azure Cosmos DB 複製資料，請將複製活動的 **source type** 設定為 **DocumentDbCollectionSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 Azure Cosmos DB 複製資料，設定 hello**來源類型**的 hello 複製活動太**DocumentDbCollectionSource**，並指定下列屬性在 hello**來源** > 一節：
 
 
 | **屬性** | **說明** | **允許的值** | **必要** |
 | --- | --- | --- | --- |
-| query |指定查詢來讀取資料。 |Azure Cosmos DB 所支援的查詢字串。 <br/><br/>範例： `SELECT c.BusinessEntityID, c.PersonType, c.NameStyle, c.Title, c.Name.First AS FirstName, c.Name.Last AS LastName, c.Suffix, c.EmailPromotion FROM c WHERE c.ModifiedDate > \"2009-01-01T00:00:00\"` |否 <br/><br/>如果未指定，執行的 SQL 陳述式：`select <columns defined in structure> from mycollection` |
-| nestingSeparator |用來表示文件為巢狀文件的特殊字元 |任何字元。 <br/><br/>Azure Cosmos DB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。 Azure Data Factory 可讓使用者透過 nestingSeparator (也就是上述範例中的 “.”) 表示階層 。 使用分隔符號，複製活動將會根據資料表定義中的 “Name.First”、“Name.Middle” 和 “Name.Last”，產生含有三個子元素 (First、Middle 和 Last) 的 "Name" 物件。 |否 |
+| query |指定 hello 查詢 tooread 資料。 |Azure Cosmos DB 所支援的查詢字串。 <br/><br/>範例： `SELECT c.BusinessEntityID, c.PersonType, c.NameStyle, c.Title, c.Name.First AS FirstName, c.Name.Last AS LastName, c.Suffix, c.EmailPromotion FROM c WHERE c.ModifiedDate > \"2009-01-01T00:00:00\"` |否 <br/><br/>如果未指定，hello 執行的 SQL 陳述式：`select <columns defined in structure> from mycollection` |
+| nestingSeparator |巢狀 hello 文件的特殊字元 tooindicate |任何字元。 <br/><br/>Azure Cosmos DB 是 JSON 文件的 NoSQL 存放區 (允許巢狀結構)。 Azure Data Factory 可讓使用者 toodenote 階層 nestingSeparator，也就是透過 「。 」 在上述範例 hello。 Hello 分隔符號 hello 複製活動會產生三個子系的元素與 hello"Name"物件第一個中間和最後一個、 相應 too"Name.First"，"Name.Middle"和"Name.Last"hello 在資料表定義。 |否 |
 
 #### <a name="example"></a>範例
 
@@ -874,13 +874,13 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 ```
 
 ### <a name="azure-cosmos-db-collection-sink-in-copy-activity"></a>複製活動中的 Azure Cosmos DB 集合接收器
-如果您要將資料複製到 Azure Cosmos DB，請將複製活動的 **sink type** 設定為 **DocumentDbCollectionSink**，並在 **sink** 區段中指定下列屬性︰
+如果您要複製資料 tooAzure Cosmos DB，請設定 hello**接收器類型**的 hello 複製活動太**DocumentDbCollectionSink**，並指定下列屬性在 hello**接收**> 一節：
 
 | **屬性** | **說明** | **允許的值** | **必要** |
 | --- | --- | --- | --- |
-| nestingSeparator |來源資料行名稱中用來表示需要巢狀文件的特殊字元。 <br/><br/>就上述範例而言：輸出資料表中的 `Name.First` 會在 Cosmos DB 文件中產生下列 JSON 結構：<br/><br/>"Name": {<br/>    "First": "John"<br/>}, |用來分隔巢狀層級的字元。<br/><br/>預設值為 `.` (點)。 |用來分隔巢狀層級的字元。 <br/><br/>預設值為 `.` (點)。 |
-| writeBatchSize |為了建立文件而傳送到 Azure Cosmos DB 服務的平行要求數目。<br/><br/>您可以在將資料複製到 Azure Cosmos DB 或從該處複製資料時，使用這個屬性來微調效能。 增大 writeBatchSize 的值時，預期可以提升效能，因為會對 Azure Cosmos DB 傳送更多平行要求。 不過，您必須避免可能擲回錯誤訊息的節流：「要求速率很高」。<br/><br/>節流是由許多因素所決定，包括文件大小、文件中的詞彙數目、目標集合的檢索原則等。對於複製作業，您可以使用更好的集合 (例如 S3) 以取得最多可用輸送量 (2,500 要求單位/秒)。 |Integer |否 (預設值：5) |
-| writeBatchTimeout |在逾時前等待作業完成的時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
+| nestingSeparator |需要 hello 來源資料行名稱 tooindicate 巢狀文件中的特殊字元。 <br/><br/>例如上述： `Name.First` hello 輸出資料表會產生下列 JSON 結構 hello Cosmos DB 文件中的 hello:<br/><br/>"Name": {<br/>    "First": "John"<br/>}, |為使用的 tooseparate 巢狀層級的字元。<br/><br/>預設值為 `.` (點)。 |為使用的 tooseparate 巢狀層級的字元。 <br/><br/>預設值為 `.` (點)。 |
+| writeBatchSize |並行要求數目 tooAzure Cosmos DB 服務 toocreate 文件。<br/><br/>使用這個屬性來複製資料從 Azure Cosmos DB 時，您可以微調 hello 效能。 當您增加叫用 writeBatchSize，因為會傳送多個平行要求 tooAzure Cosmos DB 時，您可以預期更佳的效能。 不過，您必須先 tooavoid 節流，可擲回 hello 錯誤訊息: 「 要求率非常大 」。<br/><br/>節流是由許多因素所決定，包括文件大小、文件中的詞彙數目、目標集合的檢索原則等。複製作業，您可以使用較佳的集合 (例如，S3) toohave hello 大部分可用的輸送量 （2500 的要求單位/秒）。 |Integer |否 (預設值：5) |
+| writeBatchTimeout |在逾時之前，請等待 hello 作業 toocomplete 時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
 
 #### <a name="example"></a>範例
 
@@ -902,7 +902,7 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
                 },
                 "translator": {
                     "type": "TabularTranslator",
-                    "ColumnMappings": "FirstName: Name.First, MiddleName: Name.Middle, LastName: Name.Last, BusinessEntityID: BusinessEntityID, PersonType: PersonType, NameStyle: NameStyle, Title: Title, Suffix: Suffix"
+                    "ColumnMappings": "FirstName: Name.First, MiddleName: Name.Middle, LastName: Name.Last, BusinessEntityID: BusinessEntityID, PersonType: PersonType, NameStyle: NameStyle, title: aaaTitle, Suffix: Suffix"
                 }
             },
             "inputs": [{
@@ -927,11 +927,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 ## <a name="azure-sql-database"></a>Azure SQL Database
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Azure SQL Database 連結服務，請將連結服務的 **type** 設為 **AzureSqlDatabase**，並在 **typeProperties** 區段中指定下列屬性︰  
+Azure SQL Database toodefine 連結服務，設定 hello**類型**hello 的連結服務太**AzureSqlDatabase**，並指定下列屬性在 hello **typeProperties**> 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| connectionString |針對 connectionString 屬性指定連接到 Azure SQL Database 執行個體所需的資訊。 |是 |
+| connectionString |指定所需的資訊 tooconnect toohello Azure SQL Database 執行個體 hello connectionString 屬性。 |是 |
 
 #### <a name="example"></a>範例
 ```json
@@ -949,11 +949,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 Azure SQL Database 資料集，請將資料集的 **type** 設為 **AzureSqlTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine 是 Azure SQL Database 資料集，設定 hello**類型**hello 資料集太**AzureSqlTable**，並指定下列屬性在 hello hello **typeProperties**區段： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |Azure SQL Database 執行個體中連結服務所參考的資料表或檢視的名稱。 |是 |
+| tableName |參照 hello 資料表或檢視中的連結服務的 hello Azure SQL Database 執行個體的名稱。 |是 |
 
 #### <a name="example"></a>範例
 
@@ -984,14 +984,14 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#dataset-properties)文件。 
 
 ### <a name="sql-source-in-copy-activity"></a>複製活動中的 SQL 來源
-如果您從 Azure SQL Database 複製資料，請將複製活動的 **source type** 設為 **SqlSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 Azure SQL Database 中複製資料，設定 hello**來源類型**的 hello 複製活動太**SqlSource**，並指定下列屬性在 hello**來源**區段：
 
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| SqlReaderQuery |使用自訂查詢來讀取資料。 |SQL 查詢字串。 範例： `select * from MyTable`. |否 |
-| sqlReaderStoredProcedureName |從來源資料表讀取資料的預存程序名稱。 |預存程序的名稱。 |否 |
-| storedProcedureParameters |預存程序的參數。 |名稱/值組。 參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 |否 |
+| SqlReaderQuery |使用自訂查詢 tooread hello 的資料。 |SQL 查詢字串。 範例： `select * from MyTable`. |否 |
+| sqlReaderStoredProcedureName |名稱的 hello 預存程序會從 hello 來源資料表讀取資料。 |名稱的 hello 預存程序。 |否 |
+| storedProcedureParameters |Hello 參數，預存程序。 |名稱/值組。 名稱和大小寫的參數必須符合 hello 名稱和大小寫的 hello 預存程序參數。 |否 |
 
 #### <a name="example"></a>範例
 
@@ -1038,17 +1038,17 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#copy-activity-properties)文件。 
 
 ### <a name="sql-sink-in-copy-activity"></a>複製活動中的 SQL 接收
-如果您將資料複製到 Azure SQL Database，請將複製活動的 **sink type** 設為 **SqlSink**，並在 **sink** 區段中指定下列屬性︰
+如果您要複製資料 tooAzure SQL 資料庫，請設定 hello**接收器類型**的 hello 複製活動太**SqlSink**，並指定下列屬性在 hello**接收**> 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| writeBatchTimeout |在逾時前等待批次插入作業完成的時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
-| writeBatchSize |當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 |整數 (資料列數目) |否 (預設值：10000) |
-| sqlWriterCleanupScript |指定要讓「複製活動」執行的查詢，以便清除特定分割的資料。 |查詢陳述式。 |否 |
-| sliceIdentifierColumnName |指定要讓「複製活動」以自動產生的分割識別碼填入的資料行名稱，這可在重新執行時用來清除特定分割的資料。 |資料類型為 binary(32) 之資料行的資料行名稱。 |否 |
-| sqlWriterStoredProcedureName |將資料更新插入 (更新/插入) 目標資料表中的預存程序名稱。 |預存程序的名稱。 |否 |
-| storedProcedureParameters |預存程序的參數。 |名稱/值組。 參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 |否 |
-| sqlWriterTableType |指定要在預存程序中使用的資料表類型名稱。 複製活動可讓正在移動的資料可用於此資料表類型的暫存資料表。 然後，預存程序程式碼可以合併正在複製的資料與現有的資料。 |資料表類型名稱。 |否 |
+| writeBatchTimeout |在逾時之前，請等待 hello 批次插入作業 toocomplete 時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
+| writeBatchSize |當 hello 緩衝區大小到達叫用 writeBatchSize 時，請將資料插入 hello SQL 資料表。 |整數 (資料列數目) |否 (預設值：10000) |
+| sqlWriterCleanupScript |複製活動 tooexecute 查詢指定的特定配量的資料清除。 |查詢陳述式。 |否 |
+| sliceIdentifierColumnName |指定複製活動 toofill 的資料行名稱與自動產生配量識別項，也就是使用的 tooclean 何時重新執行的特定配量的資料。 |資料類型為 binary(32) 之資料行的資料行名稱。 |否 |
+| sqlWriterStoredProcedureName |名稱的 hello 預存程序 upserts （更新/插入） 資料到 hello 目標資料表。 |名稱的 hello 預存程序。 |否 |
+| storedProcedureParameters |Hello 參數，預存程序。 |名稱/值組。 名稱和大小寫的參數必須符合 hello 名稱和大小寫的 hello 預存程序參數。 |否 |
+| sqlWriterTableType |指定用於 hello 預存程序中的資料表類型名稱 toobe。 複製活動移動 hello 資料可讓在暫存資料表與此資料表類型。 預存程序程式碼可以再合併 hello 資料會被複製現有的資料。 |資料表類型名稱。 |否 |
 
 #### <a name="example"></a>範例
 
@@ -1098,11 +1098,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 ## <a name="azure-sql-data-warehouse"></a>Azure SQL 資料倉儲
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Azure SQL 資料倉儲連結服務，請將連結服務的 **type** 設為 **AzureSqlDW**，並在 **typeProperties** 區段中指定下列屬性︰  
+Azure SQL 資料倉儲 toodefine 連結服務，設定 hello**類型**hello 的連結服務太**AzureSqlDW**，並指定下列屬性在 hello **typeProperties**> 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| connectionString |針對 connectionString 屬性指定連線到 Azure SQL 資料倉儲執行個體所需的資訊。 |是 |
+| connectionString |指定所需的資訊 tooconnect toohello Azure SQL 資料倉儲執行個體 hello connectionString 屬性。 |是 |
 
 
 
@@ -1123,11 +1123,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure SQL 資料倉儲連接器](data-factory-azure-sql-data-warehouse-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 Azure SQL 資料倉儲資料集，請將資料集的 **type** 設為 **AzureSqlDWTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine 是 Azure SQL 資料倉儲資料集，設定 hello**類型**hello 資料集太**AzureSqlDWTable**，並指定下列屬性在 hello hello **typeProperties**> 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |Azure SQL 資料倉儲資料庫中連結服務所參照的資料表名稱或檢視名稱。 |是 |
+| tableName |參照 hello 資料表或檢視 hello 連結的服務的 hello Azure SQL 資料倉儲資料庫中的名稱。 |是 |
 
 #### <a name="example"></a>範例
 
@@ -1159,14 +1159,14 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure SQL 資料倉儲連接器](data-factory-azure-sql-data-warehouse-connector.md#dataset-properties)文件。 
 
 ### <a name="sql-dw-source-in-copy-activity"></a>複製活動中的 SQL DW 來源
-如果您從 Azure SQL 資料倉儲複製資料，請將複製活動的 **source type** 設為 **SqlDWSource**，並在 **source** 區段中指定下列屬性︰
+如果您要從 Azure SQL 資料倉儲來複製資料，設定 hello**來源類型**的 hello 複製活動太**SqlDWSource**，並指定下列屬性在 hello**來源**> 一節：
 
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| SqlReaderQuery |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 |否 |
-| sqlReaderStoredProcedureName |從來源資料表讀取資料的預存程序名稱。 |預存程序的名稱。 |否 |
-| storedProcedureParameters |預存程序的參數。 |名稱/值組。 參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 |否 |
+| SqlReaderQuery |使用自訂查詢 tooread hello 的資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 |否 |
+| sqlReaderStoredProcedureName |名稱的 hello 預存程序會從 hello 來源資料表讀取資料。 |名稱的 hello 預存程序。 |否 |
+| storedProcedureParameters |Hello 參數，預存程序。 |名稱/值組。 名稱和大小寫的參數必須符合 hello 名稱和大小寫的 hello 預存程序參數。 |否 |
 
 #### <a name="example"></a>範例
 
@@ -1214,19 +1214,19 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure SQL 資料倉儲連接器](data-factory-azure-sql-data-warehouse-connector.md#copy-activity-properties)文件。 
 
 ### <a name="sql-dw-sink-in-copy-activity"></a>複製活動中的 SQL DW 接收
-如果您將資料複製到 Azure SQL 資料倉儲，請將複製活動的 **sink type** 設為 **SqlDWSink**，並在 **sink** 區段中指定下列屬性︰
+如果您複製資料 tooAzure SQL 資料倉儲，設定 hello**接收器類型**的 hello 複製活動太**SqlDWSink**，並指定下列屬性在 hello**接收**區段：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| sqlWriterCleanupScript |指定要讓「複製活動」執行的查詢，以便清除特定分割的資料。 |查詢陳述式。 |否 |
-| allowPolyBase |指出是否使用 PolyBase (適用的話) 而不是使用 BULKINSERT 機制。 <br/><br/> **建議使用 PolyBase 將資料載入 SQL 資料倉儲。** |True <br/>FALSE (預設值) |否 |
-| polyBaseSettings |可以在 **allowPolybase** 屬性設定為 **true** 時指定的一組屬性。 |&nbsp; |否 |
-| rejectValue |指定在查詢失敗前可以拒絕的資料列數目或百分比。 <br/><br/>在 **CREATE EXTERNAL TABLE (Transact-SQL)** 主題的 [引數](https://msdn.microsoft.com/library/dn935021.aspx) 一節中，深入了解 PolyBase 的拒絕選項。 |0 (預設值)、1、2、… |否 |
-| rejectType |指定要將 rejectValue 選項指定為常值或百分比。 |值 (預設值)、百分比 |否 |
-| rejectSampleValue |決定在 PolyBase 重新計算已拒絕的資料列百分比之前，所要擷取的資料列數目。 |1、2、… |是，如果 **rejectType** 是 **percentage** |
-| useTypeDefault |指定當 PolyBase 從文字檔擷取資料時，如何處理分隔符號文字檔中的遺漏值。<br/><br/>從 [CREATE EXTERNAL FILE FORMAT (Transact-SQL)](https://msdn.microsoft.com/library/dn935026.aspx) 的＜引數＞一節深入了解這個屬性。 |True/False (預設值為 False) |否 |
-| writeBatchSize |當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 |整數 (資料列數目) |否 (預設值：10000) |
-| writeBatchTimeout |在逾時前等待批次插入作業完成的時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
+| sqlWriterCleanupScript |複製活動 tooexecute 查詢指定的特定配量的資料清除。 |查詢陳述式。 |否 |
+| allowPolyBase |指出是否 toouse PolyBase （如果適用的話），而不是 BULKINSERT 機制。 <br/><br/> **使用 PolyBase 是建議的方式 tooload 資料到 SQL 資料倉儲的 hello。** |True <br/>FALSE (預設值) |否 |
+| polyBaseSettings |一組屬性，可指定當 hello **allowPolybase**屬性設定太**true**。 |&nbsp; |否 |
+| rejectValue |指定 hello 數目或百分比的 hello 查詢失敗前，可能會拒絕的資料列。 <br/><br/>深入了解 hello PolyBase 拒絕之選項的 hello**引數**區段[CREATE EXTERNAL TABLE (TRANSACT-SQL)](https://msdn.microsoft.com/library/dn935021.aspx)主題。 |0 (預設值)、1、2、… |否 |
+| rejectType |指定是否要將 hello rejectValue 選項指定為常值或百分比。 |值 (預設值)、百分比 |否 |
+| rejectSampleValue |決定 hello 數量的資料列 tooretrieve hello PolyBase 重新計算 hello 百分比的已拒絕的資料列之前。 |1、2、… |是，如果 **rejectType** 是 **percentage** |
+| useTypeDefault |指定如何 toohandle 遺漏值中的分隔的文字檔案 PolyBase hello 文字檔案中擷取的資料時。<br/><br/>深入了解來自 hello 引數 > 一節中的這個屬性[CREATE EXTERNAL FILE FORMAT (TRANSACT-SQL)](https://msdn.microsoft.com/library/dn935026.aspx)。 |True/False (預設值為 False) |否 |
+| writeBatchSize |用戶端 hello 緩衝區的大小達到叫用 writeBatchSize 時，將資料插入 hello SQL 資料表 |整數 (資料列數目) |否 (預設值：10000) |
+| writeBatchTimeout |在逾時之前，請等待 hello 批次插入作業 toocomplete 時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
 
 #### <a name="example"></a>範例
 
@@ -1277,12 +1277,12 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 ## <a name="azure-search"></a>Azure 搜尋服務
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Azure 搜尋服務連結服務，請將連結服務的 **type** 設為 **AzureSearch**，並在 **typeProperties** 區段中指定下列屬性︰  
+Azure 搜尋 toodefine 連結服務，設定 hello**類型**hello 的連結服務太**AzureSearch**，並指定下列屬性在 hello **typeProperties**區段：  
 
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- |
-| url | Azure 搜尋服務的 URL。 | 是 |
-| key | Azure 搜尋服務的系統管理金鑰。 | 是 |
+| url | Hello Azure 搜尋服務的 URL。 | 是 |
+| key | Hello Azure 搜尋服務的管理金鑰。 | 是 |
 
 #### <a name="example"></a>範例
 
@@ -1302,12 +1302,12 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure 搜尋服務連接器](data-factory-azure-search-connector.md#linked-service-properties)文件。
 
 ### <a name="dataset"></a>Dataset
-若要定義 Azure 搜尋服務資料集，請將資料集的 **type** 設為 **AzureSearchIndex**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine Azure 搜尋資料集設定 hello**類型**hello 資料集太**AzureSearchIndex**，並指定下列屬性在 hello hello **typeProperties**區段: 
 
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- |
-| 類型 | type 屬性必須設為 **AzureSearchIndex**。| yes |
-| IndexName | Azure 搜尋服務索引的名稱。 Data Factory 不會建立索引。 索引必須存在於 Azure 搜尋服務中。 | 是 |
+| 類型 | hello type 屬性必須設定得**AzureSearchIndex**。| 是 |
+| IndexName | Hello Azure 搜尋索引的名稱。 Data Factory 不會建立 hello 索引。 hello 索引必須存在於 Azure 搜尋中。 | 是 |
 
 #### <a name="example"></a>範例
 
@@ -1331,12 +1331,12 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Azure 搜尋服務連接器](data-factory-azure-search-connector.md#dataset-properties)文件。
 
 ### <a name="azure-search-index-sink-in-copy-activity"></a>複製活動中的 Azure 搜尋服務索引接收
-如果您將資料複製到 Azure 搜尋服務索引，請將複製活動的 **sink type** 設為 **AzureSearchIndexSink**，並在 **sink** 區段中指定下列屬性︰
+如果您要複製資料 tooan Azure 搜尋索引，請設定 hello**接收器類型**的 hello 複製活動太**AzureSearchIndexSink**，並指定下列屬性在 hello**接收**> 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | -------- | ----------- | -------------- | -------- |
-| WriteBehavior | 指定若文件已經存在於索引中，是否要合併或取代。 | 合併 (預設值)<br/>上傳| 否 |
-| WriteBatchSize | 當緩衝區大小達到 writeBatchSize 時，將資料上傳至 Azure 搜尋服務中。 | 1 到 1000。 預設值為 1000。 | 否 |
+| WriteBehavior | 指定是否 toomerge 或取代文件時已存在於 hello 索引。 | 合併 (預設值)<br/>上傳| 否 |
+| WriteBatchSize | 將資料上傳至 hello Azure 搜尋索引，當 hello 緩衝區大小到達叫用 writeBatchSize 時。 | 1 too1，000。 預設值為 1000。 | 否 |
 
 #### <a name="example"></a>範例
 
@@ -1389,12 +1389,12 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 有兩種連結服務類型︰Azure 儲存體連結服務和 Azure 儲存體 SAS 連結服務。
 
 #### <a name="azure-storage-linked-service"></a>Azure 儲存體連結服務
-若要使用**帳戶金鑰**將 Azure 儲存體帳戶連結至資料處理站，請建立 Azure 儲存體連結服務。 若要定義 Azure 儲存體連結服務，請將連結服務的**類型**設為 **AzureStorage**。 然後，您可以在 **typeProperties** 區段中指定下列屬性：  
+toolink 您 Azure 儲存體帳戶 tooa 的 data factory 使用 hello**帳戶金鑰**，建立 Azure 儲存體連結服務。 toodefine Azure 儲存體連結服務，設定 hello**類型**hello 的連結服務太**AzureStorage**。 然後，您可以指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| 類型 |類型屬性必須設為： **AzureStorage** |是 |
-| connectionString |針對 connectionString 屬性指定連接到 Azure 儲存體所需的資訊。 |是 |
+| 類型 |hello 類型屬性必須設定為： **AzureStorage** |是 |
+| connectionString |指定所需的資訊 tooconnect tooAzure 儲存體 hello connectionString 屬性。 |是 |
 
 **範例：**  
 
@@ -1411,12 +1411,12 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 ```
 
 #### <a name="azure-storage-sas-linked-service"></a>Azure 儲存體 SAS 連結服務
-Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Azure 儲存體帳戶連結到 Azure Data Factory。 它提供受限制/時間界限存取權，讓資料處理站存取儲存體中的所有/特定資源 (blob/容器)。 若要使用共用存取簽章將 Azure 儲存體帳戶連結至資料處理站，請建立 Azure 儲存體 SAS 連結服務。 若要定義 Azure 儲存體 SAS 連結服務，請將連結服務的**類型**設為 **AzureStorageSas**。 然後，您可以在 **typeProperties** 區段中指定下列屬性：   
+hello Azure 儲存體 SAS 連結服務可讓您 Azure 儲存體帳戶 tooan Azure data factory toolink 使用共用存取簽章 (SAS)。 它提供 hello 資料 factory 限制/時間繫結存取 tooall/特定資源 （blob/容器） hello 儲存體中。 toolink 使用共用存取簽章、 您 Azure 儲存體帳戶 tooa data factory 建立 Azure 儲存體 SAS 連結服務。 Azure 儲存體 SAS toodefine 連結服務，設定 hello**類型**hello 的連結服務太**AzureStorageSas**。 然後，您可以指定下列屬性在 hello **typeProperties** > 一節：   
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| 類型 |類型屬性必須設為： **AzureStorageSas** |是 |
-| sasUri |指定 Azure 儲存體資源 (例如 Blob、容器或資料表) 的共用存取簽章 URI。 |是 |
+| 類型 |hello 類型屬性必須設定為： **AzureStorageSas** |是 |
+| sasUri |指定共用存取簽章 URI toohello Azure 儲存體資源，例如 blob、 容器或資料表。 |是 |
 
 **範例：**
 
@@ -1435,11 +1435,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需這些連結服務的詳細資訊，請參閱 [Azure 表格儲存體連接器](data-factory-azure-table-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 Azure 資料表資料集，請將資料集的 **type** 設為 **AzureTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine 是 Azure 資料表的資料集，設定 hello**類型**hello 資料集太**AzureTable**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |Azure 資料表資料庫執行個體中連結服務所參照的資料表名稱。 |是。 指定 tableName 時若沒有指定 azureTableSourceQuery，資料表中的所有記錄都會複製到目的地。 如果同時指定了 azureTableSourceQuery，則資料表中符合查詢的記錄會複製到目的地。 |
+| tableName |參照的連結服務的 hello Azure 資料表的資料庫執行個體中的 hello 資料表的名稱。 |是。 當 tableName azureTableSourceQuery 沒有指定時，hello 資料表內的所有記錄都會複製的 toohello 目的地。 如果同時指定 azureTableSourceQuery，滿足 hello 查詢的 hello 資料表內的記錄將會複製的 toohello 目的地。 |
 
 #### <a name="example"></a>範例
 
@@ -1471,12 +1471,12 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需這些連結服務的詳細資訊，請參閱 [Azure 表格儲存體連接器](data-factory-azure-table-connector.md#dataset-properties)文件。 
 
 ### <a name="azure-table-source-in-copy-activity"></a>複製活動中的 Azure 資料表來源
-如果您從 Azure 表格儲存體複製資料，請將複製活動的 **source type** 設為 **AzureTableSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 Azure 資料表儲存體複製資料，設定 hello**來源類型**的 hello 複製活動太**AzureTableSource**，並指定下列屬性在 hello**來源**> 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| AzureTableSourceQuery |使用自訂查詢來讀取資料。 |Azure 資料表查詢字串。 請參閱下一節中的範例。 |否。 指定 tableName 時若沒有指定 azureTableSourceQuery，資料表中的所有記錄都會複製到目的地。 如果同時指定了 azureTableSourceQuery，則資料表中符合查詢的記錄會複製到目的地。 |
-| azureTableSourceIgnoreTableNotFound |指出是否忍受資料表不存在的例外狀況。 |TRUE<br/>FALSE |否 |
+| AzureTableSourceQuery |使用自訂查詢 tooread hello 的資料。 |Azure 資料表查詢字串。 請參閱 hello 下一節中的範例。 |否。 當 tableName azureTableSourceQuery 沒有指定時，hello 資料表內的所有記錄都會複製的 toohello 目的地。 如果同時指定 azureTableSourceQuery，滿足 hello 查詢的 hello 資料表內的記錄將會複製的 toohello 目的地。 |
+| azureTableSourceIgnoreTableNotFound |指出是否壓抑 hello 的資料表不存在例外狀況。 |TRUE<br/>FALSE |否 |
 
 #### <a name="example"></a>範例
 
@@ -1524,16 +1524,16 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需這些連結服務的詳細資訊，請參閱 [Azure 表格儲存體連接器](data-factory-azure-table-connector.md#copy-activity-properties)文件。 
 
 ### <a name="azure-table-sink-in-copy-activity"></a>複製活動中的 Azure 資料表接收
-如果您將資料複製到 Azure 表格儲存體，請將複製活動的 **sink type** 設為 **AzureTableSink**，並在 **sink** 區段中指定下列屬性︰
+如果您要複製資料 tooAzure 資料表儲存體，請設定 hello**接收器類型**的 hello 複製活動太**AzureTableSink**，並指定下列屬性在 hello**接收**區段：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| azureTableDefaultPartitionKeyValue |可供接收器使用的預設資料分割索引鍵值。 |字串值。 |否 |
-| azureTablePartitionKeyName |指定其值用來作為分割區索引鍵的資料行名稱。 如果未指定，則會使用 AzureTableDefaultPartitionKeyValue 做為資料分割索引鍵。 |資料行名稱。 |否 |
-| azureTableRowKeyName |指定其值用來作為資料列索引鍵的資料行名稱。 如果未指定，則會針對每個資料列使用 GUID。 |資料行名稱。 |否 |
-| azureTableInsertType |將資料插入 Azure 資料表的模式。<br/><br/>此屬性可控制針對輸出資料表中具有相符分割區和資料列索引鍵的現有資料列，是要取代還是合併其值。 <br/><br/>若要了解這些設定 (合併和取代) 的運作方式，請參閱[插入或合併實體](https://msdn.microsoft.com/library/azure/hh452241.aspx)和[插入或取代實體](https://msdn.microsoft.com/library/azure/hh452242.aspx)主題。 <br/><br> 此設定是在資料列層級套用，而不是在資料表層級套用，而且兩個選項都不會刪除存在於輸出資料表中但不存在於輸入中的資料列。 |合併 (預設值)<br/>取代 |否 |
-| writeBatchSize |在達到 WriteBatchSize 或 writeBatchTimeout 時將資料插入 Azure 資料表中。 |整數 (資料列數目) |否 (預設值：10000) |
-| writeBatchTimeout |在達到 WriteBatchSize 或 writeBatchTimeout 時將資料插入 Azure 資料表中 |時間範圍<br/><br/>範例：“00:20:00” (20 分鐘) |否 (預設為儲存體用戶端預設逾時值 90 秒) |
+| azureTableDefaultPartitionKeyValue |預設資料分割索引鍵值，可供 hello 接收。 |字串值。 |否 |
+| azureTablePartitionKeyName |指定的值用做為資料分割索引鍵的 hello 資料行的名稱。 如果未指定，azuretabledefaultpartitionkeyvalue 會做為 hello 資料分割索引鍵。 |資料行名稱。 |否 |
+| azureTableRowKeyName |指定的資料行值用做為資料列索引鍵的 hello 資料行的名稱。 如果未指定，則會針對每個資料列使用 GUID。 |資料行名稱。 |否 |
+| azureTableInsertType |hello 模式 tooinsert 資料插入 Azure 資料表。<br/><br/>這個屬性控制與相符的資料分割和資料列的索引鍵的 hello 輸出資料表中的現有資料列是否具有取代或合併其值。 <br/><br/>toolearn 有關這些設定 （「 合併 」 和 「 取代 」） 的運作方式，請參閱[插入或合併實體](https://msdn.microsoft.com/library/azure/hh452241.aspx)和[插入或取代實體](https://msdn.microsoft.com/library/azure/hh452242.aspx)主題。 <br/><br> 此設定適用於在 hello 資料列層級，不 hello 資料表層級，和這兩個選項會刪除 hello 輸出資料表不存在於 hello 輸入的資料列。 |合併 (預設值)<br/>取代 |否 |
+| writeBatchSize |Hello 叫用 writeBatchSize 或 writeBatchTimeout 時，請將資料插入至 hello Azure 資料表中。 |整數 (資料列數目) |否 (預設值：10000) |
+| writeBatchTimeout |用戶端 hello 叫用 writeBatchSize 或 writeBatchTimeout 時，將資料插入 hello Azure 資料表 |時間範圍<br/><br/>範例：“00:20:00” (20 分鐘) |否 （預設 toostorage 用戶端預設逾時值 90 秒） |
 
 #### <a name="example"></a>範例
 
@@ -1583,15 +1583,15 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 ## <a name="amazon-redshift"></a>Amazon RedShift
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Amazon Redshift 連結服務，請將連結服務的 **type** 設為 **AmazonRedshift**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine Amazon Redshift 連結服務，設定 hello**類型**hello 的連結服務太**AmazonRedshift**，並指定下列屬性在 hello **typeProperties**> 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 伺服器 |Amazon Redshift 伺服器的 IP 位址或主機名稱。 |是 |
-| 連接埠 |Amazon Redshift 伺服器用來接聽用戶端連線的 TCP 連接埠號碼。 |否，預設值︰5439 |
-| 資料庫 |Amazon Redshift 資料庫的名稱。 |是 |
-| username |可存取資料庫之使用者的名稱。 |是 |
-| password |使用者帳戶的密碼。 |是 |
+| 伺服器 |IP 位址或主機名稱的 hello Amazon Redshift 伺服器。 |是 |
+| 連接埠 |hello hello Amazon Redshift 伺服器 hello TCP 連接埠號碼使用 toolisten 用於用戶端連線。 |否，預設值︰5439 |
+| 資料庫 |Hello Amazon Redshift 資料庫的名稱。 |是 |
+| username |具有存取 toohello 資料庫使用者的名稱。 |是 |
+| password |Hello 使用者帳戶的密碼。 |是 |
 
 #### <a name="example"></a>範例
 
@@ -1614,11 +1614,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Amazon Redshift 連接器](#data-factory-amazon-redshift-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 Amazon Redshift 資料集，請將資料集的 **type** 設為 **RelationalTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine Amazon Redshift 資料集設定 hello**類型**hello 資料集太**RelationalTable**，並指定下列屬性在 hello hello **typeProperties**區段： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |Amazon Redshift 資料庫中連結服務所參照的資料表名稱。 |否 (如果已指定 **RelationalSource** 的 **query**) |
+| tableName |連結服務的 hello Amazon Redshift 資料庫中的 hello 資料表名稱參考。 |否 (如果已指定 **RelationalSource** 的 **query**) |
 
 
 #### <a name="example"></a>範例
@@ -1643,11 +1643,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Amazon Redshift 連接器](#data-factory-amazon-redshift-connector.md#dataset-properties)文件。
 
 ### <a name="relational-source-in-copy-activity"></a>複製活動中的關聯式來源 
-如果您從 Amazon Redshift 複製資料，請將複製活動的 **source type** 設為 **RelationalSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 Amazon Redshift 複製資料，設定 hello**來源類型**的 hello 複製活動太**RelationalSource**，並指定下列屬性在 hello**來源**區段：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 |否 (如果已指定 **dataset** 的 **tableName**) |
+| query |使用自訂查詢 tooread hello 的資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 |否 (如果已指定 **dataset** 的 **tableName**) |
 
 #### <a name="example"></a>範例
 
@@ -1695,17 +1695,17 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 ## <a name="ibm-db2"></a>IBM DB2
 
 ### <a name="linked-service"></a>連結服務
-若要定義 IBM DB2 連結服務，請將連結服務的 **type** 設為 **OnPremisesDB2**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine IBM DB2 連結服務，設定 hello**類型**hello 的連結服務太**OnPremisesDB2**，並指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 伺服器 |DB2 伺服器的名稱。 |是 |
-| 資料庫 |DB2 資料庫的名稱。 |是 |
-| 結構描述 |在資料庫中的結構描述名稱。 結構描述名稱會區分大小寫。 |否 |
-| authenticationType |用來連接到 DB2 資料庫的驗證類型。 可能的值為：匿名、基本和 Windows。 |是 |
+| 伺服器 |Hello DB2 伺服器的名稱。 |是 |
+| 資料庫 |Hello DB2 資料庫的名稱。 |是 |
+| 結構描述 |Hello hello 資料庫中的結構描述名稱。 hello 結構描述名稱會區分大小寫。 |否 |
+| authenticationType |Tooconnect toohello DB2 資料庫使用的驗證類型。 可能的值為：匿名、基本和 Windows。 |是 |
 | username |如果您使用基本或 Windows 驗證，請指定使用者名稱。 |否 |
-| password |指定您為使用者名稱所指定之使用者帳戶的密碼。 |否 |
-| gatewayName |Data Factory 服務應該用來連接到內部部署 DB2 資料庫的閘道器名稱。 |是 |
+| password |指定 hello hello 使用者名稱所指定的使用者帳戶的密碼。 |否 |
+| gatewayName |Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello 在內部部署 DB2 資料庫。 |是 |
 
 #### <a name="example"></a>範例
 ```json
@@ -1728,11 +1728,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [IBM DB2 連接器](#data-factory-onprem-db2-connector.md#linked-service-properties)文件。
 
 ### <a name="dataset"></a>Dataset
-若要定義 DB2 資料集，請將資料集的 **type** 設為 **RelationalTable**，並在 **typeProperties** 區段中指定下列屬性︰
+toodefine DB2 資料集，設定 hello**類型**hello 資料集太**RelationalTable**，並指定下列屬性在 hello hello **typeProperties** > 一節：
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |DB2 資料庫執行個體中連結服務所參照的資料表名稱。 tableName 會區分大小寫。 |否 (如果已指定 **RelationalSource** 的 **query**) 
+| tableName |參照的連結服務的 hello DB2 資料庫執行個體中的 hello 資料表的名稱。 hello tableName 是區分大小寫。 |否 (如果已指定 **RelationalSource** 的 **query**) 
 
 #### <a name="example"></a>範例
 ```json
@@ -1761,12 +1761,12 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [IBM DB2 連接器](#data-factory-onprem-db2-connector.md#dataset-properties)文件。
 
 ### <a name="relational-source-in-copy-activity"></a>複製活動中的關聯式來源
-如果您從 IBM DB2 複製資料，請將複製活動的 **source type** 設為 **RelationalSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 IBM DB2 複製資料，設定 hello**來源類型**的 hello 複製活動太**RelationalSource**，並指定下列屬性在 hello**來源**> 一節：
 
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如： `"query": "select * from "MySchema"."MyTable""`。 |否 (如果已指定 **dataset** 的 **tableName**) |
+| query |使用自訂查詢 tooread hello 的資料。 |SQL 查詢字串。 例如： `"query": "select * from "MySchema"."MyTable""`。 |否 (如果已指定 **dataset** 的 **tableName**) |
 
 #### <a name="example"></a>範例
 ```json
@@ -1811,17 +1811,17 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 ## <a name="mysql"></a>MySQL
 
 ### <a name="linked-service"></a>連結服務
-若要定義 MySQL 連結服務，請將連結服務的 **type** 設為 **OnPremisesMySql**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine MySQL 連結服務，設定 hello**類型**hello 的連結服務太**OnPremisesMySql**，並指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 伺服器 |MySQL 伺服器的名稱。 |是 |
-| 資料庫 |MySQL 資料庫的名稱。 |是 |
-| 結構描述 |在資料庫中的結構描述名稱。 |否 |
-| authenticationType |用來連接到 MySQL 資料庫的驗證類型。 可能的值為：`Basic`。 |是 |
-| username |指定要連線到 MySQL 資料庫的使用者名稱。 |是 |
-| password |指定您所指定使用者帳戶的密碼。 |是 |
-| gatewayName |Data Factory 服務應該用來連接到內部部署 MySQL 資料庫的閘道器名稱。 |是 |
+| 伺服器 |Hello MySQL 伺服器的名稱。 |是 |
+| 資料庫 |Hello MySQL 資料庫的名稱。 |是 |
+| 結構描述 |Hello hello 資料庫中的結構描述名稱。 |否 |
+| authenticationType |Tooconnect toohello MySQL 資料庫使用的驗證類型。 可能的值為：`Basic`。 |是 |
+| username |指定使用者名稱 tooconnect toohello MySQL 資料庫。 |是 |
+| password |指定您所指定的 hello 使用者帳戶的密碼。 |是 |
+| gatewayName |Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello 在內部部署 MySQL 資料庫。 |是 |
 
 #### <a name="example"></a>範例
 
@@ -1846,11 +1846,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [MySQL 連接器](data-factory-onprem-mysql-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 MySQL 資料集，請將資料集的 **type** 設為 **RelationalTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine MySQL 資料集設定 hello**類型**hello 資料集太**RelationalTable**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |MySQL 資料庫執行個體中連結服務所參照的資料表名稱。 |否 (如果已指定 **RelationalSource** 的 **query**) |
+| tableName |在 hello MySQL 資料庫連結的服務參考的執行個體中的 hello 資料表的名稱。 |否 (如果已指定 **RelationalSource** 的 **query**) |
 
 #### <a name="example"></a>範例
 
@@ -1879,12 +1879,12 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [MySQL 連接器](data-factory-onprem-mysql-connector.md#dataset-properties)文件。 
 
 ### <a name="relational-source-in-copy-activity"></a>複製活動中的關聯式來源
-如果您從 MySQL 資料庫複製資料，請將複製活動的 **source type** 設為 **RelationalSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 MySQL 資料庫複製資料，設定 hello**來源類型**的 hello 複製活動太**RelationalSource**，並指定下列屬性在 hello**來源**區段：
 
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 |否 (如果已指定 **dataset** 的 **tableName**) |
+| query |使用自訂查詢 tooread hello 的資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 |否 (如果已指定 **dataset** 的 **tableName**) |
 
 
 #### <a name="example"></a>範例
@@ -1933,13 +1933,13 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 ## <a name="oracle"></a>Oracle 
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Oracle 連結服務，請將連結服務的 **type** 設為 **OnPremisesOracle**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine Oracle 連結服務，設定 hello**類型**hello 的連結服務太**OnPremisesOracle**，並指定下列屬性在 hello **typeProperties**區段：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| driverType | 指定要用來從 Oracle 複製資料/將資料複製到 Oracle 資料庫的驅動程式。 允許的值為 **Microsoft** 或 **ODP** (預設值)。 如需驅動程式詳細資料，請參閱[支援的版本和安裝](#supported-versions-and-installation)一節。 | 否 |
-| connectionString | 針對 connectionString 屬性指定連接到 Oracle 資料庫執行個體所需的資訊。 | 是 |
-| gatewayName | 用來連接到內部部署 Oracle 伺服器的閘道器名稱 |是 |
+| driverType | 指定從哪一個驅動程式 toouse toocopy 資料 / tooOracle 資料庫。 允許的值為 **Microsoft** 或 **ODP** (預設值)。 如需驅動程式詳細資料，請參閱[支援的版本和安裝](#supported-versions-and-installation)一節。 | 否 |
+| connectionString | 指定所需的資訊 tooconnect toohello Oracle 資料庫執行個體 hello connectionString 屬性。 | 是 |
+| gatewayName | Hello 閘道名稱，是使用的 tooconnect toohello 在內部部署 Oracle 伺服器 |是 |
 
 #### <a name="example"></a>範例
 ```json
@@ -1959,11 +1959,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Oracle 連接器](data-factory-onprem-oracle-connector.md#linked-service-properties)文件。
 
 ### <a name="dataset"></a>Dataset
-若要定義 Oracle 資料集，請將資料集的 **type** 設為 **OracleTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine Oracle 資料集設定 hello**類型**hello 資料集太**OracleTable**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |Oracle 資料庫中連結服務所參照的資料表名稱。 |否 (如果已指定 **OracleSource** 的 **oracleReaderQuery**) |
+| tableName |Hello hello 連結的服務的 Oracle 資料庫中的 hello 資料表名稱參考。 |否 (如果已指定 **OracleSource** 的 **oracleReaderQuery**) |
 
 #### <a name="example"></a>範例
 
@@ -1996,11 +1996,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Oracle 連接器](data-factory-onprem-oracle-connector.md#dataset-properties)文件。
 
 ### <a name="oracle-source-in-copy-activity"></a>複製活動中的 Oracle 來源
-如果您從 Oracle 資料庫複製資料，請將複製活動的 **source type** 設為 **OracleSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 Oracle 資料庫複製資料，設定 hello**來源類型**的 hello 複製活動太**OracleSource**，並指定下列屬性在 hello**來源**區段：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| oracleReaderQuery |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如：`select * from MyTable` <br/><br/>如果未指定，執行的 SQL 陳述式：`select * from MyTable` |否 (如果已指定 **dataset** 的 **tableName**) |
+| oracleReaderQuery |使用自訂查詢 tooread hello 的資料。 |SQL 查詢字串。 例如：`select * from MyTable` <br/><br/>如果未指定，hello 執行的 SQL 陳述式：`select * from MyTable` |否 (如果已指定 **dataset** 的 **tableName**) |
 
 #### <a name="example"></a>範例
 
@@ -2048,14 +2048,14 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [Oracle 連接器](data-factory-onprem-oracle-connector.md#copy-activity-properties)文件。
 
 ### <a name="oracle-sink-in-copy-activity"></a>複製活動中的 Oracle 接收
-如果您將資料複製到 Oracle 資料庫，請將複製活動的 **sink type** 設為 **OracleSink**，並在 **sink** 區段中指定下列屬性︰
+如果您要複製資料 tooam Oracle 資料庫，請設定 hello**接收器類型**的 hello 複製活動太**OracleSink**，並指定下列屬性在 hello**接收**> 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| writeBatchTimeout |在逾時前等待批次插入作業完成的時間。 |時間範圍<br/><br/> 範例：00:30:00 (30 分鐘)。 |否 |
-| writeBatchSize |當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 |整數 (資料列數目) |否 (預設值：100) |
-| sqlWriterCleanupScript |指定要讓「複製活動」執行的查詢，以便清除特定分割的資料。 |查詢陳述式。 |否 |
-| sliceIdentifierColumnName |指定要讓「複製活動」以自動產生的分割識別碼填入的資料行名稱，這可在重新執行時用來清除特定分割的資料。 |資料類型為 binary(32) 之資料行的資料行名稱。 |否 |
+| writeBatchTimeout |在逾時之前，請等待 hello 批次插入作業 toocomplete 時間。 |時間範圍<br/><br/> 範例：00:30:00 (30 分鐘)。 |否 |
+| writeBatchSize |當 hello 緩衝區大小到達叫用 writeBatchSize 時，請將資料插入 hello SQL 資料表。 |整數 (資料列數目) |否 (預設值：100) |
+| sqlWriterCleanupScript |複製活動 tooexecute 查詢指定的特定配量的資料清除。 |查詢陳述式。 |否 |
+| sliceIdentifierColumnName |指定資料行名稱複製活動 toofill 與自動產生配量識別項，也就是使用的 tooclean 何時重新執行的特定配量的資料。 |資料類型為 binary(32) 之資料行的資料行名稱。 |否 |
 
 #### <a name="example"></a>範例
 ```json
@@ -2102,17 +2102,17 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 ## <a name="postgresql"></a>PostgreSQL
 
 ### <a name="linked-service"></a>連結服務
-若要定義 PostgreSQL 連結服務，請將連結服務的 **type** 設為 **OnPremisesPostgreSql**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine PostgreSQL 連結服務，設定 hello**類型**hello 的連結服務太**OnPremisesPostgreSql**，並指定下列屬性在 hello **typeProperties**> 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 伺服器 |PostgreSQL 伺服器的名稱。 |是 |
-| 資料庫 |PostgreSQL 資料庫的名稱。 |是 |
-| 結構描述 |在資料庫中的結構描述名稱。 結構描述名稱會區分大小寫。 |否 |
-| authenticationType |用來連接到 PostgreSQL 資料庫的驗證類型。 可能的值為：匿名、基本和 Windows。 |是 |
+| 伺服器 |Hello PostgreSQL 伺服器的名稱。 |是 |
+| 資料庫 |Hello PostgreSQL 資料庫的名稱。 |是 |
+| 結構描述 |Hello hello 資料庫中的結構描述名稱。 hello 結構描述名稱會區分大小寫。 |否 |
+| authenticationType |Tooconnect toohello PostgreSQL 資料庫使用的驗證類型。 可能的值為：匿名、基本和 Windows。 |是 |
 | username |如果您使用基本或 Windows 驗證，請指定使用者名稱。 |否 |
-| password |指定您為使用者名稱所指定之使用者帳戶的密碼。 |否 |
-| gatewayName |Data Factory 服務應該用來連接到內部部署 PostgreSQL 資料庫的閘道器名稱。 |是 |
+| password |指定 hello hello 使用者名稱所指定的使用者帳戶的密碼。 |否 |
+| gatewayName |Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello 在內部部署 PostgreSQL 資料庫。 |是 |
 
 #### <a name="example"></a>範例
 
@@ -2136,11 +2136,11 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [PostgreSQL 連接器](data-factory-onprem-postgresql-connector.md#linked-service-properties)文件。
 
 ### <a name="dataset"></a>Dataset
-若要定義 PostgreSQL 資料集，請將資料集的 **type** 設為 **RelationalTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine PostgreSQL 資料集設定 hello**類型**hello 資料集太**RelationalTable**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |PostgreSQL 資料庫執行個體中連結服務所參照的資料表名稱。 tableName 會區分大小寫。 |否 (如果已指定 **RelationalSource** 的 **query**) |
+| tableName |Hello PostgreSQL 資料庫連結的服務參考的執行個體中的 hello 資料表的名稱。 hello tableName 是區分大小寫。 |否 (如果已指定 **RelationalSource** 的 **query**) |
 
 #### <a name="example"></a>範例
 ```json
@@ -2168,12 +2168,12 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 如需詳細資訊，請參閱 [PostgreSQL 連接器](data-factory-onprem-postgresql-connector.md#dataset-properties)文件。
 
 ### <a name="relational-source-in-copy-activity"></a>複製活動中的關聯式來源
-如果您從 PostgreSQL 資料庫複製資料，請將複製活動的 **source type** 設為 **RelationalSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 PostgreSQL 資料庫複製資料，設定 hello**來源類型**的 hello 複製活動太**RelationalSource**，並指定下列屬性在 hello**來源**> 一節：
 
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如："query": "select * from \"MySchema\".\"MyTable\""。 |否 (如果已指定 **dataset** 的 **tableName**) |
+| query |使用自訂查詢 tooread hello 的資料。 |SQL 查詢字串。 例如："query": "select * from \"MySchema\".\"MyTable\""。 |否 (如果已指定 **dataset** 的 **tableName**) |
 
 #### <a name="example"></a>範例
 
@@ -2221,17 +2221,17 @@ Azure 儲存體 SAS 連結服務可讓您使用共用存取簽章 (SAS)，將 Az
 
 
 ### <a name="linked-service"></a>連結服務
-若要定義 SAP Business Warehouse (BW) 連結服務，請將連結服務的 **type** 設為 **SapBw**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine SAP Business 倉儲 (BW) 連結服務，設定 hello**類型**hello 的連結服務太**SapBw**，並指定下列屬性在 hello **typeProperties**> 一節：  
 
 屬性 | 說明 | 允許的值 | 必要
 -------- | ----------- | -------------- | --------
-伺服器 | SAP BW 執行個體所在之伺服器的名稱。 | 字串 | 是
-systemNumber | SAP BW 系統的系統編號。 | 以字串表示的二位數十進位數字。 | 是
-clientId | SAP W 系統中用戶端的用戶端識別碼。 | 以字串表示的三位數十進位數字。 | 是
-username | 具有 SAP 伺服器存取權之使用者的名稱 | 字串 | 是
-password | 使用者的密碼。 | 字串 | 是
-gatewayName | 資料處理站服務應該用來連線至內部部署 SAP BW 執行個體的閘道器名稱。 | 字串 | 是
-encryptedCredential | 加密的認證字串。 | string | 否
+伺服器 | 執行個體所在的 hello SAP BW 的 hello 伺服器的名稱。 | 字串 | 是
+systemNumber | Hello SAP BW 系統的系統編號。 | 以字串表示的二位數十進位數字。 | 是
+clientId | Hello W SAP 系統中的 hello 用戶端的用戶端識別碼。 | 以字串表示的三位數十進位數字。 | 是
+username | Hello 使用者具有存取 toohello SAP 伺服器的名稱 | 字串 | 是
+password | Hello 使用者密碼。 | 字串 | 是
+gatewayName | Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello 在內部部署 SAP BW 的執行個體。 | 字串 | 是
+encryptedCredential | hello 加密認證的字串。 | 字串 | 否
 
 #### <a name="example"></a>範例
 
@@ -2255,7 +2255,7 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [SAP Business Warehouse 連接器](data-factory-sap-business-warehouse-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 SAP BW 資料集，請將資料集的 **type** 設為 **RelationalTable**。 **RelationalTable** 類型的 SAP BW 資料集不支援類型專用的屬性。  
+toodefine SAP BW 資料集設定 hello**類型**hello 資料集太**RelationalTable**。 支援的型別 hello SAP BW 資料集沒有特定型別的屬性**RelationalTable**。  
 
 #### <a name="example"></a>範例
 
@@ -2277,12 +2277,12 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [SAP Business Warehouse 連接器](data-factory-sap-business-warehouse-connector.md#dataset-properties)文件。 
 
 ### <a name="relational-source-in-copy-activity"></a>複製活動中的關聯式來源
-如果您從 SAP Business Warehouse 複製資料，請將複製活動的 **source type** 設為 **RelationalSource**，並在 **source** 區段中指定下列屬性︰
+如果您要從 SAP Business Warehouse 來複製資料，設定 hello**來源類型**的 hello 複製活動太**RelationalSource**，並指定下列屬性在 hello**來源**> 一節：
 
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query | 指定 MDX 查詢從 SAP BW 執行個體讀取資料。 | MDX 查詢。 | 是 |
+| query | 指定 hello MDX 查詢 tooread 資料從 hello SAP BW 的執行個體。 | MDX 查詢。 | 是 |
 
 #### <a name="example"></a>範例
 
@@ -2331,16 +2331,16 @@ encryptedCredential | 加密的認證字串。 | string | 否
 ## <a name="sap-hana"></a>SAP HANA
 
 ### <a name="linked-service"></a>連結服務
-若要定義 SAP HANA 連結服務，請將連結服務的 **type** 設為 **SapHana**，並在 **typeProperties** 區段中指定下列屬性︰  
+SAP HANA toodefine 連結服務，設定 hello**類型**hello 的連結服務太**SapHana**，並指定下列屬性在 hello **typeProperties** > 一節：  
 
 屬性 | 說明 | 允許的值 | 必要
 -------- | ----------- | -------------- | --------
-伺服器 | SAP Hana 執行個體所在之伺服器的名稱。 如果您的伺服器使用自訂連接埠，指定 `server:port`。 | 字串 | 是
+伺服器 | 執行個體所在的 hello SAP HANA hello 伺服器的名稱。 如果您的伺服器使用自訂連接埠，指定 `server:port`。 | 字串 | 是
 authenticationType | 驗證類型。 | 字串。 "Basic" 或 "Windows" | 是 
-username | 具有 SAP 伺服器存取權之使用者的名稱 | 字串 | 是
-password | 使用者的密碼。 | 字串 | 是
-gatewayName | Data Factory 服務應該用來連接到內部部署 SAP Hana 執行個體的閘道器名稱。 | 字串 | 是
-encryptedCredential | 加密的認證字串。 | string | 否
+username | Hello 使用者具有存取 toohello SAP 伺服器的名稱 | 字串 | 是
+password | Hello 使用者密碼。 | 字串 | 是
+gatewayName | Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello 在內部部署 SAP HANA 的執行個體。 | 字串 | 是
+encryptedCredential | hello 加密認證的字串。 | 字串 | 否
 
 #### <a name="example"></a>範例
 
@@ -2363,7 +2363,7 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [SAP HANA 連接器](data-factory-sap-hana-connector.md#linked-service-properties)文件。
  
 ### <a name="dataset"></a>Dataset
-若要定義 SAP HANA 資料集，請將資料集的 **type** 設為 **RelationalTable**。 沒有類型特定的屬性支援 **RelationalTable** 的 SAP HANA 資料集類型。 
+toodefine SAP HANA 資料集設定 hello**類型**hello 資料集太**RelationalTable**。 支援的型別 hello SAP HANA 資料集沒有特定型別的屬性**RelationalTable**。 
 
 #### <a name="example"></a>範例
 
@@ -2385,11 +2385,11 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [SAP HANA 連接器](data-factory-sap-hana-connector.md#dataset-properties)文件。 
 
 ### <a name="relational-source-in-copy-activity"></a>複製活動中的關聯式來源
-如果您從 SAP HANA 資料存放區複製資料，請將複製活動的 **source type** 設為 **RelationalSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 SAP HANA 資料存放區複製資料，設定 hello**來源類型**的 hello 複製活動太**RelationalSource**，並指定下列屬性在 hello**來源**> 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query | 指定 SQL 查詢從 SAP HANA 執行個體讀取資料。 | SQL 查詢。 | 是 |
+| query | 指定 hello SQL 查詢 tooread 資料從 hello SAP HANA 執行個體。 | SQL 查詢。 | 是 |
 
 
 #### <a name="example"></a>範例
@@ -2441,19 +2441,19 @@ encryptedCredential | 加密的認證字串。 | string | 否
 ## <a name="sql-server"></a>SQL Server
 
 ### <a name="linked-service"></a>連結服務
-您可以建立 **OnPremisesSqlServer** 類型的連結服務，以將內部部署 SQL Server 資料庫連結至資料處理站。 下表提供內部部署 SQL Server 連結服務專屬 JSON 元素的描述。
+您建立連結的服務型別的**OnPremisesSqlServer** toolink 在內部部署 SQL Server 資料庫 tooa 資料 factory。 下表中的 hello 提供 JSON 項目特定 tooon 內部部署 SQL Server 連結服務的描述。
 
-下表提供 SQL Server 連結服務專屬 JSON 元素的描述。
+下表中的 hello 提供 JSON 項目特定 tooSQL 連結的伺服器服務的描述。
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 類型 |類型屬性應設為： **OnPremisesSqlServer**。 |是 |
-| connectionString |指定使用 SQL 驗證或 Windows 驗證連接至內部部署 SQL Server 資料庫所需的 connectionString 資訊。 |是 |
-| gatewayName |Data Factory 服務應該用來連接到內部部署 SQL Server 資料庫的閘道器名稱。 |是 |
+| 類型 |hello 類型屬性應該設定為： **OnPremisesSqlServer**。 |是 |
+| connectionString |指定所需的 connectionString 資訊 tooconnect toohello 在內部部署 SQL Server 資料庫使用 SQL 驗證或 Windows 驗證。 |是 |
+| gatewayName |Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello 在內部部署 SQL Server 資料庫。 |是 |
 | username |如果您使用「Windows 驗證」，請指定使用者名稱。 範例︰**domainname\\username**。 |否 |
-| password |指定您為使用者名稱所指定之使用者帳戶的密碼。 |否 |
+| password |指定 hello hello 使用者名稱所指定的使用者帳戶的密碼。 |否 |
 
-您可以使用 **New-AzureRmDataFactoryEncryptValue** Cmdlet 加密認證，並在連接字串中使用這些認證，如下列範例所示 (**EncryptedCredential** 屬性)：  
+您可以加密認證使用 hello**新增 AzureRmDataFactoryEncryptValue** cmdlet 並將其用於 hello 連接字串 hello 下列範例所示 (**EncryptedCredential**屬性):  
 
 ```json
 "connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
@@ -2476,7 +2476,7 @@ encryptedCredential | 加密的認證字串。 | string | 否
 ```
 #### <a name="example-json-for-using-windows-authentication"></a>範例：用於 Windows 驗證的 JSON
 
-如果已指定使用者名稱和密碼，閘道就會使用它們來模擬指定的使用者帳戶，以連線到內部部署 SQL Server 資料庫。 否則，閘道會使用閘道的安全性內容 (其啟動帳戶) 直接連線到 SQL Server。
+如果未指定使用者名稱和密碼，閘道會使用這些 tooimpersonate hello 指定的使用者帳戶 tooconnect toohello 在內部部署 SQL Server 資料庫。 否則，閘道會直接與 hello 的閘道 （其啟動帳戶） 的安全性內容連線 toohello SQL Server。
 
 ```json
 {
@@ -2496,11 +2496,11 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [SQL Server 連接器](data-factory-sqlserver-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 SQL Server 資料集，請將資料集的 **type** 設為 **SqlServerTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine SQL Server 資料集設定 hello**類型**hello 資料集太**SqlServerTable**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |SQL Server Database 執行個體中連結服務所參照的資料表或檢視名稱。 |是 |
+| tableName |參照 hello 資料表或檢視中的連結服務的 hello 的 SQL Server 資料庫執行個體的名稱。 |是 |
 
 #### <a name="example"></a>範例
 ```json
@@ -2531,23 +2531,23 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [SQL Server 連接器](data-factory-sqlserver-connector.md#dataset-properties)文件。 
 
 ### <a name="sql-source-in-copy-activity"></a>複製活動中的 Sql 來源
-如果您從 SQL Server 資料庫複製資料，請將複製活動的 **source type** 設為 **SqlSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 SQL Server 資料庫複製資料，設定 hello**來源類型**的 hello 複製活動太**SqlSource**，並指定下列屬性在 hello**來源**區段：
 
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| SqlReaderQuery |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 可以參考輸入資料集所參考資料庫中的多個資料表。 如果未指定，執行的 SQL 陳述式：select from MyTable。 |否 |
-| sqlReaderStoredProcedureName |從來源資料表讀取資料的預存程序名稱。 |預存程序的名稱。 |否 |
-| storedProcedureParameters |預存程序的參數。 |名稱/值組。 參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 |否 |
+| SqlReaderQuery |使用自訂查詢 tooread hello 的資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 從 hello hello 輸入資料集所參考的資料庫，可以參考多個資料表。 如果未指定，hello 執行的 SQL 陳述式： select from MyTable。 |否 |
+| sqlReaderStoredProcedureName |名稱的 hello 預存程序會從 hello 來源資料表讀取資料。 |名稱的 hello 預存程序。 |否 |
+| storedProcedureParameters |Hello 參數，預存程序。 |名稱/值組。 名稱和大小寫的參數必須符合 hello 名稱和大小寫的 hello 預存程序參數。 |否 |
 
-如果已為 SqlSource 指定 **sqlReaderQuery** ，複製活動會針對 SQL Server 資料庫來源執行這項查詢以取得資料。
+如果 hello **sqlReaderQuery**指定 hello SqlSource，hello 複製活動會針對 hello 的 SQL Server 資料庫來源 tooget hello 資料執行此查詢。
 
-或者，您可以藉由指定 **sqlReaderStoredProcedureName** 和 **storedProcedureParameters** (如果預存程序接受參數) 來指定預存程序。
+或者，您可以指定預存程序，藉由指定 hello **sqlReaderStoredProcedureName**和**storedProcedureParameters** （如果 hello 預存程序會採用參數）。
 
-如果您未指定 sqlReaderQuery 或 sqlReaderStoredProcedureName，系統就會使用 structure 區段中定義的資料行來建立一個要對「SQL Server 資料庫」執行的 select 查詢。 如果資料集定義沒有結構，則會從資料表中選取所有資料行。
+如果您未指定 sqlReaderQuery 或 sqlReaderStoredProcedureName，hello hello 結構區段中定義的資料行是使用的 toobuild select 查詢 toorun 針對 hello 的 SQL Server 資料庫。 如果您不需要 hello 資料集定義 hello 結構，所有資料行選取的 hello 資料表。
 
 > [!NOTE]
-> 當您使用 **sqlReaderStoredProcedureName** 時，仍必須為資料集 JSON 中的 **tableName** 屬性指定值。 雖然目前尚未針對此資料表來進行驗證。
+> 當您使用**sqlReaderStoredProcedureName**，您仍然需要 toospecify 值 hello **tableName** hello 資料集 JSON 中的屬性。 雖然目前尚未針對此資料表來進行驗證。
 
 
 #### <a name="example"></a>範例
@@ -2592,27 +2592,27 @@ encryptedCredential | 加密的認證字串。 | string | 否
 }
 ```
 
-在此範例中，已為 SqlSource 指定 **sqlReaderQuery** 。 複製活動會針對 SQL Server 資料庫來源執行這項查詢以取得資料。 或者，您可以藉由指定 **sqlReaderStoredProcedureName** 和 **storedProcedureParameters** (如果預存程序接受參數) 來指定預存程序。 sqlReaderQuery 可以參考輸入資料集所參考之資料庫內的多個資料表。 這不限於只有設定為資料集之 tableName typeProperty 的資料表。
+在此範例中， **sqlReaderQuery** hello SqlSource 指定。 hello 複製活動會針對 hello 的 SQL Server 資料庫來源 tooget hello 資料執行此查詢。 或者，您可以指定預存程序，藉由指定 hello **sqlReaderStoredProcedureName**和**storedProcedureParameters** （如果 hello 預存程序會採用參數）。 hello sqlReaderQuery 參考 hello hello 輸入資料集所參考的資料庫內的多個資料表。 它不是設定為 hello 資料集的 tableName typeProperty 有限的 tooonly hello 資料表。
 
-如果您未指定 sqlReaderQuery 或 sqlReaderStoredProcedureName，系統就會使用 structure 區段中定義的資料行來建立一個要對「SQL Server 資料庫」執行的 select 查詢。 如果資料集定義沒有結構，則會從資料表中選取所有資料行。
+如果您未指定 sqlReaderQuery 或 sqlReaderStoredProcedureName，hello hello 結構區段中定義的資料行是使用的 toobuild select 查詢 toorun 針對 hello 的 SQL Server 資料庫。 如果您不需要 hello 資料集定義 hello 結構，所有資料行選取的 hello 資料表。
 
 如需詳細資訊，請參閱 [SQL Server 連接器](data-factory-sqlserver-connector.md#copy-activity-properties)文件。 
 
 ### <a name="sql-sink-in-copy-activity"></a>複製活動中的 Sql 接收
-如果您將資料複製到 SQL Server 資料庫，請將複製活動的 **sink type** 設為 **SqlSink**，並在 **sink** 區段中指定下列屬性︰
+如果您要複製資料 tooa SQL Server 資料庫，請設定 hello**接收器類型**的 hello 複製活動太**SqlSink**，並指定下列屬性在 hello**接收**> 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| writeBatchTimeout |在逾時前等待批次插入作業完成的時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
-| writeBatchSize |當緩衝區大小達到 writeBatchSize 時，將資料插入 SQL 資料表中 |整數 (資料列數目) |否 (預設值：10000) |
-| sqlWriterCleanupScript |指定要讓「複製活動」執行的查詢，以便清除特定分割的資料。 如需詳細資訊，請參閱 [可重複性](#repeatability-during-copy) 一節。 |查詢陳述式。 |否 |
-| sliceIdentifierColumnName |指定要讓「複製活動」以自動產生的分割識別碼填入的資料行名稱，這可在重新執行時用來清除特定分割的資料。 如需詳細資訊，請參閱 [可重複性](#repeatability-during-copy) 一節。 |資料類型為 binary(32) 之資料行的資料行名稱。 |否 |
-| sqlWriterStoredProcedureName |將資料更新插入 (更新/插入) 目標資料表中的預存程序名稱。 |預存程序的名稱。 |否 |
-| storedProcedureParameters |預存程序的參數。 |名稱/值組。 參數的名稱和大小寫必須符合預存程序參數的名稱和大小寫。 |否 |
-| sqlWriterTableType |指定要在預存程序中使用的資料表類型名稱。 複製活動可讓正在移動的資料可用於此資料表類型的暫存資料表。 然後，預存程序程式碼可以合併正在複製的資料與現有的資料。 |資料表類型名稱。 |否 |
+| writeBatchTimeout |在逾時之前，請等待 hello 批次插入作業 toocomplete 時間。 |時間範圍<br/><br/> 範例：“00:30:00” (30 分鐘)。 |否 |
+| writeBatchSize |當 hello 緩衝區大小到達叫用 writeBatchSize 時，請將資料插入 hello SQL 資料表。 |整數 (資料列數目) |否 (預設值：10000) |
+| sqlWriterCleanupScript |複製活動 tooexecute 查詢指定的特定配量的資料清除。 如需詳細資訊，請參閱 [可重複性](#repeatability-during-copy) 一節。 |查詢陳述式。 |否 |
+| sliceIdentifierColumnName |指定資料行名稱複製活動 toofill 與自動產生配量識別項，也就是使用的 tooclean 何時重新執行的特定配量的資料。 如需詳細資訊，請參閱 [可重複性](#repeatability-during-copy) 一節。 |資料類型為 binary(32) 之資料行的資料行名稱。 |否 |
+| sqlWriterStoredProcedureName |名稱的 hello 預存程序 upserts （更新/插入） 資料到 hello 目標資料表。 |名稱的 hello 預存程序。 |否 |
+| storedProcedureParameters |Hello 參數，預存程序。 |名稱/值組。 名稱和大小寫的參數必須符合 hello 名稱和大小寫的 hello 預存程序參數。 |否 |
+| sqlWriterTableType |指定資料表類型名稱 toobe hello 預存程序中使用。 複製活動移動 hello 資料可讓在暫存資料表與此資料表類型。 預存程序程式碼可以再合併 hello 資料會被複製現有的資料。 |資料表類型名稱。 |否 |
 
 #### <a name="example"></a>範例
-此管線包含「複製活動」，該活動已設定為使用這些輸入和輸出資料集，並且排定為每小時執行。 在管線 JSON 定義中，**source** 類型設為 **BlobSource**，而 **sink** 類型設為 **SqlSink**。
+hello 管線包含複製活動的設定的 toouse 這些輸入和輸出資料集，而排程的 toorun 每小時。 在 hello 管線 JSON 定義中，hello**來源**類型設定得**BlobSource**和**接收**類型設定得**SqlSink**。
 
 ```json
 {
@@ -2660,17 +2660,17 @@ encryptedCredential | 加密的認證字串。 | string | 否
 ## <a name="sybase"></a>Sybase
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Sybase 連結服務，請將連結服務的 **type** 設為 **OnPremisesSybase**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine Sybase 連結服務，設定 hello**類型**hello 的連結服務太**OnPremisesSybase**，並指定下列屬性在 hello **typeProperties**區段：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 伺服器 |Sybase 伺服器的名稱。 |是 |
-| 資料庫 |Sybase 資料庫的名稱。 |是 |
-| 結構描述 |在資料庫中的結構描述名稱。 |否 |
-| authenticationType |用來連接到 Sybase 資料庫的驗證類型。 可能的值為：匿名、基本和 Windows。 |是 |
+| 伺服器 |Hello Sybase 伺服器的名稱。 |是 |
+| 資料庫 |Hello Sybase 資料庫的名稱。 |是 |
+| 結構描述 |Hello hello 資料庫中的結構描述名稱。 |否 |
+| authenticationType |Tooconnect toohello Sybase 資料庫使用的驗證類型。 可能的值為：匿名、基本和 Windows。 |是 |
 | username |如果您使用基本或 Windows 驗證，請指定使用者名稱。 |否 |
-| password |指定您為使用者名稱所指定之使用者帳戶的密碼。 |否 |
-| gatewayName |Data Factory 服務應該用來連接到內部部署 Sybase 資料庫的閘道器名稱。 |是 |
+| password |指定 hello hello 使用者名稱所指定的使用者帳戶的密碼。 |否 |
+| gatewayName |Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello 在內部部署 Sybase 資料庫。 |是 |
 
 #### <a name="example"></a>範例
 ```json
@@ -2694,11 +2694,11 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [Sybase 連接器](data-factory-onprem-sybase-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 Sybase 資料集，請將資料集的 **type** 設為 **RelationalTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine Sybase 資料集設定 hello**類型**hello 資料集太**RelationalTable**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |Sybase 資料庫執行個體中連結服務所參照的資料表名稱。 |否 (如果已指定 **RelationalSource** 的 **query**) |
+| tableName |Hello Sybase 資料庫連結的服務參考的執行個體中的 hello 資料表的名稱。 |否 (如果已指定 **RelationalSource** 的 **query**) |
 
 #### <a name="example"></a>範例
 
@@ -2728,12 +2728,12 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [Sybase 連接器](data-factory-onprem-sybase-connector.md#dataset-properties)文件。 
 
 ### <a name="relational-source-in-copy-activity"></a>複製活動中的關聯式來源
-如果您從 Sybase 資料庫複製資料，請將複製活動的 **source type** 設為 **RelationalSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 Sybase 資料庫複製資料，設定 hello**來源類型**的 hello 複製活動太**RelationalSource**，並指定下列屬性在 hello**來源**區段：
 
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 |否 (如果已指定 **dataset** 的 **tableName**) |
+| query |使用自訂查詢 tooread hello 的資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 |否 (如果已指定 **dataset** 的 **tableName**) |
 
 #### <a name="example"></a>範例
 
@@ -2780,15 +2780,15 @@ encryptedCredential | 加密的認證字串。 | string | 否
 ## <a name="teradata"></a>Teradata
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Teradata 連結服務，請將連結服務的 **type** 設為 **OnPremisesTeradata**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine Teradata 連結服務，設定 hello**類型**hello 的連結服務太**OnPremisesTeradata**，並指定下列屬性在 hello **typeProperties**區段：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 伺服器 |Teradata 伺服器的名稱。 |是 |
-| authenticationType |用來連接到 Teradata 資料庫的驗證類型。 可能的值為：匿名、基本和 Windows。 |是 |
+| 伺服器 |Hello Teradata 伺服器的名稱。 |是 |
+| authenticationType |Tooconnect toohello Teradata 資料庫使用的驗證類型。 可能的值為：匿名、基本和 Windows。 |是 |
 | username |如果您使用基本或 Windows 驗證，請指定使用者名稱。 |否 |
-| password |指定您為使用者名稱所指定之使用者帳戶的密碼。 |否 |
-| gatewayName |Data Factory 服務應該用來連接到內部部署 Teradata 資料庫的閘道器名稱。 |是 |
+| password |指定 hello hello 使用者名稱所指定的使用者帳戶的密碼。 |否 |
+| gatewayName |Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello 在內部部署 Teradata 資料庫。 |是 |
 
 #### <a name="example"></a>範例
 ```json
@@ -2810,7 +2810,7 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [Teradata 連接器](data-factory-onprem-teradata-connector.md#linked-service-properties)文件。
 
 ### <a name="dataset"></a>Dataset
-若要定義 Teradata Blob 資料集，請將資料集的 **type** 設為 **RelationalTable**。 目前沒有支援 Teradata 資料集的類型屬性。 
+toodefine Teradata Blob 資料集設定 hello**類型**hello 資料集太**RelationalTable**。 目前沒有任何支援 hello Teradata 資料集的類型屬性。 
 
 #### <a name="example"></a>範例
 ```json
@@ -2839,11 +2839,11 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [Teradata 連接器](data-factory-onprem-teradata-connector.md#dataset-properties)文件。
 
 ### <a name="relational-source-in-copy-activity"></a>複製活動中的關聯式來源
-如果您從 Teradata 資料庫複製資料，請將複製活動的 **source type** 設為 **RelationalSource**，並在 **source** 區段中指定下列屬性︰
+如果您要從 Teradata 資料庫來複製資料，設定 hello**來源類型**的 hello 複製活動太**RelationalSource**，並指定下列屬性在 hello**來源**> 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 |是 |
+| query |使用自訂查詢 tooread hello 的資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 |是 |
 
 #### <a name="example"></a>範例
 
@@ -2894,17 +2894,17 @@ encryptedCredential | 加密的認證字串。 | string | 否
 
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Cassandra 連結服務，請將連結服務的 **type** 設為 **OnPremisesCassandra**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine Cassandra 連結服務，設定 hello**類型**hello 的連結服務太**OnPremisesCassandra**，並指定下列屬性在 hello **typeProperties**區段：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 主機 |一或多個 Cassandra 伺服器 IP 位址或主機名稱。<br/><br/>指定以逗號分隔的 IP 位址或主機名稱清單，以同時連線到所有伺服器。 |是 |
-| 連接埠 |Cassandra 伺服器用來接聽用戶端連線的 TCP 連接埠。 |否，預設值：9042 |
+| 主機 |一或多個 Cassandra 伺服器 IP 位址或主機名稱。<br/><br/>同時指定以逗號分隔的 IP 位址或主機名稱 tooconnect tooall 伺服器清單。 |是 |
+| 連接埠 |hello hello Cassandra 伺服器的 TCP 連接埠會使用用戶端連線 toolisten。 |否，預設值：9042 |
 | authenticationType |基本或匿名 |是 |
-| username |指定使用者帳戶的使用者名稱。 |是，如果 authenticationType 設定為 [基本]。 |
-| password |指定使用者帳戶的密碼。 |是，如果 authenticationType 設定為 [基本]。 |
-| gatewayName |用來連線到內部部署 Cassandra 資料庫的閘道器名稱。 |是 |
-| encryptedCredential |由閘道加密認證。 |否 |
+| username |指定 hello 使用者帳戶的使用者名稱。 |是，如果設定 tooBasic authenticationType。 |
+| password |指定 hello 使用者帳戶的密碼。 |是，如果設定 tooBasic authenticationType。 |
+| gatewayName |hello hello 閘道所使用的 tooconnect toohello 內部 Cassandra 資料庫名稱。 |是 |
+| encryptedCredential |加密的 hello 閘道的認證。 |否 |
 
 #### <a name="example"></a>範例
 
@@ -2928,12 +2928,12 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [Cassandra 連接器](data-factory-onprem-cassandra-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 Cassandra 資料集，請將資料集的 **type** 設為 **CassandraTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine Cassandra 資料集設定 hello**類型**hello 資料集太**CassandraTable**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| keyspace |Cassandra 資料庫中的 Keyspace 或結構描述名稱。 |是 (如果未定義 **CassandraSource** 的**查詢**)。 |
-| tableName |Cassandra 資料庫中資料表的名稱。 |是 (如果未定義 **CassandraSource** 的**查詢**)。 |
+| keyspace |Hello keyspace 或 Cassandra 資料庫中的結構描述的名稱。 |是 (如果未定義 **CassandraSource** 的**查詢**)。 |
+| tableName |Cassandra 資料庫中的 hello 資料表的名稱。 |是 (如果未定義 **CassandraSource** 的**查詢**)。 |
 
 #### <a name="example"></a>範例
 
@@ -2966,12 +2966,12 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [Cassandra 連接器](data-factory-onprem-cassandra-connector.md#dataset-properties)文件。 
 
 ### <a name="cassandra-source-in-copy-activity"></a>複製活動中的 SCassandra 來源
-如果您從 Cassandra 複製資料，請將複製活動的 **source type** 設為 **CassandraSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 Cassandra 複製資料，設定 hello**來源類型**的 hello 複製活動太**CassandraSource**，並指定下列屬性在 hello**來源**區段:
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query |使用自訂查詢來讀取資料。 |SQL-92 查詢或 CQL 查詢。 請參閱 [CQL 參考資料](https://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlReferenceTOC.html)。 <br/><br/>在使用 SQL 查詢時，指定 **keyspace name.table 名稱** 來代表您想要查詢的資料表。 |否 (如果已定義資料集上的 tableName 和 keyspace)。 |
-| consistencyLevel |一致性層級可指定必須先有多少複本回應讀取要求，才會將資料傳回用戶端應用程式。 Cassandra 會檢查要讓資料滿足讀取要求的指定複本數目。 |ONE、TWO、THREE、QUORUM、ALL、LOCAL_QUORUM、EACH_QUORUM、LOCAL_ONE。 如需詳細資訊，請參閱 [設定資料一致性](http://docs.datastax.com/en//cassandra/2.0/cassandra/dml/dml_config_consistency_c.html) 。 |否。 預設值為 ONE。 |
+| query |使用自訂查詢 tooread hello 的資料。 |SQL-92 查詢或 CQL 查詢。 請參閱 [CQL 參考資料](https://docs.datastax.com/en/cql/3.1/cql/cql_reference/cqlReferenceTOC.html)。 <br/><br/>當使用 SQL 查詢，指定**keyspace name.table 名稱**想 tooquery toorepresent hello 資料表。 |否 (如果已定義資料集上的 tableName 和 keyspace)。 |
+| consistencyLevel |hello 一致性層級指定幾個複本必須回應 tooa 讀取的要求傳回資料 toohello 用戶端應用程式之前。 Cassandra 檢查 hello 複本的指定的數目的資料 toosatisfy hello 讀取的要求。 |ONE、TWO、THREE、QUORUM、ALL、LOCAL_QUORUM、EACH_QUORUM、LOCAL_ONE。 如需詳細資訊，請參閱 [設定資料一致性](http://docs.datastax.com/en//cassandra/2.0/cassandra/dml/dml_config_consistency_c.html) 。 |否。 預設值為 ONE。 |
 
 #### <a name="example"></a>範例
   
@@ -2984,7 +2984,7 @@ encryptedCredential | 加密的認證字串。 | string | 否
         "description": "pipeline with copy activity",
         "activities": [{
             "name": "CassandraToAzureBlob",
-            "description": "Copy from Cassandra to an Azure blob",
+            "description": "Copy from Cassandra tooan Azure blob",
             "type": "Copy",
             "inputs": [{
                 "name": "CassandraInput"
@@ -3021,18 +3021,18 @@ encryptedCredential | 加密的認證字串。 | string | 否
 ## <a name="mongodb"></a>MongoDB
 
 ### <a name="linked-service"></a>連結服務
-若要定義 MongoDB 連結服務，請將連結服務的 **type** 設為 **OnPremisesMongoDB**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine MongoDB 連結服務，設定 hello**類型**hello 的連結服務太**OnPremisesMongoDB**，並指定下列屬性在 hello **typeProperties**區段：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 伺服器 |MongoDB 伺服器的 IP 位址或主機名稱。 |是 |
-| 連接埠 |MongoDB 伺服器用來接聽用戶端連線的 TCP 連接埠。 |選用，預設值︰27017 |
+| 伺服器 |IP 位址或主機名稱的 hello MongoDB 伺服器。 |是 |
+| 連接埠 |Hello MongoDB 伺服器的 TCP 連接埠會使用用戶端連線 toolisten。 |選用，預設值︰27017 |
 | authenticationType |基本或匿名。 |是 |
-| username |用來存取 MongoDB 的使用者帳戶。 |是 (如果使用基本驗證)。 |
-| password |使用者的密碼。 |是 (如果使用基本驗證)。 |
-| authSource |您想要用來檢查驗證所用之認證的 MongoDB 資料庫名稱。 |選用 (如果使用基本驗證)。 預設值︰使用以 databaseName 屬性指定的系統管理員帳戶和資料庫。 |
-| databaseName |您想要存取之 MongoDB 資料庫的名稱。 |是 |
-| gatewayName |存取資料存放區之閘道的名稱。 |是 |
+| username |使用者帳戶 tooaccess MongoDB。 |是 (如果使用基本驗證)。 |
+| password |Hello 使用者密碼。 |是 (如果使用基本驗證)。 |
+| authSource |您想 toouse toocheck 您的認證進行驗證的 hello MongoDB 資料庫的名稱。 |選用 (如果使用基本驗證)。 預設值： 使用 hello 系統管理員帳戶和 hello 使用 databaseName 屬性所指定的資料庫。 |
+| databaseName |您想 tooaccess hello MongoDB 資料庫的名稱。 |是 |
+| gatewayName |Hello 閘道存取 hello 資料存放區的名稱。 |是 |
 | encryptedCredential |由閘道加密的認證。 |選用 |
 
 #### <a name="example"></a>範例
@@ -3044,11 +3044,11 @@ encryptedCredential | 加密的認證字串。 | string | 否
         "type": "OnPremisesMongoDb",
         "typeProperties": {
             "authenticationType": "<Basic or Anonymous>",
-            "server": "< The IP address or host name of the MongoDB server >",
-            "port": "<The number of the TCP port that the MongoDB server uses to listen for client connections.>",
+            "server": "< hello IP address or host name of hello MongoDB server >",
+            "port": "<hello number of hello TCP port that hello MongoDB server uses toolisten for client connections.>",
             "username": "<username>",
             "password": "<password>",
-            "authSource": "< The database that you want to use to check your credentials for authentication. >",
+            "authSource": "< hello database that you want toouse toocheck your credentials for authentication. >",
             "databaseName": "<database name>",
             "gatewayName": "<onpremgateway>"
         }
@@ -3059,11 +3059,11 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [MongoDB 連接器文件](data-factory-on-premises-mongodb-connector.md#linked-service-properties)
 
 ### <a name="dataset"></a>Dataset
-若要定義 MongoDB 資料集，請將資料集的 **type** 設為 **MongoDbCollection**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine MongoDB 資料集設定 hello**類型**hello 資料集太**MongoDbCollection**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| collectionName |MongoDB 資料庫中集合的名稱。 |是 |
+| collectionName |MongoDB 資料庫中的 hello 集合的名稱。 |是 |
 
 #### <a name="example"></a>範例
 
@@ -3088,11 +3088,11 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [MongoDB 連接器文件](data-factory-on-premises-mongodb-connector.md#dataset-properties)
 
 #### <a name="mongodb-source-in-copy-activity"></a>複製活動中的 MongoDB 來源
-如果您從 MongoDB 複製資料，請將複製活動的 **source type** 設為 **MongoDbSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 MongoDB 複製資料，設定 hello**來源類型**的 hello 複製活動太**MongoDbSource**，並指定下列屬性在 hello**來源**> 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query |使用自訂查詢來讀取資料。 |SQL-92 查詢字串。 例如： `select * from MyTable`。 |否 (如果已指定 **dataset** 的 **collectionName**) |
+| query |使用自訂查詢 tooread hello 的資料。 |SQL-92 查詢字串。 例如： `select * from MyTable`。 |否 (如果已指定 **dataset** 的 **collectionName**) |
 
 #### <a name="example"></a>範例
 
@@ -3142,12 +3142,12 @@ encryptedCredential | 加密的認證字串。 | string | 否
 
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Amazon S3 連結服務，請將連結服務的 **type** 設為 **AwsAccessKey**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine Amazon S3 連結服務，設定 hello**類型**hello 的連結服務太**AwsAccessKey**，並指定下列屬性在 hello **typeProperties**區段:  
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| accessKeyID |密碼存取金鑰的識別碼。 |string |是 |
-| secretAccessKey |密碼存取金鑰本身。 |加密的密碼字串 |是 |
+| accessKeyID |Hello 密碼的存取金鑰的識別碼。 |字串 |是 |
+| secretAccessKey |hello 密碼存取金鑰本身。 |加密的密碼字串 |是 |
 
 #### <a name="example"></a>範例
 ```json
@@ -3166,20 +3166,20 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱 [Amazon S3 連接器文件](data-factory-amazon-simple-storage-service-connector.md#linked-service-properties)。
 
 ### <a name="dataset"></a>Dataset
-若要定義 Amazon S3 資料集，請將資料集的 **type** 設為 **AmazonS3**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine Amazon S3 資料集，設定 hello**類型**hello 資料集太**AmazonS3**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| bucketName |S3 貯體名稱。 |string |是 |
-| key |S3 物件索引鍵。 |string |否 |
-| prefix |S3 物件索引鍵的前置詞。 系統會選取索引鍵以此前置詞開頭的物件。 只有當索引鍵空白時才適用。 |string |否 |
-| version |如果已啟用 S3 版本設定功能，則為 S3 物件的版本。 |string |否 |
-| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 | |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 | |
+| bucketName |hello S3 值區的名稱。 |String |是 |
+| key |hello S3 物件索引鍵。 |String |否 |
+| prefix |Hello S3 物件索引鍵的前置詞。 系統會選取索引鍵以此前置詞開頭的物件。 只有當索引鍵空白時才適用。 |string |否 |
+| 版本 |如果已啟用 S3 版本控制的 S3 物件 hello 版本。 |String |否 |
+| format | 支援下列格式類型的 hello: **TextFormat**， **JsonFormat**， **AvroFormat**， **OrcFormat**， **ParquetFormat**。 設定 hello**類型**下格式 tooone 這些值的屬性。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想太**複製檔做為-是**之間以檔案為基礎存放區 （二進位複製），略過這兩個輸入和輸出資料集定義中的 hello 格式 > 一節。 |否 | |
+| compression | 指定 hello 類型和層級的 hello 資料壓縮。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 hello 支援層級為：**最佳**和**最快**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 | |
 
 
 > [!NOTE]
-> bucketName + key 可指定 S3 物件的位置，其中貯體是 S3 物件的根容器，而索引鍵是 S3 物件的完整路徑。
+> bucketName + 鍵指定 hello hello S3 物件其中貯體是 S3 物件 hello 根容器，而索引鍵是 hello 完整路徑 tooS3 物件位置。
 
 #### <a name="example-sample-dataset-with-prefix"></a>範例：範例資料集 (含 prefix)
 
@@ -3230,31 +3230,31 @@ encryptedCredential | 加密的認證字串。 | string | 否
 ```
 
 #### <a name="example-dynamic-paths-for-s3"></a>範例：S3 的動態路徑
-在此範例中，我們針對 Amazon S3 資料集內的 key 和 bucketName 屬性使用固定的值。
+在 hello 範例中，我們會使用固定的值為 hello Amazon S3 資料集中的索引鍵和 bucketName 屬性。
 
 ```json
 "key": "testFolder/test.orc",
 "bucketName": "<S3 bucket name>",
 ```
 
-您可以藉由使用系統變數 (例如 SliceStart)，讓 Data Factory 在執行階段動態地計算 key 和 bucketName 的值。
+您可以使用系統變數 SliceStart 如 hello 索引鍵和 bucketName 在執行階段動態計算的 Data Factory。
 
 ```json
 "key": "$$Text.Format('{0:MM}/{0:dd}/test.orc', SliceStart)"
 "bucketName": "$$Text.Format('{0:yyyy}', SliceStart)"
 ```
 
-您也可以對 Amazon S3 資料集的 prefix 屬性執行相同的操作。 如需支援的函式和變數清單，請參閱 [Data Factory 函式與系統變數](data-factory-functions-variables.md) 。
+您可以相同 hello hello 前置詞屬性的 Amazon S3 資料集。 如需支援的函式和變數清單，請參閱 [Data Factory 函式與系統變數](data-factory-functions-variables.md) 。
 
 如需詳細資訊，請參閱 [Amazon S3 連接器文件](data-factory-amazon-simple-storage-service-connector.md#dataset-properties)。
 
 ### <a name="file-system-source-in-copy-activity"></a>複製活動中的檔案系統來源
-如果您從 Amazon S3 複製資料，請將複製活動的 **source type** 設為 **FileSystemSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 Amazon S3 複製資料，設定 hello**來源類型**的 hello 複製活動太**FileSystemSource**，並指定下列屬性在 hello**來源**區段:
 
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| 遞迴 |指定是否要以遞迴方式列出目錄下的 S3 物件。 |true/false |否 |
+| 遞迴 |指定是否 toorecursively 清單 S3 物件 hello 目錄下。 |true/false |否 |
 
 
 #### <a name="example"></a>範例
@@ -3306,16 +3306,16 @@ encryptedCredential | 加密的認證字串。 | string | 否
 
 
 ### <a name="linked-service"></a>連結服務
-您可以利用「內部部署檔案伺服器」已連結服務，將內部部署的檔案系統連結到 Azure Data Factory。 下表說明內部部署檔案伺服器連結服務專屬的 JSON 元素。
+您可以連結在內部部署檔案系統 tooan Azure data factory 以 hello**在內部部署檔案伺服器**連結服務。 hello 下表提供說明屬於特定 toohello 連結在內部部署檔案伺服器服務的 JSON 元素。
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 類型 |確保 type 屬性設為 **OnPremisesFileServer**。 |是 |
-| 主機 |指定想要複製之資料夾的根路徑。 字串中的特殊字元需使用逸出字元 ‘ \ ’。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。 |是 |
-| userid |指定具有伺服器存取權之使用者的識別碼。 |否 (如果您選擇 encryptedCredential) |
-| password |指定使用者 (userid) 的密碼。 |否 (如果您選擇 encryptedCredential) |
-| encryptedCredential |指定可以透過執行 New-AzureRmDataFactoryEncryptValue Cmdlet 來取得的加密認證。 |否 (如果您選擇以純文字指定使用者識別碼和密碼) |
-| gatewayName |指定 Data Factory 應該用來連接到內部部署檔案伺服器的閘道器名稱。 |是 |
+| 類型 |請確定 hello type 屬性設定太**OnPremisesFileServer**。 |是 |
+| 主機 |指定您想 toocopy hello 資料夾 hello 根路徑。 使用 hello 逸出字元 '\' hello 字串中的特殊字元。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。 |是 |
+| userid |指定具有存取 toohello 伺服器 hello 使用者識別碼 hello。 |否 (如果您選擇 encryptedCredential) |
+| password |指定 hello hello 使用者 (userid) 的密碼。 |否 (如果您選擇 encryptedCredential) |
+| encryptedCredential |指定您可以藉由執行 hello 新增 AzureRmDataFactoryEncryptValue cmdlet 取得的 hello 加密認證。 |否 （如果您選擇 toospecify 使用者識別碼和密碼以純文字） |
+| gatewayName |指定 hello hello 閘道的 Data Factory 應該使用 tooconnect toohello 在內部部署檔案伺服器名稱。 |是 |
 
 #### <a name="sample-folder-path-definitions"></a>範例資料夾路徑定義 
 | 案例 | 連結服務定義中的主機 | 資料集定義中的 folderPath |
@@ -3360,16 +3360,16 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱[檔案系統連接器文件](data-factory-onprem-file-system-connector.md#linked-service-properties)。
 
 ### <a name="dataset"></a>Dataset
-若要定義檔案系統資料集，請將資料集的 **type** 設為 **FileShare**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine 檔案系統資料集設定 hello**類型**hello 資料集太**FileShare**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| folderPath |指定資料夾的子路徑。 字串中的特殊字元需使用逸出字元 ‘ \ ’。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。<br/><br/>您可以結合此屬性與 **partitionBy**，讓資料夾路徑以配量開始/結束日期時間為基礎。 |是 |
-| fileName |如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。 如果沒有為此屬性指定任何值，資料表會指向資料夾中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，所產生檔案的名稱是下列格式︰ <br/><br/>`Data.<Guid>.txt` (例如： Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
-| fileFilter |指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。 <br/><br/>允許的值為︰`*` (多個字元) 和 `?` (單一字元)。<br/><br/>範例 1："fileFilter": "*.log"<br/>範例 2："fileFilter": 2016-1-?.txt"<br/><br/>請注意，fileFilter 適用於輸入 FileShare 資料集。 |否 |
-| partitionedBy |您可以使用 partitionedBy 來指定時間序列資料的動態 folderPath/fileName。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
-| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 和 **ZipDeflate**，而支援的層級為：**最佳**和**最快**。 請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
+| folderPath |指定 hello 子路徑 toohello 資料夾。 使用 hello 逸出字元 ' \' hello 字串中的特殊字元。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。<br/><br/>您可以結合此屬性與**partitionBy** toohave 資料夾路徑根據配量開始/結束日期時間。 |是 |
+| fileName |在 hello 指定 hello hello 檔案名稱**folderPath**如果您想 hello 資料表 toorefer tooa 特定檔案 hello 資料夾中的。 如果您未指定任何值，這個屬性，hello 資料表會指向 tooall hello 資料夾中的檔案。<br/><br/>檔案名稱未指定輸出資料集，hello hello 產生檔案名稱時在 hello 下列格式： <br/><br/>`Data.<Guid>.txt` (例如： Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
+| fileFilter |指定篩選 toobe 使用 tooselect hello folderPath 中檔案的子集，而不是所有的檔案。 <br/><br/>允許的值為︰`*` (多個字元) 和 `?` (單一字元)。<br/><br/>範例 1："fileFilter": "*.log"<br/>範例 2："fileFilter": 2016-1-?.txt"<br/><br/>請注意，fileFilter 適用於輸入 FileShare 資料集。 |否 |
+| partitionedBy |您可以使用 partitionedBy toospecify 動態 folderPath/檔名，時間序列資料。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
+| format | 支援下列格式類型的 hello: **TextFormat**， **JsonFormat**， **AvroFormat**， **OrcFormat**， **ParquetFormat**。 設定 hello**類型**下格式 tooone 這些值的屬性。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想太**複製檔做為-是**之間以檔案為基礎存放區 （二進位複製），略過這兩個輸入和輸出資料集定義中的 hello 格式 > 一節。 |否 |
+| compression | 指定 hello 類型和層級的 hello 資料壓縮。 支援的類型為：**GZip**、**Deflate**、**BZip2** 和 **ZipDeflate**，而支援的層級為：**最佳**和**最快**。 請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
 
 > [!NOTE]
 > 無法同時使用 fileName 和 fileFilter。
@@ -3434,11 +3434,11 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱[檔案系統連接器文件](data-factory-onprem-file-system-connector.md#dataset-properties)。
 
 ### <a name="file-system-source-in-copy-activity"></a>複製活動中的檔案系統來源
-如果您從檔案系統複製資料，請將複製活動的 **source type** 設為 **FileSystemSource**，並在 **source** 區段中指定下列屬性︰
+如果您從檔案系統複製資料，設定 hello**來源類型**的 hello 複製活動太**FileSystemSource**，並指定下列屬性在 hello**來源**區段：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| 遞迴 |指出是否從子資料夾、或只有從指定的資料夾，以遞迴方式讀取資料。 |True/False (預設值為 False) |否 |
+| 遞迴 |指出是否 hello 讀取資料以遞迴方式從 hello 子資料夾，或只能從 hello 指定的資料夾。 |True/False (預設值為 False) |否 |
 
 #### <a name="example"></a>範例
 
@@ -3484,11 +3484,11 @@ encryptedCredential | 加密的認證字串。 | string | 否
 如需詳細資訊，請參閱[檔案系統連接器文件](data-factory-onprem-file-system-connector.md#copy-activity-properties)。
 
 ### <a name="file-system-sink-in-copy-activity"></a>複製活動中的檔案系統接收
-如果您將資料複製到檔案系統，請將複製活動的 **sink type** 設為 **FileSystemSink**，並在 **sink** 區段中指定下列屬性︰
+如果您要複製資料 tooFile 系統，請設定 hello**接收器類型**的 hello 複製活動太**使用 FileSystemSink**，並指定下列屬性在 hello**接收**> 一節：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| copyBehavior |當來源為 BlobSource 或 FileSystem 時，定義複製行為。 |**PreserveHierarchy：**保留目標資料夾中的檔案階層。 亦即，來源檔案到來源資料夾的相對路徑，與目標檔案到目標資料夾的相對路徑相同。<br/><br/>**FlattenHierarchy：**來源資料夾的中所有檔案都會建立在目標資料夾的第一層中。 建立的目標檔案會具有自動產生的名稱。<br/><br/>**MergeFiles：**將來源資料夾的所有檔案合併為一個檔案。 如果有指定檔案/Blob 名稱，合併檔案的名稱會是指定的名稱。 否則，就會是自動產生的檔案名稱。 |否 |
+| copyBehavior |Hello 來源 BlobSource 或檔案系統時，請定義 hello 複製行為。 |**PreserveHierarchy:**保留 hello hello 目標資料夾中的檔案階層。 也就是說，hello hello 來源檔案 toohello 來源資料夾的相對路徑是 hello 與 hello 相對路徑的 hello 目標檔案 toohello 目標資料夾相同。<br/><br/>**FlattenHierarchy:** hello 第一個層級的目標資料夾中建立 hello 來源資料夾中的所有檔案。 會使用自動產生名稱建立 hello 目標檔案。<br/><br/>**MergeFiles:**合併 hello 來源資料夾 tooone 檔案中的所有檔案。 如果指定 hello 檔案名稱/blob 名稱，則 hello 合併的檔案名稱是 hello 指定的名稱。 否則，就會是自動產生的檔案名稱。 |否 |
 auto-
 
 #### <a name="example"></a>範例
@@ -3539,19 +3539,19 @@ auto-
 ## <a name="ftp"></a>FTP
 
 ### <a name="linked-service"></a>連結服務
-若要定義 FTP 連結服務，請將連結服務的 **type** 設為 **FtpServer**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine FTP 連結服務，設定 hello**類型**hello 的連結服務太**FtpServer**，並指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 | 預設值 |
 | --- | --- | --- | --- |
-| 主機 |FTP 伺服器的名稱或 IP 位址 |是 |&nbsp; |
+| 主機 |Hello FTP 伺服器的名稱或 IP 位址 |是 |&nbsp; |
 | authenticationType |指定驗證類型 |是 |基本或匿名 |
-| username |可存取 FTP 伺服器的使用者 |否 |&nbsp; |
-| password |使用者 (使用者名稱) 的密碼 |否 |&nbsp; |
-| encryptedCredential |用來存取 FTP 伺服器的加密認證 |否 |&nbsp; |
-| gatewayName |連接至內部部署 FTP 伺服器的「資料管理閘道」閘道 |否 |&nbsp; |
-| 連接埠 |FTP 伺服器所接聽的連接埠 |否 |21 |
-| enableSsl |指定是否使用透過 SSL/TLS 的 FTP 通道 |否 |true |
-| enableServerCertificateValidation |指定是否在使用透過 SSL/TLS 的 FTP 通道時啟用伺服器 SSL 憑證驗證 |否 |true |
+| username |使用者具有存取 toohello FTP 伺服器 |否 |&nbsp; |
+| password |Hello 使用者 （使用者名稱） 的密碼 |否 |&nbsp; |
+| encryptedCredential |加密的認證 tooaccess hello FTP 伺服器 |否 |&nbsp; |
+| gatewayName |Hello 資料管理閘道器閘道 tooconnect tooan 名稱在內部 FTP 伺服器 |否 |&nbsp; |
+| 連接埠 |哪些 hello FTP 伺服器正在接聽的連接埠 |否 |21 |
+| enableSsl |指定是否 toouse FTP over SSL/TLS 通道 |否 |true |
+| enableServerCertificateValidation |指定是否 tooenable 伺服器 SSL 憑證驗證時使用 FTP over SSL/TLS 通道 |否 |true |
 
 #### <a name="example-using-anonymous-authentication"></a>範例：使用匿名驗證
 
@@ -3625,16 +3625,16 @@ auto-
 如需詳細資訊，請參閱 [FTP 連接器](data-factory-ftp-connector.md#linked-service-properties)文件。
 
 ### <a name="dataset"></a>Dataset
-若要定義 FTP 資料集，請將資料集的 **type** 設為 **FileShare**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine FTP 資料集，設定 hello**類型**hello 資料集太**FileShare**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| folderPath |資料夾的子路徑。 使用逸出字元 ‘ \ ’ 當做字串中的特殊字元。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。<br/><br/>您可以結合此屬性與 **partitionBy**，讓資料夾路徑以配量開始/結束日期時間為基礎。 |是 
-| fileName |如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。 如果沒有為此屬性指定任何值，資料表會指向資料夾中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，所產生檔案的名稱是下列格式︰ <br/><br/>Data.<Guid>.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
-| fileFilter |指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。<br/><br/>允許的值為︰`*` (多個字元) 和 `?` (單一字元)。<br/><br/>範例 1：`"fileFilter": "*.log"`<br/>範例 2：`"fileFilter": 2016-1-?.txt"`<br/><br/> fileFilter 適用於輸入 FileShare 資料集。 這個屬性不支援使用 HDFS。 |否 |
-| partitionedBy |partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
-| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 和 **ZipDeflate**，而支援的層級為：**最佳**和**最快**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
+| folderPath |子路徑 toohello 資料夾。 使用逸出字元 '\' hello 字串中的特殊字元。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。<br/><br/>您可以結合此屬性與**partitionBy** toohave 資料夾路徑根據配量開始/結束日期時間。 |是 
+| fileName |在 hello 指定 hello hello 檔案名稱**folderPath**如果您想 hello 資料表 toorefer tooa 特定檔案 hello 資料夾中的。 如果您未指定任何值，這個屬性，hello 資料表會指向 tooall hello 資料夾中的檔案。<br/><br/>檔案名稱未指定輸出資料集，hello hello 產生檔案名稱會在 hello 遵循此格式： <br/><br/>Data.<Guid>.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
+| fileFilter |指定篩選 toobe 使用 tooselect hello folderPath 中檔案的子集，而不是所有的檔案。<br/><br/>允許的值為︰`*` (多個字元) 和 `?` (單一字元)。<br/><br/>範例 1：`"fileFilter": "*.log"`<br/>範例 2：`"fileFilter": 2016-1-?.txt"`<br/><br/> fileFilter 適用於輸入 FileShare 資料集。 這個屬性不支援使用 HDFS。 |否 |
+| partitionedBy |partitionedBy 可以是使用的 toospecify 動態 folderPath，時間序列資料的檔案名稱。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
+| format | 支援下列格式類型的 hello: **TextFormat**， **JsonFormat**， **AvroFormat**， **OrcFormat**， **ParquetFormat**。 設定 hello**類型**下格式 tooone 這些值的屬性。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想太**複製檔做為-是**之間以檔案為基礎存放區 （二進位複製），略過這兩個輸入和輸出資料集定義中的 hello 格式 > 一節。 |否 |
+| compression | 指定 hello 類型和層級的 hello 資料壓縮。 支援的類型為：**GZip**、**Deflate**、**BZip2** 和 **ZipDeflate**，而支援的層級為：**最佳**和**最快**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
 | useBinaryTransfer |指定是否使用二進位傳輸模式。 二進位模式為 true，ASCII 則為 false。 預設值：True。 只有在相關聯的連結服務類型的類型為 FtpServer 時，才可以使用這個屬性。 |否 |
 
 > [!NOTE]
@@ -3649,7 +3649,7 @@ auto-
         "type": "FileShare",
         "linkedServiceName": "FTPLinkedService",
         "typeProperties": {
-            "folderPath": "<path to shared folder>",
+            "folderPath": "<path tooshared folder>",
             "fileName": "test.csv",
             "useBinaryTransfer": true
         },
@@ -3665,11 +3665,11 @@ auto-
 如需詳細資訊，請參閱 [FTP 連接器](data-factory-ftp-connector.md#dataset-properties)文件。
 
 ### <a name="file-system-source-in-copy-activity"></a>複製活動中的檔案系統來源
-如果您從 FTP 伺服器複製資料，請將複製活動的 **source type** 設為 **FileSystemSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 FTP 伺服器複製資料，設定 hello**來源類型**的 hello 複製活動太**FileSystemSource**，並指定下列屬性在 hello**來源**區段：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| 遞迴 |表示是否從子資料夾，或只有從指定的資料夾，以遞迴方式讀取資料。 |True/False (預設值為 False) |否 |
+| 遞迴 |指出是否 hello 讀取資料以遞迴方式從 hello 子資料夾，或只能從 hello 指定的資料夾。 |True/False (預設值為 False) |否 |
 
 #### <a name="example"></a>範例
 
@@ -3717,17 +3717,17 @@ auto-
 ## <a name="hdfs"></a>HDFS
 
 ### <a name="linked-service"></a>連結服務
-若要定義 HDFS 連結服務，請將連結服務的 **type** 設為 **Hdfs**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine HDFS 連結服務，設定 hello**類型**hello 的連結服務太**Hdfs**，並指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 類型 |類型屬性必須設為： **Hdfs** |是 |
-| Url |到 HDFS 的 URL |是 |
-| authenticationType |匿名或 Windows。 <br><br> 若要對 HDFS 連接器使用 **Kerberos 驗證**，請參閱[此章節](#use-kerberos-authentication-for-hdfs-connector)來據以設定您的內部部署環境。 |是 |
+| 類型 |hello 類型屬性必須設定為： **Hdfs** |是 |
+| Url |URL toohello HDFS |是 |
+| authenticationType |匿名或 Windows。 <br><br> toouse **Kerberos 驗證**HDFS 連接器，請參閱太[本節](#use-kerberos-authentication-for-hdfs-connector)在內部部署環境 tooset 據此。 |是 |
 | userName |Windows 驗證的使用者名稱。 |是 (適用於 Windows 驗證) |
 | password |Windows 驗證的密碼。 |是 (適用於 Windows 驗證) |
-| gatewayName |Data Factory 服務應該用來連接到 HDFS 的閘道器名稱。 |是 |
-| encryptedCredential |[New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) 輸出。 |否 |
+| gatewayName |Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello HDFS。 |是 |
+| encryptedCredential |[新 AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) hello 存取認證的輸出。 |否 |
 
 #### <a name="example-using-anonymous-authentication"></a>範例：使用匿名驗證
 
@@ -3767,15 +3767,15 @@ auto-
 如需詳細資訊，請參閱 [HDFS 連接器](#data-factory-hdfs-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 HDFS 資料集，請將資料集的 **type** 設為 **FileShare**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine HDFS 資料集設定 hello**類型**hello 資料集太**FileShare**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| folderPath |資料夾的路徑。 範例：`myfolder`<br/><br/>使用逸出字元 ‘ \ ’ 當做字串中的特殊字元。 例如︰若為 folder\subfolder，請指定 folder\\\\subfolder；若為 d:\samplefolder，請指定 d:\\\\samplefolder。<br/><br/>您可以結合此屬性與 **partitionBy**，讓資料夾路徑以配量開始/結束日期時間為基礎。 |是 |
-| fileName |如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。 如果沒有為此屬性指定任何值，資料表會指向資料夾中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，所產生檔案的名稱是下列格式︰ <br/><br/>Data<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
-| partitionedBy |partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。 範例：folderPath 可針對每小時的資料進行參數化。 |否 |
-| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
+| folderPath |路徑 toohello 資料夾。 範例： `myfolder`<br/><br/>使用逸出字元 '\' hello 字串中的特殊字元。 例如︰若為 folder\subfolder，請指定 folder\\\\subfolder；若為 d:\samplefolder，請指定 d:\\\\samplefolder。<br/><br/>您可以結合此屬性與**partitionBy** toohave 資料夾路徑根據配量開始/結束日期時間。 |是 |
+| fileName |在 hello 指定 hello hello 檔案名稱**folderPath**如果您想 hello 資料表 toorefer tooa 特定檔案 hello 資料夾中的。 如果您未指定任何值，這個屬性，hello 資料表會指向 tooall hello 資料夾中的檔案。<br/><br/>檔案名稱未指定輸出資料集，hello hello 產生檔案名稱會在 hello 遵循此格式： <br/><br/>Data<Guid>.txt (例如：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
+| partitionedBy |partitionedBy 可以是使用的 toospecify 動態 folderPath，時間序列資料的檔案名稱。 範例：folderPath 可針對每小時的資料進行參數化。 |否 |
+| format | 支援下列格式類型的 hello: **TextFormat**， **JsonFormat**， **AvroFormat**， **OrcFormat**， **ParquetFormat**。 設定 hello**類型**下格式 tooone 這些值的屬性。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想太**複製檔做為-是**之間以檔案為基礎存放區 （二進位複製），略過這兩個輸入和輸出資料集定義中的 hello 格式 > 一節。 |否 |
+| compression | 指定 hello 類型和層級的 hello 資料壓縮。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
 
 > [!NOTE]
 > 無法同時使用檔名和 fileFilter。
@@ -3803,13 +3803,13 @@ auto-
 如需詳細資訊，請參閱 [HDFS 連接器](#data-factory-hdfs-connector.md#dataset-properties)文件。 
 
 ### <a name="file-system-source-in-copy-activity"></a>複製活動中的檔案系統來源
-如果您從 HDFS 複製資料，請將複製活動的 **source type** 設為 **FileSystemSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 HDFS 中複製資料，設定 hello**來源類型**的 hello 複製活動太**FileSystemSource**，並指定下列屬性在 hello**來源**> 一節：
 
-**FileSystemSource** 支援下列屬性：
+**FileSystemSource**支援 hello 下列屬性：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| 遞迴 |表示是否從子資料夾，或只有從指定的資料夾，以遞迴方式讀取資料。 |True/False (預設值為 False) |否 |
+| 遞迴 |指出是否 hello 讀取資料以遞迴方式從 hello 子資料夾，或只能從 hello 指定的資料夾。 |True/False (預設值為 False) |否 |
 
 #### <a name="example"></a>範例
 
@@ -3853,26 +3853,26 @@ auto-
 
 
 ### <a name="linked-service"></a>連結服務
-若要定義 SFTP 連結服務，請將連結服務的 **type** 設為 **Sftp**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine SFTP 連結服務，設定 hello**類型**hello 的連結服務太**Sftp**，並指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- | --- |
-| 主機 | SFTP 伺服器的名稱或 IP 位址。 |是 |
-| 連接埠 |SFTP 伺服器所接聽的連接埠。 預設值：21 |否 |
-| authenticationType |指定驗證類型。 允許的值︰**Basic**、**SshPublicKey**。 <br><br> 請參閱[使用基本驗證](#using-basic-authentication)和[使用 SSH 公開金鑰驗證](#using-ssh-public-key-authentication)章節，分別取得更多屬性和 JSON 範例。 |是 |
-| skipHostKeyValidation | 指定是否略過主機金鑰驗證。 | 否。 預設值：false |
-| hostKeyFingerprint | 指定主機金鑰的指紋。 | 如果 `skipHostKeyValidation` 設為 false，則為 [是]。  |
-| gatewayName |要連線至內部部署 SFTP 伺服器的資料管理閘道名稱。 | 如果從內部部署 SFTP 伺服器複製資料，則為 [是]。 |
-| encryptedCredential | 用來存取 SFTP 伺服器的加密認證。 當您在複製精靈或 ClickOnce 快顯對話方塊中指定基本驗證 (使用者名稱 + 密碼) 或 SshPublicKey 驗證 (使用者名稱 + 私密金鑰路徑或內容) 時自動產生。 | 否。 僅當從內部部署 SFTP 伺服器複製資料時才套用。 |
+| 主機 | Hello SFTP 伺服器的名稱或 IP 位址。 |是 |
+| 連接埠 |哪些 hello SFTP 伺服器正在接聽連接埠。 hello 預設值是： 21 |否 |
+| authenticationType |指定驗證類型。 允許的值︰**Basic**、**SshPublicKey**。 <br><br> 請參閱太[使用基本驗證](#using-basic-authentication)和[使用 SSH 公開金鑰驗證](#using-ssh-public-key-authentication)分別區段上多個屬性和 JSON 範例。 |是 |
+| skipHostKeyValidation | 指定是否 tooskip 主機金鑰的驗證。 | 否。 hello 預設值： false |
+| hostKeyFingerprint | 指定 hello 指紋 hello 主索引鍵。 | 是如果 hello `skipHostKeyValidation` toofalse 設定。  |
+| gatewayName |名稱的 hello 資料管理閘道器 tooconnect tooan 內部 SFTP 伺服器。 | 如果從內部部署 SFTP 伺服器複製資料，則為 [是]。 |
+| encryptedCredential | 加密的認證 tooaccess hello SFTP 伺服器。 自動產生複製精靈] 或 [hello ClickOnce 快顯對話方塊中指定基本驗證 （使用者名稱 + 密碼） 或 SshPublicKey 驗證 （使用者名稱 + 私用金鑰的路徑或內容） 時。 | 否。 僅當從內部部署 SFTP 伺服器複製資料時才套用。 |
 
 #### <a name="example-using-basic-authentication"></a>範例：使用基本驗證
 
-若要使用基本驗證，將 `authenticationType` 設定為 `Basic`，然後指定上一節中介紹的 SFTP 連接器泛用以外的下列屬性︰
+toouse 基本驗證時，設定`authenticationType`為`Basic`，並指定下列屬性，除了 hello SFTP 連接器 hello 最後一節中導入的泛型的 hello:
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- | --- |
-| username | 可存取 SFTP 伺服器的使用者。 |是 |
-| password | 使用者 (使用者名稱) 的密碼。 | 是 |
+| username | 具有存取 toohello SFTP 伺服器的使用者。 |是 |
+| password | Hello 使用者 （使用者名稱） 的密碼。 | 是 |
 
 ```json
 {
@@ -3916,14 +3916,14 @@ auto-
 
 #### <a name="using-ssh-public-key-authentication"></a>使用 SSH 公用金鑰驗證：**
 
-若要使用基本驗證，將 `authenticationType` 設定為 `SshPublicKey`，然後指定上一節中介紹的 SFTP 連接器泛用以外的下列屬性︰
+toouse 基本驗證時，設定`authenticationType`為`SshPublicKey`，並指定下列屬性，除了 hello SFTP 連接器 hello 最後一節中導入的泛型的 hello:
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- | --- |
-| username |可存取 SFTP 伺服器的使用者 |是 |
-| privateKeyPath | 指定閘道可以存取之私密金鑰檔案的絕對路徑。 | 指定 `privateKeyPath` 或 `privateKeyContent`。 <br><br> 僅當從內部部署 SFTP 伺服器複製資料時才套用。 |
-| privateKeyContent | 私密金鑰內容的序列化字串。 複製精靈可以讀取私密金鑰檔案，並自動解壓縮私密金鑰內容。 如果您使用任何其他工具/SDK，請改為使用 privateKeyPath 屬性。 | 指定 `privateKeyPath` 或 `privateKeyContent`。 |
-| passPhrase | 如果金鑰檔案受到複雜密碼保護，請指定複雜密碼/密碼以將私密金鑰解密。 | 如果私密金鑰檔案受到複雜密碼保護，則為 [是]。 |
+| username |使用者具有存取 toohello SFTP 伺服器 |是 |
+| privateKeyPath | 指定絕對路徑 toohello 私密金鑰檔案可以存取該閘道。 | 指定任一個 hello`privateKeyPath`或`privateKeyContent`。 <br><br> 僅當從內部部署 SFTP 伺服器複製資料時才套用。 |
+| privateKeyContent | Hello 私用的索引鍵內容的序列化的字串。 hello 複製精靈可以讀取 hello 私密金鑰檔案，並自動擷取 hello 私用的索引鍵內容。 如果您使用任何其他工具/SDK，請改為使用 hello privateKeyPath 屬性。 | 指定任一個 hello`privateKeyPath`或`privateKeyContent`。 |
+| passPhrase | 指定 hello 傳遞片語/密碼 toodecrypt hello 私密金鑰如果 hello 金鑰檔受複雜密碼。 | [是] 如果 hello 私密金鑰檔案受複雜密碼。 |
 
 ```json
 {
@@ -3956,7 +3956,7 @@ auto-
             "port": 22,
             "authenticationType": "SshPublicKey",
             "username": "xxx",
-            "privateKeyContent": "<base64 string of the private key content>",
+            "privateKeyContent": "<base64 string of hello private key content>",
             "passPhrase": "xxx",
             "skipHostKeyValidation": true
         }
@@ -3967,16 +3967,16 @@ auto-
 如需詳細資訊，請參閱 [SFTP 連接器](data-factory-sftp-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 SFTP 資料集，請將資料集的 **type** 設為 **FileShare**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine SFTP 資料集設定 hello**類型**hello 資料集太**FileShare**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| folderPath |資料夾的子路徑。 使用逸出字元 ‘ \ ’ 當做字串中的特殊字元。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。<br/><br/>您可以結合此屬性與 **partitionBy**，讓資料夾路徑以配量開始/結束日期時間為基礎。 |是 |
-| fileName |如果您想要資料表參考資料夾中的特定檔案，請指定 **folderPath** 中的檔案名稱。 如果沒有為此屬性指定任何值，資料表會指向資料夾中的所有檔案。<br/><br/>若未指定輸出資料集的 fileName，所產生檔案的名稱是下列格式︰ <br/><br/>Data.<Guid>.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
-| fileFilter |指定要用來在 folderPath (而不是所有檔案) 中選取檔案子集的篩選器。<br/><br/>允許的值為︰`*` (多個字元) 和 `?` (單一字元)。<br/><br/>範例 1：`"fileFilter": "*.log"`<br/>範例 2：`"fileFilter": 2016-1-?.txt"`<br/><br/> fileFilter 適用於輸入 FileShare 資料集。 這個屬性不支援使用 HDFS。 |否 |
-| partitionedBy |partitionedBy 可以用來指定時間序列資料的動態 folderPath 和 filename。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
-| format | 支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 將格式下的 **type** 屬性設定為這些值其中之一。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想要在以檔案為基礎的存放區之間**依原樣複製檔案** (二進位複本)，請在輸入和輸出資料集定義中略過格式區段。 |否 |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
+| folderPath |子路徑 toohello 資料夾。 使用逸出字元 '\' hello 字串中的特殊字元。 如需範例，請參閱 [範例連結服務和資料集定義](#sample-linked-service-and-dataset-definitions) 。<br/><br/>您可以結合此屬性與**partitionBy** toohave 資料夾路徑根據配量開始/結束日期時間。 |是 |
+| fileName |在 hello 指定 hello hello 檔案名稱**folderPath**如果您想 hello 資料表 toorefer tooa 特定檔案 hello 資料夾中的。 如果您未指定任何值，這個屬性，hello 資料表會指向 tooall hello 資料夾中的檔案。<br/><br/>檔案名稱未指定輸出資料集，hello hello 產生檔案名稱會在 hello 遵循此格式： <br/><br/>Data.<Guid>.txt (範例：Data.0a405f8a-93ff-4c6f-b3be-f69616f1df7a.txt) |否 |
+| fileFilter |指定篩選 toobe 使用 tooselect hello folderPath 中檔案的子集，而不是所有的檔案。<br/><br/>允許的值為︰`*` (多個字元) 和 `?` (單一字元)。<br/><br/>範例 1：`"fileFilter": "*.log"`<br/>範例 2：`"fileFilter": 2016-1-?.txt"`<br/><br/> fileFilter 適用於輸入 FileShare 資料集。 這個屬性不支援使用 HDFS。 |否 |
+| partitionedBy |partitionedBy 可以是使用的 toospecify 動態 folderPath，時間序列資料的檔案名稱。 例如，folderPath 可針對每小時的資料進行參數化。 |否 |
+| format | 支援下列格式類型的 hello: **TextFormat**， **JsonFormat**， **AvroFormat**， **OrcFormat**， **ParquetFormat**。 設定 hello**類型**下格式 tooone 這些值的屬性。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 <br><br> 如果您想太**複製檔做為-是**之間以檔案為基礎存放區 （二進位複製），略過這兩個輸入和輸出資料集定義中的 hello 格式 > 一節。 |否 |
+| compression | 指定 hello 類型和層級的 hello 資料壓縮。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
 | useBinaryTransfer |指定是否使用二進位傳輸模式。 二進位模式為 true，ASCII 則為 false。 預設值：True。 只有在相關聯的連結服務類型的類型為 FtpServer 時，才可以使用這個屬性。 |否 |
 
 > [!NOTE]
@@ -3991,7 +3991,7 @@ auto-
         "type": "FileShare",
         "linkedServiceName": "SftpLinkedService",
         "typeProperties": {
-            "folderPath": "<path to shared folder>",
+            "folderPath": "<path tooshared folder>",
             "fileName": "test.csv"
         },
         "external": true,
@@ -4006,11 +4006,11 @@ auto-
 如需詳細資訊，請參閱 [SFTP 連接器](data-factory-sftp-connector.md#dataset-properties)文件。 
 
 ### <a name="file-system-source-in-copy-activity"></a>複製活動中的檔案系統來源
-如果您從 SFTP 來源複製資料，請將複製活動的 **source type** 設為 **FileSystemSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 SFTP 來源複製資料，設定 hello**來源類型**的 hello 複製活動太**FileSystemSource**，並指定下列屬性在 hello**來源**區段：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| 遞迴 |表示是否從子資料夾，或只有從指定的資料夾，以遞迴方式讀取資料。 |True/False (預設值為 False) |否 |
+| 遞迴 |指出是否 hello 讀取資料以遞迴方式從 hello 子資料夾，或只能從 hello 指定的資料夾。 |True/False (預設值為 False) |否 |
 
 
 
@@ -4060,23 +4060,23 @@ auto-
 ## <a name="http"></a>HTTP
 
 ### <a name="linked-service"></a>連結服務
-若要定義 HTTP 連結服務，請將連結服務的 **type** 設為 **Http**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine HTTP 連結服務，設定 hello**類型**hello 的連結服務太**Http**，並指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| url | Web 伺服器的基本 URL | 是 |
-| authenticationType | 指定驗證類型。 允許的值為︰**匿名**、**基本**、**摘要**、**Windows**、**ClientCertificate**。 <br><br> 請分別參閱此關於更多屬性的下列資料表各節以及這些驗證類型的 JSON 範例。 | 是 |
-| enableServerCertificateValidation | 如果來源是 HTTPS Web 伺服器，指定是否啟用伺服器 SSL 憑證驗證 | 否，預設值是 True |
-| gatewayName | 連接至內部部署 HTTP 來源的「資料管理閘道」閘道。 | 如果從內部部署 HTTP 來源複製資料，則為是。 |
-| encryptedCredential | 用來存取 HTTP 端點的加密認證。 當您在複製精靈或 ClickOnce 快顯對話方塊中設定驗證資訊時會自動產生。 | 否。 僅當從內部部署 HTTP 伺服器複製資料時才套用。 |
+| url | 基底 URL toohello Web 伺服器 | 是 |
+| authenticationType | 指定 hello 驗證類型。 允許的值為︰**匿名**、**基本**、**摘要**、**Windows**、**ClientCertificate**。 <br><br> 請參閱 「 toosections 上多個屬性和 JSON 範例此表格下方的驗證類型分別。 | 是 |
+| enableServerCertificateValidation | 指定是否 tooenable 伺服器 SSL 憑證驗證，是否來源是 HTTPS 的網頁伺服器 | 否，預設值是 True |
+| gatewayName | 名稱的 hello 資料管理閘道器 tooconnect tooan 內部 HTTP 的來源。 | 如果從內部部署 HTTP 來源複製資料，則為是。 |
+| encryptedCredential | 加密的認證 tooaccess hello HTTP 端點。 自動產生複製精靈] 或 [hello ClickOnce 快顯對話方塊以設定 hello 驗證資訊。 | 否。 僅當從內部部署 HTTP 伺服器複製資料時才套用。 |
 
 #### <a name="example-using-basic-digest-or-windows-authentication"></a>範例︰使用基本、摘要或 Windows 驗證
-將 `authenticationType` 設定為 `Basic`、`Digest`或 `Windows`，並指定除了上面介紹的 HTTP 連接器泛用的下列屬性︰
+設定`authenticationType`為`Basic`， `Digest`，或`Windows`，並指定 hello 除了 hello HTTP 連接器泛型的上方導入了下列屬性：
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| username | 存取 HTTP 端點的使用者名稱。 | 是 |
-| password | 使用者 (使用者名稱) 的密碼。 | 是 |
+| username | 使用者名稱 tooaccess hello HTTP 端點。 | 是 |
+| password | Hello 使用者 （使用者名稱） 的密碼。 | 是 |
 
 ```json
 {
@@ -4095,22 +4095,22 @@ auto-
 
 #### <a name="example-using-clientcertificate-authentication"></a>範例：使用 ClientCertificate 驗證
 
-若要使用基本驗證，將 `authenticationType` 設定為 `ClientCertificate`，並指定除了上面介紹的 HTTP 連接器泛用的下列屬性︰
+toouse 基本驗證時，設定`authenticationType`為`ClientCertificate`，並指定 hello 除了 hello HTTP 連接器泛型的上方導入了下列屬性：
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| embeddedCertData | Base 64 編碼的個人資訊交換 (PFX) 檔案之二進位資料內容。 | 指定 `embeddedCertData` 或 `certThumbprint`。 |
-| certThumbprint | 憑證指紋已安裝在您閘道器電腦的憑證存放區上。 僅當從內部部署 HTTP 來源複製資料時才套用。 | 指定 `embeddedCertData` 或 `certThumbprint`。 |
-| password | 與憑證相關聯的密碼。 | 否 |
+| embeddedCertData | hello Base64 編碼內容的 hello 個人資訊交換 (PFX) 檔案的二進位資料。 | 指定任一個 hello`embeddedCertData`或`certThumbprint`。 |
+| certThumbprint | hello hello 憑證已安裝在閘道機器的憑證存放區上的憑證指紋。 僅當從內部部署 HTTP 來源複製資料時才套用。 | 指定任一個 hello`embeddedCertData`或`certThumbprint`。 |
+| password | Hello 憑證相關聯的密碼。 | 否 |
 
-如果您使用 `certThumbprint` 進行驗證且憑證已安裝在本機電腦的個人存放區中，您必須授與讀取權限給閘道器服務︰
+如果您使用`certThumbprint`安裝適用於驗證和 hello 憑證的 hello hello 本機電腦的個人存放區中，您需要 toogrant hello 的讀取權限 toohello 閘道服務：
 
-1. 啟動 Microsoft Management Console (MMC)。 新增目標為 [本機電腦] 的 [憑證] 嵌入式管理單元。
+1. 啟動 Microsoft Management Console (MMC)。 新增 hello**憑證**嵌入式管理單元的目標 hello**本機電腦**。
 2. 展開 [憑證]，[個人]，然後按一下 [憑證]。
-3. 以滑鼠右鍵按一下個人存放區中的 [憑證]，然後選取 [所有工作]->[管理私用金鑰...]
-3. 在 [安全性] 索引標籤上，新增資料管理閘道主機服務使用憑證讀取存取執行所在的使用者帳戶。  
+3. Hello 個人存放區中的 hello 憑證上按一下滑鼠右鍵，然後選取**所有工作**->**管理私用金鑰...**
+3. 在 hello**安全性**索引標籤上，新增 hello 資料管理閘道主機服務執行使用 hello 讀取權限 toohello 憑證的使用者帳戶。  
 
-**範例：使用用戶端憑證：**此連結服務會將您的資料處理站連結至內部部署 HTTP Web 伺服器。 它會使用已安裝資料管理閘道的電腦上所安裝的用戶端憑證。
+**範例： 使用用戶端憑證：**此連結服務連結資料 factory tooan 內部 HTTP web 伺服器。 它會使用與資料管理閘道器安裝 hello 機器已安裝的用戶端憑證。
 
 ```json
 {
@@ -4128,7 +4128,7 @@ auto-
 ```
 
 #### <a name="example-using-client-certificate-in-a-file"></a>範例︰在檔案中使用用戶端憑證
-此連結服務會將您的資料處理站與內部部署 HTTP web 伺服器連結。 它會使用已安裝資料管理閘道的電腦上的用戶端憑證檔案。
+此連結服務連結資料 factory tooan 內部 HTTP web 伺服器。 它會使用資料管理閘道器安裝 hello 機器上的用戶端憑證檔案。
 
 ```json
 {
@@ -4148,18 +4148,18 @@ auto-
 如需詳細資訊，請參閱 [HTTP 連接器](data-factory-http-connector.md#linked-service-properties)文件。
 
 ### <a name="dataset"></a>Dataset
-若要定義 HTTP 資料集，請將資料集的 **type** 設為 **Http**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine HTTP 資料集，設定 hello**類型**hello 資料集太**Http**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| relativeUrl | 包含資料之資源的相對 URL。 當路徑未指定時，則只會使用在連結服務定義中指定的 URL。 <br><br> 若要建構動態 URL，您可以使用 [Data Factory 函式和系統變數](data-factory-functions-variables.md)，範例︰`"relativeUrl": "$$Text.Format('/my/report?month={0:yyyy}-{0:MM}&fmt=csv', SliceStart)"`。 | 否 |
+| relativeUrl | 包含 hello 資料的相對 URL toohello 資源。 若未指定路徑，則會使用連結的 hello 服務定義中指定的唯一 hello URL。 <br><br> tooconstruct 動態 URL，您可以使用[Data Factory 函數和系統變數](data-factory-functions-variables.md)，範例： `"relativeUrl": "$$Text.Format('/my/report?month={0:yyyy}-{0:MM}&fmt=csv', SliceStart)"`。 | 否 |
 | requestMethod | HTTP 方法。 允許的值為 **GET** 或 **POST**。 | 否。 預設值為 `GET`。 |
 | additionalHeaders | 其他 HTTP 要求標頭。 | 否 |
 | requestBody | HTTP 要求的內文。 | 否 |
-| format | 如果您只想要**從 HTTP 端點依現狀擷取資料**而不剖析它，請略過此格式設定。 <br><br> 如果您想要在複製期間剖析 HTTP 回應內容，支援下列格式類型：**TextFormat**、**JsonFormat**、**AvroFormat**、**OrcFormat**、**ParquetFormat**。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 |否 |
-| compression | 指定此資料的壓縮類型和層級。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
+| format | 如果您想 toosimply **hello 資料擷取 HTTP 端點以-為**而不剖析它，請略過此格式設定。 <br><br> 如果您希望 tooparse hello HTTP 回應內容進行複製時，支援下列格式類型的 hello: **TextFormat**， **JsonFormat**， **AvroFormat**， **OrcFormat**， **ParquetFormat**。 如需詳細資訊，請參閱[文字格式](data-factory-supported-file-and-compression-formats.md#text-format)、[Json 格式](data-factory-supported-file-and-compression-formats.md#json-format)、[Avro 格式](data-factory-supported-file-and-compression-formats.md#avro-format)、[Orc 格式](data-factory-supported-file-and-compression-formats.md#orc-format)和 [Parquet 格式](data-factory-supported-file-and-compression-formats.md#parquet-format)章節。 |否 |
+| compression | 指定 hello 類型和層級的 hello 資料壓縮。 支援的類型為：**GZip**、**Deflate**、**BZip2** 及 **ZipDeflate**。 支援的層級為：**Optimal** 和 **Fastest**。 如需詳細資訊，請參閱 [Azure Data Factory 中的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md#compression-support)。 |否 |
 
-#### <a name="example-using-the-get-default-method"></a>範例︰使用 GET (預設值) 方法
+#### <a name="example-using-hello-get-default-method"></a>範例： 使用 hello GET （預設值） 方法
 
 ```json
 {
@@ -4180,7 +4180,7 @@ auto-
 }
 ```
 
-#### <a name="example-using-the-post-method"></a>範例︰使用 POST 方法
+#### <a name="example-using-hello-post-method"></a>範例： 使用 hello POST 方法
 
 ```json
 {
@@ -4204,11 +4204,11 @@ auto-
 如需詳細資訊，請參閱 [HTTP 連接器](data-factory-http-connector.md#dataset-properties)文件。
 
 ### <a name="http-source-in-copy-activity"></a>複製活動中的 HTTP 來源
-如果您從 HTTP 來源複製資料，請將複製活動的 **source type** 設為 **HttpSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 HTTP 來源複製資料，設定 hello**來源類型**的 hello 複製活動太**HttpSource**，並指定下列屬性在 hello**來源**> 一節：
 
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- |
-| httpRequestTimeout | HTTP 的逾時 (TimeSpan) 要求取得回應。 逾時會取得回應，而非逾時讀取回應資料。 | 否。 預設值：00:01:40 |
+| httpRequestTimeout | hello 回應 hello HTTP 要求 tooget 的逾時 (TimeSpan)。 它是 hello 逾時 tooget 回應時，不 hello 逾時 tooread 回應資料。 | 否。 預設值：00:01:40 |
 
 
 #### <a name="example"></a>範例
@@ -4222,7 +4222,7 @@ auto-
         "description": "pipeline with copy activity",
         "activities": [{
             "name": "HttpSourceToAzureBlob",
-            "description": "Copy from an HTTP source to an Azure blob",
+            "description": "Copy from an HTTP source tooan Azure blob",
             "type": "Copy",
             "inputs": [{
                 "name": "HttpSourceDataInput"
@@ -4258,16 +4258,16 @@ auto-
 ## <a name="odata"></a>OData
 
 ### <a name="linked-service"></a>連結服務
-若要定義 OData 連結服務，請將連結服務的 **type** 設為 **OData**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine OData 連結的服務，設定 hello**類型**hello 的連結服務太**OData**，並指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| url |OData 服務的 URL。 |是 |
-| authenticationType |用來連線到 OData 來源的驗證類型。 <br/><br/> 若為雲端 OData，可能的值為 Anonymous、Basic 和 OAuth (請注意，Azure Data Factory 目前僅支援 Azure Active Directory 架構的 OAuth)。 <br/><br/> 若為內部部署 OData，可能的值為 Anonymous、Basic 和 Windows。 |是 |
+| url |Hello OData 服務的 Url。 |是 |
+| authenticationType |Tooconnect toohello OData 來源使用的驗證類型。 <br/><br/> 若為雲端 OData，可能的值為 Anonymous、Basic 和 OAuth (請注意，Azure Data Factory 目前僅支援 Azure Active Directory 架構的 OAuth)。 <br/><br/> 若為內部部署 OData，可能的值為 Anonymous、Basic 和 Windows。 |是 |
 | username |如果您要使用 Basic 驗證，請指定使用者名稱。 |是 (只在您使用基本驗證時) |
-| password |指定您為使用者名稱所指定之使用者帳戶的密碼。 |是 (只在您使用基本驗證時) |
-| authorizedCredential |如果您使用 OAuth，按一下 Data Factory 複製精靈或編輯器中的 [授權] 按鈕，然後輸入您的認證，接著將會自動產生這個屬性的值。 |是 (只有在您使用 OAuth 驗證時) |
-| gatewayName |Data Factory 服務應該用來連接到內部部署 OData 服務的閘道器名稱。 只在要從內部部署 OData 來源複製資料時才指定。 |否 |
+| password |指定 hello hello 使用者名稱所指定的使用者帳戶的密碼。 |是 (只在您使用基本驗證時) |
+| authorizedCredential |如果您使用 OAuth 時，按一下**授權**按鈕 hello 資料 Factory 複製精靈或編輯器中，輸入您的認證，然後 hello 這個屬性的值將會自動產生。 |是 (只有在您使用 OAuth 驗證時) |
+| gatewayName |Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello 在內部部署 OData 服務。 只在要從內部部署 OData 來源複製資料時才指定。 |否 |
 
 #### <a name="example---using-basic-authentication"></a>範例 - 使用基本驗證
 ```json
@@ -4329,7 +4329,7 @@ auto-
         {
             "url": "<endpoint of cloud OData source, for example, https://<tenant>.crm.dynamics.com/XRMServices/2011/OrganizationData.svc>",
             "authenticationType": "OAuth",
-            "authorizedCredential": "<auto generated by clicking the Authorize button on UI>"
+            "authorizedCredential": "<auto generated by clicking hello Authorize button on UI>"
         }
     }
 }
@@ -4338,11 +4338,11 @@ auto-
 如需詳細資訊，請參閱 [OData 連接器](data-factory-odata-connector.md#linked-service-properties)文件。
 
 ### <a name="dataset"></a>Dataset
-若要定義 OData 資料集，請將資料集的 **type** 設為 **ODataResource**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine OData 資料集設定 hello**類型**hello 資料集太**ODataResource**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| path |OData 資源的路徑 |否 |
+| 路徑 |路徑 toohello OData 資源 |否 |
 
 #### <a name="example"></a>範例
 
@@ -4373,11 +4373,11 @@ auto-
 如需詳細資訊，請參閱 [OData 連接器](data-factory-odata-connector.md#dataset-properties)文件。
 
 ### <a name="relational-source-in-copy-activity"></a>複製活動中的關聯式來源
-如果您從 OData 來源複製資料，請將複製活動的 **source type** 設為 **RelationalSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 OData 來源複製資料，設定 hello**來源類型**的 hello 複製活動太**RelationalSource**，並指定下列屬性在 hello**來源**區段：
 
 | 屬性 | 說明 | 範例 | 必要 |
 | --- | --- | --- | --- |
-| query |使用自訂查詢來讀取資料。 |「?$select=Name, Description&$top=5」 |否 |
+| query |使用自訂查詢 tooread hello 的資料。 |「?$select=Name, Description&$top=5」 |否 |
 
 #### <a name="example"></a>範例
 
@@ -4428,16 +4428,16 @@ auto-
 
 
 ### <a name="linked-service"></a>連結服務
-若要定義 ODBC 連結服務，請將連結服務的 **type** 設為 **OnPremisesOdbc**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine ODBC 連結服務，設定 hello**類型**hello 的連結服務太**OnPremisesOdbc**，並指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| connectionString |連接字串的非存取認證部分和選擇性的加密認證。 請參閱下列幾節中的範例。 |是 |
-| 認證 |以驅動程式特定「屬性-值」格式指定之連接字串的存取認證部分。 範例：“Uid=<user ID>;Pwd=<password>;RefreshToken=<secret refresh token>;”。 |否 |
-| authenticationType |用來連接到 ODBC 資料存放區的驗證類型。 可能的值為：Anonymous 和 Basic。 |是 |
+| connectionString |hello 非存取認證部分 hello 連接字串和選擇性的加密認證。 請參閱下列各節的 hello 範例。 |是 |
+| 認證 |hello 存取認證的 hello 驅動程式特有的屬性值的格式指定的連接字串部分。 範例：“Uid=<user ID>;Pwd=<password>;RefreshToken=<secret refresh token>;”。 |否 |
+| authenticationType |Tooconnect toohello ODBC 資料存放區使用的驗證類型。 可能的值為：Anonymous 和 Basic。 |是 |
 | username |如果您要使用 Basic 驗證，請指定使用者名稱。 |否 |
-| password |指定您為使用者名稱所指定之使用者帳戶的密碼。 |否 |
-| gatewayName |Data Factory 服務應該用來連接到 ODBC 資料存放區的閘道器名稱。 |是 |
+| password |指定 hello hello 使用者名稱所指定的使用者帳戶的密碼。 |否 |
+| gatewayName |Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello ODBC 資料存放區。 |是 |
 
 #### <a name="example---using-basic-authentication"></a>範例 - 使用基本驗證
 
@@ -4457,7 +4457,7 @@ auto-
 }
 ```
 #### <a name="example---using-basic-authentication-with-encrypted-credentials"></a>範例 - 使用基本驗證搭配加密認證
-您可以使用 [New-AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) (1.0 版的 Azure PowerShell) Cmdlet 或 [New-AzureDataFactoryEncryptValue](https://msdn.microsoft.com/library/dn834940.aspx) (0.9 或更舊版的 Azure PowerShell) 來加密認證。  
+您可以加密使用 hello hello 認證[新增 AzureRMDataFactoryEncryptValue](https://msdn.microsoft.com/library/mt603802.aspx) （1.0 版本的 Azure PowerShell） 指令程式或[New-azuredatafactoryencryptvalue](https://msdn.microsoft.com/library/dn834940.aspx) （0.9 或更早版本的 helloAzure PowerShell)。  
 
 ```json
 {
@@ -4493,11 +4493,11 @@ auto-
 如需詳細資訊，請參閱 [ODBC 連接器](data-factory-odbc-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 ODBC 資料集，請將資料集的 **type** 設為 **RelationalTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine ODBC 資料集設定 hello**類型**hello 資料集太**RelationalTable**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |ODBC 資料存放區中資料表的名稱。 |是 |
+| tableName |Hello ODBC 資料存放區中的 hello 資料表的名稱。 |是 |
 
 
 #### <a name="example"></a>範例
@@ -4528,11 +4528,11 @@ auto-
 如需詳細資訊，請參閱 [ODBC 連接器](data-factory-odbc-connector.md#dataset-properties)文件。 
 
 ### <a name="relational-source-in-copy-activity"></a>複製活動中的關聯式來源
-如果您從 ODBC 資料存放區複製資料，請將複製活動的 **source type** 設為 **RelationalSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 ODBC 資料存放區複製資料，設定 hello**來源類型**的 hello 複製活動太**RelationalSource**，並指定下列屬性在 hello**來源**區段：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query |使用自訂查詢來讀取資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 |是 |
+| query |使用自訂查詢 tooread hello 的資料。 |SQL 查詢字串。 例如： `select * from MyTable`。 |是 |
 
 #### <a name="example"></a>範例
 
@@ -4582,14 +4582,14 @@ auto-
 
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Salesforce 連結服務，請將連結服務的 **type** 設為 **Salesforce**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine Salesforce 連結服務，設定 hello**類型**hello 的連結服務太**Salesforce**，並指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| environmentUrl | 指定 Salesforce 執行個體的 URL。 <br><br> - 預設值為 "https://login.salesforce.com"。 <br> - 若要從沙箱複製資料，請指定 "https://test.salesforce.com"。 <br> - 若要從自訂網域複製資料，舉例來說，請指定 "https://[網域].my.salesforce.com"。 |否 |
-| username |指定使用者帳戶的使用者名稱。 |是 |
-| password |指定使用者帳戶的密碼。 |是 |
-| securityToken |指定使用者帳戶的安全性權杖。 如需如何重設/取得安全性權杖的指示，請參閱 [取得安全性權杖](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm) 。 若要整體了解安全性權杖，請參閱[安全性和 API](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm)。 |是 |
+| environmentUrl | 指定 hello URL 的 Salesforce 執行個體。 <br><br> - 預設值為 " https://login.salesforce.com "。 <br> -從沙箱，toocopy 資料指定"https://test.salesforce.com"。 <br> -toocopy 資料從自訂網域，指定，例如，"https://[domain].my.salesforce.com"。 |否 |
+| username |指定 hello 使用者帳戶的使用者名稱。 |是 |
+| password |指定 hello 使用者帳戶的密碼。 |是 |
+| securityToken |指定 hello 使用者帳戶的安全性權杖。 請參閱[取得安全性權杖](https://help.salesforce.com/apex/HTViewHelpDoc?id=user_security_token.htm)如需有關指示 tooreset 取得安全性權杖。 一般情況下，請參閱關於安全性權杖的 toolearn[安全性和 hello API](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_concepts_security.htm)。 |是 |
 
 #### <a name="example"></a>範例
 
@@ -4610,11 +4610,11 @@ auto-
 如需詳細資訊，請參閱 [Salesforce 連接器](data-factory-salesforce-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 Salesforce 資料集，請將資料集的 **type** 設為 **RelationalTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine Salesforce 資料集設定 hello**類型**hello 資料集太**RelationalTable**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| tableName |Salesforce 中資料表的名稱。 |否 (如果已指定 **RelationalSource** 的 **query**) |
+| tableName |在 Salesforce 中的 hello 資料表的名稱。 |否 (如果已指定 **RelationalSource** 的 **query**) |
 
 #### <a name="example"></a>範例
 
@@ -4646,11 +4646,11 @@ auto-
 如需詳細資訊，請參閱 [Salesforce 連接器](data-factory-salesforce-connector.md#dataset-properties)文件。 
 
 ### <a name="relational-source-in-copy-activity"></a>複製活動中的關聯式來源
-如果您從 Salesforce 複製資料，請將複製活動的 **source type** 設為 **RelationalSource**，並在 **source** 區段中指定下列屬性︰
+如果您從 Salesforce 複製資料，設定 hello**來源類型**的 hello 複製活動太**RelationalSource**，並指定下列屬性在 hello**來源**區段：
 
 | 屬性 | 說明 | 允許的值 | 必要 |
 | --- | --- | --- | --- |
-| query |使用自訂查詢來讀取資料。 |SQL-92 查詢或 [Salesforce 物件查詢語言 (SOQL)](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) 查詢。 例如：`select * from MyTable__c`。 |否 (如果已指定 **dataset** 的 **tableName**) |
+| query |使用自訂查詢 tooread hello 的資料。 |SQL-92 查詢或 [Salesforce 物件查詢語言 (SOQL)](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm) 查詢。 例如：`select * from MyTable__c`。 |否 (如果 hello **tableName**的 hello**資料集**指定) |
 
 #### <a name="example"></a>範例  
 
@@ -4665,7 +4665,7 @@ auto-
         "description": "pipeline with copy activity",
         "activities": [{
             "name": "SalesforceToAzureBlob",
-            "description": "Copy from Salesforce to an Azure blob",
+            "description": "Copy from Salesforce tooan Azure blob",
             "type": "Copy",
             "inputs": [{
                 "name": "SalesforceInput"
@@ -4698,18 +4698,18 @@ auto-
 ```
 
 > [!IMPORTANT]
-> 任何自訂物件都需要 API 名稱的「__c」部分。
+> hello"__c"hello API 名稱部分所需的任何自訂的物件。
 
 如需詳細資訊，請參閱 [Salesforce 連接器](data-factory-salesforce-connector.md#copy-activity-properties)文件。 
 
 ## <a name="web-data"></a>Web 資料 
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Web 連結服務，請將連結服務的 **type** 設為 **Web**，並在 **typeProperties** 區段中指定下列屬性︰  
+toodefine Web 連結服務，設定 hello**類型**hello 的連結服務太**Web**，並指定下列屬性在 hello **typeProperties** > 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| Url |Web 來源的 URL |是 |
+| Url |URL toohello Web 來源 |是 |
 | authenticationType |匿名。 |是 |
  
 
@@ -4732,13 +4732,13 @@ auto-
 如需詳細資訊，請參閱 [Web 資料表連接器](data-factory-web-table-connector.md#linked-service-properties)文件。 
 
 ### <a name="dataset"></a>Dataset
-若要定義 Web 資料集，請將資料集的 **type** 設為 **WebTable**，並在 **typeProperties** 區段中指定下列屬性︰ 
+toodefine Web 資料集設定 hello**類型**hello 資料集太**WebTable**，並指定下列屬性在 hello hello **typeProperties** > 一節： 
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| 類型 |資料集的類型。 必須設定為 **WebTable** |是 |
-| 路徑 |包含資料表之資源的相對 URL。 |否。 當路徑未指定時，則只會使用在連結服務定義中指定的 URL。 |
-| index |資源中資料表的索引。 如需如何取得 HTML 網頁中資料表索引的步驟，請參閱 [取得 HTML 網頁中資料表的索引](#get-index-of-a-table-in-an-html-page) 一節。 |是 |
+| 類型 |hello 資料集的類型。 必須設定得**WebTable** |是 |
+| 路徑 |相對 URL toohello 資源包含 hello 資料表。 |否。 若未指定路徑，則會使用連結的 hello 服務定義中指定的唯一 hello URL。 |
+| index |hello hello 資源中的 hello 資料表的索引。 請參閱[Get 索引的資料表中的 HTML 網頁的](#get-index-of-a-table-in-an-html-page)> 一節步驟 toogetting 索引的 HTML 網頁中的資料表。 |是 |
 
 #### <a name="example"></a>範例
 
@@ -4764,7 +4764,7 @@ auto-
 如需詳細資訊，請參閱 [Web 資料表連接器](data-factory-web-table-connector.md#dataset-properties)文件。 
 
 ### <a name="web-source-in-copy-activity"></a>複製活動中的 Web 來源
-如果您從 Web 資料表複製資料，請將複製活動的 **source type** 設為 **WebSource**。 當複製活動中的來源類型為 **WebSource**，目前並未支援任何其他屬性。
+如果您從 web 資料表複製資料，設定 hello**來源類型**的 hello 複製活動太**WebSource**。 目前，當複製活動中的 hello 來源屬於型別**WebSource**，支援任何其他屬性。
 
 #### <a name="example"></a>範例
 
@@ -4777,7 +4777,7 @@ auto-
         "description": "pipeline with copy activity",
         "activities": [{
             "name": "WebTableToAzureBlob",
-            "description": "Copy from a Web table to an Azure blob",
+            "description": "Copy from a Web table tooan Azure blob",
             "type": "Copy",
             "inputs": [{
                 "name": "WebTableInput"
@@ -4811,7 +4811,7 @@ auto-
 如需詳細資訊，請參閱 [Web 資料表連接器](data-factory-web-table-connector.md#copy-activity-properties)文件。 
 
 ## <a name="compute-environments"></a>計算環境
-下表列出 Data Factory 支援的計算環境和可在這些環境上執行的轉換活動。 按一下您感興趣的計算連結，查看連結服務的 JSON 結構描述，以將它連結至資料處理站。 
+hello 下表列出支援的 Data Factory 和 hello 轉換活動可以在其上執行的 hello 運算環境。 按一下 hello 連結 hello 計算您所感興趣 toosee hello JSON 結構描述的連結的服務 toolink 它 tooa 資料 factory。 
 
 | 計算環境 | 活動 |
 | --- | --- |
@@ -4822,24 +4822,24 @@ auto-
 | [Azure SQL Database](#azure-sql-database-1)、[Azure SQL 資料倉儲](#azure-sql-data-warehouse-1)、[SQL Server](#sql-server-1) |[預存程序](#stored-procedure-activity) |
 
 ## <a name="on-demand-azure-hdinsight-cluster"></a>隨選 Azure HDInsight 叢集
-Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDInsight 叢集來處理資料。 此叢集會建立在與叢集相關聯的儲存體帳戶 (JSON 中的 linkedServiceName 屬性) 相同的區域中。 您可以在此連結服務上執行下列轉換活動：[.NET 自訂活動](#net-custom-activity)、[Hive 活動](#hdinsight-hive-activity)、[Pig 活動](#hdinsight-pig-acitivity、[MapReduce 活動](#hdinsight-mapreduce-activity)、[Hadoop 串流活動](#hdinsight-streaming-activityd)、[Spark 活動](#hdinsight-spark-activity)。 
+hello Azure Data Factory 服務會自動建立 Windows/Linux 為基礎-隨選 HDInsight 叢集 tooprocess 資料。 hello 叢集建立在 hello 與 hello 叢集與 hello 儲存體帳戶 （hello JSON 中的 linkedServiceName 屬性） 相同的區域相關聯。 您可以執行下列轉換活動上這項連結服務的 hello: [.NET 自訂活動](#net-custom-activity)， [Hive 活動](#hdinsight-hive-activity)，[Pig 活動] (#hdinsight pig-活動， [MapReduce 活動](#hdinsight-mapreduce-activity)， [Hadoop 串流活動](#hdinsight-streaming-activityd)，[二手活動](#hdinsight-spark-activity)。 
 
 ### <a name="linked-service"></a>連結服務 
-下表描述隨選 HDInsight 連結服務的 Azure JSON 定義中所使用的屬性。
+下表中的 hello 提供 hello 屬性視 HDInsight 連結服務的 hello Azure JSON 定義中所使用的說明。
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 類型 |type 屬性應設為 **HDInsightOnDemand**。 |是 |
-| clusterSize |叢集中的背景工作/資料節點數。 HDInsight 叢集會利用您為此屬性指定的 2 個前端節點以及背景工作節點數目來建立。 節點大小為具有 4 個核心的 Standard_D3，因此 4 個背景工作節點的叢集需要 24 個核心 (4\*4 = 16 個核心用於背景工作節點，加上 2\*4 = 8 個核心用於前端節點)。 如需 Standard_D3 層的詳細資料，請參閱[在 HDInsight 中建立 Linux 型 Hadoop 叢集](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md)。 |是 |
-| timetolive |隨選 HDInsight 叢集允許的閒置時間。 指定在活動執行完成後，如果叢集中沒有其他作用中的作業，隨選 HDInsight 叢集要保持運作多久。<br/><br/>例如，如果活動執行花費 6 分鐘，而 timetolive 設為 5 分鐘，叢集會在處理活動執行的 6 分鐘期間之後保持運作 5 分鐘。 如果 6 分鐘期間內執行了另一個活動執行，它便會由相同叢集來處理。<br/><br/>建立隨選 HDInsight 叢集是昂貴的作業 (可能需要一段時間)，因此請視需要使用這項設定，重複使用隨選 HDInsight 叢集以改善 Data Factory 的效能。<br/><br/>如果您將 timetolive 值設為 0，叢集會在處理活動執行後立即刪除。 另一方面，如果您設定較高的值，叢集可能會有不必要的閒置而導致高成本。 因此，請務必根據您的需求設定適當的值。<br/><br/>如果適當地設定 timetolive 屬性值，則多個管線可以共用相同的隨選 HDInsight 叢集執行個體 |是 |
-| 版本 |HDInsight 叢集的版本。 如需詳細資訊，請參閱 [Azure Data Factory 中支援的 HDInsight 版本](data-factory-compute-linked-services.md#supported-hdinsight-versions-in-azure-data-factory)。 |否 |
-| 預設容器 |隨選叢集用於儲存及處理資料的 Azure 儲存體連結服務。 <p>目前，您無法建立使用 Azure Data Lake Store 做為儲存體的隨選 HDInsight 叢集。 如果您想要在 Azure Data Lake Store 中儲存 HDInsight 處理的結果資料，可使用複製活動將 Azure Blob 儲存體的資料複製到 Azure Data Lake Store。</p>  | 是 |
-| additionalLinkedServiceNames |指定 HDInsight 連結服務的其他儲存體帳戶，讓 Data Factory 服務代表您註冊它們。 |否 |
+| 類型 |hello 類型屬性應該設定太**HDInsightOnDemand**。 |是 |
+| clusterSize |背景工作/資料 hello 叢集中的節點數目。 以及您為此屬性指定的背景工作角色節點的 hello 數目的 2 個前端節點建立 hello HDInsight 叢集。 hello 節點有大小有 4 個核心，因此 4 的背景工作節點叢集會採用 24 個核心的 Standard_D3 (4\*4 = 16 個核心的背景工作節點，再加上 2\*4 = 8 個核心的前端節點)。 請參閱[HDInsight 叢集建立 Linux Hadoop](../hdinsight/hdinsight-hadoop-provision-linux-clusters.md) hello Standard_D3 層的詳細資料。 |是 |
+| timetolive |hello 允許 hello 隨選 HDInsight 叢集的閒置時間。 指定多久 hello 隨選 HDInsight 叢集會保持運作如果 hello 叢集中沒有其他作用中的工作執行的活動完成後。<br/><br/>例如，如果在 6 分鐘和 timetolive 執行的活動是設定 too5 分鐘，hello 叢集會保持運作 5 分鐘之後 hello 6 分鐘處理 hello 活動執行。 如果另一個執行的活動與 hello 6 分鐘視窗執行時，處理 hello 相同叢集中。<br/><br/>建立隨選 HDInsight 叢集是昂貴的作業 （可能需要一些時間），因此使用這項設定的 data factory 所需的 tooimprove 效能重複使用隨選 HDInsight 叢集。<br/><br/>如果您設定 timetolive 值 too0，只要執行的 hello 活動處理，會刪除 hello 叢集。 在 hello 相反地，如果您設定較高的值，hello 叢集可能保持閒置不必要地產生高成本。 因此，很重要，您會設定 hello 適當的值，根據您的需求。<br/><br/>多個管線可以共用 hello hello 隨選 HDInsight 叢集的同一個執行個體，如果適當地設定 hello timetolive 屬性值 |是 |
+| 版本 |Hello HDInsight 叢集的版本。 如需詳細資訊，請參閱 [Azure Data Factory 中支援的 HDInsight 版本](data-factory-compute-linked-services.md#supported-hdinsight-versions-in-azure-data-factory)。 |否 |
+| linkedServiceName |Azure 儲存體連結服務 toobe hello 視叢集使用的儲存及處理資料。 <p>目前，您無法建立使用 Azure 資料湖存放區為 hello 存放裝置的隨 HDInsight 叢集。 如果您想要從 HDInsight 處理 Azure 資料湖存放區中的 toostore hello 結果資料，請使用 hello Azure Blob 儲存體 toohello Azure Data Lake Store 複製活動 toocopy hello 資料。</p>  | 是 |
+| additionalLinkedServiceNames |指定額外的儲存體帳戶的 hello HDInsight 連結服務，以便 hello Data Factory 服務可以代表您註冊它們。 |否 |
 | osType |作業系統的類型。 允許的值為：Windows (預設值) 和 linux |否 |
-| hcatalogLinkedServiceName |指向 HCatalog 資料庫的 Azure SQL 連結服務名稱。 會使用 Azure SQL 資料庫作為中繼存放區，建立隨選 HDInsight 叢集。 |否 |
+| hcatalogLinkedServiceName |該點 toohello HCatalog 資料庫服務的 Azure SQL 連結的 hello 名稱。 hello 隨選 HDInsight 叢集會建立使用 hello Azure SQL database 當做 hello 中繼存放區。 |否 |
 
 ### <a name="json-example"></a>JSON 範例
-下列 JSON 會定義以 Linux 為基礎的隨選 HDInsight 連結服務。 Data Factory 服務會在處理資料配量時自動建立 **以 Linux 為基礎的** HDInsight 叢集。 
+下列 JSON hello 定義以 Linux 為基礎的隨選 HDInsight 連結服務。 hello Data Factory 服務會自動建立**linux**時處理資料配量的 HDInsight 叢集。 
 
 ```json
 {
@@ -4860,18 +4860,18 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 如需詳細資訊，請參閱[計算連結服務](data-factory-compute-linked-services.md)一文。 
 
 ## <a name="existing-azure-hdinsight-cluster"></a>現有的 Azure HDInsight 叢集
-您可以建立 Azure HDInsight 連結服務，以向 Data Factory 註冊自己的 HDInsight 叢集。 您可以在此連結服務上執行下列資料轉換活動︰[.NET 自訂活動](#net-custom-activity)、[Hive 活動](#hdinsight-hive-activity)、[Pig 活動](#hdinsight-pig-activity、[MapReduce 活動](#hdinsight-mapreduce-activity)、[Hadoop 串流活動](#hdinsight-streaming-activityd)、[Spark 活動](#hdinsight-spark-activity)。 
+您可以使用 Data Factory 建立 Azure HDInsight 連結服務 tooregister HDInsight 叢集。 您可以執行資料轉換活動遵循這項連結服務的 hello: [.NET 自訂活動](#net-custom-activity)， [Hive 活動](#hdinsight-hive-activity)，[Pig 活動] (#hdinsight pig-活動， [MapReduce活動](#hdinsight-mapreduce-activity)， [Hadoop 串流活動](#hdinsight-streaming-activityd)，[二手活動](#hdinsight-spark-activity)。 
 
 ### <a name="linked-service"></a>連結服務
-下表描述 Azure HDInsight 連結服務的 Azure JSON 定義中所使用的屬性。
+hello 下表提供使用 Azure HDInsight 連結服務的 hello Azure JSON 定義中的 hello 屬性的說明。
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 類型 |type 屬性應設為 **HDInsight**。 |是 |
-| clusterUri |HDInsight 叢集的 URI。 |是 |
-| username |指定要用來連接到現有 HDInsight 叢集的使用者名稱。 |是 |
-| password |指定使用者帳戶的密碼。 |是 |
-| linkedServiceName | 參照 HDInsight 叢集所使用 Azure Blob 儲存體的 Azure 儲存體連結服務名稱。 <p>目前，您無法針對此屬性指定 Azure Data Lake Store 連結服務。 如果 HDInsight 叢集可存取 Data Lake Store，您可以透過 Hive/Pig 指令碼存取 Azure Data Lake Store 中的資料。 </p>  |是 |
+| 類型 |hello 類型屬性應該設定太**HDInsight**。 |是 |
+| clusterUri |hello hello HDInsight 叢集的 URI。 |是 |
+| username |指定的 hello 使用者 toobe hello 名稱使用 tooconnect tooan 現有 HDInsight 叢集。 |是 |
+| password |指定 hello 使用者帳戶的密碼。 |是 |
+| linkedServiceName | Hello HDInsight 叢集供 hello 參照 toohello Azure blob 儲存體的 Azure 儲存體連結服務的名稱。 <p>目前，您無法針對此屬性指定 Azure Data Lake Store 連結服務。 如果 hello HDInsight 叢集已存取 toohello 資料湖存放區，您可能會存取 hello Azure 資料湖存放區中的資料從 Hive/Pig 指令碼。 </p>  |是 |
 
 如需支援的 HDInsight 叢集版本，請參閱[支援的 HDInsight 版本](data-factory-compute-linked-services.md#supported-hdinsight-versions-in-azure-data-factory)。 
 
@@ -4893,18 +4893,18 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 ```
 
 ## <a name="azure-batch"></a>Azure Batch
-您可以建立 Azure Batch 連結服務，以向資料處理站註冊虛擬機器 (VM) 的 Batch 集區。 您可以使用 Azure Batch 或 Azure HDInsight 執行 .NET 自訂活動。 您可以在此連結服務上執行 [.NET 自訂活動](#net-custom-activity)。 
+您可以使用 data factory 建立 Azure 批次連結服務 tooregister 批次集區的虛擬機器 (Vm)。 您可以使用 Azure Batch 或 Azure HDInsight 執行 .NET 自訂活動。 您可以在此連結服務上執行 [.NET 自訂活動](#net-custom-activity)。 
 
 ### <a name="linked-service"></a>連結服務
-下表描述 Azure Batch 連結服務的 Azure JSON 定義中所使用的屬性。
+hello 下表提供使用 Azure Batch 連結服務的 hello Azure JSON 定義中的 hello 屬性的說明。
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 類型 |type 屬性應設為 **AzureBatch**。 |是 |
-| accountName |建立 Azure Batch 帳戶。 |是 |
-| accessKey |Azure Batch 帳戶的存取金鑰。 |是 |
-| poolName |虛擬機器的集區名稱。 |是 |
-| 預設容器 |與此 Azure Batch 連結服務相關聯的 Azure 儲存體服務連結名稱。 此連結服務用於執行活動及儲存活動執行記錄檔所需的暫存檔案。 |是 |
+| 類型 |hello 類型屬性應該設定太**AzureBatch**。 |是 |
+| accountName |Hello Azure Batch 帳戶的名稱。 |是 |
+| accessKey |Hello Azure Batch 帳戶存取金鑰。 |是 |
+| poolName |Hello 集區的虛擬機器名稱。 |是 |
+| linkedServiceName |Hello 與此 Azure Batch 連結服務相關聯的 Azure 儲存體連結服務的名稱。 這項連結的服務用於暫存檔案需要 toorun hello 活動與 hello 活動執行記錄的儲存。 |是 |
 
 
 #### <a name="json-example"></a>JSON 範例
@@ -4925,16 +4925,16 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 ```
 
 ## <a name="azure-machine-learning"></a>Azure Machine Learning
-您可建立 Azure Machine Learning 連結服務，以向資料處理站註冊 Machine Learning 批次評分端點。 您可以在此連結服務上執行兩個資料轉換活動︰[Machine Learning 批次執行活動](#machine-learning-batch-execution-activity)、[Machine Learning 更新資源活動](#machine-learning-update-resource-activity)。 
+建立 Azure Machine Learning 連結服務 tooregister Machine Learning 批次評分端點使用 data factory。 您可以在此連結服務上執行兩個資料轉換活動︰[Machine Learning 批次執行活動](#machine-learning-batch-execution-activity)、[Machine Learning 更新資源活動](#machine-learning-update-resource-activity)。 
 
 ### <a name="linked-service"></a>連結服務
-下表描述 Azure Machine Learning 連結服務的 Azure JSON 定義中所使用的屬性。
+hello 下表提供使用 Azure Machine Learning 連結服務的 hello Azure JSON 定義中的 hello 屬性的說明。
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 類型 |type 屬性應設為： **AzureML**。 |是 |
-| mlEndpoint |批次評分 URL。 |是 |
-| apiKey |已發佈的工作區模型的 API。 |是 |
+| 類型 |hello 類型屬性應該設定為： **AzureML**。 |是 |
+| mlEndpoint |hello 批次評分 URL。 |是 |
+| apiKey |hello 發行工作區模型的 API。 |是 |
 
 #### <a name="json-example"></a>JSON 範例
 
@@ -4952,25 +4952,25 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 ```
 
 ## <a name="azure-data-lake-analytics"></a>Azure Data Lake Analytics
-您應建立 **Azure Data Lake Analytics** 連結服務，將 Azure Data Lake Analytics 計算服務連結至 Azure Data Factory，然後再使用管線中的 [Data Lake Analytics U-SQL 活動](data-factory-usql-activity.md) 。
+您建立**Azure Data Lake Analytics**之前使用 hello 連結服務 toolink Azure Data Lake Analytics 計算服務 tooan Azure data factory[資料 Lake Analytics U-SQL 活動](data-factory-usql-activity.md)管線中.
 
 ### <a name="linked-service"></a>連結服務
 
-下表描述 Azure Data Lake Analytics 連結服務的 JSON 定義中所使用的屬性。 
+下表中的 hello 提供 hello 屬性連結 Azure Data Lake Analytics 服務的 hello JSON 定義中所使用的說明。 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 類型 |type 屬性應設為： **AzureDataLakeAnalytics**。 |是 |
+| 類型 |hello 類型屬性應該設定為： **AzureDataLakeAnalytics**。 |是 |
 | accountName |Azure Data Lake Analytics 帳戶名稱。 |是 |
 | dataLakeAnalyticsUri |Azure Data Lake Analytics URI。 |否 |
-| 授權 |按一下 Data Factory 編輯器中的 [授權]  按鈕並完成 OAuth 登入後，即會自動擷取授權碼。 |是 |
-| subscriptionId |Azure 訂用帳戶識別碼 |否 (如果未指定，便會使用 Data Factory 的訂用帳戶)。 |
-| resourceGroupName |Azure 資源群組名稱 |否 (若未指定，便會使用 Data Factory 的資源群組)。 |
-| sessionId |OAuth 授權工作階段的工作階段識別碼。 每個工作階段識別碼都是唯一的，只能使用一次。 使用 Data Factory 編輯器時會自動產生此識別碼。 |是 |
+| 授權 |按一下之後，就會自動擷取授權碼**授權**hello Data Factory 編輯器和完成 hello OAuth 登入 按鈕。 |是 |
+| subscriptionId |Azure 訂用帳戶識別碼 |否 （如果未指定，訂用帳戶的資料處理站可用的 hello）。 |
+| resourceGroupName |Azure 資源群組名稱 |否 （如果未指定，資源群組的資料處理站可用的 hello）。 |
+| sessionId |從 hello OAuth 授權工作階段的工作階段識別碼。 每個工作階段識別碼都是唯一的，只能使用一次。 當您使用 hello Data Factory 編輯器時，這個識別碼是自動產生。 |是 |
 
 
 #### <a name="json-example"></a>JSON 範例
-下列範例提供 Azure Data Lake Analytics 連結服務的 JSON 定義。
+下列範例中的 hello 提供 JSON 定義連結的 Azure 資料湖分析服務。
 
 ```json
 {
@@ -4990,14 +4990,14 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 ```
 
 ## <a name="azure-sql-database"></a>Azure SQL Database
-您可建立 Azure SQL 連結服務，並將其與 [預存程序活動](#stored-procedure-activity) 搭配使用，以叫用 Data Factory 管線中的預存程序。 
+您建立 Azure SQL 連結服務，並使用它搭配 hello[預存程序活動](#stored-procedure-activity)tooinvoke 從 Data Factory 管線的預存程序。 
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Azure SQL Database 連結服務，請將連結服務的 **type** 設為 **AzureSqlDatabase**，並在 **typeProperties** 區段中指定下列屬性︰  
+Azure SQL Database toodefine 連結服務，設定 hello**類型**hello 的連結服務太**AzureSqlDatabase**，並指定下列屬性在 hello **typeProperties**> 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| connectionString |針對 connectionString 屬性指定連接到 Azure SQL Database 執行個體所需的資訊。 |是 |
+| connectionString |指定所需的資訊 tooconnect toohello Azure SQL Database 執行個體 hello connectionString 屬性。 |是 |
 
 #### <a name="json-example"></a>JSON 範例
 
@@ -5016,14 +5016,14 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 如需此連結服務的詳細資料，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#linked-service-properties) 一文。
 
 ## <a name="azure-sql-data-warehouse"></a>Azure SQL 資料倉儲
-您可以建立 Azure SQL 資料倉儲連結服務，並將其與 [預存程序活動](data-factory-stored-proc-activity.md) 搭配使用，以叫用 Data Factory 管線中的預存程序。 
+您建立連結的 Azure SQL 資料倉儲服務，並使用它搭配 hello[預存程序活動](data-factory-stored-proc-activity.md)tooinvoke 從 Data Factory 管線的預存程序。 
 
 ### <a name="linked-service"></a>連結服務
-若要定義 Azure SQL 資料倉儲連結服務，請將連結服務的 **type** 設為 **AzureSqlDW**，並在 **typeProperties** 區段中指定下列屬性︰  
+Azure SQL 資料倉儲 toodefine 連結服務，設定 hello**類型**hello 的連結服務太**AzureSqlDW**，並指定下列屬性在 hello **typeProperties**> 一節：  
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| connectionString |針對 connectionString 屬性指定連線到 Azure SQL 資料倉儲執行個體所需的資訊。 |是 |
+| connectionString |指定所需的資訊 tooconnect toohello Azure SQL 資料倉儲執行個體 hello connectionString 屬性。 |是 |
 
 #### <a name="json-example"></a>JSON 範例
 
@@ -5042,22 +5042,22 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 如需詳細資訊，請參閱 [Azure SQL 資料倉儲連接器](data-factory-azure-sql-data-warehouse-connector.md#linked-service-properties)文件。 
 
 ## <a name="sql-server"></a>SQL Server 
-您可以建立 SQL Server 連結服務，並將其與 [預存程序活動](data-factory-stored-proc-activity.md) 搭配使用，以叫用 Data Factory 管線中的預存程序。 
+建立連結的 SQL Server 服務，並使用以 hello[預存程序活動](data-factory-stored-proc-activity.md)tooinvoke 從 Data Factory 管線的預存程序。 
 
 ### <a name="linked-service"></a>連結服務
-您可以建立 **OnPremisesSqlServer** 類型的連結服務，以將內部部署 SQL Server 資料庫連結至資料處理站。 下表提供內部部署 SQL Server 連結服務專屬 JSON 元素的描述。
+您建立連結的服務型別的**OnPremisesSqlServer** toolink 在內部部署 SQL Server 資料庫 tooa 資料 factory。 下表中的 hello 提供 JSON 項目特定 tooon 內部部署 SQL Server 連結服務的描述。
 
-下表提供 SQL Server 連結服務專屬 JSON 元素的描述。
+下表中的 hello 提供 JSON 項目特定 tooSQL 連結的伺服器服務的描述。
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| 類型 |類型屬性應設為： **OnPremisesSqlServer**。 |是 |
-| connectionString |指定使用 SQL 驗證或 Windows 驗證連接至內部部署 SQL Server 資料庫所需的 connectionString 資訊。 |是 |
-| gatewayName |Data Factory 服務應該用來連接到內部部署 SQL Server 資料庫的閘道器名稱。 |是 |
+| 類型 |hello 類型屬性應該設定為： **OnPremisesSqlServer**。 |是 |
+| connectionString |指定所需的 connectionString 資訊 tooconnect toohello 在內部部署 SQL Server 資料庫使用 SQL 驗證或 Windows 驗證。 |是 |
+| gatewayName |Hello Data Factory 服務的 hello 閘道的名稱應該使用 tooconnect toohello 在內部部署 SQL Server 資料庫。 |是 |
 | username |如果您使用「Windows 驗證」，請指定使用者名稱。 範例︰**domainname\\username**。 |否 |
-| password |指定您為使用者名稱所指定之使用者帳戶的密碼。 |否 |
+| password |指定 hello hello 使用者名稱所指定的使用者帳戶的密碼。 |否 |
 
-您可以使用 **New-AzureRmDataFactoryEncryptValue** Cmdlet 加密認證，並在連接字串中使用這些認證，如下列範例所示 (**EncryptedCredential** 屬性)：  
+您可以加密認證使用 hello**新增 AzureRmDataFactoryEncryptValue** cmdlet 並將其用於 hello 連接字串 hello 下列範例所示 (**EncryptedCredential**屬性):  
 
 ```JSON
 "connectionString": "Data Source=<servername>;Initial Catalog=<databasename>;Integrated Security=True;EncryptedCredential=<encrypted credential>",
@@ -5080,7 +5080,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 ```
 #### <a name="example-json-for-using-windows-authentication"></a>範例：用於 Windows 驗證的 JSON
 
-如果已指定使用者名稱和密碼，閘道就會使用它們來模擬指定的使用者帳戶，以連線到內部部署 SQL Server 資料庫。 否則，閘道會使用閘道的安全性內容 (其啟動帳戶) 直接連線到 SQL Server。
+如果未指定使用者名稱和密碼，閘道會使用這些 tooimpersonate hello 指定的使用者帳戶 tooconnect toohello 在內部部署 SQL Server 資料庫。 否則，閘道會直接與 hello 的閘道 （其啟動帳戶） 的安全性內容連線 toohello SQL Server。
 
 ```json
 {
@@ -5103,31 +5103,31 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 
 活動 | 說明
 -------- | -----------
-[HDInsight Hive 活動](#hdinsight-hive-activity) | Data Factory 管線中的 HDInsight Hive 活動會在您自己或隨選的 Windows/Linux 架構 HDInsight 叢集上執行 Hive 查詢。 
-[HDInsight Pig 活動](#hdinsight-pig-activity) | Data Factory 管線中的 HDInsight Pig 活動會在您自己或隨選的 Windows/Linux 架構 HDInsight 叢集上執行 Pig 查詢。
-[HDInsight MapReduce 活動](#hdinsight-mapreduce-activity) | Data Factory 管線中的 HDInsight MapReduce 活動會在您自己或隨選的 Windows/Linux 架構 HDInsight 叢集上執行 MapReduce 程式。
-[HDInsight 串流活動](#hdinsight-streaming-activity) | Data Factory 管線中的 HDInsight 串流活動會在您自己或隨選的 Windows/Linux 架構 HDInsight 叢集上執行 Hadoop 串流程式。
-[HDInsight Spark 活動](#hdinsight-spark-activity) | Data Factory 管線中的 HDInsight Spark 活動會在您自己的 HDInsight 叢集上執行 Spark 程式。 
-[Machine Learning Batch 執行活動](#machine-learning-batch-execution-activity) | Azure Data Factory 可讓您輕鬆地建立管線，使用已發佈的 Azure Machine Learning Web 服務進行預測性分析。 在 Azure Data Factory 管線中使用批次執行活動，您可以叫用 Machine Learning Web 服務來對批次中的資料進行預測。 
-[Machine Learning 更新資源活動](#machine-learning-update-resource-activity) | 經過一段時間，必須使用新的輸入資料集重新訓練 Machine Learning 評分實驗中的預測模型。 完成重新訓練之後，您想要使用已重新訓練的 Machine Learning 模型來更新評分 Web 服務。 您可以使用更新資源活動，以新訓練的模型更新 Web 服務。
-[預存程序活動](#stored-procedure-activity) | 您可以在 Data Factory 管線中使用預存程序活動，以叫用下列其中一個資料存放區中的預存程序：您的企業或 Azure VM 中的 Azure SQL Database、Azure SQL 資料倉儲、SQL Server 資料庫。 
+[HDInsight Hive 活動](#hdinsight-hive-activity) | hello HDInsight Hive 活動 Data Factory 管線中執行您自己的 Hive 查詢或隨 Windows/linux 的 HDInsight 叢集。 
+[HDInsight Pig 活動](#hdinsight-pig-activity) | hello HDInsight Pig 活動 Data Factory 管線中執行您自己的 Pig 查詢或隨 Windows/linux 的 HDInsight 叢集。
+[HDInsight MapReduce 活動](#hdinsight-mapreduce-activity) | hello HDInsight MapReduce 活動 Data Factory 管線中執行您自己的 MapReduce 程式或隨 Windows/linux 的 HDInsight 叢集。
+[HDInsight 串流活動](#hdinsight-streaming-activity) | Data Factory 管線中的 hello HDInsight 串流活動執行您自己的 Hadoop 串流程式或隨 Windows/linux 的 HDInsight 叢集。
+[HDInsight Spark 活動](#hdinsight-spark-activity) | hello HDInsight Spark Data Factory 管線中的活動執行您自己的 HDInsight 叢集上的 Spark 程式。 
+[Machine Learning Batch 執行活動](#machine-learning-batch-execution-activity) | Azure Data Factory 可讓您 tooeasily 建立管線，使用已發行的 Azure Machine Learning web 服務的預測分析。 使用 Azure Data Factory 管線中的 hello 批次執行活動，您可以叫用批次中的 hello 資料機器學習 web 服務 toomake 的預測。 
+[Machine Learning 更新資源活動](#machine-learning-update-resource-activity) | 經過一段時間，在 hello 計分實驗需要 toobe 重新定型使用全新的機器學習中的 hello 預測模型的輸入資料集。 您完成定型之後，您會想要計分 web 服務以 hello tooupdate hello 重新定型機器學習模型。 您可以使用 hello 更新資源活動 tooupdate hello web 服務與 hello 新定型模型。
+[預存程序活動](#stored-procedure-activity) | 您可以使用 Data Factory 管線 tooinvoke 其中一種 hello 下列資料存放區預存程序中的 hello 預存程序活動： Azure SQL Database、 Azure SQL 資料倉儲，在您企業中的 SQL Server 資料庫或 Azure VM。 
 [Data Lake Analytics U-SQL 活動](#data-lake-analytics-u-sql-activity) | Data Lake Analytics U-SQL 活動會在 Azure Data Lake Analytics 叢集上執行 U-SQL 指令碼。  
-[.NET 自訂活動](#net-custom-activity) | 如果您需要以 Data Factory 不支援的方法轉換資料，可以利用自己的資料處理邏輯建立自訂活動，然後在管線中使用活動。 您可以將自訂 .NET 活動設定為使用 Azure Batch 服務或 Azure HDInsight 叢集來執行。 
+[.NET 自訂活動](#net-custom-activity) | 如果您需要 tootransform 資料不支援的 Data Factory 的方式，您可以建立您自己的資料處理邏輯的自訂活動，並使用 hello 管線中的 hello 活動。 您可以設定 hello 自訂.NET 活動 toorun 使用 Azure Batch 服務或 Azure HDInsight 叢集。 
 
      
 ## <a name="hdinsight-hive-activity"></a>HDInsight Hive 活動
-您可以在 Hive 活動 JSON 定義中指定下列屬性。 活動的 type 屬性必須是︰**HDInsightHive**。 您必須先建立 HDInsight 連結服務，再指定它的名稱作為 **linkedServiceName** 屬性的值。 當您將活動類型設為 HDInsightHive 時，**typeProperties** 區段中支援下列屬性︰
+您可以指定下列屬性 Hive 活動 JSON 定義中的 hello。 hello hello 活動的型別屬性必須是： **HDInsightHive**。 您必須先建立 HDInsight 連結服務，並指定它 hello 名稱做為 hello 值**linkedServiceName**屬性。 hello 支援下列屬性在 hello **typeProperties**區段，當您設定活動 tooHDInsightHive hello 類型：
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| script |指定 Hive 指令碼內嵌 |否 |
-| 指令碼路徑 |在 Azure Blob 儲存體中儲存 Hive 指令碼，並提供檔案的路徑。 使用 'script' 或 'scriptPath' 屬性。 兩者無法同時使用。 檔案名稱有區分大小寫。 |否 |
-| 定義 |在使用 'hiveconf' 的 Hive 指令碼內指定參數做為參考的金鑰/值組 |否 |
+| script |指定內嵌 hello Hive 指令碼 |否 |
+| 指令碼路徑 |存放區 hello Hive 指令碼在 Azure blob 儲存體，並提供 hello 路徑 toohello 檔案。 使用 'script' 或 'scriptPath' 屬性。 兩者無法同時使用。 hello 檔案名稱是區分大小寫。 |否 |
+| 定義 |指定參數做為索引鍵/值組內使用 'hiveconf' hello Hive 指令碼參考 |否 |
 
-只有 Hive 活動才有這些類型屬性。 其他屬性 (在 typeProperties 區段外) 在所有活動中都支援。   
+這些類型的屬性是特定 toohello Hive 活動。 （外部 hello typeProperties 區段） 的其他屬性都支援所有活動。   
 
 ### <a name="json-example"></a>JSON 範例
-下列 JSON 定義管線中的 HDInsight Hive 活動。  
+下列 JSON hello 管線中定義 HDInsight Hive 活動。  
 
 ```json
 {
@@ -5162,15 +5162,15 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 如需詳細資訊，請參閱 [Hive 活動](data-factory-hive-activity.md)文件。 
 
 ## <a name="hdinsight-pig-activity"></a>HDInsight Pig 活動
-您可以在 Pig 活動 JSON 定義中指定下列屬性。 活動的 type 屬性必須是︰**HDInsightPig**。 您必須先建立 HDInsight 連結服務，再指定它的名稱作為 **linkedServiceName** 屬性的值。 當您將活動類型設為 HDInsightPig 時，**typeProperties** 區段中支援下列屬性︰ 
+您可以指定下列屬性 Pig 活動 JSON 定義中的 hello。 hello hello 活動的型別屬性必須是： **HDInsightPig**。 您必須先建立 HDInsight 連結服務，並指定它 hello 名稱做為 hello 值**linkedServiceName**屬性。 hello 支援下列屬性在 hello **typeProperties**區段，當您設定活動 tooHDInsightPig hello 類型： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| script |指定 Pig 指令碼內嵌 |否 |
-| 指令碼路徑 |在 Azure blob 儲存體中儲存 Pig 指令碼，並提供檔案的路徑。 使用 'script' 或 'scriptPath' 屬性。 兩者無法同時使用。 檔案名稱有區分大小寫。 |否 |
-| 定義 |在使用 Pig 指令碼內指定參數做為參考的機碼/值組 |否 |
+| script |指定 hello Pig 指令碼內嵌 |否 |
+| 指令碼路徑 |在 Azure blob 儲存體中儲存 hello Pig 指令碼，並提供 hello 路徑 toohello 檔案。 使用 'script' 或 'scriptPath' 屬性。 兩者無法同時使用。 hello 檔案名稱是區分大小寫。 |否 |
+| 定義 |指定參數做為索引鍵/值組內 hello Pig 指令碼參考 |否 |
 
-只有 Pig 活動才有這些類型屬性。 其他屬性 (在 typeProperties 區段外) 在所有活動中都支援。   
+這些類型的屬性是特定 toohello Pig 活動。 （外部 hello typeProperties 區段） 的其他屬性都支援所有活動。   
 
 ### <a name="json-example"></a>JSON 範例
 
@@ -5214,14 +5214,14 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 如需詳細資訊，請參閱 [Pig 活動](#data-factory-pig-activity.md)文件。 
 
 ## <a name="hdinsight-mapreduce-activity"></a>HDInsight MapReduce 活動
-您可以在 MapReduce 活動 JSON 定義中指定下列屬性。 活動的 type 屬性必須是︰**HDInsightMapReduce**。 您必須先建立 HDInsight 連結服務，再指定它的名稱作為 **linkedServiceName** 屬性的值。 當您將活動類型設為 HDInsightMapReduce 時，**typeProperties** 區段中支援下列屬性︰ 
+您可以指定下列屬性 MapReduce 活動 JSON 定義中的 hello。 hello hello 活動的型別屬性必須是： **HDInsightMapReduce**。 您必須先建立 HDInsight 連結服務，並指定它 hello 名稱做為 hello 值**linkedServiceName**屬性。 hello 支援下列屬性在 hello **typeProperties**區段，當您設定活動 tooHDInsightMapReduce hello 類型： 
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| jarLinkedService | 含有 JAR 檔案之 Azure 儲存體的連結服務名稱。 | 是 |
-| jarFilePath | Azure 儲存體中的 JAR 檔案路徑。 | 是 | 
-| className | JAR 檔案中的主要類別名稱。 | 是 | 
-| arguments | MapReduce 程式以逗號分隔的引數清單。 在執行階段，您會看到幾個來自 MapReduce 架構的額外引數 (例如：mapreduce.job.tags)。 若要區分您的引數與 MapReduce 引數，請考慮同時使用選項和值作為引數，如下列範例所示 (-s、--input、--output 等等是後面接著其值的選項) | 否 | 
+| jarLinkedService | 連結 hello 包含 hello JAR 檔案的 Azure 儲存體服務的 hello 的名稱。 | 是 |
+| jarFilePath | 在 hello Azure 儲存體 toohello JAR 檔案路徑。 | 是 | 
+| className | Hello hello JAR 檔案中的主要類別的名稱。 | 是 | 
+| arguments | Hello MapReduce 程式以逗號分隔的引數清單。 在執行階段，您會看到幾個額外的引數 (例如： mapreduce.job.tags) 從 hello MapReduce 架構。 toodifferentiate hello MapReduce 引數時，您的引數，請考慮使用選項和值做為引數中 hello 下列範例所示 (-s，-輸入、--輸出等，是後面緊跟著其值的選項) | 否 | 
 
 ### <a name="json-example"></a>JSON 範例
 
@@ -5229,7 +5229,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 {
     "name": "MahoutMapReduceSamplePipeline",
     "properties": {
-        "description": "Sample Pipeline to Run a Mahout Custom Map Reduce Jar. This job calculates an Item Similarity Matrix to determine the similarity between two items",
+        "description": "Sample Pipeline tooRun a Mahout Custom Map Reduce Jar. This job calculates an Item Similarity Matrix toodetermine hello similarity between two items",
         "activities": [
             {
                 "type": "HDInsightMapReduce",
@@ -5259,7 +5259,7 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
                     "interval": 1
                 },
                 "name": "MahoutActivity",
-                "description": "Custom Map Reduce to generate Mahout result",
+                "description": "Custom Map Reduce toogenerate Mahout result",
                 "linkedServiceName": "HDInsightLinkedService"
             }
         ],
@@ -5272,21 +5272,21 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 如需詳細資訊，請參閱 [MapReduce 活動](data-factory-map-reduce.md)文件。 
 
 ## <a name="hdinsight-streaming-activity"></a>HDInsight 串流活動
-您可以在 Hadoop 串流活動 JSON 定義中指定下列屬性。 活動的 type 屬性必須是︰**HDInsightStreaming**。 您必須先建立 HDInsight 連結服務，再指定它的名稱作為 **linkedServiceName** 屬性的值。 當您將活動類型設為 HDInsightStreaming 時，**typeProperties** 區段中支援下列屬性︰ 
+您可以指定下列屬性 Hadoop 串流活動 JSON 定義中的 hello。 hello hello 活動的型別屬性必須是： **HDInsightStreaming**。 您必須先建立 HDInsight 連結服務，並指定它 hello 名稱做為 hello 值**linkedServiceName**屬性。 hello 支援下列屬性在 hello **typeProperties**區段，當您設定活動 tooHDInsightStreaming hello 類型： 
 
 | 屬性 | 說明 | 
 | --- | --- |
-| mapper | 對應程式可執行檔的名稱。 在範例中，cat.exe 是對應程式可執行檔。| 
-| reducer | 歸納器可執行檔的名稱。 在範例中，cat.exe 是減壓器可執行檔。 | 
-| input | 對應工具的輸入檔 (包括位置)。 在 "wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt" 範例中：adfsample 是 blob 容器，example/data/Gutenberg 是資料夾，而 davinci.txt 是 blob。 |
-| output | 歸納器的輸出檔 (包括位置)。 Hadoop 串流作業的輸出會寫入針對這個屬性指定的位置。 |
-| filePaths | 對應器和歸納器可執行檔的路徑。 在 "adfsample/example/apps/wc.exe" 範例中，adfsample 是 blob 容器，example/apps 是資料夾，而 wc.exe 是可執行檔。 | 
-| fileLinkedService | Azure 儲存體連結服務，代表含有 filePaths 區段中指定之檔案的 Azure 儲存體。 | 
-| arguments | MapReduce 程式以逗號分隔的引數清單。 在執行階段，您會看到幾個來自 MapReduce 架構的額外引數 (例如：mapreduce.job.tags)。 若要區分您的引數與 MapReduce 引數，請考慮同時使用選項和值作為引數，如下列範例所示 (-s、--input、--output 等等是後面接著其值的選項) | 
-| getDebugInfo | 選擇性元素。 該屬性設定為 [失敗] 時，只能在執行失敗時下載記錄檔。 當其設定為「所有」時，無論執行狀態為何，一律下載記錄檔。 | 
+| mapper | Hello 對應工具可執行檔的名稱。 在 hello 範例 cat.exe 會是 hello 對應工具可執行檔。| 
+| reducer | Hello 減壓器可執行檔的名稱。 在 hello 範例 wc.exe 是 hello 減壓器可執行檔。 | 
+| input | 輸入的檔 （包括位置） hello 對應工具。 在 hello 範例: 「 wasb://adfsample@<account name>.blob.core.windows.net/example/data/gutenberg/davinci.txt": adfsample 是 blob 容器，hello 範例/data/Gutenberg 是 hello 資料夾，而 davinci.txt 是 hello blob。 |
+| output | 輸出檔 （包括位置） hello 減壓器。 hello hello Hadoop 串流工作輸出寫入 toohello 針對此屬性指定的位置。 |
+| filePaths | Hello 對應工具和減壓器可執行檔的路徑。 在 hello 範例:"adfsample/example/apps/wc.exe"，adfsample 是 hello blob 容器，example/apps 是 hello 資料夾和 wc.exe 是可執行檔的 hello。 | 
+| fileLinkedService | Azure 儲存體連結代表 hello hello hello filePaths 區段中指定的檔案所在的 Azure 儲存體服務。 | 
+| arguments | Hello MapReduce 程式以逗號分隔的引數清單。 在執行階段，您會看到幾個額外的引數 (例如： mapreduce.job.tags) 從 hello MapReduce 架構。 toodifferentiate hello MapReduce 引數時，您的引數，請考慮使用選項和值做為引數中 hello 下列範例所示 (-s，-輸入、--輸出等，是後面緊跟著其值的選項) | 
+| getDebugInfo | 選擇性元素。 當它設定為 tooFailure 時，只在失敗下載 hello 記錄檔。 當它設定為 tooAll 時，無論 hello 執行狀態永遠下載記錄檔。 | 
 
 > [!NOTE]
-> 您必須在 **outputs** 屬性中指定 Hadoop 串流活動的輸出資料集。 這個資料集可能只是驅動管線排程 (每小時、每天等) 所需的虛設資料集。 如果活動不需要有輸入，您可以略過不用在 **inputs** 屬性中指定活動的輸入資料集。  
+> 您必須指定 hello Hadoop 資料流活動的輸出資料集**輸出**屬性。 此資料集可以是只的空資料集是必要的 toodrive hello 管線排程 （每小時、 每天、 等等）。 如果 hello 活動不接受輸入，您可以略過指定 hello 活動的輸入資料集**輸入**屬性。  
 
 ## <a name="json-example"></a>JSON 範例
 
@@ -5336,18 +5336,18 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
 如需詳細資訊，請參閱 [Hadoop 串流活動](data-factory-hadoop-streaming-activity.md)文件。 
 
 ## <a name="hdinsight-spark-activity"></a>HDInsight Spark 活動
-您可以在 Spark 活動 JSON 定義中指定下列屬性。 活動的 type 屬性必須是︰**HDInsightSpark**。 您必須先建立 HDInsight 連結服務，再指定它的名稱作為 **linkedServiceName** 屬性的值。 當您將活動類型設為 HDInsightSpark 時，**typeProperties** 區段中支援下列屬性︰ 
+您可以指定下列屬性的 Spark 活動 JSON 定義中的 hello。 hello hello 活動的型別屬性必須是： **HDInsightSpark**。 您必須先建立 HDInsight 連結服務，並指定它 hello 名稱做為 hello 值**linkedServiceName**屬性。 hello 支援下列屬性在 hello **typeProperties**區段，當您設定活動 tooHDInsightSpark hello 類型： 
 
 | 屬性 | 說明 | 必要 |
 | -------- | ----------- | -------- |
-| rootPath | Spark 檔案所在的 Azure Blob 容器和資料夾。 檔案名稱有區分大小寫。 | 是 |
-| entryFilePath | Spark 程式碼/套件之根資料夾的相對路徑。 | 是 |
+| rootPath | hello Azure Blob 容器，並包含 hello Spark 檔案的資料夾。 hello 檔案名稱是區分大小寫。 | 是 |
+| entryFilePath | 相對路徑 toohello 的 hello Spark 程式碼/封裝的根資料夾。 | 是 |
 | className | 應用程式的 Java/Spark 主要類別 | 否 | 
-| arguments | Spark 程式的命令列引數清單。 | 否 | 
-| proxyUser | 模擬來執行 Spark 程式的使用者帳戶 | 否 | 
+| arguments | 命令列引數 toohello Spark 程式的清單。 | 否 | 
+| proxyUser | hello 使用者帳戶 tooimpersonate tooexecute hello Spark 程式 | 否 | 
 | sparkConfig | Spark 組態屬性。 | 否 | 
-| getDebugInfo | 指定何時將 Spark 記錄檔複製到 HDInsight 叢集所使用 (或) sparkJobLinkedService 所指定的 Azure 儲存體。 允許的值︰None、Always 或 Failure。 預設值：None。 | 否 | 
-| sparkJobLinkedService | 存放 Spark 作業檔案、相依性和記錄的 Azure 儲存體連結服務。  如果您未指定此屬性的值，則會使用與 HDInsight 叢集相關聯的儲存體。 | 否 |
+| getDebugInfo | 指定當 hello Spark 記錄檔會複製的 toohello HDInsight 叢集所使用的 Azure 儲存體 （或） sparkJobLinkedService 所指定。 允許的值︰None、Always 或 Failure。 預設值：None。 | 否 | 
+| sparkJobLinkedService | hello Azure 儲存體連結服務的 hello Spark 工作檔案、 相依性，以及記錄檔。  如果您未指定此屬性的值，則會使用 hello 與 HDInsight 叢集相關聯的儲存體。 | 否 |
 
 ### <a name="json-example"></a>JSON 範例
 
@@ -5377,31 +5377,31 @@ Azure Data Factory 服務可自動建立以 Windows/Linux 為基礎的隨選 HDI
     }
 }
 ```
-請注意下列幾點： 
+請注意下列點 hello: 
 
-- **type** 屬性會設為 **HDInsightSpark**。
-- **rootPath** 會設為 **adfspark\\pyFiles**，其中 adfspark 是 Azure Blob 容器，而 pyFiles 是該容器中的正常資料夾。 在此範例中，Azure Blob 儲存體是與 Spark 叢集相關聯的儲存體。 您可以將檔案上傳至不同的 Azure 儲存體。 如果您這麼做，請建立 Azure 儲存體連結服務，以將該儲存體帳戶連結至資料處理站。 然後，將連結服務的名稱指定為 **sparkJobLinkedService** 屬性的值。 如需此屬性和 Spark 活動所支援的其他屬性詳細資訊，請參閱 [Spark 活動屬性](#spark-activity-properties)。
-- **entryFilePath** 會設為 **test.py**，這就是 python 檔案。 
-- **getDebugInfo** 屬性會設為 **Always**，表示永遠產生記錄檔 (不論成功或失敗)。  
+- hello**類型**屬性設定太**HDInsightSpark**。
+- hello **rootPath**設定得**adfspark\\pyFiles** adfspark 所在 hello Azure Blob 容器和 pyFiles 是正常的資料夾，該容器中。 在此範例中，hello Azure Blob 儲存體是 hello 與 hello Spark 叢集相關聯的其中一個。 您可以上傳 hello 檔案 tooa 不同的 Azure 儲存體。 如果您這樣做，請建立 Azure 儲存體連結服務 toolink 該儲存體帳戶 toohello 資料 factory。 然後，指定 hello hello 連結服務名稱做為 hello 值**sparkJobLinkedService**屬性。 請參閱[Spark 活動屬性](#spark-activity-properties)如需詳細資訊，這個屬性，而且支援 hello Spark 活動的其他內容。
+- hello **entryFilePath**設定 toohello **test.py**，這是 hello python 檔案。 
+- hello **getDebugInfo**屬性設定太**永遠**，這表示 hello 記錄檔一律會產生 （成功或失敗）。  
 
     > [!IMPORTANT]
-    > 我們建議您不要在生產環境中將這個屬性設定為 Always，除非您要針對問題進行疑難排解。 
-- **outputs** 區段有一個輸出資料集。 您必須指定輸出資料集，即使 Spark 程式不會產生任何輸出。 輸出資料集可以驅動管線的排程 (每小時、每天等)。
+    > 我們建議您沒有設定這個屬性 tooAlways 加在生產環境中，除非您疑難排解問題。 
+- hello**輸出**區段具有一個輸出資料集。 您必須指定輸出資料集，即使 hello spark 程式不會產生任何輸出。 hello 輸出資料集的磁碟機 hello 排程 hello 管線 （每小時、 每天、 等等）。
 
-如需活動的詳細資訊，請參閱 [Spark 活動](data-factory-spark.md)文件。  
+如需 hello 活動的詳細資訊，請參閱[Spark 活動](data-factory-spark.md)發行項。  
 
 ## <a name="machine-learning-batch-execution-activity"></a>Machine Learning 批次執行活動
-您可以在 Azure ML 批次執行活動 JSON 定義中指定下列屬性。 活動的 type 屬性必須是︰**AzureMLBatchExecution**。 您必須先建立 Azure Machine Learning 連結服務，再指定它的名稱作為 **linkedServiceName** 屬性的值。 當您將活動類型設為 AzureMLBatchExecution 時，**typeProperties** 區段中支援下列屬性︰
+您可以指定下列屬性，Azure ML 批次執行活動 JSON 定義中的 hello。 hello hello 活動的型別屬性必須是： **AzureMLBatchExecution**。 您必須建立 Azure 機器學習連結的服務第一次，並指定做為 hello 值的 hello 目的**linkedServiceName**屬性。 hello 支援下列屬性在 hello **typeProperties**區段，當您設定活動 tooAzureMLBatchExecution hello 類型：
 
 屬性 | 說明 | 必要 
 -------- | ----------- | --------
-webServiceInput | 傳遞作為 Azure ML Web 服務之輸入的資料集。 此資料集也必須包含在活動的輸入中。 |使用 webServiceInput 或 webServiceInputs。 | 
-webServiceInputs | 指定要傳遞作為 Azure ML Web 服務之輸入的資料集。 如果 Web 服務接受多個輸入，請使用 webServiceInputs 屬性，而不要使用 webServiceInput 屬性。 **webServiceInputs** 所參考的資料集也必須包含在活動的 **inputs** 中。 | 使用 webServiceInput 或 webServiceInputs。 | 
-webServiceOutputs | 指派作為 Azure ML Web 服務之輸出的資料集。 Web 服務會在此資料集中傳回輸出資料。 | 是 | 
-globalParameters | 在此區段中指定 Web 服務參數的值。 | 否 | 
+webServiceInput | hello 資料集 toobe 傳遞做為輸入 hello Azure ML web 服務。 此資料集也必須包含 hello 輸入 hello 活動中。 |使用 webServiceInput 或 webServiceInputs。 | 
+webServiceInputs | 指定資料集 toobe 傳遞做為輸入 hello Azure ML web 服務。 如果 hello web 服務接受多個輸入，使用 hello webServiceInputs 屬性而不是使用 hello webServiceInput 屬性。 資料集所參考的 hello **webServiceInputs**也必須包含在 hello 活動**輸入**。 | 使用 webServiceInput 或 webServiceInputs。 | 
+webServiceOutputs | 已被指派為輸出 hello Azure ML web 服務的 hello 資料集。 hello web 服務傳回此資料集的輸出資料。 | 是 | 
+globalParameters | 在此區段指定 hello web 服務參數的值。 | 否 | 
 
 ### <a name="json-example"></a>JSON 範例
-在這個範例中，活動有資料集 **MLSqlInput** 作為輸入，也有 **MLSqlOutput** 作為輸出。 **MLSqlInput** 透過 **webServiceInput** JSON 屬性，傳遞至 Web 服務作為輸入。 **MLSqlOutput** 透過 **webServiceOutputs** JSON 屬性，傳遞至 Web 服務作為輸出。 
+在此範例中，hello 活動具有 hello 資料集**MLSqlInput**做為輸入和**MLSqlOutput**做為 hello 輸出。 hello **MLSqlInput**被當做輸入的 toohello web 服務，方法是使用 hello **webServiceInput** JSON 屬性。 hello **MLSqlOutput**被當做輸出 toohello Web 服務，方法是使用 hello **webServiceOutputs** JSON 屬性。 
 
 ```json
 {
@@ -5441,21 +5441,21 @@ globalParameters | 在此區段中指定 Web 服務參數的值。 | 否 |
 }
 ```
 
-在 JSON 範例中，已部署的 Azure Machine Learning Web 服務使用讀取器和寫入器模組，讀取 Azure SQL Database 的資料，或將資料寫入其中。 此 Web 服務會公開下列 4 個參數：資料庫伺服器名稱、資料庫名稱、伺服器使用者帳戶名稱和伺服器使用者帳戶密碼。
+在 hello JSON 範例中，hello 部署 Azure 機器學習 Web 服務會使用讀取器和寫入器模組 tooread/寫入資料，從 / tooan Azure SQL Database。 此 Web 服務會公開下列四個參數的 hello： 資料庫伺服器名稱、 資料庫名稱、 伺服器使用者帳戶名稱，以及伺服器的使用者帳戶密碼。
 
 > [!NOTE]
-> 只有當輸入及輸出屬於 AzureMLBatchExecution 活動時，才可以當做參數傳遞至 Web 服務。 例如，在上面的 JSON 片段中，MLSqlInput 是 AzureMLBatchExecution 活動的輸入，其透過 webServiceInput 參數傳遞至 Web 服務作為輸入。
+> 只有輸入及輸出的 hello AzureMLBatchExecution 活動可以傳遞為參數 toohello Web 服務。 例如，在 JSON 片段上方 hello，MLSqlInput 是輸入的 toohello AzureMLBatchExecution 活動，以透過 webServiceInput 參數當做輸入的 toohello Web 服務。
 
 ## <a name="machine-learning-update-resource-activity"></a>Machine Learning 更新資源活動
-您可以在 Azure ML 更新資源活動 JSON 定義中指定下列屬性。 活動的 type 屬性必須是︰**AzureMLUpdateResource**。 您必須先建立 Azure Machine Learning 連結服務，再指定它的名稱作為 **linkedServiceName** 屬性的值。 當您將活動類型設為 AzureMLUpdateResource 時，**typeProperties** 區段中支援下列屬性︰
+您可以指定下列屬性，Azure ML 更新資源活動 JSON 定義中的 hello。 hello hello 活動的型別屬性必須是： **AzureMLUpdateResource**。 您必須建立 Azure 機器學習連結的服務第一次，並指定做為 hello 值的 hello 目的**linkedServiceName**屬性。 hello 支援下列屬性在 hello **typeProperties**區段，當您設定活動 tooAzureMLUpdateResource hello 類型：
 
 屬性 | 說明 | 必要 
 -------- | ----------- | --------
-trainedModelName | 重新定型之模型的名稱。 | 是 |  
-trainedModelDatasetName | 此資料集指向重新訓練作業所傳回的 iLearner 檔案。 | 是 | 
+trainedModelName | Hello 的名稱重新定型模型。 | 是 |  
+trainedModelDatasetName | 資料集指標的 toohello ilearner 做為檔案，hello 定型作業所傳回。 | 是 | 
 
 ### <a name="json-example"></a>JSON 範例
-管線有兩個活動：**AzureMLBatchExecution** 和 **AzureMLUpdateResource**。 Azure ML 批次執行活動會以訓練資料做為輸入並產生 iLearner 檔案做為輸出。 此活動會使用輸入訓練資料叫用訓練 Web 服務 (公開為 Web 服務的訓練實驗)，並從 Web 服務接收 iLearner 檔案。 PlaceholderBlob 只是 Azure Data Factory 服務執行管線所需的虛擬輸出資料集而已。
+hello 管線有兩個活動： **AzureMLBatchExecution**和**AzureMLUpdateResource**。 hello Azure ML 批次執行的活動會接受做為輸入的 hello 定型資料，並產生 ilearner 做為檔案，做為輸出。 hello 活動與 hello 輸入培訓資料叫用 hello 訓練 web 服務 （定型實驗公開為 web 服務），並從 hello webservice 接收 hello ilearner 做為檔。 hello placeholderBlob 是所需的 hello Azure Data Factory 服務 toorun hello 管線只要 dummy 輸出資料集。
 
 
 ```json
@@ -5514,16 +5514,16 @@ trainedModelDatasetName | 此資料集指向重新訓練作業所傳回的 iLear
 ```
 
 ## <a name="data-lake-analytics-u-sql-activity"></a>Data Lake Analytics U-SQL 活動
-您可以在 U-SQL 活動 JSON 定義中指定下列屬性。 活動的 type 屬性必須是︰**DataLakeAnalyticsU-SQL**。 您必須建立 Azure Data Lake Analytics 連結服務，並指定它的名稱作為 **linkedServiceName** 屬性的值。 當您將活動類型設為 DataLakeAnalyticsU-SQL 時，**typeProperties** 區段中支援下列屬性︰ 
+您可以指定下列屬性 U-SQL 活動 JSON 定義中的 hello。 hello hello 活動的型別屬性必須是： **DataLakeAnalyticsU SQL**。 您必須建立連結的 Azure 資料湖分析服務，並指定它 hello 名稱做為 hello 值**linkedServiceName**屬性。 hello 支援下列屬性在 hello **typeProperties**區段，當您設定活動 tooDataLakeAnalyticsU SQL hello 類型： 
 
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| scriptPath |包含 U-SQL 指令碼的資料夾的路徑。 檔案的名稱有區分大小寫。 |否 (如果您使用指令碼) |
-| scriptLinkedService |連結服務會連結包含 Data Factory 的指令碼的儲存體 |否 (如果您使用指令碼) |
+| scriptPath |路徑 toofolder 包含 hello U-SQL 指令碼。 Hello 檔案的名稱會區分大小寫。 |否 (如果您使用指令碼) |
+| scriptLinkedService |連結包含 hello 指令碼 toohello 資料 factory 的 hello 儲存體連結的服務 |否 (如果您使用指令碼) |
 | script |指定內嵌指令碼而不是指定 scriptPath 和 scriptLinkedService。 例如："script": "CREATE DATABASE test"。 |否 (如果您使用 scriptPath 和 scriptLinkedService) |
-| degreeOfParallelism |同時用來執行作業的節點數目上限。 |否 |
-| 優先順序 |判斷應該選取排入佇列的哪些工作首先執行。 編號愈低，優先順序愈高。 |否 |
-| 參數 |U-SQL 指令碼的參數 |否 |
+| degreeOfParallelism |hello 的節點數目上限，同時使用 toorun hello 作業。 |否 |
+| 優先順序 |決定從所有已排入佇列的作業應該選取的 toorun 第一次。 hello 低 hello 數字，hello hello 優先順序越高。 |否 |
+| 參數 |Hello U-SQL 指令碼的參數 |否 |
 
 ### <a name="json-example"></a>JSON 範例
 
@@ -5581,22 +5581,22 @@ trainedModelDatasetName | 此資料集指向重新訓練作業所傳回的 iLear
 如需詳細資訊，請參閱 [Data Lake Analytics U-SQL 活動](data-factory-usql-activity.md)。 
 
 ## <a name="stored-procedure-activity"></a>預存程序活動
-您可以在預存程序活動 JSON 定義中指定下列屬性。 活動的 type 屬性必須是︰**SqlServerStoredProcedure**。 您必須建立下列其中一個連結服務，並指定連結服務的名稱作為 **linkedServiceName** 屬性的值：
+您可以指定下列屬性的預存程序活動 JSON 定義中的 hello。 hello hello 活動的型別屬性必須是： **SqlServerStoredProcedure**。 您必須建立一個 hello 遵循連結的服務，並指定 hello hello 連結服務名稱做為 hello 值**linkedServiceName**屬性：
 
 - SQL Server 
 - Azure SQL Database
 - Azure SQL 資料倉儲
 
-當您將活動類型設為 SqlServerStoredProcedure 時，**typeProperties** 區段中支援下列屬性︰
+hello 支援下列屬性在 hello **typeProperties**區段，當您設定活動 tooSqlServerStoredProcedure hello 類型：
 
 | 屬性 | 說明 | 必要 |
 | --- | --- | --- |
-| storedProcedureName |指定 Azure SQL Database 或 Azure SQL 資料倉儲中預存程序的名稱，由輸出資料表使用的連結的服務代表。 |是 |
-| storedProcedureParameters |指定預存程序參數的值。 如果您要為參數傳遞 null，請使用語法："param1": null (全部小寫)。 請參閱下列範例以了解如何使用這個屬性。 |否 |
+| storedProcedureName |指定 hello Azure SQL database 或 Azure SQL 資料倉儲由 hello 輸出資料表中使用的 hello 連結服務中的 hello hello 預存程序名稱。 |是 |
+| storedProcedureParameters |指定預存程序參數的值。 如果您需要 toopass null 參數，使用 hello 語法:"param1": null （所有大小寫）。 請參閱下列有關使用這個屬性的範例 toolearn hello。 |否 |
 
-如果您有指定輸入資料集，它必須可供使用 (「就緒」狀態)，預存程序活動才能執行。 在預存程序中輸入資料集無法做為參數取用。 它只會用來在啟動預存程序活動之前檢查相依性。 您必須指定預存程序活動的輸出資料集。 
+如果您指定的輸入資料集，它必須可用 （處於 [就緒]' 的狀態） hello 預存程序活動 toorun。 hello 輸入資料集無法取用 hello 預存程序中，做為參數。 起始 hello 預存程序活動之前，它是只使用的 toocheck hello 相依性。 您必須指定預存程序活動的輸出資料集。 
 
-輸出資料集會指定預存程序活動的 **排程** (每小時、每週、每月等)。 輸出資料集必須使用參考了想在其中執行預存程序之 Azure SQL Database、Azure SQL 資料倉儲或 SQL Server Database 的 **連結服務** 。 輸出資料集可以做為傳遞預存程序結果，以供管線中的另一個活動 ([鏈結活動](data-factory-scheduling-and-execution.md##multiple-activities-in-a-pipeline)) 進行後續處理的方式。 不過，Data Factory 不會自動將預存程序的輸出寫入至此資料集。 它是會寫入至輸出資料集所指向之 SQL 資料表的預存程序。 在某些情況下，輸出資料集可以是 **虛擬資料集**，只會用來指定用於執行預存程序活動的排程。  
+輸出資料集指定 hello**排程**hello 預存程序活動 （每小時、 每週、 每月等）。 hello 輸出資料集必須使用**連結服務**參考 tooan Azure SQL Database 或 Azure SQL 資料倉儲或您想在其中 hello toorun 預存程序的 SQL Server 資料庫。 hello 輸出資料集可以做為方法 toopass hello hello 預存程序的結果進行後續處理另一個活動 ([鏈結活動](data-factory-scheduling-and-execution.md##multiple-activities-in-a-pipeline)) hello 管線中。 不過，Data Factory 不會自動寫入預存程序 toothis 資料集的 hello 輸出。 它是 hello 預存程序 hello 輸出資料集指向該寫入 tooa SQL 資料表。 在某些情況下，可以是 hello 輸出資料集**空資料集**，用僅執行 hello toospecify hello 排程預存程序活動。  
 
 ### <a name="json-example"></a>JSON 範例
 
@@ -5627,15 +5627,15 @@ trainedModelDatasetName | 此資料集指向重新訓練作業所傳回的 iLear
 如需詳細資訊，請參閱[預存程序活動](data-factory-stored-proc-activity.md)。 
 
 ## <a name="net-custom-activity"></a>.NET 自訂活動
-您可以在 .NET 自訂活動 JSON 定義中指定下列屬性。 活動的 type 屬性必須是︰**DotNetActivity**。 您必須建立 Azure HDInsight 連結服務，或 Azure Batch 連結服務，然後指定連結服務的名稱作為 **linkedServiceName** 屬性的值。 當您將活動類型設為 DotNetActivity 時，**typeProperties** 區段中支援下列屬性︰
+您可以指定下列屬性.NET 自訂活動 JSON 定義中的 hello。 hello hello 活動的型別屬性必須是： **DotNetActivity**。 您必須建立 Azure HDInsight 連結服務或 Azure 批次連結服務，並指定 hello hello 連結服務名稱做為 hello 值**linkedServiceName**屬性。 hello 支援下列屬性在 hello **typeProperties**區段，當您設定活動 tooDotNetActivity hello 類型：
  
 | 屬性 | 說明 | 必要 |
 |:--- |:--- |:--- |
-| AssemblyName | 組件的名稱。 在此範例中，它是︰**MyDotnetActivity.dll**。 | 是 |
-| EntryPoint |實作 IDotNetActivity 介面的類別名稱。 在此範例中，它是︰**MyDotNetActivityNS.MyDotNetActivity**，其中 MyDotNetActivityNS 是命名空間，而 MyDotNetActivity 是類別。  | 是 | 
-| PackageLinkedService | Azure 儲存體連結服務的名稱，指向包含自訂活動 zip 檔案的 Blob 儲存體。 在此範例中，它是：**AzureStorageLinkedService**。| 是 |
-| PackageFile | zip 檔案的名稱。 在此範例中，它是：**customactivitycontainer/MyDotNetActivity.zip**。 | 是 |
-| extendedProperties | 可定義並傳遞至 .NET 程式碼的擴充屬性。 在此範例中，**SliceStart** 變數的值是根據 SliceStart 系統變數來設定。 | 否 | 
+| AssemblyName | Hello 組件名稱。 在 hello 範例很： **MyDotnetActivity.dll**。 | 是 |
+| EntryPoint |Hello 類別可實作 hello IDotNetActivity 介面的名稱。 在 hello 範例很： **MyDotNetActivityNS.MyDotNetActivity**其中 MyDotNetActivityNS 是 hello 命名空間且 MyDotNetActivity hello 類別。  | 是 | 
+| PackageLinkedService | Hello 點 toohello blob 儲存體包含 hello 自訂活動的 zip 檔案的 Azure 儲存體連結服務的名稱。 在 hello 範例很： **AzureStorageLinkedService**。| 是 |
+| PackageFile | Hello zip 檔案的名稱。 在 hello 範例很： **customactivitycontainer/MyDotNetActivity.zip**。 | 是 |
+| extendedProperties | 您可以定義及傳遞 toohello.NET 程式碼的擴充的屬性。 在此範例中，hello **SliceStart**變數設定為 tooa 根據 hello SliceStart 系統變數的值。 | 否 | 
 
 ### <a name="json-example"></a>JSON 範例
 
@@ -5687,7 +5687,7 @@ trainedModelDatasetName | 此資料集指向重新訓練作業所傳回的 iLear
 如需詳細資訊，請參閱[在 Data Factory 中使用自訂活動](data-factory-use-custom-activities.md)文件。 
 
 ## <a name="next-steps"></a>後續步驟
-請參閱下列教學課程： 
+請參閱下列教學課程的 hello: 
 
 - [教學課程：建立具有複製活動的管線](data-factory-copy-activity-tutorial-using-azure-portal.md)
 - [教學課程：建立具有 Hive 活動的管線](data-factory-build-your-first-pipeline-using-editor.md)

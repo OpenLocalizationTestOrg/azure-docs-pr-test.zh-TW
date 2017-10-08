@@ -1,5 +1,5 @@
 ---
-title: "使用複製活動來移動資料 | Microsoft Docs"
+title: "使用複製活動 aaaMove 資料 |Microsoft 文件"
 description: "了解 Data Factory 管線中的資料移動︰雲端存放區之間和內部部署與雲端之間的資料移轉。 使用「複製活動」。"
 keywords: "複製資料, 資料移動, 資料移轉, 傳輸資料"
 services: data-factory
@@ -15,15 +15,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: jingwang
-ms.openlocfilehash: 0cefbe1303de1cfa46cc4b771c0cd3aa7819597c
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 29b74154b9006795ead3b0ee9638a3dbf2c5d831
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="move-data-by-using-copy-activity"></a>使用複製活動來移動資料
 ## <a name="overview"></a>概觀
-在 Azure Data Factory 中，您可以使用「複製活動」在內部部署與雲端資料存放區之間複製資料。 複製資料之後，可以將它進一步轉換及進行分析。 您也可以使用「複製活動」來發佈商業智慧 (BI) 及應用程式使用情況的轉換和分析結果。
+在 Azure Data Factory，您可以使用複製活動 toocopy 資料在內部部署和雲端之間的資料存放區。 複製 hello 資料之後，它可以進一步轉換及分析。 您也可以使用複製活動 toopublish 轉換和分析結果的商業智慧 (BI) 和應用程式使用。
 
 ![複製活動的角色](media/data-factory-data-movement-activities/copy-activity.png)
 
@@ -32,62 +32,62 @@ ms.lasthandoff: 08/03/2017
 首先，讓我們看看在兩個雲端資料存放區之間，以及在內部部署資料存放區與雲端資料存放區之間，如何進行資料移轉。
 
 > [!NOTE]
-> 若要了解活動的大致情況，請參閱 [了解管線和活動](data-factory-create-pipelines.md)。
+> 一般情況下，請參閱有關活動 toolearn[了解管線和活動](data-factory-create-pipelines.md)。
 >
 >
 
 ### <a name="copy-data-between-two-cloud-data-stores"></a>在兩個雲端資料存放區之間複製資料
-當來源和接收資料存放區都在雲端時，「複製活動」就會經歷下列階段，將資料從來源複製到接收資料存放區。 為「複製活動」提供技術支援的雲端服務會：
+Hello 雲端來源和接收的資料存放區時，複製活動會經歷下列階段 toocopy 資料從 hello 來源 toohello 接收 hello。 hello 力量複製活動的服務：
 
-1. 從來源資料存放區讀取資料。
-2. 執行序列化/還原序列化、壓縮/解壓縮、資料行對應及類型轉換。 它會根據輸入資料集、輸出資料集及「複製活動」的組態執行這些作業。
-3. 將資料寫入目的地資料存放區。
+1. 從 hello 來源資料存放區讀取資料。
+2. 執行序列化/還原序列化、壓縮/解壓縮、資料行對應及類型轉換。 它會根據 hello 輸入資料集、 輸出資料集，以及複製活動的 hello 設定這些作業。
+3. 寫入資料 toohello 目的地資料存放區。
 
-此服務會自動選擇最佳區域來執行資料移動。 此區域通常是最靠近接收資料存放區的區域。
+hello 服務會自動選擇 hello 最佳區域 tooperform hello 資料移動。 此區域通常是 hello 一個最接近 toohello 接收資料存放區。
 
 ![從雲端複製到雲端](./media/data-factory-data-movement-activities/cloud-to-cloud.png)
 
 ### <a name="copy-data-between-an-on-premises-data-store-and-a-cloud-data-store"></a>在內部部署資料存放區和雲端資料存放區之間複製資料
-若要安全地在內部部署資料存放區與雲端資料存放區之間移動資料，請在內部部署機器上安裝「資料管理閘道」。 「資料管理閘道」是一個能夠啟用混合式資料移動及處理的代理程式。 您可以將它安裝在與資料存放區本身相同的機器上，或是安裝在可存取該資料存放區的另一部機器上。
+toosecurely 移動資料的內部部署資料存放區之間的雲端資料存放區中，您在內部部署的電腦上安裝資料管理閘道器。 「資料管理閘道」是一個能夠啟用混合式資料移動及處理的代理程式。 您可以安裝在相同機器 hello 資料存放區本身，因為 hello 或具有存取 toohello 資料儲存在不同電腦上。
 
-在此案例中，「資料管理閘道」會執行序列化/還原序列化、壓縮/解壓縮、資料行對應及類型轉換。 資料不會流經 Azure Data Factory 服務。 取而代之的是，「資料管理閘道」會直接將資料寫入到目的地存放區。
+在此案例中，資料管理閘道器會執行 hello 序列化/還原序列化、 壓縮/解壓縮、 資料行對應，及類型轉換。 資料不會流過 hello Azure Data Factory 服務透過。 相反地，資料管理閘道器會直接寫入 hello 資料 toohello 目的地存放區。
 
 ![從內部部署複製到雲端](./media/data-factory-data-movement-activities/onprem-to-cloud.png)
 
 如需簡介和逐步解說，請參閱 [在內部部署和雲端資料存放區之間移動資料](data-factory-move-data-between-onprem-and-cloud.md) 。 如需有關此代理程式的詳細資訊，請參閱 [資料管理閘道](data-factory-data-management-gateway.md) 。
 
-您也可以使用「資料管理閘道」，將資料移出/移入 Azure IaaS 虛擬機器 (VM) 上所裝載的支援資料存放區。 在此情況下，您可以將「資料管理閘道」安裝在與資料存放區本身相同的 VM 上，或是安裝在可存取該資料存放區的另一部 VM 上。
+您也可以將資料從 / toosupported 資料存放區，使用資料管理閘道器裝載在 Azure IaaS 虛擬機器 (Vm) 上。 在此情況下，您可以在安裝資料管理閘道器 hello hello 資料存放區本身，或具有存取 toohello 資料儲存在個別 VM 上的相同的 VM。
 
 ## <a name="supported-data-stores-and-formats"></a>支援的資料存放區和格式
-Data Factory 中的複製活動會將資料從來源資料存放區複製到接收資料存放區。 Data Factory 支援下列資料存放區。 可將來自任何來源的資料寫入任何接收器。 按一下資料存放區，即可了解如何將資料複製到該存放區，以及從該存放區複製資料。
+Data Factory 中的複製活動會將資料從來源資料存放區 tooa 接收資料存放區。 Data Factory 支援下列資料存放區的 hello。 從任何來源的資料可以寫入 tooany 接收。 按一下 資料存放區 toolearn 如何 toocopy 資料 tooand 從該存放區。
 
 > [!NOTE] 
-> 如果您需要將資料移入/移出「複製活動」不支援的資料存放區，請在 Data Factory 中使用 **自訂活動** 搭配您自己的邏輯來複製/移動資料。 如需有關建立及使用自訂活動的詳細資料，請參閱 [在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)。
+> 如果您需要 toomove 資料複製活動不支援的資料存放區中，使用**自訂活動**您自己的邏輯複製/移動資料的 Data Factory 中。 如需有關建立及使用自訂活動的詳細資料，請參閱 [在 Azure Data Factory 管線中使用自訂活動](data-factory-use-custom-activities.md)。
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
 > [!NOTE]
-> 具有 * 的資料存放區可以在內部部署環境或 Azure IaaS 上，並且需要您在內部部署/Azure IaaS 機器上安裝 [資料管理閘道](data-factory-data-management-gateway.md) 。
+> 資料存放區使用 * 可在內部部署或 Azure IaaS 上，因此需要您 tooinstall[資料管理閘道器](data-factory-data-management-gateway.md)在內部部署/Azure IaaS 電腦上。
 
 ### <a name="supported-file-formats"></a>支援的檔案格式
-您可以使用「複製活動」在兩個以檔案為基礎的資料存放區之間**依原樣複製檔案**，您可以在輸入和輸出資料集定義中略過[格式區段](data-factory-create-datasets.md)。 系統會有效率地複製資料，而不會進行任何序列化/還原序列化。
+您也可以使用複製活動**複製檔做為-是**之間以檔案為基礎的兩個資料存放區，您可以略過 hello[格式化區段](data-factory-create-datasets.md)在 hello 輸入和輸出資料集定義。 hello 資料有效率地複製不含任何序列化/還原序列化。
 
-「複製活動」也會以指定的格式讀取和寫入檔案：**文字、JSON、Avro、ORC 和 Parquet**，並支援 **GZip、Deflate、BZip2 和 ZipDeflate** 壓縮轉碼器。 如需詳細資訊，請參閱[支援的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md)。
+複製活動也會讀取和寫入 toofiles 中指定的格式： **Text、 JSON、 Avro、 ORC 及 Parquet**，並壓縮轉碼器**GZip、 Deflate、 BZip2 和 ZipDeflate**支援。 如需詳細資訊，請參閱[支援的檔案和壓縮格式](data-factory-supported-file-and-compression-formats.md)。
 
-例如，您可以執行下列複製活動：
+例如，您可以執行 hello 下列複製的活動：
 
-* 複製內部部署 SQL Server 中的資料，然後以 ORC 格式寫入 Azure Data Lake Store。
-* 從內部部署檔案系統複製文字 (CSV) 格式的檔案，然後以 Avro 格式寫入 Azure Blob 中。
-* 從內部部署檔案系統複製壓縮檔，然後解壓縮到 Azure Data Lake Store。
-* 從 Azure Blob 複製 GZip 壓縮文字 (CSV) 格式的資料，然後寫入 Azure SQL Database 中。
+* 複製資料在內部部署 SQL Server 中，將 ORC 格式寫入 tooAzure 資料湖存放區。
+* 將檔案從內部部署檔案系統複製文字 (CSV) 格式，並將 tooAzure Blob 寫入 Avro 格式。
+* 從內部部署檔案系統複製 zip 的檔案解壓縮，然後登陸 tooAzure 資料湖存放區。
+* 將資料從 Azure Blob 複製 GZip 壓縮的文字 (CSV) 格式，並將寫入 tooAzure SQL 資料庫。
 
 ## <a name="global"></a>全域可用的資料移動
-Azure Data Factory 只在美國西部、美國東部和北歐區域提供使用。 不過，支援複製活動的服務可在下列區域和地理位置全域提供使用。 全域可用的拓撲可確保進行有效率的資料移動，通常可避免發生跨區域躍點的情況。 如需了解某區域中是否有 Data Factory 和「資料移動」可供使用，請參閱 [依區域提供的服務](https://azure.microsoft.com/regions/#services) 。
+Azure Data Factory 提供了只 hello 美國西部、 美國東部、 和北歐區域。 不過，可提供複製活動的 hello 服務位於全域 hello 下列區域和地理位置。 hello 全域可用的拓撲可確保通常可以避免跨地區躍點的高效率的資料移動。 如需了解某區域中是否有 Data Factory 和「資料移動」可供使用，請參閱 [依區域提供的服務](https://azure.microsoft.com/regions/#services) 。
 
 ### <a name="copy-data-between-cloud-data-stores"></a>在雲端資料存放區之間複製資料
-當來源和接收資料存放區都位於雲端時，Data Factory 會使用區域中最接近相同地理位置之接收的服務部署來移動資料。 如需對應資訊，請參閱下表︰
+Data Factory hello 雲端來源和接收的資料存放區時，會將服務部署使用 hello 中最接近的 toohello 接收 hello 區域中相同的地理位置 toomove hello 資料。 請參閱下表針對對應的 toohello:
 
-| 目的地資料存放區的地理位置 | 目的地資料存放區的區域 | 用於資料移動的區域 |
+| 地理位置的 hello 目的地資料存放區 | Hello 目的地資料存放區的區域 | 用於資料移動的區域 |
 |:--- |:--- |:--- |
 | 美國 | 美國東部 | 美國東部 |
 | &nbsp; | 美國東部 2 | 美國東部 2 |
@@ -114,27 +114,27 @@ Azure Data Factory 只在美國西部、美國東部和北歐區域提供使用�
 | &nbsp; | 印度西部 | 印度中部 |
 | &nbsp; | 印度南部 | 印度中部 |
 
-或者，您可以明確指出要用來執行複製的 Data Factory 服務區域，方法是指定複製活動 `typeProperties` 底下的 `executionLocation`屬性。 這個屬性支援的值詳列於上述**用於資料移動的區域**資料行。 請注意，您的資料在複製期間會透過網路通過該區域。 例如，若要在韓國的 Azure 存放區之間複製，您可以將 `"executionLocation": "Japan East"` 指定為經過日本區域 (請參考[範例 JSON](#by-using-json-scripts))。
+或者，您可以明確指出的 Data Factory 服務 toobe hello 區域中，藉由指定使用 tooperform hello 複製`executionLocation`下複製活動的屬性`typeProperties`。 這個屬性支援的值詳列於上述**用於資料移動的區域**資料行。 請注意您的資料會通過該區域網路上 hello 傳輸進行複製時。 例如 toocopy Azure 之間會儲存在韓國，您可以指定`"executionLocation": "Japan East"`tooroute 透過日本地區 (請參閱[範例 JSON](#by-using-json-scripts)做為參考)。
 
 > [!NOTE]
-> 如果目的地資料存放區的區域不在上述清單中，除非指定 `executionLocation`，否則「複製活動」預設將會失敗而不會搜查替代區域。 支援的區域清單將會隨著時間擴展。
+> 如果 hello 目的地資料存放區的 hello 區域不在上述清單中或無法偵測預設複製活動失敗而不是透過替代地區中，除非`executionLocation`指定。 經過一段時間，將會展開 hello 支援區域清單。
 >
 
 ### <a name="copy-data-between-an-on-premises-data-store-and-a-cloud-data-store"></a>在內部部署資料存放區和雲端資料存放區之間複製資料
-在內部部署存放區 (或 Azure 虛擬機器/IaaS) 與雲端存放區之間複製資料時， [資料管理閘道](data-factory-data-management-gateway.md) 會在內部部署機器或虛擬機器上執行資料移動。 除非您使用 [分段複製](data-factory-copy-activity-performance.md#staged-copy) 功能，否則資料不會流經雲端服務。 在此情況下，資料會先流經預備環境 Azure Blob 儲存體，然後才寫入接收資料存放區。
+在內部部署存放區 (或 Azure 虛擬機器/IaaS) 與雲端存放區之間複製資料時， [資料管理閘道](data-factory-data-management-gateway.md) 會在內部部署機器或虛擬機器上執行資料移動。 hello 資料不流經 hello 服務在 hello 雲端中，除非您使用 hello[分段複製](data-factory-copy-activity-performance.md#staged-copy)功能。 在此情況下，資料流經 hello 寫入 hello 接收資料存放區之前，請執行 Azure Blob 儲存體。
 
 ## <a name="create-a-pipeline-with-copy-activity"></a>建立具有複製活動的管線
 您可以使用幾個方式來建立具有「複製活動」的管線︰
 
-### <a name="by-using-the-copy-wizard"></a>透過使用複製精靈
-「Data Factory 複製精靈」可協助您建立具有「複製活動」的管線。 此管線可讓您在「不需要」為連結服務、資料集及管線「撰寫 JSON」  定義的情況下，將資料從支援的來源複製到目的地。 如需有關此精靈的詳細資料，請參閱 [Data Factory 複製精靈](data-factory-copy-wizard.md) 。  
+### <a name="by-using-hello-copy-wizard"></a>使用 hello 複製精靈
+hello 資料 Factory 複製精靈可協助您 toocreate 具有複製活動的管線。 這個管線可讓您從支援的來源 toodestinations toocopy 資料*而不需要撰寫 JSON*定義連結的服務、 資料集和管線。 請參閱[資料 Factory 複製精靈](data-factory-copy-wizard.md)hello 精靈的詳細資料。  
 
 ### <a name="by-using-json-scripts"></a>透過使用 JSON 指令碼
-您可以使用 Azure 入口網站中的「Data Factory 編輯器」、Visual Studio 或 Azure PowerShell 來建立管線的 JSON 定義 (透過使用「複製活動」)。 然後，您可以部署它以在 Data Factory 中建立管線。 如需含有逐步指示的教學課程，請參閱 [教學課程：在 Azure Data Factory 管線中使用複製活動](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 。    
+您可以使用 Data Factory 編輯器 hello Azure 入口網站、 Visual Studio 中或 Azure PowerShell toocreate JSON 定義中的管線 （透過使用複製活動）。 然後，您可以部署 toocreate Data Factory 中的 hello 管線。 如需含有逐步指示的教學課程，請參閱 [教學課程：在 Azure Data Factory 管線中使用複製活動](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 。    
 
-JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。 活動的 `typeProperties` 區段中可用的屬性會因每個活動類型的不同而有所不同。
+JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) 適用於所有類型的活動。 屬性可用在 hello `typeProperties` hello 活動的區段會隨每個活動類型。
 
-在複製活動中， `typeProperties` 區段會根據來源和接收器的類型而有所不同。 按一下 [支援來源和接收器](#supported-data-stores-and-formats) 一節中的來源/接收器，即可了解「複製活動」針對該資料存放區所支援的類型屬性。
+複製活動 hello`typeProperties`區段有所不同 hello 類型的來源和接收。 按一下來源/接收器中 hello[支援來源與接收](#supported-data-stores-and-formats)區段 toolearn 有關針對該資料存放區的複製活動支援的型別屬性。
 
 以下是範例 JSON 定義︰
 
@@ -142,7 +142,7 @@ JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) �
 {
   "name": "ADFTutorialPipeline",
   "properties": {
-    "description": "Copy data from Azure blob to Azure SQL table",
+    "description": "Copy data from Azure blob tooAzure SQL table",
     "activities": [
       {
         "name": "CopyFromBlobToSQL",
@@ -179,30 +179,30 @@ JSON 屬性 (例如名稱、描述、輸入和輸出資料表，以及原則) �
   }
 }
 ```
-輸出資料集中定義的排程會決定活動的執行時間 (例如「每日」，即頻率為「日」，間隔為 **1**)。 活動會將資料從輸入資料集 (**source**) 複製到輸出資料集 (**sink**)。
+hello 排程 hello 中定義的輸出資料集可讓您判斷 hello 活動執行時 (例如：**每日**，頻率，做為**天**，以及做為間隔**1**)。 hello 活動會將資料從輸入資料集 (**來源**) tooan 輸出資料集 (**接收**)。
 
-您可以為「複製活動」指定多個輸入資料集。 系統會先使用它們來確認相依性，然後才執行活動。 不過，只有來自第一個資料集的資料會被複製到目的地資料集。 如需詳細資訊，請參閱 [排程和執行](data-factory-scheduling-and-execution.md)。  
+您可以指定多個輸入資料集 tooCopy 活動。 Hello 活動開始執行前，它們是使用的 tooverify hello 相依性。 不過，只有 hello 從 hello 第一個資料集的資料是複製的 toohello 目的地資料集。 如需詳細資訊，請參閱 [排程和執行](data-factory-scheduling-and-execution.md)。  
 
 ## <a name="performance-and-tuning"></a>效能和微調
-請參閱 [複製活動的效能及微調指南](data-factory-copy-activity-performance.md)，其中說明在 Azure Data Factory 中會影響資料移動 (複製活動) 效能的重要因素。 它也列出在內部測試期間所觀察到的效能，並討論各種可將「複製活動」效能最佳化的方式。
+請參閱 hello[複製活動效能及微調指南](data-factory-copy-activity-performance.md)，其中描述 Azure Data Factory 中的資料移動 （複製活動） 的 hello 效能影響的關鍵因素。 它也列出 hello 觀察到在內部測試期間的效能，並討論各種方式 toooptimize hello 複製活動的效能。
 
 ## <a name="fault-tolerance"></a>容錯
-根據預設，來源與接收之間出現不相容的資料時，複製活動會停止複製資料並傳回失敗；而您可以明確設定略過並記錄不相容的資料列，只複製那些相容的資料，使複製成功。 如需詳細資訊，請參閱[複製活動容錯](data-factory-copy-activity-fault-tolerance.md)。
+根據預設，複製活動將會停止複製資料以及傳回失敗時遇到不相容的資料來源與接收器; 之間雖然您可以明確地設定 tooskip 和記錄檔 hello 不相容的資料列只複製這些相容的資料 toomake hello 複製成功。 請參閱 hello[複製活動容錯](data-factory-copy-activity-fault-tolerance.md)上更多詳細資料。
 
 ## <a name="security-considerations"></a>安全性考量
-請參閱[安全性考量](data-factory-data-movement-security-considerations.md)，說明 Azure Data Factory 中資料移動服務用來保護您資料的安全性基礎結構。
+請參閱 hello[安全性考量](data-factory-data-movement-security-considerations.md)，其中描述 Azure Data Factory 中的資料移動服務使用 toosecure 您資料的安全性基礎結構。
 
 ## <a name="scheduling-and-sequential-copy"></a>排程和循序複製
-請參閱 [排程和執行](data-factory-scheduling-and-execution.md) ，以取得排程和執行在 Data Factory 中如何運作的詳細資訊。 您可以利用循序/排序的方式，逐一執行多個複製作業。 請參閱[循序複製](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)一節。
+請參閱 [排程和執行](data-factory-scheduling-and-execution.md) ，以取得排程和執行在 Data Factory 中如何運作的詳細資訊。 它是可能 toorun 多項複製作業逐一循序/排序的方式。 請參閱 hello[循序複製](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)> 一節。
 
 ## <a name="type-conversions"></a>類型轉換
-不同的資料存放區有不同的原生類型系統。 「複製活動」會藉由下列含有兩個步驟的方法，執行從來源類型轉換成接收類型的自動類型轉換：
+不同的資料存放區有不同的原生類型系統。 複製活動與 hello 下列兩種方法執行從來源類型 toosink 類型的自動類型轉換：
 
-1. 從原生來源類型轉換成 .NET 類型。
-2. 從 .NET 類型轉換成原生接收類型。
+1. 從原生的來源類型 tooa.NET 型別轉換。
+2. 從.NET 型別 tooa 原生接收類型轉換。
 
-資料存放區從原生類型系統到 .NET 類型的對應，位於個別的資料存放區文章中。 (按一下 [支援的資料存放區](#supported-data-stores) 表格中的特定連結)。 您可以在建立資料表時，使用這些對應來判斷適當的類型，以便讓「複製活動」能夠執行正確的轉換。
+從資料存放區的原生型別系統 tooa.NET 型別 hello 對應是 hello 各自的資料存放區文件中。 (按一下 hello 特定連結在 hello[支援資料存放區](#supported-data-stores)資料表)。 以便複製活動會執行 hello 右邊轉換，您可以建立您的資料表時使用這些對應 toodetermine 適當類型。
 
 ## <a name="next-steps"></a>後續步驟
-* 若要深入了解複製活動，請參閱 [將資料從 Azure Blob 儲存體複製到 Azure SQL Database](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
-* 若要了解如何將資料從內部部署資料存放區移到雲端資料存放區，請參閱 [將資料從內部部署資料存放區移到雲端資料存放區](data-factory-move-data-between-onprem-and-cloud.md)。
+* toolearn 有關 hello 複製活動，請參閱[將資料從 Azure Blob 儲存體 tooAzure SQL Database 複製](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。
+* toolearn 有關將資料從內部部署資料存放區 tooa 雲端資料儲存區，請參閱[將資料從內部部署 toocloud 資料存放區移](data-factory-move-data-between-onprem-and-cloud.md)。

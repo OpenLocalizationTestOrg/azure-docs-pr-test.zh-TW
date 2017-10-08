@@ -1,6 +1,6 @@
 ---
-title: "Azure 事件中樞擷取逐步解說 | Microsoft Docs"
-description: "此範例使用 Azure Python SDK 來示範如何使用事件中樞擷取功能。"
+title: "事件中心擷取逐步解說 aaaAzure |Microsoft 文件"
+description: "使用 hello Azure Python SDK toodemonstrate 使用 hello 事件中心擷取功能的範例。"
 services: event-hubs
 documentationcenter: 
 author: djrosanova
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: darosa;sethm
-ms.openlocfilehash: a764a116755c20f60e92e553bd7c896425272b85
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1737dcca283711d863aa970db0e80ae71814e666
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-hubs-capture-walkthrough-python"></a>事件中樞擷取逐步解說︰Python
 
-「事件中樞擷取」是「事件中樞」的功能，可讓您將事件中樞內的串流資料自動傳遞給您選擇的 Azure Blob 儲存體帳戶。 此功能可讓您輕鬆地對即時串流資料執行批次處理。 本文說明如何搭配使用事件中樞擷取與 Python。 如需事件中樞擷取的詳細資訊，請參閱[概觀文章](event-hubs-archive-overview.md)。
+擷取的事件中樞是一項功能，可讓您 tooautomatically 事件中心提供您的事件中樞 tooan 您選擇的 Azure Blob 儲存體帳戶中的資料流的 hello。 這項功能可讓處理即時串流資料的簡易 tooperform 批次。 本文說明如何使用 Python 的 toouse 事件中心擷取。 如需有關事件中心擷取的詳細資訊，請參閱 hello[概觀文章](event-hubs-archive-overview.md)。
 
-此範例使用 [Azure Python SDK](https://azure.microsoft.com/develop/python/) 來示範「擷取」功能。 sender.py 程式會以 JSON 格式將模擬的環境遙測傳送至事件中樞。 事件中樞已設定為使用「擷取」功能將此資料批次寫入至 Blob 儲存體。 capturereader.py 應用程式接著會讀取這些 Blob 並為每個裝置建立附加檔案，然後將資料寫入至 .csv 檔案。
+這個範例會使用 hello [Azure Python SDK](https://azure.microsoft.com/develop/python/) toodemonstrate hello 擷取功能。 hello sender.py 程式模擬環境遙測 tooEvent 中樞 JSON 格式傳送。 hello 事件中樞設定 toouse hello 擷取功能 toowrite 批次中的此資料 tooblob 存放裝置。 hello capturereader.py 應用程式再讀取這些 blob 並建立附加的檔案以每個裝置，然後將 hello 資料寫入至.csv 檔案。
 
 ## <a name="what-will-be-accomplished"></a>將會完成的工作
 
-1. 使用 Azure 入口網站建立 Azure Blob 儲存體帳戶和其中所含的 Blob 容器。
-2. 使用 Azure 入口網站建立事件中樞命名空間。
-3. 使用 Azure 入口網站來建立已啟用「擷取」功能的事件中樞。
-4. 使用 Python 指令碼將資料傳送到事件中樞。
-5. 使用另一個 Python 指令碼讀取擷取的檔案並加以處理。
+1. 建立 Azure Blob 儲存體帳戶和 blob 容器內，使用 hello Azure 入口網站。
+2. 建立事件中樞命名空間，使用 hello Azure 入口網站。
+3. 建立事件中樞與 hello 擷取功能已啟用，使用 hello Azure 入口網站。
+4. 傳送資料 toohello 事件中心的 Python 指令碼。
+5. Hello 檔案讀取 hello 擷取及處理它們的另一個的 Python 指令碼。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -43,18 +43,18 @@ ms.lasthandoff: 08/29/2017
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
 ## <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶
-1. 登入 [Azure 入口網站][Azure portal]。
-2. 在入口網站的左方瀏覽窗格中，依序按一下 [新增]、[儲存體] 及 [儲存體帳戶]。
-3. 完成儲存體帳戶刀鋒視窗中的欄位，然後按一下 [建立]。
+1. 登入 toohello [Azure 入口網站][Azure portal]。
+2. 在 hello hello 入口網站的左側瀏覽窗格中按一下**新增**，然後按一下**儲存體**，然後按一下**儲存體帳戶**。
+3. 完成 hello 儲存體帳戶 刀鋒視窗中的 hello 欄位，然後按一下**建立**。
    
    ![][1]
-4. 在看到**部署成功**訊息之後，按一下新儲存體帳戶的名稱，並在 [基本功能] 刀鋒視窗中按一下 [Blob]。 當 [Blob 服務] 刀鋒視窗開啟時，按一下頂端的 [+ 容器]。 將容器命名為**擷取**，然後關閉 [Blob 服務] 刀鋒視窗。
-5. 按一下左側刀鋒視窗的 [存取金鑰]，然後複製儲存體帳戶名稱和 **key1** 的值。 將這些值儲存到記事本或一些其他暫存位置。
+4. Vez que aparezca hello**部署成功**訊息中，按一下 hello 名稱 hello 新儲存體帳戶並在 hello **Essentials**刀鋒視窗中，按一下  **Blob**。 當 hello **Blob 服務**開啟刀鋒視窗中，按一下**+ 容器**hello 頂端。 名稱 hello 容器**擷取**，請關閉然後 hello **Blob 服務**刀鋒視窗。
+5. 按一下**存取金鑰**在 hello 左刀鋒視窗，然後複製 hello hello 儲存體帳戶名稱和值 hello **key1**。 儲存這些值 tooNotepad 或一些其他的暫存位置。
 
-## <a name="create-a-python-script-to-send-events-to-your-event-hub"></a>建立 Python 指令碼以將事件傳送到事件中樞
+## <a name="create-a-python-script-toosend-events-tooyour-event-hub"></a>建立 Python 指令碼 toosend 事件 tooyour 事件中樞
 1. 開啟您慣用的 Python 編輯器，例如 [Visual Studio 程式碼][Visual Studio Code]。
-2. 建立稱為 **sender.py**的指令碼。 此指令碼會將 200 個事件傳送到事件中樞。 這些事件是以 JSON 格式傳送的簡單環境數據。
-3. 將下列程式碼貼到 sender.py：
+2. 建立稱為 **sender.py**的指令碼。 此指令碼會傳送 200 事件 tooyour 事件中心。 這些事件是以 JSON 格式傳送的簡單環境數據。
+3. 貼上下列程式碼到 sender.py hello:
    
   ```python
   import uuid
@@ -75,13 +75,13 @@ ms.lasthandoff: 08/29/2017
           sbs.send_event('INSERT YOUR EVENT HUB NAME', s)
       print y
   ```
-4. 更新上述程式碼，以使用您在建立「事件中樞」命名空間時取得的命名空間名稱、金鑰值及事件中樞名稱。
+4. 更新您的命名空間名稱、 索引鍵值和建立 hello 事件中樞命名空間時取得的事件中樞名稱前面的程式碼 toouse hello。
 
-## <a name="create-a-python-script-to-read-your-capture-files"></a>建立 Python 指令碼來讀取擷取檔案
+## <a name="create-a-python-script-tooread-your-capture-files"></a>建立 Python 指令碼 tooread 擷取檔案
 
-1. 填寫刀鋒視窗，然後按一下 [建立] 。
-2. 建立名為 **capturereader.py** 的指令碼。 此指令碼會讀取擷取檔案，並為每個裝置建立檔案以便只寫入該裝置的資料。
-3. 將下列程式碼貼到 capturereader.py：
+1. 填寫 [hello] 刀鋒視窗，並按一下**建立**。
+2. 建立名為 **capturereader.py** 的指令碼。 此指令碼會讀取 hello 擷取檔案，並建立該裝置僅針對每一裝置 toowrite hello 資料檔案。
+3. 貼上下列程式碼到 capturereader.py hello:
    
   ```python
   import os
@@ -125,10 +125,10 @@ ms.lasthandoff: 08/29/2017
           block_blob_service.delete_blob(container, blob.name)
   startProcessing('YOUR STORAGE ACCOUNT NAME', 'YOUR KEY', 'capture')
   ```
-4. 請務必在 `startProcessing`的呼叫中貼上儲存體帳戶名稱和金鑰的適當值。
+4. 您的儲存體帳戶名稱和金鑰在 hello 呼叫太 hello 適當的值是確定 toopaste`startProcessing`。
 
-## <a name="run-the-scripts"></a>執行指令碼
-1. 開啟在其路徑中具有 Python 的命令提示字元，並執行下列命令來安裝 Python 必要條件封裝︰
+## <a name="run-hello-scripts"></a>執行 hello 指令碼
+1. 開啟命令提示字元在其路徑中，具有 Python，然後執行這些命令 tooinstall Python 先決條件封裝：
    
   ```
   pip install azure-storage
@@ -136,35 +136,35 @@ ms.lasthandoff: 08/29/2017
   pip install avro
   ```
    
-  如果您有舊版的 Azure 儲存體或 Azure，您可能需要使用 **--upgrade** 選項
+  如果您有舊版的 azure 儲存體或 azure，您可能需要 toouse hello **-升級**選項
    
-  您可能也需要執行下列命令 (在大部分系統上並不需要)︰
+  您可能也需要 toorun hello 遵循 （不需要在大多數系統上）：
    
   ```
   pip install cryptography
   ```
-2. 將目錄變更為儲存了 sender.py 和 capturereader.py 的任何位置，並執行此命令︰
+2. 變更您的目錄 toowherever 儲存 sender.py 和 capturereader.py，並執行下列命令：
    
   ```
   start python sender.py
   ```
    
-  此命令會啟動新的 Python 程序來執行傳送器。
-3. 現在等候擷取執行幾分鐘的時間。 然後在原始命令視窗中輸入下列命令︰
+  此命令會啟動新 Python 程序 toorun hello 寄件者。
+3. 現在，請稍候幾分鐘，讓 hello 擷取 toorun。 然後輸入 hello 到原始的命令視窗，下列命令：
    
    ```
    python capturereader.py
    ```
 
-   此擷取處理器會使用本機目錄從儲存體帳戶/容器下載所有 Blob。 它會處理任何非空白的 Blob，並將結果以 .csv 檔案的形式寫入到本機目錄。
+   此擷取處理器會使用 hello 本機目錄 toodownload hello 儲存體帳戶/容器的所有 hello blob。 它會處理任何不是空白，並將 hello 結果.csv 檔案的形式寫入至 hello 本機目錄。
 
 ## <a name="next-steps"></a>後續步驟
 
-您可以造訪下列連結以深入了解事件中樞︰
+您可以進一步了解事件中心瀏覽下列連結查看 hello:
 
 * [事件中樞擷取概觀][Overview of Event Hubs Capture]
 * [使用事件中樞的完整範例應用程式][sample application that uses Event Hubs]。
-* [使用事件中樞相應放大事件處理][Scale out Event Processing with Event Hubs]範例。
+* hello[範圍外使用事件中心的事件處理][ Scale out Event Processing with Event Hubs]範例。
 * [事件中樞概觀][Event Hubs overview]
 
 [Azure portal]: https://portal.azure.com/

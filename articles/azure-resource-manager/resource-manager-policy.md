@@ -1,6 +1,6 @@
 ---
-title: "Azure 資源原則 | Microsoft Docs"
-description: "描述如何使用 Azure Resource Manager 原則以確保在部署期間設定一致的資源內容。 原則可以套用在訂用帳戶或資源群組。"
+title: "aaaAzure 資源原則 |Microsoft 文件"
+description: "描述如何在部署期間設定 toouse Azure 資源管理員原則 tooensure 一致的資源內容。 原則可以套用在 hello 訂用帳戶或資源群組。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/02/2017
 ms.author: tomfitz
-ms.openlocfilehash: 0ee2624f45a1de0c23cae4538a38ae3e302eedd3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f1b0bbb5f838f6bb70721e1040ad3eac2d881cea
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="resource-policy-overview"></a>資源原則概觀
-資源原則可讓您為組織中的資源建立慣例。 藉由定義慣例，您可以控制成本以及更輕鬆地管理您的資源。 例如，您可以指定僅允許特定類型的虛擬機器。 或者，您可以要求所有資源都有特定標籤。 原則會由所有子資源繼承。 所以，如果原則套用至資源群組，它會適用於該資源群組中的所有資源。
+資源原則可讓您在組織中的資源 tooestablish 慣例。 藉由定義慣例，您可以控制成本以及更輕鬆地管理您的資源。 例如，您可以指定僅允許特定類型的虛擬機器。 或者，您可以要求所有資源都有特定標籤。 原則會由所有子資源繼承。 因此，如果原則已套用的 tooa 資源群組，則該資源群組中的適用 tooall hello 資源。
 
-有兩個概念可了解原則︰
+有兩個概念 toounderstand 有關原則：
 
-* 原則定義 - 您說明何時會強制執行原則及要採取的動作
-* 原則指派 - 您將原則定義套用至範圍 (訂用帳戶或資源群組)
+* 原則定義-您說明 hello 原則會強制執行以及何種動作 tootake
+* 原則指派-套用 hello 原則定義 tooa 範圍 （訂用帳戶或資源群組）
 
-本主題著重於原則定義。 如需原則指派的相關資訊，請參閱[使用 Azure 入口網站來指派和管理資源原則](resource-manager-policy-portal.md)或[透過指令碼來指派和管理原則](resource-manager-policy-create-assign.md)。
+本主題著重於原則定義。 原則指派的詳細資訊，請參閱[使用 Azure 入口網站 tooassign 和管理資源原則](resource-manager-policy-portal.md)或[指派及管理透過指令碼的原則](resource-manager-policy-create-assign.md)。
 
 建立和更新資源 (PUT 和 PATCH 作業) 時，會評估原則。
 
 > [!NOTE]
-> 目前，原則不會評估不支援標記、種類及位置的資源類型，例如 Microsoft.Resources/deployments 資源類型。 未來將加入此支援。 若要避免向下相容問題，撰寫原則時應該明確指定類型。 例如，會對所有類型套用未指定類型的標記原則。 在此情況下，如果有不支援標記的巢狀資源，且部署資源類型已新增原則評估中，範本部署可能會失敗。 
+> 目前，原則不會評估標記、 種類和位置，例如 hello Microsoft.Resources/deployments 資源類型不支援的資源類型。 未來將加入此支援。 tooavoid 回溯相容性問題，您應該明確地指定類型撰寫原則時。 例如，會對所有類型套用未指定類型的標記原則。 在此情況下，如果沒有不支援標記的巢狀的資源，範本部署可能會失敗，且已新增 hello 部署資源類型 toopolicy 評估。 
 > 
 > 
 
 ## <a name="how-is-it-different-from-rbac"></a>它和 RBAC 有什麼不同？
-原則和角色型存取控制 (RBAC) 之間有幾個主要差異。 RBAC 著重於不同範圍的**使用者**動作。 例如，若您被加入所需範圍內之資源群組的參與者角色中，您便能對該資源群組做出變更。 原則在部署期間著重於**資源**屬性。 例如，您能夠透過原則控制可以佈建的資源類型。 或者，您可以限制資源可以佈建的位置。 不同於 RBAC，原則是個預設允許和明確拒絕的系統。 
+原則和角色型存取控制 (RBAC) 之間有幾個主要差異。 RBAC 著重於不同範圍的**使用者**動作。 比方說，您會加入資源群組的 toohello 參與者角色在 hello 預期範圍，因此您可以變更 toothat 資源群組。 原則在部署期間著重於**資源**屬性。 例如，透過原則，您可以控制 hello 類型可以佈建的資源。 或者，您可以限制 hello hello 資源可以佈建所在的位置。 不同於 RBAC，原則是個預設允許和明確拒絕的系統。 
 
-若要使用原則，您必須透過 RBAC 驗證。 具體來說，您的帳戶需要：
+toouse 原則，您必須透過 RBAC 進行驗證。 具體來說，您的帳戶需要：
 
-* 定義原則的 `Microsoft.Authorization/policydefinitions/write` 權限
-* 指派原則的 `Microsoft.Authorization/policyassignments/write` 權限 
+* `Microsoft.Authorization/policydefinitions/write`權限 toodefine 原則
+* `Microsoft.Authorization/policyassignments/write`權限 tooassign 原則 
 
-這些權限不包括在**參與者**角色中。
+這些權限不包含在 hello**參與者**角色。
 
 ## <a name="built-in-policies"></a>內建原則
 
-Azure 提供一些內建原則定義，可能會降低您需要定義的原則數目。 在繼續處理原則定義之前，您應該先考慮內建原則是否已提供所需的定義。 內建的原則定義如下：
+Azure 提供 hello 數目可能會降低某些內建的原則定義的原則，您有 toodefine。 原則定義之前，您應該考慮的內建原則是否已提供您需要的 hello 定義。 hello 內建的原則定義如下：
 
 * 允許的位置
 * 允許的資源類型
@@ -61,10 +61,10 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 * 需要 SQL Server 12.0 版
 * 需要儲存體帳戶加密
 
-您可以透[入口網站](resource-manager-policy-portal.md)、[PowerShell](resource-manager-policy-create-assign.md#powershell) 或 [Azure CLI](resource-manager-policy-create-assign.md#azure-cli) 來指派任何這些原則。
+您可以指定任何這些原則透過 hello[入口網站](resource-manager-policy-portal.md)， [PowerShell](resource-manager-policy-create-assign.md#powershell)，或[Azure CLI](resource-manager-policy-create-assign.md#azure-cli)。
 
 ## <a name="policy-definition-structure"></a>原則定義結構
-使用 JSON 來建立原則定義。 原則定義中包含以下的項目︰
+您使用 JSON toocreate 原則定義。 hello 原則定義中包含項的目：
 
 * 參數
 * 顯示名稱
@@ -73,7 +73,7 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
   * 邏輯評估
   * 效果
 
-下列範例示範的原則會限制資源的部署之處︰
+下列範例中的 hello 顯示限制在部署資源的原則：
 
 ```json
 {
@@ -82,14 +82,14 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
       "allowedLocations": {
         "type": "array",
         "metadata": {
-          "description": "The list of locations that can be specified when deploying resources",
+          "description": "hello list of locations that can be specified when deploying resources",
           "strongType": "location",
           "displayName": "Allowed locations"
         }
       }
     },
     "displayName": "Allowed locations",
-    "description": "This policy enables you to restrict the locations your organization can specify when deploying resources.",
+    "description": "This policy enables you toorestrict hello locations your organization can specify when deploying resources.",
     "policyRule": {
       "if": {
         "not": {
@@ -106,7 +106,7 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 ```
 
 ## <a name="parameters"></a>參數
-使用參數會減少原則定義的數量，有助於簡化原則管理。 定義資源屬性的原則 (例如，限制可以在其中部署資源的位置)，並在定義中包含參數。 然後，您藉由在指派原則時傳入不同的值 (例如，指定訂用帳戶的一組位置)，針對不同的案例重複使用該原則定義。
+使用參數，可協助減少 hello 原則定義的數量，以簡化原則管理。 定義的原則，資源內容 （例如限制可部署資源的 hello 位置），並在 hello 定義中包含參數。 然後，您重複使用該原則的定義不同的案例藉由傳遞不同的值 （例如，指定一組訂用帳戶的位置） 時指派 hello 原則。
 
 當您建立原則定義時，宣告參數。
 
@@ -115,16 +115,16 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
   "allowedLocations": {
     "type": "array",
     "metadata": {
-      "description": "The list of allowed locations for resources.",
+      "description": "hello list of allowed locations for resources.",
       "displayName": "Allowed locations"
     }
   }
 }
 ```
 
-參數的類型可以是字串或陣列。 中繼資料屬性是由 Azure 入口網站等工具所使用，用來顯示人性化的資訊。 
+hello 參數型別可以是字串或陣列。 hello 中繼資料屬性用於 Azure 入口網站 toodisplay 人性化的資訊等工具。 
 
-在原則規則中，您可以使用下列語法參考參數︰ 
+Hello 原則規則中，您可以參考參數以 hello，請使用下列語法： 
 
 ```json
 { 
@@ -135,11 +135,11 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 
 ## <a name="display-name-and-description"></a>顯示名稱和描述
 
-使用 **displayName** 和 **description**找出原則定義，並提供使用時的內容。
+使用 hello **displayName**和**描述**tooidentify hello 原則定義和使用時才提供的內容。
 
 ## <a name="policy-rule"></a>原則規則
 
-原則規則包含 **If** 和 **Then**區塊。 在 **If** 區塊中，您可以定義一個或多個指定強制執行此原則時間的條件。 您可以將邏輯運算子套用至這些條件，以精確地定義原則的案例。 在 **Then** 區塊中，定義當 **If** 條件履行時所發生的效果。
+hello 原則規則包含**如果**和**然後**區塊。 在 hello**如果**區塊中，您定義一個或多個條件，指定 hello 原則會強制執行。 您可以套用邏輯運算子 toothese 條件 tooprecisely 定義 hello 案例的原則。 在 hello**然後**區塊中，定義當 hello hello 效果**如果**符合條件。
 
 ```json
 {
@@ -153,15 +153,15 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 ```
 
 ### <a name="logical-operators"></a>邏輯運算子
-支援的邏輯運算子包括︰
+是支援的 hello 邏輯運算子：
 
 * `"not": {condition  or operator}`
 * `"allOf": [{condition or operator},{condition or operator}]`
 * `"anyOf": [{condition or operator},{condition or operator}]`
 
-**not** 語法會反轉條件的結果。 **allOf** 語法 (類似於邏輯**And** 作業) 需要所有的條件為 true。 **anyOf** 語法 (類似於邏輯**Or** 作業) 需要一或多個條件為 true。
+hello**不**語法反轉 hello 條件的 hello 結果。 hello **allOf**語法 (類似 toohello 邏輯**和**作業) 需要所有的條件 toobe true。 hello **anyOf**語法 (類似 toohello 邏輯**或**作業) 需要一或多個條件 toobe true。
 
-您可以巢狀邏輯運算子。 下列範例顯示 **allOf** 作業中的巢狀 **not** 作業。 
+您可以巢狀邏輯運算子。 下列範例所示的 hello**不**內變成巢狀的作業**allOf**作業。 
 
 ```json
 "if": {
@@ -181,7 +181,7 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 ```
 
 ### <a name="conditions"></a>條件
-條件會評估某個**欄位**是否符合特定準則。 支援的條件如下︰
+hello 條件評估是否**欄位**是否符合特定準則。 支援的 hello 條件如下：
 
 * `"equals": "value"`
 * `"like": "value"`
@@ -191,14 +191,14 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 * `"containsKey": "keyName"`
 * `"exists": "bool"`
 
-當使用 **like**條件時，您可以在值中提供萬用字元 (*)。
+當使用 hello**像**條件，您可以提供萬用字元 （*） 在 hello 值。
 
-使用**符合**條件時，請提供 `#` 來表示數字、`?` 來表示字母，以及任何其他字元來表示該實際字元。 例如，請參閱[為名稱和文字套用資源原則](resource-manager-policy-naming-convention.md)。
+當使用 hello**符合**條件，請提供`#`toorepresent 數字，`?`的字母，而且其他所有字元 toorepresent 的實際字元。 例如，請參閱[為名稱和文字套用資源原則](resource-manager-policy-naming-convention.md)。
 
 ### <a name="fields"></a>欄位
-條件是透過欄位所形成。 欄位會顯示用來描述資源狀態的資源要求裝載屬性。  
+條件是透過欄位所形成。 欄位代表 hello 資源要求裝載中的內容也就是使用的 toodescribe hello hello 資源狀態。  
 
-支援下列欄位：
+支援下列欄位的 hello:
 
 * `name`
 * `kind`
@@ -211,154 +211,154 @@ Azure 提供一些內建原則定義，可能會降低您需要定義的原則�
 ### <a name="effect"></a>效果
 原則支援三種效果類型 - `deny`、`audit` 和 `append`。 
 
-* **拒絕**會在稽核記錄中產生事件，並且使要求失敗
-* **稽核**會在稽核記錄中產生事件，但不會使要求失敗
-* **附加**會在要求中加入一組已定義的欄位 
+* **拒絕**hello 稽核記錄檔中產生事件，就會失敗 hello 要求
+* **稽核**稽核記錄檔中就會產生警告事件，但不會失敗 hello 要求
+* **附加**新增 hello 定義欄位 toohello 要求組 
 
-對於 **append**，您必須提供下列詳細資料：
+如**附加**，您必須提供下列詳細資料的 hello:
 
 ```json
 "effect": "append",
 "details": [
   {
     "field": "field name",
-    "value": "value of the field"
+    "value": "value of hello field"
   }
 ]
 ```
 
-值可以是字串或 JSON 格式物件。 
+hello 值可以是字串或物件的 JSON 格式。 
 
 ## <a name="aliases"></a>別名
 
-您可以使用屬性別名來存取資源類型的特定屬性。 別名可讓您限制某個資源上的某個值所允許的值或條件。 每個別名會對應至指定資源類型之不同 API 版本中的路徑。 在原則評估期間，原則引擎會取得該 API 版本的屬性路徑。
+您可以使用屬性別名 tooaccess 特定屬性資源類型。 別名可讓您 toorestrict 哪些值或條件允許資源上的屬性。 每個別名將對應 toopaths 中指定的資源類型的不同應用程式開發介面版本。 原則評估期間 hello 原則引擎會取得該應用程式開發介面版本 hello 屬性路徑。
 
 **Microsoft.Cache/Redis**
 
 | Alias | 說明 |
 | ----- | ----------- |
-| Microsoft.Cache/Redis/enableNonSslPort | 設定是否啟用非 SSL Redis 伺服器連接埠 (6379)。 |
-| Microsoft.Cache/Redis/shardCount | 設定要在進階叢集快取上建立的分區數目。  |
-| Microsoft.Cache/Redis/sku.capacity | 設定要部署的 Redis 快取大小。  |
-| Microsoft.Cache/Redis/sku.family | 設定要使用的 SKU 系列。 |
-| Microsoft.Cache/Redis/sku.name | 設定要部署的 Redis 快取類型。 |
+| Microsoft.Cache/Redis/enableNonSslPort | 設定 hello 非 ssl 的 Redis 伺服器連接埠 (6379) 是否已啟用。 |
+| Microsoft.Cache/Redis/shardCount | 設定進階叢集快取上建立的分區 toobe hello 號碼。  |
+| Microsoft.Cache/Redis/sku.capacity | 設定 hello Redis 快取 toodeploy hello 大小。  |
+| Microsoft.Cache/Redis/sku.family | 設定 hello SKU 系列 toouse。 |
+| Microsoft.Cache/Redis/sku.name | 設定 Redis 快取 toodeploy hello 類型。 |
 
 **Microsoft.Cdn/profiles**
 
 | Alias | 說明 |
 | ----- | ----------- |
-| Microsoft.CDN/profiles/sku.name | 設定定價層的名稱。 |
+| Microsoft.CDN/profiles/sku.name | Hello 名稱 hello 定價層設定。 |
 
 **Microsoft.Compute/disks**
 
 | Alias | 說明 |
 | ----- | ----------- |
-| Microsoft.Compute/imageOffer | 設定用來建立虛擬機器的平台映像或 Marketplace 映像供應項目。 |
-| Microsoft.Compute/imagePublisher | 設定用來建立虛擬機器的平台映像或 Marketplace 映像發行者。 |
-| Microsoft.Compute/imageSku | 設定用來建立虛擬機器的平台映像或 Marketplace 映像 SKU。 |
-| Microsoft.Compute/imageVersion | 設定用來建立虛擬機器的平台映像或 Marketplace 映像版本。 |
+| Microsoft.Compute/imageOffer | Hello 平台映像或 marketplace 映像組 hello 優惠 toocreate hello 虛擬機器的使用。 |
+| Microsoft.Compute/imagePublisher | Hello 平台映像或 marketplace 映像組 hello 發行者使用 toocreate hello 虛擬機器。 |
+| Microsoft.Compute/imageSku | 設定 hello hello 平台映像或 marketplace 映像的 SKU toocreate hello 虛擬機器的使用。 |
+| Microsoft.Compute/imageVersion | 設定 hello hello 平台映像或 marketplace 映像使用新版 toocreate hello 虛擬機器。 |
 
 
 **Microsoft.Compute/virtualMachines**
 
 | Alias | 說明 |
 | ----- | ----------- |
-| Microsoft.Compute/imageId | 設定用來建立虛擬機器的映像識別碼。 |
-| Microsoft.Compute/imageOffer | 設定用來建立虛擬機器的平台映像或 Marketplace 映像供應項目。 |
-| Microsoft.Compute/imagePublisher | 設定用來建立虛擬機器的平台映像或 Marketplace 映像發行者。 |
-| Microsoft.Compute/imageSku | 設定用來建立虛擬機器的平台映像或 Marketplace 映像 SKU。 |
-| Microsoft.Compute/imageVersion | 設定用來建立虛擬機器的平台映像或 Marketplace 映像版本。 |
-| Microsoft.Compute/licenseType | 將映像或磁碟設定為內部部署授權。 這個值只會用於包含 Windows Server 作業系統的映象。  |
-| Microsoft.Compute/virtualMachines/imageOffer | 設定用來建立虛擬機器的平台映像或 Marketplace 映像供應項目。 |
-| Microsoft.Compute/virtualMachines/imagePublisher | 設定用來建立虛擬機器的平台映像或 Marketplace 映像發行者。 |
-| Microsoft.Compute/virtualMachines/imageSku | 設定用來建立虛擬機器的平台映像或 Marketplace 映像 SKU。 |
-| Microsoft.Compute/virtualMachines/imageVersion | 設定用來建立虛擬機器的平台映像或 Marketplace 映像版本。 |
-| Microsoft.Compute/virtualMachines/osDisk.Uri | 設定 vhd URI。 |
-| Microsoft.Compute/virtualMachines/sku.name | 設定虛擬機器的大小。 |
+| Microsoft.Compute/imageId | 設定 hello hello 用映像 toocreate hello 虛擬機器的識別項。 |
+| Microsoft.Compute/imageOffer | Hello 平台映像或 marketplace 映像組 hello 優惠 toocreate hello 虛擬機器的使用。 |
+| Microsoft.Compute/imagePublisher | Hello 平台映像或 marketplace 映像組 hello 發行者使用 toocreate hello 虛擬機器。 |
+| Microsoft.Compute/imageSku | 設定 hello hello 平台映像或 marketplace 映像的 SKU toocreate hello 虛擬機器的使用。 |
+| Microsoft.Compute/imageVersion | 設定 hello hello 平台映像或 marketplace 映像使用新版 toocreate hello 虛擬機器。 |
+| Microsoft.Compute/licenseType | 設定 hello 映像或磁碟為內部授權。 這個值只用於包含 hello Windows 伺服器作業系統映像。  |
+| Microsoft.Compute/virtualMachines/imageOffer | Hello 平台映像或 marketplace 映像組 hello 優惠 toocreate hello 虛擬機器的使用。 |
+| Microsoft.Compute/virtualMachines/imagePublisher | Hello 平台映像或 marketplace 映像組 hello 發行者使用 toocreate hello 虛擬機器。 |
+| Microsoft.Compute/virtualMachines/imageSku | 設定 hello hello 平台映像或 marketplace 映像的 SKU toocreate hello 虛擬機器的使用。 |
+| Microsoft.Compute/virtualMachines/imageVersion | 設定 hello hello 平台映像或 marketplace 映像使用新版 toocreate hello 虛擬機器。 |
+| Microsoft.Compute/virtualMachines/osDisk.Uri | 設定 hello vhd URI。 |
+| Microsoft.Compute/virtualMachines/sku.name | 設定 hello hello 虛擬機器大小。 |
 
 **Microsoft.Compute/virtualMachines/extensions**
 
 | Alias | 說明 |
 | ----- | ----------- |
-| Microsoft.Compute/virtualMachines/extensions/publisher | 設定擴充功能發行者的名稱。 |
-| Microsoft.Compute/virtualMachines/extensions/type | 設定擴充功能的類型。 |
-| Microsoft.Compute/virtualMachines/extensions/typeHandlerVersion | 設定擴充功能的版本。 |
+| Microsoft.Compute/virtualMachines/extensions/publisher | 設定 hello hello 擴充功能的發行者名稱。 |
+| Microsoft.Compute/virtualMachines/extensions/type | 設定延伸 hello 型別。 |
+| Microsoft.Compute/virtualMachines/extensions/typeHandlerVersion | 設定 hello hello 擴充功能版本。 |
 
 **Microsoft.Compute/virtualMachineScaleSets**
 
 | Alias | 說明 |
 | ----- | ----------- |
-| Microsoft.Compute/imageId | 設定用來建立虛擬機器的映像識別碼。 |
-| Microsoft.Compute/imageOffer | 設定用來建立虛擬機器的平台映像或 Marketplace 映像供應項目。 |
-| Microsoft.Compute/imagePublisher | 設定用來建立虛擬機器的平台映像或 Marketplace 映像發行者。 |
-| Microsoft.Compute/imageSku | 設定用來建立虛擬機器的平台映像或 Marketplace 映像 SKU。 |
-| Microsoft.Compute/imageVersion | 設定用來建立虛擬機器的平台映像或 Marketplace 映像版本。 |
-| Microsoft.Compute/licenseType | 將映像或磁碟設定為內部部署授權。 這個值只會用於包含 Windows Server 作業系統的映象。 |
-| Microsoft.Compute/VirtualMachineScaleSets/computerNamePrefix | 設定擴展集中所有虛擬機器的電腦名稱前置詞。 |
-| Microsoft.Compute/VirtualMachineScaleSets/osdisk.imageUrl | 設定使用者映像的 Blob URI。 |
-| Microsoft.Compute/VirtualMachineScaleSets/osdisk.vhdContainers | 設定用於儲存擴展集作業系統磁碟的容器 URL。 |
-| Microsoft.Compute/VirtualMachineScaleSets/sku.name | 設定擴展集中虛擬機器的大小。 |
-| Microsoft.Compute/VirtualMachineScaleSets/sku.tier | 設定擴展集中的虛擬機器層。 |
+| Microsoft.Compute/imageId | 設定 hello hello 用映像 toocreate hello 虛擬機器的識別項。 |
+| Microsoft.Compute/imageOffer | Hello 平台映像或 marketplace 映像組 hello 優惠 toocreate hello 虛擬機器的使用。 |
+| Microsoft.Compute/imagePublisher | Hello 平台映像或 marketplace 映像組 hello 發行者使用 toocreate hello 虛擬機器。 |
+| Microsoft.Compute/imageSku | 設定 hello hello 平台映像或 marketplace 映像的 SKU toocreate hello 虛擬機器的使用。 |
+| Microsoft.Compute/imageVersion | 設定 hello hello 平台映像或 marketplace 映像使用新版 toocreate hello 虛擬機器。 |
+| Microsoft.Compute/licenseType | 設定 hello 映像或磁碟為內部授權。 這個值只用於包含 hello Windows 伺服器作業系統映像。 |
+| Microsoft.Compute/VirtualMachineScaleSets/computerNamePrefix | Hello 規模集中設定 hello hello 的所有虛擬機器的電腦名稱前置詞。 |
+| Microsoft.Compute/VirtualMachineScaleSets/osdisk.imageUrl | 設定使用者映像的 hello blob URI。 |
+| Microsoft.Compute/VirtualMachineScaleSets/osdisk.vhdContainers | 設定使用的 toostore hello 擴展集的作業系統磁碟的 hello 容器 Url。 |
+| Microsoft.Compute/VirtualMachineScaleSets/sku.name | 設定 hello 大小的虛擬機器規模集中的。 |
+| Microsoft.Compute/VirtualMachineScaleSets/sku.tier | 設定虛擬機器規模集中的 hello 層。 |
   
 **Microsoft.Network/applicationGateways**
 
 | Alias | 說明 |
 | ----- | ----------- |
-| Microsoft.Network/applicationGateways/sku.name | 設定閘道的大小。 |
+| Microsoft.Network/applicationGateways/sku.name | 設定的 hello 閘道的 hello 大小。 |
 
 **Microsoft.Network/virtualNetworkGateways**
 
 | Alias | 說明 |
 | ----- | ----------- |
-| Microsoft.Network/virtualNetworkGateways/gatewayType | 設定此虛擬網路閘道的類型。 |
-| Microsoft.Network/virtualNetworkGateways/sku.name | 設定閘道 SKU 名稱。 |
+| Microsoft.Network/virtualNetworkGateways/gatewayType | 將此虛擬網路閘道 hello 類型的設定。 |
+| Microsoft.Network/virtualNetworkGateways/sku.name | 設定 hello 閘道 SKU 的名稱。 |
 
 **Microsoft.Sql/servers**
 
 | Alias | 說明 |
 | ----- | ----------- |
-| Microsoft.Sql/servers/version | 設定伺服器的版本。 |
+| Microsoft.Sql/servers/version | 設定 hello hello 伺服器版本。 |
 
 **Microsoft.Sql/databases**
 
 | Alias | 說明 |
 | ----- | ----------- |
-| Microsoft.Sql/servers/databases/edition | 設定資料庫的版本。 |
-| Microsoft.Sql/servers/databases/elasticPoolName | 設定資料庫所在彈性集區的名稱。 |
-| Microsoft.Sql/servers/databases/requestedServiceObjectiveId | 設定伺服器所設定的服務層級目標識別碼。 |
-| Microsoft.Sql/servers/databases/requestedServiceObjectiveName | 設定資料庫所設定之服務等級目標的名稱。  |
+| Microsoft.Sql/servers/databases/edition | 設定 hello hello 資料庫版本。 |
+| Microsoft.Sql/servers/databases/elasticPoolName | 」 組 hello hello 彈性集區 hello 資料庫名稱。 |
+| Microsoft.Sql/servers/databases/requestedServiceObjectiveId | 設定 hello 設定層級的服務目標識別碼 hello 資料庫。 |
+| Microsoft.Sql/servers/databases/requestedServiceObjectiveName | Hello hello 設定 hello 資料庫的服務等級目標名稱設定。  |
 
 **Microsoft.Sql/elasticpools**
 
 | Alias | 說明 |
 | ----- | ----------- |
-| servers/elasticpools | Microsoft.Sql/servers/elasticPools/dtu | 設定資料庫彈性集區的所有共用 DTU。 |
-| servers/elasticpools | Microsoft.Sql/servers/elasticPools/edition | 設定彈性集區的版本。 |
+| servers/elasticpools | Microsoft.Sql/servers/elasticPools/dtu | 設定 hello 總計共用 hello 資料庫彈性集區 DTU。 |
+| servers/elasticpools | Microsoft.Sql/servers/elasticPools/edition | 將 hello edition hello 彈性集區的設定。 |
 
 **Microsoft.Storage/storageAccounts**
 
 | Alias | 說明 |
 | ----- | ----------- |
-| Microsoft.Storage/storageAccounts/accessTier | 設定用於計費的存取層。 |
-| Microsoft.Storage/storageAccounts/accountType | 設定 SKU 名稱。 |
-| Microsoft.Storage/storageAccounts/enableBlobEncryption | 設定服務是否對儲存在 Blob 儲存體服務中的資料進行加密。 |
-| Microsoft.Storage/storageAccounts/enableFileEncryption | 設定服務是否對儲存在檔案儲存體服務中的資料進行加密。 |
-| Microsoft.Storage/storageAccounts/sku.name | 設定 SKU 名稱。 |
-| Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly | 設定對於儲存體服務僅允許 HTTPS 流量。 |
+| Microsoft.Storage/storageAccounts/accessTier | 設定用於計費 hello 存取層。 |
+| Microsoft.Storage/storageAccounts/accountType | 設定 hello SKU 的名稱。 |
+| Microsoft.Storage/storageAccounts/enableBlobEncryption | 設定是否 hello 服務加密 hello 資料會儲存在 hello blob 儲存體服務。 |
+| Microsoft.Storage/storageAccounts/enableFileEncryption | 設定是否 hello 服務加密 hello 資料儲存在 hello 檔案儲存體服務。 |
+| Microsoft.Storage/storageAccounts/sku.name | 設定 hello SKU 的名稱。 |
+| Microsoft.Storage/storageAccounts/supportsHttpsTrafficOnly | 設定 tooallow 只有 https 流量 toostorage 服務。 |
 
 
 ## <a name="policy-examples"></a>原則範例
 
-下列主題包含原則範例︰
+下列主題中的 hello 包含原則範例：
 
 * 如需標籤原則的範例，請參閱[套用標籤的資源原則](resource-manager-policy-tags.md)。
 * 如需命名和文字模式的範例，請參閱[為名稱和文字套用資源原則](resource-manager-policy-naming-convention.md)。
-* 如需儲存體原則的範例，請參閱[將資源原則套用至儲存體帳戶](resource-manager-policy-storage.md)。
-* 如需虛擬機器原則的範例，請參閱[將資源原則套用至 Linux VM](../virtual-machines/linux/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json) 和[將資源原則套用至 Windows VM](../virtual-machines/windows/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
+* 儲存原則的範例，請參閱[套用資源原則 toostorage 帳戶](resource-manager-policy-storage.md)。
+* 虛擬機器原則的範例，請參閱[套用資源原則 tooLinux Vm](../virtual-machines/linux/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)和[套用資源原則 tooWindows Vm](../virtual-machines/windows/policy.md?toc=%2fazure%2fazure-resource-manager%2ftoc.json)
 
 
 ## <a name="next-steps"></a>後續步驟
-* 在定義原則規則後，將它指派給範圍。 若要透過入口網站來指派原則，請參閱[使用 Azure 入口網站來指派和管理資源原則](resource-manager-policy-portal.md)。 若要透過 REST API、PowerShell 或 Azure CLI 來指派原則，請參閱[透過指令碼來指派和管理原則](resource-manager-policy-create-assign.md)。
-* 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
-* 原則結構描述會發佈於 [http://schema.management.azure.com/schemas/2015-10-01-preview/policyDefinition.json](http://schema.management.azure.com/schemas/2015-10-01-preview/policyDefinition.json)。 
+* 定義原則規則之後, 將它指派 tooa 範圍。 tooassign 原則透過 hello 入口網站，請參閱[使用 Azure 入口網站 tooassign 和管理資源原則](resource-manager-policy-portal.md)。 tooassign 原則透過 REST API、 PowerShell 或 Azure CLI，請參閱[指派及管理透過指令碼的原則](resource-manager-policy-create-assign.md)。
+* 如需指引企業可以如何使用資源管理員 tooeffectively 管理訂用帳戶，請參閱[Azure 企業版 scaffold-精準的訂閱控管](resource-manager-subscription-governance.md)。
+* 發行位置 hello 原則結構描述是在[http://schema.management.azure.com/schemas/2015-10-01-preview/policyDefinition.json](http://schema.management.azure.com/schemas/2015-10-01-preview/policyDefinition.json)。 
 

@@ -1,11 +1,11 @@
 # 概觀
 ## [Azure 和 IoT](iot-suite-what-is-azure-iot.md)
 ## [什麼是 IoT 套件？](iot-suite-overview.md)
-## [什麼是預先設定的解決方案？](iot-suite-what-are-preconfigured-solutions.md)
+## [預先設定的 hello 解決方案有哪些？](iot-suite-what-are-preconfigured-solutions.md)
 
 
 # 開始使用
-## [開始使用預先設定的解決方案](iot-suite-getstarted-preconfigured-solutions.md)
+## [開始使用預先設定的 hello 解決方案](iot-suite-getstarted-preconfigured-solutions.md)
 ## [azureiotsuite.com 的權限](iot-suite-permissions.md)
 ## [預測性維護解決方案概觀](iot-suite-predictive-overview.md)
 ## [連線的處理站解決方案概觀](iot-suite-connected-factory-overview.md)
@@ -30,11 +30,11 @@
 ### [Windows 上的 C](iot-suite-connecting-devices.md)
 ### [Linux 上的 C](iot-suite-connecting-devices-linux.md)
 ### [Node.js](iot-suite-connecting-devices-node.md)
-## [將邏輯應用程式連接到遠端監視解決方案](iot-suite-logic-apps-tutorial.md)
+## [連接邏輯應用程式 toohello 遠端監視解決方案](iot-suite-logic-apps-tutorial.md)
 ## [自訂預先設定的方案](iot-suite-guidance-on-customizing-preconfigured-solutions.md)
-## [搭配使用動態遙測與遠端監視解決方案](iot-suite-dynamic-telemetry.md)
-## [在遠端監視解決方案中建立自訂規則](iot-suite-custom-rule.md)
-## [遠端監視解決方案中的裝置資訊](iot-suite-remote-monitoring-device-info.md)
+## [以 hello 遠端監視解決方案使用動態遙測](iot-suite-dynamic-telemetry.md)
+## [在 hello 遠端監視解決方案中建立自訂規則](iot-suite-custom-rule.md)
+## [Hello 遠端監視解決方案中的裝置資訊](iot-suite-remote-monitoring-device-info.md)
 ## [為連線的處理站部署閘道](iot-suite-connected-factory-gateway-deployment.md)
 ## [自訂已連線處理站](iot-suite-connected-factory-customize.md)
 
@@ -42,7 +42,7 @@
 ## [安全性架構](iot-security-architecture.md)
 ## [安全性最佳做法](iot-security-best-practices.md)
 ## [保護您的 IoT 部署](iot-suite-security-deployment.md)
-## [從頭建立安全性](securing-iot-ground-up.md)
+## [從 hello 接地安全性](securing-iot-ground-up.md)
 
 # 相關參考
 ## [串流分析](/azure/stream-analytics/)

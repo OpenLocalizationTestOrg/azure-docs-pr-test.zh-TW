@@ -1,5 +1,5 @@
 ---
-title: "Azure 事件中樞專用容量概觀 | Microsoft Docs"
+title: "Azure 事件中心專用容量的 aaaOverview |Microsoft 文件"
 description: "Microsoft Azure 事件中樞專用容量概觀。"
 services: event-hubs
 documentationcenter: na
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: sethm;babanisa
-ms.openlocfilehash: b3af61ec0923a0d9d207cee790d59aa9254a578b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 79c09975e5c0a6d4729c8f836576770abaaf322e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-event-hubs-dedicated"></a>事件中樞專用的概觀
 
-「事件中樞專用」容量可為需求最嚴苛的客戶提供單一租用戶部署。 在完整規模 Azure 事件中樞可以每秒輸入超過 2 百萬個事件，或使用完全耐久性儲存體遙測，每秒可高達 2 GB 且延遲不到一秒。 這也可在相同系統上，啟用能即時和批次處理的整合式解決方案。 透過供應項目中包含的事件中樞封存，您可讓單一資料流同時支援即時和批次型管線，以降低解決方案的複雜度。
+*事件中心專用*容量提供單一租用戶部署的 hello 與客戶最嚴苛的需求。 完整大規模 Azure 事件中心可以輸入秒 （含） 以上的完全持久的儲存體和秒延遲遙測秒 too2 GB 過去 2 百萬個事件。 這也可讓整合式的解決方案藉由處理即時和批次上的 hello 相同的系統。 事件中心封存包含在 hello 供應項目，您可以減少 hello 複雜度，您的方案具有單一資料流支援即時和批次為基礎的管線。
 
-下表比較事件中樞可用的服務層。 相較於大部分標準和基本功能的使用量定價，事件中樞專用供應項目的每月費用固定。 專用層提供標準方案的功能，但可對工作負載需求高的客戶提供企業規模容量。 
+hello 下表比較事件中心的 hello 可用的服務層。 hello 事件中心專用供應項目是固定的每月價格，比較 toousage 定價大部分的標準和基本的功能。 hello 專用的層提供 hello 功能 hello 標準方案，但是企業規模容量嚴苛的工作負載的客戶。 
 
 | 功能 | 基本 | 標準 | 專用 |
 | --- |:---:|:---:|:---:|
@@ -34,37 +34,37 @@ ms.lasthandoff: 07/11/2017
 | 發行者原則 | N/A | 是 | 是 |     
 | 用戶群組 | 1 - 預設值 | 20 | 20 |
 | 訊息重播 | 是 | 是 | 是 |
-| 最大輸送量單位 | 20 | 20 (可通融至 100)  | 1 CU≈200 |
+| 最大輸送量單位 | 20 | 20 (彈性 too100)  | 1 CU≈200 |
 | 代理連線 | 包含 100 個 | 包含 1,000 個 | 包含 10 萬個 |
 | 其他代理連線 | N/A | 是 | 是 |
-| 訊息保留期 | 含 1 天 | 含 1 天 | 最多含 7 天 |
+| 訊息保留期 | 含 1 天 | 含 1 天 | Too7 天最多包含 |
 | 封存  (預覽版) | N/A   | 按小時付費 | 已包括 |
 
 ## <a name="benefits-of-event-hubs-dedicated-capacity"></a>事件中樞專用容量的優點
 
-使用事件中樞專用時，有以下的優點：
+使用專用的事件中樞時，可以使用 hello 下列優點：
 
 * 使用單一租用戶裝載，不會受到其他租用戶的干擾。
-* 相較於標準與基本的 256 KB，訊息大小增加至 1 MB。
+* 相較，大小會增加 too1 MB 的訊息標準 」 與 「 基本 too256 KB。
 * 可重複每次效能。
-* 容量保證符合您暴增的需求。
-* 可在 1 與 8 容量單位 (CU) 之間調整，每秒最多可提供 2 百萬個輸入事件。
-  * CU 可管理事件中樞專用的規模，每個 CU 可提供大約相當於 200 個輸送量單位 (TU)。
+* 保證您高載需要的容量 toomeet。
+* 可擴充的介於 1 到 8 的容量單位 (CU) – 提供每秒 too2 百萬個輸入事件。
+  * 自訂管理事件中心專用的其中每個 CU 可提供約 200 個輸送量單位 (TU) 的 hello 對等的 hello 小數位數。
 * 零維護：負載平衡、作業系統更新、安全性修補程式及資料分割都由我們管理。
 * 每月價格固定。
 
-事件中樞專用也會移除一些標準供應項目的輸送量限制。 基本和標準層的輸送量單位可讓您每個 TU 的輸入為每秒 1000 個事件或每秒 1 MB，而輸出則為該數量的兩倍。 專用規模的供應項目的輸入和輸出事件計數沒有限制。 這些限制僅取決於所購買事件中樞的處理能力。
+事件中心專用也會移除某些 hello 輸送量限制的 hello 標準提供項目。 在基本和標準層的輸送量單位贊成 too1000 事件每第二個或 1 MB 每秒的輸入每個 TU 和 double 該數量的輸出。 hello 專用的標尺供應項目都沒有限制的輸入和輸出事件會計算。 這些限制只受到 hello 處理 hello 購買事件中心的容量。
 
-這項服務以最大型遙測使用者為目標，同時提供給企業合約客戶。
+此服務為目標的最大遙測使用者 hello，可用 toocustomers 與 enterprise 合約。
 
-## <a name="how-to-onboard"></a>如何加入
+## <a name="how-tooonboard"></a>如何 tooonboard
 
-事件中樞專用平台是透過企業合約，以不同的 CU 大小來提供。 每個 CU 可提供大約相當於 200 個輸送量單位。 您可以根據需求新增或移除 CU 於當月上下調整容量。 專用方案的獨特之處在於可從事件中樞產品小組獲得更為實際的加入體驗，以最適合您的方式彈性部署。 
+透過 enterprise 合約具有不同大小的自訂提供 hello 事件中心專用平台。 每個 CU 提供約 200 個輸送量單位的 hello 對等。 您可以調整您的容量向上或向下整個 hello 月份 toomeet 您的需要新增或移除自訂。 hello 專用計劃是唯一的就會發生更實用的入門訓練從 hello 事件中心產品小組 tooget hello 彈性的部署，最適合您。 
 
 ## <a name="next-steps"></a>後續步驟
-請連絡 Microsoft 銷售代表或 Microsoft 支援服務，以取得事件中樞專用容量的其他詳細資料。 您也可以造訪下列連結以深入了解事件中樞︰
+請連絡您的 Microsoft 業務代表或 Microsoft 支援服務 tooget 其他詳細資料事件中心專用的容量。 您也可以瀏覽下列連結查看 hello 了有關事件中心的詳細資訊：
 
-如需價格的詳細資訊，請造訪下列連結：
+如需定價的詳細資訊，請造訪下列連結查看 hello:
 
-- [事件中樞專用價格](https://azure.microsoft.com/pricing/details/event-hubs/)。 您也可以連絡 Microsoft 銷售代表或 Microsoft 支援服務，以取得事件中樞專用容量的其他詳細資料。
-- [事件中樞常見問題集](event-hubs-faq.md)包含價格資訊，並提供一些常見問題的解答。 
+- [事件中樞專用價格](https://azure.microsoft.com/pricing/details/event-hubs/)。 您也可以連絡您的 Microsoft 業務代表或 Microsoft 支援服務 tooget 其他詳細資料事件中心專用的容量。
+- hello[事件中心常見問題集](event-hubs-faq.md)包含定價資訊，並回答一些常見問題的相關事件中心。 

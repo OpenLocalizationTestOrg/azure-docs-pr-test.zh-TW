@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure PowerShell 管理 Azure Data Lake Analytics | Microsoft Docs"
-description: "了解如何管理 Data Lake Analytics 帳戶、資料來源、作業及目錄項目。 "
+title: "使用 Azure PowerShell 的 Azure Data Lake Analytics aaaManage |Microsoft 文件"
+description: "了解 toomanage Data Lake Analytics 帳戶，資料來源的工作，以及類別目錄項目。 "
 services: data-lake-analytics
 documentationcenter: 
 author: matt1883
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 07/23/2017
 ms.author: mahi
-ms.openlocfilehash: 862e9551f1e129b7bba06651fbae94e337c92dcb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5954f0efb7d5a9778727edfccae83aec046343bd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-azure-data-lake-analytics-using-azure-powershell"></a>使用 Azure PowerShell 管理 Azure Data Lake Analytics
 [!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-了解如何使用 Azure PowerShell 來管理 Azure Data Lake Analytics 帳戶、資料來源、作業及目錄項目。 
+了解如何 toomanage Azure Data Lake Analytics 帳戶，資料來源的工作，以及使用 Azure PowerShell 的類別目錄項目。 
 
 ## <a name="prerequisites"></a>必要條件
 
-建立 Data Lake Analytics 帳戶時，您必須知道：
+建立 Data Lake Analytics 帳戶時，您會需要 tooknow:
 
-* **訂用帳戶 ID**：您 Data Lake Analytics 帳戶所在的 Azure 訂用帳戶 ID。
-* **資源群組**：包含您 Data Lake Analytics 帳戶的 Azure 資源群組名稱。
-* **Data Lake Analytics 帳戶名稱**：此帳戶名稱只能包含小寫字母和數字。
-* **預設 Data Lake Store 帳戶**：每個 Data Lake Analytics 帳戶都有一個預設的 Data Lake Store 帳戶。 這些帳戶必須位於相同的位置。
-* **位置**：您 Data Lake Analytics 帳戶的位置，例如「美國東部 2」或其他支援的位置。 您可以在我們的[價格頁面](https://azure.microsoft.com/pricing/details/data-lake-analytics/)上看到支援的位置。
+* **訂用帳戶 ID**: hello Data Lake Analytics 帳戶所在的 Azure 訂用帳戶 ID。
+* **資源群組**: hello hello 包含 Data Lake Analytics 帳戶的 Azure 資源群組名稱。
+* **Data Lake Analytics 帳戶名稱**: hello 帳戶名稱只能包含小寫字母和數字。
+* **預設 Data Lake Store 帳戶**：每個 Data Lake Analytics 帳戶都有一個預設的 Data Lake Store 帳戶。 這些帳戶必須是 hello 中相同的位置。
+* **位置**: hello 位置，您的 Data Lake Analytics 帳戶，例如 「 美國東部 2 」 或其他支援的位置。 您可以在我們的[價格頁面](https://azure.microsoft.com/pricing/details/data-lake-analytics/)上看到支援的位置。
 
-本教學課程中的 PowerShell 程式碼片段會使用這些變數來儲存此資訊
+在此教學課程中的 hello PowerShell 程式碼片段會使用這些變數 toostore 這項資訊
 
 ```powershell
 $subId = "<SubscriptionId>"
@@ -59,7 +59,7 @@ Login-AzureRmAccount -SubscriptionId $subId
 Login-AzureRmAccount -SubscriptionName $subname 
 ```
 
-`Login-AzureRmAccount` Cmdlet 一律會提示輸入認證。 您可以使用下列 Cmdlet 來避免出現提示：
+hello `Login-AzureRmAccount` cmdlet 永遠提示輸入認證。 您可以避免使用下列 cmdlet 的 hello 提示：
 
 ```powershell
 # Save login session information
@@ -73,7 +73,7 @@ Select-AzureRmProfile -Path D:\profile.json
 
 ### <a name="create-a-data-lake-analytics-account"></a>建立 Data Lake Analytics 帳戶
 
-如果您還沒有可使用的[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)，請建立一個。 
+如果您還沒有[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)toouse，建立一個。 
 
 ```powershell
 New-AzureRmResourceGroup -Name  $rg -Location $location
@@ -99,13 +99,13 @@ New-AdlAnalyticsAccount -ResourceGroupName $rg -Name $adla -Location $location -
 Get-AdlAnalyticsAccount -Name $adla
 ```
 
-檢查特定的 Data Lake Analytics 帳戶是否存在。 此 Cmdlet 會傳回 `True` 或 `False`。
+請檢查特定的資料湖分析帳戶 hello 存在。 hello cmdlet 會傳回`True`或`False`。
 
 ```powershell
 Test-AdlAnalyticsAccount -Name $adla
 ```
 
-檢查特定的 Data Lake Store account 帳戶是否存在。 此 Cmdlet 會傳回 `True` 或 `False`。
+請檢查特定的 Data Lake Store 帳戶 hello 存在。 hello cmdlet 會傳回`True`或`False`。
 
 ```powershell
 Test-AdlStoreAccount -Name $adls
@@ -113,7 +113,7 @@ Test-AdlStoreAccount -Name $adls
 
 ### <a name="listing-accounts"></a>列出帳戶
 
-列出目前訂用帳戶內的 Data Lake Analytics 帳戶。
+清單資料湖分析帳戶 hello 目前訂用帳戶內。
 
 ```powershell
 Get-AdlAnalyticsAccount
@@ -169,21 +169,21 @@ Set-AdlAnalyticsAccount -Name $adla -FirewallState Disabled
 ```
 
 ## <a name="managing-data-sources"></a>管理資料來源
-Azure Data Lake Analytics 目前支援下列資料來源：
+Azure Data Lake Analytics 目前支援下列資料來源的 hello:
 
 * [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md)
 * [Azure 儲存體](../storage/common/storage-introduction.md)
 
-當您建立 Analytics 帳戶時，必須指定一個 Data Lake Store 帳戶作為預設的資料來源。 預設的 Data Lake Store 帳戶是用來儲存工作中繼資料與工作稽核記錄。 建立 Data Lake Analytics 帳戶之後，您可以新增其他 Data Lake Store 帳戶和/或儲存體帳戶。 
+當您建立 Analytics 帳戶時，您必須指定 Data Lake Store 帳戶 toobe hello 預設資料來源。 hello 資料湖存放區會使用預設帳戶 toostore 工作中繼資料和作業的稽核記錄檔。 建立 Data Lake Analytics 帳戶之後，您可以新增其他 Data Lake Store 帳戶和/或儲存體帳戶。 
 
-### <a name="find-the-default-data-lake-store-account"></a>尋找預設的 Data Lake Store 帳戶
+### <a name="find-hello-default-data-lake-store-account"></a>找不到 hello 預設 Data Lake Store 帳戶
 
 ```powershell
 $adla_acct = Get-AdlAnalyticsAccount -Name $adla
 $dataLakeStoreName = $adla_acct.DefaultDataLakeAccount
 ```
 
-您可以用 `IsDefault` 屬性篩選資料來源清單，藉此方式尋找預設的 Data Lake Store 帳戶：
+您可以依 hello 篩選的資料來源的 hello 清單來尋找 hello 預設 Data Lake Store 帳戶`IsDefault`屬性：
 
 ```powershell
 Get-AdlAnalyticsDataSource -Account $adla  | ? { $_.IsDefault } 
@@ -206,7 +206,7 @@ Add-AdlAnalyticsDataSource -Account $adla -DataLakeStore $AzureDataLakeStoreName
 ### <a name="list-data-sources"></a>列出資料來源
 
 ```powershell
-# List all the data sources
+# List all hello data sources
 Get-AdlAnalyticsDataSource -Name $adla
 
 # List attached Data Lake Store accounts
@@ -229,7 +229,7 @@ $script = @"
             ("Woodgrove", 2700.0)
         ) AS D( customer, amount );
 OUTPUT @a
-    TO "/data.csv"
+    too"/data.csv"
     USING Outputters.Csv();
 "@
 
@@ -250,9 +250,9 @@ Submit-AdlJob -AccountName $adla –ScriptPath $scriptpath -Name "Demo"
 
 ## <a name="list-jobs-in-an-account"></a>列出帳戶中的作業
 
-### <a name="list-all-the-jobs-in-the-account"></a>列出帳戶中的所有作業。 
+### <a name="list-all-hello-jobs-in-hello-account"></a>列出所有 hello 帳戶中的 hello 作業。 
 
-輸出包含目前執行中作業和最近完成的作業。
+hello 輸出會包含目前正在執行工作和最近完成這些工作的 hello。
 
 ```powershell
 Get-AdlJob -Account $adla
@@ -261,16 +261,16 @@ Get-AdlJob -Account $adla
 
 ### <a name="list-a-specific-number-of-jobs"></a>列出特定數目的作業
 
-預設會在提交時排序作業清單。 因此，最新提交的作業會顯示在最前面。 ADLA 帳戶預設會記住 180 天內的作業，但 Ge-AdlJob Cmdlet 預設只會傳回前 500 個作業。 請使用 -Top 參數來列出特定數目的作業。
+預設排序工作 hello 清單在送出時間。 因此最近送出 hello 作業會先出現。 預設為 180 天，hello ADLA 帳戶會記住的工作，但只 hello hello Ge AdlJob cmdlet 預設傳回的前 500 個。 使用-最上層參數 toolist 特定數量的作業。
 
 ```powershell
 $jobs = Get-AdlJob -Account $adla -Top 10
 ```
 
 
-### <a name="list-jobs-based-on-the-value-of-job-property"></a>根據作業屬性的值列出作業
+### <a name="list-jobs-based-on-hello-value-of-job-property"></a>根據 hello 工作屬性值的清單作業
 
-使用 `-State` 參數。 您可以結合以下這些值：
+使用 hello`-State`參數。 您可以結合以下這些值：
 
 * `Accepted`
 * `Compiling`
@@ -283,17 +283,17 @@ $jobs = Get-AdlJob -Account $adla -Top 10
 * `Start`
 
 ```powershell
-# List the running jobs
+# List hello running jobs
 Get-AdlJob -Account $adla -State Running
 
-# List the jobs that have completed
+# List hello jobs that have completed
 Get-AdlJob -Account $adla -State Ended
 
-# List the jobs that have not started yet
+# List hello jobs that have not started yet
 Get-AdlJob -Account $adla -State Accepted,Compiling,New,Paused,Scheduling,Start
 ```
 
-使用 `-Result` 參數來偵測已結束的工作是否順利完成。 它有下列值：
+使用 hello`-Result`參數 toodetect 結束的作業是否已順利完成。 它有下列值：
 
 * Cancelled
 * Failed
@@ -309,21 +309,21 @@ Get-AdlJob -Account $adla -State Ended -Result Failed
 ```
 
 
-`-Submitter` 參數可協助您識別由誰提交工作。
+hello`-Submitter`參數可協助您識別誰送出工作。
 
 ```powershell
 Get-AdlJob -Account $adla -Submitter "joe@contoso.com"
 ```
 
-`-SubmittedAfter` 用於篩選時間範圍。
+hello`-SubmittedAfter`篩選 tooa 時間範圍中很有用。
 
 
 ```powershell
-# List  jobs submitted in the last day.
+# List  jobs submitted in hello last day.
 $d = [DateTime]::Now.AddDays(-1)
 Get-AdlJob -Account $adla -SubmittedAfter $d
 
-# List  jobs submitted in the last seven day.
+# List  jobs submitted in hello last seven day.
 $d = [DateTime]::Now.AddDays(-7)
 Get-AdlJob -Account $adla -SubmittedAfter $d
 ```
@@ -332,11 +332,11 @@ Get-AdlJob -Account $adla -SubmittedAfter $d
 
 
 ```
-# List jobs submitted in the last five days and that successfully completed.
+# List jobs submitted in hello last five days and that successfully completed.
 $d = (Get-Date).AddDays(-5)
 Get-AdlJob -Account $adla -SubmittedAfter $d -State Ended -Result Succeeded
 
-# List all failed jobs submitted by "joe@contoso.com" within the past seven days.
+# List all failed jobs submitted by "joe@contoso.com" within hello past seven days.
 Get-AdlJob -Account $adla `
     -Submitter "joe@contoso.com" `
     -SubmittedAfter (Get-Date).AddDays(-7) `
@@ -345,9 +345,9 @@ Get-AdlJob -Account $adla `
 
 ## <a name="filtering-a-list-of-jobs"></a>篩選作業清單
 
-在您取得目前 PowerShell 工作階段中的作業清單之後， 您可以使用標準 PowerShell Cmdlet 來篩選該清單。
+在您取得目前 PowerShell 工作階段中的作業清單之後， 您可以使用標準的 PowerShell cmdlet toofilter hello 清單。
 
-將作業清單篩選成顯示過去 24 小時提交的作業
+篩選器的作業 toohello 工作清單的送出 hello 中過去 24 小時
 
 ```
 $upperdate = Get-Date
@@ -355,7 +355,7 @@ $lowerdate = $upperdate.AddHours(-24)
 $jobs | Where-Object { $_.EndTime -ge $lowerdate }
 ```
 
-將作業清單篩選成顯示過去 24 小時結束的作業
+篩選工作結束 hello 過去 24 小時的 toohello 工作的清單
 
 ```
 $upperdate = Get-Date
@@ -363,7 +363,7 @@ $lowerdate = $upperdate.AddHours(-24)
 $jobs | Where-Object { $_.SubmitTime -ge $lowerdate }
 ```
 
-將作業清單篩選成顯示已開始執行的作業。 作業有可能在編譯階段即發生失敗，因而永遠不會開始。 讓我們看看已實際開始執行然後發生失敗的失敗作業。
+篩選的工作 toohello 工作開始執行的清單。 作業有可能在編譯階段即發生失敗，因而永遠不會開始。 讓我們看看實際開始執行，然後失敗的 hello 失敗作業。
 
 ```powershell
 $jobs | Where-Object { $_.StartTime -ne $null }
@@ -371,22 +371,22 @@ $jobs | Where-Object { $_.StartTime -ne $null }
 
 ### <a name="analyzing-a-list-of-jobs"></a>分析作業清單
 
-使用 `Group-Object` Cmdlet 來分析作業清單。
+使用 hello `Group-Object` cmdlet tooanalyze 工作清單。
 
 ```
-# Count the number of jobs by Submitter
+# Count hello number of jobs by Submitter
 $jobs | Group-Object Submitter | Select -Property Count,Name
 
-# Count the number of jobs by Result
+# Count hello number of jobs by Result
 $jobs | Group-Object Result | Select -Property Count,Name
 
-# Count the number of jobs by State
+# Count hello number of jobs by State
 $jobs | Group-Object State | Select -Property Count,Name
 
-#  Count the number of jobs by DegreeOfParallelism
+#  Count hello number of jobs by DegreeOfParallelism
 $jobs | Group-Object DegreeOfParallelism | Select -Property Count,Name
 ```
-執行分析時，將屬性新增到作業物件可能會相當有用，這可讓您更容易進行篩選和分組。 下列程式碼片段說明如何使用計算的屬性來標註 JobInfo。
+在執行分析時，可能很有用的 tooadd 屬性 toohello 工作物件 toomake 篩選和群組更簡單。 下列程式碼片段的 hello 顯示 tooannotate a JobInfo 與如何計算屬性。
 
 ```
 function annotate_job( $j )
@@ -411,7 +411,7 @@ $jobs = $jobs | %{ annotate_job( $_ ) }
 
 ## <a name="get-information-about-pipelines-and-recurrences"></a>取得管線和週期的相關資訊
 
-使用 `Get-AdlJobPipeline` Cmdlet 來查看先前提交作業的管線資訊。
+使用 hello `Get-AdlJobPipeline` cmdlet toosee hello 管線資訊先前已送出的工作。
 
 ```powershell
 $pipelines = Get-AdlJobPipeline -Account $adla
@@ -419,7 +419,7 @@ $pipelines = Get-AdlJobPipeline -Account $adla
 $pipeline = Get-AdlJobPipeline -Account $adla -PipelineId "<pipeline ID>"
 ```
 
-使用 `Get-AdlJobRecurrence` Cmdlet 來查看先前提交作業的週期資訊。
+使用 hello `Get-AdlJobRecurrence` cmdlet toosee hello 循環資訊先前已提交的工作。
 
 ```powershell
 $recurrences = Get-AdlJobRecurrence -Account $adla
@@ -431,15 +431,15 @@ $recurrence = Get-AdlJobRecurrence -Account $adla -RecurrenceId "<recurrence ID>
 
 ### <a name="get-job-status"></a>取得作業狀態
 
-取得特定作業的狀態。
+取得 hello 特定作業的狀態。
 
 ```powershell
 Get-AdlJob -AccountName $adla -JobId $job.JobId
 ```
 
-### <a name="examine-the-job-outputs"></a>檢查作業輸出
+### <a name="examine-hello-job-outputs"></a>檢查 hello 作業輸出
 
-在作業結束之後，請列出資料夾中的檔案，來檢查輸出檔案是否存在。
+Hello 工作結束之後，請檢查所列出的資料夾中的 hello 檔案是否存在 hello 輸出檔。
 
 ```powershell
 Get-AdlStoreChildItem -Account $adls -Path "/"
@@ -453,9 +453,9 @@ Get-AdlStoreChildItem -Account $adls -Path "/"
 Stop-AdlJob -Account $adls -JobID $jobID
 ```
 
-### <a name="wait-for-a-job-to-finish"></a>等候作業結束
+### <a name="wait-for-a-job-toofinish"></a>等候工作 toofinish
 
-您可以不重複執行 `Get-AdlAnalyticsJob` 直到作業結束，而是使用 `Wait-AdlJob` Cmdlet 來等候作業結束。
+而不是重複`Get-AdlAnalyticsJob`直到作業完成時，您可以使用 hello `Wait-AdlJob` hello 作業 tooend 的 cmdlet toowait。
 
 ```powershell
 Wait-AdlJob -Account $adla -JobId $job.JobId
@@ -465,7 +465,7 @@ Wait-AdlJob -Account $adla -JobId $job.JobId
 
 ### <a name="list-existing-compute-policies"></a>列出現有的計算原則
 
-`Get-AdlAnalyticsComputePolicy` Cmdlet 會擷取 Data Lake Analytics 帳戶的計算原則清單。
+hello`Get-AdlAnalyticsComputePolicy`指令程式可抓取 Data Lake Analytics 帳戶的計算原則的相關資訊。
 
 ```powershell
 $policies = Get-AdlAnalyticsComputePolicy -Account $adla
@@ -473,7 +473,7 @@ $policies = Get-AdlAnalyticsComputePolicy -Account $adla
 
 ### <a name="create-a-compute-policy"></a>建立計算原則
 
-`New-AdlAnalyticsComputePolicy` Cmdlet 會為 Data Lake Analytics 帳戶建立新的計算原則。 這個範例會將指定使用者的可用 AU 上限設定為 50，將最低作業優先權設為 250。
+hello `New-AdlAnalyticsComputePolicy` cmdlet 會建立新的計算資料湖分析帳戶原則。 集 hello 最大澳洲可用 toohello 這個範例會指定使用者 too50 和 hello 最小的工作優先權 too250。
 
 ```powershell
 $userObjectId = (Get-AzureRmAdUser -SearchString "garymcdaniel@contoso.com").Id
@@ -481,7 +481,7 @@ $userObjectId = (Get-AzureRmAdUser -SearchString "garymcdaniel@contoso.com").Id
 New-AdlAnalyticsComputePolicy -Account $adla -Name "GaryMcDaniel" -ObjectId $objectId -ObjectType User -MaxDegreeOfParallelismPerJob 50 -MinPriorityPerJob 250
 ```
 
-## <a name="check-for-the-existence-of-a-file"></a>檢查檔案是否存在。
+## <a name="check-for-hello-existence-of-a-file"></a>檢查 hello 的檔案存在。
 
 ```powershell
 Test-AdlStoreItem -Account $adls -Path "/data.csv"
@@ -514,13 +514,13 @@ Export-AdlStoreItem -AccountName $adls -Path "/" -Destination "c:\myData\" -Recu
 ```
 
 > [!NOTE]
-> 如果上傳或下載程序中斷，您可以搭配 ``-Resume`` 旗標來重新執行該 Cmdlet，以嘗試繼續該程序。
+> 如果 hello 上傳或下載程序將會中斷，您可以嘗試再次以 hello 執行 hello cmdlet tooresume hello 程序``-Resume``旗標。
 
 ## <a name="manage-catalog-items"></a>管理目錄項目
 
-U-SQL 目錄是用來建構資料和程式碼，讓 U-SQL 指令碼可以共用它們。 目錄可以讓 Azure Data Lake 中的資料具有可能的最高效能。 如需詳細資訊，請參閱 [使用 U-SQL 目錄](data-lake-analytics-use-u-sql-catalog.md)。
+hello U-SQL 目錄會是使用的 toostructure 資料和程式碼，因此它們可以共用 U-SQL 指令碼。 hello 類別目錄可讓 hello Azure Data Lake 中的資料可能的最大效能。 如需詳細資訊，請參閱 [使用 U-SQL 目錄](data-lake-analytics-use-u-sql-catalog.md)。
 
-### <a name="list-items-in-the-u-sql-catalog"></a>列出 U-SQL 目錄中的項目
+### <a name="list-items-in-hello-u-sql-catalog"></a>Hello U-SQL 類別目錄的清單項目
 
 ```powershell
 # List U-SQL databases
@@ -533,7 +533,7 @@ Get-AdlCatalogItem -Account $adla -ItemType Table -Path "database"
 Get-AdlCatalogItem -Account $adla -ItemType Table -Path "database.schema"
 ```
 
-列出 ADLA 帳戶中所有資料庫的所有組件。
+列出所有 ADLA 帳戶中的 hello 資料庫中的所有 hello 組件。
 
 ```powershell
 $dbs = Get-AdlCatalogItem -Account $adla -ItemType Database
@@ -562,7 +562,7 @@ Test-AdlCatalogItem  -Account $adla -ItemType Database -Path "master"
 
 ### <a name="create-credentials-in-a-catalog"></a>在目錄中建立認證
 
-在 U-SQL 資料庫內，為裝載於 Azure 中的資料庫建立認證物件。 目前，U-SQL 認證是您可以透過 PowerShell 建立的唯一目錄項目類型。
+在 U-SQL 資料庫內，為裝載於 Azure 中的資料庫建立認證物件。 目前，U SQL 認證已 hello 唯一的您可以透過 PowerShell 建立類別目錄項目類型。
 
 ```powershell
 $dbName = "master"
@@ -578,7 +578,7 @@ New-AdlCatalogCredential -AccountName $adla `
 
 ### <a name="get-basic-information-about-an-adla-account"></a>取得 ADLA 帳戶的相關基本資訊
 
-只要指定帳戶名稱，下列程式碼就會查詢該帳戶的相關基本資訊
+指定的帳戶名稱，下列程式碼的 hello 查閱 hello 帳戶的基本資訊
 
 ```
 $adla_acct = Get-AdlAnalyticsAccount -Name "saveenrdemoadla"
@@ -674,7 +674,7 @@ foreach ($sub in $subs)
 
 ## <a name="create-a-data-lake-analytics-account-using-a-template"></a>使用範本建立 Data Lake Analytics 帳戶
 
-您也可以運用下列 PowerShell 指令碼來使用「Azure 資源群組」範本：
+您也可以使用 Azure 資源群組範本，使用下列 PowerShell 指令碼的 hello:
 
 ```powershell
 $subId = "<Your Azure Subscription ID>"
@@ -685,15 +685,15 @@ $adls = "<New Data Lake Store Account Name>"
 $adla = "<New Data Lake Analytics Account Name>"
 
 $deploymentName = "MyDataLakeAnalyticsDeployment"
-$armTemplateFile = "<LocalFolderPath>\azuredeploy.json"  # update the JSON template path 
+$armTemplateFile = "<LocalFolderPath>\azuredeploy.json"  # update hello JSON template path 
 
-# Log in to Azure
+# Log in tooAzure
 Login-AzureRmAccount -SubscriptionId $subId
 
-# Create the resource group
+# Create hello resource group
 New-AzureRmResourceGroup -Name $rg -Location $location
 
-# Create the Data Lake Analytics account with the default Data Lake Store account.
+# Create hello Data Lake Analytics account with hello default Data Lake Store account.
 $parameters = @{"adlAnalyticsName"=$adla; "adlStoreName"=$adls}
 New-AzureRmResourceGroupDeployment -Name $deploymentName -ResourceGroupName $rg -TemplateFile $armTemplateFile -TemplateParameterObject $parameters 
 ```
@@ -702,7 +702,7 @@ New-AzureRmResourceGroupDeployment -Name $deploymentName -ResourceGroupName $rg 
 
 **範例範本**
 
-請將下列文字儲存成 `.json` 檔案，然後運用上面的 PowerShell 指令碼來使用此範本。 
+儲存下列文字當做 hello`.json`檔案，然後再使用 hello 上述 PowerShell 指令碼 toouse hello 範本。 
 
 ```json
 {
@@ -712,13 +712,13 @@ New-AzureRmResourceGroupDeployment -Name $deploymentName -ResourceGroupName $rg 
     "adlAnalyticsName": {
       "type": "string",
       "metadata": {
-        "description": "The name of the Data Lake Analytics account to create."
+        "description": "hello name of hello Data Lake Analytics account toocreate."
       }
     },
     "adlStoreName": {
       "type": "string",
       "metadata": {
-        "description": "The name of the Data Lake Store account to create."
+        "description": "hello name of hello Data Lake Store account toocreate."
       }
     }
   },

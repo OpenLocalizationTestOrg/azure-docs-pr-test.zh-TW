@@ -1,6 +1,6 @@
 ---
-title: "使用 PowerShell 和 Azure HDInsight 執行 Sqoop 作業 | Microsoft Docs"
-description: "了解如何從工作站使用 Azure PowerShell，在 HDInsight 叢集與 Azure SQL Database 之間執行 Sqoop 匯入和匯出。"
+title: "使用 PowerShell 和 Azure HDInsight aaaRun Sqoop 作業 |Microsoft 文件"
+description: "了解如何從工作站 toorun Sqoop toouse Azure PowerShell 匯入和匯出的 Hadoop 叢集和 Azure SQL database 之間。"
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -16,24 +16,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: 956f4ac7c39e2936a2a6b5e5108dbe302446270c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8313bbd109e968aeab540bbcefefe84ebd64c87e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-sqoop-jobs-using-azure-powershell-for-hadoop-in-hdinsight"></a>在 HDInsight 中使用 Azure PowerShell for Hadoop 執行 Sqoop 工作
 [!INCLUDE [sqoop-selector](../../includes/hdinsight-selector-use-sqoop.md)]
 
-了解如何在 HDInsight 上使用 Azure PowerShell 執行 Sqoop 工作，以進行 HDInsight 叢集與 Azure SQL Database 或 SQL Server Database 之間的匯入和匯出作業。
+了解 toouse Azure PowerShell toorun Sqoop HDInsight tooimport 中的工作，並匯出 HDInsight 叢集和 Azure SQL database 或 SQL Server 資料庫之間。
 
 > [!NOTE]
-> 本文中的步驟可以與 Windows 架構或 Linux 架構的 HDInsight 叢集搭配使用。不過，這些步驟只能從 Windows 用戶端運作。 如需其他工作提交方法，請按一下本文頂端的索引標籤選取器。
+> 可以使用本文章中的 hello 步驟與任一 Windows 或 Linux 的 HDInsight 叢集。不過，這些步驟只會從 Windows 用戶端運作。 對於其他工作提交方法，按一下 hello 發行項的最上層顯示 hello hello 索引標籤選取器。
 > 
 > 
 
 ### <a name="prerequisites"></a>必要條件
-開始進行本教學課程之前，您必須具備下列條件：
+開始本教學課程之前，您必須擁有 hello 下列：
 
 * **具有 Azure PowerShell 的工作站**。
   
@@ -41,7 +41,7 @@ ms.lasthandoff: 07/11/2017
 * **HDInsight 中的 Hadoop 叢集**。 請參閱 [建立叢集與 SQL Database](hdinsight-use-sqoop.md#create-cluster-and-sql-database)。
 
 ## <a name="run-sqoop-using-powershell"></a>使用 PowerShell 執行 Sqoop
-下列 PowerShell 指令碼會前置處理來源檔案，並將它匯出至 Azure SQL Database：
+下列 PowerShell 指令碼的 hello 預先處理 hello 原始程式檔，並將它匯出 tooan Azure SQL database:
 
     $resourceGroupName = "<AzureResourceGroupName>"
     $hdinsightClusterName = "<HDInsightClusterName>"
@@ -58,51 +58,51 @@ ms.lasthandoff: 07/11/2017
     $sqlDatabaseLogin = "sqluser"
     $sqlDatabasePassword = "<Password>"
 
-    #region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
     catch{Login-AzureRmAccount}
     #endregion
 
-    #region - pre-process the source file
+    #region - pre-process hello source file
 
-    Write-Host "`nPreprocessing the source file ..." -ForegroundColor Green
+    Write-Host "`nPreprocessing hello source file ..." -ForegroundColor Green
 
     # This procedure creates a new file with $destBlobName
     $sourceBlobName = "example/data/sample.log"
     $destBlobName = "tutorials/usesqoop/data/sample.log"
 
-    # Define the connection string
+    # Define hello connection string
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey `
                                     -ResourceGroupName $resourceGroupName `
                                     -Name $defaultStorageAccountName)[0].Value
     $storageConnectionString = "DefaultEndpointsProtocol=https;AccountName=$defaultStorageAccountName;AccountKey=$defaultStorageAccountKey"
 
-    # Create block blob objects referencing the source and destination blob.
+    # Create block blob objects referencing hello source and destination blob.
     $storageAccount = Get-AzureRmStorageAccount -ResourceGroupName $ResourceGroupName -Name $defaultStorageAccountName
     $storageContainer = ($storageAccount |Get-AzureStorageContainer -Name $defaultBlobContainerName).CloudBlobContainer
     $sourceBlob = $storageContainer.GetBlockBlobReference($sourceBlobName)
     $destBlob = $storageContainer.GetBlockBlobReference($destBlobName)
 
-    # Define a MemoryStream and a StreamReader for reading from the source file
+    # Define a MemoryStream and a StreamReader for reading from hello source file
     $stream = New-Object System.IO.MemoryStream
     $stream = $sourceBlob.OpenRead()
     $sReader = New-Object System.IO.StreamReader($stream)
 
-    # Define a MemoryStream and a StreamWriter for writing into the destination file
+    # Define a MemoryStream and a StreamWriter for writing into hello destination file
     $memStream = New-Object System.IO.MemoryStream
     $writeStream = New-Object System.IO.StreamWriter $memStream
 
-    # Pre-process the source blob
+    # Pre-process hello source blob
     $exString = "java.lang.Exception:"
     while(-Not $sReader.EndOfStream){
         $line = $sReader.ReadLine()
         $split = $line.Split(" ")
 
-        # remove the "java.lang.Exception" from the first element of the array
+        # remove hello "java.lang.Exception" from hello first element of hello array
         # for example: java.lang.Exception: 2012-02-03 19:11:02 SampleClass8 [WARN] problem finding id 153454612
         if ($split[0] -eq $exString){
-            #create a new ArrayList to remove $split[0]
+            #create a new ArrayList tooremove $split[0]
             $newArray = [System.Collections.ArrayList] $split
             $newArray.Remove($exString)
 
@@ -111,23 +111,23 @@ ms.lasthandoff: 07/11/2017
             $line = $newArray -join(" ")
         }
 
-        # remove the lines that has less than 7 elements
+        # remove hello lines that has less than 7 elements
         if ($split.count -ge 7){
             write-host $line
             $writeStream.WriteLine($line)
         }
     }
 
-    # Write to the destination blob
+    # Write toohello destination blob
     $writeStream.Flush()
     $memStream.Seek(0, "Begin")
     $destBlob.UploadFromStream($memStream)
 
     #endregion
 
-    #region - export the log file from the cluster to the SQL database
+    #region - export hello log file from hello cluster toohello SQL database
 
-    Write-Host "Exporting the log file ..." -ForegroundColor Green
+    Write-Host "Exporting hello log file ..." -ForegroundColor Green
 
     $pw = ConvertTo-SecureString -String $httpPassword -AsPlainText -Force
     $httpCredential = New-Object System.Management.Automation.PSCredential($httpUserName,$pw)
@@ -166,14 +166,14 @@ ms.lasthandoff: 07/11/2017
     #endregion
 
 ## <a name="limitations"></a>限制
-* 大量匯出 - 使用 Linux 型 HDInsight，用來將資料匯出至 Microsoft SQL Server 或 Azure SQL Database 的 Sqoop 連接器目前不支援大量插入。
-* 批次處理 - 使用 Linux 型 HDInsight，執行插入時若使用 `-batch` 參數，Sqoop 將會執行多個插入，而不是批次處理插入作業。
+* 大量匯出的以 Linux 為基礎的 HDInsight、 hello Sqoop 使用連接器 tooexport 資料 tooMicrosoft SQL Server 或 Azure SQL Database 目前不支援大量插入。
+* 批次處理-與 linux 的 HDInsight，當使用 hello`-batch`切換時執行插入、 Sqoop 會執行多個的插入，而不是批次處理 hello 插入作業。
 
 ## <a name="next-steps"></a>後續步驟
-現在，您已了解如何使用 Sqoop。 若要深入了解，請參閱：
+現在您已經學會如何 toouse Sqoop。 toolearn 詳細資訊，請參閱：
 
 * [搭配 HDInsight 使用 Oozie](hdinsight-use-oozie.md)：在 Oozie 工作流程中使用 Sqoop 動作。
-* [使用 HDInsight 分析航班延誤資料](hdinsight-analyze-flight-delay-data.md)：使用 Hive 分析航班誤點資料，然後使用 Sqoop 將資料匯出至 Azure SQL Database。
-* [將資料上傳至 HDInsight](hdinsight-upload-data.md)：尋找可將資料上傳至 HDInsight/Azure Blob 儲存體的其他方法。
+* [飛行延遲使用分析資料 HDInsight](hdinsight-analyze-flight-delay-data.md)： 使用 Hive tooanalyze 飛行延遲的資料，然後再使用 Sqoop tooexport 資料 tooan Azure SQL database。
+* [上傳資料 tooHDInsight](hdinsight-upload-data.md)： 尋找其他方法上, 傳資料 tooHDInsight/Azure Blob 儲存體。
 
 [sqoop-user-guide-1.4.4]: https://sqoop.apache.org/docs/1.4.4/SqoopUserGuide.html

@@ -1,6 +1,6 @@
 ---
-title: "使用 API 管理服務產生 HTTP 要求"
-description: "了解如何使用 API 管理中的要求和回應原則，從您的 API 呼叫外部服務"
+title: "aaaUsing API 管理服務 toogenerate HTTP 要求"
+description: "了解 API 管理 toocall 外部服務從您的 API 中的 toouse 要求和回應原則"
 services: api-management
 documentationcenter: 
 author: darrelmiller
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: e778943715d6ca5256ad612d82bdc1f82197df0d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8002ee453057513340328d99f298703c3b3a9531
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="using-external-services-from-the-azure-api-management-service"></a>使用來自 Azure API 管理服務的外部服務
-Azure API 管理服務中可用的原則可純粹根據連入要求、傳出回應及基本組態資訊來進行各式各樣的有用工作。 不過，能夠與來自 API 管理原則的外部服務進行互動，可開啟更多的機會。
+# <a name="using-external-services-from-hello-azure-api-management-service"></a>使用來自 hello Azure API 管理服務的外部服務
+hello 原則可在 Azure API 管理服務可以執行各種不同的有用的工作只根據 hello 連入要求、 hello 外寄回應和基本設定資訊。 不過，所能 toointeract 與外部服務從 API 管理原則會開啟更多的機會。
 
-我們先前曾討論過如何與 [適用於記錄、監視及分析的 Azure 事件中樞服務](api-management-log-to-eventhub-sample.md)互動的方式。 在本文中，我們將示範可讓您與任何以 HTTP 為基礎之外部服務進行互動的原則。 這些原則可用來觸發遠端事件，或用來擷取將以某種方式用於操作原始要求和回應的資訊。
+我們先前看過我們可以互動 hello[來記錄、 監視和分析 Azure 事件中心服務](api-management-log-to-eventhub-sample.md)。 本文章中我們將示範原則，可讓您使用任何外部 HTTP toointeract 基礎服務。 這些原則可以使用，用於觸發遠端事件或擷取將會使用的 toomanipulate hello 原始要求和回應以某種方式的資訊。
 
 ## <a name="send-one-way-request"></a>傳送單向要求
-或許對要求來說，最簡單的外部互動是射後不理的樣式，讓外部服務能夠獲得某些種類之重要事件的通知。 我們可以使用控制流程原則 `choose` 來偵測任何一種我們感興趣的狀況，接著，如果條件成立，我們就可以使用 [send-one-way-request](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendOneWayRequest) 原則提出外部的 HTTP 要求。 這可能是對傳訊系統 (例如 Hipchat 或 Slack) 的要求，也可能是對郵件 API (例如 SendGrid 或 MailChimp) 的要求，或者是針對某些像是 PagerDuty 的重大支援事件的要求。 所有的這些傳訊系統都具有簡單的 HTTP API，可讓我們輕鬆叫用。
+可能是由於 hello 最簡單的外部互動不 hello 和不理樣式可讓通知種類重要事件之外部服務 toobe 的要求。 我們可以使用 hello 控制流程原則`choose`toodetect 滿足任何一種狀況，我們有興趣，所以，如果 hello 條件為止，我們可以讓外部 HTTP 要求使用 hello[傳送一個方式-要求](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendOneWayRequest)原則。 這可能是要求 tooa 傳訊系統，例如 Hipchat Slack 或如 SendGrid 或 MailChimp，郵件應用程式開發介面或類似的重大支援事件 PagerDuty。 所有的這些傳訊系統都具有簡單的 HTTP API，可讓我們輕鬆叫用。
 
 ### <a name="alerting-with-slack"></a>使用 Slack 提供警示
-下列範例示範如果 HTTP 回應狀態碼大於或等於 500，如何將訊息傳送至 Slack 聊天室。 500 範圍錯誤表示我們的後端 API發生問題，而我們 API 的用戶端無法解決這類問題。 通常我們需要進行某種形式的介入。  
+hello 下列範例會示範如何 toosend 訊息 tooa 延聊天室 hello HTTP 回應狀態碼是否大於或等於 too500。 500 範圍錯誤指出 hello API 的用戶端的問題與我們的後端應用程式開發介面不能自行解決。 通常我們需要進行某種形式的介入。  
 
 ```xml
 <choose>
@@ -56,31 +56,31 @@ Azure API 管理服務中可用的原則可純粹根據連入要求、傳出回�
 </choose>
 ```
 
-Slack 具有傳入 Web 攔截的概念。 在設定傳入的 Web 攔截時，Slack 會產生特殊的 URL，讓您能夠執行簡單的 POST 要求，並將訊息傳遞至 Slack 通道。 我們建立的 JSON 主體是以 Slack 所定義的格式為根據。
+Slack 有傳入的 web 攔截 hello 概念。 設定時傳入的 web 攔截，Slack 會產生特殊的 URL，這可讓您 toodo 簡單的 POST 要求和 toopass 訊息成 hello Slack 頻道。 hello 我們建立的 JSON 主體根據 Slack 所定義的格式。
 
 ![Slack 的 Web 攔截](./media/api-management-sample-send-request/api-management-slack-webhook.png)
 
 ### <a name="is-fire-and-forget-good-enough"></a>「射後不理」 夠好嗎？
-使用要求的射後不理樣式有一些特定的權衡取捨。 如果基於某些原因而導致要求失敗，則不會報告失敗。 在此特殊情況下，無法保證具有次要失敗報告系統的複雜度，以及等待回應所需的其他效能成本。 如果檢查回應很重要，則 [send-request](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest) 原則是較好的選項。
+使用要求的射後不理樣式有一些特定的權衡取捨。 如果基於某些原因，hello 要求失敗，就不會報告 hello 失敗。 在此特定情況下，不保證 hello 複雜度次要失敗報告系統並等待 hello 回應 hello 額外的效能成本。 案例中很重要的 toocheck hello 回應，然後 hello[傳送要求](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest)原則是更好的選項。
 
 ## <a name="send-request"></a>send-request
-`send-request` 原則能夠使用外部服務來執行複雜的處理函式，並將資料傳回 API 管理服務，此服務可用來進一步處理原則。
+hello`send-request`使用外部服務 tooperform 複雜處理函式和傳回資料 toohello API 管理服務，可用於進一步處理原則的原則啟用。
 
 ### <a name="authorizing-reference-tokens"></a>授權參考權杖
-API 管理的主要功能是保護後端資源。 如果您的 API 所使用的授權伺服器會建立 [JWT 權杖](http://jwt.io/) 做為其 OAuth2 流程的一部分，當 [Azure Active Directory](../active-directory/active-directory-aadconnect.md) 這樣做時，則您可以使用 `validate-jwt` 原則來驗證權杖的有效性。 不過，某些授權伺服器會建立所謂的 [參考權杖](http://leastprivilege.com/2015/11/25/reference-tokens-and-introspection/) ，其無法在不對授權伺服器進行回呼的情況下進行驗證。
+API 管理的主要功能是保護後端資源。 如果您的 API 所使用的 hello 授權伺服器建立[JWT 權杖](http://jwt.io/)OAuth2 流程的一部分做為[Azure Active Directory](../active-directory/active-directory-aadconnect.md)存在，則您可以使用 hello`validate-jwt`原則 tooverify hello 有效性hello 語彙基元。 不過，某些授權伺服器建立所謂的[參考語彙基元](http://leastprivilege.com/2015/11/25/reference-tokens-and-introspection/)，而不進行呼叫後 toohello 授權伺服器無法驗證。
 
 ### <a name="standardized-introspection"></a>將自我檢查標準化
-過去一直沒有標準化的方式可使用授權伺服器來驗證參考權杖。 不過，IETF 最近發佈的提議標準 [RFC 7662](https://tools.ietf.org/html/rfc7662) 定義了資源伺服器如何驗證權杖的有效性。
+在過去的 hello 已經過驗證與授權伺服器參考語彙基元的任何標準化的方式。 不過最近提議的標準[RFC 7662](https://tools.ietf.org/html/rfc7662) hello 定義資源伺服器可以如何確認語彙基元的 hello 有效性的 IETF 根據已發行。
 
-### <a name="extracting-the-token"></a>擷取權杖
-第一個步驟是從授權標頭擷取權杖。 標頭值應該使用 `Bearer` 授權配置、單一空格和授權權杖，按照每個 [RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.1)進行格式化。 不過，有一些情況需要省略授權配置。 為了在剖析時說明這一點，我們會使用空格來分割標頭值，並從字串的傳回陣列中選取最後一個字串。 這樣可為格式錯誤的授權標頭提供因應措施。
+### <a name="extracting-hello-token"></a>解壓縮 hello 語彙基元
+hello 第一個步驟是從 hello 授權標頭的 tooextract hello 語彙基元。 hello 標頭值的格式應與 hello`Bearer`授權配置、 一個空格，然後 hello 授權權杖做為每個[RFC 6750](http://tools.ietf.org/html/rfc6750#section-2.1)。 不幸的是一些情況下則 hello 授權配置。 這個 tooaccount 剖析時，我們會分割上一個空格，再選取 hello hello 傳回字串陣列中的最後一個字串 hello 標頭值。 這樣可為格式錯誤的授權標頭提供因應措施。
 
 ```xml
 <set-variable name="token" value="@(context.Request.Headers.GetValueOrDefault("Authorization","scheme param").Split(' ').Last())" />
 ```
 
-### <a name="making-the-validation-request"></a>提出驗證要求
-一旦擁有授權權杖之後，就可以提出要求來驗證權杖。 RFC 7662 會呼叫此程序進行自我檢查，並要求您將 HTML 表單 `POST` 到自我檢查資源。 HTML 表單至少必須包含具有索引鍵 `token`的索引鍵/值組。 這項對授權伺服器的要求也必須經過驗證，以確保惡意用戶端無法撈取有效的權杖。
+### <a name="making-hello-validation-request"></a>發出 hello 驗證要求
+一旦 hello 授權權杖，我們可以讓 hello 要求 toovalidate hello 語彙基元。 RFC 7662 呼叫此處理序自我並要求您`POST`HTML 表單 toohello 自我資源。 hello HTML 表單至少必須包含與 hello 索引鍵的索引鍵/值組`token`。 此要求 toohello 授權伺服器也必須是惡意用戶端無法移 trawling 有效權杖的已驗證的 tooensure。
 
 ```xml
 <send-request mode="new" response-variable-name="tokenstate" timeout="20" ignore-error="true">
@@ -96,13 +96,13 @@ API 管理的主要功能是保護後端資源。 如果您的 API 所使用的�
 </send-request>
 ```
 
-### <a name="checking-the-response"></a>檢查回應
-`response-variable-name` 屬性可用來提供所傳回回應的存取權。 這個屬性中定義的名稱可以用來做為 `context.Variables` 字典的索引鍵來存取 `IResponse` 物件。
+### <a name="checking-hello-response"></a>檢查 hello 回應
+hello`response-variable-name`屬性是使用的 toogive 存取 hello 傳回的回應。 hello 這個屬性中所定義名稱可用來做為索引鍵 hello`context.Variables`字典 tooaccess hello`IResponse`物件。
 
-從回應物件中，我們可以擷取主體，而 RFC 7622 告訴我們，回應必須是 JSON 物件，而且必須包含至少一個稱為 `active` 的屬性 (此為布林值)。 當 `active` 為 true，則權杖會被視為有效。
+從 hello 回應物件中，我們可以擷取 hello 主體和 RFC 7622 告訴我們 hello 回應必須是 JSON 物件，並必須包含至少一個屬性稱為`active`也就是布林值。 當`active`hello 語彙基元會被視為有效則為 true。
 
 ### <a name="reporting-failure"></a>報告失敗
-我們使用 `<choose>` 原則來偵測權杖是否無效，如果無效，則會傳回 401 回應。
+我們使用`<choose>`原則 toodetect 如果 hello 語彙基元無效，而且如果是，會傳回 401 回應。
 
 ```xml
 <choose>
@@ -117,17 +117,17 @@ API 管理的主要功能是保護後端資源。 如果您的 API 所使用的�
 </choose>
 ```
 
-根據每個說明應如何使用 `bearer` 權杖的 [RFC 6750](https://tools.ietf.org/html/rfc6750#section-3)，我們也會傳回 `WWW-Authenticate` 標頭以及 401 回應。 WWW 驗證的目的是指示用戶端如何建構適當授權的要求。 由於有各式各樣可能具備 OAuth2 架構的處理方法，因此很難傳達所有必要的資訊。 幸好我們仍持續努力來協助 [用戶端探索如何適當地將要求授權給資源伺服器](http://tools.ietf.org/html/draft-jones-oauth-discovery-00)。
+根據[RFC 6750](https://tools.ietf.org/html/rfc6750#section-3)用來描述如何`bearer`應該使用語彙基元，我們也會傳回`WWW-Authenticate`hello 401 回應標頭。 hello WWW 驗證是預定的 tooinstruct 方式上的用戶端 tooconstruct 適當授權的要求。 Toohello 各種不同的方法可能與 hello OAuth2 架構，因為很難 toocommunicate 所有 hello 必要的相關資訊。 幸運的是有工作進行 toohelp [tooproperly 如何授權要求 tooa 資源伺服器的用戶端探索](http://tools.ietf.org/html/draft-jones-oauth-discovery-00)。
 
 ### <a name="final-solution"></a>最終解決方案
-將所有項目放在一起，就能得到下列原則：
+我們將 hello 的所有項目放在一起，得到下列原則 hello:
 
 ```xml
 <inbound>
   <!-- Extract Token from Authorization header parameter -->
   <set-variable name="token" value="@(context.Request.Headers.GetValueOrDefault("Authorization","scheme param").Split(' ').Last())" />
 
-  <!-- Send request to Token Server to validate token (see RFC 7662) -->
+  <!-- Send request tooToken Server toovalidate token (see RFC 7662) -->
   <send-request mode="new" response-variable-name="tokenstate" timeout="20" ignore-error="true">
     <set-url>https://microsoft-apiappec990ad4c76641c6aea22f566efc5a4e.azurewebsites.net/introspection</set-url>
     <set-method>POST</set-method>
@@ -156,32 +156,32 @@ API 管理的主要功能是保護後端資源。 如果您的 API 所使用的�
 </inbound>
 ```
 
-這是眾多範例中唯一一個說明如何使用 `send-request` 原則來將有用的外部服務整合至要求和回應的程序，此程序的流程會通過 API 管理服務。
+這是其中一個方式的許多範例 hello`send-request`原則可以是使用的 toointegrate 有用外部的服務要求和回應流經 hello API 管理服務的 hello 程序。
 
 ## <a name="response-composition"></a>回應組合
-`send-request` 原則可用來增強對後端系統的主要要求 (如同我們在上述範例中所見)，或者它可用來完全取代後端呼叫。 使用這項技術，我們可以輕鬆地建立複合資源，這些資源彙總自多個不同的系統。
+hello`send-request`原則可用來增強主要要求 tooa 後端系統，我們了解在 hello 前一個範例中，或做為 hello 後端呼叫的完整取代。 使用這項技術，我們可以輕鬆地建立複合資源，這些資源彙總自多個不同的系統。
 
 ### <a name="building-a-dashboard"></a>建置儀表板
-有時您想要能夠公開存在於多個後端系統中的資訊，例如，驅動儀表板。 KPI 來自所有不同的後端，但是您習慣不提供它們的直接存取權，而且如果所有資訊都是擷取自單一要求，這就非常有用。 或許有一些後端資訊需要進行某些切割與細分，需要先稍微處理一下！ 當您知道使用者習慣按 F5 鍵來查看其效能不佳的指標是否可能變更時，若要降低後端負載，能夠快取該複合資源就非常實用。    
+有時候您會想 toobe 無法 tooexpose 資訊存在於多個後端系統，例如 toodrive 儀表板。 hello Kpi 是從所有不同的後端，但您偏好 tooprovide 直接存取 toothem 而應該不錯如果 hello 的所有資訊無法都擷取單一要求中。 Hello 後端資訊的某些部分可能需要一些切割和細分有點免於第一次 ！ 要能 toocache 複合資源，會是很有用的 tooreduce hello 後端載入您知道使用者可以防止攻擊中順序 toosee hello F5 鍵，如果可能會變更其 underperforming 度量習慣。    
 
-### <a name="faking-the-resource"></a>假造資源
-建置儀表板資源的第一個步驟是在 API 管理發行者入口網站中設定新的作業。 這是用來設定我們的撰寫原則以建置動態資源的預留位置作業。
+### <a name="faking-hello-resource"></a>假裝 hello 資源
+hello 第一個步驟 toobuilding 我們的儀表板資源是 tooconfigure hello API 管理發行者入口網站中的新作業。 這將會是預留位置用作業 tooconfigure 我們組合原則 toobuild 我們動態的資源。
 
 ![儀表板作業](./media/api-management-sample-send-request/api-management-dashboard-operation.png)
 
-### <a name="making-the-requests"></a>提出要求
-一旦建立 `dashboard` 作業之後，我們就能特別針對該作業來設定原則。 
+### <a name="making-hello-requests"></a>提出 hello 要求
+一次 hello`dashboard`已建立作業我們可以設定原則特別針對該作業。 
 
 ![儀表板作業](./media/api-management-sample-send-request/api-management-dashboard-policy.png)
 
-第一個步驟是擷取來自傳入要求的任何查詢參數，讓我們可以將其轉送到後端。 在此範例中，我們的儀表板會根據一段時間來顯示資訊，因此具有 `fromDate` 和 `toDate` 參數。 我們可以使用 `set-variable` 原則來擷取要求 URL 中的資訊。
+hello 第一個步驟是 tooextract hello 傳入的要求，從任何查詢參數，讓我們可以將它們轉送 tooour 後端。 在此範例中，我們的儀表板會根據一段時間來顯示資訊，因此具有 `fromDate` 和 `toDate` 參數。 我們可以使用 hello `set-variable` hello 要求 URL 的原則 tooextract hello 資訊。
 
 ```xml
 <set-variable name="fromDate" value="@(context.Request.Url.Query["fromDate"].Last())">
 <set-variable name="toDate" value="@(context.Request.Url.Query["toDate"].Last())">
 ```
 
-一旦擁有這項資訊之後，就可以對所有後端系統提出要求。 每個要求都會使用參數資訊來建構新的 URL，並呼叫各自的伺服器，將回應儲存於內容變數中。
+一旦我們有這項資訊我們可以讓要求 tooall hello 後端系統。 每個要求建構新的 URL 與 hello 參數資訊並呼叫其個別的伺服器，並將 hello 回應儲存在內容變數。
 
 ```xml
 <send-request mode="new" response-variable-name="revenuedata" timeout="20" ignore-error="true">
@@ -205,10 +205,10 @@ API 管理的主要功能是保護後端資源。 如果您的 API 所使用的�
 </send-request>
 ```
 
-這些要求將會依序執行，但這並不理想。 在即將推出的版本中，我們將導入稱為 `wait` 的新原則，讓所有的這些要求都能以平行方式執行。
+這些要求將會依序執行，但這並不理想。 近期版本中我們將會導入新原則呼叫`wait`可讓所有這些要求 tooexecute，以平行方式。
 
 ### <a name="responding"></a>回應
-若要建構複合回應，我們可以使用 [return-response](https://msdn.microsoft.com/library/azure/dn894085.aspx#ReturnResponse) 原則。 `set-body` 元素可以使用運算式，來建構新的 `JObject` 以及內嵌為屬性的所有元件表示法。
+我們可以使用 hello tooconstruct hello 複合回應[傳回回應](https://msdn.microsoft.com/library/azure/dn894085.aspx#ReturnResponse)原則。 hello`set-body`元素可使用運算式 tooconstruct 新`JObject`與所有 hello 元件表示內嵌為屬性。
 
 ```xml
 <return-response response-variable-name="existing response variable">
@@ -226,7 +226,7 @@ API 管理的主要功能是保護後端資源。 如果您的 API 所使用的�
 </return-response>
 ```
 
-完整的原則看起來如下：
+hello 原則如下所示：
 
 ```xml
 <policies>
@@ -278,13 +278,13 @@ API 管理的主要功能是保護後端資源。 如果您的 API 所使用的�
 </policies>
 ```
 
-在預留位置作業的組態中，我們可以將儀表板資源設定為至少快取一個小時，因為我們了解資料的本質意味著即使它在一個小時之後就會過期，仍然可以充分有效傳達重要資訊給使用者。
+我們可以設定 hello 預留位置作業 hello 組態中 hello 儀表板資源 toobe 快取的至少一小時因為我們了解 hello 性質 hello 資料表示，即使它是一小時過期，仍然會充分有效toohello tooconvey 寶貴資訊的使用者。
 
-## <a name="summary"></a>Summary
-Azure API 管理服務提供彈性的原則，可以選擇性地套用到 HTTP 流量，並且能夠組合後端服務。 不論您是否想要使用警示功能、確認、驗證功能或根據多個後端服務建立新的複合資源來增強您的 API 閘道器， `send-request` 及相關原則都會開啟各種可能性。
+## <a name="summary"></a>摘要
+Azure API 管理服務提供的彈性化原則，可以選擇性地套用 tooHTTP 流量，並可讓後端服務的構成要素。 當您想 tooenhance API 閘道與警示函式、 驗證、 驗證功能，或建立新的複合資源，根據多個後端服務，hello`send-request`和相關的原則開啟明亮的。
 
 ## <a name="watch-a-video-overview-of-these-policies"></a>觀看這些原則的影片概觀
-如需本文所介紹之 [send-one-way-request](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendOneWayRequest)、[send-request](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest) 和 [return-response](https://msdn.microsoft.com/library/azure/dn894085.aspx#ReturnResponse) 原則的詳細資訊，請觀看以下影片。
+如需有關 hello[傳送一個方式-要求](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendOneWayRequest)，[傳送要求](https://msdn.microsoft.com/library/azure/dn894085.aspx#SendRequest)，和[傳回回應](https://msdn.microsoft.com/library/azure/dn894085.aspx#ReturnResponse)原則涵蓋在本文中，請密切注意 hello 下列視訊。
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Send-Request-and-Return-Response-Policies/player]
 > 

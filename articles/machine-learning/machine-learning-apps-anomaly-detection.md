@@ -1,5 +1,5 @@
 ---
-title: "(已過時) Azure Machine Learning 異常偵測服務 | Microsoft Docs"
+title: "Azure 機器學習異常偵測服務 aaa(deprecated) |Microsoft 文件"
 description: "(已過時) 異常偵測服務是使用 Microsoft Azure Machine Learning 建置的範例，此服務會使用固定時間間隔的數值，來偵測時間序列資料中的異常狀況。"
 services: machine-learning
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.date: 01/18/2017
 ms.author: alok
 ROBOTS: NOINDEX
 redirect_url: machine-learning-apps-anomaly-detection-api
-redirect_document_id: TRUE
-ms.openlocfilehash: 6f3b3329fbbca33d44a055ee7d9c2508a7e1fceb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: c8c41426b669223844b3aefa2f9e23b42469d687
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="machine-learning-anomaly-detection-service-deprecated"></a>Machine Learning 異常偵測服務 (已過時)

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure PowerShell 來匯出 Resource Manager 範本 | Microsoft Docs"
-description: "使用 Azure Resource Manager 和 Azure PowerShell 從資源群組匯出範本。"
+title: "使用 Azure PowerShell aaaExport Resource Manager 範本 |Microsoft 文件"
+description: "使用 Azure 資源管理員和 Azure PowerShell tooexport 資源群組中的範本。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -13,26 +13,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 7543811eb9448222b6e7c266756e68debc7d54be
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9a239b7bce8209326c0e267a4d3d69f7014bdaed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="export-azure-resource-manager-templates-with-powershell"></a>使用 PowerShell 來匯出 Azure Resource Manager 範本
 
-Resource Manager 可讓您從您的訂用帳戶中現有的資源匯出 Resource Manager 範本。 您可以使用產生的範本了解範本語法，或視需要自動重新部署解決方案。
+資源管理員可讓您 tooexport Resource Manager 範本使用從您的訂用帳戶中現有的資源。 您可以使用該產生的範本 toolearn，有關 hello 範本語法或 tooautomate hello 重新部署方案視需要。
 
-請務必注意，有兩種不同的方式可匯出範本︰
+它是重要 toonote 有兩個不同的方式 tooexport 範本：
 
-* 您可以匯出用於部署的實際範本。 匯出的範本包含與原始範本完全相同的所有參數和變數。 當您需要擷取範本時，這個方法很有用。
-* 您可以匯出代表資源群組目前狀態的範本。 匯出的範本不是以任何用於部署的範本為基礎。 反而，它所建立的範本是資源群組的快照。 匯出的範本會有許多硬式編碼值，但數量可能不如您通常會定義的參數數量。 當您已修改資源群組時，這個方法很有用。 現在，您需要擷取做為範本的資源群組。
+* 您可以匯出您用於部署的 hello 實際範本。 hello 匯出的範本包含所有 hello 參數和變數，如同它們是出現在 hello 原始範本。 當您需要 tooretrieve 範本時，這個方法就很有幫助。
+* 您可以匯出代表 hello hello 資源群組的目前狀態的範本。 hello 匯出的範本不根據您用於部署的任何範本。 相反地，它會建立 hello 資源群組的快照集的範本。 hello 匯出的範本有許多的硬式編碼值，可能不一樣多的參數，因為您通常會定義。 當您修改了 hello 資源群組，則這個方法會很有用。 現在，您需要 toocapture hello 資源群組，做為範本。
 
 本主題說明這兩種方法。
 
 ## <a name="deploy-a-solution"></a>部署解決方案
 
-為了說明這兩種用來匯出範本的方法，一開始先讓我們將解決方案部署到您的訂用帳戶。 如果您的訂用帳戶中已有想要匯出的資源群組，就不需要部署此解決方案。 不過，本文其餘部分會參考此解決方案的範本。 指令碼範例會部署儲存體帳戶。
+這兩個 tooillustrate 方法匯出範本，讓我們開始部署方案 tooyour 訂用帳戶。 如果您想 tooexport 您訂用帳戶中已經有資源群組，您沒有 toodeploy 此解決方案。 不過，hello 本文其餘部分是指 toohello 範本，針對此解決方案。 hello 範例指令碼會將部署的儲存體帳戶。
 
 ```powershell
 New-AzureRmResourceGroup -Name ExampleGroup -Location "South Central US"
@@ -43,13 +43,13 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup `
 
 ## <a name="save-template-from-deployment-history"></a>從部署歷程記錄儲存範本
 
-您可以使用 [Save-AzureRmResourceGroupDeploymentTemplate](/powershell/module/azurerm.resources/save-azurermresourcegroupdeploymenttemplate) 命令來從部署歷程記錄中擷取範本。 下列範例會儲存您先前部署的範本︰
+您也可以使用 hello 部署歷程記錄中擷取範本[儲存 AzureRmResourceGroupDeploymentTemplate](/powershell/module/azurerm.resources/save-azurermresourcegroupdeploymenttemplate)命令。 下列範例會將儲存 hello 範本您先前部署的 hello:
 
 ```powershell
 Save-AzureRmResourceGroupDeploymentTemplate -ResourceGroupName ExampleGroup -DeploymentName NewStorage
 ```
 
-它會傳回範本的位置。
+它會傳回 hello hello 範本位置。
 
 ```powershell
 Path
@@ -57,17 +57,17 @@ Path
 C:\Users\exampleuser\NewStorage.json
 ```
 
-開啟檔案，並請注意它正是您用於部署的範本。 其參數和變數會與 GitHub 中的範本相符。 您可以重新部署此範本。
+開啟 hello 檔案，並請注意，它是您用於部署的 hello 確切範本。 hello 參數和變數符合從 GitHub hello 範本。 您可以重新部署此範本。
 
 ## <a name="export-resource-group-as-template"></a>匯出資源群組以作為範本
 
-您不必從部署歷程記錄擷取範本，而是可以使用 [Export-AzureRmResourceGroup](/powershell/module/azurerm.resources/export-azurermresourcegroup) 命令來擷取範本，以代表資源群組的目前狀態。 當您對資源群組做了許多變更，且現有的範本均無法完全呈現這些變更時，就可以使用這個命令。
+而不是從 hello 部署歷程記錄中擷取範本，您可以擷取使用 hello 代表 hello 的資源群組的目前狀態的範本[匯出 AzureRmResourceGroup](/powershell/module/azurerm.resources/export-azurermresourcegroup)命令。 當您已經進行許多變更 tooyour 資源群組，並沒有現有的範本代表 hello 的所有變更，您可以使用此命令。
 
 ```powershell
 Export-AzureRmResourceGroup -ResourceGroupName ExampleGroup
 ```
 
-它會傳回範本的位置。
+它會傳回 hello hello 範本位置。
 
 ```powershell
 Path
@@ -75,7 +75,7 @@ Path
 C:\Users\exampleuser\ExampleGroup.json
 ```
 
-開啟檔案，並請注意它與 GitHub 中的範本不同。 它有不同的參數，而且沒有任何變數。 儲存體 SKU 和位置皆已硬式編碼為值。 下列範例會顯示所匯出的範本，但您的範本會有稍微不同的參數名稱︰
+開啟 hello 檔案，並請注意，它不同於在 GitHub 中的 hello 範本。 它有不同的參數，而且沒有任何變數。 hello 儲存 SKU 和位置是硬式編碼 toovalues。 hello 下列範例顯示 hello 匯出的範本，但是您的範本有稍微不同的參數名稱：
 
 ```json
 {
@@ -107,7 +107,7 @@ C:\Users\exampleuser\ExampleGroup.json
 }
 ```
 
-您可以重新部署此範本，但必須猜測儲存體帳戶的唯一名稱。 您的參數名稱會稍微不同。
+您可以重新部署此範本，但需要猜測 hello 儲存體帳戶的唯一名稱。 您的參數名稱 hello 有些許不同。
 
 ```powershell
 New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup `
@@ -117,13 +117,13 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup `
 
 ## <a name="customize-exported-template"></a>自訂匯出的範本
 
-您可以修改此範本，讓它變得更方便使用且更有彈性。 若要允許更多位置，請將 location 屬性變更為使用與資源群組相同的位置︰
+您可以修改此範本 toomake 它更容易 toouse 而且更有彈性。 如需更多位置，變更 hello 位置屬性 toouse tooallow hello 與 hello 資源群組相同的位置：
 
 ```json
 "location": "[resourceGroup().location]",
 ```
 
-為了避免必須猜測儲存體帳戶的唯一名稱，請移除儲存體帳戶名稱的參數。 新增儲存體名稱尾碼的參數，以及儲存體 SKU︰
+tooavoid 具有 tooguess 唯一性儲存體帳戶名稱，移除 hello 參數 hello 儲存體帳戶名稱。 新增儲存體名稱尾碼的參數，以及儲存體 SKU︰
 
 ```json
 "parameters": {
@@ -146,7 +146,7 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup `
 },
 ```
 
-新增變數，以便使用 uniqueString 函式來建構儲存體帳戶名稱︰
+加入建構 hello 儲存體帳戶名稱與 hello uniqueString 函式的變數：
 
 ```json
 "variables": {
@@ -154,13 +154,13 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup `
   },
 ```
 
-將儲存體帳戶名稱設定為變數︰
+設定 hello hello 儲存體帳戶 toohello 變數名稱：
 
 ```json
 "name": "[variables('storageAccountName')]",
 ```
 
-將 SKU 設定為參數︰
+設定 hello SKU toohello 參數：
 
 ```json
 "sku": {
@@ -215,9 +215,9 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup `
 }
 ```
 
-重新部署修改過的範本。
+重新部署 hello 修改的範本。
 
 ## <a name="next-steps"></a>後續步驟
-* 如需使用入口網站來匯出範本的相關資訊，請參閱[從現有資源匯出 Azure Resource Manager 範本](resource-manager-export-template.md)。
-* 若要在範本中定義參數，請參閱 [編寫範本](resource-group-authoring-templates.md#parameters)。
+* 如需使用 hello 入口 tooexport 範本資訊，請參閱[匯出 Azure Resource Manager 範本，從現有的資源](resource-manager-export-template.md)。
+* toodefine 參數在範本中，請參閱[撰寫樣板](resource-group-authoring-templates.md#parameters)。
 * 如需解決常見部署錯誤的秘訣，請參閱[使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。

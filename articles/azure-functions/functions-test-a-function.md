@@ -1,5 +1,5 @@
 ---
-title: "測試 Azure Functions | Microsoft Docs"
+title: "aaaTesting Azure 函式 |Microsoft 文件"
 description: "使用 Postman、cURL、和 Node.js 來測試您的 Azure Functions。"
 services: functions
 documentationcenter: na
@@ -17,30 +17,30 @@ ms.workload: na
 ms.date: 02/02/2017
 ms.author: wesmc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: aca03ba4137893157fcbe6650336782ab88cd234
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a084f8dbc8089356c3c19d789dc9098f2bb63052
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="strategies-for-testing-your-code-in-azure-functions"></a>在 Azure Functions 中測試程式碼的策略
 
-本主題會示範測試函式的各種方法，包括下列一般方式：
+本主題會示範各種方式 tootest 功能，包括使用遵循一般的 hello 接近的 hello:
 
 + HTTP 型的工具，例如 cURL、Postman，甚至是適用於 Web 型觸發程序的網頁瀏覽器
-+ 用於測試以 Azure 儲存體為基礎之觸發程序的 Azure 儲存體總管
-+ Azure Functions 入口網站中的 [測試] 索引標籤
++ Azure 儲存體總管 中，tootest Azure 儲存體為基礎的觸發程序
++ Hello Azure 函式的入口網站中的測試 索引標籤
 + 計時器觸發函式
 + 測試應用程式或架構
 
-所有測試方法都是使用會透過查詢字串參數或要求主體接受輸入的 HTTP 觸發程序函式。 您會在第一節中建立此函式。
+所有這些測試方法會使用 HTTP 的觸發程序函式可接受透過輸入查詢字串參數或 hello 要求主體。 您可以建立此函數 hello 第一個區段中。
 
 ## <a name="create-a-function-for-testing"></a>建立用於測試的函數
-在本教學課程中的大多數時間裡，我們將使用建立函式時可使用的 HttpTrigger JavaScript 函式範本的稍經修改版本。 如果您需要建立函式的協助，請檢閱這個[教學課程](functions-create-first-azure-function.md)。 在 [Azure 入口網站]中建立測試函式時，選擇 **HttpTrigger- JavaScript** 範本。
+本教學課程的大多數時間，我們會使用稍微修改的 hello HttpTrigger JavaScript 函式樣板建立的函式時可用的版本。 如果您需要建立函式的協助，請檢閱這個[教學課程](functions-create-first-azure-function.md)。 選擇 hello **HttpTrigger-JavaScript** hello 中建立 hello 測試函式時的範本[Azure 入口網站]。
 
-預設函式範本基本上是 "hello world" 函式，可從要求主體或查詢字串參數 `name=<your name>`回應名稱。  我們將更新程式碼，以讓您在要求主體中以 JSON 內容的形式提供名稱和地址。 然後函式會在可使用時將這些內容回應給用戶端。   
+hello 預設函式樣板基本上是"hello world"函式，以回應 hello 要求內文或查詢字串參數，從上一頁 hello 名稱`name=<your name>`。  我們會將更新的程式碼 hello tooalso 允許您 tooprovide hello 姓名和地址做為 hello 要求主體中的 JSON 內容。 然後 hello 函式會回應這些後 toohello 用戶端時使用。   
 
-使用我們將用來測試的下列程式碼更新函式︰
+更新 hello 函式，以下列程式碼，我們將用於測試的 hello:
 
 ```javascript
 module.exports = function (context, req) {
@@ -61,7 +61,7 @@ module.exports = function (context, req) {
     else {
         res = {
             status: 400,
-            body: "Please pass a name on the query string or in the request body"
+            body: "Please pass a name on hello query string or in hello request body"
         };
     }
     context.done(null, res);
@@ -73,11 +73,11 @@ function ProcessNewUserInformation(context, name, address) {
     var res;
 
     if (typeof address != "undefined") {
-        echoString += "\n" + "The address you provided is " + address;
+        echoString += "\n" + "hello address you provided is " + address;
         context.log("address = " + address);
     }
     res = {
-        // status: 200, /* Defaults to 200 */
+        // status: 200, /* Defaults too200 */
         body: echoString
     };
     return res;
@@ -85,28 +85,28 @@ function ProcessNewUserInformation(context, name, address) {
 ```
 
 ## <a name="test-a-function-with-tools"></a>使用工具測試函式
-在 Azure 入口網站之外，您可以使用數種工具來針對測試觸發函式。 這些工具包含 HTTP 測試工具 (包括 UI 型和命令列)、Azure 儲存體存取工具，以及甚至簡易的網頁瀏覽器。
+外部 hello Azure 入口網站，有各種工具，您可以使用 tootrigger 函式進行測試。 這些工具包含 HTTP 測試工具 (包括 UI 型和命令列)、Azure 儲存體存取工具，以及甚至簡易的網頁瀏覽器。
 
 ### <a name="test-with-a-browser"></a>使用瀏覽器測試
-網頁瀏覽器是透過 HTTP 觸發函數的簡易方法。 您可以針對不需要主體承載並僅使用查詢字串參數的 GET 要求使用瀏覽器。
+hello 網頁瀏覽器是透過 HTTP 的簡單的方式 tootrigger 函式。 您可以針對不需要主體承載並僅使用查詢字串參數的 GET 要求使用瀏覽器。
 
-若要測試稍早定義的函式，請從入口網站複製**函式 URL** 。 其具備下列格式：
+我們稍早定義複製 hello tootest hello 函式**函式 Url**從 hello 入口網站。 它有下列形式的 hello:
 
     https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>
 
-將 `name` 參數附加至查詢字串。 針對 `<Enter a name here>` 預留位置使用實際的名稱。
+附加 hello`name`參數 toohello 查詢字串。 使用實際的 hello 名稱`<Enter a name here>`預留位置。
 
     https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>&name=<Enter a name here>
 
-將此 URL 貼入瀏覽器，應該會得到預似以下的回應。
+貼上 hello URL 到您的瀏覽器，而且您應該會收到類似 toohello 後的回應。
 
 ![Chrome 瀏覽器索引標籤具有測試回應的螢幕擷取畫面](./media/functions-test-a-function/browser-test.png)
 
-此範例使用 Chrome 瀏覽器，它會將傳回字串包裝在 XML 中。 其他瀏覽器只會顯示字串值。
+這個範例是 hello Chrome 瀏覽器，以包裝在 XML 中傳回字串 hello。 其他瀏覽器顯示只 hello 字串值。
 
-在入口網站 [記錄] 視窗中，執行函式時會記錄類似下面的輸出︰
+Hello 入口網站中**記錄**視窗中，會輸出類似 toohello 下列已登入執行 hello 函式：
 
-    2016-03-23T07:34:59  Welcome, you are now connected to log-streaming service.
+    2016-03-23T07:34:59  Welcome, you are now connected toolog-streaming service.
     2016-03-23T07:35:09.195 Function started (Id=61a8c5a9-5e44-4da0-909d-91d293f20445)
     2016-03-23T07:35:10.338 Node.js HTTP trigger function processed a request. RequestUri=https://functionsExample.azurewebsites.net/api/WesmcHttpTriggerNodeJS1?code=XXXXXXXXXX==&name=Glenn from a browser
     2016-03-23T07:35:10.338 Request Headers = {"cache-control":"max-age=0","connection":"Keep-Alive","accept":"text/html","accept-encoding":"gzip","accept-language":"en-US"}
@@ -115,22 +115,22 @@ function ProcessNewUserInformation(context, name, address) {
     2016-03-23T07:35:10.369 Function completed (Success, Id=61a8c5a9-5e44-4da0-909d-91d293f20445)
 
 ### <a name="test-with-postman"></a>使用 Postman 測試
-測試多數函數的建議工具是 Postman，它能與 Chrome 瀏覽器整合。 若要安裝 Postman，請參閱 [取得 Postman](https://www.getpostman.com/)。 Postman 可對 HTTP 要求的許多其他屬性提供控制。
+建議工具 tootest hello 大部分的函式是郵差，hello Chrome 瀏覽器與整合。 tooinstall 郵差，請參閱[取得郵差](https://www.getpostman.com/)。 Postman 可對 HTTP 要求的許多其他屬性提供控制。
 
 > [!TIP]
-> 請使用您最熟悉的 HTTP 測試工具。 以下是 Postman 的一些替代方案︰  
+> 使用 hello HTTP 測試工具，系統最熟悉。 以下是一些替代項目 tooPostman:  
 >
 > * [Fiddler](http://www.telerik.com/fiddler)  
 > * [Paw](https://luckymarmot.com/paw)  
 >
 >
 
-若要在 Postman 中測試要求主體的函數︰
+具有要求本文中郵差 tootest hello 函式：
 
-1. 從 Chrome 瀏覽器視窗左上角的 [應用程式] 按鈕啟動 Postman。
-2. 複製您的**函式 Url**，並將它貼到 Postman 中。 它包含存取程式碼查詢字串參數。
-3. 將 HTTP 方法變更為 **POST**。
-4. 按一下 [主體] > [原始]，並新增類似以下的 JSON 要求主體︰
+1. 從 hello 啟動郵差**應用程式**在 Chrome 瀏覽器視窗的 hello 左上角的按鈕。
+2. 複製您的**函式 Url**，並將它貼到 Postman 中。 它包含 hello 存取程式碼查詢字串參數。
+3. 變更 hello HTTP 方法太**POST**。
+4. 按一下**主體** > **原始**，並將 JSON 要求主體類似 toohello 下列：
 
     ```json
     {
@@ -138,15 +138,15 @@ function ProcessNewUserInformation(context, name, address) {
         "address" : "Seattle, WA 98101"
     }
     ```
-5. 按一下 [傳送] 。
+5. 按一下 [ **傳送**]。
 
-下圖顯示在本教學課程中測試簡單的回應函數範例。
+hello 下圖顯示測試的 hello 簡單 echo 函式範例在本教學課程。
 
 ![Postman 使用者介面的螢幕擷取畫面](./media/functions-test-a-function/postman-test.png)
 
-在入口網站 [記錄] 視窗中，執行函式時會記錄類似下面的輸出︰
+Hello 入口網站中**記錄**視窗中，會輸出類似 toohello 下列已登入執行 hello 函式：
 
-    2016-03-23T08:04:51  Welcome, you are now connected to log-streaming service.
+    2016-03-23T08:04:51  Welcome, you are now connected toolog-streaming service.
     2016-03-23T08:04:57.107 Function started (Id=dc5db8b1-6f1c-4117-b5c4-f6b602d538f7)
     2016-03-23T08:04:57.763 HTTP trigger function processed a request. RequestUri=https://functions841def78.azurewebsites.net/api/WesmcHttpTriggerNodeJS1?code=XXXXXXXXXX==
     2016-03-23T08:04:57.763 Request Headers = {"cache-control":"no-cache","connection":"Keep-Alive","accept":"*/*","accept-encoding":"gzip","accept-language":"en-US"}
@@ -156,28 +156,28 @@ function ProcessNewUserInformation(context, name, address) {
     2016-03-23T08:04:57.763 address = Seattle, W.A. 98101
     2016-03-23T08:04:57.795 Function completed (Success, Id=dc5db8b1-6f1c-4117-b5c4-f6b602d538f7)
 
-### <a name="test-with-curl-from-the-command-line"></a>從命令列透過 cURL 進行測試
-測試軟體時往往只需要命令列即可協助偵錯您的應用程式。 對於測試函式也是如此。 請注意，以 Linux 為基礎的系統預設可以使用 cURL。 在 Windows 上，您必須先下載並安裝 [cURL 工具 (英文)](https://curl.haxx.se/)。
+### <a name="test-with-curl-from-hello-command-line"></a>使用 cURL 從 hello 命令列測試
+當您要測試的軟體時，通常不需要 toolook 任何 hello 命令列 toohelp 偵錯您的應用程式進一步。 對於測試函式也是如此。 請注意，hello cURL 預設以 Linux 為基礎的系統上可用的。 在 Windows 中，您必須先下載並安裝 hello [cURL 工具](https://curl.haxx.se/)。
 
-若要測試稍早定義的函式，請從入口網站複製**函式 URL**。 其具備下列格式：
+我們稍早定義複製 hello tootest hello 函式**函式 URL**從 hello 入口網站。 它有下列形式的 hello:
 
     https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>
 
-這是用來觸發函式的 URL。 在命令列上使用 cURL 命令來測試它，以針對函式執行 GET (`-G` 或 `--get`) 要求︰
+這是 hello URL，用於觸發您的函式。 測試這種情況在 hello 命令列 toomake 使用 hello cURL 命令 GET (`-G`或`--get`) 對 hello 函式要求：
 
     curl -G https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code>
 
-這個特定範例需要在 cURL 命令中將查詢字串參數傳遞做為資料 (`-d`)︰
+這個特定的範例要求查詢字串參數，這可以傳遞做為資料 (`-d`) 在 hello cURL 命令：
 
     curl -G https://<Your Function App>.azurewebsites.net/api/<Your Function Name>?code=<your access code> -d name=<Enter a name here>
 
-執行該命令後，您會在命令列上看到函式的下列輸出：
+執行的 hello 命令，並請參閱 hello 遵循 hello 命令列上的 hello 函式的輸出：
 
 ![命令提示字元輸出的螢幕擷取畫面](./media/functions-test-a-function/curl-test.png)
 
-在入口網站 [記錄] 視窗中，執行函式時會記錄類似下面的輸出︰
+Hello 入口網站中**記錄**視窗中，會輸出類似 toohello 下列已登入執行 hello 函式：
 
-    2016-04-05T21:55:09  Welcome, you are now connected to log-streaming service.
+    2016-04-05T21:55:09  Welcome, you are now connected toolog-streaming service.
     2016-04-05T21:55:30.738 Function started (Id=ae6955da-29db-401a-b706-482fcd1b8f7a)
     2016-04-05T21:55:30.738 Node.js HTTP trigger function processed a request. RequestUri=https://functionsExample.azurewebsites.net/api/HttpTriggerNodeJS1?code=XXXXXXX&name=Azure Functions
     2016-04-05T21:55:30.738 Function completed (Success, Id=ae6955da-29db-401a-b706-482fcd1b8f7a)
@@ -185,32 +185,32 @@ function ProcessNewUserInformation(context, name, address) {
 ### <a name="test-a-blob-trigger-by-using-storage-explorer"></a>使用儲存體總管測試 blob 觸發程序
 您可以使用 [Azure 儲存體總管](http://storageexplorer.com/)來測試 blob 觸發程序函式。
 
-1. 在您函式應用程式的 [Azure 入口網站]中，建立 C#、F# 或 JavaScript Blob 觸發程序函式。 將要監視的路徑設定為您的 blob 容器名稱。 例如：
+1. 在 hello [Azure 入口網站]函式應用程式中，建立 C#、 F # 或 JavaScript 的 blob 觸發程序函式。 設定您的 blob 容器的 hello 路徑 toomonitor toohello 名稱。 例如：
 
         files
-2. 按一下 **+** 按鈕以選取或建立您想要使用的儲存體帳戶。 然後按一下 [ **建立**]。
-3. 建立含有下列內容的文字檔，並儲存該檔案：
+2. 按一下 hello  **+** 按鈕 tooselect 或建立您想要 toouse hello 儲存體帳戶。 然後按一下 [ **建立**]。
+3. 以下列文字，hello 建立文字檔，並將它儲存：
 
         A text file for blob trigger function testing.
-4. 執行 [Azure 儲存體總管](http://storageexplorer.com/)，並連線要監視的儲存體帳戶中的 blob 容器。
-5. 按一下 [上傳] 以上傳文字檔案。
+4. 執行[Azure 儲存體總管](http://storageexplorer.com/)，並連接 toohello hello 受監視的儲存體帳戶中的 blob 容器。
+5. 按一下**上傳**tooupload hello 文字檔案。
 
     ![儲存體總管的螢幕擷取畫面](./media/functions-test-a-function/azure-storage-explorer-test.png)
 
-預設 blob 觸發程序的函式程式碼將會在記錄中報告 blob 的處理：
+hello 預設 blob 觸發程序函式程式碼會報告 hello 處理 hello 記錄檔中的 hello blob:
 
-    2016-03-24T11:30:10  Welcome, you are now connected to log-streaming service.
+    2016-03-24T11:30:10  Welcome, you are now connected toolog-streaming service.
     2016-03-24T11:30:34.472 Function started (Id=739ebc07-ff9e-4ec4-a444-e479cec2e460)
     2016-03-24T11:30:34.472 C# Blob trigger function processed: A text file for blob trigger function testing.
     2016-03-24T11:30:34.472 Function completed (Success, Id=739ebc07-ff9e-4ec4-a444-e479cec2e460)
 
 ## <a name="test-a-function-within-functions"></a>在 Functions 內測試函數
-Azure Functions 入口網站是為了讓您測試 HTTP 和計時器觸發的函數而設計。 您也可以建立函數以觸發其他您正在測試的函數。
+hello Azure 函式的入口網站設計您測試 HTTP 和計時器的 toolet 觸發函式。 您也可以建立函式 tootrigger 您要測試其他函式。
 
-### <a name="test-with-the-functions-portal-run-button"></a>使用 Functions 入口網站的執行按鈕測試
-入口網站提供 [執行] 按鈕，可讓您執行一些有限的測試。 您可以使用按鈕提供要求主體，但無法提供查詢字串參數或更新要求標頭。
+### <a name="test-with-hello-functions-portal-run-button"></a>測試與 hello 函式入口網站執行 按鈕
+hello 入口網站提供**執行**按鈕可讓您 toodo 一些有限的測試。 您可以使用 [hello] 按鈕，提供要求主體，但您無法提供查詢字串參數，或更新要求標頭。
 
-藉由在 [要求主體] 欄位中新增類似以下的 JSON 字串，來測試我們稍早建立的 HTTP 觸發程序函式。 然後按一下 [執行] 按鈕。
+測試 hello HTTP 我們在 hello 中加入下列 JSON 的字串類似 toohello 稍早建立的觸發程序函數**要求本文**欄位。 然後按一下 [hello**執行**] 按鈕。
 
 ```json
 {
@@ -219,9 +219,9 @@ Azure Functions 入口網站是為了讓您測試 HTTP 和計時器觸發的函�
 }
 ```
 
-在入口網站 [記錄] 視窗中，執行函式時會記錄類似下面的輸出︰
+Hello 入口網站中**記錄**視窗中，會輸出類似 toohello 下列已登入執行 hello 函式：
 
-    2016-03-23T08:03:12  Welcome, you are now connected to log-streaming service.
+    2016-03-23T08:03:12  Welcome, you are now connected toolog-streaming service.
     2016-03-23T08:03:17.357 Function started (Id=753a01b0-45a8-4125-a030-3ad543a89409)
     2016-03-23T08:03:18.697 HTTP trigger function processed a request. RequestUri=https://functions841def78.azurewebsites.net/api/wesmchttptriggernodejs1
     2016-03-23T08:03:18.697 Request Headers = {"connection":"Keep-Alive","accept":"*/*","accept-encoding":"gzip","accept-language":"en-US"}
@@ -233,43 +233,43 @@ Azure Functions 入口網站是為了讓您測試 HTTP 和計時器觸發的函�
 
 
 ### <a name="test-with-a-timer-trigger"></a>使用計時器觸發程序測試
-有些函式無法適當地使用先前所述的工具進行測試。 例如，請考量將訊息放入 [Azure 佇列儲存體](../storage/queues/storage-dotnet-how-to-use-queues.md)時執行的佇列觸發程序函式。 您一律可以撰寫程式碼來將訊息放入佇列，本文稍後會提供在主控台專案中進行此動作的範例。 不過，還有另一種方法可用來直接使用函式進行測試。  
+某些函式不能使用先前所述的 hello 工具充分測試。 例如，請考量將訊息放入 [Azure 佇列儲存體](../storage/queues/storage-dotnet-how-to-use-queues.md)時執行的佇列觸發程序函式。 您可以撰寫程式碼 toodrop 訊息至您的佇列中，這個範例中的主控台專案稍後會提供這份文件。 不過，還有另一種方法可用來直接使用函式進行測試。  
 
-您可以使用設定了佇列輸出繫結的計時器觸發程序。 該計時器觸發程序程式碼會接著將測試訊息寫入至佇列。 本節會逐步解說範例。
+您可以使用設定了佇列輸出繫結的計時器觸發程序。 然後，該計時器觸發程序程式碼可以撰寫 hello 測試訊息 toohello 佇列。 本節會逐步解說範例。
 
-如需使用 Azure Function 搭配使用繫結的深入資訊，請參閱 [Azure Functions 開發人員參考](functions-reference.md)。
+如需在 Azure 函式中使用繫結的深入資訊，請參閱 hello [Azure 函式的開發人員參考](functions-reference.md)。
 
 #### <a name="create-a-queue-trigger-for-testing"></a>建立用於測試的佇列觸發程序
-為了示範此方法，我們會先建立要對名為 `queue-newusers`的佇列進行測試的佇列觸發程序函式。 此函式會處理放入新使用者佇列儲存體的名稱和地址資訊。
+toodemonstrate 這種方式，我們會先建立我們希望 tootest 名為佇列的佇列觸發程序函式`queue-newusers`。 此函式會處理放入新使用者佇列儲存體的名稱和地址資訊。
 
 > [!NOTE]
-> 如果您使用不同的佇列名稱，請確定您使用的名稱符合 [命名佇列和中繼資料](https://msdn.microsoft.com/library/dd179349.aspx) 的規則。 否則，您會收到錯誤。
+> 如果您使用不同的佇列名稱，請確定您使用的 hello 名稱符合 toohello[命名的佇列和中繼資料](https://msdn.microsoft.com/library/dd179349.aspx)規則。 否則，您會收到錯誤。
 >
 >
 
-1. 在函式應用程式的 [Azure 入口網站]中，按一下 [新增函式] > [QueueTrigger - C#]。
-2. 輸入要使用佇列函式監視的佇列名稱：
+1. 在 hello [Azure 入口網站]函式應用程式中，按一下 **新函式** > **QueueTrigger-C#**。
+2. 輸入 hello 佇列名稱 toobe 受 hello 佇列函式：
 
         queue-newusers
-3. 按一下 **+** 按鈕以選取或建立您想要使用的儲存體帳戶。 然後按一下 [ **建立**]。
-4. 將此入口網站瀏覽器視窗保持開啟，使得您可以監視預設的佇列函式範本程式碼的記錄項目。
+3. 按一下 hello  **+** 按鈕 tooselect 或建立您想要 toouse hello 儲存體帳戶。 然後按一下 [ **建立**]。
+4. 讓這個入口網站的瀏覽器視窗保持開啟，所以您可以監視 hello hello 預設佇列函式範本程式碼的記錄項目。
 
-#### <a name="create-a-timer-trigger-to-drop-a-message-in-the-queue"></a>建立要將訊息放在佇列中的計時器觸發程序
-1. 在新的瀏覽器視窗中開啟 [Azure 入口網站]，並瀏覽至您的函式應用程式。
-2. 按一下 [新增函式] > [TimerTrigger - C#]。 輸入 cron 運算式來設定計時器程式碼會測試您的佇列函式的頻率。 然後按一下 [ **建立**]。 如果您想要每隔 30 秒執行測試，您可以使用下列 [CRON 運算式](https://wikipedia.org/wiki/Cron#CRON_expression)：
+#### <a name="create-a-timer-trigger-toodrop-a-message-in-hello-queue"></a>建立計時器觸發程序 toodrop hello 佇列中的訊息
+1. 開啟 hello [Azure 入口網站]在新的瀏覽器視窗中，並瀏覽 tooyour 函式應用程式。
+2. 按一下 [新增函式] > [TimerTrigger - C#]。 輸入 cron 運算式 tooset 頻率 hello 計時器的程式碼測試您的佇列函式。 然後按一下 [ **建立**]。 如果您想 hello 測試 toorun 每隔 30 秒時，您可以使用下列 hello [CRON 運算式](https://wikipedia.org/wiki/Cron#CRON_expression):
 
         */30 * * * * *
-3. 按一下新計時器觸發程序的 [整合]  索引標籤。
+3. 按一下 hello**整合**新計時器觸發程序 索引標籤。
 4. 在 [輸出] 下，按一下 [+ 新輸出]。 然後按一下 [佇列] 和 [選取]。
-5. 記下您用於**佇列訊息物件**的名稱。 您可以在計時器函式程式碼中使用它。
+5. 您用於 hello 提示 hello 名稱**佇列訊息物件**。 您可以使用這個 hello 計時器函式程式碼中。
 
         myQueue
-6. 輸入會傳送訊息的目標佇列名稱︰
+6. 輸入要在傳送 hello 訊息 hello 佇列名稱：
 
         queue-newusers
-7. 按一下 **+** 按鈕以選取您先前用於佇列觸發程序的儲存體帳戶。 然後按一下 [儲存] 。
-8. 按一下計時器觸發程序的 [開發]  索引標籤。
-9. 只要使用稍早顯示的相同佇列訊息物件名稱，您即可以對 C# 計時器函式使用下列程式碼。 然後按一下 [儲存] 。
+7. 按一下 hello  **+** 按鈕 tooselect hello 儲存體帳戶，而您先前用過了 hello 佇列觸發程序。 然後按一下 [儲存] 。
+8. 按一下 hello**開發**計時器觸發程序 索引標籤。
+9. 只要使用的 hello 相同佇列的訊息物件的名稱稍早所示，您可以使用下列 hello C# 計時器函式，程式碼的 hello。 然後按一下 [儲存] 。
 
     ```cs
     using System;
@@ -286,31 +286,31 @@ Azure Functions 入口網站是為了讓您測試 HTTP 和計時器觸發的函�
     }
     ```
 
-目前，如果您已使用範例 cron 運算式，C# 計時器函式會每隔 30 秒執行。 計時器函式的記錄會報告每次執行︰
+此時，如果您使用的 hello 範例 cron 運算式 hello C# 計時器函式執行每隔 30 秒。 hello hello 計時器函式的記錄檔會報告每次執行：
 
-    2016-03-24T10:27:02  Welcome, you are now connected to log-streaming service.
+    2016-03-24T10:27:02  Welcome, you are now connected toolog-streaming service.
     2016-03-24T10:27:30.004 Function started (Id=04061790-974f-4043-b851-48bd4ac424d1)
     2016-03-24T10:27:30.004 C# Timer trigger function executed at: 3/24/2016 10:27:30 AM
     2016-03-24T10:27:30.004 {"name":"User testing from C# timer function","address":"XYZ"}
     2016-03-24T10:27:30.004 Function completed (Success, Id=04061790-974f-4043-b851-48bd4ac424d1)
 
-在佇列函式的瀏覽器視窗中，您會看到正在處理的每個訊息︰
+在 hello 瀏覽器視窗中的 hello 佇列函式，您可以看到每個正在處理的訊息：
 
-    2016-03-24T10:27:06  Welcome, you are now connected to log-streaming service.
+    2016-03-24T10:27:06  Welcome, you are now connected toolog-streaming service.
     2016-03-24T10:27:30.607 Function started (Id=e304450c-ff48-44dc-ba2e-1df7209a9d22)
     2016-03-24T10:27:30.607 C# Queue trigger function processed: {"name":"User testing from C# timer function","address":"XYZ"}
     2016-03-24T10:27:30.607 Function completed (Success, Id=e304450c-ff48-44dc-ba2e-1df7209a9d22)
 
 ## <a name="test-a-function-with-code"></a>使用程式碼測試函式
-您需要建立外部應用程式或架構以測試您的函式。
+您可能需要 toocreate 外部的應用程式或架構 tootest 函式。
 
 ### <a name="test-an-http-trigger-function-with-code-nodejs"></a>使用 Node.js 程式碼測試 HTTP 觸發程序函式
-您可以使用 Node.js App 來執行 HTTP 要求，以測試您的函式。
-請務必設定：
+您可以使用 Node.js 應用程式 tooexecute HTTP 要求 tootest 您的函式。
+請確定 tooset:
 
-* 要求選項中的 `host` 設為您的函式應用程式主機。
-* 在 `path` 中設定您的函數名稱。
-* 在 `path` 中設定您的存取程式碼 (`<your code>`)。
+* hello `host` hello 要求選項 tooyour 函式應用程式主機中。
+* 您的函式名稱 hello `path`。
+* 存取程式碼 (`<your code>`) 在 hello `path`。
 
 程式碼範例：
 
@@ -361,11 +361,11 @@ req.end(bodyString);
     *** Sending name and address in body ***
     {"name" : "Wes testing with Node.JS code","address" : "Dallas, T.X. 75201"}
     Hello Wes testing with Node.JS code
-    The address you provided is Dallas, T.X. 75201
+    hello address you provided is Dallas, T.X. 75201
 
-在入口網站 [記錄] 視窗中，執行函式時會記錄類似下面的輸出︰
+Hello 入口網站中**記錄**視窗中，會輸出類似 toohello 下列已登入執行 hello 函式：
 
-    2016-03-23T08:08:55  Welcome, you are now connected to log-streaming service.
+    2016-03-23T08:08:55  Welcome, you are now connected toolog-streaming service.
     2016-03-23T08:08:59.736 Function started (Id=607b891c-08a1-427f-910c-af64ae4f7f9c)
     2016-03-23T08:09:01.153 HTTP trigger function processed a request. RequestUri=http://functionsExample.azurewebsites.net/api/WesmcHttpTriggerNodeJS1/?code=XXXXXXXXXX==
     2016-03-23T08:09:01.153 Request Headers = {"connection":"Keep-Alive","host":"functionsExample.azurewebsites.net"}
@@ -377,12 +377,12 @@ req.end(bodyString);
 
 
 ### <a name="test-a-queue-trigger-function-with-code-c"></a>使用 C# 程式碼測試佇列觸發程序函式 #
-我們稍早提到，您可以透過使用程式碼在您的佇列中放置訊息來測試佇列觸發程序。 下列範例程式碼是基於[開始使用 Azure 佇列儲存體](../storage/queues/storage-dotnet-how-to-use-queues.md)教學課程中提供的 C# 程式碼。 從該連結也可以取得其他語言的程式碼。
+我們先前所述，您可以使用程式碼 toodrop 訊息佇列中測試佇列觸發程序。 下列範例程式碼的 hello 根據 hello C# 程式碼中 hello[開始使用 Azure 佇列儲存體](../storage/queues/storage-dotnet-how-to-use-queues.md)教學課程。 從該連結也可以取得其他語言的程式碼。
 
-若要在主控台應用程式中測試此程式碼，您必須︰
+tootest 此主控台應用程式中的程式碼，您必須：
 
-* [在 app.config 檔案中設定儲存體連接字串](../storage/queues/storage-dotnet-how-to-use-queues.md)。
-* 傳遞 `name` 和 `address` 做為應用程式的參數。 例如， `C:\myQueueConsoleApp\test.exe "Wes testing queues" "in a console app"`。 (在執行階段期間，此程式碼會接受新使用者名稱和地址做為命令列引數。)
+* [Hello app.config 檔案中設定您的儲存體連接字串](../storage/queues/storage-dotnet-how-to-use-queues.md)。
+* 傳遞`name`和`address`為參數 toohello 應用程式。 例如： `C:\myQueueConsoleApp\test.exe "Wes testing queues" "in a console app"`。 （此程式碼接受 hello 姓名和地址之新使用者做為命令列引數在執行階段。）
 
 範例 C# 程式碼︰
 
@@ -406,16 +406,16 @@ static void Main(string[] args)
     // Retrieve storage account from connection string
     CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["StorageConnectionString"]);
 
-    // Create the queue client
+    // Create hello queue client
     CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-    // Retrieve a reference to a queue
+    // Retrieve a reference tooa queue
     CloudQueue queue = queueClient.GetQueueReference(queueName);
 
-    // Create the queue if it doesn't already exist
+    // Create hello queue if it doesn't already exist
     queue.CreateIfNotExists();
 
-    // Create a message and add it to the queue.
+    // Create a message and add it toohello queue.
     if (name != null)
     {
         if (address != null)
@@ -424,7 +424,7 @@ static void Main(string[] args)
             JSON = String.Format("{{\"name\":\"{0}\"}}", name);
     }
 
-    Console.WriteLine("Adding message to " + queueName + "...");
+    Console.WriteLine("Adding message too" + queueName + "...");
     Console.WriteLine(JSON);
 
     CloudQueueMessage message = new CloudQueueMessage(JSON);
@@ -432,9 +432,9 @@ static void Main(string[] args)
 }
 ```
 
-在佇列函式的瀏覽器視窗中，您會看到正在處理的每個訊息︰
+在 hello 瀏覽器視窗中的 hello 佇列函式，您可以看到每個正在處理的訊息：
 
-    2016-03-24T10:27:06  Welcome, you are now connected to log-streaming service.
+    2016-03-24T10:27:06  Welcome, you are now connected toolog-streaming service.
     2016-03-24T10:27:30.607 Function started (Id=e304450c-ff48-44dc-ba2e-1df7209a9d22)
     2016-03-24T10:27:30.607 C# Queue trigger function processed: {"name":"Wes testing queues","address":"in a console app"}
     2016-03-24T10:27:30.607 Function completed (Success, Id=e304450c-ff48-44dc-ba2e-1df7209a9d22)

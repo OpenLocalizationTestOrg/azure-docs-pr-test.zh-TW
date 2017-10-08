@@ -1,6 +1,6 @@
 ---
-title: "使用 Bootstrap 自訂 HDInsight 叢集 - Azure | Microsoft Docs"
-description: "了解如何使用 Bootstrap 自訂 HDInsight 叢集。"
+title: "使用啟動程序-Azure HDInsight 叢集 aaaCustomize |Microsoft 文件"
+description: "了解如何 toocustomize HDInsight 叢集使用啟動程序。"
 services: hdinsight
 documentationcenter: 
 author: mumian
@@ -16,15 +16,15 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
-ms.openlocfilehash: c7a6fafa90eac66774d564c82c926c662baf784c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0029680fd1aa0e9e6aa9cdf667256c31b7ddc565
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="customize-hdinsight-clusters-using-bootstrap"></a>使用 Bootstrap 自訂 HDInsight 叢集
 
-有時候，您需要設定包含下列項目的組態檔：
+有時候，您會想 tooconfigure hello 設定檔，其中包括：
 
 * clusterIdentity.xml
 * core-site.xml
@@ -42,7 +42,7 @@ ms.lasthandoff: 07/11/2017
 * webhcat-site.xml
 * yarn-site.xml
 
-有三個方法可以使用 Bootstrap：
+有三個方法 toouse 啟動程序：
 
 * 使用 Azure PowerShell
 * 使用 .NET SDK
@@ -50,12 +50,12 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
-如需於建立期間在 HDInsight 叢集上安裝其他元件的相關資訊，請參閱：
+Hello 建立期間，在 HDInsight 叢集上安裝其他元件的資訊，請參閱：
 
 * [使用指令碼動作來自訂 HDInsight 叢集| Azure (Linux)](hdinsight-hadoop-customize-cluster-linux.md)
 
 ## <a name="use-azure-powershell"></a>使用 Azure PowerShell
-下列 PowerShell 程式碼會自訂 Hive 組態：
+下列 PowerShell 程式碼的 hello 自訂 Hive 組態：
 
     # hive-site.xml configuration
     $hiveConfigValues = @{ "hive.metastore.client.socket.timeout"="90" }
@@ -80,19 +80,19 @@ ms.lasthandoff: 07/11/2017
 
 可完整運作的 PowerShell 指令碼可在 [附錄 A](#hdinsight-hadoop-customize-cluster-bootstrap.md/appx-a:-powershell-sample)中找到。
 
-**若要確認變更：**
+**tooverify hello 變更：**
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 從左功能表中按一下 [HDInsight 叢集]。 如果您沒有看到，可先按一下 [更多服務]。
-3. 按一下您剛才使用 PowerShell 指令碼建立的叢集。
-4. 在刀鋒視窗頂端按一下 [儀表板]  ，以開啟 Ambari UI。
-5. 按一下左側功能表中的 [Hive]  。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
+2. 從 hello 左窗格中，按一下  **HDInsight 叢集**。 如果您沒有看到，可先按一下 [更多服務]。
+3. 按一下您剛建立使用 hello PowerShell 指令碼的 hello 叢集。
+4. 按一下**儀表板**從 hello 頂端 hello 刀鋒視窗 tooopen hello Ambari UI。
+5. 按一下**Hive** hello 左側功能表中。
 6. 按一下 [Summary (摘要)] 中的 [HiveServer2]。
-7. 按一下 [Configs (設定)]  索引標籤。
-8. 按一下左側功能表中的 [Hive]  。
-9. 按一下 [Advanced (進階)]  索引標籤。
+7. 按一下 hello **Configs**  索引標籤。
+8. 按一下**Hive** hello 左側功能表中。
+9. 按一下 hello**進階** 索引標籤。
 10. 向下捲動，然後展開 [Advanced hive-site (進階 Hive 網站)] 。
-11. 在此區段中尋找 **hive.metastore.client.socket.timeout** 。
+11. 尋找**hive.metastore.client.socket.timeout** hello 一節。
 
 以下是更多自訂其他組態檔的範例：
 
@@ -111,7 +111,7 @@ ms.lasthandoff: 07/11/2017
 如需詳細資訊，請參閱 Azim Uddin 的部落格中，標題為「 [自訂 HDInsight 叢集建立](http://blogs.msdn.com/b/bigdatasupport/archive/2014/04/15/customizing-hdinsight-cluster-provisioning-via-powershell-and-net-sdk.aspx)」的文章。
 
 ## <a name="use-net-sdk"></a>使用 .NET SDK
-請參閱[在 HDInsight 中使用 .NET SDK 建立 Linux 型叢集](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-bootstrap)。
+請參閱[建立 linux 叢集使用 HDInsight 中的 hello.NET SDK](hdinsight-hadoop-create-linux-clusters-dotnet-sdk.md#use-bootstrap)。
 
 ## <a name="use-resource-manager-template"></a>使用 Resource Manager 範本
 Resource Manager 範本中，您可以使用啟動程序︰
@@ -129,7 +129,7 @@ Resource Manager 範本中，您可以使用啟動程序︰
 ![HDInsight Hadoop 自訂叢集 Bootstrap Azure Resource Manager 範本](./media/hdinsight-hadoop-customize-cluster-bootstrap/hdinsight-customize-cluster-bootstrap-arm.png)
 
 ## <a name="see-also"></a>另請參閱
-* [在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision-cluster]提供如何使用其他自訂選項建立 HDInsight 叢集的指示。
+* [建立在 HDInsight Hadoop 叢集][ hdinsight-provision-cluster] toocreate 在 HDInsight 叢集使用其他自訂選項的方式提供的指示。
 * [開發 HDInsight 的指令碼動作指令碼][hdinsight-write-script]
 * [在 HDInsight 叢集上安裝和使用 Spark][hdinsight-install-spark]
 * [在 HDInsight 叢集上安裝和使用 R][hdinsight-install-r]
@@ -181,10 +181,10 @@ Resource Manager 範本中，您可以使用啟動程序︰
     $ErrorActionPreference = "Stop"
 
     ####################################
-    # Connect to Azure
+    # Connect tooAzure
     ####################################
-    #region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
     catch{Login-AzureRmAccount}
     #endregion
@@ -198,7 +198,7 @@ Resource Manager 範本中，您可以使用啟動程序︰
         -Name  $resourceGroupName `
         -Location $location
 
-    Write-Host "Creating the default storage account and default blob container ..."  -ForegroundColor Green
+    Write-Host "Creating hello default storage account and default blob container ..."  -ForegroundColor Green
     New-AzureRmStorageAccount `
         -ResourceGroupName $resourceGroupName `
         -Name $defaultStorageAccountName `
@@ -213,7 +213,7 @@ Resource Manager 範本中，您可以使用啟動程序︰
                                     -StorageAccountKey $defaultStorageAccountKey
     New-AzureStorageContainer `
         -Name $defaultBlobContainerName `
-        -Context $defaultStorageContext #use the cluster name as the container name
+        -Context $defaultStorageContext #use hello cluster name as hello container name
 
     ####################################
     # Create a configuration object
@@ -249,7 +249,7 @@ Resource Manager 範本中，您可以使用啟動程序︰
         -Config $config
 
     ####################################
-    # Verify the cluster
+    # Verify hello cluster
     ####################################
     Get-AzureRmHDInsightCluster -ClusterName $hdinsightClusterName
 

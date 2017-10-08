@@ -1,6 +1,6 @@
 ---
-title: "建置適用於 Azure Cosmos DB 的 Node.js Web 應用程式 | Microsoft Docs"
-description: "這個 Node.js 教學課程會探索如何使用 Microsoft Azure Cosmos DB，從 Azure 網站上裝載的 Node.js Express Web 應用程式來儲存和存取資料。"
+title: "Node.js web 應用程式的 Azure Cosmos DB aaaBuild |Microsoft 文件"
+description: "本教學課程中 Node.js 探討 Azure 網站上裝載 toouse Node.js Express web 應用程式的 Microsoft Azure Cosmos DB toostore 及存取資料的方式。"
 keywords: "應用程式開發, 資料庫教學課程, 了解 node.js, node.js 教學課程"
 services: cosmos-db
 documentationcenter: nodejs
@@ -15,11 +15,11 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: mimig
-ms.openlocfilehash: 1a98509a98bcd2a5de593eb006f905766fe72966
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 31194dccf37eef69d2219b0d8328a88d434f79b9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="_Toc395783175"></a>使用 Azure Cosmos DB 來建置 Node.js Web 應用程式
 > [!div class="op_single_selector"]
@@ -30,11 +30,11 @@ ms.lasthandoff: 08/18/2017
 > 
 > 
 
-本 Node.js 教學課程說明如何使用 Azure Cosmos DB 和 DocumentDB API，來儲存和存取 Azure 網站上所託管的 Node.js Express 應用程式資料。 您會建置一個可供建立、擷取及完成工作的簡單網頁型工作管理應用程式 (待辦事項應用程式)。 在 Azure Cosmos DB 中，這些工作會儲存為 JSON 文件。 本教學課程會逐步引導您建立和部署應用程式，並說明每個程式碼片段中的狀況。
+此 Node.js 教學課程會示範如何 toouse Azure Cosmos DB 和 hello DocumentDB API toostore 和存取資料，從 Node.js Express 應用程式裝載在 Azure 網站上。 您會建置一個可供建立、擷取及完成工作的簡單網頁型工作管理應用程式 (待辦事項應用程式)。 hello 工作會儲存為 Azure Cosmos DB 中的 JSON 文件。 本教學課程將引導您完成 hello 建立及部署的 hello 應用程式，並說明每個片段中的情況。
 
-![本 Node.js 教學課程所建立的「我的待辦事項清單」應用程式螢幕擷取畫面](./media/documentdb-nodejs-application/cosmos-db-node-js-mytodo.png)
+![Hello 這個 Node.js 教學課程中建立的 我的 Todo 清單應用程式的螢幕擷取畫面](./media/documentdb-nodejs-application/cosmos-db-node-js-mytodo.png)
 
-是否沒有時間完成本教學課程，只是想要取得完整的解決方案？ 沒有問題，您可以從 [GitHub][GitHub] 取得完整的範例解決方案。 如需有關如何執行應用程式的指示，只需閱讀 [Readme](https://github.com/Azure-Samples/documentdb-node-todo-app/blob/master/README.md) 檔案即可。
+不會有時間 toocomplete hello 教學課程，而且只想 tooget hello 完整的解決方案嗎？ 不是問題，您可以取得 hello 完整的範例方案，從[GitHub][GitHub]。 只可以讀取 hello[讀我檔案](https://github.com/Azure-Samples/documentdb-node-todo-app/blob/master/README.md)檔案，如需如何 toorun hello 應用程式的指示。
 
 ## <a name="_Toc395783176"></a>必要條件
 > [!TIP]
@@ -42,30 +42,30 @@ ms.lasthandoff: 08/18/2017
 > 
 > 
 
-在依照本文中的指示進行之前，您應先確定備妥下列項目：
+這篇文章中的 hello 指示之前，您應該確定您擁有 hello 下列：
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
    或
 
-   本機安裝的 [Azure Cosmos DB 模擬器](local-emulator.md) (僅適用於 Windows)。
+   Hello 的本機安裝[Azure Cosmos DB 模擬器](local-emulator.md)(僅限 Windows)。
 * [Node.js][Node.js] v0.10.29 版或更高版本。
 * [Express 產生器](http://www.expressjs.com/starter/generator.html) (您可以透過 `npm install express-generator -g` 進行安裝)
 * [Git][Git]。
 
 ## <a name="_Toc395637761"></a>步驟 1：建立 Azure Cosmos DB 資料庫帳戶
-我們將從建立 Azure Cosmos DB 帳戶開始著手。 如果您已經擁有帳戶，或如果您正在使用 Azure Cosmos DB 模擬器來進行本教學課程，可以跳到[步驟 2：建立新的 Node.js 應用程式](#_Toc395783178)。
+我們將從建立 Azure Cosmos DB 帳戶開始著手。 如果您已經有帳戶，或如果您使用 hello Azure Cosmos DB 模擬器本教學課程中，您可以跳過[步驟 2： 建立新的 Node.js 應用程式](#_Toc395783178)。
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 [!INCLUDE [cosmos-db-keys](../../includes/cosmos-db-keys.md)]
 
 ## <a name="_Toc395783178"></a>步驟 2 - 建立新的 Node.js 應用程式
-現在，我們來了解如何使用 [Express](http://expressjs.com/) 架構來建立基本的 Hello World Node.js 專案。
+現在讓我們了解 toocreate 基本的 Hello World Node.js 專案使用 hello [Express](http://expressjs.com/)架構。
 
-1. 開啟您喜好的終端機，例如 Node.js 命令提示字元。
-2. 瀏覽至您想要在其中儲存新應用程式的目錄。
-3. 使用 Express 產生器來產生名為 **todo**的新應用程式。
+1. 開啟您最愛的終端機，例如 hello Node.js 命令提示字元。
+2. 瀏覽 toohello 目錄中，您想要 toostore hello 新應用程式。
+3. 使用新的應用程式呼叫 hello 快速產生器 toogenerate **todo**。
    
         express todo
 4. 開啟您的新 **todo** 目錄並安裝相依性。
@@ -75,22 +75,22 @@ ms.lasthandoff: 08/18/2017
 5. 執行新的應用程式。
    
         npm start
-6. 您可以檢視新的應用程式，請導覽瀏覽器至 [http://localhost:3000/](http://localhost:3000)。
+6. 您可以檢視新的應用程式瀏覽您的瀏覽器太[http://localhost:3000](http://localhost:3000)。
    
-    ![了解 Node.js - Hello World 應用程式在瀏覽器視窗中的螢幕擷取畫面](./media/documentdb-nodejs-application/cosmos-db-node-js-express.png)
+    ![了解 Node.js-hello 瀏覽器視窗中的 Hello World 應用程式的螢幕擷取畫面](./media/documentdb-nodejs-application/cosmos-db-node-js-express.png)
 
-    然後，若要停止應用程式，請在終端機視窗中按 CTRL+C，然後按一下 **y** 以終止批次作業。
+    然後，toostop hello 應用程式，請按 CTRL + C hello terminal 視窗中，然後按一下**y** tooterminate hello 批次作業。
 
 ## <a name="_Toc395783179"></a>步驟 3：安裝其他模組
-**package.json** 檔案是建立在專案根目錄中的其中一個檔案。 這個檔案包含 Node.js 應用程式所需的其他模組清單。 之後，當您將此應用程式部署至 Azure 網站時，此檔案可用來決定 Azure 上需要安裝哪些模組才能支援您的應用程式。 在本教學課程中，我們還需要再安裝兩個封裝。
+hello **package.json**檔案是建立在 hello hello 專案根目錄中的 hello 檔案的其中一個。 這個檔案包含 Node.js 應用程式所需的其他模組清單。 稍後，當您部署此應用程式 tooAzure 網站時，這個檔案是使用的 toodetermine 哪些模組需要 toobe Azure toosupport 您的應用程式安裝。 我們仍需要 tooinstall 兩個封裝在本教學課程。
 
-1. 返回終端機，透過 npm 安裝 **async** 模組。
+1. 在 hello 終端機安裝 hello**非同步**透過 npm 模組。
    
         npm install async --save
-2. 透過 npm 安裝 **documentdb** 模組。 這是 Azure Cosmos DB 發揮所有強大功能的模組。
+2. 安裝 hello **documentdb**透過 npm 模組。 這是其中所有的 hello Azure Cosmos DB magic 發生 hello 模組。
    
         npm install documentdb --save
-3. 快速檢查應用程式的 **package.json** 檔案應該會顯示其他模組。 這個檔案會告訴 Azure 在執行您的應用程式時要下載及安裝的封裝。 它看起來應該類似下面的範例。
+3. 快速檢查 hello **package.json** hello 應用程式檔案應該會顯示 hello 其他模組。 這個檔案會告訴 Azure 哪些封裝 toodownload，以及執行您的應用程式時安裝。 它應該類似下列的 hello 範例。
    
         {
           "name": "todo",
@@ -114,14 +114,14 @@ ms.lasthandoff: 08/18/2017
    
     這會讓 Node (之後則是 Azure) 知道您的應用程式需要仰賴這些額外模組。
 
-## <a name="_Toc395783180"></a>步驟 4：在節點應用程式中使用 Azure Cosmos DB 服務
-前面的內容在講述所有初始設定和組態，現在讓我們來了解本教學課程的真正目的，也就是使用 Azure Cosmos DB 撰寫一些程式碼。
+## <a name="_Toc395783180"></a>步驟 4： 使用 node 應用程式中的 hello Azure Cosmos DB 服務
+會處理所有 hello 初始安裝和組態，現在讓我們 get toowhy 向我們在這裡，而這就是有些程式碼使用 Azure Cosmos DB toowrite。
 
-### <a name="create-the-model"></a>建立模型
-1. 在專案目錄中，請在與 package.json 檔案相同的目錄中建立名為 **models** 的新目錄。
-2. 在 **models** 目錄中，建立名為 **taskDao.js** 的新檔案。 此檔案將包含應用程式所建立工作的模型。
-3. 在同一個 **models** 目錄中，建立另一個名為 **docdbUtils.js** 的新檔案。 這個檔案會包含一些實用、可重複使用，適用於整個應用程式的程式碼。 
-4. 將下列程式碼複製到 **docdbUtils.js**
+### <a name="create-hello-model"></a>建立 hello 模型
+1. 在 hello 專案目錄中，建立名為的新目錄**模型**在 hello 與 hello package.json 檔案相同的目錄。
+2. 在 hello**模型**目錄中，建立新的檔案命名為**taskDao.js**。 這個檔案會包含我們的應用程式所建立的 hello 工作 hello 模型。
+3. 在 hello 相同**模型**目錄中，建立名為另一個新檔案**docdbUtils.js**。 這個檔案會包含一些實用、可重複使用，適用於整個應用程式的程式碼。 
+4. 複製 hello 中下列程式碼太**docdbUtils.js**
    
         var DocumentDBClient = require('documentdb').DocumentClient;
    
@@ -189,12 +189,12 @@ ms.lasthandoff: 08/18/2017
    
         module.exports = DocDBUtils;
    
-5. 儲存並關閉 **docdbUtils.js** 檔案。
-6. 在 **taskDao.js** 檔案的開頭加入下列程式碼，以參考我們之前建立的 **DocumentDBClient** 和 **docdbUtils.js**：
+5. 儲存並關閉 hello **docdbUtils.js**檔案。
+6. 在 hello hello 開頭**taskDao.js**檔案中加入下列程式碼 tooreference hello hello **DocumentDBClient**和 hello **docdbUtils.js**前面所建立：
    
         var DocumentDBClient = require('documentdb').DocumentClient;
         var docdbUtils = require('./docdbUtils');
-7. 接下來，要加入程式碼以定義和匯出 Task 物件。 這會負責初始化我們的 Task 物件，並設定我們即將使用的資料庫和文件集合。
+7. 接下來，您會加入程式碼 toodefine 以及匯出 hello 工作物件。 這是負責初始化我們工作的物件和設定 hello 資料庫，我們將使用的文件集合。
    
         function TaskDao(documentDBClient, databaseId, collectionId) {
           this.client = documentDBClient;
@@ -206,7 +206,7 @@ ms.lasthandoff: 08/18/2017
         }
    
         module.exports = TaskDao;
-8. 接下來，新增下列程式碼以定義 Task 物件上的其他方法，可用來與 Azure Cosmos DB 中存放的資料進行互動。
+8. 接下來，新增 hello hello 工作物件，在下列程式碼 toodefine 其他方法可讓 Azure Cosmos DB 中所儲存的資料互動。
    
         TaskDao.prototype = {
             init: function (callback) {
@@ -301,11 +301,11 @@ ms.lasthandoff: 08/18/2017
                 });
             }
         };
-9. 儲存並關閉 **taskDao.js** 檔案。 
+9. 儲存並關閉 hello **taskDao.js**檔案。 
 
-### <a name="create-the-controller"></a>建立控制器
-1. 在專案的 **routes** 目錄中，建立名為 **tasklist.js** 的新檔案。 
-2. 在 **tasklist.js**中加入以下程式碼。 這會載入供 **tasklist.js**使用的 DocumentDBClient 和 async 模組。 這也會定義 **TaskList** 函式，系統會傳遞我們稍早定義的 **Task** 物件執行個體給它：
+### <a name="create-hello-controller"></a>建立 hello 控制站
+1. 在 hello**路由**您專案的目錄建立新的檔案命名為**tasklist.js**。 
+2. 新增下列程式碼太 hello**tasklist.js**。 這會載入 hello DocumentDBClient 和非同步模組，可供用**tasklist.js**。 這也會定義 hello **TaskList**函式，會傳遞 hello 的執行個體**工作**我們先前定義的物件：
    
         var DocumentDBClient = require('documentdb').DocumentClient;
         var async = require('async');
@@ -315,7 +315,7 @@ ms.lasthandoff: 08/18/2017
         }
    
         module.exports = TaskList;
-3. 繼續在 **tasklist.js** 檔案中新增用來 **showTasks (顯示工作)、addTask (新增工作)** 和 **completeTasks (完成工作)** 的方法：
+3. 繼續加入 toohello **tasklist.js**檔案加上使用過的 hello 方法**showTasks，addTask**，和**completeTasks**:
    
         TaskList.prototype = {
             showTasks: function (req, res) {
@@ -375,38 +375,38 @@ ms.lasthandoff: 08/18/2017
                 });
             }
         };
-4. 儲存並關閉 **tasklist.js** 檔案。
+4. 儲存並關閉 hello **tasklist.js**檔案。
 
 ### <a name="add-configjs"></a>新增 config.js
 1. 在您的專案目錄中，建立名為 **config.js**的新檔案。
-2. 將下列程式碼新增至 **config.js**。 這會定義組態設定和我們的應用程式所需的值。
+2. Hello 太之後加入**config.js**。 這會定義組態設定和我們的應用程式所需的值。
    
         var config = {}
    
-        config.host = process.env.HOST || "[the URI value from the Azure Cosmos DB Keys blade on http://portal.azure.com]";
-        config.authKey = process.env.AUTH_KEY || "[the PRIMARY KEY value from the Azure Cosmos DB Keys blade on http://portal.azure.com]";
+        config.host = process.env.HOST || "[hello URI value from hello Azure Cosmos DB Keys blade on http://portal.azure.com]";
+        config.authKey = process.env.AUTH_KEY || "[hello PRIMARY KEY value from hello Azure Cosmos DB Keys blade on http://portal.azure.com]";
         config.databaseId = "ToDoList";
         config.collectionId = "Items";
    
         module.exports = config;
-3. 在 **config.js** 檔案中，使用 [Microsoft Azure 入口網站](https://portal.azure.com)上 Azure Cosmos DB 帳戶的 [金鑰] 刀鋒視窗中找到的值，更新 HOST 和 AUTH_KEY 的值。
-4. 儲存並關閉 **config.js** 檔案。
+3. 在 hello **config.js**檔案，更新 hello 值的主應用程式和使用您的 Azure Cosmos DB 帳戶上 hello hello 金鑰刀鋒視窗中的 hello 值 AUTH_KEY [Microsoft Azure 入口網站](https://portal.azure.com)。
+4. 儲存並關閉 hello **config.js**檔案。
 
 ### <a name="modify-appjs"></a>修改 app.js
-1. 在專案目錄中，開啟 **app.js** 檔案。 這是稍早建立 Express Web 應用程式時所建立的檔案。
-2. 將下列程式碼新增至 **app.js**
+1. 在 hello 專案目錄中，開啟 hello **app.js**檔案。 建立 hello Express web 應用程式時，稍早建立此檔案。
+2. 新增下列程式碼 toohello 頂端的 hello **app.js**
    
         var DocumentDBClient = require('documentdb').DocumentClient;
         var config = require('./config');
         var TaskList = require('./routes/tasklist');
         var TaskDao = require('./models/taskDao');
-3. 此程式碼會定義要使用的組態檔，並繼續讀出此檔案中的值到我們即將使用的變數。
-4. 將 **app.js** 檔案中的下列兩行取代為：
+3. 此程式碼定義 hello 設定檔 toobe 使用，然後進行 tooread 值超出此檔案置於很快，我們將使用一些變數。
+4. 取代下列兩行中的 hello **app.js**檔案：
    
         app.use('/', index);
         app.use('/users', users); 
    
-      下列程式碼片段：
+      以下列程式碼片段的 hello:
    
         var docDbClient = new DocumentDBClient(config.host, {
             masterKey: config.authKey
@@ -419,14 +419,14 @@ ms.lasthandoff: 08/18/2017
         app.post('/addtask', taskList.addTask.bind(taskList));
         app.post('/completetask', taskList.completeTask.bind(taskList));
         app.set('view engine', 'jade');
-5. 這幾行會定義 **TaskDao** 物件的新執行個體，內含與 Azure Cosmos DB 的新連線 (使用從 **config.js** 中讀取的值)，將 Task 物件初始化，然後將表單動作繫結至 **TaskList** 控制站上的方法。 
-6. 最後，儲存並關閉 **app.js** 檔案，我們就差不多快完成了。
+5. 這幾行定義的新執行個體我們**TaskDao**物件，並將新的連接 tooAzure Cosmos DB (使用 hello 值讀取 hello **config.js**)、 初始化 hello 工作物件，然後再繫結表單動作toomethods 上的我們**TaskList**控制站。 
+6. 最後，儲存並關閉 hello **app.js**檔案中，我們即將結束。
 
 ## <a name="_Toc395783181"></a>步驟 5：建置使用者介面
-現在，讓我們將注意力轉到建置使用者介面，以便使用者可以實際與我們的應用程式互動。 我們建立的 Express 應用程式使用 **Jade** 做為檢視引擎。 如需 Jade 的詳細資訊，請參閱 [http://jade-lang.com/](http://jade-lang.com/)。
+現在讓我們來開啟我們注意 toobuilding hello 的使用者介面，讓使用者可以實際互動我們的應用程式。 hello Express 應用程式，我們建立了使用**Jade**做為 hello 檢視引擎。 如需 Jade 的詳細資訊，請參閱太[http://jade-lang.com/](http://jade-lang.com/)。
 
-1. **views** 目錄中的 **layout.jade** 檔是用來作為其他 **.jade** 檔案的全域範本。 在此步驟中，您將修改它以使用 [Twitter Bootstrap](https://github.com/twbs/bootstrap)，這個工具組能夠方便設計美觀的網站。 
-2. 開啟在 **views** 資料夾中找到的 **layout.jade** 檔案，並將其中的內容取代為下列內容：
+1. hello **layout.jade**檔案在 hello**檢視**目錄作為全域範本其他**.jade**檔案。 在此步驟中您會修改它 toouse [Twitter Bootstrap](https://github.com/twbs/bootstrap)，這是一項工具組，可讓您輕鬆 toodesign nice 尋找網站。 
+2. 開啟 hello **layout.jade**檔案位於 hello**檢視**hello 下列資料夾和取代 hello 內容：
 
     ```
     doctype html
@@ -444,11 +444,11 @@ ms.lasthandoff: 08/18/2017
         script(src='//ajax.aspnetcdn.com/ajax/bootstrap/3.3.2/bootstrap.min.js')
     ```
 
-    這段程式碼實際上會指示 **Jade** 引擎轉譯出我們應用程式的部分 HTML，並建立稱為 **content** 的**區塊**，讓我們能在其中提供內容頁面的配置。
+    這實際上會告知 hello **Jade**引擎 toorender 一些 HTML 應用程式，並建立**區塊**呼叫**內容**我們可以在其中提供我們內容 hello 版面配置頁面。
 
     儲存並關閉此 **layout.jade** 檔案。
 
-3. 現在，開啟 **index.jade** 檔案 (應用程式即將使用的檢視)，並將檔案中的內容取代為下列內容；
+3. 現在開啟 hello **index.jade**檔案，供我們的應用程式，並取代 hello 下列中的 hello hello 檔案內容的 hello 檢視：
    
         extends layout
         block content
@@ -490,52 +490,52 @@ ms.lasthandoff: 08/18/2017
              button.btn(type="submit") Add item
    
 
-這個程式碼會擴充配置，並為我們在前面的 **layout.jade** 檔案中看到的 **content** 預留位置提供內容。
+這會擴充版面配置，並提供 hello 內容**內容**預留位置我們了解在 hello **layout.jade**稍早檔案。
    
 在此配置中，我們建立了兩個 HTML 表單。
 
-第一個表單包含資料的表格，以及可讓我們透過張貼到控制器的 **/completetask** 方法來更新項目的按鈕。
+hello 第一種形式包含資料表的資料和按鈕，讓我們 tooupdate 項目藉由公佈太**/completetask**我們控制站的方法。
     
-第二個表單包含兩個輸入欄位，以及可讓我們透過張貼到控制器的 **/addtask** 方法來建立項目的按鈕。
+hello 第二個表單包含兩個輸入的欄位和一個按鈕，讓我們 toocreate 新項目藉由公佈太**/addtask**我們控制站的方法。
 
-這應該就是要讓應用程式開始運作所需的所有程式碼。
+這應該是所有我們需要以我們的應用程式 toowork。
 
 ## <a name="_Toc395783181"></a>步驟 6：在本機執行您的應用程式
-1. 若要在本機電腦上測試應用程式，請在終端機中執行 `npm start` 以啟動應用程式，然後重新整理 [http://localhost:3000](http://localhost:3000) 瀏覽器頁面。 此頁面現在看起來應該類似以下影像：
+1. tootest hello 應用程式，您的本機電腦上執行`npm start`hello toostart 終端機應用程式，然後重新整理您[http://localhost:3000](http://localhost:3000)瀏覽器頁面。 hello 頁面現在看起來應該像下面的 hello 影像：
    
-    ![[我的待辦事項清單] 應用程式在瀏覽器視窗中的螢幕擷取畫面](./media/documentdb-nodejs-application/cosmos-db-node-js-localhost.png)
+    ![Hello MyTodo 清單應用程式，在瀏覽器視窗的螢幕擷取畫面](./media/documentdb-nodejs-application/cosmos-db-node-js-localhost.png)
 
     > [!TIP]
-    > 如果您收到有關 layout.jade 檔案或 index.jade 檔案縮排的錯誤，請確定這兩個檔案的前兩行靠左對齊 (沒有空格)。 如果前兩行之前有空格，請將空格移除，儲存這兩個檔案，然後重新整理瀏覽器視窗。 
+    > 如果您收到 hello layout.jade 檔案或 hello index.jade 檔案中的 hello 縮排的相關錯誤，請確認這兩個檔案中的 hello 前兩行靠左對齊，不含空格。 如果有空格 hello 前兩個行之前，將它們移除，請儲存兩個檔案，然後重新整理瀏覽器視窗。 
 
-2. 使用 [項目]、[項目名稱] 和 [類別] 欄位來輸入新工作，然後按一下 [新增項目]。 便會使用這些屬性在 Azure Cosmos DB 中建立文件。 
-3. 系統應該會更新此頁面，以在 [待辦事項] 清單中顯示新建立的項目。
+2. 使用 hello 項目、 項目名稱和類別目錄欄位 tooenter 新工作，然後按一下**加入項目**。 便會使用這些屬性在 Azure Cosmos DB 中建立文件。 
+3. hello 頁面應該更新新建立 hello ToDo 清單中的項目 toodisplay hello。
    
-    ![[待辦事項] 清單中包含一個新項目的應用程式螢幕擷取畫面](./media/documentdb-nodejs-application/cosmos-db-node-js-added-task.png)
-4. 若要完成工作，您只需勾選 [已完成] 資料行中的核取方塊，然後按一下 [更新工作] 。 這會更新您已建立的文件。
+    ![使用新的項目 hello ToDo 清單中的 hello 應用程式的螢幕擷取畫面](./media/documentdb-nodejs-application/cosmos-db-node-js-added-task.png)
+4. toocomplete 項工作中，只會檢查 hello 完整資料行中的 hello 核取方塊，然後按一下**更新工作**。 這會更新您已建立的 hello 文件。
 
-5. 若要停止應用程式，請在終端機視窗中按 CTRL+C，然後按一下 **Y** 以終止批次作業。
+5. toostop hello 應用程式中，按 CTRL + C hello terminal 視窗中，然後按一下**Y** tooterminate hello 批次作業。
 
-## <a name="_Toc395783182"></a>步驟 7：將應用程式開發專案部署至 Azure 網站
-1. 如果您還沒有這麼做，請為您的 Azure 網站提供一個 Git 儲存機制。 您可以在 [Azure App Service 的本機 Git 部署](../app-service-web/app-service-deploy-local-git.md) 主題中找到有關如何執行這項操作的指示。
+## <a name="_Toc395783182"></a>步驟 7： 部署您的應用程式開發專案 tooAzure 網站
+1. 如果您還沒有這麼做，請為您的 Azure 網站提供一個 Git 儲存機制。 您可以找到指示如何 toodo 這在 hello[應用程式服務的本機 Git 部署 tooAzure](../app-service-web/app-service-deploy-local-git.md)主題。
 2. 新增您的 Azure 網站做為 Git 遠端。
    
         git remote add azure https://username@your-azure-website.scm.azurewebsites.net:443/your-azure-website.git
-3. 透過推送到遠端進行部署。
+3. 藉由推送 toohello 遠端部署。
    
         git push azure master
 4. 幾秒後，Git 便會發佈 Web 應用程式並啟動瀏覽器，您可以在瀏覽器中看到您方便好用的應用程式已在 Azure 中執行！
 
-    恭喜！ 您剛剛已使用 Azure Cosmos DB 建置您的第一個 Node.js Express Web 應用程式，並將它發佈至 Azure 網站。
+    恭喜！ 您剛才已建置第一個 Node.js Express Web 應用程式使用 Azure Cosmos DB，並發佈它 tooAzure 網站。
 
-    如果您想要下載或參考本教學課程的完整參考應用程式，可以從 [GitHub][GitHub] 進行下載。
+    如果您想 toodownload 或 toohello 完整參考的應用程式，請參閱本教學課程中，它可以從下載[GitHub][GitHub]。
 
 ## <a name="_Toc395637775"></a>接續步驟
 
-* 需要使用 Azure Cosmos DB 來執行規模和效能測試嗎？ 請參閱 [Azure Cosmos DB 的效能和規模測試](performance-testing.md)
-* 了解如何[監視 Azure Cosmos DB 帳戶](monitor-accounts.md)。
-* 在 [Query Playground](https://www.documentdb.com/sql/demo)中，針對範例資料集執行查詢。
-* 探索 [Azure Cosmos DB 文件](https://docs.microsoft.com/azure/documentdb/)。
+* 想 tooperform 規模和效能測試以 Azure Cosmos DB 嗎？ 請參閱 [Azure Cosmos DB 的效能和規模測試](performance-testing.md)
+* 了解如何太[監視 Azure Cosmos DB 帳戶](monitor-accounts.md)。
+* 執行查詢，根據我們的範例資料集，在 hello[查詢遊樂場](https://www.documentdb.com/sql/demo)。
+* 瀏覽 hello [Azure Cosmos DB 文件集](https://docs.microsoft.com/azure/documentdb/)。
 
 [Node.js]: http://nodejs.org/
 [Git]: http://git-scm.com/

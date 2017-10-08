@@ -1,6 +1,6 @@
 ---
-title: "Azure Stack 中的診斷功能 | Microsoft Docs"
-description: "如何在 Azure Stack 中收集記錄檔以進行診斷"
+title: "在 Azure 堆疊 aaaDiagnostics |Microsoft 文件"
+description: "Toocollect 記錄檔以 Azure 堆疊中的診斷資訊的方式"
 services: azure-stack
 documentationcenter: 
 author: adshar
@@ -14,31 +14,31 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/10/2017
 ms.author: adshar
-ms.openlocfilehash: 70004cfd83360ac4c66fd4c90632d341709d2e6f
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: a4a5ddf29e75df710e9fae366d6ac16e6fb36d8c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-stack-diagnostics-tools"></a>Azure Stack 診斷工具
  
 Azure Stack 是元件共同作業並與彼此互動的大型集合。 所有這些元件都將會產生自己的唯一記錄，這表示診斷問題將很快就成為極富挑戰性的工作，尤其是針對來自多個互動的 Azure Stack 元件的錯誤。 
 
-我們的診斷工具協助確定記錄集合機制簡單而有效。 下圖說明記錄收集工具在 Azure Stack 中的運作方式：
+我們的診斷工具協助確定 hello 記錄機制進行簡單而有效。 hello 圖說明如何記錄收集工具在 Azure 堆疊工作：
 
 ![記錄收集工具](media/azure-stack-diagnostics/image01.png)
  
  
 ## <a name="trace-collector"></a>追蹤收集器
  
-「追蹤收集器」預設為啟用。 它將會持續在背景中執行，在 Azure Stack 上從元件服務收集 Windows 事件追蹤 (ETW) 記錄，並將其儲存在一般本機共用上。 
+預設會啟用 hello 追蹤收集器。 它持續 hello 背景中執行 Azure 堆疊上，從 元件服務收集所有事件追蹤的 Windows (ETW) 記錄檔並將它們儲存在一般的本機共用上。 
 
-下列是需要知道「追蹤收集器」的重要事項：
+hello 下面是有關 hello 追蹤收集器的重要事項 tooknow:
  
-* 「追蹤收集器」會持續以預設大小限制執行。 每個檔案預設的允許大小上限 (200 MB) 並**不**是截止大小。 大小檢查將會定期執行 (目前為每隔 10 分鐘)，而如果目前檔案 > = 200 MB 時，其將會儲存並產生新的檔案。 每個事件工作階段總檔案大小也有 8 GB (可設定) 的限制。 一旦達到此限制，建立新檔案時將會同時刪除最舊的檔案。
-* 記錄限制只會記錄 5 天。 此限制也可設定。 
-* 每個元件會透過 JSON 檔案定義追蹤組態屬性。 JSON 檔案會儲存於 `C:\TraceCollector\Configuration`。 如有必要，可以編輯這些檔案來變更收集記錄的時間和大小限制。 變更這些檔案將會需要重新啟動「Microsoft Azure Stack 追蹤收集器」 服務，變更才會生效。
-* 下列範例是適用於來自 XRP 虛擬機器 FabricRingServices 作業的追蹤組態 JSON 檔： 
+* hello 追蹤收集器會持續執行預設的大小限制。 hello 預設允許的大小上限 (200 MB) 的每個檔案是**不**截止大小。 大小檢查會定期發生 （目前每隔 10 分鐘），而且如果 hello 目前的檔案是 > = 200 MB 時，它會儲存並產生新的檔案。 Hello 檔案大小總計產生每個事件工作階段上也沒有為 8 GB （設定） 的限制。 一旦達到此限制時，建立新的時，會刪除 hello 最舊的檔案。
+* Hello 記錄檔沒有 5 天的天數。 此限制也可設定。 
+* 每個元件會定義 hello 追蹤組態屬性，透過 JSON 檔案。 hello JSON 檔案儲存在`C:\TraceCollector\Configuration`。 如果有需要，這些檔案都可以編輯 toochange hello 存在時間和大小限制的 hello 收集記錄檔。 變更 toothese 檔案需要重新啟動 hello *Microsoft Azure 堆疊追蹤收集器*hello 的服務變更 tootake 效果。
+* hello 下列範例是追蹤組態 JSON 檔 FabricRingServices 作業從 hello XRP VM: 
 
 ```
 {
@@ -62,37 +62,37 @@ Azure Stack 是元件共同作業並與彼此互動的大型集合。 所有這�
 
 * **MaxDaysOfFiles**
 
-    此參數將會控制保留檔案的時間。 較舊的記錄檔將會受到刪除。
+    此參數控制 hello 檔案 tookeep 存留期。 較舊的記錄檔將會受到刪除。
 * **MaxSizeInMB**
 
-    此參數控制單一檔案的大小臨界值。 如果達到大小限制，則會建立新的 .etl 檔案。
+    此參數控制 hello 大小閾值，單一檔案。 如果達到 hello 大小，則會建立新的.etl 檔案。
 * **TotalSizeInMB**
 
-    此參數控制事件工作階段所產生 .etl 檔的總大小。 如果總檔案大小大於此參數值，則較舊的檔案將會受到刪除。
+    此參數控制 hello 從事件工作階段產生的 hello.etl 檔案的大小總計。 如果 hello 檔案總大小大於此參數值，則會刪除較舊的檔案。
   
 ## <a name="log-collection-tool"></a>記錄收集工具
  
-PowerShell 命令 `Get-AzureStackLog` 可用來收集 Azure Stack 環境中所有元件的記錄。 其會將它們以 ZIP 檔案儲存在使用者定義的位置。 如果我們的技術支援小組需要您的記錄，以便針對問題進行疑難排解，小組可能會要求您執行此工具。
+hello PowerShell 命令`Get-AzureStackLog`可以是從所有 Azure 堆疊環境中的 hello 元件使用的 toocollect 記錄檔。 其會將它們以 ZIP 檔案儲存在使用者定義的位置。 如果我們的技術支援小組需要記錄檔 toohelp 疑難排解問題，可能會要求 toorun 這項工具。
 
 > [!CAUTION]
 > 這些記錄檔可能包含個人識別資訊 (PII)。 在您公開公佈任何記錄檔之前，請先將這點納入考量。
  
-我們目前將會收集下列記錄類型︰
+目前，我們會收集下列記錄類型的 hello:
 *   **Azure Stack 部署記錄**
 *   **Windows 事件記錄**
 *   **Panther 記錄**
 
-     若是針對 RDP 問題進行疑難排解。
+     tootroubleshoot VM 建立問題。
 *   **叢集記錄**
 *   **儲存體診斷記錄**
 *   **ETW 記錄**
 
-    這些是「追蹤收集器」所收集且儲存在共用中，可使用 `Get-AzureStackLog` 進行擷取。
+    這些是 hello 追蹤收集器所收集而且儲存在共用從哪裡`Get-AzureStackLog`擷取它們。
  
-若要識別收集來自所有元件的所有記錄，請參閱「位於 `C:\EceStore\<Guid>\<GuidWithMaxFileSize>` 客戶設定檔中的 `<Logs>` 標記」。
+tooidentify 所有 hello 取得從所有的 hello 元件收集的記錄檔，請參閱 toohello`<Logs>`位於 hello 客戶設定檔中的標記`C:\EceStore\<Guid>\<GuidWithMaxFileSize>`。
  
-### <a name="to-run-get-azurestacklog"></a>執行 Get-AzureStackLog
-1.  以 AzureStack\AzureStackAdmin 身分登入主機。
+### <a name="toorun-get-azurestacklog"></a>toorun Get AzureStackLog
+1.  以登入 AzureStack\AzureStackAdmin hello 主機上。
 2.  以系統管理員身分開啟 PowerShell 視窗。
 3.  執行 `Get-AzureStackLog`。  
 
@@ -106,13 +106,13 @@ PowerShell 命令 `Get-AzureStackLog` 可用來收集 Azure Stack 環境中所�
 
         `Get-AzureStackLog -OutputPath C:\AzureStackLogs -FilterByRole VirtualMachines,BareMetal`
 
-    - 從 VirtualMachines 和 BareMetal 角色收集記錄，且記錄日期篩選為過去 8 小時：
+    - 收集記錄檔篩選記錄檔以取得 hello 過去 8 小時的日期與 VirtualMachines 和 BareMetal 角色：
 
         `Get-AzureStackLog -OutputPath C:\AzureStackLogs -FilterByRole VirtualMachines,BareMetal -FromDate (Get-Date).AddHours(-8) -ToDate (Get-Date)`
 
-如果未指定 `FromDate` 和 `ToDate` 參數，預設為將會收集過去 4 小時的記錄。
+如果 hello`FromDate`和`ToDate`如果未指定參數、 記錄檔預設會收集 hello 過去 4 小時。
 
-目前您可以透過下列角色使用 `FilterByRole` 參數來篩選記錄集合：
+目前，您可以使用 hello`FilterByRole`參數 toofilter 記錄檔集合，由下列角色的 hello:
 
 |   |   |   |
 | - | - | - |
@@ -134,21 +134,21 @@ PowerShell 命令 `Get-AzureStackLog` 可用來收集 Azure Stack 環境中所�
 | `WAS`                     | `WASPUBLIC`              | `WDS`                |
 
 
-幾個注意事項：
+幾件事 toonote:
 
-* 此命令將會需要一些時間來收集記錄，視乎將收集哪些角色記錄。 促成因素包括指定收集記錄的進行時間，以及 Azure Stack 環境中的節點數目。
-* 完成記錄收集之後，請檢查以命令指定 `-OutputPath` 參數所建立的新資料夾。
-* 名為 `Get-AzureStackLog_Output.log` 的檔案將會在包含 ZIP 檔案的資料夾中建立，並包括命令輸出，可以用於針對記錄集合中的任何失敗進行疑難排解。
+* 此命令將會需要一些時間來收集記錄，視乎將收集哪些角色記錄。 促成因素包括 hello 指定記錄檔集合與 hello hello Azure 堆疊環境中的節點數目的持續時間。
+* 記錄檔收集完成之後，請檢查 hello hello 中建立的新資料夾`-OutputPath`hello 命令中指定的參數。
+* 呼叫檔案`Get-AzureStackLog_Output.log`hello 包含 hello zip 檔案的資料夾中建立並包含 hello 命令輸出中，可以用於疑難排解記錄檔集合中的任何失敗。
 * 每個角色在個別 ZIP 檔案皆有其記錄。 
-* 若要調查特定失敗原因，則可能需要多個元件的記錄。
-    -   所有基礎結構虛擬機器的系統和事件記錄，皆會收集在「VirtualMachines」角色中。
-    -   所有主機的系統和事件記錄，皆會收集在「BareMetal」角色中。
-    -   容錯移轉叢集和 Hyper-V 事件記錄，皆會收集在「Storage」角色中。
-    -   ACS 記錄則會收集在「Storage」和「ACS」角色中。
-* 如需詳細資訊，您可以參考客戶設定檔。 為不同角色調查 `<Logs>`標記。
+* tooinvestigate 特定錯誤，記錄檔可能需要從多個元件。
+    -   系統和基礎結構的所有 vm 的事件記錄檔會收集在 hello *VirtualMachines*角色。
+    -   系統和所有主機的事件記錄檔會收集在 hello *BareMetal*角色。
+    -   容錯移轉叢集和 HYPER-V 事件記錄檔會收集在 hello*儲存體*角色。
+    -   ACS 的記錄檔會收集在 hello*儲存體*和*ACS*角色。
+* 如需詳細資訊，您可以參考 toohello 客戶設定檔。 調查 hello `<Logs>` hello 不同角色的標記。
 
 > [!NOTE]
-> 我們將會強制執行大小和時間限制，因為確保您能有效率地利用儲存空間，以及其不會因記錄而塞滿極其重要。 強調的是當診斷問題時，因為強制執行這些限制，您通常需要的記錄可能已不存在。 因此，我們**強烈建議**您每隔 8 到 12 個小時將記錄卸載到外部存放裝置空間 (公用 Azure 中的儲存體帳戶、額外內部存放裝置等)，並視需求保存 1-3 個月。
+> 我們會強制執行大小和存在時間限制，所以您確定不會取得大量湧入記錄檔的儲存體空間 toomake 基本 tooensure 有效率地利用所收集的 toohello 記錄檔。 強調的是，當診斷的問題，您通常需要記錄檔，可能不存在 toothese 限制強制執行到期。 因此，**強烈建議**您卸載記錄 tooan 外部儲存空間 （在公用 Azure 儲存體帳戶、 內部額外存放裝置等等） 來 too12 每 8 小時，讓它們那里取決於 1-3 個月您的需求。
 
 
 ## <a name="next-steps"></a>後續步驟

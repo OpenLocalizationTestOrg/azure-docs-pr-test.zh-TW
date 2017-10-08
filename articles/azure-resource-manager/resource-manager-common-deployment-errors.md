@@ -1,13 +1,13 @@
 ---
-title: "針對常見的 Azure 部署錯誤進行疑難排解 | Microsoft Docs"
-description: "說明如何解決使用 Azure Resource Manager 將資源部署至 Azure 時的常見錯誤。"
+title: "aaaTroubleshoot 常見的 Azure 部署錯誤 |Microsoft 文件"
+description: "描述如何部署使用 Azure 資源管理員資源 tooAzure 時 tooresolve 常見錯誤。"
 services: azure-resource-manager
 documentationcenter: 
 tags: top-support-issue
 author: tfitzmac
 manager: timlt
 editor: tysonn
-keywords: "部署錯誤, azure 部署, 部署至 azure"
+keywords: "部署錯誤，azure 部署，部署 tooazure"
 ms.assetid: c002a9be-4de5-4963-bd14-b54aa3d8fa59
 ms.service: azure-resource-manager
 ms.devlang: na
@@ -16,16 +16,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/17/2017
 ms.author: tomfitz
-ms.openlocfilehash: 30adc10d01290f14a3e116813b19916fa36ab0bc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8571e9941879eb5586e4258a785b6a09247da771
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-common-azure-deployment-errors-with-azure-resource-manager"></a>使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解
 本主題說明如何解決可能會遇到的一些常見 Azure 部署錯誤。
 
-本主題會說明下列錯誤碼︰
+本主題將描述下列錯誤碼 hello:
 
 * [AccountNameInvalid](#accountnameinvalid)
 * [授權失敗](#authorization-failed)
@@ -48,29 +48,29 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="deploymentfailed"></a>DeploymentFailed
 
-這個錯誤碼會指出一般部署錯誤，但不是您要開始進行疑難排解的錯誤碼。 實際上協助您解決問題的錯誤碼通常位於此錯誤的下一層。 例如，下圖顯示在部署錯誤底下的 **RequestDisallowedByPolicy** 錯誤碼。
+此錯誤碼指出一般的部署錯誤，但它不是您需要疑難排解 toostart hello 的錯誤代碼。 hello 實際上可協助您解決 hello 問題錯誤碼通常是以下這個錯誤的一個層級。 例如，hello 下列影像顯示 hello **RequestDisallowedByPolicy**低於 hello 部署錯誤的錯誤碼。
 
 ![顯示錯誤碼](./media/resource-manager-common-deployment-errors/error-code.png)
 
 ## <a name="skunotavailable"></a>SkuNotAvailable
 
-在部署資源 (通常是虛擬機器) 時，您可能會收到下列錯誤碼和錯誤訊息︰
+部署資源 （通常是虛擬機器），您可能會收到 hello 下錯誤程式碼和錯誤訊息：
 
 ```
 Code: SkuNotAvailable
-Message: The requested tier for resource '<resource>' is currently not available in location '<location>' 
-for subscription '<subscriptionID>'. Please try another tier or deploy to a different location.
+Message: hello requested tier for resource '<resource>' is currently not available in location '<location>' 
+for subscription '<subscriptionID>'. Please try another tier or deploy tooa different location.
 ```
 
-當您選取的資源 SKU (例如 VM 大小) 不適用於您選取的位置時，您會收到這個錯誤。 若要解決此問題，您需要判斷區域中有哪些 SKU。 您可以使用 PowerShell、入口網站或 REST 作業來尋找可用的 SKU。
+Hello 資源 （例如 VM 大小），您已選取的 SKU 不適用於您所選取的 hello 位置時，您會收到這個錯誤。 tooresolve 此問題，您需要 toodetermine Sku 可用區域中。 您可以使用 PowerShell、 hello 入口網站或 REST 作業 toofind 可用的 Sku。
 
-- 若是 PowerShell，請使用 [Get-AzureRmComputeResourceSku](/powershell/module/azurerm.compute/get-azurermcomputeresourcesku) 並依位置篩選。 您必須擁有最新版 PowerShell 才能執行此命令。
+- 若是 PowerShell，請使用 [Get-AzureRmComputeResourceSku](/powershell/module/azurerm.compute/get-azurermcomputeresourcesku) 並依位置篩選。 您必須擁有 hello 最新版的 PowerShell 此命令。
 
   ```powershell
   Get-AzureRmComputeResourceSku | where {$_.Locations.Contains("southcentralus")}
   ```
 
-  結果包括該位置的 SKU 清單，以及該 SKU 的任何限制。
+  hello 結果包括 Sku hello 位置清單，以及適用於該 SKU 任何限制。
 
   ```powershell
   ResourceType                Name      Locations Restriction                      Capability Value
@@ -82,18 +82,18 @@ for subscription '<subscriptionID>'. Please try another tier or deploy to a diff
   virtualMachines      Standard_A2 southcentralus
   ```
 
-- 若要使用[入口網站](https://portal.azure.com)，請登入入口網站並透過介面加入資源。 當您設定值時，您會看到該資源可用的 SKU。 您不需要完成部署。
+- toouse hello[入口網站](https://portal.azure.com)、 登入 toohello 入口網站，並加入透過 hello 介面資源。 當您設定 hello 值，您會看到 hello 可用的 Sku，該資源。 您不需要 toocomplete hello 部署。
 
     ![可用的 SKU](./media/resource-manager-common-deployment-errors/view-sku.png)
 
-- 若要為虛擬機器使用 REST API，請傳送下列要求︰
+- 虛擬機器的 toouse hello REST API 傳送 hello 下列要求：
 
   ```HTTP 
   GET
   https://management.azure.com/subscriptions/{subscription-id}/providers/Microsoft.Compute/skus?api-version=2016-03-30
   ```
 
-  它會以下列格式傳回可用的 SKU 和區域︰
+  它會傳回可用的 Sku 和區域中 hello 下列格式：
 
   ```json
   {
@@ -123,37 +123,37 @@ for subscription '<subscriptionID>'. Please try another tier or deploy to a diff
   }    
   ```
 
-如果您在該區域或符合您業務需求的替代區域中找不到適當的 SKU，請向 Azure 支援服務提交 [SKU 要求](https://aka.ms/skurestriction)。
+如果您無法 toofind 該地區或符合商務需求的其他區域中的適當 SKU，提交[SKU 要求](https://aka.ms/skurestriction)tooAzure 支援。
 
 ## <a name="disallowedoperation"></a>DisallowedOperation
 
 ```
 Code: DisallowedOperation
-Message: The current subscription type is not permitted to perform operations on any provider 
+Message: hello current subscription type is not permitted tooperform operations on any provider 
 namespace. Please use a different subscription.
 ```
 
-如果您收到此錯誤，表示您使用的訂用帳戶不被允許存取 Azure Active Directory 以外的任何 Azure 服務。 當您需要存取傳統入口網站，但不被允許部署資源時，就表示您擁有的訂用帳戶可能是這種類型。 若要解決此問題，您必須使用有權部署資源的訂用帳戶。  
+如果您收到這個錯誤，您使用的訂用帳戶不允許 tooaccess Azure Active Directory 以外的任何 Azure 服務。 需要 tooaccess hello 傳統入口網站，但不是允許 toodeploy 資源後，您可能會出現這種類型的訂用帳戶。 tooresolve 此問題，您必須使用有權限 toodeploy 資源的訂用帳戶。  
 
-若要使用 PowerShell 檢視您可用的訂用帳戶，請使用︰
+tooview 您可用的訂用帳戶使用 PowerShell，使用：
 
 ```powershell
 Get-AzureRmSubscription
 ```
 
-若要設定目前的訂用帳戶，請使用︰
+此外，tooset hello 目前訂用帳戶，使用：
 
 ```powershell
 Set-AzureRmContext -SubscriptionName {subscription-name}
 ```
 
-若要使用 Azure CLI 2.0 檢視您可用的訂用帳戶，請使用︰
+tooview 您可用的訂用帳戶使用 Azure CLI 2.0 中，使用：
 
 ```azurecli
 az account list
 ```
 
-若要設定目前的訂用帳戶，請使用︰
+此外，tooset hello 目前訂用帳戶，使用：
 
 ```azurecli
 az account set --subscription {subscription-name}
@@ -164,34 +164,34 @@ az account set --subscription {subscription-name}
 
 - 語法錯誤
 
-   如果您收到錯誤訊息指出無法驗證範本，則可能是範本中發生語法問題。
+   如果您收到錯誤訊息，指出 hello 範本無法驗證時，您可能在範本中有語法問題。
 
   ```
   Code=InvalidTemplate
   Message=Deployment template validation failed
   ```
 
-   此錯誤很容易發生，因為範本運算式可能很複雜。 例如，儲存體帳戶的下列名稱指派包含一組方括號、三個函式、三組圓括號、一組單引號和一個屬性︰
+   這個錯誤，所以簡單 toomake 範本運算式可能很複雜。 例如，hello 下列名稱指派儲存體帳戶都包含一組括號、 三個函式、 三組括號、 一組的單引號和一個屬性：
 
   ```json
   "name": "[concat('storage', uniqueString(resourceGroup().id))]",
   ```
 
-   如果您未提供相符的語法，範本會產生與您所要的值截然不同的值。
+   如果您未提供 hello 比對語法，hello 範本會產生值將會不同於您的意圖。
 
-   當您收到此類錯誤時，請仔細檢閱運算式語法。 請考慮使用 [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md) 或 [Visual Studio Code](resource-manager-vs-code.md) 等 JSON 編輯器，它們可以警告您有語法錯誤。
+   當您收到這種類型的錯誤時，請仔細檢閱 hello 運算式語法。 請考慮使用 [Visual Studio](vs-azure-tools-resource-groups-deployment-projects-create-deploy.md) 或 [Visual Studio Code](resource-manager-vs-code.md) 等 JSON 編輯器，它們可以警告您有語法錯誤。
 
 - 不正確的區段長度
 
-   資源名稱的格式不正確時，就會發生另一種無效範本錯誤。
+   Hello 資源名稱不是處於 hello 正確的格式時，就會發生另一個無效的樣板錯誤。
 
   ```
   Code=InvalidTemplate
-  Message=Deployment template validation failed: 'The template resource {resource-name}'
+  Message=Deployment template validation failed: 'hello template resource {resource-name}'
   for type {resource-type} has incorrect segment lengths.
   ```
 
-   根層級資源的名稱必須比資源類型少一個區段。 每個區段是以斜線區分。 在下列範例中，類型具有 2 個區段，而名稱則有 1 個區段，因此是**有效名稱**。
+   根層級的資源必須有一個較少的區段中 hello 名稱，而非在 hello 資源類型。 每個區段是以斜線區分。 在下列範例的 hello，hello 類型有兩個區段和 hello 名稱會有一個區段，所以**有效名稱**。
 
   ```json
   {
@@ -201,7 +201,7 @@ az account set --subscription {subscription-name}
   }
   ```
 
-   但下一個範例則 **不是有效名稱** ，因為它的區段數目和類型相同。
+   Hello 下一個範例，但是**不是有效的名稱**因為它有 hello 的區段數與 hello 型別一樣。
 
   ```json
   {
@@ -211,7 +211,7 @@ az account set --subscription {subscription-name}
   }
   ```
 
-   對於子資源來說，類型和名稱具有相同的區段數目。 此區段數目很合理，因為子資源的完整名稱和類型包含父資源的名稱和類型。 因此，完整名稱較完整類型仍少一個區段。
+   如需子資源，hello 類型和名稱有 hello 相同的區段數目。 因為 hello 完整名稱和 hello 子類型包括 hello 父系名稱和型別，這個區段數目才有意義。 因此，hello 完整名稱仍會有一個較少區段比 hello 完整型別。
 
   ```json
   "resources": [
@@ -230,7 +230,7 @@ az account set --subscription {subscription-name}
   ]
   ```
 
-   對於跨資源提供者套用的 Resource Manager 類型而言，要讓區段保持正確可能很棘手。 例如，將資源鎖定套用至網站需要具有四個區段的類型。 因此，名稱會是三個區段：
+   取得正確的 hello 區段可能很困難會套用於資源提供者的資源管理員類型。 例如，套用資源鎖定 tooa 網站需要四個區段的類型。 因此，hello 名稱是三個區段：
 
   ```json
   {
@@ -242,35 +242,35 @@ az account set --subscription {subscription-name}
 
 - 不應該複製索引
 
-   當您將 **copy** 元素套用到不支援此元素的範本時，您會遇到此 **InvalidTemplate** 錯誤。 您只可以將複製元素套用到資源類型。 您不能將複製套用到資源類型內的屬性。 例如，您將複製套用到虛擬機器，但無法將它套用到虛擬機器的作業系統磁碟。 在某些情況下，您可以將子資源轉換成父資源，以建立複製迴圈。 如需有關使用複製的詳細資訊，請參閱 [在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)。
+   發生此錯誤的**InvalidTemplate**錯誤，當您套用 hello**複製**元素 tooa 範本之一部分的 hello 不支援這個項目。 您只可以套用 hello 複製項目 tooa 資源類型。 您無法套用複製 tooa 屬性內的資源類型。 例如，套用複製 tooa 虛擬機器，但您無法將它套用 toohello OS 磁碟的虛擬機器。 在某些情況下，您可以將轉換子資源 tooa 父資源 toocreate 在複製迴圈。 如需有關使用複製的詳細資訊，請參閱 [在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)。
 
 - 參數無效
 
-   如果範本會指定參數允許的值，而您提供的值不是其中一個值，則會收到類似下列錯誤的訊息：
+   如果 hello 範本指定的允許的值的參數，而且您提供的值不是其中一個值，您會收到下列錯誤訊息類似 toohello:
 
   ```
   Code=InvalidTemplate;
-  Message=Deployment template validation failed: 'The provided value {parameter value}
-  for the template parameter {parameter name} is not valid. The parameter value is not
-  part of the allowed values
+  Message=Deployment template validation failed: 'hello provided value {parameter value}
+  for hello template parameter {parameter name} is not valid. hello parameter value is not
+  part of hello allowed values
   ``` 
 
-   在範本中重複檢查允許的值，並在部署期間提供一個值。
+   檢查 hello hello 範本中允許的值，並提供在部署期間。
 
 - 偵測到循環相依性
 
-   當資源以防止部署啟動的方式互相相依，您會收到這個錯誤。 只要有相互相依性的組合，就會讓兩個或多個資源等候其他也正在等候的資源。 例如，resource1 相依於 resource3、resource2 相依於 resource1，而 resource3 相依於 resource2。 您通常可以移除不必要的相依性來解決此問題。 
+   當資源的相依性不會啟動 hello 部署中，您會收到這個錯誤。 只要有相互相依性的組合，就會讓兩個或多個資源等候其他也正在等候的資源。 例如，resource1 相依於 resource3、resource2 相依於 resource1，而 resource3 相依於 resource2。 您通常可以移除不必要的相依性來解決此問題。 
 
 <a id="notfound" />
 ### <a name="notfound-and-resourcenotfound"></a>NotFound 和 ResourceNotFound
-當您的範本包含的資源名稱無法解析時，您會收到類似以下的錯誤：
+當您的範本包含無法解析資源 hello 名稱時，您會收到類似的錯誤：
 
 ```
 Code=NotFound;
 Message=Cannot find ServerFarm with name exampleplan.
 ```
 
-如果您嘗試在範本中部署遺漏的資源，請檢查是否需要新增相依性。 如果可能，Resource Manager 會以平行方式建立資源，將部署最佳化。 如果一個資源必須在另一個資源之後部署，您就必須在範本中使用 **dependsOn** 元素來建立與該另一個資源的相依性。 例如，在部署 Web 應用程式時，App Service 方案必須存在。 如果您沒有指定該 Web 應用程式相依於 App Service 方案，Resource Manager 會同時建立這兩個資源。 您收到錯誤訊息，指出找不到 App Service 方案的資源，因為嘗試在 Web 應用程式上設定屬性時它尚未存在。 您會設定 Web 應用程式的相依性，以避免此錯誤。
+如果您嘗試 toodeploy hello 遺漏 hello 範本中的資源，請檢查您是否需要 tooadd 相依性。 如果可能，Resource Manager 會以平行方式建立資源，將部署最佳化。 如果另一個資源之後，必須先部署一個資源，您需要 toouse hello **dependsOn**項目中的相依性，在您範本 toocreate hello 其他資源。 例如，在部署 web 應用程式時，必須存在 hello 應用程式服務方案。 如果您未指定該 hello web 應用程式相依於 hello App Service 方案，資源管理員會在 hello 建立兩個資源相同的時間。 您收到錯誤訊息指出找不到應用程式服務計劃的資源，該 hello，因為它尚未存在時嘗試 tooset hello web 應用程式上的屬性。 您可以在 hello web 應用程式中設定 hello 相依性，以避免這個錯誤。
 
 ```json
 {
@@ -285,7 +285,7 @@ Message=Cannot find ServerFarm with name exampleplan.
 
 如需針對相依性錯誤進行疑難排解的建議，請參閱[檢查部署順序](#check-deployment-sequence)。
 
-當資源存在於所要部署不同的資源群組中，則也會看到此錯誤。 在該情況下，請使用 [resourceId 函式](resource-group-template-functions-resource.md#resourceid)來取得資源的完整名稱。
+Hello 資源位於不同的資源群組的其中一個要部署的 hello 存在時，也會看到這個錯誤。 在此情況下，使用 hello [resourceId 函數](resource-group-template-functions-resource.md#resourceid)tooget hello 完整的 hello 資源名稱。
 
 ```json
 "properties": {
@@ -294,26 +294,26 @@ Message=Cannot find ServerFarm with name exampleplan.
 }
 ```
 
-如果您嘗試對無法解析的資源使用 [reference](resource-group-template-functions-resource.md#reference) 或 [listKeys](resource-group-template-functions-resource.md#listkeys) 函式，您會收到下列錯誤：
+如果您嘗試 toouse hello[參考](resource-group-template-functions-resource.md#reference)或[Listkey](resource-group-template-functions-resource.md#listkeys)函式具有無法解析，您會收到下列錯誤 hello 資源：
 
 ```
 Code=ResourceNotFound;
-Message=The Resource 'Microsoft.Storage/storageAccounts/{storage name}' under resource
+Message=hello Resource 'Microsoft.Storage/storageAccounts/{storage name}' under resource
 group {resource group name} was not found.
 ```
 
-尋找包含 **reference** 函式的運算式。 重複檢查確定參數值正確。
+查詢運算式包含 hello**參考**函式。 再次確認 hello 參數值正確。
 
 ## <a name="parentresourcenotfound"></a>ParentResourceNotFound
 
-當某資源為另一個資源的父資源時，父資源必須在建立子資源之前就存在。 如果尚未存在，您會收到下列錯誤︰
+父 tooanother 資源一個資源時，必須存在 hello 父資源，才能建立 hello 子資源。 如果尚未存在，您會收到下列錯誤 hello:
 
 ```
 Code=ParentResourceNotFound;
 Message=Can not perform requested operation on nested resource. Parent resource 'exampleserver' not found."
 ```
 
-子資源的名稱包含父系名稱。 例如，SQL Database 可能定義如下︰
+hello hello 子資源名稱包含 hello 父系名稱。 例如，SQL Database 可能定義如下︰
 
 ```json
 {
@@ -322,7 +322,7 @@ Message=Can not perform requested operation on nested resource. Parent resource 
   ...
 ```
 
-但是，如果您尚未於父資源上指定相依性，子資源可能會在父資源之前進行部署。 若要解決這個錯誤，請包含相依性。
+但是，如果您未在 hello 父資源上指定相依性，可能會取得 hello 子資源，部署 hello 父系之前。 tooresolve 這個錯誤，包含相依性。
 
 ```json
 "dependsOn": [
@@ -333,33 +333,33 @@ Message=Can not perform requested operation on nested resource. Parent resource 
 <a id="storagenamenotunique" />
 
 ## <a name="storageaccountalreadyexists-and-storageaccountalreadytaken"></a>StorageAccountAlreadyExists 和 StorageAccountAlreadyTaken
-對於儲存體帳戶，您必須提供在 Azure 中是唯一的資源名稱。 如果您未提供唯一的名稱，您會收到類似下列的錯誤：
+儲存體帳戶，您必須提供 Azure 中是唯一的 hello 資源的名稱。 如果您未提供唯一的名稱，您會收到類似下列的錯誤：
 
 ```
 Code=StorageAccountAlreadyTaken
-Message=The storage account named mystorage is already taken.
+Message=hello storage account named mystorage is already taken.
 ```
 
-您可以將您的命名慣例與 [uniqueString](resource-group-template-functions-string.md#uniquestring) 函式的結果串連，以建立一個唯一名稱。
+您可以建立一個唯一的名稱，藉由串連 hello hello 結果與您命名慣例[uniqueString](resource-group-template-functions-string.md#uniquestring)函式。
 
 ```json
 "name": "[concat('storage', uniqueString(resourceGroup().id))]",
 "type": "Microsoft.Storage/storageAccounts",
 ```
 
-如果您以與您的訂用帳戶中現有的儲存體帳戶相同的名稱部署儲存體帳戶，但提供不同的位置，您會遇到錯誤，指出儲存體帳戶已存在於不同的位置。 刪除現有的儲存體帳戶，或提供與現有儲存體帳戶相同的位置。
+如果您部署的 hello 的儲存體帳戶相同名稱與現有的儲存體帳戶訂用帳戶，但是提供不同的位置，您收到的錯誤指出 hello 儲存體帳戶已經存在於不同的位置。 請刪除現有儲存體帳戶 hello，或提供 hello 相同的位置，如 hello 現有儲存體帳戶。
 
 ## <a name="accountnameinvalid"></a>AccountNameInvalid
-嘗試提供的儲存體帳戶名稱中包含禁止的字元時，您會看到 **AccountNameInvalid** 錯誤。 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能使用數字和小寫字母。 [uniqueString](resource-group-template-functions-string.md#uniquestring) 函式會傳回 13 個字元。 如果您要對 **uniqueString** 結果串連前置詞，請提供 11 個字元以下的前置詞。
+您會看到 hello **AccountNameInvalid**錯誤時嘗試的 toogive 儲存體帳戶名稱包含禁止的字元。 儲存體帳戶名稱必須介於 3 到 24 個字元的長度，而且只能使用數字和小寫字母。 hello [uniqueString](resource-group-template-functions-string.md#uniquestring)函式會傳回 13 個字元。 如果您在串連前置詞 toohello **uniqueString**產生，提供 11 個字元前置詞或更少。
 
 ## <a name="badrequest"></a>BadRequest
 
-提供的屬性值無效時，您可能會碰到 BadRequest 狀態。 例如，如果您針對儲存體帳戶提供不正確的 SKU 值，則部署會失敗。 若要判斷屬性的有效值，請查看 [REST API](/rest/api) 了解您要部署的資源類型。
+提供的屬性值無效時，您可能會碰到 BadRequest 狀態。 例如，如果您提供儲存體帳戶 SKU 值不正確，hello 部署將會失敗。 toodetermine 有效的值屬性，查看 hello [REST API](/rest/api)您要部署的 hello 資源類型。
 
 <a id="noregisteredproviderfound" />
 
 ## <a name="noregisteredproviderfound-and-missingsubscriptionregistration"></a>NoRegisteredProviderFound 和 MissingSubscriptionRegistration
-在部署資源時，您可能會收到下列錯誤代碼和訊息︰
+在部署資源時，您可能會收到下列錯誤程式碼的 hello 和訊息：
 
 ```
 Code: NoRegisteredProviderFound
@@ -371,50 +371,50 @@ and API version {api-version} for type {resource-type}.
 
 ```
 Code: MissingSubscriptionRegistration
-Message: The subscription is not registered to use namespace {resource-provider-namespace}
+Message: hello subscription is not registered toouse namespace {resource-provider-namespace}
 ```
 
 您會因為下列三個原因其中一個而收到此錯誤︰
 
-1. 尚未向您的訂用帳戶註冊此資源提供者
-2. 此資源類型不支援 API 版本
-3. 此資源類型不支援位置
+1. hello 資源提供者尚未註冊訂用帳戶
+2. Hello 資源類型不支援的 API 版本
+3. Hello 資源類型不支援的位置
 
-錯誤訊息應可提供給您支援的位置和 API 版本建議。 您可以將您的範本變更為其中一個建議的值。 Azure 入口網站或正在使用的命令列介面會自動註冊大部分的提供者；但並非全部。 如果您未曾使用特定的資源提供者，您可能需要註冊該提供者。 您可以透過 PowerShell 或 Azure CLI，深入探索資源提供者。
+hello 錯誤訊息應該提供支援的 hello 位置和 API 版本的建議。 您可以變更您的範本 tooone hello 的建議值。 大部分的提供者會自動註冊 hello 您使用的 Azure 入口網站或 hello 命令列介面，但不是全部。 如果您沒有使用特定的資源提供者之前，您可能需要 tooregister 該提供者。 您可以透過 PowerShell 或 Azure CLI，深入探索資源提供者。
 
 **入口網站**
 
-您可以看到註冊狀態，並透過入口網站註冊資源提供者命名空間。
+您可以看到 hello 登錄狀態並登錄資源提供者命名空間，透過 hello 入口網站。
 
 1. 對於您的訂用帳戶，選取**資源提供者**。
 
    ![選取資源提供者](./media/resource-manager-common-deployment-errors/select-resource-provider.png)
 
-2. 查看資源提供者的清單，並視需要選取 [註冊] 連結以註冊您嘗試部署的資源提供者類型。
+2. 查看 hello 資源提供者清單，並視需要選取 hello**註冊**連結 tooregister hello 資源提供者的 hello 類型嘗試 toodeploy。
 
    ![列出資源提供者](./media/resource-manager-common-deployment-errors/list-resource-providers.png)
 
 **PowerShell**
 
-若要查看您的註冊狀態，請使用 **Get-AzureRmResourceProvider**。
+toosee 您的註冊狀態，使用**Get AzureRmResourceProvider**。
 
 ```powershell
 Get-AzureRmResourceProvider -ListAvailable
 ```
 
-若要註冊提供者，請使用 **Register-AzureRmResourceProvider** ，並提供您想要註冊的資源提供者名稱。
+tooregister 為提供者，使用**暫存器 AzureRmResourceProvider**並提供 hello 名稱想 tooregister hello 資源提供者。
 
 ```powershell
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Cdn
 ```
 
-若要取得支援特定資源類型的位置，請使用︰
+tooget hello 支援位置的特定類型的資源，請使用：
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).Locations
 ```
 
-若要取得支援特定資源類型的 API 版本，請使用︰
+tooget hello 支援特定類型的資源，使用 API 版本：
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Web).ResourceTypes | Where-Object ResourceTypeName -eq sites).ApiVersions
@@ -422,19 +422,19 @@ Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Cdn
 
 **Azure CLI**
 
-若要查看是否已註冊該提供者，請使用 `azure provider list` 命令。
+toosee hello 提供者註冊時，是否使用 hello`azure provider list`命令。
 
 ```azurecli
 az provider list
 ```
 
-若要註冊資源提供者，請使用 `azure provider register` 命令，然後指定要註冊的*命名空間*。
+tooregister 資源提供者，使用 hello`azure provider register`命令，並指定 hello*命名空間*tooregister。
 
 ```azurecli
 az provider register --namespace Microsoft.Cdn
 ```
 
-若要查看資源類型所支援的位置和 API 版本，請使用︰
+toosee hello 支援位置和資源類型的 API 版本使用：
 
 ```azurecli
 az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites'].locations"
@@ -443,10 +443,10 @@ az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites']
 <a id="quotaexceeded" />
 
 ## <a name="quotaexceeded-and-operationnotallowed"></a>QuotaExceeded 和 OperationNotAllowed
-當部署超過配額時 (也許是每個資源群組、訂用帳戶、帳戶及其他範圍的配額)，可能會發生問題。 例如，您的訂用帳戶可能設定為要限制區域的核心數目。 如果您嘗試部署超過允許核心數目的虛擬機器，您會收到錯誤訊息指出已超過配額。
+當部署超過配額時 (也許是每個資源群組、訂用帳戶、帳戶及其他範圍的配額)，可能會發生問題。 例如，您的訂用帳戶可能會設定區域的核心 toolimit hello 數目。 如果您嘗試 toodeploy 具有更多的核心數目超過允許數量的 hello 的虛擬機器，您會收到的錯誤指出 hello 配額超過。
 如需完整的配額資訊，請參閱 [Azure 訂用帳戶和服務限制、配額與條件約束](../azure-subscription-service-limits.md)。
 
-若要檢查您訂用帳戶的核心配額，可以在 Azure CLI 中使用 `azure vm list-usage` 命令。 以下範例示範核心配額為 4 的免費試用帳戶：
+tooexamine 您訂用帳戶配額的核心，您可以使用 hello `azure vm list-usage` hello Azure CLI 命令。 hello 下列範例將說明該 hello 核心配額，免費試用帳戶是 4:
 
 ```azurecli
 az vm list-usage --location "South Central US"
@@ -468,7 +468,7 @@ az vm list-usage --location "South Central US"
 ]
 ```
 
-如果您部署的範本會在美國西部區域中建立四個以上的核心，您會看到類似以下的部署錯誤：
+如果您部署的 hello 美國西部地區中建立四個以上的核心的範本，您會取得部署錯誤，看起來像：
 
 ```
 Code=OperationNotAllowed
@@ -476,7 +476,7 @@ Message=Operation results in exceeding quota limits of Core.
 Maximum allowed: 4, Current in use: 4, Additional requested: 2.
 ```
 
-或者，您可以在 PowerShell 中使用 **Get-AzureRmVMUsage** Cmdlet。
+在 PowerShell 中，您可以使用 hello 或者**Get AzureRmVMUsage** cmdlet。
 
 ```powershell
 Get-AzureRmVMUsage
@@ -496,53 +496,53 @@ Unit         : null
 ...
 ```
 
-在這些情況下，您應該移至入口網站，並提出支援問題，以針對您想要部署的區域提高配額。
+在這些情況下，您應該移 toohello 入口網站，而且檔案支援問題 tooraise hello 區域要 toodeploy 配額。
 
 > [!NOTE]
-> 請記住，對於資源群組，配額適用於每個個別區域，而不是整個訂用帳戶。 如果您需要在美國西部部署 30 個核心，就必須要求在美國西部擁有 30 個資源管理員核心。 如果您需要在任何具有存取權限的區域中部署 30 個核心，就應該要求在所有區域中擁有 30 個 Resource Manager 核心。
+> 請記住，資源群組的 hello 配額是各地區，不適用於 hello 整個訂用帳戶。 如果您需要在美國西部的 toodeploy 30 個核心，您必須在美國西部 30 資源管理員核心 tooask。 如果您需要在任何 hello 區域 toowhich toodeploy 30 核心可以存取，您應該會尋求 30 的所有區域中的資源管理員核心。
 >
 >
 
 ## <a name="invalidcontentlink"></a>InvalidContentLink
-當您收到錯誤訊息：
+當您收到 hello 錯誤訊息：
 
 ```
 Code=InvalidContentLink
-Message=Unable to download deployment content from ...
+Message=Unable toodownload deployment content from ...
 ```
 
-您最有可能嘗試連結至無法使用的巢狀範本。 再次確認您為巢狀範本提供的 URI。 如果儲存體帳戶中已有範本，請確定 URI 可存取。 您可能需要傳送 SAS 權杖。 如需詳細資訊，請參閱 [透過 Azure 資源管理員使用連結的範本](resource-group-linked-templates.md)。
+您最有可能嘗試 toolink tooa 巢狀的樣板，無法使用。 檢查 hello hello 巢狀範本提供的 URI。 如果儲存體帳戶中已有 hello 範本，請確定 hello URI 可供存取。 您可能需要 toopass SAS 權杖。 如需詳細資訊，請參閱 [透過 Azure 資源管理員使用連結的範本](resource-group-linked-templates.md)。
 
 ## <a name="requestdisallowedbypolicy"></a>RequestDisallowedByPolicy
-當訂用帳戶包含會讓您無法在部署期間嘗試執行某個動作的資源原則時，您就會收到這個錯誤。 請在錯誤訊息中尋找原則識別碼。
+當您的訂閱包含讓您在部署期間嘗試 tooperform 動作的資源原則，您會收到這個錯誤。 在 hello 錯誤訊息，尋找 hello 原則識別碼。
 
 ```
 Policy identifier(s): '/subscriptions/{guid}/providers/Microsoft.Authorization/policyDefinitions/regionPolicyDefinition'
 ```
 
-在 **PowerShell** 中，提供該原則識別碼做為 **Id** 參數，以擷取有關封鎖了部署之原則的詳細資料。
+在**PowerShell**，提供該原則識別碼，則為 hello**識別碼**封鎖部署的 hello 原則的相關參數 tooretrieve 詳細資料。
 
 ```powershell
 (Get-AzureRmPolicyDefinition -Id "/subscriptions/{guid}/providers/Microsoft.Authorization/policyDefinitions/regionPolicyDefinition").Properties.policyRule | ConvertTo-Json
 ```
 
-在 **Azure CLI** 中，提供原則定義的名稱︰
+在**Azure CLI**，提供 hello hello 原則定義名稱：
 
 ```azurecli
 az policy definition show --name regionPolicyAssignment
 ```
 
-如需詳細資訊，請參閱下列文章。
+如需詳細資訊，請參閱下列文章 hello:
 
 - [RequestDisallowedByPolicy 錯誤](resource-manager-policy-requestdisallowedbypolicy-error.md)
-- [使用原則來管理資源和控制存取](resource-manager-policy.md)。
+- [使用原則 toomanage 資源，並控制存取](resource-manager-policy.md)。
 
 ## <a name="authorization-failed"></a>授權失敗
-您可能會在部署期間收到錯誤，因為嘗試部署資源的帳戶或服務主體並有執行這些動作的存取權。 Azure Active Directory 可讓您或您的系統管理員最精確地控制哪些身分識別可以存取哪些資源。 例如，如果您的帳戶被指派「讀取者」角色，您將無法建立資源。 在此情況下，您會看到錯誤訊息，指出授權失敗。
+您可能會在部署期間收到錯誤，因為 hello 帳戶或服務主體嘗試 toodeploy hello 資源沒有存取 tooperform 那些動作。 Azure Active Directory 可讓您或您的系統管理員 toocontrol 哪些身分識別可以存取哪些資源以很大的有效位數。 例如，如果您的帳戶指派 toohello 讀取者角色，您不能 toocreate 資源。 在此情況下，您會看到錯誤訊息，指出授權失敗。
 
 如需角色型存取控制的詳細資訊，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)。
 
 
 ## <a name="next-steps"></a>後續步驟
-* 若要了解稽核動作，請參閱 [使用 Resource Manager 來稽核作業](resource-group-audit.md)。
-* 若要了解部署期間可採取哪些動作來判斷錯誤，請參閱 [檢視部署作業](resource-manager-deployment-operations.md)。
+* toolearn 有關稽核的動作，請參閱[稽核與資源管理員作業](resource-group-audit.md)。
+* toolearn 有關動作 toodetermine hello 錯誤，在部署期間，請參閱[檢視部署作業](resource-manager-deployment-operations.md)。

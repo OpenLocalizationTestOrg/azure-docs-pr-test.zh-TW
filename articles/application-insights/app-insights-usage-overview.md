@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure Application Insights 進行 Web 應用程式的使用量分析 | Microsoft Docs"
+title: "使用 Azure Application Insights web 應用程式的 aaaUsage 分析 |Microsoft 文件"
 description: "了解您的使用者，以及他們如何運用您的 web 應用程式。"
 services: application-insights
 documentationcenter: 
@@ -12,11 +12,11 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 05/03/2017
 ms.author: bwren
-ms.openlocfilehash: 63b74399790b718e14a5b6e09bc009a336caf928
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f7f9173cf411fa0d2dfb3b5ba99134a02bbc0e89
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="usage-analysis-for-web-applications-with-application-insights"></a>使用 Application Insights 進行 Web 應用程式的使用量分析
 
@@ -24,90 +24,90 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="send-telemetry-from-your-app"></a>傳送來自您應用程式的遙測
 
-若要獲得最佳體驗，請同時在您的應用程式伺服器程式碼和網頁中安裝 Application Insights。 您應用程式的用戶端和伺服器元件會將遙測資料傳送回 Azure 入口網站以供分析。
+藉由在應用程式伺服器程式碼，和您的網頁中安裝 Application Insights 取得 hello 最佳體驗。 hello 用戶端和伺服器元件，您的應用程式傳送遙測後 toohello Azure 入口網站進行分析。
 
-1. **伺服器程式碼：**為您的 [ASP.NET](app-insights-asp-net.md)、[Azure](app-insights-azure.md)、[Java](app-insights-java-get-started.md)、[Node.js](app-insights-nodejs.md) 或[其他](app-insights-platforms.md)應用程式安裝適當的模組。
+1. **伺服端程式碼：**安裝 hello 適當模組您[ASP.NET](app-insights-asp-net.md)， [Azure](app-insights-azure.md)， [Java](app-insights-java-get-started.md)， [Node.js](app-insights-nodejs.md)，或[其他](app-insights-platforms.md)應用程式。
 
-    * *不想安裝伺服器程式碼嗎？請直接[建立 Azure Application Insights 資源](app-insights-create-new-resource.md)。*
+    * *不想 tooinstall 伺服端程式碼嗎？請直接[建立 Azure Application Insights 資源](app-insights-create-new-resource.md)。*
 
-2. **網頁程式碼：**開啟 [Azure 入口網站](https://portal.azure.com)、開啟您應用程式的 Application Insights 資源，然後開啟 [快速入門] > [監視及診斷用戶端應用程式]。 
+2. **網頁程式碼：**開啟 hello [Azure 入口網站](https://portal.azure.com)，開啟您的應用程式的 hello Application Insights 資源，並開啟**入門 > 監視和診斷用戶端**。 
 
-    ![將指令碼複製到您主版頁面的標頭。](./media/app-insights-usage-overview/02-monitor-web-page.png)
+    ![Hello 指令碼複製到的主版網頁的 hello 開頭。](./media/app-insights-usage-overview/02-monitor-web-page.png)
 
 
-3. **取得遙測資料：**以偵錯模式執行您的專案幾分鐘，然後在 Application Insights 的 [概觀] 刀鋒視窗中尋找結果。
+3. **取得遙測：**幾分鐘，偵錯模式執行您的專案，然後尋找 Application Insights 中的 hello 概觀刀鋒視窗中的結果。
 
-    發佈您的應用程式以監視應用程式的效能，並了解使用者如何利用您的應用程式。
+    發行應用程式 toomonitor 應用程式效能，並找出您的使用者與您的應用程式的行為。
 
 ## <a name="include-user-and-session-id-in-your-telemetry"></a>將使用者與工作階段識別碼加入您的遙測
-若要追蹤使用者一段時間，Application Insights 需要識別他們的方式。 「事件工具」是唯一不需要使用者識別碼或工作階段識別碼的「使用量工具」。
+tootrack 使用者一段時間，Application Insights 需要方式 tooidentify 它們。 hello 事件工具是 hello 唯一的 [使用量] 工具，不需要使用者識別碼或工作階段識別碼。
 
 在[此處](https://docs.microsoft.com/azure/application-insights/app-insights-usage-send-user-context)開始傳送這些識別碼。
 
 ## <a name="explore-usage-demographics-and-statistics"></a>探索使用量人口統計和統計資料
 了解人們在使用您的應用程式時，他們最感興趣的網頁、使用者的所在位置，以及他們使用何種瀏覽器與作業系統。 
 
-使用者與工作階段報告會依頁面或自訂事件來篩選資料，並透過諸如位置、環境及頁面等屬性，將這些頁面或自訂事件進行區隔。 您也可以新增自己的篩選條件。
+hello 使用者和工作階段報表篩選網頁或自訂的事件資料，而且這些區段的屬性，例如位置、 環境及頁面。 您也可以新增自己的篩選條件。
 
 ![使用者](./media/app-insights-usage-overview/users.png)  
 
-右方情資指出資料集內的有趣模式。  
+Hello 右邊的洞察能力點出 hello 資料集的有趣模式。  
 
-* **使用者**報告會在您所選擇的時間週期內，計算存取您網頁的唯一使用者數目。 (會使用 Cookie 來計算使用者。 如果有人使用不同的瀏覽器或用戶端電腦來存取您的網站，或清除其 Cookie，系統就會將他們計算為多次。)
-* **工作階段**報告會計算存取您網站之使用者工作階段的數目。 工作階段是使用者活動的一段時間，在閒置時間超過半小時後就會加以終止。
+* hello**使用者**報告會算進 hello 存取您的網頁，您所選擇的時間週期內的唯一使用者數目。 (會使用 Cookie 來計算使用者。 如果有人使用不同的瀏覽器或用戶端電腦來存取您的網站，或清除其 Cookie，系統就會將他們計算為多次。)
+* hello**工作階段**報告會算進 hello 存取您的網站的使用者工作階段數目。 工作階段是使用者活動的一段時間，在閒置時間超過半小時後就會加以終止。
 
-[進一步了解「使用者」、「工作階段」和「事件」工具](app-insights-usage-segmentation.md)  
+[進一步了解 hello 使用者、 工作階段和事件工具](app-insights-usage-segmentation.md)  
 
 ## <a name="page-views"></a>頁面檢視
 
-在 [使用量] 刀鋒視窗中，按一下 [頁面檢視] 圖格可取得最常用頁面的明細：
+在 hello 使用量刀鋒視窗中，按一下 透過 hello 頁面檢視磚 tooget 最受歡迎頁面的分析：
 
-![從 [概觀] 刀鋒視窗，按一下 [頁面檢視] 圖表](./media/app-insights-usage-overview/05-games.png)
+![從 hello 概觀刀鋒視窗中，按一下 hello 頁面檢視圖表](./media/app-insights-usage-overview/05-games.png)
 
-上述範例來自遊戲網站。 從這些圖表，我們可以立即看到：
+hello 上述範例中取自遊戲的網站。 從 hello 圖表，我們可以立即看到：
 
-* 在上一週使用量未改善。 也許我們應該考慮搜尋引擎最佳化？
-* 網球是最受歡迎的遊戲頁面。 讓我們將焦點放在此頁面的進一步改善上。
-* 平均而言，使用者大約每週瀏覽網球頁面三次。 (與使用者相比，工作階段數大約多出三倍)。
-* 大多數使用者都是在美國工作週且在工作時間瀏覽此網站。 也許我們應該在網頁上提供一個 [快速隱藏] 按鈕。
-* 圖表上的[註解](app-insights-annotations.md)會顯示新版網站的部署時間。 沒有任何一個最近的部署對使用量有明顯的影響。
+* 過去一週時，未在 hello 改進使用方式。 也許我們應該考慮搜尋引擎最佳化？
+* 鱣是 hello 最受歡迎的遊戲頁面。 讓我們重點討論進一步改進 toothis 頁面。
+* 平均而言，使用者瀏覽 hello 鱣頁面三倍每週。 (與使用者相比，工作階段數大約多出三倍)。
+* Hello 美國工作週、 期間以及在工作時間，大部分的使用者瀏覽 hello 站台。 可能是我們應該 hello 網頁上提供的 [快速隱藏] 按鈕。
+* hello[註解](app-insights-annotations.md)hello 圖表上顯示 當已部署的 hello 網站的新版本。 無 hello 新的部署有明顯的影響，在使用方式。
 
-如果您要更詳細調查網站的流量，像是依您的網站在其頁面檢視遙測中所傳送之自訂屬性進行分割，該怎麼做？
+如果您想 tooinvestigate hello 流量 tooyour 站台的詳細資料，例如分割您的站台傳送它的網頁檢視遙測中的自訂屬性的嗎？
 
-1. 在 [Application Insights 資源] 功能表中，開啟「事件」工具。 此工具可讓您根據各種的篩選、同群使用者及區隔等選項，將應用程式所傳送出的頁面檢視和自訂事件數目進行分析。
-2. 在 [已使用人員] 下拉式清單中，選取 [任何頁面檢視]。
-3. 在 [分割者] 下拉式清單中，選取要用來分割您頁面檢視遙測的屬性。
+1. 開啟 hello**事件**hello Application Insights 資源功能表中的工具。 此工具可讓您根據各種的篩選、同群使用者及區隔等選項，將應用程式所傳送出的頁面檢視和自訂事件數目進行分析。
+2. 在 hello 「 誰使用 」 的下拉式清單中，選取"Any 頁面檢視 」。
+3. 在 hello 「 分割 」 的下拉式清單中選取哪個 toosplit 網頁檢視遙測的屬性。
 
 ## <a name="retention---how-many-users-come-back"></a>保留期 - 回來使用的使用者人數？
 
-保留期可根據同群使用者在特定時間貯體期間執行的某些商務動作，協助您了解使用者返回使用其應用程式的頻率。 
+保留可協助您了解頻率您的使用者會傳回 toouse 應用程式中，根據 cohorts 的執行期間特定時間貯體某些商務動作的使用者。 
 
-- 了解相較於其他功能，哪些特定功能會讓使用者回來使用 
+- 了解哪些特定的功能會導致使用者 toocome 後比其他更多 
 - 根據實際使用者資料的表單假設 
 - 判斷保留期是否為您產品的問題 
 
 ![保留](./media/app-insights-usage-overview/retention.png) 
 
-在最上層的保留期控制項可讓您定義用來計算保留期的特定事件和時間範圍。 中間的圖表會依指定的時間範圍提供整體保留期百分比的視覺表示法。 底部圖表代表指定時間內的個別保留期。 此詳細資料等級會使用更詳細的資料粒度，讓您了解使用者在做什麼，以及可能會影響舊有使用者的因素。  
+在最上層的 hello 保留控制項可讓您 toodefine 特定事件和時間範圍 toocalculate 保留。 hello 圖 hello 中間讓 hello 的視覺表示法所指定的時間範圍 hello 整體保留百分比。 hello 下方 hello 圖形代表個別的保留在指定的時段內。 此詳細層級可讓您 toounderstand 哪些使用者執行的工作和功能可能會影響傳回的使用者，更詳細的資料粒度。  
 
-[深入了解保留期工具](app-insights-usage-retention.md)
+[Hello 保留工具有關的詳細資訊](app-insights-usage-retention.md)
 
 ## <a name="custom-business-events"></a>自訂商務事件
 
-若要清楚了解使用者會使用您的 Web 應用程式來做什麼，插入程式碼行來記錄自訂事件會很有用。 這些事件可以追蹤任何項目，從詳細的使用者動作 (例如按一下特定按鈕)，到更重要的商務事件 (例如購物或遊戲獲勝)。 
+tooget 哪些使用者清楚了解如何處理您的 web 應用程式，就很有用的 tooinsert toolog 自訂事件時，程式碼行。 這些事件可以從詳細的使用者動作，例如按一下特定的按鈕，toomore 重要的商務事件，例如在購買或獲勝追蹤任何項目。 
 
-雖然在某些情況下，頁面檢視可以代表有用的事件，但一般而言它並不正確。 使用者可以開啟產品網頁而無需購買產品。 
+雖然在某些情況下，頁面檢視可以代表有用的事件，但一般而言它並不正確。 使用者可以開啟 [產品] 頁面上，而不購買 hello 產品。 
 
-您可以使用特定商務事件，透過網站將使用者的進度製作成圖表。 您可以找出他們對不同選項的偏好，以及它們退出或遇到困難之處。 您可以透過了解這些對開發待處理項目的優先順序做出明智決策。
+您可以使用特定商務事件，透過網站將使用者的進度製作成圖表。 您可以找出他們對不同選項的偏好，以及它們退出或遇到困難之處。 使用這項知識，您可以做出有關明智 hello 優先順序開發待辦項目中。
 
-可以在網頁中記錄事件︰
+可以在 hello web 網頁中記錄事件：
 
 ```JavaScript
 
     appInsights.trackEvent("ExpandDetailTab", {DetailTab: tabName});
 ```
 
-或在 Web 應用程式的伺服器端︰
+或 hello 伺服器端的 hello web 應用程式：
 
 ```C#
     var tc = new Microsoft.ApplicationInsights.TelemetryClient();
@@ -118,27 +118,27 @@ ms.lasthandoff: 08/18/2017
     tc.TrackEvent("CompletedPurchase");
 ```
 
-您可以將屬性值附加至這些事件，當您在入口網站中檢查它們時，就可以將事件進行篩選或分割。 此外，會將一組標準的屬性附加至每個事件，例如匿名使用者識別碼，這可讓您追蹤個別使用者的活動順序。
+讓您可以篩選或分割 hello 事件，當您檢查這些 hello 入口網站中，您可以附加屬性值 toothese 事件。 此外，一組標準的屬性是使用者的附加的 tooeach 事件，例如匿名使用者識別碼，可讓您 tootrace hello 一連串個別的活動。
 
 深入了解[自訂事件](app-insights-api-custom-events-metrics.md#trackevent)和[屬性](app-insights-api-custom-events-metrics.md#properties)。
 
 ### <a name="slice-and-dice-events"></a>將事件進行交叉分析
 
-在「使用者」、「工作階段」和「事件」工具中，您可以依使用者、事件名稱和屬性將自訂事件進行交叉分析。
+Hello 使用者、 工作階段和事件工具 中，您可以配量，並分析依使用者、 事件名稱和屬性的自訂事件。
 ![使用者](./media/app-insights-usage-overview/users.png)  
   
-## <a name="design-the-telemetry-with-the-app"></a>使用應用程式來設計遙測
+## <a name="design-hello-telemetry-with-hello-app"></a>設計 hello 與 hello 應用程式的遙測
 
-當您在設計您應用程式的每項功能時，請考慮要如何利用使用者來測量它的成功。 決定您需要記錄哪些商務事件，並從開頭將這些事件的追蹤呼叫編碼至應用程式。
+當您在設計您的應用程式的每項功能時，請考慮要如何 toomeasure 成功與您的使用者。 決定您需要 toorecord，和程式碼到您的應用程式追蹤的事件會呼叫從 hello hello 的商務事件的開始。
 
 ## <a name="a--b-testing"></a>A | B 測試
-如果您不知道哪個功能的變數將更可能成功，請兩者都釋出，讓兩者都可供不同使用者存取。 測量每一個的成功，然後移至整合的版本。
+如果您不知道哪些 variant 某項功能將會更成功，請將它釋放這兩種，讓每個可存取 toodifferent 使用者。 測量各自的 hello 成功，然後將 tooa 統一的版本。
 
-針對此技術，您會將獨特的屬性值附加到每個應用程式版本所傳送的所有遙測。 您可以在作用中 TelemetryContext 中定義屬性來執行該動作。 這些預設屬性會加入到應用程式傳送的每個遙測訊息 - 不只是您的自訂訊息，還有標準遙測。
+這項技巧，您附加相異的屬性值 tooall hello 遙測傳送的每個版本的應用程式。 您可以執行，藉由定義屬性在 hello active TelemetryContext。 這些預設屬性會加入 tooevery hello 應用程式的遙測訊息傳送的不只是您自訂的訊息，但也 hello 標準遙測。
 
-在 Application Insights 入口網站中，將資料依屬性值篩選並分割，以便比較不同版本。
+在 hello Application Insights 入口網站篩選，並在 hello 屬性值，將資料分割，以 toocompare hello 不同版本。
 
-若要這樣做，[請設定遙測初始設定式](app-insights-api-filtering-sampling.md##add-properties-itelemetryinitializer)：
+toodo，[設定遙測的初始設定式](app-insights-api-filtering-sampling.md##add-properties-itelemetryinitializer):
 
 ```C#
 
@@ -153,7 +153,7 @@ ms.lasthandoff: 08/18/2017
     }
 ```
 
-在 Web 應用程式初始設定式例如 Global.asax.cs 中：
+Hello web 應用程式初始設定式中 Global.asax.cs 例如：
 
 ```C#
 
@@ -165,7 +165,7 @@ ms.lasthandoff: 08/18/2017
     }
 ```
 
-所有新的 TelemetryClients 都會自動新增您指定的屬性值。 個別的遙測事件可以覆寫預設值。
+所有新 TelemetryClients 自動加入您所指定的 hello 屬性值。 個別的遙測事件可以覆寫 hello 預設值。
 
 ## <a name="next-steps"></a>後續步驟
    - [使用者、工作階段、事件](app-insights-usage-segmentation.md)

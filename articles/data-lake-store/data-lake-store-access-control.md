@@ -1,5 +1,5 @@
 ---
-title: "Data Lake Store 中的存取控制概觀 | Microsoft Docs"
+title: "資料湖存放區中的存取控制的 aaaOverview |Microsoft 文件"
 description: "了解 Azure Data Lake Store 中的存取控制運作方式"
 services: data-lake-store
 documentationcenter: 
@@ -14,34 +14,34 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 99fbad770290d280bdec490d988391ad276ce1ee
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1cc5d578f22ef0a123a1547abebfb4795ea09139
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="access-control-in-azure-data-lake-store"></a>Azure Data Lake Store 中的存取控制
 
-Azure Data Lake Store 實作的存取控制模型衍生自 HDFS，而 HDFS 又衍生自 POSIX 存取控制模型。 本文摘要說明 Data Lake Store 存取控制模型的基本概念。 若要深入了解 HDFS 存取控制模型，請參閱 [HDFS 權限指南](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html)。
+Azure Data Lake Store 實作衍生自 HDFS，又衍生自 hello POSIX 存取控制模型的存取控制模型。 本文摘要說明 hello hello 存取控制模型的資料湖存放區的基本概念。 toolearn 進一步了解 hello HDFS 存取控制模型，請參閱[HDFS 權限指南](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html)。
 
 ## <a name="access-control-lists-on-files-and-folders"></a>檔案和資料夾的存取控制清單
 
 存取控制清單 (ACL) 有兩種類型，**存取 ACL** 和**預設 ACL**。
 
-* **存取 ACL**：這些控制物件的存取權。 檔案和資料夾均有存取 ACL。
+* **存取 Acl**： 這些控制項存取 tooan 物件。 檔案和資料夾均有存取 ACL。
 
-* **預設 ACL**：與資料夾相關聯之 ACL 的「範本」，用以判斷再該資料夾下建立的任何子項目的存取 ACL。 檔案沒有預設 ACL。
+* **預設 Acl**: 「 範本 」 的 Acl 判斷 hello 存取 Acl，該資料夾下建立所有子系項目的資料夾與相關聯。 檔案沒有預設 ACL。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-acls-1.png)
 
-存取 ACL 和預設 ACL 有相同的結構。
+存取 Acl 和預設 Acl 有 hello 相同的結構。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-acls-2.png)
 
 
 
 > [!NOTE]
-> 變更父代的預設 ACL 並不會影響現存子項目的存取 ACL 或預設 ACL。
+> 父代上的變更 hello 預設 ACL 不會影響 hello 存取 ACL 或預設的子項目已存在的 ACL。
 >
 >
 
@@ -49,27 +49,27 @@ Azure Data Lake Store 實作的存取控制模型衍生自 HDFS，而 HDFS 又�
 
 每個檔案和資料夾都有這些身分識別的不同權限︰
 
-* 檔案的擁有使用者
-* 擁有群組
+* hello 擁有 hello 檔案的使用者
+* hello 擁有的群組
 * 具名使用者
 * 具名群組
 * 所有其他使用者
 
-使用者和群組的身分識別皆為 Azure Active Directory (Azure AD) 身分識別。 因此，除非另有註明，否則 Data Lake Store 中的「使用者」可能表示 Azure AD 使用者或 Azure AD 安全性群組。
+hello 身分識別的使用者和群組是 Azure Active Directory (Azure AD) 身分識別。 因此除非另有說明 」 中的使用者，"hello 內容的資料湖存放區，可以是表示 Azure AD 使用者或 Azure AD 安全性群組。
 
 ## <a name="permissions"></a>權限
 
-檔案系統物件的權限為 [讀取]、[寫入] 和 [執行]，這些權限可以用於下表所示的檔案和資料夾：
+hello 物件的權限的檔案系統是**讀取**，**寫入**，和**Execute**，也可以用檔案及資料夾 hello 下表所示：
 
 |            |    檔案     |   資料夾 |
 |------------|-------------|----------|
-| **讀取 (R)** | 可以讀取檔案的內容 | 需要 [讀取] 和 [執行] 才能列出資料夾內容|
-| **寫入 (W)** | 可寫入或附加至檔案 | 需要 [寫入] 和 [執行] 才能在資料夾中建立子項目 |
-| **執行 (X)** | 不表示 Data Lake Store 的內容中的任何項目 | 需要周遊資料夾的子項目 |
+| **讀取 (R)** | 可以讀取檔案的 hello 內容 | 需要**讀取**和**Execute** toolist hello hello 資料夾內容|
+| **寫入 (W)** | 可以寫入或附加 tooa 檔案 | 需要**寫入**和**Execute** toocreate 資料夾的子系項目 |
+| **執行 (X)** | 並不表示 hello 內容資料湖存放區中的任何項目 | 需要的 tootraverse hello 子資料夾的項目 |
 
 ### <a name="short-forms-for-permissions"></a>權限的簡短形式
 
-**RWX** 用來表示 [讀取 + 寫入 + 執行]。 有更壓縮的數字形式存在，其中 [讀取 = 4]、[寫入 = 2] 和 [執行 = 1]，其總和代表各種權限。 以下有一些範例。
+**RWX**是使用的 tooindicate**讀取 + 寫入 + 執行**。 更緊縮的數字形式存在於其中**讀取 = 4**，**寫入 = 2**，和**Execute = 1**，hello 總和代表 hello 權限。 以下有一些範例。
 
 | 數值形式 | 簡短形式 |      意義     |
 |--------------|------------|------------------------|
@@ -81,68 +81,68 @@ Azure Data Lake Store 實作的存取控制模型衍生自 HDFS，而 HDFS 又�
 
 ### <a name="permissions-do-not-inherit"></a>不會繼承權限
 
-在 Data Lake Store 所使用的 POSIX 樣式模型中，項目的權限會儲存在項目本身。 換句話說，無法從父項目繼承項目的權限。
+資料湖存放區所使用的 hello POSIX 樣式模型，在權限的項目會儲存 hello 項目本身上。 換句話說，無法繼承項目的權限，從 hello 父項目。
 
-## <a name="common-scenarios-related-to-permissions"></a>權限相關的常見案例
+## <a name="common-scenarios-related-toopermissions"></a>常見的案例相關的 toopermissions
 
-以下是一些常見的案例，可協助您了解在 Data Lake Store 帳戶上執行某些作業所需的權限。
+以下是一些常見的案例 toohelp 您了解哪些權限需要 tooperform Data Lake Store 帳戶上的特定作業。
 
-### <a name="permissions-needed-to-read-a-file"></a>讀取檔案所需的權限
+### <a name="permissions-needed-tooread-a-file"></a>需要 tooread 檔案權限。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-acls-3.png)
 
-* 對於要讀取的檔案，呼叫端需要 [讀取] 權限。
-* 對於資料夾結構中內含檔案的所有資料夾，呼叫端需要 [執行] 權限。
+* Hello 檔案 toobe 讀取，如 hello 呼叫端需要**讀取**權限。
+* 針對所有 hello hello 資料夾結構中包含 hello 檔案的資料夾，hello 呼叫端需要**Execute**權限。
 
-### <a name="permissions-needed-to-append-to-a-file"></a>附加至檔案所需的權限
+### <a name="permissions-needed-tooappend-tooa-file"></a>需要 tooappend tooa 檔案權限。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-acls-4.png)
 
-* 對於要附加的檔案，呼叫端需要 [寫入] 權限。
-* 對於內含檔案的所有資料夾，呼叫端需要 [執行] 權限。
+* Hello 檔案 toobe 附加到，如 hello 呼叫端需要**寫入**權限。
+* 針對所有 hello 包含 hello 檔案的資料夾，hello 呼叫端需要**Execute**權限。
 
-### <a name="permissions-needed-to-delete-a-file"></a>刪除檔案所需的權限
+### <a name="permissions-needed-toodelete-a-file"></a>需要 toodelete 檔案權限。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-acls-5.png)
 
-* 對於父資料夾，呼叫端需要 [寫入 + 執行] 權限。
-* 對於檔案路徑中的所有其他資料夾，呼叫端需要 [執行] 權限。
+* Hello 父資料夾，hello 呼叫端需要**寫入 + 執行**權限。
+* 針對所有 hello hello 檔案的路徑中的其他資料夾，hello 呼叫端需要**Execute**權限。
 
 
 
 > [!NOTE]
-> 只要前面的兩個條件成立，刪除檔案時就不需要其寫入權限。
+> 撰寫 hello 檔案的權限不需要的 toodelete 它只要 hello 先前的兩個條件都成立。
 >
 >
 
-### <a name="permissions-needed-to-enumerate-a-folder"></a>列舉資料夾所需的權限
+### <a name="permissions-needed-tooenumerate-a-folder"></a>需要 tooenumerate 資料夾權限。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-acls-6.png)
 
-* 對於要列舉的資料夾，呼叫端需要 [讀取 + 執行] 權限。
-* 對於所有上階資料夾，呼叫端需要 [執行] 權限。
+* Hello 資料夾 tooenumerate，如 hello 呼叫端需要**讀取 + Execute**權限。
+* 針對所有 hello 上階資料夾，hello 呼叫端需要**Execute**權限。
 
-## <a name="viewing-permissions-in-the-azure-portal"></a>在 Azure 入口網站中檢視權限
+## <a name="viewing-permissions-in-hello-azure-portal"></a>在 hello Azure 入口網站中的檢視權限
 
-從 Data Lake Store 帳戶的 [資料總管] 刀鋒視窗，按一下 [存取] 以查看檔案或資料夾的 ACL。 按一下 [存取] 以查看 **mydatastore** 帳戶之下的**目錄**資料夾。
+從 hello**資料總管**刀鋒視窗中的 hello Data Lake Store 帳戶按一下**存取**toosee hello Acl 的檔案或資料夾。 按一下**存取**toosee hello Acl hello**目錄**下 hello 資料夾**mydatastore**帳戶。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-show-acls-1.png)
 
-在此刀鋒視窗中，最上方的區段會顯示您擁有之權限的概觀。 (在螢幕擷取畫面中，使用者是 Bob)。存取權限會顯示於其下。 接下來，從 [存取] 刀鋒視窗，按一下 [簡單檢視] 可查看更簡單的檢視。
+在這個刀鋒視窗中，hello 頂部區段會顯示 hello 具備權限，您的概觀。 （在 hello 螢幕擷取畫面，hello 使用者是 Bob）。接下來，會顯示 hello 存取權限。 在這之後，從 hello**存取**刀鋒視窗中，按一下 **簡單檢視**toosee hello 較簡單的檢視。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-show-acls-simple-view.png)
 
-按一下 [進階檢視] 以查看更進階的檢視，其中顯示預設 ACL、遮罩和超級使用者的概念。
+按一下**進階檢視**toosee hello 更進階的檢視，其中會顯示 hello 概念的預設 Acl、 遮罩和超級使用者。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-show-acls-advance-view.png)
 
-## <a name="the-super-user"></a>超級使用者
+## <a name="hello-super-user"></a>hello 超級使用者
 
-超級使用者具有 Data Lake Store 中所有使用者的大多數權限。 超級使用者：
+超級使用者具有 hello 大部分的權限的所有 hello 使用者 hello 資料湖存放區中。 超級使用者：
 
-* 具有**所有**檔案和資料夾的 RWX 權限。
-* 可以變更任何檔案或資料夾的權限。
-* 可以變更任何檔案或資料夾的擁有使用者或擁有群組。
+* 也有 RWX 權限**所有**檔案和資料夾。
+* 可以變更任何檔案或資料夾的 「 hello 」 權限。
+* 可以變更 hello 擁有使用者或擁有的任何檔案或資料夾的群組。
 
 在 Azure 中，Data Lake Store 帳戶具有數個 Azure 角色，包括︰
 
@@ -150,100 +150,100 @@ Azure Data Lake Store 實作的存取控制模型衍生自 HDFS，而 HDFS 又�
 * 參與者
 * 讀取者
 
-具備 Data Lake Store 帳戶的 [擁有者]  角色的每個人都會自動成為該帳戶的超級使用者。 若要深入了解，請參閱[角色型存取控制](../active-directory/role-based-access-control-configure.md)。
-如果您想要建立自訂的角色型存取控制 (RBAC) 角色並讓它具有超級使用者權限，它必須擁有下列權限︰
+所有人 hello**擁有者**Data Lake Store 帳戶的角色會自動超級使用者該帳戶。 詳細資訊，請參閱 toolearn[角色型存取控制](../active-directory/role-based-access-control-configure.md)。
+如果您想 toocreate 超級使用者權限的自訂角色型存取控制 (RBAC) 角色，它會需要下列權限的 toohave hello:
 - Microsoft.DataLakeStore/accounts/Superuser/action
 - Microsoft.Authorization/roleAssignments/write
 
 
-## <a name="the-owning-user"></a>擁有使用者
+## <a name="hello-owning-user"></a>hello 擁有使用者
 
-建立項目的使用者會自動成為項目的擁有使用者。 擁有使用者可以︰
+建立 hello 項目 hello 使用者會自動為 hello 擁有 hello 項目的使用者。 擁有使用者可以︰
 
-* 變更所擁有檔案的權限。
-* 只要擁有使用者也是目標群組的成員，請變更所擁有檔案的擁有群組。
+* 變更 hello 檔案擁有者權限。
+* 變更 hello 只要 hello 擁有使用者也是 hello 目標群組的成員擁有的擁有的檔案群組。
 
 > [!NOTE]
-> 擁有使用者*無法*變更另一個所擁有檔案的擁有使用者。 只有超級使用者可以變更檔案或資料夾的擁有使用者。
+> 擁有使用者的 hello*無法*變更 hello 擁有另一個擁有檔案的使用者。 只有超級使用者可以變更 hello 擁有檔案或資料夾的使用者。
 >
 >
 
-## <a name="the-owning-group"></a>擁有群組
+## <a name="hello-owning-group"></a>hello 擁有的群組
 
-在 POSIX ACL 中，每個使用者都與「主要群組」相關聯。 例如，使用者 "alice" 可能屬於 "finance" 群組。 Alice 也可能屬於多個群組，但一定有一個群組指定為其主要群組。 在 POSIX 中，當 Alice 會建立檔案時，該檔案的擁有群組會設定為她的主要群組，在此案例中為 "finance"。
+Hello POSIX Acl，在每個使用者都與 「 主要群組 」。 例如，使用者"alice"可能屬於 toohello"finance"群組。 Alice 也可能屬於 toomultiple 群組，但有一個群組一律指定做為其主要群組。 在 POSIX，Alice 建立檔案，當 hello 擁有該檔案群組的設定 tooher 主要群組，在此情況下為"finance"。
 
-建立新的檔案系統項目時，Data Lake Store 會指派值給擁有群組。
+建立新的檔案系統項目時，資料湖存放區會指派值 toohello 擁有群組。
 
-* **案例 1**：根資料夾 "/"。 建立 Data Lake Store 帳戶時，會建立這個資料夾。 在此情況下，擁有群組會設定為建立帳戶的使用者。
-* **案例 2** (其他所有案例)：建立新項目時，會從父資料夾複製擁有群組。
+* **案例 1**: hello 根資料夾"/"。 建立 Data Lake Store 帳戶時，會建立這個資料夾。 在此情況下，擁有 hello 的群組設定建立 hello 帳戶 toohello 使用者。
+* **案例 2** （每個其他情況下）： hello 擁有的群組建立新的項目時，會複製從 hello 父資料夾。
 
-可以變更擁有群組的對象︰
+可以變更 hello 擁有的群組：
 * 任何超級使用者。
-* 擁有使用者，如果擁有使用者也是目標群組的成員。
+* 如果 hello 擁有使用者也是 hello 目標群組的成員擁有的使用者，hello。
 
 ## <a name="access-check-algorithm"></a>存取檢查演算法
 
-下圖代表 Data Lake Store 帳戶的存取檢查演算法。
+下列圖例的 hello 代表 hello Data Lake Store 帳戶的存取檢查演算法。
 
 ![Data Lake Store ACL 演算法](./media/data-lake-store-access-control/data-lake-store-acls-algorithm.png)
 
 
-## <a name="the-mask-and-effective-permissions"></a>遮罩和「有效權限」
+## <a name="hello-mask-and-effective-permissions"></a>hello 遮罩及 「 有效權限 」
 
-**遮罩**是一個 RWX 值，在執行存取檢查演算法時，用來限制**具名使用者**、**擁有群組**和**具名群組**的存取權。 以下是遮罩的重要概念。
+hello**遮罩**是 RWX 值都會使用的 toolimit 存取**具名使用者**，hello**擁有群組**，和**具名群組**時執行 hello 存取檢查演算法。 以下是 hello 的 hello 遮罩的重要概念。
 
-* 遮罩可建立「有效權限」。 也就是，它會在存取檢查時修改權限。
-* 檔案擁有者和任何超級使用者都可以直接編輯遮罩。
-* 遮罩能夠移除權限，以建立有效的權限。 遮罩*無法*將權限新增至有效的權限。
+* hello 遮罩會建立 「 有效權限。 」 也就是會修改 hello 權限的存取檢查 hello 次。
+* hello 遮罩可以直接編輯 hello 檔案擁有者和任何超級使用者。
+* hello 遮罩可以移除權限 toocreate hello 有效權限。 hello 遮罩*無法*新增權限 toohello 有效權限。
 
-讓我們看看一些範例。 在下列範例中，遮罩已設定為 **RWX**，這表示遮罩不會移除任何權限。 在存取檢查期間，不會改變具名使用者、擁有群組和具名群組的有效權限。
+讓我們看看一些範例。 在下列範例的 hello，hello 遮罩設定太**RWX**，這表示該 hello 遮罩，不會移除任何權限。 hello hello 具名使用者擁有的群組，和名為群組的有效權限不會改變 hello 存取檢查期間。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-acls-mask-1.png)
 
-在下列範例中，遮罩已設定為 **R-X**。 這表示它會在進行存取檢查時**關閉下列各項的寫入權限**：**具名使用者**、**擁有群組**和**具名群組**。
+在下列範例的 hello，hello 遮罩設定太**R-X**。 這表示它**關閉 hello 寫入權限**如**具名使用者**，**擁有群組**，和**具名群組**時存取的 hello請檢查。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-acls-mask-2.png)
 
-以下是檔案或資料夾的遮罩出現在 Azure 入口網站中的位置，可供參考。
+如需參考，以下是檔案或資料夾的 hello 遮罩 hello Azure 入口網站中出現的位置。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-show-acls-mask-view.png)
 
 > [!NOTE]
-> 對於新的 Data Lake Store 帳戶，根資料夾 ("/") 的存取 ACL 和預設 ACL 的遮罩會預設為 RWX。
+> 新的 Data Lake Store 帳戶、 hello 存取 ACL 的 hello 遮罩和預設 ACL 的 hello 根資料夾 （"/"） 會預設 tooRWX。
 >
 >
 
 ## <a name="permissions-on-new-files-and-folders"></a>新檔案和資料夾的權限
 
-在現有資料夾之下建立新檔案或資料夾時，父資料夾的預設 ACL 可決定︰
+建立新的檔案或資料夾時在現有的資料夾下，判斷 hello hello 父資料夾上的預設 ACL:
 
 - 子資料夾的預設 ACL 與存取 ACL。
 - 子檔案的存取 ACL (檔案沒有預設 ACL)。
 
-### <a name="the-access-acl-of-a-child-file-or-folder"></a>子檔案或資料夾的存取 ACL
+### <a name="hello-access-acl-of-a-child-file-or-folder"></a>hello 存取子檔案或資料夾的 ACL
 
-建立子檔案或資料夾時，父項的預設 ACL 會複製成為子檔案或資料夾的存取 ACL。 此外，如果**其他**使用者具有父項的預設 ACL 的 RWX 權限，則會從子項目的存取 ACL 中將它移除。
+建立子檔案或資料夾時，父代 hello 預設 ACL 複製 hello hello 子檔案或資料夾的存取 ACL。 此外，如果**其他**使用者在 hello 父預設 ACL 有 RWX 權限，就會移除從 hello 子系項目的存取 ACL。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-acls-child-items-1.png)
 
-在大部分情況下，您只需要上述資訊，即可了解如何決定子項目的存取 ACL。 不過，如果您很熟悉 POSIX 系統，而且想要深入了解如何達成此轉換，請參閱本文後面的 [為新檔案和資料夾建立存取 ACL 時的 Umask 角色](#umasks-role-in-creating-the-access-acl-for-new-files-and-folders) 一節。
+在大部分情況下，hello 先前的資訊會是所有您需要有關如何判斷子系項目的存取 ACL tooknow。 不過，如果您很熟悉與 POSIX 系統和想 toounderstand 深入了解如何達成這項轉換，請參閱 hello 節[Umask 的角色中建立新的檔案及資料夾的 hello 存取 ACL](#umasks-role-in-creating-the-access-acl-for-new-files-and-folders)本文稍後。
 
 
 ### <a name="a-child-folders-default-acl"></a>子資料夾的預設 ACL
 
-在父資料夾下建立子資料夾時，父資料夾的預設 ACL 會依照原狀複製到子資料夾的預設 ACL。
+父資料夾下建立子資料夾時，hello 父資料夾的預設 ACL 會透過複製，因為是 toohello 子資料夾的預設 ACL。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-acls-child-items-2.png)
 
 ## <a name="advanced-topics-for-understanding-acls-in-data-lake-store"></a>可供了解 Data Lake Store 中 ACL 的進階主題
 
-以下幾個進階主題可協助您了解如何決定 Data Lake Store 檔案或資料夾的 ACL。
+以下是一些您了解如何判斷 Acl 的 Data Lake Store 檔案或資料夾的進階的主題 toohelp。
 
-### <a name="umasks-role-in-creating-the-access-acl-for-new-files-and-folders"></a>為新檔案和資料夾建立存取 ACL 時的 Umask 角色
+### <a name="umasks-role-in-creating-hello-access-acl-for-new-files-and-folders"></a>建立新的檔案及資料夾的 hello 存取 ACL Umask 的角色
 
-在 POSIX 相容系統中，一般概念是 umask 是父資料夾上的一個 9 位元值，用來轉換**擁有使用者**、**擁有群組**和**其他**使用者對於新的子檔案或資料夾之存取 ACL 的權限。 Umask 的位元可識別在子項目的存取 ACL 中所要關閉的位元。 因此可用來選擇性地防止**擁有使用者**、**擁有群組**和**其他使用者**的權限傳播。
+在 POSIX 相容的系統中，hello 一般概念是該 umask hello 父資料夾的已使用 tootransform hello 權限 9 位元值**擁有使用者**，**擁有群組**，和**其他**hello 存取新的子檔案或資料夾的 ACL 上。 umask hello 位元會識別哪一個位元 tooturn 關閉 hello 子系項目的存取 ACL 中。 因此，它都會使用 tooselectively 防止 hello 傳播的權限**擁有使用者**，**擁有群組**，和**其他**。
 
-在 HDFS 系統中，umask 通常是由系統管理員所控制的全網站組態選項。 Data Lake Store 會使用無法變更的 **全帳戶 umask** 。 下表顯示 Data Lake Store 的 unmask。
+Hello umask 在 HDFS 系統中，通常是由系統管理員所控制的 sitewide 組態選項。 Data Lake Store 會使用無法變更的 **全帳戶 umask** 。 下列表格顯示 hello hello 取消遮罩的資料湖存放區。
 
 | 使用者群組  | 設定 | 對新的子項目的存取 ACL 的影響 |
 |------------ |---------|---------------------------------------|
@@ -251,73 +251,73 @@ Azure Data Lake Store 實作的存取控制模型衍生自 HDFS，而 HDFS 又�
 | 擁有群組| ---     | 沒有影響                             |
 | 其他       | RWX     | 移除讀取 + 寫入 + 執行         |
 
-下圖顯示此 umask 作用中。 實質效果是移除**其他**使用者的 [讀取 + 寫入 + 執行]。 由於 umask 未指定**擁有使用者**和**擁有群組**的位元，因此不會轉換這些權限。
+hello 下列圖例顯示此 umask 作用中。 hello 效果是 tooremove**讀取 + 寫入 + 執行**如**其他**使用者。 因為 hello umask 未指定的位元**擁有使用者**和**擁有群組**，不會轉換這些權限。
 
 ![Data Lake Store ACL](./media/data-lake-store-access-control/data-lake-store-acls-umask.png)
 
-### <a name="the-sticky-bit"></a>黏性位元
+### <a name="hello-sticky-bit"></a>hello 自黏便箋的位元
 
-黏性位元是 POSIX 檔案系統的更進階功能。 在 Data Lake Store 的內容中，不太可能需要黏性位元。
+hello 自黏便箋的位元為 POSIX filesystem 更進階的功能。 在 hello 內容中的資料湖存放區，不太需要該 hello 自黏便箋的位元。
 
-下表顯示黏性位元在 Data Lake Store 中的運作方式。
+hello 下表顯示 hello 自黏便箋的位元資料湖存放區中的運作方式。
 
 | 使用者群組         | 檔案    | 資料夾 |
 |--------------------|---------|-------------------------|
 | 黏性位元 **OFF** | 沒有影響   | 沒有影響。           |
-| 黏性位元 **ON**  | 沒有影響   | 防止任何人 (子項目的**超級使用者**和**擁有使用者**除外) 刪除或重新命名該子項目。               |
+| 黏性位元 **ON**  | 沒有影響   | 防止以外的任何人**超級使用者**和 hello**擁有使用者**項目的刪除或重新命名該子項目。               |
 
-黏性位元不會顯示在 Azure 入口網站中。
+hello 自黏便箋的位元不會顯示 hello Azure 入口網站中。
 
 ## <a name="common-questions-about-acls-in-data-lake-store"></a>Data Lake Store 中 ACL 的相關常見問題
 
 以下是有關 Data Lake Store 中 ACL 的一些常見問題。
 
-### <a name="do-i-have-to-enable-support-for-acls"></a>我必須啟用 ACL 的支援嗎？
+### <a name="do-i-have-tooenable-support-for-acls"></a>是否有 Acl tooenable 支援？
 
 否。 Data Lake Store 帳戶一律會啟用透過 ACL 的存取控制。
 
-### <a name="which-permissions-are-required-to-recursively-delete-a-folder-and-its-contents"></a>若要以遞迴方式刪除資料夾與其內容，需要哪些權限？
+### <a name="which-permissions-are-required-toorecursively-delete-a-folder-and-its-contents"></a>需要的 toorecursively 刪除的資料夾和其內容的權限？
 
-* 父資料夾必須具有 [寫入 + 執行] 權限。
-* 要刪除的資料夾及其中的每個資料夾，都需要 [讀取 + 寫入 + 執行] 權限。
+* hello 父資料夾必須要有**寫入 + 執行**權限。
+* hello 資料夾 toobe 刪除，而且每個資料夾內，需要**讀取 + 寫入 + 執行**權限。
 
 > [!NOTE]
-> 您不需要寫入權限即可刪除資料夾中的檔案。 此外，**決不**會刪除根資料夾 "/"。
+> 您不需要寫入權限 toodelete 檔案資料夾中。 此外，hello 根資料夾"/"可以**從未**被刪除。
 >
 >
 
-### <a name="who-is-the-owner-of-a-file-or-folder"></a>誰是檔案或資料夾的擁有者？
+### <a name="who-is-hello-owner-of-a-file-or-folder"></a>Hello 的檔案或資料夾的擁有者是誰？
 
-檔案或資料夾的建立者會成為擁有者。
+hello 的檔案或資料夾的建立者變成 hello 擁有者。
 
-### <a name="which-group-is-set-as-the-owning-group-of-a-file-or-folder-at-creation"></a>在建立檔案或資料夾時，會將哪個群組設定為擁有群組？
+### <a name="which-group-is-set-as-hello-owning-group-of-a-file-or-folder-at-creation"></a>哪些群組是設定為 hello 擁有的檔案或資料夾，在建立群組？
 
-擁有群組是從新檔案或資料夾建立所在父資料夾的擁有群組複製而來。
+從擁有 hello 父資料夾下的 hello 新檔案或資料夾建立群組的 hello 複製 hello 擁有的群組。
 
-### <a name="i-am-the-owning-user-of-a-file-but-i-dont-have-the-rwx-permissions-i-need-what-do-i-do"></a>我是檔案的擁有使用者，但沒有我需要的 RWX 權限。 該怎麼辦？
+### <a name="i-am-hello-owning-user-of-a-file-but-i-dont-have-hello-rwx-permissions-i-need-what-do-i-do"></a>我是 hello 擁有檔案的使用者，但沒有需要的 hello RWX 權限。 該怎麼辦？
 
-擁有使用者可以變更檔案的權限，以取得本身所需的任何 RWX 權限。
+hello 擁有使用者可以變更 hello 權限的 hello 檔案 toogive 本身所需的任何 RWX 權限。
 
-### <a name="when-i-look-at-acls-in-the-azure-portal-i-see-user-names-but-through-apis-i-see-guids-why-is-that"></a>當我在 Azure 入口網站中查看 ACL 時，我可看到使用者名稱，但透過 API 卻看到 GUID，為什麼會這樣？
+### <a name="when-i-look-at-acls-in-hello-azure-portal-i-see-user-names-but-through-apis-i-see-guids-why-is-that"></a>當我查看 Acl hello Azure 入口網站中，我看到使用者名稱，但透過應用程式開發介面，看 Guid，為什麼？
 
-ACL 中的項目會儲存為對應於 Azure AD 中使用者的 GUID。 API 會依現狀傳回 GUID。 Azure 入口網站會儘可能將 GUID 轉譯成好記的名稱，試圖讓 ACL 更容易使用。
+Hello Acl 中的項目會儲存為對應 toousers 在 Azure AD 中的 Guid。 hello Api 傳回 hello Guid 原狀。 hello Azure 入口網站嘗試 toomake Acl 更容易 toouse 所轉譯的 hello Guid 為盡可能的易記名稱。
 
-### <a name="why-do-i-sometimes-see-guids-in-the-acls-when-im-using-the-azure-portal"></a>當我使用 Azure 入口網站時，為什麼有時候會在 ACL 中看到 GUID？
+### <a name="why-do-i-sometimes-see-guids-in-hello-acls-when-im-using-hello-azure-portal"></a>為何有時候會看到 hello Acl 中的 Guid 當我使用 hello Azure 入口網站？
 
-當使用者已不存在於 Azure AD 時，將會顯示 GUID。 當使用者已離開公司，或已在 Azure AD 中刪除其帳戶時，通常會發生這種情形。
+當 hello 使用者不在 Azure AD 中不再存在時，會顯示 GUID。 這通常是因為當 hello 使用者已離開 hello 公司，或已從 Azure AD 中刪除其帳戶。
 
 ### <a name="does-data-lake-store-support-inheritance-of-acls"></a>Data Lake Store 是否支援 ACL 的繼承？
 
 否。
 
-### <a name="what-is-the-difference-between-mask-and-umask"></a>遮罩與 umask 之間的差異為何？
+### <a name="what-is-hello-difference-between-mask-and-umask"></a>Hello 遮罩與 umask 之間的差異為何？
 
 | 遮罩 | umask|
 |------|------|
-| **遮罩** 屬性適用於每個檔案和資料夾。 | **umask** 是 Data Lake Store 帳戶的屬性。 因此，Data Lake Store 中只有一個 umask。    |
-| 檔案的擁有使用者或擁有群組或超級使用者都可以改變檔案或資料夾的遮罩屬性。 | 任何使用者 (甚至是超級使用者) 都不能修改 umask 屬性。 這是不能變更的常數值。|
-| 在存取檢查演算法的執行階段，會使用遮罩屬性來判斷使用者是否具有在檔案或資料夾上執行作業的權限。 遮罩的角色就是在存取檢查時建立「有效權限」。 | 存取檢查期間完全不會使用 umask。 Umask 用來決定資料夾的新子項目的存取 ACL。 |
-| 遮罩是一個 3 位元的 RWX 值，在存取檢查時會套用至具名使用者、具名群組及擁有使用者。| Umask 是一個 9 位元值，會套用至新子系的擁有使用者、擁有群組及**其他使用者**。|
+| hello**遮罩**屬性上可用的每個檔案和資料夾。 | hello **umask**是 hello Data Lake Store 帳戶的屬性。 因此會有只有單一 umask hello 資料湖存放區中。    |
+| 可以更改 hello 擁有使用者或擁有的檔案或超級使用者的群組上的檔案或資料夾的 hello 遮罩屬性。 | hello umask 屬性無法修改任何使用者，即使超級使用者。 這是不能變更的常數值。|
+| hello 遮罩屬性會使用於 hello 存取檢查演算法在執行階段 toodetermine 使用者是否具有 hello 右 tooperform 檔案或資料夾中的作業。 hello 遮罩的 hello 角色時的存取檢查 hello 是 toocreate 「 有效權限 」。 | hello umask 不在所有使用存取檢查期間。 hello umask 為使用的 toodetermine hello 存取 ACL 的新子資料夾的項目。 |
+| hello 遮罩是 hello 時間的存取檢查會在套用 toonamed 使用者，具名的群組和擁有使用者的 3 位元 RWX 值。| hello umask 是 9 位元值，適用於擁有擁有 群組中，使用者 toohello 和**其他**新子系。|
 
 ### <a name="where-can-i-learn-more-about-posix-access-control-model"></a>何處可以進一步了解 POSIX 存取控制模型？
 

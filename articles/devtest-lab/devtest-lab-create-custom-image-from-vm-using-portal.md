@@ -1,6 +1,6 @@
 ---
-title: "從 VM 建立 Azure DevTest Labs 自訂映像 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站在 Azure DevTest Labs 中從已佈建的 VM 建立自訂映像"
+title: "aaaCreate Azure DevTest Labs 自訂映像從 VM |Microsoft 文件"
+description: "了解如何從佈建的 VM 使用 Azure DevTest Labs 中的自訂映像 toocreate hello Azure 入口網站"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 9d2dcf7164985508d691e8a0c123efaf3b8aa19a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7dccb79d3db4aae676c7bd2f6b800301210491e2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-custom-image-from-a-vm"></a>從 VM 建立自訂映像
 
@@ -26,29 +26,29 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="step-by-step-instructions"></a>逐步指示
 
-您可以從已佈建的 VM 建立自訂映像，之後再使用該自訂映像來建立完全相同的 VM。 下列步驟說明如何從 VM 建立自訂映像︰
+您可以從佈建 VM，建立自訂映像，並在之後使用該自訂映像 toocreate 相同的 Vm。 hello 下列步驟說明如何 toocreate 自訂映像從 VM:
 
-1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+1. 登入 toohello [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
 
-1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
+1. 選取**更多服務**，然後選取**DevTest Labs**從 hello 清單。
 
-1. 從實驗室清單中，選取所需的實驗室。  
+1. 從 hello 清單的實驗室中，選取 hello 所需的實驗室。  
 
-1. 在實驗室的刀鋒視窗中，選取 [我的虛擬機器] 。
+1. 在 hello 實驗室刀鋒視窗中，選取 **我的虛擬機器**。
  
-1. 在 [我的虛擬機器]  刀鋒視窗中，選取要從中建立自訂映像的 VM。
+1. 在 hello**我的虛擬機器**刀鋒視窗中，選取 hello VM 要從中 toocreate hello 自訂映像。
 
-1. 在 VM 的刀鋒視窗中，選取 [建立自訂映像 (VHD)] 。
+1. 在 hello VM 刀鋒視窗中，選取 **建立自訂映像 (VHD)**。
 
     ![建立自訂映像的功能表項目](./media/devtest-lab-create-template/create-custom-image.png)
 
-1. 在 [建立映像]  刀鋒視窗上，輸入自訂映像的名稱和描述。 此資訊會在建立 VM 時顯示於基底清單中。
+1. 在 hello**建立映像**刀鋒視窗中，輸入名稱和自訂映像的描述。 當您建立 VM 時，這項資訊會顯示 hello 從基底清單中。
 
     ![建立自訂映像刀鋒視窗](./media/devtest-lab-create-template/create-custom-image-blade.png)
 
-1. 選取 sysprep 是否在 VM 上執行。 如果 sysprep 未在 VM 上執行，請指定您是否要在從這個自訂映像建立 VM 時讓 sysprep 執行。
+1. 選擇是否要在 hello VM 上執行 sysprep。 如果不執行 hello sysprep hello VM 上，指定是否要從這個自訂映像建立 VM 時執行 sysprep。
 
-1. 完成時選取 [確定]  ，以建立自訂映像。
+1. 選取**確定**時完成的 toocreate hello 自訂映像。
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
@@ -59,4 +59,4 @@ ms.lasthandoff: 07/11/2017
 
 ##<a name="next-steps"></a>後續步驟
 
-- [將 VM 新增到實驗室](./devtest-lab-add-vm-with-artifacts.md)
+- [新增 VM tooyour 實驗室](./devtest-lab-add-vm-with-artifacts.md)

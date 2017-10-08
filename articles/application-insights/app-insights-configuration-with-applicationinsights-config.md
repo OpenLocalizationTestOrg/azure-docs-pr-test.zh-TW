@@ -1,5 +1,5 @@
 ---
-title: "ApplicationInsights.config 參考 - Azure | Microsoft Docs"
+title: "aaaApplicationInsights.config 參考-Azure |Microsoft 文件"
 description: "啟用或停用資料收集模組，以及加入效能計數器和其他參數。"
 services: application-insights
 documentationcenter: 
@@ -14,54 +14,54 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/3/2017
 ms.author: bwren
-ms.openlocfilehash: 7737f47d4181b5e920434f3a5372991efb58f63e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 76cb11349d87dfc508ec8b1c454259a0b079c48a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configuring-the-application-insights-sdk-with-applicationinsightsconfig-or-xml"></a>使用 ApplicationInsights.config 或 .xml 設定 Application Insights SDK
-Application Insights .NET SDK 是由數個 NuGet 封裝所組成。 [核心封裝](http://www.nuget.org/packages/Microsoft.ApplicationInsights) 提供 API，用於傳送遙測至 Application Insights。 [其他套件](http://www.nuget.org/packages?q=Microsoft.ApplicationInsights)提供遙測*模組*和*初始設定式*，用於自動從您的應用程式和其內容追蹤遙測。 您可以藉由調整組態檔，來啟用或停用遙測模組和初始設定式，並為其設定一些參數。
+# <a name="configuring-hello-application-insights-sdk-with-applicationinsightsconfig-or-xml"></a>設定 Application Insights SDK hello ApplicationInsights.config 或.xml
+hello Application Insights.NET SDK 的 NuGet 套件的數字所組成。 [Core 套件](http://www.nuget.org/packages/Microsoft.ApplicationInsights)提供 hello API，以將遙測傳送至 Application Insights hello。 [其他套件](http://www.nuget.org/packages?q=Microsoft.ApplicationInsights)提供遙測*模組*和*初始設定式*，用於自動從您的應用程式和其內容追蹤遙測。 藉由調整 hello 設定檔，您可以啟用或停用遙測模組和初始設定式，和設定其中部分的參數。
 
-組態檔的名稱為 `ApplicationInsights.config` 或 `ApplicationInsights.xml`，端視您的應用程式類型而定。 當您[安裝大部分版本的 SDK][start] 時，系統會自動將組態檔加入至您的專案。 [IIS 伺服器上的狀態監視器][redfield]，或是當您[選取 Azure 網站或 VM 的 Application Insights 延伸模組](app-insights-azure-web-apps.md)時，也會將組態檔加入至 Web 應用程式。
+hello 設定檔的名稱為`ApplicationInsights.config`或`ApplicationInsights.xml`，視您的應用程式的 hello 型別。 它會自動加入 tooyour 專案時您[安裝大部分的 hello SDK 版本][start]。 它也會加入 tooa web 應用程式由[IIS 伺服器上的狀態監視][redfield]，或當您選取 hello Appplication Insights[延伸模組的 Azure 網站或 VM](app-insights-azure-web-apps.md)。
 
-沒有同等的檔案可以控制[網頁中的 SDK][client]。
+沒有對等檔案 toocontrol hello[在網頁中的 SDK][client]。
 
-本文件說明您在組態檔中看到的內容、控制 SDK 元件的方式，以及哪些 NuGet 封裝載入這些元件。
+本文件描述您看到 hello 組態檔案，控制 hello hello SDK 元件的方式，以及哪些 NuGet 封裝會載入這些元件的 hello 區段。
 
 ## <a name="telemetry-modules-aspnet"></a>遙測模組 (ASP.NET)
-每個遙測模組收集特定類型的資料，以及使用核心 API 來傳送資料。 模組由不同的 NuGet 封裝安裝，也會將必要的行加入 .config 檔案。
+每個遙測模組收集特定類型的資料，並使用 hello 核心 API toosend hello 資料。 hello 模組會安裝由不同的 NuGet 封裝，也加入 hello 需要的線條 toohello.config 檔案中。
 
-組態檔中的每個模組都有一個節點。 若要停用模組，請刪除節點或將其註解化。
+每個模組的 hello 組態檔中沒有節點。 toodisable 模組，請刪除 hello 節點，或加以註解化。
 
 ### <a name="dependency-tracking"></a>相依性追蹤
-[相依性追蹤](app-insights-asp-net-dependencies.md) 會收集有關您的 app 對資料庫和外部服務和資料庫呼叫的遙測。 若要允許此模組用於 IIS 伺服器，您必須[安裝狀態監視器][redfield]。 若要在 Azure Web 應用程式或 VM 中使用此模組， [請選取 Application Insights 延伸模組](app-insights-azure-web-apps.md)。
+[相依性追蹤](app-insights-asp-net-dependencies.md)收集呼叫 toodatabases 和外部服務，以及資料庫，可讓您的應用程式的相關遙測。 tooallow 此模組會 toowork 在 IIS 伺服器，您需要太[安裝狀態監視器][redfield]。 toouse 在 Azure web 應用程式或 Vm，[選取 hello Application Insights 擴充功能](app-insights-azure-web-apps.md)。
 
-您也可以使用 [TrackDependency API](app-insights-api-custom-events-metrics.md#trackdependency)撰寫您自己的相依性追蹤程式碼。
+您也可以撰寫您自己的相依性追蹤程式碼使用 hello [TrackDependency API](app-insights-api-custom-events-metrics.md#trackdependency)。
 
 * `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`
 * [Microsoft.ApplicationInsights.DependencyCollector](http://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector) NuGet 封裝。
 
 ### <a name="performance-collector"></a>效能收集器
-[收集系統效能計數器](app-insights-performance-counters.md)，例如 CPU、記憶體和網路負載 (從 IIS 安裝)。 您可以指定要收集哪些計數器，包括您自己所設定的效能計數器。
+[收集系統效能計數器](app-insights-performance-counters.md)，例如 CPU、記憶體和網路負載 (從 IIS 安裝)。 您可以指定哪些計數器 toocollect，包括您已設定您自己的效能計數器。
 
 * `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`
 * [Microsoft.ApplicationInsights.PerfCounterCollector](http://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) NuGet 封裝。
 
 ### <a name="application-insights-diagnostics-telemetry"></a>Application Insights 診斷遙測
-`DiagnosticsTelemetryModule` 報告 Application Insights 檢測程式碼本身中的錯誤。 例如，如果程式碼無法存取效能計數器，或 `ITelemetryInitializer` 擲回例外狀況。 此模組所追蹤的追蹤遙測會出現在[診斷搜尋][diagnostic]中。 將診斷資料傳送至 dc.services.vsallin.net。
+hello`DiagnosticsTelemetryModule`報告 hello 本身 Application Insights 檢測程式碼中的錯誤。 例如，如果 hello 程式碼無法存取效能計數器或`ITelemetryInitializer`擲回例外狀況。 此模組所追蹤的追蹤遙測會出現在 hello[診斷搜尋][diagnostic]。 傳送診斷資料 toodc.services.vsallin.net。
 
 * `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`
-* [Microsoft.ApplicationInsights](http://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet 封裝。 如果您只安裝這個封裝，不會自動建立 ApplicationInsights.config 檔案。
+* [Microsoft.ApplicationInsights](http://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet 封裝。 如果您只安裝這個套件，不會自動建立 hello ApplicationInsights.config 檔案。
 
 ### <a name="developer-mode"></a>開發人員模式
-`DeveloperModeWithDebuggerAttachedTelemetryModule` 會強制 Application Insights `TelemetryChannel` 立即傳送資料，在偵錯工具附加至應用程式程序時一次傳送一個遙測項目。 這會減少您的應用程式追蹤遙測時，與當遙測出現在 Application Insights 入口網站時之間的時間量。 但是會造成 CPU 和網路頻寬明顯的負擔。
+`DeveloperModeWithDebuggerAttachedTelemetryModule`強制 hello Application Insights `TelemetryChannel` toosend 資料立即一個遙測項目一次，當偵錯工具附加 toohello 應用程式處理序。 這會減少 hello hello 時間之間的時間量，以及出現在 hello Application Insights 入口網站時您的應用程式會追蹤遙測。 但是會造成 CPU 和網路頻寬明顯的負擔。
 
 * `Microsoft.ApplicationInsights.WindowsServer.DeveloperModeWithDebuggerAttachedTelemetryModule`
 * [Application Insights Windows Server](http://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) NuGet 封裝
 
 ### <a name="web-request-tracking"></a>Web 要求追蹤
-報告 HTTP 要求的 [回應時間和結果碼](app-insights-asp-net.md) 。
+報表 hello[回應時間與結果碼](app-insights-asp-net.md)的 HTTP 要求。
 
 * `Microsoft.ApplicationInsights.Web.RequestTrackingTelemetryModule`
 * [Microsoft.ApplicationInsights.Web](http://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) NuGet 封裝。
@@ -76,64 +76,64 @@ Application Insights .NET SDK 是由數個 NuGet 封裝所組成。 [核心封�
 * [Application Insights Windows Server](http://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) NuGet 封裝。
 
 ### <a name="eventsource-tracking"></a>EventSource 追蹤
-`EventSourceTelemetryModule` 可讓您設定要傳送至 Application Insights 作為追蹤的 EventSource 事件。 如需追蹤 EventSource 事件的資訊，請參閱[使用 EventSource 事件](app-insights-asp-net-trace-logs.md#using-eventsource-events)。
+`EventSourceTelemetryModule`可讓您 tooconfigure EventSource 事件 toobe tooApplication Insights 當做追蹤。 如需追蹤 EventSource 事件的資訊，請參閱[使用 EventSource 事件](app-insights-asp-net-trace-logs.md#using-eventsource-events)。
 
 * `Microsoft.ApplicationInsights.EventSourceListener.EventSourceTelemetryModule`
 * [Microsoft.ApplicationInsights.EventSourceListener](http://www.nuget.org/packages/Microsoft.ApplicationInsights.EventSourceListener) 
 
 ### <a name="etw-event-tracking"></a>ETW 事件追蹤
-`EtwCollectorTelemetryModule` 可讓您設定要傳送至 Application Insights 作為追蹤的 ETW 提供者事件。 如需追蹤 ETW 事件的資訊，請參閱[使用 ETW 事件](app-insights-asp-net-trace-logs.md#using-etw-events)。
+`EtwCollectorTelemetryModule`可讓您從以追蹤傳送 tooApplication Insights ETW 提供者 toobe tooconfigure 事件。 如需追蹤 ETW 事件的資訊，請參閱[使用 ETW 事件](app-insights-asp-net-trace-logs.md#using-etw-events)。
 
 * `Microsoft.ApplicationInsights.EtwCollector.EtwCollectorTelemetryModule`
 * [Microsoft.ApplicationInsights.EtwCollector](http://www.nuget.org/packages/Microsoft.ApplicationInsights.EtwCollector) 
 
 ### <a name="microsoftapplicationinsights"></a>Microsoft.ApplicationInsights
-Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.microsoft.com/library/mt420197.aspx) 。 其他遙測模組使用此功能，您也可以 [使用它來定義您自己的遙測](app-insights-api-custom-events-metrics.md)。
+hello Microsoft.ApplicationInsights 套件提供 hello[核心 API](https://msdn.microsoft.com/library/mt420197.aspx)的 hello SDK。 hello 其他遙測模組使用，而且您也可以[toodefine 使用它自己的遙測](app-insights-api-custom-events-metrics.md)。
 
 * ApplicationInsights.config 中沒有項目。
 * [Microsoft.ApplicationInsights](http://www.nuget.org/packages/Microsoft.ApplicationInsights) NuGet 封裝。 如果您只安裝此 NuGet，不會產生任何 .config 檔案。
 
 ## <a name="telemetry-channel"></a>遙測通道
-遙測通道管理遙測的緩衝處理和到 Application Insights 服務的傳輸。
+hello 遙測通道會管理緩衝和遙測 toohello Application Insights 服務的傳輸。
 
-* `Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel` 是服務的預設通道。 它會在記憶體中緩衝資料。
-* `Microsoft.ApplicationInsights.PersistenceChannel` 是主控台應用程式的替代通道。 它可以在您的 app 關閉時將任何未清除的資料儲存到永續性儲存體，並在 app 重新啟動時再次傳送資料。
+* `Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel`是服務的 hello 預設通道。 它會在記憶體中緩衝資料。
+* `Microsoft.ApplicationInsights.PersistenceChannel` 是主控台應用程式的替代通道。 當您的應用程式關閉，並會將它傳送 hello 應用程式一次啟動時，便可以節省任何 unflushed 的資料 toopersistent 存放裝置。
 
 ## <a name="telemetry-initializers-aspnet"></a>遙測初始設定式 (ASP.NET)
 遙測初始設定式設定與遙測的每個項目一起傳送的內容屬性。
 
-您可以 [撰寫您自己的初始設定式](app-insights-api-filtering-sampling.md#add-properties) 設定內容屬性。
+您可以[撰寫您自己的初始設定式](app-insights-api-filtering-sampling.md#add-properties)tooset 內容屬性。
 
-標準的初始設定式已由 Web 或 WindowsServer NuGet 封裝設定：
+hello 標準初始設定式已設定完畢由 hello Web 或 WindowsServer NuGet 封裝：
 
-* `AccountIdTelemetryInitializer` 設定 AccountId 屬性。
-* `AuthenticatedUserIdTelemetryInitializer` 如 JavaScript SDK 設定般設定 AuthenticatedUserId 屬性。
-* 針對具有從 Azure 執行階段環境擷取之資訊的所有遙測項目，`AzureRoleEnvironmentTelemetryInitializer` 會更新 `Device` 內容的 `RoleName` 和 `RoleInstance` 屬性。
-* 針對具有從 MS 組建所產生之 `BuildInfo.config` 檔案擷取值的所有遙測項目，`BuildInfoConfigComponentVersionTelemetryInitializer` 會更新 `Component` 內容的 `Version` 屬性。
-* `ClientIpHeaderTelemetryInitializer` 會根據要求的 `X-Forwarded-For` HTTP 標頭來更新所有遙測項目之 `Location` 內容的 `Ip` 屬性。
-* `DeviceTelemetryInitializer` 會更新所有遙測項目 `Device` 內容的下列屬性。
-  * `Type` 設定為 "PC"
-  * `Id` 設定為 Web 應用程式執行所在電腦的網域名稱。
-  * `OemName` 設定為使用 WMI 從 `Win32_ComputerSystem.Manufacturer` 欄位擷取的值。
-  * `Model` 設定為使用 WMI 從 `Win32_ComputerSystem.Model` 欄位擷取的值。
-  * `NetworkType` 設定為從 `NetworkInterface` 擷取的值。
-  * `Language` 設定為 `CurrentCulture` 的名稱。
-* 針對具有 Web 應用程式執行所在電腦之網域名稱的所有遙測項目，`DomainNameRoleInstanceTelemetryInitializer` 會更新 `Device` 內容的 `RoleInstance` 屬性。
-* `OperationNameTelemetryInitializer` 會根據 HTTP 方法，以及 ASP.NET MVC 控制器的名稱和叫用來處理要求的動作，更新所有遙測項目 `RequestTelemetry` 之 `Name` 屬性和 `Operation` 內容的 `Name` 屬性。
-* `OperationIdTelemetryInitializer` 或 `OperationCorrelationTelemetryInitializer` 在處理具有自動產生的 `RequestTelemetry.Id` 的要求時，會更新追蹤的所有遙測項目的 `Operation.Id` 內容屬性。
-* 針對具有從使用者瀏覽器中執行的 Application Insights JavaScript 檢測程式碼所產生之 `ai_session` Cookie 擷取值的所有遙測項目，`SessionTelemetryInitializer` 會更新 `Session` 內容的 `Id` 屬性。
-* `SyntheticTelemetryInitializer` 或 `SyntheticUserAgentTelemetryInitializer` 在處理來自綜合來源 (例如可用性測試或搜尋引擎 Bot) 的要求時，會更新追蹤的所有遙測項目的 `User`、`Session` 和 `Operation` 內容屬性。 根據預設， [計量瀏覽器](app-insights-metrics-explorer.md) 不會顯示綜合的遙測。
+* `AccountIdTelemetryInitializer`設定 hello AccountId 屬性。
+* `AuthenticatedUserIdTelemetryInitializer`hello JavaScript SDK hello AuthenticatedUserId 屬性設定為集合。
+* `AzureRoleEnvironmentTelemetryInitializer`更新 hello`RoleName`和`RoleInstance`屬性 hello`Device`從 hello Azure 執行階段環境中擷取資訊的所有遙測項目內容。
+* `BuildInfoConfigComponentVersionTelemetryInitializer`更新 hello`Version`屬性 hello `Component` hello 值 hello 從擷取的所有遙測項目內容`BuildInfo.config`由 MS Build 所產生的檔案。
+* `ClientIpHeaderTelemetryInitializer`更新`Ip`屬性 hello`Location`所有遙測項目的內容根據 hello `X-Forwarded-For` hello 要求的 HTTP 標頭。
+* `DeviceTelemetryInitializer`下列屬性的 hello 更新 hello`Device`遙測的所有項目內容。
+  * `Type`設定得 「 電腦 」
+  * `Id`已設定 hello web 應用程式執行所在 toohello hello 電腦網域名稱。
+  * `OemName`設定為擷取自 hello toohello 值`Win32_ComputerSystem.Manufacturer`欄位使用 WMI。
+  * `Model`設定為擷取自 hello toohello 值`Win32_ComputerSystem.Model`欄位使用 WMI。
+  * `NetworkType`設定為擷取自 hello toohello 值`NetworkInterface`。
+  * `Language`設定的 hello toohello 名稱`CurrentCulture`。
+* `DomainNameRoleInstanceTelemetryInitializer`更新 hello`RoleInstance`屬性 hello`Device`遙測的所有項目 hello 網域名稱與 hello hello web 應用程式執行所在的電腦內容。
+* `OperationNameTelemetryInitializer`更新 hello`Name`屬性 hello`RequestTelemetry`和 hello`Name`屬性 hello`Operation`所有遙測項目的內容根據 hello HTTP 方法，以及 ASP.NET MVC 控制器和動作叫用的 tooprocess hello 的名稱要求。
+* `OperationIdTelemetryInitializer`或`OperationCorrelationTelemetryInitializer`更新 hello`Operation.Id`內容屬性的所有遙測項目追蹤同時處理要求，以自動產生的 hello `RequestTelemetry.Id`。
+* `SessionTelemetryInitializer`更新 hello`Id`屬性 hello `Session` hello 從擷取值的所有遙測項目內容`ai_session`cookie 所 hello ApplicationInsights JavaScript hello 使用者的瀏覽器中執行的檢測程式碼產生。
+* `SyntheticTelemetryInitializer`或`SyntheticUserAgentTelemetryInitializer`更新 hello `User`，`Session`和`Operation`時處理的要求的綜合的來源，例如可用性測試，或搜尋引擎 bot 追蹤這些內容屬性的所有遙測項目。 根據預設， [計量瀏覽器](app-insights-metrics-explorer.md) 不會顯示綜合的遙測。
 
-    `<Filters>` 會設定要求的識別屬性。
-* `UserAgentTelemetryInitializer` 會根據要求的 `User-Agent` HTTP 標頭來更新所有遙測項目之 `User` 內容的 `UserAgent` 屬性。
-* 針對具有從使用者瀏覽器中執行之 Application Insights JavaScript 檢測程式碼所產生的 `ai_user` Cookie 擷取值的所有遙測項目，`UserTelemetryInitializer` 會更新 `User` 內容的 `Id` 和 `AcquisitionDate` 屬性。
-* `WebTestTelemetryInitializer` 會設定使用者識別碼、工作階段識別碼，以及來自 [可用性測試](app-insights-monitor-web-app-availability.md)的 HTTP 要求的綜合來源屬性。
-  `<Filters>` 會設定要求的識別屬性。
+    hello`<Filters>`設定識別之 hello 要求的內容。
+* `UserAgentTelemetryInitializer`更新 hello`UserAgent`屬性 hello`User`所有遙測項目的內容根據 hello `User-Agent` hello 要求的 HTTP 標頭。
+* `UserTelemetryInitializer`更新 hello`Id`和`AcquisitionDate`屬性`User`內容擷取自 hello 值的所有遙測項目`ai_user`hello 中執行的 hello Application Insights JavaScript 檢測程式碼所產生的 cookie使用者的瀏覽器。
+* `WebTestTelemetryInitializer`設定 hello 使用者 id、 工作階段識別碼和綜合的來源屬性的 HTTP 要求，來自[可用性測試](app-insights-monitor-web-app-availability.md)。
+  hello`<Filters>`設定識別之 hello 要求的內容。
 
-針對 Service Fabric 中執行的 .NET 應用程式，您可以包含 `Microsoft.ApplicationInsights.ServiceFabric` NuGet 套件。 此套件包含的 `FabricTelemetryInitializer` 會將 Service Fabric 屬性新增至遙測項目。 如需詳細資訊，請參閱 [GitHub 頁面](https://go.microsoft.com/fwlink/?linkid=848457)了解這個 NuGet 套件所新增之屬性的相關資訊。
+Service Fabric 中執行的.NET 應用程式，您可以包含 hello `Microsoft.ApplicationInsights.ServiceFabric` NuGet 封裝。 這個套件包括`FabricTelemetryInitializer`，這樣會將 Service Fabric 屬性 tootelemetry 項目。 如需詳細資訊，請參閱 hello [GitHub 頁面](https://go.microsoft.com/fwlink/?linkid=848457)有關 hello 屬性加入此 NuGet 封裝。
 
 ## <a name="telemetry-processors-aspnet"></a>遙測處理器 (ASP.NET)
-遙測處理器可以在遙測從 SDK 傳送至入口網站之前篩選並修改每個遙測項目。
+遙測處理器可以篩選和寄 hello SDK toohello 入口網站之前，請修改每個遙測項目。
 
 您可以 [撰寫您自己的遙測處理器](app-insights-api-filtering-sampling.md#filtering)。
 
@@ -150,7 +150,7 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.mic
 
 ```
 
-參數會提供演算法嘗試要達成的目標。 每個 SDK 執行個體都獨立運作，因此如果您的伺服器是數個機器的叢集，遙測的實際數量會隨之加乘。
+hello 參數提供 hello 演算法的 hello 目標嘗試 tooachieve。 Hello SDK 可獨立作業，因此如果您的伺服器是叢集的多部電腦，將據此相乘 hello 的遙測資料的實際磁碟區的每個執行個體。
 
 [深入了解取樣](app-insights-sampling.md)。
 
@@ -162,7 +162,7 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.mic
     <TelemetryProcessors>
      <Add Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.SamplingTelemetryProcessor, Microsoft.AI.ServerTelemetryChannel">
 
-     <!-- Set a percentage close to 100/N where N is an integer. -->
+     <!-- Set a percentage close too100/N where N is an integer. -->
      <!-- E.g. 50 (=100/2), 33.33 (=100/3), 25 (=100/4), 20, 1 (=100/100), 0.1 (=100/1000) -->
      <SamplingPercentage>10</SamplingPercentage>
      </Add>
@@ -173,10 +173,10 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.mic
 
 
 ## <a name="channel-parameters-java"></a>通道參數 (Java)
-這些參數會影響 Java SDK 應該儲存和排清它所收集之遙測資料的方式。
+這些參數會影響 hello Java SDK 應該如何儲存及排清 hello 它所收集的遙測資料。
 
 #### <a name="maxtelemetrybuffercapacity"></a>MaxTelemetryBufferCapacity
-可以儲存在 SDK 記憶體內儲存空間中的遙測項目數。 達到這個數目時，會排清遙測緩衝區，也就是將遙測項目傳送至 Application Insights 伺服器。
+hello hello SDK 的記憶體中儲存體可以儲存的遙測項目數目。 當到達此數目時，hello 遙測緩衝區排清-也就是 hello 遙測項目會傳送 toohello Application Insights 的伺服器。
 
 * 最小值：1
 * 最大值：1000
@@ -194,7 +194,7 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.mic
 ```
 
 #### <a name="flushintervalinseconds"></a>FlushIntervalInSeconds
-決定應該以何種頻率排清儲存在記憶體內儲存空間的資料 (並傳送至 Application Insights)。
+決定多久 hello hello 記憶體中儲存體中儲存的資料應排清 (傳送的 tooApplication Insights)。
 
 * 最小值：1
 * 最大值：300
@@ -212,7 +212,7 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.mic
 ```
 
 #### <a name="maxtransmissionstoragecapacityinmb"></a>MaxTransmissionStorageCapacityInMB
-決定分配給本機磁碟上永續性存放裝置的大小上限 (MB)。 此存放裝置會用於保存無法傳送至 Application Insights 端點的遙測項目。 存放裝置大小達到上限時，會捨棄新的遙測項目。
+決定 hello 以 mb 為單位配置 toohello hello 本機磁碟上的永續性儲存體大小上限。 這個儲存體用於保存無法傳輸 toobe toohello Application Insights 端點的遙測項目。 當已符合 hello 儲存體大小時，將會捨棄新的遙測項目。
 
 * 最小值：1
 * 最大值：100
@@ -232,11 +232,11 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.mic
 
 
 ## <a name="instrumentationkey"></a>InstrumentationKey
-這會決定顯示您資料的 Application Insights 資源。 通常您會針對每個應用程式，用個別的金鑰建立個別資源。
+這會決定您的資料會顯示 hello Application Insights 資源。 通常您會針對每個應用程式，用個別的金鑰建立個別資源。
 
-如果想要以動態方式設定金鑰 (例如，想要將應用程式的結果傳送到不同的資源)，您可以在組態檔中省略金鑰，並將金鑰設定在程式碼中。
+如果您想 tooset hello 金鑰動態-例如如果您希望 toosend 結果從您的應用程式的 toodifferent 資源-您可以省略 hello 組態檔中的 hello 金鑰並將它設定在程式碼中。
 
-若要針對 TelemetryClient 的所有執行個體 (包括標準遙測模組) 設定金鑰，請在 TelemetryConfiguration.Active 中設定金鑰。 請在初始化方法中這麼做，例如 ASP.NET 服務中的 global.aspx.cs：
+tooset hello TelemetryClient，包括標準遙測模組的所有執行個體索引鍵在 TelemetryConfiguration.Active 設定 hello 索引。 請在初始化方法中這麼做，例如 ASP.NET 服務中的 global.aspx.cs：
 
 ```C#
 
@@ -249,7 +249,7 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.mic
       //...
 ```
 
-如果您只想將特定的一組事件傳送至不同的資源，可以針對特定的 TelemetryClient 設定金鑰：
+如果您只想 toosend 一組特定的事件 tooa 不同的資源，您可以設定特定 TelemetryClient hello 索引鍵：
 
 ```C#
 
@@ -260,10 +260,10 @@ Microsoft.ApplicationInsights 封裝提供 SDK 的 [核心 API](https://msdn.mic
 
 ```
 
-若要取得新的金鑰，請[在 Application Insights 入口網站中建立新的資源][new]。
+新機碼 tooget [hello Application Insights 入口網站中建立新的資源][new]。
 
 ## <a name="next-steps"></a>後續步驟
-[深入了解 API][api]。
+[深入了解 hello API][api]。
 
 <!--Link references-->
 

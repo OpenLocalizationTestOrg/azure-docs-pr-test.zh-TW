@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Stack 中監視健康情況和警示 | Microsoft Docs"
-description: "了解如何在 Azure Stack 中監視健康情況和警示。"
+title: "aaaMonitor 健全狀況和 Azure 堆疊中的警示 |Microsoft 文件"
+description: "深入了解如何 toomonitor 健全狀況和 Azure 堆疊中的警示。"
 services: azure-stack
 documentationcenter: 
 author: chasat-MS
@@ -14,61 +14,61 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/26/2017
 ms.author: chasat
-ms.openlocfilehash: 93835eabcf9622735aada0f5dfa46028553c25bd
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 11e287c497e154b767c775fe4afcc78ec9e72fb4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-health-and-alerts-in-azure-stack"></a>在 Azure Stack 中監視健康情況和警示
 
-Azure Stack 包含可監視基礎結構的功能，可讓雲端操作員檢視 Azure Stack 區域的健康情況和警示。
+Azure 堆疊包含基礎結構監視功能，可讓雲端操作員 tooview 健全狀況和堆疊 Azure 區域的警示。
 
-Azure Stack 具有一組可用於 [區域管理] 磚的區域管理功能。 此磚依預設會釘選在預設提供者訂用帳戶的系統管理員入口網站上，可列出 Azure Stack 的所有已部署區域。 它也會顯示每個區域的作用中重要和警告警示計數。 此磚是您進入 Azure Stack 健康情況和警示功能的進入點。
+Azure 堆疊都有可用的 hello 的區域管理功能的一組**區域管理**磚。 這個 hello hello 預設提供者訂用帳戶的系統管理員入口網站中的預設釘選的磚會列出 Azure 堆疊的所有部署的 hello 區域。 它也會顯示 hello 計數的每個區域的作用中的重大和警告警示。 此磚會進入 hello 健全狀況和 Azure 堆疊的警示功能。
 
- ![區域管理磚](media/azure-stack-monitor-health/image1.png)
+ ![hello 區域管理圖格](media/azure-stack-monitor-health/image1.png)
 
  ## <a name="understand-health-in-azure-stack"></a>了解 Azure Stack 中的健康情況
 
- 在 Azure Stack 中健康情況和警示是由健康情況資源提供者來管理。 在 Azure Stack 部署和設定期間，Azure Stack 基礎結構元件會向健康情況資源提供者註冊。 這項註冊讓每個元件的健康情況和警示得以顯示。 在 Azure Stack 中健康情況是個簡單的概念。 如果元件的已註冊執行個體有警示存在，該元件的健康情況狀態會反映出最差的作用中警示嚴重性：警告或重要。
+ 健全狀況和警示是由 hello 健全狀況資源提供者管理 Azure 堆疊中。 Azure 堆疊部署和設定期間，與 hello 健全狀況資源提供者註冊 azure 的堆疊基礎結構元件。 這個登錄可讓 hello 顯示健全狀況和每個元件的警示。 在 Azure Stack 中健康情況是個簡單的概念。 如果已註冊的元件存在，執行個體警示 hello 該元件的健全狀況狀態會反映出 hello 最差作用中警示嚴重性;警告或重大。
  
  ## <a name="view-and-manage-component-health-state"></a>檢視和管理元件健康情況狀態
  
- 您可在 Azure Stack 系統管理員入口網站上檢視元件的健康情況狀態，也可以透過 REST API 和 PowerShell 來檢視。
+ 在這兩個 hello Azure 堆疊管理員入口網站，並透過 Rest API 和 PowerShell，您可以檢視 hello 元件健全狀況狀態。
  
-若要在入口網站中檢視健康情況狀態，請在 [區域管理] 磚中按一下您想要檢視的區域。 您可以檢視基礎結構角色和資源提供者的健康情況狀態。 請注意，在此版本中，「計算」資源提供者不會報告健康情況狀態。
+tooview hello 健全狀況狀態在 hello 入口網站中，按一下您想在 hello tooview hello 區域**區域管理**磚。 您可以檢視基礎結構角色和資源提供者的 hello 健全狀況狀態。 請注意，在此版本中，hello 計算資源提供者不會報告健全狀況狀態。
 
 ![基礎結構角色的清單](media/azure-stack-monitor-health/image2.png)
 
-您可以按一下資源提供者或基礎結構角色，以檢視更詳細的資訊。
+您可以按一下 tooview 資源提供者或基礎結構角色的詳細資訊。
 
 > [!WARNING]
->如果您按一下基礎結構角色，然後按一下角色執行個體，在 [角色執行個體] 刀鋒視窗中會有選項可 [啟動]、[重新啟動] 或 [關機]。 **請勿**在 Azure Stack 開發套件環境中使用這些選項。 這些選項僅專為每個基礎結構角色具有多個角色執行個體的多節點環境而設計。 重新啟動開發套件中的角色執行個體 (特別是 AzS-Xrp01) 會導致系統不穩定。 如需疑難排解協助，請將您的問題張貼到 [Azure Stack 論壇](https://aka.ms/azurestackforum)。
+>如果您按一下 [基礎結構角色]，然後按一下hello 角色執行個體時，有在 hello 選項**角色執行個體**刀鋒視窗 tooStart、 重新啟動或關閉。 **請勿**在 Azure Stack 開發套件環境中使用這些選項。 這些選項僅專為每個基礎結構角色具有多個角色執行個體的多節點環境而設計。 Hello 開發套件中重新啟動角色執行個體 (特別是 Xrp01 AzS) 會導致系統不穩定。 如需疑難排解的協助，請張貼問題 toohello [Azure 堆疊論壇](https://aka.ms/azurestackforum)。
 >
  
 ## <a name="view-alerts"></a>檢視警示
 
-可直接從 [區域管理] 刀鋒視窗檢視每個 Azure Stack 區域的作用中警示清單。 預設設定下的第一個磚是 [警示] 磚，其中會顯示該區域的重要和警告警示摘要。 就像這個刀鋒視窗中的其他磚一樣，您可以將 [警示] 磚釘選到儀表板上以便快速存取。   
+針對每個 Azure 堆疊區域的作用中警示的 hello 清單是可以直接從 hello**區域管理**刀鋒視窗。 hello hello 預設組態中的第一個磚為 hello**警示**磚，其中顯示 hello 重大和警告警示 hello 區域的摘要。 您可以釘選 hello 警示圖格，此刀鋒視窗中，讓您快速存取 toohello 儀表板上的任何其他磚。   
 
 ![會顯示警告的 [警示] 磚](media/azure-stack-monitor-health/image3.png)
 
-您可選取 [警示] 磚的上半部，瀏覽至區域的所有作用中警示清單。 如果您選取磚內的 [重要] 或 [警告] 明細項目，就會瀏覽至警示的篩選清單 (重要或警告)。 
+選取頂部 hello hello**警示**磚，您瀏覽 toohello hello 區域的所有作用中警示清單。 如果您選取其中一個 hello**重大**或**警告**hello 磚中的明細項目，您瀏覽 tooa 篩選警示 （重大或警告） 的清單。 
 
 ![篩選的警告警示](media/azure-stack-monitor-health/image4.png)
   
-[警示] 刀鋒視窗支援依狀態 (作用中或已關閉) 和嚴重性 (重要或警告) 進行篩選。 預設檢視會顯示所有作用中警示。 所有已關閉的警示會在七天後從系統中移除。
+hello**警示**刀鋒視窗支援 hello 能力 toofilter （作用中或已關閉） 的狀態和嚴重性 （重大或警告）。 hello 預設檢視會顯示所有作用中警示。 所有已關閉的警示會在 7 天後從 hello 系統移除。
 
-![依重要或警告狀態進行篩選的篩選器](media/azure-stack-monitor-health/image5.png)
+![篩選窗格 toofilter 重大或警告狀態](media/azure-stack-monitor-health/image5.png)
 
-[警示] 刀鋒視窗也會公開 [檢視 API] 動作，可顯示用來產生清單檢視的 REST API。 這個動作可讓您快速熟悉 REST API 語法，可用以查詢警示。 您可用自動化方式使用此 API，或與您現有的資料中心監視、報告及票證解決方案整合。 
+hello 警示刀鋒伺服器也會公開 hello**檢視 API**哪些顯示 hello Rest API 所使用的 toogenerate hello 清單檢視的動作。 這個動作可提供快速 toobecome 熟悉 hello Rest API 語法，您可以使用 tooquery 警示。 您可用自動化方式使用此 API，或與您現有的資料中心監視、報告及票證解決方案整合。 
 
-![會顯示 REST API 的 [檢視 API] 選項](media/azure-stack-monitor-health/image6.png)
+![hello 顯示 hello Rest API 的 API 檢視選項](media/azure-stack-monitor-health/image6.png)
 
-您可以從 [警示] 刀鋒視窗中，選取警示以瀏覽至 [警示詳細資料] 刀鋒視窗。 此刀鋒視窗會顯示與警示相關聯的所有欄位，並可快速瀏覽至受影響的元件和警示的來源。 例如，如果其中一個基礎結構角色執行個體離線或無法存取，就會發生以下警示。  
+您可以從 hello 警示刀鋒視窗中，選取警示 toonavigate toohello**警示詳細資料**刀鋒視窗。 此刀鋒視窗會顯示 hello 警示相關聯的所有欄位，並可讓快速瀏覽 toohello 受影響的元件和 hello 警示的來源。 例如，hello 下列警示就會發生如果其中一個 hello 基礎結構角色執行個體離線或無法存取。  
 
-![[警示詳細資料] 刀鋒視窗](media/azure-stack-monitor-health/image7.png)
+![hello 警示詳細資料 刀鋒視窗](media/azure-stack-monitor-health/image7.png)
 
-基礎結構角色執行個體回到線上之後，會自動關閉此警示。
+Hello 基礎結構角色執行個體回到線上之後，會自動關閉此警示。
 
 ## <a name="next-steps"></a>後續步驟
 

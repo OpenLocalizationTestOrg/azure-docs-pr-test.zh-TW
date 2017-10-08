@@ -1,6 +1,6 @@
 ---
-title: "雲端服務中角色的通訊 | Microsoft Docs"
-description: "您可以為雲端服務中的角色執行個體定義端點 (http、https、tcp、udp)，以便與外部或在其他角色執行個體之間通訊。"
+title: "雲端服務中的角色 aaaCommunication |Microsoft 文件"
+description: "雲端服務中的角色執行個體可以有端點 （http、 https、 tcp、 udp） 為其定義與 hello 外部或其他角色執行個體之間進行通訊。"
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/14/2016
 ms.author: adegeo
-ms.openlocfilehash: 8e171d56bb67c971337fa383014988074ec828b1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1fb39215ceb8a3f0381ef5e108c1149de115ff8e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-communication-for-role-instances-in-azure"></a>啟用 Azure 中角色執行個體的通訊
-雲端服務角色透過內部和外部連線通訊。 外部連接稱為**輸入端點**，而內部連接稱為**內部端點**。 本主題描述如何修改 [服務定義](cloud-services-model-and-package.md#csdef) 以建立端點。
+雲端服務角色透過內部和外部連線通訊。 外部連接稱為**輸入端點**，而內部連接稱為**內部端點**。 本主題描述如何 toomodify hello[服務定義](cloud-services-model-and-package.md#csdef)toocreate 端點。
 
 ## <a name="input-endpoint"></a>輸入端點
-輸入端點是在您要對外公開連接埠時使用。 您可以指定通訊協定類型端點連接埠，稍後這些連接埠將套用至端點的外部和內部連接埠。 您也可以使用 [localPort](https://msdn.microsoft.com/library/azure/gg557552.aspx#InputEndpoint) 屬性為端點指定不同的內部連接埠。
+當您想 tooexpose 外部連接埠 toohello 時，會使用 hello 輸入的端點。 您指定 hello 通訊協定類型和 hello hello 端點便會套用兩個 hello 外部和內部連接埠 hello 端點連接埠。 如果您想，您可以指定 hello 端點不同的內部連接埠以 hello [localPort](https://msdn.microsoft.com/library/azure/gg557552.aspx#InputEndpoint)屬性。
 
-輸入端點可以使用下列通訊協定： **http、https、tcp、udp**。
+hello 輸入的端點可以使用下列通訊協定的 hello: **http、 https、 tcp、 udp**。
 
-若要建立輸入端點，請將 **InputEndpoint** 子元素新增至 Web 或背景工作角色的 **Endpoints** 元素。
+toocreate 輸入端點，新增 hello **InputEndpoint**子元素 toohello**端點**web 或背景工作角色的項目。
 
 ```xml
 <Endpoints>
@@ -37,11 +37,11 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="instance-input-endpoint"></a>執行個體輸入端點
-執行個體輸入端點與輸入端點類似，但可讓您使用負載平衡器上的連接埠轉送，來針對各角色執行個體對應特定的公眾連接埠。 您可以指定單一公眾連接埠，或某個範圍內的連接埠。
+執行個體輸入的端點類似 tooinput 端點，但可讓您將每個個別的角色執行個體的特定公開連接埠對應 hello 負載平衡器上使用連接埠轉送。 您可以指定單一公眾連接埠，或某個範圍內的連接埠。
 
-執行個體輸入端點只能使用 **tcp** 或 **udp** 作為通訊協定。
+只能使用 hello 執行個體輸入的端點**tcp**或**udp**做為 hello 通訊協定。
 
-若要建立執行個體輸入端點，請將 **InstanceInputEndpoint** 子元素新增至 Web 或背景工作角色的 **Endpoints** 元素。
+toocreate 執行個體輸入端點，新增 hello **InstanceInputEndpoint**子元素 toohello**端點**web 或背景工作角色的項目。
 
 ```xml
 <Endpoints>
@@ -54,11 +54,11 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="internal-endpoint"></a>內部端點
-內部端點可供執行個體對執行個體通訊時使用。 該連接埠是選擇性的，如果省略，將指派動態連接埠至端點。 可以使用連接埠範圍。 每個角色的限制為五個內部端點。
+內部端點可供執行個體對執行個體通訊時使用。 hello 連接埠為選擇性，而且 toohello 端點時，如果省略，要指派的動態通訊埠。 可以使用連接埠範圍。 每個角色的限制為五個內部端點。
 
-內部端點可以使用下列通訊協定： **http、tcp、udp、any**。
+hello 內部端點可以使用下列通訊協定的 hello: **http、 tcp、 udp、 任何**。
 
-若要建立內部輸入端點，請將 **InternalEndpoint** 子元素新增至 Web 或背景工作角色的 **Endpoints** 元素。
+toocreate 內部輸入端點，新增 hello **InternalEndpoint**子元素 toohello**端點**web 或背景工作角色的項目。
 
 ```xml
 <Endpoints>
@@ -78,39 +78,39 @@ ms.lasthandoff: 07/11/2017
 
 
 ## <a name="worker-roles-vs-web-roles"></a>背景工作角色與Web 角色
-使用背景工作角色和 Web 角色二者時端點會有一個很小的差異。 Web 角色必須至少要有一個輸入端點使用 **HTTP** 通訊協定。
+使用背景工作角色和 Web 角色二者時端點會有一個很小的差異。 hello web 角色必須至少使用 hello 的單一輸入的端點**HTTP**通訊協定。
 
 ```xml
 <Endpoints>
   <InputEndpoint name="StandardWeb" protocol="http" port="80" localPort="80" />
-  <!-- more endpoints may be declared after the first InputEndPoint -->
+  <!-- more endpoints may be declared after hello first InputEndPoint -->
 </Endpoints>
 ```
 
-## <a name="using-the-net-sdk-to-access-an-endpoint"></a>使用 .NET SDK 存取端點
-Azure 受管理程式庫提供讓角色執行個體在執行階段通訊的方法。 藉由在角色執行個體內執行的程式碼，您可以抓取角色執行個體及其端點之存在的相關資訊，以及目前角色執行個體的相關資訊。
+## <a name="using-hello-net-sdk-tooaccess-an-endpoint"></a>使用 hello.NET SDK tooaccess 端點
+hello Azure Managed 程式庫提供在執行階段的角色執行個體 toocommunicate 方法。 從角色執行個體中執行的程式碼，您可以擷取 hello 存在其他角色執行個體以及其端點，以及 hello 目前角色執行個體的相關資訊。
 
 > [!NOTE]
 > 您只能抓取在您的雲端服務中執行，且至少定義一個內部端點之角色執行個體的相關資訊。 您無法取得在其他服務中執行之角色執行個體的相關資料。
 > 
 > 
 
-您可以使用 [Instances](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.role.instances.aspx) 屬性抓取角色的執行個體。 先使用 [CurrentRoleInstance](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.currentroleinstance.aspx) 以傳回對目前角色執行個體的參考，然後使用 [Role](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.role.aspx) 屬性來傳回對角色本身的參考。
+您可以使用 hello[執行個體](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.role.instances.aspx)屬性 tooretrieve 角色執行個體。 第一次使用 hello [CurrentRoleInstance](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleenvironment.currentroleinstance.aspx) tooreturn 參考 toohello 目前角色執行個體，然後再使用 hello[角色](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.role.aspx)屬性 tooreturn 參考 toohello 角色本身。
 
-當您以程式設計方式透過 .NET SDK 連接到角色執行個體時，存取端點資訊就相對較簡單。 例如，當您連接到特定的角色環境後，即可使用此程式碼取得特定端點的連接埠：
+當您以程式設計方式透過 hello.NET SDK 連線 tooa 角色執行個體時，是相當容易 tooaccess hello 端點資訊。 比方說，您已經連接 tooa 特定角色環境之後，您可以取得具有此程式碼的特定端點的 hello 連接埠：
 
 ```csharp
 int port = RoleEnvironment.CurrentRoleInstance.InstanceEndpoints["StandardWeb"].IPEndpoint.Port;
 ```
 
-**Instances** 屬性會傳回 **RoleInstance** 物件的集合。 這個集合一律會包含目前的執行個體。 如果該角色沒有定義內部端點，則該集合只包含目前的執行個體，沒有其他執行個體。 在沒有為角色定義內部端點的情況下，集合中的角色執行個體數量一律為 1。 如果該角色定義了一個內部端點，就可以在執行階段中探索其執行個體，而且集合中執行個體的數量將與服務組態檔中為該角色指定的執行個體數量相對應。
+hello**執行個體**屬性傳回的集合**RoleInstance**物件。 這個集合一定包含 hello 目前執行個體。 如果 hello 角色沒有定義內部端點，hello 集合會包含 hello 目前執行個體，但其他執行個體。 hello hello 集合中的角色執行個體數目一律為 hello 角色沒有任何內部端點定義所在的 hello 案例中為 1。 如果 hello 角色定義內部端點，其執行個體是在執行階段，可探索和 hello hello 集合中的執行個體數目將會對應 toohello hello 角色 hello 服務組態檔中指定的執行個體的數目。
 
 > [!NOTE]
-> Azure 設管理程式庫沒有提供判斷其他角色執行個體健康狀態的方法，但是如果您的服務需要這類功能，您可以自行實作此健康狀態評估。 您可以使用 [Azure 診斷](cloud-services-dotnet-diagnostics.md) 來取得執行中角色執行個體的相關資訊。
+> hello Azure Managed 程式庫不提供方法來決定 hello 健全狀況的其他角色執行個體，但您可以實作這類的健康情況評估自行如果您的服務需要這項功能。 您可以使用[Azure 診斷](cloud-services-dotnet-diagnostics.md)tooobtain 資訊執行角色執行個體。
 > 
 > 
 
-若要判斷角色執行個體上內部端點的連接埠號碼，您可以使用 [InstanceEndpoints](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.instanceendpoints.aspx) 屬性，以傳回包含端點名稱及其對應 IP 位址與連接埠的 Dictionary 物件。 [IPEndpoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstanceendpoint.ipendpoint.aspx) 屬性會傳回指定端點的 IP 位址和連接埠。 **PublicIPEndpoint** 屬性會傳回負載平衡端點的連接埠。 未使用 **PublicIPEndpoint** 屬性的 IP 位址部分。
+toodetermine hello 的角色執行個體上的內部端點的通訊埠編號，您可以使用 hello [InstanceEndpoints](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstance.instanceendpoints.aspx)屬性 tooreturn 字典物件，其中包含端點名稱和它們對應的 IP 位址和連接埠。 hello [IPEndpoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.serviceruntime.roleinstanceendpoint.ipendpoint.aspx)屬性會傳回 hello IP 位址和連接埠指定的端點。 hello **PublicIPEndpoint**屬性會傳回負載平衡端點的 hello 連接埠。 hello hello IP 位址部分**PublicIPEndpoint**屬性不使用。
 
 以下是逐一查看角色執行個體的範例。
 
@@ -125,10 +125,10 @@ foreach (RoleInstance roleInst in RoleEnvironment.CurrentRoleInstance.Role.Insta
 }
 ```
 
-以下是可取得透過服務定義所公開的端點並開始接聽連線之背景工作角色的範例。
+以下是取得 hello 服務定義會公開 hello 端點並開始接聽連接的背景工作角色的範例。
 
 > [!WARNING]
-> 這個程式碼只適用於已部署的服務。 在 Azure 計算模擬器中執行時，會忽略建立直接連接埠 (**InstanceInputEndpoint** 元素) 的服務組態元素。
+> 這個程式碼只適用於已部署的服務。 當在 hello Azure 計算模擬器中執行，服務會建立直接連接埠端點的組態項目 (**InstanceInputEndpoint**項目) 會被忽略。
 > 
 > 
 
@@ -167,7 +167,7 @@ namespace WorkerRole1
         var listener = new Socket(
           myInternalEp.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
-        // Bind socket listener to internal endpoint and listen
+        // Bind socket listener toointernal endpoint and listen
         listener.Bind(myInternalEp);
         listener.Listen(10);
         Trace.TraceInformation("Listening on IP:{0},Port: {1}",
@@ -175,7 +175,7 @@ namespace WorkerRole1
 
         while (true)
         {
-          // Block the thread and wait for a client request
+          // Block hello thread and wait for a client request
           Socket handler = listener.Accept();
           Trace.TraceInformation("Client request received.");
 
@@ -205,23 +205,23 @@ namespace WorkerRole1
 
     public override bool OnStart()
     {
-      // Set the maximum number of concurrent connections 
+      // Set hello maximum number of concurrent connections 
       ServicePointManager.DefaultConnectionLimit = 12;
 
       // For information on handling configuration changes
-      // see the MSDN topic at http://go.microsoft.com/fwlink/?LinkId=166357.
+      // see hello MSDN topic at http://go.microsoft.com/fwlink/?LinkId=166357.
       return base.OnStart();
     }
   }
 }
 ```
 
-## <a name="network-traffic-rules-to-control-role-communication"></a>用網路流量規則控制角色通訊
-定義內部端點之後，您可以新增網路流量規則 (根據建立的端點) 來控制角色之間通訊的方式。 下圖顯示一些控制角色通訊的常見案例：
+## <a name="network-traffic-rules-toocontrol-role-communication"></a>網路流量規則 toocontrol 角色通訊
+定義內部端點之後，您可以新增網路流量的規則 （根據您所建立的 hello 端點） toocontrol 角色執行個體可以如何與彼此通訊。 hello 下圖顯示控制角色通訊的一些常見案例：
 
 ![網路流量規則案例](./media/cloud-services-enable-communication-role-instances/scenarios.png "網路流量規則案例")
 
-以下程式碼範例顯示上圖中角色的角色定義。 每個角色定義都包含至少一個內部端點定義：
+hello 下列程式碼範例顯示 hello 如上圖所示的 hello 角色的角色定義。 每個角色定義都包含至少一個內部端點定義：
 
 ```xml
 <ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
@@ -257,10 +257,10 @@ namespace WorkerRole1
 > 
 > 
 
-根據預設，定義內部端點之後，來自任何角色的通訊都可以在沒有任何限制的情況下流向角色的內部端點。 若要限制通訊，您必須在服務定義檔中將 **NetworkTrafficRules** 元素新增至 **ServiceDefinition** 元素。
+根據預設，定義內部端點之後，通訊可以資料流程從任何角色 toohello 內部端點的角色沒有任何限制。 您必須新增 toorestrict 通訊**NetworkTrafficRules**元素 toohello **ServiceDefinition** hello 服務定義檔中的項目。
 
 ### <a name="scenario-1"></a>案例 1
-只允許從 **WebRole1** 至 **WorkerRole1** 的網路流量。
+只允許從網路流量**WebRole1**太**WorkerRole1**。
 
 ```xml
 <ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
@@ -279,7 +279,7 @@ namespace WorkerRole1
 ```
 
 ### <a name="scenario-2"></a>案例 2
-只允許從 **WebRole1** 至 **WorkerRole1** 和 **WorkerRole2** 的網路流量。
+只允許從網路流量**WebRole1**太**WorkerRole1**和**WorkerRole2**。
 
 ```xml
 <ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
@@ -298,7 +298,7 @@ namespace WorkerRole1
 ```
 
 ### <a name="scenario-3"></a>案例 3
-只允許從 **WebRole1** 至 **WorkerRole1**，以及從 **WorkerRole1** 至 **WorkerRole2** 的網路流量。
+只允許從網路流量**WebRole1**太**WorkerRole1**，和**WorkerRole1**太**WorkerRole2**。
 
 ```xml
 <ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
@@ -327,7 +327,7 @@ namespace WorkerRole1
 ```
 
 ### <a name="scenario-4"></a>案例 4
-只允許從 **WebRole1** 至 **WorkerRole1**、從 **WebRole1** 至 **WorkerRole2**，以及從 **WorkerRole1** 至 **WorkerRole2** 的網路流量。
+只允許從網路流量**WebRole1**太**WorkerRole1**， **WebRole1**太**WorkerRole2**，和**WorkerRole1**太**WorkerRole2**。
 
 ```xml
 <ServiceDefinition name="MyService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
@@ -367,8 +367,8 @@ namespace WorkerRole1
 </ServiceDefinition>
 ```
 
-[這裡](https://msdn.microsoft.com/library/azure/gg557551.aspx)有上數範例中使用之元素的 XML 結構描述參考。
+可以找到 hello 上面使用的項目 XML 結構描述參考[這裡](https://msdn.microsoft.com/library/azure/gg557551.aspx)。
 
 ## <a name="next-steps"></a>後續步驟
-深入了解雲端服務 [模型](cloud-services-model-and-package.md)。
+深入了解 hello 雲端服務[模型](cloud-services-model-and-package.md)。
 

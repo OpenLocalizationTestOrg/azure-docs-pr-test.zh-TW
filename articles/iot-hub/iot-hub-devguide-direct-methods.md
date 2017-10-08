@@ -1,6 +1,6 @@
 ---
-title: "了解 Azure IoT 中樞直接方法 | Microsoft Docs"
-description: "開發人員指南 - 從服務應用程式使用直接方法叫用您裝置上的程式碼。"
+title: "Azure IoT 中樞 aaaUnderstand 直接方法 |Microsoft 文件"
+description: "開發人員指南-使用直接的方法 tooinvoke 程式碼，在您的服務應用程式的裝置上。"
 services: iot-hub
 documentationcenter: .net
 author: nberdy
@@ -15,50 +15,50 @@ ms.workload: na
 ms.date: 08/25/2017
 ms.author: nberdy
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 77e788a32097edbcb1cd4faaa45f35812eabd94a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0d15d44a0c3e1d1cda1669c1ed011c2f932e3d92
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-and-invoke-direct-methods-from-iot-hub"></a>了解 IoT 中樞的直接方法並從中樞叫用直接方法
 ## <a name="overview"></a>概觀
-IoT 中樞能讓您從雲端在裝置上叫用直接方法。 直接方法代表與裝置的要求-回覆互動，類似於 HTTP 呼叫，因為會立即成功或失敗 (在使用者指定的逾時之後)。 這對於依據裝置是否可以回應的不同立即動作的案例相當有用，例如如果裝置離線時傳送 SMS 喚醒至裝置 (SMS 比方法呼叫還貴)。
+IoT 中樞讓您能夠 tooinvoke 直接的方法在 hello 雲端的裝置上。 直接方法代表與裝置的類似 tooan，在於它們成功或失敗 （之後立即使用者指定的逾時），呼叫 HTTP 要求-回覆之間的互動。 這是適合的情況下立即採取行動的 hello 課程 hello 裝置是否可以 toorespond，例如傳送 SMS 喚醒 tooa 裝置，如果裝置已離線 (SMS 正在成本高於方法呼叫) 而有所不同。
 
-每個裝置方法的目標是單一裝置。 [作業][lnk-devguide-jobs]提供方法來在多個裝置上叫用直接方法，並針對已中斷連接的裝置排定方法引動過程。
+每個裝置方法的目標是單一裝置。 [作業][ lnk-devguide-jobs]提供多個裝置，方式 tooinvoke 直接的方法，並排定方法引動過程已中斷連線的裝置。
 
 IoT 中樞上具有**服務連線**權限的任何人都可以叫用裝置上的方法。
 
-### <a name="when-to-use"></a>使用時機
-直接方法會遵循要求-回應模式，主要用於需要立即確認其結果的通訊，通常為裝置的互動式控制，例如開啟風扇。
+### <a name="when-toouse"></a>當 toouse
+直接的方法會遵循要求-回應模式，而需要立即確認其結果，通常是互動式控制權，hello 裝置，例如 tooturn 上 風扇的通訊開放。
 
-如果不確定要使用所需屬性、直接方法或雲端對裝置訊息，請參閱[雲端對裝置通訊指引][lnk-c2d-guidance]。
+請參閱太[雲端到裝置通訊指引][ lnk-c2d-guidance]使用所需的屬性之間的不確定，直接方法或雲端到裝置訊息。
 
 ## <a name="method-lifecycle"></a>方法生命週期
-直接方法是在裝置上實作，而且可能需要方法承載中的零或多個輸入以正確具現化。 您可以透過面向服務的 URI 叫用直接方法 (`{iot hub}/twins/{device id}/methods/`)。 裝置會透過裝置特定 MQTT 主題收到直接方法 (`$iothub/methods/POST/{method name}/`)。 我們未來可能會在額外的裝置端網路通訊協定上支援直接方法。
+直接的方法會實作 hello 裝置上，而且可能需要零或多個輸入 hello 方法裝載 toocorrectly 中的具現化。 您可以透過面向服務的 URI 叫用直接方法 (`{iot hub}/twins/{device id}/methods/`)。 裝置會透過裝置特定 MQTT 主題收到直接方法 (`$iothub/methods/POST/{method name}/`)。 我們可能支援其他的裝置後端網路通訊協定，在未來的 hello 直接的方法。
 
 > [!NOTE]
-> 當您在裝置上叫用直接方法時，屬性名稱和值只能包含 US-ASCII 可列印英數字元，下列集合中的任何字元除外︰``{'$', '(', ')', '<', '>', '@', ',', ';', ':', '\', '"', '/', '[', ']', '?', '=', '{', '}', SP, HT}``。
+> 當您叫用的裝置上直接方法時，屬性名稱和值只能包含 US-ASCII 可列印英數字元、 在 hello 下列設定除外： ``{'$', '(', ')', '<', '>', '@', ',', ';', ':', '\', '"', '/', '[', ']', '?', '=', '{', '}', SP, HT}``。
 > 
 > 
 
-直接方法是同步的，可能在逾時期間後成功或失敗 (預設︰30 秒，可設定為 3600 秒)。 直接方法在您想要裝置當作在線上並且接收命令 (例如透過手機開燈) 的互動案例中相當有用。 在這些案例中，您想要查看立即成功或失敗，讓雲端服務可以儘速處理結果。 裝置可能會傳回部分訊息本文作為方法的結果，但是不需要方法這麼做。 不保證方法呼叫的順序或任何並行語意。
+直接方法是同步，可能會成功或失敗之後 hello 逾時期限 (預設： 30 秒，可設定總 too3600 秒)。 直接的方法可用於互動式案例中，您的裝置 tooact 才 hello 裝置是線上和接收的命令，例如開啟的燈號電話。 在這些情況下，您想 toosee 立即成功或失敗所以 hello 雲端服務可以儘速處理 hello 結果。 hello 裝置可能會傳回 hello 方法，因為某些訊息本文，但不需要 hello 方法 toodo 如此。 不保證方法呼叫的順序或任何並行語意。
 
-直接的方法從雲端側為僅限 HTTP，從裝置側則為僅限 MQTT。
+直接的方法是僅限 HTTP 從 hello 雲端端，和 MQTT 僅從 hello 裝置端。
 
-方法要求和回應的承載是 JSON 文件 (最多 8 KB)。
+方法要求和回應的 hello 裝載是總 too8KB JSON 文件。
 
 ## <a name="reference-topics"></a>參考主題：
-下列參考主題會提供您關於使用直接方法的詳細資訊。
+hello 下列參考主題提供有關使用直接的方法的詳細資訊。
 
 ## <a name="invoke-a-direct-method-from-a-back-end-app"></a>從後端應用程式叫用直接方法
 ### <a name="method-invocation"></a>方法引動過程
 裝置上的直接方法引動過程是 HTTP 呼叫，包含︰
 
-* 裝置特定的 *URI* (`{iot hub}/twins/{device id}/methods/`)
-* POST *方法*
-* *標頭*，其中包含授權、要求識別碼、內容類型及內容編碼
-* 透明 JSON *本文*格式如下︰
+* hello *URI*特定 toohello 裝置 (`{iot hub}/twins/{device id}/methods/`)
+* hello POST*方法*
+* *標頭*其中包含 hello 的授權，請要求識別碼、 內容類型和內容編碼方式
+* 透明 JSON*主體*在 hello 下列格式：
 
 ```
 {
@@ -71,14 +71,14 @@ IoT 中樞上具有**服務連線**權限的任何人都可以叫用裝置上的
 }
 ```
 
-逾時 (秒)。 如果未設定逾時，它會預設為 30 秒。
+逾時 (秒)。 如果未設定逾時，它會預設 too30 秒。
 
 ### <a name="response"></a>Response
-後端應用程式收到的回應包含︰
+hello 後端應用程式收到的回應所組成：
 
-* *HTTP 狀態碼*，用於來自 IoT 中樞的錯誤，包括裝置目前未連接的 404 錯誤
-* *標頭*，其中包含 ETag、要求識別碼、內容類型及內容編碼
-* JSON *本文*格式如下︰
+* *HTTP 狀態碼*，用來自 hello IoT 中樞的錯誤，包括 404 錯誤的裝置目前未連接
+* *標頭*其中包含 hello ETag，要求識別碼、 內容類型和內容編碼方式
+* JSON*主體*在 hello 下列格式：
 
 ```
 {
@@ -87,13 +87,13 @@ IoT 中樞上具有**服務連線**權限的任何人都可以叫用裝置上的
 }
 ```
 
-   `status` 和 `body` 都是由裝置提供，用來回應裝置本身的狀態碼和/或描述。
+   同時`status`和`body`hello 裝置所提供，且 toorespond 搭配 hello 裝置本身的狀態碼和/或描述。
 
 ## <a name="handle-a-direct-method-on-a-device"></a>在裝置上處理直接方法
 ### <a name="method-invocation"></a>方法引動過程
-裝置會接收 MQTT 主題的直接方法要求︰`$iothub/methods/POST/{method name}/?$rid={request id}`
+裝置收到 hello MQTT 主題上的直接方法要求：`$iothub/methods/POST/{method name}/?$rid={request id}`
 
-裝置所接收的本文格式如下︰
+哪些 hello 裝置收到 hello 主體為下列格式的 hello:
 
 ```
 {
@@ -105,28 +105,28 @@ IoT 中樞上具有**服務連線**權限的任何人都可以叫用裝置上的
 方法要求為 QoS 0。
 
 ### <a name="response"></a>Response
-裝置會傳送回應至 `$iothub/methods/res/{status}/?$rid={request id}`，其中︰
+hello 裝置所傳送的回應太`$iothub/methods/res/{status}/?$rid={request id}`，其中：
 
-* `status` 屬性是方法執行的裝置提供狀態。
-* `$rid` 屬性是從 IoT 中樞接收的方法引動過程的要求識別碼。
+* hello`status`屬性是 hello 方法執行的裝置提供狀態。
+* hello`$rid`屬性是從 IoT 中樞從收到 hello 方法引動過程的 hello 要求識別碼。
 
-本文是由裝置設定，而且可以是任何狀態。
+hello 主體由 hello 裝置設定，而且可以是任何狀態。
 
 ## <a name="additional-reference-material"></a>其他參考資料
-IoT 中樞開發人員指南中的其他參考主題包括︰
+Hello IoT 中樞開發人員指南 》 中的其他參考主題包括：
 
-* [IoT 中樞端點][lnk-endpoints]說明每個 IoT 中樞公開給執行階段和管理作業的各種端點。
-* [節流和配額][lnk-quotas]說明適用於 IoT 中樞服務的配額，和使用服務時所預期的節流行為。
-* [Azure IoT 裝置和服務 SDK][lnk-sdks] 列出各種語言 SDK，可供您在開發與「IoT 中樞」互動的裝置和服務應用程式時使用。
-* [裝置對應項、作業和訊息路由的 IoT 中樞查詢語言][lnk-query]說明可用於從 IoT 中樞擷取有關裝置對應項和作業資訊的 IoT 中樞查詢語言。
-* [IoT 中樞 MQTT 支援][lnk-devguide-mqtt]針對 MQTT 通訊協定提供 IoT 中樞支援的詳細資訊。
+* [IoT 中樞端點][ lnk-endpoints]描述 hello 各種執行階段和管理作業的每個 IoT 中樞會公開的端點。
+* [節流和配額][ lnk-quotas]描述 hello 配額套用 toohello IoT 中心服務和 hello 節流行為 tooexpect，當您使用 hello 服務。
+* [Azure IoT 裝置和服務 Sdk] [ lnk-sdks]清單 hello 各種語言互動的裝置和服務應用程式開發與 IoT 中樞時，您可以使用的 Sdk。
+* [IoT 中樞裝置雙、 作業和訊息路由的查詢語言][ lnk-query]描述 hello IoT 中樞的查詢語言，您可以使用您的裝置雙和作業相關的 tooretrieve 資訊從 IoT 中樞。
+* [IoT 中樞 MQTT 支援][ lnk-devguide-mqtt] hello MQTT 通訊協定提供 IoT 中樞支援的詳細資訊。
 
 ## <a name="next-steps"></a>後續步驟
-現在您已了解如何使用直接方法，接下來您可能對下列 IoT 中樞開發人員指南主題感興趣︰
+現在您已經學會如何 toouse 直接的方法，您可能會想要 hello 遵循 IoT 中樞開發人員指南 》 主題：
 
 * [排程多個裝置上的作業][lnk-devguide-jobs]
 
-如果您想要嘗試本文章所述的概念，您可能會對下列 IoT 中樞教學課程感興趣：
+如果您想要查看這篇文章中所述的 hello 概念 tootry，您可能想要遵循 IoT 中樞教學課程中的 hello:
 
 * [使用直接方法][lnk-methods-tutorial]
 

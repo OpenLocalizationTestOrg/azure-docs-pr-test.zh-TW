@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Data Lake Analytics 中的 U-SQL 辨識功能| Microsoft Docs"
-description: "了解如何使用 U-SQL 中辨識功能的智慧"
+title: "aaaUsing Azure Data Lake Analytics U-SQL 認知能力 |Microsoft 文件"
+description: "了解如何 toouse hello 認知中的功能 U-SQL 智慧"
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: saveenr
-ms.openlocfilehash: f77329f9838d6e824afa7234de90f62257a004de
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c9ac71f490e929070fa0e72b93c3ffdb1ab243b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-get-started-with-the-cognitive-capabilities-of-u-sql"></a>教學課程︰開始使用 U-SQL 的辨識功能
+# <a name="tutorial-get-started-with-hello-cognitive-capabilities-of-u-sql"></a>教學課程： 開始使用 U-SQL hello 認知功能
 
-U-SQL 的辨識功能讓開發人員可以在其公司的巨量資料程式中使用 put 智慧。 整個程序簡述如下︰
+U-SQL 認知功能可讓開發人員 toouse 智慧置於他們巨量資料的程式。 hello 中簡單的整體程序：
 
-* 使用 REFERENCE ASSEMBLY 陳述式啟用 U-SQL 指令碼的辨識功能
-* 呼叫 PROCESS 作業來使用辨識功能 
+* Hello 參考組件陳述式 tooenable hello 認知功能用於 hello U-SQL 指令碼
+* 呼叫 hello 處理作業 toouse hello 認知功能 
 
 ## <a name="imaging-scenarios"></a>影像案例
 
 ### <a name="example-image-tagging"></a>範例：影像標記
 
-下列範例顯示以端對端使用影像功能來偵測影像中的物件。
+下列範例中的 hello 顯示 hello 影像處理功能 toodetect 物件映像中的端對端使用。
 
     REFERENCE ASSEMBLY ImageCommon;
     REFERENCE ASSEMBLY FaceSdk;
@@ -44,7 +44,7 @@ U-SQL 的辨識功能讓開發人員可以在其公司的巨量資料程式中�
         FROM @"/images/{FileName:*}.jpg"
         USING new Cognition.Vision.ImageExtractor();
 
-    // Extract the number of objects on each image and tag them 
+    // Extract hello number of objects on each image and tag them 
     @objects =
         PROCESS @imgs 
         PRODUCE FileName,
@@ -120,7 +120,7 @@ U-SQL 的辨識功能讓開發人員可以在其公司的巨量資料程式中�
                 Text
         USING new Cognition.Text.KeyPhraseExtractor();
 
-    // Tokenize the key phrases.
+    // Tokenize hello key phrases.
     @kpsplits =
         SELECT No,
             Year,

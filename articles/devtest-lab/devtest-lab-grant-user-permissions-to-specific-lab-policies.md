@@ -1,6 +1,6 @@
 ---
-title: "將特定實驗室原則的權限授與使用者 | Microsoft Docs"
-description: "了解如何根據每個使用者的需求將使用者權限授與研發/測試實驗室中的特定實驗室原則"
+title: "aaaGrant 使用者權限 toospecific 實驗室原則 |Microsoft 文件"
+description: "了解如何 toogrant 使用者權限 toospecific 實驗室中的原則 DevTest Labs 根據每個使用者的需求"
 services: devtest-lab,virtual-machines,visual-studio-online
 documentationcenter: na
 author: tomarcher
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/25/2016
 ms.author: tarcher
-ms.openlocfilehash: 0bd9f83257834d9681479ba9117c48ffd6d6e166
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 35647ab837243188f06566cdf365b67fe33a3865
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="grant-user-permissions-to-specific-lab-policies"></a>將特定實驗室原則的權限授與使用者
-## <a name="overview"></a>Overview
-本文說明如何使用 PowerShell 將特定實驗室原則的權限授與使用者。 這樣便可根據每個使用者的需求來套用權限。 例如，您可能想要將變更 VM 原則設定 (而非成本原則) 的能力授與特定的使用者。
+# <a name="grant-user-permissions-toospecific-lab-policies"></a>Toospecific 實驗室原則授與使用者權限
+## <a name="overview"></a>概觀
+本文將說明如何 toouse PowerShell toogrant 使用者權限 tooa 特定實驗室原則。 這樣便可根據每個使用者的需求來套用權限。 例如，您可能想 toogrant 特定使用者 hello 能力 toochange hello VM 原則設定，但不是 hello 成本的原則。
 
 ## <a name="policies-as-resources"></a>原則即資源
-如 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md) 中所討論，RBAC 可讓您對 Azure 的資源進行更細緻的存取管理。 您可以使用 RBAC 來區隔開發小組的職責，僅授與使用者作業所需的存取權。
+Hello 中所述[Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)文件： RBAC 啟用 azure 的精細存取管理的資源。 使用 RBAC 時，您可以隔離 DevOps 小組內的責任，並授與存取 toousers 只有 hello 數量他們需要 tooperform 他們的工作。
 
-在研發/測試實驗室中，原則是一種可啟用 RBAC 動作 **Microsoft.DevTestLab/labs/policySets/policies/**的資源類型。 每個實驗室原則都是「原則」資源類型中的資源，並且可被指派成某個 RBAC 角色的範圍。
+DevTest 實驗室中原則已啟用 hello RBAC 動作資源類型**Microsoft.DevTestLab/labs/policySets/policies/**。 每個實驗室原則 hello 原則資源類型中的資源，且可以指派為範圍 tooan RBAC 角色。
 
-例如，若要授與使用者讀取/寫入權限**允許 VM 大小**原則，您會建立自訂安全性角色可搭配**Microsoft.DevTestLab/labs/policySets/policies/***動作，然後將適當的使用者指派給此自訂角色的範圍內**Microsoft.DevTestLab/labs/policySets/policies/AllowedVmSizesInLab**。
+例如，在訂單 toogrant 使用者讀取/寫入權限 toohello**允許 VM 大小**原則，您會建立自訂安全性角色可搭配 hello **Microsoft.DevTestLab/labs/policySets/policies/*** 動作，然後再指派 hello 適當的使用者 toothis 自訂角色中的 hello 範圍**Microsoft.DevTestLab/labs/policySets/policies/AllowedVmSizesInLab**。
 
-若要深入了解 RBAC 中的自訂角色，請參閱[自訂角色存取控制](../active-directory/role-based-access-control-custom-roles.md)。
+toolearn 進一步了解自訂角色中 RBAC，請參閱 hello[自訂角色存取控制](../active-directory/role-based-access-control-custom-roles.md)。
 
 ## <a name="creating-a-lab-custom-role-using-powershell"></a>使用 PowerShell 建立實驗室自訂角色
-為了開始進行，您將需要閱讀下列文章，此文章將說明如何安裝和設定 Azure PowerShell Cmdlet： [https://azure.microsoft.com/blog/azps-1-0-pre](https://azure.microsoft.com/blog/azps-1-0-pre)。
+在啟動順序 tooget，您將需要 tooread hello 下列文章，將說明如何 tooinstall 及設定 hello Azure PowerShell cmdlet: [https://azure.microsoft.com/blog/azps-1-0-pre](https://azure.microsoft.com/blog/azps-1-0-pre)。
 
-設定完 Azure PowerShell Cmdlet 之後，您便可執行下列工作：
+一旦您已設定 hello Azure PowerShell cmdlet，您可以執行下列工作的 hello:
 
-* 列出資源提供者的所有作業/動作
+* 列出所有 hello operations/動作的資源提供者
 * 列出特定角色中的動作：
 * 建立自訂角色
 
-下列 PowerShell 指令碼提供範例來說明如何執行這些工作：
+下列 PowerShell 指令碼的 hello 說明的範例 tooperform 這些工作：
 
-    ‘List all the operations/actions for a resource provider.
+    ‘List all hello operations/actions for a resource provider.
     Get-AzureRmProviderOperation -OperationSearchString "Microsoft.DevTestLab/*"
 
     ‘List actions in a particular role.
@@ -60,10 +60,10 @@ ms.lasthandoff: 07/11/2017
     $policyRoleDef.Actions.Add("Microsoft.DevTestLab/labs/policySets/policies/*")
     $policyRoleDef = (New-AzureRmRoleDefinition -Role $policyRoleDef)
 
-## <a name="assigning-permissions-to-a-user-for-a-specific-policy-using-custom-roles"></a>使用自訂角色將特定原則的權限指派給使用者
-定義自訂角色之後，您便可以將它們指派給使用者。 為了將自訂角色指派給使用者，您必須先取得代表該使用者的 **ObjectId** 。 若要這樣做，請使用 **Get-AzureRmADUser** Cmdlet。
+## <a name="assigning-permissions-tooa-user-for-a-specific-policy-using-custom-roles"></a>指派權限 tooa 使用者提供具體的原則，使用自訂角色
+一旦您定義了自訂角色，您可以將它們指派 toousers。 在訂單 tooassign 自訂角色 tooa 使用者，您必須先取得 hello **ObjectId**代表該使用者。 可使用 hello toodo **Get AzureRmADUser** cmdlet。
 
-在下列範例中， **SomeUser** 使用者的 *ObjectId* 是 05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3。
+在下列範例的 hello，hello **ObjectId**的 hello *SomeUser*使用者是 05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3。
 
     PS C:\>Get-AzureRmADUser -SearchString "SomeUser"
 
@@ -71,11 +71,11 @@ ms.lasthandoff: 07/11/2017
     -----------                    ----                           --------
     someuser@hotmail.com                                          05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3
 
-有了使用者的 **ObjectId** 和自訂角色名稱之後，您便可以使用 **New-AzureRmRoleAssignment** Cmdlet 將該角色指派給使用者：
+一旦您擁有 hello **ObjectId** hello 使用者和自訂角色名稱，您可以指派給該角色 toohello 使用者以 hello**新增 AzureRmRoleAssignment** cmdlet:
 
     PS C:\>New-AzureRmRoleAssignment -ObjectId 05DEFF7B-0AC3-4ABF-B74D-6A72CD5BF3F3 -RoleDefinitionName "Policy Contributor" -Scope /subscriptions/<SubscriptionID>/resourceGroups/<ResourceGroupName>/providers/Microsoft.DevTestLab/labs/<LabName>/policySets/policies/AllowedVmSizesInLab
 
-在先前的範例中，使用的是 **AllowedVmSizesInLab** 原則。 您也可以使用下列任何原則：
+Hello 上述範例中，在 hello **AllowedVmSizesInLab**原則使用。 您可以使用任何 hello 下列原則：
 
 * MaxVmsAllowedPerUser
 * MaxVmsAllowedPerLab
@@ -85,11 +85,11 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
 ## <a name="next-steps"></a>後續步驟
-將特定實驗室原則的權限授與使用者之後，以下是一些需要考量的後續步驟：
+一次您授與使用者權限 toospecific 實驗室原則，以下是一些下一個步驟 tooconsider:
 
-* [安全存取實驗室](devtest-lab-add-devtest-user.md)。
+* [安全存取 tooa 實驗室](devtest-lab-add-devtest-user.md)。
 * [設定實驗室原則](devtest-lab-set-lab-policy.md)。
 * [建立實驗室範本](devtest-lab-create-template.md)。
 * [為您的 VM 建立自訂成品](devtest-lab-artifact-author.md)。
-* [將具有構件的 VM 新增至實驗室](devtest-lab-add-vm-with-artifacts.md)。
+* [加入具有成品 tooa 實驗室 VM](devtest-lab-add-vm-with-artifacts.md)。
 

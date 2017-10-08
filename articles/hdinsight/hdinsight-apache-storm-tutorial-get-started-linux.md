@@ -1,6 +1,6 @@
 ---
-title: "HDInsight 上 Apache Storm 的 Storm-starter 範例 | Microsoft Docs"
-description: "了解如何使用 Apache Storm 和 HDInsight 上的 storm-starter 範例來執行巨量資料分析及處理資料。"
+title: "HDInsight 的 Azure 上的 Apache Storm 的 aaaStorm 入門範例 |Microsoft 文件"
+description: "深入了解如何 toodo 巨量資料分析，並處理中即時的資料使用 Apache Storm 與 hello storm 入門 HDInsight 上的範例。"
 keywords: "storm-starter, apache storm 範例"
 services: hdinsight
 documentationcenter: 
@@ -16,20 +16,20 @@ ms.workload: big-data
 ms.date: 08/15/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive,hdiseo17may2017
-ms.openlocfilehash: 83fc6db1ddb43eb87e7c58684505d7196c1e53d0
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bb6d6549e67ca5b557f0692f98c89692a87267b0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-#<a name="get-started-with-apache-storm-on-hdinsight-using-the-storm-starter-examples"></a>使用 storm-starter 範例在 HDInsight 上開始使用 Apache Storm
+#<a name="get-started-with-apache-storm-on-hdinsight-using-hello-storm-starter-examples"></a>開始使用 Apache Storm 上 HDInsight 使用 hello storm 入門範例
 
-了解如何使用 storm-starter 範例，在 HDInsight 中使用 Apache Storm。
+了解如何在使用 HDInsight toouse Apache Storm hello storm 入門範例。
 
 Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運算系統。 在 Storm on Azure HDInsight 中，您可以建立雲端式 Storm 叢集，以執行即時的巨量資料分析。
 
 > [!IMPORTANT]
-> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+> Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -41,24 +41,24 @@ Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運�
 
 ## <a name="create-a-storm-cluster"></a>建立 Storm 叢集
 
-請使用下列步驟建立 Storm on HDInsight 叢集：
+使用下列步驟 toocreate Storm HDInsight 叢集上的 hello:
 
-1. 從 [Azure 入口網站](https://portal.azure.com)選取 [+ 新增]、[情報 + 分析] 及 [HDInsight]，然後選取 [HDInsight]。
+1. 從 hello [Azure 入口網站](https://portal.azure.com)，選取**+ 新增**，**智慧 + 分析**，然後選取**HDInsight**。
 
     ![建立 HDInsight 叢集](./media/hdinsight-apache-storm-tutorial-get-started-linux/create-hdinsight.png)
 
-2. 在 [基本概念] 刀鋒視窗中，輸入下列資訊：
+2. 從 hello**基本概念**刀鋒視窗中，輸入下列資訊的 hello:
 
-    * **叢集名稱**︰HDInsight 叢集的名稱。
-    * **訂用帳戶**：選取要使用的訂用帳戶。
-    * **叢集登入使用者名稱**和**叢集登入密碼**：透過 HTTPS 存取叢集時使用的登入資訊。 您會使用這些認證來存取例如 Ambari Web UI 或 REST API 等服務。
-    * **安全殼層 (SSH) 使用者名稱**：透過 SSH 存取叢集時使用的登入資訊。 依預設，密碼要與叢集登入密碼相同。
-    * **資源群組**：在其中建立叢集的資源群組。
-    * **位置**：在其中建立叢集的 Azure 區域。
+    * **叢集名稱**: hello hello HDInsight 叢集名稱。
+    * **訂用帳戶**： 選取 hello 訂用帳戶 toouse。
+    * **叢集登入使用者名稱**和**叢集登入密碼**: hello 登入透過 HTTPS 存取 hello 叢集時。 您使用這些認證 tooaccess 服務，例如 hello Ambari Web UI 或 REST API。
+    * **安全殼層 (SSH) 的使用者名稱**: hello 透過 SSH 存取 hello 叢集時使用的登入。 根據預設 hello 密碼是 hello hello 叢集登入密碼相同。
+    * **資源群組**: hello 資源群組 toocreate hello 叢集中。
+    * **位置**: hello Azure 地區 toocreate hello 叢集中。
 
     ![選取訂用帳戶](./media/hdinsight-apache-storm-tutorial-get-started-linux/hdinsight-basic-configuration.png)
 
-3. 選取 [叢集類型]，並且在 [叢集組態] 刀鋒視窗中設定下列值︰
+3. 選取**叢集類型**，然後組 hello 遵循值上 hello**叢集設定**刀鋒視窗中：
 
     * **叢集類型**：Storm
 
@@ -68,99 +68,99 @@ Apache Storm 是一個可處理資料串流的分散式、容錯、即時的運�
 
     * **叢集層**：標準
 
-    最後，使用 [選取] 按鈕來儲存設定。
+    最後，使用 hello**選取**按鈕 toosave 設定。
 
     ![選取叢集類型](./media/hdinsight-apache-storm-tutorial-get-started-linux/set-hdinsight-cluster-type.png)
 
-4. 選取叢集類型之後，請使用 [選取] 按鈕來設定叢集類型。 接下來，使用 [下一步] 按鈕來完成基本組態。
+4. 選取 hello 叢集類型後，使用 hello__選取__按鈕 tooset hello 叢集類型。 接下來，使用 hello__下一步__按鈕 toofinish 基本組態。
 
-5. 從 [儲存體] 刀鋒視窗中，選取或建立儲存體帳戶。 本文件的步驟是，將此刀鋒視窗中的其他欄位保留為預設值。 使用 [下一步] 按鈕以儲存儲存體組態。
+5. 從 hello**儲存體**刀鋒視窗中，選取或建立儲存體帳戶。 如需本文件中的 hello 步驟，hello 預設值，此刀鋒視窗上其他欄位保留 hello。 使用 hello__下一步__按鈕 toosave 存放裝置設定。
 
-    ![設定 HDInsight 的儲存體帳戶](./media/hdinsight-apache-storm-tutorial-get-started-linux/set-hdinsight-storage-account.png)
+    ![設定 hello HDInsight 的儲存體帳戶設定](./media/hdinsight-apache-storm-tutorial-get-started-linux/set-hdinsight-storage-account.png)
 
-6. 從 [摘要] 刀鋒視窗中，檢閱叢集組態。 使用 [編輯] 連結來變更所有不正確的設定。 最後，使用 [建立] 按鈕來建立叢集。
+6. 從 hello**摘要**刀鋒視窗中，檢閱 hello hello 叢集組態。 使用 hello__編輯__連結 toochange 任何不正確的設定。 最後，使用 the__Create__ 按鈕 toocreate hello 叢集。
 
     ![叢集組態摘要](./media/hdinsight-apache-storm-tutorial-get-started-linux/hdinsight-configuration-summary.png)
 
     > [!NOTE]
-    > 建立叢集可能需要花費 20 分鐘的時間。
+    > 它可能會佔用 too20 分鐘 toocreate hello 叢集。
 
 ## <a name="run-a-storm-starter-sample-on-hdinsight"></a>在 HDInsight 上執行 storm-starter 範例
 
-1. 使用 SSH 連線到 HDInsight 叢集
+1. 連線使用 SSH toohello HDInsight 叢集：
 
         ssh USERNAME@CLUSTERNAME-ssh.azurehdinsight.net
 
-    如果您已經使用密碼保護您 SSH 使用者帳戶的安全，系統會提示您輸入密碼。 如果您使用的是公開金鑰，您需要使用 `-i` 參數來指定對應的私密金鑰。 例如， `ssh -i ~/.ssh/id_rsa USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`。
+    如果您使用密碼 toosecure SSH 使用者帳戶，則提示的 tooenter 它。 如果您使用公開金鑰，您可能需要使用 hello`-i`參數 toospecify hello 相符的私密金鑰。 例如： `ssh -i ~/.ssh/id_rsa USERNAME@CLUSTERNAME-ssh.azurehdinsight.net`。
 
     如需相關資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-2. 使用下列命令以啟動範例拓撲：
+2. 使用下列命令 toostart 範例拓撲 hello:
 
         storm jar /usr/hdp/current/storm-client/contrib/storm-starter/storm-starter-topologies-*.jar org.apache.storm.starter.WordCountTopology wordcount
 
     > [!NOTE]
-    > 在舊版 HDInsight 上，拓撲的類別名稱是 `storm.starter.WordCountTopology` 而不是 `org.apache.storm.starter.WordCountTopology`。
+    > 在舊版的 HDInsight，hello 拓撲 hello 類別名稱是`storm.starter.WordCountTopology`而不是`org.apache.storm.starter.WordCountTopology`。
 
-    此命令會在叢集上使用 'wordcount' 的易記名稱，啟動範例 WordCount 拓撲。 命令會隨機產生句子，並計算句子中每個字詞的出現次數。
+    此命令會啟動在 hello 叢集上，易記名稱為 'wordcount' hello WordCount 拓撲的範例。 它 hello 句子中會隨機產生的句子與計數 hello 發生的每個字。
 
     > [!NOTE]
-    > 將您自己的拓撲提交至叢集時，必須先複製包含叢集的 jar 檔案，再使用 `storm` 命令。 使用 `scp` 命令來複製檔案。 例如， `scp FILENAME.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:FILENAME.jar`
+    > 提交時您自己的拓撲 toohello 叢集，您必須先將 hello jar 檔案包含之前使用 hello hello 叢集`storm`命令。 使用 hello`scp`命令 toocopy hello 檔案。 例如， `scp FILENAME.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:FILENAME.jar`
     >
-    > WordCount 範例和其他 storm-starter 範例都已經包含在叢集中，位置是 `/usr/hdp/current/storm-client/contrib/storm-starter/`。
+    > hello WordCount 範例中，與其他 storm 入門範例，已包含在叢集上`/usr/hdp/current/storm-client/contrib/storm-starter/`。
 
-如果您有興趣檢視 storm-starter 範例的來源，可以在 [https://github.com/apache/storm/tree/1.1.x-branch/examples/storm-starter](https://github.com/apache/storm/tree/1.1.x-branch/examples/storm-starter) 找到程式碼。 這個連結是 Storm 1.1.x，隨附於 HDInsight 3.6。 如需其他 Storm 版本，請使用頁面頂端的 __Branch__ 分支 按鈕來選取其他 Storm 版本。
+如果您有興趣檢視 hello hello storm 入門範例的來源，您可以找到 hello 程式碼在[https://github.com/apache/storm/tree/1.1.x-branch/examples/storm-starter](https://github.com/apache/storm/tree/1.1.x-branch/examples/storm-starter)。 這個連結是 Storm 1.1.x，隨附於 HDInsight 3.6。 對於其他版本的情況中，使用 hello__分支__按鈕上方的 hello 頁面 tooselect hello Storm 版本不同。
 
-## <a name="monitor-the-topology"></a>監視拓撲
+## <a name="monitor-hello-topology"></a>監視 hello 拓樸
 
-Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsight 叢集中。
+hello Storm UI 提供 web 介面，用於執行的拓撲，並包含在您的 HDInsight 叢集。
 
-使用下列步驟以 Storm UI 監視拓撲。
+使用下列步驟 toomonitor hello 拓撲使用 hello Storm UI hello:
 
-1. 若要顯示 Storm UI，請開啟網頁瀏覽器並前往 https://CLUSTERNAME.azurehdinsight.net/stormui。 將 **CLUSTERNAME** 取代為您叢集的名稱。
+1. toodisplay hello Storm UI 中，開啟 web 瀏覽器 toohttps://CLUSTERNAME.azurehdinsight.net/stormui。 取代**CLUSTERNAME**與 hello 叢集的名稱。
 
     > [!NOTE]
-    > 如果要求您提供使用者名稱和密碼，請輸入叢集系統管理員 (admin) 和建立叢集時使用的密碼。
+    > 如果使用者名稱和密碼，請詢問 tooprovide，請輸入 hello 叢集系統管理員 （管理員） 和密碼時使用建立 hello 叢集。
 
-2. 在 [拓撲摘要] 下，選取 [名稱] 欄中的 [wordcount] 項目。 關於拓撲的詳細資訊隨即顯示。
+2. 在下**拓撲摘要**，選取 hello **wordcount** hello 中的項目**名稱**資料行。 會顯示 hello 拓撲的相關資訊。
 
     ![包含 storm-starter WordCount 拓樸資訊的 Storm 儀表板。](./media/hdinsight-apache-storm-tutorial-get-started-linux/topology-summary.png)
 
-    此頁面提供以下資訊：
+    此頁面提供下列資訊的 hello:
 
-    * **拓撲統計資料 (Topology stats)** ：拓撲效能的基本資訊，已整理為時間範圍。
+    * **拓樸 stats** -hello 拓撲效能的基本資訊組織成時段。
 
         > [!NOTE]
-        > 選取特定的時間範圍，可以變更頁面中其他區段所顯示之資訊的時間範圍。
+        > 選取的特定時間視窗變更 hello 時間視窗 hello 網頁上的其他區段中顯示的資訊。
 
-    * **Spouts** ：spout 的基本資訊，包括每個 spout 傳回的最後一個錯誤。
+    * **Spouts** -spouts，包括傳回每個 spout hello 最後一個錯誤的基本資訊。
 
     * **Bolts** ：bolt 的基本資訊。
 
-    * **拓撲組態 (Topology configuration)** ：拓撲組態的詳細資訊。
+    * **拓撲組態**-hello 拓撲組態有關的詳細資訊。
 
-    此頁面也提供可對拓撲採取的動作：
+    此頁面也提供可以在 hello 拓撲採取的動作：
 
     * **啟用** ：繼續處理已停用的拓撲。
 
     * **停用** ：暫停執行中拓撲。
 
-    * **重新平衡** ：調整拓撲的平行處理原則。 變更叢集中的節點數目之後，您應該重新平衡執行中拓撲。 重新平衡調整平行處理原則，以彌補叢集中增加/減少的節點數目。 如需詳細資訊，請參閱[了解 Storm 拓撲的平行處理原則](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html)。
+    * **重新平衡**-調整 hello 拓樸的 hello 平行處理原則。 之後您已經變更 hello hello 叢集中的節點數目，您應該重新平衡執行的拓撲。 重新平衡調整平行處理原則 toocompensate hello 增加/減少編號 hello 叢集中的節點。 如需詳細資訊，請參閱[了解 hello 平行處理原則的 Storm 拓撲](http://storm.apache.org/documentation/Understanding-the-parallelism-of-a-Storm-topology.html)。
 
-    * **終止 (Kill)** ：在指定的逾時之後終止 Storm 拓撲。
+    * **Kill** -hello 指定逾時之後終止 Storm 拓撲。
 
-3. 在此頁面中，選取 [Spouts] 或 [Bolts] 區段中的一個項目。 關於所選元件的詳細資訊隨即顯示。
+3. 此頁面上，從選取的項目從 hello **Spouts**或**釘**> 一節。 會顯示 hello 選元件的相關資訊。
 
     ![包含所選元件相關資訊的 Storm 儀表板。](./media/hdinsight-apache-storm-tutorial-get-started-linux/component-summary.png)
 
-    此頁面會顯示以下資訊：
+    此頁面會顯示下列資訊的 hello:
 
-    * **Spout/Bolt 統計資料 (Spout/Bolt stats)** ：元件效能的基本資訊，已整理為時間範圍。
+    * **Spout 閃電 stats** -hello 元件效能的基本資訊組織成時段。
 
         > [!NOTE]
-        > 選取特定的時間範圍，可以變更頁面中其他區段所顯示之資訊的時間範圍。
+        > 選取的特定時間視窗變更 hello 時間視窗 hello 網頁上的其他區段中顯示的資訊。
 
-    * **輸入統計資料 (Input stats)** (僅 bolt)：提供的資訊是關於產生 bolt 所使用之資料的元件。
+    * **輸入 stats** （只有閃電）-產生 hello 閃電所耗用的資料之元件的資訊。
 
     * **輸出統計資料 (Output stats)** ：此 bolt 發出之資料的資訊。
 
@@ -168,7 +168,7 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
 
     * **錯誤** ：此元件產生的錯誤。
 
-4. 檢視 spout 或 bolt 的詳細資料時，請在 [執行程式] 區段的 [連接埠] 欄中選取一個項目，以檢視特定元件執行個體的詳細資料。
+4. 當您檢視 spout 或閃電 hello 詳細資料，選取的項目從 hello**連接埠**hello 中的資料行**執行程式**區段 tooview hello 元件的特定執行個體的詳細資料。
 
         2015-01-27 14:18:02 b.s.d.task [INFO] Emitting: split default ["with"]
         2015-01-27 14:18:02 b.s.d.task [INFO] Emitting: split default ["nature"]
@@ -179,13 +179,13 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
         2015-01-27 14:18:02 b.s.d.executor [INFO] Processing received message source: split:21, stream: default, id: {}, [seven]
         2015-01-27 14:18:02 b.s.d.task [INFO] Emitting: count default [seven, 1493957]
 
-    在此範例中，「七」這個字出現 1493957 次。 此計數就是啟動拓撲後，該字所出現的次數。
+    在此範例中，hello word**七個**發生 1493957 的時間。 這個計數會啟動此拓撲後已發現 hello word 的次數。
 
-## <a name="stop-the-topology"></a>停止拓撲
+## <a name="stop-hello-topology"></a>停止 hello 拓樸
 
-返回 word-count 拓撲的 [拓撲摘要] 頁面，然後選取 [拓撲動作] 區段中的 [終止] 按鈕。 出現提示時，請先輸入要等候 10 秒，再停止拓撲。 逾時期限過後，當您瀏覽儀表板的 [Storm UI]  區段時，就不會再看到拓撲。
+傳回 toohello**拓撲摘要**hello 字數統計拓樸，頁面上，然後選取 hello **Kill**按鈕 hello**拓撲動作**> 一節。 出現提示時，輸入 10 hello 秒 toowait 之前停止 hello 拓撲。 Hello 逾時期限之後 hello 拓撲不會再出現當您瀏覽 hello **Storm UI** hello 儀表板的區段。
 
-## <a name="delete-the-cluster"></a>刪除叢集
+## <a name="delete-hello-cluster"></a>刪除 hello 叢集
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
@@ -193,13 +193,13 @@ Storm UI 提供 Web 介面來處理執行中的拓撲，包含在您的 HDInsigh
 
 ## <a id="next"></a>接續步驟
 
-在本 Apache Storm 教學課程中，您已了解使用 Storm on HDInsight 的基本概念。 接下來，了解如何 [使用 Maven 開發 Java 型拓撲](hdinsight-storm-develop-java-topology.md)。
+在此 Apache Storm 教學課程中，您學到使用 Storm HDInsight 上的 hello 基本。 接下來，了解如何太[開發 Java 為基礎的拓撲使用 Maven](hdinsight-storm-develop-java-topology.md)。
 
-如果您已熟悉開發 Java 型拓撲，而且想要將現有的拓撲部署至 HDInsight，請參閱 [部署和管理 HDInsight 上的 Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)。
+如果您已經熟悉開發 Java 為基礎的拓撲，而且想 toodeploy 現存的拓撲 tooHDInsight，請參閱[部署和管理 HDInsight 上的 Apache Storm 拓撲](hdinsight-storm-deploy-monitor-topology-linux.md)。
 
 如果您是 .NET 開發人員，您可以使用 Visual Studio 建立 C# 或混合式 C#/Java 拓撲。 如需詳細資訊，請參閱 [使用 Visual Studio 的 Hadoop 工具開發 Apache Storm on HDInsight 的 C# 拓撲](hdinsight-storm-develop-csharp-visual-studio-topology.md)。
 
-如需可搭配 Storm on HDInsight 使用的拓撲範例，請參閱下列範例︰
+如需可以搭配 Storm HDInsight 上的範例拓撲，請參閱 hello 遵循範例：
 
 * [Storm on HDInsight 的範例拓撲](hdinsight-storm-example-topology.md)
 

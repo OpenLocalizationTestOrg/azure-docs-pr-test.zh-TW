@@ -1,6 +1,6 @@
 ---
-title: "教學課程︰使用 REST API 建立 Azure Data Factory 管線 |Microsoft Docs"
-description: "在本教學課程中，您會使用 REST API 建立具有複製活動的 Azure Data Factory 管線，以將資料從 Azure Blob 儲存體複製到 Azure SQL Database。"
+title: "教學課程： 使用 REST API toocreate Azure Data Factory 管線 |Microsoft 文件"
+description: "在本教學課程中，您可以使用 REST API toocreate Azure Data Factory 管線複製活動 toocopy 資料從 Azure blob 儲存體 Azure SQL database。"
 services: data-factory
 documentationcenter: 
 author: spelluru
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/10/2017
 ms.author: spelluru
-ms.openlocfilehash: 6663774497aa18aa98e7e8c5aed6183c599b2172
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: aa6c9b035101c4ff9acff90117ca6e3e7067f418
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="tutorial-use-rest-api-to-create-an-azure-data-factory-pipeline-to-copy-data"></a>教學課程︰使用 REST API 建立 Azure Data Factory 管線來複製資料 
+# <a name="tutorial-use-rest-api-toocreate-an-azure-data-factory-pipeline-toocopy-data"></a>教學課程： 使用 REST API toocreate Azure Data Factory 管線 toocopy 資料 
 > [!div class="op_single_selector"]
 > * [概觀和必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)
 > * [複製精靈](data-factory-copy-data-wizard-tutorial.md)
@@ -33,59 +33,59 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-在本文中，您會了解如何使用 REST API 建立資料處理站，其中有管線可將資料從 Azure Blob 儲存體複製到 Azure SQL 資料庫。 如果您不熟悉 Azure Data Factory，請先詳閱 [Azure Data Factory 簡介](data-factory-introduction.md)一文，再進行本教學課程。   
+在本文中，您學會如何 toouse 會 REST API toocreate data factory 管線，將資料從 Azure blob 儲存體 tooan Azure SQL database 複製。 如果您是新 tooAzure Data Factory，閱讀 hello[簡介 tooAzure Data Factory](data-factory-introduction.md)發行項，然後再執行本教學課程。   
 
-在本教學課程中，您可以建立包含一個活動的管線：複製活動。 複製活動會將資料從支援的資料存放區複製到支援的接收資料存放區。 如需作為來源和接收區支援的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)。 此活動是由全域可用的服務所提供，可以使用安全、可靠及可調整的方式，在各種不同的資料存放區之間複製資料。 如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)。
+在本教學課程中，您可以建立包含一個活動的管線：複製活動。 hello 複製活動會將資料從支援的資料存放區 tooa 支援的接收資料存放區。 如需作為來源和接收區支援的資料存放區清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)。 hello 活動被提供安全、 可靠且可擴充的方式的各種資料存放區之間的資料可以複製的全域可用服務。 如需 hello 複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)。
 
-一個管線中可以有多個活動。 您可以將一個活動的輸出資料集設為另一個活動的輸入資料集，藉此鏈結兩個活動 (讓一個活動接著另一個活動執行)。 如需詳細資訊，請參閱[管線中的多個活動](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。
+一個管線中可以有多個活動。 此外，您可以藉由設定 hello 輸出資料集的一個活動 hello 的輸入資料集的 hello 其他活動鏈結 （執行一個活動執行另一個之後） 的兩個活動。 如需詳細資訊，請參閱[管線中的多個活動](data-factory-scheduling-and-execution.md#multiple-activities-in-a-pipeline)。
 
 > [!NOTE]
-> 這篇文章並未涵蓋所有的 Data Factory REST API。 如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory REST API 參考](/rest/api/datafactory/) 。
+> 本文並未涵蓋所有 hello Data Factory REST API。 如需 Data Factory Cmdlet 的完整文件，請參閱 [Data Factory REST API 參考](/rest/api/datafactory/) 。
 >  
-> 本教學課程中的資料管線會將資料從來源資料存放區，複製到目的地資料存放區。 如需如何使用 Azure Data Factory 轉換資料的教學課程，請參閱[教學課程︰使用 Hadoop 叢集建置管線來轉換資料](data-factory-build-your-first-pipeline.md)。
+> 在此教學課程中的 hello 資料管線會將資料從來源資料存放區 tooa 目的地資料存放區。 如需如何使用 Azure Data Factory，tootransform 資料，請參閱[教學課程： 建立使用 Hadoop 叢集管線 tootransform 資料](data-factory-build-your-first-pipeline.md)。
 
 ## <a name="prerequisites"></a>必要條件
-* 請檢閱 [教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md) 並完成 **必要** 步驟。
-* 在您的電腦上安裝 [Curl](https://curl.haxx.se/dlwiz/) 。 您可搭配使用 Curl 工具與 REST 命令來建立 Data Factory。 
+* 透過移[教學課程概觀](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)和完整 hello**必要條件**步驟。
+* 在您的電腦上安裝 [Curl](https://curl.haxx.se/dlwiz/) 。 您可以使用 hello Curl 工具與其他命令 toocreate data factory。 
 * 請依照 [本文](../azure-resource-manager/resource-group-create-service-principal-portal.md) 的指示： 
   1. 在 Azure Active Directory 中建立名為 **ADFCopyTutorialApp** 的 Web 應用程式。
   2. 取得**用戶端識別碼**和**秘密金鑰**。 
   3. 取得 **租用戶識別碼**。 
-  4. 將 **ADFCopyTutorialApp** 應用程式指派給 **Data Factory 參與者**角色。  
+  4. 指派 hello **ADFCopyTutorialApp**應用程式 toohello**資料 Factory 參與者**角色。  
 * 安裝 [Azure PowerShell](/powershell/azure/overview)。  
-* 啟動 **PowerShell** 並執行下列步驟。 將 Azure PowerShell 維持在開啟狀態，直到本教學課程結束為止。 如果您關閉並重新開啟，則需要再次執行這些命令。
+* 啟動**PowerShell**並執行下列步驟 hello。 保持開啟 Azure PowerShell 直到本教學課程中的 hello 結尾。 如果您關閉並重新開啟，您需要 toorun hello 命令一次。
   
-  1. 執行下列命令並輸入您用來登入 Azure 入口網站的使用者名稱和密碼：
+  1. 執行下列命令的 hello，然後輸入 hello 使用者名稱和密碼，您會使用 toosign toohello Azure 入口網站中：
     
     ```PowerShell 
     Login-AzureRmAccount
     ```   
-  2. 執行下列命令以檢視此帳戶的所有訂用帳戶：
+  2. 此帳戶的所有 hello 訂用帳戶都執行下列命令 tooview hello:
 
     ```PowerShell     
     Get-AzureRmSubscription
     ``` 
-  3. 執行下列命令以選取您要使用的訂用帳戶。 以您的 Azure 訂用帳戶名稱取代 **&lt;NameOfAzureSubscription**&gt;。 
+  3. 執行下列命令 tooselect hello 訂用帳戶，您想要使用 toowork hello。 取代 **&lt;NameOfAzureSubscription** &gt; hello 的 Azure 訂用帳戶的名稱。 
      
     ```PowerShell
     Get-AzureRmSubscription -SubscriptionName <NameOfAzureSubscription> | Set-AzureRmContext
     ```
-  4. 在 PowerShell 中執行以下命令，建立名為 **ADFTutorialResourceGroup** 的 Azure 資源群組：  
+  4. 建立 Azure 資源群組名稱為**ADFTutorialResourceGroup**藉由執行下列命令在 hello PowerShell 中的 hello:  
 
     ```PowerShell     
       New-AzureRmResourceGroup -Name ADFTutorialResourceGroup  -Location "West US"
     ```
      
-      如果資源群組已存在，您可指定是否要更新 (Y) 或予以保留 (N)。 
+      如果已經存在 hello 資源群組，指定是否 tooupdate 它 (Y) 或保留為 (N)。 
      
-      本教學課程的某些步驟假設您使用名為 ADFTutorialResourceGroup 的資源群組。 如果使用不同的資源群組，您必須以資源群組的名稱取代本教學課程中的 ADFTutorialResourceGroup。
+      本教學課程中的 hello 步驟假設您使用名為 ADFTutorialResourceGroup hello 資源群組。 如果您使用不同的資源群組，您會在本教學課程需要資源群組來取代 ADFTutorialResourceGroup toouse hello 名稱。
 
 ## <a name="create-json-definitions"></a>建立 JSON 定義
-在 curl.exe 所在的資料夾中建立下列 JSON 檔案。 
+建立下列 hello curl.exe 所在的資料夾中的 JSON 檔案。 
 
 ### <a name="datafactoryjson"></a>datafactory.json
 > [!IMPORTANT]
-> 名稱必須是全域唯一的，所以建議您使用 ADFCopyTutorialDF 做為前置詞/後置詞，使其成為唯一的名稱。 
+> 名稱必須是全域唯一的因此您可能需要 tooprefix/後置詞 ADFCopyTutorialDF toomake 它唯一的名稱。 
 > 
 > 
 
@@ -98,7 +98,7 @@ ms.lasthandoff: 08/29/2017
 
 ### <a name="azurestoragelinkedservicejson"></a>azurestoragelinkedservice.json
 > [!IMPORTANT]
-> 以 Azure 儲存體帳戶的名稱和金鑰取代 **accountname** 和 **accountkey**。 若要了解如何取得儲存體存取金鑰，請參閱 [檢視、複製和重新產生儲存體存取金鑰](../storage/common/storage-create-storage-account.md#manage-your-storage-access-keys)
+> 以 Azure 儲存體帳戶的名稱和金鑰取代 **accountname** 和 **accountkey**。 toolearn 如何 tooget 您的儲存體存取金鑰，請參閱[檢視、 複製和重新產生儲存體存取金鑰](../storage/common/storage-create-storage-account.md#manage-your-storage-access-keys)。
 
 ```JSON
 {
@@ -116,7 +116,7 @@ ms.lasthandoff: 08/29/2017
 
 ### <a name="azuersqllinkedservicejson"></a>azuersqllinkedservice.json
 > [!IMPORTANT]
-> 將 **servername**、**databasename**、**username** 和 **password** 替換為您的 Azure SQL Server 名稱、SQL Database 名稱、使用者帳戶及帳戶的密碼。  
+> 取代**servername**， **databasename**， **username**，和**密碼**名稱為您的 Azure SQL server，SQL 資料庫名稱的使用者帳戶和 hello 帳戶密碼。  
 > 
 >
 
@@ -170,18 +170,18 @@ ms.lasthandoff: 08/29/2017
 }
 ```
 
-下表提供程式碼片段中所使用之 JSON 屬性的描述：
+hello 下表提供 hello hello 程式碼片段中使用的 JSON 屬性的說明：
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| 類型 | type 屬性會設為 **AzureBlob**，因為資料位於 Azure Blob 儲存體中。 |
-| linkedServiceName | 表示您稍早建立的 **AzureStorageLinkedService**。 |
-| folderPath | 指定包含輸入 Blob 的 Blob **容器**和**資料夾**。 在本教學課程中，adftutorial 是 blob 容器，而資料夾是根資料夾。 | 
-| fileName | 這是選用屬性。 如果您省略此屬性，則會挑選 folderPath 中的所有檔案。 在本教學課程中，會針對 fileName 指定 **emp.txt**，因此只會挑選該檔案進行處理。 |
-| format -> type |輸入檔為文字格式，因此我們會使用 **TextFormat**。 |
-| columnDelimiter | 輸入檔案中的資料行會以**逗號字元 (`,`)** 分隔。 |
-| frequency/interval | frequency 會設為 **Hour** 且 interval 會設為 **1**，表示**每小時**都可取得輸入配量。 換句話說，Data Factory 服務會每小時都在您指定之 Blob 容器 (**adftutorial**) 的根資料夾中尋找輸入資料。 它會尋找管線開始和結束時間內 (而非這些時間之前或之後) 的資料。  |
-| external | 如果資料不是由此管線產生，此屬性會設為 **true**。 本教學課程中的輸入資料位於 emp.txt 檔案中，該檔案不是由此管線產生，因此我們會將此屬性設定為 true。 |
+| 類型 | hello type 屬性設定太**AzureBlob**因為資料常駐於 Azure blob 儲存體中。 |
+| linkedServiceName | 是指 toohello **AzureStorageLinkedService**您稍早建立的。 |
+| folderPath | 指定 hello blob**容器**和 hello**資料夾**，其中包含輸入的 blob。 在本教學課程，adftutorial hello blob 容器且資料夾是 hello 根資料夾。 | 
+| fileName | 這是選用屬性。 如果您省略這個屬性時，會挑出 hello folderPath 中的所有檔案。 在本教學課程， **emp.txt**指定了 hello 檔名，因此只有該檔案所挑選的處理。 |
+| format -> type |hello 輸入的檔為 hello 文字格式，因此我們使用**TextFormat**。 |
+| columnDelimiter | hello hello 輸入檔中的資料行分隔**逗號字元 (`,`)**。 |
+| frequency/interval | hello 頻率設定過**小時**和間隔設定得**1**，這表示該 hello 輸入配量可用**每小時**。 換句話說，hello Data Factory 服務會尋找輸入資料每小時的 blob 容器的 hello 根資料夾中 (**adftutorial**) 指定。 它會尋找 hello hello 管線開始和結束時間、 不之前或之後這段時間內的資料。  |
+| external | 這個屬性設定太**true**如果 hello 資料不會產生此管線。 在此教學課程中的 hello 輸入的資料是在 hello emp.txt 檔案，不會產生這個管線，因此我們設定此屬性 tootrue。 |
 
 如需這些 JSON 屬性的詳細資訊，請參閱 [Azure Blob 連接器](data-factory-azure-blob-connector.md#dataset-properties)一文。
 
@@ -213,16 +213,16 @@ ms.lasthandoff: 08/29/2017
   }
 }
 ```
-下表提供程式碼片段中所使用之 JSON 屬性的描述：
+hello 下表提供 hello hello 程式碼片段中使用的 JSON 屬性的說明：
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| 類型 | type 屬性會設為 **AzureSqlTable**，因為資料已複製到 Azure SQL Database 中的資料表。 |
-| linkedServiceName | 表示您稍早建立的 **AzureSqlLinkedService**。 |
-| tableName | 指定作為資料複製目的地的**資料表**。 | 
-| frequency/interval | frequency 會設為**Hour** 且 interval 為**1**，這表示會在管線開始和結束時間之間 (而非這些時間之前或之後) **每小時**產生輸出配量。  |
+| 類型 | hello type 屬性設定太**AzureSqlTable**因為資料是在 Azure SQL database 中的複製的 tooa 資料表。 |
+| linkedServiceName | 是指 toohello **AzureSqlLinkedService**您稍早建立的。 |
+| tableName | 指定的 hello**資料表**toowhich hello 資料複製。 | 
+| frequency/interval | hello 頻率設定過**小時**和間隔是**1**，這表示 hello 輸出配量所產生**每小時**之間 hello 管線開始和結束時間，不是在之前或之後這段時間。  |
 
-資料庫的 emp 資料表中有三個資料行 – **ID**、**FirstName** 和 **LastName**。 ID 是識別資料行，所以您只需在此指定 **FirstName** 和 **LastName**。
+有三個資料行 –**識別碼**， **FirstName**，和**LastName** – hello 資料庫中的 hello emp 資料表中。 識別碼是識別資料行，所以您必須只 toospecify **FirstName**和**LastName**這裡。
 
 如需這些 JSON 屬性的詳細資訊，請參閱 [Azure SQL 連接器](data-factory-azure-sql-connector.md#dataset-properties)一文。
 
@@ -232,11 +232,11 @@ ms.lasthandoff: 08/29/2017
 {
   "name": "ADFTutorialPipeline",
   "properties": {
-    "description": "Copy data from a blob to Azure SQL table",
+    "description": "Copy data from a blob tooAzure SQL table",
     "activities": [
       {
         "name": "CopyFromBlobToSQL",
-        "description": "Push Regional Effectiveness Campaign data to Azure SQL database",
+        "description": "Push Regional Effectiveness Campaign data tooAzure SQL database",
         "type": "Copy",
         "inputs": [
           {
@@ -272,24 +272,24 @@ ms.lasthandoff: 08/29/2017
 }
 ```
 
-請注意下列幾點：
+請注意下列點 hello:
 
-- 在活動區段中，只會有一個 **type** 設為 **Copy** 的活動。 如需複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)。 在 Data Factory 解決方案中，您也可以使用[資料轉換活動](data-factory-data-transformation-activities.md)。
-- 活動的輸入設為 **AzureBlobInput**，活動的輸出則設為 **AzureSqlOutput**。 
-- 在 **typeProperties** 區段中，來源類型指定為 **BlobSource**，接收類型指定為 **SqlSink**。 如需複製活動作為來源和接收器支援的資料存放區完整清單，請參閱[支援的資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)。 若要了解如何使用特定支援的資料存放區作為來源/接收器，請按一下資料表中的連結。  
+- 在 [hello 活動] 區段中，沒有一個活動其**類型**設定得**複製**。 如需 hello 複製活動的詳細資訊，請參閱[資料移動活動](data-factory-data-movement-activities.md)。 在 Data Factory 解決方案中，您也可以使用[資料轉換活動](data-factory-data-transformation-activities.md)。
+- 輸入 hello 活動設定太**AzureBlobInput**和輸出 hello 活動設定太**AzureSqlOutput**。 
+- 在 [hello **typeProperties** ] 區段中， **BlobSource**指定 hello 來源類型為和**SqlSink**指定為 hello 接收器類型。 支援的 hello 複製活動做為來源與接收的資料存放區的完整清單，請參閱[支援資料存放區](data-factory-data-movement-activities.md#supported-data-stores-and-formats)。 toolearn toouse 特定支援的資料如何儲存為來源/接收器，按一下 hello 資料表中的 hello 連結。  
  
-將 **start** 屬性的值替換為目前日期，並將 **end**值替換為隔天的日期。 在日期時間中，您只指定日期部分，並略過時間部分。 例如，"2017-02-03"，這相當於 "2017-02-03T00:00:00Z"
+取代 hello hello 值**啟動**屬性以 hello 目前的日期和**結束**以 hello 隔天的值。 您可以指定 hello 日期部分，並略過 hello hello 時間部分日期時間。 例如，"2017年-02-03"，這相當於太"2017年-02-03T00:00:00Z"
  
-開始和結束日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2016-10-14T16:32:41Z。 **end** 時間為選擇性項目，但在本教學課程中會用到。 
+開始和結束日期時間都必須是 [ISO 格式](http://en.wikipedia.org/wiki/ISO_8601)。 例如：2016-10-14T16:32:41Z。 hello**結束**時間是選擇性的但我們在本教學課程中使用它。 
  
-如果您未指定 **end** 屬性的值，則會以「**start + 48 小時**」計算。 若要無限期地執行管線，請指定 **9999-09-09** 做為 **end** 屬性的值。
+如果您未指定值為 hello**結束**屬性，它會計算為"**start + 48 小時**"。 無限期地指定 toorun hello 管線**9999-09-09**為 hello hello 值**結束**屬性。
  
-在上述範例中，由於每小時即產生一個資料配量，共會有 24 個資料配量。
+在上述範例中的 hello，有 24 資料配量每小時產生每個資料分割。
 
 如需管線定義中 JSON 屬性的說明，請參閱[建立管線](data-factory-create-pipelines.md)一文。 如需複製活動定義中 JSON 屬性的說明，請參閱[資料移動活動](data-factory-data-movement-activities.md)。 如需 BlobSource 所支援 JSON 屬性的說明，請參閱 [Azure Blob 連接器](data-factory-azure-blob-connector.md)一文。 如需 SqlSink 支援的 JSON 屬性說明，請參閱 [Azure SQL Database 連接器](data-factory-azure-sql-connector.md)一文。
 
 ## <a name="set-global-variables"></a>設定全域變數
-在 Azure PowerShell 中，將值取代為您自己的值之後，執行下列命令：
+在 Azure PowerShell，執行下列命令以您自己取代 hello 值後的 hello:
 
 > [!IMPORTANT]
 > 如需取得用戶端識別碼、用戶端密碼、租用戶識別碼及訂用帳戶識別碼的指示，請參閱 [必要條件](#prerequisites) 一節。   
@@ -305,14 +305,14 @@ $subscription_id="<Azure subscription ID>";
 $rg = "ADFTutorialResourceGroup"
 ```
 
-更新您正在使用的資料處理站名稱之後，執行下列命令︰ 
+您使用執行的 hello hello hello data factory 名稱在更新之後，下列命令： 
 
 ```
 $adf = "ADFCopyTutorialDF"
 ```
 
 ## <a name="authenticate-with-aad"></a>使用 AAD 驗證
-執行下列命令以驗證 Azure Active Directory (AAD)： 
+執行下列命令 tooauthenticate 與 Azure Active Directory (AAD) 的 hello: 
 
 ```PowerShell
 $cmd = { .\curl.exe -X POST https://login.microsoftonline.com/$tenant/oauth2/token  -F grant_type=client_credentials  -F resource=https://management.core.windows.net/ -F client_id=$client_id -F client_secret=$client_secret };
@@ -322,140 +322,140 @@ $accessToken = (ConvertFrom-Json $responseToken).access_token;
 (ConvertFrom-Json $responseToken) 
 ```
 
-## <a name="create-data-factory"></a>建立資料處理站
-在此步驟中，您會建立名為 **ADFCopyTutorialDF**的 Azure Data Factory。 資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，「複製活動」會從來源複製資料到目的地資料存放區。 HDInsight Hive 活動會執行 Hive 指令碼來轉換輸入資料，以產生輸出資料。 執行以下命令以建立 Data Factory： 
+## <a name="create-data-factory"></a>建立 Data Factory
+在此步驟中，您會建立名為 **ADFCopyTutorialDF**的 Azure Data Factory。 資料處理站可以有一或多個管線。 其中的管線可以有一或多個活動。 例如，複製活動 toocopy 資料從來源 tooa 目的地資料存放區。 HDInsight Hive 活動 toorun Hive 指令碼 tootransform 輸入資料 tooproduct 輸出資料。 執行下列命令 toocreate hello 資料處理站的 hello: 
 
-1. 將命令指派給名為 **cmd**的變數。 
+1. 指定名為 hello 命令 toovariable **cmd**。 
    
     > [!IMPORTANT]
-    > 確認您在此指定的名稱 (ADFCopyTutorialDF) 符合在 **datafactory.json**指定的名稱。 
+    > 確認您在此處指定 (ADFCopyTutorialDF) 相符項目 hello hello 中指定名稱的 hello data factory 名稱 hello **datafactory.json**。 
    
     ```PowerShell
     $cmd = {.\curl.exe -X PUT -H "Authorization: Bearer $accessToken" -H "Content-Type: application/json" --data “@datafactory.json” https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/ADFCopyTutorialDF0411?api-version=2015-10-01};
     ```
-2. 使用 **Invoke-Command**執行命令。
+2. 使用執行 hello 命令**Invoke-command**。
    
     ```PowerShell
     $results = Invoke-Command -scriptblock $cmd;
     ```
-3. 檢視結果。 如果已成功建立 Data Factory，您會在 **結果**中看到 Data Factory 的 JSON；不然，您會看到一則錯誤訊息。  
+3. 檢視 hello 結果。 如果 hello data factory 建立成功，您會看見 hello JSON hello data factory 中 hello**結果**; 否則您會看到一則錯誤訊息。  
    
     ```
     Write-Host $results
     ```
 
-請注意下列幾點：
+請注意下列點 hello:
 
-* Azure Data Factory 的名稱在全域必須是唯一的。 如果您在結果中看到錯誤︰「Data factory 名稱 "ADFCopyTutorialDF" 無法使用」 ，請執行下列步驟︰  
+* hello hello Azure Data Factory 名稱必須是全域唯一的。 如果您看到結果中的 hello 錯誤： **Data factory 名稱"ADFCopyTutorialDF"不是使用**，執行下列步驟 hello:  
   
-  1. 在 **datafactory.json** 檔案中變更名稱 (例如，yournameADFCopyTutorialDF)。
-  2. 在指派 **$cmd** 變數值的第一個命令中，以新的名稱取代 ADFCopyTutorialDF 並執行命令。 
-  3. 執行下面兩個命令來叫用 REST API，以建立 Data Factory 和列印作業的結果。 
+  1. 在 hello 變更 hello 名稱 (例如，yournameADFCopyTutorialDF) **datafactory.json**檔案。
+  2. Hello 第一個命令中其中 hello **$cmd**值指派給變數，請取代 ADFCopyTutorialDF hello 新名稱，執行 hello 命令。 
+  3. 執行 hello 下面兩個命令 tooinvoke hello REST API toocreate hello 資料處理站和列印 hello hello 作業結果。 
      
      請參閱 [Data Factory - 命名規則](data-factory-naming-rules.md) 主題，以了解 Data Factory 成品的命名規則。
-* 若要建立 Data Factory 執行個體，您必須是 Azure 訂用帳戶的參與者/系統管理員
-* Data Factory 的名稱未來可能會註冊為 DNS 名稱，因此會變成公開可見的名稱。
-* 如果您收到錯誤：「此訂用帳戶未註冊為使用命名空間 Microsoft.DataFactory」，請執行下列其中一項，然後嘗試再次發佈︰ 
+* toocreate Data Factory 執行個體，您需要 toobe 參與者/系統管理員的 hello Azure 訂用帳戶
+* 可能會註冊為未來的 hello 中的 DNS 名稱，因此變得可見 hello hello data factory 名稱。
+* 如果您收到 hello 錯誤:"**此訂用帳戶不是已註冊的 toouse 命名空間 Microsoft.DataFactory**」，請勿 hello 下列其中一種，然後再試一次發行： 
   
-  * 在 Azure PowerShell 中，執行下列命令以註冊 Data Factory 提供者： 
+  * 在 Azure PowerShell 中執行下列命令 tooregister hello Data Factory 提供者的 hello: 
 
     ```PowerShell    
     Register-AzureRmResourceProvider -ProviderNamespace Microsoft.DataFactory
     ```
-    您可以執行下列命令來確認已註冊 Data Factory 提供者。 
+    您可以執行下列命令 tooconfirm hello 該 hello Data Factory 提供者註冊。 
     
     ```PowerShell
     Get-AzureRmResourceProvider
     ```
-  * 使用 Azure 訂用帳戶登入 [Azure 入口網站](https://portal.azure.com) 並瀏覽至 [Data Factory] 刀鋒視窗 (或) 在 Azure 入口網站中建立 Data Factory。 此動作會自動為您註冊提供者。
+  * 登入使用 hello hello 到 Azure 訂用帳戶[Azure 入口網站](https://portal.azure.com)並瀏覽 tooa Data Factory 刀鋒視窗 （或） 在 hello Azure 入口網站中建立 data factory。 這個動作會自動註冊 hello 您的提供者。
 
-建立管線之前，您必須先建立一些 Data Factory 項目。 您會先建立連結服務，將來源和目的地資料存放區連結至您的資料存放區。 然後，定義輸入和輸出資料集，以表示連結資料存放區中的資料。 最後，建立會使用這些資料集之活動的管線。
+之前建立管線，您必須 toocreate 幾個 Data Factory 實體第一次。 您第一次建立連結的服務 toolink 來源和目的地資料存放區 tooyour 資料存放區。 然後，定義輸入和輸出資料集 toorepresent 資料連結的資料存放區中。 最後，建立 hello 管線與該活動會使用這些資料集。
 
-## <a name="create-linked-services"></a>建立連結服務
-您在資料處理站中建立的連結服務會將您的資料存放區和計算服務連結到資料處理站。 在本教學課程中，您不會使用任何計算服務，例如 Azure HDInsight 或 Azure Data Lake Analytics。 您可以使用兩種類型的資料存放區：Azure 儲存體 (來源) 和 Azure SQL Database (目的地)。 因此，您可以建立名為 AzureStorageLinkedService 和 AzureSqlLinkedService 的兩個連結服務︰類型為 AzureStorage 和 AzureSqlDatabase。  
+## <a name="create-linked-services"></a>建立連結的服務
+您可以建立連結的服務中的資料處理站 toolink 資料儲存和運算服務 toohello 資料 factory。 在本教學課程中，您不會使用任何計算服務，例如 Azure HDInsight 或 Azure Data Lake Analytics。 您可以使用兩種類型的資料存放區：Azure 儲存體 (來源) 和 Azure SQL Database (目的地)。 因此，您可以建立名為 AzureStorageLinkedService 和 AzureSqlLinkedService 的兩個連結服務︰類型為 AzureStorage 和 AzureSqlDatabase。  
 
-AzureStorageLinkedService 會將 Azure 儲存體帳戶連結至資料處理站。 此儲存體帳戶是您在其中建立容器並將資料上傳為[必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)一部分的帳戶。   
+hello AzureStorageLinkedService 連結您的 Azure 儲存體帳戶 toohello data factory。 這個儲存體帳戶為其中一個 hello 在其中建立容器及 hello 資料上傳的過程[必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。   
 
-AzureSqlLinkedService 會將 Azure SQL Database 連結至資料處理站。 從 Blob 儲存體複製的資料會儲存在此資料庫中。 您在此資料庫中建立了 emp 資料表，作為[必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)的一部分。  
+AzureSqlLinkedService 連結您的 Azure SQL database toohello data factory。 複製 hello blob 儲存體中的 hello 資料會儲存在資料庫中。 在此資料庫中建立 hello emp 資料表的一部分[必要條件](data-factory-copy-data-from-azure-blob-storage-to-sql-database.md)。  
 
 ### <a name="create-azure-storage-linked-service"></a>建立 Azure 儲存體連結服務
-在此步驟中，您會將您的 Azure 儲存體帳戶連結到您的資料處理站。 在此區段中指定您 Azure 儲存體帳戶的名稱和金鑰。 如需用來定義 Azure 儲存體連結服務之 JSON 屬性的詳細資料，請參閱 [Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)。  
+在此步驟中，您必須連結您的 Azure 儲存體帳戶 tooyour data factory。 您可以在此區段中指定 hello 名稱和您的 Azure 儲存體帳戶金鑰。 請參閱[Azure 儲存體連結服務](data-factory-azure-blob-connector.md#azure-storage-linked-service)如需詳細資訊 JSON 屬性使用 toodefine Azure 儲存體連結服務。  
 
-1. 將命令指派給名為 **cmd**的變數。 
+1. 指定名為 hello 命令 toovariable **cmd**。 
 
     ```PowerShell   
     $cmd = {.\curl.exe -X PUT -H "Authorization: Bearer $accessToken" -H "Content-Type: application/json" --data "@azurestoragelinkedservice.json" https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/$adf/linkedservices/AzureStorageLinkedService?api-version=2015-10-01};
     ```
-2. 使用 **Invoke-Command**執行命令。
+2. 使用執行 hello 命令**Invoke-command**。
 
     ```PowerShell   
     $results = Invoke-Command -scriptblock $cmd;
     ```
-3. 檢視結果。 如果已成功建立連結服務，您會在 **結果**中看到連結服務的 JSON；不然，您會看到一則錯誤訊息。
+3. 檢視 hello 結果。 如果 hello 連結已成功建立服務，您會看到 hello 中的 hello 連結服務的 hello JSON**結果**; 否則您會看到一則錯誤訊息。
 
     ```PowerShell   
     Write-Host $results
     ```
 
 ### <a name="create-azure-sql-linked-service"></a>建立 Azure SQL 連結服務
-在此步驟中，您會將您的 Azure SQL Database 連結到您的 Data Factory。 在此區段中指定 Azure SQL 伺服器名稱、資料庫名稱、使用者名稱和使用者密碼。 如需用來定義 Azure SQL 連結服務之 JSON 屬性的詳細資料，請參閱 [Azure SQL 連結服務](data-factory-azure-sql-connector.md#linked-service-properties)。
+在此步驟中，您可以連結您的 Azure SQL database tooyour data factory。 您可以在此區段中指定 hello Azure SQL server 名稱、 資料庫名稱、 使用者名稱和使用者密碼。 請參閱[Azure SQL 連結服務](data-factory-azure-sql-connector.md#linked-service-properties)如需詳細資訊 JSON 屬性使用 toodefine Azure SQL 連結服務。
 
-1. 將命令指派給名為 **cmd**的變數。 
+1. 指定名為 hello 命令 toovariable **cmd**。 
    
     ```PowerShell
     $cmd = {.\curl.exe -X PUT -H "Authorization: Bearer $accessToken" -H "Content-Type: application/json" --data “@azuresqllinkedservice.json” https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/$adf/linkedservices/AzureSqlLinkedService?api-version=2015-10-01};
     ```
-2. 使用 **Invoke-Command**執行命令。
+2. 使用執行 hello 命令**Invoke-command**。
    
     ```PowerShell
     $results = Invoke-Command -scriptblock $cmd;
     ```
-3. 檢視結果。 如果已成功建立連結服務，您會在 **結果**中看到連結服務的 JSON；不然，您會看到一則錯誤訊息。
+3. 檢視 hello 結果。 如果 hello 連結已成功建立服務，您會看到 hello 中的 hello 連結服務的 hello JSON**結果**; 否則您會看到一則錯誤訊息。
    
     ```PowerShell
     Write-Host $results
     ```
 
 ## <a name="create-datasets"></a>建立資料集
-在上一個步驟中，您已建立可將 Azure 儲存體帳戶和 Azure SQL Database 連結至資料處理站的連結服務。 在此步驟中，您會定義名為 AzureBlobInput 和 AzureSqlOutput 的兩個資料集，它們分別代表 AzureStorageLinkedService 和 AzureSqlLinkedService 所參照資料存放區中儲存的輸入和輸出資料。
+在 hello 先前步驟中，您會建立連結的服務 toolink，您的 Azure 儲存體帳戶和 Azure SQL database tooyour 資料 factory。 在此步驟中，您可以定義名為 AzureBlobInput AzureSqlOutput 代表輸入和輸出資料儲存在 hello 分別 AzureStorageLinkedService 和 AzureSqlLinkedService 所參考的資料存放區中的兩個資料集。
 
-Azure 儲存體連結服務會指定 Data Factory 服務在執行階段用來連線到 Azure 儲存體帳戶的連接字串。 而且，輸入 Blob 資料集 (AzureBlobInput) 會指定包含輸入資料的容器和資料夾。  
+hello Azure 儲存體連結服務指定 Data Factory 服務會使用在執行的階段 tooconnect tooyour Azure 儲存體帳戶的 hello 連接字串。 此外，hello 輸入的 blob 資料集 (AzureBlobInput) 指定 hello 容器和包含 hello 輸入的資料的 hello 資料夾。  
 
-同樣第，Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連線到 Azure SQL Database 的連接字串。 而且，輸出 SQL 資料表資料集 (OututDataset) 會指定資料庫中作為 Blob 儲存體資料複製目的地的資料表。 
+同樣地，hello 連結的 Azure SQL Database 服務指定 hello Data Factory 服務會使用在執行的階段 tooconnect tooyour Azure SQL database 的連接字串。 此外，hello 輸出 SQL 資料表資料集 (OututDataset) 會指定 hello 資料表中 hello 資料庫 toowhich hello hello blob 儲存體的資料複製。 
 
 ### <a name="create-input-dataset"></a>建立輸入資料集
-在此步驟中，您將在 AzureStorageLinkedService 連結服務所代表的 Azure 儲存體中，建立名為 AzureBlobInput 的資料集，該資料集會指向 Blob 容器 (adftutorial) 根資料夾中的 Blob 檔案 (emp.txt)。 如果您未指定 (或跳過) fileName 的值，則輸入資料夾中所有 Blob 資料都會複製到目的地。 在本教學課程中，您可指定 fileName 的值。 
+在此步驟中，您建立資料集名為指向 tooa blob 檔案 (emp.txt) AzureBlobInput hello 的 blob 容器 (adftutorial) 的根資料夾中 hello hello AzureStorageLinkedService 連結服務所代表的 Azure 儲存體中。 如果您不指定 hello 檔名的值 （或略過它），從 hello 輸入資料夾中的所有 blob 資料，則複製的 toohello 目的地。 在本教學課程中，您可以指定 hello 檔案名稱的值。 
 
-1. 將命令指派給名為 **cmd**的變數。 
+1. 指定名為 hello 命令 toovariable **cmd**。 
 
     ```PowerSHell   
     $cmd = {.\curl.exe -X PUT -H "Authorization: Bearer $accessToken" -H "Content-Type: application/json" --data "@inputdataset.json" https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/$adf/datasets/AzureBlobInput?api-version=2015-10-01};
     ```
-2. 使用 **Invoke-Command**執行命令。
+2. 使用執行 hello 命令**Invoke-command**。
    
     ```PowerShell
     $results = Invoke-Command -scriptblock $cmd;
     ```
-3. 檢視結果。 如果已成功建立資料集，您會在 **結果**中看到資料集的 JSON；不然，您會看到一則錯誤訊息。
+3. 檢視 hello 結果。 如果已成功建立 hello 資料集，您會看見 hello JSON hello hello 中的資料集**結果**; 否則您會看到一則錯誤訊息。
    
     ```PowerShell
     Write-Host $results
     ```
 
 ### <a name="create-output-dataset"></a>建立輸出資料集
-Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連線到 Azure SQL Database 的連接字串。 您在此步驟中建立的輸出 SQL 資料表資料集 (OututDataset) 會指定資料庫中作為 Blob 儲存體資料複製目的地的資料表。
+hello 連結的 Azure SQL Database 服務指定 hello Data Factory 服務會使用在執行的階段 tooconnect tooyour Azure SQL database 的連接字串。 hello 輸出 SQL 資料表的資料集 (OututDataset) 您在此步驟中建立指定複製 hello hello 資料庫 toowhich hello 資料從 hello blob 儲存體中的資料表。
 
-1. 將命令指派給名為 **cmd**的變數。
+1. 指定名為 hello 命令 toovariable **cmd**。
 
     ```PowerShell   
     $cmd = {.\curl.exe -X PUT -H "Authorization: Bearer $accessToken" -H "Content-Type: application/json" --data "@outputdataset.json" https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/$adf/datasets/AzureSqlOutput?api-version=2015-10-01};
     ```
-2. 使用 **Invoke-Command**執行命令。
+2. 使用執行 hello 命令**Invoke-command**。
     
     ```PowerShell   
     $results = Invoke-Command -scriptblock $cmd;
     ```
-3. 檢視結果。 如果已成功建立資料集，您會在 **結果**中看到資料集的 JSON；不然，您會看到一則錯誤訊息。
+3. 檢視 hello 結果。 如果已成功建立 hello 資料集，您會看見 hello JSON hello hello 中的資料集**結果**; 否則您會看到一則錯誤訊息。
    
     ```PowerShell
     Write-Host $results
@@ -464,35 +464,35 @@ Azure SQL Database 連結服務會指定 Data Factory 在執行階段用來連�
 ## <a name="create-pipeline"></a>建立管線
 在此步驟中，您會建立管線，其中含有使用 **AzureBlobInput** 作為輸入和使用 **AzureSqlOutput** 作為輸出的**複製活動**。
 
-目前，驅動排程的是輸出資料集。 在本教學課程中，輸出資料集設定成一小時產生一次配量。 管線具有相隔一天 (也就是 24 小時) 的開始時間和結束時間。 因此，管線會產生輸出資料集的 24 個配量。 
+目前，輸出資料集是哪些磁碟機 hello 排程。 在本教學課程中，輸出資料集是設定的 tooproduce 配量小時一次。 hello 管線有開始時間和結束時間的一天分散，也就是 24 小時。 因此，hello 管線所產生的輸出資料集的 24 配量。 
 
-1. 將命令指派給名為 **cmd**的變數。
+1. 指定名為 hello 命令 toovariable **cmd**。
 
     ```PowerShell   
     $cmd = {.\curl.exe -X PUT -H "Authorization: Bearer $accessToken" -H "Content-Type: application/json" --data "@pipeline.json" https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/$adf/datapipelines/MyFirstPipeline?api-version=2015-10-01};
     ```
-2. 使用 **Invoke-Command**執行命令。
+2. 使用執行 hello 命令**Invoke-command**。
 
     ```PowerShell   
     $results = Invoke-Command -scriptblock $cmd;
     ```
-3. 檢視結果。 如果已成功建立資料集，您會在 **結果**中看到資料集的 JSON；不然，您會看到一則錯誤訊息。  
+3. 檢視 hello 結果。 如果已成功建立 hello 資料集，您會看見 hello JSON hello hello 中的資料集**結果**; 否則您會看到一則錯誤訊息。  
 
     ```PowerShell   
     Write-Host $results
     ```
 
-**恭喜！** 您已成功建立 Azure Data Factory，其中有管線可將資料從 Azure Blob 儲存體複製到 Azure SQL Database。
+**恭喜！** 您已成功建立 Azure data factory，，具有會將資料從 Azure Blob 儲存體 tooAzure SQL database 的管線。
 
 ## <a name="monitor-pipeline"></a>監視管線
-在此步驟中，您會使用 Data Factory REST API 來監視管線所產生的配量。
+在此步驟中，您可以使用 Data Factory REST API toomonitor 配量 hello 管線所產生。
 
 ```PowerShell
 $ds ="AzureSqlOutput"
 ```
 
 > [!IMPORTANT] 
-> 請確定在下列命令中指定的開始和結束時間符合管線的開始和結束時間。 
+> 請確定 hello 開始和結束時間中指定下列的 hello 命令對 hello 開始和結束時間的 hello 管線。 
 
 ```PowerShell
 $cmd = {.\curl.exe -X GET -H "Authorization: Bearer $accessToken" https://management.azure.com/subscriptions/$subscription_id/resourcegroups/$rg/providers/Microsoft.DataFactory/datafactories/$adf/datasets/$ds/slices?start=2017-05-11T00%3a00%3a00.0000000Z"&"end=2017-05-12T00%3a00%3a00.0000000Z"&"api-version=2015-10-01};
@@ -510,23 +510,23 @@ IF ((ConvertFrom-Json $results2).value -ne $NULL) {
 }
 ```
 
-執行 Invoke-Command 和下一個命令，直到您看到配量處於 [就緒] 狀態或 [失敗] 狀態。 當配量處於 [就緒] 狀態時，請檢查您的 Azure SQL Database 的 **emp** 資料表中的輸出資料。 
+執行 hello Invoke-command 和 hello 下一個直到您看到中的扇區**準備**狀態或**失敗**狀態。 當 hello 配量處於就緒狀態時，請檢查 hello **emp**您 Azure SQL database 中的 hello 輸出資料的資料表。 
 
-對於每個配量，來源檔案中有兩個資料列會複製到 Azure SQL Database 中的 emp 資料表。 因此，成功處理所有配量 (處於 [就緒] 狀態) 後，您會在 emp 資料表中看到 24 筆新記錄。 
+每個配量，兩個資料列的資料從 hello 原始程式檔是 hello Azure SQL database 中的複製的 toohello emp 資料表。 因此，所有的 hello 配量已成功處理 （處於就緒狀態） 時看到 24 hello emp 資料表中的新記錄。 
 
 ## <a name="summary"></a>摘要
-在本教學課程中，您已使用 REST API 建立要將資料從 Azure Blob 複製到 Azure SQL 資料庫的 Azure Data Factory。 以下是您在本教學課程中執行的高階步驟：  
+在此教學課程中，您可以使用 REST API toocreate 從 Azure blob tooan Azure SQL database 的 Azure data factory toocopy 資料。 以下是您執行本教學課程中的 hello 高階步驟：  
 
 1. 建立 Azure **Data Factory**。
 2. 建立 **連結服務**：
-   1. Azure 儲存體連結服務可連結保留輸入資料的 Azure 儲存體帳戶。     
-   2. Azure SQL 連結服務可連結保留輸出資料的 Azure SQL Database。 
+   1. Azure 儲存體連結服務 toolink 您保留輸入的資料的 Azure 儲存體帳戶。     
+   2. Azure SQL 連結服務 toolink hello 輸出資料會保存您 Azure SQL database。 
 3. 建立可描述管線輸入資料和輸出資料的 **資料集**。
 4. 建立具有複製活動的 **管線** ，以 BlobSource 做為來源並以 SqlSink 做為接收器。 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您可使用 Azure Blob 儲存體作為來源資料存放區以及使用 Azure SQL Database 作為複製作業的目的地資料存放區。 下表提供複製活動所支援作為來源或目的地的資料存放區清單： 
+在本教學課程中，您可使用 Azure Blob 儲存體作為來源資料存放區以及使用 Azure SQL Database 作為複製作業的目的地資料存放區。 hello 下表提供 hello 複製活動支援做為來源和目的地資料存放區的清單： 
 
 [!INCLUDE [data-factory-supported-data-stores](../../includes/data-factory-supported-data-stores.md)]
 
-若要深入了解如何從資料存放區雙向複製資料，請按一下資料表中資料存放區的連結。
+關於如何 toocopy 資料，從資料存放區，toolearn 按一下 hello 連結 hello hello 資料表中的資料存放區。
