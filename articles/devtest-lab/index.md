@@ -1,6 +1,6 @@
 ---
-title: "Azure DevTest Labs 文件 - 教學課程 | Microsoft Docs"
-description: "了解如何使用可重複使用的構件快速建立應用程式測試環境。 教學課程、影片等會示範如何建立、管理及保護實驗室。"
+title: "aaaAzure Devtest Labs 文件-教學課程 |Microsoft 文件"
+description: "了解如何 tooquickly 建立應用程式測試環境中使用可重複使用的成品。 教學課程、 影片和更多示範 toocreate，管理和保護實驗室的方式。"
 services: devtest-lab
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 3c54e0f89529fb159c3940f5792c4c0e095ee3fb
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b403eeda791425bc8f74ee4430224479e39d727c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="devtest-labs-documentation"></a>研發測試實驗室文件
 
-了解如何使用 Devtest Labs 以可重複使用的構件快速建立應用程式測試環境。 教學課程、影片和其他文件會示範如何建立、管理及保護實驗室，以及新增和管理構件。
+了解如何 toouse Devtest Labs tooquickly 建立應用程式測試環境中使用可重複使用的成品。 教學課程、 影片和其他文件說明如何 toocreate，管理和保護 labs、 加入和管理成品。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>利用 Azure 入口網站開始使用 Azure DevTest Labs</h3>
+                        <h3>開始使用 Azure DevTest Labs 使用 hello Azure 入口網站</h3>
                     </div>
                 </div>
             </div>

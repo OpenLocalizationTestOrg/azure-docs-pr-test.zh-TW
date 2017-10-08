@@ -1,6 +1,6 @@
 ---
-title: "將 ExpressRoute 電路從傳統移至 Resource Manager：PowerShell：Azure | Microsoft Docs"
-description: "本頁面會描述如何使用 PowerShell 將傳統的電路移至 Resource Manager 部署模型。"
+title: "從傳統 tooResource 管理員移動的 ExpressRoute 電路： PowerShell: Azure |Microsoft 文件"
+description: "此頁面描述 toomove 傳統線路 toohello 資源管理員部署模型使用 PowerShell。"
 documentationcenter: na
 services: expressroute
 author: ganesr
@@ -15,149 +15,149 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/03/2017
 ms.author: ganesr;cherylmc
-ms.openlocfilehash: c407e01e6d881cb8adcfe55faa246468669be883
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8dcadafca5e4f40773902cec5786eba1dbe133eb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-expressroute-circuits-from-the-classic-to-the-resource-manager-deployment-model-using-powershell"></a><span data-ttu-id="3fba1-103">使用 PowerShell 將 ExpressRoute 電路從傳統部署模型移至 Resource Manager 部署模型</span><span class="sxs-lookup"><span data-stu-id="3fba1-103">Move ExpressRoute circuits from the classic to the Resource Manager deployment model using PowerShell</span></span>
+# <a name="move-expressroute-circuits-from-hello-classic-toohello-resource-manager-deployment-model-using-powershell"></a><span data-ttu-id="574d4-103">Hello 傳統 toohello Resource Manager 部署模型使用 PowerShell 從移動 ExpressRoute 電路</span><span class="sxs-lookup"><span data-stu-id="574d4-103">Move ExpressRoute circuits from hello classic toohello Resource Manager deployment model using PowerShell</span></span>
 
-<span data-ttu-id="3fba1-104">若要在傳統和 Resource Manager 兩種部署模型中使用 ExpressRoute，您必須將電路移至 Resource Manager 部署模型。</span><span class="sxs-lookup"><span data-stu-id="3fba1-104">To use an ExpressRoute circuit for both the classic and Resource Manager deployment models, you must move the circuit to the Resource Manager deployment model.</span></span> <span data-ttu-id="3fba1-105">下列章節協助您使用 PowerShell 來移動線路。</span><span class="sxs-lookup"><span data-stu-id="3fba1-105">The following sections help you move your circuit by using PowerShell.</span></span>
+<span data-ttu-id="574d4-104">toouse ExpressRoute 電路傳統 hello 和資源管理員部署模型，您必須移動 hello 電路 toohello Resource Manager 部署模型。</span><span class="sxs-lookup"><span data-stu-id="574d4-104">toouse an ExpressRoute circuit for both hello classic and Resource Manager deployment models, you must move hello circuit toohello Resource Manager deployment model.</span></span> <span data-ttu-id="574d4-105">hello 下列各節協助您使用 PowerShell 來移動您的電路。</span><span class="sxs-lookup"><span data-stu-id="574d4-105">hello following sections help you move your circuit by using PowerShell.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="3fba1-106">開始之前</span><span class="sxs-lookup"><span data-stu-id="3fba1-106">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="574d4-106">開始之前</span><span class="sxs-lookup"><span data-stu-id="574d4-106">Before you begin</span></span>
 
-* <span data-ttu-id="3fba1-107">請確認您有最新版的 Azure PowerShell 模組 (至少 1.0 版)。</span><span class="sxs-lookup"><span data-stu-id="3fba1-107">Verify that you have the latest version of the Azure PowerShell modules (at least version 1.0).</span></span> <span data-ttu-id="3fba1-108">如需詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。</span><span class="sxs-lookup"><span data-stu-id="3fba1-108">For more information, see [How to install and configure Azure PowerShell](/powershell/azure/overview).</span></span>
-* <span data-ttu-id="3fba1-109">開始設定之前，請確定您已經檢閱過[必要條件](expressroute-prerequisites.md)、[路由需求](expressroute-routing.md)和[工作流程](expressroute-workflows.md)。</span><span class="sxs-lookup"><span data-stu-id="3fba1-109">Make sure that you have reviewed the [prerequisites](expressroute-prerequisites.md), [routing requirements](expressroute-routing.md), and [workflows](expressroute-workflows.md) before you begin configuration.</span></span>
-* <span data-ttu-id="3fba1-110">請檢閱[將 ExpressRoute 電路從傳統移至 Resource Manager](expressroute-move.md) 下提供的資訊。</span><span class="sxs-lookup"><span data-stu-id="3fba1-110">Review the information that is provided under [Moving an ExpressRoute circuit from classic to Resource Manager](expressroute-move.md).</span></span> <span data-ttu-id="3fba1-111">請確定您已完整了解各項限制。</span><span class="sxs-lookup"><span data-stu-id="3fba1-111">Make sure that you fully understand the limits and limitations.</span></span>
-* <span data-ttu-id="3fba1-112">請確認電路在傳統部署模型中的運作完全正常。</span><span class="sxs-lookup"><span data-stu-id="3fba1-112">Verify that the circuit is fully operational in the classic deployment model.</span></span>
-* <span data-ttu-id="3fba1-113">請確定您擁有建立在 Resource Manager 部署模型中建立的資源群組。</span><span class="sxs-lookup"><span data-stu-id="3fba1-113">Ensure that you have a resource group that was created in the Resource Manager deployment model.</span></span>
+* <span data-ttu-id="574d4-107">確認您擁有 hello hello Azure PowerShell 模組最新版本 (至少 1.0 版)。</span><span class="sxs-lookup"><span data-stu-id="574d4-107">Verify that you have hello latest version of hello Azure PowerShell modules (at least version 1.0).</span></span> <span data-ttu-id="574d4-108">如需詳細資訊，請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。</span><span class="sxs-lookup"><span data-stu-id="574d4-108">For more information, see [How tooinstall and configure Azure PowerShell](/powershell/azure/overview).</span></span>
+* <span data-ttu-id="574d4-109">請確定您已經檢閱 hello[必要條件](expressroute-prerequisites.md)，[路由需求](expressroute-routing.md)，和[工作流程](expressroute-workflows.md)開始設定之前。</span><span class="sxs-lookup"><span data-stu-id="574d4-109">Make sure that you have reviewed hello [prerequisites](expressroute-prerequisites.md), [routing requirements](expressroute-routing.md), and [workflows](expressroute-workflows.md) before you begin configuration.</span></span>
+* <span data-ttu-id="574d4-110">檢閱底下提供的 hello 資訊[從傳統 tooResource 管理員移動的 ExpressRoute 電路](expressroute-move.md)。</span><span class="sxs-lookup"><span data-stu-id="574d4-110">Review hello information that is provided under [Moving an ExpressRoute circuit from classic tooResource Manager](expressroute-move.md).</span></span> <span data-ttu-id="574d4-111">請確定您完全瞭解 hello 限制和限制。</span><span class="sxs-lookup"><span data-stu-id="574d4-111">Make sure that you fully understand hello limits and limitations.</span></span>
+* <span data-ttu-id="574d4-112">請確認 hello 循環可完全運作 hello 傳統部署模型中。</span><span class="sxs-lookup"><span data-stu-id="574d4-112">Verify that hello circuit is fully operational in hello classic deployment model.</span></span>
+* <span data-ttu-id="574d4-113">確定您擁有 hello Resource Manager 部署模型中所建立的資源群組。</span><span class="sxs-lookup"><span data-stu-id="574d4-113">Ensure that you have a resource group that was created in hello Resource Manager deployment model.</span></span>
 
-## <a name="move-an-expressroute-circuit"></a><span data-ttu-id="3fba1-114">移動 ExpressRoute 電路</span><span class="sxs-lookup"><span data-stu-id="3fba1-114">Move an ExpressRoute circuit</span></span>
+## <a name="move-an-expressroute-circuit"></a><span data-ttu-id="574d4-114">移動 ExpressRoute 電路</span><span class="sxs-lookup"><span data-stu-id="574d4-114">Move an ExpressRoute circuit</span></span>
 
-### <a name="step-1-gather-circuit-details-from-the-classic-deployment-model"></a><span data-ttu-id="3fba1-115">步驟 1︰從傳統部署模型收集電路詳細資訊</span><span class="sxs-lookup"><span data-stu-id="3fba1-115">Step 1: Gather circuit details from the classic deployment model</span></span>
+### <a name="step-1-gather-circuit-details-from-hello-classic-deployment-model"></a><span data-ttu-id="574d4-115">步驟 1: Hello 傳統部署模型從收集電路詳細資料</span><span class="sxs-lookup"><span data-stu-id="574d4-115">Step 1: Gather circuit details from hello classic deployment model</span></span>
 
-<span data-ttu-id="3fba1-116">登入 Azure 傳統環境並收集服務金鑰。</span><span class="sxs-lookup"><span data-stu-id="3fba1-116">Sign in to the Azure classic environment and gather the service key.</span></span>
+<span data-ttu-id="574d4-116">登入 toohello Azure 傳統的環境，並收集 hello 服務金鑰。</span><span class="sxs-lookup"><span data-stu-id="574d4-116">Sign in toohello Azure classic environment and gather hello service key.</span></span>
 
-1. <span data-ttu-id="3fba1-117">登入您的 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="3fba1-117">Sign in to your Azure account.</span></span>
+1. <span data-ttu-id="574d4-117">Azure 帳戶登入 tooyour。</span><span class="sxs-lookup"><span data-stu-id="574d4-117">Sign in tooyour Azure account.</span></span>
 
   ```powershell
   Add-AzureAccount
   ```
 
-2. <span data-ttu-id="3fba1-118">選取適當的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="3fba1-118">Select the appropriate Azure subscription.</span></span>
+2. <span data-ttu-id="574d4-118">選取 hello 適當的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="574d4-118">Select hello appropriate Azure subscription.</span></span>
 
   ```powershell
   Select-AzureSubscription "<Enter Subscription Name here>"
   ```
 
-3. <span data-ttu-id="3fba1-119">匯入 Azure 和 ExpressRoute 的 PowerShell 模組。</span><span class="sxs-lookup"><span data-stu-id="3fba1-119">Import the PowerShell modules for Azure and ExpressRoute.</span></span>
+3. <span data-ttu-id="574d4-119">Azure 和 ExpressRoute 匯入 hello PowerShell 模組。</span><span class="sxs-lookup"><span data-stu-id="574d4-119">Import hello PowerShell modules for Azure and ExpressRoute.</span></span>
 
   ```powershell
   Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\Azure.psd1'
   Import-Module 'C:\Program Files (x86)\Microsoft SDKs\Azure\PowerShell\ServiceManagement\Azure\ExpressRoute\ExpressRoute.psd1'
   ```
 
-4. <span data-ttu-id="3fba1-120">使用下列 Cmdlet 來取得所有 ExpressRoute 電路的服務金鑰。</span><span class="sxs-lookup"><span data-stu-id="3fba1-120">Use the cmdlet below to get the service keys for all of your ExpressRoute circuits.</span></span> <span data-ttu-id="3fba1-121">在取得金鑰之後，請複製電路的「服務金鑰」，這個電路就是您想要移至 Resource Manager 部署模型的電路。</span><span class="sxs-lookup"><span data-stu-id="3fba1-121">After retrieving the keys, copy the **service key** of the circuit that you want to move to the Resource Manager deployment model.</span></span>
+4. <span data-ttu-id="574d4-120">ExpressRoute 電路的所有使用 tooget hello 服務機碼下的 hello cmdlet。</span><span class="sxs-lookup"><span data-stu-id="574d4-120">Use hello cmdlet below tooget hello service keys for all of your ExpressRoute circuits.</span></span> <span data-ttu-id="574d4-121">擷取後 hello 索引鍵，複製 hello**服務金鑰**hello 循環的 toomove toohello Resource Manager 部署模型。</span><span class="sxs-lookup"><span data-stu-id="574d4-121">After retrieving hello keys, copy hello **service key** of hello circuit that you want toomove toohello Resource Manager deployment model.</span></span>
 
   ```powershell
   Get-AzureDedicatedCircuit
   ```
 
-### <a name="step-2-sign-in-and-create-a-resource-group"></a><span data-ttu-id="3fba1-122">步驟 2：登入並建立資源群組</span><span class="sxs-lookup"><span data-stu-id="3fba1-122">Step 2: Sign in and create a resource group</span></span>
+### <a name="step-2-sign-in-and-create-a-resource-group"></a><span data-ttu-id="574d4-122">步驟 2：登入並建立資源群組</span><span class="sxs-lookup"><span data-stu-id="574d4-122">Step 2: Sign in and create a resource group</span></span>
 
-<span data-ttu-id="3fba1-123">登入 Resource Manager 環境並建立新的資源群組。</span><span class="sxs-lookup"><span data-stu-id="3fba1-123">Sign in to the Resource Manager environment and create a new resource group.</span></span>
+<span data-ttu-id="574d4-123">登入 toohello 資源管理員環境，並建立新的資源群組。</span><span class="sxs-lookup"><span data-stu-id="574d4-123">Sign in toohello Resource Manager environment and create a new resource group.</span></span>
 
-1. <span data-ttu-id="3fba1-124">登入您的 Azure Resource Manager 環境。</span><span class="sxs-lookup"><span data-stu-id="3fba1-124">Sign in to your Azure Resource Manager environment.</span></span>
+1. <span data-ttu-id="574d4-124">登入 tooyour Azure 資源管理員環境。</span><span class="sxs-lookup"><span data-stu-id="574d4-124">Sign in tooyour Azure Resource Manager environment.</span></span>
 
   ```powershell
   Login-AzureRmAccount
   ```
 
-2. <span data-ttu-id="3fba1-125">選取適當的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="3fba1-125">Select the appropriate Azure subscription.</span></span>
+2. <span data-ttu-id="574d4-125">選取 hello 適當的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="574d4-125">Select hello appropriate Azure subscription.</span></span>
 
   ```powershell
   Get-AzureRmSubscription -SubscriptionName "<Enter Subscription Name here>" | Select-AzureRmSubscription
   ```
 
-3. <span data-ttu-id="3fba1-126">修改下列程式碼片段以建立新的資源群組 (如果您尚未擁有資源群組)。</span><span class="sxs-lookup"><span data-stu-id="3fba1-126">Modify the snippet below to create a new resource group if you don't already have a resource group.</span></span>
+3. <span data-ttu-id="574d4-126">如果您還沒有資源群組，請修改 hello toocreate 新的資源群組下的程式碼片段。</span><span class="sxs-lookup"><span data-stu-id="574d4-126">Modify hello snippet below toocreate a new resource group if you don't already have a resource group.</span></span>
 
   ```powershell
   New-AzureRmResourceGroup -Name "DemoRG" -Location "West US"
   ```
 
-### <a name="step-3-move-the-expressroute-circuit-to-the-resource-manager-deployment-model"></a><span data-ttu-id="3fba1-127">步驟 3：將 ExpressRoute 電路移至 Resource Manager 部署模型</span><span class="sxs-lookup"><span data-stu-id="3fba1-127">Step 3: Move the ExpressRoute circuit to the Resource Manager deployment model</span></span>
+### <a name="step-3-move-hello-expressroute-circuit-toohello-resource-manager-deployment-model"></a><span data-ttu-id="574d4-127">步驟 3： 移動 hello ExpressRoute 電路 toohello Resource Manager 部署模型</span><span class="sxs-lookup"><span data-stu-id="574d4-127">Step 3: Move hello ExpressRoute circuit toohello Resource Manager deployment model</span></span>
 
-<span data-ttu-id="3fba1-128">您已準備就緒，可將 ExpressRoute 電路從傳統部署模型移至 Resource Manager 部署模型。</span><span class="sxs-lookup"><span data-stu-id="3fba1-128">You are now ready to move your ExpressRoute circuit from the classic deployment model to the Resource Manager deployment model.</span></span> <span data-ttu-id="3fba1-129">更進一步之前，請先檢閱[將 ExpressRoute 電路從傳統移至 Resource Manager 部署模型](expressroute-move.md)下提供的資訊。</span><span class="sxs-lookup"><span data-stu-id="3fba1-129">Before proceeding, review the information provided in [Moving an ExpressRoute circuit from the classic to the Resource Manager deployment model](expressroute-move.md).</span></span>
+<span data-ttu-id="574d4-128">您會立即準備 toomove 您從 hello 傳統部署模型 toohello Resource Manager 部署模型的 ExpressRoute 電路。</span><span class="sxs-lookup"><span data-stu-id="574d4-128">You are now ready toomove your ExpressRoute circuit from hello classic deployment model toohello Resource Manager deployment model.</span></span> <span data-ttu-id="574d4-129">繼續之前，檢閱中所提供的 hello 資訊[移動從 hello 傳統 toohello Resource Manager 部署模型的 ExpressRoute 電路](expressroute-move.md)。</span><span class="sxs-lookup"><span data-stu-id="574d4-129">Before proceeding, review hello information provided in [Moving an ExpressRoute circuit from hello classic toohello Resource Manager deployment model](expressroute-move.md).</span></span>
 
-<span data-ttu-id="3fba1-130">若要移動電路，請修改並執行下列程式碼片段：</span><span class="sxs-lookup"><span data-stu-id="3fba1-130">To move your circuit, modify and run the following snippet:</span></span>
+<span data-ttu-id="574d4-130">toomove 修改您的循環，並執行下列程式碼片段的 hello:</span><span class="sxs-lookup"><span data-stu-id="574d4-130">toomove your circuit, modify and run hello following snippet:</span></span>
 
 ```powershell
 Move-AzureRmExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "DemoRG" -Location "West US" -ServiceKey "<Service-key>"
 ```
 
 > [!NOTE]
-> <span data-ttu-id="3fba1-131">移動完成之後，列在前一個 Cmdlet 中的新名稱會用來處理資源。</span><span class="sxs-lookup"><span data-stu-id="3fba1-131">After the move has finished, the new name that is listed in the previous cmdlet will be used to address the resource.</span></span> <span data-ttu-id="3fba1-132">電路基本上會重新命名。</span><span class="sxs-lookup"><span data-stu-id="3fba1-132">The circuit will essentially be renamed.</span></span>
+> <span data-ttu-id="574d4-131">Hello 移動完成之後，會列在 hello 前一個 cmdlet 的 hello 新名稱將會使用的 tooaddress hello 資源。</span><span class="sxs-lookup"><span data-stu-id="574d4-131">After hello move has finished, hello new name that is listed in hello previous cmdlet will be used tooaddress hello resource.</span></span> <span data-ttu-id="574d4-132">hello 循環本質上會被重新命名。</span><span class="sxs-lookup"><span data-stu-id="574d4-132">hello circuit will essentially be renamed.</span></span>
 > 
 
-## <a name="modify-circuit-access"></a><span data-ttu-id="3fba1-133">修改電路存取</span><span class="sxs-lookup"><span data-stu-id="3fba1-133">Modify circuit access</span></span>
+## <a name="modify-circuit-access"></a><span data-ttu-id="574d4-133">修改電路存取</span><span class="sxs-lookup"><span data-stu-id="574d4-133">Modify circuit access</span></span>
 
-### <a name="to-enable-expressroute-circuit-access-for-both-deployment-models"></a><span data-ttu-id="3fba1-134">為兩種部署模型啟用 ExpressRoute 電路存取</span><span class="sxs-lookup"><span data-stu-id="3fba1-134">To enable ExpressRoute circuit access for both deployment models</span></span>
+### <a name="tooenable-expressroute-circuit-access-for-both-deployment-models"></a><span data-ttu-id="574d4-134">tooenable ExpressRoute 電路存取兩種部署模型</span><span class="sxs-lookup"><span data-stu-id="574d4-134">tooenable ExpressRoute circuit access for both deployment models</span></span>
 
-<span data-ttu-id="3fba1-135">在將傳統 ExpressRoute 電路移至 Resource Manager 部署模型之後，您可以為這兩種部署模型啟用存取。</span><span class="sxs-lookup"><span data-stu-id="3fba1-135">After moving your classic ExpressRoute circuit to the Resource Manager deployment model, you can enable access to both deployment models.</span></span> <span data-ttu-id="3fba1-136">執行下列的 Cmdlet 以存取這兩種部署模型︰</span><span class="sxs-lookup"><span data-stu-id="3fba1-136">Run the following cmdlets to enable access to both deployment models:</span></span>
+<span data-ttu-id="574d4-135">移動後傳統 ExpressRoute 電路 toohello 資源管理員部署模型，您可以啟用存取 tooboth 部署模型。</span><span class="sxs-lookup"><span data-stu-id="574d4-135">After moving your classic ExpressRoute circuit toohello Resource Manager deployment model, you can enable access tooboth deployment models.</span></span> <span data-ttu-id="574d4-136">執行下列 cmdlet tooenable 存取 tooboth 部署模型的 hello:</span><span class="sxs-lookup"><span data-stu-id="574d4-136">Run hello following cmdlets tooenable access tooboth deployment models:</span></span>
 
-1. <span data-ttu-id="3fba1-137">取得電路詳細資料。</span><span class="sxs-lookup"><span data-stu-id="3fba1-137">Get the circuit details.</span></span>
+1. <span data-ttu-id="574d4-137">取得 hello 電路詳細資料。</span><span class="sxs-lookup"><span data-stu-id="574d4-137">Get hello circuit details.</span></span>
 
   ```powershell
   $ckt = Get-AzureRmExpressRouteCircuit -Name "DemoCkt" -ResourceGroupName "DemoRG"
   ```
 
-2. <span data-ttu-id="3fba1-138">將 [允許傳統作業] 設定為 TRUE。</span><span class="sxs-lookup"><span data-stu-id="3fba1-138">Set "Allow Classic Operations" to TRUE.</span></span>
+2. <span data-ttu-id="574d4-138">設定 「 允許傳統作業 > tooTRUE。</span><span class="sxs-lookup"><span data-stu-id="574d4-138">Set "Allow Classic Operations" tooTRUE.</span></span>
 
   ```powershell
   $ckt.AllowClassicOperations = $true
   ```
 
-3. <span data-ttu-id="3fba1-139">更新電路。</span><span class="sxs-lookup"><span data-stu-id="3fba1-139">Update the circuit.</span></span> <span data-ttu-id="3fba1-140">成功完成這項作業後，您就可以在傳統部署模型中檢視電路。</span><span class="sxs-lookup"><span data-stu-id="3fba1-140">After this operation has finished successfully, you will be able to view the circuit in the classic deployment model.</span></span>
+3. <span data-ttu-id="574d4-139">更新 hello 循環。</span><span class="sxs-lookup"><span data-stu-id="574d4-139">Update hello circuit.</span></span> <span data-ttu-id="574d4-140">這項作業已順利完成之後，您將無法 tooview hello 傳統部署模型中的 hello 循環。</span><span class="sxs-lookup"><span data-stu-id="574d4-140">After this operation has finished successfully, you will be able tooview hello circuit in hello classic deployment model.</span></span>
 
   ```powershell
   Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
   ```
 
-4. <span data-ttu-id="3fba1-141">執行下列 Cmdlet 以取得 ExpressRoute 電路的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="3fba1-141">Run the following cmdlet to get the details of the ExpressRoute circuit.</span></span> <span data-ttu-id="3fba1-142">您必須能夠看到列出的服務金鑰。</span><span class="sxs-lookup"><span data-stu-id="3fba1-142">You must be able to see the service key listed.</span></span>
+4. <span data-ttu-id="574d4-141">執行下列 cmdlet tooget hello 詳細資料的 hello ExpressRoute 電路的 hello。</span><span class="sxs-lookup"><span data-stu-id="574d4-141">Run hello following cmdlet tooget hello details of hello ExpressRoute circuit.</span></span> <span data-ttu-id="574d4-142">您必須是所列的可以 toosee hello 服務機碼。</span><span class="sxs-lookup"><span data-stu-id="574d4-142">You must be able toosee hello service key listed.</span></span>
 
   ```powershell
   get-azurededicatedcircuit
   ```
 
-5. <span data-ttu-id="3fba1-143">您現在可以使用適用於傳統 VNet 的傳統部署模型命令，以及適用於 Resource Manager VNet 的 Resource Manager 命令，來管理 ExpressRoute 電路的連結。</span><span class="sxs-lookup"><span data-stu-id="3fba1-143">You can now manage links to the ExpressRoute circuit using the classic deployment model commands for classic VNets, and the Resource Manager commands for Resource Manager VNets.</span></span> <span data-ttu-id="3fba1-144">下列文件會協助您管理 ExpressRoute 線路的連結︰</span><span class="sxs-lookup"><span data-stu-id="3fba1-144">The following articles help you manage links to the ExpressRoute circuit:</span></span>
+5. <span data-ttu-id="574d4-143">您現在可以管理連結 toohello ExpressRoute 循環使用資源管理員 Vnet 傳統的 Vnet 和 hello 資源管理員命令的 hello 傳統部署模型命令。</span><span class="sxs-lookup"><span data-stu-id="574d4-143">You can now manage links toohello ExpressRoute circuit using hello classic deployment model commands for classic VNets, and hello Resource Manager commands for Resource Manager VNets.</span></span> <span data-ttu-id="574d4-144">hello 下列文章協助您管理連結 toohello ExpressRoute 循環：</span><span class="sxs-lookup"><span data-stu-id="574d4-144">hello following articles help you manage links toohello ExpressRoute circuit:</span></span>
 
-    * [<span data-ttu-id="3fba1-145">在 Resource Manager 部署模型中將虛擬網路連結到 ExpressRoute 電路</span><span class="sxs-lookup"><span data-stu-id="3fba1-145">Link your virtual network to your ExpressRoute circuit in the Resource Manager deployment model</span></span>](expressroute-howto-linkvnet-arm.md)
-    * [<span data-ttu-id="3fba1-146">在傳統部署模型中將虛擬網路連結到 ExpressRoute 電路</span><span class="sxs-lookup"><span data-stu-id="3fba1-146">Link your virtual network to your ExpressRoute circuit in the classic deployment model</span></span>](expressroute-howto-linkvnet-classic.md)
+    * [<span data-ttu-id="574d4-145">連結您的虛擬網路 tooyour hello Resource Manager 部署模型中的 ExpressRoute 電路</span><span class="sxs-lookup"><span data-stu-id="574d4-145">Link your virtual network tooyour ExpressRoute circuit in hello Resource Manager deployment model</span></span>](expressroute-howto-linkvnet-arm.md)
+    * [<span data-ttu-id="574d4-146">連結您的虛擬網路 tooyour hello 傳統部署模型中的 ExpressRoute 電路</span><span class="sxs-lookup"><span data-stu-id="574d4-146">Link your virtual network tooyour ExpressRoute circuit in hello classic deployment model</span></span>](expressroute-howto-linkvnet-classic.md)
 
-### <a name="to-disable-expressroute-circuit-access-to-the-classic-deployment-model"></a><span data-ttu-id="3fba1-147">停用傳統部署模型的 ExpressRoute 電路存取</span><span class="sxs-lookup"><span data-stu-id="3fba1-147">To disable ExpressRoute circuit access to the classic deployment model</span></span>
+### <a name="toodisable-expressroute-circuit-access-toohello-classic-deployment-model"></a><span data-ttu-id="574d4-147">toodisable ExpressRoute 電路存取 toohello 傳統部署模型</span><span class="sxs-lookup"><span data-stu-id="574d4-147">toodisable ExpressRoute circuit access toohello classic deployment model</span></span>
 
-<span data-ttu-id="3fba1-148">執行下列的 Cmdlet 以停止傳統部署模型的存取。</span><span class="sxs-lookup"><span data-stu-id="3fba1-148">Run the following cmdlets to disable access to the classic deployment model.</span></span>
+<span data-ttu-id="574d4-148">執行下列 cmdlet toodisable 存取 toohello 傳統部署模型的 hello。</span><span class="sxs-lookup"><span data-stu-id="574d4-148">Run hello following cmdlets toodisable access toohello classic deployment model.</span></span>
 
-1. <span data-ttu-id="3fba1-149">取得 ExpressRoute 電路的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="3fba1-149">Get details of the ExpressRoute circuit.</span></span>
+1. <span data-ttu-id="574d4-149">取得 hello ExpressRoute 電路的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="574d4-149">Get details of hello ExpressRoute circuit.</span></span>
 
   ```powershell
   $ckt = Get-AzureRmExpressRouteCircuit -Name "DemoCkt" -ResourceGroupName "DemoRG"
   ```
 
-2. <span data-ttu-id="3fba1-150">將 [允許傳統作業] 設定為 FALSE。</span><span class="sxs-lookup"><span data-stu-id="3fba1-150">Set "Allow Classic Operations" to FALSE.</span></span>
+2. <span data-ttu-id="574d4-150">設定 「 允許傳統作業 > tooFALSE。</span><span class="sxs-lookup"><span data-stu-id="574d4-150">Set "Allow Classic Operations" tooFALSE.</span></span>
 
   ```powershell
   $ckt.AllowClassicOperations = $false
   ```
 
-3. <span data-ttu-id="3fba1-151">更新電路。</span><span class="sxs-lookup"><span data-stu-id="3fba1-151">Update the circuit.</span></span> <span data-ttu-id="3fba1-152">成功完成這項作業後，您就不能在傳統部署模型中檢視電路。</span><span class="sxs-lookup"><span data-stu-id="3fba1-152">After this operation has finished successfully, you will not be able to view the circuit in the classic deployment model.</span></span>
+3. <span data-ttu-id="574d4-151">更新 hello 循環。</span><span class="sxs-lookup"><span data-stu-id="574d4-151">Update hello circuit.</span></span> <span data-ttu-id="574d4-152">這項作業已順利完成之後，您將無法在 hello 傳統部署模型中的可以 tooview hello 循環。</span><span class="sxs-lookup"><span data-stu-id="574d4-152">After this operation has finished successfully, you will not be able tooview hello circuit in hello classic deployment model.</span></span>
 
   ```powershell
 Set-AzureRmExpressRouteCircuit -ExpressRouteCircuit $ckt
   ```
 
-## <a name="next-steps"></a><span data-ttu-id="3fba1-153">後續步驟</span><span class="sxs-lookup"><span data-stu-id="3fba1-153">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="574d4-153">後續步驟</span><span class="sxs-lookup"><span data-stu-id="574d4-153">Next steps</span></span>
 
-* [<span data-ttu-id="3fba1-154">建立和修改 ExpressRoute 線路的路由</span><span class="sxs-lookup"><span data-stu-id="3fba1-154">Create and modify routing for your ExpressRoute circuit</span></span>](expressroute-howto-routing-arm.md)
-* [<span data-ttu-id="3fba1-155">將虛擬網路連結至 ExpressRoute 線路</span><span class="sxs-lookup"><span data-stu-id="3fba1-155">Link your virtual network to your ExpressRoute circuit</span></span>](expressroute-howto-linkvnet-arm.md)
+* [<span data-ttu-id="574d4-154">建立和修改 ExpressRoute 線路的路由</span><span class="sxs-lookup"><span data-stu-id="574d4-154">Create and modify routing for your ExpressRoute circuit</span></span>](expressroute-howto-routing-arm.md)
+* [<span data-ttu-id="574d4-155">連結您的虛擬網路 tooyour ExpressRoute 電路</span><span class="sxs-lookup"><span data-stu-id="574d4-155">Link your virtual network tooyour ExpressRoute circuit</span></span>](expressroute-howto-linkvnet-arm.md)

@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Apps 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何使用 Azure App Service 中的 Mobile Apps，透過 Xamarin 或 Cordova 建置及裝載原生 iOS、Android 或 Windows 應用程式，或是跨平台的應用程式。"
+title: "aaaAzure 行動應用程式文件-教學課程中，API 參考 |Microsoft 文件"
+description: "深入了解如何在 Azure App Service toobuild 和主機原生 iOS、 Android 或 Windows toouse 行動應用程式的應用程式或使用 Xamarin 或 Cordova 的跨平台應用程式。"
 services: app-service\mobile
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: f660922fa2f7d5d21b4e6678233792ad6cb84041
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 09b103b274c66f515d9a34bbdcb54cf0ff3a035a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="mobile-apps-documentation"></a>Mobile Apps 文件
 
-了解如何使用 Azure App Service 中的 Mobile Apps，透過 Xamarin 或 Cordova 建置原生 iOS、Android 或 Windows 應用程式，或是跨平台的應用程式。 教學課程、影片、用戶端 SDK 文件等會示範如何為任何行動應用程式建置及裝載後端。
+深入了解如何在 Azure App Service toobuild 原生 iOS、 Android 或 Windows toouse 行動應用程式的應用程式或使用 Xamarin 或 Cordova 的跨平台應用程式。 教學課程、 影片、 用戶端 SDK 文件集和多個顯示 toobuild 和主機 hello 任何行動裝置應用程式的後端。
 
 <ul class="panelContent cardsFTitle">
     <li>

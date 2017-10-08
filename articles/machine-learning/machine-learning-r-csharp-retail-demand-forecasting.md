@@ -1,5 +1,5 @@
 ---
-title: "(已過時) 預測 - ETS + STL - Azure  | Microsoft Docs"
+title: "aaa(deprecated) 預測-ETS + STL-Azure |Microsoft 文件"
 description: "(已過時) 預測 - ETS + STL"
 services: machine-learning
 documentationcenter: 
@@ -16,53 +16,53 @@ ms.date: 01/06/2017
 ms.author: yijichen
 ROBOTS: NOINDEX
 redirect_url: https://gallery.cortanaintelligence.com/
-redirect_document_id: TRUE
-ms.openlocfilehash: a575af931a41b7a55eb2102f3553640a16099146
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 550d423898d46564936fdcfbf05b7c88d2e292c2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deprecated-forecasting---ets--stl"></a><span data-ttu-id="74a1e-103">(已過時) 預測 - ETS + STL</span><span class="sxs-lookup"><span data-stu-id="74a1e-103">(deprecated) Forecasting - ETS + STL</span></span>
+# <a name="deprecated-forecasting---ets--stl"></a><span data-ttu-id="7c295-103">(已過時) 預測 - ETS + STL</span><span class="sxs-lookup"><span data-stu-id="7c295-103">(deprecated) Forecasting - ETS + STL</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="74a1e-104">Microsoft DataMarket 已進入淘汰階段，而此 API 已被取代。</span><span class="sxs-lookup"><span data-stu-id="74a1e-104">The Microsoft DataMarket is being retired and this API has been deprecated.</span></span> 
+> <span data-ttu-id="7c295-104">淘汰 hello Microsoft DataMarket 和這個 API 已被取代。</span><span class="sxs-lookup"><span data-stu-id="7c295-104">hello Microsoft DataMarket is being retired and this API has been deprecated.</span></span> 
 > 
-> <span data-ttu-id="74a1e-105">您可以在 [Cortana Intelligence 資源庫 (英文)](http://gallery.cortanaintelligence.com) 中找到許多實用的範例實驗和 API。</span><span class="sxs-lookup"><span data-stu-id="74a1e-105">You can find many useful example experiments and APIs in the [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com).</span></span> <span data-ttu-id="74a1e-106">如需有關「資源庫」的詳細資訊，請參閱[在 Cortana Intelligence 資源庫中共用及探索資源](machine-learning-gallery-how-to-use-contribute-publish.md)。</span><span class="sxs-lookup"><span data-stu-id="74a1e-106">For more information about the Gallery, see [Share and discover resources in the Cortana Intelligence Gallery](machine-learning-gallery-how-to-use-contribute-publish.md).</span></span>
+> <span data-ttu-id="7c295-105">您可以在 hello 找到許多有用的範例實驗和應用程式開發介面[Cortana 智慧組件庫](http://gallery.cortanaintelligence.com)。</span><span class="sxs-lookup"><span data-stu-id="7c295-105">You can find many useful example experiments and APIs in hello [Cortana Intelligence Gallery](http://gallery.cortanaintelligence.com).</span></span> <span data-ttu-id="7c295-106">如需 hello 組件庫的詳細資訊，請參閱[共用及探索 hello Cortana 智慧組件庫中的資源](machine-learning-gallery-how-to-use-contribute-publish.md)。</span><span class="sxs-lookup"><span data-stu-id="7c295-106">For more information about hello Gallery, see [Share and discover resources in hello Cortana Intelligence Gallery](machine-learning-gallery-how-to-use-contribute-publish.md).</span></span>
 
-<span data-ttu-id="74a1e-107">這項 [Web 服務](https://datamarket.azure.com/dataset/aml_labs/demand_forecast) 會實作季節性趨勢分解法 (STL) 和指數平滑法 (ETS) 模型，以根據使用者所提供的歷程記錄資料產生預測。</span><span class="sxs-lookup"><span data-stu-id="74a1e-107">This [web service](https://datamarket.azure.com/dataset/aml_labs/demand_forecast) implements Seasonal Trend Decomposition (STL) and Exponential Smoothing (ETS) models to produce predictions based on the historical data provided by the user.</span></span> <span data-ttu-id="74a1e-108">今年的特定產品需求會增加嗎？</span><span class="sxs-lookup"><span data-stu-id="74a1e-108">Will the demand for a specific product increase this year?</span></span> <span data-ttu-id="74a1e-109">為方便有效地規劃庫存，我可以預測聖誕節的產品銷售嗎？</span><span class="sxs-lookup"><span data-stu-id="74a1e-109">Can I predict my product sales for the Christmas season, so that I can effectively plan my inventory?</span></span> <span data-ttu-id="74a1e-110">預測模型專門處理此類問題。</span><span class="sxs-lookup"><span data-stu-id="74a1e-110">Forecasting models are apt to address such questions.</span></span> <span data-ttu-id="74a1e-111">有了過去的資料，這些模型可以檢查隱藏的趨勢和季節性來預測未來的趨勢。</span><span class="sxs-lookup"><span data-stu-id="74a1e-111">Given the past data, these models examine hidden trends and seasonality to predict future trends.</span></span> 
+<span data-ttu-id="7c295-107">這[web 服務](https://datamarket.azure.com/dataset/aml_labs/demand_forecast)實作季節性趨勢分解 (STL) 和指數平滑效果 (ETS) 模型 tooproduce 預測根據 hello 使用者所提供的 hello 歷程記錄資料。</span><span class="sxs-lookup"><span data-stu-id="7c295-107">This [web service](https://datamarket.azure.com/dataset/aml_labs/demand_forecast) implements Seasonal Trend Decomposition (STL) and Exponential Smoothing (ETS) models tooproduce predictions based on hello historical data provided by hello user.</span></span> <span data-ttu-id="7c295-108">將 hello 加大本年度的特定產品的需求？</span><span class="sxs-lookup"><span data-stu-id="7c295-108">Will hello demand for a specific product increase this year?</span></span> <span data-ttu-id="7c295-109">可以我預測 hello 產品銷售聖誕季節，讓我可以有效地計劃我清查？</span><span class="sxs-lookup"><span data-stu-id="7c295-109">Can I predict my product sales for hello Christmas season, so that I can effectively plan my inventory?</span></span> <span data-ttu-id="7c295-110">預測模型是 apt tooaddress 這類問題。</span><span class="sxs-lookup"><span data-stu-id="7c295-110">Forecasting models are apt tooaddress such questions.</span></span> <span data-ttu-id="7c295-111">指定 hello 過去的資料，這些模型會檢查隱藏的趨勢和季節性 toopredict 未來的趨勢。</span><span class="sxs-lookup"><span data-stu-id="7c295-111">Given hello past data, these models examine hidden trends and seasonality toopredict future trends.</span></span> 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-> <span data-ttu-id="74a1e-112">使用者可透過行動裝置應用程式、網站，甚至是本機電腦，來取用這項 Web 服務。</span><span class="sxs-lookup"><span data-stu-id="74a1e-112">This web service could be consumed by users – potentially through a mobile app, through a website, or even on a local computer, for example.</span></span> <span data-ttu-id="74a1e-113">不過，該 Web 服務也可用來示範如何使用 Azure Machine Learning，來建立採用 R 程式碼的 Web 服務。</span><span class="sxs-lookup"><span data-stu-id="74a1e-113">But the purpose of the web service is also to serve as an example of how Azure Machine Learning can be used to create web services on top of R code.</span></span> <span data-ttu-id="74a1e-114">只需幾行 R 程式碼並在 Azure Machine Learning Studio 中的按鈕上按幾下，就可以建立採用 R 程式碼的實驗，並將其發佈為 Web 服務。</span><span class="sxs-lookup"><span data-stu-id="74a1e-114">With just a few lines of R code and clicks of a button within Azure Machine Learning Studio, an experiment can be created with R code and published as a web service.</span></span> <span data-ttu-id="74a1e-115">接著可將 Web 服務發佈至 Azure Marketplace，以供世界各地的使用者和裝置取用，而不需要 Web 服務的作者設定基礎結構。</span><span class="sxs-lookup"><span data-stu-id="74a1e-115">The web service can then be published to the Azure Marketplace and consumed by users and devices across the world with no infrastructure setup by the author of the web service.</span></span>  
+> <span data-ttu-id="7c295-112">使用者可透過行動裝置應用程式、網站，甚至是本機電腦，來取用這項 Web 服務。</span><span class="sxs-lookup"><span data-stu-id="7c295-112">This web service could be consumed by users – potentially through a mobile app, through a website, or even on a local computer, for example.</span></span> <span data-ttu-id="7c295-113">但是 hello 目的 hello web 服務也是 tooserve 作為範例，Azure Machine Learning 可以列印文件的是，請使用的 toocreate 之上的 R 程式碼的 web 服務。</span><span class="sxs-lookup"><span data-stu-id="7c295-113">But hello purpose of hello web service is also tooserve as an example of how Azure Machine Learning can be used toocreate web services on top of R code.</span></span> <span data-ttu-id="7c295-114">只需幾行 R 程式碼並在 Azure Machine Learning Studio 中的按鈕上按幾下，就可以建立採用 R 程式碼的實驗，並將其發佈為 Web 服務。</span><span class="sxs-lookup"><span data-stu-id="7c295-114">With just a few lines of R code and clicks of a button within Azure Machine Learning Studio, an experiment can be created with R code and published as a web service.</span></span> <span data-ttu-id="7c295-115">接著可以發行的 toohello Azure Marketplace 和跨使用者和裝置 hello world hello 作者 hello web 服務的任何基礎結構設定與 hello web 服務。</span><span class="sxs-lookup"><span data-stu-id="7c295-115">hello web service can then be published toohello Azure Marketplace and consumed by users and devices across hello world with no infrastructure setup by hello author of hello web service.</span></span>  
 > 
 > 
 
-## <a name="consumption-of-web-service"></a><span data-ttu-id="74a1e-116">使用 Web 服務</span><span class="sxs-lookup"><span data-stu-id="74a1e-116">Consumption of web service</span></span>
-<span data-ttu-id="74a1e-117">這項服務可接受 4 個引數，並計算預測。</span><span class="sxs-lookup"><span data-stu-id="74a1e-117">This service accepts 4 arguments and calculates the forecasts.</span></span>
-<span data-ttu-id="74a1e-118">輸入引數包括：</span><span class="sxs-lookup"><span data-stu-id="74a1e-118">The input arguments are:</span></span>
+## <a name="consumption-of-web-service"></a><span data-ttu-id="7c295-116">使用 Web 服務</span><span class="sxs-lookup"><span data-stu-id="7c295-116">Consumption of web service</span></span>
+<span data-ttu-id="7c295-117">此服務會接受 4 個引數，並計算 hello 預報。</span><span class="sxs-lookup"><span data-stu-id="7c295-117">This service accepts 4 arguments and calculates hello forecasts.</span></span>
+<span data-ttu-id="7c295-118">hello 輸入引數為：</span><span class="sxs-lookup"><span data-stu-id="7c295-118">hello input arguments are:</span></span>
 
-* <span data-ttu-id="74a1e-119">頻率 - 表示原始資料的頻率 (每日/每週/每月/每季/每年一次)。</span><span class="sxs-lookup"><span data-stu-id="74a1e-119">Frequency - Indicates the frequency of the raw data (daily/weekly/monthly/quarterly/yearly).</span></span>
-* <span data-ttu-id="74a1e-120">水平 - 未來預測時間範圍。</span><span class="sxs-lookup"><span data-stu-id="74a1e-120">Horizon - Future forecast time-frame.</span></span>
-* <span data-ttu-id="74a1e-121">日期 - 加入時間的新時間序列資料。</span><span class="sxs-lookup"><span data-stu-id="74a1e-121">Date - Add in the new time series data for time.</span></span>
-* <span data-ttu-id="74a1e-122">值 - 加入新的時間序列資料值。</span><span class="sxs-lookup"><span data-stu-id="74a1e-122">Value - Add in the new time series data values.</span></span>
+* <span data-ttu-id="7c295-119">頻率-表示 hello 頻率的 hello 未經處理資料 （每日/週/月/每季/安排每年）。</span><span class="sxs-lookup"><span data-stu-id="7c295-119">Frequency - Indicates hello frequency of hello raw data (daily/weekly/monthly/quarterly/yearly).</span></span>
+* <span data-ttu-id="7c295-120">水平 - 未來預測時間範圍。</span><span class="sxs-lookup"><span data-stu-id="7c295-120">Horizon - Future forecast time-frame.</span></span>
+* <span data-ttu-id="7c295-121">日期-加入 hello 新時間序列中資料的時間。</span><span class="sxs-lookup"><span data-stu-id="7c295-121">Date - Add in hello new time series data for time.</span></span>
+* <span data-ttu-id="7c295-122">值-新增 hello 新時間序列的資料值。</span><span class="sxs-lookup"><span data-stu-id="7c295-122">Value - Add in hello new time series data values.</span></span>
 
-<span data-ttu-id="74a1e-123">服務的輸出會是已經計算的預測值。</span><span class="sxs-lookup"><span data-stu-id="74a1e-123">The output of the service is the calculated forecast values.</span></span>
+<span data-ttu-id="7c295-123">hello 服務的 hello 輸出是 hello 計算預測的值。</span><span class="sxs-lookup"><span data-stu-id="7c295-123">hello output of hello service is hello calculated forecast values.</span></span>
 
-<span data-ttu-id="74a1e-124">可能的範例輸入如下：</span><span class="sxs-lookup"><span data-stu-id="74a1e-124">Sample input could be:</span></span> 
+<span data-ttu-id="7c295-124">可能的範例輸入如下：</span><span class="sxs-lookup"><span data-stu-id="7c295-124">Sample input could be:</span></span> 
 
-* <span data-ttu-id="74a1e-125">頻率 - 12</span><span class="sxs-lookup"><span data-stu-id="74a1e-125">Frequency - 12</span></span>
-* <span data-ttu-id="74a1e-126">水平 - 12</span><span class="sxs-lookup"><span data-stu-id="74a1e-126">Horizon - 12</span></span>
-* <span data-ttu-id="74a1e-127">日期 - 1/15/2012;2/15/2012;3/15/2012;4/15/2012;5/15/2012;6/15/2012;7/15/2012;8/15/2012;9/15/2012;10/15/2012;11/15/2012;12/15/2012; 1/15/2013;2/15/2013;3/15/2013;4/15/2013;5/15/2013;6/15/2013;7/15/2013;8/15/2013;9/15/2013;10/15/2013;11/15/2013;12/15/2013; 1/15/2014;2/15/2014;3/15/2014;4/15/2014;5/15/2014;6/15/2014;7/15/2014;8/15/2014;9/15/2014</span><span class="sxs-lookup"><span data-stu-id="74a1e-127">Date - 1/15/2012;2/15/2012;3/15/2012;4/15/2012;5/15/2012;6/15/2012;7/15/2012;8/15/2012;9/15/2012;10/15/2012;11/15/2012;12/15/2012; 1/15/2013;2/15/2013;3/15/2013;4/15/2013;5/15/2013;6/15/2013;7/15/2013;8/15/2013;9/15/2013;10/15/2013;11/15/2013;12/15/2013; 1/15/2014;2/15/2014;3/15/2014;4/15/2014;5/15/2014;6/15/2014;7/15/2014;8/15/2014;9/15/2014</span></span>
-* <span data-ttu-id="74a1e-128">值 - 3.479;3.68;3.832;3.941;3.797;3.586;3.508;3.731;3.915;3.844;3.634;3.549;3.557;3.785;3.782;3.601;3.544;3.556;3.65;3.709;3.682;3.511; 3.429;3.51;3.523;3.525;3.626;3.695;3.711;3.711;3.693;3.571;3.509</span><span class="sxs-lookup"><span data-stu-id="74a1e-128">Value - 3.479;3.68;3.832;3.941;3.797;3.586;3.508;3.731;3.915;3.844;3.634;3.549;3.557;3.785;3.782;3.601;3.544;3.556;3.65;3.709;3.682;3.511; 3.429;3.51;3.523;3.525;3.626;3.695;3.711;3.711;3.693;3.571;3.509</span></span>
+* <span data-ttu-id="7c295-125">頻率 - 12</span><span class="sxs-lookup"><span data-stu-id="7c295-125">Frequency - 12</span></span>
+* <span data-ttu-id="7c295-126">水平 - 12</span><span class="sxs-lookup"><span data-stu-id="7c295-126">Horizon - 12</span></span>
+* <span data-ttu-id="7c295-127">日期 - 1/15/2012;2/15/2012;3/15/2012;4/15/2012;5/15/2012;6/15/2012;7/15/2012;8/15/2012;9/15/2012;10/15/2012;11/15/2012;12/15/2012; 1/15/2013;2/15/2013;3/15/2013;4/15/2013;5/15/2013;6/15/2013;7/15/2013;8/15/2013;9/15/2013;10/15/2013;11/15/2013;12/15/2013; 1/15/2014;2/15/2014;3/15/2014;4/15/2014;5/15/2014;6/15/2014;7/15/2014;8/15/2014;9/15/2014</span><span class="sxs-lookup"><span data-stu-id="7c295-127">Date - 1/15/2012;2/15/2012;3/15/2012;4/15/2012;5/15/2012;6/15/2012;7/15/2012;8/15/2012;9/15/2012;10/15/2012;11/15/2012;12/15/2012; 1/15/2013;2/15/2013;3/15/2013;4/15/2013;5/15/2013;6/15/2013;7/15/2013;8/15/2013;9/15/2013;10/15/2013;11/15/2013;12/15/2013; 1/15/2014;2/15/2014;3/15/2014;4/15/2014;5/15/2014;6/15/2014;7/15/2014;8/15/2014;9/15/2014</span></span>
+* <span data-ttu-id="7c295-128">值 - 3.479;3.68;3.832;3.941;3.797;3.586;3.508;3.731;3.915;3.844;3.634;3.549;3.557;3.785;3.782;3.601;3.544;3.556;3.65;3.709;3.682;3.511; 3.429;3.51;3.523;3.525;3.626;3.695;3.711;3.711;3.693;3.571;3.509</span><span class="sxs-lookup"><span data-stu-id="7c295-128">Value - 3.479;3.68;3.832;3.941;3.797;3.586;3.508;3.731;3.915;3.844;3.634;3.549;3.557;3.785;3.782;3.601;3.544;3.556;3.65;3.709;3.682;3.511; 3.429;3.51;3.523;3.525;3.626;3.695;3.711;3.711;3.693;3.571;3.509</span></span>
 
-> <span data-ttu-id="74a1e-129">在 Azure Marketplace 上託管的這項服務是一個 OData 服務，可透過 POST 或 GET 方法進行呼叫。</span><span class="sxs-lookup"><span data-stu-id="74a1e-129">This service, as hosted on the Azure Marketplace, is an OData service; these may be called through POST or GET methods.</span></span> 
+> <span data-ttu-id="7c295-129">這項服務，如 hello Azure Marketplace 上裝載是 OData 服務。無法呼叫透過 POST 或 GET 的方法。</span><span class="sxs-lookup"><span data-stu-id="7c295-129">This service, as hosted on hello Azure Marketplace, is an OData service; these may be called through POST or GET methods.</span></span> 
 > 
 > 
 
-<span data-ttu-id="74a1e-130">以自動化方式取用服務的方法有很多種 ([這裡](http://microsoftazuremachinelearning.azurewebsites.net/StlEtsForecasting.aspx)提供一個範例應用程式)。</span><span class="sxs-lookup"><span data-stu-id="74a1e-130">There are multiple ways of consuming the service in an automated fashion (an example app is [here](http://microsoftazuremachinelearning.azurewebsites.net/StlEtsForecasting.aspx)).</span></span>
+<span data-ttu-id="7c295-130">有多種方式來使用 hello 服務，以自動化方式 (範例應用程式是[這裡](http://microsoftazuremachinelearning.azurewebsites.net/StlEtsForecasting.aspx))。</span><span class="sxs-lookup"><span data-stu-id="7c295-130">There are multiple ways of consuming hello service in an automated fashion (an example app is [here](http://microsoftazuremachinelearning.azurewebsites.net/StlEtsForecasting.aspx)).</span></span>
 
-### <a name="starting-c-code-for-web-service-consumption"></a><span data-ttu-id="74a1e-131">啟動 Web 服務使用的 C# 程式碼：</span><span class="sxs-lookup"><span data-stu-id="74a1e-131">Starting C# code for web service consumption:</span></span>
+### <a name="starting-c-code-for-web-service-consumption"></a><span data-ttu-id="7c295-131">啟動 Web 服務使用的 C# 程式碼：</span><span class="sxs-lookup"><span data-stu-id="7c295-131">Starting C# code for web service consumption:</span></span>
     public class Input
     {
             public string frequency;
@@ -92,21 +92,21 @@ ms.lasthandoff: 07/11/2017
     }
 
 
-## <a name="creation-of-web-service"></a><span data-ttu-id="74a1e-132">建立 Web 服務</span><span class="sxs-lookup"><span data-stu-id="74a1e-132">Creation of web service</span></span>
-> <span data-ttu-id="74a1e-133">這項 Web 服務是使用 Azure Machine Learning 所建立。</span><span class="sxs-lookup"><span data-stu-id="74a1e-133">This web service was created using Azure Machine Learning.</span></span> <span data-ttu-id="74a1e-134">如需免費試用版，以及有關建立實驗和[發佈 Web 服務](machine-learning-publish-a-machine-learning-web-service.md)的簡介影片，請參閱 [azure.com/ml](http://azure.com/ml)。</span><span class="sxs-lookup"><span data-stu-id="74a1e-134">For a free trial, as well as introductory videos on creating experiments and [publishing web services](machine-learning-publish-a-machine-learning-web-service.md), please see [azure.com/ml](http://azure.com/ml).</span></span> <span data-ttu-id="74a1e-135">以下是建立 Web 服務之實驗的螢幕擷取畫面，以及實驗內每個模組的範例程式碼。</span><span class="sxs-lookup"><span data-stu-id="74a1e-135">Below is a screenshot of the experiment that created the web service and example code for each of the modules within the experiment.</span></span>
+## <a name="creation-of-web-service"></a><span data-ttu-id="7c295-132">建立 Web 服務</span><span class="sxs-lookup"><span data-stu-id="7c295-132">Creation of web service</span></span>
+> <span data-ttu-id="7c295-133">這項 Web 服務是使用 Azure Machine Learning 所建立。</span><span class="sxs-lookup"><span data-stu-id="7c295-133">This web service was created using Azure Machine Learning.</span></span> <span data-ttu-id="7c295-134">如需免費試用版，以及有關建立實驗和[發佈 Web 服務](machine-learning-publish-a-machine-learning-web-service.md)的簡介影片，請參閱 [azure.com/ml](http://azure.com/ml)。</span><span class="sxs-lookup"><span data-stu-id="7c295-134">For a free trial, as well as introductory videos on creating experiments and [publishing web services](machine-learning-publish-a-machine-learning-web-service.md), please see [azure.com/ml](http://azure.com/ml).</span></span> <span data-ttu-id="7c295-135">以下是 hello 實驗中的 hello 模組的每個建立 hello web 服務和範例程式碼的 hello 實驗的螢幕擷取畫面。</span><span class="sxs-lookup"><span data-stu-id="7c295-135">Below is a screenshot of hello experiment that created hello web service and example code for each of hello modules within hello experiment.</span></span>
 > 
 > 
 
-<span data-ttu-id="74a1e-136">Azure Machine Learning 中已建立新的空白實驗，</span><span class="sxs-lookup"><span data-stu-id="74a1e-136">From within Azure Machine Learning, a new blank experiment was created.</span></span> <span data-ttu-id="74a1e-137">並已使用預先定義的資料結構描述上傳範例輸入資料。</span><span class="sxs-lookup"><span data-stu-id="74a1e-137">Sample input data was uploaded with a predefined data schema.</span></span> <span data-ttu-id="74a1e-138">連結至資料結構描述的[執行 R 指令碼][execute-r-script]模組會使用 R 的 ‘stl’、‘ets’ 和 ‘forecast’ 函式，以產生 STL 和 ETS 預測模型。</span><span class="sxs-lookup"><span data-stu-id="74a1e-138">Linked to the data schema is an [Execute R Script][execute-r-script] module, which generates STL and ETS forecasting models by using ‘stl’, ‘ets’, and ‘forecast’ functions from R.</span></span> 
+<span data-ttu-id="7c295-136">Azure Machine Learning 中已建立新的空白實驗，</span><span class="sxs-lookup"><span data-stu-id="7c295-136">From within Azure Machine Learning, a new blank experiment was created.</span></span> <span data-ttu-id="7c295-137">並已使用預先定義的資料結構描述上傳範例輸入資料。</span><span class="sxs-lookup"><span data-stu-id="7c295-137">Sample input data was uploaded with a predefined data schema.</span></span> <span data-ttu-id="7c295-138">連結的 toohello 資料結構描述是[執行 R 指令碼][ execute-r-script]模組，如此就會產生 STL 和 ETS 使用 'stl'、 'ets'，預測模型，並從 R '預測' 函式</span><span class="sxs-lookup"><span data-stu-id="7c295-138">Linked toohello data schema is an [Execute R Script][execute-r-script] module, which generates STL and ETS forecasting models by using ‘stl’, ‘ets’, and ‘forecast’ functions from R.</span></span> 
 
-### <a name="experiment-flow"></a><span data-ttu-id="74a1e-139">實驗流程：</span><span class="sxs-lookup"><span data-stu-id="74a1e-139">Experiment flow:</span></span>
+### <a name="experiment-flow"></a><span data-ttu-id="7c295-139">實驗流程：</span><span class="sxs-lookup"><span data-stu-id="7c295-139">Experiment flow:</span></span>
 ![實驗流程][2]
 
-#### <a name="module-1"></a><span data-ttu-id="74a1e-141">模組 1：</span><span class="sxs-lookup"><span data-stu-id="74a1e-141">Module 1:</span></span>
-    # Add in the CSV file with the data in the format shown below 
+#### <a name="module-1"></a><span data-ttu-id="7c295-141">模組 1：</span><span class="sxs-lookup"><span data-stu-id="7c295-141">Module 1:</span></span>
+    # Add in hello CSV file with hello data in hello format shown below 
 ![範例資料][3]    
 
-#### <a name="module-2"></a><span data-ttu-id="74a1e-143">模組 2：</span><span class="sxs-lookup"><span data-stu-id="74a1e-143">Module 2:</span></span>
+#### <a name="module-2"></a><span data-ttu-id="7c295-143">模組 2：</span><span class="sxs-lookup"><span data-stu-id="7c295-143">Module 2:</span></span>
     # Data input
     data <- maml.mapInputPort(1) # class: data.frame
     library(forecast)
@@ -133,11 +133,11 @@ ms.lasthandoff: 07/11/2017
     # Data output
     maml.mapOutputPort("data.forecast");
 
-## <a name="limitations"></a><span data-ttu-id="74a1e-144">限制</span><span class="sxs-lookup"><span data-stu-id="74a1e-144">Limitations</span></span>
-<span data-ttu-id="74a1e-145">這是一個非常簡單的 ETS + STL 預測範例。</span><span class="sxs-lookup"><span data-stu-id="74a1e-145">This is a very simple example for ETS + STL forecasting.</span></span> <span data-ttu-id="74a1e-146">從上面的範例程式碼可以看出，未實作錯誤攔截，且這項服務假設所有變數都是連續/正值，而頻率應該是大於 1 的整數。</span><span class="sxs-lookup"><span data-stu-id="74a1e-146">As can be seen from the example code above, no error catching is implemented, and the service assumes that all the variables are continuous/positive values and the frequency should be an integer greater than 1.</span></span> <span data-ttu-id="74a1e-147">日期和值向量的長度應該相同，且時間序列的長度應該大於 2 倍頻率。</span><span class="sxs-lookup"><span data-stu-id="74a1e-147">The length of the date and value vectors should be the same, and the length of the time series should be greater than 2*frequency.</span></span> <span data-ttu-id="74a1e-148">日期變數應遵守 ‘mm/dd/yyyy’ 格式。</span><span class="sxs-lookup"><span data-stu-id="74a1e-148">The date variable should adhere to the format ‘mm/dd/yyyy’.</span></span>
+## <a name="limitations"></a><span data-ttu-id="7c295-144">限制</span><span class="sxs-lookup"><span data-stu-id="7c295-144">Limitations</span></span>
+<span data-ttu-id="7c295-145">這是一個非常簡單的 ETS + STL 預測範例。</span><span class="sxs-lookup"><span data-stu-id="7c295-145">This is a very simple example for ETS + STL forecasting.</span></span> <span data-ttu-id="7c295-146">從上述的 hello 範例程式碼可以看到，不實作攔截任何錯誤時，以及 hello 服務會假設所有 hello 變數都是連續/positive 值而 hello 頻率應大於 1 的整數。</span><span class="sxs-lookup"><span data-stu-id="7c295-146">As can be seen from hello example code above, no error catching is implemented, and hello service assumes that all hello variables are continuous/positive values and hello frequency should be an integer greater than 1.</span></span> <span data-ttu-id="7c295-147">hello hello 的日期和值的向量的長度應該是 hello 相同，而且 hello hello 時間序列的長度應該大於 2 * 頻率。</span><span class="sxs-lookup"><span data-stu-id="7c295-147">hello length of hello date and value vectors should be hello same, and hello length of hello time series should be greater than 2*frequency.</span></span> <span data-ttu-id="7c295-148">hello 日期變數應該遵守 toohello ' mm/dd/yyyy 格式 '。</span><span class="sxs-lookup"><span data-stu-id="7c295-148">hello date variable should adhere toohello format ‘mm/dd/yyyy’.</span></span>
 
-## <a name="faq"></a><span data-ttu-id="74a1e-149">常見問題集</span><span class="sxs-lookup"><span data-stu-id="74a1e-149">FAQ</span></span>
-<span data-ttu-id="74a1e-150">如需取用 Web 服務或發佈至 Azure Marketplace 的常見問題集，請參閱 [這裡](machine-learning-marketplace-faq.md)。</span><span class="sxs-lookup"><span data-stu-id="74a1e-150">For frequently asked questions on consumption of the web service or publishing to the Azure Marketplace, see [here](machine-learning-marketplace-faq.md).</span></span>
+## <a name="faq"></a><span data-ttu-id="7c295-149">常見問題集</span><span class="sxs-lookup"><span data-stu-id="7c295-149">FAQ</span></span>
+<span data-ttu-id="7c295-150">常見問題集 hello web 服務或發行 toohello Azure Marketplace 的耗用量問題，請參閱[這裡](machine-learning-marketplace-faq.md)。</span><span class="sxs-lookup"><span data-stu-id="7c295-150">For frequently asked questions on consumption of hello web service or publishing toohello Azure Marketplace, see [here](machine-learning-marketplace-faq.md).</span></span>
 
 [1]: ./media/machine-learning-r-csharp-retail-demand-forecasting/retail-img1.png
 [2]: ./media/machine-learning-r-csharp-retail-demand-forecasting/retail-img2.png

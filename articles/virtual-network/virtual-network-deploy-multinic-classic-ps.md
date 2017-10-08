@@ -1,6 +1,6 @@
 ---
-title: "建立具有多個 NIC 的 VM (傳統) - Azure PowerShell | Microsoft Docs"
-description: "了解如何使用 PowerShell 建立具有多個 NIC 的 VM (傳統)。"
+title: "aaaCreate 具有多個 Nic 的 Azure PowerShell 的 VM （傳統） |Microsoft 文件"
+description: "深入了解如何 toocreate 具有使用 PowerShell 將多個 Nic 的 VM （傳統）。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,42 +16,42 @@ ms.workload: infrastructure-services
 ms.date: 02/02/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 923d4817d96399fc423b0a89cbf88f8d397f1af0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 90c967929bb418042c3fb7079e0f69246faac53c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-vm-classic-with-multiple-nics-using-powershell"></a><span data-ttu-id="93933-103">使用 PowerShell 建立具有多個 NIC 的 VM (傳統)</span><span class="sxs-lookup"><span data-stu-id="93933-103">Create a VM (Classic) with multiple NICs using PowerShell</span></span>
+# <a name="create-a-vm-classic-with-multiple-nics-using-powershell"></a><span data-ttu-id="ead09-103">使用 PowerShell 建立具有多個 NIC 的 VM (傳統)</span><span class="sxs-lookup"><span data-stu-id="ead09-103">Create a VM (Classic) with multiple NICs using PowerShell</span></span>
 
 [!INCLUDE [virtual-network-deploy-multinic-classic-selectors-include.md](../../includes/virtual-network-deploy-multinic-classic-selectors-include.md)]
 
-<span data-ttu-id="93933-104">您可以在 Azure 中建立虛擬機器 (VM) 並將多個網路介面 (NIC) 連接至每個 VM。</span><span class="sxs-lookup"><span data-stu-id="93933-104">You can create virtual machines (VMs) in Azure and attach multiple network interfaces (NICs) to each of your VMs.</span></span> <span data-ttu-id="93933-105">有多個 NIC 時，可透過各個 NIC 分隔不同的流量類型。</span><span class="sxs-lookup"><span data-stu-id="93933-105">Multiple NICs enable separation of traffic types across NICs.</span></span> <span data-ttu-id="93933-106">例如，一個 NIC 可能與網際網路進行通訊，而另一個 NIC 則只與未連線到網際網路的內部資源進行通訊。</span><span class="sxs-lookup"><span data-stu-id="93933-106">For example, one NIC might communicate with the Internet, while another communicates only with internal resources not connected to the Internet.</span></span> <span data-ttu-id="93933-107">透過多個 NIC 分隔網路流量是許多網路虛擬設備 (例如應用程式交付和 WAN 最佳化解決方案) 所需的功能。</span><span class="sxs-lookup"><span data-stu-id="93933-107">The ability to separate network traffic across multiple NICs is required for many network virtual appliances, such as application delivery and WAN optimization solutions.</span></span>
+<span data-ttu-id="ead09-104">您可以在 Azure 中建立虛擬機器 (Vm)，並附加多個網路介面 (Nic) tooeach 的 Vm。</span><span class="sxs-lookup"><span data-stu-id="ead09-104">You can create virtual machines (VMs) in Azure and attach multiple network interfaces (NICs) tooeach of your VMs.</span></span> <span data-ttu-id="ead09-105">有多個 NIC 時，可透過各個 NIC 分隔不同的流量類型。</span><span class="sxs-lookup"><span data-stu-id="ead09-105">Multiple NICs enable separation of traffic types across NICs.</span></span> <span data-ttu-id="ead09-106">例如，一個 NIC 通訊 hello 網際網路，而另一個不只與內部資源通訊連接 toohello 網際網路。</span><span class="sxs-lookup"><span data-stu-id="ead09-106">For example, one NIC might communicate with hello Internet, while another communicates only with internal resources not connected toohello Internet.</span></span> <span data-ttu-id="ead09-107">許多網路虛擬應用裝置，例如應用程式傳遞和 WAN 最佳化解決方案需要 hello 能力 tooseparate 跨多個 Nic 的網路流量。</span><span class="sxs-lookup"><span data-stu-id="ead09-107">hello ability tooseparate network traffic across multiple NICs is required for many network virtual appliances, such as application delivery and WAN optimization solutions.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="93933-108">Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。</span><span class="sxs-lookup"><span data-stu-id="93933-108">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="93933-109">本文涵蓋之內容包括使用傳統部署模型。</span><span class="sxs-lookup"><span data-stu-id="93933-109">This article covers using the classic deployment model.</span></span> <span data-ttu-id="93933-110">Microsoft 建議讓大部分的新部署使用資源管理員模式。</span><span class="sxs-lookup"><span data-stu-id="93933-110">Microsoft recommends that most new deployments use the Resource Manager model.</span></span> <span data-ttu-id="93933-111">了解如何使用 [Resource Manager 部署模型](virtual-network-deploy-multinic-arm-ps.md)執行這些步驟。</span><span class="sxs-lookup"><span data-stu-id="93933-111">Learn how to perform these steps using the [Resource Manager deployment model](virtual-network-deploy-multinic-arm-ps.md).</span></span>
+> <span data-ttu-id="ead09-108">Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。</span><span class="sxs-lookup"><span data-stu-id="ead09-108">Azure has two different deployment models for creating and working with resources:  [Resource Manager and classic](../resource-manager-deployment-model.md).</span></span> <span data-ttu-id="ead09-109">本文說明如何使用 hello 傳統部署模型。</span><span class="sxs-lookup"><span data-stu-id="ead09-109">This article covers using hello classic deployment model.</span></span> <span data-ttu-id="ead09-110">Microsoft 建議最新的部署使用 hello 資源管理員的模型。</span><span class="sxs-lookup"><span data-stu-id="ead09-110">Microsoft recommends that most new deployments use hello Resource Manager model.</span></span> <span data-ttu-id="ead09-111">深入了解如何 tooperform 這些步驟使用 hello [Resource Manager 部署模型](virtual-network-deploy-multinic-arm-ps.md)。</span><span class="sxs-lookup"><span data-stu-id="ead09-111">Learn how tooperform these steps using hello [Resource Manager deployment model](virtual-network-deploy-multinic-arm-ps.md).</span></span>
 
 [!INCLUDE [virtual-network-deploy-multinic-scenario-include.md](../../includes/virtual-network-deploy-multinic-scenario-include.md)]
 
-<span data-ttu-id="93933-112">在下列步驟中，WEB 伺服器使用名為 *IaaSStory* 的資源群組，而 DB 伺服器使用名為 *IaaSStory-BackEnd* 的資源群組。</span><span class="sxs-lookup"><span data-stu-id="93933-112">The following steps use a resource group named *IaaSStory* for the WEB servers and a resource group named *IaaSStory-BackEnd* for the DB servers.</span></span>
+<span data-ttu-id="ead09-112">hello 下列步驟使用的資源群組名稱為*IaaSStory* hello 網頁伺服器和資源群組名稱為*IaaSStory 後端*hello DB 伺服器。</span><span class="sxs-lookup"><span data-stu-id="ead09-112">hello following steps use a resource group named *IaaSStory* for hello WEB servers and a resource group named *IaaSStory-BackEnd* for hello DB servers.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="93933-113">必要條件</span><span class="sxs-lookup"><span data-stu-id="93933-113">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="ead09-113">必要條件</span><span class="sxs-lookup"><span data-stu-id="ead09-113">Prerequisites</span></span>
 
-<span data-ttu-id="93933-114">您需要建立 *IaaSStory* 資源群組，其中含有此案例的所有必要資源，才能建立 DB 伺服器。</span><span class="sxs-lookup"><span data-stu-id="93933-114">Before you can create the DB servers, you need to create the *IaaSStory* resource group with all the necessary resources for this scenario.</span></span> <span data-ttu-id="93933-115">若要建立這些資源，請完成下列步驟。</span><span class="sxs-lookup"><span data-stu-id="93933-115">To create these resources, complete the steps that follow.</span></span> <span data-ttu-id="93933-116">依照[建立虛擬網路](virtual-networks-create-vnet-classic-netcfg-ps.md)文章中的步驟建立虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="93933-116">Create a virtual network by following the steps in the [Create a virtual network](virtual-networks-create-vnet-classic-netcfg-ps.md) article.</span></span>
+<span data-ttu-id="ead09-114">您可以建立 hello DB 伺服器之前，您需要 toocreate hello *IaaSStory*此案例中的 hello 必要資源與資源群組。</span><span class="sxs-lookup"><span data-stu-id="ead09-114">Before you can create hello DB servers, you need toocreate hello *IaaSStory* resource group with all hello necessary resources for this scenario.</span></span> <span data-ttu-id="ead09-115">toocreate 這些資源，完成 hello 遵循的步驟。</span><span class="sxs-lookup"><span data-stu-id="ead09-115">toocreate these resources, complete hello steps that follow.</span></span> <span data-ttu-id="ead09-116">建立虛擬網路中 hello 的 hello 步驟[建立虛擬網路](virtual-networks-create-vnet-classic-netcfg-ps.md)發行項。</span><span class="sxs-lookup"><span data-stu-id="ead09-116">Create a virtual network by following hello steps in hello [Create a virtual network](virtual-networks-create-vnet-classic-netcfg-ps.md) article.</span></span>
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-## <a name="create-the-back-end-vms"></a><span data-ttu-id="93933-117">建立後端 VM</span><span class="sxs-lookup"><span data-stu-id="93933-117">Create the back-end VMs</span></span>
-<span data-ttu-id="93933-118">後端 VM 有賴於建立下列資源：</span><span class="sxs-lookup"><span data-stu-id="93933-118">The back-end VMs depend on the creation of the following resources:</span></span>
+## <a name="create-hello-back-end-vms"></a><span data-ttu-id="ead09-117">後端 Vm 建立 hello</span><span class="sxs-lookup"><span data-stu-id="ead09-117">Create hello back-end VMs</span></span>
+<span data-ttu-id="ead09-118">後端 Vm 相依於下列資源的 hello hello 建立 hello:</span><span class="sxs-lookup"><span data-stu-id="ead09-118">hello back-end VMs depend on hello creation of hello following resources:</span></span>
 
-* <span data-ttu-id="93933-119">**後端子網路**。</span><span class="sxs-lookup"><span data-stu-id="93933-119">**Backend subnet**.</span></span> <span data-ttu-id="93933-120">資料庫伺服器會是另外的子網路的一部分，以隔離流量。</span><span class="sxs-lookup"><span data-stu-id="93933-120">The database servers will be part of a separate subnet, to segregate traffic.</span></span> <span data-ttu-id="93933-121">下面的指令碼需要這個子網路位在名為 *WTestVnet*的 vnet 中。</span><span class="sxs-lookup"><span data-stu-id="93933-121">The script below expects this subnet to exist in a vnet named *WTestVnet*.</span></span>
-* <span data-ttu-id="93933-122">**資料磁碟的儲存體帳戶**。</span><span class="sxs-lookup"><span data-stu-id="93933-122">**Storage account for data disks**.</span></span> <span data-ttu-id="93933-123">為取得更佳的效能，資料庫伺服器上的資料磁碟會使用需要進階儲存體帳戶的固態硬碟 (SSD) 技術。</span><span class="sxs-lookup"><span data-stu-id="93933-123">For better performance, the data disks on the database servers will use solid state drive (SSD) technology, which requires a premium storage account.</span></span> <span data-ttu-id="93933-124">請確定 Azure 的部署位置，以支援進階儲存體。</span><span class="sxs-lookup"><span data-stu-id="93933-124">Make sure the Azure location you deploy to support premium storage.</span></span>
-* <span data-ttu-id="93933-125">**可用性設定組**。</span><span class="sxs-lookup"><span data-stu-id="93933-125">**Availability set**.</span></span> <span data-ttu-id="93933-126">所有的資料庫伺服器都會加入單一的可用性設定組，確保在維護期間至少有一部 VM 啟動並執行。</span><span class="sxs-lookup"><span data-stu-id="93933-126">All database servers will be added to a single availability set, to ensure at least one of the VMs is up and running during maintenance.</span></span>
+* <span data-ttu-id="ead09-119">**後端子網路**。</span><span class="sxs-lookup"><span data-stu-id="ead09-119">**Backend subnet**.</span></span> <span data-ttu-id="ead09-120">hello 資料庫伺服器都屬於不同的子網路，toosegregate 流量。</span><span class="sxs-lookup"><span data-stu-id="ead09-120">hello database servers will be part of a separate subnet, toosegregate traffic.</span></span> <span data-ttu-id="ead09-121">下列指令碼 hello 預期此子網路 tooexist 中名為 vnet *WTestVnet*。</span><span class="sxs-lookup"><span data-stu-id="ead09-121">hello script below expects this subnet tooexist in a vnet named *WTestVnet*.</span></span>
+* <span data-ttu-id="ead09-122">**資料磁碟的儲存體帳戶**。</span><span class="sxs-lookup"><span data-stu-id="ead09-122">**Storage account for data disks**.</span></span> <span data-ttu-id="ead09-123">為提升效能，hello hello 資料庫伺服器上的資料磁碟會使用固態硬碟 (SSD) 技術，需要進階儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="ead09-123">For better performance, hello data disks on hello database servers will use solid state drive (SSD) technology, which requires a premium storage account.</span></span> <span data-ttu-id="ead09-124">請確定 hello 部署 toosupport 高階儲存體的 Azure 位置。</span><span class="sxs-lookup"><span data-stu-id="ead09-124">Make sure hello Azure location you deploy toosupport premium storage.</span></span>
+* <span data-ttu-id="ead09-125">**可用性設定組**。</span><span class="sxs-lookup"><span data-stu-id="ead09-125">**Availability set**.</span></span> <span data-ttu-id="ead09-126">所有資料庫伺服器將會都加入 tooa 一個可用性設定組，其中至少一個 hello Vm tooensure 已啟動並執行在維護期間。</span><span class="sxs-lookup"><span data-stu-id="ead09-126">All database servers will be added tooa single availability set, tooensure at least one of hello VMs is up and running during maintenance.</span></span>
 
-### <a name="step-1---start-your-script"></a><span data-ttu-id="93933-127">步驟 1：啟動指令碼</span><span class="sxs-lookup"><span data-stu-id="93933-127">Step 1 - Start your script</span></span>
-<span data-ttu-id="93933-128">[這裡](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/classic/virtual-network-deploy-multinic-classic-ps.ps1)可以下載所使用之完整的 PowerShell 指令碼。</span><span class="sxs-lookup"><span data-stu-id="93933-128">You can download the full PowerShell script used [here](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/classic/virtual-network-deploy-multinic-classic-ps.ps1).</span></span> <span data-ttu-id="93933-129">請遵循下列步驟來變更指令碼來讓指令碼在環境中運作。</span><span class="sxs-lookup"><span data-stu-id="93933-129">Follow the steps below to change the script to work in your environment.</span></span>
+### <a name="step-1---start-your-script"></a><span data-ttu-id="ead09-127">步驟 1：啟動指令碼</span><span class="sxs-lookup"><span data-stu-id="ead09-127">Step 1 - Start your script</span></span>
+<span data-ttu-id="ead09-128">您可以下載用 hello 完整 PowerShell 指令碼[這裡](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/classic/virtual-network-deploy-multinic-classic-ps.ps1)。</span><span class="sxs-lookup"><span data-stu-id="ead09-128">You can download hello full PowerShell script used [here](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/IaaS-Story/11-MultiNIC/classic/virtual-network-deploy-multinic-classic-ps.ps1).</span></span> <span data-ttu-id="ead09-129">請遵循下列 toochange hello 指令碼 toowork 您環境中的 hello 步驟。</span><span class="sxs-lookup"><span data-stu-id="ead09-129">Follow hello steps below toochange hello script toowork in your environment.</span></span>
 
-1. <span data-ttu-id="93933-130">根據上述 [必要條件](#Prerequisites)中已部署的現有資源群組來變更下列變數的值。</span><span class="sxs-lookup"><span data-stu-id="93933-130">Change the values of the variables below based on your existing resource group deployed above in [Prerequisites](#Prerequisites).</span></span>
+1. <span data-ttu-id="ead09-130">變更 hello hello 變數值以下根據您現有的資源群組，在上面部署[必要條件](#Prerequisites)。</span><span class="sxs-lookup"><span data-stu-id="ead09-130">Change hello values of hello variables below based on your existing resource group deployed above in [Prerequisites](#Prerequisites).</span></span>
 
     ```powershell
     $location              = "West US"
@@ -59,7 +59,7 @@ ms.lasthandoff: 08/03/2017
     $backendSubnetName     = "BackEnd"
     ```
 
-2. <span data-ttu-id="93933-131">根據後端部署要使用的值，變更下列變數值。</span><span class="sxs-lookup"><span data-stu-id="93933-131">Change the values of the variables below based on the values you want to use for your backend deployment.</span></span>
+2. <span data-ttu-id="ead09-131">變更 hello 值 hello 變數的下列根據 hello 值要 toouse 後端部署。</span><span class="sxs-lookup"><span data-stu-id="ead09-131">Change hello values of hello variables below based on hello values you want toouse for your backend deployment.</span></span>
 
     ```powershell
     $backendCSName         = "IaaSStory-Backend"
@@ -73,22 +73,22 @@ ms.lasthandoff: 08/03/2017
     $numberOfVMs           = 2
     ```
 
-### <a name="step-2---create-necessary-resources-for-your-vms"></a><span data-ttu-id="93933-132">步驟 2：為 VM 建立必要的資源</span><span class="sxs-lookup"><span data-stu-id="93933-132">Step 2 - Create necessary resources for your VMs</span></span>
-<span data-ttu-id="93933-133">您需要為所有 VM 的資料磁碟建立新的雲端服務和儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="93933-133">You need to create a new cloud service and a storage account for the data disks for all VMs.</span></span> <span data-ttu-id="93933-134">您也需要指定影像及 VM 的本機系統管理員帳戶。</span><span class="sxs-lookup"><span data-stu-id="93933-134">You also need to specify an image, and a local administrator account for the VMs.</span></span> <span data-ttu-id="93933-135">若要建立這些資源，請完成下列步驟：</span><span class="sxs-lookup"><span data-stu-id="93933-135">To create these resources, complete the following steps:</span></span>
+### <a name="step-2---create-necessary-resources-for-your-vms"></a><span data-ttu-id="ead09-132">步驟 2：為 VM 建立必要的資源</span><span class="sxs-lookup"><span data-stu-id="ead09-132">Step 2 - Create necessary resources for your VMs</span></span>
+<span data-ttu-id="ead09-133">您需要新的雲端服務和儲存體帳戶的所有 vm hello 資料磁碟的 toocreate。</span><span class="sxs-lookup"><span data-stu-id="ead09-133">You need toocreate a new cloud service and a storage account for hello data disks for all VMs.</span></span> <span data-ttu-id="ead09-134">您也需要 toospecify 映像及本機系統管理員帳戶的 hello Vm。</span><span class="sxs-lookup"><span data-stu-id="ead09-134">You also need toospecify an image, and a local administrator account for hello VMs.</span></span> <span data-ttu-id="ead09-135">toocreate 這些資源，完成下列步驟 hello:</span><span class="sxs-lookup"><span data-stu-id="ead09-135">toocreate these resources, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="93933-136">建立新的雲端服務。</span><span class="sxs-lookup"><span data-stu-id="93933-136">Create a new cloud service.</span></span>
+1. <span data-ttu-id="ead09-136">建立新的雲端服務。</span><span class="sxs-lookup"><span data-stu-id="ead09-136">Create a new cloud service.</span></span>
 
     ```powershell
     New-AzureService -ServiceName $backendCSName -Location $location
     ```
 
-2. <span data-ttu-id="93933-137">建立新的進階儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="93933-137">Create a new premium storage account.</span></span>
+2. <span data-ttu-id="ead09-137">建立新的進階儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="ead09-137">Create a new premium storage account.</span></span>
 
     ```powershell
     New-AzureStorageAccount -StorageAccountName $prmStorageAccountName `
     -Location $location -Type Premium_LRS
     ```
-3. <span data-ttu-id="93933-138">設定前文中建立的儲存體帳戶，做為訂用帳戶的目前儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="93933-138">Set the storage account created above as the current storage account for your subscription.</span></span>
+3. <span data-ttu-id="ead09-138">上面所建立與 hello 目前儲存體帳戶訂用帳戶集 hello 儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="ead09-138">Set hello storage account created above as hello current storage account for your subscription.</span></span>
 
     ```powershell
     $subscription = Get-AzureSubscription | where {$_.IsCurrent -eq $true}  
@@ -96,7 +96,7 @@ ms.lasthandoff: 08/03/2017
     -CurrentStorageAccountName $prmStorageAccountName
     ```
 
-4. <span data-ttu-id="93933-139">選取 VM 影像。</span><span class="sxs-lookup"><span data-stu-id="93933-139">Select an image for the VM.</span></span>
+4. <span data-ttu-id="ead09-139">選取 hello VM 映像。</span><span class="sxs-lookup"><span data-stu-id="ead09-139">Select an image for hello VM.</span></span>
 
     ```powershell
     $image = Get-AzureVMImage `
@@ -105,22 +105,22 @@ ms.lasthandoff: 08/03/2017
     | select -ExpandProperty ImageName -First 1
     ```
 
-5. <span data-ttu-id="93933-140">設定本機系統管理員帳戶認證。</span><span class="sxs-lookup"><span data-stu-id="93933-140">Set the local administrator account credentials.</span></span>
+5. <span data-ttu-id="ead09-140">設定 hello 本機系統管理員帳戶認證。</span><span class="sxs-lookup"><span data-stu-id="ead09-140">Set hello local administrator account credentials.</span></span>
 
     ```powershell
     $cred = Get-Credential -Message "Enter username and password for local admin account"
     ```
 
-### <a name="step-3---create-vms"></a><span data-ttu-id="93933-141">步驟 3：建立 VM</span><span class="sxs-lookup"><span data-stu-id="93933-141">Step 3 - Create VMs</span></span>
-<span data-ttu-id="93933-142">您需要使用迴圈建立所需數量的 VM，並在迴圈中建立必要的 NIC 和 VM。</span><span class="sxs-lookup"><span data-stu-id="93933-142">You need to use a loop to create as many VMs as you want, and create the necessary NICs and VMs within the loop.</span></span> <span data-ttu-id="93933-143">若要建立 NIC 和 VM，請執行下列步驟。</span><span class="sxs-lookup"><span data-stu-id="93933-143">To create the NICs and VMs, execute the following steps.</span></span>
+### <a name="step-3---create-vms"></a><span data-ttu-id="ead09-141">步驟 3：建立 VM</span><span class="sxs-lookup"><span data-stu-id="ead09-141">Step 3 - Create VMs</span></span>
+<span data-ttu-id="ead09-142">您需要 toouse 迴圈 toocreate 因為許多 Vm，並建立 hello 所需的 Nic 和 Vm hello 迴圈內。</span><span class="sxs-lookup"><span data-stu-id="ead09-142">You need toouse a loop toocreate as many VMs as you want, and create hello necessary NICs and VMs within hello loop.</span></span> <span data-ttu-id="ead09-143">toocreate hello Nic 和 Vm，執行下列步驟的 hello。</span><span class="sxs-lookup"><span data-stu-id="ead09-143">toocreate hello NICs and VMs, execute hello following steps.</span></span>
 
-1. <span data-ttu-id="93933-144">啟動 `for` 迴圈，根據 `$numberOfVMs` 變數值，視需要的次數重複命令來建立一部 VM 和兩個 NIC。</span><span class="sxs-lookup"><span data-stu-id="93933-144">Start a `for` loop to repeat the commands to create a VM and two NICs as many times as necessary, based on the value of the `$numberOfVMs` variable.</span></span>
+1. <span data-ttu-id="ead09-144">啟動`for`迴圈 toorepeat hello 命令 toocreate VM 和兩個 Nic 如有必要，次數根據 hello hello 值`$numberOfVMs`變數。</span><span class="sxs-lookup"><span data-stu-id="ead09-144">Start a `for` loop toorepeat hello commands toocreate a VM and two NICs as many times as necessary, based on hello value of hello `$numberOfVMs` variable.</span></span>
 
     ```powershell
     for ($suffixNumber = 1; $suffixNumber -le $numberOfVMs; $suffixNumber++){
     ```
 
-2. <span data-ttu-id="93933-145">建立指定 VM 影像、大小和可用性設定組的 `VMConfig` 物件。</span><span class="sxs-lookup"><span data-stu-id="93933-145">Create a `VMConfig` object specifying the image, size, and availability set for the VM.</span></span>
+2. <span data-ttu-id="ead09-145">建立`VMConfig`指定 hello 映像、 大小和可用性設定組 hello VM 的物件。</span><span class="sxs-lookup"><span data-stu-id="ead09-145">Create a `VMConfig` object specifying hello image, size, and availability set for hello VM.</span></span>
 
     ```powershell
     $vmName = $vmNamePrefix + $suffixNumber
@@ -130,7 +130,7 @@ ms.lasthandoff: 08/03/2017
         -AvailabilitySetName $avSetName
     ```
 
-3. <span data-ttu-id="93933-146">將 VM 佈建為 Windows VM。</span><span class="sxs-lookup"><span data-stu-id="93933-146">Provision the VM as a Windows VM.</span></span>
+3. <span data-ttu-id="ead09-146">佈建 hello 做為 Windows VM 的 VM。</span><span class="sxs-lookup"><span data-stu-id="ead09-146">Provision hello VM as a Windows VM.</span></span>
 
     ```powershell
     Add-AzureProvisioningConfig -VM $vmConfig -Windows `
@@ -138,14 +138,14 @@ ms.lasthandoff: 08/03/2017
         -Password $cred.GetNetworkCredential().Password
     ```
 
-4. <span data-ttu-id="93933-147">設定預設 NIC，並指派它一個靜態 IP 位址。</span><span class="sxs-lookup"><span data-stu-id="93933-147">Set the default NIC and assign it a static IP address.</span></span>
+4. <span data-ttu-id="ead09-147">設定 hello 預設 NIC，並將其指派靜態 IP 位址。</span><span class="sxs-lookup"><span data-stu-id="ead09-147">Set hello default NIC and assign it a static IP address.</span></span>
 
     ```powershell
     Set-AzureSubnet         -SubnetNames $backendSubnetName -VM $vmConfig
     Set-AzureStaticVNetIP   -IPAddress ($ipAddressPrefix+$suffixNumber+3) -VM $vmConfig
     ```
 
-5. <span data-ttu-id="93933-148">為每部 VM 加入第二個 NIC。</span><span class="sxs-lookup"><span data-stu-id="93933-148">Add a second NIC for each VM.</span></span>
+5. <span data-ttu-id="ead09-148">為每部 VM 加入第二個 NIC。</span><span class="sxs-lookup"><span data-stu-id="ead09-148">Add a second NIC for each VM.</span></span>
 
     ```powershell
     Add-AzureNetworkInterfaceConfig -Name ("RemoteAccessNIC"+$suffixNumber) `
@@ -154,7 +154,7 @@ ms.lasthandoff: 08/03/2017
     -VM $vmConfig
     ```
 
-6. <span data-ttu-id="93933-149">為每部 VM 建立資料磁碟。</span><span class="sxs-lookup"><span data-stu-id="93933-149">Create to data disks for each VM.</span></span>
+6. <span data-ttu-id="ead09-149">每個 VM 建立 toodata 磁碟。</span><span class="sxs-lookup"><span data-stu-id="ead09-149">Create toodata disks for each VM.</span></span>
 
     ```powershell
     $dataDisk1Name = $vmName + "-" + $dataDiskSuffix + "-1"    
@@ -170,7 +170,7 @@ ms.lasthandoff: 08/03/2017
     -LUN 1
     ```
 
-7. <span data-ttu-id="93933-150">建立每部 VM 並結束迴圈。</span><span class="sxs-lookup"><span data-stu-id="93933-150">Create each VM, and end the loop.</span></span>
+7. <span data-ttu-id="ead09-150">建立每個 VM，以及結束 hello 迴圈。</span><span class="sxs-lookup"><span data-stu-id="ead09-150">Create each VM, and end hello loop.</span></span>
 
     ```powershell
     New-AzureVM -VM $vmConfig `
@@ -180,10 +180,10 @@ ms.lasthandoff: 08/03/2017
     }
     ```
 
-### <a name="step-4---run-the-script"></a><span data-ttu-id="93933-151">步驟 4：執行指令碼</span><span class="sxs-lookup"><span data-stu-id="93933-151">Step 4 - Run the script</span></span>
-<span data-ttu-id="93933-152">既然您已根據需求下載並變更指令碼，請執行指令碼來建立有多個 NIC 的後端資料庫 VM。</span><span class="sxs-lookup"><span data-stu-id="93933-152">Now that you downloaded and changed the script based on your needs, runt he script to create the back end database VMs with multiple NICs.</span></span>
+### <a name="step-4---run-hello-script"></a><span data-ttu-id="ead09-151">步驟 4-執行 hello 指令碼</span><span class="sxs-lookup"><span data-stu-id="ead09-151">Step 4 - Run hello script</span></span>
+<span data-ttu-id="ead09-152">既然您已下載並變更 hello 指令碼，根據您的需求，runt 他指令碼 toocreate hello 後端資料庫具有多個 Nic Vm。</span><span class="sxs-lookup"><span data-stu-id="ead09-152">Now that you downloaded and changed hello script based on your needs, runt he script toocreate hello back end database VMs with multiple NICs.</span></span>
 
-1. <span data-ttu-id="93933-153">儲存您的指令碼，然後從 **PowerShell** 命令提示字元或 **PowerShell ISE** 執行它。</span><span class="sxs-lookup"><span data-stu-id="93933-153">Save your script and run it from the **PowerShell** command prompt, or **PowerShell ISE**.</span></span> <span data-ttu-id="93933-154">您會看到初始的輸出，如下所示。</span><span class="sxs-lookup"><span data-stu-id="93933-154">You will see the initial output, as shown below.</span></span>
+1. <span data-ttu-id="ead09-153">儲存您的指令碼，並從 hello 執行**PowerShell**命令提示字元，或**PowerShell ISE**。</span><span class="sxs-lookup"><span data-stu-id="ead09-153">Save your script and run it from hello **PowerShell** command prompt, or **PowerShell ISE**.</span></span> <span data-ttu-id="ead09-154">您會看到 hello 初始輸出，如下所示。</span><span class="sxs-lookup"><span data-stu-id="ead09-154">You will see hello initial output, as shown below.</span></span>
 
         OperationDescription    OperationId                          OperationStatus
 
@@ -191,7 +191,7 @@ ms.lasthandoff: 08/03/2017
         New-AzureStorageAccount xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx Succeeded
         
         WARNING: No deployment found in service: 'IaaSStory-Backend'.
-2. <span data-ttu-id="93933-155">填寫認證提示中所需的資訊，並按一下 [確定] 。</span><span class="sxs-lookup"><span data-stu-id="93933-155">Fill out the information needed in the credentials prompt and click **OK**.</span></span> <span data-ttu-id="93933-156">會傳回以下的輸出。</span><span class="sxs-lookup"><span data-stu-id="93933-156">The output below is returned.</span></span>
+2. <span data-ttu-id="ead09-155">填寫在 hello 認證提示，並按一下所需的 hello 資訊**確定**。</span><span class="sxs-lookup"><span data-stu-id="ead09-155">Fill out hello information needed in hello credentials prompt and click **OK**.</span></span> <span data-ttu-id="ead09-156">會傳回以下 hello 輸出。</span><span class="sxs-lookup"><span data-stu-id="ead09-156">hello output below is returned.</span></span>
 
         New-AzureVM             xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx Succeeded
         New-AzureVM             xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx Succeeded

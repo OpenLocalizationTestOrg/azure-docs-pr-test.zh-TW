@@ -1,6 +1,6 @@
 ---
-title: "使用 Apache Storm on HDInsight 處理車輛感應器資料 | Microsoft Docs"
-description: "了解如何使用 Apache Storm on HDInsight 處理事件中樞的車輛感應器資料 從 Azure Cosmos DB 加入型號資料，並將輸出儲存至儲存體。"
+title: "與 HDInsight 上的 Apache Storm aaaProcess vehicle 感應器資料 |Microsoft 文件"
+description: "深入了解如何從事件中樞在 HDInsight 上使用 Apache Storm tooprocess vehicle 感應器資料。 新增模型資料從 Azure Cosmos DB，以及儲存輸出 toostorage。"
 services: hdinsight,documentdb,notification-hubs
 documentationcenter: 
 author: Blackmist
@@ -15,51 +15,51 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/03/2017
 ms.author: larryfr
-ms.openlocfilehash: 8e8ebc724e1c70e8fcd56312adef5da2342373ea
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8f7b1dbb9072e095ea32160bb731bedd071288af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="process-vehicle-sensor-data-from-azure-event-hubs-using-apache-storm-on-hdinsight"></a><span data-ttu-id="00ee1-104">使用 Apache Storm on HDInsight 處理 Azure 事件中樞的車輛感應器資料</span><span class="sxs-lookup"><span data-stu-id="00ee1-104">Process vehicle sensor data from Azure Event Hubs using Apache Storm on HDInsight</span></span>
+# <a name="process-vehicle-sensor-data-from-azure-event-hubs-using-apache-storm-on-hdinsight"></a><span data-ttu-id="e18ab-104">使用 Apache Storm on HDInsight 處理 Azure 事件中樞的車輛感應器資料</span><span class="sxs-lookup"><span data-stu-id="e18ab-104">Process vehicle sensor data from Azure Event Hubs using Apache Storm on HDInsight</span></span>
 
-<span data-ttu-id="00ee1-105">了解如何使用 Apache Storm on HDInsight 處理 Azure 事件中心的車輛感應器資料</span><span class="sxs-lookup"><span data-stu-id="00ee1-105">Learn how to process vehicle sensor data from Azure Event Hubs using Apache Storm on HDInsight.</span></span> <span data-ttu-id="00ee1-106">此範例會從 Azure 事件中樞讀取感應器資料，藉由參考儲存在 Azure Cosmos DB 中的資料來擴充資料。</span><span class="sxs-lookup"><span data-stu-id="00ee1-106">This example reads sensor data from Azure Event Hubs, enriches the data by referencing data stored in Azure Cosmos DB.</span></span> <span data-ttu-id="00ee1-107">資料會使用 Hadoop 檔案系統 (HDFS) 儲存到 Azure 儲存體。</span><span class="sxs-lookup"><span data-stu-id="00ee1-107">The data is stored into Azure Storage using the Hadoop File System (HDFS).</span></span>
+<span data-ttu-id="e18ab-105">深入了解如何從 Azure 事件中樞在 HDInsight 上使用 Apache Storm tooprocess vehicle 感應器資料。</span><span class="sxs-lookup"><span data-stu-id="e18ab-105">Learn how tooprocess vehicle sensor data from Azure Event Hubs using Apache Storm on HDInsight.</span></span> <span data-ttu-id="e18ab-106">這個範例會從 Azure 事件中心讀取感應器資料，藉由參考資料儲存在 Azure Cosmos DB 豐富 hello 資料。</span><span class="sxs-lookup"><span data-stu-id="e18ab-106">This example reads sensor data from Azure Event Hubs, enriches hello data by referencing data stored in Azure Cosmos DB.</span></span> <span data-ttu-id="e18ab-107">hello 資料會儲存到 Azure 儲存體使用 hello Hadoop 檔案系統 (HDFS)。</span><span class="sxs-lookup"><span data-stu-id="e18ab-107">hello data is stored into Azure Storage using hello Hadoop File System (HDFS).</span></span>
 
-![HDInsight 和物聯網 (IoT) 架構圖表](./media/hdinsight-storm-iot-eventhub-documentdb/iot.png)
+![HDInsight 和 hello 物聯網 (IoT) 架構圖表](./media/hdinsight-storm-iot-eventhub-documentdb/iot.png)
 
-## <a name="overview"></a><span data-ttu-id="00ee1-109">概觀</span><span class="sxs-lookup"><span data-stu-id="00ee1-109">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="e18ab-109">概觀</span><span class="sxs-lookup"><span data-stu-id="e18ab-109">Overview</span></span>
 
-<span data-ttu-id="00ee1-110">新增車輛的感應器可讓您根據歷程記錄資料的趨勢預測設備問題。</span><span class="sxs-lookup"><span data-stu-id="00ee1-110">Adding sensors to vehicles allows you to predict equipment problems based on historical data trends.</span></span> <span data-ttu-id="00ee1-111">它也可讓您根據使用模式分析來改良未來的版本。</span><span class="sxs-lookup"><span data-stu-id="00ee1-111">It also allows you to make improvements to future versions based on usage pattern analysis.</span></span> <span data-ttu-id="00ee1-112">您必須能在 MapReduce 處理發生之前，快速且有效地將來自所有車輛的資料載入 Hadoop。</span><span class="sxs-lookup"><span data-stu-id="00ee1-112">You must be able to quickly and efficiently load the data from all vehicles into Hadoop before MapReduce processing can occur.</span></span> <span data-ttu-id="00ee1-113">此外，您可能會想要執行嚴重失敗路徑 (引擎溫度、煞車等) 的即時分析。</span><span class="sxs-lookup"><span data-stu-id="00ee1-113">Additionally, you may wish to do analysis for critical failure paths (engine temperature, brakes, etc.) in real time.</span></span>
+<span data-ttu-id="e18ab-110">加入 toovehicles 感應器可讓您根據歷程記錄資料的趨勢 toopredict 設備問題。</span><span class="sxs-lookup"><span data-stu-id="e18ab-110">Adding sensors toovehicles allows you toopredict equipment problems based on historical data trends.</span></span> <span data-ttu-id="e18ab-111">它也可讓您 toomake 改進 toofuture 版本使用模式分析為基礎。</span><span class="sxs-lookup"><span data-stu-id="e18ab-111">It also allows you toomake improvements toofuture versions based on usage pattern analysis.</span></span> <span data-ttu-id="e18ab-112">您必須是能夠 tooquickly，並且有效率地載入 hello 資料從所有車輛 Hadoop MapReduce 處理發生之前。</span><span class="sxs-lookup"><span data-stu-id="e18ab-112">You must be able tooquickly and efficiently load hello data from all vehicles into Hadoop before MapReduce processing can occur.</span></span> <span data-ttu-id="e18ab-113">此外，您可能希望 toodo 分析嚴重失敗的路徑 （引擎溫度、 brakes 等） 的即時。</span><span class="sxs-lookup"><span data-stu-id="e18ab-113">Additionally, you may wish toodo analysis for critical failure paths (engine temperature, brakes, etc.) in real time.</span></span>
 
-<span data-ttu-id="00ee1-114">Azure 事件中樞是建置來處理感應器所產生的大量資料。</span><span class="sxs-lookup"><span data-stu-id="00ee1-114">Azure Event Hubs is built to handle the massive volume of data generated by sensors.</span></span> <span data-ttu-id="00ee1-115">Apache Storm 則可用來載入和處理資料，再將資料儲存到 HDFS。</span><span class="sxs-lookup"><span data-stu-id="00ee1-115">Apache Storm can be used to load and process the data before storing it into HDFS.</span></span>
+<span data-ttu-id="e18ab-114">Azure 事件中心是建置 toohandle hello 大量的磁碟區的感應器所產生的資料。</span><span class="sxs-lookup"><span data-stu-id="e18ab-114">Azure Event Hubs is built toohandle hello massive volume of data generated by sensors.</span></span> <span data-ttu-id="e18ab-115">Apache Storm 之前，可以使用的 tooload 和處理序 hello 資料儲存到 HDFS。</span><span class="sxs-lookup"><span data-stu-id="e18ab-115">Apache Storm can be used tooload and process hello data before storing it into HDFS.</span></span>
 
-## <a name="solution"></a><span data-ttu-id="00ee1-116">方案</span><span class="sxs-lookup"><span data-stu-id="00ee1-116">Solution</span></span>
+## <a name="solution"></a><span data-ttu-id="e18ab-116">方案</span><span class="sxs-lookup"><span data-stu-id="e18ab-116">Solution</span></span>
 
-<span data-ttu-id="00ee1-117">感應器會記錄引擎溫度、周圍溫度和車輛速度的遙測資料。</span><span class="sxs-lookup"><span data-stu-id="00ee1-117">Telemetry data for engine temperature, ambient temperature, and vehicle speed is recorded by sensors.</span></span> <span data-ttu-id="00ee1-118">然後，資料會連同車輛識別碼 (VIN) 和時間戳記一併傳送至事件中樞。</span><span class="sxs-lookup"><span data-stu-id="00ee1-118">Data is then sent to Event Hubs along with the car's Vehicle Identification Number (VIN) and a time stamp.</span></span> <span data-ttu-id="00ee1-119">從事件中心，在 Apache Storm on HDInsight 叢集上執行的 Storm 拓撲會讀取該資料、加以處理，並將其儲存到 HDFS。</span><span class="sxs-lookup"><span data-stu-id="00ee1-119">From there, a Storm Topology running on an Apache Storm on HDInsight cluster reads the data, processes it, and stores it into HDFS.</span></span>
+<span data-ttu-id="e18ab-117">感應器會記錄引擎溫度、周圍溫度和車輛速度的遙測資料。</span><span class="sxs-lookup"><span data-stu-id="e18ab-117">Telemetry data for engine temperature, ambient temperature, and vehicle speed is recorded by sensors.</span></span> <span data-ttu-id="e18ab-118">然後，資料會傳送 tooEvent 中心以及 hello 汽車的汽車識別號碼 (VIN) 和時間戳記。</span><span class="sxs-lookup"><span data-stu-id="e18ab-118">Data is then sent tooEvent Hubs along with hello car's Vehicle Identification Number (VIN) and a time stamp.</span></span> <span data-ttu-id="e18ab-119">從該處，Storm 拓撲上 Apache Storm，HDInsight 叢集上執行讀取 hello 資料、 加以處理，並將它儲存到 HDFS。</span><span class="sxs-lookup"><span data-stu-id="e18ab-119">From there, a Storm Topology running on an Apache Storm on HDInsight cluster reads hello data, processes it, and stores it into HDFS.</span></span>
 
-<span data-ttu-id="00ee1-120">在處理期間，VIN 可用來從 Cosmos DB 擷取型號資訊。</span><span class="sxs-lookup"><span data-stu-id="00ee1-120">During processing, the VIN is used to retrieve model information from Cosmos DB.</span></span> <span data-ttu-id="00ee1-121">此資料會在儲存前加入至資料流。</span><span class="sxs-lookup"><span data-stu-id="00ee1-121">This data is added to the data stream before it is stored.</span></span>
+<span data-ttu-id="e18ab-120">在處理期間，hello VIN 就是從 Cosmos DB 使用的 tooretrieve 模型資訊。</span><span class="sxs-lookup"><span data-stu-id="e18ab-120">During processing, hello VIN is used tooretrieve model information from Cosmos DB.</span></span> <span data-ttu-id="e18ab-121">這項資料會加入 toohello 資料流，再儲存。</span><span class="sxs-lookup"><span data-stu-id="e18ab-121">This data is added toohello data stream before it is stored.</span></span>
 
-<span data-ttu-id="00ee1-122">Storm 拓撲中使用的元件如下：</span><span class="sxs-lookup"><span data-stu-id="00ee1-122">The components used in the Storm Topology are:</span></span>
+<span data-ttu-id="e18ab-122">hello hello Storm 拓撲中使用的元件如下：</span><span class="sxs-lookup"><span data-stu-id="e18ab-122">hello components used in hello Storm Topology are:</span></span>
 
-* <span data-ttu-id="00ee1-123">**EventHubSpout** - 讀取 Azure 事件中心的資料</span><span class="sxs-lookup"><span data-stu-id="00ee1-123">**EventHubSpout** - reads data from Azure Event Hubs</span></span>
-* <span data-ttu-id="00ee1-124">**TypeConversionBolt** - 將來自事件中樞的 JSON 字串轉換成包含下列感應器資料的 Tuple︰</span><span class="sxs-lookup"><span data-stu-id="00ee1-124">**TypeConversionBolt** - converts the JSON string from Event Hubs into a tuple containing the following sensor data:</span></span>
-    * <span data-ttu-id="00ee1-125">Engine temperature</span><span class="sxs-lookup"><span data-stu-id="00ee1-125">Engine temperature</span></span>
-    * <span data-ttu-id="00ee1-126">周圍溫度</span><span class="sxs-lookup"><span data-stu-id="00ee1-126">Ambient temperature</span></span>
-    * <span data-ttu-id="00ee1-127">速度</span><span class="sxs-lookup"><span data-stu-id="00ee1-127">Speed</span></span>
-    * <span data-ttu-id="00ee1-128">VIN</span><span class="sxs-lookup"><span data-stu-id="00ee1-128">VIN</span></span>
-    * <span data-ttu-id="00ee1-129">Timestamp</span><span class="sxs-lookup"><span data-stu-id="00ee1-129">Timestamp</span></span>
-* <span data-ttu-id="00ee1-130">**DataReferencBolt** - 使用 VIN 從 Cosmos DB 查閱車輛型號</span><span class="sxs-lookup"><span data-stu-id="00ee1-130">**DataReferencBolt** - looks up the vehicle model from Cosmos DB using the VIN</span></span>
-* <span data-ttu-id="00ee1-131">**WasbStoreBolt** - 將資料儲存到 HDFS (Azure 儲存體)</span><span class="sxs-lookup"><span data-stu-id="00ee1-131">**WasbStoreBolt** - stores the data to HDFS (Azure Storage)</span></span>
+* <span data-ttu-id="e18ab-123">**EventHubSpout** - 讀取 Azure 事件中心的資料</span><span class="sxs-lookup"><span data-stu-id="e18ab-123">**EventHubSpout** - reads data from Azure Event Hubs</span></span>
+* <span data-ttu-id="e18ab-124">**TypeConversionBolt** -將 hello tuple，其中包含下列感應器資料的 hello 事件中心從 JSON 字串：</span><span class="sxs-lookup"><span data-stu-id="e18ab-124">**TypeConversionBolt** - converts hello JSON string from Event Hubs into a tuple containing hello following sensor data:</span></span>
+    * <span data-ttu-id="e18ab-125">Engine temperature</span><span class="sxs-lookup"><span data-stu-id="e18ab-125">Engine temperature</span></span>
+    * <span data-ttu-id="e18ab-126">周圍溫度</span><span class="sxs-lookup"><span data-stu-id="e18ab-126">Ambient temperature</span></span>
+    * <span data-ttu-id="e18ab-127">速度</span><span class="sxs-lookup"><span data-stu-id="e18ab-127">Speed</span></span>
+    * <span data-ttu-id="e18ab-128">VIN</span><span class="sxs-lookup"><span data-stu-id="e18ab-128">VIN</span></span>
+    * <span data-ttu-id="e18ab-129">Timestamp</span><span class="sxs-lookup"><span data-stu-id="e18ab-129">Timestamp</span></span>
+* <span data-ttu-id="e18ab-130">**DataReferencBolt** -從 Cosmos DB 使用 hello VIN 查閱 hello vehicle 模型</span><span class="sxs-lookup"><span data-stu-id="e18ab-130">**DataReferencBolt** - looks up hello vehicle model from Cosmos DB using hello VIN</span></span>
+* <span data-ttu-id="e18ab-131">**WasbStoreBolt** -存放區 hello 資料 tooHDFS （Azure 儲存體）</span><span class="sxs-lookup"><span data-stu-id="e18ab-131">**WasbStoreBolt** - stores hello data tooHDFS (Azure Storage)</span></span>
 
-<span data-ttu-id="00ee1-132">下圖是此方案的圖表：</span><span class="sxs-lookup"><span data-stu-id="00ee1-132">The following image is a diagram of this solution:</span></span>
+<span data-ttu-id="e18ab-132">下列映像的 hello 是此解決方案的圖表：</span><span class="sxs-lookup"><span data-stu-id="e18ab-132">hello following image is a diagram of this solution:</span></span>
 
 ![Storm 拓撲](./media/hdinsight-storm-iot-eventhub-documentdb/iottopology.png)
 
-## <a name="implementation"></a><span data-ttu-id="00ee1-134">實作</span><span class="sxs-lookup"><span data-stu-id="00ee1-134">Implementation</span></span>
+## <a name="implementation"></a><span data-ttu-id="e18ab-134">實作</span><span class="sxs-lookup"><span data-stu-id="e18ab-134">Implementation</span></span>
 
-<span data-ttu-id="00ee1-135">本案例中已完成的自動化方案可在 GitHub 上作為 [HDInsight-Storm-Examples](https://github.com/hdinsight/hdinsight-storm-examples) 儲存機制的一部分。</span><span class="sxs-lookup"><span data-stu-id="00ee1-135">A complete, automated solution for this scenario is available as part of the [HDInsight-Storm-Examples](https://github.com/hdinsight/hdinsight-storm-examples) repository on GitHub.</span></span> <span data-ttu-id="00ee1-136">若要使用此範例，請遵循 [IoTExample README.MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md)中的步驟。</span><span class="sxs-lookup"><span data-stu-id="00ee1-136">To use this example, follow the steps in the [IoTExample README.MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md).</span></span>
+<span data-ttu-id="e18ab-135">完成、 自動解決方案，此案例中是可用的 hello 一部分[HDInsight-Storm-範例](https://github.com/hdinsight/hdinsight-storm-examples)GitHub 上的儲存機制。</span><span class="sxs-lookup"><span data-stu-id="e18ab-135">A complete, automated solution for this scenario is available as part of hello [HDInsight-Storm-Examples](https://github.com/hdinsight/hdinsight-storm-examples) repository on GitHub.</span></span> <span data-ttu-id="e18ab-136">toouse 此範例中，遵循 hello 步驟在 hello [IoTExample 讀我檔案。MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md)。</span><span class="sxs-lookup"><span data-stu-id="e18ab-136">toouse this example, follow hello steps in hello [IoTExample README.MD](https://github.com/hdinsight/hdinsight-storm-examples/blob/master/IotExample/README.md).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="00ee1-137">後續步驟</span><span class="sxs-lookup"><span data-stu-id="00ee1-137">Next Steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e18ab-137">後續步驟</span><span class="sxs-lookup"><span data-stu-id="e18ab-137">Next Steps</span></span>
 
-<span data-ttu-id="00ee1-138">若需更多範例 Storm 拓撲，請參閱 [Storm on HDInsight 上的範例拓撲](hdinsight-storm-example-topology.md)。</span><span class="sxs-lookup"><span data-stu-id="00ee1-138">For more example Storm topologies, see [Example topologies for Storm on HDInsight](hdinsight-storm-example-topology.md).</span></span>
+<span data-ttu-id="e18ab-138">若需更多範例 Storm 拓撲，請參閱 [Storm on HDInsight 上的範例拓撲](hdinsight-storm-example-topology.md)。</span><span class="sxs-lookup"><span data-stu-id="e18ab-138">For more example Storm topologies, see [Example topologies for Storm on HDInsight](hdinsight-storm-example-topology.md).</span></span>
 

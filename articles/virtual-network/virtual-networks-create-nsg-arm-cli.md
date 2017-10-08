@@ -1,6 +1,6 @@
 ---
-title: "建立網路安全性群組 - Azure CLI 2.0 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 2.0 建立和部署網路安全性群組。"
+title: "aaaCreate 網路安全性群組-Azure CLI 2.0 |Microsoft 文件"
+description: "深入了解如何 toocreate 及部署使用 hello Azure CLI 2.0 的網路安全性群組。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,36 +16,36 @@ ms.workload: infrastructure-services
 ms.date: 02/17/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 8efb3ab66d07875b51f723fed5594bcb477ed025
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 30b1d60676331bf5e2bbbb046c747477be9d3338
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-network-security-groups-using-the-azure-cli-20"></a><span data-ttu-id="25193-103">使用 Azure CLI 2.0 建立網路安全性群組</span><span class="sxs-lookup"><span data-stu-id="25193-103">Create network security groups using the Azure CLI 2.0</span></span>
+# <a name="create-network-security-groups-using-hello-azure-cli-20"></a><span data-ttu-id="6437e-103">建立網路安全性群組，使用 Azure CLI 2.0 hello</span><span class="sxs-lookup"><span data-stu-id="6437e-103">Create network security groups using hello Azure CLI 2.0</span></span>
 
 [!INCLUDE [virtual-networks-create-nsg-selectors-arm-include](../../includes/virtual-networks-create-nsg-selectors-arm-include.md)]
 
-## <a name="cli-versions-to-complete-the-task"></a><span data-ttu-id="25193-104">用以完成工作的 CLI 版本</span><span class="sxs-lookup"><span data-stu-id="25193-104">CLI versions to complete the task</span></span> 
+## <a name="cli-versions-toocomplete-hello-task"></a><span data-ttu-id="6437e-104">CLI 版本 toocomplete hello 工作</span><span class="sxs-lookup"><span data-stu-id="6437e-104">CLI versions toocomplete hello task</span></span> 
 
-<span data-ttu-id="25193-105">您可以使用下列其中一個 CLI 版本來完成工作︰</span><span class="sxs-lookup"><span data-stu-id="25193-105">You can complete the task using one of the following CLI versions:</span></span> 
+<span data-ttu-id="6437e-105">您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本：</span><span class="sxs-lookup"><span data-stu-id="6437e-105">You can complete hello task using one of hello following CLI versions:</span></span> 
 
-- <span data-ttu-id="25193-106">[Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI</span><span class="sxs-lookup"><span data-stu-id="25193-106">[Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – our CLI for the classic and resource management deployment models</span></span> 
-- <span data-ttu-id="25193-107">[Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) - 適用於資源管理部署模型的新一代 CLI (本文章)</span><span class="sxs-lookup"><span data-stu-id="25193-107">[Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) - our next generation CLI for the resource management deployment model (this article)</span></span>
+- <span data-ttu-id="6437e-106">[Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – 我們 CLI hello 傳統和資源管理部署模型</span><span class="sxs-lookup"><span data-stu-id="6437e-106">[Azure CLI 1.0](virtual-networks-create-nsg-cli-nodejs.md) – our CLI for hello classic and resource management deployment models</span></span> 
+- <span data-ttu-id="6437e-107">[Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) -hello 資源管理部署模型 （即本文） 我們下一個層代 CLI</span><span class="sxs-lookup"><span data-stu-id="6437e-107">[Azure CLI 2.0](#Create-the-nsg-for-the-front-end-subnet) - our next generation CLI for hello resource management deployment model (this article)</span></span>
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-<span data-ttu-id="25193-108">以下的 Azure CLI 2.0 命令範例是假設您已根據上述案例建立簡單的環境。</span><span class="sxs-lookup"><span data-stu-id="25193-108">The sample Azure CLI 2.0 commands following expect a simple environment already created based on the scenario preceding.</span></span> 
+<span data-ttu-id="6437e-108">hello 範例 Azure CLI 2.0 命令下列預期已經根據上述的 hello 案例建立簡單的環境。</span><span class="sxs-lookup"><span data-stu-id="6437e-108">hello sample Azure CLI 2.0 commands following expect a simple environment already created based on hello scenario preceding.</span></span> 
 
-## <a name="create-the-nsg-for-the-frontend-subnet"></a><span data-ttu-id="25193-109">建立 `FrontEnd` 子網路的 NSG</span><span class="sxs-lookup"><span data-stu-id="25193-109">Create the NSG for the `FrontEnd` subnet</span></span>
+## <a name="create-hello-nsg-for-hello-frontend-subnet"></a><span data-ttu-id="6437e-109">建立 hello NSG hello`FrontEnd`子網路</span><span class="sxs-lookup"><span data-stu-id="6437e-109">Create hello NSG for hello `FrontEnd` subnet</span></span>
 
-<span data-ttu-id="25193-110">若要根據上述案例建立名為 *NSG-FrontEnd* 的 NSG，請依照下列步驟執行。</span><span class="sxs-lookup"><span data-stu-id="25193-110">To create an NSG named *NSG-FrontEnd* based on the scenario preceding, follow the steps following.</span></span>
+<span data-ttu-id="6437e-110">toocreate NSG 名為*NSG 前端*根據上述的 hello 情況，請遵循 hello 步驟下列。</span><span class="sxs-lookup"><span data-stu-id="6437e-110">toocreate an NSG named *NSG-FrontEnd* based on hello scenario preceding, follow hello steps following.</span></span>
 
-1. <span data-ttu-id="25193-111">安裝及設定最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) (若您尚未這麼做)，並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="25193-111">If you haven't yet, install and configure the latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and log in to an Azure account using [az login](/cli/azure/#login).</span></span> 
+1. <span data-ttu-id="6437e-111">如果您尚未，安裝並設定最新的 hello [Azure CLI 2.0](/cli/azure/install-az-cli2) tooan Azure 帳戶使用登入和[az 登入](/cli/azure/#login)。</span><span class="sxs-lookup"><span data-stu-id="6437e-111">If you haven't yet, install and configure hello latest [Azure CLI 2.0](/cli/azure/install-az-cli2) and log in tooan Azure account using [az login](/cli/azure/#login).</span></span> 
 
-2. <span data-ttu-id="25193-112">使用 [az network nsg create](/cli/azure/network/nsg#create) 命令建立 NSG。</span><span class="sxs-lookup"><span data-stu-id="25193-112">Create an NSG using the [az network nsg create](/cli/azure/network/nsg#create) command.</span></span> 
+2. <span data-ttu-id="6437e-112">建立使用 hello NSG [az 網路 nsg 建立](/cli/azure/network/nsg#create)命令。</span><span class="sxs-lookup"><span data-stu-id="6437e-112">Create an NSG using hello [az network nsg create](/cli/azure/network/nsg#create) command.</span></span> 
 
     ```azurecli
     az network nsg create \
@@ -54,13 +54,13 @@ ms.lasthandoff: 07/11/2017
     --location centralus 
     ```
 
-    <span data-ttu-id="25193-113">參數：</span><span class="sxs-lookup"><span data-stu-id="25193-113">Parameters:</span></span>
+    <span data-ttu-id="6437e-113">參數：</span><span class="sxs-lookup"><span data-stu-id="6437e-113">Parameters:</span></span>
    
-   * <span data-ttu-id="25193-114">`--resource-group`：要在其中建立 NSG 之資源群組的名稱。</span><span class="sxs-lookup"><span data-stu-id="25193-114">`--resource-group`: Name of the resource group where the NSG is created.</span></span> <span data-ttu-id="25193-115">在本文案例中為 *TestRG*。</span><span class="sxs-lookup"><span data-stu-id="25193-115">For our scenario, *TestRG*.</span></span>
-   * <span data-ttu-id="25193-116">`--location`：要在其中建立新 NSG 的 Azure 區域。</span><span class="sxs-lookup"><span data-stu-id="25193-116">`--location`: Azure region where the new NSG is created.</span></span> <span data-ttu-id="25193-117">在本文案例中為 *westus*。</span><span class="sxs-lookup"><span data-stu-id="25193-117">For our scenario, *westus*.</span></span>
-   * <span data-ttu-id="25193-118">`--name`：新 NSG 的名稱。</span><span class="sxs-lookup"><span data-stu-id="25193-118">`--name`: Name for the new NSG.</span></span> <span data-ttu-id="25193-119">在本文案例中為 *NSG-FrontEnd*。</span><span class="sxs-lookup"><span data-stu-id="25193-119">For our scenario, *NSG-FrontEnd*.</span></span>
+   * <span data-ttu-id="6437e-114">`--resource-group`: Hello hello NSG 建立所在的資源群組名稱。</span><span class="sxs-lookup"><span data-stu-id="6437e-114">`--resource-group`: Name of hello resource group where hello NSG is created.</span></span> <span data-ttu-id="6437e-115">在本文案例中為 *TestRG*。</span><span class="sxs-lookup"><span data-stu-id="6437e-115">For our scenario, *TestRG*.</span></span>
+   * <span data-ttu-id="6437e-116">`--location`: Azure hello 新的 NSG 建立所在的區域。</span><span class="sxs-lookup"><span data-stu-id="6437e-116">`--location`: Azure region where hello new NSG is created.</span></span> <span data-ttu-id="6437e-117">在本文案例中為 *westus*。</span><span class="sxs-lookup"><span data-stu-id="6437e-117">For our scenario, *westus*.</span></span>
+   * <span data-ttu-id="6437e-118">`--name`: Hello 名稱新的 NSG。</span><span class="sxs-lookup"><span data-stu-id="6437e-118">`--name`: Name for hello new NSG.</span></span> <span data-ttu-id="6437e-119">在本文案例中為 *NSG-FrontEnd*。</span><span class="sxs-lookup"><span data-stu-id="6437e-119">For our scenario, *NSG-FrontEnd*.</span></span>
 
-    <span data-ttu-id="25193-120">預期的輸出會是相當多的資訊，包括所有預設規則的清單。</span><span class="sxs-lookup"><span data-stu-id="25193-120">The expected output is quite a bit of information including a list of all the default rules.</span></span> <span data-ttu-id="25193-121">下列範例顯示搭配使用 JMESPATH 查詢篩選和 `table` 輸出格式的預設規則︰</span><span class="sxs-lookup"><span data-stu-id="25193-121">The following example shows the default rules using a JMESPATH query filter with the `table` output format:</span></span>
+    <span data-ttu-id="6437e-120">hello 預期輸出為相當多的資訊，包括所有 hello 預設規則的清單。</span><span class="sxs-lookup"><span data-stu-id="6437e-120">hello expected output is quite a bit of information including a list of all hello default rules.</span></span> <span data-ttu-id="6437e-121">hello 下列範例示範使用 JMESPATH 查詢篩選器以 hello hello 預設規則`table`輸出格式：</span><span class="sxs-lookup"><span data-stu-id="6437e-121">hello following example shows hello default rules using a JMESPATH query filter with hello `table` output format:</span></span>
 
     ```azurecli
     az network nsg show \
@@ -70,23 +70,23 @@ ms.lasthandoff: 07/11/2017
     -o table
     ```
    
-   <span data-ttu-id="25193-122">輸出：</span><span class="sxs-lookup"><span data-stu-id="25193-122">Output:</span></span>
+   <span data-ttu-id="6437e-122">輸出：</span><span class="sxs-lookup"><span data-stu-id="6437e-122">Output:</span></span>
 
         Access    Desc                                                    DestPortRange    Direction      Priority
         
         Allow     Allow inbound traffic from all VMs in VNET              *                Inbound           65000
         Allow     Allow inbound traffic from azure load balancer          *                Inbound           65001
         Deny      Deny all inbound traffic                                *                Inbound           65500
-        Allow     Allow outbound traffic from all VMs to all VMs in VNET  *                Outbound          65000
-        Allow     Allow outbound traffic from all VMs to Internet         *                Outbound          65001
+        Allow     Allow outbound traffic from all VMs tooall VMs in VNET  *                Outbound          65000
+        Allow     Allow outbound traffic from all VMs tooInternet         *                Outbound          65001
         Deny      Deny all outbound traffic                               *                Outbound          65500
 
 
 
-3. <span data-ttu-id="25193-123">使用 [az network nsg rule create](/cli/azure/network/nsg/rule#create) 命令來建立規則，允許從網際網路存取連接埠 3389 (RDP)。</span><span class="sxs-lookup"><span data-stu-id="25193-123">Create a rule that allows access to port 3389 (RDP) from the Internet with the [az network nsg rule create](/cli/azure/network/nsg/rule#create) command.</span></span>
+3. <span data-ttu-id="6437e-123">建立一個規則，允許存取 tooport 3389 (RDP) 從 hello 網際網路以 hello [az 網路 nsg 規則建立](/cli/azure/network/nsg/rule#create)命令。</span><span class="sxs-lookup"><span data-stu-id="6437e-123">Create a rule that allows access tooport 3389 (RDP) from hello Internet with hello [az network nsg rule create](/cli/azure/network/nsg/rule#create) command.</span></span>
 
     > [!NOTE]
-    > <span data-ttu-id="25193-124">根據您所使用的殼層，您可能需要修改下列引數中的 `*` 字元，以免在執行之前就展開引數。</span><span class="sxs-lookup"><span data-stu-id="25193-124">Depending on the shell you are using, you might need to modify the `*` character in the arguments following so as not to expand the argument before execution.</span></span>
+    > <span data-ttu-id="6437e-124">根據您使用的 hello 殼層，您可能需要 toomodify hello `*` hello 引數，因此為未 tooexpand hello 引數後面之前執行中的字元。</span><span class="sxs-lookup"><span data-stu-id="6437e-124">Depending on hello shell you are using, you might need toomodify hello `*` character in hello arguments following so as not tooexpand hello argument before execution.</span></span>
    
     ```azurecli
     az network nsg rule create \
@@ -103,7 +103,7 @@ ms.lasthandoff: 07/11/2017
     --destination-port-range 3389
     ```
    
-    <span data-ttu-id="25193-125">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="25193-125">Expected output:</span></span>
+    <span data-ttu-id="6437e-125">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="6437e-125">Expected output:</span></span>
    
     ```json
     {
@@ -124,23 +124,23 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-    <span data-ttu-id="25193-126">參數：</span><span class="sxs-lookup"><span data-stu-id="25193-126">Parameters:</span></span>
+    <span data-ttu-id="6437e-126">參數：</span><span class="sxs-lookup"><span data-stu-id="6437e-126">Parameters:</span></span>
 
-    * <span data-ttu-id="25193-127">`--resource-group testrg`：要使用的資源群組。</span><span class="sxs-lookup"><span data-stu-id="25193-127">`--resource-group testrg`: The resource group to use.</span></span> <span data-ttu-id="25193-128">請注意，此參數不區分大小寫。</span><span class="sxs-lookup"><span data-stu-id="25193-128">Note that it is case-insensitive.</span></span>
-    * <span data-ttu-id="25193-129">`--nsg-name NSG-FrontEnd`：要在其中建立規則之 NSG 的名稱。</span><span class="sxs-lookup"><span data-stu-id="25193-129">`--nsg-name NSG-FrontEnd`: Name of the NSG in which the rule is created.</span></span>
-    * <span data-ttu-id="25193-130">`--name rdp-rule`：新規則的名稱。</span><span class="sxs-lookup"><span data-stu-id="25193-130">`--name rdp-rule`: Name for the new rule.</span></span>
-    * <span data-ttu-id="25193-131">`--access Allow`：規則 (拒絕或允許) 的存取層級。</span><span class="sxs-lookup"><span data-stu-id="25193-131">`--access Allow`: Access level for the rule (Deny or Allow).</span></span>
-    * <span data-ttu-id="25193-132">`--protocol Tcp`︰通訊協定 (Tcp、Udp 或 *)。</span><span class="sxs-lookup"><span data-stu-id="25193-132">`--protocol Tcp`: Protocol (Tcp, Udp, or *).</span></span>
-    * <span data-ttu-id="25193-133">`--direction Inbound`：連線 (輸入或輸出) 的方向。</span><span class="sxs-lookup"><span data-stu-id="25193-133">`--direction Inbound`: Direction of the connection (Inbound or Outbound).</span></span>
-    * <span data-ttu-id="25193-134">`--priority 100`：規則的優先順序。</span><span class="sxs-lookup"><span data-stu-id="25193-134">`--priority 100`: Priority for the rule.</span></span>
-    * <span data-ttu-id="25193-135">`--source-address-prefix Internet`：CIDR 中的來源位址首碼或使用預設標籤。</span><span class="sxs-lookup"><span data-stu-id="25193-135">`--source-address-prefix Internet`: Source address prefix in CIDR or using default tags.</span></span>
-    * <span data-ttu-id="25193-136">`--source-port-range "*"`：來源連接埠或連接埠範圍。</span><span class="sxs-lookup"><span data-stu-id="25193-136">`--source-port-range "*"`: Source port or port range.</span></span> <span data-ttu-id="25193-137">開啟了連線的連接埠。</span><span class="sxs-lookup"><span data-stu-id="25193-137">Port that opened the connection.</span></span>
-    * <span data-ttu-id="25193-138">`--destination-address-prefix "*"`：CIDR 中的目的地位址首碼或使用預設標籤。</span><span class="sxs-lookup"><span data-stu-id="25193-138">`--destination-address-prefix "*"`: Destination address prefix in CIDR or using default tags.</span></span>
-    * <span data-ttu-id="25193-139">`--destination-port-range 3389`：目的地連接埠或連接埠範圍。</span><span class="sxs-lookup"><span data-stu-id="25193-139">`--destination-port-range 3389`: Destination port or port range.</span></span> <span data-ttu-id="25193-140">收到連線要求的連接埠。</span><span class="sxs-lookup"><span data-stu-id="25193-140">Port that receives the connection request.</span></span>
+    * <span data-ttu-id="6437e-127">`--resource-group testrg`: hello 資源群組 toouse。</span><span class="sxs-lookup"><span data-stu-id="6437e-127">`--resource-group testrg`: hello resource group toouse.</span></span> <span data-ttu-id="6437e-128">請注意，此參數不區分大小寫。</span><span class="sxs-lookup"><span data-stu-id="6437e-128">Note that it is case-insensitive.</span></span>
+    * <span data-ttu-id="6437e-129">`--nsg-name NSG-FrontEnd`: Hello NSG 中的 hello 建立規則的名稱。</span><span class="sxs-lookup"><span data-stu-id="6437e-129">`--nsg-name NSG-FrontEnd`: Name of hello NSG in which hello rule is created.</span></span>
+    * <span data-ttu-id="6437e-130">`--name rdp-rule`: Hello 新規則的名稱。</span><span class="sxs-lookup"><span data-stu-id="6437e-130">`--name rdp-rule`: Name for hello new rule.</span></span>
+    * <span data-ttu-id="6437e-131">`--access Allow`： hello 規則 （拒絕或允許） 存取層級。</span><span class="sxs-lookup"><span data-stu-id="6437e-131">`--access Allow`: Access level for hello rule (Deny or Allow).</span></span>
+    * <span data-ttu-id="6437e-132">`--protocol Tcp`︰通訊協定 (Tcp、Udp 或 *)。</span><span class="sxs-lookup"><span data-stu-id="6437e-132">`--protocol Tcp`: Protocol (Tcp, Udp, or *).</span></span>
+    * <span data-ttu-id="6437e-133">`--direction Inbound`: Hello 連線 （輸入或輸出） 的方向。</span><span class="sxs-lookup"><span data-stu-id="6437e-133">`--direction Inbound`: Direction of hello connection (Inbound or Outbound).</span></span>
+    * <span data-ttu-id="6437e-134">`--priority 100`: Hello 規則的優先順序。</span><span class="sxs-lookup"><span data-stu-id="6437e-134">`--priority 100`: Priority for hello rule.</span></span>
+    * <span data-ttu-id="6437e-135">`--source-address-prefix Internet`：CIDR 中的來源位址首碼或使用預設標籤。</span><span class="sxs-lookup"><span data-stu-id="6437e-135">`--source-address-prefix Internet`: Source address prefix in CIDR or using default tags.</span></span>
+    * <span data-ttu-id="6437e-136">`--source-port-range "*"`：來源連接埠或連接埠範圍。</span><span class="sxs-lookup"><span data-stu-id="6437e-136">`--source-port-range "*"`: Source port or port range.</span></span> <span data-ttu-id="6437e-137">開啟 hello 連接的連接埠。</span><span class="sxs-lookup"><span data-stu-id="6437e-137">Port that opened hello connection.</span></span>
+    * <span data-ttu-id="6437e-138">`--destination-address-prefix "*"`：CIDR 中的目的地位址首碼或使用預設標籤。</span><span class="sxs-lookup"><span data-stu-id="6437e-138">`--destination-address-prefix "*"`: Destination address prefix in CIDR or using default tags.</span></span>
+    * <span data-ttu-id="6437e-139">`--destination-port-range 3389`：目的地連接埠或連接埠範圍。</span><span class="sxs-lookup"><span data-stu-id="6437e-139">`--destination-port-range 3389`: Destination port or port range.</span></span> <span data-ttu-id="6437e-140">收到 hello 連線要求的連接埠。</span><span class="sxs-lookup"><span data-stu-id="6437e-140">Port that receives hello connection request.</span></span>
 
 
 
-4. <span data-ttu-id="25193-141">使用 **az network nsg rule create**  命令來建立規則，允許從網際網路存取連接埠 80 (HTTP)。</span><span class="sxs-lookup"><span data-stu-id="25193-141">Create a rule that allows access to port 80 (HTTP) from the Internet **az network nsg rule create** command.</span></span>
+4. <span data-ttu-id="6437e-141">建立一個規則，允許從 hello 網際網路存取 tooport 80 (HTTP) **az 網路 nsg 規則建立**命令。</span><span class="sxs-lookup"><span data-stu-id="6437e-141">Create a rule that allows access tooport 80 (HTTP) from hello Internet **az network nsg rule create** command.</span></span>
    
     ```azurecli
     az network nsg rule create \
@@ -157,7 +157,7 @@ ms.lasthandoff: 07/11/2017
     --destination-port-range 80
     ```
    
-    <span data-ttu-id="25193-142">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="25193-142">Expected putput:</span></span>
+    <span data-ttu-id="6437e-142">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="6437e-142">Expected putput:</span></span>
    
     ```json
     {
@@ -178,7 +178,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-5. <span data-ttu-id="25193-143">使用 [az network vnet subnet update](/cli/azure/network/vnet/subnet#update) 命令，將 NSG 繫結至 **FrontEnd** 子網路。</span><span class="sxs-lookup"><span data-stu-id="25193-143">Bind the NSG to the **FrontEnd** subnet with the [az network vnet subnet update](/cli/azure/network/vnet/subnet#update) command.</span></span>
+5. <span data-ttu-id="6437e-143">繫結 hello NSG toohello**前端**子網路與 hello [az 網路 vnet 子網路更新](/cli/azure/network/vnet/subnet#update)命令。</span><span class="sxs-lookup"><span data-stu-id="6437e-143">Bind hello NSG toohello **FrontEnd** subnet with hello [az network vnet subnet update](/cli/azure/network/vnet/subnet#update) command.</span></span>
         
     ```azurecli
     az network vnet subnet update \
@@ -188,7 +188,7 @@ ms.lasthandoff: 07/11/2017
     --network-security-group NSG-FrontEnd
     ```
    
-    <span data-ttu-id="25193-144">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="25193-144">Expected output:</span></span>
+    <span data-ttu-id="6437e-144">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="6437e-144">Expected output:</span></span>
    
     ```json
     {
@@ -231,10 +231,10 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-## <a name="create-the-nsg-for-the-backend-subnet"></a><span data-ttu-id="25193-145">建立 `BackEnd` 子網路的 NSG</span><span class="sxs-lookup"><span data-stu-id="25193-145">Create the NSG for the `BackEnd` subnet</span></span>
-<span data-ttu-id="25193-146">若要根據上述案例建立名為 *NSG-BackEnd* 的 NSG，請依照下列步驟執行。</span><span class="sxs-lookup"><span data-stu-id="25193-146">To create an NSG named *NSG-BackEnd* based on the scenario preceding, follow the steps following.</span></span>
+## <a name="create-hello-nsg-for-hello-backend-subnet"></a><span data-ttu-id="6437e-145">建立 hello NSG hello`BackEnd`子網路</span><span class="sxs-lookup"><span data-stu-id="6437e-145">Create hello NSG for hello `BackEnd` subnet</span></span>
+<span data-ttu-id="6437e-146">toocreate NSG 名為*NSG 後端*根據上述的 hello 情況，請遵循 hello 步驟下列。</span><span class="sxs-lookup"><span data-stu-id="6437e-146">toocreate an NSG named *NSG-BackEnd* based on hello scenario preceding, follow hello steps following.</span></span>
 
-1. <span data-ttu-id="25193-147">使用 **az network nsg create** 建立 `NSG-BackEnd` NSG。</span><span class="sxs-lookup"><span data-stu-id="25193-147">Create the `NSG-BackEnd` NSG with **az network nsg create**.</span></span>
+1. <span data-ttu-id="6437e-147">建立 hello `NSG-BackEnd` NSG 與**az 網路 nsg 建立**。</span><span class="sxs-lookup"><span data-stu-id="6437e-147">Create hello `NSG-BackEnd` NSG with **az network nsg create**.</span></span>
    
     ```azurecli
     az network nsg create \
@@ -243,9 +243,9 @@ ms.lasthandoff: 07/11/2017
     --location centralus
     ```
    
-    <span data-ttu-id="25193-148">和前面的步驟 2 一樣，預期的輸出會相當大，其中會包括預設規則。</span><span class="sxs-lookup"><span data-stu-id="25193-148">As in step 2, preceding, the expected output is quite large, including default rules.</span></span>
+    <span data-ttu-id="6437e-148">依照步驟 2，上述，hello 預期的輸出為非常大，包括預設規則。</span><span class="sxs-lookup"><span data-stu-id="6437e-148">As in step 2, preceding, hello expected output is quite large, including default rules.</span></span>
    
-2. <span data-ttu-id="25193-149">使用 **az network nsg rule create** 命令來建立允許從 `FrontEnd` 子網路存取連接埠 1433 (SQL)。</span><span class="sxs-lookup"><span data-stu-id="25193-149">Create a rule that allows access to port 1433 (SQL) from the `FrontEnd` subnet with the **az network nsg rule create** command.</span></span>
+2. <span data-ttu-id="6437e-149">建立一個規則，允許存取 tooport 1433 (SQL) 從 hello`FrontEnd`子網路與 hello **az 網路 nsg 規則建立**命令。</span><span class="sxs-lookup"><span data-stu-id="6437e-149">Create a rule that allows access tooport 1433 (SQL) from hello `FrontEnd` subnet with hello **az network nsg rule create** command.</span></span>
    
     ```azurecli
     az network nsg rule create \
@@ -262,7 +262,7 @@ ms.lasthandoff: 07/11/2017
     --destination-port-range 1433
     ```
    
-    <span data-ttu-id="25193-150">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="25193-150">Expected output:</span></span>
+    <span data-ttu-id="6437e-150">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="6437e-150">Expected output:</span></span>
 
     ```json  
     {
@@ -283,7 +283,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-3. <span data-ttu-id="25193-151">使用 **az network nsg rule create** 命令來建立拒絕存取網際網路的規則。</span><span class="sxs-lookup"><span data-stu-id="25193-151">Create a rule that denies access to the Internet using the **az network nsg rule create** command.</span></span>
+3. <span data-ttu-id="6437e-151">建立規則，拒絕存取 toohello 網際網路使用 hello **az 網路 nsg 規則建立**命令。</span><span class="sxs-lookup"><span data-stu-id="6437e-151">Create a rule that denies access toohello Internet using hello **az network nsg rule create** command.</span></span>
    
     ```azurecli
     az network nsg rule create \
@@ -300,7 +300,7 @@ ms.lasthandoff: 07/11/2017
     --destination-port-range "*"
     ```
    
-    <span data-ttu-id="25193-152">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="25193-152">Expected putput:</span></span>
+    <span data-ttu-id="6437e-152">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="6437e-152">Expected putput:</span></span>
    
     ```json
     {
@@ -321,7 +321,7 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-4. <span data-ttu-id="25193-153">使用 **az network vnet subnet set** 命令將 NSG 繫結至 `BackEnd` 子網路。</span><span class="sxs-lookup"><span data-stu-id="25193-153">Bind the NSG to the `BackEnd` subnet using the **az network vnet subnet set** command.</span></span>
+4. <span data-ttu-id="6437e-153">繫結 hello NSG toohello`BackEnd`子網路使用 hello **az 網路 vnet 子網路集合**命令。</span><span class="sxs-lookup"><span data-stu-id="6437e-153">Bind hello NSG toohello `BackEnd` subnet using hello **az network vnet subnet set** command.</span></span>
    
     ```azurecli
     az network vnet subnet update \
@@ -331,7 +331,7 @@ ms.lasthandoff: 07/11/2017
     --network-security-group NSG-BackEnd
     ```
    
-    <span data-ttu-id="25193-154">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="25193-154">Expected output:</span></span>
+    <span data-ttu-id="6437e-154">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="6437e-154">Expected output:</span></span>
    
     ```json
     {

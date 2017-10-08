@@ -24,9 +24,9 @@
 ### [整合 JavaScript UDF](stream-analytics-javascript-user-defined-functions.md)
 ### [整合 REST API 與 Machine Learning](stream-analytics-how-to-configure-azure-machine-learning-endpoints-in-stream-analytics.md)
 ### [建立輸出](stream-analytics-define-outputs.md)
-### [輸出至 Azure Functions](stream-analytics-functions-redis.md)
-### [輸出至 Data Lake Store](stream-analytics-data-lake-output.md)
-### [輸出至 DocumentDB](stream-analytics-documentdb-output.md)
+### [輸出 tooAzure 函式](stream-analytics-functions-redis.md)
+### [輸出 tooData 湖存放區](stream-analytics-data-lake-output.md)
+### [輸出 tooDocumentDB](stream-analytics-documentdb-output.md)
 
 ## 監視和最佳化
 ### [新增警示](stream-analytics-set-up-alerts.md)
@@ -34,7 +34,7 @@
 ### [以程式設計方式監視作業](stream-analytics-monitor-jobs.md)
 ### [使用 PowerShell 監視作業](stream-analytics-monitor-and-manage-jobs-use-powershell.md)
 ### [最佳化資料流單位](stream-analytics-streaming-unit-consumption.md)
-### [調整規模以增加輸送量](stream-analytics-scale-jobs.md)
+### [標尺 tooincrease 輸送量](stream-analytics-scale-jobs.md)
 ### [為 Machine Learning 函式進行規模調整](stream-analytics-scale-with-machine-learning-functions.md)
 
 ## 管理
@@ -52,7 +52,7 @@
 
 ## 自動化
 ### [Visual Studio 適用的工具](stream-analytics-tools-for-visual-studio.md)
-### [使用 Management .NET SDK](stream-analytics-dotnet-management-sdk.md)
+### [使用 hello 管理.NET SDK](stream-analytics-dotnet-management-sdk.md)
 ### [單鍵 PowerShell](https://github.com/Azure/azure-stream-analytics/tree/master/Samples/ASAOneClick)
 
 # 參考

@@ -1,5 +1,5 @@
 ---
-title: "Azure IoT 套件文件 - 教學課程和 API 參考 | Microsoft Docs"
+title: "aaaAzure IoT 套件文件-教學課程中，API 參考 |Microsoft 文件"
 description: 
 services: iot-suite
 author: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 4d78758b718cb98a84a9ed8aed4c1b92db4ea59e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 83b006447e0d06d49ed7feace16b0db7d04d56f9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="iot-suite-documentation"></a>IoT 套件文件
 
-即刻開始使用 Microsoft Azure IoT 套件。 使用預先設定的解決方案，並大幅提升開發物聯網 (IoT) 解決方案的速度。 透過使用多個平台 (包括 Linux、Windows 以及即時作業系統) 的裝置 SDK，以新增裝置並連接現有的裝置。 輕易地從少數感應器擴充到數百萬個同步連接的裝置，並依賴於 Azure 整體可用性&mdash;無論專案的大小為何。
+即刻開始使用 Microsoft Azure IoT 套件。 使用預先設定的解決方案，並加速 hello 開發的物聯網 (IoT) 解決方案。 透過使用多個平台 (包括 Linux、Windows 以及即時作業系統) 的裝置 SDK，以新增裝置並連接現有的裝置。 輕鬆地從的同時連線的裝置，只需要幾個感應器 toomillions 延展和依賴 Azure 的 hello 全域可用性&mdash;如何大型或小型無論您的專案。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -92,7 +92,7 @@ ms.lasthandoff: 07/19/2017
                         <p><a href="/azure/iot-suite/iot-security-architecture">安全性架構</a></p>
                         <p><a href="/azure/iot-suite/iot-security-best-practices">安全性最佳做法</a></p>
                         <p><a href="/azure/iot-suite/iot-suite-security-deployment">保護您的 IoT 部署</a></p>
-                        <p><a href="/azure/iot-suite/securing-iot-ground-up">從頭建立安全性</a></p>
+                        <p><a href="/azure/iot-suite/securing-iot-ground-up">從 hello 接地安全性</a></p>
                    </div>
                 </div>
             </div>

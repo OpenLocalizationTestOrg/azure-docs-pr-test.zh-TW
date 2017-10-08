@@ -1,6 +1,6 @@
 ---
-title: "使用 Mahout 和 HDInsight 產生推薦 (SSH) - Azure | Microsoft Docs"
-description: "了解如何搭配 HDInsight (Hadoop) 使用 Apache Mahout 機器學習庫來產生電影推薦。"
+title: "使用砲象兵和 HDInsight (SSH)-Azure aaaGenerate 建議 |Microsoft 文件"
+description: "了解如何 toouse hello Apache 砲象兵機器學習服務文件庫 toogenerate 影片建議與 HDInsight (Hadoop)。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,52 +16,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: larryfr
-ms.openlocfilehash: 28450d72f19a5467d88bc787d11f6c37c5afbf9a
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: fedac9ceb4268f8421bce4623a5ad271041b8b3d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="generate-movie-recommendations-by-using-apache-mahout-with-linux-based-hadoop-in-hdinsight-ssh"></a><span data-ttu-id="1201c-103">在 HDInsight 中搭配使用 Apache Mahout 和以 Linux 為基礎的 Hadoop 來產生電影推薦 (SSH)</span><span class="sxs-lookup"><span data-stu-id="1201c-103">Generate movie recommendations by using Apache Mahout with Linux-based Hadoop in HDInsight (SSH)</span></span>
+# <a name="generate-movie-recommendations-by-using-apache-mahout-with-linux-based-hadoop-in-hdinsight-ssh"></a><span data-ttu-id="0be32-103">在 HDInsight 中搭配使用 Apache Mahout 和以 Linux 為基礎的 Hadoop 來產生電影推薦 (SSH)</span><span class="sxs-lookup"><span data-stu-id="0be32-103">Generate movie recommendations by using Apache Mahout with Linux-based Hadoop in HDInsight (SSH)</span></span>
 
 [!INCLUDE [mahout-selector](../../includes/hdinsight-selector-mahout.md)]
 
-<span data-ttu-id="1201c-104">了解如何使用搭配 Azure HDInsight 的 [Apache Mahout](http://mahout.apache.org) 機器學習庫產生電影推薦。</span><span class="sxs-lookup"><span data-stu-id="1201c-104">Learn how to use the [Apache Mahout](http://mahout.apache.org) machine learning library with Azure HDInsight to generate movie recommendations.</span></span>
+<span data-ttu-id="0be32-104">深入了解如何 toouse hello [Apache 砲象兵](http://mahout.apache.org)Azure HDInsight toogenerate 影片建議的機器學習程式庫。</span><span class="sxs-lookup"><span data-stu-id="0be32-104">Learn how toouse hello [Apache Mahout](http://mahout.apache.org) machine learning library with Azure HDInsight toogenerate movie recommendations.</span></span>
 
-<span data-ttu-id="1201c-105">Mahout 是 Apache Hadoop 的[機器學習服務][ml]程式庫。</span><span class="sxs-lookup"><span data-stu-id="1201c-105">Mahout is a [machine learning][ml] library for Apache Hadoop.</span></span> <span data-ttu-id="1201c-106">Mahout 包含可處理資料的演算法，例如篩選、分類和叢集化。</span><span class="sxs-lookup"><span data-stu-id="1201c-106">Mahout contains algorithms for processing data, such as filtering, classification, and clustering.</span></span> <span data-ttu-id="1201c-107">在本文中，您會使用推薦引擎，以根據朋友看過的電影來產生電影推薦。</span><span class="sxs-lookup"><span data-stu-id="1201c-107">In this article, you use a recommendation engine to generate movie recommendations that are based on movies your friends have seen.</span></span>
+<span data-ttu-id="0be32-105">Mahout 是 Apache Hadoop 的[機器學習服務][ml]程式庫。</span><span class="sxs-lookup"><span data-stu-id="0be32-105">Mahout is a [machine learning][ml] library for Apache Hadoop.</span></span> <span data-ttu-id="0be32-106">Mahout 包含可處理資料的演算法，例如篩選、分類和叢集化。</span><span class="sxs-lookup"><span data-stu-id="0be32-106">Mahout contains algorithms for processing data, such as filtering, classification, and clustering.</span></span> <span data-ttu-id="0be32-107">在本文中，您可以使用建議引擎 toogenerate 影片建議過您的朋友的電影為基礎的。</span><span class="sxs-lookup"><span data-stu-id="0be32-107">In this article, you use a recommendation engine toogenerate movie recommendations that are based on movies your friends have seen.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="1201c-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="1201c-108">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="0be32-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="0be32-108">Prerequisites</span></span>
 
-* <span data-ttu-id="1201c-109">以 Linux 為基礎的 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="1201c-109">A Linux-based HDInsight cluster.</span></span> <span data-ttu-id="1201c-110">如需有關建立叢集的資訊，請參閱[開始在 HDInsight 中使用以 Linux 為基礎的 Hadoop][getstarted]。</span><span class="sxs-lookup"><span data-stu-id="1201c-110">For information about creating one, see [Get started using Linux-based Hadoop in HDInsight][getstarted].</span></span>
+* <span data-ttu-id="0be32-109">以 Linux 為基礎的 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="0be32-109">A Linux-based HDInsight cluster.</span></span> <span data-ttu-id="0be32-110">如需有關建立叢集的資訊，請參閱[開始在 HDInsight 中使用以 Linux 為基礎的 Hadoop][getstarted]。</span><span class="sxs-lookup"><span data-stu-id="0be32-110">For information about creating one, see [Get started using Linux-based Hadoop in HDInsight][getstarted].</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="1201c-111">Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。</span><span class="sxs-lookup"><span data-stu-id="1201c-111">Linux is the only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="1201c-112">如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。</span><span class="sxs-lookup"><span data-stu-id="1201c-112">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
+> <span data-ttu-id="0be32-111">Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。</span><span class="sxs-lookup"><span data-stu-id="0be32-111">Linux is hello only operating system used on HDInsight version 3.4 or greater.</span></span> <span data-ttu-id="0be32-112">如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。</span><span class="sxs-lookup"><span data-stu-id="0be32-112">For more information, see [HDInsight retirement on Windows](hdinsight-component-versioning.md#hdinsight-windows-retirement).</span></span>
 
-* <span data-ttu-id="1201c-113">SSH 用戶端。</span><span class="sxs-lookup"><span data-stu-id="1201c-113">An SSH client.</span></span> <span data-ttu-id="1201c-114">如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md) 文件。</span><span class="sxs-lookup"><span data-stu-id="1201c-114">For more information, see the [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md) document.</span></span>
+* <span data-ttu-id="0be32-113">SSH 用戶端。</span><span class="sxs-lookup"><span data-stu-id="0be32-113">An SSH client.</span></span> <span data-ttu-id="0be32-114">如需詳細資訊，請參閱 hello[搭配使用 SSH 和 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)文件。</span><span class="sxs-lookup"><span data-stu-id="0be32-114">For more information, see hello [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md) document.</span></span>
 
-## <a name="mahout-versioning"></a><span data-ttu-id="1201c-115">Mahout 版本控制</span><span class="sxs-lookup"><span data-stu-id="1201c-115">Mahout versioning</span></span>
+## <a name="mahout-versioning"></a><span data-ttu-id="0be32-115">Mahout 版本控制</span><span class="sxs-lookup"><span data-stu-id="0be32-115">Mahout versioning</span></span>
 
-<span data-ttu-id="1201c-116">如需 HDInsight 中 Mahout 版本的詳細資訊，請參閱 [HDInsight 版本和 Hadoop 元件](hdinsight-component-versioning.md)。</span><span class="sxs-lookup"><span data-stu-id="1201c-116">For more information about the version of Mahout in HDInsight, see [HDInsight versions and Hadoop components](hdinsight-component-versioning.md).</span></span>
+<span data-ttu-id="0be32-116">更多的砲象兵 HDInsight 中的 hello 版本的詳細資訊，請參閱[HDInsight 版本和 Hadoop 元件](hdinsight-component-versioning.md)。</span><span class="sxs-lookup"><span data-stu-id="0be32-116">For more information about hello version of Mahout in HDInsight, see [HDInsight versions and Hadoop components](hdinsight-component-versioning.md).</span></span>
 
-## <span data-ttu-id="1201c-117"><a name="recommendations"></a>了解推薦</span><span class="sxs-lookup"><span data-stu-id="1201c-117"><a name="recommendations"></a>Understanding recommendations</span></span>
+## <span data-ttu-id="0be32-117"><a name="recommendations"></a>了解推薦</span><span class="sxs-lookup"><span data-stu-id="0be32-117"><a name="recommendations"></a>Understanding recommendations</span></span>
 
-<span data-ttu-id="1201c-118">Mahout 提供的其中一項功能是推薦引擎。</span><span class="sxs-lookup"><span data-stu-id="1201c-118">One of the functions that is provided by Mahout is a recommendation engine.</span></span> <span data-ttu-id="1201c-119">這個引擎接受 `userID`、`itemId` 和 `prefValue` (項目的喜好設定) 格式的資料。</span><span class="sxs-lookup"><span data-stu-id="1201c-119">This engine accepts data in the format of `userID`, `itemId`, and `prefValue` (the preference for the item).</span></span> <span data-ttu-id="1201c-120">Mahout 接著可以執行共生分析判斷出： *偏好某項目的使用者同時也偏好其他這些項目*。</span><span class="sxs-lookup"><span data-stu-id="1201c-120">Mahout can then perform co-occurance analysis to determine: *users who have a preference for an item also have a preference for these other items*.</span></span> <span data-ttu-id="1201c-121">接著 Mahout 會以偏好的類似項目判斷使用者，並以此做出推薦。</span><span class="sxs-lookup"><span data-stu-id="1201c-121">Mahout then determines users with like-item preferences, which can be used to make recommendations.</span></span>
+<span data-ttu-id="0be32-118">建議引擎所提供的砲象兵 hello 函式的其中一個。</span><span class="sxs-lookup"><span data-stu-id="0be32-118">One of hello functions that is provided by Mahout is a recommendation engine.</span></span> <span data-ttu-id="0be32-119">此引擎會接受資料格式的 hello `userID`， `itemId`，和`prefValue`(hello hello 項目喜好設定)。</span><span class="sxs-lookup"><span data-stu-id="0be32-119">This engine accepts data in hello format of `userID`, `itemId`, and `prefValue` (hello preference for hello item).</span></span> <span data-ttu-id="0be32-120">砲象兵接著就可以執行共同分析 toodetermine:*使用者擁有的喜好設定項目也有這些喜好設定的其他項目*。</span><span class="sxs-lookup"><span data-stu-id="0be32-120">Mahout can then perform co-occurance analysis toodetermine: *users who have a preference for an item also have a preference for these other items*.</span></span> <span data-ttu-id="0be32-121">砲象兵接著會判斷使用者與類似項目參考，它可以是使用的 toomake 建議。</span><span class="sxs-lookup"><span data-stu-id="0be32-121">Mahout then determines users with like-item preferences, which can be used toomake recommendations.</span></span>
 
-<span data-ttu-id="1201c-122">以下工作流程是一個使用電影資料的簡化範例：</span><span class="sxs-lookup"><span data-stu-id="1201c-122">The following workflow is a simplified example that uses movie data:</span></span>
+<span data-ttu-id="0be32-122">hello 下列工作流程是使用電影資料的簡化的範例：</span><span class="sxs-lookup"><span data-stu-id="0be32-122">hello following workflow is a simplified example that uses movie data:</span></span>
 
-* <span data-ttu-id="1201c-123">**共生**：Joe、Alice 和 Bob 都喜歡*《星際大戰》*、*《帝國大反擊》*和*《絕地大反攻》*。</span><span class="sxs-lookup"><span data-stu-id="1201c-123">**Co-occurance**: Joe, Alice, and Bob all liked *Star Wars*, *The Empire Strikes Back*, and *Return of the Jedi*.</span></span> <span data-ttu-id="1201c-124">Mahout 將判斷喜歡上述任何一部電影的使用者，也會喜歡另外兩部電影。</span><span class="sxs-lookup"><span data-stu-id="1201c-124">Mahout determines that users who like any one of these movies also like the other two.</span></span>
+* <span data-ttu-id="0be32-123">**共同**: Joe、 Alice 和所有按讚的 Bob*星狀戰爭*，*回 Empire 攻擊 hello*，和*傳回 hello Jedi*。</span><span class="sxs-lookup"><span data-stu-id="0be32-123">**Co-occurance**: Joe, Alice, and Bob all liked *Star Wars*, *hello Empire Strikes Back*, and *Return of hello Jedi*.</span></span> <span data-ttu-id="0be32-124">砲象兵決定使用者類似任何這些影片像 hello 其他兩個。</span><span class="sxs-lookup"><span data-stu-id="0be32-124">Mahout determines that users who like any one of these movies also like hello other two.</span></span>
 
-* <span data-ttu-id="1201c-125">**共生**：Bob 和 Alice 同時也喜歡*《威脅潛伏》*、*《複製人全面進攻》*和*《西斯大帝的復仇》*。</span><span class="sxs-lookup"><span data-stu-id="1201c-125">**Co-occurance**: Bob and Alice also liked *The Phantom Menace*, *Attack of the Clones*, and *Revenge of the Sith*.</span></span> <span data-ttu-id="1201c-126">Mahout 將判斷喜歡前三部電影的使用者，也會喜歡這三部電影。</span><span class="sxs-lookup"><span data-stu-id="1201c-126">Mahout determines that users who liked the previous three movies also like these three movies.</span></span>
+* <span data-ttu-id="0be32-125">**共同**: Bob 和 Alice 也喜歡*hello 虛設項目威脅*， *hello 複製程式碼的攻擊*，和*的 hello Sith 復仇*。</span><span class="sxs-lookup"><span data-stu-id="0be32-125">**Co-occurance**: Bob and Alice also liked *hello Phantom Menace*, *Attack of hello Clones*, and *Revenge of hello Sith*.</span></span> <span data-ttu-id="0be32-126">砲象兵決定使用者喜歡 hello 先前的三個影片也喜歡這些三個影片。</span><span class="sxs-lookup"><span data-stu-id="0be32-126">Mahout determines that users who liked hello previous three movies also like these three movies.</span></span>
 
-* <span data-ttu-id="1201c-127">**相似性推薦**：因為 Joe 喜歡前三部電影，Mahout 會查看具有相似偏好的其他使用者所喜歡但 Joe 還沒看過 (喜歡/評價) 的電影。</span><span class="sxs-lookup"><span data-stu-id="1201c-127">**Similarity recommendation**: Because Joe liked the first three movies, Mahout looks at movies that others with similar preferences liked, but Joe has not watched (liked/rated).</span></span> <span data-ttu-id="1201c-128">在此情況下，Mahout 將會推薦*《威脅潛伏》*、*《複製人全面進攻》*和*《西斯大帝的復仇》*。</span><span class="sxs-lookup"><span data-stu-id="1201c-128">In this case, Mahout recommends *The Phantom Menace*, *Attack of the Clones*, and *Revenge of the Sith*.</span></span>
+* <span data-ttu-id="0be32-127">**相似度建議**： 因為 Joe 喜歡 hello 前三個影片、 砲象兵查看電影的其他項目具有相似的偏好喜歡，但 Joe 不保存 （喜歡/評等）。</span><span class="sxs-lookup"><span data-stu-id="0be32-127">**Similarity recommendation**: Because Joe liked hello first three movies, Mahout looks at movies that others with similar preferences liked, but Joe has not watched (liked/rated).</span></span> <span data-ttu-id="0be32-128">砲象兵在此情況下，建議*hello 虛設項目威脅*， *hello 複製程式碼的攻擊*，和*的 hello Sith 復仇*。</span><span class="sxs-lookup"><span data-stu-id="0be32-128">In this case, Mahout recommends *hello Phantom Menace*, *Attack of hello Clones*, and *Revenge of hello Sith*.</span></span>
 
-### <a name="understanding-the-data"></a><span data-ttu-id="1201c-129">了解資料</span><span class="sxs-lookup"><span data-stu-id="1201c-129">Understanding the data</span></span>
+### <a name="understanding-hello-data"></a><span data-ttu-id="0be32-129">了解 hello 資料</span><span class="sxs-lookup"><span data-stu-id="0be32-129">Understanding hello data</span></span>
 
-<span data-ttu-id="1201c-130">[GroupLens 研究][movielens]提供 Mahout 相容格式的電影評價資料，相當方便。</span><span class="sxs-lookup"><span data-stu-id="1201c-130">Conveniently, [GroupLens Research][movielens] provides rating data for movies in a format that is compatible with Mahout.</span></span> <span data-ttu-id="1201c-131">您可在位於 `/HdiSamples/HdiSamples/MahoutMovieData`的叢集預設儲存體取得這份資料。</span><span class="sxs-lookup"><span data-stu-id="1201c-131">This data is available on your cluster's default storage at `/HdiSamples/HdiSamples/MahoutMovieData`.</span></span>
+<span data-ttu-id="0be32-130">[GroupLens 研究][movielens]提供 Mahout 相容格式的電影評價資料，相當方便。</span><span class="sxs-lookup"><span data-stu-id="0be32-130">Conveniently, [GroupLens Research][movielens] provides rating data for movies in a format that is compatible with Mahout.</span></span> <span data-ttu-id="0be32-131">您可在位於 `/HdiSamples/HdiSamples/MahoutMovieData`的叢集預設儲存體取得這份資料。</span><span class="sxs-lookup"><span data-stu-id="0be32-131">This data is available on your cluster's default storage at `/HdiSamples/HdiSamples/MahoutMovieData`.</span></span>
 
-<span data-ttu-id="1201c-132">有兩個檔案 `moviedb.txt` 和 `user-ratings.txt`。</span><span class="sxs-lookup"><span data-stu-id="1201c-132">There are two files, `moviedb.txt` and `user-ratings.txt`.</span></span> <span data-ttu-id="1201c-133">分析期間使用的是 user-ratings.txt 檔案，moviedb.txt 則是在顯示分析結果時用來提供使用者易懂的文字資訊。</span><span class="sxs-lookup"><span data-stu-id="1201c-133">The user-ratings.txt file is used during analysis, while moviedb.txt is used to provide user-friendly text information when displaying the results of the analysis.</span></span>
+<span data-ttu-id="0be32-132">有兩個檔案 `moviedb.txt` 和 `user-ratings.txt`。</span><span class="sxs-lookup"><span data-stu-id="0be32-132">There are two files, `moviedb.txt` and `user-ratings.txt`.</span></span> <span data-ttu-id="0be32-133">在分析期間，使用 hello 使用者 ratings.txt 檔案，而 moviedb.txt 顯示 hello hello 分析結果時，使用的 tooprovide 使用者易記文字資訊。</span><span class="sxs-lookup"><span data-stu-id="0be32-133">hello user-ratings.txt file is used during analysis, while moviedb.txt is used tooprovide user-friendly text information when displaying hello results of hello analysis.</span></span>
 
-<span data-ttu-id="1201c-134">user-ratings.txt 內包含的資料具有 `userID`、`movieID`、`userRating` 和 `timestamp` 結構，可告訴我們每位使用者對於影片的評價為何。</span><span class="sxs-lookup"><span data-stu-id="1201c-134">The data contained in user-ratings.txt has a structure of `userID`, `movieID`, `userRating`, and `timestamp`, which tells us how highly each user rated a movie.</span></span> <span data-ttu-id="1201c-135">以下是資料範例：</span><span class="sxs-lookup"><span data-stu-id="1201c-135">Here is an example of the data:</span></span>
+<span data-ttu-id="0be32-134">hello 使用者 ratings.txt 中包含的資料都有一個結構的`userID`， `movieID`， `userRating`，和`timestamp`，它會告訴我們每位使用者如何高評等為電影。</span><span class="sxs-lookup"><span data-stu-id="0be32-134">hello data contained in user-ratings.txt has a structure of `userID`, `movieID`, `userRating`, and `timestamp`, which tells us how highly each user rated a movie.</span></span> <span data-ttu-id="0be32-135">Hello 資料的範例如下：</span><span class="sxs-lookup"><span data-stu-id="0be32-135">Here is an example of hello data:</span></span>
 
     196    242    3    881250949
     186    302    3    891717742
@@ -69,50 +69,50 @@ ms.lasthandoff: 08/18/2017
     244    51    2    880606923
     166    346    1    886397596
 
-## <a name="run-the-analysis"></a><span data-ttu-id="1201c-136">執行分析</span><span class="sxs-lookup"><span data-stu-id="1201c-136">Run the analysis</span></span>
+## <a name="run-hello-analysis"></a><span data-ttu-id="0be32-136">執行 hello 分析</span><span class="sxs-lookup"><span data-stu-id="0be32-136">Run hello analysis</span></span>
 
-<span data-ttu-id="1201c-137">經由叢集的 SSH 連線，使用下列命令來執行推薦工作：</span><span class="sxs-lookup"><span data-stu-id="1201c-137">From an SSH connection to the cluster, use the following command to run the recommendation job:</span></span>
+<span data-ttu-id="0be32-137">從 SSH 連線 toohello 叢集中，使用下列命令 toorun hello 建議工作 hello:</span><span class="sxs-lookup"><span data-stu-id="0be32-137">From an SSH connection toohello cluster, use hello following command toorun hello recommendation job:</span></span>
 
 ```bash
 mahout recommenditembased -s SIMILARITY_COOCCURRENCE -i /HdiSamples/HdiSamples/MahoutMovieData/user-ratings.txt -o /example/data/mahoutout --tempDir /temp/mahouttemp
 ```
 
 > [!NOTE]
-> <span data-ttu-id="1201c-138">此工作可能需要幾分鐘的時間才能完成，並可能執行多項 MapReduce 工作。</span><span class="sxs-lookup"><span data-stu-id="1201c-138">The job may take several minutes to complete, and may run multiple MapReduce jobs.</span></span>
+> <span data-ttu-id="0be32-138">hello 作業可能需要幾分鐘的時間 toocomplete，並可能會執行多個 MapReduce 作業。</span><span class="sxs-lookup"><span data-stu-id="0be32-138">hello job may take several minutes toocomplete, and may run multiple MapReduce jobs.</span></span>
 
-## <a name="view-the-output"></a><span data-ttu-id="1201c-139">檢視輸出</span><span class="sxs-lookup"><span data-stu-id="1201c-139">View the output</span></span>
+## <a name="view-hello-output"></a><span data-ttu-id="0be32-139">檢視 hello 輸出</span><span class="sxs-lookup"><span data-stu-id="0be32-139">View hello output</span></span>
 
-1. <span data-ttu-id="1201c-140">工作完成後，使用以下命令來檢視所產生的輸出：</span><span class="sxs-lookup"><span data-stu-id="1201c-140">Once the job completes, use the following command to view the generated output:</span></span>
+1. <span data-ttu-id="0be32-140">Hello 作業完成之後，請使用下列命令 tooview hello 產生輸出的 hello:</span><span class="sxs-lookup"><span data-stu-id="0be32-140">Once hello job completes, use hello following command tooview hello generated output:</span></span>
 
     ```bash
     hdfs dfs -text /example/data/mahoutout/part-r-00000
     ```
 
-    <span data-ttu-id="1201c-141">輸出看起來會像下面這樣：</span><span class="sxs-lookup"><span data-stu-id="1201c-141">The output appears as follows:</span></span>
+    <span data-ttu-id="0be32-141">hello 輸出會出現，如下所示：</span><span class="sxs-lookup"><span data-stu-id="0be32-141">hello output appears as follows:</span></span>
 
         1    [234:5.0,347:5.0,237:5.0,47:5.0,282:5.0,275:5.0,88:5.0,515:5.0,514:5.0,121:5.0]
         2    [282:5.0,210:5.0,237:5.0,234:5.0,347:5.0,121:5.0,258:5.0,515:5.0,462:5.0,79:5.0]
         3    [284:5.0,285:4.828125,508:4.7543354,845:4.75,319:4.705128,124:4.7045455,150:4.6938777,311:4.6769233,248:4.65625,272:4.649266]
         4    [690:5.0,12:5.0,234:5.0,275:5.0,121:5.0,255:5.0,237:5.0,895:5.0,282:5.0,117:5.0]
 
-    <span data-ttu-id="1201c-142">第一欄是 `userID`。</span><span class="sxs-lookup"><span data-stu-id="1201c-142">The first column is the `userID`.</span></span> <span data-ttu-id="1201c-143">'[' 和 ']' 中包含的值是 `movieId`:`recommendationScore`。</span><span class="sxs-lookup"><span data-stu-id="1201c-143">The values contained in '[' and ']' are `movieId`:`recommendationScore`.</span></span>
+    <span data-ttu-id="0be32-142">hello 第一個資料行是 hello `userID`。</span><span class="sxs-lookup"><span data-stu-id="0be32-142">hello first column is hello `userID`.</span></span> <span data-ttu-id="0be32-143">hello 中包含的值 '[' 和']' 是`movieId`:`recommendationScore`。</span><span class="sxs-lookup"><span data-stu-id="0be32-143">hello values contained in '[' and ']' are `movieId`:`recommendationScore`.</span></span>
 
-2. <span data-ttu-id="1201c-144">您可以使用輸出和 moviedb.txt，來顯示更多建議的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="1201c-144">You can use the output, along with the moviedb.txt, to provide more information on the recommendations.</span></span> <span data-ttu-id="1201c-145">首先，我們需要使用下列命令將檔案複製到本機上︰</span><span class="sxs-lookup"><span data-stu-id="1201c-145">First, we need to copy the files locally using the following commands:</span></span>
+2. <span data-ttu-id="0be32-144">您可以於 hello 建議使用 hello 輸出，以及 hello moviedb.txt，tooprovide 的詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="0be32-144">You can use hello output, along with hello moviedb.txt, tooprovide more information on hello recommendations.</span></span> <span data-ttu-id="0be32-145">首先，我們需要在本機上使用下列命令的 hello toocopy hello 檔案：</span><span class="sxs-lookup"><span data-stu-id="0be32-145">First, we need toocopy hello files locally using hello following commands:</span></span>
 
     ```bash
     hdfs dfs -get /example/data/mahoutout/part-r-00000 recommendations.txt
     hdfs dfs -get /HdiSamples/HdiSamples/MahoutMovieData/* .
     ```
 
-    <span data-ttu-id="1201c-146">這個命令會將輸出資料和影片資料檔一起複製到目前目錄中名為 **recommendations.txt** 的檔案中。</span><span class="sxs-lookup"><span data-stu-id="1201c-146">This command copies the output data to a file named **recommendations.txt** in the current directory, along with the movie data files.</span></span>
+    <span data-ttu-id="0be32-146">此命令複製 hello 輸出資料 tooa 檔名為**recommendations.txt** hello 目前目錄，連同 hello 電影資料檔案中。</span><span class="sxs-lookup"><span data-stu-id="0be32-146">This command copies hello output data tooa file named **recommendations.txt** in hello current directory, along with hello movie data files.</span></span>
 
-3. <span data-ttu-id="1201c-147">使用下列命令來建立 Python 指令碼，該指令碼會在建議輸出資料中查閱影片名稱：</span><span class="sxs-lookup"><span data-stu-id="1201c-147">Use the following command to create a Python script that looks up movie names for the data in the recommendations output:</span></span>
+3. <span data-ttu-id="0be32-147">使用下列命令 toocreate 查閱 hello 建議輸出中的 hello 資料的電影名稱的 Python 指令碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="0be32-147">Use hello following command toocreate a Python script that looks up movie names for hello data in hello recommendations output:</span></span>
 
     ```bash
     nano show_recommendations.py
     ```
 
-    <span data-ttu-id="1201c-148">開啟編輯器時，請使用下列文字做為檔案的內容：</span><span class="sxs-lookup"><span data-stu-id="1201c-148">When the editor opens, use the following text as the contents of the file:</span></span>
+    <span data-ttu-id="0be32-148">當 hello 編輯器開啟時，使用 hello hello hello 檔案內容為下列文字：</span><span class="sxs-lookup"><span data-stu-id="0be32-148">When hello editor opens, use hello following text as hello contents of hello file:</span></span>
 
    ```python
    #!/usr/bin/env python
@@ -166,47 +166,47 @@ mahout recommenditembased -s SIMILARITY_COOCCURRENCE -i /HdiSamples/HdiSamples/M
    print "------------------------"
    ```
 
-    <span data-ttu-id="1201c-149">按下 **CTRL-X**、**Y**，最後再按 **Enter** 鍵儲存資料。</span><span class="sxs-lookup"><span data-stu-id="1201c-149">Press **Ctrl-X**, **Y**, and finally **Enter** to save the data.</span></span>
+    <span data-ttu-id="0be32-149">按**Ctrl X**， **Y**，最後再**Enter** toosave hello 資料。</span><span class="sxs-lookup"><span data-stu-id="0be32-149">Press **Ctrl-X**, **Y**, and finally **Enter** toosave hello data.</span></span>
 
-4. <span data-ttu-id="1201c-150">執行 Python 指令碼。</span><span class="sxs-lookup"><span data-stu-id="1201c-150">Run the Python script.</span></span> <span data-ttu-id="1201c-151">以下命令假設您已在所有檔案的下載目錄中︰</span><span class="sxs-lookup"><span data-stu-id="1201c-151">The following command assumes you are in the directory where all the files were downloaded:</span></span>
+4. <span data-ttu-id="0be32-150">執行 hello Python 指令碼。</span><span class="sxs-lookup"><span data-stu-id="0be32-150">Run hello Python script.</span></span> <span data-ttu-id="0be32-151">hello 下列命令假設您已下載的所有 hello 檔案 hello 目錄中：</span><span class="sxs-lookup"><span data-stu-id="0be32-151">hello following command assumes you are in hello directory where all hello files were downloaded:</span></span>
 
     ```bash
     python show_recommendations.py 4 user-ratings.txt moviedb.txt recommendations.txt
     ```
 
-    <span data-ttu-id="1201c-152">此命令會查看為使用者 ID 4 所產生的建議。</span><span class="sxs-lookup"><span data-stu-id="1201c-152">This command looks at the recommendations generated for user ID 4.</span></span>
+    <span data-ttu-id="0be32-152">此命令會在產生的使用者識別碼 4 hello 建議。</span><span class="sxs-lookup"><span data-stu-id="0be32-152">This command looks at hello recommendations generated for user ID 4.</span></span>
 
-    * <span data-ttu-id="1201c-153">**user-ratings.txt** 檔案可用來擷取已評分的影片。</span><span class="sxs-lookup"><span data-stu-id="1201c-153">The **user-ratings.txt** file is used to retrieve movies that have been rated.</span></span>
+    * <span data-ttu-id="0be32-153">hello**使用者 ratings.txt**檔案是使用的 tooretrieve 電影已評等。</span><span class="sxs-lookup"><span data-stu-id="0be32-153">hello **user-ratings.txt** file is used tooretrieve movies that have been rated.</span></span>
 
-    * <span data-ttu-id="1201c-154">**moviedb.txt** 檔案用來擷取影片名稱。</span><span class="sxs-lookup"><span data-stu-id="1201c-154">The **moviedb.txt** file is used to retrieve the names of the movies.</span></span>
+    * <span data-ttu-id="0be32-154">hello **moviedb.txt**檔案是使用的 tooretrieve hello hello 電影名稱。</span><span class="sxs-lookup"><span data-stu-id="0be32-154">hello **moviedb.txt** file is used tooretrieve hello names of hello movies.</span></span>
 
-    * <span data-ttu-id="1201c-155">**recommendations.txt** 用來擷取這位使用者的電影建議。</span><span class="sxs-lookup"><span data-stu-id="1201c-155">The **recommendations.txt** is used to retrieve the movie recommendations for this user.</span></span>
+    * <span data-ttu-id="0be32-155">hello **recommendations.txt**是使用的 tooretrieve hello 影片建議，此使用者。</span><span class="sxs-lookup"><span data-stu-id="0be32-155">hello **recommendations.txt** is used tooretrieve hello movie recommendations for this user.</span></span>
 
-     <span data-ttu-id="1201c-156">此命令的輸出類似下列文字︰</span><span class="sxs-lookup"><span data-stu-id="1201c-156">The output from this command is similar to the following text:</span></span>
+     <span data-ttu-id="0be32-156">hello 輸出此命令為類似 toohello 下列文字：</span><span class="sxs-lookup"><span data-stu-id="0be32-156">hello output from this command is similar toohello following text:</span></span>
 
-        <span data-ttu-id="1201c-157">Seven Years in Tibet (1997), score=5.0   Indiana Jones and the Last Crusade (1989), score=5.0   Jaws (1975), score=5.0   Sense and Sensibility (1995), score=5.0   Independence Day (ID4) (1996), score=5.0   My Best Friend's Wedding (1997), score=5.0   Jerry Maguire (1996), score=5.0   Scream 2 (1997), score=5.0   Time to Kill, A (1996), score=5.0</span><span class="sxs-lookup"><span data-stu-id="1201c-157">Seven Years in Tibet (1997), score=5.0   Indiana Jones and the Last Crusade (1989), score=5.0   Jaws (1975), score=5.0   Sense and Sensibility (1995), score=5.0   Independence Day (ID4) (1996), score=5.0   My Best Friend's Wedding (1997), score=5.0   Jerry Maguire (1996), score=5.0   Scream 2 (1997), score=5.0   Time to Kill, A (1996), score=5.0</span></span>
+        <span data-ttu-id="0be32-157">Tibet (1997)，在七個年份分數 = 5.0 印第安納州 Jones 和 hello 最後聖戰 (1989)，分數 = 5.0 Jaws (1975)，分數 = 5.0 意義上與 Sensibility (1995 年) 分數 = 5.0 獨立性天 (ID4) (1996 年) 分數 = 5.0 我最好的朋友婚禮 (1997)，分數 = 5.0 Jerry Maguire (1996年)，分數 = 5.0 Scream 2 (1997 年) 分數 = 5.0 時間 tooKill，(1996 年) 分數 = 5.0</span><span class="sxs-lookup"><span data-stu-id="0be32-157">Seven Years in Tibet (1997), score=5.0   Indiana Jones and hello Last Crusade (1989), score=5.0   Jaws (1975), score=5.0   Sense and Sensibility (1995), score=5.0   Independence Day (ID4) (1996), score=5.0   My Best Friend's Wedding (1997), score=5.0   Jerry Maguire (1996), score=5.0   Scream 2 (1997), score=5.0   Time tooKill, A (1996), score=5.0</span></span>
 
-## <a name="delete-temporary-data"></a><span data-ttu-id="1201c-158">刪除暫存資料</span><span class="sxs-lookup"><span data-stu-id="1201c-158">Delete temporary data</span></span>
+## <a name="delete-temporary-data"></a><span data-ttu-id="0be32-158">刪除暫存資料</span><span class="sxs-lookup"><span data-stu-id="0be32-158">Delete temporary data</span></span>
 
-<span data-ttu-id="1201c-159">Mahout 工作不會移除處理工作時所建立的暫存資料。</span><span class="sxs-lookup"><span data-stu-id="1201c-159">Mahout jobs do not remove temporary data that is created while processing the job.</span></span> <span data-ttu-id="1201c-160">範例工作中指定 `--tempDir` 參數將暫存檔隔離到特定路徑中以方便刪除。</span><span class="sxs-lookup"><span data-stu-id="1201c-160">The `--tempDir` parameter is specified in the example job to isolate the temporary files into a specific path for easy deletion.</span></span> <span data-ttu-id="1201c-161">若要移除暫存檔案，請使用下列命令：</span><span class="sxs-lookup"><span data-stu-id="1201c-161">To remove the temp files, use the following command:</span></span>
+<span data-ttu-id="0be32-159">砲象兵作業不會移除處理 hello 作業時建立的暫存資料。</span><span class="sxs-lookup"><span data-stu-id="0be32-159">Mahout jobs do not remove temporary data that is created while processing hello job.</span></span> <span data-ttu-id="0be32-160">hello `--tempDir` hello 範例作業 tooisolate hello 暫存檔中指定參數為輕鬆刪除一個特定路徑。</span><span class="sxs-lookup"><span data-stu-id="0be32-160">hello `--tempDir` parameter is specified in hello example job tooisolate hello temporary files into a specific path for easy deletion.</span></span> <span data-ttu-id="0be32-161">tooremove hello 暫存檔案，請使用下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="0be32-161">tooremove hello temp files, use hello following command:</span></span>
 
 ```bash
 hdfs dfs -rm -f -r /temp/mahouttemp
 ```
 
 > [!WARNING]
-> <span data-ttu-id="1201c-162">如果您要再次執行該命令，您必須也刪除輸出目錄。</span><span class="sxs-lookup"><span data-stu-id="1201c-162">If you want to run the command again, you must also delete the output directory.</span></span> <span data-ttu-id="1201c-163">使用以下命令刪除此目錄：</span><span class="sxs-lookup"><span data-stu-id="1201c-163">Use the following to delete this directory:</span></span>
+> <span data-ttu-id="0be32-162">若要再次 toorun hello 命令，您也必須刪除 hello 輸出目錄。</span><span class="sxs-lookup"><span data-stu-id="0be32-162">If you want toorun hello command again, you must also delete hello output directory.</span></span> <span data-ttu-id="0be32-163">使用下列 toodelete hello 這個目錄：</span><span class="sxs-lookup"><span data-stu-id="0be32-163">Use hello following toodelete this directory:</span></span>
 >
 > `hdfs dfs -rm -f -r /example/data/mahoutout`
 
 
-## <a name="next-steps"></a><span data-ttu-id="1201c-164">後續步驟</span><span class="sxs-lookup"><span data-stu-id="1201c-164">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="0be32-164">後續步驟</span><span class="sxs-lookup"><span data-stu-id="0be32-164">Next steps</span></span>
 
-<span data-ttu-id="1201c-165">您現在已了解如何使用 Mahout，請繼續探索在 HDInsight 上使用資料的其他方法：</span><span class="sxs-lookup"><span data-stu-id="1201c-165">Now that you have learned how to use Mahout, discover other ways of working with data on HDInsight:</span></span>
+<span data-ttu-id="0be32-165">既然您已經學會如何 toouse 砲象兵，探索 HDInsight 上的資料搭配使用的其他方式：</span><span class="sxs-lookup"><span data-stu-id="0be32-165">Now that you have learned how toouse Mahout, discover other ways of working with data on HDInsight:</span></span>
 
-* [<span data-ttu-id="1201c-166">搭配 HDInsight 使用 Hive</span><span class="sxs-lookup"><span data-stu-id="1201c-166">Hive with HDInsight</span></span>](hdinsight-use-hive.md)
-* [<span data-ttu-id="1201c-167">搭配 HDInsight 使用 Pig</span><span class="sxs-lookup"><span data-stu-id="1201c-167">Pig with HDInsight</span></span>](hdinsight-use-pig.md)
-* [<span data-ttu-id="1201c-168">搭配 HDInsight 使用 MapReduce</span><span class="sxs-lookup"><span data-stu-id="1201c-168">MapReduce with HDInsight</span></span>](hdinsight-use-mapreduce.md)
+* [<span data-ttu-id="0be32-166">搭配 HDInsight 使用 Hive</span><span class="sxs-lookup"><span data-stu-id="0be32-166">Hive with HDInsight</span></span>](hdinsight-use-hive.md)
+* [<span data-ttu-id="0be32-167">搭配 HDInsight 使用 Pig</span><span class="sxs-lookup"><span data-stu-id="0be32-167">Pig with HDInsight</span></span>](hdinsight-use-pig.md)
+* [<span data-ttu-id="0be32-168">搭配 HDInsight 使用 MapReduce</span><span class="sxs-lookup"><span data-stu-id="0be32-168">MapReduce with HDInsight</span></span>](hdinsight-use-mapreduce.md)
 
 [build]: http://mahout.apache.org/developers/buildingmahout.html
 [movielens]: http://grouplens.org/datasets/movielens/

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 來匯出 Resource Manager 範本 | Microsoft Docs"
-description: "使用 Azure Resource Manager 和 Azure CLI 從資源群組匯出範本。"
+title: "使用 Azure CLI aaaExport Resource Manager 範本 |Microsoft 文件"
+description: "使用 Azure 資源管理員和 Azure CLI tooexport 資源群組中的範本。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -13,26 +13,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/01/2017
 ms.author: tomfitz
-ms.openlocfilehash: 617664129a5353e25da1e90c742c4b009db172ef
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2d44a0a6e9717504d4c2a01254d826679b381f22
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="export-azure-resource-manager-templates-with-azure-cli"></a><span data-ttu-id="11bb1-103">使用 Azure CLI 來匯出 Azure Resource Manager 範本</span><span class="sxs-lookup"><span data-stu-id="11bb1-103">Export Azure Resource Manager templates with Azure CLI</span></span>
+# <a name="export-azure-resource-manager-templates-with-azure-cli"></a><span data-ttu-id="3af81-103">使用 Azure CLI 來匯出 Azure Resource Manager 範本</span><span class="sxs-lookup"><span data-stu-id="3af81-103">Export Azure Resource Manager templates with Azure CLI</span></span>
 
-<span data-ttu-id="11bb1-104">Resource Manager 可讓您從您的訂用帳戶中現有的資源匯出 Resource Manager 範本。</span><span class="sxs-lookup"><span data-stu-id="11bb1-104">Resource Manager enables you to export a Resource Manager template from existing resources in your subscription.</span></span> <span data-ttu-id="11bb1-105">您可以使用產生的範本了解範本語法，或視需要自動重新部署解決方案。</span><span class="sxs-lookup"><span data-stu-id="11bb1-105">You can use that generated template to learn about the template syntax or to automate the redeployment of your solution as needed.</span></span>
+<span data-ttu-id="3af81-104">資源管理員可讓您 tooexport Resource Manager 範本使用從您的訂用帳戶中現有的資源。</span><span class="sxs-lookup"><span data-stu-id="3af81-104">Resource Manager enables you tooexport a Resource Manager template from existing resources in your subscription.</span></span> <span data-ttu-id="3af81-105">您可以使用該產生的範本 toolearn，有關 hello 範本語法或 tooautomate hello 重新部署方案視需要。</span><span class="sxs-lookup"><span data-stu-id="3af81-105">You can use that generated template toolearn about hello template syntax or tooautomate hello redeployment of your solution as needed.</span></span>
 
-<span data-ttu-id="11bb1-106">請務必注意，有兩種不同的方式可匯出範本︰</span><span class="sxs-lookup"><span data-stu-id="11bb1-106">It is important to note that there are two different ways to export a template:</span></span>
+<span data-ttu-id="3af81-106">它是重要 toonote 有兩個不同的方式 tooexport 範本：</span><span class="sxs-lookup"><span data-stu-id="3af81-106">It is important toonote that there are two different ways tooexport a template:</span></span>
 
-* <span data-ttu-id="11bb1-107">您可以匯出用於部署的實際範本。</span><span class="sxs-lookup"><span data-stu-id="11bb1-107">You can export the actual template that you used for a deployment.</span></span> <span data-ttu-id="11bb1-108">匯出的範本包含與原始範本完全相同的所有參數和變數。</span><span class="sxs-lookup"><span data-stu-id="11bb1-108">The exported template includes all the parameters and variables exactly as they appeared in the original template.</span></span> <span data-ttu-id="11bb1-109">當您需要擷取範本時，這個方法很有用。</span><span class="sxs-lookup"><span data-stu-id="11bb1-109">This approach is helpful when you need to retrieve a template.</span></span>
-* <span data-ttu-id="11bb1-110">您可以匯出代表資源群組目前狀態的範本。</span><span class="sxs-lookup"><span data-stu-id="11bb1-110">You can export a template that represents the current state of the resource group.</span></span> <span data-ttu-id="11bb1-111">匯出的範本不是以任何用於部署的範本為基礎。</span><span class="sxs-lookup"><span data-stu-id="11bb1-111">The exported template is not based on any template that you used for deployment.</span></span> <span data-ttu-id="11bb1-112">反而，它所建立的範本是資源群組的快照。</span><span class="sxs-lookup"><span data-stu-id="11bb1-112">Instead, it creates a template that is a snapshot of the resource group.</span></span> <span data-ttu-id="11bb1-113">匯出的範本會有許多硬式編碼值，但數量可能不如您通常會定義的參數數量。</span><span class="sxs-lookup"><span data-stu-id="11bb1-113">The exported template has many hard-coded values and probably not as many parameters as you would typically define.</span></span> <span data-ttu-id="11bb1-114">當您已修改資源群組時，這個方法很有用。</span><span class="sxs-lookup"><span data-stu-id="11bb1-114">This approach is useful when you have modified the resource group.</span></span> <span data-ttu-id="11bb1-115">現在，您需要擷取做為範本的資源群組。</span><span class="sxs-lookup"><span data-stu-id="11bb1-115">Now, you need to capture the resource group as a template.</span></span>
+* <span data-ttu-id="3af81-107">您可以匯出您用於部署的 hello 實際範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-107">You can export hello actual template that you used for a deployment.</span></span> <span data-ttu-id="3af81-108">hello 匯出的範本包含所有 hello 參數和變數，如同它們是出現在 hello 原始範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-108">hello exported template includes all hello parameters and variables exactly as they appeared in hello original template.</span></span> <span data-ttu-id="3af81-109">當您需要 tooretrieve 範本時，這個方法就很有幫助。</span><span class="sxs-lookup"><span data-stu-id="3af81-109">This approach is helpful when you need tooretrieve a template.</span></span>
+* <span data-ttu-id="3af81-110">您可以匯出代表 hello hello 資源群組的目前狀態的範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-110">You can export a template that represents hello current state of hello resource group.</span></span> <span data-ttu-id="3af81-111">hello 匯出的範本不根據您用於部署的任何範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-111">hello exported template is not based on any template that you used for deployment.</span></span> <span data-ttu-id="3af81-112">相反地，它會建立 hello 資源群組的快照集的範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-112">Instead, it creates a template that is a snapshot of hello resource group.</span></span> <span data-ttu-id="3af81-113">hello 匯出的範本有許多的硬式編碼值，可能不一樣多的參數，因為您通常會定義。</span><span class="sxs-lookup"><span data-stu-id="3af81-113">hello exported template has many hard-coded values and probably not as many parameters as you would typically define.</span></span> <span data-ttu-id="3af81-114">當您修改了 hello 資源群組，則這個方法會很有用。</span><span class="sxs-lookup"><span data-stu-id="3af81-114">This approach is useful when you have modified hello resource group.</span></span> <span data-ttu-id="3af81-115">現在，您需要 toocapture hello 資源群組，做為範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-115">Now, you need toocapture hello resource group as a template.</span></span>
 
-<span data-ttu-id="11bb1-116">本主題說明這兩種方法。</span><span class="sxs-lookup"><span data-stu-id="11bb1-116">This topic shows both approaches.</span></span>
+<span data-ttu-id="3af81-116">本主題說明這兩種方法。</span><span class="sxs-lookup"><span data-stu-id="3af81-116">This topic shows both approaches.</span></span>
 
-## <a name="deploy-a-solution"></a><span data-ttu-id="11bb1-117">部署解決方案</span><span class="sxs-lookup"><span data-stu-id="11bb1-117">Deploy a solution</span></span>
+## <a name="deploy-a-solution"></a><span data-ttu-id="3af81-117">部署解決方案</span><span class="sxs-lookup"><span data-stu-id="3af81-117">Deploy a solution</span></span>
 
-<span data-ttu-id="11bb1-118">為了說明這兩種用來匯出範本的方法，一開始先讓我們將解決方案部署到您的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="11bb1-118">To illustrate both approaches for exporting a template, let's start by deploying a solution to your subscription.</span></span> <span data-ttu-id="11bb1-119">如果您的訂用帳戶中已有想要匯出的資源群組，就不需要部署此解決方案。</span><span class="sxs-lookup"><span data-stu-id="11bb1-119">If you already have a resource group in your subscription that you want to export, you do not have to deploy this solution.</span></span> <span data-ttu-id="11bb1-120">不過，本文其餘部分會參考此解決方案的範本。</span><span class="sxs-lookup"><span data-stu-id="11bb1-120">However, the remainder of this article refers to the template for this solution.</span></span> <span data-ttu-id="11bb1-121">指令碼範例會部署儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="11bb1-121">The example script deploys a storage account.</span></span>
+<span data-ttu-id="3af81-118">這兩個 tooillustrate 方法匯出範本，讓我們開始部署方案 tooyour 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="3af81-118">tooillustrate both approaches for exporting a template, let's start by deploying a solution tooyour subscription.</span></span> <span data-ttu-id="3af81-119">如果您想 tooexport 您訂用帳戶中已經有資源群組，您沒有 toodeploy 此解決方案。</span><span class="sxs-lookup"><span data-stu-id="3af81-119">If you already have a resource group in your subscription that you want tooexport, you do not have toodeploy this solution.</span></span> <span data-ttu-id="3af81-120">不過，hello 本文其餘部分是指 toohello 範本，針對此解決方案。</span><span class="sxs-lookup"><span data-stu-id="3af81-120">However, hello remainder of this article refers toohello template for this solution.</span></span> <span data-ttu-id="3af81-121">hello 範例指令碼會將部署的儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="3af81-121">hello example script deploys a storage account.</span></span>
 
 ```azurecli
 az group create --name ExampleGroup --location "Central US"
@@ -42,26 +42,26 @@ az group deployment create \
     --template-uri "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-storage-account-create/azuredeploy.json" \
 ```  
 
-## <a name="save-template-from-deployment-history"></a><span data-ttu-id="11bb1-122">從部署歷程記錄儲存範本</span><span class="sxs-lookup"><span data-stu-id="11bb1-122">Save template from deployment history</span></span>
+## <a name="save-template-from-deployment-history"></a><span data-ttu-id="3af81-122">從部署歷程記錄儲存範本</span><span class="sxs-lookup"><span data-stu-id="3af81-122">Save template from deployment history</span></span>
 
-<span data-ttu-id="11bb1-123">您可以使用 [az group deployment export](/cli/azure/group/deployment#export) 命令，從部署歷程記錄中擷取範本。</span><span class="sxs-lookup"><span data-stu-id="11bb1-123">You can retrieve a template from your deployment history by using the [az group deployment export](/cli/azure/group/deployment#export) command.</span></span> <span data-ttu-id="11bb1-124">下列範例會儲存您先前部署的範本︰</span><span class="sxs-lookup"><span data-stu-id="11bb1-124">The following example saves the template that you previously deploy:</span></span>
+<span data-ttu-id="3af81-123">您也可以使用 hello 部署歷程記錄中擷取範本[az 群組部署匯出](/cli/azure/group/deployment#export)命令。</span><span class="sxs-lookup"><span data-stu-id="3af81-123">You can retrieve a template from your deployment history by using hello [az group deployment export](/cli/azure/group/deployment#export) command.</span></span> <span data-ttu-id="3af81-124">下列範例會將儲存 hello 範本您先前部署的 hello:</span><span class="sxs-lookup"><span data-stu-id="3af81-124">hello following example saves hello template that you previously deploy:</span></span>
 
 ```azurecli
 az group deployment export --name NewStorage --resource-group ExampleGroup
 ```
 
-<span data-ttu-id="11bb1-125">它會傳回範本。</span><span class="sxs-lookup"><span data-stu-id="11bb1-125">It returns the template.</span></span> <span data-ttu-id="11bb1-126">複製 JSON，並儲存為檔案。</span><span class="sxs-lookup"><span data-stu-id="11bb1-126">Copy the JSON, and save as a file.</span></span> <span data-ttu-id="11bb1-127">請注意，它正是您用於部署的範本。</span><span class="sxs-lookup"><span data-stu-id="11bb1-127">Notice that it is the exact template you used for deployment.</span></span> <span data-ttu-id="11bb1-128">其參數和變數會與 GitHub 中的範本相符。</span><span class="sxs-lookup"><span data-stu-id="11bb1-128">The parameters and variables match the template from GitHub.</span></span> <span data-ttu-id="11bb1-129">您可以重新部署此範本。</span><span class="sxs-lookup"><span data-stu-id="11bb1-129">You can redeploy this template.</span></span>
+<span data-ttu-id="3af81-125">它會傳回 hello 範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-125">It returns hello template.</span></span> <span data-ttu-id="3af81-126">複製 hello JSON，並儲存成檔案。</span><span class="sxs-lookup"><span data-stu-id="3af81-126">Copy hello JSON, and save as a file.</span></span> <span data-ttu-id="3af81-127">請注意，它會是您用於部署的 hello 確切範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-127">Notice that it is hello exact template you used for deployment.</span></span> <span data-ttu-id="3af81-128">hello 參數和變數符合從 GitHub hello 範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-128">hello parameters and variables match hello template from GitHub.</span></span> <span data-ttu-id="3af81-129">您可以重新部署此範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-129">You can redeploy this template.</span></span>
 
 
-## <a name="export-resource-group-as-template"></a><span data-ttu-id="11bb1-130">匯出資源群組以作為範本</span><span class="sxs-lookup"><span data-stu-id="11bb1-130">Export resource group as template</span></span>
+## <a name="export-resource-group-as-template"></a><span data-ttu-id="3af81-130">匯出資源群組以作為範本</span><span class="sxs-lookup"><span data-stu-id="3af81-130">Export resource group as template</span></span>
 
-<span data-ttu-id="11bb1-131">您不必從部署歷程記錄擷取範本，而可以使用 [az group export](/cli/azure/group#export) 命令來擷取範本，以代表資源群組的目前狀態。</span><span class="sxs-lookup"><span data-stu-id="11bb1-131">Instead of retrieving a template from the deployment history, you can retrieve a template that represents the current state of a resource group by using the [az group export](/cli/azure/group#export) command.</span></span> <span data-ttu-id="11bb1-132">當您對資源群組做了許多變更，且現有的範本均無法完全呈現這些變更時，就可以使用這個命令。</span><span class="sxs-lookup"><span data-stu-id="11bb1-132">You use this command when you have made many changes to your resource group and no existing template represents all the changes.</span></span>
+<span data-ttu-id="3af81-131">而不是從 hello 部署歷程記錄中擷取範本，您可以擷取使用 hello 代表 hello 的資源群組的目前狀態的範本[az 群組匯出](/cli/azure/group#export)命令。</span><span class="sxs-lookup"><span data-stu-id="3af81-131">Instead of retrieving a template from hello deployment history, you can retrieve a template that represents hello current state of a resource group by using hello [az group export](/cli/azure/group#export) command.</span></span> <span data-ttu-id="3af81-132">當您已經進行許多變更 tooyour 資源群組，並沒有現有的範本代表 hello 的所有變更，您可以使用此命令。</span><span class="sxs-lookup"><span data-stu-id="3af81-132">You use this command when you have made many changes tooyour resource group and no existing template represents all hello changes.</span></span>
 
 ```azurecli
 az group export --name ExampleGroup
 ```
 
-<span data-ttu-id="11bb1-133">它會傳回範本。</span><span class="sxs-lookup"><span data-stu-id="11bb1-133">It returns the template.</span></span> <span data-ttu-id="11bb1-134">複製 JSON，並儲存為檔案。</span><span class="sxs-lookup"><span data-stu-id="11bb1-134">Copy the JSON, and save as a file.</span></span> <span data-ttu-id="11bb1-135">請注意，它與 GitHub 中的範本不同。</span><span class="sxs-lookup"><span data-stu-id="11bb1-135">Notice that it is different than the template in GitHub.</span></span> <span data-ttu-id="11bb1-136">它有不同的參數，而且沒有任何變數。</span><span class="sxs-lookup"><span data-stu-id="11bb1-136">It has different parameters and no variables.</span></span> <span data-ttu-id="11bb1-137">儲存體 SKU 和位置皆已硬式編碼為值。</span><span class="sxs-lookup"><span data-stu-id="11bb1-137">The storage SKU and location are hard-coded to values.</span></span> <span data-ttu-id="11bb1-138">下列範例會顯示所匯出的範本，但您的範本會有稍微不同的參數名稱︰</span><span class="sxs-lookup"><span data-stu-id="11bb1-138">The following example shows the exported template, but your template has a slightly different parameter name:</span></span>
+<span data-ttu-id="3af81-133">它會傳回 hello 範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-133">It returns hello template.</span></span> <span data-ttu-id="3af81-134">複製 hello JSON，並儲存成檔案。</span><span class="sxs-lookup"><span data-stu-id="3af81-134">Copy hello JSON, and save as a file.</span></span> <span data-ttu-id="3af81-135">請注意，不同於在 GitHub 中的 hello 範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-135">Notice that it is different than hello template in GitHub.</span></span> <span data-ttu-id="3af81-136">它有不同的參數，而且沒有任何變數。</span><span class="sxs-lookup"><span data-stu-id="3af81-136">It has different parameters and no variables.</span></span> <span data-ttu-id="3af81-137">hello 儲存 SKU 和位置是硬式編碼 toovalues。</span><span class="sxs-lookup"><span data-stu-id="3af81-137">hello storage SKU and location are hard-coded toovalues.</span></span> <span data-ttu-id="3af81-138">hello 下列範例顯示 hello 匯出的範本，但是您的範本有稍微不同的參數名稱：</span><span class="sxs-lookup"><span data-stu-id="3af81-138">hello following example shows hello exported template, but your template has a slightly different parameter name:</span></span>
 
 ```json
 {
@@ -93,7 +93,7 @@ az group export --name ExampleGroup
 }
 ```
 
-<span data-ttu-id="11bb1-139">您可以重新部署此範本，但必須猜測儲存體帳戶的唯一名稱。</span><span class="sxs-lookup"><span data-stu-id="11bb1-139">You can redeploy this template, but it requires guessing a unique name for the storage account.</span></span> <span data-ttu-id="11bb1-140">您的參數名稱會稍微不同。</span><span class="sxs-lookup"><span data-stu-id="11bb1-140">The name of your parameter is slightly different.</span></span>
+<span data-ttu-id="3af81-139">您可以重新部署此範本，但需要猜測 hello 儲存體帳戶的唯一名稱。</span><span class="sxs-lookup"><span data-stu-id="3af81-139">You can redeploy this template, but it requires guessing a unique name for hello storage account.</span></span> <span data-ttu-id="3af81-140">您的參數名稱 hello 有些許不同。</span><span class="sxs-lookup"><span data-stu-id="3af81-140">hello name of your parameter is slightly different.</span></span>
 
 ```azurecli
 az group deployment create --name NewStorage --resource-group ExampleGroup \
@@ -101,15 +101,15 @@ az group deployment create --name NewStorage --resource-group ExampleGroup \
   --parameters "{\"storageAccounts_mcyzaljiv7qncstandardsa_name\":{\"value\":\"tfstore0501\"}}"
 ```
 
-## <a name="customize-exported-template"></a><span data-ttu-id="11bb1-141">自訂匯出的範本</span><span class="sxs-lookup"><span data-stu-id="11bb1-141">Customize exported template</span></span>
+## <a name="customize-exported-template"></a><span data-ttu-id="3af81-141">自訂匯出的範本</span><span class="sxs-lookup"><span data-stu-id="3af81-141">Customize exported template</span></span>
 
-<span data-ttu-id="11bb1-142">您可以修改此範本，讓它變得更方便使用且更有彈性。</span><span class="sxs-lookup"><span data-stu-id="11bb1-142">You can modify this template to make it easier to use and more flexible.</span></span> <span data-ttu-id="11bb1-143">若要允許更多位置，請將 location 屬性變更為使用與資源群組相同的位置︰</span><span class="sxs-lookup"><span data-stu-id="11bb1-143">To allow for more locations, change the location property to use the same location as the resource group:</span></span>
+<span data-ttu-id="3af81-142">您可以修改此範本 toomake 它更容易 toouse 而且更有彈性。</span><span class="sxs-lookup"><span data-stu-id="3af81-142">You can modify this template toomake it easier toouse and more flexible.</span></span> <span data-ttu-id="3af81-143">如需更多位置，變更 hello 位置屬性 toouse tooallow hello 與 hello 資源群組相同的位置：</span><span class="sxs-lookup"><span data-stu-id="3af81-143">tooallow for more locations, change hello location property toouse hello same location as hello resource group:</span></span>
 
 ```json
 "location": "[resourceGroup().location]",
 ```
 
-<span data-ttu-id="11bb1-144">為了避免必須猜測儲存體帳戶的唯一名稱，請移除儲存體帳戶名稱的參數。</span><span class="sxs-lookup"><span data-stu-id="11bb1-144">To avoid having to guess a uniques name for storage account, remove the parameter for the storage account name.</span></span> <span data-ttu-id="11bb1-145">新增儲存體名稱尾碼的參數，以及儲存體 SKU︰</span><span class="sxs-lookup"><span data-stu-id="11bb1-145">Add a parameter for a storage name suffix, and a storage SKU:</span></span>
+<span data-ttu-id="3af81-144">tooavoid 具有 tooguess 唯一性儲存體帳戶名稱，移除 hello 參數 hello 儲存體帳戶名稱。</span><span class="sxs-lookup"><span data-stu-id="3af81-144">tooavoid having tooguess a uniques name for storage account, remove hello parameter for hello storage account name.</span></span> <span data-ttu-id="3af81-145">新增儲存體名稱尾碼的參數，以及儲存體 SKU︰</span><span class="sxs-lookup"><span data-stu-id="3af81-145">Add a parameter for a storage name suffix, and a storage SKU:</span></span>
 
 ```json
 "parameters": {
@@ -132,7 +132,7 @@ az group deployment create --name NewStorage --resource-group ExampleGroup \
 },
 ```
 
-<span data-ttu-id="11bb1-146">新增變數，以便使用 uniqueString 函式來建構儲存體帳戶名稱︰</span><span class="sxs-lookup"><span data-stu-id="11bb1-146">Add a variable that constructs the storage account name with the uniqueString function:</span></span>
+<span data-ttu-id="3af81-146">加入建構 hello 儲存體帳戶名稱與 hello uniqueString 函式的變數：</span><span class="sxs-lookup"><span data-stu-id="3af81-146">Add a variable that constructs hello storage account name with hello uniqueString function:</span></span>
 
 ```json
 "variables": {
@@ -140,13 +140,13 @@ az group deployment create --name NewStorage --resource-group ExampleGroup \
   },
 ```
 
-<span data-ttu-id="11bb1-147">將儲存體帳戶名稱設定為變數︰</span><span class="sxs-lookup"><span data-stu-id="11bb1-147">Set the name of the storage account to the variable:</span></span>
+<span data-ttu-id="3af81-147">設定 hello hello 儲存體帳戶 toohello 變數名稱：</span><span class="sxs-lookup"><span data-stu-id="3af81-147">Set hello name of hello storage account toohello variable:</span></span>
 
 ```json
 "name": "[variables('storageAccountName')]",
 ```
 
-<span data-ttu-id="11bb1-148">將 SKU 設定為參數︰</span><span class="sxs-lookup"><span data-stu-id="11bb1-148">Set the SKU to the parameter:</span></span>
+<span data-ttu-id="3af81-148">設定 hello SKU toohello 參數：</span><span class="sxs-lookup"><span data-stu-id="3af81-148">Set hello SKU toohello parameter:</span></span>
 
 ```json
 "sku": {
@@ -155,7 +155,7 @@ az group deployment create --name NewStorage --resource-group ExampleGroup \
 },
 ```
 
-<span data-ttu-id="11bb1-149">您的範本現在如下所示：</span><span class="sxs-lookup"><span data-stu-id="11bb1-149">Your template now looks like:</span></span>
+<span data-ttu-id="3af81-149">您的範本現在如下所示：</span><span class="sxs-lookup"><span data-stu-id="3af81-149">Your template now looks like:</span></span>
 
 ```json
 {
@@ -201,9 +201,9 @@ az group deployment create --name NewStorage --resource-group ExampleGroup \
 }
 ```
 
-<span data-ttu-id="11bb1-150">重新部署修改過的範本。</span><span class="sxs-lookup"><span data-stu-id="11bb1-150">Redeploy the modified template.</span></span>
+<span data-ttu-id="3af81-150">重新部署 hello 修改的範本。</span><span class="sxs-lookup"><span data-stu-id="3af81-150">Redeploy hello modified template.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="11bb1-151">後續步驟</span><span class="sxs-lookup"><span data-stu-id="11bb1-151">Next steps</span></span>
-* <span data-ttu-id="11bb1-152">如需使用入口網站來匯出範本的相關資訊，請參閱[從現有資源匯出 Azure Resource Manager 範本](resource-manager-export-template.md)。</span><span class="sxs-lookup"><span data-stu-id="11bb1-152">For information about using the portal to export a template, see [Export an Azure Resource Manager template from existing resources](resource-manager-export-template.md).</span></span>
-* <span data-ttu-id="11bb1-153">若要在範本中定義參數，請參閱 [編寫範本](resource-group-authoring-templates.md#parameters)。</span><span class="sxs-lookup"><span data-stu-id="11bb1-153">To define parameters in template, see [Authoring templates](resource-group-authoring-templates.md#parameters).</span></span>
-* <span data-ttu-id="11bb1-154">如需解決常見部署錯誤的秘訣，請參閱[使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。</span><span class="sxs-lookup"><span data-stu-id="11bb1-154">For tips on resolving common deployment errors, see [Troubleshoot common Azure deployment errors with Azure Resource Manager](resource-manager-common-deployment-errors.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="3af81-151">後續步驟</span><span class="sxs-lookup"><span data-stu-id="3af81-151">Next steps</span></span>
+* <span data-ttu-id="3af81-152">如需使用 hello 入口 tooexport 範本資訊，請參閱[匯出 Azure Resource Manager 範本，從現有的資源](resource-manager-export-template.md)。</span><span class="sxs-lookup"><span data-stu-id="3af81-152">For information about using hello portal tooexport a template, see [Export an Azure Resource Manager template from existing resources](resource-manager-export-template.md).</span></span>
+* <span data-ttu-id="3af81-153">toodefine 參數在範本中，請參閱[撰寫樣板](resource-group-authoring-templates.md#parameters)。</span><span class="sxs-lookup"><span data-stu-id="3af81-153">toodefine parameters in template, see [Authoring templates](resource-group-authoring-templates.md#parameters).</span></span>
+* <span data-ttu-id="3af81-154">如需解決常見部署錯誤的秘訣，請參閱[使用 Azure Resource Manager 針對常見的 Azure 部署錯誤進行疑難排解](resource-manager-common-deployment-errors.md)。</span><span class="sxs-lookup"><span data-stu-id="3af81-154">For tips on resolving common deployment errors, see [Troubleshoot common Azure deployment errors with Azure Resource Manager](resource-manager-common-deployment-errors.md).</span></span>

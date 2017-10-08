@@ -1,5 +1,5 @@
 ---
-title: "開始使用 Azure 服務匯流排主題和訂用帳戶 | Microsoft Docs"
+title: "aaaGet 開始使用 Azure 服務匯流排主題和訂用帳戶 |Microsoft 文件"
 description: "撰寫使用服務匯流排傳訊主題和訂用帳戶的 C# 主控台應用程式。"
 services: service-bus-messaging
 documentationcenter: .net
@@ -14,86 +14,86 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 06/30/2017
 ms.author: sethm
-ms.openlocfilehash: 9401ada519f600b0d2817f06a396e16607a24129
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 619d602599d97ecff2ded0681a383b19f1a8b7ad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-service-bus-topics"></a><span data-ttu-id="a9a37-103">開始使用服務匯流排主題</span><span class="sxs-lookup"><span data-stu-id="a9a37-103">Get started with Service Bus topics</span></span>
+# <a name="get-started-with-service-bus-topics"></a><span data-ttu-id="afa66-103">開始使用服務匯流排主題</span><span class="sxs-lookup"><span data-stu-id="afa66-103">Get started with Service Bus topics</span></span>
 
 [!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
-## <a name="what-will-be-accomplished"></a><span data-ttu-id="a9a37-104">將會完成的工作</span><span class="sxs-lookup"><span data-stu-id="a9a37-104">What will be accomplished</span></span>
+## <a name="what-will-be-accomplished"></a><span data-ttu-id="afa66-104">將會完成的工作</span><span class="sxs-lookup"><span data-stu-id="afa66-104">What will be accomplished</span></span>
 
-<span data-ttu-id="a9a37-105">本教學課程涵蓋下列步驟：</span><span class="sxs-lookup"><span data-stu-id="a9a37-105">This tutorial covers the following steps:</span></span>
+<span data-ttu-id="afa66-105">本教學課程涵蓋 hello 下列步驟：</span><span class="sxs-lookup"><span data-stu-id="afa66-105">This tutorial covers hello following steps:</span></span>
 
-1. <span data-ttu-id="a9a37-106">使用 Azure 入口網站建立服務匯流排命名空間。</span><span class="sxs-lookup"><span data-stu-id="a9a37-106">Create a Service Bus namespace, using the Azure portal.</span></span>
-2. <span data-ttu-id="a9a37-107">使用 Azure 入口網站建立服務匯流排主題。</span><span class="sxs-lookup"><span data-stu-id="a9a37-107">Create a Service Bus topic, using the Azure portal.</span></span>
-3. <span data-ttu-id="a9a37-108">使用 Azure 入口網站，針對該主題建立服務匯流排訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="a9a37-108">Create a Service Bus subscription to that topic, using the Azure portal.</span></span>
-4. <span data-ttu-id="a9a37-109">撰寫主控台應用程式以傳送訊息至主題。</span><span class="sxs-lookup"><span data-stu-id="a9a37-109">Write a console application to send a message to the topic.</span></span>
-5. <span data-ttu-id="a9a37-110">撰寫主控台應用程式以從訂用帳戶接收該訊息。</span><span class="sxs-lookup"><span data-stu-id="a9a37-110">Write a console application to receive that message from the subscription.</span></span>
+1. <span data-ttu-id="afa66-106">建立服務匯流排命名空間，使用 hello Azure 入口網站。</span><span class="sxs-lookup"><span data-stu-id="afa66-106">Create a Service Bus namespace, using hello Azure portal.</span></span>
+2. <span data-ttu-id="afa66-107">建立服務匯流排主題，使用 hello Azure 入口網站。</span><span class="sxs-lookup"><span data-stu-id="afa66-107">Create a Service Bus topic, using hello Azure portal.</span></span>
+3. <span data-ttu-id="afa66-108">建立服務匯流排訂用帳戶 toothat 主題，使用 hello Azure 入口網站。</span><span class="sxs-lookup"><span data-stu-id="afa66-108">Create a Service Bus subscription toothat topic, using hello Azure portal.</span></span>
+4. <span data-ttu-id="afa66-109">撰寫主控台應用程式 toosend 訊息 toohello 主題。</span><span class="sxs-lookup"><span data-stu-id="afa66-109">Write a console application toosend a message toohello topic.</span></span>
+5. <span data-ttu-id="afa66-110">撰寫從 hello 訂用帳戶的主控台應用程式 tooreceive 該訊息。</span><span class="sxs-lookup"><span data-stu-id="afa66-110">Write a console application tooreceive that message from hello subscription.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="a9a37-111">必要條件</span><span class="sxs-lookup"><span data-stu-id="a9a37-111">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="afa66-111">必要條件</span><span class="sxs-lookup"><span data-stu-id="afa66-111">Prerequisites</span></span>
 
-1. <span data-ttu-id="a9a37-112">[Visual Studio 2015 或更新版本](http://www.visualstudio.com)。</span><span class="sxs-lookup"><span data-stu-id="a9a37-112">[Visual Studio 2015 or higher](http://www.visualstudio.com).</span></span> <span data-ttu-id="a9a37-113">本教學課程中的範例使用 Visual Studio 2017。</span><span class="sxs-lookup"><span data-stu-id="a9a37-113">The examples in this tutorial use Visual Studio 2017.</span></span>
-2. <span data-ttu-id="a9a37-114">Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="a9a37-114">An Azure subscription.</span></span>
+1. <span data-ttu-id="afa66-112">[Visual Studio 2015 或更新版本](http://www.visualstudio.com)。</span><span class="sxs-lookup"><span data-stu-id="afa66-112">[Visual Studio 2015 or higher](http://www.visualstudio.com).</span></span> <span data-ttu-id="afa66-113">在此教學課程中的 hello 範例會使用 Visual Studio 2017。</span><span class="sxs-lookup"><span data-stu-id="afa66-113">hello examples in this tutorial use Visual Studio 2017.</span></span>
+2. <span data-ttu-id="afa66-114">Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="afa66-114">An Azure subscription.</span></span>
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="1-create-a-namespace-using-the-azure-portal"></a><span data-ttu-id="a9a37-115">1.使用 Azure 入口網站建立命名空間</span><span class="sxs-lookup"><span data-stu-id="a9a37-115">1. Create a namespace using the Azure portal</span></span>
+## <a name="1-create-a-namespace-using-hello-azure-portal"></a><span data-ttu-id="afa66-115">1.建立命名空間使用 hello Azure 入口網站</span><span class="sxs-lookup"><span data-stu-id="afa66-115">1. Create a namespace using hello Azure portal</span></span>
 
-<span data-ttu-id="a9a37-116">如果您已建立服務匯流排傳訊命名空間，請跳至[使用 Azure 入口網站建立主題](#2-create-a-topic-using-the-azure-portal)一節。</span><span class="sxs-lookup"><span data-stu-id="a9a37-116">If you have already created a Service Bus Messaging namespace, jump to the [Create a topic using the Azure portal](#2-create-a-topic-using-the-azure-portal) section.</span></span>
+<span data-ttu-id="afa66-116">如果您已經建立 Service Bus 訊息的命名空間，跳 toohello[建立使用 hello Azure 入口網站主題](#2-create-a-topic-using-the-azure-portal)> 一節。</span><span class="sxs-lookup"><span data-stu-id="afa66-116">If you have already created a Service Bus Messaging namespace, jump toohello [Create a topic using hello Azure portal](#2-create-a-topic-using-the-azure-portal) section.</span></span>
 
 [!INCLUDE [service-bus-create-namespace-portal](../../includes/service-bus-create-namespace-portal.md)]
 
-## <a name="2-create-a-topic-using-the-azure-portal"></a><span data-ttu-id="a9a37-117">2.使用 Azure 入口網站建立主題</span><span class="sxs-lookup"><span data-stu-id="a9a37-117">2. Create a topic using the Azure portal</span></span>
+## <a name="2-create-a-topic-using-hello-azure-portal"></a><span data-ttu-id="afa66-117">2.建立使用 hello Azure 入口網站主題</span><span class="sxs-lookup"><span data-stu-id="afa66-117">2. Create a topic using hello Azure portal</span></span>
 
-1. <span data-ttu-id="a9a37-118">登入 [Azure 入口網站][azure-portal]。</span><span class="sxs-lookup"><span data-stu-id="a9a37-118">Log on to the [Azure portal][azure-portal].</span></span>
-2. <span data-ttu-id="a9a37-119">在入口網站的左方瀏覽窗格中，按一下 [服務匯流排] \(如果您未看見 [服務匯流排]，請按一下 [更多服務])。</span><span class="sxs-lookup"><span data-stu-id="a9a37-119">In the left navigation pane of the portal, click **Service Bus** (if you don't see **Service Bus**, click **More services**).</span></span>
-3. <span data-ttu-id="a9a37-120">按一下要在其中建立主題的命名空間。</span><span class="sxs-lookup"><span data-stu-id="a9a37-120">Click the namespace in which you would like to create the topic.</span></span> <span data-ttu-id="a9a37-121">命名空間概觀的刀鋒視窗即會出現：</span><span class="sxs-lookup"><span data-stu-id="a9a37-121">The namespace overview blade appears:</span></span>
+1. <span data-ttu-id="afa66-118">登入 toohello [Azure 入口網站][azure-portal]。</span><span class="sxs-lookup"><span data-stu-id="afa66-118">Log on toohello [Azure portal][azure-portal].</span></span>
+2. <span data-ttu-id="afa66-119">在 hello hello 入口網站的左側瀏覽窗格中按一下**Service Bus** (如果您沒有看到**Service Bus**，按一下 **更多服務**)。</span><span class="sxs-lookup"><span data-stu-id="afa66-119">In hello left navigation pane of hello portal, click **Service Bus** (if you don't see **Service Bus**, click **More services**).</span></span>
+3. <span data-ttu-id="afa66-120">按一下您想在其中要 toocreate hello 主題 hello 命名空間。</span><span class="sxs-lookup"><span data-stu-id="afa66-120">Click hello namespace in which you would like toocreate hello topic.</span></span> <span data-ttu-id="afa66-121">hello 命名空間概觀刀鋒視窗會出現：</span><span class="sxs-lookup"><span data-stu-id="afa66-121">hello namespace overview blade appears:</span></span>
    
     ![建立主題][createtopic1]
-4. <span data-ttu-id="a9a37-123">在 [服務匯流排命名空間] 刀鋒視窗中，按一下 [主題]，然後按一下 [新增主題]。</span><span class="sxs-lookup"><span data-stu-id="a9a37-123">In the **Service Bus namespace** blade, click **Topics**, then click **Add topic**.</span></span>
+4. <span data-ttu-id="afa66-123">在 hello**服務匯流排命名空間**刀鋒視窗中，按一下 **主題**，然後按一下 **新增主題**。</span><span class="sxs-lookup"><span data-stu-id="afa66-123">In hello **Service Bus namespace** blade, click **Topics**, then click **Add topic**.</span></span>
    
     ![選取主題][createtopic2]
-5. <span data-ttu-id="a9a37-125">輸入主題名稱，然後取消核取 [啟用資料分割] 選項。</span><span class="sxs-lookup"><span data-stu-id="a9a37-125">Enter a name for the topic, and uncheck the **Enable partitioning** option.</span></span> <span data-ttu-id="a9a37-126">保留其他選項的預設值。</span><span class="sxs-lookup"><span data-stu-id="a9a37-126">Leave the other options with their default values.</span></span>
+5. <span data-ttu-id="afa66-125">輸入 hello 主題的名稱，然後取消選取 hello**啟用資料分割**選項。</span><span class="sxs-lookup"><span data-stu-id="afa66-125">Enter a name for hello topic, and uncheck hello **Enable partitioning** option.</span></span> <span data-ttu-id="afa66-126">將 hello 保留其預設值與其他選項。</span><span class="sxs-lookup"><span data-stu-id="afa66-126">Leave hello other options with their default values.</span></span>
    
     ![選取新增][createtopic3]
-6. <span data-ttu-id="a9a37-128">按一下刀鋒視窗底部的 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="a9a37-128">At the bottom of the blade, click **Create**.</span></span>
+6. <span data-ttu-id="afa66-128">在 hello hello 刀鋒視窗底部，按一下 **建立**。</span><span class="sxs-lookup"><span data-stu-id="afa66-128">At hello bottom of hello blade, click **Create**.</span></span>
 
-## <a name="3-create-a-subscription-to-the-topic"></a><span data-ttu-id="a9a37-129">3.針對主題建立訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="a9a37-129">3. Create a subscription to the topic</span></span>
+## <a name="3-create-a-subscription-toohello-topic"></a><span data-ttu-id="afa66-129">3.建立訂用帳戶 toohello 主題</span><span class="sxs-lookup"><span data-stu-id="afa66-129">3. Create a subscription toohello topic</span></span>
 
-1. <span data-ttu-id="a9a37-130">在入口網站的資源窗格中，按一下在步驟 1 所建立的命名空間，接著按一下在步驟 2 所建立的主題名稱。</span><span class="sxs-lookup"><span data-stu-id="a9a37-130">In the portal resources pane, click the namespace you created in step 1, then click name of the topic you created in step 2.</span></span>
-2. <span data-ttu-id="a9a37-131">在概觀窗格頂端，按一下 [訂用帳戶] 旁的加號，將訂用帳戶新增至主題。</span><span class="sxs-lookup"><span data-stu-id="a9a37-131">A the top of the overview pane, click the plus sign next to **Subscription** to add a subscription to this topic.</span></span>
+1. <span data-ttu-id="afa66-130">在 hello 入口網站的資源 窗格中，按一下您在步驟 1 所建立的 hello 命名空間然後按一下您在步驟 2 中建立的 hello 主題的名稱。</span><span class="sxs-lookup"><span data-stu-id="afa66-130">In hello portal resources pane, click hello namespace you created in step 1, then click name of hello topic you created in step 2.</span></span>
+2. <span data-ttu-id="afa66-131">Hello 頂端 hello 概觀窗格中，按一下 hello 加上登入接著太**訂用帳戶**tooadd 訂用帳戶 toothis 主題。</span><span class="sxs-lookup"><span data-stu-id="afa66-131">A hello top of hello overview pane, click hello plus sign next too**Subscription** tooadd a subscription toothis topic.</span></span>
 
     ![建立訂用帳戶][createtopic4]
 
-3. <span data-ttu-id="a9a37-133">輸入訂用帳戶名稱。</span><span class="sxs-lookup"><span data-stu-id="a9a37-133">Enter a name for the subscription.</span></span> <span data-ttu-id="a9a37-134">保留其他選項的預設值。</span><span class="sxs-lookup"><span data-stu-id="a9a37-134">Leave the other options with their default values.</span></span>
+3. <span data-ttu-id="afa66-133">輸入 hello 訂用帳戶的名稱。</span><span class="sxs-lookup"><span data-stu-id="afa66-133">Enter a name for hello subscription.</span></span> <span data-ttu-id="afa66-134">將 hello 保留其預設值與其他選項。</span><span class="sxs-lookup"><span data-stu-id="afa66-134">Leave hello other options with their default values.</span></span>
 
-## <a name="4-send-messages-to-the-topic"></a><span data-ttu-id="a9a37-135">4.將訊息傳送到主題</span><span class="sxs-lookup"><span data-stu-id="a9a37-135">4. Send messages to the topic</span></span>
+## <a name="4-send-messages-toohello-topic"></a><span data-ttu-id="afa66-135">4.傳送訊息 toohello 主題</span><span class="sxs-lookup"><span data-stu-id="afa66-135">4. Send messages toohello topic</span></span>
 
-<span data-ttu-id="a9a37-136">為了將訊息傳送至主題，我們使用 Visual Studio 撰寫 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="a9a37-136">To send messages to the topic, we write a C# console application using Visual Studio.</span></span>
+<span data-ttu-id="afa66-136">toosend 訊息 toohello 主題中，我們會撰寫 C# 主控台應用程式使用 Visual Studio。</span><span class="sxs-lookup"><span data-stu-id="afa66-136">toosend messages toohello topic, we write a C# console application using Visual Studio.</span></span>
 
-### <a name="create-a-console-application"></a><span data-ttu-id="a9a37-137">建立主控台應用程式</span><span class="sxs-lookup"><span data-stu-id="a9a37-137">Create a console application</span></span>
+### <a name="create-a-console-application"></a><span data-ttu-id="afa66-137">建立主控台應用程式</span><span class="sxs-lookup"><span data-stu-id="afa66-137">Create a console application</span></span>
 
-<span data-ttu-id="a9a37-138">啟動 Visual Studio，並建立新的**主控台應用程式 (.NET Framework)** 專案。</span><span class="sxs-lookup"><span data-stu-id="a9a37-138">Launch Visual Studio and create a new **Console app (.NET Framework)** project.</span></span>
+<span data-ttu-id="afa66-138">啟動 Visual Studio，並建立新的**主控台應用程式 (.NET Framework)** 專案。</span><span class="sxs-lookup"><span data-stu-id="afa66-138">Launch Visual Studio and create a new **Console app (.NET Framework)** project.</span></span>
 
-### <a name="add-the-service-bus-nuget-package"></a><span data-ttu-id="a9a37-139">新增服務匯流排 NuGet 封裝</span><span class="sxs-lookup"><span data-stu-id="a9a37-139">Add the Service Bus NuGet package</span></span>
+### <a name="add-hello-service-bus-nuget-package"></a><span data-ttu-id="afa66-139">加入 hello 服務匯流排 NuGet 封裝</span><span class="sxs-lookup"><span data-stu-id="afa66-139">Add hello Service Bus NuGet package</span></span>
 
-1. <span data-ttu-id="a9a37-140">以滑鼠右鍵按一下新建立的專案，然後選取 [管理 NuGet 套件]。</span><span class="sxs-lookup"><span data-stu-id="a9a37-140">Right-click the newly created project and select **Manage NuGet Packages**.</span></span>
-2. <span data-ttu-id="a9a37-141">按一下 [瀏覽] 索引標籤，搜尋 [Microsoft Azure 服務匯流排]，然後選取 [WindowsAzure.ServiceBus] 項目。</span><span class="sxs-lookup"><span data-stu-id="a9a37-141">Click the **Browse** tab, search for **Microsoft Azure Service Bus**, and then select the **WindowsAzure.ServiceBus** item.</span></span> <span data-ttu-id="a9a37-142">按一下 [安裝]  完成安裝作業，然後關閉此對話方塊。</span><span class="sxs-lookup"><span data-stu-id="a9a37-142">Click **Install** to complete the installation, then close this dialog box.</span></span>
+1. <span data-ttu-id="afa66-140">Hello 新建立的專案上按一下滑鼠右鍵，然後選取**管理 NuGet 封裝**。</span><span class="sxs-lookup"><span data-stu-id="afa66-140">Right-click hello newly created project and select **Manage NuGet Packages**.</span></span>
+2. <span data-ttu-id="afa66-141">按一下 hello**瀏覽**索引標籤上，搜尋**Microsoft Azure 服務匯流排**，然後選取 hello **WindowsAzure.ServiceBus**項目。</span><span class="sxs-lookup"><span data-stu-id="afa66-141">Click hello **Browse** tab, search for **Microsoft Azure Service Bus**, and then select hello **WindowsAzure.ServiceBus** item.</span></span> <span data-ttu-id="afa66-142">按一下**安裝**toocomplete hello 安裝，然後關閉此對話方塊。</span><span class="sxs-lookup"><span data-stu-id="afa66-142">Click **Install** toocomplete hello installation, then close this dialog box.</span></span>
    
     ![選取 NuGet 封裝][nuget-pkg]
 
-### <a name="write-some-code-to-send-a-message-to-the-topic"></a><span data-ttu-id="a9a37-144">撰寫一些程式碼以將訊息傳送至主題</span><span class="sxs-lookup"><span data-stu-id="a9a37-144">Write some code to send a message to the topic</span></span>
+### <a name="write-some-code-toosend-a-message-toohello-topic"></a><span data-ttu-id="afa66-144">撰寫一些程式碼 toosend 訊息 toohello 主題</span><span class="sxs-lookup"><span data-stu-id="afa66-144">Write some code toosend a message toohello topic</span></span>
 
-1. <span data-ttu-id="a9a37-145">在 Program.cs 檔案開頭處新增以下 `using` 陳述式。</span><span class="sxs-lookup"><span data-stu-id="a9a37-145">Add the following `using` statement to the top of the Program.cs file.</span></span>
+1. <span data-ttu-id="afa66-145">新增下列 hello `using` hello Program.cs 檔案的陳述式 toohello 頂端。</span><span class="sxs-lookup"><span data-stu-id="afa66-145">Add hello following `using` statement toohello top of hello Program.cs file.</span></span>
    
     ```csharp
     using Microsoft.ServiceBus.Messaging;
     ```
-2. <span data-ttu-id="a9a37-146">將下列程式碼新增至 `Main` 方法。</span><span class="sxs-lookup"><span data-stu-id="a9a37-146">Add the following code to the `Main` method.</span></span> <span data-ttu-id="a9a37-147">將 `connectionString` 變數設定為建立命名空間時取得的連接字串，並將 `topicName` 設定為建立主題時使用的名稱。</span><span class="sxs-lookup"><span data-stu-id="a9a37-147">Set the `connectionString` variable to the connection string that you obtained when creating the namespace, and set `topicName` to the name that you used when creating the topic.</span></span>
+2. <span data-ttu-id="afa66-146">新增下列程式碼 toohello hello`Main`方法。</span><span class="sxs-lookup"><span data-stu-id="afa66-146">Add hello following code toohello `Main` method.</span></span> <span data-ttu-id="afa66-147">設定 hello`connectionString`變數 toohello 連接字串時建立 hello 命名空間中，取得及設定`topicName`toohello 建立 hello 主題時，您所使用的名稱。</span><span class="sxs-lookup"><span data-stu-id="afa66-147">Set hello `connectionString` variable toohello connection string that you obtained when creating hello namespace, and set `topicName` toohello name that you used when creating hello topic.</span></span>
    
     ```csharp
     var connectionString = "<your connection string>";
@@ -107,11 +107,11 @@ ms.lasthandoff: 07/11/2017
 
     client.Send(message);
 
-    Console.WriteLine("Message successfully sent! Press ENTER to exit program");
+    Console.WriteLine("Message successfully sent! Press ENTER tooexit program");
     Console.ReadLine();
     ```
    
-    <span data-ttu-id="a9a37-148">Program.cs 檔案看起來應該會像下面這樣。</span><span class="sxs-lookup"><span data-stu-id="a9a37-148">Here is what your Program.cs file should look like.</span></span>
+    <span data-ttu-id="afa66-148">Program.cs 檔案看起來應該會像下面這樣。</span><span class="sxs-lookup"><span data-stu-id="afa66-148">Here is what your Program.cs file should look like.</span></span>
    
     ```csharp
     using System;
@@ -138,25 +138,25 @@ ms.lasthandoff: 07/11/2017
 
                 client.Send(message);
 
-                Console.WriteLine("Message successfully sent! Press ENTER to exit program");
+                Console.WriteLine("Message successfully sent! Press ENTER tooexit program");
                 Console.ReadLine();
             }
         }
     }
     ```
-3. <span data-ttu-id="a9a37-149">執行程式，並檢查 Azure 入口網站：按一下命名空間 [概觀] 刀鋒視窗中的主題名稱。</span><span class="sxs-lookup"><span data-stu-id="a9a37-149">Run the program, and check the Azure portal: click the name of your topic in the namespace **Overview** blade.</span></span> <span data-ttu-id="a9a37-150">主題 [Essentials] 刀鋒視窗即會顯示。</span><span class="sxs-lookup"><span data-stu-id="a9a37-150">The topic **Essentials** blade is displayed.</span></span> <span data-ttu-id="a9a37-151">請注意，在靠近刀鋒視窗底部所列的訂用帳戶中，每個訂用帳戶的**訊息計數**值現在應該是 1。</span><span class="sxs-lookup"><span data-stu-id="a9a37-151">In the subscription(s) listed near the bottom of the blade, notice that the **Message Count** value for each subscription should now be 1.</span></span> <span data-ttu-id="a9a37-152">每次執行傳送者應用程式而未擷取訊息 (如下一節所述)，這個值就會增加 1。</span><span class="sxs-lookup"><span data-stu-id="a9a37-152">Each time you run the sender application without retrieving the messages (as described in the next section), this value increases by 1.</span></span> <span data-ttu-id="a9a37-153">也請注意，每當應用程式新增訊息至主題/訂用帳戶，主題目前的大小就會讓 [Essentials] 刀鋒視窗上的**目前**值增加。</span><span class="sxs-lookup"><span data-stu-id="a9a37-153">Also note that the current size of the topic increments the **Current** value on the **Essentials** blade each time the app adds a message to the topic/subscription.</span></span>
+3. <span data-ttu-id="afa66-149">執行 hello 程式並檢查 hello Azure 入口網站： 按一下主題 hello 命名空間中的 hello 名稱**概觀**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="afa66-149">Run hello program, and check hello Azure portal: click hello name of your topic in hello namespace **Overview** blade.</span></span> <span data-ttu-id="afa66-150">hello 主題**Essentials**刀鋒視窗會顯示。</span><span class="sxs-lookup"><span data-stu-id="afa66-150">hello topic **Essentials** blade is displayed.</span></span> <span data-ttu-id="afa66-151">在 hello 訂閱 hello hello 刀鋒視窗的底部列，請注意該 hello**訊息計數**每個訂用帳戶現在應該為 1 的值。</span><span class="sxs-lookup"><span data-stu-id="afa66-151">In hello subscription(s) listed near hello bottom of hello blade, notice that hello **Message Count** value for each subscription should now be 1.</span></span> <span data-ttu-id="afa66-152">每次執行 hello 寄件者應用程式，而不擷取 hello 訊息 （如 hello 下一節中所述），這個值會增加 1。</span><span class="sxs-lookup"><span data-stu-id="afa66-152">Each time you run hello sender application without retrieving hello messages (as described in hello next section), this value increases by 1.</span></span> <span data-ttu-id="afa66-153">也請注意該 hello 的目前大小的 hello 主題遞增 hello**目前**上 hello 值**Essentials**刀鋒視窗每次 hello 應用程式加入訊息的 toohello 主題/訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="afa66-153">Also note that hello current size of hello topic increments hello **Current** value on hello **Essentials** blade each time hello app adds a message toohello topic/subscription.</span></span>
    
       ![訊息大小][topic-message]
 
-## <a name="5-receive-messages-from-the-subscription"></a><span data-ttu-id="a9a37-155">5.自訂用帳戶接收訊息</span><span class="sxs-lookup"><span data-stu-id="a9a37-155">5. Receive messages from the subscription</span></span>
+## <a name="5-receive-messages-from-hello-subscription"></a><span data-ttu-id="afa66-155">5.從 hello 訂閱接收訊息</span><span class="sxs-lookup"><span data-stu-id="afa66-155">5. Receive messages from hello subscription</span></span>
 
-1. <span data-ttu-id="a9a37-156">若要接收您剛傳送的訊息，請建立新的主控台應用程式，並和上面的傳送者應用程式類似，新增服務匯流排 NuGet 套件的參考。</span><span class="sxs-lookup"><span data-stu-id="a9a37-156">To receive the message or messages you just sent, create a new console application and add a reference to the Service Bus NuGet package, similar to the previous sender application.</span></span>
-2. <span data-ttu-id="a9a37-157">在 Program.cs 檔案開頭處新增以下 `using` 陳述式。</span><span class="sxs-lookup"><span data-stu-id="a9a37-157">Add the following `using` statement to the top of the Program.cs file.</span></span>
+1. <span data-ttu-id="afa66-156">tooreceive hello 訊息或只傳送的訊息建立新的主控台應用程式，並加入參考 toohello 服務匯流排 NuGet 封裝，類似 toohello 先前寄件者應用程式。</span><span class="sxs-lookup"><span data-stu-id="afa66-156">tooreceive hello message or messages you just sent, create a new console application and add a reference toohello Service Bus NuGet package, similar toohello previous sender application.</span></span>
+2. <span data-ttu-id="afa66-157">新增下列 hello `using` hello Program.cs 檔案的陳述式 toohello 頂端。</span><span class="sxs-lookup"><span data-stu-id="afa66-157">Add hello following `using` statement toohello top of hello Program.cs file.</span></span>
    
     ```csharp
     using Microsoft.ServiceBus.Messaging;
     ```
-3. <span data-ttu-id="a9a37-158">將下列程式碼新增至 `Main` 方法。</span><span class="sxs-lookup"><span data-stu-id="a9a37-158">Add the following code to the `Main` method.</span></span> <span data-ttu-id="a9a37-159">將 `connectionString` 變數設定為建立命名空間時取得的連接字串，並將 `topicName` 設定為建立主題時使用的名稱。</span><span class="sxs-lookup"><span data-stu-id="a9a37-159">Set the `connectionString` variable to the connection string you obtained when creating the namespace, and set `topicName` to the name that you used when creating the topic.</span></span>
+3. <span data-ttu-id="afa66-158">新增下列程式碼 toohello hello`Main`方法。</span><span class="sxs-lookup"><span data-stu-id="afa66-158">Add hello following code toohello `Main` method.</span></span> <span data-ttu-id="afa66-159">設定 hello`connectionString`變數 toohello 連接字串時建立 hello 命名空間中，取得並設定您`topicName`toohello 建立 hello 主題時，您所使用的名稱。</span><span class="sxs-lookup"><span data-stu-id="afa66-159">Set hello `connectionString` variable toohello connection string you obtained when creating hello namespace, and set `topicName` toohello name that you used when creating hello topic.</span></span>
    
     ```csharp
     var connectionString = "<your connection string>";
@@ -170,11 +170,11 @@ ms.lasthandoff: 07/11/2017
       Console.WriteLine(String.Format("Message id: {0}", message.MessageId));
     });
    
-    Console.WriteLine("Press ENTER to exit program");
+    Console.WriteLine("Press ENTER tooexit program");
     Console.ReadLine();
     ```
    
-    <span data-ttu-id="a9a37-160">Program.cs 檔案看起來應該會像下面這樣：</span><span class="sxs-lookup"><span data-stu-id="a9a37-160">Here is what your Program.cs file should look like:</span></span>
+    <span data-ttu-id="afa66-160">Program.cs 檔案看起來應該會像下面這樣：</span><span class="sxs-lookup"><span data-stu-id="afa66-160">Here is what your Program.cs file should look like:</span></span>
    
     ```csharp
     using System;
@@ -197,21 +197,21 @@ ms.lasthandoff: 07/11/2017
             Console.WriteLine(String.Format("Message id: {0}", message.MessageId));
           });
 
-          Console.WriteLine("Press ENTER to exit program");   
+          Console.WriteLine("Press ENTER tooexit program");   
           Console.ReadLine();
         }
       }
     }
     ```
-4. <span data-ttu-id="a9a37-161">執行程式，並再次檢查入口網站。</span><span class="sxs-lookup"><span data-stu-id="a9a37-161">Run the program, and check the portal again.</span></span> <span data-ttu-id="a9a37-162">請注意，**訊息計數**和**目前**值現在是 0。</span><span class="sxs-lookup"><span data-stu-id="a9a37-162">Notice that the **Message Count** and **Current** values are now 0.</span></span>
+4. <span data-ttu-id="afa66-161">執行 hello 程式並再次檢查 hello 入口網站。</span><span class="sxs-lookup"><span data-stu-id="afa66-161">Run hello program, and check hello portal again.</span></span> <span data-ttu-id="afa66-162">請注意該 hello**訊息計數**和**目前**值現在是 0。</span><span class="sxs-lookup"><span data-stu-id="afa66-162">Notice that hello **Message Count** and **Current** values are now 0.</span></span>
    
     ![主題長度][topic-message-receive]
 
-<span data-ttu-id="a9a37-164">恭喜！</span><span class="sxs-lookup"><span data-stu-id="a9a37-164">Congratulations!</span></span> <span data-ttu-id="a9a37-165">您現在已建立主題和訂用帳戶，傳送一則訊息並接收該訊息。</span><span class="sxs-lookup"><span data-stu-id="a9a37-165">You have now created a topic and subscription, sent a message, and received that message.</span></span>
+<span data-ttu-id="afa66-164">恭喜！</span><span class="sxs-lookup"><span data-stu-id="afa66-164">Congratulations!</span></span> <span data-ttu-id="afa66-165">您現在已建立主題和訂用帳戶，傳送一則訊息並接收該訊息。</span><span class="sxs-lookup"><span data-stu-id="afa66-165">You have now created a topic and subscription, sent a message, and received that message.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="a9a37-166">後續步驟</span><span class="sxs-lookup"><span data-stu-id="a9a37-166">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="afa66-166">後續步驟</span><span class="sxs-lookup"><span data-stu-id="afa66-166">Next steps</span></span>
 
-<span data-ttu-id="a9a37-167">查看 [GitHub 存放庫以及範例](https://github.com/Azure/azure-service-bus/tree/master/samples)，其中會展示一些更進階的服務匯流排傳訊功能。</span><span class="sxs-lookup"><span data-stu-id="a9a37-167">Check out our [GitHub repository with samples](https://github.com/Azure/azure-service-bus/tree/master/samples) that demonstrate some of the more advanced features of Service Bus messaging.</span></span>
+<span data-ttu-id="afa66-167">請查看我們[範例 GitHub 儲存機制](https://github.com/Azure/azure-service-bus/tree/master/samples)，示範一些更進階的功能的服務匯流排傳訊的 hello。</span><span class="sxs-lookup"><span data-stu-id="afa66-167">Check out our [GitHub repository with samples](https://github.com/Azure/azure-service-bus/tree/master/samples) that demonstrate some of hello more advanced features of Service Bus messaging.</span></span>
 
 <!--Image references-->
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure Data Factory 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何使用 Data Factory 來設定內部部署和雲端來源的雙向自動化資料管線，以便移動和處理資料以供分析。"
+title: "aaaAzure 資料 Factory 文件-教學課程中，API 參考 |Microsoft 文件"
+description: "了解如何自動化資料備份 toouse Data Factory tooset 管線 tooand 從內部部署和雲端中進行分析的順序 toomove 及處理資料來源。"
 services: data-factory
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: bf280db3ab7f9a4b3742dafcdbb0fb7c79cc963c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2b785093780a5eb5c23924a9c3c3f5d8675f0f96
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-data-factory-documentation"></a>Azure Data Factory 文件
 
-了解如何使用 Data Factory (雲端資料整合服務)，將資料儲存、移動及處理服務組合成自動化資料管線。 教學課程和其他文件會示範如何設定和管理資料管線，以及移動和轉換資料以供分析。
+了解如何 toouse Data Factory、 雲端資料整合服務、 toocompose 資料存放區、 移動和處理服務成自動化的資料管線。 教學課程和其他文件告訴您如何 tooset 及管理資料管線，以及移動和轉換資料以供分析。
 
 <ul class="panelContent cardsFTitle">
    <li>

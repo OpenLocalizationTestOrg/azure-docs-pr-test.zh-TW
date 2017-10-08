@@ -1,6 +1,6 @@
 ---
-title: "能源需求預測的 Cortana Intelligence 解決方案範本架構 | Microsoft Docs"
-description: "Microsoft Cortana Intelligence 解決方案範本的架構可協助預測能源公用事業公司的需求。"
+title: "aaaCortana 智慧方案的範本架構需求預測的能源 |Microsoft 文件"
+description: "Hello Microsoft Cortana 智慧方案範本可協助預測能源公用程式的公司需求的架構。"
 keywords: "解決方案加速器;Cortana Analytics;能源預測"
 services: cortana-analytics
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/19/2015
 ms.author: garye
-ms.openlocfilehash: 87a27dbe9042973dcfa7e9a5a438773d1bbab4d3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c56fa5abac6240eb9bb9396205a1b882de77d610
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="cortana-intelligence-solution-template-architecture-for-demand-forecasting-of-energy"></a><span data-ttu-id="733eb-104">能源需求預測的 Cortana Intelligence 解決方案範本架構</span><span class="sxs-lookup"><span data-stu-id="733eb-104">Cortana Intelligence Solution Template architecture for demand forecasting of energy</span></span>
-<span data-ttu-id="733eb-105">下圖提供 [能源需求預測的 Cortana Intelligence 解決方案範本](cortana-analytics-playbook-demand-forecasting-energy.md)的架構概觀。</span><span class="sxs-lookup"><span data-stu-id="733eb-105">The diagram below provides an architectural overview of the [Cortana Intelligence Solution Template for demand forecasting of energy](cortana-analytics-playbook-demand-forecasting-energy.md).</span></span>
+# <a name="cortana-intelligence-solution-template-architecture-for-demand-forecasting-of-energy"></a><span data-ttu-id="9e63a-104">能源需求預測的 Cortana Intelligence 解決方案範本架構</span><span class="sxs-lookup"><span data-stu-id="9e63a-104">Cortana Intelligence Solution Template architecture for demand forecasting of energy</span></span>
+<span data-ttu-id="9e63a-105">hello 圖概略架構的 hello [Cortana 智慧方案範本需求預測的能源](cortana-analytics-playbook-demand-forecasting-energy.md)。</span><span class="sxs-lookup"><span data-stu-id="9e63a-105">hello diagram below provides an architectural overview of hello [Cortana Intelligence Solution Template for demand forecasting of energy](cortana-analytics-playbook-demand-forecasting-energy.md).</span></span>
 
-<span data-ttu-id="733eb-106">您可以在此下載完整大小版本的圖表： [架構圖表：能源需求預測的解決方案範本](http://download.microsoft.com/download/1/9/B/19B815F0-D1B0-4F67-AED3-A40544225FD1/ca-topologies-energy-forecasting.png)。</span><span class="sxs-lookup"><span data-stu-id="733eb-106">You can download a full-size version of the diagram here: [Architecture diagram: Solution Template for demand forecasting of energy](http://download.microsoft.com/download/1/9/B/19B815F0-D1B0-4F67-AED3-A40544225FD1/ca-topologies-energy-forecasting.png).</span></span>
+<span data-ttu-id="9e63a-106">您可以下載完整大小的 hello 圖表這裡：[架構圖表： 方案範本需求預測的能源](http://download.microsoft.com/download/1/9/B/19B815F0-D1B0-4F67-AED3-A40544225FD1/ca-topologies-energy-forecasting.png)。</span><span class="sxs-lookup"><span data-stu-id="9e63a-106">You can download a full-size version of hello diagram here: [Architecture diagram: Solution Template for demand forecasting of energy](http://download.microsoft.com/download/1/9/B/19B815F0-D1B0-4F67-AED3-A40544225FD1/ca-topologies-energy-forecasting.png).</span></span>
 
 ![能源需求預測的 Microsoft Cortana Intelligence 解決方案範本架構圖表][image]
 

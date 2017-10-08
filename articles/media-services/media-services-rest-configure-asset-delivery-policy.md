@@ -1,6 +1,6 @@
 ---
-title: "使用媒體服務 REST API 設定資產傳遞原則 | Microsoft Docs"
-description: "本主題說明如何使用媒體服務 REST API 設定不同的資產傳遞原則。"
+title: "使用媒體服務 REST API aaaConfiguring 資產傳遞原則 |Microsoft 文件"
+description: "本主題說明如何使用媒體服務 REST API tooconfigure 不同資產傳遞原則。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,71 +14,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: 7ffbde11b943961dd3a3b5edebd0cfd52429e845
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8203230d570935e17382c598820dbfe42f83f8d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configuring-asset-delivery-policies"></a><span data-ttu-id="a89b3-103">設定資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="a89b3-103">Configuring asset delivery policies</span></span>
+# <a name="configuring-asset-delivery-policies"></a><span data-ttu-id="d7434-103">設定資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="d7434-103">Configuring asset delivery policies</span></span>
 [!INCLUDE [media-services-selector-asset-delivery-policy](../../includes/media-services-selector-asset-delivery-policy.md)]
 
-<span data-ttu-id="a89b3-104">如果您打算傳遞動態加密的資產，媒體服務內容傳遞工作流程的其中一個步驟，是設定資產的傳遞原則。</span><span class="sxs-lookup"><span data-stu-id="a89b3-104">If you plan to deliver dynamically encrypted assets, one of the steps in the Media Services content delivery workflow is configuring delivery policies for assets.</span></span> <span data-ttu-id="a89b3-105">資產傳遞原則會告訴媒體服務您想要如何傳遞資產：您的資產應該動態封裝成哪個串流通訊協定 (如 MPEG DASH、HLS、Smooth Streaming 或所有)，您是否想要動態加密您的資產及其方式 (信封或一般加密)。</span><span class="sxs-lookup"><span data-stu-id="a89b3-105">The asset delivery policy tells Media Services how you want for your asset to be delivered: into which streaming protocol should your asset be dynamically packaged (for example, MPEG DASH, HLS, Smooth Streaming, or all), whether or not you want to dynamically encrypt your asset and how (envelope or common encryption).</span></span>
+<span data-ttu-id="d7434-104">如果您計劃 toodeliver 動態加密資產，hello 其中一個步驟中 hello 媒體服務內容傳遞工作流程設定資產的傳遞原則。</span><span class="sxs-lookup"><span data-stu-id="d7434-104">If you plan toodeliver dynamically encrypted assets, one of hello steps in hello Media Services content delivery workflow is configuring delivery policies for assets.</span></span> <span data-ttu-id="d7434-105">hello 資產傳遞原則會告知 Media Services 方式如您傳遞的資產 toobe： 成哪一個資料流通訊協定應在您的資產動態封裝 （適用於例如 MPEG DASH、 HLS、 Smooth Streaming 或全部），是否要 toodynamically加密您的資產和方式 （信封或一般加密）。</span><span class="sxs-lookup"><span data-stu-id="d7434-105">hello asset delivery policy tells Media Services how you want for your asset toobe delivered: into which streaming protocol should your asset be dynamically packaged (for example, MPEG DASH, HLS, Smooth Streaming, or all), whether or not you want toodynamically encrypt your asset and how (envelope or common encryption).</span></span>
 
-<span data-ttu-id="a89b3-106">本主題討論建立和設定資產傳遞原則的原因與方法。</span><span class="sxs-lookup"><span data-stu-id="a89b3-106">This topic discusses why and how to create and configure asset delivery policies.</span></span>
+<span data-ttu-id="d7434-106">本主題討論原因以及如何 toocreate 及設定資產的傳遞原則。</span><span class="sxs-lookup"><span data-stu-id="d7434-106">This topic discusses why and how toocreate and configure asset delivery policies.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="a89b3-107">建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。</span><span class="sxs-lookup"><span data-stu-id="a89b3-107">When your AMS account is created a **default** streaming endpoint is added to your account in the **Stopped** state.</span></span> <span data-ttu-id="a89b3-108">若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。</span><span class="sxs-lookup"><span data-stu-id="a89b3-108">To start streaming your content and take advantage of dynamic packaging and dynamic encryption, the streaming endpoint from which you want to stream content has to be in the **Running** state.</span></span> 
+><span data-ttu-id="d7434-107">AMS 帳戶建立時**預設**串流端點就會加入 tooyour 帳戶 hello**已停止**狀態。</span><span class="sxs-lookup"><span data-stu-id="d7434-107">When your AMS account is created a **default** streaming endpoint is added tooyour account in hello **Stopped** state.</span></span> <span data-ttu-id="d7434-108">串流處理您的內容，並採取利用動態封裝和動態加密，toostart hello 串流端點，您想要從中 toostream 內容已經在 hello toobe**執行**狀態。</span><span class="sxs-lookup"><span data-stu-id="d7434-108">toostart streaming your content and take advantage of dynamic packaging and dynamic encryption, hello streaming endpoint from which you want toostream content has toobe in hello **Running** state.</span></span> 
 >
-><span data-ttu-id="a89b3-109">此外，為了能夠使用動態封裝和動態加密功能，您的資產必須包含一組調適性位元速率 MP4 或調適性位元速率 Smooth Streaming 檔案。</span><span class="sxs-lookup"><span data-stu-id="a89b3-109">Also, to be able to use dynamic packaging and dynamic encryption your asset must contain a set of adaptive bitrate MP4s or adaptive bitrate Smooth Streaming files.</span></span>
+><span data-ttu-id="d7434-109">此外，toobe 無法 toouse 動態封裝和動態加密您的資產必須包含一組彈性位元速率 mp4 或彈性位元速率 Smooth Streaming 檔案。</span><span class="sxs-lookup"><span data-stu-id="d7434-109">Also, toobe able toouse dynamic packaging and dynamic encryption your asset must contain a set of adaptive bitrate MP4s or adaptive bitrate Smooth Streaming files.</span></span>
 
-<span data-ttu-id="a89b3-110">您可以將不同的原則套用至相同的資產。</span><span class="sxs-lookup"><span data-stu-id="a89b3-110">You could apply different policies to the same asset.</span></span> <span data-ttu-id="a89b3-111">例如，您可以將 PlayReady 加密套用到 Smooth Streaming，將 AES 信封加密套用到 MPEG DASH 和 HLS。</span><span class="sxs-lookup"><span data-stu-id="a89b3-111">For example, you could apply PlayReady encryption to Smooth Streaming and AES Envelope encryption to MPEG DASH and HLS.</span></span> <span data-ttu-id="a89b3-112">傳遞原則中未定義的任何通訊協定 (例如，您加入單一原則，它只有指定 HLS 做為通訊協定) 將會遭到封鎖無法串流。</span><span class="sxs-lookup"><span data-stu-id="a89b3-112">Any protocols that are not defined in a delivery policy (for example, you add a single policy that only specifies HLS as the protocol) will be blocked from streaming.</span></span> <span data-ttu-id="a89b3-113">這個狀況的例外情形是您完全沒有定義資產傳遞原則之時。</span><span class="sxs-lookup"><span data-stu-id="a89b3-113">The exception to this is if you have no asset delivery policy defined at all.</span></span> <span data-ttu-id="a89b3-114">那麼，將允許所有通訊協定，不受阻礙。</span><span class="sxs-lookup"><span data-stu-id="a89b3-114">Then, all protocols will be allowed in the clear.</span></span>
+<span data-ttu-id="d7434-110">您可以套用不同的原則 toohello 相同資產。</span><span class="sxs-lookup"><span data-stu-id="d7434-110">You could apply different policies toohello same asset.</span></span> <span data-ttu-id="d7434-111">例如，您可以套用 PlayReady 加密 tooSmooth 資料流與 AES 信封加密 tooMPEG DASH 和 HLS。</span><span class="sxs-lookup"><span data-stu-id="d7434-111">For example, you could apply PlayReady encryption tooSmooth Streaming and AES Envelope encryption tooMPEG DASH and HLS.</span></span> <span data-ttu-id="d7434-112">傳遞原則中未定義任何通訊協定 （例如，新增只能指定 HLS 作為 hello 通訊協定的單一原則），將無法從資料流。</span><span class="sxs-lookup"><span data-stu-id="d7434-112">Any protocols that are not defined in a delivery policy (for example, you add a single policy that only specifies HLS as hello protocol) will be blocked from streaming.</span></span> <span data-ttu-id="d7434-113">hello 例外狀況 toothis 是如果您有未完全定義的資產傳遞原則。</span><span class="sxs-lookup"><span data-stu-id="d7434-113">hello exception toothis is if you have no asset delivery policy defined at all.</span></span> <span data-ttu-id="d7434-114">然後，將允許 hello 清除所有通訊協定。</span><span class="sxs-lookup"><span data-stu-id="d7434-114">Then, all protocols will be allowed in hello clear.</span></span>
 
-<span data-ttu-id="a89b3-115">如果您想要傳遞儲存體加密資產，就必須設定資產的傳遞原則。</span><span class="sxs-lookup"><span data-stu-id="a89b3-115">If you want to deliver a storage encrypted asset, you must configure the asset’s delivery policy.</span></span> <span data-ttu-id="a89b3-116">資產可以串流處理之前，串流伺服器會移除儲存體加密，並使用指定的傳遞原則來串流您的內容。</span><span class="sxs-lookup"><span data-stu-id="a89b3-116">Before your asset can be streamed, the streaming server removes the storage encryption and streams your content using the specified delivery policy.</span></span> <span data-ttu-id="a89b3-117">例如，若要傳遞使用進階加密標準 (AES) 信封加密金鑰加密的資產，請將原則類型設定為 **DynamicEnvelopeEncryption**。</span><span class="sxs-lookup"><span data-stu-id="a89b3-117">For example, to deliver your asset encrypted with Advanced Encryption Standard (AES) envelope encryption key, set the policy type to **DynamicEnvelopeEncryption**.</span></span> <span data-ttu-id="a89b3-118">如果您要移除儲存體加密，並且不受阻礙地串流資產，請將原則類型設定為 **NoDynamicEncryption**。</span><span class="sxs-lookup"><span data-stu-id="a89b3-118">To remove storage encryption and stream the asset in the clear, set the policy type to **NoDynamicEncryption**.</span></span> <span data-ttu-id="a89b3-119">下列範例示範如何設定這些原則類型。</span><span class="sxs-lookup"><span data-stu-id="a89b3-119">Examples that show how to configure these policy types follow.</span></span>
+<span data-ttu-id="d7434-115">如果您想 toodeliver 儲存體加密資產時，您必須設定 hello 資產的傳遞原則。</span><span class="sxs-lookup"><span data-stu-id="d7434-115">If you want toodeliver a storage encrypted asset, you must configure hello asset’s delivery policy.</span></span> <span data-ttu-id="d7434-116">在您的資產進行串流處理之前，請使用 hello 將內容串流伺服器移除 hello 儲存體加密和資料流的 hello 指定傳遞原則。</span><span class="sxs-lookup"><span data-stu-id="d7434-116">Before your asset can be streamed, hello streaming server removes hello storage encryption and streams your content using hello specified delivery policy.</span></span> <span data-ttu-id="d7434-117">比方說，toodeliver 資產加密使用進階加密標準 (AES) 信封加密金鑰，將 hello 原則類型設定太**DynamicEnvelopeEncryption**。</span><span class="sxs-lookup"><span data-stu-id="d7434-117">For example, toodeliver your asset encrypted with Advanced Encryption Standard (AES) envelope encryption key, set hello policy type too**DynamicEnvelopeEncryption**.</span></span> <span data-ttu-id="d7434-118">tooremove 存放裝置加密和資料流 hello 資產中 hello 清除，設定 hello 原則類型太**NoDynamicEncryption**。</span><span class="sxs-lookup"><span data-stu-id="d7434-118">tooremove storage encryption and stream hello asset in hello clear, set hello policy type too**NoDynamicEncryption**.</span></span> <span data-ttu-id="d7434-119">顯示如何 tooconfigure 這些原則類型的範例。</span><span class="sxs-lookup"><span data-stu-id="d7434-119">Examples that show how tooconfigure these policy types follow.</span></span>
 
-<span data-ttu-id="a89b3-120">視您如何設定資產傳遞原則而定，您可以動態封裝、動態加密，以及串流下列串流通訊協定：Smooth Streaming、HLS、MPEG DASH 資料流。</span><span class="sxs-lookup"><span data-stu-id="a89b3-120">Depending on how you configure the asset delivery policy you would be able to dynamically package, dynamically encrypt, and stream the following streaming protocols: Smooth Streaming, HLS, MPEG DASH streams.</span></span>
+<span data-ttu-id="d7434-120">取決於您如何設定 hello 資產傳遞原則會是能 toodynamically 封裝、 動態加密和 hello 遵循串流通訊協定資料流： Smooth Streaming、 HLS、 MPEG DASH 資料流。</span><span class="sxs-lookup"><span data-stu-id="d7434-120">Depending on how you configure hello asset delivery policy you would be able toodynamically package, dynamically encrypt, and stream hello following streaming protocols: Smooth Streaming, HLS, MPEG DASH streams.</span></span>
 
-<span data-ttu-id="a89b3-121">下列清單顯示您用來串流 Smooth、HLS、DASH 的格式。</span><span class="sxs-lookup"><span data-stu-id="a89b3-121">The following list shows the formats that you use to stream Smooth, HLS, DASH.</span></span>
+<span data-ttu-id="d7434-121">下列清單顯示 hello hello 格式化您使用 toostream Smooth、 HLS、 破折號。</span><span class="sxs-lookup"><span data-stu-id="d7434-121">hello following list shows hello formats that you use toostream Smooth, HLS, DASH.</span></span>
 
-<span data-ttu-id="a89b3-122">Smooth Streaming：</span><span class="sxs-lookup"><span data-stu-id="a89b3-122">Smooth Streaming:</span></span>
+<span data-ttu-id="d7434-122">Smooth Streaming：</span><span class="sxs-lookup"><span data-stu-id="d7434-122">Smooth Streaming:</span></span>
 
-<span data-ttu-id="a89b3-123">{串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest</span><span class="sxs-lookup"><span data-stu-id="a89b3-123">{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest</span></span>
+<span data-ttu-id="d7434-123">{串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest</span><span class="sxs-lookup"><span data-stu-id="d7434-123">{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest</span></span>
 
-<span data-ttu-id="a89b3-124">HLS：</span><span class="sxs-lookup"><span data-stu-id="a89b3-124">HLS:</span></span>
+<span data-ttu-id="d7434-124">HLS：</span><span class="sxs-lookup"><span data-stu-id="d7434-124">HLS:</span></span>
 
-<span data-ttu-id="a89b3-125">{串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest(format=m3u8-aapl)</span><span class="sxs-lookup"><span data-stu-id="a89b3-125">{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)</span></span>
+<span data-ttu-id="d7434-125">{串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest(format=m3u8-aapl)</span><span class="sxs-lookup"><span data-stu-id="d7434-125">{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=m3u8-aapl)</span></span>
 
-<span data-ttu-id="a89b3-126">MPEG DASH</span><span class="sxs-lookup"><span data-stu-id="a89b3-126">MPEG DASH</span></span>
+<span data-ttu-id="d7434-126">MPEG DASH</span><span class="sxs-lookup"><span data-stu-id="d7434-126">MPEG DASH</span></span>
 
-<span data-ttu-id="a89b3-127">{串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest(format=mpd-time-csf)</span><span class="sxs-lookup"><span data-stu-id="a89b3-127">{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)</span></span>
+<span data-ttu-id="d7434-127">{串流端點名稱-媒體服務帳戶名稱}.streaming.mediaservices.windows.net/{定位器識別碼}/{檔案名稱}.ism/Manifest(format=mpd-time-csf)</span><span class="sxs-lookup"><span data-stu-id="d7434-127">{streaming endpoint name-media services account name}.streaming.mediaservices.windows.net/{locator ID}/{filename}.ism/Manifest(format=mpd-time-csf)</span></span>
 
 
-<span data-ttu-id="a89b3-128">如需有關如何發佈資產，並建置串流 URL 的指示，請參閱 [建置串流 URL](media-services-deliver-streaming-content.md)。</span><span class="sxs-lookup"><span data-stu-id="a89b3-128">For instructions on how to publish an asset and build a streaming URL, see [Build a streaming URL](media-services-deliver-streaming-content.md).</span></span>
+<span data-ttu-id="d7434-128">如需有關如何 toopublish 資產和建置串流 URL，請參閱指示[建置串流 URL](media-services-deliver-streaming-content.md)。</span><span class="sxs-lookup"><span data-stu-id="d7434-128">For instructions on how toopublish an asset and build a streaming URL, see [Build a streaming URL](media-services-deliver-streaming-content.md).</span></span>
 
-## <a name="considerations"></a><span data-ttu-id="a89b3-129">考量</span><span class="sxs-lookup"><span data-stu-id="a89b3-129">Considerations</span></span>
-* <span data-ttu-id="a89b3-130">當資產的 OnDemand (串流) 定位器仍存在時，您無法刪除與該資產關聯的 AssetDeliveryPolicy。</span><span class="sxs-lookup"><span data-stu-id="a89b3-130">You cannot delete an AssetDeliveryPolicy associated with an asset while an OnDemand (streaming) locator exists for that asset.</span></span> <span data-ttu-id="a89b3-131">建議刪除原則之前，先將該原則從資產移除。</span><span class="sxs-lookup"><span data-stu-id="a89b3-131">The recommendation is to remove the policy from the asset before deleting the policy.</span></span>
-* <span data-ttu-id="a89b3-132">未設定資產傳遞原則時，將無法於儲存空間已加密的資產建立串流定位器。</span><span class="sxs-lookup"><span data-stu-id="a89b3-132">A streaming locator cannot be created on a storage encrypted asset when no asset delivery policy is set.</span></span>  <span data-ttu-id="a89b3-133">如果資產的儲存空間未加密，系統會讓您建立定位器，並直接串流資產而不使用資產傳遞原則。</span><span class="sxs-lookup"><span data-stu-id="a89b3-133">If the Asset isn’t storage encrypted, the system will let you create a locator and stream the asset in the clear without an asset delivery policy.</span></span>
-* <span data-ttu-id="a89b3-134">您可以有多個資產傳遞原則與一個資產關聯，但只能指定一種方法處理特定的 AssetDeliveryProtocol。</span><span class="sxs-lookup"><span data-stu-id="a89b3-134">You can have multiple asset delivery policies associated with a single asset but you can only specify one way to handle a given AssetDeliveryProtocol.</span></span>  <span data-ttu-id="a89b3-135">這表示如果您嘗試連結二個指定 AssetDeliveryProtocol.SmoothStreaming 通訊協定的傳遞原則時將會導致錯誤，因為當用戶端發出 Smooth Streaming 要求時，系統會不知道要套用哪一個原則。</span><span class="sxs-lookup"><span data-stu-id="a89b3-135">Meaning if you try to link two delivery policies that specify the AssetDeliveryProtocol.SmoothStreaming protocol that will result in an error because the system does not know which one you want it to apply when a client makes a Smooth Streaming request.</span></span>
-* <span data-ttu-id="a89b3-136">如果您有包含現有串流定位器的資產，則您無法將新原則連接到該資產，請解除現有原則與資產的連結，或更新與資產關聯的傳遞原則。</span><span class="sxs-lookup"><span data-stu-id="a89b3-136">If you have an asset with an existing streaming locator, you cannot link a new policy to the asset, unlink an existing policy from the asset, or update a delivery policy associated with the asset.</span></span>  <span data-ttu-id="a89b3-137">您必須先移除串流定位器，調整原則，然後重新建立串流定位器。</span><span class="sxs-lookup"><span data-stu-id="a89b3-137">You first have to remove the streaming locator, adjust the policies, and then re-create the streaming locator.</span></span>  <span data-ttu-id="a89b3-138">重新建立串流定位器時，您可以使用同一個 locatorId，但必須確定不會對用戶端造成問題，因為原始或下游 CDN 可能會快取內容。</span><span class="sxs-lookup"><span data-stu-id="a89b3-138">You can use the same locatorId when you recreate the streaming locator but you should ensure that won’t cause issues for clients since content can be cached by the origin or a downstream CDN.</span></span>
-
->[!NOTE]
-
-><span data-ttu-id="a89b3-139">在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。</span><span class="sxs-lookup"><span data-stu-id="a89b3-139">When accessing entities in Media Services, you must set specific header fields and values in your HTTP requests.</span></span> <span data-ttu-id="a89b3-140">如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。</span><span class="sxs-lookup"><span data-stu-id="a89b3-140">For more information, see [Setup for Media Services REST API Development](media-services-rest-how-to-use.md).</span></span>
-
-## <a name="connect-to-media-services"></a><span data-ttu-id="a89b3-141">連線到媒體服務</span><span class="sxs-lookup"><span data-stu-id="a89b3-141">Connect to Media Services</span></span>
-
-<span data-ttu-id="a89b3-142">如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。</span><span class="sxs-lookup"><span data-stu-id="a89b3-142">For information on how to connect to the AMS API, see [Access the Azure Media Services API with Azure AD authentication](media-services-use-aad-auth-to-access-ams-api.md).</span></span> 
+## <a name="considerations"></a><span data-ttu-id="d7434-129">考量</span><span class="sxs-lookup"><span data-stu-id="d7434-129">Considerations</span></span>
+* <span data-ttu-id="d7434-130">當資產的 OnDemand (串流) 定位器仍存在時，您無法刪除與該資產關聯的 AssetDeliveryPolicy。</span><span class="sxs-lookup"><span data-stu-id="d7434-130">You cannot delete an AssetDeliveryPolicy associated with an asset while an OnDemand (streaming) locator exists for that asset.</span></span> <span data-ttu-id="d7434-131">hello 建議是從 hello 資產 tooremove hello 原則之前刪除 hello 原則。</span><span class="sxs-lookup"><span data-stu-id="d7434-131">hello recommendation is tooremove hello policy from hello asset before deleting hello policy.</span></span>
+* <span data-ttu-id="d7434-132">未設定資產傳遞原則時，將無法於儲存空間已加密的資產建立串流定位器。</span><span class="sxs-lookup"><span data-stu-id="d7434-132">A streaming locator cannot be created on a storage encrypted asset when no asset delivery policy is set.</span></span>  <span data-ttu-id="d7434-133">如果 hello 資產不儲存體加密，hello 系統可讓您在 hello 清除未使用的資產傳遞原則中建立定位器和資料流的 hello 資產。</span><span class="sxs-lookup"><span data-stu-id="d7434-133">If hello Asset isn’t storage encrypted, hello system will let you create a locator and stream hello asset in hello clear without an asset delivery policy.</span></span>
+* <span data-ttu-id="d7434-134">您可以有多個單一資產相關聯的資產傳遞原則，但您只能指定其中一種方式 toohandle 給定 AssetDeliveryProtocol。</span><span class="sxs-lookup"><span data-stu-id="d7434-134">You can have multiple asset delivery policies associated with a single asset but you can only specify one way toohandle a given AssetDeliveryProtocol.</span></span>  <span data-ttu-id="d7434-135">這表示如果您嘗試 toolink 兩個傳遞指定的原則，因為 hello 系統並不知道哪一個，將會導致錯誤的 hello AssetDeliveryProtocol.SmoothStreaming 通訊協定您希望 tooapply 當用戶端要求 Smooth Streaming。</span><span class="sxs-lookup"><span data-stu-id="d7434-135">Meaning if you try toolink two delivery policies that specify hello AssetDeliveryProtocol.SmoothStreaming protocol that will result in an error because hello system does not know which one you want it tooapply when a client makes a Smooth Streaming request.</span></span>
+* <span data-ttu-id="d7434-136">如果您有現有的串流定位器的資產，您無法連結新的原則 toohello 資產、 取消連結現有的原則從 hello 資產，或更新與 hello 資產相關聯的傳遞原則。</span><span class="sxs-lookup"><span data-stu-id="d7434-136">If you have an asset with an existing streaming locator, you cannot link a new policy toohello asset, unlink an existing policy from hello asset, or update a delivery policy associated with hello asset.</span></span>  <span data-ttu-id="d7434-137">第一次有 tooremove hello 串流定位器，調整 hello 原則，然後重新建立 hello 串流定位器。</span><span class="sxs-lookup"><span data-stu-id="d7434-137">You first have tooremove hello streaming locator, adjust hello policies, and then re-create hello streaming locator.</span></span>  <span data-ttu-id="d7434-138">您可以使用相同的 locatorId，當您重新建立 hello 串流定位器，但是您應該確定因為 hello 原點或下游 CDN 快取內容，將不會造成問題的用戶端 hello。</span><span class="sxs-lookup"><span data-stu-id="d7434-138">You can use hello same locatorId when you recreate hello streaming locator but you should ensure that won’t cause issues for clients since content can be cached by hello origin or a downstream CDN.</span></span>
 
 >[!NOTE]
-><span data-ttu-id="a89b3-143">順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。</span><span class="sxs-lookup"><span data-stu-id="a89b3-143">After successfully connecting to https://media.windows.net, you will receive a 301 redirect specifying another Media Services URI.</span></span> <span data-ttu-id="a89b3-144">後續的呼叫必須送到新的 URI。</span><span class="sxs-lookup"><span data-stu-id="a89b3-144">You must make subsequent calls to the new URI.</span></span>
 
-## <a name="clear-asset-delivery-policy"></a><span data-ttu-id="a89b3-145">清除資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="a89b3-145">Clear asset delivery policy</span></span>
-### <span data-ttu-id="a89b3-146"><a id="create_asset_delivery_policy"></a>建立資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="a89b3-146"><a id="create_asset_delivery_policy"></a>Create asset delivery policy</span></span>
-<span data-ttu-id="a89b3-147">下列 HTTP 要求會建立資產傳遞原則，指定不要套用動態加密，並以下列任何通訊協定傳遞資料流：MPEG DASH、HLS 和 Smooth Streaming 通訊協定。</span><span class="sxs-lookup"><span data-stu-id="a89b3-147">The following HTTP request creates an asset delivery policy that specifies to not apply dynamic encryption and to deliver the stream in any of the following protocols:  MPEG DASH, HLS, and Smooth Streaming protocols.</span></span> 
+><span data-ttu-id="d7434-139">在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。</span><span class="sxs-lookup"><span data-stu-id="d7434-139">When accessing entities in Media Services, you must set specific header fields and values in your HTTP requests.</span></span> <span data-ttu-id="d7434-140">如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。</span><span class="sxs-lookup"><span data-stu-id="d7434-140">For more information, see [Setup for Media Services REST API Development](media-services-rest-how-to-use.md).</span></span>
 
-<span data-ttu-id="a89b3-148">如需建立 AssetDeliveryPolicy 時可以指定之值的相關資訊，請參閱[定義 AssetDeliveryPolicy 時使用的類型](#types) 一節。</span><span class="sxs-lookup"><span data-stu-id="a89b3-148">For information on what values you can specify when creating an AssetDeliveryPolicy, see the [Types used when defining AssetDeliveryPolicy](#types) section.</span></span>   
+## <a name="connect-toomedia-services"></a><span data-ttu-id="d7434-141">TooMedia 服務連接</span><span class="sxs-lookup"><span data-stu-id="d7434-141">Connect tooMedia Services</span></span>
 
-<span data-ttu-id="a89b3-149">要求：</span><span class="sxs-lookup"><span data-stu-id="a89b3-149">Request:</span></span>
+<span data-ttu-id="d7434-142">如需有關如何 tooconnect toohello AMS API，請參閱詳細[存取 hello Azure 媒體服務 API 與 Azure AD 驗證](media-services-use-aad-auth-to-access-ams-api.md)。</span><span class="sxs-lookup"><span data-stu-id="d7434-142">For information on how tooconnect toohello AMS API, see [Access hello Azure Media Services API with Azure AD authentication](media-services-use-aad-auth-to-access-ams-api.md).</span></span> 
+
+>[!NOTE]
+><span data-ttu-id="d7434-143">已成功連接之後 toohttps://media.windows.net，您會收到指定另一個媒體服務 URI 的 301 重新導向。</span><span class="sxs-lookup"><span data-stu-id="d7434-143">After successfully connecting toohttps://media.windows.net, you will receive a 301 redirect specifying another Media Services URI.</span></span> <span data-ttu-id="d7434-144">您必須進行的後續呼叫 toohello 新的 URI。</span><span class="sxs-lookup"><span data-stu-id="d7434-144">You must make subsequent calls toohello new URI.</span></span>
+
+## <a name="clear-asset-delivery-policy"></a><span data-ttu-id="d7434-145">清除資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="d7434-145">Clear asset delivery policy</span></span>
+### <span data-ttu-id="d7434-146"><a id="create_asset_delivery_policy"></a>建立資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="d7434-146"><a id="create_asset_delivery_policy"></a>Create asset delivery policy</span></span>
+<span data-ttu-id="d7434-147">hello 下列 HTTP 要求建立資產傳遞原則，指定 toonot 套用動態加密和 toodeliver hello 資料流中的 hello 遵循任何通訊協定： MPEG DASH、 HLS 和 Smooth Streaming 通訊協定。</span><span class="sxs-lookup"><span data-stu-id="d7434-147">hello following HTTP request creates an asset delivery policy that specifies toonot apply dynamic encryption and toodeliver hello stream in any of hello following protocols:  MPEG DASH, HLS, and Smooth Streaming protocols.</span></span> 
+
+<span data-ttu-id="d7434-148">建立 AssetDeliveryPolicy 時，可以指定哪些值的詳細資訊，請參閱 hello[類型用來定義 AssetDeliveryPolicy](#types) > 一節。</span><span class="sxs-lookup"><span data-stu-id="d7434-148">For information on what values you can specify when creating an AssetDeliveryPolicy, see hello [Types used when defining AssetDeliveryPolicy](#types) section.</span></span>   
+
+<span data-ttu-id="d7434-149">要求：</span><span class="sxs-lookup"><span data-stu-id="d7434-149">Request:</span></span>
 
     POST https://media.windows.net/api/AssetDeliveryPolicies HTTP/1.1
     Content-Type: application/json
@@ -96,7 +96,7 @@ ms.lasthandoff: 08/29/2017
     "AssetDeliveryPolicyType":2,
     "AssetDeliveryConfiguration":null}
 
-<span data-ttu-id="a89b3-150">回應：</span><span class="sxs-lookup"><span data-stu-id="a89b3-150">Response:</span></span>
+<span data-ttu-id="d7434-150">回應：</span><span class="sxs-lookup"><span data-stu-id="d7434-150">Response:</span></span>
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -122,10 +122,10 @@ ms.lasthandoff: 08/29/2017
     "Created":"2015-02-08T06:21:27.6908329Z",
     "LastModified":"2015-02-08T06:21:27.6908329Z"}
 
-### <span data-ttu-id="a89b3-151"><a id="link_asset_with_asset_delivery_policy"></a>連結資產與資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="a89b3-151"><a id="link_asset_with_asset_delivery_policy"></a>Link asset with asset delivery policy</span></span>
-<span data-ttu-id="a89b3-152">下列 HTTP 要求會將指定的資產連結至資產傳遞原則。</span><span class="sxs-lookup"><span data-stu-id="a89b3-152">The following HTTP request links the specified asset to the asset delivery policy to.</span></span>
+### <span data-ttu-id="d7434-151"><a id="link_asset_with_asset_delivery_policy"></a>連結資產與資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="d7434-151"><a id="link_asset_with_asset_delivery_policy"></a>Link asset with asset delivery policy</span></span>
+<span data-ttu-id="d7434-152">下列 HTTP 要求的連結 hello hello 指定資產 toohello 資產傳遞原則。</span><span class="sxs-lookup"><span data-stu-id="d7434-152">hello following HTTP request links hello specified asset toohello asset delivery policy to.</span></span>
 
-<span data-ttu-id="a89b3-153">要求：</span><span class="sxs-lookup"><span data-stu-id="a89b3-153">Request:</span></span>
+<span data-ttu-id="d7434-153">要求：</span><span class="sxs-lookup"><span data-stu-id="d7434-153">Request:</span></span>
 
     POST https://media.windows.net/api/Assets('nb%3Acid%3AUUID%3A86933344-9539-4d0c-be7d-f842458693e0')/$links/DeliveryPolicies HTTP/1.1
     DataServiceVersion: 1.0;NetFx
@@ -140,21 +140,21 @@ ms.lasthandoff: 08/29/2017
 
     {"uri":"https://media.windows.net/api/AssetDeliveryPolicies('nb%3Aadpid%3AUUID%3A92b0f6ba-3c9f-49b6-a5fa-2a8703b04ecd')"}
 
-<span data-ttu-id="a89b3-154">回應：</span><span class="sxs-lookup"><span data-stu-id="a89b3-154">Response:</span></span>
+<span data-ttu-id="d7434-154">回應：</span><span class="sxs-lookup"><span data-stu-id="d7434-154">Response:</span></span>
 
     HTTP/1.1 204 No Content
 
 
-## <a name="dynamicenvelopeencryption-asset-delivery-policy"></a><span data-ttu-id="a89b3-155">DynamicEnvelopeEncryption 資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="a89b3-155">DynamicEnvelopeEncryption asset delivery policy</span></span>
-### <a name="create-content-key-of-the-envelopeencryption-type-and-link-it-to-the-asset"></a><span data-ttu-id="a89b3-156">建立 EnvelopeEncryption 類型的內容金鑰，並將它連結到資產</span><span class="sxs-lookup"><span data-stu-id="a89b3-156">Create content key of the EnvelopeEncryption type and link it to the asset</span></span>
-<span data-ttu-id="a89b3-157">當指定 DynamicEnvelopeEncryption 傳遞原則時，您必須將資產連結到 EnvelopeEncryption 類型的內容金鑰。</span><span class="sxs-lookup"><span data-stu-id="a89b3-157">When specifying DynamicEnvelopeEncryption delivery policy, you need to make sure to link your asset to a content key of the EnvelopeEncryption type.</span></span> <span data-ttu-id="a89b3-158">如需詳細資訊，請參閱 [建立內容金鑰](media-services-rest-create-contentkey.md)。</span><span class="sxs-lookup"><span data-stu-id="a89b3-158">For more information, see: [Creating a content key](media-services-rest-create-contentkey.md)).</span></span>
+## <a name="dynamicenvelopeencryption-asset-delivery-policy"></a><span data-ttu-id="d7434-155">DynamicEnvelopeEncryption 資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="d7434-155">DynamicEnvelopeEncryption asset delivery policy</span></span>
+### <a name="create-content-key-of-hello-envelopeencryption-type-and-link-it-toohello-asset"></a><span data-ttu-id="d7434-156">建立 hello EnvelopeEncryption 類型內容金鑰，並將它連結 toohello 資產</span><span class="sxs-lookup"><span data-stu-id="d7434-156">Create content key of hello EnvelopeEncryption type and link it toohello asset</span></span>
+<span data-ttu-id="d7434-157">當指定 DynamicEnvelopeEncryption 傳遞原則，您需要 toomake 確定 toolink hello EnvelopeEncryption 類型將資產 tooa 內容金鑰。</span><span class="sxs-lookup"><span data-stu-id="d7434-157">When specifying DynamicEnvelopeEncryption delivery policy, you need toomake sure toolink your asset tooa content key of hello EnvelopeEncryption type.</span></span> <span data-ttu-id="d7434-158">如需詳細資訊，請參閱 [建立內容金鑰](media-services-rest-create-contentkey.md)。</span><span class="sxs-lookup"><span data-stu-id="d7434-158">For more information, see: [Creating a content key](media-services-rest-create-contentkey.md)).</span></span>
 
-### <span data-ttu-id="a89b3-159"><a id="get_delivery_url"></a>取得傳遞 URL</span><span class="sxs-lookup"><span data-stu-id="a89b3-159"><a id="get_delivery_url"></a>Get delivery URL</span></span>
-<span data-ttu-id="a89b3-160">針對前一個步驟中建立的內容金鑰的指定傳遞方法，取得傳遞 URL。</span><span class="sxs-lookup"><span data-stu-id="a89b3-160">Get the delivery URL for the specified delivery method of the content key created in the previous step.</span></span> <span data-ttu-id="a89b3-161">用戶端會使用傳回的 URL 要求 AES 金鑰或 PlayReady 授權，以便播放受保護的內容。</span><span class="sxs-lookup"><span data-stu-id="a89b3-161">A client uses the returned URL to request an AES key or a PlayReady license in order to playback the protected content.</span></span>
+### <span data-ttu-id="d7434-159"><a id="get_delivery_url"></a>取得傳遞 URL</span><span class="sxs-lookup"><span data-stu-id="d7434-159"><a id="get_delivery_url"></a>Get delivery URL</span></span>
+<span data-ttu-id="d7434-160">指定傳遞方法的 hello hello 先前步驟中建立的內容金鑰的 hello get hello 傳遞 URL。</span><span class="sxs-lookup"><span data-stu-id="d7434-160">Get hello delivery URL for hello specified delivery method of hello content key created in hello previous step.</span></span> <span data-ttu-id="d7434-161">用戶端會使用傳回 URL toorequest hello AES 金鑰或 PlayReady 授權順序 tooplayback hello 中的受保護的內容。</span><span class="sxs-lookup"><span data-stu-id="d7434-161">A client uses hello returned URL toorequest an AES key or a PlayReady license in order tooplayback hello protected content.</span></span>
 
-<span data-ttu-id="a89b3-162">指定要在 HTTP 要求主體中取得的 URL 類型。</span><span class="sxs-lookup"><span data-stu-id="a89b3-162">Specify the type of the URL to get in the body of the HTTP request.</span></span> <span data-ttu-id="a89b3-163">如果您要使用 PlayReady 保護您的內容，請要求媒體服務 PlayReady 授權取得 URL，並針對 keyDeliveryType 使用 1：{"keyDeliveryType":1}。</span><span class="sxs-lookup"><span data-stu-id="a89b3-163">If you are protecting your content with PlayReady, request a Media Services PlayReady license acquisition URL, using 1 for the keyDeliveryType: {"keyDeliveryType":1}.</span></span> <span data-ttu-id="a89b3-164">如果您要使用信封加密保護您的內容，請針對 keyDeliveryType 指定 2，來要求金鑰取得 URL：{"keyDeliveryType":2}。</span><span class="sxs-lookup"><span data-stu-id="a89b3-164">If you are protecting your content with the envelope encryption, request a key acquisition URL by specifying 2 for keyDeliveryType: {"keyDeliveryType":2}.</span></span>
+<span data-ttu-id="d7434-162">指定 hello hello HTTP 要求主體中的 hello URL tooget hello 類型。</span><span class="sxs-lookup"><span data-stu-id="d7434-162">Specify hello type of hello URL tooget in hello body of hello HTTP request.</span></span> <span data-ttu-id="d7434-163">如果您要保護使用 PlayReady，要求媒體服務 PlayReady 授權取得 URL，使用 1 hello keyDeliveryType: {"keyDeliveryType": 1}。</span><span class="sxs-lookup"><span data-stu-id="d7434-163">If you are protecting your content with PlayReady, request a Media Services PlayReady license acquisition URL, using 1 for hello keyDeliveryType: {"keyDeliveryType":1}.</span></span> <span data-ttu-id="d7434-164">如果您要保護您的內容與 hello 信封加密，來要求金鑰取得 URL 指定 keyDeliveryType 的 2: {"keyDeliveryType": 2}。</span><span class="sxs-lookup"><span data-stu-id="d7434-164">If you are protecting your content with hello envelope encryption, request a key acquisition URL by specifying 2 for keyDeliveryType: {"keyDeliveryType":2}.</span></span>
 
-<span data-ttu-id="a89b3-165">要求：</span><span class="sxs-lookup"><span data-stu-id="a89b3-165">Request:</span></span>
+<span data-ttu-id="d7434-165">要求：</span><span class="sxs-lookup"><span data-stu-id="d7434-165">Request:</span></span>
 
     POST https://media.windows.net/api/ContentKeys('nb:kid:UUID:dc88f996-2859-4cf7-a279-c52a9d6b2f04')/GetKeyDeliveryUrl HTTP/1.1
     Content-Type: application/json
@@ -169,7 +169,7 @@ ms.lasthandoff: 08/29/2017
 
     {"keyDeliveryType":2}
 
-<span data-ttu-id="a89b3-166">回應：</span><span class="sxs-lookup"><span data-stu-id="a89b3-166">Response:</span></span>
+<span data-ttu-id="d7434-166">回應：</span><span class="sxs-lookup"><span data-stu-id="d7434-166">Response:</span></span>
 
     HTTP/1.1 200 OK
     Cache-Control: no-cache
@@ -187,12 +187,12 @@ ms.lasthandoff: 08/29/2017
     {"odata.metadata":"media.windows.net/api/$metadata#Edm.String","value":"https://amsaccount1.keydelivery.mediaservices.windows.net/?KID=dc88f996-2859-4cf7-a279-c52a9d6b2f04"}
 
 
-### <a name="create-asset-delivery-policy"></a><span data-ttu-id="a89b3-167">建立資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="a89b3-167">Create asset delivery policy</span></span>
-<span data-ttu-id="a89b3-168">下列 HTTP 要求會建立 **AssetDeliveryPolicy**，它會設定為將動態信封加密 (**DynamicEnvelopeEncryption**) 套用到 **HLS** 通訊協定 (在此範例中，其他通訊協定將會被封鎖，無法串流)。</span><span class="sxs-lookup"><span data-stu-id="a89b3-168">The following HTTP request creates the **AssetDeliveryPolicy** that is configured to apply dynamic envelope encryption (**DynamicEnvelopeEncryption**) to the **HLS** protocol (in this example, other protocols will be blocked from streaming).</span></span> 
+### <a name="create-asset-delivery-policy"></a><span data-ttu-id="d7434-167">建立資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="d7434-167">Create asset delivery policy</span></span>
+<span data-ttu-id="d7434-168">hello 下列 HTTP 要求建立 hello **AssetDeliveryPolicy**也就是設定的 tooapply 動態信封加密 (**DynamicEnvelopeEncryption**) toohello **HLS**通訊協定 （在此範例中，其他通訊協定將會遭到封鎖而無法串流處理）。</span><span class="sxs-lookup"><span data-stu-id="d7434-168">hello following HTTP request creates hello **AssetDeliveryPolicy** that is configured tooapply dynamic envelope encryption (**DynamicEnvelopeEncryption**) toohello **HLS** protocol (in this example, other protocols will be blocked from streaming).</span></span> 
 
-<span data-ttu-id="a89b3-169">如需建立 AssetDeliveryPolicy 時可以指定之值的相關資訊，請參閱 [定義 AssetDeliveryPolicy 時使用的類型](#types) 一節。</span><span class="sxs-lookup"><span data-stu-id="a89b3-169">For information on what values you can specify when creating an AssetDeliveryPolicy, see the [Types used when defining AssetDeliveryPolicy](#types) section.</span></span>   
+<span data-ttu-id="d7434-169">建立 AssetDeliveryPolicy 時，可以指定哪些值的詳細資訊，請參閱 hello[類型用來定義 AssetDeliveryPolicy](#types) > 一節。</span><span class="sxs-lookup"><span data-stu-id="d7434-169">For information on what values you can specify when creating an AssetDeliveryPolicy, see hello [Types used when defining AssetDeliveryPolicy](#types) section.</span></span>   
 
-<span data-ttu-id="a89b3-170">要求：</span><span class="sxs-lookup"><span data-stu-id="a89b3-170">Request:</span></span>
+<span data-ttu-id="d7434-170">要求：</span><span class="sxs-lookup"><span data-stu-id="d7434-170">Request:</span></span>
 
     POST https://media.windows.net/api/AssetDeliveryPolicies HTTP/1.1
     Content-Type: application/json
@@ -209,7 +209,7 @@ ms.lasthandoff: 08/29/2017
     {"Name":"AssetDeliveryPolicy","AssetDeliveryProtocol":4,"AssetDeliveryPolicyType":3,"AssetDeliveryConfiguration":"[{\"Key\":2,\"Value\":\"https:\\/\\/amsaccount1.keydelivery.mediaservices.windows.net\\/\"}]"}
 
 
-<span data-ttu-id="a89b3-171">回應：</span><span class="sxs-lookup"><span data-stu-id="a89b3-171">Response:</span></span>
+<span data-ttu-id="d7434-171">回應：</span><span class="sxs-lookup"><span data-stu-id="d7434-171">Response:</span></span>
 
     HTTP/1.1 201 Created
     Cache-Control: no-cache
@@ -228,22 +228,22 @@ ms.lasthandoff: 08/29/2017
     {"odata.metadata":"media.windows.net/api/$metadata#AssetDeliveryPolicies/@Element","Id":"nb:adpid:UUID:ec9b994e-672c-4a5b-8490-a464eeb7964b","Name":"AssetDeliveryPolicy","AssetDeliveryProtocol":4,"AssetDeliveryPolicyType":3,"AssetDeliveryConfiguration":"[{\"Key\":2,\"Value\":\"https:\\/\\/amsaccount1.keydelivery.mediaservices.windows.net\\/\"}]","Created":"2015-02-09T05:24:38.9167436Z","LastModified":"2015-02-09T05:24:38.9167436Z"}
 
 
-### <a name="link-asset-with-asset-delivery-policy"></a><span data-ttu-id="a89b3-172">連結資產與資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="a89b3-172">Link asset with asset delivery policy</span></span>
-<span data-ttu-id="a89b3-173">請參閱 [連結資產與資產傳遞原則](#link_asset_with_asset_delivery_policy)</span><span class="sxs-lookup"><span data-stu-id="a89b3-173">See [Link asset with asset delivery policy](#link_asset_with_asset_delivery_policy)</span></span>
+### <a name="link-asset-with-asset-delivery-policy"></a><span data-ttu-id="d7434-172">連結資產與資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="d7434-172">Link asset with asset delivery policy</span></span>
+<span data-ttu-id="d7434-173">請參閱 [連結資產與資產傳遞原則](#link_asset_with_asset_delivery_policy)</span><span class="sxs-lookup"><span data-stu-id="d7434-173">See [Link asset with asset delivery policy](#link_asset_with_asset_delivery_policy)</span></span>
 
-## <a name="dynamiccommonencryption-asset-delivery-policy"></a><span data-ttu-id="a89b3-174">DynamicCommonEncryption 資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="a89b3-174">DynamicCommonEncryption asset delivery policy</span></span>
-### <a name="create-content-key-of-the-commonencryption-type-and-link-it-to-the-asset"></a><span data-ttu-id="a89b3-175">建立 CommonEncryption 類型的內容金鑰，並將它連結到資產</span><span class="sxs-lookup"><span data-stu-id="a89b3-175">Create content key of the CommonEncryption type and link it to the asset</span></span>
-<span data-ttu-id="a89b3-176">當指定 DynamicCommonEncryption 傳遞原則時，您必須將資產連結到 CommonEncryption 類型的內容金鑰。</span><span class="sxs-lookup"><span data-stu-id="a89b3-176">When specifying DynamicCommonEncryption delivery policy, you need to make sure to link your asset to a content key of the CommonEncryption type.</span></span> <span data-ttu-id="a89b3-177">如需詳細資訊，請參閱 [建立內容金鑰](media-services-rest-create-contentkey.md)。</span><span class="sxs-lookup"><span data-stu-id="a89b3-177">For more information, see: [Creating a content key](media-services-rest-create-contentkey.md)).</span></span>
+## <a name="dynamiccommonencryption-asset-delivery-policy"></a><span data-ttu-id="d7434-174">DynamicCommonEncryption 資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="d7434-174">DynamicCommonEncryption asset delivery policy</span></span>
+### <a name="create-content-key-of-hello-commonencryption-type-and-link-it-toohello-asset"></a><span data-ttu-id="d7434-175">建立 hello CommonEncryption 類型內容金鑰，並將它連結 toohello 資產</span><span class="sxs-lookup"><span data-stu-id="d7434-175">Create content key of hello CommonEncryption type and link it toohello asset</span></span>
+<span data-ttu-id="d7434-176">當指定 DynamicCommonEncryption 傳遞原則，您需要 toomake 確定 toolink hello CommonEncryption 類型將資產 tooa 內容金鑰。</span><span class="sxs-lookup"><span data-stu-id="d7434-176">When specifying DynamicCommonEncryption delivery policy, you need toomake sure toolink your asset tooa content key of hello CommonEncryption type.</span></span> <span data-ttu-id="d7434-177">如需詳細資訊，請參閱 [建立內容金鑰](media-services-rest-create-contentkey.md)。</span><span class="sxs-lookup"><span data-stu-id="d7434-177">For more information, see: [Creating a content key](media-services-rest-create-contentkey.md)).</span></span>
 
-### <a name="get-delivery-url"></a><span data-ttu-id="a89b3-178">取得傳遞 URL</span><span class="sxs-lookup"><span data-stu-id="a89b3-178">Get Delivery URL</span></span>
-<span data-ttu-id="a89b3-179">針對前一個步驟中建立的內容金鑰的 PlayReady 傳遞方法，取得傳遞 URL。</span><span class="sxs-lookup"><span data-stu-id="a89b3-179">Get the delivery URL for the PlayReady delivery method of the content key created in the previous step.</span></span> <span data-ttu-id="a89b3-180">用戶端會使用傳回的 URL 要求 PlayReady 授權，以便播放受保護的內容。</span><span class="sxs-lookup"><span data-stu-id="a89b3-180">A client uses the returned URL to request a PlayReady license in order to playback the protected content.</span></span> <span data-ttu-id="a89b3-181">如需詳細資訊，請參閱 [取得傳遞 URL](#get_delivery_url)。</span><span class="sxs-lookup"><span data-stu-id="a89b3-181">For more information, see [Get Delivery URL](#get_delivery_url).</span></span>
+### <a name="get-delivery-url"></a><span data-ttu-id="d7434-178">取得傳遞 URL</span><span class="sxs-lookup"><span data-stu-id="d7434-178">Get Delivery URL</span></span>
+<span data-ttu-id="d7434-179">取得 hello PlayReady 傳遞方法的 hello hello 先前步驟中建立的內容金鑰 hello 傳遞 URL。</span><span class="sxs-lookup"><span data-stu-id="d7434-179">Get hello delivery URL for hello PlayReady delivery method of hello content key created in hello previous step.</span></span> <span data-ttu-id="d7434-180">用戶端會使用 hello 傳回 URL toorequest PlayReady 授權順序 tooplayback hello 中的受保護的內容。</span><span class="sxs-lookup"><span data-stu-id="d7434-180">A client uses hello returned URL toorequest a PlayReady license in order tooplayback hello protected content.</span></span> <span data-ttu-id="d7434-181">如需詳細資訊，請參閱 [取得傳遞 URL](#get_delivery_url)。</span><span class="sxs-lookup"><span data-stu-id="d7434-181">For more information, see [Get Delivery URL](#get_delivery_url).</span></span>
 
-### <a name="create-asset-delivery-policy"></a><span data-ttu-id="a89b3-182">建立資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="a89b3-182">Create asset delivery policy</span></span>
-<span data-ttu-id="a89b3-183">下列 HTTP 要求會建立 **AssetDeliveryPolicy**，它會設定為將動態一般加密 (**DynamicCommonEncryption**) 套用到 **Smooth Streaming** 通訊協定 (在此範例中，其他通訊協定將會被封鎖，無法串流)。</span><span class="sxs-lookup"><span data-stu-id="a89b3-183">The following HTTP request creates the **AssetDeliveryPolicy** that is configured to apply dynamic common encryption (**DynamicCommonEncryption**) to the **Smooth Streaming** protocol (in this example, other protocols will be blocked from streaming).</span></span> 
+### <a name="create-asset-delivery-policy"></a><span data-ttu-id="d7434-182">建立資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="d7434-182">Create asset delivery policy</span></span>
+<span data-ttu-id="d7434-183">hello 下列 HTTP 要求建立 hello **AssetDeliveryPolicy**也就是設定的 tooapply 動態一般加密 (**DynamicCommonEncryption**) toohello **Smooth Streaming**通訊協定 （在此範例中，其他通訊協定將會遭到封鎖而無法串流處理）。</span><span class="sxs-lookup"><span data-stu-id="d7434-183">hello following HTTP request creates hello **AssetDeliveryPolicy** that is configured tooapply dynamic common encryption (**DynamicCommonEncryption**) toohello **Smooth Streaming** protocol (in this example, other protocols will be blocked from streaming).</span></span> 
 
-<span data-ttu-id="a89b3-184">如需建立 AssetDeliveryPolicy 時可以指定之值的相關資訊，請參閱 [定義 AssetDeliveryPolicy 時使用的類型](#types) 一節。</span><span class="sxs-lookup"><span data-stu-id="a89b3-184">For information on what values you can specify when creating an AssetDeliveryPolicy, see the [Types used when defining AssetDeliveryPolicy](#types) section.</span></span>   
+<span data-ttu-id="d7434-184">建立 AssetDeliveryPolicy 時，可以指定哪些值的詳細資訊，請參閱 hello[類型用來定義 AssetDeliveryPolicy](#types) > 一節。</span><span class="sxs-lookup"><span data-stu-id="d7434-184">For information on what values you can specify when creating an AssetDeliveryPolicy, see hello [Types used when defining AssetDeliveryPolicy](#types) section.</span></span>   
 
-<span data-ttu-id="a89b3-185">要求：</span><span class="sxs-lookup"><span data-stu-id="a89b3-185">Request:</span></span>
+<span data-ttu-id="d7434-185">要求：</span><span class="sxs-lookup"><span data-stu-id="d7434-185">Request:</span></span>
 
     POST https://media.windows.net/api/AssetDeliveryPolicies HTTP/1.1
     Content-Type: application/json
@@ -260,25 +260,25 @@ ms.lasthandoff: 08/29/2017
     {"Name":"AssetDeliveryPolicy","AssetDeliveryProtocol":1,"AssetDeliveryPolicyType":4,"AssetDeliveryConfiguration":"[{\"Key\":2,\"Value\":\"https:\\/\\/amsaccount1.keydelivery.mediaservices.windows.net\/PlayReady\/"}]"}
 
 
-<span data-ttu-id="a89b3-186">如果您想要使用 Widevine DRM 保護內容，請將 AssetDeliveryConfiguration 值更新為使用 WidevineLicenseAcquisitionUrl (其值為 7) 和指定授權傳遞服務的 URL。</span><span class="sxs-lookup"><span data-stu-id="a89b3-186">If you want to protect your content using Widevine DRM, update the AssetDeliveryConfiguration values to use WidevineLicenseAcquisitionUrl (which has the value of 7) and specify the URL of a license delivery service.</span></span> <span data-ttu-id="a89b3-187">您可以使用下列 AMS 合作夥伴來助您傳遞 Widevine 授權：[Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/)、[EZDRM](http://ezdrm.com/)、[castLabs](http://castlabs.com/company/partners/azure/)。</span><span class="sxs-lookup"><span data-stu-id="a89b3-187">You can use the following AMS partners to help you deliver Widevine licenses: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).</span></span>
+<span data-ttu-id="d7434-186">如果您想 tooprotect 您使用 Widevine DRM 的內容時，更新 hello AssetDeliveryConfiguration 值 toouse WidevineLicenseAcquisitionUrl （其 hello 值為 7），並指定 hello 授權傳遞服務 URL。</span><span class="sxs-lookup"><span data-stu-id="d7434-186">If you want tooprotect your content using Widevine DRM, update hello AssetDeliveryConfiguration values toouse WidevineLicenseAcquisitionUrl (which has hello value of 7) and specify hello URL of a license delivery service.</span></span> <span data-ttu-id="d7434-187">您可以使用下列 AMS 夥伴 toohelp 傳遞 Widevine 授權 hello: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/)， [EZDRM](http://ezdrm.com/)， [castLabs](http://castlabs.com/company/partners/azure/)。</span><span class="sxs-lookup"><span data-stu-id="d7434-187">You can use hello following AMS partners toohelp you deliver Widevine licenses: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/), [EZDRM](http://ezdrm.com/), [castLabs](http://castlabs.com/company/partners/azure/).</span></span>
 
-<span data-ttu-id="a89b3-188">例如：</span><span class="sxs-lookup"><span data-stu-id="a89b3-188">For example:</span></span> 
+<span data-ttu-id="d7434-188">例如：</span><span class="sxs-lookup"><span data-stu-id="d7434-188">For example:</span></span> 
 
     {"Name":"AssetDeliveryPolicy","AssetDeliveryProtocol":2,"AssetDeliveryPolicyType":4,"AssetDeliveryConfiguration":"[{\"Key\":7,\"Value\":\"https:\\/\\/example.net\/WidevineLicenseAcquisition\/"}]"}
 
 > [!NOTE]
-> <span data-ttu-id="a89b3-189">以 Widevine 加密時，就只能使用 DASH 來傳遞。</span><span class="sxs-lookup"><span data-stu-id="a89b3-189">When encrypting with Widevine, you would only be able to deliver using DASH.</span></span> <span data-ttu-id="a89b3-190">請務必在資產傳遞通訊協定中指定 DASH (2)。</span><span class="sxs-lookup"><span data-stu-id="a89b3-190">Make sure to specify DASH (2) in the asset delivery protocol.</span></span>
+> <span data-ttu-id="d7434-189">當 Widevine 使用加密，才會使用虛線無法 toodeliver。</span><span class="sxs-lookup"><span data-stu-id="d7434-189">When encrypting with Widevine, you would only be able toodeliver using DASH.</span></span> <span data-ttu-id="d7434-190">請確定 toospecify 虛線 (2) 中的 hello 資產傳遞通訊協定。</span><span class="sxs-lookup"><span data-stu-id="d7434-190">Make sure toospecify DASH (2) in hello asset delivery protocol.</span></span>
 > 
 > 
 
-### <a name="link-asset-with-asset-delivery-policy"></a><span data-ttu-id="a89b3-191">連結資產與資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="a89b3-191">Link asset with asset delivery policy</span></span>
-<span data-ttu-id="a89b3-192">請參閱 [連結資產與資產傳遞原則](#link_asset_with_asset_delivery_policy)</span><span class="sxs-lookup"><span data-stu-id="a89b3-192">See [Link asset with asset delivery policy](#link_asset_with_asset_delivery_policy)</span></span>
+### <a name="link-asset-with-asset-delivery-policy"></a><span data-ttu-id="d7434-191">連結資產與資產傳遞原則</span><span class="sxs-lookup"><span data-stu-id="d7434-191">Link asset with asset delivery policy</span></span>
+<span data-ttu-id="d7434-192">請參閱 [連結資產與資產傳遞原則](#link_asset_with_asset_delivery_policy)</span><span class="sxs-lookup"><span data-stu-id="d7434-192">See [Link asset with asset delivery policy](#link_asset_with_asset_delivery_policy)</span></span>
 
-## <span data-ttu-id="a89b3-193"><a id="types"></a>定義 AssetDeliveryPolicy 時使用的類型</span><span class="sxs-lookup"><span data-stu-id="a89b3-193"><a id="types"></a>Types used when defining AssetDeliveryPolicy</span></span>
+## <span data-ttu-id="d7434-193"><a id="types"></a>定義 AssetDeliveryPolicy 時使用的類型</span><span class="sxs-lookup"><span data-stu-id="d7434-193"><a id="types"></a>Types used when defining AssetDeliveryPolicy</span></span>
 
-### <a name="assetdeliveryprotocol"></a><span data-ttu-id="a89b3-194">AssetDeliveryProtocol</span><span class="sxs-lookup"><span data-stu-id="a89b3-194">AssetDeliveryProtocol</span></span>
+### <a name="assetdeliveryprotocol"></a><span data-ttu-id="d7434-194">AssetDeliveryProtocol</span><span class="sxs-lookup"><span data-stu-id="d7434-194">AssetDeliveryProtocol</span></span>
 
-<span data-ttu-id="a89b3-195">下列列舉描述您可以針對資產傳遞通訊協定設定的值。</span><span class="sxs-lookup"><span data-stu-id="a89b3-195">The following enum describes values you can set for the asset delivery protocol.</span></span>
+<span data-ttu-id="d7434-195">hello 下列列舉描述您可以針對 hello 資產傳遞通訊協定設定的值。</span><span class="sxs-lookup"><span data-stu-id="d7434-195">hello following enum describes values you can set for hello asset delivery protocol.</span></span>
 
     [Flags]
     public enum AssetDeliveryProtocol
@@ -311,9 +311,9 @@ ms.lasthandoff: 08/29/2017
         All = 0xFFFF
     }
 
-### <a name="assetdeliverypolicytype"></a><span data-ttu-id="a89b3-196">AssetDeliveryPolicyType</span><span class="sxs-lookup"><span data-stu-id="a89b3-196">AssetDeliveryPolicyType</span></span>
+### <a name="assetdeliverypolicytype"></a><span data-ttu-id="d7434-196">AssetDeliveryPolicyType</span><span class="sxs-lookup"><span data-stu-id="d7434-196">AssetDeliveryPolicyType</span></span>
 
-<span data-ttu-id="a89b3-197">下列列舉描述您可以針對資產傳遞原則類型設定的值。</span><span class="sxs-lookup"><span data-stu-id="a89b3-197">The following enum describes values you can set for the asset delivery policy type.</span></span>  
+<span data-ttu-id="d7434-197">hello 下列列舉描述您可以設定 hello 資產傳遞原則類型的值。</span><span class="sxs-lookup"><span data-stu-id="d7434-197">hello following enum describes values you can set for hello asset delivery policy type.</span></span>  
 
     public enum AssetDeliveryPolicyType
     {
@@ -323,12 +323,12 @@ ms.lasthandoff: 08/29/2017
         None,
 
         /// <summary>
-        /// The Asset should not be delivered via this AssetDeliveryProtocol. 
+        /// hello Asset should not be delivered via this AssetDeliveryProtocol. 
         /// </summary>
         Blocked, 
 
         /// <summary>
-        /// Do not apply dynamic encryption to the asset.
+        /// Do not apply dynamic encryption toohello asset.
         /// </summary>
         /// 
         NoDynamicEncryption,  
@@ -344,9 +344,9 @@ ms.lasthandoff: 08/29/2017
         DynamicCommonEncryption
         }
 
-### <a name="contentkeydeliverytype"></a><span data-ttu-id="a89b3-198">ContentKeyDeliveryType</span><span class="sxs-lookup"><span data-stu-id="a89b3-198">ContentKeyDeliveryType</span></span>
+### <a name="contentkeydeliverytype"></a><span data-ttu-id="d7434-198">ContentKeyDeliveryType</span><span class="sxs-lookup"><span data-stu-id="d7434-198">ContentKeyDeliveryType</span></span>
 
-<span data-ttu-id="a89b3-199">下列列舉描述您可用來設定將內容金鑰傳遞給用戶端之方法的值。</span><span class="sxs-lookup"><span data-stu-id="a89b3-199">The following enum describes values you can use to configure the delivery method of the content key to the client.</span></span>
+<span data-ttu-id="d7434-199">hello 下列列舉描述您可以使用 hello 內容金鑰 toohello 用戶端 tooconfigure hello 傳遞方法的值。</span><span class="sxs-lookup"><span data-stu-id="d7434-199">hello following enum describes values you can use tooconfigure hello delivery method of hello content key toohello client.</span></span>
     
     public enum ContentKeyDeliveryType
     {
@@ -377,9 +377,9 @@ ms.lasthandoff: 08/29/2017
     }
 
 
-### <a name="assetdeliverypolicyconfigurationkey"></a><span data-ttu-id="a89b3-200">AssetDeliveryPolicyConfigurationKey</span><span class="sxs-lookup"><span data-stu-id="a89b3-200">AssetDeliveryPolicyConfigurationKey</span></span>
+### <a name="assetdeliverypolicyconfigurationkey"></a><span data-ttu-id="d7434-200">AssetDeliveryPolicyConfigurationKey</span><span class="sxs-lookup"><span data-stu-id="d7434-200">AssetDeliveryPolicyConfigurationKey</span></span>
 
-<span data-ttu-id="a89b3-201">下列列舉描述您可以設定的值，以便設定用來取得資產傳遞原則特定設定的金鑰。</span><span class="sxs-lookup"><span data-stu-id="a89b3-201">The following enum describes values you can set to configure keys used to get specific configuration for an asset delivery policy.</span></span>
+<span data-ttu-id="d7434-201">下列列舉 hello 描述您可以設定資產傳遞原則的 tooconfigure 用金鑰 tooget 特定組態的值。</span><span class="sxs-lookup"><span data-stu-id="d7434-201">hello following enum describes values you can set tooconfigure keys used tooget specific configuration for an asset delivery policy.</span></span>
 
     public enum AssetDeliveryPolicyConfigurationKey
     {
@@ -399,22 +399,22 @@ ms.lasthandoff: 08/29/2017
         EnvelopeBaseKeyAcquisitionUrl,
 
         /// <summary>
-        /// The initialization vector to use for envelope encryption in Base64 format.
+        /// hello initialization vector toouse for envelope encryption in Base64 format.
         /// </summary>
         EnvelopeEncryptionIVAsBase64,
 
         /// <summary>
-        /// The PlayReady License Acquisition Url to use for common encryption.
+        /// hello PlayReady License Acquisition Url toouse for common encryption.
         /// </summary>
         PlayReadyLicenseAcquisitionUrl,
 
         /// <summary>
-        /// The PlayReady Custom Attributes to add to the PlayReady Content Header
+        /// hello PlayReady Custom Attributes tooadd toohello PlayReady Content Header
         /// </summary>
         PlayReadyCustomAttributes,
 
         /// <summary>
-        /// The initialization vector to use for envelope encryption.
+        /// hello initialization vector toouse for envelope encryption.
         /// </summary>
         EnvelopeEncryptionIV,
 
@@ -424,9 +424,9 @@ ms.lasthandoff: 08/29/2017
         WidevineLicenseAcquisitionUrl
     }
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="a89b3-202">媒體服務學習路徑</span><span class="sxs-lookup"><span data-stu-id="a89b3-202">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="d7434-202">媒體服務學習路徑</span><span class="sxs-lookup"><span data-stu-id="d7434-202">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="a89b3-203">提供意見反應</span><span class="sxs-lookup"><span data-stu-id="a89b3-203">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="d7434-203">提供意見反應</span><span class="sxs-lookup"><span data-stu-id="d7434-203">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

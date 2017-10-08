@@ -1,5 +1,5 @@
 ---
-title: "命名慣例的 Azure 資源原則 | Microsoft Docs"
+title: "如需命名慣例 aaaAzure 資源原則 |Microsoft 文件"
 description: "描述資源命名慣例的 Azure Resource Manager 原則。"
 services: azure-resource-manager
 documentationcenter: na
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/27/2017
 ms.author: tomfitz
-ms.openlocfilehash: 51b3519bbba8cb4c768bfdd7dadf92fced434f22
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c8384b231263fb694aed8b936a953d5c0ca31e71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="apply-resource-policies-for-names-and-text"></a><span data-ttu-id="bade2-103">為名稱和文字套用資源原則</span><span class="sxs-lookup"><span data-stu-id="bade2-103">Apply resource policies for names and text</span></span>
-<span data-ttu-id="bade2-104">本主題將示範數個您可以套用的[資源原則](resource-manager-policy.md)，以建立名稱和文字慣例。</span><span class="sxs-lookup"><span data-stu-id="bade2-104">This topic shows several [resource policies](resource-manager-policy.md) you can apply to establish naming and text conventions.</span></span> <span data-ttu-id="bade2-105">這些原則可確保資源名稱和標籤值的一致性。</span><span class="sxs-lookup"><span data-stu-id="bade2-105">These policies ensure consistency for resource names and tag values.</span></span> 
+# <a name="apply-resource-policies-for-names-and-text"></a><span data-ttu-id="8d425-103">為名稱和文字套用資源原則</span><span class="sxs-lookup"><span data-stu-id="8d425-103">Apply resource policies for names and text</span></span>
+<span data-ttu-id="8d425-104">本主題說明數個[資源原則](resource-manager-policy.md)可以套用 tooestablish 命名和文字的慣例。</span><span class="sxs-lookup"><span data-stu-id="8d425-104">This topic shows several [resource policies](resource-manager-policy.md) you can apply tooestablish naming and text conventions.</span></span> <span data-ttu-id="8d425-105">這些原則可確保資源名稱和標籤值的一致性。</span><span class="sxs-lookup"><span data-stu-id="8d425-105">These policies ensure consistency for resource names and tag values.</span></span> 
 
-## <a name="set-naming-convention-with-wildcard"></a><span data-ttu-id="bade2-106">使用萬用字元設定命名慣例</span><span class="sxs-lookup"><span data-stu-id="bade2-106">Set naming convention with wildcard</span></span>
-<span data-ttu-id="bade2-107">下列範例示範如何使用 **like** 條件所支援的萬用字元。</span><span class="sxs-lookup"><span data-stu-id="bade2-107">The following example shows the use of wildcard, which is supported by the **like** condition.</span></span> <span data-ttu-id="bade2-108">條件指出如果名稱符合所述模式 (namePrefix\*nameSuffix)，則拒絕要求：</span><span class="sxs-lookup"><span data-stu-id="bade2-108">The condition states that if the name does match the mentioned pattern (namePrefix\*nameSuffix) then deny the request:</span></span>
+## <a name="set-naming-convention-with-wildcard"></a><span data-ttu-id="8d425-106">使用萬用字元設定命名慣例</span><span class="sxs-lookup"><span data-stu-id="8d425-106">Set naming convention with wildcard</span></span>
+<span data-ttu-id="8d425-107">hello 下列範例顯示 hello 的使用萬用字元，這會受到 hello**像**條件。</span><span class="sxs-lookup"><span data-stu-id="8d425-107">hello following example shows hello use of wildcard, which is supported by hello **like** condition.</span></span> <span data-ttu-id="8d425-108">hello 條件狀態，是否 hello 名稱相符 hello 提及的模式 (namePrefix\*nameSuffix) 然後拒絕 hello 要求：</span><span class="sxs-lookup"><span data-stu-id="8d425-108">hello condition states that if hello name does match hello mentioned pattern (namePrefix\*nameSuffix) then deny hello request:</span></span>
 
 ```json
 {
@@ -40,9 +40,9 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-## <a name="set-naming-convention-with-pattern"></a><span data-ttu-id="bade2-109">使用模式設定命名慣例</span><span class="sxs-lookup"><span data-stu-id="bade2-109">Set naming convention with pattern</span></span>
+## <a name="set-naming-convention-with-pattern"></a><span data-ttu-id="8d425-109">使用模式設定命名慣例</span><span class="sxs-lookup"><span data-stu-id="8d425-109">Set naming convention with pattern</span></span>
 
-<span data-ttu-id="bade2-110">若要指定資源名稱符合模式，請使用符合條件。</span><span class="sxs-lookup"><span data-stu-id="bade2-110">To specify that resource names match a pattern, use the match condition.</span></span> <span data-ttu-id="bade2-111">下列範例需要以 `contoso` 為開頭，且包含六個額外字母的名稱︰</span><span class="sxs-lookup"><span data-stu-id="bade2-111">The following example requires names to start with `contoso` and contain six additional letters:</span></span>
+<span data-ttu-id="8d425-110">資源名稱比對模式中，使用 hello toospecify 符合條件。</span><span class="sxs-lookup"><span data-stu-id="8d425-110">toospecify that resource names match a pattern, use hello match condition.</span></span> <span data-ttu-id="8d425-111">hello 下列範例要求與名稱 toostart`contoso`而且包含六個其他字母：</span><span class="sxs-lookup"><span data-stu-id="8d425-111">hello following example requires names toostart with `contoso` and contain six additional letters:</span></span>
 
 ```json
 {
@@ -58,9 +58,9 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-## <a name="set-date-pattern-for-tag-value"></a><span data-ttu-id="bade2-112">設定標籤值的日期模式</span><span class="sxs-lookup"><span data-stu-id="bade2-112">Set date pattern for tag value</span></span>
+## <a name="set-date-pattern-for-tag-value"></a><span data-ttu-id="8d425-112">設定標籤值的日期模式</span><span class="sxs-lookup"><span data-stu-id="8d425-112">Set date pattern for tag value</span></span>
 
-<span data-ttu-id="bade2-113">如需兩個數字、破折號、三個字母、破折號和四個數字的日期模式，請使用︰</span><span class="sxs-lookup"><span data-stu-id="bade2-113">To require a date pattern of two digits, dash, three letters, dash, and four digits, use:</span></span>
+<span data-ttu-id="8d425-113">toorequire 日期圖樣的兩個數字字元、 虛線、 三個字母、 虛線和四位數，使用：</span><span class="sxs-lookup"><span data-stu-id="8d425-113">toorequire a date pattern of two digits, dash, three letters, dash, and four digits, use:</span></span>
 
 ```json
 {
@@ -74,7 +74,7 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="bade2-114">後續步驟</span><span class="sxs-lookup"><span data-stu-id="bade2-114">Next steps</span></span>
-* <span data-ttu-id="bade2-115">定義原則規則 (如上述範例所示) 之後，您必須建立原則定義，並將它指派到某個範圍。</span><span class="sxs-lookup"><span data-stu-id="bade2-115">After defining a policy rule (as shown in the preceding examples), you need to create the policy definition and assign it to a scope.</span></span> <span data-ttu-id="bade2-116">範圍可以是訂用帳戶、資源群組或資源。</span><span class="sxs-lookup"><span data-stu-id="bade2-116">The scope can be a subscription, resource group, or resource.</span></span> <span data-ttu-id="bade2-117">若要透過入口網站來指派原則，請參閱[使用 Azure 入口網站來指派和管理資源原則](resource-manager-policy-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="bade2-117">To assign policies through the portal, see [Use Azure portal to assign and manage resource policies](resource-manager-policy-portal.md).</span></span> <span data-ttu-id="bade2-118">若要透過 REST API、PowerShell 或 Azure CLI 來指派原則，請參閱[透過指令碼來指派和管理原則](resource-manager-policy-create-assign.md)。</span><span class="sxs-lookup"><span data-stu-id="bade2-118">To assign policies through REST API, PowerShell or Azure CLI, see [Assign and manage policies through script](resource-manager-policy-create-assign.md).</span></span> 
-* <span data-ttu-id="bade2-119">如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。</span><span class="sxs-lookup"><span data-stu-id="bade2-119">For guidance on how enterprises can use Resource Manager to effectively manage subscriptions, see [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="8d425-114">後續步驟</span><span class="sxs-lookup"><span data-stu-id="8d425-114">Next steps</span></span>
+* <span data-ttu-id="8d425-115">定義原則規則 （如 hello 前面範例所示） 之後, 您會需要 toocreate hello 原則定義，並將它指派 tooa 範圍。</span><span class="sxs-lookup"><span data-stu-id="8d425-115">After defining a policy rule (as shown in hello preceding examples), you need toocreate hello policy definition and assign it tooa scope.</span></span> <span data-ttu-id="8d425-116">hello 領域可以訂用帳戶、 資源群組或資源。</span><span class="sxs-lookup"><span data-stu-id="8d425-116">hello scope can be a subscription, resource group, or resource.</span></span> <span data-ttu-id="8d425-117">tooassign 原則透過 hello 入口網站，請參閱[使用 Azure 入口網站 tooassign 和管理資源原則](resource-manager-policy-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="8d425-117">tooassign policies through hello portal, see [Use Azure portal tooassign and manage resource policies](resource-manager-policy-portal.md).</span></span> <span data-ttu-id="8d425-118">tooassign 原則透過 REST API、 PowerShell 或 Azure CLI，請參閱[指派及管理透過指令碼的原則](resource-manager-policy-create-assign.md)。</span><span class="sxs-lookup"><span data-stu-id="8d425-118">tooassign policies through REST API, PowerShell or Azure CLI, see [Assign and manage policies through script](resource-manager-policy-create-assign.md).</span></span> 
+* <span data-ttu-id="8d425-119">如需指引企業可以如何使用資源管理員 tooeffectively 管理訂用帳戶，請參閱[Azure 企業版 scaffold-精準的訂閱控管](resource-manager-subscription-governance.md)。</span><span class="sxs-lookup"><span data-stu-id="8d425-119">For guidance on how enterprises can use Resource Manager tooeffectively manage subscriptions, see [Azure enterprise scaffold - prescriptive subscription governance](resource-manager-subscription-governance.md).</span></span>
 

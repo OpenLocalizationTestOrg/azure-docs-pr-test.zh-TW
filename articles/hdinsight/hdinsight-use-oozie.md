@@ -1,6 +1,6 @@
 ---
-title: "在 HDInsight 上使用 Hadoop Oozie | Microsoft Docs"
-description: "在 HDInsight 上使用 Hadoop Oozie：一項巨量資料服務。 了解如何定義 Oozie 工作流程，以及提交 Oozie 工作。"
+title: "在 HDInsight Hadoop Oozie aaaUse |Microsoft 文件"
+description: "在 HDInsight 上使用 Hadoop Oozie：一項巨量資料服務。 深入了解如何 toodefine Oozie 工作流程，並提交 Oozie 作業。"
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -17,31 +17,31 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: 36fe3e4220ec92699b6d52cba47cd6b83f361d66
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 12d0cf1a01838ab0f4e699c384ce2fb18f85cbad
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-oozie-with-hadoop-to-define-and-run-a-workflow-in-hdinsight"></a><span data-ttu-id="c8871-104">在 HDInsight 上搭配 Hadoop 使用 Oozie 來定義並執行工作流程</span><span class="sxs-lookup"><span data-stu-id="c8871-104">Use Oozie with Hadoop to define and run a workflow in HDInsight</span></span>
+# <a name="use-oozie-with-hadoop-toodefine-and-run-a-workflow-in-hdinsight"></a><span data-ttu-id="9e74c-104">使用 Hadoop toodefine Oozie 和 HDInsight 中執行的工作流程</span><span class="sxs-lookup"><span data-stu-id="9e74c-104">Use Oozie with Hadoop toodefine and run a workflow in HDInsight</span></span>
 [!INCLUDE [oozie-selector](../../includes/hdinsight-oozie-selector.md)]
 
-<span data-ttu-id="c8871-105">了解如何使用 Apache Oozie 定義工作流程，以及在 HDInsight 上執行工作流程。</span><span class="sxs-lookup"><span data-stu-id="c8871-105">Learn how to use Apache Oozie to define a workflow and run the workflow on HDInsight.</span></span> <span data-ttu-id="c8871-106">若要了解 Oozie 協調器，請參閱[搭配 HDInsight 使用以時間為基礎的 Hadoop Oozie 協調器][hdinsight-oozie-coordinator-time]。</span><span class="sxs-lookup"><span data-stu-id="c8871-106">To learn about the Oozie coordinator, see [Use time-based Hadoop Oozie Coordinator with HDInsight][hdinsight-oozie-coordinator-time].</span></span> <span data-ttu-id="c8871-107">若要了解 Azure Data Factory，請參閱 [搭配 Data Factory 使用 Pig 和 Hive][azure-data-factory-pig-hive]。</span><span class="sxs-lookup"><span data-stu-id="c8871-107">To learn Azure Data Factory, see [Use Pig and Hive with Data Factory][azure-data-factory-pig-hive].</span></span>
+<span data-ttu-id="9e74c-105">了解 toouse Apache Oozie toodefine 工作流程和執行 hello HDInsight 上的工作流程。</span><span class="sxs-lookup"><span data-stu-id="9e74c-105">Learn how toouse Apache Oozie toodefine a workflow and run hello workflow on HDInsight.</span></span> <span data-ttu-id="9e74c-106">toolearn 有關 hello Oozie 協調器，請參閱[HDInsight 搭配使用以時間為基礎的 Hadoop Oozie 協調器][hdinsight-oozie-coordinator-time]。</span><span class="sxs-lookup"><span data-stu-id="9e74c-106">toolearn about hello Oozie coordinator, see [Use time-based Hadoop Oozie Coordinator with HDInsight][hdinsight-oozie-coordinator-time].</span></span> <span data-ttu-id="9e74c-107">toolearn Azure Data Factory，請參閱[搭配使用 Pig 和 Hive 與 Data Factory][azure-data-factory-pig-hive]。</span><span class="sxs-lookup"><span data-stu-id="9e74c-107">toolearn Azure Data Factory, see [Use Pig and Hive with Data Factory][azure-data-factory-pig-hive].</span></span>
 
-<span data-ttu-id="c8871-108">Apache Oozie 是可管理 Hadoop 工作的工作流程/協調系統。</span><span class="sxs-lookup"><span data-stu-id="c8871-108">Apache Oozie is a workflow/coordination system that manages Hadoop jobs.</span></span> <span data-ttu-id="c8871-109">它可與 Hadoop 堆疊相整合，並支援 Apache MapReduce、Apache Pig、Apache Hive 和 Apache Sqoop 的 Hadoop 工作。</span><span class="sxs-lookup"><span data-stu-id="c8871-109">It is integrated with the Hadoop stack, and it supports Hadoop jobs for Apache MapReduce, Apache Pig, Apache Hive, and Apache Sqoop.</span></span> <span data-ttu-id="c8871-110">它也可用來排程系統的特定工作，例如 Java 程式或 Shell 指令碼。</span><span class="sxs-lookup"><span data-stu-id="c8871-110">It can also be used to schedule jobs that are specific to a system, like Java programs or shell scripts.</span></span>
+<span data-ttu-id="9e74c-108">Apache Oozie 是可管理 Hadoop 工作的工作流程/協調系統。</span><span class="sxs-lookup"><span data-stu-id="9e74c-108">Apache Oozie is a workflow/coordination system that manages Hadoop jobs.</span></span> <span data-ttu-id="9e74c-109">Hello Hadoop 堆疊，與整合，並支援 Apache MapReduce、 Apache Pig、 Apache Hive，和 Apache Sqoop Hadoop 工作。</span><span class="sxs-lookup"><span data-stu-id="9e74c-109">It is integrated with hello Hadoop stack, and it supports Hadoop jobs for Apache MapReduce, Apache Pig, Apache Hive, and Apache Sqoop.</span></span> <span data-ttu-id="9e74c-110">它也可以使用的 tooschedule 作業的特定 tooa 系統，例如 Java 程式或殼層指令碼。</span><span class="sxs-lookup"><span data-stu-id="9e74c-110">It can also be used tooschedule jobs that are specific tooa system, like Java programs or shell scripts.</span></span>
 
-<span data-ttu-id="c8871-111">依照本教學課程的指示以實作此工作流程需要兩個動作：</span><span class="sxs-lookup"><span data-stu-id="c8871-111">The workflow you implement by following the instructions in this tutorial contains two actions:</span></span>
+<span data-ttu-id="9e74c-111">您遵循本教學課程中的 hello 指示實作 hello 工作流程包含兩個動作：</span><span class="sxs-lookup"><span data-stu-id="9e74c-111">hello workflow you implement by following hello instructions in this tutorial contains two actions:</span></span>
 
 ![Workflow diagram][img-workflow-diagram]
 
-1. <span data-ttu-id="c8871-113">Hive 動作會執行一個 HiveQL 指令碼，以計算每個記錄層級類型在 log4j 檔案中的出現次數。</span><span class="sxs-lookup"><span data-stu-id="c8871-113">A Hive action runs a HiveQL script to count the occurrences of each log-level type in a log4j file.</span></span> <span data-ttu-id="c8871-114">每個 log4j 檔案各由一列欄位組成，其中包括顯示類型與嚴重性的 [LOG LEVEL] 欄位，例如：</span><span class="sxs-lookup"><span data-stu-id="c8871-114">Each log4j file consists of a line of fields that contains a [LOG LEVEL] field that shows the type and the severity, for example:</span></span>
+1. <span data-ttu-id="9e74c-113">登錄區動作會執行下列 HiveQL 指令碼 toocount hello 每個記錄層級類型的發生 log4j 檔案中。</span><span class="sxs-lookup"><span data-stu-id="9e74c-113">A Hive action runs a HiveQL script toocount hello occurrences of each log-level type in a log4j file.</span></span> <span data-ttu-id="9e74c-114">每個 log4j 檔案欄位的一行，其中包含顯示 hello 類型和 hello 嚴重性，例如 [記錄層級] 欄位所組成：</span><span class="sxs-lookup"><span data-stu-id="9e74c-114">Each log4j file consists of a line of fields that contains a [LOG LEVEL] field that shows hello type and hello severity, for example:</span></span>
    
         2012-02-03 18:35:34 SampleClass6 [INFO] everything normal for id 577725851
         2012-02-03 18:35:34 SampleClass4 [FATAL] system problem at id 1991281254
         2012-02-03 18:35:34 SampleClass3 [DEBUG] detail for id 1304807656
         ...
    
-    <span data-ttu-id="c8871-115">Hive 指令碼輸出如下：</span><span class="sxs-lookup"><span data-stu-id="c8871-115">The Hive script output is similar to:</span></span>
+    <span data-ttu-id="9e74c-115">hello Hive 指令碼輸出如下：</span><span class="sxs-lookup"><span data-stu-id="9e74c-115">hello Hive script output is similar to:</span></span>
    
         [DEBUG] 434
         [ERROR] 3
@@ -50,28 +50,28 @@ ms.lasthandoff: 08/29/2017
         [TRACE] 816
         [WARN]  4
    
-    <span data-ttu-id="c8871-116">如需 Hive 的詳細資訊，請參閱[在 HDInsight 上使用 Hive][hdinsight-use-hive]。</span><span class="sxs-lookup"><span data-stu-id="c8871-116">For more information about Hive, see [Use Hive with HDInsight][hdinsight-use-hive].</span></span>
-2. <span data-ttu-id="c8871-117">Sqoop 動作會將 HiveQL 的輸出匯出至 Azure SQL Database 中的資料表。</span><span class="sxs-lookup"><span data-stu-id="c8871-117">A Sqoop action exports the HiveQL output to a table in an Azure SQL database.</span></span> <span data-ttu-id="c8871-118">如需 Sqoop 的詳細資訊，請參閱[搭配 HDInsight 使用 Hadoop Sqoop][hdinsight-use-sqoop]。</span><span class="sxs-lookup"><span data-stu-id="c8871-118">For more information about Sqoop, see [Use Hadoop Sqoop with HDInsight][hdinsight-use-sqoop].</span></span>
+    <span data-ttu-id="9e74c-116">如需 Hive 的詳細資訊，請參閱[在 HDInsight 上使用 Hive][hdinsight-use-hive]。</span><span class="sxs-lookup"><span data-stu-id="9e74c-116">For more information about Hive, see [Use Hive with HDInsight][hdinsight-use-hive].</span></span>
+2. <span data-ttu-id="9e74c-117">Sqoop 動作匯出 Azure SQL database 中的 hello HiveQL 輸出 tooa 資料表。</span><span class="sxs-lookup"><span data-stu-id="9e74c-117">A Sqoop action exports hello HiveQL output tooa table in an Azure SQL database.</span></span> <span data-ttu-id="9e74c-118">如需 Sqoop 的詳細資訊，請參閱[搭配 HDInsight 使用 Hadoop Sqoop][hdinsight-use-sqoop]。</span><span class="sxs-lookup"><span data-stu-id="9e74c-118">For more information about Sqoop, see [Use Hadoop Sqoop with HDInsight][hdinsight-use-sqoop].</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="c8871-119">如需 HDInsight 叢集支援的 Oozie 版本，請參閱 [HDInsight 提供的 Hadoop 叢集版本有哪些新功能？][hdinsight-versions]。</span><span class="sxs-lookup"><span data-stu-id="c8871-119">For supported Oozie versions on HDInsight clusters, see [What's new in the Hadoop cluster versions provided by HDInsight?][hdinsight-versions].</span></span>
+> <span data-ttu-id="9e74c-119">HDInsight 叢集上支援 Oozie 版本，請參閱[hello HDInsight 所提供的 Hadoop 叢集版本中最新消息？][hdinsight-versions].</span><span class="sxs-lookup"><span data-stu-id="9e74c-119">For supported Oozie versions on HDInsight clusters, see [What's new in hello Hadoop cluster versions provided by HDInsight?][hdinsight-versions].</span></span>
 > 
 > 
 
-### <a name="prerequisites"></a><span data-ttu-id="c8871-120">必要條件</span><span class="sxs-lookup"><span data-stu-id="c8871-120">Prerequisites</span></span>
-<span data-ttu-id="c8871-121">開始進行本教學課程之前，您必須具備下列項目：</span><span class="sxs-lookup"><span data-stu-id="c8871-121">Before you begin this tutorial, you must have the following item:</span></span>
+### <a name="prerequisites"></a><span data-ttu-id="9e74c-120">必要條件</span><span class="sxs-lookup"><span data-stu-id="9e74c-120">Prerequisites</span></span>
+<span data-ttu-id="9e74c-121">開始本教學課程之前，您必須擁有 hello 下列項目：</span><span class="sxs-lookup"><span data-stu-id="9e74c-121">Before you begin this tutorial, you must have hello following item:</span></span>
 
-* <span data-ttu-id="c8871-122">**具有 Azure PowerShell 的工作站**。</span><span class="sxs-lookup"><span data-stu-id="c8871-122">**A workstation with Azure PowerShell**.</span></span> 
+* <span data-ttu-id="9e74c-122">**具有 Azure PowerShell 的工作站**。</span><span class="sxs-lookup"><span data-stu-id="9e74c-122">**A workstation with Azure PowerShell**.</span></span> 
   
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
   
 
-## <a name="define-oozie-workflow-and-the-related-hiveql-script"></a><span data-ttu-id="c8871-123">定義 Oozie 工作流程和相關的 HiveQL 指令碼</span><span class="sxs-lookup"><span data-stu-id="c8871-123">Define Oozie workflow and the related HiveQL script</span></span>
-<span data-ttu-id="c8871-124">Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。</span><span class="sxs-lookup"><span data-stu-id="c8871-124">Oozie workflows definitions are written in hPDL (a XML Process Definition Language).</span></span> <span data-ttu-id="c8871-125">預設的工作流程檔案名稱為 *workflow.xml*。</span><span class="sxs-lookup"><span data-stu-id="c8871-125">The default workflow file name is *workflow.xml*.</span></span> <span data-ttu-id="c8871-126">以下是您在本教學課程中使用的工作流程檔案。</span><span class="sxs-lookup"><span data-stu-id="c8871-126">The following is the workflow file you use in this tutorial.</span></span>
+## <a name="define-oozie-workflow-and-hello-related-hiveql-script"></a><span data-ttu-id="9e74c-123">定義 Oozie 工作流程和 hello 相關的下列 HiveQL 指令碼</span><span class="sxs-lookup"><span data-stu-id="9e74c-123">Define Oozie workflow and hello related HiveQL script</span></span>
+<span data-ttu-id="9e74c-124">Oozie 工作流程定義會以 hPDL 撰寫 (一種 XML 程序定義語言)。</span><span class="sxs-lookup"><span data-stu-id="9e74c-124">Oozie workflows definitions are written in hPDL (a XML Process Definition Language).</span></span> <span data-ttu-id="9e74c-125">hello 預設工作流程檔案名稱是*workflow.xml*。</span><span class="sxs-lookup"><span data-stu-id="9e74c-125">hello default workflow file name is *workflow.xml*.</span></span> <span data-ttu-id="9e74c-126">hello 以下是您在本教學課程中使用的 hello 工作流程檔案。</span><span class="sxs-lookup"><span data-stu-id="9e74c-126">hello following is hello workflow file you use in this tutorial.</span></span>
 
     <workflow-app name="useooziewf" xmlns="uri:oozie:workflow:0.2">
-        <start to = "RunHiveScript"/>
+        <start too= "RunHiveScript"/>
 
         <action name="RunHiveScript">
             <hive xmlns="uri:oozie:hive-action:0.2">
@@ -125,80 +125,80 @@ ms.lasthandoff: 08/29/2017
         <end name="end"/>
     </workflow-app>
 
-<span data-ttu-id="c8871-127">此工作流程中定義了兩個動作。</span><span class="sxs-lookup"><span data-stu-id="c8871-127">There are two actions defined in the workflow.</span></span> <span data-ttu-id="c8871-128">起始動作為 *RunHiveScript*。</span><span class="sxs-lookup"><span data-stu-id="c8871-128">The start-to action is *RunHiveScript*.</span></span> <span data-ttu-id="c8871-129">如果此動作順利執行，則下一個動作為 *RunSqoopExport*。</span><span class="sxs-lookup"><span data-stu-id="c8871-129">If the action runs successfully, the next action is *RunSqoopExport*.</span></span>
+<span data-ttu-id="9e74c-127">有兩個 hello 工作流程中定義的動作。</span><span class="sxs-lookup"><span data-stu-id="9e74c-127">There are two actions defined in hello workflow.</span></span> <span data-ttu-id="9e74c-128">hello 開始 tooaction 是*RunHiveScript*。</span><span class="sxs-lookup"><span data-stu-id="9e74c-128">hello start-tooaction is *RunHiveScript*.</span></span> <span data-ttu-id="9e74c-129">如果 hello 動作成功執行，hello 下一個動作是*RunSqoopExport*。</span><span class="sxs-lookup"><span data-stu-id="9e74c-129">If hello action runs successfully, hello next action is *RunSqoopExport*.</span></span>
 
-<span data-ttu-id="c8871-130">RunHiveScript 有數個變數。</span><span class="sxs-lookup"><span data-stu-id="c8871-130">The RunHiveScript has several variables.</span></span> <span data-ttu-id="c8871-131">當您使用 Azure PowerShell 從工作站提交 Oozie 工作時，會傳入這些值。</span><span class="sxs-lookup"><span data-stu-id="c8871-131">You pass the values when you submit the Oozie job from your workstation by using Azure PowerShell.</span></span>
+<span data-ttu-id="9e74c-130">hello RunHiveScript 有數個變數。</span><span class="sxs-lookup"><span data-stu-id="9e74c-130">hello RunHiveScript has several variables.</span></span> <span data-ttu-id="9e74c-131">當您使用 Azure PowerShell 提交從工作站 hello Oozie 作業時，您可以傳遞 hello 值。</span><span class="sxs-lookup"><span data-stu-id="9e74c-131">You pass hello values when you submit hello Oozie job from your workstation by using Azure PowerShell.</span></span>
 
 <table border = "1">
-<tr><th><span data-ttu-id="c8871-132">工作流程變數</span><span class="sxs-lookup"><span data-stu-id="c8871-132">Workflow variables</span></span></th><th><span data-ttu-id="c8871-133">說明</span><span class="sxs-lookup"><span data-stu-id="c8871-133">Description</span></span></th></tr>
-<tr><td><span data-ttu-id="c8871-134">${jobTracker}</span><span class="sxs-lookup"><span data-stu-id="c8871-134">${jobTracker}</span></span></td><td><span data-ttu-id="c8871-135">指定 Hadoop 工作追蹤器的 URL。</span><span class="sxs-lookup"><span data-stu-id="c8871-135">Specifies the URL of the Hadoop job tracker.</span></span> <span data-ttu-id="c8871-136">在 HDInsight 3.0 和 2.1 版中使用 <strong>jobtrackerhost:9010</strong>。</span><span class="sxs-lookup"><span data-stu-id="c8871-136">Use <strong>jobtrackerhost:9010</strong> in HDInsight version 3.0 and 2.1.</span></span></td></tr>
-<tr><td><span data-ttu-id="c8871-137">${nameNode}</span><span class="sxs-lookup"><span data-stu-id="c8871-137">${nameNode}</span></span></td><td><span data-ttu-id="c8871-138">指定 Hadoop 名稱節點的 URL。</span><span class="sxs-lookup"><span data-stu-id="c8871-138">Specifies the URL of the Hadoop name node.</span></span> <span data-ttu-id="c8871-139">使用預設檔案系統位址，例如 <i>wasb://&lt;containerName&gt;@&lt;storageAccountName&gt;.blob.core.windows.net</i>。</span><span class="sxs-lookup"><span data-stu-id="c8871-139">Use the default file system address, for example, <i>wasb://&lt;containerName&gt;@&lt;storageAccountName&gt;.blob.core.windows.net</i>.</span></span></td></tr>
-<tr><td><span data-ttu-id="c8871-140">${queueName}</span><span class="sxs-lookup"><span data-stu-id="c8871-140">${queueName}</span></span></td><td><span data-ttu-id="c8871-141">指定要將工作提交至其中的佇列名稱。</span><span class="sxs-lookup"><span data-stu-id="c8871-141">Specifies the queue name that the job is submitted to.</span></span> <span data-ttu-id="c8871-142">使用<strong>預設值</strong>。</span><span class="sxs-lookup"><span data-stu-id="c8871-142">Use the <strong>default</strong>.</span></span></td></tr>
+<tr><th><span data-ttu-id="9e74c-132">工作流程變數</span><span class="sxs-lookup"><span data-stu-id="9e74c-132">Workflow variables</span></span></th><th><span data-ttu-id="9e74c-133">說明</span><span class="sxs-lookup"><span data-stu-id="9e74c-133">Description</span></span></th></tr>
+<tr><td><span data-ttu-id="9e74c-134">${jobTracker}</span><span class="sxs-lookup"><span data-stu-id="9e74c-134">${jobTracker}</span></span></td><td><span data-ttu-id="9e74c-135">指定 hello URL hello Hadoop 作業追蹤程式。</span><span class="sxs-lookup"><span data-stu-id="9e74c-135">Specifies hello URL of hello Hadoop job tracker.</span></span> <span data-ttu-id="9e74c-136">在 HDInsight 3.0 和 2.1 版中使用 <strong>jobtrackerhost:9010</strong>。</span><span class="sxs-lookup"><span data-stu-id="9e74c-136">Use <strong>jobtrackerhost:9010</strong> in HDInsight version 3.0 and 2.1.</span></span></td></tr>
+<tr><td><span data-ttu-id="9e74c-137">${nameNode}</span><span class="sxs-lookup"><span data-stu-id="9e74c-137">${nameNode}</span></span></td><td><span data-ttu-id="9e74c-138">指定 hello Hadoop 名稱節點 hello URL。</span><span class="sxs-lookup"><span data-stu-id="9e74c-138">Specifies hello URL of hello Hadoop name node.</span></span> <span data-ttu-id="9e74c-139">例如，使用 hello 預設檔案系統位址， <i>wasb: / /&lt;containerName&gt;@&lt;storageAccountName&gt;。 account>.blob.core.windows.net</i>。</span><span class="sxs-lookup"><span data-stu-id="9e74c-139">Use hello default file system address, for example, <i>wasb://&lt;containerName&gt;@&lt;storageAccountName&gt;.blob.core.windows.net</i>.</span></span></td></tr>
+<tr><td><span data-ttu-id="9e74c-140">${queueName}</span><span class="sxs-lookup"><span data-stu-id="9e74c-140">${queueName}</span></span></td><td><span data-ttu-id="9e74c-141">指定要送出 hello hello 工作的佇列名稱。</span><span class="sxs-lookup"><span data-stu-id="9e74c-141">Specifies hello queue name that hello job is submitted to.</span></span> <span data-ttu-id="9e74c-142">使用 hello<strong>預設</strong>。</span><span class="sxs-lookup"><span data-stu-id="9e74c-142">Use hello <strong>default</strong>.</span></span></td></tr>
 </table>
 
 <table border = "1">
-<tr><th><span data-ttu-id="c8871-143">Hive 動作變數</span><span class="sxs-lookup"><span data-stu-id="c8871-143">Hive action variable</span></span></th><th><span data-ttu-id="c8871-144">說明</span><span class="sxs-lookup"><span data-stu-id="c8871-144">Description</span></span></th></tr>
-<tr><td><span data-ttu-id="c8871-145">${hiveDataFolder}</span><span class="sxs-lookup"><span data-stu-id="c8871-145">${hiveDataFolder}</span></span></td><td><span data-ttu-id="c8871-146">指定 Hive Create Table 命令的來源目錄。</span><span class="sxs-lookup"><span data-stu-id="c8871-146">Specifies the source directory for the Hive Create Table command.</span></span></td></tr>
-<tr><td><span data-ttu-id="c8871-147">${hiveOutputFolder}</span><span class="sxs-lookup"><span data-stu-id="c8871-147">${hiveOutputFolder}</span></span></td><td><span data-ttu-id="c8871-148">指定 INSERT OVERWRITE 陳述式的輸出資料夾。</span><span class="sxs-lookup"><span data-stu-id="c8871-148">Specifies the output folder for the INSERT OVERWRITE statement.</span></span></td></tr>
-<tr><td><span data-ttu-id="c8871-149">${hiveTableName}</span><span class="sxs-lookup"><span data-stu-id="c8871-149">${hiveTableName}</span></span></td><td><span data-ttu-id="c8871-150">指定參考 log4j 資料檔案的 Hive 資料表名稱。</span><span class="sxs-lookup"><span data-stu-id="c8871-150">Specifies the name of the Hive table that references the log4j data files.</span></span></td></tr>
+<tr><th><span data-ttu-id="9e74c-143">Hive 動作變數</span><span class="sxs-lookup"><span data-stu-id="9e74c-143">Hive action variable</span></span></th><th><span data-ttu-id="9e74c-144">說明</span><span class="sxs-lookup"><span data-stu-id="9e74c-144">Description</span></span></th></tr>
+<tr><td><span data-ttu-id="9e74c-145">${hiveDataFolder}</span><span class="sxs-lookup"><span data-stu-id="9e74c-145">${hiveDataFolder}</span></span></td><td><span data-ttu-id="9e74c-146">指定 hello Hive Create Table 命令的 hello 來源目錄。</span><span class="sxs-lookup"><span data-stu-id="9e74c-146">Specifies hello source directory for hello Hive Create Table command.</span></span></td></tr>
+<tr><td><span data-ttu-id="9e74c-147">${hiveOutputFolder}</span><span class="sxs-lookup"><span data-stu-id="9e74c-147">${hiveOutputFolder}</span></span></td><td><span data-ttu-id="9e74c-148">指定 hello hello 插入覆寫陳述式的輸出資料夾。</span><span class="sxs-lookup"><span data-stu-id="9e74c-148">Specifies hello output folder for hello INSERT OVERWRITE statement.</span></span></td></tr>
+<tr><td><span data-ttu-id="9e74c-149">${hiveTableName}</span><span class="sxs-lookup"><span data-stu-id="9e74c-149">${hiveTableName}</span></span></td><td><span data-ttu-id="9e74c-150">指定 hello hello Hive 資料表參考 hello log4j 資料檔案的名稱。</span><span class="sxs-lookup"><span data-stu-id="9e74c-150">Specifies hello name of hello Hive table that references hello log4j data files.</span></span></td></tr>
 </table>
 
 <table border = "1">
-<tr><th><span data-ttu-id="c8871-151">Sqoop 動作變數</span><span class="sxs-lookup"><span data-stu-id="c8871-151">Sqoop action variable</span></span></th><th><span data-ttu-id="c8871-152">說明</span><span class="sxs-lookup"><span data-stu-id="c8871-152">Description</span></span></th></tr>
-<tr><td><span data-ttu-id="c8871-153">${sqlDatabaseConnectionString}</span><span class="sxs-lookup"><span data-stu-id="c8871-153">${sqlDatabaseConnectionString}</span></span></td><td><span data-ttu-id="c8871-154">指定 Azure SQL Database 連接字串。</span><span class="sxs-lookup"><span data-stu-id="c8871-154">Specifies the Azure SQL database connection string.</span></span></td></tr>
-<tr><td><span data-ttu-id="c8871-155">${sqlDatabaseTableName}</span><span class="sxs-lookup"><span data-stu-id="c8871-155">${sqlDatabaseTableName}</span></span></td><td><span data-ttu-id="c8871-156">指定要將資料匯出至其中的 Azure SQL Database 資料表。</span><span class="sxs-lookup"><span data-stu-id="c8871-156">Specifies the Azure SQL database table where the data is exported to.</span></span></td></tr>
-<tr><td><span data-ttu-id="c8871-157">${hiveOutputFolder}</span><span class="sxs-lookup"><span data-stu-id="c8871-157">${hiveOutputFolder}</span></span></td><td><span data-ttu-id="c8871-158">指定 Hive INSERT OVERWRITE 陳述式的輸出資料夾。</span><span class="sxs-lookup"><span data-stu-id="c8871-158">Specifies the output folder for the Hive INSERT OVERWRITE statement.</span></span> <span data-ttu-id="c8871-159">這是 Sqoop 匯出 (export-dir) 的相同資料夾。</span><span class="sxs-lookup"><span data-stu-id="c8871-159">This is the same folder for the Sqoop export (export-dir).</span></span></td></tr>
+<tr><th><span data-ttu-id="9e74c-151">Sqoop 動作變數</span><span class="sxs-lookup"><span data-stu-id="9e74c-151">Sqoop action variable</span></span></th><th><span data-ttu-id="9e74c-152">說明</span><span class="sxs-lookup"><span data-stu-id="9e74c-152">Description</span></span></th></tr>
+<tr><td><span data-ttu-id="9e74c-153">${sqlDatabaseConnectionString}</span><span class="sxs-lookup"><span data-stu-id="9e74c-153">${sqlDatabaseConnectionString}</span></span></td><td><span data-ttu-id="9e74c-154">指定 hello Azure SQL 資料庫連接字串。</span><span class="sxs-lookup"><span data-stu-id="9e74c-154">Specifies hello Azure SQL database connection string.</span></span></td></tr>
+<tr><td><span data-ttu-id="9e74c-155">${sqlDatabaseTableName}</span><span class="sxs-lookup"><span data-stu-id="9e74c-155">${sqlDatabaseTableName}</span></span></td><td><span data-ttu-id="9e74c-156">指定 hello 資料匯出至其中的 hello Azure SQL 資料庫資料表。</span><span class="sxs-lookup"><span data-stu-id="9e74c-156">Specifies hello Azure SQL database table where hello data is exported to.</span></span></td></tr>
+<tr><td><span data-ttu-id="9e74c-157">${hiveOutputFolder}</span><span class="sxs-lookup"><span data-stu-id="9e74c-157">${hiveOutputFolder}</span></span></td><td><span data-ttu-id="9e74c-158">指定 hello hello hive 控制檔插入覆寫陳述式的輸出資料夾。</span><span class="sxs-lookup"><span data-stu-id="9e74c-158">Specifies hello output folder for hello Hive INSERT OVERWRITE statement.</span></span> <span data-ttu-id="9e74c-159">這是 hello hello Sqoop 匯出 (匯出 dir) 相同的資料夾。</span><span class="sxs-lookup"><span data-stu-id="9e74c-159">This is hello same folder for hello Sqoop export (export-dir).</span></span></td></tr>
 </table>
 
-<span data-ttu-id="c8871-160">如需關於 Oozie 工作流程和使用工作流程動作的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] (適用於 HDInsight 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] (適用於 HDInsight 2.1 版)。</span><span class="sxs-lookup"><span data-stu-id="c8871-160">For more information about Oozie workflow and using workflow actions, see [Apache Oozie 4.0 documentation][apache-oozie-400] (for HDInsight version 3.0) or [Apache Oozie 3.3.2 documentation][apache-oozie-332] (for HDInsight version 2.1).</span></span>
+<span data-ttu-id="9e74c-160">如需關於 Oozie 工作流程和使用工作流程動作的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] (適用於 HDInsight 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332] (適用於 HDInsight 2.1 版)。</span><span class="sxs-lookup"><span data-stu-id="9e74c-160">For more information about Oozie workflow and using workflow actions, see [Apache Oozie 4.0 documentation][apache-oozie-400] (for HDInsight version 3.0) or [Apache Oozie 3.3.2 documentation][apache-oozie-332] (for HDInsight version 2.1).</span></span>
 
-<span data-ttu-id="c8871-161">此工作流程中的 Hive 動作會呼叫 HiveQL 指令碼檔案。</span><span class="sxs-lookup"><span data-stu-id="c8871-161">The Hive action in the workflow calls a HiveQL script file.</span></span> <span data-ttu-id="c8871-162">此指令碼檔案包含三個 HiveQL 陳述式：</span><span class="sxs-lookup"><span data-stu-id="c8871-162">This script file contains three HiveQL statements:</span></span>
+<span data-ttu-id="9e74c-161">hello hello 工作流程中的登錄區動作呼叫下列 HiveQL 指令碼檔案。</span><span class="sxs-lookup"><span data-stu-id="9e74c-161">hello Hive action in hello workflow calls a HiveQL script file.</span></span> <span data-ttu-id="9e74c-162">此指令碼檔案包含三個 HiveQL 陳述式：</span><span class="sxs-lookup"><span data-stu-id="9e74c-162">This script file contains three HiveQL statements:</span></span>
 
     DROP TABLE ${hiveTableName};
     CREATE EXTERNAL TABLE ${hiveTableName}(t1 string, t2 string, t3 string, t4 string, t5 string, t6 string, t7 string) ROW FORMAT DELIMITED FIELDS TERMINATED BY ' ' STORED AS TEXTFILE LOCATION '${hiveDataFolder}';
     INSERT OVERWRITE DIRECTORY '${hiveOutputFolder}' SELECT t4 AS sev, COUNT(*) AS cnt FROM ${hiveTableName} WHERE t4 LIKE '[%' GROUP BY t4;
 
-1. <span data-ttu-id="c8871-163">**DROP TABLE 陳述式** 會刪除 log4j Hive 資料表 (如果存在)。</span><span class="sxs-lookup"><span data-stu-id="c8871-163">**The DROP TABLE statement** deletes the log4j Hive table if it exists.</span></span>
-2. <span data-ttu-id="c8871-164">**CREATE TABLE 陳述式** 會建立指向 log4j 記錄檔位置的 log4j Hive 外部資料表。</span><span class="sxs-lookup"><span data-stu-id="c8871-164">**The CREATE TABLE statement** creates a log4j Hive external table that points to the location of the log4j log file.</span></span> <span data-ttu-id="c8871-165">欄位分隔符號為 ","。</span><span class="sxs-lookup"><span data-stu-id="c8871-165">The field delimiter is ",".</span></span> <span data-ttu-id="c8871-166">預設的行分隔符號為 "\n"。</span><span class="sxs-lookup"><span data-stu-id="c8871-166">The default line delimiter is "\n".</span></span> <span data-ttu-id="c8871-167">Hive 外部資料表可讓您在需要執行 Oozie 工作流程多次時，避免資料檔案從原始位置遭到移除。</span><span class="sxs-lookup"><span data-stu-id="c8871-167">A Hive external table is used to avoid the data file being removed from the original location if you want to run the Oozie workflow multiple times.</span></span>
-3. <span data-ttu-id="c8871-168">**INSERT OVERWRITE 陳述式** 可從 log4j Hive 資料表中計算每個記錄層級類型的出現次數，並將輸出儲存至 Azure 儲存體中的 Blob。</span><span class="sxs-lookup"><span data-stu-id="c8871-168">**The INSERT OVERWRITE statement** counts the occurrences of each log-level type from the log4j Hive table, and saves the output to a blob in Azure Storage.</span></span>
+1. <span data-ttu-id="9e74c-163">**DROP TABLE 陳述式 hello**刪除 hello log4j Hive 資料表，如果存在的話。</span><span class="sxs-lookup"><span data-stu-id="9e74c-163">**hello DROP TABLE statement** deletes hello log4j Hive table if it exists.</span></span>
+2. <span data-ttu-id="9e74c-164">**hello CREATE TABLE 陳述式**建立 log4j Hive 外部資料表指向 toohello hello log4j 記錄檔的位置。</span><span class="sxs-lookup"><span data-stu-id="9e74c-164">**hello CREATE TABLE statement** creates a log4j Hive external table that points toohello location of hello log4j log file.</span></span> <span data-ttu-id="9e74c-165">hello 欄位分隔符號是"，"。</span><span class="sxs-lookup"><span data-stu-id="9e74c-165">hello field delimiter is ",".</span></span> <span data-ttu-id="9e74c-166">hello 預設列的分隔符號是"\n"。</span><span class="sxs-lookup"><span data-stu-id="9e74c-166">hello default line delimiter is "\n".</span></span> <span data-ttu-id="9e74c-167">Hive 外部資料表是使用的 tooavoid hello 資料檔案，而如果您想要讓 toorun hello Oozie 流程多次正在從 hello 原始位置中移除。</span><span class="sxs-lookup"><span data-stu-id="9e74c-167">A Hive external table is used tooavoid hello data file being removed from hello original location if you want toorun hello Oozie workflow multiple times.</span></span>
+3. <span data-ttu-id="9e74c-168">**hello 插入覆寫陳述式**計算 hello 出現 hello log4j Hive 資料表，從每個記錄層級型別，並將 hello 輸出 tooa blob 儲存在 Azure 儲存體。</span><span class="sxs-lookup"><span data-stu-id="9e74c-168">**hello INSERT OVERWRITE statement** counts hello occurrences of each log-level type from hello log4j Hive table, and saves hello output tooa blob in Azure Storage.</span></span>
 
-<span data-ttu-id="c8871-169">指令碼中使用三種變數：</span><span class="sxs-lookup"><span data-stu-id="c8871-169">There are three variables used in the script:</span></span>
+<span data-ttu-id="9e74c-169">有三個 hello 指令碼中使用的變數：</span><span class="sxs-lookup"><span data-stu-id="9e74c-169">There are three variables used in hello script:</span></span>
 
-* <span data-ttu-id="c8871-170">${hiveTableName}</span><span class="sxs-lookup"><span data-stu-id="c8871-170">${hiveTableName}</span></span>
-* <span data-ttu-id="c8871-171">${hiveDataFolder}</span><span class="sxs-lookup"><span data-stu-id="c8871-171">${hiveDataFolder}</span></span>
-* <span data-ttu-id="c8871-172">${hiveOutputFolder}</span><span class="sxs-lookup"><span data-stu-id="c8871-172">${hiveOutputFolder}</span></span>
+* <span data-ttu-id="9e74c-170">${hiveTableName}</span><span class="sxs-lookup"><span data-stu-id="9e74c-170">${hiveTableName}</span></span>
+* <span data-ttu-id="9e74c-171">${hiveDataFolder}</span><span class="sxs-lookup"><span data-stu-id="9e74c-171">${hiveDataFolder}</span></span>
+* <span data-ttu-id="9e74c-172">${hiveOutputFolder}</span><span class="sxs-lookup"><span data-stu-id="9e74c-172">${hiveOutputFolder}</span></span>
 
-<span data-ttu-id="c8871-173">工作流程定義檔 (在本教學課程中為 workflow.xml) 會在執行階段將這些值傳遞至此 HiveQL 指令碼。</span><span class="sxs-lookup"><span data-stu-id="c8871-173">The workflow definition file (workflow.xml in this tutorial) passes these values to this HiveQL script at run time.</span></span>
+<span data-ttu-id="9e74c-173">hello 工作流程定義檔 (在本教學課程 workflow.xml) 會傳遞這些值 toothis 下列 HiveQL 指令碼在執行階段。</span><span class="sxs-lookup"><span data-stu-id="9e74c-173">hello workflow definition file (workflow.xml in this tutorial) passes these values toothis HiveQL script at run time.</span></span>
 
-<span data-ttu-id="c8871-174">工作流程檔案和 HiveQL 檔案均會儲存在 Blob 容器中。</span><span class="sxs-lookup"><span data-stu-id="c8871-174">Both the workflow file and the HiveQL file are stored in a blob container.</span></span>  <span data-ttu-id="c8871-175">您稍後在本教學課程中，會使用 PowerShell 指令碼，將這兩個檔案複製到預設儲存體帳戶中。</span><span class="sxs-lookup"><span data-stu-id="c8871-175">The PowerShell script you use later in this tutorial copies both files to the default Storage account.</span></span> 
+<span data-ttu-id="9e74c-174">Hello 工作流程檔案和 hello HiveQL 檔案會儲存在 blob 容器中。</span><span class="sxs-lookup"><span data-stu-id="9e74c-174">Both hello workflow file and hello HiveQL file are stored in a blob container.</span></span>  <span data-ttu-id="9e74c-175">hello 您稍後在本教學課程中使用的 PowerShell 指令碼將複製這兩個檔案 toohello 預設儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="9e74c-175">hello PowerShell script you use later in this tutorial copies both files toohello default Storage account.</span></span> 
 
-## <a name="submit-oozie-jobs-using-powershell"></a><span data-ttu-id="c8871-176">使用 PowerShell 提交 Oozie 工作</span><span class="sxs-lookup"><span data-stu-id="c8871-176">Submit Oozie jobs using PowerShell</span></span>
-<span data-ttu-id="c8871-177">Azure PowerShell 目前並未提供任何用以定義 Oozie 工作的 Cmdlet。</span><span class="sxs-lookup"><span data-stu-id="c8871-177">Azure PowerShell currently doesn't provide any cmdlets for defining Oozie jobs.</span></span> <span data-ttu-id="c8871-178">您可以使用 **Invoke-RestMethod** Cmdlet 來叫用 Oozie Web 服務。</span><span class="sxs-lookup"><span data-stu-id="c8871-178">You can use the **Invoke-RestMethod** cmdlet to invoke Oozie web services.</span></span> <span data-ttu-id="c8871-179">Oozie Web 服務 API 是 HTTP REST JSON API。</span><span class="sxs-lookup"><span data-stu-id="c8871-179">The Oozie web services API is a HTTP REST JSON API.</span></span> <span data-ttu-id="c8871-180">如需關於 Oozie Web 服務 API 的詳細資訊，請參閱 [Apache Oozie 4.0 文件][apache-oozie-400] (適用於 HDInsight 3.0 版) 或 [Apache Oozie 3.3.2 文件][apache-oozie-332](適用於 HDInsight 2.1 版)。</span><span class="sxs-lookup"><span data-stu-id="c8871-180">For more information about the Oozie web services API, see [Apache Oozie 4.0 documentation][apache-oozie-400] (for HDInsight version 3.0) or [Apache Oozie 3.3.2 documentation][apache-oozie-332] (for HDInsight version 2.1).</span></span>
+## <a name="submit-oozie-jobs-using-powershell"></a><span data-ttu-id="9e74c-176">使用 PowerShell 提交 Oozie 工作</span><span class="sxs-lookup"><span data-stu-id="9e74c-176">Submit Oozie jobs using PowerShell</span></span>
+<span data-ttu-id="9e74c-177">Azure PowerShell 目前並未提供任何用以定義 Oozie 工作的 Cmdlet。</span><span class="sxs-lookup"><span data-stu-id="9e74c-177">Azure PowerShell currently doesn't provide any cmdlets for defining Oozie jobs.</span></span> <span data-ttu-id="9e74c-178">您可以使用 hello **Invoke-restmethod** cmdlet tooinvoke Oozie web 服務。</span><span class="sxs-lookup"><span data-stu-id="9e74c-178">You can use hello **Invoke-RestMethod** cmdlet tooinvoke Oozie web services.</span></span> <span data-ttu-id="9e74c-179">hello Oozie web 服務應用程式開發介面是 HTTP REST JSON API。</span><span class="sxs-lookup"><span data-stu-id="9e74c-179">hello Oozie web services API is a HTTP REST JSON API.</span></span> <span data-ttu-id="9e74c-180">如需 hello Oozie web 服務應用程式開發介面的詳細資訊，請參閱[Apache Oozie 4.0 版文件][ apache-oozie-400] （適用於 HDInsight 3.0 版) 或[Apache Oozie 3.3.2 文件][apache-oozie-332] （適用於 HDInsight 版本 2.1)。</span><span class="sxs-lookup"><span data-stu-id="9e74c-180">For more information about hello Oozie web services API, see [Apache Oozie 4.0 documentation][apache-oozie-400] (for HDInsight version 3.0) or [Apache Oozie 3.3.2 documentation][apache-oozie-332] (for HDInsight version 2.1).</span></span>
 
-<span data-ttu-id="c8871-181">本節中的 PowerShell 指令碼會執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="c8871-181">The PowerShell script in this section performs the following steps:</span></span>
+<span data-ttu-id="9e74c-181">hello 本節中的 PowerShell 指令碼會執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="9e74c-181">hello PowerShell script in this section performs hello following steps:</span></span>
 
-1. <span data-ttu-id="c8871-182">連接到 Azure。</span><span class="sxs-lookup"><span data-stu-id="c8871-182">Connect to Azure.</span></span>
-2. <span data-ttu-id="c8871-183">建立 Azure 資源群組。</span><span class="sxs-lookup"><span data-stu-id="c8871-183">Create an Azure resource group.</span></span> <span data-ttu-id="c8871-184">如需詳細資訊，請參閱 [將 Azure PowerShell 與 Azure 資源管理員搭配使用](../powershell-azure-resource-manager.md)。</span><span class="sxs-lookup"><span data-stu-id="c8871-184">For more information, see [Use Azure PowerShell with Azure Resource Manager](../powershell-azure-resource-manager.md).</span></span>
-3. <span data-ttu-id="c8871-185">建立 Azure SQL Database 伺服器、Azure SQL Database 和兩個資料表。</span><span class="sxs-lookup"><span data-stu-id="c8871-185">Create an Azure SQL Database server, an Azure SQL database, and two tables.</span></span> <span data-ttu-id="c8871-186">Sqoop 動作會在工作流程中用到它們。</span><span class="sxs-lookup"><span data-stu-id="c8871-186">These are used by the Sqoop action in the workflow.</span></span>
+1. <span data-ttu-id="9e74c-182">連接 tooAzure。</span><span class="sxs-lookup"><span data-stu-id="9e74c-182">Connect tooAzure.</span></span>
+2. <span data-ttu-id="9e74c-183">建立 Azure 資源群組。</span><span class="sxs-lookup"><span data-stu-id="9e74c-183">Create an Azure resource group.</span></span> <span data-ttu-id="9e74c-184">如需詳細資訊，請參閱 [將 Azure PowerShell 與 Azure 資源管理員搭配使用](../powershell-azure-resource-manager.md)。</span><span class="sxs-lookup"><span data-stu-id="9e74c-184">For more information, see [Use Azure PowerShell with Azure Resource Manager](../powershell-azure-resource-manager.md).</span></span>
+3. <span data-ttu-id="9e74c-185">建立 Azure SQL Database 伺服器、Azure SQL Database 和兩個資料表。</span><span class="sxs-lookup"><span data-stu-id="9e74c-185">Create an Azure SQL Database server, an Azure SQL database, and two tables.</span></span> <span data-ttu-id="9e74c-186">Hello Sqoop hello 工作流程中的動作會使用這些名稱。</span><span class="sxs-lookup"><span data-stu-id="9e74c-186">These are used by hello Sqoop action in hello workflow.</span></span>
    
-    <span data-ttu-id="c8871-187">資料表名稱為 *log4jLogCount*。</span><span class="sxs-lookup"><span data-stu-id="c8871-187">The table name is *log4jLogCount*.</span></span>
-4. <span data-ttu-id="c8871-188">建立用來執行 Oozie 工作的 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="c8871-188">Create an HDInsight cluster used to run Oozie jobs.</span></span>
+    <span data-ttu-id="9e74c-187">hello 資料表名稱是*log4jLogCount*。</span><span class="sxs-lookup"><span data-stu-id="9e74c-187">hello table name is *log4jLogCount*.</span></span>
+4. <span data-ttu-id="9e74c-188">建立 HDInsight 叢集使用 toorun Oozie 作業。</span><span class="sxs-lookup"><span data-stu-id="9e74c-188">Create an HDInsight cluster used toorun Oozie jobs.</span></span>
    
-    <span data-ttu-id="c8871-189">若要檢查叢集，您可以使用 Azure 入口網站或 Azure PowerShell。</span><span class="sxs-lookup"><span data-stu-id="c8871-189">To examine the cluster, you can use the Azure portal or Azure PowerShell.</span></span>
-5. <span data-ttu-id="c8871-190">將 Oozie 工作流程檔案和 HiveQL 指令碼檔案複製到預設檔案系統中。</span><span class="sxs-lookup"><span data-stu-id="c8871-190">Copy the oozie workflow file and the HiveQL script file to the default file system.</span></span>
+    <span data-ttu-id="9e74c-189">tooexamine hello 叢集中，您可以使用 hello Azure 入口網站或 Azure PowerShell。</span><span class="sxs-lookup"><span data-stu-id="9e74c-189">tooexamine hello cluster, you can use hello Azure portal or Azure PowerShell.</span></span>
+5. <span data-ttu-id="9e74c-190">Hello oozie 工作流程檔案和 hello 下列 HiveQL 指令碼檔案 toohello 預設檔案系統複製。</span><span class="sxs-lookup"><span data-stu-id="9e74c-190">Copy hello oozie workflow file and hello HiveQL script file toohello default file system.</span></span>
    
-    <span data-ttu-id="c8871-191">這兩個檔案會儲存在公用 Blob 容器。</span><span class="sxs-lookup"><span data-stu-id="c8871-191">Both files are stored in a public Blob container.</span></span>
+    <span data-ttu-id="9e74c-191">這兩個檔案會儲存在公用 Blob 容器。</span><span class="sxs-lookup"><span data-stu-id="9e74c-191">Both files are stored in a public Blob container.</span></span>
    
-   * <span data-ttu-id="c8871-192">將 HiveQL 指令碼 (useoozie.hql) 複製到 Azure 儲存體 (wasb:///tutorials/useoozie/useoozie.hql)。</span><span class="sxs-lookup"><span data-stu-id="c8871-192">Copy the HiveQL script (useoozie.hql) to Azure Storage (wasb:///tutorials/useoozie/useoozie.hql).</span></span>
-   * <span data-ttu-id="c8871-193">將 workflow.xml 複製到 wasb:///tutorials/useoozie/workflow.xml。</span><span class="sxs-lookup"><span data-stu-id="c8871-193">Copy workflow.xml to wasb:///tutorials/useoozie/workflow.xml.</span></span>
-   * <span data-ttu-id="c8871-194">將資料檔案 (/example/data/sample.log) 複製到 wasb:///tutorials/useoozie/data/sample.log。</span><span class="sxs-lookup"><span data-stu-id="c8871-194">Copy the data file (/example/data/sample.log) to wasb:///tutorials/useoozie/data/sample.log.</span></span>
-6. <span data-ttu-id="c8871-195">提交 Oozie 工作。</span><span class="sxs-lookup"><span data-stu-id="c8871-195">Submit an Oozie job.</span></span>
+   * <span data-ttu-id="9e74c-192">將複製 hello 下列 HiveQL 指令碼 (useoozie.hql) tooAzure 儲存體 (wasb:///tutorials/useoozie/useoozie.hql)。</span><span class="sxs-lookup"><span data-stu-id="9e74c-192">Copy hello HiveQL script (useoozie.hql) tooAzure Storage (wasb:///tutorials/useoozie/useoozie.hql).</span></span>
+   * <span data-ttu-id="9e74c-193">將複製 workflow.xml toowasb:///tutorials/useoozie/workflow.xml。</span><span class="sxs-lookup"><span data-stu-id="9e74c-193">Copy workflow.xml toowasb:///tutorials/useoozie/workflow.xml.</span></span>
+   * <span data-ttu-id="9e74c-194">複製 hello 資料檔 (/ example/data/sample.log) toowasb:///tutorials/useoozie/data/sample.log。</span><span class="sxs-lookup"><span data-stu-id="9e74c-194">Copy hello data file (/example/data/sample.log) toowasb:///tutorials/useoozie/data/sample.log.</span></span>
+6. <span data-ttu-id="9e74c-195">提交 Oozie 工作。</span><span class="sxs-lookup"><span data-stu-id="9e74c-195">Submit an Oozie job.</span></span>
    
-    <span data-ttu-id="c8871-196">若要檢查 Oozie 工作的結果，請使用 Visual Studio 或其他工具來連接到 Azure SQL Database。</span><span class="sxs-lookup"><span data-stu-id="c8871-196">To examine the OOzie job results, use Visual Studio or other tools to connect to the Azure SQL Database.</span></span>
+    <span data-ttu-id="9e74c-196">tooexamine hello OOzie 作業結果，請使用 Visual Studio 或其他工具 tooconnect toohello Azure SQL Database。</span><span class="sxs-lookup"><span data-stu-id="9e74c-196">tooexamine hello OOzie job results, use Visual Studio or other tools tooconnect toohello Azure SQL Database.</span></span>
 
-<span data-ttu-id="c8871-197">指令碼如下。</span><span class="sxs-lookup"><span data-stu-id="c8871-197">Here is the script.</span></span>  <span data-ttu-id="c8871-198">您可以從 Windows PowerShell ISE 執行指令碼。</span><span class="sxs-lookup"><span data-stu-id="c8871-198">You can run the script from Windows PowerShell ISE.</span></span> <span data-ttu-id="c8871-199">您只需要設定前 7 個變數。</span><span class="sxs-lookup"><span data-stu-id="c8871-199">You only need to configure the first 7 variables.</span></span>
+<span data-ttu-id="9e74c-197">以下是 hello 指令碼。</span><span class="sxs-lookup"><span data-stu-id="9e74c-197">Here is hello script.</span></span>  <span data-ttu-id="9e74c-198">您可以從 Windows PowerShell ISE 中執行 hello 指令碼。</span><span class="sxs-lookup"><span data-stu-id="9e74c-198">You can run hello script from Windows PowerShell ISE.</span></span> <span data-ttu-id="9e74c-199">您只需要 tooconfigure hello 前 7 的變數。</span><span class="sxs-lookup"><span data-stu-id="9e74c-199">You only need tooconfigure hello first 7 variables.</span></span>
 
-    #region - provide the following values
+    #region - provide hello following values
 
     $subscriptionID = "<Enter your Azure subscription ID>"
 
@@ -207,7 +207,7 @@ ms.lasthandoff: 08/29/2017
     $sqlDatabasePassword = "<Enter SQL Database Login Password>"
 
     # HDInsight cluster HTTP user credential used for creating and connectin
-    $httpUserName = "admin"  # The default name is "admin"
+    $httpUserName = "admin"  # hello default name is "admin"
     $httpPassword = "<Enter HDInsight Cluster HTTP User Password>"
 
     # Used for creating Azure service names
@@ -240,8 +240,8 @@ ms.lasthandoff: 08/29/2017
     # Treat all errors as terminating
     $ErrorActionPreference = "Stop"
 
-    #region - Connect to Azure subscription
-    Write-Host "`nConnecting to your Azure subscription ..." -ForegroundColor Green
+    #region - Connect tooAzure subscription
+    Write-Host "`nConnecting tooyour Azure subscription ..." -ForegroundColor Green
     try{Get-AzureRmContext}
     catch{
         Login-AzureRmAccount
@@ -285,8 +285,8 @@ ms.lasthandoff: 08/29/2017
             -StartIpAddress $workstationIPAddress `
             -EndIpAddress $workstationIPAddress
 
-        #To allow other Azure services to access the server add a firewall rule and set both the StartIpAddress and EndIpAddress to 0.0.0.0. 
-        #Note that this allows Azure traffic from any Azure subscription to access the server.
+        #tooallow other Azure services tooaccess hello server add a firewall rule and set both hello StartIpAddress and EndIpAddress too0.0.0.0. 
+        #Note that this allows Azure traffic from any Azure subscription tooaccess hello server.
         New-AzureRmSqlServerFirewallRule `
             -ResourceGroupName $resourceGroupName `
             -ServerName $sqlDatabaseServerName `
@@ -316,7 +316,7 @@ ms.lasthandoff: 08/29/2017
     #endregion
 
     #region - Create SQL database tables
-    Write-Host "Creating the log4jlogs table  ..." -ForegroundColor Green
+    Write-Host "Creating hello log4jlogs table  ..." -ForegroundColor Green
 
     $sqlDatabaseTableName = "log4jLogsCount"
     $cmdCreateLog4jCountTable = " CREATE TABLE [dbo].[$sqlDatabaseTableName](
@@ -332,7 +332,7 @@ ms.lasthandoff: 08/29/2017
     $conn.ConnectionString = $sqlDatabaseConnectionString
     $conn.Open()
 
-    # Create the log4jlogs table and index
+    # Create hello log4jlogs table and index
     $cmd = New-Object System.Data.SqlClient.SqlCommand
     $cmd.Connection = $conn
     $cmd.CommandText = $cmdCreateLog4jCountTable
@@ -343,16 +343,16 @@ ms.lasthandoff: 08/29/2017
 
     #region - Create HDInsight cluster
 
-    Write-Host "Creating the HDInsight cluster and the dependent services ..." -ForegroundColor Green
+    Write-Host "Creating hello HDInsight cluster and hello dependent services ..." -ForegroundColor Green
 
-    # Create the default storage account
+    # Create hello default storage account
     New-AzureRmStorageAccount `
         -ResourceGroupName $resourceGroupName `
         -Name $defaultStorageAccountName `
         -Location $location `
         -Type Standard_LRS
 
-    # Create the default Blob container
+    # Create hello default Blob container
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey `
                                     -ResourceGroupName $resourceGroupName `
                                     -Name $defaultStorageAccountName)[0].Value
@@ -363,7 +363,7 @@ ms.lasthandoff: 08/29/2017
         -Name $defaultBlobContainerName `
         -Context $defaultStorageAccountContext 
 
-    # Create the HDInsight cluster
+    # Create hello HDInsight cluster
     $pw = ConvertTo-SecureString -String $httpPassword -AsPlainText -Force
     $httpCredential = New-Object System.Management.Automation.PSCredential($httpUserName,$pw)
 
@@ -379,7 +379,7 @@ ms.lasthandoff: 08/29/2017
         -DefaultStorageAccountKey $defaultStorageAccountKey `
         -DefaultStorageContainer $defaultBlobContainerName 
 
-    # Validate the cluster
+    # Validate hello cluster
     Get-AzureRmHDInsightCluster -ClusterName $hdinsightClusterName
     #endregion
 
@@ -390,8 +390,8 @@ ms.lasthandoff: 08/29/2017
     # Both files are stored in a public Blob
     $publicBlobContext = New-AzureStorageContext -StorageAccountName "hditutorialdata" -Anonymous
 
-    # WASB folder for storing the Oozie tutorial files.
-    $destFolder = "tutorials/useoozie"  # Do NOT use the long path here
+    # WASB folder for storing hello Oozie tutorial files.
+    $destFolder = "tutorials/useoozie"  # Do NOT use hello long path here
 
     Start-CopyAzureStorageBlob `
         -Context $publicBlobContext `
@@ -411,7 +411,7 @@ ms.lasthandoff: 08/29/2017
         -DestBlob "$destFolder/workflow.xml" `
         -Force
 
-    #validate the copy
+    #validate hello copy
     Get-AzureStorageBlob `
         -Context $defaultStorageAccountContext `
         -Container $defaultBlobContainerName `
@@ -424,9 +424,9 @@ ms.lasthandoff: 08/29/2017
 
     #endregion
 
-    #region - copy the sample.log file
+    #region - copy hello sample.log file
 
-    Write-Host "Make a copy of the sample.log file ... " -ForegroundColor Green
+    Write-Host "Make a copy of hello sample.log file ... " -ForegroundColor Green
 
     Start-CopyAzureStorageBlob `
         -Context $defaultStorageAccountContext `
@@ -436,7 +436,7 @@ ms.lasthandoff: 08/29/2017
         -DestContainer $defaultBlobContainerName `
         -destBlob "$destFolder/data/sample.log" 
 
-    #validate the copy
+    #validate hello copy
     Get-AzureStorageBlob `
         -Context $defaultStorageAccountContext `
         -Container $defaultBlobContainerName `
@@ -451,7 +451,7 @@ ms.lasthandoff: 08/29/2017
     $oozieJobName = $namePrefix + "OozieJob"
 
     #Oozie WF variables
-    $oozieWFPath="$storageUri/tutorials/useoozie"  # The default name is workflow.xml. And you don't need to specify the file name.
+    $oozieWFPath="$storageUri/tutorials/useoozie"  # hello default name is workflow.xml. And you don't need toospecify hello file name.
     $waitTimeBetweenOozieJobStatusCheck=10
 
     #Hive action variables
@@ -539,7 +539,7 @@ ms.lasthandoff: 08/29/2017
     Write-Host "Oozie server status is $oozieServerSatus."
 
     # create Oozie job
-    Write-Host "Sending the following Payload to the cluster:" -ForegroundColor Green
+    Write-Host "Sending hello following Payload toohello cluster:" -ForegroundColor Green
     Write-Host "`n--------`n$OoziePayload`n--------"
     $clusterUriCreateJob = "https://$hdinsightClusterName.azurehdinsight.net:443/oozie/v2/jobs"
     $response = Invoke-RestMethod -Method Post -Uri $clusterUriCreateJob -Credential $httpCredential -Body $OoziePayload -ContentType "application/xml" -OutVariable $OozieJobName #-debug
@@ -549,15 +549,15 @@ ms.lasthandoff: 08/29/2017
     Write-Host "Oozie job id is $oozieJobId..."
 
     # start Oozie job
-    Write-Host "Starting the Oozie job $oozieJobId..." -ForegroundColor Green
+    Write-Host "Starting hello Oozie job $oozieJobId..." -ForegroundColor Green
     $clusterUriStartJob = "https://$hdinsightClusterName.azurehdinsight.net:443/oozie/v2/job/" + $oozieJobId + "?action=start"
     $response = Invoke-RestMethod -Method Put -Uri $clusterUriStartJob -Credential $httpCredential | Format-Table -HideTableHeaders #-debug
 
     # get job status
-    Write-Host "Sleeping for $waitTimeBetweenOozieJobStatusCheck seconds until the job metadata is populated in the Oozie metastore..." -ForegroundColor Green
+    Write-Host "Sleeping for $waitTimeBetweenOozieJobStatusCheck seconds until hello job metadata is populated in hello Oozie metastore..." -ForegroundColor Green
     Start-Sleep -Seconds $waitTimeBetweenOozieJobStatusCheck
 
-    Write-Host "Getting job status and waiting for the job to complete..." -ForegroundColor Green
+    Write-Host "Getting job status and waiting for hello job toocomplete..." -ForegroundColor Green
     $clusterUriGetJobStatus = "https://$hdinsightClusterName.azurehdinsight.net:443/oozie/v2/job/" + $oozieJobId + "?show=info"
     $response = Invoke-RestMethod -Method Get -Uri $clusterUriGetJobStatus -Credential $httpCredential
     $jsonResponse = ConvertFrom-Json (ConvertTo-Json -InputObject $response)
@@ -565,7 +565,7 @@ ms.lasthandoff: 08/29/2017
 
     while($JobStatus -notmatch "SUCCEEDED|KILLED")
     {
-        Write-Host "$(Get-Date -format 'G'): $oozieJobId is in $JobStatus state...waiting $waitTimeBetweenOozieJobStatusCheck seconds for the job to complete..."
+        Write-Host "$(Get-Date -format 'G'): $oozieJobId is in $JobStatus state...waiting $waitTimeBetweenOozieJobStatusCheck seconds for hello job toocomplete..."
         Start-Sleep -Seconds $waitTimeBetweenOozieJobStatusCheck
         $response = Invoke-RestMethod -Method Get -Uri $clusterUriGetJobStatus -Credential $httpCredential
         $jsonResponse = ConvertFrom-Json (ConvertTo-Json -InputObject $response)
@@ -578,14 +578,14 @@ ms.lasthandoff: 08/29/2017
     #endregion
 
 
-<span data-ttu-id="c8871-200">**重新執行教學課程**</span><span class="sxs-lookup"><span data-stu-id="c8871-200">**To re-run the tutorial**</span></span>
+<span data-ttu-id="9e74c-200">**toore 執行 hello 教學課程**</span><span class="sxs-lookup"><span data-stu-id="9e74c-200">**toore-run hello tutorial**</span></span>
 
-<span data-ttu-id="c8871-201">若要重新執行工作流程，您必須刪除以下項目：</span><span class="sxs-lookup"><span data-stu-id="c8871-201">To re-run the workflow, you must delete the following items:</span></span>
+<span data-ttu-id="9e74c-201">hello toore 執行工作流程，您必須刪除下列項目 hello:</span><span class="sxs-lookup"><span data-stu-id="9e74c-201">toore-run hello workflow, you must delete hello following items:</span></span>
 
-* <span data-ttu-id="c8871-202">Hive 指令碼輸出檔案</span><span class="sxs-lookup"><span data-stu-id="c8871-202">The Hive script output file</span></span>
-* <span data-ttu-id="c8871-203">log4jLogsCount 資料表中的資料</span><span class="sxs-lookup"><span data-stu-id="c8871-203">The data in the log4jLogsCount table</span></span>
+* <span data-ttu-id="9e74c-202">hello Hive 指令碼輸出檔</span><span class="sxs-lookup"><span data-stu-id="9e74c-202">hello Hive script output file</span></span>
+* <span data-ttu-id="9e74c-203">hello log4jLogsCount 資料表中的 hello 資料</span><span class="sxs-lookup"><span data-stu-id="9e74c-203">hello data in hello log4jLogsCount table</span></span>
 
-<span data-ttu-id="c8871-204">以下提供可供使用的範例 PowerShell 指令碼：</span><span class="sxs-lookup"><span data-stu-id="c8871-204">Here is a sample PowerShell script that you can use:</span></span>
+<span data-ttu-id="9e74c-204">以下提供可供使用的範例 PowerShell 指令碼：</span><span class="sxs-lookup"><span data-stu-id="9e74c-204">Here is a sample PowerShell script that you can use:</span></span>
 
     $resourceGroupName = "<AzureResourceGroupName>"
 
@@ -599,14 +599,14 @@ ms.lasthandoff: 08/29/2017
     $sqlDatabaseName = "<SQLDatabaseName>"
     $sqlDatabaseTableName = "log4jLogsCount"
 
-    Write-host "Delete the Hive script output file ..." -ForegroundColor Green
+    Write-host "Delete hello Hive script output file ..." -ForegroundColor Green
     $defaultStorageAccountKey = (Get-AzureRmStorageAccountKey `
                                 -ResourceGroupName $resourceGroupName `
                                 -Name $defaultStorageAccountName)[0].Value
     $destContext = New-AzureStorageContext -StorageAccountName $defaultStorageAccountName -StorageAccountKey $defaultStorageAccountKey
     Remove-AzureStorageBlob -Context $destContext -Blob "tutorials/useoozie/output/000000_0" -Container $defaultBlobContainerName
 
-    Write-host "Delete all the records from the log4jLogsCount table ..." -ForegroundColor Green
+    Write-host "Delete all hello records from hello log4jLogsCount table ..." -ForegroundColor Green
     $conn = New-Object System.Data.SqlClient.SqlConnection
     $conn.ConnectionString = "Data Source=$sqlDatabaseServerName.database.windows.net;Initial Catalog=$sqlDatabaseName;User ID=$sqlDatabaseLogin;Password=$sqlDatabasePassword;Encrypt=true;Trusted_Connection=false;"
     $conn.open()
@@ -617,18 +617,18 @@ ms.lasthandoff: 08/29/2017
 
     $conn.close()
 
-## <a name="next-steps"></a><span data-ttu-id="c8871-205">後續步驟</span><span class="sxs-lookup"><span data-stu-id="c8871-205">Next steps</span></span>
-<span data-ttu-id="c8871-206">在本教學課程中，您已了解如何定義 Oozie 工作流程，以及如何使用 PowerShell 執行 Oozie 工作。</span><span class="sxs-lookup"><span data-stu-id="c8871-206">In this tutorial, you learned how to define an Oozie workflow and how to run an Oozie job by using PowerShell.</span></span> <span data-ttu-id="c8871-207">若要深入了解，請參閱下列文章：</span><span class="sxs-lookup"><span data-stu-id="c8871-207">To learn more, see the following articles:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="9e74c-205">後續步驟</span><span class="sxs-lookup"><span data-stu-id="9e74c-205">Next steps</span></span>
+<span data-ttu-id="9e74c-206">在本教學課程中，您學到如何 toodefine Oozie 工作流程和 toorun Oozie 使用 PowerShell 的工作。</span><span class="sxs-lookup"><span data-stu-id="9e74c-206">In this tutorial, you learned how toodefine an Oozie workflow and how toorun an Oozie job by using PowerShell.</span></span> <span data-ttu-id="9e74c-207">toolearn 詳細資訊，請參閱下列文章 hello:</span><span class="sxs-lookup"><span data-stu-id="9e74c-207">toolearn more, see hello following articles:</span></span>
 
-* <span data-ttu-id="c8871-208">[搭配 HDInsight 使用以時間為基礎的 Hadoop Oozie 協調器][hdinsight-oozie-coordinator-time]</span><span class="sxs-lookup"><span data-stu-id="c8871-208">[Use time-based Oozie Coordinator with HDInsight][hdinsight-oozie-coordinator-time]</span></span>
-* <span data-ttu-id="c8871-209">[開始在 HDInsight 中搭配 Hive 使用 Hadoop 以分析行動電話使用][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="c8871-209">[Get started using Hadoop with Hive in HDInsight to analyze mobile handset use][hdinsight-get-started]</span></span>
-* <span data-ttu-id="c8871-210">[搭配 HDInsight 使用 Azure Blob 儲存體][hdinsight-storage]</span><span class="sxs-lookup"><span data-stu-id="c8871-210">[Use Azure Blob storage with HDInsight][hdinsight-storage]</span></span>
-* <span data-ttu-id="c8871-211">[使用 PowerShell 管理 HDInsight][hdinsight-admin-powershell]</span><span class="sxs-lookup"><span data-stu-id="c8871-211">[Administer HDInsight using PowerShell][hdinsight-admin-powershell]</span></span>
-* <span data-ttu-id="c8871-212">[在 HDInsight 中上傳 Hadoop 作業的資料][hdinsight-upload-data]</span><span class="sxs-lookup"><span data-stu-id="c8871-212">[Upload data for Hadoop jobs in HDInsight][hdinsight-upload-data]</span></span>
-* <span data-ttu-id="c8871-213">[搭配使用 Sqoop 與 HDInsight 中的 Hadoop][hdinsight-use-sqoop]</span><span class="sxs-lookup"><span data-stu-id="c8871-213">[Use Sqoop with Hadoop in HDInsight][hdinsight-use-sqoop]</span></span>
-* <span data-ttu-id="c8871-214">[搭配使用 Hive 與 HDInsight 上的 Hadoop][hdinsight-use-hive]</span><span class="sxs-lookup"><span data-stu-id="c8871-214">[Use Hive with Hadoop on HDInsight][hdinsight-use-hive]</span></span>
-* <span data-ttu-id="c8871-215">[搭配使用 Pig 與 HDInsight 上的 Hadoop][hdinsight-use-pig]</span><span class="sxs-lookup"><span data-stu-id="c8871-215">[Use Pig with Hadoop on HDInsight][hdinsight-use-pig]</span></span>
-* <span data-ttu-id="c8871-216">[開發 HDInsight 的 Java MapReduce 程式][hdinsight-develop-mapreduce]</span><span class="sxs-lookup"><span data-stu-id="c8871-216">[Develop Java MapReduce programs for HDInsight][hdinsight-develop-mapreduce]</span></span>
+* <span data-ttu-id="9e74c-208">[搭配 HDInsight 使用以時間為基礎的 Hadoop Oozie 協調器][hdinsight-oozie-coordinator-time]</span><span class="sxs-lookup"><span data-stu-id="9e74c-208">[Use time-based Oozie Coordinator with HDInsight][hdinsight-oozie-coordinator-time]</span></span>
+* <span data-ttu-id="9e74c-209">[開始使用登錄區中的 Hadoop，HDInsight tooanalyze 行動話筒使用中][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="9e74c-209">[Get started using Hadoop with Hive in HDInsight tooanalyze mobile handset use][hdinsight-get-started]</span></span>
+* <span data-ttu-id="9e74c-210">[搭配 HDInsight 使用 Azure Blob 儲存體][hdinsight-storage]</span><span class="sxs-lookup"><span data-stu-id="9e74c-210">[Use Azure Blob storage with HDInsight][hdinsight-storage]</span></span>
+* <span data-ttu-id="9e74c-211">[使用 PowerShell 管理 HDInsight][hdinsight-admin-powershell]</span><span class="sxs-lookup"><span data-stu-id="9e74c-211">[Administer HDInsight using PowerShell][hdinsight-admin-powershell]</span></span>
+* <span data-ttu-id="9e74c-212">[在 HDInsight 中上傳 Hadoop 作業的資料][hdinsight-upload-data]</span><span class="sxs-lookup"><span data-stu-id="9e74c-212">[Upload data for Hadoop jobs in HDInsight][hdinsight-upload-data]</span></span>
+* <span data-ttu-id="9e74c-213">[搭配使用 Sqoop 與 HDInsight 中的 Hadoop][hdinsight-use-sqoop]</span><span class="sxs-lookup"><span data-stu-id="9e74c-213">[Use Sqoop with Hadoop in HDInsight][hdinsight-use-sqoop]</span></span>
+* <span data-ttu-id="9e74c-214">[搭配使用 Hive 與 HDInsight 上的 Hadoop][hdinsight-use-hive]</span><span class="sxs-lookup"><span data-stu-id="9e74c-214">[Use Hive with Hadoop on HDInsight][hdinsight-use-hive]</span></span>
+* <span data-ttu-id="9e74c-215">[搭配使用 Pig 與 HDInsight 上的 Hadoop][hdinsight-use-pig]</span><span class="sxs-lookup"><span data-stu-id="9e74c-215">[Use Pig with Hadoop on HDInsight][hdinsight-use-pig]</span></span>
+* <span data-ttu-id="9e74c-216">[開發 HDInsight 的 Java MapReduce 程式][hdinsight-develop-mapreduce]</span><span class="sxs-lookup"><span data-stu-id="9e74c-216">[Develop Java MapReduce programs for HDInsight][hdinsight-develop-mapreduce]</span></span>
 
 [hdinsight-cmdlets-download]: http://go.microsoft.com/fwlink/?LinkID=325563
 

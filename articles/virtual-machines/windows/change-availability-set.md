@@ -1,6 +1,6 @@
 ---
-title: "變更 VM 可用性設定組 | Microsoft Docs"
-description: "了解如何使用 Azure PowerShell 和 Resource Manager 部署模型來變更虛擬機器的可用性設定組。"
+title: "aaaChange Vm 的可用性設定組 |Microsoft 文件"
+description: "了解 toochange hello 可用性設定虛擬機器使用 Azure PowerShell 及 hello Resource Manager 部署模型的方式。"
 keywords: 
 services: virtual-machines-windows
 documentationcenter: 
@@ -16,38 +16,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/15/2016
 ms.author: drewm
-ms.openlocfilehash: d1daa01191480eaeb81727416b2134b00c698dc3
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 3b1cc010a6d4c4883f2e34da9cfca4372aec92cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="change-the-availability-set-for-a-windows-vm"></a><span data-ttu-id="5cc11-103">變更 Windows VM 的可用性設定組</span><span class="sxs-lookup"><span data-stu-id="5cc11-103">Change the availability set for a Windows VM</span></span>
-<span data-ttu-id="5cc11-104">下列步驟說明如何使用 Azure PowerShell 來變更 VM 的可用性設定組。</span><span class="sxs-lookup"><span data-stu-id="5cc11-104">The following steps describe how to change the availability set of a VM using Azure PowerShell.</span></span> <span data-ttu-id="5cc11-105">只有在建立 VM 時，才能將 VM 新增到可用性設定組中。</span><span class="sxs-lookup"><span data-stu-id="5cc11-105">A VM can only be added to an availability set when it is created.</span></span> <span data-ttu-id="5cc11-106">若要變更可用性設定組，您必須將虛擬機器刪除後再重新建立。</span><span class="sxs-lookup"><span data-stu-id="5cc11-106">In order to change the availability set, you need to delete and recreate the virtual machine.</span></span> 
+# <a name="change-hello-availability-set-for-a-windows-vm"></a><span data-ttu-id="e6a09-103">變更 hello 可用性集合，針對 Windows VM</span><span class="sxs-lookup"><span data-stu-id="e6a09-103">Change hello availability set for a Windows VM</span></span>
+<span data-ttu-id="e6a09-104">hello 下列步驟說明如何 toochange hello 可用性設定組的 VM，使用 Azure PowerShell。</span><span class="sxs-lookup"><span data-stu-id="e6a09-104">hello following steps describe how toochange hello availability set of a VM using Azure PowerShell.</span></span> <span data-ttu-id="e6a09-105">VM 只能加入 tooan 可用性設定組在建立時。</span><span class="sxs-lookup"><span data-stu-id="e6a09-105">A VM can only be added tooan availability set when it is created.</span></span> <span data-ttu-id="e6a09-106">在訂單 toochange hello 可用性設定組，您需要 toodelete，並重新建立 hello 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="e6a09-106">In order toochange hello availability set, you need toodelete and recreate hello virtual machine.</span></span> 
 
-## <a name="change-the-availability-set-using-powershell"></a><span data-ttu-id="5cc11-107">使用 PowerShell 來變更可用性設定組</span><span class="sxs-lookup"><span data-stu-id="5cc11-107">Change the availability set using PowerShell</span></span>
-1. <span data-ttu-id="5cc11-108">從要修改的 VM 中擷取下列主要詳細資料。</span><span class="sxs-lookup"><span data-stu-id="5cc11-108">Capture the following key details from the VM to be modified.</span></span>
+## <a name="change-hello-availability-set-using-powershell"></a><span data-ttu-id="e6a09-107">變更 hello 可用性集合，使用 PowerShell</span><span class="sxs-lookup"><span data-stu-id="e6a09-107">Change hello availability set using PowerShell</span></span>
+1. <span data-ttu-id="e6a09-108">擷取 hello hello VM toobe 修改中的下列索引鍵的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="e6a09-108">Capture hello following key details from hello VM toobe modified.</span></span>
    
-    <span data-ttu-id="5cc11-109">VM 的名稱</span><span class="sxs-lookup"><span data-stu-id="5cc11-109">Name of the VM</span></span>
+    <span data-ttu-id="e6a09-109">Hello VM 的名稱</span><span class="sxs-lookup"><span data-stu-id="e6a09-109">Name of hello VM</span></span>
    
     ```powershell
     $vm = Get-AzureRmVM -ResourceGroupName <Name-of-resource-group> -Name <name-of-VM>
     $vm.Name
     ```
    
-    <span data-ttu-id="5cc11-110">VM 大小</span><span class="sxs-lookup"><span data-stu-id="5cc11-110">VM Size</span></span>
+    <span data-ttu-id="e6a09-110">VM 大小</span><span class="sxs-lookup"><span data-stu-id="e6a09-110">VM Size</span></span>
    
     ```powershell
     $vm.HardwareProfile.VmSize
     ```
    
-    <span data-ttu-id="5cc11-111">網路主要網路介面和選擇性網路介面 (如果它們存在於 VM 上)</span><span class="sxs-lookup"><span data-stu-id="5cc11-111">Network primary network interface and optional network interfaces if they exist on the VM</span></span>
+    <span data-ttu-id="e6a09-111">如果它們存在於網路主要網路介面和選用網路介面 hello VM</span><span class="sxs-lookup"><span data-stu-id="e6a09-111">Network primary network interface and optional network interfaces if they exist on hello VM</span></span>
    
     ```powershell
     $vm.NetworkProfile.NetworkInterfaces[0].Id
     ```
    
-    <span data-ttu-id="5cc11-112">OS 磁碟設定檔</span><span class="sxs-lookup"><span data-stu-id="5cc11-112">OS Disk Profile</span></span>
+    <span data-ttu-id="e6a09-112">OS 磁碟設定檔</span><span class="sxs-lookup"><span data-stu-id="e6a09-112">OS Disk Profile</span></span>
    
     ```powershell
     $vm.StorageProfile.OsDisk.OsType
@@ -55,29 +55,29 @@ ms.lasthandoff: 08/18/2017
     $vm.StorageProfile.OsDisk.Vhd.Uri
     ```
    
-    <span data-ttu-id="5cc11-113">每個資料磁碟的磁碟設定檔</span><span class="sxs-lookup"><span data-stu-id="5cc11-113">Disk profiles for each data disk</span></span> 
+    <span data-ttu-id="e6a09-113">每個資料磁碟的磁碟設定檔</span><span class="sxs-lookup"><span data-stu-id="e6a09-113">Disk profiles for each data disk</span></span> 
    
     ```powershell
     $vm.StorageProfile.DataDisks[<index>].Lun
     $vm.StorageProfile.DataDisks[<index>].Vhd.Uri
     ```
    
-    <span data-ttu-id="5cc11-114">已安裝的 VM 延伸模組</span><span class="sxs-lookup"><span data-stu-id="5cc11-114">VM extensions installed</span></span> 
+    <span data-ttu-id="e6a09-114">已安裝的 VM 延伸模組</span><span class="sxs-lookup"><span data-stu-id="e6a09-114">VM extensions installed</span></span> 
    
     ```powershell
     $vm.Extensions
     ```
-2. <span data-ttu-id="5cc11-115">刪除 VM 而不刪除任何磁碟或網路介面。</span><span class="sxs-lookup"><span data-stu-id="5cc11-115">Delete the VM without deleting any of the disks or the network interfaces.</span></span>
+2. <span data-ttu-id="e6a09-115">刪除 hello VM，但不刪除任何 hello 磁碟或 hello 網路介面。</span><span class="sxs-lookup"><span data-stu-id="e6a09-115">Delete hello VM without deleting any of hello disks or hello network interfaces.</span></span>
    
     ```powershell
     Remove-AzureRmVM -ResourceGroupName <resourceGroupName> -Name <vmName> 
     ```
-3. <span data-ttu-id="5cc11-116">建立可用性設定組 (如果可用性設定組尚未存在)</span><span class="sxs-lookup"><span data-stu-id="5cc11-116">Create the availability set if it does not already exist</span></span>
+3. <span data-ttu-id="e6a09-116">建立 hello 可用性設定組，如果不存在</span><span class="sxs-lookup"><span data-stu-id="e6a09-116">Create hello availability set if it does not already exist</span></span>
    
     ```powershell
     New-AzureRmAvailabilitySet -ResourceGroupName <resourceGroupName> -Name <availabilitySetName> -Location "<location>" 
     ```
-4. <span data-ttu-id="5cc11-117">使用新的可用性設定組來重新建立 VM</span><span class="sxs-lookup"><span data-stu-id="5cc11-117">Recreate the VM using the new availability set</span></span>
+4. <span data-ttu-id="e6a09-117">重新建立 hello VM 使用 hello 新的可用性集合</span><span class="sxs-lookup"><span data-stu-id="e6a09-117">Recreate hello VM using hello new availability set</span></span>
    
     ```powershell
     $vm2 = New-AzureRmVMConfig -VMName <VM-name> -VMSize <vm-size> -AvailabilitySetId <availability-set-id>
@@ -88,10 +88,10 @@ ms.lasthandoff: 08/18/2017
    
     New-AzureRmVM -ResourceGroupName <resourceGroupName> -Location <location> -VM <vmConfig>
     ``` 
-5. <span data-ttu-id="5cc11-118">新增資料磁碟和延伸模組。</span><span class="sxs-lookup"><span data-stu-id="5cc11-118">Add data disks and extensions.</span></span> <span data-ttu-id="5cc11-119">如需詳細資訊，請參閱[將資料磁碟連結到 VM](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 和 [Resource Manager 範本中的延伸模組](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#extensions)。</span><span class="sxs-lookup"><span data-stu-id="5cc11-119">For more information, see [Attach Data Disk to VM](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) and [Extensions in Resource Manager templates](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#extensions).</span></span> <span data-ttu-id="5cc11-120">您可以使用 PowerShell 或 Azure CLI 將資料磁碟和延伸模組新增到 VM 中。</span><span class="sxs-lookup"><span data-stu-id="5cc11-120">Data disks and extensions can be added to the VM using PowerShell or Azure CLI.</span></span>
+5. <span data-ttu-id="e6a09-118">新增資料磁碟和延伸模組。</span><span class="sxs-lookup"><span data-stu-id="e6a09-118">Add data disks and extensions.</span></span> <span data-ttu-id="e6a09-119">如需詳細資訊，請參閱[附加資料磁碟 tooVM](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)和[資源管理員範本中的延伸模組](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#extensions)。</span><span class="sxs-lookup"><span data-stu-id="e6a09-119">For more information, see [Attach Data Disk tooVM](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) and [Extensions in Resource Manager templates](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json#extensions).</span></span> <span data-ttu-id="e6a09-120">資料磁碟和擴充功能可以加入 toohello VM 使用 PowerShell 或 Azure CLI。</span><span class="sxs-lookup"><span data-stu-id="e6a09-120">Data disks and extensions can be added toohello VM using PowerShell or Azure CLI.</span></span>
 
-## <a name="example-script"></a><span data-ttu-id="5cc11-121">範例指令碼</span><span class="sxs-lookup"><span data-stu-id="5cc11-121">Example Script</span></span>
-<span data-ttu-id="5cc11-122">下列指令碼提供一個範例，此範例會收集必要資訊、刪除原始 VM，然後在新的可用性設定組中重新建立 VM。</span><span class="sxs-lookup"><span data-stu-id="5cc11-122">The following script provides an example of gathering the required information, deleting the original VM and then recreating it in a new availability set.</span></span>
+## <a name="example-script"></a><span data-ttu-id="e6a09-121">範例指令碼</span><span class="sxs-lookup"><span data-stu-id="e6a09-121">Example Script</span></span>
+<span data-ttu-id="e6a09-122">hello 下列指令碼提供一個範例的收集設定資訊所需的 hello，刪除 hello 原始 VM，然後重新建立新的可用性設定組中。</span><span class="sxs-lookup"><span data-stu-id="e6a09-122">hello following script provides an example of gathering hello required information, deleting hello original VM and then recreating it in a new availability set.</span></span>
 
 ```powershell
     #set variables
@@ -103,7 +103,7 @@ ms.lasthandoff: 08/18/2017
     #Get VM Details
     $OriginalVM = get-azurermvm -ResourceGroupName $rg -Name $vmName
 
-    #Output VM details to file
+    #Output VM details toofile
     "VM Name: " | Out-File -FilePath $outFile 
     $OriginalVM.Name | Out-File -FilePath $outFile -Append
 
@@ -127,7 +127,7 @@ ms.lasthandoff: 08/18/2017
     $OriginalVM.StorageProfile.DataDisks | Out-File -FilePath $outFile -Append
     }
 
-    #Remove the original VM
+    #Remove hello original VM
     Remove-AzureRmVM -ResourceGroupName $rg -Name $vmName
 
     #Create new availability set if it does not exist
@@ -136,7 +136,7 @@ ms.lasthandoff: 08/18/2017
     $availset = New-AzureRmAvailabilitySet -ResourceGroupName $rg -Name $newAvailSetName -Location $OriginalVM.Location
     }
 
-    #Create the basic configuration for the replacement VM
+    #Create hello basic configuration for hello replacement VM
     $newVM = New-AzureRmVMConfig -VMName $OriginalVM.Name -VMSize $OriginalVM.HardwareProfile.VmSize -AvailabilitySetId $availSet.Id
     Set-AzureRmVMOSDisk -VM $NewVM -VhdUri $OriginalVM.StorageProfile.OsDisk.Vhd.Uri  -Name $OriginalVM.Name -CreateOption Attach -Windows
 
@@ -150,10 +150,10 @@ ms.lasthandoff: 08/18/2017
         Add-AzureRmVMNetworkInterface -VM $NewVM -Id $nic
     }
 
-    #Create the VM
+    #Create hello VM
     New-AzureRmVM -ResourceGroupName $rg -Location $OriginalVM.Location -VM $NewVM -DisableBginfoExtension
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="5cc11-123">後續步驟</span><span class="sxs-lookup"><span data-stu-id="5cc11-123">Next steps</span></span>
-<span data-ttu-id="5cc11-124">透過新增額外 [資料磁碟](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，將額外的存放裝置新增到您的 VM。</span><span class="sxs-lookup"><span data-stu-id="5cc11-124">Add additional storage to your VM by adding an additional [data disk](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e6a09-123">後續步驟</span><span class="sxs-lookup"><span data-stu-id="e6a09-123">Next steps</span></span>
+<span data-ttu-id="e6a09-124">新增額外新增額外的儲存體 tooyour VM[資料磁碟](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="e6a09-124">Add additional storage tooyour VM by adding an additional [data disk](attach-managed-disk-portal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
 

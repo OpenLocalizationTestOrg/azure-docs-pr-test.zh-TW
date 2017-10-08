@@ -46,11 +46,11 @@
 ### [Windows VM](../../virtual-machines/virtual-machines-windows-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 ## [Service Fabric 概觀](../../service-fabric/service-fabric-overview.md)
 
-# 使用說明指南
+# 如何 tooguides
 ## 規劃
 ### [Web 應用程式架構](../../guidance/guidance-ra-app-service.md)
 ### [VM 架構](../../guidance/guidance-ra-compute.md)
-### [連線到內部部署網路](../../guidance/guidance-ra-hybrid-networking.md)
+### [Tooon 內部部署網路連線](../../guidance/guidance-ra-hybrid-networking.md)
 ### [微服務模式/案例](../../service-fabric/service-fabric-patterns-and-scenarios.md)
 ## 開發
 ### [WordPress 應用程式](../../app-service-web/web-sites-php-web-site-gallery.md)

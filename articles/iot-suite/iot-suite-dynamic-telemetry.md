@@ -1,6 +1,6 @@
 ---
-title: "使用動態遙測 | Microsoft Docs"
-description: "遵循本教學課程以了解如何使用動態遙測搭配遠 Azure IoT 套件端監視預先設定解決方案。"
+title: "aaaUse 動態遙測 |Microsoft 文件"
+description: "請遵循此教學課程 toolearn toouse 動態遙測 hello Azure IoT 套件遠端監視預先方案的設定。"
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,35 +15,35 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 0114f27f9b8ae76e1170d04ddf66e2c4bf20686a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 06cb2a370b67b4950efdfa4c7d906ac92106f4a0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-dynamic-telemetry-with-the-remote-monitoring-preconfigured-solution"></a><span data-ttu-id="a5b6a-103">搭配使用動態遙測與遠端監視預先設定解決方案</span><span class="sxs-lookup"><span data-stu-id="a5b6a-103">Use dynamic telemetry with the remote monitoring preconfigured solution</span></span>
+# <a name="use-dynamic-telemetry-with-hello-remote-monitoring-preconfigured-solution"></a><span data-ttu-id="9a2e0-103">使用動態遙測以 hello 遠端監視預先設定的解決方案</span><span class="sxs-lookup"><span data-stu-id="9a2e0-103">Use dynamic telemetry with hello remote monitoring preconfigured solution</span></span>
 
-<span data-ttu-id="a5b6a-104">動態遙測可讓您將傳送至遠端監視預先設定解決方案的任何遙測視覺化。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-104">Dynamic telemetry enables you to visualize any telemetry sent to the remote monitoring preconfigured solution.</span></span> <span data-ttu-id="a5b6a-105">使用預先設定解決方案部署的模擬裝置會傳送溫度與濕度遙測，您可以在儀表板上將這些遙測視覺化。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-105">The simulated devices that deploy with the preconfigured solution send temperature and humidity telemetry, which you can visualize on the dashboard.</span></span> <span data-ttu-id="a5b6a-106">如果您自訂現有的模擬裝置、建立新的模擬裝置，或將實體裝置連線到預先設定解決方案，您可以傳送其他的遙測值，例如外部溫度、RPM 或風速。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-106">If you customize existing simulated devices, create new simulated devices, or connect physical devices to the preconfigured solution you can send other telemetry values such as the external temperature, RPM, or windspeed.</span></span> <span data-ttu-id="a5b6a-107">然後，您可以在儀表板上將此額外遙測視覺化。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-107">You can then visualize this additional telemetry on the dashboard.</span></span>
+<span data-ttu-id="9a2e0-104">動態遙測可讓您 toovisualize 任何傳送遙測 toohello 遠端監視預先設定的解決方案。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-104">Dynamic telemetry enables you toovisualize any telemetry sent toohello remote monitoring preconfigured solution.</span></span> <span data-ttu-id="9a2e0-105">使用預先設定的 hello 方案部署的 hello 模擬裝置傳送氣溫和溼度遙測，您可以視覺化 hello 儀表板。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-105">hello simulated devices that deploy with hello preconfigured solution send temperature and humidity telemetry, which you can visualize on hello dashboard.</span></span> <span data-ttu-id="9a2e0-106">如果您自訂現有的模擬的裝置，建立新的模擬的裝置，或連接實體裝置 toohello 預先設定的解決方案，您可以傳送 hello 外部溫度、 RPM 或 windspeed 其他遙測等值。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-106">If you customize existing simulated devices, create new simulated devices, or connect physical devices toohello preconfigured solution you can send other telemetry values such as hello external temperature, RPM, or windspeed.</span></span> <span data-ttu-id="9a2e0-107">然後，您可以視覺化這個 hello 儀表板上的其他遙測。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-107">You can then visualize this additional telemetry on hello dashboard.</span></span>
 
-<span data-ttu-id="a5b6a-108">本教學課程使用簡單的 Node.js 模擬裝置，您可以輕鬆地修改它來實驗動態遙測。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-108">This tutorial uses a simple Node.js simulated device that you can easily modify to experiment with dynamic telemetry.</span></span>
+<span data-ttu-id="9a2e0-108">本教學課程使用簡單 Node.js 模擬的裝置，您可以輕鬆地修改 tooexperiment 與動態遙測。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-108">This tutorial uses a simple Node.js simulated device that you can easily modify tooexperiment with dynamic telemetry.</span></span>
 
-<span data-ttu-id="a5b6a-109">若要完成本教學課程，您需要：</span><span class="sxs-lookup"><span data-stu-id="a5b6a-109">To complete this tutorial, you’ll need:</span></span>
+<span data-ttu-id="9a2e0-109">toocomplete 本教學課程中，您將需要：</span><span class="sxs-lookup"><span data-stu-id="9a2e0-109">toocomplete this tutorial, you’ll need:</span></span>
 
-* <span data-ttu-id="a5b6a-110">有效的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-110">An active Azure subscription.</span></span> <span data-ttu-id="a5b6a-111">如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-111">If you don’t have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="a5b6a-112">如需詳細資訊，請參閱 [Azure 免費試用][lnk_free_trial]。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-112">For details, see [Azure Free Trial][lnk_free_trial].</span></span>
-* <span data-ttu-id="a5b6a-113">[Node.js][lnk-node] 0.12.x 版或更新版本。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-113">[Node.js][lnk-node] version 0.12.x or later.</span></span>
+* <span data-ttu-id="9a2e0-110">有效的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-110">An active Azure subscription.</span></span> <span data-ttu-id="9a2e0-111">如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-111">If you don’t have an account, you can create a free trial account in just a couple of minutes.</span></span> <span data-ttu-id="9a2e0-112">如需詳細資訊，請參閱 [Azure 免費試用][lnk_free_trial]。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-112">For details, see [Azure Free Trial][lnk_free_trial].</span></span>
+* <span data-ttu-id="9a2e0-113">[Node.js][lnk-node] 0.12.x 版或更新版本。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-113">[Node.js][lnk-node] version 0.12.x or later.</span></span>
 
-<span data-ttu-id="a5b6a-114">您可以在任何作業系統上完成本教學課程，例如 Windows 或 Linux，只要您可以在其中安裝 Node.js。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-114">You can complete this tutorial on any operating system, such as Windows or Linux, where you can install Node.js.</span></span>
+<span data-ttu-id="9a2e0-114">您可以在任何作業系統上完成本教學課程，例如 Windows 或 Linux，只要您可以在其中安裝 Node.js。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-114">You can complete this tutorial on any operating system, such as Windows or Linux, where you can install Node.js.</span></span>
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
 [!INCLUDE [iot-suite-send-external-temperature](../../includes/iot-suite-send-external-temperature.md)]
 
-## <a name="add-a-telemetry-type"></a><span data-ttu-id="a5b6a-115">新增遙測類型</span><span class="sxs-lookup"><span data-stu-id="a5b6a-115">Add a telemetry type</span></span>
+## <a name="add-a-telemetry-type"></a><span data-ttu-id="9a2e0-115">新增遙測類型</span><span class="sxs-lookup"><span data-stu-id="9a2e0-115">Add a telemetry type</span></span>
 
-<span data-ttu-id="a5b6a-116">下一個步驟是將 Node.js 模擬裝置產生的遙測以新的一組值取代：</span><span class="sxs-lookup"><span data-stu-id="a5b6a-116">The next step is to replace the telemetry generated by the Node.js simulated device with a new set of values:</span></span>
+<span data-ttu-id="9a2e0-116">hello 下一個步驟是由一組新的值與 hello Node.js 模擬裝置產生 tooreplace hello 遙測：</span><span class="sxs-lookup"><span data-stu-id="9a2e0-116">hello next step is tooreplace hello telemetry generated by hello Node.js simulated device with a new set of values:</span></span>
 
-1. <span data-ttu-id="a5b6a-117">停止 Node.js 模擬裝置，方法是在命令提示字元或殼層中輸入 **Ctrl+C** 。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-117">Stop the Node.js simulated device by typing **Ctrl+C** in your command prompt or shell.</span></span>
-2. <span data-ttu-id="a5b6a-118">在 remote_monitoring.js 檔案中，您可以查看現有溫度、濕度和外部溫度遙測的基底資料值。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-118">In the remote_monitoring.js file, you can see the base data values for the existing temperature, humidity, and external temperature telemetry.</span></span> <span data-ttu-id="a5b6a-119">加入 **rpm** 的基底資料值，如下所示：</span><span class="sxs-lookup"><span data-stu-id="a5b6a-119">Add a base data value for **rpm** as follows:</span></span>
+1. <span data-ttu-id="9a2e0-117">輸入的停止 hello Node.js 模擬的裝置**Ctrl + C**在命令提示字元或殼層。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-117">Stop hello Node.js simulated device by typing **Ctrl+C** in your command prompt or shell.</span></span>
+2. <span data-ttu-id="9a2e0-118">在 hello remote_monitoring.js 檔案中，您可以看到 hello 現有溫度、 溼度，以及外部溫度遙測 hello 基底的資料值。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-118">In hello remote_monitoring.js file, you can see hello base data values for hello existing temperature, humidity, and external temperature telemetry.</span></span> <span data-ttu-id="9a2e0-119">加入 **rpm** 的基底資料值，如下所示：</span><span class="sxs-lookup"><span data-stu-id="9a2e0-119">Add a base data value for **rpm** as follows:</span></span>
 
     ```nodejs
     // Sensors data
@@ -53,7 +53,7 @@ ms.lasthandoff: 08/29/2017
     var rpm = 200;
     ```
 
-3. <span data-ttu-id="a5b6a-120">Node.js 模擬裝置會使用 remote_monitoring.js 檔案中的 **generateRandomIncrement** 函式，對基底資料值加上隨機增量。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-120">The Node.js simulated device uses the **generateRandomIncrement** function in the remote_monitoring.js file to add a random increment to the base data values.</span></span> <span data-ttu-id="a5b6a-121">在現有的隨機設定後方加上一行程式碼，將 **rpm** 的值隨機化，如下所示：</span><span class="sxs-lookup"><span data-stu-id="a5b6a-121">Randomize the **rpm** value by adding a line of code after the existing randomizations as follows:</span></span>
+3. <span data-ttu-id="9a2e0-120">hello Node.js 模擬的裝置會使用 hello **generateRandomIncrement**函式在 hello remote_monitoring.js 檔案 tooadd 隨機遞增 toohello 基底的資料值。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-120">hello Node.js simulated device uses hello **generateRandomIncrement** function in hello remote_monitoring.js file tooadd a random increment toohello base data values.</span></span> <span data-ttu-id="9a2e0-121">隨機化 hello **rpm**值加入一行程式碼，請在 hello 現有隨機後，如下所示：</span><span class="sxs-lookup"><span data-stu-id="9a2e0-121">Randomize hello **rpm** value by adding a line of code after hello existing randomizations as follows:</span></span>
 
     ```nodejs
     temperature += generateRandomIncrement();
@@ -62,7 +62,7 @@ ms.lasthandoff: 08/29/2017
     rpm += generateRandomIncrement();
     ```
 
-4. <span data-ttu-id="a5b6a-122">將新的 rpm 值加入到裝置送給 IoT 中樞的 JSON 承載：</span><span class="sxs-lookup"><span data-stu-id="a5b6a-122">Add the new rpm value to the JSON payload the device sends to IoT Hub:</span></span>
+4. <span data-ttu-id="9a2e0-122">加入 hello 新 rpm 值 toohello JSON 裝載 hello 裝置傳送 tooIoT 中樞：</span><span class="sxs-lookup"><span data-stu-id="9a2e0-122">Add hello new rpm value toohello JSON payload hello device sends tooIoT Hub:</span></span>
 
     ```nodejs
     var data = JSON.stringify({
@@ -74,20 +74,20 @@ ms.lasthandoff: 08/29/2017
     });
     ```
 
-5. <span data-ttu-id="a5b6a-123">使用下列命令，執行 Node.js 模擬裝置：</span><span class="sxs-lookup"><span data-stu-id="a5b6a-123">Run the Node.js simulated device using the following command:</span></span>
+5. <span data-ttu-id="9a2e0-123">執行 hello Node.js 模擬的裝置使用 hello 下列命令：</span><span class="sxs-lookup"><span data-stu-id="9a2e0-123">Run hello Node.js simulated device using hello following command:</span></span>
 
     `node remote_monitoring.js`
 
-6. <span data-ttu-id="a5b6a-124">觀察儀表板圖表上所顯示的新 RPM 遙測類型：</span><span class="sxs-lookup"><span data-stu-id="a5b6a-124">Observe the new RPM telemetry type that displays on the chart in the dashboard:</span></span>
+6. <span data-ttu-id="9a2e0-124">觀察在 hello 儀表板中的 hello 圖表顯示的 hello 新 RPM 遙測類型：</span><span class="sxs-lookup"><span data-stu-id="9a2e0-124">Observe hello new RPM telemetry type that displays on hello chart in hello dashboard:</span></span>
 
-![新增 RPM 到儀表板][image3]
+![新增 RPM toohello 儀表板][image3]
 
 > [!NOTE]
-> <span data-ttu-id="a5b6a-126">您可能需要在儀表板中的 [裝置] 頁面停用 Node.js 裝置，然後再啟用以立即查看變更。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-126">You may need to disable and then enable the Node.js device on the **Devices** page in the dashboard to see the change immediately.</span></span>
+> <span data-ttu-id="9a2e0-126">您可能需要 toodisable，然後啟用 hello Node.js 裝置 hello**裝置**hello 儀表板 toosee hello 變更立即在頁面。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-126">You may need toodisable and then enable hello Node.js device on hello **Devices** page in hello dashboard toosee hello change immediately.</span></span>
 
-## <a name="customize-the-dashboard-display"></a><span data-ttu-id="a5b6a-127">自訂儀表板顯示</span><span class="sxs-lookup"><span data-stu-id="a5b6a-127">Customize the dashboard display</span></span>
+## <a name="customize-hello-dashboard-display"></a><span data-ttu-id="9a2e0-127">自訂 hello 儀表板顯示</span><span class="sxs-lookup"><span data-stu-id="9a2e0-127">Customize hello dashboard display</span></span>
 
-<span data-ttu-id="a5b6a-128">**Device-Info** 訊息可能包含裝置可傳送給 IoT 中樞的遙測相關中繼資料。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-128">The **Device-Info** message can include metadata about the telemetry the device can send to IoT Hub.</span></span> <span data-ttu-id="a5b6a-129">此中繼資料可指定裝置傳送的遙測類型。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-129">This metadata can specify the telemetry types the device sends.</span></span> <span data-ttu-id="a5b6a-130">修改 remote_monitoring.js 檔案中的 **deviceMetaData** 值，以在 **Commands** 定義後方包含 **Telemetry** 定義。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-130">Modify the **deviceMetaData** value in the remote_monitoring.js file to include a **Telemetry** definition following the **Commands** definition.</span></span> <span data-ttu-id="a5b6a-131">以下程式碼片段會顯示 **Commands** 定義 (請務必在 **Commands** 定義後方新增 `,`)：</span><span class="sxs-lookup"><span data-stu-id="a5b6a-131">The following code snippet shows the **Commands** definition (be sure to add a `,` after the **Commands** definition):</span></span>
+<span data-ttu-id="9a2e0-128">hello**裝置資訊**訊息可以包含中繼資料相關 hello 遙測 hello 裝置皆可傳送 tooIoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-128">hello **Device-Info** message can include metadata about hello telemetry hello device can send tooIoT Hub.</span></span> <span data-ttu-id="9a2e0-129">此中繼資料，可以指定 hello 裝置所傳送的 hello 遙測類型。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-129">This metadata can specify hello telemetry types hello device sends.</span></span> <span data-ttu-id="9a2e0-130">修改 hello **deviceMetaData**中 hello remote_monitoring.js 檔案 tooinclude 值**遙測**定義下列 hello**命令**定義。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-130">Modify hello **deviceMetaData** value in hello remote_monitoring.js file tooinclude a **Telemetry** definition following hello **Commands** definition.</span></span> <span data-ttu-id="9a2e0-131">hello 下列程式碼片段顯示 hello**命令**定義 (可確定 tooadd`,`之後 hello**命令**定義):</span><span class="sxs-lookup"><span data-stu-id="9a2e0-131">hello following code snippet shows hello **Commands** definition (be sure tooadd a `,` after hello **Commands** definition):</span></span>
 
 ```nodejs
 'Commands': [{
@@ -119,10 +119,10 @@ ms.lasthandoff: 08/29/2017
 ```
 
 > [!NOTE]
-> <span data-ttu-id="a5b6a-132">遠端監視解決方案會使用區分大小寫的配對，來比對中繼資料定義與遙測串流中的資料。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-132">The remote monitoring solution uses a case-insensitive match to compare the metadata definition with data in the telemetry stream.</span></span>
+> <span data-ttu-id="9a2e0-132">hello 遠端監視解決方案會使用不區分大小寫的相符項目 toocompare hello 中繼資料定義與 hello 遙測資料流中的資料。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-132">hello remote monitoring solution uses a case-insensitive match toocompare hello metadata definition with data in hello telemetry stream.</span></span>
 
 
-<span data-ttu-id="a5b6a-133">以上方程式碼片段所示方式加入 **Telemetry** 定義，並不會變更儀表板的行為。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-133">Adding a **Telemetry** definition as shown in the preceding code snippet does not change the behavior of the dashboard.</span></span> <span data-ttu-id="a5b6a-134">不過，中繼資料也可以包含 **DisplayName** 屬性來自訂儀表板中的顯示。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-134">However, the metadata can also include a **DisplayName** attribute to customize the display in the dashboard.</span></span> <span data-ttu-id="a5b6a-135">更新 **Telemetry** 中繼資料定義，如下列程式碼片段所示：</span><span class="sxs-lookup"><span data-stu-id="a5b6a-135">Update the **Telemetry** metadata definition as shown in the following snippet:</span></span>
+<span data-ttu-id="9a2e0-133">加入**遙測**定義中所示 hello 上述程式碼片段不會變更 hello 儀表板的 hello 行為。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-133">Adding a **Telemetry** definition as shown in hello preceding code snippet does not change hello behavior of hello dashboard.</span></span> <span data-ttu-id="9a2e0-134">不過，也可以包含 hello 中繼資料**DisplayName**屬性 toocustomize hello 顯示 hello 儀表板中的。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-134">However, hello metadata can also include a **DisplayName** attribute toocustomize hello display in hello dashboard.</span></span> <span data-ttu-id="9a2e0-135">更新 hello**遙測**中繼資料定義 hello 下列程式碼片段所示：</span><span class="sxs-lookup"><span data-stu-id="9a2e0-135">Update hello **Telemetry** metadata definition as shown in hello following snippet:</span></span>
 
 ```nodejs
 'Telemetry': [
@@ -144,18 +144,18 @@ ms.lasthandoff: 08/29/2017
 ]
 ```
 
-<span data-ttu-id="a5b6a-136">下列螢幕擷取畫面說明這項變更如何修改儀表板上的圖表圖例：</span><span class="sxs-lookup"><span data-stu-id="a5b6a-136">The following screenshot shows how this change modifies the chart legend on the dashboard:</span></span>
+<span data-ttu-id="9a2e0-136">hello 下列螢幕擷取畫面顯示這項變更如何修改 hello hello 儀表板上的圖表圖例：</span><span class="sxs-lookup"><span data-stu-id="9a2e0-136">hello following screenshot shows how this change modifies hello chart legend on hello dashboard:</span></span>
 
-![自訂圖表圖例][image4]
+![自訂 hello 圖表圖例][image4]
 
 > [!NOTE]
-> <span data-ttu-id="a5b6a-138">您可能需要在儀表板中的 [裝置] 頁面停用 Node.js 裝置，然後再啟用以立即查看變更。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-138">You may need to disable and then enable the Node.js device on the **Devices** page in the dashboard to see the change immediately.</span></span>
+> <span data-ttu-id="9a2e0-138">您可能需要 toodisable，然後啟用 hello Node.js 裝置 hello**裝置**hello 儀表板 toosee hello 變更立即在頁面。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-138">You may need toodisable and then enable hello Node.js device on hello **Devices** page in hello dashboard toosee hello change immediately.</span></span>
 
-## <a name="filter-the-telemetry-types"></a><span data-ttu-id="a5b6a-139">篩選遙測類型</span><span class="sxs-lookup"><span data-stu-id="a5b6a-139">Filter the telemetry types</span></span>
+## <a name="filter-hello-telemetry-types"></a><span data-ttu-id="9a2e0-139">篩選 hello 遙測類型</span><span class="sxs-lookup"><span data-stu-id="9a2e0-139">Filter hello telemetry types</span></span>
 
-<span data-ttu-id="a5b6a-140">根據預設，儀表板上的圖表會顯示遙測串流中的每個資料數列。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-140">By default, the chart on the dashboard shows every data series in the telemetry stream.</span></span> <span data-ttu-id="a5b6a-141">您可以使用 **Device-Info** 中繼資料，來隱藏圖表上特定遙測類型的顯示。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-141">You can use the **Device-Info** metadata to suppress the display of specific telemetry types on the chart.</span></span> 
+<span data-ttu-id="9a2e0-140">根據預設，hello 儀表板上的 hello 圖表可顯示 hello 遙測資料流中的每個資料數列。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-140">By default, hello chart on hello dashboard shows every data series in hello telemetry stream.</span></span> <span data-ttu-id="9a2e0-141">您可以使用 hello**裝置資訊**中繼資料 toosuppress hello hello 圖表上的特定遙測類型顯示。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-141">You can use hello **Device-Info** metadata toosuppress hello display of specific telemetry types on hello chart.</span></span> 
 
-<span data-ttu-id="a5b6a-142">若要讓圖表只顯示溫度和濕度遙測，請從 **Device-Info** **Telemetry** 中繼資料省略 **ExternalTemperature**，如下所示：</span><span class="sxs-lookup"><span data-stu-id="a5b6a-142">To make the chart show only Temperature and Humidity telemetry, omit **ExternalTemperature** from the **Device-Info** **Telemetry** metadata as follows:</span></span>
+<span data-ttu-id="9a2e0-142">toomake hello 圖表顯示只有氣溫和溼度遙測，省略**ExternalTemperature**從 hello**裝置資訊****遙測**中繼資料，如下所示：</span><span class="sxs-lookup"><span data-stu-id="9a2e0-142">toomake hello chart show only Temperature and Humidity telemetry, omit **ExternalTemperature** from hello **Device-Info** **Telemetry** metadata as follows:</span></span>
 
 ```nodejs
 'Telemetry': [
@@ -177,22 +177,22 @@ ms.lasthandoff: 08/29/2017
 ]
 ```
 
-<span data-ttu-id="a5b6a-143">**Outdoor Temperature (戶外溫度)** 不會再顯示在圖表上：</span><span class="sxs-lookup"><span data-stu-id="a5b6a-143">The **Outdoor Temperature** no longer displays on the chart:</span></span>
+<span data-ttu-id="9a2e0-143">hello**室外溫度**不會再顯示 hello 圖表上：</span><span class="sxs-lookup"><span data-stu-id="9a2e0-143">hello **Outdoor Temperature** no longer displays on hello chart:</span></span>
 
-![篩選儀表板上的遙測][image5]
+![Hello 儀表板上的篩選器 hello 遙測][image5]
 
-<span data-ttu-id="a5b6a-145">這項變更只會影響圖表顯示。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-145">This change only affects the chart display.</span></span> <span data-ttu-id="a5b6a-146">**ExternalTemperature** 資料值仍會儲存，並可供任何後端處理使用。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-146">The **ExternalTemperature** data values are still stored and made available for any backend processing.</span></span>
+<span data-ttu-id="9a2e0-145">這項變更只會影響 hello 圖表顯示。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-145">This change only affects hello chart display.</span></span> <span data-ttu-id="9a2e0-146">hello **ExternalTemperature**資料值仍會儲存並可供任何後端處理。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-146">hello **ExternalTemperature** data values are still stored and made available for any backend processing.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="a5b6a-147">您可能需要在儀表板中的 [裝置] 頁面停用 Node.js 裝置，然後再啟用以立即查看變更。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-147">You may need to disable and then enable the Node.js device on the **Devices** page in the dashboard to see the change immediately.</span></span>
+> <span data-ttu-id="9a2e0-147">您可能需要 toodisable，然後啟用 hello Node.js 裝置 hello**裝置**hello 儀表板 toosee hello 變更立即在頁面。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-147">You may need toodisable and then enable hello Node.js device on hello **Devices** page in hello dashboard toosee hello change immediately.</span></span>
 
-## <a name="handle-errors"></a><span data-ttu-id="a5b6a-148">處理錯誤</span><span class="sxs-lookup"><span data-stu-id="a5b6a-148">Handle errors</span></span>
+## <a name="handle-errors"></a><span data-ttu-id="9a2e0-148">處理錯誤</span><span class="sxs-lookup"><span data-stu-id="9a2e0-148">Handle errors</span></span>
 
-<span data-ttu-id="a5b6a-149">針對要在圖表上顯示的資料串流，其在 **Device-Info** 中繼資料中的 **Type** 必須符合遙測值的資料類型。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-149">For a data stream to display on the chart, its **Type** in the **Device-Info** metadata must match the data type of the telemetry values.</span></span> <span data-ttu-id="a5b6a-150">例如，如果中繼資料指定濕度資料的 **Type** 必須為 **int**，而在遙測串流中找到 **double**，則濕度遙測將不會顯示在圖表上。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-150">For example, if the metadata specifies that the **Type** of humidity data is **int** and a **double** is found in the telemetry stream then the humidity telemetry does not display on the chart.</span></span> <span data-ttu-id="a5b6a-151">不過，**濕度**的值仍會儲存，並可供任何後端處理使用。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-151">However, the **Humidity** values are still stored and made available for any back-end processing.</span></span>
+<span data-ttu-id="9a2e0-149">如 hello 圖表上的資料流 toodisplay 其**類型**在 hello**裝置資訊**中繼資料必須符合 hello hello 遙測值資料型別。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-149">For a data stream toodisplay on hello chart, its **Type** in hello **Device-Info** metadata must match hello data type of hello telemetry values.</span></span> <span data-ttu-id="9a2e0-150">例如，如果 hello 中繼資料會指定該 hello**類型**溼度的資料是**int**和**雙**則 hello 溼度遙測不會位於 hello 遙測資料流不會顯示 hello 圖表上。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-150">For example, if hello metadata specifies that hello **Type** of humidity data is **int** and a **double** is found in hello telemetry stream then hello humidity telemetry does not display on hello chart.</span></span> <span data-ttu-id="9a2e0-151">不過，hello**溼度**值仍會儲存並可供任何後端處理。</span><span class="sxs-lookup"><span data-stu-id="9a2e0-151">However, hello **Humidity** values are still stored and made available for any back-end processing.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="a5b6a-152">後續步驟</span><span class="sxs-lookup"><span data-stu-id="a5b6a-152">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="9a2e0-152">後續步驟</span><span class="sxs-lookup"><span data-stu-id="9a2e0-152">Next steps</span></span>
 
-<span data-ttu-id="a5b6a-153">既然您已了解如何使用動態的遙測，您可以進一步了解預先設定的解決方案如何使用裝置資訊︰[遠端監視預先設定解決方案中的裝置資訊中繼資料][lnk-devinfo]。</span><span class="sxs-lookup"><span data-stu-id="a5b6a-153">Now that you've seen how to use dynamic telemetry, you can learn more about how the preconfigured solutions use device information: [Device information metadata in the remote monitoring preconfigured solution][lnk-devinfo].</span></span>
+<span data-ttu-id="9a2e0-153">既然您已經看到如何 toouse 動態遙測，您可以了解 hello 預先設定的解決方案如何使用裝置資訊： [hello 遠端監視裝置資訊的中繼資料已預先設定的解決方案][lnk-devinfo].</span><span class="sxs-lookup"><span data-stu-id="9a2e0-153">Now that you've seen how toouse dynamic telemetry, you can learn more about how hello preconfigured solutions use device information: [Device information metadata in hello remote monitoring preconfigured solution][lnk-devinfo].</span></span>
 
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 

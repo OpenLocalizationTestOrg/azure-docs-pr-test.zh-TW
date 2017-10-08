@@ -1,6 +1,6 @@
 ---
-title: "Azure 事件中樞文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何使用事件中樞，從一組廣泛平台上連接的 IoT 裝置和應用程式，每秒擷取數百萬個事件。"
+title: "aaaAzure 事件中心文件-教學課程中，API 參考 |Microsoft 文件"
+description: "了解 toouse 事件中心 tooingest 數以百萬計的事件，每秒來自連接 IoT 裝置和一組廣泛的平台上的應用程式的方式。"
 services: event-hubs
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 56c24eb26faf1729c33b025d5c9fcf5d13abd376
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b75a4f958f66afdbca2fc612e2359df241164818
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="event-hubs-documentation"></a>事件中樞文件
 
-了解如何使用事件中樞，從連接的 IoT 裝置和應用程式，每秒收集和管理數百萬個事件。 教學課程、API 參考和其他文件會示範如何針對一組廣泛平台上的事件設定可調整的擷取。
+深入了解如何 toouse 事件中心 toocollect 和管理包含數百萬個事件每秒從連接的 IoT 裝置和應用程式。 教學課程、API 參考和其他文件會示範如何針對一組廣泛平台上的事件設定可調整的擷取。
 
 <ul class="panelContent cardsFTitle">
      <li>
@@ -70,7 +70,7 @@ ms.lasthandoff: 08/03/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>開始使用事件中樞程式設計指南</h3>
+                        <h3>開始使用 hello 事件中心程式設計指南</h3>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@ ms.lasthandoff: 08/03/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>利用 Azure 入口網站開始使用事件中樞</h3>
+                        <h3>事件中心使用 hello Azure 入口網站使用者入門</h3>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 ---
-title: "Azure 事件中樞擷取逐步解說 | Microsoft Docs"
-description: "此範例使用 Azure Python SDK 來示範如何使用事件中樞擷取功能。"
+title: "事件中心擷取逐步解說 aaaAzure |Microsoft 文件"
+description: "使用 hello Azure Python SDK toodemonstrate 使用 hello 事件中心擷取功能的範例。"
 services: event-hubs
 documentationcenter: 
 author: djrosanova
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: darosa;sethm
-ms.openlocfilehash: a764a116755c20f60e92e553bd7c896425272b85
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1737dcca283711d863aa970db0e80ae71814e666
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="event-hubs-capture-walkthrough-python"></a><span data-ttu-id="ebfb2-103">事件中樞擷取逐步解說︰Python</span><span class="sxs-lookup"><span data-stu-id="ebfb2-103">Event Hubs Capture walkthrough: Python</span></span>
+# <a name="event-hubs-capture-walkthrough-python"></a><span data-ttu-id="bed22-103">事件中樞擷取逐步解說︰Python</span><span class="sxs-lookup"><span data-stu-id="bed22-103">Event Hubs Capture walkthrough: Python</span></span>
 
-<span data-ttu-id="ebfb2-104">「事件中樞擷取」是「事件中樞」的功能，可讓您將事件中樞內的串流資料自動傳遞給您選擇的 Azure Blob 儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-104">Event Hubs Capture is a feature of Event Hubs that enables you to automatically deliver the streaming data in your event hub to an Azure Blob storage account of your choice.</span></span> <span data-ttu-id="ebfb2-105">此功能可讓您輕鬆地對即時串流資料執行批次處理。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-105">This capability makes it easy to perform batch processing on real-time streaming data.</span></span> <span data-ttu-id="ebfb2-106">本文說明如何搭配使用事件中樞擷取與 Python。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-106">This article describes how to use Event Hubs Capture with Python.</span></span> <span data-ttu-id="ebfb2-107">如需事件中樞擷取的詳細資訊，請參閱[概觀文章](event-hubs-archive-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-107">For more information about Event Hubs Capture, see the [overview article](event-hubs-archive-overview.md).</span></span>
+<span data-ttu-id="bed22-104">擷取的事件中樞是一項功能，可讓您 tooautomatically 事件中心提供您的事件中樞 tooan 您選擇的 Azure Blob 儲存體帳戶中的資料流的 hello。</span><span class="sxs-lookup"><span data-stu-id="bed22-104">Event Hubs Capture is a feature of Event Hubs that enables you tooautomatically deliver hello streaming data in your event hub tooan Azure Blob storage account of your choice.</span></span> <span data-ttu-id="bed22-105">這項功能可讓處理即時串流資料的簡易 tooperform 批次。</span><span class="sxs-lookup"><span data-stu-id="bed22-105">This capability makes it easy tooperform batch processing on real-time streaming data.</span></span> <span data-ttu-id="bed22-106">本文說明如何使用 Python 的 toouse 事件中心擷取。</span><span class="sxs-lookup"><span data-stu-id="bed22-106">This article describes how toouse Event Hubs Capture with Python.</span></span> <span data-ttu-id="bed22-107">如需有關事件中心擷取的詳細資訊，請參閱 hello[概觀文章](event-hubs-archive-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="bed22-107">For more information about Event Hubs Capture, see hello [overview article](event-hubs-archive-overview.md).</span></span>
 
-<span data-ttu-id="ebfb2-108">此範例使用 [Azure Python SDK](https://azure.microsoft.com/develop/python/) 來示範「擷取」功能。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-108">This sample uses the [Azure Python SDK](https://azure.microsoft.com/develop/python/) to demonstrate the Capture feature.</span></span> <span data-ttu-id="ebfb2-109">sender.py 程式會以 JSON 格式將模擬的環境遙測傳送至事件中樞。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-109">The sender.py program sends simulated environmental telemetry to Event Hubs in JSON format.</span></span> <span data-ttu-id="ebfb2-110">事件中樞已設定為使用「擷取」功能將此資料批次寫入至 Blob 儲存體。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-110">The event hub is configured to use the Capture feature to write this data to blob storage in batches.</span></span> <span data-ttu-id="ebfb2-111">capturereader.py 應用程式接著會讀取這些 Blob 並為每個裝置建立附加檔案，然後將資料寫入至 .csv 檔案。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-111">The capturereader.py app then reads these blobs and creates an append file per device, then writes the data into .csv files.</span></span>
+<span data-ttu-id="bed22-108">這個範例會使用 hello [Azure Python SDK](https://azure.microsoft.com/develop/python/) toodemonstrate hello 擷取功能。</span><span class="sxs-lookup"><span data-stu-id="bed22-108">This sample uses hello [Azure Python SDK](https://azure.microsoft.com/develop/python/) toodemonstrate hello Capture feature.</span></span> <span data-ttu-id="bed22-109">hello sender.py 程式模擬環境遙測 tooEvent 中樞 JSON 格式傳送。</span><span class="sxs-lookup"><span data-stu-id="bed22-109">hello sender.py program sends simulated environmental telemetry tooEvent Hubs in JSON format.</span></span> <span data-ttu-id="bed22-110">hello 事件中樞設定 toouse hello 擷取功能 toowrite 批次中的此資料 tooblob 存放裝置。</span><span class="sxs-lookup"><span data-stu-id="bed22-110">hello event hub is configured toouse hello Capture feature toowrite this data tooblob storage in batches.</span></span> <span data-ttu-id="bed22-111">hello capturereader.py 應用程式再讀取這些 blob 並建立附加的檔案以每個裝置，然後將 hello 資料寫入至.csv 檔案。</span><span class="sxs-lookup"><span data-stu-id="bed22-111">hello capturereader.py app then reads these blobs and creates an append file per device, then writes hello data into .csv files.</span></span>
 
-## <a name="what-will-be-accomplished"></a><span data-ttu-id="ebfb2-112">將會完成的工作</span><span class="sxs-lookup"><span data-stu-id="ebfb2-112">What will be accomplished</span></span>
+## <a name="what-will-be-accomplished"></a><span data-ttu-id="bed22-112">將會完成的工作</span><span class="sxs-lookup"><span data-stu-id="bed22-112">What will be accomplished</span></span>
 
-1. <span data-ttu-id="ebfb2-113">使用 Azure 入口網站建立 Azure Blob 儲存體帳戶和其中所含的 Blob 容器。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-113">Create an Azure Blob Storage account and a blob container within it, using the Azure portal.</span></span>
-2. <span data-ttu-id="ebfb2-114">使用 Azure 入口網站建立事件中樞命名空間。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-114">Create an Event Hub namespace, using the Azure portal.</span></span>
-3. <span data-ttu-id="ebfb2-115">使用 Azure 入口網站來建立已啟用「擷取」功能的事件中樞。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-115">Create an event hub with the Capture feature enabled, using the Azure portal.</span></span>
-4. <span data-ttu-id="ebfb2-116">使用 Python 指令碼將資料傳送到事件中樞。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-116">Send data to the event hub with a Python script.</span></span>
-5. <span data-ttu-id="ebfb2-117">使用另一個 Python 指令碼讀取擷取的檔案並加以處理。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-117">Read the files from the capture and process them with another Python script.</span></span>
+1. <span data-ttu-id="bed22-113">建立 Azure Blob 儲存體帳戶和 blob 容器內，使用 hello Azure 入口網站。</span><span class="sxs-lookup"><span data-stu-id="bed22-113">Create an Azure Blob Storage account and a blob container within it, using hello Azure portal.</span></span>
+2. <span data-ttu-id="bed22-114">建立事件中樞命名空間，使用 hello Azure 入口網站。</span><span class="sxs-lookup"><span data-stu-id="bed22-114">Create an Event Hub namespace, using hello Azure portal.</span></span>
+3. <span data-ttu-id="bed22-115">建立事件中樞與 hello 擷取功能已啟用，使用 hello Azure 入口網站。</span><span class="sxs-lookup"><span data-stu-id="bed22-115">Create an event hub with hello Capture feature enabled, using hello Azure portal.</span></span>
+4. <span data-ttu-id="bed22-116">傳送資料 toohello 事件中心的 Python 指令碼。</span><span class="sxs-lookup"><span data-stu-id="bed22-116">Send data toohello event hub with a Python script.</span></span>
+5. <span data-ttu-id="bed22-117">Hello 檔案讀取 hello 擷取及處理它們的另一個的 Python 指令碼。</span><span class="sxs-lookup"><span data-stu-id="bed22-117">Read hello files from hello capture and process them with another Python script.</span></span>
 
-## <a name="prerequisites"></a><span data-ttu-id="ebfb2-118">必要條件</span><span class="sxs-lookup"><span data-stu-id="ebfb2-118">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="bed22-118">必要條件</span><span class="sxs-lookup"><span data-stu-id="bed22-118">Prerequisites</span></span>
 
-- <span data-ttu-id="ebfb2-119">Python 2.7.x</span><span class="sxs-lookup"><span data-stu-id="ebfb2-119">Python 2.7.x</span></span>
-- <span data-ttu-id="ebfb2-120">Azure 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="ebfb2-120">An Azure subscription</span></span>
-- <span data-ttu-id="ebfb2-121">作用中的[事件中樞命名空間和事件中樞](event-hubs-create.md)。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-121">An active [Event Hubs namespace and event hub.](event-hubs-create.md)</span></span>
+- <span data-ttu-id="bed22-119">Python 2.7.x</span><span class="sxs-lookup"><span data-stu-id="bed22-119">Python 2.7.x</span></span>
+- <span data-ttu-id="bed22-120">Azure 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="bed22-120">An Azure subscription</span></span>
+- <span data-ttu-id="bed22-121">作用中的[事件中樞命名空間和事件中樞](event-hubs-create.md)。</span><span class="sxs-lookup"><span data-stu-id="bed22-121">An active [Event Hubs namespace and event hub.](event-hubs-create.md)</span></span>
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="create-an-azure-storage-account"></a><span data-ttu-id="ebfb2-122">建立 Azure 儲存體帳戶</span><span class="sxs-lookup"><span data-stu-id="ebfb2-122">Create an Azure Storage account</span></span>
-1. <span data-ttu-id="ebfb2-123">登入 [Azure 入口網站][Azure portal]。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-123">Log on to the [Azure portal][Azure portal].</span></span>
-2. <span data-ttu-id="ebfb2-124">在入口網站的左方瀏覽窗格中，依序按一下 [新增]、[儲存體] 及 [儲存體帳戶]。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-124">In the left navigation pane of the portal, click **New**, then click **Storage**, and then click **Storage Account**.</span></span>
-3. <span data-ttu-id="ebfb2-125">完成儲存體帳戶刀鋒視窗中的欄位，然後按一下 [建立]。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-125">Complete the fields in the storage account blade and then click **Create**.</span></span>
+## <a name="create-an-azure-storage-account"></a><span data-ttu-id="bed22-122">建立 Azure 儲存體帳戶</span><span class="sxs-lookup"><span data-stu-id="bed22-122">Create an Azure Storage account</span></span>
+1. <span data-ttu-id="bed22-123">登入 toohello [Azure 入口網站][Azure portal]。</span><span class="sxs-lookup"><span data-stu-id="bed22-123">Log on toohello [Azure portal][Azure portal].</span></span>
+2. <span data-ttu-id="bed22-124">在 hello hello 入口網站的左側瀏覽窗格中按一下**新增**，然後按一下**儲存體**，然後按一下**儲存體帳戶**。</span><span class="sxs-lookup"><span data-stu-id="bed22-124">In hello left navigation pane of hello portal, click **New**, then click **Storage**, and then click **Storage Account**.</span></span>
+3. <span data-ttu-id="bed22-125">完成 hello 儲存體帳戶 刀鋒視窗中的 hello 欄位，然後按一下**建立**。</span><span class="sxs-lookup"><span data-stu-id="bed22-125">Complete hello fields in hello storage account blade and then click **Create**.</span></span>
    
    ![][1]
-4. <span data-ttu-id="ebfb2-126">在看到**部署成功**訊息之後，按一下新儲存體帳戶的名稱，並在 [基本功能] 刀鋒視窗中按一下 [Blob]。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-126">After you see the **Deployments Succeeded** message, click the name of the new storage account and in the **Essentials** blade, click **Blobs**.</span></span> <span data-ttu-id="ebfb2-127">當 [Blob 服務] 刀鋒視窗開啟時，按一下頂端的 [+ 容器]。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-127">When the **Blob service** blade opens, click **+ Container** at the top.</span></span> <span data-ttu-id="ebfb2-128">將容器命名為**擷取**，然後關閉 [Blob 服務] 刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-128">Name the container **capture**, then close the **Blob service** blade.</span></span>
-5. <span data-ttu-id="ebfb2-129">按一下左側刀鋒視窗的 [存取金鑰]，然後複製儲存體帳戶名稱和 **key1** 的值。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-129">Click **Access keys** in the left blade and copy the name of the storage account and the value of **key1**.</span></span> <span data-ttu-id="ebfb2-130">將這些值儲存到記事本或一些其他暫存位置。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-130">Save these values to Notepad or some other temporary location.</span></span>
+4. <span data-ttu-id="bed22-126">Vez que aparezca hello**部署成功**訊息中，按一下 hello 名稱 hello 新儲存體帳戶並在 hello **Essentials**刀鋒視窗中，按一下  **Blob**。</span><span class="sxs-lookup"><span data-stu-id="bed22-126">After you see hello **Deployments Succeeded** message, click hello name of hello new storage account and in hello **Essentials** blade, click **Blobs**.</span></span> <span data-ttu-id="bed22-127">當 hello **Blob 服務**開啟刀鋒視窗中，按一下**+ 容器**hello 頂端。</span><span class="sxs-lookup"><span data-stu-id="bed22-127">When hello **Blob service** blade opens, click **+ Container** at hello top.</span></span> <span data-ttu-id="bed22-128">名稱 hello 容器**擷取**，請關閉然後 hello **Blob 服務**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bed22-128">Name hello container **capture**, then close hello **Blob service** blade.</span></span>
+5. <span data-ttu-id="bed22-129">按一下**存取金鑰**在 hello 左刀鋒視窗，然後複製 hello hello 儲存體帳戶名稱和值 hello **key1**。</span><span class="sxs-lookup"><span data-stu-id="bed22-129">Click **Access keys** in hello left blade and copy hello name of hello storage account and hello value of **key1**.</span></span> <span data-ttu-id="bed22-130">儲存這些值 tooNotepad 或一些其他的暫存位置。</span><span class="sxs-lookup"><span data-stu-id="bed22-130">Save these values tooNotepad or some other temporary location.</span></span>
 
-## <a name="create-a-python-script-to-send-events-to-your-event-hub"></a><span data-ttu-id="ebfb2-131">建立 Python 指令碼以將事件傳送到事件中樞</span><span class="sxs-lookup"><span data-stu-id="ebfb2-131">Create a Python script to send events to your event hub</span></span>
-1. <span data-ttu-id="ebfb2-132">開啟您慣用的 Python 編輯器，例如 [Visual Studio 程式碼][Visual Studio Code]。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-132">Open your favorite Python editor, such as [Visual Studio Code][Visual Studio Code].</span></span>
-2. <span data-ttu-id="ebfb2-133">建立稱為 **sender.py**的指令碼。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-133">Create a script called **sender.py**.</span></span> <span data-ttu-id="ebfb2-134">此指令碼會將 200 個事件傳送到事件中樞。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-134">This script sends 200 events to your event hub.</span></span> <span data-ttu-id="ebfb2-135">這些事件是以 JSON 格式傳送的簡單環境數據。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-135">They are simple environmental readings sent in JSON.</span></span>
-3. <span data-ttu-id="ebfb2-136">將下列程式碼貼到 sender.py：</span><span class="sxs-lookup"><span data-stu-id="ebfb2-136">Paste the following code into sender.py:</span></span>
+## <a name="create-a-python-script-toosend-events-tooyour-event-hub"></a><span data-ttu-id="bed22-131">建立 Python 指令碼 toosend 事件 tooyour 事件中樞</span><span class="sxs-lookup"><span data-stu-id="bed22-131">Create a Python script toosend events tooyour event hub</span></span>
+1. <span data-ttu-id="bed22-132">開啟您慣用的 Python 編輯器，例如 [Visual Studio 程式碼][Visual Studio Code]。</span><span class="sxs-lookup"><span data-stu-id="bed22-132">Open your favorite Python editor, such as [Visual Studio Code][Visual Studio Code].</span></span>
+2. <span data-ttu-id="bed22-133">建立稱為 **sender.py**的指令碼。</span><span class="sxs-lookup"><span data-stu-id="bed22-133">Create a script called **sender.py**.</span></span> <span data-ttu-id="bed22-134">此指令碼會傳送 200 事件 tooyour 事件中心。</span><span class="sxs-lookup"><span data-stu-id="bed22-134">This script sends 200 events tooyour event hub.</span></span> <span data-ttu-id="bed22-135">這些事件是以 JSON 格式傳送的簡單環境數據。</span><span class="sxs-lookup"><span data-stu-id="bed22-135">They are simple environmental readings sent in JSON.</span></span>
+3. <span data-ttu-id="bed22-136">貼上下列程式碼到 sender.py hello:</span><span class="sxs-lookup"><span data-stu-id="bed22-136">Paste hello following code into sender.py:</span></span>
    
   ```python
   import uuid
@@ -75,13 +75,13 @@ ms.lasthandoff: 08/29/2017
           sbs.send_event('INSERT YOUR EVENT HUB NAME', s)
       print y
   ```
-4. <span data-ttu-id="ebfb2-137">更新上述程式碼，以使用您在建立「事件中樞」命名空間時取得的命名空間名稱、金鑰值及事件中樞名稱。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-137">Update the preceding code to use your namespace name, key value, and event hub name that you obtained when you created the Event Hubs namespace.</span></span>
+4. <span data-ttu-id="bed22-137">更新您的命名空間名稱、 索引鍵值和建立 hello 事件中樞命名空間時取得的事件中樞名稱前面的程式碼 toouse hello。</span><span class="sxs-lookup"><span data-stu-id="bed22-137">Update hello preceding code toouse your namespace name, key value, and event hub name that you obtained when you created hello Event Hubs namespace.</span></span>
 
-## <a name="create-a-python-script-to-read-your-capture-files"></a><span data-ttu-id="ebfb2-138">建立 Python 指令碼來讀取擷取檔案</span><span class="sxs-lookup"><span data-stu-id="ebfb2-138">Create a Python script to read your Capture files</span></span>
+## <a name="create-a-python-script-tooread-your-capture-files"></a><span data-ttu-id="bed22-138">建立 Python 指令碼 tooread 擷取檔案</span><span class="sxs-lookup"><span data-stu-id="bed22-138">Create a Python script tooread your Capture files</span></span>
 
-1. <span data-ttu-id="ebfb2-139">填寫刀鋒視窗，然後按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-139">Fill out the blade and click **Create**.</span></span>
-2. <span data-ttu-id="ebfb2-140">建立名為 **capturereader.py** 的指令碼。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-140">Create a script called **capturereader.py**.</span></span> <span data-ttu-id="ebfb2-141">此指令碼會讀取擷取檔案，並為每個裝置建立檔案以便只寫入該裝置的資料。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-141">This script reads the captured files and creates a file per device to write the data only for that device.</span></span>
-3. <span data-ttu-id="ebfb2-142">將下列程式碼貼到 capturereader.py：</span><span class="sxs-lookup"><span data-stu-id="ebfb2-142">Paste the following code into capturereader.py:</span></span>
+1. <span data-ttu-id="bed22-139">填寫 [hello] 刀鋒視窗，並按一下**建立**。</span><span class="sxs-lookup"><span data-stu-id="bed22-139">Fill out hello blade and click **Create**.</span></span>
+2. <span data-ttu-id="bed22-140">建立名為 **capturereader.py** 的指令碼。</span><span class="sxs-lookup"><span data-stu-id="bed22-140">Create a script called **capturereader.py**.</span></span> <span data-ttu-id="bed22-141">此指令碼會讀取 hello 擷取檔案，並建立該裝置僅針對每一裝置 toowrite hello 資料檔案。</span><span class="sxs-lookup"><span data-stu-id="bed22-141">This script reads hello captured files and creates a file per device toowrite hello data only for that device.</span></span>
+3. <span data-ttu-id="bed22-142">貼上下列程式碼到 capturereader.py hello:</span><span class="sxs-lookup"><span data-stu-id="bed22-142">Paste hello following code into capturereader.py:</span></span>
    
   ```python
   import os
@@ -125,10 +125,10 @@ ms.lasthandoff: 08/29/2017
           block_blob_service.delete_blob(container, blob.name)
   startProcessing('YOUR STORAGE ACCOUNT NAME', 'YOUR KEY', 'capture')
   ```
-4. <span data-ttu-id="ebfb2-143">請務必在 `startProcessing`的呼叫中貼上儲存體帳戶名稱和金鑰的適當值。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-143">Be sure to paste the appropriate values for your storage account name and key in the call to `startProcessing`.</span></span>
+4. <span data-ttu-id="bed22-143">您的儲存體帳戶名稱和金鑰在 hello 呼叫太 hello 適當的值是確定 toopaste`startProcessing`。</span><span class="sxs-lookup"><span data-stu-id="bed22-143">Be sure toopaste hello appropriate values for your storage account name and key in hello call too`startProcessing`.</span></span>
 
-## <a name="run-the-scripts"></a><span data-ttu-id="ebfb2-144">執行指令碼</span><span class="sxs-lookup"><span data-stu-id="ebfb2-144">Run the scripts</span></span>
-1. <span data-ttu-id="ebfb2-145">開啟在其路徑中具有 Python 的命令提示字元，並執行下列命令來安裝 Python 必要條件封裝︰</span><span class="sxs-lookup"><span data-stu-id="ebfb2-145">Open a command prompt that has Python in its path, and then run these commands to install Python prerequisite packages:</span></span>
+## <a name="run-hello-scripts"></a><span data-ttu-id="bed22-144">執行 hello 指令碼</span><span class="sxs-lookup"><span data-stu-id="bed22-144">Run hello scripts</span></span>
+1. <span data-ttu-id="bed22-145">開啟命令提示字元在其路徑中，具有 Python，然後執行這些命令 tooinstall Python 先決條件封裝：</span><span class="sxs-lookup"><span data-stu-id="bed22-145">Open a command prompt that has Python in its path, and then run these commands tooinstall Python prerequisite packages:</span></span>
    
   ```
   pip install azure-storage
@@ -136,36 +136,36 @@ ms.lasthandoff: 08/29/2017
   pip install avro
   ```
    
-  <span data-ttu-id="ebfb2-146">如果您有舊版的 Azure 儲存體或 Azure，您可能需要使用 **--upgrade** 選項</span><span class="sxs-lookup"><span data-stu-id="ebfb2-146">If you have an earlier version of either azure-storage or azure, you may need to use the **--upgrade** option</span></span>
+  <span data-ttu-id="bed22-146">如果您有舊版的 azure 儲存體或 azure，您可能需要 toouse hello **-升級**選項</span><span class="sxs-lookup"><span data-stu-id="bed22-146">If you have an earlier version of either azure-storage or azure, you may need toouse hello **--upgrade** option</span></span>
    
-  <span data-ttu-id="ebfb2-147">您可能也需要執行下列命令 (在大部分系統上並不需要)︰</span><span class="sxs-lookup"><span data-stu-id="ebfb2-147">You might also need to run the following (not necessary on most systems):</span></span>
+  <span data-ttu-id="bed22-147">您可能也需要 toorun hello 遵循 （不需要在大多數系統上）：</span><span class="sxs-lookup"><span data-stu-id="bed22-147">You might also need toorun hello following (not necessary on most systems):</span></span>
    
   ```
   pip install cryptography
   ```
-2. <span data-ttu-id="ebfb2-148">將目錄變更為儲存了 sender.py 和 capturereader.py 的任何位置，並執行此命令︰</span><span class="sxs-lookup"><span data-stu-id="ebfb2-148">Change your directory to wherever you saved sender.py and capturereader.py, and run this command:</span></span>
+2. <span data-ttu-id="bed22-148">變更您的目錄 toowherever 儲存 sender.py 和 capturereader.py，並執行下列命令：</span><span class="sxs-lookup"><span data-stu-id="bed22-148">Change your directory toowherever you saved sender.py and capturereader.py, and run this command:</span></span>
    
   ```
   start python sender.py
   ```
    
-  <span data-ttu-id="ebfb2-149">此命令會啟動新的 Python 程序來執行傳送器。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-149">This command starts a new Python process to run the sender.</span></span>
-3. <span data-ttu-id="ebfb2-150">現在等候擷取執行幾分鐘的時間。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-150">Now wait a few minutes for the capture to run.</span></span> <span data-ttu-id="ebfb2-151">然後在原始命令視窗中輸入下列命令︰</span><span class="sxs-lookup"><span data-stu-id="ebfb2-151">Then type the following command into your original command window:</span></span>
+  <span data-ttu-id="bed22-149">此命令會啟動新 Python 程序 toorun hello 寄件者。</span><span class="sxs-lookup"><span data-stu-id="bed22-149">This command starts a new Python process toorun hello sender.</span></span>
+3. <span data-ttu-id="bed22-150">現在，請稍候幾分鐘，讓 hello 擷取 toorun。</span><span class="sxs-lookup"><span data-stu-id="bed22-150">Now wait a few minutes for hello capture toorun.</span></span> <span data-ttu-id="bed22-151">然後輸入 hello 到原始的命令視窗，下列命令：</span><span class="sxs-lookup"><span data-stu-id="bed22-151">Then type hello following command into your original command window:</span></span>
    
    ```
    python capturereader.py
    ```
 
-   <span data-ttu-id="ebfb2-152">此擷取處理器會使用本機目錄從儲存體帳戶/容器下載所有 Blob。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-152">This capture processor uses the local directory to download all the blobs from the storage account/container.</span></span> <span data-ttu-id="ebfb2-153">它會處理任何非空白的 Blob，並將結果以 .csv 檔案的形式寫入到本機目錄。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-153">It processes any that are not empty, and writes the results as .csv files into the local directory.</span></span>
+   <span data-ttu-id="bed22-152">此擷取處理器會使用 hello 本機目錄 toodownload hello 儲存體帳戶/容器的所有 hello blob。</span><span class="sxs-lookup"><span data-stu-id="bed22-152">This capture processor uses hello local directory toodownload all hello blobs from hello storage account/container.</span></span> <span data-ttu-id="bed22-153">它會處理任何不是空白，並將 hello 結果.csv 檔案的形式寫入至 hello 本機目錄。</span><span class="sxs-lookup"><span data-stu-id="bed22-153">It processes any that are not empty, and writes hello results as .csv files into hello local directory.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="ebfb2-154">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ebfb2-154">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="bed22-154">後續步驟</span><span class="sxs-lookup"><span data-stu-id="bed22-154">Next steps</span></span>
 
-<span data-ttu-id="ebfb2-155">您可以造訪下列連結以深入了解事件中樞︰</span><span class="sxs-lookup"><span data-stu-id="ebfb2-155">You can learn more about Event Hubs by visiting the following links:</span></span>
+<span data-ttu-id="bed22-155">您可以進一步了解事件中心瀏覽下列連結查看 hello:</span><span class="sxs-lookup"><span data-stu-id="bed22-155">You can learn more about Event Hubs by visiting hello following links:</span></span>
 
-* <span data-ttu-id="ebfb2-156">[事件中樞擷取概觀][Overview of Event Hubs Capture]</span><span class="sxs-lookup"><span data-stu-id="ebfb2-156">[Overview of Event Hubs Capture][Overview of Event Hubs Capture]</span></span>
-* <span data-ttu-id="ebfb2-157">[使用事件中樞的完整範例應用程式][sample application that uses Event Hubs]。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-157">A complete [sample application that uses Event Hubs][sample application that uses Event Hubs].</span></span>
-* <span data-ttu-id="ebfb2-158">[使用事件中樞相應放大事件處理][Scale out Event Processing with Event Hubs]範例。</span><span class="sxs-lookup"><span data-stu-id="ebfb2-158">The [Scale out Event Processing with Event Hubs][Scale out Event Processing with Event Hubs] sample.</span></span>
-* <span data-ttu-id="ebfb2-159">[事件中樞概觀][Event Hubs overview]</span><span class="sxs-lookup"><span data-stu-id="ebfb2-159">[Event Hubs overview][Event Hubs overview]</span></span>
+* <span data-ttu-id="bed22-156">[事件中樞擷取概觀][Overview of Event Hubs Capture]</span><span class="sxs-lookup"><span data-stu-id="bed22-156">[Overview of Event Hubs Capture][Overview of Event Hubs Capture]</span></span>
+* <span data-ttu-id="bed22-157">[使用事件中樞的完整範例應用程式][sample application that uses Event Hubs]。</span><span class="sxs-lookup"><span data-stu-id="bed22-157">A complete [sample application that uses Event Hubs][sample application that uses Event Hubs].</span></span>
+* <span data-ttu-id="bed22-158">hello[範圍外使用事件中心的事件處理][ Scale out Event Processing with Event Hubs]範例。</span><span class="sxs-lookup"><span data-stu-id="bed22-158">hello [Scale out Event Processing with Event Hubs][Scale out Event Processing with Event Hubs] sample.</span></span>
+* <span data-ttu-id="bed22-159">[事件中樞概觀][Event Hubs overview]</span><span class="sxs-lookup"><span data-stu-id="bed22-159">[Event Hubs overview][Event Hubs overview]</span></span>
 
 [Azure portal]: https://portal.azure.com/
 [Overview of Event Hubs Capture]: event-hubs-archive-overview.md

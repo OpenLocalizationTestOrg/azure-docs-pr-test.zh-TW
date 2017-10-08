@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure IoT 中樞傳送雲端到裝置訊息 (Node) | Microsoft Docs"
-description: "如何使用適用於 Node.js 的 Azure IoT SDK，將雲端到裝置訊息從 Azure IoT 中樞傳送至裝置。 您可以修改模擬裝置應用程式，以接收雲端到裝置訊息，也可以修改後端應用程式，以傳送雲端到裝置訊息。"
+title: "與 Azure IoT 中樞 （節點） 的 aaaCloud 到裝置訊息 |Microsoft 文件"
+description: "如何 toosend 雲端到裝置訊息 tooa 裝置使用 hello Azure IoT Sdk for Node.js 的 Azure IoT 中樞。 您修改應用程式 tooreceive 模擬的裝置的雲端到裝置訊息，並修改後端應用程式 toosend hello 雲端到裝置訊息。"
 services: iot-hub
 documentationcenter: nodejs
 author: dominicbetts
@@ -14,46 +14,46 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: dobett
-ms.openlocfilehash: 4580bda5633f84a7c7af0dc85f3cea4951024836
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1ccae0cada52193c2abb91504c086cac226e93da
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="send-cloud-to-device-messages-with-iot-hub-node"></a><span data-ttu-id="6b0d6-104">使用 IoT 中樞 (Node) 傳送雲端到裝置訊息</span><span class="sxs-lookup"><span data-stu-id="6b0d6-104">Send cloud-to-device messages with IoT Hub (Node)</span></span>
+# <a name="send-cloud-to-device-messages-with-iot-hub-node"></a><span data-ttu-id="f660f-104">使用 IoT 中樞 (Node) 傳送雲端到裝置訊息</span><span class="sxs-lookup"><span data-stu-id="f660f-104">Send cloud-to-device messages with IoT Hub (Node)</span></span>
 [!INCLUDE [iot-hub-selector-c2d](../../includes/iot-hub-selector-c2d.md)]
 
-## <a name="introduction"></a><span data-ttu-id="6b0d6-105">簡介</span><span class="sxs-lookup"><span data-stu-id="6b0d6-105">Introduction</span></span>
-<span data-ttu-id="6b0d6-106">Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝置和一個解決方案後端進行可靠且安全的雙向通訊。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-106">Azure IoT Hub is a fully managed service that helps enable reliable and secure bi-directional communications between millions of devices and a solution back end.</span></span> <span data-ttu-id="6b0d6-107">[開始使用 IoT 中樞] 教學課程會示範如何建立 IoT 中樞、在其中佈建裝置識別，以及編寫模擬的裝置應用程式，以傳送裝置到雲端的訊息。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-107">The [Get started with IoT Hub] tutorial shows how to create an IoT hub, provision a device identity in it, and code a simulated device app that sends device-to-cloud messages.</span></span>
+## <a name="introduction"></a><span data-ttu-id="f660f-105">簡介</span><span class="sxs-lookup"><span data-stu-id="f660f-105">Introduction</span></span>
+<span data-ttu-id="f660f-106">Azure IoT 中樞是一項完全受管理的服務，有助於讓數百萬個裝置和一個解決方案後端進行可靠且安全的雙向通訊。</span><span class="sxs-lookup"><span data-stu-id="f660f-106">Azure IoT Hub is a fully managed service that helps enable reliable and secure bi-directional communications between millions of devices and a solution back end.</span></span> <span data-ttu-id="f660f-107">hello[開始使用 IoT 中樞]教學課程將說明如何 toocreate IoT 中樞，佈建裝置身分識別，並傳送裝置到雲端訊息的模擬的裝置應用程式的程式碼。</span><span class="sxs-lookup"><span data-stu-id="f660f-107">hello [Get started with IoT Hub] tutorial shows how toocreate an IoT hub, provision a device identity in it, and code a simulated device app that sends device-to-cloud messages.</span></span>
 
-<span data-ttu-id="6b0d6-108">本教學課程是以 [開始使用 IoT 中樞]為基礎。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-108">This tutorial builds on [Get started with IoT Hub].</span></span> <span data-ttu-id="6b0d6-109">這會說明如何：</span><span class="sxs-lookup"><span data-stu-id="6b0d6-109">It shows you how to:</span></span>
+<span data-ttu-id="f660f-108">本教學課程是以 [開始使用 IoT 中樞]為基礎。</span><span class="sxs-lookup"><span data-stu-id="f660f-108">This tutorial builds on [Get started with IoT Hub].</span></span> <span data-ttu-id="f660f-109">這會說明如何：</span><span class="sxs-lookup"><span data-stu-id="f660f-109">It shows you how to:</span></span>
 
-* <span data-ttu-id="6b0d6-110">從您的解決方案後端，透過 IoT 中樞將雲端到裝置訊息傳送給單一裝置。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-110">From your solution back end, send cloud-to-device messages to a single device through IoT Hub.</span></span>
-* <span data-ttu-id="6b0d6-111">接收裝置上的雲端到裝置訊息。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-111">Receive cloud-to-device messages on a device.</span></span>
-* <span data-ttu-id="6b0d6-112">從您的解決方案後端，要求確認收到從 IoT 中樞傳送到裝置的訊息 (「意見反應」)。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-112">From your solution back end, request delivery acknowledgement (*feedback*) for messages sent to a device from IoT Hub.</span></span>
+* <span data-ttu-id="f660f-110">從您的方案後端，傳送到 IoT 中樞雲端到裝置訊息 tooa 單一裝置。</span><span class="sxs-lookup"><span data-stu-id="f660f-110">From your solution back end, send cloud-to-device messages tooa single device through IoT Hub.</span></span>
+* <span data-ttu-id="f660f-111">接收裝置上的雲端到裝置訊息。</span><span class="sxs-lookup"><span data-stu-id="f660f-111">Receive cloud-to-device messages on a device.</span></span>
+* <span data-ttu-id="f660f-112">從您的方案後端，要求傳遞通知 (*意見反應*) 的訊息傳送 tooa 裝置從 IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="f660f-112">From your solution back end, request delivery acknowledgement (*feedback*) for messages sent tooa device from IoT Hub.</span></span>
 
-<span data-ttu-id="6b0d6-113">您可以在 [IoT 中樞開發人員指南][IoT Hub developer guide - C2D]中，找到有關雲端到裝置訊息的詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-113">You can find more information on cloud-to-device messages in the [IoT Hub developer guide][IoT Hub developer guide - C2D].</span></span>
+<span data-ttu-id="f660f-113">您可以找到更多有關雲端到裝置訊息在 hello [IoT 中樞開發人員指南][IoT Hub developer guide - C2D]。</span><span class="sxs-lookup"><span data-stu-id="f660f-113">You can find more information on cloud-to-device messages in hello [IoT Hub developer guide][IoT Hub developer guide - C2D].</span></span>
 
-<span data-ttu-id="6b0d6-114">在本教學課程結尾處，您會執行兩個 Node.js 主控台應用程式：</span><span class="sxs-lookup"><span data-stu-id="6b0d6-114">At the end of this tutorial, you run two Node.js console apps:</span></span>
+<span data-ttu-id="f660f-114">在本教學課程的 hello 最後，您可以執行兩個 Node.js 主控台應用程式：</span><span class="sxs-lookup"><span data-stu-id="f660f-114">At hello end of this tutorial, you run two Node.js console apps:</span></span>
 
-* <span data-ttu-id="6b0d6-115">**SimulatedDevice**， [開始使用 IoT 中樞]中建立之應用程式的修改版本，可連接到您的 IoT 中心，並接收雲端到裝置的訊息。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-115">**SimulatedDevice**, a modified version of the app created in [Get started with IoT Hub], which connects to your IoT hub and receives cloud-to-device messages.</span></span>
-* <span data-ttu-id="6b0d6-116">**SendCloudToDeviceMessage**：會透過 IoT 中樞，將雲端到裝置訊息傳送到模擬裝置應用程式，然後接收其傳遞通知。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-116">**SendCloudToDeviceMessage**, which sends a cloud-to-device message to the simulated device app through IoT Hub, and then receives its delivery acknowledgement.</span></span>
+* <span data-ttu-id="f660f-115">**SimulatedDevice**，hello 應用程式中建立的修改的版本[開始使用 IoT 中樞]，這會連接 tooyour IoT 中樞，並接收雲端到裝置訊息。</span><span class="sxs-lookup"><span data-stu-id="f660f-115">**SimulatedDevice**, a modified version of hello app created in [Get started with IoT Hub], which connects tooyour IoT hub and receives cloud-to-device messages.</span></span>
+* <span data-ttu-id="f660f-116">**SendCloudToDeviceMessage**，其中會傳送到 IoT 中樞的雲端到裝置訊息 toohello 模擬的裝置應用程式，但收到其傳遞通知。</span><span class="sxs-lookup"><span data-stu-id="f660f-116">**SendCloudToDeviceMessage**, which sends a cloud-to-device message toohello simulated device app through IoT Hub, and then receives its delivery acknowledgement.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="6b0d6-117">「IoT 中樞」透過 Azure IoT 裝置 SDK 為許多裝置平台和語言 (包括 C、Java 及 Javascript) 提供 SDK 支援。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-117">IoT Hub has SDK support for many device platforms and languages (including C, Java, and Javascript) through Azure IoT device SDKs.</span></span> <span data-ttu-id="6b0d6-118">如需有關如何將您的裝置與本教學課程中的程式碼連接 (通常是連接到「Azure IoT 中樞」) 的逐步指示，請參閱 [Azure IoT 開發人員中樞]。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-118">For step-by-step instructions on how to connect your device to this tutorial's code, and generally to Azure IoT Hub, see the [Azure IoT Developer Center].</span></span>
+> <span data-ttu-id="f660f-117">「IoT 中樞」透過 Azure IoT 裝置 SDK 為許多裝置平台和語言 (包括 C、Java 及 Javascript) 提供 SDK 支援。</span><span class="sxs-lookup"><span data-stu-id="f660f-117">IoT Hub has SDK support for many device platforms and languages (including C, Java, and Javascript) through Azure IoT device SDKs.</span></span> <span data-ttu-id="f660f-118">如需如何 tooconnect 裝置 toothis 教學課程的程式碼，以及通常 tooAzure IoT 中樞，請參閱逐步指示 hello [Azure IoT 開發人員中心]。</span><span class="sxs-lookup"><span data-stu-id="f660f-118">For step-by-step instructions on how tooconnect your device toothis tutorial's code, and generally tooAzure IoT Hub, see hello [Azure IoT Developer Center].</span></span>
 > 
 > 
 
-<span data-ttu-id="6b0d6-119">若要完成此教學課程，您需要下列項目：</span><span class="sxs-lookup"><span data-stu-id="6b0d6-119">To complete this tutorial, you need the following:</span></span>
+<span data-ttu-id="f660f-119">toocomplete 本教學課程中，您需要遵循的 hello:</span><span class="sxs-lookup"><span data-stu-id="f660f-119">toocomplete this tutorial, you need hello following:</span></span>
 
-* <span data-ttu-id="6b0d6-120">Node.js 0.10.x 版或更新版本。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-120">Node.js version 0.10.x or later.</span></span>
-* <span data-ttu-id="6b0d6-121">使用中的 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-121">An active Azure account.</span></span> <span data-ttu-id="6b0d6-122">(如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)</span><span class="sxs-lookup"><span data-stu-id="6b0d6-122">(If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.)</span></span>
+* <span data-ttu-id="f660f-120">Node.js 0.10.x 版或更新版本。</span><span class="sxs-lookup"><span data-stu-id="f660f-120">Node.js version 0.10.x or later.</span></span>
+* <span data-ttu-id="f660f-121">使用中的 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="f660f-121">An active Azure account.</span></span> <span data-ttu-id="f660f-122">(如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)</span><span class="sxs-lookup"><span data-stu-id="f660f-122">(If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.)</span></span>
 
-## <a name="receive-messages-in-the-simulated-device-app"></a><span data-ttu-id="6b0d6-123">在模擬的裝置應用程式中接收訊息</span><span class="sxs-lookup"><span data-stu-id="6b0d6-123">Receive messages in the simulated device app</span></span>
-<span data-ttu-id="6b0d6-124">在本節中，您會修改在[開始使用 IoT 中樞]中建立的模擬裝置應用程式，以接收來自 IoT 中樞的雲端對裝置訊息。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-124">In this section, you modify the simulated device app you created in [Get started with IoT Hub] to receive cloud-to-device messages from the IoT hub.</span></span>
+## <a name="receive-messages-in-hello-simulated-device-app"></a><span data-ttu-id="f660f-123">在 hello 模擬的裝置應用程式中接收訊息</span><span class="sxs-lookup"><span data-stu-id="f660f-123">Receive messages in hello simulated device app</span></span>
+<span data-ttu-id="f660f-124">在本節中，您將修改 hello 模擬的裝置應用程式中建立[開始使用 IoT 中樞]tooreceive 雲端到裝置訊息從 hello IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="f660f-124">In this section, you modify hello simulated device app you created in [Get started with IoT Hub] tooreceive cloud-to-device messages from hello IoT hub.</span></span>
 
-1. <span data-ttu-id="6b0d6-125">使用文字編輯器開啟 SimulatedDevice.js 檔案。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-125">Using a text editor, open the SimulatedDevice.js file.</span></span>
-2. <span data-ttu-id="6b0d6-126">修改 **connectCallback** 函式來處理從 IoT 中樞傳送的訊息。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-126">Modify the **connectCallback** function to handle messages sent from IoT Hub.</span></span> <span data-ttu-id="6b0d6-127">在此範例中，裝置永遠會叫用 **完整** 函式，目的是通知 IoT 中樞訊息已處理完畢。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-127">In this example, the device always invokes the **complete** function to notify IoT Hub that it has processed the message.</span></span> <span data-ttu-id="6b0d6-128">新版的 **connectCallback** 函式看起來會像下列程式碼片段︰</span><span class="sxs-lookup"><span data-stu-id="6b0d6-128">Your new version of the **connectCallback** function looks like the following snippet:</span></span>
+1. <span data-ttu-id="f660f-125">使用文字編輯器開啟 hello SimulatedDevice.js 檔案。</span><span class="sxs-lookup"><span data-stu-id="f660f-125">Using a text editor, open hello SimulatedDevice.js file.</span></span>
+2. <span data-ttu-id="f660f-126">修改 hello **connectCallback**函式 toohandle 從 IoT 中樞傳送的訊息。</span><span class="sxs-lookup"><span data-stu-id="f660f-126">Modify hello **connectCallback** function toohandle messages sent from IoT Hub.</span></span> <span data-ttu-id="f660f-127">在此範例中，hello 裝置永遠會叫用 hello**完成**函式 toonotify 它已經處理 hello 訊息的 IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="f660f-127">In this example, hello device always invokes hello **complete** function toonotify IoT Hub that it has processed hello message.</span></span> <span data-ttu-id="f660f-128">您的新版的 hello **connectCallback**函式看起來像下列程式碼片段的 hello:</span><span class="sxs-lookup"><span data-stu-id="f660f-128">Your new version of hello **connectCallback** function looks like hello following snippet:</span></span>
    
     ```javascript
     var connectCallback = function (err) {
@@ -65,7 +65,7 @@ ms.lasthandoff: 07/11/2017
           console.log('Id: ' + msg.messageId + ' Body: ' + msg.data);
           client.complete(msg, printResultFor('completed'));
         });
-        // Create a message and send it to the IoT Hub every second
+        // Create a message and send it toohello IoT Hub every second
         setInterval(function(){
             var temperature = 20 + (Math.random() * 15);
             var humidity = 60 + (Math.random() * 20);            
@@ -80,25 +80,25 @@ ms.lasthandoff: 07/11/2017
     ```
    
    > [!NOTE]
-   > <span data-ttu-id="6b0d6-129">如果您使用 HTTP 而非 MQTT 或 AMQP 作為傳輸，**DeviceClient** 執行個體將不會經常 (頻率低於每隔 25 分鐘) 檢查「IoT 中樞」是否傳來訊息。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-129">If you use HTTP instead of MQTT or AMQP as the transport, the **DeviceClient** instance checks for messages from IoT Hub infrequently (less than every 25 minutes).</span></span> <span data-ttu-id="6b0d6-130">如需有關 AMQP、AMQP 和 HTTP 支援之間的差異，以及 IoT 中樞節流的詳細資訊，請參閱 [IoT 中樞開發人員指南][IoT Hub developer guide - C2D]。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-130">For more information about the differences between MQTT, AMQP and HTTP support, and IoT Hub throttling, see the [IoT Hub developer guide][IoT Hub developer guide - C2D].</span></span>
+   > <span data-ttu-id="f660f-129">如果您使用 HTTP 而不是 MQTT 或 AMQP 做 hello 傳輸，hello **DeviceClient**從 IoT 中樞不常 （每隔 25 分鐘內） 的訊息會檢查執行個體。</span><span class="sxs-lookup"><span data-stu-id="f660f-129">If you use HTTP instead of MQTT or AMQP as hello transport, hello **DeviceClient** instance checks for messages from IoT Hub infrequently (less than every 25 minutes).</span></span> <span data-ttu-id="f660f-130">如需 MQTT、 AMQP 和 HTTP 支援與 IoT 中樞節流的 hello 差異的詳細資訊，請參閱 hello [IoT 中樞開發人員指南][IoT Hub developer guide - C2D]。</span><span class="sxs-lookup"><span data-stu-id="f660f-130">For more information about hello differences between MQTT, AMQP and HTTP support, and IoT Hub throttling, see hello [IoT Hub developer guide][IoT Hub developer guide - C2D].</span></span>
    > 
    > 
 
-## <a name="send-a-cloud-to-device-message"></a><span data-ttu-id="6b0d6-131">傳送雲端到裝置訊息</span><span class="sxs-lookup"><span data-stu-id="6b0d6-131">Send a cloud-to-device message</span></span>
-<span data-ttu-id="6b0d6-132">在本節中，您會建立 Node.js 主控台應用程式，將雲端到裝置訊息傳送至模擬裝置應用程式。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-132">In this section, you create a Node.js console app that sends cloud-to-device messages to the simulated device app.</span></span> <span data-ttu-id="6b0d6-133">您需要您在[開始使用 IoT 中樞]教學課程中所新增裝置的裝置識別碼。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-133">You need the device ID of the device you added in the [Get started with IoT Hub] tutorial.</span></span> <span data-ttu-id="6b0d6-134">您也需要中樞的 IoT 中樞連接字串 (可在 [Azure 入口網站]中找到)。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-134">You also need the IoT Hub connection string for your hub that you can find in the [Azure portal].</span></span>
+## <a name="send-a-cloud-to-device-message"></a><span data-ttu-id="f660f-131">傳送雲端到裝置訊息</span><span class="sxs-lookup"><span data-stu-id="f660f-131">Send a cloud-to-device message</span></span>
+<span data-ttu-id="f660f-132">在本節中，您可以建立 Node.js 主控台應用程式傳送雲端到裝置訊息 toohello 模擬的裝置應用程式。</span><span class="sxs-lookup"><span data-stu-id="f660f-132">In this section, you create a Node.js console app that sends cloud-to-device messages toohello simulated device app.</span></span> <span data-ttu-id="f660f-133">您需要 hello hello 裝置 hello 中加入的裝置識別碼[開始使用 IoT 中樞]教學課程。</span><span class="sxs-lookup"><span data-stu-id="f660f-133">You need hello device ID of hello device you added in hello [Get started with IoT Hub] tutorial.</span></span> <span data-ttu-id="f660f-134">您也需要 hello IoT 中樞連接字串，您可以在 hello 找到中樞[Azure 入口網站]。</span><span class="sxs-lookup"><span data-stu-id="f660f-134">You also need hello IoT Hub connection string for your hub that you can find in hello [Azure portal].</span></span>
 
-1. <span data-ttu-id="6b0d6-135">建立新的名為 **sendcloudtodevicemessage**的空資料夾。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-135">Create an empty folder called **sendcloudtodevicemessage**.</span></span> <span data-ttu-id="6b0d6-136">在 **sendcloudtodevicemessage** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-136">In the **sendcloudtodevicemessage** folder, create a package.json file using the following command at your command prompt.</span></span> <span data-ttu-id="6b0d6-137">接受所有預設值：</span><span class="sxs-lookup"><span data-stu-id="6b0d6-137">Accept all the defaults:</span></span>
+1. <span data-ttu-id="f660f-135">建立新的名為 **sendcloudtodevicemessage**的空資料夾。</span><span class="sxs-lookup"><span data-stu-id="f660f-135">Create an empty folder called **sendcloudtodevicemessage**.</span></span> <span data-ttu-id="f660f-136">在 hello **sendcloudtodevicemessage**資料夾中，建立使用下列命令，在您的命令提示字元的 hello package.json 檔案。</span><span class="sxs-lookup"><span data-stu-id="f660f-136">In hello **sendcloudtodevicemessage** folder, create a package.json file using hello following command at your command prompt.</span></span> <span data-ttu-id="f660f-137">接受所有的 hello 預設值：</span><span class="sxs-lookup"><span data-stu-id="f660f-137">Accept all hello defaults:</span></span>
    
     ```shell
     npm init
     ```
-2. <span data-ttu-id="6b0d6-138">在命令提示字元中，於 **sendcloudtodevicemessage** 資料夾中執行下列命令以安裝 **azure-iothub** 套件：</span><span class="sxs-lookup"><span data-stu-id="6b0d6-138">At your command prompt in the **sendcloudtodevicemessage** folder, run the following command to install the **azure-iothub** package:</span></span>
+2. <span data-ttu-id="f660f-138">在您的命令提示字元中 hello **sendcloudtodevicemessage**資料夾中，執行下列命令 tooinstall hello hello **azure iot 中樞**封裝：</span><span class="sxs-lookup"><span data-stu-id="f660f-138">At your command prompt in hello **sendcloudtodevicemessage** folder, run hello following command tooinstall hello **azure-iothub** package:</span></span>
    
     ```shell
     npm install azure-iothub --save
     ```
-3. <span data-ttu-id="6b0d6-139">使用文字編輯器，在 **sendcloudtodevicemessage** 資料夾中建立 **SendCloudToDeviceMessage.js** 檔案。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-139">Using a text editor, create a **SendCloudToDeviceMessage.js** file in the **sendcloudtodevicemessage** folder.</span></span>
-4. <span data-ttu-id="6b0d6-140">在 **SendCloudToDeviceMessage.js** 檔案開頭新增下列 `require` 陳述式：</span><span class="sxs-lookup"><span data-stu-id="6b0d6-140">Add the following `require` statements at the start of the **SendCloudToDeviceMessage.js** file:</span></span>
+3. <span data-ttu-id="f660f-139">使用文字編輯器中，建立**SendCloudToDeviceMessage.js**檔案在 hello **sendcloudtodevicemessage**資料夾。</span><span class="sxs-lookup"><span data-stu-id="f660f-139">Using a text editor, create a **SendCloudToDeviceMessage.js** file in hello **sendcloudtodevicemessage** folder.</span></span>
+4. <span data-ttu-id="f660f-140">新增下列 hello`require`陳述式在 hello 開頭 hello **SendCloudToDeviceMessage.js**檔案：</span><span class="sxs-lookup"><span data-stu-id="f660f-140">Add hello following `require` statements at hello start of hello **SendCloudToDeviceMessage.js** file:</span></span>
    
     ```javascript
     'use strict';
@@ -106,7 +106,7 @@ ms.lasthandoff: 07/11/2017
     var Client = require('azure-iothub').Client;
     var Message = require('azure-iot-common').Message;
     ```
-5. <span data-ttu-id="6b0d6-141">在 **SendCloudToDeviceMessage.js** 檔案中新增下列程式碼。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-141">Add the following code to **SendCloudToDeviceMessage.js** file.</span></span> <span data-ttu-id="6b0d6-142">將 "{IoT 中樞連接字串}" 預留位置的值，替換為您在[開始使用 IoT 中樞]教學課程中所建立中樞的 IoT 中樞連接字串。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-142">Replace the "{iot hub connection string}" placeholder value with the IoT Hub connection string for the hub you created in the [Get started with IoT Hub] tutorial.</span></span> <span data-ttu-id="6b0d6-143">將 "{裝置識別碼}" 預留位置替換為您在[開始使用 IoT 中樞]教學課程中所新增裝置的裝置識別碼：</span><span class="sxs-lookup"><span data-stu-id="6b0d6-143">Replace the "{device id}" placeholder with the device ID of the device you added in the [Get started with IoT Hub] tutorial:</span></span>
+5. <span data-ttu-id="f660f-141">新增下列程式碼太 hello**SendCloudToDeviceMessage.js**檔案。</span><span class="sxs-lookup"><span data-stu-id="f660f-141">Add hello following code too**SendCloudToDeviceMessage.js** file.</span></span> <span data-ttu-id="f660f-142">取代 hello hello 中樞 hello 在您建立 IoT 中樞連接字串中的 hello"{iot 中樞連接字串}"預留位置值[開始使用 IoT 中樞]教學課程。</span><span class="sxs-lookup"><span data-stu-id="f660f-142">Replace hello "{iot hub connection string}" placeholder value with hello IoT Hub connection string for hello hub you created in hello [Get started with IoT Hub] tutorial.</span></span> <span data-ttu-id="f660f-143">Hello"{裝置識別碼}"預留位置取代您在 hello 加入 hello 裝置 hello 裝置識別碼[開始使用 IoT 中樞]教學課程：</span><span class="sxs-lookup"><span data-stu-id="f660f-143">Replace hello "{device id}" placeholder with hello device ID of hello device you added in hello [Get started with IoT Hub] tutorial:</span></span>
    
     ```javascript
     var connectionString = '{iot hub connection string}';
@@ -114,7 +114,7 @@ ms.lasthandoff: 07/11/2017
    
     var serviceClient = Client.fromConnectionString(connectionString);
     ```
-6. <span data-ttu-id="6b0d6-144">加入下列函式來將作業結果列印至主控台︰</span><span class="sxs-lookup"><span data-stu-id="6b0d6-144">Add the following function to print operation results to the console:</span></span>
+6. <span data-ttu-id="f660f-144">加入下列函式 tooprint 作業結果 toohello 主控台 hello:</span><span class="sxs-lookup"><span data-stu-id="f660f-144">Add hello following function tooprint operation results toohello console:</span></span>
    
     ```javascript
     function printResultFor(op) {
@@ -124,7 +124,7 @@ ms.lasthandoff: 07/11/2017
       };
     }
     ```
-7. <span data-ttu-id="6b0d6-145">加入下列函式來將傳遞意見反應訊息列印至主控台︰</span><span class="sxs-lookup"><span data-stu-id="6b0d6-145">Add the following function to print delivery feedback messages to the console:</span></span>
+7. <span data-ttu-id="f660f-145">加入下列函式 tooprint 傳遞回應訊息 toohello 主控台 hello:</span><span class="sxs-lookup"><span data-stu-id="f660f-145">Add hello following function tooprint delivery feedback messages toohello console:</span></span>
    
     ```javascript
     function receiveFeedback(err, receiver){
@@ -134,7 +134,7 @@ ms.lasthandoff: 07/11/2017
       });
     }
     ```
-8. <span data-ttu-id="6b0d6-146">加入下列程式碼，當裝置收到雲端到裝置訊息時，會將訊息傳送至您的裝置，並處理意見反應訊息︰</span><span class="sxs-lookup"><span data-stu-id="6b0d6-146">Add the following code to send a message to your device and handle the feedback message when the device acknowledges the cloud-to-device message:</span></span>
+8. <span data-ttu-id="f660f-146">新增 hello 下列程式碼 toosend 訊息 tooyour 裝置和裝置 hello 認可 hello 雲端到裝置訊息時處理 hello 回應訊息：</span><span class="sxs-lookup"><span data-stu-id="f660f-146">Add hello following code toosend a message tooyour device and handle hello feedback message when hello device acknowledges hello cloud-to-device message:</span></span>
    
     ```javascript
     serviceClient.open(function (err) {
@@ -143,7 +143,7 @@ ms.lasthandoff: 07/11/2017
       } else {
         console.log('Service client connected');
         serviceClient.getFeedbackReceiver(receiveFeedback);
-        var message = new Message('Cloud to device message.');
+        var message = new Message('Cloud toodevice message.');
         message.ack = 'full';
         message.messageId = "My Message ID";
         console.log('Sending message: ' + message.getData());
@@ -151,37 +151,37 @@ ms.lasthandoff: 07/11/2017
       }
     });
     ```
-9. <span data-ttu-id="6b0d6-147">儲存並關閉 **SendCloudToDeviceMessage.js** 檔案。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-147">Save and close **SendCloudToDeviceMessage.js** file.</span></span>
+9. <span data-ttu-id="f660f-147">儲存並關閉 **SendCloudToDeviceMessage.js** 檔案。</span><span class="sxs-lookup"><span data-stu-id="f660f-147">Save and close **SendCloudToDeviceMessage.js** file.</span></span>
 
-## <a name="run-the-applications"></a><span data-ttu-id="6b0d6-148">執行應用程式</span><span class="sxs-lookup"><span data-stu-id="6b0d6-148">Run the applications</span></span>
-<span data-ttu-id="6b0d6-149">現在您已經準備好執行應用程式。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-149">You are now ready to run the applications.</span></span>
+## <a name="run-hello-applications"></a><span data-ttu-id="f660f-148">執行 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="f660f-148">Run hello applications</span></span>
+<span data-ttu-id="f660f-149">現在您已經準備就緒 toorun hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="f660f-149">You are now ready toorun hello applications.</span></span>
 
-1. <span data-ttu-id="6b0d6-150">在命令提示字元中，於 **simulateddevice** 資料夾中執行下列命令，將遙測傳送至 IoT 中樞並接聽雲端到裝置訊息：</span><span class="sxs-lookup"><span data-stu-id="6b0d6-150">At the command prompt in the **simulateddevice** folder, run the following command to send telemetry to IoT Hub and to listen for cloud-to-device messages:</span></span>
+1. <span data-ttu-id="f660f-150">在 hello 命令提示字元中 hello **simulateddevice**資料夾中，執行下列 hello 命令 toosend 遙測 tooIoT 中樞及 toolisten 雲端到裝置訊息：</span><span class="sxs-lookup"><span data-stu-id="f660f-150">At hello command prompt in hello **simulateddevice** folder, run hello following command toosend telemetry tooIoT Hub and toolisten for cloud-to-device messages:</span></span>
    
     ```shell
     node SimulatedDevice.js 
     ```
    
-    ![執行模擬裝置應用程式][img-simulated-device]
-2. <span data-ttu-id="6b0d6-152">在命令提示字元中，於 **sendcloudtodevicemessage** 資料夾中執行下列命令，以傳送雲端到裝置訊息並等候通知的意見反應︰</span><span class="sxs-lookup"><span data-stu-id="6b0d6-152">At a command prompt in the **sendcloudtodevicemessage** folder, run the following command to send a cloud-to-device message and wait for the acknowledgment feedback:</span></span>
+    ![執行 hello 模擬的裝置應用程式][img-simulated-device]
+2. <span data-ttu-id="f660f-152">在命令提示字元中 hello **sendcloudtodevicemessage**資料夾中，執行下列命令 toosend hello 雲端到裝置訊息，並等候 hello 通知意見反應：</span><span class="sxs-lookup"><span data-stu-id="f660f-152">At a command prompt in hello **sendcloudtodevicemessage** folder, run hello following command toosend a cloud-to-device message and wait for hello acknowledgment feedback:</span></span>
    
     ```shell
     node SendCloudToDeviceMessage.js 
     ```
    
-    ![執行應用程式以傳送雲端到裝置命令][img-send-command]
+    ![執行 hello 應用程式 toosend hello 雲端到裝置命令][img-send-command]
    
    > [!NOTE]
-   > <span data-ttu-id="6b0d6-154">為了簡單起見，本教學課程不會實作任何重試原則。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-154">For simplicity's sake, this tutorial does not implement any retry policy.</span></span> <span data-ttu-id="6b0d6-155">在生產環境程式碼中，您應該如 MSDN 文章 [暫時性錯誤處理]所建議，實作重試原則 (例如指數型輪詢)。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-155">In production code, you should implement retry policies (such as exponential backoff), as suggested in the MSDN article [Transient Fault Handling].</span></span>
+   > <span data-ttu-id="f660f-154">為了簡單起見，本教學課程不會實作任何重試原則。</span><span class="sxs-lookup"><span data-stu-id="f660f-154">For simplicity's sake, this tutorial does not implement any retry policy.</span></span> <span data-ttu-id="f660f-155">在實際執行程式碼，您應該實作重試原則 （例如指數型輪詢），做為建議 hello MSDN 文件中[暫時性錯誤處理]。</span><span class="sxs-lookup"><span data-stu-id="f660f-155">In production code, you should implement retry policies (such as exponential backoff), as suggested in hello MSDN article [Transient Fault Handling].</span></span>
    > 
    > 
 
-## <a name="next-steps"></a><span data-ttu-id="6b0d6-156">後續步驟</span><span class="sxs-lookup"><span data-stu-id="6b0d6-156">Next steps</span></span>
-<span data-ttu-id="6b0d6-157">在本教學課程中，您已了解如何傳送和接收雲端到裝置的訊息。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-157">In this tutorial, you learned how to send and receive cloud-to-device messages.</span></span> 
+## <a name="next-steps"></a><span data-ttu-id="f660f-156">後續步驟</span><span class="sxs-lookup"><span data-stu-id="f660f-156">Next steps</span></span>
+<span data-ttu-id="f660f-157">在本教學課程中，您學到如何 toosend 和接收雲端到裝置訊息。</span><span class="sxs-lookup"><span data-stu-id="f660f-157">In this tutorial, you learned how toosend and receive cloud-to-device messages.</span></span> 
 
-<span data-ttu-id="6b0d6-158">若要查看使用 IoT 中樞的完整端對端解決方案範例，請參閱 [Azure IoT 套件]。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-158">To see examples of complete end-to-end solutions that use IoT Hub, see [Azure IoT Suite].</span></span>
+<span data-ttu-id="f660f-158">完整的端對端解決方案使用 IoT 中樞 toosee 範例請參閱[Azure IoT 套件]。</span><span class="sxs-lookup"><span data-stu-id="f660f-158">toosee examples of complete end-to-end solutions that use IoT Hub, see [Azure IoT Suite].</span></span>
 
-<span data-ttu-id="6b0d6-159">若要深入了解如何使用 IoT 中樞開發解決方案，請參閱 [IoT 中樞開發人員指南]。</span><span class="sxs-lookup"><span data-stu-id="6b0d6-159">To learn more about developing solutions with IoT Hub, see the [IoT Hub developer guide].</span></span>
+<span data-ttu-id="f660f-159">toolearn 進一步了解開發與 IoT 中樞的解決方案，請參閱 「 hello [IoT 中樞開發人員指南]。</span><span class="sxs-lookup"><span data-stu-id="f660f-159">toolearn more about developing solutions with IoT Hub, see hello [IoT Hub developer guide].</span></span>
 
 <!-- Images -->
 [img-simulated-device]: media/iot-hub-node-node-c2d/receivec2d.png
@@ -189,12 +189,12 @@ ms.lasthandoff: 07/11/2017
 
 <!-- Links -->
 
-<span data-ttu-id="6b0d6-160">[開始使用 IoT 中樞]: iot-hub-node-node-getstarted.md</span><span class="sxs-lookup"><span data-stu-id="6b0d6-160">[Get started with IoT Hub]: iot-hub-node-node-getstarted.md</span></span>
+[開始使用 IoT 中樞]: iot-hub-node-node-getstarted.md
 [IoT Hub developer guide - C2D]: iot-hub-devguide-messaging.md
-<span data-ttu-id="6b0d6-161">[IoT 中樞開發人員指南]: iot-hub-devguide.md</span><span class="sxs-lookup"><span data-stu-id="6b0d6-161">[IoT Hub developer guide]: iot-hub-devguide.md</span></span>
-<span data-ttu-id="6b0d6-162">[Azure IoT 開發人員中樞]: http://www.azure.com/develop/iot</span><span class="sxs-lookup"><span data-stu-id="6b0d6-162">[Azure IoT Developer Center]: http://www.azure.com/develop/iot</span></span>
+[IoT 中樞開發人員指南]: iot-hub-devguide.md
+[Azure IoT 開發人員中心]: http://www.azure.com/develop/iot
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [lnk-dev-setup]: https://github.com/Azure/azure-iot-sdk-node/tree/master/doc/node-devbox-setup.md
-<span data-ttu-id="6b0d6-163">[暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx</span><span class="sxs-lookup"><span data-stu-id="6b0d6-163">[Transient Fault Handling]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx</span></span>
-<span data-ttu-id="6b0d6-164">[Azure 入口網站]: https://portal.azure.com</span><span class="sxs-lookup"><span data-stu-id="6b0d6-164">[Azure portal]: https://portal.azure.com</span></span>
-<span data-ttu-id="6b0d6-165">[Azure IoT 套件]: https://azure.microsoft.com/documentation/suites/iot-suite/</span><span class="sxs-lookup"><span data-stu-id="6b0d6-165">[Azure IoT Suite]: https://azure.microsoft.com/documentation/suites/iot-suite/</span></span>
+[暫時性錯誤處理]: https://msdn.microsoft.com/library/hh680901(v=pandp.50).aspx
+[Azure 入口網站]: https://portal.azure.com
+[Azure IoT 套件]: https://azure.microsoft.com/documentation/suites/iot-suite/

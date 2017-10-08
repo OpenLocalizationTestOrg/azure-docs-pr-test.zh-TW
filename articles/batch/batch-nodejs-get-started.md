@@ -1,6 +1,6 @@
 ---
-title: "教學課程 - 使用適用於 Node.js 的 Azure Batch 用戶端程式庫 | Microsoft Docs"
-description: "了解 Azure Batch 的基本概念和使用 Node.js 建置簡單的解決方案。"
+title: "aaaTutorial-使用 hello Azure 批次用戶端程式庫 for Node.js |Microsoft 文件"
+description: "了解 hello Azure Batch 基本概念，並建立簡單的解決方案使用 Node.js。"
 services: batch
 author: shwetams
 manager: timlt
@@ -11,88 +11,88 @@ ms.topic: hero-article
 ms.workload: big-compute
 ms.date: 05/22/2017
 ms.author: shwetams
-ms.openlocfilehash: c48171d8634a651718a0775183414f463c6a468c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d2b0ecbe764e7100affd7b02839aef3077b073cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-batch-sdk-for-nodejs"></a><span data-ttu-id="f4bcb-103">開始使用適用於 Node.js 的 Batch SDK</span><span class="sxs-lookup"><span data-stu-id="f4bcb-103">Get started with Batch SDK for Node.js</span></span>
+# <a name="get-started-with-batch-sdk-for-nodejs"></a><span data-ttu-id="f52e6-103">開始使用適用於 Node.js 的 Batch SDK</span><span class="sxs-lookup"><span data-stu-id="f52e6-103">Get started with Batch SDK for Node.js</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="f4bcb-104">.NET</span><span class="sxs-lookup"><span data-stu-id="f4bcb-104">.NET</span></span>](batch-dotnet-get-started.md)
-> * [<span data-ttu-id="f4bcb-105">Python</span><span class="sxs-lookup"><span data-stu-id="f4bcb-105">Python</span></span>](batch-python-tutorial.md)
-> * [<span data-ttu-id="f4bcb-106">Node.js</span><span class="sxs-lookup"><span data-stu-id="f4bcb-106">Node.js</span></span>](batch-nodejs-get-started.md)
+> * [<span data-ttu-id="f52e6-104">.NET</span><span class="sxs-lookup"><span data-stu-id="f52e6-104">.NET</span></span>](batch-dotnet-get-started.md)
+> * [<span data-ttu-id="f52e6-105">Python</span><span class="sxs-lookup"><span data-stu-id="f52e6-105">Python</span></span>](batch-python-tutorial.md)
+> * [<span data-ttu-id="f52e6-106">Node.js</span><span class="sxs-lookup"><span data-stu-id="f52e6-106">Node.js</span></span>](batch-nodejs-get-started.md)
 >
 >
 
-<span data-ttu-id="f4bcb-107">了解如何使用 [Azure Batch Node.js SDK](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/) 在 Node.js 中建置 Batch 用戶端的基本概念。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-107">Learn the basics of building a Batch client in Node.js using [Azure Batch Node.js SDK](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/).</span></span> <span data-ttu-id="f4bcb-108">我們會逐步了解批次應用程式的案例，然後使用 Node.js 用戶端加以設定。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-108">We take a step by step approach of understanding a scenario for a batch application and then setting it up using a Node.js client.</span></span>  
+<span data-ttu-id="f52e6-107">了解建立批次中的用戶端使用 Node.js 的 hello 基本概念[Azure 批次 Node.js SDK](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/)。</span><span class="sxs-lookup"><span data-stu-id="f52e6-107">Learn hello basics of building a Batch client in Node.js using [Azure Batch Node.js SDK](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/).</span></span> <span data-ttu-id="f52e6-108">我們會逐步了解批次應用程式的案例，然後使用 Node.js 用戶端加以設定。</span><span class="sxs-lookup"><span data-stu-id="f52e6-108">We take a step by step approach of understanding a scenario for a batch application and then setting it up using a Node.js client.</span></span>  
 
-## <a name="prerequisites"></a><span data-ttu-id="f4bcb-109">必要條件</span><span class="sxs-lookup"><span data-stu-id="f4bcb-109">Prerequisites</span></span>
-<span data-ttu-id="f4bcb-110">本文假設您已具備 Node.js 的使用知識並熟悉 Linux。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-110">This article assumes that you have a working knowledge of Node.js and familiarity with Linux.</span></span> <span data-ttu-id="f4bcb-111">同時假設您的 Azure 帳戶設有存取權限，可建立 Batch 和儲存體服務。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-111">It also assumes that you have an Azure account setup with access rights to create Batch and Storage services.</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="f52e6-109">必要條件</span><span class="sxs-lookup"><span data-stu-id="f52e6-109">Prerequisites</span></span>
+<span data-ttu-id="f52e6-110">本文假設您已具備 Node.js 的使用知識並熟悉 Linux。</span><span class="sxs-lookup"><span data-stu-id="f52e6-110">This article assumes that you have a working knowledge of Node.js and familiarity with Linux.</span></span> <span data-ttu-id="f52e6-111">它也假設您有存取權限 toocreate 批次和儲存體服務的 Azure 帳戶設定。</span><span class="sxs-lookup"><span data-stu-id="f52e6-111">It also assumes that you have an Azure account setup with access rights toocreate Batch and Storage services.</span></span>
 
-<span data-ttu-id="f4bcb-112">建議您先閱讀 [Azure Batch 技術概觀](batch-technical-overview.md)，再進行本文概述的步驟。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-112">We recommend reading [Azure Batch Technical Overview](batch-technical-overview.md) before you go through the steps outlined this article.</span></span>
+<span data-ttu-id="f52e6-112">建議您閱讀[Azure 批次技術概觀](batch-technical-overview.md)您瀏覽之前 hello 步驟所述這篇文章。</span><span class="sxs-lookup"><span data-stu-id="f52e6-112">We recommend reading [Azure Batch Technical Overview](batch-technical-overview.md) before you go through hello steps outlined this article.</span></span>
 
-## <a name="the-tutorial-scenario"></a><span data-ttu-id="f4bcb-113">教學課程案例</span><span class="sxs-lookup"><span data-stu-id="f4bcb-113">The tutorial scenario</span></span>
-<span data-ttu-id="f4bcb-114">讓我們一起了解 Batch 工作流程案例。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-114">Let us understand the batch workflow scenario.</span></span> <span data-ttu-id="f4bcb-115">我們有以 Python 撰寫的簡單指令碼，可從 Azure Blob 儲存體容器下載所有 csv 檔案並將它們轉換成 JSON。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-115">We have a simple script written in Python that downloads all csv files from an Azure Blob storage container and converts them to JSON.</span></span> <span data-ttu-id="f4bcb-116">若要平行處理多個儲存體帳戶容器，我們可以將此指令碼部署為 Azure Batch 作業。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-116">To process multiple storage account containers in parallel, we can deploy the script as an Azure Batch job.</span></span>
+## <a name="hello-tutorial-scenario"></a><span data-ttu-id="f52e6-113">hello 教學課程案例</span><span class="sxs-lookup"><span data-stu-id="f52e6-113">hello tutorial scenario</span></span>
+<span data-ttu-id="f52e6-114">讓我們了解 hello 批次工作流程的案例。</span><span class="sxs-lookup"><span data-stu-id="f52e6-114">Let us understand hello batch workflow scenario.</span></span> <span data-ttu-id="f52e6-115">我們有簡單的指令碼，以撰寫的 Python 下載所有 csv 檔案的 Azure Blob 儲存體容器 tooJSON 需要進行轉換。</span><span class="sxs-lookup"><span data-stu-id="f52e6-115">We have a simple script written in Python that downloads all csv files from an Azure Blob storage container and converts them tooJSON.</span></span> <span data-ttu-id="f52e6-116">tooprocess 多個儲存體帳戶容器以平行方式時，我們可以部署以 Azure 批次作業的形式 hello 指令碼。</span><span class="sxs-lookup"><span data-stu-id="f52e6-116">tooprocess multiple storage account containers in parallel, we can deploy hello script as an Azure Batch job.</span></span>
 
-## <a name="azure-batch-architecture"></a><span data-ttu-id="f4bcb-117">Azure Batch 架構</span><span class="sxs-lookup"><span data-stu-id="f4bcb-117">Azure Batch Architecture</span></span>
-<span data-ttu-id="f4bcb-118">下圖描述如何使用 Azure Batch 和 Node.js 用戶端調整 Python 指令碼。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-118">The following diagram depicts how we can scale the Python script using Azure Batch and a Node.js client.</span></span>
+## <a name="azure-batch-architecture"></a><span data-ttu-id="f52e6-117">Azure Batch 架構</span><span class="sxs-lookup"><span data-stu-id="f52e6-117">Azure Batch Architecture</span></span>
+<span data-ttu-id="f52e6-118">hello 下列圖表描述我們可以調整使用 Azure 批次和 Node.js 用戶端 hello Python 指令碼的方式。</span><span class="sxs-lookup"><span data-stu-id="f52e6-118">hello following diagram depicts how we can scale hello Python script using Azure Batch and a Node.js client.</span></span>
 
 ![Azure Batch 案例](./media/batch-nodejs-get-started/BatchScenario.png)
 
-<span data-ttu-id="f4bcb-120">Node.js 用戶端會使用準備工作部署批次作業 (稍後詳細說明) 以及一組工作 (視儲存體帳戶中容器數目)。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-120">The node.js client deploys a batch job with a preparation task (explained in detail later) and a set of tasks depending on the number of containers in the storage account.</span></span> <span data-ttu-id="f4bcb-121">您可以從 GitHub 存放庫下載指令碼。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-121">You can download the scripts from the github repository.</span></span>
+<span data-ttu-id="f52e6-120">hello node.js 用戶端會將批次工作部署的準備工作 （稍後說明的詳細資料），以及一組工作，而是根據 hello hello 儲存體帳戶中容器的數目。</span><span class="sxs-lookup"><span data-stu-id="f52e6-120">hello node.js client deploys a batch job with a preparation task (explained in detail later) and a set of tasks depending on hello number of containers in hello storage account.</span></span> <span data-ttu-id="f52e6-121">您可以從 hello github 儲存機制下載 hello 指令碼。</span><span class="sxs-lookup"><span data-stu-id="f52e6-121">You can download hello scripts from hello github repository.</span></span>
 
-* [<span data-ttu-id="f4bcb-122">Node.js 用戶端</span><span class="sxs-lookup"><span data-stu-id="f4bcb-122">Node.js client</span></span>](https://github.com/Azure/azure-batch-samples/blob/master/Node.js/GettingStarted/nodejs_batch_client_sample.js)
-* [<span data-ttu-id="f4bcb-123">準備工作 Shell 指令碼</span><span class="sxs-lookup"><span data-stu-id="f4bcb-123">Preparation task shell scripts</span></span>](https://github.com/Azure/azure-batch-samples/blob/master/Node.js/GettingStarted/startup_prereq.sh)
-* [<span data-ttu-id="f4bcb-124">Python csv 至 JSON 處理器</span><span class="sxs-lookup"><span data-stu-id="f4bcb-124">Python csv to JSON processor</span></span>](https://github.com/Azure/azure-batch-samples/blob/master/Node.js/GettingStarted/processcsv.py)
+* [<span data-ttu-id="f52e6-122">Node.js 用戶端</span><span class="sxs-lookup"><span data-stu-id="f52e6-122">Node.js client</span></span>](https://github.com/Azure/azure-batch-samples/blob/master/Node.js/GettingStarted/nodejs_batch_client_sample.js)
+* [<span data-ttu-id="f52e6-123">準備工作 Shell 指令碼</span><span class="sxs-lookup"><span data-stu-id="f52e6-123">Preparation task shell scripts</span></span>](https://github.com/Azure/azure-batch-samples/blob/master/Node.js/GettingStarted/startup_prereq.sh)
+* [<span data-ttu-id="f52e6-124">Python csv tooJSON 處理器</span><span class="sxs-lookup"><span data-stu-id="f52e6-124">Python csv tooJSON processor</span></span>](https://github.com/Azure/azure-batch-samples/blob/master/Node.js/GettingStarted/processcsv.py)
 
 > [!TIP]
-> <span data-ttu-id="f4bcb-125">指定連結中的 Node.js 用戶端不包含要部署為 Azure 函式應用程式的特定程式碼。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-125">The Node.js client in the link specified does not contain specific code to be deployed as an Azure function app.</span></span> <span data-ttu-id="f4bcb-126">您可以參考下列連結，以取得建立函式應用程式的指示。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-126">You can refer to the following links for instructions to create one.</span></span>
-> - [<span data-ttu-id="f4bcb-127">建立函式應用程式</span><span class="sxs-lookup"><span data-stu-id="f4bcb-127">Create function app</span></span>](../azure-functions/functions-create-first-azure-function.md)
-> - [<span data-ttu-id="f4bcb-128">建立計時器觸發程序函式</span><span class="sxs-lookup"><span data-stu-id="f4bcb-128">Create timer trigger function</span></span>](../azure-functions/functions-bindings-timer.md)
+> <span data-ttu-id="f52e6-125">指定的 hello 連結中的 hello Node.js client 不包含部署為 Azure 函式應用程式的特定程式碼 toobe。</span><span class="sxs-lookup"><span data-stu-id="f52e6-125">hello Node.js client in hello link specified does not contain specific code toobe deployed as an Azure function app.</span></span> <span data-ttu-id="f52e6-126">您可以參考 toohello 下列其中一個指示 toocreate 的連結。</span><span class="sxs-lookup"><span data-stu-id="f52e6-126">You can refer toohello following links for instructions toocreate one.</span></span>
+> - [<span data-ttu-id="f52e6-127">建立函式應用程式</span><span class="sxs-lookup"><span data-stu-id="f52e6-127">Create function app</span></span>](../azure-functions/functions-create-first-azure-function.md)
+> - [<span data-ttu-id="f52e6-128">建立計時器觸發程序函式</span><span class="sxs-lookup"><span data-stu-id="f52e6-128">Create timer trigger function</span></span>](../azure-functions/functions-bindings-timer.md)
 >
 >
 
-## <a name="build-the-application"></a><span data-ttu-id="f4bcb-129">建置應用程式</span><span class="sxs-lookup"><span data-stu-id="f4bcb-129">Build the application</span></span>
+## <a name="build-hello-application"></a><span data-ttu-id="f52e6-129">建置 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="f52e6-129">Build hello application</span></span>
 
-<span data-ttu-id="f4bcb-130">現在，我們要依照程序逐步建置 Node.js 用戶端︰</span><span class="sxs-lookup"><span data-stu-id="f4bcb-130">Now, let us follow the process step by step into building the Node.js client:</span></span>
+<span data-ttu-id="f52e6-130">現在，讓我們遵循 hello 程序逐步解說到建置 hello Node.js 用戶端：</span><span class="sxs-lookup"><span data-stu-id="f52e6-130">Now, let us follow hello process step by step into building hello Node.js client:</span></span>
 
-### <a name="step-1-install-azure-batch-sdk"></a><span data-ttu-id="f4bcb-131">步驟 1：安裝 Azure Batch SDK</span><span class="sxs-lookup"><span data-stu-id="f4bcb-131">Step 1: Install Azure Batch SDK</span></span>
+### <a name="step-1-install-azure-batch-sdk"></a><span data-ttu-id="f52e6-131">步驟 1：安裝 Azure Batch SDK</span><span class="sxs-lookup"><span data-stu-id="f52e6-131">Step 1: Install Azure Batch SDK</span></span>
 
-<span data-ttu-id="f4bcb-132">您可以使用 npm 安裝命令來安裝適用於 Node.js 的 Azure Batch SDK。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-132">You can install Azure Batch SDK for Node.js using the npm install command.</span></span>
+<span data-ttu-id="f52e6-132">您可以安裝 Azure 批次 SDK for Node.js 使用 hello npm install 命令。</span><span class="sxs-lookup"><span data-stu-id="f52e6-132">You can install Azure Batch SDK for Node.js using hello npm install command.</span></span>
 
 `npm install azure-batch`
 
-<span data-ttu-id="f4bcb-133">此命令會安裝最新版的 azure-batch 節點 SDK。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-133">This command installs the latest version of azure-batch node SDK.</span></span>
+<span data-ttu-id="f52e6-133">此命令會安裝 hello azure 批次節點 SDK 最新版本。</span><span class="sxs-lookup"><span data-stu-id="f52e6-133">This command installs hello latest version of azure-batch node SDK.</span></span>
 
 >[!Tip]
-> <span data-ttu-id="f4bcb-134">在 Azure Function 應用程式中，您可以移至 Azure Function 的 [設定] 索引標籤中的 [Kudu 主控台] 以執行 npm 安裝命令。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-134">In an Azure Function app, you can go to "Kudu Console" in the Azure function's Settings tab to run the npm install commands.</span></span> <span data-ttu-id="f4bcb-135">在此情況下，安裝適用於 Node.js 的 Azure Batch SDK。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-135">In this case to install Azure Batch SDK for Node.js.</span></span>
+> <span data-ttu-id="f52e6-134">在 Azure 函式應用程式，您可以跳過 「 Kudu 主控台 」 中 hello Azure 函式的設定 索引標籤 toorun hello npm 安裝命令。</span><span class="sxs-lookup"><span data-stu-id="f52e6-134">In an Azure Function app, you can go too"Kudu Console" in hello Azure function's Settings tab toorun hello npm install commands.</span></span> <span data-ttu-id="f52e6-135">在此案例 tooinstall Azure 批次 SDK for Node.js。</span><span class="sxs-lookup"><span data-stu-id="f52e6-135">In this case tooinstall Azure Batch SDK for Node.js.</span></span>
 >
 >
 
-### <a name="step-2-create-an-azure-batch-account"></a><span data-ttu-id="f4bcb-136">步驟 2：建立 Azure Batch 帳戶</span><span class="sxs-lookup"><span data-stu-id="f4bcb-136">Step 2: Create an Azure Batch account</span></span>
+### <a name="step-2-create-an-azure-batch-account"></a><span data-ttu-id="f52e6-136">步驟 2：建立 Azure Batch 帳戶</span><span class="sxs-lookup"><span data-stu-id="f52e6-136">Step 2: Create an Azure Batch account</span></span>
 
-<span data-ttu-id="f4bcb-137">您可以從 [Azure 入口網站](batch-account-create-portal.md)或從命令列 ([Powershell](batch-powershell-cmdlets-get-started.md) /[Azure cli](https://docs.microsoft.com/cli/azure/overview)) 加以建立。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-137">You can create it from the [Azure portal](batch-account-create-portal.md) or from command line ([Powershell](batch-powershell-cmdlets-get-started.md) /[Azure cli](https://docs.microsoft.com/cli/azure/overview)).</span></span>
+<span data-ttu-id="f52e6-137">您可以建立從 hello [Azure 入口網站](batch-account-create-portal.md)或從命令列 ([Powershell](batch-powershell-cmdlets-get-started.md) /[Azure cli](https://docs.microsoft.com/cli/azure/overview))。</span><span class="sxs-lookup"><span data-stu-id="f52e6-137">You can create it from hello [Azure portal](batch-account-create-portal.md) or from command line ([Powershell](batch-powershell-cmdlets-get-started.md) /[Azure cli](https://docs.microsoft.com/cli/azure/overview)).</span></span>
 
-<span data-ttu-id="f4bcb-138">以下是透過 Azure CLI 命令建立 Batch 帳戶的命令。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-138">Following are the commands to create one through Azure CLI.</span></span>
+<span data-ttu-id="f52e6-138">以下是 hello 命令 toocreate 一個透過 Azure CLI。</span><span class="sxs-lookup"><span data-stu-id="f52e6-138">Following are hello commands toocreate one through Azure CLI.</span></span>
 
-<span data-ttu-id="f4bcb-139">建立資源群組，如果您想要建立 Batch 帳戶的地方已經有一個，請略過此步驟︰</span><span class="sxs-lookup"><span data-stu-id="f4bcb-139">Create a Resource Group, skip this step if you already have one where you want to create the Batch Account:</span></span>
+<span data-ttu-id="f52e6-139">建立資源群組，請略過此步驟，如果您已經有想 toocreate hello Batch 帳戶：</span><span class="sxs-lookup"><span data-stu-id="f52e6-139">Create a Resource Group, skip this step if you already have one where you want toocreate hello Batch Account:</span></span>
 
 `az group create -n "<resource-group-name>" -l "<location>"`
 
-<span data-ttu-id="f4bcb-140">接下來，建立 Azure Batch 帳戶。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-140">Next, create an Azure Batch account.</span></span>
+<span data-ttu-id="f52e6-140">接下來，建立 Azure Batch 帳戶。</span><span class="sxs-lookup"><span data-stu-id="f52e6-140">Next, create an Azure Batch account.</span></span>
 
 `az batch account create -l "<location>"  -g "<resource-group-name>" -n "<batch-account-name>"`
 
-<span data-ttu-id="f4bcb-141">每個 Batch 帳戶有其對應的存取金鑰。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-141">Each Batch account has its corresponding access keys.</span></span> <span data-ttu-id="f4bcb-142">需要有這些金鑰，才能在 Azure Batch 帳戶中建立進一步的資源。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-142">These keys are needed to create further resources in Azure batch account.</span></span> <span data-ttu-id="f4bcb-143">在生產環境中，最好使用 Azure Key Vault 來儲存這些金鑰。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-143">A good practice for production environment is to use Azure Key Vault to store these keys.</span></span> <span data-ttu-id="f4bcb-144">然後您可以建立應用程式的服務主體。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-144">You can then create a Service principal for the application.</span></span> <span data-ttu-id="f4bcb-145">使用此服務主體，應用程式可以建立 OAuth 權杖以存取 Key Vault 中的金鑰。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-145">Using this service principal the application can create an OAuth token to access keys from the key vault.</span></span>
+<span data-ttu-id="f52e6-141">每個 Batch 帳戶有其對應的存取金鑰。</span><span class="sxs-lookup"><span data-stu-id="f52e6-141">Each Batch account has its corresponding access keys.</span></span> <span data-ttu-id="f52e6-142">這些索引鍵是所需的 toocreate 進一步 Azure 批次帳戶中的資源。</span><span class="sxs-lookup"><span data-stu-id="f52e6-142">These keys are needed toocreate further resources in Azure batch account.</span></span> <span data-ttu-id="f52e6-143">實際執行環境的好作法是 toouse Azure 金鑰保存庫 toostore 這些機碼。</span><span class="sxs-lookup"><span data-stu-id="f52e6-143">A good practice for production environment is toouse Azure Key Vault toostore these keys.</span></span> <span data-ttu-id="f52e6-144">然後您可以建立服務主體的 hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="f52e6-144">You can then create a Service principal for hello application.</span></span> <span data-ttu-id="f52e6-145">使用此服務主體的 hello 應用程式可以從 hello 金鑰保存庫中建立的 OAuth 語彙基元 tooaccess 索引鍵。</span><span class="sxs-lookup"><span data-stu-id="f52e6-145">Using this service principal hello application can create an OAuth token tooaccess keys from hello key vault.</span></span>
 
 `az batch account keys list -g "<resource-group-name>" -n "<batch-account-name>"`
 
-<span data-ttu-id="f4bcb-146">複製並儲存要在後續步驟中使用的金鑰。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-146">Copy and store the key to be used in the subsequent steps.</span></span>
+<span data-ttu-id="f52e6-146">複製並儲存 hello 金鑰 toobe hello 後續步驟中使用。</span><span class="sxs-lookup"><span data-stu-id="f52e6-146">Copy and store hello key toobe used in hello subsequent steps.</span></span>
 
-### <a name="step-3-create-an-azure-batch-service-client"></a><span data-ttu-id="f4bcb-147">步驟 3︰建立 Azure Batch 服務用戶端</span><span class="sxs-lookup"><span data-stu-id="f4bcb-147">Step 3: Create an Azure Batch service client</span></span>
-<span data-ttu-id="f4bcb-148">下列程式碼片段會先匯入 azure-batch Node.js 模組，然後建立 Batch 服務用戶端。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-148">Following code snippet first imports the azure-batch Node.js module and then creates a Batch Service client.</span></span> <span data-ttu-id="f4bcb-149">您必須先使用從上一個步驟複製的 Batch 帳戶金鑰來建立 SharedKeyCredentials 物件。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-149">You need to first create a SharedKeyCredentials object with the Batch account key copied from the previous step.</span></span>
+### <a name="step-3-create-an-azure-batch-service-client"></a><span data-ttu-id="f52e6-147">步驟 3︰建立 Azure Batch 服務用戶端</span><span class="sxs-lookup"><span data-stu-id="f52e6-147">Step 3: Create an Azure Batch service client</span></span>
+<span data-ttu-id="f52e6-148">下列程式碼片段會先匯入 hello azure 批次 Node.js 模組，並接著會建立批次服務用戶端。</span><span class="sxs-lookup"><span data-stu-id="f52e6-148">Following code snippet first imports hello azure-batch Node.js module and then creates a Batch Service client.</span></span> <span data-ttu-id="f52e6-149">您需要 toofirst SharedKeyCredentials 物件建立 hello hello 以上一個步驟複製的批次帳戶金鑰。</span><span class="sxs-lookup"><span data-stu-id="f52e6-149">You need toofirst create a SharedKeyCredentials object with hello Batch account key copied from hello previous step.</span></span>
 
 ```nodejs
 // Initializing Azure Batch variables
@@ -115,64 +115,64 @@ var batch_client = new batch.ServiceClient(credentials,accountUrl);
 
 ```
 
-<span data-ttu-id="f4bcb-150">在 Azure 入口網站的 [概觀] 索引標籤中可以找到 Azure Batch URI。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-150">The Azure Batch URI can be found in the Overview tab of the Azure portal.</span></span> <span data-ttu-id="f4bcb-151">其格式如下︰</span><span class="sxs-lookup"><span data-stu-id="f4bcb-151">It is of the format:</span></span>
+<span data-ttu-id="f52e6-150">hello hello Azure 入口網站的 [概觀] 索引標籤中，可以找到 hello Azure 批次的 URI。</span><span class="sxs-lookup"><span data-stu-id="f52e6-150">hello Azure Batch URI can be found in hello Overview tab of hello Azure portal.</span></span> <span data-ttu-id="f52e6-151">它是 hello 格式：</span><span class="sxs-lookup"><span data-stu-id="f52e6-151">It is of hello format:</span></span>
 
 `https://accountname.location.batch.azure.com`
 
-<span data-ttu-id="f4bcb-152">請參考螢幕擷取畫面：</span><span class="sxs-lookup"><span data-stu-id="f4bcb-152">Refer to the screenshot:</span></span>
+<span data-ttu-id="f52e6-152">Toohello 螢幕擷取畫面，請參閱：</span><span class="sxs-lookup"><span data-stu-id="f52e6-152">Refer toohello screenshot:</span></span>
 
 ![Azure Batch URI](./media/batch-nodejs-get-started/azurebatchuri.png)
 
 
 
-### <a name="step-4-create-an-azure-batch-pool"></a><span data-ttu-id="f4bcb-154">步驟 4︰建立 Azure Batch 集區</span><span class="sxs-lookup"><span data-stu-id="f4bcb-154">Step 4: Create an Azure Batch pool</span></span>
-<span data-ttu-id="f4bcb-155">Azure Batch 集區是由多個 VM (也稱為 Batch 節點) 所組成。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-155">An Azure Batch pool consists of multiple VMs (also known as Batch Nodes).</span></span> <span data-ttu-id="f4bcb-156">Azure Batch 服務會在這些節點上部署工作並加以管理。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-156">Azure Batch service deploys the tasks on these nodes and manages them.</span></span> <span data-ttu-id="f4bcb-157">您可以為您的集區定義下列組態參數。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-157">You can define the following configuration parameters for your pool.</span></span>
+### <a name="step-4-create-an-azure-batch-pool"></a><span data-ttu-id="f52e6-154">步驟 4︰建立 Azure Batch 集區</span><span class="sxs-lookup"><span data-stu-id="f52e6-154">Step 4: Create an Azure Batch pool</span></span>
+<span data-ttu-id="f52e6-155">Azure Batch 集區是由多個 VM (也稱為 Batch 節點) 所組成。</span><span class="sxs-lookup"><span data-stu-id="f52e6-155">An Azure Batch pool consists of multiple VMs (also known as Batch Nodes).</span></span> <span data-ttu-id="f52e6-156">Azure 批次服務將部署兩個節點上的 hello 工作和管理它們。</span><span class="sxs-lookup"><span data-stu-id="f52e6-156">Azure Batch service deploys hello tasks on these nodes and manages them.</span></span> <span data-ttu-id="f52e6-157">您可以定義 hello 遵循您的集區的組態參數。</span><span class="sxs-lookup"><span data-stu-id="f52e6-157">You can define hello following configuration parameters for your pool.</span></span>
 
-* <span data-ttu-id="f4bcb-158">虛擬機器映像的類型</span><span class="sxs-lookup"><span data-stu-id="f4bcb-158">Type of Virtual Machine image</span></span>
-* <span data-ttu-id="f4bcb-159">虛擬機器節點的大小</span><span class="sxs-lookup"><span data-stu-id="f4bcb-159">Size of Virtual Machine nodes</span></span>
-* <span data-ttu-id="f4bcb-160">虛擬機器節點的數目</span><span class="sxs-lookup"><span data-stu-id="f4bcb-160">Number of Virtual Machine nodes</span></span>
+* <span data-ttu-id="f52e6-158">虛擬機器映像的類型</span><span class="sxs-lookup"><span data-stu-id="f52e6-158">Type of Virtual Machine image</span></span>
+* <span data-ttu-id="f52e6-159">虛擬機器節點的大小</span><span class="sxs-lookup"><span data-stu-id="f52e6-159">Size of Virtual Machine nodes</span></span>
+* <span data-ttu-id="f52e6-160">虛擬機器節點的數目</span><span class="sxs-lookup"><span data-stu-id="f52e6-160">Number of Virtual Machine nodes</span></span>
 
 > [!Tip]
-> <span data-ttu-id="f4bcb-161">虛擬機器節點的大小和數目主要取決於您想要平行執行的工作數目以及工作本身。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-161">The size and number of Virtual Machine nodes largely depend on the number of tasks you want to run in parallel and also the task itself.</span></span> <span data-ttu-id="f4bcb-162">我們建議進行測試，以判斷理想的數目和大小。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-162">We recommend testing to determine the ideal number and size.</span></span>
+> <span data-ttu-id="f52e6-161">hello 大小和虛擬機器的節點數目主要取決於您想要在 toorun 平行和也 hello 工作本身的工作的 hello 數目。</span><span class="sxs-lookup"><span data-stu-id="f52e6-161">hello size and number of Virtual Machine nodes largely depend on hello number of tasks you want toorun in parallel and also hello task itself.</span></span> <span data-ttu-id="f52e6-162">我們建議您測試 toodetermine hello 理想數目和大小。</span><span class="sxs-lookup"><span data-stu-id="f52e6-162">We recommend testing toodetermine hello ideal number and size.</span></span>
 >
 >
 
-<span data-ttu-id="f4bcb-163">下列程式碼片段會建立組態參數物件。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-163">The following code snippet creates the configuration parameter objects.</span></span>
+<span data-ttu-id="f52e6-163">hello 下列程式碼片段會建立 hello 組態參數物件。</span><span class="sxs-lookup"><span data-stu-id="f52e6-163">hello following code snippet creates hello configuration parameter objects.</span></span>
 
 ```nodejs
 // Creating Image reference configuration for Ubuntu Linux VM
 var imgRef = {publisher:"Canonical",offer:"UbuntuServer",sku:"14.04.2-LTS",version:"latest"}
 
-// Creating the VM configuration object with the SKUID
+// Creating hello VM configuration object with hello SKUID
 var vmconfig = {imageReference:imgRef,nodeAgentSKUId:"batch.node.ubuntu 14.04"}
 
-// Setting the VM size to Standard F4
+// Setting hello VM size tooStandard F4
 var vmSize = "STANDARD_F4"
 
-//Setting number of VMs in the pool to 4
+//Setting number of VMs in hello pool too4
 var numVMs = 4
 ```
 
 > [!Tip]
-> <span data-ttu-id="f4bcb-164">如需 Azure Batch 及其 SKU 識別碼可用的 Linux VM 映像清單，請參閱[虛擬機器映像清單](batch-linux-nodes.md#list-of-virtual-machine-images)。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-164">For the list of Linux VM images available for Azure Batch and their SKU IDs, see [List of virtual machine images](batch-linux-nodes.md#list-of-virtual-machine-images).</span></span>
+> <span data-ttu-id="f52e6-164">Linux VM 映像可供 Azure 批次和其 SKU 識別碼 hello 清單，請參閱[的虛擬機器映像清單](batch-linux-nodes.md#list-of-virtual-machine-images)。</span><span class="sxs-lookup"><span data-stu-id="f52e6-164">For hello list of Linux VM images available for Azure Batch and their SKU IDs, see [List of virtual machine images](batch-linux-nodes.md#list-of-virtual-machine-images).</span></span>
 >
 >
 
-<span data-ttu-id="f4bcb-165">一旦定義集區組態，您就可以建立 Azure Batch 集區。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-165">Once the pool configuration is defined, you can create the Azure Batch pool.</span></span> <span data-ttu-id="f4bcb-166">Batch 集區命令會建立 Azure 虛擬機器節點，並備妥它們以便用於接收要執行的工作。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-166">The Batch pool command creates Azure Virtual Machine nodes and prepares them to be ready to receive tasks to execute.</span></span> <span data-ttu-id="f4bcb-167">每個集區都應該有後續步驟中參考的唯一識別碼。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-167">Each pool should have a unique ID for reference in subsequent steps.</span></span>
+<span data-ttu-id="f52e6-165">一旦定義 hello 集區設定之後，您可以建立 hello Azure Batch 集區。</span><span class="sxs-lookup"><span data-stu-id="f52e6-165">Once hello pool configuration is defined, you can create hello Azure Batch pool.</span></span> <span data-ttu-id="f52e6-166">hello 批次集區的命令會建立 Azure 虛擬機器的節點，並以準備讓 toobe 準備 tooreceive 工作 tooexecute。</span><span class="sxs-lookup"><span data-stu-id="f52e6-166">hello Batch pool command creates Azure Virtual Machine nodes and prepares them toobe ready tooreceive tasks tooexecute.</span></span> <span data-ttu-id="f52e6-167">每個集區都應該有後續步驟中參考的唯一識別碼。</span><span class="sxs-lookup"><span data-stu-id="f52e6-167">Each pool should have a unique ID for reference in subsequent steps.</span></span>
 
-<span data-ttu-id="f4bcb-168">下列程式碼片段會建立 Azure Batch 集區。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-168">The following code snippet creates an Azure Batch pool.</span></span>
+<span data-ttu-id="f52e6-168">下列程式碼片段的 hello 建立 Azure Batch 集區。</span><span class="sxs-lookup"><span data-stu-id="f52e6-168">hello following code snippet creates an Azure Batch pool.</span></span>
 
 ```nodejs
 // Create a unique Azure Batch pool ID
 var poolid = "pool" + customerDetails.customerid;
 var poolConfig = {id:poolid, displayName:poolid,vmSize:vmSize,virtualMachineConfiguration:vmconfig,targetDedicatedComputeNodes:numVms,enableAutoScale:false };
-// Creating the Pool for the specific customer
+// Creating hello Pool for hello specific customer
 var pool = batch_client.pool.add(poolConfig,function(error,result){
     if(error!=null){console.log(error.response)};
 });
 ```
 
-<span data-ttu-id="f4bcb-169">您可以檢查已建立的集區狀態，先確定狀態處於「作用中」，再繼續將作業提交至該集區。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-169">You can check the status of the pool created and ensure that the state is in "active" before going ahead with submission of a Job to that pool.</span></span>
+<span data-ttu-id="f52e6-169">您可以檢查 hello hello 建立集區的狀態，並請確認 hello 狀態處於 「 作用中 」 之前繼續進行送出工作 toothat 集區。</span><span class="sxs-lookup"><span data-stu-id="f52e6-169">You can check hello status of hello pool created and ensure that hello state is in "active" before going ahead with submission of a Job toothat pool.</span></span>
 
 ```nodejs
 var cloudPool = batch_client.pool.get(poolid,function(error,result,request,response){
@@ -199,7 +199,7 @@ var cloudPool = batch_client.pool.get(poolid,function(error,result,request,respo
         });
 ```
 
-<span data-ttu-id="f4bcb-170">以下是 pool.get 函式所傳回的範例結果物件。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-170">Following is a sample result object returned by the pool.get function.</span></span>
+<span data-ttu-id="f52e6-170">以下是 hello pool.get 函數所傳回的範例結果物件。</span><span class="sxs-lookup"><span data-stu-id="f52e6-170">Following is a sample result object returned by hello pool.get function.</span></span>
 
 ```
 { id: 'processcsv_201721152',
@@ -260,47 +260,47 @@ var cloudPool = batch_client.pool.get(poolid,function(error,result,request,respo
 ```
 
 
-### <a name="step-4-submit-an-azure-batch-job"></a><span data-ttu-id="f4bcb-171">步驟 4︰提交 Azure Batch 作業</span><span class="sxs-lookup"><span data-stu-id="f4bcb-171">Step 4: Submit an Azure Batch job</span></span>
-<span data-ttu-id="f4bcb-172">Azure Batch 作業是相似工作的邏輯群組。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-172">An Azure Batch job is a logical group of similar tasks.</span></span> <span data-ttu-id="f4bcb-173">在我們的案例中，這是「將 csv 處理成 JSON」。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-173">In our scenario, it is "Process csv to JSON."</span></span> <span data-ttu-id="f4bcb-174">這裡的每個工作都可能會處理每個 Azure 儲存體容器中存在的 csv 檔案。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-174">Each task here could be processing csv files present in each Azure Storage container.</span></span>
+### <a name="step-4-submit-an-azure-batch-job"></a><span data-ttu-id="f52e6-171">步驟 4︰提交 Azure Batch 作業</span><span class="sxs-lookup"><span data-stu-id="f52e6-171">Step 4: Submit an Azure Batch job</span></span>
+<span data-ttu-id="f52e6-172">Azure Batch 作業是相似工作的邏輯群組。</span><span class="sxs-lookup"><span data-stu-id="f52e6-172">An Azure Batch job is a logical group of similar tasks.</span></span> <span data-ttu-id="f52e6-173">在我們的案例，它是 「"處理程序 csv tooJSON。</span><span class="sxs-lookup"><span data-stu-id="f52e6-173">In our scenario, it is "Process csv tooJSON."</span></span> <span data-ttu-id="f52e6-174">這裡的每個工作都可能會處理每個 Azure 儲存體容器中存在的 csv 檔案。</span><span class="sxs-lookup"><span data-stu-id="f52e6-174">Each task here could be processing csv files present in each Azure Storage container.</span></span>
 
-<span data-ttu-id="f4bcb-175">這些工作會以平行方式執行並且部署於多個節點 (由 Azure Batch 服務協調)。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-175">These tasks would run in parallel and deployed across multiple nodes, orchestrated by the Azure Batch service.</span></span>
-
-> [!Tip]
-> <span data-ttu-id="f4bcb-176">您可以使用 [maxTasksPerNode](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add) 屬性來指定可以在單一節點上同時執行的工作數目上限。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-176">You can use the [maxTasksPerNode](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add) property to specify maximum number of tasks that can run concurrently on a single node.</span></span>
->
->
-
-#### <a name="preparation-task"></a><span data-ttu-id="f4bcb-177">準備工作</span><span class="sxs-lookup"><span data-stu-id="f4bcb-177">Preparation task</span></span>
-
-<span data-ttu-id="f4bcb-178">建立的 VM 節點是空白的 Ubuntu 節點。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-178">The VM nodes created are blank Ubuntu nodes.</span></span> <span data-ttu-id="f4bcb-179">您通常需要安裝一組程式作為必要條件。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-179">Often, you need to install a set of programs as prerequisites.</span></span>
-<span data-ttu-id="f4bcb-180">一般來說，對於 Linux 節點，您可以有在實際工作執行前安裝先決條件的殼層指令碼。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-180">Typically, for Linux nodes you can have a shell script that installs the prerequisites before the actual tasks run.</span></span> <span data-ttu-id="f4bcb-181">不過，它可能是任何可程式化的可執行檔。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-181">However it could be any programmable executable.</span></span>
-<span data-ttu-id="f4bcb-182">此範例中的[殼層指令碼](https://github.com/shwetams/azure-batchclient-sample-nodejs/blob/master/startup_prereq.sh)會安裝 Python-pip 和適用於 Python 的 Azure 儲存體 SDK。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-182">The [shell script](https://github.com/shwetams/azure-batchclient-sample-nodejs/blob/master/startup_prereq.sh) in this example installs Python-pip and the Azure Storage SDK for Python.</span></span>
-
-<span data-ttu-id="f4bcb-183">您可以在 Azure 儲存體帳戶上傳指令碼，並產生 SAS URI 來存取指令碼。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-183">You can upload the script on an Azure Storage Account and generate a SAS URI to access the script.</span></span> <span data-ttu-id="f4bcb-184">使用 Azure 儲存體 Node.js SDK 也可以自動執行此程序。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-184">This process can also be automated using the Azure Storage Node.js SDK.</span></span>
+<span data-ttu-id="f52e6-175">這些工作會以平行方式執行，並部署到多個節點，由 hello Azure 批次服務協調。</span><span class="sxs-lookup"><span data-stu-id="f52e6-175">These tasks would run in parallel and deployed across multiple nodes, orchestrated by hello Azure Batch service.</span></span>
 
 > [!Tip]
-> <span data-ttu-id="f4bcb-185">作業的準備工作只會在需要執行特定工作的 VM 節點上執行。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-185">A preparation task for a job runs only on the VM nodes where the specific task needs to run.</span></span> <span data-ttu-id="f4bcb-186">如果您想要在所有節點上安裝必要條件 (不管其上執行的工作為何)，可以在新增集區時使用 [startTask](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add) 屬性。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-186">If you want prerequisites to be installed on all nodes irrespective of the tasks that run on it, you can use the [startTask](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add) property while adding a pool.</span></span> <span data-ttu-id="f4bcb-187">您可以使用下列準備工作定義以供參考。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-187">You can use the following preparation task definition for reference.</span></span>
+> <span data-ttu-id="f52e6-176">您可以使用 hello [maxTasksPerNode](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add)屬性 toospecify 最大數目的單一節點可同時執行的工作。</span><span class="sxs-lookup"><span data-stu-id="f52e6-176">You can use hello [maxTasksPerNode](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add) property toospecify maximum number of tasks that can run concurrently on a single node.</span></span>
 >
 >
 
-<span data-ttu-id="f4bcb-188">準備工作是在 Azure Batch 作業提交期間指定。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-188">A preparation task is specified during the submission of Azure Batch job.</span></span> <span data-ttu-id="f4bcb-189">以下是準備工作組態參數︰</span><span class="sxs-lookup"><span data-stu-id="f4bcb-189">Following are the preparation task configuration parameters:</span></span>
+#### <a name="preparation-task"></a><span data-ttu-id="f52e6-177">準備工作</span><span class="sxs-lookup"><span data-stu-id="f52e6-177">Preparation task</span></span>
 
-* <span data-ttu-id="f4bcb-190">**識別碼**︰準備工作的唯一識別碼</span><span class="sxs-lookup"><span data-stu-id="f4bcb-190">**ID**: A unique identifier for the preparation task</span></span>
-* <span data-ttu-id="f4bcb-191">**命令列**︰要執行工作可執行檔的命令列</span><span class="sxs-lookup"><span data-stu-id="f4bcb-191">**commandLine**: Command line to execute the task executable</span></span>
-* <span data-ttu-id="f4bcb-192">**resourceFiles**︰提供執行此工作所需下載之檔案詳細資料的物件陣列。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-192">**resourceFiles**: Array of objects that provide details of files needed to be downloaded for this task to run.</span></span>  <span data-ttu-id="f4bcb-193">其選項如下：</span><span class="sxs-lookup"><span data-stu-id="f4bcb-193">Following are its options</span></span>
-    - <span data-ttu-id="f4bcb-194">blobSource︰檔案的 SAS URI</span><span class="sxs-lookup"><span data-stu-id="f4bcb-194">blobSource: The SAS URI of the file</span></span>
-    - <span data-ttu-id="f4bcb-195">filePath︰要下載並儲存檔案的本機路徑</span><span class="sxs-lookup"><span data-stu-id="f4bcb-195">filePath: Local path to download and save the file</span></span>
-    - <span data-ttu-id="f4bcb-196">fileMode︰僅適用於 Linux 節點，fileMode 為八進位格式 (預設值是 0770)</span><span class="sxs-lookup"><span data-stu-id="f4bcb-196">fileMode: Only applicable for Linux nodes, fileMode is in octal format with a default value of 0770</span></span>
-* <span data-ttu-id="f4bcb-197">**waitForSuccess**︰如果設為 true，此工作不會在準備工作失敗時執行</span><span class="sxs-lookup"><span data-stu-id="f4bcb-197">**waitForSuccess**: If set to true, the task does not run on preparation task failures</span></span>
-* <span data-ttu-id="f4bcb-198">**runElevated**︰如果需要提高的權限才能執行工作，請將它設定為 true。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-198">**runElevated**: Set it to true if elevated privileges are needed to run the task.</span></span>
+<span data-ttu-id="f52e6-178">建立 hello VM 節點是空白的 Ubuntu 節點。</span><span class="sxs-lookup"><span data-stu-id="f52e6-178">hello VM nodes created are blank Ubuntu nodes.</span></span> <span data-ttu-id="f52e6-179">通常，您需要一組程式 tooinstall 做為必要條件。</span><span class="sxs-lookup"><span data-stu-id="f52e6-179">Often, you need tooinstall a set of programs as prerequisites.</span></span>
+<span data-ttu-id="f52e6-180">一般而言，Linux 節點，您可以讓安裝 hello 必要條件 hello 實際執行的工作之前的殼層指令碼。</span><span class="sxs-lookup"><span data-stu-id="f52e6-180">Typically, for Linux nodes you can have a shell script that installs hello prerequisites before hello actual tasks run.</span></span> <span data-ttu-id="f52e6-181">不過，它可能是任何可程式化的可執行檔。</span><span class="sxs-lookup"><span data-stu-id="f52e6-181">However it could be any programmable executable.</span></span>
+<span data-ttu-id="f52e6-182">hello[殼層指令碼](https://github.com/shwetams/azure-batchclient-sample-nodejs/blob/master/startup_prereq.sh)在此範例中會安裝 Python pip 和 hello Azure 儲存體 SDK for Python。</span><span class="sxs-lookup"><span data-stu-id="f52e6-182">hello [shell script](https://github.com/shwetams/azure-batchclient-sample-nodejs/blob/master/startup_prereq.sh) in this example installs Python-pip and hello Azure Storage SDK for Python.</span></span>
 
-<span data-ttu-id="f4bcb-199">下列程式碼片段顯示準備工作指令碼組態範例︰</span><span class="sxs-lookup"><span data-stu-id="f4bcb-199">Following code snippet shows the preparation task script configuration sample:</span></span>
+<span data-ttu-id="f52e6-183">您可以上傳至 Azure 儲存體帳戶上的 hello 指令碼，以及產生 SAS URI tooaccess hello 指令碼。</span><span class="sxs-lookup"><span data-stu-id="f52e6-183">You can upload hello script on an Azure Storage Account and generate a SAS URI tooaccess hello script.</span></span> <span data-ttu-id="f52e6-184">此程序也可以使用 Azure 儲存體 Node.js SDK hello 進行自動化。</span><span class="sxs-lookup"><span data-stu-id="f52e6-184">This process can also be automated using hello Azure Storage Node.js SDK.</span></span>
+
+> [!Tip]
+> <span data-ttu-id="f52e6-185">作業的準備工作只會在執行 hello VM 節點 hello 特定工作需要 toorun 的地方。</span><span class="sxs-lookup"><span data-stu-id="f52e6-185">A preparation task for a job runs only on hello VM nodes where hello specific task needs toorun.</span></span> <span data-ttu-id="f52e6-186">如果您希望不論 hello 工作在其上執行的所有節點上安裝的必要條件 toobe，您可以使用 hello [startTask](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add)加入集區時的屬性。</span><span class="sxs-lookup"><span data-stu-id="f52e6-186">If you want prerequisites toobe installed on all nodes irrespective of hello tasks that run on it, you can use hello [startTask](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Pool.html#add) property while adding a pool.</span></span> <span data-ttu-id="f52e6-187">您可以使用下列參考的準備工作定義的 hello。</span><span class="sxs-lookup"><span data-stu-id="f52e6-187">You can use hello following preparation task definition for reference.</span></span>
+>
+>
+
+<span data-ttu-id="f52e6-188">Azure 批次工作 hello 提交期間指定準備工作。</span><span class="sxs-lookup"><span data-stu-id="f52e6-188">A preparation task is specified during hello submission of Azure Batch job.</span></span> <span data-ttu-id="f52e6-189">下列是 hello 準備工作組態參數：</span><span class="sxs-lookup"><span data-stu-id="f52e6-189">Following are hello preparation task configuration parameters:</span></span>
+
+* <span data-ttu-id="f52e6-190">**識別碼**: hello 準備工作的唯一識別碼</span><span class="sxs-lookup"><span data-stu-id="f52e6-190">**ID**: A unique identifier for hello preparation task</span></span>
+* <span data-ttu-id="f52e6-191">**commandLine**： 命令列 tooexecute hello 工作可執行檔</span><span class="sxs-lookup"><span data-stu-id="f52e6-191">**commandLine**: Command line tooexecute hello task executable</span></span>
+* <span data-ttu-id="f52e6-192">**resourceFiles**： 提供檔案的詳細資料的物件陣列所需下載此工作 toorun toobe。</span><span class="sxs-lookup"><span data-stu-id="f52e6-192">**resourceFiles**: Array of objects that provide details of files needed toobe downloaded for this task toorun.</span></span>  <span data-ttu-id="f52e6-193">其選項如下：</span><span class="sxs-lookup"><span data-stu-id="f52e6-193">Following are its options</span></span>
+    - <span data-ttu-id="f52e6-194">blobSource: hello hello 檔案的 SAS URI</span><span class="sxs-lookup"><span data-stu-id="f52e6-194">blobSource: hello SAS URI of hello file</span></span>
+    - <span data-ttu-id="f52e6-195">filePath： 本機路徑 toodownload 儲存 hello 檔案</span><span class="sxs-lookup"><span data-stu-id="f52e6-195">filePath: Local path toodownload and save hello file</span></span>
+    - <span data-ttu-id="f52e6-196">fileMode︰僅適用於 Linux 節點，fileMode 為八進位格式 (預設值是 0770)</span><span class="sxs-lookup"><span data-stu-id="f52e6-196">fileMode: Only applicable for Linux nodes, fileMode is in octal format with a default value of 0770</span></span>
+* <span data-ttu-id="f52e6-197">**waitForSuccess**： 如果組 tootrue，hello 工作不會執行準備工作失敗</span><span class="sxs-lookup"><span data-stu-id="f52e6-197">**waitForSuccess**: If set tootrue, hello task does not run on preparation task failures</span></span>
+* <span data-ttu-id="f52e6-198">**runElevated**： 設定 tootrue 提高的權限時所需的 toorun hello 工作。</span><span class="sxs-lookup"><span data-stu-id="f52e6-198">**runElevated**: Set it tootrue if elevated privileges are needed toorun hello task.</span></span>
+
+<span data-ttu-id="f52e6-199">下列程式碼片段顯示 hello 準備工作的指令碼組態範例：</span><span class="sxs-lookup"><span data-stu-id="f52e6-199">Following code snippet shows hello preparation task script configuration sample:</span></span>
 
 ```nodejs
 var job_prep_task_config = {id:"installprereq",commandLine:"sudo sh startup_prereq.sh > startup.log",resourceFiles:[{'blobSource':'Blob SAS URI','filePath':'startup_prereq.sh'}],waitForSuccess:true,runElevated:true}
 ```
 
-<span data-ttu-id="f4bcb-200">如果不需安裝任何必要條件，您的工作即可執行，您可以略過準備工作。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-200">If there are no prerequisites to be installed for your tasks to run, you can skip the preparation tasks.</span></span> <span data-ttu-id="f4bcb-201">下列程式碼會建立一項作業，其顯示名稱為「處理 csv 檔案」。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-201">Following code creates a job with display name "process csv files."</span></span>
+<span data-ttu-id="f52e6-200">如果不沒有針對工作 toorun 安裝任何必要條件 toobe，您可以略過 hello 準備工作。</span><span class="sxs-lookup"><span data-stu-id="f52e6-200">If there are no prerequisites toobe installed for your tasks toorun, you can skip hello preparation tasks.</span></span> <span data-ttu-id="f52e6-201">下列程式碼會建立一項作業，其顯示名稱為「處理 csv 檔案」。</span><span class="sxs-lookup"><span data-stu-id="f52e6-201">Following code creates a job with display name "process csv files."</span></span>
 
  ```nodejs
  // Setting up Batch pool configuration
@@ -308,7 +308,7 @@ var job_prep_task_config = {id:"installprereq",commandLine:"sudo sh startup_prer
  // Setting up Job configuration along with preparation task
  var jobId = "processcsvjob"
  var job_config = {id:jobId,displayName:"process csv files",jobPreparationTask:job_prep_task_config,poolInfo:pool_config}
- // Adding Azure batch job to the pool
+ // Adding Azure batch job toohello pool
  var job = batch_client.job.add(job_config,function(error,result){
      if(error != null)
      {
@@ -317,16 +317,16 @@ var job_prep_task_config = {id:"installprereq",commandLine:"sudo sh startup_prer
 ```
 
 
-### <a name="step-5-submit-azure-batch-tasks-for-a-job"></a><span data-ttu-id="f4bcb-202">步驟 5︰提交作業的 Azure 批次工作</span><span class="sxs-lookup"><span data-stu-id="f4bcb-202">Step 5: Submit Azure Batch tasks for a job</span></span>
+### <a name="step-5-submit-azure-batch-tasks-for-a-job"></a><span data-ttu-id="f52e6-202">步驟 5︰提交作業的 Azure 批次工作</span><span class="sxs-lookup"><span data-stu-id="f52e6-202">Step 5: Submit Azure Batch tasks for a job</span></span>
 
-<span data-ttu-id="f4bcb-203">現在已建立處理 csv 作業，讓我們為該作業建立工作。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-203">Now that our process csv job is created, let us create tasks for that job.</span></span> <span data-ttu-id="f4bcb-204">假設我們有四個容器，我們必須建立四項工作，每個容器一項工作。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-204">Assuming we have four containers, we have to create four tasks, one for each container.</span></span>
+<span data-ttu-id="f52e6-203">現在已建立處理 csv 作業，讓我們為該作業建立工作。</span><span class="sxs-lookup"><span data-stu-id="f52e6-203">Now that our process csv job is created, let us create tasks for that job.</span></span> <span data-ttu-id="f52e6-204">我們假設我們有四個容器，有 toocreate 四項工作，每個容器一個。</span><span class="sxs-lookup"><span data-stu-id="f52e6-204">Assuming we have four containers, we have toocreate four tasks, one for each container.</span></span>
 
-<span data-ttu-id="f4bcb-205">如果我們查看 [Python 指令碼](https://github.com/shwetams/azure-batchclient-sample-nodejs/blob/master/processcsv.py)，它接受兩個參數︰</span><span class="sxs-lookup"><span data-stu-id="f4bcb-205">If we look at the [Python script](https://github.com/shwetams/azure-batchclient-sample-nodejs/blob/master/processcsv.py), it accepts two parameters:</span></span>
+<span data-ttu-id="f52e6-205">如果看一下 hello [Python 指令碼](https://github.com/shwetams/azure-batchclient-sample-nodejs/blob/master/processcsv.py)，它接受兩個參數：</span><span class="sxs-lookup"><span data-stu-id="f52e6-205">If we look at hello [Python script](https://github.com/shwetams/azure-batchclient-sample-nodejs/blob/master/processcsv.py), it accepts two parameters:</span></span>
 
-* <span data-ttu-id="f4bcb-206">容器名稱︰要從中下載檔案的儲存體容器</span><span class="sxs-lookup"><span data-stu-id="f4bcb-206">container name: The Storage container to download files from</span></span>
-* <span data-ttu-id="f4bcb-207">模式︰檔案名稱模式的選擇性參數</span><span class="sxs-lookup"><span data-stu-id="f4bcb-207">pattern: An optional parameter of file name pattern</span></span>
+* <span data-ttu-id="f52e6-206">容器名稱： hello 從儲存體容器 toodownload 檔案</span><span class="sxs-lookup"><span data-stu-id="f52e6-206">container name: hello Storage container toodownload files from</span></span>
+* <span data-ttu-id="f52e6-207">模式︰檔案名稱模式的選擇性參數</span><span class="sxs-lookup"><span data-stu-id="f52e6-207">pattern: An optional parameter of file name pattern</span></span>
 
-<span data-ttu-id="f4bcb-208">假設我們有四個容器 "con1"、"con2"、"con3"、"con4"，下列程式碼顯示如何將工作提交至我們稍早建立的 Azure 批次作業「處理 csv」。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-208">Assuming we have four containers "con1", "con2", "con3","con4" following code shows submitting for tasks to the Azure batch job "process csv" we created earlier.</span></span>
+<span data-ttu-id="f52e6-208">假設我們有四個容器"con1"、"con2"、"con3"，"con4"下列程式碼送出工作 toohello Azure 批次作業 」 程序 csv 「 我們稍早建立的顯示。</span><span class="sxs-lookup"><span data-stu-id="f52e6-208">Assuming we have four containers "con1", "con2", "con3","con4" following code shows submitting for tasks toohello Azure batch job "process csv" we created earlier.</span></span>
 
 ```nodejs
 // storing container names in an array
@@ -353,12 +353,12 @@ var container_list = ["con1","con2","con3","con4"]
     });
 ```
 
-<span data-ttu-id="f4bcb-209">此程式碼會將多個工作新增至集區。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-209">The code adds multiple tasks to the pool.</span></span> <span data-ttu-id="f4bcb-210">而每項工作會在所建立 VM 集區中的節點上執行。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-210">And each of the tasks is executed on a node in the pool of VMs created.</span></span> <span data-ttu-id="f4bcb-211">如果工作數目超過集區或 maxTasksPerNode 屬性中的 VM 數目，工作會等到節點可用為止。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-211">If the number of tasks exceeds the number of VMs in a pool or the maxTasksPerNode property, the tasks wait until a node is made available.</span></span> <span data-ttu-id="f4bcb-212">Azure Batch 會自動處理此協調流程。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-212">This orchestration is handled by Azure Batch automatically.</span></span>
+<span data-ttu-id="f52e6-209">hello 程式碼加入多個工作 toohello 集區。</span><span class="sxs-lookup"><span data-stu-id="f52e6-209">hello code adds multiple tasks toohello pool.</span></span> <span data-ttu-id="f52e6-210">而每個 hello 工作 hello 的 Vm 建立的集區中的節點上執行。</span><span class="sxs-lookup"><span data-stu-id="f52e6-210">And each of hello tasks is executed on a node in hello pool of VMs created.</span></span> <span data-ttu-id="f52e6-211">如果 hello 工作數目超過 hello Vm 數目在集區或 hello maxTasksPerNode 屬性中的，hello 工作等候節點可用。</span><span class="sxs-lookup"><span data-stu-id="f52e6-211">If hello number of tasks exceeds hello number of VMs in a pool or hello maxTasksPerNode property, hello tasks wait until a node is made available.</span></span> <span data-ttu-id="f52e6-212">Azure Batch 會自動處理此協調流程。</span><span class="sxs-lookup"><span data-stu-id="f52e6-212">This orchestration is handled by Azure Batch automatically.</span></span>
 
-<span data-ttu-id="f4bcb-213">入口網站有工作與作業狀態的詳細檢視。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-213">The portal has detailed views on the tasks and job statuses.</span></span> <span data-ttu-id="f4bcb-214">您也可以使用此清單並取得 Azure 節點 SDK 中的函式。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-214">You can also use the list and get functions in the Azure Node SDK.</span></span> <span data-ttu-id="f4bcb-215">文件[連結](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Job.html)中會提供詳細資料。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-215">Details are provided in the documentation [link](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Job.html).</span></span>
+<span data-ttu-id="f52e6-213">hello 入口網站有詳細 hello 工作和工作狀態的檢視。</span><span class="sxs-lookup"><span data-stu-id="f52e6-213">hello portal has detailed views on hello tasks and job statuses.</span></span> <span data-ttu-id="f52e6-214">您也可以使用 hello 清單，並在 hello Azure 節點 SDK 中取得函式。</span><span class="sxs-lookup"><span data-stu-id="f52e6-214">You can also use hello list and get functions in hello Azure Node SDK.</span></span> <span data-ttu-id="f52e6-215">Hello 文件中提供詳細資料[連結](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Job.html)。</span><span class="sxs-lookup"><span data-stu-id="f52e6-215">Details are provided in hello documentation [link](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/Job.html).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="f4bcb-216">後續步驟</span><span class="sxs-lookup"><span data-stu-id="f4bcb-216">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="f52e6-216">後續步驟</span><span class="sxs-lookup"><span data-stu-id="f52e6-216">Next steps</span></span>
 
-- <span data-ttu-id="f4bcb-217">如果您不熟悉這項服務，我們建議檢閱 [Azure Batch 功能概觀](batch-api-basics.md) 一文。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-217">Review the [Overview of Azure Batch features](batch-api-basics.md) article, which we recommend if you're new to the service.</span></span>
-- <span data-ttu-id="f4bcb-218">請參閱 [Batch Node.js 參考](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/)以探索 Batch API。</span><span class="sxs-lookup"><span data-stu-id="f4bcb-218">See the [Batch Node.js reference](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/) to explore the Batch API.</span></span>
+- <span data-ttu-id="f52e6-217">檢閱 hello [Azure Batch 概觀功能](batch-api-basics.md)發行項，我們建議您是否新增 toohello 服務。</span><span class="sxs-lookup"><span data-stu-id="f52e6-217">Review hello [Overview of Azure Batch features](batch-api-basics.md) article, which we recommend if you're new toohello service.</span></span>
+- <span data-ttu-id="f52e6-218">請參閱 hello[批次 Node.js 參考](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/)tooexplore hello 批次 API。</span><span class="sxs-lookup"><span data-stu-id="f52e6-218">See hello [Batch Node.js reference](http://azure.github.io/azure-sdk-for-node/azure-batch/latest/) tooexplore hello Batch API.</span></span>
 

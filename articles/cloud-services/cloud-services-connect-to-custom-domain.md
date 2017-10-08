@@ -1,6 +1,6 @@
 ---
-title: "將雲端服務連接到自訂網域控制站 | Microsoft Docs"
-description: "了解如何使用 PowerShell 和 AD 網域延伸將 Web/背景工作角色連接到自訂 AD 網域"
+title: "雲端服務 tooa aaaConnect 自訂的網域控制站 |Microsoft 文件"
+description: "深入了解如何 tooconnect web/背景工作角色 tooa 自訂 AD 網域使用 PowerShell 和 AD 網域延伸"
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: adegeo
-ms.openlocfilehash: 17f6918371678ac849198bff4e3b3eea8678c660
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9540190ccf17c03e55159c6c68429eee29e0a558
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connecting-azure-cloud-services-roles-to-a-custom-ad-domain-controller-hosted-in-azure"></a><span data-ttu-id="d25ba-103">將 Azure 雲端服務角色連接到裝載於 Azure 中的自訂 AD 網域控制站</span><span class="sxs-lookup"><span data-stu-id="d25ba-103">Connecting Azure Cloud Services Roles to a custom AD Domain Controller hosted in Azure</span></span>
-<span data-ttu-id="d25ba-104">我們會先在 Azure 中設定虛擬網路 (VNet)。</span><span class="sxs-lookup"><span data-stu-id="d25ba-104">We will first set up a Virtual Network (VNet) in Azure.</span></span> <span data-ttu-id="d25ba-105">接著再將 Active Directory 網域控制站 (裝載於 Azure 虛擬機器上) 加入 VNet。</span><span class="sxs-lookup"><span data-stu-id="d25ba-105">We will then add an Active Directory Domain Controller (hosted on an Azure Virtual Machine) to the VNet.</span></span> <span data-ttu-id="d25ba-106">下一步是將現有雲端服務角色加入預先建立的 VNet，然後將它們連接到網域控制站。</span><span class="sxs-lookup"><span data-stu-id="d25ba-106">Next, we will add existing cloud service roles to the pre-created VNet, then connect them to the Domain Controller.</span></span>
+# <a name="connecting-azure-cloud-services-roles-tooa-custom-ad-domain-controller-hosted-in-azure"></a><span data-ttu-id="6898f-103">連接 Azure 雲端服務角色 tooa 自訂在 Azure 中裝載的 AD 網域控制站</span><span class="sxs-lookup"><span data-stu-id="6898f-103">Connecting Azure Cloud Services Roles tooa custom AD Domain Controller hosted in Azure</span></span>
+<span data-ttu-id="6898f-104">我們會先在 Azure 中設定虛擬網路 (VNet)。</span><span class="sxs-lookup"><span data-stu-id="6898f-104">We will first set up a Virtual Network (VNet) in Azure.</span></span> <span data-ttu-id="6898f-105">接著，我們會新增 （裝載在 Azure 虛擬機器上） 的 Active Directory 網域控制站 toohello VNet。</span><span class="sxs-lookup"><span data-stu-id="6898f-105">We will then add an Active Directory Domain Controller (hosted on an Azure Virtual Machine) toohello VNet.</span></span> <span data-ttu-id="6898f-106">接下來，我們會將預先建立的 VNet，現有的雲端服務角色 toohello，然後將它們連接 toohello 網域控制站。</span><span class="sxs-lookup"><span data-stu-id="6898f-106">Next, we will add existing cloud service roles toohello pre-created VNet, then connect them toohello Domain Controller.</span></span>
 
-<span data-ttu-id="d25ba-107">在開始之前，請將以下幾件事牢記在心：</span><span class="sxs-lookup"><span data-stu-id="d25ba-107">Before we get started, couple of things to keep in mind:</span></span>
+<span data-ttu-id="6898f-107">我們開始之前，請記住的事項 tookeep 的幾個：</span><span class="sxs-lookup"><span data-stu-id="6898f-107">Before we get started, couple of things tookeep in mind:</span></span>
 
-1. <span data-ttu-id="d25ba-108">本教學課程使用 PowerShell，因此請確認您已安裝 Azure PowerShell 且已準備就緒。</span><span class="sxs-lookup"><span data-stu-id="d25ba-108">This tutorial uses PowerShell, so make sure you have Azure PowerShell installed and ready to go.</span></span> <span data-ttu-id="d25ba-109">如需設定 Azure PowerShell 的說明，請參閱 [如何安裝及設定 Azure PowerShell](/powershell/azure/overview)。</span><span class="sxs-lookup"><span data-stu-id="d25ba-109">To get help with setting up Azure PowerShell, see [How to install and configure Azure PowerShell](/powershell/azure/overview).</span></span>
-2. <span data-ttu-id="d25ba-110">AD 網域控制站和 Web/背景工作角色執行個體必須位在 VNet 中。</span><span class="sxs-lookup"><span data-stu-id="d25ba-110">Your AD Domain Controller and Web/Worker Role instances need to be in the VNet.</span></span>
+1. <span data-ttu-id="6898f-108">本教學課程使用 PowerShell，因此請確定您已安裝 Azure PowerShell，並準備 toogo。</span><span class="sxs-lookup"><span data-stu-id="6898f-108">This tutorial uses PowerShell, so make sure you have Azure PowerShell installed and ready toogo.</span></span> <span data-ttu-id="6898f-109">tooget 說明設定 Azure PowerShell，請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。</span><span class="sxs-lookup"><span data-stu-id="6898f-109">tooget help with setting up Azure PowerShell, see [How tooinstall and configure Azure PowerShell](/powershell/azure/overview).</span></span>
+2. <span data-ttu-id="6898f-110">您的 AD 網域控制站和 Web/背景工作角色執行個體需要 toobe hello VNet 中。</span><span class="sxs-lookup"><span data-stu-id="6898f-110">Your AD Domain Controller and Web/Worker Role instances need toobe in hello VNet.</span></span>
 
-<span data-ttu-id="d25ba-111">請依本逐步指南作業，如果遇到任何問題，請在本文結尾處留言。</span><span class="sxs-lookup"><span data-stu-id="d25ba-111">Follow this step-by-step guide and if you run into any issues, leave us a comment at the end of the article.</span></span> <span data-ttu-id="d25ba-112">我們將會回覆您 (沒錯，我們真的會閱讀留言)。</span><span class="sxs-lookup"><span data-stu-id="d25ba-112">Someone will get back to you (yes, we do read comments).</span></span>
+<span data-ttu-id="6898f-111">請依照本逐步指南，如果您遇到任何問題，請讓我們在 hello hello 文章結尾處的註解。</span><span class="sxs-lookup"><span data-stu-id="6898f-111">Follow this step-by-step guide and if you run into any issues, leave us a comment at hello end of hello article.</span></span> <span data-ttu-id="6898f-112">其他人將會傳回 tooyou （是，我們沒有讀取註解）。</span><span class="sxs-lookup"><span data-stu-id="6898f-112">Someone will get back tooyou (yes, we do read comments).</span></span>
 
-<span data-ttu-id="d25ba-113">雲端服務所參考的網路必須是**傳統虛擬網路**。</span><span class="sxs-lookup"><span data-stu-id="d25ba-113">The network that is referenced by the cloud service must be a **classic virtual network**.</span></span>
+<span data-ttu-id="6898f-113">hello hello 雲端服務所參考的網路必須位於**傳統虛擬網路**。</span><span class="sxs-lookup"><span data-stu-id="6898f-113">hello network that is referenced by hello cloud service must be a **classic virtual network**.</span></span>
 
-## <a name="create-a-virtual-network"></a><span data-ttu-id="d25ba-114">建立虛擬網路</span><span class="sxs-lookup"><span data-stu-id="d25ba-114">Create a Virtual Network</span></span>
-<span data-ttu-id="d25ba-115">您可以使用 Azure 入口網站或 PowerShell 在 Azure 中建立虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="d25ba-115">You can create a Virtual Network in Azure using the Azure portal or PowerShell.</span></span> <span data-ttu-id="d25ba-116">在本教學課程中，我們將使用 PowerShell。</span><span class="sxs-lookup"><span data-stu-id="d25ba-116">For this tutorial, we will use PowerShell.</span></span> <span data-ttu-id="d25ba-117">若要使用 Azure 入口網站建立虛擬網路，請參閱[建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。</span><span class="sxs-lookup"><span data-stu-id="d25ba-117">To create a Virtual Network using the Azure portal, see [Create Virtual Network](../virtual-network/virtual-networks-create-vnet-arm-pportal.md).</span></span>
+## <a name="create-a-virtual-network"></a><span data-ttu-id="6898f-114">建立虛擬網路</span><span class="sxs-lookup"><span data-stu-id="6898f-114">Create a Virtual Network</span></span>
+<span data-ttu-id="6898f-115">您可以使用 hello Azure 入口網站或 PowerShell 在 Azure 中建立虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="6898f-115">You can create a Virtual Network in Azure using hello Azure portal or PowerShell.</span></span> <span data-ttu-id="6898f-116">在本教學課程中，我們將使用 PowerShell。</span><span class="sxs-lookup"><span data-stu-id="6898f-116">For this tutorial, we will use PowerShell.</span></span> <span data-ttu-id="6898f-117">虛擬網路使用 toocreate hello Azure 入口網站，請參閱[建立虛擬網路](../virtual-network/virtual-networks-create-vnet-arm-pportal.md)。</span><span class="sxs-lookup"><span data-stu-id="6898f-117">toocreate a Virtual Network using hello Azure portal, see [Create Virtual Network](../virtual-network/virtual-networks-create-vnet-arm-pportal.md).</span></span>
 
 ```powershell
 #Create Virtual Network
@@ -62,10 +62,10 @@ $vnetConfigPath = "<path-to-vnet-config>"
 Set-AzureVNetConfig -ConfigurationPath $vnetConfigPath
 ```
 
-## <a name="create-a-virtual-machine"></a><span data-ttu-id="d25ba-118">建立虛擬機器</span><span class="sxs-lookup"><span data-stu-id="d25ba-118">Create a Virtual Machine</span></span>
-<span data-ttu-id="d25ba-119">完成虛擬網路的設定後，您需要建立 AD 網域控制站。</span><span class="sxs-lookup"><span data-stu-id="d25ba-119">Once you have completed setting up the Virtual Network, you will need to create an AD Domain Controller.</span></span> <span data-ttu-id="d25ba-120">在本教學課程中，我們會在 Azure 虛擬機器上設定 AD 網域控制站。</span><span class="sxs-lookup"><span data-stu-id="d25ba-120">For this tutorial, we will be setting up an AD Domain Controller on an Azure Virtual Machine.</span></span>
+## <a name="create-a-virtual-machine"></a><span data-ttu-id="6898f-118">建立虛擬機器</span><span class="sxs-lookup"><span data-stu-id="6898f-118">Create a Virtual Machine</span></span>
+<span data-ttu-id="6898f-119">當您完成設定 hello 虛擬網路時，您需要 toocreate AD 網域控制站。</span><span class="sxs-lookup"><span data-stu-id="6898f-119">Once you have completed setting up hello Virtual Network, you will need toocreate an AD Domain Controller.</span></span> <span data-ttu-id="6898f-120">在本教學課程中，我們會在 Azure 虛擬機器上設定 AD 網域控制站。</span><span class="sxs-lookup"><span data-stu-id="6898f-120">For this tutorial, we will be setting up an AD Domain Controller on an Azure Virtual Machine.</span></span>
 
-<span data-ttu-id="d25ba-121">若要這樣做，請使用下列命令透過 PowerShell 建立虛擬機器：</span><span class="sxs-lookup"><span data-stu-id="d25ba-121">To do this, create a virtual machine through PowerShell using the following commands:</span></span>
+<span data-ttu-id="6898f-121">toodo，建立虛擬機器，透過 PowerShell 中使用下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="6898f-121">toodo this, create a virtual machine through PowerShell using hello following commands:</span></span>
 
 ```powershell
 # Initialize variables
@@ -79,25 +79,25 @@ $username = '<your-username>'
 $password = '<your-password>'
 $affgrp = '<your- affgrp>'
 
-# Create a VM and add it to the Virtual Network
+# Create a VM and add it toohello Virtual Network
 
 New-AzureQuickVM -Windows -ServiceName $vmsvc1 -Name $vm1 -ImageName $imgname -AdminUsername $username -Password $password -AffinityGroup $affgrp -SubnetNames $subnetname -VNetName $vnetname
 ```
 
-## <a name="promote-your-virtual-machine-to-a-domain-controller"></a><span data-ttu-id="d25ba-122">將虛擬機器提升為網域控制站</span><span class="sxs-lookup"><span data-stu-id="d25ba-122">Promote your Virtual Machine to a Domain Controller</span></span>
-<span data-ttu-id="d25ba-123">若要將虛擬機器設定為 AD 網域控制站，您需要登入 VM 並進行設定。</span><span class="sxs-lookup"><span data-stu-id="d25ba-123">To configure the Virtual Machine as an AD Domain Controller, you will need to log in to the VM and configure it.</span></span>
+## <a name="promote-your-virtual-machine-tooa-domain-controller"></a><span data-ttu-id="6898f-122">升級您的虛擬機器 tooa 網域控制站</span><span class="sxs-lookup"><span data-stu-id="6898f-122">Promote your Virtual Machine tooa Domain Controller</span></span>
+<span data-ttu-id="6898f-123">tooconfigure hello 虛擬機器的 AD 網域控制站，您將需要 toolog toohello VM 中的，並將它設定。</span><span class="sxs-lookup"><span data-stu-id="6898f-123">tooconfigure hello Virtual Machine as an AD Domain Controller, you will need toolog in toohello VM and configure it.</span></span>
 
-<span data-ttu-id="d25ba-124">若要登入 VM，您可以透過 PowerShell 取得 RDP 檔案，請使用下列命令：</span><span class="sxs-lookup"><span data-stu-id="d25ba-124">To log in to the VM, you can get the RDP file through PowerShell, use the following commands:</span></span>
+<span data-ttu-id="6898f-124">toolog toohello VM 中的，您可以透過 PowerShell，下列命令使用 hello 取得 hello RDP 檔案：</span><span class="sxs-lookup"><span data-stu-id="6898f-124">toolog in toohello VM, you can get hello RDP file through PowerShell, use hello following commands:</span></span>
 
 ```powershell
 # Get RDP file
 Get-AzureRemoteDesktopFile -ServiceName $vmsvc1 -Name $vm1 -LocalPath <rdp-file-path>
 ```
 
-<span data-ttu-id="d25ba-125">登入 VM 後，請遵循[如何設定客戶的 AD 網域控制站](http://social.technet.microsoft.com/wiki/contents/articles/12370.windows-server-2012-set-up-your-first-domain-controller-step-by-step.aspx)中的逐步指南，將虛擬機器設為 AD 網域控制站。</span><span class="sxs-lookup"><span data-stu-id="d25ba-125">Once you are signed in to the VM, set up your Virtual Machine as an AD Domain Controller by following the step-by-step guide on [How to set up your customer AD Domain Controller](http://social.technet.microsoft.com/wiki/contents/articles/12370.windows-server-2012-set-up-your-first-domain-controller-step-by-step.aspx).</span></span>
+<span data-ttu-id="6898f-125">一旦您登入 toohello VM，設定您的虛擬機器由下列 hello 逐步指南的 AD 網域控制站上[如何註冊您的客戶 AD 網域控制站 tooset](http://social.technet.microsoft.com/wiki/contents/articles/12370.windows-server-2012-set-up-your-first-domain-controller-step-by-step.aspx)。</span><span class="sxs-lookup"><span data-stu-id="6898f-125">Once you are signed in toohello VM, set up your Virtual Machine as an AD Domain Controller by following hello step-by-step guide on [How tooset up your customer AD Domain Controller](http://social.technet.microsoft.com/wiki/contents/articles/12370.windows-server-2012-set-up-your-first-domain-controller-step-by-step.aspx).</span></span>
 
-## <a name="add-your-cloud-service-to-the-virtual-network"></a><span data-ttu-id="d25ba-126">將雲端服務加入虛擬網路</span><span class="sxs-lookup"><span data-stu-id="d25ba-126">Add your Cloud Service to the Virtual Network</span></span>
-<span data-ttu-id="d25ba-127">接下來，您需要將雲端服務部署新增至新的 VNet。</span><span class="sxs-lookup"><span data-stu-id="d25ba-127">Next, you need to add your cloud service deployment to the new VNet.</span></span> <span data-ttu-id="d25ba-128">若要這樣做，請使用 Visual Studio 或選擇的編輯器將相關區段加入 cscfg，藉此修改雲端服務 cscfg。</span><span class="sxs-lookup"><span data-stu-id="d25ba-128">To do this, modify your cloud service cscfg by adding the relevant sections to your cscfg using Visual Studio or the editor of your choice.</span></span>
+## <a name="add-your-cloud-service-toohello-virtual-network"></a><span data-ttu-id="6898f-126">加入您的雲端服務 toohello 虛擬網路</span><span class="sxs-lookup"><span data-stu-id="6898f-126">Add your Cloud Service toohello Virtual Network</span></span>
+<span data-ttu-id="6898f-127">接下來，您需要 tooadd 您雲端服務部署 toohello 新的 VNet。</span><span class="sxs-lookup"><span data-stu-id="6898f-127">Next, you need tooadd your cloud service deployment toohello new VNet.</span></span> <span data-ttu-id="6898f-128">toodo，透過加入使用 Visual Studio hello 相關章節 tooyour cscfg 修改雲端服務 cscfg 或 hello 您選擇的編輯器。</span><span class="sxs-lookup"><span data-stu-id="6898f-128">toodo this, modify your cloud service cscfg by adding hello relevant sections tooyour cscfg using Visual Studio or hello editor of your choice.</span></span>
 
 ```xml
 <ServiceConfiguration serviceName="[hosted-service-name]" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="[os-family]" osVersion="*">
@@ -128,10 +128,10 @@ Get-AzureRemoteDesktopFile -ServiceName $vmsvc1 -Name $vm1 -LocalPath <rdp-file-
 </ServiceConfiguration>
 ```
 
-<span data-ttu-id="d25ba-129">接下來，請建置雲端服務專案並將它部署到 Azure。</span><span class="sxs-lookup"><span data-stu-id="d25ba-129">Next build your cloud services project and deploy it to Azure.</span></span> <span data-ttu-id="d25ba-130">如需將雲端服務封裝部署到 Azure 的說明，請參閱「 [如何建立和部署雲端服務](cloud-services-how-to-create-deploy.md#how-to-deploy-a-cloud-service)</span><span class="sxs-lookup"><span data-stu-id="d25ba-130">To get help with deploying your cloud services package to Azure, see [How to Create and Deploy a Cloud Service](cloud-services-how-to-create-deploy.md#how-to-deploy-a-cloud-service)</span></span>
+<span data-ttu-id="6898f-129">接下來建置您的雲端服務專案，並將其部署 tooAzure。</span><span class="sxs-lookup"><span data-stu-id="6898f-129">Next build your cloud services project and deploy it tooAzure.</span></span> <span data-ttu-id="6898f-130">tooget 說明部署您雲端服務封裝 tooAzure 」，請參閱[如何 tooCreate 及部署雲端服務](cloud-services-how-to-create-deploy.md#how-to-deploy-a-cloud-service)</span><span class="sxs-lookup"><span data-stu-id="6898f-130">tooget help with deploying your cloud services package tooAzure, see [How tooCreate and Deploy a Cloud Service](cloud-services-how-to-create-deploy.md#how-to-deploy-a-cloud-service)</span></span>
 
-## <a name="connect-your-webworker-roles-to-the-domain"></a><span data-ttu-id="d25ba-131">將 Web/背景工作角色連接到網域</span><span class="sxs-lookup"><span data-stu-id="d25ba-131">Connect your web/worker roles to the domain</span></span>
-<span data-ttu-id="d25ba-132">在 Azure 上部署雲端服務專案後，請使用 AD 網域延伸將角色執行個體連接到自訂 AD　網域。</span><span class="sxs-lookup"><span data-stu-id="d25ba-132">Once your cloud service project is deployed on Azure, connect your role instances to the custom AD domain using the AD Domain Extension.</span></span> <span data-ttu-id="d25ba-133">若要將 AD 網域延伸加入現有雲端服務部署及加入自訂網域，請在 PowerShell 中執行下列命令：</span><span class="sxs-lookup"><span data-stu-id="d25ba-133">To add the AD Domain Extension to your existing cloud services deployment and join the custom domain, execute the following commands in PowerShell:</span></span>
+## <a name="connect-your-webworker-roles-toohello-domain"></a><span data-ttu-id="6898f-131">連接您的 web/背景工作角色 toohello 網域</span><span class="sxs-lookup"><span data-stu-id="6898f-131">Connect your web/worker roles toohello domain</span></span>
+<span data-ttu-id="6898f-132">一旦在 Azure 上部署雲端服務專案時，連接使用 hello AD 網域延伸您的角色執行個體 toohello 自訂的 AD 網域。</span><span class="sxs-lookup"><span data-stu-id="6898f-132">Once your cloud service project is deployed on Azure, connect your role instances toohello custom AD domain using hello AD Domain Extension.</span></span> <span data-ttu-id="6898f-133">tooadd hello AD 網域延伸 tooyour 現有雲端服務部署和聯結 hello 自訂網域，請執行下列命令在 PowerShell 中的 hello:</span><span class="sxs-lookup"><span data-stu-id="6898f-133">tooadd hello AD Domain Extension tooyour existing cloud services deployment and join hello custom domain, execute hello following commands in PowerShell:</span></span>
 
 ```powershell
 # Initialize domain variables
@@ -142,14 +142,14 @@ $dmpswd = '<your-domain-password>'
 $dmspwd = ConvertTo-SecureString $dmpswd -AsPlainText -Force
 $dmcred = New-Object System.Management.Automation.PSCredential ($dmuser, $dmspwd)
 
-# Add AD Domain Extension to the cloud service roles
+# Add AD Domain Extension toohello cloud service roles
 
 Set-AzureServiceADDomainExtension -Service <your-cloud-service-hosted-service-name> -Role <your-role-name> -Slot <staging-or-production> -DomainName $domain -Credential $dmcred -JoinOption 35
 ```
 
-<span data-ttu-id="d25ba-134">就這麼簡單。</span><span class="sxs-lookup"><span data-stu-id="d25ba-134">And that's it.</span></span>
+<span data-ttu-id="6898f-134">就這麼簡單。</span><span class="sxs-lookup"><span data-stu-id="6898f-134">And that's it.</span></span>
 
-<span data-ttu-id="d25ba-135">您的雲端服務應該已加入自訂網域控制站。</span><span class="sxs-lookup"><span data-stu-id="d25ba-135">Your cloud services should be joined to your custom domain controller.</span></span> <span data-ttu-id="d25ba-136">如果您想要深入了解設定 AD 網域延伸時可用的其他選項，請使用 PowerShell 說明。</span><span class="sxs-lookup"><span data-stu-id="d25ba-136">If you would like to learn more about the different options available for how to configure AD Domain Extension, use the PowerShell help.</span></span> <span data-ttu-id="d25ba-137">以下是一些範例：</span><span class="sxs-lookup"><span data-stu-id="d25ba-137">A couple of examples follow:</span></span>
+<span data-ttu-id="6898f-135">您的雲端服務應該聯結的 tooyour 自訂的網域控制站。</span><span class="sxs-lookup"><span data-stu-id="6898f-135">Your cloud services should be joined tooyour custom domain controller.</span></span> <span data-ttu-id="6898f-136">如果您想要深入 hello 不同選項可供 toolearn 如何協助 tooconfigure AD 網域延伸模組，使用 hello PowerShell。</span><span class="sxs-lookup"><span data-stu-id="6898f-136">If you would like toolearn more about hello different options available for how tooconfigure AD Domain Extension, use hello PowerShell help.</span></span> <span data-ttu-id="6898f-137">以下是一些範例：</span><span class="sxs-lookup"><span data-stu-id="6898f-137">A couple of examples follow:</span></span>
 
 ```powershell
 help Set-AzureServiceADDomainExtension
