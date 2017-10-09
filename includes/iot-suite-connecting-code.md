@@ -1,24 +1,24 @@
-## <a name="specify-the-behavior-of-the-iot-device"></a><span data-ttu-id="31029-101">指定 IoT 裝置的行為</span><span class="sxs-lookup"><span data-stu-id="31029-101">Specify the behavior of the IoT device</span></span>
+## <a name="specify-hello-behavior-of-hello-iot-device"></a><span data-ttu-id="cca39-101">指定 hello IoT 裝置 hello 的行為</span><span class="sxs-lookup"><span data-stu-id="cca39-101">Specify hello behavior of hello IoT device</span></span>
 
-<span data-ttu-id="31029-102">IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT 中樞交換之訊息的格式。</span><span class="sxs-lookup"><span data-stu-id="31029-102">The IoT Hub serializer client library uses a model to specify the format of the messages the device exchanges with IoT Hub.</span></span>
+<span data-ttu-id="cca39-102">hello IoT 中樞序列化程式用戶端程式庫會使用模型 toospecify hello 格式的 hello 訊息 hello 裝置交換與 IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="cca39-102">hello IoT Hub serializer client library uses a model toospecify hello format of hello messages hello device exchanges with IoT Hub.</span></span>
 
-1. <span data-ttu-id="31029-103">在 `#include` 陳述式之後新增下列變數宣告。</span><span class="sxs-lookup"><span data-stu-id="31029-103">Add the following variable declarations after the `#include` statements.</span></span> <span data-ttu-id="31029-104">使用您在遠端監視解決方案儀表板中為裝置記下的值來取代 [Device Id] 和 [Device Key] 預留位置值。</span><span class="sxs-lookup"><span data-stu-id="31029-104">Replace the placeholder values [Device Id] and [Device Key] with values you noted for your device in the remote monitoring solution dashboard.</span></span> <span data-ttu-id="31029-105">使用解決方案儀表板中的「IoT 中樞主機名稱」來取代 [IoTHub Name]。</span><span class="sxs-lookup"><span data-stu-id="31029-105">Use the IoT Hub Hostname from the solution dashboard to replace [IoTHub Name].</span></span> <span data-ttu-id="31029-106">例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：</span><span class="sxs-lookup"><span data-stu-id="31029-106">For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:</span></span>
+1. <span data-ttu-id="cca39-103">加入下列變數宣告之後 hello hello`#include`陳述式。</span><span class="sxs-lookup"><span data-stu-id="cca39-103">Add hello following variable declarations after hello `#include` statements.</span></span> <span data-ttu-id="cca39-104">取代 hello 預留位置值 [裝置識別碼] 和 [裝置機碼] 與您記下您的裝置 hello 遠端監視方案儀表板中的值。</span><span class="sxs-lookup"><span data-stu-id="cca39-104">Replace hello placeholder values [Device Id] and [Device Key] with values you noted for your device in hello remote monitoring solution dashboard.</span></span> <span data-ttu-id="cca39-105">使用從 hello 方案儀表板 tooreplace [iot 中樞名稱] 的 hello IoT 中樞的主機名稱。</span><span class="sxs-lookup"><span data-stu-id="cca39-105">Use hello IoT Hub Hostname from hello solution dashboard tooreplace [IoTHub Name].</span></span> <span data-ttu-id="cca39-106">例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：</span><span class="sxs-lookup"><span data-stu-id="cca39-106">For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:</span></span>
    
     ```c
     static const char* deviceId = "[Device Id]";
     static const char* connectionString = "HostName=[IoTHub Name].azure-devices.net;DeviceId=[Device Id];SharedAccessKey=[Device Key]";
     ```
 
-1. <span data-ttu-id="31029-107">新增下列程式碼以定義可讓裝置與 IoT 中樞通訊的模型。</span><span class="sxs-lookup"><span data-stu-id="31029-107">Add the following code to define the model that enables the device to communicate with IoT Hub.</span></span> <span data-ttu-id="31029-108">此模型會指定裝置：</span><span class="sxs-lookup"><span data-stu-id="31029-108">This model specifies that the device:</span></span>
+1. <span data-ttu-id="cca39-107">新增下列程式碼 toodefine hello 模型，可讓與 IoT 中樞 hello 裝置 toocommunicate hello。</span><span class="sxs-lookup"><span data-stu-id="cca39-107">Add hello following code toodefine hello model that enables hello device toocommunicate with IoT Hub.</span></span> <span data-ttu-id="cca39-108">此模型會指定該 hello 裝置：</span><span class="sxs-lookup"><span data-stu-id="cca39-108">This model specifies that hello device:</span></span>
 
-   - <span data-ttu-id="31029-109">可以傳送溫度、外部溫度、濕度及裝置識別碼作為遙測資料。</span><span class="sxs-lookup"><span data-stu-id="31029-109">Can send temperature, external temperature, humidity, and a device id as telemetry.</span></span>
-   - <span data-ttu-id="31029-110">可以將裝置相關中繼資料傳送給 IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="31029-110">Can send metadata about the device to IoT Hub.</span></span> <span data-ttu-id="31029-111">裝置會在啟動時傳送 **DeviceInfo** 物件中的基本中繼資料。</span><span class="sxs-lookup"><span data-stu-id="31029-111">The device sends basic metadata in a **DeviceInfo** object at startup.</span></span>
-   - <span data-ttu-id="31029-112">可以將回報的屬性傳送給 IoT 中樞內的裝置對應項。</span><span class="sxs-lookup"><span data-stu-id="31029-112">Can send reported properties, to the device twin in IoT Hub.</span></span> <span data-ttu-id="31029-113">這些回報的屬性會依組態、裝置及系統屬性分組。</span><span class="sxs-lookup"><span data-stu-id="31029-113">These reported properties are grouped into configuration, device, and system properties.</span></span>
-   - <span data-ttu-id="31029-114">可以接收 IoT 中樞內裝置對應項中設定的所需屬性，並根據這些屬性採取動作。</span><span class="sxs-lookup"><span data-stu-id="31029-114">Can receive and act on desired properties set in the device twin in IoT Hub.</span></span>
-   - <span data-ttu-id="31029-115">可以回應透過解決方案入口網站叫用的 **Reboot** 和 **InitiateFirmwareUpdate** 直接方法。</span><span class="sxs-lookup"><span data-stu-id="31029-115">Can respond to the **Reboot** and **InitiateFirmwareUpdate** direct methods invoked through the solution portal.</span></span> <span data-ttu-id="31029-116">裝置會使用回報的屬性來傳送它所支援之直接方法的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="31029-116">The device sends information about the direct methods it supports using reported properties.</span></span>
+   - <span data-ttu-id="cca39-109">可以傳送溫度、外部溫度、濕度及裝置識別碼作為遙測資料。</span><span class="sxs-lookup"><span data-stu-id="cca39-109">Can send temperature, external temperature, humidity, and a device id as telemetry.</span></span>
+   - <span data-ttu-id="cca39-110">可以傳送嗨裝置 tooIoT 中樞的相關中繼資料。</span><span class="sxs-lookup"><span data-stu-id="cca39-110">Can send metadata about hello device tooIoT Hub.</span></span> <span data-ttu-id="cca39-111">hello 裝置傳送基本中繼資料**DeviceInfo**在啟動時的物件。</span><span class="sxs-lookup"><span data-stu-id="cca39-111">hello device sends basic metadata in a **DeviceInfo** object at startup.</span></span>
+   - <span data-ttu-id="cca39-112">可以傳送報告的內容，toohello 裝置的兩個在 IoT 中樞。</span><span class="sxs-lookup"><span data-stu-id="cca39-112">Can send reported properties, toohello device twin in IoT Hub.</span></span> <span data-ttu-id="cca39-113">這些回報的屬性會依組態、裝置及系統屬性分組。</span><span class="sxs-lookup"><span data-stu-id="cca39-113">These reported properties are grouped into configuration, device, and system properties.</span></span>
+   - <span data-ttu-id="cca39-114">可以接收及處理在 IoT 中樞中的 hello 裝置兩個設定所需的屬性。</span><span class="sxs-lookup"><span data-stu-id="cca39-114">Can receive and act on desired properties set in hello device twin in IoT Hub.</span></span>
+   - <span data-ttu-id="cca39-115">可以回應 toohello**重新開機**和**InitiateFirmwareUpdate**直接叫用透過 hello 方案入口網站的方法。</span><span class="sxs-lookup"><span data-stu-id="cca39-115">Can respond toohello **Reboot** and **InitiateFirmwareUpdate** direct methods invoked through hello solution portal.</span></span> <span data-ttu-id="cca39-116">hello 裝置傳送它支援使用報告的屬性 hello 直接方法的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="cca39-116">hello device sends information about hello direct methods it supports using reported properties.</span></span>
    
     ```c
-    // Define the Model
+    // Define hello Model
     BEGIN_NAMESPACE(Contoso);
 
     /* Reported properties */
@@ -74,7 +74,7 @@
       WITH_DESIRED_PROPERTY(double, TemperatureMeanValue, onDesiredTemperatureMeanValue),
       WITH_DESIRED_PROPERTY(uint8_t, TelemetryInterval, onDesiredTelemetryInterval),
 
-      /* Direct methods implemented by the device */
+      /* Direct methods implemented by hello device */
       WITH_METHOD(Reboot),
       WITH_METHOD(InitiateFirmwareUpdate, ascii_char_ptr, FwPackageURI),
 
@@ -85,15 +85,15 @@
     END_NAMESPACE(Contoso);
     ```
 
-## <a name="implement-the-behavior-of-the-device"></a><span data-ttu-id="31029-117">實作裝置的行為</span><span class="sxs-lookup"><span data-stu-id="31029-117">Implement the behavior of the device</span></span>
-<span data-ttu-id="31029-118">現在，請新增程式碼來實作模型中所定義的行為。</span><span class="sxs-lookup"><span data-stu-id="31029-118">Now add code that implements the behavior defined in the model.</span></span>
+## <a name="implement-hello-behavior-of-hello-device"></a><span data-ttu-id="cca39-117">可實作 hello 裝置 hello 行為</span><span class="sxs-lookup"><span data-stu-id="cca39-117">Implement hello behavior of hello device</span></span>
+<span data-ttu-id="cca39-118">現在加入程式碼會實作 hello hello 模型中定義的行為。</span><span class="sxs-lookup"><span data-stu-id="cca39-118">Now add code that implements hello behavior defined in hello model.</span></span>
 
-1. <span data-ttu-id="31029-119">新增下列函式，這些函式會處理在解決方案儀表板中設定的所需屬性。</span><span class="sxs-lookup"><span data-stu-id="31029-119">Add the following functions that handle the desired properties set in the solution dashboard.</span></span> <span data-ttu-id="31029-120">這些所需屬性是在模型中定義：</span><span class="sxs-lookup"><span data-stu-id="31029-120">These desired properties are defined in the model:</span></span>
+1. <span data-ttu-id="cca39-119">加入下列函式可處理預期的 hello 屬性設定 hello 方案儀表板中的 hello。</span><span class="sxs-lookup"><span data-stu-id="cca39-119">Add hello following functions that handle hello desired properties set in hello solution dashboard.</span></span> <span data-ttu-id="cca39-120">Hello 模型中定義這些所需的屬性：</span><span class="sxs-lookup"><span data-stu-id="cca39-120">These desired properties are defined in hello model:</span></span>
 
     ```c
     void onDesiredTemperatureMeanValue(void* argument)
     {
-      /* By convention 'argument' is of the type of the MODEL */
+      /* By convention 'argument' is of hello type of hello MODEL */
       Thermostat* thermostat = argument;
       printf("Received a new desired_TemperatureMeanValue = %f\r\n", thermostat->TemperatureMeanValue);
 
@@ -101,13 +101,13 @@
 
     void onDesiredTelemetryInterval(void* argument)
     {
-      /* By convention 'argument' is of the type of the MODEL */
+      /* By convention 'argument' is of hello type of hello MODEL */
       Thermostat* thermostat = argument;
       printf("Received a new desired_TelemetryInterval = %d\r\n", thermostat->TelemetryInterval);
     }
     ```
 
-1. <span data-ttu-id="31029-121">新增下列函式，這些函式會處理透過 IoT 中樞叫用的直接方法。</span><span class="sxs-lookup"><span data-stu-id="31029-121">Add the following functions that handle the direct methods invoked through the IoT hub.</span></span> <span data-ttu-id="31029-122">這些直接方法是在模型中定義：</span><span class="sxs-lookup"><span data-stu-id="31029-122">These direct methods are defined in the model:</span></span>
+1. <span data-ttu-id="cca39-121">加入下列函式可處理 hello 直接的方法，透過 hello IoT 中樞叫用的 hello。</span><span class="sxs-lookup"><span data-stu-id="cca39-121">Add hello following functions that handle hello direct methods invoked through hello IoT hub.</span></span> <span data-ttu-id="cca39-122">Hello 模型中定義這些直接的方法：</span><span class="sxs-lookup"><span data-stu-id="cca39-122">These direct methods are defined in hello model:</span></span>
 
     ```c
     /* Handlers for direct methods */
@@ -130,26 +130,26 @@
     }
     ```
 
-1. <span data-ttu-id="31029-123">新增下列函式，此函式會傳送訊息給預先設定的解決方案：</span><span class="sxs-lookup"><span data-stu-id="31029-123">Add the following function that sends a message to the preconfigured solution:</span></span>
+1. <span data-ttu-id="cca39-123">新增下列傳送郵件 toohello 預先設定的解決方案函式的 hello:</span><span class="sxs-lookup"><span data-stu-id="cca39-123">Add hello following function that sends a message toohello preconfigured solution:</span></span>
    
     ```c
-    /* Send data to IoT Hub */
+    /* Send data tooIoT Hub */
     static void sendMessage(IOTHUB_CLIENT_HANDLE iotHubClientHandle, const unsigned char* buffer, size_t size)
     {
       IOTHUB_MESSAGE_HANDLE messageHandle = IoTHubMessage_CreateFromByteArray(buffer, size);
       if (messageHandle == NULL)
       {
-        printf("unable to create a new IoTHubMessage\r\n");
+        printf("unable toocreate a new IoTHubMessage\r\n");
       }
       else
       {
         if (IoTHubClient_SendEventAsync(iotHubClientHandle, messageHandle, NULL, NULL) != IOTHUB_CLIENT_OK)
         {
-          printf("failed to hand over the message to IoTHubClient");
+          printf("failed toohand over hello message tooIoTHubClient");
         }
         else
         {
-          printf("IoTHubClient accepted the message for delivery\r\n");
+          printf("IoTHubClient accepted hello message for delivery\r\n");
         }
 
         IoTHubMessage_Destroy(messageHandle);
@@ -158,7 +158,7 @@
     }
     ```
 
-1. <span data-ttu-id="31029-124">新增下列回呼處理常式，此處理常式會在裝置將新回報的屬性值傳送給預先設定的解決方案後執行：</span><span class="sxs-lookup"><span data-stu-id="31029-124">Add the following callback handler that runs when the device has sent new reported property values to the preconfigured solution:</span></span>
+1. <span data-ttu-id="cca39-124">新增下列 hello 裝置已傳送新的報告的屬性值 toohello 預先設定的方案時執行的回呼處理常式的 hello:</span><span class="sxs-lookup"><span data-stu-id="cca39-124">Add hello following callback handler that runs when hello device has sent new reported property values toohello preconfigured solution:</span></span>
 
     ```c
     /* Callback after sending reported properties */
@@ -169,29 +169,29 @@
     }
     ```
 
-1. <span data-ttu-id="31029-125">新增下列函式，以將您的裝置連接到雲端中的預先設定解決方案，然後交換資料。</span><span class="sxs-lookup"><span data-stu-id="31029-125">Add the following function to connect your device to the preconfigured solution in the cloud, and exchange data.</span></span> <span data-ttu-id="31029-126">此函式會執行下列步驟：</span><span class="sxs-lookup"><span data-stu-id="31029-126">This function performs the following steps:</span></span>
+1. <span data-ttu-id="cca39-125">加入下列 hello 函式 tooconnect hello 雲端中您裝置 toohello 預先設定的解決方案，並交換資料。</span><span class="sxs-lookup"><span data-stu-id="cca39-125">Add hello following function tooconnect your device toohello preconfigured solution in hello cloud, and exchange data.</span></span> <span data-ttu-id="cca39-126">此函式會執行下列步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="cca39-126">This function performs hello following steps:</span></span>
 
-    - <span data-ttu-id="31029-127">將平台初始化。</span><span class="sxs-lookup"><span data-stu-id="31029-127">Initializes the platform.</span></span>
-    - <span data-ttu-id="31029-128">使用序列化程式庫來註冊 Contoso 命名空間。</span><span class="sxs-lookup"><span data-stu-id="31029-128">Registers the Contoso namespace with the serialization library.</span></span>
-    - <span data-ttu-id="31029-129">使用裝置連接字串將用戶端初始化。</span><span class="sxs-lookup"><span data-stu-id="31029-129">Initializes the client with the device connection string.</span></span>
-    - <span data-ttu-id="31029-130">建立「控溫器」模型的執行個體。</span><span class="sxs-lookup"><span data-stu-id="31029-130">Create an instance of the **Thermostat** model.</span></span>
-    - <span data-ttu-id="31029-131">建立並傳送回報的屬性值。</span><span class="sxs-lookup"><span data-stu-id="31029-131">Creates and sends reported property values.</span></span>
-    - <span data-ttu-id="31029-132">傳送 **DeviceInfo** 物件。</span><span class="sxs-lookup"><span data-stu-id="31029-132">Sends a **DeviceInfo** object.</span></span>
-    - <span data-ttu-id="31029-133">建立迴圈來每秒傳送遙測資料。</span><span class="sxs-lookup"><span data-stu-id="31029-133">Creates a loop to send telemetry every second.</span></span>
-    - <span data-ttu-id="31029-134">將所有資源取消初始化。</span><span class="sxs-lookup"><span data-stu-id="31029-134">Deinitializes all resources.</span></span>
+    - <span data-ttu-id="cca39-127">初始化 hello 平台。</span><span class="sxs-lookup"><span data-stu-id="cca39-127">Initializes hello platform.</span></span>
+    - <span data-ttu-id="cca39-128">使用 hello 序列化文件庫中註冊 hello Contoso 命名空間。</span><span class="sxs-lookup"><span data-stu-id="cca39-128">Registers hello Contoso namespace with hello serialization library.</span></span>
+    - <span data-ttu-id="cca39-129">初始化用戶端 hello hello 裝置連接字串。</span><span class="sxs-lookup"><span data-stu-id="cca39-129">Initializes hello client with hello device connection string.</span></span>
+    - <span data-ttu-id="cca39-130">建立執行個體的 hello **Thermostat**模型。</span><span class="sxs-lookup"><span data-stu-id="cca39-130">Create an instance of hello **Thermostat** model.</span></span>
+    - <span data-ttu-id="cca39-131">建立並傳送回報的屬性值。</span><span class="sxs-lookup"><span data-stu-id="cca39-131">Creates and sends reported property values.</span></span>
+    - <span data-ttu-id="cca39-132">傳送 **DeviceInfo** 物件。</span><span class="sxs-lookup"><span data-stu-id="cca39-132">Sends a **DeviceInfo** object.</span></span>
+    - <span data-ttu-id="cca39-133">每秒建立迴圈 toosend 遙測。</span><span class="sxs-lookup"><span data-stu-id="cca39-133">Creates a loop toosend telemetry every second.</span></span>
+    - <span data-ttu-id="cca39-134">將所有資源取消初始化。</span><span class="sxs-lookup"><span data-stu-id="cca39-134">Deinitializes all resources.</span></span>
 
       ```c
       void remote_monitoring_run(void)
       {
         if (platform_init() != 0)
         {
-          printf("Failed to initialize the platform.\n");
+          printf("Failed tooinitialize hello platform.\n");
         }
         else
         {
           if (SERIALIZER_REGISTER_NAMESPACE(Contoso) == NULL)
           {
-            printf("Unable to SERIALIZER_REGISTER_NAMESPACE\n");
+            printf("Unable tooSERIALIZER_REGISTER_NAMESPACE\n");
           }
           else
           {
@@ -203,10 +203,10 @@
             else
             {
       #ifdef MBED_BUILD_TIMESTAMP
-              // For mbed add the certificate information
+              // For mbed add hello certificate information
               if (IoTHubClient_SetOption(iotHubClientHandle, "TrustedCerts", certificates) != IOTHUB_CLIENT_OK)
               {
-                  printf("Failed to set option \"TrustedCerts\"\n");
+                  printf("Failed tooset option \"TrustedCerts\"\n");
               }
       #endif // MBED_BUILD_TIMESTAMP
               Thermostat* thermostat = IoTHubDeviceTwin_CreateThermostat(iotHubClientHandle);
@@ -229,17 +229,17 @@
                 thermostat->System.Platform = "Plat 9.75";
                 thermostat->System.Processor = "i3-7";
                 thermostat->System.SerialNumber = "SER21";
-                /* Specify the signatures of the supported direct methods */
-                thermostat->SupportedMethods = "{\"Reboot\": \"Reboot the device\", \"InitiateFirmwareUpdate--FwPackageURI-string\": \"Updates device Firmware. Use parameter FwPackageURI to specifiy the URI of the firmware file\"}";
+                /* Specify hello signatures of hello supported direct methods */
+                thermostat->SupportedMethods = "{\"Reboot\": \"Reboot hello device\", \"InitiateFirmwareUpdate--FwPackageURI-string\": \"Updates device Firmware. Use parameter FwPackageURI toospecifiy hello URI of hello firmware file\"}";
 
-                /* Send reported properties to IoT Hub */
+                /* Send reported properties tooIoT Hub */
                 if (IoTHubDeviceTwin_SendReportedStateThermostat(thermostat, deviceTwinCallback, NULL) != IOTHUB_CLIENT_OK)
                 {
                   printf("Failed sending serialized reported state\n");
                 }
                 else
                 {
-                  printf("Send DeviceInfo object to IoT Hub at startup\n");
+                  printf("Send DeviceInfo object tooIoT Hub at startup\n");
       
                   thermostat->ObjectType = "DeviceInfo";
                   thermostat->IsSimulatedDevice = 0;
@@ -296,7 +296,7 @@
       }
     ```
    
-    <span data-ttu-id="31029-135">以下是一個傳送給預先設定之解決方案的範例「遙測」訊息，可供您參考：</span><span class="sxs-lookup"><span data-stu-id="31029-135">For reference, here is a sample **Telemetry** message sent to the preconfigured solution:</span></span>
+    <span data-ttu-id="cca39-135">如需參考，以下是範例**遙測**傳送訊息 toohello 預先設定的方案：</span><span class="sxs-lookup"><span data-stu-id="cca39-135">For reference, here is a sample **Telemetry** message sent toohello preconfigured solution:</span></span>
    
     ```
     {"DeviceId":"mydevice01", "Temperature":50, "Humidity":50, "ExternalTemperature":55}

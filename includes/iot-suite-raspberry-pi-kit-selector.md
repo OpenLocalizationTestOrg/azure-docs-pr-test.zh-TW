@@ -1,0 +1,7 @@
+> [!div class="op_single_selector"]
+> * [<span data-ttu-id="a2bb8-101">C 與模擬遙測</span><span class="sxs-lookup"><span data-stu-id="a2bb8-101">C with simulated telemetry</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-c-get-started-simulator.md)
+> * [<span data-ttu-id="a2bb8-102">C 與實際感應器</span><span class="sxs-lookup"><span data-stu-id="a2bb8-102">C with real sensor</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-c-get-started-basic.md)
+> * [<span data-ttu-id="a2bb8-103">C 實作韌體更新</span><span class="sxs-lookup"><span data-stu-id="a2bb8-103">C implement firmware update</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-c-get-started-advanced.md)
+> * [<span data-ttu-id="a2bb8-104">使用模擬遙測的 Node.js</span><span class="sxs-lookup"><span data-stu-id="a2bb8-104">Node.js with simulated telemetry</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-node-get-started-simulator.md)
+> * [<span data-ttu-id="a2bb8-105">使用實際感應器的 Node.js</span><span class="sxs-lookup"><span data-stu-id="a2bb8-105">Node.js with real sensor</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-node-get-started-basic.md)
+> * [<span data-ttu-id="a2bb8-106">Node.js 實作韌體更新</span><span class="sxs-lookup"><span data-stu-id="a2bb8-106">Node.js implement firmware update</span></span>](../articles/iot-suite/iot-suite-raspberry-pi-kit-node-get-started-advanced.md)

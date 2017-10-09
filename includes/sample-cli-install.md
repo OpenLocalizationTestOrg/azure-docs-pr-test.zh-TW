@@ -1,0 +1,5 @@
+
+
+<span data-ttu-id="4a4f2-101">toorun 這個範例，請確定您有最新安裝 hello [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)。</span><span class="sxs-lookup"><span data-stu-id="4a4f2-101">toorun this sample, make sure you have installed hello latest [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli).</span></span> <span data-ttu-id="4a4f2-102">toostart，執行`az login`toocreate 與 Azure 的連線。</span><span class="sxs-lookup"><span data-stu-id="4a4f2-102">toostart, run `az login` toocreate a connection with Azure.</span></span>
+
+<span data-ttu-id="4a4f2-103">這個範例適用於 Bash 殼層。</span><span class="sxs-lookup"><span data-stu-id="4a4f2-103">This sample works in a Bash shell.</span></span> <span data-ttu-id="4a4f2-104">在 Windows 用戶端上執行 Azure CLI 指令碼選項，請參閱[Windows 中執行 hello Azure CLI](../articles/virtual-machines/windows/cli-options.md)。</span><span class="sxs-lookup"><span data-stu-id="4a4f2-104">For options on running Azure CLI scripts on Windows client, see [Running hello Azure CLI in Windows](../articles/virtual-machines/windows/cli-options.md).</span></span>

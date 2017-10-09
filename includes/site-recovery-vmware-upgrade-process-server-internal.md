@@ -1,4 +1,4 @@
-1. <span data-ttu-id="66912-101">以系統管理員身分登入處理序伺服器。</span><span class="sxs-lookup"><span data-stu-id="66912-101">Login to the process server as an Administrator.</span></span>
-2. <span data-ttu-id="66912-102">下載最新版的[整合安裝程式](http://aka.ms/unifiedinstaller)。</span><span class="sxs-lookup"><span data-stu-id="66912-102">Download the latest version of the [Unified Setup](http://aka.ms/unifiedinstaller).</span></span>
-3. <span data-ttu-id="66912-103">按兩下安裝程式，即可啟動更新程序。</span><span class="sxs-lookup"><span data-stu-id="66912-103">Double-click the installer to launch the update process.</span></span>
-4. <span data-ttu-id="66912-104">安裝程式會偵測各種已安裝的元件，並將它們升級為最新版本。</span><span class="sxs-lookup"><span data-stu-id="66912-104">The installer will detect the various components that are installed and upgrade them to the latest version.</span></span>
+1. <span data-ttu-id="6171d-101">以系統管理員身分登入 toohello 處理序伺服器。</span><span class="sxs-lookup"><span data-stu-id="6171d-101">Login toohello process server as an Administrator.</span></span>
+2. <span data-ttu-id="6171d-102">下載 hello 最新版 hello[整合安裝](http://aka.ms/unifiedinstaller)。</span><span class="sxs-lookup"><span data-stu-id="6171d-102">Download hello latest version of hello [Unified Setup](http://aka.ms/unifiedinstaller).</span></span>
+3. <span data-ttu-id="6171d-103">按兩下 hello installer toolaunch hello 更新程序。</span><span class="sxs-lookup"><span data-stu-id="6171d-103">Double-click hello installer toolaunch hello update process.</span></span>
+4. <span data-ttu-id="6171d-104">hello 安裝程式會偵測 hello 所安裝的各種元件，並將它們升級 toohello 最新版本。</span><span class="sxs-lookup"><span data-stu-id="6171d-104">hello installer will detect hello various components that are installed and upgrade them toohello latest version.</span></span>

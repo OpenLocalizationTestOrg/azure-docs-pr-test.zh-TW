@@ -1,0 +1,5 @@
+
+* <span data-ttu-id="d3483-101">在 Xcode 中，按**執行**並啟動 hello 應用程式的 iOS 裝置 （請注意，推入將無法在模擬器上）。</span><span class="sxs-lookup"><span data-stu-id="d3483-101">In Xcode, press **Run** and start hello app on an iOS device (note that push will not work on simulators).</span></span> <span data-ttu-id="d3483-102">按一下**確定**tooaccept 推播通知; 此要求，就會發生 hello hello 應用程式執行的第一次。</span><span class="sxs-lookup"><span data-stu-id="d3483-102">Click **OK** tooaccept push notifications; this request occurs hello first time hello app runs.</span></span>
+* <span data-ttu-id="d3483-103">在 hello 應用程式中加入新項目，然後按一下 **+** 。</span><span class="sxs-lookup"><span data-stu-id="d3483-103">In hello app, add a new item and click **+**.</span></span>
+* <span data-ttu-id="d3483-104">請確認已收到通知，然後按一下 **確定**toodismiss hello 通知。</span><span class="sxs-lookup"><span data-stu-id="d3483-104">Verify that a notification is received, then click **OK** toodismiss hello notification.</span></span> <span data-ttu-id="d3483-105">您現在已成功完成此教學課程。</span><span class="sxs-lookup"><span data-stu-id="d3483-105">You have now successfully completed this tutorial.</span></span>
+

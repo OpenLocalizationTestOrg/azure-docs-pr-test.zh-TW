@@ -1,39 +1,39 @@
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="41173-101">Node.js</span><span class="sxs-lookup"><span data-stu-id="41173-101">Node.js</span></span>](../articles/iot-hub/iot-hub-node-node-twin-getstarted.md)
-> * [<span data-ttu-id="41173-102">C#/Node.js</span><span class="sxs-lookup"><span data-stu-id="41173-102">C#/Node.js</span></span>](../articles/iot-hub/iot-hub-csharp-node-twin-getstarted.md)
-> * [<span data-ttu-id="41173-103">C#</span><span class="sxs-lookup"><span data-stu-id="41173-103">C#</span></span>](../articles/iot-hub/iot-hub-csharp-csharp-twin-getstarted.md)
-> * [<span data-ttu-id="41173-104">Java</span><span class="sxs-lookup"><span data-stu-id="41173-104">Java</span></span>](../articles/iot-hub/iot-hub-java-java-twin-getstarted.md)
+> * [<span data-ttu-id="a4e44-101">Node.js</span><span class="sxs-lookup"><span data-stu-id="a4e44-101">Node.js</span></span>](../articles/iot-hub/iot-hub-node-node-twin-getstarted.md)
+> * [<span data-ttu-id="a4e44-102">C#/Node.js</span><span class="sxs-lookup"><span data-stu-id="a4e44-102">C#/Node.js</span></span>](../articles/iot-hub/iot-hub-csharp-node-twin-getstarted.md)
+> * [<span data-ttu-id="a4e44-103">C#</span><span class="sxs-lookup"><span data-stu-id="a4e44-103">C#</span></span>](../articles/iot-hub/iot-hub-csharp-csharp-twin-getstarted.md)
+> * [<span data-ttu-id="a4e44-104">Java</span><span class="sxs-lookup"><span data-stu-id="a4e44-104">Java</span></span>](../articles/iot-hub/iot-hub-java-java-twin-getstarted.md)
 
-<span data-ttu-id="41173-105">「裝置對應項」是存放裝置狀態資訊 (中繼資料、組態和條件) 的 JSON 文件。</span><span class="sxs-lookup"><span data-stu-id="41173-105">Device twins are JSON documents that store device state information (metadata, configurations, and conditions).</span></span> <span data-ttu-id="41173-106">IoT 中樞會為其連線的每個裝置保存裝置對應項。</span><span class="sxs-lookup"><span data-stu-id="41173-106">IoT Hub persists a device twin for each device that connects to it.</span></span>
+<span data-ttu-id="a4e44-105">「裝置對應項」是存放裝置狀態資訊 (中繼資料、組態和條件) 的 JSON 文件。</span><span class="sxs-lookup"><span data-stu-id="a4e44-105">Device twins are JSON documents that store device state information (metadata, configurations, and conditions).</span></span> <span data-ttu-id="a4e44-106">IoT 中樞保存每個裝置連接 tooit 裝置兩個。</span><span class="sxs-lookup"><span data-stu-id="a4e44-106">IoT Hub persists a device twin for each device that connects tooit.</span></span>
 
-<span data-ttu-id="41173-107">使用裝置對應項可以：</span><span class="sxs-lookup"><span data-stu-id="41173-107">Use device twins to:</span></span>
+<span data-ttu-id="a4e44-107">使用裝置對應項可以：</span><span class="sxs-lookup"><span data-stu-id="a4e44-107">Use device twins to:</span></span>
 
-* <span data-ttu-id="41173-108">從您的解決方案後端儲存裝置中繼資料。</span><span class="sxs-lookup"><span data-stu-id="41173-108">Store device metadata from your solution back end.</span></span>
-* <span data-ttu-id="41173-109">從您的裝置應用程式報告目前狀態資訊，例如可用功能和狀況 (例如，使用的連接方法)。</span><span class="sxs-lookup"><span data-stu-id="41173-109">Report current state information such as available capabilities and conditions (for example, the connectivity method used) from your device app.</span></span>
-* <span data-ttu-id="41173-110">同步處理裝置應用程式與後端應用程式之間長時間執行之工作流程的狀態 (例如韌體和組態更新)。</span><span class="sxs-lookup"><span data-stu-id="41173-110">Synchronize the state of long-running workflows (such as firmware and configuration updates) between a device app and a back-end app.</span></span>
-* <span data-ttu-id="41173-111">查詢裝置中繼資料、組態或狀態。</span><span class="sxs-lookup"><span data-stu-id="41173-111">Query your device metadata, configuration, or state.</span></span>
+* <span data-ttu-id="a4e44-108">從您的解決方案後端儲存裝置中繼資料。</span><span class="sxs-lookup"><span data-stu-id="a4e44-108">Store device metadata from your solution back end.</span></span>
+* <span data-ttu-id="a4e44-109">報告目前的狀態資訊，例如可用的功能和條件 （例如，hello 連線使用方式），從您的裝置應用程式。</span><span class="sxs-lookup"><span data-stu-id="a4e44-109">Report current state information such as available capabilities and conditions (for example, hello connectivity method used) from your device app.</span></span>
+* <span data-ttu-id="a4e44-110">同步處理長時間執行工作流程 （例如韌體和組態更新） 裝置的應用程式與後端應用程式之間的 hello 的狀態。</span><span class="sxs-lookup"><span data-stu-id="a4e44-110">Synchronize hello state of long-running workflows (such as firmware and configuration updates) between a device app and a back-end app.</span></span>
+* <span data-ttu-id="a4e44-111">查詢裝置中繼資料、組態或狀態。</span><span class="sxs-lookup"><span data-stu-id="a4e44-111">Query your device metadata, configuration, or state.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="41173-112">裝置對應項是設計來進行同步處理和查詢裝置組態和條件。</span><span class="sxs-lookup"><span data-stu-id="41173-112">Device twins are designed for synchronization and for querying device configurations and conditions.</span></span> <span data-ttu-id="41173-113">如需何時使用裝置對應項的詳細資訊，請參閱[了解裝置對應項][lnk-twins]。</span><span class="sxs-lookup"><span data-stu-id="41173-113">More informations on when to use device twins can be found in [Understand device twins][lnk-twins].</span></span>
+> <span data-ttu-id="a4e44-112">裝置對應項是設計來進行同步處理和查詢裝置組態和條件。</span><span class="sxs-lookup"><span data-stu-id="a4e44-112">Device twins are designed for synchronization and for querying device configurations and conditions.</span></span> <span data-ttu-id="a4e44-113">有關在中找到 toouse 裝置雙[了解裝置雙][lnk-twins]。</span><span class="sxs-lookup"><span data-stu-id="a4e44-113">More informations on when toouse device twins can be found in [Understand device twins][lnk-twins].</span></span>
 
-<span data-ttu-id="41173-114">裝置對應項會儲存在 IoT 中樞，並且包含︰</span><span class="sxs-lookup"><span data-stu-id="41173-114">Device twins are stored in an IoT hub and contain:</span></span>
+<span data-ttu-id="a4e44-114">裝置對應項會儲存在 IoT 中樞，並且包含︰</span><span class="sxs-lookup"><span data-stu-id="a4e44-114">Device twins are stored in an IoT hub and contain:</span></span>
 
-* <span data-ttu-id="41173-115">標籤，只有解決方案後端可存取裝置中繼資料；</span><span class="sxs-lookup"><span data-stu-id="41173-115">*tags*, device metadata accessible only by the solution back end;</span></span>
-* <span data-ttu-id="41173-116">所需屬性，JSON 物件可由解決方案後端修改並且可由裝置應用程式觀察，以及</span><span class="sxs-lookup"><span data-stu-id="41173-116">*desired properties*, JSON objects modifiable by the solution back end and observable by the device app; and</span></span>
-* <span data-ttu-id="41173-117">報告屬性，JSON 物件可由裝置應用程式修改並且可由解決方案後端讀取。</span><span class="sxs-lookup"><span data-stu-id="41173-117">*reported properties*, JSON objects modifiable by the device app and readable by the solution back end.</span></span> <span data-ttu-id="41173-118">標籤和屬性不能包含陣列，但物件可以是巢狀的。</span><span class="sxs-lookup"><span data-stu-id="41173-118">Tags and properties cannot contain arrays, but objects can be nested.</span></span>
+* <span data-ttu-id="a4e44-115">*標記*，只能由 hello 方案後端; 存取裝置中繼資料</span><span class="sxs-lookup"><span data-stu-id="a4e44-115">*tags*, device metadata accessible only by hello solution back end;</span></span>
+* <span data-ttu-id="a4e44-116">*所需屬性*，JSON 物件的可修改由 hello 解決方案回結束作業，並觀察 hello 裝置的應用程式; 以及</span><span class="sxs-lookup"><span data-stu-id="a4e44-116">*desired properties*, JSON objects modifiable by hello solution back end and observable by hello device app; and</span></span>
+* <span data-ttu-id="a4e44-117">*報告內容*，hello 裝置應用程式的可修改、 可讀性更高的 hello 方案後端的 JSON 物件。</span><span class="sxs-lookup"><span data-stu-id="a4e44-117">*reported properties*, JSON objects modifiable by hello device app and readable by hello solution back end.</span></span> <span data-ttu-id="a4e44-118">標籤和屬性不能包含陣列，但物件可以是巢狀的。</span><span class="sxs-lookup"><span data-stu-id="a4e44-118">Tags and properties cannot contain arrays, but objects can be nested.</span></span>
 
 ![][img-twin]
 
-<span data-ttu-id="41173-119">此外，解決方案後端可以根據上述的所有資料查詢裝置對應項。</span><span class="sxs-lookup"><span data-stu-id="41173-119">Additionally, the solution back end can query device twins based on all the above data.</span></span>
-<span data-ttu-id="41173-120">請參閱[了解裝置對應項][lnk-twins]以取得裝置對應項的詳細資訊，以及參閱 [IoT 中樞查詢語言][lnk-query]參考以進行查詢。</span><span class="sxs-lookup"><span data-stu-id="41173-120">Refer to [Understand device twins][lnk-twins] for more information about device twins, and to the [IoT Hub query language][lnk-query] reference for querying.</span></span>
+<span data-ttu-id="a4e44-119">此外，hello 方案後端可以查詢裝置雙根據所有 hello 上述資料。</span><span class="sxs-lookup"><span data-stu-id="a4e44-119">Additionally, hello solution back end can query device twins based on all hello above data.</span></span>
+<span data-ttu-id="a4e44-120">請參閱太[了解裝置雙][ lnk-twins]如需有關裝置雙和 toohello [IoT 中樞的查詢語言][ lnk-query]參考用於查詢。</span><span class="sxs-lookup"><span data-stu-id="a4e44-120">Refer too[Understand device twins][lnk-twins] for more information about device twins, and toohello [IoT Hub query language][lnk-query] reference for querying.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="41173-121">目前，裝置對應項只能從使用 MQTT 通訊協定連線至 IoT 中樞的裝置存取。</span><span class="sxs-lookup"><span data-stu-id="41173-121">At this time, device twins are accessible only from devices that connect to IoT Hub using the MQTT protocol.</span></span> <span data-ttu-id="41173-122">請參閱 [MQTT 支援][lnk-devguide-mqtt]文章，以取得如何將現有裝置應用程式轉換為使用 MQTT 的指示。</span><span class="sxs-lookup"><span data-stu-id="41173-122">Please refer to the [MQTT support][lnk-devguide-mqtt] article for instructions on how to convert existing device app to use MQTT.</span></span>
+> <span data-ttu-id="a4e44-121">此時，裝置雙都只連接 tooIoT 中樞的裝置可以存取使用 hello MQTT 通訊協定。</span><span class="sxs-lookup"><span data-stu-id="a4e44-121">At this time, device twins are accessible only from devices that connect tooIoT Hub using hello MQTT protocol.</span></span> <span data-ttu-id="a4e44-122">請參閱 toohello [MQTT 支援][ lnk-devguide-mqtt]文章的指示現有裝置的應用程式 toouse tooconvert MQTT。</span><span class="sxs-lookup"><span data-stu-id="a4e44-122">Please refer toohello [MQTT support][lnk-devguide-mqtt] article for instructions on how tooconvert existing device app toouse MQTT.</span></span>
 
-<span data-ttu-id="41173-123">本教學課程說明如何：</span><span class="sxs-lookup"><span data-stu-id="41173-123">This tutorial shows you how to:</span></span>
+<span data-ttu-id="a4e44-123">本教學課程說明如何：</span><span class="sxs-lookup"><span data-stu-id="a4e44-123">This tutorial shows you how to:</span></span>
 
-* <span data-ttu-id="41173-124">建立後端應用程式，將「標籤」新增至裝置對應項，以及建立模擬裝置應用程式，以裝置對應項上的「報告屬性」來報告其連線通道。</span><span class="sxs-lookup"><span data-stu-id="41173-124">Create a back-end app that adds *tags* to a device twin, and a simulated device app that reports its connectivity channel as a *reported property* on the device twin.</span></span>
-* <span data-ttu-id="41173-125">使用先前建立的標籤和屬性上的篩選器，從您的後端應用程式查詢裝置。</span><span class="sxs-lookup"><span data-stu-id="41173-125">Query devices from your back-end app using filters on the tags and properties previously created.</span></span>
+* <span data-ttu-id="a4e44-124">建立後端應用程式，將它新增*標記*tooa 裝置的兩個，並報告其連線的模擬的裝置應用程式通道為*報告屬性*上 hello 裝置兩個。</span><span class="sxs-lookup"><span data-stu-id="a4e44-124">Create a back-end app that adds *tags* tooa device twin, and a simulated device app that reports its connectivity channel as a *reported property* on hello device twin.</span></span>
+* <span data-ttu-id="a4e44-125">查詢從 hello 標記與先前建立的屬性上使用篩選器後端應用程式的裝置。</span><span class="sxs-lookup"><span data-stu-id="a4e44-125">Query devices from your back-end app using filters on hello tags and properties previously created.</span></span>
 
 <!-- images -->
 [img-twin]: media/iot-hub-selector-twin-get-started/twin.png

@@ -1,7 +1,7 @@
-<span data-ttu-id="94283-101">若要在部署期間標記資源，請將 `tags` 元素新增到您正在部署的資源。</span><span class="sxs-lookup"><span data-stu-id="94283-101">To tag a resource during deployment, add the `tags` element to the resource you are deploying.</span></span> <span data-ttu-id="94283-102">提供標籤名稱和值。</span><span class="sxs-lookup"><span data-stu-id="94283-102">Provide the tag name and value.</span></span>
+<span data-ttu-id="95f05-101">在部署期間，資源 tootag 新增 hello`tags`您要部署的項目 toohello 資源。</span><span class="sxs-lookup"><span data-stu-id="95f05-101">tootag a resource during deployment, add hello `tags` element toohello resource you are deploying.</span></span> <span data-ttu-id="95f05-102">提供 hello 標記名稱和值。</span><span class="sxs-lookup"><span data-stu-id="95f05-102">Provide hello tag name and value.</span></span>
 
-### <a name="apply-a-literal-value-to-the-tag-name"></a><span data-ttu-id="94283-103">將常值套用至標記名稱</span><span class="sxs-lookup"><span data-stu-id="94283-103">Apply a literal value to the tag name</span></span>
-<span data-ttu-id="94283-104">下列範例說明含有兩個標籤 (`Dept` 和 `Environment`) 並設為常值的儲存體帳戶：</span><span class="sxs-lookup"><span data-stu-id="94283-104">The following example shows a storage account with two tags (`Dept` and `Environment`) that are set to literal values:</span></span>
+### <a name="apply-a-literal-value-toohello-tag-name"></a><span data-ttu-id="95f05-103">套用常值 toohello 標記名稱</span><span class="sxs-lookup"><span data-stu-id="95f05-103">Apply a literal value toohello tag name</span></span>
+<span data-ttu-id="95f05-104">hello 下列範例示範兩個標記的儲存體帳戶 (`Dept`和`Environment`) 設定 tooliteral 值：</span><span class="sxs-lookup"><span data-stu-id="95f05-104">hello following example shows a storage account with two tags (`Dept` and `Environment`) that are set tooliteral values:</span></span>
 
 ```json
 {
@@ -27,8 +27,8 @@
 }
 ```
 
-### <a name="apply-an-object-to-the-tag-element"></a><span data-ttu-id="94283-105">將物件套用至標記元素</span><span class="sxs-lookup"><span data-stu-id="94283-105">Apply an object to the tag element</span></span>
-<span data-ttu-id="94283-106">您可定義存放數個標籤的物件參數，並將該物件套用至標籤元素。</span><span class="sxs-lookup"><span data-stu-id="94283-106">You can define an object parameter that stores several tags, and apply that object to the tag element.</span></span> <span data-ttu-id="94283-107">物件中的每個屬性會變成資源的個別標籤。</span><span class="sxs-lookup"><span data-stu-id="94283-107">Each property in the object becomes a separate tag for the resource.</span></span> <span data-ttu-id="94283-108">下列範例具有名為 `tagValues` 且套用至標籤元素的參數。</span><span class="sxs-lookup"><span data-stu-id="94283-108">The following example has a parameter named `tagValues` that is applied to the tag element.</span></span>
+### <a name="apply-an-object-toohello-tag-element"></a><span data-ttu-id="95f05-105">適用於物件 toohello 標記項目</span><span class="sxs-lookup"><span data-stu-id="95f05-105">Apply an object toohello tag element</span></span>
+<span data-ttu-id="95f05-106">您可以定義物件參數，其中儲存數個標記，並套用該物件 toohello 標記項目。</span><span class="sxs-lookup"><span data-stu-id="95f05-106">You can define an object parameter that stores several tags, and apply that object toohello tag element.</span></span> <span data-ttu-id="95f05-107">Hello 物件中的每個屬性會變成 hello 資源個別標記。</span><span class="sxs-lookup"><span data-stu-id="95f05-107">Each property in hello object becomes a separate tag for hello resource.</span></span> <span data-ttu-id="95f05-108">hello 下列範例有一個名為參數`tagValues`也就是套用的 toohello 標記項目。</span><span class="sxs-lookup"><span data-stu-id="95f05-108">hello following example has a parameter named `tagValues` that is applied toohello tag element.</span></span>
 
 ```json
 {
@@ -60,9 +60,9 @@
 }
 ```
 
-### <a name="apply-a-json-string-to-the-tag-name"></a><span data-ttu-id="94283-109">將 JSON 字串套用至標記名稱</span><span class="sxs-lookup"><span data-stu-id="94283-109">Apply a JSON string to the tag name</span></span>
+### <a name="apply-a-json-string-toohello-tag-name"></a><span data-ttu-id="95f05-109">適用於 JSON 字串 toohello 標記名稱</span><span class="sxs-lookup"><span data-stu-id="95f05-109">Apply a JSON string toohello tag name</span></span>
 
-<span data-ttu-id="94283-110">若要將多個值儲存於單一標籤，請套用代表這些值的 JSON 字串。</span><span class="sxs-lookup"><span data-stu-id="94283-110">To store many values in a single tag, apply a JSON string that represents the values.</span></span> <span data-ttu-id="94283-111">整個 JSON 字串會儲存為一個不得超過 256 個字元的標籤。</span><span class="sxs-lookup"><span data-stu-id="94283-111">The entire JSON string is stored as one tag that cannot exceed 256 characters.</span></span> <span data-ttu-id="94283-112">下列範例具有名為 `CostCenter` 的單一標籤，其中包含 JSON 字串中的數個值︰</span><span class="sxs-lookup"><span data-stu-id="94283-112">The following example has a single tag named `CostCenter` that contains several values from a JSON string:</span></span>  
+<span data-ttu-id="95f05-110">toostore 許多值，在單一標記中，適用於表示 hello 值的 JSON 字串。</span><span class="sxs-lookup"><span data-stu-id="95f05-110">toostore many values in a single tag, apply a JSON string that represents hello values.</span></span> <span data-ttu-id="95f05-111">hello 整個 JSON 字串都會儲存為一個標籤，不能超過 256 個字元。</span><span class="sxs-lookup"><span data-stu-id="95f05-111">hello entire JSON string is stored as one tag that cannot exceed 256 characters.</span></span> <span data-ttu-id="95f05-112">hello 下列範例具有名為單一標記`CostCenter`，其中包含從 JSON 字串的數個值：</span><span class="sxs-lookup"><span data-stu-id="95f05-112">hello following example has a single tag named `CostCenter` that contains several values from a JSON string:</span></span>  
 
 ```json
 {

@@ -1,21 +1,21 @@
 
-1. <span data-ttu-id="44d8c-101">使用[從 Azure CLI 1.0 連接到 Azure](../articles/xplat-cli-connect.md) 中列出的步驟登入 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="44d8c-101">Sign in to your Azure subscription using the steps listed in [Connect to Azure from the Azure CLI 1.0](../articles/xplat-cli-connect.md).</span></span>
+1. <span data-ttu-id="474ad-101">登入 tooyour 使用 hello 步驟中所列的 Azure 訂用帳戶[從 hello Azure CLI 1.0 連接 tooAzure](../articles/xplat-cli-connect.md)。</span><span class="sxs-lookup"><span data-stu-id="474ad-101">Sign in tooyour Azure subscription using hello steps listed in [Connect tooAzure from hello Azure CLI 1.0](../articles/xplat-cli-connect.md).</span></span>
 
-2. <span data-ttu-id="44d8c-102">請確定您處於傳統部署模式，如下所示：</span><span class="sxs-lookup"><span data-stu-id="44d8c-102">Make sure you are in the Classic deployment mode as follows:</span></span>
+2. <span data-ttu-id="474ad-102">請確定您已在 hello 傳統部署模式下，如下所示：</span><span class="sxs-lookup"><span data-stu-id="474ad-102">Make sure you are in hello Classic deployment mode as follows:</span></span>
 
     ```azurecli
     azure config mode asm
     ```
 
-3. <span data-ttu-id="44d8c-103">找出您想要從可用映像載入的 Linux 映像，如下所示：</span><span class="sxs-lookup"><span data-stu-id="44d8c-103">Find out the Linux image that you want to load from the available images as follows:</span></span>
+3. <span data-ttu-id="474ad-103">找出 hello Linux 映像的 hello 可用的映像從 tooload，如下所示：</span><span class="sxs-lookup"><span data-stu-id="474ad-103">Find out hello Linux image that you want tooload from hello available images as follows:</span></span>
 
    ```azurecli   
     azure vm image list | grep "Linux"
     ```
    
-    <span data-ttu-id="44d8c-104">在 Windows 命令提示字元視窗中，請使用 **find** ，而不要使用 grep。</span><span class="sxs-lookup"><span data-stu-id="44d8c-104">In a Windows command-prompt window, use **find** instead of grep.</span></span>
+    <span data-ttu-id="474ad-104">在 Windows 命令提示字元視窗中，請使用 **find** ，而不要使用 grep。</span><span class="sxs-lookup"><span data-stu-id="474ad-104">In a Windows command-prompt window, use **find** instead of grep.</span></span>
    
-4. <span data-ttu-id="44d8c-105">使用 `azure vm create` 並搭配先前清單中的 Linux 映像建立 VM。</span><span class="sxs-lookup"><span data-stu-id="44d8c-105">Use `azure vm create` to create a VM with the Linux image from the previous list.</span></span> <span data-ttu-id="44d8c-106">這個步驟會建立雲端服務及儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="44d8c-106">This step creates a cloud service and storage account.</span></span> <span data-ttu-id="44d8c-107">您也可以利用 `-c` 選項將此 VM 連接到現有的雲端服務。</span><span class="sxs-lookup"><span data-stu-id="44d8c-107">You could also connect this VM to an existing cloud service with a `-c` option.</span></span> <span data-ttu-id="44d8c-108">建立 SSH 端點以利用 `-e` 選項登入 Linux 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="44d8c-108">Create an SSH endpoint to log in to the Linux virtual machine with the `-e` option.</span></span> <span data-ttu-id="44d8c-109">下列範例會建立名為 `myVM` 的 VM，方法是使用 `West US` 位置中的 `Ubuntu-14_04_4-LTS` 映像，並且新增使用者名稱 `ops`：</span><span class="sxs-lookup"><span data-stu-id="44d8c-109">The following example creates a VM named `myVM` using the `Ubuntu-14_04_4-LTS` image in the `West US` location, and adds a user name `ops`:</span></span>
+4. <span data-ttu-id="474ad-105">使用`azure vm create`toocreate 具有 hello 上述清單中的 hello Linux 映像的 VM。</span><span class="sxs-lookup"><span data-stu-id="474ad-105">Use `azure vm create` toocreate a VM with hello Linux image from hello previous list.</span></span> <span data-ttu-id="474ad-106">這個步驟會建立雲端服務及儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="474ad-106">This step creates a cloud service and storage account.</span></span> <span data-ttu-id="474ad-107">您也無法連接此 VM tooan 現有雲端服務與`-c`選項。</span><span class="sxs-lookup"><span data-stu-id="474ad-107">You could also connect this VM tooan existing cloud service with a `-c` option.</span></span> <span data-ttu-id="474ad-108">建立具有 hello toohello Linux 虛擬機器中的 SSH 端點 toolog`-e`選項。</span><span class="sxs-lookup"><span data-stu-id="474ad-108">Create an SSH endpoint toolog in toohello Linux virtual machine with hello `-e` option.</span></span> <span data-ttu-id="474ad-109">hello 下列範例會建立名為的 VM`myVM`使用 hello`Ubuntu-14_04_4-LTS`映像中 hello`West US`位置，並將使用者名稱`ops`:</span><span class="sxs-lookup"><span data-stu-id="474ad-109">hello following example creates a VM named `myVM` using hello `Ubuntu-14_04_4-LTS` image in hello `West US` location, and adds a user name `ops`:</span></span>
    
     ```azurecli
     azure vm create myVM \
@@ -23,7 +23,7 @@
         -g ops -p P@ssw0rd! -z "Small" -e -l "West US"
     ```
 
-    <span data-ttu-id="44d8c-110">輸出類似於下列範例：</span><span class="sxs-lookup"><span data-stu-id="44d8c-110">The output is similar to the following example:</span></span>
+    <span data-ttu-id="474ad-110">hello 輸出是 toohello 類似下列範例程式碼：</span><span class="sxs-lookup"><span data-stu-id="474ad-110">hello output is similar toohello following example:</span></span>
 
     ```azurecli
     info:    Executing command vm create
@@ -37,20 +37,20 @@
     ```
    
    > [!NOTE]
-   > <span data-ttu-id="44d8c-111">針對 Linux 虛擬機器，您必須在 `vm create` 中提供 `-e`。</span><span class="sxs-lookup"><span data-stu-id="44d8c-111">For a Linux virtual machine, you must provide the `-e` option in `vm create`.</span></span> <span data-ttu-id="44d8c-112">建立虛擬機器後，就無法啟用 SSH。</span><span class="sxs-lookup"><span data-stu-id="44d8c-112">It is not possible to enable SSH after the virtual machine has been created.</span></span> <span data-ttu-id="44d8c-113">如需 SSH 的詳細資料，請參閱[如何在 Azure 上搭配使用 SSH 和 Linux](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="44d8c-113">For more details on SSH, read [How to Use SSH with Linux on Azure](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+   > <span data-ttu-id="474ad-111">針對 Linux 虛擬機器，您必須提供 hello`-e`選項`vm create`。</span><span class="sxs-lookup"><span data-stu-id="474ad-111">For a Linux virtual machine, you must provide hello `-e` option in `vm create`.</span></span> <span data-ttu-id="474ad-112">建立 hello 虛擬機器之後，它就不可能 tooenable SSH。</span><span class="sxs-lookup"><span data-stu-id="474ad-112">It is not possible tooenable SSH after hello virtual machine has been created.</span></span> <span data-ttu-id="474ad-113">如需 SSH 的詳細資訊，請參閱[如何透過在 Azure 上的 Linux SSH tooUse](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="474ad-113">For more details on SSH, read [How tooUse SSH with Linux on Azure](../articles/virtual-machines/linux/mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
-5. <span data-ttu-id="44d8c-114">您可以使用 `azure vm show` 命令來確認 VM 的屬性。</span><span class="sxs-lookup"><span data-stu-id="44d8c-114">You can verify the attributes of the VM by using the `azure vm show` command.</span></span> <span data-ttu-id="44d8c-115">下列範例會列出名為 `myVM` 的 VM 的資訊：</span><span class="sxs-lookup"><span data-stu-id="44d8c-115">The following example lists information for the VM named `myVM`:</span></span>
+5. <span data-ttu-id="474ad-114">您可以確認 hello VM hello 屬性使用 hello`azure vm show`命令。</span><span class="sxs-lookup"><span data-stu-id="474ad-114">You can verify hello attributes of hello VM by using hello `azure vm show` command.</span></span> <span data-ttu-id="474ad-115">hello 下列範例會列出資訊的 hello 名為 VM `myVM`:</span><span class="sxs-lookup"><span data-stu-id="474ad-115">hello following example lists information for hello VM named `myVM`:</span></span>
 
     ```azurecli   
     azure vm show myVM
     ```
 
-6. <span data-ttu-id="44d8c-116">使用 `azure vm start` 命令啟動您的 VM，如下所示：</span><span class="sxs-lookup"><span data-stu-id="44d8c-116">Start your VM with the `azure vm start` command as follows:</span></span>
+6. <span data-ttu-id="474ad-116">啟動您的 VM 以 hello`azure vm start`命令，如下所示：</span><span class="sxs-lookup"><span data-stu-id="474ad-116">Start your VM with hello `azure vm start` command as follows:</span></span>
 
     ```azurecli
     azure vm start myVM
     ```
 
-## <a name="next-steps"></a><span data-ttu-id="44d8c-117">後續步驟</span><span class="sxs-lookup"><span data-stu-id="44d8c-117">Next steps</span></span>
-<span data-ttu-id="44d8c-118">如需所有 Azure CLI 1.0 虛擬機器命令的詳細資料，請參閱[搭配使用 Azure CLI 1.0 和傳統部署 API](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。</span><span class="sxs-lookup"><span data-stu-id="44d8c-118">For details on all these Azure CLI 1.0 virtual machine commands, read the [Using the Azure CLI 1.0 with the Classic deployment API](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="474ad-117">後續步驟</span><span class="sxs-lookup"><span data-stu-id="474ad-117">Next steps</span></span>
+<span data-ttu-id="474ad-118">如需所有這些命令的 Azure CLI 1.0 虛擬機器的詳細資訊，請閱讀 hello [hello 傳統部署 API 的使用 hello Azure CLI 1.0](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。</span><span class="sxs-lookup"><span data-stu-id="474ad-118">For details on all these Azure CLI 1.0 virtual machine commands, read hello [Using hello Azure CLI 1.0 with hello Classic deployment API](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2).</span></span>
 

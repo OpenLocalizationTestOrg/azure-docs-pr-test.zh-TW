@@ -1,3 +1,3 @@
 > [!IMPORTANT]
-> <span data-ttu-id="8105f-101">IoT 中樞將可作為 DNS 端點公開探索，所以在命名時務必避免使用任何敏感性資訊。</span><span class="sxs-lookup"><span data-stu-id="8105f-101">The IoT hub will be publicly discoverable as a DNS endpoint, so make sure to avoid any sensitive information while naming it.</span></span>
+> <span data-ttu-id="197d6-101">hello IoT 中樞將會公開可做為 DNS 端點，因此請確定 tooavoid 時其命名為任何敏感資訊。</span><span class="sxs-lookup"><span data-stu-id="197d6-101">hello IoT hub will be publicly discoverable as a DNS endpoint, so make sure tooavoid any sensitive information while naming it.</span></span>
 >

@@ -1,0 +1,11 @@
+<span data-ttu-id="b6613-101">此區段會顯示您如何 tooconnect 使用 hello Mobile Engagement 應用程式 toohello Mobile Engagement 後的端的即時監視功能。</span><span class="sxs-lookup"><span data-stu-id="b6613-101">This section shows you how tooconnect your app toohello Mobile Engagement backend by using hello Mobile Engagement's real-time monitoring feature.</span></span> 
+
+1. <span data-ttu-id="b6613-102">在您**Azure Mobile Engagement**帳戶，請確定您選取您想 toomonitor 和管理 「 hello 」 應用程式在 hello **Mobile Engagement**入口網站。</span><span class="sxs-lookup"><span data-stu-id="b6613-102">In your **Azure Mobile Engagement** account, make sure you select hello app you wish toomonitor and manage in hello **Mobile Engagement** portal.</span></span> <span data-ttu-id="b6613-103">瀏覽 tooyour Mobile Engagement 入口網站，依序按一下 hello **Engage** hello 底部的按鈕。</span><span class="sxs-lookup"><span data-stu-id="b6613-103">Navigate tooyour Mobile Engagement portal by clicking hello **Engage** button at hello bottom.</span></span> 
+   
+     ![](./media/mobile-engagement-connect-app-with-monitor/engage-button.png)
+2. <span data-ttu-id="b6613-104">您將登陸在 hello Mobile Engagement 入口網站。</span><span class="sxs-lookup"><span data-stu-id="b6613-104">You will land in hello Mobile Engagement portal.</span></span> <span data-ttu-id="b6613-105">如果未選取 hello 監視 索引標籤，按一下 hello**監視器**。</span><span class="sxs-lookup"><span data-stu-id="b6613-105">If hello Monitor tab is not selected, click on hello **Monitor**.</span></span>
+3. <span data-ttu-id="b6613-106">hello 監視器就會準備 tooshow 您即時，就會開始您的應用程式的任何裝置。</span><span class="sxs-lookup"><span data-stu-id="b6613-106">hello monitor is ready tooshow you any device in real time, which will start your app.</span></span>
+4. <span data-ttu-id="b6613-107">立即啟動您的 App。</span><span class="sxs-lookup"><span data-stu-id="b6613-107">Start your app now.</span></span> <span data-ttu-id="b6613-108">您應該會看到 hello 監視器中的一個工作階段有您整合正確表示您的應用程式現在連接 toohello Mobile Engagement 後端和傳送資料 tooit。</span><span class="sxs-lookup"><span data-stu-id="b6613-108">You should see one session in hello monitor if your integration is correct which means that your app is now connected toohello Mobile Engagement backend and is sending data tooit.</span></span>  
+   
+     ![](./media/mobile-engagement-connect-app-with-monitor/monitor.png)
+

@@ -1,38 +1,38 @@
-## <a name="view-the-solution-dashboard"></a><span data-ttu-id="382a2-101">檢視解決方案儀表板</span><span class="sxs-lookup"><span data-stu-id="382a2-101">View the solution dashboard</span></span>
+## <a name="view-hello-solution-dashboard"></a><span data-ttu-id="d0cd0-101">檢視 hello 方案儀表板</span><span class="sxs-lookup"><span data-stu-id="d0cd0-101">View hello solution dashboard</span></span>
 
-<span data-ttu-id="382a2-102">解決方案儀表板可讓您管理部署的解決方案。</span><span class="sxs-lookup"><span data-stu-id="382a2-102">The solution dashboard enables you to manage the deployed solution.</span></span> <span data-ttu-id="382a2-103">例如，您可以檢視遙測、新增裝置及叫用方法。</span><span class="sxs-lookup"><span data-stu-id="382a2-103">For example, you can view telemetry, add devices, and invoke methods.</span></span>
+<span data-ttu-id="d0cd0-102">hello 方案儀表板可讓您 toomanage hello 部署方案。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-102">hello solution dashboard enables you toomanage hello deployed solution.</span></span> <span data-ttu-id="d0cd0-103">例如，您可以檢視遙測、新增裝置及叫用方法。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-103">For example, you can view telemetry, add devices, and invoke methods.</span></span>
 
-1. <span data-ttu-id="382a2-104">當佈建完成且預先設定解決方案的圖格指示 [就緒] 時，選擇 [啟動] 以在新的索引標籤中開啟遠端監視解決方案入口網站。</span><span class="sxs-lookup"><span data-stu-id="382a2-104">When the provisioning is complete and the tile for your preconfigured solution indicates **Ready**, choose **Launch** to open your remote monitoring solution portal in a new tab.</span></span>
+1. <span data-ttu-id="d0cd0-104">當 hello 佈建已完成，且您預先設定的解決方案 hello 磚指出**準備**，選擇**啟動**tooopen 遠端監視方案入口網站中的新索引標籤。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-104">When hello provisioning is complete and hello tile for your preconfigured solution indicates **Ready**, choose **Launch** tooopen your remote monitoring solution portal in a new tab.</span></span>
 
-    ![啟動預先設定的解決方案][img-launch-solution]
+    ![啟動 hello 預先設定的解決方案][img-launch-solution]
 
-1. <span data-ttu-id="382a2-106">根據預設，此解決方案入口網站會顯示儀表板。</span><span class="sxs-lookup"><span data-stu-id="382a2-106">By default, the solution portal shows the *dashboard*.</span></span> <span data-ttu-id="382a2-107">使用頁面左側的功能表，瀏覽至解決方案入口網站的其他區域。</span><span class="sxs-lookup"><span data-stu-id="382a2-107">Navigate to other areas of the solution portal using the menu on the left-hand side of the page.</span></span>
+1. <span data-ttu-id="d0cd0-106">根據預設，hello 方案入口網站會顯示 hello*儀表板*。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-106">By default, hello solution portal shows hello *dashboard*.</span></span> <span data-ttu-id="d0cd0-107">瀏覽 tooother hello 方案入口網站左側 hello hello 頁面使用 hello 功能表區域。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-107">Navigate tooother areas of hello solution portal using hello menu on hello left-hand side of hello page.</span></span>
 
     ![遠端監視預先設定解決方案儀表板][img-menu]
 
-## <a name="add-a-device"></a><span data-ttu-id="382a2-109">新增裝置</span><span class="sxs-lookup"><span data-stu-id="382a2-109">Add a device</span></span>
+## <a name="add-a-device"></a><span data-ttu-id="d0cd0-109">新增裝置</span><span class="sxs-lookup"><span data-stu-id="d0cd0-109">Add a device</span></span>
 
-<span data-ttu-id="382a2-110">對於連線到預先設定解決方案的裝置，該裝置必須使用有效的認證向 IoT 中樞識別自己。</span><span class="sxs-lookup"><span data-stu-id="382a2-110">For a device to connect to the preconfigured solution, it must identify itself to IoT Hub using valid credentials.</span></span> <span data-ttu-id="382a2-111">您會從解決方案儀表板收到裝置認證。</span><span class="sxs-lookup"><span data-stu-id="382a2-111">You can retrieve the device credentials from the solution dashboard.</span></span> <span data-ttu-id="382a2-112">稍後在本教學課程中，您會將您的裝置認證包含在您的用戶端應用程式中。</span><span class="sxs-lookup"><span data-stu-id="382a2-112">You include the device credentials in your client application later in this tutorial.</span></span>
+<span data-ttu-id="d0cd0-110">提供裝置 tooconnect toohello 預先設定的解決方案，它必須將自己識別 tooIoT 集線器使用有效的認證。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-110">For a device tooconnect toohello preconfigured solution, it must identify itself tooIoT Hub using valid credentials.</span></span> <span data-ttu-id="d0cd0-111">您可以擷取 hello 裝置認證從 hello 方案儀表板。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-111">You can retrieve hello device credentials from hello solution dashboard.</span></span> <span data-ttu-id="d0cd0-112">您稍後在本教學課程中，用戶端應用程式包含 hello 裝置認證。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-112">You include hello device credentials in your client application later in this tutorial.</span></span>
 
-<span data-ttu-id="382a2-113">若要在您的遠端監視解決方案中新增裝置，請在解決方案儀表板中完成下列步驟：</span><span class="sxs-lookup"><span data-stu-id="382a2-113">To add a device to your remote monitoring solution, complete the following steps in the solution dashboard:</span></span>
+<span data-ttu-id="d0cd0-113">tooadd 裝置 tooyour 遠端監視解決方案，下列的完整 hello hello 方案儀表板中的步驟：</span><span class="sxs-lookup"><span data-stu-id="d0cd0-113">tooadd a device tooyour remote monitoring solution, complete hello following steps in hello solution dashboard:</span></span>
 
-1. <span data-ttu-id="382a2-114">在儀表板左下角，按一下 [新增裝置] 。</span><span class="sxs-lookup"><span data-stu-id="382a2-114">In the lower left-hand corner of the dashboard, click **Add a device**.</span></span>
+1. <span data-ttu-id="d0cd0-114">在 hello 左下角的 hello 儀表板，按一下 **新增裝置**。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-114">In hello lower left-hand corner of hello dashboard, click **Add a device**.</span></span>
 
    ![新增裝置][1]
 
-1. <span data-ttu-id="382a2-116">在 [自訂裝置] 面板中，按一下 [新增]。</span><span class="sxs-lookup"><span data-stu-id="382a2-116">In the **Custom Device** panel, click **Add new**.</span></span>
+1. <span data-ttu-id="d0cd0-116">在 hello**自訂裝置** 面板中，按一下 **新增**。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-116">In hello **Custom Device** panel, click **Add new**.</span></span>
 
    ![新增自訂裝置][2]
 
-1. <span data-ttu-id="382a2-118">選擇 [讓我定義自己的裝置識別碼]。</span><span class="sxs-lookup"><span data-stu-id="382a2-118">Choose **Let me define my own Device ID**.</span></span> <span data-ttu-id="382a2-119">輸入 [裝置識別碼]，例如 **device01**，按一下 [檢查識別碼] 以確認您尚未在解決方案中使用此名稱，然後按一下 [建立] 來佈建裝置。</span><span class="sxs-lookup"><span data-stu-id="382a2-119">Enter a Device ID such as **device01**, click **Check ID** to verify you haven't already used the name in your solution, and then click **Create** to provision the device.</span></span>
+1. <span data-ttu-id="d0cd0-118">選擇 [讓我定義自己的裝置識別碼]。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-118">Choose **Let me define my own Device ID**.</span></span> <span data-ttu-id="d0cd0-119">輸入裝置識別碼，例如**device01**，按一下 **檢查識別碼**tooverify 您您尚未使用您在方案中 hello 名稱，然後按一下**建立**tooprovision hello 裝置。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-119">Enter a Device ID such as **device01**, click **Check ID** tooverify you haven't already used hello name in your solution, and then click **Create** tooprovision hello device.</span></span>
 
    ![新增裝置識別碼][3]
 
-1. <span data-ttu-id="382a2-121">記下裝置認證 ([裝置識別碼]、[IoT 中樞主機名稱] 及 [裝置金鑰])。</span><span class="sxs-lookup"><span data-stu-id="382a2-121">Make a note the device credentials (**Device ID**, **IoT Hub Hostname**, and **Device Key**).</span></span> <span data-ttu-id="382a2-122">Intel NUC 上的用戶端應用程式需要這些值，才能連線到遠端監視解決方案。</span><span class="sxs-lookup"><span data-stu-id="382a2-122">Your client application on the Intel NUC needs these values to connect to the remote monitoring solution.</span></span> <span data-ttu-id="382a2-123">然後按一下 [完成]。</span><span class="sxs-lookup"><span data-stu-id="382a2-123">Then click **Done**.</span></span>
+1. <span data-ttu-id="d0cd0-121">請注意 hello 裝置認證 (**裝置識別碼**， **IoT 中樞的主機名稱**，和**裝置金鑰**)。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-121">Make a note hello device credentials (**Device ID**, **IoT Hub Hostname**, and **Device Key**).</span></span> <span data-ttu-id="d0cd0-122">用戶端應用程式上 hello Intel NUC 需要這些值 tooconnect toohello 遠端監視解決方案。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-122">Your client application on hello Intel NUC needs these values tooconnect toohello remote monitoring solution.</span></span> <span data-ttu-id="d0cd0-123">然後按一下 [完成]。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-123">Then click **Done**.</span></span>
 
     ![檢視裝置認證][4]
 
-1. <span data-ttu-id="382a2-125">從解決方案儀表板的裝置清單中選取您的裝置。</span><span class="sxs-lookup"><span data-stu-id="382a2-125">Select your device in the device list in the solution dashboard.</span></span> <span data-ttu-id="382a2-126">然後，在 [裝置詳細資料] 面板中，按一下 [啟用裝置]。</span><span class="sxs-lookup"><span data-stu-id="382a2-126">Then, in the **Device Details** panel, click **Enable Device**.</span></span> <span data-ttu-id="382a2-127">裝置的狀態現在會是 [正在執行]。</span><span class="sxs-lookup"><span data-stu-id="382a2-127">The status of your device is now **Running**.</span></span> <span data-ttu-id="382a2-128">遠端監視解決方案現在已可從您的裝置接收遙測資料，並在該裝置上叫用方法。</span><span class="sxs-lookup"><span data-stu-id="382a2-128">The remote monitoring solution can now receive telemetry from your device and invoke methods on the device.</span></span>
+1. <span data-ttu-id="d0cd0-125">Hello hello 方案儀表板中的裝置清單中選取您的裝置。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-125">Select your device in hello device list in hello solution dashboard.</span></span> <span data-ttu-id="d0cd0-126">然後，在 hello**裝置詳細資料**] 面板中，按一下 [**啟用裝置**。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-126">Then, in hello **Device Details** panel, click **Enable Device**.</span></span> <span data-ttu-id="d0cd0-127">您的裝置 hello 狀態現在是**執行**。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-127">hello status of your device is now **Running**.</span></span> <span data-ttu-id="d0cd0-128">hello 遠端監視解決方案現在可以從您的裝置接收遙測，並叫用 hello 裝置上的方法。</span><span class="sxs-lookup"><span data-stu-id="d0cd0-128">hello remote monitoring solution can now receive telemetry from your device and invoke methods on hello device.</span></span>
 
 [img-launch-solution]: media/iot-suite-gateway-kit-view-solution/launch.png
 [img-menu]: media/iot-suite-gateway-kit-view-solution/menu.png

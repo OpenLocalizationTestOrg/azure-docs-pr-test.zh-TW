@@ -1,0 +1,6 @@
+## <a name="versions-of-hello-azure-cli"></a><span data-ttu-id="c9ef8-101">Hello Azure CLI 版本</span><span class="sxs-lookup"><span data-stu-id="c9ef8-101">Versions of hello Azure CLI</span></span>
+
+<span data-ttu-id="c9ef8-102">有兩個版本的 hello Azure 命令列介面 (CLI) 目前可用：</span><span class="sxs-lookup"><span data-stu-id="c9ef8-102">There are two versions of hello Azure Command-Line Interface (CLI) currently available:</span></span>
+
+* <span data-ttu-id="c9ef8-103">[Azure CLI 2.0](../articles/storage/common/storage-azure-cli.md): hello Resource Manager 部署模型用於撰寫 Python，我們下一代 CLI。</span><span class="sxs-lookup"><span data-stu-id="c9ef8-103">[Azure CLI 2.0](../articles/storage/common/storage-azure-cli.md): Our next-generation CLI written in Python, for use with hello Resource Manager deployment model.</span></span>
+* <span data-ttu-id="c9ef8-104">[Azure CLI 1.0](../articles/storage/common/storage-azure-cli-nodejs.md)： 我們 CLI Node.js，撰寫用於 hello 傳統和資源管理員部署模型。</span><span class="sxs-lookup"><span data-stu-id="c9ef8-104">[Azure CLI 1.0](../articles/storage/common/storage-azure-cli-nodejs.md): Our CLI written in Node.js, for use with both hello classic and Resource Manager deployment models.</span></span>

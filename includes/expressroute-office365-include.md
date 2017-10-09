@@ -1,0 +1,9 @@
+<span data-ttu-id="84c7e-101">ExpressRoute 提供 tooMicrosoft 雲端服務的私人網路連線。</span><span class="sxs-lookup"><span data-stu-id="84c7e-101">ExpressRoute provides private network connectivity tooMicrosoft cloud services.</span></span> <span data-ttu-id="84c7e-102">在 Azure 中執行的基礎結構和平台服務，通常可以藉由解決網路架構和效能方面的考量來獲得好處。</span><span class="sxs-lookup"><span data-stu-id="84c7e-102">Infrastructure and platform services running in Azure often benefit by addressing network architecture and performance considerations.</span></span> <span data-ttu-id="84c7e-103">因此，我們建議企業使用 ExpressRoute for Azure。</span><span class="sxs-lookup"><span data-stu-id="84c7e-103">Therefore, we recommend enterprises use ExpressRoute for Azure.</span></span>
+
+<span data-ttu-id="84c7e-104">軟體即服務供應項目，例如 Office 365 和 Dynamics 365 建立 toobe 透過 hello 網際網路存取安全、 可靠。</span><span class="sxs-lookup"><span data-stu-id="84c7e-104">Software as a Service offerings, like Office 365 and Dynamics 365, were created toobe accessed securely and reliably via hello Internet.</span></span>  <span data-ttu-id="84c7e-105">因此，我們只建議將 ExpressRoute 用在特定案例中的這些應用程式。</span><span class="sxs-lookup"><span data-stu-id="84c7e-105">Therefore, we only recommend ExpressRoute for these applications in specific scenarios.</span></span>
+
+> [!IMPORTANT]
+> <span data-ttu-id="84c7e-106">使用 ExpressRoute tooaccess Azure 是**建議**對於所有的企業。</span><span class="sxs-lookup"><span data-stu-id="84c7e-106">Using ExpressRoute tooaccess Azure is **recommended** for all enterprises.</span></span> <span data-ttu-id="84c7e-107">如需使用 ExpressRoute 指引 tooaccess Office 365 瀏覽[http://aka.ms/ExpressRouteOffice365](http://aka.ms/ExpressRouteOffice365)。</span><span class="sxs-lookup"><span data-stu-id="84c7e-107">For guidance on using ExpressRoute tooaccess Office 365 visit [http://aka.ms/ExpressRouteOffice365](http://aka.ms/ExpressRouteOffice365).</span></span>
+> 
+> 
+

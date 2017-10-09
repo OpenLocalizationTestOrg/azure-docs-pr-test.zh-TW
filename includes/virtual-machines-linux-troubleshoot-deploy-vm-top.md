@@ -1,0 +1,4 @@
+<span data-ttu-id="c344a-101">hello 下列最常發生的問題可能有助於解決您的問題。</span><span class="sxs-lookup"><span data-stu-id="c344a-101">hello following top issues may help resolve your issue.</span></span> <span data-ttu-id="c344a-102">toostart 疑難排解，請檢閱下列步驟：</span><span class="sxs-lookup"><span data-stu-id="c344a-102">toostart troubleshooting, review these steps:</span></span>
+
+- [<span data-ttu-id="c344a-103">無法支援 hello 叢集 hello 要求的 VM 大小</span><span class="sxs-lookup"><span data-stu-id="c344a-103">hello cluster cannot support hello requested VM size</span></span>](../articles/virtual-machines/linux/troubleshoot-deploy-vm.md#the-cluster-cannot-support-the-requested-vm-size)
+- [<span data-ttu-id="c344a-104">hello 叢集沒有可用的資源</span><span class="sxs-lookup"><span data-stu-id="c344a-104">hello cluster does not have free resources</span></span>](../articles/virtual-machines/linux/troubleshoot-deploy-vm.md#the-cluster-does-not-have-free-resources)

@@ -1,0 +1,8 @@
+<!--v-sharos 10/13/2105 virtual device security-->
+
+<span data-ttu-id="91a03-101">請遵循安全性考量，請注意，當您使用 hello StorSimple 虛擬裝置 hello:</span><span class="sxs-lookup"><span data-stu-id="91a03-101">Keep hello following security considerations in mind when you use hello StorSimple virtual device:</span></span>
+
+* <span data-ttu-id="91a03-102">hello 虛擬裝置是透過 Microsoft Azure 訂用帳戶來保護。</span><span class="sxs-lookup"><span data-stu-id="91a03-102">hello virtual device is secured through your Microsoft Azure subscription.</span></span> <span data-ttu-id="91a03-103">這表示，如果您使用 hello 虛擬裝置，且您的 Azure 訂用帳戶遭到洩露，hello 資料儲存在您的虛擬裝置上也是受到影響。</span><span class="sxs-lookup"><span data-stu-id="91a03-103">This means that if you are using hello virtual device and your Azure subscription is compromised, hello data stored on your virtual device is also susceptible.</span></span>
+* <span data-ttu-id="91a03-104">hello 公開金鑰的 hello 用憑證 tooencrypt 資料儲存在 Azure StorSimple 會安全地進行可用 toohello Azure 傳統入口網站和 hello 私密金鑰會保留與 hello StorSimple 裝置。</span><span class="sxs-lookup"><span data-stu-id="91a03-104">hello public key of hello certificate used tooencrypt data stored in Azure StorSimple is securely made available toohello Azure classic portal, and hello private key is retained with hello StorSimple device.</span></span> <span data-ttu-id="91a03-105">Hello StorSimple 虛擬裝置，這兩個 hello 公用和私用金鑰會儲存在 Azure 中。</span><span class="sxs-lookup"><span data-stu-id="91a03-105">On hello StorSimple virtual device, both hello public and private keys are stored in Azure.</span></span>
+* <span data-ttu-id="91a03-106">hello 虛擬裝置會裝載於 hello Microsoft Azure 資料中心。</span><span class="sxs-lookup"><span data-stu-id="91a03-106">hello virtual device is hosted in hello Microsoft Azure datacenter.</span></span>
+
