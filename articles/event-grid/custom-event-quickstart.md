@@ -1,6 +1,6 @@
 ---
-title: "Azure Event Grid 的自訂事件 | Microsoft Docs"
-description: "使用 Azure Event Grid 來發佈主題，以及訂閱該事件。"
+title: "Azure 事件方格 aaaCustom 事件 |Microsoft 文件"
+description: "使用 Azure 事件方格 toopublish 主題和訂閱 toothat 事件。"
 services: event-grid
 keywords: 
 author: djrosanova
@@ -8,20 +8,20 @@ ms.author: darosa
 ms.date: 08/15/2017
 ms.topic: hero-article
 ms.service: event-grid
-ms.openlocfilehash: 0290836bebadb20085a3ce84dddc088c3af385da
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5055df1c970b043cadf06978a076f7f5c83501cd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-route-custom-events-with-azure-event-grid"></a><span data-ttu-id="dd5e8-103">使用 Azure Event Grid 建立和路由傳送自訂事件</span><span class="sxs-lookup"><span data-stu-id="dd5e8-103">Create and route custom events with Azure Event Grid</span></span>
+# <a name="create-and-route-custom-events-with-azure-event-grid"></a><span data-ttu-id="61c1f-103">使用 Azure Event Grid 建立和路由傳送自訂事件</span><span class="sxs-lookup"><span data-stu-id="61c1f-103">Create and route custom events with Azure Event Grid</span></span>
 
-<span data-ttu-id="dd5e8-104">Azure Event Grid 是一項雲端事件服務。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-104">Azure Event Grid is an eventing service for the cloud.</span></span> <span data-ttu-id="dd5e8-105">在本文中，您可使用 Azure CLI 建立自訂主題、訂閱主題，以及觸發事件來檢視結果。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-105">In this article, you use the Azure CLI to create a custom topic, subscribe to the topic, and trigger the event to view the result.</span></span> <span data-ttu-id="dd5e8-106">一般而言，您可將事件傳送至可回應事件的端點，例如 Webhook 或 Azure Function。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-106">Typically, you send events to an endpoint that responds to the event, such as, a webhook or Azure Function.</span></span> <span data-ttu-id="dd5e8-107">不過，若要簡化這篇文章，您可將事件傳送至只會收集訊息的 URL。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-107">However, to simplify this article, you send the events to a URL that merely collects the messages.</span></span> <span data-ttu-id="dd5e8-108">使用名為 [RequestBin](https://requestb.in/) 的開放原始碼、第三方工具來建立此 URL。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-108">You create this URL by using an open source, third-party tool called [RequestBin](https://requestb.in/).</span></span>
+<span data-ttu-id="61c1f-104">Azure 事件方格是 hello 雲端事件記錄服務。</span><span class="sxs-lookup"><span data-stu-id="61c1f-104">Azure Event Grid is an eventing service for hello cloud.</span></span> <span data-ttu-id="61c1f-105">在本文中，您可以使用 hello Azure CLI toocreate 自訂主題、 訂閱 toohello 主題，並觸發 hello 事件 tooview hello 結果。</span><span class="sxs-lookup"><span data-stu-id="61c1f-105">In this article, you use hello Azure CLI toocreate a custom topic, subscribe toohello topic, and trigger hello event tooview hello result.</span></span> <span data-ttu-id="61c1f-106">一般而言，您可以傳送事件 tooan 端點回應 toohello 事件，如 webhook 或 Azure 函式。</span><span class="sxs-lookup"><span data-stu-id="61c1f-106">Typically, you send events tooan endpoint that responds toohello event, such as, a webhook or Azure Function.</span></span> <span data-ttu-id="61c1f-107">不過，此發行項 toosimplify，只會收集 hello 訊息的 hello 事件 tooa URL 傳送。</span><span class="sxs-lookup"><span data-stu-id="61c1f-107">However, toosimplify this article, you send hello events tooa URL that merely collects hello messages.</span></span> <span data-ttu-id="61c1f-108">使用名為 [RequestBin](https://requestb.in/) 的開放原始碼、第三方工具來建立此 URL。</span><span class="sxs-lookup"><span data-stu-id="61c1f-108">You create this URL by using an open source, third-party tool called [RequestBin](https://requestb.in/).</span></span>
 
 >[!NOTE]
-><span data-ttu-id="dd5e8-109">**RequestBin** 是一個開放原始碼工具，不適用於高輸送量的使用方式。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-109">**RequestBin** is an open source tool that is not intended for high throughput usage.</span></span> <span data-ttu-id="dd5e8-110">在此使用工具單純用於示範。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-110">The use of the tool here is purely demonstrative.</span></span> <span data-ttu-id="dd5e8-111">如果您一次推送多個事件，則可能看不到工具中的所有事件。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-111">If you push more than one event at a time, you might not see all of your events in the tool.</span></span>
+><span data-ttu-id="61c1f-109">**RequestBin** 是一個開放原始碼工具，不適用於高輸送量的使用方式。</span><span class="sxs-lookup"><span data-stu-id="61c1f-109">**RequestBin** is an open source tool that is not intended for high throughput usage.</span></span> <span data-ttu-id="61c1f-110">這裡 hello 工具 hello 使用是單純的價格。</span><span class="sxs-lookup"><span data-stu-id="61c1f-110">hello use of hello tool here is purely demonstrative.</span></span> <span data-ttu-id="61c1f-111">如果您一次推送多個事件，您可能不會看到所有您在 hello 工具中的事件。</span><span class="sxs-lookup"><span data-stu-id="61c1f-111">If you push more than one event at a time, you might not see all of your events in hello tool.</span></span>
 
-<span data-ttu-id="dd5e8-112">當您完成時，您會看到事件資料已傳送至端點。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-112">When you are finished, you see that the event data has been sent to an endpoint.</span></span>
+<span data-ttu-id="61c1f-112">當您完成時，您會看到 hello 事件資料，已傳送 tooan 端點。</span><span class="sxs-lookup"><span data-stu-id="61c1f-112">When you are finished, you see that hello event data has been sent tooan endpoint.</span></span>
 
 ![事件資料](./media/custom-event-quickstart/request-result.png)
 
@@ -29,35 +29,35 @@ ms.lasthandoff: 08/29/2017
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
 
-<span data-ttu-id="dd5e8-114">如果您選擇在本機安裝和使用 CLI，本文會要求您執行最新版的 Azure CLI (2.0.14 或更新版本)。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-114">If you choose to install and use the CLI locally, this article requires that you are running the latest version of Azure CLI (2.0.14 or later).</span></span> <span data-ttu-id="dd5e8-115">若要尋找版本，請執行 `az --version`。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-115">To find the version, run `az --version`.</span></span> <span data-ttu-id="dd5e8-116">如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0](/cli/azure/install-azure-cli)。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-116">If you need to install or upgrade, see [Install Azure CLI 2.0](/cli/azure/install-azure-cli).</span></span>
+<span data-ttu-id="61c1f-114">如果您選擇 tooinstall，並在本機上使用 hello CLI，本文時需執行 hello 最新版 Azure CLI (2.0.14 或更新版本)。</span><span class="sxs-lookup"><span data-stu-id="61c1f-114">If you choose tooinstall and use hello CLI locally, this article requires that you are running hello latest version of Azure CLI (2.0.14 or later).</span></span> <span data-ttu-id="61c1f-115">toofind hello 版本，執行`az --version`。</span><span class="sxs-lookup"><span data-stu-id="61c1f-115">toofind hello version, run `az --version`.</span></span> <span data-ttu-id="61c1f-116">如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0](/cli/azure/install-azure-cli)。</span><span class="sxs-lookup"><span data-stu-id="61c1f-116">If you need tooinstall or upgrade, see [Install Azure CLI 2.0](/cli/azure/install-azure-cli).</span></span>
 
-## <a name="create-a-resource-group"></a><span data-ttu-id="dd5e8-117">建立資源群組</span><span class="sxs-lookup"><span data-stu-id="dd5e8-117">Create a resource group</span></span>
+## <a name="create-a-resource-group"></a><span data-ttu-id="61c1f-117">建立資源群組</span><span class="sxs-lookup"><span data-stu-id="61c1f-117">Create a resource group</span></span>
 
-<span data-ttu-id="dd5e8-118">Event Grid 為 Azure 資源，必須放入 Azure 資源群組中。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-118">Event Grid topics are Azure resources, and must be placed in an Azure resource group.</span></span> <span data-ttu-id="dd5e8-119">資源群組是在其中部署與管理 Azure 資源的邏輯集合。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-119">The resource group is a logical collection into which Azure resources are deployed and managed.</span></span>
+<span data-ttu-id="61c1f-118">Event Grid 為 Azure 資源，必須放入 Azure 資源群組中。</span><span class="sxs-lookup"><span data-stu-id="61c1f-118">Event Grid topics are Azure resources, and must be placed in an Azure resource group.</span></span> <span data-ttu-id="61c1f-119">hello 資源群組是邏輯集合至哪一個 Azure 部署及管理資源。</span><span class="sxs-lookup"><span data-stu-id="61c1f-119">hello resource group is a logical collection into which Azure resources are deployed and managed.</span></span>
 
-<span data-ttu-id="dd5e8-120">使用 [az group create](/cli/azure/group#create) 命令來建立資源群組。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-120">Create a resource group with the [az group create](/cli/azure/group#create) command.</span></span> 
+<span data-ttu-id="61c1f-120">建立資源群組以 hello [az 群組建立](/cli/azure/group#create)命令。</span><span class="sxs-lookup"><span data-stu-id="61c1f-120">Create a resource group with hello [az group create](/cli/azure/group#create) command.</span></span> 
 
-<span data-ttu-id="dd5e8-121">下列範例會在 westus2 位置建立名為 gridResourceGroup 的資源群組。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-121">The following example creates a resource group named *gridResourceGroup* in the *westus2* location.</span></span>
+<span data-ttu-id="61c1f-121">hello 下列範例會建立名為的資源群組*gridResourceGroup*在 hello *westus2*位置。</span><span class="sxs-lookup"><span data-stu-id="61c1f-121">hello following example creates a resource group named *gridResourceGroup* in hello *westus2* location.</span></span>
 
 ```azurecli-interactive
 az group create --name gridResourceGroup --location westus2
 ```
 
-## <a name="create-a-custom-topic"></a><span data-ttu-id="dd5e8-122">建立自訂主題</span><span class="sxs-lookup"><span data-stu-id="dd5e8-122">Create a custom topic</span></span>
+## <a name="create-a-custom-topic"></a><span data-ttu-id="61c1f-122">建立自訂主題</span><span class="sxs-lookup"><span data-stu-id="61c1f-122">Create a custom topic</span></span>
 
-<span data-ttu-id="dd5e8-123">主題會提供您張貼事件之使用者定義的端點。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-123">A topic provides a user-defined endpoint that you post your events to.</span></span> <span data-ttu-id="dd5e8-124">下列範例可在您的資源群組中建立主題。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-124">The following example creates the topic in your resource group.</span></span> <span data-ttu-id="dd5e8-125">以主題的唯一名稱取代 `<topic_name>`。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-125">Replace `<topic_name>` with a unique name for your topic.</span></span> <span data-ttu-id="dd5e8-126">主題名稱必須是唯一的，因為它由 DNS 項目表示。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-126">The topic name must be unique because it is represented by a DNS entry.</span></span> <span data-ttu-id="dd5e8-127">在預覽版本中，Event Grid 支援 **westus2** 和 **westcentralus** 位置。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-127">For the preview release, Event Grid supports **westus2** and **westcentralus** locations.</span></span>
+<span data-ttu-id="61c1f-123">主題會提供您張貼事件之使用者定義的端點。</span><span class="sxs-lookup"><span data-stu-id="61c1f-123">A topic provides a user-defined endpoint that you post your events to.</span></span> <span data-ttu-id="61c1f-124">hello 下列範例會建立 hello 主題資源群組中。</span><span class="sxs-lookup"><span data-stu-id="61c1f-124">hello following example creates hello topic in your resource group.</span></span> <span data-ttu-id="61c1f-125">以主題的唯一名稱取代 `<topic_name>`。</span><span class="sxs-lookup"><span data-stu-id="61c1f-125">Replace `<topic_name>` with a unique name for your topic.</span></span> <span data-ttu-id="61c1f-126">hello 主題名稱必須是唯一的因為它由 DNS 項目。</span><span class="sxs-lookup"><span data-stu-id="61c1f-126">hello topic name must be unique because it is represented by a DNS entry.</span></span> <span data-ttu-id="61c1f-127">Hello 預覽版本，支援事件方格**westus2**和**westcentralus**位置。</span><span class="sxs-lookup"><span data-stu-id="61c1f-127">For hello preview release, Event Grid supports **westus2** and **westcentralus** locations.</span></span>
 
 ```azurecli-interactive
 az eventgrid topic create --name <topic_name> -l westus2 -g gridResourceGroup
 ```
 
-## <a name="create-a-message-endpoint"></a><span data-ttu-id="dd5e8-128">建立訊息端點</span><span class="sxs-lookup"><span data-stu-id="dd5e8-128">Create a message endpoint</span></span>
+## <a name="create-a-message-endpoint"></a><span data-ttu-id="61c1f-128">建立訊息端點</span><span class="sxs-lookup"><span data-stu-id="61c1f-128">Create a message endpoint</span></span>
 
-<span data-ttu-id="dd5e8-129">訂閱主題之前，讓我們建立事件訊息的端點。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-129">Before subscribing to the topic, let's create the endpoint for the event message.</span></span> <span data-ttu-id="dd5e8-130">讓我們建立可收集訊息的端點，以便檢視訊息，而不需撰寫程式碼來回應事件。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-130">Rather than write code to respond to the event, let's create an endpoint that collects the messages so you can view them.</span></span> <span data-ttu-id="dd5e8-131">RequestBin 是一個開放原始碼的第三方工具，可讓您建立端點，以及檢視傳送給它的要求。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-131">RequestBin is an open source, third-party tool that enables you to create an endpoint, and view requests that are sent to it.</span></span> <span data-ttu-id="dd5e8-132">移至 [RequestBin](https://requestb.in/)，然後按一下 [建立 RequestBin]。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-132">Go to [RequestBin](https://requestb.in/), and click **Create a RequestBin**.</span></span>  <span data-ttu-id="dd5e8-133">複製 bin URL，因為您在訂閱主題時需要用到它。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-133">Copy the bin URL, because you need it when subscribing to the topic.</span></span>
+<span data-ttu-id="61c1f-129">之前訂閱 toohello 主題，讓我們來建立 hello hello 事件訊息的端點。</span><span class="sxs-lookup"><span data-stu-id="61c1f-129">Before subscribing toohello topic, let's create hello endpoint for hello event message.</span></span> <span data-ttu-id="61c1f-130">要比撰寫程式碼 toorespond toohello 事件，讓我們來建立收集 hello 訊息，所以您可以檢視它們的端點。</span><span class="sxs-lookup"><span data-stu-id="61c1f-130">Rather than write code toorespond toohello event, let's create an endpoint that collects hello messages so you can view them.</span></span> <span data-ttu-id="61c1f-131">開放原始碼、 協力廠商工具，可讓您 toocreate 端點，而檢視要求傳送 tooit RequestBin。</span><span class="sxs-lookup"><span data-stu-id="61c1f-131">RequestBin is an open source, third-party tool that enables you toocreate an endpoint, and view requests that are sent tooit.</span></span> <span data-ttu-id="61c1f-132">跳過[RequestBin](https://requestb.in/)，然後按一下**建立 RequestBin**。</span><span class="sxs-lookup"><span data-stu-id="61c1f-132">Go too[RequestBin](https://requestb.in/), and click **Create a RequestBin**.</span></span>  <span data-ttu-id="61c1f-133">複製 hello bin URL，因為您會需要它時訂閱 toohello 主題。</span><span class="sxs-lookup"><span data-stu-id="61c1f-133">Copy hello bin URL, because you need it when subscribing toohello topic.</span></span>
 
-## <a name="subscribe-to-a-topic"></a><span data-ttu-id="dd5e8-134">訂閱主題</span><span class="sxs-lookup"><span data-stu-id="dd5e8-134">Subscribe to a topic</span></span>
+## <a name="subscribe-tooa-topic"></a><span data-ttu-id="61c1f-134">訂閱 tooa 主題</span><span class="sxs-lookup"><span data-stu-id="61c1f-134">Subscribe tooa topic</span></span>
 
-<span data-ttu-id="dd5e8-135">您可訂閱主題，告知 Event Grid 您想要追蹤的事件。下列範例可訂閱您所建立的主題，從 RequestBin 傳遞 URL 作為事件通知的端點。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-135">You subscribe to a topic to tell Event Grid which events you want to track. The following example subscribes to the topic you created, and passes the URL from RequestBin as the endpoint for event notification.</span></span> <span data-ttu-id="dd5e8-136">以您訂用帳戶的唯一名稱取代 `<event_subscription_name>`，並以上一節中的值取代 `<URL_from_RequestBin>`。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-136">Replace `<event_subscription_name>` with a unique name for your subscription, and `<URL_from_RequestBin>` with the value from the preceding section.</span></span> <span data-ttu-id="dd5e8-137">藉由在訂閱時指定端點，以便 Event Grid 將事件路由傳送至該端點。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-137">By specifying an endpoint when subscribing, Event Grid handles the routing of events to that endpoint.</span></span> <span data-ttu-id="dd5e8-138">對於 `<topic_name>`，使用您稍早建立的值。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-138">For `<topic_name>`, use the value you created earlier.</span></span> 
+<span data-ttu-id="61c1f-135">您的事件訂閱 tooa 主題 tootell 事件方格想 tootrack。</span><span class="sxs-lookup"><span data-stu-id="61c1f-135">You subscribe tooa topic tootell Event Grid which events you want tootrack.</span></span> <span data-ttu-id="61c1f-136">hello 下列範例會訂閱您所建立，而且會傳遞做為事件通知的 hello 端點 hello URL RequestBin toohello 主題。</span><span class="sxs-lookup"><span data-stu-id="61c1f-136">hello following example subscribes toohello topic you created, and passes hello URL from RequestBin as hello endpoint for event notification.</span></span> <span data-ttu-id="61c1f-137">取代`<event_subscription_name>`使用您的訂用帳戶，唯一的名稱和`<URL_from_RequestBin>`與 hello 值 hello 前面一節。</span><span class="sxs-lookup"><span data-stu-id="61c1f-137">Replace `<event_subscription_name>` with a unique name for your subscription, and `<URL_from_RequestBin>` with hello value from hello preceding section.</span></span> <span data-ttu-id="61c1f-138">藉由訂閱時指定端點，事件方格會處理 hello 路由的事件 toothat 端點。</span><span class="sxs-lookup"><span data-stu-id="61c1f-138">By specifying an endpoint when subscribing, Event Grid handles hello routing of events toothat endpoint.</span></span> <span data-ttu-id="61c1f-139">如`<topic_name>`，使用您稍早建立的 hello 值。</span><span class="sxs-lookup"><span data-stu-id="61c1f-139">For `<topic_name>`, use hello value you created earlier.</span></span> 
 
 ```azurecli-interactive
 az eventgrid topic event-subscription create --name <event_subscription_name> \
@@ -66,30 +66,30 @@ az eventgrid topic event-subscription create --name <event_subscription_name> \
   --topic-name <topic_name>
 ```
 
-## <a name="send-an-event-to-your-topic"></a><span data-ttu-id="dd5e8-139">將事件傳送至主題</span><span class="sxs-lookup"><span data-stu-id="dd5e8-139">Send an event to your topic</span></span>
+## <a name="send-an-event-tooyour-topic"></a><span data-ttu-id="61c1f-140">傳送事件 tooyour 主題</span><span class="sxs-lookup"><span data-stu-id="61c1f-140">Send an event tooyour topic</span></span>
 
-<span data-ttu-id="dd5e8-140">現在，讓我們觸發事件以了解 Event Grid 如何將訊息散發至您的端點。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-140">Now, let's trigger an event to see how Event Grid distributes the message to your endpoint.</span></span> <span data-ttu-id="dd5e8-141">首先，讓我們取得主題的 URL 和金鑰。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-141">First, let's get the URL and key for the topic.</span></span> <span data-ttu-id="dd5e8-142">再次，將您的主題名稱用於 `<topic_name>`。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-142">Again, use your topic name for `<topic_name>`.</span></span>
+<span data-ttu-id="61c1f-141">現在，讓我們來觸發事件 toosee 事件方格將 hello 訊息 tooyour 端點的散佈。</span><span class="sxs-lookup"><span data-stu-id="61c1f-141">Now, let's trigger an event toosee how Event Grid distributes hello message tooyour endpoint.</span></span> <span data-ttu-id="61c1f-142">首先，我們取得 hello URL 和金鑰 hello 主題。</span><span class="sxs-lookup"><span data-stu-id="61c1f-142">First, let's get hello URL and key for hello topic.</span></span> <span data-ttu-id="61c1f-143">再次，將您的主題名稱用於 `<topic_name>`。</span><span class="sxs-lookup"><span data-stu-id="61c1f-143">Again, use your topic name for `<topic_name>`.</span></span>
 
 ```azurecli-interactive
 endpoint=$(az eventgrid topic show --name <topic_name> -g gridResourceGroup --query "endpoint" --output tsv)
 key=$(az eventgrid topic key list --name <topic_name> -g gridResourceGroup --query "key1" --output tsv)
 ```
 
-<span data-ttu-id="dd5e8-143">為了簡化這篇文章，我們已設定要傳送至主題的範例事件資料。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-143">To simplify this article, we have set up sample event data to send to the topic.</span></span> <span data-ttu-id="dd5e8-144">一般而言，應用程式或 Azure 服務就會傳送事件資料。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-144">Typically, an application or Azure service would send the event data.</span></span> <span data-ttu-id="dd5e8-145">下列範例可取得事件資料：</span><span class="sxs-lookup"><span data-stu-id="dd5e8-145">The following example gets the event data:</span></span>
+<span data-ttu-id="61c1f-144">toosimplify 本文中，我們已將設定範例的事件資料 toosend toohello 主題。</span><span class="sxs-lookup"><span data-stu-id="61c1f-144">toosimplify this article, we have set up sample event data toosend toohello topic.</span></span> <span data-ttu-id="61c1f-145">一般而言，應用程式或 Azure 服務就會傳送 hello 事件資料。</span><span class="sxs-lookup"><span data-stu-id="61c1f-145">Typically, an application or Azure service would send hello event data.</span></span> <span data-ttu-id="61c1f-146">下列範例中的 hello 取得 hello 事件資料：</span><span class="sxs-lookup"><span data-stu-id="61c1f-146">hello following example gets hello event data:</span></span>
 
 ```azurecli-interactive
 body=$(eval echo "'$(curl https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/event-grid/customevent.json)'")
 ```
 
-<span data-ttu-id="dd5e8-146">如果您 `echo "$body"`，您可以看到完整事件。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-146">If you `echo "$body"` you can see the full event.</span></span> <span data-ttu-id="dd5e8-147">JSON 的 `data` 元素是您的事件承載。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-147">The `data` element of the JSON is the payload of your event.</span></span> <span data-ttu-id="dd5e8-148">任何語式正確的 JSON 都可以進入這個欄位。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-148">Any well-formed JSON can go in this field.</span></span> <span data-ttu-id="dd5e8-149">您也可以使用主體欄位進行進階路由傳送或篩選。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-149">You can also use the subject field for advanced routing and filtering.</span></span>
+<span data-ttu-id="61c1f-147">如果您`echo "$body"`您所見 hello 完整事件。</span><span class="sxs-lookup"><span data-stu-id="61c1f-147">If you `echo "$body"` you can see hello full event.</span></span> <span data-ttu-id="61c1f-148">hello `data` hello JSON 的項目是 hello 裝載您的事件。</span><span class="sxs-lookup"><span data-stu-id="61c1f-148">hello `data` element of hello JSON is hello payload of your event.</span></span> <span data-ttu-id="61c1f-149">任何語式正確的 JSON 都可以進入這個欄位。</span><span class="sxs-lookup"><span data-stu-id="61c1f-149">Any well-formed JSON can go in this field.</span></span> <span data-ttu-id="61c1f-150">您也可以使用進階的路由和篩選的 hello [主旨] 欄位。</span><span class="sxs-lookup"><span data-stu-id="61c1f-150">You can also use hello subject field for advanced routing and filtering.</span></span>
 
-<span data-ttu-id="dd5e8-150">CURL 是可執行 HTTP 要求的公用程式。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-150">CURL is a utility that performs HTTP requests.</span></span> <span data-ttu-id="dd5e8-151">在本文中，我們會使用 CURL 將事件傳送到我們的主題。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-151">In this article, we use CURL to send the event to our topic.</span></span> 
+<span data-ttu-id="61c1f-151">CURL 是可執行 HTTP 要求的公用程式。</span><span class="sxs-lookup"><span data-stu-id="61c1f-151">CURL is a utility that performs HTTP requests.</span></span> <span data-ttu-id="61c1f-152">在本文中，我們會使用 CURL toosend hello 事件 tooour 主題。</span><span class="sxs-lookup"><span data-stu-id="61c1f-152">In this article, we use CURL toosend hello event tooour topic.</span></span> 
 
 ```azurecli-interactive
 curl -X POST -H "aeg-sas-key: $key" -d "$body" $endpoint
 ```
 
-<span data-ttu-id="dd5e8-152">您已觸發此事件，而 Event Grid 會將訊息傳送至您在訂閱時設定的端點。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-152">You have triggered the event, and Event Grid sent the message to the endpoint you configured when subscribing.</span></span> <span data-ttu-id="dd5e8-153">瀏覽至您稍早建立的 RequestBin URL。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-153">Browse to the RequestBin URL that you created earlier.</span></span> <span data-ttu-id="dd5e8-154">或者，按一下已開啟 RequestBin 瀏覽器中的重新整理。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-154">Or, click refresh in your open RequestBin browser.</span></span> <span data-ttu-id="dd5e8-155">您會看到剛傳送的事件。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-155">You see the event you just sent.</span></span> 
+<span data-ttu-id="61c1f-153">您也觸發了 hello 事件和事件方格傳送 hello 訊息 toohello 端點時，訂閱設定。</span><span class="sxs-lookup"><span data-stu-id="61c1f-153">You have triggered hello event, and Event Grid sent hello message toohello endpoint you configured when subscribing.</span></span> <span data-ttu-id="61c1f-154">瀏覽 toohello RequestBin 您稍早建立的 URL。</span><span class="sxs-lookup"><span data-stu-id="61c1f-154">Browse toohello RequestBin URL that you created earlier.</span></span> <span data-ttu-id="61c1f-155">或者，按一下已開啟 RequestBin 瀏覽器中的重新整理。</span><span class="sxs-lookup"><span data-stu-id="61c1f-155">Or, click refresh in your open RequestBin browser.</span></span> <span data-ttu-id="61c1f-156">您會看到您剛傳送嗨事件。</span><span class="sxs-lookup"><span data-stu-id="61c1f-156">You see hello event you just sent.</span></span> 
 
 ```json
 [{
@@ -105,16 +105,16 @@ curl -X POST -H "aeg-sas-key: $key" -d "$body" $endpoint
 }]
 ```
 
-## <a name="clean-up-resources"></a><span data-ttu-id="dd5e8-156">清除資源</span><span class="sxs-lookup"><span data-stu-id="dd5e8-156">Clean up resources</span></span>
-<span data-ttu-id="dd5e8-157">如果您打算繼續使用此事件，請勿清除在此本文中建立的資源。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-157">If you plan to continue working with this event, do not clean up the resources created in this article.</span></span> <span data-ttu-id="dd5e8-158">如果您不打算繼續，請使用下列命令來刪除您在本文建立的資源。</span><span class="sxs-lookup"><span data-stu-id="dd5e8-158">If you do not plan to continue, use the following command to delete the resources you created in this article.</span></span>
+## <a name="clean-up-resources"></a><span data-ttu-id="61c1f-157">清除資源</span><span class="sxs-lookup"><span data-stu-id="61c1f-157">Clean up resources</span></span>
+<span data-ttu-id="61c1f-158">如果您打算使用此事件的 toocontinue，請勿清除建立本文章中的 hello 資源。</span><span class="sxs-lookup"><span data-stu-id="61c1f-158">If you plan toocontinue working with this event, do not clean up hello resources created in this article.</span></span> <span data-ttu-id="61c1f-159">如果您不打算 toocontinue，使用下列命令 toodelete hello 資源在本文中所建立的 hello。</span><span class="sxs-lookup"><span data-stu-id="61c1f-159">If you do not plan toocontinue, use hello following command toodelete hello resources you created in this article.</span></span>
 
 ```azurecli-interactive
 az group delete --name gridResourceGroup
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="dd5e8-159">後續步驟</span><span class="sxs-lookup"><span data-stu-id="dd5e8-159">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="61c1f-160">後續步驟</span><span class="sxs-lookup"><span data-stu-id="61c1f-160">Next steps</span></span>
 
-<span data-ttu-id="dd5e8-160">您現在知道如何建立主題和事件訂閱，深入了解 Event Grid 可協助您：</span><span class="sxs-lookup"><span data-stu-id="dd5e8-160">Now that you know how to create topics and event subscriptions, learn more about what Event Grid can help you do:</span></span>
+<span data-ttu-id="61c1f-161">您現在知道如何 toocreate 主題和事件訂閱，深入了解哪些事件方格可協助您執行：</span><span class="sxs-lookup"><span data-stu-id="61c1f-161">Now that you know how toocreate topics and event subscriptions, learn more about what Event Grid can help you do:</span></span>
 
-- [<span data-ttu-id="dd5e8-161">關於 Event Grid</span><span class="sxs-lookup"><span data-stu-id="dd5e8-161">About Event Grid</span></span>](overview.md)
-- [<span data-ttu-id="dd5e8-162">使用 Azure Event Grid 和 Logic Apps 監視虛擬機器變更</span><span class="sxs-lookup"><span data-stu-id="dd5e8-162">Monitor virtual machine changes with Azure Event Grid and Logic Apps</span></span>](monitor-virtual-machine-changes-event-grid-logic-app.md)
+- [<span data-ttu-id="61c1f-162">關於 Event Grid</span><span class="sxs-lookup"><span data-stu-id="61c1f-162">About Event Grid</span></span>](overview.md)
+- [<span data-ttu-id="61c1f-163">使用 Azure Event Grid 和 Logic Apps 監視虛擬機器變更</span><span class="sxs-lookup"><span data-stu-id="61c1f-163">Monitor virtual machine changes with Azure Event Grid and Logic Apps</span></span>](monitor-virtual-machine-changes-event-grid-logic-app.md)

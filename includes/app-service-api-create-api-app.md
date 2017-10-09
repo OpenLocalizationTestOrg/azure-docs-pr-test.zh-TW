@@ -1,15 +1,15 @@
 
-<span data-ttu-id="4a8c8-101">使用 [az webapp create](/cli/azure/appservice/web#create) 命令，在 `myAppServicePlan` App Service 方案中建立 [API 應用程式](../articles/app-service-api/app-service-api-apps-why-best-platform.md)。</span><span class="sxs-lookup"><span data-stu-id="4a8c8-101">Create a [API app](../articles/app-service-api/app-service-api-apps-why-best-platform.md) in the `myAppServicePlan` App Service plan with the [az webapp create](/cli/azure/appservice/web#create) command.</span></span> 
+<span data-ttu-id="d9583-101">建立[API 應用程式](../articles/app-service-api/app-service-api-apps-why-best-platform.md)在 hello`myAppServicePlan`應用程式服務方案以 hello [az webapp 建立](/cli/azure/appservice/web#create)命令。</span><span class="sxs-lookup"><span data-stu-id="d9583-101">Create a [API app](../articles/app-service-api/app-service-api-apps-why-best-platform.md) in hello `myAppServicePlan` App Service plan with hello [az webapp create](/cli/azure/appservice/web#create) command.</span></span> 
 
-<span data-ttu-id="4a8c8-102">Web 應用程式會為您的 API 提供裝載空間，以及提供 URL 來檢視已部署的應用程式。</span><span class="sxs-lookup"><span data-stu-id="4a8c8-102">The web app provides a hosting space for your API and provides a URL to view the deployed app.</span></span>
+<span data-ttu-id="d9583-102">hello web 應用程式提供裝載您的 API，並提供 URL tooview hello 部署應用程式。</span><span class="sxs-lookup"><span data-stu-id="d9583-102">hello web app provides a hosting space for your API and provides a URL tooview hello deployed app.</span></span>
 
-<span data-ttu-id="4a8c8-103">在下列命令中，使用唯一的名稱取代 *\<app_name>*。</span><span class="sxs-lookup"><span data-stu-id="4a8c8-103">In the following command, replace *\<app_name>* with a unique name.</span></span> <span data-ttu-id="4a8c8-104">如果 `<app_name>` 不是唯一的，您會收到錯誤訊息「具有指定名稱 <app_name> 的網站已經存在」。</span><span class="sxs-lookup"><span data-stu-id="4a8c8-104">If `<app_name>` is not unique, you get the error message "Website with given name <app_name> already exists."</span></span> <span data-ttu-id="4a8c8-105">Web 應用程式的預設 URL 是 `https://<app_name>.azurewebsites.net`。</span><span class="sxs-lookup"><span data-stu-id="4a8c8-105">The default URL of the web app is `https://<app_name>.azurewebsites.net`.</span></span> 
+<span data-ttu-id="d9583-103">下列命令，取代在 hello  *\<app_name >*具有唯一的名稱。</span><span class="sxs-lookup"><span data-stu-id="d9583-103">In hello following command, replace *\<app_name>* with a unique name.</span></span> <span data-ttu-id="d9583-104">如果`<app_name>`是不是唯一，您會收到 hello 錯誤訊息 「 具有指定名稱 < app_name > 網站已經存在 」。</span><span class="sxs-lookup"><span data-stu-id="d9583-104">If `<app_name>` is not unique, you get hello error message "Website with given name <app_name> already exists."</span></span> <span data-ttu-id="d9583-105">hello hello web 應用程式的 URL 是的預設`https://<app_name>.azurewebsites.net`。</span><span class="sxs-lookup"><span data-stu-id="d9583-105">hello default URL of hello web app is `https://<app_name>.azurewebsites.net`.</span></span> 
 
 ```azurecli-interactive
 az webapp create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan
 ```
 
-<span data-ttu-id="4a8c8-106">建立 Web 應用程式後，Azure CLI 會顯示類似下列範例的資訊：</span><span class="sxs-lookup"><span data-stu-id="4a8c8-106">When the web app has been created, the Azure CLI shows information similar to the following example:</span></span>
+<span data-ttu-id="d9583-106">Hello web 應用程式建立後，hello Azure CLI 顯示資訊的類似 toohello 下列範例：</span><span class="sxs-lookup"><span data-stu-id="d9583-106">When hello web app has been created, hello Azure CLI shows information similar toohello following example:</span></span>
 
 ```json
 {

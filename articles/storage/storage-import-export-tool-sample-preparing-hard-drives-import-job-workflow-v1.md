@@ -1,6 +1,6 @@
 ---
-title: "針對 Azure 匯入/匯出匯入作業準備硬碟的範例工作流程 - v1 | Microsoft Docs"
-description: "請參閱在 Azure 匯入/匯出服務中為匯入作業準備硬碟之完整程序的逐步解說。"
+title: "aaaSample 工作流程 tooprep 硬碟機的 Azure 匯入/匯出匯入作業-v1 |Microsoft 文件"
+description: "Hello hello Azure 匯入/匯出服務中匯入工作準備磁碟機的完整程序的逐步解說，請參閱。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,71 +14,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 313f8c1f3962a943b4c98c530c324ff28aa84c10
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f836fc6104d8b4ad5660cb110a62f61b40b0b7ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="sample-workflow-to-prepare-hard-drives-for-an-import-job"></a><span data-ttu-id="da491-103">針對匯入作業準備硬碟的範例工作流程</span><span class="sxs-lookup"><span data-stu-id="da491-103">Sample workflow to prepare hard drives for an import job</span></span>
-<span data-ttu-id="da491-104">本主題會引導您完成為匯入作業準備硬碟的完整程序。</span><span class="sxs-lookup"><span data-stu-id="da491-104">This topic walks you through the complete process of preparing drives for an import job.</span></span>  
+# <a name="sample-workflow-tooprepare-hard-drives-for-an-import-job"></a><span data-ttu-id="38525-103">匯入工作的範例工作流程 tooprepare 硬碟機</span><span class="sxs-lookup"><span data-stu-id="38525-103">Sample workflow tooprepare hard drives for an import job</span></span>
+<span data-ttu-id="38525-104">本主題會引導您完成 hello 完成程序來準備磁碟機匯入工作。</span><span class="sxs-lookup"><span data-stu-id="38525-104">This topic walks you through hello complete process of preparing drives for an import job.</span></span>  
   
-<span data-ttu-id="da491-105">此範例會將下列資料匯入名為 `mystorageaccount` 的 Windows Azure 儲存體帳戶：</span><span class="sxs-lookup"><span data-stu-id="da491-105">This example imports the following data into a Window Azure storage account named `mystorageaccount`:</span></span>  
+<span data-ttu-id="38525-105">這個範例會匯入至 Window Azure 儲存體帳戶名稱為下列資料的 hello `mystorageaccount`:</span><span class="sxs-lookup"><span data-stu-id="38525-105">This example imports hello following data into a Window Azure storage account named `mystorageaccount`:</span></span>  
   
-|<span data-ttu-id="da491-106">位置</span><span class="sxs-lookup"><span data-stu-id="da491-106">Location</span></span>|<span data-ttu-id="da491-107">說明</span><span class="sxs-lookup"><span data-stu-id="da491-107">Description</span></span>|  
+|<span data-ttu-id="38525-106">位置</span><span class="sxs-lookup"><span data-stu-id="38525-106">Location</span></span>|<span data-ttu-id="38525-107">說明</span><span class="sxs-lookup"><span data-stu-id="38525-107">Description</span></span>|  
 |--------------|-----------------|  
-|<span data-ttu-id="da491-108">H:\Video</span><span class="sxs-lookup"><span data-stu-id="da491-108">H:\Video</span></span>|<span data-ttu-id="da491-109">視訊集合，總共 5 TB。</span><span class="sxs-lookup"><span data-stu-id="da491-109">A collection of videos, 5 TB in total.</span></span>|  
-|<span data-ttu-id="da491-110">H:\Photo</span><span class="sxs-lookup"><span data-stu-id="da491-110">H:\Photo</span></span>|<span data-ttu-id="da491-111">相片集合，總共 30 GB。</span><span class="sxs-lookup"><span data-stu-id="da491-111">A collection of photos, 30 GB in total.</span></span>|  
-|<span data-ttu-id="da491-112">K:\Temp\FavoriteMovie.ISO</span><span class="sxs-lookup"><span data-stu-id="da491-112">K:\Temp\FavoriteMovie.ISO</span></span>|<span data-ttu-id="da491-113">藍光 (Blu-Ray™) 磁碟映像，25 GB。</span><span class="sxs-lookup"><span data-stu-id="da491-113">A Blu-Ray™ disk image, 25 GB.</span></span>|  
-|<span data-ttu-id="da491-114">\\\bigshare\john\music</span><span class="sxs-lookup"><span data-stu-id="da491-114">\\\bigshare\john\music</span></span>|<span data-ttu-id="da491-115">網路共用上的音樂檔案集合，總共 10 GB。</span><span class="sxs-lookup"><span data-stu-id="da491-115">A collection of music files on a network share, 10 GB in total.</span></span>|  
+|<span data-ttu-id="38525-108">H:\Video</span><span class="sxs-lookup"><span data-stu-id="38525-108">H:\Video</span></span>|<span data-ttu-id="38525-109">視訊集合，總共 5 TB。</span><span class="sxs-lookup"><span data-stu-id="38525-109">A collection of videos, 5 TB in total.</span></span>|  
+|<span data-ttu-id="38525-110">H:\Photo</span><span class="sxs-lookup"><span data-stu-id="38525-110">H:\Photo</span></span>|<span data-ttu-id="38525-111">相片集合，總共 30 GB。</span><span class="sxs-lookup"><span data-stu-id="38525-111">A collection of photos, 30 GB in total.</span></span>|  
+|<span data-ttu-id="38525-112">K:\Temp\FavoriteMovie.ISO</span><span class="sxs-lookup"><span data-stu-id="38525-112">K:\Temp\FavoriteMovie.ISO</span></span>|<span data-ttu-id="38525-113">藍光 (Blu-Ray™) 磁碟映像，25 GB。</span><span class="sxs-lookup"><span data-stu-id="38525-113">A Blu-Ray™ disk image, 25 GB.</span></span>|  
+|<span data-ttu-id="38525-114">\\\bigshare\john\music</span><span class="sxs-lookup"><span data-stu-id="38525-114">\\\bigshare\john\music</span></span>|<span data-ttu-id="38525-115">網路共用上的音樂檔案集合，總共 10 GB。</span><span class="sxs-lookup"><span data-stu-id="38525-115">A collection of music files on a network share, 10 GB in total.</span></span>|  
   
-<span data-ttu-id="da491-116">匯入作業會將此資料匯入儲存體帳戶中的下列目的地：</span><span class="sxs-lookup"><span data-stu-id="da491-116">The import job will import this data into the following destinations in the storage account:</span></span>  
+<span data-ttu-id="38525-116">hello 匯入工作會將此資料匯入到下列目的地 hello 儲存體帳戶中的 hello:</span><span class="sxs-lookup"><span data-stu-id="38525-116">hello import job will import this data into hello following destinations in hello storage account:</span></span>  
   
-|<span data-ttu-id="da491-117">來源</span><span class="sxs-lookup"><span data-stu-id="da491-117">Source</span></span>|<span data-ttu-id="da491-118">目的地虛擬目錄或 Blob</span><span class="sxs-lookup"><span data-stu-id="da491-118">Destination virtual directory or blob</span></span>|  
+|<span data-ttu-id="38525-117">來源</span><span class="sxs-lookup"><span data-stu-id="38525-117">Source</span></span>|<span data-ttu-id="38525-118">目的地虛擬目錄或 Blob</span><span class="sxs-lookup"><span data-stu-id="38525-118">Destination virtual directory or blob</span></span>|  
 |------------|-------------------------------------------|  
-|<span data-ttu-id="da491-119">H:\Video</span><span class="sxs-lookup"><span data-stu-id="da491-119">H:\Video</span></span>|<span data-ttu-id="da491-120">https://mystorageaccount.blob.core.windows.net/video</span><span class="sxs-lookup"><span data-stu-id="da491-120">https://mystorageaccount.blob.core.windows.net/video</span></span>|  
-|<span data-ttu-id="da491-121">H:\Photo</span><span class="sxs-lookup"><span data-stu-id="da491-121">H:\Photo</span></span>|<span data-ttu-id="da491-122">https://mystorageaccount.blob.core.windows.net/photo</span><span class="sxs-lookup"><span data-stu-id="da491-122">https://mystorageaccount.blob.core.windows.net/photo</span></span>|  
-|<span data-ttu-id="da491-123">K:\Temp\FavoriteMovie.ISO</span><span class="sxs-lookup"><span data-stu-id="da491-123">K:\Temp\FavoriteMovie.ISO</span></span>|<span data-ttu-id="da491-124">https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO</span><span class="sxs-lookup"><span data-stu-id="da491-124">https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO</span></span>|  
-|<span data-ttu-id="da491-125">\\\bigshare\john\music</span><span class="sxs-lookup"><span data-stu-id="da491-125">\\\bigshare\john\music</span></span>|<span data-ttu-id="da491-126">https://mystorageaccount.blob.core.windows.net/music</span><span class="sxs-lookup"><span data-stu-id="da491-126">https://mystorageaccount.blob.core.windows.net/music</span></span>|  
+|<span data-ttu-id="38525-119">H:\Video</span><span class="sxs-lookup"><span data-stu-id="38525-119">H:\Video</span></span>|<span data-ttu-id="38525-120">https://mystorageaccount.blob.core.windows.net/video</span><span class="sxs-lookup"><span data-stu-id="38525-120">https://mystorageaccount.blob.core.windows.net/video</span></span>|  
+|<span data-ttu-id="38525-121">H:\Photo</span><span class="sxs-lookup"><span data-stu-id="38525-121">H:\Photo</span></span>|<span data-ttu-id="38525-122">https://mystorageaccount.blob.core.windows.net/photo</span><span class="sxs-lookup"><span data-stu-id="38525-122">https://mystorageaccount.blob.core.windows.net/photo</span></span>|  
+|<span data-ttu-id="38525-123">K:\Temp\FavoriteMovie.ISO</span><span class="sxs-lookup"><span data-stu-id="38525-123">K:\Temp\FavoriteMovie.ISO</span></span>|<span data-ttu-id="38525-124">https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO</span><span class="sxs-lookup"><span data-stu-id="38525-124">https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO</span></span>|  
+|<span data-ttu-id="38525-125">\\\bigshare\john\music</span><span class="sxs-lookup"><span data-stu-id="38525-125">\\\bigshare\john\music</span></span>|<span data-ttu-id="38525-126">https://mystorageaccount.blob.core.windows.net/music</span><span class="sxs-lookup"><span data-stu-id="38525-126">https://mystorageaccount.blob.core.windows.net/music</span></span>|  
   
-<span data-ttu-id="da491-127">透過此對應，檔案 `H:\Video\Drama\GreatMovie.mov` 將會匯入 Blob `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`。</span><span class="sxs-lookup"><span data-stu-id="da491-127">With this mapping, the file `H:\Video\Drama\GreatMovie.mov` will be imported to the blob `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.</span></span>  
+<span data-ttu-id="38525-127">透過此對應，hello 檔案`H:\Video\Drama\GreatMovie.mov`會匯入的 toohello blob `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`。</span><span class="sxs-lookup"><span data-stu-id="38525-127">With this mapping, hello file `H:\Video\Drama\GreatMovie.mov` will be imported toohello blob `https://mystorageaccount.blob.core.windows.net/video/Drama/GreatMovie.mov`.</span></span>  
   
-<span data-ttu-id="da491-128">接下來，為了判斷需要幾個硬碟，將會計算資料大小：</span><span class="sxs-lookup"><span data-stu-id="da491-128">Next, to determine how many hard drives are needed, compute the size of the data:</span></span>  
+<span data-ttu-id="38525-128">下一步 toodetermine 需要多少硬碟機，則計算 hello hello 資料大小：</span><span class="sxs-lookup"><span data-stu-id="38525-128">Next, toodetermine how many hard drives are needed, compute hello size of hello data:</span></span>  
   
 `5TB + 30GB + 25GB + 10GB = 5TB + 65GB`  
   
-<span data-ttu-id="da491-129">針對此範例，兩個 3TB 的硬碟應該就已足夠。</span><span class="sxs-lookup"><span data-stu-id="da491-129">For this example, two 3TB hard drives should be sufficient.</span></span> <span data-ttu-id="da491-130">不過，由於來源目錄 `H:\Video` 具有 5TB 的資料，而您的單一硬碟容量只有 3TB，因此必須在執行 Microsoft Azure 匯入/匯出工具之前，將 `H:\Video` 分為兩個較小的目錄：`H:\Video1` 和 `H:\Video2`。</span><span class="sxs-lookup"><span data-stu-id="da491-130">However, since the source directory `H:\Video` has 5TB of data and your single hard drive's capacity is only 3TB, it's necessary to break `H:\Video` into two smaller directories before running the Microsoft Azure Import/Export Tool: `H:\Video1` and `H:\Video2`.</span></span> <span data-ttu-id="da491-131">此步驟將會產生下列來源目錄：</span><span class="sxs-lookup"><span data-stu-id="da491-131">This step yields the following source directories:</span></span>  
+<span data-ttu-id="38525-129">針對此範例，兩個 3TB 的硬碟應該就已足夠。</span><span class="sxs-lookup"><span data-stu-id="38525-129">For this example, two 3TB hard drives should be sufficient.</span></span> <span data-ttu-id="38525-130">不過，由於 hello 來源目錄`H:\Video`擁有 5TB 的資料，而您單一硬碟容量只有 3TB，它是必要的 toobreak`H:\Video`分割成兩個較小的目錄，再執行 hello Microsoft Azure 匯入/匯出工具： `H:\Video1`和`H:\Video2`。</span><span class="sxs-lookup"><span data-stu-id="38525-130">However, since hello source directory `H:\Video` has 5TB of data and your single hard drive's capacity is only 3TB, it's necessary toobreak `H:\Video` into two smaller directories before running hello Microsoft Azure Import/Export Tool: `H:\Video1` and `H:\Video2`.</span></span> <span data-ttu-id="38525-131">此步驟會產生下列來源目錄的 hello:</span><span class="sxs-lookup"><span data-stu-id="38525-131">This step yields hello following source directories:</span></span>  
   
-|<span data-ttu-id="da491-132">位置</span><span class="sxs-lookup"><span data-stu-id="da491-132">Location</span></span>|<span data-ttu-id="da491-133">大小</span><span class="sxs-lookup"><span data-stu-id="da491-133">Size</span></span>|<span data-ttu-id="da491-134">目的地虛擬目錄或 Blob</span><span class="sxs-lookup"><span data-stu-id="da491-134">Destination virtual directory or blob</span></span>|  
+|<span data-ttu-id="38525-132">位置</span><span class="sxs-lookup"><span data-stu-id="38525-132">Location</span></span>|<span data-ttu-id="38525-133">大小</span><span class="sxs-lookup"><span data-stu-id="38525-133">Size</span></span>|<span data-ttu-id="38525-134">目的地虛擬目錄或 Blob</span><span class="sxs-lookup"><span data-stu-id="38525-134">Destination virtual directory or blob</span></span>|  
 |--------------|----------|-------------------------------------------|  
-|<span data-ttu-id="da491-135">H:\Video1</span><span class="sxs-lookup"><span data-stu-id="da491-135">H:\Video1</span></span>|<span data-ttu-id="da491-136">2.5TB</span><span class="sxs-lookup"><span data-stu-id="da491-136">2.5TB</span></span>|<span data-ttu-id="da491-137">https://mystorageaccount.blob.core.windows.net/video</span><span class="sxs-lookup"><span data-stu-id="da491-137">https://mystorageaccount.blob.core.windows.net/video</span></span>|  
-|<span data-ttu-id="da491-138">H:\Video2</span><span class="sxs-lookup"><span data-stu-id="da491-138">H:\Video2</span></span>|<span data-ttu-id="da491-139">2.5TB</span><span class="sxs-lookup"><span data-stu-id="da491-139">2.5TB</span></span>|<span data-ttu-id="da491-140">https://mystorageaccount.blob.core.windows.net/video</span><span class="sxs-lookup"><span data-stu-id="da491-140">https://mystorageaccount.blob.core.windows.net/video</span></span>|  
-|<span data-ttu-id="da491-141">H:\Photo</span><span class="sxs-lookup"><span data-stu-id="da491-141">H:\Photo</span></span>|<span data-ttu-id="da491-142">30GB</span><span class="sxs-lookup"><span data-stu-id="da491-142">30GB</span></span>|<span data-ttu-id="da491-143">https://mystorageaccount.blob.core.windows.net/photo</span><span class="sxs-lookup"><span data-stu-id="da491-143">https://mystorageaccount.blob.core.windows.net/photo</span></span>|  
-|<span data-ttu-id="da491-144">K:\Temp\FavoriteMovies.ISO</span><span class="sxs-lookup"><span data-stu-id="da491-144">K:\Temp\FavoriteMovies.ISO</span></span>|<span data-ttu-id="da491-145">25GB</span><span class="sxs-lookup"><span data-stu-id="da491-145">25GB</span></span>|<span data-ttu-id="da491-146">https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO</span><span class="sxs-lookup"><span data-stu-id="da491-146">https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO</span></span>|  
-|<span data-ttu-id="da491-147">\\\bigshare\john\music</span><span class="sxs-lookup"><span data-stu-id="da491-147">\\\bigshare\john\music</span></span>|<span data-ttu-id="da491-148">10GB</span><span class="sxs-lookup"><span data-stu-id="da491-148">10GB</span></span>|<span data-ttu-id="da491-149">https://mystorageaccount.blob.core.windows.net/music</span><span class="sxs-lookup"><span data-stu-id="da491-149">https://mystorageaccount.blob.core.windows.net/music</span></span>|  
+|<span data-ttu-id="38525-135">H:\Video1</span><span class="sxs-lookup"><span data-stu-id="38525-135">H:\Video1</span></span>|<span data-ttu-id="38525-136">2.5TB</span><span class="sxs-lookup"><span data-stu-id="38525-136">2.5TB</span></span>|<span data-ttu-id="38525-137">https://mystorageaccount.blob.core.windows.net/video</span><span class="sxs-lookup"><span data-stu-id="38525-137">https://mystorageaccount.blob.core.windows.net/video</span></span>|  
+|<span data-ttu-id="38525-138">H:\Video2</span><span class="sxs-lookup"><span data-stu-id="38525-138">H:\Video2</span></span>|<span data-ttu-id="38525-139">2.5TB</span><span class="sxs-lookup"><span data-stu-id="38525-139">2.5TB</span></span>|<span data-ttu-id="38525-140">https://mystorageaccount.blob.core.windows.net/video</span><span class="sxs-lookup"><span data-stu-id="38525-140">https://mystorageaccount.blob.core.windows.net/video</span></span>|  
+|<span data-ttu-id="38525-141">H:\Photo</span><span class="sxs-lookup"><span data-stu-id="38525-141">H:\Photo</span></span>|<span data-ttu-id="38525-142">30GB</span><span class="sxs-lookup"><span data-stu-id="38525-142">30GB</span></span>|<span data-ttu-id="38525-143">https://mystorageaccount.blob.core.windows.net/photo</span><span class="sxs-lookup"><span data-stu-id="38525-143">https://mystorageaccount.blob.core.windows.net/photo</span></span>|  
+|<span data-ttu-id="38525-144">K:\Temp\FavoriteMovies.ISO</span><span class="sxs-lookup"><span data-stu-id="38525-144">K:\Temp\FavoriteMovies.ISO</span></span>|<span data-ttu-id="38525-145">25GB</span><span class="sxs-lookup"><span data-stu-id="38525-145">25GB</span></span>|<span data-ttu-id="38525-146">https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO</span><span class="sxs-lookup"><span data-stu-id="38525-146">https://mystorageaccount.blob.core.windows.net/favorite/FavoriteMovies.ISO</span></span>|  
+|<span data-ttu-id="38525-147">\\\bigshare\john\music</span><span class="sxs-lookup"><span data-stu-id="38525-147">\\\bigshare\john\music</span></span>|<span data-ttu-id="38525-148">10GB</span><span class="sxs-lookup"><span data-stu-id="38525-148">10GB</span></span>|<span data-ttu-id="38525-149">https://mystorageaccount.blob.core.windows.net/music</span><span class="sxs-lookup"><span data-stu-id="38525-149">https://mystorageaccount.blob.core.windows.net/music</span></span>|  
   
- <span data-ttu-id="da491-150">請注意，雖然 `H:\Video` 目錄被分為兩個目錄，它們仍然會指向儲存體帳戶中的相同目的地虛擬目錄。</span><span class="sxs-lookup"><span data-stu-id="da491-150">Note that even though the `H:\Video`directory has been split to two directories, they point to the same destination virtual directory in the storage account.</span></span> <span data-ttu-id="da491-151">如此一來，所有視訊檔案都會維持在儲存體帳戶中的單一 `video` 容器中。</span><span class="sxs-lookup"><span data-stu-id="da491-151">This way, all video files are maintained under a single `video` container in the storage account.</span></span>  
+ <span data-ttu-id="38525-150">請注意，即使 hello`H:\Video`目錄已分割 tootwo 目錄、 其點 toohello hello 儲存體帳戶中的同一個目的地虛擬目錄。</span><span class="sxs-lookup"><span data-stu-id="38525-150">Note that even though hello `H:\Video`directory has been split tootwo directories, they point toohello same destination virtual directory in hello storage account.</span></span> <span data-ttu-id="38525-151">如此一來，所有視訊檔案會維護的單一`video`hello 儲存體帳戶中的容器。</span><span class="sxs-lookup"><span data-stu-id="38525-151">This way, all video files are maintained under a single `video` container in hello storage account.</span></span>  
   
- <span data-ttu-id="da491-152">接下來，上述來源目錄將會平均地分散到兩個硬碟：</span><span class="sxs-lookup"><span data-stu-id="da491-152">Next, the above source directories are evenly distributed to the two hard drives:</span></span>  
+ <span data-ttu-id="38525-152">接下來，上述來源目錄都是平均 hello 分散式 toohello 兩個硬碟：</span><span class="sxs-lookup"><span data-stu-id="38525-152">Next, hello above source directories are evenly distributed toohello two hard drives:</span></span>  
   
 ||||  
 |-|-|-|  
-|<span data-ttu-id="da491-153">硬碟</span><span class="sxs-lookup"><span data-stu-id="da491-153">Hard drive</span></span>|<span data-ttu-id="da491-154">來源目錄</span><span class="sxs-lookup"><span data-stu-id="da491-154">Source directories</span></span>|<span data-ttu-id="da491-155">總大小</span><span class="sxs-lookup"><span data-stu-id="da491-155">Total size</span></span>|  
-|<span data-ttu-id="da491-156">第一個硬碟</span><span class="sxs-lookup"><span data-stu-id="da491-156">First Drive</span></span>|<span data-ttu-id="da491-157">H:\Video1</span><span class="sxs-lookup"><span data-stu-id="da491-157">H:\Video1</span></span>|<span data-ttu-id="da491-158">2.5TB + 30GB</span><span class="sxs-lookup"><span data-stu-id="da491-158">2.5TB + 30GB</span></span>|  
-||<span data-ttu-id="da491-159">H:\Photo</span><span class="sxs-lookup"><span data-stu-id="da491-159">H:\Photo</span></span>||  
-|<span data-ttu-id="da491-160">第二個硬碟</span><span class="sxs-lookup"><span data-stu-id="da491-160">Second Drive</span></span>|<span data-ttu-id="da491-161">H:\Video2</span><span class="sxs-lookup"><span data-stu-id="da491-161">H:\Video2</span></span>|<span data-ttu-id="da491-162">2.5TB + 35GB</span><span class="sxs-lookup"><span data-stu-id="da491-162">2.5TB + 35GB</span></span>|  
-||<span data-ttu-id="da491-163">K:\Temp\BlueRay.ISO</span><span class="sxs-lookup"><span data-stu-id="da491-163">K:\Temp\BlueRay.ISO</span></span>||  
-||<span data-ttu-id="da491-164">\\\bigshare\john\music</span><span class="sxs-lookup"><span data-stu-id="da491-164">\\\bigshare\john\music</span></span>||  
+|<span data-ttu-id="38525-153">硬碟</span><span class="sxs-lookup"><span data-stu-id="38525-153">Hard drive</span></span>|<span data-ttu-id="38525-154">來源目錄</span><span class="sxs-lookup"><span data-stu-id="38525-154">Source directories</span></span>|<span data-ttu-id="38525-155">總大小</span><span class="sxs-lookup"><span data-stu-id="38525-155">Total size</span></span>|  
+|<span data-ttu-id="38525-156">第一個硬碟</span><span class="sxs-lookup"><span data-stu-id="38525-156">First Drive</span></span>|<span data-ttu-id="38525-157">H:\Video1</span><span class="sxs-lookup"><span data-stu-id="38525-157">H:\Video1</span></span>|<span data-ttu-id="38525-158">2.5TB + 30GB</span><span class="sxs-lookup"><span data-stu-id="38525-158">2.5TB + 30GB</span></span>|  
+||<span data-ttu-id="38525-159">H:\Photo</span><span class="sxs-lookup"><span data-stu-id="38525-159">H:\Photo</span></span>||  
+|<span data-ttu-id="38525-160">第二個硬碟</span><span class="sxs-lookup"><span data-stu-id="38525-160">Second Drive</span></span>|<span data-ttu-id="38525-161">H:\Video2</span><span class="sxs-lookup"><span data-stu-id="38525-161">H:\Video2</span></span>|<span data-ttu-id="38525-162">2.5TB + 35GB</span><span class="sxs-lookup"><span data-stu-id="38525-162">2.5TB + 35GB</span></span>|  
+||<span data-ttu-id="38525-163">K:\Temp\BlueRay.ISO</span><span class="sxs-lookup"><span data-stu-id="38525-163">K:\Temp\BlueRay.ISO</span></span>||  
+||<span data-ttu-id="38525-164">\\\bigshare\john\music</span><span class="sxs-lookup"><span data-stu-id="38525-164">\\\bigshare\john\music</span></span>||  
   
-<span data-ttu-id="da491-165">除此之外，您可以針對所有檔案設定下列中繼資料：</span><span class="sxs-lookup"><span data-stu-id="da491-165">In addition, you can set the following metadata for all files:</span></span>  
+<span data-ttu-id="38525-165">此外，您可以設定下列中繼資料的所有檔案的 hello:</span><span class="sxs-lookup"><span data-stu-id="38525-165">In addition, you can set hello following metadata for all files:</span></span>  
   
--   <span data-ttu-id="da491-166">**UploadMethod：**Windows Azure Import/Export service</span><span class="sxs-lookup"><span data-stu-id="da491-166">**UploadMethod:** Windows Azure Import/Export service</span></span>  
+-   <span data-ttu-id="38525-166">**UploadMethod：**Windows Azure Import/Export service</span><span class="sxs-lookup"><span data-stu-id="38525-166">**UploadMethod:** Windows Azure Import/Export service</span></span>  
   
--   <span data-ttu-id="da491-167">**DataSetName:** SampleData</span><span class="sxs-lookup"><span data-stu-id="da491-167">**DataSetName:** SampleData</span></span>  
+-   <span data-ttu-id="38525-167">**DataSetName:** SampleData</span><span class="sxs-lookup"><span data-stu-id="38525-167">**DataSetName:** SampleData</span></span>  
   
--   <span data-ttu-id="da491-168">**CreationDate:** 10/1/2013</span><span class="sxs-lookup"><span data-stu-id="da491-168">**CreationDate:** 10/1/2013</span></span>  
+-   <span data-ttu-id="38525-168">**CreationDate:** 10/1/2013</span><span class="sxs-lookup"><span data-stu-id="38525-168">**CreationDate:** 10/1/2013</span></span>  
   
-<span data-ttu-id="da491-169">若要針對匯入檔案設定中繼資料，請建立具有下列內容的文字檔 (`c:\WAImportExport\SampleMetadata.txt`)：</span><span class="sxs-lookup"><span data-stu-id="da491-169">To set metadata for the imported files, create a text file, `c:\WAImportExport\SampleMetadata.txt`, with the following content:</span></span>  
+<span data-ttu-id="38525-169">tooset hello 匯入檔案的中繼資料建立文字檔， `c:\WAImportExport\SampleMetadata.txt`，以下列內容的 hello:</span><span class="sxs-lookup"><span data-stu-id="38525-169">tooset metadata for hello imported files, create a text file, `c:\WAImportExport\SampleMetadata.txt`, with hello following content:</span></span>  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -89,15 +89,15 @@ ms.lasthandoff: 07/11/2017
 </Metadata>  
 ```
   
-<span data-ttu-id="da491-170">您也可以設定 `FavoriteMovie.ISO` Blob 的部分屬性：</span><span class="sxs-lookup"><span data-stu-id="da491-170">You can also set some properties for the `FavoriteMovie.ISO` blob:</span></span>  
+<span data-ttu-id="38525-170">您也可以設定某些屬性 hello `FavoriteMovie.ISO` blob:</span><span class="sxs-lookup"><span data-stu-id="38525-170">You can also set some properties for hello `FavoriteMovie.ISO` blob:</span></span>  
   
--   <span data-ttu-id="da491-171">**Content-Type:** application/octet-stream</span><span class="sxs-lookup"><span data-stu-id="da491-171">**Content-Type:** application/octet-stream</span></span>  
+-   <span data-ttu-id="38525-171">**Content-Type:** application/octet-stream</span><span class="sxs-lookup"><span data-stu-id="38525-171">**Content-Type:** application/octet-stream</span></span>  
   
--   <span data-ttu-id="da491-172">**Content-MD5:** Q2hlY2sgSW50ZWdyaXR5IQ==</span><span class="sxs-lookup"><span data-stu-id="da491-172">**Content-MD5:** Q2hlY2sgSW50ZWdyaXR5IQ==</span></span>  
+-   <span data-ttu-id="38525-172">**Content-MD5:** Q2hlY2sgSW50ZWdyaXR5IQ==</span><span class="sxs-lookup"><span data-stu-id="38525-172">**Content-MD5:** Q2hlY2sgSW50ZWdyaXR5IQ==</span></span>  
   
--   <span data-ttu-id="da491-173">**Cache-Control:** no-cache</span><span class="sxs-lookup"><span data-stu-id="da491-173">**Cache-Control:** no-cache</span></span>  
+-   <span data-ttu-id="38525-173">**Cache-Control:** no-cache</span><span class="sxs-lookup"><span data-stu-id="38525-173">**Cache-Control:** no-cache</span></span>  
   
-<span data-ttu-id="da491-174">若要設定這些屬性，請建立文字檔 (`c:\WAImportExport\SampleProperties.txt`)：</span><span class="sxs-lookup"><span data-stu-id="da491-174">To set these properties, create a text file, `c:\WAImportExport\SampleProperties.txt`:</span></span>  
+<span data-ttu-id="38525-174">tooset 這些內容，請建立文字檔， `c:\WAImportExport\SampleProperties.txt`:</span><span class="sxs-lookup"><span data-stu-id="38525-174">tooset these properties, create a text file, `c:\WAImportExport\SampleProperties.txt`:</span></span>  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -108,70 +108,70 @@ ms.lasthandoff: 07/11/2017
 </Properties>  
 ```
   
-<span data-ttu-id="da491-175">現在您已準備好執行 Azure 匯入/匯出工具以準備兩個硬碟。</span><span class="sxs-lookup"><span data-stu-id="da491-175">Now you are ready to run the Azure Import/Export Tool to prepare the two hard drives.</span></span> <span data-ttu-id="da491-176">請注意：</span><span class="sxs-lookup"><span data-stu-id="da491-176">Note that:</span></span>  
+<span data-ttu-id="38525-175">現在您已準備好 toorun hello Azure 匯入/匯出工具 tooprepare hello 兩個硬碟。</span><span class="sxs-lookup"><span data-stu-id="38525-175">Now you are ready toorun hello Azure Import/Export Tool tooprepare hello two hard drives.</span></span> <span data-ttu-id="38525-176">請注意：</span><span class="sxs-lookup"><span data-stu-id="38525-176">Note that:</span></span>  
   
--   <span data-ttu-id="da491-177">第一個硬碟會裝載為硬碟 X。</span><span class="sxs-lookup"><span data-stu-id="da491-177">The first drive is mounted as drive X.</span></span>  
+-   <span data-ttu-id="38525-177">hello 第一個磁碟機裝載為磁碟機 X。</span><span class="sxs-lookup"><span data-stu-id="38525-177">hello first drive is mounted as drive X.</span></span>  
   
--   <span data-ttu-id="da491-178">第二個硬碟會裝載為硬碟 Y。</span><span class="sxs-lookup"><span data-stu-id="da491-178">The second drive is mounted as drive Y.</span></span>  
+-   <span data-ttu-id="38525-178">hello 第二個磁碟機裝載為磁碟機 Y。</span><span class="sxs-lookup"><span data-stu-id="38525-178">hello second drive is mounted as drive Y.</span></span>  
   
--   <span data-ttu-id="da491-179">儲存體帳戶 `mystorageaccount` 的金鑰是 `8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg==`。</span><span class="sxs-lookup"><span data-stu-id="da491-179">The key for the storage account `mystorageaccount` is `8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg==`.</span></span>  
+-   <span data-ttu-id="38525-179">hello 儲存體帳戶的 hello 金鑰`mystorageaccount`是`8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg==`。</span><span class="sxs-lookup"><span data-stu-id="38525-179">hello key for hello storage account `mystorageaccount` is `8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg==`.</span></span>  
 
-## <a name="preparing-disk-for-import-when-data-is-pre-loaded"></a><span data-ttu-id="da491-180">在資料已預先載入時針對匯入準備磁碟</span><span class="sxs-lookup"><span data-stu-id="da491-180">Preparing disk for import when data is pre-loaded</span></span>
+## <a name="preparing-disk-for-import-when-data-is-pre-loaded"></a><span data-ttu-id="38525-180">在資料已預先載入時針對匯入準備磁碟</span><span class="sxs-lookup"><span data-stu-id="38525-180">Preparing disk for import when data is pre-loaded</span></span>
  
- <span data-ttu-id="da491-181">如果要匯入的資料已經存在於磁碟上，請使用 /skipwrite 旗標。</span><span class="sxs-lookup"><span data-stu-id="da491-181">If the data to be imported is already present on the disk, use the flag /skipwrite.</span></span> <span data-ttu-id="da491-182">/t 和 /srcdir 的值都應該指向正在針對匯入進行準備的磁碟。</span><span class="sxs-lookup"><span data-stu-id="da491-182">Value of /t and /srcdir both should point to the disk being prepared for import.</span></span> <span data-ttu-id="da491-183">如果磁碟上有部分資料不需要移至相同的目的地虛擬目錄或儲存體帳戶的根，請針對每個目錄獨立執行相同的命令，使 /id 的值在每次執行時都相同。</span><span class="sxs-lookup"><span data-stu-id="da491-183">If not all the data on the disk needs to go to the same destination virtual directory or root of the storage account, run the same command for each directory separately keeping the value of /id same across all runs.</span></span>
+ <span data-ttu-id="38525-181">如果 hello 資料 toobe 匯入已存在於 hello 磁碟上，使用 hello 旗標 /skipwrite。</span><span class="sxs-lookup"><span data-stu-id="38525-181">If hello data toobe imported is already present on hello disk, use hello flag /skipwrite.</span></span> <span data-ttu-id="38525-182">/T 和 /srcdir 的值應該指向 toohello 磁碟在準備用來匯入。</span><span class="sxs-lookup"><span data-stu-id="38525-182">Value of /t and /srcdir both should point toohello disk being prepared for import.</span></span> <span data-ttu-id="38525-183">如果不是所有 hello 資料上 hello 磁碟需要 toogo toohello 相同的目的地虛擬目錄或 hello 儲存體帳戶，執行 hello 相同命令分別將 /id hello 值保持在每個目錄的根目錄跨所有執行相同。</span><span class="sxs-lookup"><span data-stu-id="38525-183">If not all hello data on hello disk needs toogo toohello same destination virtual directory or root of hello storage account, run hello same command for each directory separately keeping hello value of /id same across all runs.</span></span>
 
 >[!NOTE] 
-><span data-ttu-id="da491-184">請不要指定 /format，因為這將會清除磁碟上所有的資料。</span><span class="sxs-lookup"><span data-stu-id="da491-184">Do not specify /format as it will wipe the data on the disk.</span></span> <span data-ttu-id="da491-185">根據磁碟是否已經加密，您可以指定 /encrypt 或 /bk。</span><span class="sxs-lookup"><span data-stu-id="da491-185">You can specify /encrypt or /bk depending on whether the disk is already encrypted or not.</span></span> 
+><span data-ttu-id="38525-184">請勿指定 /format，因為它將會抹除 hello 資料 hello 磁碟上。</span><span class="sxs-lookup"><span data-stu-id="38525-184">Do not specify /format as it will wipe hello data on hello disk.</span></span> <span data-ttu-id="38525-185">您可以指定 / 加密或 /bk 根據是否 hello 磁碟已加密。</span><span class="sxs-lookup"><span data-stu-id="38525-185">You can specify /encrypt or /bk depending on whether hello disk is already encrypted or not.</span></span> 
 >
 
 ```
-    When data is already present on the disk for each drive run the following command.
+    When data is already present on hello disk for each drive run hello following command.
     WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:Video1 /logdir:c:\logs /sk:8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg== /t:x /format /encrypt /srcdir:x:\Video1 /dstdir:video/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt /skipwrite
 ```
 
-## <a name="copy-sessions---first-drive"></a><span data-ttu-id="da491-186">複製工作階段 - 第一個硬碟</span><span class="sxs-lookup"><span data-stu-id="da491-186">Copy sessions - first drive</span></span>
+## <a name="copy-sessions---first-drive"></a><span data-ttu-id="38525-186">複製工作階段 - 第一個硬碟</span><span class="sxs-lookup"><span data-stu-id="38525-186">Copy sessions - first drive</span></span>
 
-<span data-ttu-id="da491-187">針對第一個硬碟，執行 Azure 匯入/匯出工具兩次以複製兩個來源目錄：</span><span class="sxs-lookup"><span data-stu-id="da491-187">For the first drive, run the Azure Import/Export Tool twice to copy the two source directories:</span></span>  
+<span data-ttu-id="38525-187">Hello 第一個磁碟機會執行 hello Azure 匯入/匯出工具兩次 toocopy hello 兩個來源目錄：</span><span class="sxs-lookup"><span data-stu-id="38525-187">For hello first drive, run hello Azure Import/Export Tool twice toocopy hello two source directories:</span></span>  
 
-<span data-ttu-id="da491-188">**第一個複製工作階段**</span><span class="sxs-lookup"><span data-stu-id="da491-188">**First copy session**</span></span>
+<span data-ttu-id="38525-188">**第一個複製工作階段**</span><span class="sxs-lookup"><span data-stu-id="38525-188">**First copy session**</span></span>
   
 ```
 WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:Video1 /logdir:c:\logs /sk:8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg== /t:x /format /encrypt /srcdir:H:\Video1 /dstdir:video/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt  
 ```
 
-<span data-ttu-id="da491-189">**第二個複製工作階段**</span><span class="sxs-lookup"><span data-stu-id="da491-189">**Second copy session**</span></span>
+<span data-ttu-id="38525-189">**第二個複製工作階段**</span><span class="sxs-lookup"><span data-stu-id="38525-189">**Second copy session**</span></span>
 
 ```  
 WAImportExport.exe PrepImport /j:FirstDrive.jrn /id:Photo /srcdir:H:\Photo /dstdir:photo/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt
 ```
 
-## <a name="copy-sessions---second-drive"></a><span data-ttu-id="da491-190">複製工作階段 - 第二個硬碟</span><span class="sxs-lookup"><span data-stu-id="da491-190">Copy sessions - second drive</span></span>
+## <a name="copy-sessions---second-drive"></a><span data-ttu-id="38525-190">複製工作階段 - 第二個硬碟</span><span class="sxs-lookup"><span data-stu-id="38525-190">Copy sessions - second drive</span></span>
  
-<span data-ttu-id="da491-191">針對第二個硬碟，執行 Azure 匯入/匯出工具三次 (針對兩個來源目錄各一次，針對獨立藍光 (Blu-Ray™) 映像檔一次)：</span><span class="sxs-lookup"><span data-stu-id="da491-191">For the second drive, run the Azure Import/Export Tool three times, once each for the source directories, and once for the standalone Blu-Ray™ image file):</span></span>  
+<span data-ttu-id="38525-191">Hello 第二個磁碟機，執行 hello Azure 匯入/匯出工具三次之後每個 hello 來源目錄，並一次針對 hello 獨立 Blu-Ray™ 影像檔,):</span><span class="sxs-lookup"><span data-stu-id="38525-191">For hello second drive, run hello Azure Import/Export Tool three times, once each for hello source directories, and once for hello standalone Blu-Ray™ image file):</span></span>  
   
-<span data-ttu-id="da491-192">**第一個複製工作階段**</span><span class="sxs-lookup"><span data-stu-id="da491-192">**First copy session**</span></span> 
+<span data-ttu-id="38525-192">**第一個複製工作階段**</span><span class="sxs-lookup"><span data-stu-id="38525-192">**First copy session**</span></span> 
 
 ```
 WAImportExport.exe PrepImport /j:SecondDrive.jrn /id:Video2 /logdir:c:\logs /sk:8ImTigJhIwvL9VEIQKB/zbqcXbxrIHbBjLIfOt0tyR98TxtFvUM/7T0KVNR6KRkJrh26u5I8hTxTLM2O1aDVqg== /t:y /format /encrypt /srcdir:H:\Video2 /dstdir:video/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt  
 ```
   
-<span data-ttu-id="da491-193">**第二個複製工作階段**</span><span class="sxs-lookup"><span data-stu-id="da491-193">**Second copy session**</span></span>
+<span data-ttu-id="38525-193">**第二個複製工作階段**</span><span class="sxs-lookup"><span data-stu-id="38525-193">**Second copy session**</span></span>
 
 ```
 WAImportExport.exe PrepImport /j:SecondDrive.jrn /id:Music /srcdir:\\bigshare\john\music /dstdir:music/ /MetadataFile:c:\WAImportExport\SampleMetadata.txt  
 ```  
   
-<span data-ttu-id="da491-194">**第三個複製工作階段**</span><span class="sxs-lookup"><span data-stu-id="da491-194">**Third copy session**</span></span>  
+<span data-ttu-id="38525-194">**第三個複製工作階段**</span><span class="sxs-lookup"><span data-stu-id="38525-194">**Third copy session**</span></span>  
 
 ```
 WAImportExport.exe PrepImport /j:SecondDrive.jrn /id:BlueRayIso /srcfile:K:\Temp\BlueRay.ISO /dstblob:favorite/BlueRay.ISO /MetadataFile:c:\WAImportExport\SampleMetadata.txt /PropertyFile:c:\WAImportExport\SampleProperties.txt  
 ```
 
-## <a name="copy-session-completion"></a><span data-ttu-id="da491-195">複製工作階段完成</span><span class="sxs-lookup"><span data-stu-id="da491-195">Copy session completion</span></span>
+## <a name="copy-session-completion"></a><span data-ttu-id="38525-195">複製工作階段完成</span><span class="sxs-lookup"><span data-stu-id="38525-195">Copy session completion</span></span>
 
-<span data-ttu-id="da491-196">當複製工作階段完成後，您可以將兩個磁碟和複製電腦中斷連線，並將它們寄送到適當的 Microsoft Azure 資料中心。</span><span class="sxs-lookup"><span data-stu-id="da491-196">Once the copy sessions have completed, you can disconnect the two drives from the copy computer and ship them to the appropriate Windows Azure data center.</span></span> <span data-ttu-id="da491-197">當您在 [Microsoft Azure 管理入口網站](https://manage.windowsazure.com/)建立匯入作業時，您將會上傳兩個日誌檔案 (`FirstDrive.jrn` 和 `SecondDrive.jrn`)。</span><span class="sxs-lookup"><span data-stu-id="da491-197">You'll upload the two journal files, `FirstDrive.jrn` and `SecondDrive.jrn`, when you create the import job in the [Windows Azure Management Portal](https://manage.windowsazure.com/).</span></span>  
+<span data-ttu-id="38525-196">Hello 複製工作階段完成之後，您可以從 hello 複製電腦中斷連線 hello 兩部磁碟機，並將它們寄送 toohello 適當的 Windows Azure 資料中心。</span><span class="sxs-lookup"><span data-stu-id="38525-196">Once hello copy sessions have completed, you can disconnect hello two drives from hello copy computer and ship them toohello appropriate Windows Azure data center.</span></span> <span data-ttu-id="38525-197">您要上傳 hello 兩個日誌檔，`FirstDrive.jrn`和`SecondDrive.jrn`，當您建立可在 hello hello 匯入作業[Windows Azure 管理入口網站](https://manage.windowsazure.com/)。</span><span class="sxs-lookup"><span data-stu-id="38525-197">You'll upload hello two journal files, `FirstDrive.jrn` and `SecondDrive.jrn`, when you create hello import job in hello [Windows Azure Management Portal](https://manage.windowsazure.com/).</span></span>  
   
-## <a name="next-steps"></a><span data-ttu-id="da491-198">後續步驟</span><span class="sxs-lookup"><span data-stu-id="da491-198">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="38525-198">後續步驟</span><span class="sxs-lookup"><span data-stu-id="38525-198">Next steps</span></span>
 
-* [<span data-ttu-id="da491-199">針對匯入作業準備硬碟</span><span class="sxs-lookup"><span data-stu-id="da491-199">Preparing hard drives for an import job</span></span>](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
-* [<span data-ttu-id="da491-200">常用命令快速參考</span><span class="sxs-lookup"><span data-stu-id="da491-200">Quick reference for frequently used commands</span></span>](storage-import-export-tool-quick-reference-v1.md) 
+* [<span data-ttu-id="38525-199">針對匯入作業準備硬碟</span><span class="sxs-lookup"><span data-stu-id="38525-199">Preparing hard drives for an import job</span></span>](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
+* [<span data-ttu-id="38525-200">常用命令快速參考</span><span class="sxs-lookup"><span data-stu-id="38525-200">Quick reference for frequently used commands</span></span>](storage-import-export-tool-quick-reference-v1.md) 

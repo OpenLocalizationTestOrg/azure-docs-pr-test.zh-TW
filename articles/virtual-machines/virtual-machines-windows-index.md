@@ -1,6 +1,6 @@
 ---
-title: "傳統 Windows VM 的技術文章 | Microsoft Azure"
-description: "傳統部署模型中 Windows 虛擬機器的 Microsoft Azure 說明文件文章完整清單"
+title: "適用於傳統 Windows Vm aaaTechnical 文章 |Microsoft Azure"
+description: "Microsoft Azure 文件集的發行項 hello 傳統部署模型中的 Windows 虛擬機器的完整清單"
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,22 +15,22 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 02/13/2017
 ms.author: danlep
-ms.openlocfilehash: 2df7ea6a143ad0d64e4fd75223c7e5a9a2a5e87e
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 262e0d9397e4a20bf25dd4516629a0539a059829
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="technical-articles-for-windows-vms-in-the-classic-deployment-model"></a>傳統部署模型中的 Windows VM 的技術文章
-尋找在傳統部署模型中建立和管理以 Windows 為基礎的 Azure 虛擬機器所需的所有說明文件。
+# <a name="technical-articles-for-windows-vms-in-hello-classic-deployment-model"></a>適用於 Windows Vm 技術文件以 hello 傳統部署模型
+找到您需要 toocreate 和管理 windows Azure 的虛擬機器 hello 傳統部署模型中所有的 hello 文件。
 
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。 本文件涵蓋使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。
 
 ## <a name="overview"></a>概觀
 [關於虛擬機器](windows/overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[關於以傳統部署模型建立之 Azure 虛擬機器的常見問題集](windows/classic/faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[常見問題集的問題有關 Azure 虛擬機器建立 hello 傳統部署模型](windows/classic/faq.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 [比較 VM、網站及雲端服務](../app-service-web/choose-web-site-cloud-service-vm.md)
 
@@ -46,9 +46,9 @@ ms.lasthandoff: 08/03/2017
 ## <a name="get-started"></a>開始使用
 [Windows VM 的學習路徑](https://azure.microsoft.com/documentation/learning-paths/virtual-machines/)
 
-[在 Azure 傳統入口網站中建立 Windows 虛擬機器](windows/classic/tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[在 hello Azure 傳統入口網站中建立 Windows 虛擬機器](windows/classic/tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[如何登入執行 Windows Server 的傳統虛擬機器](windows/classic/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[如何 toolog tooa 執行 Windows Server 傳統虛擬機器上](windows/classic/connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="plan"></a>規劃
 [關於傳統虛擬機器的映像](windows/classic/about-images.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
@@ -66,7 +66,7 @@ ms.lasthandoff: 08/03/2017
 ## <a name="deploy"></a>部署
 [建立一個執行 Windows 的自訂虛擬機器](windows/classic/createportal.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[擷取以傳統部署模型建立的 Windows 虛擬機器](windows/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[擷取在 hello 傳統部署模型中建立 Windows 虛擬機器](windows/classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 [使用 PowerShell 建立並上傳傳統 Windows Server VHD](windows/classic/createupload-vhd.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
@@ -79,42 +79,42 @@ ms.lasthandoff: 08/03/2017
 ## <a name="manage"></a>管理
 [使用 Azure PowerShell 管理您的虛擬機器](windows/classic/manage-psh.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[將傳統 VNET 連接至新的 VNET](../vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md)
+[連接傳統 Vnet toonew Vnet](../vpn-gateway/vpn-gateway-connect-different-deployment-models-powershell.md)
 
-[有關虛擬機器代理程式和擴充功能](windows/classic/agents-and-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[有關 hello 虛擬機器代理程式和延伸模組](windows/classic/agents-and-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 [管理虛擬機器擴充功能](windows/classic/manage-extensions.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 [傳統 Windows 虛擬機器的自訂指令碼擴充功能](windows/classic/extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[平台支援的從傳統移轉至 Azure Resource Manager](windows/migration-classic-resource-manager-deep-dive.md)
+[從傳統 tooAzure 資源管理員的平台支援移轉](windows/migration-classic-resource-manager-deep-dive.md)
 
 ## <a name="configure"></a>設定
-[如何重設 Windows VM 的密碼或遠端桌面服務](windows/reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[如何 tooreset 密碼或 hello 遠端桌面服務的 Windows VM](windows/reset-rdp.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [有關虛擬機器擴充功能和功能](windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[如何在 Windows VM 上安裝和設定 Symantec Endpoint Protection](windows/classic/install-symantec.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[如何 tooinstall 及 Windows VM 上設定 Symantec Endpoint Protection](windows/classic/install-symantec.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[如何在 Windows VM 上安裝和設定 Trend Micro Deep Security as a Service](windows/classic/install-trend.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[如何 tooinstall 和設定 Trend Micro Deep Security 作為 Windows VM 上的服務](windows/classic/install-trend.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[如何以傳統部署模型設定虛擬機器的可用性設定組](windows/classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[如何 tooconfigure 可用性設定組 hello 傳統部署模型中的虛擬機器](windows/classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[如何在傳統的 Azure 虛擬機器上設定端點](windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[如何 tooset 個傳統的 Azure 虛擬機器上的端點](windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="storage"></a>儲存體
 [有關 Azure 虛擬機器的磁碟和 VHD](../storage/storage-about-disks-and-vhds-windows.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[如何將資料磁碟連接至傳統 Windows 虛擬機器](windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[如何 tooattach 資料磁碟 tooa 傳統的 Windows 虛擬機器](windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[如何從傳統 Windows 虛擬機器卸離資料磁碟](windows/classic/detach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[Toodetach 資料從傳統的 Windows 虛擬機器的磁碟](windows/classic/detach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[使用 D 磁碟機做為 Windows VM 上的資料磁碟機](windows/change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[Hello D 磁碟機做為 Windows VM 上的資料磁碟機](windows/change-drive-letter.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="networking"></a>網路
 [虛擬網路概觀](../virtual-network/virtual-networks-overview.md)
 
-[連接藉由虛擬網路或雲端服務，以傳統部署模型建立的虛擬機器](windows/classic/connect-vms.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[使用與虛擬網路或雲端服務的 hello 傳統部署模型建立的虛擬機器連線](windows/classic/connect-vms.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 [使用 Azure PowerShell 管理 NSG](../virtual-network/virtual-networks-create-nsg-classic-ps.md)
 
@@ -125,7 +125,7 @@ ms.lasthandoff: 08/03/2017
 
 [使用 Visual Studio 建立 Web 應用程式的虛擬機器](windows/classic/web-app-visual-studio.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
-[如何在虛擬機器上以 Java 執行大量運算工作](windows/classic/java-run-compute-intensive-task.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+[在 Java 中 toorun 大量計算工作虛擬機器上如何](windows/classic/java-run-compute-intensive-task.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 [Windows Server VM 上的 Django Hello World Web 應用程式](windows/classic/python-django-web-app.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
@@ -154,9 +154,9 @@ ms.lasthandoff: 08/03/2017
 [Azure 服務管理 PowerShell Cmdlet 參考文件](/powershell/azure/overview?view=azuresmps-3.7.0)
 
 ## <a name="troubleshooting"></a>疑難排解
-[疑難排解執行 Windows 之 Azure 虛擬機器的遠端桌面連線](windows/troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[疑難排解遠端桌面連線 tooan Azure 虛擬機器執行 Windows](windows/troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[疑難排解在 Azure 虛擬機器上執行的應用程式存取](windows/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[疑難排解存取 tooan 執行 Azure 虛擬機器上的應用程式](windows/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 [在 Azure 中建立、重新啟動或調整 VM 大小時，對配置失敗進行疑難排解](windows/allocation-failure.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 

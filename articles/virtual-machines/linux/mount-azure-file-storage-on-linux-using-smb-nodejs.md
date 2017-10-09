@@ -1,6 +1,6 @@
 ---
-title: "透過 Azure CLI 1.0 使用 SMB 在 Linux VM 上掛接 Azure 檔案儲存體 | Microsoft Docs"
-description: "如何使用 SMB 在 Linux VM 上掛接 Azure 檔案儲存體"
+title: "aaaMount Linux Vm 上使用 SMB 與 Azure CLI 1.0 的 Azure 檔案儲存體 |Microsoft 文件"
+description: "如何 toomount Linux Vm 上使用 SMB 的 Azure 檔案儲存體"
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
 author: vlivech
@@ -14,69 +14,69 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 12/07/2016
 ms.author: v-livech
-ms.openlocfilehash: 4951860630f0aad107d0846d52ebe4423ee0b91c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 14a4224228cadb0ae2f05e8e5c8022ee84f138a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="mount-azure-file-storage-on-linux-vms-by-using-smb-with-azure-cli-10"></a><span data-ttu-id="eb029-103">透過 Azure CLI 1.0 使用 SMB 在 Linux VM 上掛接 Azure 檔案儲存體</span><span class="sxs-lookup"><span data-stu-id="eb029-103">Mount Azure File storage on Linux VMs by using SMB with Azure CLI 1.0</span></span>
+# <a name="mount-azure-file-storage-on-linux-vms-by-using-smb-with-azure-cli-10"></a><span data-ttu-id="597bf-103">透過 Azure CLI 1.0 使用 SMB 在 Linux VM 上掛接 Azure 檔案儲存體</span><span class="sxs-lookup"><span data-stu-id="597bf-103">Mount Azure File storage on Linux VMs by using SMB with Azure CLI 1.0</span></span>
 
-<span data-ttu-id="eb029-104">本文說明如何使用伺服器訊息區 (SMB) 通訊協定在 Linux VM 上掛接 Azure 檔案儲存體。</span><span class="sxs-lookup"><span data-stu-id="eb029-104">This article shows how to mount Azure File storage on a Linux VM by using the Server Message Block (SMB) protocol.</span></span> <span data-ttu-id="eb029-105">檔案儲存體可透過標準的 SMB 通訊協定在雲端中提供檔案共用。</span><span class="sxs-lookup"><span data-stu-id="eb029-105">File storage offers file shares in the cloud via the standard SMB protocol.</span></span> <span data-ttu-id="eb029-106">這些需求包括：</span><span class="sxs-lookup"><span data-stu-id="eb029-106">The requirements are:</span></span>
+<span data-ttu-id="597bf-104">本文示範如何使用 Linux VM 上的 Azure 檔案儲存體 toomount hello 伺服器訊息區塊 (SMB) 通訊協定。</span><span class="sxs-lookup"><span data-stu-id="597bf-104">This article shows how toomount Azure File storage on a Linux VM by using hello Server Message Block (SMB) protocol.</span></span> <span data-ttu-id="597bf-105">檔案存放裝置提供透過 hello 標準 SMB 通訊協定的 hello 雲端中的檔案共用。</span><span class="sxs-lookup"><span data-stu-id="597bf-105">File storage offers file shares in hello cloud via hello standard SMB protocol.</span></span> <span data-ttu-id="597bf-106">hello 需求如下：</span><span class="sxs-lookup"><span data-stu-id="597bf-106">hello requirements are:</span></span>
 
-* <span data-ttu-id="eb029-107">[Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)</span><span class="sxs-lookup"><span data-stu-id="eb029-107">An [Azure account](https://azure.microsoft.com/pricing/free-trial/)</span></span>
-* [<span data-ttu-id="eb029-108">安全殼層 (SSH) 公開金鑰和私密金鑰檔案</span><span class="sxs-lookup"><span data-stu-id="eb029-108">Secure Shell (SSH) public and private key files</span></span>](mac-create-ssh-keys.md)
+* <span data-ttu-id="597bf-107">[Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)</span><span class="sxs-lookup"><span data-stu-id="597bf-107">An [Azure account](https://azure.microsoft.com/pricing/free-trial/)</span></span>
+* [<span data-ttu-id="597bf-108">安全殼層 (SSH) 公開金鑰和私密金鑰檔案</span><span class="sxs-lookup"><span data-stu-id="597bf-108">Secure Shell (SSH) public and private key files</span></span>](mac-create-ssh-keys.md)
 
-## <a name="cli-versions-to-use"></a><span data-ttu-id="eb029-109">要使用的 CLI 版本</span><span class="sxs-lookup"><span data-stu-id="eb029-109">CLI versions to use</span></span>
-<span data-ttu-id="eb029-110">您可以使用下列其中一個命令列介面 (CLI) 版本來完成工作︰</span><span class="sxs-lookup"><span data-stu-id="eb029-110">You can complete the task by using one of the following command-line interface (CLI) versions:</span></span>
+## <a name="cli-versions-toouse"></a><span data-ttu-id="597bf-109">CLI 版本 toouse</span><span class="sxs-lookup"><span data-stu-id="597bf-109">CLI versions toouse</span></span>
+<span data-ttu-id="597bf-110">您可以使用下列命令列介面 (CLI) 版本的 hello 其中完成 hello 工作：</span><span class="sxs-lookup"><span data-stu-id="597bf-110">You can complete hello task by using one of hello following command-line interface (CLI) versions:</span></span>
 
-- <span data-ttu-id="eb029-111">[Azure CLI 1.0](#quick-commands) – 適用於傳統和資源管理部署模型的 CLI (本文章)</span><span class="sxs-lookup"><span data-stu-id="eb029-111">[Azure CLI 1.0](#quick-commands) – our CLI for the classic and resource management deployment models (this article)</span></span>
-- <span data-ttu-id="eb029-112">[Azure CLI 2.0](mount-azure-file-storage-on-linux-using-smb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI</span><span class="sxs-lookup"><span data-stu-id="eb029-112">[Azure CLI 2.0](mount-azure-file-storage-on-linux-using-smb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)- our next generation CLI for the resource management deployment model</span></span>
+- <span data-ttu-id="597bf-111">[Azure CLI 1.0](#quick-commands) – 我們 CLI hello 傳統和資源管理部署模型 （此文件）</span><span class="sxs-lookup"><span data-stu-id="597bf-111">[Azure CLI 1.0](#quick-commands) – our CLI for hello classic and resource management deployment models (this article)</span></span>
+- <span data-ttu-id="597bf-112">[Azure CLI 2.0](mount-azure-file-storage-on-linux-using-smb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)-hello 資源管理部署模型我們下一個層代 CLI</span><span class="sxs-lookup"><span data-stu-id="597bf-112">[Azure CLI 2.0](mount-azure-file-storage-on-linux-using-smb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)- our next generation CLI for hello resource management deployment model</span></span>
 
 
-## <a name="quick-commands"></a><span data-ttu-id="eb029-113">快速命令</span><span class="sxs-lookup"><span data-stu-id="eb029-113">Quick commands</span></span>
-<span data-ttu-id="eb029-114">若要快速完成工作，請遵循本節中的步驟。</span><span class="sxs-lookup"><span data-stu-id="eb029-114">To accomplish the task quickly, follow the steps in this section.</span></span> <span data-ttu-id="eb029-115">如需詳細資訊和內容，請從＜[詳細的逐步解說](mount-azure-file-storage-on-linux-using-smb.md#detailed-walkthrough)＞一節來開始。</span><span class="sxs-lookup"><span data-stu-id="eb029-115">For more detailed information and context, begin at the ["Detailed walkthrough"](mount-azure-file-storage-on-linux-using-smb.md#detailed-walkthrough) section.</span></span>
+## <a name="quick-commands"></a><span data-ttu-id="597bf-113">快速命令</span><span class="sxs-lookup"><span data-stu-id="597bf-113">Quick commands</span></span>
+<span data-ttu-id="597bf-114">tooaccomplish hello 工作快速，請遵循本節中的 hello 步驟。</span><span class="sxs-lookup"><span data-stu-id="597bf-114">tooaccomplish hello task quickly, follow hello steps in this section.</span></span> <span data-ttu-id="597bf-115">如需詳細資訊和內容，開始 hello [< 詳細逐步解說 >](mount-azure-file-storage-on-linux-using-smb.md#detailed-walkthrough) > 一節。</span><span class="sxs-lookup"><span data-stu-id="597bf-115">For more detailed information and context, begin at hello ["Detailed walkthrough"](mount-azure-file-storage-on-linux-using-smb.md#detailed-walkthrough) section.</span></span>
 
-### <a name="prerequisites"></a><span data-ttu-id="eb029-116">必要條件</span><span class="sxs-lookup"><span data-stu-id="eb029-116">Prerequisites</span></span>
-* <span data-ttu-id="eb029-117">資源群組</span><span class="sxs-lookup"><span data-stu-id="eb029-117">A resource group</span></span>
-* <span data-ttu-id="eb029-118">Azure 虛擬網路</span><span class="sxs-lookup"><span data-stu-id="eb029-118">An Azure virtual network</span></span>
-* <span data-ttu-id="eb029-119">具有 SSH 輸入的網路安全性群組</span><span class="sxs-lookup"><span data-stu-id="eb029-119">A network security group with an SSH inbound</span></span>
-* <span data-ttu-id="eb029-120">子網路</span><span class="sxs-lookup"><span data-stu-id="eb029-120">A subnet</span></span>
-* <span data-ttu-id="eb029-121">Azure 儲存體帳戶</span><span class="sxs-lookup"><span data-stu-id="eb029-121">An Azure storage account</span></span>
-* <span data-ttu-id="eb029-122">Azure 儲存體帳戶金鑰</span><span class="sxs-lookup"><span data-stu-id="eb029-122">Azure storage account keys</span></span>
-* <span data-ttu-id="eb029-123">Azure 檔案儲存體共用</span><span class="sxs-lookup"><span data-stu-id="eb029-123">An Azure File storage share</span></span>
-* <span data-ttu-id="eb029-124">Linux VM</span><span class="sxs-lookup"><span data-stu-id="eb029-124">A Linux VM</span></span>
+### <a name="prerequisites"></a><span data-ttu-id="597bf-116">必要條件</span><span class="sxs-lookup"><span data-stu-id="597bf-116">Prerequisites</span></span>
+* <span data-ttu-id="597bf-117">資源群組</span><span class="sxs-lookup"><span data-stu-id="597bf-117">A resource group</span></span>
+* <span data-ttu-id="597bf-118">Azure 虛擬網路</span><span class="sxs-lookup"><span data-stu-id="597bf-118">An Azure virtual network</span></span>
+* <span data-ttu-id="597bf-119">具有 SSH 輸入的網路安全性群組</span><span class="sxs-lookup"><span data-stu-id="597bf-119">A network security group with an SSH inbound</span></span>
+* <span data-ttu-id="597bf-120">子網路</span><span class="sxs-lookup"><span data-stu-id="597bf-120">A subnet</span></span>
+* <span data-ttu-id="597bf-121">Azure 儲存體帳戶</span><span class="sxs-lookup"><span data-stu-id="597bf-121">An Azure storage account</span></span>
+* <span data-ttu-id="597bf-122">Azure 儲存體帳戶金鑰</span><span class="sxs-lookup"><span data-stu-id="597bf-122">Azure storage account keys</span></span>
+* <span data-ttu-id="597bf-123">Azure 檔案儲存體共用</span><span class="sxs-lookup"><span data-stu-id="597bf-123">An Azure File storage share</span></span>
+* <span data-ttu-id="597bf-124">Linux VM</span><span class="sxs-lookup"><span data-stu-id="597bf-124">A Linux VM</span></span>
 
-<span data-ttu-id="eb029-125">將任何範例換成您自己的設定。</span><span class="sxs-lookup"><span data-stu-id="eb029-125">Replace any examples with your own settings.</span></span>
+<span data-ttu-id="597bf-125">將任何範例換成您自己的設定。</span><span class="sxs-lookup"><span data-stu-id="597bf-125">Replace any examples with your own settings.</span></span>
 
-### <a name="create-a-directory-for-the-local-mount"></a><span data-ttu-id="eb029-126">建立本機掛接的目錄</span><span class="sxs-lookup"><span data-stu-id="eb029-126">Create a directory for the local mount</span></span>
+### <a name="create-a-directory-for-hello-local-mount"></a><span data-ttu-id="597bf-126">建立 hello 本機掛接的目錄</span><span class="sxs-lookup"><span data-stu-id="597bf-126">Create a directory for hello local mount</span></span>
 
 ```bash
 mkdir -p /mnt/mymountpoint
 ```
 
-### <a name="mount-the-file-storage-smb-share-to-the-mount-point"></a><span data-ttu-id="eb029-127">掛接檔案儲存體 SMB 共用至掛接點</span><span class="sxs-lookup"><span data-stu-id="eb029-127">Mount the File storage SMB share to the mount point</span></span>
+### <a name="mount-hello-file-storage-smb-share-toohello-mount-point"></a><span data-ttu-id="597bf-127">掛接 hello 檔案儲存體 SMB 共用 toohello 掛接點</span><span class="sxs-lookup"><span data-stu-id="597bf-127">Mount hello File storage SMB share toohello mount point</span></span>
 
 ```bash
 sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mymountpoint -o vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
 ```
 
-### <a name="persist-the-mount-after-a-reboot"></a><span data-ttu-id="eb029-128">在重新開機之後保留掛接</span><span class="sxs-lookup"><span data-stu-id="eb029-128">Persist the mount after a reboot</span></span>
-<span data-ttu-id="eb029-129">將下面這行新增至 `/etc/fstab`：</span><span class="sxs-lookup"><span data-stu-id="eb029-129">Add the following line to `/etc/fstab`:</span></span>
+### <a name="persist-hello-mount-after-a-reboot"></a><span data-ttu-id="597bf-128">在重新開機後持續 hello 掛接</span><span class="sxs-lookup"><span data-stu-id="597bf-128">Persist hello mount after a reboot</span></span>
+<span data-ttu-id="597bf-129">新增以下太 hello`/etc/fstab`:</span><span class="sxs-lookup"><span data-stu-id="597bf-129">Add hello following line too`/etc/fstab`:</span></span>
 
 ```bash
 //myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
 ```
 
-## <a name="detailed-walkthrough"></a><span data-ttu-id="eb029-130">詳細的逐步解說</span><span class="sxs-lookup"><span data-stu-id="eb029-130">Detailed walkthrough</span></span>
+## <a name="detailed-walkthrough"></a><span data-ttu-id="597bf-130">詳細的逐步解說</span><span class="sxs-lookup"><span data-stu-id="597bf-130">Detailed walkthrough</span></span>
 
-<span data-ttu-id="eb029-131">檔案儲存體可在使用標準 SMB 通訊協定的雲端中提供檔案共用。</span><span class="sxs-lookup"><span data-stu-id="eb029-131">File storage offers file shares in the cloud that use the standard SMB protocol.</span></span> <span data-ttu-id="eb029-132">有了最新版本的檔案儲存體，您也可以從支援 SMB 3.0 的任何作業系統掛接檔案共用。</span><span class="sxs-lookup"><span data-stu-id="eb029-132">With the latest release of File storage, you can also mount a file share from any OS that supports SMB 3.0.</span></span> <span data-ttu-id="eb029-133">在 Linux 上使用 SMB 掛接時，您可以輕鬆地將備份放到有 SLA 支援的強大、永久封存儲存體位置。</span><span class="sxs-lookup"><span data-stu-id="eb029-133">When you use an SMB mount on Linux, you get easy backups to a robust, permanent archiving storage location that is supported by an SLA.</span></span>
+<span data-ttu-id="597bf-131">檔案存放裝置提供 hello 雲端中的檔案共用使用 hello 標準 SMB 通訊協定。</span><span class="sxs-lookup"><span data-stu-id="597bf-131">File storage offers file shares in hello cloud that use hello standard SMB protocol.</span></span> <span data-ttu-id="597bf-132">Hello 最新版本的檔案儲存體中，您也可以從任何作業系統，支援 SMB 3.0 裝載檔案共用。</span><span class="sxs-lookup"><span data-stu-id="597bf-132">With hello latest release of File storage, you can also mount a file share from any OS that supports SMB 3.0.</span></span> <span data-ttu-id="597bf-133">當您使用 SMB 裝載在 Linux 上時，您取得簡單備份 tooa 穩固、 永久封存儲存體位置的 SLA 支援。</span><span class="sxs-lookup"><span data-stu-id="597bf-133">When you use an SMB mount on Linux, you get easy backups tooa robust, permanent archiving storage location that is supported by an SLA.</span></span>
 
-<span data-ttu-id="eb029-134">將檔案從 VM 移至裝載在檔案儲存體上的 SMB 掛接，可方便您對記錄進行偵錯。</span><span class="sxs-lookup"><span data-stu-id="eb029-134">Moving files from a VM to an SMB mount that's hosted on File storage is a great way to debug logs.</span></span> <span data-ttu-id="eb029-135">這是因為相同的 SMB 共用也可掛接至 Mac、Linux 或 Windows 工作站的本機上。</span><span class="sxs-lookup"><span data-stu-id="eb029-135">That's because the same SMB share can be mounted locally to your Mac, Linux, or Windows workstation.</span></span> <span data-ttu-id="eb029-136">SMB 並非即時串流 Linux 或應用程式記錄的最佳解決方案，因為 SMB 通訊協定的建置目的不是要處理如此繁重的記錄職責。</span><span class="sxs-lookup"><span data-stu-id="eb029-136">SMB isn't the best solution for streaming Linux or application logs in real time, because the SMB protocol is not built to handle such heavy logging duties.</span></span> <span data-ttu-id="eb029-137">專用的整合記錄層級工具，像是 Fluentd，是比透過 SMB 收集 Linux 和應用程式記錄輸出更好的選擇。</span><span class="sxs-lookup"><span data-stu-id="eb029-137">A dedicated, unified logging layer tool such as Fluentd would be a better choice than SMB for collecting Linux and application logging output.</span></span>
+<span data-ttu-id="597bf-134">檔案存放裝置上，從裝載 VM tooan SMB 掛接移動檔案是很好的方法 toodebug 記錄。</span><span class="sxs-lookup"><span data-stu-id="597bf-134">Moving files from a VM tooan SMB mount that's hosted on File storage is a great way toodebug logs.</span></span> <span data-ttu-id="597bf-135">這是因為可以在本機裝載相同的 SMB 共用的 hello tooyour Mac、 Linux 或 Windows 的工作站。</span><span class="sxs-lookup"><span data-stu-id="597bf-135">That's because hello same SMB share can be mounted locally tooyour Mac, Linux, or Windows workstation.</span></span> <span data-ttu-id="597bf-136">SMB 不 hello Linux 資料流處理的最佳解決方案，或因為 hello SMB 通訊協定不是應用程式記錄檔即時建置 toohandle 這類大量記錄的責任。</span><span class="sxs-lookup"><span data-stu-id="597bf-136">SMB isn't hello best solution for streaming Linux or application logs in real time, because hello SMB protocol is not built toohandle such heavy logging duties.</span></span> <span data-ttu-id="597bf-137">專用的整合記錄層級工具，像是 Fluentd，是比透過 SMB 收集 Linux 和應用程式記錄輸出更好的選擇。</span><span class="sxs-lookup"><span data-stu-id="597bf-137">A dedicated, unified logging layer tool such as Fluentd would be a better choice than SMB for collecting Linux and application logging output.</span></span>
 
-<span data-ttu-id="eb029-138">對於此詳細逐步解說，我們會建立必要的先決條件，先建立檔案儲存體共用，然後透過 SMB 在 Linux VM 上掛接它。</span><span class="sxs-lookup"><span data-stu-id="eb029-138">For this detailed walkthrough, we create the prerequisites needed to first create the File storage share, and then mount it via SMB on a Linux VM.</span></span>
+<span data-ttu-id="597bf-138">此詳細逐步解說中，我們會建立 hello 必要條件需要 toofirst 建立 hello 檔案存放裝置共用，然後再將它裝載透過 SMB，Linux VM 上。</span><span class="sxs-lookup"><span data-stu-id="597bf-138">For this detailed walkthrough, we create hello prerequisites needed toofirst create hello File storage share, and then mount it via SMB on a Linux VM.</span></span>
 
-1. <span data-ttu-id="eb029-139">使用下列程式碼來建立 Azure 儲存體帳戶︰</span><span class="sxs-lookup"><span data-stu-id="eb029-139">Create an Azure storage account by using the following code:</span></span>
+1. <span data-ttu-id="597bf-139">使用下列程式碼的 hello 建立 Azure 儲存體帳戶：</span><span class="sxs-lookup"><span data-stu-id="597bf-139">Create an Azure storage account by using hello following code:</span></span>
 
     ```azurecli
     azure storage account create myStorageAccount \
@@ -86,17 +86,17 @@ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mymountpoi
     -g myResourceGroup
     ```
 
-2. <span data-ttu-id="eb029-140">顯示儲存體帳戶金鑰。</span><span class="sxs-lookup"><span data-stu-id="eb029-140">Show the storage account keys.</span></span>
+2. <span data-ttu-id="597bf-140">顯示 hello 儲存體帳戶金鑰。</span><span class="sxs-lookup"><span data-stu-id="597bf-140">Show hello storage account keys.</span></span>
 
-    <span data-ttu-id="eb029-141">在建立儲存體帳戶時，帳戶金鑰會成對建立，因此您可以輪替金鑰，而不會干擾到服務。</span><span class="sxs-lookup"><span data-stu-id="eb029-141">When you create a storage account, the account keys are created in pairs so that they can be rotated without any service interruption.</span></span> <span data-ttu-id="eb029-142">當您將金鑰切換為金鑰組中的第二個金鑰時，您會建立新的金鑰組。</span><span class="sxs-lookup"><span data-stu-id="eb029-142">When you switch to the second key in the pair, you create a new key pair.</span></span> <span data-ttu-id="eb029-143">新的儲存體帳戶金鑰一律會成對建立，確保您永遠有至少一個準備切換到的未使用儲存體金鑰。</span><span class="sxs-lookup"><span data-stu-id="eb029-143">New storage account keys are always created in pairs, ensuring that you always have at least one unused storage key ready to switch to.</span></span> <span data-ttu-id="eb029-144">若要顯示儲存體帳戶金鑰，請使用下列程式碼︰</span><span class="sxs-lookup"><span data-stu-id="eb029-144">To show the storage account keys, use the following code:</span></span>
+    <span data-ttu-id="597bf-141">當您建立儲存體帳戶時，會建立 hello 帳戶金鑰組中，讓它們可以旋轉沒有任何服務中斷。</span><span class="sxs-lookup"><span data-stu-id="597bf-141">When you create a storage account, hello account keys are created in pairs so that they can be rotated without any service interruption.</span></span> <span data-ttu-id="597bf-142">當您切換 toohello 第二個金鑰 hello 配對中時，您會建立新的金鑰組。</span><span class="sxs-lookup"><span data-stu-id="597bf-142">When you switch toohello second key in hello pair, you create a new key pair.</span></span> <span data-ttu-id="597bf-143">新的儲存體帳戶金鑰一律會在配對，確保永遠有至少一個未使用的儲存體金鑰準備 tooswitch 來建立。</span><span class="sxs-lookup"><span data-stu-id="597bf-143">New storage account keys are always created in pairs, ensuring that you always have at least one unused storage key ready tooswitch to.</span></span> <span data-ttu-id="597bf-144">tooshow hello 儲存體帳戶金鑰，請使用下列程式碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="597bf-144">tooshow hello storage account keys, use hello following code:</span></span>
 
     ```azurecli
     azure storage account keys list myStorageAccount \
     --resource-group myResourceGroup
     ```
-3. <span data-ttu-id="eb029-145">建立檔案儲存體共用。</span><span class="sxs-lookup"><span data-stu-id="eb029-145">Create the File storage share.</span></span>
+3. <span data-ttu-id="597bf-145">建立 hello 檔案存放裝置共用。</span><span class="sxs-lookup"><span data-stu-id="597bf-145">Create hello File storage share.</span></span>
 
-    <span data-ttu-id="eb029-146">檔案儲存體共用包含 SMB 共用。</span><span class="sxs-lookup"><span data-stu-id="eb029-146">The File storage share contains the SMB share.</span></span> <span data-ttu-id="eb029-147">配額永遠是以 GB 表示。</span><span class="sxs-lookup"><span data-stu-id="eb029-147">The quota is always expressed in gigabytes (GB).</span></span> <span data-ttu-id="eb029-148">若要建立檔案儲存體共用，請使用下列程式碼：</span><span class="sxs-lookup"><span data-stu-id="eb029-148">To create the File storage share, use the following code:</span></span>
+    <span data-ttu-id="597bf-146">hello 檔案存放裝置共用包含 hello SMB 共用。</span><span class="sxs-lookup"><span data-stu-id="597bf-146">hello File storage share contains hello SMB share.</span></span> <span data-ttu-id="597bf-147">hello 配額一律會以表示 (gb)。</span><span class="sxs-lookup"><span data-stu-id="597bf-147">hello quota is always expressed in gigabytes (GB).</span></span> <span data-ttu-id="597bf-148">toocreate hello 的儲存體檔案共用，請使用下列程式碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="597bf-148">toocreate hello File storage share, use hello following code:</span></span>
 
     ```azurecli
     azure storage share create mystorageshare \
@@ -105,30 +105,30 @@ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mymountpoi
     --account-key nPOgPR<--snip-->4Q==
     ```
 
-4. <span data-ttu-id="eb029-149">建立掛接點目錄。</span><span class="sxs-lookup"><span data-stu-id="eb029-149">Create the mount-point directory.</span></span>
+4. <span data-ttu-id="597bf-149">建立 hello 掛接點目錄。</span><span class="sxs-lookup"><span data-stu-id="597bf-149">Create hello mount-point directory.</span></span>
 
-    <span data-ttu-id="eb029-150">您必須在 Linux 檔案系統上建立本機目錄，以供 SMB 共用來掛接。</span><span class="sxs-lookup"><span data-stu-id="eb029-150">You must create a local directory in the Linux file system to mount the SMB share to.</span></span> <span data-ttu-id="eb029-151">任何從本機掛接目錄寫入或讀取的項目會轉送給裝載於檔案儲存體上的 SMB 共用。</span><span class="sxs-lookup"><span data-stu-id="eb029-151">Anything written or read from the local mount directory is forwarded to the SMB share that's hosted on File storage.</span></span> <span data-ttu-id="eb029-152">若要建立目錄，請使用下列程式碼：</span><span class="sxs-lookup"><span data-stu-id="eb029-152">To create the directory, use the following code:</span></span>
+    <span data-ttu-id="597bf-150">您必須在 hello Linux 檔案系統 toomount hello SMB 共用中建立本機目錄。</span><span class="sxs-lookup"><span data-stu-id="597bf-150">You must create a local directory in hello Linux file system toomount hello SMB share to.</span></span> <span data-ttu-id="597bf-151">任何寫入或讀取 hello 本機掛接目錄轉送的 toohello SMB 共用上裝載的檔案存放裝置。</span><span class="sxs-lookup"><span data-stu-id="597bf-151">Anything written or read from hello local mount directory is forwarded toohello SMB share that's hosted on File storage.</span></span> <span data-ttu-id="597bf-152">下列程式碼使用 hello toocreate hello 目錄：</span><span class="sxs-lookup"><span data-stu-id="597bf-152">toocreate hello directory, use hello following code:</span></span>
 
     ```bash
     sudo mkdir -p /mnt/mymountdirectory
     ```
 
-5. <span data-ttu-id="eb029-153">使用下列程式碼來掛接 SMB 共用︰</span><span class="sxs-lookup"><span data-stu-id="eb029-153">Mount the SMB share by using the following code:</span></span>
+5. <span data-ttu-id="597bf-153">掛接的 hello SMB 共用上使用下列程式碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="597bf-153">Mount hello SMB share by using hello following code:</span></span>
 
     ```azurecli
     sudo mount -t cifs //myStorageAccount.file.core.windows.net/mystorageshare /mnt/mymountdirectory -o vers=3.0,username=myStorageAccount,password=myStorageAccountkey,dir_mode=0777,file_mode=0777
     ```
 
-6. <span data-ttu-id="eb029-154">透過重新開機持續 SMB 掛接。</span><span class="sxs-lookup"><span data-stu-id="eb029-154">Persist the SMB mount through reboots.</span></span>
+6. <span data-ttu-id="597bf-154">保存的 hello SMB 裝載重新開機。</span><span class="sxs-lookup"><span data-stu-id="597bf-154">Persist hello SMB mount through reboots.</span></span>
 
-    <span data-ttu-id="eb029-155">當您重新開機 Linux VM 時，掛接的 SMB 共用會在關機期間取消掛接。</span><span class="sxs-lookup"><span data-stu-id="eb029-155">When you reboot the Linux VM, the mounted SMB share is unmounted during shutdown.</span></span> <span data-ttu-id="eb029-156">若要在開機時重新掛接 SMB 共用，您必須新增一行至 Linux /etc/fstab。</span><span class="sxs-lookup"><span data-stu-id="eb029-156">To remount the SMB share on boot, you must add a line to the Linux /etc/fstab.</span></span> <span data-ttu-id="eb029-157">Linux 會使用 fstab 檔案來列出它在開機程序期間所必須掛接的檔案系統。</span><span class="sxs-lookup"><span data-stu-id="eb029-157">Linux uses the fstab file to list the file systems that it needs to mount during the boot process.</span></span> <span data-ttu-id="eb029-158">新增 SMB 共用可確保檔案儲存體共用是 Linux VM 的永久掛接檔案系統。</span><span class="sxs-lookup"><span data-stu-id="eb029-158">Adding the SMB share ensures that the File storage share is a permanently mounted file system for the Linux VM.</span></span> <span data-ttu-id="eb029-159">當您使用 cloud-init 時，便可以將檔案儲存體 SMB 共用新增至新的 VM。</span><span class="sxs-lookup"><span data-stu-id="eb029-159">Adding the File storage SMB share to a new VM is possible when you use cloud-init.</span></span>
+    <span data-ttu-id="597bf-155">當您重新啟動 hello Linux VM 時，hello 掛接的 SMB 共用正在卸載所造成關機期間。</span><span class="sxs-lookup"><span data-stu-id="597bf-155">When you reboot hello Linux VM, hello mounted SMB share is unmounted during shutdown.</span></span> <span data-ttu-id="597bf-156">tooremount hello SMB 共用上開機，您必須新增列 toohello Linux /etc/fstab。</span><span class="sxs-lookup"><span data-stu-id="597bf-156">tooremount hello SMB share on boot, you must add a line toohello Linux /etc/fstab.</span></span> <span data-ttu-id="597bf-157">Linux 使用 hello fstab 檔案 toolist hello 檔案系統，它需要 toomount hello 開機程序期間。</span><span class="sxs-lookup"><span data-stu-id="597bf-157">Linux uses hello fstab file toolist hello file systems that it needs toomount during hello boot process.</span></span> <span data-ttu-id="597bf-158">新增 hello SMB 共用可確保該 hello 檔案存放裝置共用是 hello Linux VM 的永久掛接的檔案系統。</span><span class="sxs-lookup"><span data-stu-id="597bf-158">Adding hello SMB share ensures that hello File storage share is a permanently mounted file system for hello Linux VM.</span></span> <span data-ttu-id="597bf-159">加入 hello 檔案存放裝置的 SMB 共用 tooa 新的 VM 時，可能您使用雲端 init。</span><span class="sxs-lookup"><span data-stu-id="597bf-159">Adding hello File storage SMB share tooa new VM is possible when you use cloud-init.</span></span>
 
     ```bash
     //myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
     ```
 
-## <a name="next-steps"></a><span data-ttu-id="eb029-160">後續步驟</span><span class="sxs-lookup"><span data-stu-id="eb029-160">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="597bf-160">後續步驟</span><span class="sxs-lookup"><span data-stu-id="597bf-160">Next steps</span></span>
 
-- [<span data-ttu-id="eb029-161">在建立期間使用 cloud-init 自訂 Linux VM</span><span class="sxs-lookup"><span data-stu-id="eb029-161">Using cloud-init to customize a Linux VM during creation</span></span>](using-cloud-init.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [<span data-ttu-id="eb029-162">在 Linux VM 中新增磁碟</span><span class="sxs-lookup"><span data-stu-id="eb029-162">Add a disk to a Linux VM</span></span>](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [<span data-ttu-id="eb029-163">使用 Azure CLI 將 Linux VM 上的磁碟加密</span><span class="sxs-lookup"><span data-stu-id="eb029-163">Encrypt disks on a Linux VM by using the Azure CLI</span></span>](encrypt-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [<span data-ttu-id="597bf-161">在建立期間使用雲端 init toocustomize Linux VM</span><span class="sxs-lookup"><span data-stu-id="597bf-161">Using cloud-init toocustomize a Linux VM during creation</span></span>](using-cloud-init.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [<span data-ttu-id="597bf-162">新增磁碟 tooa Linux VM</span><span class="sxs-lookup"><span data-stu-id="597bf-162">Add a disk tooa Linux VM</span></span>](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [<span data-ttu-id="597bf-163">使用 Azure CLI hello 加密 Linux VM 上的磁碟</span><span class="sxs-lookup"><span data-stu-id="597bf-163">Encrypt disks on a Linux VM by using hello Azure CLI</span></span>](encrypt-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

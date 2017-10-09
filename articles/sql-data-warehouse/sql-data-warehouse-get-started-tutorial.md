@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL 資料倉儲 - 快速入門教學課程 | Microsoft Docs"
-description: "本教學課程會教您如何佈建，並將資料載入 Azure SQL 資料倉儲。 您也將學習調整、暫停和微調的基本概念。"
+title: "aaaAzure SQL 資料倉儲-快速入門教學課程 |Microsoft 文件"
+description: "本教學課程將教導您如何 tooprovision 和載入資料到 Azure SQL 資料倉儲。 您也將學習 hello 調整、 暫停和微調有關的基本概念。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -15,184 +15,184 @@ ms.workload: data-services
 ms.custom: quickstart
 ms.date: 01/26/2017
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 95e14824ba3b705bb909ec983652dd3305b98805
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: edd2a21b0fe49ca8e9792c7c512310339a822c55
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-sql-data-warehouse"></a><span data-ttu-id="3de2e-104">開始使用 SQL 資料倉儲</span><span class="sxs-lookup"><span data-stu-id="3de2e-104">Get started with SQL Data Warehouse</span></span>
+# <a name="get-started-with-sql-data-warehouse"></a><span data-ttu-id="e60e4-104">開始使用 SQL 資料倉儲</span><span class="sxs-lookup"><span data-stu-id="e60e4-104">Get started with SQL Data Warehouse</span></span>
 
-<span data-ttu-id="3de2e-105">本教學課程會說明如何佈建，並將資料載入 Azure SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="3de2e-105">This tutorial shows how to provision and load data into Azure SQL Data Warehouse.</span></span> <span data-ttu-id="3de2e-106">您也將學習調整、暫停和微調的基本概念。</span><span class="sxs-lookup"><span data-stu-id="3de2e-106">You’ll also learn the basics about scaling, pausing, and tuning.</span></span> <span data-ttu-id="3de2e-107">完成時，您就能查詢及瀏覽資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="3de2e-107">When you’re finished, you’ll be ready to query and explore your data warehouse.</span></span>
+<span data-ttu-id="e60e4-105">本教學課程示範如何將 Azure SQL 資料倉儲的 tooprovision 和載入資料。</span><span class="sxs-lookup"><span data-stu-id="e60e4-105">This tutorial shows how tooprovision and load data into Azure SQL Data Warehouse.</span></span> <span data-ttu-id="e60e4-106">您也將學習 hello 調整、 暫停和微調有關的基本概念。</span><span class="sxs-lookup"><span data-stu-id="e60e4-106">You’ll also learn hello basics about scaling, pausing, and tuning.</span></span> <span data-ttu-id="e60e4-107">當您完成時，您將會是準備 tooquery 並且瀏覽您的資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="e60e4-107">When you’re finished, you’ll be ready tooquery and explore your data warehouse.</span></span>
 
-<span data-ttu-id="3de2e-108">**預估完成時間︰**這是內含範例程式碼的端對端教學課程，在您完成必要條件後，需耗時約 30 分鐘才能完成。</span><span class="sxs-lookup"><span data-stu-id="3de2e-108">**Estimated time to complete:** This is an end-to-end tutorial with example code that takes about 30 minutes to complete once you have met the prerequisites.</span></span> 
+<span data-ttu-id="e60e4-108">**估計時間 toocomplete:**這是一個端對端教學課程，採用約 30 分鐘 toocomplete，一旦您已符合 hello 先決條件的範例程式碼。</span><span class="sxs-lookup"><span data-stu-id="e60e4-108">**Estimated time toocomplete:** This is an end-to-end tutorial with example code that takes about 30 minutes toocomplete once you have met hello prerequisites.</span></span> 
 
-## <a name="prerequisites"></a><span data-ttu-id="3de2e-109">必要條件</span><span class="sxs-lookup"><span data-stu-id="3de2e-109">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="e60e4-109">必要條件</span><span class="sxs-lookup"><span data-stu-id="e60e4-109">Prerequisites</span></span>
 
-<span data-ttu-id="3de2e-110">此教學課程假設您熟悉 SQL 資料倉儲基本概念。</span><span class="sxs-lookup"><span data-stu-id="3de2e-110">The tutorial assumes you are familiar with SQL Data Warehouse basic concepts.</span></span> <span data-ttu-id="3de2e-111">如果您需要簡介，請參閱[什麼是 SQL 資料倉儲？](sql-data-warehouse-overview-what-is.md)</span><span class="sxs-lookup"><span data-stu-id="3de2e-111">If you need an introduction, see [What is SQL Data Warehouse?](sql-data-warehouse-overview-what-is.md)</span></span> 
+<span data-ttu-id="e60e4-110">hello 教學課程假設您熟悉 SQL 資料倉儲基本概念。</span><span class="sxs-lookup"><span data-stu-id="e60e4-110">hello tutorial assumes you are familiar with SQL Data Warehouse basic concepts.</span></span> <span data-ttu-id="e60e4-111">如果您需要簡介，請參閱[什麼是 SQL 資料倉儲？](sql-data-warehouse-overview-what-is.md)</span><span class="sxs-lookup"><span data-stu-id="e60e4-111">If you need an introduction, see [What is SQL Data Warehouse?](sql-data-warehouse-overview-what-is.md)</span></span> 
 
-### <a name="sign-up-for-microsoft-azure"></a><span data-ttu-id="3de2e-112">註冊 Microsoft Azure</span><span class="sxs-lookup"><span data-stu-id="3de2e-112">Sign up for Microsoft Azure</span></span>
-<span data-ttu-id="3de2e-113">如果您還沒有 Microsoft Azure 帳戶，則必須註冊帳戶才能使用這項服務。</span><span class="sxs-lookup"><span data-stu-id="3de2e-113">If you don't already have a Microsoft Azure account, you need to sign up for one to use this service.</span></span> <span data-ttu-id="3de2e-114">如果您已經有帳戶，則可以跳過此步驟。</span><span class="sxs-lookup"><span data-stu-id="3de2e-114">If you already have an account, you may skip this step.</span></span> 
+### <a name="sign-up-for-microsoft-azure"></a><span data-ttu-id="e60e4-112">註冊 Microsoft Azure</span><span class="sxs-lookup"><span data-stu-id="e60e4-112">Sign up for Microsoft Azure</span></span>
+<span data-ttu-id="e60e4-113">如果您還沒有 Microsoft Azure 帳戶，您需要註冊一個 toouse toosign 這項服務。</span><span class="sxs-lookup"><span data-stu-id="e60e4-113">If you don't already have a Microsoft Azure account, you need toosign up for one toouse this service.</span></span> <span data-ttu-id="e60e4-114">如果您已經有帳戶，則可以跳過此步驟。</span><span class="sxs-lookup"><span data-stu-id="e60e4-114">If you already have an account, you may skip this step.</span></span> 
 
-1. <span data-ttu-id="3de2e-115">瀏覽至帳戶頁面 [https://azure.microsoft.com/account/](https://azure.microsoft.com/account/)</span><span class="sxs-lookup"><span data-stu-id="3de2e-115">Navigate to the account pages [https://azure.microsoft.com/account/](https://azure.microsoft.com/account/)</span></span>
-2. <span data-ttu-id="3de2e-116">建立免費的 Azure 帳戶，或購買帳戶。</span><span class="sxs-lookup"><span data-stu-id="3de2e-116">Create a free Azure account, or purchase an account.</span></span>
-3. <span data-ttu-id="3de2e-117">遵循指示進行</span><span class="sxs-lookup"><span data-stu-id="3de2e-117">Follow the instructions</span></span>
+1. <span data-ttu-id="e60e4-115">瀏覽 toohello 帳戶頁面[https://azure.microsoft.com/account/](https://azure.microsoft.com/account/)</span><span class="sxs-lookup"><span data-stu-id="e60e4-115">Navigate toohello account pages [https://azure.microsoft.com/account/](https://azure.microsoft.com/account/)</span></span>
+2. <span data-ttu-id="e60e4-116">建立免費的 Azure 帳戶，或購買帳戶。</span><span class="sxs-lookup"><span data-stu-id="e60e4-116">Create a free Azure account, or purchase an account.</span></span>
+3. <span data-ttu-id="e60e4-117">請依照下列指示 hello</span><span class="sxs-lookup"><span data-stu-id="e60e4-117">Follow hello instructions</span></span>
 
-### <a name="install-appropriate-sql-client-drivers-and-tools"></a><span data-ttu-id="3de2e-118">安裝適當的 SQL 用戶端驅動程式和工具</span><span class="sxs-lookup"><span data-stu-id="3de2e-118">Install appropriate SQL client drivers and tools</span></span>
+### <a name="install-appropriate-sql-client-drivers-and-tools"></a><span data-ttu-id="e60e4-118">安裝適當的 SQL 用戶端驅動程式和工具</span><span class="sxs-lookup"><span data-stu-id="e60e4-118">Install appropriate SQL client drivers and tools</span></span>
 
-<span data-ttu-id="3de2e-119">大部分的 SQL 用戶端工具都可以使用 JDBC、ODBC 或 ADO.net 連線到 SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="3de2e-119">Most SQL client tools can connect to SQL Data Warehouse by using JDBC, ODBC, or ADO.NET.</span></span> <span data-ttu-id="3de2e-120">由於 SQL 資料倉儲支援大量 T-SQL 功能，部分用戶端應用程式不會與 SQL 資料倉儲完全相容。</span><span class="sxs-lookup"><span data-stu-id="3de2e-120">Due to the large number of T-SQL features that SQL Data Warehouse supports, some client applications are not fully compatible with SQL Data Warehouse.</span></span>
+<span data-ttu-id="e60e4-119">大部分的 SQL 用戶端工具可以使用 JDBC、 ODBC 或 ADO.NET 連接 tooSQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="e60e4-119">Most SQL client tools can connect tooSQL Data Warehouse by using JDBC, ODBC, or ADO.NET.</span></span> <span data-ttu-id="e60e4-120">Toohello 大量 SQL Data Warehouse 支援的 T-SQL 功能，因為某些用戶端應用程式不會與 SQL 資料倉儲完全相容。</span><span class="sxs-lookup"><span data-stu-id="e60e4-120">Due toohello large number of T-SQL features that SQL Data Warehouse supports, some client applications are not fully compatible with SQL Data Warehouse.</span></span>
 
-<span data-ttu-id="3de2e-121">如果您執行的是 Windows 作業系統，建議您使用 [Visual Studio] 或 [SQL Server Management Studio]。</span><span class="sxs-lookup"><span data-stu-id="3de2e-121">If you are running a Windows operating system, we recommend using either [Visual Studio] or [SQL Server Management Studio].</span></span>
+<span data-ttu-id="e60e4-121">如果您執行的是 Windows 作業系統，建議您使用 [Visual Studio] 或 [SQL Server Management Studio]。</span><span class="sxs-lookup"><span data-stu-id="e60e4-121">If you are running a Windows operating system, we recommend using either [Visual Studio] or [SQL Server Management Studio].</span></span>
 
 [!INCLUDE [Create a new logical server](../../includes/sql-data-warehouse-create-logical-server.md)] 
 
 [!INCLUDE [SQL Database create server](../../includes/sql-database-create-new-server-firewall-portal.md)]
 
-## <a name="create-a-sql-data-warehouse"></a><span data-ttu-id="3de2e-122">建立 SQL 資料倉儲</span><span class="sxs-lookup"><span data-stu-id="3de2e-122">Create a SQL Data Warehouse</span></span>
+## <a name="create-a-sql-data-warehouse"></a><span data-ttu-id="e60e4-122">建立 SQL 資料倉儲</span><span class="sxs-lookup"><span data-stu-id="e60e4-122">Create a SQL Data Warehouse</span></span>
 
-<span data-ttu-id="3de2e-123">SQL 資料倉儲是一種特殊類型的資料庫，其設計用來進行大量平行處理。</span><span class="sxs-lookup"><span data-stu-id="3de2e-123">A SQL Data Warehouse is a special type of database that is designed for massively parallel processing.</span></span> <span data-ttu-id="3de2e-124">將跨多個節點分散資料庫，且資料庫可平行處理查詢。</span><span class="sxs-lookup"><span data-stu-id="3de2e-124">The database is distributed across multiple nodes and processes queries in parallel.</span></span> <span data-ttu-id="3de2e-125">SQL 資料倉儲具有控制節點，其可協調所有節點的活動。</span><span class="sxs-lookup"><span data-stu-id="3de2e-125">SQL Data Warehouse has a control node that orchestrates the activities of all the nodes.</span></span> <span data-ttu-id="3de2e-126">節點本身會使用 SQL Database 來管理資料。</span><span class="sxs-lookup"><span data-stu-id="3de2e-126">The nodes themselves use SQL Database to manage your data.</span></span>  
+<span data-ttu-id="e60e4-123">SQL 資料倉儲是一種特殊類型的資料庫，其設計用來進行大量平行處理。</span><span class="sxs-lookup"><span data-stu-id="e60e4-123">A SQL Data Warehouse is a special type of database that is designed for massively parallel processing.</span></span> <span data-ttu-id="e60e4-124">hello 資料庫分散到多個節點，並處理以平行方式查詢。</span><span class="sxs-lookup"><span data-stu-id="e60e4-124">hello database is distributed across multiple nodes and processes queries in parallel.</span></span> <span data-ttu-id="e60e4-125">SQL 資料倉儲具有協調所有 hello 節點的 hello 活動為控制節點。</span><span class="sxs-lookup"><span data-stu-id="e60e4-125">SQL Data Warehouse has a control node that orchestrates hello activities of all hello nodes.</span></span> <span data-ttu-id="e60e4-126">hello 節點本身會使用 SQL Database toomanage 您的資料。</span><span class="sxs-lookup"><span data-stu-id="e60e4-126">hello nodes themselves use SQL Database toomanage your data.</span></span>  
 
 > [!NOTE]
-> <span data-ttu-id="3de2e-127">建立 SQL 資料倉儲可能會導致新的可計費服務。</span><span class="sxs-lookup"><span data-stu-id="3de2e-127">Creating a SQL Data Warehouse might result in a new billable service.</span></span>  <span data-ttu-id="3de2e-128">如需詳細資訊，請參閱 [SQL 資料倉儲價格](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)。</span><span class="sxs-lookup"><span data-stu-id="3de2e-128">For more information, see [SQL Data Warehouse pricing](https://azure.microsoft.com/pricing/details/sql-data-warehouse/).</span></span>
+> <span data-ttu-id="e60e4-127">建立 SQL 資料倉儲可能會導致新的可計費服務。</span><span class="sxs-lookup"><span data-stu-id="e60e4-127">Creating a SQL Data Warehouse might result in a new billable service.</span></span>  <span data-ttu-id="e60e4-128">如需詳細資訊，請參閱 [SQL 資料倉儲價格](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)。</span><span class="sxs-lookup"><span data-stu-id="e60e4-128">For more information, see [SQL Data Warehouse pricing](https://azure.microsoft.com/pricing/details/sql-data-warehouse/).</span></span>
 >
 
-### <a name="create-a-data-warehouse"></a><span data-ttu-id="3de2e-129">建立資料倉儲</span><span class="sxs-lookup"><span data-stu-id="3de2e-129">Create a data warehouse</span></span>
+### <a name="create-a-data-warehouse"></a><span data-ttu-id="e60e4-129">建立資料倉儲</span><span class="sxs-lookup"><span data-stu-id="e60e4-129">Create a data warehouse</span></span>
 
-1. <span data-ttu-id="3de2e-130">登入 [Azure 入口網站](https://portal.azure.com)。</span><span class="sxs-lookup"><span data-stu-id="3de2e-130">Sign into the [Azure portal](https://portal.azure.com).</span></span>
-2. <span data-ttu-id="3de2e-131">按一下 [新增] > [資料庫] > [SQL 資料倉儲]。</span><span class="sxs-lookup"><span data-stu-id="3de2e-131">Click **New** > **Databases** > **SQL Data Warehouse**.</span></span>
+1. <span data-ttu-id="e60e4-130">登入 hello [Azure 入口網站](https://portal.azure.com)。</span><span class="sxs-lookup"><span data-stu-id="e60e4-130">Sign into hello [Azure portal](https://portal.azure.com).</span></span>
+2. <span data-ttu-id="e60e4-131">按一下 [新增] > [資料庫] > [SQL 資料倉儲]。</span><span class="sxs-lookup"><span data-stu-id="e60e4-131">Click **New** > **Databases** > **SQL Data Warehouse**.</span></span>
 
-    <span data-ttu-id="3de2e-132">![NewBlade](../../includes/media/sql-data-warehouse-create-dw/blade-click-new.png) ![SelectDW](../../includes/media/sql-data-warehouse-create-dw/blade-select-dw.png)</span><span class="sxs-lookup"><span data-stu-id="3de2e-132">![NewBlade](../../includes/media/sql-data-warehouse-create-dw/blade-click-new.png) ![SelectDW](../../includes/media/sql-data-warehouse-create-dw/blade-select-dw.png)</span></span>
+    <span data-ttu-id="e60e4-132">![NewBlade](../../includes/media/sql-data-warehouse-create-dw/blade-click-new.png) ![SelectDW](../../includes/media/sql-data-warehouse-create-dw/blade-select-dw.png)</span><span class="sxs-lookup"><span data-stu-id="e60e4-132">![NewBlade](../../includes/media/sql-data-warehouse-create-dw/blade-click-new.png) ![SelectDW](../../includes/media/sql-data-warehouse-create-dw/blade-select-dw.png)</span></span>
 
-3. <span data-ttu-id="3de2e-133">填寫部署詳細資料</span><span class="sxs-lookup"><span data-stu-id="3de2e-133">Fill out deployment details</span></span>
+3. <span data-ttu-id="e60e4-133">填寫部署詳細資料</span><span class="sxs-lookup"><span data-stu-id="e60e4-133">Fill out deployment details</span></span>
 
-    <span data-ttu-id="3de2e-134">**資料庫名稱**︰挑選您想要的名稱。</span><span class="sxs-lookup"><span data-stu-id="3de2e-134">**Database Name**: Pick anything you'd like.</span></span> <span data-ttu-id="3de2e-135">如果您有多個資料倉儲，建議您在名稱中包含詳細資料，例如其區域、環境等，例如 *mydw-westus-1-test*。</span><span class="sxs-lookup"><span data-stu-id="3de2e-135">If you have multiple data warehouses, we recommend your names include details such as the region, environment, for example *mydw-westus-1-test*.</span></span>
+    <span data-ttu-id="e60e4-134">**資料庫名稱**︰挑選您想要的名稱。</span><span class="sxs-lookup"><span data-stu-id="e60e4-134">**Database Name**: Pick anything you'd like.</span></span> <span data-ttu-id="e60e4-135">如果您有多個資料倉儲時，我們建議您的名稱包含詳細資料，例如 hello 區域中，環境中，例如*mydw uswest 1-測試*。</span><span class="sxs-lookup"><span data-stu-id="e60e4-135">If you have multiple data warehouses, we recommend your names include details such as hello region, environment, for example *mydw-westus-1-test*.</span></span>
 
-    <span data-ttu-id="3de2e-136">**訂用帳戶**：您的 Azure 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="3de2e-136">**Subscription**: Your Azure subscription</span></span>
+    <span data-ttu-id="e60e4-136">**訂用帳戶**：您的 Azure 訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="e60e4-136">**Subscription**: Your Azure subscription</span></span>
 
-    <span data-ttu-id="3de2e-137">**資源群組**：建立新的資源群組，或使用現有的資源群組。</span><span class="sxs-lookup"><span data-stu-id="3de2e-137">**Resource Group**: Create a resource group or use an existing resource group.</span></span>
+    <span data-ttu-id="e60e4-137">**資源群組**：建立新的資源群組，或使用現有的資源群組。</span><span class="sxs-lookup"><span data-stu-id="e60e4-137">**Resource Group**: Create a resource group or use an existing resource group.</span></span>
     > [!NOTE]
-    > <span data-ttu-id="3de2e-138">資源群組適合用來管理資源，例如界定存取控制和樣板化部署的範圍。</span><span class="sxs-lookup"><span data-stu-id="3de2e-138">Resource groups are useful for resource administration such as scoping access control and templated deployment.</span></span> <span data-ttu-id="3de2e-139">您可以[在此](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups)深入了解 Azure 資源群組和最佳作法</span><span class="sxs-lookup"><span data-stu-id="3de2e-139">Read more about Azure resource groups and best practices [here](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups)</span></span>
+    > <span data-ttu-id="e60e4-138">資源群組適合用來管理資源，例如界定存取控制和樣板化部署的範圍。</span><span class="sxs-lookup"><span data-stu-id="e60e4-138">Resource groups are useful for resource administration such as scoping access control and templated deployment.</span></span> <span data-ttu-id="e60e4-139">您可以[在此](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups)深入了解 Azure 資源群組和最佳作法</span><span class="sxs-lookup"><span data-stu-id="e60e4-139">Read more about Azure resource groups and best practices [here](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups)</span></span>
 
-    <span data-ttu-id="3de2e-140">**來源**：空白資料庫</span><span class="sxs-lookup"><span data-stu-id="3de2e-140">**Source**: Blank Database</span></span>
+    <span data-ttu-id="e60e4-140">**來源**：空白資料庫</span><span class="sxs-lookup"><span data-stu-id="e60e4-140">**Source**: Blank Database</span></span>
 
-    <span data-ttu-id="3de2e-141">**伺服器**︰選取您在[必要條件]中建立的伺服器。</span><span class="sxs-lookup"><span data-stu-id="3de2e-141">**Server**: Select the server you created in [Prerequisites].</span></span>
+    <span data-ttu-id="e60e4-141">**伺服器**： 您在建立選取 hello 伺服器[必要條件]。</span><span class="sxs-lookup"><span data-stu-id="e60e4-141">**Server**: Select hello server you created in [Prerequisites].</span></span>
 
-    <span data-ttu-id="3de2e-142">**定序**：保留預設定序 SQL_Latin1_General_CP1_CI_AS。</span><span class="sxs-lookup"><span data-stu-id="3de2e-142">**Collation**: Leave the default collation SQL_Latin1_General_CP1_CI_AS.</span></span>
+    <span data-ttu-id="e60e4-142">**定序**： 保留 hello 預設定序 SQL_Latin1_General_CP1_CI_AS。</span><span class="sxs-lookup"><span data-stu-id="e60e4-142">**Collation**: Leave hello default collation SQL_Latin1_General_CP1_CI_AS.</span></span>
 
-    <span data-ttu-id="3de2e-143">**選取效能**︰建議您使用標準的 400 DWU。</span><span class="sxs-lookup"><span data-stu-id="3de2e-143">**Select performance**: We recommend starting with the standard 400DWU.</span></span>
+    <span data-ttu-id="e60e4-143">**選取 效能**： 我們建議您從 hello 標準 400DWU 開始。</span><span class="sxs-lookup"><span data-stu-id="e60e4-143">**Select performance**: We recommend starting with hello standard 400DWU.</span></span>
 
-4. <span data-ttu-id="3de2e-144">選擇 [釘選到儀表板] ![釘選到儀表板](./media/sql-data-warehouse-get-started-tutorial/pin-to-dashboard.png)</span><span class="sxs-lookup"><span data-stu-id="3de2e-144">Choose **Pin to dashboard** ![Pin To Dashboard](./media/sql-data-warehouse-get-started-tutorial/pin-to-dashboard.png)</span></span>
+4. <span data-ttu-id="e60e4-144">選擇**Pin toodashboard** ![Pin tooDashboard](./media/sql-data-warehouse-get-started-tutorial/pin-to-dashboard.png)</span><span class="sxs-lookup"><span data-stu-id="e60e4-144">Choose **Pin toodashboard** ![Pin tooDashboard](./media/sql-data-warehouse-get-started-tutorial/pin-to-dashboard.png)</span></span>
 
-5. <span data-ttu-id="3de2e-145">稍候一會，讓資料倉儲進行部署！</span><span class="sxs-lookup"><span data-stu-id="3de2e-145">Sit back and wait for your data warehouse to deploy!</span></span> <span data-ttu-id="3de2e-146">正常來說，此程序需要幾分鐘的時間。</span><span class="sxs-lookup"><span data-stu-id="3de2e-146">It's normal for this process to take several minutes.</span></span> <span data-ttu-id="3de2e-147">資料倉儲可供使用時，入口網站會通知您。</span><span class="sxs-lookup"><span data-stu-id="3de2e-147">The portal notifies you when your data warehouse is ready to use.</span></span> 
+5. <span data-ttu-id="e60e4-145">耐心和等候您的資料倉儲 toodeploy ！</span><span class="sxs-lookup"><span data-stu-id="e60e4-145">Sit back and wait for your data warehouse toodeploy!</span></span> <span data-ttu-id="e60e4-146">這是正常的這個程序 tootake 幾分鐘的時間。</span><span class="sxs-lookup"><span data-stu-id="e60e4-146">It's normal for this process tootake several minutes.</span></span> <span data-ttu-id="e60e4-147">當資料倉儲就緒 toouse hello 入口網站會通知您。</span><span class="sxs-lookup"><span data-stu-id="e60e4-147">hello portal notifies you when your data warehouse is ready toouse.</span></span> 
 
-## <a name="connect-to-sql-data-warehouse"></a><span data-ttu-id="3de2e-148">連線到 SQL 資料倉儲</span><span class="sxs-lookup"><span data-stu-id="3de2e-148">Connect to SQL Data Warehouse</span></span>
+## <a name="connect-toosql-data-warehouse"></a><span data-ttu-id="e60e4-148">連接 tooSQL 資料倉儲</span><span class="sxs-lookup"><span data-stu-id="e60e4-148">Connect tooSQL Data Warehouse</span></span>
 
-<span data-ttu-id="3de2e-149">本教學課程使用 SQL Server Management Studio (SSMS) 來連線到資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="3de2e-149">This tutorial uses SQL Server Management Studio (SSMS) to connect to the data warehouse.</span></span> <span data-ttu-id="3de2e-150">您透過下列支援連接器連線到 SQL 資料倉儲︰ADO.NET、JDBC、ODBC 和 PHP。</span><span class="sxs-lookup"><span data-stu-id="3de2e-150">You can connect to SQL Data Warehouse through these supported connectors: ADO.NET, JDBC, ODBC, and PHP.</span></span> <span data-ttu-id="3de2e-151">請記住，非 Microsoft 支援工具的功能可能會受限。</span><span class="sxs-lookup"><span data-stu-id="3de2e-151">Remember, functionality might be limited for tools that are not supported by Microsoft.</span></span>
+<span data-ttu-id="e60e4-149">本教學課程會使用 SQL Server Management Studio (SSMS) tooconnect toohello 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="e60e4-149">This tutorial uses SQL Server Management Studio (SSMS) tooconnect toohello data warehouse.</span></span> <span data-ttu-id="e60e4-150">您可以透過這些支援的連接器連接 tooSQL 資料倉儲： ADO.NET、 JDBC、 ODBC 和 PHP。</span><span class="sxs-lookup"><span data-stu-id="e60e4-150">You can connect tooSQL Data Warehouse through these supported connectors: ADO.NET, JDBC, ODBC, and PHP.</span></span> <span data-ttu-id="e60e4-151">請記住，非 Microsoft 支援工具的功能可能會受限。</span><span class="sxs-lookup"><span data-stu-id="e60e4-151">Remember, functionality might be limited for tools that are not supported by Microsoft.</span></span>
 
 
-### <a name="get-connection-information"></a><span data-ttu-id="3de2e-152">取得連線資訊</span><span class="sxs-lookup"><span data-stu-id="3de2e-152">Get connection information</span></span>
+### <a name="get-connection-information"></a><span data-ttu-id="e60e4-152">取得連線資訊</span><span class="sxs-lookup"><span data-stu-id="e60e4-152">Get connection information</span></span>
 
-<span data-ttu-id="3de2e-153">若要連線到資料倉儲，您必須透過在[必要條件]中所建立的邏輯 SQL Server 進行連線。</span><span class="sxs-lookup"><span data-stu-id="3de2e-153">To connect to your data warehouse, you need to connect through the logical SQL server you created in [Prerequisites].</span></span>
+<span data-ttu-id="e60e4-153">tooconnect tooyour 資料倉儲，您需要透過 hello 您在建立邏輯 SQL server tooconnect[必要條件]。</span><span class="sxs-lookup"><span data-stu-id="e60e4-153">tooconnect tooyour data warehouse, you need tooconnect through hello logical SQL server you created in [Prerequisites].</span></span>
 
-1. <span data-ttu-id="3de2e-154">從儀表板選取資料倉儲，或在您的資源中進行搜尋。</span><span class="sxs-lookup"><span data-stu-id="3de2e-154">Select your data warehouse from the dashboard or search for it in your resources.</span></span>
+1. <span data-ttu-id="e60e4-154">從 hello 儀表板或搜尋您的資源中選取您的資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="e60e4-154">Select your data warehouse from hello dashboard or search for it in your resources.</span></span>
 
     ![SQL 資料倉儲儀表板](./media/sql-data-warehouse-get-started-tutorial/sql-dw-dashboard.png)
 
-2. <span data-ttu-id="3de2e-156">尋找邏輯 SQL Server 的完整名稱。</span><span class="sxs-lookup"><span data-stu-id="3de2e-156">Find the full name for the logical SQL server.</span></span>
+2. <span data-ttu-id="e60e4-156">尋找 hello hello 邏輯 SQL server 的完整名稱。</span><span class="sxs-lookup"><span data-stu-id="e60e4-156">Find hello full name for hello logical SQL server.</span></span>
 
     ![選取伺服器名稱](./media/sql-data-warehouse-get-started-tutorial/select-server.png)
 
-3. <span data-ttu-id="3de2e-158">開啟 SSMS，並使用物件總管以使用您在[必要條件]中所建立的伺服器系統管理員認證連線到此伺服器</span><span class="sxs-lookup"><span data-stu-id="3de2e-158">Open SSMS and use object explorer to connect to this server using the server admin credentials you created in [Prerequisites]</span></span>
+3. <span data-ttu-id="e60e4-158">開啟 SSMS，並使用物件總管 中 tooconnect toothis 伺服器使用您在建立 hello 伺服器系統管理員認證[必要條件]</span><span class="sxs-lookup"><span data-stu-id="e60e4-158">Open SSMS and use object explorer tooconnect toothis server using hello server admin credentials you created in [Prerequisites]</span></span>
 
     ![以 SSMS 連線](./media/sql-data-warehouse-get-started-tutorial/ssms-connect.png)
 
-<span data-ttu-id="3de2e-160">如果一切正常，您現在應該已連線到邏輯 SQL Server。</span><span class="sxs-lookup"><span data-stu-id="3de2e-160">If all goes correctly, you should now be connected to your logical SQL server.</span></span> <span data-ttu-id="3de2e-161">因為您以伺服器系統管理員的身分登入，您可以連接到伺服器裝載的任何資料庫，包括主要資料庫。</span><span class="sxs-lookup"><span data-stu-id="3de2e-161">Since you logged in as the server admin, you can connect to any database hosted by the server, including the master database.</span></span> 
+<span data-ttu-id="e60e4-160">如果一切正確，您現在應該連接的 tooyour 邏輯 SQL server。</span><span class="sxs-lookup"><span data-stu-id="e60e4-160">If all goes correctly, you should now be connected tooyour logical SQL server.</span></span> <span data-ttu-id="e60e4-161">因為您登入 hello 伺服器系統管理員，您可以連接 tooany hello 伺服器，包括 hello master 資料庫所裝載的資料庫。</span><span class="sxs-lookup"><span data-stu-id="e60e4-161">Since you logged in as hello server admin, you can connect tooany database hosted by hello server, including hello master database.</span></span> 
 
-<span data-ttu-id="3de2e-162">只有一個伺服器系統管理帳戶，而且它有所有使用者的大部分權限。</span><span class="sxs-lookup"><span data-stu-id="3de2e-162">There is only one server admin account and it has the most privileges of any user.</span></span> <span data-ttu-id="3de2e-163">請小心不要讓組織中的太多人員知道管理員密碼。</span><span class="sxs-lookup"><span data-stu-id="3de2e-163">Be careful not to allow too many people in your organization to know the admin password.</span></span> 
+<span data-ttu-id="e60e4-162">有一個伺服器系統管理員帳戶，而且它有 hello 大部分的權限的任何使用者。</span><span class="sxs-lookup"><span data-stu-id="e60e4-162">There is only one server admin account and it has hello most privileges of any user.</span></span> <span data-ttu-id="e60e4-163">請小心不 tooallow 太多人在您的組織 tooknow hello 的系統管理員密碼。</span><span class="sxs-lookup"><span data-stu-id="e60e4-163">Be careful not tooallow too many people in your organization tooknow hello admin password.</span></span> 
 
-<span data-ttu-id="3de2e-164">您也可以擁有 Azure Active Directory 系統管理帳戶。</span><span class="sxs-lookup"><span data-stu-id="3de2e-164">You can also have an Azure active directory admin account.</span></span> <span data-ttu-id="3de2e-165">我們不會在此提供詳細資料。</span><span class="sxs-lookup"><span data-stu-id="3de2e-165">We don't provide the details here.</span></span> <span data-ttu-id="3de2e-166">如果您想要進一步了解 Azure Active Directory 驗證的使用，請參閱 [Azure AD 驗證](https://docs.microsoft.com/azure/sql-database/sql-database-aad-authentication)。</span><span class="sxs-lookup"><span data-stu-id="3de2e-166">If you want to learn more about using Azure Active Directory authentication, see [Azure AD authentication](https://docs.microsoft.com/azure/sql-database/sql-database-aad-authentication).</span></span>
+<span data-ttu-id="e60e4-164">您也可以擁有 Azure Active Directory 系統管理帳戶。</span><span class="sxs-lookup"><span data-stu-id="e60e4-164">You can also have an Azure active directory admin account.</span></span> <span data-ttu-id="e60e4-165">我們不提供 hello 詳細資料。</span><span class="sxs-lookup"><span data-stu-id="e60e4-165">We don't provide hello details here.</span></span> <span data-ttu-id="e60e4-166">如果您想 toolearn 深入了解使用 Azure Active Directory 驗證時，請參閱[Azure AD 驗證](https://docs.microsoft.com/azure/sql-database/sql-database-aad-authentication)。</span><span class="sxs-lookup"><span data-stu-id="e60e4-166">If you want toolearn more about using Azure Active Directory authentication, see [Azure AD authentication](https://docs.microsoft.com/azure/sql-database/sql-database-aad-authentication).</span></span>
 
-<span data-ttu-id="3de2e-167">接下來，我們將探討建立其他登入和使用者。</span><span class="sxs-lookup"><span data-stu-id="3de2e-167">Next, we explore creating additional logins and users.</span></span>
+<span data-ttu-id="e60e4-167">接下來，我們將探討建立其他登入和使用者。</span><span class="sxs-lookup"><span data-stu-id="e60e4-167">Next, we explore creating additional logins and users.</span></span>
 
 
-## <a name="create-a-database-user"></a><span data-ttu-id="3de2e-168">建立資料庫使用者</span><span class="sxs-lookup"><span data-stu-id="3de2e-168">Create a database user</span></span>
+## <a name="create-a-database-user"></a><span data-ttu-id="e60e4-168">建立資料庫使用者</span><span class="sxs-lookup"><span data-stu-id="e60e4-168">Create a database user</span></span>
 
-<span data-ttu-id="3de2e-169">在此步驟中，您會建立使用者帳戶來存取資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="3de2e-169">In this step, you create a user account to access your data warehouse.</span></span> <span data-ttu-id="3de2e-170">我們也會說明如何讓使用者能夠執行需使用大量的記憶體和 CPU 資源的查詢。</span><span class="sxs-lookup"><span data-stu-id="3de2e-170">We also show you how to give that user the ability to run queries with a large amount of memory and CPU resources.</span></span>
+<span data-ttu-id="e60e4-169">在此步驟中，您建立使用者帳戶 tooaccess 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="e60e4-169">In this step, you create a user account tooaccess your data warehouse.</span></span> <span data-ttu-id="e60e4-170">我們也會示範如何 toogive 該使用者 hello 能力 toorun 查詢具有大量的記憶體和 CPU 資源。</span><span class="sxs-lookup"><span data-stu-id="e60e4-170">We also show you how toogive that user hello ability toorun queries with a large amount of memory and CPU resources.</span></span>
 
-### <a name="notes-about-resource-classes-for-allocating-resources-to-queries"></a><span data-ttu-id="3de2e-171">配置查詢資源之資源類別的相關事項</span><span class="sxs-lookup"><span data-stu-id="3de2e-171">Notes about resource classes for allocating resources to queries</span></span>
+### <a name="notes-about-resource-classes-for-allocating-resources-tooqueries"></a><span data-ttu-id="e60e4-171">配置資源 tooqueries 資源類別的相關注意事項</span><span class="sxs-lookup"><span data-stu-id="e60e4-171">Notes about resource classes for allocating resources tooqueries</span></span>
 
-- <span data-ttu-id="3de2e-172">若要保護您的資料，請不要使用伺服器系統管理員對您的生產資料庫執行查詢。</span><span class="sxs-lookup"><span data-stu-id="3de2e-172">To keep your data safe, don't use the server admin to run queries on your production databases.</span></span> <span data-ttu-id="3de2e-173">它具有所有使用者的大部分權限，且使用它在使用者資料上執行作業會讓您的資料面臨風險。</span><span class="sxs-lookup"><span data-stu-id="3de2e-173">It has the most privileges of any user and using it to perform operations on user data puts your data at risk.</span></span> <span data-ttu-id="3de2e-174">此外，因為伺服器管理員是要執行管理作業，它僅會使用小型配置的記憶體和 CPU 資源來執行作業。</span><span class="sxs-lookup"><span data-stu-id="3de2e-174">Also, since the server admin is meant to perform management operations, it runs operations with only a small allocation of memory and CPU resources.</span></span> 
+- <span data-ttu-id="e60e4-172">tookeep 資料安全，不要將生產資料庫上使用 hello 伺服器系統管理員 toorun 查詢。</span><span class="sxs-lookup"><span data-stu-id="e60e4-172">tookeep your data safe, don't use hello server admin toorun queries on your production databases.</span></span> <span data-ttu-id="e60e4-173">它具有 hello 大部分的權限的任何使用者，並使用它 tooperform 使用者資料的作業會讓您的資料面臨風險。</span><span class="sxs-lookup"><span data-stu-id="e60e4-173">It has hello most privileges of any user and using it tooperform operations on user data puts your data at risk.</span></span> <span data-ttu-id="e60e4-174">此外，hello 伺服器系統管理員就是 tooperform 管理作業，因為它會執行作業只提供較小的配置的記憶體和 CPU 資源。</span><span class="sxs-lookup"><span data-stu-id="e60e4-174">Also, since hello server admin is meant tooperform management operations, it runs operations with only a small allocation of memory and CPU resources.</span></span> 
 
-- <span data-ttu-id="3de2e-175">SQL 資料倉儲會使用預先定義的資料庫角色 (名為資源類別)，來配置記憶體、CPU 資源和並行存取插槽的不同數量的使用者。</span><span class="sxs-lookup"><span data-stu-id="3de2e-175">SQL Data Warehouse uses pre-defined database roles, called resource classes, to allocate different amounts of memory, CPU resources, and concurrency slots to users.</span></span> <span data-ttu-id="3de2e-176">每個使用者可屬於小型、中型、大型或超大型資源類別。</span><span class="sxs-lookup"><span data-stu-id="3de2e-176">Each user can belong to a small, medium, large, or extra-large resource class.</span></span> <span data-ttu-id="3de2e-177">使用者的資源類別會決定使用者執行查詢和載入作業所擁有的資源。</span><span class="sxs-lookup"><span data-stu-id="3de2e-177">The user's resource class determines the resources the user has to run queries and load operations.</span></span>
+- <span data-ttu-id="e60e4-175">SQL 資料倉儲會使用預先定義的資料庫角色，稱為資源類別、 記憶體、 CPU 資源，以及並行插槽 toousers tooallocate 不同量。</span><span class="sxs-lookup"><span data-stu-id="e60e4-175">SQL Data Warehouse uses pre-defined database roles, called resource classes, tooallocate different amounts of memory, CPU resources, and concurrency slots toousers.</span></span> <span data-ttu-id="e60e4-176">每個使用者可隸屬 tooa 小型、 中型、 大型或超大資源類別。</span><span class="sxs-lookup"><span data-stu-id="e60e4-176">Each user can belong tooa small, medium, large, or extra-large resource class.</span></span> <span data-ttu-id="e60e4-177">hello 使用者的資源類別決定 hello 資源 hello 使用者有 toorun 查詢和載入作業。</span><span class="sxs-lookup"><span data-stu-id="e60e4-177">hello user's resource class determines hello resources hello user has toorun queries and load operations.</span></span>
 
-- <span data-ttu-id="3de2e-178">對於最佳資料壓縮，使用者必須載入大型或超大型資源配置。</span><span class="sxs-lookup"><span data-stu-id="3de2e-178">For optimal data compression, the user may need to load with large or extra large resource allocations.</span></span> <span data-ttu-id="3de2e-179">請[在此](./sql-data-warehouse-develop-concurrency.md#resource-classes)深入了解資源類別：</span><span class="sxs-lookup"><span data-stu-id="3de2e-179">Read more about resource classes [here](./sql-data-warehouse-develop-concurrency.md#resource-classes):</span></span>
+- <span data-ttu-id="e60e4-178">最佳的資料壓縮 hello 使用者可能需要 tooload 與大型或超大型資源配置。</span><span class="sxs-lookup"><span data-stu-id="e60e4-178">For optimal data compression, hello user may need tooload with large or extra large resource allocations.</span></span> <span data-ttu-id="e60e4-179">請[在此](./sql-data-warehouse-develop-concurrency.md#resource-classes)深入了解資源類別：</span><span class="sxs-lookup"><span data-stu-id="e60e4-179">Read more about resource classes [here](./sql-data-warehouse-develop-concurrency.md#resource-classes):</span></span>
 
-### <a name="create-an-account-that-can-control-a-database"></a><span data-ttu-id="3de2e-180">建立一個可以控制資料庫的帳戶</span><span class="sxs-lookup"><span data-stu-id="3de2e-180">Create an account that can control a database</span></span>
+### <a name="create-an-account-that-can-control-a-database"></a><span data-ttu-id="e60e4-180">建立一個可以控制資料庫的帳戶</span><span class="sxs-lookup"><span data-stu-id="e60e4-180">Create an account that can control a database</span></span>
 
-<span data-ttu-id="3de2e-181">因為您目前以伺服器管理員的身分登入，即擁有建立登入和使用者的權限。</span><span class="sxs-lookup"><span data-stu-id="3de2e-181">Since you are currently logged in as the server admin you have permissions to create logins and users.</span></span>
+<span data-ttu-id="e60e4-181">由於您目前在如 hello 伺服器系統管理員登您有權限 toocreate 登入和使用者。</span><span class="sxs-lookup"><span data-stu-id="e60e4-181">Since you are currently logged in as hello server admin you have permissions toocreate logins and users.</span></span>
 
-1. <span data-ttu-id="3de2e-182">使用 SSMS 或另一個查詢用戶端，開啟對**主要**的新查詢。</span><span class="sxs-lookup"><span data-stu-id="3de2e-182">Using SSMS or another query client, open a new query for **master**.</span></span>
+1. <span data-ttu-id="e60e4-182">使用 SSMS 或另一個查詢用戶端，開啟對**主要**的新查詢。</span><span class="sxs-lookup"><span data-stu-id="e60e4-182">Using SSMS or another query client, open a new query for **master**.</span></span>
 
     ![主要資料庫上的新增查詢](./media/sql-data-warehouse-get-started-tutorial/query-on-server.png)
 
     ![主要資料庫上的新增查詢 1](./media/sql-data-warehouse-get-started-tutorial/query-on-master.png)
 
-2. <span data-ttu-id="3de2e-185">在查詢視窗中，執行此 T-SQL 命令來建立名為 MedRCLogin 的登入以及名為 LoadingUser 的使用者。</span><span class="sxs-lookup"><span data-stu-id="3de2e-185">In the query window, run this T-SQL command to create a login named MedRCLogin and user named LoadingUser.</span></span> <span data-ttu-id="3de2e-186">此登入可以連接到邏輯 SQL Server。</span><span class="sxs-lookup"><span data-stu-id="3de2e-186">This login can connect to the logical SQL server.</span></span>
+2. <span data-ttu-id="e60e4-185">在 hello 查詢視窗中，執行此 T-SQL 命令 toocreate 名為 MedRCLogin 登入和名為 LoadingUser 使用者。</span><span class="sxs-lookup"><span data-stu-id="e60e4-185">In hello query window, run this T-SQL command toocreate a login named MedRCLogin and user named LoadingUser.</span></span> <span data-ttu-id="e60e4-186">此登入可以連接 toohello 邏輯 SQL server。</span><span class="sxs-lookup"><span data-stu-id="e60e4-186">This login can connect toohello logical SQL server.</span></span>
 
     ```sql
     CREATE LOGIN MedRCLogin WITH PASSWORD = 'a123reallySTRONGpassword!';
     CREATE USER LoadingUser FOR LOGIN MedRCLogin;
     ```
 
-3. <span data-ttu-id="3de2e-187">現在查詢 *SQL 資料倉儲資料庫*，根據您建立用來對資料庫存取和執行作業的登入來建立資料庫使用者。</span><span class="sxs-lookup"><span data-stu-id="3de2e-187">Now querying the *SQL Data Warehouse database*, create a database user based on the login you created to access and perform operations on the database.</span></span>
+3. <span data-ttu-id="e60e4-187">現在查詢 hello *SQL 資料倉儲資料庫*，建立資料庫使用者基礎 hello 登入建立 tooaccess 且 hello 資料庫上執行作業。</span><span class="sxs-lookup"><span data-stu-id="e60e4-187">Now querying hello *SQL Data Warehouse database*, create a database user based on hello login you created tooaccess and perform operations on hello database.</span></span>
 
     ```sql
     CREATE USER LoadingUser FOR LOGIN MedRCLogin;
     ```
 
-4. <span data-ttu-id="3de2e-188">提供資料庫使用者控制權限，讓其可控制名為 NYT 的資料庫。</span><span class="sxs-lookup"><span data-stu-id="3de2e-188">Give the database user control permissions to the database called NYT.</span></span> 
+4. <span data-ttu-id="e60e4-188">提供 hello 資料庫使用者控制的權限 toohello 資料庫呼叫 NYT。</span><span class="sxs-lookup"><span data-stu-id="e60e4-188">Give hello database user control permissions toohello database called NYT.</span></span> 
 
     ```sql
-    GRANT CONTROL ON DATABASE::[NYT] to LoadingUser;
+    GRANT CONTROL ON DATABASE::[NYT] tooLoadingUser;
     ```
     > [!NOTE]
-    > <span data-ttu-id="3de2e-189">如果資料庫名稱中有連字號，請務必以括弧括住！</span><span class="sxs-lookup"><span data-stu-id="3de2e-189">If your database name has hyphens in it, be sure to wrap it in brackets!</span></span> 
+    > <span data-ttu-id="e60e4-189">如果您的資料庫名稱中連字號，以確定 toowrap 在方括號 ！</span><span class="sxs-lookup"><span data-stu-id="e60e4-189">If your database name has hyphens in it, be sure toowrap it in brackets!</span></span> 
     >
 
-### <a name="give-the-user-medium-resource-allocations"></a><span data-ttu-id="3de2e-190">提供使用者中型資源配置</span><span class="sxs-lookup"><span data-stu-id="3de2e-190">Give the user medium resource allocations</span></span>
+### <a name="give-hello-user-medium-resource-allocations"></a><span data-ttu-id="e60e4-190">授與 hello 使用者中資源配置</span><span class="sxs-lookup"><span data-stu-id="e60e4-190">Give hello user medium resource allocations</span></span>
 
-1. <span data-ttu-id="3de2e-191">執行此 T-SQL 命令，使其成為名為 mediumrc 之中型資源類別的成員。</span><span class="sxs-lookup"><span data-stu-id="3de2e-191">Run this T-SQL command to make it a member of the medium resource class, which is called mediumrc.</span></span> 
+1. <span data-ttu-id="e60e4-191">執行這個 T-SQL 命令 toomake 為稱為 mediumrc hello 中資源類別的成員。</span><span class="sxs-lookup"><span data-stu-id="e60e4-191">Run this T-SQL command toomake it a member of hello medium resource class, which is called mediumrc.</span></span> 
 
     ```sql
     EXEC sp_addrolemember 'mediumrc', 'LoadingUser';
     ```
     > [!NOTE]
-    > <span data-ttu-id="3de2e-192">按一下[這裡](sql-data-warehouse-develop-concurrency.md#resource-classes)以深入了解並行和資源類別！</span><span class="sxs-lookup"><span data-stu-id="3de2e-192">Click [here](sql-data-warehouse-develop-concurrency.md#resource-classes) to learn more about concurrency and resource classes!</span></span> 
+    > <span data-ttu-id="e60e4-192">按一下[這裡](sql-data-warehouse-develop-concurrency.md#resource-classes)toolearn 更多關於並行與資源類別 ！</span><span class="sxs-lookup"><span data-stu-id="e60e4-192">Click [here](sql-data-warehouse-develop-concurrency.md#resource-classes) toolearn more about concurrency and resource classes!</span></span> 
     >
 
-2. <span data-ttu-id="3de2e-193">使用新認證，連接到邏輯伺服器</span><span class="sxs-lookup"><span data-stu-id="3de2e-193">Connect to the logical server with the new credentials</span></span>
+2. <span data-ttu-id="e60e4-193">Hello 新的認證與連線 toohello 邏輯伺服器</span><span class="sxs-lookup"><span data-stu-id="e60e4-193">Connect toohello logical server with hello new credentials</span></span>
 
     ![使用新登入進行登入](./media/sql-data-warehouse-get-started-tutorial/new-login.png)
 
 
-## <a name="load-data-from-azure-blob-storage"></a><span data-ttu-id="3de2e-195">從 Azure blob 儲存體載入資料</span><span class="sxs-lookup"><span data-stu-id="3de2e-195">Load data from Azure blob storage</span></span>
+## <a name="load-data-from-azure-blob-storage"></a><span data-ttu-id="e60e4-195">從 Azure blob 儲存體載入資料</span><span class="sxs-lookup"><span data-stu-id="e60e4-195">Load data from Azure blob storage</span></span>
 
-<span data-ttu-id="3de2e-196">現已可將資料載入資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="3de2e-196">You are now ready to load data into your data warehouse.</span></span> <span data-ttu-id="3de2e-197">此步驟說明如何從公用 Azure 儲存體 blob 載入紐約市計程車封包資料。</span><span class="sxs-lookup"><span data-stu-id="3de2e-197">This step shows you how to load New York City taxi cab data from a public Azure storage blob.</span></span> 
+<span data-ttu-id="e60e4-196">現在您已經準備就緒 tooload 資料到資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="e60e4-196">You are now ready tooload data into your data warehouse.</span></span> <span data-ttu-id="e60e4-197">此步驟說明如何 tooload New York City 趕赴從公用 Azure 儲存體的封包資料的 blob。</span><span class="sxs-lookup"><span data-stu-id="e60e4-197">This step shows you how tooload New York City taxi cab data from a public Azure storage blob.</span></span> 
 
-- <span data-ttu-id="3de2e-198">將資料載入 SQL 資料倉儲的常見方式是先將資料移至 Azure blob 儲存體，然後將其載入至資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="3de2e-198">A common way to load data into SQL Data Warehouse is to first move the data to Azure blob storage, and then load it into your data warehouse.</span></span> <span data-ttu-id="3de2e-199">為了讓您輕鬆了解載入的方式，我們在公開 Azure 儲存體 blob 中已裝載紐約市計程車資料。</span><span class="sxs-lookup"><span data-stu-id="3de2e-199">To make it easier to understand how to load, we have New York taxi cab data already hosted in a public Azure storage blob.</span></span> 
+- <span data-ttu-id="e60e4-198">Tooload 資料到 SQL 資料倉儲是 toofirst 的常見方式移動 hello 資料 tooAzure blob 儲存體，，然後將它載入您的資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="e60e4-198">A common way tooload data into SQL Data Warehouse is toofirst move hello data tooAzure blob storage, and then load it into your data warehouse.</span></span> <span data-ttu-id="e60e4-199">toomake 它更容易 toounderstand tooload，如何當我們有紐約計程車封包資料已裝載公用 Azure 儲存體 blob 中。</span><span class="sxs-lookup"><span data-stu-id="e60e4-199">toomake it easier toounderstand how tooload, we have New York taxi cab data already hosted in a public Azure storage blob.</span></span> 
 
-- <span data-ttu-id="3de2e-200">如需日後參考，要了解如何將您的資料置於 Azure blob 儲存體，或直接從您的來源將資料載入 SQL 資料倉儲，請參閱[載入概觀](sql-data-warehouse-overview-load.md)。</span><span class="sxs-lookup"><span data-stu-id="3de2e-200">For future reference, to learn how to get your data to Azure blob storage or to load it directly from your source into SQL Data Warehouse, see the [loading overview](sql-data-warehouse-overview-load.md).</span></span>
+- <span data-ttu-id="e60e4-200">供日後參考，toolearn 如何 tooget 資料 tooAzure blob 儲存體或它直接從您到 SQL 資料倉儲的來源，請參閱的 tooload hello[載入概觀](sql-data-warehouse-overview-load.md)。</span><span class="sxs-lookup"><span data-stu-id="e60e4-200">For future reference, toolearn how tooget your data tooAzure blob storage or tooload it directly from your source into SQL Data Warehouse, see hello [loading overview](sql-data-warehouse-overview-load.md).</span></span>
 
 
-### <a name="define-external-data"></a><span data-ttu-id="3de2e-201">定義外部資料</span><span class="sxs-lookup"><span data-stu-id="3de2e-201">Define external data</span></span>
+### <a name="define-external-data"></a><span data-ttu-id="e60e4-201">定義外部資料</span><span class="sxs-lookup"><span data-stu-id="e60e4-201">Define external data</span></span>
 
-1. <span data-ttu-id="3de2e-202">建立建立主要金鑰。</span><span class="sxs-lookup"><span data-stu-id="3de2e-202">Create a master key.</span></span> <span data-ttu-id="3de2e-203">您只需要為每個資料庫建立一次主要金鑰。</span><span class="sxs-lookup"><span data-stu-id="3de2e-203">You only need to create a master key once per database.</span></span> 
+1. <span data-ttu-id="e60e4-202">建立建立主要金鑰。</span><span class="sxs-lookup"><span data-stu-id="e60e4-202">Create a master key.</span></span> <span data-ttu-id="e60e4-203">您只需要 toocreate 每個資料庫主要金鑰。</span><span class="sxs-lookup"><span data-stu-id="e60e4-203">You only need toocreate a master key once per database.</span></span> 
 
     ```sql
     CREATE MASTER KEY;
     ```
 
-2. <span data-ttu-id="3de2e-204">定義內含計程車封包資料的 Azure blob 的位置。</span><span class="sxs-lookup"><span data-stu-id="3de2e-204">Define the location of the Azure blob that contains the taxi cab data.</span></span>  
+2. <span data-ttu-id="e60e4-204">定義 hello hello Azure blob 可包含 hello 計程車封包資料位置。</span><span class="sxs-lookup"><span data-stu-id="e60e4-204">Define hello location of hello Azure blob that contains hello taxi cab data.</span></span>  
 
     ```sql
     CREATE EXTERNAL DATA SOURCE NYTPublic
@@ -203,11 +203,11 @@ ms.lasthandoff: 08/29/2017
     );
     ```
 
-3. <span data-ttu-id="3de2e-205">定義外部檔案格式</span><span class="sxs-lookup"><span data-stu-id="3de2e-205">Define the external file formats</span></span>
+3. <span data-ttu-id="e60e4-205">定義 hello 外部檔案格式</span><span class="sxs-lookup"><span data-stu-id="e60e4-205">Define hello external file formats</span></span>
 
-    <span data-ttu-id="3de2e-206">可使用 ```CREATE EXTERNAL FILE FORMAT``` 命令來指定內含外部資料的檔案格式。</span><span class="sxs-lookup"><span data-stu-id="3de2e-206">The ```CREATE EXTERNAL FILE FORMAT``` command is used to specify the format of files that contain the external data.</span></span> <span data-ttu-id="3de2e-207">其中包含以一或多個名為分隔符號字元分隔的文字。</span><span class="sxs-lookup"><span data-stu-id="3de2e-207">They contain text separated by one or more characters called delimiters.</span></span> <span data-ttu-id="3de2e-208">基於示範目的，計程車封包資料以未壓縮的資料和 gzip 壓縮資料的形式儲存。</span><span class="sxs-lookup"><span data-stu-id="3de2e-208">For demonstration purposes, the taxi cab data is stored both as uncompressed data and as gzip compressed data.</span></span>
+    <span data-ttu-id="e60e4-206">hello```CREATE EXTERNAL FILE FORMAT```命令是使用的 toospecify 包含 hello 外部資料的檔案格式。</span><span class="sxs-lookup"><span data-stu-id="e60e4-206">hello ```CREATE EXTERNAL FILE FORMAT``` command is used toospecify the format of files that contain hello external data.</span></span> <span data-ttu-id="e60e4-207">其中包含以一或多個名為分隔符號字元分隔的文字。</span><span class="sxs-lookup"><span data-stu-id="e60e4-207">They contain text separated by one or more characters called delimiters.</span></span> <span data-ttu-id="e60e4-208">針對示範用途，hello 計程車封包資料會儲存為未壓縮的資料，做為 gzip 壓縮資料。</span><span class="sxs-lookup"><span data-stu-id="e60e4-208">For demonstration purposes, hello taxi cab data is stored both as uncompressed data and as gzip compressed data.</span></span>
 
-    <span data-ttu-id="3de2e-209">執行這些 T-SQL 命令，來定義兩個不同的格式︰未壓縮和壓縮。</span><span class="sxs-lookup"><span data-stu-id="3de2e-209">Run these T-SQL commands to define two different formats: uncompressed and compressed.</span></span>
+    <span data-ttu-id="e60e4-209">T-SQL 執行這些命令 toodefine 兩個不同的格式： 未壓縮和壓縮。</span><span class="sxs-lookup"><span data-stu-id="e60e4-209">Run these T-SQL commands toodefine two different formats: uncompressed and compressed.</span></span>
 
     ```sql
     CREATE EXTERNAL FILE FORMAT uncompressedcsv
@@ -233,12 +233,12 @@ ms.lasthandoff: 08/29/2017
     );
     ```
 
-4.  <span data-ttu-id="3de2e-210">建立外部檔案格式的結構描述。</span><span class="sxs-lookup"><span data-stu-id="3de2e-210">Create a schema for your external file format.</span></span> 
+4.  <span data-ttu-id="e60e4-210">建立外部檔案格式的結構描述。</span><span class="sxs-lookup"><span data-stu-id="e60e4-210">Create a schema for your external file format.</span></span> 
 
     ```sql
     CREATE SCHEMA ext;
     ```
-5. <span data-ttu-id="3de2e-211">建立外部資料表。</span><span class="sxs-lookup"><span data-stu-id="3de2e-211">Create the external tables.</span></span> <span data-ttu-id="3de2e-212">這些資料表會參考 Azure Blob 儲存體中儲存的資料。</span><span class="sxs-lookup"><span data-stu-id="3de2e-212">These tables reference data stored in Azure blob storage.</span></span> <span data-ttu-id="3de2e-213">執行下列 T-SQL 命令來建立數個外部資料表，而這些資料表都指向我們先前在外部資料來源中定義的 Azure blob。</span><span class="sxs-lookup"><span data-stu-id="3de2e-213">Run the following T-SQL commands to create several external tables that all point to the Azure blob we defined previously in our external data source.</span></span>
+5. <span data-ttu-id="e60e4-211">建立 hello 外部資料表。</span><span class="sxs-lookup"><span data-stu-id="e60e4-211">Create hello external tables.</span></span> <span data-ttu-id="e60e4-212">這些資料表會參考 Azure Blob 儲存體中儲存的資料。</span><span class="sxs-lookup"><span data-stu-id="e60e4-212">These tables reference data stored in Azure blob storage.</span></span> <span data-ttu-id="e60e4-213">執行下列 T-SQL 命令 toocreate hello 所有點 toohello Azure blob 我們先前在中定義之外部資料來源的多個外部資料表。</span><span class="sxs-lookup"><span data-stu-id="e60e4-213">Run hello following T-SQL commands toocreate several external tables that all point toohello Azure blob we defined previously in our external data source.</span></span>
 
 ```sql
     CREATE EXTERNAL TABLE [ext].[Date] 
@@ -415,11 +415,11 @@ ms.lasthandoff: 08/29/2017
     ;
 ```
 
-### <a name="import-the-data-from-azure-blob-storage"></a><span data-ttu-id="3de2e-214">從 Azure Blob 儲存體匯入資料。</span><span class="sxs-lookup"><span data-stu-id="3de2e-214">Import the data from Azure blob storage.</span></span>
+### <a name="import-hello-data-from-azure-blob-storage"></a><span data-ttu-id="e60e4-214">從 Azure blob 儲存體的 hello 資料匯入。</span><span class="sxs-lookup"><span data-stu-id="e60e4-214">Import hello data from Azure blob storage.</span></span>
 
-<span data-ttu-id="3de2e-215">SQL 資料倉儲支援稱為 CREATE TABLE AS SELECT (CTAS) 的重要陳述式。</span><span class="sxs-lookup"><span data-stu-id="3de2e-215">SQL Data Warehouse supports a key statement called CREATE TABLE AS SELECT (CTAS).</span></span> <span data-ttu-id="3de2e-216">此陳述式會根據 select 陳述式的結果建立新的資料表。</span><span class="sxs-lookup"><span data-stu-id="3de2e-216">This statement creates a new table based on the results of a select statement.</span></span> <span data-ttu-id="3de2e-217">新的資料表擁有和 select 陳述式結果相同的資料行和資料類型。</span><span class="sxs-lookup"><span data-stu-id="3de2e-217">The new table has the same columns and data types as the results of the select statement.</span></span>  <span data-ttu-id="3de2e-218">這是將資料從 Azure Blob 儲存體匯入 SQL 資料倉儲的最佳方式。</span><span class="sxs-lookup"><span data-stu-id="3de2e-218">This is an elegant way to import data from Azure blob storage into SQL Data Warehouse.</span></span>
+<span data-ttu-id="e60e4-215">SQL 資料倉儲支援稱為 CREATE TABLE AS SELECT (CTAS) 的重要陳述式。</span><span class="sxs-lookup"><span data-stu-id="e60e4-215">SQL Data Warehouse supports a key statement called CREATE TABLE AS SELECT (CTAS).</span></span> <span data-ttu-id="e60e4-216">這個陳述式建立新的資料表，根據 hello select 陳述式的結果。</span><span class="sxs-lookup"><span data-stu-id="e60e4-216">This statement creates a new table based on hello results of a select statement.</span></span> <span data-ttu-id="e60e4-217">hello 新的資料表有 hello 相同資料行和資料類型，如 hello hello 結果 select 陳述式。</span><span class="sxs-lookup"><span data-stu-id="e60e4-217">hello new table has hello same columns and data types as hello results of hello select statement.</span></span>  <span data-ttu-id="e60e4-218">這是適合用來 tooimport 來自資料到 SQL 資料倉儲的 Azure blob 儲存體。</span><span class="sxs-lookup"><span data-stu-id="e60e4-218">This is an elegant way tooimport data from Azure blob storage into SQL Data Warehouse.</span></span>
 
-1. <span data-ttu-id="3de2e-219">執行這個指令碼來匯入資料。</span><span class="sxs-lookup"><span data-stu-id="3de2e-219">Run this script to import your data.</span></span>
+1. <span data-ttu-id="e60e4-219">執行這個指令碼 tooimport 您的資料。</span><span class="sxs-lookup"><span data-stu-id="e60e4-219">Run this script tooimport your data.</span></span>
 
     ```sql
     CREATE TABLE [dbo].[Date]
@@ -494,9 +494,9 @@ ms.lasthandoff: 08/29/2017
     ;
     ```
 
-2. <span data-ttu-id="3de2e-220">檢視載入中的資料。</span><span class="sxs-lookup"><span data-stu-id="3de2e-220">View your data as it loads.</span></span>
+2. <span data-ttu-id="e60e4-220">檢視載入中的資料。</span><span class="sxs-lookup"><span data-stu-id="e60e4-220">View your data as it loads.</span></span>
 
-   <span data-ttu-id="3de2e-221">您會載入數 GB 的資料，並將其壓縮成高效能的叢集資料行存放區索引。</span><span class="sxs-lookup"><span data-stu-id="3de2e-221">You’re loading several GBs of data and compressing it into highly performant clustered columnstore indexes.</span></span> <span data-ttu-id="3de2e-222">執行下列會使用動態管理檢視 (DMV) 來顯示載入狀態的查詢。</span><span class="sxs-lookup"><span data-stu-id="3de2e-222">Run the following query that uses a dynamic management views (DMVs) to show the status of the load.</span></span> <span data-ttu-id="3de2e-223">啟動查詢之後，喝咖啡吃點心等候 SQL 資料倉儲進行一些繁重的工作。</span><span class="sxs-lookup"><span data-stu-id="3de2e-223">After starting the query, grab a coffee and a snack while SQL Data Warehouse does some heavy lifting.</span></span>
+   <span data-ttu-id="e60e4-221">您會載入數 GB 的資料，並將其壓縮成高效能的叢集資料行存放區索引。</span><span class="sxs-lookup"><span data-stu-id="e60e4-221">You’re loading several GBs of data and compressing it into highly performant clustered columnstore indexes.</span></span> <span data-ttu-id="e60e4-222">執行下列查詢會使用動態管理檢視 (Dmv) tooshow hello 狀態 hello 負載 hello。</span><span class="sxs-lookup"><span data-stu-id="e60e4-222">Run hello following query that uses a dynamic management views (DMVs) tooshow hello status of hello load.</span></span> <span data-ttu-id="e60e4-223">啟動之後 hello 查詢，請抓取咖啡和零食但 SQL 資料倉儲會有些困難。</span><span class="sxs-lookup"><span data-stu-id="e60e4-223">After starting hello query, grab a coffee and a snack while SQL Data Warehouse does some heavy lifting.</span></span>
     
     ```sql
     SELECT
@@ -526,64 +526,64 @@ ms.lasthandoff: 08/29/2017
         gb_processed desc;
     ```
 
-3. <span data-ttu-id="3de2e-224">檢視所有系統查詢。</span><span class="sxs-lookup"><span data-stu-id="3de2e-224">View all system queries.</span></span>
+3. <span data-ttu-id="e60e4-224">檢視所有系統查詢。</span><span class="sxs-lookup"><span data-stu-id="e60e4-224">View all system queries.</span></span>
 
     ```sql
     SELECT * FROM sys.dm_pdw_exec_requests;
     ```
 
-4. <span data-ttu-id="3de2e-225">輕鬆地看著資料順利載入至 Azure SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="3de2e-225">Enjoy seeing your data nicely loaded into your Azure SQL Data Warehouse.</span></span>
+4. <span data-ttu-id="e60e4-225">輕鬆地看著資料順利載入至 Azure SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="e60e4-225">Enjoy seeing your data nicely loaded into your Azure SQL Data Warehouse.</span></span>
 
     ![看著資料載入](./media/sql-data-warehouse-get-started-tutorial/see-data-loaded.png)
 
 
-## <a name="improve-query-performance"></a><span data-ttu-id="3de2e-227">改善查詢效能</span><span class="sxs-lookup"><span data-stu-id="3de2e-227">Improve query performance</span></span>
+## <a name="improve-query-performance"></a><span data-ttu-id="e60e4-227">改善查詢效能</span><span class="sxs-lookup"><span data-stu-id="e60e4-227">Improve query performance</span></span>
 
-<span data-ttu-id="3de2e-228">有數種方式可以改善查詢效能，並達到 SQL 資料倉儲依設計所能提供的高速效能。</span><span class="sxs-lookup"><span data-stu-id="3de2e-228">There are several ways to improve query performance and to achieve the high-speed performance that SQL Data Warehouse is designed to provide.</span></span>  
+<span data-ttu-id="e60e4-228">有數種方式 tooimprove 查詢效能和 tooachieve hello 高速效能 SQL 資料倉儲的設計 tooprovide。</span><span class="sxs-lookup"><span data-stu-id="e60e4-228">There are several ways tooimprove query performance and tooachieve hello high-speed performance that SQL Data Warehouse is designed tooprovide.</span></span>  
 
-### <a name="see-the-effect-of-scaling-on-query-performance"></a><span data-ttu-id="3de2e-229">查看調整查詢效能時的影響</span><span class="sxs-lookup"><span data-stu-id="3de2e-229">See the effect of scaling on query performance</span></span> 
+### <a name="see-hello-effect-of-scaling-on-query-performance"></a><span data-ttu-id="e60e4-229">請參閱 hello 的縮放比例，查詢效能的影響</span><span class="sxs-lookup"><span data-stu-id="e60e4-229">See hello effect of scaling on query performance</span></span> 
 
-<span data-ttu-id="3de2e-230">改善查詢效能的方法之一是藉由變更資料倉儲的 DWU 服務層級來調整資源。</span><span class="sxs-lookup"><span data-stu-id="3de2e-230">One way to improve query performance is to scale resources by changing the DWU service level for your data warehouse.</span></span> <span data-ttu-id="3de2e-231">每個服務等級的成本會往上增加，但您可以隨時調整回來或暫停資源。</span><span class="sxs-lookup"><span data-stu-id="3de2e-231">Each service level costs more, but you can scale back or pause resources at any time.</span></span> 
+<span data-ttu-id="e60e4-230">其中一種方式 tooimprove 查詢效能是 tooscale 資源變更您的資料倉儲的 hello DWU 服務層級。</span><span class="sxs-lookup"><span data-stu-id="e60e4-230">One way tooimprove query performance is tooscale resources by changing hello DWU service level for your data warehouse.</span></span> <span data-ttu-id="e60e4-231">每個服務等級的成本會往上增加，但您可以隨時調整回來或暫停資源。</span><span class="sxs-lookup"><span data-stu-id="e60e4-231">Each service level costs more, but you can scale back or pause resources at any time.</span></span> 
 
-<span data-ttu-id="3de2e-232">在此步驟中，您將會比較兩個不同 DWU 設定的效能。</span><span class="sxs-lookup"><span data-stu-id="3de2e-232">In this step, you compare performance at two different DWU settings.</span></span>
+<span data-ttu-id="e60e4-232">在此步驟中，您將會比較兩個不同 DWU 設定的效能。</span><span class="sxs-lookup"><span data-stu-id="e60e4-232">In this step, you compare performance at two different DWU settings.</span></span>
 
-<span data-ttu-id="3de2e-233">首先，讓我們將規模下調為 100 DWU，以便了解單一計算節點本身的可能執行效能。</span><span class="sxs-lookup"><span data-stu-id="3de2e-233">First, let's scale the sizing down to 100 DWU so we can get an idea of how one compute node might perform on its own.</span></span>
+<span data-ttu-id="e60e4-233">首先，讓我們來調整關閉 too100 DWU，因此我們可以得到了解如何計算節點可能會執行本身的 hello 調整大小。</span><span class="sxs-lookup"><span data-stu-id="e60e4-233">First, let's scale hello sizing down too100 DWU so we can get an idea of how one compute node might perform on its own.</span></span>
 
-1. <span data-ttu-id="3de2e-234">移至入口網站，並選取 SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="3de2e-234">Go to the portal and select your SQL Data Warehouse.</span></span>
+1. <span data-ttu-id="e60e4-234">移 toohello 入口網站，然後選取您的 SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="e60e4-234">Go toohello portal and select your SQL Data Warehouse.</span></span>
 
-2. <span data-ttu-id="3de2e-235">在 [SQL 資料倉儲] 刀鋒視窗中選取 [調整]。</span><span class="sxs-lookup"><span data-stu-id="3de2e-235">Select scale in the SQL Data Warehouse blade.</span></span> 
+2. <span data-ttu-id="e60e4-235">選取在 hello SQL 資料倉儲刀鋒視窗中的小數位數。</span><span class="sxs-lookup"><span data-stu-id="e60e4-235">Select scale in hello SQL Data Warehouse blade.</span></span> 
 
     ![從入口網站調整 DW](./media/sql-data-warehouse-get-started-tutorial/scale-dw.png)
 
-3. <span data-ttu-id="3de2e-237">將效能列縮小到 100 DWU，然後按一下 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="3de2e-237">Scale down the performance bar to 100 DWU and hit save.</span></span>
+3. <span data-ttu-id="e60e4-237">縮放列 too100 DWU hello 效能和儲存叫用。</span><span class="sxs-lookup"><span data-stu-id="e60e4-237">Scale down hello performance bar too100 DWU and hit save.</span></span>
 
     ![調整並儲存](./media/sql-data-warehouse-get-started-tutorial/scale-and-save.png)
 
-4. <span data-ttu-id="3de2e-239">等候調整作業完成。</span><span class="sxs-lookup"><span data-stu-id="3de2e-239">Wait for your scale operation to finish.</span></span>
+4. <span data-ttu-id="e60e4-239">等候您的標尺作業 toofinish。</span><span class="sxs-lookup"><span data-stu-id="e60e4-239">Wait for your scale operation toofinish.</span></span>
 
     > [!NOTE]
-    > <span data-ttu-id="3de2e-240">變更規模時無法執行查詢。</span><span class="sxs-lookup"><span data-stu-id="3de2e-240">Queries cannot run while changing the scale.</span></span> <span data-ttu-id="3de2e-241">調整會**刪除**目前執行的查詢。</span><span class="sxs-lookup"><span data-stu-id="3de2e-241">Scaling **kills** your currently running queries.</span></span> <span data-ttu-id="3de2e-242">您可以在作業完成時重新啟動查詢。</span><span class="sxs-lookup"><span data-stu-id="3de2e-242">You can restart them when the operation is finished.</span></span>
+    > <span data-ttu-id="e60e4-240">變更 hello 小數位數時，無法執行查詢。</span><span class="sxs-lookup"><span data-stu-id="e60e4-240">Queries cannot run while changing hello scale.</span></span> <span data-ttu-id="e60e4-241">調整會**刪除**目前執行的查詢。</span><span class="sxs-lookup"><span data-stu-id="e60e4-241">Scaling **kills** your currently running queries.</span></span> <span data-ttu-id="e60e4-242">Hello 作業完成時，您可以重新加以啟動。</span><span class="sxs-lookup"><span data-stu-id="e60e4-242">You can restart them when hello operation is finished.</span></span>
     >
     
-5. <span data-ttu-id="3de2e-243">對車程資料執行掃描作業，選取所有資料行的前 1 百萬個項目。</span><span class="sxs-lookup"><span data-stu-id="3de2e-243">Do a scan operation on the trip data, selecting the top million entries for all the columns.</span></span> <span data-ttu-id="3de2e-244">如果您想要進展快一點，可放心地選取較少的資料列。</span><span class="sxs-lookup"><span data-stu-id="3de2e-244">If you're eager to move on quickly, feel free to select fewer rows.</span></span> <span data-ttu-id="3de2e-245">記下執行這項作業所花費的時間。</span><span class="sxs-lookup"><span data-stu-id="3de2e-245">Take note of the time it takes to run this operation.</span></span>
+5. <span data-ttu-id="e60e4-243">執行掃描作業上選取 hello 頂端百萬個項目 hello 的所有資料行的 hello 路線資料。</span><span class="sxs-lookup"><span data-stu-id="e60e4-243">Do a scan operation on hello trip data, selecting hello top million entries for all hello columns.</span></span> <span data-ttu-id="e60e4-244">如果您積極式 toomove 上快速，則可以免費 tooselect 較少的資料列。</span><span class="sxs-lookup"><span data-stu-id="e60e4-244">If you're eager toomove on quickly, feel free tooselect fewer rows.</span></span> <span data-ttu-id="e60e4-245">記下 hello 花的時間 toorun 這項作業。</span><span class="sxs-lookup"><span data-stu-id="e60e4-245">Take note of hello time it takes toorun this operation.</span></span>
 
     ```sql
     SELECT TOP(1000000) * FROM dbo.[Trip]
     ```
-6. <span data-ttu-id="3de2e-246">將資料倉儲調回 400 DWU。</span><span class="sxs-lookup"><span data-stu-id="3de2e-246">Scale your data warehouse back to 400 DWU.</span></span> <span data-ttu-id="3de2e-247">請記住，每上調 100 DWU 就會再新增一個計算節點至您的 Azure SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="3de2e-247">Remember, each 100 DWU is adding another compute node to your Azure SQL Data Warehouse.</span></span>
+6. <span data-ttu-id="e60e4-246">調整您的資料倉儲回 too400 DWU。</span><span class="sxs-lookup"><span data-stu-id="e60e4-246">Scale your data warehouse back too400 DWU.</span></span> <span data-ttu-id="e60e4-247">請記住，每個 100 DWU 新增另一個計算節點 tooyour Azure SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="e60e4-247">Remember, each 100 DWU is adding another compute node tooyour Azure SQL Data Warehouse.</span></span>
 
-7. <span data-ttu-id="3de2e-248">再次執行查詢！</span><span class="sxs-lookup"><span data-stu-id="3de2e-248">Run the query again!</span></span> <span data-ttu-id="3de2e-249">您應該會發現顯著差異。</span><span class="sxs-lookup"><span data-stu-id="3de2e-249">You should notice a significant difference.</span></span> 
+7. <span data-ttu-id="e60e4-248">再次執行查詢 hello ！</span><span class="sxs-lookup"><span data-stu-id="e60e4-248">Run hello query again!</span></span> <span data-ttu-id="e60e4-249">您應該會發現顯著差異。</span><span class="sxs-lookup"><span data-stu-id="e60e4-249">You should notice a significant difference.</span></span> 
 
     > [!NOTE]
-    > <span data-ttu-id="3de2e-250">因為查詢傳回大量資料，所以執行 SSMS 之電腦的頻寬可用性可能是效能瓶頸。</span><span class="sxs-lookup"><span data-stu-id="3de2e-250">Because the query returns a lot of data, the bandwidth availability of the machine running SSMS may be a performance bottleneck.</span></span> <span data-ttu-id="3de2e-251">這會導致您看不到任何效能改善！</span><span class="sxs-lookup"><span data-stu-id="3de2e-251">This can result in you not seeing any performance improvements!</span></span>
+    > <span data-ttu-id="e60e4-250">由於 hello 查詢傳回大量資料，執行 SSMS hello 機器 hello 頻寬可用性可能會造成效能瓶頸。</span><span class="sxs-lookup"><span data-stu-id="e60e4-250">Because hello query returns a lot of data, hello bandwidth availability of hello machine running SSMS may be a performance bottleneck.</span></span> <span data-ttu-id="e60e4-251">這會導致您看不到任何效能改善！</span><span class="sxs-lookup"><span data-stu-id="e60e4-251">This can result in you not seeing any performance improvements!</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="3de2e-252">SQL 資料倉儲會使用大量平行處理。</span><span class="sxs-lookup"><span data-stu-id="3de2e-252">Since SQL Data Warehouse uses massively parallel processing.</span></span> <span data-ttu-id="3de2e-253">因此，對數百萬個資料列掃描或執行分析函式將可體驗到 Azure SQL 資料倉儲的真正威力。</span><span class="sxs-lookup"><span data-stu-id="3de2e-253">Queries that scan or perform analytic functions on millions of rows experience the true power of Azure SQL Data Warehouse.</span></span>
+> <span data-ttu-id="e60e4-252">SQL 資料倉儲會使用大量平行處理。</span><span class="sxs-lookup"><span data-stu-id="e60e4-252">Since SQL Data Warehouse uses massively parallel processing.</span></span> <span data-ttu-id="e60e4-253">掃描或數百萬個資料列上執行分析函式的查詢遇到 hello 真正強大的 Azure SQL 資料倉儲。</span><span class="sxs-lookup"><span data-stu-id="e60e4-253">Queries that scan or perform analytic functions on millions of rows experience hello true power of Azure SQL Data Warehouse.</span></span>
 >
 
-### <a name="see-the-effect-of-statistics-on-query-performance"></a><span data-ttu-id="3de2e-254">查看查詢效能統計資料的影響</span><span class="sxs-lookup"><span data-stu-id="3de2e-254">See the effect of statistics on query performance</span></span>
+### <a name="see-hello-effect-of-statistics-on-query-performance"></a><span data-ttu-id="e60e4-254">查看對查詢效能的統計資料的 hello 效果</span><span class="sxs-lookup"><span data-stu-id="e60e4-254">See hello effect of statistics on query performance</span></span>
 
-1. <span data-ttu-id="3de2e-255">執行聯結了日期資料表與車程資料表的查詢</span><span class="sxs-lookup"><span data-stu-id="3de2e-255">Run a query that joins the Date table with the Trip table</span></span>
+1. <span data-ttu-id="e60e4-255">執行查詢聯結 hello hello 路線資料表與日期資料表</span><span class="sxs-lookup"><span data-stu-id="e60e4-255">Run a query that joins hello Date table with hello Trip table</span></span>
 
     ```sql
     SELECT TOP (1000000) 
@@ -615,10 +615,10 @@ ms.lasthandoff: 08/29/2017
         ON  tr.DateID = dt.DateID
     ```
 
-    <span data-ttu-id="3de2e-256">SQL 資料倉儲必須先隨機處理資料才能執行聯結，因此這項查詢需要進行一段時間。</span><span class="sxs-lookup"><span data-stu-id="3de2e-256">This query takes a while because SQL Data Warehouse has to shuffle data before it can perform the join.</span></span> <span data-ttu-id="3de2e-257">若聯結依設計會以散佈資料時的相同方式來聯結資料，則不必隨機處理資料。</span><span class="sxs-lookup"><span data-stu-id="3de2e-257">Joins do not have to shuffle data if they are designed to join data in the same way it is distributed.</span></span> <span data-ttu-id="3de2e-258">這是更深入的主題了。</span><span class="sxs-lookup"><span data-stu-id="3de2e-258">That's a deeper subject.</span></span> 
+    <span data-ttu-id="e60e4-256">因為它可以執行 hello 聯結前 SQL 資料倉儲 tooshuffle 資料，這項查詢需要一些時間。</span><span class="sxs-lookup"><span data-stu-id="e60e4-256">This query takes a while because SQL Data Warehouse has tooshuffle data before it can perform hello join.</span></span> <span data-ttu-id="e60e4-257">聯結沒有 tooshuffle 資料所設計的 toojoin hello 資料散發的方式相同。</span><span class="sxs-lookup"><span data-stu-id="e60e4-257">Joins do not have tooshuffle data if they are designed toojoin data in hello same way it is distributed.</span></span> <span data-ttu-id="e60e4-258">這是更深入的主題了。</span><span class="sxs-lookup"><span data-stu-id="e60e4-258">That's a deeper subject.</span></span> 
 
-2. <span data-ttu-id="3de2e-259">統計資料會造成差異。</span><span class="sxs-lookup"><span data-stu-id="3de2e-259">Statistics make a difference.</span></span> 
-3. <span data-ttu-id="3de2e-260">執行此陳述式來建立聯結資料行的統計資料。</span><span class="sxs-lookup"><span data-stu-id="3de2e-260">Run this statement to create statistics on the join columns.</span></span>
+2. <span data-ttu-id="e60e4-259">統計資料會造成差異。</span><span class="sxs-lookup"><span data-stu-id="e60e4-259">Statistics make a difference.</span></span> 
+3. <span data-ttu-id="e60e4-260">Hello 聯結資料行上執行此陳述式 toocreate 統計資料。</span><span class="sxs-lookup"><span data-stu-id="e60e4-260">Run this statement toocreate statistics on hello join columns.</span></span>
 
     ```sql
     CREATE STATISTICS [dbo.Date DateID stats] ON dbo.Date (DateID);
@@ -626,38 +626,38 @@ ms.lasthandoff: 08/29/2017
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="3de2e-261">SQL DW 不會自動管理您的統計資料。</span><span class="sxs-lookup"><span data-stu-id="3de2e-261">SQL DW does not automatically manage statistics for you.</span></span> <span data-ttu-id="3de2e-262">統計資料對於查詢的效能很重要，因此強烈建議您建立和更新統計資料。</span><span class="sxs-lookup"><span data-stu-id="3de2e-262">Statistics are important for query performance and it is highly recommended you create and update statistics.</span></span>
+    > <span data-ttu-id="e60e4-261">SQL DW 不會自動管理您的統計資料。</span><span class="sxs-lookup"><span data-stu-id="e60e4-261">SQL DW does not automatically manage statistics for you.</span></span> <span data-ttu-id="e60e4-262">統計資料對於查詢的效能很重要，因此強烈建議您建立和更新統計資料。</span><span class="sxs-lookup"><span data-stu-id="e60e4-262">Statistics are important for query performance and it is highly recommended you create and update statistics.</span></span>
     > 
-    > <span data-ttu-id="3de2e-263">**對牽涉聯結的資料行、WHERE 子句中使用的資料行、在 GROUP BY 中找到的資料行加以統計資料，可以獲得最大效益。**</span><span class="sxs-lookup"><span data-stu-id="3de2e-263">**You gain the most benefit by having statistics on columns involved in joins, columns used in the WHERE clause and columns found in GROUP BY.**</span></span>
+    > <span data-ttu-id="e60e4-263">**您可以 hello 最大效益，到的資料行聯結，使用 hello 子句資料行找到和 GROUP BY 中的資料行中具有統計資料。**</span><span class="sxs-lookup"><span data-stu-id="e60e4-263">**You gain hello most benefit by having statistics on columns involved in joins, columns used in hello WHERE clause and columns found in GROUP BY.**</span></span>
     >
 
-3. <span data-ttu-id="3de2e-264">再次從必要條件執行查詢，並觀察效能差異。</span><span class="sxs-lookup"><span data-stu-id="3de2e-264">Run the query from Prerequisites again and observe any performance differences.</span></span> <span data-ttu-id="3de2e-265">雖然查詢效能的差異幅度不會和上調規模一樣巨大，但您應該會發現速度有所增加。</span><span class="sxs-lookup"><span data-stu-id="3de2e-265">While the differences in query performance will not be as drastic as scaling up, you should notice a  speed-up.</span></span> 
+3. <span data-ttu-id="e60e4-264">再次執行必要條件的 hello 查詢，並觀察效能差異。</span><span class="sxs-lookup"><span data-stu-id="e60e4-264">Run hello query from Prerequisites again and observe any performance differences.</span></span> <span data-ttu-id="e60e4-265">雖然無法以向上擴充為極端 hello 差異查詢的效能，您應該會注意到加速。</span><span class="sxs-lookup"><span data-stu-id="e60e4-265">While hello differences in query performance will not be as drastic as scaling up, you should notice a  speed-up.</span></span> 
 
-## <a name="next-steps"></a><span data-ttu-id="3de2e-266">後續步驟</span><span class="sxs-lookup"><span data-stu-id="3de2e-266">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="e60e4-266">後續步驟</span><span class="sxs-lookup"><span data-stu-id="e60e4-266">Next steps</span></span>
 
-<span data-ttu-id="3de2e-267">您現在已準備就緒，可以開始查詢和探索。</span><span class="sxs-lookup"><span data-stu-id="3de2e-267">You're now ready to query and explore.</span></span> <span data-ttu-id="3de2e-268">請查看我們的最佳作法或提示。</span><span class="sxs-lookup"><span data-stu-id="3de2e-268">Check out our best practices or tips.</span></span>
+<span data-ttu-id="e60e4-267">您現在已經準備就緒 tooquery 及探索。</span><span class="sxs-lookup"><span data-stu-id="e60e4-267">You're now ready tooquery and explore.</span></span> <span data-ttu-id="e60e4-268">請查看我們的最佳作法或提示。</span><span class="sxs-lookup"><span data-stu-id="e60e4-268">Check out our best practices or tips.</span></span>
 
-<span data-ttu-id="3de2e-269">如果您當天的探索已完成，請務必暫停您的執行個體！</span><span class="sxs-lookup"><span data-stu-id="3de2e-269">If you're done exploring for the day, make sure to pause your instance!</span></span> <span data-ttu-id="3de2e-270">在生產環境中，您可以藉由暫停和調整大小以符合商務需求來省下大額成本。</span><span class="sxs-lookup"><span data-stu-id="3de2e-270">In production, you can experience enormous savings by pausing and scaling to meet your business needs.</span></span>
+<span data-ttu-id="e60e4-269">如果您完成 hello 天，瀏覽您的執行個體請確定 toopause ！</span><span class="sxs-lookup"><span data-stu-id="e60e4-269">If you're done exploring for hello day, make sure toopause your instance!</span></span> <span data-ttu-id="e60e4-270">實際執行環境，您可以暫停並調整 toomeet 體驗龐大的節省您的業務需求。</span><span class="sxs-lookup"><span data-stu-id="e60e4-270">In production, you can experience enormous savings by pausing and scaling toomeet your business needs.</span></span>
 
 ![暫停](./media/sql-data-warehouse-get-started-tutorial/pause.png)
 
-## <a name="useful-readings"></a><span data-ttu-id="3de2e-272">實用內容</span><span class="sxs-lookup"><span data-stu-id="3de2e-272">Useful readings</span></span>
+## <a name="useful-readings"></a><span data-ttu-id="e60e4-272">實用內容</span><span class="sxs-lookup"><span data-stu-id="e60e4-272">Useful readings</span></span>
 
-<span data-ttu-id="3de2e-273">[並行和工作負載管理][]</span><span class="sxs-lookup"><span data-stu-id="3de2e-273">[Concurrency and Workload Management][]</span></span>
+<span data-ttu-id="e60e4-273">[並行和工作負載管理][]</span><span class="sxs-lookup"><span data-stu-id="e60e4-273">[Concurrency and Workload Management][]</span></span>
 
-<span data-ttu-id="3de2e-274">[Azure SQL 資料倉儲最佳做法][]</span><span class="sxs-lookup"><span data-stu-id="3de2e-274">[Best practices for Azure SQL Data Warehouse][]</span></span>
+<span data-ttu-id="e60e4-274">[Azure SQL 資料倉儲最佳做法][]</span><span class="sxs-lookup"><span data-stu-id="e60e4-274">[Best practices for Azure SQL Data Warehouse][]</span></span>
 
-<span data-ttu-id="3de2e-275">[查詢監視][]</span><span class="sxs-lookup"><span data-stu-id="3de2e-275">[Query Monitoring][]</span></span>
+<span data-ttu-id="e60e4-275">[查詢監視][]</span><span class="sxs-lookup"><span data-stu-id="e60e4-275">[Query Monitoring][]</span></span>
 
-<span data-ttu-id="3de2e-276">[建立大規模關聯式資料倉儲的 10 大最佳作法][]</span><span class="sxs-lookup"><span data-stu-id="3de2e-276">[Top 10 Best Practices for Building a Large Scale Relational Data Warehouse][]</span></span>
+<span data-ttu-id="e60e4-276">[建立大規模關聯式資料倉儲的 10 大最佳作法][]</span><span class="sxs-lookup"><span data-stu-id="e60e4-276">[Top 10 Best Practices for Building a Large Scale Relational Data Warehouse][]</span></span>
 
-<span data-ttu-id="3de2e-277">[將資料移轉至 Azure SQL 資料倉儲][]</span><span class="sxs-lookup"><span data-stu-id="3de2e-277">[Migrating Data to Azure SQL Data Warehouse][]</span></span>
+<span data-ttu-id="e60e4-277">[移轉資料 tooAzure SQL 資料倉儲][]</span><span class="sxs-lookup"><span data-stu-id="e60e4-277">[Migrating Data tooAzure SQL Data Warehouse][]</span></span>
 
 [並行和工作負載管理]: sql-data-warehouse-develop-concurrency.md#changing-user-resource-class-example
 [Azure SQL 資料倉儲最佳做法]: sql-data-warehouse-best-practices.md#hash-distribute-large-tables
 [查詢監視]: sql-data-warehouse-manage-monitor.md
 [建立大規模關聯式資料倉儲的 10 大最佳作法]: https://blogs.msdn.microsoft.com/sqlcat/2013/09/16/top-10-best-practices-for-building-a-large-scale-relational-data-warehouse/
-[將資料移轉至 Azure SQL 資料倉儲]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/
+[移轉資料 tooAzure SQL 資料倉儲]: https://blogs.msdn.microsoft.com/sqlcat/2016/08/18/migrating-data-to-azure-sql-data-warehouse-in-practice/
 
 
 

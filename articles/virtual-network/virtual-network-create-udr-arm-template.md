@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中控制路由和虛擬設備 - 範本 | Microsoft Docs"
-description: "深入了解如何使用 Azure Resource Manager 範本控制路由和虛擬應用裝置。"
+title: "在 Azure-aaaControl 路由和虛擬應用裝置範本 |Microsoft 文件"
+description: "深入了解如何使用 Azure Resource Manager 範本 toocontrol 路由和虛擬裝置。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,30 +15,30 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
-ms.openlocfilehash: b2c962d5449d18b51cfd84b0e1992695b54d1c48
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 781340593541784d2d9772d310c041ad4a5c3101
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-user-defined-routes-udr-using-a-template"></a><span data-ttu-id="d1fee-103">使用範本建立使用者定義的路由 (UDR)</span><span class="sxs-lookup"><span data-stu-id="d1fee-103">Create User-Defined Routes (UDR) using a template</span></span>
+# <a name="create-user-defined-routes-udr-using-a-template"></a><span data-ttu-id="8b3ab-103">使用範本建立使用者定義的路由 (UDR)</span><span class="sxs-lookup"><span data-stu-id="8b3ab-103">Create User-Defined Routes (UDR) using a template</span></span>
 
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="d1fee-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="d1fee-104">PowerShell</span></span>](virtual-network-create-udr-arm-ps.md)
-> * [<span data-ttu-id="d1fee-105">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="d1fee-105">Azure CLI</span></span>](virtual-network-create-udr-arm-cli.md)
-> * [<span data-ttu-id="d1fee-106">範本</span><span class="sxs-lookup"><span data-stu-id="d1fee-106">Template</span></span>](virtual-network-create-udr-arm-template.md)
-> * [<span data-ttu-id="d1fee-107">PowerShell (傳統)</span><span class="sxs-lookup"><span data-stu-id="d1fee-107">PowerShell (Classic)</span></span>](virtual-network-create-udr-classic-ps.md)
-> * [<span data-ttu-id="d1fee-108">CLI (傳統)</span><span class="sxs-lookup"><span data-stu-id="d1fee-108">CLI (Classic)</span></span>](virtual-network-create-udr-classic-cli.md)
+> * [<span data-ttu-id="8b3ab-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="8b3ab-104">PowerShell</span></span>](virtual-network-create-udr-arm-ps.md)
+> * [<span data-ttu-id="8b3ab-105">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="8b3ab-105">Azure CLI</span></span>](virtual-network-create-udr-arm-cli.md)
+> * [<span data-ttu-id="8b3ab-106">範本</span><span class="sxs-lookup"><span data-stu-id="8b3ab-106">Template</span></span>](virtual-network-create-udr-arm-template.md)
+> * [<span data-ttu-id="8b3ab-107">PowerShell (傳統)</span><span class="sxs-lookup"><span data-stu-id="8b3ab-107">PowerShell (Classic)</span></span>](virtual-network-create-udr-classic-ps.md)
+> * [<span data-ttu-id="8b3ab-108">CLI (傳統)</span><span class="sxs-lookup"><span data-stu-id="8b3ab-108">CLI (Classic)</span></span>](virtual-network-create-udr-classic-cli.md)
 
 > [!IMPORTANT]
-> <span data-ttu-id="d1fee-109">使用 Azure 資源之前，請務必了解 Azure 目前有 Azure Resource Manager 和「傳統」兩種部署模型。</span><span class="sxs-lookup"><span data-stu-id="d1fee-109">Before you work with Azure resources, it's important to understand that Azure currently has two deployment models: Azure Resource Manager and classic.</span></span> <span data-ttu-id="d1fee-110">在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-resource-manager/resource-manager-deployment-model.md) 。</span><span class="sxs-lookup"><span data-stu-id="d1fee-110">Make sure you understand [deployment models and tools](../azure-resource-manager/resource-manager-deployment-model.md) before you work with any Azure resource.</span></span> <span data-ttu-id="d1fee-111">您可以按一下本文頂端的索引標籤，檢視不同工具的文件。</span><span class="sxs-lookup"><span data-stu-id="d1fee-111">You can view the documentation for different tools by clicking the tabs at the top of this article.</span></span> <span data-ttu-id="d1fee-112">本文涵蓋之內容包括資源管理員部署模型。</span><span class="sxs-lookup"><span data-stu-id="d1fee-112">This article covers the Resource Manager deployment model.</span></span> 
+> <span data-ttu-id="8b3ab-109">您可以使用 Azure 資源之前，它是 Azure 目前有兩種部署模型的重要 toounderstand: Azure 資源管理員] 和 [傳統。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-109">Before you work with Azure resources, it's important toounderstand that Azure currently has two deployment models: Azure Resource Manager and classic.</span></span> <span data-ttu-id="8b3ab-110">在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-resource-manager/resource-manager-deployment-model.md) 。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-110">Make sure you understand [deployment models and tools](../azure-resource-manager/resource-manager-deployment-model.md) before you work with any Azure resource.</span></span> <span data-ttu-id="8b3ab-111">您可以按一下上方的這篇文章 hello hello 索引標籤檢視 hello 文件不同的工具。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-111">You can view hello documentation for different tools by clicking hello tabs at hello top of this article.</span></span> <span data-ttu-id="8b3ab-112">本文涵蓋 hello Resource Manager 部署模型。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-112">This article covers hello Resource Manager deployment model.</span></span> 
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-## <a name="udr-resources-in-a-template-file"></a><span data-ttu-id="d1fee-113">範本檔案中的 UDR 資源</span><span class="sxs-lookup"><span data-stu-id="d1fee-113">UDR resources in a template file</span></span>
-<span data-ttu-id="d1fee-114">您可以檢視和下載 [範例範本](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR)。</span><span class="sxs-lookup"><span data-stu-id="d1fee-114">You can view and download the [sample template](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR).</span></span>
+## <a name="udr-resources-in-a-template-file"></a><span data-ttu-id="8b3ab-113">範本檔案中的 UDR 資源</span><span class="sxs-lookup"><span data-stu-id="8b3ab-113">UDR resources in a template file</span></span>
+<span data-ttu-id="8b3ab-114">您可以檢視和下載 hello[範例範本](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR)。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-114">You can view and download hello [sample template](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR).</span></span>
 
-<span data-ttu-id="d1fee-115">以下段落顯示此案例的 **azuredeploy-vnet-nsg-udr.json** 檔案中前端 UDR 的定義：</span><span class="sxs-lookup"><span data-stu-id="d1fee-115">The following section shows the definition of the front-end UDR in the **azuredeploy-vnet-nsg-udr.json** file for the scenario:</span></span>
+<span data-ttu-id="8b3ab-115">hello 下一節顯示 hello hello 定義在 hello 前端 UDR **azuredeploy vnet-nsg udr.json** hello 案例中的檔案：</span><span class="sxs-lookup"><span data-stu-id="8b3ab-115">hello following section shows hello definition of hello front-end UDR in hello **azuredeploy-vnet-nsg-udr.json** file for hello scenario:</span></span>
 
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/routeTables",
@@ -59,7 +59,7 @@ ms.lasthandoff: 07/11/2017
         }
       ]
 
-<span data-ttu-id="d1fee-116">若要建立 UDR 與前端子網路的關聯，您必須變更範本中的子網路定義，並使用 UDR 的參考識別碼。</span><span class="sxs-lookup"><span data-stu-id="d1fee-116">To associate the UDR to the front-end subnet, you have to change the subnet definition in the template, and use the reference id for the UDR.</span></span>
+<span data-ttu-id="8b3ab-116">tooassociate hello UDR toohello 前端的子網路，您有在 hello 範本，並使用 hello 參考識別碼 hello UDR toochange hello 子網路定義。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-116">tooassociate hello UDR toohello front-end subnet, you have toochange hello subnet definition in hello template, and use hello reference id for hello UDR.</span></span>
 
     "subnets": [
         "name": "[parameters('frontEndSubnetName')]",
@@ -73,9 +73,9 @@ ms.lasthandoff: 07/11/2017
           }
         },
 
-<span data-ttu-id="d1fee-117">請注意，在範本中已對後端 NSG 和後端子網路完成相同作業。</span><span class="sxs-lookup"><span data-stu-id="d1fee-117">Notice the same being done for the back-end NSG and the back-end subnet in the template.</span></span>
+<span data-ttu-id="8b3ab-117">請注意 hello 為 hello 後端 NSG 與 hello 後端子 hello 範本中進行相同。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-117">Notice hello same being done for hello back-end NSG and hello back-end subnet in hello template.</span></span>
 
-<span data-ttu-id="d1fee-118">您也需要確定 **FW1** VM 已在將用來接收和轉送封包的 NIC 上的 IP 轉送屬性啟用。</span><span class="sxs-lookup"><span data-stu-id="d1fee-118">You also need to ensure that the **FW1** VM has the IP forwarding property enabled on the NIC that will be used to receive and forward packets.</span></span> <span data-ttu-id="d1fee-119">下一節根據上述案例，顯示 azuredeploy-nsg-udr.json 檔案中 FW1 的 NIC 的定義。</span><span class="sxs-lookup"><span data-stu-id="d1fee-119">The section below shows the definition of the NIC for FW1 in the azuredeploy-nsg-udr.json file, based on the scenario above.</span></span>
+<span data-ttu-id="8b3ab-118">您也需要 tooensure 該 hello **FW1** VM 具有 hello IP 轉送 hello NIC，它會使用的 tooreceive 及轉寄封包上啟用的屬性。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-118">You also need tooensure that hello **FW1** VM has hello IP forwarding property enabled on hello NIC that will be used tooreceive and forward packets.</span></span> <span data-ttu-id="8b3ab-119">hello 區段顯示 hello 定義 hello FW1 在 hello azuredeploy-nsg-udr.json 檔案中，根據上述的 hello 案例 NIC。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-119">hello section below shows hello definition of hello NIC for FW1 in hello azuredeploy-nsg-udr.json file, based on hello scenario above.</span></span>
 
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/networkInterfaces",
@@ -111,17 +111,17 @@ ms.lasthandoff: 07/11/2017
       "count": "[parameters('fwCount')]"
     }
 
-## <a name="deploy-the-template-by-using-click-to-deploy"></a><span data-ttu-id="d1fee-120">使用按一下即部署來部署範本</span><span class="sxs-lookup"><span data-stu-id="d1fee-120">Deploy the template by using click to deploy</span></span>
-<span data-ttu-id="d1fee-121">公用儲存機制中可用的範例範本會使用一個包含預設值的參數檔案，這些預設值可用來產生上述案例。</span><span class="sxs-lookup"><span data-stu-id="d1fee-121">The sample template available in the public repository uses a parameter file containing the default values used to generate the scenario described above.</span></span> <span data-ttu-id="d1fee-122">若要使用「按一下即部署」來部署此範本，請依循[此連結](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR)，按一下 [部署至 Azure]，視情況取代預設參數值，再依循入口網站中的指示。</span><span class="sxs-lookup"><span data-stu-id="d1fee-122">To deploy this template using click to deploy, follow [this link](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR), click **Deploy to Azure**, replace the default parameter values if necessary, and follow the instructions in the portal.</span></span>
+## <a name="deploy-hello-template-by-using-click-toodeploy"></a><span data-ttu-id="8b3ab-120">使用部署 hello 範本按一下 toodeploy</span><span class="sxs-lookup"><span data-stu-id="8b3ab-120">Deploy hello template by using click toodeploy</span></span>
+<span data-ttu-id="8b3ab-121">hello 範例範本可用 hello 公用儲存機制中的會使用包含 hello 預設值使用 toogenerate hello 案例上面所述的參數檔案。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-121">hello sample template available in hello public repository uses a parameter file containing hello default values used toogenerate hello scenario described above.</span></span> <span data-ttu-id="8b3ab-122">toodeploy 此範本使用按一下 toodeploy，遵循[此連結](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR)，按一下 **部署 tooAzure**、 取代 hello 預設參數值，如有必要，並遵循 hello 入口網站中的 hello 指示。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-122">toodeploy this template using click toodeploy, follow [this link](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR), click **Deploy tooAzure**, replace hello default parameter values if necessary, and follow hello instructions in hello portal.</span></span>
 
-1. <span data-ttu-id="d1fee-123">如果您從未用過 Azure PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) ，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="d1fee-123">If you have never used Azure PowerShell, see [How to Install and Configure Azure PowerShell](/powershell/azure/overview) and follow the instructions all the way to the end to sign into Azure and select your subscription.</span></span>
-2. <span data-ttu-id="d1fee-124">執行下列命令以建立資源群組：</span><span class="sxs-lookup"><span data-stu-id="d1fee-124">Run the following command to create a resource group:</span></span>
+1. <span data-ttu-id="8b3ab-123">如果您從未使用過 Azure PowerShell，請參閱[如何 tooInstall 和設定 Azure PowerShell](/powershell/azure/overview)並遵循 hello 指示所有 hello 方式 toohello 結束 toosign 至 Azure，然後選取您的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-123">If you have never used Azure PowerShell, see [How tooInstall and Configure Azure PowerShell](/powershell/azure/overview) and follow hello instructions all hello way toohello end toosign into Azure and select your subscription.</span></span>
+2. <span data-ttu-id="8b3ab-124">資源群組執行下列命令 toocreate hello:</span><span class="sxs-lookup"><span data-stu-id="8b3ab-124">Run hello following command toocreate a resource group:</span></span>
 
     ```powershell
     New-AzureRmResourceGroup -Name TestRG -Location westus
     ```
 
-3. <span data-ttu-id="d1fee-125">執行下列命令來部署範本：</span><span class="sxs-lookup"><span data-stu-id="d1fee-125">Run the following command to deploy the template:</span></span>
+3. <span data-ttu-id="8b3ab-125">執行下列命令 toodeploy hello 範本 hello:</span><span class="sxs-lookup"><span data-stu-id="8b3ab-125">Run hello following command toodeploy hello template:</span></span>
 
     ```powershell
     New-AzureRmResourceGroupDeployment -Name DeployUDR -ResourceGroupName TestRG `
@@ -129,7 +129,7 @@ ms.lasthandoff: 07/11/2017
         -TemplateParameterUri https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json
     ```
 
-    <span data-ttu-id="d1fee-126">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="d1fee-126">Expected output:</span></span>
+    <span data-ttu-id="8b3ab-126">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="8b3ab-126">Expected output:</span></span>
    
         ResourceGroupName : TestRG
         Location          : westus
@@ -171,22 +171,22 @@ ms.lasthandoff: 07/11/2017
 
         ResourceId        : /subscriptions/[Subscription Id]/resourceGroups/TestRG
 
-## <a name="deploy-the-template-by-using-the-azure-cli"></a><span data-ttu-id="d1fee-127">使用 Azure CLI 部署範本</span><span class="sxs-lookup"><span data-stu-id="d1fee-127">Deploy the template by using the Azure CLI</span></span>
+## <a name="deploy-hello-template-by-using-hello-azure-cli"></a><span data-ttu-id="8b3ab-127">使用 Azure CLI hello 部署 hello 範本</span><span class="sxs-lookup"><span data-stu-id="8b3ab-127">Deploy hello template by using hello Azure CLI</span></span>
 
-<span data-ttu-id="d1fee-128">若要使用 Azure CLI 部署 ARM 範本，請完成下列步驟：</span><span class="sxs-lookup"><span data-stu-id="d1fee-128">To deploy the ARM template by using the Azure CLI, complete the following steps:</span></span>
+<span data-ttu-id="8b3ab-128">使用 Azure CLI，完成下列步驟的 hello hello toodeploy hello ARM 範本：</span><span class="sxs-lookup"><span data-stu-id="8b3ab-128">toodeploy hello ARM template by using hello Azure CLI, complete hello following steps:</span></span>
 
-1. <span data-ttu-id="d1fee-129">如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。</span><span class="sxs-lookup"><span data-stu-id="d1fee-129">If you have never used Azure CLI, see [Install and Configure the Azure CLI](../cli-install-nodejs.md) and follow the instructions up to the point where you select your Azure account and subscription.</span></span>
-2. <span data-ttu-id="d1fee-130">執行下列命令切換至 Resource Manager 模式：</span><span class="sxs-lookup"><span data-stu-id="d1fee-130">Run the following command to switch to Resource Manager mode:</span></span>
+1. <span data-ttu-id="8b3ab-129">如果您從未使用過 Azure CLI，請參閱[安裝及設定 hello Azure CLI](../cli-install-nodejs.md)依照 hello 向上 toohello 點，選取您的 Azure 帳戶和訂用帳戶的指示進行。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-129">If you have never used Azure CLI, see [Install and Configure hello Azure CLI](../cli-install-nodejs.md) and follow hello instructions up toohello point where you select your Azure account and subscription.</span></span>
+2. <span data-ttu-id="8b3ab-130">執行下列命令 tooswitch tooResource 管理員模式的 hello:</span><span class="sxs-lookup"><span data-stu-id="8b3ab-130">Run hello following command tooswitch tooResource Manager mode:</span></span>
 
     ```azurecli
     azure config mode arm
     ```
 
-    <span data-ttu-id="d1fee-131">此為上述命令的預期輸出內容：</span><span class="sxs-lookup"><span data-stu-id="d1fee-131">Here is the expected output for the command above:</span></span>
+    <span data-ttu-id="8b3ab-131">以下是 hello 上述命令中的 hello 預期輸出：</span><span class="sxs-lookup"><span data-stu-id="8b3ab-131">Here is hello expected output for hello command above:</span></span>
 
         info:    New mode is arm
 
-3. <span data-ttu-id="d1fee-132">從您的瀏覽器瀏覽至 **https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**，將 json 檔案的內容複製並貼到您電腦上的新檔案中。</span><span class="sxs-lookup"><span data-stu-id="d1fee-132">From your browser, navigate to **https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**, copy the contents of the json file, and paste into a new file in your computer.</span></span> <span data-ttu-id="d1fee-133">在此案例中，您會將以下的值複製到名為 **c:\udr\azuredeploy.parameters.json** 的檔案。</span><span class="sxs-lookup"><span data-stu-id="d1fee-133">For this scenario, you would be copying the values below to a file named **c:\udr\azuredeploy.parameters.json**.</span></span>
+3. <span data-ttu-id="8b3ab-132">從瀏覽器中，瀏覽過**https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**、 hello hello json 檔案，內容複製和貼入新檔案中，您電腦。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-132">From your browser, navigate too**https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**, copy hello contents of hello json file, and paste into a new file in your computer.</span></span> <span data-ttu-id="8b3ab-133">此案例中，您會被複製 hello 值 tooa 檔案命名為之下**c:\udr\azuredeploy.parameters.json**。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-133">For this scenario, you would be copying hello values below tooa file named **c:\udr\azuredeploy.parameters.json**.</span></span>
 
     ```json
         {
@@ -206,13 +206,13 @@ ms.lasthandoff: 07/11/2017
         }
     ```
 
-4. <span data-ttu-id="d1fee-134">執行下列命令，以使用先前下載並修改的範本和參數檔案，部署新的 VNet：</span><span class="sxs-lookup"><span data-stu-id="d1fee-134">Run the following command to deploy the new VNet by using the template and parameter files you downloaded and modified above:</span></span>
+4. <span data-ttu-id="8b3ab-134">執行下列命令 toodeploy hello 新的 VNet 使用 hello 範本和參數檔案下載，並修改上述的 hello:</span><span class="sxs-lookup"><span data-stu-id="8b3ab-134">Run hello following command toodeploy hello new VNet by using hello template and parameter files you downloaded and modified above:</span></span>
 
     ```azurecli
     azure group create -n TestRG -l westus --template-uri 'https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.json' -e 'c:\udr\azuredeploy.parameters.json'
     ```
 
-    <span data-ttu-id="d1fee-135">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="d1fee-135">Expected output:</span></span>
+    <span data-ttu-id="8b3ab-135">預期的輸出：</span><span class="sxs-lookup"><span data-stu-id="8b3ab-135">Expected output:</span></span>
    
         info:    Executing command group create
         info:    Getting resource group TestRG
@@ -229,17 +229,17 @@ ms.lasthandoff: 07/11/2017
         data:    
         info:    group create command OK
 
-5. <span data-ttu-id="d1fee-136">執行 下列命令以檢視於新資源群組中建立的資源：</span><span class="sxs-lookup"><span data-stu-id="d1fee-136">Run the following command to view the resources created in the new resource group:</span></span>
+5. <span data-ttu-id="8b3ab-136">執行下列命令 tooview hello 資源建立 hello 新資源群組中的 hello:</span><span class="sxs-lookup"><span data-stu-id="8b3ab-136">Run hello following command tooview hello resources created in hello new resource group:</span></span>
 
     ```azurecli
     azure group show TestRG
     ```
 
-    <span data-ttu-id="d1fee-137">預期的結果：</span><span class="sxs-lookup"><span data-stu-id="d1fee-137">Expected result:</span></span>
+    <span data-ttu-id="8b3ab-137">預期的結果：</span><span class="sxs-lookup"><span data-stu-id="8b3ab-137">Expected result:</span></span>
 
             info:    Executing command group show
             info:    Listing resource groups
-            info:    Listing resources for the group
+            info:    Listing resources for hello group
             data:    Id:                  /subscriptions/[Subscription Id]/resourceGroups/TestRG
             data:    Name:                TestRG
             data:    Location:            westus
@@ -404,5 +404,5 @@ ms.lasthandoff: 07/11/2017
             info:    group show command OK
 
 > [!TIP]
-> <span data-ttu-id="d1fee-138">如果沒看到所有資源，請執行 `azure group deployment show` 命令，以確保部署的佈建狀態為 [成功]。</span><span class="sxs-lookup"><span data-stu-id="d1fee-138">If you do not see all the resources, run the `azure group deployment show` command to ensure the provisioning state of the deployment is *Succeded*.</span></span>
+> <span data-ttu-id="8b3ab-138">如果看不到 hello 的所有資源，請執行 hello`azure group deployment show`命令 tooensure hello 的 hello 部署佈建狀態是*成功*。</span><span class="sxs-lookup"><span data-stu-id="8b3ab-138">If you do not see all hello resources, run hello `azure group deployment show` command tooensure hello provisioning state of hello deployment is *Succeded*.</span></span>
 > 

@@ -1,6 +1,6 @@
 ---
-title: "使用 HDInsight .NET SDK 執行 Hive 查詢 - Azure | Microsoft Docs"
-description: "了解如何使用 HDInsight .NET SDK 將 Hadoop 工作提交至 Azure HDInsight Hadoop。"
+title: "使用 HDInsight.NET SDK Azure aaaRun Hive 查詢 |Microsoft 文件"
+description: "了解如何 toosubmit Hadoop 作業 tooAzure HDInsight Hadoop 使用 HDInsight.NET SDK。"
 editor: cgronlun
 manager: jhubbard
 services: hdinsight
@@ -16,38 +16,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: jgao
-ms.openlocfilehash: 7b1a5f7ea3b2bda438727dc75a85557ea7930280
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 11f07d90405d3e804774610e242813927df59a03
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="run-hive-queries-using-hdinsight-net-sdk"></a><span data-ttu-id="ae327-103">使用 HDInsight .NET SDK 執行 Hive 查詢</span><span class="sxs-lookup"><span data-stu-id="ae327-103">Run Hive queries using HDInsight .NET SDK</span></span>
+# <a name="run-hive-queries-using-hdinsight-net-sdk"></a><span data-ttu-id="69437-103">使用 HDInsight .NET SDK 執行 Hive 查詢</span><span class="sxs-lookup"><span data-stu-id="69437-103">Run Hive queries using HDInsight .NET SDK</span></span>
 [!INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
 
-<span data-ttu-id="ae327-104">了解如何使用 HDInsight .NET SDK 提交 Hive 查詢。</span><span class="sxs-lookup"><span data-stu-id="ae327-104">Learn how to submit Hive queries using HDInsight .NET SDK.</span></span> <span data-ttu-id="ae327-105">您要撰寫 C# 程式來提交用於列出 Hive 資料表的 Hive 查詢，並顯示結果。</span><span class="sxs-lookup"><span data-stu-id="ae327-105">You write a C# program to submit a Hive query for listing Hive tables, and display the results.</span></span>
+<span data-ttu-id="69437-104">了解如何 toosubmit Hive 查詢使用 HDInsight.NET SDK。</span><span class="sxs-lookup"><span data-stu-id="69437-104">Learn how toosubmit Hive queries using HDInsight .NET SDK.</span></span> <span data-ttu-id="69437-105">您撰寫 C# 程式 toosubmit 列出 Hive 資料表的 Hive 查詢，並顯示 hello 結果。</span><span class="sxs-lookup"><span data-stu-id="69437-105">You write a C# program toosubmit a Hive query for listing Hive tables, and display hello results.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="ae327-106">此文章中的步驟必須從 Windows 用戶端執行。</span><span class="sxs-lookup"><span data-stu-id="ae327-106">The steps in this article must be performed from a Windows client.</span></span> <span data-ttu-id="ae327-107">如需搭配 Linux、OS X 或 Unix 用戶端使用 Hive 的資訊，請使用本文頂端顯示的索引標籤選取器。</span><span class="sxs-lookup"><span data-stu-id="ae327-107">For information on using a Linux, OS X, or Unix client to work with Hive, use the tab selector shown on the top of the article.</span></span>
+> <span data-ttu-id="69437-106">從 Windows 用戶端必須執行本文中的 hello 步驟。</span><span class="sxs-lookup"><span data-stu-id="69437-106">hello steps in this article must be performed from a Windows client.</span></span> <span data-ttu-id="69437-107">使用 Linux、 OS X 或 Unix 用戶端 toowork Hive 與資訊，請使用上 hello hello 文章頂端顯示 hello 索引標籤選取器。</span><span class="sxs-lookup"><span data-stu-id="69437-107">For information on using a Linux, OS X, or Unix client toowork with Hive, use hello tab selector shown on hello top of hello article.</span></span>
 > 
 > 
 
-## <a name="prerequisites"></a><span data-ttu-id="ae327-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="ae327-108">Prerequisites</span></span>
-<span data-ttu-id="ae327-109">開始閱讀本文之前，您必須有下列各項：</span><span class="sxs-lookup"><span data-stu-id="ae327-109">Before you begin this article, you must have the following items:</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="69437-108">必要條件</span><span class="sxs-lookup"><span data-stu-id="69437-108">Prerequisites</span></span>
+<span data-ttu-id="69437-109">在開始這份文件之前，您必須擁有 hello 下列項目：</span><span class="sxs-lookup"><span data-stu-id="69437-109">Before you begin this article, you must have hello following items:</span></span>
 
-* <span data-ttu-id="ae327-110">**HDInsight 中的 Hadoop 叢集**。</span><span class="sxs-lookup"><span data-stu-id="ae327-110">**A Hadoop cluster in HDInsight**.</span></span> <span data-ttu-id="ae327-111">請參閱[開始在 Hdinsight 中使用 Linux 型 Hadoop](./hdinsight-hadoop-linux-tutorial-get-started.md)。</span><span class="sxs-lookup"><span data-stu-id="ae327-111">See [Get started using Linux-based Hadoop in HDInsight](./hdinsight-hadoop-linux-tutorial-get-started.md).</span></span>
-* <span data-ttu-id="ae327-112">**Visual Studio 2013/2015/2017**。</span><span class="sxs-lookup"><span data-stu-id="ae327-112">**Visual Studio 2013/2015/2017**.</span></span>
+* <span data-ttu-id="69437-110">**HDInsight 中的 Hadoop 叢集**。</span><span class="sxs-lookup"><span data-stu-id="69437-110">**A Hadoop cluster in HDInsight**.</span></span> <span data-ttu-id="69437-111">請參閱[開始在 Hdinsight 中使用 Linux 型 Hadoop](./hdinsight-hadoop-linux-tutorial-get-started.md)。</span><span class="sxs-lookup"><span data-stu-id="69437-111">See [Get started using Linux-based Hadoop in HDInsight](./hdinsight-hadoop-linux-tutorial-get-started.md).</span></span>
+* <span data-ttu-id="69437-112">**Visual Studio 2013/2015/2017**。</span><span class="sxs-lookup"><span data-stu-id="69437-112">**Visual Studio 2013/2015/2017**.</span></span>
 
-## <a name="submit-hive-queries-using-hdinsight-net-sdk"></a><span data-ttu-id="ae327-113">使用 HDInsight .NET SDK 提交 Hive 查詢</span><span class="sxs-lookup"><span data-stu-id="ae327-113">Submit Hive queries using HDInsight .NET SDK</span></span>
-<span data-ttu-id="ae327-114">HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="ae327-114">The HDInsight .NET SDK provides .NET client libraries, which makes it easier to work with HDInsight clusters from .NET.</span></span> 
+## <a name="submit-hive-queries-using-hdinsight-net-sdk"></a><span data-ttu-id="69437-113">使用 HDInsight .NET SDK 提交 Hive 查詢</span><span class="sxs-lookup"><span data-stu-id="69437-113">Submit Hive queries using HDInsight .NET SDK</span></span>
+<span data-ttu-id="69437-114">hello HDInsight.NET SDK 提供.NET 用戶端程式庫，使其更容易 toowork 與.net 的 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="69437-114">hello HDInsight .NET SDK provides .NET client libraries, which makes it easier toowork with HDInsight clusters from .NET.</span></span> 
 
-<span data-ttu-id="ae327-115">**提交工作**</span><span class="sxs-lookup"><span data-stu-id="ae327-115">**To Submit jobs**</span></span>
+<span data-ttu-id="69437-115">**tooSubmit 工作**</span><span class="sxs-lookup"><span data-stu-id="69437-115">**tooSubmit jobs**</span></span>
 
-1. <span data-ttu-id="ae327-116">在 Visual Studio 建立 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="ae327-116">Create a C# console application in Visual Studio.</span></span>
-2. <span data-ttu-id="ae327-117">從 NuGet Package Manager 主控台執行下列命令：</span><span class="sxs-lookup"><span data-stu-id="ae327-117">From the Nuget Package Manager Console, run the following command:</span></span>
+1. <span data-ttu-id="69437-116">在 Visual Studio 建立 C# 主控台應用程式。</span><span class="sxs-lookup"><span data-stu-id="69437-116">Create a C# console application in Visual Studio.</span></span>
+2. <span data-ttu-id="69437-117">Hello Nuget 封裝管理員主控台中，執行下列命令的 hello:</span><span class="sxs-lookup"><span data-stu-id="69437-117">From hello Nuget Package Manager Console, run hello following command:</span></span>
    
         Install-Package Microsoft.Azure.Management.HDInsight.Job
-3. <span data-ttu-id="ae327-118">使用下列程式碼：</span><span class="sxs-lookup"><span data-stu-id="ae327-118">Use the following code:</span></span>
+3. <span data-ttu-id="69437-118">使用下列程式碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="69437-118">Use hello following code:</span></span>
 
     ```csharp
         using System.Collections.Generic;
@@ -75,14 +75,14 @@ ms.lasthandoff: 08/18/2017
    
                 static void Main(string[] args)
                 {
-                    System.Console.WriteLine("The application is running ...");
+                    System.Console.WriteLine("hello application is running ...");
    
                     var clusterCredentials = new BasicAuthenticationCloudCredentials { Username = ExistingClusterUsername, Password = ExistingClusterPassword };
                     _hdiJobManagementClient = new HDInsightJobManagementClient(ExistingClusterUri, clusterCredentials);
    
                     SubmitHiveJob();
    
-                    System.Console.WriteLine("Press ENTER to continue ...");
+                    System.Console.WriteLine("Press ENTER toocontinue ...");
                     System.Console.ReadLine();
                 }
    
@@ -97,13 +97,13 @@ ms.lasthandoff: 08/18/2017
                         Arguments = args
                     };
    
-                    System.Console.WriteLine("Submitting the Hive job to the cluster...");
+                    System.Console.WriteLine("Submitting hello Hive job toohello cluster...");
                     var jobResponse = _hdiJobManagementClient.JobManagement.SubmitHiveJob(parameters);
                     var jobId = jobResponse.JobSubmissionJsonResponse.Id;
                     System.Console.WriteLine("Response status code is " + jobResponse.StatusCode);
                     System.Console.WriteLine("JobId is " + jobId);
    
-                    System.Console.WriteLine("Waiting for the job completion ...");
+                    System.Console.WriteLine("Waiting for hello job completion ...");
    
                     // Wait for job completion
                     var jobDetail = _hdiJobManagementClient.JobManagement.GetJob(jobId).JobDetail;
@@ -131,22 +131,22 @@ ms.lasthandoff: 08/18/2017
             }
         }
     ```
-4. <span data-ttu-id="ae327-119">按 **F5** 鍵執行應用程式。</span><span class="sxs-lookup"><span data-stu-id="ae327-119">Press **F5** to run the application.</span></span>
+4. <span data-ttu-id="69437-119">按**F5** toorun hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="69437-119">Press **F5** toorun hello application.</span></span>
 
-<span data-ttu-id="ae327-120">應用程式的輸出應該類似這樣：</span><span class="sxs-lookup"><span data-stu-id="ae327-120">The output of the application shall be similar to:</span></span>
+<span data-ttu-id="69437-120">hello hello 應用程式的輸出應該類似於：</span><span class="sxs-lookup"><span data-stu-id="69437-120">hello output of hello application shall be similar to:</span></span>
 
 ![HDInsight Hadoop Hive 作業輸出](./media/hdinsight-hadoop-use-hive-dotnet-sdk/hdinsight-hadoop-use-hive-net-sdk-output.png)
 
-## <a name="next-steps"></a><span data-ttu-id="ae327-122">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ae327-122">Next steps</span></span>
-<span data-ttu-id="ae327-123">在本文中，您學到幾種建立 HDInsight 叢集的方法。</span><span class="sxs-lookup"><span data-stu-id="ae327-123">In this article, you have learned several ways to create an HDInsight cluster.</span></span> <span data-ttu-id="ae327-124">若要深入了解，請參閱下列文章：</span><span class="sxs-lookup"><span data-stu-id="ae327-124">To learn more, see the following articles:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="69437-122">後續步驟</span><span class="sxs-lookup"><span data-stu-id="69437-122">Next steps</span></span>
+<span data-ttu-id="69437-123">在本文中，您已經學會數種方式 toocreate 的 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="69437-123">In this article, you have learned several ways toocreate an HDInsight cluster.</span></span> <span data-ttu-id="69437-124">toolearn 詳細資訊，請參閱下列文章 hello:</span><span class="sxs-lookup"><span data-stu-id="69437-124">toolearn more, see hello following articles:</span></span>
 
-* <span data-ttu-id="ae327-125">[開始使用 Azure HDInsight][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="ae327-125">[Get started with Azure HDInsight][hdinsight-get-started]</span></span>
-* <span data-ttu-id="ae327-126">[在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision]</span><span class="sxs-lookup"><span data-stu-id="ae327-126">[Create Hadoop clusters in HDInsight][hdinsight-provision]</span></span>
-* [<span data-ttu-id="ae327-127">使用 Azure 入口網站管理 HDInsight 中的 Hadoop 叢集</span><span class="sxs-lookup"><span data-stu-id="ae327-127">Manage Hadoop clusters in HDInsight by using the Azure portal</span></span>](hdinsight-administer-use-management-portal.md)
-* [<span data-ttu-id="ae327-128">HDInsight .NET SDK 參考</span><span class="sxs-lookup"><span data-stu-id="ae327-128">HDInsight .NET SDK reference</span></span>](https://msdn.microsoft.com/library/mt271028.aspx)
-* [<span data-ttu-id="ae327-129">搭配 HDInsight 使用 Pig</span><span class="sxs-lookup"><span data-stu-id="ae327-129">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
-* [<span data-ttu-id="ae327-130">搭配 HDInsight 使用 Sqoop</span><span class="sxs-lookup"><span data-stu-id="ae327-130">Use Sqoop with HDInsight</span></span>](hdinsight-use-sqoop-mac-linux.md)
-* [<span data-ttu-id="ae327-131">建立非互動式驗證 .NET HDInsight 應用程式</span><span class="sxs-lookup"><span data-stu-id="ae327-131">Create non-interactive authentication .NET HDInsight applications</span></span>](hdinsight-create-non-interactive-authentication-dotnet-applications.md)
+* <span data-ttu-id="69437-125">[開始使用 Azure HDInsight][hdinsight-get-started]</span><span class="sxs-lookup"><span data-stu-id="69437-125">[Get started with Azure HDInsight][hdinsight-get-started]</span></span>
+* <span data-ttu-id="69437-126">[在 HDInsight 中建立 Hadoop 叢集][hdinsight-provision]</span><span class="sxs-lookup"><span data-stu-id="69437-126">[Create Hadoop clusters in HDInsight][hdinsight-provision]</span></span>
+* [<span data-ttu-id="69437-127">透過 hello Azure 入口網站來管理 HDInsight 中的 Hadoop 叢集</span><span class="sxs-lookup"><span data-stu-id="69437-127">Manage Hadoop clusters in HDInsight by using hello Azure portal</span></span>](hdinsight-administer-use-management-portal.md)
+* [<span data-ttu-id="69437-128">HDInsight .NET SDK 參考</span><span class="sxs-lookup"><span data-stu-id="69437-128">HDInsight .NET SDK reference</span></span>](https://msdn.microsoft.com/library/mt271028.aspx)
+* [<span data-ttu-id="69437-129">搭配 HDInsight 使用 Pig</span><span class="sxs-lookup"><span data-stu-id="69437-129">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
+* [<span data-ttu-id="69437-130">搭配 HDInsight 使用 Sqoop</span><span class="sxs-lookup"><span data-stu-id="69437-130">Use Sqoop with HDInsight</span></span>](hdinsight-use-sqoop-mac-linux.md)
+* [<span data-ttu-id="69437-131">建立非互動式驗證 .NET HDInsight 應用程式</span><span class="sxs-lookup"><span data-stu-id="69437-131">Create non-interactive authentication .NET HDInsight applications</span></span>](hdinsight-create-non-interactive-authentication-dotnet-applications.md)
 
 [hdinsight-provision]: hdinsight-hadoop-provision-linux-clusters.md
 [hdinsight-get-started]: hdinsight-hadoop-linux-tutorial-get-started.md

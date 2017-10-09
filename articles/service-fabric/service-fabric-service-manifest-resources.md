@@ -1,6 +1,6 @@
 ---
-title: "指定 Service Fabric 服務端點 | Microsoft Docs"
-description: "如何在服務資訊清單中描述端點資源，包括如何設定 HTTPS 端點"
+title: "aaaSpecifying Service Fabric 服務端點 |Microsoft 文件"
+description: "如何在服務中的 toodescribe endpoint 資源資訊清單，包括如何 tooset 個 HTTPS 端點"
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: subramar
-ms.openlocfilehash: 08141edfbc8be9bf7bf303419e1e482d5f884860
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a4ebee353ce5cf86583673674246094f03f368be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="specify-resources-in-a-service-manifest"></a><span data-ttu-id="2e9bb-103">在服務資訊清單中指定資源</span><span class="sxs-lookup"><span data-stu-id="2e9bb-103">Specify resources in a service manifest</span></span>
-## <a name="overview"></a><span data-ttu-id="2e9bb-104">Overview</span><span class="sxs-lookup"><span data-stu-id="2e9bb-104">Overview</span></span>
-<span data-ttu-id="2e9bb-105">服務資訊清單可宣告/變更服務使用的資源，且不需變更已編譯的程式碼。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-105">The service manifest allows resources that are used by the service to be declared/changed without changing the compiled code.</span></span> <span data-ttu-id="2e9bb-106">Azure Service Fabric 支援針對服務的端點資源組態。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-106">Azure Service Fabric supports configuration of endpoint resources for the service.</span></span> <span data-ttu-id="2e9bb-107">透過應用程式資訊清單中的 SecurityGroup，即可控制存取服務資訊清單中的指定資源。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-107">The access to the resources that are specified in the service manifest can be controlled via the SecurityGroup in the application manifest.</span></span> <span data-ttu-id="2e9bb-108">資源宣告可讓您在部署階段變更這些資源，也就是服務不需要導入新的組態機制。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-108">The declaration of resources allows these resources to be changed at deployment time, meaning the service doesn't need to introduce a new configuration mechanism.</span></span> <span data-ttu-id="2e9bb-109">ServiceManifest.xml 檔案的結構描述定義是和 Service Fabric SDK 及工具一起安裝在 *C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-109">The schema definition for the ServiceManifest.xml file is installed with the Service Fabric SDK and tools to *C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*.</span></span>
+# <a name="specify-resources-in-a-service-manifest"></a><span data-ttu-id="04a1f-103">在服務資訊清單中指定資源</span><span class="sxs-lookup"><span data-stu-id="04a1f-103">Specify resources in a service manifest</span></span>
+## <a name="overview"></a><span data-ttu-id="04a1f-104">概觀</span><span class="sxs-lookup"><span data-stu-id="04a1f-104">Overview</span></span>
+<span data-ttu-id="04a1f-105">hello 服務資訊清單可讓資源所使用的 hello 服務 toobe 宣告/變更，而不需要變更 hello 編譯程式碼。</span><span class="sxs-lookup"><span data-stu-id="04a1f-105">hello service manifest allows resources that are used by hello service toobe declared/changed without changing hello compiled code.</span></span> <span data-ttu-id="04a1f-106">Azure Service Fabric 支援 hello 服務端點的組態。</span><span class="sxs-lookup"><span data-stu-id="04a1f-106">Azure Service Fabric supports configuration of endpoint resources for hello service.</span></span> <span data-ttu-id="04a1f-107">hello 服務資訊清單中指定的 hello toohello 資源可以控制透過 hello SecurityGroup hello 應用程式資訊清單中。</span><span class="sxs-lookup"><span data-stu-id="04a1f-107">hello access toohello resources that are specified in hello service manifest can be controlled via hello SecurityGroup in hello application manifest.</span></span> <span data-ttu-id="04a1f-108">hello 宣告的資源可讓變更在部署階段，這表示 hello 服務不需要新的組態機制 toointroduce 這些資源 toobe。</span><span class="sxs-lookup"><span data-stu-id="04a1f-108">hello declaration of resources allows these resources toobe changed at deployment time, meaning hello service doesn't need toointroduce a new configuration mechanism.</span></span> <span data-ttu-id="04a1f-109">hello 結構描述定義 hello ServiceManifest.xml 檔案會隨 hello Service Fabric SDK 和工具太*C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*。</span><span class="sxs-lookup"><span data-stu-id="04a1f-109">hello schema definition for hello ServiceManifest.xml file is installed with hello Service Fabric SDK and tools too*C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*.</span></span>
 
-## <a name="endpoints"></a><span data-ttu-id="2e9bb-110">端點</span><span class="sxs-lookup"><span data-stu-id="2e9bb-110">Endpoints</span></span>
-<span data-ttu-id="2e9bb-111">在服務資訊清單中定義端點資源時，若沒有明確指定連接埠，Service Fabric 會從保留的應用程式連接埠範圍指派連接埠。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-111">When an endpoint resource is defined in the service manifest, Service Fabric assigns ports from the reserved application port range when a port isn't specified explicitly.</span></span> <span data-ttu-id="2e9bb-112">例如，請看本段落之後提供的資訊清單片段中所指定的端點 *ServiceEndpoint1* 。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-112">For example, look at the endpoint *ServiceEndpoint1* specified in the manifest snippet provided after this paragraph.</span></span> <span data-ttu-id="2e9bb-113">此外，服務也可以在資源中要求特定連接埠。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-113">Additionally, services can also request a specific port in a resource.</span></span> <span data-ttu-id="2e9bb-114">不同的連接埠號碼可以指派給在不同叢集節點上執行的服務複本，而在同一節點上執行的服務複本可以共用連接埠。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-114">Service replicas running on different cluster nodes can be assigned different port numbers, while replicas of a service running on the same node share the port.</span></span> <span data-ttu-id="2e9bb-115">然後服務複本就可以在需要時使用這些連接埠進行複寫和接聽用戶端要求。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-115">The service replicas can then use these ports as needed for replication and listening for client requests.</span></span>
+## <a name="endpoints"></a><span data-ttu-id="04a1f-110">端點</span><span class="sxs-lookup"><span data-stu-id="04a1f-110">Endpoints</span></span>
+<span data-ttu-id="04a1f-111">Hello 服務資訊清單中定義的 endpoint 資源時，Service Fabric 時，指派連接埠從 hello 保留應用程式連接埠範圍未明確指定連接埠。</span><span class="sxs-lookup"><span data-stu-id="04a1f-111">When an endpoint resource is defined in hello service manifest, Service Fabric assigns ports from hello reserved application port range when a port isn't specified explicitly.</span></span> <span data-ttu-id="04a1f-112">例如，查看 hello 端點*ServiceEndpoint1* hello 這個段落後所提供的資訊清單片段中所指定。</span><span class="sxs-lookup"><span data-stu-id="04a1f-112">For example, look at hello endpoint *ServiceEndpoint1* specified in hello manifest snippet provided after this paragraph.</span></span> <span data-ttu-id="04a1f-113">此外，服務也可以在資源中要求特定連接埠。</span><span class="sxs-lookup"><span data-stu-id="04a1f-113">Additionally, services can also request a specific port in a resource.</span></span> <span data-ttu-id="04a1f-114">複本上執行之服務的 hello 相同的節點共用 hello 連接埠時，在不同的叢集節點上執行的服務複本可以指派不同的通訊埠編號。</span><span class="sxs-lookup"><span data-stu-id="04a1f-114">Service replicas running on different cluster nodes can be assigned different port numbers, while replicas of a service running on hello same node share hello port.</span></span> <span data-ttu-id="04a1f-115">hello 服務複本可以再使用這些連接埠需要複寫與接聽用戶端要求。</span><span class="sxs-lookup"><span data-stu-id="04a1f-115">hello service replicas can then use these ports as needed for replication and listening for client requests.</span></span>
 
 ```xml
 <Resources>
@@ -37,12 +37,12 @@ ms.lasthandoff: 08/29/2017
 </Resources>
 ```
 
-<span data-ttu-id="2e9bb-116">請參閱 [設定具狀態的 Reliable Services](service-fabric-reliable-services-configuration.md) ，從設定封裝設定檔 (settings.xml) 深入了解參考端點。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-116">Refer to [Configuring stateful Reliable Services](service-fabric-reliable-services-configuration.md) to read more about referencing endpoints from the config package settings file (settings.xml).</span></span>
+<span data-ttu-id="04a1f-116">參照太[設定可設定狀態的可靠服務](service-fabric-reliable-services-configuration.md)tooread 更多關於 hello 組態封裝的設定檔 (settings.xml) 從參考的端點。</span><span class="sxs-lookup"><span data-stu-id="04a1f-116">Refer too[Configuring stateful Reliable Services](service-fabric-reliable-services-configuration.md) tooread more about referencing endpoints from hello config package settings file (settings.xml).</span></span>
 
-## <a name="example-specifying-an-http-endpoint-for-your-service"></a><span data-ttu-id="2e9bb-117">範例：指定服務的 HTTP 端點</span><span class="sxs-lookup"><span data-stu-id="2e9bb-117">Example: specifying an HTTP endpoint for your service</span></span>
-<span data-ttu-id="2e9bb-118">以下服務資訊清單在 &lt;Resources&gt; 項目中定義了一個 TCP 端點資源和兩個 HTTP 端點資源。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-118">The following service manifest defines one TCP endpoint resource and two HTTP endpoint resources in the &lt;Resources&gt; element.</span></span>
+## <a name="example-specifying-an-http-endpoint-for-your-service"></a><span data-ttu-id="04a1f-117">範例：指定服務的 HTTP 端點</span><span class="sxs-lookup"><span data-stu-id="04a1f-117">Example: specifying an HTTP endpoint for your service</span></span>
+<span data-ttu-id="04a1f-118">hello 下列服務資訊清單中，定義一個 TCP 端點資源以及兩個 HTTP 端點資源 hello&lt;資源&gt;項目。</span><span class="sxs-lookup"><span data-stu-id="04a1f-118">hello following service manifest defines one TCP endpoint resource and two HTTP endpoint resources in hello &lt;Resources&gt; element.</span></span>
 
-<span data-ttu-id="2e9bb-119">Service Fabric 會自動將 HTTP 端點處理為 ACL。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-119">HTTP endpoints are automatically ACL'd by Service Fabric.</span></span>
+<span data-ttu-id="04a1f-119">Service Fabric 會自動將 HTTP 端點處理為 ACL。</span><span class="sxs-lookup"><span data-stu-id="04a1f-119">HTTP endpoints are automatically ACL'd by Service Fabric.</span></span>
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -52,8 +52,8 @@ ms.lasthandoff: 08/29/2017
                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ServiceTypes>
-    <!-- This is the name of your ServiceType.
-         This name must match the string used in the RegisterServiceType call in Program.cs. -->
+    <!-- This is hello name of your ServiceType.
+         This name must match hello string used in hello RegisterServiceType call in Program.cs. -->
     <StatefulServiceType ServiceTypeName="Stateful1Type" HasPersistedState="true" />
   </ServiceTypes>
 
@@ -66,37 +66,37 @@ ms.lasthandoff: 08/29/2017
     </EntryPoint>
   </CodePackage>
 
-  <!-- Config package is the contents of the Config directoy under PackageRoot that contains an
+  <!-- Config package is hello contents of hello Config directoy under PackageRoot that contains an
        independently updateable and versioned set of custom configuration settings for your service. -->
   <ConfigPackage Name="Config" Version="1.0.0" />
 
   <Resources>
     <Endpoints>
-      <!-- This endpoint is used by the communication listener to obtain the port number on which to
+      <!-- This endpoint is used by hello communication listener tooobtain hello port number on which to
            listen. Note that if your service is partitioned, this port is shared with
            replicas of different partitions that are placed in your code. -->
       <Endpoint Name="ServiceEndpoint1" Protocol="http"/>
       <Endpoint Name="ServiceEndpoint2" Protocol="http" Port="80"/>
       <Endpoint Name="ServiceEndpoint3" Protocol="https"/>
 
-      <!-- This endpoint is used by the replicator for replicating the state of your service.
-           This endpoint is configured through the ReplicatorSettings config section in the Settings.xml
-           file under the ConfigPackage. -->
+      <!-- This endpoint is used by hello replicator for replicating hello state of your service.
+           This endpoint is configured through hello ReplicatorSettings config section in hello Settings.xml
+           file under hello ConfigPackage. -->
       <Endpoint Name="ReplicatorEndpoint" />
     </Endpoints>
   </Resources>
 </ServiceManifest>
 ```
 
-## <a name="example-specifying-an-https-endpoint-for-your-service"></a><span data-ttu-id="2e9bb-120">範例：指定服務的 HTTPS 端點</span><span class="sxs-lookup"><span data-stu-id="2e9bb-120">Example: specifying an HTTPS endpoint for your service</span></span>
-<span data-ttu-id="2e9bb-121">HTTPS 通訊協定提供伺服器驗證，也能用於加密用戶端-伺服器通訊。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-121">The HTTPS protocol provides server authentication and is also used for encrypting client-server communication.</span></span> <span data-ttu-id="2e9bb-122">若要在 Service Fabric 服務上啟用 HTTPS，請在服務資訊清單的 [資源] -> [端點] -> [端點] 區段指定通訊協定，如先前針對 *ServiceEndpoint3* 端點所示。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-122">To enable HTTPS on your Service Fabric service, specify the protocol in the *Resources -> Endpoints -> Endpoint* section of the service manifest, as shown earlier for the endpoint *ServiceEndpoint3*.</span></span>
+## <a name="example-specifying-an-https-endpoint-for-your-service"></a><span data-ttu-id="04a1f-120">範例：指定服務的 HTTPS 端點</span><span class="sxs-lookup"><span data-stu-id="04a1f-120">Example: specifying an HTTPS endpoint for your service</span></span>
+<span data-ttu-id="04a1f-121">hello HTTPS 通訊協定提供伺服器驗證，而且也用來加密用戶端伺服器通訊。</span><span class="sxs-lookup"><span data-stu-id="04a1f-121">hello HTTPS protocol provides server authentication and is also used for encrypting client-server communication.</span></span> <span data-ttu-id="04a1f-122">您的 Service Fabric 服務 tooenable HTTPS 指定 hello 通訊協定在 hello*資源]-> [端點]-> [端點*hello 服務資訊清單，如先前所示為 hello 端點區段*ServiceEndpoint3*.</span><span class="sxs-lookup"><span data-stu-id="04a1f-122">tooenable HTTPS on your Service Fabric service, specify hello protocol in hello *Resources -> Endpoints -> Endpoint* section of hello service manifest, as shown earlier for hello endpoint *ServiceEndpoint3*.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="2e9bb-123">服務的通訊協定不能在應用程式升級期間變更。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-123">A service’s protocol cannot be changed during application upgrade.</span></span> <span data-ttu-id="2e9bb-124">如果它在升級期間變更，將會發生中斷變更。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-124">If it is changed during upgrade, it is a breaking change.</span></span>
+> <span data-ttu-id="04a1f-123">服務的通訊協定不能在應用程式升級期間變更。</span><span class="sxs-lookup"><span data-stu-id="04a1f-123">A service’s protocol cannot be changed during application upgrade.</span></span> <span data-ttu-id="04a1f-124">如果它在升級期間變更，將會發生中斷變更。</span><span class="sxs-lookup"><span data-stu-id="04a1f-124">If it is changed during upgrade, it is a breaking change.</span></span>
 > 
 > 
 
-<span data-ttu-id="2e9bb-125">以下是您必須為 HTTPS 設定的範例 ApplicationManifest。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-125">Here is an example ApplicationManifest that you need to set for HTTPS.</span></span> <span data-ttu-id="2e9bb-126">您必須提供憑證的指紋。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-126">The thumbprint for your certificate must be provided.</span></span> <span data-ttu-id="2e9bb-127">EndpointRef 是在您設定 HTTPS 通訊協定的 ServiceManifest 中 EndpointResource 的參考。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-127">The EndpointRef is a reference to EndpointResource in ServiceManifest, for which you set the HTTPS protocol.</span></span> <span data-ttu-id="2e9bb-128">您可以加入一個以上的 EndpointCertificate。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-128">You can add more than one EndpointCertificate.</span></span>  
+<span data-ttu-id="04a1f-125">以下是您需要 HTTPS tooset 範例 Secretscertificate。</span><span class="sxs-lookup"><span data-stu-id="04a1f-125">Here is an example ApplicationManifest that you need tooset for HTTPS.</span></span> <span data-ttu-id="04a1f-126">必須提供您的憑證指紋 hello。</span><span class="sxs-lookup"><span data-stu-id="04a1f-126">hello thumbprint for your certificate must be provided.</span></span> <span data-ttu-id="04a1f-127">hello EndpointRef 是的 ServiceManifest，您將設定 hello HTTPS 通訊協定中參考 tooEndpointResource。</span><span class="sxs-lookup"><span data-stu-id="04a1f-127">hello EndpointRef is a reference tooEndpointResource in ServiceManifest, for which you set hello HTTPS protocol.</span></span> <span data-ttu-id="04a1f-128">您可以加入一個以上的 EndpointCertificate。</span><span class="sxs-lookup"><span data-stu-id="04a1f-128">You can add more than one EndpointCertificate.</span></span>  
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -110,8 +110,8 @@ ms.lasthandoff: 08/29/2017
     <Parameter Name="Stateful1_PartitionCount" DefaultValue="1" />
     <Parameter Name="Stateful1_TargetReplicaSetSize" DefaultValue="3" />
   </Parameters>
-  <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion
-       should match the Name and Version attributes of the ServiceManifest element defined in the
+  <!-- Import hello ServiceManifest from hello ServicePackage. hello ServiceManifestName and ServiceManifestVersion
+       should match hello Name and Version attributes of hello ServiceManifest element defined in the
        ServiceManifest.xml file. -->
   <ServiceManifestImport>
     <ServiceManifestRef ServiceManifestName="Stateful1Pkg" ServiceManifestVersion="1.0.0" />
@@ -121,11 +121,11 @@ ms.lasthandoff: 08/29/2017
     </Policies>
   </ServiceManifestImport>
   <DefaultServices>
-    <!-- The section below creates instances of service types when an instance of this
+    <!-- hello section below creates instances of service types when an instance of this
          application type is created. You can also create one or more instances of service type by using the
          Service Fabric PowerShell module.
 
-         The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
+         hello attribute ServiceTypeName below must match hello name defined in hello imported ServiceManifest.xml file. -->
     <Service Name="Stateful1">
       <StatefulService ServiceTypeName="Stateful1Type" TargetReplicaSetSize="[Stateful1_TargetReplicaSetSize]" MinReplicaSetSize="[Stateful1_ ]">
         <UniformInt64Partition PartitionCount="[Stateful1_PartitionCount]" LowKey="-9223372036854775808" HighKey="9223372036854775807" />
@@ -138,13 +138,13 @@ ms.lasthandoff: 08/29/2017
 </ApplicationManifest>
 ```
 
-## <a name="overriding-endpoints-in-servicemanifestxml"></a><span data-ttu-id="2e9bb-129">在 ServiceManifest.xml 中覆寫端點</span><span class="sxs-lookup"><span data-stu-id="2e9bb-129">Overriding Endpoints in ServiceManifest.xml</span></span>
+## <a name="overriding-endpoints-in-servicemanifestxml"></a><span data-ttu-id="04a1f-129">在 ServiceManifest.xml 中覆寫端點</span><span class="sxs-lookup"><span data-stu-id="04a1f-129">Overriding Endpoints in ServiceManifest.xml</span></span>
 
-<span data-ttu-id="2e9bb-130">在 ApplicationManifest 中，新增 ResourceOverrides 區段，可成為 ConfigOverrides 區段的同層級。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-130">In the ApplicationManifest add a ResourceOverrides section which will be a sibling to ConfigOverrides section.</span></span> <span data-ttu-id="2e9bb-131">在本節中，您可以在服務資訊清單中指定的資源區段中指定 [端點] 區段的覆寫。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-131">In this section you can specify the override for the Endpoints section in the resources section specified in the Service manifest.</span></span>
+<span data-ttu-id="04a1f-130">在 hello Secretscertificate 新增 ResourceOverrides 區段，則為同層級 tooConfigOverrides > 一節。</span><span class="sxs-lookup"><span data-stu-id="04a1f-130">In hello ApplicationManifest add a ResourceOverrides section which will be a sibling tooConfigOverrides section.</span></span> <span data-ttu-id="04a1f-131">在本節中，您可以指定 hello hello hello 服務資訊清單中指定的資源區段中的 hello 端點區段的覆寫。</span><span class="sxs-lookup"><span data-stu-id="04a1f-131">In this section you can specify hello override for hello Endpoints section in hello resources section specified in hello Service manifest.</span></span>
 
-<span data-ttu-id="2e9bb-132">若要使用 ApplicationParameters 覆寫 ServiceManifest 中的端點，請變更 Secretscertificate，如下所示：</span><span class="sxs-lookup"><span data-stu-id="2e9bb-132">In order to override EndPoint in ServiceManifest using ApplicationParameters change the ApplicationManifest as following:</span></span>
+<span data-ttu-id="04a1f-132">順序 toooverride 使用 ApplicationParameters 變更 ServiceManifest 中的端點在 hello Secretscertificate 如下所示：</span><span class="sxs-lookup"><span data-stu-id="04a1f-132">In order toooverride EndPoint in ServiceManifest using ApplicationParameters change hello ApplicationManifest as following:</span></span>
 
-<span data-ttu-id="2e9bb-133">在 ServiceManifestImport 區段中，新增新的區段 "ResourceOverrides"</span><span class="sxs-lookup"><span data-stu-id="2e9bb-133">In the ServiceManifestImport section add a new section "ResourceOverrides"</span></span>
+<span data-ttu-id="04a1f-133">Hello ServiceManifestImport > 一節中加入新的區段"ResourceOverrides"</span><span class="sxs-lookup"><span data-stu-id="04a1f-133">In hello ServiceManifestImport section add a new section "ResourceOverrides"</span></span>
 
 ```xml
 <ServiceManifestImport>
@@ -162,7 +162,7 @@ ms.lasthandoff: 08/29/2017
   </ServiceManifestImport>
 ```
 
-<span data-ttu-id="2e9bb-134">在參數中新增下列項目：</span><span class="sxs-lookup"><span data-stu-id="2e9bb-134">In the Parameters add below:</span></span>
+<span data-ttu-id="04a1f-134">在 hello 下新增參數：</span><span class="sxs-lookup"><span data-stu-id="04a1f-134">In hello Parameters add below:</span></span>
 
 ```xml
   <Parameters>
@@ -174,17 +174,17 @@ ms.lasthandoff: 08/29/2017
   </Parameters>
 ```
 
-<span data-ttu-id="2e9bb-135">部署應用程式時，現在您可以傳入這些值作為 ApplicationParameters，例如：</span><span class="sxs-lookup"><span data-stu-id="2e9bb-135">While deploying the application now you can pass in these values as ApplicationParameters for example:</span></span>
+<span data-ttu-id="04a1f-135">部署現在 hello 應用程式時您可以傳遞這些值為 ApplicationParameters 例如：</span><span class="sxs-lookup"><span data-stu-id="04a1f-135">While deploying hello application now you can pass in these values as ApplicationParameters for example:</span></span>
 
 ```powershell
 PS C:\> New-ServiceFabricApplication -ApplicationName fabric:/myapp -ApplicationTypeName "AppType" -ApplicationTypeVersion "1.0.0" -ApplicationParameter @{Port='1001'; Protocol='https'; Type='Input'; Port1='2001'; Protocol='http'}
 ```
 
-<span data-ttu-id="2e9bb-136">注意：如果提供給 ApplicationParameters 的值為空白，我們要回到 ServiceManifest 中提供的預設值，來取得對應的 EndPointName。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-136">Note: If the values provide for the ApplicationParameters is empty we go back to the default value provided in the ServiceManifest for the corresponding EndPointName.</span></span>
+<span data-ttu-id="04a1f-136">注意： 如果 hello 值提供是空的 hello ApplicationParameters 我們移回 toohello 預設對應 EndPointName hello ServiceManifest 中提供的值。</span><span class="sxs-lookup"><span data-stu-id="04a1f-136">Note: If hello values provide for hello ApplicationParameters is empty we go back toohello default value provided in hello ServiceManifest for hello corresponding EndPointName.</span></span>
 
-<span data-ttu-id="2e9bb-137">例如：</span><span class="sxs-lookup"><span data-stu-id="2e9bb-137">For example:</span></span>
+<span data-ttu-id="04a1f-137">例如：</span><span class="sxs-lookup"><span data-stu-id="04a1f-137">For example:</span></span>
 
-<span data-ttu-id="2e9bb-138">如果在您指定的 ServiceManifest 中</span><span class="sxs-lookup"><span data-stu-id="2e9bb-138">If in the ServiceManifest you specified</span></span>
+<span data-ttu-id="04a1f-138">如果在您指定的 ServiceManifest hello</span><span class="sxs-lookup"><span data-stu-id="04a1f-138">If in hello ServiceManifest you specified</span></span>
 
 ```xml
   <Resources>
@@ -194,6 +194,6 @@ PS C:\> New-ServiceFabricApplication -ApplicationName fabric:/myapp -Application
   </Resources>
 ```
 
-<span data-ttu-id="2e9bb-139">且應用程式參數的 Port1 和 Protocol1 值是 Null 或空白。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-139">And the Port1 and Protocol1 value for Application parameters is null or empty.</span></span> <span data-ttu-id="2e9bb-140">連接埠仍是由 ServiceFabric 決定。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-140">The port is still decided by ServiceFabric.</span></span> <span data-ttu-id="2e9bb-141">且通訊協定將 tcp。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-141">And the Protocol will tcp.</span></span>
+<span data-ttu-id="04a1f-139">Hello Port1 和 Protocol1 應用程式參數的值是 null 或空白。</span><span class="sxs-lookup"><span data-stu-id="04a1f-139">And hello Port1 and Protocol1 value for Application parameters is null or empty.</span></span> <span data-ttu-id="04a1f-140">仍由 ServiceFabric 決定 hello 連接埠。</span><span class="sxs-lookup"><span data-stu-id="04a1f-140">hello port is still decided by ServiceFabric.</span></span> <span data-ttu-id="04a1f-141">而且 hello 通訊協定將 tcp。</span><span class="sxs-lookup"><span data-stu-id="04a1f-141">And hello Protocol will tcp.</span></span>
 
-<span data-ttu-id="2e9bb-142">假設您指定錯誤的值。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-142">Suppose you specify a wrong value.</span></span> <span data-ttu-id="2e9bb-143">類似於您指定的字串值 "Foo" 而非 int 的連接埠。New-ServiceFabricApplication 命令將會失敗，並出現錯誤：在區段 'ResourceOverrides' 中名稱為 'ServiceEndpoint1' 屬性 'Port1' 的覆寫參數無效。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-143">Like for Port you specified a string value "Foo" instead of an int.  New-ServiceFabricApplication command will fail with an error : The override parameter with name 'ServiceEndpoint1' attribute 'Port1' in section 'ResourceOverrides' is invalid.</span></span> <span data-ttu-id="2e9bb-144">指定的值是 'Foo'，而所需為 'int'。</span><span class="sxs-lookup"><span data-stu-id="2e9bb-144">The value specified is 'Foo' and required is 'int'.</span></span>
+<span data-ttu-id="04a1f-142">假設您指定錯誤的值。</span><span class="sxs-lookup"><span data-stu-id="04a1f-142">Suppose you specify a wrong value.</span></span> <span data-ttu-id="04a1f-143">類似於您指定的字串值 "Foo" 而非 int 的連接埠。新 ServiceFabricApplication 命令將會失敗，發生錯誤： 在區段 'ResourceOverrides' name 'ServiceEndpoint1' 屬性 'Port1' hello 覆寫參數無效。</span><span class="sxs-lookup"><span data-stu-id="04a1f-143">Like for Port you specified a string value "Foo" instead of an int.  New-ServiceFabricApplication command will fail with an error : hello override parameter with name 'ServiceEndpoint1' attribute 'Port1' in section 'ResourceOverrides' is invalid.</span></span> <span data-ttu-id="04a1f-144">指定的 hello 值是 'Foo'，且必須是 'int'。</span><span class="sxs-lookup"><span data-stu-id="04a1f-144">hello value specified is 'Foo' and required is 'int'.</span></span>

@@ -1,0 +1,14 @@
+### <a name="prerequisites"></a><span data-ttu-id="2ebd5-101">必要條件</span><span class="sxs-lookup"><span data-stu-id="2ebd5-101">Prerequisites</span></span>
+* <span data-ttu-id="2ebd5-102">[FTP](https://wikipedia.org/wiki/File_Transfer_Protocol) 帳戶</span><span class="sxs-lookup"><span data-stu-id="2ebd5-102">An [FTP](https://wikipedia.org/wiki/File_Transfer_Protocol) account</span></span>  
+
+<span data-ttu-id="2ebd5-103">您可以在邏輯應用程式中使用 FTP 帳戶之前，您必須授權 hello 邏輯應用程式 tooconnect tooyour FTP 帳戶。幸運的是，您可以輕鬆地在 hello Azure 入口網站上的應用程式邏輯中。</span><span class="sxs-lookup"><span data-stu-id="2ebd5-103">Before you can use your FTP account in a logic app, you must authorize hello logic app tooconnect tooyour FTP account.Fortunately, you can do this easily from within your logic app on hello Azure Portal.</span></span>  
+
+<span data-ttu-id="2ebd5-104">以下是 hello 步驟 tooauthorize 邏輯應用程式 tooconnect tooyour FTP 帳戶：</span><span class="sxs-lookup"><span data-stu-id="2ebd5-104">Here are hello steps tooauthorize your logic app tooconnect tooyour FTP account:</span></span>  
+
+1. <span data-ttu-id="2ebd5-105">toocreate 連接 tooFTP，在 hello 邏輯應用程式設計師中，選取**顯示 Microsoft managed Api** hello 在下拉式清單，然後輸入*FTP* hello [搜尋] 方塊中。</span><span class="sxs-lookup"><span data-stu-id="2ebd5-105">toocreate a connection tooFTP, in hello logic app designer, select **Show Microsoft managed APIs** in hello drop down list then enter *FTP* in hello search box.</span></span> <span data-ttu-id="2ebd5-106">選取 hello 觸發程序或您一定會喜歡 toouse 的動作：</span><span class="sxs-lookup"><span data-stu-id="2ebd5-106">Select hello trigger or action you'll like toouse:</span></span>  
+   <span data-ttu-id="2ebd5-107">![FTP 連接的建立步驟](./media/connectors-create-api-ftp/ftp-1.png)</span><span class="sxs-lookup"><span data-stu-id="2ebd5-107">![FTP connection creation step](./media/connectors-create-api-ftp/ftp-1.png)</span></span>  
+2. <span data-ttu-id="2ebd5-108">如果您尚未建立任何連線 tooFTP 之前，您會取得提示的 tooprovide FTP 認證。</span><span class="sxs-lookup"><span data-stu-id="2ebd5-108">If you haven't created any connections tooFTP before, you'll get prompted tooprovide your FTP credentials.</span></span> <span data-ttu-id="2ebd5-109">這些認證會使用的 tooauthorize，您的邏輯應用程式 tooconnect 並存取您的 FTP 帳戶資料：</span><span class="sxs-lookup"><span data-stu-id="2ebd5-109">These credentials will be used tooauthorize your logic app tooconnect to, and access your FTP account's data:</span></span>  
+   ![FTP 連接的建立步驟](./media/connectors-create-api-ftp/ftp-2.png)  
+3. <span data-ttu-id="2ebd5-111">請注意，已經建立 hello 連接，而且現在可用以 hello 其他 tooproceed 邏輯應用程式中的步驟：</span><span class="sxs-lookup"><span data-stu-id="2ebd5-111">Notice hello connection has been created and you are now free tooproceed with hello other steps in your logic app:</span></span>  
+   ![FTP 連接的建立步驟](./media/connectors-create-api-ftp/ftp-3.png)  
+

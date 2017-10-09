@@ -1,6 +1,6 @@
 ---
-title: "使用 .NET 設定 Azure 媒體服務遙測 | Microsoft Docs"
-description: "本文示範如何透過 .NET SDK 使用 Azure 媒體服務遙測。"
+title: "使用.NET 的 Azure Media Services 遙測 aaaConfiguring |Microsoft 文件"
+description: "本文章將示範如何 toouse hello Azure Media Services 使用.NET SDK 的遙測。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 1d857f3d062d8d1b15c64fa4b8c3e27ad6c2247e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4019fa7d080ca3f8a8709bd1e666f7062b883954
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configuring-azure-media-services-telemetry-with-net"></a><span data-ttu-id="c6348-103">使用 .NET 設定 Azure 媒體服務遙測</span><span class="sxs-lookup"><span data-stu-id="c6348-103">Configuring Azure Media Services telemetry with .NET</span></span>
+# <a name="configuring-azure-media-services-telemetry-with-net"></a><span data-ttu-id="0df6b-103">使用 .NET 設定 Azure 媒體服務遙測</span><span class="sxs-lookup"><span data-stu-id="0df6b-103">Configuring Azure Media Services telemetry with .NET</span></span>
 
-<span data-ttu-id="c6348-104">本主題說明您使用 .NET SDK 設定 Azure 媒體服務 (AMS) 遙測時可能採取的一般步驟。</span><span class="sxs-lookup"><span data-stu-id="c6348-104">This topic describes general steps that you might take when configuring the Azure Media Services (AMS) telemetry using .NET SDK.</span></span> 
+<span data-ttu-id="0df6b-104">本主題說明您可能需要設定使用.NET SDK hello Azure 媒體服務 (AMS) 遙測時的一般步驟。</span><span class="sxs-lookup"><span data-stu-id="0df6b-104">This topic describes general steps that you might take when configuring hello Azure Media Services (AMS) telemetry using .NET SDK.</span></span> 
 
 >[!NOTE]
-><span data-ttu-id="c6348-105">如需什麼是 AMS 遙測及如何取用的詳細說明，請參閱[概觀](media-services-telemetry-overview.md)主題。</span><span class="sxs-lookup"><span data-stu-id="c6348-105">For the detailed explanation of what is AMS telemetry and how to consume it, see the [overview](media-services-telemetry-overview.md) topic.</span></span>
+><span data-ttu-id="0df6b-105">Hello 詳細的說明什麼是 AMS 遙測，以及如何 tooconsume，請參閱 hello[概觀](media-services-telemetry-overview.md)主題。</span><span class="sxs-lookup"><span data-stu-id="0df6b-105">For hello detailed explanation of what is AMS telemetry and how tooconsume it, see hello [overview](media-services-telemetry-overview.md) topic.</span></span>
 
-<span data-ttu-id="c6348-106">您可以使用下列其中一個方法取用遙測資料︰</span><span class="sxs-lookup"><span data-stu-id="c6348-106">You can consume telemetry data in one of the following ways:</span></span>
+<span data-ttu-id="0df6b-106">您可以使用其中一個 hello 下列方式中的遙測資料：</span><span class="sxs-lookup"><span data-stu-id="0df6b-106">You can consume telemetry data in one of hello following ways:</span></span>
 
-- <span data-ttu-id="c6348-107">直接從 Azure 表格儲存體 (例如使用儲存體 SDK) 中讀取資料。</span><span class="sxs-lookup"><span data-stu-id="c6348-107">Read data directly from Azure Table Storage (e.g. using the Storage SDK).</span></span> <span data-ttu-id="c6348-108">如需遙測儲存體資料表的說明，請參閱[這個](https://msdn.microsoft.com/library/mt742089.aspx)主題中的**取用遙測資訊**。</span><span class="sxs-lookup"><span data-stu-id="c6348-108">For the description of telemetry storage tables, see the **Consuming telemetry information** in [this](https://msdn.microsoft.com/library/mt742089.aspx) topic.</span></span>
+- <span data-ttu-id="0df6b-107">直接從 Azure 資料表儲存體 （例如使用 hello 儲存體 SDK） 中讀取資料。</span><span class="sxs-lookup"><span data-stu-id="0df6b-107">Read data directly from Azure Table Storage (e.g. using hello Storage SDK).</span></span> <span data-ttu-id="0df6b-108">Hello 的遙測的儲存體資料表的說明，請參閱 hello**取用遙測資訊**中[這](https://msdn.microsoft.com/library/mt742089.aspx)主題。</span><span class="sxs-lookup"><span data-stu-id="0df6b-108">For hello description of telemetry storage tables, see hello **Consuming telemetry information** in [this](https://msdn.microsoft.com/library/mt742089.aspx) topic.</span></span>
 
-<span data-ttu-id="c6348-109">或</span><span class="sxs-lookup"><span data-stu-id="c6348-109">Or</span></span>
+<span data-ttu-id="0df6b-109">或</span><span class="sxs-lookup"><span data-stu-id="0df6b-109">Or</span></span>
 
-- <span data-ttu-id="c6348-110">使用媒體服務 .NET SDK 中的支援讀取儲存體資料。</span><span class="sxs-lookup"><span data-stu-id="c6348-110">Use the support in the Media Services .NET SDK for reading storage data.</span></span> <span data-ttu-id="c6348-111">本主題示範如何為指定的 AMS 帳戶啟用遙測，以及如何使用 Azure 媒體服務 .NET SDK 查詢度量。</span><span class="sxs-lookup"><span data-stu-id="c6348-111">This topic shows how to enable telemetry for the specified AMS account and how to query the metrics using the Azure Media Services .NET SDK.</span></span>  
+- <span data-ttu-id="0df6b-110">使用讀取儲存體資料 hello Media Services.NET SDK 中的 hello 支援。</span><span class="sxs-lookup"><span data-stu-id="0df6b-110">Use hello support in hello Media Services .NET SDK for reading storage data.</span></span> <span data-ttu-id="0df6b-111">本主題說明如何 hello tooenable 遙測指定 AMS 帳戶，以及如何使用 tooquery hello 度量 hello Azure Media Services.NET SDK。</span><span class="sxs-lookup"><span data-stu-id="0df6b-111">This topic shows how tooenable telemetry for hello specified AMS account and how tooquery hello metrics using hello Azure Media Services .NET SDK.</span></span>  
 
-## <a name="configuring-telemetry-for-a-media-services-account"></a><span data-ttu-id="c6348-112">設定媒體服務帳戶的遙測</span><span class="sxs-lookup"><span data-stu-id="c6348-112">Configuring telemetry for a Media Services account</span></span>
+## <a name="configuring-telemetry-for-a-media-services-account"></a><span data-ttu-id="0df6b-112">設定媒體服務帳戶的遙測</span><span class="sxs-lookup"><span data-stu-id="0df6b-112">Configuring telemetry for a Media Services account</span></span>
 
-<span data-ttu-id="c6348-113">若要啟用遙測，您需要執行下列步驟︰</span><span class="sxs-lookup"><span data-stu-id="c6348-113">The following steps are needed to enable telemetry:</span></span>
+<span data-ttu-id="0df6b-113">hello 下列步驟是必要的 tooenable 遙測：</span><span class="sxs-lookup"><span data-stu-id="0df6b-113">hello following steps are needed tooenable telemetry:</span></span>
 
-- <span data-ttu-id="c6348-114">取得媒體服務帳戶附加之儲存體帳戶的認證。</span><span class="sxs-lookup"><span data-stu-id="c6348-114">Get the credentials of the storage account attached to the Media Services account.</span></span> 
-- <span data-ttu-id="c6348-115">建立 **EndPointType** 設定為 **AzureTable** 且 endPontAddress 指向儲存體資料表的通知端點。</span><span class="sxs-lookup"><span data-stu-id="c6348-115">Create a Notification Endpoint with **EndPointType** set to **AzureTable** and endPointAddress pointing to the storage table.</span></span>
+- <span data-ttu-id="0df6b-114">取得 hello 的 hello 儲存體帳戶附加 toohello Media Services 帳戶的認證。</span><span class="sxs-lookup"><span data-stu-id="0df6b-114">Get hello credentials of hello storage account attached toohello Media Services account.</span></span> 
+- <span data-ttu-id="0df6b-115">建立具有通知端點**EndPointType**設定得**AzureTable**和指向 toohello 儲存體資料表的 endPointAddress。</span><span class="sxs-lookup"><span data-stu-id="0df6b-115">Create a Notification Endpoint with **EndPointType** set too**AzureTable** and endPointAddress pointing toohello storage table.</span></span>
 
         INotificationEndPoint notificationEndPoint = 
                       _context.NotificationEndPoints.Create("monitoring", 
                       NotificationEndPointType.AzureTable,
                       "https://" + _mediaServicesStorageAccountName + ".table.core.windows.net/");
 
-- <span data-ttu-id="c6348-116">針對要監視的服務建立監視組態設定。</span><span class="sxs-lookup"><span data-stu-id="c6348-116">Create a monitoring configuration settings for the services you want to monitor.</span></span> <span data-ttu-id="c6348-117">系統最多只允許一個監視組態設定。</span><span class="sxs-lookup"><span data-stu-id="c6348-117">No more than one monitoring configuration settings is allowed.</span></span> 
+- <span data-ttu-id="0df6b-116">建立監視的組態設定 hello 服務您想 toomonitor。</span><span class="sxs-lookup"><span data-stu-id="0df6b-116">Create a monitoring configuration settings for hello services you want toomonitor.</span></span> <span data-ttu-id="0df6b-117">系統最多只允許一個監視組態設定。</span><span class="sxs-lookup"><span data-stu-id="0df6b-117">No more than one monitoring configuration settings is allowed.</span></span> 
   
         IMonitoringConfiguration monitoringConfiguration = _context.MonitoringConfigurations.Create(notificationEndPoint.Id,
             new List<ComponentMonitoringSetting>()
@@ -56,21 +56,21 @@ ms.lasthandoff: 08/29/2017
                 new ComponentMonitoringSetting(MonitoringComponent.StreamingEndpoint, MonitoringLevel.Normal)
             });
 
-## <a name="consuming-telemetry-information"></a><span data-ttu-id="c6348-118">取用遙測資訊</span><span class="sxs-lookup"><span data-stu-id="c6348-118">Consuming telemetry information</span></span>
+## <a name="consuming-telemetry-information"></a><span data-ttu-id="0df6b-118">取用遙測資訊</span><span class="sxs-lookup"><span data-stu-id="0df6b-118">Consuming telemetry information</span></span>
 
-<span data-ttu-id="c6348-119">如需取用遙測資訊的相關資訊，請參閱[這個](media-services-telemetry-overview.md)主題。</span><span class="sxs-lookup"><span data-stu-id="c6348-119">For information about consuming telemetry information, see [this](media-services-telemetry-overview.md) topic.</span></span>
+<span data-ttu-id="0df6b-119">如需取用遙測資訊的相關資訊，請參閱[這個](media-services-telemetry-overview.md)主題。</span><span class="sxs-lookup"><span data-stu-id="0df6b-119">For information about consuming telemetry information, see [this](media-services-telemetry-overview.md) topic.</span></span>
 
-## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="c6348-120">建立和設定 Visual Studio 專案</span><span class="sxs-lookup"><span data-stu-id="c6348-120">Create and configure a Visual Studio project</span></span>
+## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="0df6b-120">建立和設定 Visual Studio 專案</span><span class="sxs-lookup"><span data-stu-id="0df6b-120">Create and configure a Visual Studio project</span></span>
 
-1. <span data-ttu-id="c6348-121">設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。</span><span class="sxs-lookup"><span data-stu-id="c6348-121">Set up your development environment and populate the app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
+1. <span data-ttu-id="0df6b-121">設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。</span><span class="sxs-lookup"><span data-stu-id="0df6b-121">Set up your development environment and populate hello app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span> 
 
-2. <span data-ttu-id="c6348-122">將下列項目新增至 app.config 檔案中定義的 **appSettings**：</span><span class="sxs-lookup"><span data-stu-id="c6348-122">Add the following element to **appSettings** defined in your app.config file:</span></span>
+2. <span data-ttu-id="0df6b-122">新增下列項目太 hello**appSettings** app.config 檔案中所定義：</span><span class="sxs-lookup"><span data-stu-id="0df6b-122">Add hello following element too**appSettings** defined in your app.config file:</span></span>
 
     <add key="StorageAccountName" value="storage_name" />
  
-## <a name="example"></a><span data-ttu-id="c6348-123">範例</span><span class="sxs-lookup"><span data-stu-id="c6348-123">Example</span></span>  
+## <a name="example"></a><span data-ttu-id="0df6b-123">範例</span><span class="sxs-lookup"><span data-stu-id="0df6b-123">Example</span></span>  
     
-<span data-ttu-id="c6348-124">下列範例示範如何為指定的 AMS 帳戶啟用遙測，以及如何使用 Azure 媒體服務 .NET SDK 查詢度量。</span><span class="sxs-lookup"><span data-stu-id="c6348-124">The following example shows how to enable telemetry for the specified AMS account and how to query the metrics using the Azure Media Services .NET SDK.</span></span>  
+<span data-ttu-id="0df6b-124">hello 下列範例顯示 hello tooenable 遙測指定 AMS 帳戶的方式，以及如何使用 tooquery hello 度量 hello Azure Media Services.NET SDK。</span><span class="sxs-lookup"><span data-stu-id="0df6b-124">hello following example shows how tooenable telemetry for hello specified AMS account and how tooquery hello metrics using hello Azure Media Services .NET SDK.</span></span>  
 
     using System;
     using System.Collections.Generic;
@@ -192,7 +192,7 @@ ms.lasthandoff: 08/29/2017
 
             var channelMetrics = telemetry.GetChannelHeartbeats(timerangeStart, timerangeEnd);
 
-            // Print the channel metrics.
+            // Print hello channel metrics.
             Console.WriteLine("Channel metrics:");
 
             foreach (var channelHeartbeat in channelMetrics.OrderBy(x => x.ObservedTime))
@@ -210,10 +210,10 @@ ms.lasthandoff: 08/29/2017
     }
 
 
-## <a name="next-steps"></a><span data-ttu-id="c6348-125">後續步驟</span><span class="sxs-lookup"><span data-stu-id="c6348-125">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="0df6b-125">後續步驟</span><span class="sxs-lookup"><span data-stu-id="0df6b-125">Next steps</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="c6348-126">提供意見反應</span><span class="sxs-lookup"><span data-stu-id="c6348-126">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="0df6b-126">提供意見反應</span><span class="sxs-lookup"><span data-stu-id="0df6b-126">Provide feedback</span></span>
 
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]

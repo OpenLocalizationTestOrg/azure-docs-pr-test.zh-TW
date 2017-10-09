@@ -1,5 +1,5 @@
 ---
-title: "將 Intel Edison (節點) 連接到 Azure IoT - 第 2 課：Azure 工具 (Ubuntu) | Microsoft Docs"
+title: "連接 （節點） 的 Intel Edison tooAzure IoT-第 2 課： Azure tools (Ubuntu) |Microsoft 文件"
 description: "在 Ubuntu 上安裝 Python 與 Azure 命令列介面 (Azure CLI)。"
 services: iot-hub
 documentationcenter: 
@@ -17,36 +17,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 65248e14d0ea05a44efe76e66e1ef519285982b3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ca2996b779a4d3cde833c5f2824d19ec46241bae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-azure-tools-ubuntu-1604"></a><span data-ttu-id="a7540-104">取得 Azure 工具 (Ubuntu 16.04)</span><span class="sxs-lookup"><span data-stu-id="a7540-104">Get Azure tools (Ubuntu 16.04)</span></span>
+# <a name="get-azure-tools-ubuntu-1604"></a><span data-ttu-id="f7aeb-104">取得 Azure 工具 (Ubuntu 16.04)</span><span class="sxs-lookup"><span data-stu-id="f7aeb-104">Get Azure tools (Ubuntu 16.04)</span></span>
 > [!div class="op_single_selector"]
-> * <span data-ttu-id="a7540-105">[Windows 7 和更新版本][windows]</span><span class="sxs-lookup"><span data-stu-id="a7540-105">[Windows 7 and later][windows]</span></span>
-> * <span data-ttu-id="a7540-106">[Ubuntu 16.04][ubuntu]</span><span class="sxs-lookup"><span data-stu-id="a7540-106">[Ubuntu 16.04][ubuntu]</span></span>
-> * <span data-ttu-id="a7540-107">[macOS 10.10][macos]</span><span class="sxs-lookup"><span data-stu-id="a7540-107">[macOS 10.10][macos]</span></span>
+> * <span data-ttu-id="f7aeb-105">[Windows 7 和更新版本][windows]</span><span class="sxs-lookup"><span data-stu-id="f7aeb-105">[Windows 7 and later][windows]</span></span>
+> * <span data-ttu-id="f7aeb-106">[Ubuntu 16.04][ubuntu]</span><span class="sxs-lookup"><span data-stu-id="f7aeb-106">[Ubuntu 16.04][ubuntu]</span></span>
+> * <span data-ttu-id="f7aeb-107">[macOS 10.10][macos]</span><span class="sxs-lookup"><span data-stu-id="f7aeb-107">[macOS 10.10][macos]</span></span>
 
-## <a name="what-you-will-do"></a><span data-ttu-id="a7540-108">將執行的作業</span><span class="sxs-lookup"><span data-stu-id="a7540-108">What you will do</span></span>
-<span data-ttu-id="a7540-109">安裝 Azure 命令列介面 (Azure CLI)。</span><span class="sxs-lookup"><span data-stu-id="a7540-109">Install the Azure command-line interface (Azure CLI).</span></span> <span data-ttu-id="a7540-110">如果您有任何問題，請在[疑難排解頁面][troubleshooting]尋求解決方案。</span><span class="sxs-lookup"><span data-stu-id="a7540-110">If you have any problems, look for solutions on the [troubleshooting page][troubleshooting].</span></span>
+## <a name="what-you-will-do"></a><span data-ttu-id="f7aeb-108">將執行的作業</span><span class="sxs-lookup"><span data-stu-id="f7aeb-108">What you will do</span></span>
+<span data-ttu-id="f7aeb-109">安裝 hello Azure 命令列介面 (Azure CLI)。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-109">Install hello Azure command-line interface (Azure CLI).</span></span> <span data-ttu-id="f7aeb-110">如果您有任何問題，尋找解決方案上 hello[疑難排解頁面][troubleshooting]。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-110">If you have any problems, look for solutions on hello [troubleshooting page][troubleshooting].</span></span>
 
-## <a name="what-you-will-learn"></a><span data-ttu-id="a7540-111">學習目標</span><span class="sxs-lookup"><span data-stu-id="a7540-111">What you will learn</span></span>
-<span data-ttu-id="a7540-112">在本文中，您將了解：</span><span class="sxs-lookup"><span data-stu-id="a7540-112">In this article, you will learn:</span></span>
-* <span data-ttu-id="a7540-113">如何安裝 Azure CLI。</span><span class="sxs-lookup"><span data-stu-id="a7540-113">How to install the Azure CLI.</span></span>
-* <span data-ttu-id="a7540-114">如何新增 Azure CLI 的 IoT 子群組。</span><span class="sxs-lookup"><span data-stu-id="a7540-114">How to add an IoT subgroup of the Azure CLI.</span></span>
+## <a name="what-you-will-learn"></a><span data-ttu-id="f7aeb-111">學習目標</span><span class="sxs-lookup"><span data-stu-id="f7aeb-111">What you will learn</span></span>
+<span data-ttu-id="f7aeb-112">在本文中，您將了解：</span><span class="sxs-lookup"><span data-stu-id="f7aeb-112">In this article, you will learn:</span></span>
+* <span data-ttu-id="f7aeb-113">如何 tooinstall hello Azure CLI。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-113">How tooinstall hello Azure CLI.</span></span>
+* <span data-ttu-id="f7aeb-114">如何 tooadd 的 hello Azure CLI IoT 子群組。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-114">How tooadd an IoT subgroup of hello Azure CLI.</span></span>
 
-## <a name="what-you-need"></a><span data-ttu-id="a7540-115">您需要什麼</span><span class="sxs-lookup"><span data-stu-id="a7540-115">What you need</span></span>
-* <span data-ttu-id="a7540-116">一部具有網際網路連線的 Ubuntu 電腦。</span><span class="sxs-lookup"><span data-stu-id="a7540-116">An Ubuntu computer with an Internet connection.</span></span>
-* <span data-ttu-id="a7540-117">有效的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="a7540-117">An active Azure subscription.</span></span> <span data-ttu-id="a7540-118">如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費試用帳戶](http://azure.microsoft.com/pricing/free-trial/)。</span><span class="sxs-lookup"><span data-stu-id="a7540-118">If you don't have an account, you can create a [free trial account](http://azure.microsoft.com/pricing/free-trial/) in just a few minutes.</span></span>
+## <a name="what-you-need"></a><span data-ttu-id="f7aeb-115">您需要什麼</span><span class="sxs-lookup"><span data-stu-id="f7aeb-115">What you need</span></span>
+* <span data-ttu-id="f7aeb-116">一部具有網際網路連線的 Ubuntu 電腦。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-116">An Ubuntu computer with an Internet connection.</span></span>
+* <span data-ttu-id="f7aeb-117">有效的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-117">An active Azure subscription.</span></span> <span data-ttu-id="f7aeb-118">如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費試用帳戶](http://azure.microsoft.com/pricing/free-trial/)。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-118">If you don't have an account, you can create a [free trial account](http://azure.microsoft.com/pricing/free-trial/) in just a few minutes.</span></span>
 
-## <a name="install-the-azure-cli"></a><span data-ttu-id="a7540-119">安裝 Azure CLI</span><span class="sxs-lookup"><span data-stu-id="a7540-119">Install the Azure CLI</span></span>
-<span data-ttu-id="a7540-120">Azure CLI 能為 Azure 提供多平台的命令列體驗，使您可以直接從命令列進行資源的佈建及管理。</span><span class="sxs-lookup"><span data-stu-id="a7540-120">The Azure CLI provides a multiplatform command-line experience for Azure, enabling you to work directly from your command line to provision and manage resources.</span></span>
+## <a name="install-hello-azure-cli"></a><span data-ttu-id="f7aeb-119">安裝 hello Azure CLI</span><span class="sxs-lookup"><span data-stu-id="f7aeb-119">Install hello Azure CLI</span></span>
+<span data-ttu-id="f7aeb-120">提供以多平台命令列體驗 azure，讓您直接從命令列 tooprovision toowork hello Azure CLI，並管理資源。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-120">hello Azure CLI provides a multiplatform command-line experience for Azure, enabling you toowork directly from your command line tooprovision and manage resources.</span></span>
 
-<span data-ttu-id="a7540-121">若要安裝最新的 Azure CLI，請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="a7540-121">To install the latest Azure CLI, follow these steps:</span></span>
+<span data-ttu-id="f7aeb-121">tooinstall hello 最新的 Azure CLI，請遵循下列步驟：</span><span class="sxs-lookup"><span data-stu-id="f7aeb-121">tooinstall hello latest Azure CLI, follow these steps:</span></span>
 
-1. <span data-ttu-id="a7540-122">在終端機視窗中執行下列命令。</span><span class="sxs-lookup"><span data-stu-id="a7540-122">Run the following commands in a terminal window.</span></span> <span data-ttu-id="a7540-123">安裝 Azure CLI 可能需要五分鐘的時間。</span><span class="sxs-lookup"><span data-stu-id="a7540-123">It might take five minutes to install the Azure CLI.</span></span>
+1. <span data-ttu-id="f7aeb-122">執行下列命令在 terminal 視窗中的 hello。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-122">Run hello following commands in a terminal window.</span></span> <span data-ttu-id="f7aeb-123">可能需要五分鐘 tooinstall hello Azure CLI。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-123">It might take five minutes tooinstall hello Azure CLI.</span></span>
 
    ```bash
    sudo apt-get update
@@ -57,21 +57,21 @@ ms.lasthandoff: 07/11/2017
    sudo pip install --upgrade azure-cli
    sudo pip install --upgrade azure-cli-iot
    ```
-2. <span data-ttu-id="a7540-124">執行下列命令以驗證安裝：</span><span class="sxs-lookup"><span data-stu-id="a7540-124">Verify the installation by running the following command:</span></span>
+2. <span data-ttu-id="f7aeb-124">執行下列命令的 hello 驗證 hello 安裝：</span><span class="sxs-lookup"><span data-stu-id="f7aeb-124">Verify hello installation by running hello following command:</span></span>
 
    ```bash
    az iot -h
    ```
 
-<span data-ttu-id="a7540-125">如果已成功安裝，您應該會看見下列輸出。</span><span class="sxs-lookup"><span data-stu-id="a7540-125">You should see the following output if the installation is successful.</span></span>
+<span data-ttu-id="f7aeb-125">您應該會看到下列 hello 輸出 hello 安裝是否成功。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-125">You should see hello following output if hello installation is successful.</span></span>
 
 ![表示成功的輸出](media/iot-hub-intel-edison-lessons/lesson2/az_iot_help_ubuntu.png)
 
-## <a name="summary"></a><span data-ttu-id="a7540-127">摘要</span><span class="sxs-lookup"><span data-stu-id="a7540-127">Summary</span></span>
-<span data-ttu-id="a7540-128">您已安裝 Azure CLI。</span><span class="sxs-lookup"><span data-stu-id="a7540-128">You've installed the Azure CLI.</span></span> <span data-ttu-id="a7540-129">下一個工作是使用 Azure CLI 建立 Azure IoT 中樞和裝置身分識別。</span><span class="sxs-lookup"><span data-stu-id="a7540-129">Your next task is to create your Azure IoT hub and device identity using the Azure CLI.</span></span>
+## <a name="summary"></a><span data-ttu-id="f7aeb-127">摘要</span><span class="sxs-lookup"><span data-stu-id="f7aeb-127">Summary</span></span>
+<span data-ttu-id="f7aeb-128">您已安裝 hello Azure CLI。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-128">You've installed hello Azure CLI.</span></span> <span data-ttu-id="f7aeb-129">您的下一個工作是 toocreate 您的 Azure IoT 中樞與裝置身分識別使用 hello Azure CLI。</span><span class="sxs-lookup"><span data-stu-id="f7aeb-129">Your next task is toocreate your Azure IoT hub and device identity using hello Azure CLI.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="a7540-130">後續步驟</span><span class="sxs-lookup"><span data-stu-id="a7540-130">Next steps</span></span>
-<span data-ttu-id="a7540-131">[建立 IoT 中樞並登錄 Intel Edison][create-your-iot-hub-and-register-intel-edison]</span><span class="sxs-lookup"><span data-stu-id="a7540-131">[Create your IoT hub and register Intel Edison][create-your-iot-hub-and-register-intel-edison]</span></span>
+## <a name="next-steps"></a><span data-ttu-id="f7aeb-130">後續步驟</span><span class="sxs-lookup"><span data-stu-id="f7aeb-130">Next steps</span></span>
+<span data-ttu-id="f7aeb-131">[建立 IoT 中樞並登錄 Intel Edison][create-your-iot-hub-and-register-intel-edison]</span><span class="sxs-lookup"><span data-stu-id="f7aeb-131">[Create your IoT hub and register Intel Edison][create-your-iot-hub-and-register-intel-edison]</span></span>
 
 
 <!-- Images and links -->

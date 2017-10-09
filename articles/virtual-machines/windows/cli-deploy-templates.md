@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 範本部署 Windows VM | Microsoft Docs"
-description: "使用 Azure 資源管理員範本和 Azure CLI 部署和管理 Azure 虛擬機器最常用的設定。"
+title: "aaaDeploy Windows Vm 與 Azure 範本 |Microsoft 文件"
+description: "部署和管理 hello 最常見的使用資源管理員範本和 Azure CLI 的 Azure 虛擬機器的設定。"
 services: virtual-machines-windows
 documentationcenter: 
 author: squillace
@@ -15,16 +15,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2016
 ms.author: rasquill
-ms.openlocfilehash: 087d3c6fdc3a82464dcffcdc580b7f0b17a5e285
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7d7881da75998c6b2611a884dfd626069d2bf1cb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-and-manage-virtual-machines-by-using-azure-resource-manager-templates-and-the-azure-cli"></a><span data-ttu-id="6c4ae-103">使用 Azure 資源管理員範本和 Azure CLI 部署和管理虛擬機器</span><span class="sxs-lookup"><span data-stu-id="6c4ae-103">Deploy and manage virtual machines by using Azure Resource Manager templates and the Azure CLI</span></span>
+# <a name="deploy-and-manage-virtual-machines-by-using-azure-resource-manager-templates-and-hello-azure-cli"></a><span data-ttu-id="b4e5f-103">部署及管理虛擬機器使用的 Azure 資源管理員範本和 hello Azure CLI</span><span class="sxs-lookup"><span data-stu-id="b4e5f-103">Deploy and manage virtual machines by using Azure Resource Manager templates and hello Azure CLI</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="6c4ae-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="6c4ae-104">PowerShell</span></span>](ps-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)        
-> * [<span data-ttu-id="6c4ae-105">CLI</span><span class="sxs-lookup"><span data-stu-id="6c4ae-105">CLI</span></span>](cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)        
+> * [<span data-ttu-id="b4e5f-104">PowerShell</span><span class="sxs-lookup"><span data-stu-id="b4e5f-104">PowerShell</span></span>](ps-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)        
+> * [<span data-ttu-id="b4e5f-105">CLI</span><span class="sxs-lookup"><span data-stu-id="b4e5f-105">CLI</span></span>](cli-deploy-templates.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)        
 > 
 > 
 

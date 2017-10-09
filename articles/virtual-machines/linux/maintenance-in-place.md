@@ -1,5 +1,5 @@
 ---
-title: "Azure 中 Windows VM 的 VM 保留維護 | Microsoft Docs"
+title: "適用於 Windows Vm 在 Azure 中保留維護 aaaVM |Microsoft 文件"
 description: "針對記憶體保留更新的就地 VM 移轉。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,22 +15,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/27/2017
 ms.author: 
-ms.openlocfilehash: 09fc9021e8dfb910d1a81178434ca2e27c0bacf7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 544a2dcca52bb3ac51d341bceaf4ba3e7c71fd82
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="vm-preserving-maintenance-in-place-vm-migration"></a><span data-ttu-id="bca08-103">VM 保留維護 (就地 VM 移轉)</span><span class="sxs-lookup"><span data-stu-id="bca08-103">VM preserving maintenance (In-place VM migration)</span></span>
+# <a name="vm-preserving-maintenance-in-place-vm-migration"></a><span data-ttu-id="fc8ab-103">VM 保留維護 (就地 VM 移轉)</span><span class="sxs-lookup"><span data-stu-id="fc8ab-103">VM preserving maintenance (In-place VM migration)</span></span>
 
-<span data-ttu-id="bca08-104">雖然大多數的更新對託管的 VM 都不會有影響，在某些情況下，針對元件或服務的更新 (在虛擬機器沒有完整重新開機的情況下) 會對正在執行的 VM 造成微量的干擾。</span><span class="sxs-lookup"><span data-stu-id="bca08-104">While the majority of updates have no impact to hosted VMs, there are cases where updates to components or services result in minimal interference to running VMs (without a full reboot of the virtual machine).</span></span>
+<span data-ttu-id="fc8ab-104">雖然 hello 的大部分更新不有任何影響 toohosted Vm，有些情況是其中更新 toocomponents 或服務會導致最少的干擾 toorunning Vm （不含 hello 虛擬機器的完整重新開機）。</span><span class="sxs-lookup"><span data-stu-id="fc8ab-104">While hello majority of updates have no impact toohosted VMs, there are cases where updates toocomponents or services result in minimal interference toorunning VMs (without a full reboot of hello virtual machine).</span></span>
 
-<span data-ttu-id="bca08-105">這些更新是透過可進行就地即時移轉 (也稱為「記憶體保留更新」) 的技術來完成。</span><span class="sxs-lookup"><span data-stu-id="bca08-105">These updates are accomplished with technology that enables in-place live migration, also called "memory-preserving update".</span></span> <span data-ttu-id="bca08-106">更新主機時，虛擬機器會進入「暫停」的狀態，並將記憶體保留在 RAM 中，而主控環境 (例如基礎作業系統) 則會在此期間套用必要的更新和修補程式。</span><span class="sxs-lookup"><span data-stu-id="bca08-106">When updating the host, the virtual machine is placed into a “paused” state, preserving the memory in RAM, while the hosting environment (e.g. the underlying operating system) applies the necessary updates and patches.</span></span>
-<span data-ttu-id="bca08-107">虛擬機器會在暫停後 30 秒內繼續執行。</span><span class="sxs-lookup"><span data-stu-id="bca08-107">The virtual machine is then resumed within 30 seconds of being paused.</span></span>
-<span data-ttu-id="bca08-108">繼續執行後，系統將會自動同步化虛擬機器的時鐘。</span><span class="sxs-lookup"><span data-stu-id="bca08-108">After resuming, the clock of the virtual machine is automatically synchronized.</span></span>
+<span data-ttu-id="fc8ab-105">這些更新是透過可進行就地即時移轉 (也稱為「記憶體保留更新」) 的技術來完成。</span><span class="sxs-lookup"><span data-stu-id="fc8ab-105">These updates are accomplished with technology that enables in-place live migration, also called "memory-preserving update".</span></span> <span data-ttu-id="fc8ab-106">在更新 hello 主機時，hello 虛擬機器被放入 「 暫停 」 狀態，雖然 hello 必要更新和修補程式，適用於裝載環境 （例如基礎作業系統） 的 hello 保留在 RAM 而 hello 記憶體。</span><span class="sxs-lookup"><span data-stu-id="fc8ab-106">When updating hello host, hello virtual machine is placed into a “paused” state, preserving hello memory in RAM, while hello hosting environment (e.g. the underlying operating system) applies hello necessary updates and patches.</span></span>
+<span data-ttu-id="fc8ab-107">然後在暫停的 30 秒內繼續 hello 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="fc8ab-107">hello virtual machine is then resumed within 30 seconds of being paused.</span></span>
+<span data-ttu-id="fc8ab-108">繼續之後, hello hello 虛擬機器的時鐘會自動同步處理。</span><span class="sxs-lookup"><span data-stu-id="fc8ab-108">After resuming, hello clock of hello virtual machine is automatically synchronized.</span></span>
 
-<span data-ttu-id="bca08-109">並非所有更新都可以透過這種機制來部署，但因為有短暫的暫停期間，以這種方式部署更新可大幅減少對虛擬機器的影響。</span><span class="sxs-lookup"><span data-stu-id="bca08-109">Not all updates can be deployed by using this mechanism, but given the short pause period, deploying updates in this way greatly reduces impact to virtual machines.</span></span>
+<span data-ttu-id="fc8ab-109">並非所有的更新可以使用這項機制，來部署，但在短暫的延遲期間，指定部署更新，在此方式可大幅減少影響 toovirtual 機器。</span><span class="sxs-lookup"><span data-stu-id="fc8ab-109">Not all updates can be deployed by using this mechanism, but given the short pause period, deploying updates in this way greatly reduces impact toovirtual machines.</span></span>
 
-<span data-ttu-id="bca08-110">多重執行個體更新 (可用性設定組中的 VM) 一次只會套用到一個更新網域。</span><span class="sxs-lookup"><span data-stu-id="bca08-110">Multi-instance updates (VMs in an availability set) are applied one update domain at a time.</span></span>
+<span data-ttu-id="fc8ab-110">多重執行個體更新 (可用性設定組中的 VM) 一次只會套用到一個更新網域。</span><span class="sxs-lookup"><span data-stu-id="fc8ab-110">Multi-instance updates (VMs in an availability set) are applied one update domain at a time.</span></span>
 
-<span data-ttu-id="bca08-111">這些更新對某些應用程式的影響可能比對其他應用程式更大。</span><span class="sxs-lookup"><span data-stu-id="bca08-111">Some applications may be impacted by these updates more than others.</span></span> <span data-ttu-id="bca08-112">例如，執行即時事件處理、媒體串流處理或轉碼，或是高輸送量網路服務案例的應用程式，其設計可能不會容許暫停 30 秒。</span><span class="sxs-lookup"><span data-stu-id="bca08-112">Applications that perform real-time event processing, media streaming or transcoding, or high throughput networking scenarios, for example, may not be designed to tolerate a 30 second pause.</span></span> <span data-ttu-id="bca08-113">在虛擬機器中執行的應用程式，可以透過呼叫 [Azure 中繼資料服務](../virtual-machines-instancemetadataservice-overview.md)的[排程的事件](../virtual-machines-scheduled-events.md) API，來了解即將發行的更新。</span><span class="sxs-lookup"><span data-stu-id="bca08-113">Applications running in a virtual machine can learn about upcoming updates by calling the [Scheduled Events](../virtual-machines-scheduled-events.md) API of the [Azure Metadata Service](../virtual-machines-instancemetadataservice-overview.md).</span></span>
+<span data-ttu-id="fc8ab-111">這些更新對某些應用程式的影響可能比對其他應用程式更大。</span><span class="sxs-lookup"><span data-stu-id="fc8ab-111">Some applications may be impacted by these updates more than others.</span></span> <span data-ttu-id="fc8ab-112">應用程式執行即時事件處理、 媒體串流處理或轉碼或高輸送量網路案例，例如，可能無法設計的 tootolerate 暫停 30 秒。</span><span class="sxs-lookup"><span data-stu-id="fc8ab-112">Applications that perform real-time event processing, media streaming or transcoding, or high throughput networking scenarios, for example, may not be designed tootolerate a 30 second pause.</span></span> <span data-ttu-id="fc8ab-113">虛擬機器中執行的應用程式可以了解即將推出的更新呼叫 hello[排程的事件](../virtual-machines-scheduled-events.md)API 的 hello [Azure 中繼資料服務](../virtual-machines-instancemetadataservice-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="fc8ab-113">Applications running in a virtual machine can learn about upcoming updates by calling hello [Scheduled Events](../virtual-machines-scheduled-events.md) API of hello [Azure Metadata Service](../virtual-machines-instancemetadataservice-overview.md).</span></span>

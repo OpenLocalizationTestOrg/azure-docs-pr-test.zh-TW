@@ -1,6 +1,6 @@
 ---
-title: "Azure 服務匯流排文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何設定傳訊功能，以連接橫跨內部部署和雲端環境的應用程式和服務。  教學課程、影片、API 參考等等。"
+title: "aaaAzure 服務匯流排文件-教學課程中，API 參考 |Microsoft 文件"
+description: "了解訊息傳遞，tooset 如何連接應用程式和服務跨內部部署與雲端環境。  教學課程、影片、API 參考等等。"
 services: service-bus
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 03/14/2017
 ms.author: carolz
-ms.openlocfilehash: 3401257f406c71ff26d0eb2f7ca5f7e830d91882
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 68df38c39d6f5da112b44025aaf393df542ce01a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 #<a name="service-bus-documentation"></a>服務匯流排文件
 
-了解如何使用服務匯流排和轉送來連接內部部署和雲端環境。 教學課程、影片、API 參考和其他文件會示範如何設定應用程式與服務之間的雲端傳訊。
+了解如何 toouse 服務匯流排和轉送 tooconnect 跨內部部署和雲端環境。 教學課程、 影片、 應用程式開發介面參考和其他文件顯示如何 tooset 向上雲端應用程式與服務之間的傳訊。
 
 <ul class="panelContent cardsFTitle">
     <li>

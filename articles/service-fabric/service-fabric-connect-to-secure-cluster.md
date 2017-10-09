@@ -1,6 +1,6 @@
 ---
-title: "以安全的方式連線到 Azure Service Fabric 叢集 | Microsoft Docs"
-description: "說明如何驗證用戶端對 Service Fabric 叢集的存取，以及如何保護用戶端與叢集之間的通訊。"
+title: "aaaConnect 安全地 tooan Azure Service Fabric 叢集 |Microsoft 文件"
+description: "說明如何 tooauthenticate 用戶端存取 tooa Service Fabric 叢集以及如何 toosecure 用戶端和一個叢集之間的通訊。"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,73 +14,73 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/01/2017
 ms.author: ryanwi
-ms.openlocfilehash: d6a13ceb8ccd9207ecacc166247535d496d5dec7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1b6a87a1fefaddce2043c604ca53751157232170
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-a-secure-cluster"></a><span data-ttu-id="ebcd7-103">連線到安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-103">Connect to a secure cluster</span></span>
+# <a name="connect-tooa-secure-cluster"></a><span data-ttu-id="d86d1-103">Tooa 安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-103">Connect tooa secure cluster</span></span>
 
-<span data-ttu-id="ebcd7-104">當用戶端連線到 Service Fabric 叢集節點時，用戶端可以使用憑證安全性或 Azure Active Directory (AAD) 來接受驗證及保護已建立的通訊。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-104">When a client connects to a Service Fabric cluster node, the client can be authenticated and secure communication established using certificate security or Azure Active Directory (AAD).</span></span> <span data-ttu-id="ebcd7-105">此驗證可確保只有已獲授權的使用者可以存取叢集和已部署的應用程式，以及執行管理工作。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-105">This authentication ensures that only authorized users can access the cluster and deployed applications and perform management tasks.</span></span>  <span data-ttu-id="ebcd7-106">憑證或 AAD 安全性必須在叢集建立之時即事先在叢集上啟用。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-106">Certificate or AAD security must have been previously enabled on the cluster when the cluster was created.</span></span>  <span data-ttu-id="ebcd7-107">如需有關叢集安全性案例的詳細資訊，請參閱 [叢集安全性](service-fabric-cluster-security.md)。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-107">For more information on cluster security scenarios, see [Cluster security](service-fabric-cluster-security.md).</span></span> <span data-ttu-id="ebcd7-108">如果您要連接到使用憑證保護的叢集，請在要連接到叢集的電腦上[設定用戶端憑證](service-fabric-connect-to-secure-cluster.md#connectsecureclustersetupclientcert)。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-108">If you are connecting to a cluster secured with certificates, [set up the client certificate](service-fabric-connect-to-secure-cluster.md#connectsecureclustersetupclientcert) on the computer that connects to the cluster.</span></span> 
+<span data-ttu-id="d86d1-104">當用戶端連線 tooa Service Fabric 叢集節點時，hello 用戶端可以使用憑證安全性或 Azure Active Directory (AAD) 來建立已驗證且安全之通訊。</span><span class="sxs-lookup"><span data-stu-id="d86d1-104">When a client connects tooa Service Fabric cluster node, hello client can be authenticated and secure communication established using certificate security or Azure Active Directory (AAD).</span></span> <span data-ttu-id="d86d1-105">此驗證可確保只有授權的使用者可以存取 hello 叢集和部署的應用程式，以及執行管理工作。</span><span class="sxs-lookup"><span data-stu-id="d86d1-105">This authentication ensures that only authorized users can access hello cluster and deployed applications and perform management tasks.</span></span>  <span data-ttu-id="d86d1-106">憑證或 AAD 安全性群組必須先前啟用 hello 叢集上建立 hello 叢集時。</span><span class="sxs-lookup"><span data-stu-id="d86d1-106">Certificate or AAD security must have been previously enabled on hello cluster when hello cluster was created.</span></span>  <span data-ttu-id="d86d1-107">如需有關叢集安全性案例的詳細資訊，請參閱 [叢集安全性](service-fabric-cluster-security.md)。</span><span class="sxs-lookup"><span data-stu-id="d86d1-107">For more information on cluster security scenarios, see [Cluster security](service-fabric-cluster-security.md).</span></span> <span data-ttu-id="d86d1-108">如果您要連接的憑證，以保護 tooa 叢集[設定 hello 用戶端憑證](service-fabric-connect-to-secure-cluster.md#connectsecureclustersetupclientcert)連接 toohello 群集的 hello 電腦上。</span><span class="sxs-lookup"><span data-stu-id="d86d1-108">If you are connecting tooa cluster secured with certificates, [set up hello client certificate](service-fabric-connect-to-secure-cluster.md#connectsecureclustersetupclientcert) on hello computer that connects toohello cluster.</span></span> 
 
 <a id="connectsecureclustercli"></a> 
 
-## <a name="connect-to-a-secure-cluster-using-azure-service-fabric-cli-sfctl"></a><span data-ttu-id="ebcd7-109">使用 Azure Service Fabric CLI (sfctl) 連線到安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-109">Connect to a secure cluster using Azure Service Fabric CLI (sfctl)</span></span>
+## <a name="connect-tooa-secure-cluster-using-azure-service-fabric-cli-sfctl"></a><span data-ttu-id="d86d1-109">使用 Azure Service Fabric CLI (sfctl) tooa 安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-109">Connect tooa secure cluster using Azure Service Fabric CLI (sfctl)</span></span>
 
-<span data-ttu-id="ebcd7-110">有幾個不同的方式可使用 Service Fabric CLI (sfctl) 來連線到安全的叢集。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-110">There are a few different ways to connect to a secure cluster using the Service Fabric CLI (sfctl).</span></span> <span data-ttu-id="ebcd7-111">使用用戶端憑證來進行驗證時，憑證詳細資料必須與部署至叢集節點的憑證相符。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-111">When using a client certificate for authentication, the certificate details must match a certificate deployed to the cluster nodes.</span></span> <span data-ttu-id="ebcd7-112">如果您的憑證有「憑證授權單位」(CA)，就必須額外指定信任的 CA。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-112">If your certificate has Certificate Authorities (CAs), you need to additionally specify the trusted CAs.</span></span>
+<span data-ttu-id="d86d1-110">有幾個不同的方式 tooconnect tooa 安全使用叢集 hello 服務網狀架構 CLI (sfctl)。</span><span class="sxs-lookup"><span data-stu-id="d86d1-110">There are a few different ways tooconnect tooa secure cluster using hello Service Fabric CLI (sfctl).</span></span> <span data-ttu-id="d86d1-111">當使用用戶端憑證進行驗證，hello 憑證詳細資料必須符合憑證會部署 toohello 叢集節點。</span><span class="sxs-lookup"><span data-stu-id="d86d1-111">When using a client certificate for authentication, hello certificate details must match a certificate deployed toohello cluster nodes.</span></span> <span data-ttu-id="d86d1-112">如果您的憑證的憑證授權單位 (Ca)，您需要 tooadditionally 指定 hello 信任的 Ca。</span><span class="sxs-lookup"><span data-stu-id="d86d1-112">If your certificate has Certificate Authorities (CAs), you need tooadditionally specify hello trusted CAs.</span></span>
 
-<span data-ttu-id="ebcd7-113">您可以使用 `sfctl cluster select` 命令來連線到叢集。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-113">You can connect to a cluster using the `sfctl cluster select` command.</span></span>
+<span data-ttu-id="d86d1-113">您可以連接使用 hello tooa 叢集`sfctl cluster select`命令。</span><span class="sxs-lookup"><span data-stu-id="d86d1-113">You can connect tooa cluster using hello `sfctl cluster select` command.</span></span>
 
-<span data-ttu-id="ebcd7-114">指定用戶端憑證時，可以使用兩種不同的方式，以憑證與金鑰組方式指定，或是以單一 pem 檔案方式指定。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-114">Client certificates can be specified in two different fashions, either as a cert and key pair, or as a single pem file.</span></span> <span data-ttu-id="ebcd7-115">針對受密碼保護的 `pem` 檔案，系統會自動提示您輸入密碼。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-115">For password protected `pem` files, you will be prompted automatically to enter the password.</span></span>
+<span data-ttu-id="d86d1-114">指定用戶端憑證時，可以使用兩種不同的方式，以憑證與金鑰組方式指定，或是以單一 pem 檔案方式指定。</span><span class="sxs-lookup"><span data-stu-id="d86d1-114">Client certificates can be specified in two different fashions, either as a cert and key pair, or as a single pem file.</span></span> <span data-ttu-id="d86d1-115">針對受密碼保護`pem`檔案，您將會自動提示 tooenter hello 密碼。</span><span class="sxs-lookup"><span data-stu-id="d86d1-115">For password protected `pem` files, you will be prompted automatically tooenter hello password.</span></span>
 
-<span data-ttu-id="ebcd7-116">若要以 pem 檔案指定用戶端憑證，請在 `--pem` 引數中指定檔案路徑。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-116">To specify the client certificate as a pem file, specify the file path in the `--pem` argument.</span></span> <span data-ttu-id="ebcd7-117">例如：</span><span class="sxs-lookup"><span data-stu-id="ebcd7-117">For example:</span></span>
+<span data-ttu-id="d86d1-116">toospecify hello 用戶端憑證，為 pem 檔案，請指定 hello 檔案路徑中 hello`--pem`引數。</span><span class="sxs-lookup"><span data-stu-id="d86d1-116">toospecify hello client certificate as a pem file, specify hello file path in hello `--pem` argument.</span></span> <span data-ttu-id="d86d1-117">例如：</span><span class="sxs-lookup"><span data-stu-id="d86d1-117">For example:</span></span>
 
 ```azurecli
 sfctl cluster select --endpoint https://testsecurecluster.com:19080 --pem ./client.pem
 ```
 
-<span data-ttu-id="ebcd7-118">受密碼保護的 pem 檔案會在執行任何命令之前，先提示您輸入密碼。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-118">Password protected pem files will prompt for password prior to running any command.</span></span>
+<span data-ttu-id="d86d1-118">密碼保護的 pem 檔案會提示輸入密碼之前 toorunning 任何命令。</span><span class="sxs-lookup"><span data-stu-id="d86d1-118">Password protected pem files will prompt for password prior toorunning any command.</span></span>
 
-<span data-ttu-id="ebcd7-119">為了指定憑證，金鑰組會使用 `--cert` 和 `--key` 引數來指定每個個別檔案的檔案路徑。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-119">To specify a cert, key pair use the `--cert` and `--key` arguments to specify the file paths to each respective file.</span></span>
+<span data-ttu-id="d86d1-119">toospecify 憑證、 金鑰組使用 hello`--cert`和`--key`toospecify hello 檔案路徑 tooeach 個別檔案的引數。</span><span class="sxs-lookup"><span data-stu-id="d86d1-119">toospecify a cert, key pair use hello `--cert` and `--key` arguments toospecify hello file paths tooeach respective file.</span></span>
 
 ```azurecli
 sfctl cluster select --endpoint https://testsecurecluster.com:19080 --cert ./client.crt --key ./keyfile.key
 ```
 
-<span data-ttu-id="ebcd7-120">有時，用來保護測試或開發叢集的憑證會讓憑證驗證失敗。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-120">Sometimes certificates used to secure test or dev clusters fail certificate validation.</span></span> <span data-ttu-id="ebcd7-121">若要略過憑證驗證，請指定 `--no-verify` 選項。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-121">To bypass certificate verification, specify the `--no-verify` option.</span></span> <span data-ttu-id="ebcd7-122">例如：</span><span class="sxs-lookup"><span data-stu-id="ebcd7-122">For example:</span></span>
+<span data-ttu-id="d86d1-120">憑證有時用 toosecure 測試或開發人員叢集憑證驗證失敗。</span><span class="sxs-lookup"><span data-stu-id="d86d1-120">Sometimes certificates used toosecure test or dev clusters fail certificate validation.</span></span> <span data-ttu-id="d86d1-121">toobypass 憑證驗證，指定 hello`--no-verify`選項。</span><span class="sxs-lookup"><span data-stu-id="d86d1-121">toobypass certificate verification, specify hello `--no-verify` option.</span></span> <span data-ttu-id="d86d1-122">例如：</span><span class="sxs-lookup"><span data-stu-id="d86d1-122">For example:</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="ebcd7-123">連線到生產環境 Service Fabric 叢集時，請勿使用 `no-verify` 選項。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-123">Do not use the `no-verify` option when connecting to production Service Fabric clusters.</span></span>
+> <span data-ttu-id="d86d1-123">請勿使用 hello`no-verify`選項連接 tooproduction Service Fabric 叢集時。</span><span class="sxs-lookup"><span data-stu-id="d86d1-123">Do not use hello `no-verify` option when connecting tooproduction Service Fabric clusters.</span></span>
 
 ```azurecli
 sfctl cluster select --endpoint https://testsecurecluster.com:19080 --pem ./client.pem --no-verify
 ```
 
-<span data-ttu-id="ebcd7-124">此外，您可以指定受信任 CA 憑證，或個別憑證的目錄路徑。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-124">In addition, you can specify paths to directories of trusted CA certs, or individual certs.</span></span> <span data-ttu-id="ebcd7-125">若要指定這些路徑，請使用 `--ca` 引數。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-125">To specify these paths, use the `--ca` argument.</span></span> <span data-ttu-id="ebcd7-126">例如：</span><span class="sxs-lookup"><span data-stu-id="ebcd7-126">For example:</span></span>
+<span data-ttu-id="d86d1-124">此外，您可以指定路徑 toodirectories 的受信任的 CA 憑證或個別的憑證。</span><span class="sxs-lookup"><span data-stu-id="d86d1-124">In addition, you can specify paths toodirectories of trusted CA certs, or individual certs.</span></span> <span data-ttu-id="d86d1-125">toospecify 這些路徑中，使用 hello`--ca`引數。</span><span class="sxs-lookup"><span data-stu-id="d86d1-125">toospecify these paths, use hello `--ca` argument.</span></span> <span data-ttu-id="d86d1-126">例如：</span><span class="sxs-lookup"><span data-stu-id="d86d1-126">For example:</span></span>
 
 ```azurecli
 sfctl cluster select --endpoint https://testsecurecluster.com:19080 --pem ./client.pem --ca ./trusted_ca
 ```
 
-<span data-ttu-id="ebcd7-127">連線之後，您應該能夠[執行其他 sfctl 命令](service-fabric-cli.md)來與叢集互動。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-127">After you connect, you should be able to [run other sfctl commands](service-fabric-cli.md) to interact with the cluster.</span></span>
+<span data-ttu-id="d86d1-127">您連接之後，您應該會太[執行其他 sfctl 命令](service-fabric-cli.md)toointeract 與 hello 叢集。</span><span class="sxs-lookup"><span data-stu-id="d86d1-127">After you connect, you should be able too[run other sfctl commands](service-fabric-cli.md) toointeract with hello cluster.</span></span>
 
 <a id="connectsecurecluster"></a>
 
-## <a name="connect-to-a-cluster-using-powershell"></a><span data-ttu-id="ebcd7-128">使用 PowerShell 來連線到叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-128">Connect to a cluster using PowerShell</span></span>
-<span data-ttu-id="ebcd7-129">在您透過 PowerShell 執行叢集上的作業之前，先建立叢集的連接。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-129">Before you perform operations on a cluster through PowerShell, first establish a connection to the cluster.</span></span> <span data-ttu-id="ebcd7-130">叢集連接適用於指定 PowerShell 工作階段中的所有後續命令。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-130">The cluster connection is used for all subsequent commands in the given PowerShell session.</span></span>
+## <a name="connect-tooa-cluster-using-powershell"></a><span data-ttu-id="d86d1-128">Tooa 叢集使用 PowerShell 連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-128">Connect tooa cluster using PowerShell</span></span>
+<span data-ttu-id="d86d1-129">您透過 PowerShell 的叢集上執行作業之前，先建立連接 toohello 叢集。</span><span class="sxs-lookup"><span data-stu-id="d86d1-129">Before you perform operations on a cluster through PowerShell, first establish a connection toohello cluster.</span></span> <span data-ttu-id="d86d1-130">hello 叢集連線用於 hello 提供 PowerShell 工作階段中的所有後續命令。</span><span class="sxs-lookup"><span data-stu-id="d86d1-130">hello cluster connection is used for all subsequent commands in hello given PowerShell session.</span></span>
 
-### <a name="connect-to-an-unsecure-cluster"></a><span data-ttu-id="ebcd7-131">連線到不安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-131">Connect to an unsecure cluster</span></span>
+### <a name="connect-tooan-unsecure-cluster"></a><span data-ttu-id="d86d1-131">Tooan 不安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-131">Connect tooan unsecure cluster</span></span>
 
-<span data-ttu-id="ebcd7-132">若要連接至不安全的叢集，請提供叢集端點位址至 **Connect-ServiceFabricCluster** 命令︰</span><span class="sxs-lookup"><span data-stu-id="ebcd7-132">To connect to an unsecure cluster, provide the cluster endpoint address to the **Connect-ServiceFabricCluster** command:</span></span>
+<span data-ttu-id="d86d1-132">tooconnect tooan 不安全叢集時，提供 hello 叢集端點位址 toohello **Connect-servicefabriccluster**命令：</span><span class="sxs-lookup"><span data-stu-id="d86d1-132">tooconnect tooan unsecure cluster, provide hello cluster endpoint address toohello **Connect-ServiceFabricCluster** command:</span></span>
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 
 ```
 
-### <a name="connect-to-a-secure-cluster-using-azure-active-directory"></a><span data-ttu-id="ebcd7-133">使用 Azure Active Directory 連線到安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-133">Connect to a secure cluster using Azure Active Directory</span></span>
+### <a name="connect-tooa-secure-cluster-using-azure-active-directory"></a><span data-ttu-id="d86d1-133">使用 Azure Active Directory tooa 安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-133">Connect tooa secure cluster using Azure Active Directory</span></span>
 
-<span data-ttu-id="ebcd7-134">若要連接至使用 Azure Active Directory 來授權叢集系統管理員存取權的安全叢集，請提供叢集憑證指紋，並使用 AzureActiveDirectory 旗標。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-134">To connect to a secure cluster that uses Azure Active Directory to authorize cluster administrator access, provide the cluster certificate thumbprint and use the *AzureActiveDirectory* flag.</span></span>  
+<span data-ttu-id="d86d1-134">tooconnect tooa 安全叢集使用 Azure Active Directory tooauthorize 叢集系統管理員存取權，提供 hello 叢集的憑證指紋，並使用 hello *AzureActiveDirectory*旗標。</span><span class="sxs-lookup"><span data-stu-id="d86d1-134">tooconnect tooa secure cluster that uses Azure Active Directory tooauthorize cluster administrator access, provide hello cluster certificate thumbprint and use hello *AzureActiveDirectory* flag.</span></span>  
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
@@ -88,8 +88,8 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
 -AzureActiveDirectory
 ```
 
-### <a name="connect-to-a-secure-cluster-using-a-client-certificate"></a><span data-ttu-id="ebcd7-135">使用用戶端憑證連線到安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-135">Connect to a secure cluster using a client certificate</span></span>
-<span data-ttu-id="ebcd7-136">執行下列 PowerShell 命令來連線至使用用戶端憑證授權系統管理員存取權的安全叢集。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-136">Run the following PowerShell command to connect to a secure cluster that uses client certificates to authorize administrator access.</span></span> <span data-ttu-id="ebcd7-137">提供叢集憑證指紋，以及已授與權限來管理叢集的用戶端憑證指紋。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-137">Provide the cluster certificate thumbprint and the thumbprint of the client certificate that has been granted permissions for cluster management.</span></span> <span data-ttu-id="ebcd7-138">憑證詳細資料必須與叢集節點上的憑證相符。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-138">The certificate details must match a certificate on the cluster nodes.</span></span>
+### <a name="connect-tooa-secure-cluster-using-a-client-certificate"></a><span data-ttu-id="d86d1-135">使用用戶端憑證的 tooa 安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-135">Connect tooa secure cluster using a client certificate</span></span>
+<span data-ttu-id="d86d1-136">執行下列 PowerShell 命令 tooconnect tooa 安全叢集的 hello 會使用用戶端憑證 tooauthorize 系統管理員存取權。</span><span class="sxs-lookup"><span data-stu-id="d86d1-136">Run hello following PowerShell command tooconnect tooa secure cluster that uses client certificates tooauthorize administrator access.</span></span> <span data-ttu-id="d86d1-137">提供 hello 叢集憑證指紋和 hello hello 已授與權限來管理叢集的用戶端憑證的指紋。</span><span class="sxs-lookup"><span data-stu-id="d86d1-137">Provide hello cluster certificate thumbprint and hello thumbprint of hello client certificate that has been granted permissions for cluster management.</span></span> <span data-ttu-id="d86d1-138">hello 憑證詳細資料必須符合 hello 叢集節點上的憑證。</span><span class="sxs-lookup"><span data-stu-id="d86d1-138">hello certificate details must match a certificate on hello cluster nodes.</span></span>
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
@@ -99,8 +99,8 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
           -StoreLocation CurrentUser -StoreName My
 ```
 
-<span data-ttu-id="ebcd7-139">*ServerCertThumbprint* 是安裝在叢集節點上的伺服器憑證指紋。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-139">*ServerCertThumbprint* is the thumbprint of the server certificate installed on the cluster nodes.</span></span> <span data-ttu-id="ebcd7-140">*FindValue* 是系統管理員用戶端憑證的指紋。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-140">*FindValue* is the thumbprint of the admin client certificate.</span></span>
-<span data-ttu-id="ebcd7-141">填入參數後，命令看起來如下列範例所示︰</span><span class="sxs-lookup"><span data-stu-id="ebcd7-141">When the parameters are filled in, the command looks like the following example:</span></span> 
+<span data-ttu-id="d86d1-139">*ServerCertThumbprint* hello hello hello 叢集節點上安裝的伺服器憑證的指紋。</span><span class="sxs-lookup"><span data-stu-id="d86d1-139">*ServerCertThumbprint* is hello thumbprint of hello server certificate installed on hello cluster nodes.</span></span> <span data-ttu-id="d86d1-140">*FindValue* hello hello 管理用戶端憑證的指紋。</span><span class="sxs-lookup"><span data-stu-id="d86d1-140">*FindValue* is hello thumbprint of hello admin client certificate.</span></span>
+<span data-ttu-id="d86d1-141">當 hello 參數會因為填滿時，hello 命令看起來類似下列範例中的 hello:</span><span class="sxs-lookup"><span data-stu-id="d86d1-141">When hello parameters are filled in, hello command looks like hello following example:</span></span> 
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint clustername.westus.cloudapp.azure.com:19000 `
@@ -110,8 +110,8 @@ Connect-ServiceFabricCluster -ConnectionEndpoint clustername.westus.cloudapp.azu
           -StoreLocation CurrentUser -StoreName My
 ```
 
-### <a name="connect-to-a-secure-cluster-using-windows-active-directory"></a><span data-ttu-id="ebcd7-142">使用 Windows Active Directory 連線到安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-142">Connect to a secure cluster using Windows Active Directory</span></span>
-<span data-ttu-id="ebcd7-143">如果您的獨立叢集是使用 AD 安全性部署，可加上 "WindowsCredential" 參數來連接到叢集。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-143">If your standalone cluster is deployed using AD security, connect to the cluster by appending the switch "WindowsCredential".</span></span>
+### <a name="connect-tooa-secure-cluster-using-windows-active-directory"></a><span data-ttu-id="d86d1-142">使用 Windows Active Directory tooa 安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-142">Connect tooa secure cluster using Windows Active Directory</span></span>
+<span data-ttu-id="d86d1-143">如果您的獨立叢集部署使用 AD 安全性時，連接 toohello 叢集附加 hello 交換器"WindowsCredential"。</span><span class="sxs-lookup"><span data-stu-id="d86d1-143">If your standalone cluster is deployed using AD security, connect toohello cluster by appending hello switch "WindowsCredential".</span></span>
 
 ```powershell
 Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
@@ -120,26 +120,26 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <Cluster FQDN>:19000 `
 
 <a id="connectsecureclusterfabricclient"></a>
 
-## <a name="connect-to-a-cluster-using-the-fabricclient-apis"></a><span data-ttu-id="ebcd7-144">使用 FabricClient API 來連線到叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-144">Connect to a cluster using the FabricClient APIs</span></span>
-<span data-ttu-id="ebcd7-145">Service Fabric SDK 會提供叢集管理的 [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient) 類別。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-145">The Service Fabric SDK provides the [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient) class for cluster management.</span></span> <span data-ttu-id="ebcd7-146">若要使用 FabricClient API，請取得 Microsoft.ServiceFabric NuGet 封裝。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-146">To use the FabricClient APIs, get the Microsoft.ServiceFabric NuGet package.</span></span>
+## <a name="connect-tooa-cluster-using-hello-fabricclient-apis"></a><span data-ttu-id="d86d1-144">使用 hello FabricClient Api tooa 叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-144">Connect tooa cluster using hello FabricClient APIs</span></span>
+<span data-ttu-id="d86d1-145">hello Service Fabric SDK 提供 hello [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient)叢集管理的類別。</span><span class="sxs-lookup"><span data-stu-id="d86d1-145">hello Service Fabric SDK provides hello [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient) class for cluster management.</span></span> <span data-ttu-id="d86d1-146">toouse hello FabricClient Api 取得 hello Microsoft.ServiceFabric NuGet 封裝。</span><span class="sxs-lookup"><span data-stu-id="d86d1-146">toouse hello FabricClient APIs, get hello Microsoft.ServiceFabric NuGet package.</span></span>
 
-### <a name="connect-to-an-unsecure-cluster"></a><span data-ttu-id="ebcd7-147">連線到不安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-147">Connect to an unsecure cluster</span></span>
+### <a name="connect-tooan-unsecure-cluster"></a><span data-ttu-id="d86d1-147">Tooan 不安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-147">Connect tooan unsecure cluster</span></span>
 
-<span data-ttu-id="ebcd7-148">若要連接至遠端不安全的叢集，建立 FabricClient 執行個體，並提供叢集位址︰</span><span class="sxs-lookup"><span data-stu-id="ebcd7-148">To connect to a remote unsecured cluster, create a FabricClient instance and provide the cluster address:</span></span>
+<span data-ttu-id="d86d1-148">tooconnect tooa 遠端不安全的叢集建立 FabricClient 的執行個體，並提供 hello 叢集位址：</span><span class="sxs-lookup"><span data-stu-id="d86d1-148">tooconnect tooa remote unsecured cluster, create a FabricClient instance and provide hello cluster address:</span></span>
 
 ```csharp
 FabricClient fabricClient = new FabricClient("clustername.westus.cloudapp.azure.com:19000");
 ```
 
-<span data-ttu-id="ebcd7-149">針對在叢集 (例如，Reliable Service) 內執行的程式碼，建立 FabricClient 且不指定叢集位址。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-149">For code that is running from within a cluster, for example, in a Reliable Service, create a FabricClient *without* specifying the cluster address.</span></span> <span data-ttu-id="ebcd7-150">FabricClient 連接到目前正在執行程式碼之節點上的本機管理閘道，避免額外的網路躍點。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-150">FabricClient connects to the local management gateway on the node the code is currently running on, avoiding an extra network hop.</span></span>
+<span data-ttu-id="d86d1-149">對於來自叢集內執行的程式碼，例如，在可靠的服務中，建立 FabricClient*沒有*指定 hello 叢集位址。</span><span class="sxs-lookup"><span data-stu-id="d86d1-149">For code that is running from within a cluster, for example, in a Reliable Service, create a FabricClient *without* specifying hello cluster address.</span></span> <span data-ttu-id="d86d1-150">FabricClient 連接 toohello 本機管理 hello 節點 hello 程式碼的閘道器目前正在上執行，避免額外的網路躍點。</span><span class="sxs-lookup"><span data-stu-id="d86d1-150">FabricClient connects toohello local management gateway on hello node hello code is currently running on, avoiding an extra network hop.</span></span>
 
 ```csharp
 FabricClient fabricClient = new FabricClient();
 ```
 
-### <a name="connect-to-a-secure-cluster-using-a-client-certificate"></a><span data-ttu-id="ebcd7-151">使用用戶端憑證連線到安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-151">Connect to a secure cluster using a client certificate</span></span>
+### <a name="connect-tooa-secure-cluster-using-a-client-certificate"></a><span data-ttu-id="d86d1-151">使用用戶端憑證的 tooa 安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-151">Connect tooa secure cluster using a client certificate</span></span>
 
-<span data-ttu-id="ebcd7-152">叢集中的節點必須具備有效的憑證，這些憑證在 SAN 中的通用名稱或 DNS 名稱會出現在於 [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient) 上設定的 [RemoteCommonNames](https://docs.microsoft.com/dotnet/api/system.fabric.x509credentials#System_Fabric_X509Credentials_RemoteCommonNames) 屬性中。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-152">The nodes in the cluster must have valid certificates whose common name or DNS name in SAN appears in the [RemoteCommonNames property](https://docs.microsoft.com/dotnet/api/system.fabric.x509credentials#System_Fabric_X509Credentials_RemoteCommonNames) set on [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient).</span></span> <span data-ttu-id="ebcd7-153">遵循此程序，就可讓用戶端與叢集節點之間進行相互驗證。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-153">Following this process enables mutual authentication between the client and the cluster nodes.</span></span>
+<span data-ttu-id="d86d1-152">hello hello 叢集中的節點必須具有有效的憑證一般名稱或 SAN 中的 DNS 名稱會出現在 hello [RemoteCommonNames 屬性](https://docs.microsoft.com/dotnet/api/system.fabric.x509credentials#System_Fabric_X509Credentials_RemoteCommonNames)上設定[FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient)。</span><span class="sxs-lookup"><span data-stu-id="d86d1-152">hello nodes in hello cluster must have valid certificates whose common name or DNS name in SAN appears in hello [RemoteCommonNames property](https://docs.microsoft.com/dotnet/api/system.fabric.x509credentials#System_Fabric_X509Credentials_RemoteCommonNames) set on [FabricClient](https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient).</span></span> <span data-ttu-id="d86d1-153">此程序來啟用 hello 用戶端與 hello 叢集節點之間的相互驗證。</span><span class="sxs-lookup"><span data-stu-id="d86d1-153">Following this process enables mutual authentication between hello client and hello cluster nodes.</span></span>
 
 ```csharp
 using System.Fabric;
@@ -177,11 +177,11 @@ static X509Credentials GetCredentials(string clientCertThumb, string serverCertT
 }
 ```
 
-### <a name="connect-to-a-secure-cluster-interactively-using-azure-active-directory"></a><span data-ttu-id="ebcd7-154">使用 Azure Active Directory 以互動方式連線到安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-154">Connect to a secure cluster interactively using Azure Active Directory</span></span>
+### <a name="connect-tooa-secure-cluster-interactively-using-azure-active-directory"></a><span data-ttu-id="d86d1-154">以互動方式使用 Azure Active Directory tooa 安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-154">Connect tooa secure cluster interactively using Azure Active Directory</span></span>
 
-<span data-ttu-id="ebcd7-155">以下範例針對用戶端身分識別使用 Azure Active Directory，以及針對伺服器身分識別啟用伺服器憑證。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-155">The following example uses Azure Active Directory for client identity and server certificate for server identity.</span></span>
+<span data-ttu-id="d86d1-155">下列範例會使用 Azure Active Directory 伺服器身分識別的用戶端身分識別與伺服器憑證的 hello。</span><span class="sxs-lookup"><span data-stu-id="d86d1-155">hello following example uses Azure Active Directory for client identity and server certificate for server identity.</span></span>
 
-<span data-ttu-id="ebcd7-156">連線到叢集時，就會自動彈出對話方塊視窗，以供互動式登入。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-156">A dialog window automatically pops up for interactive sign-in upon connecting to the cluster.</span></span>
+<span data-ttu-id="d86d1-156">對話方塊視窗會自動快顯互動式登入連線 toohello 叢集時。</span><span class="sxs-lookup"><span data-stu-id="d86d1-156">A dialog window automatically pops up for interactive sign-in upon connecting toohello cluster.</span></span>
 
 ```csharp
 string serverCertThumb = "A8136758F4AB8962AF2BF3F27921BE1DF67F4326";
@@ -203,11 +203,11 @@ catch (Exception e)
 }
 ```
 
-### <a name="connect-to-a-secure-cluster-non-interactively-using-azure-active-directory"></a><span data-ttu-id="ebcd7-157">使用 Azure Active Directory 以非互動方式連線到安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-157">Connect to a secure cluster non-interactively using Azure Active Directory</span></span>
+### <a name="connect-tooa-secure-cluster-non-interactively-using-azure-active-directory"></a><span data-ttu-id="d86d1-157">非互動方式使用 Azure Active Directory tooa 安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-157">Connect tooa secure cluster non-interactively using Azure Active Directory</span></span>
 
-<span data-ttu-id="ebcd7-158">以下範例依存於 Microsoft.IdentityModel.Clients.ActiveDirectory，版本：2.19.208020213。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-158">The following example relies on Microsoft.IdentityModel.Clients.ActiveDirectory, Version: 2.19.208020213.</span></span>
+<span data-ttu-id="d86d1-158">hello 下例依賴 Microsoft.IdentityModel.Clients.ActiveDirectory，版本： 2.19.208020213。</span><span class="sxs-lookup"><span data-stu-id="d86d1-158">hello following example relies on Microsoft.IdentityModel.Clients.ActiveDirectory, Version: 2.19.208020213.</span></span>
 
-<span data-ttu-id="ebcd7-159">如需 AAD 權杖取得的詳細資訊，請參閱 [Microsoft.IdentityModel.Clients.ActiveDirectory](https://msdn.microsoft.com/library/microsoft.identitymodel.clients.activedirectory.aspx)。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-159">For more information on AAD token acquisition, see [Microsoft.IdentityModel.Clients.ActiveDirectory](https://msdn.microsoft.com/library/microsoft.identitymodel.clients.activedirectory.aspx).</span></span>
+<span data-ttu-id="d86d1-159">如需 AAD 權杖取得的詳細資訊，請參閱 [Microsoft.IdentityModel.Clients.ActiveDirectory](https://msdn.microsoft.com/library/microsoft.identitymodel.clients.activedirectory.aspx)。</span><span class="sxs-lookup"><span data-stu-id="d86d1-159">For more information on AAD token acquisition, see [Microsoft.IdentityModel.Clients.ActiveDirectory](https://msdn.microsoft.com/library/microsoft.identitymodel.clients.activedirectory.aspx).</span></span>
 
 ```csharp
 string tenantId = "C15CFCEA-02C1-40DC-8466-FBD0EE0B05D2";
@@ -260,9 +260,9 @@ static string GetAccessToken(
 
 ```
 
-### <a name="connect-to-a-secure-cluster-without-prior-metadata-knowledge-using-azure-active-directory"></a><span data-ttu-id="ebcd7-160">使用 Azure Active Directory 連線到安全的叢集而不需事先知道中繼資料</span><span class="sxs-lookup"><span data-stu-id="ebcd7-160">Connect to a secure cluster without prior metadata knowledge using Azure Active Directory</span></span>
+### <a name="connect-tooa-secure-cluster-without-prior-metadata-knowledge-using-azure-active-directory"></a><span data-ttu-id="d86d1-160">使用 Azure Active Directory 的先前的中繼資料不知情的情況下連接 tooa 安全叢集</span><span class="sxs-lookup"><span data-stu-id="d86d1-160">Connect tooa secure cluster without prior metadata knowledge using Azure Active Directory</span></span>
 
-<span data-ttu-id="ebcd7-161">以下範例使用非互動權杖取得，但可以使用同樣的方法來建立自訂的互動式權杖取得經驗。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-161">The following example uses non-interactive token acquisition, but the same approach can be used to build a custom interactive token acquisition experience.</span></span> <span data-ttu-id="ebcd7-162">權杖取得所需的 Azure Active Directory 中繼資料是從叢集設定來讀取。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-162">The Azure Active Directory metadata needed for token acquisition is read from cluster configuration.</span></span>
+<span data-ttu-id="d86d1-161">hello 下列範例會使用非互動式權杖取得，但是 hello 相同的方法可以使用的 toobuild 自訂的互動式權杖取得體驗。</span><span class="sxs-lookup"><span data-stu-id="d86d1-161">hello following example uses non-interactive token acquisition, but hello same approach can be used toobuild a custom interactive token acquisition experience.</span></span> <span data-ttu-id="d86d1-162">hello 權杖取得所需的 Azure Active Directory 中繼資料會從叢集設定中讀取。</span><span class="sxs-lookup"><span data-stu-id="d86d1-162">hello Azure Active Directory metadata needed for token acquisition is read from cluster configuration.</span></span>
 
 ```csharp
 string serverCertThumb = "A8136758F4AB8962AF2BF3F27921BE1DF67F4326";
@@ -305,34 +305,34 @@ static string GetAccessToken(AzureActiveDirectoryMetadata aad)
 
 <a id="connectsecureclustersfx"></a>
 
-## <a name="connect-to-a-secure-cluster-using-service-fabric-explorer"></a><span data-ttu-id="ebcd7-163">使用 Service Fabric Explorer 連線到安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-163">Connect to a secure cluster using Service Fabric Explorer</span></span>
-<span data-ttu-id="ebcd7-164">若要連線到指定之叢集的 [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md)，請將您的瀏覽器指向：</span><span class="sxs-lookup"><span data-stu-id="ebcd7-164">To reach [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) for a given cluster, point your browser to:</span></span>
+## <a name="connect-tooa-secure-cluster-using-service-fabric-explorer"></a><span data-ttu-id="d86d1-163">使用 Service Fabric 總管 tooa 安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-163">Connect tooa secure cluster using Service Fabric Explorer</span></span>
+<span data-ttu-id="d86d1-164">tooreach [Service Fabric 總管](service-fabric-visualizing-your-cluster.md)指定叢集中，會指向您的瀏覽器：</span><span class="sxs-lookup"><span data-stu-id="d86d1-164">tooreach [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) for a given cluster, point your browser to:</span></span>
 
 `http://<your-cluster-endpoint>:19080/Explorer`
 
-<span data-ttu-id="ebcd7-165">Azure 入口網站的叢集基本資訊窗格中也會提供完整 URL。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-165">The full URL is also available in the cluster essentials pane of the Azure portal.</span></span>
+<span data-ttu-id="d86d1-165">hello 完整的 URL 也會提供 hello 叢集 essentials 窗格中的 hello Azure 入口網站。</span><span class="sxs-lookup"><span data-stu-id="d86d1-165">hello full URL is also available in hello cluster essentials pane of hello Azure portal.</span></span>
 
-### <a name="connect-to-a-secure-cluster-using-azure-active-directory"></a><span data-ttu-id="ebcd7-166">使用 Azure Active Directory 連線到安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-166">Connect to a secure cluster using Azure Active Directory</span></span>
+### <a name="connect-tooa-secure-cluster-using-azure-active-directory"></a><span data-ttu-id="d86d1-166">使用 Azure Active Directory tooa 安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-166">Connect tooa secure cluster using Azure Active Directory</span></span>
 
-<span data-ttu-id="ebcd7-167">若要連接至使用 AAD 保護的叢集，請將您的瀏覽器指向：</span><span class="sxs-lookup"><span data-stu-id="ebcd7-167">To connect to a cluster that is secured with AAD, point your browser to:</span></span>
-
-`https://<your-cluster-endpoint>:19080/Explorer`
-
-<span data-ttu-id="ebcd7-168">系統將會自動提示您使用 AAD 登入。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-168">You are automatically be prompted to log in with AAD.</span></span>
-
-### <a name="connect-to-a-secure-cluster-using-a-client-certificate"></a><span data-ttu-id="ebcd7-169">使用用戶端憑證連線到安全的叢集</span><span class="sxs-lookup"><span data-stu-id="ebcd7-169">Connect to a secure cluster using a client certificate</span></span>
-
-<span data-ttu-id="ebcd7-170">若要連接至使用憑證保護的叢集，請將您的瀏覽器指向：</span><span class="sxs-lookup"><span data-stu-id="ebcd7-170">To connect to a cluster that is secured with certificates, point your browser to:</span></span>
+<span data-ttu-id="d86d1-167">tooconnect tooa 叢集則受到 AAD，指向您的瀏覽器：</span><span class="sxs-lookup"><span data-stu-id="d86d1-167">tooconnect tooa cluster that is secured with AAD, point your browser to:</span></span>
 
 `https://<your-cluster-endpoint>:19080/Explorer`
 
-<span data-ttu-id="ebcd7-171">系統會自動提示您選取用戶端憑證。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-171">You are automatically be prompted to select a client certificate.</span></span>
+<span data-ttu-id="d86d1-168">使用 AAD 提示的 toolog 是可以自動。</span><span class="sxs-lookup"><span data-stu-id="d86d1-168">You are automatically be prompted toolog in with AAD.</span></span>
+
+### <a name="connect-tooa-secure-cluster-using-a-client-certificate"></a><span data-ttu-id="d86d1-169">使用用戶端憑證的 tooa 安全叢集連線</span><span class="sxs-lookup"><span data-stu-id="d86d1-169">Connect tooa secure cluster using a client certificate</span></span>
+
+<span data-ttu-id="d86d1-170">tooconnect tooa 叢集保護憑證，來指向您的瀏覽器：</span><span class="sxs-lookup"><span data-stu-id="d86d1-170">tooconnect tooa cluster that is secured with certificates, point your browser to:</span></span>
+
+`https://<your-cluster-endpoint>:19080/Explorer`
+
+<span data-ttu-id="d86d1-171">您會自動是提示的 tooselect 用戶端憑證。</span><span class="sxs-lookup"><span data-stu-id="d86d1-171">You are automatically be prompted tooselect a client certificate.</span></span>
 
 <a id="connectsecureclustersetupclientcert"></a>
-## <a name="set-up-a-client-certificate-on-the-remote-computer"></a><span data-ttu-id="ebcd7-172">設定遠端電腦上的用戶端憑證</span><span class="sxs-lookup"><span data-stu-id="ebcd7-172">Set up a client certificate on the remote computer</span></span>
-<span data-ttu-id="ebcd7-173">至少應使用兩個憑證保護叢集，一個是叢集和伺服器憑證，另一個用於用戶端存取。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-173">At least two certificates should be used for securing the cluster, one for the cluster and server certificate and another for client access.</span></span>  <span data-ttu-id="ebcd7-174">建議您也使用額外的次要憑證和用戶端存取憑證。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-174">We recommend that you also use additional secondary certificates and client access certificates.</span></span>  <span data-ttu-id="ebcd7-175">若要使用憑證安全性來保護用戶端與叢集節點之間的通訊，您必須先取得並安裝用戶端憑證。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-175">To secure the communication between a client and a cluster node using certificate security, you first need to obtain and install the client certificate.</span></span> <span data-ttu-id="ebcd7-176">此憑證可以安裝到本機電腦或目前使用者的個人 (My) 存放區。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-176">The certificate can be installed into the Personal (My) store of the local computer or the current user.</span></span>  <span data-ttu-id="ebcd7-177">您也需要伺服器憑證的指紋，讓用戶端可以驗證叢集。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-177">You also need the thumbprint of the server certificate so that the client can authenticate the cluster.</span></span>
+## <a name="set-up-a-client-certificate-on-hello-remote-computer"></a><span data-ttu-id="d86d1-172">設定 hello 遠端電腦上的用戶端憑證</span><span class="sxs-lookup"><span data-stu-id="d86d1-172">Set up a client certificate on hello remote computer</span></span>
+<span data-ttu-id="d86d1-173">兩個以上的憑證應該用於保護 hello 叢集，一個用於 hello 叢集和伺服器憑證，另一個用於用戶端存取。</span><span class="sxs-lookup"><span data-stu-id="d86d1-173">At least two certificates should be used for securing hello cluster, one for hello cluster and server certificate and another for client access.</span></span>  <span data-ttu-id="d86d1-174">建議您也使用額外的次要憑證和用戶端存取憑證。</span><span class="sxs-lookup"><span data-stu-id="d86d1-174">We recommend that you also use additional secondary certificates and client access certificates.</span></span>  <span data-ttu-id="d86d1-175">toosecure hello 來進行通訊之用戶端和叢集節點，使用憑證的安全性，首先需要 tooobtain 並安裝 hello 用戶端憑證。</span><span class="sxs-lookup"><span data-stu-id="d86d1-175">toosecure hello communication between a client and a cluster node using certificate security, you first need tooobtain and install hello client certificate.</span></span> <span data-ttu-id="d86d1-176">hello 憑證可以安裝到 hello 個人 (My) 存放區的 hello 本機電腦或 hello 目前的使用者。</span><span class="sxs-lookup"><span data-stu-id="d86d1-176">hello certificate can be installed into hello Personal (My) store of hello local computer or hello current user.</span></span>  <span data-ttu-id="d86d1-177">您也需要 hello hello 伺服器憑證的指紋，以便 hello 用戶端可以驗證 hello 叢集。</span><span class="sxs-lookup"><span data-stu-id="d86d1-177">You also need hello thumbprint of hello server certificate so that hello client can authenticate hello cluster.</span></span>
 
-<span data-ttu-id="ebcd7-178">請執行下列 PowerShell Cmdlet 以在您存取叢集的電腦上設定用戶端憑證。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-178">Run the following PowerShell cmdlet to set up the client certificate on the computer from which you access the cluster.</span></span>
+<span data-ttu-id="d86d1-178">執行下列 PowerShell 指令程式 tooset hello hello 電腦，您可以從中存取 hello 叢集上的用戶端憑證的 hello。</span><span class="sxs-lookup"><span data-stu-id="d86d1-178">Run hello following PowerShell cmdlet tooset up hello client certificate on hello computer from which you access hello cluster.</span></span>
 
 ```powershell
 Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My `
@@ -340,7 +340,7 @@ Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\My `
         -Password (ConvertTo-SecureString -String test -AsPlainText -Force)
 ```
 
-<span data-ttu-id="ebcd7-179">如果是自我簽署憑證，您必須先把它匯入您電腦的「受信任的人」存放區，才能使用此憑證來連線到安全的叢集。</span><span class="sxs-lookup"><span data-stu-id="ebcd7-179">If it is a self-signed certificate, you need to import it to your machine's "trusted people" store before you can use this certificate to connect to a secure cluster.</span></span>
+<span data-ttu-id="d86d1-179">如果是自我簽署的憑證，您會需要的 tooimport 它 tooyour 機器的 「 受信任的人 」 存放區才能使用此憑證 tooconnect tooa 安全叢集。</span><span class="sxs-lookup"><span data-stu-id="d86d1-179">If it is a self-signed certificate, you need tooimport it tooyour machine's "trusted people" store before you can use this certificate tooconnect tooa secure cluster.</span></span>
 
 ```powershell
 Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\TrustedPeople `
@@ -348,10 +348,10 @@ Import-PfxCertificate -Exportable -CertStoreLocation Cert:\CurrentUser\TrustedPe
 -Password (ConvertTo-SecureString -String test -AsPlainText -Force)
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="ebcd7-180">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ebcd7-180">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d86d1-180">後續步驟</span><span class="sxs-lookup"><span data-stu-id="d86d1-180">Next steps</span></span>
 
-* [<span data-ttu-id="ebcd7-181">Service Fabric 叢集升級程序與您的期望</span><span class="sxs-lookup"><span data-stu-id="ebcd7-181">Service Fabric Cluster upgrade process and expectations from you</span></span>](service-fabric-cluster-upgrade.md)
-* [<span data-ttu-id="ebcd7-182">在 Visual Studio 中管理 Service Fabric 應用程式</span><span class="sxs-lookup"><span data-stu-id="ebcd7-182">Managing your Service Fabric applications in Visual Studio</span></span>](service-fabric-manage-application-in-visual-studio.md)
-* [<span data-ttu-id="ebcd7-183">Service Fabric 健康情況模型簡介</span><span class="sxs-lookup"><span data-stu-id="ebcd7-183">Service Fabric Health model introduction</span></span>](service-fabric-health-introduction.md)
-* [<span data-ttu-id="ebcd7-184">應用程式安全性及 RunAs</span><span class="sxs-lookup"><span data-stu-id="ebcd7-184">Application Security and RunAs</span></span>](service-fabric-application-runas-security.md)
-* [<span data-ttu-id="ebcd7-185">開始使用 Service Fabric CLI</span><span class="sxs-lookup"><span data-stu-id="ebcd7-185">Getting started with Service Fabric CLI</span></span>](service-fabric-cli.md)
+* [<span data-ttu-id="d86d1-181">Service Fabric 叢集升級程序與您的期望</span><span class="sxs-lookup"><span data-stu-id="d86d1-181">Service Fabric Cluster upgrade process and expectations from you</span></span>](service-fabric-cluster-upgrade.md)
+* [<span data-ttu-id="d86d1-182">在 Visual Studio 中管理 Service Fabric 應用程式</span><span class="sxs-lookup"><span data-stu-id="d86d1-182">Managing your Service Fabric applications in Visual Studio</span></span>](service-fabric-manage-application-in-visual-studio.md)
+* [<span data-ttu-id="d86d1-183">Service Fabric 健康情況模型簡介</span><span class="sxs-lookup"><span data-stu-id="d86d1-183">Service Fabric Health model introduction</span></span>](service-fabric-health-introduction.md)
+* [<span data-ttu-id="d86d1-184">應用程式安全性及 RunAs</span><span class="sxs-lookup"><span data-stu-id="d86d1-184">Application Security and RunAs</span></span>](service-fabric-application-runas-security.md)
+* [<span data-ttu-id="d86d1-185">開始使用 Service Fabric CLI</span><span class="sxs-lookup"><span data-stu-id="d86d1-185">Getting started with Service Fabric CLI</span></span>](service-fabric-cli.md)

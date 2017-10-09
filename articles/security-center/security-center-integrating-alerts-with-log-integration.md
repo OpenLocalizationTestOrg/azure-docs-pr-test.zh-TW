@@ -1,5 +1,5 @@
 ---
-title: "整合 Azure 資訊安全中心警示與 Azure 記錄整合 | Microsoft Docs"
+title: "使用 Azure aaaIntegrating Azure 資訊安全中心警示記錄 integration |Microsoft 文件"
 description: "本文可協助您開始整合資訊安全中心警示與 Azure 記錄整合。"
 services: security-center
 documentationcenter: na
@@ -14,78 +14,78 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/23/2017
 ms.author: terrylan
-ms.openlocfilehash: d13e5b87c446e587091551b22d80fe568d5d8093
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2649036ee990bf0f48fa0cb35c7495ac932c29ed
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="integrating-azure-security-center-alerts-with-azure-log-integration"></a><span data-ttu-id="a52e0-103">整合 Azure 資訊安全中心警示與 Azure 記錄整合</span><span class="sxs-lookup"><span data-stu-id="a52e0-103">Integrating Azure Security Center alerts with Azure log integration</span></span>
-<span data-ttu-id="a52e0-104">許多安全性作業和事件回應小組依賴安全性資訊及事件管理 (SIEM) 方案對安全性警示進行分級和調查做為起點。</span><span class="sxs-lookup"><span data-stu-id="a52e0-104">Many security operations and incident response teams rely on a Security Information and Event Management (SIEM) solution as the starting point for triaging and investigating security alerts.</span></span> <span data-ttu-id="a52e0-105">透過 Azure 記錄整合，您可以將 Azure 資訊安全中心的警示與您的 SIEM 方案整合。</span><span class="sxs-lookup"><span data-stu-id="a52e0-105">With Azure Log Integration, you can integrate Azure Security Center alerts with your SIEM solution.</span></span>
+# <a name="integrating-azure-security-center-alerts-with-azure-log-integration"></a><span data-ttu-id="6f1ac-103">整合 Azure 資訊安全中心警示與 Azure 記錄整合</span><span class="sxs-lookup"><span data-stu-id="6f1ac-103">Integrating Azure Security Center alerts with Azure log integration</span></span>
+<span data-ttu-id="6f1ac-104">許多安全性作業和事件回應小組依賴安全性資訊和事件管理 (SIEM) 方案作為 hello 分級和調查安全性警示的起點。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-104">Many security operations and incident response teams rely on a Security Information and Event Management (SIEM) solution as hello starting point for triaging and investigating security alerts.</span></span> <span data-ttu-id="6f1ac-105">透過 Azure 記錄整合，您可以將 Azure 資訊安全中心的警示與您的 SIEM 方案整合。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-105">With Azure Log Integration, you can integrate Azure Security Center alerts with your SIEM solution.</span></span>
 
-<span data-ttu-id="a52e0-106">Azure 記錄整合目前支援 HP ArcSight、Splunk 及 IBM QRadar。</span><span class="sxs-lookup"><span data-stu-id="a52e0-106">Azure log integration currently supports HP ArcSight, Splunk, and IBM QRadar.</span></span>
+<span data-ttu-id="6f1ac-106">Azure 記錄整合目前支援 HP ArcSight、Splunk 及 IBM QRadar。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-106">Azure log integration currently supports HP ArcSight, Splunk, and IBM QRadar.</span></span>
 
-## <a name="what-logs-can-i-integrate"></a><span data-ttu-id="a52e0-107">可以整合哪些記錄檔？</span><span class="sxs-lookup"><span data-stu-id="a52e0-107">What logs can I integrate?</span></span>
-<span data-ttu-id="a52e0-108">Azure 會為每項服務產生大量記錄。</span><span class="sxs-lookup"><span data-stu-id="a52e0-108">Azure produces extensive logging for every service.</span></span> <span data-ttu-id="a52e0-109">這些記錄檔會分類為︰</span><span class="sxs-lookup"><span data-stu-id="a52e0-109">These logs are categorized as:</span></span>
+## <a name="what-logs-can-i-integrate"></a><span data-ttu-id="6f1ac-107">可以整合哪些記錄檔？</span><span class="sxs-lookup"><span data-stu-id="6f1ac-107">What logs can I integrate?</span></span>
+<span data-ttu-id="6f1ac-108">Azure 會為每項服務產生大量記錄。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-108">Azure produces extensive logging for every service.</span></span> <span data-ttu-id="6f1ac-109">這些記錄檔會分類為︰</span><span class="sxs-lookup"><span data-stu-id="6f1ac-109">These logs are categorized as:</span></span>
 
-* <span data-ttu-id="a52e0-110">**控制/管理記錄檔**：可讓您看到 Azure Resource Manager 的 CREATE、UPDATE 和 DELETE 作業。</span><span class="sxs-lookup"><span data-stu-id="a52e0-110">**Control/Management logs** that give visibility into the Azure Resource Manager CREATE, UPDATE, and DELETE operations.</span></span> <span data-ttu-id="a52e0-111">這些控制平面事件會顯示在 Azure 活動記錄中</span><span class="sxs-lookup"><span data-stu-id="a52e0-111">These control plane events are surfaced in the Azure Activity Logs</span></span>
-* <span data-ttu-id="a52e0-112">**資料平面記錄檔**：可讓您看到使用 Azure 資源時所引發的事件。</span><span class="sxs-lookup"><span data-stu-id="a52e0-112">**Data Plane logs** that give visibility into the events raised when using an Azure resource.</span></span> <span data-ttu-id="a52e0-113">Windows 事件記錄檔是其中一個範例，您可以從事件檢視器的安全性通道取得安全性事件資訊。</span><span class="sxs-lookup"><span data-stu-id="a52e0-113">An example is the Windows Event log, where you can get security event information from the Event Viewer's Security Channel.</span></span> <span data-ttu-id="a52e0-114">資料平面事件 (由虛擬機器或 Azure 服務所產生) 會由 Azure 診斷記錄顯示。</span><span class="sxs-lookup"><span data-stu-id="a52e0-114">Data plane events (which are generated by a virtual machine or an Azure service) are surfaced by Azure Diagnostic Logs.</span></span>
+* <span data-ttu-id="6f1ac-110">**控制/管理記錄檔**，讓 hello 掌握 Azure 資源管理員建立、 更新和刪除作業。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-110">**Control/Management logs** that give visibility into hello Azure Resource Manager CREATE, UPDATE, and DELETE operations.</span></span> <span data-ttu-id="6f1ac-111">這些控制項的平面事件便會顯示在 hello Azure 活動記錄檔</span><span class="sxs-lookup"><span data-stu-id="6f1ac-111">These control plane events are surfaced in hello Azure Activity Logs</span></span>
+* <span data-ttu-id="6f1ac-112">**資料平面記錄**，讓掌握 hello 事件引發時使用的 Azure 資源。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-112">**Data Plane logs** that give visibility into hello events raised when using an Azure resource.</span></span> <span data-ttu-id="6f1ac-113">例如，hello Windows 事件記錄檔，您可以在其中取得 hello 事件檢視器的安全性通道的安全性事件資訊。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-113">An example is hello Windows Event log, where you can get security event information from hello Event Viewer's Security Channel.</span></span> <span data-ttu-id="6f1ac-114">資料平面事件 (由虛擬機器或 Azure 服務所產生) 會由 Azure 診斷記錄顯示。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-114">Data plane events (which are generated by a virtual machine or an Azure service) are surfaced by Azure Diagnostic Logs.</span></span>
 
-<span data-ttu-id="a52e0-115">Azure 記錄檔整合目前支援下列項目的整合︰</span><span class="sxs-lookup"><span data-stu-id="a52e0-115">Azure log integration currently supports the integration of:</span></span>
+<span data-ttu-id="6f1ac-115">Azure 記錄檔整合目前支援 hello 的整合：</span><span class="sxs-lookup"><span data-stu-id="6f1ac-115">Azure log integration currently supports hello integration of:</span></span>
 
-* <span data-ttu-id="a52e0-116">Azure VM 記錄檔</span><span class="sxs-lookup"><span data-stu-id="a52e0-116">Azure VM logs</span></span>
-* <span data-ttu-id="a52e0-117">Azure 稽核記錄檔</span><span class="sxs-lookup"><span data-stu-id="a52e0-117">Azure Audit Logs</span></span>
-* <span data-ttu-id="a52e0-118">Azure 資訊安全中心警示</span><span class="sxs-lookup"><span data-stu-id="a52e0-118">Azure Security Center alerts</span></span>
+* <span data-ttu-id="6f1ac-116">Azure VM 記錄檔</span><span class="sxs-lookup"><span data-stu-id="6f1ac-116">Azure VM logs</span></span>
+* <span data-ttu-id="6f1ac-117">Azure 稽核記錄檔</span><span class="sxs-lookup"><span data-stu-id="6f1ac-117">Azure Audit Logs</span></span>
+* <span data-ttu-id="6f1ac-118">Azure 資訊安全中心警示</span><span class="sxs-lookup"><span data-stu-id="6f1ac-118">Azure Security Center alerts</span></span>
 
-## <a name="install-azure-log-integration"></a><span data-ttu-id="a52e0-119">安裝 Azure 記錄檔整合</span><span class="sxs-lookup"><span data-stu-id="a52e0-119">Install Azure log integration</span></span>
-<span data-ttu-id="a52e0-120">下載 [Azure 記錄檔整合](https://www.microsoft.com/download/details.aspx?id=53324)。</span><span class="sxs-lookup"><span data-stu-id="a52e0-120">Download [Azure log integration](https://www.microsoft.com/download/details.aspx?id=53324).</span></span>
+## <a name="install-azure-log-integration"></a><span data-ttu-id="6f1ac-119">安裝 Azure 記錄檔整合</span><span class="sxs-lookup"><span data-stu-id="6f1ac-119">Install Azure log integration</span></span>
+<span data-ttu-id="6f1ac-120">下載 [Azure 記錄檔整合](https://www.microsoft.com/download/details.aspx?id=53324)。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-120">Download [Azure log integration](https://www.microsoft.com/download/details.aspx?id=53324).</span></span>
 
-<span data-ttu-id="a52e0-121">Azure 記錄檔整合服務會從其安裝所在的電腦收集遙測資料。</span><span class="sxs-lookup"><span data-stu-id="a52e0-121">The Azure log integration service collects telemetry data from the machine on which it is installed.</span></span>  <span data-ttu-id="a52e0-122">所收集的遙測資料是︰</span><span class="sxs-lookup"><span data-stu-id="a52e0-122">Telemetry data collected is:</span></span>
+<span data-ttu-id="6f1ac-121">hello Azure 記錄檔整合服務會從其安裝所在的 hello 機器收集遙測資料。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-121">hello Azure log integration service collects telemetry data from hello machine on which it is installed.</span></span>  <span data-ttu-id="6f1ac-122">所收集的遙測資料是︰</span><span class="sxs-lookup"><span data-stu-id="6f1ac-122">Telemetry data collected is:</span></span>
 
-* <span data-ttu-id="a52e0-123">Azure 記錄檔整合的執行期間所發生的例外狀況</span><span class="sxs-lookup"><span data-stu-id="a52e0-123">Exceptions that occur during execution of Azure log integration</span></span>
-* <span data-ttu-id="a52e0-124">所處理之查詢和事件數目的相關度量</span><span class="sxs-lookup"><span data-stu-id="a52e0-124">Metrics about the number of queries and events processed</span></span>
-* <span data-ttu-id="a52e0-125">正在使用哪些 Azlog.exe 命令列選項的相關統計資料</span><span class="sxs-lookup"><span data-stu-id="a52e0-125">Statistics about which Azlog.exe command line options are being used</span></span>
+* <span data-ttu-id="6f1ac-123">Azure 記錄檔整合的執行期間所發生的例外狀況</span><span class="sxs-lookup"><span data-stu-id="6f1ac-123">Exceptions that occur during execution of Azure log integration</span></span>
+* <span data-ttu-id="6f1ac-124">大約 hello 數目的查詢和處理事件的度量</span><span class="sxs-lookup"><span data-stu-id="6f1ac-124">Metrics about hello number of queries and events processed</span></span>
+* <span data-ttu-id="6f1ac-125">正在使用哪些 Azlog.exe 命令列選項的相關統計資料</span><span class="sxs-lookup"><span data-stu-id="6f1ac-125">Statistics about which Azlog.exe command line options are being used</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="a52e0-126">您可以取消核取此選項，以關閉遙測資料的收集。</span><span class="sxs-lookup"><span data-stu-id="a52e0-126">You can turn off collection of telemetry data by unchecking this option.</span></span>
+> <span data-ttu-id="6f1ac-126">您可以取消核取此選項，以關閉遙測資料的收集。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-126">You can turn off collection of telemetry data by unchecking this option.</span></span>
 >
 >
 
-## <a name="integrate-azure-audit-logs-and-security-center-alerts"></a><span data-ttu-id="a52e0-127">整合 Azure 稽核記錄檔和資訊安全中心警示</span><span class="sxs-lookup"><span data-stu-id="a52e0-127">Integrate Azure Audit Logs and Security Center alerts</span></span>
-1. <span data-ttu-id="a52e0-128">開啟命令提示字元，並使用 **cd** 命令前往 **c:\Program Files\Microsoft Azure Log Integration**。</span><span class="sxs-lookup"><span data-stu-id="a52e0-128">Open the command prompt and **cd** into **c:\Program Files\Microsoft Azure Log Integration**.</span></span>
-2. <span data-ttu-id="a52e0-129">執行 **azlog createazureid** 命令，在裝載 Azure 訂用帳戶的 Azure Active Directory (AD) 租用戶中建立 [Azure Active Directory 服務主體](../active-directory/active-directory-application-objects.md) 。</span><span class="sxs-lookup"><span data-stu-id="a52e0-129">Run the **azlog createazureid** command to create an [Azure Active Directory Service Principal](../active-directory/active-directory-application-objects.md) in the Azure Active Directory (AD) tenants that host the Azure subscriptions.</span></span>
+## <a name="integrate-azure-audit-logs-and-security-center-alerts"></a><span data-ttu-id="6f1ac-127">整合 Azure 稽核記錄檔和資訊安全中心警示</span><span class="sxs-lookup"><span data-stu-id="6f1ac-127">Integrate Azure Audit Logs and Security Center alerts</span></span>
+1. <span data-ttu-id="6f1ac-128">開啟 hello 命令提示字元和**cd**到**c:\Program Files\Microsoft Azure 記錄檔整合**。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-128">Open hello command prompt and **cd** into **c:\Program Files\Microsoft Azure Log Integration**.</span></span>
+2. <span data-ttu-id="6f1ac-129">執行 hello **azlog createazureid**命令 toocreate [Azure Active Directory 服務主體](../active-directory/active-directory-application-objects.md)hello Azure Active Directory (AD) 中裝載的租用戶 hello Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-129">Run hello **azlog createazureid** command toocreate an [Azure Active Directory Service Principal](../active-directory/active-directory-application-objects.md) in hello Azure Active Directory (AD) tenants that host hello Azure subscriptions.</span></span>
 
-    <span data-ttu-id="a52e0-130">系統會提示您登入 Azure。</span><span class="sxs-lookup"><span data-stu-id="a52e0-130">You are prompted for your Azure login.</span></span>
-
-   > [!NOTE]
-   > <span data-ttu-id="a52e0-131">您必須是訂用帳戶擁有者或訂用帳戶的共同管理員。</span><span class="sxs-lookup"><span data-stu-id="a52e0-131">You must be the subscription Owner or a Co-Administrator of the subscription.</span></span>
-   >
-   >
-
-    <span data-ttu-id="a52e0-132">對 Azure 的驗證會透過 Azure AD 來進行。</span><span class="sxs-lookup"><span data-stu-id="a52e0-132">Authentication to Azure is done through Azure AD.</span></span>  <span data-ttu-id="a52e0-133">建立 Azure 記錄整合的服務主體會建立 Azure AD 身分識別，以獲得 Azure 訂用帳戶的讀取權限。</span><span class="sxs-lookup"><span data-stu-id="a52e0-133">Creating a service principal for Azure log integration creates the Azure AD identity that is given access to read from Azure subscriptions.</span></span>
-3. <span data-ttu-id="a52e0-134">執行 **azlog authorize <SubscriptionID>** 命令，以將訂用帳戶的讀取者權限指派給在步驟 2 中建立的服務主體。</span><span class="sxs-lookup"><span data-stu-id="a52e0-134">Run the **azlog authorize <SubscriptionID>** command to assign Reader access on the subscription to the service principal created in step 2.</span></span> <span data-ttu-id="a52e0-135">如果您未指定 **SubscriptionID**，則會對服務主體指派您可以存取之所有訂用帳戶的讀取者角色。</span><span class="sxs-lookup"><span data-stu-id="a52e0-135">If you don’t specify a **SubscriptionID**, then the service principal is assigned the Reader role to all subscriptions to which you have access.</span></span>
+    <span data-ttu-id="6f1ac-130">系統會提示您登入 Azure。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-130">You are prompted for your Azure login.</span></span>
 
    > [!NOTE]
-   > <span data-ttu-id="a52e0-136">如果您在執行 **createazureid** 命令之後立即執行 **authorize** 命令，可能會看見警告。</span><span class="sxs-lookup"><span data-stu-id="a52e0-136">You may see warnings if you run the **authorize** command immediately after the **createazureid** command.</span></span> <span data-ttu-id="a52e0-137">建立 Azure AD 帳戶到帳戶可供使用之間會有一些延遲。</span><span class="sxs-lookup"><span data-stu-id="a52e0-137">There is some latency between when the Azure AD account is created and when the account is available for use.</span></span> <span data-ttu-id="a52e0-138">如果您在執行 **createazureid** 命令後等待約 10 秒再執行 **authorize** 命令，應該就不會看到這些警告。</span><span class="sxs-lookup"><span data-stu-id="a52e0-138">If you wait about 10 seconds after running the **createazureid** command to run the **authorize** command, then you should not see these warnings.</span></span>
+   > <span data-ttu-id="6f1ac-131">您必須是 hello 訂用帳戶擁有者或 hello 訂用帳戶的共同管理員。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-131">You must be hello subscription Owner or a Co-Administrator of hello subscription.</span></span>
    >
    >
-4. <span data-ttu-id="a52e0-139">檢查下列資料夾以確認其中有稽核記錄檔 JSON 檔案︰</span><span class="sxs-lookup"><span data-stu-id="a52e0-139">Check the following folders to confirm that the Audit log JSON files are there:</span></span>
 
-   * <span data-ttu-id="a52e0-140">**c:\Users\azlog\AzureResourceManagerJson**</span><span class="sxs-lookup"><span data-stu-id="a52e0-140">**c:\Users\azlog\AzureResourceManagerJson**</span></span>
-   * <span data-ttu-id="a52e0-141">**c:\Users\azlog\AzureResourceManagerJsonLD**</span><span class="sxs-lookup"><span data-stu-id="a52e0-141">**c:\Users\azlog\AzureResourceManagerJsonLD**</span></span>
-5. <span data-ttu-id="a52e0-142">檢查下列資料夾以確認其中有資訊安全中心警示︰</span><span class="sxs-lookup"><span data-stu-id="a52e0-142">Check the following folders to confirm that Security Center alerts exist in them:</span></span>
+    <span data-ttu-id="6f1ac-132">驗證 tooAzure 是透過 Azure AD。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-132">Authentication tooAzure is done through Azure AD.</span></span>  <span data-ttu-id="6f1ac-133">建立 Azure 記錄檔整合的服務主體，會建立從 Azure 訂用帳戶有存取 tooread hello Azure AD 身分識別。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-133">Creating a service principal for Azure log integration creates hello Azure AD identity that is given access tooread from Azure subscriptions.</span></span>
+3. <span data-ttu-id="6f1ac-134">執行 hello **azlog 授權<SubscriptionID>**命令 tooassign 步驟 2 中建立的 hello 訂用帳戶 toohello 服務主體上的讀取器存取。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-134">Run hello **azlog authorize <SubscriptionID>** command tooassign Reader access on hello subscription toohello service principal created in step 2.</span></span> <span data-ttu-id="6f1ac-135">如果您未指定**SubscriptionID**，那麼 hello 服務主體是指派的 hello 讀取器角色 tooall 訂閱 toowhich 可以存取。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-135">If you don’t specify a **SubscriptionID**, then hello service principal is assigned hello Reader role tooall subscriptions toowhich you have access.</span></span>
 
-   * <span data-ttu-id="a52e0-143">**c:\Users\azlog\ AzureSecurityCenterJson**</span><span class="sxs-lookup"><span data-stu-id="a52e0-143">**c:\Users\azlog\ AzureSecurityCenterJson**</span></span>
-   * <span data-ttu-id="a52e0-144">**c:\Users\azlog\AzureSecurityCenterJsonLD**</span><span class="sxs-lookup"><span data-stu-id="a52e0-144">**c:\Users\azlog\AzureSecurityCenterJsonLD**</span></span>
-6. <span data-ttu-id="a52e0-145">將 SIEM 檔案轉寄站連接器設定至適當的資料夾。</span><span class="sxs-lookup"><span data-stu-id="a52e0-145">Configure the SIEM file forwarder connector to the appropriate folder.</span></span> <span data-ttu-id="a52e0-146">程序會視您所使用的 SIEM 而有所不同。</span><span class="sxs-lookup"><span data-stu-id="a52e0-146">The procedure will vary based on the SIEM you are using.</span></span>
+   > [!NOTE]
+   > <span data-ttu-id="6f1ac-136">您可能會看見警告，如果您要執行 hello**授權**命令後面 hello **createazureid**命令。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-136">You may see warnings if you run hello **authorize** command immediately after hello **createazureid** command.</span></span> <span data-ttu-id="6f1ac-137">會有些延遲 hello Azure AD 帳戶建立時與 hello 帳戶時可供使用。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-137">There is some latency between when hello Azure AD account is created and when hello account is available for use.</span></span> <span data-ttu-id="6f1ac-138">如果您需要等候約 10 秒後執行 hello **createazureid**命令 toorun hello**授權**命令時，就不應該會看到這些警告。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-138">If you wait about 10 seconds after running hello **createazureid** command toorun hello **authorize** command, then you should not see these warnings.</span></span>
+   >
+   >
+4. <span data-ttu-id="6f1ac-139">請檢查下列 hello 稽核記錄檔的 JSON 檔案的資料夾 tooconfirm hello 有：</span><span class="sxs-lookup"><span data-stu-id="6f1ac-139">Check hello following folders tooconfirm that hello Audit log JSON files are there:</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="a52e0-147">後續步驟</span><span class="sxs-lookup"><span data-stu-id="a52e0-147">Next steps</span></span>
-<span data-ttu-id="a52e0-148">若要深入了解 Azure 活動記錄和屬性定義，請參閱︰</span><span class="sxs-lookup"><span data-stu-id="a52e0-148">To learn more about Azure Activity Logs and property definitions, see:</span></span>
+   * <span data-ttu-id="6f1ac-140">**c:\Users\azlog\AzureResourceManagerJson**</span><span class="sxs-lookup"><span data-stu-id="6f1ac-140">**c:\Users\azlog\AzureResourceManagerJson**</span></span>
+   * <span data-ttu-id="6f1ac-141">**c:\Users\azlog\AzureResourceManagerJsonLD**</span><span class="sxs-lookup"><span data-stu-id="6f1ac-141">**c:\Users\azlog\AzureResourceManagerJsonLD**</span></span>
+5. <span data-ttu-id="6f1ac-142">請檢查下列資訊安全中心警示存在於它們的資料夾 tooconfirm hello:</span><span class="sxs-lookup"><span data-stu-id="6f1ac-142">Check hello following folders tooconfirm that Security Center alerts exist in them:</span></span>
 
-* [<span data-ttu-id="a52e0-149">使用 Resource Manager 來稽核作業</span><span class="sxs-lookup"><span data-stu-id="a52e0-149">Audit operations with Resource Manager</span></span>](../azure-resource-manager/resource-group-audit.md)
+   * <span data-ttu-id="6f1ac-143">**c:\Users\azlog\ AzureSecurityCenterJson**</span><span class="sxs-lookup"><span data-stu-id="6f1ac-143">**c:\Users\azlog\ AzureSecurityCenterJson**</span></span>
+   * <span data-ttu-id="6f1ac-144">**c:\Users\azlog\AzureSecurityCenterJsonLD**</span><span class="sxs-lookup"><span data-stu-id="6f1ac-144">**c:\Users\azlog\AzureSecurityCenterJsonLD**</span></span>
+6. <span data-ttu-id="6f1ac-145">設定 hello SIEM 檔案轉寄站連接器 toohello 適當的資料夾。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-145">Configure hello SIEM file forwarder connector toohello appropriate folder.</span></span> <span data-ttu-id="6f1ac-146">hello 程序會隨著 hello 使用您的 SIEM。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-146">hello procedure will vary based on hello SIEM you are using.</span></span>
 
-<span data-ttu-id="a52e0-150">如要深入了解資訊安全中心，請參閱下列主題：</span><span class="sxs-lookup"><span data-stu-id="a52e0-150">To learn more about Security Center, see the following:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="6f1ac-147">後續步驟</span><span class="sxs-lookup"><span data-stu-id="6f1ac-147">Next steps</span></span>
+<span data-ttu-id="6f1ac-148">toolearn 深入了解 Azure 活動記錄檔和屬性的定義，請參閱：</span><span class="sxs-lookup"><span data-stu-id="6f1ac-148">toolearn more about Azure Activity Logs and property definitions, see:</span></span>
 
-* <span data-ttu-id="a52e0-151">[管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) — 了解如何管理與回應安全性警示。</span><span class="sxs-lookup"><span data-stu-id="a52e0-151">[Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) — Learn how to manage and respond to security alerts.</span></span>
-* <span data-ttu-id="a52e0-152">[Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題。</span><span class="sxs-lookup"><span data-stu-id="a52e0-152">[Azure Security Center FAQ](security-center-faq.md) — Find frequently asked questions about using the service.</span></span>
-* <span data-ttu-id="a52e0-153">[Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) — 取得最新的 Azure 安全性新聞和資訊。</span><span class="sxs-lookup"><span data-stu-id="a52e0-153">[Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) — Get the latest Azure security news and information.</span></span>
+* [<span data-ttu-id="6f1ac-149">使用 Resource Manager 來稽核作業</span><span class="sxs-lookup"><span data-stu-id="6f1ac-149">Audit operations with Resource Manager</span></span>](../azure-resource-manager/resource-group-audit.md)
+
+<span data-ttu-id="6f1ac-150">toolearn 有關資訊安全中心的詳細資訊，請參閱 hello 下列資訊：</span><span class="sxs-lookup"><span data-stu-id="6f1ac-150">toolearn more about Security Center, see hello following:</span></span>
+
+* <span data-ttu-id="6f1ac-151">[Azure 資訊安全中心警示管理，而且有回應 toosecurity](security-center-managing-and-responding-alerts.md) — 了解如何 toomanage 和回應 toosecurity 警示。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-151">[Managing and responding toosecurity alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) — Learn how toomanage and respond toosecurity alerts.</span></span>
+* <span data-ttu-id="6f1ac-152">[Azure 資訊安全中心常見問題集](security-center-faq.md)— 尋找使用 hello 服務相關的常見問題集。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-152">[Azure Security Center FAQ](security-center-faq.md) — Find frequently asked questions about using hello service.</span></span>
+* <span data-ttu-id="6f1ac-153">[Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)— 取得最新 Azure 安全性消息 hello 和資訊。</span><span class="sxs-lookup"><span data-stu-id="6f1ac-153">[Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) — Get hello latest Azure security news and information.</span></span>

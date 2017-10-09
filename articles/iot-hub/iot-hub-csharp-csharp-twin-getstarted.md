@@ -1,6 +1,6 @@
 ---
-title: "開始使用 Azure IoT 中樞裝置對應項 (.NET/.NET) | Microsoft Docs"
-description: "如何使用 Azure IoT 中樞裝置對應項來新增標籤，然後使用 IoT 中樞查詢。 您可以使用適用於 .NET 的 Azure IoT 裝置 SDK，實作模擬的裝置應用程式，也可以使用適用於 .NET 的 Azure IoT 服務 SDK，實作服務應用程式，以新增標籤和執行 IoT 中樞查詢。"
+title: "aaaGet 開始使用 Azure IoT Hub 裝置雙 (.NET/.NET) |Microsoft 文件"
+description: "如何 toouse Azure IoT Hub 裝置雙 tooadd 標記，然後再使用 IoT 中樞查詢。 您可以使用 hello Azure IoT 裝置 SDK for.NET tooimplement hello 模擬的裝置的應用程式與 hello.NET tooimplement 加入 hello 標記，並執行 hello IoT 中樞查詢中的服務應用程式的 Azure IoT 服務 SDK。"
 services: iot-hub
 documentationcenter: node
 author: dsk-2015
@@ -14,55 +14,55 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: dkshir
-ms.openlocfilehash: 6073d594117e69676b753a1e3af25fffa3583a2b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7fa73ac896c44e79c6522d252cd1515bd6e7bb2b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-device-twins-netnet"></a><span data-ttu-id="e3a56-104">開始使用裝置對應項 (.NET/.NET)</span><span class="sxs-lookup"><span data-stu-id="e3a56-104">Get started with device twins (.NET/.NET)</span></span>
+# <a name="get-started-with-device-twins-netnet"></a><span data-ttu-id="385f9-104">開始使用裝置對應項 (.NET/.NET)</span><span class="sxs-lookup"><span data-stu-id="385f9-104">Get started with device twins (.NET/.NET)</span></span>
 [!INCLUDE [iot-hub-selector-twin-get-started](../../includes/iot-hub-selector-twin-get-started.md)]
 
-<span data-ttu-id="e3a56-105">在本教學課程結尾，您將會有下列 .NET 主控台應用程式：</span><span class="sxs-lookup"><span data-stu-id="e3a56-105">At the end of this tutorial, you will have these .NET console apps:</span></span>
+<span data-ttu-id="385f9-105">在本教學課程的 hello 結束時，您將擁有這些.NET 主控台應用程式：</span><span class="sxs-lookup"><span data-stu-id="385f9-105">At hello end of this tutorial, you will have these .NET console apps:</span></span>
 
-* <span data-ttu-id="e3a56-106">**CreateDeviceIdentity**，這是 .NET 應用程式，可建立裝置識別與相關聯的安全性金鑰，來連線到您的模擬裝置應用程式。</span><span class="sxs-lookup"><span data-stu-id="e3a56-106">**CreateDeviceIdentity**, a .NET app which creates a device identity and associated security key to connect your simulated device app.</span></span>
-* <span data-ttu-id="e3a56-107">**AddTagsAndQuery**，這是 .NET 後端應用程式，可新增標籤和查詢裝置對應項。</span><span class="sxs-lookup"><span data-stu-id="e3a56-107">**AddTagsAndQuery**, a .NET back-end app which adds tags and queries device twins.</span></span>
-* <span data-ttu-id="e3a56-108">**ReportConnectivity**，這是會模擬裝置的 .NET 裝置應用程式，此裝置會以稍早建立的裝置識別連線到您的 IoT 中樞，並報告其連線狀況。</span><span class="sxs-lookup"><span data-stu-id="e3a56-108">**ReportConnectivity**, a .NET device app which simulates a device that connects to your IoT hub with the device identity created earlier, and reports its connectivity condition.</span></span>
+* <span data-ttu-id="385f9-106">**CreateDeviceIdentity**，.NET 應用程式會建立裝置身分識別和相關聯的安全性金鑰 tooconnect 應用程式模擬的裝置。</span><span class="sxs-lookup"><span data-stu-id="385f9-106">**CreateDeviceIdentity**, a .NET app which creates a device identity and associated security key tooconnect your simulated device app.</span></span>
+* <span data-ttu-id="385f9-107">**AddTagsAndQuery**，這是 .NET 後端應用程式，可新增標籤和查詢裝置對應項。</span><span class="sxs-lookup"><span data-stu-id="385f9-107">**AddTagsAndQuery**, a .NET back-end app which adds tags and queries device twins.</span></span>
+* <span data-ttu-id="385f9-108">**ReportConnectivity**，.NET 裝置應用程式會模擬 tooyour IoT 中樞連線以稍早建立的 hello 裝置身分識別的裝置，並回報其連線的情況。</span><span class="sxs-lookup"><span data-stu-id="385f9-108">**ReportConnectivity**, a .NET device app which simulates a device that connects tooyour IoT hub with hello device identity created earlier, and reports its connectivity condition.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="e3a56-109">[Azure IoT SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式之 Azure IoT SDK 的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="e3a56-109">The article [Azure IoT SDKs][lnk-hub-sdks] provides information about the Azure IoT SDKs that you can use to build both device and back-end apps.</span></span>
+> <span data-ttu-id="385f9-109">hello 文章[Azure IoT Sdk] [ lnk-hub-sdks]提供 hello Azure IoT Sdk 的相關資訊，您可以使用 toobuild 裝置與後端應用程式。</span><span class="sxs-lookup"><span data-stu-id="385f9-109">hello article [Azure IoT SDKs][lnk-hub-sdks] provides information about hello Azure IoT SDKs that you can use toobuild both device and back-end apps.</span></span>
 > 
 > 
 
-<span data-ttu-id="e3a56-110">若要完成此教學課程，您需要下列項目：</span><span class="sxs-lookup"><span data-stu-id="e3a56-110">To complete this tutorial you need the following:</span></span>
+<span data-ttu-id="385f9-110">toocomplete 需要 hello 下列本教學課程：</span><span class="sxs-lookup"><span data-stu-id="385f9-110">toocomplete this tutorial you need hello following:</span></span>
 
-* <span data-ttu-id="e3a56-111">Visual Studio 2015 或 Visual Studio 2017。</span><span class="sxs-lookup"><span data-stu-id="e3a56-111">Visual Studio 2015 or Visual Studio 2017.</span></span>
-* <span data-ttu-id="e3a56-112">使用中的 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="e3a56-112">An active Azure account.</span></span> <span data-ttu-id="e3a56-113">(如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)</span><span class="sxs-lookup"><span data-stu-id="e3a56-113">(If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.)</span></span>
+* <span data-ttu-id="385f9-111">Visual Studio 2015 或 Visual Studio 2017。</span><span class="sxs-lookup"><span data-stu-id="385f9-111">Visual Studio 2015 or Visual Studio 2017.</span></span>
+* <span data-ttu-id="385f9-112">使用中的 Azure 帳戶。</span><span class="sxs-lookup"><span data-stu-id="385f9-112">An active Azure account.</span></span> <span data-ttu-id="385f9-113">(如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)</span><span class="sxs-lookup"><span data-stu-id="385f9-113">(If you don't have an account, you can create a [free account][lnk-free-trial] in just a couple of minutes.)</span></span>
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity-portal](../../includes/iot-hub-get-started-create-device-identity-portal.md)]
 
-<span data-ttu-id="e3a56-114">如果您想要改為以程式設計方式建立裝置識別，請閱讀[使用 .NET 將您的模擬裝置連線至 IoT 中樞][lnk-device-identity-csharp]一文中的對應章節。</span><span class="sxs-lookup"><span data-stu-id="e3a56-114">If you want to create the device identity programmatically instead, read the corresponding section in the [Connect your simulated device to your IoT hub using .NET][lnk-device-identity-csharp] article.</span></span>
+<span data-ttu-id="385f9-114">如果您想 toocreate hello 裝置身分識別以程式設計方式相反地，讀取 hello 對應的章節 hello[連接您使用適用於.NET 的模擬的裝置 tooyour IoT 中樞][ lnk-device-identity-csharp]發行項。</span><span class="sxs-lookup"><span data-stu-id="385f9-114">If you want toocreate hello device identity programmatically instead, read hello corresponding section in hello [Connect your simulated device tooyour IoT hub using .NET][lnk-device-identity-csharp] article.</span></span>
 
-## <a name="create-the-service-app"></a><span data-ttu-id="e3a56-115">建立服務應用程式</span><span class="sxs-lookup"><span data-stu-id="e3a56-115">Create the service app</span></span>
-<span data-ttu-id="e3a56-116">在本節中，您將 (使用 C#) 建立一個 .NET 主控台應用程式，此應用程式會將位置中繼資料新增至與 **myDeviceId** 相關聯的裝置對應項。</span><span class="sxs-lookup"><span data-stu-id="e3a56-116">In this section, you create a .NET console app (using C#) that adds location metadata to the device twin associated with **myDeviceId**.</span></span> <span data-ttu-id="e3a56-117">接著，它會選取位於美國的裝置來查詢儲存在 IoT 中樞的裝置對應項，再查詢會報告行動電話連線的對應項。</span><span class="sxs-lookup"><span data-stu-id="e3a56-117">It then queries the device twins stored in the IoT hub selecting the devices located in the US, and then the ones that reported a cellular connection.</span></span>
+## <a name="create-hello-service-app"></a><span data-ttu-id="385f9-115">建立 hello 服務應用程式</span><span class="sxs-lookup"><span data-stu-id="385f9-115">Create hello service app</span></span>
+<span data-ttu-id="385f9-116">在本節中，您建立.NET 主控台應用程式 （使用 C#） 加入位置的中繼資料 toohello 裝置兩個相關聯**myDeviceId**。</span><span class="sxs-lookup"><span data-stu-id="385f9-116">In this section, you create a .NET console app (using C#) that adds location metadata toohello device twin associated with **myDeviceId**.</span></span> <span data-ttu-id="385f9-117">接著，它查詢 hello 裝置雙 US，儲存在選取位於 hello hello 裝置 hello IoT 中樞中，然後 hello 所報告的行動電話通訊的連接。</span><span class="sxs-lookup"><span data-stu-id="385f9-117">It then queries hello device twins stored in hello IoT hub selecting hello devices located in hello US, and then hello ones that reported a cellular connection.</span></span>
 
-1. <span data-ttu-id="e3a56-118">在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。</span><span class="sxs-lookup"><span data-stu-id="e3a56-118">In Visual Studio, add a Visual C# Windows Classic Desktop project to the current solution by using the **Console Application** project template.</span></span> <span data-ttu-id="e3a56-119">將專案命名為 **AddTagsAndQuery**。</span><span class="sxs-lookup"><span data-stu-id="e3a56-119">Name the project **AddTagsAndQuery**.</span></span>
+1. <span data-ttu-id="385f9-118">在 Visual Studio 中，將 Visual C# Windows 傳統桌面專案 toohello 目前方案使用 hello**主控台應用程式**專案範本。</span><span class="sxs-lookup"><span data-stu-id="385f9-118">In Visual Studio, add a Visual C# Windows Classic Desktop project toohello current solution by using hello **Console Application** project template.</span></span> <span data-ttu-id="385f9-119">名稱 hello 專案**AddTagsAndQuery**。</span><span class="sxs-lookup"><span data-stu-id="385f9-119">Name hello project **AddTagsAndQuery**.</span></span>
    
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
-1. <span data-ttu-id="e3a56-121">在 [方案總管] 中，以滑鼠右鍵按一下 **AddTagsAndQuery** 專案，然後按一下 [管理 NuGet 套件...]。</span><span class="sxs-lookup"><span data-stu-id="e3a56-121">In Solution Explorer, right-click the **AddTagsAndQuery** project, and then click **Manage NuGet Packages...**.</span></span>
-1. <span data-ttu-id="e3a56-122">在 [NuGet 套件管理員] 視窗中，選取 [瀏覽]，並搜尋 **microsoft.azure.devices**。</span><span class="sxs-lookup"><span data-stu-id="e3a56-122">In the **NuGet Package Manager** window, select **Browse** and search for **microsoft.azure.devices**.</span></span> <span data-ttu-id="e3a56-123">選取 [安裝] 來安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。</span><span class="sxs-lookup"><span data-stu-id="e3a56-123">Select **Install** to install the **Microsoft.Azure.Devices** package, and accept the terms of use.</span></span> <span data-ttu-id="e3a56-124">此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。</span><span class="sxs-lookup"><span data-stu-id="e3a56-124">This procedure downloads, installs, and adds a reference to the [Azure IoT service SDK][lnk-nuget-service-sdk] NuGet package and its dependencies.</span></span>
+1. <span data-ttu-id="385f9-121">在 [方案總管] 中，以滑鼠右鍵按一下 hello **AddTagsAndQuery**專案，然後再按一下**管理 NuGet 封裝...**.</span><span class="sxs-lookup"><span data-stu-id="385f9-121">In Solution Explorer, right-click hello **AddTagsAndQuery** project, and then click **Manage NuGet Packages...**.</span></span>
+1. <span data-ttu-id="385f9-122">在 hello **NuGet 套件管理員**視窗中，選取**瀏覽**並搜尋**microsoft.azure.devices**。</span><span class="sxs-lookup"><span data-stu-id="385f9-122">In hello **NuGet Package Manager** window, select **Browse** and search for **microsoft.azure.devices**.</span></span> <span data-ttu-id="385f9-123">選取**安裝**tooinstall hello **Microsoft.Azure.Devices**封裝，並接受使用規定 hello。</span><span class="sxs-lookup"><span data-stu-id="385f9-123">Select **Install** tooinstall hello **Microsoft.Azure.Devices** package, and accept hello terms of use.</span></span> <span data-ttu-id="385f9-124">此程序下載、 安裝，並新增參考 toohello [Azure IoT 服務 SDK] [ lnk-nuget-service-sdk] NuGet 封裝和其相依性。</span><span class="sxs-lookup"><span data-stu-id="385f9-124">This procedure downloads, installs, and adds a reference toohello [Azure IoT service SDK][lnk-nuget-service-sdk] NuGet package and its dependencies.</span></span>
    
-    ![NuGet 套件管理員視窗][img-servicenuget]
-1. <span data-ttu-id="e3a56-126">在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：</span><span class="sxs-lookup"><span data-stu-id="e3a56-126">Add the following `using` statements at the top of the **Program.cs** file:</span></span>
+    ![NuGet 封裝管理員視窗][img-servicenuget]
+1. <span data-ttu-id="385f9-126">新增下列 hello`using`在 hello hello 最上方的陳述式**Program.cs**檔案：</span><span class="sxs-lookup"><span data-stu-id="385f9-126">Add hello following `using` statements at hello top of hello **Program.cs** file:</span></span>
    
         using Microsoft.Azure.Devices;
-1. <span data-ttu-id="e3a56-127">將下列欄位新增到 **Program** 類別。</span><span class="sxs-lookup"><span data-stu-id="e3a56-127">Add the following fields to the **Program** class.</span></span> <span data-ttu-id="e3a56-128">將預留位置的值替換為您在上一節中為中樞所建立的 IoT 中樞連接字串。</span><span class="sxs-lookup"><span data-stu-id="e3a56-128">Replace the placeholder value with the IoT Hub connection string for the hub that you created in the previous section.</span></span>
+1. <span data-ttu-id="385f9-127">新增下列欄位 toohello hello**程式**類別。</span><span class="sxs-lookup"><span data-stu-id="385f9-127">Add hello following fields toohello **Program** class.</span></span> <span data-ttu-id="385f9-128">取代 hello hello 中樞在 hello 上一節中所建立的 IoT 中樞連接字串中的 hello 預留位置的值。</span><span class="sxs-lookup"><span data-stu-id="385f9-128">Replace hello placeholder value with hello IoT Hub connection string for hello hub that you created in hello previous section.</span></span>
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-1. <span data-ttu-id="e3a56-129">將下列方法加入至 **Program** 類別：</span><span class="sxs-lookup"><span data-stu-id="e3a56-129">Add the following method to the **Program** class:</span></span>
+1. <span data-ttu-id="385f9-129">新增下列方法 toohello hello**程式**類別：</span><span class="sxs-lookup"><span data-stu-id="385f9-129">Add hello following method toohello **Program** class:</span></span>
    
         public static async Task AddTagsAndQuery()
         {
@@ -87,54 +87,54 @@ ms.lasthandoff: 07/11/2017
             Console.WriteLine("Devices in Redmond43 using cellular network: {0}", string.Join(", ", twinsInRedmond43UsingCellular.Select(t => t.DeviceId)));
         }
    
-    <span data-ttu-id="e3a56-130">**RegistryManager** 類別會公開從服務來與裝置對應項進行互動時所需的所有方法。</span><span class="sxs-lookup"><span data-stu-id="e3a56-130">The **RegistryManager** class exposes all the methods required to interact with device twins from the service.</span></span> <span data-ttu-id="e3a56-131">先前的程式碼會先初始化 **registryManager** 物件，然後擷取 **myDeviceId** 的裝置對應項，最後會以所需的位置資訊來更新其標籤。</span><span class="sxs-lookup"><span data-stu-id="e3a56-131">The previous code first initializes the **registryManager** object, then retrieves the device twin for **myDeviceId**, and finally updates its tags with the desired location information.</span></span>
+    <span data-ttu-id="385f9-130">hello **RegistryManager**類別會公開與裝置雙 hello 服務從所有 hello 方法 toointeract 必要。</span><span class="sxs-lookup"><span data-stu-id="385f9-130">hello **RegistryManager** class exposes all hello methods required toointeract with device twins from hello service.</span></span> <span data-ttu-id="385f9-131">hello 先前的程式碼會先初始化 hello **registryManager**物件，然後擷取 hello 的裝置兩個**myDeviceId**，且最後 hello 預期位置資訊會以更新其標籤。</span><span class="sxs-lookup"><span data-stu-id="385f9-131">hello previous code first initializes hello **registryManager** object, then retrieves hello device twin for **myDeviceId**, and finally updates its tags with hello desired location information.</span></span>
    
-    <span data-ttu-id="e3a56-132">在更新後，它會執行兩個查詢：第一個只選取位於 **Redmond43** 工廠的裝置對應項，第二個會修改查詢，只選取也透過行動電話網路來連接的裝置。</span><span class="sxs-lookup"><span data-stu-id="e3a56-132">After updating, it executes two queries: the first selects only the device twins of devices located in the **Redmond43** plant, and the second refines the query to select only the devices that are also connected through cellular network.</span></span>
+    <span data-ttu-id="385f9-132">在更新之後，它會執行兩個查詢： hello 會先選取只 hello 裝置雙的裝置位於 hello **Redmond43**工廠和 hello 第二個精簡 hello 查詢 tooselect 只有 hello 裝置也會透過連接行動電話通訊網路。</span><span class="sxs-lookup"><span data-stu-id="385f9-132">After updating, it executes two queries: hello first selects only hello device twins of devices located in hello **Redmond43** plant, and hello second refines hello query tooselect only hello devices that are also connected through cellular network.</span></span>
    
-    <span data-ttu-id="e3a56-133">請注意，先前的程式碼在建立 **查詢** 物件時，指定傳回的最大文件數。</span><span class="sxs-lookup"><span data-stu-id="e3a56-133">Note that the previous code, when it creates the **query** object, specifies a maximum number of returned documents.</span></span> <span data-ttu-id="e3a56-134">**query** 物件包含 **HasMoreResults** 布林值屬性，可用來多次叫用 **GetNextAsTwinAsync** 方法以擷取所有結果。</span><span class="sxs-lookup"><span data-stu-id="e3a56-134">The **query** object contains a **HasMoreResults** boolean property that you can use to invoke the **GetNextAsTwinAsync** methods multiple times to retrieve all results.</span></span> <span data-ttu-id="e3a56-135">有一個稱為 **GetNextAsJson** 的方法適用於不是裝置對應項的結果，例如彙總查詢的結果。</span><span class="sxs-lookup"><span data-stu-id="e3a56-135">A method called **GetNextAsJson** is available for results that are not device twins, for example, results of aggregation queries.</span></span>
-1. <span data-ttu-id="e3a56-136">最後，將下列幾行加入至 **Main** 方法：</span><span class="sxs-lookup"><span data-stu-id="e3a56-136">Finally, add the following lines to the **Main** method:</span></span>
+    <span data-ttu-id="385f9-133">請注意該 hello 先前的程式碼，當它建立 hello**查詢**物件，指定傳回的文件的最大數目。</span><span class="sxs-lookup"><span data-stu-id="385f9-133">Note that hello previous code, when it creates hello **query** object, specifies a maximum number of returned documents.</span></span> <span data-ttu-id="385f9-134">hello**查詢**物件包含**HasMoreResults**布林值屬性，您可以使用 tooinvoke hello **GetNextAsTwinAsync**方法多次 tooretrieve 所有結果。</span><span class="sxs-lookup"><span data-stu-id="385f9-134">hello **query** object contains a **HasMoreResults** boolean property that you can use tooinvoke hello **GetNextAsTwinAsync** methods multiple times tooretrieve all results.</span></span> <span data-ttu-id="385f9-135">有一個稱為 **GetNextAsJson** 的方法適用於不是裝置對應項的結果，例如彙總查詢的結果。</span><span class="sxs-lookup"><span data-stu-id="385f9-135">A method called **GetNextAsJson** is available for results that are not device twins, for example, results of aggregation queries.</span></span>
+1. <span data-ttu-id="385f9-136">最後，加入下列行 toohello hello **Main**方法：</span><span class="sxs-lookup"><span data-stu-id="385f9-136">Finally, add hello following lines toohello **Main** method:</span></span>
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         AddTagsAndQuery().Wait();
-        Console.WriteLine("Press Enter to exit.");
+        Console.WriteLine("Press Enter tooexit.");
         Console.ReadLine();
 
-1. <span data-ttu-id="e3a56-137">在 [方案總管] 中，開啟 [設定起始專案...]，並確定 **AddTagsAndQuery** 專案的 [動作] 是 [啟動]。</span><span class="sxs-lookup"><span data-stu-id="e3a56-137">In the Solution Explorer, open the **Set StartUp projects...** and make sure the **Action** for **AddTagsAndQuery** project is **Start**.</span></span> <span data-ttu-id="e3a56-138">建置方案。</span><span class="sxs-lookup"><span data-stu-id="e3a56-138">Build the solution.</span></span>
-1. <span data-ttu-id="e3a56-139">以滑鼠右鍵按一下 **AddTagsAndQuery** 專案，並選取 [偵錯]，後面接著 [開始新執行個體] 來執行此應用程式。</span><span class="sxs-lookup"><span data-stu-id="e3a56-139">Run this application by right-clicking on the **AddTagsAndQuery** project and selecting **Debug**, followed by **Start new instance**.</span></span> <span data-ttu-id="e3a56-140">如果是查詢所有位於 **Redmond43** 中的裝置，您在結果中會看到一個裝置，而如果查詢將結果限於使用行動電話網路的裝置，則您不會看到任何裝置。</span><span class="sxs-lookup"><span data-stu-id="e3a56-140">You should see one device in the results for the query asking for all devices located in **Redmond43** and none for the query that restricts the results to devices that use a cellular network.</span></span>
+1. <span data-ttu-id="385f9-137">在 hello 方案總管 中，開啟 hello**設定啟始專案...** ，請確定 hello**動作**如**AddTagsAndQuery**專案是**啟動**。</span><span class="sxs-lookup"><span data-stu-id="385f9-137">In hello Solution Explorer, open hello **Set StartUp projects...** and make sure hello **Action** for **AddTagsAndQuery** project is **Start**.</span></span> <span data-ttu-id="385f9-138">建置 hello 方案。</span><span class="sxs-lookup"><span data-stu-id="385f9-138">Build hello solution.</span></span>
+1. <span data-ttu-id="385f9-139">執行此應用程式，以滑鼠右鍵按一下 hello **AddTagsAndQuery**專案，並選取**偵錯**，後面接著**開始新執行個體**。</span><span class="sxs-lookup"><span data-stu-id="385f9-139">Run this application by right-clicking on hello **AddTagsAndQuery** project and selecting **Debug**, followed by **Start new instance**.</span></span> <span data-ttu-id="385f9-140">您應該會看到一個裝置 hello 結果中的 hello 查詢要求的所有裝置都位於**Redmond43**和無限制 hello 的 hello 查詢結果 toodevices 使用行動電話通訊網路。</span><span class="sxs-lookup"><span data-stu-id="385f9-140">You should see one device in hello results for hello query asking for all devices located in **Redmond43** and none for hello query that restricts hello results toodevices that use a cellular network.</span></span>
    
     ![視窗中的查詢結果][img-addtagapp]
 
-<span data-ttu-id="e3a56-142">在下一節，您將建立一個裝置應用程式，以報告連線資訊並變更上一節的查詢結果。</span><span class="sxs-lookup"><span data-stu-id="e3a56-142">In the next section, you create a device app that reports the connectivity information and changes the result of the query in the previous section.</span></span>
+<span data-ttu-id="385f9-142">Hello 下一節，您將建立報告 hello 連線資訊裝置應用程式，並變更 hello hello 前一節中的 hello 查詢的結果。</span><span class="sxs-lookup"><span data-stu-id="385f9-142">In hello next section, you create a device app that reports hello connectivity information and changes hello result of hello query in hello previous section.</span></span>
 
-## <a name="create-the-device-app"></a><span data-ttu-id="e3a56-143">建立裝置應用程式</span><span class="sxs-lookup"><span data-stu-id="e3a56-143">Create the device app</span></span>
-<span data-ttu-id="e3a56-144">在本節中，您將建立一個 .NET 主控台應用程式，此應用程式會以 **myDeviceId** 來連線到您的中樞，然後更新其回報屬性，以包含資訊來指出目前使用行動電話通訊網路來連線。</span><span class="sxs-lookup"><span data-stu-id="e3a56-144">In this section, you create a .NET console app that connects to your hub as **myDeviceId**, and then updates its reported properties to contain the information that it is connected using a cellular network.</span></span>
+## <a name="create-hello-device-app"></a><span data-ttu-id="385f9-143">建立 hello 裝置應用程式</span><span class="sxs-lookup"><span data-stu-id="385f9-143">Create hello device app</span></span>
+<span data-ttu-id="385f9-144">在本節中，您會建立.NET 主控台應用程式連接成 tooyour 中樞**myDeviceId**，，然後更新其已連線使用行動電話通訊網路的報告的屬性 toocontain hello 資訊。</span><span class="sxs-lookup"><span data-stu-id="385f9-144">In this section, you create a .NET console app that connects tooyour hub as **myDeviceId**, and then updates its reported properties toocontain hello information that it is connected using a cellular network.</span></span>
 
-1. <span data-ttu-id="e3a56-145">在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。</span><span class="sxs-lookup"><span data-stu-id="e3a56-145">In Visual Studio, add a Visual C# Windows Classic Desktop project to the current solution by using the **Console Application** project template.</span></span> <span data-ttu-id="e3a56-146">將專案命名為 **ReportConnectivity**。</span><span class="sxs-lookup"><span data-stu-id="e3a56-146">Name the project **ReportConnectivity**.</span></span>
+1. <span data-ttu-id="385f9-145">在 Visual Studio 中，將 Visual C# Windows 傳統桌面專案 toohello 目前方案使用 hello**主控台應用程式**專案範本。</span><span class="sxs-lookup"><span data-stu-id="385f9-145">In Visual Studio, add a Visual C# Windows Classic Desktop project toohello current solution by using hello **Console Application** project template.</span></span> <span data-ttu-id="385f9-146">名稱 hello 專案**ReportConnectivity**。</span><span class="sxs-lookup"><span data-stu-id="385f9-146">Name hello project **ReportConnectivity**.</span></span>
    
     ![新的 Visual C# Windows 傳統裝置應用程式][img-createdeviceapp]
     
-1. <span data-ttu-id="e3a56-148">在方案總管中，以滑鼠右鍵按一下 **ReportConnectivity** 專案，然後按一下 [管理 NuGet 套件...]。</span><span class="sxs-lookup"><span data-stu-id="e3a56-148">In Solution Explorer, right-click the **ReportConnectivity** project, and then click **Manage NuGet Packages...**.</span></span>
-1. <span data-ttu-id="e3a56-149">在 [NuGet 套件管理員] 視窗中，選取 [瀏覽]，並搜尋 **microsoft.azure.devices.client**。</span><span class="sxs-lookup"><span data-stu-id="e3a56-149">In the **NuGet Package Manager** window, select **Browse** and search for **microsoft.azure.devices.client**.</span></span> <span data-ttu-id="e3a56-150">選取 [安裝] 來安裝 **Microsoft.Azure.Devices.Client** 套件，並接受使用規定。</span><span class="sxs-lookup"><span data-stu-id="e3a56-150">Select **Install** to install the **Microsoft.Azure.Devices.Client** package, and accept the terms of use.</span></span> <span data-ttu-id="e3a56-151">此程序會下載及安裝 [Azure IoT 裝置 SDK][lnk-nuget-client-sdk] NuGet 套件與其相依項目，並新增對它的參考。</span><span class="sxs-lookup"><span data-stu-id="e3a56-151">This procedure downloads, installs, and adds a reference to the [Azure IoT device SDK][lnk-nuget-client-sdk] NuGet package and its dependencies.</span></span>
+1. <span data-ttu-id="385f9-148">在 [方案總管] 中，以滑鼠右鍵按一下 hello **ReportConnectivity**專案，然後再按一下**管理 NuGet 封裝...**.</span><span class="sxs-lookup"><span data-stu-id="385f9-148">In Solution Explorer, right-click hello **ReportConnectivity** project, and then click **Manage NuGet Packages...**.</span></span>
+1. <span data-ttu-id="385f9-149">在 hello **NuGet 套件管理員**視窗中，選取**瀏覽**並搜尋**microsoft.azure.devices.client**。</span><span class="sxs-lookup"><span data-stu-id="385f9-149">In hello **NuGet Package Manager** window, select **Browse** and search for **microsoft.azure.devices.client**.</span></span> <span data-ttu-id="385f9-150">選取**安裝**tooinstall hello **Microsoft.Azure.Devices.Client**封裝，並接受使用規定 hello。</span><span class="sxs-lookup"><span data-stu-id="385f9-150">Select **Install** tooinstall hello **Microsoft.Azure.Devices.Client** package, and accept hello terms of use.</span></span> <span data-ttu-id="385f9-151">此程序下載、 安裝，並新增參考 toohello [Azure IoT 裝置 SDK] [ lnk-nuget-client-sdk] NuGet 封裝和其相依性。</span><span class="sxs-lookup"><span data-stu-id="385f9-151">This procedure downloads, installs, and adds a reference toohello [Azure IoT device SDK][lnk-nuget-client-sdk] NuGet package and its dependencies.</span></span>
    
     ![NuGet 套件管理員視窗用戶端應用程式][img-clientnuget]
-1. <span data-ttu-id="e3a56-153">在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：</span><span class="sxs-lookup"><span data-stu-id="e3a56-153">Add the following `using` statements at the top of the **Program.cs** file:</span></span>
+1. <span data-ttu-id="385f9-153">新增下列 hello`using`在 hello hello 最上方的陳述式**Program.cs**檔案：</span><span class="sxs-lookup"><span data-stu-id="385f9-153">Add hello following `using` statements at hello top of hello **Program.cs** file:</span></span>
    
         using Microsoft.Azure.Devices.Client;
         using Microsoft.Azure.Devices.Shared;
         using Newtonsoft.Json;
 
-1. <span data-ttu-id="e3a56-154">將下列欄位新增到 **Program** 類別。</span><span class="sxs-lookup"><span data-stu-id="e3a56-154">Add the following fields to the **Program** class.</span></span> <span data-ttu-id="e3a56-155">將預留位置的值取代為您在上一節中所記下的裝置連接字串。</span><span class="sxs-lookup"><span data-stu-id="e3a56-155">Replace the placeholder value with the device connection string that you noted in the previous section.</span></span>
+1. <span data-ttu-id="385f9-154">新增下列欄位 toohello hello**程式**類別。</span><span class="sxs-lookup"><span data-stu-id="385f9-154">Add hello following fields toohello **Program** class.</span></span> <span data-ttu-id="385f9-155">取代您記下 hello 前一節中的 hello 裝置連接字串中的 hello 預留位置的值。</span><span class="sxs-lookup"><span data-stu-id="385f9-155">Replace hello placeholder value with hello device connection string that you noted in hello previous section.</span></span>
    
         static string DeviceConnectionString = "HostName=<yourIotHubName>.azure-devices.net;DeviceId=<yourIotDeviceName>;SharedAccessKey=<yourIotDeviceAccessKey>";
         static DeviceClient Client = null;
 
-1. <span data-ttu-id="e3a56-156">將下列方法加入至 **Program** 類別：</span><span class="sxs-lookup"><span data-stu-id="e3a56-156">Add the following method to the **Program** class:</span></span>
+1. <span data-ttu-id="385f9-156">新增下列方法 toohello hello**程式**類別：</span><span class="sxs-lookup"><span data-stu-id="385f9-156">Add hello following method toohello **Program** class:</span></span>
 
        public static async void InitClient()
         {
             try
             {
-                Console.WriteLine("Connecting to hub");
+                Console.WriteLine("Connecting toohub");
                 Client = DeviceClient.CreateFromConnectionString(DeviceConnectionString, TransportType.Mqtt);
                 Console.WriteLine("Retrieving twin");
                 await Client.GetTwinAsync();
@@ -146,9 +146,9 @@ ms.lasthandoff: 07/11/2017
             }
         }
 
-    <span data-ttu-id="e3a56-157">**Client** 物件會公開從裝置來與裝置對應項進行互動時所需的所有方法。</span><span class="sxs-lookup"><span data-stu-id="e3a56-157">The **Client** object exposes all the methods you require to interact with device twins from the device.</span></span> <span data-ttu-id="e3a56-158">以上所示的程式碼會初始化**用戶端**物件，然後擷取 **myDeviceId** 的裝置對應項。</span><span class="sxs-lookup"><span data-stu-id="e3a56-158">The code shown above, initializes the **Client** object, and then retrieves the device twin for **myDeviceId**.</span></span>
+    <span data-ttu-id="385f9-157">hello**用戶端**物件會公開您需要將裝置從 hello 裝置的雙具備 toointeract 所有 hello 方法。</span><span class="sxs-lookup"><span data-stu-id="385f9-157">hello **Client** object exposes all hello methods you require toointeract with device twins from hello device.</span></span> <span data-ttu-id="385f9-158">hello，如上所示的程式碼初始化 hello**用戶端**物件，然後按一下 擷取的 hello 裝置兩個**myDeviceId**。</span><span class="sxs-lookup"><span data-stu-id="385f9-158">hello code shown above, initializes hello **Client** object, and then retrieves hello device twin for **myDeviceId**.</span></span>
 
-1. <span data-ttu-id="e3a56-159">將下列方法加入至 **Program** 類別：</span><span class="sxs-lookup"><span data-stu-id="e3a56-159">Add the following method to the **Program** class:</span></span>
+1. <span data-ttu-id="385f9-159">新增下列方法 toohello hello**程式**類別：</span><span class="sxs-lookup"><span data-stu-id="385f9-159">Add hello following method toohello **Program** class:</span></span>
    
         public static async void ReportConnectivity()
         {
@@ -170,9 +170,9 @@ ms.lasthandoff: 07/11/2017
             }
         }
 
-   <span data-ttu-id="e3a56-160">上述程式碼會將 **myDeviceId** 的回報屬性更新為連線資訊。</span><span class="sxs-lookup"><span data-stu-id="e3a56-160">The code above updates **myDeviceId**'s reported property with the connectivity information.</span></span>
+   <span data-ttu-id="385f9-160">hello 上方更新程式碼**myDeviceId**的報告與 hello 連線資訊的屬性。</span><span class="sxs-lookup"><span data-stu-id="385f9-160">hello code above updates **myDeviceId**'s reported property with hello connectivity information.</span></span>
 
-1. <span data-ttu-id="e3a56-161">最後，將下列幾行加入至 **Main** 方法：</span><span class="sxs-lookup"><span data-stu-id="e3a56-161">Finally, add the following lines to the **Main** method:</span></span>
+1. <span data-ttu-id="385f9-161">最後，加入下列行 toohello hello **Main**方法：</span><span class="sxs-lookup"><span data-stu-id="385f9-161">Finally, add hello following lines toohello **Main** method:</span></span>
    
        try
        {
@@ -184,27 +184,27 @@ ms.lasthandoff: 07/11/2017
             Console.WriteLine();
             Console.WriteLine("Error in sample: {0}", ex.Message);
        }
-       Console.WriteLine("Press Enter to exit.");
+       Console.WriteLine("Press Enter tooexit.");
        Console.ReadLine();
 
-1. <span data-ttu-id="e3a56-162">在方案總管中，開啟 [設定起始專案...]，並確定 **ReportConnectivity** 專案的 [動作] 是 [啟動]。</span><span class="sxs-lookup"><span data-stu-id="e3a56-162">In the Solution Explorer, open the **Set StartUp projects...** and make sure the **Action** for **ReportConnectivity** project is **Start**.</span></span> <span data-ttu-id="e3a56-163">建置方案。</span><span class="sxs-lookup"><span data-stu-id="e3a56-163">Build the solution.</span></span>
-1. <span data-ttu-id="e3a56-164">以滑鼠右鍵按一下 **ReportConnectivity** 專案，並選取 [偵錯]，後面接著 [開始新執行個體] 來執行此應用程式。</span><span class="sxs-lookup"><span data-stu-id="e3a56-164">Run this application by right-clicking on the **ReportConnectivity** project and selecting **Debug**, followed by **Start new instance**.</span></span> <span data-ttu-id="e3a56-165">您應該會看到它取得對應項資訊，然後傳送連線作為「回報屬性」。</span><span class="sxs-lookup"><span data-stu-id="e3a56-165">You should see it getting the twin information, and then sending connectivity as a *reported property*.</span></span>
+1. <span data-ttu-id="385f9-162">在 hello 方案總管 中，開啟 hello**設定啟始專案...** ，請確定 hello**動作**如**ReportConnectivity**專案是**啟動**。</span><span class="sxs-lookup"><span data-stu-id="385f9-162">In hello Solution Explorer, open hello **Set StartUp projects...** and make sure hello **Action** for **ReportConnectivity** project is **Start**.</span></span> <span data-ttu-id="385f9-163">建置 hello 方案。</span><span class="sxs-lookup"><span data-stu-id="385f9-163">Build hello solution.</span></span>
+1. <span data-ttu-id="385f9-164">執行此應用程式，以滑鼠右鍵按一下 hello **ReportConnectivity**專案，並選取**偵錯**，後面接著**開始新執行個體**。</span><span class="sxs-lookup"><span data-stu-id="385f9-164">Run this application by right-clicking on hello **ReportConnectivity** project and selecting **Debug**, followed by **Start new instance**.</span></span> <span data-ttu-id="385f9-165">您應該看到它取得 hello 的兩個資訊，然後將傳送做為連線*報告屬性*。</span><span class="sxs-lookup"><span data-stu-id="385f9-165">You should see it getting hello twin information, and then sending connectivity as a *reported property*.</span></span>
    
-    ![執行裝置應用程式以回報連線][img-rundeviceapp]
+    ![執行裝置的應用程式 tooreport 連線能力][img-rundeviceapp]
     
     
-1. <span data-ttu-id="e3a56-167">現在，裝置已回報其連線資訊，它應該會出現在這兩個查詢中。</span><span class="sxs-lookup"><span data-stu-id="e3a56-167">Now that the device reported its connectivity information, it should appear in both queries.</span></span> <span data-ttu-id="e3a56-168">執行 .NET **AddTagsAndQuery** 應用程式，以再次執行查詢。</span><span class="sxs-lookup"><span data-stu-id="e3a56-168">Run the .NET **AddTagsAndQuery** app to run the queries again.</span></span> <span data-ttu-id="e3a56-169">這次，**myDeviceId** 應該會出現在這兩個查詢結果中。</span><span class="sxs-lookup"><span data-stu-id="e3a56-169">This time **myDeviceId** should appear in both query results.</span></span>
+1. <span data-ttu-id="385f9-167">既然 hello 裝置報告其連線資訊時，它應該會出現在這兩個查詢。</span><span class="sxs-lookup"><span data-stu-id="385f9-167">Now that hello device reported its connectivity information, it should appear in both queries.</span></span> <span data-ttu-id="385f9-168">執行 hello.NET **AddTagsAndQuery**應用程式 toorun hello 查詢一次。</span><span class="sxs-lookup"><span data-stu-id="385f9-168">Run hello .NET **AddTagsAndQuery** app toorun hello queries again.</span></span> <span data-ttu-id="385f9-169">這次，**myDeviceId** 應該會出現在這兩個查詢結果中。</span><span class="sxs-lookup"><span data-stu-id="385f9-169">This time **myDeviceId** should appear in both query results.</span></span>
    
     ![已成功回報裝置連線][img-tagappsuccess]
 
-## <a name="next-steps"></a><span data-ttu-id="e3a56-171">後續步驟</span><span class="sxs-lookup"><span data-stu-id="e3a56-171">Next steps</span></span>
-<span data-ttu-id="e3a56-172">在此教學課程中，您在 Azure 入口網站中設定了新的 IoT 中樞，然後在 IoT 中樞的身分識別登錄中建立了裝置身分識別。</span><span class="sxs-lookup"><span data-stu-id="e3a56-172">In this tutorial, you configured a new IoT hub in the Azure portal, and then created a device identity in the IoT hub's identity registry.</span></span> <span data-ttu-id="e3a56-173">您已從後端應用程式將裝置中繼資料新增為標籤，並撰寫模擬裝置應用程式來報告裝置對應項中的裝置連線資訊。</span><span class="sxs-lookup"><span data-stu-id="e3a56-173">You added device metadata as tags from a back-end app, and wrote a simulated device app to report device connectivity information in the device twin.</span></span> <span data-ttu-id="e3a56-174">您也了解如何使 類似 SQL 的 IoT 中樞查詢語言來查詢此資訊。</span><span class="sxs-lookup"><span data-stu-id="e3a56-174">You also learned how to query this information using the SQL-like IoT Hub query language.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="385f9-171">後續步驟</span><span class="sxs-lookup"><span data-stu-id="385f9-171">Next steps</span></span>
+<span data-ttu-id="385f9-172">在本教學課程中，您在 hello Azure 入口網站中設定新的 IoT 中樞，並接著 hello IoT 中樞的身分識別登錄中建立裝置身分識別。</span><span class="sxs-lookup"><span data-stu-id="385f9-172">In this tutorial, you configured a new IoT hub in hello Azure portal, and then created a device identity in hello IoT hub's identity registry.</span></span> <span data-ttu-id="385f9-173">您標記為加入裝置中繼資料，從後端應用程式，並在 hello 裝置兩個撰寫模擬的裝置的應用程式 tooreport 裝置連線資訊。</span><span class="sxs-lookup"><span data-stu-id="385f9-173">You added device metadata as tags from a back-end app, and wrote a simulated device app tooreport device connectivity information in hello device twin.</span></span> <span data-ttu-id="385f9-174">您也學到如何 tooquery 這項資訊使用 hello 類似 SQL 的 IoT 中樞查詢語言。</span><span class="sxs-lookup"><span data-stu-id="385f9-174">You also learned how tooquery this information using hello SQL-like IoT Hub query language.</span></span>
 
-<span data-ttu-id="e3a56-175">使用下列資源來了解如何：</span><span class="sxs-lookup"><span data-stu-id="e3a56-175">Use the following resources to learn how to:</span></span>
+<span data-ttu-id="385f9-175">下列資源 toolearn 如何使用 hello 至：</span><span class="sxs-lookup"><span data-stu-id="385f9-175">Use hello following resources toolearn how to:</span></span>
 
-* <span data-ttu-id="e3a56-176">從裝置傳送遙測，請參閱[開始使用 IoT 中樞][lnk-iothub-getstarted]教學課程，</span><span class="sxs-lookup"><span data-stu-id="e3a56-176">send telemetry from devices with the [Get started with IoT Hub][lnk-iothub-getstarted] tutorial,</span></span>
-* <span data-ttu-id="e3a56-177">使用裝置對應項的所需屬性來設定裝置，請參閱[使用所需的屬性來設定裝置][lnk-twin-how-to-configure]教學課程，</span><span class="sxs-lookup"><span data-stu-id="e3a56-177">configure devices using device twin's desired properties with the [Use desired properties to configure devices][lnk-twin-how-to-configure] tutorial,</span></span>
-* <span data-ttu-id="e3a56-178">以互動方式控制裝置 (例如，從使用者控制的應用程式開啟風扇)，請參閱[使用直接方法][lnk-methods-tutorial]教學課程。</span><span class="sxs-lookup"><span data-stu-id="e3a56-178">control devices interactively (such as turning on a fan from a user-controlled app) with the [Use direct methods][lnk-methods-tutorial] tutorial.</span></span>
+* <span data-ttu-id="385f9-176">從以 hello 的裝置將遙測傳送[開始使用 IoT 中樞][ lnk-iothub-getstarted]教學課程中，</span><span class="sxs-lookup"><span data-stu-id="385f9-176">send telemetry from devices with hello [Get started with IoT Hub][lnk-iothub-getstarted] tutorial,</span></span>
+* <span data-ttu-id="385f9-177">設定裝置使用兩個裝置所需的屬性以 hello[使用想要的話屬性 tooconfigure 裝置][ lnk-twin-how-to-configure]教學課程中，</span><span class="sxs-lookup"><span data-stu-id="385f9-177">configure devices using device twin's desired properties with hello [Use desired properties tooconfigure devices][lnk-twin-how-to-configure] tutorial,</span></span>
+* <span data-ttu-id="385f9-178">控制以互動方式 （例如開啟風扇從使用者控制的應用程式） 的裝置以 hello[使用直接的方法][ lnk-methods-tutorial]教學課程。</span><span class="sxs-lookup"><span data-stu-id="385f9-178">control devices interactively (such as turning on a fan from a user-controlled app) with hello [Use direct methods][lnk-methods-tutorial] tutorial.</span></span>
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-csharp-twin-getstarted/servicesdknuget.png

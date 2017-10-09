@@ -1,6 +1,6 @@
 ---
-title: "Unity Roll a Ball 教學課程"
-description: "建立傳統 Unity Roll a Ball 遊戲的步驟，此遊戲是所有 Mobile Engagement Unity 教學課程的必要條件"
+title: "aaaUnity 回復球教學課程"
+description: "步驟 toocreate hello 傳統 Unity 回復球遊戲也就是所有的 Mobile Engagement Unity 教學課程的必要條件"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,72 +14,72 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 6392d1f780b1bc2348fee5947550b05e86ea4de2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 10d923682432961207594886b08e5db60cf60d9a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <span data-ttu-id="f1a9d-103"><a id="unity-roll-a-ball"></a>建立 Unity Roll a Ball 遊戲</span><span class="sxs-lookup"><span data-stu-id="f1a9d-103"><a id="unity-roll-a-ball"></a>Create Unity Roll a Ball game</span></span>
-<span data-ttu-id="f1a9d-104">本教學課程逐步引導您完成稍微修改過的 [Unity Roll a Ball 教學課程](http://unity3d.com/learn/tutorials/projects/roll-ball-tutorial)的主要步驟。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-104">This tutorial walks through the main steps for a slightly modified [Unity Roll a Ball tutorial](http://unity3d.com/learn/tutorials/projects/roll-ball-tutorial).</span></span> <span data-ttu-id="f1a9d-105">此範例遊戲由 app 使用者控制的球面「玩家」物件所組成，遊戲的目標是使用這些可收集的物件碰撞玩家物件來「收集」可收集的物件。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-105">This sample game consists of a spherical 'player' object which is controlled by the app user and the objective of the game is to 'collect' collectible objects by colliding the player object with these collectible objects.</span></span> <span data-ttu-id="f1a9d-106">這是假設使用者對 Unity 編輯器環境有基本的熟悉度。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-106">This assumes basic familiarity with Unity editor environment.</span></span> <span data-ttu-id="f1a9d-107">如果您遇到任何問題，應該參閱完整的教學課程。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-107">If you run into any issues then you should refer to the full tutorial.</span></span> 
+# <span data-ttu-id="11e67-103"><a id="unity-roll-a-ball"></a>建立 Unity Roll a Ball 遊戲</span><span class="sxs-lookup"><span data-stu-id="11e67-103"><a id="unity-roll-a-ball"></a>Create Unity Roll a Ball game</span></span>
+<span data-ttu-id="11e67-104">本教學課程引導 hello 主要步驟稍微修改[Unity 回復球教學課程](http://unity3d.com/learn/tutorials/projects/roll-ball-tutorial)。</span><span class="sxs-lookup"><span data-stu-id="11e67-104">This tutorial walks through hello main steps for a slightly modified [Unity Roll a Ball tutorial](http://unity3d.com/learn/tutorials/projects/roll-ball-tutorial).</span></span> <span data-ttu-id="11e67-105">此範例遊戲包含球面 'player' 物件所控制的 hello 應用程式的使用者與 hello hello 遊戲目標是 too'collect' 可回收物件衝突的 hello 播放程式物件，與這些可回收物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-105">This sample game consists of a spherical 'player' object which is controlled by hello app user and hello objective of hello game is too'collect' collectible objects by colliding hello player object with these collectible objects.</span></span> <span data-ttu-id="11e67-106">這是假設使用者對 Unity 編輯器環境有基本的熟悉度。</span><span class="sxs-lookup"><span data-stu-id="11e67-106">This assumes basic familiarity with Unity editor environment.</span></span> <span data-ttu-id="11e67-107">如果您遇到任何問題，您應該參閱 toohello 完整的教學課程。</span><span class="sxs-lookup"><span data-stu-id="11e67-107">If you run into any issues then you should refer toohello full tutorial.</span></span> 
 
-### <a name="setting-up-the-game"></a><span data-ttu-id="f1a9d-108">設定遊戲</span><span class="sxs-lookup"><span data-stu-id="f1a9d-108">Setting up the game</span></span>
-<span data-ttu-id="f1a9d-109">下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/set-up?playlist=17141)</span><span class="sxs-lookup"><span data-stu-id="f1a9d-109">The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/set-up?playlist=17141)</span></span>
+### <a name="setting-up-hello-game"></a><span data-ttu-id="11e67-108">設定 hello 遊戲</span><span class="sxs-lookup"><span data-stu-id="11e67-108">Setting up hello game</span></span>
+<span data-ttu-id="11e67-109">從 hello 則 hello 步驟[Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/set-up?playlist=17141)</span><span class="sxs-lookup"><span data-stu-id="11e67-109">hello steps below are from hello [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/set-up?playlist=17141)</span></span>
 
-1. <span data-ttu-id="f1a9d-110">開啟 **Unity 編輯器**，然後按一下 [新增]。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-110">Open **Unity Editor** and click **New**.</span></span> 
+1. <span data-ttu-id="11e67-110">開啟 **Unity 編輯器**，然後按一下新增。</span><span class="sxs-lookup"><span data-stu-id="11e67-110">Open **Unity Editor** and click **New**.</span></span> 
    
     ![][51] 
-2. <span data-ttu-id="f1a9d-111">提供 [專案名稱]  &  [位置]、選取 [3D]，然後按一下 [建立專案]。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-111">Provide a **Project name** & **Location**, select **3D** and click **Create project**.</span></span>
+2. <span data-ttu-id="11e67-111">提供 [專案名稱]  &  [位置]、選取 [3D]，然後按一下 [建立專案]。</span><span class="sxs-lookup"><span data-stu-id="11e67-111">Provide a **Project name** & **Location**, select **3D** and click **Create project**.</span></span>
    
     ![][52]
-3. <span data-ttu-id="f1a9d-112">使用名稱 **MiniGame**，將剛建立的預設場景當做新專案的一部分，儲存在 **Assets**資料夾底下的新 **\_Scenes** 資料夾內︰</span><span class="sxs-lookup"><span data-stu-id="f1a9d-112">Save the default scene just created as part of the new project as with the name **MiniGame** within a new **\_Scenes** folder under **Assets** folder:</span></span>
+3. <span data-ttu-id="11e67-112">儲存剛才建立 hello 新專案的一部分，如同 hello 名稱 hello 預設場景**MiniGame**內新**\_場景**下的資料夾**資產**資料夾：</span><span class="sxs-lookup"><span data-stu-id="11e67-112">Save hello default scene just created as part of hello new project as with hello name **MiniGame** within a new **\_Scenes** folder under **Assets** folder:</span></span>
    
     ![][53]
-4. <span data-ttu-id="f1a9d-113">建立 **3D Object -> Plane** 做為遊戲場，然後將這個平面物件重新命名為 **Ground**</span><span class="sxs-lookup"><span data-stu-id="f1a9d-113">Create a **3D Object -> Plane** as the playing field and rename this plane object as **Ground**</span></span>
+4. <span data-ttu-id="11e67-113">建立**3D 物件]-> [平面**為 hello 播放欄位，然後重新命名這個平面物件做為**地面**</span><span class="sxs-lookup"><span data-stu-id="11e67-113">Create a **3D Object -> Plane** as hello playing field and rename this plane object as **Ground**</span></span>
    
     ![][1]
-5. <span data-ttu-id="f1a9d-114">重設此 **Ground** 物件的轉換元件，使其位於原點。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-114">Reset the transform component for this **Ground** object so that it is at the Origin.</span></span> 
+5. <span data-ttu-id="11e67-114">重設 hello 轉換元件，這個**地面**物件，讓它位於 hello 原點。</span><span class="sxs-lookup"><span data-stu-id="11e67-114">Reset hello transform component for this **Ground** object so that it is at hello Origin.</span></span> 
    
     ![][3]
-6. <span data-ttu-id="f1a9d-115">從 **Ground** 物件的 **Gizmos 功能表**取消核取 [顯示格線]。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-115">Uncheck **Show Grid** from **Gizmos menu** for the **Ground** object.</span></span>
+6. <span data-ttu-id="11e67-115">取消核取**顯示方格**從**Gizmos 功能表**hello**地面**物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-115">Uncheck **Show Grid** from **Gizmos menu** for hello **Ground** object.</span></span>
    
     ![][4]
-7. <span data-ttu-id="f1a9d-116">將 **Ground** 物件的 **Scale** 元件更新為 [X = 2,Y = 1, Z = 2]。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-116">Update the **Scale** component for the **Ground** object to be [X = 2,Y = 1, Z = 2].</span></span> 
+7. <span data-ttu-id="11e67-116">更新 hello**標尺**元件 hello**地面**物件 toobe [X = 2，Y = 1，Z = 2]。</span><span class="sxs-lookup"><span data-stu-id="11e67-116">Update hello **Scale** component for hello **Ground** object toobe [X = 2,Y = 1, Z = 2].</span></span> 
    
     ![][5]
-8. <span data-ttu-id="f1a9d-117">將新的 **3D Object -> Sphere** 新增至專案，並將此球形物件重新命名為 **Player**。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-117">Add a new **3D Object -> Sphere** to the project and rename this sphere object as **Player**.</span></span> 
+8. <span data-ttu-id="11e67-117">加入新**3D 物件]-> [球體**toohello 專案和重新命名此球面物件當做**Player**。</span><span class="sxs-lookup"><span data-stu-id="11e67-117">Add a new **3D Object -> Sphere** toohello project and rename this sphere object as **Player**.</span></span> 
    
     ![][6]
-9. <span data-ttu-id="f1a9d-118">選取 **Player** 物件，然後按一下類似於 Plane 物件的 [重設轉換]。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-118">Select the **Player** object and click **Reset Transform** similar to the Plane object.</span></span> 
-10. <span data-ttu-id="f1a9d-119">將玩家 Y 的 **Transform -> Position -> Y Coordinate** 元件更新為 0.5。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-119">Update **Transform -> Position -> Y Coordinate** component for the Player Y as 0.5.</span></span>  
+9. <span data-ttu-id="11e67-118">選取 hello **Player**物件，並按一下**重設轉換**類似 toohello 平面物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-118">Select hello **Player** object and click **Reset Transform** similar toohello Plane object.</span></span> 
+10. <span data-ttu-id="11e67-119">更新**轉換]-> [位置]-> [Y 座標**0.5 hello Player Y 元件。</span><span class="sxs-lookup"><span data-stu-id="11e67-119">Update **Transform -> Position -> Y Coordinate** component for hello Player Y as 0.5.</span></span>  
     
     ![][7]
-11. <span data-ttu-id="f1a9d-120">在我們將建立材料以便為玩家著色所在的專案中，建立一個稱為 **Materials** 的新資料夾。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-120">Create a new folder called **Materials** in the project where we will create the material to color the player.</span></span> 
-12. <span data-ttu-id="f1a9d-121">在此資料夾中建立一個稱為 **Background** 的新 **Material**。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-121">Create a new **Material** called **Background** in this folder.</span></span> 
+11. <span data-ttu-id="11e67-120">建立新資料夾，稱為**材料**hello 我們將在其中建立 hello 材料 toocolor hello 播放程式的專案中。</span><span class="sxs-lookup"><span data-stu-id="11e67-120">Create a new folder called **Materials** in hello project where we will create hello material toocolor hello player.</span></span> 
+12. <span data-ttu-id="11e67-121">在此資料夾中建立一個稱為 **Background** 的新 **Material**。</span><span class="sxs-lookup"><span data-stu-id="11e67-121">Create a new **Material** called **Background** in this folder.</span></span> 
     
     ![][8]
-13. <span data-ttu-id="f1a9d-122">更新材料的 **Albedo** 屬性，以更新材料的色彩。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-122">Update the color of the material by updating the **Albedo** property of it.</span></span> <span data-ttu-id="f1a9d-123">您可以選取 RGB 值 [0,32,64]。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-123">You can select the RGB values of [0,32,64].</span></span> 
+13. <span data-ttu-id="11e67-122">藉由更新 hello 更新 hello 色彩的 hello 材料**屑**它的屬性。</span><span class="sxs-lookup"><span data-stu-id="11e67-122">Update hello color of hello material by updating hello **Albedo** property of it.</span></span> <span data-ttu-id="11e67-123">您可以選取 [0,32,64] hello RGB 值。</span><span class="sxs-lookup"><span data-stu-id="11e67-123">You can select hello RGB values of [0,32,64].</span></span> 
     
     ![][9]
-14. <span data-ttu-id="f1a9d-124">將此材料拖曳到場景檢視，以便將色彩套用至 **Ground** 物件。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-124">Drag this material into the scene view to apply color to the **Ground** object.</span></span> 
+14. <span data-ttu-id="11e67-124">將這份資料拖曳到 hello 場景檢視 tooapply 色彩 toohello**地面**物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-124">Drag this material into hello scene view tooapply color toohello **Ground** object.</span></span> 
     
     ![][10]
-15. <span data-ttu-id="f1a9d-125">最後，為清楚起見，將 Directional Light 物件的 **Transform -> Rotation -> Y** 更新為 60。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-125">Finally update the **Transform -> Rotation -> Y** to 60 on the Directional Light object for clarity.</span></span> 
+15. <span data-ttu-id="11e67-125">最後更新 hello**轉換]-> [旋轉]-> [Y** too60 為了清楚起見 hello 方向燈物件上的。</span><span class="sxs-lookup"><span data-stu-id="11e67-125">Finally update hello **Transform -> Rotation -> Y** too60 on hello Directional Light object for clarity.</span></span> 
     
     ![][12]
 
-### <a name="moving-the-player"></a><span data-ttu-id="f1a9d-126">移動玩家</span><span class="sxs-lookup"><span data-stu-id="f1a9d-126">Moving the player</span></span>
-<span data-ttu-id="f1a9d-127">下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-player?playlist=17141)</span><span class="sxs-lookup"><span data-stu-id="f1a9d-127">The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-player?playlist=17141)</span></span>
+### <a name="moving-hello-player"></a><span data-ttu-id="11e67-126">移動 hello 播放程式</span><span class="sxs-lookup"><span data-stu-id="11e67-126">Moving hello player</span></span>
+<span data-ttu-id="11e67-127">從 hello 則 hello 步驟[Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-player?playlist=17141)</span><span class="sxs-lookup"><span data-stu-id="11e67-127">hello steps below are from hello [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-player?playlist=17141)</span></span>
 
-1. <span data-ttu-id="f1a9d-128">將 **RigidBody** 元件新增至 **Player** 物件。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-128">Add a **RigidBody** component to the **Player** object.</span></span> 
+1. <span data-ttu-id="11e67-128">新增**RigidBody**元件 toohello **Player**物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-128">Add a **RigidBody** component toohello **Player** object.</span></span> 
    
     ![][13]
-2. <span data-ttu-id="f1a9d-129">在專案中建立一個稱為 **Scripts** 的新資料夾。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-129">Create a new folder called **Scripts** in the Project.</span></span> 
-3. <span data-ttu-id="f1a9d-130">按一下 [新增元件 -> 新增指令碼 -> C# 指令碼]。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-130">Click **Add Component-> New Script -> C# Script**.</span></span> <span data-ttu-id="f1a9d-131">將其命名為 **PlayerController**，然後按一下 [建立及新增]。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-131">Name it **PlayerController**, and click **Create and Add**.</span></span> <span data-ttu-id="f1a9d-132">這將會建立一個指令碼，並將其附加至 Player 物件。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-132">This will create and attach a script to the Player object.</span></span>  
+2. <span data-ttu-id="11e67-129">建立新資料夾，稱為**指令碼**hello 專案中。</span><span class="sxs-lookup"><span data-stu-id="11e67-129">Create a new folder called **Scripts** in hello Project.</span></span> 
+3. <span data-ttu-id="11e67-130">按一下 [新增元件 -> 新增指令碼 -> C# 指令碼]。</span><span class="sxs-lookup"><span data-stu-id="11e67-130">Click **Add Component-> New Script -> C# Script**.</span></span> <span data-ttu-id="11e67-131">將其命名為 **PlayerController**，然後按一下 [建立及新增]。</span><span class="sxs-lookup"><span data-stu-id="11e67-131">Name it **PlayerController**, and click **Create and Add**.</span></span> <span data-ttu-id="11e67-132">這將會建立並附加指令碼 toohello 播放程式物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-132">This will create and attach a script toohello Player object.</span></span>  
    
     ![][14]
-4. <span data-ttu-id="f1a9d-133">將此指令碼移到專案的 **Scripts** 資料夾底下。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-133">Move this script under the **Scripts** folder in the project.</span></span> 
-5. <span data-ttu-id="f1a9d-134">開啟要在您最愛的指令碼編輯器中編輯的指令碼、將指令碼更新為下列程式碼並加以儲存。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-134">Open the script for editing in your favorite script editor, update the script code with the following code and save it.</span></span> 
+4. <span data-ttu-id="11e67-133">此指令碼在 hello 移**指令碼**hello 專案資料夾中的。</span><span class="sxs-lookup"><span data-stu-id="11e67-133">Move this script under hello **Scripts** folder in hello project.</span></span> 
+5. <span data-ttu-id="11e67-134">開啟 hello 指令碼，以便在您最愛的指令碼編輯器中編輯，以下列程式碼的 hello 更新 hello 指令碼並加以儲存。</span><span class="sxs-lookup"><span data-stu-id="11e67-134">Open hello script for editing in your favorite script editor, update hello script code with hello following code and save it.</span></span> 
    
         using UnityEngine;
         using System.Collections;
@@ -100,22 +100,22 @@ ms.lasthandoff: 07/11/2017
                 rb.AddForce (movement * speed);
             }
         }
-6. <span data-ttu-id="f1a9d-135">請注意，上述指令碼會使用 **Speed** 屬性。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-135">Note that the script above uses a **Speed** property.</span></span> <span data-ttu-id="f1a9d-136">在 Unity Editor 中，將 speed 屬性更新為 10。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-136">In the Unity editor, update the speed property to 10.</span></span>  
+6. <span data-ttu-id="11e67-135">請注意該 hello 上述指令碼會使用**速度**屬性。</span><span class="sxs-lookup"><span data-stu-id="11e67-135">Note that hello script above uses a **Speed** property.</span></span> <span data-ttu-id="11e67-136">在 hello Unity 編輯器中，更新 hello 速度屬性 too10。</span><span class="sxs-lookup"><span data-stu-id="11e67-136">In hello Unity editor, update hello speed property too10.</span></span>  
    
     ![][15]
-7. <span data-ttu-id="f1a9d-137">按 Unity Editor 中的 **Play** 。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-137">Hit **Play** in the Unity Editor.</span></span> <span data-ttu-id="f1a9d-138">現在您應該能夠使用鍵盤控制球，而且球應該會旋轉並四處移動。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-138">Now you should be able to control the ball using the keyboard and it should rotate and move around.</span></span> 
+7. <span data-ttu-id="11e67-137">叫用**播放**hello Unity 編輯器中。</span><span class="sxs-lookup"><span data-stu-id="11e67-137">Hit **Play** in hello Unity Editor.</span></span> <span data-ttu-id="11e67-138">現在您應該使用 hello 鍵盤可以 toocontrol hello 球，它應該旋轉並四處移動。</span><span class="sxs-lookup"><span data-stu-id="11e67-138">Now you should be able toocontrol hello ball using hello keyboard and it should rotate and move around.</span></span> 
 
-### <a name="moving-the-camera"></a><span data-ttu-id="f1a9d-139">移動相機</span><span class="sxs-lookup"><span data-stu-id="f1a9d-139">Moving the camera</span></span>
-<span data-ttu-id="f1a9d-140">下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-camera?playlist=17141)，而且會將 **Main Camera** 繫結至 **Player** 物件。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-140">The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-camera?playlist=17141) and will tie the **Main Camera** to the **Player** object.</span></span> 
+### <a name="moving-hello-camera"></a><span data-ttu-id="11e67-139">移動 hello 相機</span><span class="sxs-lookup"><span data-stu-id="11e67-139">Moving hello camera</span></span>
+<span data-ttu-id="11e67-140">從 hello 則 hello 步驟[Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-camera?playlist=17141)會結合 hello 和**Main 相機**toohello **Player**物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-140">hello steps below are from hello [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/moving-the-camera?playlist=17141) and will tie hello **Main Camera** toohello **Player** object.</span></span> 
 
-1. <span data-ttu-id="f1a9d-141">將 **Transform.Position** 更新為 X = 0、Y = 10.5、Z =-10。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-141">Update the **Transform.Position** to be X = 0,  Y = 10.5, Z=-10.</span></span>  
-2. <span data-ttu-id="f1a9d-142">將 **Transform.Rotation** 更新為 X = 45、Y = 0、Z = 0。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-142">Update the **Transform.Rotation** to be X = 45, Y = 0, Z = 0.</span></span>  
+1. <span data-ttu-id="11e67-141">更新 hello **Transform.Position** toobe X = Y，0 = 10.5，Z =-10。</span><span class="sxs-lookup"><span data-stu-id="11e67-141">Update hello **Transform.Position** toobe X = 0,  Y = 10.5, Z=-10.</span></span>  
+2. <span data-ttu-id="11e67-142">更新 hello **Transform.Rotation** toobe X = 45，Y = 0，Z = 0。</span><span class="sxs-lookup"><span data-stu-id="11e67-142">Update hello **Transform.Rotation** toobe X = 45, Y = 0, Z = 0.</span></span>  
    
     ![][16]
-3. <span data-ttu-id="f1a9d-143">將稱為 **CameraController** 的新指令碼加入至 **MainCamera**，並將其移動到 Scripts 資料夾底下。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-143">Add a new script called **CameraController** to the **MainCamera** and move it under the Scripts folder.</span></span> 
+3. <span data-ttu-id="11e67-143">加入新的指令碼呼叫**CameraController** toohello **MainCamera**並將其移 hello 指令碼 資料夾底下。</span><span class="sxs-lookup"><span data-stu-id="11e67-143">Add a new script called **CameraController** toohello **MainCamera** and move it under hello Scripts folder.</span></span> 
    
     ![][17]
-4. <span data-ttu-id="f1a9d-144">開啟指令碼進行編輯，並在其中加入下列程式碼︰</span><span class="sxs-lookup"><span data-stu-id="f1a9d-144">Open up the script for editing and add the following code in it:</span></span>
+4. <span data-ttu-id="11e67-144">開啟供編輯的 hello 指令碼，並新增下列程式碼中的 hello:</span><span class="sxs-lookup"><span data-stu-id="11e67-144">Open up hello script for editing and add hello following code in it:</span></span>
    
         using UnityEngine;
         using System.Collections;
@@ -136,44 +136,44 @@ ms.lasthandoff: 07/11/2017
                 transform.position = player.transform.position + offset;
             }
         }
-5. <span data-ttu-id="f1a9d-145">在 Unity 環境中，將 Player 變數拖曳到 Main Camera 物件的 Player 位置，使兩者相互關聯。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-145">In Unity environment - drag the Player variable into the Player slot for the Main Camera object so that the two are associated with one another.</span></span> 
+5. <span data-ttu-id="11e67-145">在 Unity 環境-拖曳 hello 播放程式變數到 hello Player 位置 hello Main 相機物件，使 hello 兩個是與另一個相關聯。</span><span class="sxs-lookup"><span data-stu-id="11e67-145">In Unity environment - drag hello Player variable into hello Player slot for hello Main Camera object so that hello two are associated with one another.</span></span> 
    
     ![][18]
-6. <span data-ttu-id="f1a9d-146">現在如果您按 Unity Editor 中的 Play 並旋轉 Player Ball 物件，您將會看到 Camera 在該物件後面移動。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-146">Now if you hit Play in the Unity editor and rotate the Player Ball object then you will see the Camera following it in the movement.</span></span>  
+6. <span data-ttu-id="11e67-146">現在如果您遇到播放 hello Unity editor 和旋轉 hello Player 球物件中您會看到 hello 依照 hello 移動的相機。</span><span class="sxs-lookup"><span data-stu-id="11e67-146">Now if you hit Play in hello Unity editor and rotate hello Player Ball object then you will see hello Camera following it in hello movement.</span></span>  
 
-### <a name="setting-up-the-play-area"></a><span data-ttu-id="f1a9d-147">設定遊戲區域</span><span class="sxs-lookup"><span data-stu-id="f1a9d-147">Setting up the Play area</span></span>
-<span data-ttu-id="f1a9d-148">下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/setting-up-the-play-area?playlist=17141)。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-148">The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/setting-up-the-play-area?playlist=17141).</span></span> <span data-ttu-id="f1a9d-149">我們將在 Ground 周圍建立 Walls，讓 Player Ball 物件不會在移動時掉出遊戲區域。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-149">We will create the Walls surrounding the Ground so that the Player Ball object doesn't drop off the play area in its movement.</span></span> 
+### <a name="setting-up-hello-play-area"></a><span data-ttu-id="11e67-147">設定 hello 播放區域</span><span class="sxs-lookup"><span data-stu-id="11e67-147">Setting up hello Play area</span></span>
+<span data-ttu-id="11e67-148">從 hello 則 hello 步驟[Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/setting-up-the-play-area?playlist=17141)。</span><span class="sxs-lookup"><span data-stu-id="11e67-148">hello steps below are from hello [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/setting-up-the-play-area?playlist=17141).</span></span> <span data-ttu-id="11e67-149">我們將建立 hello 牆以便 hello Player 球物件不會卸除關閉其移動中的 hello 播放區域周圍 hello 接地。</span><span class="sxs-lookup"><span data-stu-id="11e67-149">We will create hello Walls surrounding hello Ground so that hello Player Ball object doesn't drop off hello play area in its movement.</span></span> 
 
-1. <span data-ttu-id="f1a9d-150">按一下 [建立 -> 建立空的 -> 遊戲物件]，並將它命名 **Walls**</span><span class="sxs-lookup"><span data-stu-id="f1a9d-150">Click **Create -> Create Empty -> Game Object** and name it **Walls**</span></span>
+1. <span data-ttu-id="11e67-150">按一下 [建立 -> 建立空的 -> 遊戲物件]，並將它命名 **Walls**</span><span class="sxs-lookup"><span data-stu-id="11e67-150">Click **Create -> Create Empty -> Game Object** and name it **Walls**</span></span>
    
     ![][19]
-2. <span data-ttu-id="f1a9d-151">在此 Walls 物件底下，建立新的 **3D 物件 -> Cube**，並將它命名為 "West wall"。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-151">Under this Walls object - create a new **3D Object -> Cube** and name it "West wall".</span></span> 
+2. <span data-ttu-id="11e67-151">在此 Walls 物件底下，建立新的 **3D 物件 -> Cube**，並將它命名為 "West wall"。</span><span class="sxs-lookup"><span data-stu-id="11e67-151">Under this Walls object - create a new **3D Object -> Cube** and name it "West wall".</span></span> 
    
     ![][20]
-3. <span data-ttu-id="f1a9d-152">更新此 West Wall 物件的 **轉換 -> 位置** 和 **轉換 -> 調整**。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-152">Update the **Transform -> Position** and **Transform -> Scale** for this West Wall object.</span></span> 
+3. <span data-ttu-id="11e67-152">更新 hello**轉換]-> [位置**和**轉換]-> [標尺**這個西牆上的物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-152">Update hello **Transform -> Position** and **Transform -> Scale** for this West Wall object.</span></span> 
    
     ![][21]
-4. <span data-ttu-id="f1a9d-153">複製 West wall，以更新的轉換位置和比例建立 **East wall** 。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-153">Duplicate the West wall to create an **East wall** with the updated transform position and scale.</span></span> 
+4. <span data-ttu-id="11e67-153">重複的 hello 西牆 toocreate**東部牆**以更新的 hello 轉換位置和小數位數。</span><span class="sxs-lookup"><span data-stu-id="11e67-153">Duplicate hello West wall toocreate an **East wall** with hello updated transform position and scale.</span></span> 
    
     ![][22]
-5. <span data-ttu-id="f1a9d-154">複製 East wall，以更新的轉換位置和比例建立 **North wall**。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-154">Duplicate the East wall to create a **North wall** with the updated transform position & scale.</span></span> 
+5. <span data-ttu-id="11e67-154">重複的 hello 東部牆 toocreate **North 牆**以更新的 hello 轉換位置和小數位數。</span><span class="sxs-lookup"><span data-stu-id="11e67-154">Duplicate hello East wall toocreate a **North wall** with hello updated transform position & scale.</span></span> 
    
     ![][23]
-6. <span data-ttu-id="f1a9d-155">複製 North wall，以更新的轉換位置和比例建立 **South wall**。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-155">Duplicate the North wall and create a **South wall** with the updated transform position & scale.</span></span> 
+6. <span data-ttu-id="11e67-155">重複的 hello North 牆並建立**南牆**以更新的 hello 轉換位置和小數位數。</span><span class="sxs-lookup"><span data-stu-id="11e67-155">Duplicate hello North wall and create a **South wall** with hello updated transform position & scale.</span></span> 
    
     ![][24]
 
-### <a name="creating-collectible-objects"></a><span data-ttu-id="f1a9d-156">建立可收集的物件</span><span class="sxs-lookup"><span data-stu-id="f1a9d-156">Creating Collectible objects</span></span>
-<span data-ttu-id="f1a9d-157">下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/creating-collectables?playlist=17141)。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-157">The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/creating-collectables?playlist=17141).</span></span> <span data-ttu-id="f1a9d-158">我們將會建立一些外觀吸引人的物件，這些物件會形成一組可收集的物件，Player Ball 物件必須透過碰撞這組可收集的物件來「收集」它們。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-158">We will create some attractive looking objects which will form the set of collectible objects which the Player Ball object needs to 'collect' by colliding with them.</span></span> 
+### <a name="creating-collectible-objects"></a><span data-ttu-id="11e67-156">建立可收集的物件</span><span class="sxs-lookup"><span data-stu-id="11e67-156">Creating Collectible objects</span></span>
+<span data-ttu-id="11e67-157">從 hello 則 hello 步驟[Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/creating-collectables?playlist=17141)。</span><span class="sxs-lookup"><span data-stu-id="11e67-157">hello steps below are from hello [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/creating-collectables?playlist=17141).</span></span> <span data-ttu-id="11e67-158">我們將會建立一些吸引人尋找物件形成 hello 一組可收集之物件的 hello Player 球物件需要 too'collect' 由它們互相衝突。</span><span class="sxs-lookup"><span data-stu-id="11e67-158">We will create some attractive looking objects which will form hello set of collectible objects which hello Player Ball object needs too'collect' by colliding with them.</span></span> 
 
-1. <span data-ttu-id="f1a9d-159">建立新 **3D Cube** 物件，並將它命名為 Pickup。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-159">Create a new **3D Cube object** and name it Pickup.</span></span> 
-2. <span data-ttu-id="f1a9d-160">調整 Pickup 物件的 **轉換 -> 旋轉**  &  **轉換 -> 調整**。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-160">Adjust the **Transform -> Rotation** & **Transform -> Scale** of the Pickup object.</span></span> 
+1. <span data-ttu-id="11e67-159">建立新 **3D Cube** 物件，並將它命名為 Pickup。</span><span class="sxs-lookup"><span data-stu-id="11e67-159">Create a new **3D Cube object** and name it Pickup.</span></span> 
+2. <span data-ttu-id="11e67-160">調整 hello**轉換]-> [旋轉** & **轉換]-> [標尺**的 hello 收取物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-160">Adjust hello **Transform -> Rotation** & **Transform -> Scale** of hello Pickup object.</span></span> 
    
     ![][25]
-3. <span data-ttu-id="f1a9d-161">建立一個稱為 **Rotator** 的**新 C# 指令碼**，並將其附加至 Pickup 物件。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-161">Create and attach a **new C# Script** called **Rotator** to the Pickup object.</span></span> <span data-ttu-id="f1a9d-162">請務必將指令碼放在 Scripts 資料夾底下。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-162">Make sure to put the script under the Scripts folder.</span></span> 
+3. <span data-ttu-id="11e67-161">建立並附加**新的 C# 指令碼**呼叫**Rotator** toohello 收取物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-161">Create and attach a **new C# Script** called **Rotator** toohello Pickup object.</span></span> <span data-ttu-id="11e67-162">請確定 tooput hello 指令碼 hello 指令碼 資料夾底下。</span><span class="sxs-lookup"><span data-stu-id="11e67-162">Make sure tooput hello script under hello Scripts folder.</span></span> 
    
     ![][26]
-4. <span data-ttu-id="f1a9d-163">開啟此指令碼進行編輯，並將其更新如下：</span><span class="sxs-lookup"><span data-stu-id="f1a9d-163">Open this script for editing and update it to be the following:</span></span> 
+4. <span data-ttu-id="11e67-163">開啟供編輯這個指令碼，並更新其遵循 toobe hello:</span><span class="sxs-lookup"><span data-stu-id="11e67-163">Open this script for editing and update it toobe hello following:</span></span> 
    
         using UnityEngine;
         using System.Collections;
@@ -185,30 +185,30 @@ ms.lasthandoff: 07/11/2017
                 transform.Rotate (new Vector3 (15, 30, 45) * Time.deltaTime);
             }
         }
-5. <span data-ttu-id="f1a9d-164">現在按 Unity Editor 中的 Play 模式，您的 Pickup 物件應該就會在其軸上旋轉。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-164">Now hit the Play mode in the Unity Editor and your Pickup object show be rotating on its axis.</span></span>
-6. <span data-ttu-id="f1a9d-165">在我們將建立材料以便為玩家著色所在的專案中，建立一個稱為 **Prefabs**</span><span class="sxs-lookup"><span data-stu-id="f1a9d-165">Create a new folder called **Prefabs**</span></span> 
+5. <span data-ttu-id="11e67-164">現在點擊的 hello 播放模式中 hello Unity Editor 和收取物件顯示會旋轉的軸上。</span><span class="sxs-lookup"><span data-stu-id="11e67-164">Now hit hello Play mode in hello Unity Editor and your Pickup object show be rotating on its axis.</span></span>
+6. <span data-ttu-id="11e67-165">在我們將建立材料以便為玩家著色所在的專案中，建立一個稱為 **Prefabs**</span><span class="sxs-lookup"><span data-stu-id="11e67-165">Create a new folder called **Prefabs**</span></span> 
    
     ![][27]
-7. <span data-ttu-id="f1a9d-166">拖曳 **Pickup** 物件，並將其放在 Prefabs 資料夾中。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-166">Drag the **Pickup** object and put it in the Prefabs folder.</span></span>
+7. <span data-ttu-id="11e67-166">拖曳 hello**收取**物件，並將它放在 hello Prefabs 資料夾。</span><span class="sxs-lookup"><span data-stu-id="11e67-166">Drag hello **Pickup** object and put it in hello Prefabs folder.</span></span>
    
     ![][28]
-8. <span data-ttu-id="f1a9d-167">建立一個稱為 **Pickups** 的新 **Empty Game** 物件。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-167">Create a new **Empty Game object** called **Pickups**.</span></span> <span data-ttu-id="f1a9d-168">將其位置重設為原點，然後將 Pickup 物件拖曳到此遊戲物件底下。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-168">Reset its position to origin and then drag the Pickup object under this game object.</span></span>  
+8. <span data-ttu-id="11e67-167">建立一個稱為 **Pickups** 的新 **Empty Game** 物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-167">Create a new **Empty Game object** called **Pickups**.</span></span> <span data-ttu-id="11e67-168">重設其位置 tooorigin，然後拖曳 hello 收取物件，在此遊戲的物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-168">Reset its position tooorigin and then drag hello Pickup object under this game object.</span></span>  
    
     ![][29]
-9. <span data-ttu-id="f1a9d-169">複製 **Pickup** 物件，並藉由適當地更新 **Transform.Position** 的 X 和 Z 值，將其散佈在 **Player** 物件周圍的 **Ground** 物件上。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-169">Duplicate the **Pickup** object and spread it on the **Ground** object around the **Player** object by updating the **Transform.Position's X & Z** values appropriately.</span></span> 
+9. <span data-ttu-id="11e67-169">重複的 hello**收取**物件，並散佈在 hello**地面**物件周圍 hello **Player**物件藉由更新 hello **Transform.Position 的 X & Z**適當值。</span><span class="sxs-lookup"><span data-stu-id="11e67-169">Duplicate hello **Pickup** object and spread it on hello **Ground** object around hello **Player** object by updating hello **Transform.Position's X & Z** values appropriately.</span></span> 
    
     ![][30]
-10. <span data-ttu-id="f1a9d-170">建立一個稱為 **Pickup** 的**新材料**，並藉由更新 **Albedo** 屬性 (類似我們更新 Ground 物件的方式)，將其更新為紅色。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-170">Create a **new material** called **Pickup** and update it to be Red in color by updating the **Albedo property** similar to what we did for updating the Ground object.</span></span> 
+10. <span data-ttu-id="11e67-170">建立**新材料**呼叫**收取**並更新它 toobe 紅色色彩，以更新 hello**屑屬性**類似 toowhat 我們並未更新 hello 地面物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-170">Create a **new material** called **Pickup** and update it toobe Red in color by updating hello **Albedo property** similar toowhat we did for updating hello Ground object.</span></span> 
     
     ![][31]
-11. <span data-ttu-id="f1a9d-171">將材料套用至全部 4 個 Pickup 物件。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-171">Apply the material to all the 4 pickup objects.</span></span>
+11. <span data-ttu-id="11e67-171">適用於 hello 材料 tooall hello 4 收取物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-171">Apply hello material tooall hello 4 pickup objects.</span></span>
     
     ![][32]
 
-### <a name="collecting-the-pickup-objects"></a><span data-ttu-id="f1a9d-172">收集 Pickup 物件</span><span class="sxs-lookup"><span data-stu-id="f1a9d-172">Collecting the Pickup objects</span></span>
-<span data-ttu-id="f1a9d-173">下列步驟來自 [Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/collecting-pick-up-objects?playlist=17141)。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-173">The steps below are from the [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/collecting-pick-up-objects?playlist=17141).</span></span> <span data-ttu-id="f1a9d-174">我們將更新 Player，使其能夠透過碰撞的方式，「收集」Pickup 物件。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-174">We will update the Player so that it is able to 'collect' the pickup objects by colliding with them.</span></span> 
+### <a name="collecting-hello-pickup-objects"></a><span data-ttu-id="11e67-172">收集 hello 收取物件</span><span class="sxs-lookup"><span data-stu-id="11e67-172">Collecting hello Pickup objects</span></span>
+<span data-ttu-id="11e67-173">從 hello 則 hello 步驟[Unity 教學課程](https://unity3d.com/learn/tutorials/projects/roll-a-ball/collecting-pick-up-objects?playlist=17141)。</span><span class="sxs-lookup"><span data-stu-id="11e67-173">hello steps below are from hello [Unity tutorial](https://unity3d.com/learn/tutorials/projects/roll-a-ball/collecting-pick-up-objects?playlist=17141).</span></span> <span data-ttu-id="11e67-174">我們將會更新 hello 播放程式，使其能夠 too'collect' hello 正在與它們所收取的物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-174">We will update hello Player so that it is able too'collect' hello pickup objects by colliding with them.</span></span> 
 
-1. <span data-ttu-id="f1a9d-175">開啟已附加至 Player 物件的 **PlayerController** 指令碼進行編輯，並將其更新為：</span><span class="sxs-lookup"><span data-stu-id="f1a9d-175">Open up the **PlayerController** script attached to the Player object for editing and update it to the following:</span></span>  
+1. <span data-ttu-id="11e67-175">開啟 hello **PlayerController**附加的 toohello Player 物件以供編輯的指令碼，並更新 toohello 遵循：</span><span class="sxs-lookup"><span data-stu-id="11e67-175">Open up hello **PlayerController** script attached toohello Player object for editing and update it toohello following:</span></span>  
    
         using UnityEngine;
         using System.Collections;
@@ -242,29 +242,29 @@ ms.lasthandoff: 07/11/2017
                 }
             }
         }
-2. <span data-ttu-id="f1a9d-176">建立一個稱為 **Pick Up** 的新 **Tag** (它必須符合指令碼中的內容)</span><span class="sxs-lookup"><span data-stu-id="f1a9d-176">Create a new **Tag** called **Pick Up** (it must match what is in the script)</span></span>  
+2. <span data-ttu-id="11e67-176">建立新**標記**呼叫**挑選向上**（它必須符合何謂 hello 指令碼中）</span><span class="sxs-lookup"><span data-stu-id="11e67-176">Create a new **Tag** called **Pick Up** (it must match what is in hello script)</span></span>  
    
     ![][33]
    
     ![][34]
-3. <span data-ttu-id="f1a9d-177">將此 **Tag** 套用至 Prefab Pickup 物件。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-177">Apply this **Tag** to the Prefab Pickup object.</span></span> 
+3. <span data-ttu-id="11e67-177">套用此**標記**toohello Prefab 收取物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-177">Apply this **Tag** toohello Prefab Pickup object.</span></span> 
    
     ![][35]
-4. <span data-ttu-id="f1a9d-178">為 Prefab 物件啟用 **IsTrigger** 核取方塊。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-178">Enable **IsTrigger** checkbox for the Prefab object.</span></span>
+4. <span data-ttu-id="11e67-178">啟用**IsTrigger** hello Prefab 物件的核取方塊。</span><span class="sxs-lookup"><span data-stu-id="11e67-178">Enable **IsTrigger** checkbox for hello Prefab object.</span></span>
    
     ![][36]
-5. <span data-ttu-id="f1a9d-179">將 Rigid body 新增至 Pickup Prefab 物件。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-179">Add a Rigid body to Pickup Prefab object.</span></span> <span data-ttu-id="f1a9d-180">為將效能最佳化，我們將會更新我們用於 Dynamic Collider 的 Static Collider。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-180">For performance optimization we will update the static collider that we used to a Dynamic collider.</span></span> 
+5. <span data-ttu-id="11e67-179">將固定的主體 tooPickup Prefab 物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-179">Add a Rigid body tooPickup Prefab object.</span></span> <span data-ttu-id="11e67-180">效能最佳化，我們將會更新，我們使用 tooa 動態 collider hello 靜態 collider。</span><span class="sxs-lookup"><span data-stu-id="11e67-180">For performance optimization we will update hello static collider that we used tooa Dynamic collider.</span></span> 
    
     ![][37]
-6. <span data-ttu-id="f1a9d-181">最後，檢查 Prefab 物件的 **IsKinematic** 屬性。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-181">Finally check the **IsKinematic** property for the prefab object.</span></span> 
+6. <span data-ttu-id="11e67-181">最後檢查 hello **IsKinematic** hello prefab 物件屬性。</span><span class="sxs-lookup"><span data-stu-id="11e67-181">Finally check hello **IsKinematic** property for hello prefab object.</span></span> 
    
     ![][38]
-7. <span data-ttu-id="f1a9d-182">按 Unity 編輯器中的 [播放]，您就能夠透過使用鍵盤按鍵當做方向輸入移動 Player 物件來玩這個 **Roll a Ball** 遊戲。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-182">Hit **Play** in the Unity editor and you will be able to play this **Roll a Ball** game by moving the Player object using your keyboard keys for direction input.</span></span> 
+7. <span data-ttu-id="11e67-182">叫用**播放**hello Unity editor，而且將會無法 tooplay 這**回復球**遊戲藉由移動 hello 方向輸入使用鍵盤按鍵的播放程式物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-182">Hit **Play** in hello Unity editor and you will be able tooplay this **Roll a Ball** game by moving hello Player object using your keyboard keys for direction input.</span></span> 
 
-### <a name="updating-the-game-for-mobile-play"></a><span data-ttu-id="f1a9d-183">更新遊戲以便在行動裝置上玩遊戲</span><span class="sxs-lookup"><span data-stu-id="f1a9d-183">Updating the game for mobile play</span></span>
-<span data-ttu-id="f1a9d-184">以上幾節就是 Unity 的基本教學課程。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-184">The sections above concluded the basic tutorial from Unity.</span></span> <span data-ttu-id="f1a9d-185">現在，我們將修改遊戲，使其成為行動裝置上的遊戲。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-185">Now we will modify the game to make it mobile device friendly.</span></span> <span data-ttu-id="f1a9d-186">請注意，到目前為止我們使用鍵盤輸入來測試遊戲。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-186">Note that we used keyboard input for the game so far for testing.</span></span> <span data-ttu-id="f1a9d-187">現在，我們將修改遊戲，讓我們可以使用手機的動作控制玩家，亦即，</span><span class="sxs-lookup"><span data-stu-id="f1a9d-187">Now we will modify it so that we can control the player by using the motion of the phone i.e.</span></span> <span data-ttu-id="f1a9d-188">使用加速計做為輸入。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-188">using Accelerometer as the input.</span></span> 
+### <a name="updating-hello-game-for-mobile-play"></a><span data-ttu-id="11e67-183">更新行動裝置的播放遊戲 hello</span><span class="sxs-lookup"><span data-stu-id="11e67-183">Updating hello game for mobile play</span></span>
+<span data-ttu-id="11e67-184">上述從未的 hello Unity 從基本教學課程的 hello 區段。</span><span class="sxs-lookup"><span data-stu-id="11e67-184">hello sections above concluded hello basic tutorial from Unity.</span></span> <span data-ttu-id="11e67-185">現在我們將會修改 hello 遊戲 toomake 它易記的行動裝置。</span><span class="sxs-lookup"><span data-stu-id="11e67-185">Now we will modify hello game toomake it mobile device friendly.</span></span> <span data-ttu-id="11e67-186">請注意，我們使用鍵盤輸入 hello 遊戲為止進行測試。</span><span class="sxs-lookup"><span data-stu-id="11e67-186">Note that we used keyboard input for hello game so far for testing.</span></span> <span data-ttu-id="11e67-187">現在我們將會修改它，讓我們可以控制 hello 播放程式使用 hello 影片的 hello 電話也就使用加速計做為輸入 hello。</span><span class="sxs-lookup"><span data-stu-id="11e67-187">Now we will modify it so that we can control hello player by using hello motion of hello phone i.e. using Accelerometer as hello input.</span></span> 
 
-<span data-ttu-id="f1a9d-189">開啟 **PlayerController** 指令碼進行編輯，並更新 **FixedUpdate** 方法，以使用加速計的動作移動 Player 物件。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-189">Open up the **PlayerController** script for editing and update the **FixedUpdate** method to use the motion from the accelerometer to move the Player object.</span></span> 
+<span data-ttu-id="11e67-188">開啟 hello **PlayerController**指令碼編輯和更新的 hello **FixedUpdate**方法 toouse hello 影片從 hello 加速計 toomove hello 播放程式物件。</span><span class="sxs-lookup"><span data-stu-id="11e67-188">Open up hello **PlayerController** script for editing and update hello **FixedUpdate** method toouse hello motion from hello accelerometer toomove hello Player object.</span></span> 
 
         void FixedUpdate()
         {
@@ -274,7 +274,7 @@ ms.lasthandoff: 07/11/2017
             rb.AddForce(Input.acceleration.x * Speed, 0, -Input.acceleration.z * Speed);
         }
 
-<span data-ttu-id="f1a9d-190">本教學課程使用 Unity 建立基本遊戲的部分到此結束，您可以在您選擇要玩遊戲的裝置上部署此遊戲。</span><span class="sxs-lookup"><span data-stu-id="f1a9d-190">This tutorial concludes a basic game creation with Unity and you can deploy this on a device of your choice to play the game.</span></span> 
+<span data-ttu-id="11e67-189">本教學課程結束時，使用 Unity 的基本遊戲建立，您可以選擇 tooplay hello 遊戲的裝置上部署。</span><span class="sxs-lookup"><span data-stu-id="11e67-189">This tutorial concludes a basic game creation with Unity and you can deploy this on a device of your choice tooplay hello game.</span></span> 
 
 <!-- Images -->
 [1]: ./media/mobile-engagement-unity-roll-a-ball/1.png    

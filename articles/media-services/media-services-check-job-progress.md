@@ -1,6 +1,6 @@
 ---
-title: "使用 .NET 監視工作進度"
-description: "了解如何使用事件處理常式程式碼來追蹤工作進度及傳送狀態更新。 程式碼範例是以 C# 撰寫，並使用 Media Services SDK for .NET。"
+title: "工作進度 aaaMonitor 使用.NET"
+description: "了解如何 toouse 事件處理常式程式碼 tootrack 作業進度，並將狀態更新傳送。 hello 程式碼範例以 C# 撰寫，並使用 hello Media Services SDK for.NET。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,24 +14,24 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 851981b291115ba31dc40535f8bcc71cdb475717
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 530aa1d78437cd7c41b4d9a895f9a0e9de0ad49d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-job-progress-using-net"></a><span data-ttu-id="17963-104">使用 .NET 監視工作進度</span><span class="sxs-lookup"><span data-stu-id="17963-104">Monitor Job Progress using .NET</span></span>
+# <a name="monitor-job-progress-using-net"></a><span data-ttu-id="d29a6-104">使用 .NET 監視工作進度</span><span class="sxs-lookup"><span data-stu-id="d29a6-104">Monitor Job Progress using .NET</span></span>
 > [!div class="op_single_selector"]
-> * [<span data-ttu-id="17963-105">入口網站</span><span class="sxs-lookup"><span data-stu-id="17963-105">Portal</span></span>](media-services-portal-check-job-progress.md)
-> * [<span data-ttu-id="17963-106">.NET</span><span class="sxs-lookup"><span data-stu-id="17963-106">.NET</span></span>](media-services-check-job-progress.md)
-> * [<span data-ttu-id="17963-107">REST</span><span class="sxs-lookup"><span data-stu-id="17963-107">REST</span></span>](media-services-rest-check-job-progress.md)
+> * [<span data-ttu-id="d29a6-105">入口網站</span><span class="sxs-lookup"><span data-stu-id="d29a6-105">Portal</span></span>](media-services-portal-check-job-progress.md)
+> * [<span data-ttu-id="d29a6-106">.NET</span><span class="sxs-lookup"><span data-stu-id="d29a6-106">.NET</span></span>](media-services-check-job-progress.md)
+> * [<span data-ttu-id="d29a6-107">REST</span><span class="sxs-lookup"><span data-stu-id="d29a6-107">REST</span></span>](media-services-rest-check-job-progress.md)
 > 
 > 
 
-<span data-ttu-id="17963-108">執行作業時，您通常需要設法追蹤作業進度。</span><span class="sxs-lookup"><span data-stu-id="17963-108">When you run jobs, you often require a way to track job progress.</span></span> <span data-ttu-id="17963-109">定義 StateChanged 事件處理常式 (如本主題中所述) 或使用 Azure 佇列儲存體監視媒體服務工作通知 (如 [本主題](media-services-dotnet-check-job-progress-with-queues.md) 中所述)，即可檢查進度。</span><span class="sxs-lookup"><span data-stu-id="17963-109">You can check the progress by defining a StateChanged event handler (as described in this topic) or using Azure Queue storage to monitor Media Services job notifications (as described in [this](media-services-dotnet-check-job-progress-with-queues.md) topic).</span></span>
+<span data-ttu-id="d29a6-108">當您執行工作時，通常會需要方式 tootrack 工作進度。</span><span class="sxs-lookup"><span data-stu-id="d29a6-108">When you run jobs, you often require a way tootrack job progress.</span></span> <span data-ttu-id="d29a6-109">您可以檢查 hello 進度藉由定義 StateChanged 事件處理常式 （如本主題中所述），或使用 Azure 佇列儲存體 toomonitor Media Services 工作通知 (如所述[這](media-services-dotnet-check-job-progress-with-queues.md)主題)。</span><span class="sxs-lookup"><span data-stu-id="d29a6-109">You can check hello progress by defining a StateChanged event handler (as described in this topic) or using Azure Queue storage toomonitor Media Services job notifications (as described in [this](media-services-dotnet-check-job-progress-with-queues.md) topic).</span></span>
 
-## <a name="define-statechanged-event-handler-to-monitor-job-progress"></a><span data-ttu-id="17963-110">定義 StateChanged 事件處理常式來監視工作進度</span><span class="sxs-lookup"><span data-stu-id="17963-110">Define StateChanged event handler to monitor job progress</span></span>
-<span data-ttu-id="17963-111">下列程式碼定義 StateChanged 事件處理常式。</span><span class="sxs-lookup"><span data-stu-id="17963-111">The following code example defines the StateChanged event handler.</span></span> <span data-ttu-id="17963-112">此事件處理常式可追蹤作業進度，並根據狀態來提供更新的狀態。</span><span class="sxs-lookup"><span data-stu-id="17963-112">This event handler tracks job progress and provides updated status, depending on the state.</span></span> <span data-ttu-id="17963-113">程式碼也定義 LogJobStop 方法。</span><span class="sxs-lookup"><span data-stu-id="17963-113">The code also defines the LogJobStop method.</span></span> <span data-ttu-id="17963-114">此協助程式方法會記錄錯誤詳細資料。</span><span class="sxs-lookup"><span data-stu-id="17963-114">This helper method logs error details.</span></span>
+## <a name="define-statechanged-event-handler-toomonitor-job-progress"></a><span data-ttu-id="d29a6-110">定義 StateChanged 事件處理常式 toomonitor 工作進度</span><span class="sxs-lookup"><span data-stu-id="d29a6-110">Define StateChanged event handler toomonitor job progress</span></span>
+<span data-ttu-id="d29a6-111">下列程式碼範例的 hello 定義 hello StateChanged 事件處理常式。</span><span class="sxs-lookup"><span data-stu-id="d29a6-111">hello following code example defines hello StateChanged event handler.</span></span> <span data-ttu-id="d29a6-112">這個事件處理常式會追蹤工作進度，並提供更新的狀態，視 hello 狀態而定。</span><span class="sxs-lookup"><span data-stu-id="d29a6-112">This event handler tracks job progress and provides updated status, depending on hello state.</span></span> <span data-ttu-id="d29a6-113">hello 程式碼也會定義 hello LogJobStop 方法。</span><span class="sxs-lookup"><span data-stu-id="d29a6-113">hello code also defines hello LogJobStop method.</span></span> <span data-ttu-id="d29a6-114">此協助程式方法會記錄錯誤詳細資料。</span><span class="sxs-lookup"><span data-stu-id="d29a6-114">This helper method logs error details.</span></span>
 
     private static void StateChanged(object sender, JobStateChangedEventArgs e)
     {
@@ -73,7 +73,7 @@ ms.lasthandoff: 08/29/2017
         StringBuilder builder = new StringBuilder();
         IJob job = GetJob(jobId);
 
-        builder.AppendLine("\nThe job stopped due to cancellation or an error.");
+        builder.AppendLine("\nThe job stopped due toocancellation or an error.");
         builder.AppendLine("***************************");
         builder.AppendLine("Job ID: " + job.Id);
         builder.AppendLine("Job Name: " + job.Name);
@@ -96,7 +96,7 @@ ms.lasthandoff: 08/29/2017
             }
         }
         builder.AppendLine("***************************\n");
-        // Write the output to a local file and to the console. The template 
+        // Write hello output tooa local file and toohello console. hello template 
         // for an error output file is:  JobStop-{JobId}.txt
         string outputFile = _outputFilesFolder + @"\JobStop-" + JobIdAsFileName(job.Id) + ".txt";
         WriteToFile(outputFile, builder.ToString());
@@ -110,11 +110,11 @@ ms.lasthandoff: 08/29/2017
 
 
 
-## <a name="next-step"></a><span data-ttu-id="17963-115">後續步驟</span><span class="sxs-lookup"><span data-stu-id="17963-115">Next step</span></span>
-<span data-ttu-id="17963-116">檢閱媒體服務學習路徑。</span><span class="sxs-lookup"><span data-stu-id="17963-116">Review Media Services learning paths.</span></span>
+## <a name="next-step"></a><span data-ttu-id="d29a6-115">後續步驟</span><span class="sxs-lookup"><span data-stu-id="d29a6-115">Next step</span></span>
+<span data-ttu-id="d29a6-116">檢閱媒體服務學習路徑。</span><span class="sxs-lookup"><span data-stu-id="d29a6-116">Review Media Services learning paths.</span></span>
 
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="17963-117">提供意見反應</span><span class="sxs-lookup"><span data-stu-id="17963-117">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="d29a6-117">提供意見反應</span><span class="sxs-lookup"><span data-stu-id="d29a6-117">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

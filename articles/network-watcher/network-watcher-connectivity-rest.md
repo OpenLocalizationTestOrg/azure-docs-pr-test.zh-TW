@@ -1,6 +1,6 @@
 ---
-title: "檢查與 Azure 網路監看員的連線 - Azure 入口網站 | Microsoft Docs"
-description: "此頁面說明如何在 Azure 入口網站中使用網路監看員來檢查連線能力"
+title: "與 Azure 網路監看員-Azure 入口網站的 aaaCheck 連線 |Microsoft 文件"
+description: "此頁面可讓您說明如何與網路監看員中 toocheck 連線 hello Azure 入口網站"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -13,55 +13,55 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/02/2017
 ms.author: gwallace
-ms.openlocfilehash: ca62bea581acb59d3c3c0b8a204cc9d42de2b27f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8560011906fcce46d31556fc52cbfa671e8e653a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-connectivity-with-azure-network-watcher-using-the-azure-portal"></a><span data-ttu-id="8f2c0-103">使用 Azure 入口網站檢查與 Azure 網路監看員的連線</span><span class="sxs-lookup"><span data-stu-id="8f2c0-103">Check connectivity with Azure Network Watcher using the Azure portal</span></span>
+# <a name="check-connectivity-with-azure-network-watcher-using-hello-azure-portal"></a><span data-ttu-id="61a23-103">請檢查與 Azure 網路監看員使用 hello Azure 入口網站的連線</span><span class="sxs-lookup"><span data-stu-id="61a23-103">Check connectivity with Azure Network Watcher using hello Azure portal</span></span>
 
 > [!div class="op_single_selector"]
-> - [<span data-ttu-id="8f2c0-104">入口網站</span><span class="sxs-lookup"><span data-stu-id="8f2c0-104">Portal</span></span>](network-watcher-connectivity-portal.md)
-> - [<span data-ttu-id="8f2c0-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="8f2c0-105">PowerShell</span></span>](network-watcher-connectivity-powershell.md)
-> - [<span data-ttu-id="8f2c0-106">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="8f2c0-106">CLI 2.0</span></span>](network-watcher-connectivity-cli.md)
-> - [<span data-ttu-id="8f2c0-107">Azure REST API</span><span class="sxs-lookup"><span data-stu-id="8f2c0-107">Azure REST API</span></span>](network-watcher-connectivity-rest.md)
+> - [<span data-ttu-id="61a23-104">入口網站</span><span class="sxs-lookup"><span data-stu-id="61a23-104">Portal</span></span>](network-watcher-connectivity-portal.md)
+> - [<span data-ttu-id="61a23-105">PowerShell</span><span class="sxs-lookup"><span data-stu-id="61a23-105">PowerShell</span></span>](network-watcher-connectivity-powershell.md)
+> - [<span data-ttu-id="61a23-106">CLI 2.0</span><span class="sxs-lookup"><span data-stu-id="61a23-106">CLI 2.0</span></span>](network-watcher-connectivity-cli.md)
+> - [<span data-ttu-id="61a23-107">Azure REST API</span><span class="sxs-lookup"><span data-stu-id="61a23-107">Azure REST API</span></span>](network-watcher-connectivity-rest.md)
 
-<span data-ttu-id="8f2c0-108">了解如何使用連線，確認是否可以建立從虛擬機器到指定端點的直接 TCP 連線。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-108">Learn how to use connectivity to verify if a direct TCP connection from a virtual machine to a given endpoint can be established.</span></span>
+<span data-ttu-id="61a23-108">了解可以如何建立 toouse 連線 tooverify 如果從虛擬機器 tooa 指定端點的直接 TCP 連接。</span><span class="sxs-lookup"><span data-stu-id="61a23-108">Learn how toouse connectivity tooverify if a direct TCP connection from a virtual machine tooa given endpoint can be established.</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="8f2c0-109">開始之前</span><span class="sxs-lookup"><span data-stu-id="8f2c0-109">Before you begin</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="61a23-109">開始之前</span><span class="sxs-lookup"><span data-stu-id="61a23-109">Before you begin</span></span>
 
-<span data-ttu-id="8f2c0-110">本文假設您具有下列資源：</span><span class="sxs-lookup"><span data-stu-id="8f2c0-110">This article assumes you have the following resources:</span></span>
+<span data-ttu-id="61a23-110">本文假設您擁有 hello 下列資源：</span><span class="sxs-lookup"><span data-stu-id="61a23-110">This article assumes you have hello following resources:</span></span>
 
-* <span data-ttu-id="8f2c0-111">您想要檢查連線之區域中的網路監看員執行個體。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-111">An instance of Network Watcher in the region you want to check connectivity.</span></span>
+* <span data-ttu-id="61a23-111">執行個體要 toocheck 連線的網路監看員 hello 區域中。</span><span class="sxs-lookup"><span data-stu-id="61a23-111">An instance of Network Watcher in hello region you want toocheck connectivity.</span></span>
 
-* <span data-ttu-id="8f2c0-112">要檢查與其連線的虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-112">Virtual machines to check connectivity with.</span></span>
+* <span data-ttu-id="61a23-112">虛擬機器與 toocheck 連線。</span><span class="sxs-lookup"><span data-stu-id="61a23-112">Virtual machines toocheck connectivity with.</span></span>
 
-<span data-ttu-id="8f2c0-113">使用 ARMclient 透過 PowerShell 呼叫 REST API。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-113">ARMclient is used to call the REST API using PowerShell.</span></span> <span data-ttu-id="8f2c0-114">您可以在 chocolatey 的 [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) 上找到 ARMClient。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-114">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient).</span></span>
+<span data-ttu-id="61a23-113">ARMclient 是使用 PowerShell 的使用的 toocall hello REST API。</span><span class="sxs-lookup"><span data-stu-id="61a23-113">ARMclient is used toocall hello REST API using PowerShell.</span></span> <span data-ttu-id="61a23-114">您可以在 chocolatey 的 [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) 上找到 ARMClient。</span><span class="sxs-lookup"><span data-stu-id="61a23-114">ARMClient is found on chocolatey at [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient).</span></span>
 
-<span data-ttu-id="8f2c0-115">此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-115">This scenario assumes you have already followed the steps in [Create a Network Watcher](network-watcher-create.md) to create a Network Watcher.</span></span>
+<span data-ttu-id="61a23-115">此案例假設您已依照中的 hello 步驟[建立網路監看員](network-watcher-create.md)toocreate 網路監看員。</span><span class="sxs-lookup"><span data-stu-id="61a23-115">This scenario assumes you have already followed hello steps in [Create a Network Watcher](network-watcher-create.md) toocreate a Network Watcher.</span></span>
 
 [!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 > [!IMPORTANT]
-> <span data-ttu-id="8f2c0-116">連線檢查需要虛擬機器延伸模組 `AzureNetworkWatcherExtension`。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-116">Connectivity check requires a virtual machine extension `AzureNetworkWatcherExtension`.</span></span> <span data-ttu-id="8f2c0-117">若要在 Windows VM 上安裝擴充功能，請瀏覽[適用於 Windows 的 Azure 網路監看員代理程式虛擬機器擴充功能](../virtual-machines/windows/extensions-nwa.md)，若要在 Linux VM 上安裝，則請瀏覽[適用於 Linux 的 Azure 網路監看員代理程式虛擬機器擴充功能](../virtual-machines/linux/extensions-nwa.md)。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-117">For installing the extension on a Windows VM visit [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) and for Linux VM visit [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md).</span></span>
+> <span data-ttu-id="61a23-116">連線檢查需要虛擬機器延伸模組 `AzureNetworkWatcherExtension`。</span><span class="sxs-lookup"><span data-stu-id="61a23-116">Connectivity check requires a virtual machine extension `AzureNetworkWatcherExtension`.</span></span> <span data-ttu-id="61a23-117">Hello 擴充功能安裝在 Windows VM 上瀏覽[Azure 網路監看員的代理程式適用於 Windows 的虛擬機器擴充功能](../virtual-machines/windows/extensions-nwa.md)和如 Linux VM，請造訪[Azure 網路監看員的代理程式虛擬機器擴充功能，適用於 Linux](../virtual-machines/linux/extensions-nwa.md).</span><span class="sxs-lookup"><span data-stu-id="61a23-117">For installing hello extension on a Windows VM visit [Azure Network Watcher Agent virtual machine extension for Windows](../virtual-machines/windows/extensions-nwa.md) and for Linux VM visit [Azure Network Watcher Agent virtual machine extension for Linux](../virtual-machines/linux/extensions-nwa.md).</span></span>
 
-## <a name="register-the-preview-capability"></a><span data-ttu-id="8f2c0-118">註冊預覽功能</span><span class="sxs-lookup"><span data-stu-id="8f2c0-118">Register the preview capability</span></span>
+## <a name="register-hello-preview-capability"></a><span data-ttu-id="61a23-118">註冊 hello 預覽功能</span><span class="sxs-lookup"><span data-stu-id="61a23-118">Register hello preview capability</span></span>
 
-<span data-ttu-id="8f2c0-119">連線檢查目前為公開預覽版本，若要使用這項功能，必須先註冊它。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-119">Connectivity check is currently in public preview, to use this feature it needs to be registered.</span></span> <span data-ttu-id="8f2c0-120">若要這麼做，請執行下列 PowerShell 範例：</span><span class="sxs-lookup"><span data-stu-id="8f2c0-120">To do this, run the following PowerShell sample:</span></span>
+<span data-ttu-id="61a23-119">連線能力檢查目前處於公開預覽，toouse 需要 toobe 註冊這項功能。</span><span class="sxs-lookup"><span data-stu-id="61a23-119">Connectivity check is currently in public preview, toouse this feature it needs toobe registered.</span></span> <span data-ttu-id="61a23-120">toodo，執行下列 PowerShell 範例的 hello:</span><span class="sxs-lookup"><span data-stu-id="61a23-120">toodo this, run hello following PowerShell sample:</span></span>
 
 ```powershell
 Register-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace Microsoft.Network
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
 ```
 
-<span data-ttu-id="8f2c0-121">若要確認註冊是否成功，請執行下列 Powershell 範例︰</span><span class="sxs-lookup"><span data-stu-id="8f2c0-121">To verify the registration was successful, run the following Powershell sample:</span></span>
+<span data-ttu-id="61a23-121">tooverify hello 登錄成功，執行下列 Powershell 範例 hello:</span><span class="sxs-lookup"><span data-stu-id="61a23-121">tooverify hello registration was successful, run hello following Powershell sample:</span></span>
 
 ```powershell
 Get-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace  Microsoft.Network
 ```
 
-<span data-ttu-id="8f2c0-122">如果已正確註冊該功能，輸出應該會與以下相符︰</span><span class="sxs-lookup"><span data-stu-id="8f2c0-122">If the feature was properly registered, the output should match the following:</span></span>
+<span data-ttu-id="61a23-122">如果 hello 功能已正確註冊，hello 輸出應符合下列 hello:</span><span class="sxs-lookup"><span data-stu-id="61a23-122">If hello feature was properly registered, hello output should match hello following:</span></span>
 
 ```
 FeatureName                             ProviderName      RegistrationState
@@ -69,22 +69,22 @@ FeatureName                             ProviderName      RegistrationState
 AllowNetworkWatcherConnectivityCheck    Microsoft.Network Registered
 ```
 
-## <a name="log-in-with-armclient"></a><span data-ttu-id="8f2c0-123">使用 ARMClient 登入</span><span class="sxs-lookup"><span data-stu-id="8f2c0-123">Log in with ARMClient</span></span>
+## <a name="log-in-with-armclient"></a><span data-ttu-id="61a23-123">使用 ARMClient 登入</span><span class="sxs-lookup"><span data-stu-id="61a23-123">Log in with ARMClient</span></span>
 
-<span data-ttu-id="8f2c0-124">使用 Azure 認證登入 Armclient。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-124">Log in to armclient with your Azure credentials.</span></span>
+<span data-ttu-id="61a23-124">登入 tooarmclient 與您的 Azure 認證。</span><span class="sxs-lookup"><span data-stu-id="61a23-124">Log in tooarmclient with your Azure credentials.</span></span>
 
 ```PowerShell
 armclient login
 ```
 
-## <a name="retrieve-a-virtual-machine"></a><span data-ttu-id="8f2c0-125">擷取虛擬機器</span><span class="sxs-lookup"><span data-stu-id="8f2c0-125">Retrieve a virtual machine</span></span>
+## <a name="retrieve-a-virtual-machine"></a><span data-ttu-id="61a23-125">擷取虛擬機器</span><span class="sxs-lookup"><span data-stu-id="61a23-125">Retrieve a virtual machine</span></span>
 
-<span data-ttu-id="8f2c0-126">執行下列指令碼，以傳回虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-126">Run the following script to return a virtual machine.</span></span> <span data-ttu-id="8f2c0-127">執行連線時需要這項資訊。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-127">This information is needed for running connectivity.</span></span> 
+<span data-ttu-id="61a23-126">執行下列指令碼 tooreturn hello 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="61a23-126">Run hello following script tooreturn a virtual machine.</span></span> <span data-ttu-id="61a23-127">執行連線時需要這項資訊。</span><span class="sxs-lookup"><span data-stu-id="61a23-127">This information is needed for running connectivity.</span></span> 
 
-<span data-ttu-id="8f2c0-128">下列程式碼需要下列變數的值︰</span><span class="sxs-lookup"><span data-stu-id="8f2c0-128">The following code needs values for the following variables:</span></span>
+<span data-ttu-id="61a23-128">下列程式碼的 hello hello 下列變數需要值：</span><span class="sxs-lookup"><span data-stu-id="61a23-128">hello following code needs values for hello following variables:</span></span>
 
-- <span data-ttu-id="8f2c0-129">**subscriptionId** - 要使用的訂用帳戶識別碼。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-129">**subscriptionId** - The subscription ID to use.</span></span>
-- <span data-ttu-id="8f2c0-130">**resourceGroupName** - 包含虛擬機器的資源群組名稱。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-130">**resourceGroupName** - The name of a resource group that contains virtual machines.</span></span>
+- <span data-ttu-id="61a23-129">**subscriptionId** -hello 訂用帳戶 ID toouse。</span><span class="sxs-lookup"><span data-stu-id="61a23-129">**subscriptionId** - hello subscription ID toouse.</span></span>
+- <span data-ttu-id="61a23-130">**resourceGroupName** -hello 包含虛擬機器的資源群組的名稱。</span><span class="sxs-lookup"><span data-stu-id="61a23-130">**resourceGroupName** - hello name of a resource group that contains virtual machines.</span></span>
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -93,7 +93,7 @@ $resourceGroupName = '<resource group name>'
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-<span data-ttu-id="8f2c0-131">從下列的輸出，會在下列範例中使用虛擬機器的識別碼︰</span><span class="sxs-lookup"><span data-stu-id="8f2c0-131">From the following output, the ID of the virtual machine is used in the following example:</span></span>
+<span data-ttu-id="61a23-131">從 hello 下列輸出，hello hello 虛擬機器識別碼 hello 下列範例中使用：</span><span class="sxs-lookup"><span data-stu-id="61a23-131">From hello following output, hello ID of hello virtual machine is used in hello following example:</span></span>
 
 ```json
 ...
@@ -108,11 +108,11 @@ armclient get https://management.azure.com/subscriptions/${subscriptionId}/Resou
 }
 ```
 
-## <a name="check-connectivity-to-a-virtual-machine"></a><span data-ttu-id="8f2c0-132">檢查與虛擬機器的連線</span><span class="sxs-lookup"><span data-stu-id="8f2c0-132">Check connectivity to a virtual machine</span></span>
+## <a name="check-connectivity-tooa-virtual-machine"></a><span data-ttu-id="61a23-132">請檢查連線 tooa 虛擬機器</span><span class="sxs-lookup"><span data-stu-id="61a23-132">Check connectivity tooa virtual machine</span></span>
 
-<span data-ttu-id="8f2c0-133">這個範例會檢查透過連接埠 80 的目的地虛擬機器連線。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-133">This example checks connectivity to a destination virtual machine over port 80.</span></span>
+<span data-ttu-id="61a23-133">這個範例會檢查透過連接埠 80 連線 tooa 目的地虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="61a23-133">This example checks connectivity tooa destination virtual machine over port 80.</span></span>
 
-### <a name="example"></a><span data-ttu-id="8f2c0-134">範例</span><span class="sxs-lookup"><span data-stu-id="8f2c0-134">Example</span></span>
+### <a name="example"></a><span data-ttu-id="61a23-134">範例</span><span class="sxs-lookup"><span data-stu-id="61a23-134">Example</span></span>
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -137,11 +137,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-<span data-ttu-id="8f2c0-135">因為這項作業的執行時間很長，所以回應標頭中會傳回結果 URI，如下列回應所示：</span><span class="sxs-lookup"><span data-stu-id="8f2c0-135">Since this operation is long running, the URI for the result is returned in the response header as shown in the following response:</span></span>
+<span data-ttu-id="61a23-135">由於這項作業是長時間執行，hello hello 結果的 URI 會傳回 hello 回應標頭中下列回應 hello 中所示：</span><span class="sxs-lookup"><span data-stu-id="61a23-135">Since this operation is long running, hello URI for hello result is returned in hello response header as shown in hello following response:</span></span>
 
-<span data-ttu-id="8f2c0-136">**重要的值**</span><span class="sxs-lookup"><span data-stu-id="8f2c0-136">**Important Values**</span></span>
+<span data-ttu-id="61a23-136">**重要的值**</span><span class="sxs-lookup"><span data-stu-id="61a23-136">**Important Values**</span></span>
 
-* <span data-ttu-id="8f2c0-137">**Location** - 此屬性包含作業完成時結果所在的 URI</span><span class="sxs-lookup"><span data-stu-id="8f2c0-137">**Location** - This property contains the URI where the results are when the operation is complete</span></span>
+* <span data-ttu-id="61a23-137">**位置**-這個屬性包含 hello hello 結果的所在當 hello 作業已完成的 URI</span><span class="sxs-lookup"><span data-stu-id="61a23-137">**Location** - This property contains hello URI where hello results are when hello operation is complete</span></span>
 
 ```
 HTTP/1.1 202 Accepted
@@ -160,9 +160,9 @@ Date: Fri, 02 Jun 2017 20:21:16 GMT
 null
 ```
 
-### <a name="response"></a><span data-ttu-id="8f2c0-138">Response</span><span class="sxs-lookup"><span data-stu-id="8f2c0-138">Response</span></span>
+### <a name="response"></a><span data-ttu-id="61a23-138">Response</span><span class="sxs-lookup"><span data-stu-id="61a23-138">Response</span></span>
 
-<span data-ttu-id="8f2c0-139">下列回應是來自上一個範例。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-139">The following response is from the previous example.</span></span>  <span data-ttu-id="8f2c0-140">在此回應中，`ConnectionStatus` 為 [無法連線]。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-140">In this response, the `ConnectionStatus` is **Unreachable**.</span></span> <span data-ttu-id="8f2c0-141">您可以看到傳送的所有探查都失敗。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-141">You can see that all the probes sent failed.</span></span> <span data-ttu-id="8f2c0-142">因為名為 **UserRule_Port80** 的使用者設定 `NetworkSecurityRule` 設定成封鎖連接埠 80 的連入流量，所以虛擬設備的連線失敗。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-142">The connectivity failed at the virtual appliance due to a user-configured `NetworkSecurityRule` named **UserRule_Port80**, configured to block incoming traffic on port 80.</span></span> <span data-ttu-id="8f2c0-143">這項資訊可以用來研究連線問題。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-143">This information can be used to research connection issues.</span></span>
+<span data-ttu-id="61a23-139">下列回應 hello 取自 hello 前一個範例。</span><span class="sxs-lookup"><span data-stu-id="61a23-139">hello following response is from hello previous example.</span></span>  <span data-ttu-id="61a23-140">此回應 hello`ConnectionStatus`是**連線**。</span><span class="sxs-lookup"><span data-stu-id="61a23-140">In this response, hello `ConnectionStatus` is **Unreachable**.</span></span> <span data-ttu-id="61a23-141">您可以看到所有 hello 探查傳送失敗。</span><span class="sxs-lookup"><span data-stu-id="61a23-141">You can see that all hello probes sent failed.</span></span> <span data-ttu-id="61a23-142">hello 連線無法在 hello 虛擬應用裝置使用者設定的到期 tooa`NetworkSecurityRule`名為**UserRule_Port80**，通訊埠 80 上設定 tooblock 連入流量。</span><span class="sxs-lookup"><span data-stu-id="61a23-142">hello connectivity failed at hello virtual appliance due tooa user-configured `NetworkSecurityRule` named **UserRule_Port80**, configured tooblock incoming traffic on port 80.</span></span> <span data-ttu-id="61a23-143">這項資訊可以使用的 tooresearch 連線問題。</span><span class="sxs-lookup"><span data-stu-id="61a23-143">This information can be used tooresearch connection issues.</span></span>
 
 ```json
 {
@@ -224,11 +224,11 @@ null
 }
 ```
 
-## <a name="validate-routing-issues"></a><span data-ttu-id="8f2c0-144">驗證路由問題</span><span class="sxs-lookup"><span data-stu-id="8f2c0-144">Validate routing issues</span></span>
+## <a name="validate-routing-issues"></a><span data-ttu-id="61a23-144">驗證路由問題</span><span class="sxs-lookup"><span data-stu-id="61a23-144">Validate routing issues</span></span>
 
-<span data-ttu-id="8f2c0-145">此範例會檢查虛擬機器與遠端端點之間的連線。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-145">The example checks connectivity between a virtual machine and a remote endpoint.</span></span>
+<span data-ttu-id="61a23-145">hello 範例會檢查虛擬機器與遠端端點之間的連線。</span><span class="sxs-lookup"><span data-stu-id="61a23-145">hello example checks connectivity between a virtual machine and a remote endpoint.</span></span>
 
-### <a name="example"></a><span data-ttu-id="8f2c0-146">範例</span><span class="sxs-lookup"><span data-stu-id="8f2c0-146">Example</span></span>
+### <a name="example"></a><span data-ttu-id="61a23-146">範例</span><span class="sxs-lookup"><span data-stu-id="61a23-146">Example</span></span>
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -253,11 +253,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-<span data-ttu-id="8f2c0-147">因為這項作業的執行時間很長，所以回應標頭中會傳回結果 URI，如下列回應所示：</span><span class="sxs-lookup"><span data-stu-id="8f2c0-147">Since this operation is long running, the URI for the result is returned in the response header as shown in the following response:</span></span>
+<span data-ttu-id="61a23-147">由於這項作業是長時間執行，hello hello 結果的 URI 會傳回 hello 回應標頭中下列回應 hello 中所示：</span><span class="sxs-lookup"><span data-stu-id="61a23-147">Since this operation is long running, hello URI for hello result is returned in hello response header as shown in hello following response:</span></span>
 
-<span data-ttu-id="8f2c0-148">**重要的值**</span><span class="sxs-lookup"><span data-stu-id="8f2c0-148">**Important Values**</span></span>
+<span data-ttu-id="61a23-148">**重要的值**</span><span class="sxs-lookup"><span data-stu-id="61a23-148">**Important Values**</span></span>
 
-* <span data-ttu-id="8f2c0-149">**Location** - 此屬性包含作業完成時結果所在的 URI</span><span class="sxs-lookup"><span data-stu-id="8f2c0-149">**Location** - This property contains the URI where the results are when the operation is complete</span></span>
+* <span data-ttu-id="61a23-149">**位置**-這個屬性包含 hello hello 結果的所在當 hello 作業已完成的 URI</span><span class="sxs-lookup"><span data-stu-id="61a23-149">**Location** - This property contains hello URI where hello results are when hello operation is complete</span></span>
 
 ```
 HTTP/1.1 202 Accepted
@@ -276,9 +276,9 @@ Date: Fri, 02 Jun 2017 20:26:05 GMT
 null
 ```
 
-### <a name="response"></a><span data-ttu-id="8f2c0-150">Response</span><span class="sxs-lookup"><span data-stu-id="8f2c0-150">Response</span></span>
+### <a name="response"></a><span data-ttu-id="61a23-150">Response</span><span class="sxs-lookup"><span data-stu-id="61a23-150">Response</span></span>
 
-<span data-ttu-id="8f2c0-151">在下列範例中，`connectionStatus` 會顯示為 [無法連線]。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-151">In the following example, the `connectionStatus` is shown as **Unreachable**.</span></span> <span data-ttu-id="8f2c0-152">在 `hops` 詳細資料中，您可以在 `issues` 下看到已因 `UserDefinedRoute` 而封鎖流量。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-152">In the `hops` details, you can see under `issues` that the traffic was blocked due to a `UserDefinedRoute`.</span></span>
+<span data-ttu-id="61a23-151">在下列範例的 hello，hello`connectionStatus`會顯示為**連線**。</span><span class="sxs-lookup"><span data-stu-id="61a23-151">In hello following example, hello `connectionStatus` is shown as **Unreachable**.</span></span> <span data-ttu-id="61a23-152">在 hello`hops`詳細資料，您可以看到下`issues`hello 流量遭到封鎖到期 tooa `UserDefinedRoute`。</span><span class="sxs-lookup"><span data-stu-id="61a23-152">In hello `hops` details, you can see under `issues` that hello traffic was blocked due tooa `UserDefinedRoute`.</span></span>
 
 ```json
 {
@@ -320,11 +320,11 @@ null
 }
 ```
 
-## <a name="check-website-latency"></a><span data-ttu-id="8f2c0-153">檢查網站延遲</span><span class="sxs-lookup"><span data-stu-id="8f2c0-153">Check website latency</span></span>
+## <a name="check-website-latency"></a><span data-ttu-id="61a23-153">檢查網站延遲</span><span class="sxs-lookup"><span data-stu-id="61a23-153">Check website latency</span></span>
 
-<span data-ttu-id="8f2c0-154">下列範例會檢查網站連線。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-154">The following example checks the connectivity to a website.</span></span>
+<span data-ttu-id="61a23-154">hello 下列範例會檢查 hello 連線 tooa 網站。</span><span class="sxs-lookup"><span data-stu-id="61a23-154">hello following example checks hello connectivity tooa website.</span></span>
 
-### <a name="example"></a><span data-ttu-id="8f2c0-155">範例</span><span class="sxs-lookup"><span data-stu-id="8f2c0-155">Example</span></span>
+### <a name="example"></a><span data-ttu-id="61a23-155">範例</span><span class="sxs-lookup"><span data-stu-id="61a23-155">Example</span></span>
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -349,11 +349,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-<span data-ttu-id="8f2c0-156">因為這項作業的執行時間很長，所以回應標頭中會傳回結果 URI，如下列回應所示：</span><span class="sxs-lookup"><span data-stu-id="8f2c0-156">Since this operation is long running, the URI for the result is returned in the response header as shown in the following response:</span></span>
+<span data-ttu-id="61a23-156">由於這項作業是長時間執行，hello hello 結果的 URI 會傳回 hello 回應標頭中下列回應 hello 中所示：</span><span class="sxs-lookup"><span data-stu-id="61a23-156">Since this operation is long running, hello URI for hello result is returned in hello response header as shown in hello following response:</span></span>
 
-<span data-ttu-id="8f2c0-157">**重要的值**</span><span class="sxs-lookup"><span data-stu-id="8f2c0-157">**Important Values**</span></span>
+<span data-ttu-id="61a23-157">**重要的值**</span><span class="sxs-lookup"><span data-stu-id="61a23-157">**Important Values**</span></span>
 
-* <span data-ttu-id="8f2c0-158">**Location** - 此屬性包含作業完成時結果所在的 URI</span><span class="sxs-lookup"><span data-stu-id="8f2c0-158">**Location** - This property contains the URI where the results are when the operation is complete</span></span>
+* <span data-ttu-id="61a23-158">**位置**-這個屬性包含 hello hello 結果的所在當 hello 作業已完成的 URI</span><span class="sxs-lookup"><span data-stu-id="61a23-158">**Location** - This property contains hello URI where hello results are when hello operation is complete</span></span>
 
 ```
 HTTP/1.1 202 Accepted
@@ -372,9 +372,9 @@ Date: Fri, 02 Jun 2017 20:31:00 GMT
 null
 ```
 
-### <a name="response"></a><span data-ttu-id="8f2c0-159">Response</span><span class="sxs-lookup"><span data-stu-id="8f2c0-159">Response</span></span>
+### <a name="response"></a><span data-ttu-id="61a23-159">Response</span><span class="sxs-lookup"><span data-stu-id="61a23-159">Response</span></span>
 
-<span data-ttu-id="8f2c0-160">在下列回應中，您可以看到 `connectionStatus` 顯示為 [可以連線]。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-160">In the following response, you can see the `connectionStatus` shows as **Reachable**.</span></span> <span data-ttu-id="8f2c0-161">連線成功時，會提供延遲值。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-161">When a connection is successful, latency values are provided.</span></span>
+<span data-ttu-id="61a23-160">在下列回應 hello，您可以看到 hello`connectionStatus`顯示為**Reachable**。</span><span class="sxs-lookup"><span data-stu-id="61a23-160">In hello following response, you can see hello `connectionStatus` shows as **Reachable**.</span></span> <span data-ttu-id="61a23-161">連線成功時，會提供延遲值。</span><span class="sxs-lookup"><span data-stu-id="61a23-161">When a connection is successful, latency values are provided.</span></span>
 
 ```json
 {
@@ -407,11 +407,11 @@ null
 }
 ```
 
-## <a name="check-connectivity-to-a-storage-endpoint"></a><span data-ttu-id="8f2c0-162">檢查與儲存體端點的連線</span><span class="sxs-lookup"><span data-stu-id="8f2c0-162">Check connectivity to a storage endpoint</span></span>
+## <a name="check-connectivity-tooa-storage-endpoint"></a><span data-ttu-id="61a23-162">請檢查連線 tooa 儲存體端點</span><span class="sxs-lookup"><span data-stu-id="61a23-162">Check connectivity tooa storage endpoint</span></span>
 
-<span data-ttu-id="8f2c0-163">下列範例會檢查從虛擬機器到部落格儲存體帳戶的連線。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-163">The following example checks the connectivity from a virtual machine to a blog storage account.</span></span>
+<span data-ttu-id="61a23-163">hello 下列範例會檢查 hello 連線從虛擬機器 tooa 部落格儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="61a23-163">hello following example checks hello connectivity from a virtual machine tooa blog storage account.</span></span>
 
-### <a name="example"></a><span data-ttu-id="8f2c0-164">範例</span><span class="sxs-lookup"><span data-stu-id="8f2c0-164">Example</span></span>
+### <a name="example"></a><span data-ttu-id="61a23-164">範例</span><span class="sxs-lookup"><span data-stu-id="61a23-164">Example</span></span>
 
 ```powershell
 $subscriptionId = "00000000-0000-0000-0000-000000000000"
@@ -436,11 +436,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-<span data-ttu-id="8f2c0-165">因為這項作業的執行時間很長，所以回應標頭中會傳回結果 URI，如下列回應所示：</span><span class="sxs-lookup"><span data-stu-id="8f2c0-165">Since this operation is long running, the URI for the result is returned in the response header as shown in the following response:</span></span>
+<span data-ttu-id="61a23-165">由於這項作業是長時間執行，hello hello 結果的 URI 會傳回 hello 回應標頭中下列回應 hello 中所示：</span><span class="sxs-lookup"><span data-stu-id="61a23-165">Since this operation is long running, hello URI for hello result is returned in hello response header as shown in hello following response:</span></span>
 
-<span data-ttu-id="8f2c0-166">**重要的值**</span><span class="sxs-lookup"><span data-stu-id="8f2c0-166">**Important Values**</span></span>
+<span data-ttu-id="61a23-166">**重要的值**</span><span class="sxs-lookup"><span data-stu-id="61a23-166">**Important Values**</span></span>
 
-* <span data-ttu-id="8f2c0-167">**Location** - 此屬性包含作業完成時結果所在的 URI</span><span class="sxs-lookup"><span data-stu-id="8f2c0-167">**Location** - This property contains the URI where the results are when the operation is complete</span></span>
+* <span data-ttu-id="61a23-167">**位置**-這個屬性包含 hello hello 結果的所在當 hello 作業已完成的 URI</span><span class="sxs-lookup"><span data-stu-id="61a23-167">**Location** - This property contains hello URI where hello results are when hello operation is complete</span></span>
 
 ```
 HTTP/1.1 202 Accepted
@@ -459,9 +459,9 @@ Date: Fri, 02 Jun 2017 20:05:03 GMT
 null
 ```
 
-### <a name="response"></a><span data-ttu-id="8f2c0-168">Response</span><span class="sxs-lookup"><span data-stu-id="8f2c0-168">Response</span></span>
+### <a name="response"></a><span data-ttu-id="61a23-168">Response</span><span class="sxs-lookup"><span data-stu-id="61a23-168">Response</span></span>
 
-<span data-ttu-id="8f2c0-169">下列範例是執行前一個 API 呼叫的回應。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-169">The following example is the response from running the previous API call.</span></span> <span data-ttu-id="8f2c0-170">因為檢查成功，所以 `connectionStatus` 屬性會顯示為 [可以連線]。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-170">As the check is successful, the `connectionStatus` property shows as **Reachable**.</span></span>  <span data-ttu-id="8f2c0-171">系統會向您提供連線儲存體 Blob 和延遲所需躍點數目的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="8f2c0-171">You are provided the details regarding the number of hops required to reach the storage blob and latency.</span></span>
+<span data-ttu-id="61a23-169">hello 下列範例是 hello 回應 hello 先前的應用程式開發介面呼叫的執行。</span><span class="sxs-lookup"><span data-stu-id="61a23-169">hello following example is hello response from running hello previous API call.</span></span> <span data-ttu-id="61a23-170">如同 hello 檢查成功，hello`connectionStatus`屬性會顯示為**Reachable**。</span><span class="sxs-lookup"><span data-stu-id="61a23-170">As hello check is successful, hello `connectionStatus` property shows as **Reachable**.</span></span>  <span data-ttu-id="61a23-171">為您提供有關 hello 數目躍點需要的 tooreach hello 儲存體 blob 和延遲的 hello 詳細資料。</span><span class="sxs-lookup"><span data-stu-id="61a23-171">You are provided hello details regarding hello number of hops required tooreach hello storage blob and latency.</span></span>
 
 ```json
 {
@@ -494,11 +494,11 @@ null
 }
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="8f2c0-172">後續步驟</span><span class="sxs-lookup"><span data-stu-id="8f2c0-172">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="61a23-172">後續步驟</span><span class="sxs-lookup"><span data-stu-id="61a23-172">Next steps</span></span>
 
-<span data-ttu-id="8f2c0-173">檢視[建立由警示觸發的封包擷取](network-watcher-alert-triggered-packet-capture.md)來了解如何透過虛擬機器警示自動化封包擷取</span><span class="sxs-lookup"><span data-stu-id="8f2c0-173">Learn how to automate packet captures with Virtual machine alerts by viewing [Create an alert triggered packet capture](network-watcher-alert-triggered-packet-capture.md)</span></span>
+<span data-ttu-id="61a23-173">了解如何 tooautomate 封包擷取虛擬機器警示藉由檢視[建立警示觸發的封包擷取](network-watcher-alert-triggered-packet-capture.md)</span><span class="sxs-lookup"><span data-stu-id="61a23-173">Learn how tooautomate packet captures with Virtual machine alerts by viewing [Create an alert triggered packet capture](network-watcher-alert-triggered-packet-capture.md)</span></span>
 
-<span data-ttu-id="8f2c0-174">造訪[檢查 IP 流量驗證](network-watcher-check-ip-flow-verify-portal.md)來得知 VM 是否允許特定流量流入或流出</span><span class="sxs-lookup"><span data-stu-id="8f2c0-174">Find if certain traffic is allowed in or out of your VM by visiting [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md)</span></span>
+<span data-ttu-id="61a23-174">造訪[檢查 IP 流量驗證](network-watcher-check-ip-flow-verify-portal.md)來得知 VM 是否允許特定流量流入或流出</span><span class="sxs-lookup"><span data-stu-id="61a23-174">Find if certain traffic is allowed in or out of your VM by visiting [Check IP flow verify](network-watcher-check-ip-flow-verify-portal.md)</span></span>
 
 <!-- Image references -->
 

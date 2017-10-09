@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Azure StorSimple Virtual Array 備份教學課程 | Microsoft Docs"
-description: "說明如何備份 StorSimple Virtual Array 共用與磁碟區。"
+title: "aaaMicrosoft Azure StorSimple Virtual Array 備份教學課程 |Microsoft 文件"
+description: "描述如何設定 StorSimple Virtual Array tooback 共用和磁碟區。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -15,103 +15,103 @@ ms.workload: TBD
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c926f0c80ce56cac3106ad97ec3ec2e18a8e2cc6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7a015fd594f8f56c48fab149a2736be9dec2c24b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="back-up-shares-or-volumes-on-your-storsimple-virtual-array"></a><span data-ttu-id="f082f-103">備份 StorSimple Virtual Array 上的共用或磁碟區</span><span class="sxs-lookup"><span data-stu-id="f082f-103">Back up shares or volumes on your StorSimple Virtual Array</span></span>
+# <a name="back-up-shares-or-volumes-on-your-storsimple-virtual-array"></a><span data-ttu-id="44478-103">備份 StorSimple Virtual Array 上的共用或磁碟區</span><span class="sxs-lookup"><span data-stu-id="44478-103">Back up shares or volumes on your StorSimple Virtual Array</span></span>
 
-## <a name="overview"></a><span data-ttu-id="f082f-104">概觀</span><span class="sxs-lookup"><span data-stu-id="f082f-104">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="44478-104">概觀</span><span class="sxs-lookup"><span data-stu-id="44478-104">Overview</span></span>
 
-<span data-ttu-id="f082f-105">StorSimple Virtual Array 是混合式雲端儲存體內部部署虛擬裝置，可設定為檔案伺服器或 iSCSI 伺服器。</span><span class="sxs-lookup"><span data-stu-id="f082f-105">The StorSimple Virtual Array is a hybrid cloud storage on-premises virtual device that can be configured as a file server or an iSCSI server.</span></span> <span data-ttu-id="f082f-106">虛擬陣列可讓使用者為裝置上的所有共用或磁碟區建立排程備份和手動備份。</span><span class="sxs-lookup"><span data-stu-id="f082f-106">The virtual array allows the user to create scheduled and manual backups of all the shares or volumes on the device.</span></span> <span data-ttu-id="f082f-107">設為檔案伺服器時，也可進行項目層級的復原。</span><span class="sxs-lookup"><span data-stu-id="f082f-107">When configured as a file server, it also allows item-level recovery.</span></span> <span data-ttu-id="f082f-108">本教學課程說明如何建立排程備份和手動備份，以及執行項目層級復原來還原虛擬陣列上已刪除的檔案。</span><span class="sxs-lookup"><span data-stu-id="f082f-108">This tutorial describes how to create scheduled and manual backups and perform item-level recovery to restore a deleted file on your virtual array.</span></span>
+<span data-ttu-id="44478-105">hello StorSimple Virtual Array 是混合式雲端儲存體在內部部署虛擬裝置，可以設定為檔案伺服器或 iSCSI 伺服器。</span><span class="sxs-lookup"><span data-stu-id="44478-105">hello StorSimple Virtual Array is a hybrid cloud storage on-premises virtual device that can be configured as a file server or an iSCSI server.</span></span> <span data-ttu-id="44478-106">hello 虛擬陣列允許 hello 使用者 toocreate 所有 hello 共用或磁碟區備份的排程和手動備份 hello 裝置上。</span><span class="sxs-lookup"><span data-stu-id="44478-106">hello virtual array allows hello user toocreate scheduled and manual backups of all hello shares or volumes on hello device.</span></span> <span data-ttu-id="44478-107">設為檔案伺服器時，也可進行項目層級的復原。</span><span class="sxs-lookup"><span data-stu-id="44478-107">When configured as a file server, it also allows item-level recovery.</span></span> <span data-ttu-id="44478-108">本教學課程描述如何排程 toocreate 和手動備份，並執行項目層級復原 toorestore 已刪除的檔案，您的虛擬陣列上。</span><span class="sxs-lookup"><span data-stu-id="44478-108">This tutorial describes how toocreate scheduled and manual backups and perform item-level recovery toorestore a deleted file on your virtual array.</span></span>
 
-<span data-ttu-id="f082f-109">本教學課程僅適用於 StorSimple Virtual Array。</span><span class="sxs-lookup"><span data-stu-id="f082f-109">This tutorial applies to the StorSimple Virtual Arrays only.</span></span> <span data-ttu-id="f082f-110">如需 8000 系列的相關資訊，請參閱[建立 8000 系列裝置的備份](storsimple-manage-backup-policies-u2.md)</span><span class="sxs-lookup"><span data-stu-id="f082f-110">For information on 8000 series, go to [Create a backup for 8000 series device](storsimple-manage-backup-policies-u2.md)</span></span>
+<span data-ttu-id="44478-109">本教學課程適用於 toohello StorSimple 虛擬陣列只。</span><span class="sxs-lookup"><span data-stu-id="44478-109">This tutorial applies toohello StorSimple Virtual Arrays only.</span></span> <span data-ttu-id="44478-110">如 8000 系列的相關資訊，請移至太[建立 8000 系列裝置的備份](storsimple-manage-backup-policies-u2.md)</span><span class="sxs-lookup"><span data-stu-id="44478-110">For information on 8000 series, go too[Create a backup for 8000 series device](storsimple-manage-backup-policies-u2.md)</span></span>
 
-## <a name="back-up-shares-and-volumes"></a><span data-ttu-id="f082f-111">備份共用和磁碟區</span><span class="sxs-lookup"><span data-stu-id="f082f-111">Back up shares and volumes</span></span>
+## <a name="back-up-shares-and-volumes"></a><span data-ttu-id="44478-111">備份共用和磁碟區</span><span class="sxs-lookup"><span data-stu-id="44478-111">Back up shares and volumes</span></span>
 
-<span data-ttu-id="f082f-112">備份可提供共用和磁碟區的時間點保護、改善復原能力，同時讓還原時間降至最低。</span><span class="sxs-lookup"><span data-stu-id="f082f-112">Backups provide point-in-time protection, improve recoverability, and minimize restore times for shares and volumes.</span></span> <span data-ttu-id="f082f-113">您有兩種方法可以備份 StorSimple 裝置上的共用或磁碟區：「排程」或「手動」。</span><span class="sxs-lookup"><span data-stu-id="f082f-113">You can back up a share or volume on your StorSimple device in two ways: **Scheduled** or **Manual**.</span></span> <span data-ttu-id="f082f-114">下列各節討論上述每一種方法。</span><span class="sxs-lookup"><span data-stu-id="f082f-114">Each of the methods is discussed in the following sections.</span></span>
+<span data-ttu-id="44478-112">備份可提供共用和磁碟區的時間點保護、改善復原能力，同時讓還原時間降至最低。</span><span class="sxs-lookup"><span data-stu-id="44478-112">Backups provide point-in-time protection, improve recoverability, and minimize restore times for shares and volumes.</span></span> <span data-ttu-id="44478-113">您有兩種方法可以備份 StorSimple 裝置上的共用或磁碟區：「排程」或「手動」。</span><span class="sxs-lookup"><span data-stu-id="44478-113">You can back up a share or volume on your StorSimple device in two ways: **Scheduled** or **Manual**.</span></span> <span data-ttu-id="44478-114">每個 hello 方法 hello 下列各節中討論。</span><span class="sxs-lookup"><span data-stu-id="44478-114">Each of hello methods is discussed in hello following sections.</span></span>
 
-## <a name="change-the-backup-start-time"></a><span data-ttu-id="f082f-115">變更備份開始時間</span><span class="sxs-lookup"><span data-stu-id="f082f-115">Change the backup start time</span></span>
+## <a name="change-hello-backup-start-time"></a><span data-ttu-id="44478-115">變更 hello 備份開始時間</span><span class="sxs-lookup"><span data-stu-id="44478-115">Change hello backup start time</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="f082f-116">在此版本中，排程的備份由預設原則建立，該原則會每日在特定時間執行並備份裝置上的所有共用或磁碟區。</span><span class="sxs-lookup"><span data-stu-id="f082f-116">In this release, scheduled backups are created by a default policy that runs daily at a specified time and backs up all the shares or volumes on the device.</span></span> <span data-ttu-id="f082f-117">目前無法建立用於排程備份的自訂原則。</span><span class="sxs-lookup"><span data-stu-id="f082f-117">It is not possible to create custom policies for scheduled backups at this time.</span></span>
+> <span data-ttu-id="44478-116">此版本中，在排定的備份會建立預設原則，每天在指定的時間執行，而且所有 hello 共用或磁碟區都備份 hello 裝置上。</span><span class="sxs-lookup"><span data-stu-id="44478-116">In this release, scheduled backups are created by a default policy that runs daily at a specified time and backs up all hello shares or volumes on hello device.</span></span> <span data-ttu-id="44478-117">它不是這一次可能 toocreate 自訂原則進行排定的備份。</span><span class="sxs-lookup"><span data-stu-id="44478-117">It is not possible toocreate custom policies for scheduled backups at this time.</span></span>
 
 
-<span data-ttu-id="f082f-118">StorSimple Virtual Array 有預設的備份原則會在每日特定時間 (22:30) 啟動，每天備份一次裝置上的所有共用或磁碟區。</span><span class="sxs-lookup"><span data-stu-id="f082f-118">Your StorSimple Virtual Array has a default backup policy that starts at a specified time of day (22:30) and backs up all the shares or volumes on the device once a day.</span></span> <span data-ttu-id="f082f-119">您可以變更備份開始的時間，但無法變更頻率及保留期 (指定備份保留的數量)。</span><span class="sxs-lookup"><span data-stu-id="f082f-119">You can change the time at which the backup starts, but the frequency and the retention (which specifies the number of backups to retain) cannot be changed.</span></span> <span data-ttu-id="f082f-120">這些在備份期間會備份整個虛擬裝置。</span><span class="sxs-lookup"><span data-stu-id="f082f-120">During these backups, the entire virtual device is backed up.</span></span> <span data-ttu-id="f082f-121">這可能會對影響裝置的效能和裝置上已部署的工作負載。</span><span class="sxs-lookup"><span data-stu-id="f082f-121">This could potentially impact the performance of the device and affect the workloads deployed on the device.</span></span> <span data-ttu-id="f082f-122">因此，建議您將這些備份排定在離峰時段。</span><span class="sxs-lookup"><span data-stu-id="f082f-122">Therefore, we recommend that you schedule these backups for off-peak hours.</span></span>
+<span data-ttu-id="44478-118">您的 StorSimple Virtual Array 有預設的備份原則會在一天 (22:30) 的指定時間啟動和所有 hello 共用或磁碟區上都備份 hello 裝置一天一次。</span><span class="sxs-lookup"><span data-stu-id="44478-118">Your StorSimple Virtual Array has a default backup policy that starts at a specified time of day (22:30) and backs up all hello shares or volumes on hello device once a day.</span></span> <span data-ttu-id="44478-119">您可以變更 hello hello 備份開始，但 hello 頻率和 hello （可指定備份 tooretain 的 hello 數目） 的保留，無法變更的時間。</span><span class="sxs-lookup"><span data-stu-id="44478-119">You can change hello time at which hello backup starts, but hello frequency and hello retention (which specifies hello number of backups tooretain) cannot be changed.</span></span> <span data-ttu-id="44478-120">在這些備份期間 hello 整個虛擬裝置會備份。</span><span class="sxs-lookup"><span data-stu-id="44478-120">During these backups, hello entire virtual device is backed up.</span></span> <span data-ttu-id="44478-121">這可能會無法對於 hello 裝置 hello 效能的影響，而且會影響 hello 裝置上部署的 hello 工作負載。</span><span class="sxs-lookup"><span data-stu-id="44478-121">This could potentially impact hello performance of hello device and affect hello workloads deployed on hello device.</span></span> <span data-ttu-id="44478-122">因此，建議您將這些備份排定在離峰時段。</span><span class="sxs-lookup"><span data-stu-id="44478-122">Therefore, we recommend that you schedule these backups for off-peak hours.</span></span>
 
- <span data-ttu-id="f082f-123">若要變更預設的備份開始時間，請在 [Azure 入口網站](https://portal.azure.com/)中執行下列步驟。</span><span class="sxs-lookup"><span data-stu-id="f082f-123">To change the default backup start time, perform the following steps in the [Azure portal](https://portal.azure.com/).</span></span>
+ <span data-ttu-id="44478-123">toochange hello 預設備份開始時間，請執行下列步驟在 hello hello [Azure 入口網站](https://portal.azure.com/)。</span><span class="sxs-lookup"><span data-stu-id="44478-123">toochange hello default backup start time, perform hello following steps in hello [Azure portal](https://portal.azure.com/).</span></span>
 
-#### <a name="to-change-the-start-time-for-the-default-backup-policy"></a><span data-ttu-id="f082f-124">變更預設備份原則的開始時間</span><span class="sxs-lookup"><span data-stu-id="f082f-124">To change the start time for the default backup policy</span></span>
+#### <a name="toochange-hello-start-time-for-hello-default-backup-policy"></a><span data-ttu-id="44478-124">toochange hello 的開始時間 hello 預設備份原則</span><span class="sxs-lookup"><span data-stu-id="44478-124">toochange hello start time for hello default backup policy</span></span>
 
-1. <span data-ttu-id="f082f-125">移至 [裝置]。</span><span class="sxs-lookup"><span data-stu-id="f082f-125">Go to **Devices**.</span></span> <span data-ttu-id="f082f-126">將會顯示已向您的 StorSimple 裝置管理員服務註冊的裝置清單。</span><span class="sxs-lookup"><span data-stu-id="f082f-126">The list of devices registered with your StorSimple Device Manager service will be displayed.</span></span> 
+1. <span data-ttu-id="44478-125">跳過**裝置**。</span><span class="sxs-lookup"><span data-stu-id="44478-125">Go too**Devices**.</span></span> <span data-ttu-id="44478-126">以您的 StorSimple 裝置 Manager 服務註冊的裝置 hello 清單隨即出現。</span><span class="sxs-lookup"><span data-stu-id="44478-126">hello list of devices registered with your StorSimple Device Manager service will be displayed.</span></span> 
    
-    ![瀏覽至裝置](./media/storsimple-virtual-array-backup/changebuschedule1.png)
+    ![瀏覽 toodevices](./media/storsimple-virtual-array-backup/changebuschedule1.png)
 
-2. <span data-ttu-id="f082f-128">選取並按一下您的裝置。</span><span class="sxs-lookup"><span data-stu-id="f082f-128">Select and click your device.</span></span> <span data-ttu-id="f082f-129">[設定] 刀鋒視窗隨即顯示。</span><span class="sxs-lookup"><span data-stu-id="f082f-129">The **Settings** blade will be displayed.</span></span> <span data-ttu-id="f082f-130">移至 [管理] > [備份原則]。</span><span class="sxs-lookup"><span data-stu-id="f082f-130">Go to **Manage > Backup policies**.</span></span>
+2. <span data-ttu-id="44478-128">選取並按一下您的裝置。</span><span class="sxs-lookup"><span data-stu-id="44478-128">Select and click your device.</span></span> <span data-ttu-id="44478-129">hello**設定**刀鋒視窗會顯示。</span><span class="sxs-lookup"><span data-stu-id="44478-129">hello **Settings** blade will be displayed.</span></span> <span data-ttu-id="44478-130">跳過**管理 > 的備份原則**。</span><span class="sxs-lookup"><span data-stu-id="44478-130">Go too**Manage > Backup policies**.</span></span>
    
     ![選取您的裝置](./media/storsimple-virtual-array-backup/changebuschedule2.png)
 
-3. <span data-ttu-id="f082f-132">在 [備份原則] 刀鋒視窗中，預設開始時間為 22:30。</span><span class="sxs-lookup"><span data-stu-id="f082f-132">In the **Backup policies** blade, the default start time is 22:30.</span></span> <span data-ttu-id="f082f-133">您可以在裝置時區中為每日排程指定新的開始時間。</span><span class="sxs-lookup"><span data-stu-id="f082f-133">You can specify the new start time for the daily schedule in device time zone.</span></span>
+3. <span data-ttu-id="44478-132">在 hello**的備份原則**刀鋒視窗中，hello 預設開始時間為 22:30。</span><span class="sxs-lookup"><span data-stu-id="44478-132">In hello **Backup policies** blade, hello default start time is 22:30.</span></span> <span data-ttu-id="44478-133">您可以指定 hello 每日排程 hello 新開始時間，以裝置時區為準。</span><span class="sxs-lookup"><span data-stu-id="44478-133">You can specify hello new start time for hello daily schedule in device time zone.</span></span>
    
-    ![瀏覽至備份原則](./media/storsimple-virtual-array-backup/changebuschedule5.png)
+    ![瀏覽 toobackup 原則](./media/storsimple-virtual-array-backup/changebuschedule5.png)
 
-4. <span data-ttu-id="f082f-135">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="f082f-135">Click **Save**.</span></span>
+4. <span data-ttu-id="44478-135">按一下 [儲存] 。</span><span class="sxs-lookup"><span data-stu-id="44478-135">Click **Save**.</span></span>
 
-### <a name="take-a-manual-backup"></a><span data-ttu-id="f082f-136">進行手動備份</span><span class="sxs-lookup"><span data-stu-id="f082f-136">Take a manual backup</span></span>
+### <a name="take-a-manual-backup"></a><span data-ttu-id="44478-136">進行手動備份</span><span class="sxs-lookup"><span data-stu-id="44478-136">Take a manual backup</span></span>
 
-<span data-ttu-id="f082f-137">除了排程備份，您隨時可以手動 (依需要) 備份裝置資料。</span><span class="sxs-lookup"><span data-stu-id="f082f-137">In addition to scheduled backups, you can take a manual (on-demand) backup of device data at any time.</span></span>
+<span data-ttu-id="44478-137">此外 tooscheduled 備份，您可以進行裝置資料手動 （視需要） 備份在任何時間。</span><span class="sxs-lookup"><span data-stu-id="44478-137">In addition tooscheduled backups, you can take a manual (on-demand) backup of device data at any time.</span></span>
 
-#### <a name="to-create-a-manual-backup"></a><span data-ttu-id="f082f-138">建立手動備份</span><span class="sxs-lookup"><span data-stu-id="f082f-138">To create a manual backup</span></span>
+#### <a name="toocreate-a-manual-backup"></a><span data-ttu-id="44478-138">toocreate 手動備份</span><span class="sxs-lookup"><span data-stu-id="44478-138">toocreate a manual backup</span></span>
 
-1. <span data-ttu-id="f082f-139">移至 [裝置]。</span><span class="sxs-lookup"><span data-stu-id="f082f-139">Go to **Devices**.</span></span> <span data-ttu-id="f082f-140">選取您的裝置，然後以滑鼠右鍵按一下選取的資料列中最右邊的 [...]。</span><span class="sxs-lookup"><span data-stu-id="f082f-140">Select your device and right-click **...** at the far right in the selected row.</span></span> <span data-ttu-id="f082f-141">從操作能表中，選取 [進行備份]。</span><span class="sxs-lookup"><span data-stu-id="f082f-141">From the context menu, select **Take backup**.</span></span>
+1. <span data-ttu-id="44478-139">跳過**裝置**。</span><span class="sxs-lookup"><span data-stu-id="44478-139">Go too**Devices**.</span></span> <span data-ttu-id="44478-140">選取您的裝置，然後以滑鼠右鍵按一下**...**在最右邊的 hello hello 選取的資料列中。</span><span class="sxs-lookup"><span data-stu-id="44478-140">Select your device and right-click **...** at hello far right in hello selected row.</span></span> <span data-ttu-id="44478-141">Hello 內容功能表中選取**取得備份**。</span><span class="sxs-lookup"><span data-stu-id="44478-141">From hello context menu, select **Take backup**.</span></span>
    
-    ![瀏覽至進行備份](./media/storsimple-virtual-array-backup/takebackup1m.png)
+    ![瀏覽 tootake 備份](./media/storsimple-virtual-array-backup/takebackup1m.png)
 
-2. <span data-ttu-id="f082f-143">在 [進行備份] 刀鋒視窗中，按一下 [進行備份]。</span><span class="sxs-lookup"><span data-stu-id="f082f-143">In the **Take backup** blade, click **Take backup**.</span></span> <span data-ttu-id="f082f-144">這樣會備份檔案伺服器上的所有共用，或 iSCSI 伺服器上的所有磁碟區。</span><span class="sxs-lookup"><span data-stu-id="f082f-144">This will backup all the shares on the file server or all the volumes on your iSCSI server.</span></span> 
+2. <span data-ttu-id="44478-143">在 hello**取得備份**刀鋒視窗中，按一下**取得備份**。</span><span class="sxs-lookup"><span data-stu-id="44478-143">In hello **Take backup** blade, click **Take backup**.</span></span> <span data-ttu-id="44478-144">這將會備份所有 hello hello 檔案伺服器上的共用或 iSCSI 伺服器上的所有 hello 磁碟區。</span><span class="sxs-lookup"><span data-stu-id="44478-144">This will backup all hello shares on hello file server or all hello volumes on your iSCSI server.</span></span> 
    
     ![正在啟動備份](./media/storsimple-virtual-array-backup/takebackup2m.png)
    
-    <span data-ttu-id="f082f-146">依需求備份開始執行，您會看到備份作業已啟動。</span><span class="sxs-lookup"><span data-stu-id="f082f-146">An on-demand backup starts and you see that a backup job has started.</span></span>
+    <span data-ttu-id="44478-146">依需求備份開始執行，您會看到備份作業已啟動。</span><span class="sxs-lookup"><span data-stu-id="44478-146">An on-demand backup starts and you see that a backup job has started.</span></span>
    
     ![正在啟動備份](./media/storsimple-virtual-array-backup/takebackup3m.png) 
    
-    <span data-ttu-id="f082f-148">作業順利完成後會再次通知您。</span><span class="sxs-lookup"><span data-stu-id="f082f-148">Once the job has successfully completed, you are notified again.</span></span> <span data-ttu-id="f082f-149">備份程序接著開始。</span><span class="sxs-lookup"><span data-stu-id="f082f-149">The backup process then starts.</span></span>
+    <span data-ttu-id="44478-148">一旦 hello 工作順利完成之後，會通知您一次。</span><span class="sxs-lookup"><span data-stu-id="44478-148">Once hello job has successfully completed, you are notified again.</span></span> <span data-ttu-id="44478-149">接著啟動 hello 備份程序。</span><span class="sxs-lookup"><span data-stu-id="44478-149">hello backup process then starts.</span></span>
    
     ![已建立備份工作](./media/storsimple-virtual-array-backup/takebackup4m.png)
 
-3. <span data-ttu-id="f082f-151">若要追蹤備份進度和查看作業詳細資料，請按一下通知。</span><span class="sxs-lookup"><span data-stu-id="f082f-151">To track the progress of the backups and look at the job details, click the notification.</span></span> <span data-ttu-id="f082f-152">這會帶您前往 [作業詳細資料]。</span><span class="sxs-lookup"><span data-stu-id="f082f-152">This takes you to  **Job details**.</span></span>
+3. <span data-ttu-id="44478-151">hello 備份及 hello 工作詳細資料，查看 tootrack hello 進度按一下 hello 通知。</span><span class="sxs-lookup"><span data-stu-id="44478-151">tootrack hello progress of hello backups and look at hello job details, click hello notification.</span></span> <span data-ttu-id="44478-152">這會帶您太**作業詳細資料**。</span><span class="sxs-lookup"><span data-stu-id="44478-152">This takes you too **Job details**.</span></span>
    
      ![備份作業詳細資料](./media/storsimple-virtual-array-backup/takebackup5m.png)
 
-4. <span data-ttu-id="f082f-154">備份完成後，請移至 [管理] > [備份目錄]。</span><span class="sxs-lookup"><span data-stu-id="f082f-154">After the backup is complete, go to **Management > Backup catalog**.</span></span> <span data-ttu-id="f082f-155">您會看到裝置上所有共用 (或磁碟區) 的雲端快照。</span><span class="sxs-lookup"><span data-stu-id="f082f-155">You will see a cloud snapshot of all the shares (or volumes) on your device.</span></span>
+4. <span data-ttu-id="44478-154">Hello 備份完成之後，請移太**管理 > 備份類別目錄**。</span><span class="sxs-lookup"><span data-stu-id="44478-154">After hello backup is complete, go too**Management > Backup catalog**.</span></span> <span data-ttu-id="44478-155">在您的裝置上，您會看到所有 hello 共用 （或磁碟區） 的雲端快照。</span><span class="sxs-lookup"><span data-stu-id="44478-155">You will see a cloud snapshot of all hello shares (or volumes) on your device.</span></span>
    
     ![已完成的備份](./media/storsimple-virtual-array-backup/takebackup19m.png) 
 
-## <a name="view-existing-backups"></a><span data-ttu-id="f082f-157">檢視現有的備份</span><span class="sxs-lookup"><span data-stu-id="f082f-157">View existing backups</span></span>
-<span data-ttu-id="f082f-158">若要檢視現有備份，請在 Azure 入口網站中執行下列步驟。</span><span class="sxs-lookup"><span data-stu-id="f082f-158">To view the existing backups, perform the following steps in the Azure portal.</span></span>
+## <a name="view-existing-backups"></a><span data-ttu-id="44478-157">檢視現有的備份</span><span class="sxs-lookup"><span data-stu-id="44478-157">View existing backups</span></span>
+<span data-ttu-id="44478-158">tooview hello 現有的備份，執行下列步驟在 hello Azure 入口網站中的 hello。</span><span class="sxs-lookup"><span data-stu-id="44478-158">tooview hello existing backups, perform hello following steps in hello Azure portal.</span></span>
 
-#### <a name="to-view-existing-backups"></a><span data-ttu-id="f082f-159">檢視現有備份</span><span class="sxs-lookup"><span data-stu-id="f082f-159">To view existing backups</span></span>
+#### <a name="tooview-existing-backups"></a><span data-ttu-id="44478-159">tooview 現有的備份</span><span class="sxs-lookup"><span data-stu-id="44478-159">tooview existing backups</span></span>
 
-1. <span data-ttu-id="f082f-160">移至 [裝置] 刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="f082f-160">Go to **Devices** blade.</span></span> <span data-ttu-id="f082f-161">選取並按一下您的裝置。</span><span class="sxs-lookup"><span data-stu-id="f082f-161">Select and click your device.</span></span> <span data-ttu-id="f082f-162">在 [設定] 刀鋒視窗中，移至 [管理] > [備份目錄]。</span><span class="sxs-lookup"><span data-stu-id="f082f-162">In the **Settings** blade, go to **Management > Backup Catalog**.</span></span>
+1. <span data-ttu-id="44478-160">跳過**裝置**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="44478-160">Go too**Devices** blade.</span></span> <span data-ttu-id="44478-161">選取並按一下您的裝置。</span><span class="sxs-lookup"><span data-stu-id="44478-161">Select and click your device.</span></span> <span data-ttu-id="44478-162">在 hello**設定**刀鋒視窗中，跳過**管理 > 備份類別目錄**。</span><span class="sxs-lookup"><span data-stu-id="44478-162">In hello **Settings** blade, go too**Management > Backup Catalog**.</span></span>
    
-    ![瀏覽至備份目錄](./media/storsimple-virtual-array-backup/viewbackups1.png)
-2. <span data-ttu-id="f082f-164">指定下列準則以用於篩選︰</span><span class="sxs-lookup"><span data-stu-id="f082f-164">Specify the following criteria to be used for filtering:</span></span>
+    ![瀏覽 toobackup 類別目錄](./media/storsimple-virtual-array-backup/viewbackups1.png)
+2. <span data-ttu-id="44478-164">指定下列用於篩選的準則 toobe hello:</span><span class="sxs-lookup"><span data-stu-id="44478-164">Specify hello following criteria toobe used for filtering:</span></span>
    
-    - <span data-ttu-id="f082f-165">**時間範圍** – 可以是 [過去 1 小時]、[過去 24 小時]、[過去 7 天]、[過去 30 天]、[過去一年] 和 [自訂日期]。</span><span class="sxs-lookup"><span data-stu-id="f082f-165">**Time range** – can be **Past 1 hour**, **Past 24 hours**, **Past 7 days**, **Past 30 days**, **Past year**, and **Custom date**.</span></span>
+    - <span data-ttu-id="44478-165">**時間範圍** – 可以是 [過去 1 小時]、[過去 24 小時]、[過去 7 天]、[過去 30 天]、[過去一年] 和 [自訂日期]。</span><span class="sxs-lookup"><span data-stu-id="44478-165">**Time range** – can be **Past 1 hour**, **Past 24 hours**, **Past 7 days**, **Past 30 days**, **Past year**, and **Custom date**.</span></span>
     
-    - <span data-ttu-id="f082f-166">**裝置** – 從已向 StorSimple 裝置管理員服務註冊的檔案伺服器或 iSCSI 伺服器清單中選擇。</span><span class="sxs-lookup"><span data-stu-id="f082f-166">**Devices** – select from the list of file servers or iSCSI servers registered with your StorSimple Device Manager service.</span></span>
+    - <span data-ttu-id="44478-166">**裝置**– 從檔案伺服器或與您的 StorSimple 裝置 Manager 服務登錄的 iSCSI 伺服器 hello 清單中選取。</span><span class="sxs-lookup"><span data-stu-id="44478-166">**Devices** – select from hello list of file servers or iSCSI servers registered with your StorSimple Device Manager service.</span></span>
    
-    - <span data-ttu-id="f082f-167">**已起始** – 可以自動地 [已排程] \(依備份原則) 或 [手動] 起始 (由您執行)。</span><span class="sxs-lookup"><span data-stu-id="f082f-167">**Initiated** – can be automatically **Scheduled** (by a backup policy) or **Manually** initiated (by you).</span></span>
+    - <span data-ttu-id="44478-167">**已起始** – 可以自動地 [已排程] \(依備份原則) 或 [手動] 起始 (由您執行)。</span><span class="sxs-lookup"><span data-stu-id="44478-167">**Initiated** – can be automatically **Scheduled** (by a backup policy) or **Manually** initiated (by you).</span></span>
    
     ![篩選備份](./media/storsimple-virtual-array-backup/viewbackups2.png)
 
-3. <span data-ttu-id="f082f-169">按一下 [Apply (套用)] 。</span><span class="sxs-lookup"><span data-stu-id="f082f-169">Click **Apply**.</span></span> <span data-ttu-id="f082f-170">已篩選的備份清單會顯示在 [備份目錄] 刀鋒視窗中。</span><span class="sxs-lookup"><span data-stu-id="f082f-170">The filtered list of backups is displayed in the **Backup catalog** blade.</span></span> <span data-ttu-id="f082f-171">請注意，永遠只會顯示 100 個備份項目。</span><span class="sxs-lookup"><span data-stu-id="f082f-171">Note only 100 backup elements can be displayed at a given time.</span></span>
+3. <span data-ttu-id="44478-169">按一下 [Apply (套用)] 。</span><span class="sxs-lookup"><span data-stu-id="44478-169">Click **Apply**.</span></span> <span data-ttu-id="44478-170">hello 篩選過的備份清單會顯示在 hello**備份類別目錄**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="44478-170">hello filtered list of backups is displayed in hello **Backup catalog** blade.</span></span> <span data-ttu-id="44478-171">請注意，永遠只會顯示 100 個備份項目。</span><span class="sxs-lookup"><span data-stu-id="44478-171">Note only 100 backup elements can be displayed at a given time.</span></span>
    
     ![更新備份目錄](./media/storsimple-virtual-array-backup/viewbackups3.png)
 
-## <a name="next-steps"></a><span data-ttu-id="f082f-173">後續步驟</span><span class="sxs-lookup"><span data-stu-id="f082f-173">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="44478-173">後續步驟</span><span class="sxs-lookup"><span data-stu-id="44478-173">Next steps</span></span>
 
-<span data-ttu-id="f082f-174">深入了解 [administering your StorSimple Virtual Array (管理 StorSimple Virtual Array)](storsimple-ova-web-ui-admin.md)。</span><span class="sxs-lookup"><span data-stu-id="f082f-174">Learn more about [administering your StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).</span></span>
+<span data-ttu-id="44478-174">深入了解 [administering your StorSimple Virtual Array (管理 StorSimple Virtual Array)](storsimple-ova-web-ui-admin.md)。</span><span class="sxs-lookup"><span data-stu-id="44478-174">Learn more about [administering your StorSimple Virtual Array](storsimple-ova-web-ui-admin.md).</span></span>
 

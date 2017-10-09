@@ -1,0 +1,97 @@
+---
+title: "自訂網域 tooAzure AD aaaAdd |Microsoft 文件"
+description: "說明如何 tooadd Azure Active Directory 中的自訂網域。"
+services: active-directory
+author: jeffgilb
+manager: femila
+ms.assetid: 0a90c3c5-4e0e-43bd-a606-6ee00f163038
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 08/10/2017
+ms.author: jeffgilb
+ms.reviewer: jsnow
+ms.custom: it-pro
+ms.openlocfilehash: 878cecad364ec47f1c6755d742aaccbce627dc5e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/06/2017
+---
+# <a name="quickstart-add-a-custom-domain-name-tooazure-active-directory"></a><span data-ttu-id="2f635-103">快速入門： 新增自訂網域名稱 tooAzure Active Directory</span><span class="sxs-lookup"><span data-stu-id="2f635-103">Quickstart: Add a custom domain name tooAzure Active Directory</span></span>
+
+<span data-ttu-id="2f635-104">每個 Azure AD 目錄隨附 hello 形式的初始網域名稱*domainname*。 onmicrosoft.com。 hello 初始網域名稱無法變更或刪除，但是您可以加入您公司網域名稱 tooAzure AD 以及。</span><span class="sxs-lookup"><span data-stu-id="2f635-104">Every Azure AD directory comes with an initial domain name in hello form of *domainname*.onmicrosoft.com. hello initial domain name cannot be changed or deleted, but you can add your corporate domain name tooAzure AD as well.</span></span> <span data-ttu-id="2f635-105">例如，您的組織可能有其他網域名稱使用 toodo 商務和使用者登入使用您的公司網域名稱。</span><span class="sxs-lookup"><span data-stu-id="2f635-105">For example, your organization probably has other domain names used toodo business and users who sign in using your corporate domain name.</span></span> <span data-ttu-id="2f635-106">加入自訂網域名稱 tooAzure AD 可讓您在 hello 目錄 tooassign 使用者名稱，是很熟悉 tooyour 的使用者，例如 'alice@contoso.com。 '</span><span class="sxs-lookup"><span data-stu-id="2f635-106">Adding custom domain names tooAzure AD allows you tooassign user names in hello directory that are familiar tooyour users, such as ‘alice@contoso.com.’</span></span> <span data-ttu-id="2f635-107">而不是 'alice@*<domain name>*.onmicrosoft.com'。</span><span class="sxs-lookup"><span data-stu-id="2f635-107">instead of 'alice@*<domain name>*.onmicrosoft.com'.</span></span> <span data-ttu-id="2f635-108">hello 程序很簡單：</span><span class="sxs-lookup"><span data-stu-id="2f635-108">hello process is simple:</span></span>
+
+1. <span data-ttu-id="2f635-109">新增 hello 自訂網域名稱 tooyour 目錄</span><span class="sxs-lookup"><span data-stu-id="2f635-109">Add hello custom domain name tooyour directory</span></span>
+2. <span data-ttu-id="2f635-110">在 hello 網域名稱註冊機構新增 hello 網域名稱的 DNS 項目</span><span class="sxs-lookup"><span data-stu-id="2f635-110">Add a DNS entry for hello domain name at hello domain name registrar</span></span>
+3. <span data-ttu-id="2f635-111">在 Azure AD 中驗證 hello 自訂網域名稱</span><span class="sxs-lookup"><span data-stu-id="2f635-111">Verify hello custom domain name in Azure AD</span></span>
+
+## <a name="add-your-custom-domain"></a><span data-ttu-id="2f635-112">新增自訂網域</span><span class="sxs-lookup"><span data-stu-id="2f635-112">Add your custom domain</span></span>
+1. <span data-ttu-id="2f635-113">登入 toohello [Azure 入口網站](https://portal.azure.com)hello 目錄的全域管理員的帳戶。</span><span class="sxs-lookup"><span data-stu-id="2f635-113">Sign in toohello [Azure portal](https://portal.azure.com) with an account that's a global admin for hello directory.</span></span>
+2. <span data-ttu-id="2f635-114">選取**更多服務**，輸入**Azure Active Directory**在 hello 文字方塊中，然後選取  **Enter**。</span><span class="sxs-lookup"><span data-stu-id="2f635-114">Select **More services**, enter **Azure Active Directory** in hello text box, and then select **Enter**.</span></span>
+   
+   ![開啟使用者管理](./media/active-directory-domains-add-azure-portal/user-management.png)
+3. <span data-ttu-id="2f635-116">在 hello***目錄名稱***刀鋒視窗中，選取**網域名稱**。</span><span class="sxs-lookup"><span data-stu-id="2f635-116">On hello ***directory-name*** blade, select **Domain names**.</span></span>
+4. <span data-ttu-id="2f635-117">在 hello ***目錄名稱*-網域名稱**刀鋒視窗中，選取 hello**新增**命令。</span><span class="sxs-lookup"><span data-stu-id="2f635-117">On hello ***directory-name* - Domain names** blade, select hello **Add** command.</span></span>
+   
+   ![選取 hello Add 命令](./media/active-directory-domains-add-azure-portal/add-command.png)
+5. <span data-ttu-id="2f635-119">在 hello**網域名稱**刀鋒視窗中，在 hello 方塊中，例如 'contoso.com'，輸入 hello 您的自訂網域名稱，然後選取**新增網域**。</span><span class="sxs-lookup"><span data-stu-id="2f635-119">On hello **Domain name** blade, enter hello name of your custom domain in hello box, such as 'contoso.com', and then select **Add Domain**.</span></span> <span data-ttu-id="2f635-120">為確定 tooinclude hello.com、.net 或其他最上層的延伸模組。</span><span class="sxs-lookup"><span data-stu-id="2f635-120">Be sure tooinclude hello .com, .net, or other top-level extension.</span></span>
+6. <span data-ttu-id="2f635-121">在 hello***網域名稱***刀鋒視窗 （以您的自訂網域名稱在 hello 標題），取得您的組織擁有 hello 自訂網域名稱的 DNS 項目資訊 toouse tooverify hello。</span><span class="sxs-lookup"><span data-stu-id="2f635-121">On hello ***domain name*** blade (with your custom domain name in hello title), get hello DNS entry information toouse tooverify that your organization owns hello custom domain name.</span></span>
+   
+   ![取得 DNS 項目資訊](./media/active-directory-domains-add-azure-portal/get-dns-info.png)
+
+> [!TIP]
+> <span data-ttu-id="2f635-123">如果您計劃 toofederate 您在內部部署 Windows Server AD 與 Azure AD，則您需要 tooselect hello**我計劃 tooconfigure 這個網域的單一登入使用我的本機 Active Directory**核取方塊，當您執行 hello Azure AD Connect 工具toosynchronize 您的目錄。</span><span class="sxs-lookup"><span data-stu-id="2f635-123">If you plan toofederate your on-premises Windows Server AD with Azure AD, then you need tooselect hello **I plan tooconfigure this domain for single sign-on with my local Active Directory** checkbox when you run hello Azure AD Connect tool toosynchronize your directories.</span></span> <span data-ttu-id="2f635-124">您也需要 tooregister hello 相同的網域名稱，您選取與您的內部部署目錄中 hello 聯盟**Azure AD 網域**hello 精靈中的步驟。</span><span class="sxs-lookup"><span data-stu-id="2f635-124">You also need tooregister hello same domain name you select for federating with your on-premises directory in hello **Azure AD Domain** step in hello wizard.</span></span> <span data-ttu-id="2f635-125">您可以看到哪些該步驟中看起來像 hello 精靈[這些指示中](./connect/active-directory-aadconnect-get-started-custom.md#verify-the-azure-ad-domain-selected-for-federation)。</span><span class="sxs-lookup"><span data-stu-id="2f635-125">You can see what that step in hello wizard looks like [in these instructions](./connect/active-directory-aadconnect-get-started-custom.md#verify-the-azure-ad-domain-selected-for-federation).</span></span> <span data-ttu-id="2f635-126">如果您沒有 hello Azure AD Connect 工具，您可以[在此處下載](http://go.microsoft.com/fwlink/?LinkId=615771)。</span><span class="sxs-lookup"><span data-stu-id="2f635-126">If you do not have hello Azure AD Connect tool, you can [download it here](http://go.microsoft.com/fwlink/?LinkId=615771).</span></span>
+
+<span data-ttu-id="2f635-127">既然您已經加入 hello 網域名稱，Azure AD 必須確認您的組織擁有 hello 網域名稱。</span><span class="sxs-lookup"><span data-stu-id="2f635-127">Now that you've added hello domain name, Azure AD must verify that your organization owns hello domain name.</span></span> <span data-ttu-id="2f635-128">Azure AD 執行這項驗證之前，您必須在 hello hello 網域名稱的 DNS 區域檔案中新增 DNS 項目。</span><span class="sxs-lookup"><span data-stu-id="2f635-128">Before Azure AD can perform this verification, you must add a DNS entry in hello DNS zone file for hello domain name.</span></span> <span data-ttu-id="2f635-129">Hello hello 網域名稱的網域名稱註冊機構的網站上執行此工作。</span><span class="sxs-lookup"><span data-stu-id="2f635-129">This task is performed at hello website for domain name registrar for hello domain name.</span></span>
+
+## <a name="add-hello-dns-entry-at-hello-domain-name-registrar-for-hello-domain"></a><span data-ttu-id="2f635-130">在 hello hello 網域的網域名稱註冊機構新增 hello DNS 項目</span><span class="sxs-lookup"><span data-stu-id="2f635-130">Add hello DNS entry at hello domain name registrar for hello domain</span></span>
+<span data-ttu-id="2f635-131">hello 您的自訂網域名稱與 Azure AD 下一個步驟 toouse 是 tooupdate hello DNS 區域檔案中的 hello 網域。</span><span class="sxs-lookup"><span data-stu-id="2f635-131">hello next step toouse your custom domain name with Azure AD is tooupdate hello DNS zone file for hello domain.</span></span> <span data-ttu-id="2f635-132">Azure AD 接著可確認您的組織擁有 hello 自訂網域名稱。</span><span class="sxs-lookup"><span data-stu-id="2f635-132">Azure AD can then verify that your organization owns hello custom domain name.</span></span>
+
+1. <span data-ttu-id="2f635-133">登入 toohello hello 網域的網域名稱註冊機構。</span><span class="sxs-lookup"><span data-stu-id="2f635-133">Sign in toohello domain name registrar for hello domain.</span></span> <span data-ttu-id="2f635-134">如果您沒有存取 tooupdate hello DNS 項目，請要求 hello 個人或團隊具有此存取 toocomplete 步驟 2 和 toolet 您知道它完成時。</span><span class="sxs-lookup"><span data-stu-id="2f635-134">If you don't have access tooupdate hello DNS entry, ask hello person or team who has this access toocomplete step 2 and toolet you know when it is completed.</span></span>
+2. <span data-ttu-id="2f635-135">加入 Azure ad 的 hello DNS 項目提供 tooyou，以更新 hello hello 網域的 DNS 區域檔案。</span><span class="sxs-lookup"><span data-stu-id="2f635-135">Update hello DNS zone file for hello domain by adding hello DNS entry provided tooyou by Azure AD.</span></span> <span data-ttu-id="2f635-136">這個 DNS 項目可讓 Azure AD tooverify hello 網域您擁有權。</span><span class="sxs-lookup"><span data-stu-id="2f635-136">This DNS entry enables Azure AD tooverify your ownership of hello domain.</span></span> <span data-ttu-id="2f635-137">hello DNS 項目不會變更任何行為，例如郵件路由或 web 裝載。</span><span class="sxs-lookup"><span data-stu-id="2f635-137">hello DNS entry doesn't change any behaviors such as mail routing or web hosting.</span></span>
+
+<span data-ttu-id="2f635-138">這個新增的 hello DNS 項目說明，請參閱[指示在常用的 DNS 註冊機構加入 DNS 項目](https://support.office.com/article/Create-DNS-records-for-Office-365-when-you-manage-your-DNS-records-b0f3fdca-8a80-4e8e-9ef3-61e8a2a9ab23/)</span><span class="sxs-lookup"><span data-stu-id="2f635-138">For help with this adding hello DNS entry, read [Instructions for adding a DNS entry at popular DNS registrars](https://support.office.com/article/Create-DNS-records-for-Office-365-when-you-manage-your-DNS-records-b0f3fdca-8a80-4e8e-9ef3-61e8a2a9ab23/)</span></span>
+
+## <a name="verify-hello-domain-name-with-azure-ad"></a><span data-ttu-id="2f635-139">驗證 Azure AD 與 hello 網域名稱</span><span class="sxs-lookup"><span data-stu-id="2f635-139">Verify hello domain name with Azure AD</span></span>
+<span data-ttu-id="2f635-140">一旦您加入 hello DNS 項目，您已準備好 tooverify hello 網域名稱與 Azure AD。</span><span class="sxs-lookup"><span data-stu-id="2f635-140">Once you have added hello DNS entry, you are ready tooverify hello domain name with Azure AD.</span></span>
+
+<span data-ttu-id="2f635-141">Hello DNS 記錄都已傳播後，才可以驗證網域名稱。</span><span class="sxs-lookup"><span data-stu-id="2f635-141">A domain name can be verified only after hello DNS records have propagated.</span></span> <span data-ttu-id="2f635-142">通常此傳播只需要幾秒鐘，但有時可能需要一個小時以上。</span><span class="sxs-lookup"><span data-stu-id="2f635-142">This propagation often takes only seconds, but it can sometimes take an hour or more.</span></span> <span data-ttu-id="2f635-143">如果驗證無法運作 hello 第一次，再試一次。</span><span class="sxs-lookup"><span data-stu-id="2f635-143">If verification doesn’t work hello first time, try again later.</span></span>
+
+1. <span data-ttu-id="2f635-144">登入 toohello [Azure 入口網站](https://portal.azure.com)hello 目錄的全域管理員的帳戶。</span><span class="sxs-lookup"><span data-stu-id="2f635-144">Sign in toohello [Azure portal](https://portal.azure.com) with an account that's a global admin for hello directory.</span></span>
+2. <span data-ttu-id="2f635-145">選取**瀏覽**，在 [hello] 文字方塊中，輸入使用者管理，然後選取**Enter**。</span><span class="sxs-lookup"><span data-stu-id="2f635-145">Select **Browse**, enter User Management in hello text box, and then select **Enter**.</span></span>
+   
+   ![開啟使用者管理](./media/active-directory-domains-add-azure-portal/user-management.png)
+3. <span data-ttu-id="2f635-147">在 hello**使用者管理的網域名稱**刀鋒視窗中，您想 tooverify 選取 hello 未經驗證的網域名稱。</span><span class="sxs-lookup"><span data-stu-id="2f635-147">On hello **User management - Domain names** blade, select hello unverified domain name that you want tooverify.</span></span>
+4. <span data-ttu-id="2f635-148">在 hello***網域名稱***刀鋒視窗 （也就是 hello 刀鋒視窗中開啟 hello 標題中具有新的網域名稱），選取**確認**toocomplete hello 驗證。</span><span class="sxs-lookup"><span data-stu-id="2f635-148">On hello ***domain name*** blade (that is, hello blade that opens that has your new domain name in hello title), select **Verify** toocomplete hello verification.</span></span>
+
+> [!TIP]
+> <span data-ttu-id="2f635-149">您可以加總 too900 自訂網域名稱，但只能有一個[設為您的 Azure AD 目錄的 hello 主要網域名稱](active-directory-domains-manage-azure-portal.md#set-the-primary-domain-name-for-your-azure-ad-directory)用於依預設，當您建立新帳戶。</span><span class="sxs-lookup"><span data-stu-id="2f635-149">You can add up too900 custom domain names, but only one can be [set as hello primary domain name for your Azure AD directory](active-directory-domains-manage-azure-portal.md#set-the-primary-domain-name-for-your-azure-ad-directory) used by default when you create new accounts.</span></span>
+
+<span data-ttu-id="2f635-150">現在您可以建立雲端式使用者帳戶，或者使用您的自訂網域名稱，更新先前已同步處理的內部部署使用者帳戶資訊。</span><span class="sxs-lookup"><span data-stu-id="2f635-150">Now you can create cloud-based user accounts, or update previously synchronized on-premises user account information, using your custom domain name.</span></span> <span data-ttu-id="2f635-151">您也可以修改先前同步處理的使用者帳戶網域尾碼資訊使用[Microsoft PowerShell](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains)或 hello [Graph API](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations)。</span><span class="sxs-lookup"><span data-stu-id="2f635-151">You can also modify previously synchronized user account domain suffix information using [Microsoft PowerShell](https://msdn.microsoft.com/library/azure/e1ef403f-3347-4409-8f46-d72dafa116e0#BKMK_ManageDomains) or hello [Graph API](https://msdn.microsoft.com/Library/Azure/Ad/Graph/api/domains-operations).</span></span>
+
+## <a name="troubleshooting"></a><span data-ttu-id="2f635-152">疑難排解</span><span class="sxs-lookup"><span data-stu-id="2f635-152">Troubleshooting</span></span>
+<span data-ttu-id="2f635-153">如果您無法驗證自訂網域名稱，請嘗試下列疑難排解步驟的 hello:</span><span class="sxs-lookup"><span data-stu-id="2f635-153">If you can't verify a custom domain name, try hello following troubleshooting steps:</span></span>
+
+1. <span data-ttu-id="2f635-154">**等候一小時**。</span><span class="sxs-lookup"><span data-stu-id="2f635-154">**Wait an hour**.</span></span> <span data-ttu-id="2f635-155">Azure AD 驗證 hello 網域之前 toopropagate 需要 DNS 記錄。</span><span class="sxs-lookup"><span data-stu-id="2f635-155">DNS records need toopropagate before Azure AD can verify hello domain.</span></span> <span data-ttu-id="2f635-156">這可能需要一個小時以上。</span><span class="sxs-lookup"><span data-stu-id="2f635-156">This can take an hour or more.</span></span>
+2. <span data-ttu-id="2f635-157">**確定的 hello 輸入 DNS 記錄，並確認它是否正確**。</span><span class="sxs-lookup"><span data-stu-id="2f635-157">**Ensure hello DNS record was entered, and that it is correct**.</span></span> <span data-ttu-id="2f635-158">完成此步驟在 hello hello hello 網域的網域名稱註冊機構的網站。</span><span class="sxs-lookup"><span data-stu-id="2f635-158">Complete this step at hello website for hello domain name registrar for hello domain.</span></span> <span data-ttu-id="2f635-159">Azure AD 無法驗證 hello 網域名稱，如果 hello DNS 項目不存在於 hello DNS 區域檔案，或如果不是完全相符 hello DNS 項目與 Azure AD 提供給您。</span><span class="sxs-lookup"><span data-stu-id="2f635-159">Azure AD cannot verify hello domain name if hello DNS entry is not present in hello DNS zone file, or if it is not an exact match with hello DNS entry that Azure AD provided you.</span></span> <span data-ttu-id="2f635-160">如果您沒有在 hello 網域名稱註冊機構的 hello 網域存取 tooupdate DNS 記錄，與 hello 人員或小組在您組織內具有此存取權，共用 hello DNS 項目，並要求他們 tooadd hello DNS 項目。</span><span class="sxs-lookup"><span data-stu-id="2f635-160">If you do not have access tooupdate DNS records for hello domain at hello domain name registrar, share hello DNS entry with hello person or team at your organization who has this access, and ask them tooadd hello DNS entry.</span></span>
+3. <span data-ttu-id="2f635-161">**從另一個目錄中刪除 hello 網域名稱，在 Azure AD 中**。</span><span class="sxs-lookup"><span data-stu-id="2f635-161">**Delete hello domain name from another directory in Azure AD**.</span></span> <span data-ttu-id="2f635-162">網域名稱只能在單一目錄中確認。</span><span class="sxs-lookup"><span data-stu-id="2f635-162">A domain name can be verified in only a single directory.</span></span> <span data-ttu-id="2f635-163">如果網域名稱先前在另一個目錄中確認過，則必須先在那裡將其刪除後，才可在新的目錄中確認。</span><span class="sxs-lookup"><span data-stu-id="2f635-163">If a domain name was previously verified in another directory, it must be deleted there before it can be verified in your new directory.</span></span> <span data-ttu-id="2f635-164">刪除網域名稱的相關 toolearn 讀取[管理自訂網域名稱](active-directory-domains-manage-azure-portal.md)。</span><span class="sxs-lookup"><span data-stu-id="2f635-164">toolearn about deleting domain names, read [Manage custom domain names](active-directory-domains-manage-azure-portal.md).</span></span>    
+
+## <a name="add-more-custom-domain-names"></a><span data-ttu-id="2f635-165">新增更多的自訂網域名稱</span><span class="sxs-lookup"><span data-stu-id="2f635-165">Add more custom domain names</span></span>
+<span data-ttu-id="2f635-166">如果您的組織使用多個自訂網域名稱，例如 'contoso.com' 和 'contosobank.com'，您可以加總 too900 更藉由每個重複本文中的 hello 步驟。</span><span class="sxs-lookup"><span data-stu-id="2f635-166">If your organization uses more than one custom domain name, such as ‘contoso.com’ and ‘contosobank.com’, you can add up too900 more by repeating hello steps in this article for each.</span></span>
+
+### <a name="learn-more"></a><span data-ttu-id="2f635-167">詳細資訊</span><span class="sxs-lookup"><span data-stu-id="2f635-167">Learn more</span></span>
+[<span data-ttu-id="2f635-168">Azure AD 中自訂網域名稱的概念式概觀</span><span class="sxs-lookup"><span data-stu-id="2f635-168">Conceptual overview of custom domain names in Azure AD</span></span>](active-directory-add-domain-concepts.md)
+
+[<span data-ttu-id="2f635-169">管理自訂網域名稱</span><span class="sxs-lookup"><span data-stu-id="2f635-169">Manage custom domain names</span></span>](active-directory-domains-manage-azure-portal.md)
+
+
+## <a name="next-steps"></a><span data-ttu-id="2f635-170">後續步驟</span><span class="sxs-lookup"><span data-stu-id="2f635-170">Next steps</span></span>
+<span data-ttu-id="2f635-171">本快速入門中，您學到如何 tooadd 自訂網域 tooAzure AD。</span><span class="sxs-lookup"><span data-stu-id="2f635-171">In this quickstart, you’ve learned how tooadd a custom domain tooAzure AD.</span></span> 
+
+<span data-ttu-id="2f635-172">您可以使用 hello hello Azure 入口網站中的下列 Azure AD 中的連結 tooadd 新的自訂網域。</span><span class="sxs-lookup"><span data-stu-id="2f635-172">You can use hello following link tooadd a new custom domain in Azure AD from hello Azure portal.</span></span>
+
+> [!div class="nextstepaction"]
+> [<span data-ttu-id="2f635-173">新增自訂網域</span><span class="sxs-lookup"><span data-stu-id="2f635-173">Add a custom domain</span></span>](https://aad.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/QuickStart) 

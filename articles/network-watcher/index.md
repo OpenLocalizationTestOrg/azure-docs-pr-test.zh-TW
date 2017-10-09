@@ -1,15 +1,15 @@
 ---
 layout: LandingPage
-description: "瞭解如何使用網路監看員來監視與診斷網路層級的條件。"
-ms.openlocfilehash: 3c390494f5e86eb82a3011b962217798feff5ca2
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+description: "深入了解如何 toouse 網路監看員 toomonitor 並診斷在網路層級的條件。"
+ms.openlocfilehash: 6c5fcdb2e5095eaceb759e45ae3d35875a0c3fc7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-network-watcher-documentation"></a>Azure 網路監看員文件
 
-了解如何使用網路監看員，這是一項可讓您監視與診斷網路案例層級條件的服務。 教學課程、API 參考和其他文件會示範如何使用類似封包擷取、拓撲等工具，取得您 Azure 網路的深入見解。
+深入了解如何 toouse 網路監看員，可讓您 toomonitor 並診斷在網路案例層級的服務。 教學課程、 應用程式開發介面參考和其他文件會顯示您獲得深入了解您的 Azure 網路工具如何太喜歡封包擷取、 拓撲，以及更多。
 
 <ul class="panelContent cardsFTitle">
     <li>

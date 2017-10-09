@@ -1,6 +1,6 @@
 ---
-title: "Azure 搜尋服務中的索引工具 | Microsoft Docs"
-description: "將 Azure SQL Database、Azure Cosmos DB 或 Azure 儲存體耙梳，以擷取可搜尋的資料並填入 Azure 搜尋服務索引。"
+title: "在 Azure 搜尋 aaaIndexers |Microsoft 文件"
+description: "搜耙 Azure SQL database、 Azure Cosmos DB 或 Azure 儲存體 tooextract 可搜尋的資料，然後填入 Azure 搜尋索引。"
 services: search
 documentationcenter: 
 author: HeidiSteen
@@ -15,11 +15,11 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 05/01/2017
 ms.author: heidist
-ms.openlocfilehash: 52b154895fca9fc465a9c6cc2fb6bf2d5384b057
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a816252ec5d6032491a12651c05cb1fe77d3d1a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="indexers-in-azure-search"></a>Azure 搜尋服務中的索引子
 > [!div class="op_single_selector"]
@@ -33,9 +33,9 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Azure 搜尋服務中的 **索引子** 是一種編目程式，其可從外部資料來源擷取可搜尋的資料和中繼資料，並根據索引和資料來源之間的欄位對欄位對應填入索引。 這種方法有時稱為「提取模型」，因為您不需要撰寫任何程式碼來將資料推送至索引，服務就會自行提取資料。
+**索引子**在 Azure 搜尋，會從外部資料來源中擷取可搜尋的資料和中繼資料並填入索引編目程式根據 hello 索引與資料來源之間的欄位的對應。 這個方法有時是參照的 tooas '提取模型'，因為在 hello 服務提取資料中的不需要您 toowrite 資料 tooan 索引推播通知的任何程式碼。
 
-您可以使用索引子做為擷取資料的唯一手段，或結合使用多項技術 (包含使用索引子) 來僅載入索引中的某些欄位。
+您可以使用索引子，因為 hello 唯一的方法，用於擷取資料，或使用，包括載入只是某些索引中的 hello 欄位的索引子的 hello 使用的技術的組合。
 
 您可以依需要執行索引子，也可以依週期性的資料重新整理排程，最多每十五分鐘執行一次。 若想更頻繁地進行更新，則 Azure 搜尋服務和外部資料來源中都必須要有可同時更新資料的發送模型。
 
@@ -47,30 +47,30 @@ Azure 搜尋服務中的 **索引子** 是一種編目程式，其可從外部�
 * [.NET SDK](https://msdn.microsoft.com/library/azure/microsoft.azure.search.iindexersoperations.aspx)
 
 ## <a name="basic-configuration-steps"></a>基本組態步驟
-索引子可以提供資料來源特有的功能。 在這方面，索引子或資料來源組態的某些層面會因索引子類型而所有不同。 不過，所有索引子都有共用的的基本組成和需求。 下文涵蓋所有的索引子的通用步驟。
+索引子可以提供唯一 toohello 資料來源的功能。 在這方面，索引子或資料來源組態的某些層面會因索引子類型而所有不同。 不過，所有索引子共用 hello 相同基本的構成要素和需求。 以下涵蓋索引子，這種常見 tooall 步驟。
 
 ### <a name="step-1-create-an-index"></a>步驟 1：建立索引
-索引子能將有關資料擷取的某些工作自動化，不過不包括建立索引。 若要滿足必要條件，您必須擁有預先定義的索引，且欄位必須與外部資料來源中的欄位相符。 如需建構索引的詳細資訊，請參閱 [建立索引 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn798941.aspx)。
+索引子將用來自動化某些工作相關的 toodata 擷取，但建立索引不是其中一個。 若要滿足必要條件，您必須擁有預先定義的索引，且欄位必須與外部資料來源中的欄位相符。 如需建構索引的詳細資訊，請參閱 [建立索引 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn798941.aspx)。
 
 ### <a name="step-2-create-a-data-source"></a>步驟 2：建立資料來源
-索引子會從保有連接字串等資訊的 **資料來源** 提取資料。 目前支援下列資料來源：
+索引子會從保有連接字串等資訊的 **資料來源** 提取資料。 目前支援下列資料來源的 hello:
 
 * [Azure SQL Database 或 Azure 虛擬機器中的 SQL Server](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
 * [Azure Cosmos DB](search-howto-index-documentdb.md)
-* [Azure Blob 儲存體](search-howto-indexing-azure-blob-storage.md)可用來擷取 PDF、Office 文件、HTML 或 XML 中的文字
+* [Azure Blob 儲存體](search-howto-indexing-azure-blob-storage.md)，使用 PDF、 Office 文件、 HTML 或 XML tooextract 文字
 * [Azure 資料表儲存體](search-howto-indexing-azure-tables.md)
 
-資料來源和使用資料來源的索引子是各自獨立設定與管理，這表示多個索引子可使用同一個資料來源來一次載入多個索引。
+資料來源設定及與 hello 索引子使用它們一次一個以上的索引的也就是說，資料來源可供多個索引子 tooload 分開管理。
 
-### <a name="step-3create-and-schedule-the-indexer"></a>步驟 3：建立和排程索引子
-索引子定義是指定索引、資料來源和排程的結構。 索引子可以參考另一個服務的資料來源，只要該資料來源來自相同訂用帳戶即可。 如需建構索引的詳細資訊，請參閱 [建立索引子 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn946899.aspx)。
+### <a name="step-3create-and-schedule-hello-indexer"></a>步驟 3： 建立和排程 hello 索引子
+hello 索引子定義是指定 hello 索引、 資料來源和排程的建構。 索引子可以參考資料來源從另一個服務，只要該資料來源是來自 hello 相同訂用帳戶。 如需建構索引的詳細資訊，請參閱 [建立索引子 (Azure 搜尋服務 REST API)](https://msdn.microsoft.com/library/azure/dn946899.aspx)。
 
 ## <a name="next-steps"></a>後續步驟
-既然您已瞭解基本概念，下一個步驟是檢閱需求和每個資料來源類型特有的工作。
+現在您擁有 hello 的基本概念，hello 下一個步驟是 tooreview 需求和工作特定 tooeach 資料來源類型。
 
 * [Azure SQL Database 或 Azure 虛擬機器中的 SQL Server](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)
 * [Azure Cosmos DB](search-howto-index-documentdb.md)
-* [Azure Blob 儲存體](search-howto-indexing-azure-blob-storage.md)可用來擷取 PDF、Office 文件、HTML 或 XML 中的文字
+* [Azure Blob 儲存體](search-howto-indexing-azure-blob-storage.md)，使用 PDF、 Office 文件、 HTML 或 XML tooextract 文字
 * [Azure 資料表儲存體](search-howto-indexing-azure-tables.md)
-* [使用 Azure 搜尋服務 Blob 索引子編製索引 CSV Blob](search-howto-index-csv-blobs.md)
+* [索引使用 hello Azure 搜尋 Blob 索引子的 CSV blob](search-howto-index-csv-blobs.md)
 * [使用 Azure 搜尋服務 Blob 索引子編製索引 JSON Blob](search-howto-index-json-blobs.md)

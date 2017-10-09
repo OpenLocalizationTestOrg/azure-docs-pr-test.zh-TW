@@ -1,6 +1,6 @@
 ---
-title: "安裝及設定 Ansible 以搭配 Azure 虛擬機器使用 | Microsoft Docs"
-description: "了解如何安裝及設定 Ansible，以便管理 Ubuntu、CentOS 和 SLES 上的 Azure 資源"
+title: "aaaInstall 和設定 Azure 虛擬機器搭配使用 Ansible |Microsoft 文件"
+description: "深入了解如何 tooinstall 和設定來管理 Azure 資源上 Ubuntu、 CentOS 和 SLES Ansible"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -15,33 +15,33 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/25/2017
 ms.author: iainfou
-ms.openlocfilehash: 52b763274437961dccfc862c8a45fbd57ea9fc4e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b33d1893909b6134a5474617c9af2d6e4f627c05
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="install-and-configure-ansible-to-manage-virtual-machines-in-azure"></a><span data-ttu-id="5d59e-103">安裝及設定 Ansible 來管理 Azure 中的虛擬機器</span><span class="sxs-lookup"><span data-stu-id="5d59e-103">Install and configure Ansible to manage virtual machines in Azure</span></span>
-<span data-ttu-id="5d59e-104">本文詳細說明如何針對某些最常見的 Linux 發行版，安裝 Ansible 和必要的 Azure Python SDK 模組。</span><span class="sxs-lookup"><span data-stu-id="5d59e-104">This article details how to install Ansible and required Azure Python SDK modules for some of the most common Linux distros.</span></span> <span data-ttu-id="5d59e-105">您可以配合特定的平台調整安裝的套件，來將 Ansible 安裝在其他發行版上。</span><span class="sxs-lookup"><span data-stu-id="5d59e-105">You can install Ansible on other distros by adjusting the installed packages to fit your particular platform.</span></span> <span data-ttu-id="5d59e-106">為了以安全的方式建立 Azure 資源，您也將了解如何建立及定義 Ansible 所要使用的認證。</span><span class="sxs-lookup"><span data-stu-id="5d59e-106">To create Azure resources in a secure manner, you also learn how to create and define credentials for Ansible to use.</span></span> 
+# <a name="install-and-configure-ansible-toomanage-virtual-machines-in-azure"></a><span data-ttu-id="d77bc-103">安裝並在 Azure 中設定 Ansible toomanage 虛擬機器</span><span class="sxs-lookup"><span data-stu-id="d77bc-103">Install and configure Ansible toomanage virtual machines in Azure</span></span>
+<span data-ttu-id="d77bc-104">這篇文章說明如何 tooinstall Ansible 和必要的 Azure Python SDK 模組的某些 hello 最常見的 Linux 散發版本。</span><span class="sxs-lookup"><span data-stu-id="d77bc-104">This article details how tooinstall Ansible and required Azure Python SDK modules for some of hello most common Linux distros.</span></span> <span data-ttu-id="d77bc-105">您可以安裝 Ansible 其他散發版本上藉由調整 hello 安裝封裝 toofit 您特定的平台。</span><span class="sxs-lookup"><span data-stu-id="d77bc-105">You can install Ansible on other distros by adjusting hello installed packages toofit your particular platform.</span></span> <span data-ttu-id="d77bc-106">toocreate Azure 資源安全的方式，您也學到如何 toocreate 並定義 Ansible toouse 的認證。</span><span class="sxs-lookup"><span data-stu-id="d77bc-106">toocreate Azure resources in a secure manner, you also learn how toocreate and define credentials for Ansible toouse.</span></span> 
 
-<span data-ttu-id="5d59e-107">如需其他平台的更多安裝選項和步驟，請參閱 [Ansible 安裝指南](https://docs.ansible.com/ansible/intro_installation.html)。</span><span class="sxs-lookup"><span data-stu-id="5d59e-107">For more installation options and steps for additional platforms, see the [Ansible install guide](https://docs.ansible.com/ansible/intro_installation.html).</span></span>
+<span data-ttu-id="d77bc-107">如需安裝選項和其他平台的步驟，請參閱 hello [Ansible 安裝指南](https://docs.ansible.com/ansible/intro_installation.html)。</span><span class="sxs-lookup"><span data-stu-id="d77bc-107">For more installation options and steps for additional platforms, see hello [Ansible install guide](https://docs.ansible.com/ansible/intro_installation.html).</span></span>
 
 
-## <a name="install-ansible"></a><span data-ttu-id="5d59e-108">安裝 Ansible</span><span class="sxs-lookup"><span data-stu-id="5d59e-108">Install Ansible</span></span>
-<span data-ttu-id="5d59e-109">首先，使用 [az group create](/cli/azure/group#create) 建立資源群組。</span><span class="sxs-lookup"><span data-stu-id="5d59e-109">First, create a resource group with [az group create](/cli/azure/group#create).</span></span> <span data-ttu-id="5d59e-110">下列範例會在 *eastus* 位置建立名為 *myResourceGroupAnsible* 的資源群組：</span><span class="sxs-lookup"><span data-stu-id="5d59e-110">The following example creates a resource group named *myResourceGroupAnsible* in the *eastus* location:</span></span>
+## <a name="install-ansible"></a><span data-ttu-id="d77bc-108">安裝 Ansible</span><span class="sxs-lookup"><span data-stu-id="d77bc-108">Install Ansible</span></span>
+<span data-ttu-id="d77bc-109">首先，使用 [az group create](/cli/azure/group#create) 建立資源群組。</span><span class="sxs-lookup"><span data-stu-id="d77bc-109">First, create a resource group with [az group create](/cli/azure/group#create).</span></span> <span data-ttu-id="d77bc-110">hello 下列範例會建立名為的資源群組*myResourceGroupAnsible*在 hello *eastus*位置：</span><span class="sxs-lookup"><span data-stu-id="d77bc-110">hello following example creates a resource group named *myResourceGroupAnsible* in hello *eastus* location:</span></span>
 
 ```azurecli
 az group create --name myResourceGroupAnsible --location eastus
 ```
 
-<span data-ttu-id="5d59e-111">現在建立 VM，並針對下列其中一個發行版安裝 Ansible：</span><span class="sxs-lookup"><span data-stu-id="5d59e-111">Now create a VM and install Ansible for one of the following distros:</span></span>
+<span data-ttu-id="d77bc-111">現在建立 VM，並安裝其中一個 hello 遵循散發版本 Ansible:</span><span class="sxs-lookup"><span data-stu-id="d77bc-111">Now create a VM and install Ansible for one of hello following distros:</span></span>
 
-- [<span data-ttu-id="5d59e-112">Ubuntu 16.04 LTS</span><span class="sxs-lookup"><span data-stu-id="5d59e-112">Ubuntu 16.04 LTS</span></span>](#ubuntu1604-lts)
-- [<span data-ttu-id="5d59e-113">CentOS 7.3</span><span class="sxs-lookup"><span data-stu-id="5d59e-113">CentOS 7.3</span></span>](#centos-73)
-- [<span data-ttu-id="5d59e-114">SLES 12.2 SP2</span><span class="sxs-lookup"><span data-stu-id="5d59e-114">SLES 12.2 SP2</span></span>](#sles-122-sp2)
+- [<span data-ttu-id="d77bc-112">Ubuntu 16.04 LTS</span><span class="sxs-lookup"><span data-stu-id="d77bc-112">Ubuntu 16.04 LTS</span></span>](#ubuntu1604-lts)
+- [<span data-ttu-id="d77bc-113">CentOS 7.3</span><span class="sxs-lookup"><span data-stu-id="d77bc-113">CentOS 7.3</span></span>](#centos-73)
+- [<span data-ttu-id="d77bc-114">SLES 12.2 SP2</span><span class="sxs-lookup"><span data-stu-id="d77bc-114">SLES 12.2 SP2</span></span>](#sles-122-sp2)
 
-### <a name="ubuntu-1604-lts"></a><span data-ttu-id="5d59e-115">Ubuntu 16.04 LTS</span><span class="sxs-lookup"><span data-stu-id="5d59e-115">Ubuntu 16.04 LTS</span></span>
-<span data-ttu-id="5d59e-116">使用 [az vm create](/cli/azure/vm#create) 建立 VM。</span><span class="sxs-lookup"><span data-stu-id="5d59e-116">Create a VM with [az vm create](/cli/azure/vm#create).</span></span> <span data-ttu-id="5d59e-117">下列範例會建立名為 *myVMAnsible* 的 VM：</span><span class="sxs-lookup"><span data-stu-id="5d59e-117">The following example creates a VM named *myVMAnsible*:</span></span>
+### <a name="ubuntu-1604-lts"></a><span data-ttu-id="d77bc-115">Ubuntu 16.04 LTS</span><span class="sxs-lookup"><span data-stu-id="d77bc-115">Ubuntu 16.04 LTS</span></span>
+<span data-ttu-id="d77bc-116">使用 [az vm create](/cli/azure/vm#create) 來建立 VM。</span><span class="sxs-lookup"><span data-stu-id="d77bc-116">Create a VM with [az vm create](/cli/azure/vm#create).</span></span> <span data-ttu-id="d77bc-117">hello 下列範例會建立名為的 VM *myVMAnsible*:</span><span class="sxs-lookup"><span data-stu-id="d77bc-117">hello following example creates a VM named *myVMAnsible*:</span></span>
 
 ```bash
 az vm create \
@@ -52,13 +52,13 @@ az vm create \
     --generate-ssh-keys
 ```
 
-<span data-ttu-id="5d59e-118">使用 VM 建立作業中的輸出所記錄的 `publicIpAddress` SSH 到您的 VM：</span><span class="sxs-lookup"><span data-stu-id="5d59e-118">SSH to your VM using the `publicIpAddress` noted in the output from the VM create operation:</span></span>
+<span data-ttu-id="d77bc-118">SSH tooyour VM 使用 hello`publicIpAddress`述 hello hello VM 的輸出建立作業：</span><span class="sxs-lookup"><span data-stu-id="d77bc-118">SSH tooyour VM using hello `publicIpAddress` noted in hello output from hello VM create operation:</span></span>
 
 ```bash
 ssh azureuser@<publicIpAddress>
 ```
 
-<span data-ttu-id="5d59e-119">在您的 VM 上，安裝 Azure Python SDK 模組和 Ansible 所需的套件，如下所示：</span><span class="sxs-lookup"><span data-stu-id="5d59e-119">On your VM, install the required packages for the Azure Python SDK modules and Ansible as follows:</span></span>
+<span data-ttu-id="d77bc-119">您在 VM 上，安裝所需的 hello 套件 hello Azure Python SDK 模組與 Ansible 如下所示：</span><span class="sxs-lookup"><span data-stu-id="d77bc-119">On your VM, install hello required packages for hello Azure Python SDK modules and Ansible as follows:</span></span>
 
 ```bash
 ## Install pre-requisite packages
@@ -73,11 +73,11 @@ sudo apt-add-repository -y ppa:ansible/ansible
 sudo apt-get update && sudo apt-get install -y ansible
 ```
 
-<span data-ttu-id="5d59e-120">現在繼續前往[建立 Azure 認證](#create-azure-credentials)。</span><span class="sxs-lookup"><span data-stu-id="5d59e-120">Now move on to [Create Azure credentials](#create-azure-credentials).</span></span>
+<span data-ttu-id="d77bc-120">現在太移動[建立 Azure 認證](#create-azure-credentials)。</span><span class="sxs-lookup"><span data-stu-id="d77bc-120">Now move on too[Create Azure credentials](#create-azure-credentials).</span></span>
 
 
-### <a name="centos-73"></a><span data-ttu-id="5d59e-121">CentOS 7.3</span><span class="sxs-lookup"><span data-stu-id="5d59e-121">CentOS 7.3</span></span>
-<span data-ttu-id="5d59e-122">使用 [az vm create](/cli/azure/vm#create) 建立 VM。</span><span class="sxs-lookup"><span data-stu-id="5d59e-122">Create a VM with [az vm create](/cli/azure/vm#create).</span></span> <span data-ttu-id="5d59e-123">下列範例會建立名為 *myVMAnsible* 的 VM：</span><span class="sxs-lookup"><span data-stu-id="5d59e-123">The following example creates a VM named *myVMAnsible*:</span></span>
+### <a name="centos-73"></a><span data-ttu-id="d77bc-121">CentOS 7.3</span><span class="sxs-lookup"><span data-stu-id="d77bc-121">CentOS 7.3</span></span>
+<span data-ttu-id="d77bc-122">使用 [az vm create](/cli/azure/vm#create) 來建立 VM。</span><span class="sxs-lookup"><span data-stu-id="d77bc-122">Create a VM with [az vm create](/cli/azure/vm#create).</span></span> <span data-ttu-id="d77bc-123">hello 下列範例會建立名為的 VM *myVMAnsible*:</span><span class="sxs-lookup"><span data-stu-id="d77bc-123">hello following example creates a VM named *myVMAnsible*:</span></span>
 
 ```bash
 az vm create \
@@ -88,13 +88,13 @@ az vm create \
     --generate-ssh-keys
 ```
 
-<span data-ttu-id="5d59e-124">使用 VM 建立作業中的輸出所記錄的 `publicIpAddress` SSH 到您的 VM：</span><span class="sxs-lookup"><span data-stu-id="5d59e-124">SSH to your VM using the `publicIpAddress` noted in the output from the VM create operation:</span></span>
+<span data-ttu-id="d77bc-124">SSH tooyour VM 使用 hello`publicIpAddress`述 hello hello VM 的輸出建立作業：</span><span class="sxs-lookup"><span data-stu-id="d77bc-124">SSH tooyour VM using hello `publicIpAddress` noted in hello output from hello VM create operation:</span></span>
 
 ```bash
 ssh azureuser@<publicIpAddress>
 ```
 
-<span data-ttu-id="5d59e-125">在您的 VM 上，安裝 Azure Python SDK 模組和 Ansible 所需的套件，如下所示：</span><span class="sxs-lookup"><span data-stu-id="5d59e-125">On your VM, install the required packages for the Azure Python SDK modules and Ansible as follows:</span></span>
+<span data-ttu-id="d77bc-125">您在 VM 上，安裝所需的 hello 套件 hello Azure Python SDK 模組與 Ansible 如下所示：</span><span class="sxs-lookup"><span data-stu-id="d77bc-125">On your VM, install hello required packages for hello Azure Python SDK modules and Ansible as follows:</span></span>
 
 ```bash
 ## Install pre-requisite packages
@@ -108,11 +108,11 @@ sudo pip install "azure==2.0.0rc5" msrestazure
 sudo yum install -y ansible
 ```
 
-<span data-ttu-id="5d59e-126">現在繼續前往[建立 Azure 認證](#create-azure-credentials)。</span><span class="sxs-lookup"><span data-stu-id="5d59e-126">Now move on to [Create Azure credentials](#create-azure-credentials).</span></span>
+<span data-ttu-id="d77bc-126">現在太移動[建立 Azure 認證](#create-azure-credentials)。</span><span class="sxs-lookup"><span data-stu-id="d77bc-126">Now move on too[Create Azure credentials](#create-azure-credentials).</span></span>
 
 
-### <a name="sles-122-sp2"></a><span data-ttu-id="5d59e-127">SLES 12.2 SP2</span><span class="sxs-lookup"><span data-stu-id="5d59e-127">SLES 12.2 SP2</span></span>
-<span data-ttu-id="5d59e-128">使用 [az vm create](/cli/azure/vm#create) 建立 VM。</span><span class="sxs-lookup"><span data-stu-id="5d59e-128">Create a VM with [az vm create](/cli/azure/vm#create).</span></span> <span data-ttu-id="5d59e-129">下列範例會建立名為 *myVMAnsible* 的 VM：</span><span class="sxs-lookup"><span data-stu-id="5d59e-129">The following example creates a VM named *myVMAnsible*:</span></span>
+### <a name="sles-122-sp2"></a><span data-ttu-id="d77bc-127">SLES 12.2 SP2</span><span class="sxs-lookup"><span data-stu-id="d77bc-127">SLES 12.2 SP2</span></span>
+<span data-ttu-id="d77bc-128">使用 [az vm create](/cli/azure/vm#create) 來建立 VM。</span><span class="sxs-lookup"><span data-stu-id="d77bc-128">Create a VM with [az vm create](/cli/azure/vm#create).</span></span> <span data-ttu-id="d77bc-129">hello 下列範例會建立名為的 VM *myVMAnsible*:</span><span class="sxs-lookup"><span data-stu-id="d77bc-129">hello following example creates a VM named *myVMAnsible*:</span></span>
 
 ```bash
 az vm create \
@@ -123,13 +123,13 @@ az vm create \
     --generate-ssh-keys
 ```
 
-<span data-ttu-id="5d59e-130">使用 VM 建立作業中的輸出所記錄的 `publicIpAddress` SSH 到您的 VM：</span><span class="sxs-lookup"><span data-stu-id="5d59e-130">SSH to your VM using the `publicIpAddress` noted in the output from the VM create operation:</span></span>
+<span data-ttu-id="d77bc-130">SSH tooyour VM 使用 hello`publicIpAddress`述 hello hello VM 的輸出建立作業：</span><span class="sxs-lookup"><span data-stu-id="d77bc-130">SSH tooyour VM using hello `publicIpAddress` noted in hello output from hello VM create operation:</span></span>
 
 ```bash
 ssh azureuser@<publicIpAddress>
 ```
 
-<span data-ttu-id="5d59e-131">在您的 VM 上，安裝 Azure Python SDK 模組和 Ansible 所需的套件，如下所示：</span><span class="sxs-lookup"><span data-stu-id="5d59e-131">On your VM, install the required packages for the Azure Python SDK modules and Ansible as follows:</span></span>
+<span data-ttu-id="d77bc-131">您在 VM 上，安裝所需的 hello 套件 hello Azure Python SDK 模組與 Ansible 如下所示：</span><span class="sxs-lookup"><span data-stu-id="d77bc-131">On your VM, install hello required packages for hello Azure Python SDK modules and Ansible as follows:</span></span>
 
 ```bash
 ## Install pre-requisite packages
@@ -141,19 +141,19 @@ sudo zypper addrepo http://download.opensuse.org/repositories/systemsmanagement/
 sudo zypper refresh && sudo zypper install ansible
 ```
 
-<span data-ttu-id="5d59e-132">現在繼續前往[建立 Azure 認證](#create-azure-credentials)。</span><span class="sxs-lookup"><span data-stu-id="5d59e-132">Now move on to [Create Azure credentials](#create-azure-credentials).</span></span>
+<span data-ttu-id="d77bc-132">現在太移動[建立 Azure 認證](#create-azure-credentials)。</span><span class="sxs-lookup"><span data-stu-id="d77bc-132">Now move on too[Create Azure credentials](#create-azure-credentials).</span></span>
 
 
-## <a name="create-azure-credentials"></a><span data-ttu-id="5d59e-133">建立 Azure 認證</span><span class="sxs-lookup"><span data-stu-id="5d59e-133">Create Azure credentials</span></span>
-<span data-ttu-id="5d59e-134">Ansible 會使用使用者名稱與密碼或服務主體與 Azure 進行通訊。</span><span class="sxs-lookup"><span data-stu-id="5d59e-134">Ansible communicates with Azure using a username and password or a service principal.</span></span> <span data-ttu-id="5d59e-135">Azure 服務主體是安全性識別，可供您與應用程式、服務及諸如 Ansible 等自動化工具搭配使用。</span><span class="sxs-lookup"><span data-stu-id="5d59e-135">An Azure service principal is a security identity that you can use with apps, services, and automation tools like Ansible.</span></span> <span data-ttu-id="5d59e-136">您可以控制和定義對於服務主體可以在 Azure 中執行哪些作業的權限。</span><span class="sxs-lookup"><span data-stu-id="5d59e-136">You control and define the permissions as to what operations the service principal can perform in Azure.</span></span> <span data-ttu-id="5d59e-137">為了提高只提供使用者名稱和密碼的安全性，此範例會建立基本的服務主體。</span><span class="sxs-lookup"><span data-stu-id="5d59e-137">To improve security over just providing a username and password, this example creates a basic service principal.</span></span>
+## <a name="create-azure-credentials"></a><span data-ttu-id="d77bc-133">建立 Azure 認證</span><span class="sxs-lookup"><span data-stu-id="d77bc-133">Create Azure credentials</span></span>
+<span data-ttu-id="d77bc-134">Ansible 會使用使用者名稱與密碼或服務主體與 Azure 進行通訊。</span><span class="sxs-lookup"><span data-stu-id="d77bc-134">Ansible communicates with Azure using a username and password or a service principal.</span></span> <span data-ttu-id="d77bc-135">Azure 服務主體是安全性識別，可供您與應用程式、服務及諸如 Ansible 等自動化工具搭配使用。</span><span class="sxs-lookup"><span data-stu-id="d77bc-135">An Azure service principal is a security identity that you can use with apps, services, and automation tools like Ansible.</span></span> <span data-ttu-id="d77bc-136">您可以控制和定義 hello 權限，如 toowhat 作業 hello 服務主體可以在 Azure 中執行。</span><span class="sxs-lookup"><span data-stu-id="d77bc-136">You control and define hello permissions as toowhat operations hello service principal can perform in Azure.</span></span> <span data-ttu-id="d77bc-137">透過提供使用者名稱和密碼的 tooimprove 安全性，這個範例會建立基本的服務主體。</span><span class="sxs-lookup"><span data-stu-id="d77bc-137">tooimprove security over just providing a username and password, this example creates a basic service principal.</span></span>
 
-<span data-ttu-id="5d59e-138">使用 [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) 建立服務主體，並將 Ansible 所需的認證輸出：</span><span class="sxs-lookup"><span data-stu-id="5d59e-138">Create a service principal with [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) and output the credentials that Ansible needs:</span></span>
+<span data-ttu-id="d77bc-138">建立服務主體與[az ad 預存程序建立-如-rbac](/cli/azure/ad/sp#create-for-rbac)和 Ansible 需要輸出 hello 認證：</span><span class="sxs-lookup"><span data-stu-id="d77bc-138">Create a service principal with [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) and output hello credentials that Ansible needs:</span></span>
 
 ```azurecli
 az ad sp create-for-rbac --query [appId,password,tenant]
 ```
 
-<span data-ttu-id="5d59e-139">上述命令的輸出範例如下所示：</span><span class="sxs-lookup"><span data-stu-id="5d59e-139">An example of the output from the preceding commands is as follows:</span></span>
+<span data-ttu-id="d77bc-139">從上述命令 hello hello 輸出的範例如下所示：</span><span class="sxs-lookup"><span data-stu-id="d77bc-139">An example of hello output from hello preceding commands is as follows:</span></span>
 
 ```json
 [
@@ -163,26 +163,26 @@ az ad sp create-for-rbac --query [appId,password,tenant]
 ]
 ```
 
-<span data-ttu-id="5d59e-140">若要向 Azure 驗證，您也需要使用 [az account show](/cli/azure/account#show) 取得 Azure 訂用帳戶識別碼：</span><span class="sxs-lookup"><span data-stu-id="5d59e-140">To authenticate to Azure, you also need to obtain your Azure subscription ID with [az account show](/cli/azure/account#show):</span></span>
+<span data-ttu-id="d77bc-140">tooauthenticate tooAzure，您也需要您的 Azure 訂用帳戶 ID 與 tooobtain [az 帳戶顯示](/cli/azure/account#show):</span><span class="sxs-lookup"><span data-stu-id="d77bc-140">tooauthenticate tooAzure, you also need tooobtain your Azure subscription ID with [az account show](/cli/azure/account#show):</span></span>
 
 ```azurecli
 az account show --query [id] --output tsv
 ```
 
-<span data-ttu-id="5d59e-141">您將在下一個步驟中使用這兩個命令的輸出。</span><span class="sxs-lookup"><span data-stu-id="5d59e-141">You use the output from these two commands in the next step.</span></span>
+<span data-ttu-id="d77bc-141">您可以使用這兩個命令 hello 輸出 hello 下一個步驟中。</span><span class="sxs-lookup"><span data-stu-id="d77bc-141">You use hello output from these two commands in hello next step.</span></span>
 
 
-## <a name="create-ansible-credentials-file"></a><span data-ttu-id="5d59e-142">建立 Ansible 認證檔案</span><span class="sxs-lookup"><span data-stu-id="5d59e-142">Create Ansible credentials file</span></span>
-<span data-ttu-id="5d59e-143">若要提供認證給 Ansible，您可以定義環境變數或建立本機認證檔案。</span><span class="sxs-lookup"><span data-stu-id="5d59e-143">To provide credentials to Ansible, you define environment variables or create a local credentials file.</span></span> <span data-ttu-id="5d59e-144">如需如何定義 Ansible 認證的詳細資訊，請參閱 [Providing Credentials to Azure Modules](https://docs.ansible.com/ansible/guide_azure.html#providing-credentials-to-azure-modules) (提供認證給 Azure 模組)。</span><span class="sxs-lookup"><span data-stu-id="5d59e-144">For more information about how to define Ansible credentials, see [Providing Credentials to Azure Modules](https://docs.ansible.com/ansible/guide_azure.html#providing-credentials-to-azure-modules).</span></span> 
+## <a name="create-ansible-credentials-file"></a><span data-ttu-id="d77bc-142">建立 Ansible 認證檔案</span><span class="sxs-lookup"><span data-stu-id="d77bc-142">Create Ansible credentials file</span></span>
+<span data-ttu-id="d77bc-143">tooprovide 認證 tooAnsible，定義環境變數，或建立本機認證檔案。</span><span class="sxs-lookup"><span data-stu-id="d77bc-143">tooprovide credentials tooAnsible, you define environment variables or create a local credentials file.</span></span> <span data-ttu-id="d77bc-144">如需有關如何 toodefine Ansible 認證，請參閱[提供認證 tooAzure 模組](https://docs.ansible.com/ansible/guide_azure.html#providing-credentials-to-azure-modules)。</span><span class="sxs-lookup"><span data-stu-id="d77bc-144">For more information about how toodefine Ansible credentials, see [Providing Credentials tooAzure Modules](https://docs.ansible.com/ansible/guide_azure.html#providing-credentials-to-azure-modules).</span></span> 
 
-<span data-ttu-id="5d59e-145">針對開發環境，在您的主機 VM 上建立 Ansible 的「認證」檔案，如下所示：</span><span class="sxs-lookup"><span data-stu-id="5d59e-145">For a development environment, create a *credentials* file for Ansible on your host VM as follows:</span></span>
+<span data-ttu-id="d77bc-145">針對開發環境，在您的主機 VM 上建立 Ansible 的「認證」檔案，如下所示：</span><span class="sxs-lookup"><span data-stu-id="d77bc-145">For a development environment, create a *credentials* file for Ansible on your host VM as follows:</span></span>
 
 ```bash
 mkdir ~/.azure
 vi ~/.azure/credentials
 ```
 
-<span data-ttu-id="5d59e-146">「認證」檔案本身結合了訂用帳戶識別碼與建立服務主體的輸出。</span><span class="sxs-lookup"><span data-stu-id="5d59e-146">The *credentials* file itself combines the subscription ID with the output of creating a service principal.</span></span> <span data-ttu-id="5d59e-147">對於 *client_id*、*secret* 和 *tenant*，先前 [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) 命令的輸出必須是相同順序。</span><span class="sxs-lookup"><span data-stu-id="5d59e-147">Output from the previous [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) command is the same order as needed for *client_id*, *secret*, and *tenant*.</span></span> <span data-ttu-id="5d59e-148">下列範例*認證*檔案顯示符合上述輸出的值。</span><span class="sxs-lookup"><span data-stu-id="5d59e-148">The following example *credentials* file shows these values matching the previous output.</span></span> <span data-ttu-id="5d59e-149">輸入您自己的值，如下所示︰</span><span class="sxs-lookup"><span data-stu-id="5d59e-149">Enter your own values as follows:</span></span>
+<span data-ttu-id="d77bc-146">hello*認證*檔案本身結合 hello 訂用帳戶 ID 與建立服務主體的 hello 輸出。</span><span class="sxs-lookup"><span data-stu-id="d77bc-146">hello *credentials* file itself combines hello subscription ID with hello output of creating a service principal.</span></span> <span data-ttu-id="d77bc-147">從先前的 hello 輸出[az ad 預存程序建立-如-rbac](/cli/azure/ad/sp#create-for-rbac)命令是 hello 相同訂單所需的*client_id*，*密碼*，和*租用戶*.</span><span class="sxs-lookup"><span data-stu-id="d77bc-147">Output from hello previous [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) command is hello same order as needed for *client_id*, *secret*, and *tenant*.</span></span> <span data-ttu-id="d77bc-148">下列範例 hello*認證*檔案會顯示比對 hello 上述輸出這些值。</span><span class="sxs-lookup"><span data-stu-id="d77bc-148">hello following example *credentials* file shows these values matching hello previous output.</span></span> <span data-ttu-id="d77bc-149">輸入您自己的值，如下所示︰</span><span class="sxs-lookup"><span data-stu-id="d77bc-149">Enter your own values as follows:</span></span>
 
 ```bash
 [default]
@@ -193,8 +193,8 @@ tenant=72f988bf-86f1-41af-91ab-2d7cd011db47
 ```
 
 
-## <a name="use-ansible-environment-variables"></a><span data-ttu-id="5d59e-150">使用 Ansible 環境變數</span><span class="sxs-lookup"><span data-stu-id="5d59e-150">Use Ansible environment variables</span></span>
-<span data-ttu-id="5d59e-151">如果您想要使用 Ansible Tower 或 Jenkins 等工具，您可以如下所示定義環境變數。</span><span class="sxs-lookup"><span data-stu-id="5d59e-151">If you are going to use tools such as Ansible Tower or Jenkins, you can define environment variables as follows.</span></span> <span data-ttu-id="5d59e-152">這些變數結合了訂用帳戶識別碼與建立服務主體的輸出。</span><span class="sxs-lookup"><span data-stu-id="5d59e-152">These variables combine the subscription ID with the output from creating a service principal.</span></span> <span data-ttu-id="5d59e-153">對於 *AZURE_CLIENT_ID*、*AZURE_SECRET* 和 *AZURE_TENANT*，先前 [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) 命令的輸出必須是相同順序。</span><span class="sxs-lookup"><span data-stu-id="5d59e-153">Output from the previous [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) command is the same order as needed for *AZURE_CLIENT_ID*, *AZURE_SECRET*, and *AZURE_TENANT*.</span></span> 
+## <a name="use-ansible-environment-variables"></a><span data-ttu-id="d77bc-150">使用 Ansible 環境變數</span><span class="sxs-lookup"><span data-stu-id="d77bc-150">Use Ansible environment variables</span></span>
+<span data-ttu-id="d77bc-151">如果您正在 Ansible 塔或 Jenkins toouse 工具，您可以定義環境變數，如下所示。</span><span class="sxs-lookup"><span data-stu-id="d77bc-151">If you are going toouse tools such as Ansible Tower or Jenkins, you can define environment variables as follows.</span></span> <span data-ttu-id="d77bc-152">這些變數會結合 hello 輸出建立服務主體中的 hello 訂用帳戶 ID。</span><span class="sxs-lookup"><span data-stu-id="d77bc-152">These variables combine hello subscription ID with hello output from creating a service principal.</span></span> <span data-ttu-id="d77bc-153">從先前的 hello 輸出[az ad 預存程序建立-如-rbac](/cli/azure/ad/sp#create-for-rbac)命令是 hello 相同訂單所需的*AZURE_CLIENT_ID*， *AZURE_SECRET*，和*AZURE_租用戶*。</span><span class="sxs-lookup"><span data-stu-id="d77bc-153">Output from hello previous [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) command is hello same order as needed for *AZURE_CLIENT_ID*, *AZURE_SECRET*, and *AZURE_TENANT*.</span></span> 
 
 ```bash
 export AZURE_SUBSCRIPTION_ID=xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
@@ -203,5 +203,5 @@ export AZURE_SECRET=8326643-f7e9-48fb-b0d5-952b68ab3def
 export AZURE_TENANT=72f988bf-86f1-41af-91ab-2d7cd011db47
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="5d59e-154">後續步驟</span><span class="sxs-lookup"><span data-stu-id="5d59e-154">Next steps</span></span>
-<span data-ttu-id="5d59e-155">您現在已安裝 Ansible 和必要的 Azure Python SDK 模組，並已定義 Ansible 所要使用的認證。</span><span class="sxs-lookup"><span data-stu-id="5d59e-155">You now have Ansible and the required Azure Python SDK modules installed, and credentials defined for Ansible to use.</span></span> <span data-ttu-id="5d59e-156">了解如何[使用 Ansible 建立 VM](ansible-create-vm.md)。</span><span class="sxs-lookup"><span data-stu-id="5d59e-156">Learn how to [create a VM with Ansible](ansible-create-vm.md).</span></span> <span data-ttu-id="5d59e-157">您也可以了解如何[使用 Ansible 建立完整的 Azure VM 和支援資源](ansible-create-complete-vm.md)。</span><span class="sxs-lookup"><span data-stu-id="5d59e-157">You can also learn how to [create a complete Azure VM and supporting resources with Ansible](ansible-create-complete-vm.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="d77bc-154">後續步驟</span><span class="sxs-lookup"><span data-stu-id="d77bc-154">Next steps</span></span>
+<span data-ttu-id="d77bc-155">您現在可以 Ansible 和 hello 必要安裝，Azure Python SDK 模組和 Ansible toouse 為定義的認證。</span><span class="sxs-lookup"><span data-stu-id="d77bc-155">You now have Ansible and hello required Azure Python SDK modules installed, and credentials defined for Ansible toouse.</span></span> <span data-ttu-id="d77bc-156">了解如何太[Ansible 與建立 VM](ansible-create-vm.md)。</span><span class="sxs-lookup"><span data-stu-id="d77bc-156">Learn how too[create a VM with Ansible](ansible-create-vm.md).</span></span> <span data-ttu-id="d77bc-157">您也可以了解如何太[建立完整的 Azure VM 和支援資源 Ansible](ansible-create-complete-vm.md)。</span><span class="sxs-lookup"><span data-stu-id="d77bc-157">You can also learn how too[create a complete Azure VM and supporting resources with Ansible](ansible-create-complete-vm.md).</span></span>

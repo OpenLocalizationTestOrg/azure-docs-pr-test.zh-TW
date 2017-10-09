@@ -1,6 +1,6 @@
 ---
-title: "在 Marketplace 中使用 Azure 受管理的應用程式 | Microsoft Docs"
-description: "描述如何建立可透過 Marketplace 取得的 Azure 受管理的應用程式。"
+title: "Azure 受管理應用程式 marketplace 中 aaaConsume |Microsoft 文件"
+description: "Describeshow toocreate Azure 受管理應用程式，可透過 hello Marketplace。"
 services: azure-resource-manager
 author: ravbhatnagar
 manager: rjmax
@@ -10,44 +10,44 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 07/11/2017
 ms.author: gauravbh; tomfitz
-ms.openlocfilehash: baf456740bddd562391ed64d707f990c8921d710
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 9ae6e11a3f63eb58a9f3199364b5606a7afe5618
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="consume-azure-managed-applications-in-the-marketplace"></a><span data-ttu-id="96290-103">使用 Marketplace 中 Azure 受管理的應用程式</span><span class="sxs-lookup"><span data-stu-id="96290-103">Consume Azure managed applications in the Marketplace</span></span>
+# <a name="consume-azure-managed-applications-in-hello-marketplace"></a><span data-ttu-id="66c7d-103">使用 Azure 受管理 hello Marketplace 中的應用程式</span><span class="sxs-lookup"><span data-stu-id="66c7d-103">Consume Azure managed applications in hello Marketplace</span></span>
 
-<span data-ttu-id="96290-104">如[受管理的應用程式概觀](managed-application-overview.md)一文中所討論，端對端體驗中有兩種案例。</span><span class="sxs-lookup"><span data-stu-id="96290-104">As discussed in the [Managed Application overview](managed-application-overview.md) article, there are two scenarios in the end to end experience.</span></span> <span data-ttu-id="96290-105">其中一個是發行者或廠商，是要建立受管理的應用程式供客戶使用。</span><span class="sxs-lookup"><span data-stu-id="96290-105">One is the publisher or vendor who wants to create a managed application for use by customers.</span></span> <span data-ttu-id="96290-106">第二個是受管理應用程式的客戶或取用者。</span><span class="sxs-lookup"><span data-stu-id="96290-106">The second is the end customer or the consumer of the managed application.</span></span> <span data-ttu-id="96290-107">本文涵蓋第二個案例。</span><span class="sxs-lookup"><span data-stu-id="96290-107">This article covers the second scenario.</span></span> <span data-ttu-id="96290-108">它會描述您可以如何從 Microsoft Azure Marketplace 部署受管理的應用程式。</span><span class="sxs-lookup"><span data-stu-id="96290-108">It describes how you can deploy a managed application from the Microsoft Azure Marketplace.</span></span>
+<span data-ttu-id="66c7d-104">Hello 中所述[受管理的應用程式概觀](managed-application-overview.md)文章、 hello 端點 tooend 體驗中有兩種案例。</span><span class="sxs-lookup"><span data-stu-id="66c7d-104">As discussed in hello [Managed Application overview](managed-application-overview.md) article, there are two scenarios in hello end tooend experience.</span></span> <span data-ttu-id="66c7d-105">其中一個是 hello 發行者或想 toocreate 供客戶使用的 managed 應用程式廠商。</span><span class="sxs-lookup"><span data-stu-id="66c7d-105">One is hello publisher or vendor who wants toocreate a managed application for use by customers.</span></span> <span data-ttu-id="66c7d-106">hello 第二個是 hello 一般客戶或 hello 取用者 hello 受管理應用程式。</span><span class="sxs-lookup"><span data-stu-id="66c7d-106">hello second is hello end customer or hello consumer of hello managed application.</span></span> <span data-ttu-id="66c7d-107">本文涵蓋 hello 第二個案例。</span><span class="sxs-lookup"><span data-stu-id="66c7d-107">This article covers hello second scenario.</span></span> <span data-ttu-id="66c7d-108">它會描述如何部署來自 hello Microsoft Azure Marketplace 的受管理應用程式。</span><span class="sxs-lookup"><span data-stu-id="66c7d-108">It describes how you can deploy a managed application from hello Microsoft Azure Marketplace.</span></span>
 
-## <a name="create-from-the-marketplace"></a><span data-ttu-id="96290-109">從 Marketplace 建立</span><span class="sxs-lookup"><span data-stu-id="96290-109">Create from the Marketplace</span></span>
+## <a name="create-from-hello-marketplace"></a><span data-ttu-id="66c7d-109">建立從 hello Marketplace</span><span class="sxs-lookup"><span data-stu-id="66c7d-109">Create from hello Marketplace</span></span>
 
-<span data-ttu-id="96290-110">從 Marketplace 部署受管理的應用程式類似於從 Marketplace 部署任何類型的資源。</span><span class="sxs-lookup"><span data-stu-id="96290-110">Deploying a managed application from the Marketplace is similar to deploying any type of resources from the Marketplace.</span></span> 
+<span data-ttu-id="66c7d-110">部署受管理的應用程式從 hello Marketplace 是類似 toodeploying 任何類型的 hello Marketplace 的資源。</span><span class="sxs-lookup"><span data-stu-id="66c7d-110">Deploying a managed application from hello Marketplace is similar toodeploying any type of resources from hello Marketplace.</span></span> 
 
-<span data-ttu-id="96290-111">在入口網站中，選取 [+ 新增]，並搜尋要部署的解決方案類型。</span><span class="sxs-lookup"><span data-stu-id="96290-111">In the portal, select **+ New** and search for the type of solution to deploy.</span></span> <span data-ttu-id="96290-112">從可用的選項，選取您需要的選項。</span><span class="sxs-lookup"><span data-stu-id="96290-112">From the available options, select the one you need.</span></span>
+<span data-ttu-id="66c7d-111">在 hello 入口網站中，選取  **+ 新增**，並搜尋解決方案 toodeploy hello 型別。</span><span class="sxs-lookup"><span data-stu-id="66c7d-111">In hello portal, select **+ New** and search for hello type of solution toodeploy.</span></span> <span data-ttu-id="66c7d-112">從 hello 可用的選項，選取您需要一個 hello。</span><span class="sxs-lookup"><span data-stu-id="66c7d-112">From hello available options, select hello one you need.</span></span>
 
 ![搜尋解決方案](./media/managed-application-consume-marketplace/search-apps.png)
 
-<span data-ttu-id="96290-114">檢閱應用程式的摘要，並選取 [建立]。</span><span class="sxs-lookup"><span data-stu-id="96290-114">Review the summary of the application, and select **Create**.</span></span>
+<span data-ttu-id="66c7d-114">檢閱 hello 摘要 hello 應用程式，並選取**建立**。</span><span class="sxs-lookup"><span data-stu-id="66c7d-114">Review hello summary of hello application, and select **Create**.</span></span>
 
 ![建立受管理的應用程式](./media/managed-application-consume-marketplace/create-marketplace-managed-app.png)
 
-<span data-ttu-id="96290-116">如同任何其他解決方案，您會看到要提供值的欄位。</span><span class="sxs-lookup"><span data-stu-id="96290-116">Like any other solution, you are presented with fields to provide values for.</span></span> <span data-ttu-id="96290-117">這些欄位會因您建立的受管理應用程式類型而變。</span><span class="sxs-lookup"><span data-stu-id="96290-117">These fields vary by the type of managed application you create.</span></span> 
+<span data-ttu-id="66c7d-116">如同任何其他解決方案，您會看到欄位 tooprovide 值。</span><span class="sxs-lookup"><span data-stu-id="66c7d-116">Like any other solution, you are presented with fields tooprovide values for.</span></span> <span data-ttu-id="66c7d-117">這些欄位會因您所建立的受管理應用程式的 hello 類型。</span><span class="sxs-lookup"><span data-stu-id="66c7d-117">These fields vary by hello type of managed application you create.</span></span> 
 
-## <a name="view-support-information"></a><span data-ttu-id="96290-118">檢視支援資訊</span><span class="sxs-lookup"><span data-stu-id="96290-118">View support information</span></span>
+## <a name="view-support-information"></a><span data-ttu-id="66c7d-118">檢視支援資訊</span><span class="sxs-lookup"><span data-stu-id="66c7d-118">View support information</span></span>
 
-<span data-ttu-id="96290-119">部署受管理的應用程式之後，檢視應用程式的支援資訊。</span><span class="sxs-lookup"><span data-stu-id="96290-119">After your managed application has deployed, view the support information for the application.</span></span> <span data-ttu-id="96290-120">在 [受管理的應用程式] 刀鋒視窗中，會列出支援資訊。</span><span class="sxs-lookup"><span data-stu-id="96290-120">In the managed application blade, the support information is listed.</span></span>
+<span data-ttu-id="66c7d-119">Managed 應用程式已經部署之後，檢視 hello hello 應用程式的支援資訊。</span><span class="sxs-lookup"><span data-stu-id="66c7d-119">After your managed application has deployed, view hello support information for hello application.</span></span> <span data-ttu-id="66c7d-120">在 hello 受管理的應用程式 刀鋒視窗會列出 hello 支援資訊。</span><span class="sxs-lookup"><span data-stu-id="66c7d-120">In hello managed application blade, hello support information is listed.</span></span>
 
 ![支援](./media/managed-application-consume-marketplace/support.png)
 
-## <a name="view-publisher-permissions"></a><span data-ttu-id="96290-122">檢視發行者權限</span><span class="sxs-lookup"><span data-stu-id="96290-122">View publisher permissions</span></span>
+## <a name="view-publisher-permissions"></a><span data-ttu-id="66c7d-122">檢視發行者權限</span><span class="sxs-lookup"><span data-stu-id="66c7d-122">View publisher permissions</span></span>
 
-<span data-ttu-id="96290-123">管理您應用程式的廠商會被授與資源的存取權。</span><span class="sxs-lookup"><span data-stu-id="96290-123">The vendor that manages your application is granted access to your resources.</span></span> <span data-ttu-id="96290-124">若要查看這些權限，請選取 [授權]。</span><span class="sxs-lookup"><span data-stu-id="96290-124">To see those permissions, select **Authorizations**.</span></span>
+<span data-ttu-id="66c7d-123">管理您的應用程式的 hello 廠商會授與存取 tooyour 資源。</span><span class="sxs-lookup"><span data-stu-id="66c7d-123">hello vendor that manages your application is granted access tooyour resources.</span></span> <span data-ttu-id="66c7d-124">這些權限，選取 toosee**授權**。</span><span class="sxs-lookup"><span data-stu-id="66c7d-124">toosee those permissions, select **Authorizations**.</span></span>
 
 ![授權](./media/managed-application-consume-marketplace/authorizations.png)
 
-## <a name="next-steps"></a><span data-ttu-id="96290-126">後續步驟</span><span class="sxs-lookup"><span data-stu-id="96290-126">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="66c7d-126">後續步驟</span><span class="sxs-lookup"><span data-stu-id="66c7d-126">Next steps</span></span>
 
-* <span data-ttu-id="96290-127">如需在 Marketplace 中發行受管理應用程式的詳細資訊，請參閱 [Marketplace 中 Azure 受管理的應用程式](managed-application-author-marketplace.md)。</span><span class="sxs-lookup"><span data-stu-id="96290-127">For information about publishing a managed application in the Marketplace, see [Azure Managed Applications in Marketplace](managed-application-author-marketplace.md).</span></span>
-* <span data-ttu-id="96290-128">若要發行只供您組織中使用者使用之受管理的應用程式，請參閱[建立和發行 Service Catalog 受管理的應用程式](managed-application-publishing.md)。</span><span class="sxs-lookup"><span data-stu-id="96290-128">To publish managed applications that are only available to users in your organization, see [Create and publish Service Catalog Managed Application](managed-application-publishing.md).</span></span>
-* <span data-ttu-id="96290-129">若要使用只供您組織中使用者使用之受管理的應用程式，請參閱[使用 Service Catalog 受管理的應用程式](managed-application-consumption.md)。</span><span class="sxs-lookup"><span data-stu-id="96290-129">To consume managed applications that are only available to users in your organization, see [Consume a Service Catalog Managed Application](managed-application-consumption.md).</span></span>
+* <span data-ttu-id="66c7d-127">如需在 hello Marketplace 中發佈受管理的應用程式資訊，請參閱[Azure 受管理應用程式 Marketplace 中](managed-application-author-marketplace.md)。</span><span class="sxs-lookup"><span data-stu-id="66c7d-127">For information about publishing a managed application in hello Marketplace, see [Azure Managed Applications in Marketplace](managed-application-author-marketplace.md).</span></span>
+* <span data-ttu-id="66c7d-128">toopublish 管理只使用 toousers 組織中的應用程式請參閱[建立服務類別目錄管理應用程式並發行](managed-application-publishing.md)。</span><span class="sxs-lookup"><span data-stu-id="66c7d-128">toopublish managed applications that are only available toousers in your organization, see [Create and publish Service Catalog Managed Application](managed-application-publishing.md).</span></span>
+* <span data-ttu-id="66c7d-129">tooconsume 管理只使用 toousers 組織中的應用程式請參閱[取用服務類別目錄管理應用程式](managed-application-consumption.md)。</span><span class="sxs-lookup"><span data-stu-id="66c7d-129">tooconsume managed applications that are only available toousers in your organization, see [Consume a Service Catalog Managed Application](managed-application-consumption.md).</span></span>

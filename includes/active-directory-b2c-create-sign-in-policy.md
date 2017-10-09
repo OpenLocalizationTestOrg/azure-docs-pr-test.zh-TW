@@ -1,0 +1,23 @@
+<span data-ttu-id="11d5e-101">tooenable 登入您的應用程式，您將需要 toocreate 登入的原則。</span><span class="sxs-lookup"><span data-stu-id="11d5e-101">tooenable sign-in on your application, you will need toocreate a sign-in policy.</span></span> <span data-ttu-id="11d5e-102">此原則成功的登入描述 hello 體驗，取用者會在登入期間進行，而且將會收到 hello hello 應用程式的權杖內容。</span><span class="sxs-lookup"><span data-stu-id="11d5e-102">This policy describes hello experiences that consumers will go through during sign-in and hello contents of tokens that hello application will receive on successful sign-ins.</span></span>
+
+<span data-ttu-id="11d5e-103">[!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)]按一下 [登入原則]。</span><span class="sxs-lookup"><span data-stu-id="11d5e-103">[!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)] Click **Sign-in policies**.</span></span>
+
+<span data-ttu-id="11d5e-104">按一下**+ 加**在 hello hello 刀鋒視窗最上方。</span><span class="sxs-lookup"><span data-stu-id="11d5e-104">Click **+Add** at hello top of hello blade.</span></span>
+
+<span data-ttu-id="11d5e-105">hello**名稱**判斷您的應用程式所使用的 hello 登入的原則名稱。</span><span class="sxs-lookup"><span data-stu-id="11d5e-105">hello **Name** determines hello sign-in policy name used by your application.</span></span> <span data-ttu-id="11d5e-106">例如，輸入 **SiIn**。</span><span class="sxs-lookup"><span data-stu-id="11d5e-106">For example, enter **SiIn**.</span></span>
+
+<span data-ttu-id="11d5e-107">按一下 [識別提供者] 並選取 [本機帳戶登入]。</span><span class="sxs-lookup"><span data-stu-id="11d5e-107">Click **Identity providers** and select **Local Account SignIn**.</span></span> <span data-ttu-id="11d5e-108">(選擇性) 您也可以選取社交身分識別提供者 (如果已經設定)。</span><span class="sxs-lookup"><span data-stu-id="11d5e-108">Optionally, you can also select social identity providers, if already configured.</span></span> <span data-ttu-id="11d5e-109">按一下 [確定] 。</span><span class="sxs-lookup"><span data-stu-id="11d5e-109">Click **OK**.</span></span>
+
+<span data-ttu-id="11d5e-110">按一下 [應用程式宣告] 。</span><span class="sxs-lookup"><span data-stu-id="11d5e-110">Click **Application claims**.</span></span> <span data-ttu-id="11d5e-111">這裡可以選擇您想要傳回 hello 權杖中宣告傳送後 tooyour 後成功登入體驗的應用程式。</span><span class="sxs-lookup"><span data-stu-id="11d5e-111">Here you choose claims that you want returned in hello tokens sent back tooyour application after a successful sign-in experience.</span></span> <span data-ttu-id="11d5e-112">例如，選取 [顯示名稱]、[識別提供者]、[郵遞區號] 和 [使用者的物件識別碼]。</span><span class="sxs-lookup"><span data-stu-id="11d5e-112">For example, select **Display Name**, **Identity Provider**, **Postal Code**  and **User's Object ID**.</span></span> <span data-ttu-id="11d5e-113">按一下 [確定] 。</span><span class="sxs-lookup"><span data-stu-id="11d5e-113">Click **OK**.</span></span>
+
+<span data-ttu-id="11d5e-114">按一下 [建立] 。</span><span class="sxs-lookup"><span data-stu-id="11d5e-114">Click **Create**.</span></span> <span data-ttu-id="11d5e-115">請注意您剛才建立的 hello 原則會顯示為**B2C_1_SiIn** (hello **B2C\_1\_** 片段會自動加入) 在 hello**登入原則**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="11d5e-115">Note that hello policy just created appears as **B2C_1_SiIn** (hello **B2C\_1\_** fragment is automatically added) in hello **Sign-in policies** blade.</span></span>
+
+<span data-ttu-id="11d5e-116">按一下以開啟 hello 原則**B2C_1_SiIn**。</span><span class="sxs-lookup"><span data-stu-id="11d5e-116">Open hello policy by clicking **B2C_1_SiIn**.</span></span>
+
+<span data-ttu-id="11d5e-117">選取**Contoso B2C 應用程式**在 hello**應用程式**下拉式清單和`https://localhost:44321/`在 hello**回覆 URL / 重新導向 URI**下拉式清單。</span><span class="sxs-lookup"><span data-stu-id="11d5e-117">Select **Contoso B2C app** in hello **Applications** drop-down and `https://localhost:44321/` in hello **Reply URL / Redirect URI** drop-down.</span></span>
+
+<span data-ttu-id="11d5e-118">按一下 [立即執行] 。</span><span class="sxs-lookup"><span data-stu-id="11d5e-118">Click **Run now**.</span></span> <span data-ttu-id="11d5e-119">新的瀏覽器索引標籤隨即開啟，而且您可以透過 hello 消費者體驗的登入您的應用程式。</span><span class="sxs-lookup"><span data-stu-id="11d5e-119">A new browser tab opens, and you can run through hello consumer experience of signing into your application.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="11d5e-120">它會佔用 tooa 分鐘的時間，建立原則，並更新 tootake 效果。</span><span class="sxs-lookup"><span data-stu-id="11d5e-120">It takes up tooa minute for policy creation and updates tootake effect.</span></span>
+>

@@ -1,5 +1,5 @@
 > [!NOTE]
-> <span data-ttu-id="d7713-101">雖然這篇文章主要針對 Web Apps，但也適用於 API Apps 和 Mobile Apps。</span><span class="sxs-lookup"><span data-stu-id="d7713-101">Although this article refers to web apps, it also applies to API apps and mobile apps.</span></span>
+> <span data-ttu-id="26b9a-101">雖然這篇文章是指 tooweb 應用程式，它也適用於 tooAPI 應用程式和行動裝置應用程式。</span><span class="sxs-lookup"><span data-stu-id="26b9a-101">Although this article refers tooweb apps, it also applies tooAPI apps and mobile apps.</span></span>
 > 
 > 
 

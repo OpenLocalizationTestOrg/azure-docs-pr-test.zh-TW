@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 1.0 建立 Linux VM 的複本 | Microsoft Docs"
-description: "了解如何在 Resource Manager 部署模型中，使用 Azure CLI 1.0 建立 Azure Linux 虛擬機器的複本"
+title: "一份您的 Linux VM 以 hello Azure CLI 1.0 aaaCreate |Microsoft 文件"
+description: "了解與您 Azure Linux 虛擬機器的複本 toocreate 如何 hello Azure CLI 1.0 hello Resource Manager 部署模型中"
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -14,59 +14,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/22/2017
 ms.author: cynthn
-ms.openlocfilehash: 62ae54f3596c9383cbf3b401fcfdb42ecfdee63c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 997a2c8109e7083ececd76fd1013e9ed4d3e6afd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-copy-of-a-linux-virtual-machine-running-on-azure-with-the-azure-cli-10"></a><span data-ttu-id="65337-103">使用 Azure CLI 1.0 建立在 Azure 上執行的 Linux 虛擬機器複本</span><span class="sxs-lookup"><span data-stu-id="65337-103">Create a copy of a Linux virtual machine running on Azure with the Azure CLI 1.0</span></span>
-<span data-ttu-id="65337-104">本文示範如何使用 Resource Manager 部署模型來建立執行 Linux 的 Azure 虛擬機器 (VM) 複本。</span><span class="sxs-lookup"><span data-stu-id="65337-104">This article shows you how to create a copy of your Azure virtual machine (VM) running Linux using the Resource Manager deployment model.</span></span> <span data-ttu-id="65337-105">首先，您需將作業系統和資料磁碟複製到新容器中，然後設定網路資源並建立新的虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="65337-105">First you copy over the operating system and data disks to a new container, then set up the network resources and create the new virtual machine.</span></span>
+# <a name="create-a-copy-of-a-linux-virtual-machine-running-on-azure-with-hello-azure-cli-10"></a><span data-ttu-id="04ded-103">建立 hello Azure CLI 1.0 使用在 Azure 上執行的 Linux 虛擬機器的複本</span><span class="sxs-lookup"><span data-stu-id="04ded-103">Create a copy of a Linux virtual machine running on Azure with hello Azure CLI 1.0</span></span>
+<span data-ttu-id="04ded-104">本文章將示範如何 toocreate 程式 Azure 虛擬機器 (VM) 執行 Linux，請使用一份 hello Resource Manager 部署模型。</span><span class="sxs-lookup"><span data-stu-id="04ded-104">This article shows you how toocreate a copy of your Azure virtual machine (VM) running Linux using hello Resource Manager deployment model.</span></span> <span data-ttu-id="04ded-105">第一次您已複製 hello 作業系統和資料磁碟 tooa 新的容器，然後設定 hello 網路資源並建立新虛擬機器 hello。</span><span class="sxs-lookup"><span data-stu-id="04ded-105">First you copy over hello operating system and data disks tooa new container, then set up hello network resources and create hello new virtual machine.</span></span>
 
-<span data-ttu-id="65337-106">您也可以[上傳自訂磁碟映像並從這個映像建立 VM](upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="65337-106">You can also [upload and create a VM from custom disk image](upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+<span data-ttu-id="04ded-106">您也可以[上傳自訂磁碟映像並從這個映像建立 VM](upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="04ded-106">You can also [upload and create a VM from custom disk image](upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
 
-## <a name="cli-versions-to-complete-the-task"></a><span data-ttu-id="65337-107">用以完成工作的 CLI 版本</span><span class="sxs-lookup"><span data-stu-id="65337-107">CLI versions to complete the task</span></span>
-<span data-ttu-id="65337-108">您可以使用下列其中一個 CLI 版本來完成工作︰</span><span class="sxs-lookup"><span data-stu-id="65337-108">You can complete the task using one of the following CLI versions:</span></span>
+## <a name="cli-versions-toocomplete-hello-task"></a><span data-ttu-id="04ded-107">CLI 版本 toocomplete hello 工作</span><span class="sxs-lookup"><span data-stu-id="04ded-107">CLI versions toocomplete hello task</span></span>
+<span data-ttu-id="04ded-108">您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本：</span><span class="sxs-lookup"><span data-stu-id="04ded-108">You can complete hello task using one of hello following CLI versions:</span></span>
 
-- <span data-ttu-id="65337-109">Azure CLI 1.0 - 適用於傳統和資源管理部署模型 (本文) 的 CLI</span><span class="sxs-lookup"><span data-stu-id="65337-109">Azure CLI 1.0 – our CLI for the classic and resource management deployment models (this article)</span></span>
-- <span data-ttu-id="65337-110">[Azure CLI 2.0](copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI</span><span class="sxs-lookup"><span data-stu-id="65337-110">[Azure CLI 2.0](copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - our next generation CLI for the resource management deployment model</span></span>
+- <span data-ttu-id="04ded-109">Azure CLI 1.0 – 我們 CLI hello 傳統和資源管理部署模型 （此文件）</span><span class="sxs-lookup"><span data-stu-id="04ded-109">Azure CLI 1.0 – our CLI for hello classic and resource management deployment models (this article)</span></span>
+- <span data-ttu-id="04ded-110">[Azure CLI 2.0](copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -hello 資源管理部署模型我們下一個層代 CLI</span><span class="sxs-lookup"><span data-stu-id="04ded-110">[Azure CLI 2.0](copy-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - our next generation CLI for hello resource management deployment model</span></span>
 
-## <a name="before-you-begin"></a><span data-ttu-id="65337-111">開始之前</span><span class="sxs-lookup"><span data-stu-id="65337-111">Before you begin</span></span>
-<span data-ttu-id="65337-112">請先確保符合下列必要條件再開始以下步驟︰</span><span class="sxs-lookup"><span data-stu-id="65337-112">Ensure that you meet the following prerequisites before you start the steps:</span></span>
+## <a name="before-you-begin"></a><span data-ttu-id="04ded-111">開始之前</span><span class="sxs-lookup"><span data-stu-id="04ded-111">Before you begin</span></span>
+<span data-ttu-id="04ded-112">請確定您符合下列必要條件再啟動 hello 步驟 hello:</span><span class="sxs-lookup"><span data-stu-id="04ded-112">Ensure that you meet hello following prerequisites before you start hello steps:</span></span>
 
-* <span data-ttu-id="65337-113">您已在電腦上下載及安裝 [Azure CLI](../../cli-install-nodejs.md) 。</span><span class="sxs-lookup"><span data-stu-id="65337-113">You have the [Azure CLI](../../cli-install-nodejs.md) downloaded and installed on your machine.</span></span> 
-* <span data-ttu-id="65337-114">您也需要現有 Azure Linux VM 的一些相關資訊：</span><span class="sxs-lookup"><span data-stu-id="65337-114">You also need some information about your existing Azure Linux VM:</span></span>
+* <span data-ttu-id="04ded-113">您已擁有 hello [Azure CLI](../../cli-install-nodejs.md)下載並安裝在您的電腦。</span><span class="sxs-lookup"><span data-stu-id="04ded-113">You have hello [Azure CLI](../../cli-install-nodejs.md) downloaded and installed on your machine.</span></span> 
+* <span data-ttu-id="04ded-114">您也需要現有 Azure Linux VM 的一些相關資訊：</span><span class="sxs-lookup"><span data-stu-id="04ded-114">You also need some information about your existing Azure Linux VM:</span></span>
 
-| <span data-ttu-id="65337-115">來源 VM 資訊</span><span class="sxs-lookup"><span data-stu-id="65337-115">Source VM information</span></span> | <span data-ttu-id="65337-116">從哪裡取得</span><span class="sxs-lookup"><span data-stu-id="65337-116">Where to get it</span></span> |
+| <span data-ttu-id="04ded-115">來源 VM 資訊</span><span class="sxs-lookup"><span data-stu-id="04ded-115">Source VM information</span></span> | <span data-ttu-id="04ded-116">其中 tooget 它</span><span class="sxs-lookup"><span data-stu-id="04ded-116">Where tooget it</span></span> |
 | --- | --- |
-| <span data-ttu-id="65337-117">VM 名稱</span><span class="sxs-lookup"><span data-stu-id="65337-117">VM name</span></span> |`azure vm list` |
-| <span data-ttu-id="65337-118">資源群組名稱</span><span class="sxs-lookup"><span data-stu-id="65337-118">Resource Group name</span></span> |`azure vm list` |
-| <span data-ttu-id="65337-119">位置</span><span class="sxs-lookup"><span data-stu-id="65337-119">Location</span></span> |`azure vm list` |
-| <span data-ttu-id="65337-120">儲存體帳戶名稱</span><span class="sxs-lookup"><span data-stu-id="65337-120">Storage Account name</span></span> |`azure storage account list -g <resourceGroup>` |
-| <span data-ttu-id="65337-121">容器名稱</span><span class="sxs-lookup"><span data-stu-id="65337-121">Container name</span></span> |`azure storage container list -a <sourcestorageaccountname>` |
-| <span data-ttu-id="65337-122">來源 VM VHD 檔案名稱</span><span class="sxs-lookup"><span data-stu-id="65337-122">Source VM VHD file name</span></span> |`azure storage blob list --container <containerName>` |
+| <span data-ttu-id="04ded-117">VM 名稱</span><span class="sxs-lookup"><span data-stu-id="04ded-117">VM name</span></span> |`azure vm list` |
+| <span data-ttu-id="04ded-118">資源群組名稱</span><span class="sxs-lookup"><span data-stu-id="04ded-118">Resource Group name</span></span> |`azure vm list` |
+| <span data-ttu-id="04ded-119">位置</span><span class="sxs-lookup"><span data-stu-id="04ded-119">Location</span></span> |`azure vm list` |
+| <span data-ttu-id="04ded-120">儲存體帳戶名稱</span><span class="sxs-lookup"><span data-stu-id="04ded-120">Storage Account name</span></span> |`azure storage account list -g <resourceGroup>` |
+| <span data-ttu-id="04ded-121">容器名稱</span><span class="sxs-lookup"><span data-stu-id="04ded-121">Container name</span></span> |`azure storage container list -a <sourcestorageaccountname>` |
+| <span data-ttu-id="04ded-122">來源 VM VHD 檔案名稱</span><span class="sxs-lookup"><span data-stu-id="04ded-122">Source VM VHD file name</span></span> |`azure storage blob list --container <containerName>` |
 
-* <span data-ttu-id="65337-123">您將需要進行新 VM 的一些相關選擇：   </span><span class="sxs-lookup"><span data-stu-id="65337-123">You will need to make some choices about your new VM:    </span></span><br> <span data-ttu-id="65337-124">-容器名稱    </span><span class="sxs-lookup"><span data-stu-id="65337-124">-Container name    </span></span><br> <span data-ttu-id="65337-125">-VM 名稱    </span><span class="sxs-lookup"><span data-stu-id="65337-125">-VM name    </span></span><br> <span data-ttu-id="65337-126">-VM 大小    </span><span class="sxs-lookup"><span data-stu-id="65337-126">-VM size    </span></span><br> <span data-ttu-id="65337-127">-vNet 名稱    </span><span class="sxs-lookup"><span data-stu-id="65337-127">-vNet name    </span></span><br> <span data-ttu-id="65337-128">-SubNet 名稱    </span><span class="sxs-lookup"><span data-stu-id="65337-128">-SubNet name    </span></span><br> <span data-ttu-id="65337-129">-IP 名稱    </span><span class="sxs-lookup"><span data-stu-id="65337-129">-IP Name    </span></span><br> <span data-ttu-id="65337-130">-NIC 名稱</span><span class="sxs-lookup"><span data-stu-id="65337-130">-NIC name</span></span>
+* <span data-ttu-id="04ded-123">您將有關新的 VM 需要 toomake 一些選項：   </span><span class="sxs-lookup"><span data-stu-id="04ded-123">You will need toomake some choices about your new VM:    </span></span><br> <span data-ttu-id="04ded-124">-容器名稱    </span><span class="sxs-lookup"><span data-stu-id="04ded-124">-Container name    </span></span><br> <span data-ttu-id="04ded-125">-VM 名稱    </span><span class="sxs-lookup"><span data-stu-id="04ded-125">-VM name    </span></span><br> <span data-ttu-id="04ded-126">-VM 大小    </span><span class="sxs-lookup"><span data-stu-id="04ded-126">-VM size    </span></span><br> <span data-ttu-id="04ded-127">-vNet 名稱    </span><span class="sxs-lookup"><span data-stu-id="04ded-127">-vNet name    </span></span><br> <span data-ttu-id="04ded-128">-SubNet 名稱    </span><span class="sxs-lookup"><span data-stu-id="04ded-128">-SubNet name    </span></span><br> <span data-ttu-id="04ded-129">-IP 名稱    </span><span class="sxs-lookup"><span data-stu-id="04ded-129">-IP Name    </span></span><br> <span data-ttu-id="04ded-130">-NIC 名稱</span><span class="sxs-lookup"><span data-stu-id="04ded-130">-NIC name</span></span>
 
-## <a name="login-and-set-your-subscription"></a><span data-ttu-id="65337-131">登入及設定您的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="65337-131">Login and set your subscription</span></span>
-1. <span data-ttu-id="65337-132">登入 CLI。</span><span class="sxs-lookup"><span data-stu-id="65337-132">Login to the CLI.</span></span>
+## <a name="login-and-set-your-subscription"></a><span data-ttu-id="04ded-131">登入及設定您的訂用帳戶</span><span class="sxs-lookup"><span data-stu-id="04ded-131">Login and set your subscription</span></span>
+1. <span data-ttu-id="04ded-132">登入 toohello CLI。</span><span class="sxs-lookup"><span data-stu-id="04ded-132">Login toohello CLI.</span></span>
 
     ```azurecli
     azure login
     ```
-2. <span data-ttu-id="65337-133">確定您處於 Resource Manager 模式。</span><span class="sxs-lookup"><span data-stu-id="65337-133">Make sure you are in Resource Manager mode.</span></span>
+2. <span data-ttu-id="04ded-133">確定您處於 Resource Manager 模式。</span><span class="sxs-lookup"><span data-stu-id="04ded-133">Make sure you are in Resource Manager mode.</span></span>
 
     ```azurecli
     azure config mode arm
     ```
-3. <span data-ttu-id="65337-134">設定正確的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="65337-134">Set the correct subscription.</span></span> <span data-ttu-id="65337-135">您可以使用 'azure account list' 來查看您的所有訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="65337-135">You can use 'azure account list' to see all of your subscriptions.</span></span>
+3. <span data-ttu-id="04ded-134">設定 hello 正確的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="04ded-134">Set hello correct subscription.</span></span> <span data-ttu-id="04ded-135">您可以使用 '的 azure 帳戶 list' toosee 您所有的訂閱。</span><span class="sxs-lookup"><span data-stu-id="04ded-135">You can use 'azure account list' toosee all of your subscriptions.</span></span>
 
     ```azurecli
     azure account set mySubscriptionID
     ```
 
-## <a name="stop-the-vm"></a><span data-ttu-id="65337-136">停止 VM</span><span class="sxs-lookup"><span data-stu-id="65337-136">Stop the VM</span></span>
-<span data-ttu-id="65337-137">將來源 VM 停止並解除配置。</span><span class="sxs-lookup"><span data-stu-id="65337-137">Stop and deallocate the source VM.</span></span> <span data-ttu-id="65337-138">您可以使用 'azure vm list' 來取得訂用帳戶中所有 VM 及其資源群組名稱的清單。</span><span class="sxs-lookup"><span data-stu-id="65337-138">You can use 'azure vm list' to get a list of all of the VMs in your subscription and their resource group names.</span></span>
+## <a name="stop-hello-vm"></a><span data-ttu-id="04ded-136">停止 hello VM</span><span class="sxs-lookup"><span data-stu-id="04ded-136">Stop hello VM</span></span>
+<span data-ttu-id="04ded-137">停止並取消配置 hello 來源 VM。</span><span class="sxs-lookup"><span data-stu-id="04ded-137">Stop and deallocate hello source VM.</span></span> <span data-ttu-id="04ded-138">您可以使用 'azure vm list' tooget 所有 hello Vm 的清單中訂用帳戶及資源群組名稱。</span><span class="sxs-lookup"><span data-stu-id="04ded-138">You can use 'azure vm list' tooget a list of all of hello VMs in your subscription and their resource group names.</span></span>
 
 ```azurecli
 azure vm stop myResourceGroup myVM
@@ -74,10 +74,10 @@ azure vm deallocate myResourceGroup MyVM
 ```
 
 
-## <a name="copy-the-vhd"></a><span data-ttu-id="65337-139">複製 VHD</span><span class="sxs-lookup"><span data-stu-id="65337-139">Copy the VHD</span></span>
-<span data-ttu-id="65337-140">您可以使用 `azure storage blob copy start`將 VHD 從來源儲存體複製到目的地。</span><span class="sxs-lookup"><span data-stu-id="65337-140">You can copy the VHD from the source storage to the destination using the `azure storage blob copy start`.</span></span> <span data-ttu-id="65337-141">在此範例中，我們將會把 VHD 複製到相同的儲存體帳戶但不同的容器中。</span><span class="sxs-lookup"><span data-stu-id="65337-141">In this example, we are going to copy the VHD to the same storage account, but a different container.</span></span>
+## <a name="copy-hello-vhd"></a><span data-ttu-id="04ded-139">複製 hello VHD</span><span class="sxs-lookup"><span data-stu-id="04ded-139">Copy hello VHD</span></span>
+<span data-ttu-id="04ded-140">您可以從 hello 來源儲存體 toohello 目的地使用 hello 複製 hello VHD `azure storage blob copy start`。</span><span class="sxs-lookup"><span data-stu-id="04ded-140">You can copy hello VHD from hello source storage toohello destination using hello `azure storage blob copy start`.</span></span> <span data-ttu-id="04ded-141">在此範例中，我們會 toocopy hello VHD toohello 相同的儲存體帳戶，但不同的容器。</span><span class="sxs-lookup"><span data-stu-id="04ded-141">In this example, we are going toocopy hello VHD toohello same storage account, but a different container.</span></span>
 
-<span data-ttu-id="65337-142">若要將 VHD 複製到相同儲存體帳戶中的另一個容器，請輸入：</span><span class="sxs-lookup"><span data-stu-id="65337-142">To copy the VHD to another container in the same storage account, type:</span></span>
+<span data-ttu-id="04ded-142">在 hello toocopy hello VHD tooanother 容器相同的儲存體帳戶中，輸入：</span><span class="sxs-lookup"><span data-stu-id="04ded-142">toocopy hello VHD tooanother container in hello same storage account, type:</span></span>
 
 ```azurecli
 azure storage blob copy start \
@@ -85,8 +85,8 @@ azure storage blob copy start \
         myNewContainerName
 ```
 
-## <a name="set-up-the-virtual-network-for-your-new-vm"></a><span data-ttu-id="65337-143">為新 VM 設定虛擬網路</span><span class="sxs-lookup"><span data-stu-id="65337-143">Set up the virtual network for your new VM</span></span>
-<span data-ttu-id="65337-144">為新 VM 設定虛擬網路和 NIC。</span><span class="sxs-lookup"><span data-stu-id="65337-144">Set up a virtual network and NIC for your new VM.</span></span> 
+## <a name="set-up-hello-virtual-network-for-your-new-vm"></a><span data-ttu-id="04ded-143">新的 vm 設定 hello 虛擬網路</span><span class="sxs-lookup"><span data-stu-id="04ded-143">Set up hello virtual network for your new VM</span></span>
+<span data-ttu-id="04ded-144">為新 VM 設定虛擬網路和 NIC。</span><span class="sxs-lookup"><span data-stu-id="04ded-144">Set up a virtual network and NIC for your new VM.</span></span> 
 
 ```azurecli
 azure network vnet create myResourceGroup myVnet -l myLocation
@@ -99,8 +99,8 @@ azure network nic create myResourceGroup myNic -k mySubnet -m myVnet -p myPublic
 ```
 
 
-## <a name="create-the-new-vm"></a><span data-ttu-id="65337-145">建立新 VM</span><span class="sxs-lookup"><span data-stu-id="65337-145">Create the new VM</span></span>
-<span data-ttu-id="65337-146">您現在可以 [使用 Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-from-specialized-vhd) 從已上傳的虛擬磁碟建立 VM，或透過 CLI 藉由輸入下列命令來指定所複製磁碟的 URI 以建立 VM︰</span><span class="sxs-lookup"><span data-stu-id="65337-146">You can now create a VM from your uploaded virtual disk [using a resource manager template](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-from-specialized-vhd) or through the CLI by specifying the URI to your copied disk by typing:</span></span>
+## <a name="create-hello-new-vm"></a><span data-ttu-id="04ded-145">建立 hello 新的 VM</span><span class="sxs-lookup"><span data-stu-id="04ded-145">Create hello new VM</span></span>
+<span data-ttu-id="04ded-146">您現在可以從已上傳虛擬硬碟建立 VM[使用資源管理員範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-from-specialized-vhd)或藉由指定 hello URI tooyour CLI hello 透過輸入複製磁碟：</span><span class="sxs-lookup"><span data-stu-id="04ded-146">You can now create a VM from your uploaded virtual disk [using a resource manager template](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-from-specialized-vhd) or through hello CLI by specifying hello URI tooyour copied disk by typing:</span></span>
 
 ```azurecli
 azure vm create -n myVM -l myLocation -g myResourceGroup -f myNic \
@@ -110,6 +110,6 @@ azure vm create -n myVM -l myLocation -g myResourceGroup -f myNic \
 
 
 
-## <a name="next-steps"></a><span data-ttu-id="65337-147">後續步驟</span><span class="sxs-lookup"><span data-stu-id="65337-147">Next steps</span></span>
-<span data-ttu-id="65337-148">若要了解如何使用 Azure CLI 來管理新虛擬機器，請參閱 [Azure Resource Manager 的 Azure CLI 命令](../azure-cli-arm-commands.md)。</span><span class="sxs-lookup"><span data-stu-id="65337-148">To learn how to use Azure CLI to manage your new virtual machine, see [Azure CLI commands for the Azure Resource Manager](../azure-cli-arm-commands.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="04ded-147">後續步驟</span><span class="sxs-lookup"><span data-stu-id="04ded-147">Next steps</span></span>
+<span data-ttu-id="04ded-148">toolearn 如何 toouse Azure CLI toomanage 新的虛擬機器，請參閱[hello Azure 資源管理員的 Azure CLI 命令](../azure-cli-arm-commands.md)。</span><span class="sxs-lookup"><span data-stu-id="04ded-148">toolearn how toouse Azure CLI toomanage your new virtual machine, see [Azure CLI commands for hello Azure Resource Manager](../azure-cli-arm-commands.md).</span></span>
 

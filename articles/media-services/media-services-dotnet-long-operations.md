@@ -1,6 +1,6 @@
 ---
-title: "輪詢長時間執行的作業 | Microsoft Docs"
-description: "本主題說明如何輪詢長時間執行的作業。"
+title: "aaaPolling 長時間執行的作業 |Microsoft 文件"
+description: "本主題說明如何 toopoll 長時間執行的作業。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 7123a2d44d3b7c332afe30fb0fcea88ca29e313a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f8315a5ddbe484d794c3e2164e47dd9e70521671
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="delivering-live-streaming-with-azure-media-services"></a><span data-ttu-id="64544-103">利用 Azure 媒體服務提供即時資料流</span><span class="sxs-lookup"><span data-stu-id="64544-103">Delivering Live Streaming with Azure Media Services</span></span>
+# <a name="delivering-live-streaming-with-azure-media-services"></a><span data-ttu-id="20005-103">利用 Azure 媒體服務提供即時資料流</span><span class="sxs-lookup"><span data-stu-id="20005-103">Delivering Live Streaming with Azure Media Services</span></span>
 
-## <a name="overview"></a><span data-ttu-id="64544-104">Overview</span><span class="sxs-lookup"><span data-stu-id="64544-104">Overview</span></span>
+## <a name="overview"></a><span data-ttu-id="20005-104">概觀</span><span class="sxs-lookup"><span data-stu-id="20005-104">Overview</span></span>
 
-<span data-ttu-id="64544-105">Microsoft Azure 媒體服務提供將要求傳送至媒體服務以啟動作業 (如建立、啟動、停止或刪除頻道) 的 API。</span><span class="sxs-lookup"><span data-stu-id="64544-105">Microsoft Azure Media Services offers APIs that send requests to Media Services to start operations (for example: create, start, stop, or delete a channel).</span></span> <span data-ttu-id="64544-106">這些作業屬於長時間執行的作業。</span><span class="sxs-lookup"><span data-stu-id="64544-106">These operations are long-running.</span></span>
+<span data-ttu-id="20005-105">Microsoft Azure Media Services 提供的 Api，以傳送要求 tooMedia Services toostart 作業 (例如： 建立、 啟動、 停止或刪除通道)。</span><span class="sxs-lookup"><span data-stu-id="20005-105">Microsoft Azure Media Services offers APIs that send requests tooMedia Services toostart operations (for example: create, start, stop, or delete a channel).</span></span> <span data-ttu-id="20005-106">這些作業屬於長時間執行的作業。</span><span class="sxs-lookup"><span data-stu-id="20005-106">These operations are long-running.</span></span>
 
-<span data-ttu-id="64544-107">Media Services .NET SDK 提供能傳送要求並等候作業完成的 API (API 會在內部依照某些間隔輪詢作業進度).</span><span class="sxs-lookup"><span data-stu-id="64544-107">The Media Services .NET SDK provides APIs that send the request and wait for the operation to complete (internally, the APIs are polling for operation progress at some intervals).</span></span> <span data-ttu-id="64544-108">例如，當您呼叫 channel.Start() 時，方法會在通道啟動後返回。</span><span class="sxs-lookup"><span data-stu-id="64544-108">For example, when you call channel.Start(), the method returns after the channel is started.</span></span> <span data-ttu-id="64544-109">您也可以使用非同步的 version: await channel.StartAsync() (如需以工作為基礎的非同步模式，請參閱 [TAP](https://msdn.microsoft.com/library/hh873175\(v=vs.110\).aspx))。</span><span class="sxs-lookup"><span data-stu-id="64544-109">You can also use the asynchronous version: await channel.StartAsync() (for information about Task-based Asynchronous Pattern, see [TAP](https://msdn.microsoft.com/library/hh873175\(v=vs.110\).aspx)).</span></span> <span data-ttu-id="64544-110">傳送作業要求並輪詢狀態，直到作業完成為止的 API 稱為「輪詢方法」。</span><span class="sxs-lookup"><span data-stu-id="64544-110">APIs that send an operation request and then poll for the status until the operation is complete are called “polling methods”.</span></span> <span data-ttu-id="64544-111">我們建議豐富型用戶端應用程式和/或可設定狀態的服務使用這些方法 (尤其是非同步版本)。</span><span class="sxs-lookup"><span data-stu-id="64544-111">These methods (especially the Async version) are recommended for rich client applications and/or stateful services.</span></span>
+<span data-ttu-id="20005-107">hello Media Services.NET SDK 提供傳送嗨要求，並等候 hello 作業 toocomplete (就內部而言，應用程式開發介面特定間隔輪詢作業進度的 hello) 的 Api。</span><span class="sxs-lookup"><span data-stu-id="20005-107">hello Media Services .NET SDK provides APIs that send hello request and wait for hello operation toocomplete (internally, hello APIs are polling for operation progress at some intervals).</span></span> <span data-ttu-id="20005-108">例如，當您呼叫通道。Start （），hello 方法會傳回 hello 通道啟動後。</span><span class="sxs-lookup"><span data-stu-id="20005-108">For example, when you call channel.Start(), hello method returns after hello channel is started.</span></span> <span data-ttu-id="20005-109">您也可以使用 hello 非同步版本： 等候通道。StartAsync() (以工作為基礎的非同步模式的相關資訊，請參閱[點選](https://msdn.microsoft.com/library/hh873175\(v=vs.110\).aspx))。</span><span class="sxs-lookup"><span data-stu-id="20005-109">You can also use hello asynchronous version: await channel.StartAsync() (for information about Task-based Asynchronous Pattern, see [TAP](https://msdn.microsoft.com/library/hh873175\(v=vs.110\).aspx)).</span></span> <span data-ttu-id="20005-110">應用程式開發介面傳送的作業要求和 hello 作業完成之前輪詢 hello 狀態稱為 「 輪詢方法 」。</span><span class="sxs-lookup"><span data-stu-id="20005-110">APIs that send an operation request and then poll for hello status until hello operation is complete are called “polling methods”.</span></span> <span data-ttu-id="20005-111">建議使用這些方法 （尤其是 hello 非同步版本） 的豐富型用戶端應用程式及/或可設定狀態的服務。</span><span class="sxs-lookup"><span data-stu-id="20005-111">These methods (especially hello Async version) are recommended for rich client applications and/or stateful services.</span></span>
 
-<span data-ttu-id="64544-112">我們有一些無法等候長時間執行之 http 要求，並想要的手動輪詢作業進度之應用程式的案例。</span><span class="sxs-lookup"><span data-stu-id="64544-112">There are scenarios where an application cannot wait for a long running http request and wants to poll for the operation progress manually.</span></span> <span data-ttu-id="64544-113">與無狀態 Web 服務互動之瀏覽器是典型的範例：當瀏覽器要求建立通道時，Web 服務會起始長時間執行的作業，並將作業識別碼傳回瀏覽器。</span><span class="sxs-lookup"><span data-stu-id="64544-113">A typical example would be a browser interacting with a stateless web service: when the browser requests to create a channel, the web service initiates a long running operation and returns the operation ID to the browser.</span></span> <span data-ttu-id="64544-114">接著，瀏覽器會要求 Web 服務來根據識別碼取得作業狀態。</span><span class="sxs-lookup"><span data-stu-id="64544-114">The browser could then ask the web service to get the operation status based on the ID.</span></span> <span data-ttu-id="64544-115">Media Services .NET SDK 提供適用於此案例的 API。</span><span class="sxs-lookup"><span data-stu-id="64544-115">The Media Services .NET SDK provides APIs that are useful for this scenario.</span></span> <span data-ttu-id="64544-116">這些 API 稱為「非輪詢方法」。</span><span class="sxs-lookup"><span data-stu-id="64544-116">These APIs are called “non-polling methods”.</span></span>
-<span data-ttu-id="64544-117">「非輪詢方法」的命名模式如下：SendOperationNameOperation (例如，SendCreateOperation)。</span><span class="sxs-lookup"><span data-stu-id="64544-117">The “non-polling methods” have the following naming pattern: Send*OperationName*Operation (for example, SendCreateOperation).</span></span> <span data-ttu-id="64544-118">SendOperationNameOperation 方法會傳回 **IOperation** 物件；傳回的物件含有可用來追蹤作業的資訊。</span><span class="sxs-lookup"><span data-stu-id="64544-118">Send*OperationName*Operation methods return the **IOperation** object; the returned object contains information that can be used to track the operation.</span></span> <span data-ttu-id="64544-119">Send*OperationName*OperationAsync 方法會傳回 **Task<IOperation>**。</span><span class="sxs-lookup"><span data-stu-id="64544-119">The Send*OperationName*OperationAsync methods return **Task<IOperation>**.</span></span>
+<span data-ttu-id="20005-112">沒有應用程式無法等待長時間執行的 http 要求，而想 toopoll hello 作業進度，以手動方式。</span><span class="sxs-lookup"><span data-stu-id="20005-112">There are scenarios where an application cannot wait for a long running http request and wants toopoll for hello operation progress manually.</span></span> <span data-ttu-id="20005-113">常見的範例是與無狀態的 web 服務互動的瀏覽器： hello 瀏覽器要求 toocreate 通道、 hello web 服務會起始長時間執行的作業和傳回 hello 作業 ID toohello 瀏覽器時。</span><span class="sxs-lookup"><span data-stu-id="20005-113">A typical example would be a browser interacting with a stateless web service: when hello browser requests toocreate a channel, hello web service initiates a long running operation and returns hello operation ID toohello browser.</span></span> <span data-ttu-id="20005-114">hello 瀏覽器無法再要求 hello web 服務 tooget hello 作業狀態 hello id。</span><span class="sxs-lookup"><span data-stu-id="20005-114">hello browser could then ask hello web service tooget hello operation status based on hello ID.</span></span> <span data-ttu-id="20005-115">hello Media Services.NET SDK 提供可用於此案例中的 Api。</span><span class="sxs-lookup"><span data-stu-id="20005-115">hello Media Services .NET SDK provides APIs that are useful for this scenario.</span></span> <span data-ttu-id="20005-116">這些 API 稱為「非輪詢方法」。</span><span class="sxs-lookup"><span data-stu-id="20005-116">These APIs are called “non-polling methods”.</span></span>
+<span data-ttu-id="20005-117">hello 「 非輪詢方法 」 具有下列命名模式的 hello： 傳送*OperationName*作業 (例如，SendCreateOperation)。</span><span class="sxs-lookup"><span data-stu-id="20005-117">hello “non-polling methods” have hello following naming pattern: Send*OperationName*Operation (for example, SendCreateOperation).</span></span> <span data-ttu-id="20005-118">傳送*OperationName*作業方法會傳回 hello **IOperation**物件; hello 傳回的物件包含可能是使用的 tootrack hello 作業的資訊。</span><span class="sxs-lookup"><span data-stu-id="20005-118">Send*OperationName*Operation methods return hello **IOperation** object; hello returned object contains information that can be used tootrack hello operation.</span></span> <span data-ttu-id="20005-119">傳送嗨*OperationName*OperationAsync 方法會傳回**工作<IOperation>**。</span><span class="sxs-lookup"><span data-stu-id="20005-119">hello Send*OperationName*OperationAsync methods return **Task<IOperation>**.</span></span>
 
-<span data-ttu-id="64544-120">以下是目前支援非輪詢方法的類別：**通道**、**StreamingEndpoint** 及**程式**。</span><span class="sxs-lookup"><span data-stu-id="64544-120">Currently, the following classes support non-polling methods:  **Channel**, **StreamingEndpoint**, and **Program**.</span></span>
+<span data-ttu-id="20005-120">目前，hello 遵循類別支援非輪詢方法：**通道**， **StreamingEndpoint**，和**程式**。</span><span class="sxs-lookup"><span data-stu-id="20005-120">Currently, hello following classes support non-polling methods:  **Channel**, **StreamingEndpoint**, and **Program**.</span></span>
 
-<span data-ttu-id="64544-121">若要輪詢作業狀態，請針對 **OperationBaseCollection** 類別使用 **GetOperation** 方法。</span><span class="sxs-lookup"><span data-stu-id="64544-121">To poll for the operation status, use the **GetOperation** method on the **OperationBaseCollection** class.</span></span> <span data-ttu-id="64544-122">請使用下列間隔來檢查作業狀態：對於**通道**和 **StreamingEndpoint** 作業，使用 30 秒；對於**程式**作業，使用 10 秒。</span><span class="sxs-lookup"><span data-stu-id="64544-122">Use the following intervals to check the operation status: for **Channel** and **StreamingEndpoint** operations, use 30 seconds; for **Program** operations, use 10 seconds.</span></span>
+<span data-ttu-id="20005-121">hello 作業狀態，使用 hello toopoll **GetOperation**方法上 hello **OperationBaseCollection**類別。</span><span class="sxs-lookup"><span data-stu-id="20005-121">toopoll for hello operation status, use hello **GetOperation** method on hello **OperationBaseCollection** class.</span></span> <span data-ttu-id="20005-122">使用下列間隔 toocheck hello 作業狀態的 hello： 針對**通道**和**StreamingEndpoint**作業，請使用 30 秒; 對於**程式**作業，請使用 10秒數。</span><span class="sxs-lookup"><span data-stu-id="20005-122">Use hello following intervals toocheck hello operation status: for **Channel** and **StreamingEndpoint** operations, use 30 seconds; for **Program** operations, use 10 seconds.</span></span>
 
-## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="64544-123">建立和設定 Visual Studio 專案</span><span class="sxs-lookup"><span data-stu-id="64544-123">Create and configure a Visual Studio project</span></span>
+## <a name="create-and-configure-a-visual-studio-project"></a><span data-ttu-id="20005-123">建立和設定 Visual Studio 專案</span><span class="sxs-lookup"><span data-stu-id="20005-123">Create and configure a Visual Studio project</span></span>
 
-<span data-ttu-id="64544-124">設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。</span><span class="sxs-lookup"><span data-stu-id="64544-124">Set up your development environment and populate the app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span>
+<span data-ttu-id="20005-124">設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。</span><span class="sxs-lookup"><span data-stu-id="20005-124">Set up your development environment and populate hello app.config file with connection information, as described in [Media Services development with .NET](media-services-dotnet-how-to-use.md).</span></span>
 
-## <a name="example"></a><span data-ttu-id="64544-125">範例</span><span class="sxs-lookup"><span data-stu-id="64544-125">Example</span></span>
+## <a name="example"></a><span data-ttu-id="20005-125">範例</span><span class="sxs-lookup"><span data-stu-id="20005-125">Example</span></span>
 
-<span data-ttu-id="64544-126">以下範例定義名為 **ChannelOperations**的類別。</span><span class="sxs-lookup"><span data-stu-id="64544-126">The following example defines a class called **ChannelOperations**.</span></span> <span data-ttu-id="64544-127">此類別定義可能是 Web 服務類別定義的起始點。</span><span class="sxs-lookup"><span data-stu-id="64544-127">This class definition could be a starting point for your web service class definition.</span></span> <span data-ttu-id="64544-128">為了簡單起見，以下範例使用非同步版本的方法。</span><span class="sxs-lookup"><span data-stu-id="64544-128">For simplicity, the following examples use the non-async versions of methods.</span></span>
+<span data-ttu-id="20005-126">hello 下列範例會定義一種類別稱為**ChannelOperations**。</span><span class="sxs-lookup"><span data-stu-id="20005-126">hello following example defines a class called **ChannelOperations**.</span></span> <span data-ttu-id="20005-127">此類別定義可能是 Web 服務類別定義的起始點。</span><span class="sxs-lookup"><span data-stu-id="20005-127">This class definition could be a starting point for your web service class definition.</span></span> <span data-ttu-id="20005-128">為了簡單起見，hello 下列範例會使用 hello 方法的非同步版本。</span><span class="sxs-lookup"><span data-stu-id="20005-128">For simplicity, hello following examples use hello non-async versions of methods.</span></span>
 
-<span data-ttu-id="64544-129">此範例也示範用戶端如何使用這個類別。</span><span class="sxs-lookup"><span data-stu-id="64544-129">The example also shows how the client might use this class.</span></span>
+<span data-ttu-id="20005-129">hello 範例也會顯示 hello 用戶端如何使用這個類別。</span><span class="sxs-lookup"><span data-stu-id="20005-129">hello example also shows how hello client might use this class.</span></span>
 
-### <a name="channeloperations-class-definition"></a><span data-ttu-id="64544-130">ChannelOperations class definition</span><span class="sxs-lookup"><span data-stu-id="64544-130">ChannelOperations class definition</span></span>
+### <a name="channeloperations-class-definition"></a><span data-ttu-id="20005-130">ChannelOperations class definition</span><span class="sxs-lookup"><span data-stu-id="20005-130">ChannelOperations class definition</span></span>
 
     using Microsoft.WindowsAzure.MediaServices.Client;
     using System;
@@ -54,12 +54,12 @@ ms.lasthandoff: 08/29/2017
     using System.Net;
 
     /// <summary> 
-    /// The ChannelOperations class only implements 
-    /// the Channel’s creation operation. 
+    /// hello ChannelOperations class only implements 
+    /// hello Channel’s creation operation. 
     /// </summary> 
     public class ChannelOperations
     {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -77,12 +77,12 @@ ms.lasthandoff: 08/29/2017
         }
 
         /// <summary>  
-        /// Initiates the creation of a new channel.  
+        /// Initiates hello creation of a new channel.  
         /// </summary>  
-        /// <param name="channelName">Name to be given to the new channel</param>  
+        /// <param name="channelName">Name toobe given toohello new channel</param>  
         /// <returns>  
-        /// Operation Id for the long running operation being executed by Media Services. 
-        /// Use this operation Id to poll for the channel creation status. 
+        /// Operation Id for hello long running operation being executed by Media Services. 
+        /// Use this operation Id toopoll for hello channel creation status. 
         /// </returns> 
         public string StartChannelCreation(string channelName)
         {
@@ -99,14 +99,14 @@ ms.lasthandoff: 08/29/2017
         }
 
         /// <summary> 
-        /// Checks if the operation has been completed. 
-        /// If the operation succeeded, the created channel Id is returned in the out parameter.
+        /// Checks if hello operation has been completed. 
+        /// If hello operation succeeded, hello created channel Id is returned in hello out parameter.
         /// </summary> 
-        /// <param name="operationId">The operation Id.</param> 
+        /// <param name="operationId">hello operation Id.</param> 
         /// <param name="channel">
-        /// If the operation succeeded, 
-        /// the created channel Id is returned in the out parameter.</param>
-        /// <returns>Returns false if the operation is still in progress; otherwise, true.</returns> 
+        /// If hello operation succeeded, 
+        /// hello created channel Id is returned in hello out parameter.</param>
+        /// <returns>Returns false if hello operation is still in progress; otherwise, true.</returns> 
         public bool IsCompleted(string operationId, out string channelId)
         {
             IOperation operation = _context.Operations.GetOperation(operationId);
@@ -117,9 +117,9 @@ ms.lasthandoff: 08/29/2017
             switch (operation.State)
             {
                 case OperationState.Failed:
-                    // Handle the failure. 
+                    // Handle hello failure. 
                     // For example, throw an exception. 
-                    // Use the following information in the exception: operationId, operation.ErrorMessage.
+                    // Use hello following information in hello exception: operationId, operation.ErrorMessage.
                     break;
                 case OperationState.Succeeded:
                     completed = true;
@@ -180,7 +180,7 @@ ms.lasthandoff: 08/29/2017
         }
     }
 
-### <a name="the-client-code"></a><span data-ttu-id="64544-131">The client code</span><span class="sxs-lookup"><span data-stu-id="64544-131">The client code</span></span>
+### <a name="hello-client-code"></a><span data-ttu-id="20005-131">hello 用戶端程式碼</span><span class="sxs-lookup"><span data-stu-id="20005-131">hello client code</span></span>
     ChannelOperations channelOperations = new ChannelOperations();
     string opId = channelOperations.StartChannelCreation("MyChannel001");
 
@@ -193,14 +193,14 @@ ms.lasthandoff: 08/29/2017
         isCompleted = channelOperations.IsCompleted(opId, out channelId);
     }
 
-    // If we got here, we should have the newly created channel id.
+    // If we got here, we should have hello newly created channel id.
     Console.WriteLine(channelId);
 
 
 
-## <a name="media-services-learning-paths"></a><span data-ttu-id="64544-132">媒體服務學習路徑</span><span class="sxs-lookup"><span data-stu-id="64544-132">Media Services learning paths</span></span>
+## <a name="media-services-learning-paths"></a><span data-ttu-id="20005-132">媒體服務學習路徑</span><span class="sxs-lookup"><span data-stu-id="20005-132">Media Services learning paths</span></span>
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
 
-## <a name="provide-feedback"></a><span data-ttu-id="64544-133">提供意見反應</span><span class="sxs-lookup"><span data-stu-id="64544-133">Provide feedback</span></span>
+## <a name="provide-feedback"></a><span data-ttu-id="20005-133">提供意見反應</span><span class="sxs-lookup"><span data-stu-id="20005-133">Provide feedback</span></span>
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 

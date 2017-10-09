@@ -1,0 +1,7 @@
+## <a name="additional-resources"></a><span data-ttu-id="2e9cf-101">其他資源</span><span class="sxs-lookup"><span data-stu-id="2e9cf-101">Additional resources</span></span>
+* [<span data-ttu-id="2e9cf-102">hello Azure AD 開發人員指南</span><span class="sxs-lookup"><span data-stu-id="2e9cf-102">hello Azure AD developer's guide</span></span>](../articles/active-directory/develop/active-directory-developers-guide.md)
+* [<span data-ttu-id="2e9cf-103">GitHub 上的 Azure AD 範例</span><span class="sxs-lookup"><span data-stu-id="2e9cf-103">Azure AD samples on GitHub</span></span>](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=active-directory)
+* [<span data-ttu-id="2e9cf-104">CloudIdentity.com</span><span class="sxs-lookup"><span data-stu-id="2e9cf-104">CloudIdentity.com</span></span>](http://cloudidentity.com)
+
+## <a name="get-security-updates-for-our-products"></a><span data-ttu-id="2e9cf-105">取得產品的安全性更新</span><span class="sxs-lookup"><span data-stu-id="2e9cf-105">Get security updates for our products</span></span>
+<span data-ttu-id="2e9cf-106">我們建議您造訪的安全性事件發生時的 tooget 通知[hello TechCenter 網頁，Microsoft 技術安全性通知](https://technet.microsoft.com/security/dd252948)及訂閱 toosecurity 諮詢警示。</span><span class="sxs-lookup"><span data-stu-id="2e9cf-106">We encourage you tooget notifications of when security incidents occur by visiting [hello TechCenter page for Microsoft technical security notifications](https://technet.microsoft.com/security/dd252948) and subscribing toosecurity advisory alerts.</span></span>

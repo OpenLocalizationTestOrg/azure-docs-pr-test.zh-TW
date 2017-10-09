@@ -2,7 +2,7 @@
 ## [什麼是虛擬機器擴展集？](virtual-machine-scale-sets-overview.md)
 
 # 開始使用
-## [在入口網站中部署擴展集](virtual-machine-scale-sets-portal-create.md)
+## [部署在 hello 入口網站中設定的標尺](virtual-machine-scale-sets-portal-create.md)
 ## [使用 PowerShell 或 Azure CLI 部署擴展集](virtual-machine-scale-sets-create.md)
 ## [使用範本部署自動調整應用程式](virtual-machine-scale-sets-deploy-scaling-app-template.md)
 
@@ -17,7 +17,7 @@
 ### [使用來賓型自動調整搭配 Linux 擴展集範本](virtual-machine-scale-sets-mvss-guest-based-autoscale-linux.md)
 
 ## 部署
-### [使用入口網站建立](virtual-machine-scale-sets-portal-create.md)
+### [建立與 hello 入口網站](virtual-machine-scale-sets-portal-create.md)
 ### [使用 Visual Studio 建立](virtual-machine-scale-sets-vs-create.md)
 ### [使用 PowerShell 或 Azure CLI 建立](virtual-machine-scale-sets-create.md)
 ### [搭配受控磁碟的擴展集](virtual-machine-scale-sets-managed-disks.md)
@@ -26,7 +26,7 @@
 ### [應用程式擴展集](virtual-machine-scale-sets-deploy-app.md)
 ### [使用資料磁碟搭配擴展集](virtual-machine-scale-sets-attached-disks.md)
 ### [使用大型擴展集](virtual-machine-scale-sets-placement-groups.md)
-### [將擴展集範本轉換為使用受控磁碟](virtual-machine-scale-sets-convert-template-to-md.md)
+### [將小數位數組範本 toouse managed 的磁碟轉換](virtual-machine-scale-sets-convert-template-to-md.md)
 
 
 
@@ -38,7 +38,7 @@
 ### [擴展集的升級](virtual-machine-scale-sets-upgrade-scale-set.md)
 ### [DSC 與擴展集](virtual-machine-scale-sets-dsc.md)
 ### [適用於擴展集的網路](virtual-machine-scale-sets-networking.md)
-### [將範本轉換為受控磁碟](virtual-machine-scale-sets-convert-template-to-md.md)
+### [將範本 toomanaged 磁碟轉換](virtual-machine-scale-sets-convert-template-to-md.md)
 
 ## 疑難排解
 ### [Autoscale](virtual-machine-scale-sets-troubleshoot.md)

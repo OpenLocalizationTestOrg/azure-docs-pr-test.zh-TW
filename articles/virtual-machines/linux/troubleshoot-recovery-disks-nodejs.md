@@ -1,6 +1,6 @@
 ---
-title: "透過 Azure CLI 1.0 使用 Linux 疑難排解 VM | Microsoft Docs"
-description: "了解如何使用 Azure CLI 1.0 將 OS 磁碟連接至復原 VM，以針對 Linux VM 問題進行疑難排解"
+title: "Linux VM 疑難排解以 hello Azure CLI 1.0 的 aaaUse |Microsoft 文件"
+description: "了解如何連接 hello OS 磁碟 tooa 復原 VM 使用發出 Linux VM 的 tootroubleshoot hello Azure CLI 1.0"
 services: virtual-machines-linux
 documentationCenter: 
 authors: iainfoulds
@@ -13,69 +13,69 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 02/09/2017
 ms.author: iainfou
-ms.openlocfilehash: d817358211f123c96d899c5cff88cc47aeb5c9c1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 398f681d1149299d444fcfdab20737315db02855
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-a-linux-vm-by-attaching-the-os-disk-to-a-recovery-vm-using-the-azure-cli-10"></a><span data-ttu-id="51bd9-103">使用 Azure CLI 1.0 將 OS 磁碟連結至復原 VM，以針對 Linux VM 進行疑難排解</span><span class="sxs-lookup"><span data-stu-id="51bd9-103">Troubleshoot a Linux VM by attaching the OS disk to a recovery VM using the Azure CLI 1.0</span></span>
-<span data-ttu-id="51bd9-104">如果 Linux 虛擬機器 (VM) 發生開機或磁碟錯誤，您可能需要對虛擬硬碟本身執行疑難排解步驟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-104">If your Linux virtual machine (VM) encounters a boot or disk error, you may need to perform troubleshooting steps on the virtual hard disk itself.</span></span> <span data-ttu-id="51bd9-105">常見的例子是 `/etc/fstab` 中的項目無效，導致 VM 無法成功開機。</span><span class="sxs-lookup"><span data-stu-id="51bd9-105">A common example would be an invalid entry in `/etc/fstab` that prevents the VM from being able to boot successfully.</span></span> <span data-ttu-id="51bd9-106">本文詳細說明如何使用 Azure CLI 1.0 將虛擬硬碟連接至另一個 Linux VM，以修正任何錯誤，然後重新建立原始 VM。</span><span class="sxs-lookup"><span data-stu-id="51bd9-106">This article details how to use the Azure CLI 1.0 to connect your virtual hard disk to another Linux VM to fix any errors, then re-create your original VM.</span></span>
+# <a name="troubleshoot-a-linux-vm-by-attaching-hello-os-disk-tooa-recovery-vm-using-hello-azure-cli-10"></a><span data-ttu-id="ca084-103">疑難排解 Linux VM，藉由附加 hello OS 磁碟 tooa 復原 VM 使用 hello Azure CLI 1.0</span><span class="sxs-lookup"><span data-stu-id="ca084-103">Troubleshoot a Linux VM by attaching hello OS disk tooa recovery VM using hello Azure CLI 1.0</span></span>
+<span data-ttu-id="ca084-104">如果您的 Linux 虛擬機器 (VM) 會發生開機或磁碟錯誤，您可能需要 tooperform 疑難排解 hello 虛擬硬碟上本身的步驟。</span><span class="sxs-lookup"><span data-stu-id="ca084-104">If your Linux virtual machine (VM) encounters a boot or disk error, you may need tooperform troubleshooting steps on hello virtual hard disk itself.</span></span> <span data-ttu-id="ca084-105">常見範例是無效的項目中`/etc/fstab`，防止 hello VM 可以 tooboot 成功。</span><span class="sxs-lookup"><span data-stu-id="ca084-105">A common example would be an invalid entry in `/etc/fstab` that prevents hello VM from being able tooboot successfully.</span></span> <span data-ttu-id="ca084-106">本文詳細說明如何 toouse hello Azure CLI 1.0 tooconnect 虛擬硬碟磁碟 tooanother Linux VM toofix 任何錯誤，然後重新建立原始 VM。</span><span class="sxs-lookup"><span data-stu-id="ca084-106">This article details how toouse hello Azure CLI 1.0 tooconnect your virtual hard disk tooanother Linux VM toofix any errors, then re-create your original VM.</span></span>
 
 
-## <a name="cli-versions-to-complete-the-task"></a><span data-ttu-id="51bd9-107">用以完成工作的 CLI 版本</span><span class="sxs-lookup"><span data-stu-id="51bd9-107">CLI versions to complete the task</span></span>
-<span data-ttu-id="51bd9-108">您可以使用下列其中一個 CLI 版本來完成工作︰</span><span class="sxs-lookup"><span data-stu-id="51bd9-108">You can complete the task using one of the following CLI versions:</span></span>
+## <a name="cli-versions-toocomplete-hello-task"></a><span data-ttu-id="ca084-107">CLI 版本 toocomplete hello 工作</span><span class="sxs-lookup"><span data-stu-id="ca084-107">CLI versions toocomplete hello task</span></span>
+<span data-ttu-id="ca084-108">您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本：</span><span class="sxs-lookup"><span data-stu-id="ca084-108">You can complete hello task using one of hello following CLI versions:</span></span>
 
-- <span data-ttu-id="51bd9-109">[Azure CLI 1.0](#recovery-process-overview) – 適用於傳統和資源管理部署模型的 CLI (本文章)</span><span class="sxs-lookup"><span data-stu-id="51bd9-109">[Azure CLI 1.0](#recovery-process-overview) – our CLI for the classic and resource management deployment models (this article)</span></span>
-- <span data-ttu-id="51bd9-110">[Azure CLI 2.0](../windows/troubleshoot-recovery-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI</span><span class="sxs-lookup"><span data-stu-id="51bd9-110">[Azure CLI 2.0](../windows/troubleshoot-recovery-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - our next generation CLI for the resource management deployment model</span></span>
+- <span data-ttu-id="ca084-109">[Azure CLI 1.0](#recovery-process-overview) – 我們 CLI hello 傳統和資源管理部署模型 （此文件）</span><span class="sxs-lookup"><span data-stu-id="ca084-109">[Azure CLI 1.0](#recovery-process-overview) – our CLI for hello classic and resource management deployment models (this article)</span></span>
+- <span data-ttu-id="ca084-110">[Azure CLI 2.0](../windows/troubleshoot-recovery-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -hello 資源管理部署模型我們下一個層代 CLI</span><span class="sxs-lookup"><span data-stu-id="ca084-110">[Azure CLI 2.0](../windows/troubleshoot-recovery-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - our next generation CLI for hello resource management deployment model</span></span>
 
 
-## <a name="recovery-process-overview"></a><span data-ttu-id="51bd9-111">復原程序概觀</span><span class="sxs-lookup"><span data-stu-id="51bd9-111">Recovery process overview</span></span>
-<span data-ttu-id="51bd9-112">疑難排解程序如下所示︰</span><span class="sxs-lookup"><span data-stu-id="51bd9-112">The troubleshooting process is as follows:</span></span>
+## <a name="recovery-process-overview"></a><span data-ttu-id="ca084-111">復原程序概觀</span><span class="sxs-lookup"><span data-stu-id="ca084-111">Recovery process overview</span></span>
+<span data-ttu-id="ca084-112">hello 疑難排解程序如下所示：</span><span class="sxs-lookup"><span data-stu-id="ca084-112">hello troubleshooting process is as follows:</span></span>
 
-1. <span data-ttu-id="51bd9-113">刪除遇到問題的 VM，保住虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-113">Delete the VM encountering issues, keeping the virtual hard disks.</span></span>
-2. <span data-ttu-id="51bd9-114">將虛擬硬碟連結和掛接至另一個 Linux VM，以進行疑難排解。</span><span class="sxs-lookup"><span data-stu-id="51bd9-114">Attach and mount the virtual hard disk to another Linux VM for troubleshooting purposes.</span></span>
-3. <span data-ttu-id="51bd9-115">連接至疑難排解 VM。</span><span class="sxs-lookup"><span data-stu-id="51bd9-115">Connect to the troubleshooting VM.</span></span> <span data-ttu-id="51bd9-116">編輯檔案或執行任何工具來修正原始虛擬硬碟的問題。</span><span class="sxs-lookup"><span data-stu-id="51bd9-116">Edit files or run any tools to fix issues on the original virtual hard disk.</span></span>
-4. <span data-ttu-id="51bd9-117">從疑難排解 VM 卸載並中斷連結虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-117">Unmount and detach the virtual hard disk from the troubleshooting VM.</span></span>
-5. <span data-ttu-id="51bd9-118">使用原始虛擬硬碟建立 VM。</span><span class="sxs-lookup"><span data-stu-id="51bd9-118">Create a VM using the original virtual hard disk.</span></span>
+1. <span data-ttu-id="ca084-113">刪除 hello VM 遇到問題，保留 hello 虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="ca084-113">Delete hello VM encountering issues, keeping hello virtual hard disks.</span></span>
+2. <span data-ttu-id="ca084-114">附加和掛接 hello Linux VM 的虛擬硬碟 tooanother 供疑難排解之用。</span><span class="sxs-lookup"><span data-stu-id="ca084-114">Attach and mount hello virtual hard disk tooanother Linux VM for troubleshooting purposes.</span></span>
+3. <span data-ttu-id="ca084-115">連接 toohello 疑難排解 VM。</span><span class="sxs-lookup"><span data-stu-id="ca084-115">Connect toohello troubleshooting VM.</span></span> <span data-ttu-id="ca084-116">編輯檔案，或在 hello 原始虛擬硬碟上執行任何工具 toofix 問題。</span><span class="sxs-lookup"><span data-stu-id="ca084-116">Edit files or run any tools toofix issues on hello original virtual hard disk.</span></span>
+4. <span data-ttu-id="ca084-117">取消掛接並卸離 hello 虛擬硬碟從 hello 疑難排解 VM。</span><span class="sxs-lookup"><span data-stu-id="ca084-117">Unmount and detach hello virtual hard disk from hello troubleshooting VM.</span></span>
+5. <span data-ttu-id="ca084-118">使用建立 VM hello 原始虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="ca084-118">Create a VM using hello original virtual hard disk.</span></span>
 
-<span data-ttu-id="51bd9-119">確定您已安裝[最新的 Azure CLI 1.0](../../cli-install-nodejs.md)，並已登入且使用 Resource Manager 模式：</span><span class="sxs-lookup"><span data-stu-id="51bd9-119">Make sure that you have [the latest Azure CLI 1.0](../../cli-install-nodejs.md) installed and logged in and using Resource Manager mode:</span></span>
+<span data-ttu-id="ca084-119">請確定您有[hello 最新的 Azure CLI 1.0](../../cli-install-nodejs.md)安裝並登入並使用 Resource Manager 模式：</span><span class="sxs-lookup"><span data-stu-id="ca084-119">Make sure that you have [hello latest Azure CLI 1.0](../../cli-install-nodejs.md) installed and logged in and using Resource Manager mode:</span></span>
 
 ```azurecli
 azure config mode arm
 ```
 
-<span data-ttu-id="51bd9-120">在下列範例中，請以您自己的值取代參數名稱。</span><span class="sxs-lookup"><span data-stu-id="51bd9-120">In the following examples, replace parameter names with your own values.</span></span> <span data-ttu-id="51bd9-121">範例參數名稱包含 `myResourceGroup`、`mystorageaccount` 和 `myVM`。</span><span class="sxs-lookup"><span data-stu-id="51bd9-121">Example parameter names include `myResourceGroup`, `mystorageaccount`, and `myVM`.</span></span>
+<span data-ttu-id="ca084-120">在 hello 下列範例中，會取代您自己的值的參數名稱。</span><span class="sxs-lookup"><span data-stu-id="ca084-120">In hello following examples, replace parameter names with your own values.</span></span> <span data-ttu-id="ca084-121">範例參數名稱包含 `myResourceGroup`、`mystorageaccount` 和 `myVM`。</span><span class="sxs-lookup"><span data-stu-id="ca084-121">Example parameter names include `myResourceGroup`, `mystorageaccount`, and `myVM`.</span></span>
 
 
-## <a name="determine-boot-issues"></a><span data-ttu-id="51bd9-122">判斷開機問題</span><span class="sxs-lookup"><span data-stu-id="51bd9-122">Determine boot issues</span></span>
-<span data-ttu-id="51bd9-123">檢查序列輸出來判斷 VM 為何無法正常開機。</span><span class="sxs-lookup"><span data-stu-id="51bd9-123">Examine the serial output to determine why your VM is not able to boot correctly.</span></span> <span data-ttu-id="51bd9-124">常見的例子是 `/etc/fstab` 中的項目無效，或因為刪除或移動基礎虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-124">A common example is an invalid entry in `/etc/fstab`, or the underlying virtual hard disk being deleted or moved.</span></span>
+## <a name="determine-boot-issues"></a><span data-ttu-id="ca084-122">判斷開機問題</span><span class="sxs-lookup"><span data-stu-id="ca084-122">Determine boot issues</span></span>
+<span data-ttu-id="ca084-123">請檢查您的 VM 為何不能 tooboot 正確 hello 序列輸出 toodetermine。</span><span class="sxs-lookup"><span data-stu-id="ca084-123">Examine hello serial output toodetermine why your VM is not able tooboot correctly.</span></span> <span data-ttu-id="ca084-124">常見範例是無效的項目中`/etc/fstab`，或 hello 基礎虛擬硬碟正在刪除或移動。</span><span class="sxs-lookup"><span data-stu-id="ca084-124">A common example is an invalid entry in `/etc/fstab`, or hello underlying virtual hard disk being deleted or moved.</span></span>
 
-<span data-ttu-id="51bd9-125">下列範例會從資源群組 `myResourceGroup` 中的 VM `myVM` 取得序列輸出：</span><span class="sxs-lookup"><span data-stu-id="51bd9-125">The following example gets the serial output from the VM named `myVM` in the resource group named `myResourceGroup`:</span></span>
+<span data-ttu-id="ca084-125">hello 下列範例會取得 hello 序列輸出從名為 VM hello `myVM` hello 資源群組中名為`myResourceGroup`:</span><span class="sxs-lookup"><span data-stu-id="ca084-125">hello following example gets hello serial output from hello VM named `myVM` in hello resource group named `myResourceGroup`:</span></span>
 
 ```azurecli
 azure vm get-serial-output --resource-group myResourceGroup --name myVM
 ```
 
-<span data-ttu-id="51bd9-126">檢閱序列輸出來判斷 VM 為何無法開機。</span><span class="sxs-lookup"><span data-stu-id="51bd9-126">Review the serial output to determine why the VM is failing to boot.</span></span> <span data-ttu-id="51bd9-127">如果序列輸出未提供任何指示，您可能需要將虛擬硬碟連接至疑難排解 VM，然後檢閱 `/var/log` 中的記錄檔。</span><span class="sxs-lookup"><span data-stu-id="51bd9-127">If the serial output isn't providing any indication, you may need to review log files in `/var/log` once you have the virtual hard disk connected to a troubleshooting VM.</span></span>
+<span data-ttu-id="ca084-126">檢閱 hello 序列輸出的 toodetermine hello VM 失敗 tooboot 的原因。</span><span class="sxs-lookup"><span data-stu-id="ca084-126">Review hello serial output toodetermine why hello VM is failing tooboot.</span></span> <span data-ttu-id="ca084-127">如果 hello 序列輸出不提供任何資訊指出，您可能需要 tooreview 記錄檔中的`/var/log`一旦您擁有 hello 虛擬硬碟連接 tooa 疑難排解 VM。</span><span class="sxs-lookup"><span data-stu-id="ca084-127">If hello serial output isn't providing any indication, you may need tooreview log files in `/var/log` once you have hello virtual hard disk connected tooa troubleshooting VM.</span></span>
 
 
-## <a name="view-existing-virtual-hard-disk-details"></a><span data-ttu-id="51bd9-128">檢視現有的虛擬硬碟詳細資料</span><span class="sxs-lookup"><span data-stu-id="51bd9-128">View existing virtual hard disk details</span></span>
-<span data-ttu-id="51bd9-129">您需要先識別虛擬硬碟 (VHD) 的名稱，才能將虛擬硬碟連結至另一個 VM。</span><span class="sxs-lookup"><span data-stu-id="51bd9-129">Before you can attach your virtual hard disk to another VM, you need to identify the name of the virtual hard disk (VHD).</span></span> 
+## <a name="view-existing-virtual-hard-disk-details"></a><span data-ttu-id="ca084-128">檢視現有的虛擬硬碟詳細資料</span><span class="sxs-lookup"><span data-stu-id="ca084-128">View existing virtual hard disk details</span></span>
+<span data-ttu-id="ca084-129">您可以將附加您的虛擬硬碟 tooanother VM 之前，您會需要 tooidentify hello hello 虛擬硬碟 (VHD) 名稱。</span><span class="sxs-lookup"><span data-stu-id="ca084-129">Before you can attach your virtual hard disk tooanother VM, you need tooidentify hello name of hello virtual hard disk (VHD).</span></span> 
 
-<span data-ttu-id="51bd9-130">下列範例會針對資源群組 `myResourceGroup` 中的 VM `myVM` 取得相關資訊：</span><span class="sxs-lookup"><span data-stu-id="51bd9-130">The following example gets information for the VM named `myVM` in the resource group named `myResourceGroup`:</span></span>
+<span data-ttu-id="ca084-130">hello 下列範例會取得名為 VM hello 資訊`myVM`hello 資源群組中名為`myResourceGroup`:</span><span class="sxs-lookup"><span data-stu-id="ca084-130">hello following example gets information for hello VM named `myVM` in hello resource group named `myResourceGroup`:</span></span>
 
 ```azurecli
 azure vm show --resource-group myResourceGroup --name myVM
 ```
 
-<span data-ttu-id="51bd9-131">在先前命令的輸出中尋找 `Vhd URI`。</span><span class="sxs-lookup"><span data-stu-id="51bd9-131">Look for `Vhd URI` in the output from the preceding command.</span></span> <span data-ttu-id="51bd9-132">下列截短範例輸出的最後一行顯示 `Vhd URI`︰</span><span class="sxs-lookup"><span data-stu-id="51bd9-132">The following truncated example output shows the `Vhd URI` on the last line:</span></span>
+<span data-ttu-id="ca084-131">尋找`Vhd URI`hello hello 前面命令輸出中。</span><span class="sxs-lookup"><span data-stu-id="ca084-131">Look for `Vhd URI` in hello output from hello preceding command.</span></span> <span data-ttu-id="ca084-132">hello 下列截斷的範例輸出顯示 hello `Vhd URI` hello 最後一行：</span><span class="sxs-lookup"><span data-stu-id="ca084-132">hello following truncated example output shows hello `Vhd URI` on hello last line:</span></span>
 
 ```azurecli
 info:    Executing command vm show
-+ Looking up the VM "myVM"
-+ Looking up the NIC "myNic"
-+ Looking up the public ip "myPublicIP"
++ Looking up hello VM "myVM"
++ Looking up hello NIC "myNic"
++ Looking up hello public ip "myPublicIP"
 ...
 data:
 data:      OS Disk:
@@ -88,24 +88,24 @@ data:          Uri                       :https://mystorageaccount.blob.core.win
 ```
 
 
-## <a name="delete-existing-vm"></a><span data-ttu-id="51bd9-133">刪除現有的 VM</span><span class="sxs-lookup"><span data-stu-id="51bd9-133">Delete existing VM</span></span>
-<span data-ttu-id="51bd9-134">虛擬硬碟和 VM 在 Azure 中是兩個不同的資源。</span><span class="sxs-lookup"><span data-stu-id="51bd9-134">Virtual hard disks and VMs are two distinct resources in Azure.</span></span> <span data-ttu-id="51bd9-135">虛擬硬碟中儲存作業系統本身、應用程式和設定。</span><span class="sxs-lookup"><span data-stu-id="51bd9-135">A virtual hard disk is where the operating system itself, applications, and configurations are stored.</span></span> <span data-ttu-id="51bd9-136">VM 本身只是定義大小或位置的中繼資料，還會參考資源，例如虛擬硬碟或虛擬網路介面卡 (NIC)。</span><span class="sxs-lookup"><span data-stu-id="51bd9-136">The VM itself is just metadata that defines the size or location, and references resources such as a virtual hard disk or virtual network interface card (NIC).</span></span> <span data-ttu-id="51bd9-137">每個虛擬硬碟連結至 VM 時會獲派租用。</span><span class="sxs-lookup"><span data-stu-id="51bd9-137">Each virtual hard disk has a lease assigned when attached to a VM.</span></span> <span data-ttu-id="51bd9-138">雖然即使 VM 正在執行時也可以連結和中斷連結資料磁碟，但除非刪除 VM 資源，否則無法中斷連結 OS 磁碟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-138">Although data disks can be attached and detached even while the VM is running, the OS disk cannot be detached unless the VM resource is deleted.</span></span> <span data-ttu-id="51bd9-139">即使 VM 處於已停止和解除配置的狀態，租用仍會持續讓 OS 磁碟與 VM 產生關聯。</span><span class="sxs-lookup"><span data-stu-id="51bd9-139">The lease continues to associate the OS disk with a VM even when that VM is in a stopped and deallocated state.</span></span>
+## <a name="delete-existing-vm"></a><span data-ttu-id="ca084-133">刪除現有的 VM</span><span class="sxs-lookup"><span data-stu-id="ca084-133">Delete existing VM</span></span>
+<span data-ttu-id="ca084-134">虛擬硬碟和 VM 在 Azure 中是兩個不同的資源。</span><span class="sxs-lookup"><span data-stu-id="ca084-134">Virtual hard disks and VMs are two distinct resources in Azure.</span></span> <span data-ttu-id="ca084-135">虛擬硬碟是存放 hello 作業系統本身、 應用程式和組態的位置。</span><span class="sxs-lookup"><span data-stu-id="ca084-135">A virtual hard disk is where hello operating system itself, applications, and configurations are stored.</span></span> <span data-ttu-id="ca084-136">hello VM 本身是定義 hello 大小或位置，並參考資源，例如虛擬硬碟或虛擬網路介面卡 (NIC) 的只是中繼資料。</span><span class="sxs-lookup"><span data-stu-id="ca084-136">hello VM itself is just metadata that defines hello size or location, and references resources such as a virtual hard disk or virtual network interface card (NIC).</span></span> <span data-ttu-id="ca084-137">每個虛擬硬碟已連接時，指派租用 tooa VM。</span><span class="sxs-lookup"><span data-stu-id="ca084-137">Each virtual hard disk has a lease assigned when attached tooa VM.</span></span> <span data-ttu-id="ca084-138">雖然可以附加和卸離 hello VM 正在執行時，即使資料磁碟，除非刪除 hello VM 資源無法中斷 hello 作業系統磁碟。</span><span class="sxs-lookup"><span data-stu-id="ca084-138">Although data disks can be attached and detached even while hello VM is running, hello OS disk cannot be detached unless hello VM resource is deleted.</span></span> <span data-ttu-id="ca084-139">hello 租用會繼續 tooassociate hello OS 磁碟 vm，即使該 VM 是處於已停止和取消配置狀態。</span><span class="sxs-lookup"><span data-stu-id="ca084-139">hello lease continues tooassociate hello OS disk with a VM even when that VM is in a stopped and deallocated state.</span></span>
 
-<span data-ttu-id="51bd9-140">復原 VM 的第一個步驟是刪除 VM 資源本身。</span><span class="sxs-lookup"><span data-stu-id="51bd9-140">The first step to recover your VM is to delete the VM resource itself.</span></span> <span data-ttu-id="51bd9-141">刪除 VM 時，虛擬硬碟會留在儲存體帳戶中。</span><span class="sxs-lookup"><span data-stu-id="51bd9-141">Deleting the VM leaves the virtual hard disks in your storage account.</span></span> <span data-ttu-id="51bd9-142">刪除 VM 之後，您需要將虛擬硬碟連結至另一個 VM，以進行疑難排解並解決錯誤。</span><span class="sxs-lookup"><span data-stu-id="51bd9-142">After the VM is deleted, you attach the virtual hard disk to another VM to troubleshoot and resolve the errors.</span></span>
+<span data-ttu-id="ca084-140">hello 第一個步驟 toorecover VM 是 toodelete hello VM 資源本身。</span><span class="sxs-lookup"><span data-stu-id="ca084-140">hello first step toorecover your VM is toodelete hello VM resource itself.</span></span> <span data-ttu-id="ca084-141">刪除 hello VM 離開您的儲存體帳戶中的 hello 虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="ca084-141">Deleting hello VM leaves hello virtual hard disks in your storage account.</span></span> <span data-ttu-id="ca084-142">刪除 VM hello 之後, 您附加 hello 虛擬硬碟 tooanother VM tootroubleshoot，並解決 hello 錯誤。</span><span class="sxs-lookup"><span data-stu-id="ca084-142">After hello VM is deleted, you attach hello virtual hard disk tooanother VM tootroubleshoot and resolve hello errors.</span></span>
 
-<span data-ttu-id="51bd9-143">下列範例會從資源群組 `myResourceGroup` 中刪除 VM `myVM`：</span><span class="sxs-lookup"><span data-stu-id="51bd9-143">The following example deletes the VM named `myVM` from the resource group named `myResourceGroup`:</span></span>
+<span data-ttu-id="ca084-143">下列範例刪除 hello hello 名為 VM`myVM`從名為 hello 資源群組`myResourceGroup`:</span><span class="sxs-lookup"><span data-stu-id="ca084-143">hello following example deletes hello VM named `myVM` from hello resource group named `myResourceGroup`:</span></span>
 
 ```azurecli
 azure vm delete --resource-group myResourceGroup --name myVM 
 ```
 
-<span data-ttu-id="51bd9-144">請等到 VM 完成刪除之後，再將虛擬硬碟連結至另一個 VM。</span><span class="sxs-lookup"><span data-stu-id="51bd9-144">Wait until the VM has finished deleting before you attach the virtual hard disk to another VM.</span></span> <span data-ttu-id="51bd9-145">在虛擬硬碟上，將它與 VM 產生關聯的租用必須先釋放，您才能將虛擬硬碟連結至另一個 VM。</span><span class="sxs-lookup"><span data-stu-id="51bd9-145">The lease on the virtual hard disk that associates it with the VM needs to be released before you can attach the virtual hard disk to another VM.</span></span>
+<span data-ttu-id="ca084-144">請等到完成刪除附加 hello 虛擬硬碟 tooanother VM 之前 hello VM。</span><span class="sxs-lookup"><span data-stu-id="ca084-144">Wait until hello VM has finished deleting before you attach hello virtual hard disk tooanother VM.</span></span> <span data-ttu-id="ca084-145">hello 租用 hello 虛擬硬碟關聯 hello VM 需要 toobe 附加 hello 虛擬硬碟 tooanother VM 之前釋出。</span><span class="sxs-lookup"><span data-stu-id="ca084-145">hello lease on hello virtual hard disk that associates it with hello VM needs toobe released before you can attach hello virtual hard disk tooanother VM.</span></span>
 
 
-## <a name="attach-existing-virtual-hard-disk-to-another-vm"></a><span data-ttu-id="51bd9-146">將現有的虛擬硬碟連結至另一個 VM</span><span class="sxs-lookup"><span data-stu-id="51bd9-146">Attach existing virtual hard disk to another VM</span></span>
-<span data-ttu-id="51bd9-147">在接下來幾個步驟中，您將使用另一個 VM 進行疑難排解。</span><span class="sxs-lookup"><span data-stu-id="51bd9-147">For the next few steps, you use another VM for troubleshooting purposes.</span></span> <span data-ttu-id="51bd9-148">您將現有的虛擬硬碟連結至這個疑難排解 VM，以瀏覽並編輯磁碟的內容。</span><span class="sxs-lookup"><span data-stu-id="51bd9-148">You attach the existing virtual hard disk to this troubleshooting VM to browse and edit the disk's content.</span></span> <span data-ttu-id="51bd9-149">舉例來說，此程序可讓您更正任何設定錯誤，或檢閱其他應用程式記錄檔或系統記錄檔。</span><span class="sxs-lookup"><span data-stu-id="51bd9-149">This process allows you to correct any configuration errors or review additional application or system log files, for example.</span></span> <span data-ttu-id="51bd9-150">選擇或建立另一個 VM 以進行疑難排解。</span><span class="sxs-lookup"><span data-stu-id="51bd9-150">Choose or create another VM to use for troubleshooting purposes.</span></span>
+## <a name="attach-existing-virtual-hard-disk-tooanother-vm"></a><span data-ttu-id="ca084-146">附加現有的虛擬硬碟 tooanother VM</span><span class="sxs-lookup"><span data-stu-id="ca084-146">Attach existing virtual hard disk tooanother VM</span></span>
+<span data-ttu-id="ca084-147">如 hello 接下來的幾個步驟，您可以使用另一個 VM 供疑難排解之用。</span><span class="sxs-lookup"><span data-stu-id="ca084-147">For hello next few steps, you use another VM for troubleshooting purposes.</span></span> <span data-ttu-id="ca084-148">附加 hello 疑難排解 VM toobrowse 現有虛擬硬碟 toothis 並編輯 hello 磁碟的內容。</span><span class="sxs-lookup"><span data-stu-id="ca084-148">You attach hello existing virtual hard disk toothis troubleshooting VM toobrowse and edit hello disk's content.</span></span> <span data-ttu-id="ca084-149">此程序可讓您 toocorrect 任何組態錯誤或檢閱其他應用程式或系統記錄檔，例如。</span><span class="sxs-lookup"><span data-stu-id="ca084-149">This process allows you toocorrect any configuration errors or review additional application or system log files, for example.</span></span> <span data-ttu-id="ca084-150">選擇或建立另一個 VM toouse 供疑難排解之用。</span><span class="sxs-lookup"><span data-stu-id="ca084-150">Choose or create another VM toouse for troubleshooting purposes.</span></span>
 
-<span data-ttu-id="51bd9-151">當您連結現有的虛擬硬碟時，請指定在先前的 `azure vm show` 命令中取得的磁碟 URL。</span><span class="sxs-lookup"><span data-stu-id="51bd9-151">When you attach the existing virtual hard disk, specify the URL to the disk obtained in the preceding `azure vm show` command.</span></span> <span data-ttu-id="51bd9-152">下列範例會將現有的虛擬硬碟連結至資源群組 `myResourceGroup` 中的疑難排解 VM `myVMRecovery`：</span><span class="sxs-lookup"><span data-stu-id="51bd9-152">The following example attaches an existing virtual hard disk to the troubleshooting VM named `myVMRecovery` in the resource group named `myResourceGroup`:</span></span>
+<span data-ttu-id="ca084-151">當您附加 hello 現有虛擬硬碟時，指定在 hello 上述中取得的 hello URL toohello 磁碟`azure vm show`命令。</span><span class="sxs-lookup"><span data-stu-id="ca084-151">When you attach hello existing virtual hard disk, specify hello URL toohello disk obtained in hello preceding `azure vm show` command.</span></span> <span data-ttu-id="ca084-152">hello 下列範例會附加疑難排解名為 VM 的現有虛擬硬碟 toohello `myVMRecovery` hello 資源群組中名為`myResourceGroup`:</span><span class="sxs-lookup"><span data-stu-id="ca084-152">hello following example attaches an existing virtual hard disk toohello troubleshooting VM named `myVMRecovery` in hello resource group named `myResourceGroup`:</span></span>
 
 ```azurecli
 azure vm disk attach --resource-group myResourceGroup --name myVMRecovery \
@@ -113,18 +113,18 @@ azure vm disk attach --resource-group myResourceGroup --name myVMRecovery \
 ```
 
 
-## <a name="mount-the-attached-data-disk"></a><span data-ttu-id="51bd9-153">掛接已連結的資料磁碟</span><span class="sxs-lookup"><span data-stu-id="51bd9-153">Mount the attached data disk</span></span>
+## <a name="mount-hello-attached-data-disk"></a><span data-ttu-id="ca084-153">掛接 hello 連接的資料磁碟</span><span class="sxs-lookup"><span data-stu-id="ca084-153">Mount hello attached data disk</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="51bd9-154">下列範例詳細說明 Ubuntu VM 上所需的步驟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-154">The following examples detail the steps required on an Ubuntu VM.</span></span> <span data-ttu-id="51bd9-155">如果您使用不同的 Linux 發行版本，例如 Red Hat Enterprise Linux 或 SUSE，則記錄檔位置和 `mount` 命令可能稍微不同。</span><span class="sxs-lookup"><span data-stu-id="51bd9-155">If you are using a different Linux distro, such as Red Hat Enterprise Linux or SUSE, the log file locations and `mount` commands may be a little different.</span></span> <span data-ttu-id="51bd9-156">請參閱您的特定發行版本的文件，以了解命令中相應的變更。</span><span class="sxs-lookup"><span data-stu-id="51bd9-156">Refer to the documentation for your specific distro for the appropriate changes in commands.</span></span>
+> <span data-ttu-id="ca084-154">hello 下列範例詳細說明 hello Ubuntu 虛擬機器上所需的步驟。</span><span class="sxs-lookup"><span data-stu-id="ca084-154">hello following examples detail hello steps required on an Ubuntu VM.</span></span> <span data-ttu-id="ca084-155">如果您使用不同的 Linux distro，例如 Red Hat Enterprise Linux 或 SUSE，hello 記錄檔位置和`mount`命令可能會稍有不同。</span><span class="sxs-lookup"><span data-stu-id="ca084-155">If you are using a different Linux distro, such as Red Hat Enterprise Linux or SUSE, hello log file locations and `mount` commands may be a little different.</span></span> <span data-ttu-id="ca084-156">如需您特定 distro hello 命令中的適當變更，請參閱 toohello 文件。</span><span class="sxs-lookup"><span data-stu-id="ca084-156">Refer toohello documentation for your specific distro for hello appropriate changes in commands.</span></span>
 
-1. <span data-ttu-id="51bd9-157">使用適當的認證以 SSH 登入疑難排解 VM。</span><span class="sxs-lookup"><span data-stu-id="51bd9-157">SSH to your troubleshooting VM using the appropriate credentials.</span></span> <span data-ttu-id="51bd9-158">如果此磁碟是第一個連結至疑難排解 VM 的資料磁碟，則磁碟很可能連結至 `/dev/sdc`。</span><span class="sxs-lookup"><span data-stu-id="51bd9-158">If this disk is the first data disk attached to your troubleshooting VM, the disk is likely connected to `/dev/sdc`.</span></span> <span data-ttu-id="51bd9-159">使用 `dmseg` 來檢視已連結的磁碟︰</span><span class="sxs-lookup"><span data-stu-id="51bd9-159">Use `dmseg` to view attached disks:</span></span>
+1. <span data-ttu-id="ca084-157">SSH tooyour 疑難排解 VM 使用 hello 適當的認證。</span><span class="sxs-lookup"><span data-stu-id="ca084-157">SSH tooyour troubleshooting VM using hello appropriate credentials.</span></span> <span data-ttu-id="ca084-158">如果這個磁碟是 hello 第一個資料磁碟附加 tooyour 疑難排解 VM，hello 磁碟的連接可能太`/dev/sdc`。</span><span class="sxs-lookup"><span data-stu-id="ca084-158">If this disk is hello first data disk attached tooyour troubleshooting VM, hello disk is likely connected too`/dev/sdc`.</span></span> <span data-ttu-id="ca084-159">使用`dmseg`tooview 連接的磁碟：</span><span class="sxs-lookup"><span data-stu-id="ca084-159">Use `dmseg` tooview attached disks:</span></span>
 
     ```bash
     dmesg | grep SCSI
     ```
 
-    <span data-ttu-id="51bd9-160">輸出類似於下列範例：</span><span class="sxs-lookup"><span data-stu-id="51bd9-160">The output is similar to the following example:</span></span>
+    <span data-ttu-id="ca084-160">hello 輸出是 toohello 類似下列範例程式碼：</span><span class="sxs-lookup"><span data-stu-id="ca084-160">hello output is similar toohello following example:</span></span>
 
     ```bash
     [    0.294784] SCSI subsystem initialized
@@ -134,61 +134,61 @@ azure vm disk attach --resource-group myResourceGroup --name myVMRecovery \
     [ 1828.162306] sd 5:0:0:0: [sdc] Attached SCSI disk
     ```
 
-    <span data-ttu-id="51bd9-161">在上述範例中，OS 磁碟位於 `/dev/sda`，而提供給每個 VM 的暫存磁碟位於 `/dev/sdb`。</span><span class="sxs-lookup"><span data-stu-id="51bd9-161">In the preceding example, the OS disk is at `/dev/sda` and the temporary disk provided for each VM is at `/dev/sdb`.</span></span> <span data-ttu-id="51bd9-162">如果您有多個資料磁碟，它們應該是位於 `/dev/sdd`、`/dev/sde`，依此類推。</span><span class="sxs-lookup"><span data-stu-id="51bd9-162">If you had multiple data disks, they should be at `/dev/sdd`, `/dev/sde`, and so on.</span></span>
+    <span data-ttu-id="ca084-161">在上述範例中的 hello，hello OS 磁碟位於`/dev/sda`和 hello 暫存磁碟提供給每個 VM 位於`/dev/sdb`。</span><span class="sxs-lookup"><span data-stu-id="ca084-161">In hello preceding example, hello OS disk is at `/dev/sda` and hello temporary disk provided for each VM is at `/dev/sdb`.</span></span> <span data-ttu-id="ca084-162">如果您有多個資料磁碟，它們應該是位於 `/dev/sdd`、`/dev/sde`，依此類推。</span><span class="sxs-lookup"><span data-stu-id="ca084-162">If you had multiple data disks, they should be at `/dev/sdd`, `/dev/sde`, and so on.</span></span>
 
-2. <span data-ttu-id="51bd9-163">建立目錄來掛接現有的虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-163">Create a directory to mount your existing virtual hard disk.</span></span> <span data-ttu-id="51bd9-164">下列範例會建立名為 `troubleshootingdisk` 的目錄：</span><span class="sxs-lookup"><span data-stu-id="51bd9-164">The following example creates a directory named `troubleshootingdisk`:</span></span>
+2. <span data-ttu-id="ca084-163">建立目錄 toomount 您現有的虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="ca084-163">Create a directory toomount your existing virtual hard disk.</span></span> <span data-ttu-id="ca084-164">hello 下列範例會建立一個名為目錄`troubleshootingdisk`:</span><span class="sxs-lookup"><span data-stu-id="ca084-164">hello following example creates a directory named `troubleshootingdisk`:</span></span>
 
     ```bash
     sudo mkdir /mnt/troubleshootingdisk
     ```
 
-3. <span data-ttu-id="51bd9-165">如果您在現有的虛擬硬碟上有多個磁碟分割，請掛接所需的磁碟分割。</span><span class="sxs-lookup"><span data-stu-id="51bd9-165">If you have multiple partitions on your existing virtual hard disk, mount the required partition.</span></span> <span data-ttu-id="51bd9-166">下列範例會將第一個主要磁碟分割掛接在 `/dev/sdc1`：</span><span class="sxs-lookup"><span data-stu-id="51bd9-166">The following example mounts the first primary partition at `/dev/sdc1`:</span></span>
+3. <span data-ttu-id="ca084-165">如果您在現有的虛擬硬碟上有多個資料分割，裝載所需的 hello 磁碟分割。</span><span class="sxs-lookup"><span data-stu-id="ca084-165">If you have multiple partitions on your existing virtual hard disk, mount hello required partition.</span></span> <span data-ttu-id="ca084-166">hello 下列範例會 hello 第一個主要磁碟分割在`/dev/sdc1`:</span><span class="sxs-lookup"><span data-stu-id="ca084-166">hello following example mounts hello first primary partition at `/dev/sdc1`:</span></span>
 
     ```bash
     sudo mount /dev/sdc1 /mnt/troubleshootingdisk
     ```
 
     > [!NOTE]
-    > <span data-ttu-id="51bd9-167">最佳做法是使用虛擬硬碟的通用唯一識別碼 (UUID)，將資料磁碟掛接在 Azure 中的 VM。</span><span class="sxs-lookup"><span data-stu-id="51bd9-167">Best practice is to mount data disks on VMs in Azure using the universally unique identifier (UUID) of the virtual hard disk.</span></span> <span data-ttu-id="51bd9-168">在這個簡短的疑難排解案例中，不需要使用 UUID 來掛接虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-168">For this short troubleshooting scenario, mounting the virtual hard disk using the UUID is not necessary.</span></span> <span data-ttu-id="51bd9-169">但在正常使用情況下，如果編輯 `/etc/fstab` 來使用裝置名稱掛接虛擬硬碟，而不是使用 UUID，可能會造成 VM 無法開機。</span><span class="sxs-lookup"><span data-stu-id="51bd9-169">However, under normal use, editing `/etc/fstab` to mount virtual hard disks using device name rather than UUID may cause the VM to fail to boot.</span></span>
+    > <span data-ttu-id="ca084-167">最佳作法是 toomount 資料磁碟上的 Vm 在 Azure 中使用 hello hello 虛擬硬碟的通用唯一識別碼 (UUID)。</span><span class="sxs-lookup"><span data-stu-id="ca084-167">Best practice is toomount data disks on VMs in Azure using hello universally unique identifier (UUID) of hello virtual hard disk.</span></span> <span data-ttu-id="ca084-168">針對這個簡短的疑難排解案例，不需要掛接 hello 虛擬硬碟使用 hello UUID。</span><span class="sxs-lookup"><span data-stu-id="ca084-168">For this short troubleshooting scenario, mounting hello virtual hard disk using hello UUID is not necessary.</span></span> <span data-ttu-id="ca084-169">但是，在正常使用，編輯`/etc/fstab`toomount 虛擬硬碟使用的裝置名稱，而非可能會造成 UUID hello VM toofail tooboot。</span><span class="sxs-lookup"><span data-stu-id="ca084-169">However, under normal use, editing `/etc/fstab` toomount virtual hard disks using device name rather than UUID may cause hello VM toofail tooboot.</span></span>
 
 
-## <a name="fix-issues-on-original-virtual-hard-disk"></a><span data-ttu-id="51bd9-170">修正原始虛擬硬碟的問題</span><span class="sxs-lookup"><span data-stu-id="51bd9-170">Fix issues on original virtual hard disk</span></span>
-<span data-ttu-id="51bd9-171">已掛接現有的虛擬硬碟掛，您現在可以視需要執行任何維護和疑難排解步驟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-171">With the existing virtual hard disk mounted, you can now perform any maintenance and troubleshooting steps as needed.</span></span> <span data-ttu-id="51bd9-172">解決問題之後，請繼續進行下列步驟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-172">Once you have addressed the issues, continue with the following steps.</span></span>
+## <a name="fix-issues-on-original-virtual-hard-disk"></a><span data-ttu-id="ca084-170">修正原始虛擬硬碟的問題</span><span class="sxs-lookup"><span data-stu-id="ca084-170">Fix issues on original virtual hard disk</span></span>
+<span data-ttu-id="ca084-171">與 hello 現有虛擬硬碟掛接，您現在可以執行任何維護和疑難排解步驟，視需要。</span><span class="sxs-lookup"><span data-stu-id="ca084-171">With hello existing virtual hard disk mounted, you can now perform any maintenance and troubleshooting steps as needed.</span></span> <span data-ttu-id="ca084-172">一旦解決 hello 問題之後，繼續進行步驟 hello。</span><span class="sxs-lookup"><span data-stu-id="ca084-172">Once you have addressed hello issues, continue with hello following steps.</span></span>
 
 
-## <a name="unmount-and-detach-original-virtual-hard-disk"></a><span data-ttu-id="51bd9-173">卸載並中斷連結原始虛擬硬碟</span><span class="sxs-lookup"><span data-stu-id="51bd9-173">Unmount and detach original virtual hard disk</span></span>
-<span data-ttu-id="51bd9-174">一旦解決錯誤，您就要從疑難排解 VM 卸載中斷連結並現有的虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-174">Once your errors are resolved, you unmount and detach the existing virtual hard disk from your troubleshooting VM.</span></span> <span data-ttu-id="51bd9-175">直到將虛擬硬碟連結至疑難排解 VM 的租用釋放，您才能將虛擬硬碟用於其他任何 VM。</span><span class="sxs-lookup"><span data-stu-id="51bd9-175">You cannot use your virtual hard disk with any other VM until the lease attaching the virtual hard disk to the troubleshooting VM is released.</span></span>
+## <a name="unmount-and-detach-original-virtual-hard-disk"></a><span data-ttu-id="ca084-173">卸載並中斷連結原始虛擬硬碟</span><span class="sxs-lookup"><span data-stu-id="ca084-173">Unmount and detach original virtual hard disk</span></span>
+<span data-ttu-id="ca084-174">一旦解決的錯誤，您會卸載，並中斷您疑難排解的 VM 中的 hello 現有虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="ca084-174">Once your errors are resolved, you unmount and detach hello existing virtual hard disk from your troubleshooting VM.</span></span> <span data-ttu-id="ca084-175">您無法使用虛擬硬碟與任何其他 VM，直到釋放附加 hello 疑難排解 VM 的虛擬硬碟 toohello hello 租用。</span><span class="sxs-lookup"><span data-stu-id="ca084-175">You cannot use your virtual hard disk with any other VM until hello lease attaching hello virtual hard disk toohello troubleshooting VM is released.</span></span>
 
-1. <span data-ttu-id="51bd9-176">從疑難排解 VM 的 SSH 工作階段，卸載現有的虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-176">From the SSH session to your troubleshooting VM, unmount the existing virtual hard disk.</span></span> <span data-ttu-id="51bd9-177">首先離開掛接點的上層目錄︰</span><span class="sxs-lookup"><span data-stu-id="51bd9-177">Change out of the parent directory for your mount point first:</span></span>
+1. <span data-ttu-id="ca084-176">從 hello SSH 工作階段 tooyour 疑難排解 VM，卸載 hello 現有虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="ca084-176">From hello SSH session tooyour troubleshooting VM, unmount hello existing virtual hard disk.</span></span> <span data-ttu-id="ca084-177">第一次變更超出您掛接點的 hello 父目錄：</span><span class="sxs-lookup"><span data-stu-id="ca084-177">Change out of hello parent directory for your mount point first:</span></span>
 
     ```bash
     cd /
     ```
 
-    <span data-ttu-id="51bd9-178">現在卸載現有的虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-178">Now unmount the existing virtual hard disk.</span></span> <span data-ttu-id="51bd9-179">下列範例會卸載位於 `/dev/sdc1` 的裝置：</span><span class="sxs-lookup"><span data-stu-id="51bd9-179">The following example unmounts the device at `/dev/sdc1`:</span></span>
+    <span data-ttu-id="ca084-178">現在取消掛接 hello 現有虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="ca084-178">Now unmount hello existing virtual hard disk.</span></span> <span data-ttu-id="ca084-179">hello 下例取消掛接在 hello 裝置`/dev/sdc1`:</span><span class="sxs-lookup"><span data-stu-id="ca084-179">hello following example unmounts hello device at `/dev/sdc1`:</span></span>
 
     ```bash
     sudo umount /dev/sdc1
     ```
 
-2. <span data-ttu-id="51bd9-180">現在從 VM 中斷連結虛擬硬碟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-180">Now detach the virtual hard disk from the VM.</span></span> <span data-ttu-id="51bd9-181">結束疑難排解 VM 的 SSH 工作階段。</span><span class="sxs-lookup"><span data-stu-id="51bd9-181">Exit the SSH session to your troubleshooting VM.</span></span> <span data-ttu-id="51bd9-182">在 Azure CLI 中，先列出連結至疑難排解 VM 的資料磁碟。</span><span class="sxs-lookup"><span data-stu-id="51bd9-182">In the Azure CLI, first list the attached data disks to your troubleshooting VM.</span></span> <span data-ttu-id="51bd9-183">下列範例會列出連結至資源群組 `myResourceGroup` 中 VM `myVMRecovery` 的資料磁碟：</span><span class="sxs-lookup"><span data-stu-id="51bd9-183">The following example lists the data disks attached to the VM named `myVMRecovery` in the resource group named `myResourceGroup`:</span></span>
+2. <span data-ttu-id="ca084-180">現在您可以卸離 hello 虛擬硬碟從 hello VM。</span><span class="sxs-lookup"><span data-stu-id="ca084-180">Now detach hello virtual hard disk from hello VM.</span></span> <span data-ttu-id="ca084-181">結束 hello SSH 工作階段 tooyour 疑難排解 VM。</span><span class="sxs-lookup"><span data-stu-id="ca084-181">Exit hello SSH session tooyour troubleshooting VM.</span></span> <span data-ttu-id="ca084-182">在 hello Azure CLI，第一個清單 hello 會附加資料磁碟 tooyour 疑難排解 VM。</span><span class="sxs-lookup"><span data-stu-id="ca084-182">In hello Azure CLI, first list hello attached data disks tooyour troubleshooting VM.</span></span> <span data-ttu-id="ca084-183">hello 下列範例列出 hello 資料磁碟附加 toohello 名為 VM `myVMRecovery` hello 資源群組中名為`myResourceGroup`:</span><span class="sxs-lookup"><span data-stu-id="ca084-183">hello following example lists hello data disks attached toohello VM named `myVMRecovery` in hello resource group named `myResourceGroup`:</span></span>
 
     ```azurecli
     azure vm disk list --resource-group myResourceGroup --vm-name myVMRecovery
     ```
 
-    <span data-ttu-id="51bd9-184">請注意現有虛擬硬碟的 `Lun` 值。</span><span class="sxs-lookup"><span data-stu-id="51bd9-184">Note the `Lun` value for your existing virtual hard disk.</span></span> <span data-ttu-id="51bd9-185">下列範例命令輸出顯示連結在 LUN 0 的現有虛擬磁碟︰</span><span class="sxs-lookup"><span data-stu-id="51bd9-185">The following example command output shows the existing virtual disk attached at LUN 0:</span></span>
+    <span data-ttu-id="ca084-184">請注意 hello`Lun`您現有的虛擬硬碟的值。</span><span class="sxs-lookup"><span data-stu-id="ca084-184">Note hello `Lun` value for your existing virtual hard disk.</span></span> <span data-ttu-id="ca084-185">hello 下列範例命令輸出顯示 hello 現有的虛擬磁碟連接到 LUN 0:</span><span class="sxs-lookup"><span data-stu-id="ca084-185">hello following example command output shows hello existing virtual disk attached at LUN 0:</span></span>
 
     ```azurecli
     info:    Executing command vm disk list
-    + Looking up the VM "myVMRecovery"
+    + Looking up hello VM "myVMRecovery"
     data:    Name              Lun  DiskSizeGB  Caching  URI
     data:    ------            ---  ----------  -------  ------------------------------------------------------------------------
     data:    myVM              0                None     https://mystorageaccount.blob.core.windows.net/vhds/myVM.vhd
     info:    vm disk list command OK
     ```
 
-    <span data-ttu-id="51bd9-186">使用適用的 `Lun` 值從 VM 卸載資料磁碟︰</span><span class="sxs-lookup"><span data-stu-id="51bd9-186">Detach the data disk from your VM using the applicable `Lun` value:</span></span>
+    <span data-ttu-id="ca084-186">卸離 hello 資料磁碟，從您的 VM 使用 hello 適用`Lun`值：</span><span class="sxs-lookup"><span data-stu-id="ca084-186">Detach hello data disk from your VM using hello applicable `Lun` value:</span></span>
 
     ```azurecli
     azure vm disk detach --resource-group myResourceGroup --vm-name myVMRecovery \
@@ -196,23 +196,23 @@ azure vm disk attach --resource-group myResourceGroup --name myVMRecovery \
     ```
 
 
-## <a name="create-vm-from-original-hard-disk"></a><span data-ttu-id="51bd9-187">從原始硬碟建立 VM</span><span class="sxs-lookup"><span data-stu-id="51bd9-187">Create VM from original hard disk</span></span>
-<span data-ttu-id="51bd9-188">若要從原始虛擬硬碟建立 VM，請使用[這個 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd)。</span><span class="sxs-lookup"><span data-stu-id="51bd9-188">To create a VM from your original virtual hard disk, use [this Azure Resource Manager template](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd).</span></span> <span data-ttu-id="51bd9-189">實際的 JSON 範本位於下列連結︰</span><span class="sxs-lookup"><span data-stu-id="51bd9-189">The actual JSON template is at the following link:</span></span>
+## <a name="create-vm-from-original-hard-disk"></a><span data-ttu-id="ca084-187">從原始硬碟建立 VM</span><span class="sxs-lookup"><span data-stu-id="ca084-187">Create VM from original hard disk</span></span>
+<span data-ttu-id="ca084-188">toocreate 原始虛擬硬碟，從 VM 使用[此 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd)。</span><span class="sxs-lookup"><span data-stu-id="ca084-188">toocreate a VM from your original virtual hard disk, use [this Azure Resource Manager template](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-specialized-vhd).</span></span> <span data-ttu-id="ca084-189">hello 實際的 JSON 範本位於 hello 下列連結：</span><span class="sxs-lookup"><span data-stu-id="ca084-189">hello actual JSON template is at hello following link:</span></span>
 
-- <span data-ttu-id="51bd9-190">https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-specialized-vhd/azuredeploy.json</span><span class="sxs-lookup"><span data-stu-id="51bd9-190">https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-specialized-vhd/azuredeploy.json</span></span>
+- <span data-ttu-id="ca084-190">https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-specialized-vhd/azuredeploy.json</span><span class="sxs-lookup"><span data-stu-id="ca084-190">https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-specialized-vhd/azuredeploy.json</span></span>
 
-<span data-ttu-id="51bd9-191">此範本會使用來自先前命令的 VHD URL，將 VM 部署至現有的虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="51bd9-191">The template deploys a VM into an existing virtual network, using the VHD URL from the earlier command.</span></span> <span data-ttu-id="51bd9-192">下列範例會將範本部署至名為 `myResourceGroup` 的資源群組：</span><span class="sxs-lookup"><span data-stu-id="51bd9-192">The following example deploys the template to the resource group named `myResourceGroup`:</span></span>
+<span data-ttu-id="ca084-191">hello 範本會將 VM 部署到現有的虛擬網路，使用從 hello hello VHD URL 稍早的命令。</span><span class="sxs-lookup"><span data-stu-id="ca084-191">hello template deploys a VM into an existing virtual network, using hello VHD URL from hello earlier command.</span></span> <span data-ttu-id="ca084-192">hello 下列範例會將部署 hello 範本 toohello 資源群組名稱`myResourceGroup`:</span><span class="sxs-lookup"><span data-stu-id="ca084-192">hello following example deploys hello template toohello resource group named `myResourceGroup`:</span></span>
 
 ```azurecli
 azure group deployment create --resource-group myResourceGroup --name myDeployment \
     --template-uri https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vm-specialized-vhd/azuredeploy.json
 ```
 
-<span data-ttu-id="51bd9-193">回答範本的提示，例如 VM 名稱 (下列範例中的 `myDeployedVM`)、OS 類型 (`Linux`) 和 VM 大小 (`Standard_DS1_v2`)。</span><span class="sxs-lookup"><span data-stu-id="51bd9-193">Answer the prompts for the template such as VM name (`myDeployedVM` the following example), OS type (`Linux`), and VM size (`Standard_DS1_v2`).</span></span> <span data-ttu-id="51bd9-194">`osDiskVhdUri` 同於先前將現有的虛擬硬碟連結至疑難排解 VM 時所使用的值。</span><span class="sxs-lookup"><span data-stu-id="51bd9-194">The `osDiskVhdUri` is the same as previously used when attaching the existing virtual hard disk to the troubleshooting VM.</span></span> <span data-ttu-id="51bd9-195">命令輸出和提示的範例如下所示︰</span><span class="sxs-lookup"><span data-stu-id="51bd9-195">An example of the command output and prompts is as follows:</span></span>
+<span data-ttu-id="ca084-193">回應 hello 提示 hello 範本，例如 VM 名稱 (`myDeployedVM` hello 下列範例)，OS 類型 (`Linux`)，與 VM 大小 (`Standard_DS1_v2`)。</span><span class="sxs-lookup"><span data-stu-id="ca084-193">Answer hello prompts for hello template such as VM name (`myDeployedVM` hello following example), OS type (`Linux`), and VM size (`Standard_DS1_v2`).</span></span> <span data-ttu-id="ca084-194">hello `osDiskVhdUri` hello 如先前附加時會使用 hello 疑難排解 VM 現有虛擬硬碟 toohello 相同。</span><span class="sxs-lookup"><span data-stu-id="ca084-194">hello `osDiskVhdUri` is hello same as previously used when attaching hello existing virtual hard disk toohello troubleshooting VM.</span></span> <span data-ttu-id="ca084-195">Hello 命令的輸出，並提示使用者的範例如下所示：</span><span class="sxs-lookup"><span data-stu-id="ca084-195">An example of hello command output and prompts is as follows:</span></span>
 
 ```azurecli
 info:    Executing command group deployment create
-info:    Supply values for the following parameters
+info:    Supply values for hello following parameters
 vmName:  myDeployedVM
 osType:  Linux
 osDiskVhdUri:  https://mystorageaccount.blob.core.windows.net/vhds/myVM201610292712.vhd
@@ -224,18 +224,18 @@ dnsNameForPublicIP:  mypublicipdeployed
 + Initializing template configurations and parameters
 + Creating a deployment
 info:    Created template deployment "mydeployment"
-+ Waiting for deployment to complete
++ Waiting for deployment toocomplete
 +
 ```
 
 
-## <a name="re-enable-boot-diagnostics"></a><span data-ttu-id="51bd9-196">重新啟用開機診斷</span><span class="sxs-lookup"><span data-stu-id="51bd9-196">Re-enable boot diagnostics</span></span>
+## <a name="re-enable-boot-diagnostics"></a><span data-ttu-id="ca084-196">重新啟用開機診斷</span><span class="sxs-lookup"><span data-stu-id="ca084-196">Re-enable boot diagnostics</span></span>
 
-<span data-ttu-id="51bd9-197">當您從現有的虛擬硬碟建立 VM 時，可能不會自動啟用開機診斷。</span><span class="sxs-lookup"><span data-stu-id="51bd9-197">When you create your VM from the existing virtual hard disk, boot diagnostics may not automatically be enabled.</span></span> <span data-ttu-id="51bd9-198">下列範例會在資源群組 `myResourceGroup` 中的 VM `myDeployedVM` 上啟用診斷擴充：</span><span class="sxs-lookup"><span data-stu-id="51bd9-198">The following example enables the diagnostic extension on the VM named `myDeployedVM` in the resource group named `myResourceGroup`:</span></span>
+<span data-ttu-id="ca084-197">當您從 hello 現有虛擬硬碟建立 VM 時，開機診斷可能不會自動啟用。</span><span class="sxs-lookup"><span data-stu-id="ca084-197">When you create your VM from hello existing virtual hard disk, boot diagnostics may not automatically be enabled.</span></span> <span data-ttu-id="ca084-198">hello 下列範例會啟用 hello hello 名為 VM 上的診斷延伸模組`myDeployedVM`hello 資源群組中名為`myResourceGroup`:</span><span class="sxs-lookup"><span data-stu-id="ca084-198">hello following example enables hello diagnostic extension on hello VM named `myDeployedVM` in hello resource group named `myResourceGroup`:</span></span>
 
 ```azurecli
 azure vm enable-diag --resource-group myResourceGroup --name myDeployedVM
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="51bd9-199">後續步驟</span><span class="sxs-lookup"><span data-stu-id="51bd9-199">Next steps</span></span>
-<span data-ttu-id="51bd9-200">如果連接至 VM 時發生問題，請參閱[針對 Azure VM 的 SSH 連接進行疑難排解](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="51bd9-200">If you are having issues connecting to your VM, see [Troubleshoot SSH connections to an Azure VM](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="51bd9-201">如果存取 VM 上執行的應用程式時發生問題，請參閱[針對 Linux VM 上的應用程式連線問題進行疑難排解](../windows/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="51bd9-201">For issues with accessing applications running on your VM, see [Troubleshoot application connectivity issues on a Linux VM](../windows/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ca084-199">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ca084-199">Next steps</span></span>
+<span data-ttu-id="ca084-200">如果您有連接 tooyour VM 的問題，請參閱[疑難排解 SSH 連線 tooan Azure VM](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="ca084-200">If you are having issues connecting tooyour VM, see [Troubleshoot SSH connections tooan Azure VM](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span> <span data-ttu-id="ca084-201">如果存取 VM 上執行的應用程式時發生問題，請參閱[針對 Linux VM 上的應用程式連線問題進行疑難排解](../windows/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="ca084-201">For issues with accessing applications running on your VM, see [Troubleshoot application connectivity issues on a Linux VM](../windows/troubleshoot-app-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json).</span></span>

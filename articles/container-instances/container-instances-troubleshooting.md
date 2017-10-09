@@ -1,6 +1,6 @@
 ---
-title: "針對 Azure Container Instances 進行疑難排解"
-description: "了解如何使用 Azure Container Instances 進行問題的疑難排解"
+title: "aaaTroubleshooting Azure 容器執行個體"
+description: "了解如何 tootroubleshoot 問題 Azure 容器執行個體"
 services: container-instances
 documentationcenter: 
 author: seanmck
@@ -17,25 +17,25 @@ ms.workload: na
 ms.date: 08/03/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 86fa4b7dca7c362f95c0243a33f03d1f2dd3ab42
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: dfec636a0a174c74a6f2e9d9c4da6e871f8d2fda
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshoot-deployment-issues-with-azure-container-instances"></a><span data-ttu-id="b8fe5-103">使用 Azure Container Instances 進行部署問題的疑難排解</span><span class="sxs-lookup"><span data-stu-id="b8fe5-103">Troubleshoot deployment issues with Azure Container Instances</span></span>
+# <a name="troubleshoot-deployment-issues-with-azure-container-instances"></a><span data-ttu-id="97375-103">使用 Azure Container Instances 進行部署問題的疑難排解</span><span class="sxs-lookup"><span data-stu-id="97375-103">Troubleshoot deployment issues with Azure Container Instances</span></span>
 
-<span data-ttu-id="b8fe5-104">本文說明如何在將容器部署至 Azure Container Instances 時進行問題的疑難排解。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-104">This article shows how to troubleshoot issues when deploying containers to Azure Container Instances.</span></span> <span data-ttu-id="b8fe5-105">此外，也會說明一些您可能會碰到的常見問題。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-105">It also describes some of the common issues you may run into.</span></span>
+<span data-ttu-id="97375-104">本文將說明如何 tootroubleshoot 發出部署容器 tooAzure 容器執行個體時。</span><span class="sxs-lookup"><span data-stu-id="97375-104">This article shows how tootroubleshoot issues when deploying containers tooAzure Container Instances.</span></span> <span data-ttu-id="97375-105">此外也說明某些 hello 您可能會碰到的常見問題。</span><span class="sxs-lookup"><span data-stu-id="97375-105">It also describes some of hello common issues you may run into.</span></span>
 
-## <a name="getting-diagnostic-events"></a><span data-ttu-id="b8fe5-106">取得診斷事件</span><span class="sxs-lookup"><span data-stu-id="b8fe5-106">Getting diagnostic events</span></span>
+## <a name="getting-diagnostic-events"></a><span data-ttu-id="97375-106">取得診斷事件</span><span class="sxs-lookup"><span data-stu-id="97375-106">Getting diagnostic events</span></span>
 
-<span data-ttu-id="b8fe5-107">若要在容器內檢視應用程式程式碼中的記錄，您可以使用 [az container logs](/cli/azure/container#logs) 命令。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-107">To view logs from your application code within a container, you can use the [az container logs](/cli/azure/container#logs) command.</span></span> <span data-ttu-id="b8fe5-108">但如果容器的部署並未成功，您就需要檢閱由 Azure Container Instances 資源提供者所提供的診斷資訊。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-108">But if your container does not deploy successfully, you need to review the diagnostic information provided by the Azure Container Instances resource provider.</span></span> <span data-ttu-id="b8fe5-109">若要檢視容器的事件，請執行下列命令：</span><span class="sxs-lookup"><span data-stu-id="b8fe5-109">To view the events for your container, run the following command:</span></span>
+<span data-ttu-id="97375-107">從您的應用程式程式碼的容器內的 tooview 記錄檔，您可以使用 hello [az 容器記錄](/cli/azure/container#logs)命令。</span><span class="sxs-lookup"><span data-stu-id="97375-107">tooview logs from your application code within a container, you can use hello [az container logs](/cli/azure/container#logs) command.</span></span> <span data-ttu-id="97375-108">但如果您的容器未成功部署，您需要 hello Azure 容器執行個體的資源提供者所提供的 tooreview hello 診斷資訊。</span><span class="sxs-lookup"><span data-stu-id="97375-108">But if your container does not deploy successfully, you need tooreview hello diagnostic information provided by hello Azure Container Instances resource provider.</span></span> <span data-ttu-id="97375-109">您的容器，執行下列命令的 hello tooview hello 事件：</span><span class="sxs-lookup"><span data-stu-id="97375-109">tooview hello events for your container, run hello following command:</span></span>
 
 ```azurecli-interactive
 az container show -n mycontainername -g myresourcegroup
 ```
 
-<span data-ttu-id="b8fe5-110">輸出中會包含容器的核心屬性以及部署事件：</span><span class="sxs-lookup"><span data-stu-id="b8fe5-110">The output includes the core properties of your container, along with deployment events:</span></span>
+<span data-ttu-id="97375-110">hello 輸出包含您的容器，以及部署事件 hello 核心屬性：</span><span class="sxs-lookup"><span data-stu-id="97375-110">hello output includes hello core properties of your container, along with deployment events:</span></span>
 
 ```bash
 {
@@ -87,13 +87,13 @@ az container show -n mycontainername -g myresourcegroup
 }
 ```
 
-## <a name="common-deployment-issues"></a><span data-ttu-id="b8fe5-111">常見部署問題</span><span class="sxs-lookup"><span data-stu-id="b8fe5-111">Common deployment issues</span></span>
+## <a name="common-deployment-issues"></a><span data-ttu-id="97375-111">常見部署問題</span><span class="sxs-lookup"><span data-stu-id="97375-111">Common deployment issues</span></span>
 
-<span data-ttu-id="b8fe5-112">部署時所發生的大部分錯誤都可歸咎於幾個常見問題。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-112">There are a few common issues that account for most errors in deployment.</span></span>
+<span data-ttu-id="97375-112">部署時所發生的大部分錯誤都可歸咎於幾個常見問題。</span><span class="sxs-lookup"><span data-stu-id="97375-112">There are a few common issues that account for most errors in deployment.</span></span>
 
-### <a name="unable-to-pull-image"></a><span data-ttu-id="b8fe5-113">無法提取映像</span><span class="sxs-lookup"><span data-stu-id="b8fe5-113">Unable to pull image</span></span>
+### <a name="unable-toopull-image"></a><span data-ttu-id="97375-113">無法 toopull 映像</span><span class="sxs-lookup"><span data-stu-id="97375-113">Unable toopull image</span></span>
 
-<span data-ttu-id="b8fe5-114">如果 Azure Container Instances 一開始無法提取您的映像，它會先重試一段時間，最後才會失敗。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-114">If Azure Container Instances is unable to pull your image initially, it retries for some period before eventually failing.</span></span> <span data-ttu-id="b8fe5-115">如果它無法提取映像，系統便會顯示如下所示的事件：</span><span class="sxs-lookup"><span data-stu-id="b8fe5-115">If the image cannot be pulled, events like the following are shown:</span></span>
+<span data-ttu-id="97375-114">如果 Azure 容器執行個體無法 toopull 映像一開始，重試最後失敗前段。</span><span class="sxs-lookup"><span data-stu-id="97375-114">If Azure Container Instances is unable toopull your image initially, it retries for some period before eventually failing.</span></span> <span data-ttu-id="97375-115">如果無法提取 hello 映像，則會顯示 hello 下列這類事件：</span><span class="sxs-lookup"><span data-stu-id="97375-115">If hello image cannot be pulled, events like hello following are shown:</span></span>
 
 ```bash
 "events": [
@@ -108,7 +108,7 @@ az container show -n mycontainername -g myresourcegroup
     "count": 1,
     "firstTimestamp": "2017-08-03T22:19:32+00:00",
     "lastTimestamp": "2017-08-03T22:19:32+00:00",
-    "message": "Failed: Failed to pull image \"microsoft/aci-hellowrld\": rpc error: code 2 desc Error: image microsoft/aci-hellowrld:latest not found",
+    "message": "Failed: Failed toopull image \"microsoft/aci-hellowrld\": rpc error: code 2 desc Error: image microsoft/aci-hellowrld:latest not found",
     "type": "Warning"
   },
   {
@@ -121,11 +121,11 @@ az container show -n mycontainername -g myresourcegroup
 ]
 ```
 
-<span data-ttu-id="b8fe5-116">若要解決，請刪除容器並重試部署，特別注意您所輸入的映像名稱是否正確。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-116">To resolve, delete the container and retry your deployment, paying close attention that you have typed the image name correctly.</span></span>
+<span data-ttu-id="97375-116">tooresolve，刪除 hello 容器，然後重試您的部署，您輸入 hello 映像名稱是正確的付費特別注意。</span><span class="sxs-lookup"><span data-stu-id="97375-116">tooresolve, delete hello container and retry your deployment, paying close attention that you have typed hello image name correctly.</span></span>
 
-### <a name="container-continually-exits-and-restarts"></a><span data-ttu-id="b8fe5-117">容器不斷結束又重新啟動</span><span class="sxs-lookup"><span data-stu-id="b8fe5-117">Container continually exits and restarts</span></span>
+### <a name="container-continually-exits-and-restarts"></a><span data-ttu-id="97375-117">容器不斷結束又重新啟動</span><span class="sxs-lookup"><span data-stu-id="97375-117">Container continually exits and restarts</span></span>
 
-<span data-ttu-id="b8fe5-118">Azure Container Instances 目前僅支援長時間執行的服務。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-118">Currently, Azure Container Instances only supports long-running services.</span></span> <span data-ttu-id="b8fe5-119">如果您的容器執行完畢並結束，該容器會自動重新啟動並再次執行。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-119">If your container runs to completion and exits, it automatically restarts and runs again.</span></span> <span data-ttu-id="b8fe5-120">如果發生這種情況，系統會顯示如下所示的事件。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-120">If this happens, events like those following are shown.</span></span> <span data-ttu-id="b8fe5-121">請注意，容器會在成功啟動後又迅速重新啟動。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-121">Note that the container successfully starts, then quickly restarts.</span></span> <span data-ttu-id="b8fe5-122">Container Instances API 會包含 `retryCount` 屬性，以顯示特定容器的重新啟動次數。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-122">The Container Instances API includes a `retryCount` property that shows how many times a particular container has restarted.</span></span>
+<span data-ttu-id="97375-118">Azure Container Instances 目前僅支援長時間執行的服務。</span><span class="sxs-lookup"><span data-stu-id="97375-118">Currently, Azure Container Instances only supports long-running services.</span></span> <span data-ttu-id="97375-119">如果您的容器執行 toocompletion，結束時，自動重新啟動並執行一次。</span><span class="sxs-lookup"><span data-stu-id="97375-119">If your container runs toocompletion and exits, it automatically restarts and runs again.</span></span> <span data-ttu-id="97375-120">如果發生這種情況，系統會顯示如下所示的事件。</span><span class="sxs-lookup"><span data-stu-id="97375-120">If this happens, events like those following are shown.</span></span> <span data-ttu-id="97375-121">請注意該 hello 容器已成功啟動，然後再快速地重新啟動。</span><span class="sxs-lookup"><span data-stu-id="97375-121">Note that hello container successfully starts, then quickly restarts.</span></span> <span data-ttu-id="97375-122">hello 容器執行個體 API 包含`retryCount`顯示多少次特定容器的屬性已重新啟動。</span><span class="sxs-lookup"><span data-stu-id="97375-122">hello Container Instances API includes a `retryCount` property that shows how many times a particular container has restarted.</span></span>
 
 ```bash
 "events": [
@@ -189,25 +189,25 @@ az container show -n mycontainername -g myresourcegroup
 ```
 
 > [!NOTE]
-> <span data-ttu-id="b8fe5-123">Linux 散發套件的大部分容器映像都會設定殼層 (例如 bash) 來作為預設命令。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-123">Most container images for Linux distributions set a shell, such as bash, as the default command.</span></span> <span data-ttu-id="b8fe5-124">因為殼層本身不是長時間執行的服務，因此這些容器會立即結束並落入重新啟動迴圈。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-124">Since a shell on its own is not a long-running service, these containers immediately exit and fall into a restart loop.</span></span>
+> <span data-ttu-id="97375-123">大部分的容器映像的 Linux 發行的設定殼層，（例如 bash），做為 hello 預設命令。</span><span class="sxs-lookup"><span data-stu-id="97375-123">Most container images for Linux distributions set a shell, such as bash, as hello default command.</span></span> <span data-ttu-id="97375-124">因為殼層本身不是長時間執行的服務，因此這些容器會立即結束並落入重新啟動迴圈。</span><span class="sxs-lookup"><span data-stu-id="97375-124">Since a shell on its own is not a long-running service, these containers immediately exit and fall into a restart loop.</span></span>
 
-### <a name="container-takes-a-long-time-to-start"></a><span data-ttu-id="b8fe5-125">容器要等很久才會啟動</span><span class="sxs-lookup"><span data-stu-id="b8fe5-125">Container takes a long time to start</span></span>
+### <a name="container-takes-a-long-time-toostart"></a><span data-ttu-id="97375-125">容器會很長的時間 toostart</span><span class="sxs-lookup"><span data-stu-id="97375-125">Container takes a long time toostart</span></span>
 
-<span data-ttu-id="b8fe5-126">如果您的容器要等很久才會啟動，但最終還是會啟動成功，請先看看您的容器映像大小。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-126">If your container takes a long time to start, but eventually succeeds, start by looking at the size of your container image.</span></span> <span data-ttu-id="b8fe5-127">因為 Azure Container Instances 會視需要來提取您的容器映像，因此啟動時間的長短會與其大小直接相關。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-127">Because Azure Container Instances pulls your container image on demand, the startup time you experience is directly related to its size.</span></span>
+<span data-ttu-id="97375-126">如果您的容器會很長的時間 toostart，但最後順利完成，則會先來看看 hello 容器映像的大小。</span><span class="sxs-lookup"><span data-stu-id="97375-126">If your container takes a long time toostart, but eventually succeeds, start by looking at hello size of your container image.</span></span> <span data-ttu-id="97375-127">因為 Azure 容器執行個體視提取您的容器映像，您會遇到的 hello 啟動時間是直接相關的 tooits 大小。</span><span class="sxs-lookup"><span data-stu-id="97375-127">Because Azure Container Instances pulls your container image on demand, hello startup time you experience is directly related tooits size.</span></span>
 
-<span data-ttu-id="b8fe5-128">您可以使用 Docker CLI 來檢視容器映像大小：</span><span class="sxs-lookup"><span data-stu-id="b8fe5-128">You can view the size of your container image using the Docker CLI:</span></span>
+<span data-ttu-id="97375-128">您可以檢視您的容器映像使用 Docker CLI hello hello 大小：</span><span class="sxs-lookup"><span data-stu-id="97375-128">You can view hello size of your container image using hello Docker CLI:</span></span>
 
 ```bash
 docker images
 ```
 
-<span data-ttu-id="b8fe5-129">輸出：</span><span class="sxs-lookup"><span data-stu-id="b8fe5-129">Output:</span></span>
+<span data-ttu-id="97375-129">輸出：</span><span class="sxs-lookup"><span data-stu-id="97375-129">Output:</span></span>
 
 ```bash
 REPOSITORY                             TAG                 IMAGE ID            CREATED             SIZE
 microsoft/aci-helloworld               latest              7f78509b568e        13 days ago         68.1MB
 ```
 
-<span data-ttu-id="b8fe5-130">讓映像不會變得太大的關鍵在於，確保最終的映像不會包含執行階段所不需要的任何項目。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-130">The key to keeping image sizes small is ensuring that your final image does not contain anything that is not required at runtime.</span></span> <span data-ttu-id="b8fe5-131">若要做到這一點，有一種方式是使用[多階段建置](https://docs.docker.com/engine/userguide/eng-image/multistage-build/)。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-131">One way to do this is with [multi-stage builds](https://docs.docker.com/engine/userguide/eng-image/multistage-build/).</span></span> <span data-ttu-id="b8fe5-132">多階段建置可讓您輕鬆地確保最終映像只包含應用程式所需的構件，而不會包含建置階段所需的任何額外內容。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-132">Multi-stage builds make it easy to ensure that the final image contains only the artifacts you need for your application, and not any of the extra content that was required at build time.</span></span>
+<span data-ttu-id="97375-130">hello 小的索引鍵 tookeeping 映像大小確保您的最終映像不包含任何項目就不需要在執行階段。</span><span class="sxs-lookup"><span data-stu-id="97375-130">hello key tookeeping image sizes small is ensuring that your final image does not contain anything that is not required at runtime.</span></span> <span data-ttu-id="97375-131">這是使用其中一種方式 toodo[多階段組建](https://docs.docker.com/engine/userguide/eng-image/multistage-build/)。</span><span class="sxs-lookup"><span data-stu-id="97375-131">One way toodo this is with [multi-stage builds](https://docs.docker.com/engine/userguide/eng-image/multistage-build/).</span></span> <span data-ttu-id="97375-132">多階段組建讓您輕鬆 tooensure hello 最終映像包含您需要應用程式的唯一 hello 成品，以及此內容不是任何額外的 hello 時必要的建置時間。</span><span class="sxs-lookup"><span data-stu-id="97375-132">Multi-stage builds make it easy tooensure that hello final image contains only hello artifacts you need for your application, and not any of hello extra content that was required at build time.</span></span>
 
-<span data-ttu-id="b8fe5-133">另一種可在容器啟動階段降低對於映像提取作業影響的方式，是在您想要使用 Azure Container Instances 的相同區域中，使用 Azure Container Registry 來裝載容器映像。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-133">The other way to reduce the impact of the image pull on your container's startup time is to host the container image using the Azure Container Registry in the same region where you intend to use Azure Container Instances.</span></span> <span data-ttu-id="b8fe5-134">這種方式會縮短容器映像需要經過的網路路徑，從而大幅縮短下載時間。</span><span class="sxs-lookup"><span data-stu-id="b8fe5-134">This shortens the network path that the container image needs to travel, significantly shortening the download time.</span></span>
+<span data-ttu-id="97375-133">hello 其他方式 tooreduce hello 的影響 hello 映像提取您的容器啟動時間是 toohost hello 容器映像使用 hello Azure 容器登錄中 hello 相同，但您想 toouse Azure 容器執行個體的區域。</span><span class="sxs-lookup"><span data-stu-id="97375-133">hello other way tooreduce hello impact of hello image pull on your container's startup time is toohost hello container image using hello Azure Container Registry in hello same region where you intend toouse Azure Container Instances.</span></span> <span data-ttu-id="97375-134">這會縮短 hello hello 容器映像需求 tootravel 大幅縮短 hello 下載時間的網路路徑。</span><span class="sxs-lookup"><span data-stu-id="97375-134">This shortens hello network path that hello container image needs tootravel, significantly shortening hello download time.</span></span>

@@ -1,5 +1,5 @@
 ---
-title: "Azure Mobile Engagement 疑難排解指南 - API"
+title: "aaaAzure Mobile Engagement 疑難排解指南-應用程式開發介面"
 description: "Azure Mobile Engagement 疑難排解指南 - API"
 services: mobile-engagement
 documentationcenter: 
@@ -14,80 +14,80 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 10/04/2016
 ms.author: piyushjo
-ms.openlocfilehash: a7ae0a83046f2d67b790f672dcd3ae261987357a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5656b6f0f1aaf3e496a168c7cf09b307b9ab2a4c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="troubleshooting-guide-for-api-issues"></a><span data-ttu-id="9bd80-103">API 問題的疑難排解指南</span><span class="sxs-lookup"><span data-stu-id="9bd80-103">Troubleshooting guide for API issues</span></span>
-<span data-ttu-id="9bd80-104">以下是您可能遇到，有關系統管理員如何透過 API 與 Azure Mobile Engagement 互動的問題。</span><span class="sxs-lookup"><span data-stu-id="9bd80-104">The following are possible issues you may encounter with how administrators interact with Azure Mobile Engagement via the APIs.</span></span>
+# <a name="troubleshooting-guide-for-api-issues"></a><span data-ttu-id="234d8-103">API 問題的疑難排解指南</span><span class="sxs-lookup"><span data-stu-id="234d8-103">Troubleshooting guide for API issues</span></span>
+<span data-ttu-id="234d8-104">hello 以下是可能的問題，您可能會遇到與系統管理員的互動方式 Azure Mobile Engagement 透過 hello 應用程式開發介面。</span><span class="sxs-lookup"><span data-stu-id="234d8-104">hello following are possible issues you may encounter with how administrators interact with Azure Mobile Engagement via hello APIs.</span></span>
 
-## <a name="syntax-issues"></a><span data-ttu-id="9bd80-105">語法問題</span><span class="sxs-lookup"><span data-stu-id="9bd80-105">Syntax issues</span></span>
-### <a name="issue"></a><span data-ttu-id="9bd80-106">問題</span><span class="sxs-lookup"><span data-stu-id="9bd80-106">Issue</span></span>
-* <span data-ttu-id="9bd80-107">使用 API 的語法錯誤 (或非預期的行為)。</span><span class="sxs-lookup"><span data-stu-id="9bd80-107">Syntax Errors using the API (or unexpected behavior).</span></span>
+## <a name="syntax-issues"></a><span data-ttu-id="234d8-105">語法問題</span><span class="sxs-lookup"><span data-stu-id="234d8-105">Syntax issues</span></span>
+### <a name="issue"></a><span data-ttu-id="234d8-106">問題</span><span class="sxs-lookup"><span data-stu-id="234d8-106">Issue</span></span>
+* <span data-ttu-id="234d8-107">使用 hello 應用程式開發介面 （或未預期的行為） 的語法錯誤。</span><span class="sxs-lookup"><span data-stu-id="234d8-107">Syntax Errors using hello API (or unexpected behavior).</span></span>
 
-### <a name="causes"></a><span data-ttu-id="9bd80-108">原因</span><span class="sxs-lookup"><span data-stu-id="9bd80-108">Causes</span></span>
-* <span data-ttu-id="9bd80-109">語法問題：</span><span class="sxs-lookup"><span data-stu-id="9bd80-109">Syntax issues:</span></span>
-  * <span data-ttu-id="9bd80-110">請務必檢查您正在使用之特定 API 的語法，以確認該選項可以使用。</span><span class="sxs-lookup"><span data-stu-id="9bd80-110">Make sure to check the Syntax of the specific API you are using to confirm that the option is available.</span></span>
-  * <span data-ttu-id="9bd80-111">API 使用方式的一個常見問題是將觸達 API 與推送 API 混淆 (大部分工作應該是使用觸達 API 來執行，而不是使用推送 API 來執行)。</span><span class="sxs-lookup"><span data-stu-id="9bd80-111">A common issue with API usage is to confuse the Reach API and the Push API (most tasks should be performed with the Reach API instead of the Push API).</span></span> 
-  * <span data-ttu-id="9bd80-112">SDK 整合與 API 使用方式的另一個常見問題是將 SDK 金鑰和 API 金鑰混淆。</span><span class="sxs-lookup"><span data-stu-id="9bd80-112">Another common issue with SDK integration and API usage is to confuse the SDK Key and the API Key.</span></span>
-  * <span data-ttu-id="9bd80-113">連接到 API 的指令碼必須至少每 10 分鐘傳送一次資料，否則連線會逾時 (這在接聽資料的監視 API 指令碼中特別常見)。</span><span class="sxs-lookup"><span data-stu-id="9bd80-113">Scripts that connect to the APIs need to send data at least every 10 minutes or the connection will time out (especially common in Monitor API scripts listening for data).</span></span> <span data-ttu-id="9bd80-114">若要避免逾時，請讓您的指令碼每 10 分鐘傳送一個 XMPP ping，以保持伺服器工作階段運作。</span><span class="sxs-lookup"><span data-stu-id="9bd80-114">To prevent timeouts, have your script send an XMPP ping every 10 minutes to keep the session alive with the server.</span></span>
+### <a name="causes"></a><span data-ttu-id="234d8-108">原因</span><span class="sxs-lookup"><span data-stu-id="234d8-108">Causes</span></span>
+* <span data-ttu-id="234d8-109">語法問題：</span><span class="sxs-lookup"><span data-stu-id="234d8-109">Syntax issues:</span></span>
+  * <span data-ttu-id="234d8-110">請確定 toocheck hello hello 特定 API 所使用的語法 hello 選項的 tooconfirm 為止。</span><span class="sxs-lookup"><span data-stu-id="234d8-110">Make sure toocheck hello Syntax of hello specific API you are using tooconfirm that hello option is available.</span></span>
+  * <span data-ttu-id="234d8-111">API 使用方式的一般問題是 tooconfuse hello 觸達 API 和 hello 推送應用程式開發介面 （大部分的工作應該執行以 hello 觸達 API 而不是 hello 推送應用程式開發介面）。</span><span class="sxs-lookup"><span data-stu-id="234d8-111">A common issue with API usage is tooconfuse hello Reach API and hello Push API (most tasks should be performed with hello Reach API instead of hello Push API).</span></span> 
+  * <span data-ttu-id="234d8-112">另一個常見的問題與 SDK 整合及應用程式開發介面使用方式為 tooconfuse hello SDK 金鑰和 hello API 金鑰。</span><span class="sxs-lookup"><span data-stu-id="234d8-112">Another common issue with SDK integration and API usage is tooconfuse hello SDK Key and hello API Key.</span></span>
+  * <span data-ttu-id="234d8-113">連接 toohello Api 的指令碼需要 toosend 資料，至少每隔 10 分鐘或 hello 連接逾時 （特別是通常在接聽資料監視器 API 指令碼）。</span><span class="sxs-lookup"><span data-stu-id="234d8-113">Scripts that connect toohello APIs need toosend data at least every 10 minutes or hello connection will time out (especially common in Monitor API scripts listening for data).</span></span> <span data-ttu-id="234d8-114">tooprevent 逾時，必須將指令碼傳送 XMPP ping 活動與 hello 伺服器每隔 10 分鐘 tookeep hello 工作階段。</span><span class="sxs-lookup"><span data-stu-id="234d8-114">tooprevent timeouts, have your script send an XMPP ping every 10 minutes tookeep hello session alive with hello server.</span></span>
 
-### <a name="see-also"></a><span data-ttu-id="9bd80-115">另請參閱</span><span class="sxs-lookup"><span data-stu-id="9bd80-115">See also</span></span>
-* <span data-ttu-id="9bd80-116">[API 文件][Link 4]</span><span class="sxs-lookup"><span data-stu-id="9bd80-116">[API Documentation][Link 4]</span></span>
-* [<span data-ttu-id="9bd80-117">XMPP 通訊協定資訊</span><span class="sxs-lookup"><span data-stu-id="9bd80-117">XMPP Protocol Info</span></span>](http://xmpp.org/extensions/xep-0199.html)
+### <a name="see-also"></a><span data-ttu-id="234d8-115">另請參閱</span><span class="sxs-lookup"><span data-stu-id="234d8-115">See also</span></span>
+* <span data-ttu-id="234d8-116">[API 文件][Link 4]</span><span class="sxs-lookup"><span data-stu-id="234d8-116">[API Documentation][Link 4]</span></span>
+* [<span data-ttu-id="234d8-117">XMPP 通訊協定資訊</span><span class="sxs-lookup"><span data-stu-id="234d8-117">XMPP Protocol Info</span></span>](http://xmpp.org/extensions/xep-0199.html)
 
-## <a name="unable-to-use-the-api-to-perform-the-same-action-available-in-the-azure-mobile-engagement-ui"></a><span data-ttu-id="9bd80-118">無法使用 API 執行 Azure Mobile Engagement UI 中可用的相同動作</span><span class="sxs-lookup"><span data-stu-id="9bd80-118">Unable to use the API to perform the same action available in the Azure Mobile Engagement UI</span></span>
-### <a name="issue"></a><span data-ttu-id="9bd80-119">問題</span><span class="sxs-lookup"><span data-stu-id="9bd80-119">Issue</span></span>
-* <span data-ttu-id="9bd80-120">可從 Azure Mobile Engagement UI 運作的動作，無法從相關的 Azure Mobile Engagement API 運作。</span><span class="sxs-lookup"><span data-stu-id="9bd80-120">An action that works from the Azure Mobile Engagement UI doesn't work from the related Azure Mobile Engagement API.</span></span>
+## <a name="unable-toouse-hello-api-tooperform-hello-same-action-available-in-hello-azure-mobile-engagement-ui"></a><span data-ttu-id="234d8-118">無法 toouse hello API tooperform hello hello Azure Mobile Engagement UI 中相同的動作</span><span class="sxs-lookup"><span data-stu-id="234d8-118">Unable toouse hello API tooperform hello same action available in hello Azure Mobile Engagement UI</span></span>
+### <a name="issue"></a><span data-ttu-id="234d8-119">問題</span><span class="sxs-lookup"><span data-stu-id="234d8-119">Issue</span></span>
+* <span data-ttu-id="234d8-120">運作方式與 hello 從 hello 不適用於 Azure Mobile Engagement UI 動作的相關 Azure Mobile Engagement 應用程式開發介面。</span><span class="sxs-lookup"><span data-stu-id="234d8-120">An action that works from hello Azure Mobile Engagement UI doesn't work from hello related Azure Mobile Engagement API.</span></span>
 
-### <a name="causes"></a><span data-ttu-id="9bd80-121">原因</span><span class="sxs-lookup"><span data-stu-id="9bd80-121">Causes</span></span>
-* <span data-ttu-id="9bd80-122">確認您可以從 Azure Mobile Engagement UI 執行相同的動作之後，即表示您已正確地將 Azure Mobile Engagement 的這項功能與 SDK 整合。</span><span class="sxs-lookup"><span data-stu-id="9bd80-122">Confirming that you can perform the same action from the Azure Mobile Engagement UI shows that you have correctly integrated this feature of Azure Mobile Engagement with the SDK.</span></span>
+### <a name="causes"></a><span data-ttu-id="234d8-121">原因</span><span class="sxs-lookup"><span data-stu-id="234d8-121">Causes</span></span>
+* <span data-ttu-id="234d8-122">確認您可以執行相同的動作，從 hello Azure Mobile Engagement UI 會顯示您已正確整合與 Azure Mobile Engagement 的這項功能的 hello hello SDK。</span><span class="sxs-lookup"><span data-stu-id="234d8-122">Confirming that you can perform hello same action from hello Azure Mobile Engagement UI shows that you have correctly integrated this feature of Azure Mobile Engagement with hello SDK.</span></span>
 
-### <a name="see-also"></a><span data-ttu-id="9bd80-123">另請參閱</span><span class="sxs-lookup"><span data-stu-id="9bd80-123">See also</span></span>
-* <span data-ttu-id="9bd80-124">[UI 文件][Link 1]</span><span class="sxs-lookup"><span data-stu-id="9bd80-124">[UI Documentation][Link 1]</span></span>
+### <a name="see-also"></a><span data-ttu-id="234d8-123">另請參閱</span><span class="sxs-lookup"><span data-stu-id="234d8-123">See also</span></span>
+* <span data-ttu-id="234d8-124">[UI 文件][Link 1]</span><span class="sxs-lookup"><span data-stu-id="234d8-124">[UI Documentation][Link 1]</span></span>
 
-## <a name="error-messages"></a><span data-ttu-id="9bd80-125">錯誤訊息</span><span class="sxs-lookup"><span data-stu-id="9bd80-125">Error Messages</span></span>
-### <a name="issue"></a><span data-ttu-id="9bd80-126">問題</span><span class="sxs-lookup"><span data-stu-id="9bd80-126">Issue</span></span>
-* <span data-ttu-id="9bd80-127">使用 API 時在執行階段或記錄檔中顯示的錯誤碼。</span><span class="sxs-lookup"><span data-stu-id="9bd80-127">Error codes using the API displayed at runtime or in logs.</span></span>
+## <a name="error-messages"></a><span data-ttu-id="234d8-125">錯誤訊息</span><span class="sxs-lookup"><span data-stu-id="234d8-125">Error Messages</span></span>
+### <a name="issue"></a><span data-ttu-id="234d8-126">問題</span><span class="sxs-lookup"><span data-stu-id="234d8-126">Issue</span></span>
+* <span data-ttu-id="234d8-127">使用顯示在執行階段或記錄檔中的 hello API 錯誤碼。</span><span class="sxs-lookup"><span data-stu-id="234d8-127">Error codes using hello API displayed at runtime or in logs.</span></span>
 
-### <a name="causes"></a><span data-ttu-id="9bd80-128">原因</span><span class="sxs-lookup"><span data-stu-id="9bd80-128">Causes</span></span>
-* <span data-ttu-id="9bd80-129">以下是供參考和初步疑難排解使用之一般 API 狀態碼號碼的複合清單：</span><span class="sxs-lookup"><span data-stu-id="9bd80-129">Here is a composite list of common API status codes numbers for reference and preliminary troubleshooting:</span></span>
+### <a name="causes"></a><span data-ttu-id="234d8-128">原因</span><span class="sxs-lookup"><span data-stu-id="234d8-128">Causes</span></span>
+* <span data-ttu-id="234d8-129">以下是供參考和初步疑難排解使用之一般 API 狀態碼號碼的複合清單：</span><span class="sxs-lookup"><span data-stu-id="234d8-129">Here is a composite list of common API status codes numbers for reference and preliminary troubleshooting:</span></span>
   
         200        Success.
-        200        Account updated: device registered, associated, updated, or removed from the current account.
-        200        Returns a list of projects as a JSON object or an authentication token generated and returned in the response’s body.
+        200        Account updated: device registered, associated, updated, or removed from hello current account.
+        200        Returns a list of projects as a JSON object or an authentication token generated and returned in hello response’s body.
         201        Account created.
-        400        Invalid parameter or validation exception (check payload for details). The parameters provided to the API or service are invalid. In this case, the HTTP response will embed more details. Make sure to test for the MIME type of the response as the payload can either be plain text or a JSON object.
-        401        Authentication error. No user is currently authenticated or connected (check the AppID and SDK key).
-        402        Billing lock. The application is either off its quotas or is currently in a bad billing state.
-        403        The application is not enabled or the specific API is disabled for this application.
-        403        Unauthorized access to the project or application, invalid access key (the key must match the one provided when created).
-        403        Campaign specific errors: campaign must be finished (or has already been activated), the suspend action can only be performed on an scheduled campaign, cannot finish a campaign that is not currently “in progress”, campaign must be “in progress” and the campaign’s property named, manual Push must be set to true.
-        403        The email address is already associated to another account (a super user for instance). No authentication token will be generated.
+        400        Invalid parameter or validation exception (check payload for details). hello parameters provided toohello API or service are invalid. In this case, hello HTTP response will embed more details. Make sure tootest for hello MIME type of hello response as hello payload can either be plain text or a JSON object.
+        401        Authentication error. No user is currently authenticated or connected (check hello AppID and SDK key).
+        402        Billing lock. hello application is either off its quotas or is currently in a bad billing state.
+        403        hello application is not enabled or hello specific API is disabled for this application.
+        403        Unauthorized access toohello project or application, invalid access key (hello key must match hello one provided when created).
+        403        Campaign specific errors: campaign must be finished (or has already been activated), hello suspend action can only be performed on an scheduled campaign, cannot finish a campaign that is not currently “in progress”, campaign must be “in progress” and hello campaign’s property named, manual Push must be set tootrue.
+        403        hello email address is already associated tooanother account (a super user for instance). No authentication token will be generated.
         404        Application, device, campaign, or project identifier not found.
         404        Query parameter is invalid JSON or has a field with an unexpected value.
-        404        The email address is not associated with an account. Please create or update the account first.
-        405        Invalid HTTP method (GET, POST, etc.) or trying to edit a read only segment (i.e. add or update or delete a criterion). A segment becomes read only after it has been computed for the first time.
-        409        Name already associated to a different device ID or campaign.
-        413        Too many device identifiers (current limit is 1,000), POST URL encoded entity is over 2MB, or the period is too large to be displayed (the server didn’t retrieve the analytics because the user request is for a period that is too large).
-        503        Analytics not available yet (the requested information is not computed yet for an application).
-        504        The server was not able to handle your request in a reasonable time (if you make multiple calls to an API very quickly, try to make one call at a time and spread the calls out over time).
+        404        hello email address is not associated with an account. Please create or update hello account first.
+        405        Invalid HTTP method (GET, POST, etc.) or trying tooedit a read only segment (i.e. add or update or delete a criterion). A segment becomes read only after it has been computed for hello first time.
+        409        Name already associated tooa different device ID or campaign.
+        413        Too many device identifiers (current limit is 1,000), POST URL encoded entity is over 2MB, or hello period is too large toobe displayed (hello server didn’t retrieve hello analytics because hello user request is for a period that is too large).
+        503        Analytics not available yet (hello requested information is not computed yet for an application).
+        504        hello server was not able toohandle your request in a reasonable time (if you make multiple calls tooan API very quickly, try toomake one call at a time and spread hello calls out over time).
 
-### <a name="see-also"></a><span data-ttu-id="9bd80-130">另請參閱</span><span class="sxs-lookup"><span data-stu-id="9bd80-130">See also</span></span>
-* <span data-ttu-id="9bd80-131">[API 文件 - 適用於每個特定 API 的詳細錯誤][Link 4]</span><span class="sxs-lookup"><span data-stu-id="9bd80-131">[API Documentation - for detailed errors on each specific API][Link 4]</span></span>
+### <a name="see-also"></a><span data-ttu-id="234d8-130">另請參閱</span><span class="sxs-lookup"><span data-stu-id="234d8-130">See also</span></span>
+* <span data-ttu-id="234d8-131">[API 文件 - 適用於每個特定 API 的詳細錯誤][Link 4]</span><span class="sxs-lookup"><span data-stu-id="234d8-131">[API Documentation - for detailed errors on each specific API][Link 4]</span></span>
 
-## <a name="silent-failures"></a><span data-ttu-id="9bd80-132">無訊息失敗</span><span class="sxs-lookup"><span data-stu-id="9bd80-132">Silent failures</span></span>
-### <a name="issue"></a><span data-ttu-id="9bd80-133">問題</span><span class="sxs-lookup"><span data-stu-id="9bd80-133">Issue</span></span>
-* <span data-ttu-id="9bd80-134">API 動作失敗，但執行階段或記錄檔中沒有顯示任何錯誤訊息。</span><span class="sxs-lookup"><span data-stu-id="9bd80-134">API action fails with no error message displayed at runtime or in logs.</span></span>
+## <a name="silent-failures"></a><span data-ttu-id="234d8-132">無訊息失敗</span><span class="sxs-lookup"><span data-stu-id="234d8-132">Silent failures</span></span>
+### <a name="issue"></a><span data-ttu-id="234d8-133">問題</span><span class="sxs-lookup"><span data-stu-id="234d8-133">Issue</span></span>
+* <span data-ttu-id="234d8-134">API 動作失敗，但執行階段或記錄檔中沒有顯示任何錯誤訊息。</span><span class="sxs-lookup"><span data-stu-id="234d8-134">API action fails with no error message displayed at runtime or in logs.</span></span>
 
-### <a name="causes"></a><span data-ttu-id="9bd80-135">原因</span><span class="sxs-lookup"><span data-stu-id="9bd80-135">Causes</span></span>
-* <span data-ttu-id="9bd80-136">如果項目整合不正確，Azure Mobile Engagement UI 中的許多項目將會停用，但會從 API 以無訊息方式發生失敗，因此請記得從 UI 測試相同功能，以查看功能是否正常運作。</span><span class="sxs-lookup"><span data-stu-id="9bd80-136">Many items will be disabled in the Azure Mobile Engagement UI if they aren't integrated correctly, but will fail silently from the API, so remember to test the same functionality from the UI to see if it works.</span></span>
-* <span data-ttu-id="9bd80-137">Azure Mobile Engagement 以及許多您嘗試使用的 Azure Mobile Engagement 進階功能，都需要使用 SDK 以獨立步驟方式個別整合到您的應用程式中，您才能使用它們。</span><span class="sxs-lookup"><span data-stu-id="9bd80-137">Azure Mobile Engagement, and many advanced features of Azure Mobile Engagement you are attempting to use, need to be individually integrated into your app with the SDK as separate steps before you can use them.</span></span>
+### <a name="causes"></a><span data-ttu-id="234d8-135">原因</span><span class="sxs-lookup"><span data-stu-id="234d8-135">Causes</span></span>
+* <span data-ttu-id="234d8-136">多個項目將會停用在 hello Azure Mobile Engagement UI 如果不正確，整合，但將會以無訊息模式失敗從 hello 應用程式開發介面，因此請記住 tootest hello hello UI toosee 從相同的功能，看看是否可行。</span><span class="sxs-lookup"><span data-stu-id="234d8-136">Many items will be disabled in hello Azure Mobile Engagement UI if they aren't integrated correctly, but will fail silently from hello API, so remember tootest hello same functionality from hello UI toosee if it works.</span></span>
+* <span data-ttu-id="234d8-137">Azure Mobile Engagement，以及許多進階的功能的 Azure Mobile Engagement 嘗試 toouse，需要 toobe 個別整合到應用程式與 hello SDK 為個別的步驟才能使用它們。</span><span class="sxs-lookup"><span data-stu-id="234d8-137">Azure Mobile Engagement, and many advanced features of Azure Mobile Engagement you are attempting toouse, need toobe individually integrated into your app with hello SDK as separate steps before you can use them.</span></span>
 
-### <a name="see-also"></a><span data-ttu-id="9bd80-138">另請參閱</span><span class="sxs-lookup"><span data-stu-id="9bd80-138">See also</span></span>
-* <span data-ttu-id="9bd80-139">[疑難排解指南 - SDK][Link 25]</span><span class="sxs-lookup"><span data-stu-id="9bd80-139">[Troubleshooting Guide - SDK][Link 25]</span></span>
+### <a name="see-also"></a><span data-ttu-id="234d8-138">另請參閱</span><span class="sxs-lookup"><span data-stu-id="234d8-138">See also</span></span>
+* <span data-ttu-id="234d8-139">[疑難排解指南 - SDK][Link 25]</span><span class="sxs-lookup"><span data-stu-id="234d8-139">[Troubleshooting Guide - SDK][Link 25]</span></span>
 
 <!--Link references-->
 [Link 1]: mobile-engagement-user-interface-home.md

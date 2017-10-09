@@ -1,6 +1,6 @@
 ---
-title: "搭配 Apache Hive 和 Pig 的 Python UDF - Azure HDInsight | Microsoft Docs"
-description: "了解如何在 HDInsight 中從 Hive 和 Pig (Azure 上的 Hadoop 技術堆疊) 使用 Python 使用者定義函數 (UDF)。"
+title: "使用 Apache Hive 和 Pig-Azure HDInsight UDF aaaPython |Microsoft 文件"
+description: "了解如何 toouse Python 使用者定義函數 (UDF) 從 Hive 和 Pig 在 HDInsight Hadoop 技術 hello 堆疊在 Azure 上。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,39 +16,39 @@ ms.topic: article
 ms.date: 07/17/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: 9b67ded05a52f1e68580434667495cf6cf939871
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 26d8160cc6ed7fc22c3f06f7c1c9954c224b2366
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-python-user-defined-functions-udf-with-hive-and-pig-in-hdinsight"></a><span data-ttu-id="e4799-103">在 HDInsight 上使用 Python 使用者定義函數 (UDF) 與 Hive 和 Pig</span><span class="sxs-lookup"><span data-stu-id="e4799-103">Use Python User Defined Functions (UDF) with Hive and Pig in HDInsight</span></span>
+# <a name="use-python-user-defined-functions-udf-with-hive-and-pig-in-hdinsight"></a><span data-ttu-id="b5fb6-103">在 HDInsight 上使用 Python 使用者定義函數 (UDF) 與 Hive 和 Pig</span><span class="sxs-lookup"><span data-stu-id="b5fb6-103">Use Python User Defined Functions (UDF) with Hive and Pig in HDInsight</span></span>
 
-<span data-ttu-id="e4799-104">了解如何在 Azure HDInsight 的 Hadoop 中搭配使用 Python 使用者定義函式 (UDF) 與 Apache Hive 和 Pig。</span><span class="sxs-lookup"><span data-stu-id="e4799-104">Learn how to use Python user-defined functions (UDF) with Apache Hive and Pig in Hadoop on Azure HDInsight.</span></span>
+<span data-ttu-id="b5fb6-104">了解如何 toouse Python 使用者定義函數 (UDF) 與 Apache Hive 和 Pig Azure HDInsight 上的 Hadoop 中。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-104">Learn how toouse Python user-defined functions (UDF) with Apache Hive and Pig in Hadoop on Azure HDInsight.</span></span>
 
-## <span data-ttu-id="e4799-105"><a name="python"></a>HDInsight 上的 Python</span><span class="sxs-lookup"><span data-stu-id="e4799-105"><a name="python"></a>Python on HDInsight</span></span>
+## <span data-ttu-id="b5fb6-105"><a name="python"></a>HDInsight 上的 Python</span><span class="sxs-lookup"><span data-stu-id="b5fb6-105"><a name="python"></a>Python on HDInsight</span></span>
 
-<span data-ttu-id="e4799-106">HDInsight 3.0 和更新版本上預設已安裝 Python2.7。</span><span class="sxs-lookup"><span data-stu-id="e4799-106">Python2.7 is installed by default on HDInsight 3.0 and later.</span></span> <span data-ttu-id="e4799-107">Apache Hive 可以與此版本的 Python 搭配使用，以進行資料流處理。</span><span class="sxs-lookup"><span data-stu-id="e4799-107">Apache Hive can be used with this version of Python for stream processing.</span></span> <span data-ttu-id="e4799-108">資料流處理會使用 STDOUT 和 STDIN，以在 Hive 和 UDF 之間傳遞資料。</span><span class="sxs-lookup"><span data-stu-id="e4799-108">Stream processing uses STDOUT and STDIN to pass data between Hive and the UDF.</span></span>
+<span data-ttu-id="b5fb6-106">HDInsight 3.0 和更新版本上預設已安裝 Python2.7。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-106">Python2.7 is installed by default on HDInsight 3.0 and later.</span></span> <span data-ttu-id="b5fb6-107">Apache Hive 可以與此版本的 Python 搭配使用，以進行資料流處理。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-107">Apache Hive can be used with this version of Python for stream processing.</span></span> <span data-ttu-id="b5fb6-108">資料流處理會使用 Hive 和 hello UDF 之間 STDOUT 和 STDIN toopass 資料。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-108">Stream processing uses STDOUT and STDIN toopass data between Hive and hello UDF.</span></span>
 
-<span data-ttu-id="e4799-109">HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。</span><span class="sxs-lookup"><span data-stu-id="e4799-109">HDInsight also includes Jython, which is a Python implementation written in Java.</span></span> <span data-ttu-id="e4799-110">Jython 直接在 Java 虛擬機器上執行，並不使用資料流。</span><span class="sxs-lookup"><span data-stu-id="e4799-110">Jython runs directly on the Java Virtual Machine and does not use streaming.</span></span> <span data-ttu-id="e4799-111">搭配使用 Python 與 Pig 時，建議使用的 Python 解譯器為 Jython。</span><span class="sxs-lookup"><span data-stu-id="e4799-111">Jython is the recommended Python interpreter when using Python with Pig.</span></span>
+<span data-ttu-id="b5fb6-109">HDInsight 也包含 Jython (以 Java 撰寫的 Python 實作)。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-109">HDInsight also includes Jython, which is a Python implementation written in Java.</span></span> <span data-ttu-id="b5fb6-110">Jython 直接在 hello Java 虛擬機器上執行，並不使用資料流。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-110">Jython runs directly on hello Java Virtual Machine and does not use streaming.</span></span> <span data-ttu-id="b5fb6-111">Jython 是 hello Pig 搭配使用 Python 時建議使用 Python 解譯器。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-111">Jython is hello recommended Python interpreter when using Python with Pig.</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="e4799-112">本文件中的這些步驟進行下列假設：</span><span class="sxs-lookup"><span data-stu-id="e4799-112">The steps in this document make the following assumptions:</span></span> 
+> <span data-ttu-id="b5fb6-112">本文件中的 hello 步驟進行下列假設 hello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-112">hello steps in this document make hello following assumptions:</span></span> 
 >
-> * <span data-ttu-id="e4799-113">您在本機開發環境中建立 Python 指令碼。</span><span class="sxs-lookup"><span data-stu-id="e4799-113">You create the Python scripts on your local development environment.</span></span>
-> * <span data-ttu-id="e4799-114">您從本機 Bash 工作階段使用 `scp` 命令，或者使用提供的 PowerShell 指令碼，將指令碼上傳至 HDInsight 。</span><span class="sxs-lookup"><span data-stu-id="e4799-114">You upload the scripts to HDInsight using either the `scp` command from a local Bash session or the provided PowerShell script.</span></span>
+> * <span data-ttu-id="b5fb6-113">您建立 hello Python 指令碼的本機開發環境上。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-113">You create hello Python scripts on your local development environment.</span></span>
+> * <span data-ttu-id="b5fb6-114">您上傳使用任一 hello hello 指令碼 tooHDInsight`scp`從本機 Bash 工作階段或 hello 提供 PowerShell 指令碼命令。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-114">You upload hello scripts tooHDInsight using either hello `scp` command from a local Bash session or hello provided PowerShell script.</span></span>
 >
-> <span data-ttu-id="e4799-115">如果您想要使用 [Azure Cloud Shell (bash)](https://docs.microsoft.com/azure/cloud-shell/overview) 預覽來利用 HDInsight，則必須：</span><span class="sxs-lookup"><span data-stu-id="e4799-115">If you want to use the [Azure Cloud Shell (bash)](https://docs.microsoft.com/azure/cloud-shell/overview) preview to work with HDInsight, then you must:</span></span>
+> <span data-ttu-id="b5fb6-115">如果您想 toouse hello [Azure 雲端殼層 (bash)](https://docs.microsoft.com/azure/cloud-shell/overview)預覽 toowork 與 HDInsight，則必須：</span><span class="sxs-lookup"><span data-stu-id="b5fb6-115">If you want toouse hello [Azure Cloud Shell (bash)](https://docs.microsoft.com/azure/cloud-shell/overview) preview toowork with HDInsight, then you must:</span></span>
 >
-> * <span data-ttu-id="e4799-116">建立 Cloud Shell 環境內的指令碼。</span><span class="sxs-lookup"><span data-stu-id="e4799-116">Create the scripts inside the cloud shell environment.</span></span>
-> * <span data-ttu-id="e4799-117">使用 `scp` 將檔案從 Cloud Shell 上傳至 HDInsight。</span><span class="sxs-lookup"><span data-stu-id="e4799-117">Use `scp` to upload the files from the cloud shell to HDInsight.</span></span>
-> * <span data-ttu-id="e4799-118">使用 `ssh` 從 Cloud Shell 命令連線至 HDInsight，並執行範例。</span><span class="sxs-lookup"><span data-stu-id="e4799-118">Use `ssh` from the cloud shell to connect to HDInsight and run the examples.</span></span>
+> * <span data-ttu-id="b5fb6-116">建立 hello hello 雲端殼層環境內的指令碼。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-116">Create hello scripts inside hello cloud shell environment.</span></span>
+> * <span data-ttu-id="b5fb6-117">使用`scp`tooupload hello 檔案從 hello 雲端殼層 tooHDInsight。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-117">Use `scp` tooupload hello files from hello cloud shell tooHDInsight.</span></span>
+> * <span data-ttu-id="b5fb6-118">使用`ssh`從 hello 雲端殼層 tooconnect tooHDInsight 和執行的 hello 範例。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-118">Use `ssh` from hello cloud shell tooconnect tooHDInsight and run hello examples.</span></span>
 
-## <span data-ttu-id="e4799-119"><a name="hivepython"></a>Hive UDF</span><span class="sxs-lookup"><span data-stu-id="e4799-119"><a name="hivepython"></a>Hive UDF</span></span>
+## <span data-ttu-id="b5fb6-119"><a name="hivepython"></a>Hive UDF</span><span class="sxs-lookup"><span data-stu-id="b5fb6-119"><a name="hivepython"></a>Hive UDF</span></span>
 
-<span data-ttu-id="e4799-120">從 Hive 中，透過 HiveQL `TRANSFORM` 陳述式，可將 Python 當作 UDF 使用。</span><span class="sxs-lookup"><span data-stu-id="e4799-120">Python can be used as a UDF from Hive through the HiveQL `TRANSFORM` statement.</span></span> <span data-ttu-id="e4799-121">例如，下列 HiveQL 會叫用叢集的預設 Azure 儲存體帳戶所儲存的 `hiveudf.py` 檔案。</span><span class="sxs-lookup"><span data-stu-id="e4799-121">For example, the following HiveQL invokes the `hiveudf.py` file stored in the default Azure Storage account for the cluster.</span></span>
+<span data-ttu-id="b5fb6-120">Python 可用來當作 UDF 從 Hive 透過 hello HiveQL`TRANSFORM`陳述式。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-120">Python can be used as a UDF from Hive through hello HiveQL `TRANSFORM` statement.</span></span> <span data-ttu-id="b5fb6-121">例如，下列 HiveQL hello 叫用 hello `hiveudf.py` hello hello 叢集的預設 Azure 儲存體帳戶中儲存檔案。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-121">For example, hello following HiveQL invokes hello `hiveudf.py` file stored in hello default Azure Storage account for hello cluster.</span></span>
 
-<span data-ttu-id="e4799-122">**以 Linux 為基礎的 HDInsight**</span><span class="sxs-lookup"><span data-stu-id="e4799-122">**Linux-based HDInsight**</span></span>
+<span data-ttu-id="b5fb6-122">**以 Linux 為基礎的 HDInsight**</span><span class="sxs-lookup"><span data-stu-id="b5fb6-122">**Linux-based HDInsight**</span></span>
 
 ```hiveql
 add file wasb:///hiveudf.py;
@@ -60,7 +60,7 @@ FROM hivesampletable
 ORDER BY clientid LIMIT 50;
 ```
 
-<span data-ttu-id="e4799-123">**以 Windows 為基礎的 HDInsight**</span><span class="sxs-lookup"><span data-stu-id="e4799-123">**Windows-based HDInsight**</span></span>
+<span data-ttu-id="b5fb6-123">**以 Windows 為基礎的 HDInsight**</span><span class="sxs-lookup"><span data-stu-id="b5fb6-123">**Windows-based HDInsight**</span></span>
 
 ```hiveql
 add file wasb:///hiveudf.py;
@@ -73,20 +73,20 @@ ORDER BY clientid LIMIT 50;
 ```
 
 > [!NOTE]
-> <span data-ttu-id="e4799-124">在以 Windows 為基礎的 HDInsight 叢集上，`USING` 子句必須指定 python.exe 的完整路徑。</span><span class="sxs-lookup"><span data-stu-id="e4799-124">On Windows-based HDInsight clusters, the `USING` clause must specify the full path to python.exe.</span></span>
+> <span data-ttu-id="b5fb6-124">在 Windows 為基礎的 HDInsight 叢集上 hello`USING`子句必須指定 hello 完整路徑 toopython.exe。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-124">On Windows-based HDInsight clusters, hello `USING` clause must specify hello full path toopython.exe.</span></span>
 
-<span data-ttu-id="e4799-125">以下是此範例所執行的動作：</span><span class="sxs-lookup"><span data-stu-id="e4799-125">Here's what this example does:</span></span>
+<span data-ttu-id="b5fb6-125">以下是此範例所執行的動作：</span><span class="sxs-lookup"><span data-stu-id="b5fb6-125">Here's what this example does:</span></span>
 
-1. <span data-ttu-id="e4799-126">檔案開頭的 `add file` 陳述式將 `hiveudf.py` 檔案加入至分散式快取，供叢集中的所有節點存取。</span><span class="sxs-lookup"><span data-stu-id="e4799-126">The `add file` statement at the beginning of the file adds the `hiveudf.py` file to the distributed cache, so it's accessible by all nodes in the cluster.</span></span>
-2. <span data-ttu-id="e4799-127">使用 `SELECT TRANSFORM ... USING` 陳述式選取來自 `hivesampletable` 的資料。</span><span class="sxs-lookup"><span data-stu-id="e4799-127">The `SELECT TRANSFORM ... USING` statement selects data from the `hivesampletable`.</span></span> <span data-ttu-id="e4799-128">它也會將 clientid、devicemake 和 devicemodel 值傳遞至 `hiveudf.py` 指令碼。</span><span class="sxs-lookup"><span data-stu-id="e4799-128">It also passes the clientid, devicemake, and devicemodel values to the `hiveudf.py` script.</span></span>
-3. <span data-ttu-id="e4799-129">`AS` 子句描述從 `hiveudf.py` 中傳回的欄位。</span><span class="sxs-lookup"><span data-stu-id="e4799-129">The `AS` clause describes the fields returned from `hiveudf.py`.</span></span>
+1. <span data-ttu-id="b5fb6-126">hello `add file` hello 檔案的 hello 開頭的陳述式會將 hello`hiveudf.py`檔案 toohello 分散式快取，，所以 hello 叢集中所有節點存取。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-126">hello `add file` statement at hello beginning of hello file adds hello `hiveudf.py` file toohello distributed cache, so it's accessible by all nodes in hello cluster.</span></span>
+2. <span data-ttu-id="b5fb6-127">hello`SELECT TRANSFORM ... USING`陳述式從 hello 選取資料`hivesampletable`。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-127">hello `SELECT TRANSFORM ... USING` statement selects data from hello `hivesampletable`.</span></span> <span data-ttu-id="b5fb6-128">它也會傳遞 hello clientid、 devicemake 和 devicemodel 值 toohello`hiveudf.py`指令碼。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-128">It also passes hello clientid, devicemake, and devicemodel values toohello `hiveudf.py` script.</span></span>
+3. <span data-ttu-id="b5fb6-129">hello`AS`子句描述從傳回的 hello 欄位`hiveudf.py`。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-129">hello `AS` clause describes hello fields returned from `hiveudf.py`.</span></span>
 
 <a name="streamingpy"></a>
 
-### <a name="create-the-hiveudfpy-file"></a><span data-ttu-id="e4799-130">建立 hiveudf.py 檔案</span><span class="sxs-lookup"><span data-stu-id="e4799-130">Create the hiveudf.py file</span></span>
+### <a name="create-hello-hiveudfpy-file"></a><span data-ttu-id="b5fb6-130">建立 hello hiveudf.py 檔案</span><span class="sxs-lookup"><span data-stu-id="b5fb6-130">Create hello hiveudf.py file</span></span>
 
 
-<span data-ttu-id="e4799-131">在開發環境中，建立名為 `hiveudf.py` 的文字檔。</span><span class="sxs-lookup"><span data-stu-id="e4799-131">On your development environment, create a text file named `hiveudf.py`.</span></span> <span data-ttu-id="e4799-132">使用下列程式碼作為此檔案的內容：</span><span class="sxs-lookup"><span data-stu-id="e4799-132">Use the following code as the contents of the file:</span></span>
+<span data-ttu-id="b5fb6-131">在開發環境中，建立名為 `hiveudf.py` 的文字檔。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-131">On your development environment, create a text file named `hiveudf.py`.</span></span> <span data-ttu-id="b5fb6-132">使用下列程式碼為 hello hello 檔案內容的 hello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-132">Use hello following code as hello contents of hello file:</span></span>
 
 ```python
 #!/usr/bin/env python
@@ -105,34 +105,34 @@ while True:
     print "\t".join([clientid, phone_label, hashlib.md5(phone_label).hexdigest()])
 ```
 
-<span data-ttu-id="e4799-133">此指令碼會執行下列動作：</span><span class="sxs-lookup"><span data-stu-id="e4799-133">This script performs the following actions:</span></span>
+<span data-ttu-id="b5fb6-133">此指令碼會執行下列動作的 hello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-133">This script performs hello following actions:</span></span>
 
-1. <span data-ttu-id="e4799-134">從 STDIN 中讀取資料行。</span><span class="sxs-lookup"><span data-stu-id="e4799-134">Read a line of data from STDIN.</span></span>
-2. <span data-ttu-id="e4799-135">使用 `string.strip(line, "\n ")` 移除結尾新行字元。</span><span class="sxs-lookup"><span data-stu-id="e4799-135">The trailing newline character is removed using `string.strip(line, "\n ")`.</span></span>
-3. <span data-ttu-id="e4799-136">執行串流處理時，有一行包含所有的值，而每個值之間是一個定位字元。</span><span class="sxs-lookup"><span data-stu-id="e4799-136">When doing stream processing, a single line contains all the values with a tab character between each value.</span></span> <span data-ttu-id="e4799-137">因此， `string.split(line, "\t")` 可在每個索引標籤進行分割輸入，並只傳回欄位。</span><span class="sxs-lookup"><span data-stu-id="e4799-137">So `string.split(line, "\t")` can be used to split the input at each tab, returning just the fields.</span></span>
-4. <span data-ttu-id="e4799-138">處理完成時，輸出必須以一行寫入 STDOUT，而每一個欄位之間是一個定位字元。</span><span class="sxs-lookup"><span data-stu-id="e4799-138">When processing is complete, the output must be written to STDOUT as a single line, with a tab between each field.</span></span> <span data-ttu-id="e4799-139">例如， `print "\t".join([clientid, phone_label, hashlib.md5(phone_label).hexdigest()])`。</span><span class="sxs-lookup"><span data-stu-id="e4799-139">For example, `print "\t".join([clientid, phone_label, hashlib.md5(phone_label).hexdigest()])`.</span></span>
-5. <span data-ttu-id="e4799-140">`while` 迴圈會一直重複直到沒有 `line` 讀取。</span><span class="sxs-lookup"><span data-stu-id="e4799-140">The `while` loop repeats until no `line` is read.</span></span>
+1. <span data-ttu-id="b5fb6-134">從 STDIN 中讀取資料行。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-134">Read a line of data from STDIN.</span></span>
+2. <span data-ttu-id="b5fb6-135">使用移除尾端新行字元的 hello `string.strip(line, "\n ")`。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-135">hello trailing newline character is removed using `string.strip(line, "\n ")`.</span></span>
+3. <span data-ttu-id="b5fb6-136">當進行資料流處理時，單行包含定位字元，每個值之間的所有 hello 值。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-136">When doing stream processing, a single line contains all hello values with a tab character between each value.</span></span> <span data-ttu-id="b5fb6-137">因此`string.split(line, "\t")`可以是使用的 toosplit hello 輸入每個索引標籤，傳回只 hello 欄位。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-137">So `string.split(line, "\t")` can be used toosplit hello input at each tab, returning just hello fields.</span></span>
+4. <span data-ttu-id="b5fb6-138">處理序完成時，hello 輸出必須寫 tooSTDOUT 成單一行中的每個欄位的索引標籤。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-138">When processing is complete, hello output must be written tooSTDOUT as a single line, with a tab between each field.</span></span> <span data-ttu-id="b5fb6-139">例如： `print "\t".join([clientid, phone_label, hashlib.md5(phone_label).hexdigest()])`。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-139">For example, `print "\t".join([clientid, phone_label, hashlib.md5(phone_label).hexdigest()])`.</span></span>
+5. <span data-ttu-id="b5fb6-140">hello`while`迴圈會重複，直到沒有`line`讀取。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-140">hello `while` loop repeats until no `line` is read.</span></span>
 
-<span data-ttu-id="e4799-141">指令碼輸出是 `devicemake` 和 `devicemodel` 的輸入值串連，並且是串連值的雜湊。</span><span class="sxs-lookup"><span data-stu-id="e4799-141">The script output is a concatenation of the input values for `devicemake` and `devicemodel`, and a hash of the concatenated value.</span></span>
+<span data-ttu-id="b5fb6-141">hello 指令碼輸出是 hello 的輸入值的串連`devicemake`和`devicemodel`，和雜湊 hello 的串連值。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-141">hello script output is a concatenation of hello input values for `devicemake` and `devicemodel`, and a hash of hello concatenated value.</span></span>
 
-<span data-ttu-id="e4799-142">請參閱 [執行範例](#running) ，以了解如何在 HDInsight 叢集上執行此範例。</span><span class="sxs-lookup"><span data-stu-id="e4799-142">See [Running the examples](#running) for how to run this example on your HDInsight cluster.</span></span>
+<span data-ttu-id="b5fb6-142">請參閱[執行 hello 範例](#running)如何 toorun HDInsight 叢集上的這個範例。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-142">See [Running hello examples](#running) for how toorun this example on your HDInsight cluster.</span></span>
 
-## <span data-ttu-id="e4799-143"><a name="pigpython"></a>Pig UDF</span><span class="sxs-lookup"><span data-stu-id="e4799-143"><a name="pigpython"></a>Pig UDF</span></span>
+## <span data-ttu-id="b5fb6-143"><a name="pigpython"></a>Pig UDF</span><span class="sxs-lookup"><span data-stu-id="b5fb6-143"><a name="pigpython"></a>Pig UDF</span></span>
 
-<span data-ttu-id="e4799-144">從 Pig 中，透過 `GENERATE` 陳述式，可將 Python 指令碼當作 UDF 使用。</span><span class="sxs-lookup"><span data-stu-id="e4799-144">A Python script can be used as a UDF from Pig through the `GENERATE` statement.</span></span> <span data-ttu-id="e4799-145">您可以使用 Jython 或 C Python 執行程式碼。</span><span class="sxs-lookup"><span data-stu-id="e4799-145">You can run the script using either Jython or C Python.</span></span>
+<span data-ttu-id="b5fb6-144">Python 指令碼可用來當做從 Pig UDF 透過 hello`GENERATE`陳述式。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-144">A Python script can be used as a UDF from Pig through hello `GENERATE` statement.</span></span> <span data-ttu-id="b5fb6-145">您可以執行使用 Jython 或 C Python hello 指令碼。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-145">You can run hello script using either Jython or C Python.</span></span>
 
-* <span data-ttu-id="e4799-146">Jython 是在 JVM 上執行，而且可以從 Pig 原生呼叫。</span><span class="sxs-lookup"><span data-stu-id="e4799-146">Jython runs on the JVM, and can natively be called from Pig.</span></span>
-* <span data-ttu-id="e4799-147">C Python 是外部處理序，因此 JVM 上的 Pig 所提供的資料會外送到 Python 處理序中執行的指令碼。</span><span class="sxs-lookup"><span data-stu-id="e4799-147">C Python is an external process, so the data from Pig on the JVM is sent out to the script running in a Python process.</span></span> <span data-ttu-id="e4799-148">Python 指令碼的輸出會傳送回 Pig。</span><span class="sxs-lookup"><span data-stu-id="e4799-148">The output of the Python script is sent back into Pig.</span></span>
+* <span data-ttu-id="b5fb6-146">Jython hello JVM 上, 執行，並且從 Pig 可原生。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-146">Jython runs on hello JVM, and can natively be called from Pig.</span></span>
+* <span data-ttu-id="b5fb6-147">C Python 是外部處理序，以便將資料從 Pig hello 上 hello JVM 送出 toohello Python 處理序中執行的指令碼。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-147">C Python is an external process, so hello data from Pig on hello JVM is sent out toohello script running in a Python process.</span></span> <span data-ttu-id="b5fb6-148">hello 的 hello Python 指令碼的輸出會傳送回 Pig。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-148">hello output of hello Python script is sent back into Pig.</span></span>
 
-<span data-ttu-id="e4799-149">若要指定 Python 解譯器，請在參考 Python 指令碼時使用 `register`。</span><span class="sxs-lookup"><span data-stu-id="e4799-149">To specify the Python interpreter, use `register` when referencing the Python script.</span></span> <span data-ttu-id="e4799-150">下列範例使用 Pig 將指令碼註冊為 `myfuncs`：</span><span class="sxs-lookup"><span data-stu-id="e4799-150">The following examples register scripts with Pig as `myfuncs`:</span></span>
+<span data-ttu-id="b5fb6-149">toospecify hello Python 解釋器，使用`register`參考 hello Python 指令碼時。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-149">toospecify hello Python interpreter, use `register` when referencing hello Python script.</span></span> <span data-ttu-id="b5fb6-150">hello 下列範例指令碼使用註冊為 Pig `myfuncs`:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-150">hello following examples register scripts with Pig as `myfuncs`:</span></span>
 
-* <span data-ttu-id="e4799-151">**若要使用 Jython**：`register '/path/to/pigudf.py' using jython as myfuncs;`</span><span class="sxs-lookup"><span data-stu-id="e4799-151">**To use Jython**: `register '/path/to/pigudf.py' using jython as myfuncs;`</span></span>
-* <span data-ttu-id="e4799-152">**若要使用 C Python**：`register '/path/to/pigudf.py' using streaming_python as myfuncs;`</span><span class="sxs-lookup"><span data-stu-id="e4799-152">**To use C Python**: `register '/path/to/pigudf.py' using streaming_python as myfuncs;`</span></span>
+* <span data-ttu-id="b5fb6-151">**toouse Jython**:`register '/path/to/pigudf.py' using jython as myfuncs;`</span><span class="sxs-lookup"><span data-stu-id="b5fb6-151">**toouse Jython**: `register '/path/to/pigudf.py' using jython as myfuncs;`</span></span>
+* <span data-ttu-id="b5fb6-152">**toouse C Python**:`register '/path/to/pigudf.py' using streaming_python as myfuncs;`</span><span class="sxs-lookup"><span data-stu-id="b5fb6-152">**toouse C Python**: `register '/path/to/pigudf.py' using streaming_python as myfuncs;`</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="e4799-153">在使用 Jython 時，pig_jython 檔案的路徑可以是本機路徑或 WASB:// 路徑。</span><span class="sxs-lookup"><span data-stu-id="e4799-153">When using Jython, the path to the pig_jython file can be either a local path or a WASB:// path.</span></span> <span data-ttu-id="e4799-154">不過，在使用 C Python 時，您必須參考您用來提交 Pig 作業之節點的本機檔案系統上的檔案。</span><span class="sxs-lookup"><span data-stu-id="e4799-154">However, when using C Python, you must reference a file on the local file system of the node that you are using to submit the Pig job.</span></span>
+> <span data-ttu-id="b5fb6-153">當使用 Jython，hello 路徑 toohello pig_jython 檔案可以是本機路徑或 WASB: / / 路徑。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-153">When using Jython, hello path toohello pig_jython file can be either a local path or a WASB:// path.</span></span> <span data-ttu-id="b5fb6-154">不過，使用 C Python，您必須參考 hello 節點使用 toosubmit hello Pig 工作 hello 本機檔案系統上的檔案。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-154">However, when using C Python, you must reference a file on hello local file system of hello node that you are using toosubmit hello Pig job.</span></span>
 
-<span data-ttu-id="e4799-155">通過註冊之後，此範例針對兩者的 Pig Latin 是相同的︰</span><span class="sxs-lookup"><span data-stu-id="e4799-155">Once past registration, the Pig Latin for this example is the same for both:</span></span>
+<span data-ttu-id="b5fb6-155">一旦註冊，超過此範例中的 hello Pig 拉丁 hello 相同兩個：</span><span class="sxs-lookup"><span data-stu-id="b5fb6-155">Once past registration, hello Pig Latin for this example is hello same for both:</span></span>
 
 ```pig
 LOGS = LOAD 'wasb:///example/data/sample.log' as (LINE:chararray);
@@ -141,21 +141,21 @@ DETAILS = FOREACH LOG GENERATE myfuncs.create_structure(LINE);
 DUMP DETAILS;
 ```
 
-<span data-ttu-id="e4799-156">以下是此範例所執行的動作：</span><span class="sxs-lookup"><span data-stu-id="e4799-156">Here's what this example does:</span></span>
+<span data-ttu-id="b5fb6-156">以下是此範例所執行的動作：</span><span class="sxs-lookup"><span data-stu-id="b5fb6-156">Here's what this example does:</span></span>
 
-1. <span data-ttu-id="e4799-157">第一行將範例資料檔 `sample.log` 載入 `LOGS` 中。</span><span class="sxs-lookup"><span data-stu-id="e4799-157">The first line loads the sample data file, `sample.log` into `LOGS`.</span></span> <span data-ttu-id="e4799-158">它也會將每一筆記錄定義為 `chararray`。</span><span class="sxs-lookup"><span data-stu-id="e4799-158">It also defines each record as a `chararray`.</span></span>
-2. <span data-ttu-id="e4799-159">下一行會濾除任何 null 值，然後將操作的結果儲存至 `LOG`。</span><span class="sxs-lookup"><span data-stu-id="e4799-159">The next line filters out any null values, storing the result of the operation into `LOG`.</span></span>
-3. <span data-ttu-id="e4799-160">接下來，逐一查看 `LOG` 中的記錄，並使用 `GENERATE` 叫用以 `myfuncs` 載入的 Python/Jython 指令碼所包含的 `create_structure` 方法。</span><span class="sxs-lookup"><span data-stu-id="e4799-160">Next, it iterates over the records in `LOG` and uses `GENERATE` to invoke the `create_structure` method contained in the Python/Jython script loaded as `myfuncs`.</span></span> <span data-ttu-id="e4799-161">`LINE` 用來將目前的記錄傳給函式。</span><span class="sxs-lookup"><span data-stu-id="e4799-161">`LINE` is used to pass the current record to the function.</span></span>
-4. <span data-ttu-id="e4799-162">最後，使用 `DUMP` 指令將輸出傾印至 STDOUT。</span><span class="sxs-lookup"><span data-stu-id="e4799-162">Finally, the outputs are dumped to STDOUT using the `DUMP` command.</span></span> <span data-ttu-id="e4799-163">這個命令會在作業完成之後顯示結果。</span><span class="sxs-lookup"><span data-stu-id="e4799-163">This command displays the results after the operation completes.</span></span>
+1. <span data-ttu-id="b5fb6-157">hello 第一行會載入 hello 範例資料檔`sample.log`到`LOGS`。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-157">hello first line loads hello sample data file, `sample.log` into `LOGS`.</span></span> <span data-ttu-id="b5fb6-158">它也會將每一筆記錄定義為 `chararray`。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-158">It also defines each record as a `chararray`.</span></span>
+2. <span data-ttu-id="b5fb6-159">hello 下一行會篩選出 null 值，儲存的 hello 作業插入的 hello 結果`LOG`。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-159">hello next line filters out any null values, storing hello result of hello operation into `LOG`.</span></span>
+3. <span data-ttu-id="b5fb6-160">接下來，它會逐一中的 hello 記錄`LOG`並用`GENERATE`tooinvoke hello `create_structure` hello Python/Jython 指令碼中所包含的方法以載入`myfuncs`。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-160">Next, it iterates over hello records in `LOG` and uses `GENERATE` tooinvoke hello `create_structure` method contained in hello Python/Jython script loaded as `myfuncs`.</span></span> <span data-ttu-id="b5fb6-161">`LINE`是使用的 toopass hello 目前記錄 toohello 函式。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-161">`LINE` is used toopass hello current record toohello function.</span></span>
+4. <span data-ttu-id="b5fb6-162">最後，hello 輸出都是使用 hello 傾印的 tooSTDOUT`DUMP`命令。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-162">Finally, hello outputs are dumped tooSTDOUT using hello `DUMP` command.</span></span> <span data-ttu-id="b5fb6-163">Hello 作業完成之後，此命令會顯示 hello 結果。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-163">This command displays hello results after hello operation completes.</span></span>
 
-### <a name="create-the-pigudfpy-file"></a><span data-ttu-id="e4799-164">建立 pigudf.py 檔案</span><span class="sxs-lookup"><span data-stu-id="e4799-164">Create the pigudf.py file</span></span>
+### <a name="create-hello-pigudfpy-file"></a><span data-ttu-id="b5fb6-164">建立 hello pigudf.py 檔案</span><span class="sxs-lookup"><span data-stu-id="b5fb6-164">Create hello pigudf.py file</span></span>
 
-<span data-ttu-id="e4799-165">在開發環境中，建立名為 `pigudf.py` 的文字檔。</span><span class="sxs-lookup"><span data-stu-id="e4799-165">On your development environment, create a text file named `pigudf.py`.</span></span> <span data-ttu-id="e4799-166">使用下列程式碼作為此檔案的內容：</span><span class="sxs-lookup"><span data-stu-id="e4799-166">Use the following code as the contents of the file:</span></span>
+<span data-ttu-id="b5fb6-165">在開發環境中，建立名為 `pigudf.py` 的文字檔。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-165">On your development environment, create a text file named `pigudf.py`.</span></span> <span data-ttu-id="b5fb6-166">使用下列程式碼為 hello hello 檔案內容的 hello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-166">Use hello following code as hello contents of hello file:</span></span>
 
 <a name="streamingpy"></a>
 
 ```python
-# Uncomment the following if using C Python
+# Uncomment hello following if using C Python
 #from pig_util import outputSchema
 
 @outputSchema("log: {(date:chararray, time:chararray, classname:chararray, level:chararray, detail:chararray)}")
@@ -166,61 +166,61 @@ def create_structure(input):
     return date, time, classname, level, detail
 ```
 
-<span data-ttu-id="e4799-167">在 Pig Latin 範例中，我們因為輸入沒有一致的結構描述而將 `LINE` 輸入定義為 chararray。</span><span class="sxs-lookup"><span data-stu-id="e4799-167">In the Pig Latin example, we defined the `LINE` input as a chararray because there is no consistent schema for the input.</span></span> <span data-ttu-id="e4799-168">Python 指令碼會將資料轉換成一致的結構描述，以便輸出。</span><span class="sxs-lookup"><span data-stu-id="e4799-168">The Python script transforms the data into a consistent schema for output.</span></span>
+<span data-ttu-id="b5fb6-167">在 hello Pig 拉丁範例中，我們定義 hello `LINE` chararray 為輸入，因為沒有 hello 輸入沒有一致的結構描述。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-167">In hello Pig Latin example, we defined hello `LINE` input as a chararray because there is no consistent schema for hello input.</span></span> <span data-ttu-id="b5fb6-168">hello Python 指令碼會將 hello 資料轉換成一致的結構描述的輸出。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-168">hello Python script transforms hello data into a consistent schema for output.</span></span>
 
-1. <span data-ttu-id="e4799-169">`@outputSchema` 陳述式定義將傳回給 Pig 的資料格式。</span><span class="sxs-lookup"><span data-stu-id="e4799-169">The `@outputSchema` statement defines the format of the data that is returned to Pig.</span></span> <span data-ttu-id="e4799-170">在此案例中，這是一個 **data bag**(一種 Pig 資料類型)。</span><span class="sxs-lookup"><span data-stu-id="e4799-170">In this case, it's a **data bag**, which is a Pig data type.</span></span> <span data-ttu-id="e4799-171">Bag 包含下列欄位，全部都是 chararray (字串)：</span><span class="sxs-lookup"><span data-stu-id="e4799-171">The bag contains the following fields, all of which are chararray (strings):</span></span>
+1. <span data-ttu-id="b5fb6-169">hello`@outputSchema`陳述式定義 hello 傳回 tooPig hello 資料格式。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-169">hello `@outputSchema` statement defines hello format of hello data that is returned tooPig.</span></span> <span data-ttu-id="b5fb6-170">在此案例中，這是一個 **data bag**(一種 Pig 資料類型)。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-170">In this case, it's a **data bag**, which is a Pig data type.</span></span> <span data-ttu-id="b5fb6-171">hello 包包含下列的欄位，都是 chararray （字串） 的 hello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-171">hello bag contains hello following fields, all of which are chararray (strings):</span></span>
 
-   * <span data-ttu-id="e4799-172">date - 記錄項目的建立日期</span><span class="sxs-lookup"><span data-stu-id="e4799-172">date - the date the log entry was created</span></span>
-   * <span data-ttu-id="e4799-173">time - 記錄項目的建立時間</span><span class="sxs-lookup"><span data-stu-id="e4799-173">time - the time the log entry was created</span></span>
-   * <span data-ttu-id="e4799-174">classname - 建立項目所針對的類別名稱</span><span class="sxs-lookup"><span data-stu-id="e4799-174">classname - the class name the entry was created for</span></span>
-   * <span data-ttu-id="e4799-175">level - 記錄層級</span><span class="sxs-lookup"><span data-stu-id="e4799-175">level - the log level</span></span>
-   * <span data-ttu-id="e4799-176">detail - 記錄項目的詳細資料</span><span class="sxs-lookup"><span data-stu-id="e4799-176">detail - verbose details for the log entry</span></span>
+   * <span data-ttu-id="b5fb6-172">日期-hello 日期 hello 記錄項目已建立</span><span class="sxs-lookup"><span data-stu-id="b5fb6-172">date - hello date hello log entry was created</span></span>
+   * <span data-ttu-id="b5fb6-173">時間-hello hello 記錄項目建立的時間</span><span class="sxs-lookup"><span data-stu-id="b5fb6-173">time - hello time hello log entry was created</span></span>
+   * <span data-ttu-id="b5fb6-174">類別名稱-已建立 hello 類別名稱 hello 項目</span><span class="sxs-lookup"><span data-stu-id="b5fb6-174">classname - hello class name hello entry was created for</span></span>
+   * <span data-ttu-id="b5fb6-175">層級-hello 記錄層級</span><span class="sxs-lookup"><span data-stu-id="b5fb6-175">level - hello log level</span></span>
+   * <span data-ttu-id="b5fb6-176">詳細資料： hello 的詳細資訊詳細資料記錄項目</span><span class="sxs-lookup"><span data-stu-id="b5fb6-176">detail - verbose details for hello log entry</span></span>
 
-2. <span data-ttu-id="e4799-177">接下來，`def create_structure(input)` 定義可供 Pig 傳遞行項目的函數。</span><span class="sxs-lookup"><span data-stu-id="e4799-177">Next, the `def create_structure(input)` defines the function that Pig passes line items to.</span></span>
+2. <span data-ttu-id="b5fb6-177">接下來，hello`def create_structure(input)`定義 Pig 會傳遞至明細項目的 hello 函式。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-177">Next, hello `def create_structure(input)` defines hello function that Pig passes line items to.</span></span>
 
-3. <span data-ttu-id="e4799-178">範例資料 `sample.log` 大致上符合我們想要傳回的 date、time、classname、level 和 detail 結構描述。</span><span class="sxs-lookup"><span data-stu-id="e4799-178">The example data, `sample.log`, mostly conforms to the date, time, classname, level, and detail schema we want to return.</span></span> <span data-ttu-id="e4799-179">不過，它包含開頭為 `*java.lang.Exception*` 的數行。</span><span class="sxs-lookup"><span data-stu-id="e4799-179">However, it contains a few lines that begin with `*java.lang.Exception*`.</span></span> <span data-ttu-id="e4799-180">這幾行必須經過修改以符合結構描述。</span><span class="sxs-lookup"><span data-stu-id="e4799-180">These lines must be modified to match the schema.</span></span> <span data-ttu-id="e4799-181">`if` 陳述式會檢查這幾行，然後調整輸入資料將 `*java.lang.Exception*` 字串移至尾端，使資料符合我們預期的輸出結構描述。</span><span class="sxs-lookup"><span data-stu-id="e4799-181">The `if` statement checks for those, then massages the input data to move the `*java.lang.Exception*` string to the end, bringing the data in-line with our expected output schema.</span></span>
+3. <span data-ttu-id="b5fb6-178">hello 範例資料， `sample.log`、 大部分符合 toohello 日期、 時間、 classname，層級，而且我們想 tooreturn 結構描述的詳細說明。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-178">hello example data, `sample.log`, mostly conforms toohello date, time, classname, level, and detail schema we want tooreturn.</span></span> <span data-ttu-id="b5fb6-179">不過，它包含開頭為 `*java.lang.Exception*` 的數行。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-179">However, it contains a few lines that begin with `*java.lang.Exception*`.</span></span> <span data-ttu-id="b5fb6-180">這些行數必須是已修改的 toomatch hello 結構描述。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-180">These lines must be modified toomatch hello schema.</span></span> <span data-ttu-id="b5fb6-181">hello`if`陳述式會檢查，然後 massages hello 輸入的資料 toomove hello`*java.lang.Exception*`字串 toohello 結束時，將 hello 資料內嵌我們預期的輸出結構描述。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-181">hello `if` statement checks for those, then massages hello input data toomove hello `*java.lang.Exception*` string toohello end, bringing hello data in-line with our expected output schema.</span></span>
 
-4. <span data-ttu-id="e4799-182">接下來，使用 `split` 命令，在前四個空白字元處分割資料。</span><span class="sxs-lookup"><span data-stu-id="e4799-182">Next, the `split` command is used to split the data at the first four space characters.</span></span> <span data-ttu-id="e4799-183">輸出即獲指派 `date`、`time`、 `classname`、 `level` 和 `detail` 。</span><span class="sxs-lookup"><span data-stu-id="e4799-183">The output is assigned into `date`, `time`, `classname`, `level`, and `detail`.</span></span>
+4. <span data-ttu-id="b5fb6-182">接下來，hello`split`命令是使用的 toosplit hello hello 前四個空格字元的資料。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-182">Next, hello `split` command is used toosplit hello data at hello first four space characters.</span></span> <span data-ttu-id="b5fb6-183">hello 輸出會指派到`date`， `time`， `classname`， `level`，和`detail`。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-183">hello output is assigned into `date`, `time`, `classname`, `level`, and `detail`.</span></span>
 
-5. <span data-ttu-id="e4799-184">最後，將值傳回給 Pig。</span><span class="sxs-lookup"><span data-stu-id="e4799-184">Finally, the values are returned to Pig.</span></span>
+5. <span data-ttu-id="b5fb6-184">最後，會傳回 hello 值 tooPig。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-184">Finally, hello values are returned tooPig.</span></span>
 
-<span data-ttu-id="e4799-185">當資料傳回至 Pig 時，其將具有如同 `@outputSchema` 陳述式中定義的一致性結構描述。</span><span class="sxs-lookup"><span data-stu-id="e4799-185">When the data is returned to Pig, it has a consistent schema as defined in the `@outputSchema` statement.</span></span>
+<span data-ttu-id="b5fb6-185">Hello 資料傳回時 tooPig，它有一致的結構描述定義在 hello`@outputSchema`陳述式。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-185">When hello data is returned tooPig, it has a consistent schema as defined in hello `@outputSchema` statement.</span></span>
 
-## <span data-ttu-id="e4799-186"><a name="running"></a>上傳及執行範例</span><span class="sxs-lookup"><span data-stu-id="e4799-186"><a name="running"></a>Upload and run the examples</span></span>
+## <span data-ttu-id="b5fb6-186"><a name="running"></a>上傳及執行 hello 範例</span><span class="sxs-lookup"><span data-stu-id="b5fb6-186"><a name="running"></a>Upload and run hello examples</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="e4799-187">**SSH** 步驟只適用於以 Linux 為基礎的 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="e4799-187">The **SSH** steps only work with a Linux-based HDInsight cluster.</span></span> <span data-ttu-id="e4799-188">**PowerShell** 步驟適用於以 Linux 或 Windows 為基礎的 HDInsight 叢集，但需要 Windows 用戶端。</span><span class="sxs-lookup"><span data-stu-id="e4799-188">The **PowerShell** steps work with either a Linux or Windows-based HDInsight cluster, but require a Windows client.</span></span>
+> <span data-ttu-id="b5fb6-187">hello **SSH**步驟只適用於以 Linux 為基礎的 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-187">hello **SSH** steps only work with a Linux-based HDInsight cluster.</span></span> <span data-ttu-id="b5fb6-188">hello **PowerShell**使用 Linux 或 Windows 為基礎的 HDInsight 叢集的步驟，但需要 Windows 用戶端。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-188">hello **PowerShell** steps work with either a Linux or Windows-based HDInsight cluster, but require a Windows client.</span></span>
 
-### <a name="ssh"></a><span data-ttu-id="e4799-189">SSH</span><span class="sxs-lookup"><span data-stu-id="e4799-189">SSH</span></span>
+### <a name="ssh"></a><span data-ttu-id="b5fb6-189">SSH</span><span class="sxs-lookup"><span data-stu-id="b5fb6-189">SSH</span></span>
 
-<span data-ttu-id="e4799-190">如需使用 SSH 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。</span><span class="sxs-lookup"><span data-stu-id="e4799-190">For more information on using SSH, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span></span>
+<span data-ttu-id="b5fb6-190">如需使用 SSH 的詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-190">For more information on using SSH, see [Use SSH with HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md).</span></span>
 
-1. <span data-ttu-id="e4799-191">使用 `scp` 將檔案複製到您的 HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="e4799-191">Use `scp` to copy the files to your HDInsight cluster.</span></span> <span data-ttu-id="e4799-192">例如，下列命令會將檔案複製到名為 **mycluster**的叢集。</span><span class="sxs-lookup"><span data-stu-id="e4799-192">For example, the following command copies the files to a cluster named **mycluster**.</span></span>
+1. <span data-ttu-id="b5fb6-191">使用`scp`toocopy hello 檔案 tooyour HDInsight 叢集。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-191">Use `scp` toocopy hello files tooyour HDInsight cluster.</span></span> <span data-ttu-id="b5fb6-192">比方說，下列命令複製 hello 名為的檔案 tooa 叢集來 hello **mycluster**。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-192">For example, hello following command copies hello files tooa cluster named **mycluster**.</span></span>
 
     ```bash
     scp hiveudf.py pigudf.py myuser@mycluster-ssh.azurehdinsight.net:
     ```
 
-2. <span data-ttu-id="e4799-193">使用 SSH 連接到叢集。</span><span class="sxs-lookup"><span data-stu-id="e4799-193">Use SSH to connect to the cluster.</span></span>
+2. <span data-ttu-id="b5fb6-193">使用 SSH tooconnect toohello 叢集。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-193">Use SSH tooconnect toohello cluster.</span></span>
 
     ```bash
     ssh myuser@mycluster-ssh.azurehdinsight.net
     ```
 
-3. <span data-ttu-id="e4799-194">從 SSH 工作階段，將先前上傳的 python 檔案加入叢集的 WASB 儲存體。</span><span class="sxs-lookup"><span data-stu-id="e4799-194">From the SSH session, add the python files uploaded previously to the WASB storage for the cluster.</span></span>
+3. <span data-ttu-id="b5fb6-194">Hello SSH 工作階段中，加入 hello python 上傳檔案之前 hello 叢集 toohello WASB 存放裝置。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-194">From hello SSH session, add hello python files uploaded previously toohello WASB storage for hello cluster.</span></span>
 
     ```bash
     hdfs dfs -put hiveudf.py /hiveudf.py
     hdfs dfs -put pigudf.py /pigudf.py
     ```
 
-<span data-ttu-id="e4799-195">上傳檔案之後，請使用下列步驟執行 Hive 和 Pig 工作。</span><span class="sxs-lookup"><span data-stu-id="e4799-195">After uploading the files, use the following steps to run the Hive and Pig jobs.</span></span>
+<span data-ttu-id="b5fb6-195">上傳 hello 檔案之後, 使用 hello 下列步驟會 toorun hello Hive 和 Pig 工作。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-195">After uploading hello files, use hello following steps toorun hello Hive and Pig jobs.</span></span>
 
-#### <a name="use-the-hive-udf"></a><span data-ttu-id="e4799-196">使用 Hive UDF</span><span class="sxs-lookup"><span data-stu-id="e4799-196">Use the Hive UDF</span></span>
+#### <a name="use-hello-hive-udf"></a><span data-ttu-id="b5fb6-196">使用 Hive UDF hello</span><span class="sxs-lookup"><span data-stu-id="b5fb6-196">Use hello Hive UDF</span></span>
 
-1. <span data-ttu-id="e4799-197">使用 `hive` 命令啟動 Hive Shell。</span><span class="sxs-lookup"><span data-stu-id="e4799-197">Use the `hive` command to start the hive shell.</span></span> <span data-ttu-id="e4799-198">在 Shell 載入完成時，您應會看到 `hive>` 提示。</span><span class="sxs-lookup"><span data-stu-id="e4799-198">You should see a `hive>` prompt once the shell has loaded.</span></span>
+1. <span data-ttu-id="b5fb6-197">使用 hello`hive`命令 toostart hello hive 殼層。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-197">Use hello `hive` command toostart hello hive shell.</span></span> <span data-ttu-id="b5fb6-198">您應該會看到`hive>`當載入 hello 殼層提示。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-198">You should see a `hive>` prompt once hello shell has loaded.</span></span>
 
-2. <span data-ttu-id="e4799-199">在 `hive>` 提示上輸入下列查詢：</span><span class="sxs-lookup"><span data-stu-id="e4799-199">Enter the following query at the `hive>` prompt:</span></span>
+2. <span data-ttu-id="b5fb6-199">輸入下列查詢在 hello hello`hive>`提示：</span><span class="sxs-lookup"><span data-stu-id="b5fb6-199">Enter hello following query at hello `hive>` prompt:</span></span>
 
    ```hive
    add file wasb:///hiveudf.py;
@@ -231,7 +231,7 @@ def create_structure(input):
    ORDER BY clientid LIMIT 50;
    ```
 
-3. <span data-ttu-id="e4799-200">輸入最後一行後，工作應該就會開始。</span><span class="sxs-lookup"><span data-stu-id="e4799-200">After entering the last line, the job should start.</span></span> <span data-ttu-id="e4799-201">作業完成之後，它會傳回與下列範例類似的輸出：</span><span class="sxs-lookup"><span data-stu-id="e4799-201">Once the job completes, it returns output similar to the following example:</span></span>
+3. <span data-ttu-id="b5fb6-200">輸入 hello 最後一行之後, 應該啟動 hello 作業。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-200">After entering hello last line, hello job should start.</span></span> <span data-ttu-id="b5fb6-201">一旦 hello 作業完成時，它會傳回下列範例的輸出類似 toohello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-201">Once hello job completes, it returns output similar toohello following example:</span></span>
 
         100041    RIM 9650    d476f3687700442549a83fac4560c51c
         100041    RIM 9650    d476f3687700442549a83fac4560c51c
@@ -239,11 +239,11 @@ def create_structure(input):
         100042    Apple iPhone 4.2.x    375ad9a0ddc4351536804f1d5d0ea9b9
         100042    Apple iPhone 4.2.x    375ad9a0ddc4351536804f1d5d0ea9b9
 
-#### <a name="use-the-pig-udf"></a><span data-ttu-id="e4799-202">使用 Pig UDF</span><span class="sxs-lookup"><span data-stu-id="e4799-202">Use the Pig UDF</span></span>
+#### <a name="use-hello-pig-udf"></a><span data-ttu-id="b5fb6-202">使用 Pig UDF hello</span><span class="sxs-lookup"><span data-stu-id="b5fb6-202">Use hello Pig UDF</span></span>
 
-1. <span data-ttu-id="e4799-203">使用 `pig` 命令啟動 Shell。</span><span class="sxs-lookup"><span data-stu-id="e4799-203">Use the `pig` command to start the shell.</span></span> <span data-ttu-id="e4799-204">在 Shell 載入完成時，您會看到 `grunt>` 提示。</span><span class="sxs-lookup"><span data-stu-id="e4799-204">You see a `grunt>` prompt once the shell has loaded.</span></span>
+1. <span data-ttu-id="b5fb6-203">使用 hello`pig`命令 toostart hello 殼層。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-203">Use hello `pig` command toostart hello shell.</span></span> <span data-ttu-id="b5fb6-204">您會看到`grunt>`當載入 hello 殼層提示。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-204">You see a `grunt>` prompt once hello shell has loaded.</span></span>
 
-2. <span data-ttu-id="e4799-205">在出現 `grunt>` 提示時輸入下列陳述式：</span><span class="sxs-lookup"><span data-stu-id="e4799-205">Enter the following statements at the `grunt>` prompt:</span></span>
+2. <span data-ttu-id="b5fb6-205">輸入下列陳述式在 hello hello`grunt>`提示：</span><span class="sxs-lookup"><span data-stu-id="b5fb6-205">Enter hello following statements at hello `grunt>` prompt:</span></span>
 
    ```pig
    Register wasb:///pigudf.py using jython as myfuncs;
@@ -253,7 +253,7 @@ def create_structure(input):
    DUMP DETAILS;
    ```
 
-3. <span data-ttu-id="e4799-206">輸入下列行之後，應該就會開始作業。</span><span class="sxs-lookup"><span data-stu-id="e4799-206">After entering the following line, the job should start.</span></span> <span data-ttu-id="e4799-207">作業完成之後，它會傳回與下列資料類似的輸出：</span><span class="sxs-lookup"><span data-stu-id="e4799-207">Once the job completes, it returns output similar to the following data:</span></span>
+3. <span data-ttu-id="b5fb6-206">在輸入後 hello 行下，應該啟動 hello 作業。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-206">After entering hello following line, hello job should start.</span></span> <span data-ttu-id="b5fb6-207">一旦 hello 作業完成時，它會傳回下列資料的輸出類似 toohello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-207">Once hello job completes, it returns output similar toohello following data:</span></span>
 
         ((2012-02-03,20:11:56,SampleClass5,[TRACE],verbose detail for id 990982084))
         ((2012-02-03,20:11:56,SampleClass7,[TRACE],verbose detail for id 1560323914))
@@ -261,21 +261,21 @@ def create_structure(input):
         ((2012-02-03,20:11:56,SampleClass3,[TRACE],verbose detail for id 1718828806))
         ((2012-02-03,20:11:56,SampleClass3,[INFO],everything normal for id 530537821))
 
-4. <span data-ttu-id="e4799-208">使用 `quit` 結束 Grunt shell，然後使用下列命令編輯本機檔案系統上的 pigudf.py 檔案：</span><span class="sxs-lookup"><span data-stu-id="e4799-208">Use `quit` to exit the Grunt shell, and then use the following to edit the pigudf.py file on the local file system:</span></span>
+4. <span data-ttu-id="b5fb6-208">使用`quit`tooexit hello Grunt 殼層，然後再使用下列 tooedit hello pigudf.py 檔 hello 本機檔案系統上的 hello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-208">Use `quit` tooexit hello Grunt shell, and then use hello following tooedit hello pigudf.py file on hello local file system:</span></span>
 
     ```bash
     nano pigudf.py
     ```
 
-5. <span data-ttu-id="e4799-209">進入編輯器後，移除行首的 `#` 字元將以下這行取消註解：</span><span class="sxs-lookup"><span data-stu-id="e4799-209">Once in the editor, uncomment the following line by removing the `#` character from the beginning of the line:</span></span>
+5. <span data-ttu-id="b5fb6-209">一次在 hello 編輯器中，請取消註解 hello 行下藉由移除 hello `#` hello 一行的 hello 開頭的字元：</span><span class="sxs-lookup"><span data-stu-id="b5fb6-209">Once in hello editor, uncomment hello following line by removing hello `#` character from hello beginning of hello line:</span></span>
 
     ```bash
     #from pig_util import outputSchema
     ```
 
-    <span data-ttu-id="e4799-210">完成變更後，使用 Ctrl + X 結束編輯器。</span><span class="sxs-lookup"><span data-stu-id="e4799-210">Once the change has been made, use Ctrl+X to exit the editor.</span></span> <span data-ttu-id="e4799-211">選取 [Y]，然後按 Enter 儲存變更。</span><span class="sxs-lookup"><span data-stu-id="e4799-211">Select Y, and then enter to save the changes.</span></span>
+    <span data-ttu-id="b5fb6-210">一旦 hello 已變更，使用 Ctrl + X tooexit hello 編輯器。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-210">Once hello change has been made, use Ctrl+X tooexit hello editor.</span></span> <span data-ttu-id="b5fb6-211">選取 Y、，然後輸入 toosave hello 變更。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-211">Select Y, and then enter toosave hello changes.</span></span>
 
-6. <span data-ttu-id="e4799-212">使用 `pig` 命令再次啟動 Shell。</span><span class="sxs-lookup"><span data-stu-id="e4799-212">Use the `pig` command to start the shell again.</span></span> <span data-ttu-id="e4799-213">進入 `grunt>` 提示字元後，使用下列命令以使用 C Python 解譯器執行 Python 指令碼。</span><span class="sxs-lookup"><span data-stu-id="e4799-213">Once you are at the `grunt>` prompt, use the following to run the Python script using the C Python interpreter.</span></span>
+6. <span data-ttu-id="b5fb6-212">使用 hello`pig`命令 toostart hello 殼層一次。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-212">Use hello `pig` command toostart hello shell again.</span></span> <span data-ttu-id="b5fb6-213">一旦您是在 hello`grunt>`提示，請使用下列 toorun hello Python 指令碼使用 hello C Python 解譯器的 hello。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-213">Once you are at hello `grunt>` prompt, use hello following toorun hello Python script using hello C Python interpreter.</span></span>
 
    ```pig
    Register 'pigudf.py' using streaming_python as myfuncs;
@@ -285,17 +285,17 @@ def create_structure(input):
    DUMP DETAILS;
    ```
 
-    <span data-ttu-id="e4799-214">此作業完成後，您應該會看到和先前使用 Jython 執行指令碼時所得到的相同輸出。</span><span class="sxs-lookup"><span data-stu-id="e4799-214">Once this job completes, you should see the same output as when you previously ran the script using Jython.</span></span>
+    <span data-ttu-id="b5fb6-214">這項作業完成之後，您應該看到的 hello 相同的輸出做為您先前執行使用 Jython hello 指令碼時。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-214">Once this job completes, you should see hello same output as when you previously ran hello script using Jython.</span></span>
 
-### <a name="powershell-upload-the-files"></a><span data-ttu-id="e4799-215">PowerShell：上傳檔案</span><span class="sxs-lookup"><span data-stu-id="e4799-215">PowerShell: Upload the files</span></span>
+### <a name="powershell-upload-hello-files"></a><span data-ttu-id="b5fb6-215">PowerShell： 上傳 hello 檔案</span><span class="sxs-lookup"><span data-stu-id="b5fb6-215">PowerShell: Upload hello files</span></span>
 
-<span data-ttu-id="e4799-216">您可以使用 PowerShell 將檔案上傳至 HDInsight 伺服器。</span><span class="sxs-lookup"><span data-stu-id="e4799-216">You can use PowerShell to upload the files to the HDInsight server.</span></span> <span data-ttu-id="e4799-217">使用下列指令碼來上傳 Python 檔案：</span><span class="sxs-lookup"><span data-stu-id="e4799-217">Use the following script to upload the Python files:</span></span>
+<span data-ttu-id="b5fb6-216">您可以使用 PowerShell tooupload hello 檔案 toohello HDInsight 伺服器。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-216">You can use PowerShell tooupload hello files toohello HDInsight server.</span></span> <span data-ttu-id="b5fb6-217">使用下列指令碼 tooupload hello Python 檔案 hello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-217">Use hello following script tooupload hello Python files:</span></span>
 
 > [!IMPORTANT] 
-> <span data-ttu-id="e4799-218">本節中的步驟是使用 Azure PowerShell。</span><span class="sxs-lookup"><span data-stu-id="e4799-218">The steps in this section use Azure PowerShell.</span></span> <span data-ttu-id="e4799-219">如需使用 Azure PowerShell 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。</span><span class="sxs-lookup"><span data-stu-id="e4799-219">For more information on using Azure PowerShell, see [How to install and configure Azure PowerShell](/powershell/azure/overview).</span></span>
+> <span data-ttu-id="b5fb6-218">本節中的 hello 步驟使用 Azure PowerShell。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-218">hello steps in this section use Azure PowerShell.</span></span> <span data-ttu-id="b5fb6-219">如需有關使用 Azure PowerShell 的詳細資訊，請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-219">For more information on using Azure PowerShell, see [How tooinstall and configure Azure PowerShell](/powershell/azure/overview).</span></span>
 
 ```powershell
-# Login to your Azure subscription
+# Login tooyour Azure subscription
 # Is there an active Azure subscription?
 $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
 if(-not($sub))
@@ -304,8 +304,8 @@ if(-not($sub))
 }
 
 # Get cluster info
-$clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
-# Change the path to match the file location on your system
+$clusterName = Read-Host -Prompt "Enter hello HDInsight cluster name"
+# Change hello path toomatch hello file location on your system
 $pathToStreamingFile = "C:\path\to\hiveudf.py"
 $pathToJythonFile = "C:\path\to\pigudf.py"
 
@@ -317,7 +317,7 @@ $storageAccountKey=(Get-AzureRmStorageAccountKey `
     -Name $storageAccountName `
 -ResourceGroupName $resourceGroup)[0].Value
 
-#Create a storage content and upload the file
+#Create a storage content and upload hello file
 $context = New-AzureStorageContext `
     -StorageAccountName $storageAccountName `
     -StorageAccountKey $storageAccountKey
@@ -335,22 +335,22 @@ Set-AzureStorageBlobContent `
     -Context $context
 ```
 > [!IMPORTANT]
-> <span data-ttu-id="e4799-220">將 `C:\path\to` 值變更為您開發環境上檔案的路徑。</span><span class="sxs-lookup"><span data-stu-id="e4799-220">Change the `C:\path\to` value to the path to the files on your development environment.</span></span>
+> <span data-ttu-id="b5fb6-220">變更 hello `C:\path\to` toohello 路徑 toohello 檔案，在開發環境上的值。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-220">Change hello `C:\path\to` value toohello path toohello files on your development environment.</span></span>
 
-<span data-ttu-id="e4799-221">此指令碼會擷取 HDInsight 叢集的資訊，然後擷取預設儲存體帳戶的帳戶和金鑰，再將檔案上傳至容器的根目錄。</span><span class="sxs-lookup"><span data-stu-id="e4799-221">This script retrieves information for your HDInsight cluster, then extracts the account and key for the default storage account, and uploads the files to the root of the container.</span></span>
+<span data-ttu-id="b5fb6-221">此指令碼會擷取您的 HDInsight 叢集的資訊，然後擷取 hello 帳戶和金鑰 hello 預設儲存體帳戶，並上傳 hello hello 容器的檔案 toohello 根。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-221">This script retrieves information for your HDInsight cluster, then extracts hello account and key for hello default storage account, and uploads hello files toohello root of hello container.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="e4799-222">如需上傳檔案的詳細資訊，請參閱[在 HDInsight 中上傳 Hadoop 作業的資料](hdinsight-upload-data.md)文件。</span><span class="sxs-lookup"><span data-stu-id="e4799-222">For more information on uploading files, see the [Upload data for Hadoop jobs in HDInsight](hdinsight-upload-data.md) document.</span></span>
+> <span data-ttu-id="b5fb6-222">如需有關上傳檔案的詳細資訊，請參閱 hello [HDInsight 中的 Hadoop 工作的資料上傳](hdinsight-upload-data.md)文件。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-222">For more information on uploading files, see hello [Upload data for Hadoop jobs in HDInsight](hdinsight-upload-data.md) document.</span></span>
 
-#### <a name="powershell-use-the-hive-udf"></a><span data-ttu-id="e4799-223">PowerShell：使用 Hive UDF</span><span class="sxs-lookup"><span data-stu-id="e4799-223">PowerShell: Use the Hive UDF</span></span>
+#### <a name="powershell-use-hello-hive-udf"></a><span data-ttu-id="b5fb6-223">PowerShell： 使用 hello Hive UDF</span><span class="sxs-lookup"><span data-stu-id="b5fb6-223">PowerShell: Use hello Hive UDF</span></span>
 
-<span data-ttu-id="e4799-224">PowerShell 也可用來從遠端執行 Hive 查詢。</span><span class="sxs-lookup"><span data-stu-id="e4799-224">PowerShell can also be used to remotely run Hive queries.</span></span> <span data-ttu-id="e4799-225">使用下列 PowerShell 指令碼，執行使用 **hiveudf.py** 指令碼的 Hive 查詢：</span><span class="sxs-lookup"><span data-stu-id="e4799-225">Use the following PowerShell script to run a Hive query that uses **hiveudf.py** script:</span></span>
+<span data-ttu-id="b5fb6-224">PowerShell 也可以使用的 tooremotely 執行 Hive 查詢。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-224">PowerShell can also be used tooremotely run Hive queries.</span></span> <span data-ttu-id="b5fb6-225">使用下列 PowerShell 指令碼 toorun 使用 Hive 查詢的 hello **hiveudf.py**指令碼：</span><span class="sxs-lookup"><span data-stu-id="b5fb6-225">Use hello following PowerShell script toorun a Hive query that uses **hiveudf.py** script:</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="e4799-226">執行前，指令碼會提示您輸入您 HDInsight 叢集的 HTTPs/系統管理帳戶資訊。</span><span class="sxs-lookup"><span data-stu-id="e4799-226">Before running, the script prompts you for the HTTPs/Admin account information for your HDInsight cluster.</span></span>
+> <span data-ttu-id="b5fb6-226">再執行，hello 指令碼會提示您輸入 hello HTTPs/管理您的 HDInsight 叢集的帳戶資訊。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-226">Before running, hello script prompts you for hello HTTPs/Admin account information for your HDInsight cluster.</span></span>
 
 ```powershell
-# Login to your Azure subscription
+# Login tooyour Azure subscription
 # Is there an active Azure subscription?
 $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
 if(-not($sub))
@@ -359,10 +359,10 @@ if(-not($sub))
 }
 
 # Get cluster info
-$clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
-$creds=Get-Credential -Message "Enter the login for the cluster"
+$clusterName = Read-Host -Prompt "Enter hello HDInsight cluster name"
+$creds=Get-Credential -Message "Enter hello login for hello cluster"
 
-# If using a Windows-based HDInsight cluster, change the USING statement to:
+# If using a Windows-based HDInsight cluster, change hello USING statement to:
 # "USING 'D:\Python27\python.exe hiveudf.py' AS " +
 $HiveQuery = "add file wasb:///hiveudf.py;" +
                 "SELECT TRANSFORM (clientid, devicemake, devicemodel) " +
@@ -378,25 +378,25 @@ $job = Start-AzureRmHDInsightJob `
     -ClusterName $clusterName `
     -JobDefinition $jobDefinition `
     -HttpCredential $creds
-Write-Host "Wait for the Hive job to complete ..." -ForegroundColor Green
+Write-Host "Wait for hello Hive job toocomplete ..." -ForegroundColor Green
 Wait-AzureRmHDInsightJob `
     -JobId $job.JobId `
     -ClusterName $clusterName `
     -HttpCredential $creds
-# Uncomment the following to see stderr output
+# Uncomment hello following toosee stderr output
 # Get-AzureRmHDInsightJobOutput `
 #   -Clustername $clusterName `
 #   -JobId $job.JobId `
 #   -HttpCredential $creds `
 #   -DisplayOutputType StandardError
-Write-Host "Display the standard output ..." -ForegroundColor Green
+Write-Host "Display hello standard output ..." -ForegroundColor Green
 Get-AzureRmHDInsightJobOutput `
     -Clustername $clusterName `
     -JobId $job.JobId `
     -HttpCredential $creds
 ```
 
-<span data-ttu-id="e4799-227">**Hive** 作業的輸出應該如下範例所示：</span><span class="sxs-lookup"><span data-stu-id="e4799-227">The output for the **Hive** job should appear similar to the following example:</span></span>
+<span data-ttu-id="b5fb6-227">hello 輸出 hello **Hive**作業應該會出現類似下列範例的 toohello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-227">hello output for hello **Hive** job should appear similar toohello following example:</span></span>
 
     100041    RIM 9650    d476f3687700442549a83fac4560c51c
     100041    RIM 9650    d476f3687700442549a83fac4560c51c
@@ -404,15 +404,15 @@ Get-AzureRmHDInsightJobOutput `
     100042    Apple iPhone 4.2.x    375ad9a0ddc4351536804f1d5d0ea9b9
     100042    Apple iPhone 4.2.x    375ad9a0ddc4351536804f1d5d0ea9b9
 
-#### <a name="pig-jython"></a><span data-ttu-id="e4799-228">Pig (Jython)</span><span class="sxs-lookup"><span data-stu-id="e4799-228">Pig (Jython)</span></span>
+#### <a name="pig-jython"></a><span data-ttu-id="b5fb6-228">Pig (Jython)</span><span class="sxs-lookup"><span data-stu-id="b5fb6-228">Pig (Jython)</span></span>
 
-<span data-ttu-id="e4799-229">PowerShell 也可用來執行 Pig Latin 作業。</span><span class="sxs-lookup"><span data-stu-id="e4799-229">PowerShell can also be used to run Pig Latin jobs.</span></span> <span data-ttu-id="e4799-230">若要執行使用 **pigudf.py** 指令碼的 Pig Latin 作業，請使用下列 PowerShell 指令碼：</span><span class="sxs-lookup"><span data-stu-id="e4799-230">To run a Pig Latin job that uses the **pigudf.py** script, use the following PowerShell script:</span></span>
+<span data-ttu-id="b5fb6-229">PowerShell 也可以使用的 toorun Pig 拉丁作業。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-229">PowerShell can also be used toorun Pig Latin jobs.</span></span> <span data-ttu-id="b5fb6-230">toorun Pig 拉丁作業使用 hello **pigudf.py**編寫指令碼，請使用下列 PowerShell 指令碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-230">toorun a Pig Latin job that uses hello **pigudf.py** script, use hello following PowerShell script:</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="e4799-231">使用 PowerShell 遠端提交作業時，無法使用 C Python 做為解譯器。</span><span class="sxs-lookup"><span data-stu-id="e4799-231">When remotely submitting a job using PowerShell, it is not possible to use C Python as the interpreter.</span></span>
+> <span data-ttu-id="b5fb6-231">當從遠端提交工作，使用 PowerShell，它是不可能 toouse C Python hello 直譯器。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-231">When remotely submitting a job using PowerShell, it is not possible toouse C Python as hello interpreter.</span></span>
 
 ```powershell
-# Login to your Azure subscription
+# Login tooyour Azure subscription
 # Is there an active Azure subscription?
 $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
 if(-not($sub))
@@ -421,8 +421,8 @@ if(-not($sub))
 }
 
 # Get cluster info
-$clusterName = Read-Host -Prompt "Enter the HDInsight cluster name"
-$creds=Get-Credential -Message "Enter the login for the cluster"
+$clusterName = Read-Host -Prompt "Enter hello HDInsight cluster name"
+$creds=Get-Credential -Message "Enter hello login for hello cluster"
 
 $PigQuery = "Register wasb:///pigudf.py using jython as myfuncs;" +
             "LOGS = LOAD 'wasb:///example/data/sample.log' as (LINE:chararray);" +
@@ -437,25 +437,25 @@ $job = Start-AzureRmHDInsightJob `
     -JobDefinition $jobDefinition `
     -HttpCredential $creds
 
-Write-Host "Wait for the Pig job to complete ..." -ForegroundColor Green
+Write-Host "Wait for hello Pig job toocomplete ..." -ForegroundColor Green
 Wait-AzureRmHDInsightJob `
     -Job $job.JobId `
     -ClusterName $clusterName `
     -HttpCredential $creds
-# Uncomment the following to see stderr output
+# Uncomment hello following toosee stderr output
 # Get-AzureRmHDInsightJobOutput `
 #    -Clustername $clusterName `
 #    -JobId $job.JobId `
 #    -HttpCredential $creds `
 #    -DisplayOutputType StandardError
-Write-Host "Display the standard output ..." -ForegroundColor Green
+Write-Host "Display hello standard output ..." -ForegroundColor Green
 Get-AzureRmHDInsightJobOutput `
     -Clustername $clusterName `
     -JobId $job.JobId `
     -HttpCredential $creds
 ```
 
-<span data-ttu-id="e4799-232">**Pig** 作業的輸出應該如下列資料所示：</span><span class="sxs-lookup"><span data-stu-id="e4799-232">The output for the **Pig** job should appear similar to the following data:</span></span>
+<span data-ttu-id="b5fb6-232">hello 輸出 hello **Pig**作業應該會出現類似 toohello 下列資料：</span><span class="sxs-lookup"><span data-stu-id="b5fb6-232">hello output for hello **Pig** job should appear similar toohello following data:</span></span>
 
     ((2012-02-03,20:11:56,SampleClass5,[TRACE],verbose detail for id 990982084))
     ((2012-02-03,20:11:56,SampleClass7,[TRACE],verbose detail for id 1560323914))
@@ -463,17 +463,17 @@ Get-AzureRmHDInsightJobOutput `
     ((2012-02-03,20:11:56,SampleClass3,[TRACE],verbose detail for id 1718828806))
     ((2012-02-03,20:11:56,SampleClass3,[INFO],everything normal for id 530537821))
 
-## <span data-ttu-id="e4799-233"><a name="troubleshooting"></a>疑難排解</span><span class="sxs-lookup"><span data-stu-id="e4799-233"><a name="troubleshooting"></a>Troubleshooting</span></span>
+## <span data-ttu-id="b5fb6-233"><a name="troubleshooting"></a>疑難排解</span><span class="sxs-lookup"><span data-stu-id="b5fb6-233"><a name="troubleshooting"></a>Troubleshooting</span></span>
 
-### <a name="errors-when-running-jobs"></a><span data-ttu-id="e4799-234">執行工作時發生錯誤</span><span class="sxs-lookup"><span data-stu-id="e4799-234">Errors when running jobs</span></span>
+### <a name="errors-when-running-jobs"></a><span data-ttu-id="b5fb6-234">執行工作時發生錯誤</span><span class="sxs-lookup"><span data-stu-id="b5fb6-234">Errors when running jobs</span></span>
 
-<span data-ttu-id="e4799-235">執行 Hive 作業時，您可能會遇到類似以下文字的錯誤：</span><span class="sxs-lookup"><span data-stu-id="e4799-235">When running the hive job, you may encounter an error similar to the following text:</span></span>
+<span data-ttu-id="b5fb6-235">當執行 hello hive 工作，您可能會遇到錯誤類似 toohello 下列文字：</span><span class="sxs-lookup"><span data-stu-id="b5fb6-235">When running hello hive job, you may encounter an error similar toohello following text:</span></span>
 
-    Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: [Error 20001]: An error occurred while reading or writing to your custom script. It may have crashed with an error.
+    Caused by: org.apache.hadoop.hive.ql.metadata.HiveException: [Error 20001]: An error occurred while reading or writing tooyour custom script. It may have crashed with an error.
 
-<span data-ttu-id="e4799-236">這個問題可能是由 Python 檔案中的行尾結束符號所引起。</span><span class="sxs-lookup"><span data-stu-id="e4799-236">This problem may be caused by the line endings in the Python file.</span></span> <span data-ttu-id="e4799-237">許多 Windows 編輯器預設都是使用 CRLF 做為行尾結束符號，但是 Linux 應用程式通常預期使用 LF。</span><span class="sxs-lookup"><span data-stu-id="e4799-237">Many Windows editors default to using CRLF as the line ending, but Linux applications usually expect LF.</span></span>
+<span data-ttu-id="b5fb6-236">這個問題可能被因 hello hello Python 檔案中的行尾結束符號。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-236">This problem may be caused by hello line endings in hello Python file.</span></span> <span data-ttu-id="b5fb6-237">許多 Windows 編輯器預設 toousing CRLF 為 hello 行尾結束符號，但 Linux 應用程式通常會預期 LF。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-237">Many Windows editors default toousing CRLF as hello line ending, but Linux applications usually expect LF.</span></span>
 
-<span data-ttu-id="e4799-238">若要在檔案上傳至 HDInsight 之前移除 CR 字元，您可以使用下列 PowerShell 陳述式︰</span><span class="sxs-lookup"><span data-stu-id="e4799-238">You can use the following PowerShell statements to remove the CR characters before uploading the file to HDInsight:</span></span>
+<span data-ttu-id="b5fb6-238">您可以使用下列 PowerShell 陳述式 tooremove hello CR 字元之前上傳 hello 檔案 tooHDInsight hello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-238">You can use hello following PowerShell statements tooremove hello CR characters before uploading hello file tooHDInsight:</span></span>
 
 ```powershell
 $original_file ='c:\path\to\hiveudf.py'
@@ -481,9 +481,9 @@ $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
 [IO.File]::WriteAllText($original_file, $text)
 ```
 
-### <a name="powershell-scripts"></a><span data-ttu-id="e4799-239">PowerShell 指令碼</span><span class="sxs-lookup"><span data-stu-id="e4799-239">PowerShell scripts</span></span>
+### <a name="powershell-scripts"></a><span data-ttu-id="b5fb6-239">PowerShell 指令碼</span><span class="sxs-lookup"><span data-stu-id="b5fb6-239">PowerShell scripts</span></span>
 
-<span data-ttu-id="e4799-240">用來執行範例的兩個範例 PowerShell 指令碼都包含一行註解，此行會顯示作業的錯誤輸出。</span><span class="sxs-lookup"><span data-stu-id="e4799-240">Both of the example PowerShell scripts used to run the examples contain a commented line that displays error output for the job.</span></span> <span data-ttu-id="e4799-241">如果您沒有看到預期的工作輸出，請將下列這一行取消註解，再查看錯誤資訊是否指出問題。</span><span class="sxs-lookup"><span data-stu-id="e4799-241">If you are not seeing the expected output for the job, uncomment the following line and see if the error information indicates a problem.</span></span>
+<span data-ttu-id="b5fb6-240">這兩個 hello 範例使用 toorun hello 範例 PowerShell 指令碼包含加上註解的線條顯示 hello 之工作的錯誤輸出。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-240">Both of hello example PowerShell scripts used toorun hello examples contain a commented line that displays error output for hello job.</span></span> <span data-ttu-id="b5fb6-241">如果您沒有看到預期的 hello hello 之工作的輸出，請取消註解 hello 下列行，並查看 hello 錯誤資訊如果表示有問題。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-241">If you are not seeing hello expected output for hello job, uncomment hello following line and see if hello error information indicates a problem.</span></span>
 
 ```powershell
 # Get-AzureRmHDInsightJobOutput `
@@ -493,19 +493,19 @@ $text = [IO.File]::ReadAllText($original_file) -replace "`r`n", "`n"
         -DisplayOutputType StandardError
 ```
 
-<span data-ttu-id="e4799-242">錯誤資訊 (STDERR) 和作業 (STDOUT) 的結果也會記錄至您的 HDInsight 儲存體中。</span><span class="sxs-lookup"><span data-stu-id="e4799-242">The error information (STDERR) and the result of the job (STDOUT) are also logged to your HDInsight storage.</span></span>
+<span data-ttu-id="b5fb6-242">hello 長期資訊時發生錯誤 (STDERR) 與 hello 工作 (STDOUT) hello 結果也是記錄的 tooyour HDInsight 儲存體。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-242">hello error information (STDERR) and hello result of hello job (STDOUT) are also logged tooyour HDInsight storage.</span></span>
 
-| <span data-ttu-id="e4799-243">關於此工作...</span><span class="sxs-lookup"><span data-stu-id="e4799-243">For this job...</span></span> | <span data-ttu-id="e4799-244">請在 Blob 容器中查看這些檔案</span><span class="sxs-lookup"><span data-stu-id="e4799-244">Look at these files in the blob container</span></span> |
+| <span data-ttu-id="b5fb6-243">關於此工作...</span><span class="sxs-lookup"><span data-stu-id="b5fb6-243">For this job...</span></span> | <span data-ttu-id="b5fb6-244">查看這些 hello blob 容器中的檔案</span><span class="sxs-lookup"><span data-stu-id="b5fb6-244">Look at these files in hello blob container</span></span> |
 | --- | --- |
-| <span data-ttu-id="e4799-245">Hive</span><span class="sxs-lookup"><span data-stu-id="e4799-245">Hive</span></span> |<span data-ttu-id="e4799-246">/HivePython/stderr</span><span class="sxs-lookup"><span data-stu-id="e4799-246">/HivePython/stderr</span></span><p><span data-ttu-id="e4799-247">/HivePython/stdout</span><span class="sxs-lookup"><span data-stu-id="e4799-247">/HivePython/stdout</span></span> |
-| <span data-ttu-id="e4799-248">Pig</span><span class="sxs-lookup"><span data-stu-id="e4799-248">Pig</span></span> |<span data-ttu-id="e4799-249">/PigPython/stderr</span><span class="sxs-lookup"><span data-stu-id="e4799-249">/PigPython/stderr</span></span><p><span data-ttu-id="e4799-250">/PigPython/stdout</span><span class="sxs-lookup"><span data-stu-id="e4799-250">/PigPython/stdout</span></span> |
+| <span data-ttu-id="b5fb6-245">Hive</span><span class="sxs-lookup"><span data-stu-id="b5fb6-245">Hive</span></span> |<span data-ttu-id="b5fb6-246">/HivePython/stderr</span><span class="sxs-lookup"><span data-stu-id="b5fb6-246">/HivePython/stderr</span></span><p><span data-ttu-id="b5fb6-247">/HivePython/stdout</span><span class="sxs-lookup"><span data-stu-id="b5fb6-247">/HivePython/stdout</span></span> |
+| <span data-ttu-id="b5fb6-248">Pig</span><span class="sxs-lookup"><span data-stu-id="b5fb6-248">Pig</span></span> |<span data-ttu-id="b5fb6-249">/PigPython/stderr</span><span class="sxs-lookup"><span data-stu-id="b5fb6-249">/PigPython/stderr</span></span><p><span data-ttu-id="b5fb6-250">/PigPython/stdout</span><span class="sxs-lookup"><span data-stu-id="b5fb6-250">/PigPython/stdout</span></span> |
 
-## <span data-ttu-id="e4799-251"><a name="next"></a>接續步驟</span><span class="sxs-lookup"><span data-stu-id="e4799-251"><a name="next"></a>Next steps</span></span>
+## <span data-ttu-id="b5fb6-251"><a name="next"></a>接續步驟</span><span class="sxs-lookup"><span data-stu-id="b5fb6-251"><a name="next"></a>Next steps</span></span>
 
-<span data-ttu-id="e4799-252">如果您需要載入非預設提供的 Python 模組，請參閱 [如何將模組部署至 Azure HDInsight](http://blogs.msdn.com/b/benjguin/archive/2014/03/03/how-to-deploy-a-python-module-to-windows-azure-hdinsight.aspx) (英文)。</span><span class="sxs-lookup"><span data-stu-id="e4799-252">If you need to load Python modules that aren't provided by default, see [How to deploy a module to Azure HDInsight](http://blogs.msdn.com/b/benjguin/archive/2014/03/03/how-to-deploy-a-python-module-to-windows-azure-hdinsight.aspx).</span></span>
+<span data-ttu-id="b5fb6-252">如果您需要預設未提供的 tooload Python 模組，請參閱[如何 toodeploy 模組 tooAzure HDInsight](http://blogs.msdn.com/b/benjguin/archive/2014/03/03/how-to-deploy-a-python-module-to-windows-azure-hdinsight.aspx)。</span><span class="sxs-lookup"><span data-stu-id="b5fb6-252">If you need tooload Python modules that aren't provided by default, see [How toodeploy a module tooAzure HDInsight](http://blogs.msdn.com/b/benjguin/archive/2014/03/03/how-to-deploy-a-python-module-to-windows-azure-hdinsight.aspx).</span></span>
 
-<span data-ttu-id="e4799-253">若要了解使用 MapReduce，及Pig、Hive 的其他使用方式，請參閱下列文件：</span><span class="sxs-lookup"><span data-stu-id="e4799-253">For other ways to use Pig, Hive, and to learn about using MapReduce, see the following documents:</span></span>
+<span data-ttu-id="b5fb6-253">其他的方式 toouse Pig、 Hive 和有關使用 MapReduce toolearn，請參閱下列文件的 hello:</span><span class="sxs-lookup"><span data-stu-id="b5fb6-253">For other ways toouse Pig, Hive, and toolearn about using MapReduce, see hello following documents:</span></span>
 
-* [<span data-ttu-id="e4799-254">〈搭配 HDInsight 使用 Hivet〉</span><span class="sxs-lookup"><span data-stu-id="e4799-254">Use Hive with HDInsight</span></span>](hdinsight-use-hive.md)
-* [<span data-ttu-id="e4799-255">搭配 HDInsight 使用 Pig</span><span class="sxs-lookup"><span data-stu-id="e4799-255">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
-* [<span data-ttu-id="e4799-256">〈搭配 HDInsight 使用 MapReduce〉</span><span class="sxs-lookup"><span data-stu-id="e4799-256">Use MapReduce with HDInsight</span></span>](hdinsight-use-mapreduce.md)
+* [<span data-ttu-id="b5fb6-254">搭配 HDInsight 使用 Hivet</span><span class="sxs-lookup"><span data-stu-id="b5fb6-254">Use Hive with HDInsight</span></span>](hdinsight-use-hive.md)
+* [<span data-ttu-id="b5fb6-255">搭配 HDInsight 使用 Pig</span><span class="sxs-lookup"><span data-stu-id="b5fb6-255">Use Pig with HDInsight</span></span>](hdinsight-use-pig.md)
+* [<span data-ttu-id="b5fb6-256">〈搭配 HDInsight 使用 MapReduce〉</span><span class="sxs-lookup"><span data-stu-id="b5fb6-256">Use MapReduce with HDInsight</span></span>](hdinsight-use-mapreduce.md)

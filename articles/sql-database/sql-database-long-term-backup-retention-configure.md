@@ -1,6 +1,6 @@
 ---
 title: "設定長期備份保留 - Azure SQL Database | Microsoft Docs"
-description: "了解如何從在 Azure 復原服務保存庫中儲存自動備份，以及從 Azure 復原服務保存庫還原"
+description: "了解 toostore 自動化的 hello Azure 復原服務保存庫中的備份的方式，並從 hello toorestore Azure 復原服務保存庫"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,144 +15,144 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/10/2017
 ms.author: carlrab
-ms.openlocfilehash: ed9f74a59f0ca512e2758c6db4c5c9075030f859
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 603f4dd21cee4407d46f749655aba8f9ef3322c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-and-restore-from-azure-sql-database-long-term-backup-retention"></a><span data-ttu-id="6b596-103">設定 Azure SQL Database 長期備份保留並從中還原</span><span class="sxs-lookup"><span data-stu-id="6b596-103">Configure and restore from Azure SQL Database long-term backup retention</span></span>
+# <a name="configure-and-restore-from-azure-sql-database-long-term-backup-retention"></a><span data-ttu-id="a98ac-103">設定 Azure SQL Database 長期備份保留並從中還原</span><span class="sxs-lookup"><span data-stu-id="a98ac-103">Configure and restore from Azure SQL Database long-term backup retention</span></span>
 
-<span data-ttu-id="6b596-104">您可以設定 Azure 復原服務保存庫以存放 Azure SQL 資料庫備份，然後使用透過 Azure 入口網站或 PowerShell 保留在保存庫中的備份，來復原資料庫。</span><span class="sxs-lookup"><span data-stu-id="6b596-104">You can configure the Azure Recovery Services vault to store Azure SQL database backups and then recover a database using backups retained in the vault using the Azure portal or PowerShell.</span></span>
+<span data-ttu-id="a98ac-104">您可以設定 hello Azure 復原服務保存庫 toostore Azure SQL 資料庫備份，然後使用備份的資料庫保留在 hello 保存庫使用的復原 hello Azure 入口網站或 PowerShell。</span><span class="sxs-lookup"><span data-stu-id="a98ac-104">You can configure hello Azure Recovery Services vault toostore Azure SQL database backups and then recover a database using backups retained in hello vault using hello Azure portal or PowerShell.</span></span>
 
-## <a name="azure-portal"></a><span data-ttu-id="6b596-105">Azure 入口網站</span><span class="sxs-lookup"><span data-stu-id="6b596-105">Azure portal</span></span>
+## <a name="azure-portal"></a><span data-ttu-id="a98ac-105">Azure 入口網站</span><span class="sxs-lookup"><span data-stu-id="a98ac-105">Azure portal</span></span>
 
-<span data-ttu-id="6b596-106">下列幾節中會示範如何使用 Azure 入口網站來設定 Azure 復原服務保存庫、檢視保存庫中的備份，以及從保存庫中還原。</span><span class="sxs-lookup"><span data-stu-id="6b596-106">The following sections show you how to use the Azure portal to configure the Azure Recovery Services vault, view backups in the vault, and restore from the vault.</span></span>
+<span data-ttu-id="a98ac-106">下列各節顯示如何 toouse hello Azure 入口網站 tooconfigure hello Azure 復原服務保存庫，您在 hello 保存庫中，檢視備份和還原 hello 保存庫中的 hello。</span><span class="sxs-lookup"><span data-stu-id="a98ac-106">hello following sections show you how toouse hello Azure portal tooconfigure hello Azure Recovery Services vault, view backups in hello vault, and restore from hello vault.</span></span>
 
-### <a name="configure-the-vault-register-the-server-and-select-databases"></a><span data-ttu-id="6b596-107">設定保存庫、註冊伺服器及選取資料庫</span><span class="sxs-lookup"><span data-stu-id="6b596-107">Configure the vault, register the server, and select databases</span></span>
+### <a name="configure-hello-vault-register-hello-server-and-select-databases"></a><span data-ttu-id="a98ac-107">設定 hello 保存庫，註冊 hello 伺服器，然後選取資料庫</span><span class="sxs-lookup"><span data-stu-id="a98ac-107">Configure hello vault, register hello server, and select databases</span></span>
 
-<span data-ttu-id="6b596-108">您會[設定 Azure 復原服務保存庫以保留自動備份](sql-database-long-term-retention.md)，時間較您服務層的保留期限長。</span><span class="sxs-lookup"><span data-stu-id="6b596-108">You [configure an Azure Recovery Services vault to retain automated backups](sql-database-long-term-retention.md) for a period longer than the retention period for your service tier.</span></span> 
+<span data-ttu-id="a98ac-108">您[設定 Azure 復原服務保存庫 tooretain 自動化備份](sql-database-long-term-retention.md)hello 服務層的保留期限超過一段時間。</span><span class="sxs-lookup"><span data-stu-id="a98ac-108">You [configure an Azure Recovery Services vault tooretain automated backups](sql-database-long-term-retention.md) for a period longer than hello retention period for your service tier.</span></span> 
 
-1. <span data-ttu-id="6b596-109">開啟您伺服器的 **SQL Server** 頁面。</span><span class="sxs-lookup"><span data-stu-id="6b596-109">Open the **SQL Server** page for your server.</span></span>
+1. <span data-ttu-id="a98ac-109">開啟 hello **SQL Server**頁面為您的伺服器。</span><span class="sxs-lookup"><span data-stu-id="a98ac-109">Open hello **SQL Server** page for your server.</span></span>
 
    ![SQL Server 頁面](./media/sql-database-get-started-portal/sql-server-blade.png)
 
-2. <span data-ttu-id="6b596-111">按一下 [長期備份保留]。</span><span class="sxs-lookup"><span data-stu-id="6b596-111">Click **Long-term backup retention**.</span></span>
+2. <span data-ttu-id="a98ac-111">按一下 [長期備份保留]。</span><span class="sxs-lookup"><span data-stu-id="a98ac-111">Click **Long-term backup retention**.</span></span>
 
    ![長期備份保留連結](./media/sql-database-get-started-backup-recovery/long-term-backup-retention-link.png)
 
-3. <span data-ttu-id="6b596-113">在伺服器的 [長期備份保留] 頁面中，檢閱並接受預覽條款 (除非您已完成，或預覽中沒有這項功能)。</span><span class="sxs-lookup"><span data-stu-id="6b596-113">On the **Long-term backup retention** page for your server, review and accept the preview terms (unless you have already done so - or this feature is no longer in preview).</span></span>
+3. <span data-ttu-id="a98ac-113">在 hello**長期備份的保留**伺服器頁面上，檢閱並接受 hello 預覽條款 （除非您已完成，-，或這項功能不會再為預覽狀態）。</span><span class="sxs-lookup"><span data-stu-id="a98ac-113">On hello **Long-term backup retention** page for your server, review and accept hello preview terms (unless you have already done so - or this feature is no longer in preview).</span></span>
 
-   ![接受預覽條款](./media/sql-database-get-started-backup-recovery/accept-the-preview-terms.png)
+   ![接受 hello 預覽條款](./media/sql-database-get-started-backup-recovery/accept-the-preview-terms.png)
 
-4. <span data-ttu-id="6b596-115">若要設定長期備份保留時間，在方格中選取該資料庫，然後按一下工具列上的 [設定]。</span><span class="sxs-lookup"><span data-stu-id="6b596-115">To configure long-term backup retention, select that database in the grid and then click **Configure** on the toolbar.</span></span>
+4. <span data-ttu-id="a98ac-115">長期備份保留 tooconfigure，hello 方格中選取該資料庫，然後按一下**設定**hello 工具列上。</span><span class="sxs-lookup"><span data-stu-id="a98ac-115">tooconfigure long-term backup retention, select that database in hello grid and then click **Configure** on hello toolbar.</span></span>
 
    ![選取長期備份保留的資料庫](./media/sql-database-get-started-backup-recovery/select-database-for-long-term-backup-retention.png)
 
-5. <span data-ttu-id="6b596-117">在 [設定] 頁面上，按一下 [復原服務保存庫] 下的 [設定所需設定]。</span><span class="sxs-lookup"><span data-stu-id="6b596-117">On the **Configure** page, click **Configure required settings** under **Recovery service vault**.</span></span>
+5. <span data-ttu-id="a98ac-117">在 hello**設定**頁面上，按一下**設定必要設定**下**復原服務保存庫**。</span><span class="sxs-lookup"><span data-stu-id="a98ac-117">On hello **Configure** page, click **Configure required settings** under **Recovery service vault**.</span></span>
 
    ![設定保存庫連結](./media/sql-database-get-started-backup-recovery/configure-vault-link.png)
 
-6. <span data-ttu-id="6b596-119">在 [復原服務保存庫] 頁面中，選取現有的保存庫 (若有)。</span><span class="sxs-lookup"><span data-stu-id="6b596-119">On the **Recovery services vault** page, select an existing vault, if any.</span></span> <span data-ttu-id="6b596-120">否則，如果找不到您訂用帳戶的復原服務保存庫，按一下以結束流程，並建立復原服務保存庫。</span><span class="sxs-lookup"><span data-stu-id="6b596-120">Otherwise, if no recovery services vault found for your subscription, click to exit the flow and create a recovery services vault.</span></span>
+6. <span data-ttu-id="a98ac-119">在 hello**復原服務保存庫**頁面上，選取現有的保存庫，如果有的話。</span><span class="sxs-lookup"><span data-stu-id="a98ac-119">On hello **Recovery services vault** page, select an existing vault, if any.</span></span> <span data-ttu-id="a98ac-120">否則，如果找到訂用帳戶沒有復原服務保存庫，按一下 tooexit hello 流程，並建立復原服務保存庫。</span><span class="sxs-lookup"><span data-stu-id="a98ac-120">Otherwise, if no recovery services vault found for your subscription, click tooexit hello flow and create a recovery services vault.</span></span>
 
    ![建立保存庫連結](./media/sql-database-get-started-backup-recovery/create-new-vault-link.png)
 
-7. <span data-ttu-id="6b596-122">在 [復原服務保存庫] 頁面上，按一下 [新增]。</span><span class="sxs-lookup"><span data-stu-id="6b596-122">On the **Recovery Services vaults** page, click **Add**.</span></span>
+7. <span data-ttu-id="a98ac-122">在 hello**復原服務保存庫**頁面上，按一下**新增**。</span><span class="sxs-lookup"><span data-stu-id="a98ac-122">On hello **Recovery Services vaults** page, click **Add**.</span></span>
 
    ![新增保存庫連結](./media/sql-database-get-started-backup-recovery/add-new-vault-link.png)
    
-8. <span data-ttu-id="6b596-124">在 [復原服務保存庫] 頁面上，提供復原服務保存庫的有效名稱。</span><span class="sxs-lookup"><span data-stu-id="6b596-124">On the **Recovery Services vault** page, provide a valid name for the Recovery Services vault.</span></span>
+8. <span data-ttu-id="a98ac-124">在 hello**復原服務保存庫**頁面上，提供有效的名稱，如 hello 復原服務保存庫。</span><span class="sxs-lookup"><span data-stu-id="a98ac-124">On hello **Recovery Services vault** page, provide a valid name for hello Recovery Services vault.</span></span>
 
    ![新增保存庫名稱](./media/sql-database-get-started-backup-recovery/new-vault-name.png)
 
-9. <span data-ttu-id="6b596-126">選取您的訂用帳戶和資源群組，然後選取保存庫的位置。</span><span class="sxs-lookup"><span data-stu-id="6b596-126">Select your subscription and resource group, and then select the location for the vault.</span></span> <span data-ttu-id="6b596-127">完成時，按一下 [建立]。</span><span class="sxs-lookup"><span data-stu-id="6b596-127">When done, click **Create**.</span></span>
+9. <span data-ttu-id="a98ac-126">選取您的訂用帳戶和資源群組，然後選取 hello hello 保存庫的位置。</span><span class="sxs-lookup"><span data-stu-id="a98ac-126">Select your subscription and resource group, and then select hello location for hello vault.</span></span> <span data-ttu-id="a98ac-127">完成時，按一下 [建立]。</span><span class="sxs-lookup"><span data-stu-id="a98ac-127">When done, click **Create**.</span></span>
 
    ![建立保存庫](./media/sql-database-get-started-backup-recovery/create-new-vault.png)
 
    > [!IMPORTANT]
-   > <span data-ttu-id="6b596-129">保存庫必須位於與 Azure SQL 邏輯伺服器相同的區域，而且必須使用相同的資源群組做為邏輯伺服器。</span><span class="sxs-lookup"><span data-stu-id="6b596-129">The vault must be located in the same region as the Azure SQL logical server, and must use the same resource group as the logical server.</span></span>
+   > <span data-ttu-id="a98ac-129">hello 保存庫必須位在 hello 與 hello SQL Azure 邏輯伺服器相同的區域，並使用必須 hello 相同 hello 邏輯伺服器的資源群組。</span><span class="sxs-lookup"><span data-stu-id="a98ac-129">hello vault must be located in hello same region as hello Azure SQL logical server, and must use hello same resource group as hello logical server.</span></span>
    >
 
-10. <span data-ttu-id="6b596-130">建立新的保存庫之後，執行必要的步驟以返回 [復原服務保存庫] 頁面。</span><span class="sxs-lookup"><span data-stu-id="6b596-130">After the new vault is created, execute the necessary steps to return to the **Recovery services vault** page.</span></span>
+10. <span data-ttu-id="a98ac-130">建立 hello 新保存庫之後，執行 hello 必要步驟 tooreturn toohello**復原服務保存庫**頁面。</span><span class="sxs-lookup"><span data-stu-id="a98ac-130">After hello new vault is created, execute hello necessary steps tooreturn toohello **Recovery services vault** page.</span></span>
 
-11. <span data-ttu-id="6b596-131">在 [復原服務保存庫] 頁面上，按一下保存庫，然後按一下 [選取]。</span><span class="sxs-lookup"><span data-stu-id="6b596-131">On the **Recovery services vault** page, click the vault and then click **Select**.</span></span>
+11. <span data-ttu-id="a98ac-131">在 hello**復原服務保存庫**頁面上，按一下 hello 保存庫，然後按一下**選取**。</span><span class="sxs-lookup"><span data-stu-id="a98ac-131">On hello **Recovery services vault** page, click hello vault and then click **Select**.</span></span>
 
    ![選取現有的保存庫](./media/sql-database-get-started-backup-recovery/select-existing-vault.png)
 
-12. <span data-ttu-id="6b596-133">在 [設定] 頁面上，提供新保留原則的有效名稱、適當修改預設保留原則，然後按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="6b596-133">On the **Configure** page, provide a valid name for the new retention policy, modify the default retention policy as appropriate, and then click **OK**.</span></span>
+12. <span data-ttu-id="a98ac-133">在 hello**設定**頁面上，提供有效的名稱 hello 新保留原則、 修改為適當且 hello 預設保留原則，然後按一下**確定**。</span><span class="sxs-lookup"><span data-stu-id="a98ac-133">On hello **Configure** page, provide a valid name for hello new retention policy, modify hello default retention policy as appropriate, and then click **OK**.</span></span>
 
    ![定義保留原則](./media/sql-database-get-started-backup-recovery/define-retention-policy.png)
 
-13. <span data-ttu-id="6b596-135">在伺服器的 [長期備份保留] 頁面上，按一下 [儲存]，然後按一下 [確定]，將長期備份保留原則套用到所有選取的資料庫。</span><span class="sxs-lookup"><span data-stu-id="6b596-135">On the **Long-term backup retention** page for your database, click **Save** and then click **OK** to apply the long-term backup retention policy to all selected databases.</span></span>
+13. <span data-ttu-id="a98ac-135">Hello 上**長期備份的保留**為您的資料庫頁面上，按一下**儲存**，然後按一下**確定**tooapply hello 長期備份保留原則 tooall 選取資料庫。</span><span class="sxs-lookup"><span data-stu-id="a98ac-135">On hello **Long-term backup retention** page for your database, click **Save** and then click **OK** tooapply hello long-term backup retention policy tooall selected databases.</span></span>
 
    ![定義保留原則](./media/sql-database-get-started-backup-recovery/save-retention-policy.png)
 
-14. <span data-ttu-id="6b596-137">按一下 [儲存] 以使用這個新的原則對您所設定的 Azure 復原服務保存庫啟用長期備份保留。</span><span class="sxs-lookup"><span data-stu-id="6b596-137">Click **Save** to enable long-term backup retention using this new policy to the Azure Recovery Services vault that you configured.</span></span>
+14. <span data-ttu-id="a98ac-137">按一下**儲存**tooenable 長期的備份保留使用這個新原則 toohello Azure 復原服務保存庫設定。</span><span class="sxs-lookup"><span data-stu-id="a98ac-137">Click **Save** tooenable long-term backup retention using this new policy toohello Azure Recovery Services vault that you configured.</span></span>
 
    ![定義保留原則](./media/sql-database-get-started-backup-recovery/enable-long-term-retention.png)
 
 > [!IMPORTANT]
-> <span data-ttu-id="6b596-139">設定之後，備份會在接下來七天內顯示於保存庫中。</span><span class="sxs-lookup"><span data-stu-id="6b596-139">Once configured, backups show up in the vault within next seven days.</span></span> <span data-ttu-id="6b596-140">備份出現在保存庫之前，請勿繼續本教學課程。</span><span class="sxs-lookup"><span data-stu-id="6b596-140">Do not continue this tutorial until backups show up in the vault.</span></span>
+> <span data-ttu-id="a98ac-139">一旦設定之後，備份會顯示在 hello 保存庫內接下來七天。</span><span class="sxs-lookup"><span data-stu-id="a98ac-139">Once configured, backups show up in hello vault within next seven days.</span></span> <span data-ttu-id="a98ac-140">等到備份顯示在 hello 保存庫，再繼續本教學課程。</span><span class="sxs-lookup"><span data-stu-id="a98ac-140">Do not continue this tutorial until backups show up in hello vault.</span></span>
 >
 
-### <a name="view-backups-in-long-term-retention-using-azure-portal"></a><span data-ttu-id="6b596-141">使用 Azure 入口網站在長期保留期限中檢視備份</span><span class="sxs-lookup"><span data-stu-id="6b596-141">View backups in long-term retention using Azure portal</span></span>
+### <a name="view-backups-in-long-term-retention-using-azure-portal"></a><span data-ttu-id="a98ac-141">使用 Azure 入口網站在長期保留期限中檢視備份</span><span class="sxs-lookup"><span data-stu-id="a98ac-141">View backups in long-term retention using Azure portal</span></span>
 
-<span data-ttu-id="6b596-142">檢視[長期備份保留](sql-database-long-term-retention.md)中資料庫備份的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="6b596-142">View information about your database backups in [long-term backup retention](sql-database-long-term-retention.md).</span></span> 
+<span data-ttu-id="a98ac-142">檢視[長期備份保留](sql-database-long-term-retention.md)中資料庫備份的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="a98ac-142">View information about your database backups in [long-term backup retention](sql-database-long-term-retention.md).</span></span> 
 
-1. <span data-ttu-id="6b596-143">在 Azure 入口網站中，開啟資料庫備份的 Azure 復原服務保存庫 (移至 [所有資源]，並從您訂用帳戶的資源清單中選取)，以在保存庫中檢視資料庫備份所使用的儲存體數量。</span><span class="sxs-lookup"><span data-stu-id="6b596-143">In the Azure portal, open your Azure Recovery Services vault for your database backups (go to **All resources** and select it from the list of resources for your subscription) to view the amount of storage used by your database backups in the vault.</span></span>
+1. <span data-ttu-id="a98ac-143">在 hello Azure 入口網站中開啟您的 Azure 復原服務保存庫，針對資料庫備份 (跳過**所有資源**和選取從您的訂用帳戶資源 hello 清單) 您的資料庫所使用的儲存體 tooview hello 數量hello 保存庫中的備份。</span><span class="sxs-lookup"><span data-stu-id="a98ac-143">In hello Azure portal, open your Azure Recovery Services vault for your database backups (go too**All resources** and select it from hello list of resources for your subscription) tooview hello amount of storage used by your database backups in hello vault.</span></span>
 
    ![使用備份檢視復原服務保存庫](./media/sql-database-get-started-backup-recovery/view-recovery-services-vault-with-data.png)
 
-2. <span data-ttu-id="6b596-145">開啟您資料庫的 [SQL Database] 頁面。</span><span class="sxs-lookup"><span data-stu-id="6b596-145">Open the **SQL database** page for your database.</span></span>
+2. <span data-ttu-id="a98ac-145">開啟 hello **SQL database**資料庫的頁面。</span><span class="sxs-lookup"><span data-stu-id="a98ac-145">Open hello **SQL database** page for your database.</span></span>
 
    ![新範例 DB 頁面](./media/sql-database-get-started-portal/new-sample-db-blade.png)
 
-3. <span data-ttu-id="6b596-147">在工具列上，按一下 [還原]。</span><span class="sxs-lookup"><span data-stu-id="6b596-147">On the toolbar, click **Restore**.</span></span>
+3. <span data-ttu-id="a98ac-147">在 [hello] 工具列上按一下**還原**。</span><span class="sxs-lookup"><span data-stu-id="a98ac-147">On hello toolbar, click **Restore**.</span></span>
 
    ![還原工具列](./media/sql-database-get-started-backup-recovery/restore-toolbar.png)
 
-4. <span data-ttu-id="6b596-149">在 [還原] 頁面上，按一下 [長期]。</span><span class="sxs-lookup"><span data-stu-id="6b596-149">On the Restore page, click **Long-term**.</span></span>
+4. <span data-ttu-id="a98ac-149">在 hello 還原 頁面上，按一下 **長期**。</span><span class="sxs-lookup"><span data-stu-id="a98ac-149">On hello Restore page, click **Long-term**.</span></span>
 
-5. <span data-ttu-id="6b596-150">在 Azure 保存庫備份下，按一下 [選取備份]，在長期備份保留中檢視可用的資料庫備份。</span><span class="sxs-lookup"><span data-stu-id="6b596-150">Under Azure vault backups, click **Select a backup** to view the available database backups in long-term backup retention.</span></span>
+5. <span data-ttu-id="a98ac-150">按一下 Azure 保存庫備份**選取的備份**tooview hello 可用的資料庫備份，在長期備份的保留。</span><span class="sxs-lookup"><span data-stu-id="a98ac-150">Under Azure vault backups, click **Select a backup** tooview hello available database backups in long-term backup retention.</span></span>
 
    ![保存庫中的備份](./media/sql-database-get-started-backup-recovery/view-backups-in-vault.png)
 
-### <a name="restore-a-database-from-a-backup-in-long-term-backup-retention-using-the-azure-portal"></a><span data-ttu-id="6b596-152">使用 Azure 入口網站從長期備份保留的備份中還原資料庫</span><span class="sxs-lookup"><span data-stu-id="6b596-152">Restore a database from a backup in long-term backup retention using the Azure portal</span></span>
+### <a name="restore-a-database-from-a-backup-in-long-term-backup-retention-using-hello-azure-portal"></a><span data-ttu-id="a98ac-152">長期備份的保留使用 hello Azure 入口網站中從備份還原資料庫</span><span class="sxs-lookup"><span data-stu-id="a98ac-152">Restore a database from a backup in long-term backup retention using hello Azure portal</span></span>
 
-<span data-ttu-id="6b596-153">從 Azure 復原服務保存庫中的備份將資料庫還原到新的資料庫。</span><span class="sxs-lookup"><span data-stu-id="6b596-153">You restore the database to a new database from a backup in the Azure Recovery Services vault.</span></span>
+<span data-ttu-id="a98ac-153">您從 hello Azure 復原服務保存庫中的備份還原 hello tooa 新資料庫。</span><span class="sxs-lookup"><span data-stu-id="a98ac-153">You restore hello database tooa new database from a backup in hello Azure Recovery Services vault.</span></span>
 
-1. <span data-ttu-id="6b596-154">在 [Azure 保存庫備份] 頁面上，按一下要還原的備份，然後按一下 [選取]。</span><span class="sxs-lookup"><span data-stu-id="6b596-154">On the **Azure vault backups** page, click the backup to restore and then click **Select**.</span></span>
+1. <span data-ttu-id="a98ac-154">在 hello **Azure 保存庫備份**頁面上，按一下 hello 備份 toorestore，然後按一下**選取**。</span><span class="sxs-lookup"><span data-stu-id="a98ac-154">On hello **Azure vault backups** page, click hello backup toorestore and then click **Select**.</span></span>
 
    ![選取保存庫中的備份](./media/sql-database-get-started-backup-recovery/select-backup-in-vault.png)
 
-2. <span data-ttu-id="6b596-156">在 [資料庫名稱] 文字方塊中，提供還原的資料庫名稱。</span><span class="sxs-lookup"><span data-stu-id="6b596-156">In the **Database name** text box, provide the name for the restored database.</span></span>
+2. <span data-ttu-id="a98ac-156">在 hello**資料庫名稱**文字方塊中，提供 hello hello 還原資料庫的名稱。</span><span class="sxs-lookup"><span data-stu-id="a98ac-156">In hello **Database name** text box, provide hello name for hello restored database.</span></span>
 
    ![新的資料庫名稱](./media/sql-database-get-started-backup-recovery/new-database-name.png)
 
-3. <span data-ttu-id="6b596-158">按一下 [確定]，從保存庫中的備份將資料庫還原到新的資料庫。</span><span class="sxs-lookup"><span data-stu-id="6b596-158">Click **OK** to restore your database from the backup in the vault to the new database.</span></span>
+3. <span data-ttu-id="a98ac-158">按一下**確定**toorestore 從 hello 保存庫 toohello 新資料庫中的 hello 備份資料庫。</span><span class="sxs-lookup"><span data-stu-id="a98ac-158">Click **OK** toorestore your database from hello backup in hello vault toohello new database.</span></span>
 
-4. <span data-ttu-id="6b596-159">在工具列上，按一下 [通知] 圖示以檢視還原作業的狀態。</span><span class="sxs-lookup"><span data-stu-id="6b596-159">On the toolbar, click the notification icon to view the status of the restore job.</span></span>
+4. <span data-ttu-id="a98ac-159">Hello 工具列上，按一下 hello 通知圖示 tooview hello hello 還原工作狀態。</span><span class="sxs-lookup"><span data-stu-id="a98ac-159">On hello toolbar, click hello notification icon tooview hello status of hello restore job.</span></span>
 
    ![從保存庫還原作業進度](./media/sql-database-get-started-backup-recovery/restore-job-progress-long-term.png)
 
-5. <span data-ttu-id="6b596-161">完成還原作業之後，開啟 [SQL Database] 頁面，以檢視剛還原的資料庫。</span><span class="sxs-lookup"><span data-stu-id="6b596-161">When the restore job is completed, open the **SQL databases** page to view the newly restored database.</span></span>
+5. <span data-ttu-id="a98ac-161">Hello 還原作業完成後，開啟 hello **SQL 資料庫**頁面 tooview hello 最近還原的資料庫。</span><span class="sxs-lookup"><span data-stu-id="a98ac-161">When hello restore job is completed, open hello **SQL databases** page tooview hello newly restored database.</span></span>
 
    ![從保存庫還原的資料庫](./media/sql-database-get-started-backup-recovery/restored-database-from-vault.png)
 
 > [!NOTE]
-> <span data-ttu-id="6b596-163">從這裡開始，您可以使用 SQL Server Management Studio 連接到已還原的資料庫來執行所需的工作，例如[從還原的資料庫擷取一堆資料來複製到現有的資料庫，或刪除現有的資料庫，並將還原的資料庫重新命名為現有的資料庫名稱](sql-database-recovery-using-backups.md#point-in-time-restore)。</span><span class="sxs-lookup"><span data-stu-id="6b596-163">From here, you can connect to the restored database using SQL Server Management Studio to perform needed tasks, such as to [extract a bit of data from the restored database to copy into the existing database or to delete the existing database and rename the restored database to the existing database name](sql-database-recovery-using-backups.md#point-in-time-restore).</span></span>
+> <span data-ttu-id="a98ac-163">您可以從這裡連接 toohello 還原資料庫使用 SQL Server Management Studio tooperform 所需的工作，例如太[hello 還原資料庫 toocopy 的位元的資料擷取到 hello 現有的資料庫或現有的 toodelete hello資料庫和重新命名 hello 還原資料庫 toohello 現有的資料庫名稱](sql-database-recovery-using-backups.md#point-in-time-restore)。</span><span class="sxs-lookup"><span data-stu-id="a98ac-163">From here, you can connect toohello restored database using SQL Server Management Studio tooperform needed tasks, such as too[extract a bit of data from hello restored database toocopy into hello existing database or toodelete hello existing database and rename hello restored database toohello existing database name](sql-database-recovery-using-backups.md#point-in-time-restore).</span></span>
 >
 
-## <a name="powershell"></a><span data-ttu-id="6b596-164">PowerShell</span><span class="sxs-lookup"><span data-stu-id="6b596-164">PowerShell</span></span>
+## <a name="powershell"></a><span data-ttu-id="a98ac-164">PowerShell</span><span class="sxs-lookup"><span data-stu-id="a98ac-164">PowerShell</span></span>
 
-<span data-ttu-id="6b596-165">下列幾節中會示範如何使用 PowerShell 來設定 Azure 復原服務保存庫、檢視保存庫中的備份，以及從保存庫中還原。</span><span class="sxs-lookup"><span data-stu-id="6b596-165">The following sections show you how to use PowerShell to configure the Azure Recovery Services vault, view backups in the vault, and restore from the vault.</span></span>
+<span data-ttu-id="a98ac-165">hello 下列各節會顯示 toouse PowerShell tooconfigure hello Azure 復原服務保存庫，在 hello 保存庫中，檢視備份與還原 hello 保存庫中的方式。</span><span class="sxs-lookup"><span data-stu-id="a98ac-165">hello following sections show you how toouse PowerShell tooconfigure hello Azure Recovery Services vault, view backups in hello vault, and restore from hello vault.</span></span>
 
-### <a name="create-a-recovery-services-vault"></a><span data-ttu-id="6b596-166">建立復原服務保存庫</span><span class="sxs-lookup"><span data-stu-id="6b596-166">Create a recovery services vault</span></span>
+### <a name="create-a-recovery-services-vault"></a><span data-ttu-id="a98ac-166">建立復原服務保存庫</span><span class="sxs-lookup"><span data-stu-id="a98ac-166">Create a recovery services vault</span></span>
 
-<span data-ttu-id="6b596-167">使用 [New-AzureRmRecoveryServicesVault](/powershell/module/azurerm.recoveryservices/new-azurermrecoveryservicesvault) 來建立復原服務保存庫。</span><span class="sxs-lookup"><span data-stu-id="6b596-167">Use the [New-AzureRmRecoveryServicesVault](/powershell/module/azurerm.recoveryservices/new-azurermrecoveryservicesvault) to create a recovery services vault.</span></span>
+<span data-ttu-id="a98ac-167">使用 hello[新增 AzureRmRecoveryServicesVault](/powershell/module/azurerm.recoveryservices/new-azurermrecoveryservicesvault) toocreate 復原服務保存庫。</span><span class="sxs-lookup"><span data-stu-id="a98ac-167">Use hello [New-AzureRmRecoveryServicesVault](/powershell/module/azurerm.recoveryservices/new-azurermrecoveryservicesvault) toocreate a recovery services vault.</span></span>
 
 > [!IMPORTANT]
-> <span data-ttu-id="6b596-168">保存庫必須位於與 Azure SQL 邏輯伺服器相同的區域，而且必須使用相同的資源群組做為邏輯伺服器。</span><span class="sxs-lookup"><span data-stu-id="6b596-168">The vault must be located in the same region as the Azure SQL logical server, and must use the same resource group as the logical server.</span></span>
+> <span data-ttu-id="a98ac-168">hello 保存庫必須位在 hello 與 hello SQL Azure 邏輯伺服器相同的區域，並使用必須 hello 相同 hello 邏輯伺服器的資源群組。</span><span class="sxs-lookup"><span data-stu-id="a98ac-168">hello vault must be located in hello same region as hello Azure SQL logical server, and must use hello same resource group as hello logical server.</span></span>
 
 ```PowerShell
 # Create a recovery services vault
@@ -166,44 +166,44 @@ $vault = New-AzureRmRecoveryServicesVault -Name $recoveryServiceVaultName -Resou
 Set-AzureRmRecoveryServicesBackupProperties -BackupStorageRedundancy LocallyRedundant -Vault $vault
 ```
 
-### <a name="set-your-server-to-use-the-recovery-vault-for-its-long-term-retention-backups"></a><span data-ttu-id="6b596-169">設定您的伺服器設以將復原保存庫用於其長期保留備份</span><span class="sxs-lookup"><span data-stu-id="6b596-169">Set your server to use the recovery vault for its long-term retention backups</span></span>
+### <a name="set-your-server-toouse-hello-recovery-vault-for-its-long-term-retention-backups"></a><span data-ttu-id="a98ac-169">為其長期保留的備份設定您伺服器 toouse hello 復原保存庫</span><span class="sxs-lookup"><span data-stu-id="a98ac-169">Set your server toouse hello recovery vault for its long-term retention backups</span></span>
 
-<span data-ttu-id="6b596-170">使用 [Set-AzureRmSqlServerBackupLongTermRetentionVault](/powershell/module/azurerm.sql/set-azurermsqlserverbackuplongtermretentionvault) Cmdlet，讓先前建立的復原服務保存庫與特定 Azure SQL Server 產生關聯。</span><span class="sxs-lookup"><span data-stu-id="6b596-170">Use the [Set-AzureRmSqlServerBackupLongTermRetentionVault](/powershell/module/azurerm.sql/set-azurermsqlserverbackuplongtermretentionvault) cmdlet to associate a previously created recovery services vault with a specific Azure SQL server.</span></span>
+<span data-ttu-id="a98ac-170">使用 hello[組 AzureRmSqlServerBackupLongTermRetentionVault](/powershell/module/azurerm.sql/set-azurermsqlserverbackuplongtermretentionvault)先前建立的 cmdlet tooassociate 復原服務保存庫與特定的 Azure SQL 伺服器。</span><span class="sxs-lookup"><span data-stu-id="a98ac-170">Use hello [Set-AzureRmSqlServerBackupLongTermRetentionVault](/powershell/module/azurerm.sql/set-azurermsqlserverbackuplongtermretentionvault) cmdlet tooassociate a previously created recovery services vault with a specific Azure SQL server.</span></span>
 
 ```PowerShell
-# Set your server to use the vault to for long-term backup retention 
+# Set your server toouse hello vault toofor long-term backup retention 
 
 Set-AzureRmSqlServerBackupLongTermRetentionVault -ResourceGroupName $resourceGroupName -ServerName $serverName -ResourceId $vault.Id
 ```
 
-### <a name="create-a-retention-policy"></a><span data-ttu-id="6b596-171">建立保留原則</span><span class="sxs-lookup"><span data-stu-id="6b596-171">Create a retention policy</span></span>
+### <a name="create-a-retention-policy"></a><span data-ttu-id="a98ac-171">建立保留原則</span><span class="sxs-lookup"><span data-stu-id="a98ac-171">Create a retention policy</span></span>
 
-<span data-ttu-id="6b596-172">保留原則就是您設定資料庫備份保留時間長度的位置。</span><span class="sxs-lookup"><span data-stu-id="6b596-172">A retention policy is where you set how long to keep a database backup.</span></span> <span data-ttu-id="6b596-173">使用 [Get-AzureRmRecoveryServicesBackupRetentionPolicyObject](https://docs.microsoft.com/powershell/resourcemanager/azurerm.recoveryservices.backup/v2.3.0/get-azurermrecoveryservicesbackupretentionpolicyobject) Cmdlet 來取得預設保留原則，以便作為建立原則的範本。</span><span class="sxs-lookup"><span data-stu-id="6b596-173">Use the [Get-AzureRmRecoveryServicesBackupRetentionPolicyObject](https://docs.microsoft.com/powershell/resourcemanager/azurerm.recoveryservices.backup/v2.3.0/get-azurermrecoveryservicesbackupretentionpolicyobject) cmdlet to get the default retention policy to use as the template for creating policies.</span></span> <span data-ttu-id="6b596-174">在此範本中，保留期限設定為 2 年。</span><span class="sxs-lookup"><span data-stu-id="6b596-174">In this template, the retention period is set for 2 years.</span></span> <span data-ttu-id="6b596-175">接下來，執行 [New-AzureRmRecoveryServicesBackupProtectionPolicy](/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy) 完成原則建立。</span><span class="sxs-lookup"><span data-stu-id="6b596-175">Next, run the [New-AzureRmRecoveryServicesBackupProtectionPolicy](/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy) to finally create the policy.</span></span> 
+<span data-ttu-id="a98ac-172">保留原則就是您設定多久 tookeep 資料庫備份。</span><span class="sxs-lookup"><span data-stu-id="a98ac-172">A retention policy is where you set how long tookeep a database backup.</span></span> <span data-ttu-id="a98ac-173">使用 hello [Get AzureRmRecoveryServicesBackupRetentionPolicyObject](https://docs.microsoft.com/powershell/resourcemanager/azurerm.recoveryservices.backup/v2.3.0/get-azurermrecoveryservicesbackupretentionpolicyobject) cmdlet tooget hello 預設保留原則 toouse 當做 hello 範本建立原則。</span><span class="sxs-lookup"><span data-stu-id="a98ac-173">Use hello [Get-AzureRmRecoveryServicesBackupRetentionPolicyObject](https://docs.microsoft.com/powershell/resourcemanager/azurerm.recoveryservices.backup/v2.3.0/get-azurermrecoveryservicesbackupretentionpolicyobject) cmdlet tooget hello default retention policy toouse as hello template for creating policies.</span></span> <span data-ttu-id="a98ac-174">此範本中 hello 保留期限設定為 2 年。</span><span class="sxs-lookup"><span data-stu-id="a98ac-174">In this template, hello retention period is set for 2 years.</span></span> <span data-ttu-id="a98ac-175">接下來，執行 hello[新增 AzureRmRecoveryServicesBackupProtectionPolicy](/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy) toofinally 建立 hello 原則。</span><span class="sxs-lookup"><span data-stu-id="a98ac-175">Next, run hello [New-AzureRmRecoveryServicesBackupProtectionPolicy](/powershell/module/azurerm.recoveryservices.backup/new-azurermrecoveryservicesbackupprotectionpolicy) toofinally create hello policy.</span></span> 
 
 > [!NOTE]
-> <span data-ttu-id="6b596-176">有些 Cmdlet 會要求您先設定保存庫內容，然後才執行 ([Set-AzureRmRecoveryServicesVaultContext](/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext))，所以您會在幾個相關的程式碼片段中看見此 Cmdlet。</span><span class="sxs-lookup"><span data-stu-id="6b596-176">Some cmdlets require that you set the vault context before running ([Set-AzureRmRecoveryServicesVaultContext](/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext)) so you see this cmdlet in a few related snippets.</span></span> <span data-ttu-id="6b596-177">因為原則是保存庫的一部分，所以我們會設定內容。</span><span class="sxs-lookup"><span data-stu-id="6b596-177">You set the context because the policy is part of the vault.</span></span> <span data-ttu-id="6b596-178">您可以為每個保存庫建立多個保留原則，然後將所需的原則套用到特定資料庫。</span><span class="sxs-lookup"><span data-stu-id="6b596-178">You can create multiple retention policies for each vault and then apply the desired policy to specific databases.</span></span> 
+> <span data-ttu-id="a98ac-176">部分指令程式需要您設定 hello 保存庫內容，再執行 ([組 AzureRmRecoveryServicesVaultContext](/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext)) 讓您查看幾個相關的程式碼片段中的這個指令程式。</span><span class="sxs-lookup"><span data-stu-id="a98ac-176">Some cmdlets require that you set hello vault context before running ([Set-AzureRmRecoveryServicesVaultContext](/powershell/module/azurerm.recoveryservices/set-azurermrecoveryservicesvaultcontext)) so you see this cmdlet in a few related snippets.</span></span> <span data-ttu-id="a98ac-177">因為 hello 原則是 hello 保存庫的一部分，您可以設定 hello 內容。</span><span class="sxs-lookup"><span data-stu-id="a98ac-177">You set hello context because hello policy is part of hello vault.</span></span> <span data-ttu-id="a98ac-178">您可以建立多個保留原則，針對每個保存庫，然後再套用所需的 hello 原則 toospecific 資料庫。</span><span class="sxs-lookup"><span data-stu-id="a98ac-178">You can create multiple retention policies for each vault and then apply hello desired policy toospecific databases.</span></span> 
 
 
 ```PowerShell
-# Retrieve the default retention policy for the AzureSQLDatabase workload type
+# Retrieve hello default retention policy for hello AzureSQLDatabase workload type
 $retentionPolicy = Get-AzureRmRecoveryServicesBackupRetentionPolicyObject -WorkloadType AzureSQLDatabase
 
-# Set the retention value to two years (you can set to any time between 1 week and 10 years)
+# Set hello retention value tootwo years (you can set tooany time between 1 week and 10 years)
 $retentionPolicy.RetentionDurationType = "Years"
 $retentionPolicy.RetentionCount = 2
 $retentionPolicyName = "my2YearRetentionPolicy"
 
-# Set the vault context to the vault you are creating the policy for
+# Set hello vault context toohello vault you are creating hello policy for
 Set-AzureRmRecoveryServicesVaultContext -Vault $vault
 
-# Create the new policy
+# Create hello new policy
 $policy = New-AzureRmRecoveryServicesBackupProtectionPolicy -name $retentionPolicyName -WorkloadType AzureSQLDatabase -retentionPolicy $retentionPolicy
 $policy
 ```
 
-### <a name="configure-a-database-to-use-the-previously-defined-retention-policy"></a><span data-ttu-id="6b596-179">設定資料庫以使用先前定義的保留原則</span><span class="sxs-lookup"><span data-stu-id="6b596-179">Configure a database to use the previously defined retention policy</span></span>
+### <a name="configure-a-database-toouse-hello-previously-defined-retention-policy"></a><span data-ttu-id="a98ac-179">設定資料庫 toouse hello 預先定義保留原則</span><span class="sxs-lookup"><span data-stu-id="a98ac-179">Configure a database toouse hello previously defined retention policy</span></span>
 
-<span data-ttu-id="6b596-180">使用 [Set-AzureRmSqlDatabaseBackupLongTermRetentionPolicy](/powershell/module/azurerm.sql/set-azurermsqldatabasebackuplongtermretentionpolicy) Cmdlet，將新原則套用到特定資料庫。</span><span class="sxs-lookup"><span data-stu-id="6b596-180">Use the [Set-AzureRmSqlDatabaseBackupLongTermRetentionPolicy](/powershell/module/azurerm.sql/set-azurermsqldatabasebackuplongtermretentionpolicy) cmdlet to apply the new policy to a specific database.</span></span>
+<span data-ttu-id="a98ac-180">使用 hello[組 AzureRmSqlDatabaseBackupLongTermRetentionPolicy](/powershell/module/azurerm.sql/set-azurermsqldatabasebackuplongtermretentionpolicy) cmdlet tooapply hello 新原則 tooa 特定資料庫。</span><span class="sxs-lookup"><span data-stu-id="a98ac-180">Use hello [Set-AzureRmSqlDatabaseBackupLongTermRetentionPolicy](/powershell/module/azurerm.sql/set-azurermsqldatabasebackuplongtermretentionpolicy) cmdlet tooapply hello new policy tooa specific database.</span></span>
 
 ```PowerShell
 # Enable long-term retention for a specific SQL database
@@ -211,43 +211,43 @@ $policyState = "enabled"
 Set-AzureRmSqlDatabaseBackupLongTermRetentionPolicy -ResourceGroupName $resourceGroupName -ServerName $serverName -DatabaseName $databaseName -State $policyState -ResourceId $policy.Id
 ```
 
-### <a name="view-backup-info-and-backups-in-long-term-retention"></a><span data-ttu-id="6b596-181">檢視備份資訊和長期保留中的備份</span><span class="sxs-lookup"><span data-stu-id="6b596-181">View backup info, and backups in long-term retention</span></span>
+### <a name="view-backup-info-and-backups-in-long-term-retention"></a><span data-ttu-id="a98ac-181">檢視備份資訊和長期保留中的備份</span><span class="sxs-lookup"><span data-stu-id="a98ac-181">View backup info, and backups in long-term retention</span></span>
 
-<span data-ttu-id="6b596-182">檢視[長期備份保留](sql-database-long-term-retention.md)中資料庫備份的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="6b596-182">View information about your database backups in [long-term backup retention](sql-database-long-term-retention.md).</span></span> 
+<span data-ttu-id="a98ac-182">檢視[長期備份保留](sql-database-long-term-retention.md)中資料庫備份的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="a98ac-182">View information about your database backups in [long-term backup retention](sql-database-long-term-retention.md).</span></span> 
 
-<span data-ttu-id="6b596-183">請使用下列 Cmdlet 來檢視備份資訊︰</span><span class="sxs-lookup"><span data-stu-id="6b596-183">Use the following cmdlets to view backup information:</span></span>
+<span data-ttu-id="a98ac-183">使用下列 cmdlet tooview 備份資訊的 hello:</span><span class="sxs-lookup"><span data-stu-id="a98ac-183">Use hello following cmdlets tooview backup information:</span></span>
 
-- [<span data-ttu-id="6b596-184">Get-AzureRmRecoveryServicesBackupContainer</span><span class="sxs-lookup"><span data-stu-id="6b596-184">Get-AzureRmRecoveryServicesBackupContainer</span></span>](/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupcontainer)
-- [<span data-ttu-id="6b596-185">Get-AzureRmRecoveryServicesBackupItem</span><span class="sxs-lookup"><span data-stu-id="6b596-185">Get-AzureRmRecoveryServicesBackupItem</span></span>](/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupitem)
-- [<span data-ttu-id="6b596-186">Get-AzureRmRecoveryServicesBackupRecoveryPoint</span><span class="sxs-lookup"><span data-stu-id="6b596-186">Get-AzureRmRecoveryServicesBackupRecoveryPoint</span></span>](/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackuprecoverypoint)
+- [<span data-ttu-id="a98ac-184">Get-AzureRmRecoveryServicesBackupContainer</span><span class="sxs-lookup"><span data-stu-id="a98ac-184">Get-AzureRmRecoveryServicesBackupContainer</span></span>](/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupcontainer)
+- [<span data-ttu-id="a98ac-185">Get-AzureRmRecoveryServicesBackupItem</span><span class="sxs-lookup"><span data-stu-id="a98ac-185">Get-AzureRmRecoveryServicesBackupItem</span></span>](/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackupitem)
+- [<span data-ttu-id="a98ac-186">Get-AzureRmRecoveryServicesBackupRecoveryPoint</span><span class="sxs-lookup"><span data-stu-id="a98ac-186">Get-AzureRmRecoveryServicesBackupRecoveryPoint</span></span>](/powershell/module/azurerm.recoveryservices.backup/get-azurermrecoveryservicesbackuprecoverypoint)
 
 ```PowerShell
 #$resourceGroupName = "{resource-group-name}"
 #$serverName = "{server-name}"
 $databaseNeedingRestore = $databaseName
 
-# Set the vault context to the vault we want to restore from
+# Set hello vault context toohello vault we want toorestore from
 #$vault = Get-AzureRmRecoveryServicesVault -ResourceGroupName $resourceGroupName
 Set-AzureRmRecoveryServicesVaultContext -Vault $vault
 
-# the following commands find the container associated with the server 'myserver' under resource group 'myresourcegroup'
+# hello following commands find hello container associated with hello server 'myserver' under resource group 'myresourcegroup'
 $container = Get-AzureRmRecoveryServicesBackupContainer -ContainerType AzureSQL -FriendlyName $vault.Name
 
-# Get the long-term retention metadata associated with a specific database
+# Get hello long-term retention metadata associated with a specific database
 $item = Get-AzureRmRecoveryServicesBackupItem -Container $container -WorkloadType AzureSQLDatabase -Name $databaseNeedingRestore
 
-# Get all available backups for the previously indicated database
-# Optionally, set the -StartDate and -EndDate parameters to return backups within a specific time period
+# Get all available backups for hello previously indicated database
+# Optionally, set hello -StartDate and -EndDate parameters tooreturn backups within a specific time period
 $availableBackups = Get-AzureRmRecoveryServicesBackupRecoveryPoint -Item $item
 $availableBackups
 ```
 
-### <a name="restore-a-database-from-a-backup-in-long-term-backup-retention"></a><span data-ttu-id="6b596-187">從長期備份保留備份中還原資料庫</span><span class="sxs-lookup"><span data-stu-id="6b596-187">Restore a database from a backup in long-term backup retention</span></span>
+### <a name="restore-a-database-from-a-backup-in-long-term-backup-retention"></a><span data-ttu-id="a98ac-187">從長期備份保留備份中還原資料庫</span><span class="sxs-lookup"><span data-stu-id="a98ac-187">Restore a database from a backup in long-term backup retention</span></span>
 
-<span data-ttu-id="6b596-188">使用 [Restore-AzureRmSqlDatabase](/powershell/module/azurerm.sql/restore-azurermsqldatabase) Cmdlet 從長期備份保留中還原。</span><span class="sxs-lookup"><span data-stu-id="6b596-188">Restoring from long-term backup retention uses the [Restore-AzureRmSqlDatabase](/powershell/module/azurerm.sql/restore-azurermsqldatabase) cmdlet.</span></span>
+<span data-ttu-id="a98ac-188">還原從長期備份的保留使用 hello[還原 AzureRmSqlDatabase](/powershell/module/azurerm.sql/restore-azurermsqldatabase) cmdlet。</span><span class="sxs-lookup"><span data-stu-id="a98ac-188">Restoring from long-term backup retention uses hello [Restore-AzureRmSqlDatabase](/powershell/module/azurerm.sql/restore-azurermsqldatabase) cmdlet.</span></span>
 
 ```PowerShell
-# Restore the most recent backup: $availableBackups[0]
+# Restore hello most recent backup: $availableBackups[0]
 #$resourceGroupName = "{resource-group-name}"
 #$serverName = "{server-name}"
 $restoredDatabaseName = "{new-database-name}"
@@ -261,10 +261,10 @@ $restoredDb
 
 
 > [!NOTE]
-> <span data-ttu-id="6b596-189">從這裡開始，您可以使用 SQL Server Management Studio 連線到已還原的資料庫來執行所需的工作，例如從還原的資料庫擷取一堆資料來複製到現有的資料庫，或刪除現有的資料庫，並將還原的資料庫重新命名為現有的資料庫名稱。</span><span class="sxs-lookup"><span data-stu-id="6b596-189">From here, you can connect to the restored database using SQL Server Management Studio to perform needed tasks, such as to extract a bit of data from the restored database to copy into the existing database or to delete the existing database and rename the restored database to the existing database name.</span></span> <span data-ttu-id="6b596-190">請參閱[還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)。</span><span class="sxs-lookup"><span data-stu-id="6b596-190">See [point in time restore](sql-database-recovery-using-backups.md#point-in-time-restore).</span></span>
+> <span data-ttu-id="a98ac-189">從這裡，您可以連接 toohello 還原資料庫使用 SQL Server Management Studio tooperform 所需的工作，例如 tooextract 的 hello 資料位元，請還原到 hello 現有的資料庫或 toodelete hello 現有的資料庫和重新命名的資料庫 toocopyhello 還原的資料庫 toohello 現有的資料庫名稱。</span><span class="sxs-lookup"><span data-stu-id="a98ac-189">From here, you can connect toohello restored database using SQL Server Management Studio tooperform needed tasks, such as tooextract a bit of data from hello restored database toocopy into hello existing database or toodelete hello existing database and rename hello restored database toohello existing database name.</span></span> <span data-ttu-id="a98ac-190">請參閱[還原時間點](sql-database-recovery-using-backups.md#point-in-time-restore)。</span><span class="sxs-lookup"><span data-stu-id="a98ac-190">See [point in time restore](sql-database-recovery-using-backups.md#point-in-time-restore).</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="6b596-191">後續步驟</span><span class="sxs-lookup"><span data-stu-id="6b596-191">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="a98ac-191">後續步驟</span><span class="sxs-lookup"><span data-stu-id="a98ac-191">Next steps</span></span>
 
-- <span data-ttu-id="6b596-192">若要深入了解服務產生的自動備份，請參閱[自動備份](sql-database-automated-backups.md)</span><span class="sxs-lookup"><span data-stu-id="6b596-192">To learn about service-generated automatic backups, see [automatic backups](sql-database-automated-backups.md)</span></span>
-- <span data-ttu-id="6b596-193">若要深入了解長期備份保留，請參閱[長期備份保留](sql-database-long-term-retention.md)</span><span class="sxs-lookup"><span data-stu-id="6b596-193">To learn about long-term backup retention, see [long-term backup retention](sql-database-long-term-retention.md)</span></span>
-- <span data-ttu-id="6b596-194">若要深入了解從備份還原，請參閱[從備份還原](sql-database-recovery-using-backups.md)</span><span class="sxs-lookup"><span data-stu-id="6b596-194">To learn about restoring from backups, see [restore from backup](sql-database-recovery-using-backups.md)</span></span>
+- <span data-ttu-id="a98ac-192">toolearn 有關服務產生的自動備份，請參閱[自動備份](sql-database-automated-backups.md)</span><span class="sxs-lookup"><span data-stu-id="a98ac-192">toolearn about service-generated automatic backups, see [automatic backups](sql-database-automated-backups.md)</span></span>
+- <span data-ttu-id="a98ac-193">toolearn 有關長期備份的保留，請參閱[長期備份的保留](sql-database-long-term-retention.md)</span><span class="sxs-lookup"><span data-stu-id="a98ac-193">toolearn about long-term backup retention, see [long-term backup retention](sql-database-long-term-retention.md)</span></span>
+- <span data-ttu-id="a98ac-194">請參閱有關從備份還原 toolearn[從備份還原](sql-database-recovery-using-backups.md)</span><span class="sxs-lookup"><span data-stu-id="a98ac-194">toolearn about restoring from backups, see [restore from backup](sql-database-recovery-using-backups.md)</span></span>

@@ -1,6 +1,6 @@
 ---
-title: "H264 單一位元率 1080p 媒體編碼器標準預設值 - Azure | Microsoft Docs"
-description: "本主題提供「H264 單一位元速率 1080p」工作預設的概觀。"
+title: "aaaH264 單一位元速率 1080p 媒體編碼器標準預先設定-Azure |Microsoft 文件"
+description: "hello 主題概略 hello * * H264 單一位元速率 1080 p * * 工作預設值。"
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 1cfce559dae6533b62283764e8aff62f8a141946
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e06c68e3372c7f1e5903413840c118e2c3426168
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="h264-single-bitrate-1080p"></a><span data-ttu-id="a3e38-103">H264 單一位元速率 1080p</span><span class="sxs-lookup"><span data-stu-id="a3e38-103">H264 Single Bitrate 1080p</span></span>
-<span data-ttu-id="a3e38-104">`Media Encoder Standard` 定義一組編碼預設，供您在建立編碼作業時使用。</span><span class="sxs-lookup"><span data-stu-id="a3e38-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="a3e38-105">您可以使用 `preset name` 來指定您想要將媒體檔案編碼成哪一種格式。</span><span class="sxs-lookup"><span data-stu-id="a3e38-105">You can either use a `preset name` to specify into which format you would like to encode your media file.</span></span> <span data-ttu-id="a3e38-106">或者，您可以建立自己的 JSON 或 XML 型預設 (使用 UTF-8 或 UTF-16 編碼)。</span><span class="sxs-lookup"><span data-stu-id="a3e38-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="a3e38-107">然後，您要將自訂預設傳遞給編碼器。</span><span class="sxs-lookup"><span data-stu-id="a3e38-107">You would then pass the custom preset to the encoder.</span></span> <span data-ttu-id="a3e38-108">如需這個 `Media Encoder Standard` 編碼器支援的所有預設名稱清單，請參閱[媒體編碼器標準的工作預設](media-services-mes-presets-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="a3e38-108">For the list of all the preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
+# <a name="h264-single-bitrate-1080p"></a><span data-ttu-id="07139-103">H264 單一位元速率 1080p</span><span class="sxs-lookup"><span data-stu-id="07139-103">H264 Single Bitrate 1080p</span></span>
+<span data-ttu-id="07139-104">`Media Encoder Standard` 定義一組編碼預設，供您在建立編碼作業時使用。</span><span class="sxs-lookup"><span data-stu-id="07139-104">`Media Encoder Standard` defines a set of encoding presets you can use when creating encoding jobs.</span></span> <span data-ttu-id="07139-105">您可以使用`preset name`toospecify 成哪一種格式中，您想要 tooencode 媒體檔案。</span><span class="sxs-lookup"><span data-stu-id="07139-105">You can either use a `preset name` toospecify into which format you would like tooencode your media file.</span></span> <span data-ttu-id="07139-106">或者，您可以建立自己的 JSON 或 XML 型預設 (使用 UTF-8 或 UTF-16 編碼)。</span><span class="sxs-lookup"><span data-stu-id="07139-106">Or, you can create your own JSON or XML-based presets (using UTF-8 or UTF-16 encoding.</span></span> <span data-ttu-id="07139-107">然後，您會傳遞 hello 自訂預設的 toohello 編碼器。</span><span class="sxs-lookup"><span data-stu-id="07139-107">You would then pass hello custom preset toohello encoder.</span></span> <span data-ttu-id="07139-108">所有的 hello hello 清單的預設名稱支援這`Media Encoder Standard`編碼器，請參閱[的媒體編碼器標準工作預設](media-services-mes-presets-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="07139-108">For hello list of all hello preset names supported by this `Media Encoder Standard` encoder, see [Task Presets for Media Encoder Standard](media-services-mes-presets-overview.md).</span></span>  
   
- <span data-ttu-id="a3e38-109">本主題說明 XML 和 JSON 格式的 `H264 Single Bitrate 1080p` 預設。</span><span class="sxs-lookup"><span data-stu-id="a3e38-109">This topic shows the `H264 Single Bitrate 1080p` preset in XML and JSON format.</span></span>  
+ <span data-ttu-id="07139-109">本主題顯示 hello`H264 Single Bitrate 1080p`預設 XML 和 JSON 格式。</span><span class="sxs-lookup"><span data-stu-id="07139-109">This topic shows hello `H264 Single Bitrate 1080p` preset in XML and JSON format.</span></span>  
   
- <span data-ttu-id="a3e38-110">此預設會產生位元速率為 6750 kbps 的單一 MP4 檔案，而且是立體聲 AAC 音訊。</span><span class="sxs-lookup"><span data-stu-id="a3e38-110">This preset produces a single MP4 file with a bitrate of 6750 kbps, and stereo AAC audio.</span></span> <span data-ttu-id="a3e38-111">如需此預設的設定檔、位元速率、取樣率等的詳細資訊，請檢查以下定義的 XML 或 JSON。</span><span class="sxs-lookup"><span data-stu-id="a3e38-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine the XML or JSON defined below.</span></span> <span data-ttu-id="a3e38-112">如需這些預設中每個元素的意義說明及每個元素的有效值，請參閱[媒體編碼器標準結構描述](media-services-mes-schema.md)主題。</span><span class="sxs-lookup"><span data-stu-id="a3e38-112">For explanations of what each element in these presets means, and the valid values for each element, see the [Media Encoder Standard schema](media-services-mes-schema.md) topic.</span></span>  
+ <span data-ttu-id="07139-110">此預設會產生位元速率為 6750 kbps 的單一 MP4 檔案，而且是立體聲 AAC 音訊。</span><span class="sxs-lookup"><span data-stu-id="07139-110">This preset produces a single MP4 file with a bitrate of 6750 kbps, and stereo AAC audio.</span></span> <span data-ttu-id="07139-111">如需設定檔的詳細資訊，位元速率，取樣率、 等等。 這個預設值，請檢查 hello XML 或 JSON 定義如下。</span><span class="sxs-lookup"><span data-stu-id="07139-111">For detailed information about profile, bitrate, sampling rate, etc. of this preset, examine hello XML or JSON defined below.</span></span> <span data-ttu-id="07139-112">如需每個項目哪些這些預設值表示與 hello 有效的值中的每個項目說明，請參閱 hello[媒體編碼器標準結構描述](media-services-mes-schema.md)主題。</span><span class="sxs-lookup"><span data-stu-id="07139-112">For explanations of what each element in these presets means, and hello valid values for each element, see hello [Media Encoder Standard schema](media-services-mes-schema.md) topic.</span></span>  
   
- <span data-ttu-id="a3e38-113">XML</span><span class="sxs-lookup"><span data-stu-id="a3e38-113">XML</span></span>  
+ <span data-ttu-id="07139-113">XML</span><span class="sxs-lookup"><span data-stu-id="07139-113">XML</span></span>  
   
 ```  
 <?xml version="1.0" encoding="utf-16"?>  
@@ -70,7 +70,7 @@ ms.lasthandoff: 08/29/2017
 </Preset>  
 ```  
   
- <span data-ttu-id="a3e38-114">JSON</span><span class="sxs-lookup"><span data-stu-id="a3e38-114">JSON</span></span>  
+ <span data-ttu-id="07139-114">JSON</span><span class="sxs-lookup"><span data-stu-id="07139-114">JSON</span></span>  
   
 ```  
 {  

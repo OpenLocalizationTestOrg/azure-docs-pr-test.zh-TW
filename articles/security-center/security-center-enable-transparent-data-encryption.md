@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 資訊安全中心啟用透明資料加密 | Microsoft Docs"
-description: "本文件說明如何實作 Azure 資訊安全中心建議的「啟用透明資料加密」。"
+title: "aaaEnable Azure 資訊安全中心中的透明資料加密 |Microsoft 文件"
+description: "本文件說明如何 tooimplement hello Azure 資訊安全中心建議事項 * * 啟用透明資料加密 * *。"
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: 2a2963affdbff3710ad08f86c6ed4e6304335559
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 94c6e9a1feddaa48faac6c835d416c4d131cd5c5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="enable-transparent-data-encryption-in-azure-security-center"></a><span data-ttu-id="75099-103">在 Azure 資訊安全中心啟用透明資料加密</span><span class="sxs-lookup"><span data-stu-id="75099-103">Enable Transparent Data Encryption in Azure Security Center</span></span>
-<span data-ttu-id="75099-104">如果尚未啟用 TDE，Azure 資訊安全中心將建議您在 SQL Database 上啟用透明資料加密 (TDE)。</span><span class="sxs-lookup"><span data-stu-id="75099-104">Azure Security Center will recommend that you enable Transparent Data Encryption (TDE) on SQL databases if TDE is not already enabled.</span></span> <span data-ttu-id="75099-105">TDE 可保護您的資料，並在無須變更您應用程式的情況下，加密不在作用中的資料庫、相關聯的備份以及交易記錄檔，以協助您符合法規遵循需求。</span><span class="sxs-lookup"><span data-stu-id="75099-105">TDE protects your data and helps you meet compliance requirements by encrypting your database, associated backups, and transaction log files at rest, without requiring changes to your application.</span></span> <span data-ttu-id="75099-106">若要深入了解，請參閱 [Azure SQL Database 的透明資料加密](https://msdn.microsoft.com/library/dn948096)。</span><span class="sxs-lookup"><span data-stu-id="75099-106">To learn more see [Transparent Data Encryption with Azure SQL Database](https://msdn.microsoft.com/library/dn948096).</span></span>
+# <a name="enable-transparent-data-encryption-in-azure-security-center"></a><span data-ttu-id="af367-103">在 Azure 資訊安全中心啟用透明資料加密</span><span class="sxs-lookup"><span data-stu-id="af367-103">Enable Transparent Data Encryption in Azure Security Center</span></span>
+<span data-ttu-id="af367-104">如果尚未啟用 TDE，Azure 資訊安全中心將建議您在 SQL Database 上啟用透明資料加密 (TDE)。</span><span class="sxs-lookup"><span data-stu-id="af367-104">Azure Security Center will recommend that you enable Transparent Data Encryption (TDE) on SQL databases if TDE is not already enabled.</span></span> <span data-ttu-id="af367-105">TDE 會保護資料，並協助您符合法規遵循需求加密資料庫、 相關聯的備份以及交易記錄檔，在其餘部分，而不需要變更 tooyour 應用程式。</span><span class="sxs-lookup"><span data-stu-id="af367-105">TDE protects your data and helps you meet compliance requirements by encrypting your database, associated backups, and transaction log files at rest, without requiring changes tooyour application.</span></span> <span data-ttu-id="af367-106">toolearn 更看到[Azure SQL Database 的透明資料加密](https://msdn.microsoft.com/library/dn948096)。</span><span class="sxs-lookup"><span data-stu-id="af367-106">toolearn more see [Transparent Data Encryption with Azure SQL Database](https://msdn.microsoft.com/library/dn948096).</span></span>
 
-<span data-ttu-id="75099-107">此建議僅適用於 Azure SQL 服務；不包含在虛擬機器上執行的 SQL。</span><span class="sxs-lookup"><span data-stu-id="75099-107">This recommendation applies to the Azure SQL service only; doesn't include SQL running on your virtual machines.</span></span>
+<span data-ttu-id="af367-107">這項建議適用於 toohello; 僅限 Azure SQL 服務不包含 SQL 虛擬機器上執行。</span><span class="sxs-lookup"><span data-stu-id="af367-107">This recommendation applies toohello Azure SQL service only; doesn't include SQL running on your virtual machines.</span></span>
 
 > [!NOTE]
-> <span data-ttu-id="75099-108">本文件將使用範例部署來介紹服務。</span><span class="sxs-lookup"><span data-stu-id="75099-108">This document introduces the service by using an example deployment.</span></span>  <span data-ttu-id="75099-109">這不是逐步指南。</span><span class="sxs-lookup"><span data-stu-id="75099-109">This is not a step-by-step guide.</span></span>
+> <span data-ttu-id="af367-108">本文件介紹 hello 服務使用的範例部署。</span><span class="sxs-lookup"><span data-stu-id="af367-108">This document introduces hello service by using an example deployment.</span></span>  <span data-ttu-id="af367-109">這不是逐步指南。</span><span class="sxs-lookup"><span data-stu-id="af367-109">This is not a step-by-step guide.</span></span>
 >
 >
 
-## <a name="implement-the-recommendation"></a><span data-ttu-id="75099-110">實作建議</span><span class="sxs-lookup"><span data-stu-id="75099-110">Implement the recommendation</span></span>
-1. <span data-ttu-id="75099-111">在 [建議] 刀鋒視窗中，選取 [啟用透明資料加密]。</span><span class="sxs-lookup"><span data-stu-id="75099-111">In the **Recommendations** blade, select **Enable Transparent Data Encryption**.</span></span>
-   <span data-ttu-id="75099-112">![啟用透明資料加密][1]</span><span class="sxs-lookup"><span data-stu-id="75099-112">![Enable Transparent Data Encryption][1]</span></span>
-2. <span data-ttu-id="75099-113">這會開啟 [在 SQL 資料庫上啟用透明資料加密]  刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="75099-113">This opens the **Enable Transparent Data Encryption on SQL databases** blade.</span></span> <span data-ttu-id="75099-114">選取要在其上啟用 TDE 的 SQL Database。</span><span class="sxs-lookup"><span data-stu-id="75099-114">Select a SQL database to enable TDE on.</span></span>
-   <span data-ttu-id="75099-115">![選取要在其上啟用 TDE 的 SQL DB][2]</span><span class="sxs-lookup"><span data-stu-id="75099-115">![Select SQL DB to enable TDE on][2]</span></span>
-3. <span data-ttu-id="75099-116">在 [透明資料加密] 刀鋒視窗中，選取 [資料加密] 下方的 [開啟]，然後選取刀鋒視窗頂端功能區中的 [儲存]。</span><span class="sxs-lookup"><span data-stu-id="75099-116">On the **Transparent data encryption** blade, select **ON** under Data encryption and select **Save** in the top ribbon of the blade.</span></span>
-   <span data-ttu-id="75099-117">![開啟 TDE][3]</span><span class="sxs-lookup"><span data-stu-id="75099-117">![Turn on TDE][3]</span></span>
+## <a name="implement-hello-recommendation"></a><span data-ttu-id="af367-110">實作 hello 建議</span><span class="sxs-lookup"><span data-stu-id="af367-110">Implement hello recommendation</span></span>
+1. <span data-ttu-id="af367-111">在 hello**建議**刀鋒視窗中，選取**啟用透明資料加密**。</span><span class="sxs-lookup"><span data-stu-id="af367-111">In hello **Recommendations** blade, select **Enable Transparent Data Encryption**.</span></span>
+   <span data-ttu-id="af367-112">![啟用透明資料加密][1]</span><span class="sxs-lookup"><span data-stu-id="af367-112">![Enable Transparent Data Encryption][1]</span></span>
+2. <span data-ttu-id="af367-113">這會開啟 hello **SQL 資料庫上啟用透明資料加密**刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="af367-113">This opens hello **Enable Transparent Data Encryption on SQL databases** blade.</span></span> <span data-ttu-id="af367-114">選取上的 SQL 資料庫 tooenable TDE。</span><span class="sxs-lookup"><span data-stu-id="af367-114">Select a SQL database tooenable TDE on.</span></span>
+   <span data-ttu-id="af367-115">![選取上的 SQL DB tooenable TDE][2]</span><span class="sxs-lookup"><span data-stu-id="af367-115">![Select SQL DB tooenable TDE on][2]</span></span>
+3. <span data-ttu-id="af367-116">在 [hello**透明資料加密**刀鋒視窗中，選取**ON**下資料加密，然後選取**儲存**hello hello] 刀鋒視窗的頂端功能區中。</span><span class="sxs-lookup"><span data-stu-id="af367-116">On hello **Transparent data encryption** blade, select **ON** under Data encryption and select **Save** in hello top ribbon of hello blade.</span></span>
+   <span data-ttu-id="af367-117">![開啟 TDE][3]</span><span class="sxs-lookup"><span data-stu-id="af367-117">![Turn on TDE][3]</span></span>
 
-   <span data-ttu-id="75099-118">一旦在所選取的 SQL Database 上啟用 TDE 後，[加密狀態] 就會變成 [已加密]。</span><span class="sxs-lookup"><span data-stu-id="75099-118">Once TDE is enabled on the selected SQL database, the **Encryption status** will change to **Encrypted**.</span></span>    
+   <span data-ttu-id="af367-118">一旦啟用了 TDE hello 選取 SQL 資料庫 hello**加密狀態**也會變更**加密**。</span><span class="sxs-lookup"><span data-stu-id="af367-118">Once TDE is enabled on hello selected SQL database, hello **Encryption status** will change too**Encrypted**.</span></span>    
 
    ![加密狀態][4]
 
-## <a name="see-also"></a><span data-ttu-id="75099-120">另請參閱</span><span class="sxs-lookup"><span data-stu-id="75099-120">See also</span></span>
-<span data-ttu-id="75099-121">本文說明了如何實作資訊安全中心建議的「啟用透明資料加密」。</span><span class="sxs-lookup"><span data-stu-id="75099-121">This article showed you how to implement the Security Center recommendation "Enable Transparent Data Encryption."</span></span> <span data-ttu-id="75099-122">如要深入了解 SQL TDE，請參閱下列主題：</span><span class="sxs-lookup"><span data-stu-id="75099-122">To learn more about SQL TDE, see the following:</span></span>
+## <a name="see-also"></a><span data-ttu-id="af367-120">另請參閱</span><span class="sxs-lookup"><span data-stu-id="af367-120">See also</span></span>
+<span data-ttu-id="af367-121">本文章向您說明如何 tooimplement 會 hello 資訊安全中心建議 「 啟用透明資料加密 」。</span><span class="sxs-lookup"><span data-stu-id="af367-121">This article showed you how tooimplement hello Security Center recommendation "Enable Transparent Data Encryption."</span></span> <span data-ttu-id="af367-122">toolearn 深入了解 SQL TDE，請參閱 hello 下列資訊：</span><span class="sxs-lookup"><span data-stu-id="af367-122">toolearn more about SQL TDE, see hello following:</span></span>
 
-* [<span data-ttu-id="75099-123">Azure SQL Database 的透明資料加密</span><span class="sxs-lookup"><span data-stu-id="75099-123">Transparent Data Encryption with Azure SQL Database</span></span>](https://msdn.microsoft.com/library/dn948096)
-* [<span data-ttu-id="75099-124">開始使用透明資料加密 (TDE)</span><span class="sxs-lookup"><span data-stu-id="75099-124">Get started with Transparent Data Encryption (TDE)</span></span>](../sql-data-warehouse/sql-data-warehouse-encryption-tde.md)
+* [<span data-ttu-id="af367-123">Azure SQL Database 的透明資料加密</span><span class="sxs-lookup"><span data-stu-id="af367-123">Transparent Data Encryption with Azure SQL Database</span></span>](https://msdn.microsoft.com/library/dn948096)
+* [<span data-ttu-id="af367-124">開始使用透明資料加密 (TDE)</span><span class="sxs-lookup"><span data-stu-id="af367-124">Get started with Transparent Data Encryption (TDE)</span></span>](../sql-data-warehouse/sql-data-warehouse-encryption-tde.md)
 
-<span data-ttu-id="75099-125">如要深入了解資訊安全中心，請參閱下列主題：</span><span class="sxs-lookup"><span data-stu-id="75099-125">To learn more about Security Center, see the following:</span></span>
+<span data-ttu-id="af367-125">toolearn 有關資訊安全中心的詳細資訊，請參閱 hello 下列資訊：</span><span class="sxs-lookup"><span data-stu-id="af367-125">toolearn more about Security Center, see hello following:</span></span>
 
-* <span data-ttu-id="75099-126">[在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) --了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。</span><span class="sxs-lookup"><span data-stu-id="75099-126">[Setting security policies in Azure Security Center](security-center-policies.md) -- Learn how to configure security policies for your Azure subscriptions and resource groups.</span></span>
-* <span data-ttu-id="75099-127">[管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助保護您的 Azure 資源。</span><span class="sxs-lookup"><span data-stu-id="75099-127">[Managing security recommendations in Azure Security Center](security-center-recommendations.md) -- Learn how recommendations help you protect your Azure resources.</span></span>
-* <span data-ttu-id="75099-128">[Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。</span><span class="sxs-lookup"><span data-stu-id="75099-128">[Security health monitoring in Azure Security Center](security-center-monitoring.md) -- Learn how to monitor the health of your Azure resources.</span></span>
-* <span data-ttu-id="75099-129">[管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。</span><span class="sxs-lookup"><span data-stu-id="75099-129">[Managing and responding to security alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) -- Learn how to manage and respond to security alerts.</span></span>
-* <span data-ttu-id="75099-130">[使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀況。</span><span class="sxs-lookup"><span data-stu-id="75099-130">[Monitoring partner solutions with Azure Security Center](security-center-partner-solutions.md) -- Learn how to monitor the health status of your partner solutions.</span></span>
-* <span data-ttu-id="75099-131">[Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。</span><span class="sxs-lookup"><span data-stu-id="75099-131">[Azure Security Center FAQ](security-center-faq.md) -- Find frequently asked questions about using the service.</span></span>
-* <span data-ttu-id="75099-132">[Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 取得最新的 Azure 安全性新聞和資訊。</span><span class="sxs-lookup"><span data-stu-id="75099-132">[Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) -- Get the latest Azure security news and information.</span></span>
+* <span data-ttu-id="af367-126">[在 Azure 資訊安全中心中設定安全性原則](security-center-policies.md)-了解如何 tooconfigure 您的 Azure 訂用帳戶和資源群組的安全性原則。</span><span class="sxs-lookup"><span data-stu-id="af367-126">[Setting security policies in Azure Security Center](security-center-policies.md) -- Learn how tooconfigure security policies for your Azure subscriptions and resource groups.</span></span>
+* <span data-ttu-id="af367-127">[管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助保護您的 Azure 資源。</span><span class="sxs-lookup"><span data-stu-id="af367-127">[Managing security recommendations in Azure Security Center](security-center-recommendations.md) -- Learn how recommendations help you protect your Azure resources.</span></span>
+* <span data-ttu-id="af367-128">[在 Azure 資訊安全中心中的安全性健全狀況監視](security-center-monitoring.md)-了解如何 toomonitor hello 您的 Azure 資源的健全狀況。</span><span class="sxs-lookup"><span data-stu-id="af367-128">[Security health monitoring in Azure Security Center](security-center-monitoring.md) -- Learn how toomonitor hello health of your Azure resources.</span></span>
+* <span data-ttu-id="af367-129">[在 Azure 資訊安全中心警示管理，而且有回應 toosecurity](security-center-managing-and-responding-alerts.md) -了解如何 toomanage 和回應 toosecurity 警示。</span><span class="sxs-lookup"><span data-stu-id="af367-129">[Managing and responding toosecurity alerts in Azure Security Center](security-center-managing-and-responding-alerts.md) -- Learn how toomanage and respond toosecurity alerts.</span></span>
+* <span data-ttu-id="af367-130">[監視與 Azure 資訊安全中心的協力廠商解決方案](security-center-partner-solutions.md)-了解如何 toomonitor hello 的協力廠商解決方案的健全狀況狀態。</span><span class="sxs-lookup"><span data-stu-id="af367-130">[Monitoring partner solutions with Azure Security Center](security-center-partner-solutions.md) -- Learn how toomonitor hello health status of your partner solutions.</span></span>
+* <span data-ttu-id="af367-131">[Azure 資訊安全中心常見問題集](security-center-faq.md)-尋找使用 hello 服務相關的常見問題集。</span><span class="sxs-lookup"><span data-stu-id="af367-131">[Azure Security Center FAQ](security-center-faq.md) -- Find frequently asked questions about using hello service.</span></span>
+* <span data-ttu-id="af367-132">[Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)-取得最新 Azure 安全性消息 hello 和資訊。</span><span class="sxs-lookup"><span data-stu-id="af367-132">[Azure Security blog](http://blogs.msdn.com/b/azuresecurity/) -- Get hello latest Azure security news and information.</span></span>
 
 <!--Image references-->
 [1]: ./media/security-center-enable-tde-on-sql-databases/enable-tde.png

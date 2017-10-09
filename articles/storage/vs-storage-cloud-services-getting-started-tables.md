@@ -1,6 +1,6 @@
 ---
-title: "開始使用資料表儲存體和 Visual Studio 已連接服務 (雲端服務) | Microsoft Docs"
-description: "在使用 Visual Studio 已連接服務連接到儲存體帳戶之後，如何在 Visual Studio 雲端服務專案中開始使用 Azure 資料表儲存體"
+title: "開始使用資料表儲存體和 Visual Studio 已連線的服務 （雲端服務） 的 aaaGet |Microsoft 文件"
+description: "Tooget 啟動連接 tooa 儲存體帳戶，使用 Visual Studio 已連接服務之後，在 Visual Studio 中的雲端服務專案中使用 Azure 資料表儲存體的方式"
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,65 +14,65 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
-ms.openlocfilehash: 3208ddb1a1246a5ff25d272bfc7d8ba842348a36
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: efb16953e05764cb162cbdae4d0eab57f781682d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="getting-started-with-azure-table-storage-and-visual-studio-connected-services-cloud-services-projects"></a><span data-ttu-id="41b6d-103">開始使用 Azure 資料表儲存體和 Visual Studio 已連接服務 (雲端服務專案)</span><span class="sxs-lookup"><span data-stu-id="41b6d-103">Getting started with Azure table storage and Visual Studio connected services (cloud services projects)</span></span>
+# <a name="getting-started-with-azure-table-storage-and-visual-studio-connected-services-cloud-services-projects"></a><span data-ttu-id="667ef-103">開始使用 Azure 資料表儲存體和 Visual Studio 已連接服務 (雲端服務專案)</span><span class="sxs-lookup"><span data-stu-id="667ef-103">Getting started with Azure table storage and Visual Studio connected services (cloud services projects)</span></span>
 [!INCLUDE [storage-try-azure-tools-tables](../../includes/storage-try-azure-tools-tables.md)]
 
-## <a name="overview"></a><span data-ttu-id="41b6d-104">概觀</span><span class="sxs-lookup"><span data-stu-id="41b6d-104">Overview</span></span>
-<span data-ttu-id="41b6d-105">本文說明如何在您使用 Visual Studio 的 [新增連接的服務]  對話方塊建立或參考雲端服務專案中的 Azure 儲存體帳戶之後，開始在 Visual Studio 中使用 Azure 表格儲存體。</span><span class="sxs-lookup"><span data-stu-id="41b6d-105">This article describes how to get started using Azure table storage in Visual Studio after you have created or referenced an Azure storage account in a cloud services project by using the Visual Studio **Add Connected Services** dialog.</span></span> <span data-ttu-id="41b6d-106">[新增連接的服務]  作業會安裝適當的 NuGet 套件，以存取專案中的 Azure 儲存體，並將儲存體帳戶的連接字串新增至您的專案設定檔。</span><span class="sxs-lookup"><span data-stu-id="41b6d-106">The **Add Connected Services** operation installs the appropriate NuGet packages to access Azure storage in your project and adds the connection string for the storage account to your project configuration files.</span></span>
+## <a name="overview"></a><span data-ttu-id="667ef-104">概觀</span><span class="sxs-lookup"><span data-stu-id="667ef-104">Overview</span></span>
+<span data-ttu-id="667ef-105">本文章說明 tooget 開始使用 Visual Studio 中的 Azure 資料表儲存體之後您建立或參考 Azure 儲存體帳戶的雲端服務專案中使用 Visual Studio hello,**加入已連接服務**對話方塊.</span><span class="sxs-lookup"><span data-stu-id="667ef-105">This article describes how tooget started using Azure table storage in Visual Studio after you have created or referenced an Azure storage account in a cloud services project by using hello Visual Studio **Add Connected Services** dialog.</span></span> <span data-ttu-id="667ef-106">hello**加入已連接服務**作業安裝在您的專案中的適當 NuGet 封裝 tooaccess hello Azure 儲存體，並新增 hello 連接字串，hello 儲存體帳戶 tooyour 專案組態檔。</span><span class="sxs-lookup"><span data-stu-id="667ef-106">hello **Add Connected Services** operation installs hello appropriate NuGet packages tooaccess Azure storage in your project and adds hello connection string for hello storage account tooyour project configuration files.</span></span>
 
-<span data-ttu-id="41b6d-107">Azure 資料表儲存體服務可讓您儲存大量的結構化資料。</span><span class="sxs-lookup"><span data-stu-id="41b6d-107">The Azure Table storage service enables you to store large amounts of structured data.</span></span> <span data-ttu-id="41b6d-108">此服務是一個 NoSQL 資料存放區，接受來自 Azure 雲端內外經過驗證的呼叫。</span><span class="sxs-lookup"><span data-stu-id="41b6d-108">The service is a NoSQL datastore that accepts authenticated calls from inside and outside the Azure cloud.</span></span> <span data-ttu-id="41b6d-109">Azure 資料表很適合儲存結構化、非關聯式資料。</span><span class="sxs-lookup"><span data-stu-id="41b6d-109">Azure tables are ideal for storing structured, non-relational data.</span></span>
+<span data-ttu-id="667ef-107">hello Azure 資料表儲存體服務可讓您 toostore 大量結構化資料。</span><span class="sxs-lookup"><span data-stu-id="667ef-107">hello Azure Table storage service enables you toostore large amounts of structured data.</span></span> <span data-ttu-id="667ef-108">hello 服務是可接受來自內部和外部 hello Azure 雲端的已驗證的呼叫的 NoSQL 資料存放區。</span><span class="sxs-lookup"><span data-stu-id="667ef-108">hello service is a NoSQL datastore that accepts authenticated calls from inside and outside hello Azure cloud.</span></span> <span data-ttu-id="667ef-109">Azure 資料表很適合儲存結構化、非關聯式資料。</span><span class="sxs-lookup"><span data-stu-id="667ef-109">Azure tables are ideal for storing structured, non-relational data.</span></span>
 
-<span data-ttu-id="41b6d-110">若要開始，首先您必須在儲存體帳戶中建立資料表。</span><span class="sxs-lookup"><span data-stu-id="41b6d-110">To get started, you first need to create a table in your storage account.</span></span> <span data-ttu-id="41b6d-111">我們將說明如何使用程式碼建立 Azure 資料表，以及如何執行基本的資料表和實體作業，例如新增、修改、讀取和讀取資料表實體。</span><span class="sxs-lookup"><span data-stu-id="41b6d-111">We'll show you how to create an Azure table in code, and also how to perform basic table and entity operations, such as adding, modifying, reading and reading table entities.</span></span> <span data-ttu-id="41b6d-112">這些範例均以 C\# 程式碼撰寫，並使用 [Microsoft Azure Storage client library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx)。</span><span class="sxs-lookup"><span data-stu-id="41b6d-112">The samples are written in C\# code and use the [Microsoft Azure Storage client library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx).</span></span>
+<span data-ttu-id="667ef-110">tooget 開始，您必須先 toocreate 資料表儲存體帳戶中。</span><span class="sxs-lookup"><span data-stu-id="667ef-110">tooget started, you first need toocreate a table in your storage account.</span></span> <span data-ttu-id="667ef-111">我們將示範如何 toocreate Azure 資料表中的程式碼，以及如何 tooperform 基本資料表和實體作業，例如加入、 修改、 讀取以及讀取資料表實體。</span><span class="sxs-lookup"><span data-stu-id="667ef-111">We'll show you how toocreate an Azure table in code, and also how tooperform basic table and entity operations, such as adding, modifying, reading and reading table entities.</span></span> <span data-ttu-id="667ef-112">hello 範例以 C 撰寫\#程式碼和使用 hello[適用於.NET 的 Microsoft Azure 儲存體用戶端程式庫](https://msdn.microsoft.com/library/azure/dn261237.aspx)。</span><span class="sxs-lookup"><span data-stu-id="667ef-112">hello samples are written in C\# code and use hello [Microsoft Azure Storage client library for .NET](https://msdn.microsoft.com/library/azure/dn261237.aspx).</span></span>
 
-<span data-ttu-id="41b6d-113">**注意：** 有一些 API會以非同步方式對 Azure 儲存體執行呼叫。</span><span class="sxs-lookup"><span data-stu-id="41b6d-113">**NOTE:** Some of the APIs that perform calls out to Azure storage are asynchronous.</span></span> <span data-ttu-id="41b6d-114">如需詳細資訊，請參閱 [使用 Async 及 Await 進行非同步程式設計](http://msdn.microsoft.com/library/hh191443.aspx) 。</span><span class="sxs-lookup"><span data-stu-id="41b6d-114">See [Asynchronous programming with Async and Await](http://msdn.microsoft.com/library/hh191443.aspx) for more information.</span></span> <span data-ttu-id="41b6d-115">以下程式碼假設使用非同步程式設計方法。</span><span class="sxs-lookup"><span data-stu-id="41b6d-115">The code below assumes async programming methods are being used.</span></span>
+<span data-ttu-id="667ef-113">**注意：** hello Api 執行呼叫 tooAzure 存放裝置，有些非同步。</span><span class="sxs-lookup"><span data-stu-id="667ef-113">**NOTE:** Some of hello APIs that perform calls out tooAzure storage are asynchronous.</span></span> <span data-ttu-id="667ef-114">如需詳細資訊，請參閱 [使用 Async 和 Await 進行非同步程式設計](http://msdn.microsoft.com/library/hh191443.aspx) 。</span><span class="sxs-lookup"><span data-stu-id="667ef-114">See [Asynchronous programming with Async and Await](http://msdn.microsoft.com/library/hh191443.aspx) for more information.</span></span> <span data-ttu-id="667ef-115">下列程式碼 hello 假設正在使用非同步程式設計的方法。</span><span class="sxs-lookup"><span data-stu-id="667ef-115">hello code below assumes async programming methods are being used.</span></span>
 
-* <span data-ttu-id="41b6d-116">如需以程式設計方式處理資料表的詳細資訊，請參閱 [以 .NET 開始使用 Azure 資料表儲存體](storage-dotnet-how-to-use-tables.md) 。</span><span class="sxs-lookup"><span data-stu-id="41b6d-116">See [Get started with Azure Table storage using .NET](storage-dotnet-how-to-use-tables.md) for more information on programmatically manipulating tables.</span></span>
-* <span data-ttu-id="41b6d-117">如需 Azure 儲存體的一般資訊，請參閱 [儲存體文件](https://azure.microsoft.com/documentation/services/storage/) 。</span><span class="sxs-lookup"><span data-stu-id="41b6d-117">See [Storage documentation](https://azure.microsoft.com/documentation/services/storage/) for general information about Azure Storage.</span></span>
-* <span data-ttu-id="41b6d-118">如需 Azure 雲端服務的一般資訊，請參閱 [雲端服務文件](https://azure.microsoft.com/documentation/services/cloud-services/) 。</span><span class="sxs-lookup"><span data-stu-id="41b6d-118">See [Cloud Services documentation](https://azure.microsoft.com/documentation/services/cloud-services/) for general information about Azure cloud services.</span></span>
-* <span data-ttu-id="41b6d-119">若需要如何編寫 ASP.NET 應用程式的詳細資訊，請參閱 [ASP.NET](http://www.asp.net) 。</span><span class="sxs-lookup"><span data-stu-id="41b6d-119">See [ASP.NET](http://www.asp.net) for more information about programming ASP.NET applications.</span></span>
+* <span data-ttu-id="667ef-116">如需以程式設計方式處理資料表的詳細資訊，請參閱 [以 .NET 開始使用 Azure 資料表儲存體](storage-dotnet-how-to-use-tables.md) 。</span><span class="sxs-lookup"><span data-stu-id="667ef-116">See [Get started with Azure Table storage using .NET](storage-dotnet-how-to-use-tables.md) for more information on programmatically manipulating tables.</span></span>
+* <span data-ttu-id="667ef-117">如需 Azure 儲存體的一般資訊，請參閱 [儲存體文件](https://azure.microsoft.com/documentation/services/storage/) 。</span><span class="sxs-lookup"><span data-stu-id="667ef-117">See [Storage documentation](https://azure.microsoft.com/documentation/services/storage/) for general information about Azure Storage.</span></span>
+* <span data-ttu-id="667ef-118">如需 Azure 雲端服務的一般資訊，請參閱 [雲端服務文件](https://azure.microsoft.com/documentation/services/cloud-services/) 。</span><span class="sxs-lookup"><span data-stu-id="667ef-118">See [Cloud Services documentation](https://azure.microsoft.com/documentation/services/cloud-services/) for general information about Azure cloud services.</span></span>
+* <span data-ttu-id="667ef-119">若需要如何編寫 ASP.NET 應用程式的詳細資訊，請參閱 [ASP.NET](http://www.asp.net) 。</span><span class="sxs-lookup"><span data-stu-id="667ef-119">See [ASP.NET](http://www.asp.net) for more information about programming ASP.NET applications.</span></span>
 
-## <a name="access-tables-in-code"></a><span data-ttu-id="41b6d-120">在程式碼中存取資料表</span><span class="sxs-lookup"><span data-stu-id="41b6d-120">Access tables in code</span></span>
-<span data-ttu-id="41b6d-121">若要存取雲端服務專案中的資料表，您需要將下列項目併入至存取 Azure 資料表儲存體的任何 C# 原始程式檔。</span><span class="sxs-lookup"><span data-stu-id="41b6d-121">To access tables in cloud service projects, you need to include the following items to any C# source files that access Azure table storage.</span></span>
+## <a name="access-tables-in-code"></a><span data-ttu-id="667ef-120">在程式碼中存取資料表</span><span class="sxs-lookup"><span data-stu-id="667ef-120">Access tables in code</span></span>
+<span data-ttu-id="667ef-121">tooaccess 雲端服務專案中的資料表，您需要下列項目 tooany C# 來源檔案，存取 Azure 資料表儲存體 tooinclude hello。</span><span class="sxs-lookup"><span data-stu-id="667ef-121">tooaccess tables in cloud service projects, you need tooinclude hello following items tooany C# source files that access Azure table storage.</span></span>
 
-1. <span data-ttu-id="41b6d-122">請確定 C# 檔案頂端的命名空間宣告包含這些 **using** 陳述式。</span><span class="sxs-lookup"><span data-stu-id="41b6d-122">Make sure the namespace declarations at the top of the C# file include these **using** statements.</span></span>
+1. <span data-ttu-id="667ef-122">請確定在 hello hello C# 檔案最上方的 hello 命名空間宣告包括**使用**陳述式。</span><span class="sxs-lookup"><span data-stu-id="667ef-122">Make sure hello namespace declarations at hello top of hello C# file include these **using** statements.</span></span>
    
         using Microsoft.Framework.Configuration;
         using Microsoft.WindowsAzure.Storage;
         using Microsoft.WindowsAzure.Storage.Table;
         using System.Threading.Tasks;
         using LogLevel = Microsoft.Framework.Logging.LogLevel;
-2. <span data-ttu-id="41b6d-123">取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。</span><span class="sxs-lookup"><span data-stu-id="41b6d-123">Get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="41b6d-124">使用下列程式碼，從 Azure 服務組態取得儲存體連接字串和儲存體帳戶資訊。</span><span class="sxs-lookup"><span data-stu-id="41b6d-124">Use the following code to get the storage connection string and storage account information from the Azure service configuration.</span></span>
+2. <span data-ttu-id="667ef-123">取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。</span><span class="sxs-lookup"><span data-stu-id="667ef-123">Get a **CloudStorageAccount** object that represents your storage account information.</span></span> <span data-ttu-id="667ef-124">使用 hello hello Azure 服務組態中的下列程式碼 tooget hello 儲存體連接字串和儲存體帳戶資訊。</span><span class="sxs-lookup"><span data-stu-id="667ef-124">Use hello following code tooget hello storage connection string and storage account information from hello Azure service configuration.</span></span>
    
          CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
            CloudConfigurationManager.GetSetting("<storage account name>
          _AzureStorageConnectionString"));
    > [!NOTE]
-   > <span data-ttu-id="41b6d-125">請在下列範例中的程式碼前面使用上述所有程式碼。</span><span class="sxs-lookup"><span data-stu-id="41b6d-125">Use all of the above code in front of the code in the following samples.</span></span>
+   > <span data-ttu-id="667ef-125">您可以使用所有前面 hello 程式碼的程式碼上方的 hello hello 遵循範例中。</span><span class="sxs-lookup"><span data-stu-id="667ef-125">Use all of hello above code in front of hello code in hello following samples.</span></span>
    > 
    > 
-3. <span data-ttu-id="41b6d-126">取得 **CloudTableClient** 物件，以參考您儲存體帳戶中的資料表物件。</span><span class="sxs-lookup"><span data-stu-id="41b6d-126">Get a **CloudTableClient** object to reference the table objects in your storage account.</span></span>
+3. <span data-ttu-id="667ef-126">取得**CloudTableClient** tooreference hello 資料表物件儲存體帳戶中的物件。</span><span class="sxs-lookup"><span data-stu-id="667ef-126">Get a **CloudTableClient** object tooreference hello table objects in your storage account.</span></span>
    
-         // Create the table client.
+         // Create hello table client.
          CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
-4. <span data-ttu-id="41b6d-127">取得 **CloudTable** 參考物件，以參考特定資料表與實體。</span><span class="sxs-lookup"><span data-stu-id="41b6d-127">Get a **CloudTable** reference object to reference a specific table and entities.</span></span>
+4. <span data-ttu-id="667ef-127">取得**CloudTable**參考物件 tooreference 特定資料表和實體。</span><span class="sxs-lookup"><span data-stu-id="667ef-127">Get a **CloudTable** reference object tooreference a specific table and entities.</span></span>
    
-        // Get a reference to a table named "peopleTable".
+        // Get a reference tooa table named "peopleTable".
         CloudTable peopleTable = tableClient.GetTableReference("peopleTable");
 
-## <a name="create-a-table-in-code"></a><span data-ttu-id="41b6d-128">在程式碼中建立資料表</span><span class="sxs-lookup"><span data-stu-id="41b6d-128">Create a table in code</span></span>
-<span data-ttu-id="41b6d-129">若要建立 Azure 資料表，只要依照＜存取程式碼中的資料表＞一節所述，在取得 **CloudTable** 物件後加入 **CreateIfNotExistsAsync** 呼叫即可。</span><span class="sxs-lookup"><span data-stu-id="41b6d-129">To create the Azure table, just add a call to **CreateIfNotExistsAsync** to the after you get a **CloudTable** object as described in the "Access tables in code" section.</span></span>
+## <a name="create-a-table-in-code"></a><span data-ttu-id="667ef-128">在程式碼中建立資料表</span><span class="sxs-lookup"><span data-stu-id="667ef-128">Create a table in code</span></span>
+<span data-ttu-id="667ef-129">toocreate hello Azure 資料表，只要加入呼叫太**CreateIfNotExistsAsync** toohello 您之後**CloudTable** hello < 存取資料表中的程式碼 > 一節中所述的物件。</span><span class="sxs-lookup"><span data-stu-id="667ef-129">toocreate hello Azure table, just add a call too**CreateIfNotExistsAsync** toohello after you get a **CloudTable** object as described in hello "Access tables in code" section.</span></span>
 
-    // Create the CloudTable if it does not exist.
+    // Create hello CloudTable if it does not exist.
     await peopleTable.CreateIfNotExistsAsync();
 
-## <a name="add-an-entity-to-a-table"></a><span data-ttu-id="41b6d-130">將實體加入至資料表</span><span class="sxs-lookup"><span data-stu-id="41b6d-130">Add an entity to a table</span></span>
-<span data-ttu-id="41b6d-131">若要將實體新增至資料表，請建立一個類別來定義實體的屬性。</span><span class="sxs-lookup"><span data-stu-id="41b6d-131">To add an entity to a table, create a class that defines the properties of your entity.</span></span> <span data-ttu-id="41b6d-132">下列程式碼會定義稱為 **CustomerEntity** 的實體類別，其使用客戶名字作為資料列索引鍵，並使用姓氏作為資料分割索引鍵。</span><span class="sxs-lookup"><span data-stu-id="41b6d-132">The following code defines an entity class called **CustomerEntity** that uses the customer's first name as the row key and the last name as the partition key.</span></span>
+## <a name="add-an-entity-tooa-table"></a><span data-ttu-id="667ef-130">加入實體 tooa 表</span><span class="sxs-lookup"><span data-stu-id="667ef-130">Add an entity tooa table</span></span>
+<span data-ttu-id="667ef-131">tooadd 實體 tooa 資料表，建立一個類別來定義實體的 hello 屬性。</span><span class="sxs-lookup"><span data-stu-id="667ef-131">tooadd an entity tooa table, create a class that defines hello properties of your entity.</span></span> <span data-ttu-id="667ef-132">hello 下列程式碼會定義實體類別，稱為**CustomerEntity**使用 hello 客戶的名字為 hello 資料列索引鍵和 hello hello 資料分割索引鍵的最後一個名稱。</span><span class="sxs-lookup"><span data-stu-id="667ef-132">hello following code defines an entity class called **CustomerEntity** that uses hello customer's first name as hello row key and hello last name as hello partition key.</span></span>
 
     public class CustomerEntity : TableEntity
     {
@@ -89,51 +89,51 @@ ms.lasthandoff: 07/11/2017
         public string PhoneNumber { get; set; }
     }
 
-<span data-ttu-id="41b6d-133">實體相關的資料表作業會使用您稍早在＜在程式碼中存取資料表＞中建立的 **CloudTable** 物件執行。</span><span class="sxs-lookup"><span data-stu-id="41b6d-133">Table operations involving entities are done using the **CloudTable** object that you created earlier in "Access tables in code."</span></span> <span data-ttu-id="41b6d-134">**TableOperation** 物件要執行的操作。</span><span class="sxs-lookup"><span data-stu-id="41b6d-134">The **TableOperation** object represents the operation to be done.</span></span> <span data-ttu-id="41b6d-135">下列程式碼範例顯示如何建立 **CloudTable** 物件及 **CustomerEntity** 物件。</span><span class="sxs-lookup"><span data-stu-id="41b6d-135">The following code example shows how to create a **CloudTable** object and a **CustomerEntity** object.</span></span> <span data-ttu-id="41b6d-136">為了準備這項操作，其建立了 **TableOperation** ，以便在資料表中插入客戶實體。</span><span class="sxs-lookup"><span data-stu-id="41b6d-136">To prepare the operation, a **TableOperation** is created to insert the customer entity into the table.</span></span> <span data-ttu-id="41b6d-137">最後會呼叫 **CloudTable.ExecuteAsync**來執行此作業。</span><span class="sxs-lookup"><span data-stu-id="41b6d-137">Finally, the operation is executed by calling **CloudTable.ExecuteAsync**.</span></span>
+<span data-ttu-id="667ef-133">關於實體的資料表作業完成後使用 hello **CloudTable**您先前在 < 程式碼中存取資料表 >。 建立的物件</span><span class="sxs-lookup"><span data-stu-id="667ef-133">Table operations involving entities are done using hello **CloudTable** object that you created earlier in "Access tables in code."</span></span> <span data-ttu-id="667ef-134">hello **TableOperation**物件都代表 hello 作業 toobe 完成。</span><span class="sxs-lookup"><span data-stu-id="667ef-134">hello **TableOperation** object represents hello operation toobe done.</span></span> <span data-ttu-id="667ef-135">hello 下列程式碼範例顯示如何 toocreate **CloudTable**物件和**CustomerEntity**物件。</span><span class="sxs-lookup"><span data-stu-id="667ef-135">hello following code example shows how toocreate a **CloudTable** object and a **CustomerEntity** object.</span></span> <span data-ttu-id="667ef-136">tooprepare hello 作業， **TableOperation** tooinsert hello customer 實體建立 hello 資料表。</span><span class="sxs-lookup"><span data-stu-id="667ef-136">tooprepare hello operation, a **TableOperation** is created tooinsert hello customer entity into hello table.</span></span> <span data-ttu-id="667ef-137">最後，藉由呼叫執行 hello 作業**CloudTable.ExecuteAsync**。</span><span class="sxs-lookup"><span data-stu-id="667ef-137">Finally, hello operation is executed by calling **CloudTable.ExecuteAsync**.</span></span>
 
     // Create a new customer entity.
     CustomerEntity customer1 = new CustomerEntity("Harp", "Walter");
     customer1.Email = "Walter@contoso.com";
     customer1.PhoneNumber = "425-555-0101";
 
-    // Create the TableOperation that inserts the customer entity.
+    // Create hello TableOperation that inserts hello customer entity.
     TableOperation insertOperation = TableOperation.Insert(customer1);
 
-    // Execute the insert operation.
+    // Execute hello insert operation.
     await peopleTable.ExecuteAsync(insertOperation);
 
 
-## <a name="insert-a-batch-of-entities"></a><span data-ttu-id="41b6d-138">插入實體批次</span><span class="sxs-lookup"><span data-stu-id="41b6d-138">Insert a batch of entities</span></span>
-<span data-ttu-id="41b6d-139">您可以在單一寫入操作中將多個項目插入至資料表。</span><span class="sxs-lookup"><span data-stu-id="41b6d-139">You can insert multiple entities into a table in a single write operation.</span></span> <span data-ttu-id="41b6d-140">下列程式碼範例會建立兩個實體物件 ("Jeff Smith" 和 "Ben Smith")，並使用 Insert 方法將這兩個物件加入 **TableBatchOperation** 物件中，然後再呼叫 **CloudTable.ExecuteBatchAsync** 啟動作業。</span><span class="sxs-lookup"><span data-stu-id="41b6d-140">The following code example creates two entity objects ("Jeff Smith" and "Ben Smith"), adds them to a **TableBatchOperation** object using the Insert method, and then starts the operation by calling **CloudTable.ExecuteBatchAsync**.</span></span>
+## <a name="insert-a-batch-of-entities"></a><span data-ttu-id="667ef-138">插入實體批次</span><span class="sxs-lookup"><span data-stu-id="667ef-138">Insert a batch of entities</span></span>
+<span data-ttu-id="667ef-139">您可以在單一寫入操作中將多個項目插入至資料表。</span><span class="sxs-lookup"><span data-stu-id="667ef-139">You can insert multiple entities into a table in a single write operation.</span></span> <span data-ttu-id="667ef-140">hello 下列程式碼範例會建立兩個實體物件 （"Jeff Smith"和"Ben Smith"）、 將它們加入 tooa **TableBatchOperation**物件使用 hello 插入方法並開始然後藉由呼叫 hello 作業**CloudTable.ExecuteBatchAsync**。</span><span class="sxs-lookup"><span data-stu-id="667ef-140">hello following code example creates two entity objects ("Jeff Smith" and "Ben Smith"), adds them tooa **TableBatchOperation** object using hello Insert method, and then starts hello operation by calling **CloudTable.ExecuteBatchAsync**.</span></span>
 
-    // Create the batch operation.
+    // Create hello batch operation.
     TableBatchOperation batchOperation = new TableBatchOperation();
 
-    // Create a customer entity and add it to the table.
+    // Create a customer entity and add it toohello table.
     CustomerEntity customer1 = new CustomerEntity("Smith", "Jeff");
     customer1.Email = "Jeff@contoso.com";
     customer1.PhoneNumber = "425-555-0104";
 
-    // Create another customer entity and add it to the table.
+    // Create another customer entity and add it toohello table.
     CustomerEntity customer2 = new CustomerEntity("Smith", "Ben");
     customer2.Email = "Ben@contoso.com";
     customer2.PhoneNumber = "425-555-0102";
 
-    // Add both customer entities to the batch insert operation.
+    // Add both customer entities toohello batch insert operation.
     batchOperation.Insert(customer1);
     batchOperation.Insert(customer2);
 
-    // Execute the batch operation.
+    // Execute hello batch operation.
     await peopleTable.ExecuteBatchAsync(batchOperation);
 
-## <a name="get-all-of-the-entities-in-a-partition"></a><span data-ttu-id="41b6d-141">取得資料分割中的所有實體</span><span class="sxs-lookup"><span data-stu-id="41b6d-141">Get all of the entities in a partition</span></span>
-<span data-ttu-id="41b6d-142">若要向資料表查詢資料分割中的所有實體，請使用 **TableQuery** 物件。</span><span class="sxs-lookup"><span data-stu-id="41b6d-142">To query a table for all of the entities in a partition, use a **TableQuery** object.</span></span> <span data-ttu-id="41b6d-143">下列程式碼範例會指定篩選器來篩選出資料分割索引鍵為 'Smith' 的實體。</span><span class="sxs-lookup"><span data-stu-id="41b6d-143">The following code example specifies a filter for entities where 'Smith' is the partition key.</span></span> <span data-ttu-id="41b6d-144">此範例會將查詢結果中每個實體的欄位列印至主控台。</span><span class="sxs-lookup"><span data-stu-id="41b6d-144">This example prints the fields of each entity in the query results to the console.</span></span>
+## <a name="get-all-of-hello-entities-in-a-partition"></a><span data-ttu-id="667ef-141">取得 hello 實體的所有資料分割中</span><span class="sxs-lookup"><span data-stu-id="667ef-141">Get all of hello entities in a partition</span></span>
+<span data-ttu-id="667ef-142">資料表中的所有資料分割，使用中的 hello 實體 tooquery **TableQuery**物件。</span><span class="sxs-lookup"><span data-stu-id="667ef-142">tooquery a table for all of hello entities in a partition, use a **TableQuery** object.</span></span> <span data-ttu-id="667ef-143">hello 下列程式碼範例指定篩選，其中 'smith ' 距離是 hello 資料分割索引鍵的實體。</span><span class="sxs-lookup"><span data-stu-id="667ef-143">hello following code example specifies a filter for entities where 'Smith' is hello partition key.</span></span> <span data-ttu-id="667ef-144">這個範例會列印 hello hello 查詢結果 toohello 主控台中的每個實體的欄位。</span><span class="sxs-lookup"><span data-stu-id="667ef-144">This example prints hello fields of each entity in hello query results toohello console.</span></span>
 
-    // Construct the query operation for all customer entities where PartitionKey="Smith".
+    // Construct hello query operation for all customer entities where PartitionKey="Smith".
     TableQuery<CustomerEntity> query = new TableQuery<CustomerEntity>()
         .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, "Smith"));
 
-    // Print the fields for each customer.
+    // Print hello fields for each customer.
     TableContinuationToken token = null;
     do
     {
@@ -150,47 +150,47 @@ ms.lasthandoff: 07/11/2017
     return View();
 
 
-## <a name="get-a-single-entity"></a><span data-ttu-id="41b6d-145">取得單一實體</span><span class="sxs-lookup"><span data-stu-id="41b6d-145">Get a single entity</span></span>
-<span data-ttu-id="41b6d-146">您可以撰寫查詢來取得單一特定實體。</span><span class="sxs-lookup"><span data-stu-id="41b6d-146">You can write a query to get a single, specific entity.</span></span> <span data-ttu-id="41b6d-147">下列程式碼使用 **TableOperation** 物件來指定名為 'Ben Smith' 的客戶。</span><span class="sxs-lookup"><span data-stu-id="41b6d-147">The following code uses a **TableOperation** object to specify a customer named 'Ben Smith'.</span></span> <span data-ttu-id="41b6d-148">這個方法只會傳回一個實體而不是集合，而且所傳回的 **TableResult.Result** 值是 **CustomerEntity** 物件。</span><span class="sxs-lookup"><span data-stu-id="41b6d-148">This method returns just one entity, rather than a collection, and the returned value in **TableResult.Result** is a **CustomerEntity** object.</span></span> <span data-ttu-id="41b6d-149">若要從「資料表」  服務中擷取單一實體，最快的方法是在查詢中同時指定資料分割索引鍵和資料列索引鍵。</span><span class="sxs-lookup"><span data-stu-id="41b6d-149">Specifying both partition and row keys in a query is the fastest way to retrieve a single entity from the **Table** service.</span></span>
+## <a name="get-a-single-entity"></a><span data-ttu-id="667ef-145">取得單一實體</span><span class="sxs-lookup"><span data-stu-id="667ef-145">Get a single entity</span></span>
+<span data-ttu-id="667ef-146">您可以撰寫查詢 tooget 單一的特定實體。</span><span class="sxs-lookup"><span data-stu-id="667ef-146">You can write a query tooget a single, specific entity.</span></span> <span data-ttu-id="667ef-147">hello 下列程式碼使用**TableOperation** toospecify 客戶，名為 ' Ben Smith' 的物件。</span><span class="sxs-lookup"><span data-stu-id="667ef-147">hello following code uses a **TableOperation** object toospecify a customer named 'Ben Smith'.</span></span> <span data-ttu-id="667ef-148">這個方法會傳回單一實體，而不是集合，而且 hello 傳回值中的**TableResult.Result**是**CustomerEntity**物件。</span><span class="sxs-lookup"><span data-stu-id="667ef-148">This method returns just one entity, rather than a collection, and hello returned value in **TableResult.Result** is a **CustomerEntity** object.</span></span> <span data-ttu-id="667ef-149">在查詢中指定資料分割和資料列索引鍵是最快方式 tooretrieve hello hello 從單一實體**資料表**服務。</span><span class="sxs-lookup"><span data-stu-id="667ef-149">Specifying both partition and row keys in a query is hello fastest way tooretrieve a single entity from hello **Table** service.</span></span>
 
     // Create a retrieve operation that takes a customer entity.
     TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
 
-    // Execute the retrieve operation.
+    // Execute hello retrieve operation.
     TableResult retrievedResult = await peopleTable.ExecuteAsync(retrieveOperation);
 
-    // Print the phone number of the result.
+    // Print hello phone number of hello result.
     if (retrievedResult.Result != null)
        Console.WriteLine(((CustomerEntity)retrievedResult.Result).PhoneNumber);
     else
-       Console.WriteLine("The phone number could not be retrieved.");
+       Console.WriteLine("hello phone number could not be retrieved.");
 
-## <a name="delete-an-entity"></a><span data-ttu-id="41b6d-150">刪除實體</span><span class="sxs-lookup"><span data-stu-id="41b6d-150">Delete an entity</span></span>
-<span data-ttu-id="41b6d-151">找到實體之後，您可以刪除它。</span><span class="sxs-lookup"><span data-stu-id="41b6d-151">You can delete an entity after you find it.</span></span> <span data-ttu-id="41b6d-152">下列程式碼會尋找名為 "Ben Smith" 的客戶實體，如果找到，就會刪除它。</span><span class="sxs-lookup"><span data-stu-id="41b6d-152">The following code looks for a customer entity named "Ben Smith", and if it finds it, it deletes it.</span></span>
+## <a name="delete-an-entity"></a><span data-ttu-id="667ef-150">刪除實體</span><span class="sxs-lookup"><span data-stu-id="667ef-150">Delete an entity</span></span>
+<span data-ttu-id="667ef-151">找到實體之後，您可以刪除它。</span><span class="sxs-lookup"><span data-stu-id="667ef-151">You can delete an entity after you find it.</span></span> <span data-ttu-id="667ef-152">hello 下列程式碼會尋找名為"Ben Smith"customer 實體，如果找到，就會刪除它。</span><span class="sxs-lookup"><span data-stu-id="667ef-152">hello following code looks for a customer entity named "Ben Smith", and if it finds it, it deletes it.</span></span>
 
     // Create a retrieve operation that expects a customer entity.
     TableOperation retrieveOperation = TableOperation.Retrieve<CustomerEntity>("Smith", "Ben");
 
-    // Execute the operation.
+    // Execute hello operation.
     TableResult retrievedResult = peopleTable.Execute(retrieveOperation);
 
-    // Assign the result to a CustomerEntity object.
+    // Assign hello result tooa CustomerEntity object.
     CustomerEntity deleteEntity = (CustomerEntity)retrievedResult.Result;
 
-    // Create the Delete TableOperation and then execute it.
+    // Create hello Delete TableOperation and then execute it.
     if (deleteEntity != null)
     {
        TableOperation deleteOperation = TableOperation.Delete(deleteEntity);
 
-       // Execute the operation.
+       // Execute hello operation.
        await peopleTable.ExecuteAsync(deleteOperation);
 
        Console.WriteLine("Entity deleted.");
     }
 
     else
-       Console.WriteLine("Couldn't delete the entity.");
+       Console.WriteLine("Couldn't delete hello entity.");
 
-## <a name="next-steps"></a><span data-ttu-id="41b6d-153">後續步驟</span><span class="sxs-lookup"><span data-stu-id="41b6d-153">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="667ef-153">後續步驟</span><span class="sxs-lookup"><span data-stu-id="667ef-153">Next steps</span></span>
 [!INCLUDE [vs-storage-dotnet-tables-next-steps](../../includes/vs-storage-dotnet-tables-next-steps.md)]
 

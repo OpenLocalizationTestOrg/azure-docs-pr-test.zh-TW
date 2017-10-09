@@ -1,6 +1,6 @@
 ---
-title: "取消及刪除 Azure 匯入/匯出作業 | Microsoft Docs"
-description: "了解如何取消及刪除 Microsoft Azure 匯入/匯出服務的作業。"
+title: "aaaCancel 和刪除 Azure 匯入/匯出作業 |Microsoft 文件"
+description: "了解如何 toocancel 和 delete 作業 hello Microsoft Azure 匯入/匯出服務。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 1e989c72fc03697bf6d2e515ff53003703665d1a
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 13456a8e7652850baacb53730cc7bb1520b0a4c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="canceling-and-deleting-azure-importexport-jobs"></a><span data-ttu-id="bd975-103">取消及刪除 Azure 匯入/匯出作業</span><span class="sxs-lookup"><span data-stu-id="bd975-103">Canceling and deleting Azure Import/Export jobs</span></span>
+# <a name="canceling-and-deleting-azure-importexport-jobs"></a><span data-ttu-id="aee6c-103">取消及刪除 Azure 匯入/匯出作業</span><span class="sxs-lookup"><span data-stu-id="aee6c-103">Canceling and deleting Azure Import/Export jobs</span></span>
 
- <span data-ttu-id="bd975-104">若要要求讓作業在進入 `Packaging` 狀態之前予以取消，請呼叫 [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) 作業並將 `CancelRequested` 元素設定為 `true`。</span><span class="sxs-lookup"><span data-stu-id="bd975-104">To request that a job be canceled before it is in the `Packaging` state, call the [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) operation and set the `CancelRequested` element to `true`.</span></span> <span data-ttu-id="bd975-105">系統會盡可能地取消作業。</span><span class="sxs-lookup"><span data-stu-id="bd975-105">The job is canceled on a best-effort basis.</span></span> <span data-ttu-id="bd975-106">如果磁碟機正在傳輸資料，即使已經要求取消，資料可能會繼續傳送。</span><span class="sxs-lookup"><span data-stu-id="bd975-106">If drives are in the process of transferring data, data may continue to be transferred even after cancellation has been requested.</span></span>
+ <span data-ttu-id="aee6c-104">toorequest，工作會取消之前位於 hello`Packaging`狀態，則會呼叫 hello [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update)作業和集中 hello`CancelRequested`項目太`true`。</span><span class="sxs-lookup"><span data-stu-id="aee6c-104">toorequest that a job be canceled before it is in hello `Packaging` state, call hello [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) operation and set hello `CancelRequested` element too`true`.</span></span> <span data-ttu-id="aee6c-105">會取消 hello 工作，以最佳方式為基礎。</span><span class="sxs-lookup"><span data-stu-id="aee6c-105">hello job is canceled on a best-effort basis.</span></span> <span data-ttu-id="aee6c-106">如果磁碟機中傳送資料的 hello 程序，資料可能會繼續 toobe 轉移，即使已經要求取消之後也一樣。</span><span class="sxs-lookup"><span data-stu-id="aee6c-106">If drives are in hello process of transferring data, data may continue toobe transferred even after cancellation has been requested.</span></span>
 
- <span data-ttu-id="bd975-107">取消的作業會進入 `Completed` 狀態並保留 90 天，90 天過後就會遭到刪除。</span><span class="sxs-lookup"><span data-stu-id="bd975-107">A canceled job is moved to the `Completed` state and is kept for 90 days, at which point it is deleted.</span></span>
+ <span data-ttu-id="aee6c-107">已取消的作業是移動的 toohello`Completed`狀態，並保留 90 天，此時就會刪除。</span><span class="sxs-lookup"><span data-stu-id="aee6c-107">A canceled job is moved toohello `Completed` state and is kept for 90 days, at which point it is deleted.</span></span>
 
- <span data-ttu-id="bd975-108">若要刪除作業，在傳送作業之前請先呼叫 [Delete Job](/rest/api/storageimportexport/jobs#Jobs_Delete) 作業，(也就是當作業處於 `Creating` 狀態時)。</span><span class="sxs-lookup"><span data-stu-id="bd975-108">To delete a job, call the [Delete Job](/rest/api/storageimportexport/jobs#Jobs_Delete) operation before the job has shipped (that is, while the job is in the `Creating` state).</span></span> <span data-ttu-id="bd975-109">您也可以在作業為 `Completed` 狀態時將它刪除。</span><span class="sxs-lookup"><span data-stu-id="bd975-109">You can also delete a job when it is in the `Completed` state.</span></span> <span data-ttu-id="bd975-110">作業遭到刪除後，便無法再透過 REST API 或 Azure 入口網站存取其資訊和狀態。</span><span class="sxs-lookup"><span data-stu-id="bd975-110">After a job is deleted, its information and status are no longer accessible via the REST API or the Azure portal.</span></span>
+ <span data-ttu-id="aee6c-108">toodelete 作業呼叫 hello[刪除作業](/rest/api/storageimportexport/jobs#Jobs_Delete)作業之前已出貨 hello 作業 (hello hello 工作進行時，也就是`Creating`狀態)。</span><span class="sxs-lookup"><span data-stu-id="aee6c-108">toodelete a job, call hello [Delete Job](/rest/api/storageimportexport/jobs#Jobs_Delete) operation before hello job has shipped (that is, while hello job is in hello `Creating` state).</span></span> <span data-ttu-id="aee6c-109">您也可以在 hello 時刪除作業`Completed`狀態。</span><span class="sxs-lookup"><span data-stu-id="aee6c-109">You can also delete a job when it is in hello `Completed` state.</span></span> <span data-ttu-id="aee6c-110">已刪除的工作之後，其資訊和狀態便無法再存取透過 hello REST API 或 hello Azure 入口網站。</span><span class="sxs-lookup"><span data-stu-id="aee6c-110">After a job is deleted, its information and status are no longer accessible via hello REST API or hello Azure portal.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="bd975-111">後續步驟</span><span class="sxs-lookup"><span data-stu-id="bd975-111">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="aee6c-111">後續步驟</span><span class="sxs-lookup"><span data-stu-id="aee6c-111">Next steps</span></span>
 
-* [<span data-ttu-id="bd975-112">使用匯入/匯出服務 REST API</span><span class="sxs-lookup"><span data-stu-id="bd975-112">Using the Import/Export service REST API</span></span>](storage-import-export-using-the-rest-api.md)
+* [<span data-ttu-id="aee6c-112">使用 hello 匯入/匯出服務 REST API</span><span class="sxs-lookup"><span data-stu-id="aee6c-112">Using hello Import/Export service REST API</span></span>](storage-import-export-using-the-rest-api.md)

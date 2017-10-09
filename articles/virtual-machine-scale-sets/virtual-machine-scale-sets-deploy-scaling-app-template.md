@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 虛擬機器擴展集上部署應用程式 | Microsoft Docs"
-description: "了解如何使用 Azure Resource Manager 範本，在虛擬機器擴展集上部署簡單的自動調整應用程式。"
+title: "aaaDeploy Azure 虛擬機器規模集上的應用程式 |Microsoft 文件"
+description: "了解 toodeploy 簡單的自動調整應用程式上的虛擬機器擴展集使用 Azure Resource Manager 範本。"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: rwike77
@@ -15,25 +15,25 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/24/2017
 ms.author: ryanwi
-ms.openlocfilehash: 07883a33382cc660b043c99872312a9e77228253
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6fccc310312cabfcdddfcbcd2d154fc5cc440417
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-an-autoscaling-app-using-a-template"></a><span data-ttu-id="27146-103">使用範本部署自動調整應用程式</span><span class="sxs-lookup"><span data-stu-id="27146-103">Deploy an autoscaling app using a template</span></span>
+# <a name="deploy-an-autoscaling-app-using-a-template"></a><span data-ttu-id="357d9-103">使用範本部署自動調整應用程式</span><span class="sxs-lookup"><span data-stu-id="357d9-103">Deploy an autoscaling app using a template</span></span>
 
-<span data-ttu-id="27146-104">[Azure Resource Manager 範本](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment)是部署相關資源群組的絕佳方式。</span><span class="sxs-lookup"><span data-stu-id="27146-104">[Azure Resource Manager templates](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment) are a great way to deploy groups of related resources.</span></span> <span data-ttu-id="27146-105">本教學課程是以[部屬簡單的擴展集](virtual-machine-scale-sets-mvss-start.md)為基礎，並說明如何使用 Azure Resource Manager 範本，在擴展集上部署簡單的自動調整應用程式。</span><span class="sxs-lookup"><span data-stu-id="27146-105">This tutorial builds on [Deploy a simple scale set](virtual-machine-scale-sets-mvss-start.md) and describes how to deploy a simple autoscaling application on a scale set using an Azure Resource Manager template.</span></span>  <span data-ttu-id="27146-106">您也可以使用 PowerShell、CLI 或入口網站設定自動調整。</span><span class="sxs-lookup"><span data-stu-id="27146-106">You can also set up autoscaling using PowerShell, CLI, or the portal.</span></span> <span data-ttu-id="27146-107">如需詳細資訊，請參閱[自動調整概觀](virtual-machine-scale-sets-autoscale-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="27146-107">For more information, see [Autoscale overview](virtual-machine-scale-sets-autoscale-overview.md).</span></span>
+<span data-ttu-id="357d9-104">[Azure 資源管理員範本](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment)是很好的方法 toodeploy 相關資源的群組。</span><span class="sxs-lookup"><span data-stu-id="357d9-104">[Azure Resource Manager templates](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment) are a great way toodeploy groups of related resources.</span></span> <span data-ttu-id="357d9-105">本教學課程是[部署簡單的小數位數組](virtual-machine-scale-sets-mvss-start.md)，並說明如何 toodeploy 標尺上的簡單的自動調整應用程式設定使用 Azure Resource Manager 範本。</span><span class="sxs-lookup"><span data-stu-id="357d9-105">This tutorial builds on [Deploy a simple scale set](virtual-machine-scale-sets-mvss-start.md) and describes how toodeploy a simple autoscaling application on a scale set using an Azure Resource Manager template.</span></span>  <span data-ttu-id="357d9-106">您也可以設定使用 PowerShell、 CLI 或 hello 入口網站的自動調整。</span><span class="sxs-lookup"><span data-stu-id="357d9-106">You can also set up autoscaling using PowerShell, CLI, or hello portal.</span></span> <span data-ttu-id="357d9-107">如需詳細資訊，請參閱[自動調整概觀](virtual-machine-scale-sets-autoscale-overview.md)。</span><span class="sxs-lookup"><span data-stu-id="357d9-107">For more information, see [Autoscale overview](virtual-machine-scale-sets-autoscale-overview.md).</span></span>
 
-## <a name="two-quickstart-templates"></a><span data-ttu-id="27146-108">兩個快速入門範本</span><span class="sxs-lookup"><span data-stu-id="27146-108">Two quickstart templates</span></span>
-<span data-ttu-id="27146-109">當您部署擴展集時，您可以使用 [VM 擴充功能](../virtual-machines/virtual-machines-windows-extensions-features.md)在平台映像上安裝新軟體。</span><span class="sxs-lookup"><span data-stu-id="27146-109">When you deploy a scale set you can install new software on a platform image using a [VM Extension](../virtual-machines/virtual-machines-windows-extensions-features.md).</span></span> <span data-ttu-id="27146-110">VM 擴充功能是小型的應用程式，可在 Azure 虛擬機器上提供部署後設定和自動化工作，例如部署應用程式。</span><span class="sxs-lookup"><span data-stu-id="27146-110">A VM extension is a small application that provides post-deployment configuration and automation tasks on Azure virtual machines, such as deploying an app.</span></span> <span data-ttu-id="27146-111">[Azure/azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) 中會提供兩個不同的範例範本，其顯示如何使用 VM 擴充功能在擴展集上部署自動調整應用程式。</span><span class="sxs-lookup"><span data-stu-id="27146-111">Two different sample templates are provided in [Azure/azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) which show how to deploy an autoscaling application onto a scale set using VM extensions.</span></span>
+## <a name="two-quickstart-templates"></a><span data-ttu-id="357d9-108">兩個快速入門範本</span><span class="sxs-lookup"><span data-stu-id="357d9-108">Two quickstart templates</span></span>
+<span data-ttu-id="357d9-109">當您部署擴展集時，您可以使用 [VM 擴充功能](../virtual-machines/virtual-machines-windows-extensions-features.md)在平台映像上安裝新軟體。</span><span class="sxs-lookup"><span data-stu-id="357d9-109">When you deploy a scale set you can install new software on a platform image using a [VM Extension](../virtual-machines/virtual-machines-windows-extensions-features.md).</span></span> <span data-ttu-id="357d9-110">VM 擴充功能是小型的應用程式，可在 Azure 虛擬機器上提供部署後設定和自動化工作，例如部署應用程式。</span><span class="sxs-lookup"><span data-stu-id="357d9-110">A VM extension is a small application that provides post-deployment configuration and automation tasks on Azure virtual machines, such as deploying an app.</span></span> <span data-ttu-id="357d9-111">中所提供的兩個不同的範例範本[Azure/azure 快速入門-範本](https://github.com/Azure/azure-quickstart-templates)toodeploy 到標尺上的自動調整應用程式設定使用 VM 擴充功能的方式是用來顯示。</span><span class="sxs-lookup"><span data-stu-id="357d9-111">Two different sample templates are provided in [Azure/azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) which show how toodeploy an autoscaling application onto a scale set using VM extensions.</span></span>
 
-### <a name="python-http-server-on-linux"></a><span data-ttu-id="27146-112">Linux 上的 Python HTTP 伺服器</span><span class="sxs-lookup"><span data-stu-id="27146-112">Python HTTP server on Linux</span></span>
-<span data-ttu-id="27146-113">[Linux 上的 Python HTTP 伺服器](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale)範例範本可部署在 Linux 擴展集上執行的簡單自動調整應用程式。</span><span class="sxs-lookup"><span data-stu-id="27146-113">The [Python HTTP server on Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) sample template deploys a simple autoscaling application running on a Linux scale set.</span></span>  <span data-ttu-id="27146-114">[Bottle](http://bottlepy.org/docs/dev/)、Python Web 架構以及簡單的 HTTP 伺服器都是使用 VM 擴充功能部署在擴展集中的每部 VM 上。</span><span class="sxs-lookup"><span data-stu-id="27146-114">[Bottle](http://bottlepy.org/docs/dev/), a Python web framework, and a simple HTTP server are deployed on each VM in the scale set using a custom script VM extension.</span></span> <span data-ttu-id="27146-115">當所有 VM 的平均 CPU 使用率大於 60% 時，擴展集會相應放大，而當平均 CPU 使用率小於 30% 時，擴展集會相應縮小。</span><span class="sxs-lookup"><span data-stu-id="27146-115">The scale set scales up when average CPU utilization across all VMs is greater than 60% and scales down when the average CPU utilization is less than 30%.</span></span>
+### <a name="python-http-server-on-linux"></a><span data-ttu-id="357d9-112">Linux 上的 Python HTTP 伺服器</span><span class="sxs-lookup"><span data-stu-id="357d9-112">Python HTTP server on Linux</span></span>
+<span data-ttu-id="357d9-113">hello [Python HTTP 伺服器在 Linux 上的](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale)範例範本部署 Linux 規模集上執行簡單的自動調整應用程式。</span><span class="sxs-lookup"><span data-stu-id="357d9-113">hello [Python HTTP server on Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) sample template deploys a simple autoscaling application running on a Linux scale set.</span></span>  <span data-ttu-id="357d9-114">[Bottle](http://bottlepy.org/docs/dev/)、 Python web 架構，而且簡單的 HTTP 伺服器部署中使用自訂指令碼 VM 延伸模組設定的 hello 標尺每個 VM 上。</span><span class="sxs-lookup"><span data-stu-id="357d9-114">[Bottle](http://bottlepy.org/docs/dev/), a Python web framework, and a simple HTTP server are deployed on each VM in hello scale set using a custom script VM extension.</span></span> <span data-ttu-id="357d9-115">hello 小數位數時，設定標尺所有 Vm 之間的平均 CPU 使用率超過 60%，並按比例減少 hello 平均 CPU 使用率時少於 30%。</span><span class="sxs-lookup"><span data-stu-id="357d9-115">hello scale set scales up when average CPU utilization across all VMs is greater than 60% and scales down when hello average CPU utilization is less than 30%.</span></span>
 
-<span data-ttu-id="27146-116">除了擴展集資源以外，*azuredeploy.json* 範例範本也會宣告虛擬網路、公用 IP 位址、負載平衡器和自動調整設定資源。</span><span class="sxs-lookup"><span data-stu-id="27146-116">In addition to the scale set resource, the *azuredeploy.json* sample template also declares virtual network, public IP address, load balancer, and autoscale settings resources.</span></span>  <span data-ttu-id="27146-117">如需在範本中建立這些資源的詳細資訊，請參閱[具備自動調整功能的 Linux 擴展集](virtual-machine-scale-sets-linux-autoscale.md)。</span><span class="sxs-lookup"><span data-stu-id="27146-117">For more information on creating these resources in a template, see [Linux scale set with autoscale](virtual-machine-scale-sets-linux-autoscale.md).</span></span>
+<span data-ttu-id="357d9-116">此外 toohello 規模調整集合資源，hello *azuredeploy.json*虛擬網路、 公用 IP 位址、 負載平衡和自動調整規模設定的資源，也會宣告範例範本。</span><span class="sxs-lookup"><span data-stu-id="357d9-116">In addition toohello scale set resource, hello *azuredeploy.json* sample template also declares virtual network, public IP address, load balancer, and autoscale settings resources.</span></span>  <span data-ttu-id="357d9-117">如需在範本中建立這些資源的詳細資訊，請參閱[具備自動調整功能的 Linux 擴展集](virtual-machine-scale-sets-linux-autoscale.md)。</span><span class="sxs-lookup"><span data-stu-id="357d9-117">For more information on creating these resources in a template, see [Linux scale set with autoscale](virtual-machine-scale-sets-linux-autoscale.md).</span></span>
 
-<span data-ttu-id="27146-118">在 *azuredeploy.json* 範本中，`Microsoft.Compute/virtualMachineScaleSets` 資源的 `extensionProfile` 屬性可指定自訂指令碼擴充功能。</span><span class="sxs-lookup"><span data-stu-id="27146-118">In the *azuredeploy.json* template, the `extensionProfile` property of the `Microsoft.Compute/virtualMachineScaleSets` resource specifies a custom script extension.</span></span> <span data-ttu-id="27146-119">`fileUris` 指定指令碼位置。</span><span class="sxs-lookup"><span data-stu-id="27146-119">`fileUris` specifies the script(s) location.</span></span> <span data-ttu-id="27146-120">在此情況下，兩個檔案︰*workserver.py*可定義簡單的 HTTP 伺服器，以及 *installserver.sh* 可安裝 Bottle 並啟動 HTTP 伺服器。</span><span class="sxs-lookup"><span data-stu-id="27146-120">In this case, two files: *workserver.py*, which defines a simple HTTP server, and *installserver.sh*, which installs Bottle and starts the HTTP server.</span></span> <span data-ttu-id="27146-121">`commandToExecute` 指定要在部署擴展集之後執行的命令。</span><span class="sxs-lookup"><span data-stu-id="27146-121">`commandToExecute` specifies the command to run after the scale set has been deployed.</span></span>
+<span data-ttu-id="357d9-118">在 hello *azuredeploy.json*範本、 hello `extensionProfile` hello 屬性`Microsoft.Compute/virtualMachineScaleSets`資源會指定自訂指令碼延伸。</span><span class="sxs-lookup"><span data-stu-id="357d9-118">In hello *azuredeploy.json* template, hello `extensionProfile` property of hello `Microsoft.Compute/virtualMachineScaleSets` resource specifies a custom script extension.</span></span> <span data-ttu-id="357d9-119">`fileUris`指定 hello 指令碼位置。</span><span class="sxs-lookup"><span data-stu-id="357d9-119">`fileUris` specifies hello script(s) location.</span></span> <span data-ttu-id="357d9-120">在此情況下，兩個檔案： *workserver.py*，而後者可定義簡單的 HTTP 伺服器，和*installserver.sh*，這會安裝 Bottle 和啟動 hello HTTP 伺服器。</span><span class="sxs-lookup"><span data-stu-id="357d9-120">In this case, two files: *workserver.py*, which defines a simple HTTP server, and *installserver.sh*, which installs Bottle and starts hello HTTP server.</span></span> <span data-ttu-id="357d9-121">`commandToExecute`部署 hello 規模集之後，請指定 hello 命令 toorun。</span><span class="sxs-lookup"><span data-stu-id="357d9-121">`commandToExecute` specifies hello command toorun after hello scale set has been deployed.</span></span>
 
 ```json
           "extensionProfile": {
@@ -58,12 +58,12 @@ ms.lasthandoff: 08/29/2017
           }
 ```
 
-### <a name="aspnet-mvc-application-on-windows"></a><span data-ttu-id="27146-122">Windows 上的 ASP.NET MVC 應用程式</span><span class="sxs-lookup"><span data-stu-id="27146-122">ASP.NET MVC application on Windows</span></span>
-<span data-ttu-id="27146-123">[Windows 上的 ASP.NET MVC 應用程式](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale)範例範本可部署一個簡單的 ASP.NET MVC 應用程式，其在 Windows 擴展集上的 IIS 中執行。</span><span class="sxs-lookup"><span data-stu-id="27146-123">The [ASP.NET MVC application on Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) sample template deploys a simple ASP.NET MVC app running in IIS on Windows scale set.</span></span>  <span data-ttu-id="27146-124">IIS 和 MVC 應用程式是使用 [PowerShell 預期狀態設定 (DSC)](virtual-machine-scale-sets-dsc.md) VM 擴充功能進行部署。</span><span class="sxs-lookup"><span data-stu-id="27146-124">IIS and the MVC app are deployed using the [PowerShell desired state configuration (DSC)](virtual-machine-scale-sets-dsc.md) VM extension.</span></span>  <span data-ttu-id="27146-125">當 CPU 使用率大於 50% 長達 5 分鐘時，擴展集會 (一度在 VM 執行個體上) 相應增加。</span><span class="sxs-lookup"><span data-stu-id="27146-125">The scale set scales up (on VM instance at a time) when CPU utilization is greater than 50% for 5 minutes.</span></span> 
+### <a name="aspnet-mvc-application-on-windows"></a><span data-ttu-id="357d9-122">Windows 上的 ASP.NET MVC 應用程式</span><span class="sxs-lookup"><span data-stu-id="357d9-122">ASP.NET MVC application on Windows</span></span>
+<span data-ttu-id="357d9-123">hello [ASP.NET MVC 應用程式在 Windows 上的](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale)範例範本部署簡單的 ASP.NET MVC 應用程式執行於 IIS 上 Windows 規模集。</span><span class="sxs-lookup"><span data-stu-id="357d9-123">hello [ASP.NET MVC application on Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) sample template deploys a simple ASP.NET MVC app running in IIS on Windows scale set.</span></span>  <span data-ttu-id="357d9-124">IIS hello MVC 應用程式部署和使用 hello [PowerShell 預期狀態設定 (DSC)](virtual-machine-scale-sets-dsc.md) VM 延伸模組。</span><span class="sxs-lookup"><span data-stu-id="357d9-124">IIS and hello MVC app are deployed using hello [PowerShell desired state configuration (DSC)](virtual-machine-scale-sets-dsc.md) VM extension.</span></span>  <span data-ttu-id="357d9-125">hello 小數位數設定的標尺 （在上一次的 VM 執行個體） 當 CPU 使用量大於 50 %5 分鐘。</span><span class="sxs-lookup"><span data-stu-id="357d9-125">hello scale set scales up (on VM instance at a time) when CPU utilization is greater than 50% for 5 minutes.</span></span> 
 
-<span data-ttu-id="27146-126">除了擴展集資源以外，*azuredeploy.json* 範例範本也會宣告虛擬網路、公用 IP 位址、負載平衡器和自動調整設定資源。</span><span class="sxs-lookup"><span data-stu-id="27146-126">In addition to the scale set resource, the *azuredeploy.json* sample template also declares virtual network, public IP address, load balancer, and autoscale settings resources.</span></span> <span data-ttu-id="27146-127">此範本也會示範應用程式升級。</span><span class="sxs-lookup"><span data-stu-id="27146-127">This template also demonstrates application upgrade.</span></span>  <span data-ttu-id="27146-128">如需在範本中建立這些資源的詳細資訊，請參閱[具備自動調整的 Windows 擴展集](virtual-machine-scale-sets-windows-autoscale.md)。</span><span class="sxs-lookup"><span data-stu-id="27146-128">For more information on creating these resources in a template, see [Windows scale set with autoscale](virtual-machine-scale-sets-windows-autoscale.md).</span></span>
+<span data-ttu-id="357d9-126">此外 toohello 規模調整集合資源，hello *azuredeploy.json*虛擬網路、 公用 IP 位址、 負載平衡和自動調整規模設定的資源，也會宣告範例範本。</span><span class="sxs-lookup"><span data-stu-id="357d9-126">In addition toohello scale set resource, hello *azuredeploy.json* sample template also declares virtual network, public IP address, load balancer, and autoscale settings resources.</span></span> <span data-ttu-id="357d9-127">此範本也會示範應用程式升級。</span><span class="sxs-lookup"><span data-stu-id="357d9-127">This template also demonstrates application upgrade.</span></span>  <span data-ttu-id="357d9-128">如需在範本中建立這些資源的詳細資訊，請參閱[具備自動調整的 Windows 擴展集](virtual-machine-scale-sets-windows-autoscale.md)。</span><span class="sxs-lookup"><span data-stu-id="357d9-128">For more information on creating these resources in a template, see [Windows scale set with autoscale](virtual-machine-scale-sets-windows-autoscale.md).</span></span>
 
-<span data-ttu-id="27146-129">在 *azuredeploy.json* 範本中，`Microsoft.Compute/virtualMachineScaleSets` 資源的 `extensionProfile` 屬性會指定[期望狀態組態 (DSC)](virtual-machine-scale-sets-dsc.md) 擴充功能，該功能可從 WebDeploy 套件安裝 IIS 和預設 Web 應用程式。</span><span class="sxs-lookup"><span data-stu-id="27146-129">In the *azuredeploy.json* template, the `extensionProfile` property of the `Microsoft.Compute/virtualMachineScaleSets` resource specifies a [desired state configuration (DSC)](virtual-machine-scale-sets-dsc.md) extension which installs IIS and a default web app from a WebDeploy package.</span></span>  <span data-ttu-id="27146-130">*IISInstall.ps1* 指令碼會在虛擬機器上安裝 IIS 並且位於 *DSC* 資料夾中。</span><span class="sxs-lookup"><span data-stu-id="27146-130">The *IISInstall.ps1* script installs IIS on the virtual machine and is found in the *DSC* folder.</span></span>  <span data-ttu-id="27146-131">MVC Web 應用程式位於 *WebDeploy* 資料夾中。</span><span class="sxs-lookup"><span data-stu-id="27146-131">The MVC web app is found in the *WebDeploy* folder.</span></span>  <span data-ttu-id="27146-132">指令碼的安裝路徑和 Web 應用程式是定義於 *azuredeploy.parameters.json* 檔案的 `powershelldscZip` 和 `webDeployPackage` 參數中。</span><span class="sxs-lookup"><span data-stu-id="27146-132">The paths to the install script and the web app are defined in the `powershelldscZip` and `webDeployPackage` parameters in the *azuredeploy.parameters.json* file.</span></span> 
+<span data-ttu-id="357d9-129">在 hello *azuredeploy.json*範本、 hello`extensionProfile`屬性 hello`Microsoft.Compute/virtualMachineScaleSets`資源會指定[預期的狀態設定 (DSC)](virtual-machine-scale-sets-dsc.md)延伸模組，這會安裝 IIS 和預設值WebDeploy 封裝中的 web 應用程式。</span><span class="sxs-lookup"><span data-stu-id="357d9-129">In hello *azuredeploy.json* template, hello `extensionProfile` property of hello `Microsoft.Compute/virtualMachineScaleSets` resource specifies a [desired state configuration (DSC)](virtual-machine-scale-sets-dsc.md) extension which installs IIS and a default web app from a WebDeploy package.</span></span>  <span data-ttu-id="357d9-130">hello *IISInstall.ps1*指令碼會在 hello 虛擬機器上安裝 IIS，而且位於 hello *DSC*資料夾。</span><span class="sxs-lookup"><span data-stu-id="357d9-130">hello *IISInstall.ps1* script installs IIS on hello virtual machine and is found in hello *DSC* folder.</span></span>  <span data-ttu-id="357d9-131">hello MVC web 應用程式位於 hello *WebDeploy*資料夾。</span><span class="sxs-lookup"><span data-stu-id="357d9-131">hello MVC web app is found in hello *WebDeploy* folder.</span></span>  <span data-ttu-id="357d9-132">hello 路徑 toohello 安裝指令碼和 hello web 應用程式會定義在 hello`powershelldscZip`和`webDeployPackage`參數在 hello *azuredeploy.parameters.json*檔案。</span><span class="sxs-lookup"><span data-stu-id="357d9-132">hello paths toohello install script and hello web app are defined in hello `powershelldscZip` and `webDeployPackage` parameters in hello *azuredeploy.parameters.json* file.</span></span> 
 
 ```json
           "extensionProfile": {
@@ -93,11 +93,11 @@ ms.lasthandoff: 08/29/2017
           }
 ```
 
-## <a name="deploy-the-template"></a><span data-ttu-id="27146-133">部署範本</span><span class="sxs-lookup"><span data-stu-id="27146-133">Deploy the template</span></span>
-<span data-ttu-id="27146-134">若要部署 [Linux 上的 Python HTTP 伺服器](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale)或 [Windows 上的 ASP.NET MVC 應用程式](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale)範本，最簡單的方式就是使用 GitHub 讀我檔案中的 [部署至 Azure] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="27146-134">The simplest way to deploy the [Python HTTP server on Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) or [ASP.NET MVC application on Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) template is to use the **Deploy to Azure** button found in the in the readme files in GitHub.</span></span>  <span data-ttu-id="27146-135">您也可以使用 PowerShell 或 Azure CLI 來部署範本範例。</span><span class="sxs-lookup"><span data-stu-id="27146-135">You can also use PowerShell or Azure CLI to deploy the sample templates.</span></span>
+## <a name="deploy-hello-template"></a><span data-ttu-id="357d9-133">部署 hello 範本</span><span class="sxs-lookup"><span data-stu-id="357d9-133">Deploy hello template</span></span>
+<span data-ttu-id="357d9-134">最簡單方式 toodeploy hello hello [Python HTTP 伺服器在 Linux 上的](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale)或[ASP.NET MVC 應用程式在 Windows 上的](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale)範本為 toouse hello**部署 tooAzure**按鈕位於 hello在 GitHub 中的 hello 讀我檔案。</span><span class="sxs-lookup"><span data-stu-id="357d9-134">hello simplest way toodeploy hello [Python HTTP server on Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) or [ASP.NET MVC application on Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) template is toouse hello **Deploy tooAzure** button found in hello in hello readme files in GitHub.</span></span>  <span data-ttu-id="357d9-135">您也可以使用 PowerShell 或 Azure CLI toodeploy hello 範例範本。</span><span class="sxs-lookup"><span data-stu-id="357d9-135">You can also use PowerShell or Azure CLI toodeploy hello sample templates.</span></span>
 
-### <a name="powershell"></a><span data-ttu-id="27146-136">PowerShell</span><span class="sxs-lookup"><span data-stu-id="27146-136">PowerShell</span></span>
-<span data-ttu-id="27146-137">從 GitHub 儲存機制將 [Linux 上的 Python HTTP 伺服器](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale)或 [Windows 上的 ASP.NET MVC 應用程式](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale)檔案複製到本機電腦上的資料夾。</span><span class="sxs-lookup"><span data-stu-id="27146-137">Copy the [Python HTTP server on Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) or [ASP.NET MVC application on Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) files from the GitHub repo to a folder on your local computer.</span></span>  <span data-ttu-id="27146-138">開啟 *azuredeploy.parameters.json* 檔案並更新 `vmssName`、`adminUsername` 和 `adminPassword` 參數的預設值。</span><span class="sxs-lookup"><span data-stu-id="27146-138">Open the *azuredeploy.parameters.json* file and update the default values of the `vmssName`, `adminUsername`, and `adminPassword` parameters.</span></span> <span data-ttu-id="27146-139">將下列 PowerShell 指令碼儲存至相同資料夾中的 *deploy.ps1* 作為 *azuredeploy.json* 範本。</span><span class="sxs-lookup"><span data-stu-id="27146-139">Save the following PowerShell script to *deploy.ps1* in the same folder as the *azuredeploy.json* template.</span></span> <span data-ttu-id="27146-140">若要部署範例範本，請從 PowerShell 命令視窗執行 *deploy.ps1* 指令碼。</span><span class="sxs-lookup"><span data-stu-id="27146-140">To deploy the sample template run the *deploy.ps1* script from a PowerShell command window.</span></span>
+### <a name="powershell"></a><span data-ttu-id="357d9-136">PowerShell</span><span class="sxs-lookup"><span data-stu-id="357d9-136">PowerShell</span></span>
+<span data-ttu-id="357d9-137">複製 hello [Python HTTP 伺服器在 Linux 上的](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale)或[ASP.NET MVC 應用程式在 Windows 上的](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale)hello GitHub 儲存機制 tooa 資料夾從本機電腦上的檔案。</span><span class="sxs-lookup"><span data-stu-id="357d9-137">Copy hello [Python HTTP server on Linux](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale) or [ASP.NET MVC application on Windows](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale) files from hello GitHub repo tooa folder on your local computer.</span></span>  <span data-ttu-id="357d9-138">開啟 hello *azuredeploy.parameters.json*檔案並更新 hello 預設值的 hello `vmssName`， `adminUsername`，和`adminPassword`參數。</span><span class="sxs-lookup"><span data-stu-id="357d9-138">Open hello *azuredeploy.parameters.json* file and update hello default values of hello `vmssName`, `adminUsername`, and `adminPassword` parameters.</span></span> <span data-ttu-id="357d9-139">儲存下列 PowerShell 指令碼太 hello*deploy.ps1* hello 在 hello 與相同的資料夾*azuredeploy.json*範本。</span><span class="sxs-lookup"><span data-stu-id="357d9-139">Save hello following PowerShell script too*deploy.ps1* in hello same folder as hello *azuredeploy.json* template.</span></span> <span data-ttu-id="357d9-140">toodeploy hello 範例範本執行 hello *deploy.ps1*從 PowerShell 命令視窗的指令碼。</span><span class="sxs-lookup"><span data-stu-id="357d9-140">toodeploy hello sample template run hello *deploy.ps1* script from a PowerShell command window.</span></span>
 
 ```powershell
 param(
@@ -163,7 +163,7 @@ if($resourceProviders.length) {
 $resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
 if(!$resourceGroup)
 {
-    Write-Host "Resource group '$resourceGroupName' does not exist. To create a new resource group, please enter a location.";
+    Write-Host "Resource group '$resourceGroupName' does not exist. toocreate a new resource group, please enter a location.";
     if(!$resourceGroupLocation) {
         $resourceGroupLocation = Read-Host "resourceGroupLocation";
     }
@@ -174,7 +174,7 @@ else{
     Write-Host "Using existing resource group '$resourceGroupName'";
 }
 
-# Start the deployment
+# Start hello deployment
 Write-Host "Starting deployment...";
 if(Test-Path $parametersFilePath) {
     New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
@@ -183,7 +183,7 @@ if(Test-Path $parametersFilePath) {
 }
 ```
 
-### <a name="azure-cli"></a><span data-ttu-id="27146-141">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="27146-141">Azure CLI</span></span>
+### <a name="azure-cli"></a><span data-ttu-id="357d9-141">Azure CLI</span><span class="sxs-lookup"><span data-stu-id="357d9-141">Azure CLI</span></span>
 ```azurecli
 #!/bin/bash
 set -euo pipefail
@@ -191,7 +191,7 @@ IFS=$'\n\t'
 
 # -e: immediately exit if any command has a non-zero exit status
 # -o: prevents errors in a pipeline from being masked
-# IFS new value is less likely to cause confusing bugs when looping arrays or arguments (e.g. $@)
+# IFS new value is less likely toocause confusing bugs when looping arrays or arguments (e.g. $@)
 
 usage() { echo "Usage: $0 -i <subscriptionId> -g <resourceGroupName> -n <deploymentName> -l <resourceGroupLocation>" 1>&2; exit 1; }
 
@@ -238,12 +238,12 @@ if [[ -z "$deploymentName" ]]; then
 fi
 
 if [[ -z "$resourceGroupLocation" ]]; then
-    echo "Enter a location below to create a new resource group else skip this"
+    echo "Enter a location below toocreate a new resource group else skip this"
     echo "ResourceGroupLocation:"
     read resourceGroupLocation
 fi
 
-#templateFile Path - template file to be used
+#templateFile Path - template file toobe used
 templateFilePath="template.json"
 
 if [ ! -f "$templateFilePath" ]; then
@@ -264,7 +264,7 @@ if [ -z "$subscriptionId" ] || [ -z "$resourceGroupName" ] || [ -z "$deploymentN
     usage
 fi
 
-#login to azure using your credentials
+#login tooazure using your credentials
 az account show 1> /dev/null
 
 if [ $? != 0 ];
@@ -272,7 +272,7 @@ then
     az login
 fi
 
-#set the default subscription id
+#set hello default subscription id
 az account set --name $subscriptionId
 
 set +e
@@ -304,6 +304,6 @@ if [ $?  == 0 ];
 fi
 ```
 
-## <a name="next-steps"></a><span data-ttu-id="27146-142">後續步驟</span><span class="sxs-lookup"><span data-stu-id="27146-142">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="357d9-142">後續步驟</span><span class="sxs-lookup"><span data-stu-id="357d9-142">Next steps</span></span>
 
 [!INCLUDE [mvss-next-steps-include](../../includes/mvss-next-steps.md)]

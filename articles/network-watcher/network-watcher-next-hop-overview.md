@@ -1,6 +1,6 @@
 ---
-title: "Azure 網路監看員中的下一個躍點簡介 | Microsoft Docs"
-description: "本頁提供網路監看員下一個躍點功能的概觀"
+title: "在 Azure 網路監看員 aaaIntroduction toonext 躍點 |Microsoft 文件"
+description: "此頁面提供概觀 hello 網路監看員的下一個躍點的功能"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,31 +14,31 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 5dd65d2418cae206965a13013dd990b916ad0733
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 916af736d0d52abadeafed746f0f8a0173b11033
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-next-hop-in-azure-network-watcher"></a><span data-ttu-id="90e89-103">Azure 網路監看員中的下一個躍點簡介</span><span class="sxs-lookup"><span data-stu-id="90e89-103">Introduction to next hop in Azure Network Watcher</span></span>
+# <a name="introduction-toonext-hop-in-azure-network-watcher"></a><span data-ttu-id="6ea45-103">在 Azure 網路監看員簡介 toonext 躍點</span><span class="sxs-lookup"><span data-stu-id="6ea45-103">Introduction toonext hop in Azure Network Watcher</span></span>
 
-<span data-ttu-id="90e89-104">來自 VM 的流量會根據與 NIC 相關聯的有效路由來傳送到目的地。</span><span class="sxs-lookup"><span data-stu-id="90e89-104">Traffic from a VM is sent to a destination based on the effective routes associated with a NIC.</span></span> <span data-ttu-id="90e89-105">下一個躍點會從特定虛擬機器和 NIC 取得封包的下一個躍點類型和 IP 位址。</span><span class="sxs-lookup"><span data-stu-id="90e89-105">Next hop gets the next hop type and IP address of a packet from a specific virtual machine and NIC.</span></span> <span data-ttu-id="90e89-106">這有助於判斷封包會被導向到目的地，還是流量會被吸收掉。</span><span class="sxs-lookup"><span data-stu-id="90e89-106">This helps to determine if the packet is being directed to the destination or is the traffic being black holed.</span></span> <span data-ttu-id="90e89-107">使用者若未正確設定路由，而讓流量導向內部部署位置或虛擬應用裝置，就可能會導致連線問題。</span><span class="sxs-lookup"><span data-stu-id="90e89-107">An improper configuration of routes by the user, where a traffic is directed to an on-premises location or a virtual appliance, can lead to connectivity issues.</span></span> <span data-ttu-id="90e89-108">下一個躍點也會傳回與下一個躍點相關聯的路由表。</span><span class="sxs-lookup"><span data-stu-id="90e89-108">Next hop also returns the route table associated with the next hop.</span></span> <span data-ttu-id="90e89-109">向下一個躍點查詢路由是否定義為使用者定義的路由時，便會傳回該路由。</span><span class="sxs-lookup"><span data-stu-id="90e89-109">When querying a next hop if the route is defined as a user-defined route, that route will be returned.</span></span> <span data-ttu-id="90e89-110">否則，下一個躍點會傳回「系統路由」。</span><span class="sxs-lookup"><span data-stu-id="90e89-110">Otherwise Next hop returns "System Route".</span></span>
+<span data-ttu-id="6ea45-104">從 VM 的流量會傳送 tooa 根據 hello 與 NIC 相關聯的有效路由的目的地</span><span class="sxs-lookup"><span data-stu-id="6ea45-104">Traffic from a VM is sent tooa destination based on hello effective routes associated with a NIC.</span></span> <span data-ttu-id="6ea45-105">下一個躍點取得下一個躍點類型 hello 和封包的 IP 位址從特定虛擬機器與 nic。</span><span class="sxs-lookup"><span data-stu-id="6ea45-105">Next hop gets hello next hop type and IP address of a packet from a specific virtual machine and NIC.</span></span> <span data-ttu-id="6ea45-106">這可協助 toodetermine 如果 hello 封包會被導向的 toohello 目的地，或為正在黑色 hello 流量書背。</span><span class="sxs-lookup"><span data-stu-id="6ea45-106">This helps toodetermine if hello packet is being directed toohello destination or is hello traffic being black holed.</span></span> <span data-ttu-id="6ea45-107">不適當的路由 hello 使用者流量導向的 tooan 在內部部署位置或所在虛擬應用裝置，設定可能會導致 tooconnectivity 問題。</span><span class="sxs-lookup"><span data-stu-id="6ea45-107">An improper configuration of routes by hello user, where a traffic is directed tooan on-premises location or a virtual appliance, can lead tooconnectivity issues.</span></span> <span data-ttu-id="6ea45-108">下一個躍點也會傳回 hello 與 hello 下一個躍點相關聯的路由表。</span><span class="sxs-lookup"><span data-stu-id="6ea45-108">Next hop also returns hello route table associated with hello next hop.</span></span> <span data-ttu-id="6ea45-109">如果 hello 路由定義為使用者定義的路由，請查詢下一個躍點，將會傳回該路由。</span><span class="sxs-lookup"><span data-stu-id="6ea45-109">When querying a next hop if hello route is defined as a user-defined route, that route will be returned.</span></span> <span data-ttu-id="6ea45-110">否則，下一個躍點會傳回「系統路由」。</span><span class="sxs-lookup"><span data-stu-id="6ea45-110">Otherwise Next hop returns "System Route".</span></span>
 
 ![下一個躍點概觀][1]
 
-<span data-ttu-id="90e89-112">以下是查詢下一個躍點時可傳回之下一個躍點類型的清單。</span><span class="sxs-lookup"><span data-stu-id="90e89-112">The following is a list of the next hop types that can be returned when querying Next hop.</span></span>
+<span data-ttu-id="6ea45-112">hello 以下是 hello 下一個躍點類型可以在下一個躍點的查詢時傳回的清單。</span><span class="sxs-lookup"><span data-stu-id="6ea45-112">hello following is a list of hello next hop types that can be returned when querying Next hop.</span></span>
 
-* <span data-ttu-id="90e89-113">Internet</span><span class="sxs-lookup"><span data-stu-id="90e89-113">Internet</span></span>
-* <span data-ttu-id="90e89-114">VirtualAppliance</span><span class="sxs-lookup"><span data-stu-id="90e89-114">VirtualAppliance</span></span>
-* <span data-ttu-id="90e89-115">VirtualNetworkGateway</span><span class="sxs-lookup"><span data-stu-id="90e89-115">VirtualNetworkGateway</span></span>
-* <span data-ttu-id="90e89-116">VnetLocal</span><span class="sxs-lookup"><span data-stu-id="90e89-116">VnetLocal</span></span>
-* <span data-ttu-id="90e89-117">HyperNetGateway</span><span class="sxs-lookup"><span data-stu-id="90e89-117">HyperNetGateway</span></span>
-* <span data-ttu-id="90e89-118">VnetPeering</span><span class="sxs-lookup"><span data-stu-id="90e89-118">VnetPeering</span></span>
-* <span data-ttu-id="90e89-119">None</span><span class="sxs-lookup"><span data-stu-id="90e89-119">None</span></span>
+* <span data-ttu-id="6ea45-113">Internet</span><span class="sxs-lookup"><span data-stu-id="6ea45-113">Internet</span></span>
+* <span data-ttu-id="6ea45-114">VirtualAppliance</span><span class="sxs-lookup"><span data-stu-id="6ea45-114">VirtualAppliance</span></span>
+* <span data-ttu-id="6ea45-115">VirtualNetworkGateway</span><span class="sxs-lookup"><span data-stu-id="6ea45-115">VirtualNetworkGateway</span></span>
+* <span data-ttu-id="6ea45-116">VnetLocal</span><span class="sxs-lookup"><span data-stu-id="6ea45-116">VnetLocal</span></span>
+* <span data-ttu-id="6ea45-117">HyperNetGateway</span><span class="sxs-lookup"><span data-stu-id="6ea45-117">HyperNetGateway</span></span>
+* <span data-ttu-id="6ea45-118">VnetPeering</span><span class="sxs-lookup"><span data-stu-id="6ea45-118">VnetPeering</span></span>
+* <span data-ttu-id="6ea45-119">None</span><span class="sxs-lookup"><span data-stu-id="6ea45-119">None</span></span>
 
-### <a name="next-steps"></a><span data-ttu-id="90e89-120">後續步驟</span><span class="sxs-lookup"><span data-stu-id="90e89-120">Next steps</span></span>
+### <a name="next-steps"></a><span data-ttu-id="6ea45-120">後續步驟</span><span class="sxs-lookup"><span data-stu-id="6ea45-120">Next steps</span></span>
 
-<span data-ttu-id="90e89-121">瀏覽[檢查 VM 上的下一個躍點](network-watcher-check-next-hop-portal.md)，以了解如何使用下一個躍點來尋找網路連線問題</span><span class="sxs-lookup"><span data-stu-id="90e89-121">Learn how to use next hop to find issues with network connectivity by visiting [Check the next hop on a VM](network-watcher-check-next-hop-portal.md)</span></span>
+<span data-ttu-id="6ea45-121">了解網路連線與下一個躍點 toofind toouse 問題造訪如何[核取 hello 下一個躍點 VM 上](network-watcher-check-next-hop-portal.md)</span><span class="sxs-lookup"><span data-stu-id="6ea45-121">Learn how toouse next hop toofind issues with network connectivity by visiting [Check hello next hop on a VM](network-watcher-check-next-hop-portal.md)</span></span>
 
 <!--Image references-->
 [1]: ./media/network-watcher-next-hop-overview/figure1.png

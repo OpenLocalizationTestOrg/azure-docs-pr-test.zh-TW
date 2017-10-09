@@ -1,6 +1,6 @@
 ---
-title: "重設 Windows VM 上的密碼或遠端桌面組態 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站或 Azure PowerShell 來重設 Windows VM 上的帳戶密碼或「遠端桌面」服務。"
+title: "aaaReset hello 密碼或 Windows VM 上的遠端桌面組態 |Microsoft 文件"
+description: "了解如何 tooreset 帳戶密碼或 Windows VM，使用遠端桌面服務 hello Azure 入口網站或 Azure PowerShell。"
 services: virtual-machines-windows
 documentationcenter: 
 author: genlin
@@ -15,57 +15,57 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/26/2017
 ms.author: genli
-ms.openlocfilehash: 2e002e3f336422b8fa1eceece889cd083e355a68
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5258df7196621f0adb50debd08dd248922a966de
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-reset-the-remote-desktop-service-or-its-login-password-in-a-windows-vm"></a><span data-ttu-id="bc396-103">如何在 Windows VM 中重設遠端桌面服務或其登入密碼</span><span class="sxs-lookup"><span data-stu-id="bc396-103">How to reset the Remote Desktop service or its login password in a Windows VM</span></span>
-<span data-ttu-id="bc396-104">如果您無法連線倒 Windows 虛擬機器 (VM)，您可以重設本機系統管理員密碼或重設「遠端桌面」服務組態。</span><span class="sxs-lookup"><span data-stu-id="bc396-104">If you can't connect to a Windows virtual machine (VM), you can reset the local administrator password or reset the Remote Desktop service configuration.</span></span> <span data-ttu-id="bc396-105">您可以使用 Azure 入口網站或 Azure PowerShell 中的 VM 存取延伸模組來重設密碼。</span><span class="sxs-lookup"><span data-stu-id="bc396-105">You can use either the Azure portal or the VM Access extension in Azure PowerShell to reset the password.</span></span> <span data-ttu-id="bc396-106">如果您使用的是 PowerShell，請確定您已[安裝並設定最新的 PowerShell 模組](/powershell/azure/overview)，並已登入您的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="bc396-106">If you are using PowerShell, make sure that you have the [latest PowerShell module installed and configured](/powershell/azure/overview) and are signed in to your Azure subscription.</span></span> <span data-ttu-id="bc396-107">您也可以[針對使用傳統部署模型建立的 VM 執行這些步驟](reset-rdp.md)。</span><span class="sxs-lookup"><span data-stu-id="bc396-107">You can also [perform these steps for VMs created with the Classic deployment model](reset-rdp.md).</span></span>
+# <a name="how-tooreset-hello-remote-desktop-service-or-its-login-password-in-a-windows-vm"></a><span data-ttu-id="082fb-103">如何 tooreset hello 遠端桌面服務或 Windows VM 中的其登入密碼</span><span class="sxs-lookup"><span data-stu-id="082fb-103">How tooreset hello Remote Desktop service or its login password in a Windows VM</span></span>
+<span data-ttu-id="082fb-104">如果您無法連接 tooa Windows 虛擬機器 (VM)，您可以重設 hello 本機系統管理員密碼，或重設 hello 遠端桌面服務設定。</span><span class="sxs-lookup"><span data-stu-id="082fb-104">If you can't connect tooa Windows virtual machine (VM), you can reset hello local administrator password or reset hello Remote Desktop service configuration.</span></span> <span data-ttu-id="082fb-105">您可以使用任一 hello Azure 入口網站或 hello VM 存取擴充功能在 Azure PowerShell tooreset hello 密碼。</span><span class="sxs-lookup"><span data-stu-id="082fb-105">You can use either hello Azure portal or hello VM Access extension in Azure PowerShell tooreset hello password.</span></span> <span data-ttu-id="082fb-106">如果您使用 PowerShell，請確定您擁有 hello[最新的 PowerShell 模組安裝並設定](/powershell/azure/overview)和登入 tooyour Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="082fb-106">If you are using PowerShell, make sure that you have hello [latest PowerShell module installed and configured](/powershell/azure/overview) and are signed in tooyour Azure subscription.</span></span> <span data-ttu-id="082fb-107">您也可以[針對與 hello 傳統部署模型所建立的 Vm 執行這些步驟](reset-rdp.md)。</span><span class="sxs-lookup"><span data-stu-id="082fb-107">You can also [perform these steps for VMs created with hello Classic deployment model](reset-rdp.md).</span></span>
 
-## <a name="ways-to-reset-configuration-or-credentials"></a><span data-ttu-id="bc396-108">重設組態或認證的方式</span><span class="sxs-lookup"><span data-stu-id="bc396-108">Ways to reset configuration or credentials</span></span>
-<span data-ttu-id="bc396-109">根據您的需求而定，您可以透過數種不同方式來重設遠端桌面服務和認證：</span><span class="sxs-lookup"><span data-stu-id="bc396-109">You can reset Remote Desktop services and credentials in a few different ways, depending on your needs:</span></span>
+## <a name="ways-tooreset-configuration-or-credentials"></a><span data-ttu-id="082fb-108">方式 tooreset 組態或認證</span><span class="sxs-lookup"><span data-stu-id="082fb-108">Ways tooreset configuration or credentials</span></span>
+<span data-ttu-id="082fb-109">根據您的需求而定，您可以透過數種不同方式來重設遠端桌面服務和認證：</span><span class="sxs-lookup"><span data-stu-id="082fb-109">You can reset Remote Desktop services and credentials in a few different ways, depending on your needs:</span></span>
 
-- [<span data-ttu-id="bc396-110">使用 Azure 入口網站重設</span><span class="sxs-lookup"><span data-stu-id="bc396-110">Reset using the Azure portal</span></span>](#azure-portal)
-- [<span data-ttu-id="bc396-111">使用 Azure PowerShell 重設</span><span class="sxs-lookup"><span data-stu-id="bc396-111">Reset using Azure PowerShell</span></span>](#vmaccess-extension-and-powershell)
+- [<span data-ttu-id="082fb-110">使用 hello Azure 入口網站重設</span><span class="sxs-lookup"><span data-stu-id="082fb-110">Reset using hello Azure portal</span></span>](#azure-portal)
+- [<span data-ttu-id="082fb-111">使用 Azure PowerShell 重設</span><span class="sxs-lookup"><span data-stu-id="082fb-111">Reset using Azure PowerShell</span></span>](#vmaccess-extension-and-powershell)
 
-## <a name="azure-portal"></a><span data-ttu-id="bc396-112">Azure 入口網站</span><span class="sxs-lookup"><span data-stu-id="bc396-112">Azure portal</span></span>
-<span data-ttu-id="bc396-113">若要展開入口網站功能表，請按一下左上角的三個橫條，然後按一下 [虛擬機器]：</span><span class="sxs-lookup"><span data-stu-id="bc396-113">To expand the portal menu, click the three bars in the upper left corner and then click **Virtual machines**:</span></span>
+## <a name="azure-portal"></a><span data-ttu-id="082fb-112">Azure 入口網站</span><span class="sxs-lookup"><span data-stu-id="082fb-112">Azure portal</span></span>
+<span data-ttu-id="082fb-113">tooexpand hello 入口網站功能表上，按一下 hello 三條 hello 左上角，然後按一下**虛擬機器**:</span><span class="sxs-lookup"><span data-stu-id="082fb-113">tooexpand hello portal menu, click hello three bars in hello upper left corner and then click **Virtual machines**:</span></span>
 
 ![瀏覽您的 Azure VM](./media/reset-rdp/Portal-Select-VM.png)
 
-### <a name="reset-the-local-administrator-account-password"></a><span data-ttu-id="bc396-115">**重設本機系統管理員帳戶密碼**</span><span class="sxs-lookup"><span data-stu-id="bc396-115">**Reset the local administrator account password**</span></span>
+### <a name="reset-hello-local-administrator-account-password"></a><span data-ttu-id="082fb-115">**重設 hello 本機系統管理員帳戶密碼**</span><span class="sxs-lookup"><span data-stu-id="082fb-115">**Reset hello local administrator account password**</span></span>
 
-<span data-ttu-id="bc396-116">選取您的 Windows 虛擬機器，然後按一下 [支援與疑難排解] > [重設密碼]。</span><span class="sxs-lookup"><span data-stu-id="bc396-116">Select your Windows virtual machine then click **Support + Troubleshooting** > **Reset password**.</span></span> <span data-ttu-id="bc396-117">將會顯示 [密碼重設] 刀鋒視窗︰</span><span class="sxs-lookup"><span data-stu-id="bc396-117">The password reset blade is displayed:</span></span>
+<span data-ttu-id="082fb-116">選取您的 Windows 虛擬機器，然後按一下 [支援與疑難排解] > [重設密碼]。</span><span class="sxs-lookup"><span data-stu-id="082fb-116">Select your Windows virtual machine then click **Support + Troubleshooting** > **Reset password**.</span></span> <span data-ttu-id="082fb-117">hello 密碼重設 刀鋒視窗會顯示：</span><span class="sxs-lookup"><span data-stu-id="082fb-117">hello password reset blade is displayed:</span></span>
 
 ![密碼重設頁面](./media/reset-rdp/Portal-RM-PW-Reset-Windows.png)
 
-<span data-ttu-id="bc396-119">輸入使用者名稱和新密碼，然後按一下 [更新] 。</span><span class="sxs-lookup"><span data-stu-id="bc396-119">Enter the username and a new password, then click **Update**.</span></span> <span data-ttu-id="bc396-120">嘗試再次連接到您的 VM。</span><span class="sxs-lookup"><span data-stu-id="bc396-120">Try connecting to your VM again.</span></span>
+<span data-ttu-id="082fb-119">輸入 hello 使用者名稱和新的密碼，然後按一下 **更新**。</span><span class="sxs-lookup"><span data-stu-id="082fb-119">Enter hello username and a new password, then click **Update**.</span></span> <span data-ttu-id="082fb-120">請再次嘗試連線 tooyour VM。</span><span class="sxs-lookup"><span data-stu-id="082fb-120">Try connecting tooyour VM again.</span></span>
 
-### <a name="reset-the-remote-desktop-service-configuration"></a><span data-ttu-id="bc396-121">**重設遠端桌面服務組態**</span><span class="sxs-lookup"><span data-stu-id="bc396-121">**Reset the Remote Desktop service configuration**</span></span>
+### <a name="reset-hello-remote-desktop-service-configuration"></a><span data-ttu-id="082fb-121">**重設 hello 遠端桌面服務設定**</span><span class="sxs-lookup"><span data-stu-id="082fb-121">**Reset hello Remote Desktop service configuration**</span></span>
 
-<span data-ttu-id="bc396-122">選取您的 Windows 虛擬機器，然後按一下 [支援與疑難排解] > [重設密碼]。</span><span class="sxs-lookup"><span data-stu-id="bc396-122">Select your Windows virtual machine then click **Support + Troubleshooting** > **Reset password**.</span></span> <span data-ttu-id="bc396-123">隨即會顯示 [密碼重設] 刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bc396-123">The password reset blade is displayed.</span></span> 
+<span data-ttu-id="082fb-122">選取您的 Windows 虛擬機器，然後按一下 [支援與疑難排解] > [重設密碼]。</span><span class="sxs-lookup"><span data-stu-id="082fb-122">Select your Windows virtual machine then click **Support + Troubleshooting** > **Reset password**.</span></span> <span data-ttu-id="082fb-123">hello 密碼重設 刀鋒視窗會顯示。</span><span class="sxs-lookup"><span data-stu-id="082fb-123">hello password reset blade is displayed.</span></span> 
 
 ![重設 RDP 組態](./media/reset-rdp/Portal-RM-RDP-Reset.png)
 
-<span data-ttu-id="bc396-125">從下拉式功能表中選取 [僅重設設定]，然後按一下 [更新]。</span><span class="sxs-lookup"><span data-stu-id="bc396-125">Select **Reset configuration only** from the drop-down menu, then click **Update**.</span></span> <span data-ttu-id="bc396-126">嘗試再次連接到您的 VM。</span><span class="sxs-lookup"><span data-stu-id="bc396-126">Try connecting to your VM again.</span></span>
+<span data-ttu-id="082fb-125">選取**只能重設組態**從 hello 下拉式選單，然後按一下**更新**。</span><span class="sxs-lookup"><span data-stu-id="082fb-125">Select **Reset configuration only** from hello drop-down menu, then click **Update**.</span></span> <span data-ttu-id="082fb-126">請再次嘗試連線 tooyour VM。</span><span class="sxs-lookup"><span data-stu-id="082fb-126">Try connecting tooyour VM again.</span></span>
 
 
-## <a name="vmaccess-extension-and-powershell"></a><span data-ttu-id="bc396-127">VMAccess 延伸模組和 PowerShell</span><span class="sxs-lookup"><span data-stu-id="bc396-127">VMAccess extension and PowerShell</span></span>
-<span data-ttu-id="bc396-128">請確定您已[安裝並設定最新的 PowerShell 模組](/powershell/azure/overview)，並使用 `Login-AzureRmAccount` Cmdlet 登入您的 Azure 訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="bc396-128">Make sure that you have the [latest PowerShell module installed and configured](/powershell/azure/overview) and are signed in to your Azure subscription with the `Login-AzureRmAccount` cmdlet.</span></span>
+## <a name="vmaccess-extension-and-powershell"></a><span data-ttu-id="082fb-127">VMAccess 延伸模組和 PowerShell</span><span class="sxs-lookup"><span data-stu-id="082fb-127">VMAccess extension and PowerShell</span></span>
+<span data-ttu-id="082fb-128">請確定您擁有 hello[最新的 PowerShell 模組安裝並設定](/powershell/azure/overview)和登入 Azure 訂用帳戶以 hello tooyour `Login-AzureRmAccount` cmdlet。</span><span class="sxs-lookup"><span data-stu-id="082fb-128">Make sure that you have hello [latest PowerShell module installed and configured](/powershell/azure/overview) and are signed in tooyour Azure subscription with hello `Login-AzureRmAccount` cmdlet.</span></span>
 
-### <a name="reset-the-local-administrator-account-password"></a><span data-ttu-id="bc396-129">**重設本機系統管理員帳戶密碼**</span><span class="sxs-lookup"><span data-stu-id="bc396-129">**Reset the local administrator account password**</span></span>
-<span data-ttu-id="bc396-130">請使用 [Set-AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) PowerShell Cmdlet，來重設系統管理員密碼或使用者名稱。</span><span class="sxs-lookup"><span data-stu-id="bc396-130">Reset the administrator password or user name with the [Set-AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) PowerShell cmdlet.</span></span> <span data-ttu-id="bc396-131">建立您的帳戶認證，如下所示：</span><span class="sxs-lookup"><span data-stu-id="bc396-131">Create your account credentials as follows:</span></span>
+### <a name="reset-hello-local-administrator-account-password"></a><span data-ttu-id="082fb-129">**重設 hello 本機系統管理員帳戶密碼**</span><span class="sxs-lookup"><span data-stu-id="082fb-129">**Reset hello local administrator account password**</span></span>
+<span data-ttu-id="082fb-130">重設 hello 系統管理員密碼或使用者名稱與 hello[組 AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) PowerShell cmdlet。</span><span class="sxs-lookup"><span data-stu-id="082fb-130">Reset hello administrator password or user name with hello [Set-AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) PowerShell cmdlet.</span></span> <span data-ttu-id="082fb-131">建立您的帳戶認證，如下所示：</span><span class="sxs-lookup"><span data-stu-id="082fb-131">Create your account credentials as follows:</span></span>
 
 ```powershell
 $cred=Get-Credential
 ```
 
 > [!NOTE] 
-> <span data-ttu-id="bc396-132">如果您輸入與您 VM 上目前本機系統管理員帳戶不同的名稱，則 VMAccess 擴充功能會重新命名本機系統管理員帳戶、將您指定的密碼指派給該帳戶，並發出遠端桌面登出事件。</span><span class="sxs-lookup"><span data-stu-id="bc396-132">If you type a different name than the current local administrator account on your VM, the VMAccess extension renames the local administrator account, assigns your specified password to that account, and issues a Remote Desktop logoff event.</span></span> <span data-ttu-id="bc396-133">如果您 VM 上的本機系統管理員帳戶已停用，則 VMAccess 擴充功能會將它啟用。</span><span class="sxs-lookup"><span data-stu-id="bc396-133">If the local administrator account on your VM is disabled, the VMAccess extension enables it.</span></span>
+> <span data-ttu-id="082fb-132">如果您在 VM 上輸入 hello 目前的本機系統管理員帳戶與不同的名稱，hello VMAccess 擴充功能就會重新命名 hello 本機系統管理員帳戶、 指派您指定的密碼 toothat 的帳戶，以及發出遠端桌面登出事件。</span><span class="sxs-lookup"><span data-stu-id="082fb-132">If you type a different name than hello current local administrator account on your VM, hello VMAccess extension renames hello local administrator account, assigns your specified password toothat account, and issues a Remote Desktop logoff event.</span></span> <span data-ttu-id="082fb-133">Hello VM 上的本機系統管理員帳戶已停用，hello VMAccess 擴充功能可讓它。</span><span class="sxs-lookup"><span data-stu-id="082fb-133">If hello local administrator account on your VM is disabled, hello VMAccess extension enables it.</span></span>
 
-<span data-ttu-id="bc396-134">下列範例會將資源群組 `myResourceGroup` 中的 VM `myVM` 更新為指定的認證。</span><span class="sxs-lookup"><span data-stu-id="bc396-134">The following example updates the VM named `myVM` in the resource group named `myResourceGroup` to the credentials specified.</span></span>
+<span data-ttu-id="082fb-134">下列範例會更新 hello hello 名為 VM `myVM` hello 資源群組中名為`myResourceGroup`toohello 指定的認證。</span><span class="sxs-lookup"><span data-stu-id="082fb-134">hello following example updates hello VM named `myVM` in hello resource group named `myResourceGroup` toohello credentials specified.</span></span>
 
 ```powershell
 Set-AzureRmVMAccessExtension -ResourceGroupName "myResourceGroup" -VMName "myVM" `
@@ -73,8 +73,8 @@ Set-AzureRmVMAccessExtension -ResourceGroupName "myResourceGroup" -VMName "myVM"
     -Password $cred.GetNetworkCredential().Password -typeHandlerVersion "2.0"
 ```
 
-### <a name="reset-the-remote-desktop-service-configuration"></a><span data-ttu-id="bc396-135">**重設遠端桌面服務組態**</span><span class="sxs-lookup"><span data-stu-id="bc396-135">**Reset the Remote Desktop service configuration**</span></span>
-<span data-ttu-id="bc396-136">使用 [Set-AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) PowerShell Cmdlet，重設對您 VM 的遠端存取。</span><span class="sxs-lookup"><span data-stu-id="bc396-136">Reset remote access to your VM with the [Set-AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) PowerShell cmdlet.</span></span> <span data-ttu-id="bc396-137">下列範例會在資源群組 `myResourceGroup` 中的 VM `myVM` 上重設存取擴充功能 `myVMAccess`：</span><span class="sxs-lookup"><span data-stu-id="bc396-137">The following example resets the access extension named `myVMAccess` on the VM named `myVM` in the `myResourceGroup` resource group:</span></span>
+### <a name="reset-hello-remote-desktop-service-configuration"></a><span data-ttu-id="082fb-135">**重設 hello 遠端桌面服務設定**</span><span class="sxs-lookup"><span data-stu-id="082fb-135">**Reset hello Remote Desktop service configuration**</span></span>
+<span data-ttu-id="082fb-136">重設遠端存取 tooyour VM 以 hello[組 AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) PowerShell cmdlet。</span><span class="sxs-lookup"><span data-stu-id="082fb-136">Reset remote access tooyour VM with hello [Set-AzureRmVMAccessExtension](/powershell/module/azurerm.compute/set-azurermvmaccessextension) PowerShell cmdlet.</span></span> <span data-ttu-id="082fb-137">hello 下列範例會重設名為 hello 存取延伸`myVMAccess`hello 名為 VM 上`myVM`在 hello`myResourceGroup`資源群組：</span><span class="sxs-lookup"><span data-stu-id="082fb-137">hello following example resets hello access extension named `myVMAccess` on hello VM named `myVM` in hello `myResourceGroup` resource group:</span></span>
 
 ```powershell
 Set-AzureRmVMAccessExtension -ResourceGroupName "myResoureGroup" -VMName "myVM" `
@@ -82,17 +82,17 @@ Set-AzureRmVMAccessExtension -ResourceGroupName "myResoureGroup" -VMName "myVM" 
 ```
 
 > [!TIP]
-> <span data-ttu-id="bc396-138">不論如何，一部 VM 只能有一個 VM 存取代理程式。</span><span class="sxs-lookup"><span data-stu-id="bc396-138">At any point, a VM can have only a single VM access agent.</span></span> <span data-ttu-id="bc396-139">若要成功設定 VM 存取代理程式屬性，可以使用 `-ForceRerun` 選項。</span><span class="sxs-lookup"><span data-stu-id="bc396-139">To set the VM access agent properties successfully, the `-ForceRerun` option can be used.</span></span> <span data-ttu-id="bc396-140">使用 `-ForceRerun` 時，請務必使用與任何前述命令中所使用之 VM 存取代理程式相同的名稱。</span><span class="sxs-lookup"><span data-stu-id="bc396-140">When using `-ForceRerun`, make sure to use the same name for the VM access agent as used in any previous commands.</span></span>
+> <span data-ttu-id="082fb-138">不論如何，一部 VM 只能有一個 VM 存取代理程式。</span><span class="sxs-lookup"><span data-stu-id="082fb-138">At any point, a VM can have only a single VM access agent.</span></span> <span data-ttu-id="082fb-139">tooset hello VM 存取代理程式內容成功，hello`-ForceRerun`選項才能使用。</span><span class="sxs-lookup"><span data-stu-id="082fb-139">tooset hello VM access agent properties successfully, hello `-ForceRerun` option can be used.</span></span> <span data-ttu-id="082fb-140">當使用`-ForceRerun`，請確定 toouse hello hello VM 存取代理程式在任何先前命令中使用相同的名稱。</span><span class="sxs-lookup"><span data-stu-id="082fb-140">When using `-ForceRerun`, make sure toouse hello same name for hello VM access agent as used in any previous commands.</span></span>
 
-<span data-ttu-id="bc396-141">如果您仍然無法從遠端連接虛擬機器，請參閱 [針對以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線進行疑難排解](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)，以取得其他值得一試的步驟。</span><span class="sxs-lookup"><span data-stu-id="bc396-141">If you still can't connect remotely to your virtual machine, see more steps to try at [Troubleshoot Remote Desktop connections to a Windows-based Azure virtual machine](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
+<span data-ttu-id="082fb-141">如果您仍然無法連線遠端 tooyour 虛擬機器，請參閱 < 在多個步驟 tootry[疑難排解遠端桌面連線 tooa windows Azure 虛擬機器](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="082fb-141">If you still can't connect remotely tooyour virtual machine, see more steps tootry at [Troubleshoot Remote Desktop connections tooa Windows-based Azure virtual machine](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span>
 
 
-## <a name="next-steps"></a><span data-ttu-id="bc396-142">後續步驟</span><span class="sxs-lookup"><span data-stu-id="bc396-142">Next steps</span></span>
-<span data-ttu-id="bc396-143">如果 Azure VM 存取延伸項目沒有回應，而且您無法重設密碼，可以[離線重設本機 Windows 密碼](reset-local-password-without-agent.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="bc396-143">If the Azure VM access extension does not respond and you are unable to reset the password, you can [reset the local Windows password offline](reset-local-password-without-agent.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span> <span data-ttu-id="bc396-144">此方法是更進階的程序，會要求您將有問題的 VM 之中的虛擬硬碟連接至另一個 VM。</span><span class="sxs-lookup"><span data-stu-id="bc396-144">This method is a more advanced process and requires you to connect the virtual hard disk of the problematic VM to another VM.</span></span> <span data-ttu-id="bc396-145">請先依照這篇文章中說明的步驟進行，並且只在最後無計可施時才嘗試離線密碼重設方法。</span><span class="sxs-lookup"><span data-stu-id="bc396-145">Follow the steps documented in this article first, and only attempt the offline password reset method as a last resort.</span></span>
+## <a name="next-steps"></a><span data-ttu-id="082fb-142">後續步驟</span><span class="sxs-lookup"><span data-stu-id="082fb-142">Next steps</span></span>
+<span data-ttu-id="082fb-143">如果 hello Azure VM 存取擴充功能不會回應並無法 tooreset hello 密碼，您可以[重設 hello 本機 Windows 密碼離線](reset-local-password-without-agent.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。</span><span class="sxs-lookup"><span data-stu-id="082fb-143">If hello Azure VM access extension does not respond and you are unable tooreset hello password, you can [reset hello local Windows password offline](reset-local-password-without-agent.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json).</span></span> <span data-ttu-id="082fb-144">這個方法是更進階的程序，並要求您 tooconnect hello 虛擬硬碟的問題 VM tooanother hello VM。</span><span class="sxs-lookup"><span data-stu-id="082fb-144">This method is a more advanced process and requires you tooconnect hello virtual hard disk of hello problematic VM tooanother VM.</span></span> <span data-ttu-id="082fb-145">首先，本文章中所述步驟 hello 和就只能嘗試 hello 離線密碼重設方法的最後手段。</span><span class="sxs-lookup"><span data-stu-id="082fb-145">Follow hello steps documented in this article first, and only attempt hello offline password reset method as a last resort.</span></span>
 
-[<span data-ttu-id="bc396-146">Azure VM 延伸模組與功能</span><span class="sxs-lookup"><span data-stu-id="bc396-146">Azure VM extensions and features</span></span>](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[<span data-ttu-id="082fb-146">Azure VM 延伸模組與功能</span><span class="sxs-lookup"><span data-stu-id="082fb-146">Azure VM extensions and features</span></span>](extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[<span data-ttu-id="bc396-147">透過 RDP 或 SSH 連接至 Azure 虛擬機器</span><span class="sxs-lookup"><span data-stu-id="bc396-147">Connect to an Azure virtual machine with RDP or SSH</span></span>](http://msdn.microsoft.com/library/azure/dn535788.aspx)
+[<span data-ttu-id="082fb-147">透過 RDP 或 SSH 連接 tooan Azure 虛擬機器</span><span class="sxs-lookup"><span data-stu-id="082fb-147">Connect tooan Azure virtual machine with RDP or SSH</span></span>](http://msdn.microsoft.com/library/azure/dn535788.aspx)
 
-[<span data-ttu-id="bc396-148">疑難排解以 Windows 為基礎之 Azure 虛擬機器的遠端桌面連線</span><span class="sxs-lookup"><span data-stu-id="bc396-148">Troubleshoot Remote Desktop connections to a Windows-based Azure virtual machine</span></span>](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+[<span data-ttu-id="082fb-148">疑難排解遠端桌面連線 tooa windows Azure 虛擬機器</span><span class="sxs-lookup"><span data-stu-id="082fb-148">Troubleshoot Remote Desktop connections tooa Windows-based Azure virtual machine</span></span>](troubleshoot-rdp-connection.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 

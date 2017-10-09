@@ -1,0 +1,13 @@
+<span data-ttu-id="e31d2-101">使用 Azure 資源管理員中，您定義參數的值要 toospecify 部署 hello 範本時。</span><span class="sxs-lookup"><span data-stu-id="e31d2-101">With Azure Resource Manager, you define parameters for values you want toospecify when hello template is deployed.</span></span> <span data-ttu-id="e31d2-102">hello 範本包括區段稱為參數，其中包含所有 hello 參數值。</span><span class="sxs-lookup"><span data-stu-id="e31d2-102">hello template includes a section called Parameters that contains all of hello parameter values.</span></span>
+<span data-ttu-id="e31d2-103">您應該定義依據您要部署的 hello 專案，或根據您要部署的 hello 環境而異的那些值的參數。</span><span class="sxs-lookup"><span data-stu-id="e31d2-103">You should define a parameter for those values that will vary based on hello project you are deploying or based on hello environment you are deploying to.</span></span> <span data-ttu-id="e31d2-104">不會定義參數的值，會一律保持 hello 相同。</span><span class="sxs-lookup"><span data-stu-id="e31d2-104">Do not define parameters for values that will always stay hello same.</span></span> <span data-ttu-id="e31d2-105">每個參數值用於 hello 範本 toodefine hello 部署的資源。</span><span class="sxs-lookup"><span data-stu-id="e31d2-105">Each parameter value is used in hello template toodefine hello resources that are deploy.</span></span> 
+
+<span data-ttu-id="e31d2-106">當定義參數，使用 hello **allowedValues**欄位 toospecify 其中值的使用者可以在部署期間提供。</span><span class="sxs-lookup"><span data-stu-id="e31d2-106">When defining parameters, use hello **allowedValues** field toospecify which values a user can provide during deployment.</span></span> <span data-ttu-id="e31d2-107">使用 hello **defaultValue**欄位 tooassign 值 toohello 參數，如果在部署期間未不提供任何值。</span><span class="sxs-lookup"><span data-stu-id="e31d2-107">Use hello **defaultValue** field tooassign a value toohello parameter, if no value is provided during deployment.</span></span>
+
+<span data-ttu-id="e31d2-108">我們將說明 hello 範本中的每個參數。</span><span class="sxs-lookup"><span data-stu-id="e31d2-108">We will describe each parameter in hello template.</span></span>
+
+### <a name="logicappname"></a><span data-ttu-id="e31d2-109">logicAppName</span><span class="sxs-lookup"><span data-stu-id="e31d2-109">logicAppName</span></span>
+<span data-ttu-id="e31d2-110">hello 邏輯應用程式 toocreate hello 名稱。</span><span class="sxs-lookup"><span data-stu-id="e31d2-110">hello name of hello logic app toocreate.</span></span>
+
+    "logicAppName": {
+        "type": "string"
+    }

@@ -1,6 +1,6 @@
 ---
-title: "Azure 排程器文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何使用排程器來排程及叫用作業，例如週期性應用程式動作和例行維護。 教學課程、API 參考等等。"
+title: "aaaAzure 排程器文件-教學課程中，API 參考 |Microsoft 文件"
+description: "深入了解如何 toouse 排程器 tooschedule 和叫用作業，例如重複執行的應用程式的動作和常式維護。 教學課程、API 參考等等。"
 services: scheduler
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 4883e5689a639259ec1c0bcd31e1016f85af5d66
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c9e67fc813939c31bb3cd38215293c98babe3838
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scheduler-documentation"></a>排程器文件
 
-了解如何使用排程器在雲端中排程及自動叫用週期性作業。 教學課程、API 參考和其他文件會示範如何排程及監視作業，例如週期性應用程式動作和例行維護。
+深入了解如何 toouse 排程器 tooschedule 和自動叫用 hello 雲端中的週期性工作。 教學課程、 應用程式開發介面參考和其他文件會顯示您 tooschedule 和監視方式重複執行的應用程式的動作和常式維護等作業。
 
 <ul class="panelContent cardsFTitle">
     <li>

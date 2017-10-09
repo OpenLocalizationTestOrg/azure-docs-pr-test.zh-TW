@@ -1,6 +1,6 @@
 ---
-title: "移動 Azure 中的 Linux VM | Microsoft Docs"
-description: "在 Resource Manager 部署模型中將 Linux VM 移至另一個 Azure 訂用帳戶或資源群組。"
+title: "在 Azure 中 Linux VM aaaMove |Microsoft 文件"
+description: "移動 hello Resource Manager 部署模型中的 Linux VM tooanother Azure 訂用帳戶或資源群組。"
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,28 +15,28 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 03/22/2017
 ms.author: cynthn
-ms.openlocfilehash: 4695a9c934f97f2b2d448c4990e7ad5533e38e9f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 938d04234059111912f03e72d14dabd338bc0678
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="move-a-linux-vm-to-another-subscription-or-resource-group"></a><span data-ttu-id="8f9a3-103">將 Linux VM 移至另一個訂用帳戶或資源群組</span><span class="sxs-lookup"><span data-stu-id="8f9a3-103">Move a Linux VM to another subscription or resource group</span></span>
-<span data-ttu-id="8f9a3-104">本文將逐步引導您了解如何在資源群組或訂用帳戶之間移動 Linux VM。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-104">This article walks you through how to move a Linux VM between resource groups or subscriptions.</span></span> <span data-ttu-id="8f9a3-105">如果您在個人訂用帳戶中建立了 VM，而現在想要將它移至您的公司訂用帳戶以繼續工作，在訂用帳戶之間移動 VM 會很方便。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-105">Moving a VM between subscriptions can be handy if you created a VM in a personal subscription and now want to move it to your company's subscription.</span></span>
+# <a name="move-a-linux-vm-tooanother-subscription-or-resource-group"></a><span data-ttu-id="15a3c-103">將 Linux VM tooanother 訂用帳戶或資源群組移動</span><span class="sxs-lookup"><span data-stu-id="15a3c-103">Move a Linux VM tooanother subscription or resource group</span></span>
+<span data-ttu-id="15a3c-104">本文將逐步引導您 toomove Linux VM 之間的資源群組或訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="15a3c-104">This article walks you through how toomove a Linux VM between resource groups or subscriptions.</span></span> <span data-ttu-id="15a3c-105">訂用帳戶之間移動 VM 可以很方便，如果您個人的訂用帳戶中建立的 VM，而現在想 toomove 它 tooyour 公司的訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="15a3c-105">Moving a VM between subscriptions can be handy if you created a VM in a personal subscription and now want toomove it tooyour company's subscription.</span></span>
 
 > [!IMPORTANT]
-><span data-ttu-id="8f9a3-106">此時，您無法移動受控磁碟。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-106">You cannot move Managed Disks at this time.</span></span> 
+><span data-ttu-id="15a3c-106">此時，您無法移動受控磁碟。</span><span class="sxs-lookup"><span data-stu-id="15a3c-106">You cannot move Managed Disks at this time.</span></span> 
 >
-><span data-ttu-id="8f9a3-107">移動過程中會建立新的資源識別碼。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-107">New resource IDs are created as part of the move.</span></span> <span data-ttu-id="8f9a3-108">移動 VM 之後，您必須更新工具和指令碼以使用新的資源識別碼。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-108">Once the VM has been moved, you need to update your tools and scripts to use the new resource IDs.</span></span> 
+><span data-ttu-id="15a3c-107">Hello 移動的一部分，會建立新的資源識別碼。</span><span class="sxs-lookup"><span data-stu-id="15a3c-107">New resource IDs are created as part of hello move.</span></span> <span data-ttu-id="15a3c-108">一旦 hello 已移動 VM，您需要 tooupdate 您工具和指令碼 toouse hello 新的資源 Id。</span><span class="sxs-lookup"><span data-stu-id="15a3c-108">Once hello VM has been moved, you need tooupdate your tools and scripts toouse hello new resource IDs.</span></span> 
 > 
 > 
 
-## <a name="use-the-azure-cli-to-move-a-vm"></a><span data-ttu-id="8f9a3-109">使用 Azure CLI 移動 VM</span><span class="sxs-lookup"><span data-stu-id="8f9a3-109">Use the Azure CLI to move a VM</span></span>
-<span data-ttu-id="8f9a3-110">若要成功移動 VM，您需要移動 VM 及其所有支援的資源。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-110">To successfully move a VM, you need to move the VM and all its supporting resources.</span></span> <span data-ttu-id="8f9a3-111">使用 **azure group show** 命令來列出資源群組中的所有資源及其識別碼。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-111">Use the **azure group show** command to list all the resources in a resource group and their IDs.</span></span> <span data-ttu-id="8f9a3-112">它有助於將此命令的輸出透過管線送至檔案，以便您將識別碼複製並貼到稍後的命令中。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-112">It helps to pipe the output of this command to a file so you can copy and paste the IDs into later commands.</span></span>
+## <a name="use-hello-azure-cli-toomove-a-vm"></a><span data-ttu-id="15a3c-109">使用 hello Azure CLI toomove VM</span><span class="sxs-lookup"><span data-stu-id="15a3c-109">Use hello Azure CLI toomove a VM</span></span>
+<span data-ttu-id="15a3c-110">toosuccessfully 移動 VM，您需要 toomove hello VM 和其支援的所有資源。</span><span class="sxs-lookup"><span data-stu-id="15a3c-110">toosuccessfully move a VM, you need toomove hello VM and all its supporting resources.</span></span> <span data-ttu-id="15a3c-111">使用 hello **azure 群組顯示**命令 toolist 所有 hello 與資源的資源群組及其 Id。</span><span class="sxs-lookup"><span data-stu-id="15a3c-111">Use hello **azure group show** command toolist all hello resources in a resource group and their IDs.</span></span> <span data-ttu-id="15a3c-112">它可幫助 toopipe hello 輸出此命令 tooa 檔案，讓您可以複製並貼入更新版本的命令識別碼 hello。</span><span class="sxs-lookup"><span data-stu-id="15a3c-112">It helps toopipe hello output of this command tooa file so you can copy and paste hello IDs into later commands.</span></span>
 
     azure group show <resourceGroupName>
 
-<span data-ttu-id="8f9a3-113">若要將 VM 與其資源移到另一個資源群組，請使用 **azure resource move** CLI 命令。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-113">To move a VM and its resources to another resource group, use the **azure resource move** CLI command.</span></span> <span data-ttu-id="8f9a3-114">下列範例說明如何移動 VM 與其所需的大多數常見資源。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-114">The following example shows how to move a VM and the most common resources it requires.</span></span> <span data-ttu-id="8f9a3-115">我們使用 **-i** 參數，並針對要移動的資源傳入以逗號分隔的識別碼清單 (不含空格)。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-115">We use the **-i** parameter and pass in a comma-separated list (without spaces) of IDs for the resources to move.</span></span>
+<span data-ttu-id="15a3c-113">toomove VM 和其資源 tooanother 資源群組，使用 hello **azure 資源移動**CLI 命令。</span><span class="sxs-lookup"><span data-stu-id="15a3c-113">toomove a VM and its resources tooanother resource group, use hello **azure resource move** CLI command.</span></span> <span data-ttu-id="15a3c-114">hello 下列範例顯示如何 toomove VM 和 hello 最常見的資源需要。</span><span class="sxs-lookup"><span data-stu-id="15a3c-114">hello following example shows how toomove a VM and hello most common resources it requires.</span></span> <span data-ttu-id="15a3c-115">我們使用 hello **-i**參數並以逗號分隔的清單 （不含空格） 的識別碼 hello 資源 toomove 傳入。</span><span class="sxs-lookup"><span data-stu-id="15a3c-115">We use hello **-i** parameter and pass in a comma-separated list (without spaces) of IDs for hello resources toomove.</span></span>
 
     vm=/subscriptions/<sourceSubscriptionID>/resourceGroups/<sourceResourceGroup>/providers/Microsoft.Compute/virtualMachines/<vmName>
     nic=/subscriptions/<sourceSubscriptionID>/resourceGroups/<sourceResourceGroup>/providers/Microsoft.Network/networkInterfaces/<nicName>
@@ -48,14 +48,14 @@ ms.lasthandoff: 07/11/2017
 
     azure resource move --ids $vm,$nic,$nsg,$pip,$vnet,$storage,$diag -d "<destinationResourceGroup>"
 
-<span data-ttu-id="8f9a3-116">如果您想要將 VM 及其資源移至不同的訂用帳戶，請加入 **--destination-subscriptionId &#60;destinationSubscriptionID&#62;** 參數以指定目的地訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-116">If you want to move the VM and its resources to a different subscription, add the **--destination-subscriptionId &#60;destinationSubscriptionID&#62;** parameter to specify the destination subscription.</span></span>
+<span data-ttu-id="15a3c-116">如果您想 toomove hello VM 和其資源 tooa 不同訂用帳戶、 新增 hello **-目的地 subscriptionId &#60; destinationSubscriptionID &#62;**參數 toospecify hello 目的地訂用帳戶。</span><span class="sxs-lookup"><span data-stu-id="15a3c-116">If you want toomove hello VM and its resources tooa different subscription, add hello **--destination-subscriptionId &#60;destinationSubscriptionID&#62;** parameter toospecify hello destination subscription.</span></span>
 
-<span data-ttu-id="8f9a3-117">如果您從 Windows 電腦的命令提示字元作業，您必須於宣告變數名稱時在其前面加上 **$** 。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-117">If you are working from the Command Prompt on a Windows computer, you need to add a **$** in front of the variable names when you declare them.</span></span> <span data-ttu-id="8f9a3-118">在 Linux 中不需要這麼做。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-118">This isn't needed in Linux.</span></span>
+<span data-ttu-id="15a3c-117">如果您正在從 Windows 電腦上的 hello 命令提示字元中，您需要 tooadd  **$**  hello 變數名稱時將其宣告的前面。</span><span class="sxs-lookup"><span data-stu-id="15a3c-117">If you are working from hello Command Prompt on a Windows computer, you need tooadd a **$** in front of hello variable names when you declare them.</span></span> <span data-ttu-id="15a3c-118">在 Linux 中不需要這麼做。</span><span class="sxs-lookup"><span data-stu-id="15a3c-118">This isn't needed in Linux.</span></span>
 
-<span data-ttu-id="8f9a3-119">系統會要求您確認您想要移動指定的資源。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-119">You are asked to confirm that you want to move the specified resource.</span></span> <span data-ttu-id="8f9a3-120">輸入 **Y** 確認您要移除資源。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-120">Type **Y** to confirm that you want to move the resources.</span></span>
+<span data-ttu-id="15a3c-119">系統會詢問您想 toomove hello tooconfirm 指定的資源。</span><span class="sxs-lookup"><span data-stu-id="15a3c-119">You are asked tooconfirm that you want toomove hello specified resource.</span></span> <span data-ttu-id="15a3c-120">型別**Y** tooconfirm 想 toomove hello 資源。</span><span class="sxs-lookup"><span data-stu-id="15a3c-120">Type **Y** tooconfirm that you want toomove hello resources.</span></span>
 
 [!INCLUDE [virtual-machines-common-move-vm](../../../includes/virtual-machines-common-move-vm.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="8f9a3-121">後續步驟</span><span class="sxs-lookup"><span data-stu-id="8f9a3-121">Next steps</span></span>
-<span data-ttu-id="8f9a3-122">您可以在資源群組和訂用帳戶之間移動許多不同類型的資源。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-122">You can move many different types of resources between resource groups and subscriptions.</span></span> <span data-ttu-id="8f9a3-123">如需詳細資訊，請參閱 [將資源移動到新的資源群組或訂用帳戶](../../resource-group-move-resources.md)。</span><span class="sxs-lookup"><span data-stu-id="8f9a3-123">For more information, see [Move resources to new resource group or subscription](../../resource-group-move-resources.md).</span></span>    
+## <a name="next-steps"></a><span data-ttu-id="15a3c-121">後續步驟</span><span class="sxs-lookup"><span data-stu-id="15a3c-121">Next steps</span></span>
+<span data-ttu-id="15a3c-122">您可以在資源群組和訂用帳戶之間移動許多不同類型的資源。</span><span class="sxs-lookup"><span data-stu-id="15a3c-122">You can move many different types of resources between resource groups and subscriptions.</span></span> <span data-ttu-id="15a3c-123">如需詳細資訊，請參閱[移動資源 toonew 資源群組或訂用帳戶](../../resource-group-move-resources.md)。</span><span class="sxs-lookup"><span data-stu-id="15a3c-123">For more information, see [Move resources toonew resource group or subscription](../../resource-group-move-resources.md).</span></span>    
 

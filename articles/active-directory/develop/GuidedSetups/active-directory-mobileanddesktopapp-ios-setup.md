@@ -1,5 +1,5 @@
 ---
-title: "Azure AD v2 iOS 快速入門 - 設定 | Microsoft Docs"
+title: "aaaAzure AD v2 iOS 入門-安裝 |Microsoft 文件"
 description: "iOS (Swift) 應用程式如何呼叫需要來自 Azure Active Directory v2 端點之存取權杖的 API"
 services: active-directory
 documentationcenter: dev-center-name
@@ -13,37 +13,37 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
-ms.openlocfilehash: d25353a61b2a60bff28aa0679d38110e77d19e64
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 62c4ee9a2d4ccaec780bee09fb4bc34cff2eb6df
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-## <a name="setting-up-your-ios-application"></a><span data-ttu-id="261a1-103">設定您的 iOS 應用程式</span><span class="sxs-lookup"><span data-stu-id="261a1-103">Setting up your iOS application</span></span>
+## <a name="setting-up-your-ios-application"></a><span data-ttu-id="41ff4-103">設定您的 iOS 應用程式</span><span class="sxs-lookup"><span data-stu-id="41ff4-103">Setting up your iOS application</span></span>
 
-<span data-ttu-id="261a1-104">本節提供逐步指示，說明如何建立新的專案來示範整合 iOS 應用程式 (Swift) 與使用 Microsoft 登入，以便它可以查詢需要權杖的 Web API。</span><span class="sxs-lookup"><span data-stu-id="261a1-104">This section provides step-by-step instructions for how to create a new project to demonstrate how to integrate an iOS application (Swift) with *Sign-In with Microsoft* so it can query Web APIs that require a token.</span></span>
+<span data-ttu-id="41ff4-104">本節提供有關如何逐步解說 toocreate 新的專案 toodemonstrate 如何 toointegrate iOS 應用程式 (Swift) 與*使用 Microsoft 登入*，它才能查詢要求權杖的 Web Api。</span><span class="sxs-lookup"><span data-stu-id="41ff4-104">This section provides step-by-step instructions for how toocreate a new project toodemonstrate how toointegrate an iOS application (Swift) with *Sign-In with Microsoft* so it can query Web APIs that require a token.</span></span>
 
-> <span data-ttu-id="261a1-105">想要改為下載此範例的 XCode 專案嗎？</span><span class="sxs-lookup"><span data-stu-id="261a1-105">Prefer to download this sample's XCode project instead?</span></span> <span data-ttu-id="261a1-106">[下載專案](https://github.com/Azure-Samples/active-directory-ios-swift-native-v2/archive/master.zip)並跳至[設定步驟](#create-an-application-express)，以在執行之前先設定程式碼範例。</span><span class="sxs-lookup"><span data-stu-id="261a1-106">[Download a project](https://github.com/Azure-Samples/active-directory-ios-swift-native-v2/archive/master.zip) and skip to the [Configuration step](#create-an-application-express) to configure the code sample before executing.</span></span>
+> <span data-ttu-id="41ff4-105">改為偏好 toodownload 這個範例的 XCode 專案嗎？</span><span class="sxs-lookup"><span data-stu-id="41ff4-105">Prefer toodownload this sample's XCode project instead?</span></span> <span data-ttu-id="41ff4-106">[下載專案](https://github.com/Azure-Samples/active-directory-ios-swift-native-v2/archive/master.zip)並略過 toohello[組態步驟](#create-an-application-express)tooconfigure hello 程式碼範例，然後再執行。</span><span class="sxs-lookup"><span data-stu-id="41ff4-106">[Download a project](https://github.com/Azure-Samples/active-directory-ios-swift-native-v2/archive/master.zip) and skip toohello [Configuration step](#create-an-application-express) tooconfigure hello code sample before executing.</span></span>
 
 
-## <a name="install-carthage-to-download-and-build-msal"></a><span data-ttu-id="261a1-107">安裝 Carthage 以下載並建置 MSAL</span><span class="sxs-lookup"><span data-stu-id="261a1-107">Install Carthage to download and build MSAL</span></span>
-<span data-ttu-id="261a1-108">MSAL 預覽期間會使用 Carthage 套件管理員 – 與 XCode 整合，同時維持 Microsoft 對程式庫進行變更的能力。</span><span class="sxs-lookup"><span data-stu-id="261a1-108">Carthage package manager is used during the preview period of MSAL – it integrates with XCode while maintaining the ability for Microsoft to make changes to the library.</span></span>
+## <a name="install-carthage-toodownload-and-build-msal"></a><span data-ttu-id="41ff4-107">安裝迦太基 toodownload 及建立 MSAL</span><span class="sxs-lookup"><span data-stu-id="41ff4-107">Install Carthage toodownload and build MSAL</span></span>
+<span data-ttu-id="41ff4-108">迦太基封裝管理員會使用 hello 預覽期間的 MSAL – 與整合的 XCode 維持 hello Microsoft toomake 變更 toohello 文件庫的能力。</span><span class="sxs-lookup"><span data-stu-id="41ff4-108">Carthage package manager is used during hello preview period of MSAL – it integrates with XCode while maintaining hello ability for Microsoft toomake changes toohello library.</span></span>
 
-- <span data-ttu-id="261a1-109">在[這裡](https://github.com/Carthage/Carthage/releases "Carthage 下載 URL") 下載並安裝最新版的 Carthage</span><span class="sxs-lookup"><span data-stu-id="261a1-109">Download and install the latest release of Carthage [here](https://github.com/Carthage/Carthage/releases "Carthage download URL")</span></span>
+- <span data-ttu-id="41ff4-109">下載並安裝新版迦太基 hello[這裡](https://github.com/Carthage/Carthage/releases "迦太基下載 URL")</span><span class="sxs-lookup"><span data-stu-id="41ff4-109">Download and install hello latest release of Carthage [here](https://github.com/Carthage/Carthage/releases "Carthage download URL")</span></span>
 
-## <a name="creating-your-application"></a><span data-ttu-id="261a1-110">建立應用程式</span><span class="sxs-lookup"><span data-stu-id="261a1-110">Creating your application</span></span>
+## <a name="creating-your-application"></a><span data-ttu-id="41ff4-110">建立應用程式</span><span class="sxs-lookup"><span data-stu-id="41ff4-110">Creating your application</span></span>
 
-1.  <span data-ttu-id="261a1-111">開啟 Xcode 並選取 `Create a new Xcode project`</span><span class="sxs-lookup"><span data-stu-id="261a1-111">Open Xcode and select `Create a new Xcode project`</span></span>
-2.  <span data-ttu-id="261a1-112">選取 `iOS`  >  `Single view Application`，然後按 [下一步]</span><span class="sxs-lookup"><span data-stu-id="261a1-112">Select `iOS` > `Single view Application` and click *Next*</span></span>
-3.  <span data-ttu-id="261a1-113">提供產品名稱，然後按 [下一步]</span><span class="sxs-lookup"><span data-stu-id="261a1-113">Give a product name and click *Next*</span></span>
-4.  <span data-ttu-id="261a1-114">選取用來建立應用程式的資料夾，然後按一下 [建立]</span><span class="sxs-lookup"><span data-stu-id="261a1-114">Select a folder to create your app and click *Create*</span></span>
+1.  <span data-ttu-id="41ff4-111">開啟 Xcode 並選取 `Create a new Xcode project`</span><span class="sxs-lookup"><span data-stu-id="41ff4-111">Open Xcode and select `Create a new Xcode project`</span></span>
+2.  <span data-ttu-id="41ff4-112">選取 `iOS`  >  `Single view Application`，然後按 [下一步]</span><span class="sxs-lookup"><span data-stu-id="41ff4-112">Select `iOS` > `Single view Application` and click *Next*</span></span>
+3.  <span data-ttu-id="41ff4-113">提供產品名稱，然後按 [下一步]</span><span class="sxs-lookup"><span data-stu-id="41ff4-113">Give a product name and click *Next*</span></span>
+4.  <span data-ttu-id="41ff4-114">應用程式，並按一下 選取資料夾 toocreate*建立*</span><span class="sxs-lookup"><span data-stu-id="41ff4-114">Select a folder toocreate your app and click *Create*</span></span>
 
-## <a name="build-the-msal-framework"></a><span data-ttu-id="261a1-115">建置 MSAL 架構</span><span class="sxs-lookup"><span data-stu-id="261a1-115">Build the MSAL Framework</span></span>
+## <a name="build-hello-msal-framework"></a><span data-ttu-id="41ff4-115">建置 hello MSAL 架構</span><span class="sxs-lookup"><span data-stu-id="41ff4-115">Build hello MSAL Framework</span></span>
 
-<span data-ttu-id="261a1-116">請遵循以下指示以使用 Carthage，提取然後建置最新版本的 MSAL 程式庫：</span><span class="sxs-lookup"><span data-stu-id="261a1-116">Follow the instructions below to pull and then build the latest version of MSAL libraries using Carthage:</span></span>
+<span data-ttu-id="41ff4-116">請遵循以下 toopull hello 指示，然後再建置 hello 使用迦太基 MSAL 程式庫的最新版本：</span><span class="sxs-lookup"><span data-stu-id="41ff4-116">Follow hello instructions below toopull and then build hello latest version of MSAL libraries using Carthage:</span></span>
 
-1.  <span data-ttu-id="261a1-117">開啟 bash 終端機並移至應用程式的根資料夾</span><span class="sxs-lookup"><span data-stu-id="261a1-117">Open the bash terminal and go to the App’s root folder</span></span>
-2.  <span data-ttu-id="261a1-118">複製下列項目並在 bash 終端機貼上，以建立 'Cartfile' 檔案：</span><span class="sxs-lookup"><span data-stu-id="261a1-118">Copy the below and paste in the bash terminal to create a ‘Cartfile’ file:</span></span>
+1.  <span data-ttu-id="41ff4-117">開啟 hello bash 終端機，並移 toohello 應用程式的根資料夾</span><span class="sxs-lookup"><span data-stu-id="41ff4-117">Open hello bash terminal and go toohello App’s root folder</span></span>
+2.  <span data-ttu-id="41ff4-118">複製 hello 下及貼到 hello bash 終端機 toocreate 'Cartfile' 檔案：</span><span class="sxs-lookup"><span data-stu-id="41ff4-118">Copy hello below and paste in hello bash terminal toocreate a ‘Cartfile’ file:</span></span>
 
 ```bash
 echo "github \"AzureAD/microsoft-authentication-library-for-objc\" \"master\"" > Cartfile
@@ -51,7 +51,7 @@ echo "github \"AzureAD/microsoft-authentication-library-for-objc\" \"master\"" >
 <!-- Workaround for Docs conversion bug -->
 <ol start="3">
 <li>
-<span data-ttu-id="261a1-119">複製並貼上下列項目。</span><span class="sxs-lookup"><span data-stu-id="261a1-119">Copy and paste the below.</span></span> <span data-ttu-id="261a1-120">此命令會將相依性擷取至 Carthage/Checkouts 資料夾，然後建置 MSAL 程式庫：</span><span class="sxs-lookup"><span data-stu-id="261a1-120">This command fetches dependencies into a Carthage/Checkouts folder, then builds the MSAL library:</span></span>
+<span data-ttu-id="41ff4-119">複製並貼上下列 hello。</span><span class="sxs-lookup"><span data-stu-id="41ff4-119">Copy and paste hello below.</span></span> <span data-ttu-id="41ff4-120">此命令至迦太基/簽出資料夾中，擷取相依性，然後建置 hello MSAL 程式庫：</span><span class="sxs-lookup"><span data-stu-id="41ff4-120">This command fetches dependencies into a Carthage/Checkouts folder, then builds hello MSAL library:</span></span>
 </li>
 </ol>
 
@@ -59,15 +59,15 @@ echo "github \"AzureAD/microsoft-authentication-library-for-objc\" \"master\"" >
 carthage update
 ```
 
-> <span data-ttu-id="261a1-121">上述程序是用來下載並建置 Microsoft Authentication Library (MSAL)。</span><span class="sxs-lookup"><span data-stu-id="261a1-121">The process above is used to download and build the Microsoft Authentication Library (MSAL).</span></span> <span data-ttu-id="261a1-122">MSAL 會處理使用者權杖的取得、快取及重新整理作業，這些權杖是用來存取受 Azure Active Directory v2 保護的 API。</span><span class="sxs-lookup"><span data-stu-id="261a1-122">MSAL handles acquiring, caching and refreshing user tokens used to access APIs protected by the Azure Active Directory v2.</span></span>
+> <span data-ttu-id="41ff4-121">使用的 toodownload 而建置 hello Microsoft 驗證程式庫 (MSAL) hello 上述的程序。</span><span class="sxs-lookup"><span data-stu-id="41ff4-121">hello process above is used toodownload and build hello Microsoft Authentication Library (MSAL).</span></span> <span data-ttu-id="41ff4-122">MSAL 處理取得，快取和重新整理使用者使用的語彙基元 tooaccess hello Azure Active Directory v2 所保護的應用程式開發介面。</span><span class="sxs-lookup"><span data-stu-id="41ff4-122">MSAL handles acquiring, caching and refreshing user tokens used tooaccess APIs protected by hello Azure Active Directory v2.</span></span>
 
-## <a name="add-the-msal-framework-to-your-application"></a><span data-ttu-id="261a1-123">將 MSAL 架構新增至您的應用程式</span><span class="sxs-lookup"><span data-stu-id="261a1-123">Add the MSAL framework to your application</span></span>
-1.  <span data-ttu-id="261a1-124">在 Xcode 中，開啟 [`General`] 索引標籤</span><span class="sxs-lookup"><span data-stu-id="261a1-124">In Xcode, open the `General` tab</span></span>
-2.  <span data-ttu-id="261a1-125">移至 [`Linked Frameworks and Libraries`] 區段，然後按一下 [`+`]</span><span class="sxs-lookup"><span data-stu-id="261a1-125">Go to the `Linked Frameworks and Libraries` section and click `+`</span></span>
-3.  <span data-ttu-id="261a1-126">選取 `Add other…`</span><span class="sxs-lookup"><span data-stu-id="261a1-126">Select `Add other…`</span></span>
-4.  <span data-ttu-id="261a1-127">選取：`Carthage` > `Build` > `iOS` > `MSAL.framework`，然後按一下 [開啟]。</span><span class="sxs-lookup"><span data-stu-id="261a1-127">Select: `Carthage` > `Build` > `iOS` > `MSAL.framework` and click *Open*.</span></span> <span data-ttu-id="261a1-128">您應該會看到 `MSAL.framework` 新增至清單。</span><span class="sxs-lookup"><span data-stu-id="261a1-128">You should see `MSAL.framework` added to the list.</span></span>
-5.  <span data-ttu-id="261a1-129">移至 [`Build Phases`] 索引標籤，然後按一下 [`+`] 圖示，選擇 [`New Run Script Phase`]</span><span class="sxs-lookup"><span data-stu-id="261a1-129">Go to `Build Phases` tab, and click `+` icon, choose `New Run Script Phase`</span></span>
-6.  <span data-ttu-id="261a1-130">將下列內容新增至 [指令碼區域]：</span><span class="sxs-lookup"><span data-stu-id="261a1-130">Add the following contents to the *script area*:</span></span>
+## <a name="add-hello-msal-framework-tooyour-application"></a><span data-ttu-id="41ff4-123">新增 hello MSAL framework tooyour 應用程式</span><span class="sxs-lookup"><span data-stu-id="41ff4-123">Add hello MSAL framework tooyour application</span></span>
+1.  <span data-ttu-id="41ff4-124">在 Xcode 中，開啟 [hello `General` ] 索引標籤</span><span class="sxs-lookup"><span data-stu-id="41ff4-124">In Xcode, open hello `General` tab</span></span>
+2.  <span data-ttu-id="41ff4-125">移 toohello`Linked Frameworks and Libraries`區段，然後按一下`+`</span><span class="sxs-lookup"><span data-stu-id="41ff4-125">Go toohello `Linked Frameworks and Libraries` section and click `+`</span></span>
+3.  <span data-ttu-id="41ff4-126">選取 `Add other…`</span><span class="sxs-lookup"><span data-stu-id="41ff4-126">Select `Add other…`</span></span>
+4.  <span data-ttu-id="41ff4-127">選取：`Carthage` > `Build` > `iOS` > `MSAL.framework`，然後按一下 [開啟]。</span><span class="sxs-lookup"><span data-stu-id="41ff4-127">Select: `Carthage` > `Build` > `iOS` > `MSAL.framework` and click *Open*.</span></span> <span data-ttu-id="41ff4-128">您應該會看到`MSAL.framework`加入 toohello 清單。</span><span class="sxs-lookup"><span data-stu-id="41ff4-128">You should see `MSAL.framework` added toohello list.</span></span>
+5.  <span data-ttu-id="41ff4-129">跳過`Build Phases`索引標籤，然後按一下`+`圖示，選擇`New Run Script Phase`</span><span class="sxs-lookup"><span data-stu-id="41ff4-129">Go too`Build Phases` tab, and click `+` icon, choose `New Run Script Phase`</span></span>
+6.  <span data-ttu-id="41ff4-130">新增下列內容 toohello hello*指令碼區域*:</span><span class="sxs-lookup"><span data-stu-id="41ff4-130">Add hello following contents toohello *script area*:</span></span>
 
 ```text
 /usr/local/bin/carthage copy-frameworks
@@ -76,7 +76,7 @@ carthage update
 <!-- Workaround for Docs conversion bug -->
 <ol start="7">
 <li>
-<span data-ttu-id="261a1-131">藉由按一下 [<code>+</code>]，將下列項目新增至 [<code>Input Files</code>]：</span><span class="sxs-lookup"><span data-stu-id="261a1-131">Add the following to <code>Input Files</code> by clicking <code>+</code>:</span></span>
+<span data-ttu-id="41ff4-131">Hello 太之後加入<code>Input Files</code>按一下<code>+</code>:</span><span class="sxs-lookup"><span data-stu-id="41ff4-131">Add hello following too<code>Input Files</code> by clicking <code>+</code>:</span></span>
 </li>
 </ol>
 
@@ -84,11 +84,11 @@ carthage update
 $(SRCROOT)/Carthage/Build/iOS/MSAL.framework
 ```
 
-## <a name="creating-your-applications-ui"></a><span data-ttu-id="261a1-132">建立應用程式的 UI</span><span class="sxs-lookup"><span data-stu-id="261a1-132">Creating your application’s UI</span></span>
-<span data-ttu-id="261a1-133">系統應會自動建立 Main.storyboard 檔案，作為專案範本的一部分。</span><span class="sxs-lookup"><span data-stu-id="261a1-133">A Main.storyboard file should automatically be created as a part of your project template.</span></span> <span data-ttu-id="261a1-134">請遵循下列指示以建立應用程式 UI：</span><span class="sxs-lookup"><span data-stu-id="261a1-134">Follow the instructions below to create the app UI:</span></span>
+## <a name="creating-your-applications-ui"></a><span data-ttu-id="41ff4-132">建立應用程式的 UI</span><span class="sxs-lookup"><span data-stu-id="41ff4-132">Creating your application’s UI</span></span>
+<span data-ttu-id="41ff4-133">系統應會自動建立 Main.storyboard 檔案，作為專案範本的一部分。</span><span class="sxs-lookup"><span data-stu-id="41ff4-133">A Main.storyboard file should automatically be created as a part of your project template.</span></span> <span data-ttu-id="41ff4-134">請遵循下列 toocreate hello 應用程式 UI 的 hello 指示：</span><span class="sxs-lookup"><span data-stu-id="41ff4-134">Follow hello instructions below toocreate hello app UI:</span></span>
 
-1.  <span data-ttu-id="261a1-135">按住 Ctrl 鍵並按一下 `Main.storyboard` 以顯示內容功能表，然後按一下：`Open As` > `Source Code`</span><span class="sxs-lookup"><span data-stu-id="261a1-135">Control+click `Main.storyboard` to bring up the contextual menu, and then click: `Open As` > `Source Code`</span></span>
-2.  <span data-ttu-id="261a1-136">使用下列程式碼來取代 `<scenes>` 節點：</span><span class="sxs-lookup"><span data-stu-id="261a1-136">Replace the `<scenes>` node with the code below:</span></span>
+1.  <span data-ttu-id="41ff4-135">控制並按一下滑鼠左鍵`Main.storyboard`toobring 向上 hello 內容功能表，然後按一下：`Open As` > `Source Code`</span><span class="sxs-lookup"><span data-stu-id="41ff4-135">Control+click `Main.storyboard` toobring up hello contextual menu, and then click: `Open As` > `Source Code`</span></span>
+2.  <span data-ttu-id="41ff4-136">取代 hello`<scenes>`節點與 hello 的下列程式碼：</span><span class="sxs-lookup"><span data-stu-id="41ff4-136">Replace hello `<scenes>` node with hello code below:</span></span>
 
 ```xml
  <scenes>

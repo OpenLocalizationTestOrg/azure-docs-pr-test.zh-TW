@@ -17,7 +17,7 @@
 ### [CLI 1.0](network-watcher-packet-capture-manage-cli-nodejs.md)
 ### [CLI 2.0](network-watcher-packet-capture-manage-cli.md)
 ### [REST](network-watcher-packet-capture-manage-rest.md)
-## 驗證流向及來自 VM 的 IP 流量
+## 確認從 VM 的 IP 流量 tooand
 ### [入口網站](network-watcher-check-ip-flow-verify-portal.md)
 ### [PowerShell](network-watcher-check-ip-flow-verify-powershell.md)
 ### [CLI 1.0](network-watcher-check-ip-flow-verify-cli-nodejs.md)
@@ -59,8 +59,8 @@
 # 作法
 ## [透過 Azure 自動化監控 VPN 閘道](network-watcher-monitor-with-azure-automation.md)
 ## [透過 VPN 閘道診斷內部部署連線能力](network-watcher-diagnose-on-premises-connectivity.md)
-## [分析封包擷取以尋找異常情況](network-watcher-deep-packet-inspection.md)
-## [使用封包擷取搭配 Azure Functions 進行主動式網路監視](network-watcher-alert-triggered-packet-capture.md)
+## [分析封包擷取 toofind 異常](network-watcher-deep-packet-inspection.md)
+## [使用 Azure 功能與監視的封包擷取 toodo 主動式網路](network-watcher-alert-triggered-packet-capture.md)
 ## [使用 Power BI 視覺化流量記錄](network-watcher-visualize-nsg-flow-logs-power-bi.md)
 ## [使用來源工具視覺化流量記錄](network-watcher-visualize-nsg-flow-logs-open-source-tools.md)
 ## [使用開放原始碼視覺化流量模式](network-watcher-using-open-source-tools.md)
