@@ -1,6 +1,6 @@
 ---
-title: "在 HDInsight 叢集建立期間新增 Hive 程式庫 - Azure | Microsoft Docs"
-description: "了解如何在叢集建立期間將 Hive 程式庫 (jar 檔案) 新增至 HDInsight 叢集。"
+title: "aaaAdd Hive 程式庫，在 HDInsight 叢集建立-Azure |Microsoft 文件"
+description: "了解如何 tooadd Hive 程式庫 （jar 檔案），tooan HDInsight 叢集在叢集建立期間。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,29 +15,29 @@ ms.workload: big-data
 ms.date: 07/12/2017
 ms.author: larryfr
 ms.custom: H1Hack27Feb2017,hdinsightactive
-ms.openlocfilehash: 3412864384961e8820d6700c1bf22a4cae64ba4b
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2e028a07c3248205def0789af2c262a0774a8f19
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="add-custom-hive-libraries-when-creating-your-hdinsight-cluster"></a>建立 HDInsight 叢集時新增自訂 Hive 程式庫
 
-如果您有與 HDInsight 上的 Hive 經常一起使用的程式庫，本文件包含在叢集建立期間使用指令碼動作來預先載入程式庫的詳細資訊。 使用本文件步驟新增的程式庫在 Hive 中為全域可用 - 不需要使用 [ADD JAR](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Cli) 載入它們。
+如果您有與 HDInsight 上的登錄區經常使用的程式庫，這份文件會包含有關在叢集建立期間使用的指令碼動作 toopre 負載 hello 程式庫。 登錄區中，使用這份文件中的 hello 步驟加入的程式庫供全域使用-沒有任何需要 toouse[新增 JAR](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+Cli) tooload 它們。
 
 ## <a name="how-it-works"></a>運作方式
 
-建立叢集時，您可以選擇性地指定指令碼動作，以便在建立叢集節點時在節點上執行指令碼。 本文件中的指令碼接受單一參數，也就是包含要預先載入程式庫 (儲存為 jar 檔案) 的 WASB 位置。
+在建立叢集時，您可以選擇性地指定一個 hello 叢集節點執行指令碼，在建立時的指令碼動作。 這份文件中的 hello 指令碼會接受單一參數，這是包含預先載入的 hello （儲存為 jar 檔案） 的程式庫 toobe WASB 位置。
 
-叢集建立期間，指令碼會列舉檔案、將它們複製到前端和背景工作節點上的 `/usr/lib/customhivelibs/` 目錄，然後將它們加入至 `core-site.xml` 檔案中的 `hive.aux.jars.path` 屬性。 在以 Linux 為基礎的叢集上，它也會以檔案的位置來更新 `hive-env.sh` 檔案。
+在叢集建立期間 hello 指令碼列舉 hello 檔案、 將其複製 toohello`/usr/lib/customhivelibs/`目錄標頭和背景工作節點，然後將它們新增 toohello`hive.aux.jars.path`屬性在 hello`core-site.xml`檔案。 在以 Linux 為基礎的叢集，它也會更新 hello `hive-env.sh` hello hello 檔案位置的檔案。
 
 > [!NOTE]
-> 使用本文中的指令碼動作可讓程式庫在下列案例中可供使用：
+> 使用本文章中的 hello 指令碼動作 hello 程式庫可讓在 hello 下列案例：
 >
-> * **以 Linux 為基礎的 HDInsight** - 使用 Hive 用戶端、**WebHCat** 和 **HiveServer2** 時。
-> * **以 Windows 為基礎的 HDInsight** - 使用 Hive 用戶端和 **WebHCat** 時。
+> * **以 Linux 為基礎的 HDInsight** -時使用 hello Hive 用戶端**WebHCat**，和**HiveServer2**。
+> * **Windows 為基礎的 HDInsight** -時使用 hello Hive 用戶端和**WebHCat**。
 
-## <a name="the-script"></a>指令碼
+## <a name="hello-script"></a>hello 指令碼
 
 **指令碼位置**
 
@@ -46,35 +46,35 @@ ms.lasthandoff: 08/03/2017
 **以 Windows 為基礎的叢集**：[https://hdiconfigactions.blob.core.windows.net/setupcustomhivelibsv01/setup-customhivelibs-v01.ps1](https://hdiconfigactions.blob.core.windows.net/setupcustomhivelibsv01/setup-customhivelibs-v01.ps1)
 
 > [!IMPORTANT]
-> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+> Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 **需求**
 
-* 指令碼必須同時套用至**前端節點**和**背景工作節點**。
+* hello 指令碼必須可套用的 tooboth hello**前端節點**和**背景工作節點**。
 
-* 您想要安裝的 jar 必須儲存在**單一容器**中的 Azure Blob 儲存體。
+* （每瓶) 您希望 tooinstall 必須儲存在 Azure Blob 儲存體中的 hello**單一容器**。
 
-* 包含 jar 檔案程式庫的儲存體帳戶**必須**在建立期間連結至 HDInsight 叢集。 它必須是預設的儲存體帳戶，或是透過__選擇性組態__新增的帳戶。
+* hello 包含 jar 檔案的 hello 程式庫的儲存體帳戶**必須**是建立連結的 toohello HDInsight 叢集。 它必須是 hello 預設儲存體帳戶，或透過加入帳戶__選擇性組態__。
 
-* 必須指定容器的 WASB 路徑做為指令碼動作的參數。 例如，如果 jar 儲存在名為 **mystorage** 的儲存體帳戶上稱為 **libs** 的容器中，則這個參數會是 **wasb://libs@mystorage.blob.core.windows.net/**。
+* hello WASB 路徑 toohello 容器必須指定為參數 toohello 指令碼動作。 例如，如果 hello （每瓶） 會儲存在名為的容器**程式庫**儲存體帳戶上名為**mystorage**，hello 參數便是 **wasb://libs@mystorage.blob.core.windows.net/** 。
 
   > [!NOTE]
-  > 本文件假設您已建立儲存體帳戶、blob 容器，也已將檔案上傳給它。
+  > 本文件假設您有已建立儲存體帳戶、 blob 容器和上傳的 hello 檔案 tooit。
   >
-  > 如果您尚未建立儲存體帳戶，您可以透過 [Azure 入口網站](https://portal.azure.com)來建立。 接著，您可以使用 [Azure 儲存體 Explorer](http://storageexplorer.com/) 之類的公用程式，在帳戶中建立容器，並將檔案上傳至其中。
+  > 如果您尚未建立儲存體帳戶，您可以透過 hello [Azure 入口網站](https://portal.azure.com)。 然後您可以使用公用程式例如[Azure 儲存體總管](http://storageexplorer.com/)toocreate 容器中 hello 帳戶和上傳的檔案 tooit。
 
-## <a name="create-a-cluster-using-the-script"></a>使用指令碼建立叢集
+## <a name="create-a-cluster-using-hello-script"></a>使用 hello 指令碼建立叢集
 
 > [!NOTE]
-> 下列步驟會建立以 Linux 為基礎的 HDInsight 叢集。 若要建立以 Windows 為基礎的叢集，請在建立叢集時選取 **Windows** 作為叢集作業系統，並使用 Windows (PowerShell) 指令碼，而不是 bash 指令碼。
+> hello 下列步驟建立以 Linux 為基礎的 HDInsight 叢集。 toocreate Windows 為基礎的叢集上，選取**Windows** hello 與叢集作業系統建立 hello 叢集時，並使用 hello Windows (PowerShell) 指令碼，而不是 hello bash 指令碼。
 >
-> 您也可以使用 Azure PowerShell 或 HDInsight .NET SDK，以使用此指令碼建立叢集。 如需使用這些方法的詳細資訊，請參閱 [使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
+> 您也可以使用 Azure PowerShell 或 hello HDInsight.NET SDK toocreate 使用此指令碼的叢集。 如需使用這些方法的詳細資訊，請參閱 [使用指令碼動作自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster-linux.md)。
 
-1. 使用[在 Linux 上佈建 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)中的步驟開始佈建叢集，但是不完成佈建。
+1. 開始使用中的 hello 步驟佈建叢集[佈建 HDInsight 叢集在 Linux 上](hdinsight-hadoop-provision-linux-clusters.md)，但是不完成佈建。
 
-2. 在 [選用組態] 刀鋒視窗中，選取 [指令碼動作]，並提供下列資訊：
+2. 在 hello**選擇性組態**刀鋒視窗中，選取**指令碼動作**，並提供下列資訊的 hello:
 
-   * **名稱**：輸入指令碼動作的易記名稱。
+   * **名稱**： 輸入 hello 指令碼動作的易記名稱。
 
    * **SCRIPT URI**: https://hdiconfigactions.blob.core.windows.net/linuxsetupcustomhivelibsv01/setup-customhivelibs-v01.sh
 
@@ -84,17 +84,17 @@ ms.lasthandoff: 08/03/2017
 
    * **ZOOKEEPER**：將此選項保留空白。
 
-   * **參數**：輸入包含 jar 的容器和儲存體帳戶的 WASB 位址。 例如：**wasb://libs@mystorage.blob.core.windows.net/**。
+   * **參數**： 輸入 hello WASB 位址 toohello 容器和儲存體帳戶包含 hello （每瓶）。 例如：**wasb://libs@mystorage.blob.core.windows.net/**。
 
-3. 在 [指令碼動作] 底部，使用 [選取] 按鈕以儲存組態。
+3. 在 hello 底部 hello**指令碼動作**，使用 hello**選取**按鈕 toosave hello 組態。
 
-4. 在 [選擇性組態] 刀鋒視窗中，選取 [連結的儲存體帳戶]，然後選取 [新增儲存體金鑰] 連結。 選取包含 jar 的儲存體帳戶，然後使用 [選取] 按鈕來儲存設定，並回到 [選擇性組態] 刀鋒視窗。
+4. 在 hello**選擇性組態**刀鋒視窗中，選取**連結儲存體帳戶**和選取 hello**新增儲存體金鑰**連結。 選取包含 hello （每瓶），hello 儲存體帳戶，然後使用 hello**選取**按鈕 toosave 設定和傳回 hello**選擇性組態**刀鋒視窗。
 
-5. 使用 [選擇性組態] 刀鋒視窗底部的 [選取] 按鈕，儲存選擇性組態資訊。
+5. 使用 hello**選取**在 hello hello 底部的按鈕**選擇性組態**刀鋒視窗 toosave hello 選擇性的組態資訊。
 
-6. 繼續如[在 Linux 上佈建 HDInsight 叢集](hdinsight-hadoop-provision-linux-clusters.md)中所述佈建叢集。
+6. 繼續中所述，佈建 hello 叢集[佈建 HDInsight 叢集在 Linux 上](hdinsight-hadoop-provision-linux-clusters.md)。
 
-建立叢集完成後，您就能夠從 Hive 使用透過此指令碼新增的 jar，而不需使用 `ADD JAR` 陳述式。
+一旦叢集建立完成時，您就可以 toouse hello （每瓶） 從 Hive 加入到此指令碼而不需要 toouse hello`ADD JAR`陳述式。
 
 ## <a name="next-steps"></a>後續步驟
 

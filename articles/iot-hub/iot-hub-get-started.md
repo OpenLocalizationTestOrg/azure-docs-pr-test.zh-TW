@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT 中樞 - 開始將 IoT 裝置連線到雲端 | Microsoft Docs"
-description: "了解如何將 IoT 面板和入門套件連線到 Azure IoT 中樞。 您的裝置可以將遙測資料傳送到 IoT 中樞，而 IoT 中樞會監視並管理您的裝置。"
+title: "Azure IoT 中樞-開始連接 IoT 裝置 toohello 雲端 |Microsoft 文件"
+description: "深入了解如何 tooconnect 您的 IoT 面板和入門套件 tooAzure IoT 中樞。 您的裝置可以傳送遙測 tooIoT 中樞和 IoT 中心可以監視和管理您的裝置。"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/22/2017
 ms.author: dobett
-ms.openlocfilehash: 45016e6383761ffe78f13ccef1112ab3d9753498
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6dc956308009091532019ff84aec881f042f0104
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-hub-get-started-tutorials"></a>Azure IoT 中樞快速入門教學課程
 
-您可以使用 Azure IoT 中樞和 Azure IoT 裝置 SDK 來建置物聯網 (IoT) 解決方案：
+您可以使用 Azure IoT 中樞與 hello Azure IoT 裝置 Sdk toobuild 物聯網 (IoT) 解決方案：
 
-* Azure IoT 中樞是雲端中完全受管理的服務，可安全地連線、監視及管理您的 IoT 裝置。 您可以使用 Azure IoT 裝置 SDK 來實作您的 IoT 裝置。
-* 在更複雜的 IoT 案例中使用 IoT 閘道。 例如，您在此案例中必須考慮諸如傳統裝置、頻寬成本、安全性和隱私權原則或邊緣資料處理等因素。 在這些情況下，您可以使用 Azure IoT Edge 來實作閘道以將裝置連線到 IoT 中樞。
+* Azure IoT 中樞是完全受管理的服務，可安全地連接、 監控，以及管理您的 IoT 裝置 hello 雲端中。 使用 hello Azure IoT 裝置 Sdk tooimplement IoT 裝置。
+* 在更複雜的 IoT 案例中使用 IoT 閘道。 例如，您需要 tooconsider 因素，例如 傳統裝置、 頻寬成本、 安全性和隱私權原則或邊緣資料處理。 在這些情況下，您可以使用 Azure IoT 邊緣 tooimplement 連接裝置 tooyour IoT 中樞的閘道。
 
-## <a name="what-the-tutorials-cover"></a>這些教學課程的涵蓋範圍
+## <a name="what-hello-tutorials-cover"></a>Hello 教學課程所涵蓋的功能
 
-這些教學課程將為您介紹 Azure IoT 中樞與裝置的 SDK。 這些教學課程涵蓋的常見 IoT 案例會說明 IoT 中樞的功能。 教學課程也將說明如何將 IoT 中樞與其他 Azure 服務和工具結合，建置更強大的 IoT 解決方案。 在教學課程中，您可以選擇使用模擬或實際的 IoT 裝置。 此外，您可以了解如何使用閘道來將裝置連線到您的 IoT 中樞。
+這些教學課程介紹 tooAzure IoT 中樞和 hello 裝置 Sdk。 hello 教學課程涵蓋常見 IoT 案例 toodemonstrate hello 功能的 IoT 中樞。 hello 教學課程也說明如何 toocombine IoT 中樞與其他 Azure 服務和工具 toobuild 更強大的 IoT 解決方案。 在 hello 教學課程中，您可以選擇 toouse 模擬或實際 IoT 裝置。 此外，您可以了解如何 toouse 閘道 tooenable 裝置 tooconnect tooyour IoT 中樞。
 
 ## <a name="set-up-your-device"></a>設定您的裝置
 
-將 IoT 裝置或閘道連線至 Azure IoT 中樞。 您可以選擇要開始使用的實體或模擬裝置：
+連接 IoT 裝置或閘道 tooAzure IoT 中樞。 您可以選擇啟動實體或模擬裝置 tooget:
 
 | IoT 裝置                       | 程式設計語言 |
 |----------------------------------|----------------------|
@@ -47,7 +47,7 @@ ms.lasthandoff: 08/29/2017
 | 電腦上的模擬的裝置           | [.NET][Sim_NET]、[Java][Sim_Jav]、[Node.js][Sim_Nd]、[Python][Sim_Pyth] |
 | 線上裝置模擬器         | [Raspberry Pi (Node.js)][Ol_Sim] |
 
-此外，您可以使用 IoT Edge 閘道來將裝置連線到您的 IoT 中樞：
+此外，您可以使用 IoT 邊緣閘道 tooenable 裝置 tooconnect tooyour IoT 中心：
 
 | 閘道裝置               | 程式設計語言 | 平台         |
 |------------------------------|----------------------|------------------|

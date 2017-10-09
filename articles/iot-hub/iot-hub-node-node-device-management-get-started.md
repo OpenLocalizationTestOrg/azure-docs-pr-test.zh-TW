@@ -1,6 +1,6 @@
 ---
-title: "開始使用 Azure IoT 中樞裝置管理 (Node) | Microsoft Docs"
-description: "如何使用 IoT 中樞裝置管理來起始遠端裝置重新開機。 您可以使用適用於 Node.js 的 Azure IoT SDK，實作模擬裝置應用程式 (包含直接方法) 和服務應用程式 (叫用直接方法)。"
+title: "aaaGet 開始使用 Azure IoT 中心裝置管理 （節點） |Microsoft 文件"
+description: "如何 toouse IoT 中心裝置管理 tooinitiate 遠端裝置重新開機。 您可以使用 hello Azure IoT SDK for Node.js tooimplement 模擬的裝置應用程式，其中包含直接的方法與 hello 直接的方法會叫用的服務應用程式。"
 services: iot-hub
 documentationcenter: .net
 author: juanjperez
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/25/2017
 ms.author: juanpere
-ms.openlocfilehash: 332a3e62cb1ef75e2c6dd5562ee799465c401128
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 5dd1878e71231850fb95f4170b823f1e86c3ee83
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-device-management-node"></a>開始使用裝置管理 (Node)
 
@@ -26,19 +26,19 @@ ms.lasthandoff: 08/29/2017
 
 本教學課程說明如何：
 
-* 使用 Azure 入口網站來建立 IoT 中樞，並且在 IoT 中樞建立裝置識別。
-* 建立模擬裝置應用程式，其包含可將該裝置重新開機的直接方法。 直接方法是從雲端叫用。
-* 建立 Node.js 主控台應用程式，可透過您的 IoT 中樞在模擬的裝置應用程式中呼叫重新啟動直接方法。
+* 使用 hello Azure 入口網站 toocreate IoT 中樞，並在您的 IoT 中樞中建立裝置身分識別。
+* 建立模擬裝置應用程式，其包含可將該裝置重新開機的直接方法。 直接的方法會叫用從 hello 雲端。
+* 建立 Node.js 主控台應用程式透過您的 IoT 中樞 hello 模擬的裝置應用程式中呼叫 hello 重新開機直接的方法。
 
-在本教學課程結尾處，您會有兩個 Node.js 主控台應用程式：
+在本教學課程的 hello 最後，您有兩個 Node.js 主控台應用程式：
 
-**dmpatterns_getstarted_device.js**，它會以先前建立的裝置識別連線到您的 IoT 中樞，接收重新啟動直接方法，模擬實體重新啟動，並報告上一次重新啟動的時間。
+**dmpatterns_getstarted_device.js**，稍早建立的 hello 裝置身分識別與連線 tooyour IoT 中樞收到重新開機直接的方法，會模擬實際的重新開機，並報告 hello hello 上次重新開機的時間。
 
-**dmpatterns_getstarted_service.js**，它會在模擬裝置應用程式上呼叫直接方法，顯示回應，並顯示更新的報告屬性。
+**dmpatterns_getstarted_service.js**、 直接的方法呼叫 hello 模擬的裝置，應用程式中顯示 hello 回應，並顯示 hello 更新報告內容。
 
-若要完成此教學課程，您需要下列項目：
+toocomplete 本教學課程中，您需要遵循的 hello:
 
-* Node.js 0.12.x 版或更新版本， <br/>  [準備您的開發環境][lnk-dev-setup]說明如何在 Windows 或 Linux 上安裝本教學課程的 Node.js。
+* Node.js 0.12.x 版或更新版本， <br/>  [準備開發環境][ lnk-dev-setup]描述如何 tooinstall Node.js 本教學課程中的 Windows 或 Linux。
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
@@ -48,22 +48,22 @@ ms.lasthandoff: 08/29/2017
 ## <a name="create-a-simulated-device-app"></a>建立模擬裝置應用程式
 在本節中，您將：
 
-* 建立 Node.js 主控台應用程式，以回應雲端所呼叫的直接方法
+* 建立回應 tooa 直接方法呼叫 hello 雲端 Node.js 主控台應用程式
 * 觸發模擬裝置重新啟動
-* 使用報告屬性來啟用裝置對應項查詢，以識別裝置及其上次重新啟動時間
+* 使用 hello 報告屬性 tooenable 裝置兩個查詢 tooidentify 裝置，當它們一次啟動
 
-1. 建立稱為 **manageddevice** 的空資料夾。  在 **manageddevice** 資料夾中，於命令提示字元使用下列命令建立 package.json 檔案。  接受所有預設值：
+1. 建立稱為 **manageddevice** 的空資料夾。  在 hello **manageddevice**資料夾中，建立使用下列命令，在您的命令提示字元的 hello package.json 檔案。  接受所有的 hello 預設值：
    
     ```
     npm init
     ```
-2. 在命令提示字元中，於 **manageddevice** 資料夾中執行下列命令來安裝 **azure-iot-device** 裝置 SDK 套件和 **azure-iot-device-mqtt** 套件：
+2. 在您的命令提示字元中 hello **manageddevice**資料夾中，執行下列命令 tooinstall hello hello **azure iot 裝置**裝置 SDK 封裝和**azure-iot-裝置-mqtt**封裝：
    
     ```
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
-3. 使用文字編輯器，在 **manageddevice** 資料夾中建立 **dmpatterns_getstarted_device.js** 檔案。
-4. 在 **dmpatterns_getstarted_device.js** 檔案開頭新增下列 'require' 陳述式：
+3. 使用文字編輯器中，建立**dmpatterns_getstarted_device.js**檔案在 hello **manageddevice**資料夾。
+4. 新增 hello 下列的 '需要' 陳述式在 hello 開頭的 hello **dmpatterns_getstarted_device.js**檔案：
    
     ```
     'use strict';
@@ -71,27 +71,27 @@ ms.lasthandoff: 08/29/2017
     var Client = require('azure-iot-device').Client;
     var Protocol = require('azure-iot-device-mqtt').Mqtt;
     ```
-5. 新增 **connectionString** 變數，並用它來建立**用戶端**執行個體。  以您裝置的連接字串取代連接字串。  
+5. 新增**connectionString**變數，並使用它 toocreate**用戶端**執行個體。  Hello 連接字串取代為您的裝置連接字串。  
    
     ```
     var connectionString = 'HostName={youriothostname};DeviceId=myDeviceId;SharedAccessKey={yourdevicekey}';
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
-6. 新增下列函式以在裝置上實作直接方法
+6. 新增 hello 遵循 hello 裝置上的函式 tooimplement hello 直接方法
    
     ```
     var onReboot = function(request, response) {
    
-        // Respond the cloud app for the direct method
+        // Respond hello cloud app for hello direct method
         response.send(200, 'Reboot started', function(err) {
             if (!err) {
                 console.error('An error occured when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.');
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.');
             }
         });
    
-        // Report the reboot before the physical restart
+        // Report hello reboot before hello physical restart
         var date = new Date();
         var patch = {
             iothubDM : {
@@ -118,7 +118,7 @@ ms.lasthandoff: 08/29/2017
         console.log('Rebooting!');
     };
     ```
-7. 開啟您 IoT 中樞的連線，並啟動直接方法接聽程式︰
+7. 開啟 hello 連接 tooyour IoT 中樞，並啟動 hello 直接方法接聽程式：
    
     ```
     client.open(function(err) {
@@ -130,26 +130,26 @@ ms.lasthandoff: 08/29/2017
         }
     });
     ```
-8. 儲存並關閉 **dmpatterns_getstarted_device.js**檔案。
+8. 儲存並關閉 hello **dmpatterns_getstarted_device.js**檔案。
 
 > [!NOTE]
-> 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
+> 簡單 tookeep 方面，本教學課程未實作任何重試原則。 在實際執行程式碼，您應該實作重試原則 （例如指數型輪詢），做為建議 hello MSDN 文件中[暫時性錯誤處理][lnk-transient-faults]。
 
-## <a name="trigger-a-remote-reboot-on-the-device-using-a-direct-method"></a>使用直接方法在裝置上觸發遠端重新啟動
-在本節中，您會建立 Node.js 主控台應用程式，此應用程式會使用直接方法起始遠端重新開機。 應用程式使用裝置對應項查詢來探索該裝置的上次重新開機時間。
+## <a name="trigger-a-remote-reboot-on-hello-device-using-a-direct-method"></a>觸發程序使用直接的方法 hello 裝置上遠端重新開機
+在本節中，您會建立 Node.js 主控台應用程式，此應用程式會使用直接方法起始遠端重新開機。 hello 應用程式中使用該裝置的裝置兩個查詢 toodiscover hello 上次重新開機。
 
-1. 建立名為 **triggerrebootondevice** 的空白資料夾。  在命令提示字元中，於 **triggerrebootondevice** 資料夾中使用下列命令來建立 package.json 檔案。  接受所有預設值：
+1. 建立名為 **triggerrebootondevice** 的空白資料夾。  在 hello **triggerrebootondevice**資料夾中，建立使用下列命令，在您的命令提示字元的 hello package.json 檔案。  接受所有的 hello 預設值：
    
     ```
     npm init
     ```
-2. 在 **triggerrebootondevice** 資料夾中，於命令提示字元執行下列命令以安裝 **azure-iothub** 裝置 SDK 套件以及 **azure-iot-device-mqtt** 套件：
+2. 在您的命令提示字元中 hello **triggerrebootondevice**資料夾中，執行下列命令 tooinstall hello hello **azure iot 中樞**裝置 SDK 封裝和**azure-iot-裝置-mqtt**封裝：
    
     ```
     npm install azure-iothub --save
     ```
-3. 使用文字編輯器，在 **triggerrebootondevice** 資料夾中建立 **dmpatterns_getstarted_service.js** 檔案。
-4. 在 **dmpatterns_getstarted_service.js** 檔案開頭新增下列 'require' 陳述式：
+3. 使用文字編輯器中，建立**dmpatterns_getstarted_service.js**檔案在 hello **triggerrebootondevice**資料夾。
+4. 新增 hello 下列的 '需要' 陳述式在 hello 開頭的 hello **dmpatterns_getstarted_service.js**檔案：
    
     ```
     'use strict';
@@ -157,7 +157,7 @@ ms.lasthandoff: 08/29/2017
     var Registry = require('azure-iothub').Registry;
     var Client = require('azure-iothub').Client;
     ```
-5. 新增下列變數宣告，並取代預留位置值︰
+5. 新增 hello 下列變數宣告，並取代 hello 預留位置值：
    
     ```
     var connectionString = '{iothubconnectionstring}';
@@ -165,7 +165,7 @@ ms.lasthandoff: 08/29/2017
     var client = Client.fromConnectionString(connectionString);
     var deviceToReboot = 'myDeviceId';
     ```
-6. 新增下列函式來叫用裝置方法，以重新啟動目標裝置︰
+6. 加入下列函式 tooinvoke hello 方法 tooreboot hello 目標裝置 hello:
    
     ```
     var startRebootDevice = function(twin) {
@@ -182,12 +182,12 @@ ms.lasthandoff: 08/29/2017
             if (err) { 
                 console.error("Direct method error: "+err.message);
             } else {
-                console.log("Successfully invoked the device to reboot.");  
+                console.log("Successfully invoked hello device tooreboot.");  
             }
         });
     };
     ```
-7. 新增下列函式來查詢裝置並取得上次重新啟動時間︰
+7. 加入下列 hello 函式 tooquery hello 裝置，並取得 hello 上次重新開機：
    
     ```
     var queryTwinLastReboot = function() {
@@ -203,32 +203,32 @@ ms.lasthandoff: 08/29/2017
                     console.log('Last reboot time: ' + JSON.stringify(lastRebootTime, null, 2));
                 }
             } else 
-                console.log('Waiting for device to report last reboot time.');
+                console.log('Waiting for device tooreport last reboot time.');
         });
     };
     ```
-8. 新增下列函式來呼叫可觸發重新啟動直接方法，並查詢上次重新啟動時間的函式︰
+8. 加入下列程式碼 toocall hello 函式會觸發 hello hello 重新開機直接的方法和查詢 hello 上次重新啟動時間：
    
     ```
     startRebootDevice();
     setInterval(queryTwinLastReboot, 2000);
     ```
-9. 儲存並關閉 **dmpatterns_getstarted_service.js** 檔案。
+9. 儲存並關閉 hello **dmpatterns_getstarted_service.js**檔案。
 
-## <a name="run-the-apps"></a>執行應用程式
-您現在可以開始執行應用程式。
+## <a name="run-hello-apps"></a>執行 hello 應用程式
+現在您已經準備就緒 toorun hello 應用程式。
 
-1. 在 **manageddevice** 資料夾中，於命令提示字元中執行下列命令以開始接聽重新啟動直接方法。
+1. 在 hello 命令提示字元中 hello **manageddevice**資料夾中，執行下列命令 toobegin 接聽 hello 重新開機直接方法 hello。
    
     ```
     node dmpatterns_getstarted_device.js
     ```
-2. 在命令提示字元中，於 **triggerrebootondevice** 資料夾執行下列命令以觸發裝置對應項的遠端重新啟動，以及查詢裝置對應項來尋找上次重新啟動時間。
+2. 在 hello 命令提示字元中 hello **triggerrebootondevice**資料夾中，執行下列命令 tootrigger hello 遠端 hello 重新開機，查詢 hello 裝置兩個 toofind hello 上次重新啟動時間。
    
     ```
     node dmpatterns_getstarted_service.js
     ```
-3. 您會在主控台中看到直接方法的裝置回應。
+3. 您會看到 hello 裝置回應 toohello 直接方法 hello 主控台中。
 
 [!INCLUDE [iot-hub-dm-followup](../../includes/iot-hub-dm-followup.md)]
 
@@ -240,7 +240,7 @@ ms.lasthandoff: 08/29/2017
 
 [lnk-free-trial]: http://azure.microsoft.com/pricing/free-trial/
 [Azure portal]: https://portal.azure.com/
-[Using resource groups to manage your Azure resources]: ../azure-portal/resource-group-portal.md
+[Using resource groups toomanage your Azure resources]: ../azure-portal/resource-group-portal.md
 [lnk-dm-github]: https://github.com/Azure/azure-iot-device-management
 
 [lnk-devtwin]: iot-hub-devguide-device-twins.md

@@ -1,5 +1,5 @@
 ---
-title: "在 Azure Stack 中使用 PowerShell 建立 Windows 虛擬機器 | Microsoft Docs"
+title: "aaaCreate Azure 堆疊中使用 PowerShell 的 Windows 虛擬機器 |Microsoft 文件"
 description: "在 Azure Stack 中使用 PowerShell 建立 Windows 虛擬機器。"
 services: azure-stack
 documentationcenter: 
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: sngun
-ms.openlocfilehash: 4b6706b289e323706009c40e9d1ad0149f8accc5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: de063eae6f0782d8916da991f285a9de6b41def4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-a-windows-virtual-machine-by-using-powershell-in-azure-stack"></a>在 Azure Stack 中使用 PowerShell 建立 Windows 虛擬機器
 
-Azure Stack 中的虛擬機器讓您能夠有彈性地進行虛擬化，而不需購買並維護執行虛擬機器的實體硬體。 當您使用虛擬機器時，請了解 Azure 和 Azure Stack 中所提供的功能之間具有某些差異，請參閱[Azure Stack 中虛擬機器的考量](azure-stack-vm-considerations.md)主題以了解這些差異。 
+您不需要 toobuy hello 的虛擬化彈性和維護 Azure 堆疊提供中的虛擬機器 hello 實體硬體執行它。 當您使用虛擬機器時，了解有可用在 Azure 中的 hello 功能和 Azure 堆疊之間的一些差異，請參閱 toohello [Azure 堆疊中的虛擬機器的考量](azure-stack-vm-considerations.md)相關的主題 toolearn這些差異。 
 
-本指南詳細說明如何使用 PowerShell 在 Azure Stack 中建立 Windows Server 2016 虛擬機器。 您可以從 Azure Stack 開發套件，或從以 Windows 為基礎的外部用戶端 (如果您透過 VPN 連線) 來執行這篇文章中所述的步驟。 
+此 Windows Server 2016 中的虛擬機器 Azure 堆疊引導使用 PowerShell toocreate 詳細資料。 您可以執行從 hello Azure 堆疊開發套件，或是從 windows 的外部用戶端的這篇文章中所述，如果您透過 VPN 連線的 hello 步驟。 
 
 ## <a name="prerequisites"></a>必要條件
 
-1. 依預設，Azure Stack 市集不包含 Windows Server 2016 映像。 因此，在您可以建立虛擬機器之前，請確定 Azure Stack 操作員[將 Windows Server 2016 映像新增至 Azure Stack 市集](azure-stack-add-default-image.md)。 
-2. Azure Stack 需要特定版本的 Azure PowerShell 模組才能建立和管理資源。 請使用[安裝 Azure Stack 的 PowerShell](azure-stack-powershell-install.md) 主題中所述的步驟來安裝需要的版本。
-3. [設定 Azure Stack 使用者的 PowerShell 環境](azure-stack-powershell-configure-user.md) 
+1. 根據預設，hello Azure 堆疊 marketplace 未包含 hello Windows Server 2016 映像。 因此，您可以建立虛擬機器之前，請確定該 hello Azure 堆疊運算子[新增 hello Windows Server 2016 映像 toohello Azure 堆疊 marketplace](azure-stack-add-default-image.md)。 
+2. Azure 堆疊需要特定版本的 Azure PowerShell 模組 toocreate，並管理 hello 資源。 使用中所述的 hello 步驟[安裝 PowerShell Azure 堆疊以](azure-stack-powershell-install.md)主題 tooinstall hello 必要的版本。
+3. [設定 hello Azure 堆疊使用者的 PowerShell 環境](azure-stack-powershell-configure-user.md) 
 
 ## <a name="create-a-resource-group"></a>建立資源群組
 
-資源群組是在其中部署與管理 Azure Stack 資源的邏輯容器。 請使用下列程式碼區塊來建立資源群組。 我們已為此文件中的所有變數指派值，您可以使用它們或指派不同的值。  
+資源群組是在其中部署與管理 Azure Stack 資源的邏輯容器。 使用下列程式碼區塊 toocreate 資源群組的 hello。 我們已為此文件中的所有變數指派值，您可以使用它們或指派不同的值。  
 
 ```powershell
-# Create variables to store the location and resource group names.
+# Create variables toostore hello location and resource group names.
 $location = "local"
 $ResourceGroupName = "myResourceGroup"
 
@@ -48,10 +48,10 @@ New-AzureRmResourceGroup `
 
 ## <a name="create-storage-resources"></a>建立儲存體資源 
 
-建立儲存體帳戶和儲存體容器來儲存 Windows Server 2016 映像。
+建立儲存體帳戶和儲存體容器 toostore hello Windows Server 2016 映像。
 
 ```powershell
-# Create variables to store the storage account name and the storage account SKU information
+# Create variables toostore hello storage account name and hello storage account SKU information
 $StorageAccountName = "mystorageaccount"
 $SkuName = "Standard_LRS"
 
@@ -66,7 +66,7 @@ Set-AzureRmCurrentStorageAccount `
   -StorageAccountName $storageAccountName `
   -ResourceGroupName $resourceGroupName
 
-# Create a storage container to store the virtual machine image
+# Create a storage container toostore hello virtual machine image
 $containerName = 'osdisks'
 $container = New-AzureStorageContainer `
   -Name $containerName `
@@ -75,7 +75,7 @@ $container = New-AzureStorageContainer `
 
 ## <a name="create-networking-resources"></a>建立網路資源
 
-建立虛擬網路、子網路和公用 IP 位址。 這些資源用來提供虛擬機器的網路連線能力。  
+建立虛擬網路、子網路和公用 IP 位址。 這些資源是使用的 tooprovide 網路連線 toohello 虛擬機器。  
 
 ```powershell
 # Create a subnet configuration
@@ -102,7 +102,7 @@ $pip = New-AzureRmPublicIpAddress `
 
 ### <a name="create-a-network-security-group-and-a-network-security-group-rule"></a>建立網路安全性群組和網路安全性群組規則
 
-網路安全性群組可透過使用輸入和輸出規則來保護虛擬機器。 讓我們建立連接埠 3389 的輸入規則以允許傳入的遠端桌面連線，並建立連接埠 80 的輸入規則以允許傳入的 Web 流量。
+hello 網路安全性小組會使用輸入和輸出規則，以保護 hello 虛擬機器。 可讓建立輸入的規則的連接埠 3389 tooallow 連入遠端桌面連線和通訊埠 80 tooallow 傳入的 web 流量的輸入的規則。
 
 ```powershell
 # Create an inbound network security group rule for port 3389
@@ -137,9 +137,9 @@ $nsg = New-AzureRmNetworkSecurityGroup `
   -SecurityRules $nsgRuleRDP,$nsgRuleWeb 
 ```
  
-### <a name="create-a-network-card-for-the-virtual-machine"></a>建立虛擬機器的網路卡
+### <a name="create-a-network-card-for-hello-virtual-machine"></a>建立 hello 虛擬機器的網路卡
 
-網路卡可讓虛擬機器連線到子網路、網路安全性群組和公用 IP 位址。
+hello 網路卡會連接 hello 虛擬機器 tooa 子網路、 網路安全性群組和公用 IP 位址。
 
 ```powershell
 # Create a virtual network card and associate it with public IP address and NSG
@@ -154,15 +154,15 @@ $nic = New-AzureRmNetworkInterface `
 
 ## <a name="create-a-virtual-machine"></a>建立虛擬機器
 
-建立虛擬機器組態。 此組態包括部署虛擬機器時所使用的設定，例如虛擬機器映像、大小和認證。
+建立虛擬機器組態。 hello 設定包含部署 hello 在虛擬機器的虛擬機器映像、 大小、 認證時所使用的 hello 設定。
 
 ```powershell
-# Define a credential object to store the username and password for the virtual machine
+# Define a credential object toostore hello username and password for hello virtual machine
 $UserName='demouser'
 $Password='Password@123'| ConvertTo-SecureString -Force -AsPlainText
 $Credential=New-Object PSCredential($UserName,$Password)
 
-# Create the virtual machine configuration object
+# Create hello virtual machine configuration object
 $VmName = "VirtualMachinelatest"
 $VmSize = "Standard_A1"
 $VirtualMachine = New-AzureRmVMConfig `
@@ -188,7 +188,7 @@ $osDiskUri = '{0}vhds/{1}-{2}.vhd' -f `
   $vmName.ToLower(), `
   $osDiskName
 
-# Sets the operating system disk properties on a virtual machine. 
+# Sets hello operating system disk properties on a virtual machine. 
 $VirtualMachine = Set-AzureRmVMOSDisk `
   -VM $VirtualMachine `
   -Name $osDiskName `
@@ -196,30 +196,30 @@ $VirtualMachine = Set-AzureRmVMOSDisk `
   -CreateOption FromImage | `
   Add-AzureRmVMNetworkInterface -Id $nic.Id 
 
-#Create the virtual machine.
+#Create hello virtual machine.
 New-AzureRmVM `
   -ResourceGroupName $ResourceGroupName `
   -Location $location `
   -VM $VirtualMachine
 ```
 
-## <a name="connect-to-the-virtual-machine"></a>連接至虛擬機器
+## <a name="connect-toohello-virtual-machine"></a>Toohello 虛擬機器連線
 
-成功建立虛擬機器之後，從開發套件，或從以 Windows 為基礎的外部用戶端 (如果透過 VPN 連線) 來開啟虛擬機器的遠端桌面連線。 若要遠端存取您在上一個步驟中所建立的虛擬機器，則需要其公用 IP 位址。 執行下列命令，以取得虛擬機器的公用 IP 位址： 
+已成功建立 hello 的虛擬機器之後，開啟遠端桌面連線 toohello 虛擬機器從 hello 開發套件，或從 windows 的外部用戶端如果透過 VPN 連線。 tooremote hello hello 先前步驟中所建立的虛擬機器，您需要其公用 IP 位址。 執行下列命令 tooget hello 公用 IP 位址的 hello 虛擬機器的 hello: 
 
 ```powershell
 Get-AzureRmPublicIpAddress `
   -ResourceGroupName $ResourceGroupName | Select IpAddress
 ```
  
-使用下列命令，建立使用虛擬機器的遠端桌面工作階段。 以虛擬機器的公用 IP 位址取代 IP 位址。 出現提示時，輸入您在建立虛擬機器時所使用的使用者名稱和密碼。
+使用 hello 下列命令 toocreate 與 hello 虛擬機器的遠端桌面工作階段。 取代虛擬機器的 hello publicIPAddress hello IP 位址。 出現提示時，輸入 hello 使用者名稱和您建立 hello 虛擬機器時使用的密碼。
 
 ```powershell
 mstsc /v:<publicIpAddress>
 ```
-## <a name="delete-the-virtual-machine"></a>刪除虛擬機器
+## <a name="delete-hello-virtual-machine"></a>刪除 hello 虛擬機器
 
-當不再需要時，請使用下列命令來移除包含虛擬機器及其相關資源的資源群組：
+當不再需要請使用下列命令 tooremove hello 資源群組含有 hello 虛擬機器和其相關的資源的 hello:
 
 ```powershell
 Remove-AzureRmResourceGroup `
@@ -228,5 +228,5 @@ Remove-AzureRmResourceGroup `
 
 ## <a name="next-steps"></a>後續步驟
 
-若要了解 Azure Stack 中的儲存體，請參閱[儲存體概觀](azure-stack-storage-overview.md)主題。
+關於 Azure 堆疊中的儲存體 toolearn 參考 toohello[存放裝置總覽](azure-stack-storage-overview.md)主題。
 

@@ -1,6 +1,6 @@
 ---
-title: "開始使用 Azure IoT 中樞 (.NET) | Microsoft Docs"
-description: "了解如何使用適用於 .NET 的 IoT SDK 將裝置到雲端訊息傳送至 Azure IoT 中樞。 建立模擬裝置和服務應用程式來註冊您的裝置、傳送訊息，並從 IoT 中樞讀取訊息。"
+title: "aaaGet 啟動與 Azure IoT 中樞 (.NET) |Microsoft 文件"
+description: "了解如何 toosend 裝置到雲端訊息 tooAzure 使用 IoT Sdk for.NET 的 IoT 中樞。 建立模擬的裝置和服務應用程式 tooregister 您的裝置、 傳送訊息，以及從 IoT 中樞讀取訊息。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -15,66 +15,66 @@ ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 69296eb9ac2a74a97b632d27733a6a06500b4abd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 56cf14687411898ea0fa4ebb1782e18b3930809c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-your-iot-hub-using-net"></a>使用 .NET 將您的裝置連線至 IoT 中樞
+# <a name="connect-your-device-tooyour-iot-hub-using-net"></a>連接您使用適用於.NET 的裝置 tooyour IoT 中樞
 
 [!INCLUDE [iot-hub-selector-get-started](../../includes/iot-hub-selector-get-started.md)]
 
-在本教學課程結尾處，您會有三個 .NET 主控台應用程式：
+在本教學課程的 hello 最後，您有三個.NET 主控台應用程式：
 
-* **CreateDeviceIdentity**，這會建立裝置身分識別與相關聯的安全性金鑰，以連線到您的裝置應用程式。
-* **ReadDeviceToCloudMessages**，其中顯示裝置應用程式所傳送的遙測。
-* **SimulatedDevice**，這會使用先前建立的裝置識別連接到您的 IoT 中樞，並使用 MQTT 通訊協定每秒傳送遙測訊息。
+* **CreateDeviceIdentity**，這樣就可以建立裝置身分識別，以及相關聯的安全性金鑰 tooconnect 您裝置的應用程式。
+* **ReadDeviceToCloudMessages**，其中顯示您裝置的應用程式所傳送的 hello 遙測。
+* **SimulatedDevice**，這會 tooyour IoT 中樞連接使用稍早建立的 hello 裝置身分識別，並使用 hello MQTT 通訊協定傳送遙測訊息每秒。
 
-您可以下載或複製 Visual Studio 方案，其中包含來自 Github 的三個應用程式。
+您可以下載或複製 hello Visual Studio 方案，其中包含從 Github 的 hello 三個應用程式。
 
 ```bash
 git clone https://github.com/Azure-Samples/iot-hub-dotnet-simulated-device-client-app.git
 ```
 
 > [!NOTE]
-> 如需可用來建置兩個應用程式，以在裝置與您的解決方案後端執行之 Azure IoT SDK 的相關資訊，請參閱 [Azure IoT SDK][lnk-hub-sdks]。
+> 如需有關資訊 hello Azure IoT Sdk，您可以使用 toobuild 在裝置上，應用程式 toorun 和您的方案後端，請參閱[Azure IoT Sdk][lnk-hub-sdks]。
 
-若要完成此教學課程，您需要下列項目：
+toocomplete 本教學課程中，您需要遵循的 hello:
 
 * Visual Studio 2015 或 Visual Studio 2017。
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
-您現在已經建立 IoT 中樞，因此您已具有完成本教學課程的其餘部分所需的主機名稱和 IoT 中樞連接字串。
+您現在已建立您的 IoT 中樞，而且您擁有 hello 主機名稱和您需要 toocomplete hello rest 本教學課程的 IoT 中樞連接字串。
 
 <a id="DeviceIdentity_csharp"></a>
 [!INCLUDE [iot-hub-get-started-create-device-identity-csharp](../../includes/iot-hub-get-started-create-device-identity-csharp.md)]
 
 <a id="D2C_csharp"></a>
 ## <a name="receive-device-to-cloud-messages"></a>接收裝置到雲端的訊息
-在本節中，您會建立 .NET 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。 IoT 中樞會公開與 [Azure 事件中樞][lnk-event-hubs-overview]相容的端點以讓您讀取裝置到雲端訊息。 為了簡單起見，本教學課程會建立的基本讀取器不適合用於高輸送量部署。 若要了解如何大規模處理裝置到雲端訊息，請參閱[處理裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。 如需有關如何處理來自「事件中樞」之訊息的詳細資訊，請參閱[開始使用事件中樞][lnk-eventhubs-tutorial]教學課程。 (本教學課程適用於 IoT 中樞的事件中樞相容端點)。
+在本節中，您會建立 .NET 主控台應用程式，以讀取來自 IoT 中樞的裝置到雲端訊息。 IoT 中樞公開[Azure 事件中心][lnk-event-hubs-overview]-相容的端點 tooenable 您 tooread 裝置到雲端訊息。 簡單 tookeep 方面，本教學課程會建立基本的讀取器不是適用於高輸送量部署。 toolearn 如何 tooprocess 裝置到雲端訊息小數位數，請參閱 hello[處理裝置到雲端訊息][ lnk-process-d2c-tutorial]教學課程。 如需如何 tooprocess 訊息從事件中心的詳細資訊，請參閱 hello[開始使用事件中心][ lnk-eventhubs-tutorial]教學課程。 （本教學課程是適用 toohello IoT 中樞事件中樞相容的端點）。
 
 > [!NOTE]
-> 用於讀取裝置到雲端訊息的事件中樞相容端點一律會使用 AMQP 通訊協定。
+> hello 一律讀取裝置到雲端訊息的事件中樞相容端點使用 hello AMQP 通訊協定。
 
-1. 在 Visual Studio 中，使用 [主控台應用程式 (.NET Framework)] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的解決方案。 確定 .NET Framework 為 4.5.1 或更新版本。 將專案命名為 **ReadDeviceToCloudMessages**。
+1. 在 Visual Studio 中，將 Visual C# Windows 傳統桌面專案 toohello 目前方案，使用 hello**主控台應用程式 (.NET Framework)**專案範本。 請確定 hello.NET Framework 版本 4.5.1 或更新版本。 名稱 hello 專案**ReadDeviceToCloudMessages**。
 
     ![新的 Visual C# Windows 傳統桌面專案][10a]
 
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 **ReadDeviceToCloudMessages** 專案，然後按一下 [管理 NuGet 套件]。
+2. 在 [方案總管] 中，以滑鼠右鍵按一下 hello **ReadDeviceToCloudMessages**專案，然後再按一下**管理 NuGet 封裝**。
 
-3. 在 [NuGet 套件管理員] 視窗中，搜尋 **WindowsAzure.ServiceBus**，選取 [安裝] 並接受使用規定。 此程序會下載及安裝 [Azure 服務匯流排][lnk-servicebus-nuget]，並新增對它的參考與其所有相依項目。 此套件可讓應用程式連接到 IoT 中樞上的事件中樞相容端點。
+3. 在 hello **NuGet 套件管理員**視窗中，搜尋**WindowsAzure.ServiceBus**，選取**安裝**，並接受使用規定 hello。 此程序下載、 安裝，並將參考加入太[Azure 服務匯流排][lnk-servicebus-nuget]，所有相依性。 此套件可讓 hello 應用程式 tooconnect toohello 事件中樞相容端點 IoT 中樞上。
 
-4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
+4. 新增下列 hello`using`在 hello hello 最上方的陳述式**Program.cs**檔案：
 
     ```csharp
     using Microsoft.ServiceBus.Messaging;
     using System.Threading;
     ```
 
-5. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在＜建立 IoT 中樞＞一節中為中樞所建立的 IoT 中樞連接字串。
+5. 新增下列欄位 toohello hello**程式**類別。 取代 hello hello 中樞在 hello 「 建立 IoT 中樞 」 一節中所建立的 IoT 中樞連接字串中的 hello 預留位置的值。
 
     ```csharp
     static string connectionString = "{iothub connection string}";
@@ -82,7 +82,7 @@ git clone https://github.com/Azure-Samples/iot-hub-dotnet-simulated-device-clien
     static EventHubClient eventHubClient;
     ```
 
-6. 將下列方法新增至 **Program** 類別：
+6. 新增下列方法 toohello hello**程式**類別：
 
     ```csharp
     private static async Task ReceiveMessagesFromDeviceAsync(string partition, CancellationToken ct)
@@ -100,12 +100,12 @@ git clone https://github.com/Azure-Samples/iot-hub-dotnet-simulated-device-clien
     }
     ```
 
-    這個方法會使用 **EventHubReceiver** 執行個體接收來自所有 IoT 中樞裝置對雲端接收資料分割的訊息。 請注意當您建立 **EventHubReceiver** 物件時如何傳遞 `DateTime.Now` 參數，使它只會收到它啟動後傳送的訊息。 此篩選器很適合測試環境，因為如此一來您就可以看到目前的訊息集。 在生產環境中，您的程式碼應該要確定它能處理所有訊息。 如需詳細資訊，請參閱[如何處理 IoT 中樞裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。
+    這個方法會使用**EventHubReceiver**從所有 hello IoT 中樞裝置到雲端的執行個體 tooreceive 訊息接收的資料分割。 請注意您的傳遞方式`DateTime.Now`參數，當您建立 hello **EventHubReceiver**物件，使它只會接收啟動後所傳送的訊息。 此篩選器是適用於測試環境，因此您可以看到 hello 訊息的目前資料集。 在實際執行環境中，您的程式碼應該要確定在處理所有的 hello 訊息。 如需詳細資訊，請參閱 hello 教學課程[如何 tooprocess IoT 中樞裝置到雲端訊息][lnk-process-d2c-tutorial]。
 
-7. 最後，將下列幾行新增至 **Main** 方法：
+7. 最後，加入下列行 toohello hello **Main**方法：
 
     ```csharp
-    Console.WriteLine("Receive messages. Ctrl-C to exit.\n");
+    Console.WriteLine("Receive messages. Ctrl-C tooexit.\n");
     eventHubClient = EventHubClient.CreateFromConnectionString(connectionString, iotHubD2cEndpoint);
 
     var d2cPartitions = eventHubClient.GetRuntimeInformation().PartitionIds;
@@ -129,24 +129,24 @@ git clone https://github.com/Azure-Samples/iot-hub-dotnet-simulated-device-clien
 
 ## <a name="create-a-device-app"></a>建立裝置應用程式
 
-在本節中，您會撰寫 .NET 主控台應用程式，模擬裝置傳送裝置對雲端訊息至 IoT 中樞。
+在本節中，您可以建立.NET 主控台應用程式中，可以模擬傳送裝置到雲端訊息 tooan IoT 中樞的裝置。
 
-1. 在 Visual Studio 中，使用 [主控台應用程式 (.NET Framework)] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的解決方案。 確定 .NET Framework 為 4.5.1 或更新版本。 將專案命名為 **SimulatedDevice**。
+1. 在 Visual Studio 中，將 Visual C# Windows 傳統桌面專案 toohello 目前方案，使用 hello**主控台應用程式 (.NET Framework)**專案範本。 請確定 hello.NET Framework 版本 4.5.1 或更新版本。 名稱 hello 專案**SimulatedDevice**。
 
     ![新的 Visual C# Windows 傳統桌面專案][10b]
 
-2. 在 [方案總管] 中，以滑鼠右鍵按一下 **SimulatedDevice** 專案，然後按一下 [管理 NuGet 套件]。
+2. 在 [方案總管] 中，以滑鼠右鍵按一下 hello **SimulatedDevice**專案，然後再按一下**管理 NuGet 封裝**。
 
-3. 在 [NuGet 套件管理員] 視窗中選取 [瀏覽]、搜尋 **Microsoft.Azure.Devices.Client**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices.Client** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 裝置 SDK NuGet 套件][lnk-device-nuget]與其相依項目，並新增對它的參考。
+3. 在 hello **NuGet 套件管理員**視窗中，選取**瀏覽**，搜尋**Microsoft.Azure.Devices.Client**，選取**安裝**tooinstall hello **Microsoft.Azure.Devices.Client**封裝，並接受使用規定 hello。 此程序下載、 安裝，並新增參考 toohello [Azure IoT 裝置 SDK 的 NuGet 套件][ lnk-device-nuget]及其相依項目。
 
-4. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
+4. 新增下列 hello`using`在 hello hello 最上方的陳述式**Program.cs**檔案：
 
     ```csharp
     using Microsoft.Azure.Devices.Client;
     using Newtonsoft.Json;
     ```
 
-5. 將下列欄位新增到 **Program** 類別。 以您在「建立 IoT 中樞」一節中擷取的 IoT 中樞主機名稱替代 `{iot hub hostname}`。 以您在「建立裝置身分識別」一節中擷取的裝置金鑰替代 `{device key}`。
+5. 新增下列欄位 toohello hello**程式**類別。 替代`{iot hub hostname}`使用您擷取 hello 「 建立 IoT 中樞 」 一節中的 hello IoT 中樞的主機名稱。 替代`{device key}`與 hello 裝置索引鍵擷取 hello 「 建立裝置身分識別 」 一節中。
 
     ```csharp
     static DeviceClient deviceClient;
@@ -154,7 +154,7 @@ git clone https://github.com/Azure-Samples/iot-hub-dotnet-simulated-device-clien
     static string deviceKey = "{device key}";
     ```
 
-6. 將下列方法加入至 **Program** 類別：
+6. 新增下列方法 toohello hello**程式**類別：
 
     ```csharp
     private static async void SendDeviceToCloudMessagesAsync()
@@ -188,9 +188,9 @@ git clone https://github.com/Azure-Samples/iot-hub-dotnet-simulated-device-clien
     }
     ```
 
-    這個方法會每秒傳送新的裝置對雲端訊息。 此訊息包含 JSON 序列化物件及裝置識別碼與隨機產生的數字，以模擬溫度感應器和溼度感應器。
+    這個方法會每秒傳送新的裝置對雲端訊息。 hello 訊息包含 JSON 序列化物件，與 hello 裝置識別碼和隨機產生的數字 toosimulate 溫度感應器和溼度感應器。
 
-7. 最後，將下列幾行加入至 **Main** 方法：
+7. 最後，加入下列行 toohello hello **Main**方法：
 
     ```csharp
     Console.WriteLine("Simulated device\n");
@@ -200,40 +200,40 @@ git clone https://github.com/Azure-Samples/iot-hub-dotnet-simulated-device-clien
     Console.ReadLine();
     ```
 
-    根據預設，**Create** 方法會在 .NET Framework 應用程式中建立一個使用 AMQP 通訊協定的 **DeviceClient** 執行個體來與 IoT 中樞通訊。 若要使用 MQTT 或 HTTP 通訊協定，請使用可讓您指定通訊協定的 **Create** 方法的覆寫。 UWP 和 PCL 用戶端預設使用 HTTP 通訊協定。 若您使用 HTTP 通訊協定，您也應該將 **Microsoft.AspNet.WebApi.Client** NuGet 套件新增至您的專案，以包含 **System.Net.Http.Formatting** 命名空間。
+    根據預設，hello**建立**方法在.NET Framework 應用程式會建立**DeviceClient**使用 hello AMQP 通訊協定 toocommunicate 與 IoT 中樞執行個體。 toouse hello MQTT 或 HTTP 通訊協定，使用覆寫 hello hello**建立**方法可讓您 toospecify hello 通訊協定。 UWP 和 PCL 用戶端預設使用 hello HTTP 通訊協定。 如果您使用 hello HTTP 通訊協定，您也應該加入 hello **Microsoft.AspNet.WebApi.Client** NuGet 封裝 tooyour 專案 tooinclude hello **System.Net.Http.Formatting**命名空間。
 
-本教學課程會逐步引導您完成建立 IoT 中樞裝置應用程式的步驟。 您也可以使用 [Azure IoT 中樞的已連結服務][lnk-connected-service] Visual Studio 擴充功能，將必要的程式碼新增至裝置應用程式。
+本教學課程中引導您完成 hello 步驟 toocreate IoT 中樞裝置應用程式。 您也可以使用 hello[已連接服務的 Azure IoT 中樞][ lnk-connected-service] Visual Studio 擴充功能 tooadd hello 必要的程式碼 tooyour 裝置應用程式。
 
 > [!NOTE]
-> 為了簡單起見，本教學課程不會實作任何重試原則。 在實際程式碼中，您應該如 MSDN 文章[暫時性錯誤處理][lnk-transient-faults]所建議，實作重試原則 (例如指數型輪詢)。
+> 簡單 tookeep 方面，本教學課程未實作任何重試原則。 在實際執行程式碼，您應該實作重試原則 （例如指數型輪詢），做為建議 hello MSDN 文件中[暫時性錯誤處理][lnk-transient-faults]。
 
-## <a name="run-the-apps"></a>執行應用程式
+## <a name="run-hello-apps"></a>執行 hello 應用程式
 
-您現在可以開始執行應用程式。
+現在您已經準備就緒 toorun hello 應用程式。
 
-1. 在 Visual Studio 的 [方案總管] 中以滑鼠右鍵按一下您的方案，然後按一下 [設定啟始專案]。 選取 [多個啟始專案]，然後同時針對 **ReadDeviceToCloudMessages** 和 **SimulatedDevice** 專案選取 **Start** 作為動作。
+1. 在 Visual Studio 的 方案總管 中以滑鼠右鍵按一下您的方案，然後按一下設定啟始專案。 選取**多個啟始專案**，然後選取**啟動**hello 動作這兩個 hello **ReadDeviceToCloudMessages**和**SimulatedDevice**專案。
 
     ![啟動專案屬性 ][41]
 
-2. 按下 **F5** 來啟動這兩個執行的應用程式。 來自 **SimulatedDevice** 應用程式的主控台輸出會顯示裝置應用程式傳送給您的 IoT 中樞的訊息。 來自 **ReadDeviceToCloudMessages** 應用程式的主控台輸出則會顯示您的 IoT 中樞接收的訊息。
+2. 按**F5** toostart 這兩個執行的應用程式。 hello hello 從主控台輸出**SimulatedDevice**您裝置的應用程式傳送 tooyour IoT 中樞應用程式顯示 hello 訊息。 hello hello 從主控台輸出**ReadDeviceToCloudMessages**應用程式會顯示您的 IoT 中樞接收的 hello 訊息。
 
     ![來自應用程式的主控台輸出][42]
 
-3. [Azure 入口網站][lnk-portal]中的 [使用量] 圖格會顯示傳送至 IoT 中樞的訊息數目︰
+3. hello**使用量**磚中 hello [Azure 入口網站][ lnk-portal]顯示 hello 訊息傳送 toohello IoT 中樞的數目：
 
     ![Azure 入口網站的使用量圖格][43]
 
 ## <a name="next-steps"></a>後續步驟
 
-在此教學課程中，您在 Azure 入口網站中設定了 IoT 中樞，然後在 IoT 中樞的身分識別登錄中建立了裝置身分識別。 您會將此裝置身分識別用於啟用裝置應用程式，以將裝置到雲端訊息傳送至 IoT 中樞。 您也會建立一個應用程式來顯示 IoT 中樞所接收的訊息。
+在本教學課程中，您可以設定 hello Azure 入口網站中的 IoT 中樞，並接著 hello IoT 中樞的身分識別登錄中建立裝置身分識別。 您已經使用此裝置身分識別 tooenable hello 裝置應用程式 toosend 裝置到雲端訊息 toohello IoT 中樞。 您也會建立會顯示 hello IoT 中樞收到 hello 訊息的應用程式。
 
-若要繼續開始使用 IoT 中樞並瀏覽其他 IoT 案例，請參閱︰
+使用者入門 toocontinue tooexplore IoT 中樞與其他 IoT 案例，請參閱：
 
 * [連接您的裝置][lnk-connect-device]
 * [開始使用裝置管理][lnk-device-management]
 * [開始使用 IoT Edge][lnk-iot-edge]
 
-若要了解如何擴充您的 IoT 解決方案及大規模處理裝置到雲端訊息，請參閱[處理裝置到雲端訊息][lnk-process-d2c-tutorial]教學課程。
+toolearn 如何 tooextend 您 IoT 方案和程序裝置到雲端訊息在小數位數，請參閱 hello[處理裝置到雲端訊息][ lnk-process-d2c-tutorial]教學課程。
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]
 

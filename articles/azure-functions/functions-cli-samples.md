@@ -1,5 +1,5 @@
 ---
-title: "Azure CLI 範例 - Azure Functions | Microsoft Docs"
+title: "aaaAzure CLI 範例-Azure 函式 |Microsoft 文件"
 description: "Azure CLI 範例 - Azure Functions"
 services: functions
 documentationcenter: functions
@@ -16,15 +16,15 @@ ms.workload: functions
 ms.date: 04/11/2017
 ms.author: glenga
 ms.custom: mvc
-ms.openlocfilehash: 6830ab9ada50da99871592e2c0911ac9cb8f5797
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2041e710560a41f230a0ffc20dc89756c6b5c854
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-cli-samples"></a>Azure CLI 範例
 
-下表包含 Azure Functions 的 Bash 指令碼 (使用 Azure CLI) 連結。
+hello 下表包含連結 toobash 指令碼的使用 Azure CLI hello Azure 函式。
 
 | | |
 |-|-|
@@ -33,15 +33,15 @@ ms.lasthandoff: 08/29/2017
 | [在 App Service 方案中建立函式應用程式](scripts/functions-cli-create-app-service-plan.md) | 在專用的 App Service 方案中建立函式應用程式。 |
 | | |
 |**整合**||
-| [建立函式應用程式和連線至儲存體帳戶](scripts/functions-cli-create-function-app-connect-to-storage-account.md) | 建立函式應用程式和連線至儲存體帳戶。 |
-| [建立函式應用程式和連線至 Azure Cosmos DB](scripts/functions-cli-create-function-app-connect-to-cosmos-db.md) | 建立函式應用程式和連線至 Azure Cosmos DB |
+| [建立函式的應用程式和連接 tooa 儲存體帳戶](scripts/functions-cli-create-function-app-connect-to-storage-account.md) | 建立函式的應用程式並將它連接 tooa 儲存體帳戶。 |
+| [建立函式的應用程式，並連接 tooan Azure Cosmos DB](scripts/functions-cli-create-function-app-connect-to-cosmos-db.md) | 建立函式的應用程式，並將它連接 tooan Azure Cosmos DB |
 | | |
 |**設定應用程式**||
-| [將自訂網域對應至函式應用程式](scripts/functions-cli-configure-custom-domain.md) | 定義函式的自訂網域。  |
-| [將 SSL 憑證繫結至函式應用程式](scripts/functions-cli-configure-ssl-certificate.md)  |  為自訂網域中的函式上傳 SSL 憑證。 |
+| [對應的自訂網域 tooa 函式應用程式](scripts/functions-cli-configure-custom-domain.md) | 定義函式的自訂網域。  |
+| [繫結 SSL 憑證 tooa 函式應用程式](scripts/functions-cli-configure-ssl-certificate.md)  |  為自訂網域中的函式上傳 SSL 憑證。 |
 <!--
 
 |**Scale app**||
 
-|**Connect app to resources**||
+|**Connect app tooresources**||
 -->

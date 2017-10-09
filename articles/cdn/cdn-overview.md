@@ -1,6 +1,6 @@
 ---
-title: "Azure CDN 概觀 |Microsoft Docs"
-description: "了解何謂 Azure 內容傳遞網路 (CDN)，以及如何使用它透過快取 Blob 和靜態內容來傳遞高頻寬內容。"
+title: "aaaAzure CDN 的概觀 |Microsoft 文件"
+description: "了解 Azure 內容傳遞網路 (CDN) 是何種 hello 和如何 toouse 它 toodeliver 高頻寬內容的快取 blob 和靜態內容。"
 services: cdn
 documentationcenter: 
 author: smcevoy
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 02/08/2017
 ms.author: v-semcev
-ms.openlocfilehash: 2706f22d2bc3e77a53f0a6a39dcbea8048879d01
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e0230a6e107969b845985f2f4d357bf93cd40d42
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="overview-of-the-azure-content-delivery-network-cdn"></a>Azure 內容傳遞網路 (CDN) 概觀
+# <a name="overview-of-hello-azure-content-delivery-network-cdn"></a>Hello Azure 內容傳遞網路 (CDN) 的概觀
 > [!NOTE]
-> 本文件說明 Azure 內容傳遞網路 (CDN) 是什麼、其運作方式與每項 Azure CDN 產品的功能。  如果您想要跳過這項資訊，直接進入如何建立 CDN 端點的教學課程，請參閱 [使用 Azure CDN](cdn-create-new-endpoint.md)。  如果您想要查看目前的 CDN 節點位置清單，請參閱 [Azure CDN POP 位置](cdn-pop-locations.md)。
+> 本文件說明 Azure 內容傳遞網路 (CDN) 是何種 hello、 它的運作方式及 hello 功能的每個 Azure CDN 產品。  如果您想 tooskip 這項資訊和如何移直線 tooa 教學課程 toocreate CDN 端點，請參閱[使用 Azure CDN](cdn-create-new-endpoint.md)。  如果您想 toosee 目前 CDN 節點位置的清單，請參閱[Azure CDN POP 位置](cdn-pop-locations.md)。
 > 
 > 
 
-Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web 內容，以提供最大輸送量來將內容傳遞給使用者。  CDN 為開發人員提供一套全球解決方案，以在全球實體節點上快取內容來傳遞高頻寬內容。 
+hello Azure 內容傳遞網路 (CDN) 會快取靜態的 web 內容在策略性放置的位置傳遞內容 toousers tooprovide 最大輸送量。  hello CDN 提供開發人員一套傳遞高頻寬內容的快取 hello 世界各地的 hello 實體節點內容的全球解決方案。 
 
-使用 CDN 來快取網站資產的優點包括：
+使用 hello CDN toocache 網站資產的 hello 優點包括：
 
-* 讓使用者享有更好的效能和使用者經驗，尤其是當使用的應用程式需要反覆存取多次才能載入內容時。
-* 可進行大幅調整以更妥善地處理瞬間大量負載 (例如產品上市事件的開始)。
-* 透過分散使用者要求以及從 Edge Server 提供內容，傳送至原始來源的流量將會減少。
+* 更好的效能和使用者經驗對於使用者，尤其是當使用多個往返所在位置的應用程式需要 tooload 內容。
+* 大型的縮放比例 toobetter 處理瞬間大量負載，例如在 hello 開頭的產品上市。
+* 藉由散發使用者要求並處理來自邊緣伺服器內容、 較少的流量會傳送 toohello 原點。
 
 ## <a name="how-it-works"></a>運作方式
 ![CDN 概觀](./media/cdn-overview/cdn-overview.png)
 
-1. 使用者 (Alice) 使用具有特殊網域名稱的 URL (例如 `<endpointname>.azureedge.net`) 要求檔案 (也稱為資產)。  DNS 將要求路由傳送到最佳的存在點 (POP) 位置。  這通常是地理位置最接近使用者的 POP。
-2. 如果 POP 中的 Edge Server 在其快取中沒有該檔案，Edge Server 便會從原始來源要求檔案。  原始來源可以是 Azure Web 應用程式、Azure 雲端服務、Azure 儲存體帳戶或任何可公開存取的 Web 伺服器。
-3. 原始來源將檔案傳回給 Edge Server，包括描述檔案存留時間 (TTL) 的選擇性 HTTP 標頭。
-4. Edge Server 快取檔案，並將檔案傳回給原始要求者 (Alice)。  在 TTL 到期之前，檔案會一直快取在 Edge Server 上。  如果原始來源未指定 TTL，預設 TTL 為 7 天。
-5. 其他使用者後來可能會使用相同 URL 要求相同檔案，而且也可能導向至該相同 POP。
-6. 如果檔案的 TTL 尚未過期，Edge Server 便會從快取傳回檔案。  這會產生更快、更靈敏回應的使用者經驗。
+1. 使用者 (Alice) 使用具有特殊網域名稱的 URL (例如 `<endpointname>.azureedge.net`) 要求檔案 (也稱為資產)。  DNS 會路由傳送嗨要求 toohello 最佳執行點顯示 (POP) 位置。  這通常是 hello 地理位置最靠近 toohello 使用者快顯程式。
+2. 如果在 hello POP hello 邊緣伺服器快取中沒有 hello 檔案，hello 邊緣 hello 的原始伺服器要求 hello 檔案。  hello 來源可以是 Azure Web 應用程式、 Azure 雲端服務、 Azure 儲存體帳戶或任何可公開存取的網頁伺服器。
+3. hello 原點傳回 hello 檔案 toohello edge server，包括選用描述 hello 檔案-存留時間 (TTL) 的 HTTP 標頭。
+4. hello 邊緣伺服器 hello 檔案會快取，並傳回 hello 檔案 toohello 原始要求者 (Alice)。  hello TTL 到期之前 hello 檔案則維持在 hello edge server 快取。  如果 hello 原點沒有指定的 TTL hello 預設的 TTL 為 7 天。
+5. 其他使用者可能要求 hello 相同的檔案使用該相同的 URL，並也可能會導向的 toothat 相同的快顯程式。
+6. 如果未過期 hello TTL hello 檔案 hello 邊緣伺服器會從 hello 快取傳回 hello 檔。  這會產生更快、更靈敏回應的使用者經驗。
 
 ## <a name="azure-cdn-features"></a>Azure CDN 功能
-共有三種 Azure CDN 產品︰**來自 Akamai 的 Azure CDN 標準**、**來自 Verizon 的 Azure CDN 標準**和**來自 Verizon 的 Azure CDN 進階**。  下表列出每種產品的可用功能。
+共有三種 Azure CDN 產品︰**來自 Akamai 的 Azure CDN 標準**、**來自 Verizon 的 Azure CDN 標準**和**來自 Verizon 的 Azure CDN 進階**。  hello 下表列出與每個可用的 hello 功能。
 
 |  | 標準 Akamai | 標準 Verizon | 進階 Verizon |
 | --- | --- | --- | --- |
@@ -85,18 +85,18 @@ Azure 內容傳遞網路 (CDN) 會在策略性放置的位置上快取靜態 Web
 
 
 > [!TIP]
-> 您是否有想要在 Azure CDN 中看到的功能？  [請不吝提供意見](https://feedback.azure.com/forums/169397-cdn)！ 
+> 有一項功能，您想要在 Azure CDN toosee 嗎？  [請不吝提供意見](https://feedback.azure.com/forums/169397-cdn)！ 
 > 
 > 
 
 ## <a name="next-steps"></a>後續步驟
-若要開始使用 CDN，請參閱 [使用 Azure CDN](cdn-create-new-endpoint.md)。
+tooget 入門 CDN，請參閱[使用 Azure CDN](cdn-create-new-endpoint.md)。
 
-如果您是現有的 CDN 客戶，現在可以透過 [Microsoft Azure 入口網站](https://portal.azure.com)或 [PowerShell](cdn-manage-powershell.md) 管理您的 CDN 端點。
+如果您已經是 CDN 客戶，您現在可以管理您的 CDN 端點，透過 hello [Microsoft Azure 入口網站](https://portal.azure.com)或[PowerShell](cdn-manage-powershell.md)。
 
-若要查看作用中的 CDN，請參閱 [2016 組建會議的影片](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/)。
+toosee hello CDN 中的動作，請簽出 hello[我們建置 2016年工作階段的視訊](https://azure.microsoft.com/documentation/videos/build-2016-leveraging-the-new-azure-cdn-apis-to-build-wicked-fast-applications/)。
 
-了解如何透過 [.NET](cdn-app-dev-net.md) 或 [Node.js](cdn-app-dev-node.md) 自動化 Azure CDN。
+深入了解如何 tooautomate Azure CDN 與[.NET](cdn-app-dev-net.md)或[Node.js](cdn-app-dev-node.md)。
 
 如需價格資訊，請參閱 [CDN 價格](https://azure.microsoft.com/pricing/details/cdn/)。
 

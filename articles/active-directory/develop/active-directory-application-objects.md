@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 應用程式和服務主體物件 | Microsoft Docs"
-description: "Azure Active Directory 中的應用程式物件和服務主體物件之間的關聯性討論"
+title: "aaaAzure Active Directory 應用程式和服務主體物件 |Microsoft 文件"
+description: "討論的 hello 應用程式與 Azure Active Directory 中的服務主體物件之間的關聯性"
 documentationcenter: dev-center-name
 author: dstrockis
 manager: mbaldwin
@@ -15,60 +15,60 @@ ms.workload: identity
 ms.date: 04/28/2016
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: 4c75ade5f4e47ef64ccc0fe8af4b174c377dc7bc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ff7e308c0b326c3a32b101b7b323f2c0362763e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-and-service-principal-objects-in-azure-active-directory-azure-ad"></a>Azure Active Directory (Azure AD) 中的應用程式和服務主體物件
-在 Azure AD 的內容中使用「應用程式」這個詞彙時，有時會誤解其意義。 本文的目的是要藉由釐清 Azure AD 應用程式整合的概念和具體層面，並舉例說明如何註冊和同意[多租用戶應用程式](active-directory-dev-glossary.md#multi-tenant-application)，提供更清楚的說明。
+有時 hello hello 詞彙用於 Azure AD 的 hello 內容時，可以造成誤解 「 應用程式 」 的意義。 這篇文章的 hello 目標是 toomake 更清楚，釐清概念和具體方面的 Azure AD 的應用程式整合的說明，註冊以及同意，以便與它[多租用戶應用程式](active-directory-dev-glossary.md#multi-tenant-application)。
 
 ## <a name="overview"></a>概觀
-已與 Azure AD 整合的應用程式，其含意已超出軟體層面。 「應用程式」經常當作概念詞彙，不僅指應用程式軟體，在執行階段的驗證/授權「對話」中，也是指其 Azure AD 註冊和角色。 根據定義，應用程式的運作身分可以是[用戶端](active-directory-dev-glossary.md#client-application)角色 (取用資源)、[資源伺服器](active-directory-dev-glossary.md#resource-server)角色 (對用戶端公開 API)，或甚至身兼兩者。 對話通訊協定是由 [OAuth 2.0 授權授與流程](active-directory-dev-glossary.md#authorization-grant)所定義，可讓用戶端/資源各自存取/保護資源的資料。 現在讓我們再深入一點，看看 Azure AD 應用程式模型在設計階段和執行階段是如何代表應用程式。 
+已與 Azure AD 整合的應用程式具有超越 hello 軟體方面的影響。 「 應用程式 」 通常做為概念的詞彙，參考 toonot 只有 hello hello 應用程式軟體，但也其 Azure AD 註冊和驗證/授權 「 交談 」，在執行階段中的角色。 根據定義，應用程式可以扮演[用戶端](active-directory-dev-glossary.md#client-application)（耗用資源），角色[資源伺服器](active-directory-dev-glossary.md#resource-server)角色 (公開 Api tooclients)，或甚至兩個。 hello 對話通訊協定由定義[OAuth 2.0 授權授與流程](active-directory-dev-glossary.md#authorization-grant)，允許 hello 用戶端/資源 tooaccess/保護資源的資料分別。 現在讓我們繼續更深度的層級，並請參閱如何 hello Azure AD 應用程式模型代表應用程式在設計階段和執行階段。 
 
 ## <a name="application-registration"></a>應用程式註冊
-當您在 [Azure 入口網站][AZURE-Portal]註冊 Azure AD 應用程式時，Azure AD 租用戶中會建立兩個物件︰應用程式物件和服務主體物件。
+當您註冊 Azure AD 應用程式在 hello [Azure 入口網站][AZURE-Portal]，Azure AD 租用戶中建立兩個物件： 應用程式物件與服務主體物件。
 
 #### <a name="application-object"></a>應用程式物件
-Azure AD 應用程式是由其唯一一個應用程式物件所定義，該物件位於應用程式註冊所在的 Azure AD 租用戶，也稱為應用程式的「主要」租用戶。 Azure AD Graph [Application 實體][AAD-Graph-App-Entity]會定義應用程式物件屬性的結構描述。 
+Azure AD 應用程式是由定義它的一個，只有應用程式物件，該物件位於 hello 應用程式註冊所在的 hello Azure AD 租用戶中，稱為 hello 應用程式"home"租用戶。 hello Azure AD Graph[應用程式的實體][ AAD-Graph-App-Entity]定義 hello 應用程式物件的屬性結構描述。 
 
 #### <a name="service-principal-object"></a>服務主體物件
-服務主體物件會定義在特定租用戶中使用應用程式時的原則和權限，為安全性主體提供在執行階段代表應用程式的基礎。 Azure AD Graph [ServicePrincipal 實體][AAD-Graph-Sp-Entity]會定義服務主體物件屬性的結構描述。 
+hello 服務主體物件定義特定租用戶，提供 hello 基礎安全性主體 toorepresent hello 應用程式在執行階段中的 hello 原則和應用程式所使用的使用權限。 hello Azure AD Graph [ServicePrincipal 實體][ AAD-Graph-Sp-Entity] hello 為定義結構描述的服務主體物件的屬性。 
 
 #### <a name="application-and-service-principal-relationship"></a>應用程式和服務主體關聯性
-將應用程式物件視為應用程式的「全域」代表 (用於所有租用戶)，而將服務主體看做是「本機」代表 (用於特定租用戶)。 應用程式物件就像範本，可從中「衍生」通用和預設屬性，用以建立相對應的服務主體物件。 因此，應用程式物件與軟體應用程式之間存在 1:1 關聯性，而與其對應的服務主體物件之間存在一對多關聯性。
+請考慮為 hello hello 應用程式物件*全域*表示您的應用程式用來跨所有租用戶和 hello 服務主體做 hello*本機*用於特定的表示法租用戶。 hello 應用程式物件會作為 hello 從哪一個常見的範本和預設屬性是*衍生*可用來建立相對應的服務主體物件。 1:1 關聯性與 hello 軟體應用程式，以及其對應的服務主體物件 1:many 之間的關係，因此有應用程式物件。
 
-每一個會用到應用程式的租用戶中必須建立服務主體，才能讓它建立身分識別來登入及/或存取租用戶所保護的資源。 單一租用戶的應用程式只能有一個服務主體 (在其主租用戶中)，通常是在應用程式註冊期間建立和同意使用。 如果是多租用戶 Web 應用程式/API，則在使用者已同意使用它的每個租用戶中，還會建立服務主體。  
+必須在每個租用戶建立服務主體，其中 hello 應用程式將會使用，讓它 tooestablish 登入的身分識別及/或存取 tooresources hello 租用戶所受保護。 單一租用戶的應用程式只能有一個服務主體 (在其主租用戶中)，通常是在應用程式註冊期間建立和同意使用。 多租用戶 Web 應用程式/API 也會有每個租用戶中建立服務主體，該租用戶的使用者已經同意 tooits 使用。  
 
 > [!NOTE]
-> 您對應用程式物件所做的任何變更也只會反映於它在應用程式的主要租用戶 (其註冊所在租用戶) 中的服務主體物件。 就多租用戶應用程式而言，對應用程式物件所做的變更，必須等到透過[應用程式存取面板](https://myapps.microsoft.com)移除存取權再重新授權之後，才會反映在任何取用者租用戶的服務主體物件中。
+> Tooyour 應用程式物件，您所做的變更也會反映其 hello 應用程式的主要租用戶中只 （自從註冊 hello 租用戶） 的服務主體物件中。 對於多租用戶應用程式，變更 toohello 應用程式物件不會反映在任何取用者租用戶的服務主體物件，必須先移除 hello 存取透過 hello[應用程式存取面板](https://myapps.microsoft.com)和授與一次。
 ><br>  
 > 也請注意，依預設，原生應用程式會註冊為多租用戶。
 > 
 > 
 
 ## <a name="example"></a>範例
-下圖說明應用程式的應用程式物件與對應的服務主體物件之間的關係，是以一個稱為「HR 應用程式」 的範例多租用戶應用程式為背景。 此案例中有三個 Azure AD 租用戶︰ 
+hello 下列圖表說明 hello 應用程式的應用程式物件和相對應主體物件，在 hello 範例多租用戶應用程式的內容中呼叫的服務之間的關聯性**HR app**。 此案例中有三個 Azure AD 租用戶︰ 
 
-* **Adatum** - 開發 **HR 應用程式**之公司所使用的租用戶
-* **Contoso** - Contoso 組織所使用的租用戶，其為 **HR 應用程式**的取用者
-* **Fabrikam** - Fabrikam 組織所使用的租用戶，其亦會取用 **HR 應用程式**
+* **Adatum** -hello 開發 hello hello 公司所使用的租用戶**HR 應用程式**
+* **Contoso** -hello hello Contoso 組織是 hello 取用者所使用的租用戶**HR 應用程式**
+* **Fabrikam** -hello hello Fabrikam 組織，也會耗用 hello 所使用的租用戶**HR 應用程式**
 
 ![應用程式物件和服務主體物件之間的關聯性](./media/active-directory-application-objects/application-objects-relationship.png)
 
-在前一張圖中，步驟 1 是在應用程式的主要租用戶中建立應用程式和服務主體物件的程序。
+Hello 上圖中，在步驟 1 是 hello 程序建立 hello 應用程式的主要租用戶中的 hello 應用程式和服務主體物件。
 
-在步驟 2 中，當 Contoso 和 Fabrikam 的系統管理員完成同意，系統就會在其公司的 Azure AD 租用戶中建立服務主體物件，並指派系統管理員所授與的權限。 也請注意，HR 應用程式可能會設定/設計為允許由使用者同意以進行個人使用。
+在步驟 2 中，Contoso 和 Fabrikam 的系統管理員同意時，完成的服務主體物件會建立在其公司的 Azure AD 租用戶和指派的 hello 權限授與該 hello 系統管理員。 也請注意該 hello HR 應用程式可能是供個人使用的使用者設定/設計 tooallow 同意。
 
-在步驟 3 中，HR 應用程式的取用者租用戶 (Contoso 和 Fabrikam) 都分別擁有自己的服務主體物件。 每個均代表他們在執行階段的應用程式執行個體使用，其中皆受到個別系統管理員所同意的權限控管。
+步驟 3 中，取用者租用戶 hello hello HR 應用程式 （Contoso 和 Fabrikam） 每個有自己的服務主體物件。 每一個代表執行個體在執行階段，由 hello 各自的系統管理員權限同意的 hello hello 應用程式的用法。
 
 ## <a name="next-steps"></a>後續步驟
-若要存取應用程式的應用程式物件，可以透過 Azure AD Graph API、[Azure 入口網站][AZURE-Portal]的應用程式資訊清單編輯器，或 [Azure AD PowerShell Cmdlet](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0) 來存取 (如其 OData 的 [Application 實體][AAD-Graph-App-Entity]所代表)。
+應用程式的應用程式物件可以透過 Azure AD Graph API hello hello [Azure 入口網站][ AZURE-Portal]應用程式資訊清單編輯器] 中，或[Azure AD PowerShell cmdlet](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0)，表示其 OData 的[應用程式的實體][AAD-Graph-App-Entity]。
 
-若要存取應用程式的服務主體物件，可以透過 Azure AD Graph API 或 [Azure AD PowerShell Cmdlet](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0) 來存取 (如其 OData 的 [ServicePrincipal][AAD-Graph-Sp-Entity] 實體所代表)。
+應用程式的服務主體物件可以透過 hello Azure AD Graph API 或[Azure AD PowerShell cmdlet](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0)，表示其 OData 的[ServicePrincipal 實體][ AAD-Graph-Sp-Entity].
 
-[Azure AD Graph 總管](https://graphexplorer.azurewebsites.net/)可用於查詢應用程式和服務主體物件。
+hello [Azure AD Graph 總管](https://graphexplorer.azurewebsites.net/)可用於查詢 hello 應用程式和服務主體物件。
 
 <!--Image references-->
 

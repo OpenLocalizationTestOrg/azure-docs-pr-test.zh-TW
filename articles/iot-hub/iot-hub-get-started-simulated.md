@@ -1,6 +1,6 @@
 ---
-title: "開始將模擬裝置連線到 Azure IoT 中樞 | Microsoft Docs"
-description: "了解如何建立模擬 IoT 裝置，並將它們連線至 Azure IoT 中樞。 您的裝置可以將遙測資料傳送到 IoT 中樞，而 IoT 中樞會監視並管理您的裝置。"
+title: "開始連接模擬的裝置 tooAzure IoT 中樞 |Microsoft 文件"
+description: "了解如何 toocreate 模擬 IoT 裝置並且將它們連接 tooAzure IoT 中樞。 您的裝置可以傳送遙測 tooIoT 中樞和 Iot 中心可以監視和管理您的裝置。"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/02/2017
 ms.author: dobett
-ms.openlocfilehash: 436b3057509a831837159e814490959a2d7455a4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c9b76477d12c853abd93aa96043417a013daaef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-iot-hub-get-started-with-simulated-devices-tutorials"></a>Azure IoT 中樞開始使用模擬裝置教學課程
 
-這些教學課程將為您介紹 Azure IoT 中樞與裝置的 SDK。 這些教學課程涵蓋的常見 IoT 案例會說明 IoT 中樞的功能。 教學課程也將說明如何將 IoT 中樞與其他 Azure 服務和工具結合，建置更強大的 IoT 解決方案。 下表所列的教學課程會示範如何建立模擬的 IoT 裝置。
+這些教學課程介紹 tooAzure IoT 中樞和 hello 裝置 Sdk。 hello 教學課程涵蓋常見 IoT 案例 toodemonstrate hello 功能的 IoT 中樞。 hello 教學課程也說明如何 toocombine IoT 中樞與其他 Azure 服務和工具 toobuild 更強大的 IoT 解決方案。 hello 下表中列出的 hello 教學課程會示範如何 toocreate 模擬 IoT 裝置。
 
 | 程式設計語言 |
 |----------------------|
@@ -31,7 +31,7 @@ ms.lasthandoff: 07/11/2017
 | [Node.js][Sim_Nd]    |
 | [Python][Sim_Pyth]   |
 
-此外，您可以使用 IoT Edge 閘道來讓模擬的裝置連線到您的 IoT 中樞。
+此外，您可以使用 IoT 邊緣閘道 tooenable 模擬裝置 tooconnect tooyour IoT 中樞。
 
 | 程式設計語言 | 平台           |
 |----------------------|------------------- |

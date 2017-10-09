@@ -1,6 +1,6 @@
 ---
-title: "使用 Node.js 連接裝置 |Microsoft Docs"
-description: "描述如何使用 Node.js 中已寫入的應用程式，將裝置連接至 Azure IoT Suite 預先設定遠端監視方案。"
+title: "一部裝置使用 Node.js aaaConnect |Microsoft 文件"
+description: "描述如何 tooconnect 裝置 toohello Azure IoT 套件預先設定的遠端使用 Node.js 撰寫的應用程式的監視解決方案。"
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,31 +15,31 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 6459b6196eb7f4a083b67e5a421bcc0d51d39e5c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 80bf2b70f15f539bfce4f135d533c46dd2b3f5a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-nodejs"></a>將裝置連接至遠端監視預先設定方案 (Node.js)
+# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-nodejs"></a>連接您的裝置 toohello 遠端監視預先設定的解決方案 (Node.js)
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
 ## <a name="create-a-nodejs-sample-solution"></a>建立 node.js 範例解決方案
 
-請確定 Node.js 0.11.5 版或更新版本已經安裝在您的開發電腦上。 您可以在命令列執行 `node --version` 來檢查版本。
+請確定 Node.js 0.11.5 版或更新版本已經安裝在您的開發電腦上。 您可以執行`node --version`hello 命令列 toocheck hello 版本。
 
-1. 在開發電腦上建立名為 **RemoteMonitoring** 的資料夾。 在命令列環境中瀏覽至此資料夾。
+1. 在開發電腦上建立名為 **RemoteMonitoring** 的資料夾。 瀏覽 toothis 命令列環境中的資料夾。
 
-1. 執行下列命令，以下載並安裝完成範例應用程式所需的套件︰
+1. 執行下列的 hello 命令 toodownload 並安裝需要 toocomplete hello 範例應用程式的 hello 封裝：
 
     ```
     npm init
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 
-1. 在 **RemoteMonitoring** 資料夾中，建立名為 **remote_monitoring.js** 的檔案。 在文字編輯器中開啟這個檔案。
+1. 在 hello **RemoteMonitoring**資料夾中，建立名為的檔案**remote_monitoring.js**。 在文字編輯器中開啟這個檔案。
 
-1. 在 **remote_monitoring.js** 檔案中，新增下列 `require` 陳述式︰
+1. 在 hello **remote_monitoring.js** file、 add hello 下列`require`陳述式：
 
     ```nodejs
     'use strict';
@@ -50,14 +50,14 @@ ms.lasthandoff: 08/29/2017
     var Message = require('azure-iot-device').Message;
     ```
 
-1. 在 `require` 陳述式之後新增下列變數宣告。 使用您在遠端監視解決方案儀表板中為裝置記下的值來取代 [Device Id] 和 [Device Key] 預留位置值。 使用解決方案儀表板中的「IoT 中樞主機名稱」來取代 [IoTHub Name]。 例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：
+1. 加入下列變數宣告之後 hello hello`require`陳述式。 取代 hello 預留位置值 [裝置識別碼] 和 [裝置機碼] 與您記下您的裝置 hello 遠端監視方案儀表板中的值。 使用從 hello 方案儀表板 tooreplace [iot 中樞名稱] 的 hello IoT 中樞的主機名稱。 例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：
 
     ```nodejs
     var connectionString = 'HostName=[IoTHub Name].azure-devices.net;DeviceId=[Device Id];SharedAccessKey=[Device Key]';
     var deviceId = ConnectionString.parse(connectionString).DeviceId;
     ```
 
-1. 新增下列變數來定義一些基本遙測資料︰
+1. 加入下列變數 toodefine hello 某些基底的遙測資料：
 
     ```nodejs
     var temperature = 50;
@@ -65,7 +65,7 @@ ms.lasthandoff: 08/29/2017
     var externalTemperature = 55;
     ```
 
-1. 新增下列協助程式來列印作業結果︰
+1. 新增下列 helper 函式 tooprint 作業結果的 hello:
 
     ```nodejs
     function printErrorFor(op) {
@@ -75,7 +75,7 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-1. 新增下列協助程式函式，用來將排遙測值隨機化︰
+1. 新增下列 helper 函式 toouse toorandomize hello 遙測值的 hello:
 
     ```nodejs
     function generateRandomIncrement() {
@@ -83,7 +83,7 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-1. 針對裝置在啟動時傳送的 **DeviceInfo** 物件，新增下列定義︰
+1. 新增下列定義 hello hello **DeviceInfo**物件 hello 裝置會在啟動時傳送：
 
     ```nodejs
     var deviceMetaData = {
@@ -97,7 +97,7 @@ ms.lasthandoff: 08/29/2017
     };
     ```
 
-1. 針對裝置對應項報告值新增下列定義。 此定義包含裝置支援的直接方法說明︰
+1. 新增下列 hello hello 裝置兩個定義報告的值。 這個定義包含 hello hello 裝置支援的直接方法的描述：
 
     ```nodejs
     var reportedProperties = {
@@ -126,62 +126,62 @@ ms.lasthandoff: 08/29/2017
             "Longitude": -122.125497
         },
         "SupportedMethods": {
-            "Reboot": "Reboot the device",
-            "InitiateFirmwareUpdate--FwPackageURI-string": "Updates device Firmware. Use parameter FwPackageURI to specifiy the URI of the firmware file"
+            "Reboot": "Reboot hello device",
+            "InitiateFirmwareUpdate--FwPackageURI-string": "Updates device Firmware. Use parameter FwPackageURI toospecifiy hello URI of hello firmware file"
         },
     }
     ```
 
-1. 新增下列函式以處理 **Reboot** 直接方法呼叫：
+1. 加入下列函式 toohandle hello hello**重新開機**直接方法呼叫：
 
     ```nodejs
     function onReboot(request, response) {
         // Implement actual logic here.
         console.log('Simulated reboot...');
 
-        // Complete the response
+        // Complete hello response
         response.send(200, "Rebooting device", function(err) {
             if(!!err) {
                 console.error('An error occurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
             }
         });
     }
     ```
 
-1. 新增下列函式以處理 **InitiateFirmwareUpdate** 直接方法呼叫。 此直接方法使用參數來指定要下載之韌體映像的位置，並以非同步方式在裝置上啟始韌體更新︰
+1. 加入下列函式 toohandle hello hello **InitiateFirmwareUpdate**直接方法呼叫。 這個直接的方法會使用參數的 toospecify hello 位置 hello 韌體映像 toodownload，並起始以非同步方式 hello hello 裝置上的軔體更新：
 
     ```nodejs
     function onInitiateFirmwareUpdate(request, response) {
         console.log('Simulated firmware update initiated, using: ' + request.payload.FwPackageURI);
 
-        // Complete the response
+        // Complete hello response
         response.send(200, "Firmware update initiated", function(err) {
             if(!!err) {
                 console.error('An error occurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
             }
         });
 
-        // Add logic here to perform the firmware update asynchronously
+        // Add logic here tooperform hello firmware update asynchronously
     }
     ```
 
-1. 新增下列程式碼，以建立用戶端執行個體︰
+1. 加入下列程式碼 toocreate 用戶端執行個體的 hello:
 
     ```nodejs
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
 
-1. 新增下列程式碼，以便：
+1. 加入下列程式碼的 hello:
 
-    * 開啟連線。
-    * 傳送 **DeviceInfo** 物件。
+    * 開啟 hello 連接。
+    * 傳送嗨**DeviceInfo**物件。
     * 設定所需屬性的處理常式。
     * 傳送報告屬性。
-    * 登錄直接方法的處理常式。
+    * 註冊處理常式的 hello 直接的方法。
     * 開始傳送遙測。
 
     ```nodejs
@@ -242,9 +242,9 @@ ms.lasthandoff: 08/29/2017
     });
     ```
 
-1. 將變更儲存至 **remote_monitoring.js** 檔案。
+1. 儲存 hello 變更 toohello **remote_monitoring.js**檔案。
 
-1. 在命令提示字元中執行下列命令，以啟動範例應用程式：
+1. 執行下列命令，在命令提示字元 toolaunch hello 範例應用程式的 hello:
    
     ```
     node remote_monitoring.js

@@ -1,6 +1,6 @@
 ---
-title: "建立適用於 Hadoop 的 Java MapReduce - Azure HDInsight | Microsoft Docs"
-description: "了解如何使用 Apache Maven 來建立以 Java 為基礎的 MapReduce 應用程式，然後在 Azure HDInsight 上使用 Hadoop 來加以執行。"
+title: "aaaCreate Hadoop-Azure HDInsight 的 Java MapReduce |Microsoft 文件"
+description: "深入了解如何 toouse Apache Maven Java 為基礎的 toocreate MapReduce 應用程式，然後加以執行的 Hadoop Azure HDInsight 上。"
 services: hdinsight
 editor: cgronlun
 manager: jhubbard
@@ -16,15 +16,15 @@ ms.devlang: Java
 ms.topic: article
 ms.date: 08/07/2017
 ms.author: larryfr
-ms.openlocfilehash: 11d63f22204eb2acb530378f53ac72f16a35a4f2
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 903a57a482395f7da79002188399a4d6288ff0af
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="develop-java-mapreduce-programs-for-hadoop-on-hdinsight"></a>在 HDInsight 上開發 Hadoop 的 Java MapReduce 程式
 
-了解如何使用 Apache Maven 來建立以 Java 為基礎的 MapReduce 應用程式，然後在 Azure HDInsight 上使用 Hadoop 來加以執行。
+深入了解如何 toouse Apache Maven Java 為基礎的 toocreate MapReduce 應用程式，然後加以執行的 Hadoop Azure HDInsight 上。
 
 > [!NOTE]
 > 此範例最近已在 HDInsight 3.6 上測試過。
@@ -40,44 +40,44 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="configure-development-environment"></a>設定開發環境
 
-當您安裝 Java 和 JDK 時可能會設定下列環境變數。 不過，您應該檢查它們是否存在，以及它們是否包含您系統的正確值。
+hello 下列環境變數設定 Java 和 hello JDK 安裝時。 不過，您應該檢查其存在且包含您系統的 hello 正確值。
 
-* `JAVA_HOME` - 應該指向已安裝 Java 執行階段環境 (JRE) 的目錄。 例如，在 OS X、Unix 或 Linux 系統上，它的值應該類似 `/usr/lib/jvm/java-7-oracle`。 在 Windows 中，它的值應該類似 `c:\Program Files (x86)\Java\jre1.7`
+* `JAVA_HOME`-應該指向 toohello hello Java runtime environment (JRE) 安裝所在的目錄。 例如，在 OS X、 Unix 或 Linux 系統上，就不應有類似的值太`/usr/lib/jvm/java-7-oracle`。 在 Windows 中，就會類似的值太`c:\Program Files (x86)\Java\jre1.7`
 
-* `PATH` - 應該包含下列路徑：
+* `PATH`-應包含下列路徑的 hello:
   
-  * `JAVA_HOME` (或對等的路徑)
+  * `JAVA_HOME`（或 hello 相等路徑）
 
-  * `JAVA_HOME\bin` (或對等的路徑)
+  * `JAVA_HOME\bin`（或 hello 相等路徑）
 
-  * 已安裝 Maven 的目錄
+  * hello Maven 安裝所在的目錄
 
 ## <a name="create-a-maven-project"></a>建立 Maven 專案
 
-1. 從終端機工作階段，或開發環境的命令列中，將目錄變更為您想要儲存此專案的位置。
+1. 從終端機工作階段或開發環境中的命令列中，變更您想要 toostore 這個專案的目錄 toohello 位置。
 
-2. 使用隨 Maven 一起安裝的 `mvn` 命令來產生專案的結構。
+2. 使用 hello`mvn`命令，它會隨 Maven，toogenerate hello scaffolding hello 專案。
 
    ```bash
    mvn archetype:generate -DgroupId=org.apache.hadoop.examples -DartifactId=wordcountjava -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
    ```
 
     > [!NOTE]
-    > 如果您使用 PowerShell，則必須將 `-D` 參數放置在雙引號內。
+    > 如果您使用 PowerShell，您必須將 hello`-D`雙引號括住的參數。
     >
     > `mvn archetype:generate "-DgroupId=org.apache.hadoop.examples" "-DartifactId=wordcountjava" "-DarchetypeArtifactId=maven-archetype-quickstart" "-DinteractiveMode=false"`
 
-    此命令會使用 `artifactID` 參數所指定的名稱 (此範例中為 **wordcountjava**) 來建立目錄。此目錄包含下列項目：
+    此命令會指定 hello hello 名稱建立目錄`artifactID`參數 (**wordcountjava**在此範例中。)此目錄包含下列項目 hello:
 
-   * `pom.xml` - [專案物件模型 (POM)](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html)，包含用來建置專案的資訊和組態詳細資料。
+   * `pom.xml`-hello[專案物件模型 (POM)](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html) ，其中包含的資訊和使用 toobuild hello 專案組態詳細資料。
 
-   * `src` - 包含應用程式的目錄。
+   * `src`-包含 hello 應用程式的 hello 目錄。
 
-3. 刪除 `src/test/java/org/apache/hadoop/examples/apptest.java` 檔案。 此範例不會使用此方法。
+3. 刪除 hello`src/test/java/org/apache/hadoop/examples/apptest.java`檔案。 此範例不會使用此方法。
 
 ## <a name="add-dependencies"></a>新增相依性
 
-1. 編輯 `pom.xml` 檔案，並在 `<dependencies>` 區段內新增下列文字：
+1. 編輯 hello`pom.xml`檔案，然後加入下列 hello 內文字的 hello `<dependencies>` > 一節：
    
    ```xml
     <dependency>
@@ -100,14 +100,14 @@ ms.lasthandoff: 08/18/2017
     </dependency>
    ```
 
-    這會定義含有特定版本 (列於&lt;version\> 內) 的必要程式庫 (列於 &lt;artifactId\> 內)。 在編譯期間，會從預設的 Maven 儲存機制下載這些相依性。 您可以使用 [Maven 儲存機制搜尋](http://search.maven.org/#artifactdetails%7Corg.apache.hadoop%7Chadoop-mapreduce-examples%7C2.5.1%7Cjar) (英文) 檢視詳細資訊。
+    這會定義含有特定版本 (列於&lt;version\> 內) 的必要程式庫 (列於 &lt;artifactId\> 內)。 在編譯時期，這些相依性下載 hello 預設 Maven 儲存機制。 您可以使用 hello [Maven 儲存機制搜尋](http://search.maven.org/#artifactdetails%7Corg.apache.hadoop%7Chadoop-mapreduce-examples%7C2.5.1%7Cjar)tooview 更多。
    
-    `<scope>provided</scope>` 會告訴 Maven 這些相依性不應該和應用程式一起封裝，因為 HDInsight 叢集會在執行階段提供這些相依性。
+    hello`<scope>provided</scope>`告訴 Maven 這些相依性不應封裝 hello 應用程式時，依照 hello HDInsight 叢集，在執行階段所提供。
 
     > [!IMPORTANT]
-    > 使用的版本應該符合您叢集上的 Hadoop 版本。 如需有關版本的詳細資訊，請參閱 [HDInsight 元件版本設定](hdinsight-component-versioning.md)文件。
+    > 使用 hello 版本應與 Hadoop 叢集上有 hello 版本相符。 如需有關版本的詳細資訊，請參閱 hello [HDInsight 的元件版本控制](hdinsight-component-versioning.md)文件。
 
-2. 將下列項目新增至 `pom.xml` 檔案。 此文字必須位於檔案中的 `<project>...</project>` 標籤內，例如在 `</dependencies>` 和 `</project>` 之間。
+2. 新增下列 toohello hello`pom.xml`檔案。 此文字必須在 hello 內`<project>...</project>`標記 hello 檔案中，例如之間`</dependencies>`和`</project>`。
 
    ```xml
     <build>
@@ -144,20 +144,20 @@ ms.lasthandoff: 08/18/2017
     </build>
    ```
 
-    第一個外掛程式會設定用於建置 uberjar (有時稱為 fatjar) 的 [Maven Shade 外掛程式](http://maven.apache.org/plugins/maven-shade-plugin/)，uberjar 內含應用程式需要的相依性。 這麼做也可以防止 jar 封裝中具有重複的授權，以免在某些系統中造成問題。
+    hello 第一個外掛程式會設定 hello [Maven 陰影外掛程式](http://maven.apache.org/plugins/maven-shade-plugin/)，它會使用的 toobuild uberjar （有時稱為 fatjar），其中包含 hello 應用程式所需的相依性。 它也可以避免重複的 hello jar 封裝中可能會造成問題，在某些系統上的授權。
 
-    第二個外掛程式會設定目標 Java 版本。
+    hello 第二個外掛程式會設定 hello 目標 Java 版本。
 
     > [!NOTE]
     > HDInsight 3.4 和先前版本會使用 Java 7。 HDInsight 3.5 和更新版本會使用 Java 8。
 
-3. 儲存 `pom.xml` 檔案。
+3. 儲存 hello`pom.xml`檔案。
 
-## <a name="create-the-mapreduce-application"></a>建立 MapReduce 應用程式
+## <a name="create-hello-mapreduce-application"></a>建立 hello MapReduce 應用程式
 
-1. 移至 `wordcountjava/src/main/java/org/apache/hadoop/examples` 目錄，並將 `App.java` 檔案重新命名為 `WordCount.java`。
+1. 移 toohello`wordcountjava/src/main/java/org/apache/hadoop/examples`目錄和重新命名的 hello`App.java`檔案太`WordCount.java`。
 
-2. 在文字編輯器中開啟 `WordCount.java` 檔案，並使用下列文字來取代內容：
+2. 開啟 hello`WordCount.java`檔案文字編輯器中，然後以下列文字的 hello 取代 hello 內容：
    
     ```java
     package org.apache.hadoop.examples;
@@ -230,58 +230,58 @@ ms.lasthandoff: 08/18/2017
     }
     ```
    
-    請注意，封裝名稱是 `org.apache.hadoop.examples`，而類別名稱是 `WordCount`。 提交 MapReduce 作業時會用到這些名稱。
+    請注意 hello package name 是`org.apache.hadoop.examples`hello 類別名稱，且`WordCount`。 當您送出 hello MapReduce 工作，您可以使用這些名稱。
 
-3. 儲存檔案。
+3. 儲存 hello 檔案。
 
-## <a name="build-the-application"></a>建置應用程式
+## <a name="build-hello-application"></a>建置 hello 應用程式
 
-1. 切換至 `wordcountjava` 目錄 (如果您尚未在該目錄中)。
+1. 變更 toohello`wordcountjava`目錄中，如果您已不存在。
 
-2. 使用下列命令來建置含有應用程式的 JAR 檔案：
+2. 使用下列命令 toobuild JAR 檔案包含 hello 應用程式的 hello:
 
    ```
    mvn clean package
    ```
 
-    此命令會清除任何先前的組建構件、下載任何尚未安裝的相依性，然後建置並封裝應用程式。
+    此命令會清除任何先前的組建成品，會下載任何相依性，有尚未安裝，然後建置和封裝 hello 應用程式。
 
-3. 一旦命令完成之後，`wordcountjava/target` 目錄就會包含名為 `wordcountjava-1.0-SNAPSHOT.jar` 的檔案。
+3. 一旦 hello 命令完成時，hello`wordcountjava/target`目錄包含名為`wordcountjava-1.0-SNAPSHOT.jar`。
    
    > [!NOTE]
-   > `wordcountjava-1.0-SNAPSHOT.jar` 檔案是一個 uberjar，其中不只含有 WordCount 作業，還有該作業在執行階段所需的相依性。
+   > hello`wordcountjava-1.0-SNAPSHOT.jar`檔案 uberjar，其中包含不只 hello WordCount 作業，但是 hello 工作的相依性也需要在執行階段。
 
-## <a id="upload"></a>上傳 jar
+## <a id="upload"></a>上傳 hello jar
 
-使用以下命令將 jar 檔案上傳至 HDInsight 前端節點。
+使用下列命令 tooupload hello jar 檔案 toohello HDInsight 叢集前端節點的 hello:
 
    ```bash
    scp target/wordcountjava-1.0-SNAPSHOT.jar USERNAME@CLUSTERNAME-ssh.azurehdinsight.net:
    ```
 
-    Replace __USERNAME__ with your SSH user name for the cluster. Replace __CLUSTERNAME__ with the HDInsight cluster name.
+    Replace __USERNAME__ with your SSH user name for hello cluster. Replace __CLUSTERNAME__ with hello HDInsight cluster name.
 
-此命令會將檔案從本機系統複製到前端節點。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+此命令會將 hello 檔案從 hello 本機系統 toohello 前端節點。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-## <a name="run"></a>在 Hadoop 上執行 MapReduce 作業
+## <a name="run"></a>在 Hadoop 上執行 hello MapReduce 工作
 
-1. 使用 SSH 連線到 HDInsight。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+1. 連接使用 SSH tooHDInsight。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-2. 在 SSH 工作階段中，使用以下命令執行 MapReduce 應用程式：
+2. 從 hello SSH 工作階段，使用下列命令 toorun hello MapReduce 應用程式的 hello:
    
    ```bash
    yarn jar wordcountjava-1.0-SNAPSHOT.jar org.apache.hadoop.examples.WordCount /example/data/gutenberg/davinci.txt /example/data/wordcountout
    ```
    
-    此命令會啟動 WordCount MapReduce 應用程式。 輸入檔案為 `/example/data/gutenberg/davinci.txt`，輸出目錄則為 `/example/data/wordcountout`。 輸入檔和輸出都會儲存至叢集的預設儲存體中。
+    此命令啟動 hello WordCount MapReduce 應用程式。 hello 輸入的檔是`/example/data/gutenberg/davinci.txt`，hello 輸出目錄，且`/example/data/wordcountout`。 Hello 輸入的檔和輸出是預存的 toohello hello 叢集的預設儲存體。
 
-3. 作業完成之後，請使用以下命令來檢視結果：
+3. Hello 作業完成之後，請使用下列命令 tooview hello 結果 hello:
    
    ```bash
    hdfs dfs -cat /example/data/wordcountout/*
    ```
 
-    您應該會收到一份單字和計數的清單，其中含有類似下列文字的值：
+    您應該與下列文字值類似 toohello 會收到一份單字的計數：
    
         zeal    1
         zelus   1
@@ -289,13 +289,13 @@ ms.lasthandoff: 08/18/2017
 
 ## <a id="nextsteps"></a>接續步驟
 
-在本文件中，您已學到如何開發 Java MapReduce 工作。 請參閱下列文件，了解其他的 HDInsight 使用方式。
+在本文件中，您已經學會如何 toodevelop Java MapReduce 工作。 請參閱下列文件與 HDInsight 其他方式 toowork hello。
 
 * [搭配 HDInsight 使用 Hivet][hdinsight-use-hive]
 * [搭配 HDInsight 使用 Pig][hdinsight-use-pig]
 * [〈搭配 HDInsight 使用 MapReduce〉](hdinsight-use-mapreduce.md)
 
-如需詳細資訊，也請參閱 [Java 開發人員中心](https://azure.microsoft.com/develop/java/)。
+如需詳細資訊，請參閱 hello [Java 開發人員中心](https://azure.microsoft.com/develop/java/)。
 
 [azure-purchase-options]: http://azure.microsoft.com/pricing/purchase-options/
 [azure-member-offers]: http://azure.microsoft.com/pricing/member-offers/

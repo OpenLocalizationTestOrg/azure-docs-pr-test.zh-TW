@@ -1,6 +1,6 @@
 ---
-title: "建立網際網路對向負載平衡器 - Azure CLI 傳統 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 在傳統部署模型中建立網際網路面向的負載平衡器"
+title: "aaaCreate 網際網路對向負載平衡器-Azure CLI 傳統 |Microsoft 文件"
+description: "了解如何在模型中使用傳統部署使用網際網路對向負載平衡器 toocreate hello Azure CLI"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 01/23/2017
 ms.author: kumud
-ms.openlocfilehash: da3a908f17ff5c6d3923549a884ecc0a13cb8e9e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e6070cbc574f74bca0cccb960ff192847d6511bc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-the-azure-cli"></a>開始在 Azure CLI 中建立網際網路面向的負載平衡器 (傳統)
+# <a name="get-started-creating-an-internet-facing-load-balancer-classic-in-hello-azure-cli"></a>開始建立網際網路對向 hello Azure CLI 中的負載平衡器 （傳統）
 
 > [!div class="op_single_selector"]
 > * [Azure 傳統入口網站](../load-balancer/load-balancer-get-started-internet-classic-portal.md)
@@ -31,16 +31,16 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [load-balancer-get-started-internet-intro-include.md](../../includes/load-balancer-get-started-internet-intro-include.md)]
 
 > [!IMPORTANT]
-> 使用 Azure 資源之前，請務必了解 Azure 目前有 Azure Resource Manager 和「傳統」兩種部署模型。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-classic-rm.md) 。 您可以按一下本文頂端的索引標籤，檢視不同工具的文件。 本文涵蓋之內容包括傳統部署模型。 您也可以 [了解如何使用 Azure 資源管理員建立網際網路面向的負載平衡器](load-balancer-get-started-internet-arm-ps.md)。
+> 您可以使用 Azure 資源之前，它是 Azure 目前有兩種部署模型的重要 toounderstand: Azure 資源管理員] 和 [傳統。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-classic-rm.md) 。 您可以按一下上方的這篇文章 hello hello 索引標籤檢視 hello 文件不同的工具。 本文涵蓋 hello 傳統部署模型。 您也可以[toocreate 網際網路向負載平衡器使用 Azure 資源管理員的如何了解](load-balancer-get-started-internet-arm-ps.md)。
 
 [!INCLUDE [load-balancer-get-started-internet-scenario-include.md](../../includes/load-balancer-get-started-internet-scenario-include.md)]
 
 ## <a name="step-by-step-creating-an-internet-facing-load-balancer-using-cli"></a>使用 CLI 逐步建立網際網路面向的負載平衡器
 
-本指南根據上述案例說明如何建立網際網路面向的負載平衡器。
+本指南也說明如何 toocreate 網際網路負載平衡器根據上面的 hello 案例。
 
-1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶。
-2. 執行 **azure config mode** 命令，以切換為傳統模式，如下所示。
+1. 如果您從未使用過 Azure CLI，請參閱[安裝及設定 hello Azure CLI](../cli-install-nodejs.md)依照 hello 向上 toohello 點，選取您的 Azure 帳戶和訂用帳戶的指示進行。
+2. 執行 hello **azure 組態模式**命令 tooswitch tooclassic 模式，如下所示。
 
     ```azurecli
     azure config mode asm
@@ -52,12 +52,12 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="create-endpoint-and-load-balancer-set"></a>建立端點與負載平衡器集
 
-此案例假設虛擬機器 "web1" 和 "web2" 已經建立。
-本指南將使用連接埠 80 作為公用連接埠，以及 80 作為本機連接埠，建立負載平衡器集。 探查連接埠也設定在連接埠 80 上，並將負載平衡器集稱為 "lbset"
+hello 案例假設 hello 虛擬機器 」 web1"和"web2 」 所建立。
+本指南將使用連接埠 80 作為公用連接埠，以及 80 作為本機連接埠，建立負載平衡器集。 探查連接埠也會設定連接埠 80 和具名的 hello 負載平衡器設定 「 lbset"。
 
 ### <a name="step-1"></a>步驟 1
 
-針對虛擬機器 "web1" 使用 `azure network vm endpoint create` 建立第一個端點和負載平衡器集
+建立 hello 第一個端點和負載平衡器設定使用`azure network vm endpoint create`虛擬機器 」 web1"。
 
 ```azurecli
 azure vm endpoint create web1 80 --local-port 80 --protocol tcp --probe-port 80 --load-balanced-set-name lbset
@@ -65,7 +65,7 @@ azure vm endpoint create web1 80 --local-port 80 --protocol tcp --probe-port 80 
 
 ## <a name="step-2"></a>步驟 2
 
-將第二個虛擬機器 "web2" 新增到負載平衡器集。
+新增第二個虛擬機器 」 web2"toohello 負載平衡器集。
 
 ```azurecli
 azure vm endpoint create web2 80 --local-port 80 --protocol tcp --probe-port 80 --load-balanced-set-name lbset
@@ -73,13 +73,13 @@ azure vm endpoint create web2 80 --local-port 80 --protocol tcp --probe-port 80 
 
 ## <a name="step-3"></a>步驟 3
 
-使用 `azure vm show` 確認負載平衡器設定
+確認 hello 負載平衡器組態使用`azure vm show`。
 
 ```azurecli
 azure vm show web1
 ```
 
-輸出將是：
+hello 輸出將會：
 
     data:    DNSName "contoso.cloudapp.net"
     data:    Location "East US"
@@ -125,7 +125,7 @@ azure vm show web1
 
 ## <a name="create-a-remote-desktop-endpoint-for-a-virtual-machine"></a>為虛擬機器建立遠端桌面端點
 
-您可以使用 `azure vm endpoint create`建立遠端桌面端點，針對特定的虛擬機器將網路流量從公用連接埠轉送至本機連接埠。
+您可以從公用連接埠 tooa 本機連接埠的特定虛擬機器使用建立遠端桌面端點 tooforward 網路流量`azure vm endpoint create`。
 
 ```azurecli
 azure vm endpoint create web1 54580 -k 3389
@@ -133,16 +133,16 @@ azure vm endpoint create web1 54580 -k 3389
 
 ## <a name="remove-virtual-machine-from-load-balancer"></a>從負載平衡器移除虛擬機器
 
-您必須從虛擬機器刪除與負載平衡器集相關聯的端點。 一旦移除端點，虛擬機器就不再屬於負載平衡器集。
+您必須從 hello 虛擬機器負載平衡器集 toodelete hello 關聯端點 toohello。 一旦移除 hello 端點時，hello 虛擬機器不屬於 toohello 負載平衡器不再設定。
 
-使用上述的範例，您可以使用命令 `azure vm endpoint delete` 從負載平衡器 "lbset" 移除針對虛擬機器 "web1" 所建立的端點。
+使用 hello 上述範例中，您可以移除虛擬機器 」 web1"建立 hello 端點從負載平衡器使用 hello 命令"lbset" `azure vm endpoint delete`。
 
 ```azurecli
 azure vm endpoint delete web1 tcp-80-80
 ```
 
 > [!NOTE]
-> 您可以使用命令 `azure vm endpoint --help` 探索更多管理端點的選項
+> 您可以瀏覽選項 toomanage 端點使用 hello 命令`azure vm endpoint --help`
 
 ## <a name="next-steps"></a>後續步驟
 

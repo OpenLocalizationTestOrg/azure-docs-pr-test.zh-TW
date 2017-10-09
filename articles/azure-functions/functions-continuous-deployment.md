@@ -1,6 +1,6 @@
 ---
-title: "Azure Functions 的持續部署 | Microsoft Docs"
-description: "使用 Azure App Service 的持續部署工具來發佈 Azure Functions。"
+title: "Azure 函式的 aaaContinuous 部署 |Microsoft 文件"
+description: "使用 Azure App Service toopublish 持續部署功能 Azure 函式。"
 services: functions
 documentationcenter: na
 author: ggailey777
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 09/25/2016
 ms.author: glenga
-ms.openlocfilehash: 3756f1a039730bfd99b0375ce9bfeaf27178f2e0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 28c44f737dad3feab3cf54f7dd42b6a978d0617e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="continuous-deployment-for-azure-functions"></a>Azure Functions 的持續部署
-Azure Functions 可讓您使用 App Service 持續整合來輕鬆部署您的函數應用程式。 Functions 可與 BitBucket、Dropbox、GitHub 及 Visual Studio Team Services (VSTS) 整合。 這可讓使用這其中一項整合式服務進行函數程式碼更新的工作流程觸發以 Azure 為目的地的部署。 如果您不熟悉 Azure Functions，請從 [Azure Functions 概觀](functions-overview.md)來開始。
+Azure 函式可讓您輕鬆 toodeploy 函式應用程式使用應用程式服務的持續整合。 Functions 可與 BitBucket、Dropbox、GitHub 及 Visual Studio Team Services (VSTS) 整合。 這可讓使用這些整合式的服務，觸發程序部署 tooAzure 的其中一個所做的工作流程更新函式程式碼的位置。 如果您是新 tooAzure 函式，以啟動[Azure 函式概觀](functions-overview.md)。
 
-持續部署對於整合了多個經常參與的專案而言是一個絕佳選項。 它也可讓您維護函式程式碼的原始檔控制。 目前支援的部署來源如下：
+持續部署對於整合了多個經常參與的專案而言是一個絕佳選項。 它也可讓您維護函式程式碼的原始檔控制。 目前支援下列部署來源 hello:
 
 * [Bitbucket](https://bitbucket.org/)
 * [Dropbox](https://www.dropbox.com/)
@@ -34,113 +34,113 @@ Azure Functions 可讓您使用 App Service 持續整合來輕鬆部署您的函
 * [OneDrive](https://onedrive.live.com/)
 * [Visual Studio Team Services](https://www.visualstudio.com/team-services/)
 
-設定部署時，是依每一函數應用程式進行設定。 當持續部署啟用後，在入口網站中對函式程式碼的存取權會設定為「唯讀」 。
+設定部署時，是依每一函數應用程式進行設定。 啟用連續部署之後，存取 toofunction 碼 hello 入口網站中的設定得*唯讀*。
 
 ## <a name="continuous-deployment-requirements"></a>持續部署需求
 
-您必須先設定部署來源，並將函數程式碼放入部署來源中，才能設定持續部署。 在指定的函數應用程式部署中，每個函式會存在於具名子目錄中，而其目錄名稱則為函式的名稱。  
+您必須在您設定的部署來源與函式程式碼 hello 部署來源，才能設定連續部署。 在指定的函式應用程式部署中，每個函式位於命名的子目錄，其中 hello 目錄名稱是 hello hello 函式名稱。  
 
 [!INCLUDE [functions-folder-structure](../../includes/functions-folder-structure.md)]
 
 ## <a name="set-up-continuous-deployment"></a>設定連續部署
-您可以使用此程序來為現有的函數應用程式設定持續部署。 這些步驟會示範與 GitHub 存放庫的整合，但類似的步驟也適用於 Visual Studio Team Services 或其他部署服務。
+使用此程序 tooconfigure 連續部署現有的函式應用程式。 這些步驟會示範與 GitHub 存放庫的整合，但類似的步驟也適用於 Visual Studio Team Services 或其他部署服務。
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中您的函數應用程式中，按一下 [平台功能] 和 [部署選項]。 
+1. 您函式中應用程式中 hello [Azure 入口網站](https://portal.azure.com)，按一下 **平台功能**和**部署選項**。 
    
     ![設定持續部署](./media/functions-continuous-deployment/setup-deployment.png)
  
-2. 然後，在 [部署] 刀鋒視窗中，按一下 [設定]。
+2. 接著在 hello**部署**刀鋒視窗中按一下**安裝**。
  
     ![設定持續部署](./media/functions-continuous-deployment/setup-deployment-1.png)
    
-2. 在 [部署來源] 刀鋒視窗中，按一下 [選擇來源]、填入所選部署來源的資訊，然後按一下 [確定]。
+2. 在 hello**部署來源**刀鋒視窗中，按一下**選擇來源**，然後填入您所選擇的部署來源 hello 資訊，然後按一下**確定**。
    
     ![選擇部署來源](./media/functions-continuous-deployment/choose-deployment-source.png)
 
-設定完持續部署之後，部署來源中的所有檔案變更都會複製到函數應用程式，並觸發完整的網站部署。 當來源中的檔案更新時，便會重新部署網站。
+設定連續部署之後，您的部署來源中的所有檔案變更都會複製的 toohello 函式應用程式，而且會觸發完整站台部署。 hello 來源中的檔案更新時，會重新部署 hello 站台。
 
 ## <a name="deployment-options"></a>部署選項
 
-以下是一些典型的部署案例︰
+hello 以下是一些典型部署案例：
 
 - [建立預備部署](#staging)
-- [將現有函式移至持續部署](#existing)
+- [移動現有的函式 toocontinuous 部署](#existing)
 
 <a name="staging"></a>
 ### <a name="create-a-staging-deployment"></a>建立預備部署
 
 函式應用程式尚未支援部署位置。 不過，您仍可使用持續整合來管理個別的預備部署和生產部署。
 
-設定及使用預備部署的程序通常應該會像下面這樣︰
+hello tooconfigure 程序，並使用預備環境部署通常看起來像這樣：
 
-1. 在訂用帳戶中建立兩個函式應用程式，一個用於生產程式碼，一個用於預備。 
+1. 建立兩個函式應用程式在您的訂閱 hello 實際執行程式碼，一個供暫存。 
 
 2. 建立部署來源 (如果還未擁有)。 此範例使用 [GitHub]。
 
-3. 針對生產函數應用程式，完成上述在**設定持續部署**中的步驟，並將部署分支設定為 GitHub 存放庫的主要分支。
+3. 您實際執行的函式應用程式中的步驟完成前述的 hello**設定連續部署**組 hello 部署分支 toohello 主要分支您的 GitHub 儲存機制。
    
     ![選擇部署分支](./media/functions-continuous-deployment/choose-deployment-branch.png)
 
-4. 針對預備函數應用程式重複此步驟，但改為在 GitHub 存放庫中選擇預備分支。 如果部署來源不支援分支功能，請使用不同的資料夾。
+4. 針對 hello 暫存函式應用程式時，重複此步驟，但是選擇暫存分支改為在您的 GitHub 儲存機制中的 hello。 如果部署來源不支援分支功能，請使用不同的資料夾。
     
-5. 對預備分支或資料夾中的程式碼進行更新，然後確認預備部署中已反映這些變更。
+5. 請更新 tooyour 程式碼中 hello 暫存分支或資料夾，然後確認這些變更會反映在預備環境部署的 hello。
 
-6. 經過測試之後，將預備分支的變更合併到主要分支。 這項合併會觸發以函數應用程式為目的地的部署。 如果部署來源不支援分支，請以預備資料夾中的檔案覆寫生產資料夾中的檔案。
+6. 測試之後，合併變更 hello 臨時分支到 hello 主要分支。 此合併觸發程序部署 toohello 生產函式應用程式。 如果您部署的來源不支援分支，檔案覆寫 hello 生產資料夾中的 hello 檔案 hello 從 hello 暫存資料夾。
 
 <a name="existing"></a>
-### <a name="move-existing-functions-to-continuous-deployment"></a>將現有函式移至持續部署
-當您擁有在入口網站中建立並維護的現有函式時，您必須先使用 FTP 或本機 Git 存放庫下載現有的函式程式碼檔案，才能如上所述設定持續部署。 您可以在函式應用程式的 App Service 設定中進行此操作。 下載了檔案之後，可以將其上傳至所選的持續部署來源。
+### <a name="move-existing-functions-toocontinuous-deployment"></a>移動現有的函式 toocontinuous 部署
+當您有現有的函式，您已建立並維護在 hello 入口網站，您需要 toodownload 現有函式 （如上所述），才能設定連續部署使用 FTP 或 hello 本機 Git 儲存機制的程式碼檔案。 您可以在 hello 應用程式服務設定為函式應用程式。 下載檔案之後，您可以上傳它們 tooyour 選擇連續部署來源。
 
 > [!NOTE]
-> 在設定持續整合之後，您就再也無法於 Functions 入口網站編輯原始程式檔。
+> 設定持續整合之後，您將不再能夠 tooedit hello 函式的入口網站中的程式來源檔案。
 
 - [作法：設定部署認證](#credentials)
 - [作法︰使用 FTP 下載檔案](#downftp)
-- [操作說明︰使用本機 Git 存放庫來下載檔案](#downgit)
+- [如何： 使用 hello 本機 Git 儲存機制下載檔案](#downgit)
 
 <a name="credentials"></a>
 #### <a name="how-to-configure-deployment-credentials"></a>作法：設定部署認證
-在使用 FTP 或 本機 Git 存放庫從函數應用程式下載檔案之前，您必須先設定認證以存取網站。 認證是在函式應用程式層級進行設定。 請使用下列步驟，在 Azure 入口網站中設定部署認證：
+您可以從您使用 FTP 或本機 Git 儲存機制的函式應用程式下載檔案之前，您必須設定認證 tooaccess hello 站台。 認證會在 hello 函式應用程式層級設定。 使用下列步驟 tooset 部署認證 hello Azure 入口網站中的 hello:
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中您的函數應用程式中，按一下 [平台功能] 和 [部署認證]。
+1. 您函式中應用程式中 hello [Azure 入口網站](https://portal.azure.com)，按一下 **平台功能**和**部署認證**。
    
     ![設定本機部署認證](./media/functions-continuous-deployment/setup-deployment-credentials.png)
 
-2. 輸入使用者名稱和密碼，然後按一下 [儲存] 。 您現在可以使用這些認證從 FTP 或內建的 Git 儲存機制存取函式應用程式。
+2. 輸入使用者名稱和密碼，然後按一下 [儲存] 。 您現在可以使用這些認證 tooaccess 函式應用程式從 FTP 或 hello 內建的 Git 儲存機制。
 
 <a name="downftp"></a>
 #### <a name="how-to-download-files-using-ftp"></a>作法︰使用 FTP 下載檔案
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中您的函數應用程式中，按一下 [平台功能] 和 [屬性]，然後複製 [FTP/部署使用者]、[FTP 主機名稱] 及 [FTPS 主機名稱] 的值。  
+1. 您函式中應用程式中 hello [Azure 入口網站](https://portal.azure.com)，按一下**平台功能**和**屬性**，然後將複製的 hello 值**FTP/部署使用者**， **FTP 主機名稱**，和**FTPS 主機名稱**。  
 
-    [FTP/部署使用者] 中必須輸入入口網站中所顯示的值 (包括應用程式名稱)，以針對 FTP 伺服器提供適當的內容。
+    **FTP/部署使用者**必須輸入 hello 入口網站，包括 hello 應用程式名稱、 tooprovide hello FTP 伺服器的適當的內容中所示。
    
     ![取得部署資訊](./media/functions-continuous-deployment/get-deployment-credentials.png)
 
-2. 從您的 FTP 用戶端，使用您所蒐集的連接資訊連接到您的應用程式，並下載函式的原始程式檔。
+2. 從您的 FTP 用戶端，使用您所蒐集 tooconnect tooyour 應用程式的 hello 連接資訊和下載 hello 函式的來源檔案。
 
 <a name="downgit"></a>
 #### <a name="how-to-download-files-using-a-local-git-repository"></a>操作說明：使用本機 Git 存放庫來下載檔案
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中您的函數應用程式中，按一下 [平台功能] 和 [部署選項]。 
+1. 您函式中應用程式中 hello [Azure 入口網站](https://portal.azure.com)，按一下 **平台功能**和**部署選項**。 
    
     ![設定持續部署](./media/functions-continuous-deployment/setup-deployment.png)
  
-2. 然後，在 [部署] 刀鋒視窗中，按一下 [設定]。
+2. 接著在 hello**部署**刀鋒視窗中按一下**安裝**。
  
     ![設定持續部署](./media/functions-continuous-deployment/setup-deployment-1.png)
    
-2. 在 [部署來源] 刀鋒視窗中，按一下 [本機 Git 存放庫]，然後按一下 [確定]。
+2. 在 hello**部署來源**刀鋒視窗中，按一下**本機 Git 儲存機制**，然後按一下**確定**。
 
-3. 在 [平台功能] 中，按一下 [屬性]，然後記下 Git URL 的值。 
+3. 在**平台功能**，按一下 **屬性**並記下 hello Git URL 值。 
    
     ![設定持續部署](./media/functions-continuous-deployment/get-local-git-deployment-url.png)
 
-4. 使用 Git 感知命令列提示字元或您慣用的 Git 工具，來複製本機電腦上的存放庫。 Git 複製命令看起來如下︰
+4. 使用 Git 感知的命令提示字元或您慣用的 Git 工具在本機電腦上複製 hello 儲存機制。 hello Git clone 命令看起來像這樣：
    
         git clone https://username@my-function-app.scm.azurewebsites.net:443/my-function-app.git
 
-5. 將函式應用程式的檔案擷取到本機電腦上的複製，如下列範例所示︰
+5. 擷取函式應用程式 toohello 再製的檔案儲存在本機電腦，如 hello 下列範例所示：
    
         git pull origin master
    

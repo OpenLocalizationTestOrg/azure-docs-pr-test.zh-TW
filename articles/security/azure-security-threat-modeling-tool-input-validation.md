@@ -1,6 +1,6 @@
 ---
-title: "輸入驗證 - Microsoft 威脅模型化工具 - Azure | Microsoft Docs"
-description: "降低威脅模型化工具所暴露的威脅"
+title: "驗證-Microsoft 威脅模型化工具-Azure aaaInput |Microsoft 文件"
+description: "hello 威脅模型化工具中公開的威脅防護功能"
 services: security
 documentationcenter: na
 author: RodSan
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: rodsan
-ms.openlocfilehash: b7ce6f353cf8cf48d5fb038ee77b0d3fdae16fb7
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 823503881f4bae292ef021834d5e64acf2a0f54a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="security-frame-input-validation--mitigations"></a>安全性架構︰輸入驗證 | 風險降低 
 | 產品/服務 | 文章 |
 | --------------- | ------- |
-| **Web 應用程式** | <ul><li>[停用所有使用未受信任樣式表之轉換的 XSLT 指令碼](#disable-xslt)</li><li>[確定可能包含使用者可控制內容的每個頁面都選擇不要自動探查 MIME](#out-sniffing)</li><li>[強化或停用 XML 實體解析](#xml-resolution)</li><li>[利用 http.sys 的應用程式會執行 URL 標準化驗證](#app-verification)</li><li>[確定在接受使用者的檔案時已備妥適當的控制](#controls-users)</li><li>[確定 Web 應用程式有使用 type-safe 參數來存取資料](#typesafe)</li><li>[使用個別的模型繫結類別或繫結篩選清單來防止 MVC 大量指派弱點](#binding-mvc)</li><li>[先將未受信任的 Web 輸出編碼再進行轉譯](#rendering)</li><li>[對所有字串類型的模型屬性執行輸入驗證和篩選](#typemodel)</li><li>[應該對接受所有字元的表單欄位 (例如 RTF 編輯器) 套用清理](#richtext)</li><li>[請勿將沒有內建編碼的 DOM 元素指派給接收器](#inbuilt-encode)</li><li>[驗證應用程式內的所有重新導向皆已關閉或安全完成](#redirect-safe)</li><li>[對控制器方法所接受的所有字串類型參數實作輸入驗證](#string-method)</li><li>[為規則運算式處理設定逾時上限以防止因規則運算式不正確而導致 DoS](#dos-expression)</li><li>[避免在 Razor 檢視中使用 Html.Raw](#html-razor)</li></ul> | 
+| **Web 應用程式** | <ul><li>[停用所有使用未受信任樣式表之轉換的 XSLT 指令碼](#disable-xslt)</li><li>[確定可能包含使用者可控制內容的每個頁面都選擇不要自動探查 MIME](#out-sniffing)</li><li>[強化或停用 XML 實體解析](#xml-resolution)</li><li>[利用 http.sys 的應用程式會執行 URL 標準化驗證](#app-verification)</li><li>[確定在接受使用者的檔案時已備妥適當的控制](#controls-users)</li><li>[確定 Web 應用程式有使用 type-safe 參數來存取資料](#typesafe)</li><li>[使用個別的模型繫結類別，或繫結的篩選器清單 tooprevent MVC 大量指派弱點](#binding-mvc)</li><li>[編碼不受信任的 web 輸出先前 toorendering](#rendering)</li><li>[對所有字串類型的模型屬性執行輸入驗證和篩選](#typemodel)</li><li>[應該對接受所有字元的表單欄位 (例如 RTF 編輯器) 套用清理](#richtext)</li><li>[未指派並沒有內建的編碼方式的 DOM 項目 toosinks](#inbuilt-encode)</li><li>[驗證所有重新導向 hello 應用程式中的都已關閉或安全地完成](#redirect-safe)</li><li>[對控制器方法所接受的所有字串類型參數實作輸入驗證](#string-method)</li><li>[設定處理 tooprevent DoS 到期 toobad 規則運算式的規則運算式的上限逾時](#dos-expression)</li><li>[避免在 Razor 檢視中使用 Html.Raw](#html-razor)</li></ul> | 
 | **資料庫** | <ul><li>[請勿在預存程序中使用動態查詢](#stored-proc)</li></ul> |
 | **Web API** | <ul><li>[確定 Web API 方法已完成模型驗證](#validation-api)</li><li>[對 Web API 方法所接受的所有字串類型參數實作輸入驗證](#string-api)</li><li>[確定 Web API 有使用 type-safe 參數來存取資料](#typesafe-api)</li></ul> | 
 | **Azure Document DB** | <ul><li>[針對 DocumentDB 使用參數化 SQL 查詢](#sql-docdb)</li></ul> | 
@@ -38,27 +38,27 @@ ms.lasthandoff: 08/29/2017
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [XSLT 安全性](https://msdn.microsoft.com/library/ms763800(v=vs.85).aspx)、[XsltSettings.EnableScript 屬性](http://msdn.microsoft.com/library/system.xml.xsl.xsltsettings.enablescript.aspx) |
-| **步驟** | XSLT 支援在使用 `<msxml:script>` 元素的樣式表內編寫指令碼。 這可讓自訂函式用於 XSLT 轉換。 指令碼會在執行轉換的程序內容下執行。 在未受信任的環境時必須停用 XSLT 指令碼，以防止執行未受信任的程式碼。 如果使用 .NET：預設會停用 XSLT 指令碼；不過，您必須確認它尚未透過 `XsltSettings.EnableScript` 屬性加以明確啟用。|
+| **步驟** | XSLT 支援指令碼內使用 hello 的樣式表`<msxml:script>`項目。 這可讓自訂函式 toobe 用於 XSLT 轉換。 hello hello hello 轉換的程序的內容下執行 hello 指令碼。 受信任的環境 tooprevent 執行不受信任的程式碼中，必須停用 XSLT 指令碼。 *如果使用.NET:*預設停用 XSLT 指令碼; 不過，您必須確認，它尚未明確啟用透過 hello`XsltSettings.EnableScript`屬性。|
 
 ### <a name="example"></a>範例 
 
 ```C#
 XsltSettings settings = new XsltSettings();
-settings.EnableScript = true; // WRONG: THIS SHOULD BE SET TO false
+settings.EnableScript = true; // WRONG: THIS SHOULD BE SET toofalse
 ```
 
 ### <a name="example"></a>範例
-如果使用 MSXML 6.0，預設會停用 XSLT 指令碼；不過，您必須確認它尚未透過 XML DOM 物件屬性 AllowXsltScript 加以明確啟用。 
+如果您將使用 MSXML 6.0，XSLT 指令碼預設會停用;不過，您必須確定，它尚未明確啟用透過 AllowXsltScript hello XML DOM 物件屬性。 
 
 ```C#
-doc.setProperty("AllowXsltScript", true); // WRONG: THIS SHOULD BE SET TO false
+doc.setProperty("AllowXsltScript", true); // WRONG: THIS SHOULD BE SET toofalse
 ```
 
 ### <a name="example"></a>範例
-如果您使用 MSXML 5 或較低版本，預設會啟用 XSLT 指令碼，因此您必須明確地加以停用。 請將 XML DOM 物件屬性 AllowXsltScript 設為 false。 
+如果您使用 MSXML 5 或較低版本，預設會啟用 XSLT 指令碼，因此您必須明確地加以停用。 設定 hello XML DOM 物件屬性 AllowXsltScript toofalse。 
 
 ```C#
-doc.setProperty("AllowXsltScript", false); // CORRECT. Setting to false disables XSLT scripting.
+doc.setProperty("AllowXsltScript", false); // CORRECT. Setting toofalse disables XSLT scripting.
 ```
 
 ## <a id="out-sniffing"></a>確定可能包含使用者可控制內容的每個頁面都選擇不要自動探查 MIME
@@ -70,12 +70,12 @@ doc.setProperty("AllowXsltScript", false); // CORRECT. Setting to false disables
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [IE8 安全性單元五 - 完善的保護](http://blogs.msdn.com/ie/archive/2008/07/02/ie8-security-part-v-comprehensive-protection.aspx)  |
-| **步驟** | <p>對於可能包含使用者可控制內容的每個頁面，您必須使用 HTTP 標頭 `X-Content-Type-Options:nosniff`。 若要符合此需求，您可以單獨針對可能包含使用者可控制內容的頁面逐頁設定此必要標頭，或者，您也可以針對應用程式中的所有頁面全域設定此標頭。</p><p>從 Web 伺服器傳遞過來之檔案的每個類型都有相關聯的 [MIME 類型](http://en.wikipedia.org/wiki/Mime_type) (也稱為「內容類型」)，以描述內容的本質 (也就是影像、文字、應用程式等)</p><p>X-Content-Type-Options 標頭是可讓開發人員指定不應對其內容探查 MIME 的 HTTP 標頭。 此標頭是設計用來降低 MIME 探查攻擊的風險。 Internet Explorer 8 (IE8) 已新增對此標頭的支援</p><p>只有 Internet Explorer 8 (IE8) 的使用者能夠受益於 X-Content-Type-Options。 舊版 Internet Explorer 目前不採用 X-Content-Type-Options 標頭</p><p>Internet Explorer 8 (和更新版本) 是主要瀏覽器中唯一實作了可選擇不要 MIME 探查功能的瀏覽器。 當其他主要瀏覽器 (Firefox、Safari、Chrome) 實作了類似功能時，我們會更新這項建議，使其也包含這些瀏覽器的語法</p>|
+| **步驟** | <p>針對可包含使用者可控制內容的每個頁面上，您必須使用 hello HTTP 標頭`X-Content-Type-Options:nosniff`。 toocomply 此項需求，您可以任一組 hello 必要的標頭可能包含可控制使用者的內容，那些頁面的頁面，或您可以將它設定全域 hello 應用程式中的所有頁面。</p><p>每一種會從 web 伺服器傳送的檔案都具有相關聯[MIME 類型](http://en.wikipedia.org/wiki/Mime_type)(也稱為*內容類型*)，以描述 hello 性質 hello 內容 （也就是影像、 文字、 應用程式等）</p><p>hello X 內容-類型選項標頭是可讓開發人員的 HTTP 標頭，其內容不應為 MIME 探查 toospecify。 此標頭是設計的 toomitigate MIME 探查攻擊。 Internet Explorer 8 (IE8) 已新增對此標頭的支援</p><p>只有 Internet Explorer 8 (IE8) 的使用者能夠受益於 X-Content-Type-Options。 舊版 Internet Explorer 不目前尊重 hello X 內容-類型選項標頭</p><p>Internet Explorer 8 （和更新版本） 是 hello 只有主要瀏覽器 tooimplement MIME 探查退出功能。 這項建議是否以及何時其他主要瀏覽器 (Safari、 Firefox Chrome) 實作類似的功能，將會更新的 tooinclude 語法這些瀏覽器</p>|
 
 ### <a name="example"></a>範例
-若要為應用程式中的所有頁面全域啟用必要標頭，您可以執行下列其中一項︰ 
+tooenable hello 必要的標頭全域的 hello 應用程式中的所有頁面，您可以執行 hello 下列其中一種： 
 
-* 如果應用程式是由 Internet Information Services (IIS) 7 所裝載，請在 web.config 檔案中新增標頭 
+* 新增 hello web.config 檔案中的 hello 標頭，如果 hello 應用程式裝載在由網際網路資訊服務 (IIS) 7 
 
 ```
 <system.webServer> 
@@ -87,7 +87,7 @@ doc.setProperty("AllowXsltScript", false); // CORRECT. Setting to false disables
 </system.webServer> 
 ```
 
-* 透過全域 Application\_BeginRequest 新增標頭 
+* 加入透過 hello hello 標頭全域應用程式\_BeginRequest 
 
 ``` 
 void Application_BeginRequest(object sender, EventArgs e)
@@ -124,7 +124,7 @@ public class XContentTypeOptionsModule : IHttpModule
 
 ``` 
 
-* 您可以透過將必要標頭新增至個別回應，來單獨針對特定頁面啟用此標頭︰ 
+* 您可以將它加入 tooindividual 回應啟用 hello 必要的標頭標記僅適用於特定頁面： 
 
 ```
 this.Response.Headers[""X-Content-Type-Options""] = ""nosniff""; 
@@ -139,10 +139,10 @@ this.Response.Headers[""X-Content-Type-Options""] = ""nosniff"";
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [XML 實體擴充](http://capec.mitre.org/data/definitions/197.html)、[XML 阻斷服務攻擊與防禦](http://msdn.microsoft.com/magazine/ee335713.aspx)、[MSXML 安全性概觀](http://msdn.microsoft.com/library/ms754611(v=VS.85).aspx)、[保護 MSXML 程式碼的最佳作法](http://msdn.microsoft.com/library/ms759188(VS.85).aspx)、[NSXMLParserDelegate 通訊協定參考](http://developer.apple.com/library/ios/#documentation/cocoa/reference/NSXMLParserDelegate_Protocol/Reference/Reference.html)、[解析外部參考](https://msdn.microsoft.com/library/5fcwybb2.aspx) |
-| **步驟**| <p>雖然未被廣泛使用，但有一項 XML 功能可讓 XML 剖析器使用在文件本身內或從外部來源所定義的值，來擴充巨集實體。 例如，文件可能會使用值 "Microsoft" 定義實體 "companyname"，以便在每次文件中出現文字 "&companyname;" 時，就自動以文字 Microsoft 加以取代。 或者，文件可能會定義參考外部 Web 服務的實體 "MSFTStock"，以擷取 Microsoft 股票的目前股價。</p><p>然後，每當文件中出現 "&MSFTStock;" 時，就自動以目前股價加以取代。 不過，這項功能可能會遭到濫用，來造成阻斷服務 (DoS) 狀況。 攻擊者可以巢狀多個實體以建立會在系統上所有可用的記憶體消耗指數擴充 XML 定。 </p><p>或者，他也可以建立外部參考，以往回串流無限量的資料，或讓執行緒停止回應。 因此，所有小組必須完全停用其應用程式並未使用的內部及/或外部 XML 實體解析，或以手動方式限制可供應用程式取用來解析實體的記憶體和時間量 (如果這項功能有其絕對必要)。 如果應用程式不需要解析實體，則請停用。 </p>|
+| **步驟**| <p>雖然它尚未廣泛使用，但沒有允許 hello XML 剖析器 tooexpand 巨集實體與 hello 文件本身內或從外部來源所定義值的 XML 功能。 例如，hello 文件可能會定義實體"companyname"hello 值 「 Microsoft 」，以便每次 hello 文字"&companyname;"會出現在 hello 文件，它會自動取代 Microsoft 的 hello 文字。 或者，hello 文件可能會定義實體所參考的外部 web 服務 toofetch hello 目前值的 Microsoft 存貨的 「 MSFTStock"。</p><p>然後隨時"&MSFTStock;"會出現在 hello 文件，它會自動取代 hello 目前股票價格。 不過，這項功能可能會濫用 toocreate 拒絕服務 (DoS) 的情況。 攻擊者可以巢狀多個實體 toocreate 指數擴充 XML 定取用 hello 系統上所有可用的記憶體。 </p><p>或者，他可以建立資料流處理後的外部參考無限量的資料，或只是停止回應的 hello 執行緒。 如此一來，所有的小組必須內部及/或外部 XML 實體解析如果完全停用其應用程式不會使用它，或以手動方式限制 hello 記憶體數量以及 hello 應用程式可以使用的實體解析，如果此功能的時間絕對必要。 如果應用程式不需要解析實體，則請停用。 </p>|
 
 ### <a name="example"></a>範例
-針對 .NET Framework 程式碼，您可以使用下列方法︰
+針對.NET Framework 程式碼，您可以使用下列方法的 hello:
 
 ```C#
 XmlTextReader reader = new XmlTextReader(stream);
@@ -157,10 +157,10 @@ XmlReaderSettings settings = new XmlReaderSettings();
 settings.DtdProcessing = DtdProcessing.Prohibit;
 XmlReader reader = XmlReader.Create(stream, settings);
 ```
-請注意，`ProhibitDtd` 在 `XmlReaderSettings` 中的預設值為 true，但在 `XmlTextReader` 中則為 false。 如果您使用 XmlReaderSettings，則不需要將 ProhibitDtd 明確設為 true，但為了安全起見，建議您這麼做。 也請注意，XmlDocument 類別預設會允許解析實體。 
+請注意該 hello 預設值是`ProhibitDtd`中`XmlReaderSettings`為 true，但在`XmlTextReader`為 false。 如果您使用 XmlReaderSettings，您不需要 tooset ProhibitDtd tootrue 明確，但建議為了安全起見，您執行。 也請注意 hello XmlDocument 類別可讓實體解析，根據預設值。 
 
 ### <a name="example"></a>範例
-若要停用 XmlDocuments 的實體解析，請使用 Load 方法的 `XmlDocument.Load(XmlReader)` 多載，並在 XmlReader 引數中設定適當屬性以停用解析，如下列程式碼所示︰ 
+XmlDocuments，使用 hello 的 toodisable 實體解析`XmlDocument.Load(XmlReader)`hello 的多載載入方法和設定 hello 適當屬性中的 hello XmlReader 引數 toodisable 解析 hello 下列程式碼所示： 
 
 ```C#
 XmlReaderSettings settings = new XmlReaderSettings();
@@ -171,7 +171,7 @@ doc.Load(reader);
 ```
 
 ### <a name="example"></a>範例
-如果應用程式無法停用實體解析，請根據應用程式的需求將 XmlReaderSettings.MaxCharactersFromEntities 屬性設為合理的值。 這會限制潛在指數擴張 DoS 攻擊所會造成的影響。 下列程式碼提供此方法的範例︰ 
+如果您的應用程式可能不是停用實體解析，設定 hello XmlReaderSettings.MaxCharactersFromEntities 屬性 tooa 合理的值，根據 tooyour 應用程式的需求。 這會限制 hello 潛在的指數擴充 DoS 攻擊的影響。 下列程式碼的 hello 提供這個方法的範例： 
 
 ```C#
 XmlReaderSettings settings = new XmlReaderSettings();
@@ -181,7 +181,7 @@ XmlReader reader = XmlReader.Create(stream, settings);
 ```
 
 ### <a name="example"></a>範例
-如果您需要解析內嵌實體，但不需要解析外部實體，請將 XmlReaderSettings.XmlResolver 屬性設為 null。 例如： 
+如果您需要 tooresolve 內嵌實體，但不是需要 tooresolve 外部實體，設定 hello XmlReaderSettings.XmlResolver 屬性 toonull。 例如： 
 
 ```C#
 XmlReaderSettings settings = new XmlReaderSettings();
@@ -190,7 +190,7 @@ settings.MaxCharactersFromEntities = 1000;
 settings.XmlResolver = null;
 XmlReader reader = XmlReader.Create(stream, settings);
 ```
-請注意，在 MSXML6 中，ProhibitDTD 預設會設為 true (停用 DTD 處理)。 針對 Apple OSX/iOS 程式碼，您可以使用的 XML 剖析器有兩個︰NSXMLParser 和 libXML2。 
+請注意，在 MSXML6，ProhibitDTD 設定 tootrue （停用 DTD 處理） 預設值。 針對 Apple OSX/iOS 程式碼，您可以使用的 XML 剖析器有兩個︰NSXMLParser 和 libXML2。 
 
 ## <a id="app-verification"></a>利用 http.sys 的應用程式會執行 URL 標準化驗證
 
@@ -201,7 +201,7 @@ XmlReader reader = XmlReader.Create(stream, settings);
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
-| **步驟** | <p>任何使用 http.sys 的應用程式皆應遵循下列指導方針︰</p><ul><li>將 URL 長度限制在不超過 16,384 個字元 (ASCII 或 Unicode)。 這是以預設 Internet Information Services (IIS) 6 設定為基礎的 URL 長度絕對上限。 網站長度應盡可能不超過此上限</li><li>使用標準的 .NET Framework 檔案 I/O 類別 (例如 FileStream)，因為這些類別會利用 .NET FX 中的標準化規則</li><li>明確建置已知檔案名稱的允許清單</li><li>明確拒絕不會提供 UrlScan 拒絕的已知檔案類型︰exe、bat、cmd、com、htw、ida、idq、htr、idc、shtm[l]、stm、printer、ini、pol、dat 檔案</li><li>捕捉下列例外狀況：<ul><li>System.ArgumentException (針對裝置名稱)</li><li>System.NotSupportedException (針對資料串流)</li><li>System.IO.FileNotFoundException (針對無效的逸出檔名)</li><li>System.IO.DirectoryNotFoundException (針對無效的逸出目錄)</li></ul></li><li>「請勿」對外呼叫 Win32 檔案 I/O API。 針對無效的 URL，正常傳回 400 錯誤給使用者，並記錄實際錯誤。</li></ul>|
+| **步驟** | <p>任何使用 http.sys 的應用程式皆應遵循下列指導方針︰</p><ul><li>限制 hello URL 長度 toono 16,384 以上字元 （ASCII 或 Unicode）。 這是 hello 絕對最大 URL 長度 hello 預設網際網路資訊服務 (IIS) 6 設定為基礎。 網站長度應盡可能不超過此上限</li><li>這些會利用 hello 標準化規則中的 hello.NET FX 作為 hello 標準.NET Framework 檔案 I/O 類別 （例如 FileStream)</li><li>明確建置已知檔案名稱的允許清單</li><li>明確拒絕不會提供 UrlScan 拒絕的已知檔案類型︰exe、bat、cmd、com、htw、ida、idq、htr、idc、shtm[l]、stm、printer、ini、pol、dat 檔案</li><li>攔截 hello 下列例外狀況：<ul><li>System.ArgumentException (針對裝置名稱)</li><li>System.NotSupportedException (針對資料串流)</li><li>System.IO.FileNotFoundException (針對無效的逸出檔名)</li><li>System.IO.DirectoryNotFoundException (針對無效的逸出目錄)</li></ul></li><li>*不這麼做*tooWin32 檔案 I/O Api 呼叫。 無效的 URL 依正常程序會傳回 400 錯誤 toohello 使用者，並記錄 hello 真的錯誤。</li></ul>|
 
 ## <a id="controls-users"></a>確定在接受使用者的檔案時已備妥適當的控制
 
@@ -212,10 +212,10 @@ XmlReader reader = XmlReader.Create(stream, settings);
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [不受限制的檔案上傳](https://www.owasp.org/index.php/Unrestricted_File_Upload)、[檔案簽章資料表](http://www.garykessler.net/library/file_sigs.html) |
-| **步驟** | <p>對應用程式來說，上傳的檔案就代表著重大風險。</p><p>許多攻擊的第一步就是將一些程式碼放到所要攻擊的系統。 然後，攻擊行動只需要找到方法來執行程式碼即可。 使用檔案上傳可幫助攻擊者完成第一步。 檔案上傳不受限制的後果各不相同，可能是系統遭到完整接管、檔案系統或資料庫超載、將攻擊行動轉送到後端系統，或者就只是損毀這麼簡單。</p><p>一切取決於應用程式會怎麼處理上傳的檔案，尤其是會儲存在哪裡。 伺服器端缺少驗證上傳檔案的動作。 請針對檔案上傳功能實作下列安全性控制︰</p><ul><li>副檔名檢查 (只應接受一組有效的允許檔案類型)</li><li>檔案大小上限</li><li>檔案不應上傳至 Web 根目錄；上傳位置應該是非系統磁碟機上的目錄</li><li>應遵循命名慣例，讓上傳的檔案以隨機方式命名，以避免覆寫檔案</li><li>應先對檔案進行防毒掃描再將其寫入磁碟</li><li>確保會驗證檔案名稱和其他任何中繼資料 (例如，檔案路徑) 中是否有惡意字元</li><li>應檢查檔案格式簽章，以防止使用者上傳偽裝的檔案 (例如，將副檔名改為 txt 以上傳 exe 檔案)</li></ul>| 
+| **步驟** | <p>上傳的檔案代表極大的風險 tooapplications。</p><p>許多攻擊 hello 第一個步驟是的 tooget 某些程式碼 toohello 系統 toobe 遭受攻擊。 然後 hello 攻擊只需要的 toofind 方式 tooget hello 程式碼執行。 使用檔案上傳有助於 hello 攻擊者達成 hello 第一個步驟。 不受限制的檔案上傳 hello 結果可能會不同，包括完整的系統接管，多載的檔案系統或資料庫中，轉送攻擊 tooback 後端系統，以及簡單的損毀。</p><p>它相依於哪些 hello 應用程式不與 hello 上傳檔案，特別是儲存在何處。 伺服器端缺少驗證上傳檔案的動作。 請針對檔案上傳功能實作下列安全性控制︰</p><ul><li>副檔名檢查 (只應接受一組有效的允許檔案類型)</li><li>檔案大小上限</li><li>您必須上傳的 toowebroot;hello 位置應該在非系統磁碟機上的目錄</li><li>命名慣例應該遵守，使得 hello 上傳的檔案名稱有一些隨機性，因此為 tooprevent 檔案會覆寫</li><li>應該寫入 toohello 磁碟之前的防毒掃描檔案</li><li>確認驗證 hello 檔案名稱和任何中繼資料 （例如檔案路徑），惡意的字元</li><li>應該檢查檔案格式的簽章，tooprevent masqueraded 的檔案上傳的使用者 （例如，藉由變更副檔名 tootxt 上載的 exe 檔案）</li></ul>| 
 
 ### <a name="example"></a>範例
-如需上述最後一點關於檔案格式簽章驗證的資訊，請參閱下面的類別以了解詳情︰ 
+Hello 關於檔案格式的簽章驗證的最後一個點，請參閱下方的 toohello 類別，如需詳細資訊： 
 
 ```C#
         private static Dictionary<string, List<byte[]>> fileSignature = new Dictionary<string, List<byte[]>>
@@ -328,10 +328,10 @@ XmlReader reader = XmlReader.Create(stream, settings);
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
-| **步驟** | <p>如果您使用參數集合，SQL 會將輸入視為常值而非可執行程式碼。 參數集合可用來對輸入資料強制執行類型和長度條件約束。 超出範圍的值會觸發例外狀況。 如果未使用 type-safe SQL 參數，攻擊者或許就能執行內嵌於未經篩選之輸入中的插入式攻擊。</p><p>請在建構 SQL 查詢時使用 type-safe 參數，以避免未經篩選的輸入中可能發生的 SQL 插入式攻擊。 type-safe 參數可與預存程序和動態 SQL 陳述式搭配使用。 資料庫會將參數視為常值而非可執行程式碼。 參數的類型和長度也會受到檢查。</p>|
+| **步驟** | <p>如果您使用 hello 參數集合，SQL 會視為 hello 輸入是做為常值，而不是可執行程式碼。 hello 參數集合可以是輸入資料上的使用的 tooenforce 類型和長度條件約束。 Hello 範圍以外的值會觸發例外狀況。 如果不使用類型安全的 SQL 參數，攻擊者可能會內嵌在 hello 進行篩選輸入可以 tooexecute 資料隱碼攻擊。</p><p>當建構 SQL 查詢中發生的未篩選的輸入的 tooavoid 可能 SQL 資料隱碼攻擊時，請使用類型安全的參數。 type-safe 參數可與預存程序和動態 SQL 陳述式搭配使用。 參數都會視做為常值 hello 資料庫，而不是可執行程式碼。 參數的類型和長度也會受到檢查。</p>|
 
 ### <a name="example"></a>範例 
-下列程式碼示範如何在呼叫預存程序時，搭配使用 type-safe 參數與 SqlParameterCollection。 
+hello 下列程式碼顯示如何 toouse 型別以 hello SqlParameterCollection 安全參數呼叫預存程序時。 
 
 ```C#
 using System.Data;
@@ -347,9 +347,9 @@ myCommand.SelectCommand.Parameters["@au_id"].Value = SSN.Text;
 myCommand.Fill(userDataset);
 }  
 ```
-在上述程式碼範例中，輸入值不能超過 11 個字元。 如果資料不符合參數所定義的類型或長度，SqlParameter 類別就會擲回例外狀況。 
+在上述程式碼範例的 hello，hello 輸入的值不能超過 11 個字元。 如果 hello 資料不符合 toohello 型別或 hello 參數所定義的長度，hello SqlParameter 類別擲回例外狀況。 
 
-## <a id="binding-mvc"></a>使用個別的模型繫結類別或繫結篩選清單來防止 MVC 大量指派弱點
+## <a id="binding-mvc"></a>使用個別的模型繫結類別，或繫結的篩選器清單 tooprevent MVC 大量指派弱點
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -357,10 +357,10 @@ myCommand.Fill(userDataset);
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | MVC5、MVC6 |
 | **屬性**              | N/A  |
-| **參考**              | [中繼資料屬性](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.metadatatypeattribute)、[公用金鑰安全性弱點和風險降低](https://github.com/blog/1068-public-key-security-vulnerability-and-mitigation)、[在 ASP.NET MVC 中大量指派的完整指南](http://odetocode.com/Blogs/scott/archive/2012/03/11/complete-guide-to-mass-assignment-in-asp-net-mvc.aspx)、[使用 MVC 開始使用 EF](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application#overpost) |
-| **步驟** | <ul><li>**我應該在何時尋找 over-posting 弱點？-** over-posting 弱點可能發生在您從使用者輸入繫結模型類別的任何位置。 MVC 等架構可在自訂 .NET 類別中代表使用者資料，包括純舊 CLR 物件 (POCO)。 MVC 會自動在這些模型類別中填入要求中的資料，以方便代表要處理的使用者輸入。 當這些類別包括不應該由使用者設定的屬性時，應用程式很容易遭受 over-posting 攻擊，因而允許使用者控制應用程式永遠不會需要的資料。 和 MVC 模型繫結一樣，Entity Framework 等物件/關聯式對應程式之類的資料庫存取技術，通常也支援使用 POCO 物件來代表資料庫資料。 這些資料模型類別同樣能代表要處理的資料庫資料，就和 MVC 在處理使用者輸入時一樣。 因為 MVC 和資料庫都支援類似模型，例如 POCO 物件，想要將相同的類別重複用於這兩種用途似乎是輕鬆無比的事。 這種作法無法保持關注點分離，而這一塊區域通常也會讓模型繫結能夠接觸到非預期屬性，而實現 over-posting 攻擊。</li><li>**為何不該使用未經篩選的資料庫模型類別來做為 MVC 動作的參數？-** 因為 MVC 模型繫結會在該類別繫結任何項目。 即使資料未出現在檢視中，惡意使用者也可以傳送內含此資料的 HTTP 要求，MVC 會很樂意繫結它，因為您的動作說明資料庫類別是它應該接受做為使用者輸入的資料外觀。</li><li>**為何我該關心用於模型繫結的外觀？-** 搭配過度廣泛的模型使用 ASP.NET MVC 模型繫結，會讓應用程式暴露在 over-posting 攻擊範圍內。 over-posting 可讓攻擊者將應用程式資料的使用範圍變更為開發人員預定用途之外，例如覆寫某商品的價格或帳戶的安全性權限。 應用程式應使用動作專屬的繫結模型 (或特別允許的屬性篩選清單) 來提供明確合約，規定要透過模型繫結允許哪些不受信任的輸入。</li><li>**要擁有個別的繫結模型是否只要複製程式碼即可？-** 否，此作業和關注點分離有關。 若您在動作方法中重複使用資料庫模型，就表示該類別中的屬性 (或子屬性) 可供使用者在 HTTP 要求中設定。 如果您不想讓 MVC 這麼做，就需要使用篩選清單或個別的類別外觀來告訴 MVC 哪些資料可以來自使用者輸入。</li><li>**如果我有專門用於使用者輸入的繫結模型，我是否必須複製我所有的資料註解屬性？-** 不一定。 您可以在資料庫模型類別上使用 MetadataTypeAttribute 來連結至模型繫結類別上的中繼資料。 但請注意，MetadataTypeAttribute 所參考的類型必須是參考類型的子集 (可以有較少屬性，但不得超過)。</li><li>**在使用者輸入模型和資料庫模型之間來回移動資料很麻煩。是否可以使用反映功能直接複製所有屬性？-** 是。 繫結模型中唯一會出現的屬性，是您已確定可安全做為使用者輸入的屬性。 沒有任何安全性方面的理由可阻止您使用反映功能來複製這兩個模型之間共同存在的所有屬性。</li><li>**您認為 [Bind(Exclude ="â€¦")] 如何。我能否使用此方法而不使用個別的繫結模型？-** 不建議使用這個方法。 使用 [Bind(Exclude ="â€¦")] 表示任何新的屬性預設都是可繫結的。 當您新增屬性時，有一個必須記得才能讓一切保持安全的額外步驟，而非讓設計預設就保持安全。 依靠開發人員在每次新增屬性時檢查這份清單是件危險的事。</li><li>**[Bind(Include ="â€¦")] 適用於編輯作業嗎？-** 否。 [Bind(Include ="â€¦")] 僅適用於插入樣式的作業 (新增資料)。 若為更新樣式的作業 (修改現有資料)，請使用另一種方法，例如擁有個別的繫結模型，或將允許屬性的明確清單傳遞給 UpdateModel 或 TryUpdateModel。 在編輯作業上新增 [Bind(Include ="â€¦")] 屬性表示 MVC 會建立物件執行個體，並只設定列出的屬性，而讓其他所有屬性保持預設值。 當資料存留下來時，便會完全取代現有實體，將任何遭忽略屬性的值重設為預設值。 例如，若編輯作業上的 [Bind(Include ="â€¦")] 屬性中忽略 IsAdmin，透過這個動作編輯名稱的任何使用者都會重設為 IsAdmin = false (經過編輯的使用者會失去系統管理員狀態)。 如果您想要防止更新某些屬性，請使用上述其他方法的其中一個。 請注意，某些版本的 MVC 工具會對編輯作業上的 [Bind(Include ="â€¦")] 產生控制器類別，並表示從該清單中移除屬性會防止 over-posting 攻擊。 但如上所述，該方法不會如預期運作，反而會將所忽略屬性中的任何資料重設為預設值。</li><li>**針對建立作業使用 [Bind(Include ="â€¦")] 而非使用個別繫結模型，是否有需要注意的事項？-** 是。 首先，這個方法不適用於編輯案例，需要維護兩種不同方法來降低所有 over-posting 弱點。 其次，不同的繫結模型會在用於使用者輸入的外觀和用於持續性的外觀之間強制執行關注點分離，[Bind(Include ="â€¦")] 則不會這麼做。 第三，請注意 [Bind(Include ="â€¦")] 只能處理最上層屬性；您不能在屬性中只允許部分子屬性 (例如 "Details.Name")。 最後，或許也是最重要的，使用 [Bind(Include ="â€¦")] 會在類別用於模型繫結的時候新增必須記得的額外步驟。 如果新的動作方法直接繫結至資料類別，而忘記包含 [Bind(Include ="â€¦")] 屬性，則會很容易遭受 over-posting 攻擊，因此 [Bind(Include ="â€¦")] 方法依預設會較不安全。 如果您使用 [Bind(Include ="â€¦")]，請注意一律要記得在每次資料類別做為動作方法參數時指定它。</li><li>**針對建立作業，若在模型類別本身放置 [Bind(Include ="â€¦")] 屬性，您認為如何？這種方法不能讓我不再需要記得在每個動作方法放置此屬性嗎？-** 這種方法在某些情況下有用。 在模型類型本身 (而非在使用這個類別的動作參數上) 使用 [Bind(Include ="â€¦")]，確實不再需要記得於每個動作方法加上 [Bind(Include ="â€¦")] 屬性。 直接在類別上使用此屬性實際上會為此類別建立不同的介面區域，以供繫結模型。 不過，此方法只允許在每個模型類別上使用一個模型繫結外觀。 如果某個動作方法需要允許某欄位進行模型繫結 (例如，會更新使用者角色的僅限系統管理員動作)，而其他動作需要防止此欄位進行模型繫結，這個方法就無法運作。 每個類別只能有一個模型繫結外觀；如果不同的動作需要不同的模型繫結外觀，則必須在動作方法上使用不同的模型繫結類別或不同的 [Bind(Include ="â€¦")] 屬性，來表示這些不同的外觀。</li><li>**何謂繫結模型？它們是和檢視模型相同的概念嗎？-** 這兩者是有相關性的概念。 繫結模型一詞是指動作中所使用的模型類別是參數清單 (從 MVC 模型繫結傳遞至動作方法的外觀)。 檢視模型一詞則是指從動作方法傳遞至檢視的模型類別。 要將資料從動作方法傳遞至檢視時，通常會使用檢視專屬模型這個方法。 通常，此圖形也是適用於模型繫結，而且詞彙檢視模型可以用來參考兩個地方使用的相同模型。 準確地說，此程序專門討論繫結模型，將重點放在傳遞給動作的外觀，而這對於大量指派來說很重要。</li></ul>| 
+| **參考**              | [中繼資料屬性](http://msdn.microsoft.com/library/system.componentmodel.dataannotations.metadatatypeattribute)，[公用金鑰安全性的弱點可能會和緩和措施](https://github.com/blog/1068-public-key-security-vulnerability-and-mitigation)，[完整指南 tooMass ASP.NET MVC 中的指派](http://odetocode.com/Blogs/scott/archive/2012/03/11/complete-guide-to-mass-assignment-in-asp-net-mvc.aspx)， [EF 使用 MVC 使用者入門](http://www.asp.net/mvc/tutorials/getting-started-with-ef-using-mvc/implementing-basic-crud-functionality-with-the-entity-framework-in-asp-net-mvc-application#overpost) |
+| **步驟** | <ul><li>**我應該在何時尋找 over-posting 弱點？-** over-posting 弱點可能發生在您從使用者輸入繫結模型類別的任何位置。 MVC 等架構可在自訂 .NET 類別中代表使用者資料，包括純舊 CLR 物件 (POCO)。 MVC 會自動填入這些 hello 要求資料的模型類別提供方便的表示法，來處理使用者輸入。 這些類別包括不應該由 hello 使用者設定的屬性，hello 應用程式可以很容易遭受 tooover 張貼攻擊，允許使用者控制的 hello 應用程式不會預期的資料。 MVC 模型繫結，例如資料庫存取技術，例如像 Entity Framework 的物件/relational mapper 通常也支援使用 POCO 物件 toorepresent 資料庫資料。 這些資料模型類別提供 hello 相同方便處理資料庫資料與 MVC 處理使用者輸入。 因為 MVC 和 hello 資料庫支援類似的模型，例如 POCO 物件似乎相同類別的這兩種用途的簡單 tooreuse hello。 考量，以及它的 toopreserve 分隔是其中一個常見區域，其中非預期的屬性是此作法失敗公開 toomodel 繫結，啟用過度張貼攻擊。</li><li>**為什麼不應該使用我的未篩選的資料庫模型類別當做參數 toomy MVC 動作？-**因為 MVC 模型繫結會將繫結的任何項目在該類別。 即使 hello 的資料不會出現在檢視中，惡意使用者可以使用此資料包含，傳送 HTTP 要求和 MVC 會很樂意將它繫結動作指出資料庫類別 hello 圖形的資料，因為它應該接受使用者輸入。</li><li>**為何應該重視 hello 圖形使用模型繫結？-**與過度廣泛的模型使用 ASP.NET MVC 模型繫結公開應用程式 tooover 張貼攻擊。 過度張貼可能會讓攻擊者 toochange 應用程式資料超過預期，例如覆寫項目或 hello 安全性帳戶的權限的 hello 價格哪些 hello 開發人員。 應用程式應該使用何種不受信任的輸入 tooallow 透過模型繫結的特定動作繫結模型 （或特定允許的內容篩選器清單） tooprovide 明確的合約。</li><li>**要擁有個別的繫結模型是否只要複製程式碼即可？-** 否，此作業和關注點分離有關。 如果您重複使用動作方法中的資料庫模型，您對任何屬性 （或子屬性），類別可以設定的 HTTP 要求中的 hello 使用者。 如果這不是您想要的 MVC toodo，您需要的篩選器清單或個別的類別圖形 tooshow MVC 哪些資料可以來自使用者改為輸入。</li><li>**如果有使用者輸入的個別繫結模型，有 tooduplicate 我資料附註屬性？-**不一定。 您可以使用 MetadataTypeAttribute hello 資料庫模型類別 toolink toohello 上的中繼資料的模型繫結類別上。 只 hello hello MetadataTypeAttribute 所參考類型的附註必須是參考的類型 （可能有較少的屬性，但不得超過） hello 的子集。</li><li>**在使用者輸入模型和資料庫模型之間來回移動資料很麻煩。是否可以使用反映功能直接複製所有屬性？-** 是。 hello 會出現在 hello 繫結模型的屬性會判斷使用者輸入安全 toobe hello 的。 沒有安全性理由而無法使用反映 toocopy 透過共同存在這兩個模型之間的所有屬性。</li><li>**您認為 [Bind(Exclude ="â€¦")] 如何。我能否使用此方法而不使用個別的繫結模型？-** 不建議使用這個方法。 使用 [Bind(Exclude ="â€¦")] 表示任何新的屬性預設都是可繫結的。 加入新的屬性之後，額外的步驟 tooremember tookeep 項目是安全的而非具有 hello 設計是安全的預設值。 Hello 開發人員檢查這份清單，每次會新增的屬性是根據風險。</li><li>**[Bind(Include ="â€¦")] 適用於編輯作業嗎？-** 否。 [Bind(Include ="â€¦")] 僅適用於插入樣式的作業 (新增資料)。 更新樣式作業 （修改現有的資料），會使用另一個方法，例如擁有個別的繫結模型，或傳遞明確允許的屬性 tooUpdateModel 或 TryUpdateModel 的清單。 加入 [繫結 (Include ="「 正確 」。 「)] 上的編輯作業的屬性表示 MVC 將會建立物件執行個體，並設定只 hello 列出屬性，讓其他所有在其預設值。 Hello 資料保存時，它會完全取代 hello 現有實體，重設任何省略的屬性 tootheir 預設值為 hello 值。 例如，如果省略 IsAdmin [繫結 (Include ="「 正確 」。 「)] 屬性上的編輯作業，任何使用者名稱已在編輯過透過這個動作會重設 tooIsAdmin = false （已編輯的任何使用者會失去管理員狀態）。 如果您想 tooprevent 更新 toocertain 屬性，請使用其中一個 hello 上方的其他方法。 請注意，某些版本的 MVC 工具會對編輯作業上的 [Bind(Include ="â€¦")] 產生控制器類別，並表示從該清單中移除屬性會防止 over-posting 攻擊。 不過，如上面所述，該方法無法如預期運作，而改為將會重設中省略的 hello 屬性 tootheir 預設值的任何資料。</li><li>**針對建立作業使用 [Bind(Include ="â€¦")] 而非使用個別繫結模型，是否有需要注意的事項？-** 是。 首先，這個方法不適用於編輯案例，需要維護兩種不同方法來降低所有 over-posting 弱點。 第二個、 個別的繫結模型，強制執行 「 重要性分離用於用於持續性，使用者輸入和 hello 圖形的 hello 圖形之間的項目 [繫結 (Include ="â € 正確 」。 「)] 不會執行。 第三，請注意，[繫結 (Include ="â € 正確 」。 「)] 只能處理最上層屬性。您無法允許 hello 屬性中的部分 （例如"Details.Name") 的子屬性。 最後，也可能是最重要的，使用 [繫結 (Include ="â € 正確 」。 「)] 新增額外的步驟，必須記住任何階段 hello 類別用於模型繫結。 如果新的動作方法會直接繫結 toohello 資料類別，且忘記 tooinclude [繫結 (Include ="「 正確 」。 「)] 屬性，它可以很容易遭受 tooover 張貼攻擊，因此 hello [繫結 (Include ="「 正確 」。 「)] 的方法是比較安全的預設值。 如果您使用 [繫結 (Include ="â € 正確 」。 「)]，小心一律 tooremember toospecify 它每次您的資料類別會顯示為動作方法參數。</li><li>**建立作業的情況為何放 hello [繫結 (Include ="â € 正確 」。 「)] 上 hello 模型類別本身的屬性？不是這種方法是否避免 hello 需要 tooremember 放 hello 屬性上每個動作方法？-**這個方法在某些情況下的效果。 使用 [繫結 (Include ="â € 正確 」。 「)] hello 模型型別本身 （而不是在使用這個類別的動作參數），並避免 hello 需要 tooremember tooinclude hello [繫結 (Include ="â € 正確 」。 「)] 上每個動作方法的屬性。 直接在 hello 類別上有效地使用 hello 屬性建立個別的介面區，此類別的模型繫結用途。 不過，此方法只允許在每個模型類別上使用一個模型繫結外觀。 如果其中一個動作方法需要 tooallow 模型繫結的欄位 （例如，僅限系統管理員動作，以更新使用者角色），而不需要其他動作 tooprevent 模型繫結，此欄位，這種方法將無法運作。 每一個類別只能有一個模型繫結] 圖形。如果不同的動作需要不同的模型繫結圖形，他們需要的 toorepresent 這些分隔圖形使用其中一個個別的模型繫結類別，或是不同的 [繫結 (Include ="â € 正確 」。 「)] 上 hello 動作方法的屬性。</li><li>**何謂繫結模型？會在 hello 檢視模型相同的動作嗎？-**這些是兩個相關的概念。 模型繫結是指在動作中使用 tooa 模型類別 hello 詞彙是參數清單 （hello 圖形從 MVC 模型繫結 toohello 動作方法傳遞）。 hello 詞彙檢視模式是指從動作方法 tooa 檢視傳遞 tooa 模型類別。 使用特定檢視的模型是常見的方法，將資料傳遞從動作方法 tooa 檢視。 通常，此圖形也適用於模型繫結，而且 hello 詞彙檢視模型可以是相同的模型使用兩個地方使用的 toorefer hello。 toobe 精確，特別是有關繫結模型，將焦點放在 hello 圖形傳遞 toohello 動作，就是進行大量指派關切的事項討論此程序。</li></ul>| 
 
-## <a id="rendering"></a>先將未受信任的 Web 輸出編碼再進行轉譯
+## <a id="rendering"></a>編碼不受信任的 web 輸出先前 toorendering
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -368,8 +368,8 @@ myCommand.Fill(userDataset);
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | 泛型、Web Form、MVC5、MVC6 |
 | **屬性**              | N/A  |
-| **參考**              | [如何在 ASP.NET 中防止跨網站指令碼](http://msdn.microsoft.com/library/ms998274.aspx)、[跨網站指令碼](http://cwe.mitre.org/data/definitions/79.html)、[XSS (跨網站指令碼) 防護功能提要](https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet) |
-| **步驟** | 跨網站指令碼 (通常縮寫為 XSS) 是針對線上服務或從 Web 取用輸入之任何應用程式/元件的攻擊媒介。 XSS 弱點可能會讓攻擊者透過易受攻擊的 Web 應用程式，對其他使用者的電腦執行指令碼。 惡意指令碼可用來竊取 Cookie 或是透過 JavaScript 竄改受害者的電腦。 若要預防 XSS，您可以驗證使用者輸入、確保其格式正確無誤並先加以編碼，再轉譯於網頁中。 使用 Web Protection Library 即可進行輸入驗證和輸出編碼。 若為 Managed 程式碼 (C\#、VB.net 等)，請根據為使用者輸入建立資訊清單的內容，使用一個或多個來自 Web Protection (Anti-XSS) Library 的適當編碼方法︰| 
+| **參考**              | [如何在 ASP.NET 中的 tooprevent 跨網站指令碼](http://msdn.microsoft.com/library/ms998274.aspx)，[跨網站指令碼處理](http://cwe.mitre.org/data/definitions/79.html)， [XSS （跨網站指令碼） 預防小工作表](https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet) |
+| **步驟** | 跨網站指令碼 （通常縮寫為 XSS） 是線上服務或取用輸入 hello web 從任何應用程式/元件的攻擊媒介。 XSS 弱點可能會允許攻擊者 tooexecute 指令碼透過易受攻擊的 web 應用程式的其他使用者的電腦上。 惡意的指令碼可以使用的 toosteal cookie 和否則竄改透過 JavaScript 犧牲者的電腦。 若要預防 XSS，您可以驗證使用者輸入、確保其格式正確無誤並先加以編碼，再轉譯於網頁中。 使用 Web Protection Library 即可進行輸入驗證和輸出編碼。 用於 Managed 程式碼 (C\#，VB.net 等)，請使用其中一個或多個適當的編碼方式，從 hello Web 保護 (反 XSS) 程式庫，視 hello 取得在： 認定 hello 使用者輸入的內容而定：| 
 
 ### <a name="example"></a>範例
 
@@ -394,7 +394,7 @@ myCommand.Fill(userDataset);
 | **適用的技術** | 泛型、MVC5、MVC6 |
 | **屬性**              | N/A  |
 | **參考**              | [新增驗證](http://www.asp.net/mvc/overview/getting-started/introduction/adding-validation)、[驗證 MVC 應用程式中的模型資料](http://msdn.microsoft.com/library/dd410404(v=vs.90).aspx)、[ASP.NET MVC 應用程式的指導原則](http://msdn.microsoft.com/magazine/dd942822.aspx) |
-| **步驟** | <p>所有輸入參數都必須先驗證再用於應用程式，以確保應用程式不受惡意使用者輸入所危害。 請採取白名單驗證策略，在伺服器端上使用規則運算式驗證來驗證輸入值。 傳遞至方法的未清理使用者輸入/參數會造成程式碼插入弱點。</p><p>對於 Web 應用程式，進入點還可能包括表單欄位、QueryStrings、Cookie、HTTP 標頭和 Web 服務參數。</p><p>在繫結模型時，必須執行下列輸入驗證檢查︰</p><ul><li>模型屬性應該使用 RegularExpression 註解來加以註解，以便接受允許的字元和最大允許長度</li><li>控制器方法應該執行 ModelState 有效性</li></ul>|
+| **步驟** | <p>必須先驗證所有 hello 輸入的參數，它們會以 hello 應用程式 tooensure 安全防護 hello 應用程式時，會針對惡意的使用者輸入。 驗證 hello 與白名單驗證策略的伺服器端上，使用規則運算式驗證輸入的值。 Unsanitized 使用者輸入傳遞 toohello 方法的參數會使程式碼資料隱碼弱點 /。</p><p>對於 Web 應用程式，進入點還可能包括表單欄位、QueryStrings、Cookie、HTTP 標頭和 Web 服務參數。</p><p>hello 下列輸入的驗證檢查必須執行根據模型繫結：</p><ul><li>hello 模型屬性加以註解與 RegularExpression 註釋，以接受允許的字元和最大允許長度</li><li>hello 控制器方法應該執行 ModelState 有效性</li></ul>|
 
 ## <a id="richtext"></a>應該對接受所有字元的表單欄位 (例如 RTF 編輯器) 套用清理
 
@@ -405,9 +405,9 @@ myCommand.Fill(userDataset);
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [將不安全的輸入編碼](https://msdn.microsoft.com/library/ff647397.aspx#paght000003_step3)， [HTML 清理程式](https://github.com/mganss/HtmlSanitizer) |
-| **步驟** | <p>找出您想要使用的所有靜態標記標籤。 常見的作法是將格式限制為安全的 HTML 元素，例如 `<b>`(粗體) 和 `<i>` (斜體)。</p><p>在寫入資料前，先對它進行 HTML 編碼。 此動作可讓惡意指令碼變得安全，因為這會讓它以文字形式進行處理，而不是以可執行程式碼的形式。</p><ol><li>將 ValidateRequest ="false" 屬性新增至 @ Page 指示詞，以停用 ASP.NET 要求驗證</li><li>使用 HtmlEncode 方法將字串輸入編碼</li><li>使用 StringBuilder 並呼叫其取代方法，選擇性移除您想要允許之 HTML 元素上的編碼</li></ol><p>參考中的頁面會藉由設定 `ValidateRequest="false"` 來停用 ASP.NET 要求驗證。 它會對輸入進行 HTML 編碼，並選擇性地允許 `<b>` 和 `<i>`。或者，也可以使用 .NET 程式庫來清理 HTML。</p><p>HtmlSanitizer 是用來從可能會導致 XSS 攻擊的建構中清理 HTML 片段和文件的 .NET 程式庫。 它會使用 AngleSharp 來剖析、操作及轉譯 HTML 與 CSS。 HtmlSanitizer 可使用 NuGet 套件的形式來安裝，並可視需要透過相關 HTML 或 CSS 清理方法，在伺服器端上傳遞使用者輸入。 請注意，只有在迫不得已時才可考慮使用清理做為安全性控制方法。</p><p>輸入驗證和輸出編碼會是較佳的安全性控制方法。</p> |
+| **步驟** | <p>找出所有您想 toouse 的 static 標記標籤。 常見的作法是 toorestrict 格式化 toosafe HTML 項目，例如`<b>`（粗體） 和`<i>`（斜體）。</p><p>寫入 HTML 編碼的 hello 資料之前它。 這可將安全方法是讓它 toobe 任何惡意指令碼當做文字處理，不是可執行程式碼。</p><ol><li>停用 ASP.NET 要求驗證加 hello hello ValidateRequest ="false"屬性 toohello @ Page 指示詞</li><li>編碼 hello 字串輸入 hello HtmlEncode 方法</li><li>使用 StringBuilder 和其取代方法 tooselectively 移除 hello 想 toopermit 編碼 hello HTML 項目上呼叫</li></ol><p>hello 頁面中的 hello 參考會停用 ASP.NET 要求的驗證設定`ValidateRequest="false"`。 它將 HTML 編碼的 hello 輸入，並選擇性地允許 hello`<b>`和`<i>`或者，也可以使用 HTML 處理.NET 程式庫。</p><p>HtmlSanitizer 是清除的 HTML 片段與文件的建構，可能會導致 tooXSS 攻擊的.NET 程式庫。 它會使用 AngleSharp tooparse、 操作及呈現 HTML 和 CSS。 HtmlSanitizer 可以安裝以 NuGet 套件，並 hello 使用者輸入可傳遞相關 HTML 或 CSS 處理方法，視需要在 hello 伺服器端上。 請注意，只有在迫不得已時才可考慮使用清理做為安全性控制方法。</p><p>輸入驗證和輸出編碼會是較佳的安全性控制方法。</p> |
 
-## <a id="inbuilt-encode"></a>請勿將沒有內建編碼的 DOM 元素指派給接收器
+## <a id="inbuilt-encode"></a>未指派並沒有內建的編碼方式的 DOM 項目 toosinks
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -416,7 +416,7 @@ myCommand.Fill(userDataset);
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
-| **步驟** | 許多 javascript 函式預設不會進行編碼。 透過這類函式將不受信任的輸入指派至 DOM 元素時，可能會導致執行跨網站指令碼 (XSS)。| 
+| **步驟** | 許多 javascript 函式預設不會進行編碼。 指派不受信任的輸入的 tooDOM 項目，透過這類函式時，可能會導致跨網站指令碼 (XSS) 執行。| 
 
 ### <a name="example"></a>範例
 以下是不安全的範例︰ 
@@ -429,7 +429,7 @@ $('body').append(resHTML);
 ```
 請勿使用 `innerHtml`；而應使用 `innerText`。 同樣地，不要使用 `$("#elm").html()`，而應使用 `$("#elm").text()` 
 
-## <a id="redirect-safe"></a>驗證應用程式內的所有重新導向皆已關閉或安全完成
+## <a id="redirect-safe"></a>驗證所有重新導向 hello 應用程式中的都已關閉或安全地完成
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -437,8 +437,8 @@ $('body').append(resHTML);
 | **SDL 階段**               | 建置 |  
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
-| **參考**              | [OAuth 2.0 授權架構 - 開啟重新導向程式](http://tools.ietf.org/html/rfc6749#section-10.15) |
-| **步驟** | <p>要求重新導向至使用者所提供位置的應用程式設計，必須將可能的重新導向目標限制在預先定義的「安全」網站或網域清單。 應用程式中的所有重新導向都必須是封閉/安全的。</p><p>作法：</p><ul><li>找出所有重新導向</li><li>為每個重新導向實作適當的風險降低措施。 適當的風險降低措施包括重新導向允許清單或使用者確認。 如果具有開啟重新導向弱點的網站或服務使用 Facebook/OAuth/OpenID 身分識別提供者，攻擊者便可竊取使用者的登入權杖，然後假扮該使用者。 這是使用 OAuth 時的固有風險，在 RFC 6749「OAuth 2.0 授權架構」的 10.15 節「開啟重新導向」有其記載。同樣地，魚叉式網路釣魚攻擊也會使用開啟重新導向來入侵取得使用者的認證</li></ul>|
+| **參考**              | [hello OAuth 2.0 授權架構-開啟重新導向程式](http://tools.ietf.org/html/rfc6749#section-10.15) |
+| **步驟** | <p>設計應用程式要求重新導向 tooa 使用者提供的位置必須限制 hello 可能重新導向目標 tooa 預先定義 「 安全 」 清單的站台或網域。 Hello 應用程式中的所有重新導向必須關閉/安全。</p><p>toodo 這樣：</p><ul><li>找出所有重新導向</li><li>為每個重新導向實作適當的風險降低措施。 適當的風險降低措施包括重新導向允許清單或使用者確認。 如果具有開啟重新導向弱點的網站或服務使用 Facebook/OAuth/OpenID 身分識別提供者，攻擊者便可竊取使用者的登入權杖，然後假扮該使用者。 這是固有的風險時使用 OAuth，而其記錄在 RFC 6749"hello OAuth 2.0 授權架構"，區段 10.15"開啟重新導向 」 同樣地，使用者的認證可以受到使用開啟的重新導向矛網路釣魚攻擊</li></ul>|
 
 ## <a id="string-method"></a>對控制器方法所接受的所有字串類型參數實作輸入驗證
 
@@ -449,9 +449,9 @@ $('body').append(resHTML);
 | **適用的技術** | 泛型、MVC5、MVC6 |
 | **屬性**              | N/A  |
 | **參考**              | [驗證 MVC 應用程式中的模型資料](http://msdn.microsoft.com/library/dd410404(v=vs.90).aspx)、[ASP.NET MVC 應用程式的指導原則](http://msdn.microsoft.com/magazine/dd942822.aspx) |
-| **步驟** | 對於只接受基本資料類型而不接受模型來做為引數的方法，應該使用規則運算式進行輸入驗證。 在此，Regex.IsMatch 應搭配使用有效的 regex 模式。 如果輸入不符合指定的規則運算式，就不該再繼續進行控制，而且應該顯示關於驗證失敗的適當警告。| 
+| **步驟** | 對於只接受基本資料類型而不接受模型來做為引數的方法，應該使用規則運算式進行輸入驗證。 在此，Regex.IsMatch 應搭配使用有效的 regex 模式。 如果不符合 hello 輸入 hello 指定的規則運算式，控制項應該不會繼續，而且提供適當的警告，關於驗證失敗應該會顯示。| 
 
-## <a id="dos-expression"></a>為規則運算式處理設定逾時上限以防止因規則運算式不正確而導致 DoS
+## <a id="dos-expression"></a>設定處理 tooprevent DoS 到期 toobad 規則運算式的規則運算式的上限逾時
 
 | Title                   | 詳細資料      |
 | ----------------------- | ------------ |
@@ -460,10 +460,10 @@ $('body').append(resHTML);
 | **適用的技術** | 泛型、Web Form、MVC5、MVC6  |
 | **屬性**              | N/A  |
 | **參考**              | [DefaultRegexMatchTimeout 屬性](https://msdn.microsoft.com/library/system.web.configuration.httpruntimesection.defaultregexmatchtimeout.aspx) |
-| **步驟** | 若要確保以錯誤格式建立的規則運算式不會遭受阻斷服務攻擊，而造成大量回溯，請設定全域的預設逾時。 如果處理時間超過所定義的上限，便會擲回逾時例外狀況。 若未做任何設定，則逾時時間是無限。| 
+| **步驟** | tooensure 阻斷服務攻擊格式不建立規則運算式，會造成大量回溯，設定 hello 全域預設逾時。 如果花費的時間超出 hello 定義上限 hello 處理時間，則會擲回逾時例外狀況。 如果進行任何設定，則會是無限 hello 逾時。| 
 
 ### <a name="example"></a>範例
-例如，下列組態會在處理時間超過 5 秒時擲回 RegexMatchTimeoutException︰ 
+例如，hello 下列組態將會擲回 RegexMatchTimeoutException，如果 hello 處理時間超過 5 秒： 
 
 ```C#
 <httpRuntime targetFramework="4.5" defaultRegexMatchTimeout="00:00:05" />
@@ -478,7 +478,7 @@ $('body').append(resHTML);
 | **適用的技術** | MVC5、MVC6 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
-| 步驟 | ASP.Net 網頁 (Razor) 會執行自動 HTML 編碼。 內嵌程式碼區塊 (@ blocks) 所列印的所有字串會自動進行 HTML 編碼。 不過，在叫用 `HtmlHelper.Raw` 方法時，它會傳回非 HTML 編碼的標記。 如果使用 `Html.Raw()` 協助程式方法，它會略過 Razor 所提供的自動編碼保護。|
+| 步驟 | ASP.Net 網頁 (Razor) 會執行自動 HTML 編碼。 內嵌程式碼區塊 (@ blocks) 所列印的所有字串會自動進行 HTML 編碼。 不過，在叫用 `HtmlHelper.Raw` 方法時，它會傳回非 HTML 編碼的標記。 如果`Html.Raw()`helper 方法，則它會略過 hello 自動編碼 Razor 提供保護。|
 
 ### <a name="example"></a>範例
 以下是不安全的範例︰ 
@@ -492,7 +492,7 @@ $('body').append(resHTML);
         </div>
 </div>
 ```
-除非您需要顯示標記，否則請勿使用 `Html.Raw()`。 這個方法不會隱含執行輸出編碼。 請使用其他 ASP.NET 協助程式，例如 `@Html.DisplayFor()` 
+請勿使用`Html.Raw()`除非需要 toodisplay 標記。 這個方法不會隱含執行輸出編碼。 請使用其他 ASP.NET 協助程式，例如 `@Html.DisplayFor()` 
 
 ## <a id="stored-proc"></a>請勿在預存程序中使用動態查詢
 
@@ -503,7 +503,7 @@ $('body').append(resHTML);
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
-| **步驟** | <p>SQL 插入式攻擊利用輸入驗證弱點在資料庫中執行任意命令。 當您的應用程式使用輸入來建構動態 SQL 陳述式以存取資料庫時，便可能發生此弱點。 如果您的程式碼使用預存程序來傳遞包含原始使用者輸入的字串，也可能發生此弱點。 攻擊者使用 SQL 插入式攻擊，即可在資料庫中執行任意命令。 所有 SQL 陳述式 (包括預存程序的 SQL 陳述式) 都必須予以參數化。 參數化的 SQL 陳述式會接受對 SQL 具有特殊意義的字元 (例如單引號) 而不會有任何問題，因為它們屬於強型別。 |
+| **步驟** | <p>SQL 資料隱碼攻擊利用輸入的驗證 toorun 任意命令 hello 資料庫中的弱點。 它可能發生在您的應用程式會使用輸入的 tooconstruct 動態 SQL 陳述式 tooaccess hello 資料庫。 如果您的程式碼使用預存程序來傳遞包含原始使用者輸入的字串，也可能發生此弱點。 使用 hello SQL 插入式攻擊，hello 攻擊者可以在 hello 資料庫中執行任意命令。 （包括 hello SQL 陳述式中的預存程序） 的所有 SQL 陳述式必須是參數都化。 參數化的 SQL 陳述式會接受字元而不會有問題 （例如，單引號） 的特殊意義 tooSQL 具有強型別。 |
 
 ### <a name="example"></a>範例
 以下是不安全的動態預存程序範例︰ 
@@ -534,7 +534,7 @@ AS
 ```
 
 ### <a name="example"></a>範例
-以下是以安全方式實作的相同預存程序︰ 
+以下是安全地實作相同的預存程序的 hello: 
 ```C#
 CREATE PROCEDURE [dbo].[uspGetProductsByCriteriaSecure]
 (
@@ -563,10 +563,10 @@ AS
 | **適用的技術** | MVC5、MVC6 |
 | **屬性**              | N/A  |
 | **參考**              | [ASP.NET Web API 中的模型驗證](http://www.asp.net/web-api/overview/formats-and-model-binding/model-validation-in-aspnet-web-api) |
-| **步驟** | 當用戶端傳送資料到 Web API 時，必須先驗證資料再進行任何處理。 對於可接受模型做為輸入的 ASP.NET Web API，請在模型上使用資料註解，以對模型屬性設定驗證規則。|
+| **步驟** | 用戶端傳送資料 tooa web API，時，強制 toovalidate hello 資料之前進行任何處理。 接受的 ASP.NET Web Api 的模型做為輸入，會使用資料註解 hello 屬性 hello 模型的模型 tooset 驗證規則。|
 
 ### <a name="example"></a>範例
-下列程式碼示範相同案例︰ 
+下列程式碼的 hello 示範 hello 相同： 
 
 ```C#
 using System.ComponentModel.DataAnnotations;
@@ -587,7 +587,7 @@ namespace MyApi.Models
 ```
 
 ### <a name="example"></a>範例
-在 API 控制器的動作方法中，模型的有效性必須明確檢查，如下所示： 
+Hello 的 hello API 控制器動作方法，在 hello 模型的有效性會具有 toobe 明確檢查過如下所示： 
 
 ```C#
 namespace MyApi.Controllers
@@ -598,7 +598,7 @@ namespace MyApi.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Do something with the product (not shown).
+                // Do something with hello product (not shown).
 
                 return new HttpResponseMessage(HttpStatusCode.OK);
             }
@@ -620,7 +620,7 @@ namespace MyApi.Controllers
 | **適用的技術** | 泛型、MVC 5、MVC 6 |
 | **屬性**              | N/A  |
 | **參考**              | [驗證 MVC 應用程式中的模型資料](http://msdn.microsoft.com/library/dd410404(v=vs.90).aspx)、[ASP.NET MVC 應用程式的指導原則](http://msdn.microsoft.com/magazine/dd942822.aspx) |
-| **步驟** | 對於只接受基本資料類型而不接受模型來做為引數的方法，應該使用規則運算式進行輸入驗證。 在此，Regex.IsMatch 應搭配使用有效的 regex 模式。 如果輸入不符合指定的規則運算式，就不該再繼續進行控制，而且應該顯示關於驗證失敗的適當警告。|
+| **步驟** | 對於只接受基本資料類型而不接受模型來做為引數的方法，應該使用規則運算式進行輸入驗證。 在此，Regex.IsMatch 應搭配使用有效的 regex 模式。 如果不符合 hello 輸入 hello 指定的規則運算式，控制項應該不會繼續，而且提供適當的警告，關於驗證失敗應該會顯示。|
 
 ## <a id="typesafe-api"></a>確定 Web API 有使用 type-safe 參數來存取資料
 
@@ -631,10 +631,10 @@ namespace MyApi.Controllers
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | N/A  |
-| **步驟** | <p>如果您使用參數集合，SQL 會將輸入視為常值而非可執行程式碼。 參數集合可用來對輸入資料強制執行類型和長度條件約束。 超出範圍的值會觸發例外狀況。 如果未使用 type-safe SQL 參數，攻擊者或許就能執行內嵌於未經篩選之輸入中的插入式攻擊。</p><p>請在建構 SQL 查詢時使用 type-safe 參數，以避免未經篩選的輸入中可能發生的 SQL 插入式攻擊。 type-safe 參數可與預存程序和動態 SQL 陳述式搭配使用。 資料庫會將參數視為常值而非可執行程式碼。 參數的類型和長度也會受到檢查。</p>|
+| **步驟** | <p>如果您使用 hello 參數集合，SQL 會視為 hello 輸入是做為常值，而不是可執行程式碼。 hello 參數集合可以是輸入資料上的使用的 tooenforce 類型和長度條件約束。 Hello 範圍以外的值會觸發例外狀況。 如果不使用類型安全的 SQL 參數，攻擊者可能會內嵌在 hello 進行篩選輸入可以 tooexecute 資料隱碼攻擊。</p><p>當建構 SQL 查詢中發生的未篩選的輸入的 tooavoid 可能 SQL 資料隱碼攻擊時，請使用類型安全的參數。 type-safe 參數可與預存程序和動態 SQL 陳述式搭配使用。 參數都會視做為常值 hello 資料庫，而不是可執行程式碼。 參數的類型和長度也會受到檢查。</p>|
 
 ### <a name="example"></a>範例
-下列程式碼示範如何在呼叫預存程序時，搭配使用 type-safe 參數與 SqlParameterCollection。 
+hello 下列程式碼顯示如何 toouse 型別以 hello SqlParameterCollection 安全參數呼叫預存程序時。 
 
 ```C#
 using System.Data;
@@ -650,7 +650,7 @@ myCommand.SelectCommand.Parameters["@au_id"].Value = SSN.Text;
 myCommand.Fill(userDataset);
 }  
 ```
-在上述程式碼範例中，輸入值不能超過 11 個字元。 如果資料不符合參數所定義的類型或長度，SqlParameter 類別就會擲回例外狀況。 
+在上述程式碼範例的 hello，hello 輸入的值不能超過 11 個字元。 如果 hello 資料不符合 toohello 型別或 hello 參數所定義的長度，hello SqlParameter 類別擲回例外狀況。 
 
 ## <a id="sql-docdb"></a>針對 Cosmos DB 使用參數化 SQL 查詢
 
@@ -661,7 +661,7 @@ myCommand.Fill(userDataset);
 | **適用的技術** | 泛型 |
 | **屬性**              | N/A  |
 | **參考**              | [在 DocumentDB 中宣佈 SQL 參數化](https://azure.microsoft.com/blog/announcing-sql-parameterization-in-documentdb/) |
-| **步驟** | 雖然 DocumentDB 只支援唯讀查詢，但如果查詢是藉由串連使用者輸入來建構，仍可以發動 SQL 插入式攻擊。 使用者只要藉由編寫惡意 SQL 查詢，即可在相同集合內存取他們不該能夠存取的資料。 如果查詢是根據使用者輸入所建構而成，請使用參數化的 SQL 查詢。 |
+| **步驟** | 雖然 DocumentDB 只支援唯讀查詢，但如果查詢是藉由串連使用者輸入來建構，仍可以發動 SQL 插入式攻擊。 可能會讓它們不應該存取 hello 內使用者 toogain 存取 toodata 相同集合中依製作惡意的 SQL 查詢。 如果查詢是根據使用者輸入所建構而成，請使用參數化的 SQL 查詢。 |
 
 ## <a id="schema-binding"></a>透過結構描述繫結驗證 WCF 輸入
 
@@ -672,7 +672,7 @@ myCommand.Fill(userDataset);
 | **適用的技術** | 泛型、NET Framework 3 |
 | **屬性**              | N/A  |
 | **參考**              | [MSDN](https://msdn.microsoft.com/library/ff647820.aspx) |
-| **步驟** | <p>缺少驗證機制會導致不同類型的插入式攻擊。</p><p>訊息驗證代表 WCF 應用程式保護措施中的一條防禦線。 利用這個方法，您可以使用結構描述來驗證訊息，以防止惡意用戶端攻擊 WCF 服務作業。 驗證用戶端所收到的所有訊息可防止用戶端遭到惡意服務攻擊。 訊息驗證可讓您在作業取用訊息合約或資料合約時驗證訊息，使用參數驗證則無法這麼做。 訊息驗證可讓您在結構描述內建立驗證邏輯，進而提供更大的彈性並縮減開發時間。 結構描述可以重複使用到組織中的不同應用程式，而為如何代表資料建立標準。 此外，在它們取用涉及代表商務邏輯之合約的更複雜資料類型時，訊息驗證可讓您保護作業。</p><p>若要執行訊息驗證，您可以先建置結構描述來代表服務的作業和這些作業所取用的資料類型。 然後，您可以建立 .NET 類別來實作自訂用戶端訊息偵測器和自訂發送器訊息偵測器，以驗證服務所傳送/接收的訊息。 接下來，您可以實作自訂端點行為，在用戶端和服務上啟用訊息驗證。 最後，您可以對類別實作自訂組態元素，以便您可以在服務或用戶端的組態檔中，公開擴充的自訂端點行為</p>|
+| **步驟** | <p>缺乏驗證會導致 toodifferent 型別資料隱碼攻擊。</p><p>訊息驗證代表一個防線 hello 保護您的 WCF 應用程式中。 使用此方法時，您可以驗證使用結構描述 tooprotect WCF 免於遭受惡意用戶端的服務作業的訊息。 驗證由 hello 用戶端 tooprotect hello 用戶端免受攻擊接收惡意服務的所有訊息。 訊息驗證可讓可能 toovalidate 訊息作業取用訊息合約或資料合約，無法完成時，使用參數驗證。 訊息驗證可讓您在結構描述，藉以提供更大的彈性，並減少開發時間內 toocreate 驗證邏輯。 建立標準資料表示法的 hello 組織內部的不同應用程式可以重複使用結構描述。 此外，訊息驗證可讓您 tooprotect 作業時，它們會消耗涉及合約表示商務邏輯的複雜資料型別。</p><p>tooperform 訊息驗證，您先建立的結構描述，表示您的服務和 hello 資料型別這些作業所耗用的 hello 作業。 然後，您會建立會實作自訂用戶端訊息偵測器和自訂發送器訊息偵測器 toovalidate hello 訊息從 hello 服務傳送/接收.NET 類別。 接下來，您可以實作自訂端點行為 tooenable 訊息驗證用戶端 hello 和 hello 服務上。 最後，您會在 hello 類別，可讓您 tooexpose hello 擴充 hello 服務或 hello 用戶端 hello 組態檔中的自訂端點行為上實作的自訂組態項目 」</p>|
 
 ## <a id="parameters"></a>透過參數偵測器驗證 WCF 輸入
 
@@ -683,4 +683,4 @@ myCommand.Fill(userDataset);
 | **適用的技術** | 泛型、NET Framework 3 |
 | **屬性**              | N/A  |
 | **參考**              | [MSDN](https://msdn.microsoft.com/library/ff647875.aspx) |
-| **步驟** | <p>輸入和資料驗證代表 WCF 應用程式保護措施中的一條重要防禦線。 您應該驗證 WCF 服務作業中公開的所有參數，以防止服務遭受惡意用戶端攻擊。 相反地，您還應該驗證用戶端所收到的所有傳回值，以防止用戶端遭受惡意服務攻擊</p><p>WCF 會提供不同的擴充點，讓您藉由建立自訂擴充功能來自訂 WCF 執行階段行為。 訊息偵測器和參數偵測器這兩個擴充性機制可用來加強對用戶端和服務之間所傳遞之資料的控制力。 您應該使用參數偵測器來驗證輸入，而只將訊息偵測器用於當您需要檢查流入及流出服務的整個訊息時。</p><p>若要執行輸入驗證，您需要建置 .NET 類別，並實作自訂參數偵測器，以對服務中的作業參數進行驗證。 接著，您需要實作自訂端點行為，在用戶端和服務上啟用驗證。 最後，您可以對類別實作自訂組態元素，以便您可以在服務或用戶端的組態檔中，公開擴充的自訂端點行為</p>|
+| **步驟** | <p>輸入和資料驗證代表一個重要防線 hello 保護您的 WCF 應用程式中。 您應該驗證服務中公開 WCF 服務作業 tooprotect hello 免於遭受惡意用戶端的所有參數。 相反地，您也應該驗證所有惡意服務所收到 hello 用戶端 tooprotect hello 用戶端不受攻擊的傳回值</p><p>WCF 會提供不同的擴充性點，讓您 toocustomize hello WCF 執行階段行為藉由建立自訂延伸模組。 訊息偵測器 」 和 「 參數偵測器時可以使用兩個擴充性機制使用 toogain 進一步控制用戶端和服務之間傳遞的 hello 資料。 您應該使用參數偵測器的輸入驗證，並需要服務上進出 tooinspect hello 整個訊息時才使用訊息偵測器。</p><p>tooperform 輸入驗證，您會建置.NET 類別，實作自訂參數偵測器作業順序 toovalidate 參數中，在您的服務。 您接著將 hello 用戶端和 hello 服務上實作自訂端點行為 tooenable 驗證。 最後，您將可讓您 tooexpose hello 擴充 hello 服務或 hello 用戶端 hello 組態檔中的自訂端點行為的 hello 類別上實作自訂組態項目</p>|

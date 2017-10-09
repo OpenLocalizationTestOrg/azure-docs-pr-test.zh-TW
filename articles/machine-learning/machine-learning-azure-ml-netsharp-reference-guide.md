@@ -1,6 +1,6 @@
 ---
-title: "Net# 類神經規格語言指南 | Microsoft Docs"
-description: "語法 Net # 類神經網路規格語言，以及如何建立 Microsoft Azure ML 使用 Net # 自訂類神經網路模型的範例"
+title: "aaaGuide toohello Net # 類神經網路規格語言 |Microsoft 文件"
+description: "語法 hello Net # 類神經網路規格語言，以及在 Microsoft Azure ML 使用 Net # toocreate 自訂類神經網路模型的方式的範例"
 services: machine-learning
 documentationcenter: 
 author: jeannt
@@ -14,112 +14,112 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: jeannt
-ms.openlocfilehash: 965c60ffde55041cc3864d06d81f5590c7ea1c11
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3493247ecc39ca3a1382510ad520d7017159ff62
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="guide-to-net-neural-network-specification-language-for-azure-machine-learning"></a>適用於 Azure Machine Learning 的 Net# 類神經規格語言指南
+# <a name="guide-toonet-neural-network-specification-language-for-azure-machine-learning"></a>Azure 機器學習引導 tooNet # 類神經網路規格語言
 ## <a name="overview"></a>概觀
-Net# 是由 Microsoft 所開發的語言，可用來定義類神經網路架構。 您可以在 Microsoft Azure Machine Learning 的類神經網路模組中使用 Net#。
+Net # 是使用的 toodefine 類神經網路架構，Microsoft 開發的語言。 您可以在 Microsoft Azure Machine Learning 的類神經網路模組中使用 Net#。
 
-<!-- This function doesn't currentlyappear in the MicrosoftML documentation. If it is added in a future update, we can uncomment this text.
+<!-- This function doesn't currentlyappear in hello MicrosoftML documentation. If it is added in a future update, we can uncomment this text.
 
-, or in the `rxNeuralNetwork()` function in [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml/microsoftml). 
+, or in hello `rxNeuralNetwork()` function in [MicrosoftML](https://msdn.microsoft.com/microsoft-r/microsoftml/microsoftml). 
 
 -->
 
-在本文中，您將了解開發自訂類神經網路所需的基本概念︰ 
+在本文中，您將了解基本概念所需 toodevelop 自訂類神經網路： 
 
-* 類神經網路的需求和主要元件的定義方式
-* Net# 規格語言的語法和關鍵字
-* 建立使用 Net # 自訂類神經網路的範例 
+* 類神經網路需求及如何 toodefine hello 主要元件
+* hello 語法和 hello Net # 規格語言關鍵字
+* 使用 Net# 建立的自訂類神經網路範例 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="neural-network-basics"></a>類神經網路基本概念
-類神經網路的組成結構，包含以***層***組織的***節點***，和節點之間的加權***連線*** (或***邊緣***)。 這些連線是雙向的，且每個連線都有***來源***節點和***目的地***節點。  
+類神經網路結構組成***節點***，都依照***層***，和加權***連線***(或***邊緣***) 之間hello 節點。 hello 連線是方向性，且每個連接***來源***節點和***目的地***節點。  
 
-每個***可訓練的層*** (隱藏或輸出層) 都有一或多個***連線套組***。 連線套組由來源層和來自該來源層之連線的規格所組成。 一個套組中的所有連線會共用相同的***來源層***和相同的***目的地層***。 在 Net# 中，連線套組會被視為由套組的目的地層所屬。  
+每個***可訓練的層*** (隱藏或輸出層) 都有一或多個***連線套組***。 連接配套包含來源層級和 hello 來自該來源層級的規格。 中的給定的組合共用的所有都 hello 連接都 hello 相同***來源層級***和都 hello 相同***目的地層***。 在 Net # 中，連接組合都會被視為隸屬 toohello 組合的目的地階層。  
 
-Net# 支援多種不同的連線套組，可讓您自訂輸入對應至隱藏層和對應至輸出的方式。   
+Net # 支援各種連線組合，可讓您自訂的輸入是對應的 toohidden 圖層的 hello 方式和對應的 toohello 輸出。   
 
-預設或標準套組為**完整套組**；在此類套組中，來源層中的每個節點會分別連接到目的地層中的各個節點。  
+hello 預設或標準的組合是**完整配套**，hello 中的每個節點中來源階層是 hello 目的地階層中的連接的 tooevery 節點。  
 
-此外，Net# 也支援下列四種進階連線套組：  
+此外，Net # 支援下列四種進階的連線組合 hello:  
 
-* **篩選套組**。 使用者可使用來源層節點和目的地層節點的位置來定義述詞。 只要述詞為 True，即會連接節點。
-* **迴旋套組**。 使用者可在來源層中定義小型的節點臨近地區。 目的地層中的每個節點都會連接到來源層中的一個節點鄰區。
-* **集區套組**和**回應正規化套組**。 這些套組類似於可供使用者在來源層中定義小型節點臨近地區的迴旋套組。 差別在於這些套組中的邊緣加權無法訓練。 因此會將預先定義的函數套用至來源節點值來判斷目的地節點值。  
+* **篩選套組**。 hello 使用者可以使用 hello hello 來源圖層的節點和 hello 目的地層節點的位置，以定義述詞。 每當 hello 述詞為 True 時，都會連線節點。
+* **迴旋套組**。 hello 使用者可以定義節點的小型公寓 hello 來源層級中。 Hello 目的地階層中的每個節點是連接的 tooone hello 來源層的節點上的芳鄰。
+* **集區套組**和**回應正規化套組**。 這些是類似 tooconvolutional 組合中的 hello 使用者會定義小公寓 hello 來源層的節點。 hello 差異是，這些組合中的 hello 邊緣 hello 加權並未 trainable。 相反地，套用預先定義的函式 toohello 來源節點值 toodetermine hello 目的地節點值。  
 
-使用 Net# 定義類神經網路的結構，可讓您定義如深度類神經網路或任意維度的迴旋，而這些項目都可改善影像、音訊或視訊等資料的學習。  
+使用 Net # 類神經網路 toodefine hello 結構可讓可能 toodefine 複雜的結構，例如深度類神經網路或迴旋任意的維度，稱為 tooimprove 瞭解資料，例如影像、 音訊或視訊。  
 
 ## <a name="supported-customizations"></a>支援的自訂
-您在 Azure Machine Learning 中建立的類神經網路模型架構，可以使用 Net# 廣泛地進行自訂。 您可以：  
+您在 Azure Machine Learning 中建立的類神經網路模型的 hello 架構可以使用 Net # 廣泛地自訂。 您可以：  
 
-* 建立隱藏層及控制每一層中的節點數目。
-* 指定各層彼此連接的方式。
+* 隱藏的層節點的控制項 hello 數目在中建立和每個圖層。
+* 指定圖層的 toobe 連接 tooeach 其他的方式。
 * 定義特殊連線結構，例如迴旋和加權共用套組。
 * 指定不同的啟用函數。  
 
-如需規格語言語法的詳細資訊，請參閱[結構規格](#Structure-specifications)。  
+如需 hello 規格語言語法的詳細資訊，請參閱[結構規格](#Structure-specifications)。  
 
-如需為某些一般機器學習工作定義類神經網路的範例 (包括簡單與複雜)，請參閱[範例](#Examples-of-Net#-usage)。  
+如需定義為某些常見的機器學習服務工作，從 simplex toocomplex，類神經網路的範例，請參閱[範例](#Examples-of-Net#-usage)。  
 
 ## <a name="general-requirements"></a>一般需求
 * 必須只能有一個輸出層，和至少一個輸入層，以及零或多個隱藏層。 
 * 每一層都有固定的節點數目，在概念上會以任意維度的矩形陣列編排。 
-* 輸入層沒有相關聯的訓練參數，而會顯示執行個體資料進入網路的點。 
-* 可訓練層 (隱藏層和輸出層) 具有相關聯的訓練參數，一般稱之為加權和偏差。 
-* 來源和目的地節點必須位於不同層內。 
-* 連線必須是非循環的，換句話說，連線不可以有往回導向至初始來源節點的鏈結。
-* 輸出層不可以是連線套組的來源層。  
+* 輸入的層沒有相關聯的定型參數，而且代表 hello 點位置執行個體資料會進入 hello 網路。 
+* Trainable (hello 隱藏和輸出層) 的圖層有關聯的定型的參數，稱為加權和徵才偏差。 
+* hello 來源和目的地節點必須在個別的圖層。 
+* 連接必須為非循環。也就是說，不能有前置反 toohello 初始來源節點連接的鏈結。
+* hello 輸出層不能連接組合的來源層級。  
 
 ## <a name="structure-specifications"></a>結構規格
-類神經網路結構規格由三個區段所組成：**常數宣告**、**層宣告**和**連線宣告**。 另外還有一個選擇性的**共用宣告**區段。 這幾個部分可依任意順序指定。  
+類神經網路結構規格由三個區段組成： hello**常數宣告**，hello**層級宣告**，hello**連線宣告**。 另外還有一個選擇性的**共用宣告**區段。 hello 區段可以任何順序指定。  
 
 ## <a name="constant-declaration"></a>常數宣告
-常數宣告是選擇性宣告。 它提供的機制可用來定義在類神經網路定義中使用的值。 宣告陳述式的組成元素是識別碼之後尾隨加號和值運算式。   
+常數宣告是選擇性宣告。 它會提供表示 toodefine hello 類神經網路定義中的其他位置所使用的值。 hello 宣告陳述式所組成的識別碼後面接著等號和值運算式。   
 
-例如，下列陳述式會定義常數 **x**：  
+例如，陳述式之後的 hello 定義常數**x**:  
 
     Const X = 28;  
 
-若要同時定義兩個或更多常數，請將識別碼名稱和值放在大括號中，並使用分號分隔。 例如：  
+toodefine 兩個或多個常數，同時，hello 識別項名稱和值大括弧括住，並使用分號分隔。 例如：  
 
     Const { X = 28; Y = 4; }  
 
-各個指派運算式的右側可以是整數、實數、布林值 (True/False) 或數學運算式。 例如：  
+hello 右手邊的每個指派運算式可以是整數、 實數、 布林值 （True 或 False） 或數學運算式。 例如：  
 
     Const { X = 17 * 2; Y = true; }  
 
 ## <a name="layer-declaration"></a>層宣告
-層宣告是必要宣告。 它定義層的大小和來源，包括層的連線套組和屬性。 宣告陳述式以層的名稱開頭 (輸入、隱藏或輸出)，其後是層的維度 (正整數的 Tuple)。 例如：  
+需要 hello 層宣告。 它會定義 hello 大小及來源的 hello 圖層，包括其連線組合和屬性。 hello hello hello 層 （輸入、 隱藏的或輸出） 名稱的宣告陳述式開頭，後面接著 hello 維度的 hello 層 (tuple 的正整數)。 例如：  
 
     input Data auto;
     hidden Hidden[5,20] from Data all;
     output Result[2] from Hidden all;  
 
-* 維度的乘積為層中的節點數目。 此範例中有兩個維度 [5,20]，這表示層中有 100 個節點。
-* 層能以任何順序宣告，僅有一項例外：如果定義了多個輸入層，則這些層的宣告順序必須符合輸入資料中各項特性的順序。  
+* hello 產品的 hello 維度是 hello hello 層的節點數目。 在此範例中，有兩個維度 [5,20]，這表示在 hello 層有 100 個節點。
+* hello 圖層可以宣告任何順序，但有一個例外： 如果已定義多個輸入的層，在宣告的 hello 順序必須符合 hello 順序 hello 輸入資料中的功能。  
 
-若要指定讓系統自動決定層中的節點數目，請使用 **auto** 關鍵字。 **auto** 關鍵字的效果會隨著層而不同：  
+toospecify hello 層的節點數目是自動，決定使用 hello**自動**關鍵字。 hello**自動**關鍵字有不同的效果，視 hello 層而定：  
 
-* 在輸入層宣告中，節點數目是輸入資料中的特性數目。
-* 在隱藏層宣告中，節點數目是**隱藏節點數目**的參數值所指定的數目。 
-* 在輸出層宣告中，雙類別分類的節點數目是 2 個 (1 個用於迴歸)，且等於多類別分類的輸出節點數目。   
+* 在輸入的層宣告中，節點的 hello 數目是 hello hello 輸入資料中的功能數目。
+* 在隱藏的層的宣告中，節點的 hello 數目是 hello hello 參數值所指定的數字**隱藏節點的數目**。 
+* 在輸出層宣告中，hello 節點數目是 2 的二級分類，1 代表迴歸，並等於 toohello 多級分類的輸出節點的數目。   
 
-例如，下列網路定義會讓系統自動決定所有層的大小：  
+例如，hello 下列網路定義允許 hello 大小的所有圖層 toobe 自動決定：  
 
     input Data auto;
     hidden Hidden auto from Data all;
     output Result auto from Hidden all;  
 
 
-可訓練層 (隱藏層或輸出層) 的層宣告可選擇性地包含輸出函數 (也稱為啟用函數)，其預設值為適用於分類模型的 **sigmoid** 以及適用於迴歸模型的 **linear**。 (即使您使用預設值，您也可以在需要釐清時明確陳述啟用函數。)
+Trainable 圖層的層級宣告 (hello 隱藏或輸出層級) 可以選擇性地包含 hello 輸出函式 （也稱為啟用函式），其預設太**sigmoid**分類模型和**線性**迴歸模型。 （即使您使用 hello 預設，您可以明確陳述 hello 啟用函式，如果為了避免混淆。）
 
-支援的輸出函數如下：  
+hello 輸出支援下列函數：  
 
 * sigmoid
 * linear
@@ -132,69 +132,69 @@ Net# 支援多種不同的連線套組，可讓您自訂輸入對應至隱藏層
 * tanh 
 * brlinear  
 
-例如，下列宣告將使用 **softmax** 函數：  
+例如，hello 宣告之後使用 hello **softmax**函式：  
 
     output Result [100] softmax from Hidden all;  
 
 ## <a name="connection-declaration"></a>連線宣告
-在定義可訓練層之後，您必須隨即宣告您所定義的層之間的連線。 連線套組宣告以關鍵字 **from** 開頭，其後是套組的來源層名稱和所要建立的連線套組類型。   
+之後立即定義 hello trainable 圖層，您必須宣告在您已定義的 hello 圖層間的連線。 hello 連接配套宣告的開頭 hello 關鍵字**從**，後面接著 hello 種類的名稱 hello 配套來源圖層與 hello 連接配套 toocreate。   
 
 目前支援五種連線套組：  
 
-* **完整**套組，以關鍵字 **all** 指出
-* **篩選**套組，以關鍵字 **where** 指出，其後接著述詞運算式
-* **迴旋**套組，以關鍵字 **convolve** 指出，其後接著迴旋屬性
-* **集區**套組，以關鍵字 **max pool** 或 **mean pool** 指出
-* **回應正規化**套組，以關鍵字 **response norm** 指出。      
+* **完整**組合，以 hello 關鍵字**所有**
+* **篩選**組合，以 hello 關鍵字**其中**，後面接著述詞的運算式
+* **Convolutional**組合，以 hello 關鍵字**convolve**，後面接著 hello convolution 屬性
+* **共用**組合，以 hello 關鍵字**最大集區**或**表示集區**
+* **回應正規化**組合，以 hello 關鍵字**回應範數**      
 
 ## <a name="full-bundles"></a>完整套組
-完整連線套組包含從來源層中的每個節點連至目的地層中各個節點的連線。 這是預設的網路連線類型。  
+完整連接配套 hello 來源層 tooeach 節點 hello 目的地階層中包含來自每個節點的連接。 這是 hello 預設網路連線類型。  
 
 ## <a name="filtered-bundles"></a>篩選套組
-篩選連線套組規格包含一個述詞，此述詞在語法上的表示方式非常類似 C# lambda 運算式。 以下範例將定義兩個篩選套組：  
+篩選連線套組規格包含一個述詞，此述詞在語法上的表示方式非常類似 C# lambda 運算式。 hello 下列範例定義兩個篩選的組合：  
 
     input Pixels [10, 20];
     hidden ByRow[10, 12] from Pixels where (s,d) => s[0] == d[0];
     hidden ByCol[5, 20] from Pixels where (s,d) => abs(s[1] - d[1]) <= 1;  
 
-* 在 *ByRow* 的述詞中 **s** 參數代表輸入層 *Pixels* 之節點矩形陣列的索引，而 **d** 參數代表隱藏層 *ByRow* 之節點陣列的索引。 **s** 和 **d** 的類型為長度二之整數的 Tuple。 在概念上，**s** 的範圍介於所有 *0 <= s[0] < 10* 與 *0 <= s[1] < 20* 的整數對之間，而且 **d** 的範圍介於所有 *0 <= d[0] < 10* 與 *0 <= d[1] < 12* 的整數對之間。 
-* 述詞運算式右側會有一個條件。 在此範例中，每個條件為 True 的 **s** 值和 **d** 值都會有一個從來源層節點到目的地層節點的邊緣。 因此，此篩選運算式表示在 s[0] 等於 d[0] 的所有情況下，套組都會包含從 **s** 所定義的節點到 **d** 所定義之節點的連線。  
+* Hello 的述詞中*ByRow*， **s**是以參數為 hello 矩形陣列 hello 輸入圖層的節點代表索引*像素為單位*，和**d**是參數表示成 hello hello 隱藏圖層之節點的陣列索引*ByRow*。 hello 這兩種**s**和**d**是長度為兩個整數的 tuple。 在概念上，**s** 的範圍介於所有 *0 <= s[0] < 10* 與 *0 <= s[1] < 20* 的整數對之間，而且 **d** 的範圍介於所有 *0 <= d[0] < 10* 與 *0 <= d[1] < 12* 的整數對之間。 
+* Hello hello 述詞運算式的右側，在沒有條件。 在此範例中，每個值**s**和**d**使得 hello 條件為 True 時，會從 hello 來源圖層節點 toohello 目的圖層節點的邊緣。 因此，這個篩選條件運算式，表示該 hello 配套所包含的連接所定義的 hello 節點**s** toohello 節點所定義**d**在所有情況下，其中 s [0] 是等於 tood [0]。  
 
-您可以選擇性地為篩選套組指定一組加權。 **Weights** 屬性的值必須是長度與套組所定義的連線數目相符之浮點值的 Tuple。 依預設會隨機產生加權。  
+您可以選擇性地為篩選套組指定一組加權。 hello 值 hello**加權**屬性必須是 tuple 的浮點值的長度符合 hello hello 組合所定義的連接數目。 依預設會隨機產生加權。  
 
-加權值會依目的地節點索引分組。 也就是說，如果第一個目的地節點連接到 *K* 個來源節點，則**加權** Tuple 的前 K 個項目將會是第一個目的地節點的加權 (依來源索引順序)。 其餘目的地節點也適用相同的原則。  
+加權值被分組 hello 目的節點的索引。 亦即，如果第一個目的地節點 hello 連接花費了來源節點，第一次 hello *K* hello 的項目**加權**tuple 會 hello 第一個目的地節點，在來源索引順序中的 hello 加權。 這同樣適用於 hello 其餘目的地節點的 hello。  
 
-可以直接指定加權當做常數值。 比方說，如果您先前已了解比重，您可以使用此語法將它們指定為常數：
+很可能 toospecify 加權做為常數值。 例如，如果您先前所學 hello 加權，您可以指定它們為使用此語法的常數：
 
     const Weights_1 = [0.0188045055, 0.130500451, ...]
 
 
 ## <a name="convolutional-bundles"></a>迴旋套組
-當訓練資料具有同質結構時，迴旋連線通常會用來學習資料的高階特性。 例如，在影像、音訊或視訊資料中，空間或暫時維度可能會相當一致。  
+Hello 定型資料具有同質性結構時，convolutional 連線是常用的 toolearn hello 資料的高層級的功能。 例如，在影像、音訊或視訊資料中，空間或暫時維度可能會相當一致。  
 
-迴旋套組採用滑經維度的矩形**核心**。 基本上，每個核心會定義一組在本端鄰區中套用的加權，稱為**核心應用程式**。 每個核心應用程式都會對應至來源層中名為**中心節點**的節點。 一個核心的加權會在許多連線間共用。 在迴旋套組中，每個核心都是矩形，且所有核心應用程式的大小皆相同。  
+Convolutional 組合運用矩形**核心**，slid hello 維度。 基本上，每個核心定義一組的本機公寓，參照 tooas 中套用的權數**核心應用程式**。 每個核心應用程式對應 hello 來源層級，也就是參考的 tooas hello tooa 節點**中央節點**。 核心 hello 加權會共用連線數目。 在 convolutional 的組合，每個核心是矩形，而所有的核心應用程式都 hello 相同大小。  
 
-迴旋套組支援下列屬性：
+Convolutional 組合支援 hello 下列屬性：
 
-**InputShape** 會針對此迴旋套組的用途，定義來源層的維度。 其值必須是正整數的 Tuple。 整數的乘積必須等於來源層中的節點數目，但另一方面並不需要符合為來源層宣告的維度。 此 Tuple 的長度會成為迴旋套組的 **Arity** 值。 (Arity 通常會參照一個函數可取用的引數或運算元數目。)  
+**InputShape**定義 hello 這個 convolutional 配套 hello 基於 hello 來源層級的維度性。 hello 值必須是正整數的 tuple。 hello 產品的 hello 整數必須等於 hello hello 來源圖層中的節點數目，但反之則不需要為 hello 來源層級宣告的 toomatch hello 維度性。 這個 tuple 的 hello 長度會變成 hello **arity** hello convolutional 組合的值。 （通常 arity 參照 toohello 數目之引數或函式可以接受的運算元）。  
 
-若要定義核心的形狀和位置，請使用 **KernelShape**、**Stride**、**Padding**、**LowerPad** 和 **UpperPad** 等屬性：   
+toodefine hello 圖形和位置 hello 核心使用 hello 屬性**KernelShape**， **Stride**，**填補**， **LowerPad**，和**UpperPad**:   
 
-* **KernelShape**：(必要) 定義迴旋套組各個核心的維度。 其值必須是長度等於套組 Arity 之正整數的 Tuple。 此 Tuple 的每個元件皆不可大於 **InputShape** 的對應元件。 
-* **Stride**：(選用) 定義迴旋的滑動步階大小 (每個維度的步階大小)，即中心節點之間的距離。 其值必須是長度為套組 Arity 之正整數的 Tuple。 此 Tuple 的每個元件皆不可大於 **KernelShape** 的對應元件。 預設值是所有元件皆等於一的 Tuple。 
-* **Sharing**：(選用) 為迴旋的每個維度定義加權共用。 其值可以是單一布林值，或是長度為套組 Arity 之布林值的 Tuple。 單一布林值可擴充為具有正確長度、所有元件皆等於指定值的 Tuple。 預設值是全部由 True 值組成的 Tuple。 
-* **MapCount**：(選用) 定義迴旋套組的特性對應數目。 其值可以是單一正整數，或是長度為套組 Arity 之正整數的 Tuple。 單一整數值可擴充為具有正確長度、第一個元件皆等於指定值且其餘元件皆等於一的 Tuple。 預設值為一。 特性對應的總數是 Tuple 元件的乘積。 各個元件的此一總數經過因式分解後，將決定特性對應值在目的地節點中的分組方式。 
-* **Weights**：(選用) 定義套組的初始加權。 其值必須是長度為核心數目乘以每個核心的加權數目之浮點值的 Tuple，如本文稍後的定義。 預設加權會隨機產生。  
+* **KernelShape**: hello convolutional 組合的每個核心的 （必要） 定義 hello 維度性。 hello 值必須是正整數長度等於 hello arity hello 組合的 tuple。 這個 tuple 的每個元件必須等於或小於 hello 對應元件的**InputShape**。 
+* **Stride**: （選擇性） 定義 hello 滑動 hello hello 中央節點之間的距離 hello convolution （每個維度的一個步驟大小） 的步驟大小。 hello 值必須是正整數 hello 組合的 hello arity 長度的 tuple。 這個 tuple 的每個元件必須等於或小於 hello 對應元件的**KernelShape**。 hello 預設值是與所有元件等於 tooone tuple。 
+* **共用**: （選擇性） 的定義 hello 權數分享 hello convolution 的每個維度。 hello 值可以是單一的布林值或長度是 hello arity hello 組合的布林值的 tuple。 單一布林值是擴充的 toobe hello 與所有元件的正確長度的 tuple toohello 等於指定的值。 hello 預設值是 tuple 所組成，則為 True 的所有值。 
+* **MapCount**: hello convolutional 組合對應 （選擇性） 定義 hello 數項功能。 hello 值可以是單一的正整數或 tuple 的長度是 hello arity hello 組合的正整數。 一個整數值擴充 toobe hello 與 hello 第一個元件等於 toohello 的正確長度的 tuple 指定值與所有 hello 其餘元件等於 tooone。 hello 預設值為 1。 hello 總數的對應功能是 hello 產品的 hello tuple 的 hello 元件。 此總數的分解 hello 元件之間的 hello 決定 hello 功能對應值 hello 目的地節點中分組的方式。 
+* **加權**: （選擇性） 定義 hello 初始的加權 hello 組合。 hello 值必須是 tuple 的浮點值是核心時間的每個核心，加權 hello 數目的 hello 數目，如本文稍後所定義的長度。 隨機產生的 hello 預設權數。  
 
-有兩組屬性控制填補，這些屬性互斥：
+有兩個集合的控制與邊框距離 hello 屬性正在互斥的屬性：
 
-* **Padding**：(選用) 決定是否應使用**預設的填補配置**填補輸入。 其值可以是單一布林值，或是長度為套組 Arity 之布林值的 Tuple。 單一布林值可擴充為具有正確長度、所有元件皆等於指定值的 Tuple。 如果維度的值為 True，則來源在邏輯上會以零值儲存格在該維度中進行填補，以支援其他核心應用程式，使該維度中第一個和最後一個核心的中心節點成為該維度在來源層中的第一個和最後一個節點。 據此將會自動產生每個維度中的「虛擬」節點數目，以將 *(InputShape[d] - 1) / Stride[d] + 1* 個核心配適到已填補的來源層中。 如果維度的值為 False，則在定義核心時，會使每一端排除的節點數目保持相同 (差距不會超過 1 個)。 此屬性的預設值是所有元件皆為 False 的 Tuple。
-* **UpperPad** 和 **LowerPad**：(選用) 更能控制所要使用的填補量。 **重要事項：**只有在***未***定義上述的 **Padding** 屬性時，才能定義這些屬性。 其值應為長度為套組 Arity 的整數值 Tuple。 在指定這些屬性時，將會在輸入層各個維度的下端和上端新增「虛擬」節點。 在每個維度中的下端和上端新增的節點數目，分別取決於 **LowerPad**[i] 和 **UpperPad**[i]。 若要確定核心只會對應至「實際」節點而非「虛擬」節點，必須要符合下列條件：
+* **填補**: （選擇性） 決定應該湊足 hello 的輸入是否使用**預設填補配置**。 hello 值可以是單一的布林值，或長度是 hello arity hello 組合的布林值的 tuple。 單一布林值是擴充的 toobe hello 與所有元件的正確長度的 tuple toohello 等於指定的值。 如果維度 hello 值為 True，hello 來源邏輯填補與零值資料格 toosupport 額外的核心應用程式，該維度中的 hello 的 hello 該維度中的第一個和最後一個核心的中央節點 hello 第一個和最後一個節點hello 來源層級中的維度。 因此，每個維度中的"dummy"節點的 hello 數目不會自動決定，toofit 完全*(InputShape [d]-1) / Stride [d] + 1*到 hello 填補來源層級的核心。 如果維度 hello 值為 False，hello 核心定義，因此 hello 中省略了每一端上的節點數目是 hello 相同 （向上 tooa 差異為 1）。 hello 這個屬性的預設值是與所有元件等於 tooFalse tuple。
+* **UpperPad**和**LowerPad**: （選擇性） 提供較大的控制權 hello 填補 toouse 數量。 **重要事項：**可以定義這些屬性，並且在 hello**填補**上述的屬性是***不***定義。 hello 值應該是整數值 tuple 的 hello arity hello 組合的長度。 當指定這些屬性時，"dummy"節點可加入 toohello 較低，與 hello 的每個維度的上限結束輸入層。 hello 的節點數目加入 toohello 較低而且在每個維度中的上方結束由**LowerPad**[i] 和**UpperPad**[i] 分別。 必須符合 tooensure 的核心對應至僅太 「 實際的 「 節點與不太"dummy"的節點，hello 下列條件：
   * **LowerPad** 的每個元件皆務必小於 KernelShape[d]/2。 
   * **UpperPad** 的每個元件皆不可大於 KernelShape[d]/2。 
-  * 這些屬性的預設值是所有元件皆等於 0 的 Tuple。 
+  * 這些屬性的 hello 預設值是與所有元件等於 too0 tuple。 
 
-**Padding** = true 設定允許可將核心的「中心」保持在「真實」輸入內所需的填補量。 這麼做會略為改變輸出大小的計算方式。 一般而言，輸出大小 *D* 的計算方式為 *D = (I - K) / S + 1*，其中 *I* 是輸入大小，*K* 是核心大小，*S* 是分散，而 */* 是整數除法 (趨近於零)。 如果您設定 UpperPad = [1, 1]，輸入大小 *I* 實際上是 29，因此 *D = (29 - 5) / 2 + 1 = 13*。 不過，當 **Padding** = true 時，基本上 *I* 會藉由 *K - 1* 而提高；因此 *D = ((28 + 4) - 5) / 2 + 1 = 27 / 2 + 1 = 13 + 1 = 14*。 藉由指定 **UpperPad** 和 **LowerPad** 的值，您對填補的控制權會遠遠超過只設定 **Padding** = true。
+hello 設定**填補**= true 可讓多填補現狀視 tookeep hello"center"hello 核心的"real"輸入 hello 內。 這樣會變更 hello 數學運算 hello 輸出大小的位元。 一般而言，hello 輸出大小*D*計算方式為*D = (I-K) / S + 1*，其中*我*hello 輸入大小， *K* hello 核心大小， *S*是 hello 分散和 */* 是整數除法 （圓趨近於零）。 如果您設定 UpperPad = [1，1] hello 輸入大小*我*實際上是 29，因此*D = (29-5) / 2 + 1 = 13*。 不過，當 **Padding** = true 時，基本上 *I* 會藉由 *K - 1* 而提高；因此 *D = ((28 + 4) - 5) / 2 + 1 = 27 / 2 + 1 = 13 + 1 = 14*。 藉由指定的值**UpperPad**和**LowerPad**取得更多控制權填補比您剛才設定的 hello**填補**= true。
 
 如需迴旋網路及其應用程式的詳細資訊，請參閱下列文章：  
 
@@ -203,11 +203,11 @@ Net# 支援多種不同的連線套組，可讓您自訂輸入對應至隱藏層
 * [http://people.csail.mit.edu/jvb/papers/cnn_tutorial.pdf](http://people.csail.mit.edu/jvb/papers/cnn_tutorial.pdf)  
 
 ## <a name="pooling-bundles"></a>集區套組
-**集區套組**會套用類似於迴旋連線的幾何圖形，但會對來源節點值使用預先定義的函數，以衍生目的地節點值。 因此，集區套組並沒有可訓練的狀態 (加權或偏差)。 集區套組支援 **Sharing**、**MapCount** 和 **Weights** 以外的所有迴旋屬性。  
+A**共用配套**適用於幾何類似 tooconvolutional 連線，但是它會使用預先定義的函式 toosource 節點值 tooderive hello 目的地節點值。 因此，集區套組並沒有可訓練的狀態 (加權或偏差)。 共用組合支援所有 hello convolutional 屬性除了**共用**， **MapCount**，和**加權**。  
 
-一般而言，以相鄰集區單元彙總的核心並不會重疊。 如果每個維度中的 Stride[d] 皆等於 KernelShape[d]，則取得的層將會是傳統本端集區層，這通常運用在迴旋類神經網路中。 每個目的地節點都會計算其核心在來源層中的活動數上限或平均值。  
+一般而言，相鄰的集區單元的摘要 hello 核心不會重疊。 如果每個維度中的相等 tooKernelShape [d] [d] 的分散，取得 hello 層是 hello 傳統本機共用層，其通常會採用 convolutional 類神經網路。 每個目的地節點計算最大的 hello 或 hello 活動，其核心 hello 來源層級中的 hello 平均值。  
 
-以下透過範例說明集區套組： 
+hello 下列範例將說明共用的組合： 
 
     hidden P1 [5, 12, 12]
       from C1 max pool {
@@ -216,10 +216,10 @@ Net# 支援多種不同的連線套組，可讓您自訂輸入對應至隱藏層
         Stride      = [ 1,  2,  2];
       }  
 
-* 套組的 Arity 為 3 (Tuple **InputShape**、**KernelShape** 和 **Stride** 的長度)。 
-* 來源層中的節點數目為 *5 * 24 * 24 = 2880*。 
+* hello 組合的 hello arity 為 3 (hello 長度的 hello tuple **InputShape**， **KernelShape**，和**Stride**)。 
+* hello hello 來源層的節點數目是*5 * 24 * 24 = 2880*。 
 * 這是傳統本端集區層，因為 **KernelShape** 和 **Stride** 是相等的。 
-* 目的地層中的節點數目為 *5 * 12 * 12 = 1440*。  
+* hello hello 目的地層的節點數目是*5 * 12 * 12 = 1440*。  
 
 如需集區層的詳細資訊，請參閱下列文章：  
 
@@ -228,26 +228,26 @@ Net# 支援多種不同的連線套組，可讓您自訂輸入對應至隱藏層
 * [http://cs.nyu.edu/~koray/publis/jarrett-iccv-09.pdf](http://cs.nyu.edu/~koray/publis/jarrett-iccv-09.pdf)
 
 ## <a name="response-normalization-bundles"></a>回應正規化套組
-**回應正規化**是一種本端正規化配置，最早是由 Geoffrey Hinton 等人發表於 [ImageNet Classiﬁcation with Deep Convolutional Neural Networks](http://www.cs.toronto.edu/~hinton/absps/imagenet.pdf) 報告中。 回應正規化可用來輔助類神經網路中的一般化。 當一個神經元在非常高的啟動層級上引發時，本端回應正規化層將會抑制周遭神經元的啟動層級。 此動作會使用三個參數 (***α***、***β*** 和 ***k***) 與迴旋結構 (或鄰區分布型態) 來完成。 目的地層中的每個神經元 ***y***，會分別對應至來源層中的一個神經元 ***x***。 ***y*** 的啟用層級來自於下列公式，其中，***f*** 是神經元的啟用層級，***Nx*** 是核心 (或是包含 ***x*** 的鄰區中各神經元的集合)，如下列迴旋結構所定義：  
+**回應正規化**是首次推出的 Geoffrey Hinton 本機正規化配置 box hello 份文件中[深層 Convolutional 的類神經網路與 ImageNet Classiﬁcation](http://www.cs.toronto.edu/~hinton/absps/imagenet.pdf)。 回應 「 正規化 」 是在類神經網路使用的 tooaid 一般化。 當另一個神經會引發在極高的啟用層級時，本機回應正規化圖層會隱藏周圍神經 hello hello 啟用層級。 此動作會使用三個參數 (***α***、***β*** 和 ***k***) 與迴旋結構 (或鄰區分布型態) 來完成。 Hello 目的地階層中的每一個神經***y***對應 tooa 神經***x*** hello 來源層級中。 hello 的啟用層級***y*** hello 下列公式，就會提供其中***f*** hello 啟用層級的神經，以及***Nx*** hello 核心 （或 hello 集，其中包含 hello中的 hello 鄰居神經***x***)，如下列 convolutional 結構 hello 所定義：  
 
 ![][1]  
 
-回應正規化套組支援 **Sharing**、**MapCount** 和 **Weights** 以外的所有迴旋屬性。  
+回應正規化組合支援所有的 hello convolutional 屬性除了**共用**， **MapCount**，和**加權**。  
 
-* 如果核心包含與 ***x*** 位於相同對應中的神經元，則正規化配置稱為**相同對應正規化**。 若要定義相同對應正規化，**InputShape** 中的第一個座標必須具有值 1。
-* 如果核心包含與 ***x*** 位於相同空間位置中的神經元，但這些神經元位於其他對應中，則此正規化配置稱為**跨對應正規化**。 這種類型的回應正規化會實作實際神經元的類型所衍生出來的一種橫向抑制，而在不同對應上運算的神經元輸出之間產生對大量啟用層級的競用。 若要定義跨對應正規化，第一個座標必須是大於一、且不大於對應數的整數，而其餘座標必須具有值 1。  
+* 如果 hello 核心包含神經 hello 相同將對應為***x***，hello 正規化配置是參照的 tooas**相同對應正規化**。 toodefine 相同對應中的 hello 第一個座標的正規化**InputShape**必須 hello 值 1。
+* 如果 hello 核心包含神經 hello 相同空間位置***x***，但 hello 神經位於其他對應，稱為 hello 正規化配置**透過對應正規化**。 這類回應正規化會實作一種橫向 inhibition hello 類型中實際的神經，找到建立大啟用層級，在計算的不同對應的神經輸出之間的競爭所啟發。 跨 toodefine 對應正規化、 hello 第一個座標必須是大於 1 且不大於對應的 hello 數目的整數和 hello 座標 hello 其餘部分都必須有 hello 值 1。  
 
-回應正規化套組會將預先定義的函數套用至來源節點值以決定目的地節點值，因此並不具有可訓練的狀態 (加權或偏差)。   
+回應正規化組合套用預先定義的函式 toosource 節點值 toodetermine hello 目的地節點值，因為它們會有任何 trainable 的狀態 （「 加權 」 或 「 徵才偏差 」）。   
 
-**警示**：目的地層中的節點會對應至在核心中作為中心節點的神經元。 例如，如果 KernelShape[d] 為奇數，則 *KernelShape[d]/2* 會對應至中心核心節點。 如果 *KernelShape[d]* 為偶數，則中央節點位於 *KernelShape[d]/2 - 1*。 因此，如果 **Padding**[d] 為 False，則第一個和最後一個 *KernelShape[d]/2* 的節點在目的地層中沒有對應的節點。 若要避免發生此狀況，請將 **Padding** 定義為 [true, true, …, true]。  
+**警示**: hello 目的地階層中的 hello 節點對應 tooneurons 屬於 hello 的 hello 核心的中央節點。 例如，如果 KernelShape [d] 是奇數，則*KernelShape [d] / 2*對應 toohello 中央核心節點。 如果*KernelShape [d]*是奇數，hello 中央節點位於*KernelShape [d] / [2-1*。 因此，如果**填補**[d] 為 False 時，第一次 hello 和上次 hello *KernelShape [d] / 2*節點 hello 目的圖層中沒有對應的節點。 tooavoid 這種情況下，定義**填補**做為 [為 true，true，...，true]。  
 
-除了前述的四個屬性以外，回應正規化套組也支援下列屬性：  
+此外 toohello 四個屬性稍早所述，回應正規化組合也支援 hello 下列屬性：  
 
-* **Alpha**：(必要) 指定在前述公式中對應至 ***α*** 的浮點值。 
-* **Beta**：(必要) 指定在前述公式中對應至 ***β*** 的浮點值。 
-* **Offset**：(選用) 指定在前述公式中對應至 ***k*** 的浮點值。 其預設值為 1。  
+* **Alpha**: （必要） 指定浮點值，對應太***α*** hello 先前公式中。 
+* **Beta**: （必要） 指定浮點值，對應太***β*** hello 先前公式中。 
+* **位移**: （選擇性） 指定浮點值，對應太***k*** hello 先前公式中。 預設 too1。  
 
-下列範例將定義使用這些屬性的回應正規化套組：  
+hello 下列範例會定義使用這些屬性的回應正規化組合：  
 
     hidden RN1 [5, 10, 10]
       from P1 response norm {
@@ -257,12 +257,12 @@ Net# 支援多種不同的連線套組，可讓您自訂輸入對應至隱藏層
         Beta = 0.75;
       }  
 
-* 來源層包含五個對應，每個對應有 12x12 的維度，共計有 1440 個節點。 
-* **KernelShape** 的值指出這是相同對應正規化層，其中，鄰區為 3x3 矩形。 
-* **Padding** 的預設值為 False，因此目的地層的每個維度中只有 10 個節點。 若要在目的地層中加入一個與來源層中的每個節點相對應的節點，請新增 Padding = [true, true, true]，並將 RN1 的大小變更為 [5, 12, 12]。  
+* hello 來源圖層都包含五個對應，各有很少維度為 12 x 12，加總 1440年節點中。 
+* hello 值**KernelShape**指出這是相同的對應正規化層，其中 hello 上的芳鄰 是 3x3 矩形。 
+* hello 預設值是**填補**為 False，因此 hello 目的圖層的每個維度中的 10 個節點。 tooinclude 對應 tooevery 節點在 hello 來源層中，加入填補的 hello 目的地層中的一個節點 = [為 true，true，true]。和太變更 RN1 hello 大小 [5、 12、 12]。  
 
 ## <a name="share-declaration"></a>共用宣告
-Net# 可選擇性地支援以共用加權定義多個套組的作業。 任何兩個套組如果具有相同的結構，即可共用加權。 下列語法定義使用共用加權的套組：  
+Net# 可選擇性地支援以共用加權定義多個套組的作業。 如果其結構是 hello 相同，您可以共用任何兩個組合的 hello 加權。 hello，請使用下列語法會定義使用共用的加權的組合：  
 
     share-declaration:
         share    {    layer-list    }
@@ -290,7 +290,7 @@ Net# 可選擇性地支援以共用加權定義多個套組的作業。 任何�
     layer-name:
         identifier  
 
-例如，下列共用宣告會指定層名稱，指出應同時共用加權和偏差：  
+例如，hello 下列共用宣告指定 hello 圖層名稱，表示應該共用加權和徵才偏差：  
 
     Const {
       InputSize = 37;
@@ -310,9 +310,9 @@ Net# 可選擇性地支援以共用加權定義多個套組的作業。 任何�
     }
     share { H1, H2 } // share both weights and biases  
 
-* 輸入特性會分割為兩個大小相等的輸入層。 
-* 接著，隱藏層會對兩個輸入層計算層級較高的特性。 
-* 共用宣告會指定 *H1* 和 *H2* 必須由其各自的輸入以相同方式計算。  
+* hello 的輸入的特徵會分割成兩個相等大小輸入層。 
+* hello 隱藏圖層計算 hello 兩個輸入的圖層上更高的層級功能。 
+* hello 共用宣告指定*H1*和*H2*必須計算 hello 中相同的方式，從其個別的輸入。  
 
 或者，這也可以用兩個不同的共用宣告來指定，如下所示：  
 
@@ -322,59 +322,59 @@ Net# 可選擇性地支援以共用加權定義多個套組的作業。 任何�
 
     share { 1 => H1, 1 => H2 } // share biases  
 
-只有當層中包含單一套組時，才可以使用速記格式。 一般而言，只有在相關結構完全相同，也就是具有相同大小、相同迴旋幾何等等時，才能使用共用。  
+您可以在 hello 圖層包含單一配套時，才使用 hello 簡短形式。 一般情況下，共用時，可能只 hello 相關的結構完全相同，這表示它們有相同的大小相同 convolutional geometry、 和等的 hello。  
 
 ## <a name="examples-of-net-usage"></a>Net# 的使用範例
-本節將透過幾個範例，說明如何使用 Net# 來新增隱藏層、定義隱藏層與其他層的互動方式，以及建置迴旋網路。   
+本節提供一些範例，告訴您可以使用 Net # tooadd 隱藏圖層上，定義 hello 方式隱藏的層互動的其他圖層，並建置 convolutional 網路。   
 
 ### <a name="define-a-simple-custom-neural-network-hello-world-example"></a>定義簡易的自訂類神經網路："Hello World" 範例
-這個簡易範例將說明如何建立具有單一隱藏層的類神經網路模型。  
+這個簡單的範例示範如何 toocreate 的類神經網路模型有單一隱藏的層。  
 
     input Data auto;
     hidden H [200] from Data all;
     output Out [10] sigmoid from H all;  
 
-此範例說明某些基本命令，如下所示：  
+hello 範例將說明一些基本命令，如下所示：  
 
-* 第一行會定義輸入層 (名為*資料*)。 當您使用**自動**關鍵字，類神經網路會自動包含輸入範例中的所有功能資料行。 
-* 第二行會建立隱藏層。 隱藏層會被指派名稱 *H*，其中包含 200 個節點。 此層會與輸入層完全相連。
-* 第三行定義輸出層 (名為 *O*)，其中包含 10 個輸出節點。 如果類神經網路用於分類，每個類別會有一個輸出節點。 關鍵字 **sigmoid** 指出套用至輸出層的輸出函數。   
+* hello 第一行定義 hello 輸入的層 (名為*資料*)。 當您使用 hello**自動**關鍵字，hello 類神經網路會自動在 hello 輸入範例中包含所有特徵資料行。 
+* hello 第二行建立 hello 隱藏圖層。 hello 名稱*H*指派 toohello 隱藏的層，其具有 200 的節點。 此圖層是完全連接的 toohello 輸入的層。
+* hello 第三行定義 hello 輸出層 (名為*O*)，其中包含 10 個輸出節點。 如果 hello 類神經網路會用於分類，則每個類別的一個輸出節點。 hello 關鍵字**sigmoid**表示 hello 輸出函式是套用的 toohello 輸出層。   
 
 ### <a name="define-multiple-hidden-layers-computer-vision-example"></a>定義多個隱藏層：電腦願景範例
-下列範例說明如何定義略為複雜、具有多個自訂隱藏層的類神經網路。  
+hello 下列範例會示範如何 toodefine 稍微更為複雜的類神經網路，具有多個自訂的隱藏層。  
 
-    // Define the input layers 
+    // Define hello input layers 
     input Pixels [10, 20];
     input MetaData [7];
 
-    // Define the first two hidden layers, using data only from the Pixels input
+    // Define hello first two hidden layers, using data only from hello Pixels input
     hidden ByRow [10, 12] from Pixels where (s,d) => s[0] == d[0];
     hidden ByCol [5, 20] from Pixels where (s,d) => abs(s[1] - d[1]) <= 1;
 
-    // Define the third hidden layer, which uses as source the hidden layers ByRow and ByCol
+    // Define hello third hidden layer, which uses as source hello hidden layers ByRow and ByCol
     hidden Gather [100] 
     {
       from ByRow all;
       from ByCol all;
     }
 
-    // Define the output layer and its sources
+    // Define hello output layer and its sources
     output Result [10]  
     {
       from Gather all;
       from MetaData all;
     }  
 
-此範例說明類神經網路規格語言的幾項特性：  
+這個範例將說明 hello 類神經網路規格語言的數個功能：  
 
-* 此結構具有兩個輸入層：*Pixels* 和 *MetaData*。
-* *Pixels* 層是兩個連線套組的來源層，其目的地層為 *ByRow* 和 *ByCol*。
-* *Gather* 層和 *Result* 層是多個連線套組中的目的地層。
-* 輸出層 *Result* 是兩個連線套組中的目的地層；一個套組以第二層級的隱藏層 (Gather) 作為目的地層，另一個套組以輸入層 MetaData 作為目的地層。
-* 隱藏層 *ByRow* 和 *ByCol* 使用述詞運算式指定篩選連線。 更精確地說，在 [x, y] 上，*ByRow* 中的節點會連接到 *Pixels* 中第一個索引座標等於節點的第一個座標 x 的節點。 同樣地，*在 [x, y] 上，ByCol 中的節點會連接到 _Pixels* 中在其中一個節點的第二個座標 y 內具有第二個索引座標的節點。  
+* hello 結構有兩個輸入的圖層，*像素為單位*和*中繼資料*。
+* hello*像素為單位*層是兩個連線組合，來源層級與目的地層*ByRow*和*ByCol*。
+* hello 層*收集*和*結果*目的地層中多個連接的組合。
+* hello 輸出層中，*結果*，目的地階層中兩個連線組合，則為其中一個 hello 與第二層做為目的圖層的 隱藏 （收集） 和其他 hello 輸入層 （中繼資料） 與 hello 做為目的地階層。
+* hello 隱藏的層， *ByRow*和*ByCol*，已篩選的連線使用指定的述詞運算式。 更明確地說，在 hello 節點*ByRow*在 [x，y] 是在連接的 toohello 節點*像素為單位*具有 hello 第一個索引座標等於 toohello 節點的第一個座標，x。 同樣地，在 hello 節點*ByCol 在 [x，y] 是在 _Pixels 連接的 toohello 節點*hello 第二個索引座標的 hello 節點的第二個座標，其中一個內有 y。  
 
 ### <a name="define-a-convolutional-network-for-multiclass-classification-digit-recognition-example"></a>定義多類別分類的迴旋網路：數字辨識範例
-下列網路的定義設計來辨識數字，說明自訂類神經網路的某些進階技術。  
+hello hello 遵循網路定義是設計的 toorecognize 數字，它會說明一些進階的技術，用於自訂類神經網路。  
 
     input Image [29, 29];
     hidden Conv1 [5, 13, 13] from Image convolve 
@@ -397,21 +397,21 @@ Net# 可選擇性地支援以共用加權定義多個套組的作業。 任何�
     output Digit [10] from Hid3 all;  
 
 
-* 此結構具有單一輸入層：*Image*。
-* 關鍵字 **convolve** 指出名為 *Conv1* 和 *Conv2* 的層為迴旋層。 這些層宣告的後面分別會加上一份迴旋屬性清單。
-* 網路具有第三個隱藏層 *Hid3*，與第二個隱藏層 *Conv2* 完全相連。
-* 輸出層 *Digit* 僅連接到第三個隱藏層 *Hid3*。 關鍵字 **all** 指出輸出層與 *Hid3* 完全相連。
-* 迴旋的 Arity 為三 (Tuple **InputShape**、**KernelShape**、**Stride** 和 **Sharing** 的長度)。 
-* 每個核心的加權數目為 *1 + **KernelShape**\[0] * **KernelShape**\[1] * **KernelShape**\[2] = 1 + 1 * 5 * 5 = 26。或是 26 * 50 = 1300*。
-* 您可以用下列方式計算每個隱藏層中的節點數：
+* hello 結構具有單一輸入的層中，*映像*。
+* hello 關鍵字**convolve**指出 hello 圖層命名*Conv1*和*Conv2* convolutional 層。 每個這些圖層的宣告後面的 hello convolution 屬性清單。
+* hello net 有第三個隱藏層， *Hid3*，也就是完全連接 toohello 第二個隱藏的層， *Conv2*。
+* hello 輸出層中，*位數*，是連接的唯一 toohello 第三個隱藏的層， *Hid3*。 hello 關鍵字**所有**指出該 hello 輸出層完全連接太*Hid3*。
+* hello 的 hello convolution arity 是三 (hello 長度的 hello tuple **InputShape**， **KernelShape**， **Stride**，和**共用**)。 
+* 每個核心的加權的 hello 數目是*1 + **KernelShape**\[0] * **KernelShape**\[1] * **KernelShape** \[2] = 1 + 1 * 5 * 5 = 26。或是 26 * 50 = 1300*。
+* 您可以計算每個隱藏層中的 hello 節點，如下所示：
   * **NodeCount**\[0] = (5 - 1) / 1 + 1 = 5.
   * **NodeCount**\[1] = (13 - 5) / 2 + 1 = 5。 
   * **NodeCount**\[2] = (13 - 5) / 2 + 1 = 5。 
-* 節點總數可使用該層的宣告維度 [50, 5, 5] 來計算，如下所示：***MapCount** * **NodeCount**\[0] * **NodeCount**\[1] * **NodeCount**\[2] = 10 * 5 * 5 * 5*
-* 由於只有 *d == 0* 時，**Sharing**[d] 才會是 False，因此核心數為 ***MapCount** * **NodeCount**\[0] = 10 * 5 = 50*。 
+* hello 的節點總數計算方式是使用宣告的 hello 維度 hello 圖層，[50，5，5]，如下所示：  ***MapCount** * **NodeCount** \[0] * **NodeCount**\[1] * **NodeCount**\[2] = 10 * 5 * 5 * 5*
+* 因為**共用**[d] 設為 False 僅適用於*d = = 0*，hello 核心的數目是 ***MapCount** * **NodeCount** \[0] = 10 * 5 = 50*。 
 
 ## <a name="acknowledgements"></a>通知
-自訂類神經網路架構的 Net# 語言是由 Shon Katzenberger (架構、機器學習服務) 和 Alexey Kamenev (軟體工程師、Microsoft Research) 在 Microsoft 開發。 它在內部用於機器學習服務專案與應用程式，範圍從映像偵測到文字分析。 如需詳細資訊，請參閱 [Azure ML 中的類神經網路 - Net# 簡介](http://blogs.technet.com/b/machinelearning/archive/2015/02/16/neural-nets-in-azure-ml-introduction-to-net.aspx)
+hello Net # 自訂類神經網路的 hello 架構的語言是由 Shon Katzenberger （架構設計人員、 機器學習） 和 Alexey Kamenev （軟體工程師，Microsoft Research） 開發在 Microsoft。 它供內部進行機器學習服務專案和應用程式，從映像偵測 tootext 分析。 如需詳細資訊，請參閱[在 Azure ML-簡介 tooNet # 類神經網路](http://blogs.technet.com/b/machinelearning/archive/2015/02/16/neural-nets-in-azure-ml-introduction-to-net.aspx)
 
 [1]:./media/machine-learning-azure-ml-netsharp-reference-guide/formula_large.gif
 

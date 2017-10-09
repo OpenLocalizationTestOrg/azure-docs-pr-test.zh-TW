@@ -1,5 +1,5 @@
 ---
-title: "ExpressRoute 客戶路由器組態範例 | Microsoft Docs"
+title: "aaaExpressRoute 客戶路由器組態範例 |Microsoft 文件"
 description: "此頁面提供適用於 Cisco 和 Juniper 路由器的路由器組態範例。"
 documentationcenter: na
 services: expressroute
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/10/2016
 ms.author: cherylmc
-ms.openlocfilehash: 83a7da2db537a3c900e90432455d59e8ac56d917
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b5faca0666bda6173e54abb0b6560d5f8bf8bfc2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="router-configuration-samples-to-set-up-and-manage-nat"></a>設定和管理 NAT 的路由器組態範例
-此頁面提供適用於 Cisco ASA 和 Juniper SRX 系列路由器的 NAT 組態範例。 這些範例僅可用作指引，不能依原樣使用。 您可以和廠商合作來擬定適合您網路的組態。 
+# <a name="router-configuration-samples-tooset-up-and-manage-nat"></a>路由器組態範例 tooset 註冊和管理 NAT
+此頁面提供適用於 Cisco ASA 和 Juniper SRX 系列路由器的 NAT 組態範例。 這些是預定的 toobe 適用於只指引的範例，而且必須不直接使用。 您可以使用廠商 toocome 適當設定為您的網路。 
 
 > [!IMPORTANT]
-> 此頁面中的範例純粹只用作指引。 您必須和廠商的業務人員 / 技術小組及您的網路團隊合作，來擬定適當的組態以符合您的需求。 Microsoft 將不支援此頁面中所列組態的相關問題。 您必須連絡您的裝置廠商來支援問題。
+> 在這個頁面中的範例是預定的 toobe 只提供指引。 您必須使用供應商的銷售 / 技術團隊和您網路小組 toocome 設定適當的組態 toomeet 與您的需求。 Microsoft 將不支援問題相關 tooconfigurations 列在這個頁面。 您必須連絡您的裝置廠商來支援問題。
 > 
 > 
 
-* 下列路由器組態範例適用於 Azure Public 與 Microsoft 對等互連。 您必須設定 Azure 私人對等互連的 NAT。 如需詳細資訊，請檢閱 [ExpressRoute 對等互連](expressroute-circuit-peerings.md)和 [ExpressRoute NAT 需求](expressroute-nat.md)。
+* 下面的路由器組態範例套用 tooAzure 公用及 Microsoft 對等互連。 您必須設定 Azure 私人對等互連的 NAT。 如需詳細資訊，請檢閱 [ExpressRoute 對等互連](expressroute-circuit-peerings.md)和 [ExpressRoute NAT 需求](expressroute-nat.md)。
 
-* 您必須使用個別的 NAT IP 集區來連線至網際網路和 ExpressRoute。 在網際網路與 ExpressRoute 中使用相同的 NAT IP 集區，將會導致非對稱路由和連線中斷。
+* 您必須使用 NAT IP 集區的個別連線 toohello 網際網路和 ExpressRoute。 使用相同的 NAT IP 集區之間的 hello hello 網際網路和 ExpressRoute 會導致非對稱的路由和連線中斷。
 
 
 ## <a name="cisco-asa-firewalls"></a>Cisco ASA 防火牆
-### <a name="pat-configuration-for-traffic-from-customer-network-to-microsoft"></a>適用於從客戶網路至 Microsoft 之流量的 PAT 組態
+### <a name="pat-configuration-for-traffic-from-customer-network-toomicrosoft"></a>從客戶網路 tooMicrosoft 流量 PAT 組態
     object network MSFT-PAT
       range <SNAT-START-IP> <SNAT-END-IP>
 
@@ -54,12 +54,12 @@ ms.lasthandoff: 07/11/2017
 
     nat (outside,inside) source dynamic on-prem pat-pool MSFT-PAT destination static MSFT-Range MSFT-Range
 
-### <a name="pat-configuration-for-traffic-from-microsoft-to-customer-network"></a>適用於從 Microsoft 至客戶網路之流量的 PAT 組態
+### <a name="pat-configuration-for-traffic-from-microsoft-toocustomer-network"></a>從 Microsoft toocustomer 網路流量的 PAT 組態
 
 **介面和方向：**
 
-    Source Interface (where the traffic enters the ASA): inside
-    Destination Interface (where the traffic exits the ASA): outside
+    Source Interface (where hello traffic enters hello ASA): inside
+    Destination Interface (where hello traffic exits hello ASA): outside
 
 **組態：**
 
@@ -87,10 +87,10 @@ NAT 命令：
 
 
 ## <a name="juniper-srx-series-routers"></a>Juniper SRX 系列路由器
-### <a name="1-create-redundant-ethernet-interfaces-for-the-cluster"></a>1.建立叢集的備援乙太網路介面
+### <a name="1-create-redundant-ethernet-interfaces-for-hello-cluster"></a>1.建立重複的乙太網路介面的 hello 叢集
     interfaces {
         reth0 {
-            description "To Internal Network";
+            description "tooInternal Network";
             vlan-tagging;
             redundant-ether-options {
                 redundancy-group 1;
@@ -103,13 +103,13 @@ NAT 命令：
             }
         }
         reth1 {
-            description "To Microsoft via Edge Router";
+            description "tooMicrosoft via Edge Router";
             vlan-tagging;
             redundant-ether-options {
                 redundancy-group 2;
             }
             unit 100 {
-                description "To Microsoft via Edge Router";
+                description "tooMicrosoft via Edge Router";
                 vlan-id 100;
                 family inet {
                     address <IP-Address/Subnet-mask>;
@@ -121,8 +121,8 @@ NAT 命令：
 
 ### <a name="2-create-two-security-zones"></a>2.建立兩個安全性區域
 * 內部網路的信任區域和外部網路面向邊緣路由器的未受信任區域
-* 將適當的介面指派給區域
-* 在介面上允許一些服務
+* 指派適當的介面 toohello 區域
+* 允許在 hello 介面上的服務
 
     security {       zones {           security-zone Trust {               host-inbound-traffic {                   system-services {                       ping;                   }                   protocols {                       bgp;                   }               }               interfaces {                   reth0.100;               }           }           security-zone Untrust {               host-inbound-traffic {                   system-services {                       ping;                   }                   protocols {                       bgp;                   }               }               interfaces {                   reth1.100;               }           }       }   }
 
@@ -159,8 +159,8 @@ NAT 命令：
 
 
 ### <a name="4-configure-nat-policies"></a>4.設定 NAT 原則
-* 建立兩個 NAT 集區。 一個集區將用於輸出到 Microsoft 的 NAT 流量，另一個集區則用於從 Microsoft 至客戶的 NAT 流量。
-* 建立各自流量的 NAT 規則
+* 建立兩個 NAT 集區。 其中一個會使用的 tooNAT 流量輸出 tooMicrosoft 和其他 Microsoft toohello 客戶。
+* TooNAT hello 個別流量建立規則
   
        security {
            nat {
@@ -183,7 +183,7 @@ NAT 命令：
                    }
                    rule-set Outbound_NAT {
                        from routing-instance Internal;
-                       to routing-instance External-ExpressRoute;
+                       toorouting-instance External-ExpressRoute;
                        rule SNAT-Out {
                            match {
                                source-address 0.0.0.0/0;
@@ -199,7 +199,7 @@ NAT 命令：
                    }
                    rule-set Inbound-NAT {
                        from routing-instance External-ExpressRoute;
-                       to routing-instance Internal;
+                       toorouting-instance Internal;
                        rule SNAT-In {
                            match {
                                source-address 0.0.0.0/0;
@@ -217,8 +217,8 @@ NAT 命令：
            }
        }
 
-### <a name="5-configure-bgp-to-advertise-selective-prefixes-in-each-direction"></a>5.設定 BGP 以通告每個方向的選擇性前置詞
-請參考 [路由組態範例 ](expressroute-config-samples-routing.md) 頁面中的範例。
+### <a name="5-configure-bgp-tooadvertise-selective-prefixes-in-each-direction"></a>5.在每個方向中設定 BGP tooadvertise 選擇性前置詞
+參考在 toosamples[路由組態範例](expressroute-config-samples-routing.md)頁面。
 
 ### <a name="6-create-policies"></a>6.建立原則
     routing-options {
@@ -316,5 +316,5 @@ NAT 命令：
     }
 
 ## <a name="next-steps"></a>後續步驟
-如需詳細資訊，請參閱〈 [ExpressRoute 常見問題集](expressroute-faqs.md) 〉。
+請參閱 hello [ExpressRoute 常見問題集](expressroute-faqs.md)如需詳細資訊。
 

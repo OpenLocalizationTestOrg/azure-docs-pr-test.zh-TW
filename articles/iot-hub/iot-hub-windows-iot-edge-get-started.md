@@ -1,6 +1,6 @@
 ---
-title: "開始使用 Azure IoT Edge (Windows) | Microsoft Docs"
-description: "如何在 Windows 機器上建置 Azure IoT Edge 閘道，並了解 Azure IoT Edge 中的重要概念，例如模組和 JSON 組態檔。"
+title: "aaaGet 開始使用 Azure IoT 邊緣 (Windows) |Microsoft 文件"
+description: "如何 toobuild Azure IoT 邊緣閘道在 Windows 電腦，並了解 Azure IoT 邊緣的索引鍵概念，例如模組和 JSON 組態檔。"
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -15,11 +15,11 @@ ms.workload: na
 ms.date: 06/07/2017
 ms.author: andbuc
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 5db39bab8e31a8e7026b34e72b4614b0f6f57772
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5dd13cbfc02eeb55d9f2dbffca5021f2624acf14
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="explore-azure-iot-edge-architecture-on-windows"></a>在 Windows 上探索 Azure IoT Edge 架構
 
@@ -27,16 +27,16 @@ ms.lasthandoff: 07/11/2017
 
 [!INCLUDE [iot-hub-iot-edge-install-build-windows](../../includes/iot-hub-iot-edge-install-build-windows.md)]
 
-## <a name="how-to-run-the-sample"></a>如何執行範例
+## <a name="how-toorun-hello-sample"></a>如何 toorun hello 範例
 
-**build.cmd** 指令碼會在 **iot-edge** 存放庫本機複本的 **build** 資料夾中產生其輸出。 這輸出包含在此範例中使用的兩個 IoT Edge 模組。
+hello **build.cmd**指令碼會產生其輸出中 hello**建置**hello 的本機複本中的資料夾**iot 邊緣**儲存機制。 此輸出會包含 hello 這個範例中使用兩個 IoT 邊緣模組。
 
-build 指令碼會將 **logger.dll** 放在 **build\\modules\\logger\\Debug** 資料夾中，並將 **hello\_world.dll** 放在 **build\\modules\\hello_world\\Debug** 資料夾中。 使用這些路徑作為**模組路徑**值，如下列 JSON 設定檔所示。
+hello 組建指令碼位置**logger.dll**在 hello**建置\\模組\\記錄器\\偵錯**資料夾和**hello\_world.dll**在 hello**建置\\模組\\hello_world\\偵錯**資料夾。 使用這些路徑 hello**模組路徑**值 hello 下列 JSON 設定檔中所示。
 
-hello\_world\_sample 程序會採用 JSON 組態檔的路徑作為命令列引數。 下列範例 JSON 檔案提供於 SDK 存放庫中 (位於 **samples\\hello\_world\\src\\hello\_world\_win.json**)。 除非您修改 build 指令碼以將 IoT Edge 模組或範例可執行檔放置在非預設位置，否則此組態檔將保有原始功能。
+hello hello\_世界\_範例程序需要 hello 路徑 tooa JSON 組態檔做為命令列引數。 hello 下列的範例 JSON 檔案中提供 hello SDK 儲存機制**範例\\hello\_世界\\src\\hello\_世界\_win.json**。 此設定檔運作，除非您修改 hello 模組建置指令碼 tooplace hello IoT 邊緣或範例在非預設位置中的可執行檔。
 
 > [!NOTE]
-> 模組路徑是相對於 hello\_world\_sample.exe 所在的目錄。 範例 JSON 組態檔的預設值為在目前的工作目錄中寫入 'log.txt'。
+> hello 模組路徑的相對 toohello 目錄，其中 hello hello\_世界\_sample.exe 所在。 hello 範例 JSON 組態檔的預設值 toowriting '.log.txt' 目前的工作目錄中。
 
 ```json
 {
@@ -71,9 +71,9 @@ hello\_world\_sample 程序會採用 JSON 組態檔的路徑作為命令列引�
 }
 ```
 
-1. 瀏覽至 **iot-edge** 存放庫的本機複本根中的 **build** 資料夾。
+1. 瀏覽 toohello**建置**資料夾中的 hello 本機副本的 hello 根**iot 邊緣**儲存機制。
 
-1. 執行以下命令：
+1. 執行下列命令的 hello:
 
     ```cmd
     samples\hello_world\Debug\hello_world_sample.exe ..\samples\hello_world\src\hello_world_win.json

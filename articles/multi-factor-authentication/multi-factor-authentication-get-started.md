@@ -1,6 +1,6 @@
 ---
-title: "選擇 Azure MFA 雲端或伺服器 | Microsoft Docs"
-description: "藉由提出我要保護什麼和使用者所在位置等問題，選擇最合適的 Multi-Factor Authentication 安全性解決方案。  然後選擇雲端、MFA Server 或 AD FS。"
+title: "Azure MFA 雲端或伺服器之間的 aaaChoose |Microsoft 文件"
+description: "選擇最適合您要求，我嘗試 toosecure 以及所在位置，我的使用者位於哪個 am hello 多重要素驗證安全性解決方案。  然後選擇雲端、MFA Server 或 AD FS。"
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 04/23/2017
 ms.author: kgremban
-ms.openlocfilehash: 6f8ee3449244b12d2c8b5714e6ad893e2f0b10ee
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bd9639e5f744f586d9143c6e90b105ed645eecb6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="choose-the-azure-multi-factor-authentication-solution-for-you"></a>選擇您的 Azure Multi-Factor Authentication 方案
-因為 Azure Multi-Factor Authentication (MFA) 的種類繁多，我們必須回答幾個問題，以找出最合適的版本。  這些問題如下：
+# <a name="choose-hello-azure-multi-factor-authentication-solution-for-you"></a>為您選擇 hello Azure 多因素驗證解決方案
+由於有數款的 Azure Multi-factor Authentication (MFA)，我們必須回答幾個問題 toofigure 哪一個版本是 hello 適當一個 toouse。  這些問題如下：
 
-* [我要保護什麼](#what-am-i-trying-to-secure)
-* [使用者位於何處](#where-are-the-users-located)
+* [什麼試著 toosecure](#what-am-i-trying-to-secure)
+* [Hello 使用者位於何處](#where-are-the-users-located)
 * [我需要哪些功能？](#what-featured-do-i-need)
 
-下列各節會提供如何確定以上問題之答案的指引。
+hello 下列各節提供指引判斷每個答案。
 
-## <a name="what-am-i-trying-to-secure"></a>我要保護什麼？
-為了判斷出正確的雙步驟驗證方案，首先我們必須回答一個問題：您試圖使用第二個驗證方法來保護什麼？  它是 Azure 中的應用程式嗎？  或是遠端存取系統？  藉由判斷我們嘗試保護的東西，我們可以對該在何處啟用 Multi-Factor Authentication 這個問題做出回答。  
+## <a name="what-am-i-trying-toosecure"></a>什麼試著 toosecure 嗎？
+toodetermine hello 正確的雙步驟驗證解決方案前必須回答什麼是您嘗試 toosecure 與驗證的第二個方法的 hello 問題了。  它是 Azure 中的應用程式嗎？  或是遠端存取系統？  藉由判斷我們正在嘗試 toosecure，我們可以回答 hello 的問題必須多因素驗證啟用的 toobe。  
 
-| 您想要保護什麼 | 雲端 MFA | MFA Server |
+| 您嘗試 toosecure 有哪些？ | Hello 雲端中的 MFA | MFA Server |
 | --- |:---:|:---:|
 | 第一方 Microsoft 應用程式 |● |● |
-| 應用程式資源庫中的 SaaS 應用程式 |● |  |
+| 在 hello 應用程式庫中的 SaaS 應用程式 |● |  |
 | 透過 Azure AD App Proxy 發佈的 Web 應用程式 |● |  |
 | 非透過 Azure AD App Proxy 發佈的 IIS 應用程式 | |● |
 | VPN、RDG 等遠端存取 | ● | ● |
 
-## <a name="where-are-the-users-located"></a>使用者位於何處
-接下來，查看使用者的所在位置有助於判斷出合適的解決方案，不論是雲端中或使用 MFA Server 的內部部署。
+## <a name="where-are-hello-users-located"></a>Hello 使用者位於何處
+接下來，查看我們的使用者位於何處 hello 定域機組中是否有助於 toodetermine hello 正確方案 toouse，，或使用內部 hello MFA Server。
 
-| 使用者位置 | 雲端 MFA | MFA Server |
+| 使用者位置 | Hello 雲端中的 MFA | MFA Server |
 | --- |:---:|:---:|
 | Azure Active Directory |● | |
 | Azure AD 和使用 AD FS 同盟的內部部署 AD |● |● |
@@ -52,9 +52,9 @@ ms.lasthandoff: 08/18/2017
 | 內部部署 Active Directory | |● |
 
 ## <a name="what-features-do-i-need"></a>我需要哪些功能？
-下表是雲端中 Multi-Factor Authentication 和 Multi-factor Authentication Server 的可用功能比較。
+hello 下表比較可用 hello 雲端中的多重要素驗證與 hello Multi-factor Authentication Server 的 hello 功能。
 
-| 功能 | 雲端 MFA | MFA Server |
+| 功能 | Hello 雲端中的 MFA | MFA Server |
 | --- |:---:|:---:|
 | 以行動應用程式通知做為第二個因素 | ● | ● |
 | 以行動應用程式驗證碼做為第二個因素 | ● | ● |
@@ -77,7 +77,7 @@ ms.lasthandoff: 08/18/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-既然我們已判斷出要使用雲端 Multi-Factor Authentication 或內部部署 MFA Server，接下來可以開始設定及使用 Azure Multi-Factor Authentication。 **選取代表您案例的圖示**
+既然我們判定是否 toouse 雲端 multi-factor authentication 或 hello MFA Server 內部部署，我們可以開始設定和使用 Azure Multi-factor Authentication。 **選取代表您的實例的 hello 圖示**
 
 <center>
 

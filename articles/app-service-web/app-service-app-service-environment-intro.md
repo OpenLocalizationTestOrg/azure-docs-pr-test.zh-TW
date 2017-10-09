@@ -1,6 +1,6 @@
 ---
-title: "App Service 環境 v1 簡介"
-description: "了解可提供安全、VNet 聯結、專用延展單位的 App Service 環境 v1 功能，以便執行您所有的應用程式。"
+title: "aaaIntroduction tooApp Service 環境 v1"
+description: "深入了解 hello App Service 環境 v1 功能，可提供安全、 VNet 聯結、 專用的擴充單元執行所有應用程式。"
 services: app-service
 documentationcenter: 
 author: stefsch
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: ccompy
-ms.openlocfilehash: 38cb79eb32bd61cdbfb6da91d50e6713d71a2b0d
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6e3cd1909b241887b5ec19412b9f7884d870cc3d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="introduction-to-app-service-environment-v1"></a>App Service 環境 v1 簡介
+# <a name="introduction-tooapp-service-environment-v1"></a>簡介 tooApp Service 環境 v1
 
 > [!NOTE]
-> 這篇文章是關於 App Service 環境 v1。  有較新版本的 App Service 環境，更易於使用，並且可以在功能更強大的基礎結構上執行。 若要深入了解新版本，請從 [App Service 環境簡介](../app-service/app-service-environment/intro.md)開始。
+> 這篇文章是關於 hello App Service 環境 v1。  沒有 hello App Service 環境更容易 toouse 且功能更強大的基礎結構上執行較新版本。 有關 hello 新版本的詳細資訊以 hello 開頭的 toolearn[簡介 toohello App Service 環境](../app-service/app-service-environment/intro.md)。
 > 
 
 ## <a name="overview"></a>概觀
@@ -36,56 +36,56 @@ App Service 環境是 Azure App Service 的[高階][PremiumTier]服務方案選�
 
 客戶可以在單一 Azure 區域，以及跨多個 Azure 區域中建立多個 App Service 環境。  這使得 App Service 環境很適合用來水平調整無狀態應用程式層的規模，以支援高 RPS 工作負載。
 
-App Service 環境已經過隔離，可執行只有單一客戶的應用程式，且一律會部署到虛擬網路。  客戶對於輸入和輸出的應用程式網路流量都有更細微的控制，且應用程式可以透過虛擬網路建立與內部部署公司資源的高速安全連線。
+App Service 環境隔離的 toorunning 只有單一客戶的應用程式，而且一律部署至虛擬網路。  客戶有更細微的控制網路流量都傳入和傳出應用程式，與應用程式可以建立安全的高速連線透過虛擬網路 tooon 內部公司資源。
 
-您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+所有發行項以及如何-將的有關應用程式服務環境位於 hello[讀我檔案的應用程式服務環境](../app-service/app-service-app-service-environments-readme.md)。
 
-如需 App Service Environment 如何提供高延展性和安全的網路存取的概觀，請參閱關於 App Service Environment 的 [AzureCon 深入探討][AzureConDeepDive]！
+如需如何應用程式服務環境啟用高擴充能力和保護概觀網路存取，請參閱 hello [AzureCon 深入探討][ AzureConDeepDive]應用程式服務環境 ！
 
-如需使用多個 App Service Environment 水平延展的深入探討，請參閱關於如何設定[地理位置分散的應用程式使用量][GeodistributedAppFootprint]一文。
+深入了解水平縮放比例使用多個應用程式服務環境請參閱 hello 文件如何 toosetup[地理分散的應用程式使用量][GeodistributedAppFootprint]。
 
-若要查看 AzureCon Deep Dive 中顯示之安全性架構的設定方式，請參閱有關使用 App Service Environment 實作 [分層安全性架構](app-service-app-service-environment-layered-security.md) 的文章。
+toosee hello AzureCon 深入了解所示的 hello 安全性架構的設定方式，請參閱 hello 文件實作[分層安全性架構](app-service-app-service-environment-layered-security.md)與應用程式服務環境。
 
-在 App Service 環境中執行之應用程式的存取權可能會受到 Web 應用程式防火牆 (WAF) 等上游裝置的管制。  [設定 App Service Environment 的 WAF](app-service-app-service-environment-web-application-firewall.md) 上的文章將說明這種情況。 
+在 App Service 環境中執行之應用程式的存取權可能會受到 Web 應用程式防火牆 (WAF) 等上游裝置的管制。  上的文件： hello[應用程式服務環境中設定 WAF](app-service-app-service-environment-web-application-firewall.md)涵蓋這種情況。 
 
 [!INCLUDE [app-service-web-to-api-and-mobile](../../includes/app-service-web-to-api-and-mobile.md)]
 
 ## <a name="dedicated-compute-resources"></a>專用計算資源
-App Service Environment 中的所有計算資源皆專屬於單一訂用帳戶，且 App Service Environment可以設定最多五十 (50) 個計算資源，讓單一應用程式獨佔使用。
+Hello 運算資源的應用程式服務環境中的所有專用專門 tooa 單一訂用帳戶，而且 App Service 環境可以設定 toofifty (50) 計算資源，專供單一應用程式。
 
-App Service Environment 是由前端計算資源集區，以及一到三個背景工作計算資源集區所組成。 
+App Service 環境是由前端的計算資源集區，以及一個 toothree 工作者計算資源集區所組成。 
 
-前端集區包含負責處理 SSL 終止以及 App Service Environment 中應用程式要求的自動負載平衡的計算資源。 
+hello 前端集區包含負責為 App Service 環境內的應用程式要求的格式自動負載平衡 SSL 終止的計算資源。 
 
-每個背景工作集區都含有配置給 [App Service 方案][AppServicePlan]的計算資源，其中又包含一或多個 Azure App Service 應用程式。  因為 App Service Environment 中可有多達三個不同的背景工作集區，所以您有彈性可為每個背景工作集區選擇不同的計算資源。  
+每個背景工作集區包含計算資源配置太[應用程式服務方案][AppServicePlan]，其中又包含一或多個 Azure App Service 應用程式。  因為可能有向上 toothree 不同的背景工作集區的 App Service 環境中，您會有每個背景工作集區 hello 彈性 toochoose 不同的計算資源。  
 
-比方說，您可以針對主要用於開發或測試應用程式的 App Service 方案，建立一個計算資源較不強大的背景工作集區。  第二個 (或甚至第三個) 背景工作集區可以使用比較強大的運算資源，以供 App Service 方案執行生產應用程式。
+比方說，這可讓您使用的較不強大的運算資源 toocreate 一個背景工作集區的應用程式服務方案適用於開發或測試應用程式。  第二個 (或甚至第三個) 背景工作集區可以使用比較強大的運算資源，以供 App Service 方案執行生產應用程式。
 
-如需前端和背景工作集區可用計算資源數量的詳細資訊，請參閱[如何設定 App Service Environment][HowToConfigureanAppServiceEnvironment]。  
+如需有關 hello 數量運算資源可用 toohello 前端和背景工作集區的詳細資訊，請參閱[如何 tooConfigure App Service 環境][HowToConfigureanAppServiceEnvironment]。  
 
-如需 App Service Environment 中支援的可用計算資源大小的詳細資訊，請參閱 [App Service 定價][AppServicePricing]頁面，並檢閱 Premium 定價層中 App Service Environment可用的選項。
+針對詳細資料上可用的 hello 計算 App Service 環境中支援的資源大小，請參閱 hello[應用程式服務定價][ AppServicePricing]頁面上，並檢閱應用程式服務環境的 hello 可用選項在 [hello Premium 定價層。
 
 ## <a name="virtual-network-support"></a>虛擬網路支援
-App Service Environment 可以在 Azure Resource Manager 虛擬網路或者傳統式部署模型虛擬網路其中之一中建立 ([更多有關虛擬網路的資訊][MoreInfoOnVirtualNetworks])。  因為 App Service Environment 一律存在於虛擬網路中，而且更精確來說是在虛擬網路的子網路內，所以您可以運用虛擬網路的安全性功能來控制傳入和傳出網路通訊。  
+App Service Environment 可以在 Azure Resource Manager 虛擬網路或者傳統式部署模型虛擬網路其中之一中建立 ([更多有關虛擬網路的資訊][MoreInfoOnVirtualNetworks])。  因為在虛擬網路中，永遠存在 App Service 環境及更精確地說內的虛擬網路子網路，您可以利用 hello 安全性功能的虛擬網路 toocontrol 這兩個輸入和輸出的網路通訊。  
 
 App Service Environment 可以是具有公用 IP 位址的網際網路對向，或只具有 Azure 內部負載平衡器 (ILB) 位址的內部對向。
 
-您可以使用[網路安全性群組][NetworkSecurityGroups]將傳入網路通訊限制為 App Service Environment 所在的子網路。  這可讓您在上游裝置和服務 (例如 Ｗeb 應用程式防火牆和網路 SaaS 提供者) 背後執行應用程式。
+您可以使用[網路安全性群組][ NetworkSecurityGroups] toorestrict 輸入 App Service 環境的所在位置的網路通訊 toohello 子網路。  這可讓您 toorun 背後上游的裝置和服務，例如 web 應用程式防火牆和網路 SaaS 提供者的應用程式。
 
-應用程式也經常需要存取公司資源，例如內部資料庫和 Web 服務。  常見的方法是讓這些端點僅可用於在 Azure 虛擬網路中傳送的內部網路流量。  一旦 App Service Environment 加入與內部服務相同的虛擬網路，在此環境中執行的應用程式即可存取這些內部服務，包括可透過[站台對站台][SiteToSite]和 [Azure ExpressRoute][ExpressRoute] 連線聯繫的端點。
+應用程式也經常會需要 tooaccess 公司資源，例如內部資料庫和 web 服務。  常見的方法是 toomake 這些端點可用的唯一 toointernal 的網路流量流入 Azure 虛擬網路內。  App Service 環境一旦聯結的 toohello hello 內部服務、 在 hello 環境中執行的應用程式的相同虛擬網路可以存取它們，包括可透過連線端點[站對站][ SiteToSite]和[Azure ExpressRoute] [ ExpressRoute]連線。
 
-如需 App Service Environment 如何搭配虛擬網路和內部部署網路使用的詳細資訊，請參閱下列文章：[網路架構][NetworkArchitectureOverview]、[控制輸入流量][ControllingInboundTraffic]和[安全地連接到後端][SecurelyConnectingToBackends]。 
+針對應用程式服務環境的虛擬網路和內部部署網路的運作方式的更多詳細資料，請參閱下列文件的 hello[網路架構][NetworkArchitectureOverview]，[控制輸入流量][ControllingInboundTraffic]，和[安全地連接 tooBackends][SecurelyConnectingToBackends]。 
 
 ## <a name="getting-started"></a>開始使用
-若要開始使用 App Service 環境，請參閱[如何建立 App Service 環境][HowToCreateAnAppServiceEnvironment]
+tooget 開始使用應用程式服務環境中，請參閱[如何 tooCreate App Service 環境][HowToCreateAnAppServiceEnvironment]
 
-您可以在 [應用程式服務環境的讀我檔案](../app-service/app-service-app-service-environments-readme.md)中取得 App Service 環境的所有相關文章與做法。
+所有發行項以及-的應用程式服務環境的 hello[讀我檔案的應用程式服務環境](../app-service/app-service-app-service-environments-readme.md)。
 
-如需有關 Azure App Service 平台的詳細資訊，請參閱 [Azure App Service][AzureAppService]。
+如需 hello Azure 應用程式服務平台的詳細資訊，請參閱[Azure App Service][AzureAppService]。
 
-如需 App Service Environment 網路架構的概觀，請參閱[網路架構概觀][NetworkArchitectureOverview]一文。
+如需 hello App Service 環境的網路架構的概觀，請參閱 hello[網路架構概觀][ NetworkArchitectureOverview]發行項。
 
-如需搭配 ExpressRoute 使用 App Service Environment 的詳細資訊，請參閱 [Express Route 與 App Service Environment][NetworkConfigDetailsForExpressRoute]一文。
+如需透過 ExpressRoute，使用 App Service 環境的詳細資訊，請參閱下列文章 hello [Express Route 和應用程式服務環境][NetworkConfigDetailsForExpressRoute]。
 
 [!INCLUDE [app-service-web-whats-changed](../../includes/app-service-web-whats-changed.md)]
 

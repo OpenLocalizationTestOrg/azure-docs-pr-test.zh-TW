@@ -1,6 +1,6 @@
 ---
 title: "最佳化 ExpressRoute 路由：Azure | Microsoft Docs"
-description: "此頁面提供當您有一個以上的 ExpressRoute 線路連接 Microsoft 與您的公司網路時，如何最佳化路由的詳細資訊。"
+description: "此頁面提供有關如何 toooptimize 路由，當您有多個 ExpressRoute 電路的連接 Microsoft 和您的公司網路。"
 documentationcenter: na
 services: expressroute
 author: charwen
@@ -14,63 +14,63 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/06/2017
 ms.author: charwen
-ms.openlocfilehash: c3a85b9445d69330c3f6c7d298169efddb6ecca0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ebcfb638f67a9ac78c3e476668bfd0bb0ffb9985
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="optimize-expressroute-routing"></a>最佳化 ExpressRoute 路由
-當您有多個 ExpressRoute 線路時，會有一個以上的路徑來連線到 Microsoft。 因此，可能會產生次佳的路由 - 也就是，您的流量可能會經由較長的路徑連到 Microsoft，而 Microsoft 也可能會經由較長的路徑連到您的網路。 網路路徑愈常，延遲愈久。 延遲對於應用程式效能和使用者體驗有直接的影響。 本文將說明這個問題，並說明如何使用標準路由技術來最佳化路由。
+當您有多個 ExpressRoute 電路時，您會有一個以上的路徑 tooconnect tooMicrosoft。 如此一來，次佳的路由可能會發生-也就是您的流量可能需要較長的路徑 tooreach Microsoft 和 Microsoft tooyour 網路。 hello 長 hello 網路路徑，hello 較高的 hello 延遲。 延遲對於應用程式效能和使用者體驗有直接的影響。 這篇文章會說明這個問題，並說明如何使用路由 toooptimize hello 標準路由技術。
 
-## <a name="suboptimal-routing-from-customer-to-microsoft"></a>從客戶到 Microsoft 的次佳化路由
-讓我們依照範例仔細觀察路由問題。 假設您在美國有兩個辦公室，一個在洛杉磯，一個在紐約。 您的辦公室是在廣域網路 (WAN) 上連線，該網路可以是您自己的骨幹網路或服務提供者的 IP VPN。 您有兩個也是在 WAN 上連線的 ExpressRoute 線路，一個在美國西部，一個在美國東部。 很明顯地，您有兩個路徑可連線到 Microsoft 網路。 現在假設您在美國西部和美國東部均有 Azure 部署 (例如 Azure App Service)。 您的用意是要將洛杉磯的使用者連接到 Azure 美國西部以及將紐約的使用者連接到 Azure 美國東部，因為您的服務系統管理員告知每個辦公室的使用者存取附近的 Azure 服務以獲得最佳的體驗。 不幸的是，此計畫比較適合用於東岸的使用者，但不適用於西岸的使用者。 此問題的原因如下所示。 在每個 ExpressRoute 線路上，我們會告知您 Azure 美國東部的前置詞 (23.100.0.0/16)和 Azure 美國西部的前置詞 (13.100.0.0/16)。 如果您不知道哪個前置詞來自哪個區域，您就無法將它視為不同。 您的 WAN 網路可能會認為這兩個前置詞比較接近美國東部 (相較於美國西部)，因此將兩個辦公室的使用者路由至美國東部的 ExpressRoute 線路。 最後，洛杉磯辦公室會有許多使用者不太滿意。
+## <a name="suboptimal-routing-from-customer-toomicrosoft"></a>次佳的客戶 tooMicrosoft 從路由
+讓我們仔細查看 hello 路由問題所範例。 假設您有兩個 hello 美國，一部位於洛杉磯，另一個在紐約辦公室。 您的辦公室是在廣域網路 (WAN) 上連線，該網路可以是您自己的骨幹網路或服務提供者的 IP VPN。 您有兩個 ExpressRoute 電路，分別位於美國西部和美國東部 hello WAN 上也連接。 很明顯地，您有兩個路徑 tooconnect toohello Microsoft 網路。 現在假設您在美國西部和美國東部均有 Azure 部署 (例如 Azure App Service)。 您的意圖是 tooconnect Los Angeles tooAzure 美國西部使用者和使用者在紐約 tooAzure 美國東部中的因為您的服務系統管理員會通告每個 office access 中 hello 附近的最佳體驗的 Azure 服務。 不幸的是，hello 計劃適用於用於 hello 東部 coast 使用者，但不適用於 hello 西岸使用者。 hello hello 問題原因是下列 hello。 在每個 ExpressRoute 電路，我們會通告 tooyou Azure 美國東部 (23.100.0.0/16) 中的 hello 前置詞和 Azure 美國西部 (13.100.0.0/16) 中的 hello 前置詞都。 如果您不知道的前置詞是從哪一個區域，您不能 tootreat 它以不同的方式。 您的 WAN 網路可能會認為這兩個 hello 前置詞是美國西部比接近 tooUS 東部而且因此美國東部路由這兩種 office 使用者 toohello ExpressRoute 電路。 Hello 結束時，您必須在 hello 洛杉磯分公司中的許多不滿意使用者。
 
-![ExpressRoute 案例 1 問題 - 從客戶到 Microsoft 的次佳化路由](./media/expressroute-optimize-routing/expressroute-case1-problem.png)
+![ExpressRoute 案例 1 問題-次佳的客戶 tooMicrosoft 從路由](./media/expressroute-optimize-routing/expressroute-case1-problem.png)
 
 ### <a name="solution-use-bgp-communities"></a>解決方法︰使用 BGP 社群
-若要為這兩個辦公室的使用者最佳化路由，您需要知道哪個前置詞來自 Azure 美國西部以及哪個前置詞來自 Azure 美國東部。 我們使用 [BGP 社群值](expressroute-routing.md)來編碼這項資訊。 我們已將唯一的 BGP 社群值指派給每個 Azure 區域，例如"12076:51004" 適用於美國東部，"12076:51006" 適用於美國西部。 您現在知道哪個前置詞來自哪個 Azure 區域，即可設定應優先使用哪個 ExpressRoute 線路。 因為我們使用 BGP 來交換路由資訊，您可以使用 BGP 的本機喜好設定來影響路由。 在我們的範例中，您可以指派比美國東部還要高的本機喜好設定值給美國西部的 13.100.0.0/16，同樣地，指派比美國西部還要高的本機喜好設定值給美國東部的 23.100.0.0/16。 此組態可確保當Microsoft 的兩個路徑都可用時，洛杉磯的使用者將經由美國西部的 ExpressRoute 線路連接到 Azure 美國西部，而紐約的使用者會經由美國東部的 ExpressRoute 線路連接到 Azure 美國東部。 這兩端的路由均已最佳化。 
+toooptimize 路由傳送給這兩個辦公室的使用者，您需要的前置詞會從 Azure 美國西部和取自 Azure 美國東部 tooknow。 我們使用 [BGP 社群值](expressroute-routing.md)來編碼這項資訊。 我們已指派唯一的 BGP 社群值 tooeach Azure 地區，例如："12076:51004" 適用於美國東部，"12076:51006" 適用於美國西部。 您現在知道哪個前置詞來自哪個 Azure 區域，即可設定應優先使用哪個 ExpressRoute 線路。 因為我們使用 hello BGP tooexchange 路由資訊時，您可以使用 BGP 的本機喜好設定 tooinfluence 路由。 在本例中，您可以指定本機喜好設定值 too13.100.0.0/16 中比在美國東部、 美國西部和同樣地，本機喜好設定值 too23.100.0.0/16 比位於美國西部的美國東部。 此設定可確保，這兩個路徑 tooMicrosoft 可用時，您的使用者在洛杉磯會接受在美國西部 tooconnect tooAzure 美國西部 hello ExpressRoute 電路而紐約使用者接受 hello ExpressRoute 在美國東部 tooAzure 美國東部. 這兩端的路由均已最佳化。 
 
 ![ExpressRoute 案例 1 解決方案 - 使用 BGP 社群](./media/expressroute-optimize-routing/expressroute-case1-solution.png)
 
 > [!NOTE]
-> 使用本機喜好設定的相同技巧，也可以套用至從客戶到 Azure 虛擬網路的路由。 我們不會將 BGP 社群值標記到從 Azure 公告到網路的前置詞。 不過，由於您知道哪個虛擬網路部署較接近您的辦公室，因此您可以據以設定路由器，使其偏好某個 ExpressRoute 線路，而非另一個線路。
+> hello 相同的技巧，使用本機的喜好設定，可以套用的 toorouting 從客戶 tooAzure 虛擬網路。 我們不標記已從 Azure tooyour 網路公告的 BGP 社群值 toohello 前置詞。 不過，因為您知道哪一個虛擬網路部署的關閉 toowhich 的辦公室，您可以設定您的路由器據以 tooprefer 一個 ExpressRoute 電路 tooanother。
 >
 >
 
-## <a name="suboptimal-routing-from-microsoft-to-customer"></a>從 Microsoft 到客戶的次佳化路由
-在下面的另一個範例中，來自 Microsoft 的連線經由較長的路徑連到您的網路。 在此情況下，您可在 [混合式環境](https://technet.microsoft.com/library/jj200581%28v=exchg.150%29.aspx)中使用內部部署 Exchange 伺服器和 Exchange Online。 您的辦公室已連線到 WAN。 您告知兩個辦公室中內部部署伺服器的前置詞，以透過兩個 ExpressRoute 線路連到 Microsoft。 在信箱移轉的情況下，Exchange Online 會起始對內部部署伺服器的連線。 不幸的是，在橫越整個大陸回到西岸之前，洛杉磯辦公室的連線會路由至美國東部的 ExpressRoute 線路。 此問題的原因類似第一個問題。 沒有任何提示，Microsoft 網路無法分辨哪個客戶前置詞接近美國東部，哪個接近美國西部。 有可能會對洛杉磯辦公室挑選錯誤的路徑。
+## <a name="suboptimal-routing-from-microsoft-toocustomer"></a>次佳路由從 Microsoft toocustomer
+以下是另一個範例中，從 Microsoft 的連線會使用較長的路徑 tooreach 您的網路。 在此情況下，您可在 [混合式環境](https://technet.microsoft.com/library/jj200581%28v=exchg.150%29.aspx)中使用內部部署 Exchange 伺服器和 Exchange Online。 您的辦公室可連接的 tooa WAN。 您會通告內部部署伺服器中的 hello 兩個 ExpressRoute 電路透過您的辦公室 tooMicrosoft hello 前置詞。 Exchange Online 將會起始連線 toohello 在內部部署伺服器，例如信箱移轉的情況下。 很遺憾，hello 連接 tooyour 洛杉磯分公司路由的 toohello 美國東部的 ExpressRoute 電路之前周遊整個 continent 後 toohello 西岸 hello。 hello hello 問題的原因是類似 toohello 第一個。 沒有任何提示，hello Microsoft 網路無法分辨哪些客戶前置詞是關閉的 tooUS 東部和哪一種關閉 tooUS 西。 發生在洛杉磯 toopick hello 錯誤的路徑 tooyour office。
 
-![ExpressRoute 案例 2 - 從 Microsoft 到客戶的次佳化路由](./media/expressroute-optimize-routing/expressroute-case2-problem.png)
+![ExpressRoute 案例 2 的次佳路由從 Microsoft toocustomer](./media/expressroute-optimize-routing/expressroute-case2-problem.png)
 
 ### <a name="solution-use-as-path-prepending"></a>解決方案︰使用 AS PATH 前置
-這個問題有兩個解決方案。 第一個解決方案是您只需告知在美國西部 ExpressRoute 線路上洛杉磯辦公室的內部部署前置詞 (177.2.0.0/31)，以及美國東部 ExpressRoute 線路上紐約辦公室的內部部署前置詞 (177.2.0.2/31)。 如此一來，只有一個路徑可供 Microsoft 連接到每個辦公室。 沒有模稜兩可的狀況，而且路由已最佳化。 利用這個設計，您需要考慮您的容錯移轉策略。 在經由 ExpressRoute 的 Microsoft 路徑已損毀的事件中，您需要確定 Exchange Online 仍可連線至內部部署伺服器。 
+有兩個方案 toohello 問題。 hello 第一次是只要通告內部首碼 Los Angeles 辦公室 177.2.0.0/31，hello ExpressRoute 電路位於美國西部上，並在內部紐約辦公室 177.2.0.2/31，在美國東部 hello ExpressRoute 電路的前置詞。 如此一來，是您分公司的 Microsoft tooconnect tooeach 只能有一個路徑。 沒有模稜兩可的狀況，而且路由已最佳化。 與這個設計中，您會需要 toothink 有關容錯移轉策略。 Hello hello 路徑 tooMicrosoft 透過 ExpressRoute 的事件已中斷，您需要 toomake 確定 Exchange Online 可以仍然連接 tooyour 在內部部署伺服器。 
 
-第二個解決方案是您繼續告知兩個 ExpressRoute 線路上的兩個前置詞，此外請提供哪個前置詞接近哪個辦公室的提示。 因為我們支援 BGP AS PATH 前置，所以您可以設定前置詞的 AS PATH 來影響路由。 在此範例中，您可以延長美國東部 172.2.0.0/31 的 AS PATH，以致我們偏好將美國西部的 ExpressRoute 線路用於以此前置詞為目的地的流量 (因為我們的網路會認為此前置詞的路徑在西部比較短)。 同樣地，您可以延長美國西部 172.2.0.2/31 的 AS PATH，以致我們偏好美國東部的 ExpressRoute 線路。 這兩個辦公室的路由均已最佳化。 採用這個設計，如果一個 ExpressRoute 路線已中斷，Exchange Online 仍可透過另一個 ExpressRoute 線路和您的 WAN 來觸達您。 
+hello 第二個方案是您繼續這兩個 ExpressRoute 電路的 hello 首碼 tooadvertise，除了您提供的前置詞是您分公司的關閉 toowhich 的提示。 因為我們支援 BGP AS 路徑前面加上，您可以設定 hello AS 路徑前置詞 tooinfluence 器路由工具。 在此範例中，您可以延長為美國東部 172.2.0.0/31 hello AS 路徑，讓我們會偏好 hello ExpressRoute 電路位於美國西部的流量 （如網路會認為 hello 路徑 toothis 前置詞是短 hello 西） 針對此前置詞。 同樣地您會增加 172.2.0.2/31 位於美國西部的 hello AS 路徑，讓我們將會偏好在美國東部 hello ExpressRoute 電路。 這兩個辦公室的路由均已最佳化。 採用這個設計，如果一個 ExpressRoute 路線已中斷，Exchange Online 仍可透過另一個 ExpressRoute 線路和您的 WAN 來觸達您。 
 
 > [!IMPORTANT]
-> 我們會針對在 Microsoft 對等上收到的前置詞，移除 AS PATH 中的私用 AS 編號。 您必須在 AS PATH 中附加公用 AS 編號，才能影響 Microsoft 對等的路由。
+> 我們移除私用，因為 Microsoft 對等互連收到 hello 前置詞的 hello AS 路徑中的數字。 您需要 tooappend 公用 AS 號碼 hello AS 路徑 tooinfluence 路由傳送中的 Microsoft 對等互連。
 > 
 > 
 
 ![ExpressRoute 案例 2 解決方案 - 使用 AS PATH 前置](./media/expressroute-optimize-routing/expressroute-case2-solution.png)
 
 > [!NOTE]
-> 雖然此處提供的範例適用於 Microsoft 和公用對等互連，但我們仍支援私人對等互連的相同功能。 此外，AS 路徑前置可在單一 ExpressRoute 路線內運作，以影響主要和次要路徑的選取範圍。
+> 雖然此處指定的 hello 範例之 Microsoft 軟體和公用對等互連，我們支援 hello hello 私用對等互連的相同功能。 此外，hello AS 路徑前面加上在中運作單一 ExpressRoute 電路，tooinfluence hello hello 主要和次要路徑的選取項目。
 > 
 > 
 
 ## <a name="suboptimal-routing-between-virtual-networks"></a>虛擬網路之間的次佳化路由
-透過 ExpressRoute，您可以啟用虛擬網路對虛擬網路 (也稱為「VNet」) 的通訊，方法是將它們連結至 ExpressRoute 線路。 當您將它們連結至多個 ExpressRoute 線路時，VNet 之間就會發生次佳化路由。 我們來看一個範例。 您有兩個 ExpressRoute 線路，一個在美國西部，一個在美國東部。 而在這兩個區域中，您各有兩個 VNet。 您的 Web 伺服器部署在其中一個 VNet 中，應用程式伺服器則部署在另一個 VNet 中。 為了備援，您將每個區域中的兩個 VNet 同時連結至本機 ExpressRoute 線路和遠端 ExpressRoute 線路。 如下所示，每個 VNet 有兩條路徑可通往另一個 VNet。 VNet 不知道哪一個是本機 ExpressRoute 線路，哪一個是遠端 ExpressRoute 線路。 因此，當它們進行等價多路徑 (Equal-Cost-Multi-Path, ECMP) 路由作業以將 VNet 間的流量負載平衡時，某些流量會經由較長的路徑，在遠端 ExpressRoute 線路進行路由。
+透過 ExpressRoute，您可以啟用虛擬網路 tooVirtual 網路 （也稱為 「 VNet 」） 將它們連結 tooan ExpressRoute 電路的通訊。 當您連結它們 toomultiple ExpressRoute 電路時，次佳的路由可能會發生 hello Vnet 之間。 我們來看一個範例。 您有兩個 ExpressRoute 線路，一個在美國西部，一個在美國東部。 而在這兩個區域中，您各有兩個 VNet。 一個 VNet 中部署您的 web 伺服器，並在應用程式伺服器 hello 其他。 如需備援，您連結 hello 的每個區域 tooboth hello 本機 ExpressRoute 電路的兩個 Vnet 和 hello 遠端的 ExpressRoute 電路。 可以是如下所示，從每個 VNet 有兩個路徑 toohello 另一個 VNet。 hello Vnet 不知道哪一個 ExpressRoute 電路位於本機，以及哪一個是遠端。 因此一樣等成本-多重路徑 (ECMP) 路由 tooload 平衡間 VNet 流量，某些流量都有 hello 較長的路徑，因此會路由在 hello 遠端 ExpressRoute 循環。
 
 ![ExpressRoute 案例 3 - 虛擬網路之間的次佳化路由](./media/expressroute-optimize-routing/expressroute-case3-problem.png)
 
-### <a name="solution-assign-a-high-weight-to-local-connection"></a>解決方案︰對本機連線指派高權數
-解決方法很簡單。 既然您知道 VNet 與線路在哪，您可以告訴我們每個 VNet 應該偏好使用的路徑。 具體來說，在此範例中，您可以對本機連線指派比遠端連線更高的權數 (請參閱[這裡](expressroute-howto-linkvnet-arm.md#modify-a-virtual-network-connection)的組態範例)。 當 VNet 在多個連線上收到另一個 VNet 的前置詞時，它會偏好使用權數最高的連線，來傳送以該前置詞為目的地的流量。
+### <a name="solution-assign-a-high-weight-toolocal-connection"></a>解決方案： 指派加權高 toolocal 連接
+hello 方案很簡單。 因為知道 hello Vnet 和 hello 電路位置，您可以告訴我們應該最好每個 VNet 的路徑。 特別針對此範例中，您指派較高權數 toohello 本機連接比 toohello 遠端連線 (請參閱 hello 組態範例[這裡](expressroute-howto-linkvnet-arm.md#modify-a-virtual-network-connection))。 當 VNet 收到 hello hello 前置詞上多個連接，它會與 hello 最高權數 toosend 流量目的該前置詞偏好 hello 連線其他 VNet。
 
-![ExpressRoute 案例 3 解決方案 - 對本機連線指派高權數](./media/expressroute-optimize-routing/expressroute-case3-solution.png)
+![ExpressRoute 案例 3 方案-指派加權高 toolocal 連線](./media/expressroute-optimize-routing/expressroute-case3-solution.png)
 
 > [!NOTE]
-> 如果您有多個 ExpressRoute 線路，您也可以影響從 VNet 到內部部署網路的路由，方法是設定連線的權數而非套用 AS PATH 前置，後面這個技巧已在上面的第二個案例中做過說明。 對於每個前置詞，當我們在決定如何傳送流量時，一律會先查看連線權數再看 AS 路徑長度。
+> 您也可以決定路由從 VNet tooyour 在內部部署網路，如果您有多個 ExpressRoute 電路，藉由設定 hello 權數的連接，而不是套用 AS 路徑前面加上 hello 上面的第二個案例中所述的技術。 每個前置詞，我們將一律探討 hello 連接加權 hello AS 路徑長度之前決定時如何 toosend 流量。
 >
 >

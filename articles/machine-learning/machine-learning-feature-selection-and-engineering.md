@@ -1,6 +1,6 @@
 ---
-title: "Azure Machine Learning 中的特徵設計和選取 | Microsoft Docs"
-description: "說明機器學習的資料增強程序中特性選取和特性工程設計的目的，並提供其角色的範例。"
+title: "aaaFeature 工程和 Azure Machine Learning 中的選取範圍 |Microsoft 文件"
+description: "說明 hello 特徵選取和特徵設計目的，並提供在機器學習 hello 加強資料程序中的角色的範例。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -16,118 +16,118 @@ ms.date: 01/18/2017
 ms.author: zhangya;bradsev
 ROBOTS: NOINDEX
 redirect_url: machine-learning-data-science-create-features
-redirect_document_id: TRUE
-ms.openlocfilehash: 51a5d8fed492cb9301e048c2b6a721e4573a47d9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: e3e59329bf46f334396f5975b4e656137362d7ce
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="feature-engineering-and-selection-in-azure-machine-learning"></a>Azure 機器學習中的特性工程設計和選取
-本主題說明機器學習的資料增強程序中特徵工程設計和特徵選取的目的。 其使用 Azure Machine Learning Studio 提供的範例來解釋這些程序的相關事項。
+本主題說明功能工程與 hello 加強資料程序中，特徵選取的機器學習的 hello 目的。 其使用 Azure Machine Learning Studio 提供的範例來解釋這些程序的相關事項。
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-從收集的原始資料選取或擷取特性，通常可以增強機器學習中使用的定型資料。 在了解如何將手寫字元影像分類的內容中，有一個工程設計的特徵範例是建立從原始位元分配資料建構的位元密度對應。 相較於原始分配，此對應有助於更有效地找出字元的界限。
+在機器學習中使用的 hello 定型資料可以通常增強 hello 選取範圍或擷取從 hello 未經處理資料收集功能。 學習如何 tooclassify hello 映像的手寫字元的 hello 內容的工程功能的範例元密度對應從 hello 未經處理的位元發佈資料所建構。 這個對應可協助找出 hello 邊緣 hello 字元比 hello 原始發佈更有效率。
 
-工程設計和選取的特徵可提高下列定型過程的效率：嘗試擷取資料中內含的重要資訊。 此外，還可改善這些模型的功效，正確地分類輸入資料以及更精確地預測感興趣的結果。 特性工程設計和選取也可結合起來，讓學習更易於以運算方式處理。 其作法是提高而後減少校正或定型模型所需的特性數量。 從數學的角度來看，選取用來定型模型的特性是極小的一組獨立變數，可供解釋資料中的模式，然後成功地預測結果。
+工程與所選取的功能會提高 hello 效率 hello 定型程序，從而試著 hello 資料中包含 tooextract hello 金鑰資訊。 它們也改善 hello 電源，這些模型 tooclassify hello 輸入資料的精確和 toopredict 結果感興趣多穩當地。 特徵設計和選取範圍也可以結合 toomake hello 學習更多計算容易處理。 它是藉由增強，則減少 hello 一些功能需要 toocalibrate 」 或 「 定型模型。 Hello 功能選取的 tootrain hello 模型數學上來說，是最基本的獨立變數說明 hello 資料中的 hello 模式，然後預測結果成功。
 
-特性的工程設計和選取屬於較大型程序的一部分，該程序通常包含下列四個步驟：
+hello 工程團隊以及的功能為一個較大的處理序，通常包含四個步驟：
 
 * 資料收集
 * 資料增強
 * 模型建構
 * 後處理
 
-工程設計和選取構成了機器學習服務的資料增強步驟。 此程序的三個層面主要有四個目的：
+工程及選取項目組成的機器學習 hello 資料增強功能的步驟。 此程序的三個層面主要有四個目的：
 
-* **資料前處理**：此程序嘗試確保收集的資料乾淨而一致。 其中包含下列工作：例如整合多個資料集、處理不一致的資料，以及轉換資料類型。
-* **特性工程設計**：此程序嘗試從資料中的現有原始特性建立其他相關特性，以及增加學習演算法的預測功效。
-* **特性選取**：此程序選取主要的原始資料特性子集，以縮小定型問題的維度。
+* **資料前置處理**： 此程序會嘗試 tooensure hello 收集的資料，是全新且一致。 其中包含下列工作：例如整合多個資料集、處理不一致的資料，以及轉換資料類型。
+* **功能工程**： 這個處理序嘗試 toocreate 其他相關的功能從 hello 現有未經處理的功能在 hello 資料和 tooincrease 預測檢定力 toohello 學習演算法。
+* **特徵選取**： 此程序選取 hello 的原始資料功能 tooreduce hello 維度性 hello 訓練問題的索引鍵子集。
 
-本主題僅涵蓋資料增強程序的特徵工程設計和特徵選取層面。 如需資料前處理步驟的其他資訊，請參閱 [在 Azure Machine Learning Studio 中進行資料前處理](https://azure.microsoft.com/documentation/videos/preprocessing-data-in-azure-ml-studio/) 影片。
+本主題只涵蓋 hello 功能工程及功能選取項目層面 hello 資料增強功能的程序。 如需有關 hello 資料前置處理步驟的詳細資訊，請參閱[前置處理 Azure Machine Learning Studio 中的資料](https://azure.microsoft.com/documentation/videos/preprocessing-data-in-azure-ml-studio/)。
 
 ## <a name="creating-features-from-your-data--feature-engineering"></a>從您的資料建立特性 - 特性工程設計
-定型資料包含由範例所組成的矩陣 (資料列中儲存的記錄或 觀察)，而每個範例都有一組特性 (資料行中儲存的變數或欄位)。 在實驗設計中指定的特性預計會將資料中的模式特性化。 儘管許多原始資料欄位都可以直接包含在選取用來將模型定型的特性集中，但通常還是需要從原始資料中的特性建構其他 (經過工程設計的) 特性，才能產生增強的定型資料集。
+hello 定型資料包含的範例 （記錄或儲存在資料列的觀察值） 所組成的矩陣，每一個都有一組功能 （變數或資料行中儲存的欄位）。 預期的 toocharacterize hello 模式 hello 資料中會收到 hello hello 實驗設計中指定的功能。 雖然許多 hello 未經處理資料欄位包含可以直接在 hello 選取的功能集使用 tootrain 模型時，其他的工程的功能通常會需要 toobe hello 功能 hello 未經處理資料 toogenerate 增強的定型資料集從建構。
 
-應建立何種特性，才能在模型定型時增強資料集？ 經過工程設計的特性可增強定型，還會提供用以區分資料中模式的資訊。 您期望新特性可提供原始或現有特性集中未清楚擷取或顯而易見的其他資訊，但此程序是一種藝術。 健全且有建設性的決策通常需要一些網域.專業知識。
+定型模型時，何種功能應該建立 tooenhance hello 資料集？ 增強 hello 訓練的工程的功能提供更好的差異 hello hello 資料模式的資訊。 您預期 hello 新功能 tooprovide 額外的資訊不清楚地擷取或原始 hello 輕鬆地呈現或現有的功能設定，但是此程序是一項藝術。 健全且有建設性的決策通常需要一些網域.專業知識。
 
-從 Azure 機器學習著手時，最簡單的方式是透過 Machine Learning Studio 中提供的範例具體地領會此程序。 以下呈現兩個範例：
+從 Azure Machine Learning 開始，時，最簡單的 toograsp Machine Learning Studio 中提供具體的使用範例的這個程序。 以下呈現兩個範例：
 
-* 在已知目標值的監督實驗中的 ([單車租用數量預測](http://gallery.cortanaintelligence.com/Experiment/Regression-Demand-estimation-4)) 迴歸範例
+* 迴歸範例 ([hello 自行車出租數目的預測](http://gallery.cortanaintelligence.com/Experiment/Regression-Demand-estimation-4)) 在受監督的實驗稱為 hello 目標值
 * 使用[特性雜湊][feature-hashing]的文字採礦分類範例
 
 ### <a name="example-1-adding-temporal-features-for-a-regression-model"></a>範例 1：新增迴歸模型的暫時特性
-為了示範如何為迴歸工作的特徵進行工程設計，讓我們在 Azure Machine Learning Studio 中使用「單車的需求預測」實驗。 這項實驗的目標在於預測單車需求，也就是再特定月份、日期或小時內單車租用的數量。 資料集**單車租用 UCI 資料集**作為原始輸入資料使用。
+toodemonstrate 如何 tooengineer 功能的迴歸工作，讓我們使用 hello 實驗 」 需求預測自行車的 「 Azure Machine Learning Studio 中。 此實驗 hello 目標是 toopredict hello hello bikes，也就是 hello 自行車出租數目特定月、 日或小時內的要求。 hello 資料集**自行車以租用方式佔用 UCI 資料集**做 hello 未經處理的輸入資料。
 
-此資料集是以在美國華盛頓特區維護單車出租網路的 Capital Bikeshare 公司所提供的實際資料為基礎。 此資料集代表 2011 年到 2012 年間，一天中某個特定小時內的單車租用數量，總共包含 17379 個資料列和 17 個資料行。 原始特性集包含天氣條件 (溫度、溼度、風速) 和當天的類型 (假日或工作日)。 要預測的欄位為 **cnt**，代表特定小時內單位租用的計數，其範圍是 1 至 977。
+此資料集根據從 hello 資本 Bikeshare 公司維護在 hello 美國華盛頓特區的自行車以租用方式佔用網路的實際資料。 hello 資料集代表，一天的某個特定時間內從 2011 too2012 hello 自行車出租數目，而且包含 17379 資料列和 17 的資料行。 hello 未經處理的功能集包含溫度、 溼度 （風速） 的天氣和 hello 類型 hello 天 （假日或工作日）。 hello 欄位 toopredict 是**cnt**，表示特定的一小時內 hello 自行車出租和，範圍從 1 too977 的計數。
 
-為了在定型資料中建構有效特性，會使用相同的演算法建立四個各有不同定型資料集的迴歸模型， 這四個資料集代表相同的原始輸入資料，但設定的特性數量增加。 這些特性可分為四類：
+tooconstruct 有效 hello 定型資料中的功能，使用 hello 建立四個迴歸模型相同的演算法，但包含四個不同的定型資料設定。 hello 四個資料集代表 hello 相同原始的輸入的資料，但有越來越多的功能設定。 這些特性可分為四類：
 
-1. A = 預測日的天氣 + 假日 + 工作日 + 週末特性
-2. B = 過去的 12 小時以來，每小時租出的單車數量
-3. C = 過去的 12 天以來，每天在同一個時間租出的單車數量
-4. D = 過去的 12 週以來，在同一天同一個時間租出的單車數量
+1. A = 天氣 + 假日 + 週間日 + 週末功能 hello 預測一天
+2. B = bikes，先前的 12 小時內每個 hello 已出租數目
+3. C = 已出租 hello 的每個先前的 12 天 hello 在相同的自行車的小時
+4. D = 已出租 hello 的每個先前的 12 週，在 hello 相同的自行車的小時和 hello 同一天
 
-除了已存在於原先未經處理資料中的特徵集 A 以外，其他三個特徵集都是透過特徵工程設計程序來建立。 特徵集 B 會擷取最近的單車需求。 特性集 C 會擷取某一個小時的單車需求。 特性集 D 會擷取一週當中某一天某一個小時的單車需求。 四個定型資料集分別包含特性集 A、A+B、A+B+C 和 A+B+C+D。
+功能集 A hello 原始未經處理資料中已存在，除了 hello 功能其他三組透過建立 hello 工程程序的功能。 設定 hello 的自行車的 B 擷取 hello 最近要求的功能。 功能設定的特定小時 C 擷取的自行車 hello 需求。 功能設定的自行車 D 擷取要求在特定小時與 hello 一週的特定天數。 每個 hello 四部訓練資料集包含的功能集 A、 A + B、 A + B + C 和 A + B + C + D、 分別。
 
-在 Azure 機器學習實驗中，這四個定型資料集是透過預先處理的輸入資料集中的分支形成。 除了最左邊的分支以外，每個分支都包含[執行 R 指令碼][execute-r-script]模組，其中有一組衍生的特徵 (特徵集 B、C 和 D) 會分別建構並附加至匯入的資料集 。 下圖示範左邊第二個分支中用來建立特性集 B 的 R 指令碼。
+在 hello Azure 機器學習實驗，這四個定型資料集格式透過 hello 預先處理輸入資料集的四個分支。 除了 hello 最左邊的分支，每個分支包含[執行 R 指令碼][ execute-r-script]分別建構及附加的模組中的一組衍生功能 （功能集 B、 C 以及 D）toohello 匯入資料集。 下列圖 hello 示範 hello R 指令碼會使用 toocreate 功能集 B hello 第二個左分支中。
 
 ![建立功能集](./media/machine-learning-feature-selection-and-engineering/addFeature-Rscripts.png)
 
-下表彙總四個模型的效能結果比較。 特性 A+B+C 所呈現的結果最理想。 請注意，當定型資料中包含其他特性集時，錯誤率會降低。 這證實了我們的推測：特性集 B 和 C 會針對迴歸工作提供其他相關資訊。 新增 D 特性集似乎不會讓錯誤率降低。
+hello 下表摘要說明 hello 比較 hello 效能結果的 hello 四種模型。 hello 獲得最佳結果會顯示功能 A + B + C。 請注意 hello 定型資料中包含額外的功能集，則會減少該 hello 錯誤率。 這可確認 hello B 和 C 提供 hello 迴歸工作的其他相關資訊的功能集我們假設結果。 加入 hello D 功能集似乎未 tooprovide 其他致使 hello 錯誤率。
 
 ![比較效能結果](./media/machine-learning-feature-selection-and-engineering/result1.png)
 
 ### <a name="example2"></a> 範例 2：在文字採礦中建立特性
-特性工程設計廣泛運用於文字採礦的相關工作，例如文件分類和情感分析。 例如，當您想要將文件分為數個類別時，通常會假設包含在一個文件類別中的文字或片語比較不可能出現在其他文件類別中。 換言之，文字或片語分配的次數能夠描述不同文件類別的特徵。 在文字採礦應用程式，建立文字或片語次數相關特性時需要特性工程設計程序中，因為個別的文字內容通常可作為輸入資料。
+在工作的相關 tootext 採礦，例如文件分類和情緒分析廣泛套用特徵設計。 比方說，當您想 tooclassify 文件分成數個類別，一般假設是 hello 單字或片語包含一份文件類別目錄中會比較不可能 toooccur 另一個文件類別目錄中。 換句話說，hello hello 單字或片語發佈頻率是無法 toocharacterize 不同的文件類別。 文字採礦應用程式，在 hello 功能工程程序會是需要的 toocreate hello 功能包含單字或片語的頻率，因為個別的文字內容片段通常做為 hello 輸入的資料。
 
-為了達成此工作，會套用名為特性雜湊的技術，有效地將任意文字特性變成索引。 此方法不會將每個文字特性 (文字或片語) 關聯至特定索引，而是將雜湊函數套用至特性並直接使用其雜湊值作為索引。
+tooachieve 這項工作，稱為技術*特徵雜湊*是套用的 tooefficiently 索引到任意文字功能。 而不是建立關聯，每個文字功能 （單字或片語） tooa 特定索引，此方法的功能藉由套用雜湊函式 toohello 功能，並為索引中直接使用其雜湊值。
 
-Azure 機器學習中有一個[特性雜湊][feature-hashing]模組，會建立這些文字或片語特性。 下圖顯示使用此模組的範例。 輸入資料集包含兩個資料行：1 至 5 的書籍評比，以及實際評論內容。 此[特性雜湊][feature-hashing]模組的目標在於擷取新特性，以顯示特定書籍評論中對應文字或片語的發生次數。 若要使用此模組，您必須完成下列步驟：
+Azure 機器學習中有一個[特性雜湊][feature-hashing]模組，會建立這些文字或片語特性。 hello 下圖顯示使用此模組的範例。 hello 輸入的資料集包含兩個資料行： hello 書籍評等範圍從 1 too5 和 hello 實際檢閱內容。 這個 hello 目標[特徵雜湊][ feature-hashing]模組是 tooretrieve 顯示 hello 出現頻率 hello 相對應的單字或片語 hello 特定書籍檢閱內的新功能。 toouse 這個模組，您需要下列步驟 toocomplete hello:
 
-1. 選取包含輸入文字的資料行 (此例中的 **Col2**)。
-2. 將 Hashing bitsize 設定為 8，表示將建立 2^8=256 個特徵。 所有文字中的文字或片語接著會雜湊至 256 個索引。 Hashing bitsize 參數的範圍是 1 至 31。 如果參數設定為較大的數字，則單字或片語較不會雜湊至相同的索引。
-3. 將 N-grams 參數設定為 2。 這麼做可從輸入文字中擷取 unigrams (適用於每一個文字的特性) 和 bigrams (適用於每一對相鄰文字的特性) 的發生次數。 N-grams 參數的範圍是 0 至 10，這表示要包含在一個特性中的循序文字數目上限。  
+1. 包含 hello 輸入的文字的選取 hello 資料行 (**Col2**在此範例中)。
+2. 設定*雜湊位元大小*too8，這表示 2 ^8 = 256 功能所建立。 hello 單字或片語中的 hello 文字就 too256 索引雜湊處理。 hello 參數*雜湊位元大小*範圍是從 1 too31。 如果 hello 參數設定 tooa 較大的數字，hello 單字或片語不太可能 toobe 雜湊成 hello 相同的索引。
+3. 設定 hello 參數*N 字母組*too2。 這會從 hello 輸入文字擷取單字母組 （每個單字的功能） 和雙字母組 （每個單字相鄰的配對的功能） 的 hello 出現頻率。 hello 參數*N 字母組*範圍是從 0 too10，表示 hello 的循序字 toobe 功能中包含的最大數目。  
 
 ![特性雜湊模組](./media/machine-learning-feature-selection-and-engineering/feature-Hashing1.png)
 
-下圖顯示這些新特徵的外觀。
+hello 下圖顯示這些新功能的外觀。
 
 ![特性雜湊範例](./media/machine-learning-feature-selection-and-engineering/feature-Hashing2.png)
 
 ## <a name="filtering-features-from-your-data--feature-selection"></a>從您的資料篩選特性 - 特性選取
-特性選取程序通常適用於定型資料集的建構，以便進行預測性建模工作，例如分類或迴歸工作。 其目的在於從原始資料集中選取一小組特性，使用極小一組的特性來代表資料中的最大變異量，藉此縮小其維度。 這個特徵的子集只會包含要用於訓練模型的特徵。 特性選取有兩個主要目的：
+*特徵選取*是一般的程序套用 toohello 建構訓練資料集進行預測模型工作，例如分類或迴歸工作。 hello 目標是 tooselect hello hello 原始資料集，其維度減少 hello 資料中使用的最少的功能 toorepresent hello 最大數量的變異數的功能子集。 此功能子集包含 hello 唯一功能包含 toobe tootrain hello 模型。 特性選取有兩個主要目的：
 
 * 特性選取通常會排除不相關、多餘或高度相關的特性，進而提高分類正確性。
-* 特性選取會減少特性數目，讓模型定型程序更有效率。 對於定型代價昂貴的學習者 (例如支援向量機器) 而言，這格外重要。
+* 功能選取項目會減少 hello 特徵數目，使得 hello 模型定型程序更有效率。 這是特別重要，是高度耗費資源 tootrain 支援向量機器之類的學習模組。
 
-雖然特性選取設法要減少資料集中用於定型模型的特性數目，但通常不是指「維度縮減」。 特性選取方法會擷取資料中的原始特性子集，但不會加以變更。  維度縮減方法會運用經過工程設計的特性，轉換原始特性並加以修改。 維度縮減方法的範例包含主成分分析、典型相關分析和奇異值分解。
+雖然特徵選取搜尋 tooreduce hello 數目 hello 資料集使用 tootrain hello 模型中的功能，但不是通常稱為 tooby hello 詞彙*維度縮減。* 特徵選取方法會擷取 hello 資料中的原始功能的子集，而不變更它們。  維度性降低方法採用工程的功能，可以轉換 hello 原始功能，並因此能加以修改。 維度縮減方法的範例包含主成分分析、典型相關分析和奇異值分解。
 
-監督環境中有一個廣泛應用的特性選取方法類別為以篩選為基礎的特性選取。 這些方法會評估每個特性與目標屬性之間的相關性，套用統計量值以將評分指派給每個特性。 接著會依分數將特性排名，而分數可供您用來設定保留或排除特定特性的臨界值。 這些方法中使用的統計量值範例包含皮耳森相關、相互資訊和卡方檢定。
+監督環境中有一個廣泛應用的特性選取方法類別為以篩選為基礎的特性選取。 藉由評估每一個功能和 hello 目標屬性之間的 hello 相互關聯，這些方法會套用統計量值 tooassign 分數 tooeach 功能。 hello 功能然後排序次序 hello 分數，您可以使用 tooset hello 臨界值或排除特定的功能。 使用這些方法中的 hello 統計量值的範例包括皮耳森相關、 相互資訊和 hello 卡方檢定。
 
-Azure Machine Learning Studio 針對特性選取提供模組。 如下圖所示，這些模組包含[以篩選為基礎的特性選取][filter-based-feature-selection]和[費雪線性判別分析][fisher-linear-discriminant-analysis]。
+Azure Machine Learning Studio 針對特性選取提供模組。 Hello 遵循圖所示，這些模組包括[篩選器為基礎的特徵選取][ filter-based-feature-selection]和[費雪線性判別分析][ fisher-linear-discriminant-analysis].
 
 ![特性選取範例](./media/machine-learning-feature-selection-and-engineering/feature-Selection.png)
 
-例如，使用[篩選為基礎的特徵選取][filter-based-feature-selection]模組與先前所述的文字採礦範例。 假設在透過[特徵雜湊][feature-hashing]模組建立一組 256 個特性之後，您想要建立一個迴歸模型，其應變數為 **Col1** 並代表 1 至 5 的書籍評論評比。 將 [特性評分方法] 設定為 [皮耳森相關]，則 [目標欄] 會是 **Col1**，而 [所需的特性數] 會是 **50**。 然後，[以篩選器為基礎的特徵選取][filter-based-feature-selection]模組會產生一個包含 50 個特徵且目標屬性為 **Col1** 的資料集。 下圖顯示此實驗的流程以及輸入參數。
+例如，使用 hello[篩選器為基礎的特徵選取][ filter-based-feature-selection] hello 文字採礦範例先前所述的模組。 假設您想 toobuild 迴歸模型，建立一組 256 功能透過 hello 之後[特徵雜湊][ feature-hashing]模組，以及該 hello 回應變數是**Col1**表示活頁簿檢閱 [評等範圍從 1 too5。 設定**特徵計分法**太**皮耳森相關**，**目標資料行**太**Col1**，和**預期的數目功能**太**50**。 hello 模組[篩選器為基礎的特徵選取][ filter-based-feature-selection]然後產生資料集包含 50 的功能與 hello 目標屬性**Col1**。 hello 以下圖顯示這項實驗 hello 流程，並 hello 輸入的參數。
 
 ![特性選取範例](./media/machine-learning-feature-selection-and-engineering/feature-Selection1.png)
 
-下圖顯示結果產生的資料集。 每個特性都是根據本身與目標屬性 **Col1** 之間的皮耳森相關進行評分。 系統會保留最高分的特性。
+hello 下圖顯示 hello 產生資料集。 每項功能在 hello 皮耳森相關其本身之間 hello 計分根據目標屬性**Col1**。 具有高分的 hello 功能會保留。
 
 ![篩選器為基礎的特性選取資料集](./media/machine-learning-feature-selection-and-engineering/feature-Selection2.png)
 
-下圖顯示所選特性的對應評分。
+下列圖顯示 hello hello hello 選取功能的相對應的分數。
 
 ![選取的特性分數](./media/machine-learning-feature-selection-and-engineering/feature-Selection3.png)
 
-套用這個[以篩選為基礎的特性選取][filter-based-feature-selection]模組，則會選取 256 個特性中的 50 個特性，因為根據**皮耳森相關**評分方法，其具有最多個與目標變數 **Col1** 相互關聯的特性。
+藉由套用這[篩選器為基礎的特徵選取][ filter-based-feature-selection]模組，50 超出 256，選取的功能，因為它們與 hello 目標變數的大部分功能相互關聯的 hello **Col1**根據計分方法的 hello**皮耳森相關**。
 
 ## <a name="conclusion"></a>結論
-建立機器學習模型時，常會執行特性工程設計和特性選取這兩個步驟來預備定型資料。 通常會先套用特性工程設計以產生其他特定，然後執行特性選取步驟以排除不相關、多餘或高度相關的特性。
+特徵設計與特徵選取是兩個步驟經常執行 tooprepare hello 定型資料，建立機器學習模型時。 一般而言，特徵設計會套用第一個 toogenerate 額外的功能，以及然後 hello 功能選取項目步驟是執行的 tooeliminate 無關、 備援性或在特徵高度相關。
 
-您不一定要執行特徵工程設計或特徵選取。 需要與否取決於您所擁有或收集的資料、您挑選的演算法，以及實驗的目標。
+它不一定一定 tooperform 工程或功能特徵。 是否需要取決於您擁有或收集您挑選，hello 演算法和 hello hello 實驗目標 hello 資料。
 
 <!-- Module References -->
 [execute-r-script]: https://msdn.microsoft.com/library/azure/30806023-392b-42e0-94d6-6b775a6e0fd5/

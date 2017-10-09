@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager 範本函式 - 部署 | Microsoft Docs"
-description: "描述 Azure Resource Manager 範本中用來擷取部署資訊的函式。"
+title: "aaaAzure 資源管理員範本函式-部署 |Microsoft 文件"
+description: "描述 Azure Resource Manager 範本 tooretrieve 部署資訊中的 hello 函式 toouse。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/13/2017
 ms.author: tomfitz
-ms.openlocfilehash: d7e6bcd669d40cb19de44b646505856ecd8f51a0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 458c3f740504fdd6799ed24cc386219726737636
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deployment-functions-for-azure-resource-manager-templates"></a>Azure Resource Manager 範本的部署函式 
 
-資源管理員提供下列函式，以從與部署相關的範本和值的區段中取得值：
+資源管理員提供 hello 下列函數來取得從 hello 範本的區段值和值相關的 toohello 部署：
 
 * [部署](#deployment)
 * [參數](#parameters)
 * [變數](#variables)
 
-若要從資源、資源群組或訂用帳戶中取得值，請參閱 [資源函式](resource-group-template-functions-resource.md)。
+tooget 或值的資源、 資源群組訂閱，請參閱[資源函式](resource-group-template-functions-resource.md)。
 
 <a id="deployment" />
 
 ## <a name="deployment"></a>部署
 `deployment()`
 
-傳回目前部署作業的相關資訊。
+傳回 hello 目前的部署作業的相關資訊。
 
 ### <a name="return-value"></a>傳回值
 
-此函式會傳回部署期間所傳遞的物件。 視部署物件是以連結或內嵌物件形式傳遞，所傳回物件中的屬性將有所不同。 部署物件以內嵌形式傳遞時 (例如使用 Azure PowerShell 中的 **-TemplateFile** 參數指向本機檔案時)，所傳回的物件為下列格式：
+此函數會傳回部署期間所傳入的 hello 物件。 依是否 hello 部署物件會傳遞為連結或內嵌物件中傳回物件的 hello hello 內容有所不同。 當 hello 部署物件時，會傳遞內嵌，例如使用 hello **-TemplateFile**參數在 Azure PowerShell toopoint tooa 本機檔案中，傳回的物件具有下列格式的 hello hello:
 
 ```json
 {
@@ -61,7 +61,7 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-部署物件以連結形式傳遞時 (例如使用 **-TemplateUri** 參數指向遠端檔案時)，所傳回的物件為下列格式： 
+當 hello 物件傳遞為連結，例如當使用 hello **-TemplateUri**參數 toopoint tooa 遠端物件、 hello 物件會傳入 hello 下列格式： 
 
 ```json
 {
@@ -87,7 +87,7 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="remarks"></a>備註
 
-您可以上層範本的 URI 作為基礎，使用部署() 連結至另一個範本。
+您可以使用 hello hello 父範本的 URI 為基礎的 deployment() toolink tooanother 範本。
 
 ```json
 "variables": {  
@@ -97,7 +97,7 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="example"></a>範例
 
-下列範例會傳回部署物件︰
+hello 下列範例會傳回 hello 部署物件：
 
 ```json
 {
@@ -113,7 +113,7 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-上述範例會傳回下列物件︰
+hello 上述範例會傳回下列物件的 hello:
 
 ```json
 {
@@ -142,21 +142,21 @@ ms.lasthandoff: 08/03/2017
 ## <a name="parameters"></a>參數
 `parameters(parameterName)`
 
-傳回參數值。 指定的參數名稱必須定義於範本的 parameters 區段中。
+傳回參數值。 hello 指定的參數名稱必須 hello 範本 hello 參數區段中定義。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| parameterName |是 |字串 |要傳回的參數名稱。 |
+| parameterName |是 |字串 |hello 參數 tooreturn hello 名稱。 |
 
 ### <a name="return-value"></a>傳回值
 
-指定參數的值。
+hello hello 值指定參數。
 
 ### <a name="remarks"></a>備註
 
-一般而言，您可以使用參數來設定資源的值。 下列範例會將網站的名稱設定為部署期間所傳入的參數值。
+一般而言，您可以使用參數 tooset 資源值。 hello 下列範例會設定網站 toohello 參數值在部署期間所傳入的 hello 名稱。
 
 ```json
 "parameters": { 
@@ -176,7 +176,7 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="example"></a>範例
 
-下列範例顯示 parameters 函數的簡化用法。
+hello 下列範例示範簡化的使用 hello 參數函式。
 
 ```json
 {
@@ -231,7 +231,7 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-先前範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -243,24 +243,24 @@ ms.lasthandoff: 08/03/2017
 
 <a id="variables" />
 
-## <a name="variables"></a>變數
+## <a name="variables"></a>variables
 `variables(variableName)`
 
-傳回變數的值。 指定的變數名稱必須定義於範本的 variables 區段中。
+傳回 hello 變數的值。 hello 指定的變數名稱必須 hello 變數 hello 範本區段中定義。
 
 ### <a name="parameters"></a>參數
 
 | 參數 | 必要 | 類型 | 說明 |
 |:--- |:--- |:--- |:--- |
-| variableName |是 |String |要傳回的變數名稱。 |
+| variableName |是 |String |hello 變數 tooreturn hello 名稱。 |
 
 ### <a name="return-value"></a>傳回值
 
-指定變數的值。
+hello hello 指定變數的值。
 
 ### <a name="remarks"></a>備註
 
-一般而言，您可以使用變數將範本簡化，方法是僅建構一次複雜的值。 下列範例會建構儲存體帳戶的唯一名稱。
+一般而言，您使用變數 toosimplify 範本可以建構複雜的值一次。 hello 下列範例會建構儲存體帳戶的唯一名稱。
 
 ```json
 "variables": {
@@ -284,7 +284,7 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="example"></a>範例
 
-範例範本會傳回不同的變數值。
+hello 範例範本會傳回不同的變數值。
 
 ```json
 {
@@ -322,7 +322,7 @@ ms.lasthandoff: 08/03/2017
 }
 ```
 
-先前範例中具有預設值的輸出如下：
+hello 輸出範例與 hello 預設值是從上述 hello:
 
 | 名稱 | 類型 | 值 |
 | ---- | ---- | ----- |
@@ -332,8 +332,8 @@ ms.lasthandoff: 08/03/2017
 | exampleOutput4 |  Object | {"property1": "value1", "property2": "value2"} |
 
 ## <a name="next-steps"></a>後續步驟
-* 如需有關 Azure Resource Manager 範本中各區段的說明，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
-* 若要合併多個範本，請參閱[透過 Azure Resource Manager 使用連結的範本](resource-group-linked-templates.md)。
-* 若要依指定的次數重複建立資源類型，請參閱 [在 Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
-* 若要了解如何部署已建立的範本，請參閱[使用 Azure Resource Manager 範本部署應用程式](resource-group-template-deploy.md)。
+* 如需 Azure Resource Manager 範本中的 hello 各節的說明，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
+* toomerge 多個範本，請參閱[使用連結的範本與 Azure 資源管理員](resource-group-linked-templates.md)。
+* tooiterate 指定次數時建立的資源類型，請參閱[Azure 資源管理員中建立資源的多個執行個體](resource-group-create-multiple.md)。
+* toosee 如何 toodeploy hello 範本建立之後，請參閱[部署應用程式使用 Azure Resource Manager 範本](resource-group-template-deploy.md)。
 

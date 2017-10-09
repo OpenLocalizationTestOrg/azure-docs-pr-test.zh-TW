@@ -1,6 +1,6 @@
 ---
-title: "Azure Cloud Shell (預覽) 快速入門 | Microsoft Docs"
-description: "Azure Cloud Shell 的快速入門"
+title: "aaaAzure 雲端殼層 （預覽） 快速入門 |Microsoft 文件"
+description: "Hello Azure 雲端殼層的快速入門"
 services: 
 documentationcenter: 
 author: jluk
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/10/2017
 ms.author: juluk
-ms.openlocfilehash: 75676eb0ab784e2adbfd27b170c1dee5599b74ac
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e60700b92c10c331910dd8bb3c627fe1a024091c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="quickstart-for-using-the-azure-cloud-shell"></a>Azure Cloud Shell 使用方式的快速入門
+# <a name="quickstart-for-using-hello-azure-cloud-shell"></a>使用 Azure 雲端殼層 hello 的快速入門
 
-本文件會詳細說明如何在 [Azure 入口網站](https://ms.portal.azure.com/)中使用 Azure Cloud Shell。
+本文件詳述 toouse 如何在 hello hello Azure 雲端殼層[Azure 入口網站](https://ms.portal.azure.com/)。
 
 ## <a name="start-cloud-shell"></a>啟動 Cloud Shell
-1. 從 Azure 入口網站的頂端導覽啟動 **Cloud Shell** <br>
+1. 啟動**雲端殼層**從 hello 上層導覽 hello Azure 入口網站的 <br>
 ![](media/shell-icon.png)
-2. 選取用來建立儲存體帳戶和 Azure 檔案共用的訂用帳戶
+2. 選取的訂用帳戶 toocreate 儲存體帳戶和 Azure 的檔案共用
 3. 選取 [建立儲存體]
 
 > [!TIP]
@@ -47,21 +47,21 @@ ms.lasthandoff: 08/29/2017
 `az group create -l westus -n MyRG` <br>
 
 ### <a name="create-a-linux-vm"></a>建立 Linux VM
-在您的新資源群組中建立 Ubuntu VM。 Azure CLI 2.0 將會建立 SSH 金鑰，並使用它們來設定 VM。 <br>
+在您的新資源群組中建立 Ubuntu VM。 hello Azure CLI 2.0 將使用它們來建立 SSH 金鑰和安裝 hello VM。 <br>
 `az vm create -n my_vm_name -g MyRG --image UbuntuLTS --generate-ssh-keys`
 
 > [!NOTE]
-> Azure CLI 2.0 預設會將用來驗證 VM 的公開金鑰和私密金鑰置於 `/User/.ssh/id_rsa` 和 `/User/.ssh/id_rsa.pub`。 您的 .ssh 資料夾會保存在所連接 Azure 檔案共用的 5-GB 映像中。
+> hello VM 會置於所使用的公用和私用金鑰 tooauthenticate`/User/.ssh/id_rsa`和`/User/.ssh/id_rsa.pub`預設 Azure CLI 2.0。 您的 .ssh 資料夾會保存在所連接 Azure 檔案共用的 5-GB 映像中。
 
 您在此 VM 上的使用者名稱，將會是用於 Cloud Shell 中的使用者名稱 ($User@Azure:)。
 
 ### <a name="ssh-into-your-linux-vm"></a>透過 SSH 連線到您的 Linux VM
-1. 在 Azure 入口網站搜尋列中搜尋您的 VM 名稱
+1. 搜尋您在 hello Azure 入口網站搜尋列中的 VM 名稱
 2. 按一下 [連線] 然後執行：`ssh username@ipaddress`
 
 ![](media/sshcmd-copy.png)
 
-建立 SSH 連線時，應該會看到 Ubuntu 歡迎提示。
+在建立 hello SSH 連線，您應該會看到 hello Ubuntu 歡迎畫面提示。
 ![](media/ubuntu-welcome.png)
 
 ## <a name="cleaning-up"></a>清除 

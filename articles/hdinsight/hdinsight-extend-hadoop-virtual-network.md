@@ -1,6 +1,6 @@
 ---
-title: "使用虛擬網路延伸 HDInsight - Azure | Microsoft Docs"
-description: "了解如何使用 Azure 虛擬網路將 HDInsight 連接到其他雲端資源或您的資料中心內的資源"
+title: "與虛擬網路的 Azure HDInsight aaaExtend |Microsoft 文件"
+description: "了解如何 toouse Azure 虛擬網路 tooconnect HDInsight tooother 雲端資源或您的資料中心中的資源"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -15,173 +15,173 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/23/2017
 ms.author: larryfr
-ms.openlocfilehash: 380423ec42ad4905c73fcd57501102e9f7062e81
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ba80be4d9f280c6c62fa8acc996ef5f921acdbbd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="extend-azure-hdinsight-using-an-azure-virtual-network"></a>使用 Azure 虛擬網路延伸 Azure HDInsight
 
-了解如何搭配使用 HDInsight 與 [Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)。 使用 Azure 虛擬網路可啟用下列案例：
+深入了解如何 toouse HDInsight 與[Azure 虛擬網路](../virtual-network/virtual-networks-overview.md)。 使用 Azure 虛擬網路可讓 hello 下列案例：
 
-* 從內部部署網路直接連線至 HDInsight。
+* 直接從內部部署網路連接 tooHDInsight。
 
-* 將 HDInsight 連線至 Azure 虛擬網路中的資料存放區。
+* 連接 HDInsight toodata 會儲存在 Azure 虛擬網路中。
 
-* 直接存取無法透過網際網路公開使用的 Hadoop 服務。 例如，Kafka API 或 HBase Java API。
+* 直接存取 Hadoop 服務無法使用的公開超過 hello 網際網路。 例如，Kafka 應用程式開發介面或 hello HBase Java 應用程式開發介面。
 
 > [!WARNING]
-> 本文件中的資訊需要了解 TCP/IP 網路。 如果您不熟悉 TCP/IP 網路，則應該與之前在生產網路中修改的人員合作。
+> 本文件中的 hello 資訊需要 TCP/IP 網路中了的解。 如果您不熟悉使用 TCP/IP 網路中，您應該與之前進行修改 tooproduction 網路的人員合作。
 
 ## <a name="planning"></a>規劃
 
-規劃在虛擬網路中安裝 HDInsight 時，您必須回答的問題如下：
+hello 下面是 hello 規劃 tooinstall HDInsight 中的虛擬網路時，您必須回答的問題：
 
-* 您需要將 HDInsight 安裝到現有虛擬網路嗎？ 或者，您要建立新的網路嗎？
+* 您需要 tooinstall HDInsight 到現有的虛擬網路嗎？ 或者，您要建立新的網路嗎？
 
-    如果您要使用現有虛擬網路，則可能需要先修改網路設定，才能安裝 HDInsight。 如需詳細資訊，請參閱[將 HDInsight 新增至現有虛擬網路](#existingvnet)一節。
+    如果您使用現有的虛擬網路，您可能需要 toomodify hello 網路組態，才能安裝 HDInsight。 如需詳細資訊，請參閱 hello[新增 HDInsight tooan 現有的虛擬網路](#existingvnet)> 一節。
 
-* 您要將包含 HDInsight 的虛擬網路連線至另一個虛擬網路或內部部署網路嗎？
+* 您想 tooconnect hello 虛擬網路包含 HDInsight tooanother 虛擬網路或內部部署網路嗎？
 
-    若要輕鬆地跨網路使用資源，您可能需要建立自訂 DNS，並設定 DNS 轉送。 如需詳細資訊，請參閱[連線多個網路](#multinet)一節。
+    tooeasily 工作以跨網路資源，您可能需要 toocreate 自訂 DNS，並設定 DNS 轉送。 如需詳細資訊，請參閱 hello[連接多個網路](#multinet)> 一節。
 
-* 您要將輸入或輸出流量限制/重新導向至 HDInsight 嗎？
+* 您想 toorestrict/重新導向輸入或輸出流量 tooHDInsight 嗎？
 
-    HDInsight 必須具有 Azure 資料中心內特定 IP 位址的無限制通訊。 另外還有數個連接埠必須允許通過防火牆才能進行用戶端通訊。 如需詳細資訊，請參閱[控制網路流量](#networktraffic)一節。
+    HDInsight 必須具有無限制的 hello Azure 資料中心中的特定 IP 位址的通訊。 另外還有數個連接埠必須允許通過防火牆才能進行用戶端通訊。 如需詳細資訊，請參閱 hello[控制網路流量](#networktraffic)> 一節。
 
-## <a id="existingvnet"></a>將 HDInsight 新增至現有虛擬網路
+## <a id="existingvnet"></a>新增 HDInsight tooan 現有的虛擬網路
 
-使用本節中的步驟，以了解如何將新的 HDInsight 新增至現有 Azure 虛擬網路。
+如何使用這個區段 toodiscover 中的 hello 步驟 tooadd 新的 HDInsight tooan，現有的 Azure 虛擬網路。
 
 > [!NOTE]
 > 您無法在虛擬網路中新增現有的 HDInsight 叢集。
 
-1. 您要使用虛擬網路的傳統或 Resource Manager 部署模型嗎？
+1. 您使用傳統 」 或 「 資源管理員部署模型 hello 虛擬網路？
 
     HDInsight 3.4 和更新版本需要 Resource Manager 虛擬網路。 舊版 HDInsight 需要傳統虛擬網路。
 
-    如果您的現有網路是傳統虛擬網路，則必須建立 Resource Manager 虛擬網路，然後連線兩者。 [將傳統 VNet 連線至新的 VNet](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md)。
+    如果您現有的網路是傳統的虛擬網路，您必須建立資源管理員的虛擬網路，然後再連接兩個 hello。 [連接傳統 Vnet toonew Vnet](../vpn-gateway/vpn-gateway-connect-different-deployment-models-portal.md)。
 
-    加入之後，Resource Manager 網路中所安裝的 HDInsight 就可以與傳統網路中的資源互動。
+    一旦加入，HDInsight hello 資源管理員網路中安裝可以互動 hello 傳統網路中的資源。
 
-2. 您使用強制通道嗎？ 強制通道是一種子網路設定，可強制裝置的輸出網際網路流量以進行檢查和記錄。 HDInsight 不支援強制通道。 先移除強制通道，再將 HDInsight 安裝至子網路，或建立 HDInsight 的新子網路。
+2. 您使用強制通道嗎？ 強制通道是子網路設定，會強制檢查的傳出網際網路流量 tooa 裝置和記錄。 HDInsight 不支援強制通道。 先移除強制通道，再將 HDInsight 安裝至子網路，或建立 HDInsight 的新子網路。
 
-3. 您使用網路安全性群組、使用者定義路由或虛擬網路設備來限制傳入或傳出虛擬網路的流量嗎？
+3. 您使用網路安全性群組的相關、 使用者定義的路由或虛擬網路應用裝置 toorestrict 流量傳入或傳出 hello 虛擬網路？
 
-    HDInsight 是一個受管理服務，需要 Azure 資料中心內數個 IP 位址的無限制存取權。 若要允許與這些 IP 位址的通訊，請更新任何現有網路安全性群組或使用者定義路由。
+    為受管理的服務，HDInsight 需要 hello Azure 資料中心中的無限制的存取 tooseveral IP 位址。 tooallow 通訊，這些 IP 位址，與更新的任何現有的網路安全性群組或使用者定義的路由。
 
-    HDInsight 會裝載多個使用各種連接埠的服務。 不會封鎖對這些連接埠的流量。 如需允許通過虛擬設備防火牆的連接埠清單，請參閱[安全性](#security)一節。
+    HDInsight 會裝載多個使用各種連接埠的服務。 不會封鎖流量 toothese 連接埠。 如需通過虛擬設備的防火牆連接埠 tooallow 的清單，請參閱 hello[安全性](#security)> 一節。
 
-    若要尋找現有安全性設定，請使用下列 Azure PowerShell 或 Azure CLI 命令：
+    toofind 您現有的安全性組態，使用下列 Azure PowerShell 或 Azure CLI 命令的 hello:
 
     * 網路安全性群組
 
         ```powershell
-        $resourceGroupName = Read-Input -Prompt "Enter the resource group that contains the virtual network used with HDInsight"
+        $resourceGroupName = Read-Input -Prompt "Enter hello resource group that contains hello virtual network used with HDInsight"
         get-azurermnetworksecuritygroup -resourcegroupname $resourceGroupName
         ```
 
         ```azurecli-interactive
-        read -p "Enter the name of the resource group that contains the virtual network: " RESOURCEGROUP
+        read -p "Enter hello name of hello resource group that contains hello virtual network: " RESOURCEGROUP
         az network nsg list --resource-group $RESOURCEGROUP
         ```
 
-        如需詳細資訊，請參閱[為網路安全性群組疑難排解](../virtual-network/virtual-network-nsg-troubleshoot-portal.md)文件。
+        如需詳細資訊，請參閱 hello[疑難排解網路安全性群組](../virtual-network/virtual-network-nsg-troubleshoot-portal.md)文件。
 
         > [!IMPORTANT]
-        > 會根據規則優先順序依序套用網路安全性群組規則。 會套用第一個符合流量模式的規則，而且未針對該流量套用其他規則。 排序從最寬鬆到最嚴格權限的規則。 如需詳細資訊，請參閱[使用網路安全性群組來篩選網路流量](../virtual-network/virtual-networks-nsg.md)文件。
+        > 會根據規則優先順序依序套用網路安全性群組規則。 hello 符合 hello 流量模式的第一個規則會套用，且沒有其他適用於該流量。 順序從最寬鬆 tooleast 寬鬆的規則。 如需詳細資訊，請參閱 hello[篩選網路流量的網路安全性群組](../virtual-network/virtual-networks-nsg.md)文件。
 
     * 使用者定義的路由
 
         ```powershell
-        $resourceGroupName = Read-Input -Prompt "Enter the resource group that contains the virtual network used with HDInsight"
+        $resourceGroupName = Read-Input -Prompt "Enter hello resource group that contains hello virtual network used with HDInsight"
         get-azurermroutetable -resourcegroupname $resourceGroupName
         ```
 
         ```azurecli-interactive
-        read -p "Enter the name of the resource group that contains the virtual network: " RESOURCEGROUP
+        read -p "Enter hello name of hello resource group that contains hello virtual network: " RESOURCEGROUP
         az network route-table list --resource-group $RESOURCEGROUP
         ```
 
-        如需詳細資訊，請參閱[為路由疑難排解](../virtual-network/virtual-network-routes-troubleshoot-portal.md)文件。
+        如需詳細資訊，請參閱 hello[疑難排解路由](../virtual-network/virtual-network-routes-troubleshoot-portal.md)文件。
 
-4. 建立 HDInsight 叢集，並在設定期間選擇 Azure 虛擬網路。 使用下列文件中的步驟，以了解叢集建立程序：
+4. 建立 HDInsight 叢集，並在設定期間選取 hello Azure 虛擬網路。 使用下列文件 toounderstand hello 叢集建立程序的 hello 中 hello 步驟：
 
-    * [使用 Azure 入口網站建立 HDInsight](hdinsight-hadoop-create-linux-clusters-portal.md)
+    * [建立 HDInsight 使用 hello Azure 入口網站](hdinsight-hadoop-create-linux-clusters-portal.md)
     * [使用 Azure PowerShell 建立 HDInsight](hdinsight-hadoop-create-linux-clusters-azure-powershell.md)
     * [使用 Azure CLI 1.0 建立 HDInsight](hdinsight-hadoop-create-linux-clusters-azure-cli.md)
     * [使用 Azure Resource Manager 範本建立 HDInsight](hdinsight-hadoop-create-linux-clusters-arm-templates.md)
 
   > [!IMPORTANT]
-  > 將 HDInsight 新增至虛擬網路是選擇性的設定步驟。 請務必在設定叢集時選取虛擬網路。
+  > 新增 HDInsight tooa 虛擬網路是選用設定步驟。 設定 hello 叢集時，是確定 tooselect hello 虛擬網路。
 
 ## <a id="multinet"></a>連線多個網路
 
-多網路設定的最大挑戰是網路之間的名稱解析。
+hello 與多個網路設定最大的挑戰是 hello 網路之間的名稱解析。
 
-Azure 會針對安裝於虛擬網路中的 Azure 服務提供名稱解析。 這個內建名稱解析允許 HDInsight 使用完整網域名稱 (FQDN) 連線至下列資源：
+Azure 會針對安裝於虛擬網路中的 Azure 服務提供名稱解析。 此內建的名稱解析可讓 HDInsight tooconnect toohello 下列使用完整的網域名稱 (FQDN) 的資源：
 
-* 網際網路上的任何可用資源。 例如，microsoft.com、google.com。
+* 可使用的任何資源 hello 網際網路。 例如，microsoft.com、google.com。
 
-* 相同 Azure 虛擬網路中的任何資源，方法是使用資源的「內部 DNS 名稱」。 例如，使用預設名稱解析時，以下是指派給 HDInsight 背景工作節點的範例內部 DNS 名稱：
+* 是在 hello 相同 Azure 虛擬網路，使用 hello 任何資源__內部 DNS 名稱__的 hello 資源。 例如，當使用 hello 預設名稱解析，hello 如下範例內部 DNS 名稱指派的 tooHDInsight 背景工作節點：
 
     * wn0-hdinsi.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net
     * wn2-hdinsi.0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net
 
     這些節點可以使用內部 DNS 名稱彼此直接通訊，以及與 HDInsight 中的其他節點通訊。
 
-預設名稱解析「不」允許 HDInsight 解析加入虛擬網路之網路中的資源名稱。 例如，通常會將內部部署網路加入虛擬網路。 只使用預設名稱解析，HDInsight 無法透過名稱存取內部部署網路中的資源。 反之亦然，內部部署網路中的資源無法透過名稱存取虛擬網路中的資源。
+hello 預設名稱解析沒有__不__內聯結的 toohello 虛擬網路的網路中允許 HDInsight tooresolve hello 資源的名稱。 比方說，是通用 toojoin 您內部網路 toohello 虛擬網路。 只有 hello 預設名稱解析，HDInsight 無法透過名稱存取 hello 與內部網路中的資源。 相反的 hello 也是為 true，在內部部署網路中的資源無法透過名稱存取 hello 虛擬網路中的資源。
 
 > [!WARNING]
-> 您必須建立自訂 DNS 伺服器，並設定虛擬網路使用它，再建立 HDInsight 叢集。
+> 您必須建立 hello 自訂 DNS 伺服器，並設定 hello 虛擬網路 toouse 它之前建立 hello HDInsight 叢集。
 
-若要啟用虛擬網路與所加入網路中資源之間的名稱解析，您必須執行下列動作：
+tooenable hello 虛擬網路之間聯結的網路中的資源名稱解析，您必須執行下列動作的 hello:
 
-1. 在要安裝 HDInsight 的 Azure 虛擬網路中建立自訂 DNS 伺服器。
+1. Hello 您計劃 tooinstall HDInsight 的 Azure 虛擬網路中建立自訂的 DNS 伺服器。
 
-2. 將虛擬網路設定為使用自訂 DNS 伺服器。
+2. Hello 虛擬網路 toouse hello 自訂 DNS 伺服器設定。
 
-3. 尋找虛擬網路的 Azure 指派 DNS 尾碼。 此值與 `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net` 類似。 如需尋找 DNS 尾碼的資訊，請參閱[範例：自訂 DNS](#example-dns) 一節。
+3. Azure 虛擬網路的 DNS 尾碼指派給的 hello 中尋找。 此值就會類似太`0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net`。 如需尋找 hello DNS 尾碼，請參閱 hello[範例： 自訂 DNS](#example-dns) > 一節。
 
-4. 設定 DNS 伺服器之間的轉送。 設定取決於遠端網路類型。
+4. 設定 hello DNS 伺服器之間的轉送。 遠端網路 hello 類型 hello 組態而定。
 
-    * 如果遠端網路是內部部署網路，請設定 DNS，如下所示：
+    * 如果 hello 遠端網路與內部網路，設定 DNS，如下所示：
         
-        * 「自訂 DNS」(在虛擬網路中)：
+        * __自訂 DNS__ （hello 虛擬網路中）：
 
-            * 將虛擬網路 DNS 尾碼的要求轉送至 Azure 遞迴解析程式 (168.63.129.16)。 Azure 會處理虛擬網路中資源的要求
+            * 轉寄要求 hello hello 虛擬網路 toohello Azure 遞迴解析程式 (168.63.129.16) 的 DNS 尾碼。 Azure 會處理 hello 虛擬網路中的資源的要求
 
-            * 將所有其他要求轉送至內部部署 DNS 伺服器。 內部部署 DNS 會處理所有其他名稱解析要求，即使是網際網路資源 (例如 Microsoft.com) 的要求也是一樣。
+            * 轉寄所有其他要求 toohello 在內部部署 DNS 伺服器。 hello 內部 DNS 會處理所有其他的名稱解析要求，甚至是網際網路資源，例如 Microsoft.com 要求。
 
-        * 內部部署 DNS：將虛擬網路 DNS 尾碼的要求轉送至自訂 DNS 伺服器。 自訂 DNS 伺服器接著會轉送至 Azure 遞迴解析程式。
+        * __在內部部署 DNS__: hello 虛擬網路的 DNS 尾碼 toohello 自訂 DNS 伺服器的要求轉送。 hello 自訂 DNS 伺服器，然後轉送 toohello Azure 遞迴解析程式。
 
-        此設定會將完整網域名稱包含虛擬網路 DNS 尾碼的要求路由傳送至自訂 DNS 伺服器。 內部部署 DNS 伺服器會處理所有其他要求 (即使是針對公用網際網路位址)。
+        此組態路由要求完整網域名稱包含 hello hello 虛擬網路 toohello 自訂 DNS 伺服器的 DNS 尾碼。 Hello 在內部部署 DNS 伺服器會處理 （即使是針對公用的網際網路位址） 的所有其他要求。
 
-    * 如果遠端網路是另一個 Azure 虛擬網路，請設定 DNS，如下所示：
+    * 如果另一個 Azure 虛擬網路 hello 遠端網路，設定 DNS，如下所示：
 
         * 「自訂 DNS」(在每個虛擬網路中)：
 
-            * 將虛擬網路 DNS 尾碼的要求轉送至自訂 DNS 伺服器。 每個虛擬網路中的 DNS 會負責解析其網路內的資源。
+            * Hello hello 虛擬網路的 DNS 尾碼的要求都會轉送 toohello 自訂 DNS 伺服器。 每個虛擬網路中的 hello DNS 會負責解析其網路內的資源。
 
-            * 將所有其他要求轉送至 Azure 遞迴解析程式。 遞迴解析程式負責解析本機和網際網路資源。
+            * 轉寄所有其他要求 toohello Azure 遞迴解析程式。 hello 遞迴解析程式負責解決本機和網際網路資源。
 
-        根據 DNS 尾碼，每個網路的 DNS 伺服器都會將要求轉送至另一個。 其他要求是使用 Azure 遞迴解析程式進行解析。
+        每個網路的 hello DNS 伺服器會將轉送要求 toohello 其他，根據 DNS 尾碼。 其他要求會解析使用 hello Azure 遞迴解析程式。
 
-    如需每個設定的範例，請參閱[範例：自訂 DNS](#example-dns) 一節。
+    如需每個組態的範例，請參閱 hello[範例： 自訂 DNS](#example-dns) > 一節。
 
-如需詳細資訊，請參閱 [VM 和角色執行個體的名稱解析](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server)文件。
+如需詳細資訊，請參閱 hello [Vm 和角色執行個體的名稱解析](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md#name-resolution-using-your-own-dns-server)文件。
 
-## <a name="directly-connect-to-hadoop-services"></a>直接連線至 Hadoop 服務
+## <a name="directly-connect-toohadoop-services"></a>直接連接 tooHadoop 服務
 
-HDInsight 上大部分的文件都假設您透過網際網路擁有叢集存取權。 例如，您可以連線到 https://CLUSTERNAME.azurehdinsight.net 的叢集。 這個位址會使用公用閘道，如果您已經使用 NSG 或 UDR 來限制網際網路的存取，則無法使用。
+HDInsight 上的大部分文件假設您有存取 toohello 叢集 hello 透過網際網路。 例如，您可以連接 https://CLUSTERNAME.azurehdinsight.net toohello 叢集。 這個位址會使用 hello 公用閘道，如果您已經使用 Nsg，或從 UDRs toorestrict 存取 hello 網際網路，則無法使用此。
 
-若要透過虛擬網路連線至 Ambari 和其他網頁，請使用下列步驟：
+tooconnect tooAmbari 和其他網頁透過 hello 虛擬網路，使用下列步驟的 hello:
 
-1. 若要探索 HDInsight 叢集節點的內部完整網域名稱 (FQDN)，請使用下列其中一種方法：
+1. toodiscover hello 內部的完整的網域名稱 (FQDN) 的 hello HDInsight 叢集節點，使用其中一種 hello 下列方法：
 
     ```powershell
-    $resourceGroupName = "The resource group that contains the virtual network used with HDInsight"
+    $resourceGroupName = "hello resource group that contains hello virtual network used with HDInsight"
 
     $clusterNICs = Get-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName | where-object {$_.Name -like "*node*"}
 
@@ -200,44 +200,44 @@ HDInsight 上大部分的文件都假設您透過網際網路擁有叢集存取�
     az network nic list --resource-group <resourcegroupname> --output table --query "[?contains(name,'node')].{NICname:name,InternalIP:ipConfigurations[0].privateIpAddress,InternalFQDN:dnsSettings.internalFqdn}"
     ```
 
-    在所傳回的節點清單中，尋找前端節點的 FQDN 並使用這些 FQDN 來連線至 Ambari 和其他 Web 服務。 例如，使用 `http://<headnode-fqdn>:8080` 存取 Ambari。
+    在 [hello] 清單中傳回的節點，尋找 hello FQDN hello 前端節點和使用 hello Fqdn tooconnect tooAmbari 及其他 web 服務。 例如，使用`http://<headnode-fqdn>:8080`tooaccess Ambari。
 
     > [!IMPORTANT]
-    > 前端節點上裝載的某些服務一次只會在一個節點上作用。 如果您嘗試在一個前端節點上存取服務，但傳回 404 錯誤，請切換至其他的前端節點。
+    > 某些 hello 前端節點上裝載的服務才一次一個節點上使用中。 如果您嘗試存取一個前端節點上的服務，它會傳回 404 錯誤，請切換 toohello 其他前端節點。
 
-2. 若要判斷可提供服務的節點和連接埠，請參閱 [Hadoop 服務在 HDInsight 上所使用的連接埠](./hdinsight-hadoop-port-settings-for-services.md)文件。
+2. toodetermine hello 節點和可用通訊埠的服務，請參閱 hello [HDInsight 上的 Hadoop 服務所使用的連接埠](./hdinsight-hadoop-port-settings-for-services.md)文件。
 
 ## <a id="networktraffic"></a> 控制網路流量
 
-Azure 虛擬網路中的網路流量可以使用下列方法進行控制：
+您可以使用下列方法 hello 控制 Azure 虛擬網路中的網路流量：
 
-* **網路安全性群組** (NSG) 可讓您篩選輸入和輸出網路流量。 如需詳細資訊，請參閱[使用網路安全性群組來篩選網路流量](../virtual-network/virtual-networks-nsg.md)文件。
+* **網路安全性群組**(NSG) toofilter 輸入和輸出流量 toohello 網路可讓您。 如需詳細資訊，請參閱 hello[篩選網路流量的網路安全性群組](../virtual-network/virtual-networks-nsg.md)文件。
 
     > [!WARNING]
     > HDInsight 不支援限制輸出流量。
 
-* **使用者定義路由** (UDR) 定義流量在網路中的資源之間如何流動。 如需詳細資訊，請參閱[使用者定義路由和 IP 轉送](../virtual-network/virtual-networks-udr-overview.md)文件。
+* **使用者定義的路由**(UDR) 定義流量在 hello 網路資源之間流動的方式。 如需詳細資訊，請參閱 hello[使用者定義的路由與 IP 轉送](../virtual-network/virtual-networks-udr-overview.md)文件。
 
-* **網路虛擬設備**會複寫裝置的功能，例如防火牆和路由器。 如需詳細資訊，請參閱[網路設備](https://azure.microsoft.com/solutions/network-appliances)文件。
+* **網路虛擬裝置**複寫 hello 功能的裝置，例如防火牆和路由器。 如需詳細資訊，請參閱 hello[網路應用裝置](https://azure.microsoft.com/solutions/network-appliances)文件。
 
-HDInsight 是一個受管理服務，需要 Azure 雲端中 Azure 健康狀態和管理服務的無限制存取權。 使用 NSG 和 UDR 時，您必須確定這些服務仍然可以與 HDInsight 進行通訊。
+為受管理的服務，HDInsight 需要無限制的存取 tooAzure 健全狀況和管理服務在 hello Azure 雲端中。 使用 NSG 和 UDR 時，您必須確定這些服務仍然可以與 HDInsight 進行通訊。
 
-HDInsight 會在數個連接埠上公開服務。 使用虛擬設備防火牆時，您必須允許用於這些服務之連接埠的流量。 如需詳細資訊，請參閱[必要連接埠]一節。
+HDInsight 會在數個連接埠上公開服務。 時使用的虛擬設備的防火牆，您必須允許流量 hello 用於這些服務的通訊埠。 如需詳細資訊，請參閱 hello [必要的連接埠] 區段。
 
 ### <a id="hdinsight-ip"></a> 具有網路安全性群組和使用者定義路由的 HDInsight
 
-如果您規劃使用**網路安全性群組**或**使用者定義路由**來控制網路流量，請先執行下列動作，再安裝 HDInsight：
+如果您計劃使用**網路安全性群組**或**使用者定義的路由**toocontrol 網路流量，請執行下列動作，然後再安裝 HDInsight hello:
 
-1. 識別您要用於 HDInsight 的 Azure 區域。
+1. 識別 hello toouse 規劃 HDInsight 的 Azure 區域。
 
-2. 識別 HDInsight 所需的 IP 位址。 如需詳細資訊，請參閱 [HDInsight 所需的 IP 位址](#hdinsight-ip)一節。
+2. 識別所需的 HDInsight hello IP 位址。 如需詳細資訊，請參閱 hello [HDInsight 所需的 IP 位址](#hdinsight-ip)> 一節。
 
-3. 建立或修改您要安裝 HDInsight 之子網路的網路安全性群組或使用者定義路由。
+3. 建立或修改 hello 網路安全性群組或使用者定義您計劃 tooinstall HDInsight hello 子網路的路由到。
 
-    * __網路安全性群組__：允許連接埠 __443__ 上來自 IP 位址的「輸入」流量。
-    * __使用者定義路由__：建立每個 IP 位址的路由，並將 [下一個躍點類型] 設定為 [網際網路]。
+    * __網路安全性群組__： 允許__輸入__連接埠的流量__443__來自 hello IP 位址。
+    * __使用者定義的路由__： 建立路由 tooeach IP 位址，以及設定 hello__下個躍點類型__too__Internet__。
 
-如需網路安全性群組或使用者定義路由的詳細資訊，請參閱下列文件：
+如需網路安全性群組或使用者定義的路由的詳細資訊，請參閱下列文件的 hello:
 
 * [網路安全性群組](../virtual-network/virtual-networks-nsg.md)
 
@@ -245,18 +245,18 @@ HDInsight 會在數個連接埠上公開服務。 使用虛擬設備防火牆時
 
 #### <a name="forced-tunneling"></a>強制通道
 
-強制通道是一種使用者定義路由設定，其中來自子網路的所有流量都會強制流向特定網路或位置，例如內部部署網路。 HDInsight「不」支援強制通道。
+強制通道是其中所有流量子網路都是強制的 tooa 特定網路或位置，例如您在內部部署網路的使用者定義的路由組態。 HDInsight「不」支援強制通道。
 
 ## <a id="hdinsight-ip"></a> 所需的 IP 位址
 
 > [!IMPORTANT]
-> Azure 健康狀態和管理服務必須能夠與 HDInsight 通訊。 如果您使用網路安全性群組或使用者定義的路由，請允許來自這些服務之 IP 位址的流量到達 HDInsight。
+> hello Azure 的健全狀況並管理服務必須與 HDInsight 無法 toocommunicate。 如果您使用網路安全性群組或使用者定義的路由，允許從 hello 流量這些服務 tooreach HDInsight 的 IP 位址。
 >
-> 如果您未使用網路安全性群組或使用者定義的路由來控制流量，可以忽略這個章節。
+> 如果您不想使用網路安全性群組或使用者定義的路由 toocontrol 流量，您可以忽略此區段。
 
-如果您是使用網路安全性群組或使用者定義的路由，必須允許來自 Azure 健康情況和管理服務的流量觸達 HDInsight。 您可以使用下列步驟來尋找必須允許的 IP 位址：
+如果您使用網路安全性群組或使用者定義的路由，您必須允許來自 hello Azure 健康情況與管理服務 tooreach HDInsight 的流量。 使用下列步驟 toofind hello 允許的 IP 位址必須是 hello:
 
-1. 您必須一律允許來自下列 IP 位址的流量：
+1. 您永遠必須允許來自下列 IP 位址的 hello 流量：
 
     | IP 位址 | 允許的連接埠 | 方向 |
     | ---- | ----- | ----- |
@@ -265,10 +265,10 @@ HDInsight 會在數個連接埠上公開服務。 使用虛擬設備防火牆時
     | 168.61.48.131 | 443 | 輸入 |
     | 138.91.141.162 | 443 | 輸入 |
 
-2. 如果您的 HDInsight 叢集是位於下列其中一個區域中，就必須允許來自針對區域所列的 IP 位址之流量：
+2. 如果您的 HDInsight 叢集位於 hello 下列區域的其中一個，您必須允許從 hello hello 地區列出的 IP 位址的流量：
 
     > [!IMPORTANT]
-    > 如果未列出您使用的 Azure 區域，就只能使用步驟 1 中的四個 IP 位址。
+    > 如果未列出 hello 您使用的 Azure 區域，則只能使用步驟 1 中的 hello 四個 IP 位址。
 
     | 國家 (地區) | 區域 | 允許的 IP 位址 | 允許的連接埠 | 方向 |
     | ---- | ---- | ---- | ---- | ----- |
@@ -297,15 +297,15 @@ HDInsight 會在數個連接埠上公開服務。 使用虛擬設備防火牆時
     | &nbsp; | 美國中西部 | 52.161.23.15</br>52.161.10.167 | 443 | 輸入 |
     | &nbsp; | 美國西部 2 | 52.175.211.210</br>52.175.222.222 | 443 | 輸入 |
 
-    如需用於 Azure Government 之 IP 位址的資訊，請參閱 [Azure Government Intelligence + Analytics](https://docs.microsoft.com/azure/azure-government/documentation-government-services-intelligenceandanalytics) 文件。
+    有關 hello IP 位址 Azure 政府 toouse，請參閱 hello [Azure 政府智慧 + 分析](https://docs.microsoft.com/azure/azure-government/documentation-government-services-intelligenceandanalytics)文件。
 
-3. 如果您搭配使用自訂 DNS 伺服器與虛擬網路，則也必須允許從 __168.63.129.16__ 進行存取。 此位址是 Azure 遞迴解析程式。 如需詳細資訊，請參閱 [VM 和角色執行個體的名稱解析](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)文件。
+3. 如果您搭配使用自訂 DNS 伺服器與虛擬網路，則也必須允許從 __168.63.129.16__ 進行存取。 此位址是 Azure 遞迴解析程式。 如需詳細資訊，請參閱 hello[名稱解析的 Vm 和角色執行個體](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)文件。
 
-如需詳細資訊，請參閱[控制網路流量](#networktraffic)一節。
+如需詳細資訊，請參閱 hello[控制網路流量](#networktraffic)> 一節。
 
 ## <a id="hdinsight-ports"></a> 所需連接埠
 
-如果您要使用網路**虛擬設備防火牆**來保護虛擬網路，則必須允許下列連接埠的輸出流量：
+如果您打算使用網路**虛擬設備防火牆**toosecure hello 虛擬網路，您必須在 hello 下列連接埠上允許輸出流量：
 
 * 53
 * 443
@@ -313,44 +313,44 @@ HDInsight 會在數個連接埠上公開服務。 使用虛擬設備防火牆時
 * 11000-11999
 * 14000-14999
 
-如需特定服務的連接埠清單，請參閱 [HDInsight 上 Hadoop 服務所使用的連接埠](hdinsight-hadoop-port-settings-for-services.md)文件。
+如需特定的服務連接埠的清單，請參閱 hello [HDInsight 上的 Hadoop 服務所使用的連接埠](hdinsight-hadoop-port-settings-for-services.md)文件。
 
-如需虛擬設備防火牆規則的詳細資訊，請參閱[虛擬設備案例](../virtual-network/virtual-network-scenario-udr-gw-nva.md)文件。
+如需有關虛擬應用程式的防火牆規則的詳細資訊，請參閱 hello[虛擬設備案例](../virtual-network/virtual-network-scenario-udr-gw-nva.md)文件。
 
 ## <a id="hdinsight-nsg"></a>範例：網路安全性群組與 HDInsight
 
-本節中的範例會示範如何建立網路安全性群組規則，以允許 HDInsight 與 Azure 管理服務進行通訊。 使用範例之前，請調整 IP 位址以符合您要使用之 Azure 區域的 IP 位址。 您可以在[具有網路安全性群組和使用者定義路由的 HDInsight](#hdinsight-ip) 一節中找到這項資訊。
+本節中的 hello 範例示範如何 toocreate 網路安全性群組規則來允許 HDInsight toocommunicate hello 與 Azure 的管理服務。 使用 hello 範例之前，調整 hello IP 位址 toomatch hello 的 hello 您使用的 Azure 區域。 您可以找到此資訊在 hello[網路安全性群組和使用者定義的路由與 HDInsight](#hdinsight-ip) > 一節。
 
 ### <a name="azure-resource-management-template"></a>Azure 資源管理範本
 
-下列資源管理範本會建立限制輸入流量的虛擬網路，但允許來自 HDInsight 所需 IP 位址的流量。 此範本也會在虛擬網路中建立 HDInsight 叢集。
+hello 下列資源管理範本建立虛擬網路時，限制的輸入的流量，但允許來自 hello HDInsight 所需的 IP 位址的流量。 此範本也會 hello 虛擬網路中建立的 HDInsight 叢集。
 
 * [部署安全的 Azure 虛擬網路和 HDInsight Hadoop 叢集](https://azure.microsoft.com/resources/templates/101-hdinsight-secure-vnet/)
 
 > [!IMPORTANT]
-> 建立此範例中使用的 IP 位址，以符合您使用的 Azure 區域。 您可以在[具有網路安全性群組和使用者定義路由的 HDInsight](#hdinsight-ip) 一節中找到這項資訊。
+> 變更用於此範例 toomatch hello 您使用的 Azure 區域中的 hello IP 位址。 您可以找到此資訊在 hello[網路安全性群組和使用者定義的路由與 HDInsight](#hdinsight-ip) > 一節。
 
 ### <a name="azure-powershell"></a>Azure PowerShell
 
-使用下列 PowerShell 指令碼建立限制輸入流量的虛擬網路，並允許來自北歐區域之 IP 位址的流量。
+使用下列 PowerShell 指令碼 toocreate 限制的輸入的流量，並允許流量從 hello hello 北歐區域的 IP 位址的虛擬網路的 hello。
 
 > [!IMPORTANT]
-> 建立此範例中使用的 IP 位址，以符合您使用的 Azure 區域。 您可以在[具有網路安全性群組和使用者定義路由的 HDInsight](#hdinsight-ip) 一節中找到這項資訊。
+> 變更用於此範例 toomatch hello 您使用的 Azure 區域中的 hello IP 位址。 您可以找到此資訊在 hello[網路安全性群組和使用者定義的路由與 HDInsight](#hdinsight-ip) > 一節。
 
 ```powershell
 $vnetName = "Replace with your virtual network name"
-$resourceGroupName = "Replace with the resource group the virtual network is in"
-$subnetName = "Replace with the name of the subnet that you plan to use for HDInsight"
-# Get the Virtual Network object
+$resourceGroupName = "Replace with hello resource group hello virtual network is in"
+$subnetName = "Replace with hello name of hello subnet that you plan toouse for HDInsight"
+# Get hello Virtual Network object
 $vnet = Get-AzureRmVirtualNetwork `
     -Name $vnetName `
     -ResourceGroupName $resourceGroupName
-# Get the region the Virtual network is in.
+# Get hello region hello Virtual network is in.
 $location = $vnet.Location
-# Get the subnet object
+# Get hello subnet object
 $subnet = $vnet.Subnets | Where-Object Name -eq $subnetName
 # Create a Network Security Group.
-# And add exemptions for the HDInsight health and management services.
+# And add exemptions for hello HDInsight health and management services.
 $nsg = New-AzureRmNetworkSecurityGroup `
     -Name "hdisecure" `
     -ResourceGroupName $resourceGroupName `
@@ -432,9 +432,9 @@ $nsg = New-AzureRmNetworkSecurityGroup `
         -Access Deny `
         -Priority 500 `
         -Direction Inbound
-# Set the changes to the security group
+# Set hello changes toohello security group
 Set-AzureRmNetworkSecurityGroup -NetworkSecurityGroup $nsg
-# Apply the NSG to the subnet
+# Apply hello NSG toohello subnet
 Set-AzureRmVirtualNetworkSubnetConfig `
     -VirtualNetwork $vnet `
     -Name $subnetName `
@@ -443,9 +443,9 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 ```
 
 > [!IMPORTANT]
-> 此範例示範如何新增規則，以允許所需 IP 位址上的輸入流量。 它不會包含可限制其他來源之輸入存取的規則。
+> 此範例示範如何 tooadd 規則 tooallow 輸入 hello 所需的 IP 位址的流量。 它不包含規則 toorestrict 輸入從其他來源的存取。
 >
-> 下列範例示範如何啟用從網際網路進行 SSH 存取：
+> hello 下列範例將示範如何從 hello 網際網路存取 tooenable SSH:
 >
 > ```powershell
 > Add-AzureRmNetworkSecurityRuleConfig -Name "SSH" -Description "SSH" -Protocol "*" -SourcePortRange "*" -DestinationPortRange "22" -SourceAddressPrefix "*" -DestinationAddressPrefix "VirtualNetwork" -Access Allow -Priority 306 -Direction Inbound
@@ -453,20 +453,20 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 
 ### <a name="azure-cli"></a>Azure CLI
 
-使用下列步驟建立限制輸入流量的虛擬網路，但允許來自 HDInsight 所需 IP 位址的流量。
+使用下列步驟 toocreate 限制的輸入的流量，但允許流量從 hello HDInsight 所需的 IP 位址的虛擬網路的 hello。
 
-1. 使用下列命令來建立名為 `hdisecure`的新網路安全性群組。 使用包含 Azure 虛擬網路的資源群組來取代 **RESOURCEGROUPNAME**。 使用群組建立所在的位置 (區域) 來取代 **LOCATION**。
+1. 使用下列命令 toocreate 名為新的網路安全性群組的 hello `hdisecure`。 取代**RESOURCEGROUPNAME** hello 包含 hello Azure 虛擬網路的資源群組。 取代**位置**該 hello 群組建立在與 hello 位置 （地區）。
 
     ```azurecli
     az network nsg create -g RESOURCEGROUPNAME -n hdisecure -l LOCATION
     ```
 
-    建立群組之後，您會收到新群組的相關資訊。
+    一旦建立 hello 群組之後，您會收到 hello 新群組的詳細資訊。
 
-2. 使用下列將規則新增至新的網路安全性群組，這些規則允許從 Azure HDInsight 健康狀態和管理服務透過連接埠 443 的輸入通訊。 將 **RESOURCEGROUPNAME** 取代為包含 Azure 虛擬網路的資源群組名稱。
+2. 使用下列 tooadd 規則 toohello 新網路安全性群組，允許傳入的通訊連接埠 443 從 hello Azure HDInsight 健全狀況和管理服務的 hello。 取代**RESOURCEGROUPNAME** hello hello 包含 hello Azure 虛擬網路的資源群組名稱。
 
     > [!IMPORTANT]
-    > 建立此範例中使用的 IP 位址，以符合您使用的 Azure 區域。 您可以在[具有網路安全性群組和使用者定義路由的 HDInsight](#hdinsight-ip) 一節中找到這項資訊。
+    > 變更用於此範例 toomatch hello 您使用的 Azure 區域中的 hello IP 位址。 您可以找到此資訊在 hello[網路安全性群組和使用者定義的路由與 HDInsight](#hdinsight-ip) > 一節。
 
     ```azurecli
     az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule1 --protocol "*" --source-port-range "*" --destination-port-range "443" --source-address-prefix "52.164.210.96" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 300 --direction "Inbound"
@@ -478,30 +478,30 @@ Set-AzureRmVirtualNetworkSubnetConfig `
     az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n block --protocol "*" --source-port-range "*" --destination-port-range "*" --source-address-prefix "Internet" --destination-address-prefix "VirtualNetwork" --access "Deny" --priority 500 --direction "Inbound"
     ```
 
-3. 若要擷取此網路安全性群組的唯一識別碼，請使用下列命令：
+3. tooretrieve hello 此網路安全性群組的唯一識別碼，請使用下列命令的 hello:
 
     ```azurecli
     az network nsg show -g RESOURCEGROUPNAME -n hdisecure --query 'id'
     ```
 
-    此命令會傳回類似下列文字的值：
+    此命令會傳回值的類似 toohello，下列文字：
 
         "/subscriptions/SUBSCRIPTIONID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure"
 
-    如果未獲得預期的結果，請在命令中使用雙引號括住識別碼。
+    如果沒有得到預期的 hello 結果，請使用雙引號括住識別碼 hello 命令中。
 
-4. 使用下列命令將網路安全性群組套用至子網路。 使用上一個步驟傳回的值取代 __GUID__ 和 __RESOURCEGROUPNAME__ 的值。 將 __VNETNAME__ 和 __SUBNETNAME__ 取代為您想要建立的虛擬網路名稱和子網路名稱。
+4. 使用下列命令 tooapply hello 網路安全性群組 tooa 子網路的 hello。 取代 hello __GUID__和__RESOURCEGROUPNAME__ hello 上一個步驟傳回以 hello 的值。 取代__VNETNAME__和__SUBNETNAME__ hello 虛擬網路名稱與您想要 toocreate 的子網路名稱。
 
     ```azurecli
     az network vnet subnet update -g RESOURCEGROUPNAME --vnet-name VNETNAME --name SUBNETNAME --set networkSecurityGroup.id="/subscriptions/GUID/resourceGroups/RESOURCEGROUPNAME/providers/Microsoft.Network/networkSecurityGroups/hdisecure"
     ```
 
-    此命令完成之後，您可以將 HDInsight 安裝至虛擬網路。
+    此命令完成之後，您可以安裝 HDInsight 中 hello 虛擬網路。
 
 > [!IMPORTANT]
-> 這些步驟只會開啟 Azure 雲端上 HDInsight 健康狀態和管理服務的存取權。 任何其他來自虛擬網路外部之對 HDInsight 叢集的存取都會遭到封鎖。 若要允許從外部虛擬網路存取，您必須新增額外的網路安全性群組規則。
+> 這些步驟只會開啟存取 toohello HDInsight 健全狀況和管理服務上 hello Azure 雲端。 任何其他存取 toohello HDInsight 叢集從外部 hello 虛擬網路會被封鎖。 tooenable 存取外部 hello 虛擬網路，您必須加入額外的網路安全性群組規則。
 >
-> 下列範例示範如何啟用從網際網路進行 SSH 存取：
+> hello 下列範例將示範如何從 hello 網際網路存取 tooenable SSH:
 >
 > ```azurecli
 > az network nsg rule create -g RESOURCEGROUPNAME --nsg-name hdisecure -n hdirule5 --protocol "*" --source-port-range "*" --destination-port-range "22" --source-address-prefix "*" --destination-address-prefix "VirtualNetwork" --access "Allow" --priority 306 --direction "Inbound"
@@ -511,50 +511,50 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 
 ### <a name="name-resolution-between-a-virtual-network-and-a-connected-on-premises-network"></a>虛擬網路與已連線內部部署網路之間的名稱解析
 
-此範例做出以下假設：
+這個範例會進行下列假設 hello:
 
-* 您的 Azure 虛擬網路會使用 VPN 閘道連線至內部部署網路。
+* 您有 Azure 虛擬網路所使用的 VPN 閘道連線的 tooan 在內部部署網路。
 
-* 虛擬網路中的自訂 DNS 伺服器會執行 Linux 或 Unix 作為作業系統。
+* hello 自訂 DNS 伺服器 hello 虛擬網路中的執行的 Linux 或 Unix hello 作業系統。
 
-* [Bind](https://www.isc.org/downloads/bind/) 安裝在自訂 DNS 伺服器上。
+* [繫結](https://www.isc.org/downloads/bind/)hello 自訂 DNS 伺服器上已安裝。
 
-在虛擬網路的自訂 DNS 伺服器上：
+Hello 自訂 DNS 伺服器上 hello 虛擬網路中：
 
-1. 若要尋找虛擬網路的 DNS 尾碼，請使用 Azure PowerShell 或 Azure CLI：
+1. 使用 Azure PowerShell 或 Azure CLI toofind hello 的 DNS 尾碼 hello 虛擬網路：
 
     ```powershell
-    $resourceGroupName = Read-Input -Prompt "Enter the resource group that contains the virtual network used with HDInsight"
+    $resourceGroupName = Read-Input -Prompt "Enter hello resource group that contains hello virtual network used with HDInsight"
     $NICs = Get-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName
     $NICs[0].DnsSettings.InternalDomainNameSuffix
     ```
 
     ```azurecli-interactive
-    read -p "Enter the name of the resource group that contains the virtual network: " RESOURCEGROUP
+    read -p "Enter hello name of hello resource group that contains hello virtual network: " RESOURCEGROUP
     az network nic list --resource-group $RESOURCEGROUP --query "[0].dnsSettings.internalDomainNameSuffix"
     ```
 
-2. 在虛擬網路的自訂 DNS 伺服器上，使用下列文字作為 `/etc/bind/named.conf.local` 檔案的內容：
+2. Hello 自訂 DNS 伺服器上 hello 虛擬網路，使用下列文字，做為 hello 內容的 hello hello`/etc/bind/named.conf.local`檔案：
 
     ```
-    // Forward requests for the virtual network suffix to Azure recursive resolver
+    // Forward requests for hello virtual network suffix tooAzure recursive resolver
     zone "0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net" {
         type forward;
         forwarders {168.63.129.16;}; # Azure recursive resolver
     };
     ```
 
-    將 `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net` 值取代為虛擬網路的 DNS 尾碼。
+    取代 hello `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net` hello 的虛擬網路的 DNS 尾碼的值。
 
-    此設定會將虛擬網路 DNS 尾碼的所有 DNS 要求都路由傳送至 Azure 遞迴解析程式。
+    此設定會路由傳送 hello hello 虛擬網路 toohello Azure 遞迴解析程式的 DNS 尾碼的所有 DNS 要求。
 
-2. 在虛擬網路的自訂 DNS 伺服器上，使用下列文字作為 `/etc/bind/named.conf.options` 檔案的內容：
+2. Hello 自訂 DNS 伺服器上 hello 虛擬網路，使用下列文字，做為 hello 內容的 hello hello`/etc/bind/named.conf.options`檔案：
 
     ```
-    // Clients to accept requests from
-    // TODO: Add the IP range of the joined network to this list
+    // Clients tooaccept requests from
+    // TODO: Add hello IP range of hello joined network toothis list
     acl goodclients {
-        10.0.0.0/16; # IP address range of the virtual network
+        10.0.0.0/16; # IP address range of hello virtual network
         localhost;
         localnets;
     };
@@ -566,75 +566,75 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 
             allow-query { goodclients; };
 
-            # All other requests are sent to the following
+            # All other requests are sent toohello following
             forwarders {
-                192.168.0.1; # Replace with the IP address of your on-premises DNS server
+                192.168.0.1; # Replace with hello IP address of your on-premises DNS server
             };
 
             dnssec-validation auto;
 
-            auth-nxdomain no;    # conform to RFC1035
+            auth-nxdomain no;    # conform tooRFC1035
             listen-on { any; };
     };
     ```
     
-    * 將 `10.0.0.0/16` 值取代為虛擬網路的 IP 位址範圍。 此項目允許來自此範圍內位址的名稱解析要求。
+    * 取代 hello `10.0.0.0/16` hello IP 位址範圍，為您的虛擬網路的值。 此項目允許來自此範圍內位址的名稱解析要求。
 
-    * 將內部部署網路的 IP 位址範圍新增至 `acl goodclients { ... }` 區段。  項目允許來自內部部署網路中資源的名稱解析要求。
+    * 新增 hello IP 位址範圍的 hello 在內部部署網路 toohello `acl goodclients { ... }` > 一節。  項目允許 hello 與內部網路中的名稱解析要求的資源。
     
-    * 將 `192.168.0.1` 值取代為內部部署 DNS 伺服器的 IP 位址。 此項目會將所有其他 DNS 要求路由傳送至內部部署 DNS 伺服器。
+    * 取代 hello 值`192.168.0.1`hello 在內部部署 DNS 伺服器的 IP 位址。 此項目會路由傳送所有其他 DNS 要求 toohello 在內部部署 DNS 伺服器。
 
-3. 若要使用設定，請重新啟動 Bind。 例如： `sudo service bind9 restart`。
+3. toouse hello 組態，重新啟動繫結。 例如： `sudo service bind9 restart`。
 
-4. 將條件式轉寄站新增至內部部署 DNS 伺服器。 設定條件式轉寄站，以將步驟 1 中之 DNS 尾碼的要求傳送至自訂 DNS 伺服器。
+4. 加入條件式轉寄站 toohello 在內部部署 DNS 伺服器。 Hello 條件轉寄站 toosend 要求設定為從步驟 1 toohello 自訂 DNS 伺服器 hello DNS 尾碼。
 
     > [!NOTE]
-    > 如需如何新增條件式轉寄站的詳細資訊，請參閱 DNS 軟體的文件。
+    > 請參閱您的 DNS 軟體，如需有關的特定資訊 hello 文件 tooadd 條件轉寄站。
 
-完成這些步驟之後，您可以使用完整網域名稱 (FQDN) 連線至任一虛擬網路中的資源。 您現在可以將 HDInsight 安裝至虛擬網路。
+完成這些步驟之後，您可以連接 tooresources 使用完整的網域名稱 (FQDN) 是網路中。 您現在可以安裝 HDInsight 在 hello 的虛擬網路。
 
 ### <a name="name-resolution-between-two-connected-virtual-networks"></a>兩個已連線虛擬網路之間的名稱解析
 
-此範例做出以下假設：
+這個範例會進行下列假設 hello:
 
 * 您的兩個 Azure 虛擬網路是使用 VPN 閘道或對等進行連線。
 
-* 兩個網路中的自訂 DNS 伺服器會執行 Linux 或 Unix 作為作業系統。
+* 在兩個網路 hello 自訂 DNS 伺服器正在執行 Linux 或 Unix 做為 hello 作業系統。
 
-* [Bind](https://www.isc.org/downloads/bind/) 安裝在自訂 DNS 伺服器上。
+* [繫結](https://www.isc.org/downloads/bind/)hello 自訂 DNS 伺服器上安裝。
 
-1. 若要尋找這兩個虛擬網路的 DNS 尾碼，請使用 Azure PowerShell 或 Azure CLI：
+1. 使用 Azure PowerShell 或 Azure CLI toofind hello DNS 尾碼的這兩個虛擬網路：
 
     ```powershell
-    $resourceGroupName = Read-Input -Prompt "Enter the resource group that contains the virtual network used with HDInsight"
+    $resourceGroupName = Read-Input -Prompt "Enter hello resource group that contains hello virtual network used with HDInsight"
     $NICs = Get-AzureRmNetworkInterface -ResourceGroupName $resourceGroupName
     $NICs[0].DnsSettings.InternalDomainNameSuffix
     ```
 
     ```azurecli-interactive
-    read -p "Enter the name of the resource group that contains the virtual network: " RESOURCEGROUP
+    read -p "Enter hello name of hello resource group that contains hello virtual network: " RESOURCEGROUP
     az network nic list --resource-group $RESOURCEGROUP --query "[0].dnsSettings.internalDomainNameSuffix"
     ```
 
-2. 使用下列文字作為自訂 DNS 伺服器上 `/etc/bind/named.config.local` 檔案的內容。 在這兩個虛擬網路的自訂 DNS 伺服器上進行這項變更。
+2. 使用 hello 文字之後做為 hello 內容的 hello `/etc/bind/named.config.local` hello 自訂 DNS 伺服器上的檔案。 這兩個虛擬網路中 hello 自訂 DNS 伺服器上進行這項變更。
 
     ```
-    // Forward requests for the virtual network suffix to Azure recursive resolver
+    // Forward requests for hello virtual network suffix tooAzure recursive resolver
     zone "0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net" {
         type forward;
-        forwarders {10.0.0.4;}; # The IP address of the DNS server in the other virtual network
+        forwarders {10.0.0.4;}; # hello IP address of hello DNS server in hello other virtual network
     };
     ```
 
-    將 `0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net` 值取代為「其他」虛擬網路的 DNS 尾碼。 此項目會將遠端網路 DNS 尾碼的要求路由傳送至該網路中的自訂 DNS。
+    取代 hello`0owcbllr5hze3hxdja3mqlrhhe.ex.internal.cloudapp.net`值且 hello DNS 尾碼為 hello__其他__虛擬網路。 此項目會將要求 hello 遠端網路 toohello hello DNS 尾碼的路由網路中的自訂 DNS。
 
-3. 在這兩個虛擬網路的自訂 DNS 伺服器上，使用下列文字作為 `/etc/bind/named.conf.options` 檔案的內容：
+3. Hello 自訂 DNS 伺服器上在兩個虛擬網路，使用下列文字，做為 hello 內容的 hello hello`/etc/bind/named.conf.options`檔案：
 
     ```
-    // Clients to accept requests from
+    // Clients tooaccept requests from
     acl goodclients {
-        10.1.0.0/16; # The IP address range of one virtual network
-        10.0.0.0/16; # The IP address range of the other virtual network
+        10.1.0.0/16; # hello IP address range of one virtual network
+        10.0.0.0/16; # hello IP address range of hello other virtual network
         localhost;
         localnets;
     };
@@ -652,24 +652,24 @@ Set-AzureRmVirtualNetworkSubnetConfig `
 
             dnssec-validation auto;
 
-            auth-nxdomain no;    # conform to RFC1035
+            auth-nxdomain no;    # conform tooRFC1035
             listen-on { any; };
     };
     ```
     
-    * 將 `10.0.0.0/16` 和 `10.1.0.0/16` 值取代為虛擬網路的 IP 位址範圍。 此項目允許每個網路中的資源對 DNS 伺服器提出要求。
+    * 取代 hello`10.0.0.0/16`和`10.1.0.0/16`值與 hello IP 位址的虛擬網路的範圍。 此項目可讓每個網路中的資源 toomake hello DNS 伺服器的要求。
 
-    不適用於虛擬網路 DNS 尾碼 (例如，microsoft.com) 的任何要求都是透過 Azure 遞迴解析程式所處理。
+    Hello Azure 遞迴解析程式會處理 hello hello 虛擬網路 (例如，microsoft.com) 的 DNS 尾碼不是任何要求。
 
-4. 若要使用設定，請重新啟動 Bind。 例如，兩部 DNS 伺服器上的 `sudo service bind9 restart`。
+4. toouse hello 組態，重新啟動繫結。 例如，兩部 DNS 伺服器上的 `sudo service bind9 restart`。
 
-完成這些步驟之後，您可以使用完整網域名稱 (FQDN) 連線至虛擬網路中的資源。 您現在可以將 HDInsight 安裝至虛擬網路。
+完成這些步驟之後，您可以連接 tooresources hello 使用完整的網域名稱 (FQDN) 的虛擬網路中。 您現在可以安裝 HDInsight 在 hello 的虛擬網路。
 
 ## <a name="next-steps"></a>後續步驟
 
-* 如需設定 HDInsight 連線至內部部署網路的端對端範例，請參閱[將 HDInsight 連線至內部部署網路](./connect-on-premises-network.md)。
+* 設定 HDInsight tooconnect tooan 在內部部署網路的端對端範例，請參閱[連接 HDInsight tooan 在內部部署網路](./connect-on-premises-network.md)。
 
-* 如需 Azure 虛擬網路的詳細資訊，請參閱 [Azure 虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
+* 如需有關 Azure 虛擬網路的詳細資訊，請參閱 hello [Azure 虛擬網路概觀](../virtual-network/virtual-networks-overview.md)。
 
 * 如需網路安全性群組的詳細資訊，請參閱[網路安全性群組](../virtual-network/virtual-networks-nsg.md)。
 

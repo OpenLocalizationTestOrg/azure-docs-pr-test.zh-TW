@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/21/2017
 ms.author: charwen
-ms.openlocfilehash: 195a38fa45f1c514a93980e777fb0d8238aa3f3f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6f37d4d9cba546b5416ab99040f5ef6dae273380
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-virtual-network-gateway-for-expressroute-using-powershell-classic"></a>使用 PowerShell 設定 ExpressRoute 的虛擬網路閘道閘道 (傳統)
 > [!div class="op_single_selector"]
@@ -29,7 +29,7 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-本文將逐步引導您完成既存 VNet 的虛擬網路 (VNet) 閘道加入、重新調整和移除步驟。 此組態的步驟是使用 **傳統部署模型** 建立的 VNet 專用，且將用於 ExpressRoute 組態中。 
+本文將逐步引導您透過 hello 步驟 tooadd，調整大小，並移除虛擬網路 (VNet) 閘道預先存在的 vnet。 hello 此設定步驟是特別針對使用 hello 所建立的 Vnet**傳統部署模型**而它即是可用於 ExpressRoute 組態。 
 
 [!INCLUDE [expressroute-classic-end-include](../../includes/expressroute-classic-end-include.md)]
 
@@ -38,10 +38,10 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [vpn-gateway-clasic-rm](../../includes/vpn-gateway-classic-rm-include.md)]
 
 ## <a name="before-beginning"></a>開始之前
-確認您已安裝此組態所需的 Azure PowerShell Cmdlet (1.0.2 或更新版本)。 如果您尚未安裝 Cmdlet，您必須先安裝，然後才能開始進行組態步驟。 如需安裝 Azure PowerShell 的詳細資訊，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
+請確認您已安裝此設定所需的 hello Azure PowerShell cmdlet (1.0.2 或更新版本)。 如果您尚未安裝 hello cmdlet，您將需要 toodo 如此之前開始 hello 組態步驟。 如需有關如何安裝 Azure PowerShell 的詳細資訊，請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。
 
 [!INCLUDE [expressroute-gateway-classic-ps](../../includes/expressroute-gateway-classic-ps-include.md)]
 
 ## <a name="next-steps"></a>後續步驟
-建立 VNet 閘道之後，您可以將 VNet 連結至 ExpressRoute 循環。 請參閱 [將虛擬網路連結到 ExpressRoute 循環](expressroute-howto-linkvnet-classic.md)。
+建立 hello VNet 閘道之後，您可以連結您的 VNet tooan ExpressRoute 電路。 請參閱[連結 ExpressRoute 電路的虛擬網路 tooan](expressroute-howto-linkvnet-classic.md)。
 

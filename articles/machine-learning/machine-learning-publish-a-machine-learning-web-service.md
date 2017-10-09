@@ -1,6 +1,6 @@
 ---
-title: "部署機器學習 Web 服務 | Microsoft Docs"
-description: "如何將訓練實驗轉換為預測實驗，將其準備妥當進行部署，然後當做 Azure Machine Learning Web 服務發佈。"
+title: "aaaDeploy 機器學習 web 服務 |Microsoft 文件"
+description: "如何 tooconvert 訓練試驗 tooa 預測實驗，準備進行部署，然後將其部署為 Azure Machine Learning web 服務。"
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,176 +14,176 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/06/2017
 ms.author: garye
-ms.openlocfilehash: 39761f94efc530452a41ef9f2130976803cff711
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9cb7af637632b2c3688c11483f29cf24df8fd065
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-an-azure-machine-learning-web-service"></a>部署 Azure Machine Learning Web 服務
-Azure Machine Learning 可讓您建置、測試以及部署預測性分析解決方案。
+Azure 機器學習可讓您 toobuild、 測試及部署預測分析解決方案。
 
 從高階觀點而言，由下列三個步驟完成這個動作：
 
-* **[建立訓練實驗]** - Azure Machine Learning Studio 是共同作業的視覺化開發環境，您使用所提供的訓練資料來訓練和測試預測分析模型。
-* **[將其轉換為預測實驗]** - 一旦您的模型已使用現有資料訓練好，並準備好使用該模型為新資料評分之後，您就是在準備並簡化您的實驗進行預測。
-* **[將其部署為 Web 服務]** - 您可以將預測實驗部署為[新式]或[傳統] Azure Web 服務。 使用者可以將資料傳送到您的模型以及接收您的模型的預測。
+* **[建立定型實驗]** -Azure Machine Learning Studio 是共同作業視覺式開發環境，您使用 tootrain 及測試預測分析模型使用您提供的定型資料。
+* **[將它轉換 tooa 預測實驗]** -一旦您的模型已定型使用現有的資料，您已經準備好 toouse 它 tooscore 新的資料，您準備和簡化您的經驗，用於預測。
+* **[將其部署為 Web 服務]** - 您可以將預測實驗部署為[新式]或[傳統] Azure Web 服務。 使用者可以傳送資料 tooyour 模型及接收模型的預測。
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 ## <a name="create-a-training-experiment"></a>建立訓練實驗
-若要訓練預測分析模型，您使用 Azure Machine Learning Studio 以建立訓練實驗，在其中包含各種模組以載入訓練資料、視需要準備資料、套用機器學習演算法，以及評估結果。 您可以逐一查看實驗，並且嘗試不同的機器學習演算法以比較及評估結果。
+tootrain 預測分析模型，使用 Azure Machine Learning Studio toocreate 定型實驗，其中您包含各種模組 tooload 定型資料、 準備視 hello 資料、 套用機器學習演算法，以及評估 hello 結果. 您可以逐一查看實驗和不同的機器學習演算法 toocompare 再試一次並評估 hello 結果。
 
-關於建立和管理訓練實驗的處理，其他地方有更詳盡的說明。 如需詳細資訊，請參閱這些文章：
+建立和管理定型實驗 hello 程序涵蓋更詳盡地其他位置。 如需詳細資訊，請參閱這些文章：
 
 * [在 Azure Machine Learning Studio 中建立簡單實驗](machine-learning-create-experiment.md)
 * [使用 Azure Machine Learning 開發預測解決方案](machine-learning-walkthrough-develop-predictive-solution.md)
 * [將訓練資料匯入 Azure Machine Learning Studio](machine-learning-data-science-import-data.md)
 * [在 Azure Machine Learning Studio 中管理實驗逐一查看](machine-learning-manage-experiment-iterations.md)
 
-## <a name="convert-the-training-experiment-to-a-predictive-experiment"></a>將訓練實驗轉換為預測實驗
-完成模型訓練後，您就可以將訓練實驗轉換成預測實驗，給新資料評分。
+## <a name="convert-hello-training-experiment-tooa-predictive-experiment"></a>轉換 hello 定型實驗 tooa 預測實驗
+一旦您已經定型模型，您準備好 tooconvert 訓練試驗預測實驗 tooscore 新資料。
 
-轉換為預測實驗之後，您就準備好定型模型，可以當做評分 Web 服務部署。 Web 服務的使用者可以將輸入資料傳送到您的模型，然後您的模型就會傳回預測結果。 當您轉換為預測實驗時，必須記住您預期其他人會如何使用您的模型。
+藉由轉換 tooa 預測進行實驗，您要取得您定型的模型就緒 toobe 部署為計分的 web 服務。 Hello web 服務的使用者可以傳送輸入的資料 tooyour 模型和您的模型會將傳送後 hello 預測結果。 當您轉換 tooa 預測實驗之後，請記住您希望其他人使用您模型 toobe 如何。
 
-若要將您的訓練實驗轉換為預測實驗，請按一下實驗畫布底端的 [執行]，按一下 [設定 Web 服務]，然後選取 [預測 Web 服務]。
+tooconvert 預測您定型實驗 tooa 實驗中，按一下**執行**在 hello hello 實驗畫布底部，按一下 **設定 Web 服務**，然後選取**預測 Web 服務**.
 
-![轉換為評分實驗](./media/machine-learning-publish-a-machine-learning-web-service/figure-1.png)
+![轉換 tooscoring 實驗](./media/machine-learning-publish-a-machine-learning-web-service/figure-1.png)
 
-如需有關如何執行此對話的詳細資訊，請參閱[如何準備您的模型以在 Azure Machine Learning Studio 中部署](machine-learning-convert-training-experiment-to-scoring-experiment.md)。
+如需有關如何 tooperform 這項轉換，請參閱[如何 tooprepare Azure Machine Learning Studio 中的部署模型](machine-learning-convert-training-experiment-to-scoring-experiment.md)。
 
-下列步驟說明將預測實驗部署為新式 Web 服務。 您也可以將實驗部署為傳統 Web 服務。
+hello 下列步驟描述部署為新的 web 服務的預測實驗。 您也可以部署 hello 實驗與傳統 web 服務。
 
 ## <a name="deploy-it-as-a-web-service"></a>將其部署為 Web 服務
 
-您可以將預測實驗部署為「新式」或「傳統」Web 服務。
+為新的 web 服務或傳統 web 服務，您可以部署 hello 預測實驗。
 
-### <a name="deploy-the-predictive-experiment-as-a-new-web-service"></a>將預測實驗部署為新式 Web 服務
-既然已經備妥預測實驗，您現在即可將它部署為新式 Azure Web 服務。 使用者可以使用 Web 服務，將料傳送到您的模型，模型就會傳回其預測。
+### <a name="deploy-hello-predictive-experiment-as-a-new-web-service"></a>部署為新的 web 服務的 hello 預測實驗
+既然 hello 預測實驗已備妥，您可以將其部署為新的 Azure web 服務。 使用 hello web 服務，使用者可以傳送資料 tooyour 模型和 hello 模型將會傳回預測。
 
-若要部署您的預測性實驗，請按一下實驗畫布底端的 [執行]  。 實驗完成執行之後，請按一下 [部署 Web 服務]，然後選取 [部署 Web 服務[新式]]。  Machine Learning Web 服務入口網站的 [部署] 頁面將會開啟。
+toodeploy 您預測進行實驗，請按一下**執行**底部 hello hello 實驗畫布。 一旦 hello 實驗完成執行後，按一下 **部署 Web 服務**選取**部署 Web 服務[新增]**。  hello 部署的 hello Machine Learning Web 服務入口網站 頁面隨即開啟。
 
 > [!NOTE] 
-> 若要部署新的 Web 服務，您必須在要部署 Web 服務的訂用帳戶中具備足夠的權限。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。 
+> toodeploy 新的 web 服務，您必須擁有足夠的權限 hello 訂用帳戶 toowhich 您部署 hello web 服務。 如需詳細資訊，請參閱[管理 Web 服務使用 hello Azure 機器學習 Web 服務網站](machine-learning-manage-new-webservice.md)。 
 
 #### <a name="machine-learning-web-service-portal-deploy-experiment-page"></a>Machine Learning Web 服務入口網站 [部署實驗] 頁面
-在 [部署實驗] 頁面上，輸入 Web 服務的名稱。
-選取定價方案。 如果您有現有的定價方案，可以進行選取，否則您必須為服務建立新的定價方案。
+在 hello 部署實驗 頁面上，輸入 hello web 服務的名稱。
+選取定價方案。 如果您有現有的定價方案，您可以選取它，否則您必須建立新的價格計劃 hello 服務。
 
-1. 在 [價格方案] 下拉式清單中，選取現有的方案或選取 [選取新的方案] 選項。
-2. 在 [方案名稱] 中，輸入將識別您帳單上方案的名稱。
-3. 選取其中一個 [每月方案層] 。 方案層預設為您預設區域的方案，而您的 Web 服務會部署到該區域。
+1. 在 hello**價格計劃**下拉式清單中，選取現有的方案或選取 hello**選取新的計畫**選項。
+2. 在**計劃名稱**，輸入會識別在帳單上的 hello 計劃的名稱。
+3. 選取其中一個 hello**每月的計劃層**。 hello 計劃層預設 toohello 計劃您預設的地區和您的 web 服務是部署的 toothat 區域。
 
-按一下 [部署]，Web 服務的 [快速入門] 頁面就會開啟。
+按一下**部署**和 hello**快速入門**web 服務 頁面隨即開啟。
 
-Web 服務的 [快速入門] 頁面可讓您存取建立 Web 服務之後最常執行的工作，並提供指引。 從這裡您可以輕鬆地存取 [測試] 頁面和 [取用] 頁面。
+hello web 服務快速入門 頁面可讓您存取和指引 hello 建立 web 服務之後，您將執行的最常見工作。 從這裡，您可以輕鬆地存取 hello 測試頁和取用的頁面。
 
-<!-- ![Deploy the web service](./media/machine-learning-publish-a-machine-learning-web-service/figure-2.png)-->
+<!-- ![Deploy hello web service](./media/machine-learning-publish-a-machine-learning-web-service/figure-2.png)-->
 
 #### <a name="test-your-new-web-service"></a>測試新式 Web 服務
-若要測試新的 Web 服務，請在常見工作下按一下 [測試 Web 服務]  。 在 [測試] 頁面上，您可以將 Web 服務當成要求-回應服務 (RRS) 或批次執行服務 (BES) 來測試。
+tootest 新的 web 服務，按一下 **測試 web 服務**在一般工作。 您可以在 hello 測試頁面上，測試您的 web 服務做為要求-回應服務 (RR) 或批次執行服務 (BES)。
 
-RRS 測試頁面會顯示輸入、輸出以及任何您已為實驗定義的全域參數。 若要測試 Web 服務，您可以手動輸入適當的值作為輸入，或提供包含測試值的逗號分隔值 (CSV) 格式檔案。
+hello RR 測試頁面會顯示 hello 輸入、 輸出和 hello 實驗，您已定義任何全域參數。 tootest hello web 服務，您可以手動輸入適當的值 hello 輸入，或是提供逗號分隔值 (CSV) 格式的檔案包含 hello 測試值。
 
-若要使用 RRS 測試，請從清單檢視模式，針對輸入輸入適當的值，並按一下 [測試要求-回應] 。 您的預測結果會顯示在左邊的輸出資料行。
+使用 RR，tootest 從 hello 清單檢視模式中，輸入適當的值為 hello 輸入，然後按一下**測試要求-回應**。 在左 hello 輸出資料行 toohello 中，顯示預測結果。
 
-![部署 Web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-5-test-request-response.png)
+![部署 hello web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-5-test-request-response.png)
 
-若要測試您的 BES，請按一下 [批次] 。 在 [批次] 測試頁面上，在您的輸入下按一下 [瀏覽] 並選取包含適當範例值的 CSV 檔案。 如果您沒有 CSV 檔案，而且是使用 Machine Learning Studio 建立預測實驗，您可以下載預測實驗的資料集來使用。
+按一下 tootest 您 BES**批次**。 在 hello 批次測試頁面上，按一下 瀏覽在您的輸入，並選取包含適當的樣本值的 CSV 檔案。 如果您不需要為 CSV 檔，並且使用 Machine Learning Studio 預測實驗，您可以下載預測實驗 hello 資料集，並使用它。
 
-若要下載資料集，請開啟 Machine Learning Studio。 開啟您的預測實驗，並以滑鼠右鍵按一下實驗的輸入。 從操作功能表中，選取 [資料集]，然後選取 [下載]。
+toodownload hello 資料集，開啟 Machine Learning Studio。 開啟您預測的經驗，並以滑鼠右鍵按一下您的經驗的 hello 輸入。 Hello 內容功能表中選取**資料集**，然後選取 **下載**。
 
-![部署 Web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-7-mls-download.png)
+![部署 hello web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-7-mls-download.png)
 
-按一下 [ **測試**]。 批次執行作業的狀態會顯示在右邊的 [測試批次作業] 之下。
+按一下 [ **測試**]。 批次執行作業的 hello 狀態就會顯示下的 toohello 右邊**測試批次作業**。
 
-![部署 Web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-6-test-batch-execution.png)
+![部署 hello web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-6-test-batch-execution.png)
 
-<!--![Test the web service](./media/machine-learning-publish-a-machine-learning-web-service/figure-3.png)-->
+<!--![Test hello web service](./media/machine-learning-publish-a-machine-learning-web-service/figure-3.png)-->
 
-在 [組態] 頁面上，可以變更 Web 服務的描述、標題、更新儲存體帳戶金鑰，以及啟用範例資料。
+在 [hello**組態**] 頁面上，您可以變更 hello 描述、 標題、 更新 hello 儲存體帳戶金鑰，並啟用您的 web 服務的範例資料。
 
-![設定 Web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-8-arm-configure.png)
+![設定 hello web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-8-arm-configure.png)
 
-一旦您部署了 Web 服務，您可以：
+一旦您已部署的 hello web 服務，您可以：
 
-* **存取** 它。
-* **管理** 它。
+* **存取**透過 hello web 服務 API。
+* **管理**透過 Azure Machine Learning web 服務入口網站或 hello Azure 傳統入口網站。
 * **更新** 它。
 
 #### <a name="access-your-new-web-service"></a>存取新式 Web 服務
-從 Machine Learning Studio 部署您的 Web 服務之後，您可以傳送資料給服務以及以程式設計方式接收回應。
+一旦您部署您的 web 服務從 Machine Learning Studio 時，您可以傳送資料 toohello 服務和以程式設計的方式接收回應。
 
-[取用]  頁面提供您存取 Web 服務所需的所有資訊。 例如，API 金鑰可用來允許經過授權的存取服務。
+hello**取用**頁面會提供您的 web 服務需要 tooaccess 所有 hello 資訊。 例如，hello API 金鑰會提供 tooallow 獲授權存取 toohello 服務。
 
-有關存取 Machine Learning Web 服務的詳細資訊，請參閱[如何使用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
+如需存取的機器學習 web 服務的詳細資訊，請參閱[如何 tooconsume Azure 機器學習 Web 服務](machine-learning-consume-web-services.md)。
 
 #### <a name="manage-your-new-web-service"></a>管理新式 Web 服務
-您可以在 Machine Learning Web 服務入口網站中管理新的 Web 服務。 從[入口網站主頁面](https://services.azureml-test.net/)按一下 [Web 服務]。 從 Web 服務頁面可以刪除或複製服務。 若要監視特定的服務，請按一下服務，然後按一下 [儀表板] 。 若要監視與 Web 服務相關聯的批次作業，請按一下 [批次要求記錄檔] 。
+您可以在 Machine Learning Web 服務入口網站中管理新的 Web 服務。 從 hello[主要入口網站頁面](https://services.azureml-test.net/)，按一下  **Web 服務**。 從 hello web 服務 頁面上，您可以刪除或複製的服務。 toomonitor 特定服務中，按一下 hello 服務，然後按一下**儀表板**。 按一下 toomonitor hello web 服務，與相關聯的批次作業**批次要求記錄檔**。
 
-### <a name="deploy-the-predictive-experiment-as-a-classic-web-service"></a>將預測實驗部署為傳統 Web 服務
+### <a name="deploy-hello-predictive-experiment-as-a-classic-web-service"></a>與傳統 web 服務部署 hello 預測實驗
 
-既然已經充分備妥預測實驗，您現在便可將它部署為「傳統」Azure Web 服務。 使用者可以使用 Web 服務，將料傳送到您的模型，模型就會傳回其預測。
+既然已充分備妥 hello 預測實驗，您可以將其部署為傳統 Azure web 服務。 使用 hello web 服務，使用者可以傳送資料 tooyour 模型和 hello 模型將會傳回預測。
 
-若要部署您的預測實驗，請按一下實驗畫布底端的 [執行]，然後按一下 [部署 Web 服務]。 系統會設定 Web 服務，且會將您帶往 Web 服務儀表板。
+toodeploy 您預測進行實驗，請按一下**執行**底部 hello hello 試驗畫布，然後按一下**部署 Web 服務**。 hello web 服務的設定，您會放置在 hello web 服務儀表板中。
 
-![部署 Web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-2.png)
+![部署 hello web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-2.png)
 
 #### <a name="test-your-classic-web-service"></a>測試傳統 Web 服務
 
-您可以在 Machine Learning Web 服務入口網站或 Machine Learning Studio 中測試 Web 服務。
+您可以在 hello 機器學習 Web 服務入口網站或 Machine Learning Studio 中測試 hello web 服務。
 
-若要測試「要求-回應」Web 服務，請按一下 Web 服務儀表板中的 [測試] 按鈕。 對話方塊隨即顯示，要求您提供服務的輸入資料。 這些是評分實驗預期的資料行。 輸入一組資料，然後按一下 [確定] 。 Web 服務產生的結果會顯示在儀表板底部。
+tootest hello 的要求回應 web 服務，按一下 hello**測試**hello web 服務儀表板 按鈕。 對話方塊會出現 tooask 您 hello hello 服務的輸入資料。 這些是 hello hello 計分實驗所預期的資料行。 輸入一組資料，然後按一下確定 。 hello hello web 服務所產生的結果會顯示在 hello hello 儀表板底部。
 
-您可以按一下 [測試] 預覽連結，在 Azure Machine Learning Web 服務入口網站中測試您的服務，如先前的「新式 Web 服務」一節所示。
+您可以按一下 hello**測試**預覽連結 tootest 您 hello Azure 機器學習 Web 服務入口網站中的服務，如先前在 hello 新的 web 服務 > 一節中所示。
 
-若要測試批次執行服務，請按一下 [測試] 預覽連結。 在 [批次] 測試頁面上，在您的輸入下按一下 [瀏覽] 並選取包含適當範例值的 CSV 檔案。 如果您沒有 CSV 檔案，而且是使用 Machine Learning Studio 建立預測實驗，您可以下載預測實驗的資料集來使用。
+tootest hello 批次執行服務，按一下**測試**預覽連結。 在 hello 批次測試頁面上，按一下 瀏覽在您的輸入，並選取包含適當的樣本值的 CSV 檔案。 如果您不需要為 CSV 檔，並且使用 Machine Learning Studio 預測實驗，您可以下載預測實驗 hello 資料集，並使用它。
 
-![測試 Web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-3.png)
+![測試 hello web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-3.png)
 
-在 [組態] 索引標籤上，您可以變更服務的顯示名稱，並且給予描述。 名稱和描述會顯示在管理 Web 服務的 [Azure 傳統入口網站](http://manage.windowsazure.com/) 中。
+在 [hello**組態**] 頁面上，您可以變更 hello hello 服務顯示名稱，並提供它的描述。 hello 名稱和描述會顯示在 hello [Azure 傳統入口網站](http://manage.windowsazure.com/)您用來管理您的 web 服務。
 
-您可以為輸入資料、輸出資料及 Web 服務參數提供描述，方法是在 [輸入結構描述]、[輸出結構描述] 及 [Web 服務參數] 底下的每個資料行輸入字串。 這些說明會用於為 Web 服務提供的範例程式碼文件。
+您可以為輸入資料、輸出資料及 Web 服務參數提供描述，方法是在 [輸入結構描述]、[輸出結構描述] 及 [Web 服務參數] 底下的每個資料行輸入字串。 Hello web 服務所提供的 hello 範例程式碼文件中，會使用這些說明。
 
-您可以啟用記錄來診斷您在 Web 服務被存取時看到的任何錯誤。 如需詳細資訊，請參閱 [為 Machine Learning Web 服務啟用記錄](machine-learning-web-services-logging.md)。
+您可以啟用記錄 toodiagnose 存取您的 web 服務時看見任何失敗。 如需詳細資訊，請參閱 [為 Machine Learning Web 服務啟用記錄](machine-learning-web-services-logging.md)。
 
-![設定 Web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-4.png)
+![設定 hello web 服務](./media/machine-learning-publish-a-machine-learning-web-service/figure-4.png)
 
-您也可以在 Azure Machine Learning Web 服務入口網站中設定 Web 服務的端點，作法類似先前在「新式 Web 服務」一節所示的程序。 選項有所不同，您可以新增或變更服務描述、啟用記錄，以及啟用範例資料進行測試。
+您也可以在 hello Azure 機器學習 Web 服務入口網站類似 toohello 程序稍早顯示 hello 新的 web 服務區段中設定 hello hello web 服務端點。 hello 選項都不同，您可以新增或變更 hello 服務描述、 啟用記錄，以及啟用範例資料用於測試。
 
 #### <a name="access-your-classic-web-service"></a>存取傳統 Web 服務
-從 Machine Learning Studio 部署您的 Web 服務之後，您可以傳送資料給服務以及以程式設計方式接收回應。
+一旦您部署您的 web 服務從 Machine Learning Studio 時，您可以傳送資料 toohello 服務和以程式設計的方式接收回應。
 
-儀表板提供您存取 Web 服務所需的所有資訊。 例如，提供 API 金鑰以允許服務的授權存取權，以及提供 API 說明頁面以協助您開始撰寫程式碼。
+hello 儀表板提供您的 web 服務需要 tooaccess 所有 hello 資訊。 例如，hello API 金鑰是提供 tooallow 獲授權存取 toohello 服務，以及 API 說明頁面會提供的 toohelp 開始撰寫您的程式碼。
 
-有關存取 Machine Learning Web 服務的詳細資訊，請參閱[如何使用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
+如需存取的機器學習 web 服務的詳細資訊，請參閱[如何 tooconsume Azure 機器學習 Web 服務](machine-learning-consume-web-services.md)。
 
 #### <a name="manage-your-classic-web-service"></a>管理傳統 Web 服務
-您可以執行各種動作來監視 Web 服務。 您可以更新它和刪除它。 除了部署傳統 Web 服務時所建立的預設端點之外，您也可以新增其他端點至傳統 Web 服務。
+有各種不同的動作，您可以執行 toomonitor web 服務。 您可以更新它和刪除它。 您也可以加入其他端點 tooa 傳統 web 服務加入 toohello 預設端點，當您在部署時建立。
 
-如需相關資訊，請參閱[管理 Azure Machine Learning 工作區](machine-learning-manage-workspace.md)和[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。
+如需詳細資訊，請參閱[管理 Azure Machine Learning 工作區](machine-learning-manage-workspace.md)和[管理 web 服務使用 hello Azure 機器學習 Web 服務網站](machine-learning-manage-new-webservice.md)。
 
-<!-- When this article gets published, fix the link and uncomment
-For more information on how to manage Azure Machine Learning web service endpoints using the REST API, see **Azure machine learning web service endpoints**.
+<!-- When this article gets published, fix hello link and uncomment
+For more information on how toomanage Azure Machine Learning web service endpoints using hello REST API, see **Azure machine learning web service endpoints**.
 -->
 
-## <a name="update-the-web-service"></a>更新 Web 服務
-您可以對您的 Web 服務進行變更，例如使用其他訓練資料更新模型，以及再次部署、覆寫原始 Web 服務。
+## <a name="update-hello-web-service"></a>更新 hello web 服務
+您可以變更 tooyour web 服務，例如更新 hello 模型額外的定型資料並部署一次，覆寫 hello 原始 web 服務。
 
-若要更新 Web 服務，請開啟您用來部署 Web 服務的原始預測實驗，然後按一下 [另存新檔] 以製作可編輯的複本。 進行變更，然後按一下 [部署 Web 服務] 。
+tooupdate hello web 服務，開啟 hello 原始預測實驗用 toodeploy hello web 服務，並依序按一下中進行編輯的複製**SAVE AS**。 進行變更，然後按一下部署 Web 服務 。
 
-由於您之前部署了這項實驗，所以會詢問您要覆寫 (傳統 Web 服務) 或更新 (新的 Web 服務) 現有的服務。 按一下 [是] 或 [更新] 會停止現有的 Web 服務，然後在其位置部署新的預測實驗。
+因為您已部署此實驗之前，會要求您想 toooverwrite （傳統 Web 服務） 或更新 （新的 web 服務） hello 現有服務。 按一下**是**或**更新**停止 hello 現有 web 服務和部署 hello 新預測實驗部署在其位置。
 
 > [!NOTE]
-> 如果您在原始 Web 服務中進行組態變更，例如輸入新的顯示名稱或說明，則您必須再次輸入這些值。
+> 如果 hello 原始 web 服務中進行組態變更，例如，輸入新的顯示名稱或描述，您必須 tooenter 這些值一次。
 > 
 > 
 
-更新 Web 服務的一個選擇是以程式設計方式重新定型模型。 如需詳細資訊，請參閱 [以程式設計方式重塑機器學習模型](machine-learning-retrain-models-programmatically.md)。
+更新您的 web 服務的其中一個選項以程式設計的方式是 tooretrain hello 模型。 如需詳細資訊，請參閱 [以程式設計方式重塑機器學習模型](machine-learning-retrain-models-programmatically.md)。
 
 <!-- internal links -->
-[建立訓練實驗]: #create-a-training-experiment
-[將其轉換為預測實驗]: #convert-the-training-experiment-to-a-predictive-experiment
+[建立定型實驗]: #create-a-training-experiment
+[將它轉換 tooa 預測實驗]: #convert-the-training-experiment-to-a-predictive-experiment
 [將其部署為 Web 服務]: #deploy-it-as-a-web-service
 [新式]: #deploy-the-predictive-experiment-as-a-new-Web-service
 [傳統]: #deploy-the-predictive-experiment-as-a-new-Web-service

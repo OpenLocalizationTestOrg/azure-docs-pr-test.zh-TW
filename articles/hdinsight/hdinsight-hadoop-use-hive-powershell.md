@@ -1,6 +1,6 @@
 ---
-title: "在 HDInsight 中搭配使用 Hadoop Hive 與 PowerShell - Azure | Microsoft Docs"
-description: "使用 PowerShell 在 HDInsight 的 Hadoop 中執行 Hive 查詢"
+title: "使用 PowerShell HDInsight 的 Azure 中的 Hadoop Hive aaaUse |Microsoft 文件"
+description: "在 HDInsight 上的 Hadoop 使用 PowerShell toorun Hive 查詢。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,26 +16,26 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/16/2017
 ms.author: larryfr
-ms.openlocfilehash: e1cb2e4a1fc82fb43082e79a5feba71b81b3eaa8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9e0b72a25c5b12431f837b1a34a63ecc06223528
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="run-hive-queries-using-powershell"></a>使用 PowerShell 執行 Hive 查詢
 [!INCLUDE [hive-selector](../../includes/hdinsight-selector-use-hive.md)]
 
-本文件提供在 Azure 資源群組模式中使用 Azure PowerShell 的範例，以便在 HDInsight 叢集的 Hadoop 中執行 Hive 查詢。
+本文件提供使用 Azure PowerShell hello Azure 資源群組模式 toorun Hive 查詢中 HDInsight 叢集上的 Hadoop 中的範例。
 
 > [!NOTE]
-> 本文件不提供範例中使用的 HiveQL 陳述式所執行的工作詳細的描述。 如需此範例中使用的 HiveQL 的相關資訊，請參閱 [在 HDInsight 上搭配 Hadoop 使用 Hive](hdinsight-use-hive.md)。
+> 這份文件不提供 hello 範例中所用的 hello HiveQL 陳述式所執行的工作詳細的的描述。 在 hello HiveQL 這個範例中所使用的資訊，請參閱[的 HDInsight 上的 Hadoop Hive 使用](hdinsight-use-hive.md)。
 
 **必要條件**
 
-* **Azure HDInsight 叢集**︰不論叢集是 Windows 型或 Linux 型。
+* **Azure HDInsight 叢集**： 不論是否 hello 叢集是 Windows 或 Linux。
 
   > [!IMPORTANT]
-  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+  > Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 * **具有 Azure PowerShell 的工作站**。
 
@@ -43,49 +43,49 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="run-hive-queries-using-azure-powershell"></a>使用 Azure PowerShell 執行 Hive 查詢
 
-Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Hive 查詢。 就內部而言，Cmdlet 會對 HDInsight 叢集上的 [WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) 進行 REST 呼叫。
+Azure PowerShell 提供*cmdlet* ，HDInsight 上允許您 tooremotely 執行 Hive 查詢。 就內部而言，hello cmdlet 進行 REST 呼叫太[WebHCat](https://cwiki.apache.org/confluence/display/Hive/WebHCat) hello HDInsight 叢集上。
 
-在遠端 HDInsight 叢集中執行 Hive 查詢時，會使用下列 Cmdlet：
+hello 下列指令程式會使用遠端的 HDInsight 叢集中執行 Hive 查詢時：
 
-* **Add-AzureRmAccount**：向您的 Azure 訂用帳戶驗證 Azure PowerShell
-* **New-AzureRmHDInsightHiveJobDefinition**：使用指定的 HiveQL 陳述式建立「作業定義」
-* **Start-AzureRmHDInsightJob**：將工作定義傳送至 HDInsight、啟動工作，然後傳回可用來檢查工作狀態的 *工作* 物件
-* **Wait-AzureRmHDInsightJob**：使用工作物件來檢查工作的狀態。 它會等到工作完成，或等到等候時間超過。
-* **Get-AzureRmHDInsightJobOutput**：用來擷取工作的輸出
-* **Invoke-AzureRmHDInsightHiveJob**：用來執行 HiveQL 陳述式。 這個 Cmdlet 會阻止查詢完成，然後傳回結果
-* **Use-AzureRmHDInsightCluster**：設定要用於 **Invoke-AzureRmHDInsightHiveJob** 命令的目前的叢集
+* **新增 AzureRmAccount**： 驗證 Azure PowerShell tooyour Azure 訂用帳戶
+* **新 AzureRmHDInsightHiveJobDefinition**： 建立*作業定義*使用 hello 指定 HiveQL 陳述式
+* **開始 AzureRmHDInsightJob**： 傳送 hello 工作定義 tooHDInsight、 啟動 hello 工作，並傳回*作業*可以是使用的 toocheck hello hello 工作狀態的物件
+* **等候 AzureRmHDInsightJob**： 使用 hello 工作物件 toocheck hello hello 工作狀態。 它會等候 hello 作業完成，或超出 hello 等待時間。
+* **Get AzureRmHDInsightJobOutput**： 使用 tooretrieve hello hello 工作輸出
+* **叫用 AzureRmHDInsightHiveJob**： 使用 toorun HiveQL 陳述式。 此 cmdlet 區塊 hello 查詢完成時，則會傳回 hello 結果
+* **使用 AzureRmHDInsightCluster**： 集 hello hello 目前叢集 toouse **Invoke AzureRmHDInsightHiveJob**命令
 
-下列步驟示範如何使用這些 Cmdlet，在您的 HDInsight 叢集中執行工作：
+hello 下列步驟示範如何 toouse 這些 cmdlet toorun 中您的 HDInsight 叢集的工作：
 
-1. 使用編輯器，將下列程式碼儲存為 **hivejob.ps1**。
+1. 使用編輯器中，儲存下列程式碼做為 hello **hivejob.ps1**。
 
-    [!code-powershell[主要](../../powershell_scripts/hdinsight/use-hive/use-hive.ps1?range=5-42)]
+    [!code-powershell[main](../../powershell_scripts/hdinsight/use-hive/use-hive.ps1?range=5-42)]
 
-2. 開啟新的 **Azure PowerShell** 命令提示字元。 將目錄變更至 **hivejob.ps1** 檔案的位置，然後使用下列命令來執行指令碼：
+2. 開啟新的 **Azure PowerShell** 命令提示字元。 變更目錄 toohello 位置 hello **hivejob.ps1**檔案，然後使用下列命令 toorun hello 指令碼的 hello:
 
         .\hivejob.ps1
 
-    執行指令碼時，系統會提示您輸入叢集名稱和該叢集的 HTTPS/管理帳戶認證。 系統可能也會提示您登入 Azure 訂用帳戶。
+    Hello 指令碼執行時，您將會提示的 tooenter hello 叢集名稱和 hello HTTPS/系統管理帳戶認證 hello 叢集。 您也可能提示的 toolog tooyour Azure 訂用帳戶中。
 
-3. 作業完成時，應該會傳回類似下列文字的資訊：
+3. Hello 作業完成時，它會傳回資訊的類似 toohello 遵循 thext:
 
-        Display the standard output...
+        Display hello standard output...
         2012-02-03      18:35:34        SampleClass0    [ERROR] incorrect       id
         2012-02-03      18:55:54        SampleClass1    [ERROR] incorrect       id
         2012-02-03      19:25:27        SampleClass4    [ERROR] incorrect       id
 
-4. 如前所述， **Invoke-Hive** 可以用來執行查詢，並等候回應。 使用下列指令碼，查看 Invoke-Hive 如何運作：
+4. 如先前所述， **Invoke-hive**可以是使用的 toorun 查詢，並等候 hello 回應。 使用下列方式叫用 Hive 指令碼 toosee hello:
 
-    [!code-powershell[主要](../../powershell_scripts/hdinsight/use-hive/use-hive.ps1?range=50-71)]
+    [!code-powershell[main](../../powershell_scripts/hdinsight/use-hive/use-hive.ps1?range=50-71)]
 
-    輸出看起來會像下列文字：
+    hello 輸出看起來類似下列文字的 hello:
 
         2012-02-03    18:35:34    SampleClass0    [ERROR]    incorrect    id
         2012-02-03    18:55:54    SampleClass1    [ERROR]    incorrect    id
         2012-02-03    19:25:27    SampleClass4    [ERROR]    incorrect    id
 
    > [!NOTE]
-   > 如果 HiveQL 查詢的時間很長，您可以使用 Azure PowerShell **Here-Strings** Cmdlet 或 HiveQL 指令碼檔案。 下列程式碼片段說明如何使用 **Invoke-Hive** Cmdlet 來執行 HiveQL 指令碼檔案。 您必須將 HiveQL 指令碼檔案上傳至 wasb://。
+   > 對於較長的 HiveQL 查詢，您可以使用 hello Azure PowerShell **Here-string** cmdlet 或下列 HiveQL 指令碼檔案。 下列程式碼片段說明如何 hello toouse hello **Invoke-hive** cmdlet toorun 下列 HiveQL 指令碼檔案。 hello HiveQL 指令碼檔案必須上傳 toowasb: / /。
    >
    > `Invoke-AzureRmHDInsightHiveJob -File "wasb://<ContainerName>@<StorageAccountName>/<Path>/query.hql"`
    >
@@ -93,10 +93,10 @@ Azure PowerShell 提供 *Cmdlet* ，可讓您從遠端在 HDInsight 上執行 Hi
 
 ## <a name="troubleshooting"></a>疑難排解
 
-如果在工作完成時未傳回任何資訊，則可能是處理期間發生錯誤。 若要檢視這項工作的錯誤資訊，請將下列內容新增至 **hivejob.ps1** 檔案的結尾，並儲存它，然後重新予以執行。
+如果 hello 作業完成時，會不傳回任何資訊，可能會在處理期間發生錯誤。 tooview 錯誤資訊，為這個工作中，加入下列 toohello 結尾 hello hello **hivejob.ps1**檔、 加以儲存，然後再執行一次。
 
 ```powershell
-# Print the output of the Hive job.
+# Print hello output of hello Hive job.
 Get-AzureRmHDInsightJobOutput `
         -Clustername $clusterName `
         -JobId $job.JobId `
@@ -104,11 +104,11 @@ Get-AzureRmHDInsightJobOutput `
         -DisplayOutputType StandardError
 ```
 
-這個 Cmdlet 會傳回執行作業時寫入伺服器上之 STDERR 的資訊。
+此 cmdlet 會傳回執行 hello 作業時，會寫入 tooSTDERR hello 伺服器的 hello 資訊。
 
 ## <a name="summary"></a>摘要
 
-如您所見，Azure PowerShell 提供簡單的方法，在 HDInsight 叢集中執行 Hive 查詢、監視工作狀態，以及擷取輸出。
+如您所見，Azure PowerShell 提供簡單的方式 toorun HDInsight 叢集中的 Hive 查詢、 監視器 hello 工作的狀態，和擷取 hello 輸出。
 
 ## <a name="next-steps"></a>後續步驟
 

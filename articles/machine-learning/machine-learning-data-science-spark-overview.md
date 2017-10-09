@@ -1,6 +1,6 @@
 ---
-title: "在 Azure HDInsight 上使用 Spark 的資料科學概觀 | Microsoft Docs"
-description: "Spark MLlib 工具組將可觀的機器學習模型化功能引進分散式 HDInsight 環境中。"
+title: "使用 Azure HDInsight 上的 Spark 資料科學的其中一個 aaaOverview |Microsoft 文件"
+description: "hello Spark MLlib toolkit 帶來相當大的機器學習模型化功能 toohello 分散式 HDInsight 環境。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/15/2017
 ms.author: deguhath;bradsev;gokuma
-ms.openlocfilehash: 379b32f4e533f48f1593a97e73737a0c5bfb9135
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 515705684a46917c2741bf063d439b1cda016abb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-data-science-using-spark-on-azure-hdinsight"></a>在 Azure HDInsight 上使用 Spark 的資料科學概觀
 [!INCLUDE [machine-learning-spark-modeling](../../includes/machine-learning-spark-modeling.md)]
 
-這組主題說明如何使用 HDInsight Spark 來完成常見的資料科學工作，例如資料擷取、特徵工程、模型化和模型評估。 所使用的資料是 2013 NYC 計程車車程和費用資料集的抽樣樣本。 建立的模型包括羅吉斯和線性迴歸、隨機樹系和漸層停駐推進式決策樹。 這些主題也會說明如何將這些模型儲存至 Azure Blob 儲存體 (WASB)，以及如何評分及評估模型的預測效能。 更進階的主題會討論如何使用交叉驗證和超參數掃掠來訓練模型。 此概觀主題也參考說明了如何設定所需的 Spark 叢集，以完成逐步解說中的步驟的主題。 
+此套件的主題示範如何 toouse HDInsight Spark toocomplete 一般資料科學工作例如擷取資料、 特徵設計、 模型和模型評估。 使用 hello 資料是 hello 2013 NYC 計程車行程及價位資料集的範例。 內建的 hello 模型包括羅吉斯和線性迴歸、 隨機樹系和梯度促進式樹狀結構。 hello 主題也顯示如何 toostore 這些模型在 Azure blob 儲存體 (WASB) 以及 tooscore 並評估其預測的效能。 更進階的主題會討論如何使用交叉驗證和超參數掃掠來訓練模型。 這個概觀主題也會參考 hello 主題描述如何設定 tooset hello 需要 toocomplete hello 步驟提供的 hello 逐步解說中的 Spark 叢集。 
 
 ## <a name="spark-and-mllib"></a>Spark 及 MLlib
-[Spark](http://spark.apache.org/) 是一個開放原始碼平行處理架構，可支援記憶體內部處理，大幅提升巨量資料分析應用程式的效能。 Spark 處理引擎是專為速度、易用性及精密分析打造的產品。 Spark 的記憶體內分散式計算功能，使其成為機器學習和圖表計算中所使用反覆演算法的絕佳選擇。 [MLlib](http://spark.apache.org/mllib/) 是將演算法模型化功能引進此分散式環境的 Spark 可調整機器學習程式庫。 
+[Spark](http://spark.apache.org/)開放原始碼的平行處理架構，可支援記憶體中處理 tooboost hello 巨量資料分析的應用程式效能。 hello Spark 處理引擎內建的速度、 容易使用，且複雜的分析。 Spark 的記憶體中分散式的計算功能讓您更好的選擇 hello 反覆演算法用於機器學習及圖形的計算。 [MLlib](http://spark.apache.org/mllib/) Spark 的可調整的機器學習文件庫，讓演算法 hello 模型化功能 toothis 分散式的環境。 
 
 ## <a name="hdinsight-spark"></a>HDInsight Spark
-[HDInsight Spark](../hdinsight/hdinsight-apache-spark-overview.md) 是開放原始碼 Spark 的 Azure 託管服務。 它也支援 Spark 叢集上的 **Jupyter PySpark notebooks**，可執行 Spark SQL 互動式查詢以轉換、篩選和視覺化 Azure Blob (WASB) 中儲存的資料。 PySpark 是適用於 Spark 的 Python API。 程式碼片段提供了解決方案，並且顯示相關的繪圖，進而將安裝在 Spark 叢集上的 Jupyter Notebook 資料加以視覺化。 這些主題中的模型化步驟包括程式碼，以示範如何訓練、評估、儲存和使用各類模型。 
+[HDInsight Spark](../hdinsight/hdinsight-apache-spark-overview.md) hello Azure 裝載的開放原始碼 Spark 供應項目。 它也包含支援**Jupyter PySpark 筆記本**hello Spark 叢集，可以執行轉換、 篩選和視覺化資料儲存在 Azure Blob (WASB) 的 Spark SQL 互動式查詢。 PySpark 為 hello Spark API Python。 hello 程式碼的程式碼片段提供 hello 解決方案，並顯示 hello 相關繪圖 toovisualize hello 資料這裡 Jupyter 筆記本 hello Spark 叢集上安裝中執行。 這些主題中的 hello 模型步驟包含顯示 tootrain，如何評估、 儲存和取用每種模型類型的程式碼。 
 
 ## <a name="setup-spark-clusters-and-jupyter-notebooks"></a>設定：Spark 叢集和 Jupyter Notebook
-此逐步解說所提供的設定步驟和程式碼適用於使用 HDInsight Spark 1.6。 不過 Jupyter Notebook 可供 HDInsight Spark 1.6 版和 Spark 2.0 叢集兩者使用。 Notebook 的描述及它們的連結已在包含它們的 GitHub 儲存機制的 [Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) 中提供。 此外，此處及連結的 Notebook 內的程式碼皆屬泛型程式碼，而且應該能在任何 Spark 叢集上運作。 若您不是使用 HDInsight Spark，叢集設定和管理步驟可能與這裡顯示的稍有不同。 為了方便起見，以下是可讓 Spark 1.6 版 (在 Jupyter Notebook 伺服器的 pySpark 核心中執行) 和 Spark 2.0 版 (在 Jupyter Notebook 伺服器的 pySpark3 核心中執行) 的 Jupyter Notebook 連結：
+此逐步解說所提供的設定步驟和程式碼適用於使用 HDInsight Spark 1.6。 不過 Jupyter Notebook 可供 HDInsight Spark 1.6 版和 Spark 2.0 叢集兩者使用。 Hello 中提供的 hello 筆記本與連結 toothem 描述[Readme.md](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Readme.md) hello GitHub 儲存機制包含它們。 此外，hello 程式碼及連結的 hello 筆記本為泛型，應該在任何 Spark 叢集上運作。 如果您未使用 HDInsight Spark，hello 叢集中設定和管理步驟可能稍有不同於這裡所顯示。 為了方便起見，以下是 hello 的 hello 的 hello 連結 toohello Jupyter 筆記本 Spark 1.6 (執行中 Jupyter 筆記本伺服器 hello pySpark 核心 toobe) 和 Spark 2.0 (執行中 Jupyter 筆記本伺服器 hello pySpark3 核心 toobe):
 
 ### <a name="spark-16-notebooks"></a>Spark 1.6 Notebook
-這些 Notebook 是在 Jupyter Notebook 伺服器的 pySpark 核心中執行。
+這些筆記型電腦有 toobe 的 Jupyter 筆記本伺服器 hello pySpark 核心中執行。
 
-- [pySpark-machine-learning-data-science-spark-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-data-exploration-modeling.ipynb)：提供如何利用數個不同的演算法來執行資料瀏覽、模型化和評分的相關資訊。
+- [pySpark-machine-learning-data-science-spark-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-data-exploration-modeling.ipynb)： 提供有關如何 tooperform 資料瀏覽、 建立模型及計分具有數個不同的演算法。
 - [pySpark-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb)：包含Notebook #1 中的主題，以及使用超參數微調和交叉驗證的模型開發。
-- [pySpark-machine-learning-data-science-spark-model-consumption.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-model-consumption.ipynb)：示範如何在 HDInsight 叢集上使用 Python 將儲存的模型實際運作。
+- [pySpark-machine-learning-data-science-spark-model-consumption.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-model-consumption.ipynb)： 示範如何 toooperationalize 已儲存的模型使用 Python HDInsight 上的叢集。
 
 ### <a name="spark-20-notebooks"></a>Spark 2.0 Notebook
-這些 Notebook 是在 Jupyter Notebook 伺服器的 pySpark3 核心中執行。
+這些筆記型電腦有 toobe 的 Jupyter 筆記本伺服器 hello pySpark3 核心中執行。
 
-- [Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb)：此檔案使用在[這裡](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-spark-overview#the-nyc-2013-taxi-data)描述的 NYC 計程車車程和費用資料集，提供如何在 Spark 2.0 叢集中執行資料瀏覽、模型化和評分的相關資訊。 Notebook 可能是很好的起點，可快速瀏覽我們針對 Spark 2.0 所提供的程式碼。 如需更多分析 NYC 計程車資料的 Notebook 詳細資訊，請參閱這份清單中的下一個 Notebook。 請參閱此清單之後比較這些 Notebook 的附註。 
-- [Spark2.0 pySpark3_NYC_Taxi_Tip_Regression.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0_pySpark3_NYC_Taxi_Tip_Regression.ipynb)：這個檔案會顯示如何使用[這裡](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-spark-overview#the-nyc-2013-taxi-data)所述的 NYC 計程車車程和費用資料集，執行資料爭議 (Spark SQL 和資料框架作業)、瀏覽、模型化和評分。
-- [Spark2.0 pySpark3_Airline_Departure_Delay_Classification.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0_pySpark3_Airline_Departure_Delay_Classification.ipynb)：這個檔案會顯示如何使用已知的 2011 年和 2012 年航班準時出發資料集，執行資料爭議 (Spark SQL 和資料框架作業)、瀏覽、模型化和評分。 我們在模型化之前將航班資料集與機場天氣資料 (例如風速、溫度、高度等等) 整合，因此可以在模型中包含這些天氣功能。
+- [Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb)： 這個檔案提供如何 tooperform 資料瀏覽、 建立模型及計分 Spark 2.0 中使用叢集 hello NYC 計程車路線資訊和價位資料集描述[這裡](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-spark-overview#the-nyc-2013-taxi-data)。 筆記本可能會快速瀏覽我們的 Spark 2.0 所提供的 hello 程式碼很好的起點。 更詳細的筆記本分析 hello NYC 計程車資料時，請參閱這份清單中的 hello 下一步筆記型電腦。 請參閱此清單後面，比較這些筆記本 hello 備註。 
+- [Spark2.0 pySpark3_NYC_Taxi_Tip_Regression.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0_pySpark3_NYC_Taxi_Tip_Regression.ipynb)： 此檔案會顯示如何 tooperform 資料 wrangling （Spark SQL 和資料框架作業），瀏覽模型及計分使用 hello NYC 計程車行程及價位資料集描述[這裡](https://docs.microsoft.com/en-us/azure/machine-learning/machine-learning-data-science-spark-overview#the-nyc-2013-taxi-data)。
+- [Spark2.0 pySpark3_Airline_Departure_Delay_Classification.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0_pySpark3_Airline_Departure_Delay_Classification.ipynb)： 此檔案會顯示如何 tooperform 資料 wrangling （Spark SQL 和資料框架作業），瀏覽模型及計分使用 hello 已知 Airline 準時離開從 2011年和 2012年的資料集。 我們整合 hello airline 資料集與 hello 機場天氣資料 （例如 windspeed、 溫度、 海拔高度等） 之前 toomodeling，因此這些天氣功能可以包含在 hello 模型中。
 
 <!-- -->
 
 > [!NOTE]
-> Spark 2.0 Notebook 中新增了航班資料集，以更清楚地說明使用的分類演算法。 請參閱下列連結，以取得航班準時出發資料集和天氣資料集的相關資訊：
+> hello airline 資料集加入 toohello Spark 2.0 筆記本 toobetter 說明 hello 使用分類演算法。 請參閱下列連結查看有關 airline 準時出發，資料集和天氣資料集的 hello:
 
 >- 航班準時出發資料：[http://www.transtats.bts.gov/ONTIME/](http://www.transtats.bts.gov/ONTIME/)
 
@@ -64,25 +64,25 @@ ms.lasthandoff: 07/11/2017
 <!-- -->
 
 > [!NOTE]
-NYC 計程車和飛行航班延遲資料集上的 Spark 2.0 Notebook 需要 10 分鐘或更久 (取決於 HDI 叢集的大小) 才能執行。 上述清單中的第一個 Notebook 說明 Notebook 中許多層面的資料瀏覽、視覺效果和 ML 模型訓練，會使用向下取樣 NYC 資料集以較短時間執行，其中計程車和車資檔案已預先聯結︰[Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb)此 Notebook 會採用較短的時間來完成 (2-3 分鐘)，並可能是快速瀏覽我們針對 Spark 2.0 所提供之程式碼的一個良好起點。 
+在 hello NYC 計程車的 hello Spark 2.0 筆記本與 airline 飛行延遲資料集可能需要 10 分鐘或更多 toorun （取決於 hello HDI 叢集大小）。 hello hello 上述清單中的第一個筆記本會顯示 hello 資料瀏覽的許多層面，視覺效果和 ML 模型定型中採用較少的時間 toorun 下取樣 NYC 資料集中的 hello 計程車行程及價位檔案都已預先已加入的筆記本： [Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark2.0/Spark2.0-pySpark3-machine-learning-data-science-spark-advanced-data-exploration-modeling.ipynb)筆記本會採用更短時間 toofinish （2-3 分鐘為單位），並可能不錯的起點快速瀏覽 hello 程式碼我們有提供 Spark 2.0。 
 
 <!-- -->
 
-如需 Spark 2.0 模型和評分的模型耗用量實際運作的相關指引，請參閱[有關耗用量的 Spark 1.6 文件](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-model-consumption.ipynb)，以取得概述所需步驟的範例。 若要在 Spark 2.0 上使用此檔案，將使用[這個檔案](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/Python/Spark2.0_ConsumeRFCV_NYCReg.py)來取代 Python 程式碼。
+如需 hello 實施 Spark 2.0 模型及計分模型耗用量的指引，請參閱 hello[耗用量的 Spark 1.6 文件](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/pySpark/Spark1.6/pySpark-machine-learning-data-science-spark-model-consumption.ipynb)例如大綱 hello 所需的步驟。 toouse 上的 Spark 2.0 中，這會取代 hello Python 程式碼包含檔案[這個檔案](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Misc/Spark/Python/Spark2.0_ConsumeRFCV_NYCReg.py)。
 
 ### <a name="prerequisites"></a>必要條件
-下列程序與 Spark 1.6 相關。 對於 Spark 2.0 版本，請使用先前說明和連結的 Notebook。 
+下列程序的 hello 是相關的 tooSpark 1.6。 如需 hello Spark 2.0 版本中，使用 hello 筆記本所述，與連結 toopreviously。 
 
 1. 您必須擁有 Azure 訂用帳戶。 如果還沒有訂用帳戶，請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 
-2. 您需要 Spark 1.6 叢集才能完成這個逐步解說。 若要建立該項目，請參閱 [開始使用：在 Azure HDInsight 上建立 Apache Spark](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md)所提供的指示。 叢集類型和版本是由 [選取叢集類型]  功能表來指定。 
+2.您需要 Spark 1.6 叢集 toocomplete 本逐步解說。 toocreate 其中一個，請參閱所提供的 hello 指示[快速入門： 建立 Azure HDInsight 上的 Apache Spark](../hdinsight/hdinsight-apache-spark-jupyter-spark-sql.md)。 hello 叢集類型和版本指定從 hello**選取叢集類型**功能表。 
 
 ![設定叢集](./media/machine-learning-data-science-spark-overview/spark-cluster-on-portal.png)
 
 <!-- -->
 
 > [!NOTE]
-> 如需示範如何使用 Scala 而非 Python 完成端對端資料科學程序工作的主題，請參閱 [在 Azure 上使用 Spark 與 Spark 的資料科學](machine-learning-data-science-process-scala-walkthrough.md)。
+> 顯示 toouse Scala，而不是 Python toocomplete 端對端資料科學處理程序的工作的主題，請參閱 hello [Scala 使用 Azure 上的 Spark 資料科學](machine-learning-data-science-process-scala-walkthrough.md)。
 > 
 > 
 
@@ -92,10 +92,10 @@ NYC 計程車和飛行航班延遲資料集上的 Spark 2.0 Notebook 需要 10 �
 > 
 > 
 
-## <a name="the-nyc-2013-taxi-data"></a>NYC 2013 計程車資料
-「NYC 計程車車程」資料大約是 20GB 以逗號分隔值 (CSV) 的壓縮檔 (未壓縮時可達 48GB)，其中包含超過 1 億 7300 萬筆個別車程及針對每趟車程支付的費用。 每趟車程記錄包括上車和下車的位置與時間、匿名的計程車司機駕照號碼，以及圓形徽章 (計程車的唯一識別碼) 號碼。 資料涵蓋 2013 年的所有車程，並且每月會在下列兩個資料集中加以提供：
+## <a name="hello-nyc-2013-taxi-data"></a>hello NYC 2013 計程車資料
+hello NYC 計程車路線資料約 20 GB 的壓縮以逗號分隔值 (CSV) 檔案 (~ 48 GB 未壓縮)，可包含多個 173 百萬個個別的往返和 hello fares 支付每往返作業。 每個往返記錄包含 hello 收取和下車地點和時間、 匿名的 hack (driver) 授權編號和 medallion (計程車的唯一 id) 數目。 hello 資料涵蓋所有往返 hello 年份 2013年中，並提供下列兩個資料集的每個月的 hello:
 
-1. 'trip_data' CSV 檔案包含車程詳細資訊，例如乘客數、上車和下車地點、車程持續時間，以及車程長度。 以下是一些範例記錄：
+1. hello 'trip_data' CSV 檔案包含路線的詳細資訊，例如乘客數目、 收取和持續時間和路線長度 dropoff 點、 中斷。 以下是一些範例記錄：
    
         medallion,hack_license,vendor_id,rate_code,store_and_fwd_flag,pickup_datetime,dropoff_datetime,passenger_count,trip_time_in_secs,trip_distance,pickup_longitude,pickup_latitude,dropoff_longitude,dropoff_latitude
         89D227B655E5C82AECF13C3F540D4CF4,BA96DE419E711691B9445D6A6307C170,CMT,1,N,2013-01-01 15:11:48,2013-01-01 15:18:10,4,382,1.00,-73.978165,40.757977,-73.989838,40.751171
@@ -103,7 +103,7 @@ NYC 計程車和飛行航班延遲資料集上的 Spark 2.0 Notebook 需要 10 �
         0BD7C8F5BA12B88E0B67BED28BEA73D8,9FD8F69F0804BDB5549F40E9DA1BE472,CMT,1,N,2013-01-05 18:49:41,2013-01-05 18:54:23,1,282,1.10,-74.004707,40.73777,-74.009834,40.726002
         DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,1,N,2013-01-07 23:54:15,2013-01-07 23:58:20,2,244,.70,-73.974602,40.759945,-73.984734,40.759388
         DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,1,N,2013-01-07 23:25:03,2013-01-07 23:34:24,1,560,2.10,-73.97625,40.748528,-74.002586,40.747868
-2. 'trip_data' CSV 檔案包含針對每趟車程所支付的費用詳細資料，例如付款類型、費用金額、附加費和稅金、小費和通行費，以及支付的總金額。 以下是一些範例記錄：
+2. hello 'trip_fare' CSV 檔案包含 hello 價位支付每個路線，例如付款類型、 價位量、 產生額外負荷及稅金、 秘訣和 tolls，以及 hello 總容量付費的詳細資料。 以下是一些範例記錄：
    
         medallion, hack_license, vendor_id, pickup_datetime, payment_type, fare_amount, surcharge, mta_tax, tip_amount, tolls_amount, total_amount
         89D227B655E5C82AECF13C3F540D4CF4,BA96DE419E711691B9445D6A6307C170,CMT,2013-01-01 15:11:48,CSH,6.5,0,0.5,0,0,7
@@ -112,7 +112,7 @@ NYC 計程車和飛行航班延遲資料集上的 Spark 2.0 Notebook 需要 10 �
         DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,2013-01-07 23:54:15,CSH,5,0.5,0.5,0,0,6
         DFD2202EE08F7A8DC9A57B02ACB81FE2,51EE87E3205C985EF8431D850C786310,CMT,2013-01-07 23:25:03,CSH,9.5,0.5,0.5,0,0,10.5
 
-我們已取得這些檔案的 0.1% 樣本，並將 trip\_data 和 trip\_fare CSV 檔聯結成單一資料集，做為此逐步解說的輸入資料集。 聯結 trip\_data 和 trip\_fare 的唯一索引鍵是由下列欄位組成：medallion、hack\_licence、pickup\_datetime。 資料集的每一筆記錄會包含代表 NYC 計程車車程的下列屬性︰
+我們已經建立這些檔案和聯結的 hello 路線 0.1%範例\_資料和路線\_成單一資料集 toouse 再見 CSV 檔案，做為此逐步解說中的 hello 輸入資料集。 hello 唯一索引鍵 toojoin 路線\_資料和路線\_價位組成 hello 欄位： medallion 具 「 可回復\_授權與收取\_日期時間。 Hello 資料集的每一筆記錄會包含下列屬性代表 NYC 計程車路線 hello:
 
 | 欄位 | 簡短描述 |
 | --- | --- |
@@ -124,7 +124,7 @@ NYC 計程車和飛行航班延遲資料集上的 Spark 2.0 Notebook 需要 10 �
 | pickup_datetime |上車日期和時間 |
 | dropoff_datetime |下車日期和時間 |
 | pickup_hour |於幾點上車 |
-| pickup_week |於一年中的第幾星期上車 |
+| pickup_week |挑選 hello 當年第幾週 |
 | weekday |工作日 (範圍 1-7) |
 | passenger_count |計程車車程的乘客數目 |
 | trip_time_in_secs |往返時間 (秒) |
@@ -144,46 +144,46 @@ NYC 計程車和飛行航班延遲資料集上的 Spark 2.0 Notebook 需要 10 �
 | tipped |已收到小費 (用 0 或 1 表示否或是) |
 | tip_class |小費類別 (0：$0、1：$0-5、2：$6-10、3：$11-20、4：> $20) |
 
-## <a name="execute-code-from-a-jupyter-notebook-on-the-spark-cluster"></a>從 Spark 叢集的 Jupyter Notebook 中執行程式碼
-您可以從 Azure 入口網站啟動 Jupyter Notebook。 在儀表板上尋找 Spark 叢集，並按一下該項目以進入您的叢集管理頁面。 若要開啟與 Spark 叢集相關聯的 Notebook，按一下 [叢集儀表板]  ->  [Jupyter Notebook]。
+## <a name="execute-code-from-a-jupyter-notebook-on-hello-spark-cluster"></a>從 Jupyter 筆記本 hello Spark 叢集上執行程式碼
+您可以啟動 hello Jupyter 筆記本從 hello Azure 入口網站。 尋找您儀表板上的 Spark 叢集，然後按一下它 tooenter 管理頁面，為您的叢集。 按一下 tooopen hello 筆記本 hello Spark 叢集，相關聯**叢集儀表板** -> **Jupyter 筆記本**。
 
 ![叢集儀表板](./media/machine-learning-data-science-spark-overview/spark-jupyter-on-portal.png)
 
-您也可以瀏覽至 ***https://CLUSTERNAME.azurehdinsight.net/jupyter*** 存取 Jupyter Notebook。 以您的叢集名稱來取代此 URL 內的 CLUSTERNAME 部分。 您需要有系統管理員帳戶的密碼才能存取 Notebook。
+您也可以瀏覽過***https://CLUSTERNAME.azurehdinsight.net/jupyter*** tooaccess hello Jupyter 筆記本。 此 URL 的 hello CLUSTERNAME 一部分取代為您自己的叢集 hello 名稱。 您需要系統管理員帳戶 tooaccess hello 筆記本 hello 密碼。
 
 ![瀏覽 Jupyter Notebooks](./media/machine-learning-data-science-spark-overview/spark-jupyter-notebook.png)
 
-選取 [PySpark] 來查看包含一些預先封裝 Notebook 範例的目錄，這些範例使用了 PySpark API。適用於這組 Spark 主題的 Notebook (包含程式碼範例) 可在 [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上找到。
+選取 PySpark toosee 目錄，其中包含的一些範例使用的 hello PySpark API.hello 筆記本包含此套件的 Spark 主題的 hello 程式碼範例時使用的預先封裝筆記本[GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark)
 
-您可以將 Notebook 直接從 [GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) 上傳至 Spark 叢集上的 Jupyter Notebook 伺服器。 在您的 Jupyter 首頁，按一下螢幕右側的 [上傳]  按鈕。 [檔案總管] 隨即開啟。 您可以在這裡貼上 Notebook 的 GitHub (原始內容) URL，然後按一下 [開啟]。 
+您可以上傳 hello 筆記本，直接從[GitHub](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/Spark/pySpark) toohello Jupyter 筆記本伺服器上的 Spark 叢集。 在您 Jupyter 的 hello 首頁上，按一下 hello**上傳**hello 權限屬於囉 」 畫面上的按鈕。 [檔案總管] 隨即開啟。 這裡貼上 hello GitHub （未經處理的內容） URL hello 筆記本，然後按一下**開啟**。 
 
-您會在 Jupyter 檔案清單上看到檔案名稱，並重新出現 [上傳]  按鈕。 按一下此 [上傳]  按鈕。 現在您已匯入 Notebook。 重複這些步驟，使用此逐步解說上傳其他 Notebook。
+您看到與您 Jupyter 檔案清單中的 hello 檔案名稱**上傳**按鈕一次。 按一下此 [上傳]  按鈕。 現在您已匯入 hello 筆記型電腦。 本逐步解說中的其他筆記本重複這些步驟 tooupload hello。
 
 > [!TIP]
-> 您可以用滑鼠右鍵按一下瀏覽器上的下列連結，然後選取 [複製連結] 取得 Github 原始內容 URL。 您可以將此 URL 貼到 Jupyter 的 [上傳] 檔案總管對話方塊。
+> 您可以以滑鼠右鍵按一下 hello 連結您的瀏覽器，並選取**複製連結**tooget hello github 未經處理內容的 URL。 您可以將此 URL 貼到 hello Jupyter 上傳檔案總管 對話方塊。
 > 
 > 
 
 現在您可以：
 
-* 按一下 Notebook，查看程式碼。
+* 依序按一下 hello 筆記型電腦，請參閱 hello 程式碼。
 * 按 **SHIFT-ENTER** 執行每個儲存格。
-* 按一下 [儲存格]  ->  [執行] 執行整個筆記本。
-* 使用查詢的自動視覺效果。
+* 按一下以執行 hello 整個筆記本**儲存格** -> **執行**。
+* 使用 hello 自動視覺效果的查詢。
 
 > [!TIP]
-> PySpark 核心會將 SQL (HiveQL) 查詢的輸出自動視覺化。 在 Notebook 內使用 [類型]  功能表按鈕，系統提供您幾種不同類型的視覺效果 (資料表、圓形圖、折線圖、區域圖或橫條圖) 可選擇。
+> hello PySpark 核心自動視覺化 hello 的 SQL (HiveQL) 查詢的輸出。 您可以在多種不同類型的視覺效果 （資料表、 圓形圖、 線條、 區域或列） 之間的 hello 選項 tooselect 使用 hello**類型**hello 筆記本中的功能表按鈕：
 > 
 > 
 
 ![泛型方法的羅吉斯迴歸 ROC 曲線](./media/machine-learning-data-science-spark-overview/pyspark-jupyter-autovisualization.png)
 
 ## <a name="whats-next"></a>後續步驟
-現在您已使用 HDInsight Spark 叢集進行設定，並已上傳 Jupyter 筆記本，您已準備要逐步執行對應至這三個 PySpark Notebook 的主題。 這些主題示範如何瀏覽資料、建立和取用模型。 進階的資料探索和模型化 Notebook 顯示如何包括交叉驗證、超參數清除和模型評估。 
+現在您使用 HDInsight Spark 叢集設定，並已上傳 hello Jupyter 筆記本，您就準備好 toowork 透過對應 toohello 三個 PySpark 筆記本的 hello 主題。 它們會顯示如何 tooexplore 您的資料，然後如何 toocreate 和取用模型。 進階資料瀏覽以及如何模型化筆記本顯示 hello tooinclude 交叉驗證，超參數牽涉和模型評估。 
 
-**使用 Spark 資料探索和模型化：**：遵循[使用 Spark MLlib 工具組來建立資料的二進位分類和迴歸模型](machine-learning-data-science-spark-data-exploration-modeling.md)主題的內容，來探索資料集，以及建立、評分、評估 Machine Learning 模型。
+**資料探索和模型使用 Spark:**探索 hello 資料集以及建立、 計分，和透過 hello 工作來評估 hello 機器學習模型[以 hello Spark 中建立資料的二元分類和迴歸模型MLlib toolkit](machine-learning-data-science-spark-data-exploration-modeling.md)主題。
 
-**模型耗用量︰** 若要瞭解如何評分本主題中所建立的分類和迴歸模型，請參閱 [評分及評估 Spark 建置機器學習服務模型](machine-learning-data-science-spark-model-consumption.md)。
+**模型耗用量：** toolearn 如何 tooscore hello 分類和迴歸模型建立本主題中，請參閱[分數及評估 Spark 建立機器學習模型](machine-learning-data-science-spark-model-consumption.md)。
 
-**交叉驗證和超參數清除**：請參閱 [使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md) 有關如何使用交叉驗證和超參數清除訓練模型
+**交叉驗證和超參數掃掠**：如需如何使用交叉驗證和超參數掃掠訓練模型的相關資訊，請參閱 [使用 Spark 進階資料探索和模型化](machine-learning-data-science-spark-advanced-data-exploration-modeling.md)
 

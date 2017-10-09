@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Data Lake Store 中使用 .NET SDK 開發應用程式 | Microsoft Docs"
-description: "使用 Azure Data Lake Store .NET SDK 建立 Data Lake Store 帳戶，並在 Data Lake Store 中執行基本作業"
+title: "aaaUse hello.NET SDK toodevelop 應用程式在 Azure Data Lake Store |Microsoft 文件"
+description: "使用 Azure 資料湖存放區.NET SDK toocreate Data Lake Store 帳戶，並在 hello 資料湖存放區中執行基本作業"
 services: data-lake-store
 documentationcenter: 
 author: nitinme
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 05/09/2017
 ms.author: nitinme
-ms.openlocfilehash: 70f94a07b0102e3135eaf85e5877e3502762d7e3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: cb3a1dfb2f6379f728069d66b0ee77ce0f838fe7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-azure-data-lake-store-using-net-sdk"></a>使用 .NET SDK 開始使用 Azure Data Lake Store
 > [!div class="op_single_selector"]
@@ -33,40 +33,40 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-了解如何使用 [Azure Data Lake Store .NET SDK](https://docs.microsoft.com/dotnet/api/overview/azure/data-lake-store?view=azure-dotnet) 來執行基本作業，例如建立資料夾、上傳和下載資料檔案等等。如需有關 Data Lake 的詳細資訊，請參閱 [Azure Data Lake Store](data-lake-store-overview.md)。
+深入了解如何 toouse hello [Azure 資料湖存放區.NET SDK](https://docs.microsoft.com/dotnet/api/overview/azure/data-lake-store?view=azure-dotnet) tooperform 基本作業，例如建立資料夾、 上傳和下載資料檔案，依此類推。如需有關 Data Lake 的詳細資訊，請參閱 [Azure Data Lake Store](data-lake-store-overview.md)。
 
 ## <a name="prerequisites"></a>必要條件
-* **Visual Studio 2013、2015 或 2017**。 以下指示使用 Visual Studio 2015 Update 2。
+* **Visual Studio 2013、2015 或 2017**。 下列的 hello 指示使用 Visual Studio 2015 Update 2。
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。
 
-* **Azure Data Lake Store 帳戶**。 如需有關如何建立帳戶的指示，請參閱 [開始使用 Azure Data Lake Store](data-lake-store-get-started-portal.md)
+* **Azure Data Lake Store 帳戶**。 如需有關指示 toocreate 的帳戶，請參閱[開始使用 Azure 資料湖存放區](data-lake-store-get-started-portal.md)
 
-* **建立 Azure Active Directory 應用程式**。 您必須使用 Azure AD 應用程式來向 Azure AD 驗證 Data Lake Store 應用程式。 有不同的方法可向 Azure AD 進行驗證：**使用者驗證**或**服務對服務驗證**。 如需有關如何驗證的指示和詳細資訊，請參閱[使用者驗證](data-lake-store-end-user-authenticate-using-active-directory.md)或[服務對服務驗證](data-lake-store-authenticate-using-active-directory.md)。
+* **建立 Azure Active Directory 應用程式**。 您可以使用 hello Azure AD 應用程式 tooauthenticate hello Data Lake Store 應用程式與 Azure AD。 有不同的方法 tooauthenticate 與 Azure AD，這是**使用者驗證**或**服務對服務驗證**。 如需指示和詳細資訊 tooauthenticate，請參閱[使用者驗證](data-lake-store-end-user-authenticate-using-active-directory.md)或[服務對服務驗證](data-lake-store-authenticate-using-active-directory.md)。
 
 ## <a name="create-a-net-application"></a>建立 .NET 應用程式
 1. 開啟 Visual Studio，建立主控台應用程式。
-2. 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。
-3. 在 [ **新增專案**] 中，輸入或選取下列值：
+2. 從 hello**檔案**功能表上，按一下 **新增**，然後按一下**專案**。
+3. 從**新專案**，輸入或選取下列值的 hello:
 
    | 屬性 | 值 |
    | --- | --- |
    | 類別 |範本/Visual C#/Windows |
    | 範本 |主控台應用程式 |
    | 名稱 |CreateADLApplication |
-4. 按一下 [確定]  以建立專案。
-5. 將 Nuget 封裝新增至您的專案。
+4. 按一下**確定**toocreate hello 專案。
+5. 加入 hello Nuget 封裝 tooyour 專案。
 
-   1. 在方案總管中以滑鼠右鍵按一下專案名稱，然後按一下 [ **管理 NuGet 封裝**]。
-   2. 在 [Nuget 封裝管理員] 索引標籤中，確定 [封裝來源] 設為 [nuget.org]，且已選取 [包含發行前版本] 核取方塊。
-   3. 搜尋並安裝下列 NuGet 封裝：
+   1. Hello hello 方案總管 中的專案名稱上按一下滑鼠右鍵，然後按一下**管理 NuGet 封裝**。
+   2. 在 hello **Nuget 套件管理員**索引標籤上，請確定**套件來源**設定得**nuget.org**而且**包含發行前版本**核取方塊已選取。
+   3. 搜尋並安裝下列 NuGet 套件 hello:
 
       * `Microsoft.Azure.Management.DataLake.Store` - 本教學課程使用 v2.1.3-preview。
       * `Microsoft.Rest.ClientRuntime.Azure.Authentication` - 本教學課程使用 v2.2.12。
 
         ![新增 Nuget 來源](./media/data-lake-store-get-started-net-sdk/data-lake-store-install-nuget-package.png "建立新的 Azure Data Lake 帳戶")
-   4. 關閉 [ **Nuget 封裝管理員**]。
-6. 開啟 **Program.cs**，刪除現有的程式碼，然後納入下列陳述式以新增命名空間的參考。
+   4. 關閉 hello **Nuget 套件管理員**。
+6. 開啟**Program.cs**刪除 hello 現有程式碼，然後加入下列陳述式 tooadd 參考 toonamespaces hello。
 
         using System;
         using System.IO;
@@ -78,7 +78,7 @@ ms.lasthandoff: 08/03/2017
         using Microsoft.IdentityModel.Clients.ActiveDirectory;
         using Microsoft.Rest.Azure.Authentication;
 
-7. 宣告如下所示的變數，並提供已存在的 Data Lake Store 名稱和資源群組名稱的值。 此外，請確定您在此處提供的本機路徑和檔案名稱必須存在於電腦。 將下列程式碼片段加在命名空間宣告之後。
+7. 宣告 hello 變數，如下所示，並提供 hello 值的資料湖存放區名稱和 hello 資源群組名稱已存在。 此外，請確定 hello 本機路徑和檔案名稱您在此處提供必須存在於 hello 電腦。 新增下列程式碼片段在 hello 命名空間宣告之後的 hello。
 
         namespace SdkSample
         {
@@ -94,8 +94,8 @@ ms.lasthandoff: 08/03/2017
 
                 private static void Main(string[] args)
                 {
-                    _adlsAccountName = "<DATA-LAKE-STORE-NAME>"; // TODO: Replace this value with the name of your existing Data Lake Store account.
-                    _resourceGroupName = "<RESOURCE-GROUP-NAME>"; // TODO: Replace this value with the name of the resource group containing your Data Lake Store account.
+                    _adlsAccountName = "<DATA-LAKE-STORE-NAME>"; // TODO: Replace this value with hello name of your existing Data Lake Store account.
+                    _resourceGroupName = "<RESOURCE-GROUP-NAME>"; // TODO: Replace this value with hello name of hello resource group containing your Data Lake Store account.
                     _location = "East US 2";
                     _subId = "<SUBSCRIPTION-ID>";
 
@@ -107,34 +107,34 @@ ms.lasthandoff: 08/03/2017
             }
         }
 
-在本文的其餘章節中，您可以了解如何使用可用的 .NET 方法來執行一些作業，例如驗證、檔案上載等。
+在 hello 剩餘 hello 發行項的區段，您可以看到 toouse hello 可用.NET 方法 tooperform 作業，例如驗證、 檔案上傳等等的方式。
 
 ## <a name="authentication"></a>驗證
 
 ### <a name="if-you-are-using-end-user-authentication-recommended-for-this-tutorial"></a>如果您要使用使用者驗證 (本教學課程建議的驗證方式)
 
-使用這個項目與現有的 Azure AD 原生應用程式，**以互動方式**驗證您的應用程式，這表示系統會提示您輸入您的 Azure 認證。
+搭配使用現有的 Azure AD 原生應用程式 tooauthenticate 您的應用程式**以互動方式**，這表示您會收到提示 tooenter 您的 Azure 認證。
 
-為了方便使用，下列程式碼片段會針對用戶端識別碼和重新導向 URI 使用預設值，這些項目會與任何 Azure 訂用帳戶搭配使用。 為了協助您更快完成本教學課程，建議您使用此方法。 在下列程式碼片段中，只須提供您的租用戶識別碼值。 您可以使用[建立 Active Directory 應用程式](data-lake-store-end-user-authenticate-using-active-directory.md)提供的指示來擷取它。
+為了方便使用，hello 以下程式碼片段會使用預設值，用戶端識別碼和重新導向 URI，將會使用任何 Azure 訂用帳戶。 toohelp 更快完成本教學課程中，我們建議使用此方法。 在 hello 以下程式碼片段，只要提供 hello 值您的租用戶識別碼。 您可以擷取使用所提供的 hello 指示[建立 Active Directory 應用程式](data-lake-store-end-user-authenticate-using-active-directory.md)。
 
     // User login via interactive popup
-    // Use the client ID of an existing AAD Web application.
+    // Use hello client ID of an existing AAD Web application.
     SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
-    var tenant_id = "<AAD_tenant_id>"; // Replace this string with the user's Azure Active Directory tenant ID
+    var tenant_id = "<AAD_tenant_id>"; // Replace this string with hello user's Azure Active Directory tenant ID
     var nativeClientApp_clientId = "1950a258-227b-4e31-a9cf-717495945fc2";
     var activeDirectoryClientSettings = ActiveDirectoryClientSettings.UsePromptOnly(nativeClientApp_clientId, new Uri("urn:ietf:wg:oauth:2.0:oob"));
     var creds = UserTokenProvider.LoginWithPromptAsync(tenant_id, activeDirectoryClientSettings).Result;
 
-上面這個程式碼片段有幾項須知：
+幾個事項 tooknow 有關上述這個程式碼片段：
 
-* 為了協助您更快完成本教學課程，此程式碼片段使用所有 Azure 訂用帳戶預設可用的 Azure AD 網域和用戶端識別碼。 因此，您可以**在應用程式中原封不動地使用此程式碼片段**。
-* 但是，如果您想要使用自己的 Azure AD 網域和應用程式用戶端識別碼，您必須建立 Azure AD 原生應用程式，然後使用您所建立之應用程式的 Azure AD 租用戶識別碼、用戶端識別碼和重新導向 URI。 如需相關指示，請參閱[建立 Active Directory 應用程式以使用 Data Lake Store 進行使用者驗證](data-lake-store-end-user-authenticate-using-active-directory.md)。
+* toohelp 更快完成 hello 教學課程中，此程式碼片段使用的 Azure AD 網域和用戶端根據預設，所有的 Azure 訂用帳戶的識別碼。 因此，您可以**在應用程式中原封不動地使用此程式碼片段**。
+* 不過，如果您想 toouse 您自己的 Azure AD 網域與應用程式用戶端識別碼，您必須建立 Azure AD 的原生應用程式，然後使用 hello Azure AD 租用戶識別碼、 用戶端識別碼和重新導向 URI hello 應用程式建立。 如需相關指示，請參閱[建立 Active Directory 應用程式以使用 Data Lake Store 進行使用者驗證](data-lake-store-end-user-authenticate-using-active-directory.md)。
 
 ### <a name="if-you-are-using-service-to-service-authentication-with-client-secret"></a>如果您要使用服務對服務驗證與用戶端密碼
-下列程式碼片段可供使用應用程式/服務主體的用戶端密碼/金鑰，**以非互動方式**驗證您的應用程式。 請將此方法用於現有的 Azure AD「Web 應用程式」應用程式。 如需有關如何建立 Azure AD Web 應用程式以及如何擷取以下程式碼片段必要用戶端識別碼和用戶端密碼的指示，請參閱[使用 Data Lake Store 建立 Active Directory 應用程式以進行服務對服務驗證](data-lake-store-authenticate-using-active-directory.md)。
+下列程式碼片段 hello 可以是您的應用程式使用的 tooauthenticate**非互動方式**、 使用 hello 用戶端密碼 / 金鑰的應用程式 / 服務主體。 請將此方法用於現有的 Azure AD「Web 應用程式」應用程式。 如需有關如何 toocreate hello Azure AD web 應用程式，以及如何 tooretrieve hello 用戶端識別碼和用戶端密碼需要在 hello 以下程式碼片段，請參閱指示[使用資料建立服務對服務驗證 Active Directory 應用程式Lake Store](data-lake-store-authenticate-using-active-directory.md)。
 
     // Service principal / appplication authentication with client secret / key
-    // Use the client ID of an existing AAD "Web App" application.
+    // Use hello client ID of an existing AAD "Web App" application.
     SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
 
     var domain = "<AAD-directory-domain>";
@@ -145,10 +145,10 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="if-you-are-using-service-to-service-authentication-with-certificate"></a>如果您要使用服務對服務驗證與憑證
 
-第三個選項，下列程式碼片段可供使用 Azure Active Directory 應用程式/服務主體的憑證，**以非互動方式**驗證您的應用程式。 請將此方法用於現有的 [Azure AD 與憑證](../azure-resource-manager/resource-group-authenticate-service-principal.md)。
+第三個選項，hello 如下列程式碼片段可以是使用的 tooauthenticate 您的應用程式**非互動方式**、 hello 憑證使用 Azure Active Directory 應用程式 / 服務主體。 請將此方法用於現有的 [Azure AD 與憑證](../azure-resource-manager/resource-group-authenticate-service-principal.md)。
 
     // Service principal / application authentication with certificate
-    // Use the client ID and certificate of an existing AAD "Web App" application.
+    // Use hello client ID and certificate of an existing AAD "Web App" application.
     SynchronizationContext.SetSynchronizationContext(new SynchronizationContext());
 
     var domain = "<AAD-directory-domain>";
@@ -158,16 +158,16 @@ ms.lasthandoff: 08/03/2017
     var creds = await ApplicationTokenProvider.LoginSilentWithCertificateAsync(domain, clientAssertionCertificate);
 
 ## <a name="create-client-objects"></a>建立用戶端物件
-下列程式碼片段會建立 Data Lake Store 帳戶和檔案系統用戶端物件，以便對服務發出要求。
+hello 下列程式碼片段會建立 hello Data Lake Store 帳戶和檔案系統所使用的用戶端物件 tooissue toohello 服務要求。
 
-    // Create client objects and set the subscription ID
+    // Create client objects and set hello subscription ID
     _adlsClient = new DataLakeStoreAccountManagementClient(creds) { SubscriptionId = _subId };
     _adlsFileSystemClient = new DataLakeStoreFileSystemManagementClient(creds);
 
 ## <a name="list-all-data-lake-store-accounts-within-a-subscription"></a>列出訂用帳戶內的所有 Data Lake Store 帳戶
-下列程式碼片段列出指定的 Azure 訂用帳戶中的所有 Data Lake Store 帳戶。
+hello 下列程式碼片段列出給定 Azure 訂用帳戶內的所有 Data Lake Store 帳戶。
 
-    // List all ADLS accounts within the subscription
+    // List all ADLS accounts within hello subscription
     public static async Task<List<DataLakeStoreAccount>> ListAdlStoreAccounts()
     {
         var response = await _adlsClient.Account.ListAsync();
@@ -183,7 +183,7 @@ ms.lasthandoff: 08/03/2017
     }
 
 ## <a name="create-a-directory"></a>建立目錄
-下列程式碼片段顯示的 `CreateDirectory` 方法可用於在 Data Lake Store 帳戶中建立目錄。
+下列程式碼片段說明 hello`CreateDirectory`方法，您可以使用 toocreate Data Lake Store 帳戶內的目錄。
 
     // Create a directory
     public static async Task CreateDirectory(string path)
@@ -192,7 +192,7 @@ ms.lasthandoff: 08/03/2017
     }
 
 ## <a name="upload-a-file"></a>上傳檔案
-下列程式碼片段顯示的 `UploadFile` 方法可用於將檔案上傳到 Data Lake Store 帳戶。
+下列程式碼片段說明 hello`UploadFile`方法，您可以使用 tooupload 檔案 tooa Data Lake Store 帳戶。
 
     // Upload a file
     public static void UploadFile(string srcFilePath, string destFilePath, bool force = true)
@@ -200,10 +200,10 @@ ms.lasthandoff: 08/03/2017
         _adlsFileSystemClient.FileSystem.UploadFile(_adlsAccountName, srcFilePath, destFilePath, overwrite:force);
     }
 
-SDK 支援在本機檔案路徑與 Data Lake Store 檔案路徑之間進行遞迴上傳和下載。    
+hello SDK 支援遞迴上傳和下載之間的本機檔案路徑和 Data Lake Store 檔案路徑。    
 
 ## <a name="get-file-or-directory-info"></a>取得檔案或目錄資訊
-下列程式碼片段顯示的 `GetItemInfo` 方法可用於擷取 Data Lake Store 中可用檔案或目錄的相關資訊。
+下列程式碼片段說明 hello`GetItemInfo`方法可讓您 tooretrieve 資訊的檔案或目錄的可用資料湖存放區中。
 
     // Get file or directory info
     public static async Task<FileStatusProperties> GetItemInfo(string path)
@@ -212,7 +212,7 @@ SDK 支援在本機檔案路徑與 Data Lake Store 檔案路徑之間進行遞�
     }
 
 ## <a name="list-file-or-directories"></a>列出檔案或目錄
-下列程式碼片段顯示的 `ListItem` 方法可用於列出 Data Lake Store 帳戶中的檔案和目錄。
+下列程式碼片段說明 hello `ListItem` toolist hello 檔案和目錄中可用的 Data Lake Store 帳戶的方法。
 
     // List files and directories
     public static List<FileStatusProperties> ListItems(string directoryPath)
@@ -221,7 +221,7 @@ SDK 支援在本機檔案路徑與 Data Lake Store 檔案路徑之間進行遞�
     }
 
 ## <a name="concatenate-files"></a>串連檔案
-下列程式碼片段顯示的 `ConcatenateFiles` 方法可用於串連檔案。
+下列程式碼片段說明 hello`ConcatenateFiles`您使用 tooconcatenate 檔案的方法。
 
     // Concatenate files
     public static Task ConcatenateFiles(string[] srcFilePaths, string destFilePath)
@@ -229,10 +229,10 @@ SDK 支援在本機檔案路徑與 Data Lake Store 檔案路徑之間進行遞�
         await _adlsFileSystemClient.FileSystem.ConcatAsync(_adlsAccountName, destFilePath, srcFilePaths);
     }
 
-## <a name="append-to-a-file"></a>附加到檔案
-下列程式碼片段顯示的 `AppendToFile` 方法可用於將資料附加到 Data Lake Store 帳戶中已儲存的檔案。
+## <a name="append-tooa-file"></a>附加 tooa 檔
+下列程式碼片段說明 hello`AppendToFile`附加資料 tooa 檔已儲存在 Data Lake Store 帳戶，您使用的方法。
 
-    // Append to file
+    // Append toofile
     public static async Task AppendToFile(string path, string content)
     {
         using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(content)))
@@ -242,7 +242,7 @@ SDK 支援在本機檔案路徑與 Data Lake Store 檔案路徑之間進行遞�
     }
 
 ## <a name="download-a-file"></a>下載檔案
-下列程式碼片段顯示的 `DownloadFile` 方法可用於從 Data Lake Store 帳戶下載檔案。
+下列程式碼片段說明 hello`DownloadFile`方法，您會使用 toodownload 來自 Data Lake Store 帳戶的檔案。
 
     // Download file
     public static void DownloadFile(string srcFilePath, string destFilePath)

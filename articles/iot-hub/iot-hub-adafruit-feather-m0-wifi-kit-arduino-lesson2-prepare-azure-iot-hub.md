@@ -1,12 +1,12 @@
 ---
-title: "將 Arduino 連線至 Azure IoT - 第 2 課：註冊裝置 | Microsoft Docs"
-description: "使用 Azure CLI 建立資源群組、建立 Azure IoT 中樞，並在 Azure IoT 中樞登錄 Adafruit Feather M0 WiFi。"
+title: "連接 Arduino tooAzure IoT-第 2 課： 註冊裝置 |Microsoft 文件"
+description: "建立資源群組、 建立 Azure IoT 中樞，並註冊 Adafruit 羽毛 M0 WiFi hello Azure IoT 中樞中使用 Azure CLI hello。"
 services: iot-hub
 documentationcenter: 
 author: shizn
 manager: timtl
 tags: 
-keywords: "將 arduino 連線至雲端, azure iot 中樞, 物聯網雲端, azure iot 中樞建立裝置, arduino 雲端"
+keywords: "連接 arduino toocloud、 azure iot 中樞、 網際網路事項雲端的 azure iot 中樞建立 arduino 雲端的裝置"
 ROBOTS: NOINDEX
 redirect_url: /azure/iot-hub/iot-hub-adafruit-feather-m0-wifi-kit-arduino-get-started
 ms.assetid: 5edc690b-7a1d-4ebc-b011-ff27bfffe6e8
@@ -17,34 +17,34 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: c5ad5e900671c7cedd3cdad2c2aa345315de223b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ca362f9c143dd3a98bf47a66b63a9725a0ffc2d8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-iot-hub-and-register-your-adafruit-feather-m0-wifi-arduino-board"></a>建立 IoT 中樞並登錄 Adafruit Feather M0 WiFi Arduino 面板
 
 ## <a name="what-you-will-do"></a>將執行的作業
 * 建立資源群組。
-* 在資源群組中建立 Azure IoT 中樞。
-* 使用 Azure 命令列介面 (Azure CLI)，將 Arduino 面板新增至 Azure IoT 中樞。
+* 建立您的 Azure IoT 中樞 hello 資源群組中。
+* 使用 hello Azure 命令列介面 (Azure CLI)，以新增您 Arduino 面板 toohello 的 Azure IoT 中樞。
 
-當您使用 Azure CLI 將 Arduino 面板新增至 IoT 中樞時，服務將會為您的 Arduino 面板產生一組金鑰，以向服務進行驗證。 如果您有任何問題，請在[疑難排解頁面][troubleshoot]尋求解決方案。
+當您使用 hello Azure CLI tooadd Arduino 面板 tooyour IoT 中樞時，hello 服務就會產生與 hello 服務您 Arduino 面板 tooauthenticate 的索引鍵。 如果您有任何問題，尋找解決方案上 hello[疑難排解頁面][troubleshoot]。
 
 ## <a name="what-you-will-learn"></a>學習目標
 在本文中，您將了解：
-* 如何使用 Azure CLI 建立 IoT 中樞。
-* 如何在 IoT 中樞中為您的 Arduino 面板建立裝置識別。
+* 如何 toouse hello Azure CLI toocreate IoT 中樞。
+* 如何 toocreate Arduino 您的裝置識別面板在 IoT 中樞。
 
 ## <a name="what-you-need"></a>您需要什麼
 * 一個 Azure 帳戶
-* 一部已安裝 Azure CLI 的電腦
+* 已安裝的電腦 hello Azure CLI
 
 ## <a name="create-your-iot-hub"></a>建立 IoT 中樞
-Azure IoT 中樞可以協助您連接、監視並管理數以百萬計的 IoT 資產。 若要建立 IoT 中樞，請遵循下列步驟：
+Azure IoT 中樞可以協助您連接、監視並管理數以百萬計的 IoT 資產。 toocreate IoT 中樞，請遵循下列步驟：
 
-1. 執行下列命令來登入您的 Azure 帳戶：
+1. 登入 tooyour Azure 帳戶執行下列命令的 hello:
 
    ```bash
    az login
@@ -52,41 +52,41 @@ Azure IoT 中樞可以協助您連接、監視並管理數以百萬計的 IoT �
 
    成功登入之後，系統將會列出所有可用的訂用帳戶。
 
-2. 執行下列命令來設定您想要使用的預設訂用帳戶：
+2. 設定您藉由執行下列命令的 hello 想 toouse hello 預設訂用帳戶：
 
    ```bash
    az account set --subscription {subscription id or name}
    ```
 
-   `subscription ID or name` 可在 `az login` 或 `az account list` 命令的輸出中找到。
+   `subscription ID or name`可以找到 hello 輸出中的 hello`az login`或 hello`az account list`命令。
 
-3. 執行下列命令來登錄提供者。 資源提供者是為應用程式提供資源的服務。 您必須先登錄提供者，才能部署該提供者所提供的 Azure 資源。
+3. 執行下列命令的 hello 註冊 hello 提供者。 資源提供者是為應用程式提供資源的服務。 您必須先註冊 hello 提供者，才能部署 hello hello 提供者提供的 Azure 資源。
 
    ```bash
    az provider register -n "Microsoft.Devices"
    ```
-4. 執行下列命令來在美國西部區域建立名為 iot-sample 的資源群組：
+4. 藉由執行下列命令的 hello 的 hello 美國西部地區中建立資源群組名稱 iot 範例：
 
    ```bash
    az group create --name iot-sample --location westus
    ```
 
-   `westus` 是資源群組建立所在的位置。 如果您想要使用另一個位置，您可以執行 `az account list-locations -o table` 來查看 Azure 支援的所有位置。
+   `westus`是您在建立資源群組的 hello 位置。 如果您想 toouse 另一個位置，您可以執行`az account list-locations -o table`toosee 所有 hello Azure 支援的位置。
 
-5. 執行下列命令來在 iot-sample 資源群組中建立 IoT 中樞：
+5. 建立 IoT 中樞 hello iot 範例資源群組中，執行下列命令的 hello:
 
    ```bash
    az iot hub create --name {my hub name} --resource-group iot-sample
    ```
 
-根據預設，此工具會在免費定價層建立 IoT 中樞。 如需詳細資訊，請參閱 [Azure IoT 中樞價格](https://azure.microsoft.com/pricing/details/iot-hub/)。
+根據預設，hello 工具會在 hello 可用的定價層中，建立 IoT 中樞。 如需詳細資訊，請參閱 [Azure IoT 中樞價格](https://azure.microsoft.com/pricing/details/iot-hub/)。
 
 > [!NOTE]
-> 您 IoT 中樞的名稱必須是全域唯一的。
+> IoT 中樞 hello 名稱必須是全域唯一的。
 > 您的 Azure 訂用帳戶只能建立一個 F1 版本的 Azure IoT 中樞。
 
 ## <a name="register-your-arduino-board-in-your-iot-hub"></a>在 IoT 中樞登錄您的 Arduino 面板
-每一個向/從 IoT 中樞傳送/接收訊息的裝置，都必須以唯一識別碼登錄。
+傳送訊息 tooyour IoT 中樞和接收訊息，或從 IoT 中樞的每個裝置必須註冊並提供唯一的識別碼。
 
 執行下列命令在 Azure IoT 中樞中登錄您的 Arduino 面板：
 
@@ -95,10 +95,10 @@ az iot device create --device-id mym0wifi --hub-name {my hub name}
 ```
 
 ## <a name="summary"></a>摘要
-您已建立 IoT 中樞，並在 IoT 中樞中登錄您的 Arduino 面板及裝置身分識別。 您已準備好了解如何從 Arduino 面板傳送訊息至 IoT 中樞。
+您已建立 IoT 中樞，並在 IoT 中樞中登錄您的 Arduino 面板及裝置身分識別。 您已準備好 toolearn toosend 的訊息從 Arduino 面板 tooyour IoT 中樞。
 
 ## <a name="next-steps"></a>後續步驟
-[建立 Azure 函式應用程式和 Azure 儲存體帳戶以處理並儲存 IoT 中樞訊息][process-and-store-iot-hub-messages]。
+[建立 Azure 的函式應用程式與 Azure 儲存體帳戶 tooprocess 和市集 IoT 中樞訊息][process-and-store-iot-hub-messages]。
 
 
 <!-- Images and links -->

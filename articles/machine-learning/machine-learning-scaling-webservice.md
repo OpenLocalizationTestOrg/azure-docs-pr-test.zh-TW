@@ -1,6 +1,6 @@
 ---
-title: "如何提高 Azure Machine Learning Web 服務的並行 | Microsoft Docs"
-description: "了解如何藉由新增其他端點來提高 Azure Machine Learning Web 服務的並行。"
+title: "在 Azure Machine Learning web 服務的 aaaHow tooincrease 並行 |Microsoft 文件"
+description: "了解 tooincrease 並行的 Azure Machine Learning web 服務藉由新增其他端點的方式。"
 services: machine-learning
 documentationcenter: 
 author: neerajkh
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: neerajkh
-ms.openlocfilehash: 013354515d841003c912ac0338690dd975a79ef7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e2ad16ec766820a64f36c31232f6a33a79196af4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="scaling-an-azure-machine-learning-web-service-by-adding-additional-endpoints"></a>藉由新增其他端點來調整 Azure Machine Learning Web 服務
 > [!NOTE]
-> 此主題描述適用於**傳統** Machine Learning Web 服務的技巧。 
+> 本主題說明的技巧適用 tooa**傳統**機器學習 Web 服務。 
 > 
 > 
 
-根據預設，系統將每個發佈的 Web 服務設定為支援 20 個並行要求，而且最多可達 200 個並行要求。 雖然 Azure 傳統入口網站提供設定此值的方法，但是 Azure Machine Learning 會自動最佳化此設定，為您的 Web 服務提供最佳的效能，並忽略入口網站的值。 
+根據預設，每個已發行的 Web 服務是設定的 toosupport 20 的並行要求，而且可以高達 200 的並行要求。 雖然 hello Azure 傳統入口網站提供此值的方式 tooset，Azure Machine Learning 自動 hello 設定 tooprovide hello 最佳效能最佳化您的 web 服務和 hello 入口網站的值會被忽略。 
 
-如果您打算以超過「並行呼叫數上限」值 200 可支援的負載來呼叫 API，則應該在相同的 Web 服務上建立多個端點。 然後，您就可以將負載隨機分配給所有端點。
+如果您計劃與更高的負載超過 200 的同時呼叫數目上限值將會支援 toocall hello API，您應該建立多個端點上 hello 相同的 Web 服務。 然後，您就可以將負載隨機分配給所有端點。
 
-調整 Web 服務一件常見的工作。 一些調整理由包括為了支援超過 200 個並行要求、透過多個端點提高可用性，或為 Web 服務提供個別的端點。 您可以透過 [Azure 傳統入口網站](https://manage.windowsazure.com/)[Machine Learning Web 服務](https://services.azureml.net/)新增更多端點來為同一個 Web 服務擴大規模。
+hello 調整的 Web 服務是常見的工作。 某些原因 tooscale toosupport 多個並行要求數目 200、 提高可用性，透過多個端點，或為 hello web 服務提供單獨的端點。 您可以透過加入其他端點 hello 提高 hello 小數位數相同的 Web 服務，透過[Azure 傳統入口網站](https://manage.windowsazure.com/)或 hello [Azure Machine Learning Web 服務](https://services.azureml.net/)入口網站。
 
 如需有關新增端點的詳細資訊，請參閱[建立端點](machine-learning-create-endpoint.md)。
 
-請記住，如果您未以對應的高比例來呼叫 API，則使用較大的並行處理計數可能有害。 如果您將相對低的負載放在為高負載設定的 API，可能會看見延遲有零星的逾時及 (或) 突增情況。
+請記住，使用高並行計數可能會危害，如果您不呼叫 hello API 跟著率。 您可能會看到偶發的逾時和/或尖峰 hello 延遲時間相對較低負載放在應用程式開發介面，設定為高負載。
 
-通常在需要低度延遲的情況下，才會使用同步 API。 這裡所說的延遲意味著 API 完成一個要求所花費的時間，而未計入任何網路延遲的時間。 假設您有一個會延遲 50 毫秒的 API。 其節流層級為 [高] 且 [最大同時呼叫數目] 為 20，您必須每秒呼叫這個 API 20 * 1000 / 50 = 400 次，才能完全耗盡可用的容量。 再進一步延伸，假設會延遲 50 毫秒，則「並行呼叫數上限」200 可讓您每秒呼叫 API 4000 次。
+hello 通常會使用同步的應用程式開發介面在所需的低延遲的情況。 這裡的延遲表示 hello 時間 hello API toocomplete 一個要求，並不會考量任何網路延遲。 假設您有一個會延遲 50 毫秒的 API。 toofully 取用 hello 與節流層級高的可用容量，以及同時呼叫數目上限 = 20，20 * 1000 這個 API 需要 toocall / 每秒逾 50 = 400。 同時呼叫數目上限為 200 的進一步擴充，可讓您 toocall hello API 4000 時間每秒，假設 50 毫秒延遲。
 
 <!--Image references-->
 [1]: ./media/machine-learning-scaling-webservice/machlearn-1.png

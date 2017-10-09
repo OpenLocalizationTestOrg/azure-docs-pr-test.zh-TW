@@ -1,6 +1,6 @@
 ---
-title: "使用 .NET Standard 從 Azure 事件中樞接收事件 | Microsoft Docs"
-description: "開始使用 .NET Standard 中的 EventProcessorHost 接收訊息"
+title: "從使用標準.NET 的 Azure 事件中樞 aaaReceive 事件 |Microsoft 文件"
+description: "開始接收訊息以 hello EventProcessorHost.NET 標準"
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/27/2017
 ms.author: sethm
-ms.openlocfilehash: cc62792dad0284f9514664795fdfb32e94a85943
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c3983f2668ac8f65522e44a1609dfd2eed31b7d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-receiving-messages-with-the-event-processor-host-in-net-standard"></a>開始使用 .NET Standard 中的事件處理器主機來接收訊息
+# <a name="get-started-receiving-messages-with-hello-event-processor-host-in-net-standard"></a>開始在標準.NET 中接收訊息以 hello 事件處理器主機
 
 > [!NOTE]
 > 您可在 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) 上取得此範例。
 
-本教學課程說明如何撰寫一個 .NET Core 主控台應用程式，以使用 **EventProcessorHost** 從事件中樞接收訊息。 您可以依現狀執行 [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver) 解決方案，其中以您事件中樞和儲存體帳戶的值來取代字串。 或者，您可以遵循本教學課程中的步驟，來建立自己的解決方案。
+本教學課程示範如何 toowrite.NET Core 主控台應用程式從事件中心接收訊息，使用**EventProcessorHost**。 您可以執行 hello [GitHub](https://github.com/Azure/azure-event-hubs/tree/master/samples/DotNet/Microsoft.Azure.EventHubs/SampleEphReceiver)做為方案的事件中樞與儲存體帳戶值，取代 hello 字串。 您可以遵循 hello 步驟在本教學課程 toocreate 自己。
 
 ## <a name="prerequisites"></a>必要條件
 
-* [Microsoft Visual Studio 2015 或 2017](http://www.visualstudio.com)。 本教學課程中的範例使用 Visual Studio 2017，但也支援 Visual Studio 2015。
+* [Microsoft Visual Studio 2015 或 2017](http://www.visualstudio.com)。 也支援在此教學課程使用 Visual Studio 2017，hello 範例，但 Visual Studio 2015。
 * [.NET Core Visual Studio 2015 或 2017 工具](http://www.microsoft.com/net/core)。
 * Azure 訂用帳戶。
 * Azure 事件中樞命名空間。
@@ -37,38 +37,38 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="create-an-event-hubs-namespace-and-an-event-hub"></a>建立事件中樞命名空間和事件中樞  
 
-第一個步驟是使用 [Azure 入口網站](https://portal.azure.com)來建立「事件中樞」類型的命名空間，然後取得您應用程式與事件中樞進行通訊所需的管理認證。 若要建立命名空間和事件中樞，請依照[這篇文章](event-hubs-create.md)中的程序操作，然後繼續進行下列步驟。  
+hello 第一個步驟是 toouse hello [Azure 入口網站](https://portal.azure.com)toocreate hello 事件中心的命名空間類型，並取得 hello 應用程式需要 toocommunicate 與 hello 事件中心的管理認證。 toocreate 命名空間和事件中心，請依照下列中的 hello 程序[本文](event-hubs-create.md)，再繼續執行步驟的 hello。  
 
 ## <a name="create-an-azure-storage-account"></a>建立 Azure 儲存體帳戶  
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。  
-2. 在入口網站的左方瀏覽窗格中，依序按一下 [新增]、[儲存體] 及 [儲存體帳戶]。  
-3. 完成 [儲存體帳戶] 刀鋒視窗中的欄位，然後按一下 [建立]。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。  
+2. 在 hello hello 入口網站的左側瀏覽窗格中按一下**新增**，按一下 **儲存體**，然後按一下**儲存體帳戶**。  
+3. 完成 hello 欄位在 hello 儲存體帳戶 刀鋒視窗，然後再按一下**建立**。
 
     ![建立儲存體帳戶][1]
 
-4. 在看到「部署成功」訊息之後，按一下新儲存體帳戶的名稱。 在 [基本資訊] 刀鋒視窗中，按一下 [Blob]。 當 [Blob 服務] 刀鋒視窗開啟時，按一下頂端的 [+ 容器]。 為容器命名，然後關閉 [Blob 服務] 刀鋒視窗。  
-5. 按一下左側刀鋒視窗中的 [存取金鑰]，然後複製儲存體容器的名稱、儲存體帳戶及 **key1** 的值。 將這些值儲存到記事本或一些其他暫存位置。  
+4. Vez que aparezca hello**部署成功**訊息中，按一下 hello hello 新的儲存體帳戶名稱。 在 hello **Essentials**刀鋒視窗中，按一下  **Blob**。 當 hello **Blob 服務**開啟刀鋒視窗中，按一下**+ 容器**hello 頂端。 指定的名稱，hello 容器，然後關閉 hello **Blob 服務**刀鋒視窗。  
+5. 按一下**存取金鑰**hello 左刀鋒視窗，然後複製 hello 名稱中的 hello 儲存體容器、 hello 儲存體帳戶，以及 hello 值**key1**。 儲存這些值 tooNotepad 或一些其他的暫存位置。  
 
 ## <a name="create-a-console-application"></a>建立主控台應用程式
 
-啟動 Visual Studio。 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。 建立 .NET Core 主控台應用程式。
+啟動 Visual Studio。 從 hello**檔案**功能表上，按一下 **新增**，然後按一下**專案**。 建立 .NET Core 主控台應用程式。
 
 ![新增專案][2]
 
-## <a name="add-the-event-hubs-nuget-package"></a>新增事件中樞 NuGet 封裝
+## <a name="add-hello-event-hubs-nuget-package"></a>加入 hello 事件中心 NuGet 封裝
 
-遵循下列幾個步驟，將 [`Microsoft.Azure.EventHubs`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/) 和 [`Microsoft.Azure.EventHubs.Processor`](https://www.nuget.org/packages/Microsoft.Azure.EventHubs.Processor/) .NET 標準程式庫 NuGet 套件新增至您的專案： 
+新增 hello [ `Microsoft.Azure.EventHubs` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs/)和[ `Microsoft.Azure.EventHubs.Processor` ](https://www.nuget.org/packages/Microsoft.Azure.EventHubs.Processor/) .NET 標準程式庫 NuGet 封裝 tooyour 專案依照下列步驟： 
 
-1. 以滑鼠右鍵按一下新建立的專案，然後選取 [管理 NuGet 套件]。
-2. 按一下 [瀏覽] 索引標籤，然後搜尋「Microsoft.Azure.EventHubs」並選取 [Microsoft.Azure.EventHubs] 套件。 按一下 [安裝]  完成安裝作業，然後關閉此對話方塊。
-3. 重複步驟 1 和 2，並安裝 **Microsoft.Azure.EventHubs.Processor** 套件。
+1. Hello 新建立的專案上按一下滑鼠右鍵，然後選取**管理 NuGet 封裝**。
+2. 按一下 hello**瀏覽** 索引標籤，然後搜尋 「 Microsoft.Azure.EventHubs 」 和選取 hello **Microsoft.Azure.EventHubs**封裝。 按一下**安裝**toocomplete hello 安裝，然後關閉此對話方塊。
+3. 重複步驟 1 和 2，並安裝 hello **Microsoft.Azure.EventHubs.Processor**封裝。
 
-## <a name="implement-the-ieventprocessor-interface"></a>實作 IEventProcessor 介面
+## <a name="implement-hello-ieventprocessor-interface"></a>實作 hello IEventProcessor 介面
 
-1. 在 [方案總管] 中，於專案上按一下滑鼠右鍵，按一下 [新增]，然後按一下 [類別]。 將新類別命名為 **SimpleEventProcessor**。
+1. 在 方案總管 中，以滑鼠右鍵按一下 hello 專案中，按一下 **新增**，然後按一下**類別**。 Hello 新類別命名**SimpleEventProcessor**。
 
-2. 開啟 SimpleEventProcessor.cs 檔案，然後在檔案開頭新增下列 `using` 陳述式。
+2. 開啟 hello SimpleEventProcessor.cs 檔案並加入下列 hello `using` hello 檔案的陳述式 toohello 頂端。
 
     ```csharp
     using Microsoft.Azure.EventHubs;
@@ -76,7 +76,7 @@ ms.lasthandoff: 07/11/2017
     using System.Threading.Tasks;
     ```
 
-3. 實作 `IEventProcessor` 介面。 以下列程式碼取代 `SimpleEventProcessor` 類別的整個內容：
+3. 實作 hello`IEventProcessor`介面。 取代 hello hello 整個內容`SimpleEventProcessor`類別以下列程式碼的 hello:
 
     ```csharp
     public class SimpleEventProcessor : IEventProcessor
@@ -112,9 +112,9 @@ ms.lasthandoff: 07/11/2017
     }
     ```
 
-## <a name="write-a-main-console-method-that-uses-the-simpleeventprocessor-class-to-receive-messages"></a>撰寫使用 SimpleEventProcessor 類別來接收訊息的主要主控台方法
+## <a name="write-a-main-console-method-that-uses-hello-simpleeventprocessor-class-tooreceive-messages"></a>撰寫使用 hello SimpleEventProcessor 類別 tooreceive 訊息主控台方法
 
-1. 在 Program.cs 檔案開頭處加入 `using` 陳述式。
+1. 新增下列 hello `using` hello Program.cs 檔案的陳述式 toohello 頂端。
 
     ```csharp
     using Microsoft.Azure.EventHubs;
@@ -122,7 +122,7 @@ ms.lasthandoff: 07/11/2017
     using System.Threading.Tasks;
     ```
 
-2. 針對事件中樞連接字串、事件中樞名稱、儲存體帳戶容器名稱、儲存體帳戶名稱及儲存體帳戶金鑰，將常數新增到 `Program` 類別。 新增下列程式碼，其中將預留位置取代成其對應的值。
+2. 新增常數 toohello `Program` hello 事件中樞連接字串、 事件中樞的名稱、 儲存體帳戶容器的名稱、 儲存體帳戶名稱，和儲存體帳戶金鑰的類別。 新增下列程式碼，其相對應值取代 hello 預留位置 hello。
 
     ```csharp
     private const string EhConnectionString = "{Event Hubs connection string}";
@@ -134,7 +134,7 @@ ms.lasthandoff: 07/11/2017
     private static readonly string StorageConnectionString = string.Format("DefaultEndpointsProtocol=https;AccountName={0};AccountKey={1}", StorageAccountName, StorageAccountKey);
     ```   
 
-3. 將名為 `MainAsync` 的新方法新增到 `Program` 類別，如下所示：
+3. 新增名為方法`MainAsync`toohello`Program`類別，如下所示：
 
     ```csharp
     private static async Task MainAsync(string[] args)
@@ -148,18 +148,18 @@ ms.lasthandoff: 07/11/2017
             StorageConnectionString,
             StorageContainerName);
 
-        // Registers the Event Processor Host and starts receiving messages
+        // Registers hello Event Processor Host and starts receiving messages
         await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-        Console.WriteLine("Receiving. Press ENTER to stop worker.");
+        Console.WriteLine("Receiving. Press ENTER toostop worker.");
         Console.ReadLine();
 
-        // Disposes of the Event Processor Host
+        // Disposes of hello Event Processor Host
         await eventProcessorHost.UnregisterEventProcessorAsync();
     }
     ```
 
-3. 將下列程式碼行新增至 `Main` 方法：
+3. 新增下列一行程式碼 toohello hello`Main`方法：
 
     ```csharp
     MainAsync(args).GetAwaiter().GetResult();
@@ -197,25 +197,25 @@ ms.lasthandoff: 07/11/2017
                     StorageConnectionString,
                     StorageContainerName);
 
-                // Registers the Event Processor Host and starts receiving messages
+                // Registers hello Event Processor Host and starts receiving messages
                 await eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-                Console.WriteLine("Receiving. Press ENTER to stop worker.");
+                Console.WriteLine("Receiving. Press ENTER toostop worker.");
                 Console.ReadLine();
 
-                // Disposes of the Event Processor Host
+                // Disposes of hello Event Processor Host
                 await eventProcessorHost.UnregisterEventProcessorAsync();
             }
         }
     }
     ```
 
-4. 執行程式，並確定沒有任何錯誤。
+4. 執行 hello 程式，並確定沒有任何錯誤。
 
-恭喜！ 您現在已使用「事件處理器主機」從事件中樞接收訊息。
+恭喜！ 您現在已從事件中心接收訊息，使用 hello 事件處理器主機。
 
 ## <a name="next-steps"></a>後續步驟
-您可以造訪下列連結以深入了解事件中樞︰
+您可以進一步了解事件中心瀏覽下列連結查看 hello:
 
 * [事件中樞概觀](event-hubs-what-is-event-hubs.md)
 * [建立事件中樞](event-hubs-create.md)

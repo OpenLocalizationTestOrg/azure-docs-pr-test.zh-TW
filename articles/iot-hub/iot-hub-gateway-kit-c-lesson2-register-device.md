@@ -17,11 +17,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 685a479583f5f11f57bef22dc5881285bb1f70d0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5d2322268aa18f52f60c2833778323773ac4eec3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-azure-iot-hub-and-register-your-device"></a>建立 IoT 中樞並登錄您的裝置
 
@@ -29,29 +29,29 @@ ms.lasthandoff: 07/11/2017
 
 - 建立資源群組
 - 建立您的第一個 IoT 中樞
-- 使用 Azure CLI 在 IoT 中樞登錄您的裝置。 
+- 在您的 IoT 中樞註冊您的裝置，使用 Azure CLI hello。 
 
-當您在 IoT 中樞登錄您的裝置時，Azure IoT 中樞服務將會為您的裝置產生一個金鑰，用以向服務進行驗證。 
+當您在 IoT 中樞註冊您的裝置時，hello Azure IoT 中心服務會產生與 hello 服務您裝置 toouse tooauthenticate 的索引鍵。 
 
-如果您有任何問題，請在[疑難排解頁面](iot-hub-gateway-kit-c-troubleshooting.md)尋求解決方案。
+如果您有任何問題，尋找解決方案上 hello[疑難排解頁面](iot-hub-gateway-kit-c-troubleshooting.md)。
 
 ## <a name="what-you-will-learn"></a>學習目標
 
 在這一課，您將了解：
 
-- 如何使用 Azure CLI 建立 IoT 中樞。
-- 如何在 IoT 中樞登錄裝置。
+- 如何 toouse hello Azure CLI toocreate IoT 中樞。
+- 如何 tooregister IoT 中樞中的裝置。
 
 ## <a name="what-you-need"></a>您需要什麼
 
 - 有效的 Azure 訂用帳戶。 如果您沒有 Azure 帳戶，只需要幾分鐘的時間就可以建立[免費的 Azure 試用帳戶](http://azure.microsoft.com/pricing/free-trial/)。
-- 您應該已經安裝 Azure CLI。
+- 您應該有的 hello Azure CLI 安裝。
 
 ## <a name="create-an-iot-hub"></a>建立 IoT 中樞
 
-若要建立 IoT 中樞，遵循下列步驟：
+toocreate IoT 中樞，請遵循下列步驟：
 
-1. 執行下列命令來登入您的 Azure 帳戶：
+1. 登入 tooyour Azure 帳戶執行下列命令的 hello:
 
    ```bash
    az login
@@ -59,42 +59,42 @@ ms.lasthandoff: 07/11/2017
 
    成功登入之後，系統會列出所有可用的訂用帳戶。
 
-2. 執行下列命令來設定您想要使用的預設 Azure 訂用帳戶：
+2. 設定 hello 預設您藉由執行下列命令的 hello 想 toouse 的 Azure 訂用帳戶：
 
    ```bash
    az account set --subscription {subscription id or name}
    ```
 
-   `subscription ID or name` 可在 `az login` 或 `az account list` 命令的輸出中找到。
+   `subscription ID or name`可以找到 hello 輸出中的 hello`az login`或 hello`az account list`命令。
 
-3. 執行下列命令來登錄提供者。 資源提供者是為應用程式提供資源的服務。 您必須先登錄提供者，才能部署該提供者所提供的 Azure 資源。
+3. 執行下列命令的 hello 註冊 hello 提供者。 資源提供者是為應用程式提供資源的服務。 您必須先註冊 hello 提供者，才能部署 hello hello 提供者提供的 Azure 資源。
 
    ```bash
    az provider register -n "Microsoft.Devices"
    ```
 
-4. 執行下列命令在美國西部區域建立名為 `iot-gateway` 的資源群組：
+4. 建立資源群組名稱為`iot-gateway`藉由執行下列命令的 hello hello 美國西部區域中：
 
    ```bash
    az group create --name iot-gateway --location westus
    ```
    
-   `westus` 是資源群組建立所在的位置。 如果您想要使用另一個位置，您可以執行 `az account list-locations -o table` 來查看 Azure 支援的所有位置。
+   `westus`是您在建立資源群組的 hello 位置。 如果您想 toouse 另一個位置，您可以執行`az account list-locations -o table`toosee 所有 hello Azure 支援的位置。
 
-5. 執行下列命令在 `iot-gateway` 資源群組中建立 IoT 中樞：
+5. 在 hello 建立 IoT 中樞`iot-gateway`資源群組，藉由執行下列命令的 hello:
 
    ```bash
    az iot hub create --name {my hub name} --resource-group iot-gateway
    ```
 
-根據預設，此工具會在免費定價層建立 IoT 中樞。 如需詳細資訊，請參閱 [Azure IoT 中樞價格](https://azure.microsoft.com/pricing/details/iot-hub/)。
+根據預設，hello 工具會在 hello 可用的定價層中，建立 IoT 中樞。 如需詳細資訊，請參閱 [Azure IoT 中樞價格](https://azure.microsoft.com/pricing/details/iot-hub/)。
 
 > [!NOTE]
-> 您 IoT 中樞的名稱必須是全域唯一的。 您的 Azure 訂用帳戶只能建立一個 F1 版本的 Azure IoT 中樞。
+> IoT 中樞 hello 名稱必須是全域唯一的。 您的 Azure 訂用帳戶只能建立一個 F1 版本的 Azure IoT 中樞。
 
 ## <a name="register-your-device-in-your-iot-hub"></a>在 IoT 中樞登錄您的裝置
 
-每一個向/從 IoT 中樞傳送/接收訊息的裝置，都必須以唯一識別碼登錄。
+傳送訊息 tooyour IoT 中樞和接收訊息，或從 IoT 中樞的每個裝置必須註冊並提供唯一的識別碼。
 執行下列命令在 Azure IoT 中樞中登錄您的裝置：
 
 ```bash
@@ -103,7 +103,7 @@ az iot device create --device-id mydevice --hub-name {my hub name} --resource-gr
 
 ## <a name="summary"></a>摘要
 
-您已建立 IoT 中樞，並在 IoT 中樞中登錄您的邏輯裝置及裝置身分識別。 您可以開始了解如何設定及執行閘道器範例應用程式，將資料從您的實體裝置傳送至您位於雲端的 IoT 中樞。
+您已建立 IoT 中樞，並在 IoT 中樞中登錄您的邏輯裝置及裝置身分識別。 您已準備好 toolearn tooconfigure 並從您的實體裝置 tooyour IoT 中樞 hello 中執行的閘道範例應用程式 toosend 資料的雲端。
 
 ## <a name="next-steps"></a>後續步驟
 [設定和執行 BLE 範例應用程式](iot-hub-gateway-kit-c-lesson3-configure-ble-app.md)

@@ -1,6 +1,6 @@
 ---
-title: "使用適用於開發人員的 Azure DevTest Labs | Microsoft Docs"
-description: "了解如何使用適用於開發人員案例的 Azure DevTest Labs。"
+title: "適用於開發人員的 Azure DevTest Labs aaaUse |Microsoft 文件"
+description: "深入了解如何開發人員案例 toouse Azure DevTest Labs。"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/23/2017
 ms.author: tarcher
-ms.openlocfilehash: c187819e9392908c8979556f80e8c94739eb14d5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 16a3ef47c9fcbca3050dd50db5b472a9a1e3c62c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-devtest-labs-for-developers"></a>使用適用於開發人員的 Azure DevTest Labs
-Azure DevTest Labs 可以用來實作許多重要案例，但是其中一個主要案例是使用 DevTest Labs 來託管開發人員的開發電腦。 在此案例中，DevTest Labs 提供以下優點：
+Azure 的 DevTest Labs 可使用的 tooimplement 許多案例中，但其中一個 hello 主要案例牽涉到使用適用於開發人員的 DevTest Labs toohost 開發電腦。 在此案例中，DevTest Labs 提供以下優點：
 
 - 開發人員可以快速視需要佈建開發電腦。
 - 開發人員可以隨時輕鬆自訂他們的開發電腦。
@@ -31,105 +31,105 @@ Azure DevTest Labs 可以用來實作許多重要案例，但是其中一個主�
 
 ![使用 DevTest Labs 進行訓練](./media/devtest-lab-developer-lab/devtest-lab-developer-lab.png)
 
-在本文中，您會了解可用來符合開發人員需求的各種 Azure DevTest Labs 功能，以及可供遵循的實驗室詳細設定步驟。
+在本文中，您會了解各種 Azure DevTest Labs 功能可使用的 toomeet 開發人員需求和 hello 詳細的步驟，您可以依照 tooset 實驗室設定。
 
 ## <a name="implementing-developer-environments-with-azure-devtest-labs"></a>實作使用 Azure DevTest Labs 的開發人員環境
-1. **建立實驗室** 
+1. **建立 hello 實驗室** 
    
-    實驗室是 Azure DevTest Labs 的起點。 建立實驗室之後就可以執行各種工作，例如將使用者 (開發人員) 新增至實驗室、設定原則來控制成本，以及定義可以快速建立的 VM 映像等等。  
+    實驗室會 hello Azure DevTest Labs 中起點。 一旦您建立實驗室環境，您可以執行工作，例如新增使用者 （開發人員） toohello 實驗室、 設定原則 toocontrol 成本，定義可以快速，建立的 VM 映像等等。  
    
-    按一下下表中的連結以便深入了解︰
+    深入了 hello 下表中的 hello 連結，即可：
    
-   | 工作 | 您學到什麼 |
+   | Task | 您學到什麼 |
    | --- | --- |
-   | [在 Azure 研測實驗室中建立實驗室](devtest-lab-create-lab.md) |了解如何在 Azure 入口網站的 Azure DevTest Labs 中建立實驗室。 |
+   | [在 Azure 研測實驗室中建立實驗室](devtest-lab-create-lab.md) |了解如何在 Azure 中的 DevTest Labs 實驗室的 toocreate hello Azure 入口網站。 |
 2. **使用現成的 Marketplace 映像和自訂映像在幾分鐘內建立 VM** 
    
-    您可以從 Azure Marketplace 的各種映像中挑選現成的映像，供實驗室使用。 如果現成映像不符合您的需求，您可以透過使用 Azure Marketplace 中的現成映像建立實驗室 VM、安裝所需的所有軟體，並將該 VM 儲存為實驗室中的自訂映像，以建立自訂映像。
+    您可以在 hello Azure Marketplace 中挑選現成的映像，從各種不同的映像，並讓它們可在 hello 實驗室中。 如果 hello 現成的映像不符合您的需求，您可以建立自訂映像建立的實驗室使用現成的映像，從 Azure Marketplace，安裝所有的 hello 軟體，您需要和儲存 hello VM 做為 hello 實驗室中的自訂映像的 VM。
 
-    如果您要使用自訂映像，請考慮使用映像處理站建立和散發您的映像。 映像處理站是設定即程式碼的解決方案，定期自動建置及散發已設定的映像。 這可以在使用基礎作業系統建立 VM 之後，節省手動設定系統所需的時間。
+    如果您要使用自訂映像，請考慮使用映像原廠 toocreate，並將您的映像發佈。 映像處理站是設定即程式碼的解決方案，定期自動建置及散發已設定的映像。 此儲存 hello 所需時間 toomanually hello 與建立 VM 之後，請設定 hello 系統基底 OS。
   
-    按一下下表中的連結以便深入了解︰
+    深入了 hello 下表中的 hello 連結，即可：
    
-   | 工作 | 您學到什麼 |
+   | Task | 您學到什麼 |
    | --- | --- |
-   | [設定 Azure Marketplace 映像](devtest-lab-configure-marketplace-images.md) |了解如何將 Azure Marketplace 映像加入白名單；只讓您想要提供給開發人員使用的映像可供選取。|
-   | [建立自訂映像](devtest-lab-create-template.md) |預先安裝所需軟體以建立自訂映像，讓開發人員可以使用自訂映像快速建立 VM。|
-   | [了解映像處理站](https://blogs.msdn.microsoft.com/devtestlab/2017/04/17/video-custom-image-factory-with-azure-devtest-labs/) |觀看如何設定及使用映像處理站的說明影片。|
+   | [設定 Azure Marketplace 映像](devtest-lab-configure-marketplace-images.md) |了解如何白名單 Azure Marketplace 映像，讓選取範圍只有 hello 映像，您可以使用您想要在 hello 開發人員。|
+   | [建立自訂映像](devtest-lab-create-template.md) |建立自訂映像預先安裝，讓開發人員可以快速地建立使用 hello 自訂映像的 VM，您需要的 hello 軟體。|
+   | [了解映像處理站](https://blogs.msdn.microsoft.com/devtestlab/2017/04/17/video-custom-image-factory-with-azure-devtest-labs/) |觀看影片說明如何 tooset 並使用映像處理站。|
 
 3. **建立可供開發人員電腦重複使用的範本** 
    
-    Azure DevTest Labs 中的公式是用來建立 VM 的預設屬性值清單。 您可以在實驗室中挑選映像、VM 大小 (CPU 和 RAM 的組合) 和虛擬網路以建立公式。 每位開發人員都能查看實驗室中的公式，並使用它來建立 VM。 
+    Azure DevTest Labs 中的公式是一份預設屬性值使用 toocreate VM。 您可以挑選的映像、 VM 大小 （結合 CPU 和 RAM） 和虛擬網路，hello 實驗室中建立公式。 每位開發人員可以看到 hello 實驗室中的 hello 公式，並使用 toocreate VM。 
    
-    按一下下表中的連結以便深入了解︰
+    深入了 hello 下表中的 hello 連結，即可：
    
-   | 工作 | 您學到什麼 |
+   | Task | 您學到什麼 |
    | --- | --- |
-   | [管理研發/測試實驗室公式來建立 VM](devtest-lab-manage-formulas.md) |了解如何挑選映像、VM 大小 (CPU 和 RAM 的組合) 和虛擬網路以建立公式。|
+   | [管理 DevTest Labs 公式 toocreate Vm](devtest-lab-manage-formulas.md) |了解如何挑選映像、VM 大小 (CPU 和 RAM 的組合) 和虛擬網路以建立公式。|
 
-4. **建立構件以彈性自訂 VM**
+4. **建立成品 tooenable 彈性 VM 自訂**
 
-   構件是在佈建 VM 之後用來部署和設定您的應用程式。 構件可以是：
+   使用的 toodeploy 和成品佈建 VM 之後，設定您的應用程式。 構件可以是：
 
-   - 您想要在 VM 上安裝的工具 - 例如，代理程式、Fiddler 及 Visual Studio。
-   - 您想要在 VM 上執行的動作 - 例如，複製儲存機制。
-   - 您想要測試的應用程式。
+   - 您想 tooinstall 上 hello VM-例如代理程式、 Fiddler 及 Visual Studio 的工具。
+   - 您想在 hello VM-toorun，諸如複製儲存機制的動作。
+   - 您想 tootest 應用程式。
 
    許多構件為現成可用。 如果想要符合特定需求的更多自訂，您可以建立自己的自訂構件。
 
-   按一下下表中的連結以便深入了解︰
+   深入了 hello 下表中的 hello 連結，即可：
    
-   | 工作 | 您學到什麼 |
+   | Task | 您學到什麼 |
    | --- | --- |
-   | [為您的 DevTest Labs VM 建立自訂的構件](devtest-lab-artifact-author.md) |在實驗室中為虛擬機器建立自己的自訂構件。|
-   | [在 Azure DevTest Labs 中新增可以存放自訂構件和 Azure Resource Manager 範本來使用的 Git 存放庫](devtest-lab-add-artifact-repo.md) |了解如何在您自己的私用 Git 儲存機制中儲存您的自訂構件。|
+   | [為您的 DevTest Labs VM 建立自訂的構件](devtest-lab-artifact-author.md) |在您的實驗室中建立您自己自訂的成品以利 hello 虛擬機器。|
+   | [在 Azure DevTest Labs 中加入 Git 儲存機制 toostore 自訂成品和使用的 Azure Resource Manager 範本](devtest-lab-add-artifact-repo.md) |深入了解如何 toostore 您自己的私用 Git 儲存機制內的自訂成品。|
 
 5. **控制成本**
    
-    Azure DevTest Labs 可讓您在實驗室中設定原則，以指定開發人員可在實驗室中建立的 VM 數目上限。 
+    Azure 的 DevTest Labs 可讓您 tooset 原則 hello 實驗室 toospecify hello 的數目上限可以在 hello 實驗室中的開發人員所建立的 Vm 中。 
    
-    如果您的開發人員小組有既定的工作時程，而您想要在一天中的某個特定時間停止所有的 VM，然後在隔天自動重新啟動，只要設定實驗室自動關閉和自動啟動原則即可輕鬆達到目的。 
+    如果開發人員小組所擁有的工作排程一組，而且您想 toostop hello 一天的特定時間的所有 hello Vm，然後自動重新啟動它們 hello 遵循一天，您可以輕鬆地完成作業，設定自動關閉及自動啟動原則 hello 實驗室中。 
    
-    最後，當應用程式開發完成時，您可以執行單一 PowerShell 指令碼一次刪除所有 VM。 
+    最後，應用程式開發完成時，您可以刪除所有 hello Vm 同時執行單一的 PowerShell 指令碼。 
    
-    按一下下表中的連結以便深入了解︰
+    深入了 hello 下表中的 hello 連結，即可：
    
-   | 工作 | 您學到什麼 |
+   | Task | 您學到什麼 |
    | --- | --- |
-   | [定義實驗室原則](devtest-lab-set-lab-policy.md) |在實驗室中設定原則來控制成本。 |
-   | [使用 PowerShell 指令碼刪除所有實驗室 VM](devtest-lab-faq.md#how-can-i-automate-the-process-of-deleting-all-the-vms-in-my-lab) |當開發完成時，在一次作業中刪除所有實驗室。|
+   | [定義實驗室原則](devtest-lab-set-lab-policy.md) |Hello 實驗室中設定原則來控制成本。 |
+   | [刪除所有 hello 實驗室 Vm 的 PowerShell 指令碼](devtest-lab-faq.md#how-can-i-automate-the-process-of-deleting-all-the-vms-in-my-lab) |開發完成時，請刪除所有在一個作業中的 hello 實驗室。|
 
-1. **將虛擬網路新增至 VM** 
+1. **新增虛擬網路 tooa VM** 
    
-    每當建立一個實驗室時，DevTest Labs 就會建立新的虛擬網路 (VNET)。 如果您已設定自己的 VNET – 例如，使用 ExpressRoute 或站對站 VPN – 您可以將此 VNET 新增至實驗室的虛擬網路設定，以便在建立 VM 時使用。
+    每當建立一個實驗室時，DevTest Labs 就會建立新的虛擬網路 (VNET)。 如果您已設定您自己的 VNET – 例如，藉由使用 ExpressRoute 或站對站 VPN – 您可以加入此 VNET tooyour 實驗室虛擬網路設定，使其可建立 Vm 時。
 
-    此外，還有 Azure Active Directory 網域聯結構件可用，它會在建立 VM 時將 VM 加入網域。 
+    此外，也沒有 Azure Active Directory 網域聯結成品可用，會將 VM tooa 網域聯結時正在建立 hello VM。 
    
-    按一下下表中的連結以便深入了解︰
+    深入了 hello 下表中的 hello 連結，即可：
    
-   | 工作 | 您學到什麼 |
+   | Task | 您學到什麼 |
    | --- | --- |
-   | [在 Azure DevTest Labs 中設定虛擬網路](devtest-lab-configure-vnet.md) |了解如何使用 Azure 入口網站在 Azure DevTest Labs 中設定虛擬網路。|
+   | [在 Azure DevTest Labs 中設定虛擬網路](devtest-lab-configure-vnet.md) |了解如何 tooconfigure 虛擬網路中使用 Azure DevTest Labs hello Azure 入口網站。|
 
-6. **與每位開發人員共用實驗室**
+6. **與每個開發人員共用 hello 實驗室**
    
-    使用您與開發人員共用的連結即可直接存取實驗室。 他們甚至不必有 Azure 帳戶，只要有 [Microsoft 帳戶](devtest-lab-faq.md#what-is-a-microsoft-account) 即可。 開發人員看不到其他開發人員建立的 VM。  
+    使用您與開發人員共用的連結即可直接存取實驗室。 即使沒有 toohave Azure 帳戶，因為它們已[Microsoft 帳戶](devtest-lab-faq.md#what-is-a-microsoft-account)。 開發人員看不到其他開發人員建立的 VM。  
    
-    按一下下表中的連結以便深入了解︰
+    深入了 hello 下表中的 hello 連結，即可：
    
-   | 工作 | 您學到什麼 |
+   | Task | 您學到什麼 |
    | --- | --- |
-   | [在 Azure DevTest Labs 中將開發人員新增至實驗室](devtest-lab-add-devtest-user.md) |使用 Azure 入口網站將開發人員新增至實驗室。|
-   | [使用 PowerShell 指令碼將開發人員新增至實驗室](devtest-lab-add-devtest-user.md#add-an-external-user-to-a-lab-using-powershell) |使用 PowerShell 自動將開發人員新增到實驗室。 |
-   | [取得實驗室連結](devtest-lab-faq.md#how-do-i-share-a-direct-link-to-my-lab) |了解開發人員如何透過超連結直接存取實驗室。|
+   | [在 Azure DevTest Labs 中新增的開發人員 tooa 實驗室](devtest-lab-add-devtest-user.md) |使用 hello Azure 入口網站 tooadd 開發人員 tooyour 實驗室。|
+   | [加入使用 PowerShell 指令碼的開發人員 toohello 實驗室](devtest-lab-add-devtest-user.md#add-an-external-user-to-a-lab-using-powershell) |使用 PowerShell tooautomate 加入開發人員 tooyour 實驗室。 |
+   | [取得連結 toohello 實驗室](devtest-lab-faq.md#how-do-i-share-a-direct-link-to-my-lab) |了解開發人員如何透過超連結直接存取實驗室。|
 
 7. **為更多小組自動建立實驗室** 
    
-    您可以建立 Resource Manager 範本並一再使用它來建立相同的實驗室，以自動建立實驗室，包括自訂設定。 
+    您可以自動化實驗室建立、 自訂的設定，包括建立資源管理員範本，並使用它 toocreate 相同實驗室次又一次。 
    
-    按一下下表中的連結以便深入了解︰
+    深入了 hello 下表中的 hello 連結，即可：
    
-   | 工作 | 您學到什麼 |
+   | Task | 您學到什麼 |
    | --- | --- |
    | [使用 Resource Manager 範本建立實驗室](devtest-lab-faq.md#how-do-i-create-a-lab-from-an-azure-resource-manager-template) |在 Azure DevTest Labs 中使用 Resource Manager 範本建立實驗室。 |
 
