@@ -1,16 +1,16 @@
 
 **Objective-C**：
 
-1. 在 **QSAppDelegate.m** 中，匯入 iOS SDK 和 **QSTodoService.h**：
+1. 在**QSAppDelegate.m**，匯入 hello iOS SDK 和**QSTodoService.h**:
    
         #import <MicrosoftAzureMobile/MicrosoftAzureMobile.h>
         #import "QSTodoService.h"
-2. 在 **QSAppDelegate.m** 的 `didFinishLaunchingWithOptions` 中，於 `return YES;` 之前插入下列幾行：
+2. 在`didFinishLaunchingWithOptions`中**QSAppDelegate.m**，插入 hello 下列各行前`return YES;`:
    
         UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
         [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
         [[UIApplication sharedApplication] registerForRemoteNotifications];
-3. 在 **QSAppDelegate.m**中，新增下列處理常式方法。 您的應用程式現在已更新為支援推播通知。 
+3. 在**QSAppDelegate.m**，新增下列處理常式方法的 hello。 您的應用程式已更新的 toosupport 推播通知。 
    
         // Registration with APNs is successful
         - (void)application:(UIApplication *)application
@@ -26,13 +26,13 @@
             }];
         }
    
-        // Handle any failure to register
+        // Handle any failure tooregister
         - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:
         (NSError *)error {
-            NSLog(@"Failed to register for remote notifications: %@", error);
+            NSLog(@"Failed tooregister for remote notifications: %@", error);
         }
    
-        // Use userInfo in the payload to display an alert.
+        // Use userInfo in hello payload toodisplay an alert.
         - (void)application:(UIApplication *)application
               didReceiveRemoteNotification:(NSDictionary *)userInfo {
             NSLog(@"%@", userInfo);
@@ -79,15 +79,15 @@
 
 **Swift**：
 
-1. 新增含有以下內容的檔案 **ClientManager.swift** 。 使用 Azure 行動應用程式後端的 URL 取代 *%AppUrl%*。
+1. 將檔案加入**ClientManager.swift**以下列內容的 hello。 取代*%appurl* hello hello Azure 行動應用程式後端 url。
    
         class ClientManager {
             static let sharedClient = MSClient(applicationURLString: "%AppUrl%")
         }
-2. 在 **ToDoTableViewController.swift** 中，將初始化 `MSClient` 的 `let client` 行取代為這一行：
+2. 在**ToDoTableViewController.swift**，取代 hello`let client`初始化的行`MSClient`以此行：
    
         let client = ClientManager.sharedClient
-3. 在 **AppDelegate.swift**，將 `func application` 的主體取代為：
+3. 在**AppDelegate.swift**，取代的 hello 主體`func application`，如下所示：
    
         func application(application: UIApplication,
           didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -97,7 +97,7 @@
            application.registerForRemoteNotifications()
            return true
         }
-4. 在 **AppDelegate.swift**中，新增下列處理常式方法。 您的應用程式現在已更新為支援推播通知。
+4. 在**AppDelegate.swift**，新增下列處理常式方法的 hello。 您的應用程式已更新的 toosupport 推播通知。
    
         func application(application: UIApplication,
            didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
@@ -108,7 +108,7 @@
    
         func application(application: UIApplication,
            didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-            print("Failed to register for remote notifications: ", error.description)
+            print("Failed tooregister for remote notifications: ", error.description)
         }
    
         func application(application: UIApplication,
@@ -119,11 +119,11 @@
             let apsNotification = userInfo["aps"] as? NSDictionary
             let apsString       = apsNotification?["alert"] as? String
    
-            let alert = UIAlertController(title: "Alert", message: apsString, preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: "OK", style: .Default) { _ in
+            let alert = UIAlertController(title: aaa"Alert", message: apsString, preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: aaa"OK", style: .Default) { _ in
                 print("OK")
             }
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Default) { _ in
+            let cancelAction = UIAlertAction(title: aaa"Cancel", style: .Default) { _ in
                 print("Cancel")
             }
    

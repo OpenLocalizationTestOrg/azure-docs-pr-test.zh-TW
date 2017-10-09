@@ -6,7 +6,7 @@
 | Redis 快取複本 (適用於高可用性) |1 |
 | 高級快取中包含叢集的分區 |10 |
 
-針對各個定價層，Azure Redis 快取限制與大小有所不同。 若要查看定價層和其相關聯的大小，請參閱 [Azure Redis 快取價格](https://azure.microsoft.com/pricing/details/cache/)。
+針對各個定價層，Azure Redis 快取限制與大小有所不同。 toosee hello 定價層和其相關聯的大小，請參閱[Azure Redis 快取定價](https://azure.microsoft.com/pricing/details/cache/)。
 
 如需 Azure Redis 快取組態限制的相關資訊，請參閱[預設 Redis 伺服器組態](../articles/redis-cache/cache-configure.md#default-redis-server-configuration)。
 

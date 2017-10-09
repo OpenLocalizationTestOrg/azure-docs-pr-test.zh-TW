@@ -1,6 +1,6 @@
 ---
-title: "Azure Application Insights 漏斗圖"
-description: "了解如何使用漏斗圖來探索客戶與您的應用程式互動的方式。"
+title: "aaaAzure 應用程式 Insights 漏斗圖"
+description: "了解如何使用漏斗圖 toodiscover 客戶如何與您的應用程式互動。"
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -12,32 +12,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: bwren
-ms.openlocfilehash: 59c4dfafc102b26e3b9873f433065715f4aec9ec
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2a6125cf596570cfaee30bb3ff757916e90d7676
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="discover-how-customers-are-using-your-application-with-the-application-insights-funnels"></a>使用 Application Insights 漏斗圖來探索客戶如何使用您的應用程式
+# <a name="discover-how-customers-are-using-your-application-with-hello-application-insights-funnels"></a>探索客戶如何使用您的應用程式以 hello 應用程式 Insights 漏斗圖
 
-了解客戶體驗對於您的企業非常重要。 如果您的應用程式牽涉到多個階段，您必須了解大部分客戶是否進行了整個流程，或是在某個時間點結束流程。 在 Web 應用程式中通過一系列步驟的過程便稱為「漏斗圖」。 您可以使用 Application Insights 漏斗圖來深入了解使用者，並監視各步驟的轉換率。 
+Hello 責 tooyour 商務是了解客戶經驗。 如果您的應用程式牽涉到多個階段，您需要 tooknow 如果大多數客戶所進行 hello 整個程序，或如果它們結束 hello 處理程序，在某個時間點。 hello 依序經歷一系列的 web 應用程式中的步驟就是所謂 「 漏斗圖 」。 您可以使用 hello 應用程式 Insights 漏斗圖 toogain 深入了解您的使用者和監視逐步轉換比率。 
 
-## <a name="get-started-with-the-funnels-blade"></a>開始使用 [漏斗圖] 刀鋒視窗
-了解漏斗圖最簡單的方法是透過範例逐步執行。 下圖示範電子商務企業的擁有者會採取的步驟，以了解其客戶如何與 Web 應用程式互動。  
+## <a name="get-started-with-hello-funnels-blade"></a>Hello 漏斗圖刀鋒視窗快速入門
+hello 最簡單方式 toolearn 有關漏斗圖是 toowalk，雖然範例。 hello 圖示範 hello 步驟的擁有者的電子商務的企業需要的 toolearn 他們的客戶與 web 應用程式之間的互動方式。  
 
 ### <a name="create-your-funnel"></a>建立您的漏斗圖
-建立您的漏斗圖之前，您需要決定要獲得回答的問題。 例如，您可能想知道有多少檢視首頁的客戶在廣告上按一下。 在此範例中，Fabrikam Fiber 公司的擁有者想知道上個月中，客戶將項目加入購物車後進行購買的百分比為何。
+建立您的漏斗圖之前，您需要 toodecide 想 tooanswer hello 問題。 例如，您可能會希望 tooknow 公告上檢視您的首頁上按一下多少客戶。 在此範例中，hello hello Fabrikam Fiber 公司擁有者想 tooknow hello 百分比進行加入 hello 上個月期間購物車的項目 tootheir 之後購買的客戶。
 
-以下是他們用來建立漏斗圖所採取的步驟。
+以下是他們採取 toocreate 他們漏斗圖的 hello 步驟。
 
-1. 按一下 [漏斗圖] 刀鋒視窗上的 [新增] 按鈕。
-1. 在 [時間範圍] 下拉式清單中，選取 [上個月] 作為時間範圍。 
-1. 從 [步驟 1] 下拉式清單選取 [產品頁面] 活動。 
-1. 從 [步驟 2] 下拉式清單選取 [加入至購物車] 活動。
-1. 從 [步驟 3] 下拉式清單選取 [按一下購買] 活動。
-1. 新增漏斗圖的名稱，然後按一下 [儲存]。
+1. 按一下 hello hello 漏斗圖刀鋒視窗上的新增 按鈕。
+1. 選取 「 上個月"hello 時間範圍從 hello**時間範圍**下拉式清單。 
+1. 選取 hello**產品頁面**事件從 hello**步驟 1**下拉式清單。 
+1. 選取 hello**新增 tooshopping 車**事件從 hello**步驟 2**下拉式清單。
+1. 選取 hello**按一下購買**事件從 hello**步驟 3**下拉式清單。
+1. 新增名稱 toohello 漏斗圖，然後按一下**儲存**。
 
-下圖示範 [漏斗圖] 刀鋒視窗產生的資料。 在這裡，Fabrikam 的擁有者可看到上星期中，將項目加入購物車的客戶有 22.7% 完成了購買。 他們也會看到有 1% 的客戶在瀏覽產品頁面之前按了一下廣告，而 20% 的客戶在完成購買之後就登出。
+hello 如下圖所示範 hello 資料 hello 漏斗圖刀鋒視窗會產生。 從這裡 hello Fabrikam 擁有者可以看到在 hello 過去一週，22.7%的客戶加入項目 tootheir 購物車已完成的 hello 購買。 它們也可以查看之前造訪 hello 產品網頁和 20%的客戶完成採購後已登出 1%的 hello 客戶按下公告。
 
 
 ![含有資料的 [漏斗圖] 刀鋒視窗](./media/app-insights-understand-usage-patterns/funnel1.png)

@@ -1,6 +1,6 @@
 ---
-title: "Azure CLI 指令碼範例 - 將受控磁碟複製 (移動) 到相同或不同的訂用帳戶 | Microsoft Docs"
-description: "Azure CLI 指令碼範例 - 將受控磁碟複製 (移動) 到相同或不同的訂用帳戶"
+title: "CLI 指令碼範例-aaaAzure 複製 （移動） 磁碟 toosame 或管理不同訂用帳戶 |Microsoft 文件"
+description: "Azure CLI 指令碼範例-複製 （移動） 管理磁碟 toosame 或不同的訂用帳戶"
 services: virtual-machines-linux
 documentationcenter: storage
 author: ramankumarlive
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: ramankum
-ms.openlocfilehash: 784ad81db2c83da14665fa926425928f12a15c27
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 8581169baa0fd0e0eec1c72eab77b657f48b1cfa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="copy-managed-disks-to-same-or-different-subscription-with-cli"></a>使用 CLI將受控磁碟複製到相同或不同的訂用帳戶
+# <a name="copy-managed-disks-toosame-or-different-subscription-with-cli"></a>複製 toosame 受管理的磁碟或不同的訂用帳戶使用 CLI
 
-此指令碼會將受控磁碟複製到相同的訂用帳戶，或同區域的不同訂用帳戶。 
+此指令碼將複製的受管理的磁碟 toosame 或不同的訂用帳戶，但在 hello 相同區域。 
 
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
@@ -32,22 +32,22 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-azurecli[main](../../../cli_scripts/storage/copy-managed-disks-to-same-or-different-subscription/copy-managed-disks-to-same-or-different-subscription.sh "複製受控磁碟")]
+[!code-azurecli[main](../../../cli_scripts/storage/copy-managed-disks-to-same-or-different-subscription/copy-managed-disks-to-same-or-different-subscription.sh "Copy managed disk")]
 
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼會使用下列命令，在使用來源受控磁碟識別碼的目標訂用帳戶中，建立新的受控磁碟。 下表中的每個命令都會連結至命令特定的文件。
+此指令碼會使用下列命令 toocreate hello 目標訂用帳戶使用的新受管理的磁碟 hello 識別碼 hello 來源的受管理的磁碟。 Hello 資料表連結 toocommand 特定文件中的每個命令。
 
 | 命令 | 注意事項 |
 |---|---|
-| [az disk show](https://docs.microsoft.com/cli/azure/disk#show) | 使用受控磁碟的名稱和資源群組屬性，取得受控磁碟的所有屬性。 使用 Id 屬性將受控磁碟複製到不同的訂用帳戶。  |
-| [az disk create](https://docs.microsoft.com/cli/azure/disk#create) | 使用父受控磁碟的識別碼和名稱，在不同的訂閱中建立一個新的受控磁碟管，來複製受控磁碟。  |
+| [az disk show](https://docs.microsoft.com/cli/azure/disk#show) | 取得所有受管理的磁碟使用的 hello 受管理磁碟 hello 名稱和資源群組屬性 hello 屬性。 Id 屬性是使用的 toocopy hello 管理磁碟 toodifferent 訂用帳戶。  |
+| [az disk create](https://docs.microsoft.com/cli/azure/disk#create) | 將受管理的磁碟複製藉由使用識別碼和名稱的不同訂用帳戶中建立新的受管理的磁碟 hello 父管理磁碟。  |
 
 ## <a name="next-steps"></a>後續步驟
 
 [從受控磁碟建立虛擬機器](./../../virtual-machines/scripts/virtual-machines-linux-cli-sample-create-vm-from-managed-os-disks.md?toc=%2fpowershell%2fmodule%2ftoc.json)
 
-如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
+如需有關 Azure CLI hello 的詳細資訊，請參閱[Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 
-您可以在 [Azure Linux VM 文件](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)中找到其他的虛擬機器和受控磁碟 CLI 指令碼範例。
+其他虛擬機器和受管理的磁碟 CLI 指令碼範例可以在 hello [Azure Linux VM 文件](../../virtual-machines/linux/cli-samples.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。

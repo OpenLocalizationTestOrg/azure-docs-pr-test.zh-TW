@@ -1,6 +1,6 @@
 ---
-title: "如何使用 Node.js 中的 Blob 儲存體 | Microsoft Docs"
-description: "使用 Azure Blob 儲存體 (物件儲存體) 在雲端中儲存非結構化資料。"
+title: "aaaHow toouse Node.js 從 Blob 儲存體 |Microsoft 文件"
+description: "使用 Azure Blob 儲存體 （物件儲存體） 的 hello 雲端中儲存非結構化的資料。"
 services: storage
 documentationcenter: nodejs
 author: mmacy
@@ -14,33 +14,33 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: 38c3fd3cd271c3f9d60c44fff17715062b4979ae
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e405eecdc60cd1eaa77510e7b29b41269372b65e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-blob-storage-from-nodejs"></a>如何使用 Node.js 的 Blob 儲存體
+# <a name="how-toouse-blob-storage-from-nodejs"></a>如何 toouse Node.js 從 Blob 儲存體
 [!INCLUDE [storage-selector-blob-include](../../includes/storage-selector-blob-include.md)]
 
 [!INCLUDE [storage-check-out-samples-all](../../includes/storage-check-out-samples-all.md)]
 
-## <a name="overview"></a>Overview
-本文章示範如何使用 Blob 儲存體執行一般案例。 這些範例透過 Node.js API 撰寫。 涵蓋的案例包括如何上傳、列出、下載及刪除 blob。
+## <a name="overview"></a>概觀
+本文章將示範如何使用 Blob 儲存體 tooperform 常見案例。 透過 hello Node.js 應用程式開發介面撰寫 hello 範例。 涵蓋的 hello 案例包括 tooupload，列出、 下載及刪除 blob 的方式。
 
 [!INCLUDE [storage-blob-concepts-include](../../includes/storage-blob-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-nodejs-application"></a>建立 Node.js 應用程式
-如需如何建立 Node.js 應用程式的相關指示，請參閱[在 Azure App Service 中建立 Node.js Web 應用程式]、[使用 Windows PowerShell 建立 Node.js 應用程式並部署至 Azure 雲端服務]，或[使用 Web Matrix 建立 Node.js Web 應用程式並部署至 Azure]。
+如需有關指示 toocreate Node.js 應用程式，請參閱[Node.js web 應用程式建立 Azure App Service 中]，[建置和部署 Azure 雲端服務的 Node.js 應用程式 tooan] -使用 Windows PowerShell或[建置和部署使用 Web Matrix Node.js web 應用程式 tooAzure]。
 
-## <a name="configure-your-application-to-access-storage"></a>設定您的應用程式以存取儲存體
-若要使用 Azure 儲存體，您需要 Azure Storage SDK for Node.js，這包含一組便利程式庫，能與儲存體 REST 服務通訊。
+## <a name="configure-your-application-tooaccess-storage"></a>設定您的應用程式 tooaccess 儲存體
+toouse Azure 儲存體，您會需要 hello Azure 儲存體 SDK for Node.js，其中包含一組與 hello 儲存體服務 REST 服務通訊的便利性程式庫。
 
-### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>使用 Node Package Manager (NPM) 取得封裝
-1. 使用命令列介面，例如 **PowerShell** (Windows)、**[終端機]** \(Mac) 或 **Bash** \(Unix)，瀏覽到您建立範例應用程式的資料夾。
-2. 在命令視窗中輸入 **npm install azure-storage** 。 此命令的輸出類似下列程式碼範例。
+### <a name="use-node-package-manager-npm-tooobtain-hello-package"></a>使用節點封裝管理員 (NPM) tooobtain hello 套件
+1. 使用命令列介面，例如**PowerShell** (Windows)**終端機**(Mac)，或**撞**(Unix)，您用來建立您的範例 toonavigate toohello 資料夾應用程式。
+2. 型別**npm 安裝 azure 儲存體**hello 命令視窗中。 Hello 命令的輸出會類似下列程式碼範例的 toohello。
 
         azure-storage@0.5.0 node_modules\azure-storage
         +-- extend@1.2.1
@@ -52,35 +52,35 @@ ms.lasthandoff: 08/03/2017
         +-- readable-stream@1.0.33 (string_decoder@0.10.31, isarray@0.0.1, inherits@2.0.1, core-util-is@1.0.1)
         +-- xml2js@0.2.7 (sax@0.5.2)
         +-- request@2.57.0 (caseless@0.10.0, aws-sign2@0.5.0, forever-agent@0.6.1, stringstream@0.0.4, oauth-sign@0.8.0, tunnel-agent@0.4.1, isstream@0.1.2, json-stringify-safe@5.0.1, bl@0.9.4, combined-stream@1.0.5, qs@3.1.0, mime-types@2.0.14, form-data@0.2.0, http-signature@0.11.0, tough-cookie@2.0.0, hawk@2.3.1, har-validator@1.8.0)
-3. 您可以手動執行 **ls** 命令，確認已建立 **node\_modules** 資料夾。 在該資料夾中找出 **azure-storage** 封裝，當中包含存取儲存體所需的程式庫。
+3. 您可以手動執行 hello **ls**命令 tooverify，**節點\_模組**建立資料夾。 在該資料夾中，找出 hello **azure 儲存體**套件，其中包含需要 tooaccess 儲存體的 hello 程式庫。
 
-### <a name="import-the-package"></a>匯入封裝
-使用記事本或其他文字編輯器，將以下內容新增至您要使用儲存體之應用程式的 **server.js** 檔案頂端：
+### <a name="import-hello-package"></a>匯入 hello 封裝
+使用 [記事本] 或其他文字編輯器，加入下列 toohello 頂端 hello hello**立即轉譯 server.js** hello 應用程式檔案，但您想 toouse 儲存體：
 
 ```nodejs
 var azure = require('azure-storage');
 ```
 
 ## <a name="set-up-an-azure-storage-connection"></a>設定 Azure 儲存體連接
-Azure 模組會讀取環境變數 `AZURE_STORAGE_ACCOUNT` 及 `AZURE_STORAGE_ACCESS_KEY`，或讀取 `AZURE_STORAGE_CONNECTION_STRING` 以取得連接 Azure 儲存體帳戶所需的資訊。 如果未設定這些環境變數，則呼叫 **createBlobService**時必須指定帳戶資訊。
+hello Azure 模組會讀取 hello 環境變數`AZURE_STORAGE_ACCOUNT`和`AZURE_STORAGE_ACCESS_KEY`，或`AZURE_STORAGE_CONNECTION_STRING`，資訊所需 tooconnect tooyour Azure 儲存體帳戶。 如果未設定這些環境變數，呼叫時，您必須指定 hello 帳戶資訊**createBlobService**。
 
-如需針對 Azure Web 應用程式在 [Azure 入口網站](https://portal.azure.com)中設定環境變數的範例，請參閱[使用 Azure 表格服務的 Node.js Web 應用程式]。
+如需設定 hello hello 環境變數的範例[Azure 入口網站](https://portal.azure.com)Azure web 應用程式中，請參閱[Node.js web 應用程式使用 hello Azure 資料表服務]。
 
 ## <a name="create-a-container"></a>建立容器
-**BlobService** 物件讓您能使用容器及 blob。 下列程式碼會建立 **BlobService** 物件。 將下列內容新增至接近 **server.js**的頂端：
+hello **BlobService**物件可讓您使用容器和 blob。 hello 下列程式碼會建立**BlobService**物件。 新增 hello 頂端附近的 hello 下列**立即轉譯 server.js**:
 
 ```nodejs
 var blobSvc = azure.createBlobService();
 ```
 
 > [!NOTE]
-> 使用 **createBlobServiceAnonymous** 並提供主機位址，可匿名存取 Blob。 例如，使用 `var blobSvc = azure.createBlobServiceAnonymous('https://myblob.blob.core.windows.net/');`。
+> 您可以使用匿名存取 blob **createBlobServiceAnonymous**並提供 hello 主機位址。 例如，使用 `var blobSvc = azure.createBlobServiceAnonymous('https://myblob.blob.core.windows.net/');`。
 >
 >
 
 [!INCLUDE [storage-container-naming-rules-include](../../includes/storage-container-naming-rules-include.md)]
 
-若要建立新的容器，請使用 **createContainerIfNotExists**。 以下程式碼範例會建立一個名為 'mycontainer' 的新容器：
+使用新的容器，toocreate **createContainerIfNotExists**。 hello 下列程式碼範例會建立名為 'mycontainer' 的新容器：
 
 ```nodejs
 blobSvc.createContainerIfNotExists('mycontainer', function(error, result, response){
@@ -90,54 +90,54 @@ blobSvc.createContainerIfNotExists('mycontainer', function(error, result, respon
 });
 ```
 
-如果是新建立的容器， `result.created` 為 true。 如果容器已存在，則 `result.created` 為 false。 `response` 包含作業的相關資訊，包括容器的 ETag 資訊。
+如果剛新建 hello 容器，`result.created`為 true。 如果 hello 容器已經存在，`result.created`為 false。 `response`包含 hello 作業，包括 hello hello 容器的 ETag 資訊的相關資訊。
 
 ### <a name="container-security"></a>容器安全性
-依預設，新的容器屬私人性質，無法以匿名方式存取。 若要將容器變成公開，以便以匿名方式進行存取，您可以將容器的存取等級設為 **blob** 或 **container**。
+依預設，新的容器屬私人性質，無法以匿名方式存取。 toomake hello 容器公用，以供匿名存取，您可以設定 hello 容器的存取層級太**blob**或**容器**。
 
-* **blob** - 允許對此容器內的 Blob 內容和中繼資料的匿名讀取存取，但不包含對容器中繼資料的匿名讀取存取，例如列出容器內的所有 Blob
-* **container** - 允許對 Blob 內容和中繼資料及容器中繼資料的匿名讀取存取
+* **blob** -匿名讀取權限 tooblob 內容和中繼資料內這個容器中，但不 toocontainer 中繼資料，例如列出容器內的所有 blob
+* **容器**-可讓匿名讀取權限 tooblob 內容和中繼資料，以及容器中繼資料
 
-下列程式碼範例示範將存取等級設為 **blob**：
+hello 下列程式碼範例示範設定 hello 存取層級太**blob**:
 
 ```nodejs
 blobSvc.createContainerIfNotExists('mycontainer', {publicAccessLevel : 'blob'}, function(error, result, response){
     if(!error){
       // Container exists and allows
-      // anonymous read access to blob
+      // anonymous read access tooblob
       // content and metadata within this container
     }
 });
 ```
 
-或者，您可以使用 **setContainerAcl** 指定存取等級，以修改容器的存取等級。 下列程式碼範例會將存取等級變更為 container：
+或者，您可以修改容器的 hello 存取層級使用**setContainerAcl** toospecify hello 存取層級。 hello 下列程式碼範例變更 hello 存取層級 toocontainer:
 
 ```nodejs
 blobSvc.setContainerAcl('mycontainer', null /* signedIdentifiers */, {publicAccessLevel : 'container'} /* publicAccessLevel*/, function(error, result, response){
   if(!error){
-    // Container access level set to 'container'
+    // Container access level set too'container'
   }
 });
 ```
 
-結果包含操作的相關資訊，包括容器的目前 **ETag** 。
+hello 結果包含 hello 作業資訊，包括 hello 目前**ETag** hello 容器。
 
 ### <a name="filters"></a>篩選器
-您可以將選用的篩選作業套用到使用 **BlobService** 執行的作業。 篩選作業可包括記錄、自動重試等等。篩選器是使用簽章實作方法的物件：
+您可以套用篩選作業選擇性使用 toooperations 執行**BlobService**。 篩選作業可包括記錄、自動重試等等。篩選器是實作 hello 簽章的方法的物件：
 
 ```nodejs
 function handle (requestOptions, next)
 ```
 
-在對要求選項進行前處理之後，方法需要呼叫 "next" 並傳遞具有下列簽章的回呼：
+執行其前置處理 hello 要求選項之後, hello 方法需要 toocall 「 下一步，將回呼傳遞具有下列簽章的 hello:
 
 ```nodejs
 function (returnObject, finalCallback, next)
 ```
 
-在此回呼中，以及處理 returnObject (來自對伺服器之要求的回應) 之後，回呼需要叫用 next (如果存在) 以繼續處理其他篩選，或是直接叫用 finalCallback 結束服務叫用。
+Hello 回呼此回呼中,，在處理 hello returnObject （hello 回應 hello 要求 toohello 伺服器） 之後時，需要 tooeither 如果它存在 toocontinue 處理其他篩選器接著叫用，或是只會叫用 finalCallback tooend hello 服務引動過程。
 
-Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**ExponentialRetryPolicyFilter** 和 **LinearRetryPolicyFilter**。 以下會建立使用 **ExponentialRetryPolicyFilter** 的 **BlobService** 物件：
+實作重試邏輯的兩個篩選器隨附於 Azure SDK for Node.js hello **ExponentialRetryPolicyFilter**和**LinearRetryPolicyFilter**。 hello 下列範例會建立**BlobService**物件，使用 hello **ExponentialRetryPolicyFilter**:
 
 ```nodejs
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
@@ -145,17 +145,17 @@ var blobSvc = azure.createBlobService().withFilter(retryOperations);
 ```
 
 ## <a name="upload-a-blob-into-a-container"></a>將 Blob 上傳至容器
-有三種類型的 Blob：區塊 Blob、分頁 Blob 和附加 Blob。 Block Blob 可讓您更有效率地上傳大型資料。 附加 Blob 已針對附加作業最佳化。 分頁 Blob 已針對讀/寫作業最佳化。 如需詳細資訊，請參閱 [了解區塊 Blob、附加 Blob 和分頁 Blob](http://msdn.microsoft.com/library/azure/ee691964.aspx)。
+有三種類型的 Blob：區塊 Blob、分頁 Blob 和附加 Blob。 區塊 blob 可讓您 toomore 有效率地將大型的資料上傳。 附加 Blob 已針對附加作業最佳化。 分頁 Blob 已針對讀/寫作業最佳化。 如需詳細資訊，請參閱 [了解區塊 Blob、附加 Blob 和分頁 Blob](http://msdn.microsoft.com/library/azure/ee691964.aspx)。
 
 ### <a name="block-blobs"></a>區塊 Blob
-若要將資料上傳至區塊 Blob，請使用下列方法：
+tooupload 資料 tooa 區塊 blob，使用下列的 hello:
 
-* **createBlockBlobFromLocalFile** - 建立新的區塊 Blob 並上傳檔案的內容
-* **createBlockBlobFromStream** - 建立新的區塊 Blob 並上傳串流的內容
-* **createBlockBlobFromText** - 建立新的區塊 Blob 並上傳字串的內容
-* **createWriteStreamToBlockBlob** - 提供對區塊 Blob 的寫入串流
+* **createBlockBlobFromLocalFile** -建立新的區塊 blob 並上傳檔案的 hello 內容
+* **createBlockBlobFromStream** -建立新的區塊 blob 並上傳的資料流的 hello 內容
+* **createBlockBlobFromText** -建立新的區塊 blob 並上傳 hello 字串的內容
+* **createWriteStreamToBlockBlob** -提供寫入資料流 tooa 區塊 blob
 
-下列程式碼範例會將 **test.txt** 檔的內容上傳至 **myblob**。
+hello 下列程式碼範例會將上傳的 hello hello 內容**test.txt**檔案**myblob**。
 
 ```nodejs
 blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', function(error, result, response){
@@ -165,17 +165,17 @@ blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', functi
 });
 ```
 
-這些方法傳回的 `result` 包含作業的相關資訊，例如 Blob 的 **ETag** 。
+hello`result`這些方法所傳回包含有關 hello 作業，例如 hello **ETag**的 hello blob。
 
 ### <a name="append-blobs"></a>附加 Blob
-若要將資料上傳至附加 Blob，請使用下列方法：
+tooupload 資料 tooa 新附加 blob，請使用下列 hello:
 
-* **createAppendBlobFromLocalFile** - 建立新的附加 Blob 並上傳檔案的內容
-* **createAppendBlobFromStream** - 建立新的附加 Blob 並上傳串流的內容
-* **createAppendBlobFromText** - 建立新的附加 Blob 並上傳字串的內容
-* **createWriteStreamToNewAppendBlob** - 建立新的附加 Blob，然後提供串流來寫入它
+* **createAppendBlobFromLocalFile** -建立新的附加 blob 並上傳檔案的 hello 內容
+* **createAppendBlobFromStream** -建立新的附加 blob 並上傳的資料流的 hello 內容
+* **createAppendBlobFromText** -建立新的附加 blob 並上傳 hello 字串的內容
+* **createWriteStreamToNewAppendBlob** -建立新的附加 blob，並提供資料流 toowrite tooit
 
-下列程式碼範例會將 **test.txt** 檔案的內容上傳至 **myappendblob**。
+hello 下列程式碼範例會將上傳的 hello hello 內容**test.txt**檔案**myappendblob**。
 
 ```nodejs
 blobSvc.createAppendBlobFromLocalFile('mycontainer', 'myappendblob', 'test.txt', function(error, result, response){
@@ -185,23 +185,23 @@ blobSvc.createAppendBlobFromLocalFile('mycontainer', 'myappendblob', 'test.txt',
 });
 ```
 
-若要將區塊附加到現有附加 Blob，請使用下列方法︰
+tooappend 現有區塊 tooan 附加 blob，使用下列的 hello:
 
-* **appendFromLocalFile** - 將檔案的內容附加到現有附加 Blob
-* **appendFromStream** - 將串流的內容附加到現有附加 Blob
-* **appendFromText** - 將字串的內容附加到現有附加 Blob
-* **appendBlockFromStream** - 將串流的內容附加到現有附加 Blob
-* **appendBlockFromText** - 將字串的內容附加到現有附加 Blob
+* **appendFromLocalFile** -附加 hello 內容的檔案 tooan 現有附加 blob
+* **appendFromStream** -附加 hello 內容的資料流 tooan 現有附加 blob
+* **appendFromText** -附加 hello 內容的字串 tooan 現有附加 blob
+* **appendBlockFromStream** -附加 hello 內容的資料流 tooan 現有附加 blob
+* **appendBlockFromText** -附加 hello 內容的字串 tooan 現有附加 blob
 
 > [!NOTE]
-> appendFromXXX API 會讓部分用戶端驗證立即失敗，以避免不必要的伺服器呼叫。 appendBlockFromXXX 則否。
+> appendFromXXX Api 將會進行某些用戶端驗證 toofail 快速 tooavoid 不必要的伺服器呼叫。 appendBlockFromXXX 則否。
 >
 >
 
-下列程式碼範例會將 **test.txt** 檔案的內容上傳至 **myappendblob**。
+hello 下列程式碼範例會將上傳的 hello hello 內容**test.txt**檔案**myappendblob**。
 
 ```nodejs
-blobSvc.appendFromText('mycontainer', 'myappendblob', 'text to be appended', function(error, result, response){
+blobSvc.appendFromText('mycontainer', 'myappendblob', 'text toobe appended', function(error, result, response){
   if(!error){
     // text appended
   }
@@ -209,15 +209,15 @@ blobSvc.appendFromText('mycontainer', 'myappendblob', 'text to be appended', fun
 ```
 
 ### <a name="page-blobs"></a>分頁 Blob
-若要將資料上傳至分頁 Blob，請使用下列方法：
+tooupload 資料 tooa 分頁 blob，使用下列的 hello:
 
 * **createPageBlob** - 建立特定長度的新分頁 Blob
-* **createPageBlobFromLocalFile** - 建立新的分頁 Blob 並上傳檔案的內容
-* **createPageBlobFromStream** - 建立新的分頁 Blob 並上傳串流的內容
-* **createWriteStreamToExistingPageBlob** - 提供對現有分頁 Blob 的寫入串流
-* **createWriteStreamToNewPageBlob** - 建立新的分頁 Blob，然後提供串流來寫入它
+* **createPageBlobFromLocalFile** -建立新的分頁 blob 並上傳檔案的 hello 內容
+* **createPageBlobFromStream** -建立新的分頁 blob 並上傳的資料流的 hello 內容
+* **createWriteStreamToExistingPageBlob** -提供寫入資料流 tooan 現有的分頁 blob
+* **createWriteStreamToNewPageBlob** -建立新的分頁 blob，並提供資料流 toowrite tooit
 
-下列程式碼範例會將 **test.txt** 檔的內容上傳至 **mypageblob**。
+hello 下列程式碼範例會將上傳的 hello hello 內容**test.txt**檔案**mypageblob**。
 
 ```nodejs
 blobSvc.createPageBlobFromLocalFile('mycontainer', 'mypageblob', 'test.txt', function(error, result, response){
@@ -232,29 +232,29 @@ blobSvc.createPageBlobFromLocalFile('mycontainer', 'mypageblob', 'test.txt', fun
 >
 >
 
-## <a name="list-the-blobs-in-a-container"></a>列出容器中的 Blob
-若要列出容器中的 Blob，請使用 **listBlobsSegmented** 方法。 若要傳回具有特定首碼的 Blob，請使用 **listBlobsSegmentedWithPrefix**。
+## <a name="list-hello-blobs-in-a-container"></a>列出容器中的 hello blob
+toolist hello blob 容器中的使用 hello **listBlobsSegmented**方法。 如果您想要以特定的前置詞 tooreturn blob，使用**listBlobsSegmentedWithPrefix**。
 
 ```nodejs
 blobSvc.listBlobsSegmented('mycontainer', null, function(error, result, response){
   if(!error){
-      // result.entries contains the entries
-      // If not all blobs were returned, result.continuationToken has the continuation token.
+      // result.entries contains hello entries
+      // If not all blobs were returned, result.continuationToken has hello continuation token.
   }
 });
 ```
 
-`result` 包含 `entries` 集合，此集合是描述每個 Blob 的物件陣列。 若無法傳回所有 Blob，`result` 也會提供 `continuationToken`，其可作為第二個參數來擷取更多項目。
+hello`result`包含`entries`集合，其描述每一個 blob 物件的陣列。 如果無法傳回的所有 blob，hello`result`也提供`continuationToken`，而您可以使用做為 hello 第二個參數 tooretrieve 其他項目。
 
 ## <a name="download-blobs"></a>下載 Blob
-若要從 Blob 下載資料，請使用下列方法：
+從 blob，toodownload 資料使用 hello 下列：
 
-* **getBlobToLocalFile** - 將 Blob 內容寫入檔案
-* **getBlobToStream** - 將 Blob 內容寫入串流
-* **getBlobToText** - 將 Blob 內容寫入字串
-* **createReadStream** - 提供串流來讀取 Blob
+* **getBlobToLocalFile** -寫入 hello blob 內容 toofile
+* **getBlobToStream** -寫入 hello blob 內容 tooa 資料流
+* **getBlobToText** -hello blob 內容寫入 tooa 字串
+* **createReadStream** -提供從 hello blob 資料流 tooread
 
-下列程式碼範例示範使用 **getBlobToStream** 來下載 **myblob** Blob 的內容，並使用串流存放到 **output.txt** 檔案：
+hello 下列程式碼範例示範如何使用**getBlobToStream** hello toodownload hello 內容**myblob** blob，並將它儲存 toohello **output.txt**所使用的檔案資料流：
 
 ```nodejs
 var fs = require('fs');
@@ -265,10 +265,10 @@ blobSvc.getBlobToStream('mycontainer', 'myblob', fs.createWriteStream('output.tx
 });
 ```
 
-`result` 包含 Blob 的相關資訊，包括 **ETag** 資訊。
+hello`result`包含 hello blob 的相關資訊包括**ETag**資訊。
 
 ## <a name="delete-a-blob"></a>刪除 Blob
-最後，呼叫 **deleteBlob**以刪除 blob。 下列程式碼範例會刪除名為 **myblob**的 Blob。
+最後，呼叫 toodelete blob， **deleteBlob**。 下列程式碼範例刪除 hello 名為 blob 的 hello **myblob**。
 
 ```nodejs
 blobSvc.deleteBlob(containerName, 'myblob', function(error, response){
@@ -279,15 +279,15 @@ blobSvc.deleteBlob(containerName, 'myblob', function(error, response){
 ```
 
 ## <a name="concurrent-access"></a>並行存取
-若要支援從多個用戶端或多個程序執行個體並行存取 Blob，您可以使用 **ETags** 或「租用」。
+您可以使用從多個用戶端或多個處理序執行個體的並行存取 tooa blob toosupport， **Etag**或**租用**。
 
-* **Etag** - 提供方法來偵測 Blob 或容器已被另一個程序修改過
-* **租用** - 提供方法來取得在一段時間內對 Blob 的獨佔、可更新、寫入或刪除存取權
+* **Etag** -提供 hello blob 或容器的方式 toodetect 已被另一個處理序
+* **租用**-提供方式 tooobtain 獨佔、 更新、 寫入或刪除的一段時間的存取 tooa blob
 
 ### <a name="etag"></a>ETag
-若您需要允許多個用戶端或執行個體同時寫入區塊 Blob 或分頁 Blob，請使用 ETag。 ETag 可讓您判斷容器或 Blob 自從您最初讀取或建立它之後是否已修改，這樣可讓您避免覆寫另一個用戶端或程序已認可的變更。
+如果您需要多個用戶端或執行個體 toowrite toohello 區塊 Blob 或分頁 Blob 同時 tooallow，使用 Etag。 hello ETag 可讓您 toodetermine 如果 hello 容器或 blob 已修改一開始讀取或建立，可讓您 tooavoid 覆寫其他用戶端或處理序認可的變更之後。
 
-使用選用的 `options.accessConditions` 參數，可以設定 ETag 條件。 只有在 Blob 已存在，且 `etagToMatch` 中包含 ETag 值時，下列程式碼範例才會上傳 **test.txt** 檔案。
+您可以使用選擇性的 hello 設定 ETag 條件`options.accessConditions`參數。 hello 下列程式碼範例只會將上傳 hello **test.txt**所包含的檔案，如果 hello blob 已經存在，而且具有 hello ETag 值`etagToMatch`。
 
 ```nodejs
 blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', { accessConditions: { EtagMatch: etagToMatch} }, function(error, result, response){
@@ -297,15 +297,15 @@ blobSvc.createBlockBlobFromLocalFile('mycontainer', 'myblob', 'test.txt', { acce
 });
 ```
 
-使用 ETag 時，一般模式為：
+當您使用的 Etag 時，hello 一般模式將會是：
 
-1. 取得執行建立、列出或取得操作之後的 ETag。
-2. 執行動作，檢查 ETag 值未被修改。
+1. 取得 hello ETag hello 的建立、 清單或取得作業的結果。
+2. 執行動作，檢查該 hello ETag 值不修改。
 
-若值已被修改，這表示另一個用戶端或執行個體自從您取得 ETag 值之後已修改 Blob 或容器。
+如果已修改 hello 值，這表示另一個用戶端或執行個體修改 hello blob 或容器取得 hello ETag 值之後。
 
 ### <a name="lease"></a>租用
-使用 **acquireLease** 方法，並指定您要取得租用的 Blob 或容器，即可取得新的租用。 例如，下列程式碼可取得 **myblob**的租用。
+您可以取得新的租用，方式是使用 hello **acquireLease**方法，並指定 hello blob 或容器想 tooobtain 租用上。 例如，下列程式碼的 hello 上中取得的租用**myblob**。
 
 ```nodejs
 blobSvc.acquireLease('mycontainer', 'myblob', function(error, result, response){
@@ -315,26 +315,26 @@ blobSvc.acquireLease('mycontainer', 'myblob', function(error, result, response){
 });
 ```
 
-**myblob** 的後續作業必須提供 `options.leaseId` 參數。 租用識別碼會從 **acquireLease** 作為 `result.id` 傳回。
+在後續作業**myblob**必須提供 hello`options.leaseId`參數。 做為傳回識別碼 hello 租用`result.id`從**acquireLease**。
 
 > [!NOTE]
-> 依預設，租用期間無限制。 若要指定有限期間 (15 到 60 秒)，您可以提供 `options.leaseDuration` 參數。
+> 根據預設，hello 租用持續時間為無限。 您可以指定非無限期持續時間 （介於 15 到 60 秒為單位） 藉由提供 hello`options.leaseDuration`參數。
 >
 >
 
-若要移除租用，請使用 **releaseLease**。 若要中止租用，但在原始期間到期之前不讓其他人取得新的租用，請使用 **breakLease**。
+tooremove 租用，使用**releaseLease**。 toobreak 租用，但防止其他 hello 原始期間過期之前，請取得新的租用，從使用**breakLease**。
 
 ## <a name="work-with-shared-access-signatures"></a>使用共用存取簽章
-共用存取簽章 (SAS) 可安全地提供對 Blob 和容器的精確存取，而不必提供您的儲存體帳戶名稱或金鑰。 共用存取簽章通常用來提供對資料的有限存取，例如允許行動應用程式存取 Blob。
+共用的存取簽章 (SAS) 是安全的方式 tooprovide 細微的存取權 tooblobs 和容器，但未提供您的儲存體帳戶名稱或索引鍵。 共用的存取簽章通常是使用的 tooprovide 有限存取 tooyour 資料，例如 tooaccess blob 允許行動裝置應用程式。
 
 > [!NOTE]
-> 雖然您也可以用匿名方式存取 Blob，但共用存取簽章可讓您提供更受控制的存取，因為您必須產生 SAS。
+> 雖然您也可以允許匿名存取 tooblobs，共用的存取簽章可讓您 tooprovide 較受控制的存取權，您必須產生 hello SAS。
 >
 >
 
-信任的應用程式 (例如雲端型服務) 會使用 **BlobService** 的 **generateSharedAccessSignature** 來產生共用存取簽章，並提供它給不信任或不完全信任的應用程式 (例如行動應用程式)。 共用存取簽章是使用原則來產生，該原則描述共用存取簽章有效期間的開始和結束日期，以及授與共用存取簽章持有者的存取等級。
+信任的應用程式，例如雲端服務會產生共用的存取簽章使用 hello **generateSharedAccessSignature**的 hello **BlobService**，然後將其提供 tooan 不受信任或非完全信任應用程式，例如行動裝置應用程式。 共用的存取簽章使用產生的原則，其中描述 hello 開始和結束日期的 hello 期間共用的存取簽章不正確，以及 hello 存取層級授與的 toohello 共用的存取簽章持有者。
 
-下列程式碼範例會產生新的共用存取原則，讓共用存取簽章持有者對 **myblob** Blob 執行讀取操作，並於建立它之後的 100 分鐘過期。
+hello 下列程式碼範例會產生新的共用的存取原則，可讓 hello 共用存取簽章持有者 tooperform 的讀取作業 hello **myblob** blob，而且已過期之後建立的 hello 時 100 分鐘。
 
 ```nodejs
 var startDate = new Date();
@@ -354,9 +354,9 @@ var blobSAS = blobSvc.generateSharedAccessSignature('mycontainer', 'myblob', sha
 var host = blobSvc.host;
 ```
 
-請注意，也必須提供主機資訊，因為共用存取簽章持有者嘗試存取容器時需要此資訊。
+請注意 hello 主機資訊必須提供此外，視需要當 hello 共用的存取簽章持有者嘗試 tooaccess hello 容器。
 
-用戶端應用程式接著以 **BlobServiceWithSAS** 來使用共用存取簽章，對 Blob 執行操作。 以下會取得 **myblob**的相關資訊。
+hello 用戶端應用程式接著會使用共用的存取簽章**BlobServiceWithSAS** tooperform hello blob 的作業。 hello 下列取得資訊的相關**myblob**。
 
 ```nodejs
 var sharedBlobSvc = azure.createBlobServiceWithSas(host, blobSAS);
@@ -367,12 +367,12 @@ sharedBlobSvc.getBlobProperties('mycontainer', 'myblob', function (error, result
 });
 ```
 
-由於共用存取簽章是利用唯讀存取權所產生，如果嘗試修改 blob，就會傳回錯誤。
+如果嘗試 toomodify hello blob hello 共用存取簽章產生具有唯讀存取權，因為將會傳回錯誤。
 
 ### <a name="access-control-lists"></a>存取控制清單
-您也可以使用存取控制清單 (ACL) 來設定 SAS 的存取原則。 若您要允許用戶端存取容器，但對每個用戶端提供不同的存取原則，則這會很有用。
+您也可以使用存取控制清單 (ACL) tooset hello 存取原則 SAS 的。 如果您想 tooallow 多個用戶端 tooaccess 容器，但每個用戶端提供不同的存取原則，這非常有用。
 
-ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼。 下列程式碼範例定義兩個原則，其中一個用於 'user1'，另一個用於 'user2'：
+ACL 是使用存取原則陣列來實作，每個原則有相關聯的識別碼。 hello，下列程式碼範例會定義兩個原則，一個用於 'user1'，'user2' 其中一個：
 
 ```nodejs
 var sharedAccessPolicy = {
@@ -389,7 +389,7 @@ var sharedAccessPolicy = {
 };
 ```
 
-下列程式碼範例會取得 **mycontainer** 的目前 ACL，然後使用 **setBlobAcl** 來加入新的原則。 此方法允許：
+下列程式碼範例會取得 hello hello 目前 ACL **mycontainer**，並將 hello 新原則使用**setBlobAcl**。 此方法允許：
 
 ```nodejs
 var extend = require('extend');
@@ -405,28 +405,28 @@ blobSvc.getBlobAcl('mycontainer', function(error, result, response) {
 });
 ```
 
-設定 ACL 之後，您可以根據原則的識別碼來建立共用存取簽章。 下列程式碼範例會為 'user2' 建立新的共用存取簽章：
+一次 hello ACL 設定，然後您可以建立共用的存取簽章根據 hello 原則的識別碼。 hello，下列程式碼範例會建立新的共用的存取簽章 'user2':
 
 ```nodejs
 blobSAS = blobSvc.generateSharedAccessSignature('mycontainer', { Id: 'user2' });
 ```
 
 ## <a name="next-steps"></a>後續步驟
-如需詳細資訊，請參閱下列資源。
+如需詳細資訊，請參閱下列資源的 hello。
 
 * [Azure Storage SDK for Node API 參考][Azure Storage SDK for Node API Reference]
 * [Azure 儲存體團隊部落格][Azure Storage Team Blog]
 * GitHub 上的 [Azure Storage SDK for Node][Azure Storage SDK for Node] 儲存機制
 * [Node.js 開發人員中心](https://azure.microsoft.com/develop/nodejs/)
-* [使用 AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
+* [使用 hello AzCopy 命令列公用程式傳輸資料](storage-use-azcopy.md)
 
 [Azure Storage SDK for Node]: https://github.com/Azure/azure-storage-node
 
-[在 Azure App Service 中建立 Node.js Web 應用程式]: ../app-service-web/app-service-web-get-started-nodejs.md
-[使用 Azure 表格服務的 Node.js Web 應用程式]: ../app-service-web/storage-nodejs-use-table-storage-web-site.md
-[使用 Web Matrix 建立 Node.js Web 應用程式並部署至 Azure]: ../app-service-web/web-sites-nodejs-use-webmatrix.md
-[Using the REST API]: http://msdn.microsoft.com/library/azure/hh264518.aspx
+[Node.js web 應用程式建立 Azure App Service 中]: ../app-service-web/app-service-web-get-started-nodejs.md
+[Node.js web 應用程式使用 hello Azure 資料表服務]: ../app-service-web/storage-nodejs-use-table-storage-web-site.md
+[建置和部署使用 Web Matrix Node.js web 應用程式 tooAzure]: ../app-service-web/web-sites-nodejs-use-webmatrix.md
+[Using hello REST API]: http://msdn.microsoft.com/library/azure/hh264518.aspx
 [Azure portal]: https://portal.azure.com
-[使用 Windows PowerShell 建立 Node.js 應用程式並部署至 Azure 雲端服務]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
+[建置和部署 Azure 雲端服務的 Node.js 應用程式 tooan]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [Azure Storage Team Blog]: http://blogs.msdn.com/b/windowsazurestorage/
 [Azure Storage SDK for Node API Reference]: http://dl.windowsazure.com/nodestoragedocs/index.html

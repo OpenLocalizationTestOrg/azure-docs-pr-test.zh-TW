@@ -1,6 +1,6 @@
 ---
-title: "如何為 Azure 金鑰保存庫產生並傳輸受 HSM 保護的金鑰 | Microsoft Docs"
-description: "使用這份文件協助您規劃、產生，並傳輸受 HSM 保護的金鑰，以搭配 Azure 金鑰保存庫使用。 也稱為 BYOK 或「攜帶您自己的金鑰」。"
+title: "aaaHow toogenerate 和傳輸受 HSM 保護金鑰的 Azure 金鑰保存庫 |Microsoft 文件"
+description: "使用此發行項 toohelp 規劃、 產生，和然後再將您自己的 HSM 保護的金鑰 toouse 使用 Azure 金鑰保存庫。 也稱為 BYOK 或「攜帶您自己的金鑰」。"
 services: key-vault
 documentationcenter: 
 author: cabailey
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/09/2017
 ms.author: ambapat
-ms.openlocfilehash: 5dbee1221f64045c64fecb344de1e03b2183dfb1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3bb234bd1c4b81770542ccf7110e256385ca3309
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-generate-and-transfer-hsm-protected-keys-for-azure-key-vault"></a>如何為 Azure 金鑰保存庫產生並傳輸受 HSM 保護的金鑰
+# <a name="how-toogenerate-and-transfer-hsm-protected-keys-for-azure-key-vault"></a>如何為 Azure 金鑰保存庫的 toogenerate 並傳輸受 HSM 保護金鑰
 ## <a name="introduction"></a>簡介
-為了加強保證，當您使用 Azure 金鑰保存庫時，您可以在硬體安全模組 (HSM) 中匯入或產生無需離開 HSM 界限的金鑰。 此案例通常稱為 *自備金鑰*或 BYOK。 HSM 已通過 FIPS 140-2 Level 2 驗證。 Azure 金鑰保存庫使用 Thales nShield 系列 HSM 來保護您的金鑰。
+為求保險，當您使用 Azure 金鑰保存庫，您可以匯入或硬體安全性模組 (Hsm)，絕不能離開 hello HSM 界限中產生的索引鍵。 此案例中通常是參照的 tooas*整合您自己金鑰*，或 BYOK。 hello Hsm 是的 FIPS 140-2 Level 2 驗證。 Azure 金鑰保存庫會使用 Thales nShield 系列 Hsm tooprotect 您的金鑰。
 
-使用本主題中的資訊，協助您規劃、產生然後傳送自己受 HSM 保護的金鑰，以搭配使用 Azure 金鑰保存庫。
+使用此主題 toohelp 規劃、 產生，和然後再將您自己與 Azure 金鑰保存庫的 HSM 保護的金鑰 toouse hello 資訊。
 
 此功能不適用於 Azure China。
 
@@ -35,63 +35,63 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-有關產生及透過網際網路傳輸受 HSM 保護之金鑰的詳細資訊：
+有關產生及透過 hello 網際網路傳輸受 HSM 保護金鑰的詳細資訊：
 
-* 您可以從離線工作站產生金鑰，可減少受攻擊面。
-* 此金鑰利用金鑰交換金鑰 (KEK) 加密，且加密狀態會維持到金鑰傳輸至 Azure 金鑰保存庫 HSM 為止。 只有加密版本的金鑰會離開原始工作站。
-* 工具組會在將您的金鑰繫結至 Azure 金鑰保存庫安全世界的租用戶金鑰上設定屬性。 因此，在 Azure 金鑰保存庫 HSM 接收和解密您的金鑰之後，只有這些 HSM 可使用它。 無法匯出您的金鑰。 這個繫結是由 Thales HSM 強制執行。
-* 用來解密金鑰的金鑰互換金鑰 (KEK) 產生於 Azure 金鑰保存庫 HSM 內且不可匯出。 HSM 會強制執行使 HSM 外部沒有明確版本的 KEK。 此外，工具組包含了來自 Thales 的證明，代表 KEK 不可匯出，且產生於 Thales 製造的正版 HSM 內部。
-* 工具組包含了來自 Thales 的證明，代表 Azure 金鑰保存庫安全世界也產生於 Thales 製造的正版 HSM 上。 這個證書向您證明 Microsoft 正在使用正版硬體。
-* Microsoft 會在每個地理區域使用不同的 KEK 和不同的「安全世界」。 這種區隔可確保您的金鑰只能用在您加密它時所在區域中的資料中心。 例如，來自歐洲客戶的金鑰不能在北美或亞洲的資料中心使用。
+* 您可以產生 hello 金鑰從離線工作站，能減少 hello 攻擊面。
+* hello 金鑰進行加密與金鑰交換金鑰 (KEK) 」 是傳送的 toohello Azure 金鑰保存庫 Hsm 之前會持續加密。 只有 hello 加密的金鑰版本會離開 hello 原始工作站。
+* hello 工具組會繫結您的金鑰 toohello Azure 金鑰保存庫安全園地租用戶金鑰上設定屬性。 因此在 hello Azure 金鑰保存庫 Hsm 接收和解密金鑰後，只有這些 Hsm 可使用它。 無法匯出您的金鑰。 這個繫結是由 hello Thales Hsm 強制執行。
+* hello 金鑰交換金鑰 (KEK) 」 是使用的 tooencrypt 您的金鑰在 hello Azure 金鑰保存庫 Hsm 內部產生並不是可匯出。 hello Hsm 強制執行可能沒有外部 hello Hsm hello KEK 版本。 此外，hello 工具組包含了 thales 該 hello KEK 無法匯出，且在 Thales 製造的正版 HSM 內部產生的證明。
+* hello 工具組包含了 thales 的 hello Azure 金鑰保存庫安全園地也在 Thales 製造的正版 HSM 產生的證明。 這證明證明 Microsoft 正在使用正版硬體 tooyou。
+* Microsoft 會在每個地理區域使用不同的 KEK 和不同的「安全世界」。 這項分隔可確保您的金鑰可以是只在加密該 hello 地區資料中心內。 例如，來自歐洲客戶的金鑰不能在北美或亞洲的資料中心使用。
 
 ## <a name="more-information-about-thales-hsms-and-microsoft-services"></a>Thales HSM 和 Microsoft 服務的詳細資訊
-Thales e-Security 是金融服務的資料加密和網路安全性解決方案、高科技、製造業、政府和技術部門的領先全域提供者。 透過保護企業及政府資訊的 40 年追蹤記錄，目前規模最大的五間能源和航太公司中有四間都在使用 Thales 解決方案。 另外還有 22 個北大西洋公約組織國家也在使用他們的解決方案，而且全世界有超過 80% 的付款交易都受其保障。
+Thales 是提供服務資料加密和網路安全性解決方案 toohello 金融服務、 高科技、 製造、 政府及科技。 40 年追蹤記錄，以保護公司和政府資訊中，Thales 解決方案會使用四個 hello 五個最大能源和太空公司。 另外還有 22 個北大西洋公約組織國家也在使用他們的解決方案，而且全世界有超過 80% 的付款交易都受其保障。
 
-Microsoft 已與 thales 合作增強 HSM 的開發狀態。 這些增強內容可讓您取得裝載服務的典型優勢，而且不用放棄金鑰的控制權。 具體而言，這些增強內容可讓 Microsoft 管理 HSM，如此您就不必費心管理。 做為雲端服務，Azure 金鑰保存庫無需通知就會相應增加，以符合組織的使用尖峰。 在此同時，您的金鑰也會在 Microsoft 的 HSM 內部受到保護：您可以保留金鑰生命週期的控制權，因為您會產生金鑰並將它傳輸給 Microsoft 的 HSM。
+Microsoft 與 Thales tooenhance hello 狀態封面的 Hsm 的合作。 這些增強功能可讓您 tooget hello 一般託管服務的好處不必放棄您金鑰的控制權。 具體來說，這些增強功能可讓 Microsoft 管理 hello Hsm，如此不需要。 為雲端服務、 Azure 金鑰保存庫會依據迅速 toomeet 升高貴組織的使用方式。 在 hello 相同時間，在 Microsoft 的 Hsm 內部保護您的金鑰： 您保留 hello 金鑰生命週期的控制權，因為您產生 hello 金鑰，並將它傳輸 tooMicrosoft 的 Hsm。
 
 ## <a name="implementing-bring-your-own-key-byok-for-azure-key-vault"></a>實作 Azure 金鑰保存庫的自備金鑰 (BYOK)
-如果您將產生您自己受 HSM 保護的金鑰，然後將它傳輸到 Azure 金鑰保存庫，請使用下列資訊和程序—自備金鑰 (BYOK) 案例。
+使用 hello 下列資訊和程序，如果您將會產生您自己的 HSM 保護金鑰並將其傳輸 tooAzure 金鑰保存庫 — hello 攜帶您自己的金鑰 (BYOK) 案例。
 
 ## <a name="prerequisites-for-byok"></a>BYOK 的必要條件
-請參閱下表的必要條件清單以取得 Azure 金鑰保存庫的自備金鑰 (BYOK)。
+請參閱 hello 下表的必要條件清單為 Azure 金鑰保存庫整合您自己的金鑰 (BYOK)。
 
 | 需求 | 詳細資訊 |
 | --- | --- |
-| Azure 訂用帳戶 |若要建立 Azure 金鑰保存庫，您需要 Azure 訂用帳戶： [註冊免費試用](https://azure.microsoft.com/pricing/free-trial/) |
-| 可支援受 HSM 保護之金鑰的 Azure 金鑰保存庫進階服務層 |如需 Azure 金鑰保存庫的服務層和功能的詳細資訊，請參閱 [Azure 金鑰保存庫價格](https://azure.microsoft.com/pricing/details/key-vault/) 網站。 |
-| Thales HSM、智慧卡和支援軟體 |您必須存取 Thales 硬體安全模組和 Thales HSM 的基本操作知識。 請參閱 [Thales 硬體安全模組](https://www.thales-esecurity.com/msrms/buy) 以取得相容模型的清單，或者如果您沒有 HSM，請購買 HSM。 |
-| 下列的硬體和軟體︰<ol><li>離線 x64 工作站、至少為 Windows 7 的 Windows 作業系統，以及至少為 11.50 版的 Thales nShield 軟體。<br/><br/>如果此工作站執行 Windows 7，您必須[安裝 Microsoft .NET Framework 4.5](http://download.microsoft.com/download/b/a/4/ba4a7e71-2906-4b2d-a0e1-80cf16844f5f/dotnetfx45_full_x86_x64.exe)。</li><li>連線至網際網路且 Windows 作業系統至少為 Windows 7 的工作站，並已安裝至少為 [1.1.0 版的 Azure PowerShell](/powershell/azure/overview)。</li><li>至少有 16 MB 可用空間的 USB 磁碟機或其他可攜式儲存裝置。</li></ol> |基於安全性理由，建議第一個工作站不要連線到網路。 不過，在程式設計方面並不強迫採取這項建議。<br/><br/>請注意，在接下來的指示中，此工作站稱為中斷連線的工作站。</p></blockquote><br/>此外，如果您的租用戶金鑰適用於生產網路，建議您使用第二個另外的工作站來下載工具組和上傳租用戶金鑰。 但如果只是測試，您可以直接使用第一個工作站。<br/><br/>請注意，在接下來的指示中，此第二個工作站稱為網際網路連線的工作站。</p></blockquote><br/> |
+| 訂用帳戶 tooAzure |toocreate Azure 金鑰保存庫，您需要 Azure 訂用帳戶：[申請免費試用版](https://azure.microsoft.com/pricing/free-trial/) |
+| hello Azure 金鑰保存庫 Premium 服務層 toosupport 受 HSM 保護的金鑰 |如需 Azure 金鑰保存庫 hello 服務層和功能的詳細資訊，請參閱 hello [Azure 金鑰保存庫定價](https://azure.microsoft.com/pricing/details/key-vault/)網站。 |
+| Thales HSM、智慧卡和支援軟體 |您必須擁有存取 tooa Thales 硬體安全性模組並具備 Thales Hsm 的基礎操作知識。 請參閱[Thales 硬體安全性模組](https://www.thales-esecurity.com/msrms/buy)相容模型或 HSM，如果您還沒有 toopurchase hello 清單。 |
+| hello 下列硬體和軟體：<ol><li>離線 x64 工作站、至少為 Windows 7 的 Windows 作業系統，以及至少為 11.50 版的 Thales nShield 軟體。<br/><br/>如果此工作站執行 Windows 7，您必須[安裝 Microsoft .NET Framework 4.5](http://download.microsoft.com/download/b/a/4/ba4a7e71-2906-4b2d-a0e1-80cf16844f5f/dotnetfx45_full_x86_x64.exe)。</li><li>工作站連接的 toohello 網際網路且具有至少 Windows 作業系統的 Windows 7 和[Azure PowerShell](/powershell/azure/overview) **最小版本 1.1.0**安裝。</li><li>至少有 16 MB 可用空間的 USB 磁碟機或其他可攜式儲存裝置。</li></ol> |基於安全性理由，我們建議 hello 第一個工作站不是連接的 tooa 網路。 不過，在程式設計方面並不強迫採取這項建議。<br/><br/>請注意，hello 接下來的指示，在此工作站參照的 tooas hello 中斷連線的工作站。</p></blockquote><br/>此外，如果您的租用戶金鑰適用於生產網路中，我們建議您使用的第二部個別工作站 toodownload hello 工具組和上傳 hello 租用戶金鑰。 但為了測試用途，您可以使用如 hello 第一個 hello 相同的工作站。<br/><br/>請注意，在 hello 接下來的指示，此第二部工作站參照的 tooas hello 連線網際網路的工作站。</p></blockquote><br/> |
 
-## <a name="generate-and-transfer-your-key-to-azure-key-vault-hsm"></a>產生金鑰並將其傳輸至 Azure 金鑰保存庫 HSM
-您將使用下列五個步驟產生金鑰並將其傳輸至 Azure 金鑰保存庫 HSM：
+## <a name="generate-and-transfer-your-key-tooazure-key-vault-hsm"></a>產生並傳輸您的金鑰 tooAzure 金鑰保存庫 HSM
+您將使用下列五個步驟 toogenerate hello，並傳輸您的金鑰 tooan Azure 金鑰保存庫 HSM:
 
 * [步驟 1：準備網際網路連線的工作站](#step-1-prepare-your-internet-connected-workstation)
 * [步驟 2：準備中斷連線的工作站](#step-2-prepare-your-disconnected-workstation)
 * [步驟 3：產生您的金鑰](#step-3-generate-your-key)
 * [步驟 4：準備要傳輸的金鑰](#step-4-prepare-your-key-for-transfer)
-* [步驟 5：將金鑰傳輸至 Azure 金鑰保存庫](#step-5-transfer-your-key-to-azure-key-vault)
+* [步驟 5： 傳送您的金鑰 tooAzure 金鑰保存庫](#step-5-transfer-your-key-to-azure-key-vault)
 
 ## <a name="step-1-prepare-your-internet-connected-workstation"></a>步驟 1：準備網際網路連線的工作站
-在第一個步驟中，請在連線到網際網路的工作站上執行下列程序。
+第一個步驟中，請勿 hello 下列程序，您會連接的 toohello 網際網路的工作站上。
 
 ### <a name="step-11-install-azure-powershell"></a>步驟 1.1：安裝 Azure PowerShell
-從網際網路連線的工作站，下載並安裝 Azure PowerShell 模組，其包含 cmdlet 以管理 Azure 金鑰保存庫。 這需要得最低版本為 0.8.13。
+從 hello 連線網際網路的工作站，下載並安裝 hello Azure PowerShell 模組包含 hello cmdlet toomanage Azure 金鑰保存庫。 這需要得最低版本為 0.8.13。
 
-如需安裝指示，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
+如需安裝指示，請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。
 
 ### <a name="step-12-get-your-azure-subscription-id"></a>步驟 1.2：取得您的 Azure 訂用帳戶識別碼
-使用下列命令開始 Azure PowerShell 工作階段，並登入您的 Azure 帳戶：
+啟動 Azure PowerShell 工作階段，並使用下列命令的 hello 登入 tooyour Azure 帳戶：
 
         Add-AzureAccount
-在快顯瀏覽器視窗中，輸入您的 Azure 帳戶使用者名稱與密碼。 然後，使用 [Get-azuresubscription](/powershell/module/azure/get-azuresubscription?view=azuresmps-3.7.0) 命令：
+在 [hello] 快顯瀏覽器視窗中，輸入您的 Azure 帳戶使用者名稱和密碼。 然後，使用 hello [Get-azuresubscription](/powershell/module/azure/get-azuresubscription?view=azuresmps-3.7.0)命令：
 
         Get-AzureSubscription
-從輸出中，找出您將用於 Azure 金鑰保存庫的訂用帳戶識別碼。 您稍後將需要此訂用帳戶識別碼。
+從 hello 輸出，找出 hello 識別碼 hello 訂用帳戶將用於 Azure 金鑰保存庫。 您稍後將需要此訂用帳戶識別碼。
 
-請勿關閉 Azure PowerShell 視窗。
+請勿關閉 hello Azure PowerShell 視窗。
 
-### <a name="step-13-download-the-byok-toolset-for-azure-key-vault"></a>步驟 1.3：下載 Azure 金鑰保存庫的 BYOK 工具組
-移至 Microsoft 下載中心並為您的地理區域或 Azure 執行個體 [下載 Azure 金鑰保存庫 BYOK 工具組](http://www.microsoft.com/download/details.aspx?id=45345) 。 使用下列資訊來識別要下載封裝雜湊與其對應的 SHA-256 封裝雜湊︰
+### <a name="step-13-download-hello-byok-toolset-for-azure-key-vault"></a>步驟 1.3： 下載 Azure 金鑰保存庫 hello BYOK 工具組
+前往 Microsoft 下載中心 toohello 和[下載 hello Azure 金鑰保存庫 BYOK 工具組](http://www.microsoft.com/download/details.aspx?id=45345)地理區域或 Azure 的執行個體。 使用 hello 下列資訊 tooidentify hello 封裝名稱 toodownload 以及其對應的 SHA 256 封裝的雜湊：
 
 - - -
 **美國：**
@@ -186,11 +186,11 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 
 - - -
 
-若要驗證您已下載之 BYOK 工具組的完整性，請從您的 Azure PowerShell 工作階段，使用 [Get-FileHash](https://technet.microsoft.com/library/dn520872.aspx) Cmdlet。
+您已下載 BYOK 工具組，從您的 Azure PowerShell 工作階段，使用 hello toovalidate hello 完整性[Get-filehash](https://technet.microsoft.com/library/dn520872.aspx) cmdlet。
 
     Get-FileHash KeyVault-BYOK-Tools-*.zip
 
-工具組包含下列各項：
+hello 工具組包含下列 hello:
 
 * 具有以 **BYOK-KEK-pkg-**
 * 具有以 **BYOK-SecurityWorld-pkg-**
@@ -198,64 +198,64 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 * 名為 **KeyTransferRemote.exe** 的命令列可執行檔和相關聯的 DLL。
 * Visual C++ 可轉散發套件，名為 **vcredist_x64.exe**。
 
-將封裝複製到 USB 磁碟機或其他可攜式儲存裝置。
+複製 hello 封裝 tooa USB 磁碟機或其他可攜式儲存裝置。
 
 ## <a name="step-2-prepare-your-disconnected-workstation"></a>步驟 2：準備中斷連線的工作站
-在第二個步驟中，請在未連線到網路 (網際網路或內部網路) 的工作站上執行下列程序。
+第二個步驟中，請勿 hello 下列程序不是連接的 tooa 網路 （網際網路 hello 或您的內部網路） 的 hello 工作站上。
 
-### <a name="step-21-prepare-the-disconnected-workstation-with-thales-hsm"></a>步驟 2.1：準備使用 Thales HSM 的中斷連線工作站
-在 Windows 電腦上安裝 nCipher (Thales) 支援軟體，然後將 Thales HSM 附加至該電腦。
+### <a name="step-21-prepare-hello-disconnected-workstation-with-thales-hsm"></a>步驟 2.1： 準備中斷連線的 hello 工作站使用 Thales HSM
+在 Windows 電腦上安裝 hello nCipher (Thales) 支援軟體，再附加 Thales HSM toothat 電腦。
 
-確定 Thales 工具位於您的路徑 (**%nfast_home%\bin**)。 例如，輸入下列內容：
+確定該 hello Thales 工具位於您的路徑 (**%nfast_home%\bin**)。 例如，輸入 hello 下列：
 
         set PATH=%PATH%;"%nfast_home%\bin"
 
-如需詳細資訊，請參閱 Thales HSM 內附的使用者指南。
+如需詳細資訊，請參閱隨附 hello Thales HSM 的 hello 使用者指南。
 
-### <a name="step-22-install-the-byok-toolset-on-the-disconnected-workstation"></a>步驟 2.2：在中斷連線的工作站上安裝 BYOK 工具組
-從 USB 磁碟機或其他可攜式儲存裝置複製 BYOK 工具組封裝，然後執行下列動作：
+### <a name="step-22-install-hello-byok-toolset-on-hello-disconnected-workstation"></a>步驟 2.2： 安裝 hello BYOK 工具組在 hello 中斷連線的工作站上
+複製 hello BYOK 工具組封裝從 hello USB 磁碟機或其他可攜式儲存裝置，並執行再 hello 遵循：
 
-1. 將檔案從下載的封裝解壓縮至任何資料夾。
+1. Hello 下載封裝中的 hello 檔案解壓縮至任何資料夾中。
 2. 從該資料夾執行 vcredist_x64.exe。
-3. 遵循指示以安裝 Visual Studio 2013 的 Visual C++ 執行階段元件。
+3. 請遵循 hello 指示 toohello for Visual Studio 2013 安裝 hello Visual c + + 執行階段元件。
 
 ## <a name="step-3-generate-your-key"></a>步驟 3：產生您的金鑰
-在第三個步驟中，請在中斷連線的工作站上執行下列程序。 若要完成此步驟，您的 HSM 必須是初始化模式。 
+第三個步驟中，請勿 hello hello 中斷連線的工作站上，下列程序。 toocomplete 此步驟中您的 HSM 必須在初始化模式。 
 
 
-### <a name="step-31-change-the-hsm-mode-to-i"></a>步驟 3.1︰將 HSM 模式變更為 I
-如果您使用 Thales nShield Edge，則變更模式︰1。 使用 [Mode (模式)] 按鈕來反白顯示必要的模式。 2. 在幾秒鐘之內，按住 [Clear (清除)] 按鈕幾秒鐘。 如果模式變更，新模式的 LED 會停止閃爍，並保持亮燈。 狀態 LED 可能會不規則閃爍幾秒鐘的時間，當裝置就緒後則規則地閃爍。 否則，裝置會維持目前的模式，適當的模式 LED 會亮起。
+### <a name="step-31-change-hello-hsm-mode-tooi"></a>步驟 3.1： 變更 hello HSM 模式 too'I'
+如果您使用 Thales nShield 邊緣，toochange hello 模式： 1。 使用 hello 模式按鈕 toohighlight hello 必要的模式。 2. 在幾秒內，按住不放 hello 清除 按鈕的秒數。 Hello 模式變更時，如果 hello 新模式 LED 停止閃爍，則維持亮燈。 hello 狀態 LED 可能不規則快閃數秒鐘，然後閃爍 hello 裝置已就緒時，定期。 否則，hello 裝置仍會留在 hello 目前的模式，與 hello 適當模式 LED 亮起。
 
 ### <a name="step-32-create-a-security-world"></a>步驟 3.2：建立安全世界
-啟動命令提示字元並執行 Thales new-world 程式。
+啟動命令提示字元並執行 Thales new-world 程式 hello。
 
     new-world.exe --initialize --cipher-suite=DLf1024s160mRijndael --module=1 --acs-quorum=2/3
 
-此程式會在 %NFAST_KMDATA%\local\world 建立**安全世界**檔案，並對應到 C:\ProgramData\nCipher\Key Management Data\local 資料夾。 您可以使用不同的值進行仲裁，但是在我們的範例中，系統會提示您輸入三個空白的卡片和其個別的 pin。 然後，任兩張卡片可提供安全世界的完整存取權。 這些卡片將成為新安全世界的 **系統管理員卡組** 。
+此程式會**安全園地**檔案位於 %nfast_kmdata%\local\world，對應 toohello C:\ProgramData\nCipher\Key Management Data\local 資料夾對應。 您可以使用不同的值為 hello 仲裁，但是在本例中，您可以提示的 tooenter 三卡片和 pin，針對每個。 然後，任兩張卡片提供完整存取 toohello 安全園地。 這些卡片將成為 hello**系統管理員卡組**hello 新安全園地。
 
-然後執行以下動作：
+然後 hello 遵循：
 
-* 備份世界檔案。 保障和保護世界檔案、系統管理員卡及其 pin，並確定沒有一個人可存取多張卡。
+* Hello world 檔案備份。 安全和保護 hello world 檔案、 hello 系統管理員卡及其 pin 碼，並確定沒有一個人可存取 toomore 比一張牌。
 
-### <a name="step-33-change-the-hsm-mode-to-o"></a>步驟 3.3︰將 HSM 模式變更為 O
-如果您使用 Thales nShield Edge，則變更模式︰1。 使用 [Mode (模式)] 按鈕來反白顯示必要的模式。 2. 在幾秒鐘之內，按住 [Clear (清除)] 按鈕幾秒鐘。 如果模式變更，新模式的 LED 會停止閃爍，並保持亮燈。 狀態 LED 可能會不規則閃爍幾秒鐘的時間，當裝置就緒後則規則地閃爍。 否則，裝置會維持目前的模式，適當的模式 LED 會亮起。
+### <a name="step-33-change-hello-hsm-mode-tooo"></a>步驟 3.3： 變更 hello HSM 模式 too'O'
+如果您使用 Thales nShield 邊緣，toochange hello 模式： 1。 使用 hello 模式按鈕 toohighlight hello 必要的模式。 2. 在幾秒內，按住不放 hello 清除 按鈕的秒數。 Hello 模式變更時，如果 hello 新模式 LED 停止閃爍，則維持亮燈。 hello 狀態 LED 可能不規則快閃數秒鐘，然後閃爍 hello 裝置已就緒時，定期。 否則，hello 裝置仍會留在 hello 目前的模式，與 hello 適當模式 LED 亮起。
 
 
-### <a name="step-34-validate-the-downloaded-package"></a>步驟 3.4：驗證下載的封裝
-此步驟為選擇性但建議使用，以便您可以驗證下列項目：
+### <a name="step-34-validate-hello-downloaded-package"></a>步驟 3.4： 驗證下載的 hello 套件
+這個步驟是選擇性但建議使用，因此，您可以驗證下列 hello:
 
-* 工具組中包含的金鑰交換金鑰已從正版 Thales HSM 中產生。
-* 工具組中包含的安全世界雜湊已在正版 Thales HSM 中產生。
-* 金鑰交換金鑰不可匯出。
+* 已從正版 Thales HSM 產生 hello 隨附於 hello 工具組的金鑰交換金鑰。
+* 已在正版 Thales HSM 中產生的 hello 隨附於 hello 工具組的安全園地的 hello 雜湊。
+* hello 金鑰交換金鑰為非可匯出。
 
 > [!NOTE]
-> 若要驗證下載的封裝，HSM 必須連線、開啟電源，而且必須在其上具有安全世界 (如同您剛才所建立的那一個)。
+> toovalidate hello 下載封裝，hello HSM 必須連接、 電源已開啟，而且必須具有安全園地上 （例如您剛才建立的其中一個 hello)。
 >
 >
 
-驗證下載的封裝：
+toovalidate hello 下載封裝：
 
-1. 根據您的地理區域或 Azure 的執行個體輸入下列其中一個區域，以執行 verifykeypackage.py 指令碼：
+1. 輸入一個 hello 下列程式碼，根據您的地理區域或 Azure 的執行個體，以執行 hello verifykeypackage.py 指令碼：
 
    * 北美洲：
 
@@ -278,7 +278,7 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
    * 澳大利亞：
 
          "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-AUS-1 -w BYOK-SecurityWorld-pkg-AUS-1
-   * 對於 [Azure Government](https://azure.microsoft.com/features/gov/)，它會使用美國政府的 Azure 執行個體：
+   * 如[Azure 政府](https://azure.microsoft.com/features/gov/)，它會使用的 Azure hello 美國政府執行個體：
 
          "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-USGOV-1 -w BYOK-SecurityWorld-pkg-USGOV-1
    * 美國政府國防部：
@@ -294,45 +294,45 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 
          "%nfast_home%\python\bin\python" verifykeypackage.py -k BYOK-KEK-pkg-INDIA-1 -w BYOK-SecurityWorld-pkg-INDIA-1
      > [!TIP]
-     > Thales 軟體包含 %NFAST_HOME%\python\bin 中的 python
+     > hello Thales 軟體包含 python，位於 %NFAST_HOME%\python\bin
      >
      >
-2. 確認您看到下列訊息，表示驗證成功： **Result: SUCCESS**
+2. 確認您看到 hello 下列表示成功驗證：**結果： 成功**
 
-此指令碼會驗證簽章者鏈結到 Thales 根金鑰。 此根金鑰的雜湊內嵌於指令碼中，而且其值應為 **59178a47 de508c3f 291277ee 184f46c4 f1d9c639**。 您也可以造訪 [Thales 網站](http://www.thalesesec.com/)以另行確認此值。
+此指令碼會驗證 hello 簽章者鏈結，向上 toohello Thales 根金鑰。 此根金鑰的 hello 雜湊內嵌於 hello 指令碼，且其值必須為**59178a47 de508c3f 291277ee 184f46c4 f1d9c639**。 您也可以確認此值分別造訪 hello [Thales 網站](http://www.thalesesec.com/)。
 
-您現在可以開始建立新的金鑰。
+您現在準備好 toocreate 新的金鑰。
 
 ### <a name="step-35-create-a-new-key"></a>步驟 3.5：建立新的金鑰
-使用 Thales **generatekey** 程式產生金鑰。
+產生的金鑰使用 hello Thales **generatekey**程式。
 
-執行下列命令來產生金鑰：
+執行下列命令 toogenerate hello 按鍵 hello:
 
     generatekey --generate simple type=RSA size=2048 protect=module ident=contosokey plainname=contosokey nvram=no pubexp=
 
 當您執行此命令時，請使用下列指示：
 
-* 參數 *protect* 必須如所示般設定為值 **module**。 這會建立受模組保護的金鑰。 BYOK 工具組不支援受 OCS 保護的金鑰。
-* 以任意字串值取代 **ident** 和 **plainname** 的 *contosokey* 值。 若要將系統管理負擔降至最低並減少錯誤的風險，建議您同時對兩者使用相同的值。 **Ident** 值只能包含數字、連字號和小寫字母。
-* 在這個範例中，Pubexp 保留空白 (預設值)，但是您可以指定特定值。 如需詳細資訊，請參閱 Thales 文件。
+* hello 參數*保護*toohello 值必須設定**模組**，如下所示。 這會建立受模組保護的金鑰。 hello BYOK 工具組不支援 OCS 保護的金鑰。
+* 取代 hello 值*contosokey* hello **ident**和**contosokey**與任何字串值。 toominimize 系統管理負擔並降低 hello 風險的錯誤，我們建議您使用相同的兩個值的 hello。 hello **ident**值必須包含數字、 虛線和小寫字母。
+* hello 的 pubexp 保留空白 （預設值） 在此範例中，但您可以指定特定的值。 如需詳細資訊，請參閱 hello Thales 文件。
 
-此命令會在您的 %NFAST_KMDATA%\local 資料夾建立名稱開頭為 **key_simple_** 的語彙基元化金鑰檔案，後面接著在命令中指定的 **ident**。 例如：**key_simple_contosokey**。 此檔案包含已加密的金鑰。
+此命令會使用名稱開頭為您的 %NFAST_KMDATA%\local 資料夾中建立信號化金鑰檔案**key_simple_**，後面接著 hello **ident** hello 命令中指定。 例如：**key_simple_contosokey**。 此檔案包含已加密的金鑰。
 
 在安全的位置備份此語彙基元化金鑰檔案。
 
 > [!IMPORTANT]
-> 當您稍後將您的金鑰傳輸至 Azure 金鑰保存庫時，Microsoft 就無法將此金鑰匯出給您，因此，請務必安全地備份您的金鑰和安全世界。 如需備份金鑰的指引及最佳作法，請連絡 Thales。
+> 當您稍後將傳輸您的金鑰 tooAzure 金鑰保存庫時，Microsoft 無法將此金鑰後 tooyou，因此是極為重要，您的金鑰和安全園地安全地備份。 如需備份金鑰的指引及最佳作法，請連絡 Thales。
 >
 >
 
-您現在已準備好將金鑰傳輸至 Azure 金鑰保存庫。
+您會立即準備 tootransfer 您金鑰的 tooAzure 金鑰保存庫。
 
 ## <a name="step-4-prepare-your-key-for-transfer"></a>步驟 4：準備要傳輸的金鑰
-在第四個步驟中，請在中斷連線的工作站上執行下列程序。
+第四個步驟中，請勿 hello hello 中斷連線的工作站上，下列程序。
 
 ### <a name="step-41-create-a-copy-of-your-key-with-reduced-permissions"></a>步驟 4.1：使用降低權限建立金鑰的複本
 
-開啟新的命令提示字元，並將目前的目錄變更為解壓縮 BYOK ZIP 檔案的位置。 若要減少金鑰的權限，請從命令提示字元，根據您的地理區域或 Azure 執行個體，執行下列其中一個區域：
+開啟新的命令提示字元，變更 hello 目前的目錄 toohello 位置您解壓縮 hello BYOK zip 檔案。 tooreduce hello 權限，在您的金鑰，請從命令提示字元上執行 hello 下列程式碼，根據您的地理區域或 Azure 的執行個體的其中一個：
 
 * 北美洲：
 
@@ -355,7 +355,7 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 * 澳大利亞：
 
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-AUS-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-AUS-1
-* 對於 [Azure Government](https://azure.microsoft.com/features/gov/)，它會使用美國政府的 Azure 執行個體：
+* 如[Azure 政府](https://azure.microsoft.com/features/gov/)，它會使用的 Azure hello 美國政府執行個體：
 
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-USGOV-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-USGOV-1
 * 美國政府國防部：
@@ -371,13 +371,13 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 
         KeyTransferRemote.exe -ModifyAcls -KeyAppName simple -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-INDIA-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-INDIA-1
 
-當您執行此命令時，請以您從[產生您的金鑰](#step-3-generate-your-key)步驟的**步驟 3.5：建立新的金鑰**中指定的相同值取代 *contosokey*。
+當您執行此命令時，取代*contosokey* hello 與相同的值中指定**步驟 3.5： 建立新的金鑰**從 hello[產生您的金鑰](#step-3-generate-your-key)步驟。
 
-系統會要求您插入您的安全世界系統管理員卡。
+系統會詢問 tooplug 您安全園地系統管理的卡片。
 
-此命令完成時，您會看到 **Result: SUCCESS**，而降低權限的金鑰複本會在名為 key_xferacId_<contosokey> 的檔案中。
+Hello 命令完成時，您會看到**結果： 成功**hello 降低權限金鑰副本 hello 名為 key_xferacId_ 的檔案，而且<contosokey>。
 
-您可使用 Thales 公用程式，以下列命令檢查 ACLS：
+您可能會檢查 hello ACL 使用下列命令使用 hello Thales 公用程式：
 
 * aclprint.py：
 
@@ -385,10 +385,10 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 * kmfile-dump.exe：
 
         "%nfast_home%\bin\kmfile-dump.exe" "%NFAST_KMDATA%\local\key_xferacld_contosokey"
-  當您執行這些命令時，請以您從[產生您的金鑰](#step-3-generate-your-key)步驟的**步驟 3.5：建立新的金鑰**指定的相同值取代 contosokey。
+  當您執行這些命令時，取代 contosokey 以相同的值中指定的 hello**步驟 3.5： 建立新的金鑰**從 hello[產生您的金鑰](#step-3-generate-your-key)步驟。
 
 ### <a name="step-42-encrypt-your-key-by-using-microsofts-key-exchange-key"></a>步驟 4.2：使用 Microsoft 的金鑰交換金鑰來加密您的金鑰
-根據您的地理區域或 Azure 執行個體，執行下列其中一個命令：
+執行下列命令，根據您的地理區域或 Azure 的執行個體的 hello 的其中一個：
 
 * 北美洲：
 
@@ -411,7 +411,7 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 * 澳大利亞：
 
         KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-AUS-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-AUS-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
-* 對於 [Azure Government](https://azure.microsoft.com/features/gov/)，它會使用美國政府的 Azure 執行個體：
+* 如[Azure 政府](https://azure.microsoft.com/features/gov/)，它會使用的 Azure hello 美國政府執行個體：
 
         KeyTransferRemote.exe -Package -KeyIdentifier contosokey -ExchangeKeyPackage BYOK-KEK-pkg-USGOV-1 -NewSecurityWorldPackage BYOK-SecurityWorld-pkg-USGOV-1 -SubscriptionId SubscriptionID -KeyFriendlyName ContosoFirstHSMkey
 * 美國政府國防部：
@@ -429,21 +429,21 @@ ED331A6F1D34A402317D3F27D5396046AF0E5C2D44B5D10CCCE293472942D268
 
 當您執行此命令時，請使用下列指示：
 
-* 請以您在*產生您的金鑰*步驟的**步驟 3.5：建立新的金鑰**中用來產生金鑰的識別碼取代 [contosokey](#step-3-generate-your-key) 。
-* 以包含金鑰保存庫的 Azure 訂用帳戶識別碼取代 *SubscriptionID* 。 您先前已在 **步驟 1.2：取得 Azure 訂用帳戶識別碼** 中從 [準備網際網路連線的工作站](#step-1-prepare-your-internet-connected-workstation) 步驟擷取過這個值。
+* 取代*contosokey*用 toogenerate hello 索引鍵中的 hello 識別碼**步驟 3.5： 建立新的金鑰**從 hello[產生您的金鑰](#step-3-generate-your-key)步驟。
+* 取代*SubscriptionID* hello hello 包含金鑰保存庫的 Azure 訂用帳戶 id。 擷取此值先前在**步驟 1.2： 取得您的 Azure 訂用帳戶 ID**從 hello[準備連線網際網路的工作站](#step-1-prepare-your-internet-connected-workstation)步驟。
 * 以用於輸出檔案名稱的標籤取代 *ContosoFirstHSMKey*。
 
-當此動作成功完成時，會顯示 **Result: SUCCESS** ，而且目前的資料夾中會有新的檔案，其名稱如下：KeyTransferPackage-*ContosoFirstHSMkey*.byok
+當成功完成時，它會顯示**結果： 成功**，而且具有下列名稱的 hello hello 目前資料夾中沒有新的檔案： KeyTransferPackage-*ContosoFirstHSMkey*.byok
 
-### <a name="step-43-copy-your-key-transfer-package-to-the-internet-connected-workstation"></a>步驟 4.3：將金鑰傳輸封裝複製到網際網路連線的工作站
-使用 USB 磁碟機或其他可攜式儲存裝置，將上一個步驟的輸出檔案 (KeyTransferPackage-ContosoFirstHSMkey.byok) 複製到網際網路連線的工作站。
+### <a name="step-43-copy-your-key-transfer-package-toohello-internet-connected-workstation"></a>步驟 4.3： 複製您金鑰傳輸封裝 toohello 連線網際網路的工作站
+使用從 hello 上一個步驟 (KeyTransferPackage-ContosoFirstHSMkey.byok) tooyour 連線網際網路的工作站的 USB 磁碟機或其他可攜式儲存裝置 toocopy hello 輸出檔案。
 
-## <a name="step-5-transfer-your-key-to-azure-key-vault"></a>步驟 5：將金鑰傳輸至 Azure 金鑰保存庫
-針對這最後一個步驟，在連線到網際網路的工作站上，使用 [Add-AzureKeyVaultKey](/powershell/module/azurerm.keyvault/add-azurermkeyvaultkey) Cmdlet，將您從已中斷連線的工作站複製的金鑰傳輸套件上傳到「Azure 金鑰保存庫 HSM」：
+## <a name="step-5-transfer-your-key-tooazure-key-vault"></a>步驟 5： 傳送您的金鑰 tooAzure 金鑰保存庫
+最後一個步驟中，在 hello 連線網際網路的工作站上，使用 hello [Add-azurekeyvaultkey](/powershell/module/azurerm.keyvault/add-azurermkeyvaultkey) cmdlet tooupload hello 金鑰傳輸封裝，您所複製的 hello 中斷連線的工作站 toohello Azure 金鑰保存庫 HSM:
 
     Add-AzureKeyVaultKey -VaultName 'ContosoKeyVaultHSM' -Name 'ContosoFirstHSMkey' -KeyFilePath 'c:\KeyTransferPackage-ContosoFirstHSMkey.byok' -Destination 'HSM'
 
-如果上傳成功，就會顯示您剛才加入之金鑰的屬性。
+如果 hello 上傳成功時，您會看到您剛才加入的 hello 金鑰顯示的 hello 屬性。
 
 ## <a name="next-steps"></a>後續步驟
-您現在可以在您的金鑰保存庫中使用這個受 HSM 保護的金鑰。 如需詳細資訊，請參閱 **開始使用 Azure 金鑰保存庫** 教學課程中的 [如果您想要使用硬體安全模組 (HSM)](key-vault-get-started.md) 一節。
+您現在可以在您的金鑰保存庫中使用這個受 HSM 保護的金鑰。 如需詳細資訊，請參閱 hello**如果您想 toouse 硬體安全性模組 (HSM)** > 一節中 hello[開始使用 Azure 金鑰保存庫](key-vault-get-started.md)教學課程。

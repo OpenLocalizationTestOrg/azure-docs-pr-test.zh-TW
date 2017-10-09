@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 入口網站建立 Azure 媒體服務帳戶 | Microsoft Docs"
-description: "本教學課程逐步引導您完成使用 Azure 入口網站建立 Azure 媒體服務帳戶的步驟。"
+title: "aaaCreate hello Azure 入口網站的 Azure Media Services 帳戶 |Microsoft 文件"
+description: "本教學課程會引導您建立 Azure Media Services 帳戶以 hello Azure 入口網站的 hello 步驟。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/10/2017
 ms.author: juliako
-ms.openlocfilehash: 919a0b2f390bab353d24423d7f216e7031581aba
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: fdad93d5d470fc08380670ec0f6c2d33468b1492
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-azure-media-services-account-using-the-azure-portal"></a>使用 Azure 入口網站建立 Azure 媒體服務帳戶
+# <a name="create-an-azure-media-services-account-using-hello-azure-portal"></a>建立 Azure 媒體服務帳戶使用 hello Azure 入口網站
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-create-account.md)
 > * [PowerShell](media-services-manage-with-powershell.md)
 > * [REST](https://docs.microsoft.com/rest/api/media/mediaservice)
 > 
 > [!NOTE]
-> 若要完成此教學課程，您需要 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
+> toocomplete 本教學課程中，您需要 Azure 帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
 > 
 > 
 
-Azure 入口網站提供一種方法來快速建立 Azure 媒體服務 (AMS) 帳戶。 您可以使用自己的帳戶，來存取讓您在 Azure 中儲存、加密、編碼、管理和串流播放媒體內容的媒體服務。 當您建立媒體服務帳戶時，您也會在與媒體服務帳戶相同的地理區域中建立相關聯的儲存體帳戶 (或使用現有儲存體帳戶)。
+hello Azure 入口網站提供 tooquickly 建立 Azure 媒體服務 (AMS) 帳戶的方法。 您可以使用您的帳戶 tooaccess Media Services 可讓您 toostore、 加密、 編碼、 管理和串流處理媒體內容，在 Azure 中。 在您建立 Media Services 帳戶 hello 階段，您也建立相關聯的儲存體帳戶 （或使用現有） 在 hello 與 hello Media Services 帳戶的相同地理區域。
 
-本文說明一些常見的概念，並示範如何使用 Azure 入口網站建立媒體服務帳戶。
+本文說明常見的一些概念，並顯示 toocreate Media Services 帳戶以 hello Azure 入口網站的方式。
 
 ## <a name="concepts"></a>概念
 存取媒體服務時需要有兩個相關聯的帳戶：
 
-* 媒體服務帳戶。 您的帳戶可讓您存取 Azure 中提供的一組雲端型媒體服務。 媒體服務帳戶並不會儲存實際媒體內容。 而是在您的帳戶中儲存媒體內容和媒體處理工作的中繼資料。 當您建立帳戶時，您會選取一個可用的媒體服務區域。 所選取的區域會是儲存您帳戶之中繼資料記錄的資料中心。
+* 媒體服務帳戶。 您的帳戶可讓您存取 tooa 組以雲端為基礎的媒體服務，可在 Azure 中。 媒體服務帳戶並不會儲存實際媒體內容。 而它將 hello 媒體內容和媒體處理作業相關的中繼資料儲存在您的帳戶。 在您建立 hello 帳戶 hello 階段，您可以選取可用的 Media Services 地區。 您選取的 hello 區是儲存您的帳戶的 hello 中繼資料記錄的資料中心。
   
-* 一個 Azure 儲存體帳戶。 儲存體帳戶必須與媒體服務帳戶位於相同的地理區域中。 建立媒體服務帳戶時，可以選擇相同區域中的現有儲存體帳戶，也可以在相同區域中建立新的儲存體帳戶。 如果您刪除媒體服務帳戶，並不會刪除相關儲存體帳戶中的 Blob。
+* 一個 Azure 儲存體帳戶。 儲存體帳戶必須位於 hello 與 hello Media Services 帳戶的相同地理區域。 當您建立 Media Services 帳戶時，您可以選擇現有的儲存體帳戶在 hello 相同的區域，或您可以建立新的儲存體帳戶中 hello 相同的區域。 如果您刪除 Media Services 帳戶時，不會刪除相關的儲存體帳戶中的 hello blob。
 
 > [!NOTE]
 > 如需不同區域中 Azure 媒體服務功能可用性的資訊，請參閱[跨資料中心的 AMS 功能可用性](scenarios-and-availability.md#availability)。
 
 ## <a name="create-an-ams-account"></a>建立 AMS 帳戶
-本節中的步驟示範如何建立 AMS 帳戶。
+hello 步驟，在這個主題顯示如何 toocreate AMS 帳戶。
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
+1. 在 hello 登入[Azure 入口網站](https://portal.azure.com/)。
 2. 按一下 [+新增] > [Web + 行動] > [媒體服務]。
    
     ![建立媒體服務](./media/media-services-create-account/media-services-new1.png)
@@ -56,31 +56,31 @@ Azure 入口網站提供一種方法來快速建立 Azure 媒體服務 (AMS) 帳
    
     ![建立媒體服務](./media/media-services-create-account/media-services-new3.png)
    
-   1. 在 [帳戶名稱] 中，輸入新 AMS 帳戶的名稱。 媒體服務帳戶名稱為全部小寫且不含空格的字母或數字，且長度是 3 到 24 個字元。
-   2. 在訂用帳戶中，從您可存取的不同 Azure 訂用帳戶中進行選取。
-   3. 在 [資源群組] 中，選取新的或現有資源。  資源群組是共用生命週期、權限及原則的資源集合。 [在此](../azure-resource-manager/resource-group-overview.md#resource-groups)深入了解。
-   4. 在 [位置] 中，選取您將用來為媒體服務帳戶儲存媒體和中繼資料記錄的地理區域。 此區域將用於處理和串流媒體。 只有可用的媒體服務區域才會出現在下拉式清單方塊中。 
-   5. 在 [儲存體帳戶] 中，選取儲存體帳戶以從媒體服務帳戶提供媒體內容的 Blob 儲存體。 您可以選取與媒體服務帳戶相同地理區域中的現有儲存體帳戶，也可以建立儲存體帳戶。 新的儲存體帳戶會建立於相同的區域中。 儲存體帳戶名稱的規則會與媒體服務帳戶相同。
+   1. 在**帳戶名稱**，輸入 hello hello 新 AMS 帳戶名稱。 Media Services 帳戶名稱是所有小寫字母或數字，不含空格，也 3 too24 個字元的長度。
+   2. 在訂用帳戶，請在 hello 不同 Azure 訂用帳戶具有存取權之中選取。
+   3. 在**資源群組**，選取 hello 新的或現有的資源。  資源群組是共用生命週期、權限及原則的資源集合。 [在此](../azure-resource-manager/resource-group-overview.md#resource-groups)深入了解。
+   4. 在**位置**，選取 hello 將會使用的 toostore hello 媒體和中繼資料記錄您的 Media Services 帳戶的地理區域。 此區域會使用的 tooprocess 並串流媒體。 只有 hello 可用媒體服務區域會出現在 [hello] 下拉式清單方塊中。 
+   5. 在**儲存體帳戶**，Media Services 帳戶從選取的儲存體帳戶 tooprovide blob 儲存體的 hello 媒體內容。 您可以在 hello 中選取現有的儲存體帳戶相同的地理區域，為您的 Media Services 帳戶，或您可以建立儲存體帳戶。 新的儲存體帳戶會在 hello 相同區域。 儲存體帳戶名稱的 hello 規則 hello 相同與 Media Services 帳戶。
       
        在 [這裡](../storage/common/storage-introduction.md)深入了解儲存體。
-   6. 選取 **[釘選到儀表板]**  以查看帳戶部署的進度。
-4. 按一下表單底部的 [建立]  。
+   6. 選取**Pin toodashboard** toosee hello hello 帳戶部署進度。
+4. 按一下**建立**在 hello hello 表單底部。
    
-    成功建立帳戶後，隨即載入概觀頁面。 在串流端點資料表中，此帳戶將具有 [已停止] 狀態的預設串流端點。 
+    已成功建立 hello 帳戶之後, 載入概觀 頁面。 Hello 串流端點資料表 hello 帳戶會有預設串流端點在 hello**已停止**狀態。 
 
     >[!NOTE]
-    >建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。 
+    >AMS 帳戶建立時**預設**串流端點就會加入 tooyour 帳戶 hello**已停止**狀態。 串流處理您的內容，並採取利用動態封裝和動態加密，toostart hello 串流端點，您想要從中 toostream 內容已經在 hello toobe**執行**狀態。 
    
-## <a name="to-manage-your-ams-account"></a>管理 AMS 帳戶
+## <a name="toomanage-your-ams-account"></a>toomanage AMS 帳戶
 
-若要管理 AMS 帳戶 (例如，以程式設計方式連線至 AMS API、上傳影片、編碼資產、設定內容保護、監視作業進度)，請選取入口網站左側的 [設定]。 從 [設定] 中，導覽至其中一個可用的刀鋒視窗 (例如：[API 存取]、[資產]、[作業]、[內容保護])。
+toomanage AMS 帳戶 （例如，連接 toohello AMS API 以程式設計方式、 上傳影片、 編碼資產、 設定內容保護、 監視作業進度） 選取**設定**上 hello hello 入口網站的左側。 從 hello**設定**，瀏覽 tooone 的 hello 可用刀鋒視窗 (例如： **API 存取**，**資產**，**作業**， **內容保護**)。
 
 
 ## <a name="next-steps"></a>後續步驟
 
 您現在可以將檔案上傳到 AMS 帳戶。 如需詳細資訊，請參閱 [上傳檔案](media-services-portal-upload-files.md)。
 
-如果您要以程式設計方式存取 AMS API，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。
+如果您計劃 tooaccess AMS API 以程式設計的方式，請參閱[存取 hello Azure 媒體服務 API 與 Azure AD 驗證](media-services-use-aad-auth-to-access-ams-api.md)。
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

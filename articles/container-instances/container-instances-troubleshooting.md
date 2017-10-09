@@ -1,6 +1,6 @@
 ---
-title: "針對 Azure Container Instances 進行疑難排解"
-description: "了解如何使用 Azure Container Instances 進行問題的疑難排解"
+title: "aaaTroubleshooting Azure 容器執行個體"
+description: "了解如何 tootroubleshoot 問題 Azure 容器執行個體"
 services: container-instances
 documentationcenter: 
 author: seanmck
@@ -17,25 +17,25 @@ ms.workload: na
 ms.date: 08/03/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 86fa4b7dca7c362f95c0243a33f03d1f2dd3ab42
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: dfec636a0a174c74a6f2e9d9c4da6e871f8d2fda
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-deployment-issues-with-azure-container-instances"></a>使用 Azure Container Instances 進行部署問題的疑難排解
 
-本文說明如何在將容器部署至 Azure Container Instances 時進行問題的疑難排解。 此外，也會說明一些您可能會碰到的常見問題。
+本文將說明如何 tootroubleshoot 發出部署容器 tooAzure 容器執行個體時。 此外也說明某些 hello 您可能會碰到的常見問題。
 
 ## <a name="getting-diagnostic-events"></a>取得診斷事件
 
-若要在容器內檢視應用程式程式碼中的記錄，您可以使用 [az container logs](/cli/azure/container#logs) 命令。 但如果容器的部署並未成功，您就需要檢閱由 Azure Container Instances 資源提供者所提供的診斷資訊。 若要檢視容器的事件，請執行下列命令：
+從您的應用程式程式碼的容器內的 tooview 記錄檔，您可以使用 hello [az 容器記錄](/cli/azure/container#logs)命令。 但如果您的容器未成功部署，您需要 hello Azure 容器執行個體的資源提供者所提供的 tooreview hello 診斷資訊。 您的容器，執行下列命令的 hello tooview hello 事件：
 
 ```azurecli-interactive
 az container show -n mycontainername -g myresourcegroup
 ```
 
-輸出中會包含容器的核心屬性以及部署事件：
+hello 輸出包含您的容器，以及部署事件 hello 核心屬性：
 
 ```bash
 {
@@ -91,9 +91,9 @@ az container show -n mycontainername -g myresourcegroup
 
 部署時所發生的大部分錯誤都可歸咎於幾個常見問題。
 
-### <a name="unable-to-pull-image"></a>無法提取映像
+### <a name="unable-toopull-image"></a>無法 toopull 映像
 
-如果 Azure Container Instances 一開始無法提取您的映像，它會先重試一段時間，最後才會失敗。 如果它無法提取映像，系統便會顯示如下所示的事件：
+如果 Azure 容器執行個體無法 toopull 映像一開始，重試最後失敗前段。 如果無法提取 hello 映像，則會顯示 hello 下列這類事件：
 
 ```bash
 "events": [
@@ -108,7 +108,7 @@ az container show -n mycontainername -g myresourcegroup
     "count": 1,
     "firstTimestamp": "2017-08-03T22:19:32+00:00",
     "lastTimestamp": "2017-08-03T22:19:32+00:00",
-    "message": "Failed: Failed to pull image \"microsoft/aci-hellowrld\": rpc error: code 2 desc Error: image microsoft/aci-hellowrld:latest not found",
+    "message": "Failed: Failed toopull image \"microsoft/aci-hellowrld\": rpc error: code 2 desc Error: image microsoft/aci-hellowrld:latest not found",
     "type": "Warning"
   },
   {
@@ -121,11 +121,11 @@ az container show -n mycontainername -g myresourcegroup
 ]
 ```
 
-若要解決，請刪除容器並重試部署，特別注意您所輸入的映像名稱是否正確。
+tooresolve，刪除 hello 容器，然後重試您的部署，您輸入 hello 映像名稱是正確的付費特別注意。
 
 ### <a name="container-continually-exits-and-restarts"></a>容器不斷結束又重新啟動
 
-Azure Container Instances 目前僅支援長時間執行的服務。 如果您的容器執行完畢並結束，該容器會自動重新啟動並再次執行。 如果發生這種情況，系統會顯示如下所示的事件。 請注意，容器會在成功啟動後又迅速重新啟動。 Container Instances API 會包含 `retryCount` 屬性，以顯示特定容器的重新啟動次數。
+Azure Container Instances 目前僅支援長時間執行的服務。 如果您的容器執行 toocompletion，結束時，自動重新啟動並執行一次。 如果發生這種情況，系統會顯示如下所示的事件。 請注意該 hello 容器已成功啟動，然後再快速地重新啟動。 hello 容器執行個體 API 包含`retryCount`顯示多少次特定容器的屬性已重新啟動。
 
 ```bash
 "events": [
@@ -189,13 +189,13 @@ Azure Container Instances 目前僅支援長時間執行的服務。 如果您�
 ```
 
 > [!NOTE]
-> Linux 散發套件的大部分容器映像都會設定殼層 (例如 bash) 來作為預設命令。 因為殼層本身不是長時間執行的服務，因此這些容器會立即結束並落入重新啟動迴圈。
+> 大部分的容器映像的 Linux 發行的設定殼層，（例如 bash），做為 hello 預設命令。 因為殼層本身不是長時間執行的服務，因此這些容器會立即結束並落入重新啟動迴圈。
 
-### <a name="container-takes-a-long-time-to-start"></a>容器要等很久才會啟動
+### <a name="container-takes-a-long-time-toostart"></a>容器會很長的時間 toostart
 
-如果您的容器要等很久才會啟動，但最終還是會啟動成功，請先看看您的容器映像大小。 因為 Azure Container Instances 會視需要來提取您的容器映像，因此啟動時間的長短會與其大小直接相關。
+如果您的容器會很長的時間 toostart，但最後順利完成，則會先來看看 hello 容器映像的大小。 因為 Azure 容器執行個體視提取您的容器映像，您會遇到的 hello 啟動時間是直接相關的 tooits 大小。
 
-您可以使用 Docker CLI 來檢視容器映像大小：
+您可以檢視您的容器映像使用 Docker CLI hello hello 大小：
 
 ```bash
 docker images
@@ -208,6 +208,6 @@ REPOSITORY                             TAG                 IMAGE ID            C
 microsoft/aci-helloworld               latest              7f78509b568e        13 days ago         68.1MB
 ```
 
-讓映像不會變得太大的關鍵在於，確保最終的映像不會包含執行階段所不需要的任何項目。 若要做到這一點，有一種方式是使用[多階段建置](https://docs.docker.com/engine/userguide/eng-image/multistage-build/)。 多階段建置可讓您輕鬆地確保最終映像只包含應用程式所需的構件，而不會包含建置階段所需的任何額外內容。
+hello 小的索引鍵 tookeeping 映像大小確保您的最終映像不包含任何項目就不需要在執行階段。 這是使用其中一種方式 toodo[多階段組建](https://docs.docker.com/engine/userguide/eng-image/multistage-build/)。 多階段組建讓您輕鬆 tooensure hello 最終映像包含您需要應用程式的唯一 hello 成品，以及此內容不是任何額外的 hello 時必要的建置時間。
 
-另一種可在容器啟動階段降低對於映像提取作業影響的方式，是在您想要使用 Azure Container Instances 的相同區域中，使用 Azure Container Registry 來裝載容器映像。 這種方式會縮短容器映像需要經過的網路路徑，從而大幅縮短下載時間。
+hello 其他方式 tooreduce hello 的影響 hello 映像提取您的容器啟動時間是 toohost hello 容器映像使用 hello Azure 容器登錄中 hello 相同，但您想 toouse Azure 容器執行個體的區域。 這會縮短 hello hello 容器映像需求 tootravel 大幅縮短 hello 下載時間的網路路徑。

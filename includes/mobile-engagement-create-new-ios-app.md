@@ -1,17 +1,17 @@
-1. 啟動 **Xcode**，並在快顯視窗中，選取 [建立新的 Xcode 專案]。
+1. 啟動**Xcode** hello 快顯視窗，在選取**建立新的 Xcode 專案**。
    
     ![](./media/mobile-engagement-create-new-ios-app/xcode-new-project.png)
 2. 選取 [單一檢視應用程式]，然後按 [下一步]。
    
     ![](./media/mobile-engagement-create-new-ios-app/xcode-simple-view.png)
-3. 輸入 [產品名稱]、[組織名稱] 和 [組織識別碼]。 根據您的 App，在 [語言] 選取項目選取 [Objective-C] 或 [Swift]。
+3. 填寫 hello**產品名稱**，**組織名稱**，和**組織識別碼**。 選取**OBJECTIVE-C**或**Swift**在 hello**語言**選取項目會根據您的應用程式。
    
     ![](./media/mobile-engagement-create-new-ios-app/xcode-project-props.png)
 
 > [!IMPORTANT]
-> 請確定此配套識別碼與您在 Apple 開發人員主控台針對 AppId 所定義者相符，且確定您有與其相對應的憑證。 
+> 請確定 hello 配套識別碼是否相符項目中所定義 hello Apple 開發人員主控台中的 AppId，以及您為其具有對應的憑證。 
 > 
 > 
 
-Xcode 會建立示範 app，我們將和它整合 Mobile Engagement。
+Xcode 將會建立在其中我們整合 Mobile Engagement hello 示範應用程式。
 

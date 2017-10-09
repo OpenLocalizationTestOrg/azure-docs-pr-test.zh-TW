@@ -1,5 +1,5 @@
 #### <a name="expressroute-limits"></a>ExpressRoute 限制
-下列限制適用於每個訂用帳戶的 ExpressRoute 資源。
+hello 下列限制適用於每個訂閱 tooExpressRoute 資源。
 
 | 資源 | 預設限制 |
 | --- | --- |

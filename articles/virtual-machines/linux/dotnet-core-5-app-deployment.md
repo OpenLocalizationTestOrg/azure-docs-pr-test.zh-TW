@@ -1,5 +1,5 @@
 ---
-title: "使用虛擬機器擴充功能將應用程式部署自動化 | Microsoft Docs"
+title: "aaaAutomating 虛擬機器擴充功能的應用程式部署 |Microsoft 文件"
 description: "Azure 虛擬機器 DotNet 核心教學課程"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -16,24 +16,24 @@ ms.workload: infrastructure
 ms.date: 05/12/2017
 ms.author: nepeters
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 2f972fef75aa8e13af7dab908c2b0e2ec28f1324
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 38a02a4271d6b9ba02a473a51794a7bd90ca3a35
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="application-deployment-with-azure-resource-manager-templates-for-linux-vms"></a>使用適用於 Linux VM 的 Azure Resource Manager 範本進行應用程式部署
 
-識別出所有 Azure 基礎結構需求並轉譯成部署範本之後，就必須處理實際的應用程式部署需求。 這裡的應用程式部署係指將實際的應用程式二進位檔安裝到 Azure 資源上。 以「音樂市集」範例來說，必須在每一部虛擬機器上安裝並設定 .Net 核心、NGINX 及監督員。 必須將「音樂市集」二進位檔安裝到虛擬機器上，並且必須預先建立「音樂市集」資料庫。
+一旦所有 Azure 基礎結構需求有已找出並轉譯成部署範本，hello 實際的應用程式部署將需要 toobe 定址。 此應用程式部署指 tooinstalling hello 實際的應用程式二進位檔拖曳至 Azure 資源。 Hello 音樂商店範例中，.Net Core、 NGINX 和監督員需要 toobe 每部虛擬機器上安裝和設定。 預先建立 hello Music Store 二進位檔需要 toobe hello 的虛擬機器，安裝和 hello 音樂存放區資料庫。
 
-本文件詳細說明「虛擬機器」擴充功能如何將 Azure 虛擬機器的應用程式部署和設定自動化。 所有相依項目和獨特的設定都會以醒目提示的方式標示。 為了獲得最佳體驗，請將一個解決方案執行個體預先部署到您的 Azure 訂用帳戶，然後與 Azure Resource Manager 範本搭配運作。 您可以在下列連結找到完整的範本 – [Ubuntu 上的音樂市集部署](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)。
+這份文件詳細說明虛擬機器擴充功能可以自動化應用程式部署和設定 tooAzure 虛擬機器的方式。 所有相依項目和獨特的設定都會以醒目提示的方式標示。 Hello 獲得最佳經驗，針對預先部署 hello 方案 tooyour Azure 訂用帳戶和與 hello Azure Resource Manager 範本一起工作的執行個體。 hello 完成範本可以在這裡 – 找到[音樂存放部署在 Ubuntu 上](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)。
 
 ## <a name="configuration-script"></a>組態指令碼
-「虛擬機器」擴充功能是針對虛擬機器執行以提供組態自動化的特製化程式。 針對許多特定用途 (防毒、記錄組態及 Docker 組態) 都有擴充功能可供使用。 自訂指令碼擴充功能可以用來對虛擬機器執行任何指令碼。 在「音樂市集」範例中，需仰賴自訂指令碼擴充功能來設定 Ubuntu 虛擬機器及安裝「音樂市集」應用程式。 
+虛擬機器擴充功能是針對虛擬機器 tooprovide 組態自動化來執行的特定的程式。 針對許多特定用途 (防毒、記錄組態及 Docker 組態) 都有擴充功能可供使用。 自訂指令碼延伸可以是使用的 toorun 任何指令碼的虛擬機器。 Hello 音樂商店範例中，用於 toohello 自訂指令碼延伸 tooconfigure hello Ubuntu 虛擬機器及安裝 hello Music Store 應用程式。 
 
-在詳細說明如何在 Azure Resource Manager 範本中宣告虛擬機器擴充功能之前，請先檢查所執行的指令碼。 此指令碼會設定 Ubuntu 虛擬機器以裝載「音樂市集」應用程式。 在執行時，指令碼會安裝所有必要的軟體、從原始檔控制安裝「音樂市集」應用程式，以及準備資料庫。 
+然後再詳細說明如何將虛擬機器擴充功能宣告 Azure Resource Manager 範本中，檢查 hello 指令碼執行。 此指令碼會設定 hello Ubuntu 虛擬機器 toohost hello Music Store 應用程式。 Hello 指令碼執行時，安裝所需的所有軟體，請安裝從原始檔控制的 hello 音樂市集應用程式並準備 hello 資料庫。 
 
-若要深入了解如何在 Linux 上裝載 .Net 核心應用程式，請參閱 [Publish to a Linux Production Environment (發佈至 Linux 生產環境)](https://docs.asp.net/en/latest/publishing/linuxproduction.html)。
+深入了解裝載.Net toolearn 核心應用程式 on Linux，請參閱[發行 tooa Linux 實際執行環境](https://docs.asp.net/en/latest/publishing/linuxproduction.html)。
 
 > 此範例僅供示範之用。
 > 
@@ -80,11 +80,11 @@ sudo service supervisor start
 ```
 
 ## <a name="vm-script-extension"></a>VM 指令碼擴充功能
-透過將擴充功能資源包含在 Azure Resource Manager 範本中，即可在建置階段對虛擬機器執行「VM 指令碼擴充功能」。 您可以使用 Visual Studio 的「加入新資源」精靈或在範本中插入有效的 JSON，來新增擴充功能。 「指令碼擴充功能」資源內嵌在「虛擬機器」資源的巢狀結構中；在下列範例中即可看到此情況。
+VM 擴充功能可以執行的虛擬機器在建立時期 hello 延伸模組資源併入 hello Azure Resource Manager 範本。 hello Visual Studio 新增資源精靈，或藉由將有效的 JSON 插入 hello 範本可以加入 hello 延伸模組。 hello 虛擬機器資源; 巢狀 hello 指令碼擴充功能資源這可以在下列範例中的 hello 看到。
 
-請依循下列連結來查看 Resource Manager 範本內的 JSON 範例 – [VM 指令碼擴充功能](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L359)。 
+請依照此連結 toosee hello JSON 範例內 hello Resource Manager 範本 – [VM 指令碼延伸](https://github.com/Microsoft/dotnet-core-sample-templates/blob/master/dotnet-core-music-linux/azuredeploy.json#L359)。 
 
-請注意，在下列 JSON 中，指令碼是儲存在 GitHub。 此指令碼也可以儲存在 Azure Blob 儲存體中。 此外，Azure Resource Manager 範本也允許建構指令碼執行字串，讓範本參數值可被用來當作指令碼執行參數。 在此案例中，是在部署範本時提供資料，接著在執行指令碼時，就可以使用這些值。
+請注意，在 hello 下方 hello 指令碼的 JSON 儲存在 GitHub 中。 此指令碼也可以儲存在 Azure Blob 儲存體中。 此外，Azure 資源管理員範本可讓 hello 指令碼執行字串 tooconstructed 範本參數的值可以使用做為參數執行指令碼。 部署 hello 範本時，在此情況下提供資料並執行 hello 指令碼時，可以接著使用這些值。
 
 ```json
 {
@@ -115,7 +115,7 @@ sudo service supervisor start
 }
 ```
 
-如需有關使用自訂指令碼擴充功能的詳細資訊，請參閱 [使用 Resource Manager 範本來自訂指令碼擴充功能](extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+如需有關使用 hello 自訂指令碼延伸模組的詳細資訊，請參閱[自訂指令碼延伸模組與資源管理員範本](extensions-customscript.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
 ## <a name="next-step"></a>後續步驟
 <hr>

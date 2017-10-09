@@ -1,9 +1,9 @@
 <!--author=SharS last changed: 9/17/15-->
 
-#### <a name="to-install-regular-hotfixes-via-windows-powershell-for-storsimple"></a>透過 Windows PowerShell for StorSimple 安裝一般 Hotfix
-1. 連接到裝置序列主控台。 如需詳細資訊，請參閱[步驟 1：連接到序列主控台](../articles/storsimple/storsimple-update-device.md#step1)。
-2. 在序列主控台功能表中，選取選項 1 [使用完整存取權登入] 。 輸入密碼。 預設密碼為 **Password1**。
-3. 在命令提示字元中，輸入：
+#### <a name="tooinstall-regular-hotfixes-via-windows-powershell-for-storsimple"></a>透過 Windows PowerShell for StorSimple tooinstall 定期 hotfix
+1. Toohello 裝置序列主控台連線。 如需詳細資訊，請參閱[步驟 1: toohello 序列主控台連接](../articles/storsimple/storsimple-update-device.md#step1)。
+2. 在 hello 序列主控台功能表中，選取選項 1，**登入的完整存取**。 型別 hello 密碼。 hello 預設密碼為**Password1**。
+3. 在 hello 命令提示字元中輸入：
    
     ```
     Start-HcsHotfix
@@ -11,9 +11,9 @@
    
     > [!IMPORTANT]
     >
-    > 這個命令只適用於一般的 Hotfix。 您只需在某一個控制站上執行此命令，就會更新這兩個控制站。
-    > 您可能在更新程序期間注意到控制站容錯移轉。不過，容錯移轉並不會影響系統的可用性或運作。
+    > 此命令適用於僅 tooregular hotfix。 您只需在某一個控制站上執行此命令，就會更新這兩個控制站。
+    > 您可能會發現控制器容錯移轉期間 hello 更新程序。不過，hello 容錯移轉不會影響系統可用性或運作。
 
-4. 出現提示時，請提供包含 Hotfix 檔案的網路共用資料夾所在路徑。
-5. 系統將提示您進行確認。 輸入 **Y** 繼續安裝 Hotfix。
+4. 出現提示時，提供 hello 路徑 toohello 網路共用的資料夾，其中包含 hello hotfix 檔案。
+5. 系統將提示您進行確認。 型別**Y** tooproceed hello hotfix 安裝。
 

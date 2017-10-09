@@ -1,6 +1,6 @@
 ---
-title: "使用 System Center 2012 R2 DPM 將 Exchange Server 備份至 Azure 備份 | Microsoft Docs"
-description: "了解如何使用 System Center 2012 R2 DPM 將 Exchange Server 備份至 Azure 備份"
+title: "使用 System Center 2012 R2 DPM 備份的 Exchange server tooAzure 向上 aaaBack |Microsoft 文件"
+description: "深入了解如何設定 Exchange server tooAzure tooback 備份使用 System Center 2012 R2 DPM"
 services: backup
 documentationcenter: 
 author: MaanasSaran
@@ -14,112 +14,112 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/28/2016
 ms.author: masaran;jimpark;delhan;trinadhk;markgal
-ms.openlocfilehash: 2a0e416440e55cfde70cbd20d40c99fb29b4229c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fa99296d095c180333474b6d419ebc5ec727547a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="back-up-an-exchange-server-to-azure-backup-with-system-center-2012-r2-dpm"></a>使用 System Center 2012 R2 DPM 將 Exchange Server 備份至 Azure 備份
-本文說明如何設定 System Center 2012 R2 Data Protection Manager (DPM) 伺服器，以將 Microsoft Exchange Server 備份至 Azure 備份。  
+# <a name="back-up-an-exchange-server-tooazure-backup-with-system-center-2012-r2-dpm"></a>備份 Exchange server tooAzure 使用 System Center 2012 R2 DPM 備份
+本文章說明如何設定 Microsoft Exchange server 的 System Center 2012 R2 Data Protection Manager (DPM) 伺服器 tooback tooconfigure 太 Azure 備份。  
 
 ## <a name="updates"></a>更新
-若要在 Azure 備份中成功註冊 DPM 伺服器，您必須安裝 System Center 2012 R2 DPM 的最新更新彙總套件和 Azure 備份代理程式的最新版本。 從 [Microsoft Catalog](http://catalog.update.microsoft.com/v7/site/Search.aspx?q=System%20Center%202012%20R2%20Data%20protection%20manager)取得最新的更新彙總套件。
+toosuccessfully 暫存器 hello DPM 伺服器使用 Azure Backup，您必須安裝 hello 最新更新彙總套件 hello Azure Backup Agent 的 System Center 2012 R2 DPM 和 hello 最新版本。 收到 hello hello 最新的更新彙總[Microsoft 目錄](http://catalog.update.microsoft.com/v7/site/Search.aspx?q=System%20Center%202012%20R2%20Data%20protection%20manager)。
 
 > [!NOTE]
-> 對於本文中的範例，會安裝 Azure 備份代理程式的 2.0.8719.0 版，而更新彙總套件 6 會安裝於 System Center 2012 R2 DPM。
+> 這篇文章中的 hello 範例，版本 2.0.8719.0 hello Azure Backup Agent 已安裝，且 System Center 2012 R2 DPM 上安裝更新彙總套件 6。
 >
 >
 
 ## <a name="prerequisites"></a>必要條件
-繼續之前，請確定符合使用 Microsoft Azure 備份保護工作負載的所有 [必要條件](backup-azure-dpm-introduction.md#prerequisites) 。 這些先決條件包含下列各項：
+在繼續之前，請確定所有 hello[必要條件](backup-azure-dpm-introduction.md#prerequisites)tooprotect 工作負載已符合使用 Microsoft Azure 備份。 這些必要條件 hello 如下：
 
-* 已在 Azure 網站上建立備份保存庫。
-* 代理程式和保存庫認證已下載至 DPM 伺服器。
-* 代理程式已安裝於 DPM 伺服器。
-* 保存庫認證已用來註冊 DPM 伺服器。
-* 如果您要保護 Exchange 2016，請升級為 DPM 2012 R2 UR9 或更新版本
+* 已建立 hello Azure 站台上的備份保存庫。
+* 已下載的 toohello DPM 伺服器代理程式和保存庫認證。
+* hello DPM 伺服器上安裝 hello 代理程式。
+* hello 保存庫認證是使用的 tooregister hello DPM 伺服器。
+* 如果您要保護 Exchange 2016，請升級 tooDPM 2012 R2 UR9 或更新版本
 
 ## <a name="dpm-protection-agent"></a>DPM 保護代理程式
-若要在 Exchange Server 上安裝 DPM 保護代理程式，請遵循下列步驟：
+tooinstall hello DPM 保護代理程式在 hello Exchange 伺服器上，請遵循下列步驟：
 
-1. 請確定已正確設定防火牆。 請參閱 [設定代理程式的防火牆例外狀況](https://technet.microsoft.com/library/Hh758204.aspx)。
-2. 按一下 DPM 系統管理員主控台中的 [管理] > [代理程式] > [安裝]，在 Exchange Server 上安裝代理程式。 如需詳細步驟，請參閱 [安裝 DPM 保護代理程式](https://technet.microsoft.com/library/hh758186.aspx?f=255&MSPPError=-2147217396) 。
+1. 請確定已正確設定 hello 防火牆。 請參閱[設定 hello 代理程式的防火牆例外](https://technet.microsoft.com/library/Hh758204.aspx)。
+2. Hello Exchange 伺服器上安裝 hello 代理程式，依序按一下**管理 > 代理程式 > 安裝**DPM 系統管理員主控台。 請參閱[hello DPM 保護代理程式安裝](https://technet.microsoft.com/library/hh758186.aspx?f=255&MSPPError=-2147217396)如需詳細步驟。
 
-## <a name="create-a-protection-group-for-the-exchange-server"></a>建立 Exchange Server 的保護群組
-1. 在 DPM 系統管理員主控台中，按一下 [保護]，然後按一下工具功能區上的 [新增]，以開啟 [建立新保護群組] 精靈。
-2. 在精靈的 [歡迎使用] 畫面上按 [下一步]。
-3. 在 [選取保護群組類型] 畫面上，選取 [伺服器]，然後按 [下一步]。
-4. 選取您想要保護的 Exchange Server 資料庫，然後按 [下一步] 。
+## <a name="create-a-protection-group-for-hello-exchange-server"></a>建立 hello Exchange 伺服器的保護群組
+1. 在 hello DPM 系統管理員主控台中，按一下 **保護**，然後按一下**新增**上 hello 工具功能區 tooopen hello**建立新保護群組**精靈。
+2. 在 hello ** 褖畫惎**hello 精靈按一下畫面**下一步**。
+3. 在 hello**選取保護群組類型**畫面上，選取**伺服器**按一下**下一步**。
+4. 您想 tooprotect 並按一下選取的 hello Exchange 伺服器資料庫**下一步**。
 
    > [!NOTE]
-   > 如果您要保護 Exchange 2013，請檢查 [Exchange 2013 先決條件](https://technet.microsoft.com/library/dn751029.aspx)。
+   > 如果您要保護 Exchange 2013，請檢查 hello [Exchange 2013 prerequisites](https://technet.microsoft.com/library/dn751029.aspx)。
    >
    >
 
-    下例中選取了Exchange 2010 資料庫。
+    在下列範例的 hello，會選取 hello Exchange 2010 資料庫。
 
     ![選擇群組成員](./media/backup-azure-backup-exchange-server/select-group-members.png)
-5. 選取資料保護方式。
+5. 選取 hello 資料保護方式。
 
-    替保護群組命名，然後選取下列兩個選項：
+    名稱 hello 保護群組，然後再選取這兩個 hello 下列選項：
 
    * 我想要使用磁碟進行短期保護。
    * 我想要線上保護。
 6. 按一下 [下一步] 。
-7. 如果您想要檢查 Exchange Server 資料庫的完整性，請選取 [執行 Eseutil 以檢查資料完整性]  選項。
+7. 選取 hello**執行 Eseutil toocheck 資料完整性**如果您想 toocheck hello 完整性 hello Exchange Server 資料庫的選項。
 
-    選取此選項之後，將會在 DPM 伺服器上執行備份一致性檢查，以避免在 Exchange Server 上執行 **eseutil** 命令所產生的 I/O 流量。
+    選取此選項之後，備份一致性檢查會執行上的 hello DPM 伺服器 tooavoid hello I/O 流量所產生的執行 hello **eseutil** hello Exchange 伺服器上的命令。
 
    > [!NOTE]
-   > 若要使用此選項，您必須將 Ese.dll 和 Eseutil.exe 檔案複製到 DPM 伺服器上的 C:\Program Files\Microsoft System Center 2012 R2\DPM\DPM\bin 目錄。 否則會觸發下列錯誤：  
+   > toouse 選取此選項，您必須複製 hello Ese.dll 和 Eseutil.exe 檔案 toohello hello DPM 伺服器上的 C:\Program Files\Microsoft System Center 2012 R2\DPM\DPM\bin 目錄。 否則，會觸發 hello 下列錯誤：  
    > ![eseutil 錯誤](./media/backup-azure-backup-exchange-server/eseutil-error.png)
    >
    >
 8. 按一下 [下一步] 。
-9. 選取用於 [複製備份] 的資料庫，然後按 [下一步]。
+9. 選取 hello 資料庫**複製備份**，然後按一下**下一步**。
 
    > [!NOTE]
    > 如果您未對資料庫的至少一個 DAG 複本選取「完整備份」，則不會截斷記錄檔。
    >
    >
-10. 設定 [短期備份] 的目標，然後按 [下一步]。
-11. 檢閱可用的磁碟空間，然後按 [下一步] 。
-12. 選取 DPM 伺服器將建立初始複寫的時間，然後按 [下一步] 。
-13. 選取一致性檢查選項，然後按 [下一步] 。
-14. 選擇您要備份至 Azure 資料庫，然後按 [下一步] 。 例如：
+10. 設定目標 hello**短期備份**，然後按一下**下一步**。
+11. 檢閱 hello 可用磁碟空間，然後按一下**下一步**。
+12. 選取 hello 時間在哪一個 hello DPM 伺服器將會建立 hello 初始複寫，並按一下 **下一步**。
+13. 選取 hello 一致性檢查選項，然後再按一下**下一步**。
+14. 選擇您想要向上 tooAzure，tooback，然後按一下 hello 資料庫**下一步**。 例如：
 
     ![指定線上保護資料](./media/backup-azure-backup-exchange-server/specify-online-protection-data.png)
-15. 定義 [Azure 備份] 的排程，然後按 [下一步]。 例如：
+15. 定義 hello 排程**Azure Backup**，然後按一下**下一步**。 例如：
 
     ![指定線上備份排程](./media/backup-azure-backup-exchange-server/specify-online-backup-schedule.png)
 
     > [!NOTE]
-    > 請注意，線上復原點是以快速完整復原點為基礎。 因此，您必須將線上復原點排程在針對快速完整復原點指定的時間之後。
+    > 請注意，線上復原點是以快速完整復原點為基礎。 因此，您必須排程 hello 線上復原點之後所指定的 hello 的 hello 時間表達完整的復原點。
     >
     >
-16. 設定 [Azure 備份] 的保留原則，然後按 [下一步]。
+16. 設定保留原則 hello **Azure Backup**，然後按一下**下一步**。
 17. 選擇線上複寫選項並按 [下一步] 。
 
-    如果您有大型資料庫，則透過網路建立初始備份所需的時間很長。 若要避免這個問題，您可以建立離線備份。  
+    如果您有大型的資料庫時，可能需要很長的時間 hello 初始備份 toobe hello 網路上建立。 tooavoid 此問題，您可以建立離線備份。  
 
     ![指定線上保留期原則](./media/backup-azure-backup-exchange-server/specify-online-retention-policy.png)
-18. 確認設定，然後按一下 [建立群組] 。
+18. 確認 hello 設定，然後按一下**建立群組**。
 19. 按一下 [關閉] 。
 
-## <a name="recover-the-exchange-database"></a>復原 Exchange 資料庫
-1. 若要復原 Exchange 資料庫，請按一下 DPM 系統管理員主控台中的 [復原]  。
-2. 找出您要復原的 Exchange 資料庫。
-3. 從「復原時間」  下拉式清單選取線上復原點。
-4. 按一下 [復原] 啟動 [復原精靈]。
+## <a name="recover-hello-exchange-database"></a>Hello Exchange 資料庫復原
+1. toorecover Exchange 資料庫，按一下**復原**hello DPM 系統管理員主控台中。
+2. 找出您想 toorecover hello Exchange 資料庫。
+3. 選取 線上復原點從 hello*復原時間*下拉式清單。
+4. 按一下**復原**toostart hello**復原精靈**。
 
 線上復原點有五種復原類型：
 
-* **復原到原始 Exchange Server 位置：** 資料將會還原到原始 Exchange Server。
-* **復原到 Exchange Server 上的其他資料庫：** 資料將會還原到其他 Exchange Server 上的其他資料庫。
-* **復原到復原資料庫：** 資料將會復原到 Exchange 復原資料庫 (RDB)。
-* **複製到網路資料夾：** 資料將會還原到網路資料夾。
-* **複製到磁帶：** 如果您有磁帶媒體櫃或獨立磁帶機連接並設定於 DPM 伺服器，則復原點將會複製到可用的磁帶。
+* **復原 toooriginal Exchange Server 位置：** hello 資料將會復原的 toohello 原始 Exchange server。
+* **復原 Exchange Server 上的 tooanother 資料庫：** hello 資料將會復原的 tooanother 另一部 Exchange 伺服器上的資料庫。
+* **復原 tooa 復原資料庫：** hello 資料將會復原的 tooan Exchange 復原資料庫 (RDB)。
+* **複製 tooa 網路資料夾：** hello 資料將會復原的 tooa 網路資料夾。
+* **複製 tootape:**如果您有任何磁帶媒體櫃或獨立磁帶機，將會附加，且設定在 hello DPM 伺服器，hello 復原點複製 tooa 可用磁帶。
 
     ![選擇線上複寫](./media/backup-azure-backup-exchange-server/choose-online-replication.png)
 

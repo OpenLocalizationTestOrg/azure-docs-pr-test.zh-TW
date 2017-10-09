@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Kubernetes 中運用 Helm 部署容器 |Microsoft Docs"
-description: "使用 Helm 封裝工具， 在 Azure Container Service 中將容器部署在 Kubernetes 叢集"
+title: "在 Azure Kubernetes 頭盔 aaaDeploy 容器 |Microsoft 文件"
+description: "Hello 頭盔封裝工具 toodeploy 容器的叢集上使用 Kubernetes Azure 容器服務"
 services: container-service
 documentationcenter: 
 author: sauryadas
@@ -16,20 +16,20 @@ ms.workload: na
 ms.date: 04/10/2017
 ms.author: saudas
 ms.custom: mvc
-ms.openlocfilehash: 3cfcc5abbee03ca8fbbec4e4eae711e7c2d9deae
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: c7bd780afe00084ebe4e3a14873e1e340a29d144
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-helm-to-deploy-containers-on-a-kubernetes-cluster"></a>使用 Helm 在 Kubernetes 叢集部署容器 
+# <a name="use-helm-toodeploy-containers-on-a-kubernetes-cluster"></a>在 Kubernetes 叢集上使用頭盔 toodeploy 容器 
 
-[Helm](https://github.com/kubernetes/helm/) 是開放原始碼的封裝工具，可協助您安裝和管理 Kubernetes 應用程式的生命週期。 Helm 類似於 Apt-get 和 Yum 等 Linux 封裝管理工具，可用於管理 Kubernetes 圖表 (即預先設定的 Kubernetes 資源封裝)。 本文將說明如何在部署於 Azure Container Service 中的 Kubernetes 叢集使用 Helm。
+[頭盔](https://github.com/kubernetes/helm/)是開放原始碼封裝的工具，可協助您安裝和管理 hello Kubernetes 應用程式生命週期。 例如 Apt get 和 Yum 類似 tooLinux 封裝管理員，頭盔是使用的 toomanage Kubernetes 圖表，也就是預先設定的 Kubernetes 資源的封裝。 本文章將示範如何 toowork 與頭盔 Kubernetes 叢集上部署在 Azure 容器服務中。
 
 Helm 包含兩個元件︰ 
-* Helm CLI是在本機或雲端執行的用戶端  
+* hello**頭盔 CLI**是本機或 hello 雲端中執行您的電腦的用戶端  
 
-* Tiller是在 Kubernetes 叢集執行的伺服器，管理 Kubernetes 應用程式的生命週期 
+* **Tiller**是 hello Kubernetes 叢集上執行及管理 hello Kubernetes 應用程式的生命週期的伺服器 
  
 ## <a name="prerequisites"></a>必要條件
 
@@ -41,72 +41,72 @@ Helm 包含兩個元件︰
 
 ## <a name="helm-basics"></a>Helm 基本概念 
 
-若要檢視您安裝 Tiller 及部署您應用程式的 Kubernetes 叢集的相關資訊，請輸入下列命令︰
+tooview 有關 hello Kubernetes 叢集您安裝 Tiller 與部署您的應用程式，輸入下列命令的 hello:
 
 ```bash
 kubectl cluster-info 
 ```
 ![kubectl 叢集資訊](./media/container-service-kubernetes-helm/clusterinfo.png)
  
-安裝 Helm 之後，輸入下列命令，便可在 Kubernetes 叢集安裝 Tiller︰
+安裝頭盔之後，輸入下列命令的 hello Tiller 安裝 Kubernetes 叢集上：
 
 ```bash
 helm init --upgrade
 ```
-順利完成後，您會看到如下所示的輸出︰
+順利完成，您會看到類似 hello 下列輸出：
 
 ![Tiller 安裝](./media/container-service-kubernetes-helm/tiller-install.png)
  
  
  
  
-若要檢視存放庫中所有的 Helm 圖表，輸入下列命令︰
+tooview hello 頭盔中的所有圖表可用 hello 儲存機制，型別 hello 下列都命令：
 
 ```bash 
 helm search 
 ```
 
-您應該會看到如以下的輸出：
+您會看到類似 hello 下列輸出：
 
 ![Helm 搜尋](./media/container-service-kubernetes-helm/helm-search.png)
  
-若要更新圖表以取得最新版本，請輸入︰
+tooupdate hello 圖表 tooget hello 最新版本中，輸入：
 
 ```bash 
 helm repo update 
 ```
 ## <a name="deploy-an-nginx-ingress-controller-chart"></a>部署 Nginx 輸入控制器圖表 
  
-若要部署 Nginx 輸入控制器圖表，請輸入單一命令︰
+toodeploy Nginx 輸入控制器圖表中，輸入單一命令：
 
 ```bash
 helm install stable/nginx-ingress 
 ```
 ![部署輸入控制器](./media/container-service-kubernetes-helm/nginx-ingress.png)
 
-如果您輸入 `kubectl get svc` 來檢視所有在叢集執行的服務，您會看到 IP 位址指派至輸入控制器。 (如果指派進行中，您會看到 `<pending>`。 它需要幾分鐘來完成。) 
+如果您輸入`kubectl get svc`tooview 您 hello 叢集執行的所有服務，都看到 toohello 輸入控制站指派的 IP 位址。 (雖然 hello 分派正在進行中，您會看到`<pending>`。 它需要數分鐘 toocomplete。） 
 
-指派 IP 位址後，瀏覽至外部 IP 位址的值，以查看 Nginx 後端執行。 
+Hello IP 位址指派之後，瀏覽 toohello hello 外部 IP 位址 toosee hello Nginx 後端執行值。 
  
 ![輸入 IP 位址](./media/container-service-kubernetes-helm/ingress-ip-address.png)
 
 
-若要查看安裝於叢集上的圖表清單，請輸入︰
+toosee 一份圖表在叢集上安裝，類型：
 
 ```bash
 helm list 
 ```
 
-您可以將命令縮寫成 `helm ls`。
+您可以 hello 將命令縮寫太`helm ls`。
  
  
  
  
 ## <a name="deploy-a-mariadb-chart-and-client"></a>部署 MariaDB 圖表和用戶端
 
-現在部署 MariaDB 圖表和 MariaDB 用戶端來連接至資料庫。
+現在部署 MariaDB 圖表和 MariaDB 用戶端 tooconnect toohello 資料庫。
 
-若要部署 MariaDB 圖表，輸入下列命令︰
+toodeploy hello MariaDB 圖表，下列命令的型別 hello:
 
 ```bash
 helm install --name v1 stable/mariadb
@@ -115,42 +115,42 @@ helm install --name v1 stable/mariadb
 其中 `--name` 是用於標示版本的標記。
 
 > [!TIP]
-> 如果部署失敗，執行 `helm repo update`，然後再試一次。
+> 如果 hello 部署失敗，執行`helm repo update`並再試一次。
 >
  
  
-若要檢視部署在叢集中的所有圖表，請輸入︰
+tooview 所有 hello 圖表都部署在您的叢集類型：
 
 ```bash 
 helm list
 ```
  
-若要檢視執行在叢集中的所有部署，請輸入︰
+tooview 所有部署執行您在叢集上，都輸入：
 
 ```bash
 kubectl get deployments 
 ``` 
  
  
-最後，若要執行 Pod 來存取用戶端，請輸入︰
+最後，toorun pod tooaccess hello 用戶端類型：
 
 ```bash
 kubectl run v1-mariadb-client --rm --tty -i --image bitnami/mariadb --command -- bash  
 ``` 
  
  
-若要連接至用戶端，請輸入下列命令，將 `v1-mariadb` 更換為您的部署名稱︰
+tooconnect toohello 用戶端，下列命令、 取代型別 hello `v1-mariadb` hello 名稱，為您的部署：
 
 ```bash
 sudo mysql –h v1-mariadb
 ```
  
  
-您現在可以使用標準 SQL 命令來建立資料庫、資料表等。例如，`Create DATABASE testdb1;` 會建立空白資料庫。 
+您現在可以使用標準 SQL 命令 toocreate 資料庫、 資料表等。例如，`Create DATABASE testdb1;` 會建立空白資料庫。 
  
  
  
 ## <a name="next-steps"></a>後續步驟
 
-* 如需管理 Kubernetes 圖表的詳細資訊，請參閱[Helm 文件](https://github.com/kubernetes/helm/blob/master/docs/index.md)。 
+* 如需管理 Kubernetes 圖表的詳細資訊，請參閱 hello[頭盔文件](https://github.com/kubernetes/helm/blob/master/docs/index.md)。 
 

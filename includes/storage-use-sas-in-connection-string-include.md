@@ -1,6 +1,6 @@
-如果您具有授與您存取儲存體帳戶中資源的共用存取簽章 (SAS) URL，您可以在連接字串中使用 SAS。 因為 SAS 包含驗證要求所需的資訊，所以含有 SAS 的連接字串會提供通訊協定、服務端點，以及存取資源所需的認證。
+如果您擁有授與存取儲存體帳戶中的 tooresources 共用的存取簽章 (SAS) URL，您可以使用連接字串中的 hello SAS。 Hello SAS 包含 hello 資訊需要的 tooauthenticate hello 要求，因為與 SAS 連接字串提供 hello 通訊協定、 hello 服務端點和 hello 所需的認證 tooaccess hello 資源。
 
-若要建立包含共用存取簽章的連接字串，請以下列格式指定字串：
+toocreate 連接字串，包含共用的存取簽章指定下列格式的 hello hello 字串：
 
 ```
 BlobEndpoint=myBlobEndpoint;
@@ -10,12 +10,12 @@ FileEndpoint=myFileEndpoint;
 SharedAccessSignature=sasToken
 ```
 
-雖然連接字串必須包含至少一個服務端點，但是每個服務端點都是選用的。
+雖然 hello 連接字串必須至少包含一個選擇性的每個服務端點。
 
 > [!NOTE]
 > 建議最好搭配使用 HTTPS 與 SAS。
 >
-> 如果您在組態檔的連接字串中指定 SAS，則可能需要編碼 URL 中的特殊字元。
+> 如果您指定的 SAS 連接字串中的組態檔中，您可能需要 tooencode hello URL 中的特殊字元。
 >
 >
 
@@ -27,7 +27,7 @@ BlobEndpoint=https://storagesample.blob.core.windows.net;
 SharedAccessSignature=sv=2015-04-05&sr=b&si=tutorial-policy-635959936145100803&sig=9aCzs76n0E7y5BpEi2GvsSv433BZa22leDOZXX%2BXXIU%3D
 ```
 
-而以下範例是具有特殊字元編碼的相同連接字串︰
+以下是範例的 hello 和相同的連接字串與特殊字元編碼方式：
 
 ```
 BlobEndpoint=https://storagesample.blob.core.windows.net;
@@ -43,7 +43,7 @@ FileEndpoint=https://storagesample.file.core.windows.net;
 SharedAccessSignature=sv=2015-07-08&sig=iCvQmdZngZNW%2F4vw43j6%2BVz6fndHF5LI639QJba4r8o%3D&spr=https&st=2016-04-12T03%3A24%3A31Z&se=2016-04-13T03%3A29%3A31Z&srt=s&ss=bf&sp=rwl
 ```
 
-而以下範例是具有 URL 編碼的相同連接字串︰
+以下是範例的 hello 和相同的連接字串，以 URL 編碼方式：
 
 ```
 BlobEndpoint=https://storagesample.blob.core.windows.net;

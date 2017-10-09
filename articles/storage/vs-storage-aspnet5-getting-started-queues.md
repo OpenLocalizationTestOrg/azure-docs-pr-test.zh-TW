@@ -1,6 +1,6 @@
 ---
-title: "開始使用佇列儲存體和 Visual Studio 已連接服務 (ASP.NET Core) | Microsoft Docs"
-description: "如何開始在 Visual Studio 的 ASP.NET Core 專案中使用 Azure 佇列儲存體"
+title: "使用佇列儲存體和 Visual Studio 啟動 aaaGet 已連線的服務 (ASP.NET Core) |Microsoft 文件"
+description: "Tooget 啟動 Visual Studio 中的 ASP.NET Core 專案中使用 Azure 佇列儲存體的方式"
 services: storage
 documentationcenter: 
 author: TomArcher
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: tarcher
-ms.openlocfilehash: 4622496544ce6e1057ac68a2e9946917573e997e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 75adb7163827ab17ad89707051ff0e48dbae9c3b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-queue-storage-and-visual-studio-connected-services-aspnet-core"></a>開始使用佇列儲存體和 Visual Studio 已連接服務 (ASP.NET Core)
 [!INCLUDE [storage-try-azure-tools-queues](../../includes/storage-try-azure-tools-queues.md)]
 
 ## <a name="overview"></a>概觀
-本文說明如何在您使用 Visual Studio 的 [新增已連接服務]  對話方塊建立或參考了 ASP.NET Core 專案中的 Azure 儲存體帳戶之後，開始在 Visual Studio 使用 Azure 佇列儲存體。 [新增連接的服務]  作業會安裝適當的 NuGet 套件，以存取專案中的 Azure 儲存體，並將儲存體帳戶的連接字串新增至您的專案設定檔。
+本文說明如何 tooget 啟動 Visual Studio 中使用 Azure 佇列儲存體之後您建立或使用 Visual Studio hello 參考 Azure 儲存體帳戶中的 ASP.NET Core 專案,**加入已連接服務**對話方塊。 hello**加入已連接服務**作業安裝在您的專案中的適當 NuGet 封裝 tooaccess hello Azure 儲存體，並新增 hello 連接字串，hello 儲存體帳戶 tooyour 專案組態檔。
 
-Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方都可利用 HTTP 或 HTTPS 並透過驗證的呼叫來存取這些訊息。 單一佇列訊息的大小上限為 64 KB，而一個佇列可以包含數百萬個訊息，以儲存體帳戶的總容量為限。
+Azure 佇列儲存體是用於儲存大量訊息，可透過使用 HTTP 或 HTTPS 驗證呼叫的 hello world 中從任何地方存取服務。 單一佇列訊息可以是總 too64 (kb) 的大小，並佇列可以包含數百萬個訊息，向上 toohello 總容量限制的儲存體帳戶。
 
-若要開始，首先您必須在儲存體帳戶中建立 Azure 佇列。 我們將會示範如何在程式碼中建立佇列。 我們也將顯示如何執行基本的佇列作業，例如新增、修改、讀取和移除佇列訊息。 這些範例均以 C\# 程式碼撰寫，並使用 Azure Storage Client Library for .NET。 如需 ASP.NET 的詳細資訊，請參閱 [ASP.NET](http://www.asp.net)。
+tooget 開始，您必須先 toocreate Azure 佇列儲存體帳戶中。 我們將為您示範如何 toocreate 程式碼中的佇列。 我們也會顯示您如何 tooperform 基本佇列作業，例如加入、 修改、 讀取，以及移除佇列的訊息。 hello 範例以 C 撰寫\#程式碼和使用適用於.NET 的 hello Azure 儲存體用戶端程式庫。 如需 ASP.NET 的詳細資訊，請參閱 [ASP.NET](http://www.asp.net)。
 
-**注意：**對 ASP.NET Core 中的 Azure 儲存體執行呼叫的部分 API 是非同步的。 如需詳細資訊，請參閱 [使用 Async 和 Await 進行非同步程式設計](http://msdn.microsoft.com/library/hh191443.aspx) 。 以下程式碼假設使用非同步程式設計方法。
+**注意：** hello 執行呼叫 tooAzure 儲存體中 ASP.NET Core Api 部分都是非同步。 如需詳細資訊，請參閱 [使用 Async 和 Await 進行非同步程式設計](http://msdn.microsoft.com/library/hh191443.aspx) 。 下列程式碼 hello 假設正在使用非同步程式設計的方法。
 
 * 如需以程式設計方式處理佇列的詳細資訊，請參閱 [以 .NET 開始使用 Azure 佇列儲存體](storage-dotnet-how-to-use-queues.md) 。
 * 如需 Azure 儲存體的一般資訊，請參閱 [儲存體文件](https://azure.microsoft.com/documentation/services/storage/) 。
@@ -38,73 +38,73 @@ Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方�
 * 若需要如何編寫 ASP.NET 應用程式的詳細資訊，請參閱 [ASP.NET](http://www.asp.net) 。
 
 ## <a name="access-queues-in-code"></a>在程式碼中存取佇列
-若要存取 ASP.NET Core 專案中的佇列，您需要將下列項目包含在存取 Azure 佇列儲存體的任何 C# 原始程式檔中。
+tooaccess 佇列 ASP.NET Core 專案中的，您需要 tooinclude hello 下列存取 Azure 佇列儲存體的項目 tooany C# 原始程式檔。
 
-1. 請確定 C# 檔案頂端的命名空間宣告包含這些 **using** 陳述式。
+1. 請確定在 hello hello C# 檔案最上方的 hello 命名空間宣告包括**使用**陳述式。
    
         using Microsoft.Framework.Configuration;
         using Microsoft.WindowsAzure.Storage;
         using Microsoft.WindowsAzure.Storage.Queue;
         using System.Threading.Tasks;
         using LogLevel = Microsoft.Framework.Logging.LogLevel;
-2. 取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 使用下列程式碼，從 Azure 服務組態取得您的儲存體連接字串和儲存體帳戶資訊。
+2. 取得 **CloudStorageAccount** 物件，其代表您的儲存體帳戶資訊。 下列程式碼 tooget 使用 hello hello 您的儲存體連接字串和儲存體帳戶資訊 hello Azure 服務組態。
    
          CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
            CloudConfigurationManager.GetSetting("<storage-account-name>_AzureStorageConnectionString"));
-3. 取得 **CloudQueueClient** 物件以參考儲存體帳戶中的佇列物件。  
+3. 取得**CloudQueueClient** tooreference hello 佇列物件儲存體帳戶中的物件。  
    
-        // Create the CloudQueueClient object for the storage account.
+        // Create hello CloudQueueClient object for hello storage account.
         CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
-4. 取得 **CloudQueue** 物件以參考特定的佇列。
+4. 取得**CloudQueue** tooreference 特定佇列的物件。
    
-        // Get a reference to the CloudQueue named "messageQueue"
+        // Get a reference toohello CloudQueue named "messageQueue"
         CloudQueue messageQueue = queueClient.GetQueueReference("messageQueue");
 
-**注意：** 請在下列範例中的程式碼前面使用上述所有程式碼。
+**注意：** hello 遵循範例中使用所有 hello hello 程式碼前面的程式碼上方。
 
 ### <a name="create-a-queue-in-code"></a>在程式碼中建立佇列
-若要在程式碼中建立 Azure 佇列，請加入 **CreateIfNotExistsAsync**呼叫。
+toocreate hello Azure 佇列中的程式碼，只要加入呼叫太**CreateIfNotExistsAsync**。
 
-    // Create the CloudQueue if it does not exist.
+    // Create hello CloudQueue if it does not exist.
     await messageQueue.CreateIfNotExistsAsync();
 
-## <a name="add-a-message-to-a-queue"></a>將訊息新增至佇列
-若要將訊息插入現有佇列中，請建立新的 **CloudQueueMessage** 物件，然後呼叫 **AddMessageAsync** 方法。
+## <a name="add-a-message-tooa-queue"></a>新增訊息 tooa 佇列
+tooinsert 將訊息插入現有佇列，建立新**CloudQueueMessage**物件，然後呼叫 hello **AddMessageAsync**方法。
 
 您可以從字串 (採用 UTF-8 格式) 或位元組陣列建立 **CloudQueueMessage** 物件。
 
-以下是插入訊息 'Hello, World' 的範例。
+以下是範例插入 'Hello World' hello 訊息。
 
-    // Create a message and add it to the queue.
+    // Create a message and add it toohello queue.
     CloudQueueMessage message = new CloudQueueMessage("Hello, World");
     await messageQueue.AddMessageAsync(message);
 
 ## <a name="read-a-message-in-a-queue"></a>讀取佇列中的訊息
-您只要呼叫 **PeekMessageAsync** 方法，就能在佇列前查看訊息，而無須將其從佇列中移除。
+您可以查看 hello 前方的佇列中的 hello 訊息而不需移除 hello 佇列中所呼叫的 hello **PeekMessageAsync**方法。
 
-    // Peek the next message in the queue. 
+    // Peek hello next message in hello queue. 
     CloudQueueMessage peekedMessage = await messageQueue.PeekMessageAsync();
 
 
 ## <a name="read-and-remove-a-message-in-a-queue"></a>讀取並移除佇列中的訊息
 您的程式碼可以使用兩個步驟將訊息從佇列中移除 (清除佇列)。
 
-1. 呼叫 **GetMessageAsync** ，以取得佇列中的下一則訊息。 任何從此佇列讀取訊息的其他程式碼，將無法看到從 **GetMessageAsync** 傳回的訊息。 依預設，此訊息會維持 30 秒的不可見狀態。
-2. 若要完成從佇列中移除訊息，請呼叫 **DeleteMessageAsync**。
+1. 呼叫**GetMessageAsync** tooget hello 中的下一個訊息佇列。 傳回訊息**GetMessageAsync**變成不可見的 tooany 從此佇列讀取訊息的其他程式碼。 依預設，此訊息會維持 30 秒的不可見狀態。
+2. 移除 hello 佇列、 呼叫 hello 訊息 toofinish **DeleteMessageAsync**。
 
-這個移除訊息的兩步驟程序可確保您的程式碼因為硬體或軟體故障而無法處理訊息時，另一個程式碼的執行個體可以取得相同訊息並再試一次。 下列程式碼會在處理完訊息之後隨即呼叫 **DeleteMessageAsync** 。
+這兩個步驟的程序中移除訊息可確保，如果您的程式碼失敗的 tooprocess 到期 toohardware 或軟體失敗，您的程式碼的另一個執行個體訊息可以取得 hello 相同的訊息並再試一次。 hello 下列程式碼呼叫**DeleteMessageAsync**處理 hello 訊息之後，以滑鼠右鍵。
 
-    // Get the next message in the queue.
+    // Get hello next message in hello queue.
     CloudQueueMessage retrievedMessage = await messageQueue.GetMessageAsync();
 
-    // Process the message in less than 30 seconds.
+    // Process hello message in less than 30 seconds.
 
-    // Then delete the message.
+    // Then delete hello message.
     await messageQueue.DeleteMessageAsync(retrievedMessage);
 
 ## <a name="leverage-additional-options-for-dequeuing-messages"></a>運用清除佇列訊息的其他選項
 自訂從佇列中擷取訊息的方法有兩種。
-首先，您可以取得一批訊息 (最多 32 個)。 其次，您可以設定較長或較短的可見度逾時，讓您的程式碼有較長或較短的時間可以完全處理每個訊息。 下列程式碼範例將使用 **GetMessages** 方法，在一次呼叫中取得 20 個訊息。 接著它會使用 **foreach** 迴圈處理每個訊息。 它也會將可見度逾時設定為每個訊息 5 分鐘。 請注意，所有訊息皆會同時開始計時 5 分鐘，當呼叫 **GetMessages**後的 5 分鐘一到，所有尚未刪除的訊息皆會重新出現。
+首先，您可以取得一批訊息 （向上 too32)。 第二，您可以設定長或短過了隱藏逾時，可讓您的程式碼更多或較少時間 toofully 處理每個訊息。 hello 下列程式碼範例使用**GetMessages**方法 tooget 20 訊息在單一呼叫中的。 接著它會使用 **foreach** 迴圈處理每個訊息。 它也會設定 hello 過了隱藏逾時 too5 分鐘數的每個訊息。 請注意，所有的 hello 5 分鐘開始訊息在 hello 相同時間，因此後 5 分鐘已經太過 hello 呼叫之後**GetMessages**，已被刪除的任何訊息會顯示一次。
 
     // Retrieve 20 messages at a time, keeping those messages invisible for 5 minutes, 
     //   delete each message after processing.
@@ -115,39 +115,39 @@ Azure 佇列儲存體是一項儲存大量訊息的服務，全球任何地方�
         queue.DeleteMessage(message);
     }
 
-## <a name="get-the-queue-length"></a>取得佇列長度
-您可以取得佇列中的估計訊息數目。 **FetchAttributes** 方法會要求佇列服務擷取佇列屬性，其中包含訊息計數。 **ApproximateMethodCount** 屬性會傳回 **FetchAttributes** 方法所擷取的最後一個值，而無需呼叫佇列服務。
+## <a name="get-hello-queue-length"></a>取得 hello 佇列長度
+您可以在佇列中取得估計的 hello 訊息數目。 **FetchAttributes**方法會要求 hello 佇列服務，以擷取 hello 佇列屬性，包括 hello 訊息計數。 hello **ApproximateMethodCount**屬性會傳回 hello 所擷取的最後一個值**FetchAttributes**方法，而不需要呼叫 hello 佇列服務。
 
-    // Fetch the queue attributes.
+    // Fetch hello queue attributes.
     messageQueue.FetchAttributes();
 
-    // Retrieve the cached approximate message count.
+    // Retrieve hello cached approximate message count.
     int? cachedMessageCount = messageQueue.ApproximateMessageCount;
 
-    // Display the number of messages.
+    // Display hello number of messages.
     Console.WriteLine("Number of messages in queue: " + cachedMessageCount);
 
-## <a name="use-the-async-await-pattern-with-common-queue-apis"></a>搭配使用 Async-Await 模式和通用佇列 API
-這個範例示範如何搭配使用 Async-Await 模式和通用佇列 API。 此範例會呼叫每個特定方法的非同步版本。 這可以透過每個方法的非同步 Postfix 看到。 使用非同步方法時，async-await 模式會暫停本機執行，直到呼叫完成為止。 這種行為可讓目前的執行緒執行其他工作，有助於避免發生效能瓶頸並提升應用程式的整體回應。 如需如何在 .NET 中使用 Async-Await 模式的詳細資訊，請參閱 [Async 和 Await (C# 和 Visual Basic)](https://msdn.microsoft.com/library/hh191443.aspx)
+## <a name="use-hello-async-await-pattern-with-common-queue-apis"></a>使用非同步等候 hello 模式，其一般佇列應用程式開發介面
+這個範例會示範如何 toouse hello 非同步等候模式與一般佇列應用程式開發介面。 hello 範例呼叫 hello 非同步版本的每個指定方法的 hello。 這可以看見 hello 非同步後修正每個方法。 使用非同步方法時，hello 非同步等候模式會暫停本機執行，直到 hello 呼叫完成也一樣。 此行為可讓目前的執行緒 toodo hello 其他工作，這有助於避免效能瓶頸並改善 hello 應用程式的整體回應性。 如需有關使用 hello.NET 中的非同步 Await 模式，請參閱 < [Async 和 Await （C# 和 Visual Basic）](https://msdn.microsoft.com/library/hh191443.aspx)
 
-    // Create a message to add to the queue.
+    // Create a message tooadd toohello queue.
     CloudQueueMessage cloudQueueMessage = new CloudQueueMessage("My message");
 
-    // Async enqueue the message.
+    // Async enqueue hello message.
     await messageQueue.AddMessageAsync(cloudQueueMessage);
     Console.WriteLine("Message added");
 
-    // Async dequeue the message.
+    // Async dequeue hello message.
     CloudQueueMessage retrievedMessage = await messageQueue.GetMessageAsync();
     Console.WriteLine("Retrieved message with content '{0}'", retrievedMessage.AsString);
 
-    // Async delete the message.
+    // Async delete hello message.
     await messageQueue.DeleteMessageAsync(retrievedMessage);
     Console.WriteLine("Deleted message");
 ## <a name="delete-a-queue"></a>刪除佇列
-若要刪除佇列及其內含的所有訊息，請在佇列物件上呼叫 **Delete** 方法。
+toodelete 佇列和所有 hello 訊息包含在它，請呼叫**刪除**hello 佇列物件上的方法。
 
-    // Delete the queue.
+    // Delete hello queue.
     messageQueue.Delete();
 
 

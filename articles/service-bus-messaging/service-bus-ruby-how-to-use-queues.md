@@ -1,6 +1,6 @@
 ---
-title: "如何搭配 Ruby 使用 Azure 服務匯流排佇列 | Microsoft Docs"
-description: "了解如何使用 Azure 中的服務匯流排佇列。 程式碼範例以 Ruby 撰寫。"
+title: "aaaHow toouse Azure 服務匯流排佇列與 Ruby |Microsoft 文件"
+description: "了解如何 toouse Service Bus 佇列在 Azure 中。 程式碼範例以 Ruby 撰寫。"
 services: service-bus-messaging
 documentationcenter: ruby
 author: sethmanheim
@@ -14,17 +14,17 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: 357a7277dd42b6973cf35a9f642b8eec36a745e3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7270154583f98e3372e82efbb967ea7a5acd1686
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-service-bus-queues-with-ruby"></a>如何將服務匯流排佇列搭配 Ruby 使用
+# <a name="how-toouse-service-bus-queues-with-ruby"></a>服務匯流排 toouse 排入佇列以 Ruby
 
 [!INCLUDE [service-bus-selector-queues](../../includes/service-bus-selector-queues.md)]
 
-本指南將說明如何使用服務匯流排佇列。 這些範例均以 Ruby 撰寫，並使用 Azure gem。 本文說明的案例包括**建立佇列、傳送並接收訊息**，以及**刪除佇列**。 如需服務匯流排佇列的詳細資訊，請參閱[後續步驟](#next-steps)一節。
+本指南說明如何 toouse 服務匯流排佇列。 hello 範例以 Ruby 所撰寫，並使用 hello Azure 健身。 hello 涵蓋案例包括**建立佇列，傳送和接收訊息**，和**刪除佇列**。 如需有關 Service Bus 佇列的詳細資訊，請參閱 hello[接下來的步驟](#next-steps)> 一節。
 
 [!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
@@ -32,8 +32,8 @@ ms.lasthandoff: 08/29/2017
    
 [!INCLUDE [service-bus-ruby-setup](../../includes/service-bus-ruby-setup.md)]
 
-## <a name="how-to-create-a-queue"></a>如何建立佇列
-**Azure::ServiceBusService** 物件可讓您使用佇列。 若要建立佇列，請使用 `create_queue()` 方法。 下列範例會建立佇列，或列印出任何錯誤。
+## <a name="how-toocreate-a-queue"></a>如何 toocreate 佇列
+hello **Azure::ServiceBusService**物件可讓您與佇列搭配 toowork。 toocreate 佇列中，使用 hello`create_queue()`方法。 hello 下列範例會建立佇列或列印出任何錯誤。
 
 ```ruby
 azure_service_bus_service = Azure::ServiceBus::ServiceBusService.new(sb_host, { signer: signer})
@@ -44,7 +44,7 @@ rescue
 end
 ```
 
-您也可以使用其他選項傳遞 **Azure::ServiceBus::Queue** 物件，這可讓您覆寫訊息存留時間或佇列大小上限等預設佇列設定。 下列範例說明如何將佇列大小上限設為 5 GB，將存留時間設為 1 分鐘：
+您也可以傳遞**Azure::ServiceBus::Queue**物件與其他選項，可讓您 toooverride hello 預設佇列設定中的，例如訊息時間 toolive 或最大佇列大小。 hello 下列範例顯示如何 tooset hello 最大佇列大小 too5 GB 和 toolive too1 分鐘的時間：
 
 ```ruby
 queue = Azure::ServiceBus::Queue.new("test-queue")
@@ -54,10 +54,10 @@ queue.default_message_time_to_live = "PT1M"
 queue = azure_service_bus_service.create_queue(queue)
 ```
 
-## <a name="how-to-send-messages-to-a-queue"></a>如何傳送訊息至佇列
-若要傳送訊息至服務匯流排佇列，應用程式將呼叫 **Azure::ServiceBusService** 物件上的 `send_queue_message()` 方法。 傳送至 (及接收自)「服務匯流排」佇列的訊息是 **Azure::ServiceBus::BrokeredMessage** 物件，而且具有一組標準屬性 (例如 `label` 和 `time_to_live`)、一個用來保存自訂應用程式特定屬性的字典，以及一堆任意的應用程式資料。 應用程式可用訊息的形式傳遞字串值以設定訊息內文，任何必要的標準屬性都會以預設值填入。
+## <a name="how-toosend-messages-tooa-queue"></a>如何 toosend 訊息 tooa 佇列
+toosend 訊息 tooa Service Bus 佇列，您的應用程式呼叫 hello`send_queue_message()`方法上 hello **Azure::ServiceBusService**物件。 訊息太傳送 （與從接收的資料） 的服務匯流排佇列是**Azure::ServiceBus::BrokeredMessage**物件，並有一組標準屬性 (例如`label`和`time_to_live`)，是使用的 toohold 字典自訂應用程式特有的屬性和任意應用程式資料的主體。 應用程式可以設定 hello hello 訊息本文藉由傳遞字串值為 hello 訊息和任何必要的標準屬性會填入預設值。
 
-下列範例示範如何使用 `send_queue_message()` 將測試訊息傳送至名為 `test-queue` 的佇列：
+hello 下列範例會示範如何 toosend 測試訊息 toohello 佇列名為`test-queue`使用`send_queue_message()`:
 
 ```ruby
 message = Azure::ServiceBus::BrokeredMessage.new("test queue message")
@@ -65,16 +65,16 @@ message.correlation_id = "test-correlation-id"
 azure_service_bus_service.send_queue_message("test-queue", message)
 ```
 
-服務匯流排佇列支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 佇列中所保存的訊息數目沒有限制，但佇列所保存的訊息大小總計會有最高限制。 此佇列大小會在建立時定義，上限是 5 GB。
+服務匯流排佇列支援 hello 訊息大小上限為 256KB[標準層](service-bus-premium-messaging.md)和 1 MB 的 hello [Premium 層](service-bus-premium-messaging.md)。 hello 標頭，其中包括 hello 標準和自訂應用程式屬性，可以有 64 KB 的大小上限。 訊息保留在佇列中的 hello 數目沒有限制，但是在 hello hello 訊息佇列所持有的大小總計沒有端點。 此佇列大小會在建立時定義，上限是 5 GB。
 
-## <a name="how-to-receive-messages-from-a-queue"></a>如何從佇列接收訊息
-對於 **Azure::ServiceBusService** 物件使用 `receive_queue_message()` 方法即可從佇列接收訊息。 根據預設，在讀取及鎖定訊息後並不會將其從佇列中刪除。 但您可以將 `:peek_lock` 選項設為 **false**，而在讀取訊息後將其從佇列中刪除。
+## <a name="how-tooreceive-messages-from-a-queue"></a>Tooreceive 從佇列的訊息
+訊息會使用從佇列接收 hello`receive_queue_message()`方法上 hello **Azure::ServiceBusService**物件。 根據預設，會讀取及鎖定而不從 hello 佇列刪除訊息。 不過，您可以刪除訊息從 hello 佇列設定 hello 讀取`:peek_lock`太選項**false**。
 
-預設行為會使讀取和刪除變成兩階段作業，因此也可以支援無法容許遺漏訊息的應用程式。 當服務匯流排收到要求時，它會尋找要取用的下一個訊息、將其鎖定以防止其他取用者接收此訊息，然後將它傳回應用程式。 在應用程式完成處理訊息 (或可靠地儲存此訊息以供未來處理) 之後，它可透過呼叫 `delete_queue_message()` 方法和以參數形式提供要刪除的訊息，完成接收程序的第二個階段。 `delete_queue_message()` 方法會將訊息標示為已取用，並將其從佇列中移除。
+hello 預設行為可讓 hello 讀取和刪除兩階段作業，也使其不容許遺失訊息的可能 toosupport 應用程式。 服務匯流排收到要求時，它會尋找下一個訊息 toobe hello 耗用鎖定，tooprevent 其他消費者接收該，然後再將它傳 toohello 應用程式。 Hello 應用程式完成處理 hello 訊息 （或可靠地儲存以供未來處理後），它就會完成 hello hello 第二個階段藉由呼叫接收處理序`delete_queue_message()`方法並提供 hello 訊息 toobe 刪除做為參數。 hello`delete_queue_message()`方法會標示為正在使用的 hello 訊息，並從 hello 佇列中移除它。
 
-如果 `:peek_lock` 參數設為 **false**，讀取和刪除訊息將會變成最簡單的模型，且最適用於應用程式容許在發生失敗時不處理訊息的案例。 若要了解這一點，請考慮取用者發出接收要求，接著系統在處理此要求之前當機的案例。 因為服務匯流排已將訊息標示為已取用，當應用程式重新啟動並開始重新取用訊息時，它將會遺漏當機前已取用的訊息。
+如果 hello`:peek_lock`參數設定太**false**，讀取和刪除 hello 訊息會變成 hello 最簡單的模型，並且適合用於應用程式可以容許不處理訊息的 hello 事件中的案例失敗。 toounderstand，假設在哪一個 hello 取用者問題 hello 接收要求，而後再處理它。 服務匯流排已標示為正在使用，當 hello 應用程式重新啟動並開始取用訊息一次的 hello 訊息，因為它將會遺失已的 hello 訊息取用先前 toohello 損毀。
 
-下列範例示範如何使用 `receive_queue_message()` 來接收和處理訊息。 此範例會先使用設為 **false** 的 `:peek_lock` 來接收及刪除訊息，然後再接收另一個訊息，接著使用 `delete_queue_message()` 刪除訊息：
+hello 下列範例會示範如何 tooreceive 和處理序訊息使用`receive_queue_message()`。 hello 範例先接收並刪除訊息使用`:peek_lock`設定得**false**、 收到另一則訊息，然後再刪除 hello 訊息使用`delete_queue_message()`:
 
 ```ruby
 message = azure_service_bus_service.receive_queue_message("test-queue",
@@ -83,18 +83,18 @@ message = azure_service_bus_service.receive_queue_message("test-queue")
 azure_service_bus_service.delete_queue_message(message)
 ```
 
-## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>如何處理應用程式當機與無法讀取的訊息
-服務匯流排提供一種功能，可協助您從應用程式的錯誤或處理訊息的問題中順利復原。 如果接收者應用程式因為某些原因無法處理訊息，它可以呼叫 **Azure::ServiceBusService** 物件上的 `unlock_queue_message()` 方法。 此呼叫將導致服務匯流排將佇列中的訊息解除鎖定，讓此訊息可以被相同取用應用程式或其他取用應用程式重新接收。
+## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Toohandle 應用程式的當機，而且無法讀取訊息
+服務匯流排提供的功能 toohelp 適宜地自行復原發生錯誤的應用程式或處理訊息的問題。 如果接收者應用程式無法 tooprocess hello 訊息基於某些原因，則它可以呼叫 hello`unlock_queue_message()`方法上 hello **Azure::ServiceBusService**物件。 服務匯流排 toounlock hello hello 佇列訊息，並將其可用 toobe 同樣地，收到此呼叫原因可能是藉由 hello 取用應用程式，或由另一個使用的應用程式相同。
 
-與在佇列內鎖定訊息相關的還有逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會自動解除鎖定訊息，並讓訊息可以被重新接收。
+另外還有 hello 佇列內鎖定的訊息相關聯的逾時，如果 hello 應用程式失敗 tooprocess hello 訊息之前 hello 鎖定逾時到期 （例如，如果 hello 應用程式當機），然後服務匯流排解除鎖定 hello 訊息自動並使其成為可用 toobe 再度接收。
 
-如果應用程式在處理訊息之後，尚未呼叫 `delete_queue_message()` 方法時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 此程序通常稱為 *至少處理一次*，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 `message_id` 屬性來達到此目的，該方法在各個傳遞嘗試中保持不變。
+在 hello hello 應用程式的事件損毀之後處理 hello 訊息，但之前 hello`delete_queue_message()`呼叫方法時，則 hello 訊息時，已重新傳遞的 toohello 應用程式會在重新啟動。 此程序通常稱為*至少一旦處理*; 也就是說，每個訊息會至少處理一次，但可能在某些情況下 hello 傳遞相同的訊息。 如果 hello 案例無法容許重複處理，應用程式開發人員應該加入額外的邏輯 tootheir 應用程式 toohandle 重複的訊息傳遞。 這通常用來達成 hello `message_id` hello 訊息，嘗試傳遞都維持不變的屬性。
 
 ## <a name="next-steps"></a>後續步驟
-了解基本的服務匯流排佇列之後，請參考下列連結以取得更多資訊。
+現在，您學到的服務匯流排佇列的 hello 基本概念，請遵循這些連結 toolearn 更多。
 
 * [佇列、主題和訂用帳戶](service-bus-queues-topics-subscriptions.md)概觀。
-* 請造訪 GitHub 上的 [Azure SDK for Ruby](https://github.com/Azure/azure-sdk-for-ruby) 儲存機制。
+* 請瀏覽 hello [Azure SDK for Ruby](https://github.com/Azure/azure-sdk-for-ruby) GitHub 上的儲存機制。
 
-若要比較本文所討論的 Azure 服務匯流排佇列與[如何使用 Ruby 的佇列儲存體](../storage/queues/storage-ruby-how-to-use-queue-storage.md)一文中討論的 Azure 佇列，請參閱 [Azure 佇列和 Azure 服務匯流排佇列 - 比較和對照](service-bus-azure-and-service-bus-queues-compared-contrasted.md)
+如需本文所討論的 hello Azure 服務匯流排佇列和 Azure 佇列中 hello 討論之間的比較[如何 toouse 佇列儲存體從 Ruby](../storage/queues/storage-ruby-how-to-use-queue-storage.md)發行項，請參閱[Azure 佇列和 Azure Service Bus 佇列-比較和對比](service-bus-azure-and-service-bus-queues-compared-contrasted.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure CLI 選取 Linux VM 映像 | Microsoft Docs"
-description: "了解如何使用 Azure CLI 來判斷發行者、優惠、SKU 和 Marketplace VM 映像的版本。"
+title: "aaaSelect Linux VM 映像以 hello Azure CLI |Microsoft 文件"
+description: "了解如何 toouse hello Azure CLI toodetermine hello 發行者、 方案、 SKU 和 Marketplace 的 VM 映像的版本。"
 services: virtual-machines-linux
 documentationcenter: 
 author: dlepow
@@ -16,41 +16,41 @@ ms.workload: infrastructure
 ms.date: 08/24/2017
 ms.author: danlep
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e0c27a7ee9e9a7ab1a3b004e070fa556b56a36a5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 0b115b8654bc156b5bfadba53a6b002a105acb68
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-find-linux-vm-images-in-the-azure-marketplace-with-the-azure-cli"></a>如何使用 Azure CLI 在 Azure Marketplace 中尋找 Linux VM 映像
-本主題描述如何在 Azure Marketplace 中使用 Azure CLI 2.0 尋找 Windows VM 映像。 您可以使用此資訊，在建立 Linux VM 時指定 Marketplace 映像。
+# <a name="how-toofind-linux-vm-images-in-hello-azure-marketplace-with-hello-azure-cli"></a>Toofind Linux VM 以 hello Azure CLI hello Azure Marketplace 中的映像
+本主題描述如何 toouse hello hello Azure Marketplace 中的 Azure CLI 2.0 toofind VM 映像。 當您建立 Linux VM，請使用此資訊 toospecify Marketplace 映像。
 
-請確定您[已安裝](/cli/azure/install-az-cli2)最新的 Azure CLI 2.0 並登入 Azure 帳戶 (`az login`)。
+請確定最新安裝 hello [Azure CLI 2.0](/cli/azure/install-az-cli2)和登入 Azure 帳戶 tooan (`az login`)。
 
 ## <a name="terminology"></a>術語
 
-您可以根據階層，在 CLI 和其他 Azure 工具中找到 Marketplace 映像：
+Hello CLI 和其他 Azure 工具根據 tooa 階層中識別 marketplace 映像：
 
-* **發行者** - 建立映像的組織。 範例：Canonical
+* **發行者**-hello 建立 hello 映像的組織。 範例：Canonical
 * **供應項目** - 發行者所建立的一組相關映像。 範例：Ubuntu Server
 * **SKU** - 供應項目執行個體，例如發佈的主要版本。 範例：16.04-LTS
-* **版本** - 映像 SKU 的版本號碼。 指定映像時，您可以使用 "latest" 來取代版本號碼，這會選取發佈的最新版本。
+* **版本**-hello SKU 的映像的版本號碼。 當指定 hello 映像，您可以取代 hello 版本號碼與 「 最新 」，以選取 hello hello 分配的最新的版本。
 
-若要指定 Marketplace 映像，您通常會使用映像 *URN*。 URN 會結合這些值，並以冒號 (:) 字元分隔：發行者:供應項目:SKU:版本。 
+toospecify Marketplace 映像，您通常使用 hello 映像*URN*。 hello URN 結合這些值，以 hello 冒號 （:） 字元分隔：*發行者*:*提供*:*Sku*:*版本*。 
 
 
 ## <a name="list-popular-images"></a>列出常用的映像
 
-執行 [az vm image list](/cli/azure/vm/image#list) 命令，而不包含 `--all` 選項，以查看 Azure Marketplace 中的常用 VM 映像清單。 例如，執行下列命令，以資料表格式顯示常用映像的快取清單：
+執行 hello [az vm 映像清單](/cli/azure/vm/image#list)命令，hello`--all`選項、 toosee hello Azure Marketplace 中的一份受歡迎的 VM 映像。 比方說，執行下列命令 toodisplay hello 受歡迎的映像快取的清單以資料表格式：
 
 ```azurecli
 az vm image list --output table
 ```
 
-輸出會包含 URN ([Urn] 欄中的值)，可用來指定映像。 使用其中一個常用 Marketplace 映像建立 VM 時，您也可以指定 URN 別名，例如 *UbuntuLTS*。
+hello 輸出包含 hello URN (hello 中 hello 值*Urn*資料行)，而您使用 toospecify hello 映像。 當與其中一個這些常用的 Marketplace 映像建立 VM，您也可以指定 hello URN 別名，例如*UbuntuLTS*。
 
 ```
-You are viewing an offline list of images, use --all to retrieve an up-to-date list
+You are viewing an offline list of images, use --all tooretrieve an up-to-date list
 Offer          Publisher               Sku                 Urn                                                             UrnAlias             Version
 -------------  ----------------------  ------------------  --------------------------------------------------------------  -------------------  ---------
 CentOS         OpenLogic               7.3                 OpenLogic:CentOS:7.3:latest                                     CentOS               latest
@@ -65,9 +65,9 @@ UbuntuServer   Canonical               16.04-LTS           Canonical:UbuntuServe
 
 ## <a name="find-specific-images"></a>尋找特定映像
 
-若要在 Marketplace 中尋找特定 VM 映像，請使用 `az vm image list` 命令搭配 `--all` 選項。 這個版本的命令需要一些時間才能完成，而且可能會傳回冗長的輸出，因此您通常會依 `--publisher` 或其他參數篩選清單。 
+toofind hello 服務商場中的特定 VM 映像使用 hello`az vm image list`命令與 hello`--all`選項。 這個版本 hello 命令需要一些時間 toocomplete，可傳回的冗長輸出，因此您通常 hello 依篩選清單`--publisher`或另一個參數。 
 
-例如，以下命令會顯示所有的 Debian 優惠 (請記住，如果沒有 `--all` 參數，則只會搜尋通用映像的本機快取)：
+例如，下列命令的 hello 會顯示所有 Debian 優惠 (請記住，沒有 hello`--all`切換時，它只會搜尋 hello 的通用映像的本機快取):
 
 ```azurecli
 az vm image list --offer Debian --all --output table 
@@ -102,11 +102,11 @@ Debian   credativ     8                  credativ:Debian:8:8.0.201708040        
 ...
 ```
 
-使用 `--location`、`--publisher` 和 `--sku` 選項套用類似的篩選條件。 您甚至可以執行篩選的部份相符，例如搜尋 `--offer Deb` 以尋找所有 Debian 映像。
+套用類似的篩選器以 hello `--location`， `--publisher`，和`--sku`選項。 您甚至可以執行部分相符的篩選，例如搜尋`--offer Deb`toofind 所有 Debian 映像。
 
-如果您未使用 `--location` 選項指定特定的位置，依預設就會傳回 `westus` 的值。 (執行 `az configure --defaults location=<location>` 以設定不同的預設位置。)
+如果您未指定特定位置以 hello `--location` ，hello 的選項值`westus`依預設會傳回。 (執行 `az configure --defaults location=<location>` 以設定不同的預設位置。)
 
-例如，下列命令會列出 `westeurope` 中所有的 Debian 8 個 SKU：
+例如，下列命令的 hello 列出 Debian 8 中所有的 Sku `westeurope`:
 
 ```azurecli
 az vm image list --location westeurope --offer Deb --publisher credativ --sku 8 --all --output table
@@ -133,15 +133,15 @@ Debian   credativ     8                  credativ:Debian:8:8.0.201706210        
 ...
 ```
 
-## <a name="navigate-the-images"></a>瀏覽映像 
-要在位置中找到映像的另一個方法是在序列中執行 [az vm image list-publishers](/cli/azure/vm/image#list-publishers)、[az vm image list-offers](/cli/azure/vm/image#list-offers) 和 [az vm image list-skus](/cli/azure/vm/image#list-skus) 命令。 您可以使用這些命令來判斷下列的值：
+## <a name="navigate-hello-images"></a>瀏覽 hello 映像 
+另一個方式 toofind 位置中的映像為 toorun hello [az vm 映像清單發行者](/cli/azure/vm/image#list-publishers)， [az vm 映像清單優惠](/cli/azure/vm/image#list-offers)，和[az vm 映像清單 sku](/cli/azure/vm/image#list-skus)序列中的命令。 您可以使用這些命令來判斷下列的值：
 
-1. 列出映像發行者。
+1. 清單 hello 映像的發行者。
 2. 針對指定的發行者，列出其提供項目。
 3. 針對指定的提供項目，列出其 SKU。
 
 
-例如，下列命令會列出美國西部位置中的映像發行者：
+例如，hello 下列命令會列出 hello 美國西部位置中的 hello 映像發行者：
 
 ```azurecli
 az vm image list-publishers --location westus --output table
@@ -166,7 +166,7 @@ westus      activeeon
 westus      adatao
 ...
 ```
-使用這項資訊從特定的發行者尋找優惠。 例如，如果 Canonical 是美國西部位置的映像發行者，執行 `azure vm image list-offers` 可找到其供應項目。 傳遞位置和發行者，如下列範例所示：
+使用此資訊 toofind 提供從特定的發行者。 比方說，如果 Canonical hello 美國西部位置中的映像 「 發行者 」，其提供執行尋找`azure vm image list-offers`。 傳遞 hello 位置和 hello 發行者如 hello 下列範例所示：
 
 ```azurecli
 az vm image list-offers --location westus --publisher Canonical --output table
@@ -185,7 +185,7 @@ westus      Ubuntu_Core
 westus      Ubuntu_Snappy_Core
 westus      Ubuntu_Snappy_Core_Docker
 ```
-您看到在美國西部區域中，Canonical 在 Azure 上發佈 **UbuntuServer** 優惠。 但是，是什麼 SKU？ 若要取得這些值，請執行 `azure vm image list-skus`並設定您探索到的位置、發行者和優惠：
+您會看到 hello 美國西部地區 Canonical 發行 hello **UbuntuServer**提供在 Azure 上。 但哪些 Sku 嗎？tooget 這些值，請執行`azure vm image list-skus`並設定 hello 位置、 發行者和已探索到的供應項目：
 
 ```azurecli
 az vm image list-skus --location westus --publisher Canonical --offer UbuntuServer --output table
@@ -219,7 +219,7 @@ westus      17.04-DAILY
 westus      17.10-DAILY
 ```
 
-最後，使用 `az vm image list` 命令來尋找您需要的 SKU 特定版本，例如，**16.04-LTS**：
+最後，使用 hello`az vm image list`命令 toofind 特定版本的 hello SKU 想，比方說， **16.04 LTS**:
 
 ```azurecli
 az vm image list --location westus --publisher Canonical --offer UbuntuServer --sku 16.04-LTS --all --output table
@@ -257,4 +257,4 @@ UbuntuServer  Canonical    16.04-LTS  Canonical:UbuntuServer:16.04-LTS:16.04.201
 UbuntuServer  Canonical    16.04-LTS  Canonical:UbuntuServer:16.04-LTS:16.04.201708151  16.04.201708151
 ```
 ## <a name="next-steps"></a>後續步驟
-現在，您可以記下 URN 值，精確地選擇想要使用的映像。 當您使用 [az vm create](/cli/azure/vm#create) 命令建立 VM 時，請傳遞此值與 `--image` 參數。 請記住，您可以使用 "latest" 來取代 URN 中的版本號碼。 此版本一律為發佈的最新版本。 若要使用 URN 資訊來快速建立虛擬機器，請參閱[使用 Azure CLI 來建立和管理 Linux VM](tutorial-manage-vm.md)。
+現在您可以選擇明確地說 hello 影像 toouse 所要採取的附註的 hello URN 值。 將此值以 hello 傳遞`--image`參數，當您建立 VM 以 hello [az vm 建立](/cli/azure/vm#create)命令。 請記住，您可以使用 「 最新 」，選擇性地取代 hello hello URN 中的版本號碼。 此版本一律為 hello hello 分配的最新的版本。 toocreate 虛擬機器，快速利用 hello URN 的詳細資訊，請參閱[建立和管理 Linux Vm 以 hello Azure CLI](tutorial-manage-vm.md)。

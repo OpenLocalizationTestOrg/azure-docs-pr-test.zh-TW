@@ -1,6 +1,6 @@
 ---
-title: "Reliable Actors 的動作項目類型序列化註解 | Microsoft Docs"
-description: "說明定義可用於定義 Service Fabric Reliable Actors 狀態與介面其可序列化類別的基本需求"
+title: "動作項目 aaaReliable 執行者注意事項輸入序列化 |Microsoft 文件"
+description: "討論定義可以使用的 toodefine 服務網狀架構 Reliable Actors 狀態的可序列化類別和介面的基本需求"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: 4b48b893e5a3bf5620f00a336576efe1ad63def8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d8584e7d90fe1c68af38983e71e5d0a7554689bf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="notes-on-service-fabric-reliable-actors-type-serialization"></a>Service Fabric Reliable Actors 類型序列化的注意事項
-所有方法的引數、動作項目介面中每個方法所傳回之工作的結果類型，以及動作項目的狀態管理員中儲存的物件都必須[可資料合約序列化](https://msdn.microsoft.com/library/ms731923.aspx)。 這也適用於在 [動作項目事件介面](service-fabric-reliable-actors-events.md)中定義的方法引數。 (動作項目事件介面方法一律會傳回無效)。
+hello 所有方法的引數的 hello 工作的結果類型傳回的動作項目介面，在每個方法和物件儲存在動作項目的狀態管理員必須[資料合約序列化](https://msdn.microsoft.com/library/ms731923.aspx)。 這也適用於 toohello 引數的定義中的 hello 方法[動作項目事件介面](service-fabric-reliable-actors-events.md)。 (動作項目事件介面方法一律會傳回無效)。
 
 ## <a name="custom-data-types"></a>自訂資料類型
-在此範例中，下列動作項目介面會定義一個方法，以傳回名為 `VoicemailBox` 的自訂資料類型：
+在此範例中，下列動作項目介面的 hello 定義傳回呼叫的自訂資料類型的方法`VoicemailBox`:
 
 ```csharp
 public interface IVoiceMailBoxActor : IActor
@@ -40,7 +40,7 @@ public interface VoiceMailBoxActor extends Actor
 }
 ```
 
-此介面是由動作項目實作，其使用狀態管理員來儲存 `VoicemailBox` 物件︰
+hello 介面藉由使用 hello 狀態管理員 toostore 執行者`VoicemailBox`物件：
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -76,12 +76,12 @@ public class VoiceMailBoxActorImpl extends FabricActor implements VoicemailBoxAc
 
 ```
 
-在此範例中， `VoicemailBox` 物件會在下列情況進行序列化︰
+在此範例中，hello`VoicemailBox`物件序列化時：
 
-* 在動作項目執行個體與呼叫端之間傳輸物件。
-* 物件已儲存在狀態管理員，以保存到磁碟並複寫到其他節點。
+* 動作項目執行個體和呼叫端之間傳輸 hello 物件。
+* hello 物件會儲存在 hello 狀態管理員，它會保存的 toodisk 和複寫 tooother 節點。
 
-Reliable Actor 架構會使用 DataContract 序列化。 因此，自訂資料物件與其成員必須使用 **DataContract** 和 **DataMember** 屬性分別註解。
+hello Reliable Actor 架構會使用 DataContract 序列化。 因此，hello 自訂資料物件和其成員必須以 hello 註解**DataContract**和**DataMember**分別屬性。
 
 ```csharp
 [DataContract]

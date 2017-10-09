@@ -1,5 +1,5 @@
 ---
-title: "Azure 服務健康情況概觀 | Microsoft Docs"
+title: "aaaAzure 服務健全狀況概觀 |Microsoft 文件"
 description: "目前和未來的 Azure 服務問題和維修如何影響 Azure 應用程式的個人化資訊。"
 services: Resource health
 documentationcenter: 
@@ -14,48 +14,48 @@ ms.tgt_pltfrm: na
 ms.workload: Supportability
 ms.date: 07/07/2017
 ms.author: robb
-ms.openlocfilehash: 001dc1fa2a0fd7e132101944a87be3f8552d8738
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 2b536ee2f19757d4f2baf5529866c3d159a4670c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-service-health"></a>Azure 服務健康情況
 Azure 服務的問題影響您的服務時，Azure 服務健康情況將提供適時的個人化資訊。  它也可協助您準備好後續的預定維修。
 
 ## <a name="service-health-events"></a>服務健康情況事件
 服務健康情況會追蹤三種可能影響資源的健康情況事件：
-1. **服務的問題** - 立即影響 Azure 服務的問題。 
-2. **規劃的維護** - 未來可能影響服務可用性的後續維修。  
+1. **服務的問題**-中的問題 hello 現在會影響您的 Azure 服務。 
+2. **規劃的維護**-可能會影響您的服務，在未來的 hello hello 可用性即將進行維護。  
 3. **健康情況摘要報告** - 需要注意的 Azure 服務變更。 範例包括取代 Azure 功能，或超過使用量配額。
 
     ![服務健康情況事件](./media/service-health-overview/azure-service-health-overview-7.png)
 
 ## <a name="get-started-with-service-health"></a>開始使用服務健康情況
-若要啟動服務健康情況儀表板，請選取入口網站儀表板上的 [服務健康情況] 圖格。 如果您先前已移除圖格，或您正在使用自訂的儀表板，搜尋「更多服務」(儀表板的左下方) 中的服務健康情況服務。
+toolaunch 服務健全狀況儀表板，選取 hello 服務健全狀況儀表板入口網站上的磚。 如果您先前已移除 hello 磚，或您使用自訂的儀表板，搜尋 「 多個服務 」 中的服務健全狀況服務 （下方儀表板上的左邊）。
 ![開始使用服務健康情況](./media/service-health-overview/azure-service-health-overview-1.png)
 
 ## <a name="see-current-issues-which-impact-your-services"></a>查看影響服務的目前問題
-**服務問題**檢視會顯示 Azure 服務中任何正在發生並影響資源的問題。 您可以了解問題開始發生的時間，以及受影響的服務和區域。 您也可以參閱最新的更新，以了解 Azure 如何解決問題。 
+hello**服務的問題**檢視會顯示任何進行中的問題會影響您的資源的 Azure 服務中。 您可以了解開始 hello 問題時，並受到影響的服務和區域。 您也可以讀取 hello 最新的更新 toounderstand 什麼 Azure 正在進行 tooresolve hello 問題。 
 ![管理服務問題](./media/service-health-overview/azure-service-health-overview-2.png)
 
-選擇 [潛在影響] 索引標籤，查看將受問題影響而且您擁有的資源列出的特定清單。 您可以下載這些資源的 CSV 清單，以便與小組共用。
+選擇 hello**潛在影響** 索引標籤 toosee hello 特定您自己的資源清單能 hello 問題所致。 您可以下載這些資源 tooshare CSV 清單與您的小組。
 ![管理服務問題 - 影響](./media/service-health-overview/azure-service-health-overview-4.png)
 
 ## <a name="get-links-and-downloadable-explanations"></a>取得連結和可下載的說明 
-您可以取得問題的連結，以便在您的問題管理系統中使用。 您可以下載 PDF，有時可以下載 CSV 檔案，以便與無法存取 Azure 入口網站的使用者共用。   
+您可以取得 hello 問題 toouse 連結問題管理系統中。 您可以使用沒有存取 toohello Azure 入口網站使用者下載 PDF 和有時 CSV 檔案 tooshare。   
 ![管理服務問題 - 問題管理](./media/service-health-overview/azure-service-health-overview-3.png)
 
 ## <a name="get-support-from-microsoft"></a>獲得 Microsoft 的支援
-若解決問題後您的資源仍處於不正常的狀態，請連絡支援人員。  使用頁面右邊的支援連結。  
+如果您的資源處於不正常的狀態，即使在 hello 問題解決之後，請連絡支援服務。  您可以使用 hello 支援連結上 hello hello 頁面的權限。  
 
-## <a name="pin-a-personalized-health-map-to-your-dashboard"></a>將個人化健康情況地圖釘選在儀表板
-篩選服務健康情況，以便顯示您的商務關鍵訂用帳戶、區域和資源類型。 儲存篩選條件，並將個人化健康情況世界地圖釘選在入口網站儀表板。 
+## <a name="pin-a-personalized-health-map-tooyour-dashboard"></a>釘選的個人化的健全狀況對應 tooyour 儀表板
+篩選服務健全狀況 tooshow，您的商務關鍵性的訂用帳戶、 區域和資源類型。 儲存 hello 篩選和 pin 個人化的健全狀況世界地圖 tooyour 入口網站儀表板。 
 ![篩選個人化健康情況地圖](./media/service-health-overview/azure-service-health-overview-6a.png)
 ![釘選個人化健康情況地圖](./media/service-health-overview/azure-service-health-overview-6b.png)
 
 ## <a name="configure-service-health-alerts"></a>設定服務健康情況警示
-Azure 服務健康情況已整合 Azure 監視器，當您的業務關鍵資源受到影響時，就會透過電子郵件、簡訊和 Webhook 通知向您發出警示。 設定適當服務健康情況事件的活動記錄警示。 使用動作群組，將該警示傳送給組織中的適當人員。 如需詳細資訊，請參閱[設定適用於服務健康情況的警示](../monitoring-and-diagnostics/monitoring-activity-log-alerts-on-service-notifications.md)
+Azure 服務健全狀況與整合 Azure 監視器 tooalert 您透過電子郵件、 簡訊和 webhook 通知您重要的資源都會受到影響時。 設定活動記錄檔事件的警示 hello 適當服務健全狀況。 警示 toohello 適當的人員使用的動作群組的組織中的路由。 如需詳細資訊，請參閱[設定適用於服務健康情況的警示](../monitoring-and-diagnostics/monitoring-activity-log-alerts-on-service-notifications.md)
 
 # <a name="next-steps"></a>後續步驟
 設定警示，如此就能收到健康情況問題的通知。 如需詳細資訊，請參閱[設定適用於服務健康情況的警示](../monitoring-and-diagnostics/monitoring-activity-log-alerts-on-service-notifications.md)。 

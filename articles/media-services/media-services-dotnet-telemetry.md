@@ -1,6 +1,6 @@
 ---
-title: "使用 .NET 設定 Azure 媒體服務遙測 | Microsoft Docs"
-description: "本文示範如何透過 .NET SDK 使用 Azure 媒體服務遙測。"
+title: "使用.NET 的 Azure Media Services 遙測 aaaConfiguring |Microsoft 文件"
+description: "本文章將示範如何 toouse hello Azure Media Services 使用.NET SDK 的遙測。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 1d857f3d062d8d1b15c64fa4b8c3e27ad6c2247e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 4019fa7d080ca3f8a8709bd1e666f7062b883954
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-azure-media-services-telemetry-with-net"></a>使用 .NET 設定 Azure 媒體服務遙測
 
-本主題說明您使用 .NET SDK 設定 Azure 媒體服務 (AMS) 遙測時可能採取的一般步驟。 
+本主題說明您可能需要設定使用.NET SDK hello Azure 媒體服務 (AMS) 遙測時的一般步驟。 
 
 >[!NOTE]
->如需什麼是 AMS 遙測及如何取用的詳細說明，請參閱[概觀](media-services-telemetry-overview.md)主題。
+>Hello 詳細的說明什麼是 AMS 遙測，以及如何 tooconsume，請參閱 hello[概觀](media-services-telemetry-overview.md)主題。
 
-您可以使用下列其中一個方法取用遙測資料︰
+您可以使用其中一個 hello 下列方式中的遙測資料：
 
-- 直接從 Azure 表格儲存體 (例如使用儲存體 SDK) 中讀取資料。 如需遙測儲存體資料表的說明，請參閱[這個](https://msdn.microsoft.com/library/mt742089.aspx)主題中的**取用遙測資訊**。
+- 直接從 Azure 資料表儲存體 （例如使用 hello 儲存體 SDK） 中讀取資料。 Hello 的遙測的儲存體資料表的說明，請參閱 hello**取用遙測資訊**中[這](https://msdn.microsoft.com/library/mt742089.aspx)主題。
 
 或
 
-- 使用媒體服務 .NET SDK 中的支援讀取儲存體資料。 本主題示範如何為指定的 AMS 帳戶啟用遙測，以及如何使用 Azure 媒體服務 .NET SDK 查詢度量。  
+- 使用讀取儲存體資料 hello Media Services.NET SDK 中的 hello 支援。 本主題說明如何 hello tooenable 遙測指定 AMS 帳戶，以及如何使用 tooquery hello 度量 hello Azure Media Services.NET SDK。  
 
 ## <a name="configuring-telemetry-for-a-media-services-account"></a>設定媒體服務帳戶的遙測
 
-若要啟用遙測，您需要執行下列步驟︰
+hello 下列步驟是必要的 tooenable 遙測：
 
-- 取得媒體服務帳戶附加之儲存體帳戶的認證。 
-- 建立 **EndPointType** 設定為 **AzureTable** 且 endPontAddress 指向儲存體資料表的通知端點。
+- 取得 hello 的 hello 儲存體帳戶附加 toohello Media Services 帳戶的認證。 
+- 建立具有通知端點**EndPointType**設定得**AzureTable**和指向 toohello 儲存體資料表的 endPointAddress。
 
         INotificationEndPoint notificationEndPoint = 
                       _context.NotificationEndPoints.Create("monitoring", 
                       NotificationEndPointType.AzureTable,
                       "https://" + _mediaServicesStorageAccountName + ".table.core.windows.net/");
 
-- 針對要監視的服務建立監視組態設定。 系統最多只允許一個監視組態設定。 
+- 建立監視的組態設定 hello 服務您想 toomonitor。 系統最多只允許一個監視組態設定。 
   
         IMonitoringConfiguration monitoringConfiguration = _context.MonitoringConfigurations.Create(notificationEndPoint.Id,
             new List<ComponentMonitoringSetting>()
@@ -62,15 +62,15 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
 
-1. 設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。 
+1. 設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。 
 
-2. 將下列項目新增至 app.config 檔案中定義的 **appSettings**：
+2. 新增下列項目太 hello**appSettings** app.config 檔案中所定義：
 
     <add key="StorageAccountName" value="storage_name" />
  
 ## <a name="example"></a>範例  
     
-下列範例示範如何為指定的 AMS 帳戶啟用遙測，以及如何使用 Azure 媒體服務 .NET SDK 查詢度量。  
+hello 下列範例顯示 hello tooenable 遙測指定 AMS 帳戶的方式，以及如何使用 tooquery hello 度量 hello Azure Media Services.NET SDK。  
 
     using System;
     using System.Collections.Generic;
@@ -192,7 +192,7 @@ ms.lasthandoff: 08/29/2017
 
             var channelMetrics = telemetry.GetChannelHeartbeats(timerangeStart, timerangeEnd);
 
-            // Print the channel metrics.
+            // Print hello channel metrics.
             Console.WriteLine("Channel metrics:");
 
             foreach (var channelHeartbeat in channelMetrics.OrderBy(x => x.ObservedTime))

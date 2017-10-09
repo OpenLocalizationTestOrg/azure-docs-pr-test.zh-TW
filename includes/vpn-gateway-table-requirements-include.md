@@ -1,4 +1,4 @@
-下表列出 PolicyBased 和 RouteBased VPN 閘道的需求。 此資料表適用於資源管理員與傳統部署模型。 就傳統模型而言，PolicyBased VPN 閘道與「靜態」閘道相同，而 RouteBased 閘道則與「動態」閘道相同。
+下列表格列出 hello 需求 PolicyBased 和 RouteBased VPN 閘道的 hello。 此表格適用於 tooboth hello 資源管理員和傳統部署模型。 Hello 傳統的模型，PolicyBased VPN 閘道是靜態閘道，為 hello 相同，並以路由為基礎的閘道是 hello 相同為動態閘道。
 
 |  | **PolicyBased 基本 VPN 閘道** | **RouteBased 基本 VPN 閘道** | **RouteBased 標準 VPN 閘道** | **RouteBased 高效能 VPN 閘道** |
 | --- | --- | --- | --- | --- |

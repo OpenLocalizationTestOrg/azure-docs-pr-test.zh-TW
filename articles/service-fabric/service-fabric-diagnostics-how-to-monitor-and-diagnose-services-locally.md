@@ -1,6 +1,6 @@
 ---
-title: "在 Windows 中針對 Azure 微服務進行偵錯 | Microsoft Docs"
-description: "了解如何監視和診斷在本機開發電腦上使用 Microsoft Azure Service Fabric 所撰寫的服務。"
+title: "在 Windows Azure microservices aaaDebug |Microsoft 文件"
+description: "深入了解如何 toomonitor 及診斷您使用本機開發電腦上的 Microsoft Azure Service Fabric 撰寫的服務。"
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/24/2017
 ms.author: dekapur
-ms.openlocfilehash: 08998340afb2f242b9a268331607b0d1ddb9b0c6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 24868aa194b8a28fa3e6de95c1de5506d912a544
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-and-diagnose-services-in-a-local-machine-development-setup"></a>監視和診斷本機開發設定中的服務
 > [!div class="op_single_selector"]
@@ -27,43 +27,43 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-監視、偵測、診斷和疑難排解可讓服務繼續順利執行，盡可能減少服務中斷的使用者經驗。 雖然監視和診斷在實際部署的生產環境中相當重要，但是效率會取決於在服務開發期間採用相似的模型，以確保它們能夠在您移至實際設定時正常運作。 Service Fabric 可讓服務開發人員輕鬆實作診斷，可以在單一電腦本機開發設定和實際生產叢集設定上順暢地工作。
+監視、 偵測、 診斷及疑難排解允許服務 toocontinue 盡量減少 toohello 使用者體驗。 雖然監視和診斷重大的實際部署的生產環境中，hello 效率將取決於服務 tooensure 運作時移動 tooa 真實世界的安裝程式的開發期間採用類似的模型。 Service Fabric 輕鬆可以順暢地適用於所有單一電腦的本機開發的設定和實際生產環境叢集安裝的服務開發人員 tooimplement 診斷。
 
 ## <a name="event-tracing-for-windows"></a>Windows 的事件追蹤
-[Windows 事件追蹤](https://msdn.microsoft.com/library/windows/desktop/bb968803.aspx) (ETW) 是我們建議的技術，可用於追蹤 Service Fabric 中的訊息。 使用 ETW 的部分優點為：
+[為 Windows 事件追蹤](https://msdn.microsoft.com/library/windows/desktop/bb968803.aspx)(ETW) 為 hello 建議技術，用於 Service Fabric 中追蹤訊息。 使用 ETW 的部分優點為：
 
 * **ETW 相當快速。** 其是以一種追蹤技術建置而成，並對您程式碼執行時間的影響降到最低。
-* **ETW 會在本機開發環境以及實際叢集設定順暢地進行追蹤。** 這表示當您準備好將程式碼部署至實際叢集時，您不需要重寫追蹤程式碼。
-* **Service Fabric 系統程式碼也會將 ETW 用於內部追蹤。** 這可讓您檢視與 Service Fabric 系統追蹤交錯的應用程式追蹤。 同時協助您更輕鬆了解在基礎系統中應用程式程式碼與事件之間的序列和相互關係。
-* **內建支援的 Service Fabric Visual Studio 工具可供您檢視 ETW 事件。** 一旦使用 Service Fabric 正確設定 Visual Studio 之後，ETW 事件就會出現在 Visual Studio 的 [診斷事件] 檢視中。 
+* **ETW 會在本機開發環境以及實際叢集設定順暢地進行追蹤。** 這表示您不需要您追蹤程式碼，當您準備好 toodeploy toorewrite 您程式碼 tooa 真實的叢集。
+* **Service Fabric 系統程式碼也會將 ETW 用於內部追蹤。** 這可讓您 tooview 交錯 Service Fabric 的系統追蹤的應用程式追蹤。 它也可協助您 toomore 輕鬆瞭解 hello 基礎系統中的 hello 順序與您的應用程式程式碼與事件之間的相互關係。
+* **沒有服務網狀架構的 Visual Studio 工具 中的內建支援 tooview ETW 事件。** 一旦 Visual Studio 已正確設定以 Service Fabric hello Visual Studio 的診斷事件 檢視中會出現 ETW 事件。 
 
 ## <a name="view-service-fabric-system-events-in-visual-studio"></a>在 Visual Studio 中檢視 Service Fabric 系統事件
-Service Fabric 會發出 ETW 事件，以協助應用程式開發人員了解平台中發生的事情。 如果您還沒有這麼做，請繼續遵循 [在 Visual Studio 中建立第一個應用程式](service-fabric-create-your-first-application-in-visual-studio.md)中的步驟。 此資訊將協助您啟動應用程式，並執行可顯示追蹤訊息的 [診斷事件檢視器]。
+Service Fabric 會發出 toohelp 應用程式開發人員了解為什麼在 hello 平台的 ETW 事件。 如果您尚未這麼做，請繼續進行，並依照中的 hello 步驟[Visual Studio 中建立第一個應用程式](service-fabric-create-your-first-application-in-visual-studio.md)。 這項資訊可協助您取得應用程式啟動並執行以 hello 診斷事件檢視器顯示 hello 追蹤訊息。
 
-1. 若 [診斷事件] 視窗不會自動顯示，請移至 Visual Studio 中的 [檢視] 索引標籤，選擇 [其他視窗]，然後選擇 [診斷事件檢視器]。
-2. 每個事件皆有標準的中繼資料資訊，可告訴您事件所來自的節點、應用程式和服務。 您也可以使用事件視窗頂端的 [篩選事件] 方塊來篩選事件清單。 例如，您可以依 [節點名稱] 或 [服務名稱] 進行篩選。 而當您查看事件詳細資料時，您也可以使用事件視窗頂端的 [暫停] 按鈕來暫停並於稍後繼續，而不會遺失任何事件。
+1. 如果 hello 診斷事件視窗不會自動顯示，當 toohello**檢視**Visual Studio 中的索引標籤上，選擇 **其他視窗**然後**診斷事件檢視器**。
+2. 每一個事件有會告訴您 hello 節點、 應用程式及服務 hello 事件來自的標準中繼資料資訊。 您也可以篩選事件 hello 清單使用 hello**篩選事件**hello hello 事件視窗上方的方塊。 例如，您可以依 [節點名稱] 或 [服務名稱] 進行篩選。 當您在查看事件詳細資料，您也可以暫停使用 hello 和**暫停**hello hello 事件視窗上方的按鈕，然後稍後再繼續而不會遺失任何事件。
    
    ![Visual Studio 診斷事件檢視器](./media/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally/DiagEventsExamples2.png)
 
-## <a name="add-your-own-custom-traces-to-the-application-code"></a>將您自己自訂的追蹤新增至應用程式程式碼
-Service Fabric Visual Studio 專案範本包含範例程式碼。 程式碼示範如何新增自訂的應用程式程式碼 ETW 追蹤，其會與來自 Service Fabric 的系統追蹤一併顯示在 Visual Studio ETW 檢視器中。 這個方法的優點是中繼資料會自動新增至追蹤，且 Visual Studio 診斷事件檢視器已設定為顯示追蹤。
+## <a name="add-your-own-custom-traces-toohello-application-code"></a>新增您自己自訂的追蹤 toohello 應用程式程式碼
+hello Service Fabric Visual Studio 專案範本包含範例程式碼。 hello 程式碼會示範如何 tooadd 自訂應用程式程式碼 ETW 追蹤向上 hello Visual Studio ETW 檢視器，以及從服務網狀架構的系統追蹤中會顯示。 hello 這個方法的優點是中繼資料會自動加入 tootraces，，和 hello Visual Studio 診斷事件檢視器已設定 toodisplay 它們。
 
-針對從「服務範本」(無狀態或可設定狀態) 建立的專案，只要搜尋 `RunAsync` 實作即可：
+針對專案所建立的 hello**服務範本**（無狀態或狀態） 只搜尋 hello`RunAsync`實作：
 
-1. 使用 `ServiceEventSource.Current.ServiceMessage` in the `RunAsync` 時會顯示來自應用程式程式碼的自訂 ETW 追蹤範例。
-2. 在 **ServiceEventSource.cs** 檔案中，您會找到 `ServiceEventSource.ServiceMessage` 方法的多載，出於效能因素，應該將其用於高頻率事件。
+1. 太 hello 呼叫`ServiceEventSource.Current.ServiceMessage`在 hello`RunAsync`方法顯示 hello 應用程式程式碼從自訂的 ETW 追蹤的範例。
+2. 在 hello **ServiceEventSource.cs**檔案中，您會看到多載的 hello`ServiceEventSource.ServiceMessage`應該用於 tooperformance 原因由於高頻率事件的方法。
 
-針對從 **動作項目範本** (無狀態或可設定狀態) 所建立專案：
+針對專案所建立的 hello**動作項目範本**（無狀態或狀態）：
 
-1. 開啟 **"ProjectName".cs** 檔案，其中 *ProjectName* 是您針對 Visual Studio 專案所選擇的名稱。  
-2. 在 *DoWorkAsync* 方法中找出程式碼 `ActorEventSource.Current.ActorMessage(this, "Doing Work");`。  這是來自應用程式程式碼撰寫的自訂 ETW 追蹤範例。  
-3. 在 **ActorEventSource.cs** 中，您會找到 `ActorEventSource.ActorMessage` 方法的多載，出於效能因素，應該將其用於高頻率事件。
+1. 開啟 hello **"ProjectName".cs**檔案*ProjectName* hello 您選擇的 Visual Studio 專案的名稱。  
+2. 找出 hello 程式碼`ActorEventSource.Current.ActorMessage(this, "Doing Work");`在 hello *DoWorkAsync*方法。  這是來自應用程式程式碼撰寫的自訂 ETW 追蹤範例。  
+3. 在檔案中**ActorEventSource.cs**，您會看到多載的 hello`ActorEventSource.ActorMessage`應該用於 tooperformance 原因由於高頻率事件的方法。
 
-將自訂 ETW 追蹤新增至服務程式碼之後，您可以再次建置、部署，以及執行應用程式以查看診斷事件檢視器中的事件。 如果您使用 **F5**來偵錯應用程式，診斷事件檢視器將會自動開啟。
+加入自訂的 ETW 追蹤 tooyour 服務程式碼之後, 您可以建置、 部署和執行 hello 應用程式再次 toosee 您 hello 診斷事件檢視器中的事件。 如果您偵錯 hello 應用程式與**F5**，hello 診斷事件檢視器會自動開啟。
 
 ## <a name="next-steps"></a>後續步驟
-在 Azure 叢集上執行應用程式時，您針對本機診斷在上方應用程式所新增的相同追蹤程式碼，將會使用可以用來檢視這些事件的工具。 請參閱下列文章，其中討論各種適用於工具的選項，並說明如何設定它們。
+hello 相同的追蹤程式碼加入 tooyour 本機診斷上述應用程式將使用工具，您可以使用 tooview Azure 的叢集上執行您的應用程式時，這些事件。 簽出這些文章會討論 hello 的 hello 工具的不同選項，並且描述如何設定這些。
 
-* [如何利用 Azure 診斷收集記錄檔](service-fabric-diagnostics-how-to-setup-wad.md)
+* [Toocollect 使用 Azure 診斷的記錄檔](service-fabric-diagnostics-how-to-setup-wad.md)
 * [使用 EventFlow 的事件彙總與集合](service-fabric-diagnostics-event-aggregation-eventflow.md)
 

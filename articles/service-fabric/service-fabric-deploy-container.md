@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric 和部署容器 | Microsoft Docs"
-description: "Service Fabric 及使用容器來部署微服務應用程式。 本文說明 Service Fabric 為容器提供的功能，以及如何將 Windows 容器映像部署至叢集。"
+title: "aaaService 網狀架構和部署容器 |Microsoft 文件"
+description: "Service Fabric 和 hello 使用容器 toodeploy 微服務應用程式。 本文說明 Service Fabric 提供容器和如何 toodeploy Windows 容器映像到叢集中的 hello 功能。"
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -14,86 +14,86 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 5/16/2017
 ms.author: msfussell
-ms.openlocfilehash: 25d6b056421e71fa70ed20a39589f77dbbc25c69
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8b6540579641474f21b8712b56049c7d177bec26
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-windows-container-to-service-fabric"></a>將 Windows 容器部署至 Service Fabric
+# <a name="deploy-a-windows-container-tooservice-fabric"></a>部署 Windows 容器 tooService 網狀架構
 > [!div class="op_single_selector"]
 > * [部署 Windows 容器](service-fabric-deploy-container.md)
 > * [部署 Docker 容器](service-fabric-deploy-container-linux.md)
 > 
 > 
 
-本文將引導您在 Windows 容器中建置容器化服務的程序。
+這篇文章會引導您建立 Windows 容器中的容器化的服務的 hello 程序。
 
 Service Fabric 有數個功能可協助您建置由容器內執行之微服務組成的應用程式。 
 
-功能包括：
+hello 功能包括：
 
 * 容器映像部署和啟用
 * 資源管理
 * 儲存機制驗證
 * 容器連接埠至主機連接埠的對應
 * 容器至容器的探索及通訊
-* 能夠設定環境變數
+* 能力 tooconfigure 並設定環境變數
 
-讓我們看看將容器化服務封裝納入應用程式時，每項功能如何運作。
+讓我們看看您要封裝包含在您的應用程式容器化的服務 toobe 時，每個功能的運作方式。
 
 ## <a name="package-a-windows-container"></a>封裝 Windows 容器
-在封裝容器時，您可以選擇使用 Visual Studio 專案範本，或是[手動建立應用程式套件](#manually)。  當您使用 Visual Studio 時，「新增專案」範本會為您建立應用程式套件結構和資訊清單檔案。
+當您封裝的容器時，您可以選擇 toouse Visual Studio 專案範本或[手動建立 hello 應用程式封裝](#manually)。  當您使用 Visual Studio，hello 應用程式封裝的結構，並為您建立資訊清單檔案的 hello 新的專案範本。
 
 > [!TIP]
-> 將現有的容器映像封裝到服務中的最簡單方式就是使用 Visual Studio。
+> 最簡單方式 toopackage hello 現有的容器映像服務是 toouse Visual Studio。
 
-## <a name="use-visual-studio-to-package-an-existing-container-image"></a>使用 Visual Studio 封裝現有容器映像
-Visual Studio 提供一個 Service Fabric 服務範本，可協助您將容器部署到 Service Fabric 叢集中。
+## <a name="use-visual-studio-toopackage-an-existing-container-image"></a>使用 Visual Studio toopackage 現有的容器映像
+Visual Studio 提供 Service Fabric 服務範本 toohelp 部署容器 tooa Service Fabric 叢集。
 
 1. 選擇 [檔案]  >  [新增專案]，然後建立 Service Fabric 應用程式。
-2. 選擇 [客體容器] 作為服務範本。
-3. 選擇 [映像名稱] 並提供該映像在您的容器存放庫中的路徑。 例如，https://hub.docker.com 中的 `myrepo/myimage:v1`
+2. 選擇**客體容器**作為 hello 服務範本。
+3. 選擇**映像名稱**並提供您的容器儲存機制中的 hello 路徑 toohello 映像。 例如，https://hub.docker.com 中的 `myrepo/myimage:v1`
 4. 指定服務的名稱，然後按一下 [確定]。
-5. 如果容器化服務需要一個用來進行通訊的端點，您現在便可在 ServiceManifest.xml 檔案中新增通訊協定、連接埠及類型。 例如： 
+5. 如果您容器化的服務端點需要通訊，您現在可以新增 hello 通訊協定、 連接埠和型別 toohello ServiceManifest.xml 檔案。 例如： 
      
     `<Endpoint Name="MyContainerServiceEndpoint" Protocol="http" Port="80" UriScheme="http" PathSuffix="myapp/" Type="Input" />`
     
-    提供 `UriScheme`，Service Fabric 就會自動向「命名」服務註冊容器端點以供搜尋。 連接埠可以固定 (如同上述範例所示) 或動態配置。 如果您沒有指定連接埠，則會動態配置應用程式連接埠範圍 (任何服務皆如此)。
-    您還需要在應用程式資訊清單中指定 `PortBinding` 來設定容器至主機連接埠的對應。 如需詳細資訊，請參閱[設定容器至主機的對應](#Portsection)。
+    藉由提供 hello `UriScheme`，Service Fabric 會自動以 hello 的發現能力命名服務註冊 hello 容器端點。 hello 連接埠可以固定的 （如同 hello 前面範例所示） 或動態配置。 如果您未指定連接埠，會以動態方式配置從 hello 應用程式連接埠範圍 （如同發生與任何服務）。
+    您也需要 tooconfigure hello 容器 toohost 連接埠對應藉由指定`PortBinding`hello 應用程式資訊清單中的原則。 如需詳細資訊，請參閱[設定容器 toohost 連接埠對應](#Portsection)。
 6. 如果您的容器需要資源管理，則請新增 `ResourceGovernancePolicy`。
-8. 如果您的容器需要向私人存放庫進行驗證，則新增 `RepositoryCredentials`。
-7. 如果是在已啟用容器支援的 Windows Server 2016 機器上執行，可以使用封裝和發佈動作來部署至您的本機叢集。 
-8. 準備好時，即可將應用程式發佈至遠端叢集，或將方案簽入到原始檔控制。 
+8. 如果您的容器需要 tooauthenticate 與私用儲存機制，然後新增`RepositoryCredentials`。
+7. 如果您沒有啟用容器支援執行 Windows Server 2016 電腦上，您可以使用 hello 封裝和發行動作 toodeploy tooyour 本機叢集。 
+8. 準備就緒時，您可以發行 hello 應用程式 tooa 遠端叢集，或檢查 hello 方案 toosource 控制項中。 
 
-如需範例，請查看 [GitHub 上的 Service Fabric 容器程式碼範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
+例如，簽出 hello [GitHub 上的 Service Fabric 容器程式碼範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)
 
 ## <a name="creating-a-windows-server-2016-cluster"></a>建立 Windows Server 2016 叢集
-若要部署容器化應用程式，您必須建立執行 Windows Server 2016 並已啟用容器支援的叢集。 您的叢集可能會在本機執行，或透過 Azure Resource Manager 部署在 Azure 中。 
+toodeploy 容器化的應用程式時，您需要的 toocreate 啟用容器支援執行 Windows Server 2016 的叢集。 您的叢集可能會在本機執行，或透過 Azure Resource Manager 部署在 Azure 中。 
 
-若要使用 Azure Resource Manager 部署叢集，選擇 Azure 中的 [含容器的 Windows Server 2016] 映像。 請參閱文章[使用 Azure Resource Manager 來建立 Service Fabric 叢集](service-fabric-cluster-creation-via-arm.md)。 確定您是使用下列 Azure Resource Manager 設定：
+toodeploy 叢集中使用 Azure 資源管理員 中，選擇 hello**與容器的 Windows Server 2016**映像在 Azure 中的選項。 請參閱 hello 文章[使用 Azure Resource Manager 建立 Service Fabric 叢集](service-fabric-cluster-creation-via-arm.md)。 請確定您使用下列 Azure 資源管理員設定的 hello:
 
 ```xml
 "vmImageOffer": { "type": "string","defaultValue": "WindowsServer"     },
 "vmImageSku": { "defaultValue": "2016-Datacenter-with-Containers","type": "string"     },
 "vmImageVersion": { "defaultValue": "latest","type": "string"     },  
 ```
-您也可以使用[五個節點的 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype)建立叢集。 或者，閱讀社群中的[部落格文章](https://loekd.blogspot.com/2017/01/running-windows-containers-on-azure.html)以了解如何使用 Service Fabric 和 Windows 容器。
+您也可以使用 hello[五個節點的 Azure Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype)toocreate 叢集。 或者，閱讀社群中的[部落格文章](https://loekd.blogspot.com/2017/01/running-windows-containers-on-azure.html)以了解如何使用 Service Fabric 和 Windows 容器。
 
 <a id="manually"></a>
 
 ## <a name="manually-package-and-deploy-a-container-image"></a>手動封裝和部署容器映像
-手動封裝容器化服務的程序是基於下列步驟：
+hello 程序手動封裝進行容器化的服務根據 hello 下列步驟：
 
-1. 將容器發佈至儲存機制。
-2. 建立封裝目錄結構。
-3. 編輯服務資訊清單檔。
-4. 編輯應用程式資訊清單檔。
+1. 發行 hello 容器 tooyour 儲存機制。
+2. 建立 hello 封裝目錄結構。
+3. 編輯 hello 服務資訊清單檔。
+4. 編輯 hello 應用程式資訊清單檔案。
 
 ## <a name="deploy-and-activate-a-container-image"></a>部署和啟用容器映像
-在 Service Fabric [應用程式模型](service-fabric-application-model.md)中，容器代表多個服務複本所在的應用程式主機。 若要部署和啟用容器，請在服務資訊清單的 `ContainerHost` 元素中輸入容器映像的名稱。
+在 hello Service Fabric[應用程式模型](service-fabric-application-model.md)，容器代表複本會放在哪一種多個服務應用程式主機。 toodeploy 並啟動容器，put 的 hello 名稱 hello 容器映像到`ContainerHost`hello 服務資訊清單中的項目。
 
-在服務資訊清單中，新增 `ContainerHost` 作為進入點。 然後將 `ImageName` 設為容器儲存機制和映像的名稱。 下列的局部資訊清單示範如何從名為 `myrepo` 的儲存機制，部署名為 `myimage:v1` 的容器：
+在 hello 服務資訊清單中，加入`ContainerHost`hello 進入點。 然後組 hello `ImageName` toobe hello 名稱 hello 容器儲存機制和映像。 hello 下列部分的資訊清單示範如何呼叫 toodeploy hello 容器`myimage:v1`從儲存機制稱為`myrepo`:
 
 ```xml
     <CodePackage Name="Code" Version="1.0">
@@ -106,10 +106,10 @@ Visual Studio 提供一個 Service Fabric 服務範本，可協助您將容器�
     </CodePackage>
 ```
 
-啟動容器時，可以在 `Commands` 下指定要執行的選用命令。 若有多個命令，用逗號分隔它們。 
+您可以指定啟動 hello hello 容器時的選擇性命令 toorun`Commands`項目。 若有多個命令，用逗號分隔它們。 
 
 ## <a name="understand-resource-governance"></a>了解資源管理
-資源管理是容器的功能，可限制容器在主機上可使用的資源。 應用程式資訊清單中指定的 `ResourceGovernancePolicy` 是用於宣告服務程式碼套件的資源限制。 可為以下資源設定限制：
+資源管理機制是，限制 hello 容器的 hello 資源 hello 容器的功能可以使用 hello 主機上。 hello `ResourceGovernancePolicy`，其中指定 hello 應用程式資訊清單中的就是使用的 toodeclare 資源限制，服務程式碼封裝。 您可以設定資源限制 hello 下列資源：
 
 * 記憶體
 * MemorySwap
@@ -133,7 +133,7 @@ Visual Studio 提供一個 Service Fabric 服務範本，可協助您將容器�
 ```
 
 ## <a name="authenticate-a-repository"></a>驗證儲存機制
-若要下載容器，您可能必須提供容器儲存機制的登入認證。 於應用程式資訊清單中指定的登入認證，是用於指定從映像儲存機制下載容器映像所需的登入資訊 (或 SSH 金鑰)。 下列範例顯示名為 TestUser  的帳戶及純文字密碼 (「不」建議使用)：
+toodownload 容器，您可能必須 tooprovide 登入認證 toohello 容器儲存機制。 hello 登入認證，在 hello 應用程式資訊清單中指定會使用的 toospecify hello 登入資訊或下載 hello 容器映像從 hello 映像儲存機制的 SSH 金鑰。 hello 下列範例將示範名為帳戶*TestUser*以及 hello 密碼以純文字 (*不*建議使用):
 
 ```xml
     <ServiceManifestImport>
@@ -146,11 +146,11 @@ Visual Studio 提供一個 Service Fabric 服務範本，可協助您將容器�
     </ServiceManifestImport>
 ```
 
-我們建議使用部署至電腦的憑證將密碼加密。
+我們建議您在使用已部署 toohello 機器的憑證來加密 hello 密碼。
 
-下列範例顯示名為 TestUser 的帳戶，其密碼以名為 MyCert 的憑證加密。 您可以使用 `Invoke-ServiceFabricEncryptText` Powershell 命令來建立密碼的加密文字。 如需詳細資訊，請參閱[管理 Service Fabric 應用程式中的密碼](service-fabric-application-secret-management.md)。
+hello 下列範例將示範名為帳戶*TestUser*、 其中 hello 密碼加密所使用的憑證稱為*MyCert*。 您可以使用 hello `Invoke-ServiceFabricEncryptText` PowerShell 命令 toocreate hello 密碼加密文字 hello 密碼。 如需詳細資訊，請參閱 hello 文章[管理 Service Fabric 應用程式中的機密](service-fabric-application-secret-management.md)。
 
-用於解密密碼的憑證私密金鑰必須以頻外方法部署到本機電腦。 (在 Azure 中，這個方法就是 Azure Resource Manager。)然後，當 Service Fabric 將服務套件部署到電腦時，它可以解密密碼。 搭配使用帳戶名稱和密碼，之後可以用它向容器儲存機制提供驗證。
+hello hello 憑證私密金鑰用 toodecrypt hello 密碼必須是已部署的 toohello 本機電腦的頻外方法中。 (在 Azure 中，這個方法就是 Azure Resource Manager。)然後，當 Service Fabric 部署 hello 服務封裝 toohello 機器，它可以解密 hello 密碼。 藉由使用 hello 密碼以及 hello 帳戶名稱，它可以再向 hello 容器儲存機制。
 
 ```xml
     <ServiceManifestImport>
@@ -163,8 +163,8 @@ Visual Studio 提供一個 Service Fabric 服務範本，可協助您將容器�
     </ServiceManifestImport>
 ```
 
-## <a name ="Portsection"></a> 設定容器至主機連接埠的對應
-您可以在應用程式資訊清單中指定 `PortBinding`，以設定用來與容器通訊的主機連接埠。 連接埠繫結會將服務在容器內接聽的連接埠，對應至主機上的連接埠。
+## <a name ="Portsection"></a>設定容器 toohost 連接埠對應
+您也可以指定與 hello 容器設定主機使用的連接埠 toocommunicate `PortBinding` hello 應用程式資訊清單中。 hello 連接埠繫結對應 hello 連接埠 toowhich hello 服務會接聽內部 hello 主機上的 hello 容器 tooa 通訊埠。
 
 ```xml
     <ServiceManifestImport>
@@ -178,7 +178,7 @@ Visual Studio 提供一個 Service Fabric 服務範本，可協助您將容器�
 ```
 
 ## <a name="configure-container-to-container-discovery-and-communication"></a>設定容器至容器的探索及通訊
-您可以使用 `PortBinding` 元素將容器連接埠對應至服務資訊清單中的端點。 在下列範例中，端點 `Endpoint1` 指定固定的連接埠 8905。 也可以完全不指定連接埠，在此情況下，將從叢集的應用程式連接埠範圍內為您選擇隨機連接埠。
+您可以使用 hello`PortBinding`元素 toomap hello 服務資訊清單中的容器連接埠 tooan 端點。 在下列範例的 hello，hello 端點`Endpoint1`8905 指定固定通訊埠。 也可以指定任何連接埠，在此情況下針對您選擇 hello 叢集應用程式連接埠範圍的隨機連接埠。
 
 
 ```xml
@@ -191,14 +191,14 @@ Visual Studio 提供一個 Service Fabric 服務範本，可協助您將容器�
         </Policies>
     </ServiceManifestImport>
 ```
-如果您在來賓容器的服務資訊清單中使用 `Endpoint` 標記指定端點，Service Fabric 可以自動將此端點發佈至命名服務。 因此，在叢集中執行的其他服務都可以使用用於解析的 REST 查詢找到這個容器。
+如果您指定端點，使用 hello `Endpoint` hello 客體容器，Service Fabric 服務資訊清單中的標記可以自動發佈此端點 toohello 命名服務。 因此，hello 叢集中執行的其他服務可以探索使用 hello REST 查詢以解析此容器。
 
-向命名服務註冊，可讓您在容器內利用[反向 Proxy](service-fabric-reverseproxy.md) 執行容器對容器的通訊。 將 http 接聽連接埠和您想要與之通訊的服務名稱提供給反向 Proxy，並將這些都設為環境變數，便可進行通訊。 如需詳細資訊，請參閱下一節。 
+註冊以 hello 命名服務後，您可以執行容器的容器通訊您容器內使用 hello[反向 proxy](service-fabric-reverseproxy.md)。 通訊是由提供 hello 反向 proxy http 接聽連接埠和 hello 名稱要與 toocommunicate 視為環境變數的 hello 服務執行。 如需詳細資訊，請參閱 hello 下一節。 
 
 ## <a name="configure-and-set-environment-variables"></a>設定環境變數
-可以為服務資訊清單中的每個程式碼套件指定環境變數。 所有服務都有這項功能，無論是部署為容器或處理程序或來賓可執行檔。 您可以覆寫應用程式資訊清單中環境變數的值，或在部署期間將它們指定為應用程式參數。
+環境變數可以指定每個程式碼封裝 hello 服務資訊清單中。 所有服務都有這項功能，無論是部署為容器或處理程序或來賓可執行檔。 您可以覆寫資訊清單 hello 應用程式中的值，或做為應用程式參數的部署期間指定這些環境變數。
 
-下列服務資訊清單 XML 程式碼片段示範如何指定程式碼封裝的環境變數：
+hello 下列服務資訊清單 XML 程式碼片段示範如何的範例程式碼封裝的 toospecify 環境變數：
 
 ```xml
     <ServiceManifest Name="FrontendServicePackage" Version="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -221,7 +221,7 @@ Visual Studio 提供一個 Service Fabric 服務範本，可協助您將容器�
     </ServiceManifest>
 ```
 
-在應用程式資訊清單層級上可覆寫這些環境變數︰
+這些環境變數會覆寫 hello 應用程式層級資訊清單：
 
 ```xml
     <ServiceManifestImport>
@@ -233,11 +233,11 @@ Visual Studio 提供一個 Service Fabric 服務範本，可協助您將容器�
     </ServiceManifestImport>
 ```
 
-在以上範例中，我們為 `HttpGateway` 環境變數指定明確的值 (19000)，而 `BackendServiceName` 參數的值是透過 `[BackendSvc]` 應用程式參數來設定。 這些設定可讓您在部署應用程式時指定 `BackendServiceName` 的值，而在資訊清單中沒有固定的值。
+在 hello 前一個範例中，我們已指定明確的值為 hello`HttpGateway`環境變數 (19000)，而我們將設定為 hello 值`BackendServiceName`參數透過 hello`[BackendSvc]`應用程式參數。 這些設定可讓您 toospecify hello 值`BackendServiceName`時部署 hello 應用程式和 hello 資訊清單中沒有固定的值的值。
 
 ## <a name="configure-isolation-mode"></a>設定隔離模式
 
-Windows 支援兩種容器隔離模式 - 處理序和 Hyper-V。  在處理序隔離模式中，在相同主機電腦上執行的所有容器都與主機共用核心。 在 Hyper-V 隔離模式中，會在每個 Hyper-V 容器與容器主機之間隔離核心。 隔離模式是在應用程式資訊清單檔中的 `ContainerHostPolicies` 標記指定。  可以指定的隔離模式有 `process`、`hyperv` 和 `default`。 Windows Server 主機上的 `default` 隔離模式預設為 `process`，Windows 10 主機上的預設值則為 `hyperv`。  下列程式碼片段顯示如何在應用程式資訊清單檔中指定隔離模式。
+Windows 支援兩種容器隔離模式 - 處理序和 Hyper-V。  Hello 處理序隔離模式中，所有的 hello 容器上執行 hello 相同主機電腦共用 hello 核心與 hello 主機。 Hello HYPER-V 隔離模式中，hello 核心會隔離每個 HYPER-V 容器與 hello 容器主機之間。 指定在 hello hello 隔離模式`ContainerHostPolicies`hello 應用程式資訊清單檔中的標記。  hello 隔離模式可指定為`process`， `hyperv`，和`default`。 hello`default`太預設隔離模式`process`Windows 伺服器上裝載，且預設值太`hyperv`Windows 10 主機上。  hello 下列程式碼片段示範如何指定 hello 應用程式資訊清單檔中的 hello 隔離模式。
 
 ```xml
    <ContainerHostPolicies CodePackageRef="NodeService.Code" Isolation="hyperv">
@@ -272,7 +272,7 @@ Windows 支援兩種容器隔離模式 - 處理序和 Hyper-V。  在處理序�
     </ApplicationManifest>
 ```
 
-以下是服務資訊清單 (在之前的應用程式資訊清單中指定) 的範例：
+（在 hello 前面應用程式資訊清單中指定） 的範例服務資訊清單如下：
 
 ```xml
     <ServiceManifest Name="FrontendServicePackage" Version="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -303,7 +303,7 @@ Windows 支援兩種容器隔離模式 - 處理序和 Hyper-V。  在處理序�
 ```
 
 ## <a name="next-steps"></a>後續步驟
-現在您已部署容器化的服務，可以開始了解如何讀取 [Service Fabric 應用程式生命週期](service-fabric-application-lifecycle.md)並管理其生命週期。
+既然您已部署的容器化的服務，了解如何 toomanage 藉由讀取週期[Service Fabric 應用程式生命週期](service-fabric-application-lifecycle.md)。
 
 * [Service Fabric 和容器的概觀](service-fabric-containers-overview.md)
 * 如需範例，請查看 [GitHub 上的 Service Fabric 容器程式碼範例](https://github.com/Azure-Samples/service-fabric-dotnet-containers)

@@ -1,1 +1,1 @@
-在 Azure DevTest Labs 中，自訂映像可讓您快速建立 VM，而不需等待在目標電腦上安裝所有必要的軟體。 自訂映像可讓您在 VHD 檔案中預先安裝您需要的所有軟體，然後再使用該 VHD 檔案建立 VM。 因為已安裝軟體，VM 建立的速度會更快。 此外，您還能使用自訂映像來複製 VM，亦即從 VM 建立一個自訂映像，然後再依據該自訂映像建立 VM。
+在 Azure 的 DevTest Labs、 自訂映像讓您 toocreate Vm 快速而不需等待 hello 目標電腦上安裝所有必要的 hello 軟體 toobe。 自訂映像 toopre 安裝所有 hello 在 VHD 檔案中，您需要的軟體可讓您，然後使用 hello VHD 檔案 toocreate VM。 Hello 軟體已經安裝，因為 hello VM 建立時間會更快。 此外，自訂映像可以是使用的 tooclone Vm，藉由建立自訂映像從 VM，並根據該自訂映像，然後建立 Vm。

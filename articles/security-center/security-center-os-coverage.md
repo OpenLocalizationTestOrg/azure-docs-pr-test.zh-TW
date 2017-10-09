@@ -1,5 +1,5 @@
 ---
-title: "Azure 資訊安全中心支援的平台 | Microsoft Docs"
+title: "在 Azure 資訊安全中心 aaaSupported 平台 |Microsoft 文件"
 description: "本文件提供的清單列出 Azure 資訊安全中心支援的 Windows 與 Linux 作業系統。"
 services: security-center
 documentationcenter: na
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/16/2017
 ms.author: terrylan
-ms.openlocfilehash: c33e132037d95fa92fd59a8243a9a8a351ae0224
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f73e04970749271fc9d75836f4f468b0a4953f9e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="supported-platforms-in-azure-security-center"></a>Azure 資訊安全中心支援的平台
-針對使用傳統與 Resource Manager 部署模型建立的虛擬機器 (VM)，提供安全性狀態監視和建議。
+安全性狀態監視和建議可供使用傳統的 hello 和資源管理員部署模型所建立的虛擬機器 (Vm)。
 
 > [!NOTE]
-> 深入了解 Azure 資源的[傳統和 Resource Manager 部署模型](../azure-classic-rm.md)。
+> 深入了解 hello[傳統和資源管理員部署模型](../azure-classic-rm.md)Azure 資源。
 >
 >
 
@@ -60,11 +60,11 @@ ms.lasthandoff: 07/11/2017
 >
 
 ## <a name="vms-and-cloud-services"></a>VM 和雲端服務
-也支援雲端服務中執行的 VM。 只監視生產位置中執行的雲端服務 Web 角色和背景工作角色。 若要深入了解雲端服務，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)。
+也支援雲端服務中執行的 VM。 只監視生產位置中執行的雲端服務 Web 角色和背景工作角色。 toolearn 進一步了解雲端服務，請參閱[雲端服務概觀](../cloud-services/cloud-services-choose-me.md)。
 
 ## <a name="next-steps"></a>後續步驟
 
-- [Azure 資訊安全中心規劃和操作指南](security-center-planning-and-operations-guide.md) - 了解如何規劃及了解採用 Azure 資訊安全中心的設計考量
+- [Azure 資訊安全中心計劃與作業指南](security-center-planning-and-operations-guide.md)— 了解如何 tooplan 並了解 hello 設計考量 tooadopt Azure 資訊安全中心
 - [Azure 資訊安全中心不同類型的安全性警示](https://docs.microsoft.com/en-us/azure/security-center/security-center-alerts-type.md#virtual-machine-behavioral-analysis) - 深入了解資訊安全中心中的虛擬機器行為分析和損毀傾印記憶體分析
-- [Azure 資訊安全中心常見問題集](security-center-faq.md) — 尋找有關使用服務的常見問題。
+- [Azure 資訊安全中心常見問題集](security-center-faq.md)— 尋找使用 hello 服務相關的常見問題集
 - [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) - 尋找有關 Azure 安全性與合規性的部落格文章

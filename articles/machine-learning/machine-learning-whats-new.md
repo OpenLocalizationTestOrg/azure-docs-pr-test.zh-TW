@@ -1,5 +1,5 @@
 ---
-title: "Azure Machine Learning 新增功能 | Microsoft Docs"
+title: "aaaWhat 的新 Azure Machine Learning 中 |Microsoft 文件"
 description: "Azure Machine Learning 中可用的新功能。"
 services: machine-learning
 documentationcenter: 
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/28/2017
 ms.author: v-donglo
-ms.openlocfilehash: 551b977b90612ddbfa1514a9c2358ebf8179c385
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6532aabcff023d6c81f79f21d501335c234c55fa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="whats-new-in-azure-machine-learning"></a>Azure Machine Learning 新增功能
 
-### <a name="the-march-2017-release-of-microsoft-azure-machine-learning-updates-provides-the-following-feature"></a>2017 年 3 月發行的 Microsoft Azure Machine Learning 更新提供下列功能：
+### <a name="hello-march-2017-release-of-microsoft-azure-machine-learning-updates-provides-hello-following-feature"></a>hello 2017 年 3 月版本的 Microsoft Azure 機器學習服務更新提供下列功能的 hello:
 
 
 
 * Azure Machine Learning BES 作業專用的容量
 
-    Machine Learning 批次集區處理會使用 [Azure Batch](../batch/batch-technical-overview.md) 服務，提供客戶管理的 Azure Machine Learning 批次執行服務級別。 批次集區處理可讓您建立 Azure Batch 集區，以便提交批次作業，並讓它們以預期的方式執行。
+    機器學習批次集區處理會使用 hello [Azure Batch](../batch/batch-technical-overview.md)服務 tooprovide hello Azure 機器學習批次執行服務的客戶管理標尺。 批次集區處理可讓您 toocreate Azure Batch 集區，您可以提交批次作業，讓它們可預測的方式執行。
 
     如需詳細資訊，請參閱[適用於 Machine Learning 作業的 Azure Batch 服務](machine-learning-dedicated-capacity-for-bes-jobs.md)。
 
 
-### <a name="the-august-2016-release-of-microsoft-azure-machine-learning-updates-provide-the-following-features"></a>2016 年 8 月發行的 Microsoft Azure Machine Learning 更新提供下列功能︰
-* 新的 [Microsoft Azure Machine Learning Web 服務](https://services.azureml.net/)入口網站可集中管理 Web 服務的所有層面，現在可以在此入口網站中管理傳統 Web 服務。    
+### <a name="hello-august-2016-release-of-microsoft-azure-machine-learning-updates-provide-hello-following-features"></a>hello 2016 年 8 月發行 Microsoft Azure 機器學習服務更新提供下列功能的 hello:
+* 傳統的 Web 服務現在可以管理在新的 hello [Microsoft Azure 機器學習 Web 服務](https://services.azureml.net/)入口網站，提供一個位置 toomanage Web 服務的所有層面。    
   * 它提供 Web 服務 [使用量統計資料](machine-learning-manage-new-webservice.md)。
   * 使用範例資料來簡化測試 Azure Machine Learning 遠端要求呼叫。
   * 提供新的批次執行服務測試頁面，有範例資料和作業提交歷程記錄可用。
   * 提供更輕鬆的端點管理。
 
-### <a name="the-july-2016-release-of-microsoft-azure-machine-learning-updates-provide-the-following-features"></a>2016 年 7 月發行的 Microsoft Azure Machine Learning 更新提供下列功能︰
-* 現在 Web 服務是透過 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 介面管理為 Azure 資源，有下列增強功能︰
-  * 有新的 [REST API](https://msdn.microsoft.com/library/azure/Dn950030.aspx) 可部署和管理以 Resource Manager 為基礎的 Web 服務。
-  * 新的 [Microsoft Azure Machine Learning Web 服務](https://services.azureml.net/)入口網站可集中管理 Web 服務的所有層面。
-* 使用以 Resource Manager 為基礎的 API，運用 Web 服務的 Resource Manager 資源提供者 ，加入以新的訂用帳戶為基礎、多區域 Web 服務的部署模型。
-* 使用新的 Resource Manager RP 進行計費，引入新的 [定價方案](https://azure.microsoft.com/pricing/details/machine-learning/) 和方案管理功能。
-  * 您現在可以[將您的 Web 服務部署到多個區域](machine-learning-how-to-deploy-to-multiple-regions.md)而不需要在每個區域中建立訂用帳戶。
+### <a name="hello-july-2016-release-of-microsoft-azure-machine-learning-updates-provide-hello-following-features"></a>hello 2016 年 7 月發行 Microsoft Azure 機器學習服務更新提供下列功能的 hello:
+* Web 服務現在都會當做 Azure 資源，透過管理來管理[Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)介面，讓 hello 下列增強功能：
+  * 有新[REST Api](https://msdn.microsoft.com/library/azure/Dn950030.aspx) toodeploy 和管理您的資源管理員為基礎的 Web 服務。
+  * 新[Microsoft Azure 機器學習 Web 服務](https://services.azureml.net/)入口網站，提供一個位置 toomanage Web 服務的所有層面。
+* 加入新訂用帳戶為基礎的多地區 web 服務的部署模型使用資源管理員基礎運用 hello 資源管理員資源提供者 Web 服務的應用程式開發介面。
+* 導入新[定價方案](https://azure.microsoft.com/pricing/details/machine-learning/)和計劃使用的管理功能 hello 計費的新資源管理員 RP。
+  * 您現在可以[部署您的 web 服務 toomultiple 區](machine-learning-how-to-deploy-to-multiple-regions.md)而不需要 toocreate 每個區域中的訂閱。
 * 提供 Web 服務 [使用量統計資料](machine-learning-manage-new-webservice.md)。
 * 使用範例資料來簡化測試 Azure Machine Learning 遠端要求呼叫。
 * 提供新的批次執行服務測試頁面，有範例資料和作業提交歷程記錄可用。
 
-此外，Machine Learning Studio 已更新，可讓您部署到新式 Web 服務模型，或繼續部署到傳統 Web 服務模型。 
+此外，hello Machine Learning Studio 已更新的 tooallow 您 toodeploy toohello 新的 Web 服務模型，或是繼續 toodeploy toohello 傳統 Web 服務模型。 
 

@@ -1,36 +1,36 @@
 <!--author=alkohli last changed: 02/06/17-->
 
-#### <a name="to-install-an-update-from-the-azure-portal"></a>從 Azure 入口網站安裝更新
+#### <a name="tooinstall-an-update-from-hello-azure-portal"></a>tooinstall 從 hello Azure 入口網站更新
 
-1. 在 [StorSimple 服務] 頁面上，選取您的裝置。 瀏覽至 [裝置]  >  [維護]。
-2. 按一下頁面底部的 [ **掃描更新**]。 系統會建立用來掃描可用更新的作業。 當作業成功完成時，系統會通知您。
-3. 在相同頁面的 [軟體更新] 區段中，會有新的軟體更新可供使用。 我們建議您先檢閱版本資訊，然後再於裝置上套用更新。
-4. 在頁面底部，依序按一下 [安裝更新] 及 [確定]。
-5. 在 [安裝更新] 對話方塊中，確定您已經依照建議，然後選取 [我了解上述需求而且已準備好升級我的裝置]，然後按一下核取按鈕。
+1. 在 hello StorSimple 服務頁面上，選取您的裝置。 瀏覽過**裝置** > **維護**。
+2. 在 hello hello 頁面底部，按一下**掃描更新**。 Tooscan 可用的更新時，會建立一個作業。 Hello 作業順利完成時，會通知您。
+3. 在 hello**軟體更新**區段 hello 相同頁面上，hello 新軟體更新可供使用。 我們建議您在裝置上套用更新之前，檢閱 hello 版本資訊。
+4. 在 hello hello 頁面底部，按一下 **安裝更新**，然後**確定**。
+5. 在 hello**安裝更新**對話方塊中，請確定您已依照 hello 建議，然後選取 **我了解上述需求的 hello，而且已準備好 tooupgrade 我的裝置**按一下 hello 核取按鈕。
    
     ![確認訊息](./media/storsimple-install-update2-via-portal/InstallUpdate12_2M.png)
 6. 一組必要條件檢查會隨即開始。 這些檢查包括︰
    
-   * **控制器健康狀況檢查** ：確認這兩個裝置控制器的狀況良好且在線上。
-   * **硬體元件健康狀況檢查** ：確認您的 StorSimple 裝置上的所有硬體元件的狀況良好。
-   * **DATA 0 檢查** ：確認您的裝置已啟用 DATA 0。 如果未啟用此介面，您必須啟用它，然後重試。
-   * **DATA 2 和 DATA 3 檢查** ：確認未啟用 DATA 2 和 DATA 3 網路介面。 如果已啟用這些介面，則必須停用它們，然後嘗試更新您的裝置。 只有在您要從執行 GA 軟體的裝置更新時，才需要執行這項檢查。 執行 0.1、0.2 或 0.3 版的裝置將不需要這項檢查。
-   * **閘道器檢查** ：在任何執行 Update 1 之前版本的裝置上進行。 這項檢查只能在執行 Update 1 之前版本軟體的所有裝置上執行，但是會在已為 DATA 0 以外的網路介面設定閘道器的裝置上無法執行。
+   * **控制器健康情況檢查**tooverify 兩者 hello 裝置控制器皆狀況良好並線上。
+   * **硬體元件健康情況檢查**tooverify 所有 hello StorSimple 裝置上的硬體元件均狀況良好。
+   * **檢查 DATA 0** tooverify DATA 0 已啟用您的裝置上。 如果未啟用此介面，您必須啟用它，然後重試。
+   * **DATA 2 與 DATA 3 檢查**tooverify DATA 2 和 DATA 3 網路介面不會啟用。 如果已啟用這些介面，然後您必須停用這些然後再試 tooupdate 您的裝置。 只有在您要從執行 GA 軟體的裝置更新時，才需要執行這項檢查。 執行 0.1、0.2 或 0.3 版的裝置將不需要這項檢查。
+   * **閘道核取**任何裝置上執行 版本先前 tooUpdate 1。 這項檢查會在執行更新前 1 軟體的所有 hello 裝置上執行，但設定不同於 DATA 0 網路介面閘道的 hello 裝置上會失敗。
      
-     如果所有檢查都成功完成，則會套用更新。 當檢查進行時，您會收到通知。
+     如果所有檢查都成功，則會套用 hello 更新。 Hello 檢查進行中時，會通知您。
      
      ![前置檢查通知](./media/storsimple-install-update2-via-portal/InstallUpdate12_3M.png)
      
-     以下是檢查失敗的範例。 您必須確認這兩個裝置控制器狀況良好且在線上。 您也必須檢查硬體元件的健全狀態。 在此範例中，需要注意控制器 0 及控制器 1 元件。 如果您不能自行解決這些問題，您可能需要連絡 Microsoft 支援服務。
+     hello 以下是的範例中的 hello 檢查失敗。 您必須驗證兩個 hello 裝置控制器狀況良好且在線上。 您也需要 toocheck hello hello 硬體元件健全狀況。 在此範例中，需要注意控制器 0 及控制器 1 元件。 如果您無法自行解決這些問題，您可能需要 toocontact Microsoft 支援服務。
      
        ![檢查失敗](./media/storsimple-install-update2-via-portal/HCS_PreUpgradeChecksFailed-include.png)
-7. 檢查成功完成後，將會建立更新作業。 成功建立更新作業時，系統將會通知您。
+7. Hello 檢查成功完成之後，會建立更新工作。 已成功建立 hello 更新工作時，會通知您。
    
     ![建立更新工作](./media/storsimple-install-update2-via-portal/InstallUpdate12_44M.png)
    
-    接著，更新會套用到您的裝置上。
+    hello 更新然後會套用至您的裝置。
     
-8. 若要監視更新工作的進度，請按一下 [ **檢視工作**]。 在 [工作]  頁面中，您可以看到更新進度。
-9. 更新需要幾個小時才能完成。 隨時可選取更新工作並按一下 [詳細資料]  來檢視工作的詳細資料。
-10. 作業完成後，瀏覽至 [維護] 頁面，並向下捲動至 [軟體更新]。
+8. hello 更新作業，toomonitor hello 進度按一下**檢視工作**。 在 [hello**作業**] 頁面上，您可以看到 hello 更新進度。
+9. hello 更新所需的幾個小時 toocomplete。 選取 hello 更新工作，然後按一下**詳細資料**隨時 hello 工作 tooview hello 詳細資料。
+10. Hello 工作完成後，瀏覽 toohello**維護**頁面上，然後向下捲動太**軟體更新**。
 

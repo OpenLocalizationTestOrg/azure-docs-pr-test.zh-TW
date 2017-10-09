@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric 的服務遠端處理 | Microsoft Docs"
-description: "Service Fabric 遠端處理可讓用戶端和服務使用遠端程序呼叫與服務進行通訊。"
+title: "服務網狀架構中的遠端執行功能 aaaService |Microsoft 文件"
+description: "Service Fabric 遠端處理可讓用戶端與服務 toocommunicate 與服務，使用遠端程序呼叫的。"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 04/20/2017
 ms.author: vturecek
-ms.openlocfilehash: 92a8894f24c234fbf38eda086531b524cceccfc1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 14682cf8671a85e04144eccf97803ab67c258875
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-remoting-with-reliable-services"></a>使用 Reliable Services 的遠端服務
-對於未繫結至特定通訊協定或堆疊 (例如 WebAPI、Windows Communication Foundation (WCF) 或其他項目) 的服務，Reliable Services 架構會提供遠端機制，以便快速且輕鬆設定服務遠端程序呼叫。
+不服務繫結 tooa 特定通訊協定或堆疊，例如 WebAPI、 Windows Communication Foundation (WCF) 或其他項目，如 hello 可靠的服務架構提供遠端處理機制 tooquickly，並輕鬆地設定遠端程序呼叫服務。
 
 ## <a name="set-up-remoting-on-a-service"></a>設定在服務上的遠端處理
 只要兩個簡單步驟，就能設定服務的遠端處理：
 
-1. 建立服務實作的介面。 這個介面會定義方法，可在您的服務上用於遠端程序呼叫。 方法也必須是傳回工作的非同步方法。 此介面必須實作 `Microsoft.ServiceFabric.Services.Remoting.IService` ，表示服務具有遠端處理介面。
-2. 在您的服務中使用遠端接聽程式。 這是提供遠端功能的 `ICommunicationListener` 實作。 `Microsoft.ServiceFabric.Services.Remoting.Runtime` 命名空間包含一個適用於無狀態與具狀態服務的擴充方法 `CreateServiceRemotingListener`，可用於建立使用預設遠端傳輸通訊協定的遠端接聽程式。
+1. 建立服務 tooimplement 的介面。 這個介面會定義可供您服務上的遠端程序呼叫的 hello 方法。 hello 方法必須是工作傳回非同步方法。 hello 介面必須實作`Microsoft.ServiceFabric.Services.Remoting.IService`hello 服務的 toosignal 具有遠端服務介面。
+2. 在您的服務中使用遠端接聽程式。 這是提供遠端功能的 `ICommunicationListener` 實作。 hello`Microsoft.ServiceFabric.Services.Remoting.Runtime`命名空間包含的擴充方法，`CreateServiceRemotingListener`無狀態與可設定狀態服務，可以使用的 toocreate 遠端接聽程式使用 hello 預設遠端處理的傳輸通訊協定。
 
-注意：`Remoting` 命名空間是以名為 `Microsoft.ServiceFabric.Services.Remoting` 的個別 Nuget 套件形式來提供使用 
+注意： hello`Remoting`命名空間是可用以呼叫個別的 nuget 套件`Microsoft.ServiceFabric.Services.Remoting` 
 
-例如，下列無狀態服務服務會公開單一方法，透過遠端程序呼叫取得 "Hello World"。
+例如，hello 下列無狀態服務會公開透過遠端程序呼叫的單一方法 tooget"Hello World"。
 
 ```csharp
 using Microsoft.ServiceFabric.Services.Communication.Runtime;
@@ -63,12 +63,12 @@ class MyService : StatelessService, IMyService
 }
 ```
 > [!NOTE]
-> 服務介面中的引數和傳回類型可以是任何簡單、複雜或自訂的類型，但必須可由 .NET [DataContractSerializer](https://msdn.microsoft.com/library/ms731923.aspx)序列化。
+> hello 引數和 hello 傳回 hello 服務介面中的型別可以是任何簡單、 複雜或自訂類型，但它們必須由 hello.NET 序列化[DataContractSerializer](https://msdn.microsoft.com/library/ms731923.aspx)。
 >
 >
 
 ## <a name="call-remote-service-methods"></a>呼叫遠端服務方法
-透過 `Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy` 類別使用連至服務的本機 Proxy，可以在服務上使用遠端堆疊呼叫方法。 `ServiceProxy` 方法會使用該服務所實作的相同介面，建立本機 Proxy。 您可以使用該 Proxy 直接在介面上遠端呼叫方法。
+在服務上呼叫方法，藉由使用 hello 遠端處理堆疊方式是使用本機 proxy toohello 服務透過 hello`Microsoft.ServiceFabric.Services.Remoting.Client.ServiceProxy`類別。 hello`ServiceProxy`方法會建立本機 proxy 使用 hello hello 服務的相同介面實作。 與該 proxy，您可以只 hello 介面從遠端呼叫方法。
 
 ```csharp
 
@@ -78,24 +78,24 @@ string message = await helloWorldClient.HelloWorldAsync();
 
 ```
 
-遠端架構會將在服務擲回的例外狀況傳播給用戶端。 因此在用戶端使用 `ServiceProxy` 的例外狀況處理邏輯，可以直接處理服務擲回的例外狀況。
+hello 遠端架構會傳播 hello 服務 toohello 用戶端在擲回的例外狀況。 因此例外狀況處理邏輯在 hello 用戶端使用`ServiceProxy`可以直接處理 hello 服務擲回的例外狀況。
 
 ## <a name="service-proxy-lifetime"></a>服務 Proxy 存留期
-建立 ServiceProxy 是輕量型作業，因此沒有限制使用者可建立的數量。 只要有需要，使用者可以重複使用服務 Proxy 。 使用者可以重複使用相同的 Proxy，以防止發生例外狀況。 每個 ServiceProxy 皆包含用戶端透過網路傳送訊息時所用的通訊。 叫用 API 時，我們會透過內部檢查來查看用戶端是否使用有效的通訊。 根據結果，我們會重新建立通訊用戶端。 因此使用者不需要重新建立 serviceproxy，以免發生例外狀況。
+建立 ServiceProxy 是輕量型作業，因此沒有限制使用者可建立的數量。 只要有需要，使用者可以重複使用服務 Proxy 。 使用者可以重新使用 hello 例外狀況下有相同的 proxy。 每個 ServiceProxy 包含通訊使用的用戶端 toosend 訊息上 hello 傳輸。 時叫用應用程式開發介面，我們會有內部的核取 toosee 通訊用的用戶端是否有效。 根據該結果，我們重新建立 hello 通訊的用戶端。 因此使用者不需要 toorecreate serviceproxy 發生例外狀況。
 
 ### <a name="serviceproxyfactory-lifetime"></a>ServiceProxyFactory 存留期
-[ServiceProxyFactory](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.remoting.client.serviceproxyfactory) 是建立不同遠端介面 Proxy 的處理站。 如果您使用 API ServiceProxy.Create 建立 Proxy，則架構會建立單一 ServiceProxyFactory。
-當您需要覆寫 [IServiceRemotingClientFactory](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.remoting.client.iserviceremotingclientfactory) 屬性時，最實用的方式是手動建立一個。
+[ServiceProxyFactory](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.remoting.client.serviceproxyfactory) 是建立不同遠端介面 Proxy 的處理站。 如果您使用 API ServiceProxy.Create 建立 proxy 時，framework 就會建立 hello singelton ServiceProxyFactory。
+它是一個實用 toocreate 手動時需要 toooverride [IServiceRemotingClientFactory](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.remoting.client.iserviceremotingclientfactory)屬性。
 處理站是一項昂貴的作業。 ServiceProxyFactory 會保留通訊用戶端的快取。
-最佳做法是快取 ServiceProxyFactory 的時間愈長愈好。
+最佳作法是 toocache ServiceProxyFactory 越久。
 
 ## <a name="remoting-exception-handling"></a>遠端例外狀況處理
-服務 API 擲出的所有遠端例外狀況會以 AggregateException 的形式傳送回用戶端。 RemoteExceptions 應可進行 DataContract 序列化，否則 Proxy API 會收到包含序列化錯誤的 [ServiceException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.communication.serviceexception)。
+服務 API，所擲回的所有 hello 遠端例外會當做 AggregateException 都傳送後 toohello 用戶端。 RemoteExceptions 否則應該是 DataContract 序列化[ServiceException](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.communication.serviceexception)中它擲回 toohello proxy 應用程式開發介面與 hello 序列化錯誤。
 
-ServiceProxy 會處理服務分割區 (ServiceProxy 即是為其建立) 的所有容錯移轉列外狀況。 發生容錯移轉例外狀況 (非暫時性例外狀況) 時，ServiceProxy 會重新解析端點，然後以正確的端點再次嘗試呼叫。 容錯移轉例外狀況的重試次數並無限制。
-若是發生 TransientExceptions，ServiceProxy 僅會重試呼叫。
+ServiceProxy 並處理 hello 服務資料分割建立的所有容錯移轉的例外狀況。 如果沒有與 hello 正確端點容錯移轉 Exceptions(Non-Transient Exceptions) 和重試 hello 呼叫重新解析 hello 端點。 容錯移轉例外狀況的重試次數並無限制。
+發生 TransientExceptions，它只會重試 hello 呼叫。
 
-預設的重試參數會由 [OperationRetrySettings] 提供。 (https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.communication.client.operationretrysettings) 使用者可透過將 OperationRetrySettings 物件傳遞至 ServiceProxyFactory 建構函式來設定這些值。
+預設的重試參數會由 [OperationRetrySettings] 提供。 (https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.services.communication.client.operationretrysettings)使用者可以藉由傳遞 OperationRetrySettings 物件 tooServiceProxyFactory 建構函式中設定這些值。
 
 ## <a name="next-steps"></a>後續步驟
 * [在 Reliable Services 中搭配 OWIN 使用 Web API](service-fabric-reliable-services-communication-webapi.md)

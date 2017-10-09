@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure AD Connect Health 搭配 AD DS | Microsoft Docs"
-description: "這是 Azure AD Connect Health 頁面，其中討論如何監視 AD DS。"
+title: "與 AD DS 的 Azure AD Connect Health aaaUsing |Microsoft 文件"
+description: "這是 hello Azure AD Connect Health 頁面，將討論如何 toomonitor AD DS。"
 services: active-directory
 documentationcenter: 
 author: arluca
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 9e5b45d71b978c383932409f0037a4f6f32d0cb3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: e2fb6be65407d02c214dcab385b85d6cb54f48de
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-azure-ad-connect-health-with-ad-ds"></a>在 AD DS 使用 Azure AD Connect Health
-下列文件適用於使用 Azure AD Connect Health 來監視 Active Directory 網域服務。 AD DS 支援的版本：Windows Server 2008 R2、Windows Server 2012、Windows Server 2012 R2 及 Windows Server 2016。
+下列文件的 hello 是特定 toomonitoring Active Directory 網域服務與 Azure AD Connect Health。 AD DS 的 hello 支援版本： Windows Server 2008 R2、 Windows Server 2012、 Windows Server 2012 R2 和 Windows Server 2016。
 
 如需使用 Azure AD Connect Health 來監視 AD FS 的詳細資訊，請參閱[在 AD FS 使用 Azure AD Connect Health](active-directory-aadconnect-health-adfs.md)。 此外，如需使用 Azure AD Connect Health 來監視 Azure AD Connect (同步處理) 的詳細資訊，請參閱 [使用適用於同步處理的 Azure AD Connect Health](active-directory-aadconnect-health-sync.md)。
 
 ![適用於 AD DS 的 Azure AD Connect Health](./media/active-directory-aadconnect-health/aadconnect-health-adds-entry.png)
 
 ## <a name="alerts-for-azure-ad-connect-health-for-ad-ds"></a>適用於 AD DS 的 Azure AD Connect Health 警示
-適用於 AD DS 的 Azure AD Connect Health 中 [警示] 區段提供的作用中和已解決警示清單，與您的網域控制站相關。 選取作用中或已解決的警示會開啟新的刀鋒視窗，內含其他資訊和解決步驟以及支援文件的連結。 每個警示類型可以有一或多個執行個體，會對應到受該特定警示影響的各個網域控制站。 在靠近警示刀鋒視窗的底部，您可以連按兩下受影響的網域控制站來開啟額外的刀鋒視窗，內含有關該警示執行個體的其他詳細資訊。
+AD DS 的 hello Azure AD Connect Health 警示一節，提供您的使用中和未解決的警示，相關的 tooyour 網域控制站清單。 選取 使用中或已解決的警示開啟新的刀鋒視窗的其他資訊，以及解決步驟，並連結 toosupporting 文件。 每種警示類型可以有一或多個對應 tooeach hello 受該特定的警示影響的網域控制站的執行個體。 Hello hello 警示刀鋒視窗底部，您可以按兩下受影響的網域控制站 tooopen 有關該警示的執行個體的更多詳細資料與其他刀鋒視窗。
 
-在此刀鋒視窗內，您可以啟用警示的電子郵件通知，以及變更檢視中的時間範圍。 展開時間範圍可讓您查看先前已解決的警示。
+在這個刀鋒視窗中，您可以啟用警示的電子郵件通知，並檢視中變更 hello 時間範圍。 展開 hello 時間範圍可讓您 toosee 先前已解決的警示。
 
 ![Azure AD Connect 同步處理錯誤](./media/active-directory-aadconnect-health/aadconnect-health-adds-alerts.png)
 
 ## <a name="domain-controllers-dashboard"></a>網域控制站儀表板
-此儀表板提供環境的拓撲檢視，以及關鍵作業計量和每個受監視網域控制站的健康狀態。 顯示的計量有助於快速識別任何可能需要進一步調查的網域控制站。 根據預設，只會顯示部份的資料行。 不過，連按兩下資料行命令，即可找到整組可用的資料行。 選取您最想關注的資料行，即可在儀表板中單一且輕鬆地檢視 AD DS 環境的健康狀態。
+此儀表板提供環境的拓撲檢視，以及關鍵作業計量和每個受監視網域控制站的健康狀態。 hello 呈現的衡量標準協助識別 tooquickly，任何網域控制站，可能需要進一步調查。 根據預設，會顯示 hello 資料行的子集。 不過，您可以找到 hello 整組可用的資料行中，按兩下 hello 資料行命令。 選取您最關心，開啟此儀表板在單一、 輕鬆地將 tooview hello 健全狀況的 AD DS 環境的 hello 資料行。
 
 ![網域控制站](./media/active-directory-aadconnect-health/aadconnect-health-adds-domainsandsites-dashboard.png)
 
-網域控制站可依其各別的網域或網站分組，有助您瞭解環境拓撲。 最後，如果連按兩下刀鋒視窗標頭，儀表板便會最大化以利用可用的螢幕畫面。 顯示多個資料行時，此較大的檢視很有幫助。
+網域控制站可以依其個別網域或站台，可協助您了解 hello 環境拓撲。 最後，如果您按兩下 hello 刀鋒視窗中的標頭，hello 儀表板最大化 tooutilize hello 可用的螢幕大小。 顯示多個資料行時，此較大的檢視很有幫助。
 
 ## <a name="replication-status-dashboard"></a>複寫狀態儀表板
-此儀表板可檢視複寫狀態和受監視網域控制站的複寫拓撲。 最新的複寫嘗試狀態會列出來，並附上針對所發現錯誤的有用文件。 您可以連按兩下包含錯誤的網域控制站，以開啟內含下列資訊的新刀鋒視窗：錯誤詳細資訊、建議的解決步驟，以及疑難排解文件的連結。
+此儀表板提供 hello 複寫狀態以及複寫拓撲的受監視的網域控制站的檢視。 列出 hello 最近的複寫嘗試 hello 狀態，以及任何找到的錯誤很有幫助文件。 您可以按兩下網域控制站並顯示錯誤，tooopen 資訊的新刀鋒視窗，例如： hello 錯誤，並建議解決方法步驟的相關詳細資料，以及連結 tootroubleshooting 文件。
 
 ![複寫狀態](./media/active-directory-aadconnect-health/aadconnect-health-adds-replication.png)
 
 ## <a name="monitoring"></a>監視
-這項功能提供不同效能計數器的圖形化趨勢，這是持續從每個受監視的網域控制站收集而來。 網域控制站的效能可以輕鬆地和樹系中所有其他受監視的網域控制站進行比較。 此外，您可以看到各種效能計數器並排，在環境中針對問題進行疑難排解時這很有用。
+這項功能提供不同的效能計數器，會持續收集從每個 hello 監視網域控制站的圖形化的趨勢。 網域控制站的效能可以輕鬆地和樹系中所有其他受監視的網域控制站進行比較。 此外，您可以看到各種效能計數器並排，在環境中針對問題進行疑難排解時這很有用。
 
 ![監視](./media/active-directory-aadconnect-health/aadconnect-health-adds-monitoring.png)
 
-根據預設，已預先選取四個效能計數器；不過，您可以按篩選命令並選取或取消選取任何想要的效能計數器。 此外，您可以連按兩下效能計數器圖形以開啟新的刀鋒視窗，其中包含每個受監視網域控制站的資料點。
+根據預設，我們已預先選取四個效能計數器。不過，您可以藉由按一下 hello 篩選命令和選取或取消選取任何所需的效能計數器包含其他項目。 此外，您可以按兩下效能計數器圖形 tooopen hello 監視網域控制站的每個包含資料點的新刀鋒視窗。
 
 ## <a name="related-links"></a>相關連結
 * [Azure AD Connect Health](active-directory-aadconnect-health.md)

@@ -1,6 +1,6 @@
 ---
-title: "使用 ASP.NET Web API 的服務通訊 |Microsoft Docs"
-description: "了解如何藉由使用 ASP.NET Web API 與 OWIN 自我裝載，在 Reliable Services API 中逐步實作服務通訊。"
+title: "以 ASP.NET Web API hello aaaService 通訊 |Microsoft 文件"
+description: "了解如何逐步使用 tooimplement 服務通訊 hello 與 OWIN 自我主控 hello 可靠的服務應用程式開發介面中的 ASP.NET Web API。"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -15,35 +15,35 @@ ms.workload: required
 ms.date: 02/10/2017
 ms.author: vturecek
 redirect_url: /azure/service-fabric/service-fabric-reliable-services-communication-aspnetcore
-ms.openlocfilehash: 73b7e1c0cb93ae7c54780a3aab837b0e5bcdb0a0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3fb18fcb141ada0d79a0acda3dccbc7fb044346d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-service-fabric-web-api-services-with-owin-self-hosting"></a>開始使用：Service Fabric Web API 服務與 OWIN 自我裝載 | Microsoft Azure
-Azure Service Fabric 讓您能決定您的服務與使用者以及服務彼此之間如何進行通訊。 本教學課程著重於使用 ASP.NET Web API 與 Open Web Interface for .NET (OWIN) 自我裝載在 Service Fabric 的 Reliable Services API 中實作服務通訊。 我們將深入探討 Reliable Services 隨插即用的通訊 API。 我們也將在逐步範例中使用 Web API，示範如何設定自訂通訊接聽程式。
+Azure Service Fabric 置於 hello 電源雙手當您決定要服務 toocommunicate，使用者與彼此。 本教學課程著重於使用 ASP.NET Web API 與 Open Web Interface for .NET (OWIN) 自我裝載在 Service Fabric 的 Reliable Services API 中實作服務通訊。 我們將深入探討深 hello 可靠的服務可插式通訊應用程式開發介面。 我們也會使用 Web 應用程式開發介面中的逐步範例 tooshow 您如何 tooset 註冊自訂通訊接聽程式。
 
-## <a name="introduction-to-web-api-in-service-fabric"></a>Service Fabric 中的 Web API 簡介
-ASP.NET Web API 是在 .NET Framework 建置 HTTP API 的常用且功能強大的架構。 如果您不熟悉此架構，請參閱 [開始使用 ASP.NET Web API 2](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) 以深入了解。
+## <a name="introduction-tooweb-api-in-service-fabric"></a>服務網狀架構的簡介 tooWeb 應用程式開發介面
+ASP.NET Web API 是建立 HTTP Api 之上 hello.NET Framework 受歡迎且功能強大的架構。 如果您不熟悉 hello framework，請參閱[開始使用 ASP.NET Web API 2](http://www.asp.net/web-api/overview/getting-started-with-aspnet-web-api/tutorial-your-first-web-api) toolearn 更多。
 
-Service Fabric 中的 Web API 是您熟知而且喜愛的相同 ASP.NET Web API。 不同之處在於您如何裝載  Web API 應用程式。 您不會使用 Microsoft Internet Information Services (IIS)。 若要進一步了解差異，讓我們將它分成兩個部分：
+服務網狀架構中的 web 應用程式開發介面是 hello 相同 ASP.NET Web API，您熟悉且愛用。 hello 其間的差異在於如何您*主機*Web API 應用程式。 您不會使用 Microsoft Internet Information Services (IIS)。 toobetter 瞭解 hello 差異，我們將其分成兩個部分：
 
-1. Web API 應用程式 (包括控制器和模型)
-2. 主機 (Web 伺服器，通常是 IIS)
+1. hello Web API 應用程式 （包括控制站和模型）
+2. hello 主機 （hello web 伺服器，通常是 IIS）
 
-Web API 應用程式本身不會變更。 它與您過去撰寫的 Web API 應用程式並無不同，您應該能夠直接搬移大部分的應用程式程式碼。 但是如果您裝載在 IIS 上，裝載應用程式的位置可能會與您過去習慣的稍有不同。 在我們進入裝載部分之前，讓我們從較熟悉的部分開始：Web API 應用程式。
+Web API 應用程式本身不會變更。 它並無不同 hello 過去，您可能會寫入 Web API 應用程式和大部分的應用程式程式碼應能 toosimply 移動。 但如果您已經已裝載於 IIS，您用來裝載 hello 應用程式可能會稍有不同於您所用的。 我們取得 toohello 裝載部分之前，讓我們先開始項目比較熟悉： hello Web API 應用程式。
 
-## <a name="create-the-application"></a>建立應用程式
+## <a name="create-hello-application"></a>建立 hello 應用程式
 若要開始，請在 Visual Studio 2015 中，建立具有單一無狀態服務的新 Service Fabric 應用程式。
 
-使用 Web API 的無狀態服務有 Visual Studio 範本可供使用。 在本教學課程中，我們將從頭建置 Web API 專案，這就是您選取此範本時所會得到的結果。
+使用 Web 應用程式開發介面的無狀態服務的 Visual Studio 範本是可用 tooyou。 在本教學課程中，我們將從頭建置 Web API 專案，這就是您選取此範本時所會得到的結果。
 
-選取空白的無狀態服務專案，以了解如何從頭建置 Web API 專案，或者您可以從無狀態服務 Web API 範本開始，只需依照指示進行。  
+選取空白無狀態服務專案 toolearn 如何 hello 無狀態服務 Web API 範本的開頭和只沿用 toobuild 從頭開始，或您的 Web API 專案。  
 
-第一個步驟是提取一些 Web API 的 NuGet 封裝。 我們想要使用的封裝是 Microsoft.AspNet.WebApi.OwinSelfHost。 此套件包含所有必要的 Web API 套件和主機  套件。 這在稍後會很重要。
+hello 第一個步驟是 toopull Web API 的某些 NuGet 封裝中。 我們希望 toouse hello 封裝是 Microsoft.AspNet.WebApi.OwinSelfHost。 此套件包含所有 hello 必要的 Web 應用程式開發介面封裝以及 hello*主機*封裝。 這在稍後會很重要。
 
-安裝封裝後，您就可以馬上開始建置出基本的 Web API 專案結構。 如果您已使用 Web API，專案結構看起來應該很熟悉。 首先新增 `Controllers` 目錄和簡單值控制站︰
+已安裝 hello 封裝之後，您可以開始建置出 hello 基本 Web API 專案結構。 如果您已使用 Web 應用程式開發介面，hello 專案結構應該看起來很類似。 首先新增 `Controllers` 目錄和簡單值控制站︰
 
 **ValuesController.cs**
 
@@ -86,7 +86,7 @@ namespace WebService.Controllers
 
 ```
 
-接下來，在專案根目錄加入 Startup 類別以註冊路由、格式器及任何其他組態設定。 這也是 Web API 插入至 *主機*的位置，稍後我們將再重返此處。 
+接下來，新增啟動類別在 hello 專案根 tooregister hello 路由、 格式器及任何其他組態設定。 這也是 Web 應用程式開發介面其中插入 toohello*主機*，這將可再次回到稍後。 
 
 **Startup.cs**
 
@@ -115,12 +115,12 @@ namespace WebService
 }
 ```
 
-應用程式部分就這樣。 現在我們只設定基本的 Web API 專案配置。 到目前為止，看起來應該與您過去可能已撰寫的 Web API 專案或基本的 Web API 範本有太多不同。 您的商務邏輯如往常般在控制器和模型中運作。
+這是 hello 應用程式組件。 此時，我們設定只 hello 基本 Web API 專案版面配置。 目前為止，它不應該看起來非常不同，從 Web API 專案，您可能會寫入 hello 過去或 hello 基本 Web API 範本。 您的商務邏輯則是放在 hello 控制站和模型像往常一樣。
 
 現在我們怎麼辦才能實際執行裝載？
 
 ## <a name="service-hosting"></a>服務裝載
-在 Service Fabric 中，您的服務會在服務主機處理序 中執行，這是執行您的服務程式碼的可執行檔。 當您使用 Reliable Services API 撰寫服務時，您的服務專案只會編譯註冊您的服務類型並執行程式碼的可執行檔。 當您在 .NET 中的 Service Fabric 上撰寫服務時，在大部分情況下都是如此。 當您在無狀態服務專案中開啟 Program.cs，您應該會看到：
+在 Service Fabric 中，您的服務會在服務主機處理序 中執行，這是執行您的服務程式碼的可執行檔。 當您使用 hello 可靠的服務應用程式開發介面撰寫的服務時，您的服務專案只會編譯 tooan 可執行檔，註冊您的服務類型，並執行您的程式碼。 當您在 .NET 中的 Service Fabric 上撰寫服務時，在大部分情況下都是如此。 當您開啟 Program.cs hello 無狀態服務專案中時，您應該會看到：
 
 ```csharp
 using System;
@@ -152,22 +152,22 @@ internal static class Program
 
 ```
 
-如果看起來疑似主控台應用程式的進入點，這是因為它是。
+如果這看起來可疑像是 hello 進入點 tooa 主控台應用程式，這是因為它是。
 
-關於服務裝載處理序和服務註冊的進一步詳細資料已超出本文的範圍。 但是現在請務必了解您的服務程式碼已在自己的處理序中執行 。
+進一步詳細 hello 服務主機處理序與服務登錄已超出本文的 hello 範圍。 但它是用於重要 tooknow 現在*自己的處理序中執行您的服務程式碼*。
 
 ## <a name="self-host-web-api-with-an-owin-host"></a>自我裝載 Web API 與 OWIN 主機
-假設您的 Web API 應用程式程式碼裝載在自己的處理序中，您如何將它連結到 Web 伺服器？ 輸入 [OWIN](http://owin.org/)。 OWIN 只是 .NET Web 應用程式和 Web 伺服器之間的合約。 傳統上使用 ASP.NET (直到 MVC 5) 時，Web 應用程式已透過 System.Web 緊密結合至 IIS。 不過，Web API 會實作 OWIN，所以您可以撰寫獨立於裝載它的 Web 伺服器的 Web 應用程式。 因此，您可以使用可在自己的程序中啟動的自我裝載  OWIN web 伺服器。 這樣完全符合我們先前所提到的 Service Fabric 裝載模型。
+假設您的 Web API 應用程式程式碼裝載在自己的處理序，如何具 tooa web 伺服器？ 輸入 [OWIN](http://owin.org/)。 OWIN 只是 .NET Web 應用程式和 Web 伺服器之間的合約。 傳統上使用 ASP.NET （向上 tooMVC 5) 時，hello web 應用程式是透過 System.Web 緊密結合的 tooIIS。 不過，Web 應用程式開發介面會實作 OWIN，所以您可以撰寫分離 web 應用程式，從它裝載的 hello web 伺服器。 因此，您可以使用可在自己的程序中啟動的自我裝載  OWIN web 伺服器。 這完全符合我們剛說明 hello Service Fabric 裝載模型。
 
-在本文中，我們將使用 Katana 做為 Web API 應用程式的 OWIN 主機。 Katana 是開放原始碼 OWIN 主機實作，它是以 [System.Net.HttpListener](https://msdn.microsoft.com/library/system.net.httplistener.aspx) 和 Windows [HTTP 伺服器 API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx) 為基礎而建置。
+在本文中，我們會使用為 hello OWIN 主機 Katana hello Web API 應用程式。 Katana 是根據開放原始碼 OWIN 主機實作[System.Net.HttpListener](https://msdn.microsoft.com/library/system.net.httplistener.aspx)和 hello Windows [HTTP 伺服器 API](https://msdn.microsoft.com/library/windows/desktop/aa364510.aspx)。
 
 > [!NOTE]
-> 若要深入了解 Katana，請移至 [Katana 網站](http://www.asp.net/aspnet/overview/owin-and-katana/an-overview-of-project-katana)。 如需如何使用 Katana 自我裝載 Web API 的快速概觀，請參閱 [使用 OWIN 自我裝載 ASP.NET Web API 2](http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api)。
+> 深入了解 Katana，移 toohello toolearn [Katana 網站](http://www.asp.net/aspnet/overview/owin-and-katana/an-overview-of-project-katana)。 如需快速概觀 toouse Katana tooself 主機 Web API，請參閱[使用 OWIN tooSelf 主機 ASP.NET Web API 2](http://www.asp.net/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api)。
 > 
 > 
 
-## <a name="set-up-the-web-server"></a>設定 Web 伺服器
-Reliable Services API 提供通訊進入點，您可在其中插入通訊堆疊，讓使用者和用戶端連線到服務：
+## <a name="set-up-hello-web-server"></a>設定 hello 網頁伺服器
+hello 可靠的服務應用程式開發介面提供，以便讓使用者和用戶端 tooconnect toohello 服務的通訊堆疊中插入通訊進入點：
 
 ```csharp
 
@@ -178,7 +178,7 @@ protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceLis
 
 ```
 
-Web 伺服器 (和您未來使用的任何其他通訊堆疊，例如 WebSockets) 應該使用 ICommunicationListener 介面來正確地與系統整合。 這樣做的原因會在接下來的步驟中變得明顯。
+hello 網頁伺服器 （和任何其他通訊堆疊，您用於未來的例如 WebSockets hello） 應該使用 hello ICommunicationListener 介面 toointegrate 正確 hello 系統。 這個 hello 原因將會變得更加明顯 hello 步驟中的。
 
 首先，建立一個稱為 OwinCommunicationListener 的類別，其實作 ICommunicationListener：
 
@@ -213,13 +213,13 @@ namespace WebService
 }
 ```
 
-ICommunicationListener 介面提供三個方法來管理服務的通訊接聽程式：
+hello ICommunicationListener 介面提供三個方法 toomanage 通訊接聽程式為您的服務：
 
 * 。 開始接聽要求。
 * 。 停止接聽要求，完成任何進行中的要求，並正常關機。
 * 中止。 取消所有項目，並立即停止。
 
-若要開始，請為接聽程式運作所需的項目新增私用類別成員。 這些會透過建構函式初始化，並在您稍後設定接聽 URL 時使用。
+項目 hello 接聽程式將會需要 toofunction tooget 啟動，加入私用類別成員。 這些會初始化透過 hello 建構函式，並稍後使用，當您設定 hello 接聽的 URL。
 
 ```csharp
 internal class OwinCommunicationListener : ICommunicationListener
@@ -274,12 +274,12 @@ internal class OwinCommunicationListener : ICommunicationListener
 ```
 
 ## <a name="implement-openasync"></a>實作 OpenAsync
-若要設定 Web 伺服器，您需要兩項資訊：
+tooset hello web 伺服器，您需要兩個資訊片段：
 
-* *URL 路徑前置詞*。 雖然這是選擇性的，但您最好現在就設定，以便您能安全地在應用程式中裝載多個 Web 服務。
+* *URL 路徑前置詞*。 雖然這是選擇性的它是適合您 tooset 這個向上現在，讓您安全地可以裝載多個 web 服務應用程式中。
 * *連接埠*。
 
-在您抓取 Web 伺服器的連接埠之前，必須了解 Service Fabric 提供一個應用程式層，做為您的應用程式與其執行所在之基礎作業系統之間的緩衝區。 因此，Service Fabric 讓您能夠設定服務的端點。 Service Fabric 可確保端點可供您的服務使用。 如此一來，您就不用在基礎作業系統環境中自行設定它們。 您可以輕易在不同環境中裝載 Service Fabric 應用程式，而不必對您的應用程式進行任何變更。 (例如，您可以在 Azure 或您自己的資料中心內裝載相同的應用程式。)
+取得 hello web 伺服器的連接埠之前，重要的是您了解 Service Fabric 提供應用程式層級，可做為您的應用程式與 hello 基礎作業系統上執行之間的緩衝區。 因此，Service Fabric 提供方式 tooconfigure*端點*為您的服務。 Service Fabric 可確保端點可供服務 toouse。 如此一來，您不需要 tooconfigure 它們自己 hello 基礎作業系統環境中。 您輕鬆地可以主控 Service Fabric 應用程式中不同的環境，而不需要 toomake 任何變更 tooyour 應用程式。 (例如，您也可以裝載 hello 自己的資料中心或 Azure 中相同的應用程式。)
 
 在 PackageRoot\ServiceManifest.xml 中設定 HTTP 端點：
 
@@ -292,9 +292,9 @@ internal class OwinCommunicationListener : ICommunicationListener
 
 ```
 
-這個步驟很重要，因為服務裝載處理序要在受限制的認證 (在 Windows 上的網路服務) 之下執行。 這表示您的服務並沒有自行設定 HTTP 端點的存取權。 藉由使用端點組態，Service Fabric 會知道要為服務將接聽的 URL 設定適當的存取控制清單 (ACL)。 Service Fabric 也會提供標準位置來設定端點。
+這個步驟很重要，因為受限制的認證 （Windows 上的網路服務） 下執行 hello 服務主機處理序。 這表示您的服務將不會有存取 tooset HTTP 端點，其本身。 藉由使用 hello 端點組態，Service Fabric 會知道 hello 服務的 URL 會接聽 tooset hello 適當的存取控制清單 (ACL)。 服務網狀架構也提供標準位置 tooconfigure 端點。
 
-返回 OwinCommunicationListener.cs 中，您可以開始實作 OpenAsync。 您會從此處啟動 Web 伺服器。 首先，取得端點資訊，並建立服務將接聽的 URL。 視接聽程式使用於無狀態服務或具狀態服務而定，URL 會有所不同。 若為具狀態服務，接聽程式必須針對它所接聽的每個具狀態服務複本建立唯一的位址。 若為無狀態服務，此位址可以更簡單。 
+返回 OwinCommunicationListener.cs 中，您可以開始實作 OpenAsync。 這是您用來啟動 hello web 伺服器。 首先，取得 hello 端點資訊，並建立 hello hello 服務將接聽的 URL。 hello URL 將是 hello 接聽程式是否使用中的無狀態的服務或可設定狀態的服務而有所不同。 可設定狀態的服務，hello 接聽程式需要唯一的每一個可設定狀態的服務複本它會接聽在位址的 toocreate。 針對無狀態服務，hello 位址可以是簡單許多。 
 
 ```csharp
 public Task<string> OpenAsync(CancellationToken cancellationToken)
@@ -339,11 +339,11 @@ public Task<string> OpenAsync(CancellationToken cancellationToken)
 
 ```
 
-請注意這裡用 "http://+"。 這是為了確定 Web 伺服器正在接聽所有可用的位址，包括 localhost、FQDN，以及電腦的 IP。
+請注意這裡用 "http://+"。 這是 toomake 確定該 hello 網頁伺服器正在接聽所有可用的位址，包括 localhost、 FQDN 和 hello 機器的 IP。
 
-OpenAsync 實作是 Web 伺服器 (或任何通訊堆疊) 之所以實作為 ICommunicationListener，而非直接從服務中的 `RunAsync()` 開啟它，最重要的原因之一。 OpenAsync 的傳回值是 Web 伺服器正在接聽的位址。 當傳回這個位址給系統時，它會向服務註冊位址。 Service Fabric 會提供一個 API，讓用戶端和其他服務依服務名稱來要求這個位址。 這一點很重要，因為服務位址不是靜態的。 服務會為了資源平衡和可用性目的在叢集中移動。 這是可讓用戶端解析服務接聽位址的機制。
+hello OpenAsync 實作是 hello 最重要原因之一為什麼 hello 網頁伺服器 （或任何通訊堆疊） 實作直接從 ICommunicationListener，而不是只將它開啟`RunAsync()`hello 服務中。 hello OpenAsync 傳回值是 hello hello web 伺服器的位址接聽。 這個地址傳回 toohello 系統時，它會向 hello 服務註冊 hello 位址。 Service Fabric 提供 API，可讓用戶端和其他服務 toothen，已要求此位址的服務名稱。 這是很重要，因為 hello 服務位址不是靜態。 服務會移動 hello 叢集中進行資源平衡和可用性。 這是 hello 機制，可讓用戶端 tooresolve hello 接聽服務位址。
 
-記住這一點之後，OpenAsync 會啟動 Web 伺服器，並傳回它接聽的位址。 請注意它會接聽 "http://+"，但 OpenAsync 傳回位址之前，"+" 會取代為目前所在節點的 IP 或 FQDN。 這個方法所傳回的位址就是向系統註冊的位址。 它也是用戶端和其他服務要求服務位址時所看到的位址。 用戶端若要能正確地連接到它，它們需要位址中有實際的 IP 或 FQDN。
+這一點，OpenAsync 啟動 hello web 伺服器，並傳回 hello 位址上接聽。 請注意，它會接聽"http://+"，但 OpenAsync 傳回 hello 位址之前，hello"+"會取代 hello IP 或 FQDN，目前在 hello 節點。 這個方法所傳回的 hello 位址是向 hello 系統。 它也是用戶端和其他服務要求服務位址時所看到的位址。 如需用戶端 toocorrectly 連接 tooit、 hello 位址中需要實際的 IP 或 FQDN。
 
 ```csharp
     ...
@@ -362,7 +362,7 @@ OpenAsync 實作是 Web 伺服器 (或任何通訊堆疊) 之所以實作為 ICo
     }
     catch (Exception ex)
     {
-        this.eventSource.Message("Web server failed to open endpoint {0}. {1}", this.endpointName, ex.ToString());
+        this.eventSource.Message("Web server failed tooopen endpoint {0}. {1}", this.endpointName, ex.ToString());
 
         this.StopWebServer();
 
@@ -372,12 +372,12 @@ OpenAsync 實作是 Web 伺服器 (或任何通訊堆疊) 之所以實作為 ICo
 
 ```
 
-請注意，這會參考傳遞給建構函式中之 OwinCommunicationListener 的 Startup 類別。 這個 startup 執行個體由 Web 伺服器用來啟動 Web API 應用程式。
+請注意這參考傳入 toohello OwinCommunicationListener hello 建構函式中的 hello 啟動類別。 Hello web 伺服器 toobootstrap hello Web API 應用程式會使用這個啟動執行個體。
 
-稍後當您執行應用程式時， `ServiceEventSource.Current.Message()` 列會出現在 [診斷事件] 視窗，確認已成功啟動 Web 伺服器。
+hello`ServiceEventSource.Current.Message()`行稍後會顯示 hello 診斷事件視窗中，當您執行 hello 應用程式 tooconfirm hello 網頁伺服器已順利啟動。
 
 ## <a name="implement-closeasync-and-abort"></a>實作 CloseAsync 和 Abort
-最後，實作 CloseAsync 和 Abort 可停止 Web 伺服器。 處置 OpenAsync 時所建立的伺服器控制代碼，可以停止 Web 伺服器。
+最後，實作 CloseAsync 與 Abort toostop hello web 伺服器。 hello web 伺服器可以透過處置 OpenAsync 期間所建立的 hello 伺服器控點停止。
 
 ```csharp
 public Task CloseAsync(CancellationToken cancellationToken)
@@ -412,10 +412,10 @@ private void StopWebServer()
 }
 ```
 
-在此實作範例中，CloseAsync 和 Abort 只會停止 Web 伺服器。 您也可以選擇在 CloseAsync 中執行更妥善協調的 web 伺服器關閉。 例如，關閉可以等候進行中的要求，在傳回之前完成。
+實作在本例中，CloseAsync 和中止只會停止 hello web 伺服器。 您也可以選擇 tooperform CloseAsync hello web 伺服器的更適當地協調關機。 例如，hello 關機無法等候進行中的要求 toobe hello 傳回之前完成。
 
-## <a name="start-the-web-server"></a>啟動 Web 伺服器
-您現在可以開始建立並傳回 OwinCommunicationListener 的執行個體以啟動 Web 伺服器。 回到 Service 類別 (WebService.cs)，覆寫 `CreateServiceInstanceListeners()` 方法：
+## <a name="start-hello-web-server"></a>啟動 hello web 伺服器
+您現在已經準備就緒 toocreate，並傳回 OwinCommunicationListener toostart hello web 伺服器的執行個體。 在 hello 服務類別 (WebService.cs)，覆寫 hello`CreateServiceInstanceListeners()`方法：
 
 ```csharp
 protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
@@ -429,12 +429,12 @@ protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceLis
 }
 ```
 
-這正是 Web API 應用程式和 OWIN 主機最後相會之處。 透過 Startup 類別提供應用程式  的執行個體 (Web API) 給主機 (OwinCommunicationListener)。 然後 Service Fabric 會管理其生命週期。 通常可以針對任何通訊堆疊運用相同的模式。
+這是其中 hello Web API*應用程式*和 hello OWIN*主機*最後符合。 hello 主機 (OwinCommunicationListener) 會指定執行個體的 hello*應用程式*(Web API) 透過 hello 啟動類別。 然後 Service Fabric 會管理其生命週期。 通常可以針對任何通訊堆疊運用相同的模式。
 
 ## <a name="put-it-all-together"></a>組合在一起
-在此範例中，您不需要在 `RunAsync()` 方法中執行任何動作，因此可以移除覆寫。
+在此範例中，您不需要任何項目在 hello toodo`RunAsync()`方法，因此只會移除覆寫。
 
-最終的服務實作應該非常簡單。 它只需要建立通訊接聽程式：
+hello 最終服務實作應該非常簡單。 它只需要 toocreate hello 通訊接聽程式：
 
 ```csharp
 using System;
@@ -466,7 +466,7 @@ namespace WebService
 }
 ```
 
-完整 `OwinCommunicationListener` 類別：
+完整的 hello`OwinCommunicationListener`類別：
 
 ```csharp
 using System;
@@ -579,7 +579,7 @@ namespace WebService
             }
             catch (Exception ex)
             {
-                this.eventSource.Message("Web server failed to open endpoint {0}. {1}", this.endpointName, ex.ToString());
+                this.eventSource.Message("Web server failed tooopen endpoint {0}. {1}", this.endpointName, ex.ToString());
 
                 this.StopWebServer();
 
@@ -621,22 +621,22 @@ namespace WebService
 }
 ```
 
-所有細節就緒之後，您的專案看起來應該像一般 Web API 應用程式，並且具有 Reliable Services API 進入點與 OWIN 主機。
+既然您已經就地將 hello 的所有項目，您的專案看起來應該像一般 Web API 應用程式使用可靠的服務應用程式開發介面的進入點和 OWIN 主機。
 
 ## <a name="run-and-connect-through-a-web-browser"></a>透過 Web 瀏覽器執行並連線
 如果您尚未這麼做，請 [設定開發環境](service-fabric-get-started.md)。
 
-您現在可以建置並部署您的服務。 在 Visual Studio 中按 **F5** 以建置及部署應用程式。 在 [診斷事件] 視窗中，您應該會看到一則訊息指出 Web 伺服器在 http://localhost:8281/ 中開啟。
+您現在可以建置並部署您的服務。 按**F5**在 Visual Studio toobuild 並部署 hello 應用程式。 在 hello 診斷事件視窗中，您應該會看到一個訊息，指出 http://localhost:8281 上開啟該 hello 網頁伺服器 /。
 
 > [!NOTE]
-> 如果電腦上的另一個處理序已經開啟連接埠，您可能會在此看到錯誤訊息。 這就表示無法開啟接聽程式。 如果是這種情況，請嘗試在 ServiceManifest.xml 中的端點組態使用不同的通訊埠。
+> 如果 hello 連接埠已經開啟您的電腦上的另一個處理序，您可能會看到以下錯誤。 這表示無法開啟該 hello 接聽項。 如果這 hello 案例，請嘗試使用不同的通訊埠 hello ServiceManifest.xml 中的端點組態。
 > 
 > 
 
-一旦服務正常執行，請開啟瀏覽器並瀏覽至 [http://localhost:8281/api/values](http://localhost:8281/api/values) 進行測試。
+一旦 hello 服務正常執行，請開啟瀏覽器，並瀏覽太[http://localhost:8281/api/值](http://localhost:8281/api/values)tootest 它。
 
 ## <a name="scale-it-out"></a>相應放大
-相應放大無狀態的 Web 應用程式通常表示加入更多電腦，並加快其上的 Web 應用程式。 每當新的節點加入至叢集時，Service Fabric 的協調流程引擎便可以為您完成。 當您建立無狀態服務的執行個體時，您可以指定要建立的執行個體數目。 Service Fabric 會在叢集中放置執行個體的數目在節點上。 它可確保所有節點上都只會建立一個執行個體。 您也可以指定 **-1** 的執行個體計數，指示 Service Fabric 一律在每個節點上建立執行個體。 這樣可保證每當您加入節點相應放大您的叢集，便會在新節點上建立無狀態服務的執行個體。 這個值是服務執行個體的屬性，因此它會在您建立服務執行個體時設定： 您可以透過 PowerShell 設定：
+向外延展無狀態的 web 應用程式通常表示加入更多電腦，並向上 hello web 應用程式在其上。 Service Fabric 協調流程引擎可以這麼做為您每當 tooa 叢集中加入新的節點。 當您建立無狀態服務的執行個體時，您可以指定 hello 數目要 toocreate 的執行個體。 Service Fabric hello 叢集中節點上，將該執行個體數目。 它可確保不 toocreate 多個執行個體的任何一個節點上。 您也可以指示 Service Fabric tooalways 每個節點上建立執行個體，藉由指定**-1** hello 執行個體計數。 這樣可保證，每當您將節點 tooscale 出您的叢集時，您無狀態服務的執行個體將會建立 hello 新節點上。 這個值是 hello 服務執行個體的屬性，所以它會設定當您建立的服務執行個體。 您可以透過 PowerShell 設定：
 
 ```powershell
 
@@ -658,7 +658,7 @@ New-ServiceFabricService -ApplicationName "fabric:/WebServiceApplication" -Servi
 
 ```
 
-如需如何建立應用程式和服務執行個體的詳細資訊，請參閱 [部署應用程式](service-fabric-deploy-remove-applications.md)。
+如需有關如何 toocreate 應用程式和服務執行個體，請參閱[部署應用程式](service-fabric-deploy-remove-applications.md)。
 
 ## <a name="next-steps"></a>後續步驟
 [使用 Visual Studio 偵錯 Service Fabric 應用程式](service-fabric-debugging-your-application.md)

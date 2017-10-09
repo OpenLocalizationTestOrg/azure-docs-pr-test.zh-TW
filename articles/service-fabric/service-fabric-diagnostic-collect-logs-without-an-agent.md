@@ -1,6 +1,6 @@
 ---
-title: "直接從 Azure Service Fabric 服務處理程序收集記錄檔 | Microsoft Azure"
-description: "說明 Service Fabric 應用程式可以將記錄檔直接傳送到中央位置 (例如 Azure Application Insights 或 Elasticsearch)，而不需倚賴「Azure 診斷」代理程式。"
+title: "aaaCollect 記錄直接從 Azure Service Fabric 服務處理程序 |Microsoft Azure"
+description: "說明 Service Fabric 應用程式可以傳送記錄檔，直接 tooa 中央位置，例如 Azure Application Insights 或 Elasticsearch，不需依賴 Azure 診斷代理程式。"
 services: service-fabric
 documentationcenter: .net
 author: karolz-ms
@@ -15,63 +15,63 @@ ms.workload: NA
 ms.date: 01/18/2017
 ms.author: karolz
 redirect_url: /azure/service-fabric/service-fabric-diagnostics-event-aggregation-eventflow
-ms.openlocfilehash: b7d2541928f4248750417a77d99033c8b4354dcc
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d0681a2a6aaa76028d7cb469c31c006f24bbe954
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="collect-logs-directly-from-an-azure-service-fabric-service-process"></a>直接從 Azure Service Fabric 服務處理程序收集記錄檔
 ## <a name="in-process-log-collection"></a>同處理序記錄檔收集
-如果記錄檔來源與目的地的集合都很小、不常變更，並且來源與其目的地之間有直接的對應，則使用 [Azure 診斷擴充功能](service-fabric-diagnostics-how-to-setup-wad.md)來收集應用程式記錄檔，對 **Azure Service Fabric** 服務來說是一個好選項。 如果不是上述情況，替代方式是讓服務將其記錄檔直接傳送到一個中央位置。 此處理程序稱為「同處理序記錄檔收集」，其中提供數個潛在的優點：
+使用收集應用程式記錄檔[Azure 診斷擴充功能](service-fabric-diagnostics-how-to-setup-wad.md)是個不錯的選擇**Azure Service Fabric**服務如果 hello 的記錄檔來源和目的地是很小，不會變更通常也那里是 hello 來源與目的地之間的直接對應。 如果沒有，另一個方法是 toohave 服務傳送其記錄檔直接 tooa 中央位置。 此處理程序稱為「同處理序記錄檔收集」，其中提供數個潛在的優點：
 
 * *輕鬆設定及部署*
 
-    * 診斷資料收集組態只是服務組態的一部分。 將其與應用程式的其餘部分始終保持「同步」很簡單。
+    * 診斷資料收集的 hello 組態只是 hello 服務組態的一部分。 它是簡單 tooalways 保持其 「 同步 」 以 hello 其餘部分的 hello 應用程式。
     * 輕鬆就可達成個別應用程式或個別服務的組態。
-        * 代理程式型記錄檔收集通常需要個別部署和設定診斷代理程式，這是額外的系統管理工作，也是可能的錯誤來源。 通常，每一虛擬機器 (節點) 只允許一個代理程式執行個體，而在該節點上執行的所有應用程式和服務會共用代理程式組態。 
+        * 代理程式為基礎的記錄檔集合，通常需要不同的部署和 hello 診斷代理程式的設定，這是額外的管理工作和錯誤的潛在來源。 通常是允許每個虛擬機器 （節點） 的 hello 代理程式只有一個執行個體和所有應用程式和該節點上執行的服務之間共用 hello 代理程式設定。 
 
 * *彈性*
    
-    * 只要用戶端程式庫支援目標資料儲存系統，應用程式可以將資料傳送至任何需要的地方。 您可以視需要新增新的目的地。
+    * hello 應用程式可以傳送 hello 資料每當需要 toogo，只要用戶端程式庫支援 hello 目標資料儲存系統。 您可以視需要新增新的目的地。
     * 可以實作複雜的擷取、篩選和資料彙總規則。
-    * 代理程式型記錄檔收集通常會受限於代理程式所支援的資料接收器。 有些代理程式是可擴充的。
+    * 代理程式為基礎的記錄檔集合通常會受限於 hello 代理程式支援的 hello 資料接收器。 有些代理程式是可擴充的。
 
-* *存取內部應用程式資料與內容*
+* *存取 toointernal 應用程式資料和內容*
    
-    * 應用程式/服務處理序內執行的診斷子系統可以輕鬆地隨著內容資訊而擴大追蹤。
-    * 使用代理程式型記錄檔收集時，必須透過某種處理序間的通訊機制 (例如 Windows 的「事件追蹤」) 將資料傳送給代理程式。 此機制可能會造成額外的限制。
+    * hello hello 應用程式/服務處理序內執行的診斷子系統可以輕鬆地擴大 hello 與內容資訊的追蹤。
+    * 代理程式為基礎的記錄檔集合與 hello 必須傳送資料 tooan 代理程式，透過某種處理序間通訊機制，例如 Windows 事件追蹤。 此機制可能會造成額外的限制。
 
-您可以結合這兩種收集方法來充分運用其優點。 事實上，它可能是許多應用程式的最佳解決方案。 代理程式型收集是一個自然解決方案，適用於收集與整個叢集和個別叢集節點相關的記錄檔。 與同處理序記錄檔收集相比，它是可診斷服務啟動問題和當機的較可靠方法。 此外，在有許多服務在 Service Fabric 叢集內執行的情況下，如果每個服務都執行自己的同處理序記錄檔收集，將會導致從叢集傳出無數的連線。 大量的傳出連線會同時為網路子系統和記錄檔目的地帶來負擔。 [**Azure 診斷**](../cloud-services/cloud-services-dotnet-diagnostics.md)之類的代理程式可以從多個服務收集資料，然後透過幾條連線傳送所有資料，藉此改善輸送量。 
+它也可能 toocombine 這兩個集合的方法而獲益。 事實上，它可能 hello 對於許多應用程式的最佳解決方案。 代理程式為基礎的集合是用來收集記錄檔相關的 toohello 整個叢集和個別叢集節點的自然解決方案。 這是更可靠的方式，比同處理序記錄檔收集、 toodiagnose 服務啟動問題和當機。 此外，Service Fabric 叢集內執行的許多服務，以執行它自己的處理序記錄檔收集每個服務會導致從 hello 叢集中的多個傳出連線。 Hello 網路子系統和 hello 記錄目的地，會消耗大量的連出連線。 [**Azure 診斷**](../cloud-services/cloud-services-dotnet-diagnostics.md)之類的代理程式可以從多個服務收集資料，然後透過幾條連線傳送所有資料，藉此改善輸送量。 
 
-在本文中，我們將說明如何使用 [**EventFlow 開放原始碼程式庫**](https://github.com/Azure/diagnostics-eventflow)來設定同處理序記錄檔收集。 其他程式庫或許可以用於相同的目的，但 EventFlow 的優點在於它是專門針對同處理序記錄檔收集而設計，並且支援 Service Fabric 服務。 我們將使用 [**Azure Application Insights**](https://azure.microsoft.com/services/application-insights/) 作為記錄檔目的地。 其他像是[**事件中樞**](https://azure.microsoft.com/services/event-hubs/)或 [**Elasticsearch**](https://www.elastic.co/products/elasticsearch) 也都是支援的目的地。 所要做的就是安裝適當的 NuGet 套件，並在 EventFlow 組態檔中設定目的地。 如需有關 Application Insights 以外之記錄檔目的地的詳細資訊，請參閱 [EventFlow 文件](https://github.com/Azure/diagnostics-eventflow)。
+在本文中，我們會示範 tooset 向上同處理序記錄的集合使用[ **EventFlow 開放原始碼程式庫**](https://github.com/Azure/diagnostics-eventflow)。 可能使用其他程式庫 hello 相同目的，但 EventFlow 具有 hello 優點需要同處理序記錄檔收集和 toosupport Service Fabric 服務專用的設計。 我們使用[ **Azure Application Insights** ](https://azure.microsoft.com/services/application-insights/)做為 hello 記錄目的地。 其他像是[**事件中樞**](https://azure.microsoft.com/services/event-hubs/)或 [**Elasticsearch**](https://www.elastic.co/products/elasticsearch) 也都是支援的目的地。 它是只安裝適當的 NuGet 封裝和設定 hello 目的地 hello EventFlow 組態檔中的問題。 如需有關 Application Insights 以外之記錄檔目的地的詳細資訊，請參閱 [EventFlow 文件](https://github.com/Azure/diagnostics-eventflow)。
 
-## <a name="adding-eventflow-library-to-a-service-fabric-service-project"></a>將 EventFlow 程式庫新增到 Service Fabric 服務專案
-EventFlow 二進位檔是以一組 NuGet 套件的形式提供。 若要將 EventFlow 新增到 Service Fabric 服務專案，請在 [方案總管] 中該專案上按一下滑鼠右鍵，然後選擇 [管理 NuGet 套件]。 切換到 [瀏覽] 索引標籤，然後搜尋 "`Diagnostics.EventFlow`"：
+## <a name="adding-eventflow-library-tooa-service-fabric-service-project"></a>加入 EventFlow 庫 tooa Service Fabric 服務專案
+EventFlow 二進位檔是以一組 NuGet 套件的形式提供。 tooadd EventFlow tooa Service Fabric 服務專案中，hello 方案總管 中的 hello 專案上按一下滑鼠右鍵，然後選擇 「 管理 NuGet 套件 」。 切換 toohello [瀏覽] 索引標籤，並搜尋"`Diagnostics.EventFlow`」:
 
 ![Visual Studio NuGet 套件管理員 UI 中的 EventFlow NuGet 套件][1]
 
-視應用程式記錄檔的來源和目的地而定，裝載 EventFlow 的服務應該包含適當的套件。 請新增下列套件： 
+hello 服務裝載 EventFlow 應該包含適當的封裝，根據 hello 來源和目的地 hello 應用程式記錄檔。 新增下列封裝的 hello: 
 
 * `Microsoft.Diagnostics.EventFlow.Inputs.EventSource` 
-    * (用來從服務的 EventSource 類別以及從標準 EventSources (例如 *Microsoft-ServiceFabric-Services* 和 *Microsoft-ServiceFabric-Actors*) 擷取資料)
+    * (從 hello 服務 EventSource 類別，以及從這類的標準 EventSources toocapture 資料*Microsoft ServiceFabric 服務*和*Microsoft-ServiceFabric 演員*)
 * `Microsoft.Diagnostics.EventFlow.Outputs.ApplicationInsights` 
-    * (我們將把記錄檔傳送給 Azure Application Insights 資源)  
+    * （我們 toosend hello 記錄 tooan Azure Application Insights 資源）  
 * `Microsoft.Diagnostics.EventFlow.ServiceFabric` 
-    * (允許從 Service Fabric 服務組態將 EventFlow 管線初始化，並以 Service Fabric 健康情況報告的形式傳送診斷資料來回報任何問題)
+    * （可讓 hello EventFlow 管線就會從 Service Fabric 服務組態的初始化和報告與 Service Fabric 健康情況報告的形式傳送診斷資料的任何問題）
 
 > [!NOTE]
-> `Microsoft.Diagnostics.EventFlow.Inputs.EventSource` 套件會要求服務專案的目標必須是 .NET Framework 4.6 或更新版本。 安裝此套件之前，請先確定您已在專案屬性中設定適當的目標架構。 
+> `Microsoft.Diagnostics.EventFlow.Inputs.EventSource`封裝需要 hello 服務專案 tootarget.NET Framework 4.6 或更新版本。 請確定您在專案屬性中設定 hello 適當的目標 framework 之前安裝此套件。 
 
-安裝好所有套件之後，下一個步驟就是設定及啟用服務中的 EventFlow。
+在所有 hello 已安裝的套件，hello 下一個步驟是 tooconfigure 和啟用 EventFlow hello 服務中。
 
 ## <a name="configuring-and-enabling-log-collection"></a>設定及啟用記錄檔收集
-EventFlow 管線 (負責傳送記錄檔) 是從儲存在組態檔中的規格建立的。 `Microsoft.Diagnostics.EventFlow.ServiceFabric` 套件會在 `PackageRoot\Config` 方案資料夾底下安裝一個起始的 EventFlow 組態檔。 檔案名稱是 `eventFlowConfig.json`。 此組態檔必須經過修改，才能從預設服務 `EventSource` 類別擷取資料，然後將資料傳送給 Application Insights 服務。
+EventFlow 管線，負責傳送嗨記錄檔，會建立從儲存在組態檔中的規格。 `Microsoft.Diagnostics.EventFlow.ServiceFabric` 套件會在 `PackageRoot\Config` 方案資料夾底下安裝一個起始的 EventFlow 組態檔。 hello 檔案名稱為`eventFlowConfig.json`。 此組態檔必須 hello 預設服務的修改 toobe toocapture 資料`EventSource`類別，並傳送資料 tooApplication Insights 服務。
 
 > [!NOTE]
-> 我們假設您已熟悉 **Azure Application Insights** 服務，並且具有要用來監視 Service Fabric 服務的 Application Insights 資源。 如需詳細資訊，請參閱[建立 Application Insights 資源](../application-insights/app-insights-create-new-resource.md)。
+> 我們假設您已熟悉**Azure Application Insights**服務，而且您擁有您規劃 toouse toomonitor Service Fabric 服務的 Application Insights 資源。 如需詳細資訊，請參閱[建立 Application Insights 資源](../application-insights/app-insights-create-new-resource.md)。
 
-在編輯器中開啟 `eventFlowConfig.json` 檔案，並依照以下所示變更其內容。 請務必根據註解取代 ServiceEventSource 名稱和 Application Insights 檢測金鑰。 
+開啟 hello `eventFlowConfig.json` hello 編輯器中的檔案，並變更其內容，如下所示。 請確定 tooreplace hello ServiceEventSource 名稱並根據 toocomments Application Insights 檢測金鑰。 
 
 ```json
 {
@@ -81,7 +81,7 @@ EventFlow 管線 (負責傳送記錄檔) 是從儲存在組態檔中的規格建
       "sources": [
         { "providerName": "Microsoft-ServiceFabric-Services" },
         { "providerName": "Microsoft-ServiceFabric-Actors" },
-        // (replace the following value with your service's ServiceEventSource name)
+        // (replace hello following value with your service's ServiceEventSource name)
         { "providerName": "your-service-EventSource-name" }
       ]
     }
@@ -95,7 +95,7 @@ EventFlow 管線 (負責傳送記錄檔) 是從儲存在組態檔中的規格建
   "outputs": [
     {
       "type": "ApplicationInsights",
-      // (replace the following value with your AI resource's instrumentation key)
+      // (replace hello following value with your AI resource's instrumentation key)
       "instrumentationKey": "00000000-0000-0000-0000-000000000000"
     }
   ],
@@ -104,7 +104,7 @@ EventFlow 管線 (負責傳送記錄檔) 是從儲存在組態檔中的規格建
 ```
 
 > [!NOTE]
-> 服務的 ServiceEventSource 名稱是套用至 ServiceEventSource 類別之 `EventSourceAttribute` 的 Name 屬性值。 全部都在 `ServiceEventSource.cs` 檔案中指定，此檔案是服務程式碼的一部分。 例如，在下列程式碼片段中，ServiceEventSource 的名稱是 *MyCompany-Application1-Stateless1*：
+> 服務的 ServiceEventSource hello 名稱是 hello hello hello 名稱屬性值`EventSourceAttribute`套用 toohello ServiceEventSource 類別。 它內指定 all hello`ServiceEventSource.cs`屬於 hello 服務程式碼的檔案。 例如，在 hello hello ServiceEventSource 的下列程式碼片段 hello 名稱是*MyCompany-Application1-Stateless1*:
 > ```csharp
 > [EventSource(Name = "MyCompany-Application1-Stateless1")]
 > internal sealed class ServiceEventSource : EventSource
@@ -113,9 +113,9 @@ EventFlow 管線 (負責傳送記錄檔) 是從儲存在組態檔中的規格建
 >} 
 > ```
 
-請注意，`eventFlowConfig.json` 檔案是服務組態封裝的一部分。 對此檔案所做的變更可以包含在完整或僅限組態的服務升級中，並受到 Service Fabric 升級健康情況檢查和自動復原 (如果發生升級失敗) 控管。 如需詳細資訊，請參閱 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)。
+請注意，`eventFlowConfig.json` 檔案是服務組態封裝的一部分。 變更 toothis 檔案可以包含在完整或組態-僅限 hello 服務的升級，則主體 tooService 網狀架構升級健全狀況檢查和自動回復升級失敗時。 如需詳細資訊，請參閱 [Service Fabric 應用程式升級](service-fabric-application-upgrade.md)。
 
-最後一個步驟是在服務的啟動程式碼 (位於 `Program.cs` 檔案中) 中將 EventFlow 管線具現化。 在下列範例中，EventFlow 相關的新增皆有開頭為 `****` 的註解標示：
+hello 最後一個步驟是在服務的啟動程式碼，位於 tooinstantiate EventFlow 管線`Program.cs`檔案。 在 hello 新增下列範例 EventFlow 相關項目都以註解的開頭標示`****`:
 
 ```csharp
 using System;
@@ -132,7 +132,7 @@ namespace Stateless1
     internal static class Program
     {
         /// <summary>
-        /// This is the entry point of the service host process.
+        /// This is hello entry point of hello service host process.
         /// </summary>
         private static void Main()
         {
@@ -161,10 +161,10 @@ namespace Stateless1
 }
 ```
 
-當作 `ServiceFabricDiagnosticsPipelineFactory` 之 `CreatePipeline` 方法的參數來傳遞的名稱是「健康情況實體」的名稱，此實體代表 EventFlow 記錄檔收集管線。 當 EventFlow 發生錯誤並透過 Service Fabric 健康情況子系統回報錯誤時，就會使用此名稱。
+hello 名稱傳遞為 hello hello 參數`CreatePipeline`方法 hello `ServiceFabricDiagnosticsPipelineFactory` hello hello 名稱*健全狀況實體*代表 hello EventFlow 記錄集合管線。 如果 EventFlow 遇到，會使用這個名稱和錯誤，並報告透過 hello 服務網狀架構健全狀況子系統。
 
 ## <a name="verification"></a>驗證
-啟動您的服務並觀察 Visual Studio 中的 [偵錯] 輸出視窗。 啟動服務之後，您應該會開始看到服務傳送「Application Insights 遙測」記錄的證據。 開啟網頁瀏覽器，然後瀏覽至您的 Application Insights 資源。 開啟 [搜尋] 索引標籤 (在預設的 [概觀] 刀鋒視窗頂端)。 在短暫延遲之後，您應該會開始在 Application Insights 入口網站中看到您的追蹤：
+啟動您的服務，並觀察 hello 偵錯 Visual Studio 中的 [輸出] 視窗。 Hello 服務啟動之後，您應該會開始看到您的服務將 「 Application Insights 遙測 」 資料錄的辨識項。 開啟網頁瀏覽器並瀏覽移 tooyour Application Insights 資源。 開啟 「 搜尋 」 索引標籤 （在 hello hello 預設 「 概觀 」 刀鋒視窗頂端）。 您應該在短暫延遲之後會開始看到您在 hello Application Insights 入口網站中的追蹤：
 
 ![顯示來自 Service Fabric 應用程式之記錄檔的 Application Insights 入口網站][2]
 

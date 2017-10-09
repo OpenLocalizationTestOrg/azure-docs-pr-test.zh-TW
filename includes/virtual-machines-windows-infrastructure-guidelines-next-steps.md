@@ -1,4 +1,4 @@
-完整的指導方針系列可協助您了解所有不同的設計考量，以協助您在 Azure 中建置您自己的應用程式基礎結構：
+hello 完整的系列指導方針可協助您了解所有 hello 不同的設計考量建置我們您的應用程式基礎結構，在 Azure 中：
 
 * [Azure 訂用帳戶和帳戶指導方針](../articles/virtual-machines/windows/infrastructure-subscription-accounts-guidelines.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 * [Azure 基礎結構命名指導方針](../articles/virtual-machines/windows/infrastructure-naming-guidelines.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)

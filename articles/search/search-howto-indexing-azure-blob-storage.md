@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 搜尋服務對 Azure Blob 儲存體編制索引"
-description: "了解如何使用 Azure 搜尋服務對 Azure Blob 儲存體編製索引，以及從文件擷取文字"
+title: "aaaIndexing Azure Blob 儲存體與 Azure 搜尋"
+description: "了解如何 tooindex Azure Blob 儲存體和擷取的文字文件使用 Azure 搜尋"
 services: search
 documentationcenter: 
 author: chaosrealm
@@ -14,17 +14,17 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 07/22/2017
 ms.author: eugenesh
-ms.openlocfilehash: 023c343122f872943fb3ab3eed7b4caedfae9ac4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1bdd34e66a4a9192ed88cacbc7b8456d0dcdfeb6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="indexing-documents-in-azure-blob-storage-with-azure-search"></a>使用 Azure 搜尋服務在 Azure Blob 儲存體中對文件編制索引
-本文說明如何使用 Azure 搜尋服務對儲存在 Azure Blob 儲存體的文件編製索引 (例如 PDF、Microsoft Office 文件和數種其他通用格式)。 首先，它會說明安裝和設定 blob 索引子的基本概念。 然後，它會提供可能會發生之行為和案例的更深入探索。
+本文將說明如何 toouse Azure 搜尋 tooindex 文件 (例如 Pdf、 Microsoft Office 文件和許多其他常見的格式) 儲存在 Azure Blob 儲存體。 首先，它會說明安裝及設定 blob 的索引子的 hello 基本的概念。 然後，它可提供行為與案例，您都可能 tooencounter 更深入瀏覽。
 
 ## <a name="supported-document-formats"></a>支援的文件格式
-blob 索引子可以從下列文件格式擷取文字：
+hello blob 索引子可以擷取下列文件格式的 hello 文字：
 
 * PDF
 * Microsoft Office 格式：DOCX/DOC、XLSX/XLS、PPTX/PPT、MSG (Outlook 電子郵件)  
@@ -38,7 +38,7 @@ blob 索引子可以從下列文件格式擷取文字：
 * CSV (請參閱[編製 CSV Blob 的索引](search-howto-index-csv-blobs.md) 預覽功能)
 
 > [!IMPORTANT]
-> CSV 和 JSON 的陣列支援目前屬於預覽功能。 只有在使用 REST API 的 **2016-09-01-Preview** 或 .NET SDK 的 2.x-preview 版時，才可使用這些格式。 請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
+> CSV 和 JSON 的陣列支援目前屬於預覽功能。 這些格式是只使用版**2016年-09-01-預覽**的 hello REST API 或版本 2.x 預覽的 hello.NET SDK。 請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
 >
 >
 
@@ -50,23 +50,23 @@ blob 索引子可以從下列文件格式擷取文字：
 * Azure 搜尋服務 [.NET SDK](https://aka.ms/search-sdk)
 
 > [!NOTE]
-> 某些功能 (例如，欄位對應) 尚未在入口網站中提供使用，而必須以程式設計方式來使用。
+> 某些功能 （例如，欄位對應） 尚無法使用在 hello 入口網站，而且提供 toobe 以程式設計方式使用。
 >
 >
 
-我們會在此示範使用 REST API 的流程。
+在這裡，我們會示範使用 hello REST API 的 hello 流程。
 
 ### <a name="step-1-create-a-data-source"></a>步驟 1：建立資料來源
-資料來源能指定哪項資料要編製索引、存取資料需要哪些認證，以及哪些原則能有效識別資料變更 (新增、修改或刪除的資料列)。 資料來源可供同一個搜尋服務中的多個索引子使用。
+資料來源會指定哪些資料 tooindex、 所需認證 tooaccess hello 資料，以及原則 tooefficiently 識別 hello 資料 （新增、 修改或刪除資料列） 中的變更。 使用資料來源的多個索引子在 hello 相同搜尋服務。
 
-若要為 Blob 編製索引，資料來源必須具有下列必要屬性︰
+對於 blob 編製索引 hello 資料來源必須包含下列必要的屬性的 hello:
 
-* **名稱**是搜尋服務中資料來源的唯一名稱。
+* **名稱**是 hello hello 搜尋服務中的資料來源的唯一名稱。
 * **類型**必須是 `azureblob`。
-* **認證**可提供儲存體帳戶連接字串來做為 `credentials.connectionString` 參數。 請參閱下面的[如何指定認證](#Credentials)了解詳細資訊。
-* **容器**會指定儲存體帳戶中的容器。 根據預設，容器內的所有 Blob 都可擷取。 如果您只想要在特定虛擬目錄為 Blob 編製索引，您可以使用選擇性的**查詢**參數指定該目錄。
+* **認證**提供 hello 儲存體帳戶連接字串 hello 做`credentials.connectionString`參數。 請參閱[如何 toospecify 認證](#Credentials)下方如需詳細資訊。
+* **容器**會指定儲存體帳戶中的容器。 根據預設，hello 容器內的所有 blob 都都可擷取。 如果您只想在特定的虛擬目錄中的 tooindex blob，您可以指定使用選用的 hello 該目錄**查詢**參數。
 
-若要建立資料來源：
+toocreate 資料來源：
 
     POST https://[service name].search.windows.net/datasources?api-version=2016-09-01
     Content-Type: application/json
@@ -79,26 +79,26 @@ blob 索引子可以從下列文件格式擷取文字：
         "container" : { "name" : "my-container", "query" : "<optional-virtual-directory-name>" }
     }   
 
-如需建立資料來源 API 的詳細資訊，請參閱 [建立資料來源](https://docs.microsoft.com/rest/api/searchservice/create-data-source)。
+如需 hello 建立資料來源應用程式開發介面的詳細資訊，請參閱[建立資料來源](https://docs.microsoft.com/rest/api/searchservice/create-data-source)。
 
 <a name="Credentials"></a>
-#### <a name="how-to-specify-credentials"></a>如何指定認證 ####
+#### <a name="how-toospecify-credentials"></a>如何 toospecify 認證 ####
 
-您可以採取下列其中一種方式提供 blob 容器的認證︰
+您可以提供一種方式中的 hello blob 容器的 hello 認證：
 
-- **完整存取儲存體帳戶連接字串**：`DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`。 您可以從 Azure 入口網站取得連接字串︰瀏覽至儲存體帳戶刀鋒視窗 > [設定] > [金鑰] \(傳統儲存體帳戶)，或 [設定] > [存取金鑰] \(Azure Resource Manager 儲存體帳戶)。
-- **儲存體帳戶共用存取簽章** (SAS) 連接字串：`BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=b&sp=rl` SAS 應該有容器和物件 (在此案例中為 Blob) 上的列出和讀取權限。
--  **容器共用存取簽章**：`ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<the signature>&se=<the validity end time>&sp=rl` SAS 應該有容器上的列出和讀取權限。
+- **完整存取儲存體帳戶連接字串**：`DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>`。 您可以從 hello Azure 入口網站瀏覽 toohello 儲存體帳戶 刀鋒視窗來取得 hello 連接字串 > 的設定 > （適用於傳統儲存體帳戶） 的索引鍵或設定 > 存取金鑰 （適用於 Azure Resource Manager 儲存體帳戶）。
+- **儲存體帳戶的共用的存取簽章**(SAS) 連接字串： `BlobEndpoint=https://<your account>.blob.core.windows.net/;SharedAccessSignature=?sv=2016-05-31&sig=<hello signature>&spr=https&se=<hello validity end time>&srt=co&ss=b&sp=rl` hello SAS 應有 hello 清單和讀取容器和物件的權限 (在此情況下 blob)。
+-  **容器的共用的存取簽章**: `ContainerSharedAccessUri=https://<your storage account>.blob.core.windows.net/<container name>?sv=2016-05-31&sr=c&sig=<hello signature>&se=<hello validity end time>&sp=rl` hello SAS 應有 hello 清單和讀取 hello 容器的權限。
 
 如需儲存體共用存取簽章的詳細資訊，請參閱[使用共用存取簽章](../storage/common/storage-dotnet-shared-access-signature-part-1.md)。
 
 > [!NOTE]
-> 如果您使用 SAS 認證，您必須使用更新的簽章定期更新資料來源認證以防止其到期。 如果 SAS 認證過期，索引子將會失敗並出現類似 `Credentials provided in the connection string are invalid or have expired.` 的錯誤訊息。  
+> 如果您使用 SAS 認證時，您必須定期與更新的簽章 tooprevent tooupdate hello 資料來源認證其到期時間。 如果 SAS 認證過期，hello 索引子將會失敗並出現類似的錯誤訊息太`Credentials provided in hello connection string are invalid or have expired.`。  
 
 ### <a name="step-2-create-an-index"></a>步驟 2：建立索引
-索引會指定文件、屬性和其他建構中可形塑搜尋體驗的欄位。
+hello 索引指定 hello 欄位中的文件屬性，以及其他建構該圖形 hello 搜尋經驗。
 
-以下說明如何使用可搜尋的 `content` 欄位建立索引，以儲存從 blob 擷取的文字︰   
+以下是如何 toocreate 具有可搜尋的索引`content`欄位從 blob 擷取 toostore hello 文字：   
 
     POST https://[service name].search.windows.net/indexes?api-version=2016-09-01
     Content-Type: application/json
@@ -115,9 +115,9 @@ blob 索引子可以從下列文件格式擷取文字：
 如需建立索引的詳細資訊，請參閱[建立索引](https://docs.microsoft.com/rest/api/searchservice/create-index)
 
 ### <a name="step-3-create-an-indexer"></a>步驟 3：建立索引子
-索引子會以目標搜尋索引連接資料來源，並提供排程來自動重新整理資料。
+索引子連接的資料來源與目標搜尋索引，並提供排程 tooautomate hello 資料重新整理。
 
-建立索引和資料來源之後，您就可以開始建立索引子︰
+一旦已建立 hello 索引和資料來源，就要準備好 toocreate hello 索引子：
 
     POST https://[service name].search.windows.net/indexers?api-version=2016-09-01
     Content-Type: application/json
@@ -130,65 +130,65 @@ blob 索引子可以從下列文件格式擷取文字：
       "schedule" : { "interval" : "PT2H" }
     }
 
-這個索引子每隔兩小時就會執行一次 (已將排程間隔設為 "PT2H")。 若每隔 30 分鐘就要執行索引子，可將間隔設為 "PT30M"。 支援的最短間隔為 5 分鐘。 排程為選擇性 - 如果省略，索引子只會在建立時執行一次。 不過，您隨時都可依需求執行索引子。   
+這個索引子會執行每隔兩小時 (排程間隔設定得 「 PT2H")。 索引子 toorun 每隔 30 分鐘、 設定 hello 間隔太"PT30M"。 hello 最短支援的間隔是 5 分鐘。 hello 排程是選用-如果省略，索引子會執行一次建立時。 不過，您隨時都可依需求執行索引子。   
 
-如需建立索引子 API 的詳細資訊，請參閱 [建立索引子](https://docs.microsoft.com/rest/api/searchservice/create-indexer)。
+如需有關 hello 建立索引子 API，請簽出[建立索引子](https://docs.microsoft.com/rest/api/searchservice/create-indexer)。
 
 ## <a name="how-azure-search-indexes-blobs"></a>Azure 搜尋服務如何編製 blob 的索引
 
-取決於[組態](#PartsOfBlobToIndex)，blob 索引子只可以編製儲存體中繼資料的索引 (僅當您關注中繼資料且無須編製 blob 內容的索引時很有用)，儲存體和內容中繼資料，或中繼資料和文字內容。 根據預設，索引子會擷取中繼資料和內容。
+根據 hello [indexer 組態](#PartsOfBlobToIndex)，hello blob 索引子可以編製索引只儲存中繼資料 (當您只有照顧大約 hello 中繼資料，而且不需要 tooindex 時很有用 hello blob 的內容)，儲存和內容的中繼資料，或兩者中繼資料和文字內容。 根據預設，hello 索引子會擷取中繼資料和內容。
 
 > [!NOTE]
-> 根據預設，結構化內容 (例如 JSON 或CSV) 的 Blob 會以單一區塊文字編製索引。 如果您要以結構化方式編製 JSON 和 CSV blob 的索引，請參閱[編製 JSON blob 的索引](search-howto-index-json-blobs.md)和[編製 CSV blob 的索引](search-howto-index-csv-blobs.md)預覽功能。
+> 根據預設，結構化內容 (例如 JSON 或CSV) 的 Blob 會以單一區塊文字編製索引。 如果您想 tooindex JSON 和 CSV blob 結構化的方式，請參閱[索引 JSON blob](search-howto-index-json-blobs.md)和[編製索引的 CSV blob](search-howto-index-csv-blobs.md)預覽功能。
 >
 > 複合或內嵌文件 (例如 ZIP 封存或具有內嵌 Outlook 電子郵件 (內含附件) 的 Word 文件) 也會編制索引為單一文件。
 
-* 文件的文字內容會擷取至名為 `content` 的字串欄位。
+* hello 文件的 hello 文字內容擷取至名為的字串欄位`content`。
 
 > [!NOTE]
-> Azure 搜尋服務會根據定價層限制擷取的文字數量：免費層可擷取 32,000 個字元、基本層可擷取 64,000 個字元、標準、標準 S2 與 標準 S3 層可擷取 4 百萬個字元。 在已截斷的文件中，索引子的狀態回應會包含警告。  
+> Azure 搜尋會限制它根據 hello 定價層會擷取多少文字： 32000 個字元的免費層，64000 basic，以及 4 百萬 Standard、 Standard S2 和 S3 標準層。 警告會包含在 hello 截斷的文件的索引子狀態回應。  
 
-* 顯示在 blob 中的使用者指定中繼資料屬性 (如果有的話)，會逐字擷取。
-* 標準 blob 中繼資料屬性會擷取到下列欄位：
+* 使用者指定的中繼資料屬性出現在 hello blob 上如果有的話，會擷取逐字。
+* 標準 blob 中繼資料屬性會被擷取到 hello 下列欄位：
 
-  * **metadata\_storage\_name** (Edm.String) - blob 的檔案名稱。 例如，如果您有 blob /my-container/my-folder/subfolder/resume.pdf，這個欄位的值是 `resume.pdf`。
-  * **metadata\_storage\_path** (Edm.String) - blob 的完整 URI，包括儲存體帳戶。 例如， `https://myaccount.blob.core.windows.net/my-container/my-folder/subfolder/resume.pdf`
-  * **metadata\_storage\_content\_type** (Edm.String) - 內容類型，如同您用來上傳 blob 的程式碼所指定。 例如， `application/octet-stream`。
-  * **metadata\_storage\_last\_modified** (Edm.DateTimeOffset) - 上次修改 blob 的時間戳記。 Azure 搜尋服務會使用此時間戳記來識別已變更的 blob，以避免在初始編製索引之後重新對所有項目編制索引。
+  * **中繼資料\_儲存體\_名稱**(Edm.String)-hello hello blob 檔案名稱。 例如，如果您有 blob /my-container/my-folder/subfolder/resume.pdf，hello 這個欄位的值是`resume.pdf`。
+  * **中繼資料\_儲存體\_路徑**(Edm.String)-hello hello blob，包括 hello 儲存體帳戶的完整 URI。 例如， `https://myaccount.blob.core.windows.net/my-container/my-folder/subfolder/resume.pdf`
+  * **中繼資料\_儲存體\_內容\_類型**(Edm.String)-hello 程式碼所指定的內容類型使用 tooupload hello blob。 例如： `application/octet-stream`。
+  * **中繼資料\_儲存體\_最後\_修改**(Edm.DateTimeOffset)-上次修改時間戳記 hello blob。 Azure 搜尋會使用此時間戳記變更 tooidentify blob tooavoid 重新 hello 初始建立索引之後的所有項目。
   * **metadata\_storage\_size** (Edm.Int64) - blob 大小 (位元組)。
-  * **metadata\_storage\_content\_md5** (Edm.String) - blob 內容的 MD5 雜湊，如果有的話。
-* 每個文件格式特有的中繼資料屬性會擷取到[這裡](#ContentSpecificMetadata)列出的欄位。
+  * **中繼資料\_儲存體\_內容\_md5** (Edm.String) 的 MD5 雜湊 hello blob 內容，如果有的話。
+* 中繼資料屬性特定 tooeach 文件格式會被擷取到所列的 hello 欄位[這裡](#ContentSpecificMetadata)。
 
-您不需要在您的搜尋索引中針對上述所有屬性定義欄位 - 只擷取您的應用程式所需的屬性。
+您不需要 toodefine 欄位 hello 屬性上方的所有搜尋索引中，只擷取您的應用程式所需的 hello 屬性。
 
 > [!NOTE]
-> 通常，您現有的索引中的欄位名稱會與文件擷取期間所產生的欄位名稱不同。 您可以使用 [欄位對應] 將 Azure 搜尋服務提供的屬性名稱對應至您的搜尋索引中的欄位名稱。 您會在下面看到使用欄位對應的範例。
+> 通常，您現有的索引中的 hello 欄位名稱會不同於在文件擷取期間所產生的 hello 欄位名稱。 您可以使用**欄位對應**toomap hello 屬性名稱中搜尋索引的 Azure 搜尋 toohello 欄位名稱所提供。 您會在下面看到使用欄位對應的範例。
 >
 >
 
 <a name="DocumentKeys"></a>
 ### <a name="defining-document-keys-and-field-mappings"></a>定義文件索引鍵和欄位對應
-在 Azure 搜尋服務中，文件索引鍵會唯一識別文件。 每個搜尋索引必須確實具有一個 Edm.String 類型的索引鍵欄位。 要新增至索引的每個文件需要有索引鍵欄位 (實際上它是唯一必要的欄位)。  
+在 Azure 搜尋 hello 文件索引鍵會唯一識別文件。 每個搜尋索引必須確實具有一個 Edm.String 類型的索引鍵欄位。 正在 toohello 索引 （它是實際 hello 唯一必要的欄位） 加入每份文件需要 hello 索引鍵欄位。  
 
-您應該仔細考慮哪一個擷取的欄位應該對應至您的索引的索引鍵欄位。 候選對象是：
+您應該仔細考量哪一個擷取的欄位應該對應 toohello 索引鍵欄位，您的索引。 hello 的候選方式為：
 
-* **metadata\_storage\_name** - 這可能是方便的候選對象，但是請注意，1) 名稱可能不是唯一的，因為您在不同的資料夾中可能會有相同名稱的 blob，以及 2) 名稱可能包含在文件所索引鍵中無效的字元，例如連字號。 您可以藉由使用 `base64Encode` [欄位對應函式](search-indexer-field-mappings.md#base64EncodeFunction)，處理無效的字元。如果您這麼做，請記得在將它們傳入例如「查閱」的 API 呼叫時，對文件索引鍵進行編碼。 (例如，在 .NET 中您可以針對該目的使用 [UrlTokenEncode 方法](https://msdn.microsoft.com/library/system.web.httpserverutility.urltokenencode.aspx))。
-* **metadata\_storage\_path** - 使用完整路徑以確保唯一性，但是路徑明確包含 `/` 字元，該字元[在文件索引鍵中無效](https://docs.microsoft.com/rest/api/searchservice/naming-rules)。  如上所述，您可以選擇使用 `base64Encode` [函式](search-indexer-field-mappings.md#base64EncodeFunction)來編碼索引鍵。
-* 如果上述任何選項都不適合，您可以在 blob 中新增自訂中繼資料屬性。 但是，此選項需要您的 blob 上傳程序，將該中繼資料屬性新增至所有 blob。 因為索引鍵是必要屬性，所以沒有該屬性的所有 blob 都無法編製索引。
+* **中繼資料\_儲存體\_名稱**-這可能是方便的候選項目，但是請注意，1) hello 名稱可能不是唯一的因為您可能會有相同的名稱，在不同的資料夾中的 hello 的 blob 和 2) hello 名稱可能包含的字元，不適用於文件索引鍵，例如連字號。 您可以使用 hello 處理無效的字元`base64Encode`[欄位對應的函式](search-indexer-field-mappings.md#base64EncodeFunction)-如果您這樣做，請記住 tooencode 文件索引鍵時查閱例如傳入 API 呼叫。 (例如，在.NET 中您可以使用 hello [UrlTokenEncode 方法](https://msdn.microsoft.com/library/system.web.httpserverutility.urltokenencode.aspx)針對該用途)。
+* **中繼資料\_儲存體\_路徑**-使用 hello 完整路徑，以確保唯一性，但 hello 路徑明確包含`/`字元[無效文件索引鍵中](https://docs.microsoft.com/rest/api/searchservice/naming-rules)。  如前所述，您擁有 hello 選項的編碼使用 hello hello 金鑰`base64Encode`[函式](search-indexer-field-mappings.md#base64EncodeFunction)。
+* 如果任何上述的 hello 選項為您的工作，您可以加入自訂中繼資料屬性 toohello blob。 此選項，不過，需要您的 blob 上傳程序 tooadd 該中繼資料屬性 tooall blob。 Hello 索引鍵是必要的屬性，因為沒有該屬性的所有 blob 會都失敗 toobe 編製索引。
 
 > [!IMPORTANT]
-> 如果在索引中沒有索引鍵欄位的明確對應，Azure 搜尋服務會自動使用 `metadata_storage_path` 做為索引鍵，而 base-64 會編碼索引鍵值 (上述的第二個選項)。
+> 如果沒有明確的 hello hello 索引中的索引鍵欄位對應，Azure 搜尋會自動使用`metadata_storage_path`為 hello 和 base 64 編碼的索引鍵值 （hello 第二個選項上述）。
 >
 >
 
-對於此範例，讓我們挑選 `metadata_storage_name` 欄位做為文件索引鍵。 同時假設您的索引具有名為 `key` 的索引鍵欄位和欄位 `fileSize`，來儲存文件大小。 若要連接所需的項目，在建立或更新您的索引子時，指定下列欄位對應：
+例如，讓我們挑選 hello `metadata_storage_name` hello 文件索引鍵欄位。 我們也假設您的索引具有索引鍵欄位，名為`key`和欄位`fileSize`儲存 hello 文件大小。 toowire 進行視需要指定下列欄位對應時建立或更新您的索引子的 hello:
 
     "fieldMappings" : [
       { "sourceFieldName" : "metadata_storage_name", "targetFieldName" : "key", "mappingFunction" : { "name" : "base64Encode" } },
       { "sourceFieldName" : "metadata_storage_size", "targetFieldName" : "fileSize" }
     ]
 
-若要將所有項目整合在一起，以下是您新增欄位對應和針對現有索引子啟用 base-64 索引鍵編碼的方式：
+toobring 整體而言，這裡的如何新增欄位對應，並啟用 base 64 編碼的現有的索引子的索引鍵：
 
     PUT https://[service name].search.windows.net/indexers/blob-indexer?api-version=2016-09-01
     Content-Type: application/json
@@ -205,7 +205,7 @@ blob 索引子可以從下列文件格式擷取文字：
     }
 
 > [!NOTE]
-> 若要深入了解欄位對應，請參閱[這篇文章](search-indexer-field-mappings.md)。
+> toolearn 詳細資料欄位對應，請參閱[本文](search-indexer-field-mappings.md)。
 >
 >
 
@@ -213,8 +213,8 @@ blob 索引子可以從下列文件格式擷取文字：
 ## <a name="controlling-which-blobs-are-indexed"></a>控制要編製哪些 blob 的索引
 您可以控制要編製哪些 blob 的索引，以及哪些要略過。
 
-### <a name="index-only-the-blobs-with-specific-file-extensions"></a>只將具有特定副檔名的 Blob 編製成索引
-您可以使用 `indexedFileNameExtensions` 索引子組態參數，只將具有指定副檔名的 Blob 編製成索引。 值是包含副檔名 (有前置句點) 逗號分隔清單的字串。 例如，若只要將 .PDF 和 .DOCX Blob 編製成索引，請執行這項操作︰
+### <a name="index-only-hello-blobs-with-specific-file-extensions"></a>索引只具有特定副檔名的 hello blob
+您可以建立索引 hello 檔案名稱副檔名，而您使用 hello 指定唯一的 hello blob`indexedFileNameExtensions`索引子 」 組態參數。 hello 值為字串，包含以逗號分隔的副檔名清單 （以前置句點）。 例如，tooindex 只有 hello。PDF 和。DOCX blob 時，執行下列動作：
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -226,7 +226,7 @@ blob 索引子可以從下列文件格式擷取文字：
     }
 
 ### <a name="exclude-blobs-with-specific-file-extensions"></a>排除具有特定副檔名的 Blob
-您可以使用 `excludedFileNameExtensions` 組態參數，在編製索引時排除具有特定副檔名的 Blob。 值是包含副檔名 (有前置句點) 逗號分隔清單的字串。 例如，若要將除 .PNG 和 .JPEG 副檔名以外的所有 Blob 都編製成索引，請執行下列動作︰
+您可以從使用 hello 索引排除特定副檔名的 blob`excludedFileNameExtensions`組態參數。 hello 值為字串，包含以逗號分隔的副檔名清單 （以前置句點）。 例如，所有 tooindex 都 blob hello 除外。PNG 和。JPEG 擴充功能，執行下列動作：
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -237,11 +237,11 @@ blob 索引子可以從下列文件格式擷取文字：
       "parameters" : { "configuration" : { "excludedFileNameExtensions" : ".png,.jpeg" } }
     }
 
-如果同時有 `indexedFileNameExtensions` 和 `excludedFileNameExtensions` 參數，Azure 搜尋服務會先查看 `indexedFileNameExtensions`，再查看 `excludedFileNameExtensions`。 這表示，如果兩份清單中有相同的副檔名，就會排除在索引編製外。
+如果同時有 `indexedFileNameExtensions` 和 `excludedFileNameExtensions` 參數，Azure 搜尋服務會先查看 `indexedFileNameExtensions`，再查看 `excludedFileNameExtensions`。 這表示，如果 hello 相同的副檔名存在於這兩個清單中，它將會排除編製索引。
 
 ### <a name="dealing-with-unsupported-content-types"></a>處理不受支援的內容類型
 
-根據預設，一旦遇到不受支援內容類型 (例如影像) 的 blob 時，blob 索引子就會停止。 您當然可以使用 `excludedFileNameExtensions` 參數來略過特定內容類型。 不過，您可能需要編製 blob 的索引，而不需要事先知道所有可能的內容類型。 若要在遇到不受支援的內容類型時繼續編製索引，請將 `failOnUnsupportedContentType` 組態參數設定為 `false`：
+根據預設，當它遇到不支援的內容類型 （例如影像） 的 blob，就會停止 hello blob 索引子。 當然，您可以使用 hello`excludedFileNameExtensions`參數 tooskip 特定內容類型。 不過，您可能需要 tooindex blob，而不需要事先知道所有 hello 可能的內容類型。 toocontinue 編製索引，當遇到不支援的內容型別時，設定 hello`failOnUnsupportedContentType`組態參數太`false`:
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -254,7 +254,7 @@ blob 索引子可以從下列文件格式擷取文字：
 
 ### <a name="ignoring-parsing-errors"></a>忽略剖析錯誤
 
-Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支援內容類型 (例如 .DOCX 或 .PDF) 的文件。 如果您不想中斷這類案例中的索引，請將 `maxFailedItems` 和 `maxFailedItemsPerBatch` 組態參數設定為一些合理的值。 例如：
+Azure 搜尋文件擷取邏輯並不完美，而且有時候會這類失敗 tooparse 文件支援的內容類型。DOCX 或。PDF。 如果您不想 toointerrupt hello 編製索引，在此情況下，設定 hello`maxFailedItems`和`maxFailedItemsPerBatch`組態參數 toosome 合理的值。 例如：
 
     {
       ... other parts of indexer definition
@@ -262,15 +262,15 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
     }
 
 <a name="PartsOfBlobToIndex"></a>
-## <a name="controlling-which-parts-of-the-blob-are-indexed"></a>控制要編製 blob 哪些部分的索引
+## <a name="controlling-which-parts-of-hello-blob-are-indexed"></a>控制 hello blob 的哪些部分會編製索引
 
-您可以使用 `dataToExtract` 組態參數來控制要編製 blob 哪些部分的索引。 它可以採用下列值：
+您可以控制 hello blob 的哪些部分會編製索引使用 hello`dataToExtract`組態參數。 它可以接受下列值的 hello:
 
-* `storageMetadata` - 指定只有[標準 blob 屬性和使用者指定的中繼資料](../storage/blobs/storage-properties-metadata.md)會編製索引。
-* `allMetadata` - 指定儲存體中繼資料和從 blob 內容擷取的[內容型別特定中繼資料](#ContentSpecificMetadata)會編製索引。
-* `contentAndMetadata` - 指定所有中繼資料和從 blob 擷取的文字內容會編製索引。 這是預設值。
+* `storageMetadata`-指定該只有 hello[標準 blob 屬性和使用者指定的中繼資料](../storage/blobs/storage-properties-metadata.md)會編製索引。
+* `allMetadata`-指定儲存體的中繼資料和 hello[特定內容類型的中繼資料](#ContentSpecificMetadata)擷取從 hello blob 內容會編製索引。
+* `contentAndMetadata`-指定所有的中繼資料和文字內容擷取自 hello blob 會編制索引。 這是 hello 預設值。
 
-例如，若只要編製儲存中繼資料的索引，請使用︰
+例如，tooindex 只有 hello 儲存中繼資料，使用：
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -281,28 +281,28 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
       "parameters" : { "configuration" : { "dataToExtract" : "storageMetadata" } }
     }
 
-### <a name="using-blob-metadata-to-control-how-blobs-are-indexed"></a>使用 blob 中繼資料來控制編製 blob 索引的方式
+### <a name="using-blob-metadata-toocontrol-how-blobs-are-indexed"></a>使用 blob 中繼資料 toocontrol 如何 blob 會編製索引
 
-上述的組態參數適用於所有的 blob。 有時候，您可能想要控制編製*個別 blob* 索引的方式。 若要執行此動作，您可以新增下列 blob 中繼資料屬性和值︰
+套用 tooall blob 上面所述的 hello 組態參數。 有時候，您可能會想 toocontrol 如何*個別 blob*會編製索引。 您可以藉由新增 hello 下列 blob 中繼資料屬性和值：
 
 | 屬性名稱 | 屬性值 | 說明 |
 | --- | --- | --- |
-| AzureSearch_Skip |"true" |指示 blob 索引子以完全略過 blob。 不會嘗試擷取中繼資料或內容。 當特定 blob 一直失敗，並且中斷編製索引程序時，這非常有用。 |
-| AzureSearch_SkipContent |"true" |這是相當於[上方](#PartsOfBlobToIndex)所描述之範圍設定為特定 blob 的 `"dataToExtract" : "allMetadata"` 設定。 |
+| AzureSearch_Skip |"true" |指示 hello blob 索引子 toocompletely 略過 hello blob。 不會嘗試擷取中繼資料或內容。 特定的 blob，但是一再失敗和中斷 hello 索引處理程序時，這非常有用。 |
+| AzureSearch_SkipContent |"true" |這是相當於`"dataToExtract" : "allMetadata"`設定描述[上方](#PartsOfBlobToIndex)已設定領域的 tooa 特定 blob。 |
 
 ## <a name="incremental-indexing-and-deletion-detection"></a>增量編製索引和刪除偵測
-當您設定 blob 索引子排程執行時，它只會重新編制索引變更的 blob，由 blob 的 `LastModified` 時間戳記決定。
+當您設定排程 blob 索引子 toorun 時，它重新編製索引僅由 hello blob 的 blob，已變更的 hello`LastModified`時間戳記。
 
 > [!NOTE]
-> 您不需要指定變更偵測原則 – 會自動為您啟用增量編制索引。
+> 您不需要 toospecify 變更偵測原則-累加索引會為您自動啟用。
 
-若要支援刪除文件，請使用「虛刪除」方法。 如果您直接刪除 blob，對應的文件將不會在搜尋索引中移除。 相反地，請使用下列步驟：  
+toosupport 刪除文件，請使用 「 虛刪除 」 方法。 如果您刪除 hello blob 徹底，對應的文件將不會從 hello 搜尋索引。 請改用 hello 下列步驟：  
 
-1. 在 blob 中新增自訂中繼資料屬性，向 Azure 搜尋服務指出它在邏輯上已遭到刪除
-2. 在資料來源上設定虛刪除偵測原則
-3. 索引子處理過 blob 後 (如索引子狀態 API 所示)，您就可以實際刪除 blob
+1. 新增自訂中繼資料屬性 toohello blob tooindicate tooAzure 搜尋以邏輯方式刪除
+2. Hello 資料來源上設定虛刪除偵測原則
+3. 一旦 hello 索引子具有處理 hello blob （如的 hello 索引子狀態 API 所示），您可以實際刪除 hello blob
 
-例如，如果 blob 有值為 `true` 的中繼資料屬性 `IsDeleted`，則下列原則會認為 blob 已刪除：
+例如，下列原則 hello 考慮 blob toobe 刪除有中繼資料屬性`IsDeleted`hello 值`true`:
 
     PUT https://[service name].search.windows.net/datasources/blob-datasource?api-version=2016-09-01
     Content-Type: application/json
@@ -322,10 +322,10 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
 
 ## <a name="indexing-large-datasets"></a>編製索引大型資料集
 
-編製 blob 的索引可能會是耗時的程序。 在您要編製數以百萬計的 blob 索引情況下，您可以分割資料並使用多個索引子以平行方式處理資料來加速編製索引。 下列是您可以如此設定的方式：
+編製 blob 的索引可能會是耗時的程序。 在您有數百萬個 blob tooindex 的情況下，您可以加速將資料分割，並使用多個索引子 tooprocess hello 資料以平行方式編製索引。 下列是您可以如此設定的方式：
 
 - 將資料分割成多個 blob 容器或虛擬資料夾
-- 設定數個 Azure 搜尋服務資料來源，每個容器或資料夾一個。 若要指向 blob 資料夾，則使用 `query` 參數︰
+- 設定數個 Azure 搜尋服務資料來源，每個容器或資料夾一個。 toopoint tooa blob 資料夾中，使用 hello`query`參數：
 
     ```
     {
@@ -336,20 +336,20 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
     }
     ```
 
-- 針對每個資料來源建立對應的索引子。 所有索引子可以指向相同的目標搜尋索引。  
+- 針對每個資料來源建立對應的索引子。 所有 hello 索引子可以點 toohello 相同目標搜尋索引。  
 
-- 服務中的單一搜尋單位一次只能執行一個索引子。 以上述方式建立多個索引子，只有在這些索引子都以平行的方式執行時才會有幫助。 若要平行執行多個索引子，請透過建立適當數目的磁碟分割和複本，來對搜尋服務進行相應放大。 例如，如果您的搜尋服務具有 6 個搜尋單位 (例如 2 個磁碟分割 x 3 個複本)，則 6 個索引子將可以同時執行，並使編製索引的輸送量提升六倍。 若要深入了解調整與容量規劃，請參閱[在 Azure 搜尋服務中調整適用於查詢和編製索引工作負載的資源等級](search-capacity-planning.md)。
+- 服務中的單一搜尋單位一次只能執行一個索引子。 以上述方式建立多個索引子，只有在這些索引子都以平行的方式執行時才會有幫助。 toorun 多個索引子以平行方式，向外延展您的搜尋服務藉由建立適當的資料分割和複本數目。 例如，如果您的搜尋服務有 6 個搜尋單位 （例如，2 個資料分割 x 3 複本），然後 6 的索引子可以同時執行，造成 six-fold hello 索引輸送量增加。 toolearn 深入了解縮放比例和容量計劃，請參閱[調整 查詢和索引在 Azure 搜尋中的工作負載的資源層級](search-capacity-planning.md)。
 
 ## <a name="indexing-documents-along-with-related-data"></a>為文件及相關資料編製索引
 
-您可能會想在索引中「組合」來自多個來源的文件。 例如，您可能會想要將來自 Blob 的文字與儲存在 Cosmos DB 中的其他中繼資料合併。 您甚至可以搭配各種索引子使用推送編製索引 API，以建立來自多個部分的搜尋文件。 
+您可能想太 「 組合 」 文件索引中的多個來源。 比方說，您可以從 blob toomerge 文字與 Cosmos DB 中儲存其他中繼資料。 您甚至可以使用的 hello 推送索引 API，以及各種索引子太建置搜尋文件，從多個部分。 
 
-若要達成此目的，所有索引子和其他元件都需要在文件索引鍵上達成協議。 如需詳細的逐步解說，請參閱這篇外部文章：[在 Azure 搜尋服務中將文件與其他資料組合在一起](http://blog.lytzen.name/2017/01/combine-documents-with-other-data-in.html) \(英文\)。
+此 toowork，所有索引子和其他元件需要 tooagree hello 文件索引鍵上。 如需詳細的逐步解說，請參閱這篇外部文章：[在 Azure 搜尋服務中將文件與其他資料組合在一起](http://blog.lytzen.name/2017/01/combine-documents-with-other-data-in.html) \(英文\)。
 
 <a name="IndexingPlainText"></a>
 ## <a name="indexing-plain-text"></a>編制純文字的索引 
 
-如果所有的 Blob 都包含相同編碼的純文字，您可以使用「文字剖析模式」來大幅提升編制索引的效能。 若要使用文字剖析模式，請將 `parsingMode` 設定屬性設定為 `text`：
+如果您的 blob 包含純文字中所有 hello 相同的編碼方式，您可以使用，大幅改善索引效能**文字剖析模式**。 剖析模式中，設定 hello toouse 文字`parsingMode`組態屬性太`text`:
 
     PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2016-09-01
     Content-Type: application/json
@@ -360,7 +360,7 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
       "parameters" : { "configuration" : { "parsingMode" : "text" } }
     }
 
-根據預設，會假定使用 `UTF-8` 編碼。 若要指定其他編碼，請使用 `encoding` 設定屬性： 
+根據預設，hello`UTF-8`則假設編碼方式。 toospecify 不同的編碼，使用 hello`encoding`組態屬性： 
 
     {
       ... other parts of indexer definition
@@ -370,7 +370,7 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
 
 <a name="ContentSpecificMetadata"></a>
 ## <a name="content-type-specific-metadata-properties"></a>內容類型特定的中繼資料屬性
-下表摘要說明針對每個文件格式完成的處理，並且說明 Azure 搜尋服務擷取的中繼資料屬性。
+hello 下表摘要說明程序完成每個文件格式，並說明 hello Azure 搜尋擷取的中繼資料屬性。
 
 | 文件格式/內容類型 | 內容類型特定的中繼資料屬性 | 處理詳細資料 |
 | --- | --- | --- |
@@ -383,9 +383,9 @@ Azure 搜尋服務文件擷取邏輯並不完美，有時會無法剖析受支�
 | PPTX (application/vnd.openxmlformats-officedocument.presentationml.presentation) |`metadata_content_type`<br/>`metadata_author`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_slide_count`<br/>`metadata_title` |擷取文字，包括內嵌文件 |
 | PPT (application/vnd.ms-powerpoint) |`metadata_content_type`<br/>`metadata_author`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_slide_count`<br/>`metadata_title` |擷取文字，包括內嵌文件 |
 | MSG (application/vnd.ms-outlook) |`metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_message_bcc`<br/>`metadata_creation_date`<br/>`metadata_last_modified`<br/>`metadata_subject` |擷取文字，包括附件 |
-| ZIP (application/zip) |`metadata_content_type` |從封存中的所有文件擷取文字 |
+| ZIP (application/zip) |`metadata_content_type` |從 hello 封存中的所有文件中擷取文字 |
 | XML (application/xml) |`metadata_content_type`</br>`metadata_content_encoding`</br> |移除 XML 標記並且擷取文字 |
-| JSON (application/json) |`metadata_content_type`</br>`metadata_content_encoding` |擷取文字<br/>注意：如果您需要從 JSON Blob 擷取多個文件欄位，請參閱[編製索引 JSON Blob](search-howto-index-json-blobs.md) 的詳細資訊 |
+| JSON (application/json) |`metadata_content_type`</br>`metadata_content_encoding` |擷取文字<br/>注意： 如果您需要的 tooextract 多重文件欄位從 JSON blob，請參閱[索引 JSON blob](search-howto-index-json-blobs.md)如需詳細資訊 |
 | EML (message/rfc822) |`metadata_content_type`<br/>`metadata_message_from`<br/>`metadata_message_to`<br/>`metadata_message_cc`<br/>`metadata_creation_date`<br/>`metadata_subject` |擷取文字，包括附件 |
 | RTF (應用程式/rtf) |`metadata_content_type`</br>`metadata_author`</br>`metadata_character_count`</br>`metadata_creation_date`</br>`metadata_page_count`</br>`metadata_word_count`</br> | 擷取文字|
 | 純文字 (text/plain) |`metadata_content_type`</br>`metadata_content_encoding`</br> | 擷取文字|

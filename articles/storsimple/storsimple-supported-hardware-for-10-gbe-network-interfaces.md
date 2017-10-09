@@ -1,6 +1,6 @@
 ---
-title: "StorSimple 10 GbE 介面的硬體 | Microsoft Docs"
-description: "說明 StorSimple 裝置上的 10 GbE 網路介面所支援的小型可插拔 (SFP) 收發器、纜線及交換器。"
+title: "StorSimple 的 10 GbE 介面 aaaHardware |Microsoft 文件"
+description: "描述您的 StorSimple 裝置 hello 支援小型的表單係數隨插即用 (SFP) 收發器、 纜線和交換器 hello 10 GbE 網路介面。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 09/21/2016
 ms.author: alkohli
-ms.openlocfilehash: db03b3cd668bf8e35913872ac4225de6d4d3edd1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3e6769380040ab08d9a57ef7221bf62c6c855137
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="supported-hardware-for-the-10-gbe-network-interfaces-on-your-storsimple-device"></a>10 GbE 網路介面在 StorSimple 裝置上支援的硬體
+# <a name="supported-hardware-for-hello-10-gbe-network-interfaces-on-your-storsimple-device"></a>支援的硬體，在您的 StorSimple 裝置上的 hello 10 GbE 網路介面
 ## <a name="overview"></a>概觀
 本文章提供補充使用 Microsoft Azure StorSimple 裝置的補充硬體之相關資訊。
 
 ## <a name="list-of-devices-tested-by-microsoft"></a>已經過 Microsoft 測試的裝置清單
-Microsoft 已經測試下列小型尺寸隨插即用 (SFP) 收發器、纜線以及交換器以確保其對裝置以最佳方式運作。 (下表將會在測試新硬體時更新。)
+Microsoft 測試下列小型的表單係數隨插即用 (SFP) 收發器、 纜線和交換器 tooensure 搭配運作以最佳方式與裝置 hello。 （hello 下表將會更新為新的硬體測試。）
 
 ### <a name="sfp-transceivers"></a>SFP+ 收發器
 | Make | 模型 |
@@ -47,8 +47,8 @@ Microsoft 已經測試下列小型尺寸隨插即用 (SFP) 收發器、纜線以
 | 2. |Cisco |N3K-C3048-ZM-F |
 | 3. |Cisco |N5K-C5596UP-FA |
 
-## <a name="list-of-devices-tested-in-the-field"></a>已經過實際測試的裝置清單
-本節包含已由 StorSimple 客戶實際部署成功的裝置清單。 這些項目尚未經過 Microsoft 測試，但可能適用您的 StorSimple 裝置。
+## <a name="list-of-devices-tested-in-hello-field"></a>在 [hello] 欄位中測試的裝置清單
+本章節包含裝置已成功部署 hello 欄位中的 StorSimple 客戶的 hello 的清單。 這些 microsoft 尚未經過測試，但會與您的 StorSimple 裝置可能 toowork。
 
 | 參數 | 值 |
 | --- | --- |
@@ -64,12 +64,12 @@ Microsoft 已經測試下列小型尺寸隨插即用 (SFP) 收發器、纜線以
 | StorSimple 軟體版本 |6.3.9600.17491 |
 
 ## <a name="list-of-devices-tested-by-oem-provider-mellanox"></a>已經過 OEM 提供者 (Mellanox) 測試的裝置清單
-Mellanox 已經測試下列小型尺寸隨插即用 (SFP) 收發器、纜線以及交換器以確保它們能夠對 Mellanox 網路介面以最佳方式運作，例如 StorSimple 裝置上的 10 GbE 網路介面。
+Mellanox 已經測試下列小型的表單係數隨插即用 (SFP) 收發器、 纜線和交換器 tooensure 搭配運作以最佳方式與 Mellanox 網路介面，例如 hello 10 GbE 網路介面上您的 StorSimple 裝置 hello。
 
 ### <a name="cables-and-modules-supported-by-mellanox"></a>Mellanox 所支援的纜線及模組
-下表列出 Mellanox 所支援的纜線及模組。 這些項目尚未經過 Microsoft 測試，但可能使用您的 StorSimple 裝置。
+hello 下表列出 hello 纜線和模組支援 Mellanox。 這些 microsoft 尚未經過測試，但會與您的 StorSimple 裝置可能 toowork。
 
-| 序 號 | 速度 | 模型 | 說明 | 請確定 |
+| S. 號 | 速度 | 模型 | 說明 | 請確定 |
 | --- | --- | --- | --- | --- |
 | 1. |10 GbE |CAB-SFP-SFP-1M |被動銅纜線 SFP + 10 Gb/s 1m |Arista |
 | 2. |10 GbE |CAB-SFP-SFP-2M |被動銅纜線 SFP + 10 Gb/s 2m |Arista |
@@ -78,7 +78,7 @@ Mellanox 已經測試下列小型尺寸隨插即用 (SFP) 收發器、纜線以�
 | 5. |10 GbE |Cisco SFP-H10GBCU1M |Cisco SFP + 纜線 |Cisco |
 | 6. |10 GbE |Cisco SFP-H10GBCU3M |Cisco SFP + 纜線 |Cisco |
 | 7. |10 GbE |Cisco SFP-H10GBCU5M |Cisco SFP + 纜線 |Cisco |
-| 8. |10 GbE |J9281B HP X242 10G |SFP+ to SFP+ 1m 直接附加銅纜線 |HP |
+| 8. |10 GbE |J9281B HP X242 10G |SFP + tooSFP + 1 m 直接附加銅纜線 |HP |
 | 9. |10 GbE |455883-B21 HP BLc |10 Gb SR SFP + 選擇 |HP |
 | 10. |10 GbE |455886-B21 HP BLc |10Gb LR SFP+ 選擇 |HP |
 | 11. |10 GbE |487649-B21 HP BLc |SFP+ 0.5m 10GbE 銅纜線 |HP |
@@ -97,20 +97,20 @@ Mellanox 已經測試下列小型尺寸隨插即用 (SFP) 收發器、纜線以�
 | 24. |10 GbE |JD095B HP |X240 10G SFP+ SFP+ 0.65m DAC 纜線 |HP |
 | 25. |10 GbE |JD096B HP |X240 10G SFP+ SFP+ 1.2m DAC 纜線 |HP |
 | 26. |10 GbE |JD097B HP |X240 10G SFP+ SFP+ 3m DAD 纜線 |HP |
-| 27. |10 GbE |MAM1Q00A-QSA Mellanox |QSFP To SFP+ 配接器 |Mellanox 技術 |
-| 28. |10 GbE |MC2309124-006 Mt |被動銅纜線 1x SFP+ To QSFP 10Gb/s 24awg 7m |Mellanox 技術 |
-| 29. |10 GbE |MC2309124-007 Mt |被動銅纜線 1x SFP+ To QSFP 10Gb/s 24awg 7m |Mellanox 技術 |
-| 30. |10 GbE |MC2309130-003 Mt |被動銅纜線 1x SFP+ To QSFP 10Gb/s 30awg 3m |Mellanox 技術 |
-| 31. |10 GbE |MC2309130-00A Mt |被動銅纜線 1x SFP+ To QSFP 10Gb/s 30awg 0.5m |Mellanox 技術 |
+| 27. |10 GbE |MAM1Q00A-QSA Mellanox |QSFP tooSFP + 介面卡 |Mellanox 技術 |
+| 28. |10 GbE |MC2309124-006 Mt |被動銅有線 1x SFP + tooQSFP 10 Gb/s 24awg 7 m |Mellanox 技術 |
+| 29. |10 GbE |MC2309124-007 Mt |被動銅有線 1x SFP + tooQSFP 10 Gb/s 24awg 7 m |Mellanox 技術 |
+| 30. |10 GbE |MC2309130-003 Mt |被動銅有線 1x SFP + tooQSFP 10 Gb/s 30awg 3 m |Mellanox 技術 |
+| 31. |10 GbE |MC2309130-00A Mt |被動銅有線 1x SFP + tooQSFP 10 Gb/s 30awg 0.5 m |Mellanox 技術 |
 | 32. |10 GbE |MC3309124-005 Mt |被動銅纜線 1x SFP+ 10Gb/s 24awg 5m |Mellanox 技術 |
 | 33. |10 GbE |MC3309124-007 Mt |被動銅纜線 1x SFP+ 10Gb/s 24awg 7m |Mellanox 技術 |
 | 34. |10 GbE |MC3309130-003 Mt |被動銅纜線 1x SFP+ 10Gb/s 30awg 3m |Mellanox 技術 |
 | 35. |10 GbE |MC3309130-00A Mt |被動銅纜線 1x SFP+ 10Gb/s 30awg 0.5m |Mellanox 技術 |
 
 ### <a name="switches-supported-by-mellanox"></a>Mellanox 所支援的切換器
-下表列出 Mellanox 所支援的切換器。 這些項目尚未經過 Microsoft 測試，但可能適用您的 StorSimple 裝置。
+hello 下表列出支援 Mellanox hello 參數。 這些 microsoft 尚未經過測試，但會與您的 StorSimple 裝置可能 toowork。
 
-| 序 號 | 速度 | 模型 | 說明 | 請確定 |
+| S. 號 | 速度 | 模型 | 說明 | 請確定 |
 | --- | --- | --- | --- | --- |
 | 1. |10GbE |516733-B21 |HP ProCurve 6120XG 10GbE 乙太網路刀鋒視窗切換器 |HP |
 | 2. |10GbE |538113-B21 |HP 10GbE 傳遞模組 (PTM) |HP |

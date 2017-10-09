@@ -1,6 +1,6 @@
 ---
-title: "使用 .NET 透過媒體編碼器標準為資產編碼 | Microsoft Docs"
-description: "本主題說明如何使用 .NET 來使用 Media Encoder Standard 為資產編碼。"
+title: "媒體編碼器標準使用.NET 資產 aaaEncode |Microsoft 文件"
+description: "本主題說明如何 toouse.NET tooencode 使用媒體編碼器 Strandard 資產。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: 929592368501c54277748bf46b2160c9058db3fb
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 25e274c3b67168f4afc8b8ab04af2d654c9dd6e4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="encode-an-asset-with-media-encoder-standard-using-net"></a>使用 .NET 透過 Media Encoder Standard 為資產編碼
-編碼工作是媒體服務中最常見的處理作業。 您建立編碼工作以將媒體檔案從一種編碼轉換成另一種編碼。 編碼時，您可以使用媒體服務內建的 Media Encoder。 您也可以使用媒體服務合作夥伴提供的編碼器；第三方編碼器可透過 Azure Marketplace 取得。 
+編碼工作是在 Media Services hello 大多數處理作業。 您從一個編碼 tooanother 建立編碼工作 tooconvert 媒體檔案。 當編碼時，您可以使用 hello Media Services 內建 Media Encoder。 您也可以使用 Media Services 合作夥伴; 提供的編碼器第三方編碼器皆可透過 hello Azure Marketplace。 
 
-本主題說明如何使用 .NET 透過 Media Encoder Standard (MES) 將您的資產編碼。 Media Encoder Standard 使用 [這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)描述的其中一個編碼器預設值進行設定。
+本主題說明如何 toouse.NET tooencode 您資產的媒體編碼器標準 (MES)。 媒體編碼器標準設定時，使用其中一個所述的 hello 編碼器預設[這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)。
 
-建議一律將來源檔編碼為調適性位元速率 MP4 集，然後使用[動態封裝](media-services-dynamic-packaging-overview.md)將該集合轉換為所要的格式。 
+建議 tooalways 原始程式檔編碼成彈性位元速率 MP4 集，然後將轉換 hello 組 toohello 所要的格式使用 hello[動態封裝](media-services-dynamic-packaging-overview.md)。 
 
 如果您的輸出資產是儲存體加密，必須設定資產傳遞原則。 如需詳細資訊，請參閱 [設定資產傳遞原則](media-services-dotnet-configure-asset-delivery-policy.md)。
 
 > [!NOTE]
-> MES 會產生一個輸出檔案，其名稱包含輸入檔案名稱的前 32 個字元。 名稱是以預設檔案中指定的名稱為基礎。 例如，"FileName": "{Basename}_{Index}{Extension}"。 {Basename} 會由輸入檔案名稱的前 32 個字元取代。
+> 輸出檔的名稱，其中包含與 hello 前 32 個字元的 MES 產生 hello 輸入的檔案名稱。 hello 名稱根據 hello 預設檔案中指定的內容。 例如，"FileName": "{Basename}_{Index}{Extension}"。 {Basename} 取代為 hello hello 輸入的檔案名稱的前 32 個字元。
 > 
 > 
 
@@ -38,36 +38,36 @@ ms.lasthandoff: 08/29/2017
 [格式和轉碼器](media-services-media-encoder-standard-formats.md)
 
 ### <a name="mes-presets"></a>MES 預設值
-Media Encoder Standard 使用 [這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)描述的其中一個編碼器預設值進行設定。
+媒體編碼器標準設定時，使用其中一個所述的 hello 編碼器預設[這裡](http://go.microsoft.com/fwlink/?linkid=618336&clcid=0x409)。
 
 ### <a name="input-and-output-metadata"></a>輸入和輸出中繼資料
-如果您使用 MES 為輸入資產 (或資產) 編碼，在該編碼工作完成時，您便能取得輸出資產。 輸出資產包含視訊、音訊、縮圖、資訊清單等等，依據您所使用的編碼預設格式而定。
+當您編碼的輸入的資產或多個使用 EMS 時，您會取得輸出資產在 hello，成功完成編碼工作。 hello 輸出資產包含視訊、 音訊、 縮圖、 資訊清單等根據您使用的 hello 編碼預設。
 
-輸出資產也包含隨附關於輸入資產中繼資料的檔案。 中繼資料 XML 檔案的名稱具備下列格式︰<asset_id>_metadata.xml (例如：41114ad3-eb5e-4c57-8d92-5354e2b7d4a4_metadata.xml)，其中的 <asset_id> 是輸入資產的 AssetId 值。 [這裡](media-services-input-metadata-schema.md)說明了此輸入中繼資料 XML 的結構描述。
+hello 輸出資產也包含 hello 輸入資產的相關中繼資料檔案。 hello hello 中繼資料 XML 檔案名稱具有下列格式的 hello: < a > _metadata.xml (例如，41114ad3-eb5e-4 c 57-8 d 92-5354e2b7d4a4_metadata.xml)，其中 < a > 是 hello 的 hello 輸入資產的 AssetId 值。 hello 這個輸入的中繼資料 XML 結構描述會描述[這裡](media-services-input-metadata-schema.md)。
 
-輸出資產也包含隨附關於輸出資產中繼資料的檔案。 中繼資料 XML 檔案的名稱具備下列格式︰<source_file_name>_manifest.xml (例如：BigBuckBunny_manifest.xml)。 [這裡](media-services-output-metadata-schema.md)說明了此輸出中繼資料 XML 的結構描述。
+hello 輸出資產也包含 hello 輸出資產的相關中繼資料檔案。 hello hello 中繼資料 XML 檔案名稱具有下列格式的 hello: < s > l (例如，BigBuckBunny_manifest.xml)。 hello 這個輸出中繼資料架構的 XML 會說明[這裡](media-services-output-metadata-schema.md)。
 
-如果您想要檢查這兩個中繼資料檔案的任一個，可以建立 SAS 定位器並將檔案下載到您的本機電腦。 您可以找到關於如何建立 SAS 定位器的範例，並且下載使用媒體服務 .NET SDK 擴充功能的檔案。
+如果您想要 tooexamine 任一 hello 兩個中繼資料檔案，您可以建立 SAS 定位器和下載 hello 檔案 tooyour 本機電腦。 您可以找到範例上如何 toocreate SAS 定位器和下載檔案使用 hello 媒體服務.NET SDK 延伸模組。
 
 ## <a name="download-sample"></a>下載範例
-您可以從[這裡 (英文)](https://azure.microsoft.com/documentation/samples/media-services-dotnet-on-demand-encoding-with-media-encoder-standard/) 取得並執行示範如何使用 MES 進行編碼的範例。
+您可以取得及執行範例，示範如何與從 MES tooencode[這裡](https://azure.microsoft.com/documentation/samples/media-services-dotnet-on-demand-encoding-with-media-encoder-standard/)。
 
 ## <a name="net-sample-code"></a>.NET 範例程式碼
 
-下列程式碼範例使用媒體服務 .NET SDK 執行下列工作：
+hello，下列程式碼範例會使用 Media Services.NET SDK tooperform hello 下列工作：
 
 * 建立編碼工作。
-* 取得對 Media Encoder Standard 編碼器的參考
-* 指定要使用[彈性資料流](media-services-autogen-bitrate-ladder-with-mes.md)預設值。 
-* 將單一編碼工作加入工作。 
-* 指定要編碼的輸入資產。
-* 建立將包含已編碼資產的輸出資產。
-* 加入事件處理常式來檢查工作進度。
-* 提交作業。
+* 取得參考 toohello 媒體編碼器標準編碼器。
+* 指定 toouse hello[彈性資料流](media-services-autogen-bitrate-ladder-with-mes.md)預設。 
+* 加入單一編碼工作 toohello 作業。 
+* 指定 hello 輸入資產 toobe 編碼。
+* 建立會包含 hello 編碼資產的輸出資產。
+* 加入事件處理常式 toocheck hello 工作進度。
+* 送出 hello 作業。
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
 
-設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。 
+設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。 
 
 #### <a name="example"></a>範例 
 
@@ -103,7 +103,7 @@ Media Encoder Standard 使用 [這裡](http://go.microsoft.com/fwlink/?linkid=61
                     // Get an uploaded asset.
                     var asset = _context.Assets.FirstOrDefault();
 
-                    // Encode and generate the output using the "Adaptive Streaming" preset.
+                    // Encode and generate hello output using hello "Adaptive Streaming" preset.
                     EncodeToAdaptiveBitrateMP4Set(asset);
 
                     Console.ReadLine();
@@ -113,22 +113,22 @@ Media Encoder Standard 使用 [這裡](http://go.microsoft.com/fwlink/?linkid=61
                 {
                     // Declare a new job.
                     IJob job = _context.Jobs.Create("Media Encoder Standard Job");
-                    // Get a media processor reference, and pass to it the name of the 
-                    // processor to use for the specific task.
+                    // Get a media processor reference, and pass tooit hello name of hello 
+                    // processor toouse for hello specific task.
                     IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-                    // Create a task with the encoding details, using a string preset.
+                    // Create a task with hello encoding details, using a string preset.
                     // In this case "Adaptive Streaming" preset is used.
                     ITask task = job.Tasks.AddNew("My encoding task",
                         processor,
                         "Adaptive Streaming",
                         TaskOptions.None);
 
-                    // Specify the input asset to be encoded.
+                    // Specify hello input asset toobe encoded.
                     task.InputAssets.Add(asset);
-                    // Add an output asset to contain the results of the job. 
+                    // Add an output asset toocontain hello results of hello job. 
                     // This output is specified as AssetCreationOptions.None, which 
-                    // means the output asset is not encrypted. 
+                    // means hello output asset is not encrypted. 
                     task.OutputAssets.AddNew("Output asset",
                         AssetCreationOptions.None);
 
@@ -189,6 +189,6 @@ Media Encoder Standard 使用 [這裡](http://go.microsoft.com/fwlink/?linkid=61
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-steps"></a>後續步驟
-[如何使用媒體編碼器標準搭配 .NET 產生縮圖](media-services-dotnet-generate-thumbnail-with-mes.md)
-[媒體服務編碼概觀](media-services-encode-asset.md)
+[如何搭配.NET 使用媒體編碼器標準 toogenerate 縮圖](media-services-dotnet-generate-thumbnail-with-mes.md)
+[媒體服務編碼方式的概觀](media-services-encode-asset.md)
 

@@ -1,53 +1,53 @@
 # <a name="scale-agent-nodes-in-a-container-service-cluster"></a>調整 Container Service 叢集中的代理程式節點
-在[部署 Azure Container Service 叢集](../articles/container-service/dcos-swarm/container-service-deployment.md)之後，您可能需要變更代理程式節點的數目。 例如，您可能需要更多代理程式，以便可以執行更多的容器應用程式或執行個體。 
+之後[部署 Azure 容器服務叢集](../articles/container-service/dcos-swarm/container-service-deployment.md)，您可能需要的代理程式節點的 toochange hello 數目。 例如，您可能需要更多代理程式，以便可以執行更多的容器應用程式或執行個體。 
 
-您可以使用 Azure 入口網站或 Azure CLI 2.0 來變更 DC/OS、Docker Swarm 或 Kubernetes 叢集中的代理程式節點數目。 
+您可以使用 hello Azure 入口網站來變更 hello DC/OS、 Docker Swarm，或 Kubernetes 叢集中的代理程式節點的數目或 hello Azure CLI 2.0。 
 
-## <a name="scale-with-the-azure-portal"></a>使用 Azure 入口網站進行調整
+## <a name="scale-with-hello-azure-portal"></a>調整以 hello Azure 入口網站
 
-1. 在 [Azure 入口網站](https://portal.azure.com)中，瀏覽**容器服務**，然後按一下您想要修改的容器服務。
-2. 在 [容器服務] 刀鋒視窗中，按一下 [代理程式]。
-3. 在 [VM 計數] 中，輸入所需的代理程式節點數目。
+1. 在 hello [Azure 入口網站](https://portal.azure.com)，瀏覽**容器服務**，然後按一下您想 toomodify hello 容器服務。
+2. 在 hello**容器服務**刀鋒視窗中，按一下 **代理程式**。
+3. 在**VM 計數**，輸入想要的 hello 代理程式節點的數目。
 
-    ![在入口網站中調整集區](./media/container-service-scale/container-service-scale-portal.png)
+    ![調整 hello 入口網站中的集區](./media/container-service-scale/container-service-scale-portal.png)
 
-4. 若要儲存組態時，請按一下 [儲存]。
+4. toosave hello 組態中，按一下 **儲存**。
 
-## <a name="scale-with-the-azure-cli-20"></a>使用 Azure CLI 2.0 進行調整
+## <a name="scale-with-hello-azure-cli-20"></a>調整以 hello Azure CLI 2.0
 
-請確定您[已安裝](/cli/azure/install-az-cli2)最新的 Azure CLI 2.0 並登入 Azure 帳戶 (`az login`)。
+請確定您[安裝](/cli/azure/install-az-cli2)hello 最新的 Azure CLI 2.0 和登入 tooan azure 帳戶 (`az login`)。
 
-### <a name="see-the-current-agent-count"></a>查看目前的代理程式計數
-若要查看叢集中目前擁有的代理程式數目，請執行 `az acs show` 命令。 這會顯示叢集組態。 例如，下列命令會顯示資源群組 `myResourceGroup` 中名為 `containerservice-myACSName` 之容器服務的組態：
+### <a name="see-hello-current-agent-count"></a>請參閱 hello 目前的代理程式計數
+代理程式目前的 toosee hello 數目 hello 叢集中執行 hello`az acs show`命令。 這會顯示 hello 叢集設定。 例如，下列命令會顯示 hello 名為 hello 容器服務的組態來 hello `containerservice-myACSName` hello 資源群組中`myResourceGroup`:
 
 ```azurecli
 az acs show -g myResourceGroup -n containerservice-myACSName
 ```
 
-此命令會在 `AgentPoolProfiles` 底下的 `Count` 值中傳回代理程式數目。
+hello 命令會傳回 hello 代理程式數目的 hello`Count`值下`AgentPoolProfiles`。
 
-### <a name="use-the-az-acs-scale-command"></a>使用 az acs scale 命令
-若要變更代理程式節點數目，請執行 `az acs scale` 命令，並提供**資源群組**、**容器服務名稱**及所需的**新代理程式計數**。 藉由使用較少或更高的數字，即可分別相應減少或相應增加。
+### <a name="use-hello-az-acs-scale-command"></a>使用 hello az acs 小數位數的命令
+toochange hello 代理程式節點數目，執行 hello`az acs scale`命令和提供 hello**資源群組**，**容器服務名稱**，並想要的 hello**新代理程式計數**. 藉由使用較少或更高的數字，即可分別相應減少或相應增加。
 
-例如，若要將先前叢集中的代理程式數目變更為 10，請輸入下列命令︰
+例如，在上一個叢集 too10 hello，代理程式的 toochange hello 數目輸入 hello 下列命令：
 
 ```azurecli
 az acs scale -g myResourceGroup -n containerservice-myACSName --new-agent-count 10
 ```
 
-Azure CLI 2.0 會傳回 JSON 字串，這個字串代表容器服務的新組態，其中包括新的代理程式計數。
+hello Azure CLI 2.0 傳回 JSON 字串，代表 hello 新服務的組態 hello 容器，包括 hello 新代理程式計數。
 
 如需更多的命令選項，請執行 `az acs scale --help`。
 
 ## <a name="scaling-considerations"></a>調整考量
 
-* 代理程式節點的數目必須介於 1 到 100 (含) 之間。 
+* hello 代理程式節點的數目必須是介於 1 到 100 (含) 之間。 
 
-* 核心配額可以限制叢集中的代理程式節點數目。
+* 核心配額可以限制 hello 叢集中的代理程式節點的數目。
 
-* 代理程式節點調整作業會套用至包含代理程式集區的 Azure 虛擬機器擴展集。 在 DC/OS 叢集中，只有私人集區中的代理程式節點會受到本文所示作業的調整。
+* 代理程式節點的縮放作業是套用的 tooan Azure 虛擬機器規模集包含 hello 代理程式集區。 在 DC/OS 叢集中，只有代理程式節點 hello 私用的集區中縮放 hello 本文中所顯示的作業。
 
-* 您可以根據您在叢集中部署的 Orchestrator，個別地調整在叢集上執行之容器的執行個體數目。 例如，在 DC/OS 叢集中，使用 [Marathon UI](../articles/container-service/dcos-swarm/container-service-mesos-marathon-ui.md) 來變更容器應用程式的執行個體數目。
+* 根據您在叢集中部署的 hello orchestrator，您可以分開調整 hello hello 叢集上執行的容器的執行個體數目。 例如，在 DC/OS 叢集中，使用 hello[馬拉松 UI](../articles/container-service/dcos-swarm/container-service-mesos-marathon-ui.md) toochange hello 數目的容器應用程式執行個體。
 
 * 目前並不支援在容器服務叢集中自動調整代理程式節點。
 

@@ -1,21 +1,21 @@
-將資料磁碟新增到 Linux VM 時，如果 LUN 0 沒有磁碟，可能會發生錯誤。 如果您是藉由使用 `azure vm disk attach-new` 命令並指定 LUN (`--lun`) 來手動新增磁碟，而不是讓 Azure 平台判斷適當的 LUN，則請注意，LUN 0 已經有磁碟或將會有磁碟。 
+當加入資料磁碟 tooa Linux VM，如果磁碟不存在的 LUN 0 可能會發生錯誤。 如果您要新增磁碟，以手動方式使用 hello`azure vm disk attach-new`命令，並指定 LUN (`--lun`) 而不是允許 hello Azure 平台 toodetermine hello 適當的 LUN，請特別注意，磁碟已存在 / 端 LUN 0 將會存在。 
 
-請思考一下以下範例，此範例顯示來自 `lsscsi`之輸出的程式碼片段：
+請考慮下列範例顯示 hello 輸出的程式碼片段的 hello `lsscsi`:
 
 ```bash
 [5:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sdc 
 [5:0:0:1]    disk    Msft     Virtual Disk     1.0   /dev/sdd 
 ```
 
-兩個資料磁碟存在於 LUN 0 和 LUN 1 (`lsscsi` 輸出中的第 1 欄輸出了詳細資料 `[host:channel:target:lun]`)。 兩個磁碟應該都要是可從 VM 內存取的磁碟。 如果您已手動指定要在 LUN 1 新增第一個磁碟及在 LUN 2 新增第二個磁碟，則從您的 VM 內可能無法正確看見這些磁碟。
+hello 兩個資料磁碟存在於 LUN 0 和 LUN 1 (hello hello 第一個資料行`lsscsi`輸出詳細資料`[host:channel:target:lun]`)。 這兩個磁碟都 accessbile 從 hello VM 內。 如果您已手動指定 hello 增加 LUN 1 與 LUN 2 hello 第二個磁碟第一個磁碟 toobe，您可能無法看見 hello 磁碟正確從 VM 內。
 
 > [!NOTE]
-> 在這些範例中，Azure `host` 值為 5，但這可能會依據您選取的儲存體類型而有所不同。
+> hello Azure`host`值為 5，在這些範例中，但這會根據您選取的儲存體的 hello 類型而有所不同。
 > 
 > 
 
-此磁碟行為不是 Azure 問題，而是 Linux 核心遵循 SCSI 規格的方式。 當 Linux 核心掃描 SCSI 匯流排是否有已連接的裝置時，必須在 LUN 0 找到裝置，系統才能繼續掃描是否有其他裝置。 如以上所述，因此︰
+此磁碟行為不是 Azure 的問題，而 hello 方法中的 hello Linux 核心遵循 hello SCSI 規格。 Hello Linux 核心掃描 hello SCSI 匯流排，附加的裝置，裝置必須位於 LUN 0 hello 系統 toocontinue 掃描其他裝置的順序。 如以上所述，因此︰
 
-* 在新增資料磁碟之後，請檢閱 `lsscsi` 的輸出，以確認 LUN 0 有磁碟。
+* 檢閱的 hello 輸出`lsscsi`之後加入資料磁碟 tooverify LUN 0 具有磁碟。
 * 如果磁碟在 VM 內未正確顯示，請確認 LUN 0 有磁碟。
 

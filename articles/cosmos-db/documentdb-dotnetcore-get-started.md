@@ -1,6 +1,6 @@
 ---
 title: "Azure Cosmos DB：開始使用 DocumentDB API .NET Core 教學課程 | Microsoft Docs"
-description: "本教學課程將使用 Azure Cosmos DB DocumentDB API .NET Core SDK，建立線上資料庫以及 C# 主控台應用程式。"
+description: "教學課程中建立線上資料庫與 C# 主控台應用程式使用 hello Azure Cosmos DB DocumentDB API.NET Core SDK。"
 services: cosmos-db
 documentationcenter: .net
 author: arramac
@@ -14,13 +14,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: arramac
-ms.openlocfilehash: 7536978bbb1e41b6484b66fd1b51c900fc3e545d
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5e7efb327252e9e73e9b2a340820eeecc6937fa5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="azure-cosmos-db-getting-started-with-the-documentdb-api-and-net-core"></a>Azure Cosmos DB︰開始使用 DocumentDB API 與 .NET Core
+# <a name="azure-cosmos-db-getting-started-with-hello-documentdb-api-and-net-core"></a>Azure Cosmos DB： 開始使用 DocumentDB API hello 和.NET 核心
 > [!div class="op_single_selector"]
 > * [.NET](documentdb-get-started.md)
 > * [.NET Core](documentdb-dotnetcore-get-started.md)
@@ -31,68 +31,68 @@ ms.lasthandoff: 08/18/2017
 >  
 > 
 
-歡迎使用 .NET Core 入門之適用於 Azure Cosmos DB 的 DocumentDB API 教學課程！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 Azure Cosmos DB 資源。
+歡迎使用 toohello Azure Cosmos DB 開始使用.NET Core 教學課程的 DocumentDB API ！ 完成本教學課程之後，您將會有一個主控台應用程式，可用來建立和查詢 Azure Cosmos DB 資源。
 
 本文將討論：
 
-* 建立及連線至 Azure Cosmos DB 帳戶
+* 建立及連接 tooan Azure Cosmos DB 帳戶
 * 設定 Visual Studio 方案
 * 建立線上資料庫
 * 建立集合
 * 建立 JSON 文件
-* 查詢集合
+* 查詢 hello 集合
 * 取代文件
 * 刪除文件
-* 刪除資料庫
+* 刪除 hello 資料庫
 
-沒有時間嗎？ 別擔心！ 您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started)上找到完整的方案。 請跳至 [取得完整的解決方案](#GetSolution) 一節，以取得簡要指示。
+沒有時間嗎？ 別擔心！ hello 完整解決方案位於[GitHub](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started)。 跳 toohello[取得 hello 完整的解決方案 > 一節](#GetSolution)快速的指示。
 
-想要使用 DocumentDB API 和 .NET Core SDK 建置 Xamarin iOS、Android 或 Forms 應用程式嗎？ 請參閱[使用 Xamarin 和 Azure Cosmos DB 建置行動應用程式](mobile-apps-with-xamarin.md)。
+Xamarin iOS、 Android 或表單想 toobuild DocumentDB API 和.NET Core SDK 的應用程式使用 hello？ 請參閱[使用 Xamarin 和 Azure Cosmos DB 建置行動應用程式](mobile-apps-with-xamarin.md)。
 
 > [!NOTE]
-> 本教學課程中使用的 Azure Cosmos DB .NET Core SDK 尚未與通用 Windows 平台 (UWP) 應用程式相容。 如需可支援 UWP 應用程式的 .NET Core SDK 預覽版本，請傳送電子郵件至 [askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com)。
+> hello Azure Cosmos DB.NET Core SDK 在本教學課程中使用尚未與通用 Windows 平台 (UWP) 應用程式相容。 如需 hello 支援 UWP 應用程式的.NET Core SDK 預覽版本，傳送電子郵件太[askcosmosdb@microsoft.com](mailto:askcosmosdb@microsoft.com)。
 
 讓我們開始吧！
 
 ## <a name="prerequisites"></a>必要條件
-請確定您具有下列項目：
+請確定您擁有 hello 下列：
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，您可以註冊 [免費帳戶](https://azure.microsoft.com/free/)。 
-    * 或者，您可以使用 [Azure Cosmos DB 模擬器](local-emulator.md)來進行本教學課程。
+    * 或者，您可以使用 hello [Azure Cosmos DB 模擬器](local-emulator.md)本教學課程。
 * [Visual Studio 2017](https://www.visualstudio.com/vs/) 
-    * 如果您正在操作 MacOS 或 Linux，可以針對選定平台安裝 [.NET Core SDK](https://www.microsoft.com/net/core#macos)，以從命令列開發 .NET Core 應用程式。 
-    * 如果您正在操作 Windows，可以安裝 [.NET Core SDK](https://www.microsoft.com/net/core#windows) 以從命令列開發 .NET Core 應用程式。 
+    * 如果您使用在 MacOS 或 Lunix 上，您可以藉由安裝 hello 開發.NET Core 應用程式，從命令列 hello [.NET Core SDK](https://www.microsoft.com/net/core#macos) hello 平台，您所選擇。 
+    * 如果您使用 Windows 上，您可以藉由安裝 hello 開發.NET Core 應用程式，從命令列 hello [.NET Core SDK](https://www.microsoft.com/net/core#windows)。 
     * 您可以使用自己的編輯器，也可以下載適用於 Windows、Linux 和 MacOS 的免費 [Visual Studio Code](https://code.visualstudio.com/)。 
 
 ## <a name="step-1-create-an-azure-cosmos-db-account"></a>步驟 1：建立 Azure Cosmos DB 帳戶
-讓我們來建立 Azure Cosmos DB 帳戶。 如果您已經擁有想要使用的帳戶，就可以跳到 [設定您的 Visual Studio 方案](#SetupVS)。 如果您是使用「Azure Cosmos DB 模擬器」，請依照 [Azure Cosmos DB 模擬器](local-emulator.md)的步驟來設定模擬器，然後直接跳到[設定您的 Visual Studio 解決方案](#SetupVS)。
+讓我們來建立 Azure Cosmos DB 帳戶。 如果您已經有您想要讓 toouse 帳戶，您可以向前跳過[安裝 Visual Studio 方案](#SetupVS)。 如果您使用 hello Azure Cosmos DB 模擬器，請依照步驟 hello [Azure Cosmos DB 模擬器](local-emulator.md)toosetup hello 模擬器並跳過[安裝 Visual Studio 方案](#SetupVS)。
 
 [!INCLUDE [cosmos-db-create-dbaccount](../../includes/cosmos-db-create-dbaccount.md)]
 
 ## <a id="SetupVS"></a>步驟 2：設定您的 Visual Studio 方案
 1. 在電腦上開啟 **Visual Studio 2017**。
-2. 從 [檔案] 功能表中，選取 [新增]，然後選擇 [專案]。
-3. 在 [新增專案] 對話方塊中，依序選取 [範本] / [Visual C#] / [.NET Core]/[主控台應用程式 (.NET Core)]、將專案命名為 **DocumentDBGettingStarted**，然後按一下 [確定]。
+2. 在 hello**檔案**功能表上，選取**新增**，然後選擇 **專案**。
+3. 在 hello**新專案**對話方塊中，選取**範本** / **Visual C#** / **.NET Core** /**主控台應用程式 (.NET Core)**，命名您的專案**DocumentDBGettingStarted**，然後按一下**確定**。
 
-   ![[新增專案] 視窗的螢幕擷取畫面](./media/documentdb-dotnetcore-get-started/nosql-tutorial-new-project-2.png)
-4. 在 [方案總管] 中，以滑鼠右鍵按一下 [DocumentDBGettingStarted]。
-5. 然後在無需離開功能表的情況下，按一下 [管理 NuGet 套件...]。
+   ![Hello 新增專案 視窗的螢幕擷取畫面](./media/documentdb-dotnetcore-get-started/nosql-tutorial-new-project-2.png)
+4. 在 [hello**方案總管] 中**，以滑鼠右鍵按一下**DocumentDBGettingStarted**。
+5. 而不需離開 hello 功能表，然後按一下 **管理 NuGet 封裝...**.
 
-   ![專案的滑鼠右鍵功能表的螢幕擷取畫面](./media/documentdb-dotnetcore-get-started/nosql-tutorial-manage-nuget-pacakges.png)
-6. 在 [NuGet] 索引標籤中按一下視窗頂端的 [瀏覽]，然後在搜尋方塊中輸入 **azure documentdb**。
-7. 在結果中尋找 [Microsoft.Azure.DocumentDB.Core]，然後按一下 [安裝]。
-   適用於 .NET Core 之 DocumentDB 用戶端程式庫的套件識別碼為 [Microsoft.Azure.DocumentDB.Core](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core)。 如果您是以此 .NET Core NuGet 套件不支援的 .NET Framework 版本 (例如 net461) 為目標，則使用 [Microsoft.Azure.DocumentDB](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB)，其支援 .NET Framework 4.5 以後的所有 .NET Framework 版本。
-8. 在提示字元中，接受 NuGet 套件安裝和授權合約。
+   ![螢幕擷取畫面的權限 hello hello 專案的已按下功能表](./media/documentdb-dotnetcore-get-started/nosql-tutorial-manage-nuget-pacakges.png)
+6. 在 hello **NuGet**索引標籤上，按一下 **瀏覽**頂端的 hello 視窗，然後輸入 hello **azure documentdb** hello 搜尋 方塊中。
+7. 在 hello 結果中尋找**Microsoft.Azure.DocumentDB.Core**按一下**安裝**。
+   hello 封裝識別碼 hello DocumentDB.NET Core 的用戶端程式庫是[Microsoft.Azure.DocumentDB.Core](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB.Core)。 如果您是以此 .NET Core NuGet 套件不支援的 .NET Framework 版本 (例如 net461) 為目標，則使用 [Microsoft.Azure.DocumentDB](https://www.nuget.org/packages/Microsoft.Azure.DocumentDB)，其支援 .NET Framework 4.5 以後的所有 .NET Framework 版本。
+8. Hello 提示出現時，在接受 hello NuGet 封裝安裝與 hello 授權合約。
 
-太棒了！ 現在已完成安裝程式，讓我們開始撰寫一些程式碼。 您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started)找到本教學課程的完整程式碼專案。
+太棒了！ 現在我們完成 hello 安裝程式，讓我們開始撰寫一些程式碼。 您可以在 [GitHub](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started)找到本教學課程的完整程式碼專案。
 
-## <a id="Connect"></a>步驟 3：連接至 Azure Cosmos DB 帳戶
-首先，在 Program.cs 檔案中，將這些參考新增到 C# 應用程式的開頭：
+## <a id="Connect"></a>步驟 3： 連接 tooan Azure Cosmos DB 帳戶
+首先，加入下列參考應用程式的 C#，hello Program.cs 檔案中的 toohello 開頭：
 
 ```csharp
 using System;
 
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
@@ -102,49 +102,49 @@ using Newtonsoft.Json;
 ```
 
 > [!IMPORTANT]
-> 若要完成此教學課程，請務必新增上述的相依性。
+> 在順序 toocomplete 本教學課程，請確認您新增上述 hello 相依性。
 
 現在，在「public class Program」之下加入下列兩個常數和您的「client」變數。
 
 ```csharp
 class Program
 {
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     private const string EndpointUri = "<your endpoint URI>";
     private const string PrimaryKey = "<your key>";
     private DocumentClient client;
 ```
 
-接下來，前往 [Azure 入口網站](https://portal.azure.com) 擷取您的 URI 和主索引鍵。 您必須提供 Azure Cosmos DB URI 和主要金鑰，您的應用程式才能了解要連接的位置，而 Azure Cosmos DB 才會信任您的應用程式連接。
+接下來，前端 toohello [Azure 入口網站](https://portal.azure.com)tooretrieve 您的 URI 與主索引鍵。 hello Azure Cosmos DB URI 及主要金鑰所需的應用程式 toounderstand 位置，以及 Azure Cosmos DB tootrust tooconnect 應用程式的連接。
 
-在 Azure 入口網站中，瀏覽至 Azure Cosmos DB 帳戶，然後按一下 [金鑰]。
+在 hello Azure 入口網站，瀏覽 tooyour Azure Cosmos DB 帳戶，然後按一下**金鑰**。
 
-從入口網站複製 URI，並將它貼到 program.cs 檔案的 `<your endpoint URI>` 中。 然後從入口網站複製主要金鑰，並將它貼到 `<your key>`中。 如果您是使用 Azure Cosmos DB 模擬器，請將 `https://localhost:8081` 作為端點，並使用[如何使用 Azure Cosmos DB 模擬器開發](local-emulator.md)中的定義完善授權金鑰。 請務必移除 < 和 > 但保留端點和金鑰的雙引號。
+從 hello 入口網站複製 hello URI，並將它貼入`<your endpoint URI>`hello program.cs 檔案中。 複製 hello 從 hello 入口網站的主索引鍵，並將它貼入`<your key>`。 如果您使用 hello Azure Cosmos DB 模擬器，使用`https://localhost:8081`hello 端點，以及從 hello 妥善定義的授權金鑰[如何使用 toodevelop hello Azure Cosmos DB 模擬器](local-emulator.md)。 請確定 tooremove hello < 和 > 但保留 hello 雙引號括住您的端點和金鑰。
 
-![NoSQL 教學課程用來建立 C# 主控台應用程式之 Azure 入口網站的螢幕擷取畫面。 顯示 Azure Cosmos DB 帳戶，內含反白顯示的 [主動式] 中樞、[Azure Cosmos DB 帳戶] 刀鋒視窗上反白顯示的 [金鑰] 按鈕、[金鑰] 刀鋒視窗上反白顯示的 [URI]、[主要金鑰] 和 [次要金鑰] 值][keys]
+![Hello hello NoSQL 教學課程 toocreate C# 主控台應用程式所使用的 Azure 入口網站的螢幕擷取畫面。 帳戶，反白顯示，hello 活躍 hello 反白顯示 hello Azure Cosmos DB 帳戶刀鋒視窗上的 [金鑰] 按鈕和 hello URI、 主索引鍵和次要索引鍵的值上反白顯示 hello 金鑰刀鋒視窗會顯示 Azure Cosmos DB][keys]
 
-讓我們建立 **DocumentClient**的新執行個體，啟動快速入門應用程式。
+讓我們先 hello 取得啟動應用程式所建立的新執行個體的 hello **DocumentClient**。
 
-在 **Main** 方法底下，加入 **GetStartedDemo** 這個新的非同步工作，以將新的 **DocumentClient** 具現化。
+以下 hello **Main**方法中，新增此呼叫的非同步工作**GetStartedDemo**，它會具現化新**DocumentClient**。
 
 ```csharp
 static void Main(string[] args)
 {
 }
 
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 private async Task GetStartedDemo()
 {
     this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 }
 ```
 
-加入下列程式碼，以從 **Main** 方法執行非同步工作。 **Main** 方法會攔截例外狀況並將它們寫入主控台。
+新增 hello 下列程式碼 toorun 將您的非同步工作，從您**Main**方法。 hello **Main**方法將會攔截例外狀況，並將它們寫入 toohello 主控台。
 
 ```csharp
 static void Main(string[] args)
 {
-        // ADD THIS PART TO YOUR CODE
+        // ADD THIS PART tooYOUR CODE
         try
         {
                 Program p = new Program();
@@ -162,44 +162,44 @@ static void Main(string[] args)
         }
         finally
         {
-                Console.WriteLine("End of demo, press any key to exit.");
+                Console.WriteLine("End of demo, press any key tooexit.");
                 Console.ReadKey();
         }
 ```
 
-按下 [DocumentDBGettingStarted] 按鈕以建置並執行應用程式。
+按 hello **DocumentDBGettingStarted**按鈕 toobuild 並執行 hello 應用程式。
 
-恭喜！ 您已成功連接至 Azure Cosmos DB 帳戶，現在讓我們看看如何使用 Azure Cosmos DB 資源。  
+恭喜！ 您已成功連接 tooan Azure Cosmos DB 帳戶，現在讓我們看一下使用 Azure Cosmos DB 資源。  
 
 ## <a name="step-4-create-a-database"></a>步驟 4：建立資料庫
-在您新增用於建立資料庫的程式碼之前，請新增用於寫入主控台的協助程式方法。
+您新增 hello 程式碼建立資料庫前，將撰寫 toohello 主控台的協助程式方法。
 
-複製 **WriteToConsoleAndPromptToContinue** 方法並貼到 **GetStartedDemo** 方法之下。
+複製並貼上 hello **WriteToConsoleAndPromptToContinue**下方 hello 方法**GetStartedDemo**方法。
 
 ```csharp
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 private void WriteToConsoleAndPromptToContinue(string format, params object[] args)
 {
         Console.WriteLine(format, args);
-        Console.WriteLine("Press any key to continue ...");
+        Console.WriteLine("Press any key toocontinue ...");
         Console.ReadKey();
 }
 ```
 
-您可以使用 **DocumentClient** 類別的 [CreateDatabaseAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx) 方法來建立 Azure Cosmos DB [資料庫](documentdb-resources.md#databases)。 資料庫是分割給多個集合之 JSON 文件儲存體的邏輯容器。
+您的 Azure Cosmos DB[資料庫](documentdb-resources.md#databases)可以建立使用 hello [CreateDatabaseAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdatabaseasync.aspx)方法 hello **DocumentClient**類別。 資料庫是 hello 的 JSON 文件儲存分割於各個集合的邏輯容器。
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的用戶端建立之下。 這會建立名為 FamilyDB 的資料庫。
+複製和貼上 hello 下列程式碼 tooyour **GetStartedDemo**底下建立 hello 用戶端的方法。 這會建立名為 FamilyDB 的資料庫。
 
 ```csharp
 private async Task GetStartedDemo()
 {
     this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     await this.client.CreateDatabaseIfNotExistsAsync(new Database { Id = "FamilyDB_oa" });
 ```
 
-按下 [DocumentDBGettingStarted] 按鈕以執行應用程式。
+按 hello **DocumentDBGettingStarted**按鈕 toorun 您的應用程式。
 
 恭喜！ 您已成功建立 Azure Cosmos DB 資料庫。  
 
@@ -207,39 +207,39 @@ private async Task GetStartedDemo()
 > [!WARNING]
 > **CreateDocumentCollectionAsync** 會建立含有保留輸送量且具有價格含意的新集合。 如需詳細資訊，請造訪 [定價頁面](https://azure.microsoft.com/pricing/details/cosmos-db/)。
 
-您可以使用 **DocumentClient** 類別的 [CreateDocumentCollectionAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentcollectionasync.aspx) 方法建立[集合](documentdb-resources.md#collections)。 集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。
+A[集合](documentdb-resources.md#collections)可以建立使用 hello [CreateDocumentCollectionAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentcollectionasync.aspx)方法 hello **DocumentClient**類別。 集合是 JSON 文件和相關聯 JavaScript 應用程式邏輯的容器。
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的資料庫建立之下。 這會建立名為 FamilyCollection_oa 的文件集合。
+複製和貼上 hello 下列程式碼 tooyour **GetStartedDemo**下方 hello 資料庫建立的方法。 這會建立名為 FamilyCollection_oa 的文件集合。
 
 ```csharp
     this.client = new DocumentClient(new Uri(EndpointUri), PrimaryKey);
 
     await this.client.CreateDatabaseIfNotExists("FamilyDB_oa");
 
-    // ADD THIS PART TO YOUR CODE
+    // ADD THIS PART tooYOUR CODE
     await this.client.CreateDocumentCollectionIfNotExistsAsync(UriFactory.CreateDatabaseUri("FamilyDB_oa"), new DocumentCollection { Id = "FamilyCollection_oa" });
 ```
 
-按下 [DocumentDBGettingStarted] 按鈕以執行應用程式。
+按 hello **DocumentDBGettingStarted**按鈕 toorun 您的應用程式。
 
 恭喜！ 您已成功建立 Azure Cosmos DB 文件集合。  
 
 ## <a id="CreateDoc"></a>步驟 6：建立 JSON 文件
-您可以使用 **DocumentClient** 類別的 [CreateDocumentAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentasync.aspx) 方法來建立[文件](documentdb-resources.md#documents)。 文件會是使用者定義的 (任意) JSON 內容。 現在可插入一或多份文件。 如果您已經有想要儲存於資料庫中的資料，就可以使用 Azure Cosmos DB 的 [資料移轉工具](import-data.md)。
+A[文件](documentdb-resources.md#documents)可以建立使用 hello [CreateDocumentAsync](https://msdn.microsoft.com/library/microsoft.azure.documents.client.documentclient.createdocumentasync.aspx)方法 hello **DocumentClient**類別。 文件會是使用者定義的 (任意) JSON 內容。 現在可插入一或多份文件。 如果您已經有您想要 toostore 資料庫中的資料，您可以使用 Azure Cosmos DB 的[資料移轉工具](import-data.md)。
 
-首先，我們需要建立 **Family** 類別，以代表此範例中儲存在 Azure Cosmos DB 內的物件。 我們也會建立 **Family** 內使用的 **Parent**、**Child**、**Pet**、**Address** 子類別。 請注意，文件必須將 **Id** 屬性序列化為 JSON 中的**識別碼**。 藉由在 **GetStartedDemo** 方法之後加入下列內部子類別來建立這些類別。
+首先，我們需要 toocreate**系列**表示儲存在 Azure Cosmos DB，在此範例中的物件類別。 我們也會建立 **Family** 內使用的 **Parent**、**Child**、**Pet**、**Address** 子類別。 請注意，文件必須將 **Id** 屬性序列化為 JSON 中的**識別碼**。 加入 hello 之後 hello 遵循內部的子類別來建立這些類別**GetStartedDemo**方法。
 
-複製 **Family**、**Parent**、**Child**、**Pet** 和 **Address** 類別並貼到 **WriteToConsoleAndPromptToContinue** 方法之下。
+複製並貼上 hello**系列**，**父**，**子**，**寵物**，和**位址**類別下方hello **WriteToConsoleAndPromptToContinue**方法。
 
 ```csharp
 private void WriteToConsoleAndPromptToContinue(string format, params object[] args)
 {
     Console.WriteLine(format, args);
-    Console.WriteLine("Press any key to continue ...");
+    Console.WriteLine("Press any key toocontinue ...");
     Console.ReadKey();
 }
 
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 public class Family
 {
     [JsonProperty(PropertyName = "id")]
@@ -283,10 +283,10 @@ public class Address
 }
 ```
 
-複製 **CreateFamilyDocumentIfNotExists** 方法並貼到 **CreateDocumentCollectionIfNotExists** 方法之下。
+複製並貼上 hello **CreateFamilyDocumentIfNotExists**下方方法您**CreateDocumentCollectionIfNotExists**方法。
 
 ```csharp
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 private async Task CreateFamilyDocumentIfNotExists(string databaseName, string collectionName, Family family)
 {
     try
@@ -309,16 +309,16 @@ private async Task CreateFamilyDocumentIfNotExists(string databaseName, string c
 }
 ```
 
-插入兩個文件，一個給 Andersen 家族，另一個給 Wakefield 家族。
+然後插入兩個文件，分別指派給 hello Andersen 系列 hello Wakefield 系列。
 
-複製 `// ADD THIS PART TO YOUR CODE` 後面的程式碼並貼到 **GetStartedDemo** 方法的文件集合建立之下。
+複製並貼上 hello 程式碼所示`// ADD THIS PART tooYOUR CODE`tooyour **GetStartedDemo**底下建立 hello 文件集合的方法。
 
 ```csharp
 await this.CreateDatabaseIfNotExists("FamilyDB_oa");
 
 await this.CreateDocumentCollectionIfNotExists("FamilyDB_oa", "FamilyCollection_oa");
 
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 Family andersenFamily = new Family
 {
         Id = "Andersen.1",
@@ -385,37 +385,37 @@ Family wakefieldFamily = new Family
 await this.CreateFamilyDocumentIfNotExists("FamilyDB_oa", "FamilyCollection_oa", wakefieldFamily);
 ```
 
-按下 [DocumentDBGettingStarted] 按鈕以執行應用程式。
+按 hello **DocumentDBGettingStarted**按鈕 toorun 您的應用程式。
 
 恭喜！ 您已成功建立兩個 Azure Cosmos DB 文件。  
 
-![說明 NoSQL 教學課程用來建立 C# 主控台應用程式之帳戶、線上資料庫、集合和文件之間階層式關聯性的圖表](./media/documentdb-dotnetcore-get-started/nosql-tutorial-account-database.png)
+![以圖表顯示的 hello 階層式關聯性，hello 帳戶、 hello 線上資料庫、 hello 集合和 hello hello NoSQL 教學課程 toocreate C# 主控台應用程式所使用的文件之間](./media/documentdb-dotnetcore-get-started/nosql-tutorial-account-database.png)
 
 ## <a id="Query"></a>步驟 7︰查詢 Azure Cosmos DB 資源
-Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行豐富[查詢](documentdb-sql-query.md)。  下列範例程式碼示範各種查詢，同時使用可在我們於前一個步驟中所插入文件上執行的 Azure Cosmos DB SQL 語法和 LINQ。
+Azure Cosmos DB 支援針對儲存於每個集合的 JSON 文件進行豐富[查詢](documentdb-sql-query.md)。  hello 下列程式碼範例示範各種查詢-使用這兩個 Azure Cosmos DB SQL 語法，以及 LINQ-我們能夠針對執行 hello 我們插入 hello 上一個步驟中的文件。
 
-複製 **ExecuteSimpleQuery** 方法並貼到 **CreateFamilyDocumentIfNotExists** 方法之下。
+複製並貼上 hello **ExecuteSimpleQuery**下方方法您**CreateFamilyDocumentIfNotExists**方法。
 
 ```csharp
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 private void ExecuteSimpleQuery(string databaseName, string collectionName)
 {
     // Set some common query options
     FeedOptions queryOptions = new FeedOptions { MaxItemCount = -1 };
 
-        // Here we find the Andersen family via its LastName
+        // Here we find hello Andersen family via its LastName
         IQueryable<Family> familyQuery = this.client.CreateDocumentQuery<Family>(
                 UriFactory.CreateDocumentCollectionUri(databaseName, collectionName), queryOptions)
                 .Where(f => f.LastName == "Andersen");
 
-        // The query is executed synchronously here, but can also be executed asynchronously via the IDocumentQuery<T> interface
+        // hello query is executed synchronously here, but can also be executed asynchronously via hello IDocumentQuery<T> interface
         Console.WriteLine("Running LINQ query...");
         foreach (Family family in familyQuery)
         {
             Console.WriteLine("\tRead {0}", family);
         }
 
-        // Now execute the same query via direct SQL
+        // Now execute hello same query via direct SQL
         IQueryable<Family> familyQueryInSql = this.client.CreateDocumentQuery<Family>(
                 UriFactory.CreateDocumentCollectionUri(databaseName, collectionName),
                 "SELECT * FROM Family WHERE Family.LastName = 'Andersen'",
@@ -427,37 +427,37 @@ private void ExecuteSimpleQuery(string databaseName, string collectionName)
                 Console.WriteLine("\tRead {0}", family);
         }
 
-        Console.WriteLine("Press any key to continue ...");
+        Console.WriteLine("Press any key toocontinue ...");
         Console.ReadKey();
 }
 ```
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的次要文件建立之下。
+複製和貼上 hello 下列程式碼 tooyour **GetStartedDemo**下方 hello 建立第二個文件的方法。
 
 ```csharp
 await this.CreateFamilyDocumentIfNotExists("FamilyDB_oa", "FamilyCollection_oa", wakefieldFamily);
 
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
 ```
 
-按下 [DocumentDBGettingStarted] 按鈕以執行應用程式。
+按 hello **DocumentDBGettingStarted**按鈕 toorun 您的應用程式。
 
 恭喜！ 您已成功查詢 Azure Cosmos DB 集合。
 
-下圖說明如何針對您所建立的集合呼叫 Azure Cosmos DB SQL 查詢語法，相同邏輯也可以套用至 LINQ 查詢。
+hello 下列圖表說明 hello Azure Cosmos DB SQL 查詢語法稱為 hello 集合針對您建立的方式，與 hello 相同邏輯適用於 toohello LINQ 查詢。
 
-![說明 NoSQL 教學課程用來建立 C# 主控台應用程式之查詢的範圍和意義的圖表](./media/documentdb-dotnetcore-get-started/nosql-tutorial-collection-documents.png)
+![圖表說明 hello 範圍和 hello 查詢的意義由 hello NoSQL 教學課程 toocreate C# 主控台應用程式](./media/documentdb-dotnetcore-get-started/nosql-tutorial-collection-documents.png)
 
-因為 Azure Cosmos DB 查詢已侷限於單一集合，所以查詢中的 [FROM](documentdb-sql-query.md#FromClause) 關鍵字是選擇性的。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 依預設，DocumentDB 會推斷該系列、根或您選擇的變數名稱來參考目前的集合。
+hello [FROM](documentdb-sql-query.md#FromClause)關鍵字是選擇性的 hello 查詢，因為 Azure Cosmos DB 查詢已設定領域的 tooa 單一集合。 因此，"FROM Families f" 可以換成 "FROM root r"，或您選擇的任何其他變數名稱。 DocumentDB 會推斷家族、 根或 hello 變數名稱您已選擇，依預設參考 hello 目前集合。
 
 ## <a id="ReplaceDocument"></a>步驟 8︰取代 JSON 文件
 Azure Cosmos DB 支援取代 JSON 文件。  
 
-複製 **ReplaceFamilyDocument** 方法並貼到 **ExecuteSimpleQuery** 方法之下。
+複製並貼上 hello **ReplaceFamilyDocument**下方方法您**ExecuteSimpleQuery**方法。
 
 ```csharp
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 private async Task ReplaceFamilyDocument(string databaseName, string collectionName, string familyName, Family updatedFamily)
 {
     try
@@ -472,15 +472,15 @@ private async Task ReplaceFamilyDocument(string databaseName, string collectionN
 }
 ```
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的查詢執行之下。 取代文件後，此程式碼會再次執行相同的查詢以檢視變更後的文件。
+複製和貼上 hello 下列程式碼 tooyour **GetStartedDemo**下方 hello 查詢執行的方法。 這樣將會取代 hello 文件之後, 執行 hello 相同再次查詢 tooview hello 變更文件。
 
 ```csharp
 await this.CreateFamilyDocumentIfNotExists("FamilyDB_oa", "FamilyCollection_oa", wakefieldFamily);
 
 this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
 
-// ADD THIS PART TO YOUR CODE
-// Update the Grade of the Andersen Family child
+// ADD THIS PART tooYOUR CODE
+// Update hello Grade of hello Andersen Family child
 andersenFamily.Children[0].Grade = 6;
 
 await this.ReplaceFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen.1", andersenFamily);
@@ -488,17 +488,17 @@ await this.ReplaceFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen
 this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
 ```
 
-按下 [DocumentDBGettingStarted] 按鈕以執行應用程式。
+按 hello **DocumentDBGettingStarted**按鈕 toorun 您的應用程式。
 
 恭喜！ 您已成功取代 Azure Cosmos DB 文件。
 
 ## <a id="DeleteDocument"></a>步驟 9︰刪除 JSON 文件
 Azure Cosmos DB 支援刪除 JSON 文件。  
 
-複製 **DeleteFamilyDocument** 方法並貼到 **ReplaceFamilyDocument** 方法之下。
+複製並貼上 hello **DeleteFamilyDocument**下方方法您**ReplaceFamilyDocument**方法。
 
 ```csharp
-// ADD THIS PART TO YOUR CODE
+// ADD THIS PART tooYOUR CODE
 private async Task DeleteFamilyDocument(string databaseName, string collectionName, string documentName)
 {
     try
@@ -513,86 +513,86 @@ private async Task DeleteFamilyDocument(string databaseName, string collectionNa
 }
 ```
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的次要查詢執行之下。
+複製和貼上 hello 下列程式碼 tooyour **GetStartedDemo**下方 hello 第二個查詢執行的方法。
 
 ```csharp
 await this.ReplaceFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen.1", andersenFamily);
 
 this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
 
-// ADD THIS PART TO CODE
+// ADD THIS PART tooCODE
 await this.DeleteFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen.1");
 ```
 
-按下 [DocumentDBGettingStarted] 按鈕以執行應用程式。
+按 hello **DocumentDBGettingStarted**按鈕 toorun 您的應用程式。
 
 恭喜！ 您已成功刪除 Azure Cosmos DB 文件。
 
-## <a id="DeleteDatabase"></a>步驟 10：刪除資料庫
-刪除已建立的資料庫將會移除資料庫和所有子系資源 (集合、文件等)。
+## <a id="DeleteDatabase"></a>步驟 10： 刪除 hello 資料庫
+正在刪除 hello 已建立的資料庫將會移除 hello 資料庫和所有子系資源 （集合、 文件）。
 
-複製下列程式碼並貼到 **GetStartedDemo** 方法的文件刪除之下，以刪除整個資料庫和所有子系資源。
+複製和貼上 hello 下列程式碼 tooyour **GetStartedDemo**下方 hello 文件的方法刪除 toodelete hello 整個資料庫和所有子系的資源。
 
 ```csharp
 this.ExecuteSimpleQuery("FamilyDB_oa", "FamilyCollection_oa");
 
 await this.DeleteFamilyDocument("FamilyDB_oa", "FamilyCollection_oa", "Andersen.1");
 
-// ADD THIS PART TO CODE
-// Clean up/delete the database
+// ADD THIS PART tooCODE
+// Clean up/delete hello database
 await this.client.DeleteDatabaseAsync(UriFactory.CreateDatabaseUri("FamilyDB_oa"));
 ```
 
-按下 [DocumentDBGettingStarted] 按鈕以執行應用程式。
+按 hello **DocumentDBGettingStarted**按鈕 toorun 您的應用程式。
 
 恭喜！ 您已成功刪除 Azure Cosmos DB 資料庫。
 
 ## <a id="Run"></a>步驟 11：一起執行您的 C# 主控台應用程式！
-在 Visual Studio 中按下 [DocumentDBGettingStarted] 按鈕以在偵錯模式中建置應用程式。
+按 hello **DocumentDBGettingStarted** Visual Studio 中偵錯模式 toobuild hello 應用程式中的按鈕。
 
-您應該可以看到在主控台視窗中開始使用應用程式的輸出。 輸出將會顯示新增的查詢結果，而且應該符合以下的範例文字。
+您應該會看到 hello 輸出 hello 主控台視窗中啟動應用程式取得。 hello 輸出會顯示 hello hello 結果我們加入，而且必須符合以下的 hello 範例文字的查詢。
 
 ```
 Created FamilyDB_oa
-Press any key to continue ...
+Press any key toocontinue ...
 Created FamilyCollection_oa
-Press any key to continue ...
+Press any key toocontinue ...
 Created Family Andersen.1
-Press any key to continue ...
+Press any key toocontinue ...
 Created Family Wakefield.7
-Press any key to continue ...
+Press any key toocontinue ...
 Running LINQ query...
     Read {"id":"Andersen.1","LastName":"Andersen","District":"WA5","Parents":[{"FamilyName":null,"FirstName":"Thomas"},{"FamilyName":null,"FirstName":"Mary Kay"}],"Children":[{"FamilyName":null,"FirstName":"Henriette Thaulow","Gender":"female","Grade":5,"Pets":[{"GivenName":"Fluffy"}]}],"Address":{"State":"WA","County":"King","City":"Seattle"},"IsRegistered":true}
 Running direct SQL query...
     Read {"id":"Andersen.1","LastName":"Andersen","District":"WA5","Parents":[{"FamilyName":null,"FirstName":"Thomas"},{"FamilyName":null,"FirstName":"Mary Kay"}],"Children":[{"FamilyName":null,"FirstName":"Henriette Thaulow","Gender":"female","Grade":5,"Pets":[{"GivenName":"Fluffy"}]}],"Address":{"State":"WA","County":"King","City":"Seattle"},"IsRegistered":true}
 Replaced Family Andersen.1
-Press any key to continue ...
+Press any key toocontinue ...
 Running LINQ query...
     Read {"id":"Andersen.1","LastName":"Andersen","District":"WA5","Parents":[{"FamilyName":null,"FirstName":"Thomas"},{"FamilyName":null,"FirstName":"Mary Kay"}],"Children":[{"FamilyName":null,"FirstName":"Henriette Thaulow","Gender":"female","Grade":6,"Pets":[{"GivenName":"Fluffy"}]}],"Address":{"State":"WA","County":"King","City":"Seattle"},"IsRegistered":true}
 Running direct SQL query...
     Read {"id":"Andersen.1","LastName":"Andersen","District":"WA5","Parents":[{"FamilyName":null,"FirstName":"Thomas"},{"FamilyName":null,"FirstName":"Mary Kay"}],"Children":[{"FamilyName":null,"FirstName":"Henriette Thaulow","Gender":"female","Grade":6,"Pets":[{"GivenName":"Fluffy"}]}],"Address":{"State":"WA","County":"King","City":"Seattle"},"IsRegistered":true}
 Deleted Family Andersen.1
-End of demo, press any key to exit.
+End of demo, press any key tooexit.
 ```
 
-恭喜！ 您已經完成本教學課程，並擁有運作中的 C# 主控台應用程式！
+恭喜！ 您已經完成 hello 教學課程，有一個使用 C# 主控台應用程式 ！
 
-## <a id="GetSolution"></a>取得完整的教學課程解決方案
-若要建置包含本文中所有範例的 GetStarted 方案，您將需要下列項目：
+## <a id="GetSolution"></a>取得 hello 完整的教學課程解決方案
+包含所有在本文中的 hello 範例 toobuild hello GetStarted 方案，您將需要 hello 下列：
 
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，您可以註冊 [免費帳戶](https://azure.microsoft.com/free/)。
 * [Azure Cosmos DB 帳戶][create-documentdb-dotnet.md#create-account]。
-* 您可以在 GitHub 上找到 [GetStarted](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started) 方案。
+* hello [GetStarted](https://github.com/Azure-Samples/documentdb-dotnet-core-getting-started) GitHub 上有可用的解決方案。
 
-若要在 Visual Studio 中還原適用於 Azure Cosmos DB .NET Core SDK 之 DocumentDB API 的參考，請在 [方案總管] 的 **GetStarted** 方案上按一下滑鼠右鍵，然後按一下 [啟用 NuGet 套件還原]。 接下來，在 Program.cs 檔案中更新 EndpointUrl 和 AuthorizationKey 值，如[連線至 Azure Cosmos DB 帳戶](#Connect)中所述。
+toorestore hello 參考 toohello DocumentDB API 針對 Azure Cosmos DB.NET Core SDK 在 Visual Studio 中，以滑鼠右鍵按一下 hello **GetStarted**方案在方案總管 中，然後按一下**啟用 NuGet 封裝還原**. 接下來，在 hello Program.cs 檔案中，更新 hello 的端點 Url 和 AuthorizationKey 值中所述[tooan Azure Cosmos DB 帳戶連接](#Connect)。
 
 ## <a name="next-steps"></a>後續步驟
 * 需要更複雜的 ASP.NET MVC 教學課程嗎？ 請參閱 [ASP.NET MVC 教學課程：使用 Azure Cosmos DB 進行 Web 應用程式開發](documentdb-dotnet-application.md)。
-* 想要使用適用於 Azure Cosmos DB .NET Core SDK 的 DocumentDB API 開發 Xamarin iOS、Android 或 Forms 應用程式嗎？ 請參閱[使用 Xamarin 和 Azure Cosmos DB 建置行動應用程式](mobile-apps-with-xamarin.md)。
-* 需要使用 Azure Cosmos DB 來執行規模和效能測試嗎？ 請參閱 [Azure Cosmos DB 的效能和級別測試](performance-testing.md)
-* 了解如何[監視 Azure Cosmos DB 要求、使用量及儲存體](monitor-accounts.md)。
-* 在 [Query Playground](https://www.documentdb.com/sql/demo)中，針對範例資料集執行查詢。
-* 若要深入了解有關程式設計模型的詳細資訊，請參閱 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)。
+* 想 toodevelop Xamarin iOS、 Android 或表單應用程式使用 Azure Cosmos DB.NET Core sdk hello DocumentDB API 嗎？ 請參閱[使用 Xamarin 和 Azure Cosmos DB 建置行動應用程式](mobile-apps-with-xamarin.md)。
+* 想 tooperform 規模和效能測試以 Azure Cosmos DB 嗎？ 請參閱 [Azure Cosmos DB 的效能和級別測試](performance-testing.md)
+* 了解如何太[監視 Azure Cosmos DB 要求、 使用方式，以及儲存體](monitor-accounts.md)。
+* 執行查詢，根據我們的範例資料集，在 hello[查詢遊樂場](https://www.documentdb.com/sql/demo)。
+* toolearn 進一步了解 hello 的程式設計模型，請參閱[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)。
 
 [create-documentdb-dotnet.md#create-account]: create-documentdb-dotnet.md#create-account
 [keys]: media/documentdb-dotnetcore-get-started/nosql-tutorial-keys.png

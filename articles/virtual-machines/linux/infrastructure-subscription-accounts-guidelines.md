@@ -1,6 +1,6 @@
 ---
-title: "Azure 中 Linux VM 的訂用帳戶和帳戶 | Microsoft Docs"
-description: "了解 Azure 上訂用帳戶和帳戶的關鍵設計和實作指導方針。"
+title: "aaaSubscription 和適用於 Linux Vm 在 Azure 中的帳戶 |Microsoft 文件"
+description: "深入了解 hello 金鑰設計和實作指導方針訂用帳戶和 Azure 上的帳戶。"
 documentationcenter: 
 services: virtual-machines-linux
 author: iainfoulds
@@ -16,50 +16,50 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 19695a9960d8e8f0dfca4bf0ca10761fe6ae7ff0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9025a40783c008310ebd0f674deb4a9001ae974a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-subscription-and-accounts-guidelines-for-linux-vms"></a>適用於 Linux VM 的 Azure 訂用帳戶和帳戶指導方針
 
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
-本文著重於了解在環境和使用者群增加的情況下，管理訂用帳戶和帳戶的方法。
+本文著重在了解如何為您的環境與使用者基底的 tooapproach 訂用帳戶和帳戶管理成長。
 
 ## <a name="implementation-guidelines-for-subscriptions-and-accounts"></a>訂用帳戶和帳戶的實作指導方針
 决策：
 
-* 您需要裝載 IT 工作負載或基礎結構的是哪種訂用帳戶與帳戶的組合？
-* 如何分解階層以使其符合您的組織？
+* 哪些設定訂用帳戶和帳戶您需要 toohost 您的 IT 工作負載或基礎結構？
+* 如何關閉 hello 階層 toofit toobreak 組織嗎？
 
 工作：
 
-* 將您的邏輯組織階層定義為您想從訂用帳戶層級管理它的方式。
-* 若要符合此邏輯階層，請定義所需的帳戶及每個帳戶下的訂用帳戶。
-* 使用您的命名慣例來建立訂用帳戶與帳戶的組合。
+* 定義邏輯組織階層，您希望 toomanage 從訂用帳戶層級。
+* toomatch 此邏輯的階層架構，定義所需的 hello 帳戶和訂用帳戶底下的每個帳戶。
+* 建立 hello 組訂閱和使用您的命名慣例的帳戶。
 
 ## <a name="subscriptions-and-accounts"></a>訂用帳戶與帳戶
-若要使用 Azure，您需要一個以上的 Azure 訂用帳戶。 虛擬機器 (VM) 或虛擬網路等資源存在於這些訂用帳戶中。
+使用 Azure toowork，您需要一或多個 Azure 訂用帳戶。 虛擬機器 (VM) 或虛擬網路等資源存在於這些訂用帳戶中。
 
-* 企業客戶通常會有 Enterprise 註冊，這是階層中最上層的資源，而且會與一或多個帳戶相關聯。
-* 對於消費者與不具 Enterprise 註冊的客戶來說，最上層的資源是帳戶。
-* 訂用帳戶會關聯至帳戶，而且每個帳戶可以有一或多個訂用帳戶。 Azure 會在訂用帳戶層級記錄計費資訊。
+* 企業客戶通常會有 Enterprise 註冊，這是 hello hello 階層中的最上層資源相關聯的 tooone 或多個帳戶。
+* 取用者，而不需要企業註冊的客戶 hello 最上層資源是 hello 帳戶。
+* 訂用帳戶相關聯的 tooaccounts，而且可以有一或多個訂閱，每個帳戶。 Azure 帳單 hello 訂用帳戶層級資訊的記錄。
 
-由於帳戶/訂用帳戶關係中有兩個階層層級的限制，因此，請務必將帳戶和訂用帳戶的命名慣例與計費需求保持一致。 舉例來說，如果有一家全球性公司使用 Azure，他們可能選擇針對每個區域擁有一個帳戶，並在區域層級管理訂用帳戶：
+Toohello hello 帳戶/訂用帳戶的關聯性的兩個階層層級的限制，因為它不重要 tooalign hello 命名慣例的帳戶和訂用 toohello 計費的需求。 比方說，如果全域公司使用 Azure，他們可能會選擇每個區域，toohave 一個帳戶和訂閱管理在 hello 區域層級：
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub01.png)
 
-例如，您可以使用下列結構：
+比方說，您可以使用下列結構的 hello:
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub02.png)
 
-如果某個區域決定擁有一個以上與特定群組相關聯的訂用帳戶，則命名慣例必須包括在帳戶或訂用帳戶名稱上為額外資料進行編碼的方式。 這個組織允許訊息傳遞計費資料在計費報告期間產生新的階層層級：
+如果區域決定 toohave 多個訂用帳戶相關聯的 tooa 特定群組，hello 命名慣例應該併入方式 tooencode hello hello 帳戶或 hello 訂用帳戶名稱的額外資料。 此組織允許 massaging 計費報表期間的計費資料 toogenerate hello 新階層的層級：
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub03.png)
 
-組織應看起來如下範例所示：
+hello 組織可能看起來像下列範例中的 hello:
 
 ![](media/virtual-machines-common-infrastructure-service-guidelines/sub04.png)
 

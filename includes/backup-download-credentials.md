@@ -1,26 +1,26 @@
-## <a name="using-vault-credentials-to-authenticate-with-the-azure-backup-service"></a>使用保存庫認證來驗證 Azure 備份服務
-內部部署伺服器 (Windows 用戶端或 Windows Server 或 Data Protection Manager 伺服器) 必須先驗證備份保存庫，才能將資料備份至 Azure。 驗證是利用「保存庫認證」來達成。 保存庫認證的概念類似用於 Azure PowerShell 的「發佈設定」檔案。
+## <a name="using-vault-credentials-tooauthenticate-with-hello-azure-backup-service"></a>使用保存庫認證 tooauthenticate 以 hello Azure 備份服務
+hello 在內部部署伺服器 （Windows 用戶端或 Windows Server 或 Data Protection Manager 的伺服器） 必須先驗證用戶端向備份保存庫可以備份資料 tooAzure toobe。 hello 驗證是使用 「 保存庫認證 」 來達成。 hello 概念保存庫認證是使用 Azure PowerShell 中的 「 發行設定 」 檔案類似 toohello 概念。
 
-### <a name="what-is-the-vault-credential-file"></a>什麼是保存庫認證檔？
-保存庫認證檔是入口網站針對每個備份保存庫所產生的憑證。 入口網站接著會將公開金鑰上傳至「存取控制服務」(ACS)。 憑證的私密金鑰可供使用者作為工作流程的一部分，屬於電腦註冊工作流程中的指定輸入。 這會對電腦進行驗證，以便將備份資料傳送至 Azure 備份服務中的已識別保存庫。
+### <a name="what-is-hello-vault-credential-file"></a>什麼是 hello 保存庫認證檔案？
+hello 保存庫認證檔案是由每個備份保存庫的 hello 入口網站所產生的憑證。 hello 入口網站再上傳 hello 公用金鑰 toohello 存取控制服務 (ACS)。 hello hello 憑證私密金鑰進行可用 toohello 使用者指定做為輸入 hello 機器註冊工作流程中的 hello 工作流程的一部分。 這會驗證 hello 機器 toosend 備份資料 tooan 識別保存庫中 hello Azure 備份服務。
 
-保存庫認證僅在註冊工作流程期間使用。 使用者應自行負責，並確保保存庫認證檔不會遭到破解。 保存庫認證檔落入任何惡意使用者的手中，則可用來針對相同的保存庫註冊其他電腦。 不過，當使用屬於客戶的複雜密碼來加密備份資料時，現有的備份資料不會遭到洩漏。 若要減輕這個問題，保存庫認證設在 48 小時後過期。 您可以下載備份保存庫的保存庫認證，次數不受限制，但僅最新的保存庫認證檔可在註冊工作流程期間提供使用。
+只有在 hello 註冊工作流程期間使用 hello 保存庫認證。 Hello 保存庫認證檔案不會洩露的 hello 使用者的責任 tooensure 它。 它會落在任何惡意使用者的 hello 未授權者手中，如果 hello 保存庫認證檔案可以使用的 tooregister 針對其他機器 hello 相同保存庫。 不過，因為 hello 備份資料已加密的複雜密碼所屬 toohello 客戶，現有的備份資料不會遭到洩漏。 toomitigate 考慮此保存庫認證中所設定 tooexpire 48hrs。 您可以下載 hello 保存庫認證備份保存庫的任何數目的時間 – 但是只有 hello 最新的保存庫認證檔案都適用 hello 註冊工作流程期間。
 
-### <a name="download-the-vault-credential-file"></a>下載保存庫認證檔
-保存庫認證檔會透過安全通道，從 Azure 入口網站下載。 Azure 備份服務不會知道憑證的私密金鑰，且私密金鑰不會保存在入口網站或服務中。 使用下列步驟將保存庫認證檔下載至本機電腦。
+### <a name="download-hello-vault-credential-file"></a>下載 hello 保存庫認證檔案
+透過從 hello Azure 入口網站的安全通道會下載 hello 保存庫認證檔案。 hello Azure 備份服務不會知道 hello hello 憑證私密金鑰和 hello 私密金鑰不會保存在 hello 入口網站或 hello 服務中。 使用下列步驟 toodownload hello 保存庫認證檔案 tooa 本機電腦的 hello。
 
-1. 登入 [管理入口網站](https://manage.windowsazure.com/)
-2. 按一下左側導覽窗格的 [ **復原服務** ] 並選取您所建立的備份保存庫。 按一下雲端圖示以前往備份保存庫的 [快速啟動] 檢視。
+1. 登入 toohello[管理入口網站](https://manage.windowsazure.com/)
+2. 按一下**復原服務**hello 左側的導覽窗格和您建立的選取 hello 備份保存庫中。 按一下 hello 雲端圖示 tooget toohello hello 備份保存庫的快速入門 檢視。
    
    ![快速檢視](./media/backup-download-credentials/quickview.png)
-3. 在 [快速入門] 頁面上，按一下 [ **下載保存庫認證**]。 入口網站會產生可供下載的保存庫認證檔。
+3. 在 hello 快速入門 頁面上，按一下 **下載保存庫認證**。 hello 入口網站會產生 hello 保存庫認證檔案，會成為可供下載。
    
    ![下載](./media/backup-download-credentials/downloadvc.png)
-4. 入口網站會使用保存庫名稱和目前日期的組合來產生保存庫認證。 按一下 [ **儲存** ] 將保存庫認證下載至本機帳戶的下載資料夾，或從 [儲存] 功能表中選取 [另存新檔]，以指定保存庫認證的位置。
+4. hello 入口網站將會產生保存庫認證使用組合的 hello 保存庫名稱和 hello 目前的日期。 按一下**儲存**toodownload hello 保存庫認證 toohello 本機帳戶的下載資料夾中，或從 hello 另存新檔選取儲存功能表 toospecify hello 保存庫認證的位置。
 
 ### <a name="note"></a>注意
-* 請確保保存庫認證儲存在可從您電腦存取的位置。 如果它儲存在檔案共用/SMB，請檢查存取權限。
-* 保存庫認證檔僅在註冊工作流程期間使用。
-* 保存庫認證檔會在 48 小時後過期，並且可以從入口網站下載。
-* 若您有關於工作流程的任何問題，請參閱 Azure 備份的 [常見問題集](../articles/backup/backup-azure-backup-faq.md) 。
+* 請確定 hello 保存庫認證儲存在可從您的電腦存取的位置。 如果它儲存在檔案共用 SMB，檢查 hello 存取權限。
+* 只有在 hello 註冊工作流程會使用 hello 保存庫認證檔案。
+* hello 保存庫認證檔案 48hrs 後會到期，而您可以從 hello 入口網站下載。
+* 請參閱 toohello Azure Backup[常見問題集](../articles/backup/backup-azure-backup-faq.md)hello 工作流程上的任何問題。
 

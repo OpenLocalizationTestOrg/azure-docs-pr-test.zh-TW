@@ -1,27 +1,27 @@
 
 
-「自訂」虛擬機器單指您使用從 **Marketplace** 取得的**熱門應用程式**所建立的虛擬機器，因為它為您做了大部分的工作。 但是，您仍然可以在組態選項中包括下列項目：
+A*自訂*虛擬機器就是指您所建立的虛擬機器**精選應用程式**從 hello **Marketplace**因為它為您進行的大部分 hello 工作。 棒的是，您仍然可以設定選項，包括下列項目 hello:
 
-* 將虛擬機器連線至虛擬網路
-* 安裝 Azure 虛擬機器代理程式和 Azure 虛擬機器擴充程式，例如用於反惡意程式碼。
-* 將虛擬機器加入至現有的雲端服務。
-* 將虛擬機器加入現有的儲存體帳戶。
-* 將虛擬機器加入至可用性集合。
+* Hello 虛擬機器 tooa 虛擬網路的連線。
+* Hello Azure 虛擬機器代理程式與 Azure 虛擬機器擴充功能，例如安裝反惡意程式碼。
+* 新增 hello 虛擬機器 tooexisting 雲端服務。
+* 加入 hello 虛擬機器 tooan 現有儲存體帳戶。
+* 將新增 hello 虛擬機器 tooan 可用性集。
 
 <!--
 > [!IMPORTANT]
-> If you want your virtual machine to use a virtual network so you can connect to it directly by host name or set up cross-premises connections, make sure that you specify the virtual network when you create the virtual machine. A virtual machine can be configured to join a virtual network only when you create the virtual machine. For details on virtual networks, see [Azure Virtual Network overview](../articles/virtual-network/virtual-networks-overview.md).
+> If you want your virtual machine toouse a virtual network so you can connect tooit directly by host name or set up cross-premises connections, make sure that you specify hello virtual network when you create hello virtual machine. A virtual machine can be configured toojoin a virtual network only when you create hello virtual machine. For details on virtual networks, see [Azure Virtual Network overview](../articles/virtual-network/virtual-networks-overview.md).
 >
 >
  -->
 
 > [!IMPORTANT]
-> 如果您想要讓虛擬機器使用虛擬網路，請務必在建立虛擬機器時指定虛擬網路。
+> 如果您想要您的虛擬機器 toouse 虛擬網路，請確定當您建立 hello 虛擬機器時，請指定 hello 虛擬網路。
 
-> * 使用虛擬網路的兩個優點是直接連接到虛擬機器，以及設定跨單位連線。
+> * 使用虛擬網路的兩個優點直接連接 toohello 虛擬機器和 tooset 跨單位連線。
 
-> * 只有在建立虛擬機器時，才能將虛擬機器設定為加入虛擬網路。 如需虛擬網路的詳細資訊，請參閱 [Azure 虛擬網路概觀](../articles/virtual-network/virtual-networks-overview.md)。
+> * 只有在您建立 hello 虛擬機器時，虛擬機器可以是設定的 toojoin 虛擬網路。 如需虛擬網路的詳細資訊，請參閱 [Azure 虛擬網路概觀](../articles/virtual-network/virtual-networks-overview.md)。
 >
 >
 
-## <a name="to-create-the-virtual-machine"></a>建立虛擬機器
+## <a name="toocreate-hello-virtual-machine"></a>toocreate hello 虛擬機器

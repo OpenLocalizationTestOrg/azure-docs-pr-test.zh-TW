@@ -1,6 +1,6 @@
 ---
-title: "使用 REST 設定 Azure 媒體服務遙測 | Microsoft Docs"
-description: "本文示範如何透過 REST API 使用 Azure 媒體服務遙測。"
+title: "與其他 Azure Media Services 遙測 aaaConfiguring |Microsoft 文件"
+description: "本文章將示範如何 toouse hello Azure Media Services 使用 REST API 的遙測..."
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: 7d785c6eb9a9e16ae4853cded3c7c142080c7a09
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d0b6798c49be756fcebecf2e1e6ea497edd27cf0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configuring-azure-media-services-telemetry-with-rest"></a>使用 REST 設定 Azure 媒體服務遙測
 
-本主題說明您使用 REST API 設定 Azure 媒體服務 (AMS) 遙測時可能採取的一般步驟。 
+本主題說明您可能需要設定 hello Azure 媒體服務 (AMS) 遙測使用 REST API 時的一般步驟。 
 
 >[!NOTE]
->如需什麼是 AMS 遙測及如何取用的詳細說明，請參閱[概觀](media-services-telemetry-overview.md)主題。
+>Hello 詳細的說明什麼是 AMS 遙測，以及如何 tooconsume，請參閱 hello[概觀](media-services-telemetry-overview.md)主題。
 
-本主題中所述的步驟如下︰
+本主題中所述的 hello 步驟如下：
 
-- 取得與媒體服務帳戶相關聯的儲存體帳戶
-- 取得通知端點
+- 取得 hello 與 Media Services 帳戶相關聯的儲存體帳戶
+- 取得 hello 通知端點
 - 建立用於監視的通知端點。 
 
-    若要建立通知端點，請將 EndPointType 設為 AzureTable (2)，並將 endPontAddress 設為儲存體資料表 (例如，https://telemetryvalidationstore.table.core.windows.net/)。
+    toocreate 通知端點設定 hello EndPointType tooAzureTable (2) 和 endPontAddress 組 toohello 儲存體資料表 (例如，https://telemetryvalidationstore.table.core.windows.net/)。
   
-- 取得監視組態
+- 取得 hello 監視設定
 
-    針對要監視的服務建立監視組態設定。 系統最多只允許一個監視組態設定。 
+    建立監視的組態設定 hello 服務您想 toomonitor。 系統最多只允許一個監視組態設定。 
 
 - 新增監視組態
 
 
  
-## <a name="get-the-storage-account-associated-with-a-media-services-account"></a>取得與媒體服務帳戶相關聯的儲存體帳戶
+## <a name="get-hello-storage-account-associated-with-a-media-services-account"></a>取得 hello 與 Media Services 帳戶相關聯的儲存體帳戶
 
 ###<a name="request"></a>要求
 
@@ -71,7 +71,7 @@ ms.lasthandoff: 08/29/2017
     
     {"d":{"results":[{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts('telemetryvalidationstore')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/StorageAccounts('telemetryvalidationstore')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.StorageAccount"},"Name":"telemetryvalidationstore","IsDefault":true,"BytesUsed":null}]}}
 
-## <a name="get-the-notification-endpoints"></a>取得通知端點
+## <a name="get-hello-notification-endpoints"></a>取得 hello 通知端點
 
 ###<a name="request"></a>要求
 
@@ -125,7 +125,7 @@ ms.lasthandoff: 08/29/2017
     }
 
 >[!NOTE]
->別忘了將 "https://telemetryvalidationstore.table.core.windows.net" 值變更為您的儲存體帳戶。
+>別忘了 toochange hello"https://telemetryvalidationstore.table.core.windows.net"值 tooyour 儲存體帳戶。
 
 ###<a name="response"></a>Response
 
@@ -146,7 +146,7 @@ ms.lasthandoff: 08/29/2017
     
     {"d":{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","uri":"https://wamsbnp1clus001rest-hs.cloudapp.net/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.NotificationEndPoint"},"Id":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4","Name":"monitoring","Created":"\/Date(1449033042667)\/","EndPointAddress":"https://telemetryvalidationstore.table.core.windows.net/","EndPointType":2}}
  
-## <a name="get-the-monitoring-configurations"></a>取得監視組態
+## <a name="get-hello-monitoring-configurations"></a>取得 hello 監視設定
 
 ### <a name="request"></a>要求
 

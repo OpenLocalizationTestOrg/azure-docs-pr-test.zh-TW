@@ -1,6 +1,6 @@
 ---
-title: "Azure 隨選媒體編碼器的比較 | Microsoft Docs"
-description: "本主題比較「媒體編碼器標準」和「媒體編碼器高階工作流程」的編碼功能。"
+title: "要求的媒體編碼器上的 Azure aaaComparison |Microsoft 文件"
+description: "本主題會比較 hello 編碼功能的 * * 媒體編碼器標準 * * 和 * * 媒體編碼器高階工作流程 * *。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: 3bba48d5425ae47c72aca893af7c11fe270c2929
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ee04ad10d8e7c5f4f3c6e91e9b7679c2aba82c99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="comparison-of-azure-on-demand-media-encoders"></a>Azure 隨選媒體編碼器的比較
 
-本主題比較**媒體編碼器標準**和**媒體編碼器高階工作流程**的編碼功能。
+本主題會比較 hello 編碼功能**媒體編碼器標準**和**媒體編碼器高階工作流程**。
 
 ## <a name="video-and-audio-processing-capabilities"></a>視訊和音訊處理功能
 
-下表比較媒體編碼器標準 (MES) 和媒體編碼器高階工作流程 (MEPW) 之間的功能。 
+下表中的 hello 比較 hello 媒體編碼器標準 (MES) 與媒體編碼器高階工作流程 (MEPW) 之間的功能。 
 
 |功能|Media Encoder Standard|媒體編碼器高階工作流程|
 |---|---|---|
-|編碼時套用條件式邏輯<br/>(例如，如果輸入是 HD，則編碼 5.1 音訊)|否|是|
+|編碼時套用條件式邏輯<br/>（例如，如果 HD hello 輸入，然後 5.1 音訊編碼）|否|是|
 |隱藏式輔助字幕|否|[是](media-services-premium-workflow-encoder-formats.md#closed_captioning)|
 |[Dolby® Professional Loudness Correction](http://www.dolby.com/us/en/technologies/dolby-professional-loudness-solutions.pdf)<br/> with Dialogue Intelligence™|否|是|
 |非交錯顯示、反轉電影|基本|廣播品質|
@@ -44,8 +44,8 @@ ms.lasthandoff: 08/29/2017
 ## <a id="billing"></a>每個編碼器所使用的計費計量表
 | 媒體處理器名稱 | 適用的價格 | 注意事項 |
 | --- | --- | --- |
-| **Media Encoder Standard** |ENCODER |在 ENCODER 資料行底下，「編碼工作」會以[這裡][1]指定的費率，根據所有產生來輸出之媒體檔案的總持續時間 (以分鐘為單位) 計費。 |
-| **媒體編碼器高階工作流程** |PREMIUM ENCODER |在 PREMIUM ENCODER 資料行底下，「編碼工作」會以[這裡][1]指定的費率，根據所有產生來輸出之媒體檔案的總持續時間 (以分鐘為單位) 計費。 |
+| **Media Encoder Standard** |ENCODER |編碼工作將會收取 hello 總持續時間，單位為分鐘做為輸出，以指定的 hello 速率所產生的所有 hello 媒體檔案為基礎[這裡][1]，hello 編碼器資料行底下。 |
+| **媒體編碼器高階工作流程** |PREMIUM ENCODER |編碼工作將會收取 hello 總持續時間，單位為分鐘做為輸出，以指定的 hello 速率所產生的所有 hello 媒體檔案為基礎[這裡][1]，hello PREMIUM 編碼器資料行底下。 |
 
 ## <a name="input-containerfile-formats"></a>輸入容器/檔案格式
 | 輸入容器/檔案格式 | Media Encoder Standard | Media Encoder Premium Workflow |
@@ -65,13 +65,13 @@ ms.lasthandoff: 08/29/2017
 | QuickTime (.mov) |是 |否 |
 
 ## <a name="input-video-codecs"></a>輸入視訊轉碼器
-| 輸入視訊轉碼器 | Media Encoder Standard | Media Encoder Premium Workflow |
+| 輸入視訊轉碼器 | Media Encoder Standard | 媒體編碼器高階工作流程 |
 | --- | --- | --- |
-| AVC 8 位元/10 位元，高達 4:2:2，包括 AVCIntra |8 位元 4:2:0 和 4:2:2 |是 |
+| AVC 8 位元/10 位元，向上 too4:2:2，包括 AVCIntra |8 位元 4:2:0 和 4:2:2 |是 |
 | Avid DNxHD (使用 MXF) |是 |是 |
 | DVCPro/DVCProHD (使用 MXF) |是 |是 |
 | JPEG2000 |是 |是 |
-| MPEG-2 (高達 422 Profile 和 High Level，包括 XDCAM、XDCAM HD、XDCAM IMX、CableLabs ® 和 D10 等變種) |最高 422 設定檔 |是 |
+| Mpeg-2 （too422 設定檔和高的層級，包括變數，例如 XDCAM、 XDCAM HD、 XDCAM /IMX、 CableLabs® 和 D10） |Too422 設定檔 |是 |
 | MPEG-1 |是 |是 |
 | Windows Media 視訊/VC-1 |是 |是 |
 | Canopus HQ/HQX |否 |否 |
@@ -91,7 +91,7 @@ ms.lasthandoff: 08/29/2017
 | Dolby® E |否 |是 |
 | Dolby® Digital (AC3) |否 |是 |
 | Dolby® Digital Plus (E-AC3) |否 |是 |
-| AAC (AAC-LC、AAC-HE 和 AAC-HEv2；高達 5.1) |是 |是 |
+| AAC (AAC-LC、 AAC 他和 AAC HEv2; up too5.1) |是 |是 |
 | MPEG Layer 2 |是 |是 |
 | MP3 (MPEG-1 音訊層 3) |是 |是 |
 | Windows Media 音訊 |是 |是 |
@@ -114,11 +114,11 @@ ms.lasthandoff: 08/29/2017
 | Smooth Streaming 檔案格式 (PIFF 1.3) |否 |是 |
 
 ## <a name="output-video-codecs"></a>輸出視訊轉碼器
-| 輸出視訊轉碼器 | Media Encoder Standard | Media Encoder Premium Workflow |
+| 輸出視訊轉碼器 | Media Encoder Standard | 媒體編碼器高階工作流程 |
 | --- | --- | --- |
-| AVC (H.264；8 位元；高達 High Profile、Level 5.2；4K Ultra HD；AVC Intra) |僅限 8 位元 4:2:0 |是 |
+| AVC (H.264; 8 位元; 向上 tooHigh 設定檔，層級 5.2; 4k 強力 HD;AVC 內部） |僅限 8 位元 4:2:0 |是 |
 | Avid DNxHD (使用 MXF) |否 |是 |
-| MPEG-2 (高達 422 Profile 和 High Level，包括 XDCAM、XDCAM HD、XDCAM IMX、CableLabs ® 和 D10 等變種) |否 |是 |
+| Mpeg-2 （too422 設定檔和高的層級，包括變數，例如 XDCAM、 XDCAM HD、 XDCAM /IMX、 CableLabs® 和 D10） |否 |是 |
 | MPEG-1 |否 |是 |
 | Windows Media 視訊/VC-1 |否 |是 |
 | JPEG 縮圖建立 |是 |是 |
@@ -130,14 +130,14 @@ ms.lasthandoff: 08/29/2017
 | --- | --- | --- |
 | AES (SMPTE 331M 和 302M，AES3-2003) |否 |是 |
 | Dolby® Digital (AC3) |否 |是 |
-| Dolby® Digital Plus (E-AC3) 高達 7.1 |否 |是 |
-| AAC (AAC-LC、AAC-HE 和 AAC-HEv2；高達 5.1) |是 |是 |
+| Dolby® Digital Plus (E AC3) 向上 too7.1 |否 |是 |
+| AAC (AAC-LC、 AAC 他和 AAC HEv2; up too5.1) |是 |是 |
 | MPEG Layer 2 |否 |是 |
 | MP3 (MPEG-1 音訊層 3) |否 |是 |
 | Windows Media 音訊 |否 |是 |
 
 >[!NOTE]
->如果編碼成 Dolby® Digital (AC3)，則輸出只能寫入到 ISO MP4 檔案。
+>如果編碼 tooDolby® 數位 (AC3)，hello 輸出只可以寫入的 ISO MP4 檔案。
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

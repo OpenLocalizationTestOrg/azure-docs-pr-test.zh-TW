@@ -1,6 +1,6 @@
 ---
-title: "平衡 Azure Service Fabric 叢集 | Microsoft Docs"
-description: "使用 Azure Service Fabric 叢集資源管理員平衡叢集的簡介。"
+title: "aaaBalance Azure Service Fabric 叢集 |Microsoft 文件"
+description: "簡介 toobalancing hello Service Fabric 叢集資源管理員與您的叢集。"
 services: service-fabric
 documentationcenter: .net
 author: masnider
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: 34eacb29f324025c1d2803c9690600227d3ec457
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5f7ad2f5cf4cfb3751a860f5293b03d2d5266d99
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="balancing-your-service-fabric-cluster"></a>平衡 Service Fabric 叢集
-「Service Fabric 叢集資源管理員」支援動態負載變更、因應節點或服務的新增或移除。 它也會自動修正條件約束違規，以及主動重新平衡叢集。 但是這些動作執行的頻率，以及觸發它們的項目是什麼？
+hello Service Fabric 叢集資源管理員支援動態負載變更，對回應 tooadditions 或移除的節點或服務。 它也會自動更正條件約束違規，並主動重新平衡 hello 叢集。 但是這些動作執行的頻率，以及觸發它們的項目是什麼？
 
-叢集資源管理員所執行的工作有三個不同的類別。 如下：
+叢集資源管理員會執行該 hello 有三種不同的工作。 如下：
 
 1. 放置 - 這個階段涉及安置任何遺漏的具狀態複本或無狀態執行個體。 放置包含新服務，也包含處理已失敗的具狀態複本或無狀態執行個體。 刪除和捨棄複本或執行個體都是在這裡處理。
-2. 條件約束檢查 – 這個階段會檢查並更正系統內不同放置條件約束 (規則) 的違規情形。 規則範例包括像是確保節點不超出容量，以及符合服務的放置條件約束。
-3. 平衡 - 這個階段會根據為不同計量設定的所需平衡層級，查看是否有必要使用重新平衡。 如果有必要，就會嘗試在叢集中尋找更平衡的安排方式。
+2. 條件約束檢查 – 此階段進行檢查並修正 hello 系統中的 hello 不同的位置限制 （規則） 的違規情形。 規則範例包括像是確保節點不超出容量，以及符合服務的放置條件約束。
+3. 平衡-這個階段會檢查 toosee 重新平衡有必要時根據 hello 設定需要不同的度量資訊的餘額的層級。 如果是它會嘗試的 toofind hello 中的排列方式也就是叢集多個平衡。
 
 ## <a name="configuring-cluster-resource-manager-timers"></a>設定叢集資源管理員計時器
-與平衡相關的第一組控制項是一組計時器。 這些計時器控管叢集資源管理員檢查叢集並且採取矯正措施的頻率。
+hello 第一組控制項周圍平衡是一組的計時器。 頻率 hello 叢集資源管理員會檢查 hello 叢集，並採取修正動作，這些計時器控管。
 
-「叢集資源管理員」可執行的每個不同類型修正，都是由控管其頻率的不同計時器所控制。 當每個計時器啟動時，便會排程工作。 根據預設，Resource Manager 會：
+這兩種不同類型的叢集資源管理員可更正 hello 受到控管其頻率的不同計時器。 當每個計時器啟動時，會排程 hello 工作。 根據預設 hello 資源管理員：
 
 * 每 1/10 秒掃描一次其狀態並套用更新 (例如記錄某個節點已關閉)
-* 設定放置檢查旗標 
-* 設定每秒條件約束檢查旗標
-* 每 5 秒設定一次平衡旗標。
+* 設定 hello 放置核取旗標 
+* 每秒設定 hello 條件約束檢查旗標
+* 設定 hello 平衡每五秒的旗標。
 
-控管這些計時器的設定範例如下：
+控管這些計時器 hello 組態的範例如下：
 
 ClusterManifest.xml：
 
@@ -80,16 +80,16 @@ ClusterManifest.xml：
 ]
 ```
 
-目前「叢集資源管理員」只會依序一次執行這些動作其中之一。 這就是為什麼我們將這些計時器稱為「最小間隔」，計時器關閉時所採取的動作稱為「設定旗標」。 例如，「叢集資源管理員」在平衡叢集之前，會先處理要建立服務的擱置中要求。 如您所見，「叢集資源管理員」會依據指定的預設時間間隔，掃描它需要經常執行的一切項目。 通常這表示在每個步驟所做的一組變更通常很小。 經常進行少量變更可讓「叢集資源管理員」快速因應叢集中發生的情況。 由於許多相同類型的事件易於同時發生，因此預設計時器提供一些批次處理。 
+現今 hello 叢集資源管理員只會執行其中一個動作一次，以循序方式。 這就是為什麼我們 toothese 計時器，為 「 最小間隔 」，請參閱和 hello hello 計時器與 [設定旗標] 當取得採取的動作。 例如，叢集資源管理員會負責的擱置中的 hello 要求 toocreate 服務之前平衡 hello 叢集。 您可以看到所指定的 hello 預設時間間隔，hello 叢集資源管理員會掃描的任何項目它需求 toodo 常見問題。 通常這表示每個步驟期間所做的變更的 hello 集很小。 經常進行小變更可讓叢集資源管理員 toobe hello 回應 hello 叢集中所發生的事項時。 hello 預設計時器提供某些批次處理後 hello 的許多相同的事件類型傾向 toooccur 同時。 
 
-例如，當節點失敗時，他們可以一次對整個容錯網域執行這個動作。 所有失敗會在 *PLBRefreshGap* 之後的下一個狀態更新期間擷取。 更正會在下列位置、條件約束檢查以及平衡執行期間決定。 「叢集資源管理員」預設不會將叢集中數小時的變更整個掃描一遍，然後嘗試一次處理所有變更。 這麼做會導致變換量激增。
+例如，當節點失敗時，他們可以一次對整個容錯網域執行這個動作。 所有這些失敗會擷取期間 hello 下一個狀態更新之後 hello *PLBRefreshGap*。 hello 更正是在 hello 遵循條件約束檢查的位置，並平衡執行期間決定的。 依預設 hello 叢集資源管理員不是透過小時 hello 叢集中變更的掃描，然後再 tooaddress 所有變更一次。 這樣會導致 toobursts 的變換。
 
-「叢集資源管理員」也需要一些其他資訊，才能判斷叢集是否處於不平衡的狀態。 因此，我們有其他兩個的設定︰「平衡臨界值」和「活動臨界值」。
+hello 叢集資源管理員也需要一些其他資訊 toodetermine 如果 hello 叢集不平衡。 因此，我們有其他兩個的設定︰「平衡臨界值」和「活動臨界值」。
 
 ## <a name="balancing-thresholds"></a>平衡臨界值
-平衡臨界值是觸發重新平衡的主要控制項。 計量的平衡臨界值是一個_比率_。 如果負載最多之節點的計量負載除以負載最少之節點的負載量超過該計量的*平衡臨界值*，此叢集就會被視為不平衡。 因此，下一次「叢集資源管理員」進行檢查時，就會觸發平衡作業。 MinLoadBalancingInterval 計時器會定義當需要重新平衡時，「叢集資源管理員」的檢查頻率。 檢查並不意謂著有發生任何事情。 
+平衡臨界值為 hello 主控制項，用於觸發重新平衡。 hello 平衡臨界值標準是_比率_。 節點上 hello 標準 hello 負載最載入除以 hello 負載量 hello 至少載入的節點是否超過該度量*BalancingThreshold*，然後 hello 叢集不平衡。 如此一來平衡為觸發的 hello 叢集資源管理員會檢查下一個時間 hello。 hello *MinLoadBalancingInterval*計時器定義 hello 叢集資源管理員應檢查的頻率如果需要重新平衡。 檢查並不意謂著有發生任何事情。 
 
-平衡臨界值會根據每個度量定義為叢集定義的一部分。 如需有關計量的詳細資訊，請參閱[這篇文章](service-fabric-cluster-resource-manager-metrics.md)。
+每個標準為基礎 hello 叢集中定義的一部分定義平衡臨界值。 如需有關計量的詳細資訊，請參閱[這篇文章](service-fabric-cluster-resource-manager-metrics.md)。
 
 ClusterManifest.xml
 
@@ -124,30 +124,30 @@ ClusterManifest.xml
 ![平衡臨界值範例][Image1]
 </center>
 
-在此範例中，每個服務皆取用一單位的某個計量。 在上半部的範例中，節點的負載上限為 5，而下限為 2。 假設此計量的平衡臨界值為 3。 由於叢集中的比率是 5/2 = 2.5，小於指定的平衡臨界值 3，因此叢集處於平衡狀態。 當「叢集資源管理員」進行檢查時，不會觸發任何平衡作業。
+在此範例中，每個服務皆取用一單位的某個計量。 在 hello 上方範例中，hello 節點上的最大負載為 5，hello 最小值為二。 例如，假設該 hello 平衡這個標準的臨界值為 3。 因為 hello 叢集中的 hello 比例是 5/2 = 2.5，也就是少於 hello 指定平衡臨界值的三個 hello 叢集平衡。 無平衡 hello 叢集資源管理員會檢查時觸發。
 
-在下半部的範例中，節點的負載上限為 10，而下限為 2，所以比率為 5。 5 大於該計量的指定平衡臨界值 3。 因此，下一次引發平衡計時器時，便會排定執行重新平衡。 在類似這樣的情況中，有些負載通常會分散到 Node3。 由於「Service Fabric 叢集資源管理員」並不使用窮盡方法，因此有些負載也可能分散到 Node2。 
+Hello 下方範例中，在 hello 節點上的最大載入時 hello 最小值是 2，產生五個比例是 10。 五個大於 hello 指定平衡臨界值的三個該標準。 如此一來，重新平衡執行將會排定平衡計時器引發的下一個時間 hello。 在此情況下某些負載會是通常分散式的 tooNode3。 Hello Service Fabric 叢集資源管理員不會使用窮盡方法，因為某些負載也可能是分散式的 tooNode2。 
 
 <center>
 ![平衡臨界值範例動作][Image2]
 </center>
 
 > [!NOTE]
-> 「平衡」會處理兩個不同的策略來管理叢集中的負載。 叢集資源管理員使用的預設策略是在叢集的節點之間分散負載。 其他的策略是[重組](service-fabric-cluster-resource-manager-defragmentation-metrics.md)。 重組是在相同平衡執行期間執行。 平衡和重組策略可以用於相同叢集中不同的計量。 服務可以同時有平衡和重組計量。 對於重組計量，當叢集中的負載比率_低於_平衡臨界值時，會觸發重新平衡。 
+> 「平衡」會處理兩個不同的策略來管理叢集中的負載。 hello hello 叢集資源管理員使用的預設策略 hello hello 叢集中的節點都 toodistribute 負載。 hello 其他策略是[重組](service-fabric-cluster-resource-manager-defragmentation-metrics.md)。 執行磁碟重組 hello 期間執行的相同平衡。 hello 平衡和重組策略可以用不同度量 hello 內相同的叢集。 服務可以同時有平衡和重組計量。 磁碟重組度量，hello hello 比例載入 hello 叢集觸發程序時重新平衡_下方_hello 平衡臨界值。 
 >
 
-使數據低於平衡臨界值並不是一個明確的目標。 平衡臨界值只是*觸發程序*。 當平衡執行時，叢集資源管理員會判斷可以進行哪些增強功能，如果有的話。 因為平衡搜尋開始並不代表任何項目移動。 有時候叢集過於受到修正的限制而不平衡。 或者，改進需要的移動太[昂貴](service-fabric-cluster-resource-manager-movement-cost.md))。
+取得以下 hello 平衡臨界值不是明確的目標。 平衡臨界值只是*觸發程序*。 平衡執行、 當 hello 叢集資源管理員會決定哪些增強功能，它可以進行，如果有的話。 因為平衡搜尋開始並不代表任何項目移動。 有時 hello 叢集是 toocorrect 不平衡，但太受條件約束。 或者，hello 改良需要移動，也都是[昂貴](service-fabric-cluster-resource-manager-movement-cost.md))。
 
 ## <a name="activity-thresholds"></a>活動臨界值
-有時候，雖然節點處於相對的不平衡狀態，但叢集中的負載「總量」  卻很低。 缺乏負載可能是暫時性的下跌情況，或是因為叢集是新的且才剛啟動而已。 不論是上述哪一種情況，您可能都不想花時間平衡叢集，因為能獲得的好處很少。 如果叢集進行平衡作業，您將需要花費網路和計算資源將東西四處移動，但卻不會產生任何大型的「絕對」差異。 為了避免不必要的移動，出現了另一種控制方式，稱為「活動臨界值」。 「活動臨界值」可讓您為活動指定某種絕對下限。 如果沒有任何節點超出此臨界值，則即使達到「平衡臨界值」，也不會觸發平衡作業。
+有時候，節點是相對較不平衡，雖然 hello*總*的 hello 叢集中的負載量很低。 hello 缺乏負載可能是暫時性的 dip，或因為 hello 叢集是新的和取得只需啟動載入。 在任一情況下，您可能不想平衡 hello 叢集，因為沒有獲得小 toobe toospend 時間。 如果 hello 叢集經歷了平衡，您會花在網路中，計算資源 toomove 項目，而不進行任何大型*絕對*差異。 不必要的 tooavoid 移動時，會有另一個控制又稱為活動臨界值。 活動臨界值可讓您 toospecify 某些絕對下限 」 活動。 如果沒有節點超過此閾值，平衡未觸發，即使 hello 平衡臨界值到達。
 
-假設我們為這個計量保留平衡臨界值 3。 同時假設我們有活動臨界值 1536。 在第一個案例中，根據「平衡臨界值」，叢集是處於不平衡狀態，但沒有任何節點達到「活動臨界值」，因此不會發生任何事情。 在下半部的範例中，Node1 超出「活動臨界值」。 由於同時超出該計量的「平衡臨界值」和「活動臨界值」，因此會排定平衡作業。 讓我們看看下圖的範例： 
+假設我們為這個計量保留平衡臨界值 3。 同時假設我們有活動臨界值 1536。 在 hello 第一種情況下，平衡每 hello hello 叢集時平衡臨界值那里沒有節點符合該活動臨界值，因此不會發生。 在 hello 下方範例中，Node1 位於 hello 活動臨界值。 由於同時 hello 平衡臨界值，而且超過 hello 標準 hello 活動臨界值時，將排程平衡。 例如，讓我們看看下列圖表中的 hello: 
 
 <center>
 ![活動臨界值範例][Image3]
 </center>
 
-如同平衡臨界值，活動臨界值會透過叢集定義根據每個度量進行定義︰
+平衡臨界值，就像活動臨界值會定義每個-度量透過 hello 叢集定義：
 
 ClusterManifest.xml
 
@@ -157,7 +157,7 @@ ClusterManifest.xml
     </Section>
 ```
 
-透過 ClusterConfig.json (適用於獨立部署) 或 Template.json (適用於 Azure 裝載的叢集)：
+獨立部署透過 ClusterConfig.json，Azure 託管叢集透過 Template.json：
 
 ```json
 "fabricSettings": [
@@ -173,12 +173,12 @@ ClusterManifest.xml
 ]
 ```
 
-平衡臨界值和活動臨界值都與特定計量繫結 - 只有同時超出同一計量的「平衡臨界值」和「活動臨界值」時，才會觸發平衡作業。
+平衡及活動的臨界值都同時 hello 平衡臨界值和 hello 超過活動臨界值時，才可以觸發繫結的 tooa 特定度量的平衡相同的度量。
 
 ## <a name="balancing-services-together"></a>一起平衡服務
-叢集是否不平衡牽涉到整個叢集的決策。 不過，我們修正此種情況的方法是將個別的服務複本和執行個體四處移動。 這很合理，對吧？ 如果記憶體堆疊在某一個節點上，可能是由多個複本或執行個體所造成。 若要修正不平衡的狀態，可能需要移動所有使用不平衡計量的具狀態複本或無狀態執行個體。
+Hello 叢集是否不平衡是整個叢集的決策。 不過，我們要予以修正 hello 方式移動個別的服務複本和需要的執行個體。 這很合理，對吧？ 如果其中一個節點上堆疊記憶體，多個複本或執行個體可能導致 tooit。 修正 hello 不平衡，可能需要移動任何 hello 可設定狀態的複本或無狀態的執行個體使用 hello 平衡度量資訊。
 
-有時候本身並非不平衡的服務會被移動 (請記住稍早關於邏輯和全域加權的討論)。 為什麼當服務的計量平衡時服務會移動？ 看看以下範例：
+偶爾但未本身不平衡的服務取得移動 （請記住 hello 討論的本機和全域加權稍早）。 為什麼當服務的計量平衡時服務會移動？ 看看以下範例：
 
 - 假設有四個服務：Service1、Service2、Service3 及 Service4。 
 - Service1 報告計量 Metric1 和 Metric2。 
@@ -192,18 +192,18 @@ ClusterManifest.xml
 ![將服務一起平衡][Image4]
 </center>
 
-因為這個鏈結，所以計量 1-4 若發生不平衡，可能會導致屬於服務 1-3 的複本或執行個體四處移動。 我們也知道計量 1、2 或 3 若發生不平衡，並不會導致 Service4 中發生移動。 這麼做並沒有必要，因為將屬於 Service4 的複本或執行個體四處移動完全不會影響計量 1-3 的平衡。
+因為此鏈結中，很可能，在 1-4 的度量不平衡可能會導致複本或執行個體屬於 tooservices 周圍的 1-3 toomove。 我們也知道計量 1、2 或 3 若發生不平衡，並不會導致 Service4 中發生移動。 因為移動 hello 複本會有任何點或執行個體屬於 tooService4 周圍可以不絕對度量 1-3 tooimpact hello 之間取得平衡。
 
-叢集資源管理員會自動找出相關的服務。 新增、移除或變更服務的計量，可能會影響它們的關聯性。 例如，在兩次執行平衡作業之間，可能已經更新 Service2 來移除 Metric2。 這會中斷 Service1 和 Service2 之間的鏈結。 現在，您擁有的是三個相關服務群組，而非兩個︰
+hello 叢集資源管理員會自動找出相關的服務。 新增、 移除或變更服務的 hello 度量可能會影響它們的關聯性。 例如，之間的平衡 Service2 的兩個回合可能已更新的 tooremove Metric2。 這會中斷 Service1 和 Service2 之間的 hello 鏈結。 現在，您擁有的是三個相關服務群組，而非兩個︰
 
 <center>
 ![將服務一起平衡][Image5]
 </center>
 
 ## <a name="next-steps"></a>後續步驟
-* 度量是 Service Fabric 叢集資源管理員管理叢集中的耗用量和容量的方式。 若要深入了解計量及其設定方式，請查看[這篇文章](service-fabric-cluster-resource-manager-metrics.md)
-* 移動成本是向叢集資源管理員發出訊號，表示移動某些服務會比較貴的其中一種方式。 如需有關移動成本的詳細資訊，請參閱[這篇文章](service-fabric-cluster-resource-manager-movement-cost.md)
-* 叢集資源管理員有數個為減緩叢集的流失而可以設定的節流。 這些節流通常不是必要的，但若有需要，您可以參閱 [這裡](service-fabric-cluster-resource-manager-advanced-throttling.md)
+* 度量資訊是如何 hello Service Fabric 叢集資源管理員管理耗用量和 hello 叢集中的容量。 toolearn 更多關於度量和如何 tooconfigure 它們，請參閱[這篇文章](service-fabric-cluster-resource-manager-metrics.md)
+* 移動成本是訊號某些服務會比其他更耗費資源 toomove toohello 叢集資源管理員的一種方式。 如需有關移動成本的詳細資訊，請參閱太[這篇文章](service-fabric-cluster-resource-manager-movement-cost.md)
+* hello 叢集資源管理員有數個節流，您可以設定下變換 tooslow hello 叢集中。 這些節流通常不是必要的，但若有需要，您可以參閱 [這裡](service-fabric-cluster-resource-manager-advanced-throttling.md)
 
 [Image1]:./media/service-fabric-cluster-resource-manager-balancing/cluster-resrouce-manager-balancing-thresholds.png
 [Image2]:./media/service-fabric-cluster-resource-manager-balancing/cluster-resource-manager-balancing-threshold-triggered-results.png

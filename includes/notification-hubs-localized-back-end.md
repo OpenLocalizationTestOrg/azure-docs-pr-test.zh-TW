@@ -2,7 +2,7 @@
 
 
 
-傳送範本通知時，您只需提供一組屬性，在我們的案例中，我們將傳送一組包含已當地語系化版本的目前新聞屬性，例如：
+當您傳送範本通知，您只需要 tooprovide 一組屬性時，在本例中我們會傳送 hello 集的執行個體包含 hello hello 最新消息，當地語系化的版本的屬性：
 
     {
         "News_English": "World News in English!",
@@ -11,22 +11,22 @@
     }
 
 
-本節將使用主控台應用程式示範傳送通知的方式
+本節說明如何使用主控台應用程式的 toosend 通知
 
-後端可廣播至任何支援的裝置，因此隨附的程式碼會廣播至 Windows 市集和 iOS 裝置。
+hello 包含程式碼的廣播 tooboth Windows 市集和 iOS 裝置，因為 hello 後端可以廣播 tooany 的 hello 支援裝置。
 
-### <a name="to-send-notifications-using-a-c-console-app"></a>使用 C# 主控台應用程式傳送通知
-在先前建立的主控台應用程式中以下列程式碼修改 `SendTemplateNotificationAsync` 方法。 請注意，此案例不需要針對不同地區設定和平台傳送多次通知。
+### <a name="toosend-notifications-using-a-c-console-app"></a>使用 C# 主控台應用程式的 toosend 通知
+修改 hello`SendTemplateNotificationAsync`您先前建立以下列程式碼的 hello hello 主控台應用程式中的方法。 請注意如何在此情況下有不需要 toosend 用於不同的地區設定和平台的多個通知。
 
         private static async void SendTemplateNotificationAsync()
         {
-            // Define the notification hub.
+            // Define hello notification hub.
             NotificationHubClient hub = 
                 NotificationHubClient.CreateClientFromConnectionString(
                     "<connection string with full access>", "<hub name>");
 
-            // Sending the notification as a template notification. All template registrations that contain 
-            // "messageParam" or "News_<local selected>" and the proper tags will receive the notifications. 
+            // Sending hello notification as a template notification. All template registrations that contain 
+            // "messageParam" or "News_<local selected>" and hello proper tags will receive hello notifications. 
             // This includes APNS, GCM, WNS, and MPNS template registrations.
             Dictionary<string, string> templateParams = new Dictionary<string, string>();
 
@@ -52,10 +52,10 @@
         }
 
 
-請注意，此簡單呼叫會將已當地語系化的新聞片段傳送到您的 **所有** 裝置 (不論平台為何)，因為您的通知中樞會建立並傳遞正確的原生裝載給訂用特定標籤的所有裝置。
+請注意這個簡單的呼叫將會太傳送 hello 當地語系化的段新聞**所有**您的裝置，無論 hello 平台，因為您的通知中樞建立並傳遞 hello 正確原生裝載 tooall hello 裝置訂閱tooa 特定的標記。
 
-### <a name="sending-the-notification-with-mobile-services"></a>使用行動服務傳送通知
-在您的行動服務排程器中，您可以使用下列指令碼：
+### <a name="sending-hello-notification-with-mobile-services"></a>使用行動服務傳送 hello 通知
+在您的行動服務排程器，您可以使用下列指令碼的 hello:
 
     var azure = require('azure');
     var notificationHubService = azure.createNotificationHubService('<hub name>', '<connection string with full access>');

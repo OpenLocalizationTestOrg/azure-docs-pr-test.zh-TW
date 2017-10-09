@@ -1,6 +1,6 @@
 ---
-title: "將 Raspberry Pi (C) 連接到 Azure IoT - 第 1 課：部署應用程式 | Microsoft Docs"
-description: "從 GitHub 複製範例 C 應用程式，並使用 gulp 將此應用程式部署至 Raspberry Pi 3 面板。 此範例應用程式會讓與面板連接的 LED 每兩秒閃爍一次。"
+title: "Connect Raspberry Pi (C) tooAzure IoT-第 1 課： 將應用程式部署 |Microsoft 文件"
+description: "複製從 GitHub，hello 範例 C 應用程式，此應用程式 tooyour 覆盆子 Pi 3 面板的 gulp toodeploy。 此範例應用程式會閃爍 hello LED 連接 toohello 面板每隔兩秒鐘。"
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -17,54 +17,54 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 3/21/2017
 ms.author: xshi
-ms.openlocfilehash: 2ae409c6a39521711777ec329d2507a2801cc985
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e90c3360c4de1873313db19561c781eb21dbf1d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-and-deploy-the-blink-application"></a>建立並部署閃爍應用程式
+# <a name="create-and-deploy-hello-blink-application"></a>建立及部署 hello 閃爍應用程式
 ## <a name="what-you-will-do"></a>將執行的作業
-從 GitHub 複製範例 C 應用程式，並使用 gulp 工具將範例應用程式部署至 Raspberry Pi 3。 範例應用程式會讓與面板連接的 LED 每兩秒閃爍一次。 如果您有任何問題，請在[疑難排解頁面](iot-hub-raspberry-pi-kit-c-troubleshooting.md)尋求解決方案。
+複製 hello 範例 C 應用程式從 GitHub，並使用 hello gulp 工具 toodeploy hello 範例應用程式 tooRaspberry Pi 3。 hello 範例應用程式會閃爍 hello LED 連接 toohello 面板每隔兩秒鐘。 如果您有任何問題，尋找解決方案上 hello[疑難排解頁面](iot-hub-raspberry-pi-kit-c-troubleshooting.md)。
 
 ## <a name="what-you-will-learn"></a>學習目標
 在本文中，您將了解：
 
-* 如何使用 `device-discover-cli` 工具擷取關於 Pi 的網路資訊。
-* 如何在 Pi 上部署和執行範例應用程式。
-* 如何在 Pi 上部署和偵錯遠端執行的應用程式。
+* 如何 toouse hello`device-discover-cli`工具 tooretrieve 網路 Pi 的相關資訊。
+* 如何 toodeploy 和執行的 hello 範例 pi 的應用程式。
+* 如何從遠端執行 pi toodeploy 和偵錯應用程式。
 
 ## <a name="what-you-need"></a>您需要什麼
-您必須已順利完成下列作業︰
+您必須先成功完成下列作業的 hello:
 
 * [設定裝置](iot-hub-raspberry-pi-kit-c-lesson1-configure-your-device.md)
-* [取得工具](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-win32.md)
+* [取得 hello 工具](iot-hub-raspberry-pi-kit-c-lesson1-get-the-tools-win32.md)
 
-## <a name="obtain-the-ip-address-and-host-name-of-pi"></a>取得 Pi 的 IP 位址和主機名稱
-在 Windows 開啟命令提示字元或在 macOS 或 Ubuntu 開啟終端機，然後執行下列命令︰
+## <a name="obtain-hello-ip-address-and-host-name-of-pi"></a>取得 hello IP 位址和主機名稱的 Pi
+開啟命令提示字元在視窗中或在 macOS 或 Ubuntu，終端機，然後執行下列命令的 hello:
 
 ```bash
 devdisco list --eth
 ```
 
-您應該會看到如下所示的輸出：
+您應該會看到類似 toohello 下列輸出：
 
 ![裝置探索](media/iot-hub-raspberry-pi-lessons/lesson1/device_discovery.png)
 
-記下 Pi 的 `IP address` 和 `hostname`。 本文稍後需要此資訊。
+記下 hello`IP address`和`hostname`Pi。 本文稍後需要此資訊。
 
 > [!NOTE]
-> 請確定 Pi 是連接到與您電腦相同的網路。 例如，如果您的電腦連線到無線網路，而 Pi 連線到有線網路，您可能不會在 devdisco 輸出中看到 IP 位址。
+> 請確定 Pi 為您的電腦相同網路的連線的 toohello。 例如，如果您的電腦是連線的 tooa 無線網路，Pi 是連接的 tooa 有線網路時，您可能不會看到 hello IP 位址 hello devdisco 輸出中的。
 
-## <a name="open-the-sample-application"></a>開啟範例應用程式
-若要開啟範例應用程式，請遵循下列步驟：
+## <a name="open-hello-sample-application"></a>開啟 hello 範例應用程式
+tooopen hello 範例應用程式，請遵循下列步驟：
 
-1. 執行下列命令，從 GitHub 複製範例儲存機制︰
+1. 藉由執行下列命令的 hello 複製從 GitHub hello 範例儲存機制：
    
     ```bash
     git clone https://github.com/Azure-Samples/iot-hub-c-raspberrypi-getting-started.git
     ```
-2. 執行下列命令來在 Visual Studio Code 中開啟範例應用程式︰
+2. 開啟 Visual Studio 程式碼中的 hello 範例應用程式，藉由執行下列命令的 hello:
    
     ```bash
     cd iot-hub-c-raspberrypi-getting-started
@@ -74,27 +74,27 @@ devdisco list --eth
 
 ![儲存機制結構](media/iot-hub-raspberry-pi-lessons/lesson1/vscode-blink-c-mac.png)
 
-`app` 子資料夾中的 `main.c` 檔案是包含 LED 控制程式碼的關鍵來源檔案。
+hello`main.c`檔案在 hello`app`子資料夾是包含 hello 程式碼 toocontrol hello LED 的 hello 金鑰來源檔案。
 
 ### <a name="install-application-dependencies"></a>安裝應用程式相依性
-執行下列命令，安裝範例應用程式需要的程式庫和其他模組︰
+安裝 hello 程式庫和其他您需要執行下列命令的 hello hello 範例應用程式的模組：
 
 ```bash
 npm install
 ```
 
-## <a name="configure-the-device-connection"></a>設定裝置連線
-若要設定裝置連線，請遵循下列步驟：
+## <a name="configure-hello-device-connection"></a>設定 hello 裝置連線
+tooconfigure hello 裝置連線，請遵循下列步驟：
 
-1. 執行下列命令來產生裝置組態檔：
+1. 執行下列命令的 hello 產生 hello 裝置組態檔：
    
    ```bash
    gulp init
    ```
    
-   組態檔 `config-raspberrypi.json` 包含您用來登入 Pi 的使用者認證。 為了避免使用者認證外流，組態檔會產生於電腦主資料夾的 `.iot-hub-getting-started` 子資料夾中。
+   hello 設定檔`config-raspberrypi.json`包含 toolog 用於 tooPi hello 使用者認證。 tooavoid hello 流失 hello 設定檔產生 hello 子資料夾中的使用者認證`.iot-hub-getting-started`hello 您電腦上的主資料夾。
 
-2. 執行下列命令在 Visual Studio Code 中開啟裝置組態檔：
+2. 開啟 Visual Studio 程式碼中的 hello 裝置組態檔，藉由執行下列命令的 hello:
    
    ```bash
    # For Windows command prompt
@@ -104,18 +104,18 @@ npm install
    code ~/.iot-hub-getting-started/config-raspberrypi.json
    ```
 
-3. 使用先前在＜取得 Pi 的 IP 位址和主機名稱＞中取得的 IP 位址和主機名稱取代預留位置 `[device hostname or IP address]`。
+3. 取代 hello 預留位置`[device hostname or IP address]`hello IP 位址或您先前有"取得 hello IP 位址和主機名稱的 Pi。"中的 hello 主機名稱
    
    ![Config.json](media/iot-hub-raspberry-pi-lessons/lesson1/vscode-config-mac.png)
 
 > [!NOTE]
-> 在連接到 Raspberry Pi 時，您可以使用 SSH 金鑰而非使用者名稱和密碼。 若要這樣做您必須產生索引鍵使用**透過像是**和**@ ssh-複製-識別碼 pi\<裝置位址\>**。
+> 連接 tooRaspberry Pi 時，您可以使用 SSH 金鑰而不是使用者名稱和密碼。 在順序 toodo 此您將需要 toogenerate hello 索引鍵使用**透過像是**和**@ ssh-複製-識別碼 pi\<裝置位址\>**。
 >
 > 在 Windows 上，可在 **Git Bash** 中使用這些命令。
 >
-> 在 MacOS 上，則必須執行 **brew install ssh-copy-id**。
+> 您需要 toorun MacOS **brew 安裝 ssh-複製-識別碼**。
 >
-> 成功將金鑰上傳至 Raspberry Pi 後，請將 **device_password** 替換為 **config-raspberrypi.json** 中的 **device_key_path** 屬性。
+> 已成功上傳之後 hello 金鑰 toohello 覆盆子 Pi，取代**device_password**與**device_key_path**屬性**config raspberrypi.json**。
 >
 > 更新的程式碼行應該如下所示︰
 > ```javascript
@@ -123,31 +123,31 @@ npm install
 > "device_key_path": "id_rsa",
 > ```
 
-恭喜！ 您已成功建立 Pi 的第一個範例應用程式。
+恭喜！ 您已成功建立 hello 第一個範例應用程式 Pi。
 
-## <a name="deploy-and-run-the-sample-application"></a>部署和執行範例應用程式
-### <a name="install-the-azure-iot-hub-sdk-on-pi"></a>在 Pi 上安裝 Azure IoT 中樞 SDK
-執行以下命令，在 Pi 上安裝 Azure IoT 中樞 SDK：
+## <a name="deploy-and-run-hello-sample-application"></a>部署和執行 hello 範例應用程式
+### <a name="install-hello-azure-iot-hub-sdk-on-pi"></a>Pi 安裝 hello Azure IoT 中樞 SDK
+執行下列命令的 hello pi 安裝 hello Azure IoT 中樞 SDK:
 
 ```bash
 gulp install-tools
 ```
 
-第一次執行此工作時，可能需要幾分鐘才會完成。
+這項工作可能需要幾分鐘的時間 toocomplete hello 執行它的第一次。
 
-### <a name="deploy-and-run-the-sample-app"></a>部署和執行範例應用程式
-執行下列命令，部署和執行範例應用程式：
+### <a name="deploy-and-run-hello-sample-app"></a>部署和執行 hello 範例應用程式
+部署和執行 hello 範例應用程式藉由執行下列命令的 hello:
 
 ```bash
 gulp deploy && gulp run
 ```
 
-### <a name="verify-the-app-works"></a>確認應用程式可以運作
-在 LED 閃爍 20 次後，範例應用程式就會自動終止。 如果 LED 沒有閃爍，請參閱[疑難排解指南](iot-hub-raspberry-pi-kit-c-troubleshooting.md)，裡面有常見問題的解決方案。
+### <a name="verify-hello-app-works"></a>確認 hello 應用程式可運作
+hello 範例應用程式會自動終止之後 hello LED 閃爍的 20 倍。 如果您沒有看到 hello LED 閃爍不停，請參閱 hello[疑難排解指南](iot-hub-raspberry-pi-kit-c-troubleshooting.md)解決方案 toocommon 問題。
 ![LED 閃爍](media/iot-hub-raspberry-pi-lessons/lesson1/led_blinking.jpg)
 
 ## <a name="summary"></a>摘要
-您已安裝必要工具來使用 Pi，並已在 Pi 上部署範例應用程式來讓 LED 閃爍。 現在，您可以建立、部署和執行另一個範例應用程式，將 Pi 連線至 Azure IoT 中樞來傳送和接收訊息。
+安裝所需的 hello 工具 toowork 使用 Pi 和部署範例應用程式 tooPi tooblink hello LED。 您現在可以建立、 部署和執行另一個連接 Pi tooAzure IoT 中樞 toosend 範例應用程式和接收訊息。
 
 ## <a name="next-steps"></a>後續步驟
 [取得 Azure 工具](iot-hub-raspberry-pi-kit-c-lesson2-get-azure-tools-win32.md)

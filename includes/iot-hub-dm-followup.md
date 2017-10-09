@@ -1,22 +1,22 @@
-## <a name="customize-and-extend-the-device-management-actions"></a>自訂及延伸裝置管理動作
+## <a name="customize-and-extend-hello-device-management-actions"></a>自訂及擴充 hello 裝置管理動作
 
-您的 IoT 解決方案可以透過使用裝置對應項和雲端到裝置方法基元，擴充一組已定義的裝置管理模式或啟用自訂模式。 其他裝置管理動作範例還包括恢復出廠預設值、韌體更新、軟體更新、電源管理、網路和連線管理，以及資料加密。
+您的 IoT 解決方案可以展開 hello 定義一組的裝置管理模式，或使用 hello 裝置兩個與雲端到裝置方法基本型別啟用自訂的模式。 其他裝置管理動作範例還包括恢復出廠預設值、韌體更新、軟體更新、電源管理、網路和連線管理，以及資料加密。
 
 ## <a name="device-maintenance-windows"></a>裝置維護期間
 
-一般而言，您會設定讓裝置在產生最短中斷和停機時間的時機執行動作。 裝置維護期間是用來定義裝置組態更新時機的常用模式。 您的後端解決方案可以使用所需的裝置對應項 (twin) 屬性，在您的裝置上定義可啟用維護期間的原則並啟用該原則。 當裝置收到維護期間原則時，它可以使用回報的裝置對應項 (twin) 屬性來回報原則的狀態。 接著，後端 App 便可使用裝置對應項 (twin) 查詢來證明是否符合裝置及每個原則的規定。
+一般而言，您可以設定裝置 tooperform 動作一次中斷與停機時間降到最低。 裝置的維護期間有常用的模式 toodefine hello 時間時裝置應該更新其設定。 可以使用所需的 hello hello 裝置兩個 toodefine 屬性後端方案，並將它啟用維護視窗可讓您裝置上的原則。 當裝置收到 hello 維護視窗原則時，它可以使用 hello 回報 hello 裝置兩個 tooreport hello hello 原則狀態 屬性。 hello 後端應用程式可以使用裝置的裝置和每個原則的兩個查詢 tooattest toocompliance。
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您已使用直接方法在裝置上觸發遠端重新開機。 您已使用報告屬性來從裝置回報上次重新開機時間，以及查詢裝置對應項來從雲端探索裝置的上次重新開機時間。
+在本教學課程中，您可以使用直接方法 tootrigger 遠端重新開機的裝置上。 您使用的 hello 報告的屬性 tooreport hello 上次重新啟動從 hello 裝置時間和查詢的 hello 裝置兩個 toodiscover hello 上次重新啟動從 hello 雲端 hello 裝置的時間。
 
-若要繼續開始使用「IoT 中樞」和裝置管理模式 (例如遠端無線韌體更新)，請參閱︰
+toocontinue 開始使用 IoT 中樞與裝置管理模式，例如遠端透過 hello 空中韌體更新，請參閱：
 
-[教學課程：如何進行韌體更新][lnk-fwupdate]
+[教學課程： 如何 toodo 韌體更新][lnk-fwupdate]
 
-若要了解如何擴充您的 IoT 解決方案以及在多個裝置上排程方法呼叫，請參閱[排程及廣播作業][lnk-tutorial-jobs]教學課程。
+toolearn 如何 tooextend IoT 解決方案和排程方法呼叫上多個裝置，請參閱 hello[排程和廣播的工作][ lnk-tutorial-jobs]教學課程。
 
-若要繼續開始使用 IoT 中樞，請參閱[開始使用 IoT Edge][lnk-iot-edge]。
+請參閱 < 開始使用 IoT 中樞 toocontinue[入門 IoT 邊緣][lnk-iot-edge]。
 
 [lnk-fwupdate]: ../articles/iot-hub/iot-hub-node-node-firmware-update.md
 [lnk-tutorial-jobs]: ../articles/iot-hub/iot-hub-node-node-schedule-jobs.md

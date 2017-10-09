@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 平台層級監視 | Microsoft Docs"
-description: "了解用來監視和診斷 Azure Service Fabric 叢集的平台層級事件和記錄。"
+title: "服務網狀架構的平台層級監視 aaaAzure |Microsoft 文件"
+description: "深入了解平台層級的事件和記錄檔使用 toomonitor 和診斷 Azure Service Fabric 叢集。"
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,50 +14,50 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/24/2017
 ms.author: dekapur
-ms.openlocfilehash: c5857515ae8357b003f0999c4b11bd666c32bbf9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f8fb1c8b546e05c517ae12c91906acc04cd6eaa6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="platform-level-event-and-log-generation"></a>平台層級事件和記錄產生
 
-## <a name="monitoring-the-cluster"></a>監視叢集
+## <a name="monitoring-hello-cluster"></a>監視 hello 叢集
 
-請務必在平台層級進行監視，以判斷硬體和叢集是否如預期運作。 雖然 Service Fabric 可在硬體故障時讓應用程式繼續執行，但是您仍需要診斷錯誤是發生在應用程式中，還是發生在基礎結構中。 您也應該監視叢集，更妥善地規劃容量，以協助決定如何新增或移除硬體。
+它是重要 toomonitor 在 hello 平台層級 toodetermine 不論您的硬體與叢集會如預期般運作。 雖然 Service Fabric 可以保留在硬體故障期間執行的應用程式，但是您仍然需要 toodiagnose 是否發生錯誤的應用程式中或是 hello 基礎結構。 您也應該監視您的叢集 toobetter 規劃容量，協助中新增或移除硬體相關的決策。
 
-Service Fabric 提供五個產生下列事件的不同現成記錄通道：
+Service Fabric 提供五個不同的記錄通道--蜪鎏產生 hello 下列事件：
 
-* 操作通道：由 Service Fabric 與叢集執行的高階作業，包括即將進行的節點事件、正在部署的新應用程式，或 SF 升級復原等等。
+* 操作通道： 高階 Service Fabric 和 hello 叢集，包括事件節點後面的課程中，新的應用程式部署，所執行的作業或 SF 升級復原等。
 * 作業通道 - 詳細：健康情況報告與負載平衡決策
-* 資料和傳訊通道：在我們的傳訊 (目前僅限 ReverseProxy) 和資料路徑 (可靠的服務模型) 中產生的重要記錄和事件
-* 資料和傳訊通道 - 詳細：詳細資訊通道，其中包含叢集中資料和傳訊的所有非重要記錄 (此通道有非常大量的事件)   
+* 資料和通訊通道： 重要的記錄檔和傳訊 (目前僅 hello ReverseProxy) 以及資料路徑 （可靠的服務模型） 所產生的事件
+* 資料 （& s） 傳訊通道-詳細： 詳細資訊，其中包含記錄資料和傳訊 （此通道會有極大量的事件） 的 hello 叢集中所有 hello 非關鍵的通道   
 * [Reliable Services 事件](service-fabric-reliable-services-diagnostics.md)：程式設計模型特定的事件
 * [Reliable Actors 事件](service-fabric-reliable-actors-diagnostics.md)︰程式設計模型特定的事件和效能計數器
-* 支援的記錄：由 Service Fabric 產生的系統記錄僅供我們在提供支援時使用
+* 支援記錄檔： 產生的 Service Fabric 只 toobe 時提供支援，我們所使用的系統記錄檔
 
-這些各種通道涵蓋建議的大部分平台層級記錄。 若要改善平台層級記錄，請考慮深入了解健康情況模型並新增自訂健康情況報告，以及新增自訂**效能計數器**來即時了解對叢集上服務和應用程式的影響。
+這些不同的通道涵蓋大部分 hello 平台層級記錄所建議。 tooimprove 平台層級記錄，請考慮投資更佳了解 hello 健全狀況模型並加入自訂的健康情況報告，以及加入自訂**效能計數器**toobuild 即時的了解 hello 的影響您的服務及 hello 叢集上的應用程式。
 
 ### <a name="azure-service-fabric-health-and-load-reporting"></a>Azure Service Fabric 健全狀況和負載報告
 
 Service Fabric 有自己的健全狀況模型，詳述於下列文件：
-- [Service Fabric 健全狀況監視簡介](service-fabric-health-introduction.md)
+- [簡介 tooService 網狀架構健全狀況監視](service-fabric-health-introduction.md)
 - [回報和檢查服務健全狀況](service-fabric-diagnostics-how-to-report-and-check-service-health.md)
 - [新增自訂 Service Fabric 健康狀態報告](service-fabric-report-health.md)
 - [檢視 Service Fabric 健康狀態報告](service-fabric-view-entities-aggregated-health.md)
 
-對於服務運作的許多層面而言，健全狀況監視不可或缺。 當 Service Fabric 執行具名的應用程式升級時，健全狀況監視尤其重要。 當服務的每個升級網域完成升級並提供給客戶之後，升級網域必須通過健全狀況檢查，才能繼續部署至下一個升級網域。 如果無法達到良好的健全狀態，部署就會復原，讓應用程式保持已知的良好狀態。 雖然在服務復原之前會影響一些客戶，但大部分客戶都不會遇到問題。 此外，很快就會開始解決，無需等待操作人員採取行動。 在程式碼中納入越多健全狀況檢查，服務越能夠從部署問題中恢復。
+監視健全狀況是重大 toomultiple 層面服務的運作。 當 Service Fabric 執行具名的應用程式升級時，健全狀況監視尤其重要。 Hello 服務的每個升級網域會升級，而是使用 tooyour 客戶之後，hello 升級網域必須通過健全狀況檢查，之後再 hello 部署移 toohello 下一個升級網域。 如果無法達到良好健全狀況狀態，hello 部署會回復，以便 hello 應用程式是在已知的良好狀態。 雖然 hello 服務復原之前，有些客戶可能會受到影響，但大部分的客戶不會發生問題。 此外，較快，而不需要動作從人力運算子 toowait 進行解析。 hello 併入您的程式碼 hello 更有彈性您的服務是 toodeployment 問題的詳細健全狀況檢查。
 
-服務健全狀況的另一個層面是來自服務的報告計量。 計量是用來平衡資源使用量，在 Service Fabric 中很重要。 計量也可以當做系統健全狀況的指標。 例如，您的應用程式可能有許多服務，而每個執行個體會報告每秒要求數 (RPS) 計量。 如果有一項服務比其他服務使用更多資源，Service Fabric 會在叢集內移動服務執行個體，嘗試維護平衡的資源使用量。 如需資源耗用量運作方式的詳細說明，請參閱[在 Service Fabric 中使用計量管理資源耗用量和負載](service-fabric-cluster-resource-manager-metrics.md)。
+服務健全狀況的另一個層面會報告從 hello 服務的度量資訊。 度量是在 Service Fabric 中重要的因為它們是使用的 toobalance 資源使用狀況。 計量也可以當做系統健全狀況的指標。 例如，您的應用程式可能有許多服務，而每個執行個體會報告每秒要求數 (RPS) 計量。 如果一項服務使用比另一個服務更多資源，Service Fabric 移動 hello 叢集的服務執行個體 tootry toomaintain 甚至資源使用率。 如需資源耗用量運作方式的詳細說明，請參閱[在 Service Fabric 中使用計量管理資源耗用量和負載](service-fabric-cluster-resource-manager-metrics.md)。
 
-計量也可協助您深入探索服務的運作方式。 經過一段時間，您可以使用計量，檢查服務是否在預期的參數內運作。 比方說，如果趨勢指出星期一早上 9 點的平均 RPS 是 1,000，您可能將健全狀況報告設定為當 RPS 低於 500 或高於 1,500 時發出警示。 一切可能都沒問題，但您可能需要檢查一下，確保客戶擁有絕佳的體驗。 您的服務可以定義一組計量，供健全狀況檢查時報告，但又不影響叢集的資源平衡。 若要這樣做，請將計量權數設為零。 我們建議您在開始時將所有計量的加權設為零，並且在確定您了解計量加權會如何影響叢集的資源平衡前，都不要提高權數。
+計量也可協助您深入探索服務的運作方式。 經過一段時間，您可以使用標準 toocheck hello 服務作業內預期的參數。 例如，如果趨勢會顯示在上星期一早上 hello 上午 9 點平均 RPS 1000，則您可能設定健康情況報告，提醒您，如果 hello RPS 500 低於或高於 1500。 所有項目可能是最適合的但是可能值得外觀 toobe 確定客戶擁有絕佳的體驗。 您的服務可以定義一組度量，可報告基於健全狀況檢查，但不會影響 hello hello 叢集的資源平衡。 toodo 如此，組 hello 衡量標準權數 toozero。 我們建議您啟動的所有標準的權數各為零，並不增加 hello 加權，直到確定您了解加權 hello 度量資訊會如何影響的叢集資源平衡。
 
 > [!TIP]
-> 請勿使用太多的加權計量。 很難了解服務執行個體為了平衡而移動的原因。 少數幾個計量就很夠用！
+> 請勿使用太多的加權計量。 可能很難 toounderstand 為什麼服務執行個體正在移動的平衡。 少數幾個計量就很夠用！
 
-任何能夠指出應用程式健全狀況和效能的資訊，都適合納入計量和健全狀況報告中。 CPU 效能計數器可以告訴您節點的使用情況，但無法讓您知道某個特定服務是否健康，因為可能有多項服務在單一節點上執行。 不過，像是 RPS、處理的項目和求延遲等計量，都可以指出特定服務的健全狀況。
+任何資訊指出 hello 健全狀況和應用程式的效能是候選項目的度量和健全狀況報表。 CPU 效能計數器可以告訴您節點的使用情況，但無法讓您知道某個特定服務是否健康，因為可能有多項服務在單一節點上執行。 但是，度量 RPS，處理的項目等所有要求延遲可以都表示特定服務的 hello 健全狀況。
 
-若要報告健全狀況，請使用如下的程式碼︰
+使用程式碼類似 toothis 的 tooreport 健康狀態：
 
   ```csharp
     if (!result.HasValue)
@@ -67,7 +67,7 @@ Service Fabric 有自己的健全狀況模型，詳述於下列文件：
     }
   ```
 
-若要報告計量，請使用如下的程式碼︰
+tooreport 度量資訊，請使用程式碼類似 toothis:
 
   ```csharp
     this.Partition.ReportLoad(new List<LoadMetric> { new LoadMetric("MemoryInMb", 1234), new LoadMetric("metric1", 42) });
@@ -75,16 +75,16 @@ Service Fabric 有自己的健全狀況模型，詳述於下列文件：
 
 ### <a name="service-fabric-support-logs"></a>Service Fabric 支援記錄
 
-如果您需要連絡 Microsoft 支援服務以協助處理您的 Azure Service Fabric 叢集，通常都需要提供支援記錄。 如果您的叢集裝載於 Azure，建立叢集時會自動設定和收集支援記錄。 記錄會儲存在叢集資源群組中的專用儲存體帳戶。 儲存體帳戶沒有固定名稱，但您會在帳戶中看到名稱以 fabric 開頭的 blob 容器和資料表。 如需有關為獨立叢集設定記錄收集的資訊，請參閱[建立和管理獨立 Azure Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)和[獨立 Windows 叢集的組態設定](service-fabric-cluster-manifest.md)。 若為獨立 Service Fabric 執行個體，記錄應該傳送至本機檔案共用。 您**需要**擁有這些記錄才能取得支援，而這些記錄只限 Microsoft 客戶支援小組使用。
+如果 toocontact Microsoft 技術支援說明需要與 Azure Service Fabric 叢集，則幾乎都需要支援記錄檔。 如果您的叢集裝載於 Azure，建立叢集時會自動設定和收集支援記錄。 hello 記錄會儲存於專用的儲存體帳戶，在您的叢集資源群組中。 hello 儲存體帳戶沒有固定的名稱，但在 hello 帳戶，您會看到 blob 容器和資料表名稱的開頭使用*網狀架構*。 如需有關為獨立叢集設定記錄收集的資訊，請參閱[建立和管理獨立 Azure Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)和[獨立 Windows 叢集的組態設定](service-fabric-cluster-manifest.md)。 獨立 Service Fabric 執行個體，hello 記錄檔應該傳送 tooa 本機檔案共用。 您是**必要**toohave 這些記錄檔中的支援，但是它們不是預期的 toobe 可用 hello Microsoft 客戶支援小組以外的任何人。
 
 ## <a name="enabling-diagnostics-for-a-cluster"></a>啟用叢集的診斷
 
-若要充分利用這些記錄，強烈建議在建立叢集期間啟用「診斷」。 透過開啟診斷，在部署叢集時，Windows Azure 診斷可以認可 Operational、Reliable Services 和 Reliable actors 通道，並儲存資料，如[使用 Azure 診斷彙總事件](service-fabric-diagnostics-event-aggregation-wad.md)的進一步說明。
+中的這些記錄檔的順序 tootake 優點，強烈建議在叢集建立期間已啟用 「 診斷 」。 藉由開啟診斷]、 [hello 叢集部署時，Windows Azure 診斷無法 tooacknowledge hello 操作、 可靠的服務和 Reliable actors 通道，且儲存 hello 資料將會有說明進一步[彙總的事件Azure 診斷](service-fabric-diagnostics-event-aggregation-wad.md)。
 
-如上所示，也有選擇性欄位可新增 Application Insights (AI) 檢測索引鍵。 如果您選擇使用 AI 進行任何事件分析 (在[透過 Application Insights 的事件分析](service-fabric-diagnostics-event-analysis-appinsights.md)深入閱讀此作業)，請在此包含 AppInsights 資源 instrumentationKey (GUID)。
+如以上所示，也會選擇性欄位 tooadd 應用程式 Insights (AI) 的檢測金鑰。 如果您選擇的任何事件分析 toouse AI (深入了解相關內容位於[Application Insights 事件分析](service-fabric-diagnostics-event-analysis-appinsights.md))，此處包含 hello AppInsights 資源 instrumentationKey (GUID)。
 
 
-如果您要將容器部署至叢集，請讓 WAD 挑選 Docker 統計資料，方法是將這個項目新增至 "WadCfg > DiagnosticMonitorConfiguration"：
+如果您正在 toodeploy 容器 tooyour 叢集，請加入這個 tooyour"WadCfg > DiagnosticMonitorConfiguration"啟用 WAD toopick 向上 docker 統計資料：
 
 ```json
 "DockerSources": {
@@ -98,16 +98,16 @@ Service Fabric 有自己的健全狀況模型，詳述於下列文件：
 
 ## <a name="measuring-performance"></a>測量效能
 
-叢集的測量效能將協助您了解如何處理負載，以及進行調整叢集的決策 (請深入查看調整 [Azure 上](service-fabric-cluster-scale-up-down.md)或[內部部署](service-fabric-cluster-windows-server-add-remove-nodes.md)上的叢集)。 相較於您或應用程式和服務可能已採取的動作，在未來分析記錄時，效能資料也十分有用。 
+叢集的測量效能將協助您了解如何調整您的叢集可以 toohandle 負載和磁碟機決策 (查看更多有關調整叢集[在 Azure 上](service-fabric-cluster-scale-up-down.md)，或[內部](service-fabric-cluster-windows-server-add-remove-nodes.md))。 效能資料也是很有用時，會比較 tooactions 您或您的應用程式和服務可能已執行，當時分析記錄檔中 hello 未來。 
 
-如需使用 Service Fabric 時要收集的效能計數器清單，請參閱 [Service Fabric 中的效能計數器](service-fabric-diagnostics-event-generation-perf.md)。
+如需使用 Service Fabric 時的效能計數器 toocollect 的清單，請參閱[Service Fabric 中的效能計數器](service-fabric-diagnostics-event-generation-perf.md)
 
 以下是您可以設定收集叢集效能資料的兩個常用方式：
 
-* 使用代理程式：這是從電腦收集效能的慣用方法，因為代理程式通常會有一份可收集的效能計量清單，而且選擇您要收集或變更的計量是相當簡單的程序。 請閱讀[如何設定 Service Fabric 的 OMS](service-fabric-diagnostics-event-analysis-oms.md) 和[設定 OMS Windows 代理程式](../log-analytics/log-analytics-windows-agents.md)文章以深入了解 OMS 代理程式，而這類監視代理程式可以挑選叢集 VM 和已部署容器的效能資料。
+* 使用代理程式： 這是慣用的 hello 方式從電腦收集的效能，因為代理程式通常具有可收集的效能度量的清單，而且它是相當容易的程序 toochoose hello 度量想 toocollect 或加以變更. 閱讀有關[tooconfigure 如何適用於 Service Fabric hello OMS](service-fabric-diagnostics-event-analysis-oms.md)和[hello OMS Windows 代理程式設定](../log-analytics/log-analytics-windows-agents.md)文章 toolearn 更多關於 hello OMS 代理程式，也就是一個可以 toopick 已啟動這類監視代理程式叢集 Vm 和已部署的容器的效能資料。
 
-* 設定診斷以將效能計數器寫入資料表中：對於 Azure 上的叢集，這表示變更 Azure 診斷設定來反映叢集中 VM 的適當效能計數器，並在您要部署任何容器時，讓它反映 Docker 統計資料。 請閱讀在 Service Fabric 中設定 [WAD 中的效能計數器](service-fabric-diagnostics-event-aggregation-wad.md)，以設定效能計數器集合。
+* 設定診斷 toowrite 效能計數器 tooa 資料表： 在 Azure 上的叢集，這表示從 hello Vm 在叢集中，變更 hello Azure 診斷組態 toopick 向上 hello 適當的效能計數器，並讓它 toopick 向上如果您將會部署任何容器 docker 統計資料。 了解設定[中 WAD 效能計數器](service-fabric-diagnostics-event-aggregation-wad.md)Service Fabric tooset 效能計數器集合中。
 
 ## <a name="next-steps"></a>後續步驟
 
-需要先彙總記錄和事件，才能將它們傳送到任何分析平台。 請閱讀 [EventFlow](service-fabric-diagnostics-event-aggregation-eventflow.md) 和 [WAD](service-fabric-diagnostics-event-aggregation-wad.md) 以深入了解一些建議的選項。
+將記錄檔和事件需要 toobe 之前它們可以傳送 tooany 分析平台的彙總資料。 閱讀有關[EventFlow](service-fabric-diagnostics-event-aggregation-eventflow.md)和[WAD](service-fabric-diagnostics-event-aggregation-wad.md) toobetter 了解一些 hello 建議的選項。

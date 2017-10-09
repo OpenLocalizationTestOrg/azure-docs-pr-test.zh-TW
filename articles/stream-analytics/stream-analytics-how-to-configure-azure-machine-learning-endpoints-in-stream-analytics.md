@@ -1,5 +1,5 @@
 ---
-title: "在串流分析中使用 Azure Machine Learning 端點 | Microsoft Docs"
+title: "在 Stream Analytics aaaUse Azure Machine Learning 端點 |Microsoft 文件"
 description: "串流分析中的機器語言使用者定義函式"
 keywords: 
 documentationcenter: 
@@ -15,40 +15,40 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: d3a46190dd802bf31ea03ef38304d58e6e63b66d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 013b841ee85b1e0b6d8139a9ba0dde88fc3f8ad0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="machine-learning-integration-in-stream-analytics"></a>在串流分析中整合機器學習服務
-串流分析支援對外呼叫 Azure Machine Learning 端點的使用者定義函式。 [串流分析 REST API 程式庫](https://msdn.microsoft.com/library/azure/dn835031.aspx)中會詳細說明此功能的 REST API 支援。 本文提供要在串流分析中成功實作這項功能所需的補充資訊。 您也可以在 [這裡](stream-analytics-machine-learning-integration-tutorial.md)取得已發佈的教學課程。
+串流分析支援呼叫 tooAzure 機器學習端點的使用者定義函數。 這項功能的 REST API 支援會詳細說明 hello[資料流分析 REST API 文件庫](https://msdn.microsoft.com/library/azure/dn835031.aspx)。 本文提供要在串流分析中成功實作這項功能所需的補充資訊。 您也可以在 [這裡](stream-analytics-machine-learning-integration-tutorial.md)取得已發佈的教學課程。
 
 ## <a name="overview-azure-machine-learning-terminology"></a>概觀：Azure Machine Learning 術語
-Microsoft Azure Machine Learning 提供可共同作業的拖放工具，供您依據資料來建置、測試及部署預測性分析解決方案。 此工具稱為 *Azure Machine Learning Studio*。 您可以利用此 Studio 來與機器學習服務資源互動，並輕鬆地建置、測試和反覆調整設計。 這些資源和其定義如下。
+Microsoft Azure Machine Learning 提供共同作業、 拖放的工具，您可以使用 toobuild、 測試及部署您的資料的預測分析解決方案。 此工具會呼叫 hello *Azure Machine Learning Studio*。 hello studio 是以 hello 使用的 toointeract 機器學習資源和輕鬆建置、 測試及逐一查看設計。 這些資源和其定義如下。
 
-* **工作區**： *工作區* 這個容器中會保有其他所有機器學習服務資源，以便集中管理和控制。
-* **實驗**：資料科學家會建立 *實驗* 來利用資料集和訓練機器學習服務模型。
-* **端點**： *端點* 是 Azure Machine Learning 物件，可供用來將功能做為輸入、套用指定的機器學習服務模型，並傳回經過評分的輸出。
+* **工作區**: hello*工作區*會保留所有其他機器學習資源集中管理及控制容器的容器。
+* **實驗**:*實驗*資料科學家 tooutilize 資料集所建立並定型的機器學習模型。
+* **端點**:*端點*會做為輸入 hello Azure 機器學習使用物件 tootake 功能、 適用於指定的機器學習模型，再傳回評分的輸出。
 * **評分 Web 服務**： *評分 Web 服務* 是上述端點的集合。
 
-每個端點都有適用於批次執行和同步執行的 API。 串流分析使用同步執行。 該特定服務在 AzureML Studio 中的名稱為 [要求/回應服務](../machine-learning/machine-learning-consume-web-services.md) 。
+每個端點都有適用於批次執行和同步執行的 API。 串流分析使用同步執行。 hello 特定服務的名稱為[要求/回應服務](../machine-learning/machine-learning-consume-web-services.md)AzureML studio 中。
 
 ## <a name="machine-learning-resources-needed-for-stream-analytics-jobs"></a>串流分析作業所需的機器學習服務資源
-為了處理串流分析作業，必須要有要求/回應端點、 [apikey](../machine-learning/machine-learning-connect-to-azure-machine-learning-web-service.md)和 swagger 定義才能順利執行。 串流分析有其他端點可建構 swagger 端點的 URL、查閱介面，以及將預設 UDF 定義傳回給使用者。
+基於 hello 資料流分析作業正在處理的要求/回應端點， [apikey](../machine-learning/machine-learning-connect-to-azure-machine-learning-web-service.md)，而且 swagger 定義所有必要才能成功執行。 資料流分析已建構 hello swagger 端點 url、 查詢 hello 介面並傳回預設 UDF 定義 toohello 使用者的其他端點。
 
 ## <a name="configure-a-stream-analytics-and-machine-learning-udf-via-rest-api"></a>透過 REST API 設定串流分析和機器學習服務 UDF
-透過使用 REST API，您可以設定作業來呼叫 Azure 機器語言函式。 步驟如下：
+使用 REST Api，您可以設定工作 toocall Azure 機器語言函式。 hello 步驟如下所示：
 
 1. 建立串流分析工作
 2. 定義輸入
 3. 定義輸出
 4. 建立使用者定義函式 (UDF)
-5. 撰寫呼叫 UDF 的串流分析轉換
-6. 啟動工作
+5. 寫入資料流分析轉換呼叫 hello UDF
+6. 啟動 hello 工作
 
 ## <a name="creating-a-udf-with-basic-properties"></a>使用基本屬性建立 UDF
-下列範例程式碼會建立名為 *newudf* 且繫結至 Azure Machine Learning 端點的純量 UDF，來做為示範。 請注意，您可以在 API 說明頁面中找到所選服務的*端點* (服務 URI)，以及在 [服務] 主頁面中找到 *apiKey*。
+例如，下列範例程式碼的 hello 建立名為的純量 UDF *newudf* tooan Azure Machine Learning 端點繫結。 請注意該 hello*端點*（服務 URI） 可以選擇服務和 hello hello hello API 說明頁面上找到*apiKey* hello 服務主頁面上可以找到。
 
 ````
     PUT : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/Microsoft.StreamAnalytics/streamingjobs/<streamingjobName>/functions/<udfName>?api-version=<apiVersion>  
@@ -75,7 +75,7 @@ Microsoft Azure Machine Learning 提供可共同作業的拖放工具，供您�
 ````
 
 ## <a name="call-retrievedefaultdefinition-endpoint-for-default-udf"></a>呼叫預設 UDF 的 RetrieveDefaultDefinition 端點
-一旦建立好基本架構 UDF，就需要 UDF 的完整定義。 RetreiveDefaultDefinition 端點可協助您取得繫結至 Azure Machine Learning 端點之純量函式的預設定義。 下列內容會要求您取得繫結至 Azure Machine Learning 端點之純量函式的預設 UDF 定義。 因為已在 PUT 要求期間提供，因此它不會指定實際的端點。 串流分析會呼叫要求中提供的端點 (如果已明確提供)。 否則，它會使用原本參考的端點。 UDF 在這邊會採用單一字串參數 (一個句子)，並傳回指出該句子的「情緒」標籤的單一類型字串輸出。
+一次 hello hello hello UDF 需要完整定義會建立 UDF 的基本架構。 hello RetreiveDefaultDefinition 端點可協助您取得繫結的 tooan Azure Machine Learning 端點的純量函式的 hello default 定義。 hello 裝載下列需要您 tooget hello 預設 UDF 定義繫結的 tooan Azure Machine Learning 端點的純量函式。 它不會指定 hello 實際的端點，因為它已經提供在 PUT 要求。 資料流分析呼叫 hello hello 要求中提供，如果提供明確的端點。 否則它會使用原本所參考的其中一個 hello。 這裡 hello UDF 會接受單一字串參數 （句子），並傳回表示該句子 hello 「 情緒"標籤字串類型的單一輸出。
 
 ````
 POST : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/Microsoft.StreamAnalytics/streamingjobs/<streamingjobName>/functions/<udfName>/RetrieveDefaultDefinition?api-version=<apiVersion>
@@ -133,8 +133,8 @@ POST : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/
     }
 ````
 
-## <a name="patch-udf-with-the-response"></a>使用回應修補 UDF
-現在必須使用先前的回應修補 UDF，如下所示。
+## <a name="patch-udf-with-hello-response"></a>修補程式 UDF hello 回應
+現在 hello UDF 必須先安裝修補與前一個回應 hello，如下所示。
 
 ````
 PATCH : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers/Microsoft.StreamAnalytics/streamingjobs/<streamingjobName>/functions/<udfName>?api-version=<apiVersion>
@@ -180,8 +180,8 @@ PATCH : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers
     }
 ````
 
-## <a name="implement-stream-analytics-transformation-to-call-the-udf"></a>實作串流分析轉換來呼叫 UDF
-現在要查詢每一個輸入事件的 UDF (這裡稱為 scoreTweet)，並將該事件的回應寫入至輸出。  
+## <a name="implement-stream-analytics-transformation-toocall-hello-udf"></a>實作資料流分析轉換 toocall hello UDF
+現在每個輸入的事件查詢 hello UDF （以下稱為 scoreTweet），以及撰寫該事件 tooan 輸出的回應。  
 
 ````
     {
@@ -198,7 +198,7 @@ PATCH : /subscriptions/<subscriptionId>/resourceGroups/<resourceGroup>/providers
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>後續步驟
-* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
+* [簡介 tooAzure 資料流分析](stream-analytics-introduction.md)
 * [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)

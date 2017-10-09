@@ -1,5 +1,5 @@
 ---
-title: Red Hat Update Infrastructure (RHUI) | Microsoft Docs
+title: "aaaRed Hat 更新基礎結構 (RHUI) |Microsoft 文件"
 description: "了解適用於 Microsoft Azure 中隨選 Red Hat Enterprise Linux 執行個體的 Red Hat Update Infrastructure (RHUI)"
 services: virtual-machines-linux
 documentationcenter: 
@@ -14,55 +14,55 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 02/13/2017
 ms.author: borisb
-ms.openlocfilehash: 07815d691ffe57f0349f7a90ced4a2fcc1ab834f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: cc244857104b25e4e61862c518db77e915e137ef
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="red-hat-update-infrastructure-rhui-for-on-demand-red-hat-enterprise-linux-vms-in-azure"></a>適用於 Azure 中隨選 Red Hat Enterprise Linux VM 的 Red Hat Update Infrastructure (RHUI)
-需註冊從隨選 Red Hat Enterprise Linux (RHEL) 映像建立的虛擬機器，以存取部署在 Azure 中的 Red Hat Update Infrastructure (RHUI)；前述映像可在 Azure Marketplace 中找到。  隨選 RHEL 執行個體能夠存取區域 yum 儲存機制，並且能夠接收累加式更新。
+從 hello 隨 Red Hat Enterprise Linux (RHEL) 提供的映像在 Azure Marketplace 中建立的虛擬機器都已註冊的 tooaccess hello Red Hat 更新基礎結構 (RHUI) 部署在 Azure 中。  hello 隨 RHEL 執行個體具有存取 tooa 地區 yum 儲存機制和可以 tooreceive 累加式更新。
 
-RHUI 所管理的 yum 儲存機至清單，會於佈建期間設定在您的 RHEL 執行個體中。 您不需要進行任何額外設定，只需在 RHEL 執行個體準備好接收最新更新之後執行 `yum update` 即可。
+RHEL 執行個體中設定 hello yum 儲存機制清單，由 RHUI 管理、 佈建期間。 您不需要 toodo 任何額外的設定-執行`yum update`RHEL 執行個體準備好 tooget hello 最新的更新之後。
 
 > [!NOTE]
-> 在 2016 年 9 月，我們部署了已更新的 Azure RHUI，而在 2017 年 1 月，我們開始分階段關閉舊版 Azure RHUI。 如果您從 2016 年 9 月或之後才使用 RHEL 映像 (或其快照)，可能就不需要採取任何動作。 不過，如果您擁有舊版快照/VM，則其組態必須更新，才能繼續存取 Azure RHUI。
+> 在 2016 年 9 月部署更新的 Azure RHUI，並在 2017 年 1 月我們會啟動分階段的關機 hello 的較舊的 Azure RHUI。 如果您已在使用 hello RHEL 映像 （或其快照集） 從 2016 年 9 月或更新版本-可能不不需要任何動作。 不過，您會有較舊的快照集 Vm，如果其設定都必須更新不會中斷的存取 toohello Azure RHUI toobe。
 > 
 
 ## <a name="rhui-azure-infrastructure-update"></a>RHUI Azure 基礎結構更新
-自 2016 年 9 月起，Azure 會有一組新的 Red Hat Update Infrastructure (RHUI) 伺服器。 這些伺服器的部署將會透過 [Azure 流量管理員](https://azure.microsoft.com/services/traffic-manager/)執行，讓任何 VM (不論是哪個區域) 都可以使用單一端點 (rhui-1.microsoft.com)。 Azure Marketplace 中的新 RHEL 隨用隨付 (PAYG) 映像 (日期為 2016 年 9 月的版本或更新版本) 會自動指向新的 Azure RHUI 伺服器，因此不需採取任何其他動作。
+自 2016 年 9 月起，Azure 會有一組新的 Red Hat Update Infrastructure (RHUI) 伺服器。 這些伺服器的部署將會透過 [Azure 流量管理員](https://azure.microsoft.com/services/traffic-manager/)執行，讓任何 VM (不論是哪個區域) 都可以使用單一端點 (rhui-1.microsoft.com)。 hello hello Azure Marketplace （張貼日期為 2016 年 9 月或更高版本） 點 toohello 新 Azure RHUI 伺服器中的新 RHEL 隨用隨付 」 (PAYG) 映像，並不需要任何額外的動作。
 
 ### <a name="determine-if-action-is-required"></a>判斷是否需要採取動作
-如果您從 Azure RHEL PAYG VM 連接到 RHUI 時發生問題，請依照下列步驟操作：
+如果您遇到連接 tooAzure RHUI 來自 Azure RHEL PAYG VM 的問題，請遵循下列步驟
 1. 檢查 Azure RHUI 端點的 VM 組態
 
-    檢查 `/etc/yum.repos.d/rh-cloud.repo` 檔案之 `[rhui-microsoft-azure-rhel*]` 區段的 baseurl 中是否包含對 `rhui-[1-3].microsoft.com` 的參考。 如果是，您使用的便是新 Azure RHUI。
+    如果核取`/etc/yum.repos.d/rh-cloud.repo`檔案也包含參考`rhui-[1-3].microsoft.com`中的 baseurl `[rhui-microsoft-azure-rhel*]` hello 檔案區段。 如果它是您使用 hello 新 Azure RHUI。
 
-    如果它指向具有 `mirrorlist.*cds[1-4].cloudapp.net` 模式的位置，則需要進行組態更新。
+    如果它指向 tooa 位置以下列模式的 hello `mirrorlist.*cds[1-4].cloudapp.net` -hello 組態更新為必要項。
 
-    如果您使用的是新組態，但仍無法連接到 Azure RHUI，請向 Microsoft 或 Red Hat 提出支援案例。
+    如果您使用 hello 新設定，且仍然無法連線 tooAzure RHUI-檔案與 Microsoft 或 Red Hat 支援案例。
 
     > [!NOTE]
-    > 只有 [Microsoft Azure Datacenter IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)中的 VM 能夠存取 Azure 代管的 RHUI。
+    > 存取 tooAzure 裝載 RHUI 是有限的 toohello Vm 內[Microsoft Azure Datacenter IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)。
     > 
 
-2. 如果在您執行這項檢查時舊 Azure RHUI 仍然可用，而您想要自動更新組態，請執行下列命令：
+2. 如果 hello 舊 Azure RHUI 仍然可以使用當您執行這項檢查，而您想讓 tooautomatically 更新 hello 組態時，請執行下列命令的 hello:
 
-    `sudo yum update RHEL6` 或 `sudo yum update RHEL7`，視 RHEL 系列版本而定。
+    `sudo yum update RHEL6`或`sudo yum update RHEL7`視 hello RHEL 系列版本而定。
 
-3. 如果您已無法連接到舊 Azure RHUI，請依照下一節中所述的手動步驟操作。
+3. 如果您無法再連接 toohello 舊 Azure RHUI，hello 下一節中所述的後續 hello 手動步驟。
 
-4. 確定更新受影響 VM 的來源佈建映像/快照集上的組態。
+4. 請確定 hello 來源映像/快照上的 tooupdate hello 組態會影響 VM 已佈建。
 
-### <a name="phased-shutdown-of-the-old-azure-rhui"></a>分段關閉舊的 Azure RHUI
-在關閉舊 Azure RHUI 的期間，我們會依下列方式限制對該 RHUI 的存取：
+### <a name="phased-shutdown-of-hello-old-azure-rhui"></a>分階段的關機的 hello 舊 Azure RHUI
+在 hello hello 關閉舊的 Azure RHUI 我們限制，如下所示存取 tooit:
 
-1. 進一步將它限制成僅供一組已經與它連線的 IP 位址存取 (ACL)。 可能的副作用：如果您繼續使用舊 Azure RHUI，您的新 VM 可能無法與它連線。 具有動態 IP 的 RHEL VM 在經過關閉/解除配置/啟動程序之後，可能會取得新的 IP，因此也可能開始無法連接到舊的 Azure RHUI
+1. 進一步限制存取 (ACL) tooset tooit 已連接的 IP 位址。 可能的副作用： 如果您繼續使用 hello 舊 Azure RHUI-新的 Vm 可能無法 tooconnect tooit。 瀏覽關機/取消配置/啟動程序的 RHEL Vm 與動態 Ip 可能會收到新的 IP 和因此也無法啟動失敗 tooconnect toohello 舊 Azure RHUI
 
-2. 關閉鏡像內容傳遞伺服器。 可能的副作用：隨著我們關閉的 CDS 越多，您可能會發現 `yum update` 服務時間變得越長、逾時次數變得越多，直到您無法再連接到舊 Azure RHUI 為止。
+2. 關閉鏡像內容傳遞伺服器。 可能的副作用： 在我們關閉詳細 CDSes 會再看見`yum update`服務時間更多的逾時為止 hello 點時，您無法再連接 toohello 舊 Azure RHUI。
 
-### <a name="the-ips-for-the-new-rhui-content-delivery-servers-are"></a>新的 RHUI 內容傳遞伺服器的 IP 為
-如果您使用網路組態來進一步限制來自 RHEL PAYG VM 的存取，請確定已允許下列 IP，如此 `yum update` 才能依據您所在的環境運作。 
+### <a name="hello-ips-for-hello-new-rhui-content-delivery-servers-are"></a>hello 新 RHUI 內容傳遞伺服器 hello Ip 是
+如果您使用網路組態 toofurther 限制 RHEL PAYG Vm 所傳來的存取，請確定允許下列 Ip hello `yum update` toowork 視您是在 hello 環境而定。 
 
 ```
 # Azure Global
@@ -79,20 +79,20 @@ RHUI 所管理的 yum 儲存機至清單，會於佈建期間設定在您的 RHE
 51.4.228.145
 ```
 
-### <a name="manual-update-procedure-to-use-the-new-azure-rhui-servers"></a>使用新 Azure RHUI 伺服器的手動更新程序
-下載 (透過 curl) 公開金鑰簽章
+### <a name="manual-update-procedure-toouse-hello-new-azure-rhui-servers"></a>手動更新程序 toouse hello 新 Azure RHUI 伺服器
+（透過 curl) 下載 hello 公用金鑰簽章
 
 ```bash
 curl -o RPM-GPG-KEY-microsoft-azure-release https://download.microsoft.com/download/9/D/9/9d945f05-541d-494f-9977-289b3ce8e774/microsoft-sign-public.asc 
 ```
 
-驗證已下載的金鑰
+請確認下載的 hello 金鑰
 
 ```bash
 gpg --list-packets --verbose < RPM-GPG-KEY-microsoft-azure-release
 ```
 
-檢查輸出，驗證 `keyid` 和 `user ID packet`：
+檢查 hello 輸出，確認`keyid`和`user ID packet`:
 
 ```bash
 Version: GnuPG v1.4.7 (GNU/Linux)
@@ -116,7 +116,7 @@ Version: GnuPG v1.4.7 (GNU/Linux)
         data: [2047 bits]
 ```
 
-安裝公開金鑰
+安裝 hello 公開金鑰
 
 ```bash
 sudo install -o root -g root -m 644 RPM-GPG-KEY-microsoft-azure-release /etc/pki/rpm-gpg
@@ -143,7 +143,7 @@ curl -o azureclient.rpm https://rhui-1.microsoft.com/pulp/repos/microsoft-azure-
 rpm -Kv azureclient.rpm
 ```
 
-確認輸出中的套件簽章正確
+檢查輸出中的簽章的 hello 封裝是 [確定]
 
 ```bash
 azureclient.rpm:
@@ -153,16 +153,16 @@ azureclient.rpm:
     MD5 digest: OK (c04ff605f82f4be8c96020bf5c23b86c)
 ```
 
-安裝 RPM
+安裝 hello RPM
 
 ```bash
 sudo rpm -U azureclient.rpm
 ```
 
-完成時，請確認您可以從 VM 存取 Azure RHUI
+完成時，請確認您可以存取 Azure RHUI 表單 hello VM
 
-### <a name="all-in-one-script-for-automating-the-preceding-task"></a>可自動執行上述工作的全方位指令碼
-請視需要使用下列指令碼，以自動執行將受影響的 VM 更新到新 Azure RHUI 伺服器的工作。
+### <a name="all-in-one-script-for-automating-hello-preceding-task"></a>全部的一個指令碼自動化 hello 前工作
+使用下列指令碼以更新受影響的 Vm toohello 新 Azure RHUI 伺服器的所需的 tooautomate hello 工作 hello。
 
 ```sh
 # Download key
@@ -202,36 +202,36 @@ sudo rpm -U azureclient.rpm
 ```
 
 ## <a name="rhui-overview"></a>RHUI 概觀
-[Red Hat Update Infrastructure](https://access.redhat.com/products/red-hat-update-infrastructure) 提供一個可靈活調整的解決方案，可以針對裝載在 Red Hat 認證雲端提供者上的 Red Hat Enterprise Linux 雲端執行個體，管理 yum 儲存機制內容。 根據上游 Pulp 專案，RHUI 可讓雲端提供者在本機建立 Red Hat 所裝載儲存機制內容的鏡像、以其內容建立自定儲存機制，並透過具流量負載平衡的內容傳遞系統，讓儲存機制可供大量使用者使用。
+[Red Hat 更新基礎結構](https://access.redhat.com/products/red-hat-update-infrastructure)提供 Red Hat 認證雲端提供者所裝載的 Red Hat Enterprise Linux 雲端執行個體可高度擴充的方案 toomanage yum 儲存機制內容。 依據 hello 上游 Pulp 專案 RHUI 允許雲端提供者 toolocally 鏡像 Red Hat 裝載的儲存機制內容，其本身的內容，以建立自訂儲存機制，並進行這些儲存機制可用 tooa 大群使用者透過負載平衡內容傳遞系統。
 
 ## <a name="regions-where-rhui-is-available"></a>可以使用 RHUI 的區域
-在所有可使用 RHEL 隨選映像的地區，皆可使用 RHUI。 目前包含 [Azure 狀態儀表板](https://azure.microsoft.com/status/) 頁面上所列的所有公用區域 (Azure 美國政府和 Azure 德國區域)。 從 RHEL 隨選映像佈建之 VM 的 RHUI 存取包含在其價格中。 額外區域/國家的雲端可用性將會更新，因為我們將在未來擴大 RHEL 隨選的可用性。
+在所有可使用 RHEL 隨選映像的地區，皆可使用 RHUI。 它目前包含在 hello 上所列的所有公用區域[Azure 狀態儀表板](https://azure.microsoft.com/status/)頁面上，Azure 美國政府和 Azure 德國區域。 從 RHEL 隨選映像佈建之 VM 的 RHUI 存取包含在其價格中。 我們展開 RHEL 隨可用性 hello 未來在其他地區/國家雲端可用性將會更新。
 
 > [!NOTE]
-> 只有 [Microsoft Azure Datacenter IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)中的 VM 能夠存取 Azure 代管的 RHUI。
+> 存取 tooAzure 裝載 RHUI 是有限的 toohello Vm 內[Microsoft Azure Datacenter IP 範圍](https://www.microsoft.com/download/details.aspx?id=41653)。
 > 
 > 
 
 ## <a name="get-updates-from-another-update-repository"></a>從其他更新儲存機制取得更新
-如果您需要從不同的更新儲存機制 (而不是 Azure 代管的 RHUI) 取得更新，您必須先從 RHUI 將您的執行個體取消註冊。 接著，您必須向所需的更新基礎結構 (例如 Red Hat Satellite 或 Red Hat 客戶入口網站 CDN) 重新註冊它們。 您將需要這些服務的適當 Red Hat 訂用帳戶，而且必須註冊 [Azure 中的 Red Hat 雲端存取](https://access.redhat.com/ecosystem/partners/ccsp/microsoft-azure)。
+如果您需要從不同的更新儲存機制 （而不是 Azure 託管 RHUI) tooget 更新時，首先您需要 toounregister RHUI 從您的執行個體。 則您需要 toore 登錄其與 hello 所需的更新基礎結構 （例如 Red Hat 附屬或 Red Hat 客戶入口網站 CDN）。 您將需要這些服務的適當 Red Hat 訂用帳戶，而且必須註冊 [Azure 中的 Red Hat 雲端存取](https://access.redhat.com/ecosystem/partners/ccsp/microsoft-azure)。
 
-若要將 RHUI 取消註冊再向您的更新基礎結構重新註冊，請依照下列步驟操作：
+toounregister RHUI 和重新登錄 tooyour 更新基礎結構，請遵循下列步驟：
 
-1. 編輯 /etc/yum.repos.d/rh-cloud.repo，將所有 `enabled=1` 變更為 `enabled=0`。 例如：
+1. 編輯 /etc/yum.repos.d/rh-cloud.repo 並變更所有`enabled=1`太`enabled=0`。 例如：
    
    ```bash
    sed -i 's/enabled=1/enabled=0/g' /etc/yum.repos.d/rh-cloud.repo
    ```
    
-2. 編輯 /etc/yum/pluginconf.d/rhnplugin.conf，將 `enabled=0` 變更為 `enabled=1`。
-3. 然後，註冊所需的基礎結構，例如 Red Hat 客戶入口網站。 請依照 Red Hat 解決方案指南中的 [如何向 Red Hat 客戶入口網站註冊及訂閱系統](https://access.redhat.com/solutions/253273)操作。
+2. 編輯 /etc/yum/pluginconf.d/rhnplugin.conf 並變更`enabled=0`太`enabled=1`。
+3. 然後向 hello 所需的基礎結構，例如 Red Hat 客戶入口網站。 請遵循解決方案指南 Red Hat[如何 tooregister 和訂閱系統 toohello Red Hat 客戶入口網站](https://access.redhat.com/solutions/253273)。
 
 > [!NOTE]
-> 對 Azure 代管之 RHUI 的存取，包含在 RHEL 隨用隨付 (PAYG) 映像的價格中。 從 Azure 代管的 RHUI 將 PAYG RHEL VM 取消註冊並不會將虛擬機器轉換成自備授權 (BYOL) 類型的虛擬機器。 如果您以另一個更新來源註冊相同的 VM，可能會產生雙重費用：第一次是針對 Azure RHEL 軟體費用，而第二次是針對 Red Hat 訂用帳戶。 
+> 存取 toohello Azure 託管 RHUI 隨附於 hello RHEL 隨用隨付 」 (PAYG) 映像的價格。 取消登錄從 hello Azure 託管 RHUI PAYG RHEL VM 不會轉換成提到您-擁有的授權 (BYOL) 型別 VM hello 虛擬機器。 如果您註冊 hello 相同的 VM 與其他來源的更新您可能會產生 double 費用： 第一次 Azure RHEL 軟體費用，和 hello Red Hat 訂閱的第二次。 
 > 
-> 如果您持續需要使用非 Azure 代管 RHUI 的更新基礎結構，請考慮建立及部署您自己的 (BYOL 類型) 映像，如 [建立及上傳適用於 Azure 的 Red Hat 型虛擬機器](redhat-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 一文所述。
+> 建立及部署您自己 （BYOL 型別） 映像中所述，如果您以一致的方式需要 toouse 要考慮 Azure 託管 RHUI 以外的更新基礎結構[建立及上傳 Red Hat 基礎 Azure 的虛擬機器](redhat-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)發行項。
 > 
 
 ## <a name="next-steps"></a>後續步驟
-若要從 Azure Marketplace 隨用隨付映像建立 Red Hat Enterprise Linux VM 並利用 Azure 代管的 RHUI，請移至 [Azure Marketplace](https://azure.microsoft.com/marketplace/partners/redhat/)。 您將能夠在您的 RHEL 執行個體中使用 `yum update` ，而不需要任何額外的安裝。
+從 Azure Marketplace 隨用隨付映像和運用 Azure 託管 RHUI Red Hat Enterprise Linux VM toocreate 太移[Azure Marketplace](https://azure.microsoft.com/marketplace/partners/redhat/)。 您將會無法 toouse `yum update` RHEL 執行個體沒有任何額外的設定中。
 

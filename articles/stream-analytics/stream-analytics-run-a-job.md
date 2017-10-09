@@ -1,5 +1,5 @@
 ---
-title: "如何在串流分析中啟動串流工作 | Microsoft Docs"
+title: "資料流中資料流分析工作的 aaaHow toostart |Microsoft 文件"
 description: "如何在 Azure 串流分析中執行串流工作 | 學習路徑區段。"
 keywords: "串流工作"
 documentationcenter: 
@@ -15,30 +15,30 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: 9a3ff37a893b0f29a2ac2eda6cd50687ee779ead
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 67aa14860c38cbd0535d0ec4f23729445d0185c0
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-run-a-streaming-job-in-azure-stream-analytics"></a>如何在 Azure 串流分析中執行串流工作
-當已指定工作輸入、查詢及輸出時，即可開始串流分析工作。
+# <a name="how-toorun-a-streaming-job-in-azure-stream-analytics"></a>在 Azure Stream Analytics toorun 串流工作的方式
+作業輸入，當查詢和輸出都已指定您可以啟動 hello 資料流分析工作。
 
-開始您的工作：
+toostart 您的工作：
 
-1. 在 Azure 傳統入口網站的工作儀表板，按一下頁面底部的 [開始]  。
+1. 在 hello Azure 傳統入口網站，從 hello 作業儀表板中，按一下 **啟動**hello hello 頁底端。
    
    ![開始工作按鈕](./media/stream-analytics-run-a-job/1-stream-analytics-run-a-job.png)  
    
-   在 Azure 入口網站中，按一下工作頁面頂端的 [開始]  。
+   在 hello Azure 入口網站，按一下 **啟動**在 hello 頁面頂端的工作。
    
    ![Azure 入口網站開始工作按鈕](./media/stream-analytics-run-a-job/4-stream-analytics-run-a-job.png)  
-2. 指定 [開始輸出]  值來決定這項工作開始產生輸出的時間。 先前尚未開始之工作的預設設定為 [工作開始時間] ，這代表該工作會立即開始處理資料。 您也可以指定在過去 (適用於取用歷史資料) 或未來 (用來延遲處理到未來某個時間) 的 [自訂]  時間。 對於先前已經開始並停止的工作，您可選取 [上次停止時間]  ，以便從上次輸出的時間點繼續工作，並避免資料遺失。  
+2. 指定**開始輸出**值 toodetermine 時此工作會開始產生輸出。 hello 先前尚未啟動的工作的預設值是**工作開始時間**，這表示 hello 作業會立即開始處理資料。 您也可以指定**自訂**hello 時間 （適用於使用歷程記錄資料） 的過去或未來 hello (toodelay 處理，直到未來的時間)。 情況下，作業已經先前啟動和停止，hello 選項**上次停止時間**隨附於從 hello 上次輸出順序 tooresume hello 作業，避免資料遺失。  
    
    ![啟動串流工作的時間](./media/stream-analytics-run-a-job/2-stream-analytics-run-a-job.png)  
    
    ![Azure 入口網站開始串流工作的時間](./media/stream-analytics-run-a-job/5-stream-analytics-run-a-job.png)  
-3. 確認選擇。 工作狀態會變更為 [啟動中]，並會在工作開始後的短時間內變為 [執行中]。 您可以在 [通知中樞] 中監視「開始」作業的進度：
+3. 確認選擇。 hello 工作狀態會變更太*起始*和稍後也會跟著移動*執行*hello 工作啟動之後。 您可以監視 hello 進度的 hello**啟動**作業在 hello**通知中樞**:
    
    ![串流工作進度](./media/stream-analytics-run-a-job/3-stream-analytics-run-a-job.png)  
    
@@ -48,7 +48,7 @@ ms.lasthandoff: 08/29/2017
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>後續步驟
-* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
+* [簡介 tooAzure 資料流分析](stream-analytics-introduction.md)
 * [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)

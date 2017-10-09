@@ -1,6 +1,6 @@
 ---
-title: "將 OpenShift Origin 部署至 Azure | Microsoft Docs"
-description: "了解如何將 OpenShift Origin 部署至 Azure 虛擬機器。"
+title: "aaaDeploy OpenShift 原點 tooAzure |Microsoft 文件"
+description: "了解 toodeploy OpenShift 原點 tooAzure 虛擬機器。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: jbinder
@@ -15,48 +15,48 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 
 ms.author: jbinder
-ms.openlocfilehash: e03da05625e440eab29ccc28a2343d3433fc7607
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a67450c46da41134a5f6c669a9e54e14773ac5b5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-openshift-origin-to-azure-virtual-machines"></a>將 OpenShift Origin 部署至 Azure 虛擬機器 
+# <a name="deploy-openshift-origin-tooazure-virtual-machines"></a>部署 OpenShift 原點 tooAzure 虛擬機器 
 
-[OpenShift Origin](https://www.openshift.org/) 是建置在 [Kubernetes](https://kubernetes.io/) 上的開放原始碼容器平台。 它可簡化部署、調整及操作多租用戶應用程式的程序。 
+[OpenShift Origin](https://www.openshift.org/) 是建置在 [Kubernetes](https://kubernetes.io/) 上的開放原始碼容器平台。 它可簡化部署、 調整和操作多租用戶應用程式的 hello 程序。 
 
-本指南說明如何使用 Azure CLI 和 Azure Resource Manager 範本在 Azure 虛擬機器上部署 OpenShift Origin。 在本教學課程中，您了解如何：
+本指南說明如何在 Azure 虛擬機器使用 toodeploy OpenShift 原點 hello Azure CLI 和 Azure 資源管理員範本。 在本教學課程中，您了解如何：
 
 > [!div class="checklist"]
-> * 建立 KeyVault 來管理 OpenShift 叢集的 SSH 金鑰。
+> * 建立 KeyVault toomanage hello OpenShift 叢集的 SSH 金鑰。
 > * 部署 Azure VM 上的 OpenShift 叢集。 
-> * 安裝和設定 [OpenShift CLI](https://docs.openshift.org/latest/cli_reference/index.html#cli-reference-index) 來管理叢集。
-> * 自訂 OpenShift 部署。
+> * 安裝和設定 hello [OpenShift CLI](https://docs.openshift.org/latest/cli_reference/index.html#cli-reference-index) toomanage hello 叢集。
+> * 自訂 hello OpenShift 部署。
 
 如果您沒有 Azure 訂用帳戶，請在開始前建立 [免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) 。
 
-本快速入門需要 Azure CLI 2.0.8 版或更新版本。 若要尋找版本，請執行 `az --version`。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+本快速入門需要 hello Azure CLI 版本 2.0.8 或更新版本。 toofind hello 版本，執行`az --version`。 如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-## <a name="log-in-to-azure"></a>登入 Azure 
-使用 [az login](/cli/azure/#login) 命令來登入 Azure 訂用帳戶並遵循畫面上的指示進行，或按一下 [試用] 來使用 Cloud Shell。
+## <a name="log-in-tooazure"></a>登入 tooAzure 
+登入 Azure 訂用帳戶以 hello tooyour [az 登入](/cli/azure/#login)命令並遵循螢幕上指示 hello 或按一下**試試**toouse 雲端殼層。
 
 ```azurecli 
 az login
 ```
 ## <a name="create-a-resource-group"></a>建立資源群組
 
-使用 [az group create](/cli/azure/group#create) 命令來建立資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 
+建立資源群組以 hello [az 群組建立](/cli/azure/group#create)命令。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 
 
-下列範例會在 eastus 位置建立名為 myResourceGroup 的資源群組。
+hello 下列範例會建立名為的資源群組*myResourceGroup*在 hello *eastus*位置。
 
 ```azurecli 
 az group create --name myResourceGroup --location eastus
 ```
 
 ## <a name="create-a-key-vault"></a>建立金鑰保存庫
-使用 [az keyvault create](/cli/azure/keyvault#create) 命令來建立要儲存叢集之 SSH 金鑰的 KeyVault。  
+建立 KeyVault toostore hello hello 叢集的 SSH 金鑰以 hello [az keyvault 建立](/cli/azure/keyvault#create)命令。  
 
 ```azurecli 
 az keyvault create --resource-group myResourceGroup --name myKeyVault \
@@ -65,19 +65,19 @@ az keyvault create --resource-group myResourceGroup --name myKeyVault \
 ```
 
 ## <a name="create-an-ssh-key"></a>建立 SSH 金鑰 
-需要 SSH 金鑰才能安全存取 OpenShift Origin 叢集。 使用 `ssh-keygen` 命令建立 SSH 金鑰組。 
+SSH 金鑰是需要的 toosecure 存取 toohello OpenShift 原點叢集。 建立 SSH 金鑰組使用 hello`ssh-keygen`命令。 
  
  ```bash
 ssh-keygen -f ~/.ssh/openshift_rsa -t rsa -N ''
 ```
 
 > [!NOTE]
-> 您所建立的 SSH 金鑰組不能使用複雜密碼。
+> SSH 金鑰組建立 hello 絕不能有複雜密碼。
 
-如需有關 Windows 上的 SSH 金鑰詳細資訊，請參閱[如何在 Windows 上建立 SSH 金鑰](/azure/virtual-machines/linux/ssh-from-windows)。
+如需有關在 Windows 中，SSH 金鑰[toocreate SSH Windows 上的索引鍵](/azure/virtual-machines/linux/ssh-from-windows)。
 
 ## <a name="store-ssh-private-key-in-key-vault"></a>將 SSH 私密金鑰儲存在 Key Vault 中
-OpenShift 部署會使用您建立的 SSH 金鑰來安全存取 OpenShift 主機。 若要啟用部署以安全地擷取 SSH 金鑰，請使用下列命令將金鑰儲存在 Key Vault。
+hello OpenShift 部署會使用您建立 toosecure 存取 toohello OpenShift master hello SSH 金鑰。 tooenable hello 部署 toosecurely 擷取 hello SSH 金鑰，請將 hello 金鑰儲存在金鑰保存庫使用下列命令的 hello。
 
 # <a name="enabled-for-template-deployment"></a>已針對範本部署啟用
 ```azurecli
@@ -85,16 +85,16 @@ az keyvault secret set --vault-name KeyVaultName --name OpenShiftKey --file ~/.s
 ```
 
 ## <a name="create-a-service-principal"></a>建立服務主體 
-OpenShift 會使用使用者名稱與密碼或服務主體與 Azure 進行通訊。 Azure 服務主體是安全性識別，可供您與應用程式、服務及諸如 OpenShift 等自動化工具搭配使用。 您可以控制和定義對於服務主體可以在 Azure 中執行哪些作業的權限。 為了提高只提供使用者名稱和密碼的安全性，此範例會建立基本的服務主體。
+OpenShift 會使用使用者名稱與密碼或服務主體與 Azure 進行通訊。 Azure 服務主體是安全性識別，可供您與應用程式、服務及諸如 OpenShift 等自動化工具搭配使用。 您可以控制和定義 hello 權限，如 toowhat 作業 hello 服務主體可以在 Azure 中執行。 透過提供使用者名稱和密碼的 tooimprove 安全性，這個範例會建立基本的服務主體。
 
-使用 [az ad sp create-for-rbac](/cli/azure/ad/sp#create-for-rbac) 建立服務主體，並將 OpenShift 所需的認證輸出：
+建立服務主體與[az ad 預存程序建立-如-rbac](/cli/azure/ad/sp#create-for-rbac)和 OpenShift 需要輸出 hello 認證：
 
 ```azurecli
 az ad sp create-for-rbac --name openshiftsp \
           --role Contributor --password {strong password} \
           --scopes $(az group show --name myResourceGroup --query id)
 ```
-記下命令傳回的 appId 屬性。
+記下 hello hello 命令所傳回的 appId 屬性。
 ```json
 {
   "appId": "a487e0c1-82af-47d9-9a0b-af184eb87646d",
@@ -109,13 +109,13 @@ az ad sp create-for-rbac --name openshiftsp \
 
 如需有關服務主體的詳細資訊，請參閱[使用 Azure CLI 2.0 建立 Azure 服務主體](/cli/azure/create-an-azure-service-principal-azure-cli)
 
-## <a name="deploy-the-openshift-origin-template"></a>部署 OpenShift Origin 範本
+## <a name="deploy-hello-openshift-origin-template"></a>部署 hello OpenShift 原始範本
 接下來，使用 Azure Resource Manager 範本來部署 Web 應用程式。 
 
 > [!NOTE] 
-> 下列命令需要 az CLI 2.0.8 或更新版本。 您可以使用 `az --version` 命令來確認 az CLI 版本。 若要更新 CLI 版本，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
+> hello 下列命令需要 az CLI 2.0.8 或更新版本。 您可以確認 hello az CLI 版本與 hello`az --version`命令。 tooupdate hello CLI 版本，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
 
-使用您稍早針對 `aadClientId` 參數所建立之服務主體中的 `appId` 值。
+使用 hello`appId`值從您稍早建立的 hello hello 服務主體`aadClientId`參數。
 
 ```azurecli 
 az group deployment create --name myOpenShiftCluster \
@@ -131,7 +131,7 @@ az group deployment create --name myOpenShiftCluster \
         aadClientId={appId} \
         aadClientSecret={strong password} 
 ```
-完成部署最多可能需要大約 20 分鐘或更久的時間。 當部署完成時，OpenShift 主控台的 URL 和 OpenShift 主機的 DNS 名稱會列印到終端機。
+hello 部署可能會佔用 too20 分鐘 toocomplete。 hello hello OpenShift 主控台的 URL 和 DNS 名稱的 hello OpenShift 主要被列印 toohello 終端機 hello 部署完成時。
 
 ```json
 {
@@ -139,15 +139,15 @@ az group deployment create --name myOpenShiftCluster \
   "OpenShift Master SSH": "ocpadmin@myopenshiftmaster.cloudapp.azure.com"
 }
 ```
-## <a name="connect-to-the-openshift-cluster"></a>連線到 OpenShift 叢集
-部署完成時，使用 `OpenShift Console Uri` 可透過瀏覽器連線至 OpenShift 主控台。 或者，您也可以使用下列命令連線至 OpenShift 主機。
+## <a name="connect-toohello-openshift-cluster"></a>Toohello OpenShift 叢集連線
+Hello 部署完成時，將使用 hello 瀏覽器使用 hello toohello OpenShift 主控台連線`OpenShift Console Uri`。 或者，您可以連線使用下列命令的 hello toohello OpenShift master。
 
 ```bash
 $ ssh ocpadmin@myopenshiftmaster.cloudapp.azure.com
 ```
 
 ## <a name="clean-up-resources"></a>清除資源
-若不再需要，您可以使用 [az group delete](/cli/azure/group#delete) 命令將資源群組、OpenShift 叢集和所有相關資源移除。
+當不再需要您可以使用 hello [az 群組刪除](/cli/azure/group#delete)命令 tooremove hello 資源群組、 OpenShift 叢集，以及所有相關的資源。
 
 ```azurecli 
 az group delete --name myResourceGroup
@@ -157,8 +157,8 @@ az group delete --name myResourceGroup
 
 在本教學課程中，您已了解如何：
 > [!div class="checklist"]
-> * 建立 KeyVault 來管理 OpenShift 叢集的 SSH 金鑰。
+> * 建立 KeyVault toomanage hello OpenShift 叢集的 SSH 金鑰。
 > * 部署 Azure VM 上的 OpenShift 叢集。 
-> * 安裝和設定 [OpenShift CLI](https://docs.openshift.org/latest/cli_reference/index.html#cli-reference-index) 來管理叢集。
+> * 安裝和設定 hello [OpenShift CLI](https://docs.openshift.org/latest/cli_reference/index.html#cli-reference-index) toomanage hello 叢集。
 
-現在您已部署 OpenShift Origin 叢集。 您可以遵循 OpenShift 教學課程，了解如何部署第一個應用程式，以及如何使用 OpenShift 工具。 若要開始使用，請參閱[開始使用 OpenShift Origin](https://docs.openshift.org/latest/getting_started/index.html)。 
+現在您已部署 OpenShift Origin 叢集。 您可以如何依照 OpenShift 教學課程 toolearn toodeploy 第一個應用程式和使用 hello OpenShift 工具。 請參閱[入門 OpenShift 原點](https://docs.openshift.org/latest/getting_started/index.html)tooget 啟動。 

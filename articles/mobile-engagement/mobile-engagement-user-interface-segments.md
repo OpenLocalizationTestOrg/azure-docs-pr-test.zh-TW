@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement 使用者介面 - 使用者分佈"
-description: "了解如何使用 Azure Mobile Engagement 建立和管理使用者的使用者分佈以分辨使用模式"
+title: "aaaAzure Mobile Engagement 使用者介面的區段"
+description: "深入了解如何 toocreate 和管理使用者 tooidentify 習慣使用 Azure Mobile Engagement 的區段"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,63 +14,63 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 087f4a1fef420abe9669f8dfe2b84c7a847ce263
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: bb214c45d05ebfbf243978658a7e331d4a7c6e0e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-create-and-manage-segments-of-users-to-identify-usage-patterns"></a>如何建立和管理使用者的使用者分佈以分辨使用模式
-本文說明 **Mobile Engagement** 入口網站的 [區段]索引標籤。 使用 **Mobile Engagement** 入口網站可監視與管理您的行動應用程式。
+# <a name="how-toocreate-and-manage-segments-of-users-tooidentify-usage-patterns"></a>如何 toocreate 和管理使用者 tooidentify 習慣的區段
+本文說明 hello**區段** 索引標籤的 hello **Mobile Engagement**入口網站。 使用 hello **Mobile Engagement** toomonitor 入口網站和管理您的行動裝置應用程式。
 
-UI 的 [使用者分佈] 區段可讓您根據不同的行為和分析，對您的使用者進行分佈研究，這些行為和分析可從應用程式取得，也可透過「使用者分佈 API」存取。 使用者分佈會在建立之後的 24 小時先計算一次，然後根據最新的分析資訊，每隔 24 小時重新計算一次。 計算使用者分佈之後，它會每天顯示「每天變化的歷程記錄」圖表。
+hello UI hello 區段區段可讓您 toowork 上切割您根據 hello 不同的行為和分析，您可以從 hello 應用程式取得，而且也可以存取透過 hello 區段 API 的使用者。 區段會先計算 24 小時之後建立的它們會重新計算根據 hello 最新的分析資訊每隔 24 小時。 一旦計算區段，它就會 「 日 tooday 歷程記錄 」 圖表顯示每一天。
 
 > [!NOTE]
-> 許多 **Mobile Engagement** 入口網站 UI 的區段含有 [顯示說明] 按鈕。 按該按鈕，可獲得關於區段的詳細內容資訊。
+> 多區段的 hello **Mobile Engagement**入口網站 UI 包含 hello**顯示說明** 按鈕。 按此按鈕 tooget 區段內容詳細資訊。
 > 
 > 
 
 ## <a name="create-segments"></a>建立使用者分佈
-您可以根據 [分析] 區段中過去最多 60 天的特定期間及最多 10 個準則來建立使用者分佈。 例如，您可以根據過去 10 天內在您的應用程式中檢視某些頁面或搜尋特定內容的人員，建立使用者分佈。 您也可以在 [分析] 區段取得此資訊。 因此，您可以使用這項資訊來建立使用者分佈，然後再針對這一類使用者設定推送通知，讓他們再回到應用程式。 
+您可以建立根據向上 too10 準則向上 hello too60 天的特定時間上的線段過去從 hello 分析區段。 例如，您可以建立根據 hello 人具有檢視特定頁面或搜尋最後 10 天內 hello 應用程式內的特定內容的區段。 這項資訊可在 hello 分析區段。 因此，您可以 toocreate 在區段中，使用它，然後再將推播通知 tootarget 這個子集使用者 tooget 它們 toocome 後 toohello 應用程式。 
 
 > [!NOTE]
-> 使用者分佈一旦計算之後，就無法進行編輯；它只能複製或終結 (刪除)。 使用者分佈可以在同一個應用程式 (具有相同的 AppID) 內複製，也可以複製到其他應用程式 (具有不同的 AppID)。 
+> 使用者分佈一旦計算之後，就無法進行編輯；它只能複製或終結 (刪除)。 區段可以被複製 hello 內相同的應用程式 (與 hello 相同 AppID)，並也可以被複製到其他應用程式 （具有不同的 AppID)。 
 
  ![segments1][35] 
 
 ## <a name="examples-segments"></a>範例使用者分佈
  ![segments2][36]
 
-使用者分佈可讓您對應用程式的使用者進行分佈研究。
-研究您的使用者分佈是很重要的行銷策略。 Azure Mobile Engagement 可讓您取得歷史資料，並建立自訂的使用者分佈。 這個功能強大的工具可讓您深入了解客戶的應用程式體驗。 您可以輕鬆地分析您的使用者分佈，並利用這些使用者分佈做為推送目標。
-常見的使用案例是傳送推送通知，鼓勵使用者在市集中對應用程式評分。 您可以建立一個使用者分佈，指定過去一個月每天使用您的應用程式且有絕佳使用者體驗的使用者，針對這些使用者而不是所有使用者傳送通知。 若您傳送比較少、目標更明確的推送通知，您就會獲得更好的 ROI。
+區段可讓您 toosegment hello 使用者的應用程式。
+研究您的使用者分佈是很重要的行銷策略。 Azure Mobile Engagement 可讓您 tooget 歷程資料，並建立自訂的區段。 此功能強大的工具可讓您 toolearn 有關您的客戶體驗您的應用程式中。 您可以輕鬆地分析您的使用者分佈，並利用這些使用者分佈做為推送目標。
+常見的使用案例是您想 toosend 推播通知 tooencourage 使用者 toorate hello 存放區中的應用程式。 而不是傳送通知 tooall 您的使用者，您可以建立的區段時，會指定使用者的已使用您的應用程式每日 hello 上個月，而且有很好的使用者經驗。 若您傳送比較少、目標更明確的推送通知，您就會獲得更好的 ROI。
 
  ![segments3][37]
 
-### <a name="segments-you-can-create-based-on-the-major-azure-mobile-engagement-elements"></a>您可以根據主要 Azure Mobile Engagement 項目建立的使用者分佈：
-* 事件：建立一週內發生兩次以上某個應用程式特定事件的使用者分佈。 
-* 工作階段：建立上週使用 5 次以上應用程式的使用者分佈。
+### <a name="segments-you-can-create-based-on-hello-major-azure-mobile-engagement-elements"></a>您可以建立的區段基礎 hello 主要 Azure Mobile Engagement 項目：
+* 事件： 建立目標一個 hello 應用程式發生兩倍以上一週的特定事件的區段。 
+* 工作階段： 建立的使用者使用 hello 應用程式超過 5 次過去一週的區段。
 * 活動：建立上個月使用多於或少於 10 次某一頁面或內容的使用者分佈。
 * 工作：建立一天完成兩次以上工作的使用者分佈。
-* 當機：建立上週當機 10 次以上的所有使用者分佈。 (您可以在推送此使用者分佈時包含道歉啟事或優待券！)
-* 錯誤：建立過去 3 天發生 100 次以上錯誤的所有使用者分佈。
-* 應用程式資訊：建立過去 25 天內發生自訂「應用程式資訊」的使用者分佈。
+* 損毀： 建立所有 hello 使用者已經損毀 10 次以上過去一週的區段。 (您可以在推送此使用者分佈時包含道歉啟事或優待券！)
+* 錯誤： 建立的所有 hello 使用者有多個 100 次過去 3 天內發生了錯誤的區段。
+* 應用程式資訊： 建立目標時發生 hello 25 天自訂應用程式資訊區段。
   
   ![segments4][38]
 
-若要以最佳方式利用使用者分佈，您必須先在具有「應用程式資訊」標記之標記計畫的應用程式中完成 SDK 的自訂整合。
-然後，移至介面的首頁上，選取您想要的應用程式，然後按一下 [使用者分佈] 區段。
+toouse 區段，以最佳方式，您必須完成 hello SDK 整合在自訂的應用程式的 [應用程式資訊] 標記的標記計劃中。
+接著，移 hello 介面 toohello 首頁中，選取 hello 應用程式，然後按一下 hello 「 區段 」 一節。
 
-1. 選取 [使用者分佈] 區段。
-2. 按一下 [新增使用者分佈] 按鈕，建立新的使用者分佈。
+1. 選取 hello 「 區段 」 一節。
+2. 按一下 「 新的區段 」 hello 按鈕 toocreate 新的區段。
 
 ## <a name="real-life-example-create-a-simple-segment-based-on-session-information"></a>實際範例：根據「工作階段」資訊建立簡單的使用者分佈
-建立上週至少使用 50 次您的應用程式的所有使用者分佈。 從該處只尋找在應用程式中每個工作階段至少花費 30 秒的使用者。 這會顯示在您的應用程式中獲得正面體驗的所有使用者。 然後，建立的使用者分佈可用來推送通知給這些使用者，請他們在市集中對您的應用程式評分。
+建立所有 hello 使用者使用您的應用程式至少 50 次 hello 過去一週中的區段。 從該處，尋找只 hello 花了至少 30 秒，每個工作階段的應用程式中的使用者。 這會顯示所有 hello 的使用者在您的應用程式中有正面的體驗。 接下來，建立 hello 區段可能會使用的 toopush 通知 toothese 使用者 tooask 它們 toorate hello 中的應用程式存放區。
 
  ![segments5][39]
 
-1. 您可以將使用者分佈命名，方便在 [使用者分佈] 清單中快速尋找。
-2. 按一下 [建立] 按鈕。
+1. 名稱命名您的區段，在訂單 toofind 快速在 hello 「 區段 」 清單。
+2. Hello 上按一下 [建立] 按鈕。
    
    ![segments6][40]
 
@@ -78,34 +78,34 @@ UI 的 [使用者分佈] 區段可讓您根據不同的行為和分析，對您�
 
  ![segments7][41]
 
-1. 選取 [上週] 的期間。
+1. 選取 最近一週"hello 期間。
 2. 按 [下一步]。
    
    ![segments8][42]
-3. 在清單中選取相關的 [運算子]：=、≥、≤。
-4. 輸入您想要的 [計數]。
-5. 選取您想要的 [發生次數]。 
+3. 選取 hello 與 hello 清單之間的運算子: =;≥ ≤。
+4. 輸入 hello 您想要的計數。
+5. 選取 hello 出現您想要的項目。 
 6. 按 [下一步]。
-   此範例就設定為上週至少使用了 50 個工作階段的使用者。
+   這個範例會設定讓該 over hello 過去一週，已在至少 50 的工作階段的比對使用者。
    
    ![segments9][43]
 
-如果要查看「工作階段」的分佈方式，您可以選擇每個工作階段的長度做為準則。
+Hello 分割工作階段，您可以選擇每個工作階段做為條件 hello 長度。
 
-1. 從清單中選取 [運算子]。
-2. 提供每個工作階段的 [長度]。
+1. Hello 清單中選取 hello 運算子。
+2. 提供每個工作階段的 hello 長度。
 3. 按一下 [下一步]。
-   此範例表示在根據發生區段計算而得的所有工作階段中，只選取在每個工作階段花費超過 30 秒的使用者。
+   在此範例中，該處會指示，透過所有 hello 有已 hello 出現項目區段中，區隔的工作階段選取只有 hello 所花 30 秒以上每個工作階段的使用者。
    
    ![segments10][44]
 
-將您的準則命名，以便在完整的漏斗圖中可以擷取準則，然後按一下 [完成]。
+名稱在 hello 完成順序 tooretrieve 準則漏斗，並按一下 [完成]。
 
  ![segments11][45]
 
-準則設定完成時，將會出現在使用者分佈漏斗圖中。
+當您的準則設定完成時，它會出現在 hello 區段漏斗圖。
 因為使用者分佈是根據分析資料，所以使用者分佈也會每天計算一次。
-在此範例中，總共有 47.7% 的使用者符合準則。 這些是有良好體驗的使用者，所以如果推送通知請他們在市集中對應用程式評分，他們應該會提供比較高的評分。
+在此範例中，47,7 %hello 總使用者的比對 hello 準則。 它們應該 hello 使用者有良好的體驗，並將會更高評等如果推送通知可能 tooprovide 詢問他們 toorate hello 存放區中的 hello 應用程式。
 
 ## <a name="see-also"></a>另請參閱
 * [概念][Link 6]

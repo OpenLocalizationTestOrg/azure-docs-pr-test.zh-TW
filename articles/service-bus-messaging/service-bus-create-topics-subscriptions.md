@@ -1,6 +1,6 @@
 ---
-title: "建立使用 Azure 服務匯流排主題和訂用帳戶的應用程式 | Microsoft Docs"
-description: "介紹服務匯流排主題和訂用帳戶所提供的發佈/訂閱功能。"
+title: "aaaCreate 應用程式使用 Azure 服務匯流排主題和訂用帳戶 |Microsoft 文件"
+description: "簡介 toohello 發行-訂閱所提供服務匯流排主題和訂閱的能力。"
 services: service-bus-messaging
 documentationcenter: na
 author: sethmanheim
@@ -14,47 +14,47 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/07/2017
 ms.author: sethm
-ms.openlocfilehash: eb01120ce9578f716e5381c107faa93f0b36e358
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: f6d7de46ace7bd5b49de612db213ced789308d91
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-applications-that-use-service-bus-topics-and-subscriptions"></a>建立使用服務匯流排主題和訂用帳戶的應用程式
-Azure 服務匯流排支援一套以雲端為基礎、訊息導向的中介軟體技術，包括可靠的訊息佇列和持久的發佈/訂閱訊息。 本文是根據[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)所提供的資訊撰寫而成，並簡介服務匯流排主題所提供的發佈/訂閱功能。
+Azure 服務匯流排支援一套以雲端為基礎、訊息導向的中介軟體技術，包括可靠的訊息佇列和持久的發佈/訂閱訊息。 這篇文章會根據所提供的 hello 資訊[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)簡單介紹 toohello 發佈/訂閱功能所提供的服務匯流排主題。
 
 ## <a name="evolving-retail-scenario"></a>不斷演變的零售案例
-本文會繼續運用[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)中的零售案例。 請回想一下先前提過的，個別銷售點 (POS) 終端機的銷售資料，必須路由傳送至庫存管理系統，讓系統使用該資料來判斷何時必須補充庫存。 每個 POS 終端機會將訊息傳送至 **DataCollectionQueue** 佇列，藉此回報其銷售資料，訊息會在佇列中持續保留，直到庫存管理系統收到為止，如下所示：
+本文會繼續使用中的 hello 零售案例[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)。 前文提過，將個別銷售點 (POS) 終端機的銷售資料必須路由的 tooan 庫存管理系統使用該資料 toodetermine toobe 補充存貨。 每個 POS 終端機報告其銷售資料，藉由傳送訊息 toohello **DataCollectionQueue**佇列，其中一直等到收到 hello 庫存管理系統，如下所示：
 
 ![服務匯流排 1](./media/service-bus-create-topics-subscriptions/IC657161.gif)
 
-為了進一步演變此案例，我們已將新的要求加入至系統：商店老闆想要能夠即時監視商店的銷售業績。
+此案例中，新的需求已的 tooevolve 加入 toohello 系統： hello 店主想 toobe 無法 toomonitor hello 存放區執行即時的方式。
 
-為了滿足這項要求，系統必須「支開」銷售資料流。 我們還是需要 POS 終端機傳送的每則訊息像之前一樣，傳送至庫存管理系統，但我們想要每則訊息的另一個複本，以便對商店老闆呈現儀表板檢視。
+tooaddress 這項需求，hello 系統必須 「 竊聽 」 hello 銷售資料流。 我們仍然希望傳送嗨 POS 終端機 toobe 傳送 toohello 庫存管理系統做為前，每個訊息，但我們想要每則訊息，我們可以使用 toopresent hello 儀表板檢視 toohello 存放區擁有者的另一個複本。
 
-在任何類似情況下，如果需要每則訊息是由多方取用，您可以使用服務匯流排「主題」。 主題提供發佈/訂閱模式，亦即每則發佈的訊息會提供給向主題註冊的一或多個訂用帳戶。 相較之下，佇列是由單一取用者收到每則訊息。
+在任何情況下，您需要由多個合作對象，每個訊息 toobe 中，您可以使用服務匯流排*主題*。 主題提供發佈/訂閱的模式，其中每個發佈的訊息可提供 tooone 或多個訂閱註冊 hello 主題。 相較之下，佇列是由單一取用者收到每則訊息。
 
-訊息傳送至主題的方式會與傳送至佇列的方式相同。 不過，訊息不是直接從主題處接收；而是從訂用帳戶接收的。 您可以將主題的訂用帳戶視為虛擬佇列，可接收已傳送到該主題的訊息複本。 從訂用帳戶接收訊息的方式與從佇列接收訊息的方式相同。
+訊息會傳送 hello tooa 主題相同方式進行傳送 tooa 佇列。 不過，訊息不會從接收 hello 主題直接;它們會從訂閱接收。 您可以將訂用帳戶 tooa 主題視為虛擬佇列，可接收 toothat 主題傳送 hello 訊息複本。 從訂閱接收訊息方式與從佇列收到 hello 相同。
 
-回到零售案例中，主題會取代佇列，而新增的訂用帳戶將可由庫存管理系統元件使用。 系統現在看起來會像下面這樣：
+返回 toohello 零售案例，主題，會取代 hello 佇列，並加入訂用帳戶，可以使用哪些 hello 庫存管理系統元件。 hello 系統現在會顯示，如下所示：
 
 ![服務匯流排 2](./media/service-bus-create-topics-subscriptions/IC657165.gif)
 
-這裡的組態會與先前以佇列為基礎的設計的運作方式完全相同。 也就是傳送至主題的訊息，會路由傳送至 **Inventory** 訂用帳戶，然後由**庫存管理系統**從中取用。
+這裡 hello 組態執行方式 toohello 先前佇列架構設計。 也就是說，傳送 toohello 主題的訊息會路由的 toohello**清查**訂用帳戶，從哪些 hello**庫存管理系統**會使用它們。
 
-為了支援管理儀表板，我們在主題上建立了第二個訂用帳戶，如下所示：
+順序 toosupport hello 管理儀表板中，我們建立第二個訂閱 hello 主題如下所示：
 
 ![Service Bus 3](./media/service-bus-create-topics-subscriptions/IC657166.gif)
 
-在此組態中，來自 POS 終端機的每則訊息皆會提供給 **Dashboard** 和 **Inventory** 訂用帳戶。
+使用此設定時，所做每則訊息將 hello POS 終端機可用 tooboth hello**儀表板**和**清查**訂用帳戶。
 
-## <a name="show-me-the-code"></a>示範程式碼
-[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)文章中說明如何註冊 Azure 帳戶，並建立服務命名空間。 參考服務匯流排相依性的最簡單方式是，安裝服務匯流排 [Nuget 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus/)。 您也可以在 Azure SDK 中找到服務匯流排程式庫。 您可以在 [Azure SDK 下載頁面](https://azure.microsoft.com/downloads/)中下載。
+## <a name="show-me-hello-code"></a>我想 hello 程式碼
+hello 文章[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)描述如何 toosign 的 Azure 帳戶，建立服務命名空間。 hello 最簡單方式 tooreference 服務匯流排相依性為 tooinstall hello Service Bus [Nuget 封裝](https://www.nuget.org/packages/WindowsAzure.ServiceBus/)。 您也可以尋找 hello 服務匯流排程式庫做為 hello Azure SDK 的一部分。 hello 下載將會位於 hello [Azure SDK 下載頁面](https://azure.microsoft.com/downloads/)。
 
-### <a name="create-the-topic-and-subscriptions"></a>建立主題和訂用帳戶
-服務匯流排傳訊實體的管理作業 (佇列和發佈/訂閱主題) 是透過 [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) 類別來執行。 需要有適當的認證，才能建立特定命名空間的 **NamespaceManager** 執行個體。 服務匯流排會使用以[共用存取簽章 (SAS)](service-bus-sas.md) 為基礎的安全性模型。 [TokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#microsoft_servicebus_tokenprovider) 類別代表安全性權杖提供者，其具有內建 Factory 方法，可傳回部分已知的權杖提供者。 我們將使用 [CreateSharedAccessSignatureTokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#Microsoft_ServiceBus_TokenProvider_CreateSharedAccessSignatureTokenProvider_System_String_) 方法來保存 SAS 認證。 接著使用服務匯流排命名空間和權杖提供者的基底位址建構 [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) 執行個體。
+### <a name="create-hello-topic-and-subscriptions"></a>建立 hello 主題和訂閱
+管理 Service Bus 訊息實體 （佇列和發佈/訂閱主題） 都是透過 hello 作業[NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager)類別。 適當的認證所需的順序 toocreate **NamespaceManager**針對特定的命名空間的執行個體。 服務匯流排會使用以[共用存取簽章 (SAS)](service-bus-sas.md) 為基礎的安全性模型。 hello [TokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#microsoft_servicebus_tokenprovider)類別代表與內建的 factory 方法傳回某些已知權杖提供者的安全性權杖提供者。 我們將使用[CreateSharedAccessSignatureTokenProvider](/dotnet/api/microsoft.servicebus.tokenprovider#Microsoft_ServiceBus_TokenProvider_CreateSharedAccessSignatureTokenProvider_System_String_)方法 toohold hello SAS 認證。 hello [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) hello hello 服務匯流排命名空間和 hello 權杖提供者的基底地址，然後建構執行個體。
 
-[NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) 類別提供用以建立、列舉及刪除傳訊實體的方法。 此處的程式碼會示範如何建立 **NamespaceManager** 執行個體，並用來建立 **DataCollectionTopic** 主題。
+hello [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager)類別會提供方法 toocreate、 列舉和刪除訊息實體。 hello 程式碼，如下所示顯示如何 hello **NamespaceManager**執行個體是已建立並使用 toocreate hello **DataCollectionTopic**主題。
 
 ```csharp
 Uri uri = ServiceBusEnvironment.CreateServiceUri("sb", "test-blog", string.Empty);
@@ -67,21 +67,21 @@ NamespaceManager namespaceManager = new NamespaceManager(uri, tokenProvider);
 namespaceManager.CreateTopic("DataCollectionTopic");
 ```
 
-請注意，您可使用 [CreateTopic](/dotnet/api/microsoft.servicebus.namespacemanager#Microsoft_ServiceBus_NamespaceManager_CreateTopic_System_String_) 方法的多載來設定主題的屬性。 例如，您可以為傳送到主題的訊息，設定預設的存留時間 (TTL) 值。 接下來，新增 **Inventory** 和 **Dashboard** 訂用帳戶。
+請注意，有多載的 hello [CreateTopic](/dotnet/api/microsoft.servicebus.namespacemanager#Microsoft_ServiceBus_NamespaceManager_CreateTopic_System_String_) hello 主題的 tooset 屬性可讓您的方法。 例如，您可以設定 hello 預設存留時間 (TTL) 值傳送 toohello 主題的訊息。 接下來，新增 hello**清查**和**儀表板**訂用帳戶。
 
 ```csharp
 namespaceManager.CreateSubscription("DataCollectionTopic", "Inventory");
 namespaceManager.CreateSubscription("DataCollectionTopic", "Dashboard");
 ```
 
-### <a name="send-messages-to-the-topic"></a>將訊息傳送到主題
-對於服務匯流排實體上的執行階段作業 (例如，傳送和接收訊息)，應用程式必須先建立 [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#microsoft_servicebus_messaging_messagingfactory) 物件。 **MessagingFactory** 執行個體類似於 [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager) 類別，是從服務命名空間和權杖提供者的基底位址建立的。
+### <a name="send-messages-toohello-topic"></a>傳送訊息 toohello 主題
+對於服務匯流排實體上的執行階段作業 (例如，傳送和接收訊息)，應用程式必須先建立 [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#microsoft_servicebus_messaging_messagingfactory) 物件。 類似 toohello [NamespaceManager](/dotnet/api/microsoft.servicebus.namespacemanager#microsoft_servicebus_namespacemanager)類別，hello **MessagingFactory**從 hello hello 服務命名空間和 hello 權杖提供者的基底地址建立執行個體。
 
 ```
 MessagingFactory factory = MessagingFactory.Create(uri, tokenProvider);
 ```
 
-傳送至 (和接收自) 服務匯流排主題的訊息是 [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage) 類別的執行個體。 此類別包含一組標準屬性 (例如 [Label](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.label?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) 和 [TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.timetolive?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive))、一個用來保存應用程式屬性的字典，以及任意應用程式資料的主體。 應用程式可以傳入任何可序列化物件來設定主體 (以下範例傳入 **SalesData** 物件代表 POS 終端機的銷售資料)，藉此利用 [DataContractSerializer](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer.aspx) 將物件序列化。 或者，也可以提供 [Stream](https://msdn.microsoft.com/library/system.io.stream.aspx) 物件。
+傳送訊息 tooand 收到來自服務匯流排主題是 hello 的執行個體[BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage)類別。 這個類別所組成的一組標準屬性 (例如[標籤](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.label?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label)和[TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.timetolive?view=azureservicebus-4.0.0#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive)) 的字典，其中使用的 toohold 應用程式屬性，和任意應用程式資料的主體。 應用程式可以藉由傳遞任何可序列化的物件設定 hello 主體 (hello 下列範例會傳入**SalesData**表示 hello POS 終端機 hello 銷售資料物件)，就會使用 hello [DataContractSerializer](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer.aspx) tooserialize hello 物件。 或者，也可以提供 [Stream](https://msdn.microsoft.com/library/system.io.stream.aspx) 物件。
 
 ```csharp
 BrokeredMessage bm = new BrokeredMessage(salesData);
@@ -90,7 +90,7 @@ bm.Properties["StoreName"] = "Redmond";
 bm.Properties["MachineID"] = "POS_1";
 ```
 
-將訊息傳送至主題的最簡單方式是使用 [CreateMessageSender](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageSender_System_String_)，直接從 [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory) 執行個體建立 [MessageSender](/dotnet/api/microsoft.servicebus.messaging.messagesender) 物件：
+hello 最簡單方式 toosend 訊息 toohello 主題是 toouse [CreateMessageSender](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageSender_System_String_) toocreate [MessageSender](/dotnet/api/microsoft.servicebus.messaging.messagesender)物件直接從 hello [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory)執行個體：
 
 ```csharp
 MessageSender sender = factory.CreateMessageSender("DataCollectionTopic");
@@ -98,9 +98,9 @@ sender.Send(bm);
 ```
 
 ### <a name="receive-messages-from-a-subscription"></a>自訂用帳戶接收訊息
-與使用佇列類似，您可以使用 [MessageReceiver](/dotnet/api/microsoft.servicebus.messaging.messagereceiver) 物件 (可使用 [CreateMessageReceiver](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageReceiver_System_String_) 從 [MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory) 直接建立)，接收來自訂用帳戶的訊息。 您可以使用兩種不同接收模式的其中之一 (**ReceiveAndDelete** 和 **PeekLock**)，如[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)中所述。
+類似 toousing 佇列、 訂閱，您可以使用從 tooreceive 訊息[MessageReceiver](/dotnet/api/microsoft.servicebus.messaging.messagereceiver)您直接從 hello 建立物件[MessagingFactory](/dotnet/api/microsoft.servicebus.messaging.messagingfactory)使用[CreateMessageReceiver](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_CreateMessageReceiver_System_String_)。 您可以使用其中一個 hello 的兩個不同接收模式 (**ReceiveAndDelete**和**PeekLock**)，如下所述[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)。
 
-請注意，當您建立訂用帳戶的 **MessageReceiver** 時，*entityPath* 參數的形式會是 `topicPath/subscriptions/subscriptionName`。 因此，若要為 **DataCollectionTopic** 主題的 **Inventory** 訂用帳戶建立 **MessageReceiver**，*entityPath* 必須設為 `DataCollectionTopic/subscriptions/Inventory`。 程式碼看起來會像下面這樣：
+請注意，當您建立**MessageReceiver**訂用帳戶，hello *entityPath*參數屬於 hello 表單`topicPath/subscriptions/subscriptionName`。 因此，toocreate **MessageReceiver** hello**清查**訂用帳戶的 hello **DataCollectionTopic**主題*entityPath*必須設定得`DataCollectionTopic/subscriptions/Inventory`。 hello 程式碼如下所示：
 
 ```csharp
 MessageReceiver receiver = factory.CreateMessageReceiver("DataCollectionTopic/subscriptions/Inventory");
@@ -117,30 +117,30 @@ catch (Exception e)
 ```
 
 ## <a name="subscription-filters"></a>訂用帳戶篩選
-到目前為止，此案例中傳送至主題的所有訊息，都會提供給所有已註冊的訂用帳戶。 請注意「都會提供」這幾個字。 雖然服務匯流排訂用帳戶可看見所有傳送至主題的訊息，但您只能將部分訊息複製到虛擬訂用帳戶佇列。 這項工作可透過訂用帳戶「篩選」來進行。 當您建立訂用帳戶時，可以用 SQL92 樣式的述詞形式，提供依訊息屬性運作的篩選運算式，這之中包括系統屬性 (例如 [Label](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label)) 和應用程式屬性 (例如上一個範例中的 **StoreName**)。
+目前為止，在此案例中傳送 toohello 主題的所有訊息都進行可用 tooall 註冊訂用帳戶。 這裡 hello 主要片語 」 可取得。 」 服務匯流排訂閱可看見所有傳送 toohello 主題的訊息，而您可以複製這些訊息 toohello 虛擬訂閱佇列的子集。 這項工作可透過訂用帳戶「篩選」來進行。 當您建立訂閱時，您可以提供 hello 形式 hello hello 訊息屬性上運作的 SQL92 樣式述詞篩選條件運算式，兩者 hello 系統屬性 (例如，[標籤](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label)) 和 hello 應用程式屬性，例如**StoreName** hello 前一個範例中。
 
-若要演變案例來說明這點，要將第二間商店加入我們的零售案例。 兩間商店的所有 POS 終端機的銷售資料，還是必須路由傳送至集中的庫存管理系統，但使用儀表板工具的店經理只注意到商店的銷售業績。 您可以用訂用帳戶篩選來達到此目的。 請注意，當 POS 終端機發佈訊息時，會在訊息上設定 **StoreName** 應用程式屬性。 假設有兩間商店，例如 **Redmond** 和 **Seattle**，Redmond 商店中的 POS 終端機將其銷售資料訊息戳記了 **StoreName** 等於 **Redmond**，而 Seattle 商店的 POS 終端機則使用 **StoreName** 等於 **Seattle**。 Redmond 商店的店經理只想要查看其 POS 終端機的資料。 系統看起來會像下面這樣：
+這發展 hello 案例 tooillustrate，第二個存放區是 toobe 加入的 tooour 零售案例。 從兩個存放區的 hello POS 終端機的所有銷售資料仍有 toobe 路由 toohello 集中式庫存管理系統，但使用 hello 儀表板工具的店只有興趣 hello 該存放區的效能。 您可以使用此篩選 tooachieve 訂用帳戶。 請注意，當 hello POS 終端機發佈訊息時，它們將 hello **StoreName** hello 訊息上的應用程式屬性。 指定兩個存放區，例如**Redmond**和**西雅圖**，hello Redmond hello POS 終端機儲存他們的銷售資料訊息使用的戳記**StoreName**太等於**Redmond**，而 hello 西雅圖儲存 POS 終端機使用**StoreName**太等於**西雅圖**。 hello 存放區管理員的 hello Redmond 只儲存想 toosee 來自其 POS 終端機。 hello 系統會顯示，如下所示：
 
 ![Service-Bus4](./media/service-bus-create-topics-subscriptions/IC657167.gif)
 
-若要設定此路由傳送，您必須建立 **Dashboard** 訂用帳戶，如下所示：
+設定此路由 tooset，建立 hello**儀表板**訂用帳戶，如下所示：
 
 ```csharp
 SqlFilter dashboardFilter = new SqlFilter("StoreName = 'Redmond'");
 namespaceManager.CreateSubscription("DataCollectionTopic", "Dashboard", dashboardFilter);
 ```
 
-使用此[訂用帳戶篩選](/dotnet/api/microsoft.servicebus.messaging.sqlfilter)時，只有 **StoreName** 屬性設定為 **Redmond** 的訊息才會複製到 **Dashboard** 訂用帳戶的虛擬佇列。 但還有更多其他訂用帳戶篩選。 除了能夠在訊息傳遞到訂用帳戶的虛擬佇列時修改訊息屬性外，應用程式還可以在每個訂用帳戶中擁有多個篩選規則。
+與這個[訂用帳戶篩選](/dotnet/api/microsoft.servicebus.messaging.sqlfilter)，訊息會 hello **StoreName**屬性設定太**Redmond**將會複製的 toohello hello虛擬佇列**儀表板**訂用帳戶。 沒有篩選，不過更多 toosubscription。 傳遞 tooa 訂用帳戶的虛擬佇列，應用程式可以有多個篩選規則，每個訂閱中新增 toohello 能力 toomodify hello 訊息的屬性。
 
 ## <a name="summary"></a>摘要
-在[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)中所有使用佇列的原因說明，具體上也適用於使用主題的原因：
+描述所有 hello 原因 toouse 佇列[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)也適用於 tootopics，特別是：
 
-* 暫時分離 – 訊息產生者和取用者不需要同時在線上。
-* 負載調節 – 由主題舒緩負載尖峰，因而可針對平均負載 (而非尖峰負載) 來佈建取用應用程式。
-* 負載平衡 – 類似於佇列，您可以有多個競爭取用者接聽單一訂用帳戶，並將每則訊息遞交給其中一個取用者，進而平衡負載。
-* 鬆散結合 – 您可以在不影響現有端點的情況下發展傳訊網路；例如，新增訂用帳戶或變更主題的篩選，以接納新的取用者。
+* 時間解除結合 – 訊息產生者和消費者不需要線上 toobe hello 在相同的時間。
+* 負載調節 – 尖峰負載平滑 hello 主題啟用取用應用程式 toobe 佈建針對平均負載而非高峰負載。
+* 負載平衡 – 類似 tooa 佇列中，您可以有多個接聽單一訂閱，與遞交 hello 取用者，進而達到負載平衡的其中一個 tooonly 每個訊息的競爭取用者。
+* 鬆散結合 – 您可以持續改進 hello 訊息而不會影響現有端點; 的網路例如，新增訂閱或變更篩選 tooa 主題 tooallow 新的消費者。
 
 ## <a name="next-steps"></a>後續步驟
 
-請參閱[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)，了解如何在 POS 零售案例中使用佇列的相關資訊。
+請參閱[建立使用服務匯流排佇列的應用程式](service-bus-create-queues.md)toouse 排入佇列中 hello POS 零售案例的相關資訊。
 

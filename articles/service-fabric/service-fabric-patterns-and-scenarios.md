@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 模式和案例 | Microsoft Docs"
-description: "了解最佳作法，並證明可重複使用的模式來設計、開發及操作您的微服務，Service Fabric 上。"
+title: "Service Fabric aaaAzure 模式和案例 |Microsoft 文件"
+description: "了解最佳作法，並證明，可重複使用的模式 toodesign 開發及操作您 microservices 服務網狀架構上。"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/16/2017
 ms.author: ryanwi
-ms.openlocfilehash: fb2fa495758433e357722427b1c162420935955d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3811420eb53d9a49e490dd2e2e5319d8dea5629c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-patterns-and-scenarios"></a>Service Fabric 模式和案例
-如果您正在觀看如何使用 Azure Service Fabric 建置大規模微服務，請向負責設計及建置此平台即服務 (PaaS) 的專家學習。 從適當的架構開始，接著了解如何將您應用程式的資源最佳化。 [Service Fabric 模式和實務](https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344)課程會回答真實客戶最常詢問的 Service Fabric 案例和應用程式領域相關問題。
+如果您要尋找在建置大型 microservices 使用 Azure Service Fabric，了解設計和建置此平台即服務 (PaaS) hello 專家。 開始使用適當的架構，然後了解如何 toooptimize 資源應用程式。 hello[服務網狀架構 Patterns and Practices](https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344)課程回答 hello 問題最常詢問真實世界的客戶服務網狀架構案例和應用程式區域。
  
-了解如何使用最佳作法和經過實證且可重複使用的模式，在 Service Fabric 上設計、開發及操作您的微服務。 取得 Service Fabric 的概觀，然後深入了解涵蓋叢集最佳化和安全性、移轉舊版應用程式、大規模 IoT、裝載遊戲引擎等的主題。 查看各種工作負載的連續傳遞，甚至取得 Linux 支援和容器的詳細資料。 
+了解如何 toodesign，開發，以及操作您 microservices 上服務的網狀架構使用的最佳作法和經過驗證、 可重複使用的模式。 取得 Service Fabric 的概觀，然後深入了解涵蓋叢集最佳化和安全性、移轉舊版應用程式、大規模 IoT、裝載遊戲引擎等的主題。 查閱持續傳遞不同的工作負載，並取得 hello Linux 支援和容器的詳細資訊。 
 
 ## <a name="introduction"></a>簡介
-瀏覽最佳作法，並了解為何選擇平台即服務 (PaaS) 而不是基礎結構即服務 (IaaS)。 取得下列已經實證之應用程式設計原則的詳細資料。
+瀏覽最佳作法，並了解為何選擇平台即服務 (PaaS) 而不是基礎結構即服務 (IaaS)。 在下列經過證實的應用程式設計原則取得 hello 詳細資料。
 
 <table><tr><th>影片</th><th>PowerPoint 簡報</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=N2KwbbSGD_6405167344">
 <img src="./media/service-fabric-patterns-and-scenarios/intro.png" WIDTH="360" HEIGHT="244">
-</a></td><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344">Service Fabric 簡介</a></td></tr>
+</a></td><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=mudwqISGD_6005167344">簡介 tooService 網狀架構</a></td></tr>
 </table>
 
 ## <a name="cluster-planning-and-management"></a>叢集規劃與管理
@@ -53,7 +53,7 @@ ms.lasthandoff: 07/11/2017
 </table>
 
 ## <a name="iot"></a>IoT
-探索 Azure Service Fabric 環境中的物聯網 (IoT)，包括 Azure IoT 管線、多重租用和大規模 IoT。
+Azure Service Fabric，包括 hello Azure IoT 管線、 多租用戶和 IoT 大規模 hello 內容中，瀏覽 hello 物聯網 (IoT)。
 
 <table><tr><th>影片</th><th>PowerPoint 簡報</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=naFUVeSGD_1505167344">
@@ -80,7 +80,7 @@ ms.lasthandoff: 07/11/2017
 </table>
 
 ## <a name="migration"></a>移轉
-除了舊版應用程式的移轉以外，還要了解如何從雲端服務移轉。
+深入了解從移轉的雲端服務，除了 toomigration 的舊版應用程式。
 
 <table><tr><th>影片</th><th>PowerPoint 簡報</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=hd1cMgSGD_5605167344">
@@ -89,7 +89,7 @@ ms.lasthandoff: 07/11/2017
 </table>
 
 ## <a name="containers-and-linux-support"></a>容器和 Linux 支援
-取得「為何使用容器？」問題的答案 了解 Windows 容器、Linux 支援和 Linux 容器協調流程的概況簡介。 此外，了解如何將 .NET Core 應用程式移轉至 Linux。
+取得 hello 回應 toohello 問題時，「 為什麼容器嗎？ 」 深入了解 Windows 容器、 Linux 支援和 Linux 容器協調流程的 hello 預覽。 此外，了解如何 toomigrate.NET Core 應用程式 tooLinux。
 
 <table><tr><th>影片</th><th>PowerPoint 簡報</th></tr>
 <tr><td><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/service-fabric-patterns-and-practices-16925?l=V1ERJhSGD_305167344">
@@ -98,4 +98,4 @@ ms.lasthandoff: 07/11/2017
 </table>
 
 ## <a name="next-steps"></a>後續步驟
-既然您已了解 Service Fabric 模式和案例，請深入了解如何[建立和管理叢集](service-fabric-deploy-anywhere.md)、[將雲端服務應用程式移轉至 Service Fabric](service-fabric-cloud-services-migration-worker-role-stateless-service.md)、[設定連續傳遞](service-fabric-set-up-continuous-integration.md)以及[部署容器](service-fabric-containers-overview.md)。
+既然您已了解 Service Fabric 模式和案例，深入了解如何太[建立和管理叢集](service-fabric-deploy-anywhere.md)，[移轉雲端服務應用程式 tooService 網狀架構](service-fabric-cloud-services-migration-worker-role-stateless-service.md)，[設定持續傳遞](service-fabric-set-up-continuous-integration.md)，和[部署容器](service-fabric-containers-overview.md)。

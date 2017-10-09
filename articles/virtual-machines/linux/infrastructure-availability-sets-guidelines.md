@@ -1,6 +1,6 @@
 ---
-title: "Azure 中 Linux VM 的可用性設定組 | Microsoft Docs"
-description: "了解適合用來在 Azure 基礎結構服務中部署可用性設定組的關鍵設計和實作指導方針。"
+title: "適用於 Linux Vm 在 Azure 中設定 aaaAvailability |Microsoft 文件"
+description: "深入了解 hello 金鑰設計和實作指導方針在 Azure 基礎結構服務中部署可用性設定組。"
 documentationcenter: 
 services: virtual-machines-linux
 author: iainfoulds
@@ -16,43 +16,43 @@ ms.topic: article
 ms.date: 06/26/2017
 ms.author: iainfou
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c5fad478a8fbbdeef2fe72f0b8f2ebe32852bbc5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 78e4da5c8fd9eb186cafacb46454444b73a9439c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-availability-sets-guidelines-for-linux-vms"></a>適用於 Linux VM 的 Azure 可用性設定組指導方針
 
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-intro](../../../includes/virtual-machines-linux-infrastructure-guidelines-intro.md)]
 
-本文著重於了解可用性設定組的必要計畫步驟，以確保應用程式在計畫或非計畫的事件發生期間可以維持存取性。
+本文著重在所需的了解 hello 規劃步驟，為可用性設定組 tooensure 應用程式仍然可以存取在計劃性或非計劃性的事件。
 
 ## <a name="implementation-guidelines-for-availability-sets"></a>可用性設定組的實作指導方針
 决策：
 
-* 在您的應用程式基礎結構中，需要針對各種角色和層級使用多少個可用性設定組？
+* 多少可用性設定組您需要 hello 各種角色與階層中您的應用程式基礎結構？
 
 工作：
 
-* 定義每個所需應用程式層級中的 VM 數目。
-* 決定您是否需要調整應用程式所使用的錯誤數目或更新網域。
-* 使用您的命名慣例，來定義必要的可用性設定組以及要置於其中的 VM。 一個可用性設定組中只能放置一個 VM。 
+* 您要求每個應用程式層中定義 Vm 的 hello 數目。
+* 判斷您是否需要使用您的應用程式的錯誤或更新網域 toobe tooadjust hello 數目。
+* 定義使用命名慣例和功能的所需的 hello 可用性設定組的 Vm 位於它們。 一個可用性設定組中只能放置一個 VM。 
 
 ## <a name="availability-sets"></a>可用性集合
-在 Azure 中，虛擬機器 (VM) 可以被放置在稱為可用性設定組的邏輯群組之中。 當您在可用性設定組中建立 VM 時，Azure 平台會將這些 VM 的位置散佈於基礎結構上。 若 Azure 平台發生預計的維護事件，或是發生基礎硬體 / 基礎結構錯誤，使用可用性設定組將可確保至少有一個 VM 會保持執行。
+在 Azure 中，虛擬機器 (Vm) 可以置於 tooa 邏輯群組稱為可用性設定組。 當您建立可用性設定組內的 Vm 時，hello Azure 平台會將這些 Vm 的 hello 放置分散 hello 基礎基礎結構。 應該有預定的維護事件 toohello Azure 平台或基礎硬體/基礎結構錯誤，hello 使用可用性設定組可確保至少一個 VM 仍繼續執行。
 
-最佳作法是不將應用程式放置在單一 VM 上。 包含單一 VM 的可用性設定組將無法在 Azure 平台內針對計畫或非計畫的事件獲得保護。 [Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines) 需要可用性設定組內有兩個或以上的 VM，以允許將 VM 散佈於基礎結構上。 如果您使用的是 [Azure 進階儲存體](../../storage/storage-premium-storage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，Azure SLA 就會套用到單一 VM。
+最佳作法是不將應用程式放置在單一 VM 上。 可用性設定組包含單一 VM 不會取得任何規劃或未規劃的事件內 hello Azure 平台的保護。 hello [Azure SLA](https://azure.microsoft.com/support/legal/sla/virtual-machines)需要可用性集 tooallow hello 分配的 Vm hello 基礎基礎結構內的兩個或多個 Vm。 如果您使用[Azure 高階儲存體](../../storage/storage-premium-storage.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)，hello Azure SLA 套用 tooa 單一 VM。
 
-Azure 中的基礎結構分為多個硬體叢集。 每個硬體叢集皆可支援某個 VM 大小範圍。 不論何時，可用性設定組都只能裝載在單一硬體叢集上。 因此，能夠存在於單一可用性設定組中的 VM 大小範圍會限制在硬體叢集所支援的 VM 大小範圍。 當部署可用性設定組中的第一個 VM，或啟動所有 VM 目前都處於「已停止-已解除配置」狀態之可用性設定組中的第一個 VM 時，就會選取該可用性設定組的硬體叢集。 下列 CLI 命令可用來判斷可用性設定組可用的 VM 大小範圍：“az vm list-sizes --location \<string\>”
+在 Azure 中的 hello 基礎結構就會劃分 toomultiple 硬體叢集中。 每個硬體叢集皆可支援某個 VM 大小範圍。 不論何時，可用性設定組都只能裝載在單一硬體叢集上。 因此，可以存在於一個可用性設定組中的 hello 範圍的 VM 大小是 hello 硬體叢集所支援的限制的 toohello 範圍的 VM 大小。 hello hello 可用性設定組中的第一個 VM 部署時，或啟動 hello hello 停止取消配置狀態目前是所有 Vm 的可用性設定組中的第一個 VM 時，會選取 hello 可用性設定組的 hello 硬體叢集。 hello 下列 CLI 命令可以是可用的可用性設定組的使用的 toodetermine hello 範圍的 VM 大小:"az vm 清單的大小： 位置\<字串\>"
 
-每個硬體叢集都分為多個更新網域和容錯網域。 這些網域是會根據主機是共用一般更新週期，或共用類似的實體基礎結構 (例如電源和網路功能) 來定義。 Azure 會自動將您位於可用性設定組內的 VM 散佈於網域上，以維護可用性和容錯。 根據應用程式的大小，以及可用性設定組內的 VM 數目，您可以調整想要使用的網域數目。 您可以深入了解[管理更新和容錯網域的可用性及使用](manage-availability.md)。
+每個硬體叢集分割 toomultiple 更新網域和故障網域。 這些網域是會根據主機是共用一般更新週期，或共用類似的實體基礎結構 (例如電源和網路功能) 來定義。 Azure 會自動發佈您的 Vm 內的可用性設定組，跨網域 toomaintain 可用性和容錯功能。 根據應用程式與 hello Vm 數目在可用性集合中的 hello 大小，您可以調整 hello 數目的網域中，您想 toouse。 您可以深入了解[管理更新和容錯網域的可用性及使用](manage-availability.md)。
 
-設計應用程式基礎結構時，計畫要使用的應用程式層級。 將用途相同的 VM 分組為可用性設定組，例如由執行 nginx 或 Apache 的前端 VM 所組成的可用性設定組。 為執行 MongoDB 或 MySQL 的後端 VM 建立個別的可用性設定組。 我們的目標是要確保應用程式的每個元件都會受到某個可用性設定組所保護，且至少有一個執行個體總是保持執行。
+在設計您的應用程式基礎結構時，規劃出 hello 應用程式層 toouse。 群組 Vm 做 hello 相同用途 tooavailability 集，例如的可用性集合執行 nginx 或 Apache 前端 Vm。 為執行 MongoDB 或 MySQL 的後端 VM 建立個別的可用性設定組。 hello 目標是 tooensure 應用程式的每個元件受可用性設定組，且至少一次執行個體一定會保持執行。
 
-負載平衡器可以在每個應用程式層級之前運用，以和可用性設定組一起運作，並確保流量總是會被路由到正在執行中的執行個體。 若沒有負載平衡器，您的 VM 可能會在規劃或未規劃的維護事件期間持續執行，但在主要 VM 無法使用的情況下，您的使用者可能無法解析它們。
+負載平衡器可以利用每個可用性設定組旁的應用程式層 toowork 前面，並確保流量都可以路由的 tooa 執行執行個體。 沒有負載平衡器 Vm 可能會繼續執行在計劃性與非計劃性的維護事件，但使用者可能無法 tooresolve 它們如果 hello 主要 VM 處於無法使用。
 
-針對儲存層的高可用性設計應用程式。 最佳作法是[對於可用性設定組中的 VM 使用受控磁碟](manage-availability.md#use-managed-disks-for-vms-in-an-availability-set)。 如果您目前使用非受控磁碟，強烈建議您[將可用性設定組中的 VM 轉換為受控磁碟](convert-unmanaged-to-managed-disks.md#convert-vms-in-an-availability-set)。
+針對儲存層的高可用性設計應用程式。 hello 最佳做法太[的可用性設定組的 Vm 使用受管理磁碟](manage-availability.md#use-managed-disks-for-vms-in-an-availability-set)。 如果您目前使用未受管理的磁碟，我們強烈建議您使用太[轉換中可用性設定組 toouse 管理磁碟 Vm](convert-unmanaged-to-managed-disks.md#convert-vms-in-an-availability-set)。
 
 ## <a name="next-steps"></a>後續步驟
 [!INCLUDE [virtual-machines-linux-infrastructure-guidelines-next-steps](../../../includes/virtual-machines-linux-infrastructure-guidelines-next-steps.md)]

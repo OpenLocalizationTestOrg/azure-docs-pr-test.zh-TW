@@ -1,6 +1,6 @@
 ---
-title: "更換 StorSimple 裝置上的磁碟機 | Microsoft Docs"
-description: "說明如何更換 StorSimple 主要機箱或 EBOD 機箱上的磁碟機。"
+title: "aaaReplace StorSimple 裝置上的磁碟機 |Microsoft 文件"
+description: "說明 tooreplace 磁碟 StorSimple 主要機箱或 EBOD 機箱上的磁碟機。"
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: 0659ab9d304dbfcce72e8c3c79edad68e70b9630
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d2c78a6d951b0f00ac42e74a34cf1bc83952a3c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="replace-a-disk-drive-on-your-storsimple-device"></a>更換 StorSimple 裝置上的磁碟機
 ## <a name="overview"></a>Overview
-本教學課程說明如何取下和更換 Microsoft Azure StorSimple 裝置上無法運作或故障的硬碟。 若要取下磁碟機，您必須：
+本教學課程說明如何取下和更換 Microsoft Azure StorSimple 裝置上無法運作或故障的硬碟。 tooreplace 磁碟機，您要：
 
-* 打開防拆鎖
-* 取下磁碟機
-* 安裝更換磁碟機
+* 卸除 hello 防拆鎖
+* 移除 hello 磁碟機
+* 安裝 hello 更換磁碟機
 
 > [!IMPORTANT]
-> 取下及更換磁碟機之前，請閱讀 [StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)中的安全資訊。
+> 移除和更換磁碟機，請檢閱中的 hello 安全資訊之前[StorSimple 硬體元件更換](storsimple-hardware-component-replacement.md)。
 > 
 > 
 
-## <a name="disengage-the-antitamper-lock"></a>打開防拆鎖
-此程序說明在更換磁碟機時如何扣上或打開 StorSimple 裝置上的防拆鎖。 防拆鎖固定在磁碟機的載具把手，而且它們是透過把手的閂鎖部件中的小孔來存取。 提供磁碟機時已將鎖設定為鎖定的位置。
+## <a name="disengage-hello-antitamper-lock"></a>卸除 hello 防拆鎖
+此程序說明如何 hello StorSimple 裝置上的防拆鎖可以囓合或當您取代 hello 磁碟機。 hello 防拆鎖會納入在 hello 磁碟機托架把手，並透過小孔 hello 控制代碼的 hello 閂鎖區段中存取它們。 Hello 鎖定組 toohello 鎖定位置提供磁碟機。
 
-#### <a name="to-unlock-the-antitamper-lock"></a>若要解除鎖定防拆鎖
-1. 小心地將鎖鑰匙 (Microsoft 提供的「防拆」T10 螺絲起子) 插入把手中的孔中，並插入其插座中。 
+#### <a name="toounlock-hello-antitamper-lock"></a>toounlock hello 防拆鎖
+1. Hello 控制代碼中的 hello 光圈和它的通訊端，小心地將 hello 鎖定鑰匙 （「 防拆 」 T10 螺絲起子 Microsoft 提供）。 
    
    > [!NOTE]
-   > 如果防拆鎖已啟動，則可在孔中看到紅色指示器。
+   > 如果已啟動 hello 防拆鎖，hello 紅色指示器中會顯示 hello 光圈。
    > 
    > 
    
@@ -52,63 +52,63 @@ ms.lasthandoff: 07/11/2017
    |:--- |:--- |
    | 1 |指示器孔 |
    | 2 |防拆鎖 |
-2. 以逆時鐘方向旋轉鑰匙，直到在鑰匙上方的孔中看不到紅色指示器。
-3. 取下鑰匙。
+2. 直到 hello 紅色指示器中未顯示 hello 光圈上方 hello 金鑰以逆時針方向旋轉 hello 索引鍵。
+3. 移除 hello 索引鍵。
    
     ![已解除鎖定磁碟機](./media/storsimple-disk-drive-replacement/IC741057.png)
    
     **圖 2** 已解除鎖定磁碟機
-4. 現在可以取下磁碟機。
+4. 現在即可卸下 hello 磁碟機。
 
-請反向依照步驟來扣上鎖。
+步驟 hello 反向 tooengage hello 鎖定中。
 
-## <a name="remove-the-disk-drive"></a>取下磁碟機
+## <a name="remove-hello-disk-drive"></a>移除 hello 磁碟機
 您的 StorSimple 裝置支援如 RAID 10 的儲存空間組態。 這表示它可以在一個磁碟、固態硬碟 (SSD) 或硬碟 (HDD) 故障的情況下正常操作。 
 
 > [!IMPORTANT]
-> * 如果您的系統有一個以上故障的磁碟，請勿於任何時間點從系統移除一個以上的 SSD 或 HDD。 這樣做可能會導致資料遺失。
+> * 如果您的系統有一個以上的故障的磁碟，不要移除一個以上的 SSD 或 HDD hello 系統在任何時間點的時間。 這樣做可能會導致資料遺失。
 > * 請確定您將更換 SSD 放置在先前包含 SSD 的插槽中。 同樣地，請將更換 HDD 放置在先前包含 HDD 的插槽中。
-> * 在傳統入口網站中，插槽的編號從 0 – 11。 因此，如果入口網站顯示插槽 2 中的磁碟故障，請在裝置上從左上角算起的第三個插槽中尋找故障的磁碟。
+> * 在 hello Azure 傳統入口網站，插槽編號為 0 – 11。 因此，如果 hello 入口網站顯示插槽 2 中的磁碟已經失敗，hello 裝置上尋找 hello hello 第三個位置中的故障磁碟從 hello 左上角。
 > 
 > 
 
-您可以在系統操作時取下和更換磁碟機。
+磁碟機可以移除並取代 hello 系統運作時。
 
-#### <a name="to-remove-a-drive"></a>若要取下磁碟機
-1. 若要識別故障的磁碟，請在 Azure 傳統入口網站中，移至 [裝置]  >  [維護]  >  [硬體狀態]。 因為主要機箱和/或 EBOD 機箱 (如果您是使用 8600 機型) 中的磁碟可能故障，請查看 [共用元件] 和 [EBOD 機箱共用元件] 下的磁碟狀態。 任一機箱中故障的磁碟將以紅色狀態顯示。
-2. 找出主要機箱或 EBOD 機箱前面的磁碟機。 
-3. 如果磁碟已解除鎖定，請繼續下一個步驟。 如果磁碟已鎖定，請遵循 [打開防拆鎖](#disengage-the-antitamper-lock)中的程序，將它解除鎖定。
-4. 按壓磁碟機載具模組上的黑色閂鎖，然後拉出磁碟機載具把手，並從底座前端移走。 
+#### <a name="tooremove-a-drive"></a>tooremove 磁碟機
+1. tooidentify hello 故障的磁碟，請在 hello Azure 傳統入口網站中移過**裝置** > **維護** > **硬體狀態**。 因為磁碟可能會失敗，在 hello 主要機箱和/或 EBOD 機箱 （如果您正使用 8600 模型） 中，查看 hello 狀態下的 hello 磁碟**共用元件**下方和  **EBOD 機箱共用元件**. 任一機箱中故障的磁碟將以紅色狀態顯示。
+2. Hello 正面 hello 主要機箱或 hello EBOD 機箱中，找出 hello 磁碟機。 
+3. 如果 hello 磁碟已解除鎖定，繼續 toohello 下一個步驟。 如果 hello 磁碟已鎖定，依照下列中的 hello 程序解除鎖定[解除 hello 防拆鎖](#disengage-the-antitamper-lock)。
+4. 按 hello 黑色上 hello 磁碟機載具模組閂鎖，而從 hello 底座 hello 前端逾時，立即提取 hello 磁碟機托架把手。 
    
     ![鬆開磁碟機把手](./media/storsimple-disk-drive-replacement/IC741051.png)
    
-    **圖 3** 鬆開磁碟機把手
-5. 當磁碟機載具把手完全伸展時，請將磁碟機載具滑出底座。 
+    **圖 3**釋放 hello 磁碟機把手
+5. 當 hello 磁碟機托架把手完全延伸，投影片 hello 磁碟機托架超出 hello 底座。 
    
     ![將磁碟滑出磁碟機](./media/storsimple-disk-drive-replacement/IC741052.png)
    
-    **圖 4** 將磁碟機滑出載具
+    **圖 4**滑動 hello hello 載波偵測出的磁碟機
 
-## <a name="install-the-replacement-disk-drive"></a>安裝更換磁碟機
-在 StorSimple 裝置中的磁碟機故障，而且您已取下它之後，請遵循此程序，將它更換為新的磁碟機。
+## <a name="install-hello-replacement-disk-drive"></a>安裝 hello 更換磁碟機
+StorSimple 裝置中故障磁碟機，並將它卸下之後，請遵循此程序 tooreplace 它與新的磁碟機。
 
-#### <a name="to-insert-a-drive"></a>若要插入磁碟機
-1. 確定磁碟機載具把手已完全伸展，如下圖所示。
+#### <a name="tooinsert-a-drive"></a>tooinsert 磁碟機
+1. 請確定 hello 磁碟機托架把手完全延伸，hello 下列影像所示。
    
     ![把手已伸展的磁碟機](./media/storsimple-disk-drive-replacement/IC741044.png)
    
     **圖 5** 把手已伸展的磁碟機
-2. 將磁碟機載具完全滑入底座。 
+2. Hello 所有 hello 方式的磁碟機托架滑入 hello 底座中。 
    
     ![將磁碟滑入磁碟機載具](./media/storsimple-disk-drive-replacement/IC741045.png)
    
-    **圖 6** 將磁碟機載具滑入底座
-3. 一旦插入磁碟機載具，請關閉磁碟機載具把手，同時繼續將磁碟機載具推入底座，直到磁碟機載具把手卡入鎖定的位置。
-4. 使用 Microsoft 所提供的鎖鑰匙 (防拆 Torx 螺絲起子)，將鎖螺絲順時鐘方向旋轉四分之一來固定住載具把手。
-5. 存取 Azure 傳統入口網站，並導覽至 [維護]  >  [硬體狀態]，來確認更換成功，而且磁碟機可運作。 在 [共用元件] 或 [EBOD 機箱共用元件] 下，磁碟機狀態應該是綠色,表示狀況良好。
+    **圖 6**滑動 hello 磁碟機托架至 hello 底座
+3. 與 hello 磁碟機托架插入，請關閉 hello 磁碟機托架把手時繼續 toopush hello 磁碟機托架至 hello 底座，直到 hello 磁碟機托架把手扣入鎖定的位置。
+4. 由 Microsoft （防拆 Torx 螺絲起子） toosecure hello 托架把手位置提供藉由開啟 hello 鎖定螺絲四分之一順時針使用 hello lock 鍵。
+5. 確認 hello 更換成功，而且 hello 磁碟機操作存取 hello Azure 傳統入口網站，並巡覽太**維護** > **硬體狀態**。 在下**共用元件**或**EBOD 機箱共用元件**，hello 磁碟機狀態應為綠色，表示運作正常。
    
    > [!NOTE]
-   > 在更換之後，可能需要數小時，磁碟狀態才會變成綠色。
+   > 它可能需要幾個小時 hello 磁碟狀態 tooturn 綠色之後 hello 取代。
    > 
    > 
 

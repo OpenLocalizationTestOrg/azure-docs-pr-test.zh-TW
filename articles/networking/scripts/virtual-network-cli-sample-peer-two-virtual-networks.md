@@ -1,5 +1,5 @@
 ---
-title: "Azure CLI 指令碼範例 - 讓兩個虛擬網路對等互連 | Microsoft Docs"
+title: "aaaAzure CLI 指令碼範例的對等的兩個虛擬網路 |Microsoft 文件"
 description: "Azure CLI 指令碼範例 - 讓兩個虛擬網路對等互連"
 services: virtual-network
 documentationcenter: virtual-network
@@ -15,15 +15,15 @@ ms.tgt_pltfrm:
 ms.workload: infrastructure
 ms.date: 07/07/2017
 ms.author: kumud
-ms.openlocfilehash: a2b8fda288072e2fb0087988bbd68d3e4d9031d8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 54dabb2b9e05951d10f1b6b4f61ca592ce11d364
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="peer-two-virtual-networks"></a>讓兩個虛擬網路對等互連
 
-此指令碼會在同一個區域中建立兩個虛擬網路，並透過 Azure 網路連接這兩個虛擬網路。 執行此指令碼之後，您將會在兩個虛擬網路之間建立對等互連。
+此指令碼會建立和連接 hello 中的兩個虛擬網路相同的區域 trhough hello Azure 網路。 執行 hello 指令碼之後, 您將建立兩個虛擬網路之間對等互連。
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
@@ -32,11 +32,11 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-azurecli-interactive[main](../../../cli_scripts/virtual-network/peer-two-virtual-networks/peer-two-virtual-networks.sh "讓兩個網路對等互連")]
+[!code-azurecli-interactive[main](../../../cli_scripts/virtual-network/peer-two-virtual-networks/peer-two-virtual-networks.sh "Peer two networks")]
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-執行下列命令來移除資源群組、VM 和所有相關資源。
+執行下列命令 tooremove hello 資源群組、 VM 和所有相關的資源的 hello。
 
 ```azurecli
 az group delete --name myResourceGroup --yes
@@ -44,7 +44,7 @@ az group delete --name myResourceGroup --yes
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼使用下列命令來建立資源群組、虛擬機器和所有相關資源。 下表中的每個命令都會連結至命令特定的文件。
+此指令碼會使用下列命令 toocreate 資源群組、 虛擬機器的 hello 和所有相關聯的資源。 Hello 資料表連結 toocommand 特定文件中的每個命令。
 
 | 命令 | 注意事項 |
 |---|---|
@@ -55,6 +55,6 @@ az group delete --name myResourceGroup --yes
 
 ## <a name="next-steps"></a>後續步驟
 
-如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
+如需有關 Azure CLI hello 的詳細資訊，請參閱[Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 
-您可以在 [Azure 網路概觀文件](../cli-samples.md)中找到其他網路 CLI 指令碼範例。
+其他網路功能的 CLI 指令碼範例可以在 hello [Azure 網路概觀文件](../cli-samples.md)。

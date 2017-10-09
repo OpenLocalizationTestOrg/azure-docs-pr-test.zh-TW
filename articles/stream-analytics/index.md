@@ -1,6 +1,6 @@
 ---
-title: "Azure 串流分析文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何透過完全受管理的事件處理，在雲端執行 IoT 分析。 即時分析來自應用程式、感應器、裝置等的資料。"
+title: "aaaAzure Stream Analytics 文件-教學課程中，API 參考 |Microsoft 文件"
+description: "了解如何在 hello toorun IoT 分析雲端完全受管理的事件處理。 即時分析來自應用程式、感應器、裝置等的資料。"
 services: stream-analytics
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 05/23/2017
 ms.author: carolz
-ms.openlocfilehash: f82be4ff7bd0839be4f826f9a04ba0876f4ec91d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4015137b0f39f86ada69d92e77e72b77b799d2d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="stream-analytics-documentation"></a>串流分析文件
 
-了解如何利用串流分析 (完全受管理的事件處理引擎)，在雲端執行物聯網 (IoT) 分析。 教學課程和其他文件會示範如何即時分析來自應用程式、感應器、裝置、社交媒體等的資料。 
+了解在 hello toorun 物聯網 (IoT) 分析定域機組的 Stream Analytics 中，完全受管理的事件處理引擎。 教學課程和其他文件會顯示如何從應用程式、 感應器、 裝置、 社交媒體和多個即時 tooanalyze 資料。 
 
 <ul class="panelContent cardsFTitle">
      <li>

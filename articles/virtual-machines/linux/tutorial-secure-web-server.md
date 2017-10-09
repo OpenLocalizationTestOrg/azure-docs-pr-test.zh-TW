@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中使用 SSL 憑證來保護網頁伺服器 | Microsoft Docs"
-description: "了解如何在 Azure 中的 Linux VM 上使用 SSL 憑證來保護 NGINX 網頁伺服器"
+title: "SSL 的 web 伺服器憑證在 Azure 中的 aaaSecure |Microsoft 文件"
+description: "了解如何 toosecure hello NGINX 網頁伺服器使用 SSL 憑證在 Azure 中的 Linux VM 上"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: iainfoulds
@@ -16,40 +16,40 @@ ms.workload: infrastructure
 ms.date: 07/17/2017
 ms.author: iainfou
 ms.custom: mvc
-ms.openlocfilehash: 181be35aeb61020db3abaeba22aa882848923c31
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d3a62d77ac05c9aa2a44356b7c8e44cb485b81aa
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="secure-a-web-server-with-ssl-certificates-on-a-linux-virtual-machine-in-azure"></a>在 Azure 中的 Linux 虛擬機器上使用 SSL 憑證來保護網頁伺服器
-若要保護網頁伺服器，您可以使用安全通訊端層 (SSL) 憑證來將網路流量加密。 這些 SSL 憑證可儲存在 Azure Key Vault，並且能夠讓您將憑證安全地部署到 Azure 中的 Linux 虛擬機器 (VM)。 在本教學課程中，您了解如何：
+toosecure web 伺服器，安全通訊端稍後 (SSL) 憑證可以是使用 tooencrypt 網路流量。 這些 SSL 憑證可以儲存在 Azure 金鑰保存庫，並在 Azure 中允許的憑證 tooLinux 虛擬機器 (Vm) 的安全部署。 在本教學課程中，您了解如何：
 
 > [!div class="checklist"]
 > * 建立 Azure Key Vault
-> * 產生或上傳憑證至 Key Vault
-> * 建立 VM 並安裝 NGINX 網頁伺服器
-> * 將憑證插入 VM 並使用 SSL 繫結來設定 NGINX
+> * 產生或上傳憑證 toohello 金鑰保存庫
+> * 建立 VM，並且安裝 hello NGINX 網頁伺服器
+> * 插入 hello VM 中的 hello 憑證，並使用 SSL 繫結設定 NGINX
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。  
+如果您選擇 tooinstall，並在本機上使用 hello CLI，本教學課程需要您執行 hello Azure CLI 版本 2.0.4 或更新版本。 執行`az --version`toofind hello 版本。 如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。  
 
 
 ## <a name="overview"></a>概觀
-Azure Key Vault 會保護密碼編譯金鑰和祕密，這類憑證或密碼。 Key Vault 有助於簡化憑證管理程序，並可讓您掌控用來存取這些憑證的金鑰。 您可以在 Key Vault 內建立自我簽署憑證，或上傳您目前已經擁有的受信任憑證。
+Azure Key Vault 會保護密碼編譯金鑰和祕密，這類憑證或密碼。 金鑰保存庫可協助簡化 hello 憑證管理程序，並讓您存取那些憑證的索引鍵的 toomaintain 控制項。 您可以在 Key Vault 內建立自我簽署憑證，或上傳您目前已經擁有的受信任憑證。
 
-您不必使用包含了內建憑證的自訂 VM 映像，而是要將憑證插入執行中的 VM。 此程序可確保您在部署期間安裝在網頁伺服器上的憑證會是最新的。 如果您更新或取代憑證，您就不必另外再建立新的自訂 VM 映像。 當您建立其他 VM 時，系統會自動插入最新的憑證。 在整個過程中，憑證絕對不會離開 Azure 平台，或在指令碼、命令列記錄或範本中公開。
+您不必使用包含了內建憑證的自訂 VM 映像，而是要將憑證插入執行中的 VM。 此程序可確保 hello 最新的憑證會在部署期間安裝網頁伺服器上。 如果您更新或取代憑證時，您還沒有 toocreate 新的自訂 VM 映像。 當您建立其他的 Vm 會自動插入 hello 最新的憑證。 Hello 整個程序期間 hello 憑證永遠不會保留 hello Azure 平台，或會公開在指令碼、 命令列的歷程記錄或範本。
 
 
 ## <a name="create-an-azure-key-vault"></a>建立 Azure Key Vault
-建立 Key Vault 和憑證之前，請先使用 [az group create](/cli/azure/group#create) 來建立資源群組。 下列範例會在 eastus 位置建立名為 myResourceGroupSecureWeb 的資源群組：
+建立 Key Vault 和憑證之前，請先使用 [az group create](/cli/azure/group#create) 來建立資源群組。 hello 下列範例會建立名為的資源群組*myResourceGroupSecureWeb*在 hello *eastus*位置：
 
 ```azurecli-interactive 
 az group create --name myResourceGroupSecureWeb --location eastus
 ```
 
-接著，使用 [az keyvault create](/cli/azure/keyvault#create) 建立 Key Vault，並加以啟用以供您在部署 VM 時使用。 每個 Key Vault 需要唯一的名稱，而且應該全部小寫。 使用您自己唯一的 Key Vault 名稱來取代下列範例中的 *<mykeyvault>*：
+接著，使用 [az keyvault create](/cli/azure/keyvault#create) 建立 Key Vault，並加以啟用以供您在部署 VM 時使用。 每個 Key Vault 需要唯一的名稱，而且應該全部小寫。 取代 *<mykeyvault>* 在下列範例使用您自己的唯一金鑰保存庫名稱 hello:
 
 ```azurecli-interactive 
 keyvault_name=<mykeyvault>
@@ -60,7 +60,7 @@ az keyvault create \
 ```
 
 ## <a name="generate-a-certificate-and-store-in-key-vault"></a>產生憑證並儲存於 Key Vault
-若要在生產環境中使用，您應該使用 [az keyvault certificate import](/cli/azure/certificate#import) 來匯入由受信任的提供者所簽署的有效憑證。 在本教學課程中，下列範例示範如何透過使用預設憑證原則的 [az keyvault certificate create](/cli/azure/certificate#create) 來產生自我簽署憑證：
+若要在生產環境中使用，您應該使用 [az keyvault certificate import](/cli/azure/certificate#import) 來匯入由受信任的提供者所簽署的有效憑證。 本教學課程，hello 下列範例示範如何產生自我簽署的憑證與[az keyvault 憑證建立](/cli/azure/certificate#create)使用 hello 預設憑證原則：
 
 ```azurecli-interactive 
 az keyvault certificate create \
@@ -70,7 +70,7 @@ az keyvault certificate create \
 ```
 
 ### <a name="prepare-a-certificate-for-use-with-a-vm"></a>準備要與 VM 搭配使用的憑證
-若要在 VM 建立程序期間使用憑證，使用 [az keyvault secret list-versions](/cli/azure/keyvault/secret#list-versions) 來取得憑證的識別碼。 使用 [az vm format-secret](/cli/azure/vm#format-secret) 轉換憑證。 下列範例會將這些命令的輸出指派給變數，以方便在後續步驟中使用：
+toouse hello 憑證期間 hello VM 建立處理程序，取得您的憑證與 hello 識別碼[az keyvault 密碼清單-版本](/cli/azure/keyvault/secret#list-versions)。 Hello 憑證與轉換[az vm 格式密碼](/cli/azure/vm#format-secret)。 下列範例中的 hello 指派 hello 輸出，以便於 hello 中使用這些命令 toovariables 的下一個步驟：
 
 ```azurecli-interactive 
 secret=$(az keyvault secret list-versions \
@@ -80,12 +80,12 @@ secret=$(az keyvault secret list-versions \
 vm_secret=$(az vm format-secret --secret "$secret")
 ```
 
-### <a name="create-a-cloud-init-config-to-secure-nginx"></a>建立 Cloud-init 組態來保護 NGINX
-[Cloud-init (英文)](https://cloudinit.readthedocs.io) 是在 Linux VM 初次開機時，廣泛用來自訂它們的方法。 您可以使用 cloud-init 來安裝封裝和寫入檔案，或者設定使用者和安全性。 當 cloud-init 在初次開機程序期間執行時，不需要使用任何額外的步驟或必要的代理程式來套用您的組態。
+### <a name="create-a-cloud-init-config-toosecure-nginx"></a>建立雲端 init config toosecure NGINX
+[雲端 init](https://cloudinit.readthedocs.io)是廣泛使用的方法 toocustomize Linux VM，因為它開機 hello 第一次。 您可以使用雲端 init tooinstall 封裝，並將寫入檔案或 tooconfigure 使用者和安全性。 當雲端 init hello 首次開機程序期間執行時，有任何額外的步驟或所需的代理程式 tooapply 您的設定。
 
-當您建立 VM 時，憑證和金鑰會儲存在受保護的 /var/lib/waagent/ 目錄中。 若要自動將憑證新增至 VM 並設定網頁伺服器，請使用 cloud-init。 在此範例中，我們會安裝和設定 NGINX 網頁伺服器。 您可以使用相同的程序來安裝和設定 Apache。 
+當您建立 VM 時，憑證和金鑰會儲存在受保護的 hello */var/lib/waagent/*目錄。 tooautomate 新增 hello 憑證 toohello VM，並設定 hello 網頁伺服器，使用雲端 init。 在此範例中，我們可以安裝和設定 hello NGINX 網頁伺服器。 您可以使用 hello 相同處理 tooinstall 及設定 Apache。 
 
-建立名為 cloud-init-web-server.txt 的檔案，並貼上下列組態：
+建立名為*雲端 init-web server.txt*和 hello 貼上下列組態：
 
 ```yaml
 #cloud-config
@@ -110,7 +110,7 @@ runcmd:
 ```
 
 ### <a name="create-a-secure-vm"></a>建立安全的 VM
-現在，使用 [az vm create](/cli/azure/vm#create) 建立 VM。 使用 `--secrets` 參數，從 Key Vault 插入憑證資料。 使用 `--custom-data` 參數傳入 cloud-init 組態：
+現在，使用 [az vm create](/cli/azure/vm#create) 建立 VM。 hello 憑證資料會插入金鑰保存庫中的 hello 與`--secrets`參數。 您要傳入 hello 雲端 init 組態以 hello`--custom-data`參數：
 
 ```azurecli-interactive 
 az vm create \
@@ -123,9 +123,9 @@ az vm create \
     --secrets "$vm_secret"
 ```
 
-系統需要花幾分鐘的時間來建立 VM、安裝封裝和啟動應用程式。 建立 VM 之後，請注意 Azure CLI 所顯示的 `publicIpAddress`。 您可以使用此位址在網頁瀏覽器中存取您的網站。
+花幾分鐘，讓建立 hello VM toobe hello 封裝 tooinstall 和 hello 應用程式 toostart。 建立 hello VM 後，請記下 hello`publicIpAddress`顯示 hello Azure CLI。 此位址是使用的 tooaccess 您網頁瀏覽器中的站台。
 
-若要讓 Web 流量安全到達您的 VM，請使用 [az vm open-port](/cli/azure/vm#open-port) 從網際網路開啟通訊埠 443：
+tooallow 保護 web 流量 tooreach VM，開啟連接埠 443 從網際網路 hello 與[az vm 開啟通訊埠](/cli/azure/vm#open-port):
 
 ```azurecli-interactive 
 az vm open-port \
@@ -135,12 +135,12 @@ az vm open-port \
 ```
 
 
-### <a name="test-the-secure-web-app"></a>測試安全的 Web 應用程式
-現在，您可以開啟 Web 瀏覽器，並在網址列輸入 *https://<publicIpAddress>*。 提供您自己從 VM 建立程序中取得的公用 IP 位址。 如果您使用自我簽署憑證，請接受安全性警告：
+### <a name="test-hello-secure-web-app"></a>測試 hello 安全的 web 應用程式
+現在您可以開啟網頁瀏覽器並輸入*https://<publicIpAddress>*  hello 網址列中。 提供自己的公用 IP 位址從 hello VM 建立處理程序。 如果您使用自我簽署的憑證，請接受 hello 安全性警告：
 
 ![接受 Web 瀏覽器安全性警告](./media/tutorial-secure-web-server/browser-warning.png)
 
-接著會顯示受保護的 NGINX 網站，如下列範例所示：
+受保護的 NGINX 網站接著會顯示如 hello 下列範例所示：
 
 ![檢視執行中安全的 NGINX 網站](./media/tutorial-secure-web-server/secured-nginx.png)
 
@@ -151,11 +151,11 @@ az vm open-port \
 
 > [!div class="checklist"]
 > * 建立 Azure Key Vault
-> * 產生或上傳憑證至 Key Vault
-> * 建立 VM 並安裝 NGINX 網頁伺服器
-> * 將憑證插入 VM 並使用 SSL 繫結來設定 NGINX
+> * 產生或上傳憑證 toohello 金鑰保存庫
+> * 建立 VM，並且安裝 hello NGINX 網頁伺服器
+> * 插入 hello VM 中的 hello 憑證，並使用 SSL 繫結設定 NGINX
 
-用以下連結查看預先建立的虛擬機器指令碼範例。
+請依照此連結 toosee，預先建立的虛擬機器指令碼範例。
 
 > [!div class="nextstepaction"]
 > [Windows 虛擬機器指令碼範例](./cli-samples.md)

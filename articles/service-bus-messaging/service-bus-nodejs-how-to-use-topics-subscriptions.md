@@ -1,6 +1,6 @@
 ---
-title: "如何搭配 Node.js 使用 Azure 服務匯流排主題和訂用帳戶 | Microsoft Docs"
-description: "了解如何從 Node.js 應用程式，在 Azure 中使用服務匯流排主題和訂用帳戶。"
+title: "aaaHow toouse Azure 服務匯流排主題和訂閱以 Node.js |Microsoft 文件"
+description: "深入了解如何 toouse Service Bus 主題和訂用帳戶在 Azure 中的從 Node.js 應用程式。"
 services: service-bus-messaging
 documentationcenter: nodejs
 author: sethmanheim
@@ -14,29 +14,29 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: 24ae9b80f75531c5e4a84c3b4a6666a6f8a83d2c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e8f6e7ad6ed16d844c408337ac9e50f990e3fafd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-service-bus-topics-and-subscriptions-with-nodejs"></a>如何透過 Node.js 使用服務匯流排主題和訂用帳戶
+# <a name="how-toouse-service-bus-topics-and-subscriptions-with-nodejs"></a>如何 tooUse Service Bus 主題和訂閱以 Node.js
 
 [!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
-本指南說明如何從 Node.js 應用程式使用服務匯流排主題和訂閱。 涵蓋的案例包括**建立主題和訂用帳戶**、**建立訂用帳戶篩選器**、**傳送訊息至主題**、**接收訂用帳戶的訊息**，以及**刪除主題和訂用帳戶**。 如需主題和訂用帳戶的詳細資訊，請參閱[後續步驟](#next-steps)一節。
+本指南說明如何 toouse Service Bus 主題和訂閱從 Node.js 應用程式。 hello 涵蓋案例包括**建立主題和訂閱**，**建立訂用帳戶篩選**，**傳送訊息**tooa 主題**接收從訂用帳戶的郵件**，和**主題和訂用帳戶刪除**。 如需主題和訂閱的詳細資訊，請參閱 hello[後續步驟](#next-steps)> 一節。
 
 [!INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
 
 ## <a name="create-a-nodejs-application"></a>建立 Node.js 應用程式
-建立空白的 Node.js 應用程式。 如需有關建立 Node.js 應用程式的指示，請參閱[建立 Node.js 應用程式並將其部署到 Azure 網站]、[Node.js 雲端服務][Node.js Cloud Service] (使用 Windows PowerShell) 或使用 WebMatrix 的網站。
+建立空白的 Node.js 應用程式。 如需建立 Node.js 應用程式的指示，請參閱[建立和部署 Azure 網站 Node.js 應用程式 tooan]， [Node.js 雲端服務][ Node.js Cloud Service]使用 WindowsPowerShell 中或使用 WebMatrix 的網站。
 
-## <a name="configure-your-application-to-use-service-bus"></a>設定應用程式以使用服務匯流排
-若要使用服務匯流排，請下載 Node.js Azure 封裝。 此封裝含有一組能與服務匯流排 REST 服務通訊的便利程式庫。
+## <a name="configure-your-application-toouse-service-bus"></a>設定您的應用程式 toouse 服務匯流排
+服務匯流排 toouse 下載 hello Node.js 的 Azure 套件。 此套件包含一組與 hello 服務匯流排 REST 服務通訊的程式庫。
 
-### <a name="use-node-package-manager-npm-to-obtain-the-package"></a>使用 Node Package Manager (NPM) 取得封裝
-1. 使用命令列介面，例如 **PowerShell** (Windows)、**終端機** (Mac) 或 **Bash** (Unix)，瀏覽到您建立範例應用程式的資料夾。
-2. 在命令視窗中輸入 **npm install azure**，這應該會產生下列輸出：
+### <a name="use-node-package-manager-npm-tooobtain-hello-package"></a>使用節點封裝管理員 (NPM) tooobtain hello 套件
+1. 使用命令列介面，例如**PowerShell** (Windows，)**終端機**(Mac，) 或**撞**(Unix)，瀏覽 toohello 資料夾建立範例應用程式的位置。
+2. 型別**npm 安裝 azure**在 hello 命令視窗中，這應該會導致 hello 下列輸出：
 
    ```
        azure@0.7.5 node_modules\azure
@@ -51,30 +51,30 @@ ms.lasthandoff: 08/29/2017
    ├── xml2js@0.2.7 (sax@0.5.2)
    └── request@2.21.0 (json-stringify-safe@4.0.0, forever-agent@0.5.0, aws-sign@0.3.0, tunnel-agent@0.3.0, oauth-sign@0.3.0, qs@0.6.5, cookie-jar@0.3.0, node-uuid@1.4.0, http-signature@0.9.11, form-data@0.0.8, hawk@0.13.1)
    ```
-3. 您可以手動執行 **ls** 命令，確認已建立 **node\_modules** 資料夾。 在該資料夾內找出 **azure** 封裝，其中含有存取服務匯流排主題所需的程式庫。
+3. 您可以手動執行 hello **ls**命令 tooverify，**節點\_模組**建立資料夾。 在該資料夾內尋找**azure**套件，其中包含需要 tooaccess Service Bus 主題 hello 程式庫。
 
-### <a name="import-the-module"></a>匯入模組
-使用記事本或其他文字編輯器將以下內容新增至應用程式 **server.js** 檔案的頂端：
+### <a name="import-hello-module"></a>匯入 hello 模組
+使用 [記事本] 或其他文字編輯器，加入下列 toohello 頂端 hello hello**立即轉譯 server.js** hello 應用程式檔案：
 
 ```javascript
 var azure = require('azure');
 ```
 
 ### <a name="set-up-a-service-bus-connection"></a>設定服務匯流排連接
-Azure 模組會讀取環境變數 `AZURE_SERVICEBUS_NAMESPACE` 和 `AZURE_SERVICEBUS_ACCESS_KEY`，以取得連接服務匯流排所需的資訊。 如果未設定這些環境變數，則呼叫 `createServiceBusService` 時必須指定帳戶資訊。
+hello Azure 模組會讀取 hello 環境變數`AZURE_SERVICEBUS_NAMESPACE`和`AZURE_SERVICEBUS_ACCESS_KEY`資訊所需 tooconnect tooService 匯流排。 如果未設定這些環境變數，呼叫時，您必須指定 hello 帳戶資訊`createServiceBusService`。
 
-如需在 Azure 雲端服務的環境變數設定範例，請參閱[使用儲存體的 Node.js 雲端服務][Node.js Cloud Service with Storage]。
+如需設定 Azure 雲端服務的 hello 環境變數的範例，請參閱[Node.js 雲端服務與儲存體][Node.js Cloud Service with Storage]。
 
-如需 Azure 網站的環境變數設定範例，請參閱[使用儲存體的 Node.js Web 應用程式][Node.js Web Application with Storage]。
+如需設定 Azure 網站的 hello 環境變數的範例，請參閱[Node.js Web 應用程式，與儲存體][Node.js Web Application with Storage]。
 
 ## <a name="create-a-topic"></a>建立主題
-**ServiceBusService** 物件可讓您使用主題。 下列程式碼將建立 **ServiceBusService** 物件。 請將程式碼新增至 **server.js** 檔案的頂端附近，放置在匯入 azure 模型的陳述式後方：
+hello **ServiceBusService**物件可讓您 toowork 與主題。 下列程式碼將建立 **ServiceBusService** 物件。 將最上方的 hello**立即轉譯 server.js** hello 陳述式 tooimport hello azure 模組之後的檔案：
 
 ```javascript
 var serviceBusService = azure.createServiceBusService();
 ```
 
-藉由在 **ServiceBusService** 物件上呼叫 `createTopicIfNotExists`，系統將傳回指定的主題 (若有的話) 或建立具有指定名稱的新主題。 下列程式碼使用 `createTopicIfNotExists` 建立或連接至名稱為 `MyTopic` 的主題：
+藉由呼叫`createTopicIfNotExists`上 hello **ServiceBusService**物件、 hello 指定 （是否存在的話，），就會傳回主題，或將會建立新主題與 hello 指定的名稱。 hello 下列程式碼使用`createTopicIfNotExists`toocreate 或連接具名 toohello 主題`MyTopic`:
 
 ```javascript
 serviceBusService.createTopicIfNotExists('MyTopic',function(error){
@@ -85,7 +85,7 @@ serviceBusService.createTopicIfNotExists('MyTopic',function(error){
 });
 ```
 
-`createServiceBusService` 方法也支援其他選項，而可讓您覆寫訊息存留時間或主題大小上限等預設主題設定。 下列範例會將主題大小上限設為 5GB，並將存留時間設為 1 分鐘：
+hello`createServiceBusService`方法也支援其他選項，可讓您 toooverride 預設主題設定，例如訊息存留時間或主題大小上限。 hello 下列範例會設定具有時間 hello 最大主題大小 too5GB toolive 1 分鐘：
 
 ```javascript
 var topicOptions = {
@@ -101,21 +101,21 @@ serviceBusService.createTopicIfNotExists('MyTopic', topicOptions, function(error
 ```
 
 ### <a name="filters"></a>篩選器
-您可以將選用的篩選作業套用至使用 **ServiceBusService** 執行的作業。 篩選作業可包括記錄、自動重試等等。篩選器是使用簽章實作方法的物件：
+選擇性的篩選作業可能會使用執行套用的 toooperations **ServiceBusService**。 篩選作業可包括記錄、自動重試等等。篩選器是實作 hello 簽章的方法的物件：
 
 ```javascript
 function handle (requestOptions, next)
 ```
 
-對要求選項執行前置處理之後，方法會呼叫 `next`，並傳遞具有下列簽章的回呼：
+執行前置處理 hello 要求選項之後, hello 方法呼叫`next`，將回呼傳遞具有下列簽章的 hello:
 
 ```javascript
 function (returnObject, finalCallback, next)
 ```
 
-在此回呼中，以及處理 `returnObject` (來自對伺服器之要求的回應) 之後，回呼需要叫用 next (如果存在) 以繼續處理其他篩選，或是改為叫用 `finalCallback` 結束服務叫用。
+在此回呼，然後之後處理 hello `returnObject` (hello 回應 hello 要求 toohello 伺服器)，hello 回呼需要 tooeither 如果它存在 toocontinue 處理其他篩選器接著叫用，或叫用`finalCallback`否則 tooend hello叫用服務。
 
-Azure SDK for Node.js 包含了實作重試邏輯的兩個篩選器：**ExponentialRetryPolicyFilter** 和 **LinearRetryPolicyFilter**。 下列程式碼將建立使用 **ExponentialRetryPolicyFilter** 的 **ServiceBusService** 物件：
+實作重試邏輯的兩個篩選器隨附於 Azure SDK for Node.js hello **ExponentialRetryPolicyFilter**和**LinearRetryPolicyFilter**。 hello 下列範例會建立**ServiceBusService**物件，使用 hello **ExponentialRetryPolicyFilter**:
 
 ```javascript
 var retryOperations = new azure.ExponentialRetryPolicyFilter();
@@ -123,15 +123,15 @@ var serviceBusService = azure.createServiceBusService().withFilter(retryOperatio
 ```
 
 ## <a name="create-subscriptions"></a>建立訂用帳戶
-**ServiceBusService** 物件也能用來建立主題訂閱。 訂閱是具名的，它們能擁有選用的篩選器，以限制傳遞至訂閱之虛擬佇列的訊息集合。
+主題訂用帳戶也會建立以 hello **ServiceBusService**物件。 訂用帳戶命名，而且可以有選擇性篩選器，以限制 hello 組傳遞 toohello 訂用帳戶的虛擬佇列的訊息。
 
 > [!NOTE]
-> 訂用帳戶是持續性的，它們會持續存在，直到本身或相關的主題遭到刪除為止。 如果應用程式含有建立訂用帳戶的邏輯，它應該會先使用 `getSubscription` 方法檢查訂用帳戶是否存在。
+> 訂閱是持續性，而且將會繼續 tooexist 直到任一它們，或 hello 主題它們相關聯，則會被刪除。 如果您的應用程式包含邏輯 toocreate 訂用帳戶，它應該先查看 hello 訂用帳戶已經有使用`getSubscription`方法。
 >
 >
 
-### <a name="create-a-subscription-with-the-default-matchall-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
-如果在建立新的訂用帳戶時沒有指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為「AllMessages」的訂用帳戶，並使用預設的 **MatchAll** 篩選器。
+### <a name="create-a-subscription-with-hello-default-matchall-filter"></a>建立訂用帳戶與 hello 預設 (MatchAll) 篩選器
+hello **MatchAll**是 hello 預設篩選器時所用新的訂用帳戶建立時指定任何篩選條件。 當 hello **MatchAll**篩選時，所有的訊息已發行的 toohello 主題會放在訂用帳戶的虛擬佇列。 hello 下列範例會建立名為 'AllMessages' 訂用帳戶，並使用 hello 預設**MatchAll**篩選器。
 
 ```javascript
 serviceBusService.createSubscription('MyTopic','AllMessages',function(error){
@@ -142,18 +142,18 @@ serviceBusService.createSubscription('MyTopic','AllMessages',function(error){
 ```
 
 ### <a name="create-subscriptions-with-filters"></a>使用篩選器建立訂用帳戶
-您也可以建立篩選器，讓您界定傳送至主題的哪些訊息應出現在特定主題訂用帳戶中。
+您也可以建立篩選器可讓您 tooscope tooa 主題應該會顯示特定主題的訂用帳戶內傳送的訊息。
 
-訂用帳戶所支援的最具彈性篩選器類型是實作 SQL92 子集的 **SqlFilter**。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需有關可與 SQL 篩選器搭配使用的運算式詳細資料，請檢閱 [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 語法。
+hello 最有彈性的訂用帳戶支援的篩選器的類型是**SqlFilter**，它會實作 SQL92 的子集。 SQL 篩選操作的已發行的 toohello 主題 hello 訊息 hello 屬性。 如需有關可以搭配 SQL 篩選的 hello 運算式的詳細資訊，請檢閱 hello [SqlFilter.SqlExpression] [ SqlFilter.SqlExpression]語法。
 
-您可以使用 **ServiceBusService** 物件的 `createRule` 方法將篩選器新增至訂用帳戶。 此方法可讓您將篩選器新增至現有的訂用帳戶中。
+加入篩選條件可以 tooa 訂用帳戶使用 hello`createRule`方法 hello **ServiceBusService**物件。 這個方法可讓您將加入新篩選 tooan 現有訂用帳戶。
 
 > [!NOTE]
-> 由於預設篩選器會自動套用至所有新的訂用帳戶，因此您必須先移除預設篩選器，否則 **MatchAll** 將會覆寫您指定的任何其他篩選器。 您可以使用 **ServiceBusService** 物件的 `deleteRule` 方法移除預設規則。
+> 因為 hello 預設篩選器會自動套用 tooall 新訂用帳戶，您必須先移除 hello 預設篩選器或**MatchAll**將會覆寫任何其他您可以指定的篩選器。 您可以藉由使用 hello 移除 hello 預設規則`deleteRule`方法**ServiceBusService**物件。
 >
 >
 
-以下範例將建立名為 `HighMessages` 的訂用帳戶，而且所含的 **SqlFilter** 只會選取自訂 `messagenumber` 屬性大於 3 的訊息：
+hello 下列範例會建立名為訂用帳戶`HighMessages`與**SqlFilter**只選取自訂的訊息`messagenumber`大於 3 的屬性：
 
 ```javascript
 serviceBusService.createSubscription('MyTopic', 'HighMessages', function (error){
@@ -188,7 +188,7 @@ var rule={
 }
 ```
 
-同樣地，下列範例將建立名為 `LowMessages` 的訂用帳戶，而且所含的 **SqlFilter** 只會選取 `messagenumber` 屬性小於或等於 3 的訊息：
+同樣地，hello 下列範例會建立名為訂用帳戶`LowMessages`與**SqlFilter**只選取有訊息`messagenumber`屬性小於或等於 too3:
 
 ```javascript
 serviceBusService.createSubscription('MyTopic', 'LowMessages', function (error){
@@ -223,14 +223,14 @@ var rule={
 }
 ```
 
-當訊息傳送至 `MyTopic` 時，一律會將該訊息傳遞至已訂閱 `AllMessages` 主題訂用帳戶的接收者，並選擇性地傳遞至已訂閱 `HighMessages` 和 `LowMessages` 主題訂用帳戶的接收者 (視訊息內容而定)。
+當訊息現在是否傳送太`MyTopic`，它會一律會將傳遞至訂閱的接收者 toohello`AllMessages`主題訂用帳戶，並選擇性地傳遞的 tooreceivers 訂閱 toohello`HighMessages`和`LowMessages`主題訂用帳戶（視 hello 訊息內容）。
 
-## <a name="how-to-send-messages-to-a-topic"></a>如何將訊息傳送至主題
-若要將訊息傳送至服務匯流排主題，應用程式必須使用 **ServiceBusService** 物件的 `sendTopicMessage` 方法。
-傳送至服務匯流排主題的訊息是 **BrokeredMessage** 物件。
-**BrokeredMessage** 物件具有一組標準屬性 (例如 `Label` 和 `TimeToLive`)、一個用來保存自訂應用程式特定屬性的字典，以及一堆字串資料。 應用程式能將字串值傳遞至 `sendTopicMessage` 以設定訊息本文，系統會將預設值填入任何需要的標準屬性中。
+## <a name="how-toosend-messages-tooa-topic"></a>如何 toosend 訊息 tooa 主題
+toosend 訊息 tooa Service Bus 主題，您的應用程式必須使用`sendTopicMessage`方法 hello **ServiceBusService**物件。
+訊息傳送 tooService 匯流排主題**BrokeredMessage**物件。
+**BrokeredMessage**物件具有一組標準屬性 (例如`Label`和`TimeToLive`) 的字典，其中使用的 toohold 自訂應用程式特定屬性，和字串資料的主體。 應用程式可以將字串值傳遞至 hello 設定 hello hello 訊息本文`sendTopicMessage`和任何所需的標準屬性將會填入預設值。
 
-下列範例說明如何將五個測試訊息傳送至 `MyTopic`。 請注意，迴圈反覆運算上每個訊息的`messagenumber` 屬性值會有變化 (這可判斷接收訊息的訂用帳戶為何)：
+hello 下列範例會示範 toosend 如何在五個測試訊息至`MyTopic`。 請注意該 hello `messagenumber` hello hello 迴圈反覆運算上的每個訊息的屬性值而有所不同 （這會決定哪些訂閱接收該）：
 
 ```javascript
 var message = {
@@ -251,17 +251,17 @@ for (i = 0;i < 5;i++) {
 }
 ```
 
-服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。 此主題大小會在建立時定義，上限是 5 GB。
+服務匯流排主題支援 hello 訊息大小上限為 256KB[標準層](service-bus-premium-messaging.md)和 1 MB 的 hello [Premium 層](service-bus-premium-messaging.md)。 hello 標頭，其中包括 hello 標準和自訂應用程式屬性，可以有 64 KB 的大小上限。 訊息保留在主題中的 hello 數目沒有限制，但是在 hello hello 訊息主題所持有的大小總計沒有端點。 此主題大小會在建立時定義，上限是 5 GB。
 
 ## <a name="receive-messages-from-a-subscription"></a>自訂用帳戶接收訊息
-對於 **ServiceBusService** 物件使用 `receiveSubscriptionMessage` 方法即可從訂用帳戶接收訊息。 依預設，當您讀取訊息後，系統便會從訂用帳戶刪除訊息，不過您可以將選用參數 `isPeekLock` 設定為 **true**，藉此讀取 (查看) 並鎖定訊息，避免從訂用帳戶中刪除訊息。
+訊息會從訂用帳戶使用接收`receiveSubscriptionMessage`方法上 hello **ServiceBusService**物件。 根據預設，訊息會刪除 hello 訂用帳戶的讀取。不過，您可以讀取 （查看），並鎖定 hello 訊息，而不刪除它從 hello 訂用帳戶所設定 hello 選擇性參數`isPeekLock`太**true**。
 
-隨著接收作業讀取及刪除訊息之預設行為是最簡單的模型，且最適合可容許在發生失敗時不處理訊息的應用程式案例。 若要了解這一點，請考慮取用者發出接收要求，接著系統在處理此要求之前當機的案例。 因為服務匯流排會將訊息標示為已取用，當應用程式重新啟動並開始重新取用訊息時，它將會遺漏當機前已取用的訊息。
+hello 讀取及刪除 hello 訊息，接收作業的一部分是 hello 簡單的模式，以及應用程式可以容許不處理中失敗的 hello 事件訊息的案例是最適合的預設行為。 toounderstand，假設取用者問題 hello 接收要求，而後再處理它。 服務匯流排將已經標示為正在使用，然後當 hello 應用程式重新啟動並開始取用訊息一次的 hello 訊息，因為它將會遺失已的 hello 訊息取用先前 toohello 損毀。
 
-如果您將 `isPeekLock` 參數設為 **true**，接收會變成兩階段作業，因此可以支援無法容許遺漏訊息的應用程式。 當服務匯流排收到要求時，它會尋找要取用的下一個訊息、將其鎖定以防止其他取用者接收此訊息，然後將它傳回應用程式。
-在應用程式完成處理訊息 (或可靠地儲存此訊息以供未來處理) 之後，它可透過呼叫 **deleteMessage** 方法和以參數形式提供要刪除的訊息，完成接收程序的第二個階段。 **deleteMessage** 方法會將訊息標示為已取用，並將其自訂用帳戶移除。
+如果 hello`isPeekLock`參數設定太**true**，hello 接收作業會變成兩個階段，使其不容許遺失訊息的可能 toosupport 應用程式。 服務匯流排收到要求時，它會尋找下一個訊息 toobe hello 耗用鎖定，tooprevent 其他消費者接收該，然後再將它傳 toohello 應用程式。
+藉由呼叫 hello 應用程式完成處理 hello 訊息 （或可靠地儲存以供未來處理） 之後，完成接收程序 hello 第二個階段**deleteMessage**方法並提供訊息 toobe刪除做為參數。 hello **deleteMessage**方法會標示為正在使用的 hello 訊息，並移除從 hello 訂用帳戶。
 
-以下範例將示範如何使用預設的 `receiveSubscriptionMessage` 模式來接收與處理訊息。 此範例會先接收來自 'LowMessages' 訂閱的訊息並加以刪除，然後再使用設定為 true 的 `isPeekLock` 接收來自 'HighMessages' 訂用帳戶的訊息。 接著再使用 `deleteMessage` 刪除訊息：
+hello 下列範例示範如何可以接收和處理使用`receiveSubscriptionMessage`。 hello 範例第一次收到並刪除 hello 'LowMessages' 訂用帳戶中的訊息，然後將訊息從接收 hello 'HighMessages' 訂用帳戶使用`isPeekLock`設定 tootrue。 然後刪除 hello 訊息使用`deleteMessage`:
 
 ```javascript
 serviceBusService.receiveSubscriptionMessage('MyTopic', 'LowMessages', function(error, receivedMessage){
@@ -284,16 +284,16 @@ serviceBusService.receiveSubscriptionMessage('MyTopic', 'HighMessages', { isPeek
 });
 ```
 
-## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>如何處理應用程式當機與無法讀取的訊息
-服務匯流排提供一種功能，可協助您從應用程式的錯誤或處理訊息的問題中順利復原。 如果接收者應用程式因為某些原因無法處理訊息，它可以呼叫 **ServiceBusService** 物件上的 `unlockMessage` 方法。 這將導致服務匯流排將訂用帳戶中的訊息解除鎖定，讓此訊息可以被相同取用應用程式或其他取用應用程式重新接收。
+## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Toohandle 應用程式的當機，而且無法讀取訊息
+服務匯流排提供的功能 toohelp 適宜地自行復原發生錯誤的應用程式或處理訊息的問題。 如果接收者應用程式無法 tooprocess hello 訊息基於某些原因，則它可以呼叫 hello`unlockMessage`方法**ServiceBusService**物件。 這將導致服務匯流排 toounlock hello 訂用帳戶內的訊息，並讓它使用 toobe 收到試一次，請藉由 hello 取用應用程式，或由另一個使用的應用程式相同。
 
-與在訂閱內鎖定訊息相關的還有逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會自動解除鎖定訊息，並讓訊息可以被重新接收。
+也是在訂閱中，鎖定的訊息相關聯的逾時，如果 hello 應用程式失敗 tooprocess hello 訊息之前 hello 鎖定逾時到期 （例如，如果 hello 應用程式當機），則服務匯流排解除鎖定 hello 訊息自動並使其成為可用 toobe 再度接收。
 
-如果應用程式在處理訊息之後，尚未呼叫 `deleteMessage` 方法時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 這通常稱為*至少處理一次*，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 **MessageId** 屬性來達到此目的，該屬性將在各個傳遞嘗試中會保持不變。
+在 hello hello 應用程式的事件損毀之後處理 hello 訊息，但之前 hello`deleteMessage`呼叫方法時，則 hello 訊息將會是已重新傳遞的 toohello 應用程式，重新啟動時。 這通常稱為*至少一旦處理*，也就是將至少一次處理每則訊息，但可能在某些情況下 hello 傳遞相同的訊息。 如果 hello 案例無法容許重複處理，應用程式開發人員應該加入額外的邏輯 tootheir 應用程式 toohandle 重複的訊息傳遞。 這通常用來達成**MessageId** hello 訊息，將會維持所有傳遞嘗試的屬性。
 
 ## <a name="delete-topics-and-subscriptions"></a>刪除主題和訂用帳戶
-主題和訂用帳戶是持續性的，您必須透過 [Azure 入口網站][Azure portal]或以程式設計方式明確地刪除它們。
-下列範例示範如何刪除名為 `MyTopic` 的主題：
+主題和訂閱持續性，而且必須明確刪除透過 hello [Azure 入口網站][ Azure portal]或以程式設計的方式。
+hello 下列範例會示範如何命名 toodelete hello 主題`MyTopic`:
 
 ```javascript
 serviceBusService.deleteTopic('MyTopic', function (error) {
@@ -303,7 +303,7 @@ serviceBusService.deleteTopic('MyTopic', function (error) {
 });
 ```
 
-刪除主題也將會刪除對主題註冊的任何訂用帳戶。 您也可以個別刪除訂用帳戶。 下列範例示範如何從 `MyTopic` 主題刪除名為 `HighMessages` 的訂用帳戶：
+刪除的主題也會刪除任何訂用帳戶註冊的 hello 主題。 您也可以個別刪除訂用帳戶。 下列範例示範如何 toodelete 訂用帳戶命名`HighMessages`從 hello`MyTopic`主題：
 
 ```javascript
 serviceBusService.deleteSubscription('MyTopic', 'HighMessages', function (error) {
@@ -314,11 +314,11 @@ serviceBusService.deleteSubscription('MyTopic', 'HighMessages', function (error)
 ```
 
 ## <a name="next-steps"></a>後續步驟
-了解基本的服務匯流排主題之後，請參考下列連結以取得更多資訊。
+現在，您學到的 Service Bus 主題 hello 基本概念，請遵循這些連結 toolearn 更多。
 
 * 請參閱[佇列、主題和訂用帳戶][Queues, topics, and subscriptions]。
 * [SqlFilter][SqlFilter] 的 API 參考資料。
-* 瀏覽 GitHub 上的 [Azure SDK for Node][Azure SDK for Node] 儲存機制。
+* 請瀏覽 hello [Azure SDK for 節點][ Azure SDK for Node] GitHub 上的儲存機制。
 
 [Azure SDK for Node]: https://github.com/Azure/azure-sdk-for-node
 [Azure portal]: https://portal.azure.com
@@ -326,6 +326,6 @@ serviceBusService.deleteSubscription('MyTopic', 'HighMessages', function (error)
 [Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
 [SqlFilter]: /dotnet/api/microsoft.servicebus.messaging.sqlfilter
 [Node.js Cloud Service]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
-[建立 Node.js 應用程式並將其部署到 Azure 網站]: ../app-service-web/app-service-web-get-started-nodejs.md
+[建立和部署 Azure 網站 Node.js 應用程式 tooan]: ../app-service-web/app-service-web-get-started-nodejs.md
 [Node.js Cloud Service with Storage]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [Node.js Web Application with Storage]:../cosmos-db/table-storage-cloud-service-nodejs.md

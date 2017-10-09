@@ -1,5 +1,5 @@
-1. 在您的 **app** 專案中開啟 `AndroidManifest.xml` 檔案。 在下兩個步驟的程式碼中，以專案的應用程式套件名稱取代 *`**my_app_package**`*。 這是 `manifest` 標籤`package` 屬性的值。
-2. 在現有 `uses-permission` 元素中新增下列新權限：
+1. 在您**應用程式**專案、 開啟 hello 檔案`AndroidManifest.xml`。 在 hello 下面兩個步驟中的 hello 程式碼，取代 *`**my_app_package**`*  hello hello 應用程式套件中的名稱為您的專案。 這是 hello hello 值`package`屬性 hello`manifest`標記。
+2. 新增下列新的權限之後 hello 現有 hello`uses-permission`項目：
 
         <permission android:name="**my_app_package**.permission.C2D_MESSAGE"
             android:protectionLevel="signature" />
@@ -7,7 +7,7 @@
         <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
         <uses-permission android:name="android.permission.GET_ACCOUNTS" />
         <uses-permission android:name="android.permission.WAKE_LOCK" />
-3. 在 `application` 起始標籤後新增下列程式碼：
+3. 新增下列程式碼之後 hello hello`application`開頭標記：
 
         <receiver android:name="com.microsoft.windowsazure.notifications.NotificationsBroadcastReceiver"
                                          android:permission="com.google.android.c2dm.permission.SEND">
@@ -16,24 +16,24 @@
                 <category android:name="**my_app_package**" />
             </intent-filter>
         </receiver>
-4. 開啟 ToDoItemActivity.java 檔案，新增下列 import 陳述式：
+4. 開啟 hello 檔案*ToDoActivity.java*，並加入下列 import 陳述式的 hello:
 
         import com.microsoft.windowsazure.notifications.NotificationsManager;
-5. 將下列私用變數新增至類別。 以先前程序中由 Google 指派給您應用程式的專案編號取代 *`<PROJECT_NUMBER>`*。
+5. 加入下列私用變數 toohello 類別 hello。 取代 *`<PROJECT_NUMBER>`* 與 hello 前面程序中的 Google tooyour 應用程式所指派的 hello 專案編號。
 
         public static final String SENDER_ID = "<PROJECT_NUMBER>";
-6. 將 *MobileServiceClient* 的定義從 [私用] 變更為 [公用靜態]，如下所示：
+6. 變更 hello 定義*MobileServiceClient*從**私人**太**公用靜態**，所以現在看起來像這樣：
 
         public static MobileServiceClient mClient;
-7. 新增類別來處理通知。 在 [專案總管] 中，開啟 **src** > **main** > **java** 節點，然後以滑鼠右鍵按一下套件名稱節點。 按一下 [新增]，然後按一下 [Java 類別]。
-8. 在 [名稱] 中，輸入 `MyHandler`，然後按一下 [確定]。
+7. 加入新的類別 toohandle 通知。 在 專案總管 中，開啟 hello **src** > **主要** > **java**節點，並以滑鼠右鍵按一下 hello 封裝名稱的節點。 按一下 新增，然後按一下Java 類別。
+8. 在 名稱 中，輸入 `MyHandler`，然後按一下確定。
 
     ![](./media/app-service-mobile-android-configure-push/android-studio-create-class.png)
 
-9. 在 MyHandler 檔案中，將類別宣告取代為：
+9. 在 hello MyHandler 檔案中，將與 hello 類別宣告：
 
         public class MyHandler extends NotificationsHandler {
-10. 為 `MyHandler` 類別新增下列匯入陳述式：
+10. 加入下列 import 陳述式的 hello hello`MyHandler`類別：
 
         import com.microsoft.windowsazure.notifications.NotificationsHandler;
         import android.app.NotificationManager;
@@ -43,10 +43,10 @@
         import android.os.AsyncTask;
         import android.os.Bundle;
         import android.support.v4.app.NotificationCompat;
-11. 接著，將下列成員新增至 `MyHandler` 類別：
+11. 接著將此成員 toohello`MyHandler`類別：
 
         public static final int NOTIFICATION_ID = 1;
-12. 在 `MyHandler` 類別中，新增下列程式碼以覆寫 **onRegistered** 方法 (向行動服務通知中樞註冊您的裝置)。
+12. 在 hello`MyHandler`類別中，加入下列程式碼 toooverride hello hello **onRegistered**方法，以與 hello 行動服務的通知中樞註冊您的裝置。
 
         @Override
         public void onRegistered(Context context,  final String gcmRegistrationId) {
@@ -66,7 +66,7 @@
                }
            }.execute();
        }
-13. 在 `MyHandler` 類別中，新增下列程式碼以覆寫 **onReceive** 方法 (在收到通知時隨即顯示)。
+13. 在 hello`MyHandler`類別中，加入下列程式碼 toooverride hello hello **onReceive**方法，導致 hello 通知 toodisplay 接收時。
 
         @Override
         public void onReceive(Context context, Bundle bundle) {
@@ -89,8 +89,8 @@
                        context.getSystemService(Context.NOTIFICATION_SERVICE);
                notificationManager.notify(NOTIFICATION_ID, notification);
        }
-14. 回到 TodoActivity.java 檔案，更新 **ToDoActivity** 類別的 *onCreate* 方法，以註冊通知處理常式類別。 請務必在 *MobileServiceClient* 具現化之後，新增此程式碼。
+14. 在 hello TodoActivity.java 檔案中，更新 hello **onCreate**方法 hello *ToDoActivity*類別 tooregister hello 通知處理常式類別。 請確定 tooadd 這段程式碼之後 hello *MobileServiceClient*具現化。
 
         NotificationsManager.handleNotifications(this, SENDER_ID, MyHandler.class);
 
-    您的應用程式現在已更新為支援推播通知。
+    您的應用程式已更新的 toosupport 推播通知。

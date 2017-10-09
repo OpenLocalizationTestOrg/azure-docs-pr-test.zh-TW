@@ -1,0 +1,14 @@
+DNS 區域是使用的 toohost hello 針對特定網域的 DNS 記錄。 toostart 裝載您的網域在 Azure DNS 中，您需要該網域名稱 toocreate DNS 區域。 接著在此 DNS 區域內，建立網域的每筆 DNS 記錄。
+
+例如，hello 網域 'contoso.com' 可能包含數個 DNS 記錄，例如 'mail.contoso.com' （適用於郵件伺服器） 和 'www.contoso.com' （適用於該網站）。
+
+在 Azure DNS 中建立 DNS 區域時︰
+
+* hello hello 區域名稱必須是唯一在 hello 資源群組中，而且 hello 區域必須已經存在。 否則，hello 作業會失敗。
+* 可重複使用相同的區域名稱的不同資源群組或不同的 Azure 訂用帳戶中的 hello。
+* 其中多個區域共用 hello 相同的名稱，每個執行個體指派不同的名稱伺服器位址。 只有一組位址可設定 hello 網域名稱註冊機構。
+
+> [!NOTE]
+> 您沒有 tooown 網域名稱 toocreate DNS 區域與該網域名稱在 Azure DNS。 不過，您需要 tooown hello 網域 tooconfigure hello Azure DNS 名稱伺服器為 hello hello 與 hello 網域名稱註冊機構的網域名稱的正確名稱伺服器。
+> 
+> 如需詳細資訊，請參閱[委派網域 tooAzure DNS](../articles/dns/dns-domain-delegation.md)。

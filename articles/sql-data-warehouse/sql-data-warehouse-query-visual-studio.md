@@ -1,5 +1,5 @@
 ---
-title: "連線到 Azure SQL 資料倉儲 - VSTS | Microsoft Docs"
+title: "aaaConnect tooAzure SQL 資料倉儲-VSTS |Microsoft 文件"
 description: "使用 Visual Studio 查詢 SQL 資料倉儲。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,13 +15,13 @@ ms.workload: data-services
 ms.custom: connect
 ms.date: 10/31/2016
 ms.author: anvang;barbkess
-ms.openlocfilehash: 1e44c6c3c47034a892753c69c5ef22a5eac18c0d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 55eef4dff3e0647be5a735295bc89b43eb456079
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-to-sql-data-warehouse-with-visual-studio-and-ssdt"></a>使用 Visual Studio 和 SSDT 連接到 SQL 資料倉儲
+# <a name="connect-toosql-data-warehouse-with-visual-studio-and-ssdt"></a>與 Visual Studio 和 SSDT 連接 tooSQL 資料倉儲
 > [!div class="op_single_selector"]
 > * [Power BI](sql-data-warehouse-get-started-visualize-with-power-bi.md)
 > * [Azure Machine Learning](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
@@ -31,65 +31,65 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-使用 Visual Studio 在短短幾分鐘內查詢 Azure SQL 資料倉儲。 這個方法會在 Visual Studio 中使用 SQL Server Data Tools (SSDT) 延伸模組。 
+使用 Visual Studio tooquery Azure SQL 資料倉儲短短幾分鐘內。 這個方法會使用 Visual Studio 中的 hello SQL Server Data Tools (SSDT) 延伸模組。 
 
 ## <a name="prerequisites"></a>必要條件
-若要使用本教學課程，您需要：
+toouse 本教學課程中，您需要：
 
-* 現有的 SQL 資料倉儲。 若要建立資料倉儲，請參閱 [建立 SQL 資料倉儲][Create a SQL Data Warehouse]。
+* 現有的 SQL 資料倉儲。 toocreate 其中一個，請參閱[建立 SQL 資料倉儲][Create a SQL Data Warehouse]。
 * 適用於 Visual Studio 的 SSDT。 如果您有 Visual Studio，您可能已經有此 SSDT。 如需安裝指示和選項，請參閱 [安裝 Visual Studio 和 SSDT][Installing Visual Studio and SSDT]。
-* 完整的 SQL 伺服器名稱。 若要找到此名稱，請參閱 [連線至 SQL 資料倉儲][Connect to SQL Data Warehouse]。
+* hello 完整 SQL server 名稱。 toofind，請參閱[連接 tooSQL 資料倉儲][Connect tooSQL Data Warehouse]。
 
-## <a name="1-connect-to-your-sql-data-warehouse"></a>1.連接到您的 SQL 資料倉儲
+## <a name="1-connect-tooyour-sql-data-warehouse"></a>1.連接 tooyour SQL 資料倉儲
 1. 開啟 Visual Studio 2013 或 2015。
-2. 開啟 [SQL Server 物件總管]。 若要這麼做，請選取 [檢視] > [SQL Server 物件總管]。
+2. 開啟 [SQL Server 物件總管]。 toodo 這個，請選取**檢視** > **SQL Server 物件總管**。
    
     ![SQL Server 物件總管][1]
-3. 按一下 [加入 SQL Server]  圖示。
+3. 按一下 hello**加入 SQL Server**圖示。
    
     ![加入 SQL Server][2]
-4. 填寫 [連線到伺服器] 視窗中的欄位。
+4. 填寫 hello 連接 tooServer 視窗中的 hello 欄位。
    
-    ![連線到伺服器][3]
+    ![連接 tooServer][3]
    
-   * **伺服器名稱**。 輸入先前找到的 **伺服器名稱** 。
+   * **伺服器名稱**。 輸入 hello**伺服器名稱**先前所識別。
    * **驗證**。 選取 [SQL Server 驗證] 或 [Active Directory 整合式驗證]。
    * [使用者名稱] 和 [密碼]。 如果上面已選取 [SQL Server 驗證]，請輸入使用者名稱和密碼。
-   * 按一下 [連接] 。
-5. 若要瀏覽，請展開您的 Azure SQL 伺服器。 您可以檢視與伺服器相關聯的資料庫。 展開 AdventureWorksDW 以查看範例資料庫中的資料表。
+   * 按一下 [ **連接**]。
+5. tooexplore，展開您的 Azure SQL server。 您可以檢視 hello hello 伺服器相關聯的資料庫。 展開範例資料庫 AdventureWorksDW toosee hello 資料表。
    
     ![探索 AdventureWorksDW][4]
 
 ## <a name="2-run-a-sample-query"></a>2.執行範例查詢
-現已建立對您的資料庫的連線，接著繼續撰寫查詢。
+現在，連線已建立的 tooyour 資料庫，讓我們來撰寫查詢。
 
 1. 在 [SQL Server 物件總管] 中您的資料庫上按一下滑鼠右鍵。
 2. 選取 [新增查詢] 。 新的查詢視窗隨即開啟。
    
     ![新增查詢][5]
-3. 將此 TSQL 查詢複製到查詢視窗中：
+3. 將這個 TSQL 查詢複製到查詢視窗中 hello:
    
     ```sql
     SELECT COUNT(*) FROM dbo.FactInternetSales;
     ```
-4. 執行查詢。 若要這麼做，請按一下綠色箭頭，或使用下列快速鍵： `CTRL`+`SHIFT`+`E`。
+4. 執行 hello 查詢。 toodo，按一下 hello 綠色箭號，或使用下列捷徑 hello: `CTRL` + `SHIFT` + `E`。
    
     ![執行查詢][6]
-5. 查看查詢結果。 在此範例中，FactInternetSales 資料表有 60398 個資料列。
+5. 查看 hello 查詢結果。 在此範例中，hello FactInternetSales 資料表會有 60398 資料列。
    
     ![查詢結果][7]
 
 ## <a name="next-steps"></a>後續步驟
-您現在可以連線並查詢，請嘗試[使用 PowerBI 將資料視覺化][visualizing the data with PowerBI]。
+現在，您可以連接並查詢，再試一次[視覺化 hello 資料與 PowerBI][visualizing hello data with PowerBI]。
 
-若要針對 Azure Active Directory 驗證設定您的環境，請參閱[驗證 SQL 資料倉儲][Authenticate to SQL Data Warehouse]。
+tooconfigure 環境以使用 Azure Active Directory 驗證，請參閱[驗證資料倉儲 tooSQL][Authenticate tooSQL Data Warehouse]。
 
 <!--Arcticles-->
-[Connect to SQL Data Warehouse]: sql-data-warehouse-connect-overview.md
+[Connect tooSQL Data Warehouse]: sql-data-warehouse-connect-overview.md
 [Create a SQL Data Warehouse]: sql-data-warehouse-get-started-provision.md
 [Installing Visual Studio and SSDT]: sql-data-warehouse-install-visual-studio.md
-[Authenticate to SQL Data Warehouse]: sql-data-warehouse-authentication.md
-[visualizing the data with PowerBI]: sql-data-warehouse-get-started-visualize-with-power-bi.md  
+[Authenticate tooSQL Data Warehouse]: sql-data-warehouse-authentication.md
+[visualizing hello data with PowerBI]: sql-data-warehouse-get-started-visualize-with-power-bi.md  
 
 <!--Other-->
 [Azure portal]: https://portal.azure.com

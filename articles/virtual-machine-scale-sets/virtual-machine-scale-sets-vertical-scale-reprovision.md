@@ -1,6 +1,6 @@
 ---
-title: "垂直調整 Azure 虛擬機器擴展集 | Microsoft Docs"
-description: "如何垂直調整虛擬機器大小以回應 Azure 自動化的監視警示"
+title: "aaaVertically 向 Azure 虛擬機器規模集 |Microsoft 文件"
+description: "Toovertically 如何回應 toomonitoring 警示與 Azure 自動化中調整虛擬機器"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gbowerman
@@ -15,33 +15,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/03/2016
 ms.author: guybo
-ms.openlocfilehash: 9159a5a9041864fe06785829121233379c46bb03
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 1cc35a805b6a5742252a89c21588ca451ff547a3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="vertical-autoscale-with-virtual-machine-scale-sets"></a>使用虛擬機器擴展集垂直自動調整
-這篇文章描述如何使用或不使用重新佈建以垂直調整 Azure [虛擬機器擴充集](https://azure.microsoft.com/services/virtual-machine-scale-sets/) 。 若為垂直調整不在擴展集中的 VM，請參閱 [使用 Azure 自動化垂直調整 Azure 虛擬機器](../virtual-machines/windows/vertical-scaling-automation.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+本文說明如何 toovertically 調整 Azure[虛擬機器擴展集](https://azure.microsoft.com/services/virtual-machine-scale-sets/)不論是否重新佈建。 不在擴展集 Vm 的垂直調整，請參閱太[垂直調整 Azure 虛擬機器與 Azure 自動化](../virtual-machines/windows/vertical-scaling-automation.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-垂直調整也稱為向相應增加和相應減少，意味增加或減少虛擬機器 (VM) 大小以回應工作負載。 將其與[水平調整](virtual-machine-scale-sets-autoscale-overview.md) (也稱為相應放大和相應縮小) 做比較，會根據工作負載改變 VM 數目。
+垂直縮放比例，也稱為*向上延展*和*向下調整*，增加或減少回應 tooa 工作負載中的虛擬機器 (VM) 大小的方式。 比較此[水平延展](virtual-machine-scale-sets-autoscale-overview.md)，也稱為 tooas*向外延展*和*縮放*其中更改 hello Vm 數目視 hello 工作負載而定。
 
-重新佈建表示移除現有的 VM，並以新的 VM 取代它。 當您增加或減少 VM 擴展集中的 VM 大小時，在某些情況下您想要調整現有 VM 的大小並保留資料，而在其他情況下您需要部署具有新大小的新 VM。 本文件涵蓋這兩種情況。
+重新佈建表示移除現有的 VM，並以新的 VM 取代它。 當您增加或減少中虛擬機器擴展集 Vm 的 hello 大小時，在某些情況下您想 tooresize 現有的 Vm 並保留您的資料，而在其他情況下，您需要 toodeploy hello 新大小的新 Vm。 本文件涵蓋這兩種情況。
 
 在下列情況下，垂直調整可能十分有用︰
 
-* 內建在虛擬機器上的服務使用量過低 (例如在週末)。 減少 VM 大小可以降低每月成本。
-* 增加 VM 大小以應付更大的需求，而不需要建立額外的 VM。
+* 內建在虛擬機器上的服務使用量過低 (例如在週末)。 減少 hello VM 大小可以降低每月成本。
+* 增加而不需要建立其他 Vm 的 VM 大小 toocope 以較大的要求。
 
-您可以根據 VM 擴展集的度量型警示來設定要觸發的垂直調整。 啟動警示時它就會引發 Webhook 來觸發 Runbook，可讓您調整相應增加和相應減少設定。 您可以依照下列步驟來設定垂直調整︰
+您可以設定垂直縮放比例 toobe 觸發根據從您的 虛擬機器擴展集的度量根據警示。 Hello 警示啟動時引發的 webhook runbook 可以調整您的標尺以便設定向上或向下該觸發程序。 您可以依照下列步驟來設定垂直調整︰
 
 1. 使用執行身分功能來建立 Azure 自動化帳戶。
 2. 將 VM 擴展集的 Azure 自動化垂直調整大小 Runbook 匯入訂用帳戶
-3. 將 Webhook 加入您的 Runbook 中。
-4. 使用 Webhook 通知將警示加入至您的 VM 擴展集。
+3. 加入 webhook tooyour runbook。
+4. 新增虛擬機器擴展集使用 webhook 通知警示 tooyour。
 
 > [!NOTE]
-> 垂直自動調整只能在特定範圍的 VM 大小內進行。 先比較各種大小的規格，然後再決定從一種大小調整成另一種大小 (數字較大並不一定代表 VM 大小較大)。 您可以在以下大小配對之間選擇調整︰
+> 垂直自動調整只能在特定範圍的 VM 大小內進行。 然後再決定從一個 tooanother tooscale 比較 hello 規格的每個的大小 （高的數字並不一定代表較大的 VM 大小）。 您可以選擇 tooscale 之間 hello 遵循組的大小：
 > 
 > | 成對的調整 VM 大小 |  |
 > | --- | --- |
@@ -55,35 +55,35 @@ ms.lasthandoff: 07/11/2017
 > 
 
 ## <a name="create-an-azure-automation-account-with-run-as-capability"></a>使用執行身分功能來建立 Azure 自動化帳戶
-您需要做的第一件事是建立將裝載 Runbook 的 Azure 自動化帳戶，而 Runbook 用來調整 VM 調整集執行個體。 最近， [Azure 自動化](https://azure.microsoft.com/services/automation/) 引進「執行身分帳戶」功能，極輕鬆即可代表使用者設定服務主體自動執行 Runbook。 您可以在下文中閱讀更多相關資訊：
+您需要 toodo hello 第一件事是建立 Azure 自動化帳戶將裝載 hello runbook 使用 tooscale hello VM 規模調整集合執行個體。 最近[Azure 自動化](https://azure.microsoft.com/services/automation/)導入了 hello 「 執行身分帳戶 」 功能會自動執行 hello runbook 上代表使用者很容易讓 hello 服務主體的設定。 閱讀更多關於此 hello 的下列文件中：
 
 * [使用 Azure 執行身分帳戶驗證 Runbook](../automation/automation-sec-configure-azure-runas-account.md)
 
 ## <a name="import-azure-automation-vertical-scale-runbooks-into-your-subscription"></a>將 Azure 自動化垂直調整大小 Runbook 匯入訂用帳戶
-Azure 自動化 Runbook 資源庫已發佈垂直調整 VM 擴展集所需之 Runbook。 若要將其匯入到您的訂用帳戶，請依照這篇文章的步驟︰
+hello runbook 需要 toovertically hello Azure 自動化 Runbook 資源庫中已發行您的 VM 規模集的小數位數。 這篇文章中的步驟 tooimport 到您的訂用帳戶遵循 hello:
 
 * [Azure 自動化的 Runbook 和模組資源庫](../automation/automation-runbook-gallery.md)
 
-從 [Runbooks] 功能表選擇 [瀏覽資源庫] 選項︰
+從 hello Runbook 功能表中選擇 hello 瀏覽圖庫選項：
 
-![要匯入的 Runbook][runbooks]
+![匯入的 Runbook toobe][runbooks]
 
-需要如下所示匯入 Runbook。 根據您要使用重新佈建來垂直調整，以選取 Runbook：
+會顯示 hello 需要 toobe 匯入的 runbook。 選取 根據您是否要垂直縮放比例重新佈建含 hello runbook:
 
 ![Runbook 資源庫][gallery]
 
-## <a name="add-a-webhook-to-your-runbook"></a>將 Webhook 加入您的 Runbook 中
-匯入 Runbook 之後，需要將 Webhook 加入 Runbook 中，如此即可從 VM 擴展集發出的警示加以觸發。 本文說明如何為 Runbook 建立 Webhook 的詳細資訊：
+## <a name="add-a-webhook-tooyour-runbook"></a>加入 webhook tooyour runbook
+您已匯入 hello runbook 之後您將需要 tooadd webhook toohello runbook，如此可藉由從虛擬機器擴展集警示。 這篇文章描述 hello 的 webhook 建立您的 Runbook 的詳細資料：
 
 * [Azure 自動化 Webhook](../automation/automation-webhooks.md)
 
 > [!NOTE]
-> 關閉 Webhook 對話方塊之前，請務必複製 Webhook URI，因為在下一節中將需要此 Webhook。
+> 請確定您複製之後才關閉 hello webhook 對話方塊，將會需要這個 hello 下一節中的 hello webhook URI。
 > 
 > 
 
-## <a name="add-an-alert-to-your-vm-scale-set"></a>將警示加入至 VM 擴展集
-下面是顯示如何將警示新增至 VM 擴展集的 PowerShell 指令碼。 請參閱下列文章，取得度量名稱以引發警示︰[Azure 監視器自動調整的常用度量](../monitoring-and-diagnostics/insights-autoscale-common-metrics.md)。
+## <a name="add-an-alert-tooyour-vm-scale-set"></a>新增虛擬機器擴展集警示 tooyour
+以下是 PowerShell 指令碼會顯示如何 tooadd 警示 tooa VM 規模調整集合。 Toohello 遵循 hello 度量 toofire hello 警示文章 tooget hello 名稱上，請參閱： [Azure 監視自動調整常見標準](../monitoring-and-diagnostics/insights-autoscale-common-metrics.md)。
 
 ```
 $actionEmail = New-AzureRmAlertRuleEmail -CustomEmail user@contoso.com
@@ -112,11 +112,11 @@ Add-AzureRmMetricAlertRule  -Name  $alertName `
 ```
 
 > [!NOTE]
-> 建議您設定合理的警示時間範圍以避免頻繁觸發垂直調整，及任何相關聯的服務中斷。 請考慮至少 20-30 分鐘以上的時段。 如果需要避免任何中斷，請考慮水平調整。
+> 它會建議 tooconfigure 合理的時間視窗 hello 警示順序 tooavoid 觸發垂直縮放比例，以及任何相關聯的服務中斷，太過頻繁。 請考慮至少 20-30 分鐘以上的時段。 請考慮水平縮放比例，如果您需要 tooavoid 中斷任何項目。
 > 
 > 
 
-如需如何建立警示的詳細資訊，請參閱下列文章：
+如需有關如何 toocreate 警示，請參閱下列文章 toohello 的詳細資訊：
 
 * [Azure 監視器 PowerShell 快速入門範例](../monitoring-and-diagnostics/insights-powershell-samples.md)
 * [Azure 監視器跨平台 CLI 快速入門範例](../monitoring-and-diagnostics/insights-cli-samples.md)

@@ -1,6 +1,6 @@
 ---
-title: "步驟 6：存取 Machine Learning Web 服務 | Microsoft Docs"
-description: "開發預測解決方案的逐步解說步驟 6：存取使用中的 Azure Machine Learning Web 服務。"
+title: "步驟 6： 存取 hello 機器學習 Web 服務 |Microsoft 文件"
+description: "步驟 6 的 hello 開發預測方案逐步解說： 存取作用中的 Azure 機器學習 Web 服務。"
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: garye
-ms.openlocfilehash: d309f6c4749a80c81859b693a2bd5927e8fe0e54
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 211de0294092c6a6b5e6eb608d5d3b88107674c6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="walkthrough-step-6-access-the-azure-machine-learning-web-service"></a>逐步解說步驟 6：存取 Azure Machine Learning Web 服務
+# <a name="walkthrough-step-6-access-hello-azure-machine-learning-web-service"></a>逐步解說步驟 6： 存取 hello Azure Machine Learning web 服務
 
-這是 [在 Azure Machine Learning 中為信用風險評估開發預測性分析解決方案](machine-learning-walkthrough-develop-predictive-solution.md)
+這是 hello hello 逐步解說中，最後一個步驟[開發 Azure Machine Learning 中的預測分析解決方案](machine-learning-walkthrough-develop-predictive-solution.md)
 
 1. [建立機器學習服務工作區](machine-learning-walkthrough-1-create-ml-workspace.md)
 2. [上傳現有資料](machine-learning-walkthrough-2-upload-data.md)
 3. [建立新實驗](machine-learning-walkthrough-3-create-new-experiment.md)
-4. [訓練及評估模型](machine-learning-walkthrough-4-train-and-evaluate-models.md)
-5. [部署 Web 服務](machine-learning-walkthrough-5-publish-web-service.md)
-6. **存取 Web 服務**
+4. [來定型及評估 hello 模型](machine-learning-walkthrough-4-train-and-evaluate-models.md)
+5. [部署 hello Web 服務](machine-learning-walkthrough-5-publish-web-service.md)
+6. **存取 hello Web 服務**
 
 - - -
-在此逐步解說先前的步驟中，我們已經部署一個使用我們的信用風險預測模型的 Web 服務。 現在使用者能夠將資料傳送至服務並接收結果。 
+在此逐步解說中的 hello 上一個步驟中部署的 web 服務，會使用我們的信用風險預測模型。 現在使用者可以 toosend 資料 tooit，並接收結果。 
 
-此 Web 服務是可使用 REST API，透過下列其中一種方式接收和傳回資料的 Azure Web 服務：  
+hello Web 服務是一種 Azure web 服務，可接收並傳回在兩種方式之一使用 REST Api 的資料：  
 
-* **要求/回應** - 使用者以 HTTP 通訊協定，將一或多列的信用資料傳送給服務，然後服務回應一或多組結果。
-* **批次執行** - 使用者在 Azure Blob 中儲存一或多列信用資料，然後將 Blob 位置傳送給服務。 服務會給輸入 Blob 中的所有資料列評分，將結果儲存在另一個 Blob 中，再傳回該容器的 URL。  
+* **要求/回應**-hello 使用者傳送一個或多個資料列的信用卡資料 toohello 服務透過 HTTP 通訊協定和 hello 服務回應一或多個結果集。
+* **批次執行**-hello 使用者存放了一個或多個資料列，在 Azure 中的信用卡資料的 blob，然後將傳送 hello blob 位置 toohello 服務。 所有 hello 中的資料列的 hello 服務分數 hello 輸入的 blob、 存放區 hello 導致另一個 blob，並傳回 hello 該容器的 URL。  
 
-存取傳統 Web 服務最簡單快速的方式，是透過 [Azure ML 要求-回應服務 Web 應用程式 (英文)](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlaspnettemplateforrrs/) 或 [Azure ML 批次執行服務 Web 應用程式範本 (英文)](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/)。
+hello 最快速且輕鬆的方式 tooaccess 傳統 web 服務是透過 hello [Azure ML 要求-回應服務 Web 應用程式](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlaspnettemplateforrrs/)或[Azure ML 批次執行服務 Web 應用程式範本](https://azure.microsoft.com/marketplace/partners/microsoft/azuremlbeswebapptemplate/)。
 
-這些 Web 應用程式範本可以建立自訂的 Web 應用程式，該應用程式知道您的 Web 服務輸入資料和將傳回的內容。 您所需要做的就是提供 Web 服務和資料的存取權限，範本會執行其餘部分。
+這些 Web 應用程式範本可以建立自訂的 Web 應用程式，該應用程式知道您的 Web 服務輸入資料和將傳回的內容。 您只需要 toodo 提供存取 tooyour web 服務和資料，但 hello 範本沒有 hello rest。
 
-如需使用 Web 應用程式範本的詳細資訊，請參閱[使用 Azure Machine Learning Web 服務與 Web 應用程式範本](machine-learning-consume-web-service-with-web-app-template.md)。
+如需有關使用 hello web 應用程式範本的詳細資訊，請參閱[取用的 Azure 機器學習 Web 服務與 web 應用程式範本](machine-learning-consume-web-service-with-web-app-template.md)。
 
-您也可以使用以 R、C# 和 Python 程式語言為您提供的起始程式碼來開發自訂應用程式以存取 Web 服務。
+您也可以開發自訂應用程式 tooaccess hello web 服務使用 R、 C# 和 Python 程式設計語言中，為您提供的起始程式碼。
 
-您可以在[如何使用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)中找到完整詳細資料。
+您可以找到完整的詳細資料中[如何 tooconsume Azure 機器學習 Web 服務](machine-learning-consume-web-services.md)。
 

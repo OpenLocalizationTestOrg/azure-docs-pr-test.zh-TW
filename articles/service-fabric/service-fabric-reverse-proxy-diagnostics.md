@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 反向 Proxy 診斷 | Microsoft Docs"
-description: "了解如何在反向 proxy 監視和診斷要求處理。"
+title: "Service Fabric aaaAzure 反向 proxy 診斷 |Microsoft 文件"
+description: "深入了解如何 toomonitor 並診斷在 hello 反向 proxy 的要求處理。"
 services: service-fabric
 documentationcenter: .net
 author: kavyako
@@ -13,34 +13,34 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 08/08/2017
 ms.author: kavyako
-ms.openlocfilehash: 3bc631606afbc93d5bca94f4955fd2ef816fa9fd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9687b9688dc26ba619cbdfab1b1f49a3035345c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="monitor-and-diagnose-request-processing-at-the-reverse-proxy"></a>在反向 proxy 監視和診斷要求處理
+# <a name="monitor-and-diagnose-request-processing-at-hello-reverse-proxy"></a>監視，並診斷在 hello 反向 proxy 的要求處理
 
-從 Service Fabric 5.7 版開始，反向 proxy 事件可供收集。 事件可用於兩個通道，第一個通道只有在反向 proxy 的要求處理失敗相關錯誤事件，而第二個通道包含成功和失敗要求項目的詳細資訊事件。
+從 Service Fabric 的 hello 5.7 版開始，反向 proxy 事件可用於集合。 hello 事件可用於在兩個通道，一個只有錯誤事件的相關 toorequest hello 反向 proxy 和包含成功和失敗要求的項目的詳細資料事件的第二個通道的處理失敗。
 
-請參閱[收集反向 proxy 事件](service-fabric-diagnostics-event-aggregation-wad.md#collect-reverse-proxy-events)，允許從這些通道收集本機和 Azure Service Fabric 叢集中的事件。
+請參閱太[收集反向 proxy 事件](service-fabric-diagnostics-event-aggregation-wad.md#collect-reverse-proxy-events)tooenable 從這些通道本機和 Azure Service Fabric 叢集收集事件。
 
 ## <a name="troubleshoot-using-diagnostics-logs"></a>使用診斷記錄進行疑難排解
-下列範例有關如何解釋可能看見的常見失敗記錄：
+以下是上如何 toointerpret hello 常見失敗記錄檔的其中可能會遇到的一些範例：
 
 1. 反向 proxy 傳回回應狀態碼 504 (逾時)。
 
-    其中一個原因可能是因為服務無法在要求逾時期間內回覆。
-下面第一個事件記錄在反向 proxy 收到的要求詳細資料。 第二個事件指出要求在轉寄至服務時失敗，因為「內部錯誤 = ERROR_WINHTTP_TIMEOUT」 
+    其中一個原因可能由於 toohello 服務失敗 tooreply hello 要求逾時期限內。
+hello 以下的第一個事件記錄 hello hello 反向 proxy 在收到 hello 要求詳細資料。 hello 第二個事件表示該 hello 要求失敗時轉送 tooservice 由於太 「 內部錯誤 = ERROR_WINHTTP_TIMEOUT" 
 
-    承載包括︰
+    hello 裝載包含：
 
-    *  **traceId**：此 GUID 可以讓對應至單一要求的所有事件相互關聯。 在以下兩個事件中，traceId = **2f87b722-e254-4ac2-a802-fd315c1a0271**，意味著它們屬於相同的要求。
-    *  **requestUrl**：要求所要送往的 URL (反向 proxy URL)。
+    *  **traceId**： 這個 GUID 可使用 toocorrelate 對應 tooa 單一要求的所有 hello 事件。 在以下兩個事件的 hello，hello traceId = **2f87b722-e254-4ac2-a802-fd315c1a0271**，意味著所屬 toohello 相同的要求。
+    *  **requestUrl**: hello 的 URL (反向 proxy URL) toowhich hello 要求已傳送。
     *  **指令動詞**︰HTTP 指令動詞。
-    *  **remoteAddress**：傳送要求之用戶端的位址。
-    *  **resolvedServiceUrl**：傳入要求解析至的服務端點 URL。 
-    *  **errorDetails**︰關於失敗的額外資訊。
+    *  **remoteAddress**： 傳送嗨要求的用戶端的位址。
+    *  **resolvedServiceUrl**： 解決服務端點 URL toowhich hello 連入要求的時間。 
+    *  **errorDetails**: hello 失敗的其他資訊。
 
     ```
     {
@@ -67,7 +67,7 @@ ms.lasthandoff: 08/18/2017
     {
       "Timestamp": "2017-07-20T16:00:01.3173605-07:00",
       ...
-      "Message": "2f87b722-e254-4ac2-a802-fd315c1a0271 Error while forwarding request to service: response status code = 504, description = Reverse proxy Timeout, phase = FinishSendRequest, internal error = ERROR_WINHTTP_TIMEOUT ",
+      "Message": "2f87b722-e254-4ac2-a802-fd315c1a0271 Error while forwarding request tooservice: response status code = 504, description = Reverse proxy Timeout, phase = FinishSendRequest, internal error = ERROR_WINHTTP_TIMEOUT ",
       ...
       "Payload": {
         "traceId": "2f87b722-e254-4ac2-a802-fd315c1a0271",
@@ -81,15 +81,15 @@ ms.lasthandoff: 08/18/2017
 
 2. 反向 proxy 傳回回應狀態碼 404 (找不到)。 
     
-    在以下範例事件中，反向 proxy 傳回 404，因為它找不到相符的服務端點。
-    重要承載項目如下：
-    *  **processRequestPhase**：指出發生失敗時的要求處理期間階段，***TryGetEndpoint*** 也就是 嘗試提取要轉送至的服務端點時。 
-    *  **errorDetails**：列出端點搜尋準則。 您可以查看指定的 listenerName = **FrontEndListener**，然而複本端點清單只包含名稱為 **OldListener** 的接聽程式。
+    以下是範例事件反向 proxy 位置傳回 404，因為它無法 toofind hello 比對服務端點。
+    重要的 hello 裝載項目為：
+    *  **processRequestPhase**： 指出在 hello 失敗發生時，處理要求期間 hello 階段***TryGetEndpoint***也就是 同時嘗試 toofetch hello 服務端點 tooforward 至。 
+    *  **errorDetails**： 列出 hello 端點搜尋準則。 您可以在此處查看指定該 hello listenerName = **FrontEndListener** hello 複本端點清單只包含名稱為 hello 接聽程式而**OldListener**。
     
     ```
     {
       ...
-      "Message": "c1cca3b7-f85d-4fef-a162-88af23604343 Error while processing request, cannot forward to service: request url = https://localhost:19081/LocationApp/LocationFEService?ListenerName=FrontEndListener&zipcode=98052, verb = GET, remote (client) address = ::1, request processing start time = 16:43:02.686271 (3,448,220.353 MSec), error = FABRIC_E_ENDPOINT_NOT_FOUND, message = , phase = TryGetEndoint, SecureOnlyMode = false, gateway protocol = https, listenerName = FrontEndListener, replica endpoint = {\"Endpoints\":{\"\":\"Https:\/\/localhost:8491\/LocationApp\/\"}} ",
+      "Message": "c1cca3b7-f85d-4fef-a162-88af23604343 Error while processing request, cannot forward tooservice: request url = https://localhost:19081/LocationApp/LocationFEService?ListenerName=FrontEndListener&zipcode=98052, verb = GET, remote (client) address = ::1, request processing start time = 16:43:02.686271 (3,448,220.353 MSec), error = FABRIC_E_ENDPOINT_NOT_FOUND, message = , phase = TryGetEndoint, SecureOnlyMode = false, gateway protocol = https, listenerName = FrontEndListener, replica endpoint = {\"Endpoints\":{\"\":\"Https:\/\/localhost:8491\/LocationApp\/\"}} ",
       "ProcessId": 57696,
       "Level": "Warning",
       "EventName": "ReverseProxy",
@@ -102,21 +102,21 @@ ms.lasthandoff: 08/18/2017
       }
     }
     ```
-    反向 proxy 可能傳回 404 找不到的另一個範例為：ApplicationGateway\Http 組態參數 **SecureOnlyMode** 設為 true，且反向 proxy 在**HTTPS** 接聽，不過所有複本端點都不安全 (在 HTTP 上接聽)。
-    反向 proxy 傳回 404，因為它找不到在 HTTPS 上接聽的端點以轉送要求。 在事件承載中分析參數有助於縮小問題範圍：
+    另一個範例，其中反向 proxy 可能會傳回 404 找不到為： ApplicationGateway\Http 組態參數**SecureOnlyMode**設定 hello 反向 proxy 接聽 tootrue **HTTPS**，不過，所有 hello 複本端點都不安全 （接聽 HTTP）。
+    因為找不到端點接聽 HTTPS tooforward hello 要求反向 proxy 傳回 404。 分析 hello 事件裝載中的 hello 參數，可協助 toonarrow 向 hello 問題：
     
     ```
         "errorDetails": "SecureOnlyMode = true, gateway protocol = https, listenerName = NewListener, replica endpoint = {\"Endpoints\":{\"OldListener\":\"Http:\/\/localhost:8491\/LocationApp\/\", \"NewListener\":\"Http:\/\/localhost:8492\/LocationApp\/\"}}"
     ```
 
-3. 反向 proxy 的要求因為逾時錯誤而失敗。 
-    事件記錄包含具有已接收要求詳細資料 (未顯示於此處) 的事件。
-    下一個事件顯示服務以 404 狀態碼回應，且反向 proxy 會起始重新解析。 
+3. 要求 toohello 反向 proxy 逾時錯誤而失敗。 
+    hello 事件記錄檔會包含一個事件 （此處未顯示） 收到 hello 要求詳細資料。
+    hello 下一個事件會顯示 hello 服務回應 404 狀態碼，並反向 proxy 可讓您起始重新解析。 
 
     ```
     {
       ...
-      "Message": "7ac6212c-c8c4-4c98-9cf7-c187a94f141e Request to service returned: status code = 404, status description = , Reresolving ",
+      "Message": "7ac6212c-c8c4-4c98-9cf7-c187a94f141e Request tooservice returned: status code = 404, status description = , Reresolving ",
       "Payload": {
         "traceId": "7ac6212c-c8c4-4c98-9cf7-c187a94f141e",
         "statusCode": 404,
@@ -132,11 +132,11 @@ ms.lasthandoff: 08/18/2017
       }
     }
     ```
-    收集所有事件時，您會看到一系列顯示每個解析和轉送嘗試的事件。
-    序列中的最後一個事件顯示要求處理因為逾時而失敗，以及成功的解析嘗試次數。
+    當收集 hello 的所有事件，您會看到火車的每個解決和正嘗試顯示的事件。
+    hello hello 數列中的最後一個事件會顯示 hello 要求處理失敗，發生逾時，以及 hello 成功解決嘗試的次數。
     
     > [!NOTE]
-    > 建議依預設停用詳細資訊通道事件收集功能，而後根據需求加以啟用以便進行疑難排解。
+    > 它建議的預設停用 tookeep hello verbose 通道事件集合，並啟用供疑難排解以需求為基礎。
 
     ```
     {
@@ -155,18 +155,18 @@ ms.lasthandoff: 08/18/2017
     }
     ```
     
-    如果只針對重大/錯誤事件啟用收集功能，您會看到一個包含逾時相關詳細資料和解析嘗試次數的事件。 
+    如果集合已啟用只適用於重大/錯誤事件，您會看到一個事件 hello 逾時和 hello 次數解析的相關詳細資料。 
     
-    如果服務有意將 404 狀態碼傳回給使用者，應隨附 "X-ServiceFabric" 標頭。 修正此問題後，您會看到反向 proxy 會將狀態碼轉送回用戶端。  
+    如果 hello 服務想 toosend 404 狀態程式碼後 toohello 使用者，它應該伴隨 「 X ServiceFabric"標頭。 修正此問題之後，您會看到該反向 proxy 轉送 hello 狀態程式碼後 toohello 用戶端。  
 
-4. 用戶端已中斷要求連線的情況。
+4. Hello 用戶端已中斷連線的情況下 hello 要求。
 
-    當反向 proxy 將回應轉送至用戶端，但用戶端中斷連線時，就會記錄下列事件：
+    反向 proxy 轉送 hello 回應 tooclient 但 hello 用戶端中斷連接時，會記錄下列事件 hello:
 
     ```
     {
       ...
-      "Message": "6e2571a3-14a8-4fc7-93bb-c202c23b50b8 Unable to send response to client: phase = SendResponseHeaders, error = -805306367, internal error = ERROR_SUCCESS ",
+      "Message": "6e2571a3-14a8-4fc7-93bb-c202c23b50b8 Unable toosend response tooclient: phase = SendResponseHeaders, error = -805306367, internal error = ERROR_SUCCESS ",
       "ProcessId": 57696,
       "Level": "Warning",
       ...
@@ -181,10 +181,10 @@ ms.lasthandoff: 08/18/2017
     ```
 
 > [!NOTE]
-> 目前不記錄 Websocket 要求處理的相關事件。 這將在下一版中新增。
+> 目前不記錄事件相關的 toowebsocket 要求處理。 這將會加入 hello 下一個版本中。
 
 ## <a name="next-steps"></a>後續步驟
 * [使用 Windows Azure 診斷的事件彙總和收集](service-fabric-diagnostics-event-aggregation-wad.md)，以便在 Azure 叢集中啟用記錄收集。
-* 若要在 Visual Studio 中檢視 Service Fabric 事件，請參閱[在本機上監視及診斷](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)。
-* 如需 Azure Resource Manager 範本範例，以便使用不同的服務憑證驗證選項來設定安全反向 Proxy，請參閱[設定反向 Proxy 以連接安全的服務](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/ReverseProxySecureSample#configure-reverse-proxy-to-connect-to-secure-services)。
-* 如需詳細資訊，請讀取 [Service Fabric 反向 proxy](service-fabric-reverseproxy.md)。
+* tooview Service Fabric 事件，在 Visual Studio 中，請參閱[監視及診斷在本機](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally.md)。
+* 請參閱太[設定反向 proxy tooconnect toosecure 服務](https://github.com/ChackDan/Service-Fabric/tree/master/ARM%20Templates/ReverseProxySecureSample#configure-reverse-proxy-to-connect-to-secure-services)Azure 資源管理員的範本範例 tooconfigure 安全反向 proxy hello 不同的服務憑證驗證選項。
+* 讀取[Service Fabric 反向 proxy](service-fabric-reverseproxy.md) toolearn 更多。

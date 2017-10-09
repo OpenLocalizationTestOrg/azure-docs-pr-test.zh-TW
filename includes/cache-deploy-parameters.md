@@ -1,6 +1,6 @@
 
 ### <a name="cacheskuname"></a>cacheSKUName
-新的 Azure Redis 快取的定價層。
+hello 定價層的 hello 新的 Azure Redis 快取。
 
     "cacheSKUName": {
       "type": "string",
@@ -10,15 +10,15 @@
       ],
       "defaultValue": "Basic",
       "metadata": {
-        "description": "The pricing tier of the new Azure Redis Cache."
+        "description": "hello pricing tier of hello new Azure Redis Cache."
       }
     },
 
-此範本定義此參數允許的值 (基本或標準)，並指派未指定任何值時的預設值 (基本)。 「基本」提供單一節點，有多種大小可用，最大為 53 GB。
-「標準」提供雙節點「主要/複本」，有多種大小可用，最大為 53 GB，還有高達 99.9% 的 SLA。
+hello 範本定義 hello 值，允許這個參數 （基本或標準），並指派的預設值 （基本），如果未不指定任何值。 Basic 提供具有向上 too53 GB 可用的多個大小的單一節點。
+標準提供兩個節點主要/複本可用總 too53 GB 和 99.9 %sla 的多個大小。
 
 ### <a name="cacheskufamily"></a>cacheSKUFamily
-Sku 系列。
+hello hello sku 系列。
 
     "cacheSKUFamily": {
       "type": "string",
@@ -27,13 +27,13 @@ Sku 系列。
       ],
       "defaultValue": "C",
       "metadata": {
-        "description": "The family for the sku."
+        "description": "hello family for hello sku."
       }
     },
 
 
 ### <a name="cacheskucapacity"></a>cacheSKUCapacity
-新的 Azure Redis 快取執行個體的大小。 
+hello hello 新 Azure Redis 快取執行個體的大小。 
 
     "cacheSKUCapacity": {
       "type": "int",
@@ -48,10 +48,10 @@ Sku 系列。
       ],
       "defaultValue": 0,
       "metadata": {
-        "description": "The size of the new Azure Redis Cache instance. "
+        "description": "hello size of hello new Azure Redis Cache instance. "
       }
     }
 
 
-此範本定義此參數允許的值 (0、1、2、3、4、5 或 6)，並指派未指定任何值時的預設值 (1)。 這些數字對應到下列快取大小：0 = 250 MB、1 = 1 GB、2 = 2.5 GB、3 = 6 GB、4 = 13 GB、5 = 26 GB、6 = 53 GB
+hello 範本可定義 hello （0、 1、 2、 3、 4、 5 或 6），此參數允許的值，並指派的預設值 (1)，如果未不指定任何值。 這些數字對應 toofollowing 快取大小： 0 = 250 MB，1 = 1 GB，2 = 2.5 GB，3 = 6 GB，4 = 13 GB，5 = 26 GB，6 = 53 GB
 

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員 IP 流程驗證來驗證流量 - REST | Microsoft Docs"
-description: "本文說明如何檢查虛擬機器中的流入或流出流量是被允許或拒絕"
+title: "驗證與 Azure 網路監看員 IP 流量 aaaVerify 流量-REST |Microsoft 文件"
+description: "本文說明如何 toocheck 如果允許或拒絕流量 tooor 從虛擬機器"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 6d3ce00a7d4f9c0cd57fa8815625a1065b03b5b5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 956db0d326db597c6c402a9e8d4a5522c47c02d6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="check-if-traffic-is-allowed-or-denied-with-ip-flow-verify-a-component-of-azure-network-watcher"></a>使用 Azure 網路監看員的 IP 流程驗證元件來檢查流量是被允許或拒絕
 
@@ -30,17 +30,17 @@ ms.lasthandoff: 07/11/2017
 > - [Azure REST API](network-watcher-check-ip-flow-verify-rest.md)
 
 
-IP 流量驗證是網路監看員的一項功能，可讓您驗證虛擬機器中的流入或流出流量是否被允許。 可執行傳入或傳出流量的驗證。 此案例可用於取得虛擬機器的目前狀態，以了解其是否可以和外部資源或後端通訊。 IP 流量驗證可用來驗證是否已正確設定網路安全性群組 (NSG) 規則，並針對 NSG 規則所封鎖的流量進行疑難排解。 使用 IP 流量驗證的另一個原因是可以確保 NSG 會正確封鎖您想要封鎖的流量。
+IP 流量驗證是一項功能可讓您 tooverify 如果允許 tooor 從虛擬機器的流量的網路監看員。 hello 驗證可以執行傳入或傳出的流量。 這個案例中很有用 tooget 的虛擬機器是否可以彼此通訊 tooan 外部資源或後端的目前狀態。 IP 流量確認是否可使用的 tooverify，是否您的網路安全性群組 (NSG) 規則都已正確設定及疑難排解 NSG 規則而遭到封鎖的流量。 另一個原因需要使用 IP 流程可讓您確認是否想要封鎖 tooensure 流量正在封鎖正確 hello NSG。
 
 ## <a name="before-you-begin"></a>開始之前
 
-使用 ARMclient 透過 PowerShell 呼叫 REST API。 您可以在 chocolatey 的 [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) 上找到 ARMClient
+ARMclient 是使用 PowerShell 的使用的 toocall hello REST API。 您可以在 chocolatey 的 [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) 上找到 ARMClient
 
-此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。
+此案例假設您已依照中的 hello 步驟[建立網路監看員](network-watcher-create.md)toocreate 網路監看員。
 
 ## <a name="scenario"></a>案例
 
-此案例使用 IP 流程驗證來確認虛擬機器是否可以透過連接埠 443 與其他機器進行通訊。 如果流量被拒絕，它會傳回拒絕該流量的安全性規則。 若要深入了解 IP 流程驗證，請瀏覽 [IP 流程驗證概觀 (英文)](network-watcher-ip-flow-verify-overview.md)
+此案例使用 IP 流量確認 tooverify，如果虛擬機器可以彼此 tooanother 機器通訊透過連接埠 443。 如果 hello 流量遭到拒絕，它會傳回 hello 安全性規則，拒絕的流量。 進一步了解 IP 流量，請確認 toolearn 造訪[IP 流量確認概觀](network-watcher-ip-flow-verify-overview.md)
 
 在此案例中，您將會：
 
@@ -56,10 +56,10 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>擷取虛擬機器
 
-執行下列指令碼，以傳回虛擬機器。 下列程式碼需要變數值︰
+執行下列指令碼 tooreturn hello 虛擬機器。 hello 下列程式碼需要的值為 hello 變數：
 
-* **subscriptionId** - 要使用的訂用帳戶識別碼。
-* **resourceGroupName** - 包含虛擬機器的資源群組名稱。
+* **subscriptionId** -hello 訂用帳戶 Id toouse。
+* **resourceGroupName** -hello 包含虛擬機器的資源群組的名稱。
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -68,7 +68,7 @@ $resourceGroupName = "<resource group name>"
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-所需資訊是類型 `Microsoft.Compute/virtualMachines` 下的識別碼。 結果應該會與下列程式碼範例類似：
+hello 所需的資訊是 hello 識別碼 hello 類型之下`Microsoft.Compute/virtualMachines`。 hello 結果應該類似下列程式碼範例的 toohello:
 
 ```json
 ...,
@@ -100,15 +100,15 @@ pute/virtualMachines/ContosoVM/extensions/CustomScriptExtension"
 
 ## <a name="call-ip-flow-verify"></a>呼叫 IP 流程驗證
 
-下列範例會建立要求來驗證指定虛擬機器的流量。 回應會傳回流量是被允許或拒絕。 如果流量被拒絕，它也會傳回封鎖該流量的規則。
+hello 下列範例會建立指定的虛擬機器要求 tooverify hello 流量。 如果允許 hello 流量或 hello 流量遭到拒絕，就會傳回 hello 回應。 如果已拒絕的流量，它也會傳回哪些規則區塊 hello 流量。
 
 > [!NOTE]
-> IP 流量驗證需要配置 VM 資源。
+> IP 流量確認需要 hello VM 資源一配置。
 
-指令碼需要虛擬機器的資源識別碼和虛擬機器上網路介面的資源識別碼。 上述輸出會提供這些值。
+hello 指令碼需要 hello 資源識別碼和 hello 虛擬機器上的網路介面卡的虛擬機器。 Hello，上述輸出會提供這些值。
 
 > [!Important]
-> 針對所有網路監看員 REST 呼叫，要求 URI 中的資源群組名稱是包含網路監看員執行個體的那一個，而非要對其執行診斷動作的資源。
+> 所有網路監看員 REST 呼叫 hello hello 要求 URI 為 hello 另一個則包含 hello 網路監看員執行個體，不會 hello 您執行的 hello 診斷動作的資源中的資源群組名稱。
 
 ```powershell
 $subscriptionId = "<subscription id>"
@@ -141,9 +141,9 @@ $requestBody = @"
 armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/ipFlowVerify?api-version=2016-12-01" $requestBody -verbose
 ```
 
-## <a name="understanding-the-results"></a>了解結果
+## <a name="understanding-hello-results"></a>了解 hello 結果
 
-您收到的回應會告訴您流量是被允許或拒絕。 回應看起來就像下列其中一個範例︰
+您會回到 hello 回應會告訴您是否允許或拒絕 hello 流量。 hello 回應看起來像 hello 遵循範例的其中一個：
 
 **允許**
 
@@ -165,7 +165,7 @@ armclient post "https://management.azure.com/subscriptions/${subscriptionId}/Res
 
 ## <a name="next-steps"></a>後續步驟
 
-如果流量遭到封鎖，但不應如此，請參閱[管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)以深入了解網路安全性群組。
+如果正在封鎖流量，不應該看到[管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)toolearn 更多關於網路安全性群組。
 
 
 

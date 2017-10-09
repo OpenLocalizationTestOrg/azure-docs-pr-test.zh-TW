@@ -1,6 +1,6 @@
 ---
 title: "串流分析：替換輸入和輸出的登入認證 | Microsoft Docs"
-description: "了解如何更新 Azure Stream Analytics 的輸入和輸出認證。"
+description: "了解如何 tooupdate hello 認證的資料流分析的輸入和輸出。"
 keywords: "登入認證"
 services: stream-analytics
 documentationcenter: 
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: jeffstok
-ms.openlocfilehash: 2cb995a3969a8cb025f371ed0ab160cd04b0454d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ac2374c539012b66ab390656c5750024e02f6bdc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="rotate-login-credentials-for-inputs-and-outputs-in-stream-analytics-jobs"></a>在串流分析工作中替換輸入和輸出的登入認證
 ## <a name="abstract"></a>摘要
-Azure Stream Analytics 目前不允許在工作執行的時候，取代輸入/輸出中的認證。
+Azure Stream Analytics 目前不允許取代 hello 認證於輸入/輸出 hello 作業執行時。
 
-雖然 Azure 串流分析不支援從上次的輸出繼續工作，但我們還是要和您分享如何盡量縮短工作停止和開始之間的延遲時間，以及替換登入認證的整個程序。
+雖然 Azure Stream Analytics 支援繼續從最後的輸出工作，我們想 tooshare hello 整個程序將停止的 hello 與 hello 工作的開始和旋轉 hello 登入認證之間的 hello 延隔時間降到最低。
 
-## <a name="part-1---prepare-the-new-set-of-credentials"></a>第 1 部分 - 準備一組新的認證：
-此部分適用於下列的輸入/輸出：
+## <a name="part-1---prepare-hello-new-set-of-credentials"></a>第 1 部-準備 hello 組新的認證：
+這部分適用 toohello 後面輸入/輸出：
 
 * Blob 儲存體
 * 事件中樞
@@ -38,51 +38,51 @@ Azure Stream Analytics 目前不允許在工作執行的時候，取代輸入/�
 針對其他的輸入/輸出，請參考第 2 部分。
 
 ### <a name="blob-storagetable-storage"></a>Blob 儲存體/資料表儲存體 
-1. 在 Azure 管理入口網站中，瀏覽至 [儲存體] 擴充：  
+1. Hello Azure 管理入口網站中上移 toohello 儲存副檔名：  
    ![graphic1][graphic1]
-2. 找出工作使用的儲存體，然後進到裡面：  
+2. 找出您的工作所使用的 hello 儲存體，並移入它：  
    ![graphic2][graphic2]
-3. 按一下 [管理存取金鑰] 命令：  
+3. 按一下 hello 管理存取金鑰的命令：  
    ![graphic3][graphic3]
-4. 在主要存取金鑰和次要存取金鑰之間， **挑選工作使用的金鑰**。
+4. Hello 主要存取金鑰和次要存取金鑰，hello 之間**挑選其中一個不由您的工作 hello**。
 5. 按重新產生：  
    ![graphic4][graphic4]
-6. 複製剛剛產生的金鑰：  
+6. 複製 hello 新產生的金鑰：  
    ![graphic5][graphic5]
-7. 繼續第 2 部分。
+7. 繼續 tooPart 2。
 
 ### <a name="event-hubs"></a>事件中樞
-1. 在 Azure 管理入口網站中，瀏覽至 [服務匯流排] 擴充：  
+1. Hello Azure 管理入口網站中上移 toohello 服務匯流排延伸模組：  
    ![graphic6][graphic6]
-2. 找出工作使用的服務匯流排命名空間，然後進到裡面：  
+2. 找出 hello 您的工作所使用的服務匯流排命名空間，並將它：  
    ![graphic7][graphic7]
-3. 如果工作會在「服務匯流排命名空間」上使用共用存取原則，請跳到步驟 6  
-4. 移至 [事件中樞] 索引標籤：  
+3. 如果您的工作會使用 hello 服務匯流排命名空間上的共用的存取原則，跳 toostep 6  
+4. 請移 toohello 事件中樞 索引標籤：  
    ![graphic8][graphic8]
-5. 找出工作使用的事件中樞，然後進到裡面：  
+5. 找出 hello 您的工作所使用的事件中樞，並將它：  
    ![graphic9][graphic9]
-6. 移至 [設定] 索引標籤：  
+6. 請移 toohello 設定 索引標籤：  
    ![graphic10][graphic10]
-7. 在 [原則名稱] 下拉式清單中，找出工作使用的共用存取原則：  
+7. 上 hello 原則名稱 下拉式清單中，找出您的工作所使用的 hello 共用存取原則：  
    ![graphic11][graphic11]
-8. 在主要金鑰和次要金鑰之間， **挑選工作未使用的金鑰**。  
+8. Hello 主索引鍵與 hello 次要的索引鍵之間**挑選其中一個不由您的工作 hello**。  
 9. 按重新產生：  
    ![graphic12][graphic12]
-10. 複製剛剛產生的金鑰：  
+10. 複製 hello 新產生的金鑰：  
    ![graphic13][graphic13]
-11. 繼續第 2 部分。  
+11. 繼續 tooPart 2。  
 
 ### <a name="sql-database"></a>SQL Database
 > [!NOTE]
-> 注意：您必須連接到 SQL Database 服務。 為了示範整個過程，我們會借鑑 Azure 管理入口網站的管理經驗，不過您也可以選擇使用其他類似 SQL Server Management Studio 的用戶端工具。
+> 注意： 您需要 tooconnect toohello SQL Database 服務。 我們 tooshow toodo 此使用 hello 上的管理體驗如何 hello Azure 管理入口網站，但您可以選擇 toouse SQL Server Management Studio 等某些用戶端工具以及。
 >
 > 
 
-1. 在 Azure 管理入口網站中，瀏覽至 [SQL 資料庫] 擴充：  
+1. Hello Azure 管理入口網站中上移 toohello SQL 資料庫的擴充功能：  
    ![graphic14][graphic14]
-2. 找出工作使用的 SQL Database，然後在同一行上**按一下伺服器**連結：  
+2. 找出您的工作所使用的 SQL 資料庫 hello 和**hello 伺服器上按一下**相同連結上 hello 行：  
    ![graphic15][graphic15]
-3. 按一下 [管理] 命令：  
+3. 按一下 hello 管理命令：  
    ![graphic16][graphic16]
 4. 輸入主要資料庫：  
    ![graphic17][graphic17]
@@ -90,86 +90,86 @@ Azure Stream Analytics 目前不允許在工作執行的時候，取代輸入/�
    ![graphic18][graphic18]
 6. 按一下 [新增查閱]：  
    ![graphic19][graphic19]
-7. 輸入下列查詢，即可將 <login_name> 換成您的使用者名稱，以及將 <enterStrongPasswordHere> 換成您的新密碼：  
+7. 型別在下列查詢取代 < login_name > 與您的使用者名稱和取代 hello<enterStrongPasswordHere>使用新的密碼：  
    `CREATE LOGIN <login_name> WITH PASSWORD = '<enterStrongPasswordHere>'`
 8. 按一下 [執行]：  
    ![graphic20][graphic20]
-9. 回到步驟 2，這一次按一下資料庫：  
+9. 返回 toostep 2，這次按一下 hello 資料庫：  
    ![graphic21][graphic21]
-10. 按一下 [管理] 命令：  
+10. 按一下 hello 管理命令：  
    ![graphic22][graphic22]
 11. 輸入使用者名稱和密碼，然後按一下 [登入]：  
    ![graphic23][graphic23]
 12. 按一下 [新增查閱]：  
    ![graphic24][graphic24]
-13. 輸入下列查詢，即可將 <user_name> 換成當您登入此資料庫內容時想用的識別名稱 (例如，您可以提供之前提供給 <login_name>, 的相同值)，並將 <login_name> 換成新的使用者名稱：  
+13. 輸入下列查詢取代 < 使用者名稱 > 想 tooidentify 所用的名稱與 hello hello 這個資料庫內容中的此登入 (您可以提供 hello 相同的值指定給資料庫的 < login_name >，例如)，並以取代 < login_name >新的使用者名稱：  
    `CREATE USER <user_name> FROM LOGIN <login_name>`
 14. 按一下 [執行]：  
    ![graphic25][graphic25]
-15. 現在您應該為新使用者提供與原始使用者相同的角色和權限。
-16. 繼續第 2 部分。
+15. 您現在應該提供您新的使用者以 hello 相同角色與您的原始使用者的權限。
+16. 繼續 tooPart 2。
 
-## <a name="part-2-stopping-the-stream-analytics-job"></a>第 2 部分：停止 Azure Stream Analytics 工作
-1. 在 Azure 管理入口網站中，移至 [串流分析] 擴充：  
+## <a name="part-2-stopping-hello-stream-analytics-job"></a>第 2 部分： 停止 hello 串流分析工作
+1. Hello Azure 管理入口網站中上移 toohello 資料流分析擴充功能：  
    ![graphic26][graphic26]
 2. 找出您的工作，然後進到裡面：   
    ![graphic27][graphic27]
-3. 根據您是否想替換輸入或輸出時的認證，然後移至 [輸入] 或 [輸出] 索引標籤。  
+3. 前往 toohello 輸入 索引標籤或 hello 輸出索引標籤，根據是否輪替 hello 認證輸入或輸出。  
    ![graphic28][graphic28]
-4. 按一下 [停止] 命令並確認工作已停止：  
-   ![graphic29][graphic29] 等候工作停止。
-5. 找出您要替換認證的輸入或輸出，然後進到裡面：  
+4. 按一下 hello 停止命令，並確認 hello 作業已停止：  
+   ![graphic29][graphic29]等候 hello 作業 toostop。
+5. 找出 hello 輸入/輸出要 toorotate 認證並移到其中：  
    ![graphic30][graphic30]
-6. 繼續第 3 部分。
+6. 繼續 tooPart 3。
 
-## <a name="part-3-editing-the-credentials-on-the-stream-analytics-job"></a>第 3 部分：編輯 Stream Analytics 工作的認證
+## <a name="part-3-editing-hello-credentials-on-hello-stream-analytics-job"></a>第 3 部分： Hello 串流分析工作上，編輯 hello 認證
 ### <a name="blob-storagetable-storage"></a>Blob 儲存體/資料表儲存體 
-1. 尋找 [儲存體帳戶金鑰] 欄位，然後貼上剛剛產生的金鑰：  
+1. 尋找 hello 儲存體帳戶金鑰 欄位，並貼上您新產生的金鑰：  
    ![graphic31][graphic31]
-2. 按一下 [儲存] 命令，然後確認儲存所做的變更：  
+2. 按一下 hello 儲存 命令，並確認 儲存變更：  
    ![graphic32][graphic32]
 3. 當您儲存所做的變更時，系統會自動測試連線，以保證萬無一失。
-4. 繼續第 4 部分。
+4. 繼續 tooPart 4。
 
 ### <a name="event-hubs"></a>事件中樞
-1. 尋找 [事件中樞原則金鑰] 欄位，然後貼上剛剛產生的金鑰：  
+1. 找出 hello 事件中樞原則機碼欄位，並將新產生的金鑰貼到它：  
    ![graphic33][graphic33]
-2. 按一下 [儲存] 命令，然後確認儲存所做的變更：  
+2. 按一下 hello 儲存 命令，並確認 儲存變更：  
    ![graphic34][graphic34]
 3. 當您儲存所做的變更時，系統會自動測試連線，以保證萬無一失。
-4. 繼續第 4 部分。
+4. 繼續 tooPart 4。
 
 ### <a name="power-bi"></a>Power BI
-1. 按一下 [更新授權]：  
+1. 按一下 hello 更新授權：  
 
    ![graphic35][graphic35]
-2. 系統會要求您進行以下確認：  
+2. 您會收到下列確認 hello:  
 
    ![graphic36][graphic36]
-3. 按一下 [儲存] 命令，然後確認儲存所做的變更：  
+3. 按一下 hello 儲存 命令，並確認 儲存變更：  
    ![graphic37][graphic37]
 4. 當您儲存所做的變更時，系統會自動測試連線，以保證萬無一失。
-5. 繼續第 4 部分。
+5. 繼續 tooPart 4。
 
 ### <a name="sql-database"></a>SQL Database
-1. 尋找 [使用者名稱] 和 [密碼] 欄位，然後貼上剛剛建立的一組認證：  
+1. 尋找 hello 使用者名稱和密碼的欄位，並將您新建立的認證集貼到它們：  
    ![graphic38][graphic38]
-2. 按一下 [儲存] 命令，然後確認儲存所做的變更：  
+2. 按一下 hello 儲存 命令，並確認 儲存變更：  
    ![graphic39][graphic39]
 3. 當您儲存所做的變更時，系統會自動測試連線，以保證萬無一失。  
-4. 繼續第 4 部分。
+4. 繼續 tooPart 4。
 
 ## <a name="part-4-starting-your-job-from-last-stopped-time"></a>第 4 部分：從上次停止的時間開始您的工作
-1. 離開輸入/輸出：  
+1. 離開 hello 輸入/輸出：  
    ![graphic40][graphic40]
-2. 按一下 [開始] 命令：  
+2. 按一下 hello 啟動命令：  
    ![graphic41][graphic41]
-3. 挑選 [上次停止時間]，然後按一下 [確定]：   
+3. 挑選 hello 上次停止時間，然後按一下 確定:  
    ![graphic42][graphic42]
-4. 繼續第 5 部分。  
+4. 繼續 tooPart 5。  
 
-## <a name="part-5-removing-the-old-set-of-credentials"></a>第 5 部分：移除舊的認證集
-此部分適用於下列的輸入/輸出：
+## <a name="part-5-removing-hello-old-set-of-credentials"></a>第 5 部分： 移除 hello 舊一組認證
+這部分適用 toohello 後面輸入/輸出：
 
 * Blob 儲存體
 * 事件中樞
@@ -177,18 +177,18 @@ Azure Stream Analytics 目前不允許在工作執行的時候，取代輸入/�
 * 資料表儲存體
 
 ### <a name="blob-storagetable-storage"></a>Blob 儲存體/資料表儲存體 
-為工作以前使用的存取金鑰，重複第 1 部分，以更新現在未使用的存取金鑰。
+重複第 1 部分 hello 先前使用您的工作的存取金鑰 toorenew hello 現在未使用的存取金鑰。
 
 ### <a name="event-hubs"></a>事件中樞
-為工作以前使用的金鑰，重複第 1 部分，以更新現在未使用的金鑰。
+Hello 先前使用您的工作的索引鍵的重複第 1 部分 toorenew hello 現在未使用的索引鍵。
 
 ### <a name="sql-database"></a>SQL Database
-1. 從第 1 部分的步驟 7 回到查詢視窗，然後輸入下列查詢，即可將 <previous_login_name> 換成作業先前使用的使用者名稱：  
+1. 從組件 1 步驟 7 和 hello 下列查詢，以 hello 先前使用您的工作的使用者名稱取代 < previous_login_name > 中的型別上返回 toohello 查詢視窗中：  
    `DROP LOGIN <previous_login_name>`  
 2. 按一下 [執行]：  
    ![graphic43][graphic43]  
 
-系統應該會要求您進行以下確認： 
+您應該取得 hello 下列確認： 
 
     Command(s) completed successfully.
 
@@ -196,7 +196,7 @@ Azure Stream Analytics 目前不允許在工作執行的時候，取代輸入/�
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>後續步驟
-* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
+* [簡介 tooAzure 資料流分析](stream-analytics-introduction.md)
 * [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)

@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement Web SDK 概觀 | Microsoft Docs"
-description: "Azure Mobile Engagement Web SDK 的最新更新與程序"
+title: "aaaAzure Mobile Engagement Web SDK 概觀 |Microsoft 文件"
+description: "Azure Mobile Engagement hello 最新更新和 hello Web SDK 的程序"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,48 +14,48 @@ ms.devlang: js
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: piyushjo
-ms.openlocfilehash: 770a83131a3e661771db50b22ce7de25b2d541cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9e60a232b5eb2c41c405041a88e09d7137563513
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-mobile-engagement-web-sdk"></a>Azure Mobile Engagement Web SDK
-從這裡開始取得有關如何在 Web 應用程式中整合 Azure Mobile Engagement 的所有詳細資料。 如果您想要在開始使用您自己的 Web 應用程式之前，先嘗試一下，請參閱我們的 [15 分鐘教學課程](mobile-engagement-web-app-get-started.md)。
+從這裡開始針對所有 hello 詳細說明如何在 web 應用程式的 Azure Mobile Engagement toointegrate。 如果您想要 toogive 它才能開始使用您自己的 web 應用程式，再試一次看到我們[15 分鐘的教學課程](mobile-engagement-web-app-get-started.md)。
 
 ## <a name="integration-procedures"></a>整合程序
-1. 了解 [如何在 Web 應用程式中整合 Mobile Engagement](mobile-engagement-web-integrate-engagement.md)。
-2. 對於標籤計劃實作，了解 [如何在 Web 應用程式中使用進階的 Mobile Engagement 標籤 API](mobile-engagement-web-use-engagement-api.md)。
+1. 深入了解[如何在 web 應用程式中的 toointegrate Mobile Engagement](mobile-engagement-web-integrate-engagement.md)。
+2. 如需標記的計劃實作，了解[toouse hello 如何進階標記您的 web 應用程式中的應用程式開發介面的 Mobile Engagement](mobile-engagement-web-use-engagement-api.md)。
 
 ## <a name="release-notes"></a>版本資訊
 ### <a name="202-10182016"></a>2.0.2 (10/18/2016)
 * 已修正使用私密瀏覽時的當機問題 (Safari)。
 * 已修正停用 Cookie 之瀏覽器的當機問題。
 
-如需所有版本，請參閱 [完整版本資訊](mobile-engagement-web-release-notes.md)。
+對於所有版本，請參閱 hello[完成版本資訊](mobile-engagement-web-release-notes.md)。
 
 ## <a name="upgrade-procedures"></a>升級程序
-### <a name="upgrade-from-121-to-200"></a>從 1.2.1 升級到 2.0.0
-下列章節說明如何將 Mobile Engagement Web SDK 整合從 Capptain SAS 提供的 Capptain 服務移轉到 Azure Mobile Engagement 應用程式。 如果您是從 1.2.1 之前的版本移轉，請參閱 Capptain 網站，先移轉到 1.2.1 後再套用以下程序。
+### <a name="upgrade-from-121-too200"></a>1.2.1 從升級 too2.0.0
+hello 下列章節說明如何 toomigrate hello Capptain 服務整合在 Mobile Engagement Web SDK 所提供 Capptain SAS，tooan Azure Mobile Engagement 應用程式。 如果您要從移轉稍早的版本比 1.2.1，，請參閱 hello Capptain 網站 toomigrate too1.2.1 第一次，然後再套用 hello 下列程序。
 
-此版本的 Mobile Engagement Web SDK 不支援 Samsung Smart TV、Opera TV、webOS 或 Reach 功能。
+此版的 hello Mobile Engagement Web SDK 不支援 Samsung 智慧電視、 Opera 電視、 webOS 或 hello 觸達功能。
 
 > [!IMPORTANT]
-> Capptain 和 Azure Mobile Engagement 是不同的服務，反白顯示的以下程序只適用於移轉用戶端應用程式。 移轉應用程式中的 Mobile Engagement Web SDK，不會將您的資料從 Capptain 伺服器移轉到 Mobile Engagement 伺服器。
+> Capptain 和 Azure Mobile Engagement 不是 hello 相同的服務，和下列程序的 hello 反白顯示如何只 toomigrate hello 用戶端應用程式。 移轉 hello Mobile Engagement Web SDK hello 應用程式中的不會移轉您的資料從 Capptain 伺服器 tooa Mobile Engagement 伺服器。
 > 
 > 
 
 #### <a name="javascript-files"></a>JavaScript 檔案
-使用 azure-engagement.js 檔案來取代 capptain-sdk.js 檔案，然後據以更新您的指令碼匯入。
+取代 hello 檔案 capptain-sdk.js 以 hello 檔案 azure engagement.js，，，然後據此更新指令碼匯入。
 
 #### <a name="remove-capptain-reach"></a>移除 Capptain Reach
-此版本的 Mobile Engagement Web SDK 不支援 Reach 功能。 如果您將 Capptain Reach 整合到您的應用程式，就需要加以移除。
+此版的 hello Mobile Engagement Web SDK 不支援 hello 觸達功能。 如果您有整合 Capptain 觸達至您的應用程式，您需要 tooremove 它。
 
-從您的頁面移除 Reach CSS 匯入，並移除相關的 .css 檔案 (預設為 capptain-reach.css)。
+從您網頁移除 hello 到達 CSS 匯入，並刪除 hello 相關的.css 檔案 (capptain-reach.css，依預設)。
 
-刪除下列 Reach 資源：關閉影像 (預設為 capptain-close.png) 和品牌圖示 (預設為 capptain-notification-icon)。
+刪除下列觸達資源 hello: hello 關閉映像 (capptain-close.png，依預設) 和 hello 商標圖示 （capptain-通知-圖示，依預設）。
 
-移除用於應用程式內通知的 Reach UI。 預設配置看起來像這樣：
+移除應用程式內通知的 hello 到達 UI。 hello 預設版面配置看起來像這樣：
 
     <!-- capptain notification -->
     <div id="capptain_notification_area" class="capptain_category_default">
@@ -72,7 +72,7 @@ ms.lasthandoff: 07/11/2017
       </div>
     </div>
 
-移除用於文字和 Web 宣告和輪詢的 Reach UI。 預設配置看起來像這樣：
+移除文字和網頁的宣告與輪詢 hello 到達 UI。 hello 預設版面配置看起來像這樣：
 
     <div id="capptain_overlay" class="capptain_category_default">
       <button id="capptain_overlay_close">x</button>
@@ -85,7 +85,7 @@ ms.lasthandoff: 07/11/2017
       </div>
     </div>
 
-從您的組態中移除 `reach` 物件 (如果存在)。 它看起來像這樣：
+移除 hello`reach`如果存在的話，從您的組態物件。 它看起來像這樣：
 
     window.capptain = {
       [...]
@@ -97,16 +97,16 @@ ms.lasthandoff: 07/11/2017
 移除所有其他的 Reach 自訂，例如類別。
 
 #### <a name="remove-deprecated-apis"></a>移除已被取代的 API
-在 Mobile Engagement Web SDK 中，某些來自 Capptain 的 API 已被取代。
+在 hello Mobile Engagement Web SDK 已被取代 Capptain 從某些應用程式開發介面。
 
-移除針對下列 API 的所有呼叫：`agent.connect`、`agent.disconnect`、`agent.pause` 及 `agent.sendMessageToDevice`。
+移除下列應用程式開發介面的任何呼叫 toohello: `agent.connect`， `agent.disconnect`， `agent.pause`，和`agent.sendMessageToDevice`。
 
-從您的 Capptain 組態移除下列回呼的任何項目：`onConnected`、`onDisconnected`、`onDeviceMessageReceived` 及 `onPushMessageReceived`。
+移除任何 hello Capptain 組態中的下列回呼： `onConnected`， `onDisconnected`， `onDeviceMessageReceived`，和`onPushMessageReceived`。
 
 #### <a name="configuration"></a>組態
-Mobile Engagement 使用連接字串來設定 SDK 識別碼，例如應用程式識別碼。
+Mobile Engagement 會使用連接字串 tooconfigure SDK 識別項，例如 hello 應用程式識別項。
 
-使用您的連接字串來取代應用程式識別碼。 請注意，適用於 SDK 組態的全域物件會從 `capptain` 變更為 `azureEngagement`。
+取代您的連接字串中的 hello 應用程式識別碼。 請注意該 hello 全域物件，如 hello SDK 組態變更從`capptain`太`azureEngagement`。
 
 移轉前：
 
@@ -122,12 +122,12 @@ Mobile Engagement 使用連接字串來設定 SDK 識別碼，例如應用程式
       [...]
     };
 
-您應用程式的連接字串會顯示於 Azure 入口網站中。
+您的應用程式的 hello 連接字串會顯示在 hello Azure 入口網站。
 
 #### <a name="javascript-apis"></a>JavaScript API
-全域 JavaScript 物件 `window.capptain` 已重新命名為 `window.azureEngagement`，但您可以針對 API 呼叫使用 `window.engagement` 別名。 您無法使用此別名來定義 SDK 組態。
+hello 全域 JavaScript 物件`window.capptain`已重新命名`window.azureEngagement`，但是您可以使用 hello `window.engagement` API 呼叫的別名。 您無法使用此別名 toodefine hello SDK 組態。
 
 例如，`capptain.deviceId` 會變成 `engagement.deviceId`，`capptain.agent.startActivity` 會變成 `engagement.agent.startActivity`，依此類推。
 
-如果您已經將舊版 Azure Mobile Engagement Web SDK 整合到您的 Web 應用程式，請參閱 [升級程序](mobile-engagement-web-upgrade-procedure.md)。
+如果您已經為您的應用程式整合較早版本的 hello Azure Mobile Engagement Web SDK，請閱讀[升級程序](mobile-engagement-web-upgrade-procedure.md)。
 

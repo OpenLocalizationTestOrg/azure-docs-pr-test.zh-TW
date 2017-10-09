@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 的架構 | Microsoft Docs"
-description: "Service Fabric 是一種分散式系統平台，用來建置可調整、可靠且輕鬆管理的雲端應用程式。 本文章說明 Service Fabric 的架構。"
+title: "Azure Service Fabric 的 aaaArchitecture |Microsoft 文件"
+description: "Service Fabric 是分散式的系統平台使用 hello 雲端 toobuild 可擴充、 可靠且和輕鬆管理應用程式。 這篇文章會顯示 Service Fabric hello 架構。"
 services: service-fabric
 documentationcenter: .net
 author: rishirsinha
@@ -14,52 +14,52 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/19/2017
 ms.author: rsinha
-ms.openlocfilehash: 3cf019bf9a08574c984e92985452df438f3eeb77
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0268578094ad1a0010ef44ed940f828b985f6c40
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-architecture"></a>Service Fabric 架構
-Service Fabric 是使用分層的子系統所建置。 這些子系統可讓您撰寫的應用程式為：
+Service Fabric 是使用分層的子系統所建置。 這些子系統將啟用 toowrite 的應用程式：
 
 * 高可用性
 * 可調整
 * 可管理
 * 可測試
 
-下圖顯示 Service Fabric 的主要子系統。
+hello 下列圖表顯示 hello Service Fabric 主要子系統。
 
 ![Service Fabric 架構的圖表](media/service-fabric-architecture/service-fabric-architecture.png)
 
-在分散式系統中，能夠叢集中的節點之間安全地進行通訊非常重要。 堆疊的基底為傳輸子系統，可讓您安全地在節點之間進行通訊。 傳輸子系統上方即為同盟子系統，會將不同的節點叢集成單一實體 (稱為叢集)，讓 Service Fabric 可以偵測失敗、執行前置選擇，以及提供一致的路由。 可靠性子系統，即同盟子系統的最上層，負責透過如複寫、資源管理和容錯移轉等機制，提供 Service Fabric 服務的可靠性。 同盟子系統也以主控和啟用子系統為基礎，用來管理單一節點上的應用程式生命週期。 管理子系統會管理應用程式和服務的生命週期。 可測試性子系統可協助應用程式開發人員在將應用程式和服務部署至生產環境的前後，透過模擬錯誤測試其服務。 Service Fabric 可以透過其通訊子系統解析服務位置。 公開給開發人員的應用程式設計模型與啟用工具的應用程式模型位於這些子系統的最上層。
+在分散式系統中，在節點之間的通訊 hello 能力 toosecurely 叢集是非常重要。 Hello hello 堆疊的基底是 hello 傳輸子系統，提供節點之間的通訊安全。 上述 hello 傳輸子系統會位於 hello 同盟子系統，哪些群集會 hello 單一實體 （稱為 「 叢集 」） 到不同的節點，因此 Service Fabric 偵測失敗，執行前置選擇，且提供一致的路由。 hello 同盟子系統的最上層的 hello 可靠性子系統負責的機制，例如複寫、 資源管理和容錯移轉到 Service Fabric 服務的 hello 可靠性。 hello 同盟子系統也做為 hello 裝載和啟動子系統，可管理 hello 單一節點上的應用程式生命週期。 hello 管理子系統管理應用程式和服務的 hello 生命的週期。 hello 可測試性子系統可協助應用程式開發人員在部署應用程式和服務 tooproduction 環境前後測試他們的服務，透過模擬的錯誤。 Service Fabric 提供 hello 能力 tooresolve 透過其通訊子系統的服務位置。 hello 公開的 toodevelopers 上層 hello 應用程式模型 tooenable 工具以及這些子系統的應用程式撰寫模型。
 
 ## <a name="transport-subsystem"></a>傳輸子系統
-傳輸子系統會實作點對點資料包通訊通道。 此通道用於 Service Fabric 叢集內，以及 Service Fabric 叢集與用戶端之間的通訊。 它支援單向和要求/回覆通訊模式，可在同盟層提供實作廣播和多點傳送的基礎。 傳輸子系統使用 X509 憑證或 Windows 安全性來確保通訊安全。 此子系統供 Service Fabric 內部使用，並非由應用程式設計的開發人員直接存取。
+hello 傳輸子系統實作點對點資料包通訊通道。 此管道用於 service fabric 叢集內的通訊和 hello service fabric 叢集和用戶端之間的通訊。 它支援單向和要求-回覆通訊模式，提供 hello 基礎實作廣播 」 與 「 在多點傳送 hello 同盟層。 hello 傳輸子系統以便保護通訊安全使用 X509 憑證或 Windows 安全性。 這個子系統由服務網狀架構內部使用，並不是直接存取 toodevelopers 應用程式設計。
 
 ## <a name="federation-subsystem"></a>同盟子系統
-為了理解分散式系統中的節點集，您需要系統的一致檢視。 同盟子系統會使用傳輸子系統所提供的通訊基本功能，並將不同節點結合至單一的整合節點以便於理解。 其提供其他子系統所需的的分散式系統基本功能，包含失敗偵測、前置選擇，以及一致的路由。 同盟子系統使用 128 位元的權杖空間建置於分散式雜湊資料表的頂端。 此子系統會在節點上建立環狀拓撲，而環中的每個節點皆會針對擁有權來配置權杖空間的子集。 為了進行失敗偵測，分層會使用根據活動訊號和仲裁的租用機制。 同盟子系統也會透過複雜的聯結和分離的通訊協定，確保在任何時間內僅存在單一權杖擁有者。 如此可提供前置選擇和一致的路由保證。
+在順序 tooreason 相關的一組在分散式系統中的節點，您會需要 toohave hello 系統的一致檢視。 hello 同盟子系統使用 hello 傳輸子系統所提供的 hello 通訊原始和 gallery< hello 到可以理解的單一統一叢集中不同節點。 它提供 hello 分散式系統的基本項目所需的 hello 其他子系統-失敗偵測、 前置選擇以及一致的路由。 分散式的雜湊表具有 128 位元的語彙基元空間乃是建立 hello 同盟子系統。 hello 子系統會透過 hello 節點，每個節點中所配置的 hello 語彙基元空間子集的擁有權的 hello 信號建立環狀拓撲。 用於失敗偵測 hello 層會使用租用機制根據核心打和仲裁。 hello 同盟子系統也可保證，透過複雜聯結和出發，隨時都有單一擁有者的語彙基元的通訊協定。 如此可提供前置選擇和一致的路由保證。
 
 ## <a name="reliability-subsystem"></a>可靠性子系統
-可靠性子系統提供一種機制，可透過使用「複寫器」、「容錯移轉管理員」以及「資源平衡器」，讓 Service Fabric 服務的狀態具有高可用性。
+hello 可靠性子系統提供透過 hello hello 使用高可用性的 Service Fabric 服務的 hello 機制 toomake hello 狀態*複寫器*，*容錯移轉管理員*，和*Resource Balancer*。
 
-* 複寫器可確保主要服務複本中的狀態變更會自動複寫至次要複本，以便在服務複本集中維護主要和次要複本之間的一致性。 複寫器負責在複本集中的複本之間進行仲裁管理。 其會與容錯移轉單元互動，以取得要複寫的作業清單，且重新設定代理程式會提供複本集的組態。 該組態指出需要複寫作業的複本。 Service Fabric 會提供稱為網狀架構複寫器的預設複寫器，可由程式撰寫模型 API 用來使服務狀態具有高可用性和可靠性。
-* 容錯移轉管理員可確保當節點加入至叢集或從叢集移除節點時，負載會在可用的節點上自動重新分配。 如果叢集中的節點失敗，叢集會自動重新設定服務複本以維護可用性。
-* Resource Manager 會將服務複本置於叢集中的失敗網域，並確保所有的容錯移轉單元正常運作。 Resource Manager 也會在叢集節點的基礎共用集區上平衡服務資源，以便達到最佳的統一負載分佈。
+* hello 複寫器可確保在 hello 主要服務複本的狀態變更會自動複寫的 toosecondary 複本維護服務複本集的 hello 主要和次要複本之間的一致性。 hello 複寫器負責在 hello 複本組中的 hello 複本之間的仲裁管理。 它與 hello 容錯移轉單元 tooget hello 的清單作業 tooreplicate 互動和 hello 重新設定代理程式會將其提供 hello 複本集的 hello 組態。 該設定會指出哪些複本 hello 作業需要 toobe 複寫。 Service Fabric 提供稱為網狀架構複寫器，可供程式設計模型 API toomake hello 服務狀態高度可用且可靠的 hello 預設複寫器。
+* hello 容錯移轉管理員可確保，當加入 tooor 從 hello 叢集中移除節點，hello 負載自動重新分配跨 hello 可用的節點。 如果 hello 叢集中的節點失敗，則 hello 叢集會自動重新設定 hello 服務複本 toomaintain 可用性。
+* hello 資源管理員將服務複本放在 hello 叢集中的錯誤網域，並確保所有的容錯移轉單元運作正常。 hello 資源管理員也會在服務資源 hello 基礎的叢集節點 tooachieve 最佳統一的負載分配的共用集區之間取得平衡。
 
 ## <a name="management-subsystem"></a>管理子系統
-管理子系統提供端對端服務和應用程式生命週期管理。 PowerShell Cmdlet 和系統管理 API 可讓您佈建、部署、修補、升級和解除佈建應用程式，而不減損可用性。 管理子系統會透過下列服務來執行此作業。
+hello 管理子系統提供端對端服務和應用程式生命週期管理。 PowerShell cmdlet 和系統管理 Api tooprovision 可讓您、 部署修補程式，升級和解除佈建應用程式不會遺失的可用性。 hello 管理子系統會執行這透過下列服務的 hello。
 
-* **叢集管理員**：這是用來與容錯移轉管理員互動的主要服務，從可靠性到根據服務放置條件約束將應用程式放置在節點上。 容錯移轉子系統中的 Resource Manager 可確保永遠遵循條件約束。 叢集管理員會在從佈建到解除佈建的範圍內，管理應用程式的生命週期。 它會與健康狀態管理員整合，以便從語意上的健康狀態觀點，確保在升級期間不會減損應用程式的可用性。
-* **健康狀態管理員**：此服務會啟用應用程式、服務和叢集實體的健康狀態監視。 叢集實體 (例如節點、服務分割和複本) 可以報告健康狀態資訊，然後彙總至集中式健康狀態資料存放區。 此健康狀態資訊可提供服務的整體時間點健康狀態快照和分散在叢集中多個節點的節點，可讓您採取任何需要的修正動作。 健康狀態查詢 API 可讓您查詢向健康狀態子系統報告的健康狀態事件。 健康狀態查詢 API 會傳回儲存在健康狀態資料存放區中的原始健康狀態資料，或針對特定叢集實體傳回經過彙總、解譯的健康狀態資料。
-* **映像存放區**：此服務會提供應用程式二進位檔的儲存體和發佈。 此服務會提供簡易的分散式檔案存放區，應用程式可在其中進行上傳和下載。
+* **叢集管理員**： 這是 hello 與 hello 容錯移轉管理員從依據 hello 服務位置條件約束的 hello 節點上的可靠性 tooplace hello 應用程式互動的主要服務。 在容錯移轉子系統中的 hello 資源管理員可確保 hello 條件約束是永遠不會中斷。 hello 叢集管理員會管理 hello hello 應用程式生命週期，從佈建 toode 佈建。 它會與 hello 健全狀況管理員 tooensure，應用程式的可用性不會遺失語意的健全狀況的觀點在升級期間進行整合。
+* **健康狀態管理員**：此服務會啟用應用程式、服務和叢集實體的健康狀態監視。 （例如節點、 服務分割和複本） 的叢集實體可以報告健全狀況資訊，然後彙總成 hello 集中式的健全狀況存放區。 此健全狀況資訊提供任何所需的修正動作的整體中時間點健全狀況的快照集服務 hello 和分散到多個節點在 hello 叢集中，讓您 tootake 的節點。 健全狀況查詢 Api 可讓您 tooquery hello 健全狀況事件會報告 toohello 健全狀況子系統。 hello 健全狀況查詢 Api 會傳回儲存在 hello 健全狀況的 hello 未經處理的健全狀況資料存放區或 hello 彙總，解譯指定的叢集實體健全狀況資料。
+* **映像存放區**： 此服務會提供儲存體和 hello 發佈應用程式二進位檔。 此服務會提供簡單的分散式的檔案存放 hello 應用程式上傳的 tooand 從下載。
 
 ## <a name="hosting-subsystem"></a>主控子系統
-叢集管理員會通知主控子系統 (在每個節點上執行) 需要針對特定節點進行管理的服務。 主控子系統接著會管理該節點上的應用程式生命週期。 其會與可靠性和健康狀態元件互動，以確保複本放置於正確位置且健康狀態良好。
+hello 叢集管理員會通知 hello 裝載子系統 （每個節點上執行） 服務它需要 toomanage 特定節點。 然後裝載子系統的 hello 管理 hello hello 該節點上的應用程式生命週期。 它會與 hello 可靠性及健康情況元件 tooensure hello 複本位置是正確和狀況良好互動。
 
 ## <a name="communication-subsystem"></a>通訊子系統
-此子系統會在叢集內提供可靠訊息，並透過命名服務提供服務探索。 命名服務會將服務名稱解析至叢集中的位置，並可讓使用者能夠管理服務名稱和屬性。 用戶端可以使用命名服務，與叢集中的任何節點安全地進行通訊，以便解析服務名稱和擷取服務中繼資料。 Service Fabric 的使用者可以使用簡易命名用戶端 API，開發能夠解析目前網路位置的服務和用戶端，而不受節點動態或重新調整大小的叢集的限制。
+這個子系統提供 hello 叢集服務探索透過 hello 命名服務內的可信賴傳訊。 hello 命名服務解析 hello 叢集中的服務名稱 tooa 位置，並可讓使用者 toomanage 服務名稱和屬性。 使用 hello 命名服務，用戶端可以安全地與 hello 叢集 tooresolve 中的任何節點，進行通訊的服務名稱，擷取服務中繼資料。 使用簡單的命名用戶端應用程式開發介面，Service Fabric 的使用者可以開發服務和用戶端能夠解析不管節點了，還是 hello 重新調整大小的 hello 叢集 hello 目前網路位置。
 
 ## <a name="testability-subsystem"></a>可測試性子系統
-可測試性是一組工具套件，專門用來測試建置於 Service Fabric 上的服務。 這些工具可讓開發人員輕鬆誘發有意義的錯誤及執行測試案例，並使用受控制的安全方式，執行及驗證服務在其生命週期會發生的各種狀態和轉換情形。 可測試性也會提供一種機制，透過執行較長時間的測試，逐一查看各種可能的失敗，而不會減損可用性。 如此可為您提供生產環境中的測試。
+可測試性是一組工具套件，專門用來測試建置於 Service Fabric 上的服務。 hello 工具可讓開發人員輕鬆地產生有意義的錯誤和執行測試案例 tooexercise 和驗證 hello 許多狀態和轉換，服務會在其存留期，發生在受控制且安全的方式。 可測試性也會提供機制 toorun 較長的測試，可逐一各種可能發生的失敗不會遺失可用性。 如此可為您提供生產環境中的測試。
 

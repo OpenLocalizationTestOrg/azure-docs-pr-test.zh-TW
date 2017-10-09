@@ -1,5 +1,5 @@
 ---
-title: "開始使用 Azure SQL 資料庫稽核 | Microsoft Docs"
+title: "Azure SQL database 稽核入門 aaaGet |Microsoft 文件"
 description: "開始使用 Azure SQL 資料庫稽核"
 services: sql-database
 documentationcenter: 
@@ -15,73 +15,73 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/07/2017
 ms.author: giladm
-ms.openlocfilehash: f4324a59b5fa4c2e1ab5b1d7fc7e5fe986ea80f8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5494c602d702ac41992520f900c393a98cc7c989
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-sql-database-auditing"></a>開始使用 SQL Database 稽核
-Azure SQL 資料庫稽核會追蹤資料庫事件，並將事件寫入您 Azure 儲存體帳戶中的稽核記錄。 稽核也具備下列功能：
+Azure SQL database 稽核會追蹤資料庫事件，並將它們 tooan 稽核記錄您 Azure 儲存體帳戶中。 稽核也具備下列功能：
 
 * 協助您保持法規遵循、了解資料庫活動，以及深入了解可指出商務考量或疑似安全違規的不一致和異常。
 
-* 啟用及推動遵循法規標準，但不保證符合法規。 如需有關支援標準法規的 Azure 程式詳細資訊，請參閱 [Azure 信任中心](https://azure.microsoft.com/support/trust-center/compliance/)。
+* 啟用，並有助於遵循 toocompliance 標準，雖然它不能保證相容性。 如需有關 Azure 程式該支援標準相容性，請參閱 < hello [Azure 信任中心](https://azure.microsoft.com/support/trust-center/compliance/)。
 
 
 ## <a id="subheading-1"></a>Azure SQL 資料庫稽核概觀
 您可以使用 SQL 資料庫稽核完成下列工作：
 
 
-* **保留** 所選事件的稽核記錄。 您可以定義要稽核的資料庫動作類別。
-* **報告** 資料庫活動。 您可以使用預先設定的報告和儀表板，以便快速開始使用活動和事件報告。
+* **保留** 所選事件的稽核記錄。 您可以定義資料庫動作 toobe 稽核的類別。
+* **報告** 資料庫活動。 您可以使用預先設定的報表和儀表板 tooget 快速地開始使用活動和事件報告。
 * **分析** 報告。 您可以尋找可疑事件、異常活動及趨勢。
 
-您可以依照[設定資料庫的稽核](#subheading-2)一節中的說明，針對不同類型的事件類別設定稽核。
+您可以設定不同類型的事件類別目錄中，稽核 hello 中所述[為您的資料庫設定稽核](#subheading-2)> 一節。
 
-系統會將稽核記錄檔寫入 Azure 訂用帳戶的 Azure Blob 儲存體。
+稽核記錄檔會寫入 tooAzure Blob 儲存體，在您的 Azure 訂用帳戶。
 
 
 ## <a id="subheading-8"></a>定義伺服器層級與資料庫層級的稽核原則
 
 您可以針對特定資料庫定義稽核原則，或將稽核原則定義為預設伺服器原則：
 
-* 伺服器原則會套用至伺服器上所有現有和新建立的資料庫。
+* 伺服器原則 hello 伺服器上，套用 tooall 現有和新建立的資料庫。
 
-* 如果伺服器 Blob 稽核已啟用，它一律會套用到資料庫 (也就是將會稽核資料庫)，不論資料庫稽核設定為何。
+* 如果*server blob 稽核已啟用*，它*一律套用 toohello 資料庫*（也就是 hello 資料庫會稽核），不論 hello 資料庫稽核設定。
 
-* 如果在伺服器和資料庫上都啟用 Blob 稽核，這將「不會」覆寫或變更伺服器 Blob 稽核的任何設定。 這兩種稽核將會並存。 換句話說，系統將會對資料庫進行兩次相同的稽核 (一次是由伺服器原則，一次是由資料庫原則)。
+* 啟用稽核 hello 在資料庫上，在加法 tooenabling 它 hello 伺服器上的 blob 將*不*覆寫或變更的任何 hello hello server blob 稽核設定。 這兩種稽核將會並存。 換句話說，hello 資料庫將稽核兩次以平行方式 （一次由 hello 伺服器原則和一次程式 hello 資料庫原則）。
 
    > [!NOTE]
    > 您應該避免同時啟用伺服器 Blob 稽核與資料庫 Blob 稽核，除非：
-    > * 您需要為特定資料庫使用不同的儲存體帳戶或保留期間。
-    > * 您想要針對特定資料庫稽核不同於伺服器上其餘資料庫所稽核的事件類型或類別。 例如，您可能只需要針對特定資料庫稽核資料表插入。
+    > * 您想要不同的 toouse*儲存體帳戶*或*保留期限*特定資料庫。
+    > * 您想要 tooaudit 事件類型或分類的不同事件類型的特定資料庫或稽核 hello 伺服器上的資料庫 hello hello 其餘的類別。 例如，您可能需要稽核 toobe 只針對特定資料庫的資料表插入。
    > 
-   > 否則，建議只啟用伺服器層級 Blob 稽核，並讓所有資料庫的資料庫層級稽核保留在停用狀態。
+   > 否則，我們建議您啟用只有伺服器層級 blob 稽核和保持 hello 資料庫層級的稽核所有資料庫停都用。
 
 
 ## <a id="subheading-2"></a>設定資料庫的稽核
-下節描述使用 Azure 入口網站進行稽核的設定。
+hello 下一節描述 hello 的稽核，以使用 hello Azure 入口網站的組態。
 
-1. 移至 [Azure 入口網站](https://portal.azure.com)。
-2. 移至您想要稽核的 SQL 資料庫/SQL 伺服器 [設定] 刀鋒視窗。 在 [設定] 刀鋒視窗中，選取 [稽核與威脅偵測]。
+1. 移 toohello [Azure 入口網站](https://portal.azure.com)。
+2. 移 toohello**設定**刀鋒視窗中的 hello 想 tooaudit SQL 資料庫/SQL server。 在 hello**設定**刀鋒視窗中，選取**稽核與威脅偵測**。
 
     <a id="auditing-screenshot"></a> ![導覽窗格][1]
-3. 如果您想要設定伺服器稽核原則 (其將套用至此伺服器上所有現有和新建立的資料庫)，您可以選取資料庫稽核刀鋒視窗中的 [檢視伺服器設定] 連結。 然後，您可以檢視或修改伺服器稽核設定。
+3. 如果您偏好 tooset 註冊的伺服器稽核原則 （將此伺服器套用 tooall 現有和新建立的資料庫），您可以選取 hello**檢視伺服器設定**hello 資料庫稽核刀鋒視窗中的連結。 您可以接著檢視或修改 hello 伺服器稽核設定。
 
-    ![導覽窗格][2]
-4. 如果您想要啟用資料庫層級的 Blob 稽核 (同時啟用或不啟用伺服器層級的稽核)，請針對 [稽核] 選取 [開啟]，並針對 [稽核類型] 選取 [Blob]。
+    ![瀏覽窗格][2]
+4. 如果您想 tooenable hello 資料庫層級 （加法 tooor 而不是伺服器層級的稽核)，稽核 blob**稽核**，選取**ON**，以及**稽核類型**選取**Blob**。
 
-    如果已啟用伺服器 Blob 稽核，資料庫設定的稽核將會與伺服器 Blob 稽核並存。  
+    如果伺服器 blob 稽核已啟用，就會並存 hello 伺服器 blob 稽核存在 hello 資料庫設定稽核。  
 
-    ![導覽窗格][3]
-5. 若要開啟 [稽核記錄儲存體] 刀鋒視窗，請選取 [儲存體詳細資料]。 選取將儲存記錄的 Azure 儲存體帳戶，然後選取將舊記錄刪除之前的保留期間。 然後按一下 [確定] 。 
+    ![瀏覽窗格][3]
+5. tooopen hello**稽核記錄檔儲存體**刀鋒視窗中，選取**儲存詳細資料**。 選取記錄檔將儲存的位置，，然後選取 hello 保留期限，將會刪除舊的記錄檔之後的 hello hello Azure 儲存體帳戶。 然後按一下 [確定] 。 
    >[!TIP] 
-   >若要充分利用稽核報告範本，請讓所有稽核的資料庫都使用相同的儲存體帳戶。 
+   >充分利用 hello 的稽核報表範本，而使用 tooget hello hello 所有稽核資料庫的相同儲存體的帳戶。 
 
     <a id="storage-screenshot"></a> ![導覽窗格][4]
-6. 如果您想要自訂稽核的事件，您可以透過 PowerShell 或 REST API 來自訂。 如需詳細資訊，請參閱[自動化 (PowerShell/REST API)](#subheading-7) 一節。
-7. 設定您的稽核設定之後，您可以開啟新的威脅偵測功能，並設定電子郵件以接收安全性警示。 使用威脅偵測時，您會接收與指示潛在安全性威脅的異常資料庫活動相關的主動式警示。 如需詳細資訊，請參閱[開始使用威脅偵測](sql-database-threat-detection-get-started.md)。
+6. 如果您想 toocustomize hello 稽核事件，您可以透過 PowerShell 執行這項操作，或 hello REST API。 如需詳細資訊，請參閱 hello[自動化 (PowerShell/REST API)](#subheading-7) > 一節。
+7. 設定您的稽核設定之後，您可以開啟 hello 新威脅偵測功能，並設定電子郵件 tooreceive 安全性警示。 使用威脅偵測時，您會接收與指示潛在安全性威脅的異常資料庫活動相關的主動式警示。 如需詳細資訊，請參閱[開始使用威脅偵測](sql-database-threat-detection-get-started.md)。
 8. 按一下 [儲存] 。
 
 
@@ -89,88 +89,88 @@ Azure SQL 資料庫稽核會追蹤資料庫事件，並將事件寫入您 Azure 
 
 
 ## <a id="subheading-3"></a>分析稽核記錄和報告
-稽核記錄會在您於安裝期間選擇的 Azure 儲存體帳戶中彙總。 您可以使用工具 (例如 [Azure 儲存體總管](http://storageexplorer.com/)) 來查看稽核記錄。
+稽核記錄檔會彙總 hello 您在安裝期間所選擇的 Azure 儲存體帳戶中。 您可以使用工具 (例如 [Azure 儲存體總管](http://storageexplorer.com/)) 來查看稽核記錄。
 
 Blob 稽核記錄是以 Blob 檔案集合的方式儲存在名為 **sqldbauditlogs** 的容器內。
 
-如需有關 Blob 稽核記錄儲存體資料夾階層、Blob 命名慣例和記錄格式的進一步詳細資訊，請參閱 [Blob 稽核記錄格式參考 (.docx 檔案下載)](https://go.microsoft.com/fwlink/?linkid=829599) (英文)。
+如需 hello 階層 hello blob 稽核記錄檔儲存體資料夾及 blob 的命名慣例，記錄檔格式的進一步詳細資訊，請參閱 hello [Blob 稽核記錄檔格式參考 （.docx 檔案下載）](https://go.microsoft.com/fwlink/?linkid=829599)。
 
-有幾種方法可以用於檢視 Blob 稽核記錄：
+有數種方法，您可以使用稽核記錄的 tooview blob:
 
-* 使用 [Azure 入口網站](https://portal.azure.com)。  開啟相關的資料庫。 在資料庫的 [稽核與威脅偵測] 刀鋒視窗的頂端，按一下 [檢視稽核記錄]。
+* 使用 hello [Azure 入口網站](https://portal.azure.com)。  開啟 hello 相關資料庫。 在 hello 頂端 hello 資料庫**稽核與威脅偵測**刀鋒視窗中，按一下 **檢視稽核記錄檔**。
 
-    ![導覽窗格][7]
+    ![瀏覽窗格][7]
 
-    隨即開啟 [稽核記錄] 刀鋒視窗，您可以在其中檢視記錄。
+    **稽核記錄**刀鋒視窗隨即開啟，從中您應該能夠 tooview hello 記錄檔。
 
-    - 您可以按一下 [稽核記錄] 刀鋒視窗頂端的 [篩選] 來檢視特定日期。
+    - 按一下即可檢視特定日期**篩選**頂端的 hello hello**稽核記錄**刀鋒視窗。
     - 您可以在由伺服器原則或資料庫原則稽核建立的稽核記錄之間切換。
 
-       ![導覽窗格][8]
+       ![瀏覽窗格][8]
 
-* 使用系統函數 **sys.fn_get_audit_file** (T-SQL) 以表格格式傳回稽核記錄資料。 如需有關如何使用此函數的詳細資訊，請參閱 [sys.fn_get_audit_file 文件](https://docs.microsoft.com/sql/relational-databases/system-functions/sys-fn-get-audit-file-transact-sql) (英文)。
+* 使用 hello 系統函數**sys.fn_get_audit_file** (T-SQL) tooreturn hello 稽核記錄檔中的資料表格格式。 如需有關如何使用這個函式的詳細資訊，請參閱 hello [sys.fn_get_audit_file 文件](https://docs.microsoft.com/sql/relational-databases/system-functions/sys-fn-get-audit-file-transact-sql)。
 
 
 * 使用 SQL Server Management Studio (SSMS 17 或更新版本) 中的 [合併稽核檔案]：  
-    1. 從 SSMS 功能表選取 [檔案] > [開啟] > [合併稽核檔案]。
+    1. 從 hello SSMS 功能表上，選取**檔案** > **開啟** > **合併稽核檔案**。
 
-        ![導覽窗格][9]
-    2. 隨即開啟 [新增稽核檔案] 對話方塊。 選取其中一個 [新增] 選項以選擇是否要從本機磁碟合併稽核檔案，或從 Azure 儲存體匯入稽核檔案 (您將需要提供您的 Azure 儲存體詳細資料和帳戶金鑰)。
+        ![瀏覽窗格][9]
+    2. hello**加入稽核檔案**對話方塊隨即開啟。 選取其中一個 hello**新增**選項可以選擇是否 toomerge 稽核檔案從本機磁碟，或從 Azure 儲存體匯入 (您將需要的 tooprovide，您的 Azure 儲存體的詳細資訊和帳戶金鑰)。
 
-    3. 已新增要合併的所有檔案之後，請按一下 [確定] 以完成合併作業。
+    3. 已新增所有的檔案 toomerge 之後，請按一下**確定**toocomplete hello 合併作業。
 
-    4. 合併的檔案會在 SSMS 中開啟，您可以在其中檢視和分析該檔案，以及將其匯出至 XEL 或 CSV 檔案或資料表。
+    4. 在 SSMS 中，您可以在其中檢視和分析，以及匯出它 tooan XEL 或 CSV 檔案或 tooa 資料表中，開啟 hello 合併的檔案。
 
-* 使用我們建立的[同步應用程式](https://github.com/Microsoft/Azure-SQL-DB-auditing-OMS-integration)。 其會在 Azure 中執行，並利用 Operations Management Suite (OMS) Log Analytics 公開 API 將 SQL 稽核記錄推送至 OMS。 同步應用程式會透過 OMS Log Analytics 儀表板，將 SQL 稽核記錄推送至 OMS Log Analytics。 
+* 使用 hello[同步應用程式](https://github.com/Microsoft/Azure-SQL-DB-auditing-OMS-integration)，我們建立了。 它會在 Azure 中執行，並且利用到 OMS 的 Operations Management Suite (OMS) 的記錄分析公用 Api toopush SQL 稽核記錄檔。 hello 同步處理應用程式將發送 SQL 稽核記錄檔至 OMS 記錄分析取用透過 hello OMS 記錄分析儀表板。 
 
 * 使用 Power BI。 您可以在 Power BI 中檢視和分析稽核記錄資料。 深入了解 [Power BI，並存取可下載的範本](https://blogs.msdn.microsoft.com/azuresqldbsupport/2017/05/26/sql-azure-blob-auditing-basic-power-bi-dashboard/)。
 
-* 透過入口網站或使用工具 (例如 [Azure 儲存體總管](http://storageexplorer.com/)) 從 Azure 儲存體 Blob 容器下載記錄檔。
-    * 在您將記錄檔下載到本機之後，您可以按兩下檔案，以在 SSMS 中開啟、檢視及分析記錄。
-    * 您也可以透過 Azure 儲存體總管同時下載多個檔案。 以滑鼠右鍵按一下特定子資料夾 (例如，包含特定日期所有記錄檔的子資料夾)，然後選取 [另存新檔] 以儲存在本機資料夾中。
+* 下載記錄檔從您的 Azure 儲存體 blob 容器透過 hello 入口網站，或使用一種工具，像是[Azure 儲存體總管](http://storageexplorer.com/)。
+    * 您已下載記錄檔在本機上之後，您可以按兩下 hello 檔案 tooopen，檢視及分析在 SSMS 中的 hello 記錄檔。
+    * 您也可以透過 Azure 儲存體總管同時下載多個檔案。 以滑鼠右鍵按一下特定的子資料夾 （例如，子資料夾中包含特定日期的所有記錄檔），然後選取**存**toosave 本機資料夾中的。
 
 * 其他方法：
-   * 下載多個檔案 (或包含一整天記錄檔的子資料夾，如本清單中上一個項目中所述) 之後，您可以在本機合併這些檔案，如稍早所述的 SSMS 合併稽核檔案指示中所述。
+   * 下載多個檔案 （或子資料夾，以記錄檔包含一整天，這份清單中的 hello 上一個項目中所述） 之後, 您可以合併它們在本機中稍早所述的 hello SSMS 合併稽核檔案指示所述。
 
    * 以程式設計方式檢視 Blob 稽核記錄：
 
-     * 使用[擴充事件讀取器](https://blogs.msdn.microsoft.com/extended_events/2011/07/20/introducing-the-extended-events-reader/) C# 程式庫。
+     * 使用 hello[擴充事件讀取器](https://blogs.msdn.microsoft.com/extended_events/2011/07/20/introducing-the-extended-events-reader/)C# 程式庫。
      * 使用 PowerShell [查詢擴充事件檔案](https://sqlscope.wordpress.com/2014/11/15/reading-extended-event-files-using-client-side-tools-only/)。
 
 
 
 
 ## <a id="subheading-5"></a>實際作法
-<!--The description in this section refers to preceding screen captures.-->
+<!--hello description in this section refers toopreceding screen captures.-->
 
 ### <a id="subheading-6">稽核異地複寫資料庫</a>
-使用異地複寫資料庫時，您可以在主要資料庫、次要資料庫或兩者 (需視稽核類型而定) 設定稽核。
+當您使用地理複寫的資料庫時，很可能 tooset 向上 hello 主要資料庫、 hello 次要資料庫，或兩者，根據 hello 稽核類型上的稽核。
 
-請遵循這些指示 (請記住，您只能從主要資料庫稽核設定開啟或關閉 Blob 稽核)：
+請遵循這些指示 （請記住，blob 稽核可以開啟或關閉只能從 hello 主要資料庫稽核設定）：
 
-* **主要資料庫**。 依照[設定資料庫的稽核](#subheading-2)一節所述，在伺服器或資料庫本身開啟 Blob 稽核。
-* **次要資料庫**。 依照[設定資料庫的稽核](#subheading-2)一節所述，在主要資料庫上開啟 Blob 稽核。 
-   * 必須在「主要資料庫本身」 (而不是在伺服器上) 啟用 Blob 稽核。
-   * 在主要資料庫上啟用 Blob 稽核之後，它也會在次要資料庫上變成啟用狀態。
+* **主要資料庫**。 開啟 blob 稽核 hello 伺服器上或在 hello 資料庫本身，hello 中所述[為您的資料庫設定稽核](#subheading-2)> 一節。
+* **次要資料庫**。 Blob 上開啟稽核 hello 主要資料庫，hello 中所述[為您的資料庫設定稽核](#subheading-2)> 一節。 
+   * Blob 稽核上必須啟用 hello*主要資料庫本身*，非 hello 伺服器。
+   * Blob 稽核 hello 主要資料庫上啟用之後，它也會變成 hello 次要資料庫上啟用。
 
      >[!IMPORTANT]
-     >根據預設值，次要資料庫的儲存體設定將會和主要資料庫上的設定完全相同，這會導致跨地區流量。 您可以在次要伺服器上啟用 Blob 稽核，並在次要伺服器儲存體設定中設定本機儲存體，以避免此情況。 這將覆寫次要資料庫的儲存位置，並導致每個資料庫都將其稽核記錄儲存至本機儲存體。  
+     >根據預設，hello 儲存體 hello 次要資料庫會設定相同的 hello 主要資料庫，toothose 導致跨地區的流量。 您可以避免這個狀況啟用稽核 hello 次要伺服器上的 blob 和 hello 次要伺服器儲存體設定中設定本機儲存體。 這會覆寫 hello hello 次要資料庫並儲存其稽核記錄檔 toolocal 儲存體的每個資料庫中的結果的儲存位置。  
 <br>
 
 ### <a id="subheading-6">儲存體金鑰重新產生</a>
-在生產中，您可能會定期重新整理儲存體金鑰。 重新整理金鑰時，您需要重新儲存稽核原則。 程序如下：
+實際執行環境，您就有可能您的儲存體金鑰定期的 toorefresh。 當重新整理您的金鑰，您會需要 tooresave hello 稽核原則。 hello 程序如下所示：
 
-1. 開啟 [儲存體詳細資料] 刀鋒視窗。 在 [儲存體存取金鑰] 方塊中，選取 [次要]，然後按一下 [確定]。 然後按一下稽核組態刀鋒視窗頂端的 [儲存]。
+1. 開啟 hello**儲存詳細資料**刀鋒視窗。 在 hello**儲存體存取金鑰**方塊中，選取**次要**，然後按一下**確定**。 然後按一下 **儲存**在 hello hello 稽核組態刀鋒視窗最上方。
 
-    ![導覽窗格][5]
-2. 移至儲存體組態刀鋒視窗，並重新產生主要存取金鑰。
+    ![瀏覽窗格][5]
+2. 請 toohello 存放裝置設定 刀鋒視窗，並重新產生 hello 主要存取金鑰。
 
-    ![導覽窗格][6]
-3. 返回稽核組態刀鋒視窗，將儲存體存取金鑰從次要切換成主要，然後按一下 [確定]。 然後按一下稽核組態刀鋒視窗頂端的 [儲存]。
-4. 返回儲存體組態刀鋒視窗，並重新產生次要存取金鑰 (為下一個金鑰重新整理週期做準備)。
+    ![瀏覽窗格][6]
+3. 返回 toohello 稽核組態刀鋒視窗中，切換 hello 儲存體存取金鑰，從次要 tooprimary，，然後按一下**確定**。 然後按一下 **儲存**在 hello hello 稽核組態刀鋒視窗最上方。
+4. 返回 toohello 儲存體組態刀鋒視窗，然後重新產生 hello 次要存取金鑰 （在準備 hello 下一個索引鍵的重新整理循環）。
 
 ## <a id="subheading-7"></a>自動化 (PowerShell/REST API)
-您也可以使用下列自動化工具在 Azure SQL Database 中設定稽核：
+您也可以設定稽核 Azure SQL Database 中使用下列的自動化工具 hello:
 
 * **PowerShell Cmdlet**：
 

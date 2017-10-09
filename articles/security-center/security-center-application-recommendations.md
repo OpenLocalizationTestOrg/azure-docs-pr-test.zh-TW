@@ -1,5 +1,5 @@
 ---
-title: "保護 Azure 資訊安全中心內的應用程式 | Microsoft Docs"
+title: "aaaProtecting Azure 資訊安全中心中的應用程式 |Microsoft 文件"
 description: "本文件說明可協助您保護 Azure 應用程式及遵守安全性原則的 Azure 資訊安全中心建議。"
 services: security-center
 documentationcenter: na
@@ -14,32 +14,32 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/01/2016
 ms.author: terrylan
-ms.openlocfilehash: dfc7d14b95082842ba658bd94b15c8191ee5dca3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: da5e02cc2bad55c64e4da14e4e10efd6ddeab39e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="protecting-your-applications-in-azure-security-center"></a>保護 Azure 資訊安全中心內的應用程式
-「Azure 資訊安全中心」會分析 Azure 資源的安全性狀態。 當資訊安全中心發現潛在的安全性弱點時，它會建立可引導您完成所需控制之設定程序的建議。  這些建議適用於下列 Azure 資源類型︰虛擬機器 (VM)、網路、SQL 和應用程式。
+Azure 資訊安全中心會分析您的 Azure 資源 hello 安全性狀態。 當資訊安全中心識別潛在的安全性漏洞時，它會建立可引導您完成設定所需的 hello 控制項的 hello 程序的建議。  適用於建議 tooAzure 資源類型： SQL，以及應用程式網路的虛擬機器 (Vm)。
 
-本文說明適用於應用程式的建議。  應用程式建議圍繞在 Web 應用程式防火牆的部署。  請使用下表做為參考，以協助您了解可用的應用程式建議，以及如果套用建議，每一個建議將產生的作用。
+本文適用 tooapplications 的建議。  應用程式建議圍繞在 Web 應用程式防火牆的部署。  使用 hello 表當做參考 toohelp 您了解 hello 可用的應用程式的建議，每個用途如果您將其套用。
 
 ## <a name="available-application-recommendations"></a>可用的應用程式建議
 | 建議 | 說明 |
 | --- | --- |
-| [新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md) |建議您為 Web 端點部署「Web 應用程式防火牆」(WAF)。 系統會針對任何具有相關聯網路安全性群組 (包含開放輸入 Web 連接埠 (80,443)) 的公開 IP (執行個體層級 IP 或負載平衡 IP)，顯示 WAF 建議。</br></br>資訊安全中心建議您佈建 WAF，協助對抗以虛擬機器和 App Service 環境上的 Web 應用程式為目標的攻擊。 App Service 環境 (ASE) 是Azure App Service 的 [Premium](https://azure.microsoft.com/pricing/details/app-service/) 服務方案選項，可提供完全隔離和專用的環境，以便安全地執行 Azure App Service 應用程式。 若要深入了解 ASE，請參閱 [App Service 環境的文件](../app-service/app-service-app-service-environments-readme.md)。</br></br>您可以將這些應用程式加入現有的 WAF 部署，以保護資訊安全中心的多個 Web 應用程式。 |
-| [完成應用程式保護](security-center-add-web-application-firewall.md#finalize-application-protection) |若要完成 WAF 組態，必須將流量重新路由至 WAF 設備。 遵循這項建議會完成必要的設定變更。 |
+| [新增 Web 應用程式防火牆](security-center-add-web-application-firewall.md) |建議您為 Web 端點部署「Web 應用程式防火牆」(WAF)。 系統會針對任何具有相關聯網路安全性群組 (包含開放輸入 Web 連接埠 (80,443)) 的公開 IP (執行個體層級 IP 或負載平衡 IP)，顯示 WAF 建議。</br></br>資訊安全中心建議您佈建 WAF toohelp 防禦目標 web 應用程式的 App Service 環境和虛擬機器上的攻擊。 App Service 環境 (ASE) 是Azure App Service 的 [Premium](https://azure.microsoft.com/pricing/details/app-service/) 服務方案選項，可提供完全隔離和專用的環境，以便安全地執行 Azure App Service 應用程式。 toolearn 深入了解 ASE，請參閱 hello[應用程式服務環境的文件](../app-service/app-service-app-service-environments-readme.md)。</br></br>您可以藉由新增這些應用程式 tooyour 現有 WAF 部署保護的資訊安全中心中的多個 web 應用程式。 |
+| [完成應用程式保護](security-center-add-web-application-firewall.md#finalize-application-protection) |toocomplete hello 的 WAF，流量必須路由的 toohello WAF 應用裝置。 遵循這個建議完成 hello 必要的設定變更。 |
 
 ## <a name="see-also"></a>另請參閱
-若要深入了解適用於其他 Azure 資源類型的建議，請參閱下列文章︰
+toolearn 深入了解建議，套用 tooother Azure 資源類型，請參閱 hello 下列資訊：
 
 * [保護 Azure 資訊安全中心內的虛擬機器](security-center-virtual-machine-recommendations.md)
 * [保護 Azure 資訊安全中心內的網路](security-center-network-recommendations.md)
 * [保護 Azure 資訊安全中心內的 Azure SQL 服務](security-center-sql-service-recommendations.md)
 
-如要深入了解資訊安全中心，請參閱下列主題：
+toolearn 有關資訊安全中心的詳細資訊，請參閱 hello 下列資訊：
 
-* [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) -- 了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
-* [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
-* [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
+* [在 Azure 資訊安全中心中設定安全性原則](security-center-policies.md)-了解如何 tooconfigure 您的 Azure 訂用帳戶和資源群組的安全性原則。
+* [在 Azure 資訊安全中心警示管理，而且有回應 toosecurity](security-center-managing-and-responding-alerts.md) -了解如何 toomanage 和回應 toosecurity 警示。
+* [Azure 資訊安全中心常見問題集](security-center-faq.md)-尋找使用 hello 服務相關的常見問題集。

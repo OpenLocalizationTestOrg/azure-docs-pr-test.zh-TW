@@ -1,6 +1,6 @@
 ---
-title: "Azure 串流分析查詢測試 |M icrosoft Docs"
-description: "如何在串流分析作業中測試查詢。"
+title: "aaaAzure 串流分析查詢測試 |Microsoft 文件"
+description: "如何 tootest 您在資料流分析作業中的查詢。"
 keywords: "測試查詢、對查詢進行移難排解"
 documentation center: 
 services: stream-analytics
@@ -15,33 +15,33 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 04/20/2017
 ms.author: jeffstok
-ms.openlocfilehash: 16bb3f26ec3a69e5204162db9e54a186cf1ec6a6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 3b141d98332fdc170e696e181c8446796a86f78e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="test-azure-stream-analytics-queries-in-the-azure-portal"></a>在 Azure 入口網站測試串流分析查詢
+# <a name="test-azure-stream-analytics-queries-in-hello-azure-portal"></a>在 hello Azure 入口網站中測試 Azure 串流分析查詢
 
-透過 Azure 串流分析，您可以在 Azure 入口網站中測試查詢，且無須啟動或停止作業。
+使用 Azure Stream Analytics 中，您可以測試 hello Azure 入口網站中的查詢，而不需要 toostart 或停止作業。
 
-## <a name="test-the-input"></a>測試輸入
+## <a name="test-hello-input"></a>測試 hello 輸入
 
-1. 若要測試樣本輸入資料，以滑鼠右鍵按一下任何輸入，然後選取 [從檔案上傳樣本資料]。
+1. tootest 範例輸入資料，與任何輸入，以滑鼠右鍵按一下，然後選取**從檔案的範例資料上傳**。
 
     ![串流分析查詢編輯器的測試查詢](media/stream-analytics-test-query/stream-analytics-test-query-editor-upload.png)
 
-2. 上傳完成後，按一下 [測試] 以根據您提供的樣本資料測試此查詢。
+2. Hello 上傳完成後，按一下**測試**tootest hello 針對此查詢範例所提供的資料。
 
     ![串流分析查詢編輯器的樣本資料](media/stream-analytics-test-query/stream-analytics-test-query-editor-test.png)
 
-查詢的輸出會顯示在瀏覽器中，還有 [下載結果] 連結可讓您儲存測試輸出以供稍後使用。 您現在可以輕鬆地反覆修改查詢並反覆測試查詢來查看輸出的變更狀況。
+hello 查詢的輸出會顯示在 hello 的瀏覽器中，以下載結果連結應該要 toosave hello 測試輸出以供稍後使用。 您現在可以輕鬆並反覆地修改查詢並測試它重複 toosee hello 輸出如何變更。
 
 ![串流分析查詢編輯器樣本輸出](media/stream-analytics-test-query/stream-analytics-test-query-editor-samples-output.png)
 
-透過在查詢中使用多個輸出，您可以分別查看兩個輸出的結果，並輕鬆地在兩者之間切換。
+具有多個查詢中使用的輸出，您可以分別查看 hello 結果的兩個輸出，並兩者之間輕鬆切換。
 
-當您滿意顯示在瀏覽器中的結果後，您可以儲存查詢、啟動作業，以及讓其在沒有錯誤的情況下處理事件。
+其 hello 結果顯示在 hello 瀏覽器中，您可以儲存您的查詢，請啟動您的工作，並讓您感到滿意後，它會處理事件不會發生錯誤。
 
 ## <a name="get-help"></a>取得說明
 
@@ -49,7 +49,7 @@ ms.lasthandoff: 08/29/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
+* [簡介 tooAzure 資料流分析](stream-analytics-introduction.md)
 * [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)

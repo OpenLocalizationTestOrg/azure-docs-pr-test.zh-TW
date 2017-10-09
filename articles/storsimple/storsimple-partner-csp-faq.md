@@ -1,6 +1,6 @@
 ---
-title: "適用於合作夥伴的 Microsoft Azure StorSimple 和雲端解決方案提供者方案的常見問題集 | Microsoft Docs"
-description: "針對適用於合作夥伴的 StorSimple 和 CSP 的一些常見問題，尋找解答。"
+title: "aaaFrequently 常見問題上 Microsoft Azure StorSimple 和雲端方案提供者程式合作夥伴 |Microsoft 文件"
+description: "尋找解答 toosome 常見問題的解答有關 StorSimple 與 CSP 的夥伴。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 02/08/2017
 ms.author: alkohli
-ms.openlocfilehash: 4dc5ae7d3feae769a8366f68f412f3b79fa8eb00
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5343346ce8dc9927136a9a2781a08983faeac46e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="storsimple-for-cloud-solutions-provider-program-frequently-asked-questions"></a>適用於雲端解決方案提供者的 StorSimple 方案︰常見問題集
 
 
 ## <a name="overview"></a>概觀
-以下是 StorSimple 合作夥伴在 Azure 入口網站中部署或管理 StorSimple Virtual Array 時，可能遇到的問題和解答。
+hello 如下問題和解答，當您部署或管理 StorSimple Virtual Array Azure 入口網站中，您可能必須為 StorSimple 夥伴。
 
-問題和解答分成下列幾個類別：
+問題和答案分成下列類別目錄的 hello:
 
  - [StorSimple 和雲端解決方案提供者方案 (CSP) 模型](#storsimple-and-csp-model)
  - [合作夥伴部署和管理虛擬陣列](#deploy-and-manage-storsimple-as-a-partner)
@@ -34,61 +34,61 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="storsimple-and-csp-model"></a>StorSimple 和 CSP 模型
 
-### <a name="what-does-it-mean-to-have-storsimple-as-a-part-of-the-cloud-solutions-provider-csp-program"></a>將 StorSimple 納入雲端解決方案提供者 (CSP) 方案中表示什麼？
- StorSimple for CSP 可讓我們的 CSP 合作夥伴將 StorSimple Virtual Array 轉售給他們的客戶。 此模型可讓 CSP 合作夥伴憑藉 Microsoft 雲端服務的直接佈建、帳單和支援，擁有完整的客戶生命週期。 
+### <a name="what-does-it-mean-toohave-storsimple-as-a-part-of-hello-cloud-solutions-provider-csp-program"></a>是什麼意思 toohave StorSimple hello 雲端方案提供者 (CSP) 程式的一部分？
+ Csp StorSimple 可讓我們 CSP 夥伴 tooresell StorSimple Virtual Array 他們的客戶。 此模型可讓 hello CSP 夥伴 tooown hello 端對端客戶生命週期有直接的佈建、 帳單和支援的 Microsoft 雲端服務。 
 
-如需詳細資訊，請移至 [StorSimple in CSP 方案](https://www.microsoft.com/en-us/server-cloud/products/storsimple/)。 
+如需詳細資訊，請移至太[CSP 程式中的 StorSimple](https://www.microsoft.com/en-us/server-cloud/products/storsimple/)。 
 
 ### <a name="is-storsimple-a-usage-based-or-based-on-seat-licenses-like-office-365-and-enterprise-mobility-suite-ems"></a>StorSimple 是依使用量計算授權，還是採用基座授權，就像 Office 365 和 Enterprise Mobility Suite (EMS) 一樣？
-StorSimple 是依使用量計算的服務。 透過 CSP 途徑採購 StorSimple Virtual Array 的客戶需要支付虛擬陣列和 Azure 使用量，CSP 帳單上會以個別明細項計費。 
+StorSimple 是依使用量計算的服務。 客戶採購 StorSimple Virtual Array 透過 hello CSP 路由支付 hello 虛擬陣列和 Azure 中，以個別行項目 hello CSP 帳單中計費的使用量。 
 
-### <a name="is-the-storsimple-business-model-similar-to-that-of-other-services-such-as-the-office-365-and-the-enterprise-mobility-suite"></a>StorSimple 商業模型類似於其他服務的商業模型嗎？例如 Office 365 和 Enterprise Mobility Suite。 
-是。 此模型是批發折扣模型，就像 Azure 中其他依使用量計算的服務。 StorSimple 的批發折扣類似於其他 Azure 服務的批發折扣。 此模型讓我們的 CSP 合作夥伴透過 StorSimple Virtual Array，有機會提高銷售量和 Azure 使用量。  
+### <a name="is-hello-storsimple-business-model-similar-toothat-of-other-services-such-as-hello-office-365-and-hello-enterprise-mobility-suite"></a>是 hello StorSimple 商務模型類似 toothat hello Enterprise Mobility Suite hello Office 365 等其他服務？ 
+是。 hello 模型是批發折扣模型，就像其他使用量為基礎的服務在 Azure 中一樣。 for StorSimple 的 hello 批發折扣是類似 toothat 的其他 Azure 服務。 此模型會提供 CSP 合作夥伴機會 toosell 更，並透過 StorSimple Virtual Array 磁碟機 Azure 使用。  
 
 ### <a name="which-storsimple-skus-are-available-at-launch"></a>推出時有哪些 StorSimple SKU 可用？
-與獨立 StorSimple 服務提供的 SKU 相同。 
+hello 相同 Sku 的 hello 獨立 StorSimple 服務可用。 
 
-### <a name="is-there-any-difference-between-the-storsimple-directly-purchased-from-microsoft-under-ea-and-storsimple-as-a-part-of-csp"></a>依據 EA 直接向 Microsoft 購買的 StorSimple 和 CSP 中的 StorSimple 有任何差別嗎？
-否。 在 CSP 下，客戶也可以購買 CSP 合作夥伴提供的其他服務，還有 StorSimple Virtual Array (SVA)，而且只用一張發票一次購足。 請注意，如果要採購 StorSimple 8000 系列實體裝置，客戶仍必須經過 EA 途徑。 
+### <a name="is-there-any-difference-between-hello-storsimple-directly-purchased-from-microsoft-under-ea-and-storsimple-as-a-part-of-csp"></a>有任何差異 hello StorSimple 直接購買 microsoft EA 和 StorSimple 下 CSP 的一部分嗎？
+否。 底下的 CSP，客戶也可以購買其他 hello CSP 夥伴以及 StorSimple 虛擬陣列 (SVA) 在某個發票所提供的服務。 請注意，如採購 hello StorSimple 8000 系列實體裝置，客戶仍需要 toogo 透過 hello EA 路由。 
 
 ### <a name="in-which-markets-is-storsimple-available-for-csp-at-launch"></a>StorSimple for CSP 推出時可在哪些市場買到？
-在目前可取得 StorSimple 的所有市場中都可買到 StorSimple Virtual Array for CSP。 如需詳細資訊，請移至 [StorSimple 上市的區域清單](https://azure.microsoft.com/regions/services/)。
+StorSimple Virtual Array csp 位於 StorSimple 可使用的今天的所有 hello 市場。 如需詳細資訊，請移至 toohello [StorSimple 可使用的地區清單](https://azure.microsoft.com/regions/services/)。
 
 ### <a name="what-kind-of-solutions-can-a-partner-deliver-with-storsimple-and-csp"></a>合作夥伴可以搭配 StorSimple 和 CSP 提供何種解決方案？ 
 有多種解決方案︰
 
-- 合作夥伴可以轉售 StorSimple Virtual Array。 
-- 合作夥伴可以提供依據 StorSimple 及其他 Azure 服務或協力廠商軟體而打造的解決方案。 如需詳細資訊，請檢閱一些可能[依據 StorSimple 的解決方案](https://aka.ms/storsimple-build-solutions)。
+- hello 夥伴可以轉售 StorSimple Virtual Array。 
+- hello 夥伴可以提供方案建置 StorSimple 其他 Azure 服務或協力廠商軟體。 如需詳細資訊，請檢閱一些可能[依據 StorSimple 的解決方案](https://aka.ms/storsimple-build-solutions)。
 - 他們在提供受管理的服務時，也能發現新的商業模型。
 
-### <a name="what-are-the-incentives-available-for-storsimple-csp-partners-do-i-qualify-for-any-csp-program-incentives"></a>StorSimple CSP 合作夥伴可以獲得什麼獎勵？ 我有資格獲得任何 CSP 方案的獎勵嗎？
-如需獎勵的相關資訊，請移至 [CSP 方案獎勵](https://partner.microsoft.com/en-US/cloud-solution-provider/program-details)。
+### <a name="what-are-hello-incentives-available-for-storsimple-csp-partners-do-i-qualify-for-any-csp-program-incentives"></a>適用於 StorSimple CSP 夥伴 hello 動機有哪些？ 我有資格獲得任何 CSP 方案的獎勵嗎？
+如動機的相關資訊，請移至太[CSP 程式獎勵](https://partner.microsoft.com/en-US/cloud-solution-provider/program-details)。
 
 
 ## <a name="deploy-and-manage-storsimple-as-a-partner"></a>合作夥伴部署和管理 StorSimple
 
 ### <a name="how-can-i-administer-storsimple-virtual-array-in-csp"></a>如何管理 CSP 中的 StorSimple Virtual Array？ 
-您可以透過合作夥伴中心，將 StorSimple Virtual Array 訂用帳戶新增至客戶的帳戶。 此外，您還可以使用 Azure 入口網站將使用者新增至訂用帳戶。
+您可以加入 hello 合作夥伴中心透過 StorSimple Virtual Array 訂閱 tooyour 客戶的帳戶。 此外，您可以使用 hello Azure 入口網站 tooadd 使用者 toohello 訂用帳戶。
 
-### <a name="is-the-azure-portal-approach-the-same-as-other-services-for-csp"></a>Azure 入口網站方法與 CSP 的其他服務相同嗎？ 
-是。 使用 StorSimple Virtual Array for CSP 時，合作夥伴存取 Azure 入口網站的最佳方式就是透過[合作夥伴中心](http://partnercenter.microsoft.com/)，他們可以在其中管理客戶和訂用帳戶。 若要管理 StorSimple 訂用帳戶，合作夥伴或客戶 (取決於授與的權限) 應該登入 Azure 入口網站。 
+### <a name="is-hello-azure-portal-approach-hello-same-as-other-services-for-csp"></a>是 hello Azure 入口網站的方法 hello 相同當做其他服務的 CSP 嗎？ 
+是。 StorSimple Virtual Array csp，hello 最佳方式的協力廠商 tooaccess hello Azure 入口網站時，才應該透過 hello[合作夥伴中心](http://partnercenter.microsoft.com/)他們可以在其中管理客戶和訂用帳戶。 toomanage StorSimple 訂用帳戶、 hello 夥伴或客戶 （取決於授與權限） 應該登入 toohello Azure 入口網站中。 
 
 ### <a name="is-microsoft-shipping-a-new-portal-for-storsimple-for-csp"></a>Microsoft 有替 StorSimple for CSP 提供新的入口網站嗎？ 
-否。 您可以透過 Azure 入口網站，管理 CSP 中的 StorSimple Virtual Array。
+否。 您將無法透過 Azure 入口網站 hello tooadminister StorSimple Virtual Array CSP 中。
 
-### <a name="i-have-provisioned-a-standalone-storsimple-subscription-for-my-customer-do-i-have-to-use-the-azure-portal-to-administer-my-device"></a>我已經為客戶佈建獨立 StorSimple 訂用帳戶。 我必須使用 Azure 入口網站來管理我的裝置嗎？ 
+### <a name="i-have-provisioned-a-standalone-storsimple-subscription-for-my-customer-do-i-have-toouse-hello-azure-portal-tooadminister-my-device"></a>我已經為客戶佈建獨立 StorSimple 訂用帳戶。 是否有 toouse hello Azure 入口網站 tooadminister 我的裝置？ 
 是。 
 
-### <a name="is-the-microsoft-account-team-compensated-as-a-result-of-sales-of-storsimple-through-csp"></a>Microsoft 帳戶小組是否會因為透過 CSP 銷售 StorSimple 而獲得報酬？
-是。 合作夥伴銷售經理和一般客戶的客戶服務團隊會獲得 CSP 銷售的報酬。 合作夥伴會隨著銷售出眾的價值和產品而領先群倫。
+### <a name="is-hello-microsoft-account-team-compensated-as-a-result-of-sales-of-storsimple-through-csp"></a>因為透過 CSP StorSimple 的銷售補償的 hello Microsoft 帳戶小組嗎？
+是。 hello 合作夥伴銷售主管和 hello hello 一般客戶的客戶帳戶小組將補償 CSP 銷售量。 hello 夥伴會預期的 tootake hello 的銷售其差異的值和供應項目。
 
 ## <a name="support-for-storsimple-and-csp"></a>支援 StorSimple 和 CSP
 
-### <a name="are-there-any-forums-to-get-additional-support-for-csp-partners-to-deploy-and-manage-storsimple"></a>是否有任何論壇會提供額外的支援幫助 CSP 合作夥伴部署和管理 StorSimple？
-您可以瀏覽 StorSimple in CSP 論壇，以獲得一些常見問題的答案。 您必須先加入 [Azure Advisor Yammer 群組](https://www.yammer.com/azureadvisors)。 接著搜尋並加入群組 - **StorSimple 合作夥伴顧問**。
+### <a name="are-there-any-forums-tooget-additional-support-for-csp-partners-toodeploy-and-manage-storsimple"></a>是否有任何論壇 tooget 其他支援的 CSP 夥伴 toodeploy，且管理 StorSimple？
+您可以造訪的 hello StorSimple CSP 論壇 tooget 答案 toosome 中的常見的問題。 您需要 toojoin hello [Azure 顧問 Yammer 群組](https://www.yammer.com/azureadvisors)第一次。 下一個搜尋並加入 hello 群組- **StorSimple 夥伴顧問**。
 
-### <a name="how-does-the-support-work-for-storsimple-for-csp"></a>StorSimple for CSP 的支援如何運作？ 
-StorSimple in CSP 的支援模型與 CSP 中其他 Azure 服務的支援模型相同。 如需詳細資訊，請移至 [CSP 的客戶支援](https://msdn.microsoft.com/partner-center/customer-support)。 
+### <a name="how-does-hello-support-work-for-storsimple-for-csp"></a>如何執行 hello csp 支援 for StorSimple 的工作？ 
+相同的其他 Azure 服務 CSP hello for StorSimple 在 CSP 中的 hello 支援模型。 如需詳細資訊，請移至太[客戶支援的 CSP](https://msdn.microsoft.com/partner-center/customer-support)。 
 
 如需 StorSimple for CSP 的詳細資訊，請移至：
 
@@ -97,4 +97,4 @@ StorSimple in CSP 的支援模型與 CSP 中其他 Azure 服務的支援模型�
 
 
 ## <a name="next-steps"></a>後續步驟
-如果您已準備好部署 StorSimple，請移至[部署 StorSimple in CSP](storsimple-partner-csp-deploy.md)。
+如果您已準備 toodeploy 您的 StorSimple go 太[部署您的 StorSimple，在 CSP](storsimple-partner-csp-deploy.md)。

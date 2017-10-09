@@ -1,6 +1,6 @@
 ---
-title: "Microsoft 網路安全性服務 | Microsoft Docs"
-description: "本文提供有關網路安全性相關的 Microsoft 服務簡介，以及如何取得更多有關這些服務的資訊。"
+title: "在顧慮 aaaMicrosoft 服務 |Microsoft 文件"
+description: "hello 文章提供有關 Microsoft 服務相關 toocybersecurity 簡介以及 tooobtain 這些服務的詳細資訊。"
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/09/2017
 ms.author: yurid
-ms.openlocfilehash: 1560ea8b224be0f6bc723f64d8f154805b2771e5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d29832f0ffa10020ab44ff69306971e55d393b97
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="microsoft-services-in-cybersecurity"></a>Microsoft 網路安全性服務
-Microsoft 服務提供安全性、身分識別和網路安全性的完整方法。 Microsoft 服務提供跨策略、規劃、實作和持續性支援的一系列安全性和身分識別服務，協助企業用戶實作符合其策略性目標的整體安全性解決方案。
+Microsoft Services 提供一套方法 toosecurity、 身分識別和顧慮。 Microsoft 服務提供跨策略、規劃、實作和持續性支援的一系列安全性和身分識別服務，協助企業用戶實作符合其策略性目標的整體安全性解決方案。
 
-直接接觸產品開發團隊，我們所建立的解決方案便可整合及增強我們產品的最新安全性和身分識別功能，進而協助保護客戶的業務及推動創新。
+與直接存取 tooproduct 開發團隊，我們可以建立方案，以整合，增強 hello 最新的安全性和我們產品 toohelp 識別功能保護我們的客戶商務和推動創新。
 
-我們多元化的技術專業人士團隊是由訓練有素的專家所組成，他們可提供豐富的安全性和身分識別的經驗，因而受託協助保護及授權世界上最大型的組織。
+獲得與協助保護，並讓 hello world 最大的組織，我們的技術專業人員的不同群組所組成訓練有素專家提供豐富的安全性和身分識別的經驗。
 
 深入了解 Microsoft 服務所提供的服務︰
 

@@ -1,6 +1,6 @@
 ---
-title: "管理 Microsoft Azure StorSimple 8000 系列裝置的 StorSimple 儲存體帳戶認證 | Microsoft Docs"
-description: "說明如何使用 StorSimple 裝置管理員的 [設定] 頁面來新增、編輯、刪除或替換儲存體帳戶的安全性金鑰。"
+title: "您的 StorSimple 儲存體帳戶認證的 Microsoft Azure StorSimple 8000 系列裝置的 aaaManage |Microsoft 文件"
+description: "說明如何使用 hello StorSimple 裝置管理員 設定頁面 tooadd、 編輯、 刪除或旋轉 hello 安全性金鑰的儲存體帳戶。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/29/2017
 ms.author: alkohli
-ms.openlocfilehash: 36058ad69ea670998b50cf9038741c294a5b79ab
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 132ee46509b39db4d1b97b0f1077800a253e8da9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-to-manage-your-storage-account-credentials"></a>使用 StorSimple 裝置管理員服務來管理儲存體帳戶認證
+# <a name="use-hello-storsimple-device-manager-service-toomanage-your-storage-account-credentials"></a>使用 hello StorSimple 裝置管理員服務 toomanage 儲存體帳戶認證
 
 ## <a name="overview"></a>概觀
 
-StorSimple 裝置管理員服務的刀鋒視窗中，[設定] 區段會顯示所有可在 StorSimple 裝置管理員服務中建立的全域服務參數。 這些參數可以套用到與該服務連線的所有裝置，還包括：
+hello**組態**hello StorSimple 裝置管理員服務刀鋒視窗中的區段會顯示所有可由 hello StorSimple 裝置管理員服務的 hello 全域服務參數。 這些參數可以是裝置連線 toohello 服務，並包含套用的 tooall hello:
 
 * 儲存體帳戶認證
 * 頻寬範本 
 * 存取控制記錄 
 
-本教學課程說明如何新增、編輯或刪除儲存體帳戶認證，或替換儲存體帳戶的安全性金鑰。
+本教學課程說明 tooadd，編輯或刪除儲存體帳戶認證，或旋轉 hello 儲存體帳戶的安全性金鑰的方式。
 
  ![儲存體帳戶認證的清單](./media/storsimple-8000-manage-storage-accounts/createnewstorageacct6.png)  
 
-儲存體帳戶包含的認證可供 StorSimple 裝置用來存取雲端服務提供者的儲存體帳戶。 對於 Microsoft Azure 儲存體帳戶，像是帳戶名稱與主要存取金鑰就屬於這些認證。 
+儲存體帳戶包含 hello hello StorSimple 裝置會使用 tooaccess 與您的雲端服務提供者的儲存體帳戶的認證。 Microsoft Azure 儲存體帳戶，這些是認證，例如 hello 帳戶名稱和 hello 主要存取金鑰。 
 
-在 [儲存體帳戶認證] 刀鋒視窗上，為訂用帳戶計費而建立的所有儲存體帳戶都會以表格顯示，其中包含下列資訊：
+在 hello**儲存體帳戶認證**刀鋒視窗中，建立 hello 計費訂用帳戶的帳戶會包含下列資訊的 hello 以表格格式顯示所有存放裝置：
 
-* **名稱** – 帳戶建立時獲指派的唯一名稱。
-* **啟用 SSL** – 是否已啟用 SSL 並透過安全通道進行裝置對雲端的通訊。
-* **使用者** – 使用該儲存體帳戶的的磁碟區數目。
+* **名稱**– hello 指派唯一名稱 toohello 帳戶建立時。
+* **啟用 SSL** – 是否 hello 啟用 SSL，所以裝置到雲端的通訊都會透過 hello 安全通道。
+* **使用**– hello 使用 hello 儲存體帳戶的磁碟區數目。
 
-與儲存體帳戶相關可執行的最常見工作如下：
+您可以執行的 hello 最常見的工作相關的 toostorage 帳戶是：
 
 * 新增儲存體帳戶 
 * 編輯儲存體帳戶 
@@ -53,59 +53,59 @@ StorSimple 裝置管理員服務的刀鋒視窗中，[設定] 區段會顯示所
 
 有三種儲存體帳戶類型能與 StorSimple 裝置搭配使用。
 
-* **自動產生的儲存體帳戶** – 正如其名，這類型的儲存體帳戶是在初次建立服務時自動產生。 若要深入了解如何建立此儲存體帳戶，請參閱[部署您的內部部署 StorSimple 裝置](storsimple-8000-deployment-walkthrough-u2.md)中的[步驟 1：建立新的服務](storsimple-8000-deployment-walkthrough-u2.md#step-1-create-a-new-service)。 
-* **服務訂用帳戶中的儲存體帳戶** – 這些是與相同服務訂用帳戶相關聯的 Azure 儲存體帳戶。 若要深入了解如何建立這些儲存體帳戶，請參閱 [關於 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)。 
-* **服務訂用帳戶外的儲存體帳戶** – 這些是與服務毫無關聯的 Azure 儲存體帳戶，而且可能在服務建立之前便已存在 。
+* **自動產生的儲存體帳戶**– 第一次建立 hello 服務時，就 hello 名所示，自動產生這種類型的儲存體帳戶。 toolearn 深入了解如何建立這個儲存體帳戶，請參閱[步驟 1： 建立新的服務](storsimple-8000-deployment-walkthrough-u2.md#step-1-create-a-new-service)中[部署在內部部署 StorSimple 裝置](storsimple-8000-deployment-walkthrough-u2.md)。 
+* **Hello 服務訂用帳戶中的儲存體帳戶**– 這些是 hello hello 與相關聯的 Azure 儲存體帳戶相同的訂用帳戶 hello 服務。 toolearn 深入了解如何建立儲存體帳戶，請參閱[關於 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)。 
+* **Hello 服務訂用帳戶以外的儲存體帳戶**-這些是與您的服務沒有關聯的 hello Azure 儲存體帳戶，並可能存在於之前 hello 服務已建立。
 
 ## <a name="add-a-storage-account"></a>新增儲存體帳戶
 
-您可以提供唯一的易記名稱以及與儲存體帳戶(搭配指定的雲端服務提供者) 連結的存取認證來新增儲存體帳戶。 您也能選擇啟用安全通訊端層 (SSL) 模式，建立裝置與雲端之間網路通訊的安全通道。
+您可以新增儲存體帳戶提供唯一的易記名稱和存取認證連結 toohello 儲存體帳戶 （與 hello 指定的雲端服務提供者）。 您也可以啟用您的裝置與 hello 雲端之間的網路通訊的安全通道 hello 安全通訊端層 (SSL) 模式 toocreate hello 選項。
 
-您可以為指定的雲端服務提供者建立多個帳戶。 不過，請注意，建立儲存體帳戶之後，您無法變更雲端服務提供者。
+您可以為指定的雲端服務提供者建立多個帳戶。 不過，請注意，建立儲存體帳戶之後，您無法變更 hello 雲端服務提供者。
 
-儲存體帳戶在儲存時，服務會嘗試與您的雲端服務提供者通訊。 此時會驗證您提供的認證與存取資料。 只有當驗證成功時，才會建立儲存體帳戶。 如果驗證失敗，則會顯示適當的錯誤訊息。
+正在儲存 hello 儲存體帳戶，而 hello 服務會嘗試 toocommunicate 與您的雲端服務提供者。 在這個階段，將會驗證 hello 認證和您所提供的 hello 存取資料。 只有在 hello 驗證成功時，會建立儲存體帳戶。 如果 hello 驗證失敗，將顯示適當的錯誤訊息。
 
-使用下列程序來新增 Azure 儲存體帳戶認證︰
+使用下列程序 tooadd Azure 儲存體帳戶認證的 hello:
 
-* 若要新增儲存體帳戶認證，而且其 Azure 訂用帳戶與裝置管理員服務相同
-* 若要新增裝置管理員服務訂用帳戶外的 Azure 儲存體帳戶認證
+* 儲存體帳戶認證具有 tooadd hello 相同 Azure 訂用帳戶 hello 裝置管理員服務
+* tooadd 超出 hello 裝置管理員服務訂用帳戶的 Azure 儲存體帳戶認證
 
 [!INCLUDE [add-a-storage-account-update2](../../includes/storsimple-8000-configure-new-storage-account-u2.md)]
 
-#### <a name="to-add-an-azure-storage-account-credential-outside-of-the-storsimple-device-manager-service-subscription"></a>若要新增 StorSimple 裝置管理員服務訂用帳戶外的 Azure 儲存體帳戶認證
+#### <a name="tooadd-an-azure-storage-account-credential-outside-of-hello-storsimple-device-manager-service-subscription"></a>tooadd hello StorSimple 裝置管理員服務訂用帳戶以外的 Azure 儲存體帳戶認證
 
-1. 請瀏覽至您的 StorSimple 裝置管理員服務，選取它並按兩下。 這會開啟 [概觀] 刀鋒視窗。
-2. 在 [設定] 區段內選取 [儲存體帳戶認證]。 這樣會列出與 StorSimple 裝置管理員服務相關聯的任何現有儲存體帳戶認證。
+1. 瀏覽 tooyour StorSimple 裝置管理員服務，選取，然後按兩下。 這會開啟 hello**概觀**刀鋒視窗。
+2. 選取**儲存體帳戶認證**內 hello**組態**> 一節。 這樣就會列出任何現有儲存體帳戶的認證與 hello StorSimple 裝置管理員服務相關聯。
 3. 按一下 [新增] 。
-4. 在 [新增儲存體帳戶認證] 刀鋒視窗中，執行下列步驟︰
+4. 在 hello**新增儲存體帳戶認證**刀鋒視窗中，請勿遵循 hello:
    
     1. 在 [訂用帳戶] 中，選取 [其他]。
    
-    2. 提供 Azure 儲存體帳戶認證的名稱。
+    2. 提供您的 Azure 儲存體帳戶認證 hello 名稱。
    
-    3. 在 [儲存體帳戶存取金鑰]文字方塊中，提供 Azure 儲存體帳戶認證的主要「存取金鑰」。 若要取得此金鑰，請移至 Azure 儲存體服務，選取您的儲存體帳戶認證，然後按一下 [管理帳戶金鑰]。 現在，您可以複製主要存取金鑰。
+    3. 在 [hello**儲存體帳戶存取金鑰**] 文字方塊中，提供 hello 您的 Azure 儲存體帳戶認證的主要存取金鑰。 tooget 此索引鍵，移 toohello Azure 儲存體服務，選取您的儲存體帳戶認證，然後按一下**管理的帳戶金鑰**。 您現在可以複製 hello 主要存取金鑰。
    
-    4. 若要啟用 SSL，請按一下 [啟用] 按鈕，為 StorSimple 裝置管理員服務與雲端之間的網路通訊建立安全通道。 只有當您在私人雲端內操作時，才按一下 [停用] 按鈕。
+    4. tooenable SSL，按一下 hello**啟用**按鈕 toocreate StorSimple 裝置管理員服務和 hello 雲端之間的網路通訊的安全通道。 按一下 hello**停用**按鈕只有當您在私人雲端內操作。
    
-    5. 按一下 [新增] 。 成功建立儲存體帳戶認證之後會通知您。
+    5. 按一下 [新增] 。 已成功建立 hello 儲存體帳戶認證之後，您會收到通知。
 
-5. 新建立的儲存體帳戶認證會顯示在 [StorSimple 設定裝置管理員服務] 刀鋒視窗的 [儲存體帳戶認證] 下方。
+5. 底下的 hello StorSimple 設定裝置管理員服務刀鋒視窗上會顯示 hello 新建立的儲存體帳戶認證**儲存體帳戶認證**。
    
 
 
 ## <a name="edit-a-storage-account"></a>編輯儲存體帳戶
 
-您可以編輯磁碟區容器所使用的儲存體帳戶。 如果您編輯的儲存體帳戶目前正在使用中，唯一可修改的欄位就是儲存體帳戶的存取金鑰。 您可以提供新的儲存體存取金鑰，並儲存更新的設定。
+您可以編輯磁碟區容器所使用的儲存體帳戶。 如果您編輯目前正在使用的儲存體帳戶，hello 欄位可用 toomodify 是 hello hello 儲存體帳戶的存取金鑰。 您可以提供 hello 新儲存體存取金鑰，並儲存更新的 hello 設定。
 
-#### <a name="to-edit-a-storage-account"></a>若要編輯儲存體帳戶
+#### <a name="tooedit-a-storage-account"></a>tooedit 儲存體帳戶
 
-1. 移至您的 StorSimple 裝置管理員服務。 在 [設定] 區段中，按一下 [儲存體帳戶認證]。
+1. 移 tooyour StorSimple 裝置管理員服務。 在 hello**組態**區段中，按一下**儲存體帳戶認證**。
 
     ![儲存體帳戶認證](./media/storsimple-8000-manage-storage-accounts/editstorageacct1.png)
 
-2. 在 [儲存體帳戶認證] 刀鋒視窗中，從儲存體帳戶認證清單中，選取並按一下您要編輯的項目。 
+2. 在 hello**儲存體帳戶認證**刀鋒視窗中的，從儲存體帳戶認證，選取 hello 清單，然後按一下您想 tooedit hello。 
 
-3. 您可以修改 [啟用 SSL] 選項。 您也可以按一下 [更多]，然後選取 [同步存取金鑰] 以替換您的儲存體帳戶存取金鑰。 如需如何執行金鑰替換的詳細資訊，請參閱[儲存體帳戶的金鑰替換](#key-rotation-of-storage-accounts)。 修改設定之後，按一下 [儲存]。 
+3. 您可以修改 hello**啟用 SSL**選取項目。 您也可以按一下**更...** ，然後選取 **同步存取金鑰 toorotate**儲存體帳戶存取金鑰。 跳過[金鑰輪替的儲存體帳戶](#key-rotation-of-storage-accounts)如需有關如何 tooperform 金鑰輪替。 您已修改 hello 設定之後，請按一下**儲存**。 
 
     ![儲存編輯好的儲存體帳戶認證](./media/storsimple-8000-manage-storage-accounts/editstorageacct3.png)
 
@@ -113,69 +113,69 @@ StorSimple 裝置管理員服務的刀鋒視窗中，[設定] 區段會顯示所
 
     ![確認修改](./media/storsimple-8000-manage-storage-accounts/editstorageacct4.png)
 
-儲存體帳戶的設定將會更新並儲存。 
+將更新 hello 設定，並將它儲存為儲存體帳戶中。 
 
 ## <a name="delete-a-storage-account"></a>刪除儲存體帳戶
 
 > [!IMPORTANT]
-> 只有在其未由磁碟區容器使用時，您才可以刪除儲存體帳戶。 如果磁碟區容器正在使用儲存體帳戶，請先刪除磁碟區容器，然後再刪除相關聯的儲存體帳戶。
+> 只有在其未由磁碟區容器使用時，您才可以刪除儲存體帳戶。 如果磁碟區容器正在使用的儲存體帳戶，請先刪除 hello 磁碟區容器，然後再刪除相關聯的 hello 儲存體帳戶。
 
-#### <a name="to-delete-a-storage-account"></a>若要刪除儲存體帳戶
+#### <a name="toodelete-a-storage-account"></a>toodelete 儲存體帳戶
 
-1. 移至您的 StorSimple 裝置管理員服務。 在 [設定] 區段中，按一下 [儲存體帳戶認證]。
+1. 移 tooyour StorSimple 裝置管理員服務。 在 hello**組態**區段中，按一下**儲存體帳戶認證**。
 
-2. 在儲存體帳戶的表格式清單中，將滑鼠停留在您想要刪除的帳戶上方。 以滑鼠右鍵按一下以叫用操作功能表，然後按一下 [刪除]。
+2. 在 hello 表格式清單中的儲存體帳戶，請將滑鼠停留在您想 toodelete hello 帳戶。 Tooinvoke hello 操作功能表上按一下滑鼠右鍵，然後按一下**刪除**。
 
     ![刪除儲存體帳戶認證](./media/storsimple-8000-manage-storage-accounts/deletestorageacct1.png)
 
-3. 當系統提示您確認時，按一下 [是]  繼續進行刪除。 表格式清單會更新以反映所做的變更。
+3. 當提示確認，請按一下**是**toocontinue 與 hello 刪除。 hello 表格式清單將會更新的 tooreflect hello 的變更。
 
     ![Confirm delete](./media/storsimple-8000-manage-storage-accounts/deletestorageacct2.png)
 
 ## <a name="key-rotation-of-storage-accounts"></a>替換儲存體帳戶的金鑰
 
-基於安全性理由，通常是在資料中心內才需要替換金鑰。 每個 Microsoft Azure 訂用帳戶可以有一或多個相關聯的儲存體帳戶。 訂用帳戶與每個儲存體帳戶的存取金鑰可以控制這些帳戶的存取權。 
+基於安全性理由，通常是在資料中心內才需要替換金鑰。 每個 Microsoft Azure 訂用帳戶可以有一或多個相關聯的儲存體帳戶。 hello 存取 toothese 帳戶受到 hello 訂用帳戶和每個儲存體帳戶存取金鑰。 
 
-當您建立儲存體帳戶時，Azure 會產生兩個 512 位元的儲存體存取金鑰，可在存取儲存體帳戶時用於驗證。 有這兩個儲存體存取金鑰，您不需要中斷儲存體服務或對該服務的存取，就能重新產生金鑰。 目前使用中的金鑰是「主要」金鑰，而備份金鑰則稱為「次要」金鑰。 當 Microsoft Azure StorSimple 裝置存取您的雲端儲存體服務提供者時必須提供這些兩個機碼之一。
+當您建立儲存體帳戶時，Microsoft Azure 會產生兩個存取 hello 儲存體帳戶時，可用於驗證的 512 位元儲存體存取金鑰。 必須要有兩個儲存體存取金鑰可讓您使用不中斷 tooyour 儲存體服務或存取 toothat 服務 tooregenerate hello 索引鍵。 hello 目前正在使用的索引鍵為 hello*主要*索引鍵和 hello 備份金鑰是參照的 tooas hello*次要*索引鍵。 當 Microsoft Azure StorSimple 裝置存取您的雲端儲存體服務提供者時必須提供這些兩個機碼之一。
 
 ## <a name="what-is-key-rotation"></a>什麼是替換金鑰？
 
-一般而言，應用程式只使用其中一個金鑰來存取您的資料。 經過一段時間之後，您可以讓應用程式切換為使用第二個金鑰。 在您將應用程式切換至次要金鑰之後，可以淘汰第一個金鑰，然後產生新的金鑰。 這種使用兩個金鑰的方式可讓您的應用程式存取資料，卻不會產生任何停機時間。
+一般而言，應用程式使用其中一個 hello 金鑰 tooaccess 您的資料。 在一段時間之後, 您可以讓應用程式切換 toousing hello 第二個索引鍵。 切換應用程式 toohello 的次要金鑰之後，您可以淘汰 hello 第一個索引鍵，並再產生新的金鑰。 使用 hello 兩個索引鍵，如此一來，可以讓應用程式存取 toohello 資料而不會產生任何停機時間。
 
-儲存體帳戶金鑰一律以加密的格式儲存在服務中。 不過，您可以透過 StorSimple 裝置管理員服務來重設。 服務可為相同訂用帳戶中的所有儲存體帳戶取得主要金鑰與次要金鑰，包括儲存體服務中建立的帳戶以及 StorSimple 裝置管理員服務初次建立時產生的預設儲存體帳戶。 StorSimple 裝置管理員服務將一律從 Azure 傳統入口網站取得這些金鑰，再以加密的方式儲存。
+hello 儲存體帳戶金鑰一律儲存在 hello 服務，以加密格式。 不過，這些可以重設透過 hello StorSimple 裝置管理員服務。 hello 服務可以取得 hello 主索引鍵和次要索引鍵的所有 hello 的 hello 相同訂用帳戶，包括 hello 儲存體服務，以及 hello 預設儲存體帳戶中建立的帳戶產生的儲存體帳戶時 hello StorSimple 裝置管理員第一次建立服務的服務。 hello StorSimple 裝置管理員服務將一律從 hello Azure 傳統入口網站取得這些金鑰，然後以加密方式儲存。
 
 ## <a name="rotation-workflow"></a>替換工作流程
 
-Microsoft Azure 系統管理員可以直接存取儲存體帳戶 (透過 Microsoft Azure 儲存體服務) 來重新產生或變更主要金鑰或次要金鑰。 StorSimple 裝置管理員服務不會自動發現這項變更。
+Microsoft Azure 系統管理員可以重新產生，或藉由直接存取 hello （透過 hello Microsoft Azure 儲存體服務) 的儲存體帳戶變更 hello 主要或次要金鑰。 hello StorSimple 裝置 Manager 服務不會自動看到這項變更。
 
-若要向 StorSimple 裝置管理員服務通知此變更，您需要存取 StorSimple 裝置管理員服務，存取儲存體帳戶，然後同步處理主要金鑰或次要金鑰 (根據何者已變更而定)。 服務接著會取得最新的金鑰，將金鑰加密，然後將加密的金鑰傳送給裝置。
+tooinform hello StorSimple 裝置管理員 hello 變更的服務，您將需要 tooaccess hello StorSimple 裝置管理員服務存取 hello 儲存體帳戶，然後再同步處理 hello 主要或次要金鑰 （視何者有所變更）。 hello 服務然後取得 hello 最新的金鑰，加密 hello 金鑰，並傳送嗨加密金鑰 toohello 的裝置。
 
-#### <a name="to-synchronize-keys-for-storage-accounts-in-the-same-subscription-as-the-service"></a>若要同步服務之相同訂用帳戶中的儲存體帳戶金鑰 
-1. 移至您的 StorSimple 裝置管理員服務。 在 [設定] 區段中，按一下 [儲存體帳戶認證]。
-2. 從儲存體帳戶的表格式清單中，按一下您要修改的項目。 
+#### <a name="toosynchronize-keys-for-storage-accounts-in-hello-same-subscription-as-hello-service"></a>儲存體帳戶的 toosynchronize 金鑰 hello hello 服務相同訂用帳戶 
+1. 移 tooyour StorSimple 裝置管理員服務。 在 hello**組態**區段中，按一下**儲存體帳戶認證**。
+2. 從 hello 表格清單中的儲存體帳戶，按一下 hello 其中一個要 toomodify。 
 
     ![同步處理金鑰](./media/storsimple-8000-manage-storage-accounts/syncaccesskey1.png)
 
-3. 按一下 [更多]，然後選取 [同步存取金鑰] 以進行替換。   
+3. 按一下**...多個**，然後選取 **同步存取金鑰 toorotate**。   
 
     ![同步處理金鑰](./media/storsimple-8000-manage-storage-accounts/syncaccesskey2.png)
 
-4. 在 StorSimple 裝置管理員服務中，您需要更新先前在 Microsoft Azure 儲存體服務中變更的金鑰。 如果主要存取金鑰有所變更 (已重新產生)，請選取 [主要] 金鑰。 如果次要金鑰有所變更，請選取 [次要] 金鑰。 按一下 [同步處理金鑰]。
+4. 在 hello StorSimple 裝置管理員服務，您會需要 tooupdate hello 金鑰先前已在 hello Microsoft Azure 儲存體服務中變更。 如果 hello 主要存取金鑰已變更 （重新產生），選取**主要**索引鍵。 如果 hello 次要索引鍵已變更，請選取**次要**索引鍵。 按一下 [同步處理金鑰]。
       
       ![同步處理金鑰](./media/storsimple-8000-manage-storage-accounts/syncaccesskey3.png)
 
-在成功同步金鑰之後，系統將會通知您。
+Hello 金鑰已順利 sycnhronized 之後，系統會通知您。
 
-#### <a name="to-synchronize-keys-for-storage-accounts-outside-of-the-service-subscription"></a>若要同步處理服務訂用帳戶外的儲存體帳戶金鑰
-1. 在 [服務] 頁面上，按一下 [設定] 索引標籤。
+#### <a name="toosynchronize-keys-for-storage-accounts-outside-of-hello-service-subscription"></a>toosynchronize hello 服務訂用帳戶以外的儲存體帳戶金鑰
+1. 在 [hello**服務**頁面上，按一下 hello**設定**] 索引標籤。
 2. 按一下 [新增/編輯儲存體帳戶] 。
-3. 在對話方塊中，執行下列動作：
+3. 在 [hello] 對話方塊中，請勿 hello 遵循：
    
-   1. 選取您要更新其存取金鑰的儲存體帳戶。
-   2. 您必須更新 StorSimple 裝置管理員服務中的儲存體存取金鑰。 在此情況下，您可以看到儲存體存取金鑰。 在 [儲存體帳戶存取金鑰] 方塊中，輸入新的金鑰。 
+   1. 選取 hello 儲存體帳戶與 hello 便捷鍵的 tooupdate。
+   2. 您必須在 StorSimple 裝置管理員服務 hello tooupdate hello 儲存體存取金鑰。 在此情況下，您可以看到 hello 儲存體存取金鑰。 輸入 hello 新金鑰在 hello**儲存體帳戶存取金鑰**方塊。 
    3. 儲存您的變更。 現在應已更新您的儲存體帳戶存取金鑰。
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 [StorSimple 安全性](storsimple-8000-security.md)。
-* 深入了解[使用 StorSimple 裝置管理員服務管理 StorSimple 裝置](storsimple-8000-manager-service-administration.md)。
+* 深入了解[使用您的 StorSimple 裝置 hello StorSimple 裝置管理員服務 tooadminister](storsimple-8000-manager-service-administration.md)。
 

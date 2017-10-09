@@ -1,5 +1,5 @@
 ---
-title: "串流分析中一般使用模式的查詢範例 | Microsoft Docs"
+title: "在 Stream Analytics 中常見的使用模式的 aaaQuery 範例 |Microsoft 文件"
 description: "常見的 Azure 串流分析查詢模式"
 keywords: "查詢範例"
 services: stream-analytics
@@ -15,19 +15,19 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/08/2017
 ms.author: jenniehubbard
-ms.openlocfilehash: a00855c200b3fb365073bad4c5773b02c4c2c7fe
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: c8f7a8ac661eaf0281f4140b02c42141b73040fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="query-examples-for-common-stream-analytics-usage-patterns"></a>一般串流分析使用模式的查詢範例
 ## <a name="introduction"></a>簡介
-Azure 串流分析的查詢會以類似 SQL 的查詢語言表達。 這些查詢記載在[串流分析查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)指南中。 本文章根據真實世界案例概述幾個常見查詢模式的解決方案。 這是進行中的工作，會繼續不間斷使用新模式進行更新。
+Azure 串流分析的查詢會以類似 SQL 的查詢語言表達。 這些查詢會記載於 hello [Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)指南。 此文件大綱解決方案 tooseveral 常見的查詢模式，根據的真實世界案例。 進行中工作，並繼續 toobe 以新的模式，持續地更新。
 
 ## <a name="query-example-convert-data-types"></a>查詢範例：轉換資料類型
-**描述**：在輸入資料流上定義屬性類型。
-例如，汽車重量即將以字串形式出現在輸入資料流，並且需要轉換為 **INT** 以執行 **SUM** 來將它加總。
+**描述**: hello 輸入資料流定義 hello 類型的屬性。
+比方說，hello 汽車權數是 hello 輸入資料流為字串，並且需要 toobe 太轉換**INT** tooperform**總和**它。
 
 **輸入**：
 
@@ -53,11 +53,11 @@ Azure 串流分析的查詢會以類似 SQL 的查詢語言表達。 這些查�
         Make,
         TumblingWindow(second, 10)
 
-**說明**：在 [Weight]\(加權\) 欄位中使用 **CAST** 陳述式來指定其資料類型。 請參閱[資料類型 (Azure 串流分析)](https://msdn.microsoft.com/library/azure/dn835065.aspx) 中的支援資料類型清單。
+**說明**： 使用**轉換**陳述式中 hello**加權**欄位 toospecify 其資料類型。 請參閱支援的資料類型中的 hello 清單[資料類型 (Azure Stream Analytics)](https://msdn.microsoft.com/library/azure/dn835065.aspx)。
 
-## <a name="query-example-use-likenot-like-to-do-pattern-matching"></a>查詢範例：使用 Like/Not like 進行模式比對
-**描述**：檢查事件的欄位值是否符合特定模式。
-例如，檢查結果是否會傳回開頭為 A 且結尾為 9 的車牌。
+## <a name="query-example-use-likenot-like-toodo-pattern-matching"></a>查詢範例： 使用類似/Not like toodo 模式比對
+**描述**： 檢查 hello 事件的欄位值是否符合特定模式。
+例如，檢查 hello 結果傳回授權盤子與起始或結束與 9。
 
 **輸入**：
 
@@ -83,11 +83,11 @@ Azure 串流分析的查詢會以類似 SQL 的查詢語言表達。 這些查�
     WHERE
         LicensePlate LIKE 'A%9'
 
-**說明**：使用 **LIKE** 陳述式檢查 [LicensePlate] 欄位值。 開頭應該為 A，接著是長度為零或更多字元的字串，並以 9 結尾。 
+**說明**： 使用 hello**像**陳述式 toocheck hello **LicensePlate**欄位值。 開頭應該為 A，接著是長度為零或更多字元的字串，並以 9 結尾。 
 
 ## <a name="query-example-specify-logic-for-different-casesvalues-case-statements"></a>查詢範例：為不同的案例/值指定邏輯 (CASE 陳述式)
 **描述**：根據特定準則，提供不同的欄位計算方式。
-例如，針對通過的相同廠牌汽車中有多少部符合 1 的特殊情況提供字串描述。
+例如，提供與特殊案例 1 多少汽車的 hello 相同進行傳遞的字串描述。
 
 **輸入**：
 
@@ -118,11 +118,11 @@ Azure 串流分析的查詢會以類似 SQL 的查詢語言表達。 這些查�
         Make,
         TumblingWindow(second, 10)
 
-**說明**：**CASE** 子句可讓我們根據一些準則提供不同的運算 (在我們的案例中，汽車計數在彙總視窗中)。
+**說明**: hello**案例**子句可讓我們 tooprovide 不同的計算，根據一些條件 （在此案例中的 hello 彙總視窗中的 hello 汽車 hello 計數）。
 
-## <a name="query-example-send-data-to-multiple-outputs"></a>查詢範例：將資料傳送至多個輸出
-**描述**：將資料從單一工作傳送到多個輸出目標。
-例如，分析臨界值警示的資料，並將所有事件封存到 Blob 儲存體。
+## <a name="query-example-send-data-toomultiple-outputs"></a>查詢範例： 傳送資料 toomultiple 輸出
+**描述**： 傳送資料 toomultiple 輸出一項工作的目標。
+例如，分析臨界值為基礎的警示資料和封存所有事件 tooblob 存放裝置。
 
 **輸入**：
 
@@ -173,11 +173,11 @@ Azure 串流分析的查詢會以類似 SQL 的查詢語言表達。 這些查�
     HAVING
         [Count] >= 3
 
-**說明**：**INTO** 子句會告訴串流分析要從此陳述式將資料寫入哪個輸出。
-第一個查詢將我們接收到的資料傳遞至我們命名為 **ArchiveOutput** 的輸出。
-第二個查詢會執行一些簡單的彙總和篩選，並將結果傳送至下游的警示系統。
+**說明**: hello **INTO**子句會告知串流分析會輸出 toowrite hello 資料 toofrom 的 hello 這個陳述式。
+hello 第一個查詢是 hello 我們所收到的資料，我們名為 tooan 輸出傳遞**ArchiveOutput**。
+hello 第二個查詢執行一些簡單的彙總並篩選，和它傳送嗨結果 tooa 下游警示系統。
 
-請注意，您也可以在多個輸出陳述式中重複使用通用資料表運算式 (CTE) 的結果 (例如 **WITH** 陳述式)。 此選項多了一項優點，就是對輸入來源開放的讀取器較少。
+請注意，您也可以重複使用的 hello 通用資料表運算式 (Cte) 的 hello 結果 (例如**WITH**陳述式) 中多個輸出的陳述式。 此選項已 hello 開啟較少的讀取器 toohello 輸入的來源的好處。
 例如： 
 
     WITH AllRedCars AS (
@@ -192,8 +192,8 @@ Azure 串流分析的查詢會以類似 SQL 的查詢語言表達。 這些查�
     SELECT * INTO ToyotaOutput FROM AllRedCars WHERE Make = 'Toyota'
 
 ## <a name="query-example-count-unique-values"></a>查詢範例：計算唯一值
-**描述**：計算某個時間範圍內在串流中所出現唯一欄位值的數目。
-例如，在 2 秒鐘時間範圍內有多少部某一獨特廠牌的汽車通過收費亭？
+**描述**: hello 計數的 hello 的時間間隔內的資料流中出現的唯一欄位值。
+例如，多少唯一可讓您的傳遞 2 第二個視窗中的 hello 收費亭的車輛嗎？
 
 **輸入**：
 
@@ -225,11 +225,11 @@ GROUP BY
 
 
 **說明：**
-**COUNT(DISTINCT Make)** 會傳回一個時間範圍內 **Make** 資料行的相異值數目。
+**計數 （相異請）**傳回 hello hello 中相異值數目**進行**的時間間隔內的資料行。
 
 ## <a name="query-example-determine-if-a-value-has-changed"></a>查詢範例：判斷值是否已變更
-**描述**：查看前一個值來判斷該值是否與目前的值不同。
-例如收費道路上前一輛汽車的品牌，是否與目前汽車的品牌相同？
+**描述**： 查看先前的值 toodetermine 是否不同於 hello 目前值。
+比方說，位於相同讓 hello 目前汽車 hello 付費道路 hello hello 先前汽車嗎？
 
 **輸入**：
 
@@ -254,10 +254,10 @@ GROUP BY
     WHERE
         LAG(Make, 1) OVER (LIMIT DURATION(minute, 1)) <> Make
 
-**說明**：使用 **LAG** 查看前一個事件的輸入資料流，並取得 **Make** 值。 然後將其和目前事件中的 **Make** 值比較，並且在兩者不同時輸出事件。
+**說明**： 使用**延隔**toopeek hello 到輸入資料流的回一個事件，並取得 hello**進行**值。 然後比較 toohello**進行**值 hello 目前事件和輸出 hello 事件上，如果不相同。
 
-## <a name="query-example-find-the-first-event-in-a-window"></a>查詢範例：尋找時間範圍內的第一個事件
-**描述**：是否要每隔 10 分鐘尋找第一輛車。
+## <a name="query-example-find-hello-first-event-in-a-window"></a>查詢範例： 尋找 hello 中的第一個事件視窗
+**描述**： 每隔 10 分鐘的間隔中尋找 hello 第一個汽車。
 
 **輸入**：
 
@@ -289,7 +289,7 @@ GROUP BY
     WHERE 
         IsFirst(minute, 10) = 1
 
-現在讓我們來變更問題，每隔 10 分鐘尋找特定廠牌的第一輛車。
+現在我們變更 hello 問題，並尋找 hello 第一個汽車的特定把每隔 10 分鐘的間隔中。
 
 | LicensePlate | Make | 時間 |
 | --- | --- | --- |
@@ -310,8 +310,8 @@ GROUP BY
     WHERE 
         IsFirst(minute, 10) OVER (PARTITION BY Make) = 1
 
-## <a name="query-example-find-the-last-event-in-a-window"></a>查詢範例：尋找時間範圍內的上一個事件
-**描述**：每隔 10 分鐘尋找上一輛車。
+## <a name="query-example-find-hello-last-event-in-a-window"></a>查詢範例： 尋找 hello 中的最後一個事件視窗
+**描述**： 每隔 10 分鐘的間隔中尋找 hello 最後一個汽車。
 
 **輸入**：
 
@@ -353,11 +353,11 @@ GROUP BY
         ON DATEDIFF(minute, Input, LastInWindow) BETWEEN 0 AND 10
         AND Input.Time = LastInWindow.LastEventTime
 
-**說明**：查詢中有兩個步驟。 第一個步驟會尋找 10 分鐘時間範圍內最新的時間戳記。 第二個步驟會將第一個查詢的結果與原始串流聯結在一起，在每個時間範圍內尋找符合最後一個時間戳記的事件。 
+**說明**: hello 查詢中有兩個步驟。 hello 第一次一個尋找 hello 時間戳記最新 windows 10 分鐘中。 第二個步驟聯結 hello hello hello 與 hello 原始資料流 toofind hello 符合事件 hello 最後一個時間戳記之各個視窗中的第一個查詢的結果。 
 
-## <a name="query-example-detect-the-absence-of-events"></a>查詢範例：偵測到事件不存在
+## <a name="query-example-detect-hello-absence-of-events"></a>查詢範例： 偵測 hello 沒有事件
 **描述**：檢查串流中是否沒有和特定準則相符的值。
-例如，在最後的 90 秒內連續有 2 部相同廠牌的車輛進入收費道路？
+比方說，從相同進行的 hello 2 連續汽車輸入 hello 付費道路 hello 內最後 90 秒嗎？
 
 **輸入**：
 
@@ -387,10 +387,10 @@ GROUP BY
     WHERE
         LAG(Make, 1) OVER (LIMIT DURATION(second, 90)) = Make
 
-**說明**：使用 **LAG** 查看前一個事件的輸入資料流，並取得 **Make** 值。 將該值和目前事件中的 **MAKE** 值比較，如果相同則輸出該事件。 您也可以使用 **LAG** 取得上一輛車的相關資料。
+**說明**： 使用**延隔**toopeek hello 到輸入資料流的回一個事件，並取得 hello**進行**值。 它比較 toohello**進行**hello 目前事件，然後輸出 hello 事件如果它們是 hello 相同的值。 您也可以使用**延隔**tooget hello 先前汽車相關的資料。
 
-## <a name="query-example-detect-the-duration-between-events"></a>查詢範例：偵測事件與事件之間的持續時間
-**描述**：尋找指定事件的持續時間。 例如，指定某一網頁點選流，以判斷在某一功能上花費的時間。
+## <a name="query-example-detect-hello-duration-between-events"></a>查詢範例： 偵測 hello 事件之間的持續期間
+**描述**： 尋找 hello 的給定事件的持續時間。 例如，給定網站的點選流，判斷 hello 時間花在功能上。
 
 **輸入**：  
 
@@ -415,11 +415,11 @@ GROUP BY
         Event = 'end'
 ````
 
-**說明**：當事件類型為 **Start** 時，使用 **LAST** 函式取出最後一個 **TIME** 值。 **LAST** 函式使用 **PARTITION BY [user]** 來表達會為個別使用者分別計算結果。 查詢的 **Start** 與 **Stop** 事件之間時間差的上限為 1 小時，但該值可以在必要時變更 **(LIMIT DURATION(hour, 1)**。
+**說明**： 使用 hello**最後**函式 tooretrieve hello**時間**值 hello 事件類型時**啟動**。 hello**最後**函式使用**PARTITION BY [使用者]** hello 結果的 tooindicate 計算每個唯一的使用者。 hello 查詢具有 1 小時 hello 之間的時間差異的最大閾值**啟動**和**停止**事件，但是您視需要**(限制 DURATION(hour, 1)**。
 
-## <a name="query-example-detect-the-duration-of-a-condition"></a>查詢範例：偵測某個情況的持續時間
+## <a name="query-example-detect-hello-duration-of-a-condition"></a>查詢範例： 偵測條件的 hello 持續時間
 **描述**：找出某個情況的持續時間。
-例如，假設有個錯誤導致所有車輛的重量不正確 (超過 20,000 磅)， 而我們想要計算該錯誤的持續時間。
+例如，假設有個錯誤導致所有車輛的重量不正確 (超過 20,000 磅)， 我們想要 hello bug toocompute hello 持續的時間。
 
 **輸入**：
 
@@ -461,11 +461,11 @@ GROUP BY
         AND previousWeight > 20000
 ````
 
-**說明**：使用 **LAG** 來檢視 24 小時內的輸入資料流，並尋找其中的 **StartFault** 和 **StopFault** 被 weight < 20000 合併的執行個體。
+**說明**： 使用**延隔**24 小時的 tooview hello 輸入資料流並尋找執行個體**StartFault**和**StopFault**合併的 hello加權 < 20000。
 
 ## <a name="query-example-fill-missing-values"></a>查詢範例：填入遺漏值
-**描述**：對於有遺漏值的事件串流，以固定間隔產生事件串流。
-例如，每隔 5 秒產生事件，報告最近所見的資料點。
+**描述**: hello 資料流有遺漏值的事件，會產生以固定間隔事件資料流。
+例如，產生報告的事件每隔 5 秒，最常出現的 hello 資料點。
 
 **輸入**：
 
@@ -503,13 +503,13 @@ GROUP BY
     GROUP BY HOPPINGWINDOW(second, 300, 5)
 
 
-**說明**：此查詢會每隔 5 秒產生事件，並且會輸出之前收到的最後一個事件。 [跳動視窗](https://msdn.microsoft.com/library/dn835041.aspx "跳動視窗 - Azure 串流分析")持續時間會決定查詢回溯到多久之前以找出最新的事件 (在此範例中為 300 秒)。
+**說明**： 此查詢會產生事件每隔 5 秒，並輸出 hello 先前接收的最後一個事件。 hello [Hopping 視窗](https://msdn.microsoft.com/library/dn835041.aspx "Hopping 視窗-Azure Stream Analytics")持續時間會決定多久後 hello 查詢會尋找 toofind hello 最新事件 （在此範例中的 300 秒）。
 
 ## <a name="get-help"></a>取得說明
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)。
 
 ## <a name="next-steps"></a>後續步驟
-* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
+* [簡介 tooAzure 資料流分析](stream-analytics-introduction.md)
 * [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)

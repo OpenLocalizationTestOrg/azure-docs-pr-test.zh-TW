@@ -1,6 +1,6 @@
 ---
-title: "在 SQL 資料倉儲中的 Create table as select (CTAS) | Microsoft Docs"
-description: "在 Azure SQL 資料倉儲中利用 create table as select (CTAS) 陳述式撰寫程式碼做為開發解決方案的提示。"
+title: "當在 SQL 資料倉儲中選取 (CTAS) aaaCreate 資料表 |Microsoft 文件"
+description: "使用 hello 撰寫程式碼的秘訣建立資料表，當在 Azure SQL 資料倉儲中選取 (CTAS) 陳述式，來開發方案。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: shivaniguptamsft
@@ -15,14 +15,14 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 01/30/2017
 ms.author: shigu;barbkess
-ms.openlocfilehash: cb08313726e8135feaa9b413937c2197ea397f4b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e381601a0a4d94e189d8f9115bf2e7593025410b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-table-as-select-ctas-in-sql-data-warehouse"></a>在 SQL 資料倉儲中的 Create Table As Select (CTAS)
-Create table as select 或 `CTAS` 是最重要的可用 T-SQL 功能之一。 該作業與根據 SELECT 陳述式的輸出來建立新資料表的作業完全平行。 `CTAS` 是建立資料表複本的最簡單且最快速方式。 本文件提供 `CTAS`的範例和最佳做法。
+建立為選取的資料表或`CTAS`是 hello 的其中一個最重要的 T-SQL 功能可用。 這是建立新的資料表根據 hello SELECT 陳述式的輸出完全平行化的作業。 `CTAS`是 hello 最簡單且最快方式 toocreate 資料表的副本。 本文件提供 `CTAS`的範例和最佳做法。
 
 ## <a name="selectinto-vs-ctas"></a>比較 SELECT..INTO 與CTAS
 您可以將 `CTAS` 視為加強版的 `SELECT..INTO`。
@@ -35,11 +35,11 @@ INTO    [dbo].[FactInternetSales_new]
 FROM    [dbo].[FactInternetSales]
 ```
 
-在上述範例中，`[dbo].[FactInternetSales_new]` 會建立為包含 CLUSTERED COLUMNSTORE INDEX 的 ROUND_ROBIN 分散式資料表，因為這是 Azure SQL 資料倉儲的資料表預設值。
+在上面的 hello 範例`[dbo].[FactInternetSales_new]`會為 ROUND_ROBIN 分散式資料表具有叢集資料行存放區索引在其上建立，因為這些是 Azure SQL 資料倉儲中的 hello 資料表預設值。
 
-但是 `SELECT..INTO` 不允許在作業期間變更分散方法或索引類型。 此時便適合使用 `CTAS`。
+`SELECT..INTO`但是不允許您 toochange 任一 hello 發佈方法或 hello 索引輸入 hello 作業的一部分。 此時便適合使用 `CTAS`。
 
-而將上述範例轉換到 `CTAS` 的方式相當簡單：
+tooconvert 太 hello 上方`CTAS`是相當簡單：
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales_new]
@@ -54,17 +54,17 @@ FROM    [dbo].[FactInternetSales]
 ;
 ```
 
-您可以使用 `CTAS`，變更資料表資料的分散方法，以及資料表類型。 
+與`CTAS`都能 toochange 兩者 hello 發佈的 hello 資料表資料，以及 hello 資料表類型。 
 
 > [!NOTE]
-> 如果您嘗試在 `CTAS` 作業中變更索引，且來源資料表是雜湊分散，則維持相同的分散資料行和資料類型會使 `CTAS` 作業有最佳效能。 這樣可避免在作業期間有跨越分散資料移動，所以會有較佳效能。
+> 如果您只想 toochange hello 索引中的您`CTAS`作業和 hello 來源資料表是分散式的雜湊則`CTAS`作業將會執行在您所維護的最佳 hello 相同的散發資料行和資料類型。 這樣會更有效率的 hello 作業期間，這樣可避免跨發佈資料移動。
 > 
 > 
 
-## <a name="using-ctas-to-copy-a-table"></a>使用 CTAS 複製資料表
-`CTAS` 最常見的用途之一，就是建立資料表複本，讓您可以變更 DDL。 例如，您原本將資料表建立為 `ROUND_ROBIN`，而現在想變更為在資料行上散發的資料表，`CTAS` 就是您將變更散發資料行的方式。 `CTAS` 也可以用來變更分割、索引或資料行類型。
+## <a name="using-ctas-toocopy-a-table"></a>使用 CTAS toocopy 資料表
+可能是其中一個最常見的 hello 使用的`CTAS`，因此您可以變更 hello DDL 會建立一份資料表。 如果您最初建立做為資料表，例如`ROUND_ROBIN`和資料行，現在想將它變更分散式 tooa 資料表`CTAS`是如何變更 hello 散發資料行。 `CTAS`也可以使用的 toochange 資料分割、 索引或資料行的類型。
 
-假設您因為在 `ROUND_ROBIN` 中沒有指定散發資料行，而使用 `CREATE TABLE` 散發的預設散發類型建立資料表。
+假設您建立使用 hello 預設散發類型這個資料表`ROUND_ROBIN`分散式由於沒有散發資料行指定在 hello `CREATE TABLE`。
 
 ```sql
 CREATE TABLE FactInternetSales
@@ -95,7 +95,7 @@ CREATE TABLE FactInternetSales
 );
 ```
 
-現在您想建立此資料表的新複本搭配叢集的資料行存放區索引，讓您可以利用叢集的資料行存放區資料表的效能。 您也會想要在 ProductKey 上散發此資料表，因為您預期會聯結此資料行，並在聯結 ProductKey 期間避免資料移動。 最後您也會想在 OrderDateKey 上加入資料分割，如此就可以透過卸除舊的資料分割來快速刪除舊資料。 以下是 CTAS 陳述式，會將您的舊資料表複製到新資料表。
+現在您想 toocreate 此資料表具有叢集資料行存放區索引的新副本，以便您可以利用 hello 資料表效能的叢集資料行存放區。 您也想 toodistribute 此資料表在 ProductKey 因為您會預期這個資料行上的聯結，而且想 tooavoid 資料移動期間 ProductKey 上聯結。 最後您也想 tooadd 上的分割區 OrderDateKey 以便卸除舊的資料分割，您可以快速地刪除舊的資料。 以下是會將舊資料表複製到新的資料表 hello CTAS 陳述式。
 
 ```sql
 CREATE TABLE FactInternetSales_new
@@ -116,36 +116,36 @@ WITH
 AS SELECT * FROM FactInternetSales;
 ```
 
-最後可以重新命名您的資料表以切換到新的資料表，然後卸除舊資料表。
+最後，您可以在新的資料表重新命名資料表 tooswap，且再卸除舊的資料表。
 
 ```sql
-RENAME OBJECT FactInternetSales TO FactInternetSales_old;
-RENAME OBJECT FactInternetSales_new TO FactInternetSales;
+RENAME OBJECT FactInternetSales tooFactInternetSales_old;
+RENAME OBJECT FactInternetSales_new tooFactInternetSales;
 
 DROP TABLE FactInternetSales_old;
 ```
 
 > [!NOTE]
-> Azure 資料倉儲尚未支援自動建立或自動更新統計資料。  為了獲得查詢的最佳效能，在首次載入資料，或是資料中發生重大變更之後，建立所有資料表的所有資料行統計資料非常重要。  如需統計資料的詳細說明，請參閱「開發」主題群組中的[統計資料][Statistics]主題。
+> Azure 資料倉儲尚未支援自動建立或自動更新統計資料。  在順序 tooget hello 達到最佳效能從您的查詢，請務必在所有資料表的所有資料行上建立統計資料，hello 第一次載入之後或 hello 資料會發生任何大量變更。  統計資料的詳細說明，請參閱 hello[統計資料][ Statistics] hello 開發一組主題中的主題。
 > 
 > 
 
-## <a name="using-ctas-to-work-around-unsupported-features"></a>使用 CTAS 解決不支援的功能
-`CTAS` 也可以用來暫時解決以下幾個不支援的功能。 這通常可以證明是雙贏的情況，因為您的程式碼不但能夠相容，而且通常可以在 SQL 資料倉儲上更快速執行。 這是完全平行化設計的結果。 可以使用 CTAS 解決的案例包括：
+## <a name="using-ctas-toowork-around-unsupported-features"></a>使用 CTAS toowork 周圍不支援的功能
+`CTAS`也可以使用的 toowork 使用數種下面所列的 hello 不支援的功能。 這可以通常證明 toobe win/win 情況下不只將您的程式碼會相容，但它會經常執行的速度 SQL 資料倉儲。 這是完全平行化設計的結果。 可以使用 CTAS 解決的案例包括：
 
 * ANSI JOINS on UPDATEs
 * ANSI JOINs on DELETEs
 * MERGE 陳述式
 
 > [!NOTE]
-> 嘗試考慮「CTAS 優先」。 如果您認為您可以使用 `CTAS` 解決問題，即使您正在撰寫更多資料做為結果，這通常是最佳的解決方法。
+> 再試一次 toothink"CTAS 第一次 」。 如果您認為您可以解決問題，使用`CTAS`，通常是最佳方式 tooapproach hello，即使您要撰寫更多資料，因此。
 > 
 > 
 
 ## <a name="ansi-join-replacement-for-update-statements"></a>update 陳述式的 ANSI 聯結取代
-您可能會發現有複雜的更新，使用 ANSI 聯結語法執行 UPDATE 或 DELETE 以將兩個以上的資料表聯結在一起。
+您可能會發現有複雜聯結兩個以上的資料表一起使用 ANSI 聯結語法 tooperform hello 更新或刪除的更新。
 
-假設您必須更新此資料表：
+假設此資料表具有 tooupdate:
 
 ```sql
 CREATE TABLE [dbo].[AnnualCategorySales]
@@ -160,7 +160,7 @@ WITH
 ;
 ```
 
-原始的查詢看起來可能像這樣：
+hello 原始查詢可能會有看起來像下面這樣：
 
 ```sql
 UPDATE    acs
@@ -185,9 +185,9 @@ AND    [acs].[CalendarYear]                = [fis].[CalendarYear]
 ;
 ```
 
-由於 SQL 資料倉儲不支援在 `UPDATE` 陳述式的 `FROM` 子句中使用 ANSI 聯結，因此您無法在毫不變更此程式碼的情況下將它複製過去。
+因為 SQL 資料倉儲不支援 ANSI 聯結在 hello`FROM`子句`UPDATE`陳述式中，無法複製透過此程式碼，而不需要稍微變更它。
 
-您可以使用 `CTAS` 和隱含聯結的組合來取代此程式碼：
+您可以使用多種`CTAS`和隱含聯結 tooreplace 這段程式碼：
 
 ```sql
 -- Create an interim table
@@ -208,7 +208,7 @@ GROUP BY
 ,        [CalendarYear]
 ;
 
--- Use an implicit join to perform the update
+-- Use an implicit join tooperform hello update
 UPDATE  AnnualCategorySales
 SET     AnnualCategorySales.TotalSalesAmount = CTAS_ACS.TotalSalesAmount
 FROM    CTAS_acs
@@ -216,13 +216,13 @@ WHERE   CTAS_acs.[EnglishProductCategoryName] = AnnualCategorySales.[EnglishProd
 AND     CTAS_acs.[CalendarYear]               = AnnualCategorySales.[CalendarYear]
 ;
 
---Drop the interim table
+--Drop hello interim table
 DROP TABLE CTAS_acs
 ;
 ```
 
 ## <a name="ansi-join-replacement-for-delete-statements"></a>delete 陳述式的 ANSI 聯結取代
-有時候刪除資料的最佳方法是使用 `CTAS`。 除了刪除資料以外，可以只選取您想要保留的資料。 這對於使用 ANSI 聯結語法的 `DELETE` 陳述式尤其適用，因為 SQL 資料倉儲不支援在 `DELETE` 陳述式的 `FROM` 子句中使用 ANSI 聯結。
+有時候 hello 刪除資料的最佳方法是 toouse `CTAS`。 而不刪除 hello 資料只選取您想要 tookeep hello 資料。 這尤其適合`DELETE`使用 ansi 聯結語法，因為 SQL 資料倉儲不支援在 hello ANSI 聯結陳述式`FROM`子句`DELETE`陳述式。
 
 已轉換之 DELETE 陳述式的範例如下所示：
 
@@ -232,7 +232,7 @@ WITH
 (   Distribution=HASH(ProductKey)
 ,   CLUSTERED INDEX (ProductKey)
 )
-AS -- Select Data you wish to keep
+AS -- Select Data you wish tookeep
 SELECT     p.ProductKey
 ,          p.EnglishProductName
 ,          p.Color
@@ -241,12 +241,12 @@ RIGHT JOIN dbo.stg_DimProduct s
 ON         p.ProductKey = s.ProductKey
 ;
 
-RENAME OBJECT dbo.DimProduct        TO DimProduct_old;
-RENAME OBJECT dbo.DimProduct_upsert TO DimProduct;
+RENAME OBJECT dbo.DimProduct        tooDimProduct_old;
+RENAME OBJECT dbo.DimProduct_upsert tooDimProduct;
 ```
 
 ## <a name="replace-merge-statements"></a>取代 merge 陳述式
-Merge 陳述式可以取代，至少有部分可使用 `CTAS`取代。 您可以將 `INSERT` 和 `UPDATE` 合併成單一陳述式。 任何已刪除的記錄都必須在第二個陳述式中關閉。
+Merge 陳述式可以取代，至少有部分可使用 `CTAS`取代。 您可以合併 hello`INSERT`和 hello`UPDATE`為單一陳述式。 已刪除的記錄需要 toobe 關閉第二個陳述式中。
 
 `UPSERT` 的範例如下所示：
 
@@ -275,8 +275,8 @@ WHERE NOT EXISTS
 )
 ;
 
-RENAME OBJECT dbo.[DimProduct]          TO [DimProduct_old];
-RENAME OBJECT dbo.[DimpProduct_upsert]  TO [DimProduct];
+RENAME OBJECT dbo.[DimProduct]          too[DimProduct_old];
+RENAME OBJECT dbo.[DimpProduct_upsert]  too[DimProduct];
 
 ```
 
@@ -297,9 +297,9 @@ SELECT @d*@f
 ;
 ```
 
-您可能會自動認為您應該將此程式碼移轉到 CTAS，就會是正確的。 不過，還是會有隱藏的問題。
+Instinctively 您可能會認為您應該將這個程式碼 tooa CTAS 移轉，而系統會將正確。 不過，還是會有隱藏的問題。
 
-下列程式碼不會產生相同的結果：
+hello 下列程式碼不會產生 hello 相同的結果：
 
 ```sql
 DECLARE @d decimal(7,2) = 85.455
@@ -313,9 +313,9 @@ SELECT @d*@f as result
 ;
 ```
 
-請注意，資料行 "result" 沿用運算式的資料類型和可為 null 值。 如果不小心處理，這可能會導致細微差異值。
+請注意 hello 資料行"result"向前帶有 hello 資料類型和 null 屬性值的 hello 運算式。 如果您不小心，這會導致 toosubtle 差異值。
 
-請嘗試下列內容做為範例：
+請嘗試 hello 舉例如下：
 
 ```sql
 SELECT result,result*@d
@@ -327,17 +327,17 @@ from ctas_r
 ;
 ```
 
-儲存的結果值是不同的。 因為結果資料行中保留的值用於其他運算式，錯誤變得更加顯著。
+儲存結果的 hello 值不相同。 當 hello 保存的 hello 結果資料行中的值用在其他運算式 hello 錯誤變得更重要。
 
 ![][1]
 
-這對資料移轉特別重要。 即使第二個查詢已經更精確，仍然有一個問題。 相較於來源系統，此資料有所不同，這會在移轉中產生完整性的問題。 這是「錯誤」答案其實是正確答案的少數原因之一！
+這對資料移轉特別重要。 即使 hello 第二個查詢是更精確的說是有問題。 hello 資料會是不同的比較的 toohello 來源系統，並可會 tooquestions 的完整性在 hello 移轉。 這是罕見情況下，其中 hello 「 錯誤 」 的答案都是實際 hello 右移一個 ！
 
-我們會看到這兩個結果之間有差異，追根究柢的原因是隱含的類型轉型。 在第一個範例中，資料表會定義資料行。 插入資料列時，就會發生隱含類型轉換。 在第二個範例中，沒有隱含類型轉換，因為此運算式會定義資料行的資料類型。 請注意，第二個範例中的資料行已定義為可為 Null 的資料行，而在第一個範例中還沒有定義。 在第一個範例中建立資料表時，尚未明確定義資料行可為 null。 在第二個範例中，它只留給了運算式，根據預設，這會導致 NULL 定義。  
+hello 我們會看到這個 hello 兩個結果之間差異的原因已關閉 tooimplicit 類型轉換。 在 hello hello 資料表第一個範例會定義 hello 資料行定義。 Hello 資料列插入時，就會發生隱含類型轉換。 Hello 第二個範例中沒有任何隱含類型轉換為 hello 運算式定義 hello 資料行資料類型。 請注意該 hello 第二個範例中的 hello 資料行也已經定義為 Null 的資料行而 hello 第一個範例中還沒有。 Hello 資料表在建立時已明確定義 hello 第一個範例資料行 null 屬性。 在第二個範例中 hello 它已保留 toohello 運算式和預設這會導致 NULL 定義。  
 
-若要解決這些問題，您必須在 `CTAS` 陳述式的 `SELECT` 部分中明確設定類型轉換和可為 null 屬性。 您無法在建立資料表的部分中設定這些屬性。
+這些問題的 tooresolve 必須明確設定 hello 型別轉換和 null 屬性在 hello`SELECT`部分 hello`CTAS`陳述式。 您無法設定這些屬性在 hello 建立資料表的一部分。
 
-下列範例示範如何修正程式碼：
+下列的 hello 範例示範如何 toofix hello 程式碼：
 
 ```sql
 DECLARE @d decimal(7,2) = 85.455
@@ -349,19 +349,19 @@ AS
 SELECT ISNULL(CAST(@d*@f AS DECIMAL(7,2)),0) as result
 ```
 
-請注意：
+請注意 hello 下列：
 
 * 可能已經使用 CAST 或 CONVERT
-* ISNULL 是用來強制 NULLability，而非 COALESCE
-* ISNULL 是最外層的函式
-* ISNULL 的第二個部分是常數，也就是 0
+* ISNULL 是使用的 tooforce 不 COALESCE 的 null 屬性
+* ISNULL 是 hello 最外層的函式
+* hello ISNULL hello 第二部分是常數，也就是 0
 
 > [!NOTE]
-> 若要正確地設定可為 null 屬性，必須使用 `ISNULL` 而不是 `COALESCE`。 `COALESCE` 不是具決定性的函數，因此運算式的結果一律可為 Null。 `ISNULL` 不同。 它是具決定性的。 因此當 `ISNULL` 函數的第二個部分是常數或常值，則結果值將會是 NOT NULL。
+> Hello null 屬性 toobe 正確設定是很重要的 toouse`ISNULL`而非`COALESCE`。 `COALESCE`不具決定性的函式，並因此 hello hello 運算式結果將會永遠是可為 Null。 `ISNULL` 不同。 它是具決定性的。 因此當 hello 第二個部分 hello`ISNULL`函式是常數或常值，則 hello 產生值將會是 NOT NULL。
 > 
 > 
 
-本秘訣不只適用於確保計算的完整性。 它對資料表分割切換也很重要。 假設您根據事實定義此資料表：
+這個提示不只適合用於確保您的計算 hello 完整性。 它對資料表分割切換也很重要。 假設您根據事實定義此資料表：
 
 ```sql
 CREATE TABLE [dbo].[Sales]
@@ -384,9 +384,9 @@ WITH
 ;
 ```
 
-不過，[值] 欄位是已計算的運算式，它不是來源資料的一部分。
+不過，hello 值欄位是計算的運算式，它不是 hello 來源資料的一部分。
 
-若要建立資料分割資料集，您可能會想要這麼做：
+toocreate 您可能要 toodo 此分割資料集：
 
 ```sql
 CREATE TABLE [dbo].[Sales_in]
@@ -410,7 +410,7 @@ OPTION (LABEL = 'CTAS : Partition IN table : Create')
 ;
 ```
 
-執行最適合的查詢。 當您嘗試執行資料分割切換時會出現問題。 資料表定義不相符。 若要讓資料表定義相符，必須修改 CTAS。
+hello 查詢就會執行可行的。 hello 問題在於當您嘗試 tooperform hello 資料分割切換。 hello 資料表定義不相符。 toomake hello 資料表定義符合的 hello CTAS 需要 toobe 修改。
 
 ```sql
 CREATE TABLE [dbo].[Sales_in]
@@ -433,9 +433,9 @@ FROM [stg].[source]
 OPTION (LABEL = 'CTAS : Partition IN table : Create');
 ```
 
-因此，您可以查看類型一致性，且維護 CTAS 上的可為 null 屬性是很好的工程最佳作法。 它有助於維護計算的完整性，並且也可確保資料分割切換的可能性。
+因此，您可以查看類型一致性，且維護 CTAS 上的可為 null 屬性是很好的工程最佳作法。 它可協助您的計算 toomaintain 完整性，並也可確保資料分割切換，就可能。
 
-如需使用 [CTAS][CTAS] 的詳細資訊，請參閱 MSDN。 它是 Azure SQL 資料倉儲中最重要的陳述式之一。 請確定您已徹底了解。
+如需使用詳細資訊，請參閱 tooMSDN [CTAS][CTAS]。 它是其中一個 Azure SQL 資料倉儲中的 hello 最重要陳述式。 請確定您已徹底了解。
 
 ## <a name="next-steps"></a>後續步驟
 如需更多開發秘訣，請參閱[開發概觀][development overview]。

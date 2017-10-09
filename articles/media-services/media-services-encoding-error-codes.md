@@ -1,6 +1,6 @@
 ---
-title: "Azure 媒體服務編碼錯誤代碼 | Microsoft Docs"
-description: "本主題列出在編碼工作執行期間發生錯誤時下可能傳回的錯誤碼。"
+title: "aaaAzure Media Services 編碼錯誤碼 |Microsoft 文件"
+description: "本主題列出以防 hello 編碼工作執行期間發生錯誤，可能會傳回的錯誤碼..."
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: f4fd2212d19f89148dde08c75c5a48cdd322d029
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b69b6abee797c40c9b8b8f23bf2398273c170e7f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="encoding-error-codes"></a>編碼錯誤碼
 
-下表列出在編碼工作執行期間發生錯誤的情況下可能傳回的錯誤碼。  若要取得 .NET 程式碼中的錯誤詳細資料，請使用 [ErrorDetails](http://msdn.microsoft.com/library/microsoft.windowsazure.mediaservices.client.errordetail.aspx) 類別。 若要取得 REST 程式碼中的錯誤詳細資料，請使用 [ErrorDetail](https://msdn.microsoft.com/library/jj853026.aspx) REST API。
+hello 下表列出可能會傳回，以防 hello 編碼工作執行期間發生錯誤的錯誤碼。  tooget 錯誤詳細資料，您的.NET 程式碼，使用 hello [ErrorDetails](http://msdn.microsoft.com/library/microsoft.windowsazure.mediaservices.client.errordetail.aspx)類別。 tooget 錯誤詳細資料，您的其餘程式碼中使用 hello [ErrorDetail](https://msdn.microsoft.com/library/jj853026.aspx) REST API。
 
 | ErrorDetail.Code | 導致發生錯誤的可能原因 |
 | --- | --- |
-| 不明 |執行工作時發生不明錯誤 |
+| 不明 |執行 hello 工作時發生未知的錯誤 |
 | ErrorDownloadingInputAssetMalformedContent |涵蓋下載輸入資產中之錯誤 (例如無效的檔案名稱、長度為零檔案、錯誤格式等等) 的錯誤類別。 |
-| ErrorDownloadingInputAssetServiceFailure |涵蓋服務端問題 (例如下載時發生網路或儲存體錯誤) 的錯誤類別。 |
-| ErrorParsingConfiguration |工作 <see cref="MediaTask.PrivateData"/> (設定) 無效時的錯誤類別，例如設定不是有效的系統預設或包含無效的 XML。 |
-| ErrorExecutingTaskMalformedContent |在工作執行期間因輸入媒體檔案內部問題導致失敗的錯誤類別。 |
-| ErrorExecutingTaskUnsupportedFormat |媒體處理器無法處理提供之檔案 (不支援的媒體格式或與組態不符) 的錯誤類別。 例如，嘗試從只有影片的資產產生只含音訊的輸出 |
-| ErrorProcessingTask |媒體處理器在處理和內容不相關的工作時發生的其他錯誤類別。 |
-| ErrorUploadingOutputAsset |上傳輸出資產時的錯誤類別 |
-| ErrorCancelingTask |涵蓋嘗試取消工作時失敗的錯誤類別 |
-| TransientError |涵蓋暫時性問題的錯誤類別 (例如 Azure 儲存體發生暫時性網路問題) |
+| ErrorDownloadingInputAssetServiceFailure |涵蓋 hello 服務端的網路或存放裝置錯誤的範例下載時的問題的錯誤分類。 |
+| ErrorParsingConfiguration |錯誤分類其中工作<see cref="MediaTask.PrivateData"/>（組態） 無效，例如 hello 組態並不是有效的系統預設值或包含無效的 XML。 |
+| ErrorExecutingTaskMalformedContent |Hello hello 問題輸入媒體檔案造成失敗的 hello 工作執行期間發生的錯誤分類。 |
+| ErrorExecutingTaskUnsupportedFormat |分類的錯誤，其中 hello 媒體處理器無法處理提供 hello 檔案-媒體格式不受支援，或者不符合 hello 組態。 例如，嘗試 tooproduce 具有唯一的視訊資產的僅限音訊輸出 |
+| ErrorProcessingTask |在 hello 的不相關的 toocontent hello 工作處理期間所遇到 hello 媒體處理器的其他錯誤分類。 |
+| ErrorUploadingOutputAsset |上傳 hello 輸出資產時的錯誤分類 |
+| ErrorCancelingTask |分類的錯誤 toocover 失敗時嘗試 toocancel hello 工作 |
+| TransientError |問題分類的錯誤 toocover 暫時性 （例如。 Azure 儲存體發生暫時性網路問題) |
 
-若要獲得 **媒體服務** 小組的協助，請開啟 [支援票證](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
+從 hello tooget 說明**Media Services**小組，請開啟[支援票證](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade)。
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

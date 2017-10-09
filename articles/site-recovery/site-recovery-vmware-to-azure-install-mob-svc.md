@@ -1,6 +1,6 @@
 ---
-title: "安裝行動服務 (VMware 或實體至 Azure) | Microsoft Docs"
-description: "了解如何安裝行動服務代理程式來保護您的內部部署電腦。"
+title: "aaaInstall 行動服務 （VMware 或實體 tooAzure） |Microsoft 文件"
+description: "了解如何 tooinstall 會 hello 行動服務代理程式 tooprotect 在內部部署電腦。"
 services: site-recovery
 documentationcenter: 
 author: AnoopVasudavan
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: backup-recovery
 ms.date: 06/29/2017
 ms.author: anoopkv
-ms.openlocfilehash: 848284f37ae2470a169d8f8a8c9c0bb5b926abe3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f7836e6b35d3838bae1eff927838ce4b245b9f56
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="install-mobility-service-vmware-or-physical-to-azure"></a>安裝行動服務 (VMware 或實體至 Azure)
-Azure Site Recovery 行動服務會擷取電腦上的資料寫入，然後將它們轉送至處理伺服器。 將行動服務部署至您要複寫至 Azure 的每部電腦 (VMware VM 或實體伺服器)。 您可以使用下列方法，將行動服務部署至您要保護的伺服器：
+# <a name="install-mobility-service-vmware-or-physical-tooazure"></a>安裝行動服務 （VMware 或實體 tooAzure）
+Azure Site Recovery Mobility 服務擷取的電腦上，資料寫入，並再將它們轉送 toohello 處理序伺服器。 部署行動服務 tooevery 電腦 （VMware VM 或實體伺服器） 的 tooreplicate tooAzure。 您可以部署您使用下列方法 hello 想 tooprotect 行動服務 toohello 伺服器：
 
 
 * [使用軟體部署工具 (例如 System Center Configuration Manager) 安裝行動服務](site-recovery-install-mobility-service-using-sccm.md)
 * [使用 Azure 自動化和預期狀態設定 (Automation DSC) 安裝行動服務](site-recovery-automate-mobility-service-install.md)
-* [使用圖形化使用者介面 (GUI) 手動安裝行動服務](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-by-using-the-gui)
+* [使用 hello 圖形化使用者介面 (GUI)，以手動方式安裝行動服務](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-by-using-the-gui)
 * [在命令提示字元中手動安裝行動服務](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-at-a-command-prompt)
 * [透過推送安裝從 Azure Site Recovery 安裝行動服務](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-by-push-installation-from-azure-site-recovery)
 
 
 >[!IMPORTANT]
-> 從版本 9.7.0.0 開始，在 Windows 虛擬機器 (VM) 上，行動服務安裝程式也會安裝最新可用的 [Azure VM 代理程式](../virtual-machines/windows/extensions-features.md#azure-vm-agent)。 當電腦容錯移轉至 Azure 時，該電腦必須符合代理程式安裝必要條件，才能使用任何 VM 擴充功能。
+> 開頭為 Windows 虛擬機器 (Vm) 上的版本 9.7.0.0，hello 行動服務安裝程式也會安裝 hello 的最新可用[Azure VM 代理程式](../virtual-machines/windows/extensions-features.md#azure-vm-agent)。 當電腦容錯移轉 tooAzure 時，hello 電腦符合 hello 代理程式安裝使用任何 VM 擴充功能的必要條件。
 
 ## <a name="prerequisites"></a>必要條件
 在伺服器上手動安裝行動服務之前，必須先完成下列必要條件步驟：
-1. 登入組態伺服器，然後以系統管理員身分開啟 [命令提示字元] 視窗。
-2. 將目錄切換至 bin 資料夾，然後建立複雜密碼檔案：
+1. 登入 tooyour 組態伺服器上，然後開啟 命令提示字元視窗，以系統管理員。
+2. 變更 hello 目錄 toohello bin 資料夾，然後再建立 複雜密碼檔案：
 
     ```
     cd %ProgramData%\ASR\home\svsystems\bin
     genpassphrase.exe -v > MobSvc.passphrase
     ```
-3. 將複雜密碼檔案儲存於安全的位置。 您會在行動服務安裝期間使用該檔案。
-4. 針對所有支援作業系統的行動服務安裝程式位於 %ProgramData%\ASR\home\svsystems\pushinstallsvc\repository 資料夾中。
+3. Hello 複雜密碼檔案存放在安全的位置。 您在 hello 行動服務安裝期間使用 hello 檔案。
+4. 適用於所有支援作業系統的行動服務安裝程式都 hello %ProgramData%\ASR\home\svsystems\pushinstallsvc\repository 資料夾中。
 
 ### <a name="mobility-service-installer-to-operating-system-mapping"></a>行動服務安裝程式與作業系統之間的對應
 
@@ -59,10 +59,10 @@ Azure Site Recovery 行動服務會擷取電腦上的資料寫入，然後將它
 |Microsoft-ASR\_UA\*UBUNTU-14.04-64\*release.tar.gz | Ubuntu Linux 14.04 (僅限 64 位元)|
 
 
-## <a name="install-mobility-service-manually-by-using-the-gui"></a>使用 GUI 手動安裝行動服務
+## <a name="install-mobility-service-manually-by-using-hello-gui"></a>使用 hello GUI 手動安裝行動服務
 
 >[!IMPORTANT]
-> 如果您是使用**設定伺服器**從一個 Azure 訂用帳戶/區域將 **Azure IaaS 虛擬機器**複寫到另一個 Azure 訂用帳戶/區域，請**使用以命令列為基礎的安裝方法**
+> 如果您使用**組態伺服器**tooreplicate **Azure IaaS 虛擬機器**從一個 Azure 訂用帳戶/地區 tooanother 然後**使用 hello 命令列基礎的安裝**方法
 
 [!INCLUDE [site-recovery-install-mob-svc-gui](../../includes/site-recovery-install-mob-svc-gui.md)]
 
@@ -76,7 +76,7 @@ Azure Site Recovery 行動服務會擷取電腦上的資料寫入，然後將它
 
 
 ## <a name="install-mobility-service-by-push-installation-from-azure-site-recovery"></a>透過推送安裝從 Azure Site Recovery 安裝行動服務
-若要使用 Site Recovery 來執行行動服務安裝推送安裝，所有目標電腦都必須符合下列必要條件。
+toodo 的行動服務推入安裝使用 Site Recovery，所有目標電腦必須都符合下列必要條件 hello。
 
 [!INCLUDE [site-recovery-prepare-push-install-mob-svc-win](../../includes/site-recovery-prepare-push-install-mob-svc-win.md)]
 
@@ -84,18 +84,18 @@ Azure Site Recovery 行動服務會擷取電腦上的資料寫入，然後將它
 
 
 > [!NOTE]
-安裝行動服務之後，選取 Azure 入口網站中的 [複寫] 按鈕以開始保護這些 VM。
+行動服務安裝在 hello Azure 入口網站後，選取 hello**複寫**按鈕 toostart 保護這些 Vm。
 
 ## <a name="uninstall-mobility-service-on-a-windows-server-computer"></a>將 Windows Server 電腦上的行動服務解除安裝
-您可以使用下列其中一種方法將 Windows Server 電腦上的行動服務解除安裝。
+使用其中一個 Windows Server 電腦上遵循方法 toouninstall 行動服務的 hello。
 
-### <a name="uninstall-by-using-the-gui"></a>使用 GUI 來解除安裝
+### <a name="uninstall-by-using-hello-gui"></a>解除安裝使用 hello GUI
 1. 在 [控制台] 中，選取 [程式]。
 2. 選取 [Microsoft Azure Site Recovery Mobility Service/主要目標伺服器]，然後選取 [解除安裝]。
 
 ### <a name="uninstall-at-a-command-prompt"></a>在命令提示字元中解除安裝
 1. 以系統管理員身分開啟 [命令提示字元] 視窗。
-2. 執行下列命令以將行動服務解除安裝：
+2. 執行下列命令的 hello toouninstall 行動服務：
 
 ```
 MsiExec.exe /qn /x {275197FC-14FD-4560-A5EB-38217F80CBD1} /L+*V "C:\ProgramData\ASRSetupLogs\UnifiedAgentMSIUninstall.log"
@@ -103,8 +103,8 @@ MsiExec.exe /qn /x {275197FC-14FD-4560-A5EB-38217F80CBD1} /L+*V "C:\ProgramData\
 
 ## <a name="uninstall-mobility-service-on-a-linux-computer"></a>將 Linux 電腦上的行動服務解除安裝
 1. 在 Linux 伺服器上，以 **root** 使用者登入。
-2. 在終端機中，移至 /user/local/ASR。
-3. 執行下列命令以將行動服務解除安裝：
+2. 在終端機中，移太/使用者/本機/ASR。
+3. 執行下列命令的 hello toouninstall 行動服務：
 
 ```
 uninstall.sh -Y

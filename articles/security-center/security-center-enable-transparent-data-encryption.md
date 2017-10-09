@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 資訊安全中心啟用透明資料加密 | Microsoft Docs"
-description: "本文件說明如何實作 Azure 資訊安全中心建議的「啟用透明資料加密」。"
+title: "aaaEnable Azure 資訊安全中心中的透明資料加密 |Microsoft 文件"
+description: "本文件說明如何 tooimplement hello Azure 資訊安全中心建議事項 * * 啟用透明資料加密 * *。"
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: 2a2963affdbff3710ad08f86c6ed4e6304335559
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 94c6e9a1feddaa48faac6c835d416c4d131cd5c5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="enable-transparent-data-encryption-in-azure-security-center"></a>在 Azure 資訊安全中心啟用透明資料加密
-如果尚未啟用 TDE，Azure 資訊安全中心將建議您在 SQL Database 上啟用透明資料加密 (TDE)。 TDE 可保護您的資料，並在無須變更您應用程式的情況下，加密不在作用中的資料庫、相關聯的備份以及交易記錄檔，以協助您符合法規遵循需求。 若要深入了解，請參閱 [Azure SQL Database 的透明資料加密](https://msdn.microsoft.com/library/dn948096)。
+如果尚未啟用 TDE，Azure 資訊安全中心將建議您在 SQL Database 上啟用透明資料加密 (TDE)。 TDE 會保護資料，並協助您符合法規遵循需求加密資料庫、 相關聯的備份以及交易記錄檔，在其餘部分，而不需要變更 tooyour 應用程式。 toolearn 更看到[Azure SQL Database 的透明資料加密](https://msdn.microsoft.com/library/dn948096)。
 
-此建議僅適用於 Azure SQL 服務；不包含在虛擬機器上執行的 SQL。
+這項建議適用於 toohello; 僅限 Azure SQL 服務不包含 SQL 虛擬機器上執行。
 
 > [!NOTE]
-> 本文件將使用範例部署來介紹服務。  這不是逐步指南。
+> 本文件介紹 hello 服務使用的範例部署。  這不是逐步指南。
 >
 >
 
-## <a name="implement-the-recommendation"></a>實作建議
-1. 在 [建議] 刀鋒視窗中，選取 [啟用透明資料加密]。
+## <a name="implement-hello-recommendation"></a>實作 hello 建議
+1. 在 hello**建議**刀鋒視窗中，選取**啟用透明資料加密**。
    ![啟用透明資料加密][1]
-2. 這會開啟 [在 SQL 資料庫上啟用透明資料加密]  刀鋒視窗。 選取要在其上啟用 TDE 的 SQL Database。
-   ![選取要在其上啟用 TDE 的 SQL DB][2]
-3. 在 [透明資料加密] 刀鋒視窗中，選取 [資料加密] 下方的 [開啟]，然後選取刀鋒視窗頂端功能區中的 [儲存]。
+2. 這會開啟 hello **SQL 資料庫上啟用透明資料加密**刀鋒視窗。 選取上的 SQL 資料庫 tooenable TDE。
+   ![選取上的 SQL DB tooenable TDE][2]
+3. 在 [hello**透明資料加密**刀鋒視窗中，選取**ON**下資料加密，然後選取**儲存**hello hello] 刀鋒視窗的頂端功能區中。
    ![開啟 TDE][3]
 
-   一旦在所選取的 SQL Database 上啟用 TDE 後，[加密狀態] 就會變成 [已加密]。    
+   一旦啟用了 TDE hello 選取 SQL 資料庫 hello**加密狀態**也會變更**加密**。    
 
    ![加密狀態][4]
 
 ## <a name="see-also"></a>另請參閱
-本文說明了如何實作資訊安全中心建議的「啟用透明資料加密」。 如要深入了解 SQL TDE，請參閱下列主題：
+本文章向您說明如何 tooimplement 會 hello 資訊安全中心建議 「 啟用透明資料加密 」。 toolearn 深入了解 SQL TDE，請參閱 hello 下列資訊：
 
 * [Azure SQL Database 的透明資料加密](https://msdn.microsoft.com/library/dn948096)
 * [開始使用透明資料加密 (TDE)](../sql-data-warehouse/sql-data-warehouse-encryption-tde.md)
 
-如要深入了解資訊安全中心，請參閱下列主題：
+toolearn 有關資訊安全中心的詳細資訊，請參閱 hello 下列資訊：
 
-* [在 Azure 資訊安全中心設定安全性原則](security-center-policies.md) --了解如何為您的 Azure 訂用帳戶及資源群組設定安全性原則。
+* [在 Azure 資訊安全中心中設定安全性原則](security-center-policies.md)-了解如何 tooconfigure 您的 Azure 訂用帳戶和資源群組的安全性原則。
 * [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助保護您的 Azure 資源。
-* [Azure 資訊安全中心的安全性健全狀況監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健全狀況。
-* [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
-* [使用 Azure 資訊安全中心監視合作夥伴解決方案](security-center-partner-solutions.md) -- 了解如何監視合作夥伴解決方案的健全狀況。
-* [Azure 資訊安全中心常見問題集](security-center-faq.md) -- 尋找有關使用服務的常見問題。
-* [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 取得最新的 Azure 安全性新聞和資訊。
+* [在 Azure 資訊安全中心中的安全性健全狀況監視](security-center-monitoring.md)-了解如何 toomonitor hello 您的 Azure 資源的健全狀況。
+* [在 Azure 資訊安全中心警示管理，而且有回應 toosecurity](security-center-managing-and-responding-alerts.md) -了解如何 toomanage 和回應 toosecurity 警示。
+* [監視與 Azure 資訊安全中心的協力廠商解決方案](security-center-partner-solutions.md)-了解如何 toomonitor hello 的協力廠商解決方案的健全狀況狀態。
+* [Azure 資訊安全中心常見問題集](security-center-faq.md)-尋找使用 hello 服務相關的常見問題集。
+* [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/)-取得最新 Azure 安全性消息 hello 和資訊。
 
 <!--Image references-->
 [1]: ./media/security-center-enable-tde-on-sql-databases/enable-tde.png

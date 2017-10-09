@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Log Analytics 中使用記錄搜尋入口網站 | Microsoft Docs"
-description: "本文包含一篇教學課程，說明如何使用記錄搜尋入口網站來建立記錄搜尋，以及分析儲存在 Log Analytics 工作區的資料。  教學課程包含執行一些簡單查詢以傳回不同類型的資料並分析結果。"
+title: "在 Azure Log Analytics aaaUsing hello 記錄搜尋入口網站 |Microsoft 文件"
+description: "本文包含的教學課程，描述如何 toocreate 記錄搜尋並分析資料儲存在您使用 hello 記錄搜尋入口網站的記錄分析工作區中。  hello 教學課程包含 tooreturn 不同類型的資料執行一些簡單的查詢和分析的結果。"
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -13,42 +13,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2017
 ms.author: bwren
-ms.openlocfilehash: 6fc556ceb34cde26d5f3789a2397cdaa34b0b84d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2e6633d548bb508edc0c650d11d2c32fc6ee536c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-log-searches-in-azure-log-analytics-using-the-log-search-portal"></a>在 Azure Log Analytics 中使用記錄搜尋入口網站來建立記錄搜尋
+# <a name="create-log-searches-in-azure-log-analytics-using-hello-log-search-portal"></a>在 Azure Log Analytics 使用 hello 記錄搜尋入口網站中建立的記錄搜尋
 
 > [!NOTE]
-> 本文會說明 Azure Log Analytics 中使用新查詢語言的記錄搜尋入口網站。  您可以在[將 Azure Log Analytics 工作區升級為新的記錄搜尋](log-analytics-log-search-upgrade.md)中，深入了解新的語言，並且取得升級工作區的程序。  
+> 本文說明 hello Azure Log Analytics 使用 hello 新的查詢語言中的記錄搜尋入口網站。  您可以深入了解 hello 新語言，並取得 hello 程序 tooupgrade 在工作區[升級您的 Azure 記錄分析工作區 toonew 記錄搜尋](log-analytics-log-search-upgrade.md)。  
 >
-> 如果您的工作區尚未升級為新的查詢語言，您應該參閱[在 Log Analytics 中使用記錄搜尋以尋找資料](log-analytics-log-searches.md)，以取得記錄搜尋入口網站目前版本的資訊。
+> 如果您的工作區尚未升級的 toohello 新的查詢語言，您應該參閱太[尋找資料記錄分析中使用記錄搜尋](log-analytics-log-searches.md)hello 最新版 hello 記錄搜尋入口網站上的資訊。
 
-本文包含一篇教學課程，說明如何使用記錄搜尋入口網站來建立記錄搜尋，以及分析儲存在 Log Analytics 工作區的資料。  教學課程包含執行一些簡單查詢以傳回不同類型的資料並分析結果。  其著重在記錄搜尋入口網站的功能，可修改查詢內容卻不必直接修改查詢本身。  如需直接編輯查詢的詳細資訊，請參閱[查詢語言參考](https://go.microsoft.com/fwlink/?linkid=856079)。
+本文包含的教學課程，描述如何 toocreate 記錄搜尋並分析資料儲存在您使用 hello 記錄搜尋入口網站的記錄分析工作區中。  hello 教學課程包含 tooreturn 不同類型的資料執行一些簡單的查詢和分析的結果。  它著重在 hello 修改 hello 查詢，而不是直接修改的記錄搜尋入口網站中的功能。  如需直接編輯 hello 查詢的詳細資訊，請參閱 hello[查詢語言參考](https://go.microsoft.com/fwlink/?linkid=856079)。
 
-若要在進階 Analytics 入口網站 (而非記錄搜尋入口網站) 中建立搜尋，請參閱 [Analytics 入口網站的使用者入門](https://go.microsoft.com/fwlink/?linkid=856587)。  這兩個入口網站使用相同的查詢語言在 Log Analytics 工作區中存取相同的資料。
+toocreate 搜尋在 hello Advanced Analytics 入口網站，而不是 hello 記錄搜尋入口網站，請參閱[hello Analytics 入口網站使用者入門](https://go.microsoft.com/fwlink/?linkid=856587)。  這兩個入口網站使用 hello 相同語言 tooaccess hello hello 記錄分析工作區中的相同資料的查詢。
 
 ## <a name="prerequisites"></a>必要條件
-本教學課程假設您已擁有 Log Analytics 工作區，且其具有至少一個連線來源以產生供查詢分析的資料。  
+本教學課程假設您已經有產生的資料為 hello 查詢 tooanalyze 的至少一個已連接來源的記錄分析工作區。  
 
-- 如果您沒有工作區，可以使用[開始使用 Log Analytics 工作區](log-analytics-get-started.md)的程序來建立免費工作區。
-- 至少將一個 [Windows 代理程式](log-analytics-windows-agents.md)或一個 [Linux 代理程式](log-analytics-linux-agents.md)連線到工作區。  
+- 如果您沒有工作區，您可以建立一份免費使用 hello 程序在[開始記錄分析工作區使用](log-analytics-get-started.md)。
+- 連線至少一個[Windows 代理程式](log-analytics-windows-agents.md)或一個[Linux 代理程式](log-analytics-linux-agents.md)toohello 工作區。  
 
-## <a name="open-the-log-search-portal"></a>開啟記錄搜尋入口網站
-從開啟記錄搜尋入口網站開始。  您可以在 Azure 入口網站或 OMS 入口網站存取它。
+## <a name="open-hello-log-search-portal"></a>開啟 hello 記錄搜尋入口網站
+首先開啟 hello 記錄搜尋入口網站。  您可以在 hello Azure 入口網站或 hello OMS 入口網站存取它。
 
-1. 開啟 Azure 入口網站。
-2. 瀏覽至 Log Analytics 並選取您的工作區。
-3. 請選取 [記錄搜尋] 以停留在 Azure 入口網站，或選取 [OMS 入口網站] 來啟動 OMS 入口網站，然後按一下 [記錄搜尋] 按鈕。
+1. 開啟 hello Azure 入口網站。
+2. 瀏覽 tooLog 分析，然後選取您的工作區。
+3. 請選取**記錄搜尋**在 hello Azure 入口網站或啟動 hello OMS 入口網站選取 toostay **OMS 入口網站**，然後按一下hello 記錄搜尋 按鈕。
 
 ![記錄檔搜尋按鈕](media/log-analytics-log-search-log-search-portal/log-search-button.png)
 
 ## <a name="create-a-simple-search"></a>建立簡單搜尋
-若要擷取某些資料來使用，最快的方式是使用會傳回資料表中所有記錄的簡單查詢。  如果有任何 Windows 或 Linux 用戶端連線到您的工作區，則您會擁有事件 (Windows) 或 Syslog (Linux) 資料表中的資料。
+最快方式 tooretrieve hello 與某些資料 toowork 是簡單的查詢，傳回資料表中的所有記錄。  如果您有任何 Windows 或 Linux 用戶端連線的 tooyour 工作區，然後您就有可能是 hello 事件 (Windows) 或 Syslog (Linux) 資料表中的資料。
 
-在搜尋方塊中輸入以下其中一項查詢，然後按一下搜尋按鈕。  
+輸入一個 hello 遵循 hello [搜尋] 方塊中的查詢，然後按一下 hello [搜尋] 按鈕。  
 
 ```
 Event
@@ -57,27 +57,27 @@ Event
 Syslog
 ```
 
-資料會傳回到預設清單檢視中，您可以看到傳回的記錄總數。
+中的 hello 預設清單檢視中，傳回資料，您可以看到所傳回的總記錄數。
 
 ![簡單查詢](media/log-analytics-log-search-log-search-portal/log-search-portal-01.png)
 
-每筆記錄只會顯示前幾個屬性。  按一下 [顯示更多] 以顯示特定記錄的所有屬性。
+只有 hello 每一筆記錄的第一個幾個屬性會顯示。  按一下**顯示更多**toodisplay 特定記錄的所有屬性。
 
 ![記錄詳細資料](media/log-analytics-log-search-log-search-portal/log-search-portal-02.png)
 
-## <a name="set-the-time-scope"></a>設定時間範圍
-Log Analytics 所收集的每一筆記錄都有 **TimeGenerated** 屬性，其包含記錄建立的日期和時間。  記錄搜尋入口網站中的查詢只會傳回 **TimeGenerated** 在時間範圍內的記錄，時間範圍會顯示在畫面左側。  
+## <a name="set-hello-time-scope"></a>設定 hello 時間範圍
+記錄分析所收集的每一筆記錄有**TimeGenerated**建立該 hello 記錄屬性，其中包含 hello 日期和時間。  Hello 記錄搜尋入口網站中的查詢只傳回記錄**TimeGenerated** hello hello 左邊囉 」 畫面顯示的時間範圍內。  
 
-您可以選取下拉式清單或修改滑桿來變更時間篩選條件。  滑桿會顯示出直條圖，圖中則顯示時間範圍內每個區段的相對記錄數目。  區段會依範圍而有所不同。
+選取 hello 下拉式清單中，或修改 hello 滑桿，您可以變更 hello 時間篩選器。  hello 滑桿顯示橫條圖來顯示 hello 相對 hello 範圍內的每個時間區段的記錄數目。  此區段會因 hello 範圍。
 
-預設時間範圍是 **1 天**。  將此值變更為 **7 天**，則記錄總數應該會增加。
+hello 預設時間範圍是**1 天**。  變更此值太**7 天**，應該增加 hello 的總記錄數。
 
 ![日期時間範圍](media/log-analytics-log-search-log-search-portal/log-search-portal-03.png)
 
-## <a name="filter-results-of-the-query"></a>篩選查詢結果
-畫面左側是篩選窗格，可讓您新增篩選條件到查詢中，而不需要直接修改查詢。  會顯示傳回記錄的多個屬性及其前十個值與記錄計數。
+## <a name="filter-results-of-hello-query"></a>篩選查詢結果的 hello
+Hello 囉 」 畫面的左下的方是它可讓您篩選 toohello 查詢，而不需要直接修改它的 tooadd hello 篩選 窗格。  傳回的 hello 記錄的數個屬性會顯示其記錄的計數與與其前十個值。
 
-如果您使用的是**事件**，選取 [EVENTLEVELNAME] 下方 [錯誤] 旁的核取方塊。   如果您使用的是 **Syslog**，選取 [SEVERITYLEVEL] 下方 [錯誤] 旁的核取方塊。  這會將查詢變更為下列其中一個，以將結果限制為錯誤事件。
+如果您正在使用**事件**，選取 hello 核取方塊旁太**錯誤**下**EVENTLEVELNAME**。   如果您正在使用**Syslog**，選取 hello 核取方塊旁太**err**下**嚴重性層級**。  這樣會變更 hello 查詢的下列 toolimit hello hello tooone 結果 tooerror 事件。
 
 ```
 Event | where (EventLevelName == "Error")
@@ -86,30 +86,30 @@ Event | where (EventLevelName == "Error")
 Syslog | where (SeverityLevel == "err")
 ```
 
-![篩選器](media/log-analytics-log-search-log-search-portal/log-search-portal-04.png)
+![Filter](media/log-analytics-log-search-log-search-portal/log-search-portal-04.png)
 
-從其中一個記錄的屬性功能表中選取 [新增至篩選器]，將屬性新增至篩選窗格。
+新增屬性 toohello 篩選 窗格選取**新增 toofilters**從 hello 屬性功能表上的其中一個 hello 記錄。
 
-![新增至篩選功能表](media/log-analytics-log-search-log-search-portal/log-search-portal-02a.png)
+![新增 toofilter 功能表](media/log-analytics-log-search-log-search-portal/log-search-portal-02a.png)
 
-您可以從記錄的屬性功能表選取具有所要篩選值的 [篩選]，以設定相同的篩選條件。  
+您可以設定相同選取篩選器的 hello**篩選**想 toofilter hello 屬性功能表中的 hello 值的記錄。  
 
-只有名稱是藍色的屬性才有 [篩選] 選項。  這些是可搜尋的欄位，已針對搜尋條件編列索引。  灰色的欄位是「自然語言檢索搜尋旗標」欄位，只有 [顯示參考] 選項。  此選項會傳回在任何屬性中具有該值的記錄。
+您只需要 hello**篩選**內容的名稱以藍色的選項。  這些是可搜尋的欄位，已針對搜尋條件編列索引。  灰色的欄位是*任意可搜尋的文字*欄位只有 hello**顯示參考**選項。  此選項會傳回在任何屬性中具有該值的記錄。
 
 ![篩選功能表](media/log-analytics-log-search-log-search-portal/log-search-portal-01a.png)
 
-您可以選取記錄功能表中的 [分組依據] 選項，在單一屬性上群組結果。  這會將[摘要](https://docs.loganalytics.io/docs/Language-Reference/Tabular-operators/summarize-operator)運算子新增到查詢中，可在圖表中顯示結果。  您可以群組一個以上的屬性，但需要直接編輯查詢。  選取**電腦**屬性旁的記錄功能表，並選取 [依「電腦」分組]。  
+您可以藉由選取 hello 群組上的單一屬性的 hello 結果**分組**hello 記錄功能表中的選項。  這會新增[摘要](https://docs.loganalytics.io/docs/Language-Reference/Tabular-operators/summarize-operator)hello 結果顯示在圖表中的運算子 tooyour 查詢。  您可以群組在一個以上的屬性，但您直接需要 tooedit hello 查詢。  選取 hello 記錄功能表下一步 hello hello**電腦**屬性，並選取**Group by 'Computer'**。  
 
 ![依電腦分組](media/log-analytics-log-search-log-search-portal/log-search-portal-10.png)
 
 ## <a name="work-with-results"></a>處理結果
-記錄搜尋入口網站有各種功能，以供使用查詢結果。  您可以排序、篩選和群組結果來分析資料，而不需修改實際的查詢。  根據預設，不會排序查詢的結果。
+hello 記錄搜尋入口網站有各種不同的功能使用 hello 查詢的結果。  您可以排序、 篩選和群組結果 tooanalyze hello 資料而不需修改 hello 實際查詢。  根據預設，不會排序查詢的結果。
 
-若要以可提供其他篩選和排序選項的資料表形式來檢視資料，按一下 [資料表]。  
+tooview hello 表單資料的資料表提供其他選項用來篩選和排序，按一下**資料表**。  
 
 ![資料表檢視](media/log-analytics-log-search-log-search-portal/log-search-portal-05.png)
 
-按一下記錄旁的箭號以檢視該記錄的詳細資訊。
+按一下記錄 tooview hello 詳細資料，該記錄 hello 箭號。
 
 ![排序結果](media/log-analytics-log-search-log-search-portal/log-search-portal-06.png)
 
@@ -117,18 +117,18 @@ Syslog | where (SeverityLevel == "err")
 
 ![排序結果](media/log-analytics-log-search-log-search-portal/log-search-portal-07.png)
 
-按一下篩選按鈕並提供篩選條件，以篩選出資料行中具特定值的結果。
+篩選 hello hello 按一下 hello 篩選按鈕，並提供篩選條件的資料行中的特定值的結果。
 
 ![篩選結果](media/log-analytics-log-search-log-search-portal/log-search-portal-08.png)
 
-將資料行標題拖曳至結果上方，以群組資料行。  您可以將多個資料行拖曳至上方，以群組多個欄位。
+藉由拖曳其資料行標題 toohello 結果的頂端 hello 分組的資料行上。  您可以在多個欄位上分組拖曳多個資料行 toohello 頂端。
 
 ![群組結果](media/log-analytics-log-search-log-search-portal/log-search-portal-09.png)
 
 
 
 ## <a name="work-with-performance-data"></a>使用效能資料
-Windows 和 Linux 代理程式的效能資料都儲存在 Log Analytics 工作區的**效能**資料表中。  效能記錄看起來就像其他任何記錄，我們可以撰寫會傳回所有效能記錄的簡單查詢，就像使用事件一樣。
+針對 Windows 和 Linux 代理程式的效能資料會儲存在 hello 記錄分析工作區中 hello**效能**資料表。  效能記錄看起來就像其他任何記錄，我們可以撰寫會傳回所有效能記錄的簡單查詢，就像使用事件一樣。
 
 ```
 Perf
@@ -136,7 +136,7 @@ Perf
 
 ![效能資料](media/log-analytics-log-search-log-search-portal/log-search-portal-11.png)
 
-針對所有效能物件和計數器傳回數百萬筆記錄並不太實用。  您可以使用與上述相同的方法來篩選資料，或直接在 [記錄搜尋] 方塊中輸入下列查詢。  這對於 Windows 和 Linux 電腦都只會傳回處理器使用率記錄。
+針對所有效能物件和計數器傳回數百萬筆記錄並不太實用。  您可以使用相同的方法，您使用上述 toofilter hello 資料或只是輸入 hello 下列查詢的 hello 直接在 hello 記錄搜尋 方塊。  這對於 Windows 和 Linux 電腦都只會傳回處理器使用率記錄。
 
 ```
 Perf | where (ObjectName == "Processor")  | where (CounterName == "% Processor Time")
@@ -144,7 +144,7 @@ Perf | where (ObjectName == "Processor")  | where (CounterName == "% Processor T
 
 ![處理器使用率](media/log-analytics-log-search-log-search-portal/log-search-portal-12.png)
 
-這可讓資料限制在特定的計數器，但仍無法以非常實用的形式來呈現資料。  您可透過折線圖顯示資料，但首先需要以 [電腦] 與 [TimeGenerated] 進行群組。  若要群組多個欄位，您需要直接修改查詢，因此，請將查詢修改如下。  這是在 **CounterValue** 屬性上使用 [avg](https://docs.loganalytics.io/docs/Language-Reference/Aggregation-functions/avg()) 函式來計算每小時的平均值。
+這會限制 hello 資料 tooa 特定計數器，但它仍不會將它放入的形式，尤其有用。  您可以在折線圖中顯示 hello 資料，但首先必須 toogroup 它的電腦和 TimeGenerated。  toogroup 上多個欄位，您需要 toomodify hello 查詢直接管理，因此修改 hello 查詢 toohello 下列。  這會使用 hello [avg](https://docs.loganalytics.io/docs/Language-Reference/Aggregation-functions/avg())函式上 hello **CounterValue**每個小時內的屬性 toocalculate hello 平均值。
 
 ```
 Perf  | where (ObjectName == "Processor")  | where (CounterName == "% Processor Time") | summarize avg(CounterValue) by Computer, TimeGenerated
@@ -152,7 +152,7 @@ Perf  | where (ObjectName == "Processor")  | where (CounterName == "% Processor 
 
 ![效能資料圖表](media/log-analytics-log-search-log-search-portal/log-search-portal-13.png)
 
-資料既已適當分組，您可以新增[轉譯](https://docs.loganalytics.io/docs/Language-Reference/Tabular-operators/render-operator)運算子，以視覺圖表來顯示資料。  
+既然 hello 資料適當分組，您就可以顯示視覺圖表中加入 hello[呈現](https://docs.loganalytics.io/docs/Language-Reference/Tabular-operators/render-operator)運算子。  
 
 ```
 Perf  | where (ObjectName == "Processor")  | where (CounterName == "% Processor Time") | summarize avg(CounterValue) by Computer, TimeGenerated | render timechart
@@ -162,5 +162,5 @@ Perf  | where (ObjectName == "Processor")  | where (CounterName == "% Processor 
 
 ## <a name="next-steps"></a>後續步驟
 
-- 在 [Analytics 入口網站的使用者入門](https://go.microsoft.com/fwlink/?linkid=856079)中深入了解 Log Analytics 查詢語言。
-- 使用[進階 Analytics 入口網站](https://go.microsoft.com/fwlink/?linkid=856587)的教學課程逐步引導，其可讓您執行相同的查詢及存取相同的資料，如同記錄搜尋入口網站。
+- 深入了解在 hello 記錄分析查詢語言[hello Analytics 入口網站使用者入門](https://go.microsoft.com/fwlink/?linkid=856079)。
+- 逐步解說的教學課程使用 hello [Advanced Analytics 入口網站](https://go.microsoft.com/fwlink/?linkid=856587)可讓您 toorun hello 相同的查詢及存取 hello 與 hello 記錄搜尋入口網站相同的資料。

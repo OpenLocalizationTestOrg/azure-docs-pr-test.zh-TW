@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/02/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 1865d75f1b4c2aa18d5a3130f639572d19563b3e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0340e2979f1972ba631354e206c93969e55946e9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="logic-apps-b2b-list-of-errors-and-solutions"></a>Logic Apps B2B 錯誤與解決方案清單  
 本文協助您針對可能發生在 Logic Apps B2B 案例中的錯誤進行疑難排解，並提出修正這些錯誤的適當動作。
@@ -31,7 +31,7 @@ ms.lasthandoff: 07/11/2017
 |   |   |  
 |---|---|
 | 錯誤說明 | 找不到具有合約解析參數的合約|    
-| 使用者動作 | 合約應新增至具議定的商務識別之整合帳戶。</br> 商務識別應與輸入訊息識別碼相符|  
+| 使用者動作 | hello 協議應加入 toohello 整合帳戶同意的企業身分識別。</br> hello 的商務識別應該符合 toohello 輸入的訊息識別碼|  
 |   |   |
 
 ### <a name="-no-agreement-found-with-identities"></a>* 找不到具有識別身分的合約
@@ -39,7 +39,7 @@ ms.lasthandoff: 07/11/2017
 |   |   | 
 |---|---|
 | 錯誤說明 | 找不到具有識別身分的合約：'AS2Identity'::'Partner1' 和 'AS2Identity'::'Partner3'| 
-| 使用者動作 | 為合約設定的無效 AS2-From 或 AS2-To。 </br> 以合約設定更正 AS2 訊息 AS2-From 或 AS2-To 標題或合約，以符合 AS2 訊息標題中的 AS2 識別碼 |
+| 使用者動作 | 無效的 AS2-從或針對協議的 AS2 tooconfigured。 </br> 正確的 AS2 訊息 AS2-從或 AS2 tooheaders 或合約 toomatch AS2 id，在 AS2 訊息標頭與協議設定 |
 |   |   |     
 
 ## <a name="as2"></a>AS2
@@ -49,7 +49,7 @@ ms.lasthandoff: 07/11/2017
 |   |   |  
 |---|---|
 | 錯誤說明| 不正確的 AS2 標題。 'AS2-To' 或 'AS2-From' 其中一個標題為空白| 
-| 使用者動作 | 收到的 AS2 訊息未包含 AS2-From 或 AS2-To 或兩個標題皆未包含。 </br> 檢查 AS2 訊息 AS2-From 和 AS2-To 標題，並根據合約設定進行更正 |
+| 使用者動作 | 收到的 AS2 訊息不包含 hello AS2-從或 AS2 tooor 這兩個標頭。 </br> 檢查 AS2 訊息 AS2-從和 AS2 tooheaders 並更正根據協議設定 |
 |  |  | 
 
 
@@ -57,8 +57,8 @@ ms.lasthandoff: 07/11/2017
 
 |   |   |  
 |---|---|
-| 錯誤說明| 要求內容為 Null 或空白 | 
-| 使用者動作 | 收到未包含訊息本文的 AS2 訊息 |
+| 錯誤說明| hello 要求內容為 null 或空白 | 
+| 使用者動作 | 收到的 AS2 訊息不包含 hello 訊息內文 |
 |  |  | 
 
 ### <a name="-as2-message-decryption-failure"></a>* AS2 訊息解密失敗
@@ -66,7 +66,7 @@ ms.lasthandoff: 07/11/2017
 |   |   | 
 |---|---|
 | 錯誤說明 |  [已處理/錯誤：解密失敗] | 
-| 使用者動作 | 傳送給夥伴前將 @base64ToBinary 新增至 AS2Message 
+| 使用者動作 | 新增@base64ToBinarytooAS2Message 傳送 toopartner 之前 
 ```java
             "HTTP": {
                 "inputs": {
@@ -83,7 +83,7 @@ ms.lasthandoff: 07/11/2017
 |   |   | 
 |---|---|
 | 錯誤說明 |  [已處理/錯誤：解密失敗] | 
-| 使用者動作 | 傳送給夥伴前將 @base64ToBinary 新增至 MDN 
+| 使用者動作 | 新增@base64ToBinarytooMDN 傳送 toopartner 之前 
 ```java
             "Response": {
                 "inputs": {
@@ -98,7 +98,7 @@ ms.lasthandoff: 07/11/2017
 
 |   |   |  
 |---|---|
-| 錯誤說明| 尚未設定 AS2 合作對象的簽署憑證。 </br> AS2-From：partner1 AS2-To：partner2 | 
+| 錯誤說明| hello 簽署憑證尚未設定 AS2 合作對象。 </br> AS2-From：partner1 AS2-To：partner2 | 
 | 使用者動作 | 以正確的簽章憑證設定 AS2 合約設定 |
 |  |  | 
 
@@ -108,34 +108,34 @@ ms.lasthandoff: 07/11/2017
     
 |   |   | 
 |---|---|
-| 錯誤說明 | 剖析期間發生錯誤。 包含在識別碼 '987654' 的交換 (沒有群組) 中識別碼為 '123456' 的 Edifact 交易集 (其傳送者識別碼為 'Partner1'，接收者識別碼為 'Partner2') 因為下列錯誤而暫止：發現前置尾端分隔符號 |
-| 使用者動作 | 要設定的合約設定，以允許前置和尾端空格。 </br> 編輯合約設定，以允許前置和尾端空格 |
+| 錯誤說明 | 剖析期間發生錯誤。 hello Edifact 交易集與 '（不含群組） 的交換中識別碼為 '987654 包含' id' 123456，為傳送者識別碼 'Partner1'、 接收者識別碼 '夥伴 2' 處於暫停狀態，錯誤如下： 找到前置尾端分隔符號 |
+| 使用者動作 | hello 協議設定 toobe 設定 tooallow 開頭與尾端空白字元。 </br> 編輯協議設定 tooallow 開頭與尾端空白字元 |
 |   |   |
 
 ![允許空格](./media/logic-apps-enterprise-integration-b2b-list-errors-solutions/leadingandtrailing.png)
 
-### <a name="-duplicate-check-has-enabled-in-the-agreement"></a>* 合約中已啟用重複檢查
+### <a name="-duplicate-check-has-enabled-in-hello-agreement"></a>* 重複檢查已啟用在 hello 協議
 
 |   |   | 
 |---|---| 
 | 錯誤說明 | 重複控制編號 |
-| 使用者動作 | 此錯誤表示收到的訊息具有重複控制編號。 </br> 更正控制編號並重新傳送訊息 |
+| 使用者動作 | 此錯誤表示收到 hello 訊息有重複的控制編號。 </br> 更正 hello 控制編號，然後再重新傳送 hello 訊息 |
 |   |   |
 
-### <a name="-missing-schema-in-the-agreement"></a>* 合約中遺漏結構描述
+### <a name="-missing-schema-in-hello-agreement"></a>* 遺漏 hello 協議中的結構描述
 
 |   |   | 
 |---|---| 
-| 錯誤說明 | 剖析期間發生錯誤。 包含在識別碼 '000056422' 的交換中識別碼 '56422' 的功能群組內識別碼為 '564220001' 的 X12 交易集 (其傳送者識別碼為 '12345678       '，接收者識別碼為 '87654321       ') 因為下列錯誤而暫止「訊息具有不明的文件型別，且未解析合約中設定的任何現有結構描述」 |
-| 使用者動作 | 在合約設定中設定結構描述  |
+| 錯誤說明 | 剖析期間發生錯誤。 識別碼為 '564220001' 包含在功能群組識別碼為 '56422'，在交換傳送者識別碼為' 12345678 id '000056422'，' 接收者識別碼 ' 87654321' hello X12 交易集處於暫停狀態，錯誤如下 「 hello 訊息有不明的文件 type 和未解析 tooany hello hello 協議中設定的現有結構描述的 「 |
+| 使用者動作 | 在 hello 協議設定中設定結構描述  |
 |   |   |
 
-### <a name="-incorrect-schema-in-the-agreement"></a>* 合約中不正確的結構描述
+### <a name="-incorrect-schema-in-hello-agreement"></a>* 不正確的結構描述在 hello 協議
 
 |   |   | 
 |---|---| 
-| 錯誤說明 | 訊息具有不明的文件型別，且未解析合約中設定的任何現有結構描述。 |
-| 使用者動作 | 在合約設定中設定正確的結構描述  |
+| 錯誤說明 | hello 訊息具有不明的文件型別，而且未解析 tooany hello hello 協議中設定的現有結構描述。 |
+| 使用者動作 | 在 hello 協議設定中設定正確的結構描述  |
 |   |   |
 
 ## <a name="flat-file"></a>一般檔案
@@ -144,9 +144,9 @@ ms.lasthandoff: 07/11/2017
 
 |   |   | 
 |---|---|
-| 錯誤說明 | InvalidTemplate。 無法在行 '1' 與欄 '1902' 的動作 'Flat_File_Decoding' 輸入中處理範本語言運算式：'必要屬性「內容」需有值但收到 null。 路徑 ''.'。 |
-| 使用者動作 | 此錯誤表示輸入訊息未包含本文 |
+| 錯誤說明 | InvalidTemplate。 在行 '1' 與欄 '1902' 動作 'Flat_File_Decoding' 輸入中的無法 tooprocess 範本語言運算式: ' 需要 'content' 屬性必須要有值，但卻收到 null。 路徑 ''.'。 |
+| 使用者動作 | 此錯誤表示 hello 輸入的訊息不包含主體 |
 |   |   | 
 
 ## <a name="learn-more"></a>詳細資訊
-[深入了解企業整合套件](logic-apps-enterprise-integration-overview.md)
+[深入了解 hello 企業版整合套件](logic-apps-enterprise-integration-overview.md)

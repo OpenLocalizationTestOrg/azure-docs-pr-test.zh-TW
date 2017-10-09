@@ -1,6 +1,6 @@
 ---
-title: "如何使用適用於 Azure Mobile Apps 的 iOS SDK"
-description: "如何使用適用於 Azure Mobile Apps 的 iOS SDK"
+title: "aaaHow tooUse iOS SDK for Azure 行動應用程式"
+description: "如何 tooUse iOS SDK for Azure 行動應用程式"
 services: app-service\mobile
 documentationcenter: ios
 author: ysxu
@@ -14,31 +14,31 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: yuaxu
-ms.openlocfilehash: 65817208e1b26fb5f9eb56d164f48b44d57dce56
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fa299ab3f152bad12d821832fa9fb5495d1fa296
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-ios-client-library-for-azure-mobile-apps"></a>如何使用適用於 Azure Mobile Apps 的 iOS 用戶端程式庫
+# <a name="how-toouse-ios-client-library-for-azure-mobile-apps"></a>如何 tooUse iOS Azure 行動應用程式的用戶端程式庫
 [!INCLUDE [app-service-mobile-selector-client-library](../../includes/app-service-mobile-selector-client-library.md)]
 
-本指南說明如何使用最新的 [Azure Mobile Apps iOS SDK][1] 執行常見案例。 如果您是 Azure Mobile Apps 的新手，請先完成 [Azure Mobile Apps 快速入門] 以建立後端、建立資料表及下載預先建置的 iOS Xcode 專案。 在本指南中，我們會著重於用戶端 iOS SDK。 若要深入了解後端的伺服器端 SDK，請參閱伺服器 SDK 做法。
+本指南將教導您 tooperform 常見的案例，使用最新的 hello [Azure 行動應用程式 iOS SDK][1]。 如果您是新 tooAzure 行動應用程式，請先完成[Azure 行動應用程式快速入門]toocreate 後端，建立資料表，並下載預先建立的 iOS Xcode 專案。 在本指南中，我們會著重在 hello 用戶端 iOS SDK。 toolearn 深入了解 hello hello 後端伺服器端 SDK，請參閱 hello 伺服器 SDK 來。
 
 ## <a name="reference-documentation"></a>參考文件
-iOS 用戶端 SDK 的參考文件位於此處：[Azure Mobile Apps iOS 用戶端參考資料][2]。
+hello hello iOS 用戶端 SDK 的參考文件位於此處： [Azure 行動應用程式 iOS 用戶端參考][2]。
 
 ## <a name="supported-platforms"></a>支援的平台
-iOS SDK 支援 Objective-C 專案、Swift 2.2 專案，以及適用於 iOS 8.0 版或更新版本的 Swift 2.3 專案。
+hello iOS SDK 支援 iOS 8.0 或更新版本的版本 Objective C 專案、 Swift 2.2 專案和 Swift 2.3 專案。
 
-「伺服器流程」驗證在呈現的 UI 中使用 WebView。  如果裝置無法呈現 WebView UI，您需要本產品無法提供的其他驗證方法。  
+hello 「 伺服器-流程 」 驗證會使用 WebView hello 呈現 UI。  如果 hello 裝置不能 toopresent WebView UI，則需要其他的驗證方法，則將 hello 範圍外的 hello 產品。  
 因此，此 SDK 不適用於手錶類型或受到類似限制的裝置。
 
 ## <a name="Setup"></a>設定和必要條件
-本指南假設您已建立包含資料表的後端。 本指南假設資料表的結構描述與這些教學課程中的資料表相同。 本指南也假設您在程式碼中，參考了 `MicrosoftAzureMobile.framework` 並匯入了 `MicrosoftAzureMobile/MicrosoftAzureMobile.h`。
+本指南假設您已建立包含資料表的後端。 本指南假設 hello 資料表具有在這些教學課程中的 hello 資料表相同的結構描述。 本指南也假設您在程式碼中，參考了 `MicrosoftAzureMobile.framework` 並匯入了 `MicrosoftAzureMobile/MicrosoftAzureMobile.h`。
 
 ## <a name="create-client"></a>作法：建立用戶端
-若要在專案中存取 Azure Mobile Apps 後端，請建立 `MSClient`。 以應用程式 URL 取代 `AppUrl` 。 您可以將 `gatewayURLString` 和 `applicationKey` 留白。 如果您設定驗證的閘道器，請將 `gatewayURLString` 填入閘道器 URL。
+在專案中，Azure 行動應用程式後端 tooaccess 建立`MSClient`。 取代`AppUrl`hello 應用程式 url。 您可以將 `gatewayURLString` 和 `applicationKey` 留白。 如果您設定閘道，以進行驗證時，擴展`gatewayURLString`與 hello gateway URL。
 
 **Objective-C**：
 
@@ -54,7 +54,7 @@ let client = MSClient(applicationURLString: "AppUrl")
 
 
 ## <a name="table-reference"></a>作法：建立資料表參考
-若要存取或更新資料，請建立後端資料表的參考。 以您的資料表名稱取代 `TodoItem`
+tooaccess 或更新的資料，建立參考 toohello 後端的資料表。 取代`TodoItem`與資料表的名稱，hello
 
 **Objective-C**：
 
@@ -70,7 +70,7 @@ let table = client.tableWithName("TodoItem")
 
 
 ## <a name="querying"></a>作法：查詢資料
-若要建立資料庫查詢，請查詢 `MSTable` 物件。 下列查詢會取得 `TodoItem` 中的所有項目並記錄每個項目的文字。
+toocreate 資料庫查詢，查詢 hello`MSTable`物件。 hello 下列查詢會取得所有 hello 項目`TodoItem`和記錄檔 hello 每個項目的文字。
 
 **Objective-C**：
 
@@ -101,16 +101,16 @@ table.readWithCompletion { (result, error) in
 ```
 
 ## <a name="filtering"></a>作法：篩選傳回的資料
-若要篩選結果，有許多可用的選項。
+toofilter 結果中，有許多可用的選項。
 
-若要使用述詞篩選，請使用 `NSPredicate` 和 `readWithPredicate`。 下列篩選器傳回的資料只尋找未完成的待辦事項。
+使用述詞，而使用 toofilter`NSPredicate`和`readWithPredicate`。 hello 下列篩選傳回的資料 toofind 僅完整 Todo 項目。
 
 **Objective-C**：
 
 ```
 // Create a predicate that finds items where complete is false
 NSPredicate * predicate = [NSPredicate predicateWithFormat:@"complete == NO"];
-// Query the TodoItem table
+// Query hello TodoItem table
 [table readWithPredicate:predicate completion:^(MSQueryResult *result, NSError *error) {
         if(error) {
                 NSLog(@"ERROR %@", error);
@@ -127,7 +127,7 @@ NSPredicate * predicate = [NSPredicate predicateWithFormat:@"complete == NO"];
 ```
 // Create a predicate that finds items where complete is false
 let predicate =  NSPredicate(format: "complete == NO")
-// Query the TodoItem table
+// Query hello TodoItem table
 table.readWithPredicate(predicate) { (result, error) in
     if let err = error {
         print("ERROR ", err)
@@ -140,7 +140,7 @@ table.readWithPredicate(predicate) { (result, error) in
 ```
 
 ## <a name="query-object"></a>作法：使用 MSQuery
-若要執行複雜的查詢 (包括排序和分頁)，請使用述詞直接建立 `MSQuery` 物件：
+建立複雜的查詢 （包括排序和分頁） tooperform`MSQuery`物件直接或使用述詞：
 
 **Objective-C**：
 
@@ -159,16 +159,16 @@ let query = table.queryWithPredicate(NSPredicate(format: "complete == NO"))
 `MSQuery` 可讓您控制幾種查詢行為。
 
 * 指定結果的順序
-* 限制要傳回的欄位
-* 限制要傳回的記錄數
+* 欄位 tooreturn 的限制
+* 限制的記錄數 tooreturn
 * 指定回應中的總計數
 * 在要求中指定自訂查詢字串參數
 * 套用其他函式
 
-在物件上呼叫 `readWithCompletion` 以執行 `MSQuery` 查詢。
+執行`MSQuery`查詢藉由呼叫`readWithCompletion`hello 物件上。
 
 ## <a name="sorting"></a>做法：使用 MSQuery 排序資料
-我們來看一下範例如何排序結果。 若要根據 'text' 欄位依照遞增順序排序，然後再根據 'complete' 欄位依照遞減順序排序，請叫用 `MSQuery` ，如下所示︰
+toosort 結果，讓我們來看一個範例。 以遞增的欄位 'text'，然後依照 「 完成 」 遞減排列，toosort 叫用`MSQuery`就像這樣：
 
 **Objective-C**：
 
@@ -204,7 +204,7 @@ query.readWithCompletion { (result, error) in
 
 
 ## <a name="selecting"></a><a name="parameters"></a>作法：使用 MSQuery 限制欄位和展開查詢字串參數
-若要限制在查詢中傳回的欄位，請在 **selectFields** 屬性中指定欄位的名稱。 本範例僅會傳回文字和已完成欄位：
+在查詢中，傳回 toolimit 欄位 toobe 指定 hello hello 欄位名稱在 hello **selectFields**屬性。 這個範例會傳回只 hello 文字和已完成的欄位：
 
 **Objective-C**：
 
@@ -218,7 +218,7 @@ query.selectFields = @[@"text", @"complete"];
 query.selectFields = ["text", "complete"]
 ```
 
-若要在伺服器要求中包含額外的查詢字串參數 (例如有某個自訂的伺服器端指令碼使用這些參數)，請如下填入 `query.parameters` ：
+tooinclude 其他查詢字串參數中 hello 伺服器要求 （例如，因為自訂伺服器端指令碼使用它們），填入`query.parameters`就像這樣：
 
 **Objective-C**：
 
@@ -236,17 +236,17 @@ query.parameters = ["myKey1": "value1", "myKey2": "value2"]
 ```
 
 ## <a name="paging"></a>如何：設定頁面大小
-使用 Azure Mobile Apps，頁面大小會控制從後端資料表一次提取的記錄數目。 然後對 `pull`資料的呼叫會根據此頁面大小將資料分批，直到沒有更多要提取的記錄為止。
+Azure 行動應用程式，與 hello 頁面大小控制項 hello 會提取從 hello 後端資料表一次的記錄數目。 呼叫太`pull`資料然後會批次處理資料，根據此頁面大小，直到沒有任何多個記錄 toopull 為止。
 
-您可以使用 **MSPullSettings** 設定頁面大小，如下所示。 預設頁面大小為 50，而下列範例將它變更為 3。
+它會使用頁面大小可能 tooconfigure **MSPullSettings**如下所示。 hello 預設頁面大小為 50，且 hello 下面範例會變更 too3。
 
-您可以基於效能的考量設定不同的頁面大小。 如果您有大量的小型資料記錄時，較高的分頁大小可減少伺服器的來回行程。
+您可以基於效能的考量設定不同的頁面大小。 如果您有大量的小型資料記錄，較高的頁面大小會減少往返伺服器的 hello 數目。
 
-此設定只能控制用戶端上的頁面大小。 如果用戶端要求較 Mobile Apps 所支援更大的頁面大小，頁面大小會設為後端設定可支援的最大值。
+此設定會控制只 hello 頁面大小 hello 用戶端。 如果 hello 用戶端要求較大的頁面大小高於 hello 行動應用程式後端支援，hello 頁面大小上限為 hello 最大 hello 後端是設定的 toosupport。
 
-此設定也是資料記錄的*數目*，而不是*位元組大小*。
+這項設定也是 hello*數目*資料記錄不 hello*位元組大小*。
 
-如果您增加用戶端頁面大小，也應該增加伺服器上的頁面大小。 相關步驟請參閱[作法︰調整資料表分頁大小」](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+如果您增加 hello 用戶端頁面大小，您也應該增加 hello hello 伺服器上的頁面大小。 請參閱["如何： 調整 hello 表格分頁大小 」](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md) hello 步驟 toodo 這。
 
 **Objective-C**：
 
@@ -273,11 +273,11 @@ table.pullWithQuery(query, queryId:nil, settings: pullSettings) { (error) in
 ```
 
 ## <a name="inserting"></a>作法：插入資料
-若要插入新的資料表資料列，請建立 `NSDictionary` 並叫用 `table insert`。 如果[動態結構描述]已啟用，Azure App Service 行動後端會根據 `NSDictionary` 自動產生新的資料欄。
+建立新的資料表資料列，tooinsert`NSDictionary`和叫用`table insert`。 如果[動態結構描述]已啟用，hello Azure App Service 行動後端會自動產生新資料行是根據 hello `NSDictionary`。
 
-如果未提供 `id` ，則後端會自動產生新的唯一識別碼。 提供您自己的 `id` ，以使用電子郵件地址、使用者名稱或您自己自訂的值作為識別碼。 提供您自己的識別碼可以讓聯結和商務導向的資料庫邏輯變得更容易。
+如果`id`未提供，hello 後端會自動產生新的唯一識別碼。 提供您自己`id`toouse 傳送電子郵件地址、 使用者名稱或您自己自訂的值為識別碼。 提供您自己的識別碼可以讓聯結和商務導向的資料庫邏輯變得更容易。
 
-`result` 含有先前插入的新項目。 視您的伺服器邏輯而定，相較於傳遞給伺服器的項目，它可能會含有其他或已修改的資料。
+hello`result`包含插入的 hello 新項目。 根據您伺服器的邏輯，它可能有其他或已修改的資料比較 toowhat 已傳遞 toohello 伺服器。
 
 **Objective-C**：
 
@@ -306,7 +306,7 @@ table.insert(newItem) { (result, error) in
 ```
 
 ## <a name="modifying"></a>作法：修改資料
-若要更新現有的資料列，請修改項目並呼叫 `update`：
+tooupdate 現有的資料列，修改項目並呼叫`update`:
 
 **Objective-C**：
 
@@ -337,7 +337,7 @@ if let newItem = oldItem.mutableCopy() as? NSMutableDictionary {
 }
 ```
 
-或者，提供資料列識別碼和更新的欄位：
+或者，提供 hello 資料列識別碼和更新的 hello 欄位：
 
 **Objective-C**：
 
@@ -363,10 +363,10 @@ table.update(["id": "custom-id", "text": "my EDITED item"]) { (result, error) in
 }
 ```
 
-進行更新時，至少必須設定 `id` 屬性。
+最小值，hello`id`進行更新時，必須設定屬性。
 
 ## <a name="deleting"></a>作法：刪除資料
-若要刪除項目，請叫用 `delete` 搭配項目：
+叫用的項目，toodelete`delete`與 hello 項目：
 
 **Objective-C**：
 
@@ -418,12 +418,12 @@ table.deleteWithId("37BBF396-11F0-4B39-85C8-B319C729AF6D") { (itemId, error) in
 }
 ```
 
-進行刪除時，至少必須設定 `id` 屬性。
+最小值，hello`id`進行刪除時，必須設定屬性。
 
 ## <a name="customapi"></a>如何：呼叫自訂 API
-使用自訂 API，您可以公開任何後端功能。 它不必對應至資料表作業。 您不僅能進一步控制訊息，甚至還可以讀取或設定標頭，並變更回應內文格式。 若要了解如何在後端上建立自訂 API，請閱讀 [自訂 API](app-service-mobile-node-backend-how-to-use-server-sdk.md#work-easy-apis)
+使用自訂 API，您可以公開任何後端功能。 它沒有 toomap tooa 資料表作業。 不只取得更多控制訊息，您甚至還可以讀取或設定標頭，並變更 hello 回應內文格式。 hello 後端，toocreate 自訂 API 的讀取方式 toolearn[自訂 Api](app-service-mobile-node-backend-how-to-use-server-sdk.md#work-easy-apis)
 
-若要呼叫自訂 API，請呼叫 `MSClient.invokeAPI`。 要求和回應內容會被視為 JSON。 若要使用其他媒體類型，[請使用 `invokeAPI`] 的其他多載[5]。  若要進行 `GET` 要求而不是 `POST` 要求，請將參數 `HTTPMethod` 設為 `"GET"`，以及將參數 `body` 設為 `nil` (因為 GET 要求沒有訊息內文)。如果您的自訂 API 支援其他 HTTP 動詞命令，請適當地變更 `HTTPMethod`。
+toocall 自訂 API 中，呼叫`MSClient.invokeAPI`。 hello 要求和回應內容會被視為 JSON。 toouse 其他類型的媒體，[使用 hello 其他多載`invokeAPI` ] [ 5]。  toomake`GET`要求而不是`POST`要求，集參數`HTTPMethod`太`"GET"`和參數`body`太`nil`（因為 GET 要求並沒有訊息內文。）如果您的自訂 API 支援其他 HTTP 動詞命令，請適當地變更 `HTTPMethod`。
 
 **Objective-C**：
 
@@ -460,8 +460,8 @@ client.invokeAPI("sendEmail",
         }
 ```
 
-## <a name="templates"></a>作法：註冊推送範本以傳送跨平台通知
-若要註冊範本，請在用戶端應用程式中利用 **client.push registerDeviceToken** 方法傳遞範本。
+## <a name="templates"></a>如何： 註冊推播範本 toosend 跨平台通知
+tooregister 範本，將範本與您**client.push registerDeviceToken**用戶端應用程式中的方法。
 
 **Objective-C**：
 
@@ -483,7 +483,7 @@ client.invokeAPI("sendEmail",
     })
 ```
 
-您的範本類型為 NSDictionary，並且可能包含多個下列格式的範本：
+您的範本，屬於類型 NSDictionary，且可以包含多個範本中 hello 下列格式：
 
 **Objective-C**：
 
@@ -497,12 +497,12 @@ NSDictionary *iOSTemplate = @{ @"templateName": @{ @"body": @{ @"aps": @{ @"aler
 let iOSTemplate = ["templateName": ["body": ["aps": ["alert": "$(message)"]]]]
 ```
 
-所有標記都將因安全性而移除。  若要將標籤新增至安裝中或安裝內的範本，請參閱[使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK][4]。  若要使用這些已註冊的範本來傳送通知，請使用[通知中樞 API][3]。
+所有標籤都都會從 hello 安全性要求。  tooadd 標記 tooinstallations 或內安裝的範本，請參閱[Azure 行動應用程式使用 hello.NET 後端伺服器 SDK][4]。  使用這些已註冊的範本，toosend 通知使用[通知中樞 Api][3]。
 
 ## <a name="errors"></a>作法：處理錯誤
-呼叫 Azure App Service行動後端時，completion 區塊會包含 `NSError` 參數。 發生錯誤時，此參數便會傳回非 Nil。 您應檢查程式碼中的此參數，並視需要處理錯誤，如上述的程式碼片段所示。
+當您呼叫 Azure App Service 行動後端時，hello 完成區塊包含`NSError`參數。 發生錯誤時，此參數便會傳回非 Nil。 在您的程式碼中，您應該檢查此參數，並處理 hello 錯誤，可以視 hello 前面程式碼片段所示。
 
-檔案 [`<WindowsAzureMobileServices/MSError.h>`][6] 定義常數 `MSErrorResponseKey`、`MSErrorRequestKey` 和 `MSErrorServerItemKey`。 若要取得與錯誤相關的詳細資料︰
+hello 檔案[ `<WindowsAzureMobileServices/MSError.h>` ] [ 6]定義 hello 常數`MSErrorResponseKey`， `MSErrorRequestKey`，和`MSErrorServerItemKey`。 tooget 相關 toohello 錯誤的詳細資料：
 
 **Objective-C**：
 
@@ -516,7 +516,7 @@ NSDictionary *serverItem = [error.userInfo objectForKey:MSErrorServerItemKey];
 let serverItem = error.userInfo[MSErrorServerItemKey]
 ```
 
-此外，檔案也定義每個錯誤代碼的常數：
+此外，hello 檔案會定義每個錯誤碼的常數：
 
 **Objective-C**：
 
@@ -530,26 +530,26 @@ if (error.code == MSErrorPreconditionFailed) {
 if (error.code == MSErrorPreconditionFailed) {
 ```
 
-## <a name="adal"></a>如何：使用 Active Directory Authentication Library 驗證使用者
-您可以使用 Active Directory Authentication Library (ADAL)，利用 Azure Active Directory 將使用者登入應用程式。 相較於使用 `loginWithProvider:completion:` 方法，較建議使用身分識別提供者 SDK 的用戶端流程驗證。  用戶端流程驗證能提供較原生的 UX 風格，並允許進行其他自訂。
+## <a name="adal"></a>如何： 驗證使用者以 hello Active Directory Authentication Library
+您可以使用 hello Active Directory 驗證程式庫 (ADAL) toosign 使用者將使用 Azure Active Directory 應用程式。 使用身分識別提供者 SDK 用戶端流量驗證會偏好 toousing hello`loginWithProvider:completion:`方法。  用戶端流程驗證能提供較原生的 UX 風格，並允許進行其他自訂。
 
-1. 依照[如何設定 App Service 來進行 Active Directory 登入][7]教學課程的說明，設定您的行動應用程式後端來進行 AAD 登入。 請務必完成註冊原生用戶端應用程式的選擇性步驟。 若是 iOS，我們建議採用 `<app-scheme>://<bundle-id>` 形式的重新導向 URI。 如需詳細資訊，請參閱 [ADAL iOS 快速入門][8]。
-2. 使用 Cocoapods 安裝 ADAL。 編輯您的 Podfile 以納入下列定義，並以您的 Xcode 專案名稱取代 **YOUR-PROJECT** ：
+1. 設定下列 hello AAD 登入您的行動裝置應用程式後端[tooconfigure Active Directory 登入服務的應用程式如何][ 7]教學課程。 請確定 toocomplete hello 的選擇性步驟註冊原生用戶端應用程式。 對於 iOS，我們建議您該 hello 重新導向 URI 是 hello 表單的`<app-scheme>://<bundle-id>`。 如需詳細資訊，請參閱 hello [ADAL iOS 快速入門][8]。
+2. 使用 Cocoapods 安裝 ADAL。 編輯下列定義，取代您 Podfile tooinclude hello**您專案**hello 名稱，為您的 Xcode 專案：
 
         source 'https://github.com/CocoaPods/Specs.git'
         link_with ['YOUR-PROJECT']
         xcodeproj 'YOUR-PROJECT'
 
-   以及 Pod：
+   和 hello Pod:
 
         pod 'ADALiOS'
-3. 使用終端機，從包含您專案的目錄執行 `pod install`，然後開啟產生的 Xcode 工作區 (而不是專案)。
-4. 根據您使用的語言，將下列程式碼新增至您的應用程式。 取代每個程式碼的以下項目：
+3. 使用執行 hello 終端機`pod install`hello 目錄從包含您的專案，然後再開啟 產生 hello Xcode 工作區 （非 hello 專案）。
+4. 新增下列程式碼 tooyour 應用程式，根據您所使用的 toohello 語言 hello。 取代每個程式碼的以下項目：
 
-   * 以您佈建應用程式的租用戶名稱取代 **INSERT-AUTHORITY-HERE** 。 格式應該為 https://login.microsoftonline.com/contoso.onmicrosoft.com。 此值可從 [Azure 傳統入口網站] 複製到 Azure Active Directory 的 [網域] 索引標籤以外。
-   * 以您行動應用程式後端的用戶端識別碼取代 INSERT-RESOURCE-ID-HERE  。 您可以從入口網站 [Azure Active Directory 設定] 底下的 [進階] 索引標籤取得用戶端識別碼。
-   * 以您從原生用戶端應用程式中複製的用戶端識別碼取代 INSERT-CLIENT-ID-HERE  。
-   * 使用 HTTPS 配置，以您網站的 **/.auth/login/done** 端點取代 *INSERT-REDIRECT-URI-HERE* 。 此值應與 *https://contoso.azurewebsites.net/.auth/login/done* 類似。
+   * 取代**插入授權這裡**hello 您佈建您的應用程式的 hello 租用戶名稱。 格式應該為 https://login.microsoftonline.com/contoso.onmicrosoft.com。從 Azure Active Directory hello [Azure 傳統入口網站] 中的 hello 網域] 索引標籤，可以複製此值。
+   * 取代**插入資源 ID-這裡**與您的行動裝置應用程式後端的 hello 用戶端識別碼。 您可以取得用戶端識別碼，從 hello**進階**索引標籤底下**Azure Active Directory 設定**hello 入口網站中。
+   * 取代**插入用戶端識別碼-這裡**hello 您所複製的 hello 原生用戶端應用程式的用戶端識別碼。
+   * 取代**插入重新導向 URI-這裡**與您的網站*/.auth/login/done*使用 hello HTTPS 配置的端點。 此值太應該類似*https://contoso.azurewebsites.net/.auth/login/done*。
 
 **Objective-C**：
 
@@ -588,7 +588,7 @@ if (error.code == MSErrorPreconditionFailed) {
 
 **Swift**：
 
-    // add the following imports to your bridging header:
+    // add hello following imports tooyour bridging header:
     //        #import <ADALiOS/ADAuthenticationContext.h>
     //        #import <ADALiOS/ADAuthenticationSettings.h>
 
@@ -612,14 +612,14 @@ if (error.code == MSErrorPreconditionFailed) {
             }
     }
 
-## <a name="facebook-sdk"></a>作法：使用 Facebook SDK for iOS 來驗證使用者
-您可以使用 Facebook SDK for iOS，利用 Facebook 將使用者登入應用程式。  相較於使用 `loginWithProvider:completion:` 方法，較建議使用用戶端流程驗證。  用戶端流程驗證能提供較原生的 UX 風格，並允許進行其他自訂。
+## <a name="facebook-sdk"></a>如何： 驗證使用者以 hello Facebook SDK for iOS
+您可以使用 iOS toosign 使用者的 hello Facebook SDK 至使用 Facebook 應用程式。  使用用戶端流程驗證是比 toousing hello`loginWithProvider:completion:`方法。  hello 用戶端流程驗證，提供較原始的 UX 操作，並允許其他自訂。
 
-1. 依照[如何設定 App Service 來進行 Facebook 登入][9]教學課程的說明，設定您的行動應用程式後端來進行 Facebook 登入。
-2. 依照 [Facebook SDK for iOS - 開始使用][10]文件來安裝 Facebook SDK for iOS。 您可以在現有註冊中新增 iOS 平台，而不必建立應用程式。
-3. Facebook 的文件包含應用程式委派中的某些 Objective-C 程式碼。 如果您要使用 **Swift**，您可以使用 AppDelegate.swift 的下列轉譯：
+1. 依照下列設定 Facebook 登入您的行動裝置應用程式後端[tooconfigure Facebook 登入服務應用程式如何][ 9]教學課程。
+2. 安裝 hello Facebook SDK for iOS 的下列 hello [Facebook SDK iOS-快速入門][ 10]文件。 如果不建立應用程式，您可以加入 hello iOS 平台 tooyour 現有註冊。
+3. Facebook 的文件包含一些 Objective C 程式碼中 hello 應用程式委派。 如果您使用**Swift**，您可以使用下列的 AppDelegate.swift 翻譯的 hello:
 
-        // Add the following import to your bridging header:
+        // Add hello following import tooyour bridging header:
         //        #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
         func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
@@ -633,8 +633,8 @@ if (error.code == MSErrorPreconditionFailed) {
             // Add any custom logic here.
             return handled
         }
-4. 除了在專案中新增 `FBSDKCoreKit.framework`，也請以相同方式新增 `FBSDKLoginKit.framework` 的參考。
-5. 根據您使用的語言，將下列程式碼新增至您的應用程式。
+4. 在加法 tooadding `FBSDKCoreKit.framework` tooyour 專案，也將參考加入太`FBSDKLoginKit.framework`hello 中相同的方式。
+5. 新增下列程式碼 tooyour 應用程式，根據您所使用的 toohello 語言 hello。
 
 **Objective-C**：
 
@@ -664,7 +664,7 @@ if (error.code == MSErrorPreconditionFailed) {
 
 **Swift**：
 
-    // Add the following imports to your bridging header:
+    // Add hello following imports tooyour bridging header:
     //        #import <FBSDKLoginKit/FBSDKLoginKit.h>
     //        #import <FBSDKCoreKit/FBSDKAccessToken.h>
 
@@ -685,17 +685,17 @@ if (error.code == MSErrorPreconditionFailed) {
     }
 
 ## <a name="twitter-fabric"></a>作法：使用 Twitter Fabric for iOS 來驗證使用者
-您可以使用 Fabric for iOS，利用 Twitter 將使用者登入應用程式。 與使用 `loginWithProvider:completion:` 方法相比，較建議使用用戶端流程驗證，因為它提供更原生的 UX 風格，並可允許進行其他自訂。
+您可以用於網狀架構 iOS toosign 使用者使用 Twitter 的應用程式。 用戶端流程驗證是比 toousing hello`loginWithProvider:completion:`方法，因為它提供更原生的 UX 操作，並允許進行其他自訂。
 
-1. 依照 [如何設定 App Service 來進行 Twitter 登入](app-service-mobile-how-to-configure-twitter-authentication.md) 教學課程的說明，設定您的行動應用程式後端來進行 Twitter 登入。
-2. 依照 [Fabric for iOS - 開始使用]文件並設定 TwitterKit，在專案中新增網狀架構。
+1. Twitter 登入您的行動裝置應用程式後端設定下列 hello [tooconfigure Twitter 登入服務的應用程式如何](app-service-mobile-how-to-configure-twitter-authentication.md)教學課程。
+2. 加入下列 hello 網狀架構 tooyour 專案[iOS-快速入門的網狀架構]文件和設定 TwitterKit。
 
    > [!NOTE]
-   > 根據預設，網狀架構會為您建立 Twitter 應用程式。 您可以使用下列程式碼片段，註冊您稍早所建立的取用者金鑰和取用者密碼，以避免建立應用程式。    或者，您可以使用您在 [網狀架構儀表板]中看到的值，取代您提供給 App Service 的取用者金鑰和取用者密碼值。 如果您選擇此選項，請務必將回呼 URL 設定為預留位置值，例如 `https://<yoursitename>.azurewebsites.net/.auth/login/twitter/callback`。
+   > 根據預設，網狀架構會為您建立 Twitter 應用程式。 您可以避免建立應用程式註冊 hello 取用者索引鍵與您先前使用下列程式碼片段的 hello 建立取用者密碼。    或者，您可以取代 hello 取用者索引鍵和取用者密碼值，提供以 hello tooApp 服務值請參閱在 hello[光纖儀表板]。 如果您選擇此選項，是確定 tooset hello 回呼 URL tooa 預留位置值，例如`https://<yoursitename>.azurewebsites.net/.auth/login/twitter/callback`。
    >
    >
 
-    如果您選擇使用稍早所建立的密碼，請在應用程式委派中新增下列程式碼︰
+    如果您選擇 toouse 您稍早建立的 hello 機密資料，加入下列程式碼 tooyour 應用程式委派 hello:
 
     **Objective-C**：
 
@@ -721,7 +721,7 @@ if (error.code == MSErrorPreconditionFailed) {
             // Add any custom logic here.
             return true
         }
-3. 根據您使用的語言，將下列程式碼新增至您的應用程式。
+3. 新增下列程式碼 tooyour 應用程式，根據您所使用的 toohello 語言 hello。
 
 **Objective-C**：
 
@@ -758,12 +758,12 @@ if (error.code == MSErrorPreconditionFailed) {
         }
     }
 
-## <a name="google-sdk"></a>作法：使用 Google Sign-In SDK for iOS 來驗證使用者
-您可以使用 Google Sign-In SDK for iOS，利用 Google 帳戶將使用者登入應用程式。  近期內，Google 宣布他們的 OAuth 安全性原則變更。  這些原則變更要求您未來必須使用 Google SDK。
+## <a name="google-sdk"></a>如何： 驗證使用者以 hello Google 登入 SDK 適用於 iOS
+您可以使用 iOS toosign 使用者的 hello Google 登入 SDK 到應用程式使用 Google 帳戶。  Google 最近宣布變更 tootheir OAuth 安全性原則。  這些原則的變更將需要在未來的 hello Google SDK hello 使用。
 
-1. 依照 [如何設定 App Service 來進行 Google 登入](app-service-mobile-how-to-configure-google-authentication.md) 教學課程的說明，設定您的行動應用程式後端來進行 Google 登入。
-2. 請依照 [Google Sign-In for iOS - Start integrating](https://developers.google.com/identity/sign-in/ios/start-integrating) 文件安裝 Google SDK for iOS。 您可以略過＜使用後端伺服器進行驗證＞一節。
-3. 請根據您使用的語言，將下列內容新增到委派的 `signIn:didSignInForUser:withError:` 方法。
+1. 設定下列 hello Google 登入您的行動裝置應用程式後端[tooconfigure Google 登入服務應用程式如何](app-service-mobile-how-to-configure-google-authentication.md)教學課程。
+2. 安裝 hello Google SDK 適用於 iOS 的下列 hello [Google 登入的 iOS-啟動整合](https://developers.google.com/identity/sign-in/ios/start-integrating)文件。 您可以略過 hello < 驗證與後端伺服器 > 一節。
+3. 新增下列 tooyour 委派 hello`signIn:didSignInForUser:withError:`方法，根據您所使用的 toohello 語言。
 
 **Objective-C**：
 
@@ -783,7 +783,7 @@ if (error.code == MSErrorPreconditionFailed) {
             // ...
         }
 
-1. 務必也將下列內容新增到應用程式委派中的 `application:didFinishLaunchingWithOptions:`，將 "SERVER_CLIENT_ID" 取代為您用來在步驟 1 中設定 App Service 的相同識別碼。
+1. 請確定您也可以加入 hello 太遵循`application:didFinishLaunchingWithOptions:`應用程式中委派、"SERVER_CLIENT_ID"取代成 hello 相同識別碼使用您在步驟 1 中的 tooconfigure 應用程式服務。
 
 **Objective-C**：
 
@@ -794,7 +794,7 @@ if (error.code == MSErrorPreconditionFailed) {
         GIDSignIn.sharedInstance().serverClientID = "SERVER_CLIENT_ID"
 
 
-1. 根據您所使用的語言，將下列程式碼新增到應用程式的 UIViewController 中以實作 `GIDSignInUIDelegate` 通訊協定。  系統會先將您登出，然後再將您登入；雖然不需要再次輸入認證，不過您會看到同意對話方塊。  請只在工作階段權杖過期時才呼叫這個方法。
+1. 新增下列程式碼 tooyour 應用程式中實作 hello UIViewController hello`GIDSignInUIDelegate`通訊協定，根據您所使用的 toohello 語言。  同樣地，登入之前已登出，雖然您不需要 tooenter 認證一次，但您會看到同意對話方塊。  Hello 工作階段權杖已過期時，才可以呼叫這個方法。
 
    **Objective-C**：
 
@@ -821,14 +821,14 @@ if (error.code == MSErrorPreconditionFailed) {
 [What is Mobile Services]: #what-is
 [Concepts]: #concepts
 [Setup and Prerequisites]: #Setup
-[How to: Create the Mobile Services client]: #create-client
+[How to: Create hello Mobile Services client]: #create-client
 [How to: Create a table reference]: #table-reference
 [How to: Query data from a mobile service]: #querying
 [Filter returned data]: #filtering
 [Sort returned data]: #sorting
 [Return data in pages]: #paging
 [Select specific columns]: #selecting
-[How to: Bind data to the user interface]: #binding
+[How to: Bind data toohello user interface]: #binding
 [How to: Insert data into a mobile service]: #inserting
 [How to: Modify data in a mobile service]: #modifying
 [How to: Authenticate users]: #authentication
@@ -836,7 +836,7 @@ if (error.code == MSErrorPreconditionFailed) {
 [How to: Upload images and large files]: #blobs
 [How to: Handle errors]: #errors
 [How to: Design unit tests]: #unit-testing
-[How to: Customize the client]: #customizing
+[How to: Customize hello client]: #customizing
 [Customize request headers]: #custom-headers
 [Customize data type serialization]: #custom-serialization
 [Next Steps]: #next-steps
@@ -845,9 +845,9 @@ if (error.code == MSErrorPreconditionFailed) {
 <!-- Images. -->
 
 <!-- URLs. -->
-[Azure Mobile Apps 快速入門]: app-service-mobile-ios-get-started.md
+[Azure 行動應用程式快速入門]: app-service-mobile-ios-get-started.md
 
-[Add Mobile Services to Existing App]: /develop/mobile/tutorials/get-started-data
+[Add Mobile Services tooExisting App]: /develop/mobile/tutorials/get-started-data
 [Get started with Mobile Services]: /develop/mobile/tutorials/get-started-ios
 [Validate and modify data in Mobile Services by using server scripts]: /develop/mobile/tutorials/validate-modify-and-augment-data-ios
 [Mobile Services SDK]: https://go.microsoft.com/fwLink/p/?LinkID=266533
@@ -858,17 +858,17 @@ if (error.code == MSErrorPreconditionFailed) {
 [Live Connect SDK]: http://go.microsoft.com/fwlink/p/?LinkId=301960
 [Permissions]: http://msdn.microsoft.com/library/windowsazure/jj193161.aspx
 [Service-side Authorization]: mobile-services-javascript-backend-service-side-authorization.md
-[Use scripts to authorize users]: /develop/mobile/tutorials/authorize-users-in-scripts-ios
+[Use scripts tooauthorize users]: /develop/mobile/tutorials/authorize-users-in-scripts-ios
 [動態結構描述]: http://go.microsoft.com/fwlink/p/?LinkId=296271
 [How to: access custom parameters]: /develop/mobile/how-to-guides/work-with-server-scripts#access-headers
 [Create a table]: http://msdn.microsoft.com/library/windowsazure/jj193162.aspx
 [NSDictionary object]: http://go.microsoft.com/fwlink/p/?LinkId=301965
 [ASCII control codes C0 and C1]: http://en.wikipedia.org/wiki/Data_link_escape_character#C1_set
-[CLI to manage Mobile Services tables]: /cli/azure/get-started-with-az-cli2
+[CLI toomanage Mobile Services tables]: /cli/azure/get-started-with-az-cli2
 [Conflict-Handler]: mobile-services-ios-handling-conflicts-offline-data.md#add-conflict-handling
 
-[網狀架構儀表板]: https://www.fabric.io/home
-[Fabric for iOS - 開始使用]: https://docs.fabric.io/ios/fabric/getting-started.html
+[光纖儀表板]: https://www.fabric.io/home
+[iOS-快速入門的網狀架構]: https://docs.fabric.io/ios/fabric/getting-started.html
 [1]: https://github.com/Azure/azure-mobile-apps-ios-client/blob/master/README.md#ios-client-sdk
 [2]: http://azure.github.io/azure-mobile-apps-ios-client/
 [3]: https://msdn.microsoft.com/library/azure/dn495101.aspx

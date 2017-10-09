@@ -1,6 +1,6 @@
 ---
-title: "選取 Linux 的使用者名稱 | Microsoft Docs"
-description: "了解如何在 Azure 中選取適用於 Linux 虛擬機器的使用者名稱。"
+title: "aaaSelecting 適用於 Linux 的使用者名稱 |Microsoft 文件"
+description: "了解如何 tooselect 使用者名稱在 Azure 中 Linux 虛擬機器。"
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,24 +15,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: 1874d72e5f88816036667932371ff28704d186c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c65e2ac46f40bb8c9d74cccbaf248a070c0fa6cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="selecting-user-names-for-linux-on-azure"></a>在 Azure 上選取適用於 Linux 的使用者名稱
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-在 Azure 上佈建 Linux 虛擬機器時，您必須指定非根使用者的名稱供稍後使用，以使用登入 VM。 您可以選擇新使用者的名稱；如果是透過 Azure 傳統入口網站佈建，可以使用預設名稱「azureuser」。
+在佈建在 Azure 上的 Linux 虛擬機器時，您必須指定 hello 您稍後可以使用 toolog 到 hello VM 的非根使用者名稱。 您可以選擇 hello hello 新的使用者名稱，或如果透過佈建 hello Azure 傳統入口網站，您可以接受 hello 預設名稱 「 azureuser"。
 
-在大多數的情況中，這位使用者不會存在於基本映像中，而是會在佈建程序期間建立。 若此使用者存在於基本 VM 映像，則 Azure Linux 代理程式只會根據建立 VM 時所指定的資訊，為該使用者設定密碼及 (或) SSH 金鑰。
+在大部分情況下這位使用者不存在於 hello 基底映像，並將 hello 佈建程序期間建立。 如果 hello 使用者存在於 hello 基底 VM 映像，然後 hello Azure Linux 代理程式只會設定 hello 密碼及/或根據 hello 資訊建立 hello VM 時，您會指定該使用者的 SSH 金鑰。
 
-**不過**，Linux 會定義一組不應該使用的使用者名稱。 如果您嘗試使用現有的系統使用者 (定義為具有 UID 0-99 的使用者) 佈建 Linux VM，佈建程序將 **失敗** 。 常見的範例是 `root` 使用者，其 UID 為 0。
+**不過**，Linux 會定義一組不應該使用的使用者名稱。 佈建程序將 hello**失敗**如果您嘗試 tooprovision Linux VM，使用現有的系統使用者，定義為具有 UID 0-99 之間的使用者。 典型的範例為 hello`root`使用者具有 UID 0。
 
 * 另請參閱： [Linux 標準基礎 - 使用者 ID 範圍](http://refspecs.linuxfoundation.org/LSB_4.1.0/LSB-Core-generic/LSB-Core-generic/uidrange.html)
 
-以下是在 Azure 上佈建 Linux 虛擬機器時應避免使用的 CentOS 和 Ubuntu 常見內建系統使用者清單。 此清單只是範例，請參閱散發套件的文件，以確保您所選擇的使用者名稱沒有與現有的系統使用者衝突。
+hello 以下是 CentOS 和 Ubuntu，您應該避免使用佈建在 Azure 上的 Linux 虛擬機器時通用的內建的系統使用者的清單。 這份清單不只是範例，請參閱 toohello 文件的發佈 tooensure 該 hello 使用者名稱與現有的系統使用者選擇 不會衝突。
 
 ## <a name="centos"></a>CentOS
 * abrt

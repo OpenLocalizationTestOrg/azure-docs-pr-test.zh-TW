@@ -1,6 +1,6 @@
 ---
-title: "使用現有的 NPS 伺服器提供 Azure MFA 功能 | Microsoft Docs"
-description: "Azure Multi-Factor Authentication 的網路原則伺服器擴充功能是可將雲端式雙步驟驗證功能新增至現有驗證基礎結構的簡單解決方案。"
+title: "aaaUse 現有 NPS 伺服器 tooprovide Azure MFA 功能 |Microsoft 文件"
+description: "hello Azure 多重要素驗證的網路原則伺服器延伸模組是簡單的解決方案 tooadd 以雲端為基礎的兩個步驟 vericiation 功能 tooyour 現有驗證基礎結構。"
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -15,44 +15,44 @@ ms.date: 08/14/2017
 ms.author: kgremban
 ms.reviewer: yossib
 ms.custom: H1Hack27Feb2017; it-pro
-ms.openlocfilehash: fa125292ee85bd9b5329cffeff7f076d3002cbf3
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e9fc495b06873d45f06233f1aa618db9d94f8bd9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="integrate-your-existing-nps-infrastructure-with-azure-multi-factor-authentication"></a>將現有的 NPS 基礎結構與 Azure Multi-Factor Authentication 整合
 
-Azure MFA 的網路原則伺服器 (NPS) 擴充功能可使用現有伺服器將雲端式 MFA 功能新增至驗證基礎結構。 利用 NPS 擴充功能，您可以在現有驗證流程中新增通話、簡訊或電話應用程式驗證，而不必安裝、設定及維護新的伺服器。 
+hello Azure MFA 的網路原則伺服器 (NPS) 擴充功能新增雲端式 MFA 功能 tooyour 驗證基礎結構使用您現有的伺服器。 以 hello NPS 擴充功能，您可以加入通話、 簡訊或電話應用程式驗證 tooyour 現有的驗證流程，而不需要 tooinstall 設定及維護新的伺服器。 
 
-這個擴充功能是針對想要保護 VPN 連線但無須部署 Azure MFA Server 的組織所建立。 NPS 擴充功能是用於在 RADIUS 和以雲端為基礎的 Azure MFA 之間作為配接器，為聯盟或同步處理的使用者提供第二個驗證因素。
+公司想 tooprotect VPN 連線，但不部署 hello Azure MFA Server 建立此延伸模組。 hello NPS 擴充做為 RADIUS 和以雲端為基礎的 Azure MFA tooprovide 之間配接器的第二個因素，同盟或已同步使用者的驗證。
 
-使用 Azure MFA 的 NPS 擴充功能時，驗證流程會包含下列元件︰ 
+使用 Azure MFA hello NPS 延伸模組時, hello 驗證流程包括下列元件的 hello: 
 
-1. **NAS/VPN 伺服器**會從 VPN 用戶端接收要求，並將其轉換為對 NPS 伺服器的 RADIUS 要求。 
-2. **NPS 伺服器**會連線至 Active Directory，以對 RADIUS 要求執行主要驗證，並於成功時將要求傳遞至任何已安裝的擴充功能。  
-3. **NPS 擴充功能**會觸發 Azure MFA 要求以進行第二項驗證。 當擴充功能收到回應後，如果 MFA 挑戰成功，擴充功能便會藉由為 NPS 伺服器提供包含 Azure STS 所發行之 MFA 宣告的安全性權杖來完成驗證要求。  
-4. **Azure MFA** 會與 Azure Active Directory 通訊以擷取使用者的詳細資料，並使用為使用者設定的驗證方法執行第二項驗證。
+1. **NAS/VPN 伺服器**來自 VPN 用戶端收到要求，並將它們轉換成要求 tooNPS 的 RADIUS 伺服器。 
+2. **NPS 伺服器**連接 tooActive 目錄 tooperform hello 的主要驗證 hello RADIUS 會要求，並成功時，會傳遞 hello 要求 tooany 安裝擴充功能。  
+3. **NPS 擴充**hello 次要驗證的要求 tooAzure MFA 觸發程序。 一旦 hello 延伸模組接收到 hello 回應和 hello MFA 挑戰成功，它會藉由提供包含 MFA 宣告，Azure STS 所發出的安全性權杖中的 hello NPS 伺服器完成 hello 驗證要求。  
+4. **Azure MFA**進行通訊與 Azure Active Directory tooretrieve hello 使用者的詳細資訊，以及執行 hello 次要驗證使用的驗證方法設定 toohello 使用者。
 
-下圖說明此高階驗證要求流程︰ 
+hello 下列圖表說明此高層級的驗證要求流程： 
 
 ![驗證流程圖](./media/multi-factor-authentication-nps-extension/auth-flow.png)
 
 ## <a name="plan-your-deployment"></a>規劃您的部署
 
-NPS 延伸模組會自動處理備援，因此您不需要特殊組態。
+hello NPS 擴充功能會自動處理備援性，因此您不需要特殊的設定。
 
 您可以視需要建立數量不拘且具有 Azure MFA 功能的 NPS 伺服器。 如果您安裝多部伺服器，您應該為每部伺服器使用不同的用戶端憑證。 建立每個伺服器的憑證，意味著您可以個別更新每個憑證，無須擔心所有的伺服器皆停機。
 
-VPN 伺服器會路由驗證要求，因此伺服器必須留意新的 Azure MFA 啟用 NPS 伺服器。
+VPN 伺服器路由傳送驗證要求，因此需要 toobe 留意 hello 新的 Azure MFA 啟用 NPS 伺服器。
 
 ## <a name="prerequisites"></a>必要條件
 
-NPS 擴充功能是為了搭配現有基礎結構來運作。 請確定您已備妥這些必要條件，然後再開始。
+hello NPS 擴充功能的目的在於 toowork 與您現有的基礎結構。 請確定您擁有 hello 下列必要條件，才能開始。
 
 ### <a name="licenses"></a>授權
 
-Azure MFA 的 NPS 擴充功能可透過 [Azure Multi-Factor Authentication 授權](multi-factor-authentication.md) (隨附於 Azure AD Premium、EMS 或 MFA 訂用帳戶) 來提供給客戶使用。
+hello Azure MFA 的 NPS 延伸模組是與使用 toocustomers [Azure Multi-factor Authentication Server 的授權](multi-factor-authentication.md)（隨附於 Azure AD Premium、 EMS 或 MFA 訂閱）。
 
 ### <a name="software"></a>軟體
 
@@ -60,111 +60,111 @@ Windows Server 2008 R2 SP1 或更新版本。
 
 ### <a name="libraries"></a>程式庫
 
-這些程式庫會自動連同延伸模組一起安裝。
+這些程式庫會自動安裝 hello 副檔名。
 -   [適用於 Visual Studio 2013 的 Visual C++ 可轉散發套件 (X64)](https://www.microsoft.com/download/details.aspx?id=40784)
 -   [適用於 Windows PowerShell 1.1.1660 版本的 Microsoft Azure Active Directory 模組](https://connect.microsoft.com/site1164/Downloads/DownloadDetails.aspx?DownloadID=59185)
 
 ### <a name="azure-active-directory"></a>Azure Active Directory
 
-使用 NPS 擴充功能的每位使用者都必須使用 Azure AD Connect 同步到 Azure Active Directory ，且必須註冊 MFA。
+使用 hello NPS 延伸模組的每個人都必須是 Active Directory 的同步處理的 tooAzure 使用 Azure AD Connect，以及必須註冊 MFA。
 
-當您安裝擴充功能時，您的 Azure AD 租用戶需要目錄識別碼和系統管理員認證。 您可以在 [Azure 入口網站](https://portal.azure.com)中找到您的目錄識別碼。 請以系統管理員身分登入，選取左側的 [Azure Active Directory] 圖示，然後選取 [屬性]。 複製 [目錄識別碼] 方塊中的 GUID，然後儲存。 當您安裝 NPS 擴充功能時，將使用此 GUID 作為租用戶識別碼。
+當您安裝 hello 延伸模組時，您會需要 Azure AD 租用戶 hello 目錄識別碼和系統管理員認證。 您可以找到您目錄的識別碼在 hello [Azure 入口網站](https://portal.azure.com)。 身為管理員，選取 hello 登入**Azure Active Directory**圖示 hello 左邊，然後選取**屬性**。 複製 hello GUID 在 hello**目錄識別碼**方塊，並將其儲存。 當您安裝 hello NPS 擴充功能時，您可以使用與 hello 租用戶識別碼的此 GUID。
 
 ![在 Azure Active Directory 屬性下尋找您的目錄識別碼](./media/multi-factor-authentication-nps-extension/find-directory-id.png)
 
 ## <a name="prepare-your-environment"></a>準備您的環境
 
-在安裝 NPS 延伸模組之前，您會想要將您的環境準備就緒，以處理驗證流量。
+您安裝 hello NPS 擴充功能之前，您會想 tooprepare 您環境 toohandle hello 驗證流量。
 
-### <a name="enable-the-nps-role-on-a-domain-joined-server"></a>啟用已加入網域之伺服器上的 NPS 角色
+### <a name="enable-hello-nps-role-on-a-domain-joined-server"></a>啟用 hello 已加入網域的伺服器上的 NPS 角色
 
-NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為此角色選擇一部伺服器。 建議您選擇不處理來自其他服務之要求的伺服器，因為 NPS 延伸模組會對任何不是 RADIUS 的要求擲回錯誤。
+hello NPS 伺服器連接 tooAzure Active Directory，並驗證 hello MFA 要求。 為此角色選擇一部伺服器。 我們建議您選擇不會處理來自其他服務，要求的伺服器，因為 hello NPS 擴充功能會擲回的任何不是 RADIUS 要求的錯誤。
 
-1. 在伺服器上，從 [伺服器管理員快速入門] 功能表開啟 [新增角色及功能精靈]。
+1. 在您的伺服器上開啟 [hello**新增角色及功能精靈**從 hello 伺服器管理員的快速入門] 功能表。
 2. 將您的安裝類型選為 [角色型或功能型安裝]。
-3. 選取 [網路原則與存取服務] 伺服器角色。 隨即顯示快顯視窗，通知您執行這個角色所需的功能。
-4. 繼續執行精靈，直到顯示 [確認] 頁面為止。 選取 [安裝]。
+3. 選取 hello**網路原則與存取服務**伺服器角色。 視窗可能會快顯 tooinform 您所需的功能 toorun 此角色。
+4. 繼續透過 hello 精靈 hello 確認頁面。 選取 [安裝]。
 
-現在您已經具備指定給 NPS 的伺服器，因此也應設定這部伺服器以處理從 VPN 解決方案傳入的 RADIUS 要求。
+既然您已指定給 NPS 伺服器，您也應該設定此伺服器 toohandle hello VPN 解決方案從連入 RADIUS 要求。
 
-### <a name="configure-your-vpn-solution-to-communicate-with-the-nps-server"></a>設定您的 VPN 解決方案與 NPS 伺服器通訊
+### <a name="configure-your-vpn-solution-toocommunicate-with-hello-nps-server"></a>設定您的 VPN 解決方案 toocommunicate 與 hello NPS 伺服器
 
-根據您所使用 VPN 解決方案的不同，設定您 RADIUS 驗證原則的步驟也有所不同。 設定此原則以指向 RADIUS NPS 伺服器。
+根據您使用的 VPN 解決方案，hello 步驟 tooconfigure RADIUS 驗證原則而有所不同。 設定此原則 toopoint tooyour NPS RADIUS 伺服器。
 
-### <a name="sync-domain-users-to-the-cloud"></a>將網域使用者同步處理至雲端
+### <a name="sync-domain-users-toohello-cloud"></a>同步處理網域使用者 toohello 雲端
 
-這個步驟在租用戶上可能已經完成，但建議最好再次檢查，確認 Azure AD Connect 最近已同步處理您的資料庫。
+一定已在您的租用戶上完成此步驟，但它是，Azure AD Connect 同步處理您的資料庫最近良好 toodouble 檢查。
 
-1. 以系統管理員身分登入 [Azure 入口網站](https://portal.azure.com)。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)身為系統管理員。
 2. 選取 [Azure Active Directory]  >  [Azure AD Connect]
 3. 確認同步處理狀態為 [已啟用]，且上次同步處理為不到一小時前。
 
-如果您必須展開新一回合的同步處理，請使用 [Azure AD Connect 同步處理：排程器](../active-directory/connect/active-directory-aadconnectsync-feature-scheduler.md#start-the-scheduler)中的指示。
+如果您需要關閉同步處理新回合 tookick，我們 hello 中的指示[Azure AD Connect 同步： 排程器](../active-directory/connect/active-directory-aadconnectsync-feature-scheduler.md#start-the-scheduler)。
 
 ### <a name="determine-which-authentication-methods-your-users-can-use"></a>判斷您的使用者可以使用的驗證方法
 
 有兩個因素會影響與 NPS 擴充部署搭配提供的驗證方法：
 
-1. 在 RADIUS 用戶端 (VPN、Netscaler 伺服器或其他) 與 NPS 伺服器之間使用的密碼加密演算法。
-   - **PAP** 支援雲端中 Azure MFA 的所有驗證方法：通話、單向簡訊、行動裝置應用程式通知，和行動裝置應用程式驗證碼。
+1. hello hello RADIUS 用戶端之間使用的密碼加密演算法 (VPN、 Netscaler 伺服器或其他) 與 hello NPS 伺服器。
+   - **PAP** hello 定域機組中支援的 Azure MFA 的所有 hello 驗證方法： 通話、 單向簡訊、 行動裝置應用程式通知和行動裝置應用程式的驗證碼。
    - **CHAPV2** 和 **EAP** 支援通話和行動裝置應用程式通知。
-2. 用戶端應用程式 (VPN、Netscaler 伺服器或其他) 可以處理的輸入法。 例如，VPN 用戶端是否有一些方法可讓使用者從文字或行動裝置應用程式輸入驗證程式碼？
+2. hello 輸入 hello 用戶端應用程式的方法 (VPN、 Netscaler 伺服器或其他) 可以處理。 Hello VPN 用戶端比方說，有一些方法 tooallow hello 使用者 tootype 文字或行動裝置應用程式的驗證程式碼中？
 
-當您部署 NPS 擴充時，使用這些因素來評估哪些方法可供您的使用者使用。 如果您的 RADIUS 用戶端支援 PAP，但用戶端 UX 沒有驗證碼的輸入欄位，則通話和行動裝置應用程式通知是兩個支援的選項。
+當您部署的 hello NPS 擴充功能時，使用這些方法可供您使用者的因素 tooevaluate。 如果您的 RADIUS 用戶端支援 PAP，但 hello 用戶端 UX 沒有驗證程式碼的輸入的欄位，然後電話和行動裝置應用程式通知 hello 兩個支援的選項。
 
 您可以在 Azure 中[停用不受支援的驗證方法](multi-factor-authentication-whats-next.md#selectable-verification-methods)。
 
 ### <a name="enable-users-for-mfa"></a>針對 MFA 啟用使用者
 
-在部署完整 NPS 延伸模組之前，您必須針對您想要執行雙步驟驗證的使用者啟用 MFA。 緊接著，若要同時部署與測試延伸模組，您必須至少有一個測試帳戶，並應已針對 Multi-Factor Authentication 完全註冊此帳戶。
+部署 hello 完整 NPS 擴充功能之前，您需要 tooenable MFA hello 想 tooperform 雙步驟驗證的使用者。 更立即 tootest hello 延伸模組，當您將它部署，您必須至少一個測試帳戶完全註冊多重要素驗證。
 
-使用下列步驟啟動測試帳戶：
-1. 使用測試帳戶登入 [https://aka.ms/mfasetup](https://aka.ms/mfasetup)。 
-2. 遵循提示來設定驗證方法。
-3. 建立條件式存取原則或[變更使用者狀態](multi-factor-authentication-get-started-user-states.md)，以要求測試帳戶進行雙步驟驗證。 
+使用測試帳戶啟動這些步驟 tooget:
+1. 登入太[https://aka.ms/mfasetup](https://aka.ms/mfasetup)測試帳戶。 
+2. 請遵循 hello 提示 tooset 驗證方法。
+3. 建立條件式存取原則或[變更 hello 使用者狀態](multi-factor-authentication-get-started-user-states.md)toorequire hello 測試帳戶的雙步驟驗證。 
 
-您的使用者在向 NPS 擴充功能驗證之前，也必須遵循下列步驟進行註冊。
+您的使用者也需要 toofollow 這些步驟 tooenroll 之前它們向 hello NPS 擴充功能。
 
-## <a name="install-the-nps-extension"></a>安裝 NPS 擴充功能
+## <a name="install-hello-nps-extension"></a>安裝 hello NPS 擴充功能
 
 > [!IMPORTANT]
-> 在與 VPN 存取點不同的伺服器上安裝 NPS 擴充功能。
+> 不同於 hello VPN 存取點的伺服器上安裝 hello NPS 擴充功能。
 
-### <a name="download-and-install-the-nps-extension-for-azure-mfa"></a>下載並安裝 Azure MFA 的 NPS 延伸模組
+### <a name="download-and-install-hello-nps-extension-for-azure-mfa"></a>下載並安裝 Azure MFA hello NPS 延伸模組
 
-1.  從 Microsoft 下載中心[下載 NPS 延伸模組](https://aka.ms/npsmfa)。
-2.  將二進位檔複製到您要設定的網路原則伺服器。
-3.  執行 *setup.exe* 並遵循安裝指示。 如果您遇到錯誤，請根據必要條件一節再次檢查兩個已成功安裝的程式庫。
+1.  [下載 hello NPS 擴充](https://aka.ms/npsmfa)從 Microsoft 下載中心 hello。
+2.  將複製 hello 二進位 toohello 想 tooconfigure 網路原則伺服器。
+3.  執行*setup.exe*依照 hello 安裝指示。 如果您遇到錯誤，請仔細檢查該 hello hello 必要條件 > 一節中的兩個程式庫已成功安裝。
 
-### <a name="run-the-powershell-script"></a>執行 PowerShell 指令碼
+### <a name="run-hello-powershell-script"></a>執行 hello PowerShell 指令碼
 
-安裝程式會在下列位置建立 PowerShell 指令碼︰`C:\Program Files\Microsoft\AzureMfa\Config` (其中 C:\ 是您的安裝磁碟機)。 此 PowerShell 指令碼會執行下列動作：
+hello 安裝程式會在這個位置建立 PowerShell 指令碼： `C:\Program Files\Microsoft\AzureMfa\Config` （其中 C:\ 是安裝磁碟機）。 這個 PowerShell 指令碼會執行下列動作的 hello:
 
 -   建立自我簽署憑證。
--   讓憑證的公開金鑰與 Azure AD 的服務主體產生關聯。
--   將憑證儲存在本機電腦的憑證存放區。
--   將憑證的私密金鑰存取權授與給網路使用者。
--   重新啟動 NPS。
+-   建立 hello 公開金鑰的 hello 憑證 toohello 服務主體上 Azure AD 的關聯。
+-   存放區 hello hello 本機電腦憑證存放區中的憑證。
+-   授與存取 toohello 憑證的私用的索引鍵 tooNetwork 使用者。
+-   重新啟動 hello NPS。
 
-除非您想要使用自己的憑證 (而非 PowerShell 指令碼產生的自我簽署憑證)，否則請執行 PowerShell 指令碼來完成安裝。 如果您在多部伺服器上安裝延伸模組，每一部伺服器都應該有自己的憑證。
+除非您想 toouse 自己憑證 （而不是 hello 的自我簽署憑證 hello 的 PowerShell 指令碼會產生），執行 PowerShell 指令碼 hello toocomplete hello 安裝程式。 如果您在多部伺服器上安裝 hello 延伸模組，每一個應該有它自己的憑證。
 
 1. 以系統管理理員身分執行 Windows PowerShell。
 2. 變更目錄。
 
    `cd "C:\Program Files\Microsoft\AzureMfa\Config"`
 
-3. 執行安裝程式建立的 PowerShell 指令碼。
+3. 執行 hello hello 安裝程式所建立的 PowerShell 指令碼。
 
    `.\AzureMfaNpsExtnConfigSetup.ps1`
 
-4. PowerShell 會提示您輸入您的租用戶識別碼。 使用您在必要條件一節中從 Azure 入口網站複製的目錄識別碼 GUID。
-5. 以系統管理員身分登入 Azure AD。
-6. PowerShell 會在指令碼完成時顯示成功訊息。  
+4. PowerShell 會提示您輸入您的租用戶識別碼。 使用 hello 從 hello hello 必要條件 > 一節中的 Azure 入口網站複製的目錄識別碼 GUID。
+5. 登入 tooAzure AD 系統管理員身分。
+6. Hello 指令碼完成時，PowerShell 會顯示成功訊息。  
 
-在您想要進行設定以取得負載平衡的任何其他 NPS 伺服器上，重複上述步驟。
+重複上述步驟，在您想要進行負載平衡 tooset 任何其他 NPS 伺服器上。
 
 >[!NOTE]
->如果您使用自己的憑證，而不是透過 PowerShell 指令碼產生憑證，請確定這些憑證遵守 NPS 命名慣例。 主體名稱必須是 **CN=\<租用戶識別碼\>,OU=Microsoft NPS Extension**。 
+>如果您使用您自己的憑證，而非產生憑證以 hello PowerShell 指令碼，請確定它們對齊 toohello NPS 命名慣例。 hello 主旨名稱必須是**CN =\<TenantID\>，OU = Microsoft NPS 擴充功能**。 
 
 ## <a name="configure-your-nps-extension"></a>設定 NPS 擴充功能
 
@@ -172,39 +172,39 @@ NPS 伺服器會連線到 Azure Active Directory，並驗證 MFA 要求。 為�
 
 ### <a name="configuration-limitations"></a>設定限制
 
-- Azure MFA 的 NPS 延伸模組並未包含可將使用者與設定從 MFA Server 移轉至雲端的工具。 有基於此，建議將此延伸模組用於新的部署，而非用於現有部署。 如果您在現有部署上使用此延伸模組，您的使用者必須再次執行證明，以便在雲端中填入其 MFA 詳細資料。  
-- NPS 擴充功能會使用來自內部部署 Active Directory 的 UPN，識別 Azure MFA 上用來執行次要驗證的使用者。此延伸模組可設定為使用不同的識別碼，例如 UPN 以外的替代登入識別碼或自訂 Active Directory 欄位。 如需詳細資訊，請參閱 [Multi-Factor Authentication 之 NPS 延伸模組的進階設定選項](multi-factor-authentication-advanced-vpn-configurations.md)。
+- hello Azure MFA 的 NPS 擴充功能不包含工具 toomigrate 使用者和從 MFA Server toohello 雲端的設定。 基於這個理由，我們建議使用新的部署，而不是現有部署的 hello 延伸模組。 如果您使用現有部署的 hello 延伸模組，您的使用者具有 tooperform 證明總再次 toopopulate 他們 MFA 詳細說明 hello 雲端中。  
+- hello NPS 擴充功能會使用的 hello UPN hello 從內部部署 Active directory tooidentify hello Azure MFA 上執行 hello 次要驗證 hello 延伸模組可以使用者設定的 toouse 不同的識別項，例如識別碼或自訂的 Active Directory 的替代登入UPN 以外的欄位。 請參閱[進階組態選項的 hello NPS 擴充功能的多重要素驗證](multi-factor-authentication-advanced-vpn-configurations.md)如需詳細資訊。
 - 並非所有的加密通訊協定都支援所有的驗證方法。
    - **PAP** 支援通話、單向簡訊、行動裝置應用程式通知和行動裝置應用程式驗證碼
    - **CHAPV2** 和 **EAP** 支援通話和行動裝置應用程式通知
 
 ### <a name="control-radius-clients-that-require-mfa"></a>控制需要 MFA 的 RADIUS 用戶端
 
-為使用 NPS 擴充功能的 RADIUS 用戶端啟用 MFA 後，便需要此用戶端的所有驗證才能執行 MFA。 如果您想要為一些 RADIUS 用戶端啟用 MFA，但其他的用戶端則不啟用，您可以設定兩部 NPS 伺服器，並只在其中一部上安裝擴充功能。 將您想要讓其必須使用 MFA 來傳送要求的 RADIUS 用戶端設定到設定了擴充功能的 NPS 伺服器，並將其他 RADIUS 用戶端設定到未設定擴充功能的 NPS 伺服器。
+一旦您啟用 MFA 的 RADIUS 用戶端使用 hello NPS 擴充功能時，所有的用戶端驗證是必要的 tooperform MFA。 如果您想要 tooenable MFA 某些 RADIUS 用戶端而非其他電腦，則可以設定兩部 NPS 伺服器，並在其中只有一個元件上安裝 hello 延伸模組。 設定您想要 toorequire MFA toosend 要求 toohello NPS 伺服器 hello 延伸模組，以設定和副檔名 hello 未設定其他 RADIUS 用戶端 toohello NPS 伺服器的 RADIUS 用戶端。
 
 ### <a name="prepare-for-users-that-arent-enrolled-for-mfa"></a>針對未註冊 MFA 的使用者做準備
 
-如果您有未註冊 MFA 的使用者，您可以決定在其嘗試驗證時會有什麼結果。 使用登錄路徑 HKLM\Software\Microsoft\AzureMFA 中的登錄設定 *REQUIRE_USER_MATCH* 來控制功能的行為。 此設定具有單一組態選項︰
+如果您未註冊為 MFA 的使用者，您可以決定當他們嘗試 tooauthenticate 時，會發生什麼事。 使用 hello 登錄設定*REQUIRE_USER_MATCH* hello 登錄路徑中*HKLM\Software\Microsoft\AzureMFA* toocontrol hello 功能的行為。 此設定具有單一組態選項︰
 
 | 索引鍵 | 值 | 預設值 |
 | --- | ----- | ------- |
-| REQUIRE_USER_MATCH | TRUE/FALSE | 未設定 (相當於 TRUE) |
+| REQUIRE_USER_MATCH | TRUE/FALSE | 未設定 (對等 tooTRUE) |
 
-此設定的目的是要決定當使用者未註冊 MFA 時的行為。 當此索引鍵不存在、未設定或是設為 TRUE 時，若使用者未註冊，則擴充功能將無法通過 MFA 挑戰。 當此索引鍵設為 FALSE 時，若使用者未註冊，將會繼續驗證但不執行 MFA。
+hello 此設定的目的是 toodetermine 哪些 toodo，當使用者未註冊為 MFA。 當 hello 索引鍵不存在、 未設定，或設 tooTRUE，hello 使用者未註冊，然後 hello 延伸失敗 hello MFA 挑戰。 當 hello 機碼設定 tooFALSE hello 使用者註冊，而不需執行 MFA 就會繼續驗證。
 
-在使用者要上架但尚未全部註冊 Azure MFA 時，您可以選擇建立此金鑰，並將它設為 FALSE。 但是，設定金鑰可讓未註冊 MFA 的使用者進行登入，因此您應該先移除此金鑰，然後再移至生產環境。
+您可以選擇 toocreate 這個機碼，然後將它設定 tooFALSE，雖然您的使用者是登入，且可能不是所有註冊的 Azure MFA 尚未。 不過，因為設定 hello 索引鍵允許的 MFA toosign 中未註冊的使用者，您應該移除之前進行 tooproduction 這個機碼。
 
 ## <a name="troubleshooting"></a>疑難排解
 
-### <a name="how-do-i-verify-that-the-client-cert-is-installed-as-expected"></a>如何確認已如預期安裝用戶端憑證？
+### <a name="how-do-i-verify-that-hello-client-cert-is-installed-as-expected"></a>如何確認該 hello 用戶端憑證已安裝，如預期般？
 
-在憑證存放區中尋找安裝程式所建立的自我簽署憑證，並確認私密金鑰已將權限授與給使用者 **NETWORK SERVICE**。 憑證的主體名稱為 **CN \<tenantid\>, OU = Microsoft NPS Extension**
+尋找 hello hello hello 憑證存放區和 hello 私密金鑰的核取中的安裝程式所建立的自我簽署的憑證具有權限授與 toouser **NETWORK SERVICE**。 hello 憑證的主體名稱的**CN \<tenantid\>，OU = Microsoft NPS 擴充功能**
 
 -------------------------------------------------------------
 
-### <a name="how-can-i-verify-that-my-client-cert-is-associated-to-my-tenant-in-azure-active-directory"></a>如何確認用戶端憑證是否已和 Azure Active Directory 中的租用戶相關聯？
+### <a name="how-can-i-verify-that-my-client-cert-is-associated-toomy-tenant-in-azure-active-directory"></a>如何確認我的用戶端憑證是在 Azure Active Directory 中的相關聯的 toomy 租用戶？
 
-開啟 PowerShell 命令提示字元並執行下列命令：
+開啟 PowerShell 命令提示字元並執行下列命令的 hello:
 
 ```
 import-module MSOnline
@@ -212,36 +212,36 @@ Connect-MsolService
 Get-MsolServicePrincipalCredential -AppPrincipalId "981f26a1-7f43-403b-a875-f8b09b8cd720" -ReturnKeyValues 1 
 ```
 
-這些命令會列印出將租用戶與 PowerShell 工作階段中之 NPS 擴充功能執行個體相關聯的所有憑證。 將用戶端憑證匯出為不含私密金鑰的 "Base-64 encoded X.509(.cer)" 檔案，然後與 PowerShell 中的清單比較，以尋找您的憑證。
+這些命令會列印所有租用戶關聯 hello NPS 擴充功能的執行個體，您的 PowerShell 工作階段中的 hello 憑證。 尋找您的憑證將用戶端憑證匯出為具 hello 私密金鑰 [Base 64 編碼 X.509(.cer)] 檔案，並與從 PowerShell hello 清單比較。
 
-如果命令傳回多個憑證，則可以使用採人類看得懂之格式的 Valid-From 和 Valid-Until 時間戳記來篩選出明顯不符者。
+有效-從且有效的時間戳記，也就是人類看得懂的格式，可以為使用的 toofilter 明顯 misfits 出，如果 hello 命令會傳回一個以上的憑證之前。
 
 -------------------------------------------------------------
 
 ### <a name="why-are-my-requests-failing-with-adal-token-error"></a>為何要求會失敗並出現 ADAL 權杖錯誤？
 
-此錯誤可能來自多種原因之一。 請使用下列步驟來協助疑難排解︰
+這個錯誤可能是因為 tooone 多種原因所造成。 使用下列 toohelp 疑難排解的步驟：
 
 1. 重新啟動 NPS 伺服器。
 2. 確認已如預期安裝用戶端憑證。
-3. 確認憑證已與 Azure AD 上的租用戶相關聯。
-4. 確認可以從執行延伸模組的伺服器存取 https://login.microsoftonline.com/。
+3. 請確認該 hello 憑證與您的租用戶相關聯的 Azure AD。
+4. 請確認該 https://login.microsoftonline.com/ 可從執行 hello 延伸模組的 hello 伺服器存取。
 
 -------------------------------------------------------------
 
-### <a name="why-does-authentication-fail-with-an-error-in-http-logs-stating-that-the-user-is-not-found"></a>驗證為何失敗，並且 HTTP 記錄中有指出找不到使用者的錯誤？
+### <a name="why-does-authentication-fail-with-an-error-in-http-logs-stating-that-hello-user-is-not-found"></a>驗證為何失敗，發生錯誤，指出找不到該 hello 使用者 HTTP 記錄檔中？
 
-確認 AD Connect 正在執行，且使用者已存在於 Windows Active Directory 與 Azure Active Directory。
+確認 AD Connect 正在執行，且該 hello 使用者存在於 Windows Active Directory 與 Azure Active Directory 中。
 
 ------------------------------------------------------------
 
 ### <a name="why-do-i-see-http-connect-errors-in-logs-with-all-my-authentications-failing"></a>為何我會在記錄中看到 HTTP 連線錯誤，且我的所有驗證都失敗？
 
-確認可以從執行 NPS 擴充功能的伺服器連線到 https://adnotifications.windowsazure.com。
+請確認該 https://adnotifications.windowsazure.com 可從執行 hello NPS 延伸模組的 hello 伺服器存取。
 
 
 ## <a name="next-steps"></a>後續步驟
 
-- 在 [Multi-Factor Authentication 之 NPS 延伸模組的進階設定選項](nps-extension-advanced-configuration.md)中，設定登入的替代識別碼，或為不應該執行雙步驟驗證之 IP 設定的例外狀況清單
+- 設定替代識別碼登入，或不應該執行中的雙步驟驗證的 ip 設定的例外狀況清單[進階組態選項的 hello NPS 擴充功能的多重要素驗證](nps-extension-advanced-configuration.md)
 
-- [解決 Azure Multi-Factor Authentication NPS 擴充功能的錯誤訊息](multi-factor-authentication-nps-errors.md)
+- [針對 Azure Multi-factor Authentication 解決 hello NPS 擴充功能中的錯誤訊息](multi-factor-authentication-nps-errors.md)

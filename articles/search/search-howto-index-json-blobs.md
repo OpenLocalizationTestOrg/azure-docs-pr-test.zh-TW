@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure 搜尋服務 Blob 索引子編製索引 JSON Blob"
+title: "Azure 搜尋 blob 索引子的 aaaIndexing JSON blob"
 description: "使用 Azure 搜尋服務 Blob 索引子編製索引 JSON Blob"
 services: search
 documentationcenter: 
@@ -14,29 +14,29 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 04/10/2017
 ms.author: eugenesh
-ms.openlocfilehash: c4a9e57cda4ba5b4db742c1a37686a802f58212f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 269968714358cd40ea66863b4dbb97766e1d77e1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="indexing-json-blobs-with-azure-search-blob-indexer"></a>使用 Azure 搜尋服務 Blob 索引子編製索引 JSON Blob
-本文說明如何設定 Azure 搜尋服務 Blob 索引子，從包含 JSON 的 Blob 中擷取結構化的內容。
+本文示範 tooconfigure Azure 搜尋 blob 索引子 tooextract 結構從包含 JSON 的 blob 內容的方式。
 
 ## <a name="scenarios"></a>案例
-根據預設， [Azure 搜尋服務 Blob 索引子](search-howto-indexing-azure-blob-storage.md) 會將 JSON Blob 剖析為單一的文字區塊。 通常，您會想要保留 JSON 文件的結構。 例如，假設 JSON 文件
+根據預設， [Azure 搜尋服務 Blob 索引子](search-howto-indexing-azure-blob-storage.md) 會將 JSON Blob 剖析為單一的文字區塊。 通常，您會希望 toopreserve hello 結構的 JSON 文件。 例如，假設 hello JSON 文件
 
     {
         "article" : {
-             "text" : "A hopefully useful article explaining how to parse JSON blobs",
+             "text" : "A hopefully useful article explaining how tooparse JSON blobs",
             "datePublished" : "2016-04-13"
             "tags" : [ "search", "storage", "howto" ]    
         }
     }
 
-您可以將它剖析成包含 "text"、"datePublished" 與 "tags" 欄位的 Azure 搜尋服務文件。
+您可能想的 tooparse 到 Azure 搜尋包含"text"、"datePublished，」 和 「 標記 」 欄位的文件。
 
-或者，當您的 Blob 包含 **JSON 物件的陣列**時，您可能希望陣列的各個元素成為個別的 Azure 搜尋服務文件。 例如，提供 Blob 此 JSON：  
+或者，當您的 blob 包含**JSON 物件陣列**，您可能會想 hello 陣列 toobecome 不同的 Azure 搜尋文件的每個項目。 例如，提供 Blob 此 JSON：  
 
     [
         { "id" : "1", "text" : "example 1" },
@@ -47,12 +47,12 @@ ms.lasthandoff: 07/11/2017
 您可以將 Azure 搜尋服務索引填入三個不同的文件，每個都具有「識別碼」和「文字」欄位。
 
 > [!IMPORTANT]
-> JSON 陣列剖析功能目前為預覽版本。 僅適用於使用 **2015-02-28-Preview**版本的 REST API。 請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
+> hello JSON 陣列剖析功能目前為預覽狀態。 它是只用於使用版的 hello REST API **2015年-02-28-preview**。 請記住，預覽 API 是針對測試與評估，不應該用於生產環境。
 >
 >
 
 ## <a name="setting-up-json-indexing"></a>設定 JSON 編製索引
-JSON blob 的索引編製類似於一般文件擷取。 首先，以一般做法建立資料來源︰ 
+索引 JSON blob 時，是類似 toohello 一般文件擷取。 首先，建立 hello 資料來源，完全以正常方式： 
 
     POST https://[service name].search.windows.net/datasources?api-version=2016-09-01
     Content-Type: application/json
@@ -65,9 +65,9 @@ JSON blob 的索引編製類似於一般文件擷取。 首先，以一般做法
         "container" : { "name" : "my-container", "query" : "optional, my-folder" }
     }   
 
-然後，建立目標搜尋索引 (如果您尚未建立)。 
+如果您還沒有其中一個，然後建立 hello 目標搜尋索引。 
 
-最後，建立索引子，並將 `parsingMode` 參數設為 `json` (將每個 blob 當作單一文件加以索引) 或設為 `jsonArray` (如果您的 blob 包含 JSON 陣列，且您需要將陣列的每個項目視為個別文件)︰
+最後，建立索引子，並設定 hello`parsingMode`參數太`json`(tooindex 每個 blob 做為單一文件) 或`jsonArray`（如果您的 blob 包含 JSON 陣列，您必須視為個別的文件陣列 toobe 的每個項目）：
 
     POST https://[service name].search.windows.net/indexers?api-version=2016-09-01
     Content-Type: application/json
@@ -81,27 +81,27 @@ JSON blob 的索引編製類似於一般文件擷取。 首先，以一般做法
       "parameters" : { "configuration" : { "parsingMode" : "json" } }
     }
 
-如果需要，請使用**欄位對應**來挑選用來填入目標搜尋索引的來源 JSON 文件屬性，如下一節所述。
+如果需要使用**欄位對應**toopick hello 的 hello 來源 JSON 文件使用 toopopulate 屬性目標搜尋索引 hello 下一節中所示。
 
 > [!IMPORTANT]
-> 當您使用 `json` 或 `jsonArray` 剖析模式時，Azure 搜尋服務會假設資料來源中的所有 blob 都包含 JSON。 如果您需要支援在相同的資料來源中混用 JSON 和非 JSON Blob，請在 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search)上讓我們知道。
+> 當您使用 `json` 或 `jsonArray` 剖析模式時，Azure 搜尋服務會假設資料來源中的所有 blob 都包含 JSON。 如果您需要 toosupport JSON 混用，而且非 JSON 中的 blob，hello 相同資料來源，讓我們知道上[我們的 UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search)。
 >
 >
 
-## <a name="using-field-mappings-to-build-search-documents"></a>使用欄位對應建置搜尋文件
-目前，Azure 搜尋服務無法直接編製索引任意 JSON 文件，因為它只支援基本資料類型、字串陣列和 GeoJSON 點。 不過，您可以使用 **欄位對應** 挑選 JSON 文件的幾個部分，並將它們「上移」到搜尋文件的最上層欄位。 若要了解欄位對應基礎概念，請參閱 [Azure 搜尋服務索引子欄位對應會橋接資料來源和搜尋索引之間的差異](search-indexer-field-mappings.md)。
+## <a name="using-field-mappings-toobuild-search-documents"></a>使用欄位對應 toobuild 搜尋文件
+目前，Azure 搜尋服務無法直接編製索引任意 JSON 文件，因為它只支援基本資料類型、字串陣列和 GeoJSON 點。 不過，您可以使用**欄位對應**toopick 部分您的 JSON 文件，而且 「 增益 」 它們 hello 搜尋文件的最上層欄位中。 toolearn 需欄位對應的基本概念，請參閱[Azure 搜尋索引子的欄位對應的橋接的資料來源和搜尋索引的 hello 差異](search-indexer-field-mappings.md)。
 
-回到我們的範例 JSON 文件︰
+返回 tooour 範例 JSON 文件：
 
     {
         "article" : {
-             "text" : "A hopefully useful article explaining how to parse JSON blobs",
+             "text" : "A hopefully useful article explaining how tooparse JSON blobs",
             "datePublished" : "2016-04-13"
             "tags" : [ "search", "storage", "howto" ]    
         }
     }
 
-假設您的搜尋索引有下列欄位︰`Edm.String` 類型的 `text`、`Edm.DateTimeOffset` 類型的 `date`、`Collection(Edm.String)` 類型的 `tags`。 若要將 JSON 對應到所需形狀，請使用下列欄位對應︰
+假設您有搜尋索引以 hello 下列欄位：`text`型別的`Edm.String`，`date`型別的`Edm.DateTimeOffset`，和`tags`型別的`Collection(Edm.String)`。 toomap hello 您 JSON 所需的圖形，請使用下列欄位對應的 hello:
 
     "fieldMappings" : [
         { "sourceFieldName" : "/article/text", "targetFieldName" : "text" },
@@ -109,21 +109,21 @@ JSON blob 的索引編製類似於一般文件擷取。 首先，以一般做法
         { "sourceFieldName" : "/article/tags", "targetFieldName" : "tags" }
       ]
 
-對應中的來源欄位名稱是使用 [JSON 指標](http://tools.ietf.org/html/rfc6901) 標記法指定。 以正斜線開始參考 JSON 文件的根目錄，然後使用正斜線分隔的路徑挑選所需的屬性 (使用任意層級的巢狀結構)。
+hello hello 對應中的來源欄位名稱使用指定的 hello [JSON 指標](http://tools.ietf.org/html/rfc6901)標記法。 您一開始使用正斜線 toorefer toohello 根目錄的 JSON 文件，然後挑選 （層級任意的巢狀結構） 所需的 hello 屬性使用正斜線分隔的路徑。
 
-您也可以使用以零為起始的索引來參考個別陣列元素。 比方說，若要從上述範例挑選 "tags" 陣列的第一個元素，請如下所示使用欄位對應︰
+您也可以使用以零為起始的索引參照 tooindividual 陣列項目。 比方說，toopick hello 第一個陣列的元素 hello"tags"hello，上述範例中，從使用欄位的對應如下：
 
     { "sourceFieldName" : "/article/tags/0", "targetFieldName" : "firstTag" }
 
 > [!NOTE]
-> 如果欄位對應路徑中的來源欄位名稱參考在 JSON 中不存在的屬性，則會略過該對應且不會產生錯誤。 這麼做是為了讓我們可支援具有不同結構描述 (這是常見的使用案例) 的文件。 因為沒有任何驗證，您必須小心避免在欄位對應規格中出現錯字。
+> 如果欄位的對應路徑中的來源欄位名稱參考 tooa 屬性，可在 JSON 中不存在，該對應會略過不會產生錯誤。 這麼做是為了讓我們可支援具有不同結構描述 (這是常見的使用案例) 的文件。 因為沒有任何驗證，您會需要您欄位的對應規格中 tootake 照護 tooavoid 錯字。
 >
 >
 
-如果您的 JSON 文件只包含簡單的最上層屬性，可能完全不需要欄位對應。 例如，如果您的 JSON 如下所示，最上層的屬性 "text"、"datePublished" 和 "tags" 會直接對應到搜尋索引中的對應欄位︰
+如果您的 JSON 文件只包含簡單的最上層屬性，可能完全不需要欄位對應。 例如，如果您的 JSON 外觀類似，hello 最上層屬性"text"，"datePublished 」 和 「 標記 」 直接對應 toohello hello 搜尋索引中的對應欄位：
 
     {
-       "text" : "A hopefully useful article explaining how to parse JSON blobs",
+       "text" : "A hopefully useful article explaining how tooparse JSON blobs",
        "datePublished" : "2016-04-13"
        "tags" : [ "search", "storage", "howto" ]    
      }
@@ -148,19 +148,19 @@ JSON blob 的索引編製類似於一般文件擷取。 首先，以一般做法
     }
 
 ## <a name="indexing-nested-json-arrays"></a>編製巢狀 JSON 陣列索引
-如果您想要為 JSON 物件陣列編製索引，但是該陣列以巢狀方式位於文件中的某處？ 您可以使用 `documentRoot` 組態屬性選擇哪一個屬性包含陣列。 例如，如果您的 Blob 看起來像這樣︰
+如果您想 tooindex JSON 物件的陣列，但該陣列是巢狀某處 hello 文件中？ 您可以挑選哪些屬性包含使用 hello hello 陣列`documentRoot`組態屬性。 例如，如果您的 Blob 看起來像這樣︰
 
     {
         "level1" : {
             "level2" : [
-                { "id" : "1", "text" : "Use the documentRoot property" },
-                { "id" : "2", "text" : "to pluck the array you want to index" },
-                { "id" : "3", "text" : "even if it's nested inside the document" }  
+                { "id" : "1", "text" : "Use hello documentRoot property" },
+                { "id" : "2", "text" : "toopluck hello array you want tooindex" },
+                { "id" : "3", "text" : "even if it's nested inside hello document" }  
             ]
         }
     }
 
-您可以使用這個組態為 `level2` 屬性中包含的陣列編製索引：
+使用包含在 hello 這個組態 tooindex hello 陣列`level2`屬性：
 
     {
         "name" : "my-json-array-indexer",
@@ -169,4 +169,4 @@ JSON blob 的索引編製類似於一般文件擷取。 首先，以一般做法
     }
 
 ## <a name="help-us-make-azure-search-better"></a>協助我們改進 Azure 搜尋服務
-如果您有功能要求或改進的想法，請在我們的 [UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)與我們連絡。
+如果您有功能要求或進行改善的想法，連接上 toous 我們[UserVoice 網站](https://feedback.azure.com/forums/263029-azure-search/)。

@@ -1,6 +1,6 @@
 ---
-title: "OMS 中的代理程式健全狀況解決方案 | Microsoft Docs"
-description: "本文旨在協助您了解如何使用這個解決方案來監視直接向 OMS 或 System Center Operations Manager 回報之代理程式的健全狀況。"
+title: "在 OMS 中的健全狀況解決方案 aaaAgent |Microsoft 文件"
+description: "本文是預定的 toohelp 您了解如何 toouse 這個方案 toomonitor hello 的健全狀況報告直接 tooOMS 或 System Center Operations Manager 代理程式。"
 services: operations-management-suite
 documentationcenter: 
 author: MGoedtel
@@ -14,65 +14,65 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: magoedte
-ms.openlocfilehash: b810e37e393ddab55500f636b72450789285a4f0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 071b14b4ab7af6680ae458eaa331246755c5bb56
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 #  <a name="agent-health-solution-in-oms"></a>OMS 中的代理程式健全狀況解決方案
-對於直接向 OMS 工作區或連線到 OMS 之 System Center Operations Manager 管理群組回報的所有代理程式，OMS 中的代理程式健全狀況解決方案可協助您了解哪些代理程式沒有回應且正在提交作業資料。  您可以也追蹤已部署的代理程式數目，其散佈地區，並執行其他查詢，以留意 Azure、其他雲端環境或內部部署中部署之代理程式的散佈情形。    
+在 OMS 中的 hello 代理程式健全狀況解決方案可協助您了解，針對所有 hello 代理程式回報直接 toohello OMS 工作區或 System Center Operations Manager 管理群組連線 tooOMS 」，也就是沒有回應，正在提交作業的資料。  您可以也追蹤的部署代理程式數目，讓它們會分散到各地區，並執行 hello 發佈，部署在 Azure 中，其他雲端環境中或在內部部署的代理程式的其他查詢 toomaintain 感知功能。    
 
 ## <a name="prerequisites"></a>必要條件
-部署這個解決方案之前，請確認您目前支援向 OMS 工作區回報或向與 OMS 工作區整合之 [Operations Manager 管理群組](../log-analytics/log-analytics-om-agents.md)回報的 [Windows 代理程式](../log-analytics/log-analytics-windows-agents.md)。    
+這個方案部署之前，請確認您有目前支援[Windows 代理程式](../log-analytics/log-analytics-windows-agents.md)reporting toohello OMS 工作區，或報告 tooan [Operations Manager 管理群組](../log-analytics/log-analytics-om-agents.md)整合到您OMS 工作區。    
 
 ## <a name="solution-components"></a>方案元件
-此解決方案包含下列已新增到您的工作區以及直接連線之代理程式或 Operations Manager 連線之管理群組的資源。
+這個解決方案包含 hello 遵循 tooyour 工作區和直接連接的代理程式或 Operations Manager 連線的管理群組所新增的資源。
 
 ### <a name="management-packs"></a>管理組件
-如果 System Center Operations Manager 管理群組已連線到 OMS 工作區，則下列管理組件會安裝在 Operations Manager 中。  新增此解決方案之後，這些管理組件也會安裝在直接連線的 Windows 電腦上。 這些管理組件不需要進行任何設定或管理。
+如果您的 System Center Operations Manager 管理群組連線的 tooan OMS 工作區，hello 下列管理組件會安裝在 Operations Manager。  新增此解決方案之後，這些管理組件也會安裝在直接連線的 Windows 電腦上。 沒有任何 tooconfigure 或管理這些管理組件。
 
 * Microsoft System Center Advisor HealthAssessment Direct Channel Intelligence Pack (Microsoft.IntelligencePacks.HealthAssessmentDirect)
 * Microsoft System Center Advisor HealthAssessment Server Channel Intelligence Pack (Microsoft.IntelligencePacks.HealthAssessmentViaServer)。  
 
-如需有關方案管理組件如何更新的詳細資訊，請參閱 [將 Operations Manager 連接到 Log Analytics](../log-analytics/log-analytics-om-agents.md)。
+如需有關解決方案管理組件的更新方式的詳細資訊，請參閱[Operations Manager 連線 tooLog 分析](../log-analytics/log-analytics-om-agents.md)。
 
 ## <a name="configuration"></a>組態
-使用[新增解決方案](../log-analytics/log-analytics-add-solutions.md)中所述的程序，將代理程式健全狀況解決方案新增至您的 OMS 工作區。 不需要進一步的組態。
+新增使用 hello 程序的 OMS 工作區中所述的 hello 代理程式健全狀況解決方案 tooyour[新增解決方案](../log-analytics/log-analytics-add-solutions.md)。 不需要進一步的組態。
 
 
 ## <a name="data-collection"></a>資料收集
 ### <a name="supported-agents"></a>支援的代理程式
-下表描述此方案支援的連接來源。
+hello 下表描述此解決方案所支援的 hello 連接來源。
 
 | 連接的來源 | 支援 | 說明 |
 | --- | --- | --- |
 | Windows 代理程式 | 是 | 系統會從直接 Windows 代理程式收集活動訊號事件。|
-| System Center Operations Manager 管理群組 | 是 | 系統會每隔 60 秒從向管理群組回報之代理程式收集活動訊號事件，然後轉送到 Log Analytics。 不需要直接從 Operations Manager 代理程式連線到 Log Analytics。 活動訊號事件資料會從管理群組轉送至 Log Analytics 存放庫。|
+| System Center Operations Manager 管理群組 | 是 | 活動訊號事件從代理程式每隔 60 秒 reporting toohello 管理群組收集，然後轉送 tooLog 分析。 從 Operations Manager 代理程式 tooLog 的直接連接分析不需要。 活動訊號的事件資料會轉送 hello 管理群組 toohello 記錄分析儲存機制中。|
 
-## <a name="using-the-solution"></a>使用解決方案
-當您將解決方案新增至 OMS 工作區時，[代理程式健全狀況]  圖格會新增至 OMS 儀表板。 此圖格會顯示過去 24 小時內的代理程式總數和沒有回應的代理程式數目。<br><br> ![儀表板上的代理程式健全狀況圖格](./media/oms-solution-agenthealth/agenthealth-solution-tile-homepage.png)
+## <a name="using-hello-solution"></a>使用 hello 解決方案
+當您新增 hello 方案 tooyour OMS 工作區時，hello**代理程式健全狀況**磚加入 tooyour OMS 儀表板。 這個磚會顯示 hello 總數的代理程式和代理程式沒有回應的 hello 數目 hello 在過去 24 小時。<br><br> ![儀表板上的代理程式健全狀況圖格](./media/oms-solution-agenthealth/agenthealth-solution-tile-homepage.png)
 
-按一下 [代理程式健全狀況] 圖格，以開啟 [代理程式健全狀況] 儀表板。  此儀表板包含下表中的資料行。 每個資料行依計數列出前十個事件，這幾個事件符合該資料行中指定時間範圍的準則。 您可以選取每個資料行右下角的 [查看全部] ，或按一下資料行標頭，以執行記錄搜尋來提供完整清單。
+按一下 hello**代理程式健全狀況**磚 tooopen hello**代理程式健全狀況**儀表板。  hello 儀表板會納入 hello 下表中的 hello 資料行。 每個資料行列出 hello 前十個事件所比對資料行的 hello 準則指定的時間範圍內的計數。 您可以執行提供 hello 整個清單，選取 記錄搜尋**查看所有**在 hello 右下的每個資料行，或按一下 hello 資料行標頭。
 
 | 資料欄 | 說明 |
 |--------|-------------|
 | 不同時間的代理程式計數 | Linux 和 Windows 代理程式為期七天的代理程式計數趨勢。|
-| 沒有回應的代理程式計數 | 在過去 24 小時內尚未傳送活動訊號的代理程式清單。|
+| 沒有回應的代理程式計數 | 尚未傳送活動訊號在 hello 過去 24 小時內的代理程式的清單。|
 | 依 OS 類型分配 | 劃分您的環境中有多少個 Windows 和 Linux 代理程式。|
-| 依代理程式版本分配 | 劃分您的環境中安裝的不同代理程式版本，以及每個版本的計數。|
-| 依代理程式類別分配 | 劃分傳送活動訊號事件的不同代理程式類別：直接代理程式、OpsMgr 代理程式或 OpsMgr 管理伺服器。|
-| 依管理群組分配 | 劃分您的環境中不同的 SCOM 管理群組。|
-| 代理程式的地理位置 | 劃分您擁有代理程式的不同國家/地區，以及在每個國家/地區安裝的代理程式總計數。|
-| 已安裝的閘道計數 | 已安裝 OMS 閘道的伺服器數目，以及這些伺服器的清單。|
+| 依代理程式版本分配 | Hello 另一個代理程式版本安裝在您的環境以及每個計數的資料分割。|
+| 依代理程式類別分配 | Hello 不同類別的代理程式正在傳送活動訊號事件的資料分割： 直接代理程式 」、 「 OpsMgr 代理程式或 「 hello OpsMgr 管理伺服器。|
+| 依管理群組分配 | 您的環境中 hello 不同 SCOM 管理群組的分割區。|
+| 代理程式的地理位置 | 您有代理程式和代理程式已安裝在每個國家/地區的 hello 數目總計數 hello 不同國家/地區的資料分割。|
+| 已安裝的閘道計數 | hello 具有 hello OMS 閘道安裝，以及一份這些伺服器的伺服器數目。|
 
 ![代理程式健全狀況儀表板範例](./media/oms-solution-agenthealth/agenthealth-solution-dashboard.png)  
 
 ## <a name="log-analytics-records"></a>Log Analytics 記錄
-此解決方案會在 OMS 存放庫中建立一種類型的記錄。  
+hello 方案 hello OMS 儲存機制中建立一種類型的記錄。  
 
 ### <a name="heartbeat-records"></a>活動訊號記錄
-系統會建立類型為 [活動訊號] 的記錄。  這些記錄具有下表中的屬性。  
+系統會建立類型為 [活動訊號] 的記錄。  這些記錄 hello 下表中都有 hello 屬性。  
 
 | 屬性 | 說明 |
 | --- | --- |
@@ -85,25 +85,25 @@ ms.lasthandoff: 08/03/2017
 | 版本 | OMS 代理程式或 Operations Manager 代理程式版本。|
 | SCAgentChannel | 值為 [Direct] 和/或 [SCManagementServer]。|
 | IsGatewayInstalled | 如果已安裝 OMS 閘道，值為 true，否則值為 false。|
-| ComputerIP | 電腦的 IP 位址。|
+| ComputerIP | Hello 電腦的 IP 位址。|
 | RemoteIPCountry | 電腦部署所在的地理位置。|
 | ManagementGroupName | Operations Manager 管理群組的名稱。|
 | SourceComputerId | 電腦的唯一識別碼。|
 | RemoteIPLongitude | 電腦的地理位置經度。|
 | RemoteIPLatitude | 電腦的地理位置緯度。|
 
-向 Operations Manager 管理伺服器回報的每個代理程式將會傳送兩個活動訊號，而 SCAgentChannel 屬性的值將同時包含 **Direct** 和 **SCManagementServer** (視您已在自己的 OMS 訂用帳戶中啟用哪些 Analytics 資料來源和解決方案而定)。 請回想一下，解決方案中的資料會從 Operations Manager 管理伺服器直接傳送至 OMS Web 服務，或者因為代理程式上收集的資料量，所以會從代理程式直接傳送至 OMS Web 服務。 若為具有 **SCManagementServer** 值的活動訊號事件，ComputerIP 值為管理伺服器的 IP 位址，因為資料實際上由它上傳。  若為 SCAgentChannel 設為 [Direct] 的活動訊號，此值為代理程式的公用 IP 位址。  
+報告 tooan Operations Manager 管理伺服器會傳送兩個活動訊號，和 SCAgentChannel 屬性的值將同時包含每個代理程式**直接**和**SCManagementServer**視內容而定記錄分析資料來源，您已啟用您的 OMS 訂用帳戶中的方案。 如果您還記得，解決方案的資料會傳送直接從 Operations Manager 管理伺服器 toohello OMS web 服務，或是因為 hello hello 代理程式上收集而來的資料數量會直接從 hello 代理程式 tooOMS web 服務傳送。 Hello 值的活動訊號事件**SCManagementServer**，hello ComputerIP 值是 hello hello 管理伺服器的 IP 位址，因為 hello 資料實際上上傳它。  活動訊號 SCAgentChannel 設有太**直接**，它是 hello 代理程式的 hello 公用 IP 位址。  
 
-## <a name="sample-log-searches"></a>記錄搜尋範例
-下表提供此解決方案所收集之記錄的記錄搜尋範例。
+## <a name="sample-log-searches"></a>記錄檔搜尋範例
+hello 下表提供範例記錄檔搜尋此解決方案所收集的記錄。
 
 | 查詢 | 說明 |
 | --- | --- |
 | Type=Heartbeat &#124; distinct Computer |代理程式總數 |
-| Type=Heartbeat &#124; measure max(TimeGenerated) as LastCall by Computer &#124; where LastCall < NOW-24HOURS |過去 24 小時內沒有回應的代理程式計數 |
-| Type=Heartbeat &#124; measure max(TimeGenerated) as LastCall by Computer &#124; where LastCall < NOW-15MINUTES |過去 15 分鐘內沒有回應的代理程式計數 |
-| Type=Heartbeat TimeGenerated>NOW-24HOURS Computer IN {Type=Heartbeat TimeGenerated>NOW-24HOURS &#124; distinct Computer} &#124; measure max(TimeGenerated) as LastCall by Computer |在線上的電腦 (過去 24 小時內) |
-| Type=Heartbeat TimeGenerated>NOW-24HOURS Computer NOT IN {Type=Heartbeat TimeGenerated>NOW-30MINUTES &#124; distinct Computer} &#124; measure max(TimeGenerated) as LastCall by Computer |在過去 30 分鐘內離線的代理程式總數 (針對過去 24 小時) |
+| Type=Heartbeat &#124; measure max(TimeGenerated) as LastCall by Computer &#124; where LastCall < NOW-24HOURS |在 hello 過去 24 小時內沒有回應的代理程式的計數 |
+| Type=Heartbeat &#124; measure max(TimeGenerated) as LastCall by Computer &#124; where LastCall < NOW-15MINUTES |在 hello 過去 15 分鐘內沒有回應的代理程式的計數 |
+| Type=Heartbeat TimeGenerated>NOW-24HOURS Computer IN {Type=Heartbeat TimeGenerated>NOW-24HOURS &#124; distinct Computer} &#124; measure max(TimeGenerated) as LastCall by Computer |電腦線上 （hello 過去 24 小時) |
+| Type=Heartbeat TimeGenerated>NOW-24HOURS Computer NOT IN {Type=Heartbeat TimeGenerated>NOW-30MINUTES &#124; distinct Computer} &#124; measure max(TimeGenerated) as LastCall by Computer |總代理程式離線在過去 30 分鐘的時間 （hello 過去 24 小時) |
 | Type=Heartbeat &#124; measure countdistinct(Computer) by OSType |依 OSType 取得一段時間內的代理程式數目趨勢|
 | Type=Heartbeat&#124;measure countdistinct(Computer) by OSType |依 OS 類型分配 |
 | Type=Heartbeat&#124;measure countdistinct(Computer) by Version |依代理程式版本分配 |
@@ -114,15 +114,15 @@ ms.lasthandoff: 08/03/2017
 
 
 >[!NOTE]
-> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](../log-analytics/log-analytics-log-search-upgrade.md)，則以上查詢會變更如下。
+> 如果您的工作區已升級的 toohello[新的記錄分析查詢語言](../log-analytics/log-analytics-log-search-upgrade.md)，然後 hello 上述查詢會變更 toohello 下列。
 >
 >| 查詢 | 說明 |
 |:---|:---|
 | Heartbeat &#124; distinct Computer |代理程式總數 |
-| Heartbeat &#124; summarize LastCall = max(TimeGenerated) by Computer &#124; where LastCall < ago(24h) |過去 24 小時內沒有回應的代理程式計數 |
-| Heartbeat &#124; summarize LastCall = max(TimeGenerated) by Computer &#124; where LastCall < ago(15m) |過去 15 分鐘內沒有回應的代理程式計數 |
-| Heartbeat &#124; where TimeGenerated > ago(24h) and Computer in ((Heartbeat &#124; where TimeGenerated > ago(24h) &#124; distinct Computer)) &#124; summarize LastCall = max(TimeGenerated) by Computer |在線上的電腦 (過去 24 小時內) |
-| Heartbeat &#124; where TimeGenerated > ago(24h) and Computer !in ((Heartbeat &#124; where TimeGenerated > ago(30m) &#124; distinct Computer)) &#124; summarize LastCall = max(TimeGenerated) by Computer |在過去 30 分鐘內離線的代理程式總數 (針對過去 24 小時) |
+| Heartbeat &#124; summarize LastCall = max(TimeGenerated) by Computer &#124; where LastCall < ago(24h) |在 hello 過去 24 小時內沒有回應的代理程式的計數 |
+| Heartbeat &#124; summarize LastCall = max(TimeGenerated) by Computer &#124; where LastCall < ago(15m) |在 hello 過去 15 分鐘內沒有回應的代理程式的計數 |
+| Heartbeat &#124; where TimeGenerated > ago(24h) and Computer in ((Heartbeat &#124; where TimeGenerated > ago(24h) &#124; distinct Computer)) &#124; summarize LastCall = max(TimeGenerated) by Computer |電腦線上 （hello 過去 24 小時) |
+| Heartbeat &#124; where TimeGenerated > ago(24h) and Computer !in ((Heartbeat &#124; where TimeGenerated > ago(30m) &#124; distinct Computer)) &#124; summarize LastCall = max(TimeGenerated) by Computer |總代理程式離線在過去 30 分鐘的時間 （hello 過去 24 小時) |
 | Heartbeat &#124; summarize AggregatedValue = dcount(Computer) by OSType |依 OSType 取得一段時間內的代理程式數目趨勢|
 | Heartbeat &#124; summarize AggregatedValue = dcount(Computer) by OSType |依 OS 類型分配 |
 | Heartbeat &#124; summarize AggregatedValue = dcount(Computer) by Version |依代理程式版本分配 |

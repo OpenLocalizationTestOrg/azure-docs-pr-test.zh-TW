@@ -1,6 +1,6 @@
 ---
-title: "H264 單一位元速率 1080p 音訊 5.1 | Microsoft Docs"
-description: "本主題提供「H264 單一位元速率 1080p 音訊 5.1」工作預設的概觀。"
+title: "aaaH264 單一位元速率 1080p 音訊 5.1 |Microsoft 文件"
+description: "hello 主題概略 hello * * H264 單一位元速率 1080p 音訊 5.1* * 工作預設值。"
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: juliako
-ms.openlocfilehash: 07440d18afa83c571f1568a2e43fb6bca5e8b452
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 8ee5f34f4fd84c615ca8c5e7554e9ec832f54a25
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="h264-single-bitrate-1080p-audio-51"></a>H264 單一位元速率 1080p 音訊 5.1
-`Media Encoder Standard` 定義一組編碼預設，供您在建立編碼作業時使用。 您可以使用 `preset name` 來指定您想要將媒體檔案編碼成哪一種格式。 或者，您可以建立自己的 JSON 或 XML 型預設 (使用 UTF-8 或 UTF-16 編碼)。 然後，您要將自訂預設傳遞給編碼器。 如需這個 `Media Encoder Standard` 編碼器支援的所有預設名稱清單，請參閱[媒體編碼器標準的工作預設](media-services-mes-presets-overview.md)。  
+`Media Encoder Standard` 定義一組編碼預設，供您在建立編碼作業時使用。 您可以使用`preset name`toospecify 成哪一種格式中，您想要 tooencode 媒體檔案。 或者，您可以建立自己的 JSON 或 XML 型預設 (使用 UTF-8 或 UTF-16 編碼)。 然後，您會傳遞 hello 自訂預設的 toohello 編碼器。 所有的 hello hello 清單的預設名稱支援這`Media Encoder Standard`編碼器，請參閱[的媒體編碼器標準工作預設](media-services-mes-presets-overview.md)。  
   
- 本主題說明 XML 和 JSON 格式的 `H264 Single Bitrate 1080p Audio 5.1` 預設。  
+ 本主題顯示 hello`H264 Single Bitrate 1080p Audio 5.1`預設 XML 和 JSON 格式...  
   
- 此預設會產生位元速率為 6750 kbps 的單一 MP4 檔案，而且是 AAC 5.1 音訊。 如需此預設的設定檔、位元速率、取樣率等的詳細資訊，請檢查以下定義的 XML 或 JSON。 如需每個元素的意義說明，以及每個元素的有效值，請參閱[媒體編碼器標準結構描述](media-services-mes-schema.md)。  
+ 此預設會產生位元速率為 6750 kbps 的單一 MP4 檔案，而且是 AAC 5.1 音訊。 如需設定檔的詳細資訊，位元速率，取樣率、 等等。 這個預設值，請檢查 hello XML 或 JSON 定義如下。 如對於每個項目，表示每個項目，和 hello 有效值的說明，請參閱 hello[媒體編碼器標準結構描述](media-services-mes-schema.md)。  
   
  XML  
   

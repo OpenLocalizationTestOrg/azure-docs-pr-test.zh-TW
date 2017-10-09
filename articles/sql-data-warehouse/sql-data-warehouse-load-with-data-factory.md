@@ -1,6 +1,6 @@
 ---
-title: "將資料載入 Azure SQL 資料倉儲 – Data Factory | Microsoft Docs"
-description: "本教學課程使用 Azure Data Factory 將資料載入 Azure SQL 資料倉儲，並使用 SQL Server 資料庫作為資料來源。"
+title: "Azure SQL 資料倉儲 Data Factory aaaLoad 資料 |Microsoft 文件"
+description: "本教學課程使用 Azure Data Factory，將資料載入 Azure SQL 資料倉儲和當做 hello 資料來源會使用 SQL Server 資料庫。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: ckarst
@@ -15,150 +15,150 @@ ms.topic: article
 ms.custom: loading
 ms.date: 02/08/2017
 ms.author: cakarst;barbkess
-ms.openlocfilehash: 12a35213e07ff16bdc1c27be106792bcc032ac80
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 471871d3ee00ab34cc84bb63fbd13a323d14c2b6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="load-data-into-sql-data-warehouse-with-data-factory"></a>使用 Data Factory 將資料載入 SQL 資料倉儲
 
-您可以從任何[支援來源資料存放區](../data-factory/data-factory-data-movement-activities.md#supported-data-stores-and-formats)，使用 Azure Data Factory 將資料載入至 Azure SQL 資料倉儲。 例如，您可以使用 Data Factory，將 Azure SQL Database 或 Oracle 資料庫中的資料載入 SQL 資料倉儲。 本文中的教學課程會示範如何從內部部署 SQL Server 資料庫將資料載入 SQL 資料倉儲。
+您可以使用 Azure Data Factory tooload 資料到 Azure SQL 資料倉儲，從任何 hello[支援來源資料存放區](../data-factory/data-factory-data-movement-activities.md#supported-data-stores-and-formats)。 例如，您可以使用 Data Factory，將 Azure SQL Database 或 Oracle 資料庫中的資料載入 SQL 資料倉儲。 本文章中的教學課程會示範如何 tooload 資料從內部部署 SQL Server 資料庫到 SQL 資料倉儲。
 
-**預估時間**︰一旦符合先決條件後，本教學課程需要大約 10-15 分鐘才能完成。
+**估計時間**： 本教學課程，大約需要 10-15 分鐘 toocomplete 一旦符合 hello 必要條件。
 
 ## <a name="prerequisites"></a>必要條件
 
-- 您需要 **SQL Server 資料庫**，其中的資料表含有要複製到 SQL 資料倉儲的資料。  
+- 您需要**SQL Server 資料庫**包含 hello 資料的資料表與 toobe 複製 toohello SQL 資料倉儲。  
 
-- 您需要線上 **SQL 資料倉儲**。 如果您還沒有資料倉儲，請了解如何[建立 Azure SQL 資料倉儲](sql-data-warehouse-get-started-provision.md)。
+- 您需要線上 **SQL 資料倉儲**。 如果您已經沒有資料倉儲，了解如何太[建立 Azure SQL 資料倉儲](sql-data-warehouse-get-started-provision.md)。
 
-- 您需要 **Azure 儲存體帳戶**。 如果您還沒有儲存體帳戶，請了解如何[建立儲存體帳戶](../storage/common/storage-create-storage-account.md)。 為了達到最佳效能，在相同的 Azure 區域中找出儲存體帳戶和資料倉儲。
+- 您需要 **Azure 儲存體帳戶**。 如果您已經沒有儲存體帳戶，了解如何太[建立儲存體帳戶](../storage/common/storage-create-storage-account.md)。 為了達到最佳效能，找出 hello 儲存體帳戶和 hello 資料倉儲中 hello 相同 Azure 區域。
 
 ## <a name="configure-a-data-factory"></a>設定 Data Factory
-1. 登入 [Azure 入口網站][]。
-2. 找出您的資料倉儲，並按一下以開啟它。
-3. 在主要刀鋒視窗中，按一下 [載入資料] > [Azure Data Factory]。
+1. 登入 toohello [Azure 入口網站][]。
+2. 找出您的資料倉儲，並按一下 tooopen 它。
+3. 在 hello 主要刀鋒視窗中，按一下 **將資料載入** > **Azure Data Factory**。
 
     ![啟動載入資料精靈](media/sql-data-warehouse-load-with-data-factory/launch-load-data-wizard.png)
 
-4. 如果您在 Azure 訂用帳戶中沒有 Data Factory，您會在瀏覽器的個別索引標籤中看到 [新增 Data Factory]對話方塊。 填入必要的資訊，然後按一下 [建立]。 建立 Data Factory 之後，[新增 Data Factory] 對話方塊隨即關閉，而且您會看到 [選取 Data Factory] 對話方塊。
+4. 如果您的 Azure 訂用帳戶中沒有 data factory，您會看到**新的 Data Factory** hello 瀏覽器 對話方塊中的個別索引標籤。 Hello 中的填入要求的詳細資訊，並按一下**建立**。 建立 hello 資料處理站之後，hello**新的 Data Factory**對話框會關閉，而且您看見 hello**選取 Data Factory**  對話方塊。
 
-    如果您在 Azure 訂用帳戶中已有一或多個 Data Factory，您會看到[選取 Data Factory] 對話方塊。 在這個對話方塊中，您可以選取現有的 Data Factory，或按一下[建立新的 Data Factory] 來建立新的。
+    如果您有一或多個 data factory 已在 hello Azure 訂用帳戶，請參閱 hello**選取 Data Factory**  對話方塊。 在這個對話方塊中，您可以選取現有的 data factory，或按一下**建立新的 data factory** toocreate 新建一個。
 
     ![設定 Data Factory](media/sql-data-warehouse-load-with-data-factory/configure-data-factory.png)
 
-5. 在 [選取 Data Factory] 對話方塊中，預設會選取 [載入資料] 選項。 按 [下一步] 以開始建立資料載入工作。
+5. 在 hello**選取 Data Factory**對話方塊中，hello**載入資料**預設會選取選項。 按一下**下一步**toostart 建立資料載入工作。
 
-## <a name="configure-the-data-factory-properties"></a>設定 Data Factory 屬性
-現在您已建立 Data Factory，下一個步驟是設定資料載入排程。
+## <a name="configure-hello-data-factory-properties"></a>設定 hello 資料 factory 屬性
+現在您已經建立 data factory，hello 下一個步驟是 tooconfigure hello 資料載入排程。
 
 1. 針對 [工作名稱]，輸入 [DWLoadData fromSQLServer]。
-2. 使用預設的 [立即執行一次] 選項，然後按 [下一步]。
+2. 使用預設的 hello**執行一次現在**選項，請按一下**下一步**。
 
     ![設定負載排程](media/sql-data-warehouse-load-with-data-factory/configure-load-schedule.png)
 
-## <a name="configure-the-source-data-store-and-gateway"></a>設定來源資料存放區和閘道器
-現在您要通知 Data Factory 關於您要載入資料的內部部署 SQL Server 資料庫。
+## <a name="configure-hello-source-data-store-and-gateway"></a>設定 hello 來源資料存放區和閘道
+現在您要從中 tooload 資料 hello 在內部部署 SQL Server 資料庫的相關分辨 Data Factory。
 
-1. 從支援的來源資料儲存類別目錄選擇 **SQL Server**，並按 [下一步]。
+1. 選擇**SQL Server** hello 支援來源資料存放區目錄，然後按一下**下一步**。
 
     ![選擇 SQL Server 來源](media/sql-data-warehouse-load-with-data-factory/choose-sql-server-source.png)
 
-2. 隨即出現 [指定內部部署 SQL Server 資料庫] 對話方塊。 第一個 [連接名稱] 欄位會自動填入。 第二個欄位會詢問 [閘道器] 的名稱。 如果您使用的現有 Data Factory 已有一個閘道，您可以藉由從下拉式清單中選取它來重複使用閘道。 按一下 [建立閘道] 連結以建立資料管理閘道。  
+2. A**指定 hello 在內部部署 SQL Server 資料庫**對話方塊隨即出現。 第一次 hello**連接名稱**欄位會自動填入。 hello 第二個欄位會要求輸入 hello hello 名稱**閘道**。 如果您使用現有的 data factory 已有閘道，您可以從 hello 下拉式清單中選取重複使用 hello 閘道。 按一下 hello**建立閘道**連結 toocreate 資料管理閘道器。  
 
     > [!NOTE]
-    > 如果來源資料存放區是在內部部署或在 Azure IaaS 虛擬機器中，資料管理閘道是必要的。 閘道與 Data Factory 有 1 對 1 關聯性。 它不能從另一個 Data Factory 使用，但可供相同 Data Factory 中的多個資料載入工作使用。 閘道可以用來在執行資料載入工作時連接至多個資料存放區。
+    > 如果 hello 來源資料儲存在內部部署或在 Azure IaaS 虛擬機器，就需要資料管理閘道。 閘道與 Data Factory 有 1 對 1 關聯性。 它不能從另一個 data factory，但是可供多個資料載入與 hello 中的工作相同的 data factory。 閘道可以是使用的 tooconnect toomultiple 資料存放區時執行資料載入工作。
     >
-    > 如需閘道的詳細資訊，請參閱[資料管理閘道](../data-factory/data-factory-data-management-gateway.md)文章。
+    > 如需 hello 閘道的詳細資訊，請參閱[資料管理閘道器](../data-factory/data-factory-data-management-gateway.md)發行項。
 
 3. 隨即出現 [建立閘道] 對話方塊。 針對名稱，輸入 **GatewayForDWLoading**，然後按一下 [建立]。
 
-4. 隨即出現 [設定閘道] 對話方塊。 按一下 [在這台電腦上啟動快速安裝]，在目前電腦上自動下載、安裝及註冊資料管理閘道。 進度會顯示在快顯視窗中。 如果電腦無法連線到資料存放區，您可以手動在電腦上[下載並安裝閘道](https://www.microsoft.com/download/details.aspx?id=39717)，可以連接到資料存放區，然後使用金鑰進行註冊。
+4. 隨即出現 [設定閘道] 對話方塊。 按一下**啟動此電腦上的快速安裝**tooautomatically 下載、 安裝及註冊目前電腦上的資料管理閘道器。 hello 進度會顯示快顯視窗中。 如果 hello 電腦無法連線 toohello 資料存放區，您可以手動[下載並安裝 hello 閘道](https://www.microsoft.com/download/details.aspx?id=39717)toohello 資料可以連接的電腦上儲存和使用 hello 金鑰 tooregister。
     > [!NOTE]
-    > 快速安裝適用於原生 Microsoft Edge 及 Internet Explorer。 如果您是使用 Google Chrome，先從 Chrome 線上應用程式商店安裝 ClickOnce 擴充功能。
+    > hello 快速安裝適用於原生 Microsoft Edge 及 Internet Explorer。 如果您使用 Google Chrome，先安裝 hello ClickOnce 延伸模組從 Chrome web 存放區。
 
     ![啟動快速安裝](media/sql-data-warehouse-load-with-data-factory/launch-express-setup.png)
 
-5. 等候閘道安裝程式完成。 一旦閘道成功註冊且上線後，快顯視窗會關閉，且新的閘道會出現在 [閘道] 欄位中。 接著，填寫其餘必要欄位，如下所示，然後按 [下一步]。
-    - **伺服器名稱**︰內部部署 SQL Server 的名稱。
+5. 等候 hello 閘道安裝程式 toocomplete。 Hello 閘道註冊成功，且已上線，一旦 hello 快顯視窗關閉，而 hello 新的閘道會出現在 hello 閘道 欄位中。 然後在 hello 其餘部分填滿必要欄位，如下所示，然後按一下 **下一步**。
+    - **伺服器名稱**: hello 名稱內部部署 SQL Server。
     - **資料庫名稱**：SQL Server 資料庫。
-    - **認證加密**：使用預設的「透過網頁瀏覽器」。
-    - **驗證類型**︰選擇您所使用的驗證類型。
-    - **使用者名稱**和**密碼**︰輸入擁有複製資料權限之使用者的使用者名稱和密碼。
+    - **認證加密**: hello 預設使用 」 的網頁瀏覽器 」。
+    - **驗證類型**： 選擇您要使用的驗證 hello 類型。
+    - **使用者名稱**和**密碼**: hello 使用者名稱和密碼輸入具有權限 toocopy hello 資料的使用者。
 
     ![啟動快速安裝](media/sql-data-warehouse-load-with-data-factory/configure-sql-server.png)
 
-6. 下一步是選擇要從中複製資料的資料表。 您可以使用關鍵字篩選資料表。 然後您可以預覽底部面板中的資料和資料表結構描述。 在完成您的選擇之後，按 [下一步]。
+6. hello 下一個步驟就是從哪一個 toocopy hello 資料 toochoose hello 資料表。 您可以使用關鍵字篩選 hello 資料表。 然後您可以預覽 hello 下方面板中的 hello 資料和資料表結構描述。 在完成您的選擇之後，按 [下一步]。
 
     ![選取資料表](media/sql-data-warehouse-load-with-data-factory/select-tables.png)
 
-## <a name="configure-the-destination-your-sql-data-warehouse"></a>設定目的地，您的 SQL 資料倉儲
+## <a name="configure-hello-destination-your-sql-data-warehouse"></a>設定 hello 目的地，您的 SQL 資料倉儲
 
-現在，您需要提供目的地資訊給 Data Factory。
+現在您告訴 hello 目的地資訊 Data Factory。
 
-1. 您的 SQL 資料倉儲連接資訊會自動填入。 輸入使用者名稱的密碼。 然後按 [下一步]。
+1. 您的 SQL 資料倉儲連接資訊會自動填入。 輸入 hello 密碼 hello 使用者名稱。 然後按 [下一步]。
 
     ![設定目的地](media/sql-data-warehouse-load-with-data-factory/configure-destination.png)
 
-2. 出現智慧型資料表對應，它會根據資料表名稱將來源對應至目的地資料表。 如果資料表不存在於目的地，依預設，ADF 會建立一個同名的資料表 (這適用於以 SQL Server 或 Azure SQL 資料庫作為來源的情形)。 您也可以選擇對應至現有的資料表。 檢閱並按 [下一步]。
+2. 智慧型資料表對應會顯示對應來源 toodestination 資料表為基礎的資料表名稱。 如果 hello 資料表不存在於 hello 目的地中，依預設 ADF 會建立一個以 hello （這適用於 tooSQL 伺服器或 Azure SQL Database 當做來源） 相同的名稱。 您也可以選擇 toomap tooan 現有的資料表。 檢閱並按 [下一步]。
 
     ![對應資料表](media/sql-data-warehouse-load-with-data-factory/table-mapping.png)
 
-3. 檢閱結構描述對應，並尋找錯誤或警告訊息。 智慧型對應是根據資料行名稱。 如果在來源和目的地資料行之間有不支援的資料類型轉換，您會看到一則錯誤訊息與對應的資料表。 如果您選擇讓 Data Factory 自動建立資料表，則必要時會進行適當的資料類型轉換，以修正來源和目的地存放區之間的不相容性。
+3. 檢閱 hello 結構描述對應，並找出錯誤或警告訊息。 智慧型對應是根據資料行名稱。 如果沒有 hello 來源和目的地資料行之間的不支援的資料類型轉換，您會看到一則錯誤訊息一起 hello 對應資料表。 如果您選擇 toolet Data Factory 自動建立 hello 資料表，如果需要來源和目的地存放區之間 toofix hello 不相容，可能會發生適當的資料類型轉換。
 
     ![對應結構描述](media/sql-data-warehouse-load-with-data-factory/schema-mapping.png)
 
 4. 按一下 [下一步] 。
 
-## <a name="configure-the-performance-settings"></a>設定效能設定
-在 [效能] 設定中，您可以設定 Azure 儲存體帳戶，在資料載入至 SQL 資料倉儲之前用來暫存資料 (使用 [PolyBase](sql-data-warehouse-best-practices.md#use-polybase-to-load-and-export-data-quickly) 會有較高的效能)。 複製完成之後，將會自動清除儲存體中的暫時資料。
+## <a name="configure-hello-performance-settings"></a>設定 hello 效能設定
+您可以在 hello 效能組態中，設定用於暫存 hello 資料載入 SQL 資料倉儲 performantly 使用之前的 Azure 儲存體帳戶[PolyBase](sql-data-warehouse-best-practices.md#use-polybase-to-load-and-export-data-quickly)。 Hello 複製完成之後，儲存體中的 hello 暫時資料將會自動清除。
 
 選取現有的 Azure 儲存體帳戶，然後按一下 [下一步]。
 
 ![設定預備 blob](media/sql-data-warehouse-load-with-data-factory/configure-staging-blob.png)
 
-## <a name="review-summary-information-and-deploy-the-pipeline"></a>檢閱摘要資訊和部署管線
+## <a name="review-summary-information-and-deploy-hello-pipeline"></a>檢閱摘要資訊和部署 hello 管線
 
-檢閱設定，然後按一下 [完成] 按鈕部署管線。
+檢閱 hello 組態，然後按一下**完成**按鈕 toodeploy hello 管線。
 
 ![部署 Data Factory](media/sql-data-warehouse-load-with-data-factory/deploy-data-factory.png)
 
 ## <a name="monitor-data-loading-progress"></a>監視資料載入進度
 
-您可以在 [部署] 頁面查看部署進度和結果。
+您可以看到 hello 部署進度和結果在 hello**部署**頁面。
 
-1. 部署完成之後，按一下 [按一下這裡以監視複製管線] 連結，以監視資料載入進度。
+1. 一旦完成 hello 部署後，按一下 hello 連結**按一下這裡 toomonitor 複製管線**toomonitor 資料載入進度。
 
     ![監視管線](media/sql-data-warehouse-load-with-data-factory/monitor-pipeline.png)
 
-2. 自動會從左邊的 [資源總管] 選取新建立的 **DWLoadData fromSQLServer** 資料載入管線。
+2. 新建立的 hello **DWLoadData fromSQLServer**資料載入管線是自動選取從左側的 hello**資源總管**。
 
     ![檢視管線](media/sql-data-warehouse-load-with-data-factory/view-pipeline.png)
 
-3. 按一下中間窗格中的管線，以查看對應至活動之每個資料表的詳細狀態。
+3. 按一下至 hello 管線 hello 中間面板 toosee hello 詳細的每個資料表都會對應 tooan 活動的狀態。
 
     ![檢視資料表活動](media/sql-data-warehouse-load-with-data-factory/view-table-activity.png)
 
-4. 進一步按一下進入活動，您會在右窗格中看到資料載入詳細資料，包括資料大小、資料列、輸送量等。
+4. 進一步按到活動，而且您看見 hello 載入詳細資料，包括資料大小、 資料列、 輸送量等 hello 右面板中的資料。
 
     ![檢視資料表活動詳細資料](media/sql-data-warehouse-load-with-data-factory/view-table-activity-details.png)
 
-5. 若要啟動此更新，請移至您的 SQL 資料倉儲，按一下 [資料載入] > [Azure Data Factory]，選取您的 Factory，然後選擇 [監視現有的載入工作]。
+5. 此監視檢視更新，請移 tooyour SQL 資料倉儲中，按一下 toolaunch**載入資料 > Azure Data Factory**，選取您的 factory，然後選擇**監視現有載入工作**。
 
 ## <a name="next-steps"></a>後續步驟
 
-若要將資料庫移轉至 SQL 資料倉儲，請參閱[移轉概觀](sql-data-warehouse-overview-migrate.md)。
+toomigrate 您資料庫 tooSQL 資料倉儲時，請參閱[移轉概觀](sql-data-warehouse-overview-migrate.md)。
 
-若要深入了解 Azure Data Factory 和其資料移動功能，請參閱下列文章︰
+toolearn 深入了解 Azure Data Factory 和它的資料移動的功能，請參閱下列文章 hello:
 
-- [Azure Data Factory 簡介](../data-factory/data-factory-introduction.md)
+- [簡介 tooAzure Data Factory](../data-factory/data-factory-introduction.md)
 - [使用複製活動來移動資料](../data-factory/data-factory-data-movement-activities.md)
-- [使用 Azure Data Factory 從 Azure SQL 資料倉儲來回移動資料](../data-factory/data-factory-azure-sql-data-warehouse-connector.md)
+- [從 Azure SQL 資料倉儲使用 Azure Data Factory 中移動資料 tooand](../data-factory/data-factory-azure-sql-data-warehouse-connector.md)
 
-若要瀏覽 SQL 資料倉儲中的資料，請參閱下列文章︰
+tooexplore 資料在 SQL 資料倉儲中，請參閱下列文章 hello:
 
-- [使用 Visual Studio 和 SSDT 連接到 SQL 資料倉儲](sql-data-warehouse-query-visual-studio.md)
+- [與 Visual Studio 和 SSDT 連接 tooSQL 資料倉儲](sql-data-warehouse-query-visual-studio.md)
 - [採用 Power BI 的視覺化資料](sql-data-warehouse-get-started-visualize-with-power-bi.md)。
 
 <!-- Azure references -->

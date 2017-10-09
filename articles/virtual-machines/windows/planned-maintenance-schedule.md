@@ -1,6 +1,6 @@
 ---
-title: "如何為 Azure 中的 Windows VM 排定維護 | Microsoft Docs"
-description: "了解如何排定在 Azure VM 上的計劃性維護。"
+title: "適用於 Windows Vm 在 Azure 中的 aaaHow tooschedule 維護 |Microsoft 文件"
+description: "了解 tooschedule Azure Vm 上所規劃的維護。"
 services: virtual-machines-windows
 documentationcenter: 
 author: igalf
@@ -15,14 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/23/2017
 ms.author: igalf
-ms.openlocfilehash: 7c137d6709ec246fd93e70dd46eed78b4288d05a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: db8909239d7b6e4dcc58c229c0933c3d4ebd1233
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-schedule-planned-maintenance-on-azure-vms"></a>如何排定在 Azure VM 上的計劃性維護
+# <a name="how-tooschedule-planned-maintenance-on-azure-vms"></a>如何在 Azure Vm 上的計劃中維護 tooSchedule
 > [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需 Resource Manager 模型中計劃性維護的詳細資訊，請參閱[這裡](planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../resource-manager-deployment-model.md)。 本文件涵蓋使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。 Hello 資源管理員模型中的計劃性維護的相關資訊，請參閱[這裡](planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 [!INCLUDE [virtual-machines-common-planned-maintenance-schedule](../../../includes/virtual-machines-common-planned-maintenance-schedule.md)]

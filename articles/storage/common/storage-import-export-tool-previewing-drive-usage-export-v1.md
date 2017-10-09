@@ -1,6 +1,6 @@
 ---
-title: "預覽 Azure 匯入/匯出作業的磁碟機使用量 - v1 | Microsoft Docs"
-description: "了解如何預覽您已針對 Azure 匯入/匯出服務中的匯出作業選取的 blob 清單。"
+title: "Azure 匯入/匯出匯出工作-v1 aaaPreviewing 磁碟機使用量 |Microsoft 文件"
+description: "了解如何 toopreview hello 清單的 blob 您選取用於匯出工作 hello Azure 匯入/匯出服務中。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,39 +14,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 6ec74ae0b0931f3fed99a43f4f7e58f9d425b138
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7378c159f6d11702cda9ae7654e84d85f9b671b3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="previewing-drive-usage-for-an-export-job"></a>預覽匯出作業的磁碟機使用量
-建立匯出作業之前，您必須先選擇一組要匯出的 blob。 Microsoft Azure 匯入/匯出服務可讓您使用一份 blob 路徑或 blob 前置詞清單來代表您已選取的 blob。  
+建立匯出工作之前，您會需要的 toochoose blob toobe 一組匯出。 hello Microsoft Azure 匯入/匯出服務可讓您 toouse 一份 blob 路徑或 blob 前置詞 toorepresent hello blob，您已選取。  
   
-接著，必須判斷您需要傳送多少個磁碟機。 匯入/匯出工具提供的 `PreviewExport` 命令可根據您要使用的磁碟機大小，預覽所選取 Blob 的磁碟機使用量。
+接下來，您需要 toodetermine 多少磁碟機需要 toosend。 hello 匯入/匯出工具提供 hello`PreviewExport`選取命令 toopreview 磁碟機使用量。 hello blob 時，根據 hello hello 磁碟機大小要 toouse。
 
 ## <a name="command-line-parameters"></a>命令列參數
 
-使用匯入/匯出工具的 `PreviewExport` 命令時，您可以使用下列參數。
+您可以使用下列參數，當使用 hello hello `PreviewExport` hello 匯入/匯出工具的命令。
 
 |命令列參數|說明|  
 |--------------------------|-----------------|  
-|**/logdir:**<LogDirectory\>|選用。 記錄檔目錄。 詳細資訊記錄檔會寫入至這個目錄。 如未指定記錄檔目錄，則會使用目前的目錄做為記錄檔目錄。|  
-|**/sn:**<StorageAccountName\>|必要。 匯出作業的儲存體帳戶名稱。|  
-|**/sk:**<StorageAccountKey\>|如果未指定 (且只有在未指定) 容器 SAS 時，才是必要參數。 匯出作業之儲存體帳戶的帳戶金鑰。|  
-|**/csas:**<ContainerSas\>|如果未指定 (且只有在未指定) 儲存體帳戶金鑰時，才是必要參數。 容器 SAS，可供列出要在匯出作業中匯出的 blob。|  
-|**/ExportBlobListFile:**<ExportBlobListFile\>|必要。 XML 檔案的路徑，此檔案包含要匯出的 Blob 的Blob 路徑清單或 Blob 路徑前置詞。 匯入/匯出服務 REST API 的 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 作業中 `BlobListBlobPath` 元素中所使用的檔案格式。|  
-|**/DriveSize:**<DriveSize\>|必要。 要用於匯出作業的磁碟機大小，例如 500GB、1.5TB。|  
+|**/logdir:**<LogDirectory\>|選用。 hello 記錄檔目錄。 詳細資訊記錄檔會寫入 toothis 目錄。 如果未不指定任何記錄檔目錄，則 hello 目前的目錄會用作 hello 記錄檔目錄。|  
+|**/sn:**<StorageAccountName\>|必要。 hello 名稱 hello hello 儲存體帳戶匯出工作。|  
+|**/sk:**<StorageAccountKey\>|如果未指定 (且只有在未指定) 容器 SAS 時，才是必要參數。 hello hello hello 的儲存體帳戶的帳戶金鑰匯出工作。|  
+|**/csas:**<ContainerSas\>|如果未指定 (且只有在未指定) 儲存體帳戶金鑰時，才是必要參數。 用於列出 hello blob toobe hello 容器 SAS 匯出 hello 匯出工作。|  
+|**/ExportBlobListFile:**<ExportBlobListFile\>|必要。 路徑 toohello XML 檔案包含清單的 blob 路徑或 blob 路徑前置詞 hello blob toobe 匯出。 hello 檔案格式用於 hello `BlobListBlobPath` hello 中的項目[Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) hello 匯入/匯出服務 REST API 的作業。|  
+|**/DriveSize:**<DriveSize\>|必要。 hello 大小為匯出工作，如磁碟機 toouse*例如*，500GB、 1.5 t B。|  
 
 ## <a name="command-line-example"></a>命令列範例
 
-下列範例示範 `PreviewExport` 命令：  
+hello 下列範例會示範 hello`PreviewExport`命令：  
   
 ```  
 WAImportExport.exe PreviewExport /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /ExportBlobListFile:C:\WAImportExport\mybloblist.xml /DriveSize:500GB    
 ```  
   
-匯出 blob 清單檔案可能包含 blob 名稱和 blob 前置詞，如下所示︰  
+hello 匯出 blob 清單檔案可能包含 blob 名稱和 blob 前置詞，如下所示：  
   
 ```xml 
 <?xml version="1.0" encoding="utf-8"?>  
@@ -57,9 +57,9 @@ WAImportExport.exe PreviewExport /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTr
 </BlobList>  
 ```
 
-Azure 匯入/匯出工具會列出所有要匯出的 blob 並計算如何將它們封裝到指定大小的磁碟機，並考量任何必要的額外負荷，然後估計保留 blob 和磁碟機使用量資訊所需的磁碟機數目。  
+hello Azure 匯入/匯出工具會列出所有匯出的 blob toobe 和計算的 toopack hello 的磁碟機到指定大小，而不顧及任何必要的額外負荷，接著評估 hello 的磁碟機數目所需 toohold hello blob 和磁碟機使用情形資訊。  
   
-以下輸出範例，以中省略資訊記錄檔︰  
+Hello 輸出，以省略資訊的記錄檔的範例如下：  
   
 ```  
 Number of unique blob paths/prefixes:   3  

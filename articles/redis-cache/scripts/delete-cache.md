@@ -1,5 +1,5 @@
 ---
-title: "Azure CLI 指令碼範例 - 刪除 Azure Redis 快取 | Microsoft Docs"
+title: "CLI 指令碼範例-aaaAzure 刪除 Azure Redis 快取 |Microsoft 文件"
 description: "Azure CLI 指令碼範例 - 刪除 Azure Redis 快取"
 services: redis-cache
 documentationcenter: 
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 04/14/2017
 ms.author: sdanie
-ms.openlocfilehash: f959823b3a7c5b0262f693ecad1e6efc4eec4f35
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 788277f6464d40fedc597ce7f3041130312c07a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="delete-an-azure-redis-cache"></a>刪除 Azure Redis 快取
 
-在此案例中，您會了解如何刪除 Azure Redis 快取。
+在此案例中，您學會如何 toodelete Azure Redis 快取。
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-azurecli[主要](../../../cli_scripts/redis-cache/delete-cache/delete-cache.sh "Azure Redis 快取")]
+[!code-azurecli[main](../../../cli_scripts/redis-cache/delete-cache/delete-cache.sh "Azure Redis Cache")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/redis-cli-script-clean-up.md)]
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼會使用下列命令，刪除 Azure Redis 快取執行個體。 下表中的每個命令都會連結至命令特定的文件。
+此指令碼會使用下列命令 toodelete Azure Redis 快取執行個體的 hello。 Hello 資料表連結 toocommand 特定文件中的每個命令。
 
 | 命令 | 注意事項 |
 |---|---|
@@ -44,6 +44,6 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
+如需有關 Azure CLI hello 的詳細資訊，請參閱[Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。
 
-您可以在 [Azure Redis Cache 文件](../cli-samples.md)中找到其他 Azure Redis Cache CLI 指令碼範例。
+其他的 Azure Redis 快取 CLI 指令碼範例可以在 hello [Azure Redis 快取文件](../cli-samples.md)。

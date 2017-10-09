@@ -1,0 +1,2 @@
+> [!NOTE]
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../articles/azure-resource-manager/resource-manager-deployment-model.md)。 本文將說明如何使用這兩個模型，但 Microsoft 建議的最新的部署使用 hello 資源管理員的模型。

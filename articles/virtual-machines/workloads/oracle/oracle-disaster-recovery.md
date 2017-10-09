@@ -1,5 +1,5 @@
 ---
-title: "Azure 環境中的 Oracle 災害復原案例概觀 | Microsoft Docs"
+title: "Azure 環境中的 Oracle 嚴重損壞修復案例的 aaaOverview |Microsoft 文件"
 description: "Azure 環境中 Oracle Database 12c 資料庫的災害復原案例"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 6/2/2017
 ms.author: rclaus
-ms.openlocfilehash: f17ebb2b74cd7ad872f88483ed7cdb4f239ee069
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 1fa69e1ba044b46b27695fec92fd9ca82df796f7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="disaster-recovery-for-an-oracle-database-12c-database-in-an-azure-environment"></a>Azure 環境中 Oracle Database 12c 資料庫的災害復原
 
@@ -29,71 +29,71 @@ ms.lasthandoff: 08/18/2017
 
 
 ## <a name="goals"></a>目標
-- 設計符合您災害復原 (DR) 需求的拓撲和設定。
+- 設計 hello 拓撲和組態，您的需求災害復原 (DR)。
 
 ## <a name="scenario-1-primary-and-dr-sites-on-azure"></a>案例 1：Azure 上的主要和 DR 站台
 
-客戶將 Oracle 資料庫設定在主要站台上。 DR 站台位於不同的區域中。 客戶使用 Oracle Data Guard 在這些站台間快速地進行復原。 主要站台另外還擁有次要資料庫以供進行報告和其他用途。 
+客戶擁有 Oracle 資料庫設定 hello 主要站台上。 DR 站台位於不同的區域中。 hello 客戶可使用 Oracle 資料保護這些站台間快速復原。 hello 主要站台也會有次要資料庫以進行報告和其他用途。 
 
 ### <a name="topology"></a>拓撲
 
-以下是 Azure 設定的摘要：
+Hello Azure 安裝程式的摘要如下：
 
 - 兩個站台 (主要站台和 DR 站台)
 - 兩個虛擬網路
 - 兩個具有 Data Guard 的 Oracle 資料庫 (主要和待命)
 - 兩個具有 Golden Gate 或 Data Guard 的 Oracle 資料庫 (僅限主要站台)
-- 兩個應用程式服務，一個在主要站台上，一個在 DR 站台上
-- 一個可用性設定組，用於主要站台上的資料庫和應用程式服務
-- 每個站台上有一個 Jumpbox，其只能存取私人網路，並只允許系統管理員登入
+- 兩個應用程式服務，一個主要，一個 hello DR 網站上
+- *可用性設定組，*用 hello 主要站台上的資料庫和應用程式服務
+- 在每個站台，這會限制存取 toohello 私人網路，並只讓登入系統管理員一個 jumpbox
 - Jumpbox、應用程式服務、資料庫和 VPN 閘道位於不同的子網路
 - 對應用程式和資料庫子網路強制執行 NSG
 
-![DR 拓撲頁面的螢幕擷取畫面](./media/oracle-disaster-recovery/oracle_topology_01.png)
+![Hello DR 拓樸 頁面的螢幕擷取畫面](./media/oracle-disaster-recovery/oracle_topology_01.png)
 
 ## <a name="scenario-2-primary-site-on-premises-and-dr-site-on-azure"></a>案例 2：內部部署環境的主要站台和 Azure 上的 DR 站台
 
-客戶具有內部部署 Oracle 資料庫設定 (主要站台)。 DR 站台是在 Azure 上。 Oracle Data Guard 用於這些站台間的快速復原。 主要站台另外還擁有次要資料庫以供進行報告和其他用途。 
+客戶具有內部部署 Oracle 資料庫設定 (主要站台)。 DR 站台是在 Azure 上。 Oracle Data Guard 用於這些站台間的快速復原。 hello 主要站台也會有次要資料庫以進行報告和其他用途。 
 
 這項設定有兩種方法。
 
-### <a name="approach-1-direct-connections-between-on-premises-and-azure-requiring-open-tcp-ports-on-the-firewall"></a>方法 1：讓內部部署環境與 Azure 直接連線，此方法需要在防火牆上開啟 TCP 連接埠 
+### <a name="approach-1-direct-connections-between-on-premises-and-azure-requiring-open-tcp-ports-on-hello-firewall"></a>方法 1： 在內部部署與 Azure，需要 hello 防火牆上的開啟 TCP 連接埠之間的直接連接 
 
-不建議直接連線，因為這些連線會將 TCP 連接埠對外公開。
+我們不建議直接連接，因為其會公開外部 world hello TCP 連接埠 toohello。
 
 #### <a name="topology"></a>拓撲
 
-以下是 Azure 設定的摘要：
+以下是 hello Azure 安裝程式的摘要：
 
 - 一個 DR 站台 
 - 一個虛擬網路
 - 一個具有 Data Guard 的 Oracle 資料庫 (使用中)
-- DR 站台上的一個應用程式服務
-- 一個 Jumpbox，其只能存取私人網路，並只允許系統管理員登入
+- Hello DR 網站上的一個應用程式服務
+- 一個 jumpbox，這會限制存取 toohello 私人網路，並只讓登入系統管理員
 - Jumpbox、應用程式服務、資料庫和 VPN 閘道位於不同的子網路
 - 對應用程式和資料庫子網路強制執行 NSG
-- NSG 原則/規則，以允許輸入 TCP 連接埠 1521 (或使用者定義的連接埠)
-- NSG 原則/規則，以便限制只有內部部署 IP 位址 (DB 或應用程式) 可以存取虛擬網路
+- NSG 規則原則/tooallow 輸入 TCP 連接埠 1521年 （或使用者定義的連接埠）
+- NSG 規則原則/toorestrict 只有 hello IP 位址/位址在內部部署 （資料庫或應用程式） tooaccess hello 虛擬網路
 
-![DR 拓撲頁面的螢幕擷取畫面](./media/oracle-disaster-recovery/oracle_topology_02.png)
+![Hello DR 拓樸 頁面的螢幕擷取畫面](./media/oracle-disaster-recovery/oracle_topology_02.png)
 
 ### <a name="approach-2-site-to-site-vpn"></a>方法 2：站對站 VPN
 站對站 VPN 是更好的方法。 如需設定 VPN 的詳細資訊，請參閱[使用 CLI 建立具有站對站 VPN 連線的虛擬網路](https://docs.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli)。
 
 #### <a name="topology"></a>拓撲
 
-以下是 Azure 設定的摘要：
+以下是 hello Azure 安裝程式的摘要：
 
 - 一個 DR 站台 
 - 一個虛擬網路 
 - 一個具有 Data Guard 的 Oracle 資料庫 (使用中)
-- DR 站台上的一個應用程式服務
-- 一個 Jumpbox，其只能存取私人網路，並只允許系統管理員登入
+- Hello DR 網站上的一個應用程式服務
+- 一個 jumpbox，這會限制存取 toohello 私人網路，並只讓登入系統管理員
 - Jumpbox、應用程式服務、資料庫和 VPN 閘道位於不同的子網路
 - 對應用程式和資料庫子網路強制執行 NSG
 - 內部部署與 Azure 之間的站對站 VPN 連線
 
-![DR 拓撲頁面的螢幕擷取畫面](./media/oracle-disaster-recovery/oracle_topology_03.png)
+![Hello DR 拓樸 頁面的螢幕擷取畫面](./media/oracle-disaster-recovery/oracle_topology_03.png)
 
 ## <a name="additional-reading"></a>其他閱讀資料
 

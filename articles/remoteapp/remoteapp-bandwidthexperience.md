@@ -1,5 +1,5 @@
 ---
-title: "Azure RemoteApp - how do network bandwidth and quality of experience work together? (Azure RemoteApp - 如何兼顧網路頻寬和體驗品質？) | Microsoft Docs"
+title: "aaaAzure RemoteApp-如何網路頻寬和品質遇到工作一起？ | Microsoft Docs"
 description: "了解 Azure RemoteApp 中的網路頻寬如何影響您使用者的體驗品質。"
 services: remoteapp
 documentationcenter: 
@@ -13,28 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: 74116902e973fba440b3c662fdf76202d052b4c8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 62b0caadf63359eceb63d27fae6ad289b682ff63
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-remoteapp---how-do-network-bandwidth-and-quality-of-experience-work-together"></a>Azure RemoteApp - how do network bandwidth and quality of experience work together? (Azure RemoteApp - 如何兼顧網路頻寬和體驗品質？)
 > [!IMPORTANT]
-> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 讀取 hello[公告](https://go.microsoft.com/fwlink/?linkid=821148)如需詳細資訊。
 > 
 > 
 
-當您查看 Azure RemoteApp 所需的 [整體網路頻寬](remoteapp-bandwidth.md) 時，請記住下列因素；這些是影響整體使用者體驗之動態系統的所有部分。 
+當您查看 hello[整體網路頻寬](remoteapp-bandwidth.md)所需的 Azure RemoteApp，請考量下列因素的 hello-這些是所有系統一部分的動態影響 hello 整體的使用者經驗。 
 
-* **可用的網路頻寬和目前網路狀況** - 相同網路上特定時間的一組參數 (遺失、延遲、抖動) 可能會影響應用程式串流體驗，這表示會降低整體使用者體驗。 網路中的可用頻寬是壅塞、隨機遺失、延遲的功能，因為所有這些參數都會影響壅塞控制機制，進而控制傳輸速度來避免衝突。  例如，遺失的網路或具有高延遲的網路會造成較差的使用者體驗，甚至在具有 1000 MB 頻寬的網路上也是一樣。 遺失和延遲會根據相同網路上的使用者數目以及這些使用者的動作 (例如，觀賞影片、下載或上傳大型檔案、列印) 而不同。
-* **使用案例** - 體驗取決於使用者在相同網路上個人執行的動作以及以群組形式執行的動作。 例如，讀取一張投影片僅需要更新單一畫面格；如果使用者瀏覽並捲動文字文件的內容，則每秒需要更新較多的畫面格。 在此案例中，與伺服器之間的來回通訊最後會消耗更多的網路頻寬。 也請考量極端範例︰多位使用者觀賞高畫質影片 (例如 4K 解析度)、進行 HD 電話會議、玩 3D 視訊遊戲，或在 CAD 系統上工作。 所有這些動作甚至可能會讓真正高頻寬的網路無法使用。
-* **螢幕解析度和螢幕數目** - 完整更新較大的螢幕比更新較小的螢幕，需要較多的網路頻寬。 基礎技術善於編碼和僅傳輸已更新的螢幕區域，但偶而需要更新整個畫面螢幕。 使用者的螢幕解析度較高 (例如 4K 解析度) 時，該更新所需的網路頻寬會高於解析度低的螢幕 (如 1024x768px)。 如果您使用數個螢幕進行重新導向，則適用這個相同的邏輯。 頻寬需要隨著螢幕數目而增加。
-* **剪貼簿和裝置重新導向** - 這不是很明顯的問題，但在許多情況下，如果使用者將大量資料儲存至剪貼簿，則需要一些時間，將該資訊從遠端桌面用戶端傳送到伺服器。 在上游傳送剪貼簿內容的體驗可能會影響下游體驗。 這也適用於裝置重新導向 - 如果掃描器或網路攝影機產生很多需要往上游傳送到伺服器的資料、印表機需要接收大型文件，或本機存放區必須可供在雲端執行的應用程式複製大型檔案，則使用者可能會注意到畫面格減少或暫時「凍結」，因為裝置重新導向所需的資料會增加網路頻寬需求。 
+* **可用的網路頻寬和目前的網路狀況**-一組給定的時間相同網路的 hello 參數 （中斷、 延遲、 抖動） 可能會影響 hello 應用程式串流處理體驗，這就表示降低整體的使用者體驗。 網路中可用的 hello 頻寬是壅塞、 隨機遺失、 延遲的函式，因為所有這些參數會影響 hello 壅塞控制機制，而在開啟控制項 hello 傳輸速度 tooavoid 衝突。  例如，失真網路或高延遲網路將會 hello 使用者經驗錯誤甚至 1000MB 頻寬的網路。 hello 中斷和延遲隨著 hello hello 上的使用者數目相同的網路，以及這些使用者 （例如，觀賞影片、 下載或上傳大型檔案、 列印） 的執行。
+* **使用案例**-hello 體驗取決於哪些 hello 使用者做為個人和 hello 上的群組相同網路。 例如，讀取一張投影片需要只更新; 單一框架 toobe如果 hello 使用者 skims，並透過 hello 文字文件內容捲動，它們需要更新每秒畫面格數 toobe 較高的數目。 hello 回通訊，並制定 toohello 伺服器在此案例中最終會消耗更多的網路頻寬。 也請考量極端範例︰多位使用者觀賞高畫質影片 (例如 4K 解析度)、進行 HD 電話會議、玩 3D 視訊遊戲，或在 CAD 系統上工作。 所有這些動作甚至可能會讓真正高頻寬的網路無法使用。
+* **畫面上的螢幕解析度和 hello 數目**-較多的網路頻寬是必要的 toofull 更新大螢幕與較小的螢幕。 hello 基礎技術很好的編碼和傳輸的已更新的 hello 螢幕 hello 區域但 hello 整個螢幕的狀態，需要 toobe 更新。 當 hello 使用者具有更高解析度螢幕 （例如 4k 解決方式） 時，該更新會需要更多的網路頻寬，比 （例如 1024x768px) 的較低解析度螢幕。 如果您使用數個螢幕進行重新導向，則適用這個相同的邏輯。 頻寬必須 tooincrease 與 hello 畫面數目。
+* **剪貼簿和裝置的重新導向**-這是十分明顯的問題，但在許多情況下如果使用者儲存大量的資料 toohello 剪貼簿 中，會在一段時間的 hello 遠端桌面用戶端從該資訊 tootransfer toohello 伺服器。 hello 下游經驗可以受到 hello 體驗上游傳送嗨剪貼簿內容。 hello 同樣適用於裝置重新導向-如果掃描器或網路相機會產生大量資料，需要傳送 toobe toohello 上游伺服器，或在印表機需要 tooreceive 大型文件，或本機儲存體需要 hello 雲端 toocopy 中執行的 toobe 可用 tooan 應用程式大型的檔案，使用者可能會注意到畫面或暫時 「 凍結 」 視訊因為所需的 hello 裝置重新導向的 hello 資料增加 hello 網路頻寬需求。 
 
-當您評估網路頻寬需求時，請務必考慮將所有這些因素當成一個系統來運作。
+當您評估您的網路頻寬需求時，請確定 tooconsider 所有做為系統處理這些因素。
 
-現在，請回到[主要網路頻寬](remoteapp-bandwidth.md)一文，或繼續測試您的[網路頻寬](remoteapp-bandwidthtests.md)。
+現在，返回 toohello[主要的網路頻寬文章](remoteapp-bandwidth.md)，或移動 tootesting 上您[網路頻寬](remoteapp-bandwidthtests.md)。
 
 ## <a name="learn-more"></a>詳細資訊
 * [Estimate Azure RemoteApp network bandwidth usage (評估 Azure RemoteApp 網路頻寬使用量)](remoteapp-bandwidth.md)

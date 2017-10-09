@@ -1,6 +1,6 @@
 ---
-title: "使用 Microsoft PlayReady 或 Apple FairPlay 來保護 HLS 內容 | Microsoft Docs"
-description: "本主題提供概觀及顯示如何使用 Azure 媒體服務，以 Apple FairPlay 動態加密您的 HTTP 即時串流 (HLS) 內容。 它也會顯示如何使用媒體服務授權傳遞服務，傳遞 FairPlay 授權給用戶端。"
+title: "使用 Microsoft PlayReady 或 Apple FairPlay-Azure 的 aaaProtect HLS 內容 |Microsoft 文件"
+description: "本主題提供概觀，並顯示如何 toouse Azure Media Services toodynamically 加密 Apple FairPlay HTTP Live Streaming (HLS) 內容。 它也會示範如何 toouse hello Media Services 授權傳遞服務 toodeliver FairPlay 授權 tooclients。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,152 +14,152 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: juliako
-ms.openlocfilehash: 895d6307b1cef74e195cc2ffd8dbef4196e97b1f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 91ca451e3e7bf0da1d74dac4c99180f08f39e4ff
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="protect-your-hls-content-with-apple-fairplay-or-microsoft-playready"></a>使用 Apple FairPlay 或 Microsoft PlayReady 保護 HLS 內容
-Azure 媒體服務可讓您使用下列格式，動態加密您的 HTTP 即時串流 (HLS) 內容︰  
+Azure 媒體服務可讓您 toodynamically 加密使用下列格式的 hello HTTP Live Streaming (HLS) 的內容：  
 
 * **AES-128 信封清除金鑰**
 
-    使用 **AES-128 CBC** 模式加密整個區塊。 iOS 和 OS X 播放程式原本就支援資料流解密。 如需詳細資訊，請參閱[使用 AES-128 動態加密和金鑰傳遞服務](media-services-protect-with-aes128.md)。
+    hello 整個區塊會使用加密 hello **AES 128 CBC**模式。 hello 解密 hello 資料流的原生支援的 iOS 和 OS X 播放程式。 如需詳細資訊，請參閱[使用 AES-128 動態加密和金鑰傳遞服務](media-services-protect-with-aes128.md)。
 * **Apple FairPlay**
 
-    使用 **AES-128 CBC** 模式加密個別的視訊和音訊範例。 **FairPlay 串流** (FPS) 已整合至裝置工作系統，在 iOS 和 Apple 電視上具有原生支援。 OS X 上的 Safari 使用加密媒體擴充功能 (EME) 介面支援來啟用 FPS。
+    hello 個別的視訊和音訊範例使用加密的 hello **AES 128 CBC**模式。 **資料流 FairPlay** (FPS) 已整合至 hello 裝置作業系統，使用 iOS 和 Apple TV 的原生支援。 OS X 上的 safari 使用 hello 加密媒體擴充功能 (EME) 介面的支援，以啟用 FPS。
 * **Microsoft PlayReady (英文)**
 
-下圖顯示 **HLS + FairPlay 或 PlayReady 動態加密** 工作流程。
+hello 下列影像顯示 hello **HLS + FairPlay 或 PlayReady 動態加密**工作流程。
 
 ![動態加密工作流程的圖表](./media/media-services-content-protection-overview/media-services-content-protection-with-fairplay.png)
 
-本主題示範如何使用媒體服務，以 Apple FairPlay 動態加密 HLS 內容。 它也會顯示如何使用媒體服務授權傳遞服務，傳遞 FairPlay 授權給用戶端。
+本主題示範如何 toouse Media Services toodynamically 加密 Apple FairPlay HLS 內容。 它也會示範如何 toouse hello Media Services 授權傳遞服務 toodeliver FairPlay 授權 tooclients。
 
 > [!NOTE]
-> 如果您也想要以 PlayReady 加密 HLS 內容，必須建立一般內容金鑰，並將它與您的資產產生關聯。 您也必須設定內容金鑰的授權原則，如[使用 PlayReady 動態一般加密](media-services-protect-with-drm.md)中所述。
+> 如果您也想 tooencrypt HLS 以 PlayReady 內容，您會需要 toocreate 常見的內容金鑰，並將它與您的 asset 產生關聯。 您也需要 tooconfigure hello 內容金鑰授權原則，如中所述[使用 PlayReady 動態一般加密](media-services-protect-with-drm.md)。
 >
 >
 
 ## <a name="requirements-and-considerations"></a>需求和考量
 
-以下是使用媒體服務傳遞以 FairPlay 加密的 HLS，以及傳遞 FairPlay 授權時所需的項目：
+需要 hello 下列憑證具有 FairPlay，但 toodeliver FairPlay 授權使用 Media Services toodeliver 加密 HLS 時：
 
   * 一個 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)。
-  * 媒體服務帳戶。 若要建立一個，請參閱[使用 Azure 入口網站建立 Azure 媒體服務帳戶](media-services-portal-create-account.md)。
+  * 媒體服務帳戶。 toocreate 其中一個，請參閱[建立 Azure 媒體服務帳戶使用 Azure 入口網站 hello](media-services-portal-create-account.md)。
   * 註冊 [Apple Development Program](https://developer.apple.com/)。
-  * Apple 要求內容擁有者必須取得 [部署套件](https://developer.apple.com/contact/fps/)。 說明您已使用媒體服務實作金鑰安全性模組 (KSM)，現在想要求最終的 FPS 套件。 最終 FPS 套件包含相關指示，用以產生憑證和取得應用程式密碼金鑰 (ASK)。 您可使用 ASK 來設定 FairPlay。
+  * Apple 要求 hello 內容擁有者 tooobtain hello[部署套件](https://developer.apple.com/contact/fps/)。 您已實作金鑰安全性模組 (KSM) 使用媒體服務和要求 hello 最終的 FPS 封裝的狀態。 有的 hello 最終 FPS 封裝 toogenerate 憑證，並取得中指示 hello 應用程式密碼金鑰 （請要求）。 您使用詢問 tooconfigure FairPlay。
   * Azure 媒體服務 .NET SDK **3.6.0** 版或更新版本。
 
-必須在媒體服務金鑰傳遞端設定下列各項︰
+必須設定 Media Services 金鑰傳遞端 hello 下列事項：
 
-  * **應用程式憑證 (AC)**︰這是包含私密金鑰的 .pfx 檔案。 您可建立這個檔案並以密碼加密。
+  * **應用程式的憑證 (AC)**： 這是包含 hello 私密金鑰的.pfx 檔案。 您可建立這個檔案並以密碼加密。
 
-       當您設定金鑰傳遞原則時，您必須提供該密碼和 base64 格式的 .pfx 檔案。
+       當您設定的金鑰傳遞原則時，您必須提供該密碼和 hello.pfx 檔案，以 Base64 格式。
 
-      下列步驟說明如何產生 FairPlay 的 .pfx 憑證檔案：
+      hello 下列步驟說明如何 toogenerate.pfx 憑證檔 FairPlay:
 
     1. 從 https://slproweb.com/products/Win32OpenSSL.html 安裝 OpenSSL。
 
-        移至 FairPlay 憑證和其他 Apple 提供檔案所在的資料夾。
-    2. 從命令列執行下列命令。 這會將 .cer 檔案轉換成 .pem 檔案。
+        移 toohello 都 hello FairPlay 憑證和 Apple 所傳送的其他檔案的資料夾。
+    2. 執行 hello hello 命令列中的下列命令。 這會將轉換 hello.cer 檔案 tooa.pem 檔案。
 
         "C:\OpenSSL-Win32\bin\openssl.exe" x509 -inform der -in fairplay.cer -out fairplay-out.pem
-    3. 從命令列執行下列命令。 這會將 .pem 檔案轉換為包含私密金鑰的 .pfx 檔案。 OpenSSL 程式會接著要求 .Pfx 檔案的密碼。
+    3. 執行 hello hello 命令列中的下列命令。 這會將與 hello 私用的索引鍵轉換 hello.pem 檔案 tooa.pfx 檔案。 hello.pfx 檔案的 hello 密碼然後要求 OpenSSL 程式。
 
         "C:\OpenSSL-Win32\bin\openssl.exe" pkcs12 -export -out fairplay-out.pfx -inkey privatekey.pem -in fairplay-out.pem -passin file:privatekey-pem-pass.txt
-  * **應用程式憑證密碼** - 用來建立 .pfx 檔案的密碼。
-  * **應用程式憑證密碼識別碼**︰您必須上傳密碼，做法類似於其上傳其他媒體服務金鑰的方式。 使用 **ContentKeyType.FairPlayPfxPassword** 列舉值來取得媒體服務識別碼。 這是它們要在金鑰傳遞原則選項內使用所需之物。
-  * **iv**︰這是 16 位元組的隨機值。 其必須符合資產傳遞原則中的 iv。 您會產生 iv，並將它放在兩個位置︰資產傳遞原則和金鑰傳遞原則選項。
-  * **ASK**：當您使用 Apple 開發人員入口網站產生憑證時，會收到此金鑰。 每個開發小組都會收到一個唯一的 ASK。 儲存一份 ASK，並將它存放在安全的地方。 您之後必須將 ASK 設定為媒體服務的 FairPlayAsk。
-  *  **ASK 識別碼**︰當您將 ASK 上傳至媒體服務時，會取得這個識別碼。 您必須使用 **ContentKeyType.FairPlayAsk** 列舉值來上傳 ASK。 結果會傳回媒體服務識別碼，設定金鑰傳遞原則選項時應使用此識別碼。
+  * **應用程式憑證密碼**: hello 密碼建立 hello.pfx 檔案。
+  * **應用程式憑證的密碼識別碼**： 您必須上傳它們上傳其他媒體服務金鑰的類似 toohow hello 密碼。 使用 hello **ContentKeyType.FairPlayPfxPassword**列舉值 tooget hello Media Services 識別碼。 這是他們的需要 toouse 內 hello 金鑰傳遞原則選項。
+  * **iv**︰這是 16 位元組的隨機值。 它必須符合 iv hello hello 資產傳遞原則中。 您產生 hello iv，並將其放在這兩個地方： hello 資產傳遞原則和 hello 金鑰傳遞原則選項。
+  * **詢問**： 當您使用 hello Apple 開發人員入口網站產生 hello 憑證時收到此機碼。 每個開發小組都會收到一個唯一的 ASK。 儲存一份 hello 發問，並將它儲存在安全的地方。 您稍後會需要 tooconfigure 詢問為 FairPlayAsk tooMedia 服務。
+  *  **ASK 識別碼**︰當您將 ASK 上傳至媒體服務時，會取得這個識別碼。 您必須使用上傳詢問 hello **ContentKeyType.FairPlayAsk**列舉值。 因此 hello hello Media Services 識別碼傳回，而這是設定 hello 金鑰傳遞原則選項時應該使用什麼。
 
-FPS 用戶端必須設定下列各項︰
+hello 下列項目必須設定 hello FPS 用戶端：
 
-  * **應用程式憑證 (AC)**：這是 .cer/.der 檔案，其中包含作業系統用來加密某些承載的公開金鑰。 媒體服務必須了解它，因為播放程式需要它。 金鑰傳遞服務會使用對應的私密金鑰來解密。
+  * **應用程式的憑證 (AC)**： 這是包含 hello 公開金鑰，哪些 hello 作業系統使用 tooencrypt 某些裝載.cer/.der 檔案。 Media Services 需要資訊，請參閱 tooknow 因為 hello 播放程式需要它。 hello 金鑰傳遞服務會解密使用 hello 相對應的私密金鑰。
 
-若要播放 FairPlay 加密的資料流，請先取得真正的 ASK，然後產生真正的憑證。 該處理程序會建立所有 3 個部分︰
+tooplay 備份 FairPlay 加密的資料流、 取得實際詢問第一次，並接著產生實際的憑證。 該處理程序會建立所有 3 個部分︰
 
   * .der 檔案
   * .pfx 檔案
-  * .pfx 的密碼
+  * hello.pfx 的密碼
 
-下列用戶端支援採用 **AES-128 CBC** 加密的 HLS︰OS X 上的 Safari、Apple TV、iOS.
+hello 下列用戶端支援使用 HLS **AES 128 CBC**加密： OS X、 Apple TV iOS 上的 Safari。
 
 ## <a name="configure-fairplay-dynamic-encryption-and-license-delivery-services"></a>設定 FairPlay 動態加密和授權傳遞服務
-以下是使用媒體服務授權傳遞服務，以及使用動態加密時，透過 FairPlay 來保護資產的一般步驟。
+hello 以下是使用 hello Media Services 授權傳遞服務，以及使用動態加密保護 FairPlay 您資產的一般步驟。
 
-1. 建立資產，並將檔案上傳到資產。
-2. 將包含檔案的資產編碼為自適性位元速率 MP4 集。
-3. 建立內容金鑰並將它與編碼的資產產生關聯。  
-4. 設定內容金鑰的授權原則。 指定下列各項：
+1. 建立資產，並將檔案上傳到 hello 資產。
+2. Hello 資產編碼包含 hello 檔案 toohello 彈性位元速率 MP4 集。
+3. 建立內容金鑰，並將它與 hello 編碼資產產生關聯。  
+4. 設定 hello 內容金鑰授權原則。 指定 hello 下列：
 
-   * 傳遞方法 (在此例中為 FairPlay)。
-   * FairPlay 原則選項組態。 如需有關如何設定 FairPlay 的詳細資訊，請參閱下列範例中的 **ConfigureFairPlayPolicyOptions()** 方法。
+   * hello 傳遞方法 （在此情況下，FairPlay）。
+   * FairPlay 原則選項組態。 如需詳細資訊，如何 tooconfigure FairPlay，請參閱 hello **ConfigureFairPlayPolicyOptions()** hello 以下範例中的方法。
 
      > [!NOTE]
-     > 您通常只想要設定一次 FairPlay 原則選項，因為您只會有一組憑證和 ASK。
+     > 通常，您會想 tooconfigure FairPlay 原則選項一次，因為將只有一個憑證和詢問的集合。
      >
      >
    * 限制 (開放或權杖)。
-   * 金鑰傳遞類型的特定資訊，可定義如何將金鑰傳遞至用戶端。
-5. 設定資產傳遞原則。 傳遞原則組態包括︰
+   * 定義 hello 金鑰如何傳遞 toohello 用戶端資訊特定 toohello 金鑰傳遞類型。
+5. 設定 hello 資產傳遞原則。 hello 傳遞原則設定包括：
 
-   * 傳遞通訊協定 (HLS)。
-   * 動態加密類型 (一般 CBC 加密)。
-   * 授權取得 URL。
+   * hello 傳遞通訊協定 (HLS)。
+   * hello 動態加密 （一般 CBC 加密） 的類型。
+   * hello 授權取得 URL。
 
      > [!NOTE]
-     > 如果您想要傳遞使用 FairPlay 和另一個 Digital Rights Management (DRM) 系統加密的資料流，則必須設定個別的傳遞原則：
+     > 如果您想 toodeliver 加密 FairPlay 與另一個數位版權管理 (DRM) 系統的資料流時，您會有 tooconfigure 個別的傳遞原則：
      >
-     > * 一個 IAssetDeliveryPolicy 以設定使用一般加密 (CENC) (PlayReady + WideVine) 的 Dynamic Adaptive Streaming over HTTP (DASH)，以及使用 PlayReady 的 Smooth
-     > * 另一個 IAssetDeliveryPolicy 以設定 HLS 的 FairPlay
+     > * 一個 IAssetDeliveryPolicy tooconfigure over HTTP (DASH) 與 Common Encryption (CENC) （PlayReady + Widevine），並使用 PlayReady 的 Smooth 動態彈性資料流
+     > * 另一個 IAssetDeliveryPolicy tooconfigure FairPlay 的 HLS
      >
      >
-6. 建立隨選定位器以取得串流 URL。
+6. 建立 OnDemand 定位器 tooget 串流 URL。
 
 ## <a name="use-fairplay-key-delivery-by-player-apps"></a>透過播放程式應用程式使用 FairPlay 金鑰傳遞
-您可以使用 iOS SDK 開發播放應用程式。 為了能夠播放 FairPlay 內容，您必須實作授權交換通訊協定。 此通訊協定不是由 Apple 指定。 而是由每個應用程式如何傳送金鑰傳遞要求而決定。 媒體服務 FairPlay 金鑰傳遞服務會對即將到來的 SPC 視為如下列格式的 www-form-url 已編碼張貼訊息：
+您可以使用 hello iOS SDK 來開發播放器應用程式。 toobe 無法 tooplay FairPlay 內容，您必須 tooimplement hello 授權交換通訊協定。 此通訊協定不是由 Apple 指定。 是由 tooeach 應用程式如何 toosend 金鑰傳遞要求。 hello Media Services FairPlay 金鑰傳遞服務會預期 hello SPC toocome www-form-url 編碼的文章中的訊息，下列表單的 hello:
 
     spc=<Base64 encoded SPC>
 
 > [!NOTE]
-> Azure 媒體播放器不支援現成的 FairPlay 播放。 若要在 MAC OS X 上播放 FairPlay，請從 Apple 開發人員帳戶取得範例播放程式。
+> Azure Media Player 不支援 hello 現成的 FairPlay 播放。 在 MAC OS X 上，tooget FairPlay 播放從 hello Apple 開發人員帳戶取得 hello 範例播放程式。
 >
 >
 
 ## <a name="streaming-urls"></a>串流 URL
-如果使用一個以上 DRM 來加密您的資產，您應該使用串流 URL 中的加密標籤：(format='m3u8-aapl', encryption='xxx')。
+如果您的資產使用一個以上的 DRM 加密，您應該使用的加密標記 hello 串流 URL: (格式 ='m3u8-aapl' 加密 = 'xxx')。
 
-您必須考量下列事項：
+hello 下列考量適用於：
 
 * 僅可指定零個或一個加密類型。
-* 如果只有一個加密套用到資產，則無須在 URL 中指定加密類型。
-* 加密類型不區分大小寫。
-* 可以指定下列加密類型︰  
+* hello 加密類型沒有 toobe hello URL 中指定，如果只有一個加密已套用的 toohello 資產。
+* hello 加密類型為不區分大小寫。
+* 您可以指定下列加密類型的 hello:  
   * **cenc**︰一般加密 (PlayReady 或 Widevine)
   * **cbcs-aapl**：FairPlay
   * **cbc**：AES 信封加密
 
 ## <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
 
-1. 設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。 
-2. 將下列項目新增至 app.config 檔案中定義的 **appSettings**：
+1. 設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。 
+2. 新增下列項目太 hello**appSettings** app.config 檔案中所定義：
 
         <add key="Issuer" value="http://testacs.com"/>
         <add key="Audience" value="urn:test"/>
 
 ## <a name="example"></a>範例
 
-下列範例會示範如何使用媒體服務來傳遞使用 FairPlay 加密的內容。 Azure Media Services SDK for .NET 3.6.0 版已引進這項功能。 
+下列範例中的 hello 示範 hello 能力 toouse Media Services toodeliver FairPlay 以加密您的內容。 這項功能已引入 hello Azure Media Services SDK for.NET 版本 3.6.0。 
 
-以本章節中所顯示的程式碼覆寫 Program.cs 檔案中的程式碼。
+Hello 本節中所顯示的程式碼來覆寫您 Program.cs 檔案中的 hello 程式碼。
 
 >[!NOTE]
->對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
+>對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 您應該使用 hello 如果一律使用相同的原則識別碼 hello 相同天 / 存取權限，例如，原則會就地預定的 tooremain 長時間 （非上載原則） 的定位器。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 
-請務必更新變數，以指向您的輸入檔案所在的資料夾。
+請確定 tooupdate 變數 toopoint toofolders 輸入的檔案的所在位置。
 
     using System;
     using System.Collections.Generic;
@@ -178,7 +178,7 @@ FPS 用戶端必須設定下列各項︰
     {
         class Program
         {
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -215,7 +215,7 @@ FPS 用戶端必須設定下列各項︰
             Console.WriteLine("Encoded asset: {0}", encodedAsset.Id);
 
             IContentKey key = CreateCommonCBCTypeContentKey(encodedAsset);
-            Console.WriteLine("Created key {0} for the asset {1} ", key.Id, encodedAsset.Id);
+            Console.WriteLine("Created key {0} for hello asset {1} ", key.Id, encodedAsset.Id);
             Console.WriteLine("FairPlay License Key delivery URL: {0}", key.GetKeyDeliveryUrl(ContentKeyDeliveryType.FairPlay));
             Console.WriteLine();
 
@@ -238,13 +238,13 @@ FPS 用戶端必須設定下列各項︰
             TokenRestrictionTemplate tokenTemplate =
                 TokenRestrictionTemplateSerializer.Deserialize(tokenTemplateString);
 
-            // Generate a test token based on the the data in the given TokenRestrictionTemplate.
-            // Note, you need to pass the key id Guid because we specified
-            // TokenClaim.ContentKeyIdentifierClaim in during the creation of TokenRestrictionTemplate.
+            // Generate a test token based on hello hello data in hello given TokenRestrictionTemplate.
+            // Note, you need toopass hello key id Guid because we specified
+            // TokenClaim.ContentKeyIdentifierClaim in during hello creation of TokenRestrictionTemplate.
             Guid rawkey = EncryptionUtils.GetKeyIdAsGuid(key.Id);
             string testToken = TokenRestrictionTemplateSerializer.GenerateTestToken(tokenTemplate, null, rawkey,
                                         DateTime.UtcNow.AddDays(365));
-            Console.WriteLine("The authorization token is:\nBearer {0}", testToken);
+            Console.WriteLine("hello authorization token is:\nBearer {0}", testToken);
             Console.WriteLine();
             }
 
@@ -312,7 +312,7 @@ FPS 用戶端必須設定下列各項︰
                         "ContentKey",
                         ContentKeyType.CommonEncryptionCbcs);
 
-            // Associate the key with the asset.
+            // Associate hello key with hello asset.
             asset.ContentKeys.Add(key);
 
             return key;
@@ -352,7 +352,7 @@ FPS 用戶端必須設定下列各項︰
 
             contentKeyAuthorizationPolicy.Options.Add(FairPlayPolicy);
 
-            // Associate the content key authorization policy with the content key.
+            // Associate hello content key authorization policy with hello content key.
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
         }
@@ -388,7 +388,7 @@ FPS 用戶端必須設定下列各項︰
 
             contentKeyAuthorizationPolicy.Options.Add(FairPlayPolicy);
 
-            // Associate the content key authorization policy with the content key
+            // Associate hello content key authorization policy with hello content key
             contentKey.AuthorizationPolicyId = contentKeyAuthorizationPolicy.Id;
             contentKey = contentKey.UpdateAsync().Result;
 
@@ -397,20 +397,20 @@ FPS 用戶端必須設定下列各項︰
 
         private static string ConfigureFairPlayPolicyOptions()
         {
-            // For testing you can provide all zeroes for ASK bytes together with the cert from Apple FPS SDK.
-            // However, for production you must use a real ASK from Apple bound to a real prod certificate.
+            // For testing you can provide all zeroes for ASK bytes together with hello cert from Apple FPS SDK.
+            // However, for production you must use a real ASK from Apple bound tooa real prod certificate.
             byte[] askBytes = Guid.NewGuid().ToByteArray();
             var askId = Guid.NewGuid();
-            // Key delivery retrieves askKey by askId and uses this key to generate the response.
+            // Key delivery retrieves askKey by askId and uses this key toogenerate hello response.
             IContentKey askKey = _context.ContentKeys.Create(
                         askId,
                         askBytes,
                         "askKey",
                         ContentKeyType.FairPlayASk);
 
-            //Customer password for creating the .pfx file.
-            string pfxPassword = "<customer password for creating the .pfx file>";
-            // Key delivery retrieves pfxPasswordKey by pfxPasswordId and uses this key to generate the response.
+            //Customer password for creating hello .pfx file.
+            string pfxPassword = "<customer password for creating hello .pfx file>";
+            // Key delivery retrieves pfxPasswordKey by pfxPasswordId and uses this key toogenerate hello response.
             var pfxPasswordId = Guid.NewGuid();
             byte[] pfxPasswordBytes = System.Text.Encoding.UTF8.GetBytes(pfxPassword);
             IContentKey pfxPasswordKey = _context.ContentKeys.Create(
@@ -419,11 +419,11 @@ FPS 用戶端必須設定下列各項︰
                         "pfxPasswordKey",
                         ContentKeyType.FairPlayPfxPassword);
 
-            // iv - 16 bytes random value, must match the iv in the asset delivery policy.
+            // iv - 16 bytes random value, must match hello iv in hello asset delivery policy.
             byte[] iv = Guid.NewGuid().ToByteArray();
 
-            //Specify the .pfx file created by the customer.
-            var appCert = new X509Certificate2("path to the .pfx file created by the customer", pfxPassword, X509KeyStorageFlags.Exportable);
+            //Specify hello .pfx file created by hello customer.
+            var appCert = new X509Certificate2("path toohello .pfx file created by hello customer", pfxPassword, X509KeyStorageFlags.Exportable);
 
             string FairPlayConfiguration =
             Microsoft.WindowsAzure.MediaServices.Client.FairPlay.FairPlayConfiguration.CreateSerializedFairPlayOptionConfiguration(
@@ -457,12 +457,12 @@ FPS 用戶端必須設定下列各項︰
 
             FairPlayConfiguration configFP = JsonConvert.DeserializeObject<FairPlayConfiguration>(kdOption.KeyDeliveryConfiguration);
 
-            // Get the FairPlay license service URL.
+            // Get hello FairPlay license service URL.
             Uri acquisitionUrl = key.GetKeyDeliveryUrl(ContentKeyDeliveryType.FairPlay);
 
-            // The reason the below code replaces "https://" with "skd://" is because
-            // in the IOS player sample code which you obtained in Apple developer account,
-            // the player only recognizes a Key URL that starts with skd://.
+            // hello reason hello below code replaces "https://" with "skd://" is because
+            // in hello IOS player sample code which you obtained in Apple developer account,
+            // hello player only recognizes a Key URL that starts with skd://.
             // However, if you are using a customized player,
             // you can choose whatever protocol you want.
             // For example, "https".
@@ -480,22 +480,22 @@ FPS 用戶端必須設定下列各項︰
             AssetDeliveryProtocol.HLS,
             assetDeliveryPolicyConfiguration);
 
-            // Add AssetDelivery Policy to the asset
+            // Add AssetDelivery Policy toohello asset
             asset.DeliveryPolicies.Add(assetDeliveryPolicy);
 
         }
 
 
         /// <summary>
-        /// Gets the streaming origin locator.
+        /// Gets hello streaming origin locator.
         /// </summary>
         /// <param name="assets"></param>
         /// <returns></returns>
         static public string GetStreamingOriginLocator(IAsset asset)
         {
 
-            // Get a reference to the streaming manifest file from the  
-            // collection of files in the asset.
+            // Get a reference toohello streaming manifest file from hello  
+            // collection of files in hello asset.
 
             var assetFile = asset.AssetFiles.Where(f => f.Name.ToLower().
                          EndsWith(".ism")).
@@ -506,12 +506,12 @@ FPS 用戶端必須設定下列各項︰
             TimeSpan.FromDays(30),
             AccessPermissions.Read);
 
-            // Create a locator to the streaming content on an origin.
+            // Create a locator toohello streaming content on an origin.
             ILocator originLocator = _context.Locators.CreateLocator(LocatorType.OnDemandOrigin, asset,
             policy,
             DateTime.UtcNow.AddMinutes(-5));
 
-            // Create a URL to the manifest file.
+            // Create a URL toohello manifest file.
             return originLocator.Path + assetFile.Name;
         }
 

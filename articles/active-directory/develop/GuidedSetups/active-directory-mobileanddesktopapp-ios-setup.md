@@ -1,5 +1,5 @@
 ---
-title: "Azure AD v2 iOS 快速入門 - 設定 | Microsoft Docs"
+title: "aaaAzure AD v2 iOS 入門-安裝 |Microsoft 文件"
 description: "iOS (Swift) 應用程式如何呼叫需要來自 Azure Active Directory v2 端點之存取權杖的 API"
 services: active-directory
 documentationcenter: dev-center-name
@@ -13,37 +13,37 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
-ms.openlocfilehash: d25353a61b2a60bff28aa0679d38110e77d19e64
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 62c4ee9a2d4ccaec780bee09fb4bc34cff2eb6df
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 ## <a name="setting-up-your-ios-application"></a>設定您的 iOS 應用程式
 
-本節提供逐步指示，說明如何建立新的專案來示範整合 iOS 應用程式 (Swift) 與使用 Microsoft 登入，以便它可以查詢需要權杖的 Web API。
+本節提供有關如何逐步解說 toocreate 新的專案 toodemonstrate 如何 toointegrate iOS 應用程式 (Swift) 與*使用 Microsoft 登入*，它才能查詢要求權杖的 Web Api。
 
-> 想要改為下載此範例的 XCode 專案嗎？ [下載專案](https://github.com/Azure-Samples/active-directory-ios-swift-native-v2/archive/master.zip)並跳至[設定步驟](#create-an-application-express)，以在執行之前先設定程式碼範例。
+> 改為偏好 toodownload 這個範例的 XCode 專案嗎？ [下載專案](https://github.com/Azure-Samples/active-directory-ios-swift-native-v2/archive/master.zip)並略過 toohello[組態步驟](#create-an-application-express)tooconfigure hello 程式碼範例，然後再執行。
 
 
-## <a name="install-carthage-to-download-and-build-msal"></a>安裝 Carthage 以下載並建置 MSAL
-MSAL 預覽期間會使用 Carthage 套件管理員 – 與 XCode 整合，同時維持 Microsoft 對程式庫進行變更的能力。
+## <a name="install-carthage-toodownload-and-build-msal"></a>安裝迦太基 toodownload 及建立 MSAL
+迦太基封裝管理員會使用 hello 預覽期間的 MSAL – 與整合的 XCode 維持 hello Microsoft toomake 變更 toohello 文件庫的能力。
 
-- 在[這裡](https://github.com/Carthage/Carthage/releases "Carthage 下載 URL") 下載並安裝最新版的 Carthage
+- 下載並安裝新版迦太基 hello[這裡](https://github.com/Carthage/Carthage/releases "迦太基下載 URL")
 
 ## <a name="creating-your-application"></a>建立應用程式
 
 1.  開啟 Xcode 並選取 `Create a new Xcode project`
 2.  選取 `iOS`  >  `Single view Application`，然後按 [下一步]
 3.  提供產品名稱，然後按 [下一步]
-4.  選取用來建立應用程式的資料夾，然後按一下 [建立]
+4.  應用程式，並按一下 選取資料夾 toocreate*建立*
 
-## <a name="build-the-msal-framework"></a>建置 MSAL 架構
+## <a name="build-hello-msal-framework"></a>建置 hello MSAL 架構
 
-請遵循以下指示以使用 Carthage，提取然後建置最新版本的 MSAL 程式庫：
+請遵循以下 toopull hello 指示，然後再建置 hello 使用迦太基 MSAL 程式庫的最新版本：
 
-1.  開啟 bash 終端機並移至應用程式的根資料夾
-2.  複製下列項目並在 bash 終端機貼上，以建立 'Cartfile' 檔案：
+1.  開啟 hello bash 終端機，並移 toohello 應用程式的根資料夾
+2.  複製 hello 下及貼到 hello bash 終端機 toocreate 'Cartfile' 檔案：
 
 ```bash
 echo "github \"AzureAD/microsoft-authentication-library-for-objc\" \"master\"" > Cartfile
@@ -51,7 +51,7 @@ echo "github \"AzureAD/microsoft-authentication-library-for-objc\" \"master\"" >
 <!-- Workaround for Docs conversion bug -->
 <ol start="3">
 <li>
-複製並貼上下列項目。 此命令會將相依性擷取至 Carthage/Checkouts 資料夾，然後建置 MSAL 程式庫：
+複製並貼上下列 hello。 此命令至迦太基/簽出資料夾中，擷取相依性，然後建置 hello MSAL 程式庫：
 </li>
 </ol>
 
@@ -59,15 +59,15 @@ echo "github \"AzureAD/microsoft-authentication-library-for-objc\" \"master\"" >
 carthage update
 ```
 
-> 上述程序是用來下載並建置 Microsoft Authentication Library (MSAL)。 MSAL 會處理使用者權杖的取得、快取及重新整理作業，這些權杖是用來存取受 Azure Active Directory v2 保護的 API。
+> 使用的 toodownload 而建置 hello Microsoft 驗證程式庫 (MSAL) hello 上述的程序。 MSAL 處理取得，快取和重新整理使用者使用的語彙基元 tooaccess hello Azure Active Directory v2 所保護的應用程式開發介面。
 
-## <a name="add-the-msal-framework-to-your-application"></a>將 MSAL 架構新增至您的應用程式
-1.  在 Xcode 中，開啟 [`General`] 索引標籤
-2.  移至 [`Linked Frameworks and Libraries`] 區段，然後按一下 [`+`]
+## <a name="add-hello-msal-framework-tooyour-application"></a>新增 hello MSAL framework tooyour 應用程式
+1.  在 Xcode 中，開啟 [hello `General` ] 索引標籤
+2.  移 toohello`Linked Frameworks and Libraries`區段，然後按一下`+`
 3.  選取 `Add other…`
-4.  選取：`Carthage` > `Build` > `iOS` > `MSAL.framework`，然後按一下 [開啟]。 您應該會看到 `MSAL.framework` 新增至清單。
-5.  移至 [`Build Phases`] 索引標籤，然後按一下 [`+`] 圖示，選擇 [`New Run Script Phase`]
-6.  將下列內容新增至 [指令碼區域]：
+4.  選取：`Carthage` > `Build` > `iOS` > `MSAL.framework`，然後按一下 [開啟]。 您應該會看到`MSAL.framework`加入 toohello 清單。
+5.  跳過`Build Phases`索引標籤，然後按一下`+`圖示，選擇`New Run Script Phase`
+6.  新增下列內容 toohello hello*指令碼區域*:
 
 ```text
 /usr/local/bin/carthage copy-frameworks
@@ -76,7 +76,7 @@ carthage update
 <!-- Workaround for Docs conversion bug -->
 <ol start="7">
 <li>
-藉由按一下 [<code>+</code>]，將下列項目新增至 [<code>Input Files</code>]：
+Hello 太之後加入<code>Input Files</code>按一下<code>+</code>:
 </li>
 </ol>
 
@@ -85,10 +85,10 @@ $(SRCROOT)/Carthage/Build/iOS/MSAL.framework
 ```
 
 ## <a name="creating-your-applications-ui"></a>建立應用程式的 UI
-系統應會自動建立 Main.storyboard 檔案，作為專案範本的一部分。 請遵循下列指示以建立應用程式 UI：
+系統應會自動建立 Main.storyboard 檔案，作為專案範本的一部分。 請遵循下列 toocreate hello 應用程式 UI 的 hello 指示：
 
-1.  按住 Ctrl 鍵並按一下 `Main.storyboard` 以顯示內容功能表，然後按一下：`Open As` > `Source Code`
-2.  使用下列程式碼來取代 `<scenes>` 節點：
+1.  控制並按一下滑鼠左鍵`Main.storyboard`toobring 向上 hello 內容功能表，然後按一下：`Open As` > `Source Code`
+2.  取代 hello`<scenes>`節點與 hello 的下列程式碼：
 
 ```xml
  <scenes>

@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 上使用 T-SQL 和 Python 的 SQL 資料倉儲資料科學逐步解說 | Microsoft Docs"
-description: "舉例逐步解說如何使用 SQL 資料倉儲來執行預測性分析。"
+title: "aaaSQL 資料倉儲資料科學逐步解說在 Azure 上使用 T-SQL 和 Python |Microsoft 文件"
+description: "逐步解說 hello 的範例會使用 SQL 資料倉儲 toodo 的預測分析。"
 services: machine-learning
 documentationcenter: 
 author: bradsev
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: bradsev
-ms.openlocfilehash: 66eccbc038c704ba046ce1d24659dff067008102
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: ca9e8db0b68459236e2859935b8240c671418e08
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="sql-data-warehouse-data-science-walkthroughs-using-t-sql-and-python-on-azure"></a>在 Azure 上使用 T-SQL 和 Python 的 SQL 資料倉儲資料科學逐步解說
 
-這些逐步解說會使用 SQL 資料倉儲來執行預測性分析。 其遵循 Team Data Science Process 中所述的步驟。 如需 Team Data Science Process 的概觀，請參閱 [Data Science Process](data-science-process-overview.md)。 如需 SQL 資料倉儲的簡介，請參閱[什麼是 Azure SQL 資料倉儲？](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md)
+這些逐步解說會使用 SQL 資料倉儲 toodo 的預測分析。 它們遵循下列 hello hello 小組資料科學程序中所述的步驟。 如需 hello 小組資料科學程序的概觀，請參閱[資料科學程序](data-science-process-overview.md)。 如簡介 tooSQL 資料倉儲，請參閱[什麼是 Azure SQL 資料倉儲？](../sql-data-warehouse/sql-data-warehouse-overview-what-is.md)
 
-執行 Team Data Science Process 的其他資料科學逐步解說是依據它們使用的**平台**來歸納整理： 
+執行 hello 資料科學的小組流程的其他資料科學逐步解說會依照 hello**平台**它們使用： 
 
 [!INCLUDE [tdsp-walkthroughs-by-platform](../../includes/tdsp-walkthroughs-by-platform.md)]
 
 
 ## <a name="predict-taxi-tips-using-t-sql-and-ipython-notebooks-with-sql-data-warehouse"></a>使用 T-SQL 和 IPython 筆記本搭配 SQL 資料倉儲來預測計程車小費
 
-[使用 SQL 資料倉儲逐步解說](machine-learning-data-science-process-sqldw-walkthrough.md)會示範如何使用 SQL 資料倉儲 (SQL DW)，針對公開使用的 NYC 計程車車程和車資資料集建置和部署機器學習服務的分類和迴歸模型。
+hello[逐步解說中使用 SQL 資料倉儲](machine-learning-data-science-process-sqldw-walkthrough.md)為您示範如何 toobuild 部署機器學習分類和迴歸模型使用 SQL 資料倉儲 (SQL DW) 的公開可用 NYC 計程車行程及價位資料集。
 
 
 ## <a name="next-steps"></a>後續步驟
 
-如需組成 Team Data Science Process 之主要元件的討論，請參閱 [Team Data Science Process 概觀](data-science-process-overview.md)。
+Hello 主要元件組成 hello 資料科學的小組流程的討論，請參閱[小組資料科學程序概觀](data-science-process-overview.md)。
 
-如需您可以用來結構化資料科學專案之 Team Data Science Process 生命週期的討論，請參閱 [Team Data Science Process 生命週期](data-science-process-lifecycle.md)。 生命週期會概述專案在執行時通常會遵循之從開始到完成的步驟。 
+如需您可以使用 toostructure hello 小組資料科學程序生命週期的討論資料科學專案，請參閱[小組資料科學程序生命週期](data-science-process-lifecycle.md)。 hello 生命週期概述 hello 步驟，從開始 toofinish 專案通常會遵循在執行時。 

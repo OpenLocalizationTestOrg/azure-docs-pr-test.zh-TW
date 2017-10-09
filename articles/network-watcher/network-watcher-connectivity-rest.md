@@ -1,6 +1,6 @@
 ---
-title: "檢查與 Azure 網路監看員的連線 - Azure 入口網站 | Microsoft Docs"
-description: "此頁面說明如何在 Azure 入口網站中使用網路監看員來檢查連線能力"
+title: "與 Azure 網路監看員-Azure 入口網站的 aaaCheck 連線 |Microsoft 文件"
+description: "此頁面可讓您說明如何與網路監看員中 toocheck 連線 hello Azure 入口網站"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -13,13 +13,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/02/2017
 ms.author: gwallace
-ms.openlocfilehash: ca62bea581acb59d3c3c0b8a204cc9d42de2b27f
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8560011906fcce46d31556fc52cbfa671e8e653a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="check-connectivity-with-azure-network-watcher-using-the-azure-portal"></a>使用 Azure 入口網站檢查與 Azure 網路監看員的連線
+# <a name="check-connectivity-with-azure-network-watcher-using-hello-azure-portal"></a>請檢查與 Azure 網路監看員使用 hello Azure 入口網站的連線
 
 > [!div class="op_single_selector"]
 > - [入口網站](network-watcher-connectivity-portal.md)
@@ -27,41 +27,41 @@ ms.lasthandoff: 08/18/2017
 > - [CLI 2.0](network-watcher-connectivity-cli.md)
 > - [Azure REST API](network-watcher-connectivity-rest.md)
 
-了解如何使用連線，確認是否可以建立從虛擬機器到指定端點的直接 TCP 連線。
+了解可以如何建立 toouse 連線 tooverify 如果從虛擬機器 tooa 指定端點的直接 TCP 連接。
 
 ## <a name="before-you-begin"></a>開始之前
 
-本文假設您具有下列資源：
+本文假設您擁有 hello 下列資源：
 
-* 您想要檢查連線之區域中的網路監看員執行個體。
+* 執行個體要 toocheck 連線的網路監看員 hello 區域中。
 
-* 要檢查與其連線的虛擬機器。
+* 虛擬機器與 toocheck 連線。
 
-使用 ARMclient 透過 PowerShell 呼叫 REST API。 您可以在 chocolatey 的 [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) 上找到 ARMClient。
+ARMclient 是使用 PowerShell 的使用的 toocall hello REST API。 您可以在 chocolatey 的 [ARMClient on Chocolatey](https://chocolatey.org/packages/ARMClient) 上找到 ARMClient。
 
-此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。
+此案例假設您已依照中的 hello 步驟[建立網路監看員](network-watcher-create.md)toocreate 網路監看員。
 
 [!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 > [!IMPORTANT]
-> 連線檢查需要虛擬機器延伸模組 `AzureNetworkWatcherExtension`。 若要在 Windows VM 上安裝擴充功能，請瀏覽[適用於 Windows 的 Azure 網路監看員代理程式虛擬機器擴充功能](../virtual-machines/windows/extensions-nwa.md)，若要在 Linux VM 上安裝，則請瀏覽[適用於 Linux 的 Azure 網路監看員代理程式虛擬機器擴充功能](../virtual-machines/linux/extensions-nwa.md)。
+> 連線檢查需要虛擬機器延伸模組 `AzureNetworkWatcherExtension`。 Hello 擴充功能安裝在 Windows VM 上瀏覽[Azure 網路監看員的代理程式適用於 Windows 的虛擬機器擴充功能](../virtual-machines/windows/extensions-nwa.md)和如 Linux VM，請造訪[Azure 網路監看員的代理程式虛擬機器擴充功能，適用於 Linux](../virtual-machines/linux/extensions-nwa.md).
 
-## <a name="register-the-preview-capability"></a>註冊預覽功能
+## <a name="register-hello-preview-capability"></a>註冊 hello 預覽功能
 
-連線檢查目前為公開預覽版本，若要使用這項功能，必須先註冊它。 若要這麼做，請執行下列 PowerShell 範例：
+連線能力檢查目前處於公開預覽，toouse 需要 toobe 註冊這項功能。 toodo，執行下列 PowerShell 範例的 hello:
 
 ```powershell
 Register-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace Microsoft.Network
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
 ```
 
-若要確認註冊是否成功，請執行下列 Powershell 範例︰
+tooverify hello 登錄成功，執行下列 Powershell 範例 hello:
 
 ```powershell
 Get-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace  Microsoft.Network
 ```
 
-如果已正確註冊該功能，輸出應該會與以下相符︰
+如果 hello 功能已正確註冊，hello 輸出應符合下列 hello:
 
 ```
 FeatureName                             ProviderName      RegistrationState
@@ -71,7 +71,7 @@ AllowNetworkWatcherConnectivityCheck    Microsoft.Network Registered
 
 ## <a name="log-in-with-armclient"></a>使用 ARMClient 登入
 
-使用 Azure 認證登入 Armclient。
+登入 tooarmclient 與您的 Azure 認證。
 
 ```PowerShell
 armclient login
@@ -79,12 +79,12 @@ armclient login
 
 ## <a name="retrieve-a-virtual-machine"></a>擷取虛擬機器
 
-執行下列指令碼，以傳回虛擬機器。 執行連線時需要這項資訊。 
+執行下列指令碼 tooreturn hello 虛擬機器。 執行連線時需要這項資訊。 
 
-下列程式碼需要下列變數的值︰
+下列程式碼的 hello hello 下列變數需要值：
 
-- **subscriptionId** - 要使用的訂用帳戶識別碼。
-- **resourceGroupName** - 包含虛擬機器的資源群組名稱。
+- **subscriptionId** -hello 訂用帳戶 ID toouse。
+- **resourceGroupName** -hello 包含虛擬機器的資源群組的名稱。
 
 ```powershell
 $subscriptionId = '<subscription id>'
@@ -93,7 +93,7 @@ $resourceGroupName = '<resource group name>'
 armclient get https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Compute/virtualMachines?api-version=2015-05-01-preview
 ```
 
-從下列的輸出，會在下列範例中使用虛擬機器的識別碼︰
+從 hello 下列輸出，hello hello 虛擬機器識別碼 hello 下列範例中使用：
 
 ```json
 ...
@@ -108,9 +108,9 @@ armclient get https://management.azure.com/subscriptions/${subscriptionId}/Resou
 }
 ```
 
-## <a name="check-connectivity-to-a-virtual-machine"></a>檢查與虛擬機器的連線
+## <a name="check-connectivity-tooa-virtual-machine"></a>請檢查連線 tooa 虛擬機器
 
-這個範例會檢查透過連接埠 80 的目的地虛擬機器連線。
+這個範例會檢查透過連接埠 80 連線 tooa 目的地虛擬機器。
 
 ### <a name="example"></a>範例
 
@@ -137,11 +137,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-因為這項作業的執行時間很長，所以回應標頭中會傳回結果 URI，如下列回應所示：
+由於這項作業是長時間執行，hello hello 結果的 URI 會傳回 hello 回應標頭中下列回應 hello 中所示：
 
 **重要的值**
 
-* **Location** - 此屬性包含作業完成時結果所在的 URI
+* **位置**-這個屬性包含 hello hello 結果的所在當 hello 作業已完成的 URI
 
 ```
 HTTP/1.1 202 Accepted
@@ -162,7 +162,7 @@ null
 
 ### <a name="response"></a>Response
 
-下列回應是來自上一個範例。  在此回應中，`ConnectionStatus` 為 [無法連線]。 您可以看到傳送的所有探查都失敗。 因為名為 **UserRule_Port80** 的使用者設定 `NetworkSecurityRule` 設定成封鎖連接埠 80 的連入流量，所以虛擬設備的連線失敗。 這項資訊可以用來研究連線問題。
+下列回應 hello 取自 hello 前一個範例。  此回應 hello`ConnectionStatus`是**連線**。 您可以看到所有 hello 探查傳送失敗。 hello 連線無法在 hello 虛擬應用裝置使用者設定的到期 tooa`NetworkSecurityRule`名為**UserRule_Port80**，通訊埠 80 上設定 tooblock 連入流量。 這項資訊可以使用的 tooresearch 連線問題。
 
 ```json
 {
@@ -226,7 +226,7 @@ null
 
 ## <a name="validate-routing-issues"></a>驗證路由問題
 
-此範例會檢查虛擬機器與遠端端點之間的連線。
+hello 範例會檢查虛擬機器與遠端端點之間的連線。
 
 ### <a name="example"></a>範例
 
@@ -253,11 +253,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-因為這項作業的執行時間很長，所以回應標頭中會傳回結果 URI，如下列回應所示：
+由於這項作業是長時間執行，hello hello 結果的 URI 會傳回 hello 回應標頭中下列回應 hello 中所示：
 
 **重要的值**
 
-* **Location** - 此屬性包含作業完成時結果所在的 URI
+* **位置**-這個屬性包含 hello hello 結果的所在當 hello 作業已完成的 URI
 
 ```
 HTTP/1.1 202 Accepted
@@ -278,7 +278,7 @@ null
 
 ### <a name="response"></a>Response
 
-在下列範例中，`connectionStatus` 會顯示為 [無法連線]。 在 `hops` 詳細資料中，您可以在 `issues` 下看到已因 `UserDefinedRoute` 而封鎖流量。
+在下列範例的 hello，hello`connectionStatus`會顯示為**連線**。 在 hello`hops`詳細資料，您可以看到下`issues`hello 流量遭到封鎖到期 tooa `UserDefinedRoute`。
 
 ```json
 {
@@ -322,7 +322,7 @@ null
 
 ## <a name="check-website-latency"></a>檢查網站延遲
 
-下列範例會檢查網站連線。
+hello 下列範例會檢查 hello 連線 tooa 網站。
 
 ### <a name="example"></a>範例
 
@@ -349,11 +349,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-因為這項作業的執行時間很長，所以回應標頭中會傳回結果 URI，如下列回應所示：
+由於這項作業是長時間執行，hello hello 結果的 URI 會傳回 hello 回應標頭中下列回應 hello 中所示：
 
 **重要的值**
 
-* **Location** - 此屬性包含作業完成時結果所在的 URI
+* **位置**-這個屬性包含 hello hello 結果的所在當 hello 作業已完成的 URI
 
 ```
 HTTP/1.1 202 Accepted
@@ -374,7 +374,7 @@ null
 
 ### <a name="response"></a>Response
 
-在下列回應中，您可以看到 `connectionStatus` 顯示為 [可以連線]。 連線成功時，會提供延遲值。
+在下列回應 hello，您可以看到 hello`connectionStatus`顯示為**Reachable**。 連線成功時，會提供延遲值。
 
 ```json
 {
@@ -407,9 +407,9 @@ null
 }
 ```
 
-## <a name="check-connectivity-to-a-storage-endpoint"></a>檢查與儲存體端點的連線
+## <a name="check-connectivity-tooa-storage-endpoint"></a>請檢查連線 tooa 儲存體端點
 
-下列範例會檢查從虛擬機器到部落格儲存體帳戶的連線。
+hello 下列範例會檢查 hello 連線從虛擬機器 tooa 部落格儲存體帳戶。
 
 ### <a name="example"></a>範例
 
@@ -436,11 +436,11 @@ $requestBody = @"
 $response = armclient post "https://management.azure.com/subscriptions/${subscriptionId}/ResourceGroups/${resourceGroupName}/providers/Microsoft.Network/networkWatchers/${networkWatcherName}/connectivityCheck?api-version=2017-03-01" $requestBody
 ```
 
-因為這項作業的執行時間很長，所以回應標頭中會傳回結果 URI，如下列回應所示：
+由於這項作業是長時間執行，hello hello 結果的 URI 會傳回 hello 回應標頭中下列回應 hello 中所示：
 
 **重要的值**
 
-* **Location** - 此屬性包含作業完成時結果所在的 URI
+* **位置**-這個屬性包含 hello hello 結果的所在當 hello 作業已完成的 URI
 
 ```
 HTTP/1.1 202 Accepted
@@ -461,7 +461,7 @@ null
 
 ### <a name="response"></a>Response
 
-下列範例是執行前一個 API 呼叫的回應。 因為檢查成功，所以 `connectionStatus` 屬性會顯示為 [可以連線]。  系統會向您提供連線儲存體 Blob 和延遲所需躍點數目的詳細資料。
+hello 下列範例是 hello 回應 hello 先前的應用程式開發介面呼叫的執行。 如同 hello 檢查成功，hello`connectionStatus`屬性會顯示為**Reachable**。  為您提供有關 hello 數目躍點需要的 tooreach hello 儲存體 blob 和延遲的 hello 詳細資料。
 
 ```json
 {
@@ -496,7 +496,7 @@ null
 
 ## <a name="next-steps"></a>後續步驟
 
-檢視[建立由警示觸發的封包擷取](network-watcher-alert-triggered-packet-capture.md)來了解如何透過虛擬機器警示自動化封包擷取
+了解如何 tooautomate 封包擷取虛擬機器警示藉由檢視[建立警示觸發的封包擷取](network-watcher-alert-triggered-packet-capture.md)
 
 造訪[檢查 IP 流量驗證](network-watcher-check-ip-flow-verify-portal.md)來得知 VM 是否允許特定流量流入或流出
 

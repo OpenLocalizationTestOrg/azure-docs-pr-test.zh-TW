@@ -1,6 +1,6 @@
 ---
-title: "Azure 搜尋服務的 API 版本 | Microsoft Docs"
-description: "Azure 搜尋服務 REST API 與 .NET SDK 中用戶端程式庫的版本原則。"
+title: "aaaAPI 版本的 Azure 搜尋 |Microsoft 文件"
+description: "Azure 搜尋 REST Api 和 hello 的用戶端程式庫中 hello.NET SDK 版本原則。"
 services: search
 documentationcenter: 
 author: brjohnstmsft
@@ -14,24 +14,24 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 01/11/2017
 ms.author: brjohnst
-ms.openlocfilehash: a14131455ad94cbc4b729077568b12043401c08e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 4fa722fad5577c6b254be7fa673eb240fff316a2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="api-versions-in-azure-search"></a>Azure 搜尋服務中的 API 版本
-「Azure 搜尋服務」會定期推出功能更新。 有時候 (但並不一定)，這些更新會需要我們發佈新版本的 API，以保留回溯相容性。 發行新版本可讓您控制在程式碼中整合搜尋服務更新的時機與方式。
+「Azure 搜尋服務」會定期推出功能更新。 有時候，但不是一定這些更新會需要我們 toopublish 我們 API toopreserve 回溯相容性的新版本。 發行新版本可讓您 toocontrol 何時及如何整合您的程式碼中搜尋服務更新。
 
-因此，我們嘗試只在必要時發佈新版本，因為這牽涉到需要花費一些心力升級您的程式碼以使用新的 API 版本。 只有在我們需要以破壞回溯相容性的方式變更 API 的某些層面時，才會發佈新版本。 在修正現有的功能，或新功能會變更現有 API 的介面區時，我們就會這樣做。
+規則，我們嘗試 toopublish 新版本才有必要，因為它可能涉及一些努力 tooupgrade 您程式碼 toouse 新 API 版本。 如果我們需要 toochange hello API 回溯相容性方式中的某些層面，我們只會發行新版本。 因為修正 tooexisting 功能，或因為變更現有應用程式開發介面的介面區的新功能，就可能發生此情況。
 
-對於 SDK 更新，我們遵循相同的規則。 Azure 搜尋服務 SDK 會遵循 [semantic versioning (語意化版本控制系統)](http://semver.org/) 規則，這代表其版本具有三個部分：主要、次要和組建編號 (例如 1.1.0)。 只有在變更會破壞回溯相容性時，我們才會發行新的主要版本 SDK。 如果是非重大功能更新，我們將會遞增次要版本，而針對錯誤修正，我們只會遞增組建版本。
+我們會遵循相同的 SDK 更新規則的 hello。 hello Azure 搜尋 SDK 遵循 hello[語意版本設定](http://semver.org/)規則，這表示它的版本有三個部分： 主要和次要、 組建編號 (例如，1.1.0)。 我們將會發行新的主要版本的 hello SDK 只在發生中斷回溯相容性的變更。 非中斷功能更新，我們會增加 hello 次要版本，對於 bug 修正我們只會增加 hello 組建版本。
 
 > [!NOTE]
-> 您的「Azure 搜尋服務」執行個體支援數個 REST API 版本，包括最新版本。 當一個版本不再是最新版本時，您仍可繼續使用該版本，但建議您將程式碼移轉成使用最新版本。 使用 REST API 時，您必須每個要求中透過 api-version 參數指定 API 版本。 使用 .NET SDK 時，您使用的 SDK 版本會決定對應的 REST API 版本。 如果您使用的是舊版 SDK，則即使服務已升級成支援新版 API 版本，您仍可繼續執行該程式碼而無須變更。
+> 您的 Azure 搜尋服務執行個體支援多個 REST API 版本，包括 hello 最新版本。 您可以繼續 toouse 版本時，它不會再 hello 最新的其中一個，但我們建議您移轉您的程式碼 toouse hello 最新版本。 當使用 hello REST API，您必須指定 hello API 版本 hello api-version 參數透過每個要求中。 當使用 hello.NET SDK，hello 您所使用的 SDK hello 版本會決定 hello 對應 hello REST API 的版本。 如果您使用較舊的 SDK，您可以繼續 toorun 未變更該程式碼即使 hello 服務升級的 toosupport 較新的 API 版本。
 
 ## <a name="snapshot-of-current-versions"></a>目前版本的快照
-以下是 Azure 搜尋服務所有程式設計介面目前版本的快照。
+以下是目前版本的所有程式設計介面 tooAzure 搜尋 hello 的快照集。
 
 | 介面 | 最新主要版本 | 狀態 |
 | --- | --- | --- |
@@ -42,24 +42,24 @@ ms.lasthandoff: 07/11/2017
 | [.NET 管理 SDK](https://aka.ms/search-mgmt-sdk) |2015-08-19 |正式推出 |
 | [管理 REST API](https://docs.microsoft.com/rest/api/searchmanagement/) |2015-08-19 |正式推出 |
 
-針對 REST API，必須在每個呼叫中納入 `api-version` 。 這會使將特定版本 (例如預覽 API) 做為目標較為容易。 下列範例說明如何指定 `api-version` 參數：
+Hello REST Api，包括 hello`api-version`每次呼叫是必要。 這使得輕鬆 tootarget 特定版本，例如預覽應用程式開發介面。 hello 下列範例說明如何 hello`api-version`參數會指定：
 
     GET https://adventure-works.search.windows.net/indexes/bikes?api-version=2016-09-01
 
 > [!NOTE]
-> 雖然每個要求都具有 `api-version`，我們仍建議您針對所有的 API 要求使用相同的版本。 特別是當新的 API 版本引入舊版本無法辨識的屬性或作業時更建議您這樣做。 混合的 API 版本可能會有非預期的結果，應該予以避免。
+> 雖然每個要求都有`api-version`，我們建議您改用 hello 相同版本的所有 API 要求。 特別是當新的 API 版本引入舊版本無法辨識的屬性或作業時更建議您這樣做。 混合的 API 版本可能會有非預期的結果，應該予以避免。
 >
-> 服務 REST API 和管理 REST API 的版本是彼此獨立的。 版本號碼如有類似，純屬巧合。
+> hello 服務 REST API 和管理 REST API 會各自的版本。 版本號碼如有類似，純屬巧合。
 
-正式推出 (或 GA) 的 API 可以用於實際執行，並且受到 Azure 服務等級協定所約束。 預覽版本具有實驗性功能，那些功能並不會都移轉到 GA 版本上。 **我們強烈建議您避免在實際執行的應用程式中使用預覽 API。**
+正式推出 （或 GA） Api 可以用在生產環境中，而且是主體 tooAzure 服務等級協定。 預覽版本具有不一定已移轉的 tooa GA 版本的實驗性功能。 **我們強烈建議您避免在實際執行的應用程式中使用預覽 API。**
 
 ## <a name="about-preview-and-generally-available-versions"></a>關於預覽與正式推出版本
-Azure 搜尋服務一律會先透過 REST API 預先推出實驗性功能，然後再透過 .NET SDK 的發行前版本推出。
+Azure 搜尋一律預先釋放透過 hello REST API 的實驗性功能第一次，然後透過 hello.NET SDK 的發行前版本。
 
-預覽功能不保證會移轉到 GA 版本。 相對於 GA 版本中的功能被視為穩定功能，且除了小型的回溯相容性修正與增強之外不太會變更，預覽功能是供用於測試和實驗，以期收集功能設計與實作的意見反應。
+預覽功能並不保證 toobe 移轉 tooa GA 版本。 在 GA 版本中的功能會被視為穩定，而且不像是 toochange hello 例外狀況的小型的回溯相容性修正和增強功能，而預覽功能可供測試和實驗，以收集意見反應 hello 目標功能設計和實作。
 
-不過，因為預覽功能均有可能變更，所以我們建議避免撰寫依存於預覽版本的實際程式碼。 如果您正在使用舊版預覽版本，建議您移轉到正式推出的 (GA) 版本。
+不過，由於主旨 toochange 是預覽功能，我們建議您不要撰寫相依性，不需要預覽版本的實際執行程式碼。 如果您使用較舊的預覽版本，我們建議您移轉 toohello 上市 (GA) 版本。
 
-如需程式碼移轉的 .NET SDK：指南，請參閱 [升級 .NET SDK](search-dotnet-sdk-migration.md)。
+Hello.NET SDK： 進行程式碼移轉的指引，請參閱[升級 hello.NET SDK](search-dotnet-sdk-migration.md)。
 
-正式推出意指 Azure 搜尋服務已受到服務等級協定 (SLA) 約束。 SLA 可以在 [Azure 搜尋服務等級協定](https://azure.microsoft.com/support/legal/sla/search/v1_0/)中找到。
+一般可用性意指 Azure 搜尋現在低於 hello 服務等級協定 (SLA)。 hello SLA，請參閱[Azure 搜尋服務等級協定](https://azure.microsoft.com/support/legal/sla/search/v1_0/)。

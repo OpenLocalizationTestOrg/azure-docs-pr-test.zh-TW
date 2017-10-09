@@ -1,6 +1,6 @@
 ---
-title: "如何管理 Azure 入口網站的 Azure 檔案儲存體 | Microsoft Docs"
-description: "了解使用 Azure 入口網站來管理 Azure 檔案儲存體。"
+title: "aaaHow toomanage 從 hello Azure 入口網站的 Azure 檔案儲存體 |Microsoft 文件"
+description: "了解 toouse hello Azure 入口網站 toomanage Azure 檔案儲存體。"
 services: storage
 documentationcenter: 
 author: RenaShahMSFT
@@ -14,62 +14,62 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 05/27/2017
 ms.author: renash
-ms.openlocfilehash: d8ffb4359b0efe8da2f3bccb81c987bdeedf1a39
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 385b99ac1c3d97ca79059ae8229afb53f1e825cf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-file-storage-from-the-azure-portal"></a>如何使用 Azure 入口網站的 Azure 檔案儲存體
-[Azure 入口網站](https://portal.azure.com)提供可管理 Azure 檔案儲存體的使用者介面。 您可以從網路瀏覽器執行下列動作：
+# <a name="how-toouse-azure-file-storage-from-hello-azure-portal"></a>如何從 toouse Azure 檔案儲存體 hello Azure 入口網站
+hello [Azure 入口網站](https://portal.azure.com)管理 Azure 檔案儲存體提供使用者介面。 您可以執行下列動作，從您網頁瀏覽器的 hello:
 
 * 建立檔案共用
-* 上傳檔案至檔案共用以及從檔案共用下載檔案。
-* 監視每個檔案共用的實際使用狀況。
-* 調整檔案室共用大小配額。
-* 複製並使用掛接命令以從 Windows 或 Linux 用戶端掛接檔案共用。
+* 上傳和下載檔案 tooand 從檔案共用。
+* 監視 hello 實際使用量的每個檔案共用。
+* 調整 hello 檔案共用大小配額。
+* 複製 Windows 或 Linux 的用戶端 hello 掛接命令 toouse toomount 您的檔案共用。
 
 ## <a name="create-file-share"></a>建立檔案共用
-1. 登入 Azure 入口網站。
-2. 在導覽功能表中，按一下 [儲存體帳戶] 或 [儲存體帳戶 (傳統)]。
+1. 登入 toohello Azure 入口網站。
+2. Hello 導覽功能表上，按一下**儲存體帳戶**或**儲存體帳戶 （傳統）**。
     
-    ![示範如何在入口網站中建立檔案共用的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-create-file-share1.png)
+    ![示範如何 toocreate 檔案共用 hello 入口網站中的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-create-file-share1.png)
 
 3. 選擇儲存體帳戶
 
-    ![示範如何在入口網站中建立檔案共用的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-create-file-share2.png)
+    ![示範如何 toocreate 檔案共用 hello 入口網站中的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-create-file-share2.png)
 
 4. 選擇「檔案」服務。
 
-    ![示範如何在入口網站中建立檔案共用的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-create-file-share3.png)
+    ![示範如何 toocreate 檔案共用 hello 入口網站中的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-create-file-share3.png)
 
-5. 按一下 [檔案共用] 並依連結建立您的第一個檔案共用。
+5. 按一下 [檔案共用]，並遵循 hello 連結 toocreate 第一個檔案共用。
 
-    ![示範如何在入口網站中建立檔案共用的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-create-file-share4.png)
+    ![示範如何 toocreate 檔案共用 hello 入口網站中的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-create-file-share4.png)
 
-6. 填寫檔案共用名稱和檔案共用大小 (最多 5120 GB)，以建立第一個檔案共用。 建立檔案共用之後，您可以從任何支援 SMB 2.1 或 SMB 3.0 的檔案系統掛接此共用。 您可以按一下檔案共用上的 [配額]  以變更檔案大小 (最多 5120 GB)。 請參閱 [Azure 價格計算機](https://azure.microsoft.com/pricing/calculator/)來估計使用 Azure 檔案儲存體的儲存體成本。
+6. 填入您的第一個檔案共用 hello 檔案共用名稱與 hello 檔案共用 （向上 too5120 GB) toocreate hello 大小。 一旦建立 hello 檔案共用之後，您可以從任何支援 SMB 2.1 或 SMB 3.0 的檔案系統掛接它。 您可以按一下**配額**hello 檔案共用 toochange hello 大小 hello 向上 too5120 GB 的檔案。 請參閱太[Azure 定價計算機](https://azure.microsoft.com/pricing/calculator/)使用 Azure 檔案儲存體的 tooestimate hello 儲存體成本。
 
-    ![示範如何在入口網站中建立檔案共用的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-create-file-share5.png)
+    ![示範如何 toocreate 檔案共用 hello 入口網站中的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-create-file-share5.png)
 
 ## <a name="upload-and-download-files"></a>上傳及下載檔案
 1. 選擇一個您已建立的檔案共用。
 
-    ![示範如何從入口網站上傳和下載檔案](media/storage-file-how-to-use-files-portal/use-files-portal-upload-file1.png)
+    ![示範如何從 tooupload 和下載檔案 hello 入口網站的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-upload-file1.png)
 
-2. 按一下 [上傳]  以開啟使用者介面以進行檔案上傳。
+2. 按一下**上傳**開啟檔案上傳的 hello 使用者介面。
 
-    ![示範如何從入口網站上傳檔案](media/storage-file-how-to-use-files-portal/use-files-portal-upload-file2.png)
+    ![示範如何 tooupload 檔案從 hello 入口網站的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-upload-file2.png)
 
-## <a name="connect-to-file-share"></a>連線至檔案共用
--  按一下 [連線] 以取得從 Windows 和 Linux 掛接檔案共用的命令列。 針對 Linux 使用者，您也可以參閱[如何搭配使用 Azure 檔案儲存體與 Linux](storage-how-to-use-files-linux.md)取得更多 Linux 散發套件的掛接指示。
+## <a name="connect-toofile-share"></a>連接 toofile 共用
+-  按一下**連接**取得掛接 hello 檔案共用中的 hello 命令列，從 Windows 和 Linux。 針對 Linux 使用者，您也可以使用參照太[如何 toouse Linux 的 Azure 檔案儲存體](storage-how-to-use-files-linux.md)針對其他 Linux 散發套件的其他掛接指示。
 
-    ![示範如何掛接檔案共用的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-connect.png)
--  您可以在 Windows 或 Linux 上複製掛接檔案共用的命令，並從您的 Azure VM 或內部部署機器執行。
+    ![示範如何 toomount hello 檔案共用的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-connect.png)
+-  您可以複製的 hello 掛接檔案的命令在 Windows 或 Linux 上共用，並且執行您的 Azure VM 中或在內部部署機器。
 
-    ![顯示適用於 Windows 和 Linux 掛接命令的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-show-mount-commands.png)
+    ![適用於 Windows 和 Linux 顯示 hello 掛接命令的螢幕擷取畫面](media/storage-file-how-to-use-files-portal/use-files-portal-show-mount-commands.png)
 
 **秘訣：**  
-要尋找掛接的儲存體帳戶存取金鑰，按一下連線頁面底部的 [檢視此儲存體帳戶的存取金鑰]。
+按一下 toofind hello 儲存體帳戶存取金鑰裝載、**檢視存取這個儲存體帳戶金鑰**底部 hello hello 連接頁面。
 
 ## <a name="see-also"></a>另請參閱
 請參閱這些連結以取得 Azure 檔案儲存體的相關詳細資訊。

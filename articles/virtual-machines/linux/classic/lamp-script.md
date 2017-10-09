@@ -1,6 +1,6 @@
 ---
-title: "在 Linux VM 上使用 CustomScript 擴充功能 | Microsoft Docs"
-description: "了解如何使用 CustomScript 擴充功能，在 Azure 中以傳統部署模型所建立的 Linux 虛擬機器上部署應用程式。"
+title: "aaaUse hello CustomScript 延伸模組，Linux VM 上 |Microsoft 文件"
+description: "了解 toouse hello CustomScript 延伸模組 toodeploy 應用程式在 Azure 中 Linux 虛擬機器建立使用 hello 傳統部署模型的方式。"
 editor: tysonn
 manager: timlt
 documentationcenter: 
@@ -15,38 +15,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/01/2017
 ms.author: guybo
-ms.openlocfilehash: cb1fc9a44dc9e57d9cc9f1c546ad937d67e63c2f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 864a586e70093eefbabc065a3c05e1cf9e315704
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="deploy-a-lamp-app-using-the-azure-customscript-extension-for-linux"></a>使用適用於 Linux 的 Azure CustomScript 延伸模組部署 LAMP 應用程式
+# <a name="deploy-a-lamp-app-using-hello-azure-customscript-extension-for-linux"></a>部署使用適用於 Linux 的 hello Azure CustomScript 延伸模組的燈應用程式
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需使用 Resource Manager 模型部署 LAMP 堆疊的詳細資訊，請參閱[這裡](../tutorial-lamp-stack.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文件涵蓋使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。 如需部署使用 hello 資源管理員模型 LAMP 堆疊的相關資訊，請參閱[這裡](../tutorial-lamp-stack.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 
-適用於 Linux 的 Microsoft Azure CustomScript 延伸模組提供一種方式，讓您可以執行使用該虛擬機器 (VM) 所支援的任何指令碼語言 (例如 Python 和 Bash) 所撰寫的任意程式碼來自訂 VM。 這提供極具彈性的方式，自動將應用程式部署到多部電腦。
+hello 適用於 Linux 的 Microsoft Azure CustomScript 延伸模組提供方式 toocustomize 您虛擬機器 (Vm) 執行任意 hello VM （例如，Python 和 Bash） 所支援的任何指令碼語言撰寫的程式碼。 這可提供非常彈性的方式 tooautomate 應用程式部署 toomultiple 電腦。
 
-您可以使用 Azure 入口網站、Windows PowerShell 或 Azure 命令列介面 (Azure CLI)，來部署 CustomScript 延伸模組。
+您可以部署 hello CustomScript 延伸模組使用 hello Azure 入口網站、 Windows PowerShell 或 hello Azure 命令列介面 (Azure CLI)。
 
-在本文中我們將使用 Azure CLI，將簡單的 LAMP 應用程式部署至以傳統部署模型建立的 Ubuntu VM。
+在本文中，我們會使用 hello Azure CLI toodeploy 簡單燈應用程式 tooan Ubuntu VM 使用建立 hello 傳統部署模型。
 
 ## <a name="prerequisites"></a>必要條件
-在此範例中，會先建立兩個執行 Ubuntu 14.04 或更新版本的 Azure VM。 VM 的名稱為 script-vm 和 lamp-vm。 建立 VM 時請使用唯一名稱。 其中一個用來執行 CLI 命令，而另一個用來部署 LAMP 應用程式。
+在此範例中，會先建立兩個執行 Ubuntu 14.04 或更新版本的 Azure VM。 hello Vm 稱為*指令碼 vm*和*燈 vm*。 當您建立 hello Vm 時，請使用唯一名稱。 一個是使用的 toorun hello CLI 命令，其中一個是使用的 toodeploy hello 燈應用程式。
 
-您也需要 Azure 儲存體帳戶和金鑰才能存取它 (您可以從 Azure 入口網站取得此資訊)。
+您也需要 Azure 儲存體帳戶和金鑰 tooaccess it （可取得這個從 hello Azure 入口網站）。
 
-如果您需要在 Azure 上建立 Linux VM 的說明，請參閱[建立執行 Linux 的虛擬機器](createportal.md)。
+如果您需要在 Azure 上建立 Linux Vm 的說明，請參閱太[建立執行 Linux 之虛擬機器](createportal.md)。
 
-安裝命令假設的是 Ubuntu，但是您可以對任何支援的 Linux distro 採用此安裝。
+hello 安裝命令假設 Ubuntu，不過您可以調整 hello 安裝的任何支援的 Linux distro。
 
-script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作的連線。 如需此動作的說明，請參閱 [安裝與設定 Azure 命令列介面](../../../cli-install-nodejs.md)。
+hello 指令碼 vm VM 需要安裝 Azure CLI，與工作連接 tooAzure toohave。 說明，請參閱太[安裝及設定 hello Azure 命令列介面](../../../cli-install-nodejs.md)。
 
 ## <a name="upload-a-script"></a>上傳指令碼
-我們會使用 CustomScript 擴充功能在遠端 VM 上執行指令碼，以安裝 LAMP 堆疊並建立 PHP 頁面。 為了可從任何地方存取指令碼，我們會以 Azure Blob 形式上傳該指令碼。
+我們將使用遠端的 VM tooinstall hello LAMP 堆疊上的 hello CustomScript 延伸模組 toorun 指令碼，並建立 PHP 網頁。 從任何地方順序 tooaccess hello 指令碼中我們會將它當做 Azure blob 上傳。
 
 ### <a name="script-overview"></a>指令碼概觀
-此指令碼範例會將 LAMP 堆疊安裝到 Ubuntu (包括設定 MySQL 的無訊息安裝)、寫入簡單的 PHP 檔案，並啟動 Apache。
+hello 指令碼範例會安裝 （包括設定無訊息安裝的 MySQL） LAMP 堆疊 tooUbuntu、 將簡單的 PHP 檔案，並啟動 Apache。
 
     #!/bin/bash
     # set up a silent install of MySQL
@@ -56,7 +56,7 @@ script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作�
     echo mysql-server-5.6 mysql-server/root_password password $dbpass | debconf-set-selections
     echo mysql-server-5.6 mysql-server/root_password_again password $dbpass | debconf-set-selections
 
-    # install the LAMP stack
+    # install hello LAMP stack
     apt-get -y install apache2 mysql-server php5 php5-mysql  
 
     # write some PHP
@@ -67,38 +67,38 @@ script-vm VM 需要安裝 Azure CLI，並且與 Azure 之間具有正常運作�
     apachectl restart
 
 ### <a name="upload-script"></a>上傳指令碼
-將指令碼儲存為文字檔 (例如 install_lamp.sh)，然後將它上傳到 Azure 儲存體。 您可以使用 Azure CLI，輕鬆執行這個動作。 下列範例會將檔案上傳到名為 "scripts" 的儲存體容器中。 如果此容器不存在，您必須先建立它。
+將 hello 指令碼儲存為文字檔案，例如*install_lamp.sh*，然後再上載 tooAzure 儲存體。 您可以使用 Azure CLI，輕鬆執行這個動作。 hello 下列範例會上傳 hello 檔案 tooa 儲存體容器名稱為 「 指令碼 」。 如果 hello 容器不存在，您將需要 toocreate 它第一次。
 
     azure storage blob upload -a <yourStorageAccountName> -k <yourStorageKey> --container scripts ./install_lamp.sh
 
-此外，還會建立 JSON 檔案，此檔案會描述如何從 Azure 儲存體下載指令碼。 將此檔案儲存為 public_config.json (使用您的儲存體帳戶名稱來取代 "mystorage")：
+也會建立描述 toodownload hello 從 Azure 儲存體的指令碼的方式在 JSON 檔案。 儲存為*public_config.json* （取代"mystorage"hello 您的儲存體帳戶名稱）：
 
     {"fileUris":["https://mystorage.blob.core.windows.net/scripts/install_lamp.sh"], "commandToExecute":"sh install_lamp.sh" }
 
 
-## <a name="deploy-the-extension"></a>部署延伸模組
-現在您可以使用下一個命令，透過 Azure CLI 將 Linux CustomScript 延伸模組部署到遠端 VM。
+## <a name="deploy-hello-extension"></a>Hello 延伸模組部署
+現在您可以使用 hello 下一個命令 toodeploy hello Linux CustomScript 延伸模組 toohello 遠端 VM 使用 hello Azure CLI。
 
     azure vm extension set -c "./public_config.json" lamp-vm CustomScript Microsoft.Azure.Extensions 2.0
 
-前一個命令會在名為 lamp-vm 的 VM 上下載並執行 install_lamp.sh 指令碼。
+hello 前一個命令會下載並執行 hello *install_lamp.sh*指令碼的 VM 稱為的 hello*燈 vm*。
 
-因為該應用程式包含 Web 伺服器，所以請記得使用下列命令，在遠端 VM 上開啟 HTTP 接聽連接埠。
+因為 hello 應用程式包含 web 伺服器，請記住 tooopen HTTP 接聽連接埠上 hello 遠端 VM 與 hello 下一個命令。
 
     azure vm endpoint create -n Apache -o tcp lamp-vm 80 80
 
 ## <a name="monitoring-and-troubleshooting"></a>監視與疑難排解
-您可以藉由查看遠端 VM 上的記錄檔來檢查自訂指令碼執行的情況。 SSH 連線到 *lamp-vm* ，並使用下一個命令顯示記錄檔的結尾。
+您可以檢查 hello 自訂的指令碼會藉由查看 hello 記錄檔上 hello 遠端 VM 的程度。 SSH 太*燈 vm*和結尾 hello 記錄檔與 hello 下一個命令。
 
     cd /var/log/azure/customscript
     tail -f handler.log
 
-執行 CustomScript 延伸模組之後，您可以瀏覽至您建立的 PHP 網頁以取得資訊。 這篇文章中的範例 PHP 頁面是 *http://lamp-vm.cloudapp.net/phpinfo.php*。
+執行 hello CustomScript 延伸模組之後，您可以瀏覽 toohello PHP 頁面，您建立的資訊。 hello PHP 頁面上的這篇文章中的 hello 範例*http://lamp-vm.cloudapp.net/phpinfo.php*。
 
 ## <a name="additional-resources"></a>其他資源
-您可以使用相同的基本步驟來部署更複雜的應用程式。 此範例將安裝指令碼儲存為 Azure 儲存體中的公用 Blob。 比較安全的選項是使用 [安全存取簽章](https://msdn.microsoft.com/library/azure/ee395415.aspx) (SAS)，以安全 Blob 形式儲存安裝指令碼。
+您可以使用 hello 相同的基本步驟 toodeploy 更複雜的應用程式。 在此範例中 hello 安裝指令碼已儲存為 Azure 儲存體中的公用 blob。 較安全的選項會是 toostore hello 安裝指令碼為安全的 blob 與[安全的存取簽章](https://msdn.microsoft.com/library/azure/ee395415.aspx)(SAS)。
 
-以下列出 Azure CLI、Linux 與 CustomScript 延伸模組的其他資源。
+適用於 Azure CLI、 Linux 和 hello CustomScript 延伸模組的其他資源會列在下一個。
 
 [使用 CustomScript 延伸模組以將 Linux VM 自訂工作自動化](https://azure.microsoft.com/blog/2014/08/20/automate-linux-vm-customization-tasks-using-customscript-extension/)
 

@@ -1,6 +1,6 @@
 ---
 title: "機器學習 API：文字分析 | Microsoft Docs"
-description: "Microsoft 的機器學習文字分析 API 可用來分析非結構化文字，例如情感分析、關鍵片語擷取、語言偵測及主題偵測。"
+description: "Microsoft 的機器學習文字分析應用程式開發介面可以是使用的 tooanalyze 情緒分析、 關鍵片語擷取、 語言偵測和主題偵測非結構化的文字。"
 services: machine-learning
 documentationcenter: 
 author: onewth
@@ -16,50 +16,50 @@ ms.date: 04/04/2017
 ms.author: onewth
 ROBOTS: NOINDEX
 redirect_url: ../cognitive-services/cognitive-services-text-analytics-quick-start
-redirect_document_id: TRUE
-ms.openlocfilehash: 10eae2ff5624dcb57de1cf72b326147f35bc2a0b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+redirect_document_id: True
+ms.openlocfilehash: 49380c83849c5d5fdd8dce4f3899ebcb3d6870f7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="machine-learning-apis-text-analytics-for-sentiment-key-phrase-extraction-language-detection-and-topic-detection"></a>機器學習 API：情感文字分析、關鍵片語擷取、語言偵測及主題偵測
 > [!NOTE]
-> 本指南適用於第 1 版的 API。 關於第 2 版，[**請參閱本文件**](../cognitive-services/cognitive-services-text-analytics-quick-start.md)。 現在建議使用此 API 的第 2 版。
+> 此指南適用於第 1 版的 hello 應用程式開發介面。 第 2 版，如[ **toothis 文件，請參閱**](../cognitive-services/cognitive-services-text-analytics-quick-start.md)。 第 2 版現在是此 API hello 慣用的版本。
 > 
 > 
 
-## <a name="overview"></a>Overview
-文字分析 API 是一套以 Azure Machine Learning 服務建置的文字分析 [Web 服務](https://datamarket.azure.com/dataset/amla/text-analytics) 。 此 API 可用來分析工作的非結構化文字，例如情感分析、關鍵片語擷取、語言偵測及主題偵測。 使用此 API 不需要任何訓練資料，只要將文字資料帶入即可。 此 API 使用進階的自然語言處理技術來提供最佳預測。
+## <a name="overview"></a>概觀
+hello 文字分析 API 是一套的文字分析[web 服務](https://datamarket.azure.com/dataset/amla/text-analytics)使用 Azure Machine Learning 建立。 hello 應用程式開發介面可以是使用的 tooanalyze 進行工作，例如情緒分析、 關鍵片語擷取、 語言偵測和主題偵測非結構化的文字。 沒有資料的定型所需 toouse 這個 API： 只將文字資料。 這個 API 會使用進階的自然語言處理技術 toodeliver 最佳預測。
 
-您可以在我們的[示範網站](https://text-analytics-demo.azurewebsites.net/)看到文字分析的運作，其中您也可以找到如何以 C# 和 Python 實作文字分析的[範例](https://text-analytics-demo.azurewebsites.net/Home/SampleCode)。
+您可以看到在動作中的文字分析上我們[示範網站](https://text-analytics-demo.azurewebsites.net/)，其中您也可以找到[範例](https://text-analytics-demo.azurewebsites.net/Home/SampleCode)如何在 C# 和 Python tooimplement 文字分析。
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
 - - -
 ## <a name="sentiment-analysis"></a>情感分析
-API 會傳回一個 0 到 1 之間的分數。 接近 1 的分數表示正面的情感，而接近 0 的分數則表示負面的情感。 情感分數使用分類技術產生。 輸入分類器的特徵包括 n-grams、從 part-of-speech 標記產生的特徵以及字詞內嵌。 目前，英文是唯一支援的語言。
+hello API 傳回的數值分數 0 與 1 之間。 分數關閉 too1 表示正面的人氣，而分數關閉 too0 表示負數的人氣。 情感分數使用分類技術產生。 hello 的輸入的特徵 toohello 分類包含 n 字母組，從組件的語音標記和 word 內嵌產生的功能。 目前，英文是 hello 只支援的語言。
 
 ## <a name="key-phrase-extraction"></a>關鍵片語擷取
-API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的技術來自 Microsoft Office 複雜的自然語言處理工具組。 目前，英文是唯一支援的語言。
+hello API 傳回此項表示應 hello 討論中的重點 hello 輸入文字的字串清單。 我們採用的技術來自 Microsoft Office 複雜的自然語言處理工具組。 目前，英文是 hello 只支援的語言。
 
 ## <a name="language-detection"></a>語言偵測
-此 API 會傳回偵測到的語言和 0 到 1 之間的分數。 接近 1 的分數表示 100% 確定已識別的語言為真實。 總共支援 120 種語言。
+hello API 傳回 hello 偵測到語言和數字的分數，介於 0 與 1 之間。 分數關閉 too1 表示 100%確定性 hello 識別語言為 true。 總共支援 120 種語言。
 
 ## <a name="topic-detection"></a>主題偵測
-這是新發行的 API，可針對已提交的文字記錄清單傳回前幾個偵測到的主題。 主題是以關鍵片語識別，可以是一或多個相關文字。 這個 API 至少需要提交 100 筆文字記錄，但其設計可偵測數百至數千筆記錄的主題。 請注意，每提交 1 筆文字記錄，此 API 就會以 1 筆交易計費。 此 API 的設計適用於簡短的人工書寫文字，例如評論和使用者意見反應。
+這是新發行的 API 會傳回 hello 上偵測到的主題送出的文字記錄的清單。 主題是以關鍵片語識別，可以是一或多個相關文字。 這個 API 需要至少 100 文字記錄 toobe 提交，但整個數百是設計的 toodetect 主題 toothousands 的記錄。 請注意，每提交 1 筆文字記錄，此 API 就會以 1 筆交易計費。 hello 應用程式開發介面是設計的 toowork 適合短時，人們寫入文字，例如檢閱和使用者意見反應。
 
 - - -
 ## <a name="api-definition"></a>API 定義
-### <a name="headers"></a>標頭
-請確定要求中包含正確的標頭，應該如下：
+### <a name="headers"></a>headers
+請確定 hello 正確的標頭併入您的要求，應，如下所示：
 
     Authorization: Basic <creds>
     Accept: application/json
 
     Where <creds> = ConvertToBase64(“AccountKey:” + yourActualAccountKey);  
 
-您可以在 [Azure 資料市場](https://datamarket.azure.com/account/keys)中找到您帳戶中的帳戶金鑰。 請注意，目前只接受 JSON 做為輸入和輸出格式。 不支援 XML。
+您可以從您的帳戶在 hello 來找到您的帳戶金鑰[Azure Datamarket](https://datamarket.azure.com/account/keys)。 請注意，目前只接受 JSON 做為輸入和輸出格式。 不支援 XML。
 
 - - -
 ## <a name="single-response-apis"></a>單一回應 API
@@ -70,7 +70,7 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
 
 **範例要求**
 
-在下面的呼叫中，我們要求片語 "Hello World" 的情緒分析：
+在下列呼叫 hello，我們正在要求 hello 片語"Hello World"情緒分析：
 
     GET https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetSentiment?Text=hello+world
 
@@ -89,7 +89,7 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
 
 **範例要求**
 
-在下面的呼叫中，我們要求 "It was a wonderful hotel to stay at, with unique decor and friendly staff" 這段文字中找到的關鍵片語：
+在下列呼叫 hello，我們正在要求 hello 關鍵片語 hello 在文字中找到 「 棒的旅館 toostay，與唯一裝潢及易記的人員 」:
 
     GET https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetKeyPhrases?
     Text=It+was+a+wonderful+hotel+to+stay+at,+with+unique+decor+and+friendly+staff
@@ -113,7 +113,7 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
 
 **範例要求**
 
-在下面的 GET 呼叫中，我們要求 *Hello World*
+在 hello GET 呼叫下方，我們所要求的 hello 文字中的 hello 關鍵片語的 hello 人氣*Hello World*
 
     GET https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetLanguages?
     Text=Hello+World
@@ -131,13 +131,13 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
 
 **選擇性參數**
 
-`NumberOfLanguagesToDetect` 是選擇性參數。 預設值為 1。
+`NumberOfLanguagesToDetect` 是選擇性參數。 hello 預設值為 1。
 
 - - -
 ## <a name="batch-apis"></a>Batch API
-文字分析服務可讓您以 Batch 模式執行情感和關鍵片語的擷取。 請注意，每一筆評分記錄都是一個交易。 例如，如果您在單一呼叫中要求 1000 筆記錄的情緒，則會扣除 1000 個交易。
+hello 文字分析服務可讓您 toodo 人氣與 key 片語擷取批次模式。 請注意每 hello 筆記錄當做一筆交易計分計數。 例如，如果您在單一呼叫中要求 1000 筆記錄的情緒，則會扣除 1000 個交易。
 
-請注意，在系統中輸入的識別碼是由系統傳回的識別碼。 Web 服務不會檢查這些是否為唯一的識別碼。 呼叫端必須負責驗證唯一性。 
+請注意，hello 識別碼輸入 hello 系統是 hello hello 系統所傳回的識別碼。 hello web 服務不會檢查這些 Id 是唯一。 它負責 hello hello 呼叫端 tooverify 唯一性。 
 
 ### <a name="getsentimentbatch"></a>GetSentimentBatch
 **URL**    
@@ -146,7 +146,7 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
 
 **範例要求**
 
-在下面的 POST 呼叫中，我們在要求本文中要求 "Hello World"、"Hello Foo World" 和 "Hello My World" 這些片語的情緒：
+在 hello POST 呼叫下，我們會要求的 hello 片語"Hello World"、"Foo Hello World"和 hello hello 要求主體中的"Hello 我 World"hello sentiments:
 
     POST https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetSentimentBatch 
 
@@ -159,7 +159,7 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
         {"Id":"3","Text":"hello my world"},
     ]}
 
-在以下回應中，您會取得與文字識別碼相關聯的分數的清單：
+在以下 hello 回應，您會取得 hello 清單的文字識別碼相關聯的分數：
 
     {
       "odata.metadata":"<url>", 
@@ -181,13 +181,13 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
 
 **範例要求**
 
-在此範例，我們要求下列文字中關鍵片語的情緒清單： 
+在此範例中，我們正在要求 sentiments hello hello 下列文字中的關鍵片語的 hello 清單： 
 
-* "It was a wonderful hotel to stay at, with unique decor and friendly staff"
+* 「 棒的旅館 toostay，與唯一裝潢及易記的人員 」
 * "It was an amazing build conference, with very interesting talks"
-* "The traffic was terrible, I spent three hours going to the airport"
+* "hello 流量是恐怖，我花費三小時一次將 toohello 機場"
 
-此要求是對端點的 POST 呼叫：
+此要求是由為 POST 呼叫 toohello 端點：
 
     POST https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetKeyPhrasesBatch
 
@@ -195,12 +195,12 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
 
     {"Inputs":
     [
-        {"Id":"1","Text":"It was a wonderful hotel to stay at, with unique decor and friendly staff"},
+        {"Id":"1","Text":"It was a wonderful hotel toostay at, with unique decor and friendly staff"},
         {"Id":"2","Text":"It was an amazing build conference, with very interesting talks"},
-        {"Id":"3","Text":"The traffic was terrible, I spent three hours going to the airport"}
+        {"Id":"3","Text":"hello traffic was terrible, I spent three hours going toohello airport"}
     ]}
 
-在以下回應中，您會取得與文字識別碼相關聯的片語的清單：
+以下回應 hello，取得與文字識別碼相關聯的主要片語的 hello 清單：
 
     { "odata.metadata":"<url>",
          "KeyPhrasesBatch":
@@ -215,7 +215,7 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
 - - -
 ### <a name="getlanguagebatch"></a>GetLanguageBatch
 
-在下面的 POST 呼叫中，我們要求兩個文字輸入的語言偵測：
+在 hello POST 呼叫下方，我們正在要求兩個文字輸入語言的偵測：
 
     POST https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetLanguageBatch
 
@@ -228,7 +228,7 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
       ]
     }
 
-這會傳回下列回應，在第一個輸入中偵測到英文，在第二個輸入中偵測到法文：
+這會傳回下列回應，其中英文中偵測到的第一個輸入 hello 和法文 hello 第二個輸入中的 hello:
 
     {
        "LanguageBatch": [{
@@ -254,9 +254,9 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
 
 - - -
 ## <a name="topic-detection-apis"></a>主題偵測 API
-這是新發行的 API，可針對已提交的文字記錄清單傳回前幾個偵測到的主題。 主題是以關鍵片語識別，可以是一或多個相關文字。 請注意，每提交 1 筆文字記錄，此 API 就會以 1 筆交易計費。
+這是新發行的 API 會傳回 hello 上偵測到的主題送出的文字記錄的清單。 主題是以關鍵片語識別，可以是一或多個相關文字。 請注意，每提交 1 筆文字記錄，此 API 就會以 1 筆交易計費。
 
-這個 API 至少需要提交 100 筆文字記錄，但其設計可偵測數百至數千筆記錄的主題。
+這個 API 需要至少 100 文字記錄 toobe 提交，但整個數百是設計的 toodetect 主題 toothousands 的記錄。
 
 ### <a name="topics--submit-job"></a>主題 – 提交作業
 **URL**
@@ -265,29 +265,29 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
 
 **範例要求**
 
-在以下的 POST 呼叫中，我們要求一組 100 篇文章的主題，其中會顯示第一篇和最後一篇輸入文章，並包含兩個 StopPhrases。
+在 hello POST 呼叫下方，我們會要求 100 的發行項，其中 hello 第一次與上一次輸入文件，也會顯示，而兩個 StopPhrases 包含一組主題。
 
     POST https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/StartTopicDetection HTTP/1.1
 
 要求本文：
 
     {"Inputs":[
-        {"Id":"1","Text":"I loved the food at this restaurant"},
+        {"Id":"1","Text":"I loved hello food at this restaurant"},
         ...,
-        {"Id":"100","Text":"I hated the decor"}
+        {"Id":"100","Text":"I hated hello decor"}
     ],
     "StopPhrases":[
         "restaurant", “visitor"
     ]}
 
-在以下回應中，您可以取得已提交工作的 JobId：
+在以下的 hello 回應，除可獲得 hello JobId hello 送出的工作：
 
     {
         "odata.metadata":"<url>",
         "JobId":"<JobId>"
     }
 
-不應當做主題傳回的單字或多字片語的清單。 可用來篩選出相當廣泛的主題。 例如，在飯店業評論的相關資料集中，"hotel" 和 "hostel" 可能是合理的停止片語。  
+不應當做主題傳回的單字或多字片語的清單。 可以使用的 toofilter 出相當廣泛的主題。 例如，在飯店業評論的相關資料集中，"hotel" 和 "hostel" 可能是合理的停止片語。  
 
 ### <a name="topics--poll-for-job-results"></a>主題 – 輪詢作業結果
 **URL**
@@ -296,12 +296,12 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
 
 **範例要求**
 
-傳遞從「提交工作」步驟傳回的 JobId，以擷取結果。 建議您每分鐘呼叫此端點一次，直到回應中出現「狀態 =「完成」」為止。 完成一個工作大約需要 10 分鐘，完成包含數千筆記錄的工作則需要更久時間。
+傳遞的 hello hello '送出工作' 步驟 toofetch hello 就會從傳回的作業識別碼。 我們建議您呼叫此端點每隔一分鐘，直到狀態 = hello 回應中的 「 完成 」。 這需要大約 10 分鐘，工作 toocomplete，或具有數千個記錄之作業更久。
 
     GET https://api.datamarket.azure.com/data.ashx/amla/text-analytics/v1/GetTopicDetectionResult?JobId=<JobId>
 
 
-工作正在處理時，回應將會顯示如下：
+當它正在處理時，hello 回應會顯示如下：
 
     {
         "odata.metadata":"<url>",
@@ -312,7 +312,7 @@ API 會傳回輸入文字中代表說話重點的字串清單。 我們採用的
     }
 
 
-API 會以下列格式傳回 JSON 格式的輸出：
+hello API hello 遵循格式中的 JSON 格式傳回的輸出：
 
     {
         "odata.metadata":"<url>",
@@ -346,21 +346,21 @@ API 會以下列格式傳回 JSON 格式的輸出：
         "Errors":[]
 
 
-回應每個部分的屬性如下所示：
+每個部分的 hello 回應 hello 屬性如下所示：
 
 **TopicInfo 屬性**
 
 | 金鑰 | 說明 |
 |:--- |:--- |
 | TopicId |每個主題的唯一識別碼。 |
-| 分數 |指派給主題的記錄數。 |
-| KeyPhrase |主題彙總的單字或片語。 可以是 1 個字或多個字。 |
+| 分數 |記錄的計數會指派 tootopic。 |
+| KeyPhrase |實體單字或片語 hello 主題。 可以是 1 個字或多個字。 |
 
 **TopicAssignment 屬性**
 
 | 金鑰 | 說明 |
 |:--- |:--- |
-| 識別碼 |記錄的識別碼。 等於輸入中包含的識別碼。 |
-| TopicId |已獲指派記錄的主題識別碼。 |
-| Distance |記錄屬於主題的信賴度。 Distance 越接近零，表示信賴度越高。 |
+| 識別碼 |Hello 記錄的識別碼。 相當於 toohello hello 輸入中包含的識別碼。 |
+| TopicId |已指派給哪個 hello 記錄 hello 主題識別碼。 |
+| Distance |Hello 資料錄的信心所屬 toohello 主題。 距離近 toozero 表示較高信心。 |
 

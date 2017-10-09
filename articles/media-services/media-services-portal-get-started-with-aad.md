@@ -1,6 +1,6 @@
 ---
-title: "利用 Azure 入口網站開始使用 Azure AD 驗證 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站存取 Azure Active Directory (Azure AD) 驗證，以使用 Azure 媒體服務 API。"
+title: "aaaGet 使用 hello Azure 入口網站來啟動 Azure AD 驗證與 |Microsoft 文件"
+description: "了解如何 toouse hello Azure 入口網站 tooaccess Azure Active Directory (Azure AD) 驗證 tooconsume hello Azure 媒體服務 API。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -13,40 +13,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/17/2017
 ms.author: juliako
-ms.openlocfilehash: 829e0759f8aeb8758f6b8895b88b60b66ffb22ed
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 497ad1806b3fd1262802adefb6e12b65ee9f2d61
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="get-started-with-azure-ad-authentication-by-using-the-azure-portal"></a>利用 Azure 入口網站開始使用 Azure AD 驗證
+# <a name="get-started-with-azure-ad-authentication-by-using-hello-azure-portal"></a>開始使用 Azure AD 驗證使用 hello Azure 入口網站
 
-了解如何使用 Azure 入口網站存取 Azure Active Directory (Azure AD) 驗證，以存取 Azure 媒體服務 API。
+了解如何 toouse hello Azure 入口網站 tooaccess Azure Active Directory (Azure AD) 驗證 tooaccess hello Azure 媒體服務 API。
 
 ## <a name="prerequisites"></a>必要條件
 
 - 一個 Azure 帳戶。 如果您沒有帳戶，請先從 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。 
-- 媒體服務帳戶。 如需詳細資訊，請參閱[使用 Azure 入口網站建立 Azure 媒體服務帳戶](media-services-portal-create-account.md)。
-- 請先複習[使用 Azure AD 驗證存取 Azure 媒體服務 API 概觀](media-services-use-aad-auth-to-access-ams-api.md)。 
+- 媒體服務帳戶。 如需詳細資訊，請參閱[使用 hello Azure 入口網站建立 Azure Media Services 帳戶](media-services-portal-create-account.md)。
+- 請確定您檢閱 hello[存取 Azure 媒體服務應用程式開發介面與 Azure AD 驗證概觀](media-services-use-aad-auth-to-access-ams-api.md)。 
 
 當您使用 Azure AD 驗證搭配 Azure 媒體服務 時，會有兩個驗證選項：
 
-- **使用者驗證**。 驗證使用應用程式與媒體服務資源互動的人員。 互動式應用程式應該會先提示使用者輸入認證。 例如，授權的使用者用來監控編碼工作或即時串流的管理主控台應用程式。 
+- **使用者驗證**。 驗證使用 hello 應用程式 toointeract 和媒體服務資源的人員。 hello 互動式應用程式應該會先提示 hello 使用者提供認證。 範例是由授權的使用者 toomonitor 編碼工作的主控台應用程式管理或即時資料流。 
 - **服務主體驗證**。 驗證服務。 通常使用這種驗證方法的應用程式有執行精靈服務、中介層服務或排程的工作的應用程式：Web 應用程式、函數應用程式、邏輯應用程式、API 或微服務。
 
 > [!IMPORTANT]
-> 目前，媒體服務支援 Azure 存取控制服務驗證模型。 不過，存取控制授權將在 2018 年 6 月 1 日被取代。 建議您儘速移轉至 Azure AD 驗證模型。
+> 目前，Media Services 支援 hello Azure 存取控制服務驗證模型。 不過，存取控制授權將在 2018 年 6 月 1 日被取代。 我們建議您儘速移轉 toohello Azure AD 驗證模型。
 
-## <a name="select-the-authentication-method"></a>選取驗證方法
+## <a name="select-hello-authentication-method"></a>選取 hello 驗證方法
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，選取您的媒體服務帳戶。
-2. 選取如何連線到媒體服務 API。
+1. 在 hello [Azure 入口網站](https://portal.azure.com/)，選取您的 Media Services 帳戶。
+2. 選取如何 tooconnect toohello 媒體服務 API。
 
     ![選取連線方式的頁面](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started01.png)
 
 ## <a name="user-authentication"></a>使用者驗證
 
-若要利用使用者驗證選項連線到媒體服務 API，用戶端應用程式必須要求具有下列參數的 Azure AD 權杖：  
+tooconnect toohello Media Services API 使用 hello 使用者驗證選項，hello 用戶端應用程式需要 toorequest 具有 hello 下列參數的 Azure AD 權杖：  
 
 * Azure AD 租用戶端點
 * 媒體服務資源 URI
@@ -54,60 +54,60 @@ ms.lasthandoff: 08/29/2017
 * 媒體服務 (原生) 應用程式重新導向 URI 
 * REST 媒體服務的資源 URI
 
-您可以在**使用使用者驗證的媒體服務 API**取得這些參數的值。 
+您可以取得這些參數在 hello hello 值**Media Services API 的使用者驗證**頁面。 
 
 ![使用使用者驗證頁面連線](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started02.png)
 
-如果您使用媒體服務的 Microsoft .NET SDK 連線到媒體服務 API，此 SDK 會提供您所需的值。 如需詳細資訊，請參閱[使用 Azure AD 驗證搭配 .NET 存取 Azure 媒體服務 API](media-services-dotnet-get-started-with-aad.md)。
+如果您使用 Media Services 的 Microsoft.NET SDK hello 連接 toohello Media Services API，hello 必要的值可用 tooyou hello SDK 的一部分。 如需詳細資訊，請參閱[使用 Azure AD 驗證 tooaccess hello 與.NET 的 Azure 媒體服務 API](media-services-dotnet-get-started-with-aad.md)。
 
-如果您不是使用媒體服務 .NET 用戶端 SDK，您必須使用先前討論的參數手動建立 Azure AD 權杖要求。 如需詳細資訊，請參閱[如何使用 Azure AD 驗證程式庫取得 Azure AD 權杖](../active-directory/develop/active-directory-authentication-libraries.md)。
+如果您未使用 Media Services.NET 用戶端 hello SDK，所以您必須使用先前所討論的 hello 參數，手動建立的 Azure AD 的權杖要求。 如需詳細資訊，請參閱[toouse hello Azure AD 驗證程式庫 tooget 如何 hello Azure AD 權杖](../active-directory/develop/active-directory-authentication-libraries.md)。
 
 ## <a name="service-principal-authentication"></a>服務主體驗證
 
-若要利用服務主體選項連線到媒體服務 API，您的中介層應用程式 (Web API 或 Web 應用程式) 必須要求具有下列參數的 Azure AD 權杖：  
+tooconnect toohello Media Services API 使用 hello 服務主體的選項中, 介層應用程式 （web API 或 web 應用程式） 需要 toorequest 具有 hello 下列參數的 Azure AD 權杖：  
 
 * Azure AD 租用戶端點
 * 媒體服務資源 URI 
 * REST 媒體服務的資源 URI
-* Azure AD 應用程式的值：**用戶端識別碼**和**用戶端祕密**
+* Azure AD 應用程式的值： hello**用戶端識別碼**和**用戶端密碼**
 
-您可以在**使用服務主體連線到媒體服務 API** 頁面取得這些參數的值。 使用此頁面可建立新的 Azure AD 應用程式或選取現有的 Azure AD 應用程式。 選取 Azure AD 應用程式之後，您可以取得用戶端識別碼 (應用程式識別碼)，並產生用戶端祕密 (金鑰) 值。 
+您可以取得這些參數在 hello hello 值**連接 tooMedia 服務應用程式開發介面與服務主體**頁面。 使用此頁面 toocreate 新的 Azure AD 應用程式或 tooselect 現有。 選取 hello Azure AD 應用程式之後，您可以取得 hello 用戶端識別碼 （應用程式識別碼），並產生 hello 用戶端密碼 （金鑰） 值。 
 
 ![使用服務主體連線的頁面](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started04.png)
 
-當服務主體的刀鋒視窗開啟時，會選取符合下列準則的第一個 Azure AD 應用程式：
+當 hello**服務主體**刀鋒視窗中開啟時，會選取 hello 第一個 Azure AD 應用程式符合下列準則的 hello:
 
 - 它是已註冊的 Azure AD 應用程式。
-- 它對帳戶具有參與者或擁有者角色型存取控制權限。
+- 它對 hello 帳戶參與者或 Owner Role-Based 存取控制的權限。
 
-建立或選取 Azure AD 應用程式之後，您可以建立並複製用戶端祕密 (金鑰) 和用戶端識別碼 (應用程式識別碼)。 在此案例中，需要有用戶端祕密和用戶端識別碼才能取得存取權杖。
+您建立或選取 Azure AD 應用程式之後，您可以建立和複製用戶端密碼 （金鑰） 和 hello 用戶端識別碼 （應用程式識別碼）。 hello 用戶端密碼和用戶端識別碼是在此案例中需要的 tooget hello 存取權杖。
 
-如果您沒有在網域中建立 Azure AD 應用程式的權限，則不會顯示此刀鋒視窗的 Azure AD 應用程式控制項，並會顯示警告訊息。
+如果您沒有權限 toocreate Azure AD 應用程式網域中，不會顯示 hello Azure AD 應用程式控制項的 hello 刀鋒視窗，並會顯示警告訊息。
 
-如果您使用媒體服務 .NET SDK 連線到媒體服務 API，請參閱[使用 Azure AD 驗證搭配 .NET 存取 Azure 媒體服務 API](media-services-dotnet-get-started-with-aad.md)。
+如果您使用 Media Services.NET SDK hello 連接 toohello Media Services API，請參閱[使用 Azure AD 驗證 tooaccess hello 與.NET 的 Azure 媒體服務 API](media-services-dotnet-get-started-with-aad.md)。
 
-如果您不是使用媒體服務 .NET 用戶端 SDK，您必須使用先前討論的參數手動建立 Azure AD 權杖要求。 如需詳細資訊，請參閱[如何使用 Azure AD 驗證程式庫取得 Azure AD 權杖](../active-directory/develop/active-directory-authentication-libraries.md)。
+如果您未使用 Media Services.NET 用戶端 hello SDK，您必須手動建立使用先前所討論的 hello 參數的 Azure AD 權杖要求。 如需詳細資訊，請參閱[toouse hello Azure AD 驗證程式庫 tooget 如何 hello Azure AD 權杖](../active-directory/develop/active-directory-authentication-libraries.md)。
 
-### <a name="get-the-client-id-and-client-secret"></a>取得用戶端識別碼和用戶端祕密
+### <a name="get-hello-client-id-and-client-secret"></a>取得 hello 用戶端識別碼和用戶端密碼
 
-選取現有的 Azure AD 應用程式或選取建立新的 Azure AD 應用程式的選項後，會顯示下列按鈕：
+您選取現有的 Azure AD 應用程式或選取 hello 選項 toocreate 新之後，會顯示 hello 下列按鈕：
 
 ![[Manage permissions] \(管理權限\) 和 [Manage application] \(管理應用程式\) 按鈕](./media/media-services-portal-get-started-with-aad/media-services-portal-manage.png)
 
-若要開啟 Azure AD 應用程式刀鋒視窗，請按一下 [Manage application] \(管理應用程式\)。 在 [Manage application] \(管理應用程式\) 刀鋒視窗中，您可以取得應用程式的用戶端識別碼 (應用程式識別碼)。 若要產生用戶端祕密 (金鑰)，請選取 [金鑰]。
+tooopen hello Azure AD 應用程式 刀鋒視窗中，按一下**管理應用程式**。 在 hello**管理應用程式**刀鋒視窗中，您可以取得 hello 應用程式的用戶端識別碼 （應用程式識別碼）。 用戶端密碼 （金鑰），選取 toogenerate**金鑰**。
 
 ![管理應用程式刀鋒視窗的 [Keys] \(金鑰\) 選項](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started06.png) 
 
-### <a name="manage-permissions-and-the-application"></a>管理權限和應用程式
+### <a name="manage-permissions-and-hello-application"></a>管理權限和 hello 應用程式
 
-選取 Azure AD 應用程式之後，您可以管理應用程式和權限。 若要設定您的 Azure AD 應用程式以存取其他應用程式，請按一下 [Manage permissions] \(管理權限\)。 對於管理工作，例如變更金鑰和回覆 URL，或編輯應用程式的資訊清單，請按一下 [Manage application] \(管理應用程式\)。
+選取 hello Azure AD 應用程式之後，您可以管理 hello 應用程式和權限。 tooset 其他應用程式中，按一下 註冊您的 Azure AD 應用程式 tooaccess**管理權限**。 管理工作，例如變更索引鍵和回覆 Url 或 tooedit hello 應用程式的資訊清單中，按一下**管理應用程式**。
 
-### <a name="edit-the-apps-settings-or-manifest"></a>編輯應用程式的設定或資訊清單
+### <a name="edit-hello-apps-settings-or-manifest"></a>編輯 hello 應用程式設定或資訊清單
 
-若要編輯應用程式的設定或資訊清單，請按一下 [Manage application] \(管理應用程式\)。
+tooedit hello 應用程式的設定或資訊清單中，按一下**管理應用程式**。
 
 ![管理應用程式頁面](./media/media-services-portal-get-started-with-aad/media-services-portal-get-started05.png)
 
 ## <a name="next-steps"></a>後續步驟
 
-開始使用[上傳檔案至您的帳戶](media-services-portal-upload-files.md)。
+開始使用[上傳檔案 tooyour 帳戶](media-services-portal-upload-files.md)。

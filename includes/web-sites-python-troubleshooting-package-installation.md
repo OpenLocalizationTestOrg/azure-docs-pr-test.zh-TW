@@ -1,63 +1,63 @@
-在 Azure 上執行時，有些封裝可能無法使用 PIP 安裝。  這可能只是因為在 Python 封裝索引上無法使用該封裝。  這可能是需要有編譯器 (在 Azure App Service 中執行 Web 應用程式的電腦上無法使用編譯器)。
+在 Azure 上執行時，有些封裝可能無法使用 PIP 安裝。  也可能只是 hello 套件並不適用於 hello Python 封裝索引。  它可能需要的編譯器 （編譯器並不適用於 hello 機器執行 hello web 應用程式在 Azure App Service 中）。
 
-在本節中，我們將探討如何處理這個問題。
+在本節中，我們將探討這個問題的方式 toodeal。
 
 ### <a name="request-wheels"></a>要求 Wheel
-如果封裝安裝需要編譯器，您應該嘗試連絡封裝擁有者，要求提供適用於封裝的 Wheel。
+如果 hello 套件安裝需要編譯器，您應該嘗試連絡 hello 封裝擁有者 toorequest 滾輪供 hello 套件。
 
-新的可用性[Microsoft Visual c + + 編譯器的 Python 2.7][Microsoft Visual C++ Compiler for Python 2.7]，現在是您更輕鬆地建置具有原生程式碼的 Python 2.7 的封裝。
+Hello 的最新的可用性與[Microsoft Visual c + + 編譯器的 Python 2.7][Microsoft Visual C++ Compiler for Python 2.7]，它現在是原生程式碼的 Python 2.7 toobuild 封裝更容易。
 
 ### <a name="build-wheels-requires-windows"></a>建置 Wheel (需要 Windows)
-注意：使用此選項時，請務必使用符合 Azure App Service 中 Web 應用程式上使用之平台/架構/版本 (Windows/32 位元/2.7 或 3.4) 的 Python 環境編譯封裝。
+注意： 使用此選項時，請使用符合 hello 平台/結構/版本上 hello Azure App Service 中的 web 應用程式所使用的 Python 環境的確定 toocompile hello 封裝 （Windows/32-bit/2.7 或 3.4）。
 
-如果封裝因為需要編譯器而無法安裝，您可以在本機電腦上安裝編譯器，並建置封裝的 Wheel，然後將其包含在您的儲存機制中。
+如果 hello 封裝未安裝，因為它需要編譯器，您可以在本機電腦上安裝 hello 編譯器和建置 hello 封裝，您會在您的儲存機制中包含的是滾輪。
 
-Mac/Linux 使用者： 如果您沒有存取權的 Windows 電腦，請參閱[建立虛擬機器執行 Windows] [ Create a Virtual Machine Running Windows]如何在 Azure 上建立 VM。  您可以使用該虛擬機器建置 Wheel、將它們加入至儲存機制，以及在您想要捨棄虛擬機器時捨棄。 
+Mac/Linux 使用者： 如果您沒有存取 tooa Windows 電腦，請參閱[建立虛擬機器執行 Windows] [ Create a Virtual Machine Running Windows]如何 toocreate Azure 上的 VM。  您可以使用 toobuild hello 車輪、 將它們加入 toohello 儲存機制，而捨棄 hello VM，如果您想。 
 
 您可以安裝 Python 2.7 [Microsoft Visual c + + 編譯器的 Python 2.7][Microsoft Visual C++ Compiler for Python 2.7]。
 
 您可以安裝 Python 3.4 [Microsoft Visual c + + 2010 Express][Microsoft Visual C++ 2010 Express]。
 
-若要建置 Wheel，您需要有 Wheel 封裝：
+toobuild 滾輪，您將需要 hello 滾輪封裝：
 
     env\scripts\pip install wheel
 
-您將使用 `pip wheel` 編譯相依性：
+您將使用`pip wheel`toocompile 相依性：
 
     env\scripts\pip wheel azure==0.8.4
 
-這會在 \wheelhouse 資料夾中建立一個 .whl 檔。  將 \wheelhouse 資料夾與 Wheel 檔案加入至您的儲存機制。
+這會建立 hello \wheelhouse 資料夾.whl 檔案。  加入 hello \wheelhouse 資料夾和滾輪檔案 tooyour 儲存機制。
 
-編輯 requirements.txt 以便在頂端加入 `--find-links` 選項。 這會告訴 PIP 尋找本機資料夾中完全相符的項目，才能進入 Python 封裝索引。
+編輯您 requirements.txt tooadd hello `--find-links` hello 頂端的選項。 這會告訴 pip toolook hello 的本機資料夾，再進行 toohello python 封裝索引中完全相符。
 
     --find-links wheelhouse
     azure==0.8.4
 
-如果您想要在 \wheelhouse 資料夾中包含所有相依性，而且完全不使用 Python 封裝索引，您可以將 `--no-index` 加入至 requirements.txt 的頂端，以強制 PIP 忽略封裝索引。
+如果您想的 tooinclude hello \wheelhouse 資料夾並不使用 hello python 封裝中的所有相依性的所有索引，您可以藉由新增強制 pip tooignore hello 封裝索引`--no-index`toohello 您 requirements.txt 頂端。
 
     --no-index
 
 ### <a name="customize-installation"></a>自訂安裝
-您可以自訂部署指令碼，以使用替代的安裝程式 (例如 easy\_install) 在虛擬環境中安裝套件。  如需已標成註解的範例，請參閱 deploy.cmd。  請確定這類封裝未列在 requirements.txt 中，以避免 PIP 安裝這類封裝。
+您可以自訂 hello 部署指令碼 tooinstall hello 使用替代安裝程式，例如簡單的虛擬環境中的封裝\_安裝。  如需已標成註解的範例，請參閱 deploy.cmd。請確定這類封裝未列出的 requirements.txt，tooprevent pip 安裝它們。
 
-將以下加入至部署指令碼：
+加入這個 toohello 部署指令碼：
 
     env\scripts\easy_install somepackage
 
-您也可以使用 easy\_install，從 exe 安裝程式 (某些與 zip 相容，因此 easy\_install 支援它們) 安裝。  將安裝程式新增至您的儲存機制，並傳遞可執行檔的路徑以叫用 easy\_install。
+您也可以輕鬆無法 toouse\_exe 安裝程式的安裝 tooinstall (有些 zip 相容，因此容易\_安裝支援這些)。  加入 hello installer tooyour 儲存機制，並叫用簡單\_傳遞 hello 路徑 toohello 可執行檔來安裝。
 
-將以下加入至部署指令碼：
+加入這個 toohello 部署指令碼：
 
     env\scripts\easy_install "%DEPLOYMENT_SOURCE%\installers\somepackage.exe"
 
-### <a name="include-the-virtual-environment-in-the-repository-requires-windows"></a>在儲存機制中包含虛擬環境 (需要有 Windows)
-注意：使用此選項時，請務必使用符合 Azure App Service 中 Web 應用程式上使用之平台/架構/版本 (Windows/32 位元/2.7 或 3.4) 的虛擬環境。
+### <a name="include-hello-virtual-environment-in-hello-repository-requires-windows"></a>包含 hello （需要 Windows） 的儲存機制中的 hello 虛擬環境
+注意： 使用此選項時，請確定 toouse 符合 hello 平台/結構/版本上 hello Azure App Service 中的 web 應用程式所使用的虛擬環境 （Windows/32-bit/2.7 或 3.4）。
 
-如果您在儲存機制中包含虛擬環境，可以防止部署指令碼透過建立空白檔案，在 Azure 上管理虛擬環境：
+如果您包含虛擬環境的 hello hello 儲存機制中，您可以藉由建立空的檔案執行在 Azure 上的虛擬環境管理防止 hello 部署指令碼：
 
     .skipPythonDeployment
 
-建議您刪除應用程式上現有的虛擬環境，以防止在自動管理虛擬環境時遺留檔案。
+我們建議您刪除 hello 現有的虛擬環境的 hello 應用程式，從 tooprevent 剩餘檔案，自動管理虛擬環境的 hello 時。
 
 [Create a Virtual Machine Running Windows]: http://azure.microsoft.com/documentation/articles/virtual-machines-windows-hero-tutorial/
 [Microsoft Visual C++ Compiler for Python 2.7]: http://aka.ms/vcpython27

@@ -1,6 +1,6 @@
 ---
-title: "監視負載平衡器的作業、事件和計數器 | Microsoft Docs"
-description: "了解如何啟用 Azure 負載平衡器的警示事件和探查健全狀況狀態記錄"
+title: "aaaMonitor 作業、 事件與負載平衡器的計數器 |Microsoft 文件"
+description: "了解 tooenable 警示的事件，並探查 Azure 負載平衡器的健全狀況狀態記錄"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -14,56 +14,56 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: 638ecd5e02889bd8cb6e7429dfcec335feaac4a3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ac53c2254e06cad780ad6144c5c30f0085d12576
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-for-azure-load-balancer"></a>Azure 負載平衡器的記錄檔分析
 
-您可以在 Azure 中使用不同類型的記錄檔來管理和疑難排解負載平衡器。 透過入口網站可以存取其中一些記錄檔。 從 Azure Blob 儲存體可以擷取所有記錄，並且在不同的工具中進行檢視 (例如 Excel 和 PowerBI)。 您可以從下列清單進一步了解不同類型的記錄檔。
+您可以在 Azure toomanage 中使用不同類型的記錄檔，並進行疑難排解的負載平衡器。 這些記錄檔的某些可以存取透過 hello 入口網站。 從 Azure Blob 儲存體可以擷取所有記錄，並且在不同的工具中進行檢視 (例如 Excel 和 PowerBI)。 您可以深入了解 hello 不同類型的記錄檔從 hello 下方的清單。
 
-* **稽核記錄檔︰**您可以使用 [Azure 稽核記錄檔](../monitoring-and-diagnostics/insights-debugging-with-events.md) (之前稱為「作業記錄檔」) 來檢視提交至您 Azure 訂用帳戶的所有作業及其狀態。 預設會啟用稽核記錄檔，並可在 Azure 入口網站中進行檢視。
-* **警示事件記錄：**您可以使用此記錄來檢視負載平衡器所引發的警示。 系統每五分鐘會收集一次負載平衡器的狀態。 只有在引發負載平衡器警示事件時，才會寫入此記錄檔。
-* **健康狀態探查記錄︰**您可以使用此記錄來檢視健康狀態探查所偵測到的問題，例如後端集區中因為健康狀態探查失敗而未從負載平衡器接收要求的執行個體數目。 健康狀態探查狀態發生變更時會寫入此記錄。
+* **稽核記錄檔：**您可以使用[Azure 稽核記錄檔](../monitoring-and-diagnostics/insights-debugging-with-events.md)（之前稱為操作記錄檔） tooview 要提交的 tooyour Azure 訂閱，且其狀態的所有作業。 依預設，會啟用稽核記錄檔，並可以在 hello Azure 入口網站中檢視。
+* **警示事件記錄檔：**您可以使用此記錄 tooview 警示 rasied hello 負載平衡器。 hello 狀態 hello 負載平衡器會收集每隔五分鐘。 只有在引發負載平衡器警示事件時，才會寫入此記錄檔。
+* **健全狀況探查記錄檔：**您可以使用您的健全狀況探查，例如您的後端集區中沒有接收要求從 hello 負載平衡器健全狀況探查失敗的執行個體的 hello 數目所偵測到此記錄 tooview 問題。 此記錄檔會寫入 toowhen 沒有 hello 健全狀況探查狀態的變更。
 
 > [!IMPORTANT]
-> 記錄檔分析目前僅適用於網際網路面向的負載平衡器。 記錄檔僅適用於在資源管理員部署模型中部署的資源。 您無法將記錄檔使用於傳統部署模型中的資源。 如需這些部署模型的詳細資訊，請參閱[了解 Resource Manager 部署和傳統部署](../azure-resource-manager/resource-manager-deployment-model.md)。
+> 記錄檔分析目前僅適用於網際網路面向的負載平衡器。 記錄檔只可供部署在 hello Resource Manager 部署模型中的資源。 您無法使用記錄檔 hello 傳統部署模型中的資源。 如需 hello 部署模型的詳細資訊，請參閱[了解資源管理員部署和傳統部署](../azure-resource-manager/resource-manager-deployment-model.md)。
 
 ## <a name="enable-logging"></a>啟用記錄
 
-每個 Resource Manager 資源都會自動啟用稽核記錄。 您需要啟用事件和健全狀況探查記錄，才能開始收集可透過這些記錄檔取得的資料。 使用下列步驟以啟用記錄功能。
+每個 Resource Manager 資源都會自動啟用稽核記錄。 您需要 tooenable 事件和健全狀況探查記錄 toostart 收集 hello 資料可透過這些記錄檔。 使用下列步驟 tooenable 記錄 hello。
 
-登入 [Azure 入口網站](http://portal.azure.com)。 如果您還沒有負載平衡器，請先 [建立負載平衡器](load-balancer-get-started-internet-arm-ps.md) 再繼續。
+登入 toohello [Azure 入口網站](http://portal.azure.com)。 如果您還沒有負載平衡器，請先 [建立負載平衡器](load-balancer-get-started-internet-arm-ps.md) 再繼續。
 
-1. 在入口網站中，按一下 [瀏覽]。
+1. 在 hello 入口網站中，按一下 **瀏覽**。
 2. 選取 [負載平衡器]。
 
     ![入口網站 - 負載平衡器](./media/load-balancer-monitor-log/load-balancer-browse.png)
 
 3. 選取現有的負載平衡器 >> [所有設定]。
-4. 在對話方塊的右側，於負載平衡器的名稱下方，捲動至 [監視]，按一下 [診斷]。
+4. 右側 hello hello 對話方塊 hello hello 負載平衡器名稱下，捲動太**監視**，按一下 **診斷**。
 
     ![入口網站 - 負載平衡器 - 設定](./media/load-balancer-monitor-log/load-balancer-settings.png)
 
-5. 在 [診斷] 窗格中，在 [狀態] 下方，選取 [開啟]。
+5. 在 hello**診斷**窗格下**狀態**，選取**上**。
 6. 按一下 [儲存體帳戶]。
-7. 在 [記錄] 下方，選取現有的儲存體帳戶或建立一個新的。 使用滑桿來決定值得在事件記錄中儲存多少天的事件資料。 
+7. 在 [記錄] 下方，選取現有的儲存體帳戶或建立一個新的。 使用 hello 滑桿 toodetermine 過去事件資料會儲存在 hello 事件記錄檔的天數。 
 8. 按一下 [儲存] 。
 
     ![入口網站 - 診斷記錄檔](./media/load-balancer-monitor-log/load-balancer-diagnostics.png)
 
 > [!NOTE]
-> 稽核記錄檔不需要個別的儲存體帳戶。 將儲存體用於事件和健全狀況探查記錄將會產生服務費用。
+> 稽核記錄檔不需要個別的儲存體帳戶。 hello 使用的儲存體事件和健全狀況探查記錄將會產生服務費用。
 
 ## <a name="audit-log"></a>稽核記錄檔
 
-預設會產生稽核記錄檔。 記錄檔會在 Azure 的 [事件記錄檔] 存放區中保留 90 天。 閱讀 [檢視事件和稽核記錄檔](../monitoring-and-diagnostics/insights-debugging-with-events.md) 一文，進一步了解這些記錄檔。
+根據預設，會產生 hello 稽核記錄。 hello 記錄檔會保留 90 天，在 Azure 的事件記錄檔存放區中。 深入了解這些記錄檔讀取 hello[檢視的事件，並稽核記錄檔](../monitoring-and-diagnostics/insights-debugging-with-events.md)發行項。
 
 ## <a name="alert-event-log"></a>警示事件記錄檔
 
-您必須對每一個負載平衡器進行啟用，才會產生此記錄檔。 事件會以 JSON 格式記錄，並儲存在您啟用記錄時所指定的儲存體帳戶中。 以下是事件的範例。
+您必須對每一個負載平衡器進行啟用，才會產生此記錄檔。 hello 事件記錄以 JSON 格式，儲存在您指定當您啟用 hello 記錄的 hello 儲存體帳戶。 hello 以下是事件的範例。
 
 ```json
 {
@@ -82,11 +82,11 @@ ms.lasthandoff: 07/11/2017
 }
 ```
 
-JSON 輸出中會顯示 *eventname* 屬性，此屬性會描述負載平衡器建立警示的原因。 在此案例中，來源 IP NAT (SNAT) 限制導致了 TCP 連接埠耗盡，因此產生此警示。
+hello JSON 輸出會顯示 hello *eventname*屬性會描述 hello 負載平衡器的 hello 原因建立警示。 在此情況下，產生的 hello 警示已到期 tooTCP 連接埠耗盡來源 IP NAT 限制所造成 (SNAT)。
 
 ## <a name="health-probe-log"></a>健全狀況探查記錄檔
 
-如果您已如上所述對每一個負載平衡器進行啟用，才會產生此記錄檔。 資料會儲存在您啟用記錄時所指定的儲存體帳戶中。 系統會建立名為 'insights-logs-loadbalancerprobehealthstatus' 的容器，並記錄下列資料：
+如果您已如上所述對每一個負載平衡器進行啟用，才會產生此記錄檔。 hello 資料會儲存在您指定當您啟用 hello 記錄的 hello 儲存體帳戶。 會建立名為 ' insights-記錄檔-loadbalancerprobehealthstatus' 的容器，並會記錄下列資料的 hello:
 
 ```json
 {
@@ -122,21 +122,21 @@ JSON 輸出中會顯示 *eventname* 屬性，此屬性會描述負載平衡器�
 }
 ```
 
-JSON 輸出在屬性欄位中顯示了探查健全狀況狀態的基本資訊。 *dipDownCount* 屬性會顯示後端上因為探查回應失敗而不會接收網路流量的執行個體總數。
+hello JSON 輸出會顯示以 hello 屬性欄位 hello 基本資訊 hello 探查健全狀態。 hello *dipDownCount*屬性會顯示 hello 後端不接收網路流量，因為 toofailed 探查回應其上的執行個體的 hello 總數。
 
-## <a name="view-and-analyze-the-audit-log"></a>檢視和分析稽核記錄檔
+## <a name="view-and-analyze-hello-audit-log"></a>檢視及分析 hello 稽核記錄檔
 
-您可以使用下列任何方法，檢視和分析稽核記錄檔資料：
+您可以檢視及分析稽核記錄檔資料，使用任何 hello 下列方法：
 
-* **Azure 工具︰** 透過 Azure PowerShell、Azure 命令列介面 (CLI)、Azure REST API 或 Azure Preview 入口網站，從稽核記錄擷取資訊。 [稽核作業與資源管理員](../azure-resource-manager/resource-group-audit.md) 一文會詳述每個方法的逐步指示。
-* **Power BI︰**如果您還沒有 [Power BI](https://powerbi.microsoft.com/pricing) 帳戶，您可以免費試用。 使用 [Power BI 的 Azure 稽核記錄檔內容套件](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs)，您可以使用預先設定的儀表板來分析資料，或根據您的需求自訂檢視。
+* **Azure 工具：**從 Azure PowerShell，hello Azure 命令列介面 (CLI) (hello Azure REST API，透過 hello 稽核記錄檔中擷取資訊或 hello Azure preview 入口網站。 每個方法的逐步指示的詳細 hello[稽核與資源管理員作業](../azure-resource-manager/resource-group-audit.md)發行項。
+* **Power BI︰**如果您還沒有 [Power BI](https://powerbi.microsoft.com/pricing) 帳戶，您可以免費試用。 使用 hello [Power BI 的 Azure 稽核記錄內容套件](https://powerbi.microsoft.com/documentation/powerbi-content-pack-azure-audit-logs)、 您可以分析資料與預先設定的儀表板，或您可以自訂檢視 toosuit 您的需求。
 
-## <a name="view-and-analyze-the-health-probe-and-event-log"></a>檢視和分析健全狀況探查與事件記錄檔
+## <a name="view-and-analyze-hello-health-probe-and-event-log"></a>檢視及分析 hello 健全狀況探查和事件記錄檔
 
-您需要連接到儲存體帳戶並擷取事件和健全狀況探查記錄檔的 JSON 記錄項目。 下載 JSON 檔案後，您可以將它們轉換成 CSV 並在 Excel、PowerBI 或任何其他資料視覺化工具中檢視。
+您需要 tooconnect tooyour 儲存體帳戶，並擷取事件和健全狀況探查記錄檔的 hello JSON 記錄項目。 一旦您下載 hello JSON 檔案，您可以將它們轉換 tooCSV 和 Excel、 power Bi 或任何其他資料視覺效果工具中的檢視。
 
 > [!TIP]
-> 如果您熟悉 Visual Studio 以及在 C# 中變更常數和變數值的基本概念，您可以使用 GitHub 所提供的[記錄檔轉換器工具 (英文)](https://github.com/Azure-Samples/networking-dotnet-log-converter)。
+> 如果您熟悉 Visual Studio 和變更值的常數和變數在 C# 中的基本概念，您可以使用 hello[記錄轉換器工具](https://github.com/Azure-Samples/networking-dotnet-log-converter)可從 GitHub 取得。
 
 ## <a name="additional-resources"></a>其他資源
 

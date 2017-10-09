@@ -1,5 +1,5 @@
 ---
-title: "Azure Service Fabric 中度量的重組 | Microsoft Docs"
+title: "Azure Service Fabric 中標準的 aaaDefragmentation |Microsoft 文件"
 description: "使用重組或封裝作為 Service Fabric 中度量策略的概觀"
 services: service-fabric
 documentationcenter: .net
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: b253cc07066092aa82d218c9c82c8aac502245a8
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: d09045a6cf196d2771f1a0794637f4579d3eb96b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="defragmentation-of-metrics-and-load-in-service-fabric"></a>度量的重組和 Service Fabric 中的負載
-Service Fabric 叢集資源管理員對於管理叢集中負載計量的預設策略是分散負載。 確保平均使用節點，以避免忙碌和閒置位置，導致爭用和浪費的資源。 就故障情況下幸存而言，分散工作負載是最安全的，因為這可確保不會因為故障而使指定的工作負載損失慘重。 
+管理 hello 叢集中的負載度量 hello Service Fabric 叢集資源管理員的預設策略是 toodistribute hello 負載。 確保節點平均並加以使用，可避免熱門和冷門導致 tooboth 爭用和浪費的資源的點。 散發 hello 叢集中的工作負載，也是最安全方面存活失敗，因為它可確保失敗不取出指定的工作負載大量百分比的 hello。 
 
-Service Fabric 叢集資源管理員支援管理負載的不同策略，也就是重組。 重組表示合併計量，而不是嘗試將計量的使用量分散到叢集中。 合併完全逆轉預設平衡策略 – 叢集資源管理員嘗試增加偏差，而不是將計量負載的平均標準偏差最小化。
+hello Service Fabric 叢集資源管理員支援不同的策略來管理負載，也就是磁碟重組。 磁碟重組表示，而不是整個 hello 叢集嘗試 toodistribute hello 使用量度量資訊，它會彙總。 彙總只逆轉 hello 預設平衡策略 – 而不是 hello 平均標準差的度量的負載降到最低，hello 叢集資源管理員會嘗試 tooincrease 它。
 
-## <a name="when-to-use-defragmentation"></a>使用重組的時機
-分散叢集中的負載，會耗用每個節點上的一些資源。 某些工作負載會建立極龐大且耗用大部分或所有節點的服務。 在這些情況下，有可能在建立大型工作負載時，任何節點上都沒有可以執行的足夠空間。 大型工作負載在 Service Fabric 中並不是問題；在這些情況下，叢集資源管理員會決定需要重組叢集，以騰出空間給這個大型工作負載。 不過，同時此工作負載必須等待在叢集中排程。
+## <a name="when-toouse-defragmentation"></a>當 toouse 磁碟重組
+Hello 叢集中的負載，會消耗一些 hello 每個節點上的資源。 某些工作負載會建立極龐大且耗用大部分或所有節點的服務。 在這些情況下，可能會，當大型取得建立工作負載沒有足夠的空間上任何節點 toorun 它們。 大型工作負載不 Service Fabric; 中的問題在這些情況下 hello 叢集資源管理員會判斷它需要 tooreorganize hello 叢集 toomake 空間供這個大量的工作負載。 不過，在 hello 同時工作負載有 toowait toobe 排程 hello 叢集中。
 
-如果要通過許多服務和狀態，則大型工作負載會經過很常的時間才放入叢集中。 如果叢集中的其他工作負載也很大，因而移動時間很久，可能就會發生這種情形。 Service Fabric 小組是模擬此案例來測量建立時間。 我們發現，只要叢集使用率超過 30% 到 50% 之間，建立大型服務所花費的時間就會更久。 為了解決這種情況，我們引進重組當作平衡策略。 我們發現，對於大型工作負載，特別是建立時間很重要的工作負載，重組確實有助於將新的工作負載放入叢集中排程。
+如果有許多的服務和狀態 toomove 周圍，它可能需要很長的時間 hello 大量的工作負載 toobe 放置 hello 叢集中。 如果在 hello 叢集中的其他工作負載也很大，而且讓長 tooreorganize，這是更有可能。 hello Service Fabric 小組測量建立時間，在此案例的模擬。 我們發現，只要叢集使用率超過 30% 到 50% 之間，建立大型服務所花費的時間就會更久。 toohandle 此案例中，我們引進了做為平衡策略磁碟重組。 我們發現，大型工作負載，特別是其中的建立時間為重要的是，磁碟重組真的協助這些新的工作負載已排入排程 hello 叢集中。
 
-您可以設定重組計量，讓叢集資源管理員主動嘗試將服務的負載壓縮至較少的節點。 這有助於確保幾乎永遠有空間容納更大型的服務，而不需要重新組織叢集。 不需要重新組織叢集可以讓建立大型工作負載更快速。
+您可以設定磁碟重組度量 toohave hello hello 服務的叢集資源管理員 tooproactively 再試一次 toocondense hello 負載成較少的節點。 這有助於確保沒有幾乎大型的服務，而不需重新組織 hello 叢集中的空間。 沒有 tooreorganize hello 叢集可讓快速建立大型工作負載。
 
-大部分的人不需要重組。 服務通常很小，因此在叢集中不難找到空間給它們。 重新組織可行時，同樣地可以快速執行，因為大部分服務很小，而且可以快速且平行地移動。 不過，如果您有大型的服務且需要儘速建立，則重組策略就適合您。 我們接下來將討論使用重組的權衡取捨。 
+大部分的人不需要重組。 因此並不難 toofind 空間它們 hello 叢集中，服務會通常很小。 重新組織可行時，同樣地可以快速執行，因為大部分服務很小，而且可以快速且平行地移動。 不過，如果您有大型的服務，並需要快速地建立然後 hello 磁碟重組策略就是您。 我們將討論使用磁碟重組，接下來的 hello 權衡取捨。 
 
 ## <a name="defragmentation-tradeoffs"></a>重組權衡取捨
-重組會放大故障的影響力，因為在故障節點上執行的服務更多。 重組也會增加成本，因為叢集中的資源必須保留，等候大型工作負載的建立。
+重組會放大故障的影響力，因為在故障節點上執行的服務更多。 磁碟重組也可以增加成本，因為 hello 叢集中的資源必須持有保留，等候 hello 建立大型工作負載。
 
-下圖提供兩個叢集的視覺表示法，其中一個已重組，另一個未重組。 
+hello 下列圖表提供兩個叢集的視覺表示法，已重組，一個不是。 
 
 <center>
 ![比較平衡和重組叢集][Image1]
 </center>
 
-在平衡情況下，請注意放置其中一個最大服務物件所需的移動次數。 在重組的叢集中，大型工作負載可以放置於四或五個節點，而不需要等待其他服務移動。
+在 hello 平衡案例中，請考慮 hello 數目就是必要的 tooplace hello 最大的服務物件的移動。 在 hello 重組叢集中，hello 大量的工作負載無法置於四或五個節點而不需要的任何其他服務 toomove toowait。
 
 ## <a name="defragmentation-pros-and-cons"></a>重組的優缺點
-因此，有哪些其他概念性的代價？ 以下是要考慮事項的一覽表︰
+因此，有哪些其他概念性的代價？ 以下是有關的事項 toothink 的快速資料表：
 
 | 重組優點 | 重組缺點 |
 | --- | --- |
@@ -54,16 +54,16 @@ Service Fabric 叢集資源管理員支援管理負載的不同策略，也就�
 | 在建立期間啟用較低的資料移動 |失敗會影響更多服務，並導致更多流失 |
 | 能夠豐富描述需求和空間的回收 |較複雜的整體資源管理組態 |
 
-您可以在相同叢集中混用重組計量和一般計量。 叢集資源管理員會嘗試儘可能合併重組計量，而分散其他計量。 混合重組和平衡策略的結果取決於許多因素，包括：
-  - 平衡計量數目與重組計量數目
+您可以混合重組和一般計量 hello 相同叢集中。 hello 叢集資源管理員會嘗試 tooconsolidate hello 重組度量盡可能時分配 hello 其他人。 hello 結果的混合磁碟重組和平衡策略取決於許多因素，包括：
+  - hello 數目的平衡與 hello 的幾個磁碟重組度量的度量
   - 是否有任何服務同時使用兩種類型的計量 
-  - 計量權數
+  - hello 衡量標準權數
   - 目前的計量負載
   
-需要實驗來判斷所需的確切組態。 我們建議先徹底測量您的工作負載，然後再於生產中啟用重組計量。 在相同服務中混合重組和平衡計量時，更是如此。 
+試驗是必要的 toodetermine hello 確切必要組態。 我們建議先徹底測量您的工作負載，然後再於生產中啟用重組計量。 特別是當磁碟重組和平衡的度量 hello 中混用相同的服務。 
 
 ## <a name="configuring-defragmentation-metrics"></a>設定重組度量
-設定重組計量是叢集中的全域決策，而您可以選取個別的計量進行重組。 下列設定程式碼片段示範如何設定重組的計量。 在此情況下，"Metric1" 設定為重組計量，"Metric2" 則繼續進行一般平衡。 
+設定磁碟重組度量資訊是全域的決策，在 hello 叢集中，並選取個別的度量來進行磁碟重組。 下列組態程式碼片段的 hello 顯示 tooconfigure 度量的磁碟重組。 在此情況下，"Metric1 」 設定為磁碟重組度量，"Metric2 」 將會繼續正常平衡 toobe 時。 
 
 ClusterManifest.xml：
 
@@ -96,7 +96,7 @@ ClusterManifest.xml：
 
 
 ## <a name="next-steps"></a>後續步驟
-- 叢集資源管理員有許多描述叢集的選項。 若要深入了解這些選項，請參閱關於[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)一文
-- 度量是 Service Fabric 叢集資源管理員管理叢集中的耗用量和容量的方式。 若要深入了解計量及其設定方式，請查看[這篇文章](service-fabric-cluster-resource-manager-metrics.md)
+- hello 叢集資源管理員具有 man 選項描述 hello 叢集。 toofind 出更多相關資訊，請參閱這篇文章上[描述 Service Fabric 叢集](service-fabric-cluster-resource-manager-cluster-description.md)
+- 度量資訊是如何 hello Service Fabric 叢集資源管理員管理耗用量和 hello 叢集中的容量。 toolearn 更多關於度量和如何 tooconfigure 它們，請參閱[這篇文章](service-fabric-cluster-resource-manager-metrics.md)
 
 [Image1]:./media/service-fabric-cluster-resource-manager-defragmentation-metrics/balancing-defrag-compared.png

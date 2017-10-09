@@ -1,6 +1,6 @@
 ---
-title: "如何使用 Ruby 的 Azure 資料表儲存體 | Microsoft Docs"
-description: "使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。"
+title: "aaaHow toouse 從 Ruby 的 Azure 資料表儲存體 |Microsoft 文件"
+description: "使用 Azure 資料表儲存體，NoSQL 資料存放區的 hello 雲端中儲存結構化的資料。"
 services: storage
 documentationcenter: ruby
 author: mmacy
@@ -14,66 +14,66 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 12/08/2016
 ms.author: marsma
-ms.openlocfilehash: 03f466cb08ed2ccbd2985471d0956af9e66d97f1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9c77ff9f384a776c9bc075b60b351685c61acc36
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-azure-table-storage-from-ruby"></a>如何使用 Ruby 的 Azure 資料表儲存體
+# <a name="how-toouse-azure-table-storage-from-ruby"></a>如何 toouse 從 Ruby 的 Azure 資料表儲存體
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 [!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
 ## <a name="overview"></a>概觀
-本指南說明如何使用 Azure 資料表服務執行一般案例。 這些範例使用 Ruby API 撰寫。 所涵蓋的案例包括「建立和刪除資料表」、「在資料表中插入及查詢實體」。
+本指南也說明如何使用 tooperform 常見案例 hello Azure 表格服務。 使用 hello Ruby 應用程式開發介面撰寫 hello 範例。 hello 涵蓋案例包括**建立和刪除資料表、 插入和查詢資料表中的實體**。
 
 [!INCLUDE [storage-table-concepts-include](../../includes/storage-table-concepts-include.md)]
 
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-ruby-application"></a>建立 Ruby 應用程式
-如需如何建立 Ruby 應用程式的指示，請參閱 [Azure VM 上的 Ruby on Rails Web 應用程式](../virtual-machines/linux/classic/virtual-machines-linux-classic-ruby-rails-web-app.md)。
+如需相關指示如何 toocreate 拼音的應用程式，請參閱[拼音滑軌 Web 應用程式在 Azure VM 上](../virtual-machines/linux/classic/virtual-machines-linux-classic-ruby-rails-web-app.md)。
 
-## <a name="configure-your-application-to-access-storage"></a>設定您的應用程式以存取儲存體
-若要使用 Azure 儲存體，您必須下載並使用 Ruby Azure 套件，其中包含一組便利程式庫，能與儲存體 REST 服務通訊。
+## <a name="configure-your-application-tooaccess-storage"></a>設定您的應用程式 tooaccess 儲存體
+toouse Azure 儲存體，您需要 toodownload 和使用 hello Ruby 的 azure 封裝包括一組方便程式庫與 hello 儲存體 REST 服務通訊。
 
-### <a name="use-rubygems-to-obtain-the-package"></a>使用 RubyGems 來取得套件
+### <a name="use-rubygems-tooobtain-hello-package"></a>使用 RubyGems tooobtain hello 套件
 1. 使用命令列介面，例如 **PowerShell** (Windows)、**Terminal** (Mac) 或 **Bash** (Unix)。
-2. 在命令視窗中鍵入 **gem install azure** 以安裝 Gem 和相依性。
+2. 型別**健身安裝 azure** hello 命令視窗 tooinstall hello 健身和相依性。
 
-### <a name="import-the-package"></a>匯入套件
-使用您偏好的文字編輯器，將以下內容新增至您打算使用儲存體的 Ruby 檔案頂端：
+### <a name="import-hello-package"></a>匯入 hello 封裝
+使用您慣用的文字編輯器，請新增下列 toohello hello 拼音想 toouse 儲存體的檔案頂端的 hello:
 
 ```ruby
 require "azure"
 ```
 
 ## <a name="set-up-an-azure-storage-connection"></a>設定 Azure 儲存體連接
-azure 模組會讀取環境變數 **AZURE\_STORAGE\_ACCOUNT** 及**AZURE\_STORAGE\_ACCESS\_KEY**，以取得連接 Azure 儲存體帳戶所需的資訊。 如果尚未設定這些環境變數，您必須使用下列程式碼，在使用 **Azure::TableService** 之前指定帳戶資訊：
+hello azure 模組會讀取 hello 環境變數**AZURE\_儲存體\_帳戶**和**AZURE\_儲存體\_存取\_金鑰**資訊所需 tooconnect tooyour Azure 儲存體帳戶。 如果未設定這些環境變數，您必須指定 hello 帳戶資訊，才能使用**Azure::TableService**以下列程式碼的 hello:
 
 ```ruby
 Azure.config.storage_account_name = "<your azure storage account>"
 Azure.config.storage_access_key = "<your azure storage access key>"
 ```
 
-若要從 Azure 入口網站中的傳統或 Resource Manager 儲存體帳戶取得這些值：
+tooobtain hello Azure 入口網站中的帳戶從傳統或資源管理員儲存這些值：
 
-1. 登入 [Azure 入口網站](https://portal.azure.com)。
-2. 瀏覽到您要使用的儲存體帳戶。
-3. 在右邊的 [設定] 刀鋒視窗中，按一下 [存取金鑰]。
-4. [存取金鑰] 刀鋒視窗隨即顯示，您會看到存取金鑰 1 和存取金鑰 2。 您可以使用其中一個存取金鑰。
-5. 按一下複製圖示以將金鑰複製到剪貼簿。
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
+2. 瀏覽您想 toouse toohello 儲存體帳戶。
+3. 在 hello 設定 刀鋒視窗上 hello 右邊，按一下 **便捷鍵**。
+4. 在 hello 存取金鑰刀鋒視窗中出現，您會看到 hello 便捷鍵 1 和 2 的存取金鑰。 您可以使用其中一個存取金鑰。
+5. 按一下 hello 複製圖示 toocopy hello 金鑰 toohello 剪貼簿。
 
-若要從 Azure 入口網站的傳統儲存體帳戶取得這些值：
+tooobtain hello 傳統 Azure 入口網站中的這些值從傳統儲存體帳戶：
 
-1. 登入 [Azure 傳統入口網站](https://manage.windowsazure.com)。
-2. 瀏覽到您要使用的儲存體帳戶。
-3. 按一下導覽窗格底部的 [管理存取金鑰]。
-4. 在快顯對話方塊中，您將會看到儲存體帳戶名稱、主要存取金鑰和次要存取金鑰。 如需存取金鑰，您可以使用主要存取金鑰或次要存取金鑰。
-5. 按一下複製圖示以將金鑰複製到剪貼簿。
+1. 登入 toohello [Azure 傳統入口網站](https://manage.windowsazure.com)。
+2. 瀏覽您想 toouse toohello 儲存體帳戶。
+3. 按一下**管理存取金鑰**在 hello hello 瀏覽窗格的底部。
+4. 在 hello 快顯對話方塊中，您會看到 hello 儲存體帳戶名稱、 主要存取金鑰和次要存取金鑰。 針對存取金鑰，您可以使用 hello 主要或次要的一個 hello。
+5. 按一下 hello 複製圖示 toocopy hello 金鑰 toohello 剪貼簿。
 
 ## <a name="create-a-table"></a>建立資料表
-**Azure::TableService** 物件可讓您操作資料表及實體。 若要建立資料表，請使用 **create\_table()** 方法。 下列範例將建立資料表或列印錯誤訊息 (若有的話)。
+hello **Azure::TableService**物件可讓您使用資料表和實體。 toocreate 資料表時，使用 hello**建立\_table()**方法。 hello 下列範例會建立資料表，或列印 hello 錯誤，如果有的話。
 
 ```ruby
 azure_table_service = Azure::TableService.new
@@ -84,8 +84,8 @@ rescue
 end
 ```
 
-## <a name="add-an-entity-to-a-table"></a>將實體新增至資料表
-若要新增實體，請先建立定義實體屬性的雜湊物件。 請注意，對每個實體都必須指定 **PartitionKey** 及 **RowKey**。 這些是實體的唯一識別碼，且其值的查詢速度比其他屬性快上許多。 Azure 儲存體會使用 **PartitionKey** ，自動將資料表的實體分散在許多儲存體節點上。 具有相同 **PartitionKey** 的實體會儲存在相同節點上。 **RowKey** 是實體在其所屬資料分割內的唯一識別碼。
+## <a name="add-an-entity-tooa-table"></a>加入實體 tooa 表
+tooadd 實體，會先建立可定義實體屬性的雜湊物件。 請注意，對每個實體都必須指定 **PartitionKey** 及 **RowKey**。 這些是 hello 的實體，唯一識別碼，而且可以進行查詢速度，比其他程式屬性的值。 Azure 儲存體使用**PartitionKey** tooautomatically 散發 hello 資料表實體，在許多儲存節點。 實體與 hello 相同**PartitionKey**儲存在 hello 上相同的節點。 hello **RowKey**是 hello 的 hello 實體所屬的 hello 磁碟分割內的唯一識別碼。
 
 ```ruby
 entity = { "content" => "test entity",
@@ -94,14 +94,14 @@ azure_table_service.insert_entity("testtable", entity)
 ```
 
 ## <a name="update-an-entity"></a>更新實體
-有多種方法可以用來更新現有的實體：
+有多個方法可用 tooupdate 現有的實體：
 
 * **update\_entity()：**透過取代現有實體來進行更新。
-* **merge\_entity()：**藉由將新的屬性值合併到現有實體來更新現有實體。
+* **合併\_entity():**將新的屬性值合併為 hello 現有實體，以更新現有的實體。
 * **insert\_or\_merge\_entity()：**藉由取代來更新現有實體。 如果實體不存在，將會插入新的實體：
-* **insert\_or\_replace\_entity()：**藉由將新的屬性值合併到現有實體來更新現有實體。 如果實體不存在，將會插入新的實體。
+* **插入\_或\_取代\_entity():**將新的屬性值合併為 hello 現有實體，以更新現有的實體。 如果實體不存在，將會插入新的實體。
 
-下列範例示範使用 **update\_entity()** 來更新實體：
+hello 下列範例示範如何更新實體使用**更新\_entity()**:
 
 ```ruby
 entity = { "content" => "test entity with updated content",
@@ -109,10 +109,10 @@ entity = { "content" => "test entity with updated content",
 azure_table_service.update_entity("testtable", entity)
 ```
 
-使用 **update\_entity()** 及 **merge\_entity()** 時，如果要更新的實體不存在，則更新作業會失敗。 因此，如果您要儲存一個實體，而不管它是否已存在，您應該改用 **insert\_or\_replace\_entity()** 或 **insert\_or\_merge\_entity()**。
+與**更新\_entity()**和**合併\_entity()**，如果您要更新的 hello 實體不存在 hello 更新作業將會失敗。 因此如果您想 toostore 不論是否已經存在的實體，您應該改用**插入\_或\_取代\_entity()**或**插入\_或\_合併\_entity()**。
 
 ## <a name="work-with-groups-of-entities"></a>使用實體群組
-有時候批次提交多個操作是有意義的，可以確保伺服器會進行不可部分完成的處理。 若要達到此目的，您首先必須建立 **Batch** 物件，然後在 **TableService** 上使用 **execute\_batch()** 方法。 下列範例示範在一個批次中，提交具備 RowKey 2 和 3 的兩個實體。 請注意，它僅適用於具備相同 PartitionKey 的實體。
+有時它可讓意義 toosubmit 多個作業一起批次 tooensure 中不可部分完成 hello 伺服器所處理。 tooaccomplish，您必須先建立**批次**物件，然後使用 hello**執行\_batch()**方法**TableService**。 hello 下列範例示範送出兩個實體 RowKey 2 和 3 批次中。 請注意，它，僅適用於實體與 hello 相同的 PartitionKey。
 
 ```ruby
 azure_table_service = Azure::TableService.new
@@ -125,7 +125,7 @@ results = azure_table_service.execute_batch(batch)
 ```
 
 ## <a name="query-for-an-entity"></a>查詢實體
-若要查詢資料表中的實體，請使用 **get\_entity()** 方法，傳遞資料表名稱、**PartitionKey** 和 **RowKey**。
+在資料表中，使用 hello 實體 tooquery**取得\_entity()**方法，藉由傳遞 hello 資料表名稱， **PartitionKey**和**RowKey**。
 
 ```ruby
 result = azure_table_service.get_entity("testtable", "test-partition-key",
@@ -133,7 +133,7 @@ result = azure_table_service.get_entity("testtable", "test-partition-key",
 ```
 
 ## <a name="query-a-set-of-entities"></a>查詢實體集合
-若要查詢資料表中的實體集合，請建立查詢雜湊物件並使用 **query\_entities()** 方法。 下列範例示範取得具備相同 **PartitionKey**的所有實體：
+tooquery 的一組實體，在資料表中，建立查詢雜湊物件，並使用 hello**查詢\_entities()**方法。 hello 下列範例示範如何取得所有 hello 實體以 hello 相同**PartitionKey**:
 
 ```ruby
 query = { :filter => "PartitionKey eq 'test-partition-key'" }
@@ -141,12 +141,12 @@ result, token = azure_table_service.query_entities("testtable", query)
 ```
 
 > [!NOTE]
-> 如果單一查詢的結果集太大，以致於無法傳回，則會傳回接續權杖，供您用以擷取後續頁面。
+> 如果 hello 結果集是單一查詢 tooreturn 而言太大，接續 token 將會傳回您可以使用 tooretrieve 後續頁面。
 >
 >
 
 ## <a name="query-a-subset-of-entity-properties"></a>查詢實體屬性的子集
-一項資料表查詢可以只擷取實體的少數屬性。 這項稱為「投射」的技術可減少頻寬並提高查詢效能 (尤其是對大型實體而言)。 使用 select 子句並傳遞您要帶到用戶端的屬性名稱。
+查詢 tooa 資料表可從實體擷取少數的屬性。 這項稱為「投射」的技術可減少頻寬並提高查詢效能 (尤其是對大型實體而言)。 使用 hello select 子句，以及傳遞 hello 名稱 hello 您想要 toobring toohello 用戶端上的屬性。
 
 ```ruby
 query = { :filter => "PartitionKey eq 'test-partition-key'",
@@ -155,14 +155,14 @@ result, token = azure_table_service.query_entities("testtable", query)
 ```
 
 ## <a name="delete-an-entity"></a>刪除實體
-若要刪除實體，請使用 **delete\_entity()** 方法。 您必須傳入資料表名稱，其中包含實體、實體的 PartitionKey 和 RowKey。
+toodelete 實體，使用 hello**刪除\_entity()**方法。 您需要 toopass hello hello 資料表，其中包含 hello 實體、 hello PartitionKey 和 RowKey hello 實體的名稱。
 
 ```ruby
 azure_table_service.delete_entity("testtable", "test-partition-key", "1")
 ```
 
 ## <a name="delete-a-table"></a>刪除資料表
-若要刪除資料表，請使用 **delete\_table()** 方法並傳入要刪除的資料表名稱。
+toodelete 資料表時，使用 hello**刪除\_table()**方法並傳入的 hello 名稱 hello 想 toodelete 資料表。
 
 ```ruby
 azure_table_service.delete_table("testtable")
@@ -170,6 +170,6 @@ azure_table_service.delete_table("testtable")
 
 ## <a name="next-steps"></a>後續步驟
 
-* [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md) 是一個免費的獨立應用程式，可讓您在 Windows、MacOS 和 Linux 上以視覺化方式處理 Azure 儲存體資料。
+* [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)是免費的獨立應用程式，可讓您以視覺化方式與在 Windows、 macOS 和 Linux 上的 Azure 儲存體資料 toowork microsoft。
 * GitHub 上的 [Azure SDK for Ruby](http://github.com/WindowsAzure/azure-sdk-for-ruby) 儲存機制
 

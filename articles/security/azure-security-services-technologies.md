@@ -1,6 +1,6 @@
 ---
-title: "Azure 安全性服務和技術 | Microsoft Docs"
-description: "本文提供 Azure 安全性服務和技術經策劃的清單。"
+title: "aaaAzure 安全性服務和技術 |Microsoft 文件"
+description: "hello 文章提供策劃的 Azure 安全性服務和技術的清單。"
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/02/2016
 ms.author: yurid
-ms.openlocfilehash: 0bea62a43cf6cac9132fe64f2d6c54e52def4c55
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 100b7bba46dce5f989bde2f6d930f298beb901a1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-security-services-and-technologies"></a>Azure 安全性服務和技術
-在我們與目前和未來的 Azure 客戶的討論中，我們經常被詢問「您有 Azure 提供的所有安全性相關服務和技術的清單嗎？」
+在我們討論中與目前和未來的 Azure 客戶，我們會經常詢問 「 您有一份所有 hello 安全性相關服務與 Azure 有 toooffer 的技術嗎？ 」
 
-我們了解，當您在評估雲端服務提供者技術選項，時機適當時若有這類清單可供您用來更深入發掘會對您有幫助。
+我們了解當您正在評估您雲端服務提供者技術的選項，是很有幫助 toohave 這類清單可用，您可以使用 toodig 關閉時，更深入 hello 時間是最適合您。
 
-以下是我們提供的初步清單。 這份清單會隨著時間變更並成長，正如同 Azure。 此清單經過分類，而目錄的清單也會隨著時間成長。 請務必定期查看此頁面，掌握我們的安全性相關服務和技術。
+hello 以下是我們初始努力在提供的清單。 這份清單會隨著時間變更並成長，正如同 Azure。 分類 hello 清單，以及類別目錄的 hello 清單也會隨著時間成長。 請確定 toocheck 此頁面上定期執行 toostay 我們的安全性相關的服務和技術的最新狀態。
 
 ## <a name="azure-security---general"></a>Azure 安全性 - 一般
 * [Azure 資訊安全中心](https://azure.microsoft.com/documentation/services/security-center/)

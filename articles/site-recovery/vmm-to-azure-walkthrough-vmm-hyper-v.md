@@ -1,6 +1,6 @@
 ---
-title: "準備 System Center VMM 以將 Hyper-V 複寫至 Azure | Microsoft Docs"
-description: "描述如何準備 System Center VMM 伺服器，以使用 Azure Site Recovery 將 Hyper-V 複寫至 Azure"
+title: "aaaPrepare System Center VMM 的 HYPER-V 複寫 tooAzure |Microsoft 文件"
+description: "描述如何為 HYPER-V 複寫 tooAzure，使用 Azure Site Recovery 的 tooprepare System Center VMM 伺服器"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,37 +14,37 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/23/2017
 ms.author: raynew
-ms.openlocfilehash: ec118ed837dbf140083b3ae1e4ecd41c81562018
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 773b06afaf7d3eea1fe64f050bf3970943cf466a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-6-prepare-vmm-servers-and-hyper-v-hosts-for-hyper-v-replication-to-azure"></a>步驟 6：準備 VMM 伺服器和 Hyper-V 主機以將 Hyper-V 複寫至 Azure
+# <a name="step-6-prepare-vmm-servers-and-hyper-v-hosts-for-hyper-v-replication-tooazure"></a>步驟 6： 準備 HYPER-V 複寫 tooAzure 的 VMM 伺服器和 HYPER-V 主機
 
-設定好部署所需的 [Azure 元件](vmm-to-azure-walkthrough-prepare-azure.md)後，請使用本文中的指示來準備內部部署 VMM 伺服器和 Hyper-V 主機，以和 Azure Site Recovery 進行互動。
+設定好後[Azure 元件](vmm-to-azure-walkthrough-prepare-azure.md)hello 部署，請使用本文章 tooprepare 在內部部署 VMM 伺服器和 HYPER-V 主機 toointeract 中的 hello 指示與 Azure Site Recovery。
 
-閱讀本文之後，在本文下方張貼意見，或在 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr) 提出技術問題。
+閱讀這篇文章之後, 張貼的任何註解底部 hello 或詢問技術問題上 hello [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
 
 
 ## <a name="prepare-vmm-servers"></a>準備 VMM 伺服器
 
-- 您至少需要一部符合 Site Recovery 複寫支援需求的 VMM 伺服器 (site-recovery-support-matrix-to-azure.md#support-for-datacenter-management-servers)。
-- 請確定您已備妥的 VMM 伺服器[網路對應](vmm-to-azure-walkthrough-network.md#network-mapping-for-replication-to-azure)。
-- 請確定 VMM 伺服器可以存取這些 URL
+- 您需要至少一個 VMM 伺服器符合 hello 支援需求的站台復原複寫 (site-recovery-support-matrix-to-azure.md#support-for-datacenter-management-servers)。
+- 請確定您已備妥 VMM 伺服器 hello[網路對應](vmm-to-azure-walkthrough-network.md#network-mapping-for-replication-to-azure)。
+- 請確定該 hello VMM 伺服器可以存取這些 Url
 
     [!INCLUDE [site-recovery-URLS](../../includes/site-recovery-URLS.md)]
     
-- 如果您有以 IP 位址為基礎的防火牆規則，請確定這些規則允許對 Azure 的通訊。
-- 允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (443) 連接埠。
-- 允許訂用帳戶的 Azure 區域和美國西部使用 IP 位址範圍 (用於存取控制和身分識別管理)。
+- 如果您有 IP 位址為基礎的防火牆規則，確保它們允許通訊 tooAzure。
+- 允許 hello [Azure Datacenter IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)，和 hello HTTPS (443) 連接埠。
+- 允許的 IP 位址範圍 hello Azure 區域，您的訂用帳戶，以及美國西部 （用於存取控制與身分識別管理）。
 
-在 Site Recovery 部署期間，您要在每部 VMM 伺服器上下載並安裝 Site Recovery Provider。 VMM 伺服器會在復原服務保存庫中註冊。
+Site Recovery 部署期間，您下載 hello Site Recovery 提供者，並將它安裝在每部 VMM 伺服器。 hello 復原服務保存庫中登錄 hello VMM 伺服器。
 
 
 
 
 ## <a name="next-steps"></a>後續步驟
 
-移至[步驟 7：建立保存庫](vmm-to-azure-walkthrough-create-vault.md)
+跳過[步驟 7： 建立保存庫](vmm-to-azure-walkthrough-create-vault.md)
 

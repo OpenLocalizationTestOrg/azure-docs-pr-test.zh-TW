@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Logic Apps 中編碼或解碼一般檔案 | Microsoft Docs"
-description: "如何在您的邏輯應用程式中使用企業整合套件內的一般檔案編碼器或解碼器"
+title: "aaaEncode 或解碼 Azure 邏輯應用程式中的一般檔案 |Microsoft 文件"
+description: "如何 toouse hello 檔案檔案編碼器或解碼器在邏輯應用程式中的 hello 企業版整合套件"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: MandiOhlinger
@@ -14,74 +14,74 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/08/2016
 ms.author: LADocs; mandia
-ms.openlocfilehash: bc3430624844cdeb92958433fba295f67a8ae0ff
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2c295586625fd84366ec7cbafdcebf0489ba234d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="overview-of-enterprise-integration-with-flat-files"></a>企業與一般檔案整合概觀
 
-在企業對企業 (B2B) 案例中，您可能會希望先將 XML 內容編碼，然後再傳送給企業夥伴。 在邏輯應用程式中，您可以使用一般檔案編碼連接器來執行此動作。 您所建立的邏輯應用程式可從各種來源取得其 XML 內容，包括 HTTP 要求觸發程序、另一個應用程式，或甚至是這其中任一種 [連接器](../connectors/apis-list.md)。 如需邏輯應用程式的詳細資訊，請參閱[邏輯應用程式文件](logic-apps-what-are-logic-apps.md "深入了解 Logic Apps")。  
+然後再傳送 tooa 協力廠商企業對企業 (B2B) 案例中的，您可能想 tooencode XML 內容。 在邏輯應用程式中，您可以使用這編碼連接器 toodo hello 一般檔案。 hello 您所建立的邏輯應用程式可以取得其 XML 內容從各種來源，包括從 HTTP 要求的觸發程序、 從另一個應用程式，或甚至是從一個 hello 許多[連接器](../connectors/apis-list.md)。 如需邏輯應用程式的詳細資訊，請參閱 hello[邏輯應用程式文件](logic-apps-what-are-logic-apps.md "深入了解 Logic apps")。  
 
-## <a name="create-the-flat-file-encoding-connector"></a>建立一般檔案編碼連接器
-請遵循下列步驟，將一般檔案編碼連接器新增到邏輯應用程式。
+## <a name="create-hello-flat-file-encoding-connector"></a>建立 hello 一般檔案編碼連接器
+請遵循這些步驟 tooadd 編碼連接器 tooyour 邏輯應用程式的一般檔案。
 
-1. 建立邏輯應用程式，並[將它連結到您的整合帳戶](logic-apps-enterprise-integration-accounts.md "了解如何將整合帳戶連結到邏輯應用程式")。 此帳戶包含您將用來編碼 XML 資料的結構描述。  
-2. 將 [要求 - 收到 HTTP 要求時]  觸發程序新增到您的邏輯應用程式。  
-   ![要選取之觸發程序的螢幕擷取畫面](./media/logic-apps-enterprise-integration-b2b/flatfile-1.png)    
-3. 新增一般檔案編碼動作，如下所示︰
+1. 建立邏輯應用程式和[tooyour 整合帳戶連結到](logic-apps-enterprise-integration-accounts.md "toolink 整合帳戶 tooa 邏輯應用程式了解")。 此帳戶包含您將使用 tooencode hello XML 資料的 hello 結構描述。  
+2. 新增**要求-當 HTTP 要求**觸發程序 tooyour 邏輯應用程式。  
+   ![觸發程序 tooselect 的螢幕擷取畫面](./media/logic-apps-enterprise-integration-b2b/flatfile-1.png)    
+3. 加入 hello 一般檔案編碼動作，如下所示：
    
-    a. 選取**加號**。
+    a. 選取 hello**加上**符號。
    
-    b. 選取 [新增動作] 連結 (會在選取加號之後出現)。
+    b. 選取 hello**將動作加入**（會顯示您選取加號 hello 之後） 的連結。
    
-    c. 在搜尋方塊中輸入「一般」，篩選所有動作以取得您想要使用的動作。
+    c. 在 [hello] 搜尋方塊中，輸入*一般*toofilter 所有 hello 動作 toohello 其中一個要 toouse。
    
-    d. 從清單中選取 [一般檔案編碼] 選項。   
+    d. 選取 hello**一般檔案編碼方式**hello 清單中的選項。   
    ![一般檔案編碼選項的螢幕擷取畫面](media/logic-apps-enterprise-integration-flatfile/flatfile-2.png)   
-4. 在 [一般檔案編碼] 對話方塊上選取 [內容] 文字方塊。  
+4. 在 hello**一般檔案編碼方式**對話方塊中，選取 hello**內容**文字方塊。  
    ![內容文字方塊的螢幕擷取畫面](media/logic-apps-enterprise-integration-flatfile/flatfile-3.png)  
-5. 選取內文標記做為您想要編碼的內容。 內文標記將會填入內容欄位。     
+5. 選取要作為內容的 tooencode hello hello body 標記。 hello body 標記將會填入 hello 內容 欄位。     
    ![內文標記的螢幕擷取畫面](media/logic-apps-enterprise-integration-flatfile/flatfile-4.png)  
-6. 選取 [結構描述名稱]  清單方塊，然後選擇您想要用來將輸入內容編碼的結構描述。    
+6. 選取 hello**結構描述名稱**清單方塊中，，然後選擇您想要 toouse tooencode hello hello 結構描述輸入內容。    
    ![結構描述名稱清單方塊的螢幕擷取畫面](media/logic-apps-enterprise-integration-flatfile/flatfile-5.png)  
 7. 儲存您的工作。   
    ![儲存圖示的螢幕擷取畫面](media/logic-apps-enterprise-integration-flatfile/flatfile-6.png)  
 
-此時，您已完成設定一般檔案編碼連接器。 在真實世界應用程式中，您可能想要在企業營運應用程式 (例如 Salesforce) 中儲存已編碼的資料。 或者，您也可以將該編碼資料傳送給交易夥伴。 您可以使用所提供的任一個其他連接器，輕鬆地新增動作來將編碼動作的輸出傳送到 Salesforce，或傳送給交易夥伴。
+此時，您已完成設定一般檔案編碼連接器。 在真實世界應用程式中，您可能想在特定業務應用程式，例如 Salesforce toostore hello 編碼資料。 或者，您可以傳送該交易夥伴的編碼的資料 tooa。 您可以輕鬆加入動作 toosend hello 的 hello 輸出編碼方式使用任何一個 hello 的動作 tooSalesforce 或 tooyour 交易夥伴，提供其他連接器。
 
-您現在可以測試連接器，方法是向 HTTP 端點提出要求，並在要求內文中包含 XML 內容。  
+您現在可以測試您的連接器的要求 toohello HTTP 結束點，包括 hello hello 要求主體中的 hello XML 內容。  
 
-## <a name="create-the-flat-file-decoding-connector"></a>建立一般檔案解碼連接器
+## <a name="create-hello-flat-file-decoding-connector"></a>建立 hello 解碼連接器的一般檔案
 
 > [!NOTE]
-> 為了完成這些步驟，您必須已將結構描述檔案上傳到您的整合帳戶。
+> toocomplete 這些步驟，您需要的 toohave 結構描述檔案已上傳到您整合帳戶。
 
-1. 將 [要求 - 收到 HTTP 要求時]  觸發程序新增到您的邏輯應用程式。  
-   ![要選取之觸發程序的螢幕擷取畫面](./media/logic-apps-enterprise-integration-b2b/flatfile-1.png)    
-2. 新增一般檔案解碼動作，如下所示︰
+1. 新增**要求-當 HTTP 要求**觸發程序 tooyour 邏輯應用程式。  
+   ![觸發程序 tooselect 的螢幕擷取畫面](./media/logic-apps-enterprise-integration-b2b/flatfile-1.png)    
+2. 加入 hello 一般檔案解碼動作，如下所示：
    
-    a. 選取**加號**。
+    a. 選取 hello**加上**符號。
    
-    b. 選取 [新增動作] 連結 (會在選取加號之後出現)。
+    b. 選取 hello**將動作加入**（會顯示您選取加號 hello 之後） 的連結。
    
-    c. 在搜尋方塊中輸入「一般」，篩選所有動作以取得您想要使用的動作。
+    c. 在 [hello] 搜尋方塊中，輸入*一般*toofilter 所有 hello 動作 toohello 其中一個要 toouse。
    
-    d. 從清單中選取 [一般檔案解碼] 選項。   
+    d. 選取 hello**一般檔案解碼**hello 清單中的選項。   
    ![一般檔案解碼選項的螢幕擷取畫面](media/logic-apps-enterprise-integration-flatfile/flatfile-2.png)   
-3. 選取 [內容]  控制項。 這會從先前步驟中產生一份內容清單，讓您可用來做為要解碼的內容。 請注意，來自傳入 HTTP 要求的「內文」  可用來做為要解碼的內容。 您也可以將要解碼的內容直接輸入於 [內容]  控制項中。     
-4. 選取 [內文]  標記。 請注意，內文標記目前位於 [內容]  控制項中。
-5. 選取您想要用來將內容解碼的結構描述名稱。 下列螢幕擷取畫面顯示選取的結構描述名稱是「OrderFile」  。 此結構描述名稱先前已上傳到整合帳戶。
+3. 選取 hello**內容**控制項。 這會產生從先前的步驟，可作為 hello 內容 toodecode hello 內容的清單。 請注意該 hello*主體*hello 從傳入的 HTTP 要求是做為 hello 內容 toodecode 可用 toobe。 您也可以直接在 hello 輸入 hello 內容 toodecode**內容**控制項。     
+4. 選取 hello*主體*標記。 請注意 hello body 標記已在 hello**內容**控制項。
+5. 選取 hello hello 想 toouse toodecode hello 內容的結構描述名稱。 hello 下列螢幕擷取畫面顯示*OrderFile* hello 選取的結構描述名稱。 這個結構描述名稱已上傳到 hello 整合帳戶之前。
    
    ![一般檔案解碼對話方塊的螢幕擷取畫面](media/logic-apps-enterprise-integration-flatfile/flatfile-decode-1.png)    
 6. 儲存您的工作。  
    ![儲存圖示的螢幕擷取畫面](media/logic-apps-enterprise-integration-flatfile/flatfile-6.png)    
 
-此時，您已完成設定一般檔案解碼連接器。 在真實世界應用程式中，您可能想要在企業營運應用程式 (例如 Salesforce) 中儲存已解碼的資料。 您可以輕鬆新增動作，來將解碼動作的輸出傳送到 Salesforce。
+此時，您已完成設定一般檔案解碼連接器。 在真實世界應用程式中，您可能想在特定業務應用程式，例如 Salesforce toostore hello 已解碼的資料。 您可以輕鬆加入動作 toosend hello 輸出的解碼動作 tooSalesforce hello。
 
-您現在可以測試連接器，方法是向 HTTP 端點提出要求，並在要求內文中包含您想要解碼的 XML 內容。  
+您現在可以藉由要求 toohello HTTP 端點來測試您的連接器，且想 hello XML 內容包括 toodecode hello hello 要求主體中。  
 
 ## <a name="next-steps"></a>後續步驟
-* [深入了解企業整合套件](logic-apps-enterprise-integration-overview.md "了解企業整合套件")。  
+* [深入了解 hello Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md "深入了解 Enterprise Integration Pack")。  
 

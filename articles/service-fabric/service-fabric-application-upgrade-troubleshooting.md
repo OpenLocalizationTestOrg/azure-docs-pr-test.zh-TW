@@ -1,6 +1,6 @@
 ---
-title: "疑難排解應用程式升級 | Microsoft Docs"
-description: "本文涵蓋升級 Service Fabric 應用程式的一些常見問題，以及解決方式。"
+title: "aaaTroubleshooting 應用程式升級 |Microsoft 文件"
+description: "本文章涵蓋一些常見的問題解決升級 Service Fabric 應用程式以及如何 tooresolve 它們。"
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: f7f6bc0c29e2b43fbc8e451c5a4a50110b78349e
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0f56fa61db9b4e32824623f162dc1bfe7fda0f49
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="troubleshoot-application-upgrades"></a>疑難排解應用程式升級
-本文涵蓋升級 Azure Service Fabric 應用程式的一些常見問題，以及解決方式。
+本文章涵蓋 hello 常見的問題解決升級 Azure Service Fabric 應用程式以及如何 tooresolve 它們。
 
 ## <a name="troubleshoot-a-failed-application-upgrade"></a>疑難排解失敗的應用程式升級
-當升級失敗時， **Get-ServiceFabricApplicationUpgrade** 命令的輸出會包含偵錯失敗的其他資訊。  下列清單指定如何使用其他資訊︰
+當升級失敗時，輸出 hello hello **Get ServiceFabricApplicationUpgrade**命令包含偵錯 hello 失敗的其他資訊。  hello 下列清單會指定如何使用 hello 的其他資訊：
 
-1. 識別失敗類型。
-2. 識別失敗原因。
+1. 識別 hello 失敗類型。
+2. 識別 hello 失敗原因。
 3. 隔離一或多個失敗元件以便進一步調查。
 
-當 Service Fabric 偵測到失敗，就會提供此資訊，不論 **FailureAction** 是回復或暫停升級。
+這項資訊時，使用 Service Fabric 來偵測 hello 不論是否 hello **FailureAction** tooroll 後或暫停 hello 升級。
 
-### <a name="identify-the-failure-type"></a>識別失敗類型
-在 **Get-ServiceFabricApplicationUpgrade** 的輸出中，**FailureTimestampUtc** 會識別 Service Fabric 偵測升級失敗以及觸發 **FailureAction** 的時間戳記 (UTC)。 **FailureReason** 會識別失敗的三個可能高階原因之一：
+### <a name="identify-hello-failure-type"></a>識別 hello 失敗類型
+中的 hello 輸出**Get ServiceFabricApplicationUpgrade**， **FailureTimestampUtc**識別 hello 時間戳記 （UTC) 在升級的失敗偵測到的 Service Fabric 和**FailureAction**觸發。 **失敗原因**識別其中三個潛在高層級失敗原因的 hello:
 
-1. UpgradeDomainTimeout - 指出特定的升級網域花太多時間完成且 **UpgradeDomainTimeout** 過期。
-2. OverallUpgradeTimeout - 指出整體升級花太多時間完成且 **UpgradeTimeout** 過期。
-3. HealthCheck - 指出升級更新網域之後，根據指定的健康狀態原則，應用程式仍然健康狀態不良，且 **HealthCheckRetryTimeout** 過期。
+1. UpgradeDomainTimeout-表示特定的升級網域花費太長 toocomplete 和**UpgradeDomainTimeout**過期。
+2. OverallUpgradeTimeout-指出整體升級該 hello 花費太長 toocomplete 和**UpgradeTimeout**過期。
+3. 在升級之後更新網域，hello 應用程式維持狀況不良的健全狀況檢查時發生-表示根據 toohello 指定健全狀況原則和**HealthCheckRetryTimeout**過期。
 
-這些項目只有在升級失敗且啟動回復時，才會出現在輸出中。 視失敗的類型而定，會顯示進一步的資訊。
+這些項目才會顯示在 hello 輸出時 hello 升級失敗，並開始復原。 根據 hello hello 失敗類型而定，會顯示進一步的資訊。
 
 ### <a name="investigate-upgrade-timeouts"></a>調查升級逾時
-升級逾時失敗通常是由服務可用性問題造成的。 本段落下面的輸出是典型的升級，其中服務複本或執行個體無法在新的程式碼版本中啟動。 **UpgradeDomainProgressAtFailure** 欄位在失敗時擷取任何擱置中升級工作的快照集。
+升級逾時失敗通常是由服務可用性問題造成的。 遵循本段 hello 輸出是典型的升級服務複本或執行個體失敗 toostart hello 新版程式碼中。 hello **UpgradeDomainProgressAtFailure**欄位擷取的任何暫止的升級工作，在 hello 發生失敗時的快照集。
 
 ```
 PS D:\temp> Get-ServiceFabricApplicationUpgrade fabric:/DemoApp
@@ -78,16 +78,16 @@ ForceRestart                   : False
 UpgradeReplicaSetCheckTimeout  : 00:00:00
 ```
 
-在此範例中，升級網域 MYUD1 的升級失敗，且兩個資料分割 (744c8d9f-1d26-417e-a60e-cd48f5c098f0 和 4b43f4d8-b26b-424e-9307-7a7a62e79750) 已停滯。 資料分割因為執行階段無法將主要複本 (WaitForPrimaryPlacement) 放在在目標節點 Node1 和 Node4 上而停滯。
+在此範例中，hello 升級失敗，在升級網域*MYUD1*和兩個資料分割 (*744c8d9f-1d26-417e-a60e-cd48f5c098f0*和*4b43f4d8-b26b-424e-9307-7a7a62e79750*) 已當機。 hello 資料分割所卡 hello 執行階段因為無法 tooplace 主要複本 (*WaitForPrimaryPlacement*) 目標節點上*Node1*和*Node4*。
 
-**Get-ServiceFabricNode** 命令可以用來確認這兩個節點都在升級網域 *MYUD1*中。 UpgradePhase 指出 PostUpgradeSafetyCheck，表示這些安全檢查是在升級網域中的所有節點完成升級之後發生。 這些資訊全都指向應用程式程式碼新版本的潛在問題。 最常見的問題是開啟或升級至主要程式碼路徑的服務錯誤。
+hello **Get ServiceFabricNode**命令可以使用這兩個節點都升級網域中的 tooverify *MYUD1*。 hello *UpgradePhase*指出*PostUpgradeSafetyCheck*，這表示在 hello 升級網域中的所有節點都完成升級後發生的這些安全檢查。 這項資訊點 tooa hello hello 應用程式程式碼的新版本的潛在問題。 hello 最常見的問題是 hello 開啟或升級 tooprimary 程式碼路徑中的服務錯誤。
 
-PreUpgradeSafetyCheck 的 UpgradePhase 表示在執行升級之前準備升級網域有問題。 此案例中最常見的問題是關閉主要程式碼路徑或從其中降級的服務錯誤。
+*UpgradePhase*的*PreUpgradeSafetyCheck*表示有一些問題它執行前準備 hello 升級網域。 hello 最常見的問題在此情況下會關閉 hello 或降級，從主要的程式碼路徑中的服務錯誤。
 
-目前的 UpgradeState 是 RollingBackCompleted，因此原始升級必須以回復 FailureAction 執行，這樣會自動在失敗時回復升級。 如果原始升級以手動 **FailureAction**執行，則升級會處於暫止狀態，以允許應用程式的即時偵錯。
+目前的 hello **UpgradeState**是*RollingBackCompleted*，因此 hello 原始升級必須已執行並回復**FailureAction**，它會自動回復在失敗後的 hello 升級。 如果可以使用手動執行 hello 原始升級**FailureAction**，然後 hello 升級會改為在暫停的狀態 tooallow 即時 hello 應用程式的偵錯。
 
 ### <a name="investigate-health-check-failures"></a>調查健康狀態檢查失敗
-升級網域中的所有節點完成升級並通過所有安全檢查之後，各種問題都可能觸發健康狀態檢查失敗。 本段落下面的輸出是由於失敗的健康狀態檢查的典型升級失敗。 **UnhealthyEvaluations** 欄位會根據指定的 [健康狀態原則](service-fabric-health-introduction.md)，擷取升級時失敗的健康狀態檢查的快照集。
+升級網域中的所有節點完成升級並通過所有安全檢查之後，各種問題都可能觸發健康狀態檢查失敗。 遵循本段 hello 輸出是典型的升級失敗，因為 toofailed 健康情況檢查。 hello **UnhealthyEvaluations**欄位擷取快照集的健康情況檢查失敗時，根據指定的 toohello hello 升級的 hello[健全狀況原則](service-fabric-health-introduction.md)。
 
 ```
 PS D:\temp> Get-ServiceFabricApplicationUpgrade fabric:/DemoApp
@@ -141,22 +141,22 @@ MaxPercentUnhealthyDeployedApplications :
 ServiceTypeHealthPolicyMap              :
 ```
 
-調查健康狀態檢查失敗時，首先需要了解 Service Fabric 健康狀態模型。 但是即使沒有這類深入了解，我們可以看到兩個服務的健康狀態不良：fabric:/DemoApp/Svc3 和 fabric:/DemoApp/Svc2，以及錯誤健康狀態報告 (在本例中為"InjectedFault")。 在此範例中，4 個服務中有 2 個服務健康狀態不良，低於預設目標 0% 健康狀態不良 (*MaxPercentUnhealthyServices*)。
+調查健全狀況檢查失敗需要先了解 hello 服務網狀架構健全狀況模型。 但即使沒有這類深入了解，我們可以看到兩個服務的狀況不良： *fabric: / demoapp 來/Svc3*和*網狀架構: / demoapp 來/Svc2*，以及 hello 錯誤健全狀況報表 (「 InjectedFault「 在此情況下）。 在此範例中，四個兩個服務是狀況不良，這是低於 0%狀況不良的 hello 預設目標 (*MaxPercentUnhealthyServices*)。
 
-升級是因啟動升級時手動指定 **FailureAction** 失敗而暫止。 此模式可讓我們在採取任何進一步動作之前，在失敗的狀態下調查即時系統。
+hello 升級暫止容錯時藉由指定**FailureAction**的手動時啟動 hello 升級。 此模式可讓我們 tooinvestigate hello 即時系統在 hello 失敗狀態之前採取任何進一步的動作。
 
 ### <a name="recover-from-a-suspended-upgrade"></a>從暫止升級復原
-使用回復的 **FailureAction**，因為升級會自動在失敗時回復，所以不需要復原。 使用手動 **FailureAction**，有數個復原選項：
+並回復**FailureAction**，沒有任何因為 hello 升級會自動回復在失敗時所需的復原。 使用手動 **FailureAction**，有數個復原選項：
 
 1.  觸發回復
-2. 以手動方式繼續進行升級的其餘部分
-3. 繼續監視的升級
+2. 手動繼續執行其餘部分 hello hello 升級
+3. 繼續 hello 監視升級
 
-**Start-ServiceFabricApplicationRollback** 命令可以在任何時候用來啟動回復應用程式。 一旦命令成功傳回，回復要求就已在系統中註冊並隨即啟動。
+hello**開始 ServiceFabricApplicationRollback**命令可在任何時間 toostart，回復 hello 應用程式。 Hello 命令會傳回成功，hello 復原要求 hello 系統中已註冊後不久之後啟動。
 
-**Resume-ServiceFabricApplicationUpgrade** 命令可以用來以手動方式繼續升級的其餘部分，一次一個升級網域。 在此模式中，系統只會執行安全檢查。 不會執行其他健康狀態檢查。 此命令只能在 UpgradeState 顯示 RollingForwardPending 時使用，表示目前升級網域已完成升級，但是下一個升級網域尚未啟動 (擱置中)。
+hello **Resume-servicefabricapplicationupgrade**命令可以用 tooproceed hello 其餘部分的 hello 透過手動升級一個升級網域，一次。 在此模式中，唯一的安全性檢查會執行 hello 系統。 不會執行其他健康狀態檢查。 此命令只可用時 hello *UpgradeState*顯示*RollingForwardPending*，這表示該 hello 目前升級網域升級已完成，但 hello 接下來一個啟動 （擱置）。
 
-**Update-ServiceFabricApplicationUpgrade** 命令可以用來繼續監視的升級，並且執行安全和健康狀態檢查。
+hello**更新 ServiceFabricApplicationUpgrade**命令可以使用的 tooresume hello 監視升級的安全性和健全狀況檢查正在執行。
 
 ```
 PS D:\temp> Update-ServiceFabricApplicationUpgrade fabric:/DemoApp -UpgradeMode Monitored
@@ -180,36 +180,36 @@ ServiceTypeHealthPolicyMap              :
 PS D:\temp>
 ```
 
-升級會從上一次暫止的升級網域繼續，並使用相同的升級參數和健康狀態原則。 如有需要，繼續升級時，上述輸出中顯示的任何升級參數和健康狀態原則都可以在相同命令中變更。 在此範例中，升級以監視模式繼續，參數和健康狀態原則維持不變。
+hello 升級會繼續從上次已中暫止的 hello 升級網域和使用 hello 參數和健全狀況原則之前，相同升級。 如有需要 hello hello 升級繼續時，相同命令中就可以變更任何 hello 升級參數和健全狀況原則 hello 前面輸出所示。 在此範例中，hello 升級已繼續在受監視模式中，使用 hello 參數和不變的 hello 健康原則。
 
 ## <a name="further-troubleshooting"></a>進一步疑難排解
-### <a name="service-fabric-is-not-following-the-specified-health-policies"></a>Service Fabric 不遵循指定的健康狀態原則。
+### <a name="service-fabric-is-not-following-hello-specified-health-policies"></a>Service Fabric 不遵循 hello 指定健全狀況原則
 可能的原因 1：
 
-Service Fabric 將所有百分比轉譯為健康狀態評估的實體 (例如複本、資料分割和服務) 實際數目，並且一律無條件進位到實體整數。 例如，如果最大值 MaxPercentUnhealthyReplicasPerPartition 是 21%，而且有 5 個複本，則 Service Fabric 允許最多 2 個狀況不良的複本 (亦即 `Math.Ceiling (5*0.21)`)。 因此，健康狀態原則應該據此設定。
+Service Fabric 的健全狀況評估轉譯實際的實體 （例如複本、 資料分割，與服務） 的數字為所有的百分比，一律會無條件進位 toowhole 實體。 例如，如果 hello 最大*MaxPercentUnhealthyReplicasPerPartition*是 21%且有五個複本，然後 Service Fabric 允許 tootwo 狀況不良的複本 (也就是`Math.Ceiling (5*0.21)`)。 因此，健康狀態原則應該據此設定。
 
 可能的原因 2：
 
-健康狀態原則是以服務總計的百分比指定，而不是根據特定服務執行個體。 例如，在升級之前，如果應用程式有四個服務執行個體 A、B、C 和 D，其中服務 D 健康狀態不良，但是對應用程式沒有顯著影響。 我們想要在升級期間略過已知健康狀態不良的服務 D，並將參數 *MaxPercentUnhealthyServices* 設為 25%，假設只有 A、B 和 C 需要是健康狀態良好。
+健康狀態原則是以服務總計的百分比指定，而不是根據特定服務執行個體。 例如，再升級時，如果應用程式有四個服務執行個體 A、 B、 C 以及 D，，其中服務 D 是狀況不良，但以小的影響 toohello 應用程式。 我們想要在升級和設定 hello 參數期間知道狀況不良服務 D 的 tooignore hello *MaxPercentUnhealthyServices* toobe 25%，假設 A、 B 和 C 需要 toobe 狀況良好。
 
-不過，在升級期間，D 會在 C 健康狀態不良時變成健康狀態良好。 升級仍然會成功，因為只有 25% 的服務是健康狀態不良。 但是，由於是 C 意外變成健康狀態不良而不是 D，所以可能會造成非預期的錯誤。在此情況下，D 應該被模式化為與 A、B 和 C 不同的服務類型。因為健康狀態原則是根據每個服務類型指定，所以可以對不同的服務套用不同的健康狀態不良百分比臨界值。 
+不過，hello 在升級期間，D 時可能變成狀況良好 C 會變為狀況不良。 hello 升級仍然會成功，因為只有 25%的 hello 服務均狀況不良。 不過，它可能會導致非預期的錯誤到期 tooC 被意外狀況不良，而不是 d。在此情況下，D 應該會模式化為不同的服務類型 a、 B 和 c。健全狀況原則會指定每個服務類型，因為不同的狀況不良百分比閾值可套用的 toodifferent 服務。 
 
-### <a name="i-did-not-specify-a-health-policy-for-application-upgrade-but-the-upgrade-still-fails-for-some-time-outs-that-i-never-specified"></a>我未對應用程式升級指定健康狀態原則，但是升級還是因為我從未指定的逾時而失敗
-當未對升級要求提供健康狀態原則時，會從目前應用程式版本的 *ApplicationManifest.xml* 取用。 例如，如果將應用程式 X 從 1.0 版升級至 2.0 版，則會使用為 1.0 版指定的應用程式健康狀態原則。 如果應該對升級使用不同的健康狀態原則，則需要指定原則做為應用程式升級 API 呼叫的一部分。 指定為 API 呼叫一部分的原則只適用於升級期間。 完成升級後，會使用 *ApplicationManifest.xml* 中指定的原則。
+### <a name="i-did-not-specify-a-health-policy-for-application-upgrade-but-hello-upgrade-still-fails-for-some-time-outs-that-i-never-specified"></a>我未指定應用程式升級的健全狀況原則，但永遠不會指定某些逾時的 hello 升級仍失敗
+當健全狀況原則不提供 toohello 升級要求時，它們取自 hello *ApplicationManifest.xml* hello 目前應用程式版本。 例如，如果您要升級應用程式 X 的 1.0 版 tooversion 2.0，會使用在 1.0 版中指定的應用程式健全狀況原則。 如果應使用不同的健全狀況原則 hello 升級，hello 原則需要 toobe hello 應用程式升級的 API 呼叫中指定。 hello hello API 呼叫中指定的原則僅適用於 hello 升級期間。 在 hello hello 升級完成之後，請指定 hello 原則*ApplicationManifest.xml*可用。
 
 ### <a name="incorrect-time-outs-are-specified"></a>指定了不正確的逾時
-您可能想要知道當逾時設定不一致時會發生什麼情況。 例如，您的 UpgradeTimeout 小於 UpgradeDomainTimeout。 答案是會傳回錯誤。 如果 UpgradeDomainTimeout 小於 HealthCheckWaitDuration 和 HealthCheckRetryTimeout 的總和，或如果 UpgradeDomainTimeout 小於 HealthCheckWaitDuration 和 HealthCheckStableDuration 的總和，則會傳回錯誤。
+您可能想要知道當逾時設定不一致時會發生什麼情況。 例如，您可能必須*UpgradeTimeout*低於 hello *UpgradeDomainTimeout*。 hello 辦法就是會傳回錯誤。 會傳回錯誤，如果 hello *UpgradeDomainTimeout*小於 hello 總和*HealthCheckWaitDuration*和*HealthCheckRetryTimeout*，或如果*UpgradeDomainTimeout*小於 hello 總和*HealthCheckWaitDuration*和*HealthCheckStableDuration*。
 
 ### <a name="my-upgrades-are-taking-too-long"></a>我的升級耗費太多時間
-升級完成的時間取決於健康狀態檢查和指定的逾時。 健康狀態檢查和逾時則取決於花多少時間來複製、部署及穩定應用程式。 使用逾時太過激烈，可能表示會有更多失敗的升級，因此建議保守地從較長的逾時開始。
+升級的 toocomplete hello 時間取決於 hello 健全狀況檢查和指定的逾時。 健全狀況檢查和逾時依存於 toocopy 要花多久、 部署和穩定化 hello 應用程式。 使用逾時太過激烈，可能表示會有更多失敗的升級，因此建議保守地從較長的逾時開始。
 
-以下是逾時與升級時間之間的互動方式快速複習：
+以下是快速的重新整理程式在 hello 逾時與 hello 升級時間之間的互動方式：
 
 升級網域的升級完成時間無法快於 HealthCheckWaitDuration  +  HealthCheckStableDuration。
 
 升級失敗發生時間無法快於 HealthCheckWaitDuration  +  HealthCheckRetryTimeout。
 
-升級網域的升級時間受到 *UpgradeDomainTimeout*限制。  如果 HealthCheckRetryTimeout 和 HealthCheckStableDuration 兩者都為非零且應用程式的健康狀態會保持來回切換，則升級最終會在 UpgradeDomainTimeout 逾時。 *UpgradeDomainTimeout* 就會開始倒數計時。
+hello 的升級網域升級時間受限於*UpgradeDomainTimeout*。  如果*HealthCheckRetryTimeout*和*HealthCheckStableDuration*兩者都為非零，則 hello 升級最後會逾時上hellohello應用程式的健全狀況會保留，來回切換*UpgradeDomainTimeout*。 *UpgradeDomainTimeout*啟動一次向下計數 hello 升級，如 hello 目前升級網域會開始。
 
 ## <a name="next-steps"></a>後續步驟
 [使用 Visual Studio 升級您的應用程式](service-fabric-application-upgrade-tutorial.md) 將引導您完成使用 Visual Studio 進行應用程式升級的步驟。
@@ -218,6 +218,6 @@ Service Fabric 將所有百分比轉譯為健康狀態評估的實體 (例如複
 
 使用 [升級參數](service-fabric-application-upgrade-parameters.md)來控制您應用程式的升級方式。
 
-了解如何使用 [資料序列化](service-fabric-application-upgrade-data-serialization.md)，以讓您的應用程式升級相容。
+讓應用程式升級相容所學習如何 toouse[資料序列化](service-fabric-application-upgrade-data-serialization.md)。
 
-參考 [進階主題](service-fabric-application-upgrade-advanced.md)，以了解如何在升級您的應用程式時使用進階功能。
+了解 toouse 把太升級您的應用程式時所進階的功能[進階主題](service-fabric-application-upgrade-advanced.md)。

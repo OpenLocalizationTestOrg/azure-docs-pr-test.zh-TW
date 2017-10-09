@@ -1,6 +1,6 @@
 ---
-title: "從通用內部部署 VHD 建立受管理的 Azure VM | Microsoft Docs"
-description: "在 Resource Manager 部署模型中，將一般化 VHD 上傳至 Azure 並使用它來建立新 VM。"
+title: "受管理的 Azure VM 從內部一般化的 VHD aaaCreate |Microsoft 文件"
+description: "上傳一般化的 VHD tooAzure，並用它 toocreate hello Resource Manager 部署模型中的新 Vm。"
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/19/2017
 ms.author: cynthn
-ms.openlocfilehash: d802ba16ecb4e32e2adb7be3a8e99c72a1625841
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2fd0c0eec922e6ca8af4e712c1bceb1f9466105c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upload-a-generalized-vhd-and-use-it-to-create-new-vms-in-azure"></a>將一般化 VHD 上傳，並使用它在 Azure 中建立新的 VM
+# <a name="upload-a-generalized-vhd-and-use-it-toocreate-new-vms-in-azure"></a>一般化的 VHD 上傳，並用它 toocreate Azure 中的新 Vm
 
-本主題會逐步引導您使用 PowerShell 將一般化 VM 的 VHD 上傳至 Azure，從 VHD 建立映像和從該映像建立新的 VM。 您可以上傳從內部部署虛擬化工具或另一個雲端匯出的 VHD。 針對新的 VM 使用[受控磁碟](managed-disks-overview.md)可簡化 VM 管理，當 VM 中包含可用性設定組時，還可提供更高的可用性。 
+本主題會引導您逐步使用 PowerShell tooupload 一般化 VM tooAzure 的 VHD 從 hello VHD 建立映像，從該映像建立新的 VM。 您可以上傳從內部部署虛擬化工具或另一個雲端匯出的 VHD。 使用[管理磁碟](managed-disks-overview.md)hello 新的 VM 可簡化 hello VM 管理和 hello VM 放置於可用性集合時提供更佳的可用性。 
 
-如果您想要使用範例指令碼，請參閱[用來將 VHD 上傳至 Azure 並建立新 VM 的範例指令碼](../scripts/virtual-machines-windows-powershell-upload-generalized-script.md)
+如果您想 toouse 範例指令碼，請參閱[範例指令碼 tooupload VHD tooAzure 並建立新的 VM](../scripts/virtual-machines-windows-powershell-upload-generalized-script.md)
 
 ## <a name="before-you-begin"></a>開始之前
 
-- 將任何 VHD 上傳至 Azure 之前，您應該遵循[準備 Windows VHD 或 VHDX 以上傳至 Azure](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-- 請先檢閱[規劃移轉至受控磁碟](on-prem-to-azure.md#plan-for-the-migration-to-managed-disks)，再開始移轉至[受控磁碟](managed-disks-overview.md)。
-- 請確定您擁有最新版的 AzureRM.Compute PowerShell 模組。 執行下列命令來安裝它。
+- 上傳任何 VHD tooAzure 之前, 您應該遵循[準備 Windows VHD 或 VHDX tooupload tooAzure](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
+- 檢閱[hello 移轉計劃 tooManaged 磁碟](on-prem-to-azure.md#plan-for-the-migration-to-managed-disks)太開始移轉之前[管理磁碟](managed-disks-overview.md)。
+- 請確定您擁有 hello hello AzureRM.Compute PowerShell 模組最新版本。 執行 hello 下列命令 tooinstall 它。
 
     ```powershell
     Install-Module AzureRM.Compute -RequiredVersion 2.6.0
@@ -39,75 +39,75 @@ ms.lasthandoff: 08/29/2017
     如需詳細資訊，請參閱 [Azure PowerShell 版本控制](/powershell/azure/overview)。
 
 
-## <a name="generalize-the-windows-vm-using-sysprep"></a>使用 Sysprep 將 Windows VM 一般化
+## <a name="generalize-hello-windows-vm-using-sysprep"></a>一般化 hello Windows VM 使用 Sysprep
 
-Sysprep 會移除您的所有個人帳戶資訊以及其他項目，並準備電腦以做為映像。 如需 Sysprep 的詳細資訊，請參閱 [如何使用 Sysprep：簡介](http://technet.microsoft.com/library/bb457073.aspx)。
+Sysprep 會移除所有您個人的帳戶資訊，以及其他項目，並準備作為映像的 hello 機器 toobe。 如需 Sysprep 的詳細資訊，請參閱[如何 tooUse Sysprep： 簡介](http://technet.microsoft.com/library/bb457073.aspx)。
 
-請確定 Sysprep 支援電腦上執行的伺服器角色。 如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)
+請確定 hello hello 機器上執行的伺服器角色支援 sysprep。 如需詳細資訊，請參閱 [Sysprep Support for Server Roles (伺服器角色的 Sysprep 支援)](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)
 
 > [!IMPORTANT]
-> 如果您是第一次在將 VHD 上傳至 Azure 之前執行 Sysprep，請確定您已[準備好 VM](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 再執行 Sysprep。 
+> 如果您第一次上傳您的 VHD tooAzure hello 之前執行 Sysprep，請確定您有[備妥您的 VM](prepare-for-upload-vhd-image.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)執行 Sysprep 之前。 
 > 
 > 
 
-1. 登入 Windows 虛擬機器。
-2. 以系統管理員身分開啟 [命令提示字元] 視窗。 切換至 **%windir%\system32\sysprep** 目錄，然後執行 `sysprep.exe`。
-3. 在 [系統準備工具] 對話方塊中，選取 [進入系統全新體驗 (OOBE)]，並確認已勾選 [一般化] 核取方塊。
+1. 登入 toohello Windows 虛擬機器。
+2. 系統管理員身分開啟 hello 命令提示字元視窗。 變更 hello 目錄太**%windir%\system32\sysprep**，然後執行`sysprep.exe`。
+3. 在 hello**系統準備工具**對話方塊中，選取**進入系統的全新體驗 (OOBE)**，並確定該 hello**一般化**選取核取方塊。
 4. 在 [關機選項] 中選取 [關機]。
 5. 按一下 [確定] 。
    
     ![啟動 Sysprep](./media/upload-generalized-managed/sysprepgeneral.png)
-6. Sysprep 完成時，會關閉虛擬機器。 不要重新啟動 VM。
+6. Sysprep 完成時，它會關閉 hello 虛擬機器。 無法重新啟動 hello VM。
 
 
 
-## <a name="log-in-to-azure"></a>登入 Azure
-如果尚未安裝 Azure PowerShell 1.4 版或更高版本，請參閱 [How to install and configure Azure PowerShell (如何安裝和設定 Azure PowerShell)](/powershell/azure/overview)。
+## <a name="log-in-tooazure"></a>登入 tooAzure
+如果您還沒有 PowerShell 1.4 版或更新版本安裝，讀取[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。
 
-1. 開啟 Azure PowerShell，並登入您的 Azure 帳戶。 這會開啟一個可供您輸入 Azure 帳戶認證的快顯視窗。
+1. 開啟 Azure PowerShell，然後登入 tooyour Azure 帳戶。 快顯視窗中開啟您 tooenter 以您的 Azure 帳戶的認證。
    
     ```powershell
     Login-AzureRmAccount
     ```
-2. 取得您可用訂用帳戶的訂用帳戶識別碼。
+2. 取得可用的訂閱 hello 訂用帳戶 Id。
    
     ```powershell
     Get-AzureRmSubscription
     ```
-3. 使用訂用帳戶識別碼來設定正確的訂用帳戶。 使用正確訂用帳戶的識別碼取代 *<subscriptionID>*。
+3. 設定使用 hello 訂用帳戶識別碼 hello 正確訂用帳戶 取代 *<subscriptionID>*  hello 識別碼 hello 包含正確的訂用帳戶。
    
     ```powershell
     Select-AzureRmSubscription -SubscriptionId "<subscriptionID>"
     ```
 
-## <a name="get-the-storage-account"></a>取得儲存體帳戶
-您需要一個 Azure 中的儲存體帳戶來裝載上傳的 VM 映像。 您可以使用現有的儲存體帳戶或建立新帳戶。 
+## <a name="get-hello-storage-account"></a>取得 hello 儲存體帳戶
+您需要 Azure toostore hello 上傳 VM 映像的儲存體帳戶。 您可以使用現有的儲存體帳戶或建立新帳戶。 
 
-如果您要使用 VHD 為 VM 建立受控磁碟，儲存體帳戶位置與您將建立 VM 的位置必須相同。
+如果您將使用 hello VHD toocreate 受管理磁碟 vm，hello 儲存體帳戶位置必須是相同的 hello 位置，其中您要建立 hello VM。
 
-若要顯示可用的儲存體帳戶，請輸入︰
+tooshow hello 可用儲存體帳戶，請輸入：
 
 ```powershell
 Get-AzureRmStorageAccount
 ```
 
-如果您想要使用現有的儲存體帳戶，請移至[上傳 VM 映像](#upload-the-vm-vhd-to-your-storage-account)一節。
+如果您想 toouse 現有的儲存體帳戶，請繼續 toohello [hello VM 映像上載](#upload-the-vm-vhd-to-your-storage-account)> 一節。
 
-如果您需要建立儲存體帳戶，請依照下列步驟操作：
+如果您需要 toocreate 儲存體帳戶，請遵循下列步驟：
 
-1. 您需要在當中建立儲存體帳戶的資源群組名稱。 若要找出您訂用帳戶中的所有資源群組，請輸入︰
+1. 您需要 hello hello 儲存體帳戶建立所在的 hello 資源群組名稱。 toofind 出您的訂用帳戶中，而型別中的所有 hello 資源群組：
    
     ```powershell
     Get-AzureRmResourceGroup
     ```
 
-    若要在**美國東部**區域建立名為 **myResourceGroup** 的資源群組，請輸入︰
+    資源群組命名為的 toocreate **myResourceGroup**在 hello**美國東部**區域中，輸入：
 
     ```powershell
     New-AzureRmResourceGroup -Name myResourceGroup -Location "East US"
     ```
 
-2. 使用 [New-AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount) Cmdlet，在此資源群組中建立名為 **mystorageaccount**的儲存體帳戶：
+2. 建立名為儲存體帳戶**mystorageaccount**使用 hello 此資源群組中[新增 AzureRmStorageAccount](/powershell/module/azurerm.storage/new-azurermstorageaccount) cmdlet:
    
     ```powershell
     New-AzureRmStorageAccount -ResourceGroupName myResourceGroup -Name mystorageaccount -Location "East US"`
@@ -122,9 +122,9 @@ Get-AzureRmStorageAccount
    * **Standard_RAGRS** - 讀取權限異地備援儲存體。 
    * **Premium_LRS** - 進階本地備援儲存體。 
 
-## <a name="upload-the-vhd-to-your-storage-account"></a>將 VHD 上傳至儲存體帳戶
+## <a name="upload-hello-vhd-tooyour-storage-account"></a>上傳 hello VHD tooyour 儲存體帳戶
 
-使用 [Add-AzureRmVhd](https://msdn.microsoft.com/library/mt603554.aspx) Cmdlet，將 VHD 上傳至儲存體帳戶中的容器。 這個範例會將 myVHD.vhd 檔案從 "C:\Users\Public\Documents\Virtual hard disks\" 上傳至 myResourceGroup 資源群組中名為 mystorageaccount 的儲存體帳戶。 檔案會放入名為 *mycontainer* 的容器，新的檔案名稱會是 *myUploadedVHD.vhd*。
+使用 hello[新增 AzureRmVhd](https://msdn.microsoft.com/library/mt603554.aspx) cmdlet tooupload hello VHD tooa 容器儲存體帳戶中的。 此範例中上傳 hello 檔案*myVHD.vhd*從*"C:\Users\Public\Documents\Virtual 硬碟\"* tooa 儲存體帳戶*mystorageaccount*在 hello *myResourceGroup*資源群組。 hello 檔案會放入名為 「 hello 容器*mycontainer* hello 新的檔案名稱將會*myUploadedVHD.vhd*。
 
 ```powershell
 $rgName = "myResourceGroup"
@@ -134,12 +134,12 @@ Add-AzureRmVhd -ResourceGroupName $rgName -Destination $urlOfUploadedImageVhd `
 ```
 
 
-如果成功，您會得到看起來如以下的回應：
+如果成功的話，您會收到的回應，看起來類似 toothis:
 
 ```powershell
-MD5 hash is being calculated for the file C:\Users\Public\Documents\Virtual hard disks\myVHD.vhd.
+MD5 hash is being calculated for hello file C:\Users\Public\Documents\Virtual hard disks\myVHD.vhd.
 MD5 hash calculation is completed.
-Elapsed time for the operation: 00:03:35
+Elapsed time for hello operation: 00:03:35
 Creating new page blob of size 53687091712...
 Elapsed time for upload: 01:12:49
 
@@ -148,29 +148,29 @@ LocalFilePath           DestinationUri
 C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontainer/myUploadedVHD.vhd
 ```
 
-視您的網路連線和 VHD 檔案大小而定，此命令可能需要一些時間才能完成
+根據您的網路連線和 hello VHD 檔案的大小，此命令可能需要一些時間 toocomplete
 
-儲存 [目的地 URI] 路徑，以便日後想要使用上傳的 VHD 建立受控磁碟或新的 VM 時使用。
+儲存 hello**目的地 URI**路徑 toouse 稍後如果您正在 toocreate 受管理的磁碟，或使用 hello 的新 VM 上傳 VHD。
 
 ### <a name="other-options-for-uploading-a-vhd"></a>上傳 VHD 的其他選項
  
  
-您也可以使用下列其中一種方法將 VHD 上傳至儲存體帳戶：
+您也可以上傳 VHD tooyour 儲存體帳戶使用 hello 下列其中一種：
 
 - [AzCopy](http://aka.ms/downloadazcopy)
 - [Azure 儲存體複製 Blob API](https://msdn.microsoft.com/library/azure/dd894037.aspx)
 - [Azure 儲存體總管上傳 Blob](https://azurestorageexplorer.codeplex.com/)
 - [儲存體匯入/匯出服務 REST API 參考](https://msdn.microsoft.com/library/dn529096.aspx)
--   如果預估的上傳時間長度超過 7 天，我們建議使用匯入/匯出服務。 您可以使用 [DataTransferSpeedCalculator](https://github.com/Azure-Samples/storage-dotnet-import-export-job-management/blob/master/DataTransferSpeedCalculator.html) 從資料大小和傳輸單位來評估時間。 
-    匯入/匯出可用來複製到標準儲存體帳戶。 您必須使用 AzCopy 之類的工具，從 Standard 儲存體帳戶複製到進階儲存體帳戶。
+-   如果預估的上傳時間長度超過 7 天，我們建議使用匯入/匯出服務。 您可以使用[DataTransferSpeedCalculator](https://github.com/Azure-Samples/storage-dotnet-import-export-job-management/blob/master/DataTransferSpeedCalculator.html) tooestimate hello 時間資料的大小和傳輸的單位。 
+    可以匯入/匯出用 toocopy tooa 標準儲存體帳戶。 您必須從標準儲存體 toopremium 儲存體帳戶，使用 AzCopy 這類工具 toocopy。
 
 
-## <a name="create-a-managed-image-from-the-uploaded-vhd"></a>從上傳的 VHD 建立受控映像 
+## <a name="create-a-managed-image-from-hello-uploaded-vhd"></a>建立受管理 hello 從映像上傳 VHD 
 
-使用一般化 OS VHD 建立受控映像。 使用您自己的資訊取代這些值。
+使用一般化 OS VHD 建立受控映像。 Hello 值取代為您自己的資訊。
 
 
-1.  首先，設定一般參數：
+1.  首先，設定 hello 一般參數：
 
     ```powershell
     $vmName = "myVM"
@@ -180,7 +180,7 @@ C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontain
     $imageName = "yourImageName"
     ```
 
-4.  使用一般化 OS VHD 建立映像。
+4.  建立 hello 使用一般化的 OS VHD 的映像。
 
     ```powershell
     $imageConfig = New-AzureRmImageConfig -Location $location
@@ -189,15 +189,15 @@ C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontain
     ```
 
 ## <a name="create-a-virtual-network"></a>建立虛擬網路
-建立[虛擬網路](../../virtual-network/virtual-networks-overview.md)的 vNet 和子網路。
+建立 hello vNet 和子網路的 hello[虛擬網路](../../virtual-network/virtual-networks-overview.md)。
 
-1. 建立子網路。 這個範例會建立名為 *mySubnet* 且具有位址首碼 *10.0.0.0/24* 的子網路。  
+1. 建立 hello 子網路。 這個範例會建立名為的子網路*mySubnet* hello 位址前置詞與*10.0.0.0/24*。  
    
     ```powershell
     $subnetName = "mySubnet"
     $singleSubnet = New-AzureRmVirtualNetworkSubnetConfig -Name $subnetName -AddressPrefix 10.0.0.0/24
     ```
-2. 建立虛擬網路 這個範例會建立名為 *myVnet* 且具有位址首碼 *10.0.0.0/16* 的虛擬網路。  
+2. 建立 hello 虛擬網路。 這個範例會建立虛擬網路，名為*myVnet* hello 位址前置詞與*10.0.0.0/16*。  
    
     ```powershell
     $vnetName = "myVnet"
@@ -207,7 +207,7 @@ C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontain
 
 ## <a name="create-a-public-ip-address-and-network-interface"></a>建立公用 IP 位址和網路介面
 
-若要能夠與虛擬網路中的虛擬機器進行通訊，您需要 [公用 IP 位址](../../virtual-network/virtual-network-ip-addresses-overview-arm.md) 和網路介面。
+tooenable 與 hello hello 虛擬網路中的虛擬機器的通訊，您需要[公用 IP 位址](../../virtual-network/virtual-network-ip-addresses-overview-arm.md)和網路介面。
 
 1. 建立公用 IP 位址。 此範例會建立名為 *myPip* 的公用 IP 位址。 
    
@@ -216,7 +216,7 @@ C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontain
     $pip = New-AzureRmPublicIpAddress -Name $ipName -ResourceGroupName $rgName -Location $location `
         -AllocationMethod Dynamic
     ```       
-2. 建立 NIC。 此範例會建立名為 **myNic** 的 NIC。 
+2. 建立 hello nic。 此範例會建立名為 **myNic** 的 NIC。 
    
     ```powershell
     $nicName = "myNic"
@@ -224,11 +224,11 @@ C:\Users\Public\Doc...  https://mystorageaccount.blob.core.windows.net/mycontain
         -SubnetId $vnet.Subnets[0].Id -PublicIpAddressId $pip.Id
     ```
 
-## <a name="create-the-network-security-group-and-an-rdp-rule"></a>建立網路安全性群組和 RDP 規則
+## <a name="create-hello-network-security-group-and-an-rdp-rule"></a>建立網路安全性群組 hello 和 RDP 規則
 
-若要能夠使用 RDP 登入 VM，您必須有可在連接埠 3389 上允許 RDP 存取的網路安全性規則 (NSG)。 
+toobe 無法 toolog tooyour 中的使用 RDP 的 VM，您需要 toohave 網路安全性規則 (NSG)，允許連接埠 3389 RDP 存取權。 
 
-此範例會建立名為 *myNsg* 的 NSG，其包含的規則 *myRdpRule* 可允許透過連接埠 3389 的 RDP 流量。 如需 NSG 的詳細資訊，請參閱[使用 PowerShell 對 Azure 中的 VM 開啟連接埠](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+此範例會建立名為 *myNsg* 的 NSG，其包含的規則 *myRdpRule* 可允許透過連接埠 3389 的 RDP 流量。 如需 Nsg 的詳細資訊，請參閱[使用 PowerShell 在 Azure 中開啟連接埠 tooa VM](nsg-quickstart-powershell.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 ```powershell
 $nsgName = "myNsg"
@@ -243,40 +243,40 @@ $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName $rgName -Location $loc
 ```
 
 
-## <a name="create-a-variable-for-the-virtual-network"></a>建立虛擬網路的變數
+## <a name="create-a-variable-for-hello-virtual-network"></a>針對 hello 虛擬網路建立的變數
 
-為已完成的虛擬網路建立變數。 
+建立 hello 完成虛擬網路的變數。 
 
 ```powershell
 $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName $rgName -Name $vnetName
 
 ```
 
-## <a name="get-the-credentials-for-the-vm"></a>取得 VM 的認證
+## <a name="get-hello-credentials-for-hello-vm"></a>取得 hello VM hello 認證
 
-下列 Cmdlet 會開啟視窗，讓您輸入新的使用者名稱和密碼，作為從遠端存取 VM 時使用的本機管理員帳戶。 
+hello 下列 cmdlet 會開啟的視窗，您就會在輸入新的使用者名稱和密碼 toouse hello 的本機 administrator 帳戶從遠端存取 hello VM。 
 
 ```powershell
 $cred = Get-Credential
 ```
 
-## <a name="add-the-vm-name-and-size-to-the-vm-configuration"></a>將 VM 名稱和大小新增至 VM 設定。
+## <a name="add-hello-vm-name-and-size-toohello-vm-configuration"></a>加入 hello VM 名稱和大小 toohello VM 組態。
 
 ```powershell
 $vm = New-AzureRmVMConfig -VMName $vmName -VMSize $vmSize
 ```
 
-## <a name="set-the-vm-image-as-source-image-for-the-new-vm"></a>將 VM 映像設定為新 VM 的來源映像
+## <a name="set-hello-vm-image-as-source-image-for-hello-new-vm"></a>集 hello VM 映像 hello 的來源映像為新的 VM
 
-使用受控 VM 映像的識別碼設定來源影像。
+設定使用受管理的 hello VM 映像的 hello 識別碼 hello 來源映像。
 
 ```powershell
 $vm = Set-AzureRmVMSourceImage -VM $vm -Id $image.Id
 ```
 
-## <a name="set-the-os-configuration-and-add-the-nic"></a>設定 OS 組態並新增 NIC。
+## <a name="set-hello-os-configuration-and-add-hello-nic"></a>設定 hello 作業系統設定以及新增 hello nic。
 
-輸入儲存體類型 (PremiumLRS 或 StandardLRS) 和 OS 磁碟的大小。 這個範例將帳戶類型設定為 *PremiumLRS*、將磁碟大小設定為 *128GB*，並將磁碟快取設定為 *ReadWrite*。
+輸入 hello 儲存類型 （PremiumLRS 或 StandardLRS） 和 hello hello 作業系統磁碟大小。 此範例會設定 hello 帳戶類型太*PremiumLRS*，太 hello 磁碟大小*128 GB*和磁碟快取太*ReadWrite*。
 
 ```powershell
 $vm = Set-AzureRmVMOSDisk -VM $vm -DiskSizeInGB 128 `
@@ -288,16 +288,16 @@ $vm = Set-AzureRmVMOperatingSystem -VM $vm -Windows -ComputerName $computerName 
 $vm = Add-AzureRmVMNetworkInterface -VM $vm -Id $nic.Id
 ```
 
-## <a name="create-the-vm"></a>建立 VM
+## <a name="create-hello-vm"></a>建立 hello VM
 
-使用 **$vm** 變數中儲存的組態來建立新 VM。
+建立新的 VM 使用 hello 組態儲存在 hello hello **$vm**變數。
 
 ```powershell
 New-AzureRmVM -VM $vm -ResourceGroupName $rgName -Location $location
 ```
 
-## <a name="verify-that-the-vm-was-created"></a>確認已建立 VM
-完成時，在 [Azure 入口網站](https://portal.azure.com)的 [瀏覽] > [虛擬機器] 底下，或是使用下列 PowerShell 命令，應該就可以看到新建立的 VM：
+## <a name="verify-that-hello-vm-was-created"></a>請確認 VM 已建立該 hello
+完成時，您應該會看到新建立的 VM 中 hello hello [Azure 入口網站](https://portal.azure.com)下**瀏覽** > **虛擬機器**，或使用 hello 下列PowerShell 命令：
 
 ```powershell
     $vmList = Get-AzureRmVM -ResourceGroupName $rgName
@@ -306,5 +306,5 @@ New-AzureRmVM -VM $vm -ResourceGroupName $rgName -Location $location
 
 ## <a name="next-steps"></a>後續步驟
 
-若要登入新的虛擬機器，請瀏覽至[入口網站](https://portal.azure.com)中的 VM，按一下 [連接] 並開啟遠端桌面 RDP 檔案。 使用原始虛擬機器的帳戶認證來登入新的虛擬機器。 如需詳細資訊，請參閱 [如何連接和登入執行 Windows 的 Azure 虛擬機器](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
+在 tooyour 的新虛擬機器，而在 hello 瀏覽 toohello VM toosign[入口網站](https://portal.azure.com)，按一下**連接**，並開啟 hello 遠端桌面 RDP 檔案。 Tooyour 新虛擬機器中使用原始的虛擬機器 toosign hello 帳戶認證。 如需詳細資訊，請參閱[如何 tooconnect 和登入 tooan Azure 虛擬機器執行 Windows](connect-logon.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
 

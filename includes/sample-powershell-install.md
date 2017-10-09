@@ -1,0 +1,1 @@
+如有需要安裝 hello Azure PowerShell 模組，位於 hello hello 指示[Azure PowerShell 指南](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/)，然後執行`Login-AzureRmAccount`toocreate 與 Azure 的連線。 此外，您需要有 SSH 公開金鑰名為 toohave `id_rsa.pub` hello.ssh 目錄中的使用者設定檔。

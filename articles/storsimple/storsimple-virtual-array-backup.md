@@ -1,6 +1,6 @@
 ---
-title: "Microsoft Azure StorSimple Virtual Array 備份教學課程 | Microsoft Docs"
-description: "說明如何備份 StorSimple Virtual Array 共用與磁碟區。"
+title: "aaaMicrosoft Azure StorSimple Virtual Array 備份教學課程 |Microsoft 文件"
+description: "描述如何設定 StorSimple Virtual Array tooback 共用和磁碟區。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -15,61 +15,61 @@ ms.workload: TBD
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c926f0c80ce56cac3106ad97ec3ec2e18a8e2cc6
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7a015fd594f8f56c48fab149a2736be9dec2c24b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="back-up-shares-or-volumes-on-your-storsimple-virtual-array"></a>備份 StorSimple Virtual Array 上的共用或磁碟區
 
 ## <a name="overview"></a>概觀
 
-StorSimple Virtual Array 是混合式雲端儲存體內部部署虛擬裝置，可設定為檔案伺服器或 iSCSI 伺服器。 虛擬陣列可讓使用者為裝置上的所有共用或磁碟區建立排程備份和手動備份。 設為檔案伺服器時，也可進行項目層級的復原。 本教學課程說明如何建立排程備份和手動備份，以及執行項目層級復原來還原虛擬陣列上已刪除的檔案。
+hello StorSimple Virtual Array 是混合式雲端儲存體在內部部署虛擬裝置，可以設定為檔案伺服器或 iSCSI 伺服器。 hello 虛擬陣列允許 hello 使用者 toocreate 所有 hello 共用或磁碟區備份的排程和手動備份 hello 裝置上。 設為檔案伺服器時，也可進行項目層級的復原。 本教學課程描述如何排程 toocreate 和手動備份，並執行項目層級復原 toorestore 已刪除的檔案，您的虛擬陣列上。
 
-本教學課程僅適用於 StorSimple Virtual Array。 如需 8000 系列的相關資訊，請參閱[建立 8000 系列裝置的備份](storsimple-manage-backup-policies-u2.md)
+本教學課程適用於 toohello StorSimple 虛擬陣列只。 如 8000 系列的相關資訊，請移至太[建立 8000 系列裝置的備份](storsimple-manage-backup-policies-u2.md)
 
 ## <a name="back-up-shares-and-volumes"></a>備份共用和磁碟區
 
-備份可提供共用和磁碟區的時間點保護、改善復原能力，同時讓還原時間降至最低。 您有兩種方法可以備份 StorSimple 裝置上的共用或磁碟區：「排程」或「手動」。 下列各節討論上述每一種方法。
+備份可提供共用和磁碟區的時間點保護、改善復原能力，同時讓還原時間降至最低。 您有兩種方法可以備份 StorSimple 裝置上的共用或磁碟區：「排程」或「手動」。 每個 hello 方法 hello 下列各節中討論。
 
-## <a name="change-the-backup-start-time"></a>變更備份開始時間
+## <a name="change-hello-backup-start-time"></a>變更 hello 備份開始時間
 
 > [!NOTE]
-> 在此版本中，排程的備份由預設原則建立，該原則會每日在特定時間執行並備份裝置上的所有共用或磁碟區。 目前無法建立用於排程備份的自訂原則。
+> 此版本中，在排定的備份會建立預設原則，每天在指定的時間執行，而且所有 hello 共用或磁碟區都備份 hello 裝置上。 它不是這一次可能 toocreate 自訂原則進行排定的備份。
 
 
-StorSimple Virtual Array 有預設的備份原則會在每日特定時間 (22:30) 啟動，每天備份一次裝置上的所有共用或磁碟區。 您可以變更備份開始的時間，但無法變更頻率及保留期 (指定備份保留的數量)。 這些在備份期間會備份整個虛擬裝置。 這可能會對影響裝置的效能和裝置上已部署的工作負載。 因此，建議您將這些備份排定在離峰時段。
+您的 StorSimple Virtual Array 有預設的備份原則會在一天 (22:30) 的指定時間啟動和所有 hello 共用或磁碟區上都備份 hello 裝置一天一次。 您可以變更 hello hello 備份開始，但 hello 頻率和 hello （可指定備份 tooretain 的 hello 數目） 的保留，無法變更的時間。 在這些備份期間 hello 整個虛擬裝置會備份。 這可能會無法對於 hello 裝置 hello 效能的影響，而且會影響 hello 裝置上部署的 hello 工作負載。 因此，建議您將這些備份排定在離峰時段。
 
- 若要變更預設的備份開始時間，請在 [Azure 入口網站](https://portal.azure.com/)中執行下列步驟。
+ toochange hello 預設備份開始時間，請執行下列步驟在 hello hello [Azure 入口網站](https://portal.azure.com/)。
 
-#### <a name="to-change-the-start-time-for-the-default-backup-policy"></a>變更預設備份原則的開始時間
+#### <a name="toochange-hello-start-time-for-hello-default-backup-policy"></a>toochange hello 的開始時間 hello 預設備份原則
 
-1. 移至 [裝置]。 將會顯示已向您的 StorSimple 裝置管理員服務註冊的裝置清單。 
+1. 跳過**裝置**。 以您的 StorSimple 裝置 Manager 服務註冊的裝置 hello 清單隨即出現。 
    
-    ![瀏覽至裝置](./media/storsimple-virtual-array-backup/changebuschedule1.png)
+    ![瀏覽 toodevices](./media/storsimple-virtual-array-backup/changebuschedule1.png)
 
-2. 選取並按一下您的裝置。 [設定] 刀鋒視窗隨即顯示。 移至 [管理] > [備份原則]。
+2. 選取並按一下您的裝置。 hello**設定**刀鋒視窗會顯示。 跳過**管理 > 的備份原則**。
    
     ![選取您的裝置](./media/storsimple-virtual-array-backup/changebuschedule2.png)
 
-3. 在 [備份原則] 刀鋒視窗中，預設開始時間為 22:30。 您可以在裝置時區中為每日排程指定新的開始時間。
+3. 在 hello**的備份原則**刀鋒視窗中，hello 預設開始時間為 22:30。 您可以指定 hello 每日排程 hello 新開始時間，以裝置時區為準。
    
-    ![瀏覽至備份原則](./media/storsimple-virtual-array-backup/changebuschedule5.png)
+    ![瀏覽 toobackup 原則](./media/storsimple-virtual-array-backup/changebuschedule5.png)
 
 4. 按一下 [儲存] 。
 
 ### <a name="take-a-manual-backup"></a>進行手動備份
 
-除了排程備份，您隨時可以手動 (依需要) 備份裝置資料。
+此外 tooscheduled 備份，您可以進行裝置資料手動 （視需要） 備份在任何時間。
 
-#### <a name="to-create-a-manual-backup"></a>建立手動備份
+#### <a name="toocreate-a-manual-backup"></a>toocreate 手動備份
 
-1. 移至 [裝置]。 選取您的裝置，然後以滑鼠右鍵按一下選取的資料列中最右邊的 [...]。 從操作能表中，選取 [進行備份]。
+1. 跳過**裝置**。 選取您的裝置，然後以滑鼠右鍵按一下**...**在最右邊的 hello hello 選取的資料列中。 Hello 內容功能表中選取**取得備份**。
    
-    ![瀏覽至進行備份](./media/storsimple-virtual-array-backup/takebackup1m.png)
+    ![瀏覽 tootake 備份](./media/storsimple-virtual-array-backup/takebackup1m.png)
 
-2. 在 [進行備份] 刀鋒視窗中，按一下 [進行備份]。 這樣會備份檔案伺服器上的所有共用，或 iSCSI 伺服器上的所有磁碟區。 
+2. 在 hello**取得備份**刀鋒視窗中，按一下**取得備份**。 這將會備份所有 hello hello 檔案伺服器上的共用或 iSCSI 伺服器上的所有 hello 磁碟區。 
    
     ![正在啟動備份](./media/storsimple-virtual-array-backup/takebackup2m.png)
    
@@ -77,37 +77,37 @@ StorSimple Virtual Array 有預設的備份原則會在每日特定時間 (22:30
    
     ![正在啟動備份](./media/storsimple-virtual-array-backup/takebackup3m.png) 
    
-    作業順利完成後會再次通知您。 備份程序接著開始。
+    一旦 hello 工作順利完成之後，會通知您一次。 接著啟動 hello 備份程序。
    
     ![已建立備份工作](./media/storsimple-virtual-array-backup/takebackup4m.png)
 
-3. 若要追蹤備份進度和查看作業詳細資料，請按一下通知。 這會帶您前往 [作業詳細資料]。
+3. hello 備份及 hello 工作詳細資料，查看 tootrack hello 進度按一下 hello 通知。 這會帶您太**作業詳細資料**。
    
      ![備份作業詳細資料](./media/storsimple-virtual-array-backup/takebackup5m.png)
 
-4. 備份完成後，請移至 [管理] > [備份目錄]。 您會看到裝置上所有共用 (或磁碟區) 的雲端快照。
+4. Hello 備份完成之後，請移太**管理 > 備份類別目錄**。 在您的裝置上，您會看到所有 hello 共用 （或磁碟區） 的雲端快照。
    
     ![已完成的備份](./media/storsimple-virtual-array-backup/takebackup19m.png) 
 
 ## <a name="view-existing-backups"></a>檢視現有的備份
-若要檢視現有備份，請在 Azure 入口網站中執行下列步驟。
+tooview hello 現有的備份，執行下列步驟在 hello Azure 入口網站中的 hello。
 
-#### <a name="to-view-existing-backups"></a>檢視現有備份
+#### <a name="tooview-existing-backups"></a>tooview 現有的備份
 
-1. 移至 [裝置] 刀鋒視窗。 選取並按一下您的裝置。 在 [設定] 刀鋒視窗中，移至 [管理] > [備份目錄]。
+1. 跳過**裝置**刀鋒視窗。 選取並按一下您的裝置。 在 hello**設定**刀鋒視窗中，跳過**管理 > 備份類別目錄**。
    
-    ![瀏覽至備份目錄](./media/storsimple-virtual-array-backup/viewbackups1.png)
-2. 指定下列準則以用於篩選︰
+    ![瀏覽 toobackup 類別目錄](./media/storsimple-virtual-array-backup/viewbackups1.png)
+2. 指定下列用於篩選的準則 toobe hello:
    
     - **時間範圍** – 可以是 [過去 1 小時]、[過去 24 小時]、[過去 7 天]、[過去 30 天]、[過去一年] 和 [自訂日期]。
     
-    - **裝置** – 從已向 StorSimple 裝置管理員服務註冊的檔案伺服器或 iSCSI 伺服器清單中選擇。
+    - **裝置**– 從檔案伺服器或與您的 StorSimple 裝置 Manager 服務登錄的 iSCSI 伺服器 hello 清單中選取。
    
     - **已起始** – 可以自動地 [已排程] \(依備份原則) 或 [手動] 起始 (由您執行)。
    
     ![篩選備份](./media/storsimple-virtual-array-backup/viewbackups2.png)
 
-3. 按一下 [Apply (套用)] 。 已篩選的備份清單會顯示在 [備份目錄] 刀鋒視窗中。 請注意，永遠只會顯示 100 個備份項目。
+3. 按一下 [Apply (套用)] 。 hello 篩選過的備份清單會顯示在 hello**備份類別目錄**刀鋒視窗。 請注意，永遠只會顯示 100 個備份項目。
    
     ![更新備份目錄](./media/storsimple-virtual-array-backup/viewbackups3.png)
 

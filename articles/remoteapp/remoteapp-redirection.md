@@ -1,6 +1,6 @@
 ---
-title: "在 Azure RemoteApp 中使用重新導向 | Microsoft Docs"
-description: "了解如何在 RemoteApp 中設定和使用重新導向"
+title: "在 Azure RemoteApp 中的 aaaUsing 重新導向 |Microsoft 文件"
+description: "深入了解如何 tooconfigure 並用 RemoteApp 中的重新導向"
 services: remoteapp
 documentationcenter: 
 author: msmbaldwin
@@ -13,106 +13,106 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/26/2017
 ms.author: mbaldwin
-ms.openlocfilehash: b5a65d129225fde46e3b090bc3cd9427989005ee
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d5739a75cf606bd971268da67b2c5ff0fe5fe19b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-redirection-in-azure-remoteapp"></a>在 Azure RemoteApp 中使用重新導向
 > [!IMPORTANT]
-> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 如需詳細資訊，請參閱 [公告](https://go.microsoft.com/fwlink/?linkid=821148) 。
+> Azure RemoteApp 即將於 2017 年 8 月 31 日停止服務。 讀取 hello[公告](https://go.microsoft.com/fwlink/?linkid=821148)如需詳細資訊。
 > 
 > 
 
-裝置重新導向可讓您的使用者使用與其本機電腦、手機或平板電腦連接的裝置，來與遠端應用程式互動。 l比方說，如果您透過 Azure RemoteApp 提供 Skype，您的使用者就必須在電腦安裝相機才能使用 Skype。 印表機、麥克風、監視器以及各種不同以 USB 連接的周邊裝置也是如此。
+裝置重新導向，可讓您與使用 hello 裝置附加的 tootheir 本機電腦、 電話或平板電腦的遠端應用程式互動的使用者。 比方說，如果您有提供透過 Azure RemoteApp 的 Skype，您的使用者必須安裝在與 Skype 其 PC toowork hello 相機。 印表機、麥克風、監視器以及各種不同以 USB 連接的周邊裝置也是如此。
 
-RemoteApp 會利用遠端桌面通訊協定 (RDP) 與 RemoteFX 來提供重新導向功能。
+RemoteApp 會利用 hello 遠端桌面通訊協定 (RDP) 和 RemoteFX tooprovide 重新導向。
 
 ## <a name="what-redirection-is-enabled-by-default"></a>依預設會何種重新導向功能？
-當您使用 RemoteApp 時，預設會啟用下列重新導向功能。 括號中的資訊顯示 RDP 設定。
+當您使用 RemoteApp 時，預設會啟用 hello 遵循重新導向。 在括號中的 hello 資訊會顯示 hello RDP 設定。
 
-* 在本機電腦上播放聲音 (**在這部電腦上播放**)。 (audiomode:i:0)
-* 從本機電腦擷取音訊並傳送到遠端電腦 (**從這部電腦錄製**)。 (audiocapturemode:i:1)
-* 列印到本機印表機 (redirectprinters:i:1)
+* Hello 本機電腦上播放音效 (**這部電腦上播放**)。 (audiomode:i:0)
+* 擷取從 hello 本機電腦，並傳送 toohello 遠端電腦的音訊 (**從這部電腦錄製**)。 (audiocapturemode:i:1)
+* 列印 toolocal 印表機 (redirectprinters:i:1)
 * COM 連接埠 (redirectcomports:i:1)
 * 智慧卡裝置 (redirectsmartcards:i:1)
-* 剪貼簿 (能夠複製和貼上) (redirectclipboard:i:1)
+* 剪貼簿 （能力 toocopy 和貼上） (redirectclipboard:i:1)
 * 清除字型平滑處理 (允許字型平滑處理:i:1)
 * 重新導向所有支援的隨插即用裝置。 (devicestoredirect:s:*)
 
 ## <a name="what-other-redirection-is-available"></a>還有其他哪些重新導向功能？
 預設會停用兩個重新導向選項：
 
-* 磁碟機重新導向 (磁碟機對應)：您本機電腦的磁碟機會與遠端作業階段中的磁碟機對應。 這可讓您在遠端工作階段工作時，儲存或開啟本機磁碟機中的檔案。
-* USB 重新導向：您可以在遠端工作階段期間使用與本機電腦連接的 USB 裝置。
+* 磁碟機重新導向 （磁碟機對應）： 本機電腦的磁碟機變成 hello 遠端工作階段中的對應磁碟機。 這可讓您儲存或開啟的檔案從本機磁碟機 hello 遠端工作階段中工作時。
+* USB 重新導向： 您可以使用 hello 遠端工作階段中的 hello USB 裝置連接的 tooyour 本機電腦。
 
 ## <a name="change-your-redirection-settings-in-remoteapp"></a>在 RemoteApp 中變更重新導向設定
-您可以使用 Microsoft Azure PowerShell 搭配 SDK，變更集合的裝置重新導向設定。 在您安裝新的 PowerShell 與 SDK 之後，請先依照 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)中所述進行設定以管理您的訂閱。
+您可以使用 hello Microsoft Azure PowerShell sdk 變更 hello 裝置重新導向設定集合。 您安裝之後 hello 新 PowerShell 及 SDK，請先設定您的訂閱中所述的 toomanage[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。
 
-接著使用和下面類似的命令來設定自訂 RDP 屬性：
+接著，使用下列 tooset hello 自訂 RDP 屬性命令類似 toohello:
 
     Set-AzureRemoteAppCollection -CollectionName <collection name>  -CustomRdpProperty "drivestoredirect:s:*`nusbdevicestoredirect:s:*"
 
 (請注意，  *`n* 做為個別的屬性之間的分隔符號。)
 
-若要取得已設定的自訂 RDP 屬性清單，請執行下列 Cmdlet。 請注意，只會將自訂屬性顯示為輸出，而預設屬性則否：  
+tooget 何種自訂 RDP 屬性的設定，執行下列 cmdlet 的 hello 的清單。 請注意，只能自訂屬性會顯示為輸出結果，並且不 hello 預設屬性：  
 
     Get-AzureRemoteAppCollection -CollectionName <collection name>
 
-當您設定自訂屬性時，每次都要指定所有自訂屬性，不然就會將設定恢復成停用。   
+當您設定自訂屬性，您必須指定所有自訂屬性每個時間;否則 hello 設定會還原 toodisabled。   
 
 ### <a name="common-examples"></a>常見範例
-使用下列 Cmdlet 可啟用磁碟機重新導向：  
+使用下列 cmdlet tooenable 磁碟機重新導向的 hello:  
 
     Set-AzureRemoteAppCollection -CollectionName <collection name>  -CustomRdpProperty "drivestoredirect:s:*"
 
-使用這個 Cmdlet 可同時啟用 USB 與磁碟機重新導向：
+使用這個指令程式 tooenable USB 和磁碟機重新導向：
 
     Set-AzureRemoteAppCollection -CollectionName <collection name>  -CustomRdpProperty "drivestoredirect:s:*`nusbdevicestoredirect:s:*"
 
-使用這個 Cmdlet 可停用剪貼簿共用：  
+使用這個指令程式 toodisable 剪貼簿共用：  
 
     Set-AzureRemoteAppCollection -CollectionName <collection name>  -CustomRdpProperty "redirectclipboard:i:0"
 
 > [!IMPORTANT]
-> 在您測試變更之前，請務必將集合中的所有使用者完全登出 (而非僅中斷連線)。 為確保將使用者完全登出，請在 Azure 入口網站移至該集合中的 [工作階段]  索引標籤，然後將已中斷連線或已登入的任何使用者登出。 有時候可能需要花費數秒的時間，磁碟機才能顯示在工作階段內的檔案總管中。
+> 要確定 toocompletely 登出 hello 集合中的所有使用者 （和不只是將它們中斷連線） 測試 hello 變更之前。 tooensure 使用者會完全登出，請移 toohello**工作階段**hello Azure 入口網站中的 hello 集合中索引標籤，然後中斷連接或登入任何使用者登出。 有時可能要花幾秒鐘 hello 本機磁碟機 tooshow 在 [總管] 內 hello 工作階段。
 > 
 > 
 
 ## <a name="change-usb-redirection-settings-on-your-windows-client"></a>變更 Windows 用戶端的 USB 重新導向設定
-如果您想要在與 RemoteApp 連線的電腦上使用 USB 重新導向，必須進行 2 個動作。 1 - 您的系統管理員必須使用 Azure PowerShell 在集合層級啟用 USB 重新導向。 2 - 在您想要使用 USB 重新導向的每個裝置上，都必須啟用允許重新導向的群組原則。 每個想要使用 USB 重新導向的使用者都必須完成這個步驟。
+如果您想 toouse 連線 tooRemoteApp 的電腦上的 USB 重新導向，皆有 2 需要 toohappen 的動作。 1-您的系統管理員必須使用 Azure PowerShell 的 tooenable hello 集合層級的 USB 重新導向。 2-每個在裝置上您想要 toouse USB 重新導向，您需要 tooenable 的群組原則，允許它。 此步驟需要 toobe 完成每個使用者，想 toouse USB 重新導向。
 
 > [!NOTE]
 > 只支援 Windows 電腦使用 Azure RemoteApp 提供 USB 重新導向。
 > 
 > 
 
-### <a name="enable-usb-redirection-for-the-remoteapp-collection"></a>為 RemoteApp 集合啟用 USB 重新導向
-使用下列 Cmdlet，在集合層級啟用 USB 重新導向：
+### <a name="enable-usb-redirection-for-hello-remoteapp-collection"></a>啟用 hello RemoteApp 集合的 USB 重新導向
+使用下列 cmdlet tooenable USB 重新導向 hello 集合層級的 hello:
 
     Set-AzureRemoteAppCollection -CollectionName <collection_name> -CustomRdpProperty "nusbdevicestoredirect:s:*"
 
-### <a name="enable-usb-redirection-for-the-client-computer"></a>為用戶端電腦啟用 USB 重新導向
-若要在電腦設定 USB 重新導向設定：
+### <a name="enable-usb-redirection-for-hello-client-computer"></a>啟用 hello 用戶端電腦的 USB 重新導向
+在您的電腦上的 tooconfigure USB 重新導向設定：
 
-1. 開啟本機群組原則編輯器 (GPEDIT.MSC)。 (從命令提示字元中執行 gpedit.msc)。
+1. 開啟 hello 本機群組原則編輯器 (GPEDIT。MSC)。 (從命令提示字元中執行 gpedit.msc)。
 2. 開啟 [電腦設定]\[原則]\[系統管理範本]\[Windows 元件]\[遠端桌面服務]\[遠端桌面連線用戶端]\[RemoteFX USB 裝置重新導向]。
 3. 按兩下 [允許 RDP 重新導向這部電腦中其他支援的 RemoteFX USB 裝置] 。
-4. 選取 [已啟用]，然後在 [RemoteFX USB 重新導向存取權限] 中選取系統管理員與使用者。
-5. 以系統管理權限開啟命令提示字元，然後執行下列命令：
+4. 選取**啟用**，然後選取**系統管理員和使用者在 hello RemoteFX USB 重新導向的存取權限**。
+5. 以系統管理權限，開啟命令提示字元，然後執行下列命令的 hello:
    
         gpupdate /force
-6. 重新啟動電腦。
+6. Hello 電腦重新啟動。
 
-您也可以使用群組原則管理工具，為網域中的所有電腦建立和套用 USB 重新導向原則：
+您也可以使用 hello 群組原則管理工具 toocreate 及 hello 所有電腦的 USB 重新導向原則套用在網域中：
 
-1. 以網域管理員的身分登入網域控制站。
-2. 開啟 [群組原則管理主控台]。 (按一下 [開始] > [系統管理工具] > [群組員則管理]。)
-3. 瀏覽到您想要建立原則的網域或組織單位。
-4. 以滑鼠右鍵按一下 [預設網域原則]，然後按一下 [編輯]。
+1. Hello 網域系統管理員身分登入 hello 網域控制站。
+2. 開啟 hello 群組原則管理主控台。 (按一下 [開始] > [系統管理工具] > [群組員則管理]。)
+3. 瀏覽 toohello 網域或組織單位，您會想 toocreate hello 原則。
+4. 以滑鼠右鍵按一下 預設網域原則，然後按一下編輯。
 5. 開啟 [電腦設定]\[原則]\[系統管理範本]\[Windows 元件]\[遠端桌面服務]\[遠端桌面連線用戶端]\[RemoteFX USB 裝置重新導向]。
 6. 按兩下 [允許 RDP 重新導向這部電腦中其他支援的 RemoteFX USB 裝置] 。
-7. 選取 [已啟用]，然後在 [RemoteFX USB 重新導向存取權限] 中選取系統管理員與使用者。
+7. 選取**啟用**，然後選取**系統管理員和使用者在 hello RemoteFX USB 重新導向的存取權限**。
 8. 按一下 [確定] 。  
 

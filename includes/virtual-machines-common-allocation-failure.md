@@ -1,71 +1,71 @@
 
-若本文中未提及您的 Azure 問題，請前往 [MSDN 及 Stack Overflow 上的 Azure 論壇](https://azure.microsoft.com/support/forums/)。 您可以在這些論壇上張貼您的問題，或將問題貼到 Twitter 上的 @AzureSupport。 此外，您也可以選取 [Azure 支援](https://azure.microsoft.com/support/options/)網站上的 [取得支援]，來提出 Azure 支援要求。
+如果這份文件中並未提及您的 Azure 問題，請瀏覽 hello [MSDN 和堆疊溢位上的 Azure 論壇](https://azure.microsoft.com/support/forums/)。 您可以在這些論壇張貼您的問題或too@AzureSupportTwitter 上。 此外，您可以藉由選取檔案 Azure 支援人員要求**取得支援**上 hello [Azure 支援](https://azure.microsoft.com/support/options/)站台。
 
 ## <a name="general-troubleshooting-steps"></a>一般疑難排解步驟
-### <a name="troubleshoot-common-allocation-failures-in-the-classic-deployment-model"></a>疑難排解傳統部署模型中常見的配置失敗
+### <a name="troubleshoot-common-allocation-failures-in-hello-classic-deployment-model"></a>Hello 傳統部署模型中的一般配置失敗進行疑難排解
 這些步驟可協助解決虛擬機器中的許多配置失敗：
 
-* 將 VM 調整為不同的大小。<br>
-    按一下**全部瀏覽** > **虛擬機器 （傳統）** > 您的虛擬機器 >**設定** > **大小**. 如需詳細步驟，請參閱 [調整虛擬機器的大小](https://msdn.microsoft.com/library/dn168976.aspx)。
-* 從雲端服務刪除所有 VM，然後重新建立 VM。<br>
-    按一下**全部瀏覽** > **虛擬機器 （傳統）** > 您的虛擬機器 >**刪除**。 然後，按一下 [新增]  >  [計算] > [虛擬機器映像]。
+* 調整大小 hello VM tooa 其他 VM 大小。<br>
+    按一下 [全部瀏覽] > [虛擬機器 (傳統)] > 您的虛擬機器 > [設定] > [大小]。 如需詳細步驟，請參閱[調整 hello 虛擬機器大小](https://msdn.microsoft.com/library/dn168976.aspx)。
+* 刪除所有的 Vm 從 hello 雲端服務並重新建立 Vm。<br>
+    按一下 [全部瀏覽] > [虛擬機器 (傳統)] > 您的虛擬機器 > [刪除]。 然後，按一下 [新增]  >  [計算] > [虛擬機器映像]。
 
-### <a name="troubleshoot-common-allocation-failures-in-the-azure-resource-manager-deployment-model"></a>疑難排解 Azure 資源管理員部署模型中常見的配置失敗
+### <a name="troubleshoot-common-allocation-failures-in-hello-azure-resource-manager-deployment-model"></a>Hello Azure Resource Manager 部署模型中的一般配置失敗進行疑難排解
 這些步驟可協助解決虛擬機器中的許多配置失敗：
 
-* 停止 (解除配置) 相同可用性設定組中的所有 VM，然後重新啟動每一部 VM。<br>
-    若要停止： 按一下**資源群組**> 資源群組 >**資源**> 您的可用性設定組 >**虛擬機器**> 您的虛擬機器 > **停止**。
+* 停止 （取消配置） hello 同一個可用性設定，然後重新啟動每個中的所有 Vm。<br>
+    toostop： 按一下**資源群組**> 資源群組 >**資源**> 您的可用性設定組 >**虛擬機器**> 您的虛擬機器 > **停止**。
   
-    所有 VM 都停止之後，請選取第一個 VM，然後按一下 [啟動] 。
+    選取所有 Vm 都停止之後，hello 第一個 VM 按一下**啟動**。
 
 ## <a name="background-information"></a>背景資訊
 ### <a name="how-allocation-works"></a>配置的運作方式
-Azure 資料中心的伺服器分割成叢集。 通常會嘗試向多個叢集提出配置要求，但配置要求可能帶有某些條件約束，而強制 Azure 平台只嘗試向一個叢集提出要求。 在本文中，這種情況稱為「釘選到叢集」。 下圖 1 說明於嘗試向多個叢集提出一般配置的情況。 圖 2 說明釘選到叢集 2 的配置案例，因為叢集 2 是現有雲端服務 CS_1 或可用性設定組的裝載位置。
+在 Azure 資料中心的 hello 伺服器會分割成叢集。 一般來說，配置要求會嘗試在多個叢集，但您可從 hello 配置要求的特定條件約束，強制 hello Azure 平台 tooattempt hello 要求中只能有一個叢集。 我們將在本文中參照 toothis 為 「 已釘選的 tooa 叢集 」。 下面圖 1 說明 hello 嘗試多個群集中的一般配置的大小寫。 圖 2 說明 hello 發生配置的情況下，已釘選 tooCluster 2，因為這是裝載 hello 現有雲端服務 CS_1 或可用性設定組的位置。
 ![配置圖表](./media/virtual-machines-common-allocation-failure/Allocation1.png)
 
 ### <a name="why-allocation-failures-happen"></a>配置失敗的原因
-當配置要求已釘選到叢集時，由於可用的資源集區較小，很可能找不到可用的資源。 此外，如果配置要求已釘選到叢集，但該叢集不支援您所要求的資源類型，即使叢集有可用的資源，您的要求仍會失敗。 下圖 3 說明由於唯一候選叢集沒有可用的資源，導致已釘選的配置失敗的情況。 圖 4 說明因唯一候選叢集不支援所要求的 VM 大小 (雖然叢集有可用的資源)，而導致已釘選的配置失敗的情況。
+已釘選的 tooa 叢集配置要求時，有更高版本可能會失敗 toofind 釋出資源，因為 hello 可用的資源集區是較小。 此外，如果您配置的要求是已釘選的 tooa 叢集但 hello 您要求的資源類型不支援該叢集，您的要求將會失敗，hello 叢集在沒有可用的資源。 圖 3 說明 hello 案例，其中已釘選的配置失敗，因為 hello 只有候選叢集沒有可用的資源。 圖 4 說明其中釘選的配置失敗，因為只有候選群集 hello 不支援的 hello 情況 hello 即使 hello 叢集已釋放資源，請要求 VM 大小。
 
 ![釘選配置失敗](./media/virtual-machines-common-allocation-failure/Allocation2.png)
 
-## <a name="detailed-troubleshoot-steps-specific-allocation-failure-scenarios-in-the-classic-deployment-model"></a>傳統部署模型中的詳細疑難排解步驟特定配置失敗案例
-以下是造成釘選配置要求的常見配置案例。 我們將在本文稍後深入探討每一個案例。
+## <a name="detailed-troubleshoot-steps-specific-allocation-failure-scenarios-in-hello-classic-deployment-model"></a>詳細的疑難排解 hello 傳統部署模型中的步驟特定配置失敗案例
+以下是導致釘選配置要求 toobe 的一般配置狀況。 我們將在本文稍後深入探討每一個案例。
 
-* 調整 VM 大小，或將 VM 或角色執行個體加入至現有的雲端服務
+* 調整 VM 的大小，或加入 Vm 或角色執行個體 tooan 現有雲端服務
 * 重新啟動已部分停止 (已取消配置) 的 VM
 * 重新啟動已完全停止 (已取消配置) 的 VM
 * 預備/生產部署 (僅適用於平台即服務)
 * 同質群組 (VM/服務鄰近性)
 * 同質群組式虛擬網路
 
-發生配置錯誤時，請查看以下是否有任何案例符合您所遇到的錯誤。 使用 Azure 平台傳回的配置錯誤來識別對應的案例。 如果您的要求已釘選，請移除一些釘選條件約束，向更多叢集開放您的要求，以提高配置成功的機會。
+當您收到配置錯誤時，請參閱是否套用任何 hello 狀況說明 tooyour 錯誤。 使用 hello Azure 平台 tooidentify hello 對應案例所傳回的 hello 配置錯誤。 如果您的要求已釘選，移除一些 hello 釘選的條件約束 tooopen 要求 toomore 叢集，藉此增加 hello 配置成功機率。
 
-一般而言，只要錯誤不是表示「不支援所要求的 VM 大小」，您永遠都可以稍後再重試，因為到時叢集可能釋放足夠的資源來滿足您的要求。 如果問題在於不支援所要求的 VM 大小，請嘗試不同的 VM 大小。 否則，唯一的選項便是將釘選條件約束移除。
+一般情況下，只要 hello 錯誤並不表示 「 hello 要求的 VM 大小不支援 」，您可以永遠重試期間之後，如足夠的資源可能已在 hello 叢集 tooaccommodate 釋放您的要求。 如果該 hello 要求不支援 VM 大小 hello 問題，請嘗試不同的 VM 大小。 否則，hello 唯一的選擇是 tooremove hello 釘選條件約束。
 
-有兩個常見的失敗案例與同質群組有關。 在過去，同質群組是用來提供 VM/服務執行個體的鄰近性，或用來啟用虛擬網路的建立。 在引進區域虛擬網路之後，建立虛擬網路已不再需要同質群組。 由於 Azure 基礎結構中的網路延遲縮短，原本建議使用同質群組來支援 VM/服務鄰近性的情況已有所改變。
+兩個常見的失敗案例是相關的 tooaffinity 群組。 在 hello 過去，同質群組使用的 tooprovide 的非常接近 tooVMs/服務執行個體，或是已使用的 tooenable hello 建立虛擬網路。 Hello 介紹地區虛擬網路，使用同質群組就不再需要的 toocreate 虛擬網路。 Hello 縮短網路延遲，在 Azure 基礎結構中，為已變更 VM/服務相近的 hello 建議 toouse 同質群組。
 
-圖 5 顯示 (釘選的) 配置案例的分類。
+圖 5 顯示 hello 分類的 hello (pin) 配置的案例。
 ![釘選配置分類](./media/virtual-machines-common-allocation-failure/Allocation3.png)
 
 > [!NOTE]
-> 每個配置案例中列出的錯誤是簡短格式。 請參閱[錯誤字串查詢](#Error string lookup)來取得詳細的錯誤字串。
+> 列出每個配置案例中的 hello 錯誤是簡短形式。 請參閱 toohello[錯誤字串查詢](#Error string lookup)詳細的錯誤字串。
 > 
 > 
 
-## <a name="allocation-scenario-resize-a-vm-or-add-vms-or-role-instances-to-an-existing-cloud-service"></a>配置案例：調整 VM 大小，或將 VM 或角色執行個體加入至現有的雲端服務
-**Error**
+## <a name="allocation-scenario-resize-a-vm-or-add-vms-or-role-instances-tooan-existing-cloud-service"></a>配置的案例： 調整 VM 的大小，或加入 Vm 或角色執行個體 tooan 現有的雲端服務
+**錯誤**
 
 Upgrade_VMSizeNotSupported 或 GeneralError
 
 **叢集釘選的原因**
 
-必須在託管現有雲端服務的原始叢集上，嘗試要求調整 VM 大小，或將 VM 或角色執行個體加入現有的雲端服務。 建立新的雲端服務可讓 Azure 平台尋找另一個擁有可用資源，或支援您所要求之 VM 大小的叢集。
+A 要求 tooresize VM，或加入 VM 或角色執行個體 tooan 現有雲端服務有 toobe 嘗試裝載 hello 現有的雲端服務的 hello 原始叢集中。 建立新的雲端服務，可讓 hello Azure 平台 toofind 已釋放資源，或支援 hello 您要求的 VM 大小的另一個叢集。
 
 **因應措施**
 
-如果錯誤是 Upgrade_VMSizeNotSupported*，請嘗試不同的 VM 大小。 如果使用不同的 VM 大小不可行，但可接受使用不同的虛擬 IP 位址 (VIP)，請建立新的雲端服務來裝載新的 VM，並將新的雲端服務加入至執行現有 VM 的區域虛擬網路。 如果現有的雲端服務不使用區域虛擬網路，您仍然可以為新的雲端服務建立新的虛擬網路，然後將 [現有的虛擬網路連接到新的虛擬網路](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/)。 深入了解 [區域虛擬網路](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/)。
+如果 hello 錯誤 Upgrade_VMSizeNotSupported *，請嘗試不同的 VM 大小。 如果使用不同的 VM 大小不是可行，但如果是可接受 toouse 不同的虛擬 IP 位址 (VIP)，建立新的雲端服務 toohost hello 新的 VM，並加入 hello 新雲端服務 toohello 區域虛擬網路位置 hello 現有 Vm 正在執行。 如果您現有的雲端服務不會使用區域虛擬網路，您可以仍然建立 hello 新的雲端服務，新的虛擬網路，然後再連線您[現有虛擬網路 toohello 新的虛擬網路](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/)。 深入了解 [區域虛擬網路](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/)。
 
-如果錯誤是 GeneralError*，很可能是叢集支援資源的類型 (例如特定的 VM 大小)，但叢集目前沒有可用的資源。 類似上述案例，透過建立新的雲端服務 (請注意，新的雲端服務必須使用不同的 VIP) 新增所需的計算資源，並使用區域虛擬網路連接您的雲端服務。
+如果 hello 錯誤 GeneralError *，很可能 hello 叢集所支援的資源 （例如特定的 VM 大小） 的 hello 類型，但在 hello 時刻 hello 叢集沒有釋出資源。 類似 toohello 上述案例中，新增所需的 hello 計算資源，透過建立新的雲端服務 （請注意 hello 新雲端服務有 toouse 不同 VIP），並使用區域虛擬網路 tooconnect 雲端服務。
 
 ## <a name="allocation-scenario-restart-partially-stopped-deallocated-vms"></a>配置案例：重新啟動已部分停止 (已取消配置) 的 VM
 **錯誤**
@@ -74,14 +74,14 @@ GeneralError*
 
 **叢集釘選的原因**
 
-部分解除配置表示您已停止 (已取消配置) 雲端服務中的一或多部 VM，而不是所有 VM。 停止 (取消配置) VM 時會釋放相關聯的資源。 因此，重新啟動已停止 (已取消配置) 的 VM 是一項新的配置要求。 在部分已取消配置的雲端服務中重新啟動 VM，相當於將 VM 加入現有的雲端服務。 必須在裝載現有雲端服務的原始叢集上嘗試提出配置要求。 另外建立一個雲端服務可讓 Azure 平台尋找另一個有可用資源，或支援您所要求之 VM 大小的叢集。
+部分解除配置表示您已停止 (已取消配置) 雲端服務中的一或多部 VM，而不是所有 VM。 當您停止 （取消配置） VM 時，相關聯的 hello 並釋出資源。 因此，重新啟動已停止 (已取消配置) 的 VM 是一項新的配置要求。 部分已取消配置的雲端服務中重新啟動 Vm 是對等 tooadding Vm tooan 現有雲端服務。 hello 配置要求有 toobe 嘗試裝載 hello 現有的雲端服務的 hello 原始叢集中。 建立不同的雲端服務，可讓 hello Azure 平台 toofind 另一個叢集可用的資源或支援 hello 您要求的 VM 大小。
 
 **因應措施**
 
-如果可接受使用不同的 VIP，請刪除已停止 (已取消配置) 的 VM (但保留相關聯的磁碟)，並透過不同的雲端服務重新加回 VM。 使用區域虛擬網路連接您的雲端服務：
+如果可接受 toouse 不同的 VIP，刪除 hello 停止 （取消配置） Vm （但保持相關聯的 hello 磁碟），並新增回透過不同的雲端服務的 hello Vm。 使用區域虛擬網路 tooconnect 雲端服務：
 
-* 如果現有的雲端服務使用區域虛擬網路，只要將新的雲端服務加入至相同的虛擬網路即可。
-* 如果現有的雲端服務不使用區域虛擬網路，請為新的雲端服務建立新的虛擬網路，然後將 [現有的虛擬網路連接到新的虛擬網路](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/)。 深入了解 [區域虛擬網路](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/)。
+* 如果您現有的雲端服務會使用區域虛擬網路，只要加入新雲端服務 toohello hello 相同虛擬網路。
+* 如果您現有的雲端服務不會使用區域虛擬網路，建立新的虛擬網路的 hello 新的雲端服務，然後[您現有虛擬網路 toohello 新虛擬網路連線](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/)。 深入了解 [區域虛擬網路](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/)。
 
 ## <a name="allocation-scenario-restart-fully-stopped-deallocated-vms"></a>配置案例：重新啟動已完全停止 (已取消配置) 的 VM
 **錯誤**
@@ -90,33 +90,33 @@ GeneralError*
 
 **叢集釘選的原因**
 
-完整取消配置表示您已停止 (已取消配置) 雲端服務上的所有 VM。 必須在裝載雲端服務的原始叢集上嘗試提出配置要求以重新啟動這些 VM。 建立新的雲端服務可讓 Azure 平台尋找另一個擁有可用資源，或支援您所要求之 VM 大小的叢集。
+完整取消配置表示您已停止 (已取消配置) 雲端服務上的所有 VM。 hello 分派要求的 toorestart 這些 Vm 有 toobe 嘗試裝載 hello 雲端服務的 hello 原始叢集中。 建立新的雲端服務，可讓 hello Azure 平台 toofind 已釋放資源，或支援 hello 您要求的 VM 大小的另一個叢集。
 
 **因應措施**
 
-如果可接受使用不同的 VIP，請刪除原始已停止 (已取消配置) 的 VM (但保留相關聯的磁碟)，並刪除對應的雲端服務 (已停止 (已取消配置) VM 時，就已釋放相關聯的計算資源)。 建立新的雲端服務以加回 VM。
+如果它是可接受 toouse 不同的 VIP 時，刪除 hello 原始停止 （取消配置） Vm （但保持相關聯的 hello 磁碟），並刪除 hello 對應的雲端服務已釋放資源，當您停止 （取消配置） 時 （相關聯的 hello 計算hello Vm)。 重新建立新的雲端服務 tooadd hello Vm。
 
 ## <a name="allocation-scenario-stagingproduction-deployments-platform-as-a-service-only"></a>配置案例：預備/生產環境部署 (僅適用於平台即服務)
 **錯誤**
 
-New_General * 或 New_VMSizeNotSupported *
+New_General* 或 New_VMSizeNotSupported*
 
 **叢集釘選的原因**
 
-雲端服務的預備環境部署和生產環境部署裝載於相同的叢集。 新增第二個部署時，將會在裝載第一個部署的相同叢集中嘗試提出對應的配置要求。
+預備部署和雲端服務的 hello 生產環境部署的 hello 裝載於 hello 相同叢集中。 當您新增第二個部署的 hello 時，hello 對應配置要求將會嘗試在相同的叢集，主控 hello 第一次部署的 hello。
 
 **因應措施**
 
-請刪除第一個部署和原始的雲端服務，然後重新部署雲端服務。 這個動作可能將第一個部署安排到有足夠可用資源可滿足這兩個部署的叢集，或安排到支援所要求 VM 大小的叢集。
+刪除第一次部署的 hello 與 hello 原始的雲端服務，然後重新部署 hello 雲端服務。 此動作可能登陸 hello 第一次部署在叢集中具有足夠的可用資源 toofit 這兩個部署或在叢集中可支援您所要求的 hello VM 大小。
 
 ## <a name="allocation-scenario-affinity-group-vmservice-proximity"></a>配置案例：同質群組 (VM/服務鄰近性)
 **錯誤**
 
-New_General * 或 New_VMSizeNotSupported *
+New_General* 或 New_VMSizeNotSupported*
 
 **叢集釘選的原因**
 
-任何指派給同質群組的計算資源都繫結至一個叢集。 該同質群組中新的計算資源要求，將於裝載現有資源的相同叢集中嘗試提出。 無論新的資源是透過新的雲端服務，或是透過現有的雲端服務來建立，都是如此。
+任何指派的 tooan 同質群組的計算資源繫結 tooone 叢集。 新的計算資源要求，在該同質群組來嘗試的 hello 相同叢集 hello 現有資源的裝載位置。 透過新的雲端服務或透過現有的雲端服務的 hello 新資源建立是否為 true。
 
 **因應措施**
 
@@ -125,43 +125,43 @@ New_General * 或 New_VMSizeNotSupported *
 ## <a name="allocation-scenario-affinity-group-based-virtual-network"></a>配置案例：同質群組式虛擬網路
 **錯誤**
 
-New_General * 或 New_VMSizeNotSupported *
+New_General* 或 New_VMSizeNotSupported*
 
 **叢集釘選的原因**
 
-在導入區域虛擬網路之前，您必須先將虛擬網路與同質群組產生關聯。 如此一來，將會依上一節「配置案例：同質群組 (VM/服務鄰近性)」所述的相同條件約束，繫結放入同質群組中的計算資源。 計算資源會繫結至單一叢集。
+引進區域虛擬網路之前，您都需要的 tooassociate 虛擬網路與同質群組。 如此一來，放置到同質群組的計算資源由繫結 hello hello 中所述的相同的條件約束 」 配置案例： 同質群組 （VM/服務相近） 」 一節。 繫結的 tooone 叢集的 hello 計算資源。
 
 **因應措施**
 
-如果您不需要同質群組，請為您要加入的新資源建立新的區域虛擬網路，然後 [將現有的虛擬網路連接到新的虛擬網路](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/)。 深入了解 [區域虛擬網路](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/)。
+如果您不需要同質群組，建立新的地區虛擬網路的 hello 您要加入，新的資源，然後[您現有虛擬網路 toohello 新虛擬網路連線](https://azure.microsoft.com/blog/vnet-to-vnet-connecting-virtual-networks-in-azure-across-different-regions/)。 深入了解 [區域虛擬網路](https://azure.microsoft.com/blog/2014/05/14/regional-virtual-networks/)。
 
-此外，您也可以 [將同質群組式虛擬網路移轉至區域虛擬網路](https://azure.microsoft.com/blog/2014/11/26/migrating-existing-services-to-regional-scope/)，然後再重新加入需要的資源。
+或者，您可以[將同質群組為基礎的虛擬網路 tooa 地區虛擬網路移轉](https://azure.microsoft.com/blog/2014/11/26/migrating-existing-services-to-regional-scope/)，然後再次新增 hello 所需的資源。
 
-## <a name="detailed-troubleshooting-steps-specific-allocation-failure-scenarios-in-the-azure-resource-manager-deployment-model"></a>Azure Resource Manager 部署模型中的詳細疑難排解步驟特定配置失敗案例
-以下是造成釘選配置要求的常見配置案例。 我們將在本文稍後深入探討每一個案例。
+## <a name="detailed-troubleshooting-steps-specific-allocation-failure-scenarios-in-hello-azure-resource-manager-deployment-model"></a>詳細的疑難排解步驟的特定配置失敗案例在 hello Azure Resource Manager 部署模型
+以下是導致釘選配置要求 toobe 的一般配置狀況。 我們將在本文稍後深入探討每一個案例。
 
-* 調整 VM 大小，或將 VM 或角色執行個體加入至現有的雲端服務
+* 調整 VM 的大小，或加入 Vm 或角色執行個體 tooan 現有雲端服務
 * 重新啟動已部分停止 (已取消配置) 的 VM
 * 重新啟動已完全停止 (已取消配置) 的 VM
 
-發生配置錯誤時，請查看以下是否有任何案例符合您所遇到的錯誤。 使用 Azure 平台傳回的配置錯誤來識別對應的案例。 如果您的要求已釘選到現有的叢集，請移除一些釘選條件約束，向更多叢集開放您的要求，以提高配置成功的機會。
+當您收到配置錯誤時，請參閱是否套用任何 hello 狀況說明 tooyour 錯誤。 使用 hello Azure 平台 tooidentify hello 對應案例所傳回的 hello 配置錯誤。 如果您的要求已釘選的 tooan 現有的叢集中，移除一些 hello 釘選的條件約束 tooopen 要求 toomore 叢集，藉此增加 hello 配置成功機率。
 
-一般而言，只要錯誤不是表示「不支援所要求的 VM 大小」，您永遠都可以稍後再重試，因為到時叢集可能釋放足夠的資源來滿足您的要求。 如果問題在於不支援所要求的 VM 大小，請參閱以下的因應措施。
+一般情況下，只要 hello 錯誤並不表示 「 hello 要求的 VM 大小不支援 」，您可以永遠重試期間之後，如足夠的資源可能已在 hello 叢集 tooaccommodate 釋放您的要求。 如果 hello 問題是該 hello 要求不支援 VM 大小，請參閱下文的因應措施。
 
-## <a name="allocation-scenario-resize-a-vm-or-add-vms-to-an-existing-availability-set"></a>配置案例：調整 VM 大小，或將 VM 加入至現有的可用性設定組
+## <a name="allocation-scenario-resize-a-vm-or-add-vms-tooan-existing-availability-set"></a>配置的案例： 調整大小的 VM，或加入 Vm tooan 現有可用性設定組
 **錯誤**
 
-Upgrade_VMSizeNotSupported * 或 GeneralError *
+Upgrade_VMSizeNotSupported* 或 GeneralError*
 
 **叢集釘選的原因**
 
-必須在裝載現有可用性設定組的原始叢集上，嘗試要求調整 VM 大小，或將 VM 加入至現有的可用性設定組。 建立新的可用性設定組可讓 Azure 平台尋找另一個有可用資源，或支援您所要求的 VM 大小的叢集。
+A 要求 tooresize VM，或加入現有的可用性設定組 VM tooan 具有 toobe 嘗試 hello 原始叢集裝載 hello 現有可用性設定組。 建立新的可用性設定組可讓 hello Azure 平台 toofind 已釋放資源，或支援 hello 您要求的 VM 大小的另一個叢集。
 
 **因應措施**
 
-如果錯誤是 Upgrade_VMSizeNotSupported*，請嘗試不同的 VM 大小。 如果使用不同的 VM 大小不可行，請停止可用性設定組中的所有 VM。 您可以變更虛擬機器的大小，以便將 VM 配置到支援所需 VM 大小的叢集。
+如果 hello 錯誤 Upgrade_VMSizeNotSupported *，請嘗試不同的 VM 大小。 如果使用不同的 VM 大小不是一個選項，停止 hello 可用性設定組中的所有 Vm。 接著，您可以變更 hello hello 將配置支援 hello 的 hello VM tooa 叢集的虛擬機器大小所需的 VM 大小。
 
-如果錯誤是 GeneralError*，很可能是叢集支援資源的類型 (例如特定的 VM 大小)，但叢集目前沒有可用的資源。 如果 VM 可以屬於不同的可用性設定組，請在不同的可用性設定組 (位於相同區域) 中建立新的 VM。 然後，這個新的 VM 就可以加入至相同的虛擬網路。  
+如果 hello 錯誤 GeneralError *，很可能 hello 叢集所支援的資源 （例如特定的 VM 大小） 的 hello 類型，但在 hello 時刻 hello 叢集沒有釋出資源。 如果 hello VM 可以不同的可用性集的一部分，在不同的可用性設定組中建立新的 VM (hello 中相同的區域)。 這個新的 VM 可 toohello 新增相同的虛擬網路。  
 
 ## <a name="allocation-scenario-restart-partially-stopped-deallocated-vms"></a>配置案例：重新啟動已部分停止 (已取消配置) 的 VM
 **錯誤**
@@ -170,11 +170,11 @@ GeneralError*
 
 **叢集釘選的原因**
 
-部分解除配置表示您已停止 (已取消配置) 可用性設定組中的一或多部 VM，而不是所有 VM。 停止 (取消配置) VM 時會釋放相關聯的資源。 因此，重新啟動已停止 (已取消配置) 的 VM 是一項新的配置要求。 在部分已取消配置的可用性設定組中重新啟動 VM，相當於將 VM 加入現有的可用性設定組。 必須在裝載現有可用性設定組的原始叢集上嘗試提出配置要求。
+部分解除配置表示您已停止 (已取消配置) 可用性設定組中的一或多部 VM，而不是所有 VM。 當您停止 （取消配置） VM 時，相關聯的 hello 並釋出資源。 因此，重新啟動已停止 (已取消配置) 的 VM 是一項新的配置要求。 重新啟動 Vm 的部分已取消配置的可用性設定組是相當 tooadding Vm tooan 現有可用性設定。 hello 配置要求有 toobe 嘗試 hello 原始叢集裝載 hello 現有可用性設定組。
 
 **因應措施**
 
-停止可用性設定組中的所有 VM，再重新啟動第一個 VM。 如此可確保執行新的配置嘗試，而且可以選取有容量可用的新叢集。
+Hello 可用性設定組重新啟動 hello 第一個之前停止所有 Vm。 如此可確保執行新的配置嘗試，而且可以選取有容量可用的新叢集。
 
 ## <a name="allocation-scenario-restart-fully-stopped-deallocated"></a>配置案例：重新啟動已完全停止 (已取消配置)
 **錯誤**
@@ -183,26 +183,26 @@ GeneralError*
 
 **叢集釘選的原因**
 
-完整取消配置表示您已停止 (已取消配置) 可用性設定組中的所有 VM。 提出配置要求來重新啟動這些 VM 時，將會以支援所需大小的所有叢集為目標。
+完整取消配置表示您已停止 (已取消配置) 可用性設定組中的所有 VM。 這些 Vm 將目標支援的所有叢集 hello 分派要求 toorestart hello 所需的大小。
 
 **因應措施**
 
-選取新的 VM 大小以進行配置。 如果仍無法解決問題，請稍後再試。
+選取新的 VM 大小 tooallocate。 如果仍無法解決問題，請稍後再試。
 
 ## <a name="error-string-lookup"></a>錯誤字串查詢
 **New_VMSizeNotSupported***
 
-「由於部署要求條件約束，無法佈建此部署所需的 VM 大小 (或 VM 大小的總和)。 可能的話，請嘗試放寬約束條件 (例如虛擬網路繫結)、部署至不具有其他部署的託管服務及不同的同質群組 (或不具有同質群組的託管服務)，或嘗試部署至不同的區域。」
+"hello VM 大小 （或 VM 大小的組合） 這個部署所需，無法佈建由於 toodeployment 要求條件約束。 可能的話，請嘗試放寬條件約束，例如虛擬網路繫結、 部署 tooa 託管服務中沒有其他部署和 tooa 不同同質群組或不含同質群組或再試一次部署 tooa 不同的區域。 」
 
 **New_General***
 
-「配置失敗；無法滿足要求中的條件約束。 要求的新服務部署繫結至同質群組，或以虛擬網路為目標，或此託管服務下已經有部署。 任何這些情況會將新的部署侷限於特定的 Azure 資源。 請稍後重試，或嘗試減少 VM 大小或角色執行個體的數量。 或者，可能的話，移除先前提到的條件約束，或嘗試部署至不同的區域。」
+「 配置失敗。在要求中無法 toosatisfy 條件約束。 hello 要求新的服務部署繫結的 tooan 同質群組，或它的目標虛擬網路，或有現有的部署這個託管服務底下。 這些條件會限制新部署 toospecific hello Azure 資源。 請稍後再重試，或嘗試減少 hello VM 大小或角色執行個體數目。 或者，可能的話，請移除 hello 上述條件約束，或嘗試部署 tooa 不同區域。 」
 
 **Upgrade_VMSizeNotSupported***
 
-「無法升級部署。 在支援現有部署的資源中，可能沒有所要求的 VM 大小 XXX。 請稍後再試、嘗試使用不同的 VM 大小或較少的角色執行個體，或在空的託管服務下以建立新的同質群組或沒有同質群組繫結來建立部署。」
+「 無法 tooupgrade hello 部署。 hello 要求的 VM 大小 XXX 可能無法支援 hello 現有部署的 hello 資源中。 請稍後再試、嘗試使用不同的 VM 大小或較少的角色執行個體，或在空的託管服務下以建立新的同質群組或沒有同質群組繫結來建立部署。」
 
 **GeneralError***
 
-「伺服器發生內部錯誤。 請重試要求。」 或「無法產生服務的配置。」
+「 hello 伺服器發生內部錯誤。 請重試 hello 要求。 」 或者 「 失敗 tooproduce hello 服務的配置。 」
 

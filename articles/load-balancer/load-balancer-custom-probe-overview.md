@@ -1,6 +1,6 @@
 ---
-title: "負載平衡器自訂探查和監視健全狀況狀態 | Microsoft Docs"
-description: "了解如何使用 Azure 負載平衡器的自訂探查，來監視負載平衡器後方的執行個體"
+title: "aaaLoad 平衡器自訂探查和監視的健全狀況狀態 |Microsoft 文件"
+description: "了解如何自訂 toouse 探查 Azure 負載平衡器負載平衡器後方的 toomonitor 執行個體"
 services: load-balancer
 documentationcenter: na
 author: kumudd
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: cab028fed58d544a56f2f6b12b72364c7baf4d86
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3dfcfcd2d5cffa58b160cb38d63acffbd997d452
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="understand-load-balancer-probes"></a>了解負載平衡器探查
 
-Azure 負載平衡器提供了使用探查來監視伺服器執行個體健全狀況的功能。 當探查無法回應時，負載平衡器會停止傳送新的連線至狀況不良的執行個體。 現有的連線不會受到影響，而新的連線會傳送到狀況良好的執行個體。
+Azure 負載平衡器使用探查提供 hello 功能 toomonitor hello 健全狀況的伺服器執行個體。 當探查失敗 toorespond 時，負載平衡器會停止傳送新連線 toohello 狀況不良的執行個體。 hello 現有的連接不受影響，還新的連線傳送 toohealthy 執行個體。
 
 雲端服務角色 (背景工作角色和 Web 角色) 會使用客體代理程式進行探查監視。 當您在負載平衡器後方使用虛擬機器時，必須設定 TCP 或 HTTP 自訂探查。
 
@@ -31,66 +31,66 @@ Azure 負載平衡器提供了使用探查來監視伺服器執行個體健全�
 
 探查行為取決於︰
 
-* 允許執行個體標示為已啟動的成功探查數目。
-* 導致執行個體標示為已關閉的失敗探查數目。
+* hello 成功允許標示為執行個體 toobe 的探查數目。
+* hello 會標示為停機的執行個體 toobe 造成的失敗探查數目。
 
-在 SuccessFailCount 中設定的逾時和頻率值會決定執行個體是否確定為執行中或非執行中。 在 Azure 入口網站中，逾時設定為頻率值的兩倍。
+hello 逾時和頻率的設定值 SuccessFailCount 判斷執行個體是否已確認的 toobe 執行或未執行。 在 hello Azure 入口網站，設定 tootwo hello 值倍 hello 頻率的 hello 逾時。
 
-端點 (也就是負載平衡集) 的所有負載平衡執行個體的探查設定必須相同。 這表示針對位在相同託管服務特定端點組合的各個角色執行個體或虛擬機器，您不能有不同的探查設定。 例如，每個執行個體必須具有相同的本機連接埠和逾時。
+hello 探查設定所有負載平衡的執行個體的端點 （也就是負載平衡集） 必須是 hello 相同。 這表示您不能有不同的探查設定每個角色執行個體或虛擬機器在 hello 相同託管之特定端點組合的服務。 例如，每個執行個體必須具有相同的本機連接埠和逾時。
 
 > [!IMPORTANT]
-> 負載平衡器探查會使用 IP 位址 168.63.129.16。 這個公用 IP 位址可促進自備 IP Azure 虛擬網路案例中內部平台資源的通訊。 虛擬公用 IP 位址 168.63.129.16 會使用於所有區域中，且不會變更。 建議您在任何本機防火牆原則中允許此 IP 位址。 它不應被視為安全性風險，因為只有內部 Azure 平台可以從該位址取得訊息來源。 如果您不這麼做，各種不同的案例中將會有非預期的行為，例如設定相同的 IP 位址範圍 168.63.129.16 和具有重複的 IP 位址。
+> 負載平衡器探查使用 hello IP 位址 168.63.129.16。 這個公用 IP 位址可加快 hello 帶您-擁有-IP Azure 虛擬網路案例的通訊 toointernal 平台資源。 hello 虛擬公用 IP 位址 168.63.129.16 用於所有區域中，不會變更。 建議您在任何本機防火牆原則中允許此 IP 位址。 它不應視為安全性風險因為只有 hello 內部 Azure 平台可以來源來自該位址的訊息。 如果不這麼做，會有未預期的行為中的各種案例，例如設定 hello 168.63.129.16 和具有重複的 IP 位址相同的 IP 位址範圍。
 
-## <a name="learn-about-the-types-of-probes"></a>深入了解探查類型
+## <a name="learn-about-hello-types-of-probes"></a>深入了解探查的 hello 類型
 
 ### <a name="guest-agent-probe"></a>客體代理程式探查
 
-此探查僅供 Azure 雲端服務使用。 只有在執行個體處於 [就緒] 狀態 (也就是不在其他狀態中，例如 [忙碌]、[回收中] 或 [停止中]) 時，負載平衡器才會利用虛擬機器內的客體代理程式、然後接聽並以「HTTP 200 確定」做為回應。
+此探查僅供 Azure 雲端服務使用。 負載平衡器會利用 hello hello 虛擬機器，內部的客體代理程式然後會接聽並回應 HTTP 200 OK 回應時，才 hello hello 就緒狀態中目前的執行個體 （也就是在另一個狀態例如忙碌、 回收、 或停止）。
 
-如需詳細資訊，請查看[設定適用於健全狀況探查的服務定義檔案 (csdef)](https://msdn.microsoft.com/library/azure/ee758710.aspx) 或[開始為雲端服務建立網際網路面向的負載平衡器](load-balancer-get-started-internet-classic-cloud.md#check-load-balancer-health-status-for-cloud-services)。
+如需詳細資訊，請參閱[設定 hello 服務定義檔 (csdef) 健全狀況探查](https://msdn.microsoft.com/library/azure/ee758710.aspx)或[開始建立雲端服務的網際網路對向負載平衡器](load-balancer-get-started-internet-classic-cloud.md#check-load-balancer-health-status-for-cloud-services)。
 
 ### <a name="what-makes-a-guest-agent-probe-mark-an-instance-as-unhealthy"></a>什麼原因會讓客體代理程式探查將執行個體標示為狀況不良？
 
-如果客體代理程式無法以「HTTP 200 確定」回應，則負載平衡器會將執行個體標示為沒有回應，並停止傳送流量到該執行個體。 負載平衡器會繼續 ping 執行個體。 如果客體代理程式以 HTTP 200 回應，則負載平衡器會再次傳送流量到該執行個體。
+如果 hello 客體代理程式無法與 HTTP 200 「 確定 toorespond，hello 負載平衡器標記 hello 為沒有回應的執行個體和停止傳送流量 toothat 執行個體。 hello 負載平衡器會繼續 tooping hello 執行個體。 如果 hello 客體代理程式回應 HTTP 200，hello 負載平衡器會再次傳送流量 toothat 執行個體。
 
-使用 Web 角色時，網站程式碼通常會在不受 Azure 網狀架構或客體代理程式監視的 w3wp.exe 中執行。 這表示 w3wp.exe 中的失敗 (例如，HTTP 500 回應) 不會向客體代理程式回報，而且負載平衡器不會將該執行個體退出循環。
+當您使用 web 角色時，不會監視 hello Azure 網狀架構或客體代理程式的 w3wp.exe 中通常執行 hello 網站程式碼。 這表示 （例如，HTTP 500 回應） 的 w3wp.exe 中失敗將不會報告的 toohello 客體代理程式，，和 hello 負載平衡器會等到該執行個體退出循環。
 
 ### <a name="http-custom-probe"></a>HTTP 自訂探查
 
-自訂 HTTP 負載平衡器探查會覆寫預設客體代理程式探查，這代表您可以建立自己的自訂邏輯來判斷角色執行個體的健全狀況。 根據預設，負載平衡器會每隔 15 秒探查您的端點。 如果執行個體在逾時期限 (預設為 31 秒) 內以 HTTP 200 回應，它就會被視為處於負載平衡器循環中。
+hello 自訂 HTTP 負載平衡器探查會覆寫 hello 預設客體代理程式探查，這表示您可以建立您自己的自訂邏輯 toodetermine hello 健全狀況的 hello 角色執行個體。 hello 負載平衡器探查您的端點每 15 秒，根據預設。 hello 例項會被視為 toobe hello 負載平衡器輪替循環中的，如果它的回應 HTTP 200 hello 逾時期限 （預設 31 秒） 內。
 
-這很適合在您想要實作自己的邏輯，以從負載平衡器循環中移除執行個體時使用。 例如，如果執行個體超過 90% CPU，並傳回非 200 狀態，您可以決定移除執行個體。 如果您有使用 w3wp.exe 的 Web 角色，這也表示您能夠自動監視您的網站，因為網站程式碼中的錯誤會將非 200 狀態傳回給負載平衡器探查。
+這可以是如果您想 tooimplement 您自己的邏輯 tooremove 執行個體從負載平衡器輪替。 比方說，您可以決定 tooremove 執行個體，如果它超過 90%的 CPU，並傳回-200 狀態。 如果您有使用 w3wp.exe 的 web 角色，這也表示您會自動監視您的網站，因為在網站上的程式碼中的失敗會傳回非 200 狀態 toohello 負載平衡器探查。
 
 > [!NOTE]
-> HTTP 自訂探查僅支援相對路徑和 HTTP 通訊協定。 不支援 HTTPS。
+> hello HTTP 自訂探查支援 HTTP 通訊協定只能和相對路徑。 不支援 HTTPS。
 
 ### <a name="what-makes-an-http-custom-probe-mark-an-instance-as-unhealthy"></a>什麼原因會讓 HTTP 自訂探查將執行個體標示為狀況不良？
 
-* HTTP 應用程式傳回 200 以外的 HTTP 回應碼 (例如，403、404 或 500)。 這是應用程式執行個體應該立即被帶離服務的正面回答。
-* HTTP 伺服器在逾時期限之後完全沒有回應。 根據設定的逾時值，這可能表示在探查標示為非執行中之前 (也就是說，在傳送 SuccessFailCount 探查之前)，多個探查要求並未獲得回應。
-* 伺服器會透過 TCP 重設關閉連線。
+* hello HTTP 應用程式會傳回 200 （例如，403、 404、 或 500） 以外的 HTTP 回應碼。 這是正值通知 hello 應用程式的執行個體應該超出服務以立即開始。
+* hello HTTP 伺服器未完全回應 hello 逾時期限之後。 根據 hello 逾時設定的值，這可能表示該多個探查要求移至未接聽之前 hello 探查取得標示為不執行 （也就是前 SuccessFailCount 探查傳送）。
+* hello 伺服器關閉 hello 連接，透過 TCP 重設。
 
 ### <a name="tcp-custom-probe"></a>TCP 自訂探查
 
-TCP 探查透過利用定義的連接埠執行三向信號交換來初始化連線。
+TCP 探查起始的連線，藉由執行三種方式與信號交換 hello 定義連接埠。
 
 ### <a name="what-makes-a-tcp-custom-probe-mark-an-instance-as-unhealthy"></a>什麼原因會讓 TCP 自訂探查將執行個體標示為狀況不良？
 
-* TCP 伺服器在逾時期限之後完全沒有回應。 當探查標示為非執行中時，取決於失敗探查的數目，在探查標示為非執行中之前，這些要求設定為未獲得回應。
-* 探查會從角色執行個體接收 TCP 重設。
+* hello TCP 伺服器未完全回應 hello 逾時期限之後。 當 hello 探查標示為不執行 hello 失敗探查數目而定，要求是設定的 toogo 再將標示為不執行 hello 探查未接聽。
+* hello 探查收到 hello 角色執行個體上重設的 TCP。
 
 如需有關設定 HTTP 健全狀況探查或 TCP 探查的詳細資訊，請參閱 [開始使用 PowerShell 在資源管理員中建立網際網路對向負載平衡器](load-balancer-get-started-internet-arm-ps.md)。
 
 ## <a name="add-healthy-instances-back-into-load-balancer-rotation"></a>將狀況良好的執行個體重新加入負載平衡器循環
 
-TCP 和 HTTP 探查於下列狀況時會視為狀況良好，並將角色執行個體標示為狀況良好：
+TCP 和 HTTP 探查被視為狀況良好，並將標示為狀況良好時 hello 角色執行個體：
 
-* 負載平衡器在 VM 第一次開機時會取得正面探查。
-* SuccessFailCount 的數目 (如上所述) 可定義將角色執行個體標示為狀況良好所需的成功探查值。 如果已移除角色執行個體，成功且連續的探查數目必須大於或等於 SuccessFailCount 的值才能將角色執行個體標示為執行中。
+* hello 負載平衡器取得第一個時間 hello VM 會開機正數探查 hello。
+* hello 編號 SuccessFailCount （前述） 會定義 hello 成功的探查需要的 toomark hello 角色執行個體為狀況良好的值。 已移除的角色執行個體，如果成功，請連續探查的 hello 數目必須等於或超過 hello SuccessFailCount toomark hello 角色執行個體為 執行中的值。
 
 > [!NOTE]
-> 如果角色執行個體的健全狀況出現變動，負載平衡器會先等候較長的時間，才將角色執行個體重新放回狀況良好的狀態。 這是透過原則保護使用者和基礎結構來完成。
+> 如果角色執行個體的 hello 健全狀況有變動，hello 負載平衡器的等候時間之前將 hello 角色執行個體放入 hello 狀況良好狀態。 這是透過原則 tooprotect hello 使用者和 hello 基礎結構。
 
 ## <a name="use-log-analytics-for-load-balancer"></a>使用負載平衡器的記錄分析
 
-您可以使用 [負載平衡器的記錄分析](load-balancer-monitor-log.md) 來檢查探查健全狀況狀態和探查計數。 記錄可以與 Power BI 或 Azure Operation Insights 搭配使用，以提供負載平衡器健康狀態。
+您可以使用[記錄分析的負載平衡器](load-balancer-monitor-log.md)toocheck hello 探查健全狀況狀態和探查計數。 記錄可以搭配負載平衡器健全狀況狀態相關的 Power BI 或 Azure Operational Insights tooprovide 統計資料。

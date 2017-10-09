@@ -1,6 +1,6 @@
 ---
-title: "Log Analytics 記錄檔搜尋 REST API | Microsoft Docs"
-description: "本指南提供基本教學課程，說明如何使用 Operations Management Suite (OMS) 中的 Log Analytics 搜尋 REST API，並提供使用命令的範例。"
+title: "aaaLog 分析記錄搜尋 REST API |Microsoft 文件"
+description: "本指南提供基本教學課程，描述如何使用 hello 記錄分析搜尋 REST API 中的 hello Operations Management Suite (OMS)，並提供範例，教您如何 toouse hello 命令。"
 services: log-analytics
 documentationcenter: 
 author: bwren
@@ -14,54 +14,54 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/23/2017
 ms.author: bwren
-ms.openlocfilehash: 78afb2f065dde4a3e7a3ab787c939b3c52b72cc6
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: dafe5eeb8cc11a339f2cbf78cec657e344d87cac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-log-search-rest-api"></a>Log Analytics 記錄檔搜尋 REST API
-本指南提供基本教學課程 (包括範例)，說明如何使用 Log Analytics 搜尋 REST API。 Log Analytics 是 Operations Management Suite (OMS) 的一部分。
+本指南提供基本教學課程，包括範例，您可以如何使用 hello 記錄分析搜尋 REST API。 記錄分析是 hello Operations Management Suite (OMS) 的一部分。
 
 > [!NOTE]
-> 如果您的工作區已升級至[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則您應該如本文所述，繼續搭配使用舊版查詢語言與記錄搜尋 API。  之後將會為更新的工作區發行新的 API，屆時會更新說明文件。 
+> 如果您的工作區已升級的 toohello[新的記錄分析查詢語言](log-analytics-log-search-upgrade.md)，則您應該繼續與 hello 記錄搜尋 API toouse hello 舊版的查詢語言，這篇文章中所述。  新的應用程式開發介面就會發行升級後的工作區，並會在該時間更新 hello 文件。 
 
 > [!NOTE]
-> Log Analytics 在以前稱為 Operational Insights，這也是資源提供者中使用此名稱的原因。
+> 記錄分析前稱為 Operational Insights，這也是為什麼 hello hello 資源提供者中使用的名稱。
 >
 >
 
-## <a name="overview-of-the-log-search-rest-api"></a>記錄檔搜尋 REST API 概觀
-Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來存取。 本文件提供透過 [ARMClient](https://github.com/projectkudu/ARMClient) 存取 API 的範例，這是可簡化叫用 Azure Resource Manager API 的開放原始碼命令列工具。 使用 ARMClient 是存取 Log Analytics 搜尋 API 的許多選項之一。 另一個選項是使用 OperationalInsights 的 Azure PowerShell 模組，其中包含可存取搜尋的 Cmdlet。 這些工具可讓您利用 Azure Resource Manager API 呼叫 OMS 工作區，並在其中執行搜尋命令。 API 會以 JSON 格式來輸出搜尋結果，可讓您以程式設計方式將搜尋結果用在許多不同用途上。
+## <a name="overview-of-hello-log-search-rest-api"></a>Hello 記錄搜尋 REST API 的概觀
+hello 記錄分析搜尋 REST API 是 RESTful，而且可以透過 hello Azure 資源管理員 API 存取。 本文提供的存取透過 hello API 範例[ARMClient](https://github.com/projectkudu/ARMClient)，簡化叫用的開放原始碼命令列工具 hello Azure 資源管理員 API。 使用 ARMClient hello 是許多選項 tooaccess hello 記錄分析搜尋 API 的其中一個。 另一個選項是 OperationalInsights，其中包含用於存取搜尋 cmdlet toouse hello Azure PowerShell 模組。 使用這些工具，您可以利用 hello Azure 資源管理員 API toomake 呼叫 tooOMS 工作區，以及它們在執行搜尋命令。 hello API 輸出搜尋結果以 JSON 格式，可讓您 toouse hello 搜尋結果中許多不同的方式以程式設計的方式。
 
-您可以透過 [Library for .NET](https://msdn.microsoft.com/library/azure/dn910477.aspx) 和 [REST API](https://msdn.microsoft.com/library/azure/mt163658.aspx) 來使用 Azure Resource Manager。 若要深入了解，請檢閱連結的網頁。
+hello Azure 資源管理員可透過[.NET 程式庫](https://msdn.microsoft.com/library/azure/dn910477.aspx)和 hello [REST API](https://msdn.microsoft.com/library/azure/mt163658.aspx)。 toolearn 詳細資訊，請檢閱 hello 連結 web 網頁。
 
 > [!NOTE]
-> 如果您使用彙總命令，例如 `|measure count()` 或 `distinct`，則每次呼叫搜尋最多可傳回 500,000 筆記錄。 不含彙總命令的搜尋最多傳回 5,000 筆記錄。
+> 如果您使用的彙總命令，例如`|measure count()`或`distinct`，每個呼叫 toosearch 可以傳回最多 500,000 個記錄。 不含彙總命令的搜尋最多傳回 5,000 筆記錄。
 >
 >
 
 ## <a name="basic-log-analytics-search-rest-api-tutorial"></a>基本 Log Analytics 搜尋 REST API 教學課程
-### <a name="to-use-armclient"></a>使用 ARMClient
-1. 安裝 [Chocolatey](https://chocolatey.org/)，這是適用於 Windows 的開放原始碼封裝管理員。 以系統管理員身分開啟命令提示字元視窗，然後執行下列命令：
+### <a name="toouse-armclient"></a>toouse ARMClient
+1. 安裝 [Chocolatey](https://chocolatey.org/)，這是適用於 Windows 的開放原始碼封裝管理員。 開啟命令提示字元視窗，以系統管理員身分，並執行下列命令的 hello:
 
     ```
     @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin
     ```
-2. 執行下列命令來安裝 ARMClient：
+2. 執行下列命令的 hello 來安裝 ARMClient:
 
     ```
     choco install armclient
     ```
 
-### <a name="to-perform-a-search-using-armclient"></a>使用 ARMClient 執行搜尋
+### <a name="tooperform-a-search-using-armclient"></a>使用 ARMClient 搜尋 tooperform
 1. 使用您的 Microsoft 帳戶、公司帳戶或學校帳戶登入：
 
     ```
     armclient login
     ```
 
-    成功登入會列出繫結至指定帳戶的所有訂用帳戶：
+    成功的登入會列出指定帳戶的所有繫結訂用 toohello:
 
     ```
     PS C:\Users\SampleUserName> armclient login
@@ -72,13 +72,13 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
     Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (Example Name 2)
     Subscription xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx (Example Name 3)
     ```
-2. 取得 Operations Management Suite 工作區：
+2. 取得 hello Operations Management Suite 工作區：
 
     ```
     armclient get /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/OI-Default-East-US/providers/Microsoft.OperationalInsights/workspaces?api-version=2015-03-20
     ```
 
-    成功的 Get 呼叫會輸出繫結至訂用帳戶的所有工作區：
+    成功的 Get 呼叫會輸出所有的工作區繫結 toohello 訂用帳戶：
 
     ```
     {
@@ -108,7 +108,7 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
     ```
 
 ## <a name="log-analytics-search-rest-api-reference-examples"></a>Log Analytics 搜尋 REST API 參考範例
-下列範例顯示如何使用 Search API。
+hello 遵循範例會示範如何使用 Search API hello。
 
 ### <a name="search---actionread"></a>搜尋 - 動作/讀取
 **範例 Url：**
@@ -133,17 +133,17 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
     }
     armclient post /subscriptions/{Subscription ID}/resourceGroups/OI-Default-East-US/providers/Microsoft.OperationalInsights/workspaces/{Workspace ID}/search?api-version=2015-03-20 $searchParametersJson
 ```
-下表描述可用的屬性。
+hello 下表描述可用的 hello 屬性。
 
 | **屬性** | **說明** |
 | --- | --- |
-| top |要傳回的結果數目上限。 |
+| top |hello 結果 tooreturn 的數目上限。 |
 | highlight |包含 pre 和 post 參數，通常用於反白顯示比對欄位 |
-| pre |以指定字串做為比對欄位的前置詞。 |
-| post |以指定字串附加至比對欄位之後。 |
-| query |用來收集並傳回結果的搜尋查詢。 |
-| start |您想要從其中找到結果的時間範圍開頭。 |
-| end |您想要從其中找到結果的時間範圍結尾。 |
+| pre |Hello 給定字串 tooyour 比對欄位的前置詞。 |
+| post |將附加 hello 給定字串 tooyour 比對欄位。 |
+| query |使用 toocollect hello 搜尋查詢，並傳回結果。 |
+| start |您想要從其中找到結果 toobe hello 時間範圍 hello 開頭。 |
+| end |hello 與您想要從其中找到結果 toobe hello 時間視窗結尾。 |
 
 **回應：**
 
@@ -197,14 +197,14 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
 ```
 
 ### <a name="searchid---actionread"></a>搜尋/{ID} - 動作/讀取
-**要求已儲存搜尋的內容：**
+**要求已儲存搜尋的 hello 的內容：**
 
 ```
     armclient post /subscriptions/{SubId}/resourceGroups/{ResourceGroupId}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/search/{SearchId}?api-version=2015-03-20
 ```
 
 > [!NOTE]
-> 如果搜尋會傳回「擱置中」狀態，則輪詢更新的結果可以透過此 API 完成。 6 分鐘後，搜尋的結果將會從快取卸除，並將傳回 HTTP Gone。 如果初始搜尋要求立即傳回「成功」狀態，則結果不會新增至快取，導致在查詢此 API 時會傳回 HTTP Gone。 HTTP 200 結果內容的格式與初始搜尋要求相同，只是會有更新的值。
+> 如果 hello 搜尋會傳回 「 擱置中 」 狀態，然後輪詢更新的 hello 結果可以透過此 API 完成。 6 分鐘後 hello 搜尋結果的 hello 皆會予以捨棄從 hello 快取，並將傳回 HTTP Gone。 如果 hello 初始搜尋要求立即傳回 「 成功 」 狀態，hello 結果不會新增 toohello 快取，使 HTTP Gone 此 API tooreturn，如果查詢。 hello HTTP 200 結果內容位於的 hello 相同格式化為 hello 初始搜尋要求和更新值。
 >
 >
 
@@ -219,18 +219,18 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
 
 支援的收集方法：GET
 
-下表描述可用的屬性。
+hello 下表描述可用的 hello 屬性。
 
 | 屬性 | 說明 |
 | --- | --- |
-| 識別碼 |唯一識別碼。 |
-| Etag |**修補程式的必要項目**。 每次寫入時由伺服器進行更新。 值必須等於目前儲存的值或 ‘*’ 才能進行更新。 舊值/無效值時會傳回 409。 |
-| properties.query |**必要**。 搜尋查詢。 |
-| properties.displayName |**必要**。 使用者定義的查詢顯示名稱。 |
-| properties.category |**必要**。 使用者定義的查詢類別。 |
+| 識別碼 |hello 唯一識別項。 |
+| Etag |**修補程式的必要項目**。 每次寫入時由伺服器進行更新。 值必須等於 toohello 目前儲存的值或 ' *' tooupdate。 舊值/無效值時會傳回 409。 |
+| properties.query |**必要**。 hello 搜尋查詢。 |
+| properties.displayName |**必要**。 hello hello 查詢的使用者定義的顯示名稱。 |
+| properties.category |**必要**。 hello 使用者定義的分類 hello 查詢。 |
 
 > [!NOTE]
-> 目前，當 Log Analytics 搜尋 API 輪詢工作區的儲存搜尋時，其會傳回使用者建立的儲存搜尋。 此 API 不會傳回解決方案所提供之已儲存的搜尋。
+> hello 記錄分析搜尋 API 目前會傳回使用者建立已儲存的搜尋時工作區中的儲存搜尋的輪詢。 hello 應用程式開發介面不會傳回儲存的搜尋解決方案所提供。
 >
 >
 
@@ -243,7 +243,7 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
 ```
 
 > [!NOTE]
-> Log Analytics API 所建立並儲存的所有搜尋、排程和動作，都必須使用小寫名稱。
+> 所有已儲存的搜尋、 排程和動作以 hello 記錄分析 API 所建立的 hello 名稱必須是小寫。
 
 ### <a name="delete-saved-searches"></a>刪除儲存搜尋
 **要求：**
@@ -261,7 +261,7 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
 ```
 
 ### <a name="metadata---json-only"></a>中繼資料 - 僅限 JSON
-以下的方法可讓您看到工作區中所收集資料的所有記錄類型欄位。 比方說，如果您想知道事件類型是否具有名為 Computer 的欄位，此查詢可作為一種檢查方法。
+以下是 hello 資料收集工作區中的所有記錄檔類型的方式 toosee hello 欄位。 例如，如果您想知道是否 hello 事件類型是否具有名為電腦的欄位，然後此查詢是其中一種方式 toocheck。
 
 **欄位要求：**
 
@@ -300,25 +300,25 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
     }
 ```
 
-下表描述可用的屬性。
+hello 下表描述可用的 hello 屬性。
 
 | **屬性** | **說明** |
 | --- | --- |
 | 名稱 |欄位名稱。 |
-| displayName |欄位的顯示名稱。 |
-| 類型 |欄位值的類型。 |
+| displayName |hello 顯示 hello 欄位的名稱。 |
+| 類型 |hello hello 欄位值的型別。 |
 | 可面向化 |目前 ‘indexed’、‘stored ‘和 ‘facet’ 屬性的組合。 |
 | 顯示 |目前 ‘display’ 屬性。 如果欄位顯示在搜尋中，則為 True。 |
-| ownerType |減少至僅屬於 onboarded IP 的類型。 |
+| ownerType |降低的 tooonly 屬於 tooonboarded IP 型別。 |
 
 ## <a name="optional-parameters"></a>選擇性參數
-下列資訊描述可用的選擇性參數。
+hello 下列資訊描述可用的選擇性參數。
 
 ### <a name="highlighting"></a>醒目提示
-“Highlight” 參數是一種選擇性參數，您可以用來要求搜尋子系統，包含其回應中的一組標記。
+hello"Highlight"參數是選擇性參數，您可以用 toorequest hello 搜尋子系統在其回應中包含的一組標記。
 
-這些標記表示開頭與結尾的醒目提示文字，以符合您在搜尋查詢中所提供的詞彙。
-您可以指定開頭與結尾的標記，讓搜尋用來包裝醒目提示的詞彙。
+這些標記表示 hello 開頭與結尾的反白顯示的文字，以符合您的搜尋查詢中所提供的 hello 詞彙。
+您可以指定 hello 開始和結束標記所使用的字詞 toowrap hello 反白顯示。
 
 **範例搜尋查詢**
 
@@ -361,10 +361,10 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
     }
 ```
 
-請注意，上述結果包含已加上前置詞和附加詞的錯誤訊息。
+請注意，hello 上述結果包含已做為前置詞及附加詞的錯誤訊息。
 
 ## <a name="computer-groups"></a>電腦群組
-電腦群組是一種特殊的已儲存搜尋，其會傳回一組電腦。  您可以在其他查詢中使用電腦群組，以將結果限制為該群組中的電腦。  電腦群組會實作為已儲存的搜尋，其含有 Group 標籤與 Computer 值。
+電腦群組是一種特殊的已儲存搜尋，其會傳回一組電腦。  您可以使用電腦群組中的其他查詢 toolimit hello 結果 toohello 電腦 hello 群組中。  電腦群組會實作為已儲存的搜尋，其含有 Group 標籤與 Computer 值。
 
 以下是電腦群組的回應範例。
 
@@ -383,18 +383,18 @@ Log Analytics 搜尋 API 是 RESTful，可透過 Azure Resource Manager API 來�
 ```
 
 ### <a name="retrieving-computer-groups"></a>擷取電腦群組
-若要擷取電腦群組，請使用 Get 方法搭配群組識別碼。
+tooretrieve 電腦群組，請使用 hello Get 方法與 hello 群組識別碼。
 
 ```
 armclient get /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Name}/providers/Microsoft.OperationalInsights/workspaces/{Workspace Name}/savedSearches/{Group ID}`?api-version=2015-03-20
 ```
 
 ### <a name="creating-or-updating-a-computer-group"></a>建立或更新電腦群組
-若要建立電腦群組，請使用 Put 方法搭配已儲存的唯一搜尋識別碼。 如果您使用現有的電腦群組識別碼，則系統會修改它。 當您在 Log Analytics 入口網站中建立電腦群組時，將會依據群組和名稱來建立識別碼。
+toocreate 電腦群組，並提供唯一的儲存的搜尋的識別碼。 使用 hello Put 方法 如果您使用現有的電腦群組識別碼，則系統會修改它。 當您在 hello 記錄分析入口網站中建立電腦群組時，則會建立 hello 識別碼 hello 群組與名稱。
 
-用於群組定義的查詢必須傳回一組電腦，群組才能正確運作。  建議您在查詢的結尾加上 `| Distinct Computer`，以確保傳回正確的資料。
+用於 hello 群組定義的 hello 查詢必須正確地傳回一組 hello 群組 toofunction 的電腦。  建議您結束與查詢`| Distinct Computer`tooensure hello 正確傳回資料。
 
-已儲存搜尋的定義必須包含 Group 標籤與 Computer 值，才能將搜尋分類為電腦群組。
+儲存搜尋的 hello 的 hello 定義必須包含值的電腦是具名群組的 hello 搜尋 toobe 歸類為電腦群組的標記。
 
 ```
     $etag=Get-Date -Format yyyy-MM-ddThh:mm:ss.msZ
@@ -409,7 +409,7 @@ armclient get /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Na
 ```
 
 ### <a name="deleting-computer-groups"></a>刪除電腦群組
-若要刪除電腦群組，請使用 Delete 方法搭配群組識別碼。
+toodelete 電腦群組，請使用 hello Delete 方法與 hello 群組識別碼。
 
 ```
 armclient delete /subscriptions/{Subscription ID}/resourceGroups/{Resource Group Name}/providers/Microsoft.OperationalInsights/workspaces/{Workspace Name}/savedSearches/$groupId`?api-version=2015-03-20
@@ -417,4 +417,4 @@ armclient delete /subscriptions/{Subscription ID}/resourceGroups/{Resource Group
 
 
 ## <a name="next-steps"></a>後續步驟
-* 了解 [記錄搜尋](log-analytics-log-searches.md) ，以使用自訂欄位作為準則來建立查詢。
+* 深入了解[記錄搜尋](log-analytics-log-searches.md)toobuild 查詢準則中使用自訂欄位。

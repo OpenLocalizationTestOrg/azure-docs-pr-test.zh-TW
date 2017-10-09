@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員的「下一個躍點」功能來尋找下一個躍點 - Azure CLI 2.0 | Microsoft Docs"
-description: "本文會說明如何使用 Azure CLI，利用下一個躍點功能來得知下一個躍點類型和 IP 位址。"
+title: "aaaFind 下一個躍點與 Azure 網路監看員下一個躍點-Azure CLI 2.0 |Microsoft 文件"
+description: "本文將說明如何尋找哪些 hello 下個躍點類型會與 ip 位址使用下個躍點使用 Azure CLI。"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: d1ee6870ba0188ff2c473e4cca12a5bdc1f97d3d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 77c2bde51274bd5c64e7a2467f95139af620ca30
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="find-out-what-the-next-hop-type-is-using-the-next-hop-capability-in-azure-network-watcher-using-azure-cli-20"></a>使用採用 Azure CLI 2.0 之 Azure 網路監看員的「下一個躍點」功能，得知下一個躍點類型
+# <a name="find-out-what-hello-next-hop-type-is-using-hello-next-hop-capability-in-azure-network-watcher-using-azure-cli-20"></a>找出 hello 下一個躍點類型會使用 Azure 網路監看員使用 Azure CLI 2.0 中的 hello 下一個躍點功能
 
 > [!div class="op_single_selector"]
 > - [Azure 入口網站](network-watcher-check-next-hop-portal.md)
@@ -29,28 +29,28 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-check-next-hop-cli.md)
 > - [Azure REST API](network-watcher-check-next-hop-rest.md)
 
-下一個躍點是網路監看員的一項功能，可根據指定的虛擬機器取得下一個躍點類型和 IP 位址。 這項功能可用於判斷離開虛擬機器的流量是否會周遊閘道、網際網路或虛擬網路，以抵達其目的地。
+下一個躍點是網路監看員提供 hello 功能的一項功能取得下一個躍點類型 hello 和根據指定的虛擬機器的 IP 位址。 這項功能可用於判斷如果離開虛擬機器的流量會周遊閘道、 網際網路或虛擬網路 tooget tooits 目的地。
 
-本文使用資源管理部署模型的新一代 CLI：Azure CLI 2.0，它適用於 Windows、Mac 和 Linux。
+本文使用我們的下一個層代 CLI hello 資源管理部署模型，Azure CLI 2.0 中，這是適用於 Windows、 Mac 和 Linux。
 
-若要執行本文的步驟，您需要[安裝適用於 Mac、Linux 和 Windows 的 Azure 命令列介面 (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)。
+tooperform hello 步驟在本文中，您需要[hello Azure 命令列介面安裝的 Mac、 Linux 及 Windows (Azure CLI)](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)。
 
 ## <a name="before-you-begin"></a>開始之前
 
-在此案例中，您會使用 Azure CLI 來尋找下一個躍點類型和 IP 位址。
+在此案例中，您將使用 hello Azure CLI toofind hello 下一個躍點類型和 IP 位址。
 
-此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。 此案例也假設已有具有有效虛擬機器的資源群組可供使用。
+此案例假設您已依照中的 hello 步驟[建立網路監看員](network-watcher-create.md)toocreate 網路監看員。 hello 案例也會假設具有有效的虛擬機器的資源群組存在 toobe 使用。
 
 ## <a name="scenario"></a>案例
 
-本文涵蓋的案例會使用網路監看員的下一個躍點功能，以找出資源的下一個躍點類型和 IP 位址。 若要深入了解下一個躍點，請造訪[下一個躍點概觀](network-watcher-next-hop-overview.md)。
+在此文章所涵蓋的 hello 案例使用下一個躍點，會找出 hello 下一個躍點類型和資源的 IP 位址的網路監看員的一項功能。 toolearn 深入了解下個躍點，請瀏覽[下一個躍點概觀](network-watcher-next-hop-overview.md)。
 
 
 ## <a name="get-next-hop"></a>取得下一個躍點
 
-若要取得下一個躍點，我們可呼叫 `az network watcher show-next-hop` Cmdlet。 我們會將網路監看員資源群組 NetworkWatcher、虛擬機器識別碼、來源 IP 位址和目的地 IP 位址傳遞給此 Cmdlet。 在此範例中，目的地 IP 位址是在另一個虛擬網路的 VM。 兩個虛擬網路之間有虛擬網路閘道。
+tooget hello 下一個躍點，我們會呼叫 hello `az network watcher show-next-hop` cmdlet。 我們會傳送 hello cmdlet hello 網路監看員資源群組、 hello NetworkWatcher、 虛擬機器識別碼、 來源 IP 位址和目的地 IP 位址。 在此範例中，hello 目的地 IP 位址會是 tooa VM，另一個虛擬網路中。 Hello 兩個虛擬網路之間沒有虛擬網路閘道。
 
-安裝及設定最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) (若您尚未這麼做)，並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。 然後，執行下列命令：
+如果您尚未，安裝並設定最新的 hello [Azure CLI 2.0](/cli/azure/install-az-cli2) tooan Azure 帳戶使用登入和[az 登入](/cli/azure/#login)。 然後執行下列命令的 hello:
 
 ```azurecli
 az network watcher show-next-hop --resource-group <resourcegroupName> --vm <vmNameorID> --source-ip <source-ip> --dest-ip <destination-ip>
@@ -58,11 +58,11 @@ az network watcher show-next-hop --resource-group <resourcegroupName> --vm <vmNa
 ```
 
 > [!NOTE]
-如果 VM 具有多個 NIC，而且任一 NIC 啟用了 IP 轉送，則必須指定 NIC 參數 (-i nic-id)。 否則為選擇性。
+如果 hello VM 有多個 Nic 和任何 hello Nic 上啟用 IP 轉送，然後 hello NIC 參數 (-我 nic 識別碼)，必須指定。 否則為選擇性。
 
 ## <a name="review-results"></a>檢閱結果
 
-完成時會提供結果。 所傳回的有下一個躍點 IP 位址以及其所屬的資源類型。
+完成時，會提供 hello 結果。 它是的資源 hello 類型以及傳回 hello 下一個躍點 IP 位址。
 
 ```azurecli
 {
@@ -72,7 +72,7 @@ az network watcher show-next-hop --resource-group <resourcegroupName> --vm <vmNa
 }
 ```
 
-下列清單顯示目前可用的 NextHopType 值︰
+hello 下列清單顯示目前可用 NextHopType 值 hello:
 
 **下一個躍點類型**
 
@@ -86,4 +86,4 @@ az network watcher show-next-hop --resource-group <resourcegroupName> --vm <vmNa
 
 ## <a name="next-steps"></a>後續步驟
 
-請造訪[使用網路監看員稽核 NSG](network-watcher-nsg-auditing-powershell.md)，以了解如何以程式設計方式檢閱網路安全性群組設定
+深入了解如何 tooreview 您的網路安全性群組設定，以程式設計方式造訪[NSG 稽核與網路監看員](network-watcher-nsg-auditing-powershell.md)

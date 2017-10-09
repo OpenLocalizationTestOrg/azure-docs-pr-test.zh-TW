@@ -1,6 +1,6 @@
 ---
-title: "設定 Azure 微服務的開發環境 | Microsoft Docs"
-description: "安裝執行階段、SDK 和工具，並建立本機開發叢集。 完成此設定之後，您就可以開始建置應用程式。"
+title: "開發環境，如 Azure microservices aaaSet |Microsoft 文件"
+description: "安裝 hello 執行階段、 SDK 和工具，並建立本機開發叢集。 完成此安裝之後，您將準備 toobuild 應用程式。"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/10/2017
 ms.author: ryanwi, mikhegn
-ms.openlocfilehash: f0c6957217c21bdfd76498944e248fc808f2d271
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 9b0442778999d4c3d2b99adb98f6596dcbdc36d3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="prepare-your-development-environment"></a>準備您的開發環境
 > [!div class="op_single_selector"]
@@ -28,11 +28,11 @@ ms.lasthandoff: 08/18/2017
 > 
 > 
 
- 若要在您的開發機器上建置並執行 [Azure Service Fabric 應用程式][1]，請安裝執行階段、SDK 和工具。 您也必須執行 SDK 中包含的 Windows PowerShell 指令碼。
+ toobuild 並執行[Azure Service Fabric 應用程式][ 1]在您的開發電腦上安裝 [hello 執行階段、 SDK 和工具。 您也需要 tooenable hello hello SDK 中包含的 Windows PowerShell 指令碼執行。
 
 ## <a name="prerequisites"></a>必要條件
 ### <a name="supported-operating-system-versions"></a>支援的作業系統版本
-下列為支援開發的作業系統版本：
+開發可支援下列作業系統版本的 hello:
 
 * Windows 7
 * Windows 8/Windows 8.1
@@ -41,27 +41,27 @@ ms.lasthandoff: 08/18/2017
 * Windows 10
 
 > [!NOTE]
-> 根據預設，Windows 7 只包含 Windows PowerShell 2.0。 Service Fabric PowerShell Cmdlet 需要 PowerShell 3.0 或更新版本。 您可以從 Microsoft 下載中心[下載 Windows PowerShell 5.0][powershell5-download]。
+> 根據預設，Windows 7 只包含 Windows PowerShell 2.0。 Service Fabric PowerShell Cmdlet 需要 PowerShell 3.0 或更新版本。 您可以[下載 Windows PowerShell 5.0] [ powershell5-download]從 Microsoft 下載中心 hello。
 > 
 > 
 
-## <a name="install-the-sdk-and-tools"></a>安裝 SDK 和工具
-### <a name="to-use-visual-studio-2017"></a>若要使用 Visual Studio 2017
-Service Fabric 工具屬於 Visual Studio 2017 中的 Azure 開發和管理工作負載。 啟用此工作負載作為 Visual Studio 安裝的一部分。
-此外，您必須使用 Web Platform Installer 來安裝 Microsoft Azure Service Fabric SDK。
+## <a name="install-hello-sdk-and-tools"></a>安裝 hello SDK 和工具
+### <a name="toouse-visual-studio-2017"></a>Visual Studio 2017 toouse
+Service Fabric 工具是在 Visual Studio 2017 hello Azure 開發和管理工作負載的一部分。 啟用此工作負載作為 Visual Studio 安裝的一部分。
+此外，您需要 tooinstall hello Microsoft Azure Service Fabric SDK，使用 Web Platform Installer。
 
-* [安裝 Microsoft Azure Service Fabric SDK][core-sdk]
+* [安裝 Microsoft Azure Service Fabric SDK hello][core-sdk]
 
-### <a name="to-use-visual-studio-2015-requires-visual-studio-2015-update-2-or-later"></a>若要使用 Visual Studio 2015 (需要 Visual Studio 2015 Update 2 或更新版本)
-在 Visual Studio 2015 中，使用 Web Platform Installer，Service Fabric 工具會與 SDK 一起安裝︰
+### <a name="toouse-visual-studio-2015-requires-visual-studio-2015-update-2-or-later"></a>toouse Visual Studio 2015 （需要 Visual Studio 2015 Update 2 或更新版本）
+Visual Studio 2015，Service Fabric 工具會安裝與 hello SDK，使用 Web Platform Installer hello:
 
-* [安裝 Microsoft Azure Service Fabric SDK 和工具][full-bundle-vs2015]
+* [安裝 Microsoft Azure Service Fabric SDK hello 和工具][full-bundle-vs2015]
 
 ### <a name="sdk-installation-only"></a>僅限 SDK 安裝
-如果您只需要 SDK，您可以安裝此套件︰
-* [安裝 Microsoft Azure Service Fabric SDK][core-sdk]
+如果您只需要 hello SDK，您可以安裝此套件：
+* [安裝 Microsoft Azure Service Fabric SDK hello][core-sdk]
 
-目前的版本如下︰
+hello 目前的版本如下：
 * Service Fabric SDK 2.7.198
 * Service Fabric 執行階段 5.7.198
 * Service Fabric Tools for Visual Studio 2015 1.7.50721
@@ -71,7 +71,7 @@ Service Fabric 工具屬於 Visual Studio 2017 中的 Azure 開發和管理工�
 如需支援版本的清單，請參閱[Service Fabric 支援](service-fabric-support.md)
 
 ## <a name="enable-powershell-script-execution"></a>啟用 PowerShell 指令碼執行
-Service Fabric 會使用 Windows PowerShell 指令碼，以便建立本機開發叢集，以及從 Visual Studio 部署應用程式。 根據預設，Windows 會封鎖這些指令碼的執行。 若要啟用其，您必須修改 PowerShell 執行原則。 以系統管理員身分開啟 PowerShell 並輸入下列命令：
+Service Fabric 會使用 Windows PowerShell 指令碼，以便建立本機開發叢集，以及從 Visual Studio 部署應用程式。 根據預設，Windows 會封鎖這些指令碼的執行。 tooenable 它們，您必須修改您的 PowerShell 執行原則。 系統管理員身分開啟 PowerShell 並輸入下列命令的 hello:
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser
@@ -81,11 +81,11 @@ Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Force -Scope CurrentUser
 現在您的開發環境已完成設定，您可以開始建置和執行應用程式。
 
 * [在 Visual Studio 中建立第一個 Service Fabric 應用程式](service-fabric-create-your-first-application-in-visual-studio.md)
-* [了解如何在本機叢集上部署和管理應用程式](service-fabric-get-started-with-a-local-cluster.md)
-* [深入了解程式設計模型：Reliable Services 和 Reliable Actors](service-fabric-choose-framework.md)
-* [請查看 GitHub 上的 Service Fabric 程式碼範例](https://aka.ms/servicefabricsamples)
+* [深入了解如何 toodeploy 和管理您的本機叢集上的應用程式](service-fabric-get-started-with-a-local-cluster.md)
+* [深入了解 hello 程式設計模型： 可靠的服務和 Reliable Actors](service-fabric-choose-framework.md)
+* [簽出 hello Service Fabric GitHub 上的程式碼範例](https://aka.ms/servicefabricsamples)
 * [使用 Service Fabric 總管將叢集視覺化](service-fabric-visualizing-your-cluster.md)
-* [遵循 Service Fabric 學習路徑來取得廣泛的平台簡介](https://azure.microsoft.com/documentation/learning-paths/service-fabric/)
+* [請遵循 hello Service Fabric 學習路徑 tooget 廣泛簡介 toohello 平台](https://azure.microsoft.com/documentation/learning-paths/service-fabric/)
 * 了解 [Service Fabric 支援選項](service-fabric-support.md)
 
 [1]: http://azure.microsoft.com/en-us/campaigns/service-fabric/ "Service Fabric 活動頁面"

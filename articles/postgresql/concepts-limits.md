@@ -1,5 +1,5 @@
 ---
-title: "適用於 PostgreSQL 的 Azure 資料庫中的限制 | Microsoft Docs"
+title: "Azure PostgreSQL 資料庫中的 aaaLimitations |Microsoft 文件"
 description: "描述適用於 PostgreSQL 的 Azure 資料庫中的限制。"
 services: postgresql
 author: kamathsun
@@ -10,19 +10,19 @@ ms.service: postgresql
 ms.custom: mvc
 ms.topic: article
 ms.date: 06/01/2017
-ms.openlocfilehash: 38988fc5c0dc05331ea078534cd1a05e9eca2493
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f53dd240e55e0633bc1dfb8ad25e1818fa8ae18c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="limitations-in-azure-database-for-postgresql"></a>適用於 PostgreSQL 的 Azure 資料庫中的限制
-適用於 PostgreSQL 的 Azure 資料庫服務目前為公開預覽狀態。 下列各節說明資料庫服務中的容量和功能限制。
+hello Azure Database PostgreSQL 服務處於公開預覽狀態。 hello 下列各節說明容量和功能限制在 hello 資料庫服務。
 
 ## <a name="service-tier-maximums"></a>服務層上限
 適用於 PostgreSQL 的 Azure 資料庫具有多個您在建立伺服器時可從中選擇的服務層。 如需詳細資訊，請參閱[了解每個服務層中可用的項目](concepts-service-tiers.md)。  
 
-在服務預覽期間，每個服務層中具有連接、計算單位及儲存體的數目上限，如下： 
+有最大連接數目、 計算單位，以及每個服務層中的儲存體 hello 服務在預覽期間，如下所示： 
 
 |                            |                   |
 | :------------------------- | :---------------- |
@@ -40,7 +40,7 @@ ms.lasthandoff: 08/29/2017
 | 基本服務層         | 1 TB              |
 | 標準服務層      | 1 TB              |
 
-到達太多連接時，您可能會收到下列錯誤：
+到達太多連線時，您可能會收到下列錯誤 hello:
 > 嚴重錯誤︰很抱歉，已經有太多用戶端
 
 ## <a name="preview-functional-limitations"></a>預覽功能限制
@@ -56,10 +56,10 @@ ms.lasthandoff: 08/29/2017
 - 目前不支援跨訂用帳戶和資源群組動態移動預先建立的伺服器。
 
 ### <a name="point-in-time-restore"></a>還原時間點
-1.  不允許還原到不同服務層和/或計算單位與儲存體大小。
+1.  不允許還原 toodifferent 服務層和/或計算的單位及儲存體的大小。
 2.  不支援還原已卸除的伺服器。
 
 ## <a name="next-steps"></a>後續步驟
 - 了解[每個定價層層中可用的項目](concepts-service-tiers.md)
 - 了解[支援的 PostgreSQL 資料庫版本](concepts-supported-versions.md)
-- 檢閱[如何使用 Azure 入口網站，在適用於 PostgreSQL 的 Azure 資料庫中備份和還原伺服器](howto-restore-server-portal.md)
+- 檢閱[向上 tooBack 和還原 Azure 資料庫中的伺服器使用 PostgreSQL hello Azure 入口網站](howto-restore-server-portal.md)

@@ -1,6 +1,6 @@
 ---
-title: "Smooth Streaming Windows 市集應用程式教學課程 | Microsoft Docs"
-description: "了解如何使用 Azure 媒體服務建立可用 XML MediaElement 控制項來播放 Smooth Streaming 內容的 C# Windows 市集應用程式。"
+title: "aaaSmooth Streaming Windows 市集應用程式教學課程 |Microsoft 文件"
+description: "了解 toouse Azure Media Services toocreate XML MediaElement 的 C# Windows 市集應用程式如何控制 tooplayback Smooth Streaming 內容。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,29 +14,29 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: juliako
-ms.openlocfilehash: c9bb3b1915543fea3561cb309f55c4e8a74ded6d
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: b02aa2c7f68fe22a23ea846d72fdd23bfba2b19c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-build-a-smooth-streaming-windows-store-application"></a>如何建置 Smooth Streaming Windows 市集應用程式
+# <a name="how-toobuild-a-smooth-streaming-windows-store-application"></a>如何 tooBuild Smooth Streaming Windows 市集應用程式
 
-Smooth Streaming Client SDK for Windows 8 可讓開發人員建置能夠播放隨選與即時 Smooth Streaming 內容的 Windows 市集應用程式。 除了將 Smooth Streaming 內容進行基本播放，SDK 也提供 Microsoft PlayReady 保護、品質等級限制、Live DVR、音訊資料流切換、接聽狀態更新 (例如品質等級變更) 和錯誤事件等這類豐富的功能。 如需所支援功能的詳細資訊，請參閱 [版本資訊](http://www.iis.net/learn/media/smooth-streaming/smooth-streaming-client-sdk-for-windows-8-release-notes)(英文)。 如需詳細資訊，請參閱 [Player Framework for Windows 8](http://playerframework.codeplex.com/)。 
+hello Smooth Streaming Client SDK for Windows 8 可讓開發人員 toobuild Windows 市集應用程式可以播放隨選及即時的 Smooth Streaming 內容。 此外 toohello 基本播放的 Smooth Streaming 內容，hello SDK 也提供豐富的功能，例如 Microsoft PlayReady 保護，品質等級的限制，Live DVR、 切換、 狀態更新 （例如品質等級變更為接聽的音訊資料流) 和錯誤事件，等等。 Hello 支援功能的詳細資訊，請參閱 hello[版本資訊](http://www.iis.net/learn/media/smooth-streaming/smooth-streaming-client-sdk-for-windows-8-release-notes)。 如需詳細資訊，請參閱 [Player Framework for Windows 8](http://playerframework.codeplex.com/)。 
 
 本教學課程包含四個課程：
 
 1. 建立基本的 Smooth Streaming 市集應用程式
-2. 新增滑動軸以控制媒體進度
+2. 將滑桿 tooControl hello 媒體進度列
 3. 選取 Smooth Streaming 資料流
 4. 選取 Smooth Streaming 曲目
 
 ## <a name="prerequisites"></a>必要條件
 * Windows 8 32 位元或 64 位元。 您可以從 MSDN 取得 [Windows 8 Enterprise 評估版](http://msdn.microsoft.com/evalcenter/jj554510.aspx) 。
-* Visual Studio 2012 或 Visual Studio Express 2012 (或更新版本)。 您可以從 [這裡](http://www.microsoft.com/visualstudio/11/downloads)取得試用版。
+* Visual Studio 2012 或 Visual Studio Express 2012 (或更新版本)。 您可以取得從 hello 試用版[這裡](http://www.microsoft.com/visualstudio/11/downloads)。
 * [Microsoft Smooth Streaming Client SDK for Windows 8](http://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6?SRC=Homehttp://visualstudiogallery.msdn.microsoft.com/04423d13-3b3e-4741-a01c-1ae29e84fea6?SRC=Home)(英文)。
 
-您可以從 MSDN 開發人員程式碼範例 (Code Gallery) 下載每個課程的已完成解答： 
+您可以從 MSDN 開發人員程式碼範例 （程式碼庫） 下載完成 hello 方案，每個單元： 
 
 * [課程 1](http://code.msdn.microsoft.com/Smooth-Streaming-Client-0bb1471f) - 簡單 Windows 8 Smooth Streaming Media Player， 
 * [課程 2](http://code.msdn.microsoft.com/A-simple-Windows-8-Smooth-ee98f63a) - 具有滑動軸控制項的簡單 Windows 8 Smooth Streaming Media Player， 
@@ -45,22 +45,22 @@ Smooth Streaming Client SDK for Windows 8 可讓開發人員建置能夠播放�
 
 ## <a name="lesson-1-create-a-basic-smooth-streaming-store-application"></a>課程 1：建立基本的 Smooth Streaming 市集應用程式
 
-在本課程中，您將建立 Windows 市集應用程式，並使其具有 MediaElement 控制項來播放 Smooth Stream 內容。  執行中的應用程式看起來如下：
+在這一課，您將建立 Windows 市集應用程式使用 MediaElement 控制項 tooplay Smooth Streaming 內容。  hello 執行的應用程式看起來像：
 
 ![Smooth Streaming Windows Store application example][PlayerApplication]
 
-如需關於開發 Windows 市集應用程式的詳細資訊，請參閱 [開發 Windows 8 適用的好用應用程式](http://msdn.microsoft.com/windows/apps/br229512.aspx)。 本課程包含下列程序：
+如需關於開發 Windows 市集應用程式的詳細資訊，請參閱 [開發 Windows 8 適用的好用應用程式](http://msdn.microsoft.com/windows/apps/br229512.aspx)。 這一課包含下列程序的 hello:
 
 1. 建立 Windows 市集專案
-2. 設計使用者介面 (XAML)
-3. 修改程式碼後置檔案
-4. 編譯和測試應用程式
+2. 設計 hello 使用者介面 (XAML)
+3. 修改 hello 程式碼後置檔案
+4. 編譯和測試 hello 應用程式
 
-**建立 Windows 市集專案**
+**toocreate 的 Windows 市集專案**
 
 1. 執行 Visual Studio 2012 或更新版本。
-2. 從 [檔案] 功能表中，按一下 [新增]，再按 [專案]。
-3. 從 [新增專案] 對話方塊中，輸入或選取下列值：
+2. 從 hello**檔案**功能表上，按一下 **新增**，然後按一下**專案**。
+3. Hello 新增專案 對話方塊，從類型或選取 hello 下列值：
 
 | 名稱 | 值 |
 | --- | --- |
@@ -73,10 +73,10 @@ Smooth Streaming Client SDK for Windows 8 可讓開發人員建置能夠播放�
 
 1. 按一下 [確定] 。
 
-**新增 Smooth Streaming Client SDK 的參考**
+**tooadd 參考 toohello Smooth Streaming Client SDK**
 
-1. 從 [方案總管] 中，在 [SSPlayer] 上按一下滑鼠右鍵，然後按一下 [加入參考]。
-2. 輸入或選取下列值：
+1. 從 方案總管 中，在 SSPlayer 上按一下滑鼠右鍵，然後按一下加入參考。
+2. 輸入或選取下列值的 hello:
 
 | 名稱 | 值 |
 | --- | --- |
@@ -85,12 +85,12 @@ Smooth Streaming Client SDK for Windows 8 可讓開發人員建置能夠播放�
 
 1. 按一下 [確定] 。 
 
-加入參考之後，您必須選取目標平台 (x64 或 x86)，而加入參考在「任何 CPU 平台」組態中將沒有作用。  在方案總管中，您會看到這些加入的參考具有黃色警告標記。
+在新增之後 hello 參考，您必須選取 hello 目標平台 （x64 或 x86），將參考加入並不適用於任何 CPU 平台組態。  在方案總管中，您會看到這些加入的參考具有黃色警告標記。
 
-**設計播放程式使用者介面**
+**toodesign hello 播放程式使用者介面**
 
-1. 從 [方案總管] 中，按兩下 [MainPage.xaml]  ，以設計檢視來開啟它。
-2. 在 XAML 檔案中找到 **&lt;Grid&gt;** 和 **&lt;/Grid&gt;** 標籤，然後在這兩個標籤之間貼上下列程式碼：
+1. 在 [方案總管] 中，按兩下**MainPage.xaml** tooopen 在 hello 設計檢視。
+2. 找出 hello **&lt;方格&gt;**和 **&lt;/Grid&gt;** 標記 hello XAML 檔案，並貼上 hello 下列程式碼之間 hello 兩個標記：
 
          <Grid.RowDefinitions>
 
@@ -135,27 +135,27 @@ Smooth Streaming Client SDK for Windows 8 可讓開發人員建置能夠播放�
             <TextBox x:Name="txtStatus" FontSize="10" Width="700" VerticalAlignment="Center"/>
          </StackPanel>
    
-   MediaElement 控制項會用來播放媒體。 下一個課程將使用名稱為 sliderProgress 的滑動軸控制項來控制媒體進度。
-3. 按 **CTRL+S** 儲存檔案。
+   hello MediaElement 控制項是使用的 tooplayback 媒體。 名為 sliderProgress hello 滑桿控制項將使用 hello 下一個課程 toocontrol hello 媒體進行中。
+3. 按**CTRL + S** toosave hello 檔案。
 
-MediaElement 控制項預設不支援 Smooth Streaming 內容。 若要啟用 Smooth Streaming 支援，您必須依副檔名和 MIME 類型來註冊 Smooth Streaming 位元組資料流處理常式。  若要註冊，請使用 Windows.Media 命名空間的 MediaExtensionManager.RegisterByteStremHandler 方法。
+hello MediaElement 控制項不支援 Smooth Streaming 內容的現成。 tooenable hello Smooth Streaming 支援，您必須註冊 hello Smooth Streaming 位元組資料流的副檔名與 MIME 類型的處理常式。  tooregister，您可以使用 hello MediaExtensionManager.RegisterByteStremHandler 方法 hello Windows.Media 命名空間。
 
-在此 XAML 檔案中，有些事件處理常式會與控制項相關聯。  您必須定義那些事件處理常式。
+在此 XAML 檔案中，某些事件處理常式會與 hello 控制項相關聯。  您必須定義那些事件處理常式。
 
-**修改程式碼後置檔案**
+**toomodify hello 的程式碼後置檔案**
 
-1. 從 [方案總管] 中，在 [MainPage.xaml] 上按一下滑鼠右鍵，然後按一下 [檢視程式碼]。
-2. 在檔案的頂端，新增下列 using 陳述式：
+1. 從 方案總管 中，在 MainPage.xaml 上按一下滑鼠右鍵，然後按一下檢視程式碼。
+2. 在 hello hello 檔案頂端，加入 hello 下列 using 陳述式：
    
         using Windows.Media;
-3. 在 **MainPage** 類別的開頭，新增下列資料成員：
+3. 在 hello hello 開頭**MainPage**類別中，加入下列資料成員的 hello:
    
          private MediaExtensionManager extensions = new MediaExtensionManager();
-4. 在 **MainPage** 建構函式的結尾，新增下列兩行：
+4. 結尾 hello hello **MainPage**建構函式，新增下列兩行 hello:
    
         extensions.RegisterByteStreamHandler("Microsoft.Media.AdaptiveStreaming.SmoothByteStreamHandler", ".ism", "text/xml");
         extensions.RegisterByteStreamHandler("Microsoft.Media.AdaptiveStreaming.SmoothByteStreamHandler", ".ism", "application/vnd.ms-sstr+xml");
-5. 在 **MainPage** 類別結尾貼上下列程式碼：
+5. 結尾 hello hello **MainPage**類別中，貼上下列程式碼的 hello:
    
          # region UI Button Click Events
          private void btnPlay_Click(object sender, RoutedEventArgs e)
@@ -182,7 +182,7 @@ MediaElement 控制項預設不支援 Smooth Streaming 內容。 若要啟用 Sm
          }
          else
          {
-             txtStatus.Text = "Click the Play button to play the media source.";
+             txtStatus.Text = "Click hello Play button tooplay hello media source.";
          }
          }
          private void btnStop_Click(object sender, RoutedEventArgs e)
@@ -194,68 +194,68 @@ MediaElement 控制項預設不支援 Smooth Streaming 內容。 若要啟用 Sm
          private void sliderProgress_PointerPressed(object sender, PointerRoutedEventArgs e)
          {
 
-         txtStatus.Text = "Seek to position " + sliderProgress.Value;
+         txtStatus.Text = "Seek tooposition " + sliderProgress.Value;
          mediaElement.Position = new TimeSpan(0, 0, (int)(sliderProgress.Value));
          }
          # endregion
 
-這裡在定義 sliderProgress_PointerPressed 事件處理常式。  還需要進行其他工作，才能讓它運作，在本教學課程的下一個課程中，將會涵蓋這項資訊。
-6. 按 **CTRL+S** 儲存檔案。
+hello sliderProgress_PointerPressed 事件處理常式是此處所定義。  有多個 works toodo tooget 它運作，這會涵蓋 hello 這個教學課程的下一課。
+6. 按**CTRL + S** toosave hello 檔案。
 
-完成的程式碼後置檔案看起來像這樣：
+hello 完成的 hello 程式碼後置檔案應該看起來像這樣：
 
 ![Codeview in Visual Studio of Smooth Streaming Windows Store application][CodeViewPic]
 
-**編譯和測試應用程式**
+**toocompile 和測試 hello 應用程式**
 
-1. 從 [建置] 功能表中，按一下 [組態管理員]。
-2. 變更 [使用中的方案平台]  ，以符合您的開發平台。
-3. 按 **F6** 鍵編譯專案。 
-4. 按 **F5** 鍵執行應用程式。
-5. 在應用程式頂端，您可以使用預設 Smooth Streaming URL，或輸入不同的 Smooth Streaming URL。 
-6. 按一下 [設定來源] 。 因為預設會啟用 [自動播放]  ，所以應該會自動播放媒體。  您可以使用 [播放]、[暫停] 和 [停止] 按鈕來控制媒體。  您可以使用垂直滑動軸來控制媒體音量。  不過，尚未完整實作用於控制媒體進度的水平滑動軸。 
+1. 從 hello**建置**功能表上，按一下  **Configuration Manager**。
+2. 變更**作用中的方案平台**toomatch 開發平台。
+3. 按**F6** toocompile hello 專案。 
+4. 按**F5** toorun hello 應用程式。
+5. 在 hello 頂端 hello 應用程式，您可以使用預設的 hello Smooth Streaming URL，或輸入另一個。 
+6. 按一下 [設定來源] 。 因為**自動播放**hello 應該自動播放媒體，預設會啟用。  您可以控制 hello 媒體使用 hello**播放**，**暫停**和**停止**按鈕。  您可以控制使用 hello 垂直滑桿 hello 媒體磁碟區。  不過 hello 水平滑桿控制 hello 媒體進行完全尚未實作。 
 
-您已完成課程 1。  在本課程中，您使用 MediaElement 控制項來播放 Smooth Streaming 內容。  在下一個課程中，您將新增滑動軸來控制 Smooth Streaming 內容的進度。
+您已完成課程 1。  在這一課，您可以使用 MediaElement 控制項 tooplayback Smooth Streaming 內容。  Hello 下一課，您會加入滑桿 toocontrol hello 進度的 hello Smooth Streaming 內容。
 
-## <a name="lesson-2-add-a-slider-bar-to-control-the-media-progress"></a>課程 2：新增滑動軸以控制媒體進度
+## <a name="lesson-2-add-a-slider-bar-toocontrol-hello-media-progress"></a>第 2 課： 加入滑桿 tooControl hello 媒體進度列
 
-在課程 1 中，您已建立 Windows 市集應用程式，並使其具有 MediaElement XAML 控制項來播放 Smooth Streaming 媒體內容。  它包含一些基本媒體功能 (例如啟動、停止和暫停)。  在本課程中，您將在應用程式中新增滑動軸控制項。
+在第 1 課中，您可以建立 Windows 市集應用程式使用 MediaElement XAML 控制項 tooplayback Smooth Streaming 媒體內容。  它包含一些基本媒體功能 (例如啟動、停止和暫停)。  在這一課，您會加入滑桿列控制項 toohello 應用程式。
 
-在本教學課程中，我們將使用計時器，以根據 MediaElement 控制項的目前位置來更新滑動軸位置。  如果是即時內容，則還需要更新滑動軸開始和結束時間。  這可以透過調適性來源更新事件獲得更恰當的處理。
+在本教學課程中，我們將使用計時器 tooupdate hello 鎏  彸依據 hello 的 hello MediaElement 控制項目前的位置。  hello 滑桿開始和結束時間也需要 toobe 更新發生實況內容。  這可以 hello 適應性來源更新事件中進一步處理。
 
-媒體來源是一種產生媒體資料的物件。  來源解析程式會接受 URL 或位元組資料流，然後為該內容建立適當的媒體來源。  來源解析程式是應用程式建立媒體來源的標準方式。 
+媒體來源是一種產生媒體資料的物件。  hello 來源解析程式會採用 URL 或位元組資料流，並建立該內容的 hello 適當的媒體來源。  hello 來源解析程式是 hello hello 應用程式 toocreate 媒體來源的標準方式。 
 
-本課程包含下列程序：
+這一課包含下列程序的 hello:
 
-1. 註冊 Smooth Streaming 處理常式 
-2. 新增調適性來源管理員層級事件處理常式
-3. 新增調適性來源層級事件處理常式
+1. 註冊 hello Smooth Streaming 的處理常式 
+2. 加入 hello 適應性來源管理員層級的事件處理常式
+3. 加入 hello 適應性來源層級的事件處理常式
 4. 新增 MediaElement 事件處理常式
 5. 新增滑動軸相關程式碼
-6. 編譯和測試應用程式
+6. 編譯和測試 hello 應用程式
 
-**註冊 Smooth Streaming 位元組資料流處理常式並傳遞屬性集**
+**tooregister hello Smooth Streaming 位元組資料流處理常式，並傳入 hello propertyset**
 
-1. 從 [方案總管] 中，在 [MainPage.xaml] 上按一下滑鼠右鍵，然後按一下 [檢視程式碼]。
-2. 在檔案的開頭，新增下列 using 陳述式：
+1. 從 方案總管 中，在 MainPage.xaml 上按一下滑鼠右鍵，然後按一下檢視程式碼。
+2. 在 hello hello 檔案開頭，加入 hello 下列 using 陳述式：
 
         using Microsoft.Media.AdaptiveStreaming;
-3. 在 MainPage 類別的開頭，新增下列資料成員：
+3. 在 MainPage 類別 hello hello 開頭，加入下列資料成員的 hello:
 
          private Windows.Foundation.Collections.PropertySet propertySet = new Windows.Foundation.Collections.PropertySet();             
          private IAdaptiveSourceManager adaptiveSourceManager;
-4. 在 **MainPage** 建構函式內，於 **this.Initialize Components();** 行以及上一個課程中所寫的註冊程式碼行的後面新增下列程式碼：
+4. 內部 hello **MainPage**建構函式，加入下列程式碼之後 hello hello**這。初始化 Components();**行與 hello 上一課中寫入 hello 註冊程式碼行：
 
-        // Gets the default instance of AdaptiveSourceManager which manages Smooth 
+        // Gets hello default instance of AdaptiveSourceManager which manages Smooth 
         //Streaming media sources.
         adaptiveSourceManager = AdaptiveSourceManager.GetDefault();
-        // Sets property key value to AdaptiveSourceManager default instance.
+        // Sets property key value tooAdaptiveSourceManager default instance.
         // {A5CE1DE8-1D00-427B-ACEF-FB9A3C93DE2D}" must be hardcoded.
         propertySet["{A5CE1DE8-1D00-427B-ACEF-FB9A3C93DE2D}"] = adaptiveSourceManager;
-5. 在 **MainPage** 建構函式內，修改兩個 RegisterByteStreamHandler 方法以新增 forth 參數：
+5. 內部 hello **MainPage**建構函式，修改 hello 兩 RegisterByteStreamHandler 方法 tooadd hello 制定參數：
 
          // Registers Smooth Streaming byte-stream handler for ".ism" extension and, 
-         // "text/xml" and "application/vnd.ms-ss" mime-types and pass the propertyset. 
+         // "text/xml" and "application/vnd.ms-ss" mime-types and pass hello propertyset. 
          // http://*.ism/manifest URI resources will be resolved by Byte-stream handler.
          extensions.RegisterByteStreamHandler(
 
@@ -269,15 +269,15 @@ MediaElement 控制項預設不支援 Smooth Streaming 內容。 若要啟用 Sm
             ".ism", 
             "application/vnd.ms-sstr+xml", 
          propertySet);
-6. 按 **CTRL+S** 儲存檔案。
+6. 按**CTRL + S** toosave hello 檔案。
 
-**新增調適性來源管理員層級事件處理常式**
+**tooadd hello 適應性來源管理員層級的事件處理常式**
 
-1. 從 [方案總管] 中，在 [MainPage.xaml] 上按一下滑鼠右鍵，然後按一下 [檢視程式碼]。
-2. 在 [MainPage]  類別內，新增下列資料成員：
+1. 從 方案總管 中，在 MainPage.xaml 上按一下滑鼠右鍵，然後按一下檢視程式碼。
+2. 內部 hello **MainPage**類別中，加入下列資料成員的 hello:
    
      private AdaptiveSource adaptiveSource = null;
-3. 在 **MainPage** 類別的結尾，新增下列事件處理常式：
+3. 結尾 hello hello **MainPage**類別中，新增下列事件處理常式的 hello:
    
          # region Adaptive Source Manager Level Events
          private void mediaElement_AdaptiveSourceOpened(AdaptiveSource sender, AdaptiveSourceOpenedEventArgs args)
@@ -287,19 +287,19 @@ MediaElement 控制項預設不支援 Smooth Streaming 內容。 若要啟用 Sm
          }
 
          # endregion Adaptive Source Manager Level Events
-4. 在 **MainPage** 建構函式的結尾，新增下行以訂閱調適性來源開放事件：
+4. 結尾 hello hello **MainPage**建構函式，加入下列行 toosubscribe toohello 彈性的來源開啟事件 hello:
    
          adaptiveSourceManager.AdaptiveSourceOpenedEvent += 
            new AdaptiveSourceOpenedEventHandler(mediaElement_AdaptiveSourceOpened);
-5. 按 **CTRL+S** 儲存檔案。
+5. 按**CTRL + S** toosave hello 檔案。
 
-**新增調適性來源層級事件處理常式**
+**tooadd 適應性來源層級的事件處理常式**
 
-1. 從 [方案總管] 中，在 [MainPage.xaml] 上按一下滑鼠右鍵，然後按一下 [檢視程式碼]。
-2. 在 [MainPage]  類別內，新增下列資料成員：
+1. 從 方案總管 中，在 MainPage.xaml 上按一下滑鼠右鍵，然後按一下檢視程式碼。
+2. 內部 hello **MainPage**類別中，加入下列資料成員的 hello:
    
      private AdaptiveSourceStatusUpdatedEventArgs adaptiveSourceStatusUpdate;   private Manifest manifestObject;
-3. 在 **MainPage** 類別的結尾，新增下列事件處理常式：
+3. 結尾 hello hello **MainPage**類別中，新增下列事件處理常式的 hello:
 
          # region Adaptive Source Level Events
          private void mediaElement_ManifestReady(AdaptiveSource sender, ManifestReadyEventArgs args)
@@ -322,7 +322,7 @@ MediaElement 控制項預設不支援 Smooth Streaming 內容。 若要啟用 Sm
          }
 
          # endregion Adaptive Source Level Events
-4. 在 **mediaElement AdaptiveSourceOpened** 方法的結尾，新增下列程式碼以訂閱事件：
+4. 結尾 hello hello **mediaElement AdaptiveSourceOpened**方法，加入下列程式碼 toosubscribe toohello 事件 hello:
    
          adaptiveSource.ManifestReadyEvent +=
 
@@ -333,14 +333,14 @@ MediaElement 控制項預設不支援 Smooth Streaming 內容。 若要啟用 Sm
          adaptiveSource.AdaptiveSourceFailedEvent += 
 
             mediaElement_AdaptiveSourceFailed;
-5. 按 **CTRL+S** 儲存檔案。
+5. 按**CTRL + S** toosave hello 檔案。
 
-在調適性來源管理員層級也有相同的事件，可用於處理應用程式中所有媒體元素通用的功能。 每個 AdaptiveSource 都包含自己專屬的事件，而且所有 AdaptiveSource 事件都會在 AdaptiveSourceManager 下階層式列出。
+hello 相同事件可用的自動調整來源 manger 層級，也可以用於處理功能一般 tooall 媒體中的項目 hello 應用程式。 每個 AdaptiveSource 都包含自己專屬的事件，而且所有 AdaptiveSource 事件都會在 AdaptiveSourceManager 下階層式列出。
 
-**新增媒體元素事件處理常式**
+**tooadd 媒體項目事件處理常式**
 
-1. 從 [方案總管] 中，在 [MainPage.xaml] 上按一下滑鼠右鍵，然後按一下 [檢視程式碼]。
-2. 在 **MainPage** 類別的結尾，新增下列事件處理常式：
+1. 從 方案總管 中，在 MainPage.xaml 上按一下滑鼠右鍵，然後按一下檢視程式碼。
+2. 結尾 hello hello **MainPage**類別中，新增下列事件處理常式的 hello:
 
          # region Media Element Event Handlers
          private void MediaOpened(object sender, RoutedEventArgs e)
@@ -362,29 +362,29 @@ MediaElement 控制項預設不支援 Smooth Streaming 內容。 若要啟用 Sm
          }
 
          # endregion Media Element Event Handlers
-3. 在 **MainPage** 建構函式的結尾，新增下列程式碼以訂閱事件：
+3. 結尾 hello hello **MainPage**建構函式，加入下列程式碼 toosubscript toohello 事件 hello:
 
          mediaElement.MediaOpened += MediaOpened;
          mediaElement.MediaEnded += MediaEnded;
          mediaElement.MediaFailed += MediaFailed;
-4. 按 **CTRL+S** 儲存檔案。
+4. 按**CTRL + S** toosave hello 檔案。
 
-**新增滑動軸相關程式碼**
+**tooadd 滑桿列相關的程式碼**
 
-1. 從 [方案總管] 中，在 [MainPage.xaml] 上按一下滑鼠右鍵，然後按一下 [檢視程式碼]。
-2. 在檔案的開頭，新增下列 using 陳述式：
+1. 從 方案總管 中，在 MainPage.xaml 上按一下滑鼠右鍵，然後按一下檢視程式碼。
+2. 在 hello hello 檔案開頭，加入 hello 下列 using 陳述式：
       
         using Windows.UI.Core;
-3. 在 [MainPage]  類別內，新增下列資料成員：
+3. 內部 hello **MainPage**類別中，加入下列資料成員的 hello:
    
          public static CoreDispatcher _dispatcher;
          private DispatcherTimer sliderPositionUpdateDispatcher;
-4. 在 **MainPage** 建構函式的結尾，新增下列程式碼：
+4. 結尾 hello hello **MainPage**建構函式，加入下列程式碼的 hello:
    
          _dispatcher = Window.Current.Dispatcher;
          PointerEventHandler pointerpressedhandler = new PointerEventHandler(sliderProgress_PointerPressed);
          sliderProgress.AddHandler(Control.PointerPressedEvent, pointerpressedhandler, true);    
-5. 在 **MainPage** 類別的結尾，新增下列程式碼：
+5. 結尾 hello hello **MainPage**類別中，加入下列程式碼的 hello:
 
          # region sliderMediaPlayer
          private double SliderFrequency(TimeSpan timevalue)
@@ -469,7 +469,7 @@ MediaElement 控制項預設不支援 Smooth Streaming 內容。 若要啟用 Sm
          # endregion sliderMediaPlayer
       
 >[!NOTE]
->CoreDispatcher 用來從非 UI 執行緒對 UI 執行緒進行變更。 如果發送器執行緒發生瓶頸，開發人員可以選擇使用自己想要更新之 UI-element 所提供的發送器。  例如：
+>CoreDispatcher 是使用的 toomake toohello UI 執行緒從非 UI 執行緒的變更。 如果發送器執行緒上的瓶頸，開發人員可以選擇 toouse 發送器提供 UI 項目最初打算 tooupdate。  例如：
    
          await sliderProgress.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => { TimeSpan 
 
@@ -477,38 +477,38 @@ MediaElement 控制項預設不支援 Smooth Streaming 內容。 若要啟用 Sm
          double absvalue  = (int)Math.Round(timespan.TotalSeconds, MidpointRounding.AwayFromZero); 
 
          sliderProgress.Maximum = absvalue; }); 
-6. 在 **mediaElement_AdaptiveSourceStatusUpdated** 方法的結尾，新增下列程式碼：
+6. 結尾 hello hello **mediaElement_AdaptiveSourceStatusUpdated**方法，加入下列程式碼的 hello:
 
          setSliderStartTime(args.StartTime);
          setSliderEndTime(args.EndTime);
-7. 在 **MediaOpened** 方法的結尾，新增下列程式碼：
+7. 結尾 hello hello **MediaOpened**方法，加入下列程式碼的 hello:
 
          sliderProgress.StepFrequency = SliderFrequency(mediaElement.NaturalDuration.TimeSpan);
          sliderProgress.Width = mediaElement.Width;
          setupTimer();
-8. 按 **CTRL+S** 儲存檔案。
+8. 按**CTRL + S** toosave hello 檔案。
 
-**編譯和測試應用程式**
+**toocompile 和測試 hello 應用程式**
 
-1. 按 **F6** 鍵編譯專案。 
-2. 按 **F5** 鍵執行應用程式。
-3. 在應用程式頂端，您可以使用預設 Smooth Streaming URL，或輸入不同的 Smooth Streaming URL。 
+1. 按**F6** toocompile hello 專案。 
+2. 按**F5** toorun hello 應用程式。
+3. 在 hello 頂端 hello 應用程式，您可以使用預設的 hello Smooth Streaming URL，或輸入另一個。 
 4. 按一下 [設定來源] 。 
-5. 測試滑動軸。
+5. 測試 hello 滑動軸。
 
-您已完成課程 2。  在本課程中，您將在應用程式中新增滑動軸。 
+您已完成課程 2。  在這一課，您會加入滑桿 tooapplication。 
 
 ## <a name="lesson-3-select-smooth-streaming-streams"></a>課程 3：選取 Smooth Streaming 資料流
-Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。  在本課程中，您將讓檢視器選取資料流。 本課程包含下列程序：
+Smooth Streaming 是能夠 toostream 內容都是由 hello 檢視器可選取多個語言音訊音軌。  在這一課，您將啟用檢視器 tooselect 資料流。 這一課包含下列程序的 hello:
 
-1. 修改 XAML 檔案
-2. 修改程式碼後置檔案
-3. 編譯和測試應用程式
+1. 修改 hello XAML 檔案
+2. 修改 hello 碼 behand 檔案
+3. 編譯和測試 hello 應用程式
 
-**修改 XAML 檔案**
+**toomodify hello XAML 檔案**
 
-1. 從 [方案總管] 中，在 [MainPage.xaml] 上按一下滑鼠右鍵，然後按一下 [檢視設計工具]。
-2. 找到 &lt;Grid.RowDefinitions&gt;，並修改 RowDefinitions，讓它們看起來如下：
+1. 從 方案總管 中，在 MainPage.xaml 上按一下滑鼠右鍵，然後按一下檢視設計工具。
+2. 找出&lt;Grid.RowDefinitions&gt;，並讓它們看起來像是修改 hello RowDefinitions:
    
          <Grid.RowDefinitions>            
             <RowDefinition Height="20"/>
@@ -517,7 +517,7 @@ Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。  �
             <RowDefinition Height="80"/>
             <RowDefinition Height="50"/>
          </Grid.RowDefinitions>
-3. 在 &lt;Grid&gt;&lt;/Grid&gt; 標籤內，新增下列程式碼以定義 listbox 控制項，讓使用者可以看到可用資料流清單並選取資料流：
+3. 內部 hello&lt;方格&gt;&lt;/Grid&gt;標記，可讓您新增 hello 下列程式碼 toodefine listbox 控制項，讓使用者可以看到 hello 份可用的資料流，並選取資料流：
 
          <Grid Name="gridStreamAndBitrateSelection" Grid.Row="3">
             <Grid.RowDefinitions>
@@ -542,12 +542,12 @@ Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。  �
                 </ListBox>
             </StackPanel>
          </Grid>
-4. 按 **CTRL+S** 儲存變更。
+4. 按**CTRL + S** toosave hello 變更。
 
-**修改程式碼後置檔案**
+**toomodify hello 的程式碼後置檔案**
 
-1. 從 [方案總管] 中，在 [MainPage.xaml] 上按一下滑鼠右鍵，然後按一下 [檢視程式碼]。
-2. 在 SSPlayer 命名空間內，新增類別：
+1. 從 方案總管 中，在 MainPage.xaml 上按一下滑鼠右鍵，然後按一下檢視程式碼。
+2. 在 hello SSPlayer 命名空間中，加入新的類別：
    
         #region class Stream
    
@@ -574,7 +574,7 @@ Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。  �
                 get { return isCheckedValue; }
                 set
                 {
-                    // mMke the video stream always checked.
+                    // mMke hello video stream always checked.
                     if (stream.Type == MediaStreamType.Video)
                     {
                         isCheckedValue = true;
@@ -593,21 +593,21 @@ Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。  �
             }
         }
         #endregion class Stream
-3. 在 MainPage 類別的開頭，新增下列變數定義：
+3. 在 MainPage 類別 hello hello 開頭，加入下列變數定義的 hello:
    
          private List<Stream> availableStreams;
          private List<Stream> availableAudioStreams;
          private List<Stream> availableTextStreams;
          private List<Stream> availableVideoStreams;
-4. 在 MainPage 類別內，新增下列區域：
+4. 在 hello MainPage 類別中，加入下列區域的 hello:
    
         #region stream selection
         ///<summary>
-        ///Functionality to select streams from IManifestStream available streams
+        ///Functionality tooselect streams from IManifestStream available streams
         /// </summary>
    
-        // This function is called from the mediaElement_ManifestReady event handler 
-        // to retrieve the streams and populate them to the local data members.
+        // This function is called from hello mediaElement_ManifestReady event handler 
+        // tooretrieve hello streams and populate them toohello local data members.
         public void getStreams(Manifest manifestObject)
         {
             availableStreams = new List<Stream>();
@@ -622,7 +622,7 @@ Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。  �
                     Stream newStream = new Stream(manifestObject.AvailableStreams[i]);
                     newStream.isChecked = false;
    
-                    //populate the stream lists based on the types
+                    //populate hello stream lists based on hello types
                     availableStreams.Add(newStream);
    
                     switch (newStream.ManifestStream.Type)
@@ -638,7 +638,7 @@ Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。  �
                             break;
                     }
    
-                    // Select the default selected streams from the manifest.
+                    // Select hello default selected streams from hello manifest.
                     for (int j = 0; j<manifestObject.SelectedStreams.Count; j++)
                     {
                         string selectedStreamName = manifestObject.SelectedStreams[j].Name;
@@ -656,12 +656,12 @@ Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。  �
             }
         }
    
-        // This function set the list box ItemSource
+        // This function set hello list box ItemSource
         private async void refreshAvailableStreamsListBoxItemSource()
         {
             try
             {
-                //update the stream check box list on the UI
+                //update hello stream check box list on hello UI
                 await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()
                     => { lbAvailableStreams.ItemsSource = availableStreams; });
             }
@@ -687,7 +687,7 @@ Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。  �
                 }
             }
    
-            // Select the frist video stream from the list if no video stream is selected
+            // Select hello frist video stream from hello list if no video stream is selected
             if (!isOneVideoSelected)
             {
                 availableVideoStreams[0].isChecked = true;
@@ -701,11 +701,11 @@ Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。  �
                 {
                     selectedStreams.Add(availableAudioStreams[j].ManifestStream);
                     isOneAudioSelected = true;
-                    txtStatus.Text = "The audio stream is changed to " + availableAudioStreams[j].ManifestStream.Name;
+                    txtStatus.Text = "hello audio stream is changed too" + availableAudioStreams[j].ManifestStream.Name;
                 }
             }
    
-            // Select the frist audio stream from the list if no audio steam is selected.
+            // Select hello frist audio stream from hello list if no audio steam is selected.
             if (!isOneAudioSelected)
             {
                 availableAudioStreams[0].isChecked = true;
@@ -736,47 +736,46 @@ Smooth Streaming 可以串流含多個曲目可供檢視器選取的內容。  �
             }
         }
         #endregion stream selection
-5. 找到 mediaElement_ManifestReady 方法，並在函數的結尾附加下列程式碼：
+5. 找出 hello mediaElement_ManifestReady 方法，請新增下列程式碼中的 hello 函式的 hello 結尾 hello:
    
         getStreams(manifestObject);
         refreshAvailableStreamsListBoxItemSource();
    
-    因此，當 MediaElement 資訊清單就緒時，程式碼會取得可用資料流清單，並將這份清單填入 UI 清單方塊。
-6. 在 MainPage 類別中，找到 UI 按鈕並按一下事件區域，再新增下列函式定義：
-
+    因此就緒 MediaElement 資訊清單時，hello 程式碼取得一份 hello 可用的資料流，並於其中填入 hello 清單 hello UI 清單方塊。
+6. 內部 hello MainPage 類別中，找出 hello UI 按鈕按一下事件地區，然後再加入下列函式定義的 hello:
    
         private void btnChangeStream_Click(object sender, RoutedEventArgs e)
         {
             List<IManifestStream> selectedStreams = new List<IManifestStream>();
    
-            // Create a list of the selected streams
+            // Create a list of hello selected streams
             createSelectedStreamsList(selectedStreams);
    
-            // Change streams on the presentation
+            // Change streams on hello presentation
             changeStreams(selectedStreams);
         }
 
-**編譯和測試應用程式**
+**toocompile 和測試 hello 應用程式**
 
-1. 按 **F6** 鍵編譯專案。 
-2. 按 **F5** 鍵執行應用程式。
-3. 在應用程式頂端，您可以使用預設 Smooth Streaming URL，或輸入不同的 Smooth Streaming URL。 
+1. 按**F6** toocompile hello 專案。 
+2. 按**F5** toorun hello 應用程式。
+3. 在 hello 頂端 hello 應用程式，您可以使用預設的 hello Smooth Streaming URL，或輸入另一個。 
 4. 按一下 [設定來源] 。 
-5. 預設語言為 audio_eng。 嘗試在 audio_eng 與 audio_es 之間切換。 每次您選取新的資料流時，都必須按一下 [提交] 按鈕。
+5. hello 預設語言為 audio_eng。 請嘗試 tooswitch audio_eng 和 audio_es 之間。 每當，選取新的資料流，您必須按一下 hello 送出按鈕。
 
-您已完成課程 3。  在本課程中，您新增了選擇資料流的功能。
+您已完成課程 3。  在這一課，您可以將 hello 功能 toochoose 資料流。
 
 ## <a name="lesson-4-select-smooth-streaming-tracks"></a>課程 4：選取 Smooth Streaming 曲目
-Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) 和解析度編碼的視訊檔案。 在本課程中，您將讓使用者選取曲目。 本課程包含下列程序：
+Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) 和解析度編碼的視訊檔案。 在這一課，您將啟用使用者 tooselect 追蹤。 這一課包含下列程序的 hello:
 
-1. 修改 XAML 檔案
-2. 修改程式碼後置檔案
-3. 編譯和測試應用程式
+1. 修改 hello XAML 檔案
+2. 修改 hello 碼 behand 檔案
+3. 編譯和測試 hello 應用程式
 
-**修改 XAML 檔案**
+**toomodify hello XAML 檔案**
 
-1. 從 [方案總管] 中，在 [MainPage.xaml] 上按一下滑鼠右鍵，然後按一下 [檢視設計工具]。
-2. 找到名稱為 **gridStreamAndBitrateSelection** 的 &lt;Grid&gt; 標籤，並在標籤的結尾附加下列程式碼：
+1. 從 方案總管 中，在 MainPage.xaml 上按一下滑鼠右鍵，然後按一下檢視設計工具。
+2. 找出 hello&lt;方格&gt;hello 名稱標記**gridStreamAndBitrateSelection**，新增下列程式碼結尾 hello hello 標記 hello:
    
          <StackPanel Name="spBitRateSelection" Grid.Row="1" Grid.Column="1">
          <StackPanel Orientation="Horizontal">
@@ -792,12 +791,12 @@ Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) �
              </ListBox.ItemTemplate>
          </ListBox>
          </StackPanel>
-3. 按 **CTRL+S** 儲存變更。
+3. 按**CTRL + S** toosave 他變更
 
-**修改程式碼後置檔案**
+**toomodify hello 的程式碼後置檔案**
 
-1. 從 [方案總管] 中，在 [MainPage.xaml] 上按一下滑鼠右鍵，然後按一下 [檢視程式碼]。
-2. 在 SSPlayer 命名空間內，新增類別：
+1. 從 方案總管 中，在 MainPage.xaml 上按一下滑鼠右鍵，然後按一下檢視程式碼。
+2. 在 hello SSPlayer 命名空間中，加入新的類別：
    
         #region class Track
         public class Track
@@ -835,17 +834,17 @@ Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) �
             //public Track() { }
         }
         #endregion class Track
-3. 在 MainPage 類別的開頭，新增下列變數定義：
+3. 在 MainPage 類別 hello hello 開頭，加入下列變數定義的 hello:
    
         private List<Track> availableTracks;
-4. 在 MainPage 類別內，新增下列區域：
+4. 在 hello MainPage 類別中，加入下列區域的 hello:
    
         #region track selection
         /// <summary>
-        /// Functionality to select video streams
+        /// Functionality tooselect video streams
         /// </summary>
    
-        /// This Function gets the tracks for the selected video stream
+        /// This Function gets hello tracks for hello selected video stream
         public void getTracks(Manifest manifestObject)
         {
             availableTracks = new List<Track>();
@@ -879,7 +878,7 @@ Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) �
             }
         }
    
-        // This function gets the video stream that is playing
+        // This function gets hello video stream that is playing
         private IManifestStream getVideoStream()
         {
             IManifestStream videoStream = null;
@@ -894,12 +893,12 @@ Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) �
             return videoStream;
         }
    
-        // This function set the UI list box control ItemSource
+        // This function set hello UI list box control ItemSource
         private async void refreshAvailableTracksListBoxItemSource()
         {
             try
             {
-                // Update the track check box list on the UI 
+                // Update hello track check box list on hello UI 
                 await _dispatcher.RunAsync(CoreDispatcherPriority.Normal, ()
                     => { lbAvailableVideoTracks.ItemsSource = availableTracks; });
             }
@@ -909,7 +908,7 @@ Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) �
             }        
         }
    
-        // This function creates a list of the selected tracks.
+        // This function creates a list of hello selected tracks.
         private void createSelectedTracksList(List<IManifestTrack> selectedTracks)
         {
             // Create a list of selected tracks
@@ -922,7 +921,7 @@ Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) �
             }
         }
    
-        // This function selects the tracks based on user selection 
+        // This function selects hello tracks based on user selection 
         private void changeTracks(List<IManifestTrack> selectedTracks)
         {
             IManifestStream videoStream = getVideoStream();
@@ -936,33 +935,32 @@ Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) �
             }
         }
         #endregion track selection
-5. 找到 mediaElement_ManifestReady 方法，並在函數的結尾附加下列程式碼：
+5. 找出 hello mediaElement_ManifestReady 方法，請新增下列程式碼中的 hello 函式的 hello 結尾 hello:
    
          getTracks(manifestObject);
          refreshAvailableTracksListBoxItemSource();
-6. 在 MainPage 類別中，找到 UI 按鈕並按一下事件區域，再新增下列函式定義：
-
+6. 內部 hello MainPage 類別中，找出 hello UI 按鈕按一下事件地區，然後再加入下列函式定義的 hello:
    
          private void btnChangeStream_Click(object sender, RoutedEventArgs e)
          {
             List<IManifestStream> selectedStreams = new List<IManifestStream>();
 
-            // Create a list of the selected streams
+            // Create a list of hello selected streams
             createSelectedStreamsList(selectedStreams);
 
-            // Change streams on the presentation
+            // Change streams on hello presentation
             changeStreams(selectedStreams);
          }
 
-**編譯和測試應用程式**
+**toocompile 和測試 hello 應用程式**
 
-1. 按 **F6** 鍵編譯專案。 
-2. 按 **F5** 鍵執行應用程式。
-3. 在應用程式頂端，您可以使用預設 Smooth Streaming URL，或輸入不同的 Smooth Streaming URL。 
+1. 按**F6** toocompile hello 專案。 
+2. 按**F5** toorun hello 應用程式。
+3. 在 hello 頂端 hello 應用程式，您可以使用預設的 hello Smooth Streaming URL，或輸入另一個。 
 4. 按一下 [設定來源] 。 
-5. 預設會選取視訊資料流的所有曲目。 若要試驗位元速率變更，您可以選取可用的最低位元速率，然後選取可用的最高位元速率。 您必須在每次變更之後按一下 [提交]。  您可以看到視訊品質變更。
+5. 根據預設，會選取所有 hello 曲目 hello 視訊資料流。 tooexperiment hello 位元速率的變更，您可以選取 hello 最低位元速率，，然後選取 hello 最高的位元速率可用。 您必須在每次變更之後按一下 [提交]。  您可以看到 hello 視訊品質的變更。
 
-您已完成課程 4。  在本課程中，您新增了選擇追蹤的功能。
+您已完成課程 4。  在這一課，您可以將 hello 功能 toochoose 追蹤。
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -971,7 +969,7 @@ Smooth Streaming 簡報可以包含多個以不同品質等級 (位元速率) �
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="other-resources"></a>其他資源：
-* [如何建置具有進階功能的 Smooth Streaming Windows 8 JavaScript 應用程式 (英文)](http://blogs.iis.net/cenkd/archive/2012/08/10/how-to-build-a-smooth-streaming-windows-8-javascript-application-with-advanced-features.aspx)
+* [如何 toobuild Smooth Streaming Windows 8 JavaScript 應用程式與進階功能](http://blogs.iis.net/cenkd/archive/2012/08/10/how-to-build-a-smooth-streaming-windows-8-javascript-application-with-advanced-features.aspx)
 * [Smooth Streaming 技術概觀 (英文)](http://www.iis.net/learn/media/on-demand-smooth-streaming/smooth-streaming-technical-overview)
 
 [PlayerApplication]: ./media/media-services-build-smooth-streaming-apps/SSClientWin8-1.png

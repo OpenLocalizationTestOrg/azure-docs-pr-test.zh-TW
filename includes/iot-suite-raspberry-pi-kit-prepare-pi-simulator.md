@@ -2,41 +2,41 @@
 
 ### <a name="install-raspbian"></a>安裝 Raspbian
 
-如果這是您第一次使用 Raspberry Pi，您需要使用套件內含 SD 卡上的 NOOBS 來安裝 Raspbian 作業系統。 [Raspberry Pi 軟體指南][lnk-install-raspbian]說明如何在 Raspberry Pi 上安裝作業系統。 本教學課程假設您已在 Raspberry Pi 上安裝 Raspbian 作業系統。
+如果這是 hello 用覆盆子 Pi 的第一次，您會需要 tooinstall hello Raspbian 使用作業系統 NOOBS hello 套件中包含的 hello SD 卡上。 hello[覆盆子 Pi 軟體指南][ lnk-install-raspbian]描述如何 tooinstall 覆盆子 Pi 上的作業系統。 本教學課程假設您已安裝 hello Raspbian 作業系統覆盆子 pi。
 
 > [!NOTE]
-> [適用於 Raspberry Pi 3 的 Microsoft Azure IoT 入門套件][lnk-starter-kits]內含的 SD 卡已安裝 NOOBS。 您可以從這張卡啟動 Raspberry Pi，並選擇安裝 Raspbian OS。
+> 包含在 hello hello sd 記憶卡[覆盆子 Pi 3 的 Microsoft Azure IoT 入門套件][ lnk-starter-kits]已經有 NOOBS 安裝。 您可以開機 hello 覆盆子 Pi 從這張介面卡，並選擇 tooinstall hello Raspbian OS。
 
-若要完成硬體設定，您需要︰
+您需要 toocomplete hello 硬體安裝程式：
 
-- 將 Raspberry Pi 連線至套件內含的電源供應器。
-- 使用套件內含的乙太網路連接線，將 Raspberry Pi 連線至您的網路。 或者，您可以為 Raspberry Pi 設定[無線連線能力][lnk-pi-wireless]。
+- 連接 hello 套件中包含您覆盆子 Pi toohello 電源供應器。
+- 您覆盆子 Pi tooyour 的網路連線使用包含在您的套件中的 hello 乙太網路纜線。 或者，您可以為 Raspberry Pi 設定[無線連線能力][lnk-pi-wireless]。
 
-您現在已完成 Raspberry Pi 的硬體設定。
+您現在已完成覆盆子 Pi 的 hello 硬體安裝。
 
-### <a name="sign-in-and-access-the-terminal"></a>登入及存取終端機
+### <a name="sign-in-and-access-hello-terminal"></a>登入及存取 hello 終端機
 
-您有兩個選項可存取 Raspberry Pi 上的終端機環境︰
+您有兩個選項 tooaccess 終端機環境覆盆子 Pi 上：
 
-- 如果您的 Raspberry Pi 已連接鍵盤與監視器，您可以使用 Raspbian GUI 來存取終端機視窗。
+- 如果您有鍵盤，監視連線的 tooyour 覆盆子 Pi，您可以使用 hello Raspbian GUI tooaccess 終端機視窗。
 
-- 使用 SSH 從您的桌上型電腦存取 Raspberry Pi 上的命令列。
+- 從您桌面的電腦使用 SSH 您覆盆子 pi hello 命令列存取。
 
-#### <a name="use-a-terminal-window-in-the-gui"></a>在 GUI 中使用終端機視窗
+#### <a name="use-a-terminal-window-in-hello-gui"></a>在 hello GUI 中的終端機視窗
 
-Raspbian 的預設認證是使用者名稱 **pi** 和密碼 **raspberry**。 在 GUI 的工作列中，您可以使用看似監視器的圖示來啟動 **Terminal** 公用程式。
+Raspbian hello 預設認證是使用者名稱**pi**和密碼**覆盆子**。 您可以在 hello 工作列 hello GUI 中，啟動 hello**終端機**使用 hello 圖示看起來像監視器公用程式。
 
 #### <a name="sign-in-with-ssh"></a>使用 SSH 登入
 
-您可以使用命令列的 SSH 存取 Raspberry Pi。 [SSH (安全殼層)][lnk-pi-ssh] 一文說明如何在 Raspberry Pi 上設定 SSH，以及如何從 [Windows][lnk-ssh-windows] 或 [Linux 和 Mac OS][lnk-ssh-linux] 連接。
+您可以使用 SSH 的命令列存取 tooyour 覆盆子 Pi。 hello 文章[SSH (Secure Shell)] [ lnk-pi-ssh]描述如何 tooconfigure SSH 您覆盆子 pi，以及如何從 tooconnect [Windows] [ lnk-ssh-windows]或[Linux 和 Mac OS][lnk-ssh-linux]。
 
 以使用者名稱 **pi** 和密碼 **raspberry** 登入。
 
 #### <a name="optional-share-a-folder-on-your-raspberry-pi"></a>選擇性︰共用 Raspberry Pi 上的資料夾
 
-選擇性地，您可能想要與您的桌上型電腦環境共用 Raspberry Pi 上的資料夾。 共用資料夾可讓您使用慣用的桌上型電腦文字編輯器 (例如 [Visual Studio Code](https://code.visualstudio.com/) 或 [Sublime Text](http://www.sublimetext.com/)) 來編輯 Raspberry Pi 上的檔案，而不是使用 `nano` 或 `vi`。
+或者，您可能想覆盆子 pi tooshare 資料夾與您的桌面環境。 共用資料夾可讓您 toouse 慣用桌面的文字編輯器 (例如[Visual Studio Code](https://code.visualstudio.com/)或[適文字](http://www.sublimetext.com/)) tooedit 檔案，而不是使用您覆盆子 pi`nano`或`vi`.
 
-若要與 Windows 共用資料夾，請在 Raspberry Pi 上設定 Samba 伺服器。 或者，使用內建 [SFTP](https://www.raspberrypi.org/documentation/remote-access/) 伺服器搭配桌上型電腦上的 SFTP 用戶端。
+隨 Windows 資料夾 tooshare Samba 上設定伺服器 hello 覆盆子 Pi。 或者，使用內建的 hello [SFTP](https://www.raspberrypi.org/documentation/remote-access/) SFTP 用戶端在桌面上的伺服器。
 
 [lnk-install-raspbian]: https://www.raspberrypi.org/learning/software-guide/quickstart/
 [lnk-pi-wireless]: https://www.raspberrypi.org/documentation/configuration/wireless/README.md

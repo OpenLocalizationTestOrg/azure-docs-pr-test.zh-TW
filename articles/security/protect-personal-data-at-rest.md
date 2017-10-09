@@ -1,6 +1,6 @@
 ---
-title: "Azure 的保護個人資料使用加密待用 |Microsoft 文件"
-description: "這篇文章是可幫助您使用 Azure 來保護個人資料的一系列的一部分"
+title: "保護個人資料使用加密待用 aaaAzure |Microsoft 文件"
+description: "這篇文章是協助您使用 Azure tooprotect 個人資料的一系列的一部分"
 services: security
 documentationcenter: na
 author: Barclayn
@@ -15,24 +15,24 @@ ms.workload: na
 ms.date: 08/22/2017
 ms.author: barclayn
 ms.custom: 
-ms.openlocfilehash: d0ef3ca8d48f5ba11a89c787ff59df39eeaf673b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 9af182b4897f1d04f5f519e6671f53b85073bae1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-encryption-technologies-protect-personal-data-at-rest-with-encryption"></a>Azure 加密技術：使用加密保護個人待用資料
 
-本文可協助您了解及使用 Azure 加密技術來保護待用資料。
+這篇文章可協助您了解及使用 Azure 加密技術 toosecure 資料靜止。
 
-待用資料加密是保護敏感性或個人資料，以及符合合規性和資料隱私權需求之最佳做法不可或缺的一部分。
-靜態加密旨在防止攻擊者存取未加密的資料，方法是確保資料在磁碟上時就已加密。
+待用資料加密務必要做為最佳作法 tooprotect 機密或個人資料以及 toomeet 相容性和資料的隱私權需求。
+設計的 tooprevent hello 攻擊者存取 hello 未加密資料，方法是確保資料會加密磁碟的 hello 靜止的加密。
 
 ## <a name="scenario"></a>案例 
 
-總部設於美國的大型郵輪公司將擴展其營運，以提供地中海、波羅的海和不列顛群島的行程。 為了支援這些工作，它收購了以義大利、德國、丹麥和英國為據點的數個較小型郵輪公司。
+大型出航公司搬遷後在 hello 美國，展開在 hello 地中海與波羅的海文海，以及 hello 不列顛群島其作業 toooffer 行程。 toosupport 努力，它所取得數個較小的出航行位於義大利、 德國、 丹麥和 hello 英國
 
-此公司使用 Microsoft Azure 在雲端儲存公司資料。 這可能包括員工及/或客戶資訊，例如：
+hello 公司使用 Microsoft Azure toostore 公司資料 hello 雲端中。 這可能包括員工及/或客戶資訊，例如：
 
 - 地址
 - 電話號碼
@@ -40,67 +40,67 @@ ms.lasthandoff: 08/29/2017
 - 醫療資訊
 - 信用卡資訊
 
-公司必須保護員工和客戶資料的隱私權，同時可讓資料存取需要這些部門。 (例如薪資部門和訂位部門) 可以存取資料。
+hello 公司必須保護員工和客戶資料的 hello 的隱私權，同時進行資料存取 toothose 部門需要它。 (例如薪資部門和訂位部門) 可以存取資料。
 
-此郵輪公司也會維護獎勵和忠誠度方案會員的大型資料庫，其中包含的個人資訊可追蹤與目前和過去客戶的關係。
+hello 出航列也會維護報酬和忠誠度計劃成員大型資料庫，其中包含與目前和過去的客戶的個人資訊 tootrack 關聯性。
 
 ### <a name="problem-statement"></a>問題陳述
 
-公司必須保護員工和客戶的個人資料的隱私權，同時可讓資料存取需要它 （例如，薪資和保留項目的部門） 這些部門。 此個人資料儲存在公司控制的資料中心外部，因此不受公司的實體控制。
+hello 公司必須保護員工和客戶的個人資料的 hello 的隱私權，同時進行資料存取 toothose 部門需要 （例如，薪資和保留項目的部門）。 此個人資料會儲存在 hello 公司控制資料中心外部，而不在 hello 公司的實體控制項。
 
 ### <a name="company-goal"></a>公司目標
 
-作為多層深度防禦安全性策略的一部分，公司目標是確保包含個人資料的所有資料來源都經過加密，包括位於雲端儲存體的資料來源。 如有未經授權的人員取得個人資料的存取權，必須採用讓資料變得無法讀取的格式。 對於使用者和系統管理員而言，套用加密應該很容易或很透明。
+多層的深度防禦的安全性策略的一部分，就會加密所有資料來源，包含個人資料，包括雲端儲存體中公司目標 tooensure。 如果未經授權的人員獲得存取 toohello 個人資料，它必須是會轉譯無法讀取的格式。 對於使用者和系統管理員而言，套用加密應該很容易或很透明。
 
 ## <a name="solutions"></a>解決方案
 
-Azure 服務提供多種工具和技術，可協助您透過加密來保護個人待用資料。
+Azure 服務可提供多個工具和技術 toohelp 加密保護靜止的個人資料。
 
 ### <a name="azure-key-vault"></a>Azure 金鑰保存庫
 
-[Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-whatis) 為用來加密 Azure 服務中待用資料的金鑰提供安全存放裝置，是建議的金鑰儲存和管理解決方案。 加密金鑰管理對保護儲存的資料很重要。
+[Azure 金鑰保存庫](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-whatis)提供安全的儲存體的 Azure 服務中的靜止使用 tooencrypt 資料 hello 金鑰並且 hello 建議儲存和管理的金鑰方案。 儲存的重要 toosecuring 資料加密金鑰管理。
 
-#### <a name="how-do-i-use-azure-key-vault-to-protect-keys-that-encrypt-personal-data"></a>如何使用 Azure Key Vault 來保護加密個人資料的金鑰？
+#### <a name="how-do-i-use-azure-key-vault-tooprotect-keys-that-encrypt-personal-data"></a>如何使用 Azure 金鑰保存庫 tooprotect 金鑰加密的個人資料？
 
-若要使用 Azure Key Vault，您需要 Azure 訂用帳戶。 您也需要安裝 Azure Powershell。 其步驟包括使用 PowerShell Cmdlet 來執行下列動作：
+toouse Azure 金鑰保存庫，您需要訂用帳戶 tooan Azure 帳戶。 您也需要安裝 Azure Powershell。 步驟包括使用 PowerShell cmdlet toodo hello 下列：
 
-1. 連線到您的訂閱
+1. 連接 tooyour 訂用帳戶
 
 2. 建立金鑰保存庫
 
-3. 將金鑰或密碼加入至金鑰保存庫
+3. 新增金鑰或密碼 toohello 金鑰保存庫
 
-4. 利用 Azure Active Directory 註冊將會使用金鑰保存庫的應用程式
+4. 註冊將使用金鑰保存庫 hello 與 Azure Active Directory 應用程式
 
-5. 授權應用程式使用金鑰或密碼
+5. 授權 hello 應用程式 toouse hello 金鑰或密碼
 
-若要建立金鑰保存庫，請使用 New-AzureRmKeyVault PowerShell Cmdlet。 您將會指派保存庫名稱、資源群組名稱和地理位置。 當您透過其他 Cmdlet 管理金鑰時，您將會使用保存庫名稱。 透過 REST API 使用保存庫的應用程式將會使用保存庫 URI。
+toocreate 金鑰保存庫中，使用 hello 新增 AzureRmKeyVault PowerShell CmDlt。 您將會指派保存庫名稱、資源群組名稱和地理位置。 管理透過其他 Cmdlet 的索引鍵時，您將使用 hello 保存庫名稱。 使用透過 hello REST API 的 hello 保存庫的應用程式會使用 hello 保存庫 URI。
 
-Azure Key Vault 可為您提供受軟體保護的金鑰；或者，您也可以匯入 .PFX 檔案中的現有金鑰。 您也可以在保存庫中儲存密碼。
+Azure Key Vault 可為您提供受軟體保護的金鑰；或者，您也可以匯入 .PFX 檔案中的現有金鑰。 您也可以在 hello 保存庫中儲存機密資訊 （密碼）。
 
-您也可以在本機 HSM 中產生金鑰，且在金鑰無需離開 HSM 界限的情況下，即可將它傳輸到 Key Vault 服務中的 HSM。
+您也可以在本機 HSM 中產生金鑰並將金鑰傳輸 tooHSMs hello 金鑰保存庫服務中的沒有 hello 離開 hello HSM 界限的索引鍵。
 
-如需使用 Azure Key Vault 的詳細指示，請遵循[開始使用 Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-get-started) 中的步驟進行。
+中的詳細說明如何使用 Azure 金鑰保存庫，請依照下列步驟 hello[開始使用 Azure 金鑰保存庫。](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-get-started)
 
 如需搭配 Azure Key Vault 使用的 PowerShell Cmdlet 清單，請參閱 [AzureRM.KeyVault](https://docs.microsoft.com/en-us/powershell/module/azurerm.keyvault/?view=azurermps-4.2.0)。
 
 ### <a name="azure-disk-encryption-for-windows"></a>Windows 適用的 Azure 磁碟加密
 
-[Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密](https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption)會保護 Azure 虛擬機器上的個人待用資料，並與 Azure Key Vault 整合。 Azure 磁碟加密使用 [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) (在 Windows 中) 及 [DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) (在 Linux 中) 來加密 OS 和資料磁碟。 Windows Server 2008 R2、Windows Server 2012、Windows Server 2012 R2、Windows Server 2016 以及 Windows 8 和 Windows 10 用戶端支援 Azure 磁碟加密。
+[Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密](https://docs.microsoft.com/en-us/azure/security/azure-security-disk-encryption)會保護 Azure 虛擬機器上的個人待用資料，並與 Azure Key Vault 整合。 Azure 磁碟加密使用[BitLocker](https://technet.microsoft.com/library/cc732774.aspx)在 Windows 和[DM Crypt](https://en.wikipedia.org/wiki/Dm-crypt) Linux tooencrypt 中同時 hello OS 和 hello 資料磁碟。 Windows Server 2008 R2、Windows Server 2012、Windows Server 2012 R2、Windows Server 2016 以及 Windows 8 和 Windows 10 用戶端支援 Azure 磁碟加密。
 
-#### <a name="how-do-i-use-azure-disk-encryption-to-protect-personal-data"></a>如何使用 Azure 磁碟加密來保護個人資料？
+#### <a name="how-do-i-use-azure-disk-encryption-tooprotect-personal-data"></a>如何使用 Azure 磁碟加密 tooprotect 個人資料？
 
-若要使用 Azure 磁碟加密，您需要 Azure 訂用帳戶。 若要啟用 Windows 和 Linux VM 適用的 Azure 磁碟加密，請執行下列動作：
+toouse Azure 磁碟加密，您需要訂用帳戶 tooan Azure 帳戶。 下列 hello tooenable Azure 磁碟加密適用於 Windows 及 Linux Vm:
 
-1. 使用 Azure 磁碟加密 Resource Manager 範本、PowerShell 或命令列介面 (CLI) 啟用磁碟加密，並指定加密設定。 
+1. 使用 hello Azure 磁碟加密 Resource Manager 範本、 PowerShell 或 hello 命令列介面 (CLI) tooenable 磁碟加密，並指定的加密組態。 
 
-2. 授與 Azure 平台的存取權，以從金鑰保存庫讀取加密資料。
+2. 授與存取 toohello Azure 平台 tooread hello 從金鑰保存庫的加密內容。
 
-3. 提供 Azure Active Directory (AAD) 應用程式識別碼，以將加密金鑰資料寫入至金鑰保存庫。
+3. 提供 Azure Active Directory (AAD) 應用程式識別 toowrite hello 加密金鑰材料 tooyour 金鑰保存庫。
 
-Azure 將會更新 VM 和金鑰保存庫設定，並設定加密的 VM。
+Azure 將會更新 hello VM 和 hello 金鑰保存庫設定，與您加密的 VM 設定。
 
-當您設定金鑰保存庫以支援 Azure 磁碟加密時，您可以新增金鑰加密金鑰 (KEK)，以提高安全性並支援備份加密的虛擬機器。
+當您設定您的金鑰保存庫 toosupport Azure 磁碟加密時，您可以提高的安全性和加密的虛擬機器 toosupport 備份加入加密金鑰 (KEK)。
 
 ![](media/protect-personal-data-at-rest/create-key.png)
 
@@ -108,65 +108,65 @@ Azure 將會更新 VM 和金鑰保存庫設定，並設定加密的 VM。
 
 ### <a name="azure-storage-service-encryption"></a>Azure 儲存體服務加密
 
-[Azure Storage Service Encryption (SSE) for Data at Rest](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption) (待用資料的 Azure 儲存體服務加密 (SSE)) 會協助您保護資料安全，以符合組織安全性和合規性承諾。 Azure 儲存體會先自動使用 256 位元 AES 加密來加密資料，再保存到儲存體，以及在擷取之前將它解密。 這個服務適用於 Azure Blob 和檔案。
+[Azure 儲存體服務加密 (SSE) 中的靜止資料](https://docs.microsoft.com/en-us/azure/storage/storage-service-encryption)可協助您保護與防衛資料 toomeet 您組織的安全性與相容性承諾。 Azure 儲存體自動會使用 256 位元 AES 加密先前 toopersisting toostorage 資料加密和解密先前 tooretrieval。 這個服務適用於 Azure Blob 和檔案。
 
-#### <a name="how-do-i-use-storage-service-encryption-to-protect-personal-data"></a>如何使用儲存體服務加密來保護個人資料？
+#### <a name="how-do-i-use-storage-service-encryption-tooprotect-personal-data"></a>如何使用儲存體服務加密 tooprotect 個人資料？
 
-若要啟用儲存體服務加密，請執行下列動作：
+tooenable 儲存體服務加密，請勿 hello 遵循：
 
-1. 登入 Azure 入口網站。
+1. 登入 hello Azure 入口網站。
 
 2. 選取儲存體帳戶。
 
-3. 在 [設定] 的 [Blob 服務] 區段下，選取 [加密]。
+3. 在 [設定] 底下 hello Blob 服務區段中，選取加密。
 
-4. 在 [檔案服務] 區段下，選取 [加密]。
+4. 在 hello 檔案服務 區段中，選取 加密。
 
-按一下 [加密] 設定之後，您可以啟用或停用「儲存體服務加密」。
+按一下 hello 加密設定之後，您可以啟用或停用儲存體服務加密。
 
 ![](media/protect-personal-data-at-rest/storage-service-encryption.png)
 
 新的資料將會加密。 此儲存體帳戶中現有檔案的資料將保持未加密狀態。
 
-啟用加密之後，使用下列其中一個方法將資料複製到儲存體帳戶：
+啟用加密之後, 將複製資料 toohello 儲存體帳戶使用其中一種 hello 下列方法：
 
-1. 使用 [AzCopy 命令列公用程式](https://docs.microsoft.com/en-us/azure/storage/storage-use-azcopy)複製 Blob 或檔案。
+1. 複製 blob 或檔案以 hello [AzCopy 命令列公用程式](https://docs.microsoft.com/en-us/azure/storage/storage-use-azcopy)。
 
-2. [使用 SMB 掛接檔案共用](https://docs.microsoft.com/en-us/azure/storage/storage-file-how-to-use-files-windows)，因此您可以使用 Robocopy 等公用程式來複製檔案。
+2. [掛上使用 SMB 檔案共用](https://docs.microsoft.com/en-us/azure/storage/storage-file-how-to-use-files-windows)因此您可以使用公用程式，例如 Robocopy toocopy 檔案。
 
-3. 使用 [.NET 等儲存體用戶端程式庫](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-blobs)，在 Blob 儲存體或儲存體帳戶之間來回複製 Blob 或檔案資料。
+3. 複製 blob 或檔案資料 tooand 從 blob 儲存體或儲存體帳戶使用[儲存體用戶端程式庫，例如.NET](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-how-to-use-blobs)。
 
-4.  使用[儲存體總管](https://docs.microsoft.com/en-us/azure/storage/storage-explorers)將 Blob 上傳至儲存體帳戶，並且啟用加密。
+4.  使用[存放裝置總管](https://docs.microsoft.com/en-us/azure/storage/storage-explorers)tooupload blob tooyour 儲存體帳戶並啟用加密。
 
 ### <a name="transparent-data-encryption"></a>透明資料加密
 
-透明資料加密 (TDE) 是 SQL Azure 功能，可讓您在資料庫和伺服器層級加密資料。 現在預設會在所有新建立的資料庫上啟用 TDE。 TDE 會執行資料和記錄檔的即時 I/O 加密和解密。
+透明資料加密 (TDE) 是 SQL Azure，您可以用來加密這兩個 hello 資料庫和伺服器層級的資料中的功能。 現在預設會在所有新建立的資料庫上啟用 TDE。 TDE 會執行即時 I/O 加密和解密的 hello 資料和記錄檔。
 
-#### <a name="how-do-i-use-tde-to-protect-personal-data"></a>如何使用 TDE 來保護個人資料？
+#### <a name="how-do-i-use-tde-tooprotect-personal-data"></a>如何使用 TDE tooprotect 個人資料？
 
-您可以透過 Azure 入口網站、使用 REST API 或使用 PowerShell 來設定 TDE。 若要使用 Azure 入口網站在現有的資料庫上啟用 TDE，請執行下列動作：
+使用 hello REST API 或 PowerShell，您可以透過 hello Azure 入口網站設定 TDE。 在現有的資料庫使用 hello Azure 入口網站，tooenable TDE hello 遵循：
 
-1. 前往 Azure 入口網站 (網址為 <https://portal.azure.com>)，並使用您的 Azure 系統管理員或參與者帳戶登入。
+1. 請瀏覽 hello Azure 入口網站在<https://portal.azure.com>和使用您的 Azure 系統管理員或參與者帳戶登入。
 
-2. 在左橫幅上，按一下 [瀏覽]，然後按一下 SQL 資料庫。
+2. 在 hello 左邊的橫幅中，按一下 tooBROWSE，，然後按一下 SQL 資料庫。
 
-3. 在左窗格中選取 SQL 資料庫時，按一下您的使用者資料庫。
+3. Hello 左窗格中選取的 SQL 資料庫，按一下您的使用者資料庫。
 
-4. 在資料庫刀鋒視窗中，按一下 [所有設定]。
+4. 在 hello 資料庫刀鋒視窗中，按一下 所有設定。
 
-5. 在 [設定] 刀鋒視窗中，按一下 [透明資料加密] 部分以開啟 [透明資料加密] 刀鋒視窗。
+5. 在 hello 設定刀鋒視窗中，按一下 透明資料加密部分 tooopen hello 透明資料加密 刀鋒視窗。
 
-6. 在資料加密刀鋒視窗中，將 [資料加密] 按鈕移至 [開啟]，然後按一下 [儲存] (在頁面頂端) 以套用設定。 加密狀態將會粗略估算透明資料加密的進度。
+6. 在 hello 資料加密 刀鋒視窗，將資料加密 按鈕 tooOn hello，，然後按一下儲存 （hello 頁面頂端的 hello） tooapply hello 設定。 hello 加密的狀態會顯示概略 hello 透明資料加密的 hello 的進度。
 
 ![啟用資料加密](media/protect-personal-data-at-rest/turn-data-encryption-on.png)
 
-如需如何啟用 TDE 的指示，以及將受 TDE 保護的資料庫解密的資訊及其他資訊，請參閱 [Azure SQL Database 的透明資料加密](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption-with-azure-sql-database)一文。
+說明如何在 hello 文章中找到 tooenable TDE，以及有關解密 TDE 保護的資料庫和多個[Azure SQL Database 的透明資料加密。](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/transparent-data-encryption-with-azure-sql-database)
 
 ## <a name="summary"></a>摘要
 
-此公司可以完成加密儲存在 Azure 雲端中個人資料的目標。 他們可以透過使用 Azure 磁碟加密保護整個磁碟區來達成此目的。 這可能包含保存個人識別資訊和其他敏感性資料的作業系統檔案和資料檔案。 Azure 儲存體服務加密可用來保護儲存在 Blob 和檔案中的個人資料。 對於儲存在 Azure SQL Database 中的資料，透明資料加密會提供保護，以防止未經授權公開個人資訊。
+hello 公司可以完成其加密儲存在 hello Azure 雲端中的個人資料的目標。 他們可以使用 Azure 磁碟加密來進行這太保護整個磁碟區。 這可能包括 hello 作業系統檔案和存放個人識別資訊與其他敏感性資料的資料檔案。 Azure 儲存體服務加密可使用的 tooprotect 個人資料會儲存在 blob 和檔案。 對於儲存在 Azure SQL Database 中的資料，透明資料加密會提供保護，以防止未經授權公開個人資訊。
 
-此公司可以使用 Azure Key Vault，來保護用來加密 Azure 中資料的金鑰。 這會簡化金鑰管理程序，並可讓公司控管存取和加密個人資料的金鑰。
+在 Azure 中使用的 tooencrypt 資料 tooprotect hello 索引鍵，hello 公司可以使用 Azure 金鑰保存庫。 這可簡化 hello 金鑰管理程序，並啟用 hello 公司 toomaintain 控制存取和個人資料加密金鑰。
 
 ## <a name="next-steps"></a>後續步驟
 

@@ -1,6 +1,6 @@
 ---
-title: "OMS 解決方案中的 Azure 自動化資源 | Microsoft Docs"
-description: "OMS 中的解決方案通常會在 Azure 自動化中包含 Runbook，以便自動執行一些程序，例如收集及處理監視資料。  本文說明如何在解決方案中包含 Runbook 與其相關資源。"
+title: "在 OMS 解決方案 aaaAzure 自動化資源 |Microsoft 文件"
+description: "OMS 中的解決方案通常會包含在 Azure 自動化 tooautomate 程序，例如收集及處理監視資料中的 runbook。  本文說明如何 tooinclude runbook 及其相關的資源，在方案中。"
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -15,42 +15,42 @@ ms.workload: infrastructure-services
 ms.date: 05/24/2017
 ms.author: bwren
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: c1909183a33ed03d8165671cff25cc8b83b77733
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 82a156f89bf77ce25e52e5e4596261ec07a24dae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="adding-azure-automation-resources-to-an-oms-management-solution-preview"></a>將 Azure 自動化資源新增至 OMS 管理解決方案 (預覽)
+# <a name="adding-azure-automation-resources-tooan-oms-management-solution-preview"></a>新增 Azure 自動化資源 tooan OMS 管理解決方案 （預覽）
 > [!NOTE]
-> 這是在 OMS 中建立管理解決方案 (目前處於預覽狀態) 的預備文件。 以下所述的任何結構描述可能會有所變更。   
+> 這是在 OMS 中建立管理解決方案 (目前處於預覽狀態) 的預備文件。 如下所述的任何結構描述是主體 toochange。   
 
 
-[OMS 中的管理解決方案](operations-management-suite-solutions.md)通常會在 Azure 自動化中包含 Runbook，以便自動執行一些程序，例如收集及處理監視資料。  除了 Runbook，自動化帳戶還包含一些資產，例如支援解決方案中所用 Runbook 的變數和排程。  本文說明如何在解決方案中包含 Runbook 與其相關資源。
+[在 OMS 中的管理解決方案](operations-management-suite-solutions.md)通常會包含在 Azure 自動化 tooautomate 程序，例如收集及處理監視資料中的 runbook。  此外 toorunbooks，自動化帳戶包含資產，例如變數和支援 hello 方案中的 hello runbook 使用的排程。  本文說明如何 tooinclude runbook 及其相關的資源，在方案中。
 
 > [!NOTE]
-> 本文中的範例使用管理解決方案所必要或通用的參數和變數，如[在 Operations Management Suite (OMS) 中建立管理解決方案](operations-management-suite-solutions-creating.md)所述。 
+> hello 這篇文章中的範例使用參數和變數，都是必要或常見 toomanagement 解決方案中所述[Operations Management Suite (OMS) 中建立管理方案](operations-management-suite-solutions-creating.md) 
 
 
 ## <a name="prerequisites"></a>必要條件
-本文假設您已熟悉下列資訊。
+本文假設您已經熟悉 hello 下列資訊。
 
-- 如何[建立管理解決方案](operations-management-suite-solutions-creating.md)。
-- [解決方案檔](operations-management-suite-solutions-solution-file.md)的結構。
-- 如何[製作 Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)
+- 如何太[建立管理方案](operations-management-suite-solutions-creating.md)。
+- hello 結構[方案檔](operations-management-suite-solutions-solution-file.md)。
+- 如何太[撰寫資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)
 
 ## <a name="automation-account"></a>自動化帳戶
-Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/automation-security-overview.md#automation-account-overview)中。  如 [OMS 工作區和自動化帳戶](operations-management-suite-solutions.md#oms-workspace-and-automation-account)所述，自動化帳戶不包含在管理解決方案中，但是在安裝解決方案前就必須存在。  如果無法使用，則解決方案會安裝失敗。
+Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/automation-security-overview.md#automation-account-overview)中。  中所述[OMS 工作區以及自動化帳戶](operations-management-suite-solutions.md#oms-workspace-and-automation-account)hello 自動化帳戶不包含在 hello 管理解決方案，但必須先安裝 hello 解決方案。  如果它無法使用，hello 方案安裝將會失敗。
 
-每個自動化資源的名稱皆包含其自動化帳戶的名稱。  這可在具有 **accountName** 參數的解決方案中完成，如下列 Runbook 資源範例所示。
+每個自動化資源 hello 名稱包括 hello 其自動化帳戶名稱。  這是以 hello hello 方案**accountName**參數，如下列範例 runbook 資源的 hello 所示。
 
     "name": "[concat(parameters('accountName'), '/MyRunbook'))]"
 
 
 ## <a name="runbooks"></a>Runbook
-您應該在解決方案檔中包含解決方案所使用的任何 Runbook，以便系統會在安裝解決方案時建立這些 Runbook。  但您不能在範本中包含 Runbook 的主體，因此，您應該將 Runbook 發佈到公用位置，以供安裝了解決方案的使用者存取。
+您應該包含由 hello 方案檔中的 hello 方案使用，因此安裝 hello 方案時，他們所建立的任何 runbook。  您不能包含 hello 範本中的 hello runbook hello 主體，因此您應發佈 hello runbook tooa 公共場所位置存取它的任何使用者安裝方案。
 
-[Azure 自動化 Runbook](../automation/automation-runbook-types.md) 資源的類型為 **Microsoft.Automation/automationAccounts/runbooks**，且具有下列結構。 這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+[Azure 自動化 runbook](../automation/automation-runbook-types.md)資源有一種**Microsoft.Automation/automationAccounts/runbooks**而且具有下列結構的 hello。 這包括一般變數和參數，讓您可以複製並貼入您的方案檔的此程式碼片段，然後變更 hello 參數名稱。 
 
     {
         "name": "[concat(parameters('accountName'), '/', variables('Runbook').Name)]",
@@ -73,21 +73,21 @@ Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/
     }
 
 
-下表會說明 Runbook 的屬性。
+hello 下表描述的 runbook hello 屬性。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| runbookType |指定 Runbook 的類型。 <br><br> Script - PowerShell 指令碼 <br>PowerShell - PowerShell 工作流程 <br> GraphPowerShell - 圖形化 PowerShell 指令碼 Runbook <br> GraphPowerShellWorkflow - 圖形化 PowerShell 工作流程 Runbook |
-| logProgress |指定是否應針對 Runbook 產生[進度記錄](../automation/automation-runbook-output-and-messages.md)。 |
-| logVerbose |指定是否應針對 Runbook 產生[詳細資訊記錄](../automation/automation-runbook-output-and-messages.md)。 |
-| 說明 |Runbook 的選擇性說明。 |
-| publishContentLink |指定 Runbook 的內容。 <br><br>uri - 指定 Runbook 的內容 Uri。  這會是 PowerShell 和 Script Runbook 的 .ps1 檔案，以及 Graph Runbook 的已匯出圖形化 Runbook 檔案。  <br> 版本 - 您自己追蹤的 Runbook 版本。 |
+| runbookType |指定 hello hello runbook 類型。 <br><br> Script - PowerShell 指令碼 <br>PowerShell - PowerShell 工作流程 <br> GraphPowerShell - 圖形化 PowerShell 指令碼 Runbook <br> GraphPowerShellWorkflow - 圖形化 PowerShell 工作流程 Runbook |
+| logProgress |指定是否[進度記錄](../automation/automation-runbook-output-and-messages.md)應產生的 hello runbook。 |
+| logVerbose |指定是否[詳細資訊記錄](../automation/automation-runbook-output-and-messages.md)應產生的 hello runbook。 |
+| 說明 |Hello runbook 的選擇性描述。 |
+| publishContentLink |指定 hello hello runbook 內容。 <br><br>uri 的 Uri toohello hello runbook 內容。  這會是 PowerShell 和 Script Runbook 的 .ps1 檔案，以及 Graph Runbook 的已匯出圖形化 Runbook 檔案。  <br> 版本-您自己的追蹤的 hello runbook 的版本。 |
 
 
 ## <a name="automation-jobs"></a>自動化作業
-當您在 Azure 自動化中啟動 Runbook 時，此 Runbook 便會建立自動化作業。  您可以在解決方案中新增自動化作業資源，以在安裝管理解決方案時自動啟動 Runbook。  這個方法通常會用來啟動可對解決方案進行初始設定的 Runbook。  若要定期啟動 Runbook，請建立[排程](#schedules)和[作業排程](#job-schedules)
+當您在 Azure 自動化中啟動 Runbook 時，此 Runbook 便會建立自動化作業。  您可以將自動化工作資源 tooyour 方案 tooautomatically 開始 runbook 安裝時，將 hello 管理解決方案。  這個方法是常用的 toostart runbook 所使用的 hello 解決方案的初始組態。  toostart runbook，以固定間隔建立[排程](#schedules)和[作業排程](#job-schedules)
 
-作業資源的類型為 **Microsoft.Automation/automationAccounts/jobs**，且具有下列結構。  這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+工作資源的類型是**Microsoft.Automation/automationAccounts/jobs**而且具有下列結構的 hello。  這包括一般變數和參數，讓您可以複製並貼入您的方案檔的此程式碼片段，然後變更 hello 參數名稱。 
 
     {
       "name": "[concat(parameters('accountName'), '/', parameters('Runbook').JobGuid)]",
@@ -109,20 +109,20 @@ Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/
       }
     }
 
-下表會說明自動化作業的屬性。
+自動化工作的 hello 屬性詳述於下表中的 hello。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| Runbook |具有要啟動之 Runbook 名稱的單一名稱實體。 |
-| 參數 |Runbook 所需之每個參數值的實體。 |
+| Runbook |單一名稱同名的 hello runbook toostart hello 的實體。 |
+| 參數 |每個參數值 hello runbook 所需的實體。 |
 
-作業包含 Runbook 名稱和任何要傳送至 Runbook 的參數值。  作業應該[相依於](operations-management-suite-solutions-solution-file.md#resources)正在啟動的 Runbook，因為 Runbook 必須建立於作業之前。  如果您有多個應該啟動的 Runbook，您可以藉由讓作業相依於其他任何應該先執行的作業，以定義這些 Runbook 的順序。
+hello 作業會包括 hello runbook 名稱和任何參數值 toobe 傳送 toohello runbook。  hello 作業應該[相依於](operations-management-suite-solutions-solution-file.md#resources)hello 作業之前，必須建立 hello 自 hello runbook 啟動的 runbook。  如果您有多個應該啟動的 Runbook，您可以藉由讓作業相依於其他任何應該先執行的作業，以定義這些 Runbook 的順序。
 
-作業資源的名稱必須包含通常由參數所指派的 GUID。  [在 Operations Management Suite (OMS) 中建立解決方案](operations-management-suite-solutions-solution-file.md#parameters)可讓您深入了解 GUID 參數。  
+工作資源的 hello 名稱必須包含通常由參數指派的 GUID。  [在 Operations Management Suite (OMS) 中建立解決方案](operations-management-suite-solutions-solution-file.md#parameters)可讓您深入了解 GUID 參數。  
 
 
 ## <a name="certificates"></a>憑證
-[Azure 自動化憑證](../automation/automation-certificates.md)的類型為 **Microsoft.Automation/automationAccounts/certificates**，且具有下列結構。 這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+[Azure 自動化憑證](../automation/automation-certificates.md)型別為**Microsoft.Automation/automationAccounts/certificates**而且具有下列結構的 hello。 這包括一般變數和參數，讓您可以複製並貼入您的方案檔的此程式碼片段，然後變更 hello 參數名稱。 
 
     {
       "name": "[concat(parameters('accountName'), '/', variables('Certificate').Name)]",
@@ -140,17 +140,17 @@ Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/
 
 
 
-下表會說明憑證資源的屬性。
+憑證資源的 hello 內容詳述於下表中的 hello。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| base64Value |憑證的 Base 64 值。 |
-| thumbprint |憑證的指紋。 |
+| base64Value |Base 64 hello 憑證值。 |
+| thumbprint |Hello 憑證指模。 |
 
 
 
 ## <a name="credentials"></a>認證
-[Azure 自動化認證](../automation/automation-credentials.md)的類型為 **Microsoft.Automation/automationAccounts/credentials**，且具有下列結構。  這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+[Azure 自動化認證](../automation/automation-credentials.md)型別為**Microsoft.Automation/automationAccounts/credentials**而且具有下列結構的 hello。  這包括一般變數和參數，讓您可以複製並貼入您的方案檔的此程式碼片段，然後變更 hello 參數名稱。 
 
 
     {
@@ -167,16 +167,16 @@ Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/
       }
     }
 
-下表會說明認證資源的屬性。
+認證資源的 hello 內容詳述於下表中的 hello。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| userName |認證的使用者名稱。 |
-| password |認證的密碼。 |
+| userName |Hello 認證的使用者名稱。 |
+| password |Hello 認證的密碼。 |
 
 
 ## <a name="schedules"></a>排程
-[Azure 自動化排程](../automation/automation-schedules.md)的類型為 **Microsoft.Automation/automationAccounts/schedules**，且具有下列結構。 這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+[Azure 自動化排程](../automation/automation-schedules.md)型別為**Microsoft.Automation/automationAccounts/schedules**而且具有下列結構的 hello hello。 這包括一般變數和參數，讓您可以複製並貼入您的方案檔的此程式碼片段，然後變更 hello 參數名稱。 
 
     {
       "name": "[concat(parameters('accountName'), '/', variables('Schedule').Name)]",
@@ -195,26 +195,26 @@ Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/
       }
     }
 
-下表會說明排程資源的屬性。
+排程資源的 hello 內容詳述於下表中的 hello。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| 說明 |排程的選擇性說明。 |
-| startTime |將排程的開始時間指定為 DateTime 物件。 如果可以轉換成有效的 DateTime，即可提供字串。 |
-| isEnabled |指定是否啟用排程。 |
-| interval |排程的間隔類型。<br><br>day<br>hour |
-| frequency |應觸發排程的頻率 (以天數或時數為單位)。 |
+| 說明 |Hello 排程的選擇性描述。 |
+| startTime |排程 hello 開始時間指定為 DateTime 物件。 如果可以轉換的 tooa 可提供字串有效的日期時間。 |
+| isEnabled |指定是否啟用 hello 排程。 |
+| interval |hello hello 排程的間隔類型。<br><br>day<br>hour |
+| frequency |Hello 排程的頻率應該引發天數或小時。 |
 
-排程的開始時間值必須大於目前的時間。  您無法知道解決方案會在何時安裝，因此不能以變數來提供此值。
+排程必須具有開始時間大於 hello 的值與目前的時間。  因為您會有無從得知進行 toobe 安裝時，您無法提供此值的變數。
 
-在解決方案中使用排程資源時，請使用下列兩種策略的其中一種。
+使用其中一個方案中使用排程的資源時，下列兩種策略的 hello。
 
-- 使用參數來提供排程的開始時間。  這會提示使用者在他們安裝解決方案時提供值。  如果您有多個排程，您可以對它們使用單一參數值。
-- 使用會在安裝解決方案時啟動的 Runbook 來建立排程。  這可讓使用者不必指定時間，但您不能在解決方案中包含排程，以便在移除解決方案時將該排程移除。
+- 使用參數進行 hello hello 排程開始時間。  在安裝 hello 方案時，這會提示 hello 使用者 tooprovide 值。  如果您有多個排程，您可以對它們使用單一參數值。
+- 建立 hello 排程使用 runbook 啟動時安裝 hello 解決方案。  這會移除 hello 需求的時間，但是您不能包含 hello 使用者 toospecify hello 排程，因此移除 hello 方案時將會移除您方案中的。
 
 
 ### <a name="job-schedules"></a>作業排程
-作業排程資源會連結 Runbook 與排程。  作業排程資源的類型為 **Microsoft.Automation/automationAccounts/jobSchedules**，且具有下列結構。  這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。 
+作業排程資源會連結 Runbook 與排程。  它們有一種**Microsoft.Automation/automationAccounts/jobSchedules**而且具有下列結構的 hello hello。  這包括一般變數和參數，讓您可以複製並貼入您的方案檔的此程式碼片段，然後變更 hello 參數名稱。 
 
     {
       "name": "[concat(parameters('accountName'), '/', variables('Schedule').LinkGuid)]",
@@ -238,17 +238,17 @@ Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/
     }
 
 
-下表會說明作業排程的屬性。
+作業排程的 hello 屬性詳述於下表中的 hello。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| 排程名稱 |包含排程名稱的單一**名稱**實體。 |
-| Runbook 名稱  |包含 Runbook 名稱的單一**名稱**實體。  |
+| 排程名稱 |單一**名稱**實體與 hello hello 排程名稱。 |
+| Runbook 名稱  |單一**名稱**實體與 hello hello runbook 名稱。  |
 
 
 
 ## <a name="variables"></a>變數
-[Azure 自動化變數](../automation/automation-variables.md)的類型為 **Microsoft.Automation/automationAccounts/variables**，且具有下列結構。  這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。
+[Azure 自動化變數](../automation/automation-variables.md)型別為**Microsoft.Automation/automationAccounts/variables**而且具有下列結構的 hello。  這包括一般變數和參數，讓您可以複製並貼入您的方案檔的此程式碼片段，然後變更 hello 參數名稱。
 
     {
       "name": "[concat(parameters('accountName'), '/', variables('Variable').Name)]",
@@ -265,31 +265,31 @@ Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/
       }
     }
 
-下表會說明變數資源的屬性。
+hello 下表描述 hello 變數資源的屬性。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| 說明 | 變數的選擇性說明。 |
-| isEncrypted | 指定是否應加密變數。 |
-| 類型 | 這個屬性目前沒有任何作用。  變數的資料類型將由初始值所決定。 |
-| value | 變數的值。 |
+| 說明 | Hello 變數的選擇性描述。 |
+| isEncrypted | 指定是否應該加密 hello 變數。 |
+| 類型 | 這個屬性目前沒有任何作用。  hello hello 變數資料類型將決定由 hello 初始值。 |
+| value | Hello 變數的值。 |
 
 > [!NOTE]
-> **type** 屬性目前不會影響所建立的變數。  變數的資料類型將由 value 所決定。  
+> hello**類型** 內容目前沒有正在建立 hello 變數上的沒有作用。  hello hello 變數的資料類型將決定 hello 值。  
 
-如果您設定變數的初始值，則必須將它設定為正確的資料類型。  下表提供允許的不同資料類型和其語法。  請注意，JSON 中的值應該一律要用引號括住，並以括號括住任何特殊字元。  例如，以括住字串的引號指定字串值 (使用逸出字元 (\\))，並以一組引號指定數值。
+如果您設定 hello 初始 hello 變數值，它必須設定為 hello 正確的資料類型。  hello 下表提供可允許的 hello 不同的資料類型，以及其語法。  請注意，在 JSON 中的值是預期的 tooalways 括以引號括住含有 hello 括在引號內的任何特殊字元。  例如，字串值會指定以引號括住 hello 字串 (使用 hello 逸出字元 (\\)) 時可以使用引號括住的一組指定的數字的值。
 
-| 資料類型 | 說明 | 範例 | 解析成 |
+| 資料類型 | 說明 | 範例 | 太解析|
 |:--|:--|:--|:--|
 | 字串   | 以雙引號括住值。  | "\"Hello world\"" | "Hello world" |
 | numeric  | 以單引號括住數值。| "64" | 64 |
 | 布林值  | 以引號括住 **true** 或 **false**。  請注意，此值必須是小寫。 | "true" | true |
-| datetime | 序列化的日期值。<br>您可以在 PowerShell 中使用 ConvertTo-Json Cmdlet，以針對特定日期產生這個值。<br>範例：get-date "5/24/2017 13:14:57" \| ConvertTo-Json | "\\/Date(1495656897378)\\/" | 2017-05-24 13:14:57 |
+| datetime | 序列化的日期值。<br>您可以使用 PowerShell toogenerate 中的 hello Convertto-json cmdlet 此值，在特定日期。<br>範例：get-date "5/24/2017 13:14:57" \| ConvertTo-Json | "\\/Date(1495656897378)\\/" | 2017-05-24 13:14:57 |
 
 ## <a name="modules"></a>模組
-您的管理解決方案不需定義您的 Runbook 所用的[全域模組](../automation/automation-integration-modules.md)，因為您永遠可以在自動化帳戶中使用這些模組。  對於 Runbook 所使用的其他任何模組，您不需要包含其資源。
+您的管理解決方案不需要 toodefine[全域模組](../automation/automation-integration-modules.md)使用您的 runbook，因為它們永遠都可以在您的自動化帳戶。  您將 runbook 所使用的任何其他模組需要 tooinclude 資源。
 
-[整合模組](../automation/automation-integration-modules.md)的類型為 **Microsoft.Automation/automationAccounts/modules**，且具有下列結構。  這包括一般變數和參數，因此您可以將此程式碼片段複製並貼到您的解決方案檔，然後變更參數名稱。
+[整合模組](../automation/automation-integration-modules.md)型別為**Microsoft.Automation/automationAccounts/modules**而且具有下列結構的 hello。  這包括一般變數和參數，讓您可以複製並貼入您的方案檔的此程式碼片段，然後變更 hello 參數名稱。
 
     {
       "name": "[concat(parameters('accountName'), '/', variables('Module').Name)]",
@@ -305,35 +305,35 @@ Azure 自動化中的所有資源都會包含在[自動化帳戶](../automation/
     }
 
 
-下表會說明模組資源的屬性。
+模組資源的 hello 內容詳述於下表中的 hello。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| contentLink |指定模組的內容。 <br><br>uri - 模組內容的 Uri。  這會是 PowerShell 和 Script Runbook 的 .ps1 檔案，以及 Graph Runbook 的已匯出圖形化 Runbook 檔案。  <br> 版本 - 自有追蹤的模組版本。 |
+| contentLink |指定 hello hello 模組內容。 <br><br>uri 的 Uri toohello hello 模組內容。  這會是 PowerShell 和 Script Runbook 的 .ps1 檔案，以及 Graph Runbook 的已匯出圖形化 Runbook 檔案。  <br> 版本-您自己的追蹤的 hello 模組版本。 |
 
-Runbook 應該相依於模組資源，以確保模組資源會比 Runbook 還早建立。
+一旦建立 hello runbook 之前的 hello 模組資源 tooensure 需要具備 hello runbook。
 
 ### <a name="updating-modules"></a>更新模組
-如果您更新的管理解決方案包含使用排程的 Runbook，而且新版的解決方案具有該 Runbook 所用的新模組，則 Runbook 可能會使用舊版的模組。  您應該在您的解決方案中納入下列 Runbook，並建立一項作業，以在任何其他 Runbook 之前執行這些 Runbook。  這可確保在載入 Runbook 之前，會視需要更新任何模組。
+如果您更新的管理解決方案，包括 runbook 所使用的排程，而且 hello 新版本，您的方案有使用該 runbook 的新模組，hello runbook 可能會使用 hello 模組 hello 舊版本。  您應該包含 hello 遵循您的方案中的 runbook，並建立工作 toorun 它們之前的任何其他 runbook。  這可確保任何模組，會更新為所需的 hello runbook 會載入。
 
-* [Update-ModulesinAutomationToLatestVersion](https://www.powershellgallery.com/packages/Update-ModulesInAutomationToLatestVersion/1.03/DisplayScript) 可確保您解決方案中 Runbook 使用的所有模組都是最新版本。  
-* [ReRegisterAutomationSchedule-MS-Mgmt](https://www.powershellgallery.com/packages/ReRegisterAutomationSchedule-MS-Mgmt/1.0/DisplayScript) 可重新註冊所有的排程資源，以確保已連結到這些資源的 Runbook 使用最新模組。
+* [更新 ModulesinAutomationToLatestVersion](https://www.powershellgallery.com/packages/Update-ModulesInAutomationToLatestVersion/1.03/DisplayScript)可確保所有的方案中的 runbook 所使用的 hello 模組都 hello 最新版本。  
+* [個 MS ReRegisterAutomationSchedule 管理](https://www.powershellgallery.com/packages/ReRegisterAutomationSchedule-MS-Mgmt/1.0/DisplayScript)重新註冊所有 hello 排程資源 tooensure hello runbook 連結 toothem 與使用 hello 最新的模組。
 
 
 
 
 ## <a name="sample"></a>範例
-以下是解決方案的範例，其中包含下列資源：
+以下是方案的範例，包括所包含的 hello 下列資源：
 
 - Runbook。  這是儲存在公用 GitHub 儲存機制的 Runbook 範例。
-- 在安裝解決方案時會啟動 Runbook 的自動化作業。
-- 用來定期啟動 Runbook 的排程和作業排程。
+- 啟動時安裝 hello 解決方案的 hello runbook 的自動化作業。
+- 排程與工作排程 toostart hello runbook 的固定間隔。
 - 憑證。
 - 認證。
 - 變數。
-- 模組。  這個 [OMSIngestionAPI 模組](https://www.powershellgallery.com/packages/OMSIngestionAPI/1.5)可用來將資料寫入 Log Analytics。 
+- 模組。  這是 hello [OMSIngestionAPI 模組](https://www.powershellgallery.com/packages/OMSIngestionAPI/1.5)撰寫資料 tooLog 分析。 
 
-此範例會使用[標準的解決方案參數](operations-management-suite-solutions-solution-file.md#parameters)變數，相對於資源定義中的硬式編碼值，這類變數常用於解決方案中。
+hello 範例會使用[標準方案參數](operations-management-suite-solutions-solution-file.md#parameters)通常做為方案中使用變數相對於 toohardcoding hello 資源定義中的值。
 
 
     {
@@ -409,14 +409,14 @@ Runbook 應該相依於模組資源，以確保模組資源會比 Runbook 還早
         "scheduleLinkGuid": {
           "type": "string",
           "metadata": {
-            "description": "GUID for the schedule link to runbook.",
+            "description": "GUID for hello schedule link toorunbook.",
             "control": "guid"
           }
         },
         "runbookJobGuid": {
           "type": "string",
           "metadata": {
-            "description": "GUID for the runbook job.",
+            "description": "GUID for hello runbook job.",
             "control": "guid"
           }
         }
@@ -650,4 +650,4 @@ Runbook 應該相依於模組資源，以確保模組資源會比 Runbook 還早
 
 
 ## <a name="next-steps"></a>後續步驟
-* [將檢視新增至您的解決方案](operations-management-suite-solutions-resources-views.md)，以將所收集的資料視覺化。
+* [將檢視 tooyour 方案](operations-management-suite-solutions-resources-views.md)toovisualize 收集資料。

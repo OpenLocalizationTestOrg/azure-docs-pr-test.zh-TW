@@ -2,13 +2,13 @@
 
 新增名為 `sender.js` 的 JavaScript 檔案。
 
-### <a name="add-the-relay-npm-package"></a>新增轉送 NPM 套件
+### <a name="add-hello-relay-npm-package"></a>新增 hello 轉送 NPM 封裝
 
 在您的專案資料夾中從 Node 命令提示字元執行 `npm install hyco-ws`。
 
-### <a name="write-some-code-to-send-messages"></a>撰寫一些程式碼來傳送訊息
+### <a name="write-some-code-toosend-messages"></a>撰寫一些程式碼 toosend 訊息
 
-1. 將下列 `constants` 新增至 `sender.js` 檔案開頭處。
+1. 新增下列 hello `constants` toohello 頂端 hello`sender.js`檔案。
    
     ```js
     const WebSocket = require('hyco-ws');
@@ -18,14 +18,14 @@
             output: process.stdout
         });;
     ```
-2. 將下列常數新增至 `sender.js` 檔案，以取得混合式連線詳細資料。 將方括號中的預留位置取代為您在建立混合式連線時所取得的值。
+2. 新增下列常數 toohello hello `sender.js` hello 混合式連線詳細資料的檔案。 方括號中的 hello 預留位置取代為 hello 建立 hello 混合式連接時取得的值。
    
-   1. `const ns` - 轉送命名空間。 務必使用完整命名空間名稱；例如，`{namespace}.servicebus.windows.net`。
-   2. `const path` - 混合式連線的名稱。
-   3. `const keyrule` - SAS 金鑰的名稱。
-   4. `const key` - SAS 金鑰值。
+   1. `const ns`-hello 轉送命名空間。 是確定 toouse hello 完整限定的命名空間名稱。例如， `{namespace}.servicebus.windows.net`。
+   2. `const path`-hello hello 混合式連接名稱。
+   3. `const keyrule`-hello hello SAS 金鑰名稱。
+   4. `const key`-hello SAS 金鑰值。
 
-3. 將下列程式碼新增至 `sender.js` 檔案：
+3. 新增下列程式碼 toohello hello`sender.js`檔案：
    
     ```js
     WebSocket.relayedConnect(

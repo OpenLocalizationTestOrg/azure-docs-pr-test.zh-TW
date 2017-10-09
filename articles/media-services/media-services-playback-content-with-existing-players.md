@@ -1,6 +1,6 @@
 ---
-title: "使用現有的撥放器來撥放內容 - Azure | Microsoft Docs"
-description: "本主題列出現有的播放程式，您可以使用來播放您的內容。"
+title: "現有的播放程式 tooplayback 內容-Azure aaaUse |Microsoft 文件"
+description: "本主題列出現有的播放程式，您可以使用 tooplayback 您的內容。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: juliako
-ms.openlocfilehash: 48f373b013b1192c353352b801876d706d91dd28
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 54817345a19a9d3b18f1e7b352c3342043a569b2
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="playing-your-content-with-existing-players"></a>使用現有播放器來播放您的內容
-Azure 媒體服務支援許多熱門的串流格式，例如 Smooth Streaming、HTTP 即時資料流和 MPEG-Dash。 本主題會指引您可用來測試串流的現有播放程式。
+Azure 媒體服務支援許多熱門的串流格式，例如 Smooth Streaming、HTTP 即時資料流和 MPEG-Dash。 本主題會指引您 tooexisting 播放程式，您可以使用 tootest 您的資料流。
 
-### <a name="the-azure-portal-media-services-content-player"></a>Azure 入口網站媒體服務內容播放程式
-**Azure** 入口網站提供內容播放程式，您可用來測試您的視訊。
+### <a name="hello-azure-portal-media-services-content-player"></a>hello Azure 入口網站媒體服務內容播放程式
+hello **Azure**入口網站提供內容的播放程式，您可以使用 tootest 視訊。
 
-按一下想用的視訊 (請確定它 [已發行](media-services-portal-publish.md))，按一下入口網站底部的 [ **播放** ] 按鈕。
+Hello 按一下所需的視訊 (請確定它是[發行](media-services-portal-publish.md)) 按一下 hello**播放**在 hello hello 入口網站底部的按鈕。
 
 適用一些考量事項：
 
-* **媒體服務內容播放程式** 會從預設串流端點播放。 如果您想要從非預設串流端點播放，請使用其他播放程式。 例如， [Azure 媒體播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
+* hello**媒體服務內容播放程式**播放從 hello 預設串流端點。 如果您想 tooplay 從非預設串流端點，請使用其他播放器。 例如， [Azure 媒體播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html)。
 
 ![AMSPlayer][AMSPlayer]
 
 ### <a name="azure-media-player"></a>Azure 媒體播放器
-使用 [Azure 媒體播放器](http://amsplayer.azurewebsites.net/azuremediaplayer.html) 播放以下任一格式的內容 (清除或受保護)：
+使用[Azure Media Player](http://amsplayer.azurewebsites.net/azuremediaplayer.html) tooplayback 內容 （清除或受保護） 中任何 hello 下列格式：
 
 * Smooth Streaming
 * MPEG DASH
@@ -59,13 +59,13 @@ Azure 媒體服務支援許多熱門的串流格式，例如 Smooth Streaming、
 [http://dashif.org](http://dashif.org)
 
 ### <a name="other"></a>其他
-若要測試 HLS URL，您也可以使用：
+tootest HLS Url，您也可以使用：
 
 * **Safari** 或
 * **3ivx HLS 播放器** 。
 
 ## <a name="developing-video-players"></a>開發視訊播放器
-如需瞭解如何自行開發播放程式，請參閱 [開發視訊播放器](media-services-develop-video-players.md)
+如需有關如何 toodevelop 您自己的播放程式，請參閱資訊[開發視訊播放程式](media-services-develop-video-players.md)
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

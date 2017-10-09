@@ -1,6 +1,6 @@
 ---
 title: "適用於 PostgreSQL 的 Azure 資料庫的連線庫 | Microsoft Docs"
-description: "本文描述幾個連線庫和驅動程式，開發人員可以在撰寫應用程式的程式碼，以連線及查詢適用於 PostgreSQL 的 Azure 資料庫時，使用這些連線庫和驅動程式。"
+description: "本文說明幾個程式庫和編碼 PostgreSQL tooconnect 應用程式和查詢 Azure 資料庫時，開發人員可以使用的驅動程式。"
 services: postgresql
 author: SaloniSonpal
 ms.author: salonis
@@ -9,17 +9,17 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 06/15/2017
-ms.openlocfilehash: 1f99ef7fefb1ff9d35f564a1f0ad77c8dd64659e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1f7234499d8abe37f8de9008e3158765b1fb0bde
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="connection-libraries-for-azure-database-for-postgresql"></a>適用於 PostgreSQL 的 Azure 資料庫的連線庫
-本文描述幾個連線庫和驅動程式，開發人員可以在進行應用程式設計，以連線及查詢適用於 PostgreSQL 的 Azure 資料庫時，使用這些連線庫和驅動程式。
+本主題列出程式庫和驅動程式的開發人員用於 PostgreSQL 的程式設計應用程式 tooconnect 和查詢 Azure 資料庫。
 
 ## <a name="client-interfaces"></a>用戶端介面
-大部分連接到 PostgreSQL 伺服器的語言用戶端程式庫都是外部專案，而且是獨立發佈的。 Windows、Linux 和 Mac 平台均支援這些程式庫。 以下列出一些熱門的用戶端驅動程式：
+大部分語言的用戶端程式庫 tooconnect tooPostgreSQL 伺服器外部專案，而且獨立散發。 Windows、Linux 和 Mac 平台均支援這些程式庫。 列出的 hello 熱門的用戶端驅動程式：
 
 | **語言** | **用戶端介面** | **其他資訊** | **下載** |
 |--------------|----------------------------------------------------------------|-------------------------------------|--------------------------------------------------------------------|
@@ -35,6 +35,6 @@ ms.lasthandoff: 08/29/2017
 | C++ | [libpqxx](http://pqxx.org/) | 新樣式的 C++ 介面 | [下載](http://pqxx.org/download/software/) |
 
 ## <a name="next-steps"></a>後續步驟
-請閱讀這些快速入門，了解如何使用您選擇的語言來連線及查詢適用於 PostgreSQL 的 Azure 資料庫：
+閱讀有關這些快速入門 tooconnect 和查詢使用您所選擇的語言 PostgreSQL 資料庫 Azure:
 
 [Python](./connect-python.md) | [Node.JS](./connect-nodejs.md) | [.NET (C#)](./connect-csharp.md)

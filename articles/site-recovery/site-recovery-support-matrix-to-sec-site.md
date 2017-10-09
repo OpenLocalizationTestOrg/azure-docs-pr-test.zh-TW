@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Site Recovery 複寫至次要網站的支援矩陣 | Microsoft Docs"
-description: "摘要說明 Azure Site Recovery 支援的作業系統和元件"
+title: "複寫 tooa 次要站台與 Azure Site Recovery 的 aaaSupport 矩陣 |Microsoft 文件"
+description: "Azure Site Recovery 摘錄 hello 支援的作業系統和元件"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 05/24/2017
 ms.author: raynew
-ms.openlocfilehash: db7ee5251f2e2016081e55ca4b295e284c8b08cf
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0b2bbc86aff52308d5a90a56d7a3ff4286877740
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="support-matrix-for-replication-to-a-secondary-site-with-azure-site-recovery"></a>使用 Azure Site Recovery 複寫至次要網站的支援矩陣
+# <a name="support-matrix-for-replication-tooa-secondary-site-with-azure-site-recovery"></a>複寫 tooa 次要站台與 Azure Site Recovery 的支援矩陣
 
-本文將摘要說明使用 Azure Site Recovery 複寫至次要內部部署網站所支援的項目。
+本文摘要說明當您使用 Azure Site Recovery tooreplicate tooa 內部次要站台所支援。
 
 ## <a name="deployment-options"></a>部署選項
 
 **部署** | **VMware/實體伺服器** | **Hyper-V (含/不含 SCVMM)**
 --- | --- | --- | ---
-**Azure 入口網站** | 內部部署 VMware VM 至次要 VMware 網站。<br/><br/> 下載 [InMage Scout 使用者指南](http://download.microsoft.com/download/E/0/8/E08B3BCE-3631-4CED-8E65-E3E7D252D06D/InMage_Scout_Standard_User_Guide_8.0.1.pdf) (Azure 入口網站不提供)。 | VMM 雲端中的內部部署 Hyper-V VM 至次要 VMM 雲端。<br></br> 不支援沒有 VMM 的情況  <br/><br/> 僅限標準 Hyper-V 複寫。 不支援 SAN。
+**Azure 入口網站** | 在內部部署 VMware Vm toosecondary VMware 站台。<br/><br/> 下載 hello [InMage Scout 使用者指南](http://download.microsoft.com/download/E/0/8/E08B3BCE-3631-4CED-8E65-E3E7D252D06D/InMage_Scout_Standard_User_Guide_8.0.1.pdf)（不適用於 hello Azure 入口網站）。 | 在內部部署 VMM 雲端 tooa 次要 VMM 雲端中 HYPER-V Vm。<br></br> 不支援沒有 VMM 的情況  <br/><br/> 僅限標準 Hyper-V 複寫。 不支援 SAN。
 **傳統入口網站** | 僅限使用維護模式。 無法建立新的保存庫。 | 僅限使用維護模式<br></br> 不支援沒有 SCVMM 的情況
 **PowerShell** | 不支援 | 支援<br></br> 不支援沒有 SCVMM 的情況
 
@@ -49,20 +49,20 @@ ms.lasthandoff: 07/11/2017
 **部署** | **支援**
 --- | ---
 **VMware VM/實體伺服器** | vCenter 5.5 或 6.0 (僅支援 5.5 功能)
-**Hyper-V (無 VMM)** | 不是複寫至次要網站所支援的設定
-**Hyper-V (含 VMM)** | 具有最新更新的 Windows Server 2016 和 Windows Server 2012 R2。<br/><br/> Windows Server 2016 主機應由 VMM 2016 所管理。
+**Hyper-V (無 VMM)** | 不支援的組態來複寫 tooa 次要站台
+**Hyper-V (含 VMM)** | Windows Server 2016 和 Windows Server 2012 R2 與 hello 最新的更新。<br/><br/> Windows Server 2016 主機應由 VMM 2016 所管理。
 
 ## <a name="support-for-replicated-machine-os-versions"></a>支援多種複寫機器作業系統版本
-下表摘要說明使用 Azure Site Recovery 時所遇到各種部署案例中的作業系統支援。 這項支援適用於在上述 OS 中執行的任何工作負載。
+hello 下表摘要說明在使用 Azure Site Recovery 時遇到的各種部署案例中的作業系統支援。 這項支援是適用 hello 上執行任何工作負載所述的作業系統。
 
 **VMware/實體伺服器** | **Hyper-V (含 VMM)**
 --- | --- | ---
-64 位元的 Windows Server 2012 R2、Windows Server 2012、Windows Server 2008 R2 (至少含 SP1)<br/><br/> Red Hat Enterprise Linux 6.7、7.1、7.2 <br/><br/> CentOS 6.5、6.6、6.7、7.0、7.1、7.2 <br/><br/> Oracle Enterprise Linux 6.4 或 6.5，執行 Red Hat 相容核心或 Unbreakable Enterprise Kernel 第 3 版 (UEK3) <br/><br/> SUSE Linux Enterprise Server 11 SP3 | [Hyper-V 所支援的](https://technet.microsoft.com/library/mt126277.aspx)任何一種客體作業系統
+64 位元的 Windows Server 2012 R2、Windows Server 2012、Windows Server 2008 R2 (至少含 SP1)<br/><br/> Red Hat Enterprise Linux 6.7、7.1、7.2 <br/><br/> CentOS 6.5、6.6、6.7、7.0、7.1、7.2 <br/><br/> 6.4 或 6.5 hello Red Hat 相容核心或以企業核心的第 3 版 (UEK3) 執行 oracle Enterprise Linux <br/><br/> SUSE Linux Enterprise Server 11 SP3 | [Hyper-V 所支援的](https://technet.microsoft.com/library/mt126277.aspx)任何一種客體作業系統
 
 >[!Note]
->只有具有下列儲存體的 Linux 機器可以複寫：檔案系統 (EXT3、ETX4、ReiserFS、XFS)；多重路徑軟體裝置對應工具；磁碟區管理員 (LVM2)。
+>只有 Linux 機器，以下列儲存體的 hello 可複寫： 檔案系統 （EXT3、 ETX4、 ReiserFS、 XFS）;多重路徑軟體裝置對應工具。大量管理員 (LVM2)。
 >不支援使用 HP CCISS 控制站儲存體的實體伺服器。
->只有在 SUSE Linux Enterprise Server 11 SP3 上才支援 ReiserFS 檔案系統。
+>只有在 SUSE Linux Enterprise Server 11 SP3 上支援 hello ReiserFS 檔案系統。
 
 ## <a name="network-configuration"></a>網路組態
 
@@ -103,7 +103,7 @@ SAN (ISCSI) | 是 | 是
 **組態** | **VMware/實體伺服器** | **Hyper-V (含 VMM)**
 --- | --- | ---
 VMDK | 是 | N/A
-VHD/VHDX | N/A | 是 (最多 16 個磁碟)
+VHD/VHDX | N/A | 是 （向上 too16 磁碟）
 第 2 代 VM | N/A | 是
 共用叢集磁碟 | 是  | 否
 已加密磁碟 | 否 | 否
@@ -130,10 +130,10 @@ RDM | 是 | N/A
 **名稱** | **說明** | **最新版本** | **詳細資料**
 --- | --- | --- | --- | ---
 **Azure Site Recovery 提供者** | 協調內部部署伺服器與 Azure 之間的通訊 <br/><br/> 安裝於內部部署 VMM 伺服器上，或 Hyper-V 伺服器上 (若沒有 VMM 伺服器) | 5.1.19 ([可從入口網站取得](http://aka.ms/downloaddra)) | [最新功能和修正](https://support.microsoft.com/kb/3155002)
-**行動服務** | 協調內部部署 VMware 伺服器或實體伺服器和次要網站之間的複寫<br/><br/> 安裝於 VMware VM 上或您想要複寫的實體伺服器上  | N/A (可從入口網站取得) | N/A
+**行動服務** | 在內部部署 VMware server 或實體伺服器，且與 hello 次要站台之間複寫協調<br/><br/> VMware VM 或您想 tooreplicate 的實體伺服器上安裝  | N/A (可從入口網站取得) | N/A
 
 
 ## <a name="next-steps"></a>後續步驟
 
-- [將 VMM 雲端中的 Hyper-V VM 複寫至次要網站](site-recovery-vmm-to-vmm.md)
-- [將 VMware VM 和實體伺服器複寫至次要網站](site-recovery-vmware-to-vmware.md)
+- [複寫 VMM 雲端 tooa 次要站台中的 HYPER-V Vm](site-recovery-vmm-to-vmm.md)
+- [VMware Vm 和實體伺服器 tooa 次要站台複寫](site-recovery-vmware-to-vmware.md)

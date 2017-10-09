@@ -1,15 +1,15 @@
 ## <a name="load-balancer"></a>負載平衡器
-當您想要調整應用程式時，會使用負載平衡器。 典型部署案例包含在多個 VM 執行個體上執行的應用程式。 VM 執行個體受到負載平衡器保護，以協助將網路流量散發到各種執行個體。 
+當您想 tooscale 應用程式時，會使用負載平衡器。 典型部署案例包含在多個 VM 執行個體上執行的應用程式。 hello VM 執行個體被 fronted 負載平衡器，可協助 toodistribute 網路流量 toohello 不同執行個體。 
 
 ![單一 VM 上的 NIC](./media/resource-groups-networking/figure8.png)
 
 | 屬性 | 說明 |
 | --- | --- |
-| *frontendIPConfigurations* |負載平衡器可以包括一個或多個前端 IP 位址 (亦稱為虛擬 IP (VIP))。 這些 IP 位址做為流量的輸入，可以是公用 IP 或私人 IP。 |
-| *backendAddressPools* |這些是與 VM NIC 相關聯的 IP 位址，而負載會散發到 VM NIC |
-| *loadBalancingRules* |規則屬性會將指定的前端 IP 與連接埠組合對應到一組後端 IP 位址與連接埠組合。 使用負載平衡器資源的單一定義，您可以定義多個負載平衡規則，而每個規則都會反映與虛擬機器相關聯的前端 IP 與連接埠以及後端 IP 與連接埠組合。 此規則為前端集區中的一個連接埠對應到後端集區中的多部虛擬機器 |
-| *探查* |探查可讓您追蹤 VM 執行個體的健全狀況。 如果健全狀況探查失敗，則虛擬機器執行個體不會自動進入輪替 |
-| *inboundNatRules* |定義流經前端 IP 並散發到特定虛擬機器執行個體之後端 IP 之輸入流量的 NAT 規則。 NAT 規則為前端集區中的一個連接埠對應到後端集區中的一部虛擬機器 |
+| *frontendIPConfigurations* |負載平衡器可以包括一個或多個前端 IP 位址 (亦稱為虛擬 IP (VIP))。 這些 IP 位址做為輸入 hello 流量，而且可以是公用 IP 或私人 IP |
+| *backendAddressPools* |這些是與 hello VM Nic toowhich 負載會分散到相關聯的 IP 位址 |
+| *loadBalancingRules* |規則屬性對應指定的前端 IP 和連接埠組合 tooa 組的後端 IP 位址和連接埠組合。 使用負載平衡器資源的單一定義，您可以定義多個負載平衡規則，而每個規則都會反映與虛擬機器相關聯的前端 IP 與連接埠以及後端 IP 與連接埠組合。 hello 規則是 hello 前端集區 toomany 在虛擬機器中 hello 後端集區中的一個連接埠 |
+| *探查* |探查可讓您追蹤 tookeep hello 的 VM 執行個體的健全狀況。 Hello 虛擬機器執行個體如果健全狀況探查失敗，會自動帶離輪替 |
+| *inboundNatRules* |NAT 規則定義 hello 輸入流量流經 hello 前端 IP 和分散式 toohello 後端 IP tooa 特定虛擬機器執行個體。 NAT 規則是 hello 前端集區 tooone 虛擬機器中 hello 後端集區中的一個連接埠 |
 
 Json 格式的負載平衡器範本範例：
 
@@ -33,7 +33,7 @@ Json 格式的負載平衡器範本範例：
             "Southeast Asia"
           ],
           "metadata": {
-            "description": "Location to deploy"
+            "description": "Location toodeploy"
           }
         },
         "addressPrefix": {

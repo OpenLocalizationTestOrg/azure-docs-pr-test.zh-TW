@@ -1,6 +1,6 @@
 ---
-title: "如何使用 Power BI Embedded 搭配 REST | Microsoft Docs"
-description: "了解如何使用 Power BI Embedded 搭配 REST  "
+title: "Power BI Embedded 與其餘 aaaHow toouse |Microsoft 文件"
+description: "深入了解如何 toouse Power BI Embedded 與其餘部分 "
 services: power-bi-embedded
 documentationcenter: 
 author: guyinacube
@@ -15,55 +15,55 @@ ms.tgt_pltfrm: NA
 ms.workload: powerbi
 ms.date: 02/06/2017
 ms.author: asaxton
-ms.openlocfilehash: 31624b9d15772a4f08cf013ac713b3aa636acfca
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 98057724e60ba868f9c93de8c50383569eb8852d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-power-bi-embedded-with-rest"></a>如何使用 Power BI Embedded 搭配 REST
+# <a name="how-toouse-power-bi-embedded-with-rest"></a>如何 toouse Power BI Embedded 與其餘部分
 
 ## <a name="power-bi-embedded-what-it-is-and-what-its-for"></a>Power BI Embedded：了解功能與用途
 
-在官方的 [Power BI Embedded 網站](https://azure.microsoft.com/services/power-bi-embedded/)中已說明 Power BI Embedded 的概觀，但在深入了解使用它來搭配 REST 的詳細資料之前，讓我們先快速了解一下。
+Power BI Embedded 概觀述 hello 官方[Power BI Embedded 網站](https://azure.microsoft.com/services/power-bi-embedded/)，但得到 hello 詳細說明使用 REST 之前，讓我們快速瀏覽。
 
-這其實很簡單。 您可能想在自己的應用程式中使用 [Power BI](https://powerbi.microsoft.com) 的動態資料視覺效果。
+這其實很簡單。 您可能會想 toouse hello 動態資料視覺效果的[Power BI](https://powerbi.microsoft.com)自己的應用程式中。
 
-大部分的自訂應用程式需要為它們的客戶傳遞資料，那些客戶不一定是它們本身組織內的使用者。 例如，如果您要同時為公司 A 和 公司 B 提供某些服務，公司 A 中的使用者應該只會看到他們公司 A 本身的資料。也就是需要透過多重租用來傳遞。
+大部分的自訂應用程式需要 toodeliver hello 資料他們自己的客戶，不一定是自己的組織中的使用者。 比方說，如果您提供服務給公司 A 和 B 公司，公司 A 中的使用者只能看到資料為自己的公司 a。也就是說，hello 多租用戶所需的 hello 傳遞。
 
-自訂應用程式也可以提供自己的驗證方法，例如表單驗證、基本驗證等等。 接著，內嵌解決方案必須與現有的驗證方法安全地共同作業。 同時，使用者也必須可以使用那些 ISV 應用程式，而不需要另外購買 Power BI 訂用帳戶或授權。
+hello 自訂應用程式可能也提供它自己的驗證方法，例如表單驗證、 基本驗證等等... 然後，hello 內嵌方案必須共同作業以這個現有的驗證方法安全地。 它也是必要的使用者 toobe 無法 toouse 的 ISV 應用程式不含 hello 額外採購或授權的 Power BI 訂用帳戶。
 
- **Power BI Embedded** 正是針對這類案例所設計。 我們現在已經完成快速介紹，接著就讓我們深入了解一些詳細資料
+ **Power BI Embedded** 正是針對這類案例所設計。 因此，現在，我們已經超出 hello 方式的快速簡介，讓我們先進入部分詳細資料
 
-您可以使用 .NET \(C#) 或 Node.js SDK 來輕鬆建立含有 Power BI Embedded 的應用程式。 但是，在本文中，我們將不使用 SDK 來說明關於 Power BI 的 HTTP 流程 \(incl. AuthN)。 了解這個流程，您就可以 **使用任何程式設計語言**建置應用程式，並深入了解 Power BI Embedded 的本質。
+您可以使用 hello.NET \(C#) 或 Node.js SDK，tooeasily 建置使用 Power BI Embedded 應用程式。 但是，在本文中，我們將不使用 SDK 來說明關於 Power BI 的 HTTP 流程 \(incl. AuthN)。 了解此流程，您可以建置應用程式**與程式設計語言**，而且您可以了解太深的 Power BI Embedded 的 hello 本質。
 
 ## <a name="create-power-bi-workspace-collection-and-get-access-key-provisioning"></a>建立 Power BI 工作區集合，並取得存取金鑰 \(佈建)
 
-Power BI Embedded 是其中一項 Azure 服務。 只有使用 Azure 入口網站的 ISV 要支付使用費 \(依據每小時的使用者工作階段計費)，檢視報表的使用者則不需要收費，甚至不需要 Azure 訂用帳戶。
-在開始開發我們的應用程式之前，我們必須使用 Azure 入口網站建立 **Power BI 工作區集合** 。
+Power BI Embedded 是其中一個 hello Azure 服務。 只有 hello ISV 會使用 Azure 入口網站則需支付使用費\(每個小時使用者工作階段)，而且檢視 hello 報表不充電或甚至 hello 使用者需要 Azure 訂用帳戶。
+開始之前我們的應用程式開發，我們必須建立 hello **Power BI 工作區集合**透過 Azure 入口網站。
 
-每個 Power BI Embedded 的工作區是各客戶 (租用戶) 的工作區，我們可以在每個工作區集合中新增多個工作區。 每個工作區集合會使用相同的存取金鑰。 實際上，工作區集合是 Power BI Embedded 的安全性界限。
+每個工作區的 Power BI Embedded hello 工作區中的每個客戶 （租用戶），但我們可以加入多個工作區中的每個工作區集合。 相同的存取金鑰會用在每個工作區集合中的 hello。 事實上，hello 工作區集合是 Power BI Embedded hello 安全性界限。
 
 ![](media/power-bi-embedded-iframe/create-workspace.png)
 
-當我們完成建立工作區集合後，請從 Azure 入口網站複製存取金鑰。
+當我們完成建立 hello 工作區的集合時，請從 Azure 入口網站複製 hello 存取金鑰。
 
 ![](media/power-bi-embedded-iframe/copy-access-key.png)
 
 > [!NOTE]
-> 我們也可以佈建工作區集合，然後透過 REST API 取得存取金鑰。 若要深入了解，請參閱 [Power BI Resource Provider APIs (Power BI 資源提供者 API)](https://msdn.microsoft.com/library/azure/mt712306.aspx)。
+> 我們也可以佈建 hello 工作區集合中並取得透過 REST API 的存取金鑰。 詳細資訊，請參閱 toolearn [Power BI 資源提供者 Api](https://msdn.microsoft.com/library/azure/mt712306.aspx)。
 
 ## <a name="create-pbix-file-with-power-bi-desktop"></a>使用 Power BI Desktop 建立 .pbix 檔案
 
-接下來，我們必須建立資料連接與要內嵌的報表。
+接下來，我們必須建立 hello 資料連接和內嵌報表 toobe。
 此工作中沒有任何程式設計或程式碼。 我們只使用 Power BI Desktop。
-在本文中，我們不會探討如何使用 Power BI Desktop。 如果您在此處需要一些說明，請參閱 [開始使用 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-getting-started/)。 在我們的範例中，我們只使用 [零售分析範例](https://powerbi.microsoft.com/documentation/powerbi-sample-datasets/)。
+在本文中，我們將不會經歷 hello 詳細瞭解 toouse Power BI Desktop。 如果您在此處需要一些說明，請參閱 [開始使用 Power BI Desktop](https://powerbi.microsoft.com/documentation/powerbi-desktop-getting-started/)。 此範例中，我們將只使用 hello[零售分析範例](https://powerbi.microsoft.com/documentation/powerbi-sample-datasets/)。
 
 ![](media/power-bi-embedded-iframe/power-bi-desktop-1.png)
 
 ## <a name="create-a-power-bi-workspace"></a>建立 Power BI 工作區
 
-現在已經完成所有的佈建，我們可以透過 REST API 開始在工作區集合中建立客戶的工作區。 下列 HTTP POST 要求 (REST) 會在我們現有的工作區集合中建立新的工作區。 這是 [POST 工作區 API](https://msdn.microsoft.com/library/azure/mt711503.aspx)。 在本範例中，工作區集合名稱是 **mypbiapp**。 我們只要將先前複製的存取金鑰設定為 **AppKey**。 這是非常簡單的驗證！
+既然 hello 佈建所有完成，讓我們開始吧 hello 透過 REST Api 的 工作區集合中建立客戶的工作區。 hello 下列 HTTP POST 要求 (REST) 建立 hello 新的工作區中現有工作區集合。 這是 hello [POST 工作區 API](https://msdn.microsoft.com/library/azure/mt711503.aspx)。 在本例中，為 hello 工作區集合名稱**mypbiapp**。 我們只設定 hello 存取金鑰，我們先前複製為**AppKey**。 這是非常簡單的驗證！
 
 **HTTP 要求**
 
@@ -87,13 +87,13 @@ RequestId: 4220d385-2fb3-406b-8901-4ebe11a5f6da
 }
 ```
 
-傳回的 **workspaceId** 會用於後續的 API 呼叫。 我們的應用程式必須保留這個值。
+傳回的 hello**工作區識別碼**用於 hello 遵循後續的 API 呼叫。 我們的應用程式必須保留這個值。
 
-## <a name="import-pbix-file-into-the-workspace"></a>將 .pbix 檔案匯入工作區
+## <a name="import-pbix-file-into-hello-workspace"></a>.Pbix 檔案匯入至 hello 工作區
 
-工作區中的每個報表都會對應到單一 Power BI Desktop 檔案，其中含有資料集 \(包括資料來源設定)。 我們可以將我們的 .pbix 檔案匯入工作區，如下列程式碼所示。 如您所見，我們可以使用 http 中的 MIME multipart 上傳 .pbix 檔案的二進位檔。
+每個工作區中的報表對應 tooa 單一 Power BI Desktop 檔案與資料集\(包括資料來源的設定)。 我們可以匯入我們.pbix 檔案 toohello 工作區中 hello 的下列程式碼所示。 您可以看到，我們可以上傳.pbix 檔案，使用 http 以 MIME 多組件的 hello 二進位檔。
 
-Uri 片段 **32960a09-6366-4208-a8bb-9e0678cdbb9d** 是工作區識別碼，而查詢參數 **datasetDisplayName** 是要建立的資料集名稱。 建立的資料集會保存 .pbix 檔案中所有和資料相關的成品，例如匯入的資料、資料來源的指標等等。
+hello uri 片段**32960a09-6366-4208-a8bb-9e0678cdbb9d** hello 工作區識別碼，和查詢參數**datasetDisplayName**是 hello 資料集名稱 toocreate。 hello 建立資料集保存所有相關資料匯入資料，例如.pbix 檔案中的成品 hello 指標 toohello 資料來源等等...
 
 ```
 POST https://api.powerbi.com/v1.0/collections/mypbiapp/workspaces/32960a09-6366-4208-a8bb-9e0678cdbb9d/imports?datasetDisplayName=mydataset01
@@ -103,11 +103,11 @@ Content-Type: multipart/form-data; boundary="A300testx"
 --A300testx
 Content-Disposition: form-data
 
-{the content (binary) of .pbix file}
+{hello content (binary) of .pbix file}
 --A300testx--
 ```
 
-此匯入工作可能會執行一段時間。 完成時，我們的應用程式可以使用匯入識別碼要求工作狀態。 在本範例中，匯入識別碼是 **4eec64dd-533b-47c3-a72c-6508ad854659**。
+此匯入工作可能會執行一段時間。 完成時，我們的應用程式可以要求使用匯入識別碼 hello 工作狀態。在此範例中，hello 匯入 id 是**4eec64dd-533b-47c3-a72c-6508ad854659**。
 
 ```
 HTTP/1.1 202 Accepted
@@ -118,14 +118,14 @@ RequestId: 658bd6b4-b68d-4ec3-8818-2a94266dc220
 {"id":"4eec64dd-533b-47c3-a72c-6508ad854659"}
 ```
 
-以下是使用此匯入識別碼要求狀態：
+hello 下列要求使用此匯入識別碼的狀態：
 
 ```
 GET https://api.powerbi.com/v1.0/collections/mypbiapp/workspaces/32960a09-6366-4208-a8bb-9e0678cdbb9d/imports/4eec64dd-533b-47c3-a72c-6508ad854659
 Authorization: AppKey MpaUgrTv5e...
 ```
 
-如果工作未完成，則 HTTP 回應可能像這樣：
+如果 hello 工作未完成，HTTP 回應 hello 可能像這樣：
 
 ```
 HTTP/1.1 200 OK
@@ -141,7 +141,7 @@ RequestId: 614a13a5-4de7-43e8-83c9-9cd225535136
 }
 ```
 
-如果工作已完成，則 HTTP 回應比較可能像這樣：
+如果 hello 工作已完成，HTTP 回應 hello 可能類似這樣：
 
 ```
 HTTP/1.1 200 OK
@@ -176,9 +176,9 @@ RequestId: eb2c5a85-4d7d-4cc2-b0aa-0bafee4b1606
 
 ## <a name="data-source-connectivity-and-multi-tenancy-of-data"></a>資料來源連線 \(以及資料的多重租用)
 
-即使幾乎 .pbix 檔案中的所有成品都會匯入到我們的工作區，但不會包含資料來源的認證。 如此一來，當使用 [DirectQuery 模式] 時，內嵌的報表會無法正確顯示。 但是，當使用 [匯入模式] 時，我們可以使用現有的匯入資料檢視報表。 在這種情況下，我們必須使用下列步驟，透過 REST 呼叫來設定認證。
+幾乎所有的.pbix 檔案中的 hello 成品匯入至我們的工作區中，資料來源的 hello 認證並不是。 如此一來，當使用**DirectQuery 模式**，hello 內嵌的報表無法顯示正確。 但是，當使用**匯入模式**，我們可以檢視 hello 報表使用 hello 現有的匯入的資料。 在這種情況下，我們必須設定使用下列步驟透過 REST 呼叫的 hello hello 認證。
 
-首先，我們必須取得閘道器資料來源。 我們知道資料集 **id** 是先前傳回的識別碼。
+首先，我們必須取得 hello 閘道資料來源。 我們知道 hello 資料集**識別碼**hello 先前傳回識別碼。
 
 **HTTP 要求**
 
@@ -207,7 +207,7 @@ RequestId: 574b0b18-a6fa-46a6-826c-e65840cf6e15
 }
 ```
 
-使用傳回的閘道器識別碼和資料來源識別碼 \(請參閱之前的 **gatewayId** 和所傳回結果的 **id**)，我們可以變更這個資料來源的認證，如下所示：
+使用 hello 傳回閘道識別碼和資料來源識別碼\(請參閱先前的 hello **gatewayId**和**識別碼**hello 中傳回的結果)，我們可以變更這個資料來源的 hello 認證，如下所示：
 
 **HTTP 要求**
 
@@ -233,9 +233,9 @@ Content-Type: application/octet-stream
 RequestId: 0e533c13-266a-4a9d-8718-fdad90391099
 ```
 
-在生產環境中，我們也可以使用 REST API 針對每個工作區設定不同的連接字串。 \(也就是可以針對每個客戶分隔資料庫。)
+在生產環境中，我們也可以設定每個工作區中使用 REST API 的 hello 不同的連接字串。 \(亦即，我們可以區隔 hello 資料庫的每個客戶。）
 
-接著透過 REST 來變更資料來源的連接字串。
+hello 下列變更 hello 透過 REST 的資料來源的連接字串。
 
 ```
 POST https://api.powerbi.com/v1.0/collections/mypbiapp/workspaces/32960a09-6366-4208-a8bb-9e0678cdbb9d/datasets/458e0451-7215-4029-80b3-9627bf3417b0/Default.SetAllConnections
@@ -247,25 +247,25 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-或者，我們可以使用 Power BI Embedded 中的「資料列層級安全性」，並且可以在單一報表中為每位使用者分隔資料。 如此一來，我們就可以使用同一個 .pbix \(UI 等等) 和不同的資料來源，來佈建每個客戶報表。
+或者，我們可以使用資料列層級安全性，在 Power BI Embedded，而且可以區隔每個使用者在報表中的 hello 資料。 如此一來，我們就可以使用同一個 .pbix \(UI 等等) 和不同的資料來源，來佈建每個客戶報表。
 
 > [!NOTE]
-> 如果您使用 [匯入模式] 而不是 [DirectQuery 模式]，則無法透過 API 重新整理模型。 而且，Power BI Embedded 尚未支援透過 Power BI 閘道器內部部署資料來源。 不過，建議您持續留意 [Power BI 部落格](https://powerbi.microsoft.com/blog/) ，以了解最新消息和未來版本中將推出的新功能。
+> 如果您使用**匯入模式**而不是**DirectQuery 模式**，不沒有應用程式開發介面透過任何方式 toorefresh 模型。 而且，Power BI Embedded 尚未支援透過 Power BI 閘道器內部部署資料來源。 不過，您會真的想 tookeep 落在 hello [Power BI 部落格](https://powerbi.microsoft.com/blog/)針對最新消息未來在未來發行版本。
 
 ## <a name="authentication-and-hosting-embedding-reports-in-our-web-page"></a>在我們的網頁中驗證和裝載 (內嵌) 報表
 
-在先前的 REST API 中，我們可以使用存取金鑰 **AppKey** 本身作為授權標頭。 因為這類呼叫可以在後端伺服器端處理，因此非常安全。
+在 hello 先前的 REST API，我們可以使用 hello 便捷鍵**AppKey**本身做為 hello 授權標頭。 這些呼叫可以 hello 後端伺服器端處理，因為它是安全的。
 
-不過，當我們在網頁中內嵌報表時，會使用 JavaScript \(前端) 來處理這類安全性資訊。 接著必須保護授權標頭值。 如果我們的存取金鑰被惡意使用者或惡意程式碼發現，他們就可以使用這個金鑰呼叫任何作業。
+但是，當我們在我們的網頁中內嵌 hello 報表時，會使用 JavaScript 處理這類安全性資訊\(前端)。 然後您必須保護 hello 授權標頭值。 如果我們的存取金鑰被惡意使用者或惡意程式碼發現，他們就可以使用這個金鑰呼叫任何作業。
 
-當我們在網頁中內嵌報表時，我們必須改用已處理的權杖，而不使用存取金鑰 **AppKey**。 我們的應用程式必須建立 OAuth Json Web 權杖 \(JWT)，這是由宣告和已處理的數位簽章所組成。 這個 OAuth JWT 是使用點分隔符號編碼的字串權杖，如下圖所示。
+當我們在我們的網頁中內嵌 hello 報表時，我們必須使用 hello 計算語彙基元，而不是存取金鑰**AppKey**。 我們的應用程式必須建立 hello OAuth Json Web 權杖\(JWT) 所組成 hello 宣告與 hello 計算數位簽章。 這個 OAuth JWT 是使用點分隔符號編碼的字串權杖，如下圖所示。
 
 ![](media/power-bi-embedded-iframe/oauth-jwt.png)
 
-首先，我們必須準備輸入值，稍後會簽署這個值。 這個值是下列 json 的 base64 url 編碼 (rfc4648) 字串，以點 \(dot) 字元分隔。 稍後，我們會說明如何取得報表識別碼。
+首先，我們必須準備 hello 輸入的值，稍後再簽署。 此值為 hello base64 url 編碼 (rfc4648) 字串的 hello 下列 json，且這些由 hello 點分隔\(。) 字元。 更新版本中，我們將說明如何 tooget hello 報表識別碼。
 
 > [!NOTE]
-> 如果我們想要使用 Power BI Embedded 的資料列層級安全性 (RLS)，則我們在宣告中也必須指定 **username** 和 **roles**。
+> 如果我們想 toouse 資料列層級安全性 (RLS) 與 Power BI Embedded，我們也必須指定**username**和**角色**hello 宣告中。
 
 ```
 {
@@ -287,9 +287,9 @@ Content-Type: application/json; charset=utf-8
 }
 ```
 
-接下來，我們必須使用 SHA 256 演算法建立 HMAC \(簽章) 的 base64 編碼字串。 這個經過簽署的輸入值是之前的字串。
+接下來，我們必須建立 hello base64 編碼字串的 HMAC \(hello 簽章) 使用 SHA256 演算法。 此帶正負號的輸入的值為 hello 先前的字串。
 
-最後，我們必須使用句號 \(.) 字元結合輸入值和簽章字串。 完整的字串是用於內嵌報表的應用程式權杖。 即使應用程式權杖被惡意使用者發現，他們也無法取得原始的存取金鑰。 此應用程式權杖很快就會到期。
+最後，我們就必須合併 hello 輸入的值和簽章字串的使用期限\(。) 字元。 已完成的 hello 字串是 hello hello 報表內嵌的應用程式語彙基元。 即使 hello 應用程式的權杖探索到的惡意使用者，他們無法取得 hello 原始的存取金鑰。 此應用程式權杖很快就會到期。
 
 以下是這些步驟的 PHP 範例：
 
@@ -324,7 +324,7 @@ $hash = hash_hmac("sha256",
     true);
 $sig = rfc4648_base64_encode($hash);
 
-// 4. show result (which is the apptoken)
+// 4. show result (which is hello apptoken)
 $apptoken = $inputval . "." . $sig;
 echo($apptoken);
 
@@ -340,9 +340,9 @@ function rfc4648_base64_encode($arg) {
 ?>
 ```
 
-## <a name="finally-embed-the-report-into-the-web-page"></a>最後，將報表內嵌到網頁
+## <a name="finally-embed-hello-report-into-hello-web-page"></a>最後，hello 報表內嵌到 hello web 網頁
 
-如需內嵌我們的報表，我們必須使用下列 REST API 取得內嵌 URL 和報表 **id** 。
+針對內嵌報表，我們必須取得 hello 內嵌 url 和報表**識別碼**使用下列 REST API 的 hello。
 
 **HTTP 要求**
 
@@ -372,11 +372,11 @@ RequestId: d4099022-405b-49d3-b3b7-3c60cf675958
 }
 ```
 
-我們可以使用之前的應用程式權杖在 Web 應用程式中內嵌報表。
-如果我們查看下一個範例程式碼，會發現前半部與之前的範例相同。 在後半部中，這個範例會在 iframe 中顯示 **embedUrl** \(請參閱之前的結果)，並將應用程式權杖張貼到 iframe 中。
+我們使用 hello 先前的應用程式權杖的 web 應用程式中，我們可以內嵌 hello 報表。
+如果看一下 hello 下一個範例程式碼，hello 先前部分是 hello 與 hello 前一個範例相同。 在 hello 第二個部分中，這個範例會顯示 hello **embedUrl** \(請參閱上述結果中 hello) 在 hello iframe，並張貼到 hello iframe hello 應用程式權杖。
 
 > [!NOTE]
-> 您必須將報表識別碼值變更為您擁有的其中一個。 此外，由於我們內容管理系統中的錯誤，程式碼範例中的 iframe 標籤會照字面讀出。 如果您將這個範例程式碼複製並貼上，請移除標籤中的大寫文字。
+> 您將需要 toochange hello 報表識別碼值 tooone 您自己。 此外，因為在我們的內容管理系統 tooa bug，hello iframe hello 程式碼範例中讀取標記時常值。 如果您複製並貼上此範例程式碼，則請移除 hello 標記上限的 hello 文字。
 
 ```
     <?php
@@ -460,10 +460,10 @@ RequestId: d4099022-405b-49d3-b3b7-3c60cf675958
 
 ![](media/power-bi-embedded-iframe/view-report.png)
 
-此時，Power BI Embedded 僅會在 iframe 中顯示報表。 但是，請持續關注 [Power BI 部落格](https://powerbi.microsoft.com/blog/)。 未來的增強功能可能使用新的用戶端 API，讓我們可以傳送資訊到 iframe 以及取出資訊。 令人興奮吧！
+在這個階段中，Power BI Embedded 只會顯示 hello 報表 hello iframe 中。 但是，請注意 hello [Power BI 部落格](https://powerbi.microsoft.com/blog/)。 未來的改良功能無法使用新的用戶端應用程式開發介面，將會讓我們傳送資訊到 hello iframe，以及取得資訊。令人興奮吧！
 
 ## <a name="see-also"></a>另請參閱
 * [在 Power BI Embedded 中驗證和授權](power-bi-embedded-app-token-flow.md)
 
-有其他疑問？ [試用 Power BI 社群](http://community.powerbi.com/)
+有其他疑問？ [再試一次 hello Power BI 社群](http://community.powerbi.com/)
 

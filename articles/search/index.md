@@ -1,6 +1,6 @@
 ---
-title: "Azure 搜尋服務文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何將強大的搜尋功能 (包括活動監視) 新增至自訂 Web 或行動應用程式。 API 參考和其他文件。"
+title: "aaaAzure 搜尋文件-教學課程中，API 參考 |Microsoft 文件"
+description: "了解如何 tooadd 強固搜尋功能，包括 活動監控、 toocustom web 或行動應用程式。 API 參考和其他文件。"
 services: search
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 7fffe78bebd6799cad544c12c20eb1926975a68f
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2ef61d7bf68e94c4429ba1b13709ee9b31093b71
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-search-documentation"></a>Azure 搜尋服務文件
 
-了解如何使用 Azure 搜尋服務 (受管理的雲端搜尋服務)，將搜尋功能新增至自訂 Web 或行動應用程式。 文件、API 參考和其他文件會示範如何新增涵蓋多語言的可調整全文搜尋、地區搜尋、篩選及多面向導覽、輸入查詢、命中結果醒目提示及自訂分析器。
+了解如何 tooadd 搜尋功能 tooyour 自訂 web 或行動裝置應用程式使用 Azure 搜尋中，受管理的雲端搜尋服務。 教學課程、 應用程式開發介面參考和其他文件告訴您如何 tooadd 可擴充全文檢索搜尋多個語言、 地理空間搜尋、 篩選和多面向導覽、 自動輸入查詢，透過叫用反白顯示，並且自訂分析器。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -70,7 +70,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>使用 Azure 入口網站開始使用 Azure 搜尋服務</h3>
+                        <h3>開始使用 Azure 搜尋使用 hello Azure 入口網站</h3>
                     </div>
                 </div>
             </div>

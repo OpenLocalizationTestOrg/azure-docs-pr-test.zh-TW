@@ -1,5 +1,5 @@
 ---
-title: "保護 SQL 資料倉儲中的資料庫 | Microsoft Docs"
+title: "aaaSecure SQL 資料倉儲中的資料庫 |Microsoft 文件"
 description: "保護 Azure SQL 資料倉儲中的資料庫以便開發解決方案的秘訣。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: 6ea45c40bc428282faf24b4a08f8b0d345adb3fd
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 5ef4d760e00be46bfe7808bc95dbe1e4b3a51165
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="secure-a-database-in-sql-data-warehouse"></a>保護 SQL 資料倉儲中的資料庫
 > [!div class="op_single_selector"]
@@ -30,72 +30,72 @@ ms.lasthandoff: 07/11/2017
 > 
 > 
 
-本文逐步解說保護 Azure SQL 資料倉儲資料庫的基本概念。 本文尤其著重於協助您開始利用資源，在資料庫上限制存取、保護資料，以及監視活動。
+本文逐步 hello 的保護您的 Azure SQL 資料倉儲資料庫的基本概念。 本文尤其著重於協助您開始利用資源，在資料庫上限制存取、保護資料，以及監視活動。
 
 ## <a name="connection-security"></a>連接安全性
-「連線安全性」是指如何使用防火牆規則和連線加密，限制和保護資料庫的連線。
+連線安全性是指的 toohow 您限制及保護 tooyour 資料庫的連接使用防火牆規則和連線加密。
 
-伺服器和資料庫兩者都可使用防火牆規則，拒絕來自未明確設為允許清單的 IP 位址的連線嘗試。 若要允許來自應用程式或用戶端機器的公用 IP 位址的連接，您必須先使用 Azure 入口網站、REST API 或 PowerShell 建立伺服器層級的防火牆規則。 最好的作法是，您應該盡可能限制允許穿透您伺服器防火牆的 IP 位址範圍。  若要從您的本機電腦存取 Azure SQL 資料倉儲，請確定您的網路和本機電腦上的防火牆允許 TCP 連接埠 1433 上的傳出通訊。  如需詳細資訊，請參閱 [Azure SQL Database 防火牆][Azure SQL Database firewall]、[sp_set_firewall_rule][sp_set_firewall_rule] 和 [sp_set_database_firewall_rule][sp_set_database_firewall_rule]。
+防火牆規則會使用兩個 hello 伺服器與 hello 資料庫 tooreject 連線嘗試從尚未明確允許的 IP 位址。 從您的應用程式或用戶端電腦的公用 IP 位址的 tooallow 連線，您必須先建立 hello Azure 入口網站、 REST API 或 PowerShell，使用的伺服器層級防火牆規則。 最佳做法，您應該限制 hello 盡可能透過您伺服器的防火牆允許的 IP 位址範圍。  tooaccess Azure SQL 資料倉儲從本機電腦，請確定 hello 網路和本機電腦上的防火牆允許 TCP 通訊埠 1433年上的傳出通訊。  如需詳細資訊，請參閱 [Azure SQL Database 防火牆][Azure SQL Database firewall]、[sp_set_firewall_rule][sp_set_firewall_rule] 和 [sp_set_database_firewall_rule][sp_set_database_firewall_rule]。
 
-預設會加密與 SQL 資料倉儲的連線。  停用加密的修改連線設定會被忽略。
+依預設會加密連接 tooyour SQL 資料倉儲。  修改連線設定 toodisable 加密會被忽略。
 
 ## <a name="authentication"></a>驗證
-「驗證」是指連線到資料庫時如何證明身分識別。 SQL 資料倉儲目前支援使用使用者名稱和密碼的 SQL Server 驗證，以及 Azure Active Directory。 
+驗證是指 toohow 連接 toohello 資料庫時，證明您的身分識別。 SQL 資料倉儲目前支援使用使用者名稱和密碼的 SQL Server 驗證，以及 Azure Active Directory。 
 
-當您為資料庫建立邏輯伺服器時，採取使用者名稱和密碼指定了「伺服器管理員」登入。 使用這些認證，您就可以透過 SQL Server 驗證，使用資料庫擁有者或 "dbo" 的身分驗證該伺服器上的任何資料庫。
+當您為您的資料庫建立 hello 邏輯伺服器時，您可以指定 「 伺服器管理員 」 的登入使用者名稱和密碼。 您可以使用這些認證，驗證 tooany hello 資料庫擁有者或透過 SQL Server 驗證的"dbo"與該伺服器上的資料庫。
 
-不過，最佳作法是，貴組織的使用者應該使用不同的帳戶來驗證。 因為萬一應用程式的程式碼容易受到 SQL 插入式攻擊，您就可以限制授與應用程式的權限，並降低惡意活動的風險。 
+不過，最佳做法，貴組織的使用者應該使用不同的帳戶 tooauthenticate。 如此一來您可以限制 hello 權限授與 toohello 應用程式，並減少惡意活動的 hello 風險，應用程式程式碼是很容易遭受 tooa SQL 資料隱碼攻擊。 
 
-若要建立 SQL Server 驗證使用者，請使用伺服器管理員登入連接到您伺服器上的 **master** 資料庫，並建立新的伺服器登入。  此外，在主要資料庫中建立一個使用者做為 Azure SQL 資料倉儲使用者是不錯的主意。 在主要資料庫中建立使用者，使用者就能使用類似 SSMS 的工具登入而不用指定資料庫名稱。  它也可讓使用者使用物件總管來檢視 SQL Server 上的所有資料庫。
+SQL Server 驗證使用者，toocreate 連接 toohello**主要**與伺服器的系統管理員登入您伺服器上的資料庫，並建立新的伺服器登入。  此外，也會建議 toocreate 使用者的 Azure SQL 資料倉儲使用者 hello master 資料庫中。 在 master 中建立使用者，可讓使用者 toologin 使用 SSMS 等工具，而不指定資料庫名稱。  它也可讓它們 toouse hello 物件總管 中 tooview SQL server 的所有資料庫。
 
 ```sql
--- Connect to master database and create a login
+-- Connect toomaster database and create a login
 CREATE LOGIN ApplicationLogin WITH PASSWORD = 'Str0ng_password';
 CREATE USER ApplicationUser FOR LOGIN ApplicationLogin;
 ```
 
-然後使用您的伺服器管理員登入，連接到 **SQL 資料倉儲資料庫** ，並根據您剛建立的伺服器登入建立資料庫使用者。
+然後，連接 tooyour **SQL 資料倉儲資料庫**與伺服器的系統管理員登入並建立根據 hello 伺服器登入您剛才建立的資料庫使用者。
 
 ```sql
--- Connect to SQL DW database and create a database user
+-- Connect tooSQL DW database and create a database user
 CREATE USER ApplicationUser FOR LOGIN ApplicationLogin;
 ```
 
-如果使用者將會進行其他作業，例如建立登入或建立新資料庫，則也需要為他們指派主要資料庫中的 `Loginmanager` 和 `dbmanager` 角色。 如需有關這些額外角色及向 SQL Database 驗證的詳細資訊，請參閱[管理 Azure SQL Database 中的資料庫和登入][Managing databases and logins in Azure SQL Database]。  如需更多將 Azure AD 用於 SQL 資料倉儲的詳細資料，請參閱[使用 Azure Active Directory 驗證連線到 SQL 資料倉儲][Connecting to SQL Data Warehouse By Using Azure Active Directory Authentication]。
+如果使用者將會執行其他作業，例如建立登入或建立新的資料庫，他們也需要指派 toobe toohello`Loginmanager`和`dbmanager`hello master 資料庫中的角色。 如需有關這些其他角色和驗證 tooa SQL 資料庫的詳細資訊，請參閱[管理資料庫和 Azure SQL Database 中的登入][Managing databases and logins in Azure SQL Database]。  如需有關 SQL 資料倉儲的 Azure AD 的詳細資訊，請參閱[連接 tooSQL 資料倉儲使用 Azure Active Directory 驗證][Connecting tooSQL Data Warehouse By Using Azure Active Directory Authentication]。
 
 ## <a name="authorization"></a>Authorization
-「授權」是指在 Azure SQL 資料倉儲內可以執行的動作，這是由使用者帳戶的角色成員資格和權限所控制。 最好的作法是，您應該授與使用者所需的最低權限。 Azure SQL 資料倉儲可讓您輕鬆地透過 T-SQL 中的角色進行上述管理：
+授權是指 toowhat，您可以在 Azure SQL 資料倉儲資料庫，以及這由使用者帳戶的角色成員資格和權限。 最佳做法，您應該授與使用者 hello 最低必要權限。 Azure SQL 資料倉儲會讓角色與此簡單 toomanage T-SQL 中：
 
 ```sql
-EXEC sp_addrolemember 'db_datareader', 'ApplicationUser'; -- allows ApplicationUser to read data
-EXEC sp_addrolemember 'db_datawriter', 'ApplicationUser'; -- allows ApplicationUser to write data
+EXEC sp_addrolemember 'db_datareader', 'ApplicationUser'; -- allows ApplicationUser tooread data
+EXEC sp_addrolemember 'db_datawriter', 'ApplicationUser'; -- allows ApplicationUser toowrite data
 ```
 
-您所連線的伺服器管理員帳戶是 db_owner 的成員，有權限在資料庫中執行任何動作。 請儲存此帳戶，以便部署結構描述升級及其他管理作業。 請使用具更多有限權限的 "ApplicationUser" 帳戶，從應用程式連線到具應用程式所需之最低權限的資料庫。
+hello 您所連接的伺服器系統管理員帳戶是具有授權 toodo hello 資料庫內的任何項目 db_owner 的成員。 請儲存此帳戶，以便部署結構描述升級及其他管理作業。 使用具有更多限制的權限 tooconnect 從您的應用程式 toohello 資料庫以 hello hello"ApplicationUser"帳戶應用程式所需的最低權限。
 
-有許多方式可以進一步限制使用者透過 Azure SQL Database 可以執行的動作：
+有方法 toofurther 限制使用者可以使用 Azure SQL Database:
 
-* 細微的[權限][Permissions]可讓您控制您可以對資料庫中個別資料行、資料表、檢視、程序和其他物件執行哪些作業。 使用細微權限，以擁有最大控制權，並授與所需的最小權限。 細微權限系統有點複雜，而且需要進行一些研究才能有效地使用。
-* 除了 db_datareader 和 db_datawriter 以外，[資料庫角色][Database roles]均可以用來建立權力較大的應用程式使用者帳戶，或權力較小的管理帳戶。 內建固定資料庫角色提供簡單的方式來授與權限，但可能會導致授與的權限多於所需的權限。
-* [預存程序][Stored procedures]可用來限制對資料庫可採取的動作。
+* 細微[權限][ Permissions]可讓您控制哪些作業，您可以執行個別的資料行、 資料表、 檢視、 程序和其他 hello 資料庫中的物件。 使用細微的權限 toohave hello 最佳控制權，並授與 hello 最低必要權限。 hello 細微權限系統稍微複雜，所以需要某些研究 toouse 有效。
+* [資料庫角色][ Database roles]以外 db_datareader 和 db_datawriter 可以是使用的 toocreate 功能更強大的應用程式使用者帳戶或較不強大的管理帳戶。 hello 內建的固定的資料庫角色提供簡單的方式 toogrant 權限，但可能會導致授與超出所需的權限。
+* [預存程序][ Stored procedures]可以是使用的 toolimit 可以 hello 資料庫製作的 hello 動作。
 
-要從 Azure 傳統入口網站或使用 Azure 資源管理員 API 管理資料庫和邏輯伺服器，是由入口網站使用者帳戶的角色指派所控制。 如需有關此主題的詳細資訊，請參閱 [Azure 入口網站中的角色型存取控制][Role-based access control in Azure Portal]。
+從 hello Azure 傳統入口網站管理資料庫和邏輯伺服器，或使用 hello Azure 資源管理員 API 是由您的入口網站的使用者帳戶的角色指派控制。 如需有關此主題的詳細資訊，請參閱 [Azure 入口網站中的角色型存取控制][Role-based access control in Azure Portal]。
 
 ## <a name="encryption"></a>加密
-Azure SQL 資料倉儲透明資料加密 (TDE) 可以對待用資料執行即時加密和解密，協助防止惡意活動的威脅。  當您加密資料庫時，相關聯的備份和交易記錄檔就會加密，完全不需要變更您的應用程式。 TDE 會使用稱為資料庫加密金鑰的對稱金鑰來加密整個資料庫的儲存體。 在 SQL Database 中，資料庫加密金鑰是由內建伺服器憑證保護。 內建伺服器憑證對每個 SQL Database 伺服器都是唯一的。 Microsoft 至少每 90 天會自動替換這些憑證。 「SQL 資料倉儲」使用的加密演算法是 AES-256。 如需 TDE 的一般描述，請參閱[透明資料加密][Transparent Data Encryption]。
+Azure SQL 資料倉儲透明資料加密 (TDE) 可協助防範惡意活動的 hello 威脅所執行的即時加密與解密的靜止資料。  當您加密您的資料庫時，相關聯的備份和交易記錄檔會加密而不需要任何變更 tooyour 應用程式。 TDE 會使用對稱金鑰的呼叫的 hello 資料庫加密金鑰將整個資料庫的 hello 儲存體。 SQL Database 中 hello 資料庫加密金鑰受到由內建的伺服器憑證。 hello 內建伺服器憑證是唯一的每個 SQL Database 伺服器。 Microsoft 至少每 90 天會自動替換這些憑證。 SQL 資料倉儲所使用的 hello 加密演算法是 AES 256。 如需 TDE 的一般描述，請參閱[透明資料加密][Transparent Data Encryption]。
 
-您可以使用 [Azure 入口網站][Encryption with Portal]或 [T-SQL][Encryption with TSQL] 將資料庫加密。
+您可以使用加密資料庫 hello [Azure 入口網站][ Encryption with Portal]或[T-SQL][Encryption with TSQL]。
 
 ## <a name="next-steps"></a>後續步驟
-如需使用不同通訊協定連接到您的 SQL 資料倉儲的詳細資訊和範例，請參閱[連接到 SQL 資料倉儲][Connect to SQL Data Warehouse]。
+如需詳細資訊和 tooyour SQL 資料倉儲連接不同的通訊協定的範例，請參閱[連接 tooSQL 資料倉儲][Connect tooSQL Data Warehouse]。
 
 <!--Image references-->
 
 <!--Article references-->
-[Connect to SQL Data Warehouse]: ./sql-data-warehouse-connect-overview.md
+[Connect tooSQL Data Warehouse]: ./sql-data-warehouse-connect-overview.md
 [Encryption with Portal]: ./sql-data-warehouse-encryption-tde.md
 [Encryption with TSQL]: ./sql-data-warehouse-encryption-tde-tsql.md
-[Connecting to SQL Data Warehouse By Using Azure Active Directory Authentication]: ./sql-data-warehouse-authentication.md
+[Connecting tooSQL Data Warehouse By Using Azure Active Directory Authentication]: ./sql-data-warehouse-authentication.md
 
 <!--MSDN references-->
 [Azure SQL Database firewall]: https://msdn.microsoft.com/library/ee621782.aspx

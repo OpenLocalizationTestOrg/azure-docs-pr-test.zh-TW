@@ -1,6 +1,6 @@
 ---
-title: "如何使用服務匯流排主題 (Ruby) | Microsoft Docs"
-description: "了解如何在 Azure 使用服務匯流排主題及訂用帳戶。 程式碼範例專為 Ruby 應用程式撰寫。"
+title: "aaaHow toouse Service Bus 主題 (Ruby) |Microsoft 文件"
+description: "深入了解如何 toouse Service Bus 主題和訂用帳戶在 Azure 中的。 程式碼範例專為 Ruby 應用程式撰寫。"
 services: service-bus-messaging
 documentationcenter: ruby
 author: sethmanheim
@@ -14,17 +14,17 @@ ms.devlang: ruby
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: 4a4c9949843b16ae6be2f516de4fd1e3f7415959
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 236d6495825e68e336c23e1b500d0764ee512e49
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-service-bus-topics-and-subscriptions-with-ruby"></a>如何透過 Ruby 使用服務匯流排主題和訂用帳戶
+# <a name="how-toouse-service-bus-topics-and-subscriptions-with-ruby"></a>如何 toouse Service Bus 主題和訂閱與 Ruby
  
 [!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
-本文說明如何從 Ruby 應用程式使用服務匯流排主題和訂用帳戶。 涵蓋的案例包括**建立主題和訂用帳戶、建立訂用帳戶篩選器、傳送訊息**至主題、**接收訂用帳戶的訊息**，以及**刪除主題和訂用帳戶**。 如需主題和訂用帳戶的詳細資訊，請參閱[後續步驟](#next-steps)一節。
+本文說明如何 toouse Service Bus 主題和訂閱從 Ruby 應用程式。 hello 涵蓋案例包括**建立主題和訂用帳戶，來建立訂用帳戶篩選，將訊息傳送**tooa 主題**從訂閱接收訊息**，和**主題和訂用帳戶刪除**。 如需有關主題和訂閱的詳細資訊，請參閱 hello[接下來的步驟](#next-steps)> 一節。
 
 [!INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
 
@@ -33,7 +33,7 @@ ms.lasthandoff: 08/18/2017
 [!INCLUDE [service-bus-ruby-setup](../../includes/service-bus-ruby-setup.md)]
 
 ## <a name="create-a-topic"></a>建立主題
-**Azure::ServiceBusService** 物件可讓您使用主題。 下列程式碼將建立 **Azure::ServiceBusService** 物件。 若要建立主題，請使用 `create_topic()` 方法。 下列範例將建立主題或列印出錯誤 (若有的話)。
+hello **Azure::ServiceBusService**物件可讓您 toowork 與主題。 hello 下列程式碼會建立**Azure::ServiceBusService**物件。 toocreate 主題，使用 hello`create_topic()`方法。 下列範例中的 hello 建立主題，或如果有的話，會列印出 hello 錯誤。
 
 ```ruby
 azure_service_bus_service = Azure::ServiceBus::ServiceBusService.new(sb_host, { signer: signer})
@@ -44,7 +44,7 @@ rescue
 end
 ```
 
-您也可以使用其他選項傳遞 **Azure::ServiceBus::Topic** 物件，這可讓您覆寫訊息存留時間或佇列大小上限等預設主題設定。 下列範例說明將佇列大小上限設為 5 GB，將存留時間設為 1 分鐘的設定：
+您也可以傳遞**Azure::ServiceBus::Topic**其他選項，可讓您 toooverride 預設主題設定，例如訊息時間 toolive 或最大佇列大小的物件。 hello 下列範例所示設定 hello 最大佇列大小 too5 GB 和時間 toolive too1 分鐘：
 
 ```ruby
 topic = Azure::ServiceBus::Topic.new("test-topic")
@@ -55,27 +55,27 @@ topic = azure_service_bus_service.create_topic(topic)
 ```
 
 ## <a name="create-subscriptions"></a>建立訂用帳戶
-**Azure::ServiceBusService** 物件也能用來建立主題訂用帳戶。 訂閱是具名的，它們能擁有選用的篩選器，以限制傳遞至訂閱之虛擬佇列的訊息集合。
+主題訂用帳戶也會建立以 hello **Azure::ServiceBusService**物件。 訂用帳戶命名，而且可以有選擇性篩選器，以限制 hello 組傳遞 toohello 訂用帳戶的虛擬佇列的訊息。
 
-訂用帳戶是持續性的，它們會持續存在，直到本身或相關的主題遭到刪除為止。 如果應用程式含有建立訂用帳戶的邏輯，它應該會先使用 getSubscription 方法檢查訂用帳戶是否存在。
+訂閱是持續性，而且將會繼續 tooexist 直到任一它們，或 hello 主題它們相關聯，則會被刪除。 如果您的應用程式包含邏輯 toocreate 訂用帳戶，它應該先檢查 hello 訂用帳戶已經有使用 hello getSubscription 方法。
 
-### <a name="create-a-subscription-with-the-default-matchall-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
-如果在建立新的訂用帳戶時沒有指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為「all-messages」的訂用帳戶，並使用預設的 **MatchAll** 篩選器。
+### <a name="create-a-subscription-with-hello-default-matchall-filter"></a>建立訂用帳戶與 hello 預設 (MatchAll) 篩選器
+hello **MatchAll**是 hello 預設篩選器時所用新的訂用帳戶建立時指定任何篩選條件。 當 hello **MatchAll**篩選時，所有的訊息已發行的 toohello 主題置於 hello 訂用帳戶的虛擬佇列。 hello 下列範例會建立名為"all messages"訂用帳戶，並使用 hello 預設**MatchAll**篩選器。
 
 ```ruby
 subscription = azure_service_bus_service.create_subscription("test-topic", "all-messages")
 ```
 
 ### <a name="create-subscriptions-with-filters"></a>使用篩選器建立訂用帳戶
-您也可以定義篩選器，讓您指定傳送至主題的哪些訊息應顯示在特定訂用帳戶中。
+您也可以定義可讓您 toospecify tooa 主題應該會顯示特定的訂用帳戶內傳送的訊息篩選器。
 
-在訂用帳戶支援的篩選器中，實作 SQL92 子集的 **Azure::ServiceBus::SqlFilter** 是最具彈性的類型。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需可與 SQL 篩選條件搭配使用的運算式詳細資料，請檢閱 [SqlFilter](service-bus-messaging-sql-filter.md) 語法。
+hello 最有彈性的訂用帳戶支援的篩選器的類型為 hello **Azure::ServiceBus::SqlFilter**，它會實作 SQL92 的子集。 SQL 篩選操作的已發行的 toohello 主題 hello 訊息 hello 屬性。 如需有關可以搭配 SQL 篩選的 hello 運算式的詳細資訊，請檢閱 hello [SqlFilter](service-bus-messaging-sql-filter.md)語法。
 
-您可以使用 **Azure::ServiceBusService** 物件的 `create_rule()` 方法將篩選器新增至訂用帳戶。 此方法可讓您將篩選器新增至現有的訂用帳戶中。
+您可以加入篩選 tooa 訂用帳戶使用 hello`create_rule()`方法 hello **Azure::ServiceBusService**物件。 這個方法可讓您 tooadd 新篩選 tooan 現有訂用帳戶。
 
-由於預設篩選器會自動套用至所有新訂用帳戶，因此您必須先移除預設篩選器，否則 **MatchAll** 會覆寫您指定的其他任何篩選器。 您可以使用 **Azure::ServiceBusService** 物件上的 `delete_rule()` 方法移除預設規則。
+因為 hello 預設篩選器會自動套用 tooall 新訂用帳戶，您必須先移除 hello 預設篩選器，或 hello **MatchAll**將會覆寫任何其他您可以指定的篩選器。 您可以藉由使用 hello 移除 hello 預設規則`delete_rule()`方法上 hello **Azure::ServiceBusService**物件。
 
-以下範例將建立名為 "high-messages" 的訂用帳戶，而且所含的 **Azure::ServiceBus::SqlFilter** 只選取自訂 `message_number` 屬性大於 3 的訊息：
+hello 下列範例會建立名為 「 高訊息 」 的訂閱**Azure::ServiceBus::SqlFilter**只選取自訂的訊息`message_number`大於 3 的屬性：
 
 ```ruby
 subscription = azure_service_bus_service.create_subscription("test-topic", "high-messages")
@@ -89,7 +89,7 @@ rule.filter = Azure::ServiceBus::SqlFilter.new({
 rule = azure_service_bus_service.create_rule(rule)
 ```
 
-同樣地，下列範例將建立名為 `low-messages` 的訂用帳戶，而且所含的 **Azure::ServiceBus::SqlFilter** 只會選取 `message_number` 屬性小於或等於 3 的訊息：
+同樣地，hello 下列範例會建立名為訂用帳戶`low-messages`與**Azure::ServiceBus::SqlFilter**只選取有訊息`message_number`屬性小於或等於 too3:
 
 ```ruby
 subscription = azure_service_bus_service.create_subscription("test-topic", "low-messages")
@@ -103,12 +103,12 @@ rule.filter = Azure::ServiceBus::SqlFilter.new({
 rule = azure_service_bus_service.create_rule(rule)
 ```
 
-當訊息傳送至 `test-topic` 時，一律會將該訊息傳遞至已訂閱 `all-messages` 主題訂用帳戶的接收者，並選擇性地傳遞至已訂閱 `high-messages` 和 `low-messages` 主題訂用帳戶的接收者 (視訊息內容而定)。
+當訊息現在是否傳送太`test-topic`，它會一律為訂閱的傳遞的 tooreceivers toohello`all-messages`主題訂用帳戶，並選擇性地傳遞的 tooreceivers 訂閱 toohello`high-messages`和`low-messages`主題訂用帳戶 (視 hello 訊息內容）。
 
-## <a name="send-messages-to-a-topic"></a>傳送訊息至主題
-若要將訊息傳送至服務匯流排主題，應用程式必須使用 **Azure::ServiceBusService** 物件的 `send_topic_message()` 方法。 傳送至服務匯流排主題的訊息是 **Azure::ServiceBus::BrokeredMessage** 物件的執行個體。 **Azure::ServiceBus::BrokeredMessage** 物件具有一組標準屬性 (例如 `label` 和 `time_to_live`)、一個用來保存自訂應用程式特定屬性的字典，以及一堆字串資料。 應用程式能將字串值傳遞至 `send_topic_message()` 方法以設定訊息本文，系統會將預設值填入任何需要的標準屬性中。
+## <a name="send-messages-tooa-topic"></a>傳送訊息 tooa 主題
+toosend 訊息 tooa Service Bus 主題，您的應用程式必須使用 hello`send_topic_message()`方法上 hello **Azure::ServiceBusService**物件。 TooService 匯流排主題是 hello 的執行個體傳送訊息**Azure::ServiceBus::BrokeredMessage**物件。 **Azure::ServiceBus::BrokeredMessage**物件具有一組標準屬性 (例如`label`和`time_to_live`) 的字典，其中使用的 toohold 自訂應用程式特定屬性，和字串資料的主體。 應用程式可以藉由傳遞字串值 toohello 設定 hello hello 訊息本文`send_topic_message()`方法和任何所需標準屬性將會填入預設值。
 
-下列範例說明如何將五個測試訊息傳送至 `test-topic`。 請注意，迴圈反覆運算上每個訊息的 `message_number` 自訂屬性值會有變化 (這可判斷接收訊息的訂用帳戶為何)：
+hello 下列範例會示範如何 toosend 五個測試訊息太`test-topic`。 請注意該 hello `message_number` hello hello 迴圈反覆運算上的每個訊息的自訂屬性值而有所不同 （這會決定哪一個訂閱能收到它）：
 
 ```ruby
 5.times do |i|
@@ -118,16 +118,16 @@ rule = azure_service_bus_service.create_rule(rule)
 end
 ```
 
-服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。 此主題大小會在建立時定義，上限是 5 GB。
+服務匯流排主題支援 hello 訊息大小上限為 256KB[標準層](service-bus-premium-messaging.md)和 1 MB 的 hello [Premium 層](service-bus-premium-messaging.md)。 hello 標頭，其中包括 hello 標準和自訂應用程式屬性，可以有 64 KB 的大小上限。 訊息保留在主題中的 hello 數目沒有限制，但是在 hello hello 訊息主題所持有的大小總計沒有端點。 此主題大小會在建立時定義，上限是 5 GB。
 
 ## <a name="receive-messages-from-a-subscription"></a>自訂用帳戶接收訊息
-對於 **Azure::ServiceBusService** 物件使用 `receive_subscription_message()` 方法即可從佇列接收訊息。 根據預設，在讀取 (查看) 及鎖定訊息後，並不會從訂用帳戶中刪除訊息。 您可以將 `peek_lock` 選項設為 **false**，而在讀取訊息後從訂用帳戶中刪除訊息。
+訊息會從訂用帳戶使用 hello 接收`receive_subscription_message()`方法上 hello **Azure::ServiceBusService**物件。 根據預設，訊息會 read(peak)，但不會刪除從 hello 訂用帳戶已鎖定。 您可以讀取並刪除 hello 訂用帳戶中的 hello 訊息，所設定的 hello`peek_lock`太選項**false**。
 
-預設行為會使讀取和刪除變成兩階段作業，因此也可以支援無法容許遺漏訊息的應用程式。 當服務匯流排收到要求時，它會尋找要取用的下一個訊息、將其鎖定以防止其他取用者接收此訊息，然後將它傳回應用程式。 在應用程式完成處理訊息 (或可靠地儲存此訊息以供未來處理) 之後，它可透過呼叫 `delete_subscription_message()` 方法和以參數形式提供要刪除的訊息，完成接收程序的第二個階段。 `delete_subscription_message()` 方法會將訊息標示為已取用，並將其從訂用帳戶中移除。
+hello 預設行為可讓 hello 讀取和刪除兩階段作業，也使其不容許遺失訊息的可能 toosupport 應用程式。 服務匯流排收到要求時，它會尋找下一個訊息 toobe hello 耗用鎖定，tooprevent 其他消費者接收該，然後再將它傳 toohello 應用程式。 Hello 應用程式完成處理 hello 訊息 （或可靠地儲存以供未來處理後），它就會完成 hello hello 第二個階段藉由呼叫接收處理序`delete_subscription_message()`方法並提供 hello 訊息 toobe 刪除做為參數。 hello`delete_subscription_message()`方法會標示為正在使用的 hello 訊息，並移除從 hello 訂用帳戶。
 
-如果 `:peek_lock` 參數設為 **false**，讀取和刪除訊息將會變成最簡單的模型，且最適用於應用程式容許在發生失敗時不處理訊息的案例。 若要了解這一點，請考慮取用者發出接收要求，接著系統在處理此要求之前當機的案例。 因為服務匯流排會將訊息標示為已取用，當應用程式重新啟動並開始重新取用訊息時，它將會遺漏當機前已取用的訊息。
+如果 hello`:peek_lock`參數設定太**false**，讀取和刪除 hello 訊息會變成 hello 最簡單的模型，並且適合用於應用程式可以容許不處理訊息的 hello 事件中的案例失敗。 toounderstand，假設在哪一個 hello 取用者問題 hello 接收要求，而後再處理它。 服務匯流排將已經標示為正在使用，然後當 hello 應用程式重新啟動並開始取用訊息一次的 hello 訊息，因為它將會遺失已的 hello 訊息取用先前 toohello 損毀。
 
-以下範例將示範如何使用預設的 `receive_subscription_message()` 模式來接收與處理訊息。 此範例會先使用設為 **false** 的 `:peek_lock` 接收及刪除來自 `low-messages` 訂用帳戶的訊息，然後接收另一個來自 `high-messages` 的訊息，接著使用 `delete_subscription_message()` 刪除該訊息：
+hello 下列範例示範如何可以接收和處理使用`receive_subscription_message()`。 hello 範例先接收並刪除 hello 訊息`low-messages`訂用帳戶使用`:peek_lock`設定得**false**，然後在另一則訊息收到 hello `high-messages` ，然後刪除 hello 訊息使用`delete_subscription_message()`:
 
 ```ruby
 message = azure_service_bus_service.receive_subscription_message(
@@ -137,31 +137,31 @@ message = azure_service_bus_service.receive_subscription_message(
 azure_service_bus_service.delete_subscription_message(message)
 ```
 
-## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>如何處理應用程式當機與無法讀取的訊息
-服務匯流排提供一種功能，可協助您從應用程式的錯誤或處理訊息的問題中順利復原。 如果接收者應用程式因為某些原因無法處理訊息，它可以呼叫 **Azure::ServiceBusService** 物件上的 `unlock_subscription_message()` 方法。 這導致服務匯流排將訂閱中的訊息解除鎖定，讓此訊息可以被相同取用應用程式或其他取用應用程式重新接收。
+## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Toohandle 應用程式的當機，而且無法讀取訊息
+服務匯流排提供的功能 toohelp 適宜地自行復原發生錯誤的應用程式或處理訊息的問題。 如果接收者應用程式無法 tooprocess hello 訊息基於某些原因，則它可以呼叫 hello`unlock_subscription_message()`方法上 hello **Azure::ServiceBusService**物件。 這樣會導致服務匯流排 toounlock hello 訊息 hello 訂用帳戶內，並將其可用 toobe 接收一次，可能是藉由 hello 取用應用程式，或由另一個使用的應用程式相同。
 
-與訂用帳戶內鎖定訊息相關的還有逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會自動解除鎖定訊息，讓訊息可以再次被接收。
+另外還有 hello 訂閱內鎖定的訊息相關聯的逾時，如果 hello 應用程式失敗 tooprocess hello 訊息之前 hello 鎖定逾時到期 （例如，如果 hello 應用程式當機），然後服務匯流排會解除鎖定 hello 訊息自動，並將其可用 toobe 再度接收。
 
-如果應用程式在處理訊息之後，尚未呼叫 `delete_subscription_message()` 方法時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 這通常稱為*至少處理一次*；也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 `message_id` 屬性來達到此邏輯，該屬性將在各個傳遞嘗試中會保持不變。
+在 hello hello 應用程式的事件損毀之後處理 hello 訊息，但之前 hello`delete_subscription_message()`呼叫方法時，則 hello 訊息時，已重新傳遞的 toohello 應用程式會在重新啟動。 這通常稱為*至少一旦處理*; 也就是將至少一次處理每則訊息，但可能在某些情況下 hello 傳遞相同的訊息。 如果 hello 案例無法容許重複處理，應用程式開發人員應該加入額外的邏輯 tootheir 應用程式 toohandle 重複的訊息傳遞。 這個邏輯通常用來達成 hello `message_id` hello 訊息，將會維持所有傳遞嘗試的屬性。
 
 ## <a name="delete-topics-and-subscriptions"></a>刪除主題和訂用帳戶
-主題和訂用帳戶是持續性的，您必須透過 [Azure 入口網站][Azure portal]或以程式設計方式明確地刪除它們。 下列範例說明如何刪除名為 `test-topic` 的主題。
+主題和訂閱持續性，而且必須明確刪除透過 hello [Azure 入口網站][ Azure portal]或以程式設計的方式。 下列的 hello 範例示範如何命名 toodelete hello 主題`test-topic`。
 
 ```ruby
 azure_service_bus_service.delete_topic("test-topic")
 ```
 
-刪除主題也將會刪除對主題註冊的任何訂用帳戶。 您也可以個別刪除訂用帳戶。 下列程式碼將示範如何將名為 `high-messages` 的訂用帳戶從 `test-topic` 主題中刪除：
+刪除的主題也會刪除任何訂用帳戶註冊的 hello 主題。 您也可以個別刪除訂用帳戶。 hello 下列程式碼示範如何 toodelete hello 訂用帳戶命名`high-messages`從 hello`test-topic`主題：
 
 ```ruby
 azure_service_bus_service.delete_subscription("test-topic", "high-messages")
 ```
 
 ## <a name="next-steps"></a>後續步驟
-了解基本的服務匯流排主題之後，請參考下列連結以取得更多資訊。
+現在，您學到的 Service Bus 主題 hello 基本概念，請遵循這些連結 toolearn 更多。
 
 * 請參閱[佇列、主題和訂用帳戶](service-bus-queues-topics-subscriptions.md)。
 * [SqlFilter](/dotnet/api/microsoft.servicebus.messaging.sqlfilter#microsoft_servicebus_messaging_sqlfilter) 的 API 參考資料。
-* 請造訪 GitHub 上的 [Azure SDK for Ruby](https://github.com/Azure/azure-sdk-for-ruby) 儲存機制。
+* 請瀏覽 hello [Azure SDK for Ruby](https://github.com/Azure/azure-sdk-for-ruby) GitHub 上的儲存機制。
 
 [Azure portal]: https://portal.azure.com

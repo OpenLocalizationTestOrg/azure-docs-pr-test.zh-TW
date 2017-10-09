@@ -1,5 +1,5 @@
 ---
-title: "在 Machine Learning 中使用線性迴歸 | Microsoft Docs"
+title: "Machine Learning 中的線性迴歸 aaaUsing |Microsoft 文件"
 description: "在 Excel 和 Azure Machine Learning Studio 中的線性迴歸模型的比較"
 metakeywords: 
 services: machine-learning
@@ -15,14 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: kbaroni;garye
-ms.openlocfilehash: 7feb5d62415850e66f8eb7e22b9ada0d25a7058e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8716040ad296053a72fb06c7c9660a186123ac15
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-linear-regression-in-azure-machine-learning"></a>在 Azure Machine Learning 中使用線性迴歸
-> *Kate Baroni* 和 *Ben Boatman* 是 Microsoft 的 Data Insights Center of Excellence 的企業解決方案架構設計人員。 在本文章中，他們將說明使用 Azure Machine Learning 將現有的迴歸分析套件移轉至雲端式解決方案的經驗。 
+> *Kate Baroni* 和 *Ben Boatman* 是 Microsoft 的 Data Insights Center of Excellence 的企業解決方案架構設計人員。 在本文中，這些主題說明移轉現有迴歸分析套件 tooa 以雲端為基礎的方案使用 Azure Machine Learning 經驗。 
 > 
 > 
 
@@ -33,31 +33,31 @@ ms.lasthandoff: 07/11/2017
 ## <a name="goal"></a>目標
 我們的專案開始時有兩個目標： 
 
-1. 使用預測分析來改善我們組織每月營收預測的準確度 
-2. 使用 Azure Machine Learning 確認、最佳化、加快我們的成果的速度和規模。 
+1. 使用我們的組織每月的營收預測的預測分析 tooimprove hello 精確度 
+2. 使用 Azure Machine Learning tooconfirm、 最佳化、 增加的速度，和小數位數的結果。 
 
-與許多企業一樣，我們的組織會每個月都會經歷營收預測程序。 我們的商務分析師小組被賦與使用 Azure Machine Learning 來支援程序並改善預測的準確度工作。 小組花費數個月收集多個來源的資料，並透過可識別與服務銷售預測相關的索引鍵屬性的統計分析，來執行資料屬性。 下一步是要開始在 Excel 中建立為資料建立統計迴歸模型的原型。 在幾週內我們便有了 Excel 迴歸模型，其效果優於目前的欄位和財務預測程序。 這也成為預測結果的比較基準。 
+與許多企業一樣，我們的組織會每個月都會經歷營收預測程序。 商務分析師我們小組需要使用 Azure Machine Learning toosupport hello 程序，並改善預測的精確度。 hello 小組花費幾個月多個來源收集資料，並透過識別索引鍵屬性相關 tooservices 銷售預測的統計分析執行 hello 資料屬性。 hello 下一個步驟是在 Excel 中的 hello 資料 toobegin 原型統計的迴歸模型。 幾週後，我們必須其效果優於 hello 目前的欄位和財務預測程序，將 Excel 迴歸模型。 這會變成 hello 基準預測結果。 
 
-然後我們進行下一步，將我們的預測性分析移至 Azure Machine Learning 以了解 Machine Learning 如何改善預測的效能。
+然後把下一個步驟 toomoving hello 我們的預測分析透過 tooAzure Machine Learning toofind 出機器學習如何對預測的效能改進。
 
 ## <a name="achieving-predictive-performance-parity"></a>達成預測效能同位檢查
-我們的第一優先是達到 Machine Learning 和 Excel 迴歸模型之間的同位檢查。 對我們想要在 Excel 和 Machine Learning 之間達到預測效能同位檢查的訓練和測試資料，指定完全相同的資料，而且相同的分割。 一開始我們失敗了。 Excel 模型的效能勝過 Machine Learning 模型。 失敗是因為對 Machine Learning 的基礎工具設定缺乏了解。 與 Machine Learning 產品團隊同步討論之後，我們對於我們的資料集需要的基礎設定獲得進一步了解，並達成兩個模型之間的同位檢查。 
+我們第一優先順序的機器學習和 Excel 迴歸模型之間的 tooachieve 同位檢查。 指定 hello 相同的資料，而且 hello 分割進行定型和測試資料相同，我們想 tooachieve 預測效能 Excel 和機器學習服務之間的同位檢查。 一開始我們失敗了。 hello Excel 模型的效能勝過 hello 機器學習模型。 hello 失敗是工具的由於 tooa 缺乏 hello 基底，在機器學習中設定了解。 與 hello Machine Learning 產品小組的同步處理之後, 我們將獲得更深入了解 hello 基底設定需要針對我們的資料集，並達成 hello 兩個模型之間的同位檢查。 
 
 ### <a name="create-regression-model-in-excel"></a>在 Excel 中建立迴歸模型
-我們的 Excel 迴歸使用可在 Excel 分析工具箱找到的標準的線性迴歸模型。 
+我們 Excel 迴歸用於 hello Excel 分析工具箱 中找到的 hello 標準的線性迴歸模型。 
 
-我們計算 *平均絕對 %錯誤* ，並用它做為模型的效能量值。 大約花費 3 個月來達成使用 Excel 的工作模型。 我們將許多學習經驗帶到 Machine Learning Studio，最終有助於了解需求。
+我們計算*平均絕對 %錯誤*，當成 hello 模型 hello 效能量值。 花費在處理模型，使用 Excel 的 3 個月 tooarrive。 我們回到大部分 hello 學習到 hello Machine Learning Studio 的實驗，最終已了解需求有幫助。
 
 ### <a name="create-comparable-experiment-in-azure-machine-learning"></a>在 Azure Machine Learning 建立可比較的實驗
-我們遵循下列步驟在 Machine Learning Studio 中建立我們的實驗： 
+我們會遵循這些步驟 toocreate 我們 Machine Learning Studio 中的實驗： 
 
-1. 將資料集以 csv 檔案的形式上傳到 Machine Learning Studio (非常小的檔案)
-2. 建立新的實驗，並使用[選取資料集中的資料行][select-columns]模組來選取 Excel 中所使用的相同資料特徵 
-3. 使用[資料分割][split]模組 (與「相對運算式」模式)，將資料分割成完全如同 Excel 中產生的相同訓練資料集 
-4. 使用[線性迴歸][linear-regression]模組進行實驗 (只使用預設選項)、記載，並將結果與我們的 Excel 迴歸模型相互比較
+1. 上傳的 hello 做為 csv 檔案 tooMachine Learning Studio （非常小的檔案） 的資料集
+2. 建立新的實驗，並使用 hello[資料集中選取的資料行][ select-columns]模組 tooselect hello Excel 中所使用的相同資料功能 
+3. 使用的 hello[分割資料][ split]模組 (具有*相對運算式*模式) toodivide hello 資料 hello 相同訓練資料集，為 「 已在 Excel 中已完成 
+4. 實驗 hello[線性迴歸][ linear-regression]模組 （只有預設選項），記載，並比較 hello 結果 tooour Excel 迴歸模型
 
 ### <a name="review-initial-results"></a>檢閱初步結果
-一開始，Excel 模型效能明顯勝過 Machine Learning Studio 模型： 
+首先，hello Excel 模型清楚的效能勝過 hello Machine Learning Studio 模型： 
 
 |  | Excel | Studio |
 | --- |:---:|:---:|
@@ -67,15 +67,15 @@ ms.lasthandoff: 07/11/2017
 | 平均絕對誤差 |$9.5M |$ 19.4M |
 | 平均絕對誤差 (%) |6.03% |12.2% |
 
-當我們向 Machine Learning 小組的開發人員和資料科學家執行我們的程序和結果時，他們快速提供一些實用的秘訣。 
+當我們執行我們的程序和結果的 hello 開發人員和資料科學家 hello Machine Learning 小組時，他們快速提供實用秘訣。 
 
-* 當您在 Machine Learning Studio 中使用[線性迴歸][linear-regression]模組時，我們提供兩種方法：
+* 當您使用 hello[線性迴歸][ linear-regression] Machine Learning Studio 中的模組，提供兩種方法：
   * 線上梯度下降：可能比較適合較大規模的問題
-  * 一般最小平方：這是大多數人聽到線性迴歸時會想到的方法。 對於小型資料集，一般最小平方是較佳的選擇。
-* 考慮調整 L2 正規化加權參數，以改善效能。 它預設設定為 0.001，但對我們的小型資料集，請將它設定為 0.005 以改善效能。 
+  * 普通最小平方： 這是當它們聽到線性迴歸大部分的人想到的 hello 方法。 對於小型資料集，一般最小平方是較佳的選擇。
+* 請考慮調整 hello L2 正則化權數參數 tooimprove 效能。 依預設，它會設 too0.001 但我們的小型資料集我們設 too0.005 tooimprove 效能。 
 
 ### <a name="mystery-solved"></a>謎題解開了！
-當套用建議時，我們會在 Machine Learning Studio 中達成與 Excel 的相同基準效能： 
+當我們套用 hello 建議時，我們所達成 hello 與 Excel 相同 Machine Learning Studio 中的基準效能： 
 
 |  | Excel | Studio (最初) | Studio (最小平方法) |
 | --- |:---:|:---:|:---:|
@@ -83,15 +83,15 @@ ms.lasthandoff: 07/11/2017
 | 學習模組 |Excel -> 資料分析 -> 迴歸 |線性迴歸。 |線性迴歸 |
 | 學習模組選項 |N/A |預設值 |普通最小平方<br />L2 = 0.005 |
 | 資料集 |26 個資料列，3 個功能，1 個標籤。 全部數值。 |相同 |相同 |
-| 分割：訓練 |Excel 會在前 18 個資料列上訓練，在最後 8 個資料列上測試。 |相同 |相同 |
-| 分割：測試 |Excel 迴歸公式會套用至最後 8 個資料列 |相同 |相同 |
+| 分割：訓練 |Excel hello 定型先 18 個資料列，測試 hello 最後 8 個資料列。 |相同 |相同 |
+| 分割：測試 |Excel 迴歸公式套用 toohello 最後 8 個資料列 |相同 |相同 |
 | **效能** | | | |
 | 調整 R 平方 |0.96 |N/A | |
 | 決定係數 |N/A |0.78 |0.952049 |
 | 平均絕對誤差 |$9.5M |$ 19.4M |$9.5M |
 | 平均絕對誤差 (%) |<span style="background-color: 00FF00;"> 6.03%</span> |12.2% |<span style="background-color: 00FF00;"> 6.03%</span> |
 
-此外，Excel 係數相較與 Azure 訓練模型中的功能加權不相上下：
+此外，hello Excel 係數也比較 toohello hello Azure 定型的模型中的特徵權數：
 
 |  | Excel 係數 | Azure 功能加權 |
 | --- |:---:|:---:|
@@ -101,27 +101,27 @@ ms.lasthandoff: 07/11/2017
 | 功能 C |25383318.09 |25140800 |
 
 ## <a name="next-steps"></a>後續步驟
-我們想要在 Excel 內使用 Machine Learning Web 服務。 我們的商務分析師依賴 Excel，且我們需要方法來呼叫 Machine Learning Web 服務與一列 Excel 資料列，讓它將預測值傳回 Excel。 
+我們想在 Excel 內 tooconsume hello 機器學習 web 服務。 我們的商務分析師所需方式 toocall hello 機器學習 web 服務的 Excel 資料的資料列，並讓它傳回依賴 Excel 和我們 hello 預測值 tooExcel。 
 
-我們也想要使用 Machine Learning Studio 中可用的選項和演算法來最佳化我們的模型。
+我們也想 toooptimize 我們的模型中，使用 hello 選項和 Machine Learning Studio 中可用的演算法。
 
 ### <a name="integration-with-excel"></a>與 Excel 整合
-我們的解決方案要使我們的 Machine Learning 迴歸模型作業化，方法是透過從訓練的模型建立 Web 服務。 在幾分鐘內，Web 服務即已建立，我們可以直接從 Excel 呼叫它，以傳回預測的收入值。 
+我們的解決方案是的 toooperationalize 我們的機器學習迴歸模型所建立的 web 服務從 hello 定型的模型。 在幾分鐘的時間內建立 hello web 服務，我們可以呼叫它直接從 Excel tooreturn 營收預測的值。 
 
-*Web 服務儀表板* 一節包含可下載的 Excel 活頁簿。 活頁簿已使用 Web 服務 API 預先格式化並內嵌結構描述資訊。 按一下 [下載 Excel 活頁簿] 開啟活頁簿，您可以將它儲存到本機電腦。 
+hello *Web Services 儀表板*區段包括可下載的 Excel 活頁簿。 hello 活頁簿隨附預先格式化 hello web 服務應用程式開發介面和結構描述資訊內嵌。 當您按一下*下載 Excel 活頁簿*hello 活頁簿隨即開啟，您可以將它儲存 tooyour 本機電腦。 
 
 ![][1]
 
-在活頁簿開啟時，請將預先定義的參數複製到藍色的 Parameter 區段，如下所示。 一旦輸入參數，Excel 即會對外呼叫 Machine Learning Web 服務，而會在綠色的預測值區段中顯示預測的計分標籤。 活頁簿將會針對在 Parameters 下輸入參數下的所有資料列項目，繼續根據您的訓練模型建立預測。 如需有關如何使用這項功能的詳細資訊，請參閱 [從 Excel 使用 Azure Machine Learning Web 服務](machine-learning-consuming-from-excel.md)。 
+與 hello 活頁簿開啟，請將預先定義的參數複製到藍色 hello 參數區段，如下所示。 輸入 hello 參數，一旦 toohello 機器學習 web 服務會呼叫 Excel 而且 hello 預測計分的標籤會顯示於 hello 綠色預測值 」 一節。 hello 活頁簿將會繼續 toocreate 預測參數根據定型模型的輸入參數的所有資料列項目。 如需有關如何 toouse 這項功能的詳細資訊，請參閱[取用 Azure Machine Learning Web 服務從 Excel](machine-learning-consuming-from-excel.md)。 
 
 ![][2]
 
 ### <a name="optimization-and-further-experiments"></a>最佳化及進一步實驗
-現在我們已具備 Excel 模型的基準，我們可以進行最佳化 Machine Learning 線性迴歸模型。 我們使用[以篩選為基礎的特徵選取][filter-based-feature-selection]模組，改善我們選取的初始資料元素，有助於我們的效能提升達到平均絕對誤差 4.6%。 針對未來的專案，我們將使用這項功能，它可以為逐一查看資料屬性，以找出正確的功能，用於模型化組合上，可為我們節省數週的時間。 
+既然我們已經基準與我們的 Excel 模型中，我們會將預先 toooptimize 移我們的機器學習線性迴歸模型。 我們使用 hello 模組[篩選器為基礎的特徵選取][ filter-based-feature-selection] tooimprove 我們選取初始資料元素，它可協助我們 4.6%的效能改善平均絕對誤差。 為未來的專案中，我們將使用這項功能可以儲存我們週在逐一查看資料屬性 toofind hello 的一組正確功能 toouse 的模型。 
 
-接下來，我們打算在實驗中納入其他演算法來比較效能，例如 [Bayesian][bayesian-linear-regression]或[推進式決策樹][boosted-decision-tree-regression]。 
+接下來我們計劃 tooinclude 其他演算法，例如[Bayesian] [ bayesian-linear-regression]或[促進式決策樹][ boosted-decision-tree-regression]我們實驗 toocompare 中效能。 
 
-如果您想要實驗迴歸，「能量效益迴歸」範例資料集即是可用來嘗試的良好的資料集，其中包含多個數值屬性。 資料集是在 Machine Learning Studio 中的範例資料集的一部分提供。 您可以使用各種不同的學習模組，來預測加熱負載或冷卻負載。 下列圖表是針對目標變數冷卻負載預測的能源效率資料集所學習不同的迴歸的效能比較： 
+如果您想與迴歸 tooexperiment，良好的資料集 tootry 是 hello 能源效率迴歸範例資料集，其中包含多個數值的屬性。 hello 資料集是依現狀 hello Machine Learning Studio 中的範例資料集的一部分。 您可以使用各種不同的學習模組 toopredict 加熱負載或冷卻負載。 hello 圖是針對 hello 電源效率的資料集預測的 hello 目標變數的冷卻負載的效能比較不同的迴歸學習： 
 
 | 模型 | 平均絕對誤差 | 均方根誤差 | 相對絕對誤差 | 相對平方誤差 | 決定係數 |
 | --- | --- | --- | --- | --- | --- |
@@ -131,17 +131,17 @@ ms.lasthandoff: 07/11/2017
 | 線性迴歸 (一般最小平方) |1.428273 |1.984461 |0.163767 |0.042074 |0.957926 |
 
 ## <a name="key-takeaways"></a>重要心得
-我們從並行執行 Excel 迴歸和 Azure Machine Learning 實驗中學到很多。 我們在 Excel 中建立基準模型，並與使用 Machine Learning [線性迴歸][linear-regression]的模型相互比較，幫助我們了解 Azure Machine Learning，同時也發現有機會改善資料的選取和模型效能。 
+我們從並行執行 Excel 迴歸和 Azure Machine Learning 實驗中學到很多。 在 Excel 和比較 toomodels 使用機器學習中的建立 hello 基準模型[線性迴歸][ linear-regression]幫助我們了解 Azure Machine Learning 中，以及我們發現機會 tooimprove 資料選取項目和模型的效能。 
 
-我們也發現，最好使用[以篩選為基礎的特徵選取][filter-based-feature-selection]來加速未來的預測專案。 藉由將功能選取套用到您的資料，您可以在 Machine Learning 中建立改良的模型，以獲得更好的整體效能。 
+我們也會發現，則建議您 toouse[篩選器為基礎的特徵選取][ filter-based-feature-selection] tooaccelerate 未來的預測專案。 藉由套用功能選取項目 tooyour 資料，您可以建立在機器學習中改良的模型，整體效能更佳。 
 
-能夠從 Machine Learning 傳送預測性的分析預測至 Excel，可大幅增加將結果成功提供給廣泛商業使用者對象的能力。 
+hello 能力 tootransfer hello 預測分析 systemically 預測從 Machine Learning tooExcel 允許大幅增加在 hello 能力 toosuccessfully 中提供的結果 tooa 廣泛商務使用者對象。 
 
 ## <a name="resources"></a>資源
 以下是一些可幫助您處理迴歸的資源： 
 
 * Excel 中的迴歸。 如果您未曾使用 Excel 中的迴歸，本教學課程可讓它變得容易： [http://www.excel-easy.com/examples/regression.html](http://www.excel-easy.com/examples/regression.html)
-* 迴歸與預測。 Tyler Chessman 撰寫部落格文章，說明如何在 Excel 中執行時間序列預測，其中包含初學者適用的良好線性迴歸描述。 [http://sqlmag.com/sql-server-analysis-services/understanding-time-series-forecasting-concepts](http://sqlmag.com/sql-server-analysis-services/understanding-time-series-forecasting-concepts) 
+* 迴歸與預測。 Tyler Chessman 撰寫部落格文章說明如何 toodo 時間序列預測在 Excel 中，其中包含的線性迴歸的良好初級開發人員描述。 [http://sqlmag.com/sql-server-analysis-services/understanding-time-series-forecasting-concepts](http://sqlmag.com/sql-server-analysis-services/understanding-time-series-forecasting-concepts) 
 * 一般最小平方線性迴歸：缺點、問題和陷阱。 迴歸的簡介和討論： [http://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/ ](http://www.clockbackward.com/2009/06/18/ordinary-least-squares-linear-regression-flaws-problems-and-pitfalls/)
 
 [1]: ./media/machine-learning-linear-regression-in-azure/machine-learning-linear-regression-in-azure-1.png

@@ -1,6 +1,6 @@
 ---
-title: "上傳資料 (REST API - Azure 搜尋服務) | Microsoft Docs"
-description: "了解如何使用 REST API 將資料上傳至 Azure 搜尋服務中的索引。"
+title: "aaa 」 上傳資料 (REST API 的 Azure 搜尋) |Microsoft 文件 」"
+description: "了解如何在 Azure 搜尋中使用 tooupload 資料 tooan 索引 hello REST API。"
 services: search
 documentationcenter: 
 author: ashmaka
@@ -15,13 +15,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 12/08/2016
 ms.author: ashmaka
-ms.openlocfilehash: f22a33ed86fbfc46dfa732239263a49f34c4afee
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 6ba1336012d1f0f6d6d6c933e16aa879afb9b824
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="upload-data-to-azure-search-using-the-rest-api"></a>使用 REST API 將資料上傳至 Azure 搜尋服務
+# <a name="upload-data-tooazure-search-using-hello-rest-api"></a>上傳資料 tooAzure 搜尋使用 hello REST API
 > [!div class="op_single_selector"]
 >
 > * [概觀](search-what-is-data-import.md)
@@ -30,43 +30,43 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-本文將說明如何使用 [Azure 搜尋服務 REST API](https://docs.microsoft.com/rest/api/searchservice/) 將資料匯入 Azure 搜尋服務索引。
+這篇文章將示範如何 toouse hello [Azure 搜尋 REST API](https://docs.microsoft.com/rest/api/searchservice/) tooimport 資料到 Azure 搜尋索引。
 
 在開始閱讀本逐步解說前，請先 [建立好 Azure 搜尋服務索引](search-what-is-an-index.md)。
 
-若要使用 REST API 將文件推送至索引，您會發出 HTTP POST 要求至您的索引 URL 端點。 HTTP 要求主體是包含要新增、修改或刪除之文件的 JSON 物件。
+在訂單 toopush 文件至您的索引使用 hello REST API，您將會發出 HTTP POST 要求 tooyour 索引 URL 端點。 hello 主體的 hello HTTP 要求主體是包含 toobe 新增、 修改或刪除的 hello 文件的 JSON 物件。
 
 ## <a name="identify-your-azure-search-services-admin-api-key"></a>識別 Azure 搜尋服務的系統管理 API 金鑰
-使用 REST API 對服務發出 HTTP 要求時，每個  API 要求都必須包含針對您佈建的搜尋服務所產生的 API 金鑰。 擁有有效的金鑰就能為每個要求在傳送要求之應用程式與處理要求之服務間建立信任。
+發行您的服務使用 hello REST API，針對 HTTP 要求時*每個*API 要求都必須包含 hello api 金鑰 hello 您佈建的搜尋服務所產生。 擁有有效的索引鍵建立信任關係，針對每個要求，hello 應用程式正在傳送嗨要求和處理它的 hello 服務之間。
 
-1. 若要尋找服務的 API 金鑰，您可以登入 [Azure 入口網站](https://portal.azure.com/)
-2. 前往 Azure 搜尋服務的刀鋒視窗。
-3. 按一下 [金鑰] 圖示。
+1. toofind 服務的 api 金鑰，您可以登入 toohello [Azure 入口網站](https://portal.azure.com/)
+2. 移 tooyour Azure 搜尋服務的刀鋒視窗
+3. 按一下 hello 「 金鑰 」 圖示
 
 服務會有系統管理金鑰和查詢金鑰。
 
-* 主要和次要系統管理金鑰  會授與所有作業的完整權限，包括管理服務以及建立和刪除索引、索引子與資料來源的能力。 由於有兩個金鑰，因此如果您決定重新產生主要金鑰，您可以繼續使用次要金鑰，反之亦然。
-* 查詢金鑰  會授與索引和文件的唯讀存取權，且通常會分派給發出搜尋要求的用戶端應用程式。
+* 您的主要和次要*系統管理金鑰*tooall 作業，包括 hello 能力 toomanage hello 服務授與的完整權限、 建立和刪除索引、 索引子和資料來源。 有兩個索引鍵，讓您可以繼續 toouse hello 次要索引鍵，如果您決定 tooregenerate hello 主索引鍵，反之亦然。
+* 您*查詢索引鍵*授與唯讀存取 tooindexes 和文件，並發出搜尋要求的 tooclient 通常分散式應用程式。
 
-主要或次要系統管理金鑰都可用於將資料匯入索引。
+基於 hello 匯入資料到索引，您可以使用主要或次要管理金鑰。
 
-## <a name="decide-which-indexing-action-to-use"></a>決定要使用的索引編製動作
-使用 REST API 時，您會發行具有 JSON 要求主體的 HTTP POST 要求到 Azure 搜尋服務索引的端點 URL。 HTTP 要求主體中的 JSON 物件會包含名為 "value" 的單一 JSON 陣列，陣列中則有代表想要新增至索引、更新或刪除之文件的 JSON 物件。
+## <a name="decide-which-indexing-action-toouse"></a>決定哪個索引動作 toouse
+使用 hello REST API，您就會發出 HTTP POST 要求，JSON 要求內文 tooyour Azure 搜尋索引的端點 URL。 您的 HTTP 要求主體中的 hello JSON 物件會包含單一的 JSON 陣列名為"value"包含代表您想要 tooadd tooyour 索引的文件的 JSON 物件，更新或刪除。
 
-"value" 陣列中的每個 JSON 物件代表要編製索引的文件。 這些物件每一個都含有文件的索引鍵，並且會指定所需的索引編製動作 (上傳、合併、刪除等)。 依據您在以下動作中所做的選擇，每個文件內只需包含某些欄位：
+Hello"value"陣列中的每個 JSON 物件表示文件 toobe 編製索引。 每個物件包含 hello 文件索引鍵，並指定所需的 hello 索引動作 （上傳、 合併、 刪除等等）。 取決於哪些 hello 下列您選擇的動作，只有特定欄位必須包含每個文件：
 
 | @search.action | 說明 | 每個文件的必要欄位 | 注意事項 |
 | --- | --- | --- | --- |
-| `upload` |`upload` 動作類似「upsert」，如果是新文件，就會插入該文件，如果文件已經存在，就會更新/取代它。 |索引鍵以及其他任何您想要定義的欄位 |在更新/取代現有文件時，要求中未指定的欄位會將其欄位設定為 `null`。 即使先前已將欄位設定為非 null 值也是一樣。 |
-| `merge` |使用指定的欄位更新現有文件。 如果文件不存在於索引中，合併就會失敗。 |索引鍵以及其他任何您想要定義的欄位 |您在合併中指定的任何欄位將取代文件中現有的欄位。 這包括類型 `Collection(Edm.String)`的欄位。 例如，如果文件包含欄位 `tags` 且值為 `["budget"]`，而您使用值 `["economy", "pool"]` 針對 `tags` 執行合併，則 `tags` 欄位最後的值會是 `["economy", "pool"]`。 而不會是 `["budget", "economy", "pool"]`。 |
-| `mergeOrUpload` |如果含有指定索引鍵的文件已經存在於索引中，則此動作的行為會類似 `merge`。 如果文件不存在，其行為會類似新文件的 `upload` 。 |索引鍵以及其他任何您想要定義的欄位 |- |
-| `delete` |從索引中移除指定的文件。 |僅索引鍵 |您指定的所有欄位 (索引鍵欄位除外) 都將被忽略。 如果您想要從文件中移除個別欄位，請改用 `merge` ，而且只需明確地將該欄位設為 null。 |
+| `upload` |`upload`動作是類似 tooan"upsert"(如果它是新插入和更新/取代如果它存在 hello 文件。 |索引鍵，再加上您想 toodefine 的任何其他欄位 |當更新/取代現有的文件，hello 要求中未指定任何欄位將會有其欄位太設定`null`。 這是即使 hello 欄位先前設定 tooa 非 null 值。 |
+| `merge` |更新現有文件以 hello 指定欄位。 Hello 文件不存在 hello 索引中，如果 hello 合併將會失敗。 |索引鍵，再加上您想 toodefine 的任何其他欄位 |您在合併中指定任何欄位將會取代 hello hello 文件中的現有欄位。 這包括類型 `Collection(Edm.String)`的欄位。 例如，如果 hello 文件包含欄位`tags`值`["budget"]`和執行的合併值`["economy", "pool"]`的`tags`，hello hello 的最終值`tags`欄位就是`["economy", "pool"]`。 而不會是 `["budget", "economy", "pool"]`。 |
+| `mergeOrUpload` |此動作的行為類似`merge`如果 hello 索引中的文件以 hello 給定索引鍵已經存在。 如果 hello 文件不存在，它的行為類似`upload`與新的文件。 |索引鍵，再加上您想 toodefine 的任何其他欄位 |- |
+| `delete` |從 hello 索引中移除 hello 指定文件。 |僅索引鍵 |您指定其他非 hello 索引鍵欄位將會忽略所有的欄位。 如果您想 tooremove 個別欄位從 文件，請使用`merge`相反地，並直接將 hello 欄位明確 toonull。 |
 
 ## <a name="construct-your-http-request-and-request-body"></a>建構 HTTP 要求和要求本文
-既然您已收集好索引動作的必要欄位值，您可以開始建構實際的 HTTP 要求和 JSON 要求主體以匯入資料。
+既然您已經收集 hello 必要的欄位值的索引動作，您已準備好 tooconstruct hello 實際的 HTTP 要求和 JSON 要求主體 tooimport 您的資料。
 
 #### <a name="request-and-request-headers"></a>要求和要求標頭
-您需要在 URL 中提供服務名稱、索引名稱 (在本例中為 "hotels") 以及適當的 API 版本 (本文件發行時的最新 API 版本是 `2016-09-01` )。 您也需要定義 `Content-Type` 和 `api-key` 要求標頭。 請對後者使用服務的其中一個系統管理金鑰。
+在 hello URL，您將需要 tooprovide 您服務名稱、 索引名稱 （"旅館 「 在此情況下），以及 hello 適當的 API 版本 (hello 目前的 API 版本是`2016-09-01`次發行本文件的 hello)。 您將需要 toodefine hello`Content-Type`和`api-key`要求標頭。 Hello 後者，使用其中一個服務的系統管理金鑰。
 
     POST https://[search service].search.windows.net/indexes/hotels/docs/index?api-version=2016-09-01
     Content-Type: application/json
@@ -110,7 +110,7 @@ ms.lasthandoff: 08/03/2017
             "@search.action": "mergeOrUpload",
             "hotelId": "3",
             "baseRate": 129.99,
-            "description": "Close to town hall and the river"
+            "description": "Close tootown hall and hello river"
         },
         {
             "@search.action": "delete",
@@ -122,13 +122,13 @@ ms.lasthandoff: 08/03/2017
 
 在本案例中，我們會使用 `upload`、`mergeOrUpload` 和 `delete` 做為搜尋動作。
 
-假設此 "hotels" 索引範例已填入幾份文件。 請留意我們在使用 `mergeOrUpload` 時是如何不必指定所有可能的文件欄位，以及在使用 `delete` 時如何僅指定文件索引鍵 (`hotelId`)。
+假設此 "hotels" 索引範例已填入幾份文件。 請注意如何我們沒有 toospecify hello 可能文件的所有欄位時使用`mergeOrUpload`以及我們僅指定 hello 文件索引鍵的方式 (`hotelId`) 時使用`delete`。
 
-另請注意，每個索引編製要求中最多只能包含 1000 份文件 (或 16 MB)。
+此外，請注意，您只可包含 too1000 文件 （或 16MB） 在單一索引要求。
 
 ## <a name="understand-your-http-response-code"></a>了解 HTTP 回應碼
 #### <a name="200"></a>200
-成功提交索引編製要求後，您會收到狀態碼為 `200 OK`的 HTTP 回應。 HTTP 回應的 JSON 主體如下所示：
+成功提交索引編製要求後，您會收到狀態碼為 `200 OK`的 HTTP 回應。 hello hello HTTP 回應的 JSON 主體會如下所示：
 
 ```JSON
 {
@@ -144,7 +144,7 @@ ms.lasthandoff: 08/03/2017
 ```
 
 #### <a name="207"></a>207
-至少有一個項目未成功建立索引時會傳回狀態碼 `207` 。 HTTP 回應的 JSON 主體會包含未成功之文件的相關資訊。
+至少有一個項目未成功建立索引時會傳回狀態碼 `207` 。 hello hello HTTP 回應的 JSON 主體會包含 hello 失敗的文件的相關資訊。
 
 ```JSON
 {
@@ -152,7 +152,7 @@ ms.lasthandoff: 08/03/2017
         {
             "key": "unique_key_of_document",
             "status": false,
-            "errorMessage": "The search service is too busy to process this document. Please try again later."
+            "errorMessage": "hello search service is too busy tooprocess this document. Please try again later."
         },
         ...
     ]
@@ -160,22 +160,22 @@ ms.lasthandoff: 08/03/2017
 ```
 
 > [!NOTE]
-> 這通常表示搜尋服務的負載即將達到索引編製要求會開始傳回 `503` 回應的臨界點。 在此情況下，強烈建議您先讓用戶端程式碼退回並稍候一會，然後再重試。 這可讓系統有時間復原，以增加未來之要求的成功機會。 快速重試要求只會讓這種情況持續下去。
+> 這通常表示該 hello 載入您的搜尋服務即將達到索引要求會在開始 tooreturn 點`503`回應。 在此情況下，強烈建議您先讓用戶端程式碼退回並稍候一會，然後再重試。 這可讓某些時間 toorecover，增加未來的要求將會成功的 hello 機會 hello 系統。 快速重試您的要求將只會在保留 hello 的情況。
 >
 >
 
 #### <a name="429"></a>429
-當您已經超過每個索引的文件數量配額時，將會傳回 `429` 的狀態碼。
+狀態碼`429`您已超過每個索引的文件的 hello 數目配額時，會傳回。
 
 #### <a name="503"></a>503
-如果要求中的所有項目皆未成功建立索引，將會傳回 `503` 的狀態碼。 此錯誤表示系統負載過重，因此目前無法處理要求。
+狀態碼`503`將會傳回如果無 hello hello 要求中的項目已成功編製索引。 此錯誤表示 hello 系統負載過重時，此時無法處理您的要求。
 
 > [!NOTE]
-> 在此情況下，強烈建議您先讓用戶端程式碼退回並稍候一會，然後再重試。 這可讓系統有時間復原，以增加未來之要求的成功機會。 快速重試要求只會讓這種情況持續下去。
+> 在此情況下，強烈建議您先讓用戶端程式碼退回並稍候一會，然後再重試。 這可讓某些時間 toorecover，增加未來的要求將會成功的 hello 機會 hello 系統。 快速重試您的要求將只會在保留 hello 的情況。
 >
 >
 
 如需文件動作和成功/錯誤回應的詳細資訊，請參閱 [加入、更新或刪除文件](https://docs.microsoft.com/rest/api/searchservice/AddUpdate-or-Delete-Documents)。 如需失敗時可能傳回的其他 HTTP 狀態碼詳細資訊，請參閱 [HTTP 狀態碼 (Azure 搜尋服務)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes)。
 
 ## <a name="next-steps"></a>後續步驟
-在填入 Azure 搜尋服務索引後，您就可以開始發出查詢來搜尋文件。 如需詳細資料，請參閱 [查詢 Azure 搜尋服務索引](search-query-overview.md) 。
+填入您的 Azure 搜尋索引之後, 會準備 toostart 發出查詢 toosearch 文件。 如需詳細資料，請參閱 [查詢 Azure 搜尋服務索引](search-query-overview.md) 。

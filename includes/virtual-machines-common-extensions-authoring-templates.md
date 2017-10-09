@@ -1,11 +1,11 @@
 ## <a name="overview-of-azure-resource-manager-templates"></a>Azure 資源管理員範本概觀
-Azure Resource Manager 範本可讓您藉由定義資源之間的相依性，以宣告方式指定 JSON 語言中的 Azure IaaS 基礎結構。 如需 Azure Resource Manager 範本的詳細概觀，請參閱下文：
+Azure 資源管理員範本可讓您 toodeclaratively hello Azure IaaS 基礎結構中指定 Json 語言定義 hello 資源之間的相依性。 Azure 資源管理員範本的詳細概觀，請參閱下列文件 toohello:
 
 [資源群組概觀](../articles/azure-resource-manager/resource-group-overview.md)
 
 ## <a name="sample-template-snippet-for-vm-extensions"></a>VM 擴充功能的範例範本程式碼片段
-若要將 VM 擴充功能部署到 Azure Resource Manager 範本中，您必須以宣告方式在範本中指定擴充功能組態。
-以下是用來指定延伸模組組態的格式。
+Toodeclaratively 部署 VM 擴充功能的 Azure Resource Manager 範本部份需要您在 hello 範本中指定 hello 延伸模組組態。
+以下是指定 hello 延伸模組組態 hello 格式。
 
       {
       "type": "Microsoft.Compute/virtualMachines/extensions",
@@ -24,11 +24,11 @@ Azure Resource Manager 範本可讓您藉由定義資源之間的相依性，以
       }
       }
 
-您可以在以上程式碼中看到，延伸模組範本包含兩個主要部分：
+您可以看到從上述 hello，hello 擴充範本包含兩個主要部分：
 
 1. 擴充功能名稱、發行者和版本
 2. 延伸模組組態。
 
-## <a name="identifying-the-publisher-type-and-typehandlerversion-for-any-extension"></a>識別任何擴充功能的發行者、類型和 typeHandlerVersion
-Azure VM 擴充功能是由 Microsoft 和受信任的第 3 方發行者所發佈，每個擴充功能會依其發行者、類型和 typeHandlerVersion 進行唯一識別。 其判斷方式如下：  
+## <a name="identifying-hello-publisher-type-and-typehandlerversion-for-any-extension"></a>識別 hello 發行者、 類型和 typeHandlerVersion 的任何擴充功能
+Microsoft 所發行的 azure VM 擴充功能而且要信任由其發行者、 類型和 hello typeHandlerVersion 唯一識別第 3 個合作對象發行者和每個擴充功能。 其判斷方式如下：  
 

@@ -1,6 +1,6 @@
 ---
-title: "如何在 Windows 通用上使用 Engagement API"
-description: "如何在 Windows 通用上使用 Engagement API"
+title: "aaaHow tooUse hello Engagement 通用 Windows API"
+description: "如何 tooUse hello Engagement 通用 Windows API"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,40 +14,40 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 75fc134a5535e6113331470cf61df9c06eb8e2ab
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0256b839c28e4ef6c530106408d744038fa711ac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-the-engagement-api-on-windows-universal"></a>如何在 Windows 通用上使用 Engagement API
-此文件為 [如何在 Windows 通用上整合 Engagement](mobile-engagement-windows-store-integrate-engagement.md)的附加說明：它提供有關如何使用 Engagement API 來報告應用程式的統計資料之詳細資訊。
+# <a name="how-toouse-hello-engagement-api-on-windows-universal"></a>如何 tooUse hello Engagement 通用 Windows API
+這份文件是附加元件 toohello 文件[如何 tooIntegrate Engagement 上 Windows 通用](mobile-engagement-windows-store-integrate-engagement.md)： 它會提供有關如何 toouse 會 hello Engagement API tooreport 您的應用程式統計資料的深入詳細資訊。
 
-請記住，如果您只想要 Engagement 向您報告應用程式的工作階段、活動、當機和技術資訊，那麼最簡單的方法是讓所有 `Page` 子類別繼承自 `EngagementPage` 類別。
+請記住，如果您只想 Engagement tooreport 應用程式的工作階段、 活動、 當機以及技術資訊，然後 hello 最簡單的方法是 toomake 所有您`Page`子類別是繼承自 hello`EngagementPage`類別。
 
-如果您想要執行更多工作 (例如，若您需要報告應用程式的特定事件、錯誤和作業，或者您需要以不同於 `EngagementPage` 類別中的方式來報告應用程式的活動)，則您需要使用 Engagement API。
+如果您想 toodo 更多，例如，如果您需要 tooreport 應用程式特定事件、 錯誤與工作，或如果您在非 hello hello 中實作的其中一個 tooreport 應用程式的活動有不同的方式`EngagementPage`類別，則您需要 toouse helloEngagement 應用程式開發介面。
 
-Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `EngagementAgent.Instance`取得這些方法。
+hello Engagement 應用程式開發介面由提供 hello`EngagementAgent`類別。 您可以存取透過 toothose 方法`EngagementAgent.Instance`。
 
-檔代理程式模組尚未初始化時，每個對 API 的呼叫會被延後，並且將於代理程式可使用時再次執行。
+即使尚未初始化 hello 代理程式的模組，每個呼叫 toohello API 會延後和 hello 代理程式可用時再重新執行。
 
 ## <a name="engagement-concepts"></a>Engagement 概念
-以下部分簡要說明適用於 Windows 通用平台的常見 [Mobile Engagement 概念](mobile-engagement-concepts.md) 。
+hello 下列部分精簡 hello 常見[Mobile Engagement 概念](mobile-engagement-concepts.md)hello 通用 Windows 平台。
 
 ### <a name="session-and-activity"></a>`Session`和`Activity`
-「活動」通常與應用程式的某個頁面關聯，也就是說，「活動」會在頁面顯示時啟動，當頁面關閉時就停止：使用 `EngagementPage` 類別來整合 Engagement SDK 的情況便是如此。
+*活動*通常都與一頁的 hello 應用程式，為 toosay hello*活動*hello 頁面隨即出現，而 hello 頁已關閉時停止時啟動： 這是 hello 的情況下如果 helloEngagement SDK 整合使用 hello`EngagementPage`類別。
 
-但您也可以透過 Engagement API 手動控制「活動」  。 這樣可允許您將指定的頁面分割成多個部分，以獲得有關該頁面使用方式的詳細資訊 (例如，對話方塊在此頁面的使用平率和使用時間)。
+但是*活動*可以也使用來控制手動 hello Engagement 應用程式開發介面。 這可讓您指定的頁面，在幾個子組件 tooget hello 使用量 （例如 tooknow 頻率和時間的對話方塊內使用，則此頁面） 此頁面的更多詳細的 toosplit。
 
 ## <a name="reporting-activities"></a>報告活動
 ### <a name="user-starts-a-new-activity"></a>使用者啟動新的活動
 #### <a name="reference"></a>參考
             void StartActivity(string name, Dictionary<object, object> extras = null)
 
-每當使用者活動變更，您就需要呼叫 `StartActivity()` 。 第一次呼叫此函數會啟動新的使用者工作階段。
+您需要 toocall`StartActivity()`變更每個階段 hello 使用者活動。 hello 第一個呼叫 toothis 函式會啟動新的使用者工作階段。
 
 > [!IMPORTANT]
-> 當應用程式關閉時，SDK 會自動呼叫 EndActivity 方法。 因此，「強烈」建議每當使用者的活動變更時便叫呼叫 StartActivity 方法，並且「絕對不要」呼叫 EndActivity 方法，因為呼叫此方法會強制結束目前的工作階段。
+> hello SDK hello 應用程式關閉時，會自動呼叫 hello EndActivity 方法。 因此，強烈建議 toocall hello StartActivity 方法 hello 活動 hello 使用者的變更，以及 hello EndActivity 方法，因為呼叫這個方法會強制 hello 目前工作階段 toobe tooNEVER 呼叫結束時。
 > 
 > 
 
@@ -58,7 +58,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
 #### <a name="reference"></a>參考
             void EndActivity()
 
-這樣會結束活動和工作階段。 除非您真的清楚您的目的，否則不應該呼叫這個方法。
+這樣會結束 hello 活動與 hello 工作階段。 除非您真的清楚您的目的，否則不應該呼叫這個方法。
 
 #### <a name="example"></a>範例
             EngagementAgent.Instance.EndActivity();
@@ -68,12 +68,12 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
 #### <a name="reference"></a>參考
             void StartJob(string name, Dictionary<object, object> extras = null)
 
-您可以使用作業在一段時間內追蹤某些工作。
+經過一段時間，您可以使用 hello tootrack certains 的工作。
 
 #### <a name="example"></a>範例
             // An upload begins...
 
-            // Set the extras
+            // Set hello extras
             var extras = new Dictionary<object, object>();
             extras.Add("title", "avatar");
             extras.Add("type", "image");
@@ -84,11 +84,11 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
 #### <a name="reference"></a>參考
             void EndJob(string name)
 
-一旦作業追蹤的工作被終止，您就應該針對該作業呼叫 EndJob 方法 (透過提供該作業名稱)。
+只要已終止工作所追蹤的工作，您應該呼叫此作業，hello EndJob 方法藉由提供 hello 作業名稱。
 
 #### <a name="example"></a>範例
-            // In the previous section, we started an upload tracking with a job
-            // Then, the upload ends
+            // In hello previous section, we started an upload tracking with a job
+            // Then, hello upload ends
 
             EngagementAgent.Instance.EndJob("uploadData");
 
@@ -103,7 +103,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
 #### <a name="reference"></a>參考
             void SendEvent(string name, Dictionary<object, object> extras = null)
 
-獨立事件可以出現在工作階段的內容之外。
+工作階段的 hello 環境之外發生獨立事件。
 
 #### <a name="example"></a>範例
             EngagementAgent.Instance.SendEvent("event", extra);
@@ -112,7 +112,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
 #### <a name="reference"></a>參考
             void SendSessionEvent(string name, Dictionary<object, object> extras = null)
 
-工作階段事件通常用來報告在其工作階段期間由使用者所執行的動作。
+工作階段事件是他的工作階段期間執行使用者通常使用的 tooreport hello 動作。
 
 #### <a name="example"></a>範例
 **沒有資料：**
@@ -133,7 +133,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
 #### <a name="reference"></a>參考
             void SendJobEvent(string eventName, string jobName, Dictionary<object, object> extras = null)
 
-作業事件通常用來報告在作業期間由使用者所執行的動作。
+作業事件是在作業期間執行使用者通常使用的 tooreport hello 動作。
 
 #### <a name="example"></a>範例
             EngagementAgent.Instance.SendJobEvent("eventName", "jobName", extras);
@@ -149,7 +149,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
 #### <a name="reference"></a>參考
             void SendError(string name, Dictionary<object, object> extras = null)
 
-不同於工作階段錯誤，獨立錯誤可以出現在工作階段的內容之外。
+反對 toosession，獨立錯誤可能會發生錯誤的工作階段的 hello 內容之外。
 
 #### <a name="example"></a>範例
             EngagementAgent.Instance.SendError("errorName", extras);
@@ -158,7 +158,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
 #### <a name="reference"></a>參考
             void SendSessionError(string name, Dictionary<object, object> extras = null)
 
-工作階段錯誤通常用來報告在其工作階段期間影響使用者的錯誤。
+工作階段錯誤是在他的工作階段期間影響 hello 使用者通常使用的 tooreport hello 錯誤。
 
 #### <a name="example"></a>範例
             EngagementAgent.Instance.SendSessionError("errorName", extra);
@@ -167,13 +167,13 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
 #### <a name="reference"></a>參考
             void SendJobError(string errorName, string jobName, Dictionary<object, object> extras = null)
 
-錯誤可能與正在執行的工作關聯，而不是與目前的使用者工作階段關聯。
+錯誤可能是正在執行而不是工作的相關的 tooa 相關 toohello 目前使用者工作階段。
 
 #### <a name="example"></a>範例
             EngagementAgent.Instance.SendJobError("errorName", "jobname", extra);
 
 ## <a name="reporting-crashes"></a>報告當機
-代理程式提供兩種處理當機的方法。
+hello 代理程式會將兩個方法 toodeal 提供當機。
 
 ### <a name="send-an-exception"></a>傳送例外狀況
 #### <a name="reference"></a>參考
@@ -184,26 +184,26 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
 
             EngagementAgent.Instance.SendCrash(aCatchedException);
 
-您也可以使用選擇性的參數來同時結束參與工作階段並傳送當機。 若要這樣做，請呼叫：
+您也可以使用選擇性參數 tooterminate hello 參與工作階段在 hello 相同的時間比傳送嗨損毀。 因此，呼叫 toodo:
 
             EngagementAgent.Instance.SendCrash(new Exception("example"), terminateSession: true);
 
-如果您這樣做，工作階段和作業將於傳送當機後立即關閉。
+如果您這樣做，請只在傳送嗨損毀之後將關閉 hello 工作階段和工作。
 
 ### <a name="send-an-unhandled-exception"></a>傳送未處理的例外狀況
 #### <a name="reference"></a>參考
             void SendCrash(Exception e)
 
-如果您「已經停用」Engagement 自動當機報告，Engagement 也會提供傳送未處理例外狀況的方法。 在應用程式的 UnhandledException 事件處理常式內此方法特別有用。
+Engagement 也提供方法 toosend 未處理的例外狀況，如果您有**已停用**Engagement 自動**損毀**報告。 這是 hello 應用程式 UnhandledException 事件處理常式內使用時特別有用。
 
-此方法「一律」  會在被呼叫之後終止 Engagement 工作階段和作業。
+這個方法將**永遠**呼叫後終止 hello 參與工作階段和工作。
 
 #### <a name="example"></a>範例
-您可以使用它來實作您自己的 UnhandledExceptionEventArgs 處理常式。 例如，新增 `App.xaml.cs` 檔案的 `Current_UnhandledException` 方法：
+您可以使用它 tooimplement UnhandledExceptionEventArgs 處理常式。 例如，新增 hello`Current_UnhandledException`方法 hello`App.xaml.cs`檔案：
 
             // In your App.xaml.cs file
 
-            // Code to execute on Unhandled Exceptions
+            // Code tooexecute on Unhandled Exceptions
             void Current_UnhandledException(object sender, UnhandledExceptionEventArgs e)
             {
                EngagementAgent.Instance.SendCrash(e.Exception,false);
@@ -216,12 +216,12 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
 ## <a name="device-id"></a>裝置識別碼
             String EngagementAgent.Instance.GetDeviceId()
 
-您可以藉由呼叫這個方法來取得 Egagement 的裝置識別碼。
+您可以藉由呼叫這個方法來取得 hello engagement 裝置識別碼。
 
 ## <a name="extras-parameters"></a>額外的參數
-可以附加任意資料到事件、錯誤、活動或作業。 可以使用字典來結構化這些資料。 索引鍵和值可以是任何型別。
+附加的 tooan 事件、 錯誤、 活動或工作，可以是任意的資料。 可以使用字典來結構化這些資料。 索引鍵和值可以是任何型別。
 
-額外的資料已經序列化，因此如果您想要在額外資料中插入您自己的型別，您必須針對此型別新增資料合約。
+額外項目資料會序列化，因此如果您想 tooinsert 自己的額外項目中的型別必須 tooadd 這種類型的資料合約。
 
 ### <a name="example"></a>範例
 我們建立一個新的類別叫 "Person"。
@@ -257,7 +257,7 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
               }
             }
 
-然後將 `Person` 執行個體新增至額外資料。
+然後，我們會加入`Person`額外的執行個體 tooan。
 
             Person person = new Person("Engagement Haddock", 51);
             var extras = new Dictionary<object, object>();
@@ -266,28 +266,28 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
             EngagementAgent.Instance.SendEvent("Event", extras);
 
 > [!WARNING]
-> 如果您新增其他類型的物件，請確定已實作它們的 ToString() 方法，以傳回使用者可閱讀的字串。
+> 如果您將其他類型的物件，請確定其 tostring （） 方法是實作的 tooreturn 人類可讀取的字串。
 > 
 > 
 
 ### <a name="limits"></a>限制
 #### <a name="keys"></a>之間的信任
-物件中的每個索引鍵都必須符合下列規則運算式：
+Hello 物件中的每個索引鍵必須符合下列規則運算式的 hello:
 
 `^[a-zA-Z][a-zA-Z_0-9]*$`
 
 這表示索引鍵必須至少以一個字母開頭，後面連接字母、數字或底線 (\_)。
 
 #### <a name="size"></a>大小
-每次呼叫的額外資料限制為 **1024** 個字元。
+額外項目會受到限制太**1024年**呼叫每個字元。
 
 ## <a name="reporting-application-information"></a>報告應用程式資訊
 ### <a name="reference"></a>參考
             void SendAppInfo(Dictionary<object, object> appInfos)
 
-您可以使用 SendAppInfo() 函式來報告追蹤資訊 (或任何其他應用程式相關的資訊)。
+您可以手動報告追蹤資訊 （或任何其他應用程式特定資訊） 使用 hello SendAppInfo() 函式。
 
-請注意，此項資料可以累加地傳送：只有指定的索引鍵的最新值會保留給指定的裝置。 和事件額外資料一樣，請使用 Dictionary\<object, object\> 來附加資料。
+請注意，此資料可以累加地傳送： 只有 hello 最新的值指定索引鍵將會保留指定的裝置。 事件的額外功能，例如使用字典\<物件，物件\>tooattach 資料。
 
 ### <a name="example"></a>範例
             Dictionary<object, object> appInfo = new Dictionary<object, object>()
@@ -300,23 +300,23 @@ Engagement API 是由 `EngagementAgent` 類別提供。 您可以透過 `Engagem
 
 ### <a name="limits"></a>限制
 #### <a name="keys"></a>之間的信任
-物件中的每個索引鍵都必須符合下列規則運算式：
+Hello 物件中的每個索引鍵必須符合下列規則運算式的 hello:
 
 `^[a-zA-Z][a-zA-Z_0-9]*$`
 
 這表示索引鍵必須至少以一個字母開頭，後面連接字母、數字或底線 (\_)。
 
 #### <a name="size"></a>大小
-每次呼叫的應用程式資訊限制為 **1024** 個字元。
+應用程式的資訊也很有限**1024年**呼叫每個字元。
 
-在上述範例中，傳送到伺服器的 JSON 會是 44 個字元：
+在 hello 上述範例中，JSON 傳送 toohello 伺服器 hello 是 44 個字元：
 
             {"birthdate":"1983-12-07","gender":"female"}
 
 ## <a name="logging"></a>記錄
 ### <a name="enable-logging"></a>啟用記錄
-SDK 可以設定為在 IDE 主控台中產生測試記錄檔。
-預設不會啟用這些記錄檔。 若要自訂這種情況，請將屬性 `EngagementAgent.Instance.TestLogEnabled` 更新為 `EngagementTestLogLevel` 列舉的其中一個可用值，例如︰
+hello SDK 可設定的 tooproduce hello IDE 主控台中的測試記錄。
+預設不會啟用這些記錄檔。 toocustomize，更新 hello 屬性`EngagementAgent.Instance.TestLogEnabled`hello 值可從 hello 的 tooone`EngagementTestLogLevel`列舉型別，例如：
 
             EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
             EngagementAgent.Instance.Init();

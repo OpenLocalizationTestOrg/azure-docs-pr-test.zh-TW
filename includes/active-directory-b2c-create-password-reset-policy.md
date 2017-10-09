@@ -1,24 +1,24 @@
-若要在您的應用程式上啟用更細緻的密碼重設，您必須建立密碼重設原則。 請注意，[這裡](../articles/active-directory-b2c/active-directory-b2c-reference-sspr.md)包含租用戶密碼重設的所有選項。 此原則描述取用者在密碼重設期間將經歷的體驗，以及成功完成時，應用程式將收到的權杖內容。
+tooenable 重設您的應用程式在更細緻的密碼，您將需要 toocreate 密碼重設原則。 請注意該 hello 整個租用戶的密碼重設指定的選項[這裡](../articles/active-directory-b2c/active-directory-b2c-reference-sspr.md)。 此原則會描述 hello 體驗 hello 取用者會提供密碼重設期間，將會收到 hello hello 應用程式的權杖內容成功地完成。
 
 [!INCLUDE [active-directory-b2c-portal-navigate-b2c-service](active-directory-b2c-portal-navigate-b2c-service.md)]
 
-在設定的原則區段中，選取 [密碼重設原則]，然後按一下 [+ 新增]。
+在 hello 原則區段的設定中，選取**密碼重設原則**按一下**+ 加**。
 
-![選取註冊或登入原則，然後按一下 [新增] 按鈕](media/active-directory-b2c-create-password-reset-policy/add-b2c-password-reset-policy.png)
+![選取註冊或登入的原則，然後按一下 hello [新增] 按鈕](media/active-directory-b2c-create-password-reset-policy/add-b2c-password-reset-policy.png)
 
-輸入原則 [名稱]，以供您的應用程式參考。 例如，輸入 `SSPR`。
+輸入原則**名稱**的應用程式 tooreference。 例如，輸入 `SSPR`。
 
 選取 [識別提供者]，並勾選 [使用電子郵件地址重設密碼]。 按一下 [確定] 。
 
-![以電子郵件地址作為識別提供者來選取重設密碼，然後按一下 [確定] 按鈕](media/active-directory-b2c-create-password-reset-policy/add-b2c-password-reset-identity-providers.png)
+![選取身分識別提供者使用電子郵件地址重設密碼，然後按一下 hello [確定] 按鈕](media/active-directory-b2c-create-password-reset-policy/add-b2c-password-reset-identity-providers.png)
 
-選取 [應用程式宣告]。 選擇在成功進行密碼重設之後，您要在授權權杖中傳回給應用程式的宣告。 例如，選取 [使用者的物件識別碼]。
+選取 [應用程式宣告]。 選擇 傳送後 tooyour 應用程式想 hello 授權權杖中傳回的宣告之後成功的密碼重設的體驗。 例如，選取 [使用者的物件識別碼]。
 
 ![選取某些應用程式宣告，然後按一下 [確定] 按鈕](media/active-directory-b2c-create-password-reset-policy/add-b2c-password-reset-application-claims.png)
 
-按一下 [建立] 以新增原則。 此原則列示為 **B2C_1_SSPR**。 名稱會附加 **B2C_1_** 前置詞。
+按一下**建立**tooadd hello 原則。 hello 原則會列為**B2C_1_SSPR**。 hello **B2C_1_**前置詞是附加的 toohello 名稱。
 
-選取 **B2C_1_SSPR** 以開啟原則。 驗證資料表中指定的設定，然後按一下 [立刻執行]。
+選取開啟 hello 原則**B2C_1_SSPR**。 請確認指定 hello 資料表中的 hello 設定，然後按一下 **立即執行**。
 
 ![選取原則並加以執行](media/active-directory-b2c-create-password-reset-policy/run-b2c-password-reset-policy.png)
 
@@ -27,8 +27,8 @@
 | **應用程式** | Contoso B2C 應用程式 |
 | **選取回覆 URL** | `https://localhost:44316/` |
 
-新的瀏覽器索引標籤隨即開啟，您可以在應用程式中驗證密碼重設取用者體驗。
+新的瀏覽器索引標籤隨即開啟，而且可以驗證 hello 密碼重設您的應用程式中的消費者體驗。
 
 > [!NOTE]
-> 建立和更新原則後，需要經過一分鐘才會生效。
+> 它會佔用 tooa 分鐘的時間，建立原則，並更新 tootake 效果。
 >

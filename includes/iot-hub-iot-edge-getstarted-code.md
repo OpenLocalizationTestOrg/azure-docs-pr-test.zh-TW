@@ -1,6 +1,6 @@
 ## <a name="typical-output"></a>典型輸出
 
-下列範例顯示 Hello World 範例寫入記錄檔中的輸出。 已針對易讀性將輸出格式化︰
+hello 下列範例顯示 hello 輸出寫入 hello Hello World 範例 toohello 記錄檔。 可讀性格式化 hello 輸出：
 
 ```json
 [{
@@ -32,13 +32,13 @@
 
 ## <a name="code-snippets"></a>程式碼片段
 
-本節探討 hello\_world 範例中程式碼的一些重要區段。
+本章節將討論 hello hello hello 中的程式碼某些索引鍵區段\_world 範例。
 
 ### <a name="iot-edge-gateway-creation"></a>建立 IoT Edge 閘道
 
-您必須實作閘道程序。 此程式會建立內部基礎結構 (訊息代理程式)、載入 IoT Edge 模組，以及設定閘道程序。 IoT Edge 提供的 **Gateway\_Create\_From\_JSON** 函式可讓您從 JSON 檔案啟動閘道。 若要使用 **Gateway\_Create\_From\_JSON** 函式，請將它傳遞到 JSON 檔案的路徑，以指定要載入的 IoT Edge 模組。
+您必須實作閘道程序。 此程式會建立 hello 內部基礎結構 （hello 代理人）、 載入 hello IoT 邊緣模組，並設定 hello 閘道處理程序。 IoT 邊緣提供 hello**閘道\_建立\_從\_JSON**函式 tooenable toobootstrap 閘道，以從 JSON 檔案。 toouse hello**閘道\_建立\_從\_JSON**函式中，將它傳遞 hello 路徑 tooa JSON 檔案，指定 hello IoT 邊緣模組 tooload。
 
-在 [main.c][lnk-main-c] 檔案中，您可以找到 Hello World 範例中閘道程序的程式碼。 下列程式碼片段顯示精簡版本的閘道程序程式碼，以利閱讀。 此範例會建立閘道，然後先等待使用者按下 **ENTER** 鍵，再終止閘道。
+您可以在 hello hello 閘道處理程序找到 hello 程式碼*Hello World* hello 範例[main.c] [ lnk-main-c]檔案。 以利閱讀，hello 下列程式碼片段顯示 hello 閘道處理程序程式碼的縮寫的版本。 這個範例程式建立閘道，並再等待 hello 使用者 toopress hello **ENTER**之前它瓦解 hello 閘道金鑰。
 
 ```c
 int main(int argc, char** argv)
@@ -46,7 +46,7 @@ int main(int argc, char** argv)
     GATEWAY_HANDLE gateway;
     if ((gateway = Gateway_Create_From_JSON(argv[1])) == NULL)
     {
-        printf("failed to create the gateway from JSON\n");
+        printf("failed toocreate hello gateway from JSON\n");
     }
     else
     {
@@ -59,16 +59,16 @@ int main(int argc, char** argv)
 }
 ```
 
-JSON 設定檔案包含要載入的 IoT Edge 模組清單以及模組之間的連結。 每個 IoT Edge 模組都必須指定：
+hello JSON 設定檔案包含一份 IoT 邊緣模組 tooload 的 hello hello 模組之間的連結。 每個 IoT Edge 模組都必須指定：
 
-* **名稱**：模組的唯一名稱。
-* **載入器**︰知道如何載入所需模組的載入器。 載入器是一個用來載入不同模組類型的擴充點。 IoT Edge 提供可與以原生 C、Node.js、Java 和 .NET 撰寫的模組搭配使用的載入器。 Hello World 範例只會使用原生 C 載入器，因為此範例中的所有模組都是以 C 撰寫的動態程式庫。如需有關如何使用以不同語言撰寫之 IoT Edge 模組的詳細資訊，請參閱 [Node.js](https://github.com/Azure/iot-edge/blob/master/samples/nodejs_simple_sample/)、[Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample) 或 [.NET](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample) 範例。
-    * **名稱**︰用來載入模組的載入器名稱。
-    * **進入點**：包含模組之程式庫的路徑。 在 Linux 上，此程式庫是 .so 檔案，在 Windows 上，此程式庫是 .dll 檔案。 此進入點是要使用的載入器類型特定的。 Node.js 載入器的進入點是 .js 檔案。 Java 載入器的進入點是 classpath 與類別名稱。 .NET 載入器的進入點是組件名稱與類別名稱。
+* **名稱**: hello 模組的唯一名稱。
+* **載入器**： 知道如何 tooload hello 預期模組載入器。 載入器是一個用來載入不同模組類型的擴充點。 IoT Edge 提供可與以原生 C、Node.js、Java 和 .NET 撰寫的模組搭配使用的載入器。 hello Hello World 範例只會使用 hello 原生 C 載入器，因為在此範例中的所有 hello 模組都是以 c 撰寫動態程式庫如需有關如何以不同的語言撰寫的 toouse IoT 邊緣模組，請參閱 「 hello [Node.js](https://github.com/Azure/iot-edge/blob/master/samples/nodejs_simple_sample/)， [Java](https://github.com/Azure/iot-edge/tree/master/samples/java_sample)，或[.NET](https://github.com/Azure/iot-edge/tree/master/samples/dotnet_binding_sample)範例。
+    * **名稱**: hello hello 載入器名稱使用 tooload hello 模組。
+    * **entrypoint**: hello 路徑 toohello 程式庫包含 hello 模組。 在 Linux 上，此程式庫是 .so 檔案，在 Windows 上，此程式庫是 .dll 檔案。 hello 進入點是特定 toohello 的載入器所使用的型別。 hello Node.js 載入器進入點是.js 檔案。 hello Java 載入器進入點是 classpath 和類別名稱。 hello.NET 載入器進入點是組件名稱和類別名稱。
 
-* **args**：模組所需的任何組態資訊。
+* **引數**： 需要任何組態資訊 hello 模組。
 
-下列程式碼所示範的 JSON 可用來在 Linux 上宣告適用於 Hello World 範例的所有 IoT Edge 模組。 模組是否需要引數取決於模組的設計。 在此範例中，Logger 模組所採用的引數是輸出檔的路徑，而 hello\_world 模組沒有任何引數。
+下列程式碼顯示 hello 使用 JSON toodeclare 所有 hello hello IoT 邊緣 hello Hello World 範例，在 Linux 上的模組。 模組是否需要任何引數取決於 hello 設計 hello 模組。 在此範例中，hello 記錄器模組會採用引數是 hello 路徑 toohello 輸出檔案而 hello hello\_世界模組沒有任何引數。
 
 ```json
 "modules" :
@@ -96,14 +96,14 @@ JSON 設定檔案包含要載入的 IoT Edge 模組清單以及模組之間的�
 ]
 ```
 
-JSON 檔案也包含會傳遞給訊息代理程式之模組之間的連結。 連結有兩個屬性︰
+hello JSON 檔案也包含 hello hello 模組傳遞 toohello broker 之間的連結。 連結有兩個屬性︰
 
-* **來源**：來自 `modules` 區段的模組名稱，或 `\*`。
-* **接收**：來自 `modules` 區段的模組名稱。
+* **來源**： 模組名稱從 hello `modules`  區段中，或`\*`。
+* **接收**： 模組名稱從 hello `modules` > 一節。
 
-每個連結都會定義訊息路由和方向。 來自**來源**模組的訊息會傳遞給**接收**模組。 您可以將**來源**模組設定為 `\*`，這表示**接收**模組會從任何模組接收訊息。
+每個連結都會定義訊息路由和方向。 從 hello 訊息**來源**模組傳遞 toohello**接收**模組。 您可以設定 hello**來源**模組太`\*`，表示該 hello**接收**模組會從任何模組接收訊息。
 
-下列程式碼所示範的 JSON 可用來在 Linux 上設定在 hello\_world 範例所使用之模組間的連結。 `hello_world` 模組所產生的每則訊息都是由 `logger` 模組取用。
+hello 下列程式碼示範 hello JSON 使用 tooconfigure 用於 hello hello hello 模組之間的連結\_Linux 上的 world 範例。 每個訊息所產生的 hello`hello_world`模組由 hello`logger`模組。
 
 ```json
 "links":
@@ -117,7 +117,7 @@ JSON 檔案也包含會傳遞給訊息代理程式之模組之間的連結。 �
 
 ### <a name="helloworld-module-message-publishing"></a>Hello\_world 模組訊息發佈
 
-您可以在 ['hello_world.c'][lnk-helloworld-c] 檔案中找到 hello\_world 模組所使用的程式碼來發佈訊息。 下列程式碼片段所示範的修改過程式碼版本已新增註解並移除一些錯誤處理程式碼，以利閱讀︰
+您可以找到 hello hello hello 所使用的程式碼\_hello world 模組 toopublish 訊息['hello_world.c'] [ lnk-helloworld-c]檔案。 hello 下列程式碼片段顯示 hello 程式碼的修改的版本與註解加入一些錯誤處理程式碼，以利閱讀移除：
 
 ```c
 int helloWorldThread(void *param)
@@ -128,18 +128,18 @@ int helloWorldThread(void *param)
     MAP_HANDLE propertiesMap = Map_Create(NULL);
 
     // add a property named "helloWorld" with a value of "from Azure IoT
-    // Gateway SDK simple sample!" to a set of message properties that
-    // will be appended to the message before publishing it. 
+    // Gateway SDK simple sample!" tooa set of message properties that
+    // will be appended toohello message before publishing it. 
     Map_AddOrUpdate(propertiesMap, "helloWorld", "from Azure IoT Gateway SDK simple sample!")
 
-    // set the content for the message
+    // set hello content for hello message
     msgConfig.size = strlen(HELLOWORLD_MESSAGE);
     msgConfig.source = HELLOWORLD_MESSAGE;
 
-    // set the properties for the message
+    // set hello properties for hello message
     msgConfig.sourceProperties = propertiesMap;
 
-    // create a message based on the msgConfig structure
+    // create a message based on hello msgConfig structure
     MESSAGE_HANDLE helloWorldMessage = Message_Create(&msgConfig);
 
     while (1)
@@ -147,11 +147,11 @@ int helloWorldThread(void *param)
         if (handleData->stopThread)
         {
             (void)Unlock(handleData->lockHandle);
-            break; /*gets out of the thread*/
+            break; /*gets out of hello thread*/
         }
         else
         {
-            // publish the message to the broker
+            // publish hello message toohello broker
             (void)Broker_Publish(handleData->brokerHandle, helloWorldMessage);
             (void)Unlock(handleData->lockHandle);
         }
@@ -167,7 +167,7 @@ int helloWorldThread(void *param)
 
 ### <a name="helloworld-module-message-processing"></a>Hello\_world 模組訊息處理
 
-Hello\_world 模組永遠不會處理其他 IoT Edge 模組發佈至訊息代理程式的訊息。 因此，hello\_world 模組中的訊息回呼實作為無作業函式。
+hello hello\_世界模組永遠不會處理其他 IoT 邊緣模組發佈 toohello broker 的訊息。 因此，hello hello hello 中的 hello 訊息回呼實作\_世界模組是無作業函式。
 
 ```c
 static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
@@ -178,9 +178,9 @@ static void HelloWorld_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messag
 
 ### <a name="logger-module-message-publishing-and-processing"></a>Logger 模組訊息發佈和處理
 
-Logger 模組會接收來自訊息代理程式的訊息，並將它們寫入檔案。 此模組永遠不會發佈任何訊息。 因此，Logger 模組的程式碼永遠不會呼叫 **Broker_Publish** 函式。
+hello 記錄器模組會從 hello broker 接收訊息，並將它們 tooa 檔案。 此模組永遠不會發佈任何訊息。 因此，hello 程式碼的 hello 記錄器模組從未呼叫 hello **Broker_Publish**函式。
 
-[logger.c][lnk-logger-c] 檔案中的 **Logger_Receive** 函式是訊息代理程式所叫用的回呼，以將訊息傳遞到 Logger 模組。 下列程式碼片段所示範的修改過版本已新增註解並移除一些錯誤處理程式碼，以利閱讀︰
+hello **Logger_Receive**函式在 hello [logger.c] [ lnk-logger-c]檔案是 hello 回呼 hello broker 會叫用 toodeliver 訊息 toohello 記錄器模組。 hello 下列程式碼片段顯示修改過的版本註解加入與某些錯誤處理程式碼，以利閱讀移除：
 
 ```c
 static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHandle)
@@ -190,32 +190,32 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
     struct tm* t = localtime(&temp);
     char timetemp[80] = { 0 };
 
-    // Get the message properties from the message
+    // Get hello message properties from hello message
     CONSTMAP_HANDLE originalProperties = Message_GetProperties(messageHandle); 
     MAP_HANDLE propertiesAsMap = ConstMap_CloneWriteable(originalProperties);
 
-    // Convert the collection of properties into a JSON string
+    // Convert hello collection of properties into a JSON string
     STRING_HANDLE jsonProperties = Map_ToJSON(propertiesAsMap);
 
-    //  base64 encode the message content
+    //  base64 encode hello message content
     const CONSTBUFFER * content = Message_GetContent(messageHandle);
     STRING_HANDLE contentAsJSON = Base64_Encode_Bytes(content->buffer, content->size);
 
-    // Start the construction of the final string to be logged by adding
-    // the timestamp
+    // Start hello construction of hello final string toobe logged by adding
+    // hello timestamp
     STRING_HANDLE jsonToBeAppended = STRING_construct(",{\"time\":\"");
     STRING_concat(jsonToBeAppended, timetemp);
 
-    // Add the message properties
+    // Add hello message properties
     STRING_concat(jsonToBeAppended, "\",\"properties\":"); 
     STRING_concat_with_STRING(jsonToBeAppended, jsonProperties);
 
-    // Add the content
+    // Add hello content
     STRING_concat(jsonToBeAppended, ",\"content\":\"");
     STRING_concat_with_STRING(jsonToBeAppended, contentAsJSON);
     STRING_concat(jsonToBeAppended, "\"}]");
 
-    // Write the formatted string
+    // Write hello formatted string
     LOGGER_HANDLE_DATA *handleData = (LOGGER_HANDLE_DATA *)moduleHandle;
     addJSONString(handleData->fout, STRING_c_str(jsonToBeAppended);
 }
@@ -223,7 +223,7 @@ static void Logger_Receive(MODULE_HANDLE moduleHandle, MESSAGE_HANDLE messageHan
 
 ## <a name="next-steps"></a>後續步驟
 
-在本文中，您所執行的簡單 IoT Edge 閘道可將訊息寫入記錄檔中。 若要執行可將訊息傳送到 IoT 中樞的範例，請參閱 [IoT Edge – 使用 Linux 透過模擬的裝置傳送裝置對雲端訊息][lnk-gateway-simulated-linux]或 [IoT Edge – 使用 Windows 透過模擬的裝置傳送裝置對雲端訊息][lnk-gateway-simulated-windows]。
+在本文中，您可以執行簡單的 IoT 邊緣閘道會寫入訊息 tooa 記錄檔。 toorun 範例傳送訊息 tooIoT 集線器，請參閱[IoT 邊緣 – 傳送裝置到雲端訊息與模擬的裝置使用 Linux] [ lnk-gateway-simulated-linux]或[IoT 邊緣裝置到雲端以傳送訊息使用 Windows 模擬的裝置][lnk-gateway-simulated-windows]。
 
 
 <!-- Links -->

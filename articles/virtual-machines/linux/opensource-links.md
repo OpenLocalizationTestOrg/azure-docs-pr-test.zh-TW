@@ -1,5 +1,5 @@
 ---
-title: "Azure 上的 Linux 和開放原始碼運算 | Microsoft Docs"
+title: "aaaLinux，並在 Azure 上的開放原始碼計算 |Microsoft 文件"
 description: "列出 Azure 上的 Linux 和開放原始碼運算文章，其中包括基本的 Linux 使用方式、有關在 Azure 上執行或上傳 Linux 映像的一些基本概念，以及其他有關特定技術與最佳化的內容。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,30 +15,30 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 06/27/2016
 ms.author: rasquill
-ms.openlocfilehash: 1cdd0e68368d2dc376ee45df67bf5e75288d4ca3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 3ce0dcc65f28d0dddb29f654409f6dae56213bc7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="linux-and-open-source-computing-on-azure"></a>Azure 上的 Linux 和開放原始碼運算
-尋找在傳統部署模型中建立和管理以 Linux 為基礎的虛擬機器所需的所有說明文件。
+找到您需要 toocreate 並管理 Linux 型虛擬機器 hello 傳統部署模型中所有的 hello 文件。
 
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../resource-manager-deployment-model.md)。 本文件涵蓋使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。
 
 ## <a name="get-started"></a>開始使用
 * [Azure 上的 Linux 簡介](intro-on-azure.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [關於以傳統部署模型建立之 Azure 虛擬機器的常見問題集](classic/faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [常見問題集的問題有關 Azure 虛擬機器建立 hello 傳統部署模型](classic/faq.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [關於虛擬機器的映像](../windows/classic/about-images.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [上傳您自己的 Distro 映像](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) (以及使用 [Azure 背書散發版本](endorsed-distros.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)的指示)
-* [使用 Azure 傳統入口網站登入 Linux VM](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [登入 tooa Linux VM 使用 hello Azure 傳統入口網站](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="set-up"></a>設定
 * [安裝 Azure 命令列介面 (Azure CLI)](../../cli-install-nodejs.md)
 
 ## <a name="tutorials"></a>教學課程
-* [在 Azure 中的 Linux 虛擬機器上安裝 LAMP 堆疊](create-lamp-stack.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [在 Azure 中的 Linux 虛擬機器上安裝 hello LAMP 堆疊](create-lamp-stack.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [Azure VM 上的 Ruby on Rails Web 應用程式](classic/virtual-machines-linux-classic-ruby-rails-web-app.md)
 * [做法：安裝 Apache Qpid Proton-C for AMQP 和服務匯流排](../../service-bus-messaging/service-bus-amqp-apache.md)
 
@@ -51,12 +51,12 @@ ms.lasthandoff: 08/03/2017
 ### <a name="hpc"></a>HPC
 * [開始在 Azure 中的 HPC Pack 叢集使用 Linux 運算節點](classic/hpcpack-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [在 Azure 中的 Linux 運算節點以 Microsoft HPC Pack 執行 NAMD](classic/hpcpack-cluster-namd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [設定 Linux RDMA 叢集以執行 MPI 應用程式](classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [設定 Linux RDMA 叢集 toorun MPI 應用程式](classic/rdma-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ### <a name="docker"></a>Docker
-* [透過 Azure 命令列介面 (Azure CL) 使用 Docker VM 延伸模組](classic/cli-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [使用 Azure 入口網站中的Docker VM 擴充程式](classic/portal-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [如何在 Azure 上使用 docker-machine](docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [使用從 hello Azure 命令列介面 (Azure CLI) hello Docker VM 擴充功能](classic/cli-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [使用從 hello Azure 入口網站的 hello Docker VM 擴充功能](classic/portal-use-docker.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [如何 toouse docker 電腦在 Azure 上](docker-machine.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ### <a name="ubuntu"></a>Ubuntu
 * [做法：MySQL 叢集](classic/mysql-cluster.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
@@ -71,36 +71,36 @@ ms.lasthandoff: 08/03/2017
 ## <a name="planning"></a>規劃
 * [Azure 基礎結構服務實作指導方針](../windows/infrastructure-subscription-accounts-guidelines.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [選取 Linux 使用者名稱](usernames.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [如何以傳統部署模型設定虛擬機器的可用性設定組](../windows/classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [如何排定在 Azure VM 上的計劃性維護](classic/planned-maintenance-schedule.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [管理虛擬機器的可用性](../windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [如何 tooconfigure 可用性設定組 hello 傳統部署模型中的虛擬機器](../windows/classic/configure-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [如何在 Azure Vm 上的計劃中維護 tooSchedule](classic/planned-maintenance-schedule.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [管理虛擬機器 hello 可用性](../windows/manage-availability.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [Azure 中 Linux 虛擬機器預定進行的維修](planned-maintenance.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="deployment"></a>部署
 * [建立執行 Linux 的自訂虛擬機器](../windows/classic/createportal.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
-* [基本概念：擷取 Linux VM 來製作範本](classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [hello 基本概念： 擷取 Linux VM tooMake 範本](classic/capture-image.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [非背書散發套件的資訊](create-upload-generic.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="management"></a>管理
 * [SSH](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [如何重設 Linux 的密碼或 SSH 屬性](classic/reset-access.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [如何 tooReset 密碼或 SSH 屬性適用於 Linux](classic/reset-access.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [使用 Root](use-root-privileges.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="azure-resources"></a>Azure 資源
-* [Azure Linux 代理程式](../windows/agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [hello Azure Linux 代理程式](../windows/agent-user-guide.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [Azure VM 延伸模組與功能](../windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
-* [將自訂資料插入 VM 中以搭配 Cloud-init 使用](../windows/classic/inject-custom-data.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
+* [將自訂資料插入 VM toouse 以便與雲端初始化](../windows/classic/inject-custom-data.md?toc=%2fazure%2fvirtual-machines%2fwindows%2fclassic%2ftoc.json)
 
 ## <a name="storage"></a>儲存體
-* [將資料磁碟連接至 Linux VM](../windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [附加資料磁碟 tooa Linux VM](../windows/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [從 Linux VM 卸離資料磁碟](classic/detach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 * [RAID](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ## <a name="networking"></a>網路
-* [如何在 Azure 中的傳統虛擬機器上設定端點](../windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
+* [如何 tooset 個端點在 Azure 中的傳統虛擬機器](../windows/classic/setup-endpoints.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)
 
 ## <a name="troubleshooting"></a>疑難排解
-* [疑難排解以 Linux 為基礎之 Azure 虛擬機器的安全殼層 (SSH) 連線](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [疑難排解安全殼層 (SSH) 連線 tooa Linux 型 Azure 虛擬機器](troubleshoot-ssh-connection.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [針對在 Azure 中建立新 Linux 虛擬機器的傳統部署問題進行疑難排解](classic/troubleshoot-deployment-new-vm.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)  
 * [針對在 Azure 中重新啟動或調整現有 Linux 虛擬機器的傳統部署問題進行疑難排解](../windows/restart-resize-error-troubleshooting.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json) 
 
@@ -109,10 +109,10 @@ ms.lasthandoff: 08/03/2017
 * [Azure 服務管理 REST API](https://msdn.microsoft.com/library/azure/ee460799.aspx)
 
 ## <a name="general-links"></a>一般連結
-下列連結是上述 Azure.com 文件之外的 Microsoft 部落格、Technet 頁面和外部網站。 由於 Azure 和開放原始碼運算的世界都是變動迅速的目標，因此「儘管」  我們會盡全力持續加入較新的主題並移除過期的主題，但我們也幾乎可以肯定下列連結已經過時了。 如果我們遺漏了什麼，請在註解中讓我們知道，或將提取要求提交至我們的 [Github 儲存機制](https://github.com/Azure/azure-content/)。
+下列連結查看 hello 適用於 Microsoft 部落格、 Technet 網頁和外部網站，而上述 Azure.com 文件。 為 Azure 與 hello 的開放原始碼電腦世界會快速移動目標，它是幾乎某些 hello 下列連結已過期，*儘管*我們應該執行我們的最佳 toocontinually hello 事實加入較新的主題和移除過時的項目。 如果我們已遺失其中一個，請讓我們知道 hello 的註解或提交提取要求 tooour [GitHub 儲存機制](https://github.com/Azure/azure-content/)。
 
 * [在 Linux 上使用 Docker 容器執行 ASP.NET 5](http://blogs.msdn.com/b/webdev/archive/2015/01/14/running-asp-net-5-applications-in-linux-containers-with-docker.aspx)
-* [如何部署 OpenLogic 提供的 CentOS VM 映像](https://azure.microsoft.com/blog/2013/01/11/deploying-openlogic-centos-images-on-windows-azure-virtual-machines/)
+* [如何 tooDeploy CentOS VM 映像來自 OpenLogic，](https://azure.microsoft.com/blog/2013/01/11/deploying-openlogic-centos-images-on-windows-azure-virtual-machines/)
 * [SUSE 更新基礎結構](https://forums.suse.com/showthread.php?5622-New-Update-Infrastructure)
 * [SUSE Linux Enterprise Server for SAP 雲端應用裝置程式庫](https://azure.microsoft.com/marketplace/partners/suse/suselinuxenterpriseserver11sp3forsapcloudappliance/)
 * [以 12 個步驟在 Azure 上建置高可用性的 Linux](http://blogs.technet.com/b/keithmayer/archive/2014/10/03/quick-start-guide-building-highly-available-linux-servers-in-the-cloud-on-microsoft-azure.aspx)
@@ -129,9 +129,9 @@ ms.lasthandoff: 08/03/2017
 * [Azure 的 8 個開放原始碼 NoSql 資料庫](http://openness.microsoft.com/blog/2014/11/03/open-source-nosql-databases-microsoft-azure/)
 * [Slideshare (MSOpenTech)︰Azure 上的 CouchDb 經驗](http://www.slideshare.net/brianbenz/experiences-using-couchdb-inside-microsofts-azure-team)
 * [透過 node.js、CORS 和 Grunt 執行 CouchDB 即服務](http://msopentech.com/blog/2013/12/19/tutorial-building-multi-tier-windows-azure-web-application-use-cloudants-couchdb-service-node-js-cors-grunt-2/)
-* [Azure Redis 快取服務中的 Redis on Windows](http://msopentech.com/blog/2014/05/12/redis-on-windows/)
+* [在 Windows 上 redis 在 hello Azure Redis 快取服務](http://msopentech.com/blog/2014/05/12/redis-on-windows/)
 * [宣佈 Redis 預覽版本的 ASP.NET 工作階段狀態提供者](http://blogs.msdn.com/b/webdev/archive/2014/05/12/announcing-asp-net-session-state-provider-for-redis-preview-release.aspx)
-* [部落格：Azure Marketplace 現已提供 RavenHQ](https://azure.microsoft.com/blog/2014/08/12/ravenhq-now-available-in-the-azure-store/)
+* [部落格： RavenHQ 目前可在 hello Azure Marketplace](https://azure.microsoft.com/blog/2014/08/12/ravenhq-now-available-in-the-azure-store/)
 
 ### <a name="big-data"></a>巨量資料
 * [在 Azure Linux VM 上安裝 Hadoop](http://blogs.msdn.com/b/benjguin/archive/2013/04/05/how-to-install-hadoop-on-windows-azure-linux-virtual-machines.aspx)
@@ -146,18 +146,18 @@ ms.lasthandoff: 08/03/2017
 * [快速入門範本：建立 Linux 計算節點的 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-linux-cn/)
 
 ### <a name="devops-management-and-optimization"></a>開發、管理和最佳化
-由於開發、管理和最佳化的領域相當廣泛、瞬息萬變，您應考慮從下列清單著手。
+Hello world 的 devops、 管理及最佳化是相當以免受到擴充和非常快速地變更，您應該考慮 hello 清單下方的起始點。
 
 * [影片：Azure CLI 虛擬機器：使用 Chef、Puppet 和 Docker 管理 Linux VM](https://azure.microsoft.com/blog/2014/12/15/azure-virtual-machines-using-chef-puppet-and-docker-for-managing-linux-vms/)
-* [使用 CoreOS 和 Weave 自動部署 Kubernetes 叢集的完整指南](https://github.com/GoogleCloudPlatform/kubernetes/blob/master/docs/getting-started-guides/coreos/azure/README.md#kubernetes-on-azure-with-coreos-and-weave)
+* [完成 CoreOS 與針織紋指南 tooautomated Kubernetes 叢集部署](https://github.com/GoogleCloudPlatform/kubernetes/blob/master/docs/getting-started-guides/coreos/azure/README.md#kubernetes-on-azure-with-coreos-and-weave)
 * [Kubernetes Visualizer](https://azure.microsoft.com/blog/2014/08/28/hackathon-with-kubernetes-on-azure/)
 * [適用於 Azure 的 Jenkins 從屬外掛程式](http://msopentech.com/blog/2014/09/23/announcing-jenkins-slave-plugin-azure/)
 * [GitHub 儲存機制︰適用於 Azure 的 Jenkins 儲存體外掛程式](https://github.com/jenkinsci/windows-azure-storage-plugin)
 * [協力廠商︰適用於 Azure 的 Hudson 從屬外掛程式](http://wiki.hudson-ci.org/display/HUDSON/Azure+Slave+Plugin)
 * [協力廠商︰適用於 Azure 的 Hudson 儲存體外掛程式](https://github.com/hudson3-plugins/windows-azure-storage-plugin)
 * [影片：Chef 是什麼，以及如何運作？](https://msopentech.com/blog/2014/03/31/using-chef-to-manage-azure-resources/)
-* [影片：如何在 Linux VM 上使用 Azure 自動化](http://channel9.msdn.com/Shows/Azure-Friday/Azure-Automation-104-managing-Linux-and-creating-Modules-with-Joe-Levy)
-* [部落格：如何使用 Powershell DSC for Linux](http://blogs.technet.com/b/privatecloud/archive/2014/05/19/powershell-dsc-for-linux-step-by-step.aspx)
+* [影片： 如何 tooUse 使用 Linux Vm 的 Azure 自動化](http://channel9.msdn.com/Shows/Azure-Friday/Azure-Automation-104-managing-Linux-and-creating-Modules-with-Joe-Levy)
+* [部落格： 如何 toodo Powershell DSC for Linux](http://blogs.technet.com/b/privatecloud/archive/2014/05/19/powershell-dsc-for-linux-step-by-step.aspx)
 * [GitHub：Docker 用戶端 DSC](https://github.com/anweiss/DockerClientDSC)
 * [Azure 的 Packer 外掛程式](https://github.com/msopentech/packer-azure)
 

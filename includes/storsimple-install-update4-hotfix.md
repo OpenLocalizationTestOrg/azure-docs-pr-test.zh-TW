@@ -1,45 +1,45 @@
 <!--author=alkohli last changed: 02/10/17-->
 
-#### <a name="to-download-hotfixes"></a>下載 Hofix
+#### <a name="toodownload-hotfixes"></a>toodownload hotfix
 
-請執行下列步驟，從 Microsoft Update Catalog 下載軟體更新。
+執行 hello hello Microsoft Update 類別目錄中的下列步驟 toodownload hello 軟體更新。
 
-1. 啟動 Internet Explorer 並瀏覽至 [http://catalog.update.microsoft.com](http://catalog.update.microsoft.com)。
-2. 如果這是您第一次在此電腦上使用 Microsoft Update Catalog，請在系統提示您安裝 Microsoft Update Catalog 附加元件時，按一下 [安裝]  。
+1. 啟動 Internet Explorer 並瀏覽過[http://catalog.update.microsoft.com](http://catalog.update.microsoft.com)。
+2. 如果這是您第一次使用 hello Microsoft Update 類別目錄，在此電腦上，按一下**安裝**時提示的 tooinstall hello Microsoft Update 類別目錄的附加元件。
 
     ![安裝目錄](./media/storsimple-install-update2-hotfix/HCS_InstallCatalog-include.png)
 
-3. 在 Microsoft Update Catalog 的搜尋方塊中，輸入您要下載的 Hotfix 知識庫 (KB) 編號 (例如 **4011839**)，然後按一下 [搜尋]。
+3. 在 hello hello Microsoft Update 類別目錄的搜尋方塊中輸入 hello 知識庫 (KB) 號碼 hello hotfix 您想讓 toodownload，例如**4011839**，然後按一下**搜尋**。
    
-    Hotfix 清單隨即出現，例如**適用於 StorSimple 8000 系列的累積軟體套件組合更新 4.0**。
+    hello hotfix 清單會出現，例如**StorSimple 8000 系列的累計軟體配套更新 4.0**。
    
     ![搜尋目錄](./media/storsimple-install-update2-hotfix/HCS_SearchCatalog1-include.png)
 
-4. 按一下 [下載] 。 指定或「瀏覽」  至您想要儲存下載項目的本機位置。 按一下要下載到指定位置和資料夾的檔案。 資料夾也可以複製到裝置可連線的網路共用位置。
-5. 搜尋上表所列的任何其他 Hotfix (**4011841**)，並將對應檔案下載到上表所列的特定資料夾。
+4. 按一下 [下載] 。 指定或**瀏覽**所在 hello 下載 tooappear tooa 本機位置。 按一下 hello 檔案 toodownload toohello 指定位置和資料夾。 hello 資料夾也可以複製的 tooa 從 hello 裝置的網路共用。
+5. Hello 上表中列出的搜尋任何其他的 hotfix (**4011841**)，及下載 hello 對應檔案 toohello 特定資料夾如 hello 前面表格中所列。
 
 > [!NOTE]
-> Hotfix 必須可同時從兩個控制器存取，以偵測來自對等控制器的任何潛在錯誤訊息。
+> hello hotfix 必須能夠從這兩個控制器 toodetect，hello 同儕節點控制器的任何潛在的錯誤訊息。
 >
-> Hotfix 必須複製到 3 個不同的資料夾。 例如，裝置軟體/Cis/MDS 代理程式更新可以複製到 _FirstOrderUpdate_ 資料夾，其他所有非干擾性更新應該複製到 _SecondOrderUpdate_ 資料夾，而維護模式更新則會複製到 _ThirdOrderUpdate_ 資料夾。
+> hello hotfix 必須複製 3 的個別資料夾中。 Hello 裝置軟體/Ci/MDS 代理程式更新，例如可以在複製_FirstOrderUpdate_所有 hello 資料夾中，其他非干擾性更新無法複製在 hello _SecondOrderUpdate_資料夾，並在中複製的維護模式更新_ThirdOrderUpdate_資料夾。
 
-#### <a name="to-install-and-verify-regular-mode-hotfixes"></a>安裝及驗證一般模式 Hotfix
+#### <a name="tooinstall-and-verify-regular-mode-hotfixes"></a>tooinstall 並確認一般模式 hotfix
 
-執行下列步驟來安裝及驗證一般模式 Hotfix。 如果您已使用 Azure 傳統入口網站安裝這些 Hotfix，請直接跳到[安裝及驗證維護模式 Hotfix](#to-install-and-verify-maintenance-mode-hotfixes)。
+執行下列步驟 tooinstall hello，並確認一般模式 hotfix。 如果您已安裝使用 hello Azure 傳統入口網站，跳過[安裝，並確認 維護模式 hotfix](#to-install-and-verify-maintenance-mode-hotfixes)。
 
-1. 若要安裝 Hotfix，請存取 StorSimple 裝置序列主控台上的 Windows PowerShell 介面。 請依照[使用 PuTTy 連接到序列主控台](../articles/storsimple/storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console)中的詳細指示執行作業。 在命令提示字元中，按 **Enter**鍵。
-2. 選取 [ **選項 1** ] 以使用完整的存取權限登入裝置。 建議您先在被動控制站上安裝此 Hotfix。
-3. 若要安裝 Hotfix，請在命令提示字元中輸入：
+1. 您的 StorSimple 裝置序列主控台存取 hello Windows PowerShell 介面 tooinstall hello hotfix。 請遵循詳細指示中的 hello[使用 PuTTy tooconnect toohello 序列主控台](../articles/storsimple/storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console)。 在 hello 命令提示字元中，按下**Enter**。
+2. 選取**選項 1** toolog toohello 具有完整存取權的裝置上。 我們建議您安裝 hello hotfix hello 被動控制站上第一次。
+3. tooinstall hello hotfix，在 hello 命令提示字元，輸入：
    
-    `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
+    `Start-HcsHotfix -Path <path tooupdate file> -Credential <credentials in domain\username format>`
    
-    在上述命令的共用路徑中使用 IP 而不是 DNS。 只有當您要存取已驗證的共用位置時，才會用到認證參數。
+    Hello 上述命令中的共用路徑中使用 IP，而不是 DNS。 只有當您要存取已驗證的共用時，才使用 hello 認證參數。
    
-    我們建議您使用認證參數來存取共用項目。 即使是開放給「所有人」的共用項目，通常也不會開放給未經驗證的使用者。
+    我們建議您使用 hello 認證參數 tooaccess 共用。 即使已開啟太"everyone"通常的共用開啟 toounauthenticated 使用者。
    
-    在系統提示時提供密碼。
+    提供 hello 密碼提示。
    
-    下面會顯示安裝第一級更新的範例輸出。 對於第一級更新，您需要指向特定檔案。
+    安裝第一個訂單更新 hello 的範例輸出如下所示。 第一個訂單更新 hello，您需要 toopoint toohello 特定檔案。
    
         ````
         Controller0>Start-HcsHotfix -Path \\10.100.100.100\share
@@ -47,16 +47,16 @@
    
         Confirm
    
-        This operation starts the hotfix installation and could reboot one or
-        both of the controllers. If the device is serving I/Os, these will not
-        be disrupted. Are you sure you want to continue?
+        This operation starts hello hotfix installation and could reboot one or
+        both of hello controllers. If hello device is serving I/Os, these will not
+        be disrupted. Are you sure you want toocontinue?
         [Y] Yes [N] No [?] Help (default is "Y"): Y
    
         ````
-4. 當系統提示您確認 Hotfix 安裝時，請輸入 **Y** 。
-5. 使用 `Get-HcsUpdateStatus` Cmdlet 來監視更新。 會先在被動控制站上完成更新。 更新被動控制器之後，將進行容錯移轉，然後更新將套用到另一個控制器。 兩個控制器皆更新後，即更新完畢。
+4. 型別**Y**時提示的 tooconfirm hello hotfix 安裝。
+5. 使用 hello 監視 hello 更新`Get-HcsUpdateStatus`cmdlet。 hello 更新將會先完成 hello 被動控制站上。 一旦更新 hello 被動控制器，將會在容錯移轉和 hello 更新然後會套用在 hello 另一個控制器。 兩個 hello 控制器更新時，hello 更新已完成。
    
-    下列範例輸出顯示更新進行中。 更新正在進行中時，`RunInprogress` 會是 `True`。
+    hello 下列範例輸出顯示 hello 更新正在進行中。 hello`RunInprogress`將`True`hello 更新正在進行中。
 
     ```
     Controller0>Get-HcsUpdateStatus
@@ -67,7 +67,7 @@
     Controller1Events   :
     ```
    
-     下列範例輸出指出更新已完成。 更新完成時，`RunInProgress` 將會是 `False`。
+     下列範例輸出的 hello 指出該 hello 更新已完成。 hello`RunInProgress`將`False`hello 更新已完成時。
    
     ```
     Controller0>Get-HcsUpdateStatus
@@ -79,40 +79,40 @@
     ```
 
     > [!NOTE]
-    > 有時在更新進行期間，Cmdlet 會回報 `False`。 若要確保此 Hotfix 已完成，請等待幾分鐘的時間、重新執行此命令並確認 `RunInProgress` 為 `False`。 如果的確為 False 的話，則 Hotfix 已完成。
+    > 有時候，hello cmdlet 報告`False`hello 更新時仍在進行中。 hello hotfix 的 tooensure 已完成、 等候幾分鐘的時間，重新執行此命令並確認該 hello`RunInProgress`是`False`。 如果是，已完成 hello hotfix。
 
-6. 軟體更新完成後，請確認系統軟體版本。 輸入：
+6. Hello 軟體更新已完成之後，請確認 hello 系統軟體版本。 輸入：
    
     `Get-HcsSystem`
    
-    您應該會看見下列版本：
+    您應該會看到下列版本的 hello:
    
    * `FriendlySoftwareVersion: StorSimple 8000 Series Update 4.0`
    *  `HcsSoftwareVersion: 6.3.9600.17820`
    
-    如果在套用更新後版本號碼並未變更，則表示此 Hotfix 未成功套用。 若您看到這種情況，請連絡 [Microsoft 支援](../articles/storsimple/storsimple-contact-microsoft-support.md)以取得進一步的協助。
+    如果 hello 版本號碼套用 hello 更新後不會變更，則表示該 hello hotfix tooapply 失敗。 若您看到這種情況，請連絡 [Microsoft 支援](../articles/storsimple/storsimple-contact-microsoft-support.md)以取得進一步的協助。
      
     > [!IMPORTANT]
-    > 您必須先透過 `Restart-HcsController` Cmdlet 重新啟動主動控制器，再套用下一個更新。
+    > 您必須重新啟動 hello 作用中的控制器透過 hello `Restart-HcsController` cmdlet 然後才套用 hello 下次的更新。
      
-7. 重複步驟 3 至 5，以安裝下載到 _FirstOrderUpdate_ 資料夾的 Cis/MDS 代理程式。 
-8. 重複步驟 3-5 來安裝第二級更新。 **對於第二級更新，只要執行 `Start-HcsHotfix cmdlet` 並指向第二級更新所在的資料夾，即可安裝多個更新。此 Cmdlet 會執行資料夾中所有可用的更新。** 如果有已安裝的更新，更新邏輯會偵測到，而不套用該更新。 
+7. 重複步驟 3-5 tooinstall hello Ci/MDS 代理程式下載 tooyour _FirstOrderUpdate_資料夾。 
+8. 重複步驟 3-5 tooinstall hello 第二個訂單更新。 **第二個訂單更新，多個更新可以安裝只執行 hello`Start-HcsHotfix cmdlet`和第二個訂單更新的所在位置的指標 toohello 資料夾。 hello 指令程式會執行所有可用的 hello 更新 hello 資料夾中。** 如果已安裝的更新，將偵測出 hello 更新邏輯，並不會套用該更新。 
 
-安裝所有 Hotfix 之後，請使用 `Get-HcsSystem` Cmdlet。 版本應該是︰
+已安裝所有的 hello hotfix 之後，請使用 hello `Get-HcsSystem` cmdlet。 hello 版本應為：
 
    * `CisAgentVersion:  1.0.9441.0`
    * `MdsAgentVersion: 35.2.2.0`
    * `Lsisas2Version: 2.0.78.00`
 
 
-#### <a name="to-install-and-verify-maintenance-mode-hotfixes"></a>安裝及驗證維護模式 Hotfix
-請使用 KB4011837 來安裝磁碟韌體更新。 這些是干擾性更新，且需要約 30 分鐘來完成。 您可以藉由連接至裝置序列主控台，以選擇在預計的維護視窗中安裝這些更新。
+#### <a name="tooinstall-and-verify-maintenance-mode-hotfixes"></a>tooinstall 並確認 維護模式 hotfix
+使用 KB4011837 tooinstall 磁碟韌體更新。 這些更新具有干擾性，並採取 toocomplete 大約 30 分鐘的時間。 您可以選擇 tooinstall 計劃性的維護視窗中的這些連接 toohello 裝置序列主控台。
 
-請注意，如果您的磁碟韌體已是最新版本，便不需要安裝這些更新。 從裝置序列主控台執行 `Get-HcsUpdateAvailability` Cmdlet，以檢查是否有可用的更新，以及更新是干擾性 (維護模式) 還是非干擾性 (一般模式) 更新。
+請注意，是否磁碟韌體已經是最新的就不需要 tooinstall 這些更新。 執行 hello `Get-HcsUpdateAvailability` hello 裝置序列主控台 toocheck 如果更新可用，以及是否 hello cmdlet 更新具有干擾性 （維護模式） 或非干擾性 （一般模式） 的更新。
 
-若要安裝磁碟韌體更新，請依照下面的指示執行。
+tooinstall hello 磁碟韌體更新，請遵循下列的 hello 指示。
 
-1. 使裝置處於維護模式。 **請注意，連線至處於維護模式的裝置時，您不應該使用 Windows PowerShell 遠端執行功能。透過裝置序列主控台連線時，請在裝置控制器上執行此 Cmdlet。** 輸入：
+1. 將 hello 裝置放在 hello 維護模式。 **請注意，您不應該使用 Windows PowerShell 遠端連接 tooa 裝置處於維護模式時。改為在 hello 裝置控制器透過 hello 裝置序列主控台連接時執行這個指令程式。** 輸入：
    
     `Enter-HcsMaintenanceMode`
    
@@ -121,14 +121,14 @@
         Controller0>Enter-HcsMaintenanceMode
         Checking device state...
    
-        In maintenance mode, your device will not service IOs and will be disconnected from the Microsoft Azure StorSimple Manager service. Entering maintenance mode will end the current session and reboot both controllers, which takes a few minutes to complete. Are you sure you want to enter maintenance mode?
+        In maintenance mode, your device will not service IOs and will be disconnected from hello Microsoft Azure StorSimple Manager service. Entering maintenance mode will end hello current session and reboot both controllers, which takes a few minutes toocomplete. Are you sure you want tooenter maintenance mode?
         [Y] Yes [N] No (Default is "Y"): Y
    
         -----------------------MAINTENANCE MODE------------------------
         Microsoft Azure StorSimple Appliance Model 8600
         Name: Update4-8600-mystorsimple
         Copyright (C) 2014 Microsoft Corporation. All rights reserved.
-        You are connected to Controller0 - Passive
+        You are connected tooController0 - Passive
         ---------------------------------------------------------------
    
         Serial Console Menu
@@ -138,26 +138,26 @@
         [4] Change language
         Please enter your choice>
    
-    接著，兩個控制器就會重新啟動以進入維護模式。
-2. 若要安裝磁碟韌體更新，請輸入：
+    兩個 hello 控制器，然後重新啟動進入維護模式。
+2. tooinstall hello 磁碟韌體更新，類型：
    
-    `Start-HcsHotfix -Path <path to update file> -Credential <credentials in domain\username format>`
+    `Start-HcsHotfix -Path <path tooupdate file> -Credential <credentials in domain\username format>`
    
     下方顯示一項範例輸出。
    
         Controller1>Start-HcsHotfix -Path \\10.100.100.100\share\ThirdOrderUpdates\ -Credential contoso\john
         Enter Password:
-        WARNING: In maintenance mode, hotfixes should be installed on each controller sequentially. After the hotfix is installed on this controller, install it on the peer controller.
+        WARNING: In maintenance mode, hotfixes should be installed on each controller sequentially. After hello hotfix is installed on this controller, install it on hello peer controller.
         Confirm
-        This operation starts a hotfix installation and could reboot one or both of the controllers. By installing new updates you agree to, and accept any additional terms associated with, the new functionality listed in the release notes (https://go.microsoft.com/fwLink/?LinkID=613790). Are you sure you want to continue?
+        This operation starts a hotfix installation and could reboot one or both of hello controllers. By installing new updates you agree to, and accept any additional terms associated with, hello new functionality listed in hello release notes (https://go.microsoft.com/fwLink/?LinkID=613790). Are you sure you want toocontinue?
         [Y] Yes [N] No (Default is "Y"): Y
-        WARNING: Installation is currently in progress. This operation can take several minutes to complete.
-3. 使用 `Get-HcsUpdateStatus` 命令監視安裝進度。 當 `RunInProgress` 變成 `False` 時，代表更新完成。
-4. 安裝完成之後，維護模式 Hotfix 安裝所在的控制器將會重新開機。 以具有完整存取權的選項 1 登入，並驗證磁碟韌體版本。 輸入：
+        WARNING: Installation is currently in progress. This operation can take several minutes toocomplete.
+3. 監視 hello 安裝進度使用`Get-HcsUpdateStatus`命令。 hello 更新已完成時 hello`RunInProgress`變更太`False`。
+4. Hello 安裝完成後，重新啟動維護模式 hotfix 安裝在哪些 hello 的 hello 控制器。 具有完整存取權的選項 1 身分登入，並確認 hello 磁碟韌體版本。 輸入：
    
    `Get-HcsFirmwareVersion`
    
-   預期的磁碟韌體版本為：
+   hello 預期磁碟韌體版本：
    
    `XMGJ, XGEG, KZ50, F6C2, VR08, N002, 0106`
    
@@ -168,7 +168,7 @@
        Name: Update4-8600-mystorsimple
        Software Version: 6.3.9600.17820
        Copyright (C) 2014 Microsoft Corporation. All rights reserved.
-       You are connected to Controller1
+       You are connected tooController1
        ---------------------------------------------------------------
    
        Controller1>Get-HcsFirmwareVersion
@@ -244,9 +244,9 @@
               WD:WD4001FYYG-01SL3:VR08
               WD:WD4001FYYG-01SL3:VR08
    
-    在第二個控制站上執行 `Get-HcsFirmwareVersion` 命令來驗證軟體版本已經更新。 然後您就可以結束維護模式。 若要這麼做，請針對每個裝置控制器輸入以下命令：
+    執行 hello `Get-HcsFirmwareVersion` hello 第二個控制站 tooverify 的 hello 軟體版本上的命令已經過更新。 然後您就可以結束 hello 維護模式。 toodo 因此，請輸入下列命令，每個裝置控制器的 hello:
    
    `Exit-HcsMaintenanceMode`
 
-5. 當您離開維護模式時，控制器便會重新啟動。 在磁碟韌體更新已成功套用且裝置已結束維護模式後，返回 Azure 傳統入口網站。 請注意，入口網站可能有 24 小時的時間不會顯示您已安裝維護模式更新。
+5. 當您結束維護模式時，重新啟動 hello 控制站。 已成功套用之後 hello 磁碟韌體更新，而且 hello 裝置已離開維護模式，傳回 toohello Azure 傳統入口網站。 請注意該 hello 入口網站可能不會顯示您安裝的 24 小時內的 hello 維護模式更新。
 

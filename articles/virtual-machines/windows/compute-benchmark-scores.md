@@ -1,5 +1,5 @@
 ---
-title: "Windows VM 的計算基準測試分數 | Microsoft Docs"
+title: "適用於 Windows Vm 分數 aaaCompute 基準 |Microsoft 文件"
 description: "比較執行 Windows Server 之 Azure VM 的 SPECint 計算基準測試分數"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,14 +15,14 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: cynthn
-ms.openlocfilehash: dc715a9bf4e5366e1719de7c649feb06b0c4bee7
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3037d69790cb193161122b902e85fb838285cf81
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="compute-benchmark-scores-for-windows-vms"></a>Windows VM 的計算基準測試分數
-下列 SPECInt 基準測試分數顯示執行 Windows Server 的 Azure 高效能 VM 產品陣容的計算效能。 也有 [Linux VM](../linux/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)的計算基準測試分數。
+遵循 SPECInt 基準分數顯示 hello 計算 Azure 的高效能保護執行 Windows Server VM 的 lineup 的效能。 也有 [Linux VM](../linux/compute-benchmark-scores.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)的計算基準測試分數。
 
 ## <a name="a-series---compute-intensive"></a>A 系列 - 計算密集型
 | 大小 | vCPU | NUMA 節點 | CPU | 執行 | 平均基本費率 | 標準差 |
@@ -65,7 +65,7 @@ ms.lasthandoff: 07/11/2017
 | Standard_H16mr |16 |2 |Intel Xeon E5-2667 v3 @ 3.2 GHz |7 |569.6 |2.8 |
 
 ## <a name="about-specint"></a>關於 SPECint
-Windows 數字是藉由在 Windows Server 上執行 [SPECint 2006](https://www.spec.org/cpu2006/results/rint2006.html) 來計算出。 執行 SPECint 時是使用基本費率選項 (SPECint_rate2006)，其中每個核心有一個複本。 SPECint 是由 12 個個別的測試組成，每個測試都執行三次，系統會從每個測試挑出中間值，然後將它們加權來形成複合分數。 這些測試會接著在多個 VM 上執行以提供所顯示的平均分數。
+Windows 數字是藉由在 Windows Server 上執行 [SPECint 2006](https://www.spec.org/cpu2006/results/rint2006.html) 來計算出。 SPECint 已執行使用 hello 基底費率選項 (SPECint_rate2006)，和每個核心一個複本。 SPECint 組成 12 個別測試，每個執行三次、 取得 hello 中間值從每個測試，然後加權它們 tooform 複合分數。 跨多個 Vm tooprovide hello 平均分數顯示再執行這些測試。
 
 ## <a name="next-steps"></a>後續步驟
 * 如需了解儲存體容量、磁碟詳細資料及其他選擇 VM 大小的考量，請參閱 [虛擬機器的大小](sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。

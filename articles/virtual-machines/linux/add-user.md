@@ -1,6 +1,6 @@
 ---
-title: "對 Azure 上的 Linux VM 加入使用者 | Microsoft Docs"
-description: "將使用者加入 Azure 上的 Linux VM。"
+title: "在 Azure 上的 Linux VM 的使用者 tooa aaaAdd |Microsoft 文件"
+description: "新增使用者 tooa Linux VM 在 Azure 上。"
 services: virtual-machines-linux
 documentationcenter: 
 author: vlivech
@@ -15,16 +15,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/18/2016
 ms.author: v-livech
-ms.openlocfilehash: a95157f57c0cbd1f2a9ed68a0fe83140d7c9ec40
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: eed050154adf0cbed2c168e7aa675bd3ded85fcd
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="add-a-user-to-an-azure-vm"></a>將使用者加入 Azure VM 中
-在任何新 Linux VM 上的首要工作之一，就是建立新的使用者。  在本文中，我們會逐步建立 sudo 使用者帳戶、設定密碼、新增 SSH 公開金鑰，最後使用 `visudo` 來允許在沒有密碼的情況下使用 sudo。
+# <a name="add-a-user-tooan-azure-vm"></a>新增使用者 tooan Azure VM
+Hello 任何新的 Linux VM 上的首要工作之一是 toocreate 新的使用者。  在本文中，我們加入 SSH 公開金鑰，逐步完成建立 sudo 使用者帳戶、 設定 hello 密碼，並用最後`visudo`tooallow sudo，而且沒有密碼。
 
-必要條件︰[Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)、[SSH 公開金鑰與私密金鑰](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、Azure 資源群組，且已安裝 Azure CLI 同時使用 `azure config mode arm` 切換至 Azure Resource Manager 模式。
+必要條件： [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)， [SSH 公用和私用金鑰](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)、 Azure 資源群組及 hello Azure CLI 安裝，並切換 tooAzure 資源管理員模式下使用`azure config mode arm`。
 
 ## <a name="quick-commands"></a>快速命令
 ```bash
@@ -40,30 +40,30 @@ Enter new UNIX password:
 Retype new UNIX password:
 passwd: password updated successfully
 
-# Copy the SSH Public Key to the new user
+# Copy hello SSH Public Key toohello new user
 ssh-copy-id -i ~/.ssh/id_rsa exampleuser@exampleserver
 
-# Change sudoers to allow no password
-# Execute visudo as root to edit the /etc/sudoers file
+# Change sudoers tooallow no password
+# Execute visudo as root tooedit hello /etc/sudoers file
 visudo
 
 # On RedHat family distros uncomment this line:
 ## Same thing without a password
 # %wheel        ALL=(ALL)       NOPASSWD: ALL
 
-# to this
+# toothis
 ## Same thing without a password
 %wheel        ALL=(ALL)       NOPASSWD: ALL
 
 # On Debian family distros change this line:
-# Allow members of group sudo to execute any command
+# Allow members of group sudo tooexecute any command
 %sudo   ALL=(ALL:ALL) ALL
 
-# to this
+# toothis
 %sudo   ALL=(ALL) NOPASSWD:ALL
 
 # Verify everything
-# Verify the SSH keys & User account
+# Verify hello SSH keys & User account
 bill@slackware$ ssh -i ~/.ssh/id_rsa exampleuser@exampleserver
 
 # Verify sudo access
@@ -72,23 +72,23 @@ sudo top
 
 ## <a name="detailed-walkthrough"></a>詳細的逐步解說
 ### <a name="introduction"></a>簡介
-新伺服器最常見的首要工作之一，就是新增使用者帳戶。  根登入應該一律停用，根帳戶本身不應與您的 Linux 伺服器搭配使用，只能與 sudo 搭配使用。  使用 sudo 來為使用者提供根擴大權限才是管理及使用 Linux 的正確方法。
+Tooadd 使用者帳戶與新的伺服器 hello 第一個和最常見工作的其中一個。  根登入，應該停用和 hello 根帳戶本身不應搭配您的 Linux 伺服器，只 sudo。  授予使用者根擴大使用 sudo hello 正確方式 tooadminister 並使用 Linux 的權限。
 
-我們會使用命令 `useradd` 來將使用者帳戶新增到 Linux VM。  執行 `useradd` 來修改 `/etc/passwd`、`/etc/shadow`、`/etc/group` 及 `/etc/gshadow`。  我們會在 `useradd` 命令中新增命令列旗標，以將新使用者一併新增到 Linux 上適當的 sudo 群組。  雖然 `useradd` 會在 `/etc/passwd` 中建立項目，但卻不會為新的使用者帳戶提供密碼。  我們會使用簡單的 `passwd` 命令，為新的使用者建立初始密碼。  最後一個步驟是修改 sudo 規則，以允許該使用者以 sudo 權限執行命令，而不必為每個命令輸入密碼。  使用私密金鑰登入時，我們會假設該使用者帳戶非意圖不良的執行者，因此會允許他不需密碼即可使用 sudo 存取。  
+使用 hello 命令`useradd`我們新增使用者帳戶 toohello Linux VM。  執行 `useradd` 來修改 `/etc/passwd`、`/etc/shadow`、`/etc/group` 及 `/etc/gshadow`。  我們要加入命令列的旗標 toohello `useradd` tooalso 新增 hello 新使用者 toohello 適當 sudo 群組在 Linux 上的命令。  即使你`useradd`建立項目加入`/etc/passwd`它並不授予 hello 新的使用者帳戶密碼。  我們會建立使用 hello 簡單 hello 新使用者的初始密碼`passwd`命令。  hello 最後一個步驟是 toomodify hello sudo 規則 tooallow sudo 權限與該使用者 tooexecute 命令而不需要 tooenter 每個命令的密碼。  登入使用 hello 我們假設該使用者帳戶的私密金鑰時，會安全地從不良執行者，而且即將 tooallow sudo 存取權，而且沒有密碼。  
 
-### <a name="adding-a-single-sudo-user-to-an-azure-vm"></a>將單一 sudo 使用者加入 Azure VM 中
-使用 SSH 金鑰登入 Azure VM。  如果您尚未設定 SSH 公開金鑰存取權，請先閱讀完這篇文章： [在 Azure 使用公開金鑰驗證](http://link.to/article)。  
+### <a name="adding-a-single-sudo-user-tooan-azure-vm"></a>加入單一 sudo 使用者 tooan Azure VM
+登入 toohello 使用 SSH 金鑰的 Azure VM。  如果您尚未設定 SSH 公開金鑰存取權，請先閱讀完這篇文章： [在 Azure 使用公開金鑰驗證](http://link.to/article)。  
 
-`useradd` 命令會完成下列工作：
+hello`useradd`命令完成下列工作的 hello:
 
 * 建立新的使用者帳戶
-* 以相同的名稱建立新的使用者群組
-* 在 `/etc/passwd`
-* 在 `/etc/gpasswd`
+* 建立新的使用者群組以 hello 相同的名稱
+* 太加入空白的項目`/etc/passwd`
+* 太加入空白的項目`/etc/gpasswd`
 
-`-G` 命令列旗標會將新的使用者帳戶新增到適當的 Linux 群組中，為該新使用者帳戶提供根擴大權限。
+hello`-G`命令列的旗標會加入 hello 新的使用者帳戶 toohello 適當 Linux 群組授予 hello 新的使用者帳戶根擴大的權限。
 
-#### <a name="add-the-user"></a>加入使用者
+#### <a name="add-hello-user"></a>新增 hello 使用者
 ```bash
 # On RedHat family distros
 sudo useradd -G wheel exampleUser
@@ -98,7 +98,7 @@ sudo useradd -G sudo exampleUser
 ```
 
 #### <a name="set-a-password"></a>設定密碼
-`useradd` 命令會建立使用者，並將 `/etc/passwd` 和 `/etc/gpasswd` 中都新增項目，但不會實際設定密碼。  將密碼新增到項目中時是使用 `passwd` 命令。
+hello`useradd`命令建立 hello 使用者，並將項目 tooboth`/etc/passwd`和`/etc/gpasswd`但不會實際設定 hello 密碼。  hello 密碼加入 toohello 項目使用 hello`passwd`命令。
 
 ```bash
 sudo passwd exampleUser
@@ -107,43 +107,43 @@ Retype new UNIX password:
 passwd: password updated successfully
 ```
 
-我們在伺服器上已有具備 sudo 權限的使用者。
+我們現在 hello 伺服器上有具有 sudo 權限的使用者。
 
-### <a name="add-your-ssh-public-key-to-the-new-user-account"></a>請將您的 SSH 公開金鑰加入新的使用者帳戶中
-從您的電腦，使用 `ssh-copy-id` 命令搭配新密碼。
+### <a name="add-your-ssh-public-key-toohello-new-user-account"></a>加入 SSH 公開金鑰 toohello 新使用者帳戶
+從您的電腦，使用 hello`ssh-copy-id`命令與 hello 新密碼。
 
 ```bash
 ssh-copy-id -i ~/.ssh/id_rsa exampleuser@exampleserver
 ```
 
-### <a name="using-visudo-to-allow-sudo-usage-without-a-password"></a>使用 visudo 以允許在沒有密碼的情況下使用 sudo
-使用 `visudo` 來編輯 `/etc/sudoers` 檔案可增加幾層的保護，防止不正確地修改這個重要的檔案。  執行 `visudo` 時會鎖住 `/etc/sudoers` 檔案，以確保沒有任何其他使用者能在檔案處於編輯狀態時對檔案進行變更。  當您嘗試儲存或結束 `/etc/sudoers` 檔案時，`visudo` 也會檢查該檔案是否有錯誤，讓您儲存的不會是損毀的 sudoers 檔案。
+### <a name="using-visudo-tooallow-sudo-usage-without-a-password"></a>使用 visudo tooallow sudo 使用方式不需要密碼
+使用`visudo`tooedit hello`/etc/sudoers`檔案新增幾個圖層，防範不正確地修改這個重要的檔案。  在執行時`visudo`，hello`/etc/sudoers`檔案已鎖定的 tooensure 沒有其他使用者可以變更正在進行編輯。  hello`/etc/sudoers`檔案也會檢查錯誤的`visudo`當您嘗試 toosave 或結束，所以您無法儲存中斷的 sudoers 的檔案。
 
-我們在正確的預設群組中，已有使用者可進行 sudo 存取。  現在，我們將讓這些群組能夠在沒有密碼的情況下使用 sudo。
+我們已經會有 sudo 存取權的 hello 正確的預設群組中的使用者。  現在我們 tooenable 這些群組 toouse sudo，不含密碼。
 
 ```bash
-# Execute visudo as root to edit the /etc/sudoers file
+# Execute visudo as root tooedit hello /etc/sudoers file
 visudo
 
 # On RedHat family distros uncomment this line:
 ## Same thing without a password
 # %wheel        ALL=(ALL)       NOPASSWD: ALL
 
-# to this
+# toothis
 ## Same thing without a password
 %wheel        ALL=(ALL)       NOPASSWD: ALL
 
 # On Debian family distros change this line:
-# Allow members of group sudo to execute any command
+# Allow members of group sudo tooexecute any command
 %sudo   ALL=(ALL:ALL) ALL
 
-# to this
+# toothis
 %sudo   ALL=(ALL) NOPASSWD:ALL
 ```
 
-### <a name="verify-the-user-ssh-keys-and-sudo"></a>驗證使用者、SSH 金鑰及 sudo
+### <a name="verify-hello-user-ssh-keys-and-sudo"></a>確認 hello 使用者 ssh 金鑰和 sudo
 ```bash
-# Verify the SSH keys & User account
+# Verify hello SSH keys & User account
 ssh -i ~/.ssh/id_rsa exampleuser@exampleserver
 
 # Verify sudo access

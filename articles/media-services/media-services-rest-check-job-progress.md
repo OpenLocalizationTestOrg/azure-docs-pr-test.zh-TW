@@ -1,6 +1,6 @@
 ---
-title: "如何使用 REST API 檢查工作進度 | Microsoft Docs"
-description: "了解如何追蹤工作進度。"
+title: "使用 REST API aaaHow toocheck 工作進度 |Microsoft 文件"
+description: "了解如何 tootrack 工作進度。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: fea4383e81f3ca21955252cf1d573f1b347b5a38
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 32f12c81422566d980a7200b1662a3cc3ebc39a8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="how-to-check-job-progress"></a>作法：檢查工作進度
 > [!div class="op_single_selector"]
@@ -28,14 +28,14 @@ ms.lasthandoff: 08/29/2017
 > 
 > 
 
-執行作業時，您通常需要設法追蹤作業進度。 您可以使用工作的 State 屬性，以查明工作狀態。 如需 State 屬性的詳細資訊，請參閱 [工作實體屬性](https://docs.microsoft.com/rest/api/media/operations/job#job_entity_properties)。
+當您執行工作時，通常會需要方式 tootrack 工作進度。 您可以使用 hello 作業的狀態屬性，就可找出 hello 作業狀態。 如需有關 hello 狀態屬性的詳細資訊，請參閱[作業實體屬性](https://docs.microsoft.com/rest/api/media/operations/job#job_entity_properties)。
 
-## <a name="connect-to-media-services"></a>連線到媒體服務
+## <a name="connect-toomedia-services"></a>TooMedia 服務連接
 
-如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。 
+如需有關如何 tooconnect toohello AMS API，請參閱詳細[存取 hello Azure 媒體服務 API 與 Azure AD 驗證](media-services-use-aad-auth-to-access-ams-api.md)。 
 
 >[!NOTE]
->順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 後續的呼叫必須送到新的 URI。
+>已成功連接之後 toohttps://media.windows.net，您會收到指定另一個媒體服務 URI 的 301 重新導向。 您必須進行的後續呼叫 toohello 新的 URI。
 
 ## <a name="check-job-progress"></a>檢查作業進度
 
@@ -66,7 +66,7 @@ ms.lasthandoff: 08/29/2017
     DataServiceVersion: 3.0;
     Strict-Transport-Security: max-age=31536000; includeSubDomains
 
-    {"odata.metadata":"https://media.windows.net/api/$metadata#Jobs","value":[{"Id":"nb:jid:UUID:f3c43f94-327f-2347-90bb-3bf79f8559f1","Name":"Encoding BigBuckBunny into to H264 Adaptive Bitrate MP4 Set 720p","Created":"2015-02-11T01:46:08.897","LastModified":"2015-02-11T01:46:08.897","EndTime":null,"Priority":0,"RunningDuration":0.0,"StartTime":"2015-02-11T01:46:16.58","State":2,"TemplateId":null,"JobNotificationSubscriptions":[]}]} 
+    {"odata.metadata":"https://media.windows.net/api/$metadata#Jobs","value":[{"Id":"nb:jid:UUID:f3c43f94-327f-2347-90bb-3bf79f8559f1","Name":"Encoding BigBuckBunny into tooH264 Adaptive Bitrate MP4 Set 720p","Created":"2015-02-11T01:46:08.897","LastModified":"2015-02-11T01:46:08.897","EndTime":null,"Priority":0,"RunningDuration":0.0,"StartTime":"2015-02-11T01:46:16.58","State":2,"TemplateId":null,"JobNotificationSubscriptions":[]}]} 
 
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑

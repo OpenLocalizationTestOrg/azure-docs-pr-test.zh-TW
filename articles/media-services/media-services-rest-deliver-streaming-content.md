@@ -1,6 +1,6 @@
 ---
-title: "使用 REST 發佈 Azure 媒體服務內容"
-description: "了解如何建立定位器，用來建置串流 URL。 程式碼使用 REST API。"
+title: "使用 REST aaaPublish Azure 媒體服務內容"
+description: "深入了解如何 toocreate 是使用的 toobuild 串流 URL 定位器。 hello 程式碼使用 REST API。"
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako
-ms.openlocfilehash: d1e0a112040f6aa4cfa9e8c323507b1c0a223f3e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f849e21b3103b9b33bc652e886b2016ea495b19a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="publish-azure-media-services-content-using-rest"></a>使用 REST 發佈 Azure 媒體服務內容
 > [!div class="op_single_selector"]
@@ -29,40 +29,40 @@ ms.lasthandoff: 08/29/2017
 > 
 
 ## <a name="overview"></a>Overview
-您可以建立隨選串流定位器及建置串流 URL，串流處理調適性位元速率 MP4 集。 [為資產編碼](media-services-rest-encode-asset.md) 主題說明如何編碼為調適性位元速率 MP4 集。 如果您的內容已加密，請在建立定位器之前設定資產傳遞原則 (如 [這個](media-services-rest-configure-asset-delivery-policy.md) 主題中所述)。 
+您可以建立隨選串流定位器及建置串流 URL，串流處理調適性位元速率 MP4 集。 hello[編碼資產](media-services-rest-encode-asset.md)主題說明如何設定 tooencode 成彈性位元速率 MP4。 如果您的內容已加密，請在建立定位器之前設定資產傳遞原則 (如 [這個](media-services-rest-configure-asset-delivery-policy.md) 主題中所述)。 
 
-您也可以使用隨選串流定位器來建置指向可漸進式下載之 MP4 檔案的 URL。  
+您也可以使用串流定位器 toobuild Url 可以漸進式下載該點 tooMP4 檔案 OnDemand。  
 
-本主題說明如何建立隨選串流定位器以發佈資產及建置 Smooth、MPEG DASH 和 HLS 串流 URL。 它也會示範如何建置漸進式下載 URL。
+本主題說明如何 toocreate OnDemand 串流定位器中的排序 toopublish 資產並建置 Smooth、 MPEG DASH 和 HLS 資料流 Url。 它也會示範熱 toobuild 漸進式下載 Url。
 
-[下列章節](#types) 說明列舉類型，REST 呼叫中會使用這些類型的值。   
+hello[下列](#types)區段會顯示 hello 列舉型別會使用其值在 hello REST 呼叫。   
 
 > [!NOTE]
 > 在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 > 
 
-## <a name="connect-to-media-services"></a>連線到媒體服務
+## <a name="connect-toomedia-services"></a>TooMedia 服務連接
 
-如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。 
+如需有關如何 tooconnect toohello AMS API，請參閱詳細[存取 hello Azure 媒體服務 API 與 Azure AD 驗證](media-services-use-aad-auth-to-access-ams-api.md)。 
 
 >[!NOTE]
->順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 後續的呼叫必須送到新的 URI。
+>已成功連接之後 toohttps://media.windows.net，您會收到指定另一個媒體服務 URI 的 301 重新導向。 您必須進行的後續呼叫 toohello 新的 URI。
 
 ## <a name="create-an-ondemand-streaming-locator"></a>建立隨選串流定位器
-若要建立隨選串流定位器並取得 URL，您需要執行下列動作：
+toocreate hello OnDemand 串流定位器，並取得您需要遵循 toodo hello 的 Url:
 
-1. 如果內容已加密，請定義存取原則。
+1. 如果 hello 內容會經過加密，定義存取原則。
 2. 建立隨選串流定位器。
-3. 如果您想要串流處理，請取得資產內的串流資訊清單檔案 (.ism)。 
+3. 如果您計劃 toostream，取得資料流 hello 資產中的資訊清單檔案 (.ism) 的 hello。 
    
-   如果您想要漸進式地下載，請取得資產中的 MP4 檔案名稱。 
-4. 建置資訊清單檔或 MP4 檔案的 URL。 
+   如果您計劃 tooprogressively 下載，會收到 hello hello 資產中的 MP4 檔案的名稱。 
+4. 建置 Url toohello 資訊清單檔或 MP4 檔案。 
 5. 請注意，您無法使用包含寫入或刪除權限的 AccessPolicy 建立串流訂位器。
 
 ### <a name="create-an-access-policy"></a>建立存取原則
 
 >[!NOTE]
->對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
+>對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 您應該使用 hello 如果一律使用相同的原則識別碼 hello 相同天 / 存取權限，例如，原則會就地預定的 tooremain 長時間 （非上載原則） 的定位器。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 
 要求：
 
@@ -100,7 +100,7 @@ ms.lasthandoff: 08/29/2017
     {"odata.metadata":"https://media.windows.net/api/$metadata#AccessPolicies/@Element","Id":"nb:pid:UUID:69c80d98-7830-407f-a9af-e25f4b0d3e5f","Created":"2015-02-18T06:52:09.8862191Z","LastModified":"2015-02-18T06:52:09.8862191Z","Name":"access policy","DurationInMinutes":43200.0,"Permissions":1}
 
 ### <a name="create-an-ondemand-streaming-locator"></a>建立隨選串流定位器
-建立指定資產和資產原則的定位器。
+建立 hello 定位器 hello 指定的資產和資產的原則。
 
 要求：
 
@@ -138,7 +138,7 @@ ms.lasthandoff: 08/29/2017
     {"odata.metadata":"https://media.windows.net/api/$metadata#Locators/@Element","Id":"nb:lid:UUID:be245661-2bbd-4fc6-b14f-9cf9a1492e5e","ExpirationDateTime":"2015-03-20T06:34:47.267872+00:00","Type":2,"Path":"http://amstest1.streaming.mediaservices.windows.net/be245661-2bbd-4fc6-b14f-9cf9a1492e5e/","BaseUri":"http://amstest1.streaming.mediaservices.windows.net","ContentAccessComponent":"be245661-2bbd-4fc6-b14f-9cf9a1492e5e","AccessPolicyId":"nb:pid:UUID:1480030d-c481-430a-9687-535c6a5cb272","AssetId":"nb:cid:UUID:cc1e445d-1500-80bd-538e-f1e4b71b465e","StartTime":"2015-02-18T06:34:47.267872+00:00","Name":null}
 
 ### <a name="build-streaming-urls"></a>建置串流 URL
-建立定位器之後，使用傳回的 **Path** 值建置 Smooth、HLS 和 MPEG DASH URL。 
+使用 hello**路徑**hello 定位器 toobuild hello hello 建立之後 Smooth、 HLS 及 MPEG DASH Url 傳回的值。 
 
 Smooth Streaming： **Path** + 資訊清單檔案名稱 + "/manifest"
 
@@ -161,7 +161,7 @@ DASH： **Path** + 資訊清單檔案名稱 + "/manifest(format=mpd-time-csf)"
 
 
 ### <a name="build-progressive-download-urls"></a>建置漸進式下載 URL
-建立定位器之後，使用傳回的 **Path** 值建置漸進式下載 URL。   
+使用 hello**路徑**hello 建立 hello 定位器 toobuild hello 漸進式下載 URL 之後，傳回值。   
 
 URL： **Path** + 資產檔案 MP4 名稱
 

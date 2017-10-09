@@ -1,6 +1,6 @@
 ---
-title: "建立 Service Fabric 的 .NET 應用程式 |Microsoft Docs"
-description: "了解如何建立含有 ASP.NET Core 前端和可靠服務具狀態後端的應用程式，並將應用程式部署到叢集。"
+title: ".NET 應用程式適用於 Service Fabric aaaCreate |Microsoft 文件"
+description: "了解如何 toocreate 前端的 ASP.NET Core 和可靠的應用程式服務可設定狀態的後端，並部署 hello 應用程式 tooa 叢集。"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,57 +14,57 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/09/2017
 ms.author: ryanwi, mikhegn
-ms.openlocfilehash: ef50adf3af19bce494c3256308b443c8eaccdcea
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: bab331b9f8616c50a2794b6c048aace15579c8b8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-and-deploy-an-application-with-an-aspnet-core-web-api-front-end-service-and-a-stateful-back-end-service"></a>建立和部署含有 ASP.NET Core Web API 前端服務和具狀態後端服務的應用程式
-本教學課程是一個系列的第一部分。  您將了解如何建立含有 ASP.NET Core Web API 前端和具狀態後端服務的 Azure Service Fabric 應用程式來儲存您的資料。 當您完成時，您會有一個投票應用程式，其 ASP.NET Core Web 前端會將投票結果儲存在叢集中具狀態的後端服務。 如果您不需要以手動建立投票應用程式，可以[下載已完成應用程式的原始程式碼](https://github.com/Azure-Samples/service-fabric-dotnet-quickstart/)並直接前往[逐步解說投票範例應用程式](#walkthrough_anchor)。
+本教學課程是一個系列的第一部分。  您將學習如何 toocreate ASP.NET Core Web API 最上層的 Azure Service Fabric 應用程式結束，並可設定狀態的後端服務 toostore 您的資料。 當您完成時，必須具有 ASP.NET Core web 前端，將投票的結果儲存在可設定狀態的後端服務 hello 叢集中的投票應用程式。 如果您不想 toomanually 建立 hello 投票應用程式，您可以[hello 將原始程式碼下載](https://github.com/Azure-Samples/service-fabric-dotnet-quickstart/)hello 已完成應用程式，並跳過[逐步解說投票範例應用程式的 hello](#walkthrough_anchor)。
 
 ![應用程式圖表](./media/service-fabric-tutorial-create-dotnet-app/application-diagram.png)
 
-在系列的第一部分中，您將了解如何：
+其中一個 hello 系列的一部分，在您了解如何：
 
 > [!div class="checklist"]
 > * 建立 ASP.NET Core Web API 服務成為具狀態可靠服務
 > * 建立 ASP.NET Core Web 應用程式服務成為具狀態可靠服務
-> * 使用反向 proxy 來與具狀態服務進行通訊
+> * 使用 hello 反向 proxy toocommunicate 與 hello 可設定狀態服務
 
 在本教學課程系列中，您將了解如何：
 > [!div class="checklist"]
 > * 建置 .NET Service Fabric 應用程式
-> * [將應用程式部署到遠端叢集](service-fabric-tutorial-deploy-app-to-party-cluster.md)
+> * [部署 hello 應用程式 tooa 遠端叢集](service-fabric-tutorial-deploy-app-to-party-cluster.md)
 > * [使用 Visual Studio Team Services 設定 CI/CD](service-fabric-tutorial-deploy-app-with-cicd-vsts.md)
 
 ## <a name="prerequisites"></a>必要條件
 開始進行本教學課程之前：
 - 如果您沒有 Azure 訂用帳戶，請建立[免費帳戶](https://azure.microsoft.com/free/?WT.mc_id=A261C142F)
-- [安裝 Visual Studio 2017](https://www.visualstudio.com/) 並安裝 **Azure 開發**以及 **ASP.NET 和 Web 開發**工作負載。
-- [安裝 Service Fabric SDK](service-fabric-get-started.md)
+- [安裝 Visual Studio 2017](https://www.visualstudio.com/)並安裝 hello **Azure 開發**和**ASP.NET 及 web 開發**工作負載。
+- [安裝 hello Service Fabric SDK](service-fabric-get-started.md)
 
 ## <a name="create-an-aspnet-web-api-service-as-a-reliable-service"></a>建立 ASP.NET Web API 服務成為可靠的服務
-首先，使用 ASP.NET Core 建立投票應用程式的 web 前端。 ASP.NET Core 是輕量型、跨平台的 Web 開發架構，可供您用來建立新式 Web UI 和 Web API。 若要完整了解 ASP.NET Core 如何與 Service Fabric 整合，強烈建議您仔細閱讀 [Service Fabric Reliable Services 中的 ASP.NET Core](service-fabric-reliable-services-communication-aspnetcore.md) 文章。 現在，您可以依照本教學課程來快速上手。 若要深入了解 ASP.NET Core，請參閱 [ASP.NET Core 文件](https://docs.microsoft.com/aspnet/core/)。
+首先，建立 hello web 前端的 hello 投票使用 ASP.NET Core 應用程式。 ASP.NET Core 是輕量型、 跨平台的 web 開發架構，您可以使用 toocreate 新式 web UI 和 web 應用程式開發介面。 tooget 瞭解的 ASP.NET Core Service Fabric 與整合的方式，我們強烈建議您閱讀 hello [Service Fabric 可靠的服務中的 ASP.NET Core](service-fabric-reliable-services-communication-aspnetcore.md)發行項。 現在，您可以遵循這個快速入門的教學課程 tooget。 深入了解 ASP.NET Core toolearn 看到 hello [ASP.NET Core 文件集](https://docs.microsoft.com/aspnet/core/)。
 
 > [!NOTE]
-> 本教學課程係根據[適用於 Visual Studio 2017 的 ASP.NET Core 工具](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/start-mvc)。 適用於 Visual Studio 2015 的 .NET Core 工具不再進行更新。
+> 本教學課程根據 hello [ASP.NET Core 工具的 Visual Studio 2017](https://docs.microsoft.com/aspnet/core/tutorials/first-mvc-app/start-mvc)。 Visual Studio 2015 的 hello.NET Core 工具不再正在更新。
 
 1. 以**系統管理員**身分啟動 Visual Studio。
 
 2. 使用**檔案**->**新增**->**專案**建立專案
 
-3. 在 [新增專案]  對話方塊中，選擇 [雲端] > [Service Fabric 應用程式]。
+3. 在 [hello**新專案**] 對話方塊中，選擇**雲端 > Service Fabric 應用程式**。
 
-4. 將應用程式命名為 **Voting**，然後按 [確定]。
+4. Hello 應用程式命名**投票**按**確定**。
 
    ![Visual Studio 中的新增專案對話方塊](./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog.png)
 
-5. 在**新增 Service Fabric 服務**頁面上，選擇**無狀態 ASP.NET Core**，並將服務命名為 **VotingWeb**。
+5. 在 hello**新增 Service Fabric 服務**頁面上，選擇**無狀態的 ASP.NET Core**，並命名您的服務**VotingWeb**。
    
-   ![在新服務對話方塊中選擇 ASP.NET Web 服務](./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog-2.png) 
+   ![在 [hello 新增服務] 對話方塊中選擇 ASP.NET web 服務](./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog-2.png) 
 
-6. 下一頁會提供一組 ASP.NET Core 專案範本。 在本教學課程中，選擇 [Web 應用程式]。 
+6. hello 下一個頁面會提供一組 ASP.NET Core 專案範本。 在本教學課程中，選擇 [Web 應用程式]。 
    
    ![選擇 ASP.NET 專案類型](./media/service-fabric-tutorial-create-dotnet-app/vs-new-aspnet-project-dialog.png)
 
@@ -72,8 +72,8 @@ ms.lasthandoff: 08/18/2017
 
    ![使用 ASP.NET Core Web API 服務建立應用程式後的方案總管]( ./media/service-fabric-tutorial-create-dotnet-app/solution-explorer-aspnetcore-service.png)
 
-### <a name="add-angularjs-to-the-votingweb-service"></a>將 AngularJS 新增至 VotingWeb 服務
-使用內建 [Bower 支援](/aspnet/core/client-side/bower)將 [AngularJS](http://angularjs.org/) 新增至您的服務。 開啟 bower.json 並新增 Angular 和 Angular 啟動程序的項目，然後儲存您的變更。
+### <a name="add-angularjs-toohello-votingweb-service"></a>加入 AngularJS toohello VotingWeb 服務
+新增[AngularJS](http://angularjs.org/) tooyour 服務使用 hello 內建[Bower 支援](/aspnet/core/client-side/bower)。 開啟 bower.json 並新增 Angular 和 Angular 啟動程序的項目，然後儲存您的變更。
 
 ```json
 {
@@ -89,10 +89,10 @@ ms.lasthandoff: 08/18/2017
   }
 }
 ```
-在儲存 bower.json 檔案時，Angular 會安裝在您專案的 wwwroot/lib 資料夾中。 此外，它會列在 Dependencies/Bower 資料夾內。
+在儲存 hello 時*bower.json* Angular 的檔案會安裝在您的專案*wwwroot/lib*資料夾。 此外，它會列在 hello*相依性/Bower*資料夾。
 
-### <a name="update-the-sitejs-file"></a>更新 site.js 檔案
-開啟 wwwroot/js/site.js 檔案。  將其內容取代為 [首頁] 檢視所使用的 JavaScript：
+### <a name="update-hello-sitejs-file"></a>更新 hello site.js 檔案
+開啟 hello *wwwroot/js/site.js*檔案。  取代 hello JavaScript 使用 hello 首頁檢視其內容：
 
 ```javascript
 var app = angular.module('VotingApp', ['ui.bootstrap']);
@@ -131,8 +131,8 @@ app.controller('VotingAppController', ['$rootScope', '$scope', '$http', '$timeou
 }]);
 ```
 
-### <a name="update-the-indexcshtml-file"></a>更新 Index.cshtml 檔案
-開啟 Views/Home/Index.cshtml 檔案，檢視為 [首頁] 控制器特定。  將其內容取代為下列項目，然後儲存變更。
+### <a name="update-hello-indexcshtml-file"></a>更新 hello Index.cshtml 檔案
+開啟 hello *Views/Home/Index.cshtml*檔案、 hello 檢視特定 toohello Home 控制器。  Hello 下列程式碼，以取代其內容，然後儲存您的變更。
 
 ```html
 @{
@@ -167,7 +167,7 @@ app.controller('VotingAppController', ['$rootScope', '$scope', '$http', '$timeou
             <div class="col-xs-8 col-xs-offset-2">
                 <div class="row">
                     <div class="col-xs-4">
-                        Click to vote
+                        Click toovote
                     </div>
                 </div>
                 <div class="row top-buffer" ng-repeat="vote in votes.data">
@@ -194,8 +194,8 @@ app.controller('VotingAppController', ['$rootScope', '$scope', '$http', '$timeou
 </div>
 ```
 
-### <a name="update-the-layoutcshtml-file"></a>更新 _Layout.cshtml 檔案
-開啟 Views/Shared/_Layout.cshtml 檔案，ASP.NET 應用程式的預設版面配置。  將其內容取代為下列項目，然後儲存變更。
+### <a name="update-hello-layoutcshtml-file"></a>更新 hello _Layout.cshtml 檔案
+開啟 hello *Views/Shared/_Layout.cshtml*檔案、 hello hello ASP.NET 應用程式的預設版面配置。  Hello 下列程式碼，以取代其內容，然後儲存您的變更。
 
 ```html
 <!DOCTYPE html>
@@ -225,8 +225,8 @@ app.controller('VotingAppController', ['$rootScope', '$scope', '$http', '$timeou
 </html>
 ```
 
-### <a name="update-the-votingwebcs-file"></a>更新 VotingWeb.cs 檔案
-開啟 VotingWeb.cs 檔案，該檔案會使用 WebListener web 伺服器，在無狀態服務內建立 ASP.NET Core WebHost。  將 `using System.Net.Http;` 指示詞新增至檔案開頭處。  將 `CreateServiceInstanceListeners()` 函式取代為下列項目，然後儲存變更。
+### <a name="update-hello-votingwebcs-file"></a>更新 hello VotingWeb.cs 檔案
+開啟 hello *VotingWeb.cs*建立 hello ASP.NET Core WebHost hello 使用 hello WebListener web 伺服器的無狀態服務內的檔案。  新增 hello`using System.Net.Http;`指示詞 toohello hello 檔案的頂端。  取代 hello `CreateServiceInstanceListeners()` hello 下列函數，然後儲存您的變更。
 
 ```csharp
 protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
@@ -254,8 +254,8 @@ protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceLis
 }
 ```
 
-### <a name="add-the-votescontrollercs-file"></a>新增 VotesController.cs 檔案
-新增定義投票動作的控制器。 以滑鼠右鍵按一下 [控制器] 資料夾，然後選取 [新增 -> 新增項目 -> 類別]。  將檔案命名為 "VotesController.cs"，然後按一下 [新增]。  將檔案內容取代為下列項目，然後儲存變更。  稍後，在[更新 VotesController.cs 檔案](#updatevotecontroller_anchor)中，將會修改這個檔案，以從後端服務讀取和寫入投票資料。  現在，控制器會將靜態字串資料傳回至檢視。
+### <a name="add-hello-votescontrollercs-file"></a>加入 hello VotesController.cs 檔案
+新增定義投票動作的控制器。 以滑鼠右鍵按一下 hello**控制器**資料夾，然後選取**新增-> 新增項目類別->** 。  將 hello 檔案 」 VotesController.cs"，然後按一下**新增**。  Hello 檔案內容取代 hello 下列項目，然後儲存您的變更。  稍後在[更新 hello VotesController.cs 檔案](#updatevotecontroller_anchor)，這個檔案將已修改的 tooread 並從 hello 後端服務寫入投票資料。  現在，hello 控制站會傳回靜態字串資料 toohello 檢視。
 
 ```csharp
 using System;
@@ -296,36 +296,36 @@ namespace VotingWeb.Controllers
 
 
 
-### <a name="deploy-and-run-the-application-locally"></a>在本機部署和執行應用程式
-您現在可以繼續執行應用程式。 在 Visual Studio 中，按 `F5` 部署應用程式以供偵錯。 如果您先前並未以**系統管理員**身分開啟 Visual Studio，`F5` 將失敗。
+### <a name="deploy-and-run-hello-application-locally"></a>部署並在本機執行 hello 應用程式
+您現在可以繼續，並執行 hello 應用程式。 在 Visual Studio 中，按`F5`toodeploy hello 應用程式進行偵錯。 如果您先前並未以**系統管理員**身分開啟 Visual Studio，`F5` 將失敗。
 
 > [!NOTE]
-> 您第一次在本機執行及部署應用程式時，Visual Studio 會建立本機叢集以供偵錯。  建立叢集可能需要一些時間。 叢集建立狀態會顯示在 Visual Studio 輸出視窗中。
+> hello 第一次執行，並部署 hello 應用程式在本機，Visual Studio 會建立偵錯的本機叢集。  建立叢集可能需要一些時間。 hello Visual Studio 輸出 視窗中會顯示 hello 叢集建立狀態。
 
 此時，您的 web 應用程式看起來應該像這樣：
 
 ![ASP.NET Core 前端](./media/service-fabric-tutorial-create-dotnet-app/debug-front-end.png)
 
-若要停止應用程式偵錯，請返回 Visual Studio 並且按**Shift+F5**。
+toostop 偵錯 hello 應用程式，請返回 tooVisual Studio，然後按**Shift + F5**。
 
-## <a name="add-a-stateful-back-end-service-to-your-application"></a>將具狀態後端服務新增到應用程式
-現在，應用程式中有 ASP.NET Web API 服務正在執行，讓我們繼續新增具狀態可靠服務，將一些資料儲存於應用程式中。
+## <a name="add-a-stateful-back-end-service-tooyour-application"></a>新增可設定狀態的後端服務 tooyour 應用程式
+現在，我們已經在我們的應用程式中執行的 ASP.NET Web API 服務，請繼續進行，在我們的應用程式中新增可設定狀態的可靠服務 toostore 某些資料。
 
-Service Fabric 可讓您使用可靠集合，直接在服務內以一致且可靠的方式儲存資料。 可靠集合是一組高可用性和可靠的集合類別，用過 C# 集合的任何人都會很熟悉。
+Service Fabric tooconsistently 可讓您和可靠地儲存在您的服務將資料直接使用可靠的集合。 可靠的集合是一組都已使用 C# 集合熟悉 tooanyone 的高度可用且可靠的集合類別。
 
 在本教學課程中，您建立服務，將計數器值儲存於可靠集合中。
 
-1. 在 [方案總管] 中，以滑鼠右鍵按一下應用程式專案中的 [服務]，然後選擇 [新增] > [新增 Service Fabric Explorer]。
+1. 在 方案總管 中，以滑鼠右鍵按一下**服務**內 hello 應用程式專案，然後選擇 **新增 > 新增 Service Fabric 服務**。
    
-    ![將新服務加入至現有的應用程式](./media/service-fabric-tutorial-create-dotnet-app/vs-add-new-service.png)
+    ![加入新的服務 tooan 現有應用程式](./media/service-fabric-tutorial-create-dotnet-app/vs-add-new-service.png)
 
-2. 在 [新增 Service Fabric 服務] 對話方塊中，選擇 [具狀態 ASP.NET Core]，並將服務命名為 **VotingData**，然後按 [確定]。
+2. 在 hello**新增 Service Fabric 服務** 對話方塊中，選擇**可設定狀態的 ASP.NET Core**，和名稱 hello 服務**VotingData**按**確定**。
 
     ![Visual Studio 中的新增服務對話方塊](./media/service-fabric-tutorial-create-dotnet-app/add-stateful-service.png)
 
-    建立服務專案後，您的應用程式中會有兩個服務。 隨著您繼續組建應用程式，您可以用相同的方式新增更多服務。 每個服務都可以獨立設定版本和升級。
+    建立服務專案後，您的應用程式中會有兩個服務。 當您繼續 toobuild 您的應用程式，您就可以在 hello 中加入更多服務相同的方式。 每個服務都可以獨立設定版本和升級。
 
-3. 下一頁會提供一組 ASP.NET Core 專案範本。 在本教學課程中，選擇 [Web API]。
+3. hello 下一個頁面會提供一組 ASP.NET Core 專案範本。 在本教學課程中，選擇 [Web API]。
 
     ![選擇 ASP.NET 專案類型](./media/service-fabric-tutorial-create-dotnet-app/vs-new-aspnet-project-dialog2.png)
 
@@ -333,9 +333,9 @@ Service Fabric 可讓您使用可靠集合，直接在服務內以一致且可�
 
     ![Solution Explorer](./media/service-fabric-tutorial-create-dotnet-app/solution-explorer-aspnetcore-service.png)
 
-### <a name="add-the-votedatacontrollercs-file"></a>新增 VoteDataController.cs 檔案
+### <a name="add-hello-votedatacontrollercs-file"></a>加入 hello VoteDataController.cs 檔案
 
-在 **VotingData** 專案中，以滑鼠右鍵按一下 [控制器] 資料夾，然後選取 [新增 -> 新增項目 -> 類別]。 將檔案命名為 "VoteDataController.cs"，然後按一下 [新增]。 將檔案內容取代為下列項目，然後儲存變更。
+在 hello **VotingData**專案上的按一下滑鼠右鍵在 hello**控制站**資料夾，然後選取**新增-> 新增項目類別->** 。 將 hello 檔案 」 VoteDataController.cs"，然後按一下**新增**。 Hello 檔案內容取代 hello 下列項目，然後儲存您的變更。
 
 ```csharp
 using System;
@@ -424,17 +424,17 @@ namespace VotingData.Controllers
 ```
 
 
-## <a name="connect-the-services"></a>連接服務
-在下一個步驟中，我們會將這兩項服務連線，並讓前端 Web 應用程式從後端服務取得和設定投票資訊。
+## <a name="connect-hello-services"></a>Hello 服務連接
+在下一個步驟中，我們將連接 hello 兩個服務，然後讓 hello 前端 Web 應用程式取得和設定投票從 hello 後端服務的資訊。
 
-對於您與可靠服務通訊的方式，Service Fabric 會提供完整的彈性。 在單一應用程式中，您可能有可透過 TCP 存取的服務。 可透過 HTTP 的 REST API 存取的其他服務以及其他任何服務可以透過 Web 通訊端存取。 如需可用選項和相關權衡取捨的背景，請參閱 [與服務進行通訊](service-fabric-connect-and-communicate-with-services.md)。
+對於您與可靠服務通訊的方式，Service Fabric 會提供完整的彈性。 在單一應用程式中，您可能有可透過 TCP 存取的服務。 可透過 HTTP 的 REST API 存取的其他服務以及其他任何服務可以透過 Web 通訊端存取。 如需有關可用的 hello 選項以及 hello 權衡取捨的背景，請參閱[與服務通訊](service-fabric-connect-and-communicate-with-services.md)。
 
 在本教學課程中，我們會使用 [ASP.NET Core Web API](service-fabric-reliable-services-communication-aspnetcore.md)。
 
 <a id="updatevotecontroller" name="updatevotecontroller_anchor"></a>
 
-### <a name="update-the-votescontrollercs-file"></a>更新 VotesController.cs 檔案
-在 **VotingWeb** 專案中，開啟 Controllers/VotesController.cs 檔案。  將 `VotesController` 類別定義內容取代為下列項目，然後儲存變更。
+### <a name="update-hello-votescontrollercs-file"></a>更新 hello VotesController.cs 檔案
+在 hello **VotingWeb**專案、 開啟 hello *Controllers/VotesController.cs*檔案。  取代 hello`VotesController`類別定義的內容，與 hello 下列項目，然後儲存您的變更。
 
 ```csharp
     public class VotesController : Controller
@@ -504,59 +504,59 @@ namespace VotingData.Controllers
 ```
 <a id="walkthrough" name="walkthrough_anchor"></a>
 
-## <a name="walk-through-the-voting-sample-application"></a>逐步解說投票範例應用程式
-投票應用程式包含兩個服務：
-- Web 前端服務 (VotingWeb) 是 ASP.NET Core Web 前端服務，可作為網頁，並公開 Web API 來與後端服務通訊。
-- 後端服務 (VotingData) 是 ASP.NET Core Web 服務，會公開 API 來將投票結果儲存在磁碟上所保存的可靠字典中。
+## <a name="walk-through-hello-voting-sample-application"></a>逐步解說 hello 投票範例應用程式
+hello 投票應用程式是由兩個服務所組成：
+- Web 前端服務 (VotingWeb)-ASP.NET Core web 前端服務，會做 hello 網頁，並公開 web Api toocommunicate 與 hello 後端服務。
+- 後端服務 (VotingData)-ASP.NET Core web 服務會公開 API toostore hello 投票結果可靠的字典中保存在磁碟。
 
 ![應用程式圖表](./media/service-fabric-tutorial-create-dotnet-app/application-diagram.png)
 
-當您在應用程式中投票時，會發生下列事件：
-1. JavaScript 會將投票要求當做 HTTP PUT 要求，傳送至 Web 前端服務中的 Web API。
+當您在下列的 hello 應用程式 hello 投票事件就會發生：
+1. JavaScript 會以 HTTP PUT 要求傳送 hello web 前端服務中的 hello 投票要求 toohello web API。
 
-2. Web 前端服務使用 Proxy 來尋找 HTTP PUT 要求，並將其轉送至後端服務。
+2. hello web 前端服務會使用 proxy toolocate 及轉送 HTTP PUT 要求 toohello 後端服務。
 
-3. 後端服務會接受傳入要求，並將更新的結果儲存在可靠的字典中，以複寫至叢集中的多個節點並保存在磁碟上。 應用程式的所有資料都會儲存在叢集中，因此不需要資料庫。
+3. hello 後端服務大約需要 hello 傳入的要求，並儲存區 hello 更新在可靠字典中，取得複寫的 toomultiple hello 叢集中的節點，並保存在磁碟上的結果。 所有 hello 應用程式的資料儲存在 hello 叢集中，因此不需要任何資料庫。
 
 ## <a name="debug-in-visual-studio"></a>在 Visual Studio 中偵錯
-在 Visual Studio 中偵錯應用程式時，您會使用本機 Service Fabric 開發叢集。 您可以根據自己的情況選擇調整偵錯體驗。 在此應用程式中，我們將資料儲存在使用可靠字典的後端服務中。 當您停止偵錯工具時，Visual Studio 預設會移除應用程式。 移除應用程式也會導致移除後端服務中的資料。 若要保存偵錯工作階段之間的資料，您可以在 Visual Studio 中，將 [應用程式偵錯模式] 當做 [投票] 專案上的屬性來變更。
+在 Visual Studio 中偵錯應用程式時，您會使用本機 Service Fabric 開發叢集。 您擁有 hello 選項 tooadjust 您偵錯的體驗 tooyour 案例。 在此應用程式中，我們將資料儲存在使用可靠字典的後端服務中。 Visual Studio 移除 hello 應用程式，根據預設，當您停止 hello 偵錯工具。 移除 hello 應用程式造成 hello 資料在 hello 後端服務 tooalso 被移除。 toopersist hello 偵錯工作階段之間的資料，您可以變更 hello**應用程式偵錯模式**為 hello 屬性**投票**Visual Studio 專案中的。
 
-若要查看對程式碼的影響，請完成下列步驟：
-1. 開啟 **VotesController.cs** 檔案，並在 Web API 的 **Put** 方法 (第 47 行) 中設定中斷點 - 您可以在 Visual Studio 的方案總管中搜尋此檔案。
+在發生的事 hello 程式碼中，完成下列步驟的 hello toolook:
+1. 開啟 hello **VotesController.cs**檔案，並設定中斷點，在 hello web API 的**放**方法 （列 47）-您可以搜尋 hello Visual Studio 中的 [方案總管] 中的 hello 檔案。
 
-2. 開啟 **VoteDataController.cs** 檔案，並在此 Web API 的 **Put** 方法 (第 50 行) 中設定中斷點。
+2. 開啟 hello **VoteDataController.cs**檔案，並設定中斷點，在這個 web API**放**方法 （行 50）。
 
-3. 返回到瀏覽器，並按一下投票選項或新增投票選項。 您到達 Web 前端之 API 控制器的第一個中斷點。
+3. 返回 toohello 瀏覽器後，請按一下投票選項或加入新的投票選項。 您已達到 hello hello web 前端端的 api 控制器中的第一個中斷點。
     
-    1. 瀏覽器中的 JavaScript 會在此位置，將要求傳送至前端服務中的 Web API 控制器。
+    1. 這是其中 hello 瀏覽器中的 hello JavaScript 要求 toohello web API 控制器會以傳送 hello 前端服務。
     
     ![新增投票前端服務](./media/service-fabric-tutorial-create-dotnet-app/addvote-frontend.png)
 
-    2. 首先，我們會針對後端服務 **(1)** 建構 ReverseProxy 的 URL。
-    3. 接著，我們會將 HTTP PUT 要求傳送至 ReverseProxy **(2)**。
-    4. 最後我們會將後端服務的回應傳回至用戶端 **(3)**。
+    2. 我們第一次針對我們的後端服務建構 hello URL toohello ReverseProxy **(1)**。
+    3. 接著，我們將傳送嗨 HTTP PUT 要求 toohello ReverseProxy **(2)**。
+    4. 最後 hello 我們決定傳回 hello 回應 hello 後端服務 toohello 用戶端從**(3)**。
 
-4. 按 **F5** 繼續
-    1. 您現在位於後端服務的中斷點。
+4. 按**F5** toocontinue
+    1. 現在您已位於 hello 中斷點 hello 後端服務。
     
     ![新增投票後端服務](./media/service-fabric-tutorial-create-dotnet-app/addvote-backend.png)
 
-    2. 在方法的第一行 **(1)** 中，我們使用 `StateManager` 取得或新增名為 `counts` 的可靠字典。
+    2. Hello hello 方法中的第一行**(1)**我們使用 hello `StateManager` tooget 或可靠的字典，稱為`counts`。
     3. 與可靠字典中的值進行的所有互動，都需要交易，這會使用陳述式 **(2)** 建立該交易。
-    4. 在交易中，我們會接著更新投票選項的相關索引鍵值，然後認可作業 **(3)**。 一旦傳回認可方法，字典中的資料會更新並複寫至叢集中的其他節點。 資料現在會安全地儲存在叢集中，而且後端服務可以容錯移轉到仍有可用資料的其他節點。
-5. 按 **F5** 繼續
+    4. 在 hello 交易中，我們再更新 hello hello hello 投票選項的相關索引鍵的值，而且認可 hello 作業**(3)**。 一旦認可 hello 方法傳回時，hello 資料更新 hello 字典中，然後複寫 tooother hello 叢集中的節點。 hello 現在會安全地儲存資料 hello 叢集中，hello 後端服務可以容錯移轉 tooother 節點，仍有可用的 hello 資料。
+5. 按**F5** toocontinue
 
-若要停止偵錯工作階段，請按 **Shift+F5**。
+偵錯工作階段，請按 toostop hello **Shift + F5**。
 
 
 ## <a name="next-steps"></a>後續步驟
-在教學課程的這個部分中，您已了解如何：
+在這個部分 hello 教學課程中，您學會如何：
 
 > [!div class="checklist"]
 > * 建立 ASP.NET Core Web API 服務成為具狀態可靠服務
 > * 建立 ASP.NET Core Web 應用程式服務成為具狀態可靠服務
-> * 使用反向 proxy 來與具狀態服務進行通訊
+> * 使用 hello 反向 proxy toocommunicate 與 hello 可設定狀態服務
 
-前進到下一個教學課程：
+進階 toohello 下一個教學課程：
 > [!div class="nextstepaction"]
-> [將應用程式部署至 Azure](service-fabric-tutorial-deploy-app-to-party-cluster.md)
+> [部署 hello 應用程式 tooAzure](service-fabric-tutorial-deploy-app-to-party-cluster.md)

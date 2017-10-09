@@ -1,6 +1,6 @@
 ---
-title: "如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流 | Microsoft Docs"
-description: "本教學課程將逐步引導您使用 .NET SDK 建立通道，以接收單一位元速率即時串流，並將其編碼為多位元速率串流。"
+title: "aaaHow tooperform 即時資料流搭配.NET 使用 Azure Media Services toocreate 多位元速率串流 |Microsoft 文件"
+description: "此教學課程會逐步引導您完成建立通道的 hello 步驟接收單一位元速率即時串流，並將其編碼為使用.NET SDK toomulti 位元速率資料流。"
 services: media-services
 documentationcenter: 
 author: anilmur
@@ -14,99 +14,99 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: juliako;anilmur
-ms.openlocfilehash: 22d63ff5e9fd33db8711b0c5125ab0882b9f6a74
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 22088e6a78a49bd839575614a7c17a411ae8081c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-perform-live-streaming-using-azure-media-services-to-create-multi-bitrate-streams-with-net"></a>如何使用 Azure 媒體服務執行即時串流，以使用 .NET 建立多位元速率串流
+# <a name="how-tooperform-live-streaming-using-azure-media-services-toocreate-multi-bitrate-streams-with-net"></a>如何 tooperform 即時資料流使用 Azure Media Services toocreate 多位元速率串流的.NET
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-creating-live-encoder-enabled-channel.md)
 > * [.NET](media-services-dotnet-creating-live-encoder-enabled-channel.md)
 > * [REST API](https://docs.microsoft.com/rest/api/media/operations/channel)
 > 
 > [!NOTE]
-> 若要完成此教學課程，您需要 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)。
+> toocomplete 本教學課程中，您需要 Azure 帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)。
 > 
 > 
 
 ## <a name="overview"></a>概觀
-本教學課程將逐步引導您建立 **通道** ，可接收單一位元速率的即時串流，並將其編碼為多位元速率串流。
+本教學課程將引導您完成 hello 步驟建立的**通道**，接收單一位元速率即時串流，並將其編碼 toomulti 位元速率串流。
 
-如需為即時編碼啟用之通道相關的詳細概念資訊，請參閱 [使用 Azure 媒體服務的即時串流，以建立多位元速率串流](media-services-manage-live-encoder-enabled-channels.md)。
+如需詳細的概念性資訊相關的 tooChannels 啟用即時編碼，請參閱[使用 Azure Media Services toocreate 多位元速率串流的即時串流](media-services-manage-live-encoder-enabled-channels.md)。
 
 ## <a name="common-live-streaming-scenario"></a>常見即時串流案例
-下列步驟描述當我們建立一般即時資料流應用程式時，會涉及到的各種工作。
+hello 下列步驟說明建立通用的即時串流應用程式的相關工作。
 
 > [!NOTE]
-> 目前，即時事件的最大建議持續時間是 8 小時。 如果您需要較長的時間來執行通道，請連絡 amslived@Microsoft.com。
+> 目前，最大的 hello 建議即時事件的持續時間是 8 小時。 請如果您需要 toorun 通道的時間較長的時間，連絡 amslived microsoft.com。
 > 
 > 
 
-1. 將攝影機連接到電腦。 啟動和設定可使用下列其中一種通訊協定輸出單一位元速率串流的內部部署即時編碼器：RTMP、Smooth Streaming 或 RTP (MPEG-TS)。 如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
+1. 視訊攝影機 tooa 電腦連線。 啟動及設定內部部署即時編碼器可以輸出的其中一種 hello 下列通訊協定的單一位元速率資料流： RTMP、 Smooth Streaming 或 RTP (MPEG-TS)。 如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
 
     此步驟也可以在您建立通道之後執行。
 
 2. 建立並啟動通道。
-3. 擷取通道內嵌 URL。
+3. 擷取 hello 通道的內嵌 URL。
 
-    內嵌 URL 可供即時編碼器用來傳送串流到通道。
+    hello 內嵌 URL 由 hello 即時編碼器 toosend hello 資料流 toohello 通道。
 
-4. 擷取通道預覽 URL。
+4. 擷取 hello 通道預覽 URL。
 
-    使用此 URL 來確認您的通道會正確接收即時串流。
+    使用您的通道可正常接收即時資料流 hello 這個 URL tooverify。
 
 5. 建立資產。
-6. 如果您想要在播放期間動態加密資產，請執行下列動作：
+6. 如果您想要在播放期間動態加密 hello 資產 toobe，請勿 hello 遵循：
 7. 建立內容金鑰。
-8. 設定內容金鑰的授權原則。
+8. 設定 hello 內容金鑰授權原則。
 9. 設定資產傳遞原則 (供動態封裝和動態加密使用)。
-10. 建立程式，並指定使用您所建立的資產。
-11. 藉由建立 OnDemand 定位器，發行與程式相關聯的資產。
+10. 建立程式，並指定您所建立的 toouse hello 資產。
+11. 發佈 hello 資產建立 OnDemand 定位器與 hello 程式相關聯。
 
     >[!NOTE]
-    >建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 您想要串流內容的串流端點必須處於 [執行中] 狀態。 
+    >AMS 帳戶建立時**預設**串流端點就會加入 tooyour 帳戶 hello**已停止**狀態。 hello 串流的端點要從中 toostream 內容已經在 hello toobe**執行**狀態。 
 
-12. 當您準備好開始串流和封存時，請啟動程式。
-13. 即時編碼器會收到啟動公告的信號 (選擇性)。 公告會插入輸出串流中。
-14. 每當您想要停止串流處理和封存事件時，請停止程式。
-15. 刪除程式 (並選擇性地刪除資產)。
+12. 當您準備好 toostart 串流和封存時，請啟動 hello 程式。
+13. （選擇性） hello 即時編碼器可以信號的 toostart 公告。 hello 公告 hello 輸出資料流中插入。
+14. 每當您想 toostop 串流並封存 hello 事件時，請停止 hello 程式。
+15. 刪除 hello 程式 （並選擇性地刪除 hello 資產）。
 
 ## <a name="what-youll-learn"></a>您將學到什麼
-本主題示範如何使用 Media Services.NET SDK 在通道上執行不同的作業和程式。 因為許多作業會長時間執行，所以會使用管理長時間執行作業的 .NET API。
+本主題說明如何 tooexecute 通道和程式使用 Media Services.NET SDK 上不同的作業。 因為許多作業會長時間執行，所以會使用管理長時間執行作業的 .NET API。
 
-本主題示範如何執行下列動作：
+hello 主題顯示如何 toodo hello 下列：
 
 1. 建立並啟動通道。 使用長時間執行的 API。
-2. 取得通道內嵌 (輸入) 端點。 此端點應該提供給可以傳送單一位元速率即時串流的編碼器。
-3. 取得預覽端點。 此端點可用來預覽您的串流。
-4. 建立將用來儲存內容的資產。 資產傳遞原則也應該另外設定，如此範例中所示。
-5. 建立程式，並指定使用稍早建立的資產。 啟動程式。 使用長時間執行的 API。
-6. 建立資產的定位器，讓內容發行，並且可以串流至用戶端。
+2. 取得 hello 通道內嵌 （輸入） 端點。 此端點應提供 toohello 編碼器，可以傳送單一位元速率即時資料流。
+3. 收到 hello 預覽端點。 此端點是使用的 toopreview 您的資料流。
+4. 建立資產將會使用的 toostore 您的內容。 應該也，如本範例所示設定 hello 資產傳遞原則。
+5. 建立程式，並指定稍早建立的 toouse hello 資產。 啟動 hello 程式。 使用長時間執行的 API。
+6. 建立 hello 資產的定位器，因此 hello 內容取得發行，且可以進行資料流處理的 tooyour 用戶端。
 7. 顯示和隱藏 slate。 啟動和停止公告。 使用長時間執行的 API。
-8. 清除您的通道和所有相關聯的資源。
+8. 清除 您的通道，以及所有 hello 相關聯的資源。
 
 ## <a name="prerequisites"></a>必要條件
-需要有下列項目，才能完成教學課程。
+hello 下面是必要的 toocomplete hello 教學課程。
 
-* 一個 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)。 您將獲得能用來試用 Azure 付費服務的額度。 即使在額度用完後，您仍可保留帳戶，並使用免費的 Azure 服務和功能，例如 Azure App Service 中的 Web Apps 功能。
-* 媒體服務帳戶。 若要建立媒體服務帳戶，請參閱 [建立帳戶](media-services-portal-create-account.md)。
+* 一個 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)。 就可以使用的 tootry 出支付 Azure 服務的信用額度。 即使 hello 信用額度用完之後，您可以讓 hello 的帳戶，並使用免費的 Azure 服務與功能，例如 Azure App Service 中的 hello Web 應用程式功能。
+* 媒體服務帳戶。 toocreate Media Services 帳戶，請參閱[建立帳戶](media-services-portal-create-account.md)。
 * Visual Studio 2010 SP1 (Professional、Premium、Ultimate 或 Express) 或較新版本。
 * 您必須使用媒體服務 .NET SDK 3.2.0.0 版或更新版本。
 * 網路攝影機以及可以傳送單一位元速率即時串流的編碼器。
 
 ## <a name="considerations"></a>考量
-* 目前，即時事件的最大建議持續時間是 8 小時。 如果您需要較長的時間來執行通道，請連絡 amslived@Microsoft.com。
-* 對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您一律使用相同的日期 / 存取權限，例如，要長時間維持就地 (非上載原則) 的定位器原則，您應該使用相同的原則識別碼。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
+* 目前，最大的 hello 建議即時事件的持續時間是 8 小時。 請如果您需要 toorun 通道的時間較長的時間，連絡 amslived microsoft.com。
+* 對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 您應該使用 hello 如果一律使用相同的原則識別碼 hello 相同天 / 存取權限，例如，原則會就地預定的 tooremain 長時間 （非上載原則） 的定位器。 如需詳細資訊，請參閱 [這個](media-services-dotnet-manage-entities.md#limit-access-policies) 主題。
 
 ## <a name="download-sample"></a>下載範例
 
-您可以從[這裡](https://azure.microsoft.com/documentation/samples/media-services-dotnet-encode-live-stream-with-ams-clear/)下載本主題所述的範例。
+您可以下載從本主題中所述的 hello 範例[這裡](https://azure.microsoft.com/documentation/samples/media-services-dotnet-encode-live-stream-with-ams-clear/)。
 
 ## <a name="set-up-for-development-with-media-services-sdk-for-net"></a>設定使用媒體服務 SDK for.NET 的開發
 
-設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)所述。 
+設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。 
 
 ## <a name="code-example"></a>程式碼範例
 
@@ -127,7 +127,7 @@ ms.lasthandoff: 08/29/2017
         private const string AssetlName = "asset001";
         private const string ProgramlName = "program001";
 
-        // Read values from the App.config file.
+        // Read values from hello App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -144,21 +144,21 @@ ms.lasthandoff: 08/29/2017
 
             IChannel channel = CreateAndStartChannel();
 
-            // The channel's input endpoint:
+            // hello channel's input endpoint:
             string ingestUrl = channel.Input.Endpoints.FirstOrDefault().Url.ToString();
 
             Console.WriteLine("Intest URL: {0}", ingestUrl);
 
 
-            // Use the previewEndpoint to preview and verify 
-            // that the input from the encoder is actually reaching the Channel. 
+            // Use hello previewEndpoint toopreview and verify 
+            // that hello input from hello encoder is actually reaching hello Channel. 
             string previewEndpoint = channel.Preview.Endpoints.FirstOrDefault().Url.ToString();
 
             Console.WriteLine("Preview URL: {0}", previewEndpoint);
 
-            // When Live Encoding is enabled, you can now get a preview of the live feed as it reaches the Channel. 
-            // This can be a valuable tool to check whether your live feed is actually reaching the Channel. 
-            // The thumbnail is exposed via the same end-point as the Channel Preview URL.
+            // When Live Encoding is enabled, you can now get a preview of hello live feed as it reaches hello Channel. 
+            // This can be a valuable tool toocheck whether your live feed is actually reaching hello Channel. 
+            // hello thumbnail is exposed via hello same end-point as hello Channel Preview URL.
             string thumbnailUri = new UriBuilder
             {
             Scheme = Uri.UriSchemeHttps,
@@ -176,7 +176,7 @@ ms.lasthandoff: 08/29/2017
 
             ILocator locator = CreateLocatorForAsset(program.Asset, program.ArchiveWindowLength);
 
-            // You can use slates and ads only if the channel type is Standard.  
+            // You can use slates and ads only if hello channel type is Standard.  
             StartStopAdsSlates(channel);
 
             // Once you are done streaming, clean up your resources.
@@ -269,7 +269,7 @@ ms.lasthandoff: 08/29/2017
             SystemPreset = "Default720p",
             IgnoreCea708ClosedCaptions = false,
             AdMarkerSource = AdMarkerSource.Api,
-            // You can only set audio if streaming protocol is set to StreamingProtocol.RTPMPEG2TS.
+            // You can only set audio if streaming protocol is set tooStreamingProtocol.RTPMPEG2TS.
             AudioStreams = new List<AudioStream> { new AudioStream { Index = 103, Language = "eng" } }.AsReadOnly()
             };
         }
@@ -293,7 +293,7 @@ ms.lasthandoff: 08/29/2017
         }
 
         /// <summary>
-        /// Create a Program on the Channel. You can have multiple Programs that overlap or are sequential;
+        /// Create a Program on hello Channel. You can have multiple Programs that overlap or are sequential;
         /// however each Program must have a unique name within your Media Services account.
         /// </summary>
         /// <param name="channel"></param>
@@ -312,7 +312,7 @@ ms.lasthandoff: 08/29/2017
         }
 
         /// <summary>
-        /// Create locators in order to be able to publish and stream the video.
+        /// Create locators in order toobe able toopublish and stream hello video.
         /// </summary>
         /// <param name="asset"></param>
         /// <param name="ArchiveWindowLength"></param>
@@ -375,7 +375,7 @@ ms.lasthandoff: 08/29/2017
         }
 
         /// <summary>
-        /// Clean up resources associated with the channel.
+        /// Clean up resources associated with hello channel.
         /// </summary>
         /// <param name="channel"></param>
         public static void Cleanup(IChannel channel)
@@ -426,28 +426,28 @@ ms.lasthandoff: 08/29/2017
             string entityId = null;
             bool isCompleted = false;
 
-            Log("starting to track ", null, operation.Id);
+            Log("starting tootrack ", null, operation.Id);
             while (isCompleted == false)
             {
             operation = _context.Operations.GetOperation(operation.Id);
             isCompleted = IsCompleted(operation, out entityId);
             System.Threading.Thread.Sleep(TimeSpan.FromSeconds(30));
             }
-            // If we got here, the operation succeeded.
+            // If we got here, hello operation succeeded.
             Log(description + " in completed", operation.TargetEntityId, operation.Id);
 
             return entityId;
         }
 
         /// <summary> 
-        /// Checks if the operation has been completed. 
-        /// If the operation succeeded, the created entity Id is returned in the out parameter.
+        /// Checks if hello operation has been completed. 
+        /// If hello operation succeeded, hello created entity Id is returned in hello out parameter.
         /// </summary> 
-        /// <param name="operationId">The operation Id.</param> 
+        /// <param name="operationId">hello operation Id.</param> 
         /// <param name="channel">
-        /// If the operation succeeded, 
-        /// the entity Id associated with the sucessful operation is returned in the out parameter.</param>
-        /// <returns>Returns false if the operation is still in progress; otherwise, true.</returns> 
+        /// If hello operation succeeded, 
+        /// hello entity Id associated with hello sucessful operation is returned in hello out parameter.</param>
+        /// <returns>Returns false if hello operation is still in progress; otherwise, true.</returns> 
         private static bool IsCompleted(IOperation operation, out string entityId)
         {
             bool completed = false;
@@ -457,9 +457,9 @@ ms.lasthandoff: 08/29/2017
             switch (operation.State)
             {
             case OperationState.Failed:
-                // Handle the failure. 
+                // Handle hello failure. 
                 // For example, throw an exception. 
-                // Use the following information in the exception: operationId, operation.ErrorMessage.
+                // Use hello following information in hello exception: operationId, operation.ErrorMessage.
                 Log("operation failed", operation.TargetEntityId, operation.Id);
                 break;
             case OperationState.Succeeded:

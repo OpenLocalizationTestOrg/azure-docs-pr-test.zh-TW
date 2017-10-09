@@ -1,5 +1,5 @@
 ---
-title: "使用 PowerShell 建立 SQL 資料倉儲 | Microsoft Docs"
+title: "使用 PowerShell aaaCreate SQL 資料倉儲 |Microsoft 文件"
 description: "使用 PowerShell 建立 SQL 資料倉儲"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: create
 ms.date: 10/31/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: a763f1c600c1a3f37cb565a8eb7db3c3f27dcf75
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: d8af29ec285a11285785ab5474e4dfc8c36bc3ab
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-sql-data-warehouse-using-powershell"></a>使用 PowerShell 建立 SQL 資料倉儲
 > [!div class="op_single_selector"]
@@ -29,15 +29,15 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-本文說明如何使用 PowerShell 建立 SQL 資料倉儲。
+本文章將示範如何 toocreate SQL 資料倉儲使用 PowerShell。
 
 ## <a name="prerequisites"></a>必要條件
-若要開始，您需要：
+tooget 開始，您需要：
 
-* **Azure 帳戶**︰請瀏覽 [Azure 免費試用][Azure Free Trial]或 [MSDN Azure 點數][MSDN Azure Credits]以建立帳戶。
-* **Azure SQL Server**︰如需詳細資訊，請參閱[在 Azure 入口網站中建立 Azure SQL Database][Create an Azure SQL database in the Azure Portal] 或[使用 PowerShell 建立 Azure SQL Database][Create an Azure SQL database with PowerShell]。
-* **資源群組**︰使用與 Azure SQL Server 相同的資源群組，或參閱 [如何建立資源群組](../azure-resource-manager/resource-group-portal.md)。
-* **PowerShell 1.0.3 版或更新版本**：您可以執行 **Get-Module -ListAvailable -Name Azure** 來檢查您的版本。  可透過 [Microsoft Web Platform Installer][Microsoft Web Platform Installer]安裝最新的版本。  如需安裝最新版本的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell][How to install and configure Azure PowerShell]。
+* **Azure 帳戶**： 瀏覽[Azure 免費試用][ Azure Free Trial]或[MSDN Azure 信用額度][ MSDN Azure Credits] toocreate 帳戶。
+* **Azure SQL server**： 請參閱[hello Azure 入口網站中建立 Azure SQL database] [ Create an Azure SQL database in hello Azure Portal]或[使用 PowerShell 建立 Azure SQL database] [Create an Azure SQL database with PowerShell]如需詳細資訊。
+* **資源群組**： 請使用相同的資源與您的 Azure SQL server 群組，或參閱的 hello[如何 toocreate 資源群組](../azure-resource-manager/resource-group-portal.md)。
+* **PowerShell 1.0.3 版或更新版本**：您可以執行 **Get-Module -ListAvailable -Name Azure** 來檢查您的版本。  hello 最新版本可以從安裝[Microsoft Web Platform Installer][Microsoft Web Platform Installer]。  如需有關如何安裝 hello 最新版本的詳細資訊，請參閱[如何 tooinstall 和設定 Azure PowerShell][How tooinstall and configure Azure PowerShell]。
 
 > [!NOTE]
 > 建立 SQL 資料倉儲可能會導致新的可計費服務。  如需價格的詳細資訊，請參閱 [SQL 資料倉儲價格][SQL Data Warehouse pricing]。
@@ -46,17 +46,17 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="create-a-sql-data-warehouse"></a>建立 SQL 資料倉儲
 1. 開啟 Windows PowerShell。
-2. 執行此 Cmdlet 來登入 Azure 資源管理員。
+2. 執行這個指令程式 toologin tooAzure 資源管理員。
 
     ```Powershell
     Login-AzureRmAccount
     ```
-3. 選取目前的工作階段要使用的訂用帳戶。
+3. 選取您想 toouse 目前工作階段的 hello 訂用帳戶。
 
     ```Powershell
     Get-AzureRmSubscription    -SubscriptionName "MySubscription" | Select-AzureRmSubscription
     ```
-4. 建立資料庫。 這個範例會使用服務目標等級 "DW400" 建立名為 "mynewsqldw" 的資料庫，以部署到 "mywesteuroperesgp1" 資源群組中名為 "sqldwserver1" 的伺服器。
+4. 建立資料庫。 這個範例會建立名為"mynewsqldw"，服務目標等級 」 DW400"，toohello 伺服器名為"sqldwserver1"，這是在名為"mywesteuroperesgp1"hello 資源群組中的資料庫。
 
    ```Powershell
    New-AzureRmSqlDatabase -RequestedServiceObjectiveName "DW400" -DatabaseName "mynewsqldw" -ServerName "sqldwserver1" -ResourceGroupName "mywesteuroperesgp1" -Edition "DataWarehouse" -CollationName "SQL_Latin1_General_CP1_CI_AS" -MaxSizeBytes 10995116277760
@@ -64,23 +64,23 @@ ms.lasthandoff: 07/11/2017
 
 必要參數如下：
 
-* **RequestedServiceObjectiveName**：您要求的 [DWU][DWU] 數量。  支援的值為︰DW100、DW200、DW300、DW400、DW500、DW600、DW1000、DW1200、DW1500、DW2000、DW3000 和 DW6000。
-* **DatabaseName**：您要建立的 SQL 資料倉儲的名稱。
-* **ServerName**：您用來建立的伺服器名稱 (必須是 V12)。
-* **ResourceGroupName**：您使用的資源群組。  若要尋找訂用帳戶中可用的資源，請使用 Get-AzureResource。
-* **版本**：必須是 "DataWarehouse"，才能建立 SQL 資料倉儲。
+* **RequestedServiceObjectiveName**: hello 數量[DWU] [ DWU]您要求。  支援的值為︰DW100、DW200、DW300、DW400、DW500、DW600、DW1000、DW1200、DW1500、DW2000、DW3000 和 DW6000。
+* **DatabaseName**: hello 的 hello 您所建立的 SQL 資料倉儲的名稱。
+* **ServerName**: hello 伺服器用來建立 hello 名稱 （必須是 V12）。
+* **ResourceGroupName**：您使用的資源群組。  toofind 可用的資源群組，您的訂用帳戶中使用 Get AzureResource。
+* **Edition**： 必須是 「 資料倉儲"toocreate SQL 資料倉儲。
 
 選擇性參數如下：
 
-* **CollationName**：未指定定序時的預設值為 SQL_Latin1_General_CP1_CI_AS。  無法變更資料庫的定序。
-* **MaxSizeBytes**︰資料庫的預設大小上限為 10 GB。
+* **CollationName**： 如果未指定的 hello 預設定序為 SQL_Latin1_General_CP1_CI_AS。  無法變更資料庫的定序。
+* **MaxSizeBytes**: hello 資料庫的預設最大大小為 10 GB。
 
-如需參數選項的詳細資訊，請參閱 [New-AzureRmSqlDatabase][New-AzureRmSqlDatabase] 和[建立資料庫 (Azure SQL 資料倉儲)][Create Database (Azure SQL Data Warehouse)]。
+如需有關 hello 參數選項的詳細資訊，請參閱[新增 AzureRmSqlDatabase] [ New-AzureRmSqlDatabase]和[Create Database （Azure SQL 資料倉儲）][Create Database (Azure SQL Data Warehouse)]。
 
 ## <a name="next-steps"></a>後續步驟
-SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][loading sample data]，或查看如何[開發][develop]、[載入][load]或[移轉][migrate]。
+完成您的 SQL 資料倉儲之後佈建您可能會想 tootry[範例資料載入][ loading sample data]或太簽出如何[開發][ develop][載入][load]，或[移轉][migrate]。
 
-如果您有興趣進一步了解如何以程式設計方式管理 SQL 資料倉儲，請查看我們的文章中有關 [PowerShell Cmdlet 和 REST API][PowerShell cmdlets and REST APIs] 的使用方式。
+如果您想要更多有關 toomanage SQL 資料倉儲以程式設計的方式，查看我們的文件如何 toouse [PowerShell cmdlet 和 REST Api][PowerShell cmdlets and REST APIs]。
 
 <!--Image references-->
 
@@ -93,11 +93,11 @@ SQL 資料倉儲完成佈建之後，建議您試著[載入範例資料][loading
 [PowerShell cmdlets and REST APIs]: ./sql-data-warehouse-reference-powershell-cmdlets.md
 [firewall rules]: ../sql-database-configure-firewall-settings.md
 
-[How to install and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
-[how to create a SQL Data Warehouse from the Azure Portal]: ./sql-data-warehouse-get-started-provision.md
-[Create an Azure SQL database in the Azure Portal]: ../sql-database/sql-database-get-started.md
+[How tooinstall and configure Azure PowerShell]: /powershell/azureps-cmdlets-docs
+[how toocreate a SQL Data Warehouse from hello Azure Portal]: ./sql-data-warehouse-get-started-provision.md
+[Create an Azure SQL database in hello Azure Portal]: ../sql-database/sql-database-get-started.md
 [Create an Azure SQL database with PowerShell]: ../sql-database/sql-database-get-started-powershell.md
-[how to create a resource group]: ../azure-resource-manager/resource-group-template-deploy-portal.md#create-resource-group
+[how toocreate a resource group]: ../azure-resource-manager/resource-group-template-deploy-portal.md#create-resource-group
 
 <!--MSDN references-->
 [MSDN]: https://msdn.microsoft.com/library/azure/dn546722.aspx

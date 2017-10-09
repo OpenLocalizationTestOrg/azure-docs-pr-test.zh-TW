@@ -1,5 +1,5 @@
 ---
-title: "設定負載平衡器 TCP 閒置逾時 | Microsoft Docs"
+title: "aaaConfigure 負載平衡器 TCP 閒置逾時 |Microsoft 文件"
 description: "設定負載平衡器 TCP 閒置逾時"
 services: load-balancer
 documentationcenter: na
@@ -13,45 +13,45 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/24/2016
 ms.author: kumud
-ms.openlocfilehash: d040fe6580b8ae777aecc9dd385ed33861530c38
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 2bf0704b891f708e0a5bd7aa827441930f51cfaf
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-tcp-idle-timeout-settings-for-azure-load-balancer"></a>設定 Azure Load Balancer 的 TCP 閒置逾時設定
 
-在預設組態中，Azure Load Balancer 的閒置逾時設定是 4 分鐘。 如果閒置期間超過逾時值，即無法保證仍能維持用戶端與雲端服務之間的 TCP 或 HTTP 工作階段。
+在預設組態中，Azure Load Balancer 的閒置逾時設定是 4 分鐘。 如果一段時間的長度大於 hello 逾時值，保證 hello TCP 或 HTTP 工作階段仍可維持 hello 用戶端和雲端服務之間。
 
-當連線關閉時，用戶端應用程式可能會收到以下錯誤訊息：「基礎連線已關閉：應該保持運作的連接卻被伺服器關閉。」
+Hello 連接關閉時，用戶端應用程式可能會收到下列錯誤訊息的 hello:"hello 基礎連接已關閉： 必須保持運作的 toobe hello 伺服器已關閉的連接。 」
 
-常見作法是使用 TCP Keep-Alive。 此作法可讓連線保持長時間連線。 如需詳細資訊，請參閱這些 [.NET 文章](https://msdn.microsoft.com/library/system.net.servicepoint.settcpkeepalive.aspx)。 啟用 Keep-Alive 之後，就會在連線無活動期間傳送封包。 這些 Keep-Alive 封包可確保永遠不會達到閒置逾時值，因此可以長期維持連線。
+常見的作法是 toouse TCP 保持連線。 這種作法會讓 hello 連線作用更長的時間。 如需詳細資訊，請參閱這些 [.NET 文章](https://msdn.microsoft.com/library/system.net.servicepoint.settcpkeepalive.aspx)。 保持啟用，hello 連接上的無活動期間傳送封包。 永遠不會達到 hello 閒置逾時值，並維持 hello 連線長，請確定這些保持運作封包。
 
-此設定僅適用於輸入連線。 若要避免連線中斷，您必須使用比閒置逾時設定短的間隔來設定 TCP Keep-Alive，或增加閒置逾時值。 為了支援這類情況，我們新增了可設定閒置逾時的支援。 您現在可以設定 4 至 30 分鐘的持續時間。
+此設定僅適用於輸入連線。 tooavoid 遺失 hello 連線，您必須設定 hello TCP 保持連接間隔 hello 閒置逾時設定或增加 hello 閒置逾時值大於或等於。 toosupport 這類情況下，我們已加入支援可設定的閒置逾時。 您現在可以設定 4 too30 分鐘持續時間。
 
-TCP Keep-Alive 非常適合用於電池使用時間不受約束的情況。 不建議用於行動應用程式。 在行動裝置應用程式中使用 TCP Keep-Alive 可能會更快耗盡裝置電池電力。
+TCP Keep-Alive 非常適合用於電池使用時間不受約束的情況。 不建議用於行動應用程式。 使用 TCP 保持連線的行動應用程式中耗電 hello 裝置電池速度更快。
 
 ![TCP 逾時](./media/load-balancer-tcp-idle-timeout/image1.png)
 
-下列各節說明如何在虛擬機器和雲端服務中變更閒置逾時設定。
+hello 下列各節說明如何 toochange 閒置逾時設定的虛擬機器和雲端服務。
 
-## <a name="configure-the-tcp-timeout-for-your-instance-level-public-ip-to-15-minutes"></a>將執行個體層級公用 IP 的 TCP 逾時值設定為 15 分鐘
+## <a name="configure-hello-tcp-timeout-for-your-instance-level-public-ip-too15-minutes"></a>設定程式執行個體層級公用 IP too15 分鐘 hello TCP 逾時
 
 ```powershell
 Set-AzurePublicIP -PublicIPName webip -VM MyVM -IdleTimeoutInMinutes 15
 ```
 
-`IdleTimeoutInMinutes` 為選擇性。 若未設定，則預設的逾時為 4 分鐘。 可接受的逾時範圍為 4 到 30 分鐘。
+`IdleTimeoutInMinutes` 為選擇性。 如果未設定，hello 預設逾時為 4 分鐘。 hello 可接受的逾時範圍為 4 的 too30 分鐘。
 
-## <a name="set-the-idle-timeout-when-creating-an-azure-endpoint-on-a-virtual-machine"></a>在虛擬機器上建立 Azure 端點時設定閒置逾時
+## <a name="set-hello-idle-timeout-when-creating-an-azure-endpoint-on-a-virtual-machine"></a>建立虛擬機器上的 Azure 端點時設定 hello 閒置逾時
 
-若要變更端點的逾時設定，請使用以下方法：
+toochange hello 逾時設定的端點，請使用下列 hello:
 
 ```powershell
 Get-AzureVM -ServiceName "mySvc" -Name "MyVM1" | Add-AzureEndpoint -Name "HttpIn" -Protocol "tcp" -PublicPort 80 -LocalPort 8080 -IdleTimeoutInMinutes 15| Update-AzureVM
 ```
 
-若要抓取閒置逾時組態，請使用以下命令：
+tooretrieve 您的閒置逾時設定，下列命令使用 hello:
 
     PS C:\> Get-AzureVM -ServiceName "MyService" -Name "MyVM" | Get-AzureEndpoint
     VERBOSE: 6:43:50 PM - Completed Operation: Get Deployment
@@ -71,9 +71,9 @@ Get-AzureVM -ServiceName "mySvc" -Name "MyVM1" | Add-AzureEndpoint -Name "HttpIn
     InternalLoadBalancerName :
     IdleTimeoutInMinutes : 15
 
-## <a name="set-the-tcp-timeout-on-a-load-balanced-endpoint-set"></a>在負載平衡端點集上設定 TCP 逾時
+## <a name="set-hello-tcp-timeout-on-a-load-balanced-endpoint-set"></a>負載平衡端點集上設定 hello TCP 逾時
 
-如果端點是負載平衡端點集的一部分，就必須在負載平衡端點集上設定 TCP 逾時。 例如：
+如果端點屬於負載平衡端點集的一部分，hello TCP 逾時必須設定 hello 負載平衡端點集。 例如：
 
 ```powershell
 Set-AzureLoadBalancedEndpoint -ServiceName "MyService" -LBSetName "LBSet1" -Protocol tcp -LocalPort 80 -ProbeProtocolTCP -ProbePort 8080 -IdleTimeoutInMinutes 15
@@ -81,9 +81,9 @@ Set-AzureLoadBalancedEndpoint -ServiceName "MyService" -LBSetName "LBSet1" -Prot
 
 ## <a name="change-timeout-settings-for-cloud-services"></a>變更雲端服務的逾時設定
 
-您可以使用 Azure SDK 來更新雲端服務。 您需在 .csdef 檔案中進行雲端服務的端點設定。 若要更新雲端服務部署的 TCP 逾時，就必須進行部署升級。 如果只針對公用 IP 指定 TCP 逾時，則為例外狀況。 公用 IP 設定是在 .cscfg 中，而您可以透過更新和升級部署來更新這些設定。
+您可以使用 hello Azure SDK tooupdate 您的雲端服務。 您可以建立雲端服務的端點設定 hello.csdef 檔案中。 更新雲端服務部署的 hello TCP 逾時，將需要部署升級。 例外狀況是 hello TCP 逾時，如果要指定僅針對公用 IP。 公用 IP 設定會在 hello.cscfg 檔案中，並透過部署更新和升級加以更新。
 
-端點設定的 .csdef 變更如下：
+端點設定的 hello.csdef 變更如下：
 
 ```xml
 <WorkerRole name="worker-role-name" vmsize="worker-role-size" enableNativeCodeExecution="[true|false]">
@@ -93,7 +93,7 @@ Set-AzureLoadBalancedEndpoint -ServiceName "MyService" -LBSetName "LBSet1" -Prot
 </WorkerRole>
 ```
 
-公用 IP 上逾時設定的 .cscfg 變更如下：
+公用 Ip 上 hello 逾時設定的 hello.cscfg 變更如下：
 
 ```xml
 <NetworkConfiguration>
@@ -110,7 +110,7 @@ Set-AzureLoadBalancedEndpoint -ServiceName "MyService" -LBSetName "LBSet1" -Prot
 
 ## <a name="rest-api-example"></a>REST API 範例
 
-您可以使用服務管理 API 來設定 TCP 閒置逾時。 請確定 `x-ms-version` 標頭已設定為 `2014-06-01` 或更新版本。 在部署中的所有虛擬機器上，更新指定負載平衡輸入端點的組態。
+您可以使用 hello 服務管理 API，以設定 hello TCP 閒置逾時。 請確定該 hello`x-ms-version`標頭設定 tooversion`2014-06-01`或更新版本。 將指定的負載平衡輸入的端點的 hello 更新 hello 組態在部署中的所有虛擬機器上。
 
 ### <a name="request"></a>要求
 

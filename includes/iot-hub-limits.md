@@ -1,4 +1,4 @@
-下表列出與不同服務層 (S1, S2, S3, F1) 關聯的限制。 如需有關每一層中各個 *單位* 之成本的詳細資訊，請參閱 [IoT 中樞價格](https://azure.microsoft.com/pricing/details/iot-hub/)。
+hello 下表列出與 hello 不同服務層 S1、 S2、 S3 （F1） 相關聯的 hello 限制。 如需每個 hello 成本*單元*每一層，請參閱[IoT 中樞定價](https://azure.microsoft.com/pricing/details/iot-hub/)。
 
 | 資源 | S1 標準 | S2 標準 | S3 標準 | F1 免費 |
 | --- | --- | --- | --- | --- |
@@ -10,7 +10,7 @@
 > 
 > 
 
-下表列出適用於 IoT 中樞資源的限制：
+hello 下表列出適用於 tooIoT 中樞資源 hello 限制：
 
 | 資源 | 限制 |
 | --- | --- |
@@ -24,8 +24,8 @@
 | 雲端到裝置訊息的大小上限 |64 KB |
 | 雲端到裝置訊息的 TTL 上限 |2 天 |
 | 雲端到裝置訊息的傳遞計數  <br/> 上限 |100 |
-| 回應雲端到裝置訊息之反應訊息的  <br/> 傳遞計數上限 |100 |
-| 回應雲端到裝置訊息之反應訊息的  <br/> TTL 上限 |2 天 |
+| 回應雲端到裝置訊息之反應訊息的  <br/> 在回應 tooa 雲端到裝置訊息 |100 |
+| 回應雲端到裝置訊息之反應訊息的  <br/> 回應 tooa 雲端到裝置訊息 |2 天 |
 | 裝置對應項的大小上限 <br/> (標記、報告的屬性，以及所需的屬性) | 8 KB |
 | 裝置對應項字串值的大小上限 | 512 個位元組 |
 | 裝置對應項中的物件深度上限 | 5 |
@@ -41,9 +41,9 @@
 
 
 > [!NOTE]
-> 您目前可以連線到單一 IoT 中樞的裝置數目上限為 500,000 個。 如果您想要上調此限制，請連絡 [Microsoft 支援服務](https://azure.microsoft.com/en-us/support/options/)。
+> 目前，hello 最大數目的裝置，您可以連接 tooa 單一 IoT 中樞為 500000。 如果您想 tooincrease 這項限制，請連絡[Microsoft 支援服務](https://azure.microsoft.com/en-us/support/options/)。
 
-IoT 中樞服務將在超過下列配額時開始對要求進行節流：
+hello IoT 中樞服務節流處理要求，超過 hello 下列配額的情況：
 
 | 節流 | 每個中心的值 |
 | --- | --- |

@@ -1,6 +1,6 @@
 ---
-title: "管理 StorSimple Virtual Array 共用 | Microsoft Docs"
-description: "描述 StorSimple 裝置管理員，並說明如何使用它來管理 StorSimple Virtual Array 上的共用。"
+title: "aaaManage StorSimple Virtual Array 共用 |Microsoft 文件"
+description: "描述 hello StorSimple 裝置管理員，並說明如何 toouse 它在您的 StorSimple Virtual Array toomanage 共用。"
 services: storsimple
 documentationcenter: 
 author: manuaery
@@ -14,30 +14,30 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/21/2016
 ms.author: manuaery
-ms.openlocfilehash: e5c62689de36baa175001f5f4f70d87568876ef0
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9b57d7ec7c0b7de5a22e1b816daa8852d0f32a48
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-the-storsimple-device-manager-service-to-manage-shares-on-the-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員服務管理 StorSimple Virtual Array 上的共用
+# <a name="use-hello-storsimple-device-manager-service-toomanage-shares-on-hello-storsimple-virtual-array"></a>在 hello StorSimple Virtual Array 上使用 hello StorSimple 裝置管理員服務 toomanage 共用
 
 ## <a name="overview"></a>概觀
 
-本教學課程說明如何使用 StorSimple 裝置管理員服務，在 StorSimple Virtual Array 上建立和管理共用。
+本教學課程將說明 toouse hello StorSimple 裝置管理員服務 toocreate 並管理您的 StorSimple Virtual Array 上的共用。
 
-StorSimple 裝置管理員服務是 Azure 入口網站中的一項擴充，可讓您從單一 Web 介面來管理 StorSimple 解決方案。 除了管理共用和磁碟區，您還可以使用 StorSimple 裝置管理員服務來檢視和管理裝置、檢視警示、管理備份原則，以及管理備份目錄。
+hello StorSimple 裝置管理員服務是 hello Azure 入口網站，可讓您從單一 web 介面來管理您的 StorSimple 解決方案中的延伸模組。 在加法 toomanaging 共用和磁碟區中，您可以使用 hello StorSimple 裝置管理員服務 tooview 和管理裝置、 檢視警示、 管理備份原則，以及管理 hello 備份類別目錄。
 
 ## <a name="share-types"></a>共用類型
 
 StorSimple 共用可以是︰
 
-* **固定在本機**︰這些共用中的資料永遠停留在陣列上，不會流向雲端。
-* **階層式**：這些磁碟區中的資料可能流向雲端。 當您建立階層式共用時，大約 10% 的空間會佈建在本機層，而 90% 的空間會佈建在雲端。 舉例來說，如果您佈建 1 TB 的共用，當資料分層時，有 100 GB 會位於本機空間，900 GB 會用於雲端。 這也意味著，如果裝置的可用空間用盡，您就無法佈建階層式共用 (因為本機層上需要的 10% 無法使用)。
+* **固定在本機**： 一直 hello 陣列上這些共用中的資料，並不 spill toohello 雲端。
+* **分層**： 這些共用中的資料可以 spill toohello 雲端。 當您建立階層式的共用時，大約 10%的 hello 空間 hello 本機層上佈建和 90%的 hello 空間 hello 雲端中佈建。 例如，如果您佈建 1 TB 共用、 100 GB，也可以位於 hello 本機空間和 900GB 會用在 hello 雲端時 hello 資料層。 這會表示，如果您在 hello 裝置上執行所有 hello 的本機空間不足，無法佈建階層式的共用 （因為 hello 10%上需要有本機 hello 層將無法使用）。
 
 ### <a name="provisioned-capacity"></a>佈建的容量
 
-請參閱下表以了解每個共用類型的最大佈建容量。
+請參閱下表針對每個共用類型的最大佈建的容量 toohello。
 
 | **限制識別碼** | **限制** |
 | --- | --- |
@@ -46,25 +46,25 @@ StorSimple 共用可以是︰
 | 固定在本機的共用的大小下限 |50 GB |
 | 固定在本機的共用的大小上限 |2 TB |
 
-## <a name="the-shares-blade"></a>[共用] 刀鋒視窗
+## <a name="hello-shares-blade"></a>hello 共用刀鋒視窗
 
-StorSimple 服務摘要刀鋒視窗的 [共用] 功能表會顯示給定 StorSimple 陣列上的儲存體共用清單，還可讓您管理它們。
+hello**共用**您 StorSimple 服務摘要 刀鋒視窗的功能表顯示 hello 存放裝置共用指定的 StorSimple 陣列上，並可讓您 toomanage 它們。
 
 ![[共用] 刀鋒視窗](./media/storsimple-virtual-array-manage-shares/shares-blade.png)
 
 共用包含一系列屬性：
 
-* **共用名稱** – 必須是唯一且有助於識別共用的描述性名稱。
-* **狀態** – 可為連線或離線。 如果共用已離線，共用的使用者將無法存取它。
-* **類型** – 指出共用為**階層式** (預設值) 或**固定在本機**。
-* **容量** – 相較於共用上可儲存的資料總量，指定已用的資料量。
-* **描述** – 有助於描述共用的選擇性設定。
-* **權限** -可透過 Windows 檔案總管來管理的共用 NTFS 權限。
-* **備份** – 如果是 StorSimple Virtual Array，所有共用會自動啟用備份。
+* **共用名稱**-必須是唯一的且有助於識別 hello 共用的描述性名稱。
+* **狀態** – 可為連線或離線。 如果共用離線，hello 共用的使用者不會無法 tooaccess 它。
+* **型別**– 指出是否 hello 共用**分層**(hello 預設) 或**固定在本機**。
+* **容量**– 指定 hello 做為比較的 toohello 可以儲存在 hello 共用的資料量總計的資料數量。
+* **描述**– 選擇性的設定，可協助說明 hello 共用。
+* **權限**-hello NTFS 權限 toohello 共用可以透過 Windows 檔案總管 進行管理。
+* **備份**– 以防的 hello StorSimple Virtual Array，所有共用會自動都啟用備份。
 
 ![共用的詳細資料](./media/storsimple-virtual-array-manage-shares/share-details.png)
 
-使用本教學課程中的指示以執行下列工作：
+使用 hello 指示在本教學課程 tooperform hello，下列工作：
 
 * 新增共用
 * 修改共用
@@ -73,56 +73,56 @@ StorSimple 服務摘要刀鋒視窗的 [共用] 功能表會顯示給定 StorSim
 
 ## <a name="add-a-share"></a>新增共用
 
-1. 從 StorSimple 服務摘要刀鋒視窗中，從命令列按一下 [+ 新增共用]。 這會開啟 [新增共用] 刀鋒視窗。
+1. 從 hello StorSimple 服務摘要刀鋒視窗中，按一下  **+ 新增共用**hello 命令列。 這會開啟 hello**新增共用**刀鋒視窗。
 
     ![新增共用](./media/storsimple-virtual-array-manage-shares/add-share.png)
 
-2. 在 [新增共用] 刀鋒視窗中，執行下列動作：
+2. 在 hello**新增共用**刀鋒視窗中，請勿遵循 hello:
    
-    1. 在 [共用名稱] 欄位中，輸入共用的唯一名稱。 該名稱必須為包含 3 至 127 個字元的字串。
+    1. 在 hello**共用名稱**欄位中，輸入您共用的唯一名稱。 hello 名稱必須是包含 3 too127 個字元的字串。
 
-    2. 共用的選擇性 [說明]。 說明將可協助識別共用的擁有者。
+    2. 選擇性**描述**hello 共用。 hello 描述可協助識別 hello 共用擁有者。
 
-    3. 在 [類型] 下拉式清單中，指定要建立 [階層式] 還是 [固定在本機] 共用。 對於需要本機保證、低延遲，以及高效能的工作負載，請選取 [固定在本機的共用] 。 對於所有其他資料，請選取 [階層式] 共用。
+    3. 在 hello**類型**下拉式清單中，指定是否 toocreate**分層**或**固定在本機**共用。 對於需要本機保證、低延遲，以及高效能的工作負載，請選取 [固定在本機的共用] 。 對於所有其他資料，請選取 [階層式] 共用。
 
-    4. 在 [容量] 欄位中，指定共用大小。 階層式共用必須介於 500 GB 和 20 TB 之間，而固定在本機的共用必須介於 50 GB 和 2 TB 之間。
+    4. 在 hello**容量**欄位中，指定 hello 共用的 hello 大小。 階層式共用必須介於 500 GB 和 20 TB 之間，而固定在本機的共用必須介於 50 GB 和 2 TB 之間。
 
-    5. 在 [將預設完整權限設為] 欄位中，指派權限給存取此共用的使用者或群組。 請以下列格式指定使用者或使用者群組的名稱：_john@contoso.com_。 我們建議您利用使用者群組 (而非單一使用者)，來授予可存取這些共用的系統管理員權限。 當您在此指派權限之後，就可以使用 [檔案總管] 來修改這些權限。
-3. 共用設定完成之後，按一下 [建立]。 將會使用指定的設定來建立共用，您會看到通知。 根據預設，共用會啟用備份。
-4. 若要確認已成功建立共用，請移至 [共用] 刀鋒視窗。 您應該會看列出共用。
+    5. 在 hello**設為預設的完整權限**欄位中，指派 toohello hello 權限的使用者或正在存取此共用的 hello 群組。 指定 hello hello 使用者或群組的名稱 hello 使用者在 _john@contoso.com_ 格式。 我們建議您使用使用者群組 （而非單一使用者） tooallow 系統管理員權限 tooaccess 這些共用。 您已指派 hello 權限之後，您可以使用檔案總管 toomodify 這些權限。
+3. 共用設定完成之後，按一下 [建立]。 將指定的 hello 與建立的共用設定，您會看到通知。 根據預設，備份將會啟用 hello 共用。
+4. hello 共用的 tooconfirm 已成功建立，請移 toohello**共用**刀鋒視窗。 您應該會看到共用列出 hello。
    
     ![共用建立成功](./media/storsimple-virtual-array-manage-shares/share-success.png)
 
 ## <a name="modify-a-share"></a>修改共用
 
-當您需要變更共用的描述時，請修改共用。 建立共用之後，就無法修改其他共用屬性。
+當您需要 toochange hello 描述 hello 共用時，請修改共用。 建立 hello 共用之後，就可以修改其他的共用屬性。
 
-#### <a name="to-modify-a-share"></a>若要修改共用
+#### <a name="toomodify-a-share"></a>toomodify 共用
 
-1. 從 StorSimple 服務摘要刀鋒視窗的 [共用] 設定中，選取您想要修改的共用所在的虛擬陣列。
-2. **選取**共用以檢視目前的描述並修改。
-3. 按一下 [儲存] 命令列以儲存變更。 將會套用您指定的設定，您會看到通知。
+1. 從 hello**共用**設定 hello StorSimple 服務摘要 刀鋒視窗上，選取 hello 的 hello toomodify 希望您的共用所在的虛擬陣列。
+2. **選取**hello 共用 tooview hello 目前描述，並加以修改。
+3. 儲存您的變更，依序按一下 hello**儲存**命令列。 將會套用您指定的設定，您會看到通知。
    
     ![ 編輯共用](./media/storsimple-virtual-array-manage-shares/share-edit.png)
 
 ## <a name="take-a-share-offline"></a>讓共用離線
 
-當您打算修改或刪除共用時，可能需要先讓共用離線。 當共用已離線時，即無法進行讀寫存取。 您必須讓主機和裝置上的共用都離線。
+您可能需要 tootake 的共用離線，當您計劃 toomodify 它或刪除它。 當共用已離線時，即無法進行讀寫存取。 您將需要 tootake hello 共用離線 hello 裝置以及 hello 主機上。
 
-#### <a name="to-take-a-share-offline"></a>若要讓共用離線
+#### <a name="tootake-a-share-offline"></a>tootake 的共用離線
 
-1. 請確定此共用不在使用中，再讓它離線。
-2. 執行下列步驟，讓陣列上的共用離線︰
+1. 請確定有問題該 hello 共用不是使用中，再將其離線。
+2. 藉由執行下列步驟的 hello hello 陣列離線採用 hello 共用：
    
-    1. 從 StorSimple 服務摘要刀鋒視窗的 [共用] 設定中，選取您想要設為離線的共用所在的虛擬陣列。
+    1. 從 hello**共用**設定 hello StorSimple 服務摘要 刀鋒視窗上，選取 hello 的 hello tootake 離線希望您的共用所在的虛擬陣列。
 
-    2. **選取** 共用，從操作功能表中按一下 [...] (或以滑鼠右鍵按一下此資料列)，然後選取 [離線]。
+    2. **選取**hello 共用，然後按一下**...** （或者以滑鼠右鍵按一下此資料列中），然後從 hello 內容功能表中，選取**離線**。
      
         ![離線共用](./media/storsimple-virtual-array-manage-shares/shares-offline.png)
 
-    3. 檢閱 [離線] 刀鋒視窗中的資訊，並確認您接受此作業。 按一下 [離線] 讓共用離線。 您會看到作業進行中的通知。
+    3. 檢閱在 hello hello 資訊**離線**刀鋒視窗，並確認您接受 hello 作業。 按一下**離線**tootake hello 共用離線。 您會看到 hello 作業正在進行中的通知。
 
-    4. 若要確認共用已成功離線，請移至 [共用] 刀鋒視窗。 您應該會看到共用的狀態為離線。
+    4. hello 共用的 tooconfirm 已成功取得離線，請移 toohello**共用**刀鋒視窗。 您應該會看到 hello hello 共用為離線狀態。
 
 ## <a name="delete-a-share"></a>刪除共用
 
@@ -130,17 +130,17 @@ StorSimple 服務摘要刀鋒視窗的 [共用] 功能表會顯示給定 StorSim
 > 只有已離線的共用才能刪除。
 
 
-請完成下列步驟來刪除共用。
+完成下列步驟 toodelete 共用 hello。
 
-#### <a name="to-delete-a-share"></a>若要刪除共用
+#### <a name="toodelete-a-share"></a>toodelete 共用
 
-1. 從 StorSimple 服務摘要刀鋒視窗的 [共用] 設定中，選取您想要刪除的共用所在的虛擬陣列。
-2. **選取** 共用，從操作功能表中按一下 [...] (或以滑鼠右鍵按一下此資料列)，然後選取 [刪除]。
+1. 從 hello**共用**設定 hello StorSimple 服務摘要 刀鋒視窗上，選取 hello 您想在哪一個 hello 共用 toodelete 所在的虛擬陣列。
+2. **選取**hello 共用，然後按一下**...** （或者以滑鼠右鍵按一下此資料列中），然後從 hello 內容功能表中，選取**刪除**。
    
     ![刪除共用](./media/storsimple-virtual-array-manage-shares/share-delete.png)
-3. 檢查您想要刪除之共用的狀態。 如果您想要刪除的共用未離線，請先讓它離線。 請遵循[讓共用離線](#take-a-share-offline)中的步驟進行。
-4. 當 [刪除]**刪除** 刀鋒視窗中提示您確認時，請接受確認並按一下 [刪除]。 現在將刪除共用，[共用] 刀鋒視窗會顯示虛擬陣列內更新的共用清單。
+3. 檢查 hello 狀態要 toodelete hello 共用。 如果您想要 toodelete hello 共用未離線，先使其離線。 中的 hello 步驟[離線工作共用](#take-a-share-offline)。
+4. 當系統提示您確認在 hello**刪除**刀鋒視窗中，接受 hello 確認，然後按一下 **刪除**。 hello 共用現在將會刪除與 hello**共用**刀鋒視窗會顯示 hello 虛擬陣列中的共用 hello 更新清單。
 
 ## <a name="next-steps"></a>後續步驟
-了解如何[複製 StorSimple 共用](storsimple-virtual-array-clone.md)。
+了解如何太[複製 StorSimple 共用](storsimple-virtual-array-clone.md)。
 

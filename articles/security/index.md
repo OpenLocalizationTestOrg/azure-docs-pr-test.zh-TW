@@ -1,6 +1,6 @@
 ---
-title: "Azure 安全性文件 - 教學課程 | Microsoft Docs"
-description: "了解如何自訂 Azure 服務中的安全性選項，以符合您在雲端中部署服務和資料的需求。"
+title: "aaaAzure 安全性文件-教學課程 |Microsoft 文件"
+description: "了解如何在 Azure 服務 toomeet toocustomize 安全性選項 hello 服務和資料 hello 雲端中的部署的需求。"
 services: security
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: 2bdb991ec16dd4daffe8605598d589918bc07b64
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ef845a50b32dfec102d1f74d4af98e316dd7e1c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="security-documentation"></a>安全性文件
 
-了解如何使用 Azure 安全性來保護雲端中的服務和資料。 教學課程和其他文件可協助您在 Azure 服務中自訂安全性選項，以符合您的部署需求。
+了解 toouse Azure 安全性 tooprotect 服務和 hello 中的資料的雲端。 教學課程和其他文件可協助您自訂您的部署的 Azure 服務 toomeet hello 需求的安全性選項。
 
 <ul class="panelContent cardsFTitle">
     <li>

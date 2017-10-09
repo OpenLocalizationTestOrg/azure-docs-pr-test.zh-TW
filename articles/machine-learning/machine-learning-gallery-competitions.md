@@ -1,6 +1,6 @@
 ---
-title: "Cortana Intelligence Gallery 競賽 | Microsoft Docs"
-description: "探討 Cortana Intelligence Gallery 中的競賽。"
+title: "aaaCortana 智慧組件庫競爭 |Microsoft 文件"
+description: "探索 hello Cortana 智慧組件庫中的競爭。"
 services: machine-learning
 documentationcenter: 
 author: garyericson
@@ -14,43 +14,43 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: 25ec625c1f32fd1477685196ea21ad6f582bc7ce
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4631ac21b672b77141023d14e57a1d6523220624
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="discover-competitions-in-the-cortana-intelligence-gallery"></a>探討 Cortana Intelligence Gallery 中的競賽
+# <a name="discover-competitions-in-hello-cortana-intelligence-gallery"></a>探索 hello Cortana 智慧組件庫中的競爭
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="cortana-intelligence-competitions"></a>Cortana Intelligence Competitions
-**[競賽](https://gallery.cortanaintelligence.com/competitions)**提供了絕佳機會讓您與資料科學家社群較量，看誰能用 Cortana Intelligence Suite 解決複雜的問題。
+**[競爭](https://gallery.cortanaintelligence.com/competitions)**提供令人興奮的機會 toocompete hello 社群的資料科學家 toosolve 使用 Cortana 智慧套件的複雜問題。
 
-如需關於競賽之常見問題集的解答，請參閱 [Microsoft Cortana Intelligence 競賽常見問題集](machine-learning-competition-faq.md)。
+答案 toofrequently 詢問疑問競爭，請參閱[Microsoft Cortana 智慧競爭常見問題集](machine-learning-competition-faq.md)。
 
 ## <a name="discover"></a>探索
-  若要瀏覽 Gallery 中的競賽，請開啟 [Gallery](http://gallery.cortanaintelligence.com)，將滑鼠指向 Gallery 頁面頂端的 **More** (更多)，然後選取 **Competitions** (競賽)。
+  在 hello 圖庫中，開啟 hello 競爭的 toobrowse[圖庫](http://gallery.cortanaintelligence.com)，將滑鼠指標太**詳細**頂端的 hello 圖庫 hello 首頁，然後選取**競爭**。
 
-![從 Gallery 首頁選取競賽](media/machine-learning-gallery-competitions/select-competitions-in-gallery.png)
+![選取 hello 圖庫首頁上的競爭](media/machine-learning-gallery-competitions/select-competitions-in-gallery.png)
 
- **[Competitions](https://gallery.cortanaintelligence.com/competitions)** (競賽) 頁面會顯示最受歡迎的競賽清單。
-按一下 **See all** (查看全部) 即可檢視所有的競賽。
-您可以從此頁面瀏覽 Gallery 中的所有競賽。 您也可以選取頁面左側的篩選條件，然後在頂端輸入搜尋字詞來進行搜尋。
+ **[競爭](https://gallery.cortanaintelligence.com/competitions)**頁面會顯示一份 hello 最受歡迎的競爭。
+按一下**查看所有**tooview 所有競爭。
+從這個頁面上，您可以瀏覽 hello 組件庫中的所有競爭。 您也可以搜尋選取 hello 左邊 hello 頁面上的篩選準則，並輸入搜尋詞彙在 hello 頂端。
 
- 按一下任何一個競賽即可開啟競賽的詳細資料頁面，並讀取更多有關該競賽的資訊。 在此頁面上，您可以留言、提供意見反應，或透過留言區段提問。 您甚至可以使用 LinkedIn 或 Twitter 的分享功能，與朋友或同事分享該競賽。 您也可以用電子郵件寄出競賽連結，以邀請其他使用者檢視該頁面。
+ 按一下任何競爭 tooopen 競爭對手詳細資料頁面，並閱讀詳細資訊。 在本頁，您可以註解，提供意見反應或提出問題透過 hello 註解區段。 您甚至可以共用它與朋友或同事使用 hello 共用 LinkedIn 或 Twitter 的能力。 您可以也傳送電子郵件連結 toothe 競爭 tooinvite 其他使用者 tooview hello 頁面。
 
 ![與朋友分享此項目](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![新增您自己的留言](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="enter-a-competition"></a>進入競賽
-如果競賽已開啟，詳細資料頁面上的狀態會是 [作用中]。 若要進入競賽，請按一下 **Enter Competition** (競賽)，系統就會提供您所需資源的指示，以及您必須採取的步驟。
+如果 hello 競爭已開啟，hello hello 詳細資料頁面上的狀態是**Active**。 tooenter hello 競爭，按一下 **輸入競爭**，而且您會在您需要與 hello 步驟需要 tootake hello 資源上提供指示。
 
 ![競賽為作用中](media/machine-learning-gallery-competitions/open-competition.png)
 
-如果競賽已完成，則會顯示得獎者清單。
+如果已完成 hello 競爭，會顯示得獎者清單。
 
-**[前往 GALLERY >>](http://gallery.cortanaintelligence.com)**
+**[接受我 toohello 圖庫 >>](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

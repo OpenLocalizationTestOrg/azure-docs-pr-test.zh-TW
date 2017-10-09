@@ -1,6 +1,6 @@
 ---
-title: "在 Linux 虛擬機器上使用根權限 | Microsoft Docs"
-description: "了解如何在 Azure 中的 Linux 虛擬機器上使用根權限。"
+title: "在 Linux 虛擬機器上的 aaaUse 根權限 |Microsoft 文件"
+description: "了解 toouse 根在 Azure 中 Linux 虛擬機器上的權限。"
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,39 +15,39 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: dc39db1f5fecffb60499a5420bfe72850e2fffd9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9411588c5fd0c86c4c73b3e44fbb56ab150013d5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-root-privileges-on-linux-virtual-machines-in-azure"></a>在 Azure 中的 Linux 虛擬機器上使用根權限
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-在 Azure 中的 Linux 虛擬機器上，依預設會停用 `root` 使用者。 使用者可以使用 `sudo` 命令，以提高的權限來執行命令。 不過，根據系統如何佈建而定，操作過程可能不同。
+根據預設，hello`root`在 Azure 中 Linux 虛擬機器上停用使用者。 使用者可以執行使用更高權限命令使用 hello`sudo`命令。 不過，hello 經驗會根據 hello 系統已佈建方式而有所不同。
 
-1. **SSH 金鑰和密碼，或僅密碼** - 虛擬機器是以憑證 (`.CER` 檔案) 或 SSH 金鑰和密碼來佈建，或只以使用者名稱和密碼來佈建。 在此情況下，執行命令之前， `sudo` 會提示輸入使用者的密碼。
-2. **僅 SSH 金鑰** - 虛擬機器是以憑證 (`.cer`、`.pem` 或 `.pub` 檔案) 或 SSH 金鑰來佈建，而未使用密碼。  在此情況下，執行命令之前， `sudo` **不會** 提示輸入使用者的密碼。
+1. **SSH 金鑰和密碼只能使用 OR 密碼**-hello 虛擬機器佈建並提供兩個憑證 (`.CER`檔案) 或 SSH 金鑰，以及密碼，或只要使用者名稱與密碼。 在此情況下`sudo`會提示輸入 hello 使用者的密碼，然後再執行 hello 命令。
+2. **僅使用 SSH 金鑰**-hello 虛擬機器所使用的憑證佈建 (`.cer`， `.pem`，或`.pub`檔案) 或 SSH 金鑰，但沒有密碼。  在此情況下`sudo`**則不會**hello 使用者的密碼，才能執行 hello 命令提示。
 
 ## <a name="ssh-key-and-password-or-password-only"></a>SSH 金鑰和密碼，或僅密碼
-使用 SSH 金鑰或密碼驗證來登入 Linux 虛擬機器，然後使用 `sudo`執行命令，例如：
+登入使用 SSH 金鑰或密碼驗證時，hello Linux 虛擬機器，然後再執行命令使用`sudo`，例如：
 
     # sudo <command>
     [sudo] password for azureuser:
 
-在此例子中，將會提示使用者輸入密碼。 輸入密碼之後，`sudo` 將會以 `root` 權限執行命令。
+在此情況下 hello 使用者將會提示輸入密碼。 輸入 hello 密碼之後`sudo`會執行與 hello 命令`root`權限。
 
-您也可以編輯 `/etc/sudoers.d/waagent` 檔案來啟用 passwordless sudo，例如：
+您也可以藉由編輯 hello 啟用 passwordless sudo`/etc/sudoers.d/waagent`檔案，例如：
 
     #/etc/sudoers.d/waagent
     azureuser ALL = (ALL) NOPASSWD: ALL
 
-這項變更將允許「azureuser」使用者的 passwordless sudo。
+這項變更可讓 passwordless sudo hello 使用者 」 azureuser"。
 
 ## <a name="ssh-key-only"></a>僅 SSH 金鑰
-使用 SSH 金鑰驗證來登入 Linux 虛擬機器，然後使用 `sudo`執行命令，例如：
+登入 hello Linux 虛擬機器使用 SSH 金鑰驗證，然後再執行命令使用`sudo`，例如：
 
     # sudo <command>
 
-在此例子中，將 **不會** 提示使用者輸入密碼。 按 `<enter>` 鍵之後，`sudo` 將會以 `root` 權限執行命令。
+在此情況下 hello 使用者將**不**提示輸入密碼。 按下之後`<enter>`，`sudo`會執行與 hello 命令`root`權限。
 

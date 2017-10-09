@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL Database Azure 案例研究 - Umbraco| Microsoft Docs"
-description: "了解 Umbraco 如何使用 SQL Database 為雲端中數千個租用戶快速佈建和調整服務"
+title: "aaaAzure SQL 資料庫 Azure 案例研究-Umbraco |Microsoft 文件"
+description: "深入了解 Umbraco 如何使用 SQL Database tooquickly 佈建和小數位數服務針對擁有成千上萬個租用戶 hello 雲端中"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,18 +15,18 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 01/10/2017
 ms.author: carlrab
-ms.openlocfilehash: 6e9c56874bf4bda7f4248a44e274532ed2555153
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 93e39e509831a5ff90f129d9537ece0b0dafef0e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="umbraco-uses-azure-sql-database-to-quickly-provision-and-scale-services-for-thousands-of-tenants-in-the-cloud"></a>Umbraco 使用 Azure SQL Database 為雲端中數千個租用戶快速佈建和調整服務
+# <a name="umbraco-uses-azure-sql-database-tooquickly-provision-and-scale-services-for-thousands-of-tenants-in-hello-cloud"></a>Umbraco hello 雲端中使用 Azure SQL Database tooquickly 佈建和針對擁有成千上萬個租用戶的小數位數服務
 ![Umbraco 標誌](./media/sql-database-implementation-umbraco/umbracologo.png)
 
-Umbraco 是一個熱門的開放原始碼內容管理系統 (CMS)，從小型行銷活動或簡冊站台，到適用於 Fortune 500 大公司及全球媒體網站的複雜應用程式，全部都能執行。 
+Umbraco 是熱門開放原始碼內容管理系統 (CMS)，可以執行的任何項目從小型的活動或冊站台 toocomplex 應用程式的全球 500 強公司和全域媒體網站。 
 
-> 「我們有很大的開發人員社群使用此系統，其中有超過 100,000 個開發人員在我們的論壇上，以及 350,000 個執行 Umbraco 的即時站台。」
+> 「 我們有相當大型的社群與 100,000 個以上開發人員在我們的論壇以及即時，超過 350000 個站台上執行 Umbraco 使用 hello 系統的開發人員 」。
 > 
 > — Morten Christensen，Umbraco 技術主管
 > 
@@ -34,9 +34,9 @@ Umbraco 是一個熱門的開放原始碼內容管理系統 (CMS)，從小型行
 > 
 > 
 
-為了簡化客戶部署，Umbraco 新增了 Umbraco 即服務 (UaaS)：這是一個軟體即服務 (SaaS) 方案，此方案既不需要內部部署又提供內建的調整功能，而且還透過讓開發人員能夠專注於產品創新而非解決方案管理，免除了管理上的額外負荷。 Umbraco 藉由倚賴 Microsoft Azure 所提供的彈性平台即服務 (PaaS) 模型而得以提供所有這些優點。
+toosimplify 客戶部署，Umbraco 加入 Umbraco 做為服務 (UaaS): 可以降低對內部部署的 hello 需求的軟體做為服務 (SaaS) 供應項目提供內建調整功能和額外負荷，進而移除管理開發人員 toofocus 創新，而不是解決方案管理的產品。 Umbraco 是無法 tooprovide 所依賴的所有這些優點 hello Microsoft Azure 所提供的彈性的平台做為服務 (PaaS) 模型。
 
-UaaS 讓 SaaS 客戶能夠使用他們先前無法觸及的 Umbraco CMS 功能。 針對這些客戶，會佈建一個包含生產環境資料庫的可運作 CMS 環境。 客戶可以依其需求，最多新增兩個額外的資料庫來用於開發和預備環境。 發出新環境要求時，自動化程序會自動為該客戶指派一個資料庫。 新資料庫幾秒內就會準備就緒，因為 Umbraco 早就已經從 Azure 的可用資料庫彈性集區預先佈建資料庫 (請參閱圖 1)。
+UaaS 可讓 SaaS 客戶 toouse Umbraco CMS 功能，則先前超出其範圍。 針對這些客戶，會佈建一個包含生產環境資料庫的可運作 CMS 環境。 客戶可以加總 tootwo 進行開發和預備環境，根據其需求的其他資料庫。 發出新環境要求時，自動化程序會自動為該客戶指派一個資料庫。 hello 新的資料庫是以秒為單位，準備好，因為 hello 資料庫具有已預先佈建的 Umbraco 從 Azure 的彈性集區的可用資料庫 （請參閱圖 1）。
 
 ![Umbraco 佈建的生命週期](./media/sql-database-implementation-umbraco/figure1.png)
 
@@ -47,14 +47,14 @@ UaaS 讓 SaaS 客戶能夠使用他們先前無法觸及的 Umbraco CMS 功能�
 
 1. 佈建
    
-   Umbraco 維持一個含有 200 個可用資料庫的容量，這些資料庫都是來自彈性集區的預先佈建資料庫。 當有新客戶註冊 UaaS 時，Umbraco 會透過從可用性集區指派資料庫給客戶，以近乎即時的方式為客戶提供新的 CMS 環境。
+   Umbraco 維持一個含有 200 個可用資料庫的容量，這些資料庫都是來自彈性集區的預先佈建資料庫。 當新客戶註冊 UaaS 時，Umbraco 提供與新的 CMS 環境幾近即時的 hello 客戶從 hello 可用性集區指派資料庫。
    
-   當可用性集區達到其臨界值時，系統就會建立新的彈性集區，並預先佈建新資料庫以便視需要指派給客戶。
+   當可用性集區達到其臨界值時，建立新的彈性集區時，與新的資料庫會視需要指派 toocustomers 預先佈建的 toobe。
    
    此實作是使用 C# 管理程式庫和「Azure 服務匯流排」佇列來完全自動化執行。
 2. 利用
    
-   客戶會使用一到三個環境 (用於生產、預備和/或開發)，每個環境都有自己的資料庫。 客戶資料庫是在彈性集區中，這讓 Umbraco 不需過度佈建即可提供有效率的調整。
+   客戶使用其中一個 toothree 環境 （適用於實際執行環境、 預備及/或開發），每個與它自己的資料庫。 客戶資料庫會處於彈性集區，可讓 Umbraco tooprovide 有效率地調整而不需要 tooover 佈建。
    
    ![Umbraco 專案概觀](./media/sql-database-implementation-umbraco/figure2.png)
    
@@ -62,34 +62,34 @@ UaaS 讓 SaaS 客戶能夠使用他們先前無法觸及的 Umbraco CMS 功能�
    
    圖 2. 顯示專案總覽和詳細資料的 Umbraco 即服務 (UaaS) 客戶網站
    
-   Azure SQL Database 使用「資料庫交易單位」(DTU) 來代表真實世界資料庫交易所需的相對能力。 就 UaaS 客戶而言，資料庫一般是以大約 10 DTU 來運作，但每個資料庫都可以依需求彈性調整。 這意謂著 UaaS 可以確保客戶一律擁有必要的資源，甚至是在尖峰時間也一樣。 舉例來說，在最近某個星期天的夜間體育活動，一個 UaaS 客戶的資料庫在比賽的持續時間經歷了高達 100 個 DTU 的尖峰。 Azure 彈性集區使得 Umbraco 既能夠支援該高需求，又不導致效能降低。
+   Azure SQL Database 會使用資料庫交易單位 (Dtu) toorepresent hello 相對乘冪所需的實際資料庫交易。 UaaS 客戶資料庫通常會操作在大約 10 個 Dtu，但其中一個 hello 彈性 tooscale 依需求。 這意謂著 UaaS 可以確保客戶一律擁有必要的資源，甚至是在尖峰時間也一樣。 比方說，最近星期天運動事件期間，一位 UaaS 客戶會發生 hello 遊戲 hello 期間向上 too100 Dtu 資料庫尖峰。 Azure 的彈性集區變成可將 Umbraco toosupport 高而效能降低不需要。
 3. 監視
    
-   Umbraco 使用 Azure 入口網站中的儀表板以及自訂的電子郵件警示來監視資料庫活動。
+   Umbraco 監視資料庫活動使用儀表板內 hello Azure 入口網站，以及自訂的電子郵件警示。
 4. 災害復原
    
-   Azure 提供兩種災害復原 (DR) 選項：作用中異地複寫和異地還原。 公司應該選取的 DR 選項取決於其 [商務持續性目標](sql-database-business-continuity.md)。
+   Azure 提供兩種災害復原 (DR) 選項：作用中異地複寫和異地還原。 hello 應選取一家公司的 DR 選項取決於其[業務續航力目標](sql-database-business-continuity.md)。
    
-   作用中異地複寫可在發生停機狀況時，提供最快層級的回應。 透過作用中異地複寫，您可以在不同區域的伺服器上最多建立四個可讀取的次要資料庫，然後可以在發生失敗時起始容錯移轉，來移轉至其中任何一個次要資料庫。
+   作用中地理複寫會提供最快 hello 回應 hello 的停機時間的事件層級。 使用作用中地理複寫，您可以建立 toofour 可讀取次要上不同的區域中的伺服器上，而且您接著可初始 hello hello 失敗事件中的次要資料庫的容錯移轉 tooany。
    
-   Umbraco 不需要使用異地複寫，但是它的確運用了 Azure 異地還原來協助確保在發生中斷時將停機時間縮到最短。 異地還原需倚賴異地備援 Azure 儲存體中的資料庫備份。 這可讓使用者在主要區域中發生中斷時，從備份複本還原。
+   Umbraco 不需要地理複寫，但它未充分利用 Azure 地理還原 toohelp 確認中斷的 hello 事件中的最少停機時間。 異地還原需倚賴異地備援 Azure 儲存體中的資料庫備份。 Hello 主要區域中發生中斷時，可讓使用者 toorestore 從備份副本。
 5. 取消佈建
    
-   刪除專案環境時，於「Azure 服務匯流排」佇列清除期間，將會移除所有關聯的資料庫 (開發、預備或即時)。 此自動化程序會將未使用的資料庫還原至 Umbraco 的彈性資料庫可用性集區，如此既可充分利用這些資料庫，又可將這些資料庫用於未來的佈建。
+   刪除專案環境時，於「Azure 服務匯流排」佇列清除期間，將會移除所有關聯的資料庫 (開發、預備或即時)。 自動執行此程序還原 hello 未使用的資料庫 tooUmbraco 彈性資料庫可用性集區，讓它們可維持使用量上限未來佈建。
 
-## <a name="elastic-pools-allow-uaas-to-scale-with-ease"></a>彈性集區可讓 UaaS 輕鬆進行調整
-透過利用 Azure 彈性集區，Umbraco 可以將其客戶的效能最佳化，而無須擔心過度佈建或佈建不足。 Umbraco 目前擁有 3,000 個遍佈在 19 個彈性集區的資料庫，不論是現有 325,000 個客戶中的任何一個客戶，還是已準備好要在雲端部署 CMS 的新客戶，Umbraco 都能夠輕鬆地視需要調整來配合其需求。
+## <a name="elastic-pools-allow-uaas-tooscale-with-ease"></a>彈性集區允許 UaaS tooscale 就能輕鬆
+利用 Azure 的彈性集區，Umbraco 可以最佳化其客戶的效能，而不需要 tooover 或置中佈建。 Umbraco 目前幾乎 3000 資料庫 19 彈性集區，與 hello 能力 tooeasily 比例調整成所需的 tooaccommodate 任何其現有 325,000 客戶或新客戶準備 toodeploy hello 雲端中的 CMS。
 
-事實上，Umbraco 的技術主管 Morten Christensen 表示：「UaaS 現在大約是以每天 30 個新客戶的速度在成長。 我們的客戶很高興能夠便利地在幾秒內就佈建好新的專案、使用「單鍵部署」功能從開發環境立即將更新發佈至他們的即時站台，以及以同樣快速的方式在發現錯誤時進行變更。」
+事實上，根據 tooMorten Christensen，技術會導致在 Umbraco、"UaaS 現在遇到大約 30 新客戶，每日的成長。 我們的客戶都很高興與 hello 便利性正在無法 tooprovision 新專案，以秒為單位，立即發行更新從開發環境中使用 '單鍵部署' tootheir 即時網站並進行變更一樣快速如果它們找出錯誤。 」
 
-如果客戶不再需要第二個和/或第三個環境，可以直接將這些環境移除。 這樣會釋出資源成為 Umbraco 彈性資料庫可用性集區的一部分，而可供用於其他客戶。
+如果客戶不再需要第二個和/或第三個環境，可以直接將這些環境移除。 會釋放資源可以用於其他客戶 hello Umbraco 彈性資料庫可用性集區的一部分。
 
 ![Umbraco 部署架構](./media/sql-database-implementation-umbraco/figure4.png)
 
 圖 3. Microsoft Azure 上的 UaaS 部署架構
 
-## <a name="the-path-from-datacenter-to-cloud"></a>從資料中心到雲端的路徑
-當 Umbraco 開發人員一開始決定移至 SaaS 模型時，即已知道他們需要一個符合成本效益且可調整的方式來建置服務。
+## <a name="hello-path-from-datacenter-toocloud"></a>從資料中心 toocloud hello 路徑
+Hello Umbraco 開發人員一開始進行 hello 決策 toomove tooa SaaS 模式，他們知道，客戶必須符合成本效益且可擴充的方式 toobuild 出 hello 服務。
 
 > 「彈性集區是最適合我們 SaaS 方案的選項，因為我們可以視需要上下調整容量。 佈建相當簡單，再搭配上我們的設定，我們便可以做最充分的利用」。
 > 
@@ -97,36 +97,36 @@ UaaS 讓 SaaS 客戶能夠使用他們先前無法觸及的 Umbraco CMS 功能�
 > 
 > 
 
-「我們想要把時間花在解決客戶的問題上，而不是花在管理基礎結構上。 我們想要讓客戶輕輕鬆鬆就能夠獲取最大價值。」Umbraco 的創辦人 Niels Hartvig 說道。 「一開始時，我們考慮自行裝載伺服器，但容量規劃是一個夢魘」。 碰巧的是，Umbraco 並未雇用任何資料庫系統管理員，而這強調了一個使用 UaaS 的主要價值主張。
+「 我們 toospend 我們解決客戶的問題，無法管理基礎結構的時間。 我們想 toomake 讓我們的客戶 tooget 輕易 hello 大部分的值 」 指出 Niels Hartvig，創辦 Umbraco。 「 我們一開始會視為主控 hello 伺服器，但容量計劃已經惡夢 」。 碰巧的是，Umbraco 並未雇用任何資料庫系統管理員，而這強調了一個使用 UaaS 的主要價值主張。
 
-Umbraco 開發人員的其中一個重要的目標就是，為 UaaS 客戶提供一個快速且沒有容量限制的環境佈建方式。 但是在 Umbraco 資料中心提供專屬的託管服務將需要大量的額外容量，以應付處理時的高載狀況。 這意謂著要新增大量一般不會充分利用的計算基礎結構。
+Hello Umbraco 開發人員的一個重要的目標是 tooprovide UaaS 客戶 tooprovision 環境的方式，快速且不會受到容量限制。 但是，提供專屬的裝載的服務 Umbraco 資料中心內會有大量的多餘容量 toohandle 突發處理中。 這意謂著要新增大量一般不會充分利用的計算基礎結構。
 
-此外，Umbraco 開發團隊想要的是一個能讓他們儘量重複使用現有程式碼的解決方案。 如 Umbraco 開發人員 Mikkel Madsen 所述：「我們非常滿意我們已經熟悉的 Microsoft 開發工具，像是 Microsoft SQL Server、Microsoft Azure SQL Database、ASP.net，以及 Internet Information Services (IIS)。 在投資 IaaS 或 PaaS 雲端解決方案之前，我們想要確定它可以支援我們的 Microsoft 工具與平台，如此我們才不需要對我們的程式碼基底進行大規模變更。」
+此外，hello Umbraco 開發小組想要允許他們 tooreuse 一樣多的現有程式碼儘可能的解決方案。 Umbraco 開發人員為 Mikkel Madsen 所述，「 我們感到滿意 hello 我們已經熟悉，例如 Microsoft SQL Server、 Microsoft Azure SQL Database、 ASP.net 和 Internet Information Services (IIS) 的 Microsoft 開發工具。 之前投資 IaaS 或 PaaS 雲端解決方案中，我們想確定，就會支援我們的 Microsoft 工具和平台，因此我們不會有 toomake 大量變更 tooour 程式碼基底 toomake。 」
 
-為了符合其所有準則，Umbraco 尋找了符合下列資格的雲端合作夥伴︰
+toomeet 所有的準則，Umbraco 尋找雲端合作夥伴以 hello 下列條件：
 
 * 足夠的容量與可靠性
-* 支援 Microsoft 開發工具，如此 Umbraco 工程師才不會被迫完全重新創建其開發環境
-* 在 UaaS 參與競爭的所有地理市場中都存在 (企業需要確保它們可以快速地存取其資料，並且其資料是儲存在符合其區域法規要求的位置)
+* 支援 Microsoft 開發工具，因此該 Umbraco 工程師不會強制 toocompletely 重建其開發環境
+* 在所有 hello 地理市場 UaaS 競相 (他們可以快速地存取其資料和其資料儲存在符合其地區法規需求的位置就企業需要 tooensure) 所在的目前狀態
 
 ## <a name="why-umbraco-chose-azure-for-uaas"></a>為什麼 Umbraco 選擇將 Azure 用於 UaaS
-Morten Christensen 表示：「在考量我們的所有選項之後，我們選擇了 Azure，因為它符合我們從管理性、延展性再到熟悉度及符合成本效益方面的所有準則。 我們在 Azure VM 上設定環境，每個環境都有自己的 Azure SQL 資料庫執行個體，而所有執行個體都在彈性集區中。 透過將開發、預備及即時環境之間的資料庫加以區隔，我們可以為客戶提供與規模相符的強大效能隔離，這是一項極大的優點。」
+根據 tooMorten Christensen 「 所有的選項後，我們選取 Azure 因為它符合所有我們準則，從 管理性和延展性 toofamiliarity 成本效益。 我們設定 hello Azure Vm 上的環境，且每個環境有它自己的 Azure SQL Database 執行個體，在彈性集區中的所有 hello 執行個體。 藉由分隔開發、 預備及實際環境之間的資料庫，我們可以我們的客戶提供強固的效能隔離相符 tooscale — 龐大 win。 」
 
-Morten 繼續說道：「以前，我們必須手動佈建 Web 資料庫的伺服器。 現在，我們完全無須思考這項工作。 從佈建到清除的所有作業都是自動化完成。」
+Morten 持續發生，"之前，我們以手動方式在 tooprovision web 資料庫的伺服器。 現在，我們沒有 toothink 資訊，請參閱。 系統會自動執行的所有項目，從佈建 toocleanup。 」
 
-Morten 也很滿意 Azure 所提供的調整功能。 「彈性集區是最適合我們 SaaS 方案的選項，因為我們可以視需要上下調整容量。 佈建相當簡單，再搭配上我們的設定，我們便可以做最充分的利用」。 Morten 表示：「彈性集區的簡單性，再加上以服務層為基礎之 DTU 的保證，使得我們能夠依需求佈建新的資源集區。 最近，我們一個較大客戶的即時環境尖峰達到了 100 個 DTU。 透過使用 Azure，我們的彈性集區為客戶的資料庫提供了它們所需的即時資源，而不需預測 DTU 需求。 簡單地說，我們的客戶達到了預期的周轉時間，而我們則符合了效能服務等級協定。」
+以 hello 調整 Azure 所提供的功能，還有高興 Morten。 「彈性集區是最適合我們 SaaS 方案的選項，因為我們可以視需要上下調整容量。 佈建相當簡單，再搭配上我們的設定，我們便可以做最充分的利用」。 Morten 狀態，「 彈性集區，以及服務層基礎的 Dtu 保證 hello hello 簡化提供 hello 電源 tooprovision 新資源集區視。 其中一個較大客戶尖峰 too100 Dtu 其實際環境中。 使用 Azure 時，我們彈性集區提供了與它們所需而不需要 toopredict DTU 需求即時 hello 資源 hello 客戶的資料庫。 簡單地說，我們的客戶取得 hello 小時間，他們預期時，我們可以符合我們的效能層級的服務合約 」。
 
-Mikkel Madsen 總結：「除了將「Azure 服務匯流排」與 Azure SQL Database 搭配使用的基礎技術以外，我們也採用了強大的 Azure 演算法，將常見的 SaaS 案例 (讓新客戶即時大規模上線) 與我們的應用程式模式 (預先佈建開發資料庫和即時資料庫) 連接。」
+Mikkel Madsen 概括: 「 我們已經擁抱 hello 強大 Azure 演算法之上 hello 連接一般 SaaS 案例 （使用大規模的即時入門訓練新客戶） tooour 應用程式模式 （預先佈建資料庫，這兩種開發和即時）基礎技術 （Azure SQL Database 搭配使用 Azure 服務匯流排佇列）。 」
 
 ## <a name="with-azure-uaas-is-exceeding-customer-expectations"></a>透過 Azure，UaaS 的表現超出客戶期望
-由於選擇 Azure 作為雲端合作夥伴，因此 Umbraco 不需像自我裝載解決方案那樣需要投資 IT 資源，就能夠為 UaaS 客戶提供最佳化的內容管理效能。 如 Morten 所述：「我們相當滿意 Azure 為開發人員提供的便利性和延展性，而我們的客戶也為所獲得的功能和可靠性振奮不已。 整體而言，對我來說是一大勝利！」
+選擇 Azure 以做為其雲端協力電腦，因為 Umbraco 已能 tooprovide UaaS 客戶與內容管理最佳化的效能，不需要從自我裝載的解決方案所需的 hello IT 資源的投資。 Morten 指出，"歡迎您提供 hello 開發人員為了方便和 Azure 可讓我們的延展性，我們的客戶會滿意 hello 功能和可靠性。 整體而言，對我來說是一大勝利！」
 
 ## <a name="more-information"></a>詳細資訊
-* 若要深入了解 Azure 彈性集區，請參閱[彈性集區](sql-database-elastic-pool.md)。
-* 若要深入了解「Azure 服務匯流排」，請參閱 [Azure 服務匯流排](https://azure.microsoft.com/services/service-bus/)。
-* 若要深入了解 Web 角色和背景工作角色，請參閱 [背景工作角色](../fundamentals-introduction-to-azure.md#compute)。    
-* 若要深入了解虛擬網路，請參閱 [虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)。    
-* 若要深入了解備份與復原，請參閱 [商務持續性](sql-database-business-continuity.md)。    
-* 若要深入了解監視集區，請參閱 [監視集區](sql-database-elastic-pool-manage-portal.md)。    
-* 若要深入了解 Umbraco，請參閱 [Umbraco](https://umbraco.com/cloud)。
+* toolearn 深入了解 Azure 的彈性集區，請參閱[彈性集區](sql-database-elastic-pool.md)。
+* toolearn 深入了解 Azure 服務匯流排，請參閱[Azure 服務匯流排](https://azure.microsoft.com/services/service-bus/)。
+* toolearn 深入了解 Web 角色和背景工作角色，請參閱[背景工作角色](../fundamentals-introduction-to-azure.md#compute)。    
+* toolearn 進一步了解虛擬區域網路，請參閱[虛擬網路](https://azure.microsoft.com/documentation/services/virtual-network/)。    
+* toolearn 進一步了解備份及復原，請參閱[業務續航力](sql-database-business-continuity.md)。    
+* toolearn 進一步了解監視 ppols，請參閱[監視集區](sql-database-elastic-pool-manage-portal.md)。    
+* toolearn 深入了解 Umbraco 為服務時，請參閱[Umbraco](https://umbraco.com/cloud)。
 

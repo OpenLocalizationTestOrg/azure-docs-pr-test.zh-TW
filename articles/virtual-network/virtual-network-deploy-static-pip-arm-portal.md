@@ -1,6 +1,6 @@
 ---
-title: "建立具有靜態公用 IP 位址的 VM - Azure 入口網站 | Microsoft Docs"
-description: "了解如何使用 Azure 入口網站建立具有靜態公用 IP 位址的 VM。"
+title: "aaaCreate VM 使用靜態公用 IP 位址-Azure 入口網站 |Microsoft 文件"
+description: "了解如何 toocreate 具有靜態公用 IP 位址使用的 VM hello Azure 入口網站。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,13 +16,13 @@ ms.workload: infrastructure-services
 ms.date: 02/04/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 233e4eea8439320c1c7446e2c2b2e9d379351a3e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f74d2132785f06148757409ee0a44b98d1e4b98e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-a-vm-with-a-static-public-ip-address-using-the-azure-portal"></a>使用 Azure 入口網站建立具有靜態公用 IP 位址的 VM
+# <a name="create-a-vm-with-a-static-public-ip-address-using-hello-azure-portal"></a>使用靜態公用 IP 位址使用 hello Azure 入口網站建立 VM
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](virtual-network-deploy-static-pip-arm-portal.md)
@@ -34,34 +34,34 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [virtual-network-deploy-static-pip-intro-include.md](../../includes/virtual-network-deploy-static-pip-intro-include.md)]
 
 > [!NOTE]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用 Resource Manager 部署模型，Microsoft 建議大部分的新部署使用此模型，而不是傳統部署模型。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文說明如何使用 hello Resource Manager 部署模型，Microsoft 建議您針對大部分新的部署，而不是 hello 傳統部署模型。
 
 [!INCLUDE [virtual-network-deploy-static-pip-scenario-include.md](../../includes/virtual-network-deploy-static-pip-scenario-include.md)]
 
 ## <a name="create-a-vm-with-a-static-public-ip"></a>使用靜態公用 IP 建立 VM
 
-若要在 Azure 入口網站中建立具有靜態公用 IP 位址的 VM，請完成下列步驟：
+toocreate 中 hello Azure 入口網站中，完成下列步驟的 hello VM 的靜態公用 IP 位址：
 
-1. 透過瀏覽器瀏覽至 [Azure 入口網站](https://portal.azure.com) ，並視需要使用您的 Azure 帳戶登入。
-2. 在入口網站左上角，按一下 [新增]>>[計算]>[Windows Server 2012 R2 Datacenter]。
-3. 在 [選取部署模型] 清單中，選取 [Resource Manager]，然後按一下 [建立]。
-4. 在 [基本] 刀鋒視窗中，輸入如下所示的 VM 資訊，然後按一下 [確定]。
+1. 從瀏覽器中，瀏覽 toohello [Azure 入口網站](https://portal.azure.com)且如有需要，使用您的 Azure 帳戶登入。
+2. Hello hello 入口網站的最上層的左下角，按一下**新增**>>**計算**>**Windows Server 2012 R2 Datacenter**。
+3. 在 hello**選取部署模型**清單中，選取**資源管理員**按一下**建立**。
+4. 在 hello**基本概念**刀鋒視窗中，輸入 hello VM 資訊，如下所示，然後按一下**確定**。
    
     ![Azure 入口網站 - 基本](./media/virtual-network-deploy-static-pip-arm-portal/figure1.png)
-5. 在 [選擇大小] 刀鋒視窗中，按一下如下所示的 [A1 標準]，然後按一下 [選取]。
+5. 在 hello**大小選擇 「**刀鋒視窗中，按一下 **標準 A1**如下所示，然後按一下**選取**。
    
     ![Azure 入口網站 - 選擇大小](./media/virtual-network-deploy-static-pip-arm-portal/figure2.png)
-6. 在 [設定] 刀鋒視窗中，按一下 [公用 IP 位址]，接著在 [建立公用 IP 位址] 刀鋒視窗的 [指派] 底下，按一下 [靜態]，如下所示。 然後按一下 [確定] 。
+6. 在 hello**設定**刀鋒視窗中，按一下 **公用 IP 位址**，然後在 hello**建立公用 IP 位址**刀鋒視窗底下**指派**，按一下**靜態**如下所示。 然後按一下 [確定] 。
    
     ![Azure 入口網站 - 建立公用 IP 位址](./media/virtual-network-deploy-static-pip-arm-portal/figure3.png)
-7. 在 [設定] 刀鋒視窗中，按一下 [確定]。
-8. 檢視如下所示的 [摘要] 刀鋒視窗，然後按一下 [確定]。
+7. 在 hello**設定**刀鋒視窗中，按一下 **確定**。
+8. 檢閱 hello**摘要**刀鋒視窗，如下所示，然後按一下**確定**。
    
     ![Azure 入口網站 - 建立公用 IP 位址](./media/virtual-network-deploy-static-pip-arm-portal/figure4.png)
-9. 請注意您儀表板中新的磚。
+9. 請注意您的儀表板中的 hello 新磚。
    
     ![Azure 入口網站 - 建立公用 IP 位址](./media/virtual-network-deploy-static-pip-arm-portal/figure5.png)
-10. VM 建立後，[設定]  刀鋒視窗隨即出現，如下所示
+10. 一旦建立 hello VM，hello**設定**刀鋒視窗會顯示，如下所示
     
     ![Azure 入口網站 - 建立公用 IP 位址](./media/virtual-network-deploy-static-pip-arm-portal/figure6.png)
 

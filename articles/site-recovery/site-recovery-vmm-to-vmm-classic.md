@@ -1,6 +1,6 @@
 ---
-title: "將 VMM 中的 Hyper-V VM 複寫至次要站台 (Azure 傳統) | Microsoft Docs"
-description: "本文說明如何使用 Azure Site Recovery 將 VMM 雲端中的 Hyper-V VM 複寫到次要 VMM 網站。"
+title: "在 VMM tooa 次要站台 （Azure 傳統） 的 HYPER-V Vm aaaReplicate |Microsoft 文件"
+description: "本文說明如何在 VMM 中的 HYPER-V Vm tooreplicate 雲端 tooa 次要 VMM 站台與 Azure Site Recovery。"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/23/2017
 ms.author: raynew
-ms.openlocfilehash: 6814f62f73bad272229205f4768dcce5947117d1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fe551e1f741579044f540ea0e50a6e36d48133ce
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="replicate-hyper-v-virtual-machines-in-vmm-clouds-to-a-secondary-vmm-site"></a>將位於 VMM 雲端中的 Hyper-V 虛擬機器複寫至次要 VMM 站台
+# <a name="replicate-hyper-v-virtual-machines-in-vmm-clouds-tooa-secondary-vmm-site"></a>將 HYPER-V 虛擬機器在 VMM 雲端 tooa 次要 VMM 站台複寫
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](site-recovery-vmm-to-vmm.md)
 > * [傳統入口網站](site-recovery-vmm-to-vmm-classic.md)
@@ -28,17 +28,17 @@ ms.lasthandoff: 07/11/2017
 >
 >
 
-Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫、容錯移轉及復原 (BCDR) 策略，為您的商務持續性與災害復原做出貢獻。 機器可以複寫至 Azure，或次要的內部部署資料中心。 如需快速概觀，請參閱 [什麼是 Azure Site Recovery？](site-recovery-overview.md)
+tooyour 業務續航力和災害復原 (BCDR) 策略來協調複寫、 容錯移轉和復原的虛擬機器和實體伺服器都是計算 hello Azure Site Recovery 服務。 電腦可以是複寫的 tooAzure 或 tooa 次要內部部署資料中心。 如需快速概觀，請參閱 [什麼是 Azure Site Recovery？](site-recovery-overview.md)
 
 ## <a name="overview"></a>概觀
-本文說明如何使用 Azure Site Recovery，將在 VMM 雲端中管理的 Hyper-V 主機伺服器上的 Hyper-V 虛擬機器，複寫至次要 VMM 網站。
+本文說明如何 tooreplicate HYPER-V 虛擬機器上 HYPER-V 主機在 VMM 雲端 toosecondary VMM 站台使用 Azure Site Recovery 管理的伺服器。
 
-本文章包含必要條件，示範如何設定 Site Recovery 保存庫、在來源和目標 VMM 伺服器上安裝 Azure Site Recovery 提供者、在保存庫中註冊伺服器、針對 VMM 雲端設定保護設定，然後啟用 Hyper-V VM 的保護。 測試容錯移轉，確認一切如預期般運作以完成動作。
+hello 發行項包含必要條件，會顯示您如何註冊 Site Recovery 保存庫 tooset 安裝 hello 來源上的 Azure Site Recovery Provider 與目標 VMM 伺服器、 hello 保存庫中註冊伺服器 hello、 設定 VMM 雲端的保護設定，然後啟用HYPER-V Vm 的保護。 完成的測試 hello 容錯移轉 toomake 確定一切如預期般運作。
 
-在這篇文章下方或 [Azure Recovery Services Forum (Azure 復原服務論壇)](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)中張貼意見或問題。
+將任何註解或問題張貼在本文中，或在 hello hello 下方[Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
 
 ## <a name="architecture"></a>架構
-下圖顯示 Azure Site Recovery 為協調流程與複寫所使用的不同通訊通道與連接埠
+hello 圖會顯示 hello 不同的通訊通道與連接埠的協調流程 」 和 「 複寫使用 Azure Site recovery
 
 ![E2E 拓樸](./media/site-recovery-vmm-to-vmm-classic/e2e-topology.png)
 
@@ -48,227 +48,227 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 | **必要條件** | **詳細資料** |
 | --- | --- |
 | **Azure** |您需要 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。 您可以從 [免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。 [深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 定價。 |
-| **VMM** |您至少需要一個 VMM 伺服器。<br/><br/>VMM 伺服器應至少執行附帶最新累計更新的 System Center 2012 SP1。<br/><br/>如果您想要利用單一 VMM 伺服器設定保護，您必須在伺服器上設定至少兩個雲端。<br/><br/>如果您想要利用兩部 VMM 伺服器部署保護，每部伺服器都必須至少有一個雲端設定在您想要保護的主要 VMM 伺服器上，一個雲端要設定在您想要用於保護和復原的次要 VMM 伺服器上<br/><br/>所有的 VMM 雲端都必須設定 Hyper-V 功能設定檔。<br/><br/>您想要保護的來源雲端必須包含一或多個 VMM 主機群組。 |
-| **Hyper-V** |您在主要和次要 VMM 主機群組中需要一或多個 Hyper-V 主機伺服器，在每個 Hyper-V 主機叢集上需要一或多個虛擬機器。<br/><br/>主機和目標 Hyper-V 伺服器必須至少執行 Hyper-V 角色的 Windows Server 2012，並且安裝最新更新。<br/><br/>任何包含您想要保護之 VM 的 Hyper-V 伺服器必須位於 VMM 雲端。<br/><br/>如果您在叢集中執行 Hyper-V，請注意，如果您具有靜態 IP 位址叢集，並不會自動建立叢集代理。 您必須手動設定叢集代理人。 在 Aidan Finn 的部落格項目中[深入了解](https://www.petri.com/use-hyper-v-replica-broker-prepare-host-clusters)。 |
-| **網路對應** |您可以設定網路對應，以確保在容錯移轉後，會以最佳方式將已複寫的虛擬機器置於次要 Hyper-V 主機伺服器上，而且這些虛擬機器可以連線到適當的 VM 網路。 如果您沒有設定網路對應，複本 VM 將不會在容錯移轉之後連接到任何網路。<br/><br/>若要在部署期間設定網路對應，請確定來源 Hyper-V 主機伺服器上的虛擬機器連接到 VMM VM 網路。 該網路應該連結到與雲端相關聯的邏輯網路。<br/<br/>在您用於復原的次要 VMM 伺服器上的目標雲端應該設定相對應的 VM 網路，而該網路應該連結到與目標雲端相關聯的相對應邏輯網路。 |
-| **儲存體對應** |根據預設，當您將來源 Hyper-V 主機伺服器上的虛擬機器複寫至目標 Hyper-V 主機伺服器時，複寫的資料會儲存在為 Hyper-V 管理員中之目標 Hyper-V 主機所指定的預設位置。 如果要進一步控制複寫資料的儲存位置，您可以設定儲存體對應<br/><br/> 若要設定儲存體對應，必須在來源和目標 VMM 伺服器上設定儲存體分類，才能開始部署。 |
+| **VMM** |您至少需要一個 VMM 伺服器。<br/><br/>hello VMM 伺服器應至少執行 System Center 2012 SP1 含 hello 最新累計更新。<br/><br/>如果您想 tooset 與單一 VMM 伺服器的保護，您需要至少兩個 hello 伺服器上設定的雲端。<br/><br/>如果您想 toodeploy 保護兩部 VMM 伺服器時，每一部伺服器必須設定至少一個雲端 hello 想 tooprotect 的 hello 次要 VMM 伺服器上設定一個雲端，而且主要 VMM 伺服器上您要保護和復原 toouse<br/><br/>所有 VMM 雲端都必須 hello HYPER-V 功能設定檔集合。<br/><br/>您想 tooprotect hello 來源雲端必須包含一個或多個 VMM 主機群組。 |
+| **Hyper-V** |您需要 hello 主要和次要 VMM 主機群組中的一個或多個 HYPER-V 主機伺服器與每部 HYPER-V 主機伺服器上的一個或多個虛擬機器。<br/><br/>hello 主機與目標 HYPER-V 伺服器必須至少執行 Windows Server 2012 與 hello HYPER-V 角色和擁有 hello 安裝最新的更新。<br/><br/>您所要的任何包含 Vm 的 HYPER-V 伺服器 tooprotect 必須位於 VMM 雲端。<br/><br/>如果您在叢集中執行 Hyper-V，請注意，如果您具有靜態 IP 位址叢集，並不會自動建立叢集代理。 必須以手動方式 tooconfigure hello 叢集代理人。 在 Aidan Finn 的部落格項目中[深入了解](https://www.petri.com/use-hyper-v-replica-broker-prepare-host-clusters)。 |
+| **網路對應** |您可以設定網路對應 toomake 確定容錯移轉之後，以最佳方式次要 HYPER-V 主機伺服器上置於複寫的虛擬機器，而且它們可以連接 tooappropriate VM 網路。 如果您未設定網路對應，複本 Vm 將容錯移轉之後無法連接的 tooany 網路。<br/><br/>tooset 網路對應，在部署期間，請確定 hello hello 來源 HYPER-V 主機伺服器上的虛擬機器的連線的 tooa VMM VM 網路。 該網路應連結的 tooa 與 hello 雲端相關聯的邏輯網路 < b /<br/>hello hello 次要 VMM 伺服器上您用於復原的目標雲端應該有對應的 VM 網路設定，並接著應該連結的 tooa 對應與 hello 目標雲端相關聯的邏輯網路。 |
+| **儲存體對應** |根據預設複寫來源 HYPER-V 主機伺服器 tooa 目標 HYPER-V 主機伺服器上的虛擬機器時複寫的資料儲存在 hello hello 目標 HYPER-V 主機在 HYPER-V 管理員中指定的預設位置。 如果要進一步控制複寫資料的儲存位置，您可以設定儲存體對應<br/><br/> tooconfigure 儲存體對應，您需要 tooset 向上 hello 來源上的存放裝置分類和目標 VMM 伺服器在開始部署之前。 |
 
 ## <a name="step-1-create-a-site-recovery-vault"></a>步驟 1：建立 Site Recovery 保存庫
-1. 從您想要註冊的 VMM 伺服器登入 [管理入口網站](https://portal.azure.com) 。
+1. 登入 toohello[管理入口網站](https://portal.azure.com)想 tooregister 從 hello VMM 伺服器。
 2. 展開 [資料服務]  >  [復原服務]，然後按一下 [Site Recovery 保存庫]。
 3. 按一下 [新建]  >  [快速建立]。
-4. 在 [ **名稱**] 中，輸入保存庫的易記識別名稱。
-5. 在 [區域]  中，選取保存庫的地理區域。 若要查看支援的區域，請參閱 [Azure Site Recovery 價格詳細資料](http://go.microsoft.com/fwlink/?LinkId=389880)中的＜各區域上市情況＞。
+4. 在**名稱**，輸入好記名稱 tooidentify hello 保存庫。
+5. 在**區域**選取 hello hello 保存庫的地理區域。 支援的 toocheck 區域，請參閱中的各地區上市[Azure Site Recovery 定價詳細資料](http://go.microsoft.com/fwlink/?LinkId=389880)。
 6. 按一下 [建立保存庫] 。
 
     ![建立保存庫](./media/site-recovery-vmm-to-vmm-classic/create-vault.png)
 
-檢查狀態列，以確認是否已建立保存庫。 保存庫在主要復原服務頁面上會列為 [使用中]  。
+已建立該 hello 保存庫的 hello 狀態列中的核取。 hello 保存庫會列為**Active** hello 主要復原服務頁面上。
 
 ## <a name="step-2-generate-a-vault-registration-key"></a>步驟 2：產生保存庫註冊金鑰
-在保存庫中產生註冊金鑰。 下載 Azure Site Recovery 提供者並將其安裝在 VMM 伺服器之後，您將使用此金鑰在保存庫中註冊 VMM 伺服器。
+Hello 保存庫中產生註冊金鑰。 您下載 hello Azure Site Recovery Provider，並將它安裝在 hello VMM 伺服器之後，您將使用此索引鍵 tooregister hello VMM 伺服器 hello 保存庫中。
 
-1. 在 [復原服務]  頁面中，按一下保存庫以開啟 [快速啟動] 頁面。 您也可以使用圖示隨時開啟 [快速入門]。
+1. 在 [hello**復原服務**頁面上，按一下 hello 保存庫 tooopen hello 快速入門] 頁面。 也可以使用 [hello] 圖示，隨時開啟快速入門。
 
-    ![快速入門圖示](./media/site-recovery-vmm-to-vmm-classic/quick-start-icon.png)
-2. 在下拉式清單中，選取 [在兩個內部部署 VMM 網站之間] 。
-3. 在 [準備 VMM 伺服器] 中，按一下 [產生註冊金鑰檔案]。 該金鑰檔案會自動產生，並在產生後會維持 5 天有效。 如果您沒有從 VMM 伺服器存取 Azure 入口網站，您必須將這個檔案複製到伺服器。
+    ![快速啟動圖示](./media/site-recovery-vmm-to-vmm-classic/quick-start-icon.png)
+2. 在 hello 下拉式清單中，選取 **兩個內部部署 VMM 站台之間**。
+3. 在 [準備 VMM 伺服器] 中，按一下 [產生註冊金鑰檔案]。 hello 金鑰檔案會自動產生並有效產生後 5 天。 如果您不從 hello VMM 伺服器存取 hello Azure 入口網站您需要 toocopy toohello 中此檔案伺服器。
 
     ![註冊金鑰](./media/site-recovery-vmm-to-vmm-classic/register-key.png)
 
-## <a name="step-3-install-the-azure-site-recovery-provider"></a>步驟 3：安裝 Azure Site Recovery 提供者
-1. 在 [快速入門] 頁面上，按一下 [準備 VMM 伺服器] 中的 [下載要在 VMM 伺服器上安裝的 Microsoft Azure Site Recovery 提供者]，以取得最新版的提供者安裝檔案。
-2. 在來源 VMM 伺服器上執行此檔案。
+## <a name="step-3-install-hello-azure-site-recovery-provider"></a>步驟 3： 安裝 hello Azure Site Recovery Provider
+1. 在 hello**快速入門**頁面上，於**準備 VMM 伺服器**，按一下**下載 Microsoft Azure Site Recovery Provider 安裝於 VMM 伺服器上**tooobtain hello 最新版本hello 提供者安裝檔案的版本。
+2. 執行這個 hello 來源 VMM 伺服器上的檔案。
 
    > [!NOTE]
-   > 如果 VMM 部署在叢集中，且您是第一次安裝提供者，請將其安裝在作用中節點上，並完成安裝以在保存庫中註冊 VMM 伺服器。 然後在其他節點上安裝提供者。 請注意，如果您要升級 Provider，您必須在所有節點上升級，因為它們都應該執行相同的 Provider 版本。
+   > 如果 VMM 部署在叢集中，且您要安裝的 hello hello 提供者在第一次將它安裝在作用中的節點，並完成 hello 安裝 tooregister hello VMM 伺服器 hello 保存庫中。 然後 hello 提供者上安裝 hello 其他節點。 請注意，如果您要升級提供者，您需要的所有節點上 tooupgrade，因為它們應該全部是的 hello 執行 hello 相同的提供者版本。
    >
    >
-3. 安裝程式會執行一些 **先決條件檢查** ，並要求停止 VMM 服務的權限，以便開始安裝提供者。 當安裝完成之後，VMM 服務將會自動重新啟動。 如果您安裝在 VMM 叢集上，您會收到停止叢集角色的提示。
-4. 在 [Microsoft Update]  中，您可以選擇加入以取得更新。 啟用這項設定時，會根據您的 Microsoft Update 原則來安裝提供者更新。
+3. hello 安裝程式沒有一些**先決條件檢查**和權限 toostop hello VMM 服務 toobegin Provider 安裝程式的要求。 hello VMM 服務將會自動重新啟動安裝程式完成時。 如果您要安裝上 VMM 叢集，您應該會提示您 toostop hello 叢集角色。
+4. 在 [Microsoft Update]  中，您可以選擇加入以取得更新。 這項設定將根據 tooyour Microsoft Update 原則會安裝已啟用的提供者更新。
 
     ![Microsoft Update](./media/site-recovery-vmm-to-vmm-classic/ms-update.png)
-5. 安裝位置已設為 **<SystemDrive>\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager\bin**。 按一下 [安裝] 按鈕，開始安裝提供者。
+5. hello 安裝位置設定得**<SystemDrive>\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager\bin**。 按一下 hello 安裝按鈕 toostart 安裝 hello 提供者。
 
     ![InstallLocation](./media/site-recovery-vmm-to-vmm-classic/install-location.png)
-6. 安裝提供者之後，請按一下 [註冊]  ，在保存庫中註冊伺服器。
+6. 在已安裝提供者的 hello 之後按**註冊**tooregister hello 伺服器 hello 保存庫中的。
 
     ![InstallComplete](./media/site-recovery-vmm-to-vmm-classic/install-complete.png)
-7. 在 [保存庫名稱] 中，確認要註冊伺服器的保存庫名稱。 按 [下一步] 。
+7. 在**保存庫名稱**，確認 hello hello 保存庫中的 hello 註冊伺服器的名稱。 按一下 [下一步] 。
 
     ![伺服器註冊](./media/site-recovery-vmm-to-vmm-classic/vaultcred.PNG)
-8. 在 [網際網路連線]  中，指定 VMM 伺服器上執行的提供者連接到網際網路的方式。 選取 [使用現有的 Proxy 設定連線]  ，以使用在伺服器上設定的預設網際網路連線設定。
+8. 在**網際網路連線**指定如何 hello hello VMM 上執行提供者伺服器連接 toohello 網際網路。 選取**利用現有的 proxy 設定連線**toouse hello 預設網際網路連線設定 hello 伺服器上設定。
 
     ![網際網路設定](./media/site-recovery-vmm-to-vmm-classic/proxydetails.PNG)
 
-   * 如果您想要使用自訂 proxy，您應該在安裝提供者之前進行設定。 當您進行自訂 proxy 設定時，會執行一項測試以檢查 proxy 連線。
-   * 如果您使用自訂 proxy，或者您的預設 proxy 需要驗證，您必須輸入 proxy 詳細資料，包含 proxy 位址和連接埠。
-   * 下列 URL 應可從 VMM 伺服器和 Hyper-V 主機存取
+   * 如果您想 toouse 自訂 proxy，您應該設定它，然後安裝 hello 提供者。 當您設定自訂 proxy 設定 toocheck hello proxy 連線將會執行測試。
+   * 如果您使用自訂 proxy，或您的預設 proxy 需要驗證您需要 tooenter hello proxy 詳細資料，包括 hello proxy 位址和連接埠。
+   * 下列 url 必須能夠存取 hello VMM 伺服器與 hello 與 hyper-v 主機
      * *.hypervrecoverymanager.windowsazure.com
      * *.accesscontrol.windows.net
      * *.backup.windowsazure.com
      * *.blob.core.windows.net
      * *.store.core.windows.net
-   * 允許 [Azure 資料中心 IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653) 中所述的 IP 位址和 HTTPS (443) 通訊協定。 您必須具有打算使用以及美國西部之 Azure 區域的允許清單 IP 範圍
-   * 如果您使用的是自訂 proxy，則會使用指定的 proxy 認證自動建立 VMM RunAs 帳戶 (DRAProxyAccount)。 設定 proxy 伺服器，讓此帳戶可以成功進行驗證。 在 VMM 主控台中，可以修改 VMM RunAs 帳戶設定。 若要這樣做，請開啟 [設定] 工作區、展開 [安全性]、按一下 [執行身分帳戶]，然後修改 DRAProxyAccount 的密碼。 您必須重新啟動 VMM 服務，這項設定才會生效。
-9. 在 [註冊金鑰] 中，選取您從 Azure Site Recovery 下載並複製到 VMM 伺服器的金鑰。
-10. 只有在您正在將 VMM 雲端中的 Hyper-V VM 複寫至 Azure 時，才會使用這項加密設定。 如果您是在複寫至次要站台，則不會使用它。
-11. 在 [伺服器名稱] 中，指定保存庫中 VMM 伺服器的易記識別名稱。 在叢集設定中，指定 VMM 叢集角色名稱。
-12. 在 [同步處理雲端中繼資料]  中，選取您是否要將 VMM 伺服器上所有雲端的中繼資料與保存庫同步。 這個動作只需要在每個伺服器上進行一次。 如果不要同步所有雲端，您可以取消核取這項設定，再於 VMM 主控台的雲端屬性中個別同步每個雲端。
-13. 按 [下一步]  ，完成此程序。 註冊後，Azure Site Recovery 即可從 VMM 伺服器擷取中繼資料。 伺服器將顯示於保存庫中的 [VMM 伺服器]  >  [伺服器] 中。
+   * 允許 hello 中所述的 IP 位址[Azure Datacenter IP 範圍](https://www.microsoft.com/download/confirmation.aspx?id=41653)和 HTTPS (443) 通訊協定。 您必須 toowhite 清單 IP 範圍的 hello 您規劃 toouse 與美國西部的 Azure 區域。
+   * 如果您使用自訂 proxy 將使用指定的 hello 自動建立 VMM RunAs 帳戶 (DRAProxyAccount) proxy 認證。 設定 hello proxy 伺服器，讓此帳戶可成功進行驗證。 hello VMM 主控台中，可以修改 hello VMM RunAs 帳戶的設定。 toodo，開啟 hello**設定**工作區中，展開 **安全性**，按一下 **執行身分帳戶**，然後修改 draproxyaccount 的 hello 密碼。 您將需要 toorestart hello VMM 服務，讓這項設定會生效。
+9. 在**登錄機碼**，選取您從 Azure Site Recovery 下載並複製 toohello VMM 伺服器的 hello 索引鍵。
+10. 只有在您要在 VMM 雲端 tooAzure 複寫 HYPER-V Vm 時，才會使用 hello 加密設定。 如果您要複寫 tooa 次要站台不使用它。
+11. 在**伺服器名稱**，指定在 hello 保存庫中的易記名稱 tooidentify hello 的 VMM 伺服器。 在叢集組態中指定 hello VMM 叢集角色名稱。
+12. 在**同步處理雲端中繼資料**選取是否要在 hello 與 hello 保存庫的 VMM 伺服器上的所有雲端的 toosynchronize 中繼資料。 這個動作只需要 toohappen 每部伺服器上一次。 如果您不想 toosynchronize 所有雲端，您可以不勾選此設定，並個別同步處理每個雲端 hello VMM 主控台中的 hello 雲端內容。
+13. 按一下**下一步**toocomplete hello 程序。 註冊後，Azure Site Recovery 會擷取從 hello VMM 伺服器的中繼資料。 在中，會顯示 hello 伺服器**VMM 伺服器** > **伺服器**hello 保存庫中。
 
     ![伺服器](./media/site-recovery-vmm-to-vmm-classic/provider13.PNG)
 
 ### <a name="command-line-installation"></a>命令列安裝
-您也可以從命令列安裝 Azure Site Recovery 提供者。 這個方法可以用來在適用於 Windows Server 2012 R2 的伺服器核心上安裝提供者。
+hello Azure Site Recovery 提供者也可以從 hello 命令列安裝。 這個方法可以是使用的 tooinstall hello 的提供者的 Windows Server 2012 R2 的 Server CORE 上。
 
-1. 將提供者安裝檔案和註冊金鑰下載至資料夾。 例如 C:\ASR。
-2. 停止 System Center Virtual Machine Manager 服務
-3. 從命令提示字元，使用 **系統管理員** 權限執行下列命令，來解壓縮提供者安裝程式：
+1. 下載 hello 提供者安裝檔案和註冊金鑰 tooa 資料夾。 例如 C:\ASR。
+2. 停止 hello System Center Virtual Machine Manager 服務
+3. 從命令提示字元執行這些命令擷取 hello 提供者安裝程式**管理員**權限：
 
         C:\Windows\System32> CD C:\ASR
         C:\ASR> AzureSiteRecoveryProvider.exe /x:. /q
-4. 執行下列命令以安裝提供者：
+4. 執行安裝 hello 提供者：
 
         C:\ASR> setupdr.exe /i
-5. 執行下列命令以註冊提供者：
+5. 執行註冊 hello 提供者：
 
         CD C:\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager\bin
-        C:\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager\bin\> DRConfigurator.exe /r  /Friendlyname <friendly name of the server> /Credentials <path of the credentials file> /EncryptionEnabled <full file name to save the encryption certificate>     
+        C:\Program Files\Microsoft System Center 2012 R2\Virtual Machine Manager\bin\> DRConfigurator.exe /r  /Friendlyname <friendly name of hello server> /Credentials <path of hello credentials file> /EncryptionEnabled <full file name toosave hello encryption certificate>     
 
-其中參數為：
+其中 hello 參數如下：
 
-* **/Credentials**：必要參數，用來指定註冊金鑰檔案所在的位置  
-* **/FriendlyName**：對於 Hyper-V 主機伺服器名稱的必要參數，該伺服器會出現在 Azure Site Recovery 入口網站中。
-* **/EncryptionEnabled**：如果您需要在 Azure 中以靜止的方式為虛擬機器加密，則必須只在 VMM 至 Azure 案例中使用這個選擇性參數。 請確定您提供的檔案名稱具有 **.pfx** 副檔名。
-* **/proxyAddress**：指定 Proxy 伺服器位址的選用參數。
-* **/proxyport**：指定 Proxy 伺服器連接埠的選用參數。
-* **/proxyUsername**：指定 Proxy 使用者名稱 (如果 Proxy 需要驗證) 的選用參數。
-* **/proxyPassword**：指定用於驗證 Proxy 伺服器的密碼 (如果 Proxy 需要驗證) 的選用參數。  
+* **/ 認證**： 指定 hello 位置中的 hello 註冊金鑰檔所在的必要參數  
+* **/Friendlyname**: hello 名稱出現在 hello Azure Site Recovery 入口網站中的 hello HYPER-V 主機伺服器的必要參數。
+* **/ EncryptionEnabled**： 您需要 toouse 只能在 hello VMM tooAzure 案例中的，如果您需要您的虛擬機器，在 Azure 中的靜止的加密的選擇性參數。 請確定該 hello 檔案的名稱 hello 您提供具有**.pfx**延伸模組。
+* **/proxyAddress**： 指定 hello hello proxy 伺服器位址的選擇性參數。
+* **/proxyport**： 指定 hello hello proxy 伺服器的連接埠的選擇性參數。
+* **/proxyUsername**： 指定 hello Proxy 使用者名稱 （如果 proxy 需要驗證） 的選擇性參數。
+* **/proxyPassword**： 指定的選擇性參數 hello 密碼進行驗證的 hello proxy 伺服器 （proxy 需要驗證）。  
 
 ## <a name="step-4-configure-cloud-protection-settings"></a>步驟 4：設定雲端保護設定
-註冊 VMM 伺服器之後，您就可以設定雲端保護設定。 如果您安裝提供者時啟用了 [將雲端資料與保存庫同步] 選項，VMM 伺服器上的所有雲端都會出現在保存庫的 [受保護項目] 索引標籤中。 如果您未啟用該選項，您可以在 VMM 主控台中雲端屬性頁面的 [一般]  索引標籤中，將特定雲端與 Azure Site Recovery 同步。
+註冊 VMM 伺服器之後，您就可以設定雲端保護設定。 如果您啟用 hello 選項**hello 保存庫同步處理雲端資料**當您安裝提供者 hello hello VMM 伺服器上的所有雲端就會出現在 hello**受保護項目**hello 保存庫中的索引標籤。 如果未指定您可以同步處理特定雲端與 Azure Site Recovery 中 hello**一般**hello VMM 主控台中的 hello 雲端屬性頁面 索引標籤。
 
 ![發佈的雲端](./media/site-recovery-vmm-to-vmm-classic/clouds-list.png)
 
-1. 在 [快速啟動] 頁面上，按一下 [設定 VMM 雲端的保護] 。
-2. 在 [VMM 雲端] 索引標籤上，選取您要設定的雲端，並移至 [設定] 索引標籤。
+1. 在 hello 快速入門 頁面上，按一下 **設定 VMM 雲端的保護**。
+2. 在 [hello **VMM 雲端**索引標籤上，選取您想 tooconfigure，並移 toohello hello 雲端**組態**] 索引標籤。
 3. 在 [目標] 中，選取 [VMM]。
-4. 在 [目標位置] 中，選取網站上負責對您要用於復原之雲端進行管理的 VMM 伺服器。
-5. 在 [目標雲端] 中，選取要作為來源雲端中虛擬機器容錯移轉目標的雲端。 請注意：
+4. 在**目標位置**，選取 hello 站上管理您想要復原 toouse hello 雲端的 VMM 伺服器。
+5. 在**目標雲端**，選取您想 toouse hello 來源雲端中的虛擬機器進行容錯移轉的 hello 目標雲端。 請注意：
 
-   * 建議您，選取的目標雲端要符合所要保護之虛擬機器的復原需求。
-   * 雲端只能當成單一雲端組中的主要雲端或目標雲端。
-6. 在 [複製頻率] 中，指定資料應該在來源與目標位置之間同步處理的頻率。 請注意，這個設定只有在 Hyper-V 主機執行 Windows Server 2012 R2 時才有重要性。 對於其他伺服器，使用預設設定的 5 分鐘即可。
-7. 在 [其他復原點] 中，指定是否要建立其他復原點。 預設值零表示只會在複本主機伺服器上儲存主要虛擬機器的最新復原點。 請注意，啟用多個復原點需要額外的儲存體給儲存在每個復原點的快照集。 根據預設，每個小時都會建立復原點，所以每個復原點都包含一小時有價值的資料。 您在 VMM 主控台中指派給虛擬機器的復原點值不得低於您在 Azure Site Recovery 主控台中所指派的值。
-8. 在 [應用程式一致快照的頻率] 中，指定建立應用程式一致快照的頻率。 Hyper-V 使用兩種類型的快照，一個是標準快照，提供整個虛擬機器的增量快照，另一個是應用程式一致快照，會建立虛擬機器內應用程式資料的時間點快照。 應用程式一致快照會使用「磁碟區陰影複製服務」(VSS) 來確保建立快照時，應用程式是處於一致狀態。 請注意，如果您啟用應用程式一致快照，它會影響在來源虛擬機器上執行的應用程式效能。 確認您設定的值低於您設定的其他復原點數目。
+   * 我們建議您選取符合復原需求的 hello 將保護的虛擬機器的目標雲端。
+   * 雲端可以只隸屬 tooa 單一雲端配對-做為主要或目標雲端。
+6. 在 [複製頻率] 中，指定資料應該在來源與目標位置之間同步處理的頻率。 請注意，這項設定時才相關 hello HYPER-V 主機正在執行 Windows Server 2012 R2。 對於其他伺服器，使用預設設定的 5 分鐘即可。
+7. 在**其他復原點**，指定是否要讓 toocreate 其他點。 hello 預設零值表示只 hello 最近復原點的主要虛擬機器會儲存在複本主機伺服器上。 請注意，啟用多個復原點需要額外的存放裝置 hello 快照集儲存在每個復原點。 根據預設，每個小時都會建立復原點，所以每個復原點都包含一小時有價值的資料。 hello hello VMM 主控台中的虛擬機器指派的 hello 復原點值不應該小於您在 hello Azure Site Recovery 主控台中指派的 hello 值。
+8. 在**應用程式一致快照的頻率**，指定頻率 toocreate 應用程式一致快照集。 HYPER-V 使用兩種類型的快照集，提供 hello 整部虛擬機器的累加快照集的標準快照集和 hello hello 虛擬機器內的應用程式資料的時間點快照的應用程式一致快照集。 應用程式一致快照集會使用應用程式處於一致的狀態時 hello 快照時的磁碟區陰影複製服務 (VSS) tooensure。 請注意，是否您啟用應用程式一致快照集時，它會影響來源虛擬機器上執行的應用程式的 hello 效能。 確定您設定的 hello 值小於 hello 您設定其他復原點數目。
 
     ![進行保護設定](./media/site-recovery-vmm-to-vmm-classic/cloud-settings.png)
 9. 在 [資料傳輸壓縮] 中，指定是否應該將傳輸的已複寫資料壓縮。
-10. 在 [驗證] 中，指定如何驗證主要與復原 Hyper-V 主機伺服器之間的流量。 除非您已設定可用的 Kerberos 環境，否則請選取 HTTPS。 Azure Site Recovery 會自動設定用於 HTTPS 驗證的憑證。 不需要進行任何手動設定。 如果您確實已選取 Kerberos，Kerberos 票證將會用於主機伺服器的相互驗證。 根據預設，連接埠 8083 和 8084 (用於憑證) 將在 Hyper-V 主機伺服器上的 Windows 防火牆中開啟。 請注意，這項設定只有在 Hyper-V 主機伺服器是執行於 Windows Server 2012 R2 時才有重要性。
-11. 在 [連接埠] 中，修改來源與目標主機電腦在其中接聽複寫流量的連接埠號碼。 例如，如果您想要將服務品質 (QoS) 網路頻寬節流套用於複寫流量，您可能會修改設定。 檢查任何其他應用程式都沒有使用連接埠，且連接埠已在防火牆設定中開啟。
-12. 在 [複寫方法] 中，指定在正常複寫開始前，初次將資料從來源複寫到目標位置時的處理方式：
+10. 在**驗證**，指定如何驗證主要 hello 和復原 HYPER-V 主機伺服器之間的流量。 除非您已設定可用的 Kerberos 環境，否則請選取 HTTPS。 Azure Site Recovery 會自動設定用於 HTTPS 驗證的憑證。 不需要進行任何手動設定。 如果您選取 Kerberos，Kerberos 票證會用於相互驗證的 hello 主機伺服器。 根據預設，將 hello HYPER-V 主機伺服器上的 hello Windows 防火牆中開啟連接埠 8083 和 8084 （用於憑證）。 請注意，這項設定只有在 Hyper-V 主機伺服器是執行於 Windows Server 2012 R2 時才有重要性。
+11. 在**連接埠**、 修改 hello 通訊埠編號上的 hello 來源和目標主機電腦接聽複寫流量。 例如，您可能會修改 hello 設定，如果您想 tooapply 服務品質 (QoS) 網路頻寬節流處理複寫流量。 請檢查 hello 連接埠不使用任何其他應用程式，而且它是在 hello 防火牆設定中開啟。
+12. 在**複寫方法**，指定 hello 初始複寫的資料從來源 tootarget 位置將，如何處理一般複寫開始之前：
 
-    * **透過網路**：透過網路複製資料可能既費時又耗資源。 如果雲端中的虛擬機器使用相當小的虛擬硬碟，而且主要網站透過寬頻連線來連接次要網站，則建議您使用這個選項。 您可以指定立即開始複製，或是選取開始複製的時間。 如果您使用網路複寫，建議您排在離峰時段進行。
-    * **離線**：這個方法指定要使用外部媒體執行初次複寫。 如果您想要避免影響網路效能，或者複寫目的地位於很遙遠的地方，就適合使用這個方法。 若要使用這個方法，您需指定來源雲端上的匯出位置，以及目標雲端上的匯入位置。 對虛擬機器啟用保護時，虛擬硬碟會複製到指定的匯出位置。 您需將它送到目標站台，再將它複製到匯入位置。 系統會將匯入的資訊複製到複本虛擬機器。
-13. 選取 [刪除複本虛擬機器] 指定在選取雲端屬性之 [虛擬機器] 索引標籤上的 [刪除虛擬機器的保護] 選項，以停止保護虛擬機器時，應該刪除複本虛擬機器。 如果啟用這項設定，當您停用保護時，便會從 Azure Site Recovery 中移除虛擬機器、在 VMM 主控台中移除虛擬機器的 Site Recovery 設定，並刪除複本。
+    * **透過網路**— hello 網路上進行複製的資料可能既費時又需要大量資源。 我們建議您如果 hello 雲端包含虛擬機器具有相對較小虛擬硬碟，而且 hello 主要站台是透過具有大量頻寬連線連接的 toohello 次要站台時，才使用此選項。 您可以指定 hello 複製應立即啟動，或選取的時間。 如果您使用網路複寫，建議您排在離峰時段進行。
+    * **離線**— 此方法可讓您指定要執行 hello 初始複寫使用外部媒體。 如果您想要 tooavoid 網路效能降低，或是針對遠端地理位置，就會很有用。 toouse 這個 hello 來源雲端與 hello 匯入位置 hello 目標雲端上的指定 hello 匯出位置的方法。 當您啟用虛擬機器的保護時，虛擬硬碟 hello 是複製的 toohello 指定匯出位置。 您將它送出 toohello 目標網站，並將它複製 toohello 匯入位置。 hello 系統複製 hello 匯入資訊 toohello 複本虛擬機器。
+13. 選取**刪除複本虛擬機器**hello 複本虛擬機器的 toospecify 應該刪除，如果您停止保護 hello 虛擬機器選取 hello**刪除 hello 虛擬機器的保護** hello 虛擬機器 索引標籤上的 hello 雲端屬性的選項。 啟用此設定，當您停用會從 Azure Site Recovery 移除保護 hello 虛擬機器、 在 hello VMM 主控台中，移除 hello hello 虛擬機器的 Site Recovery 設定與 hello 複本被刪除。
 
     ![進行保護設定](./media/site-recovery-vmm-to-vmm-classic/cloud-settings-replica.png)
 
-儲存設定之後，會建立一個工作，並可在 [工作]  索引標籤上進行監視。 VMM 來源雲端中的所有 Hyper-V 主機伺服器會設定進行複寫。 在 [設定]  索引標籤上可修改雲端設定。 如果您要修改目標位置或目標雲端，則必須移除雲端組態，然後重新設定雲端。
+儲存 hello 設定之後作業將會建立，您可以在 hello 監視**作業** 索引標籤。Hello VMM 來源雲端中的所有 HYPER-V 主機伺服器將會都設定為複寫。 可以在 hello 上修改雲端設定**設定** 索引標籤。如果您想 toomodify hello 目標位置或目標雲端必須移除 hello 雲端組態，然後再重新設定 hello 雲端。
 
 ### <a name="prepare-for-offline-initial-replication"></a>準備進行離線初始複寫
-您必須執行下列動作，以準備進行初始複寫離線：
+您必須遵循離線初始複寫的動作 tooprepare toodo hello:
 
-* 在來源伺服器上，您會指定要從中匯出資料的路徑位置。 在匯出路徑上指派 NTFS 和共用權限的完整控制權給 VMM 服務。 在目標伺服器上，您會指定要從中匯入資料的路徑位置。 在這個匯入路徑上指派相同的權限。
-* 如果共用匯入或匯出路徑，請在共用所在的遠端桌面上，指派系統管理員、進階使用者、列印操作員或伺服器操作員群組成員資格給 VMM 伺服器帳戶。
-* 如果您使用任何執行身分帳戶加入主機，請在匯入和匯出路徑上指派讀取和寫入權限給 VMM 中的執行身分帳戶。
-* 匯入和匯出共用不得位於任何做為 Hyper-V 主機伺服器的電腦，因為 Hyper-V 不支援回送設定。
-* 在 Active Directory 的每部包含您想要保護之虛擬機器的 Hyper-V 主機伺服器上，啟用與設定限制委派，以信任匯入與匯出路徑所在的遠端電腦，如下所示：
-  1. 在網域控制站上，開啟 [Active Directory 使用者和電腦] 。
-  2. 在主控台樹狀目錄中，按一下 [DomainName] > [電腦]。
-  3. 在 Hyper-V 主機伺服器名稱上按一下滑鼠右鍵 > [屬性]。
-  4. 在 [委派] 索引標籤上，按一下 [信任這台電腦，但只委派指定的服務]。
+* Hello 來源伺服器上，您會指定從哪個 hello 資料匯出，就會進行的路徑位置。 指派 「 完整控制 NTFS 和共用權限 toohello hello 匯出路徑上的 VMM 服務。 在 hello 目標伺服器上，您會指定要從中 hello 資料匯入的路徑位置就會發生。 指派 hello 這個匯入路徑上的相同權限。
+* 如果 hello 匯入或匯出路徑共用，指派 hello 遠端電腦上的 hello VMM 服務帳戶的系統管理員、 Power User、 列印操作員或伺服器操作員群組成員資格位於上共用的 hello。
+* 如果您使用的任何執行身分帳戶 tooadd 主機，hello 上匯入和匯出路徑、 指派讀取和寫入權限 toohello 執行身分帳戶在 VMM 中。
+* hello 匯入和匯出共用應該位於任何做為 HYPER-V 主機伺服器的電腦因為 HYPER-V 不支援回送設定。
+* 在每個包含您想 tooprotect，虛擬機器的 HYPER-V 主機伺服器上的 Active Directory 中啟用及設定限制的委派 tootrust hello 遠端電腦上的 hello 匯入和匯出路徑，如下：
+  1. 在 hello 網域控制站上開啟**Active Directory 使用者和電腦**。
+  2. 在 hello 主控台樹狀目錄中按一下**DomainName** > **電腦**。
+  3. 以滑鼠右鍵按一下 hello HYPER-V 主機伺服器名稱 >**屬性**。
+  4. 在 hello**委派**索引標籤上按一下 T**rust 這台電腦所委派 toospecified 服務只**。
   5. 按一下 [使用任何驗證通訊協定] 。
   6. 按一下 [新增]  > 提出技術問題。
-  7. 輸入裝載匯出路徑的電腦名稱 > [確定]。從可用服務的清單中，按住 CTRL 鍵並按一下 [cifs] > [確定]。 為裝載匯入路徑的電腦名稱重複動作。 視需要為其他 Hyper-V 主機伺服器重複動作。
+  7. 型別 hello 裝載 hello 匯出路徑的 hello 電腦名稱 >**確定**。從 hello 的可用服務清單，請在按住 hello CTRL 鍵，然後按一下  **cifs** > **確定**。 Hello 電腦名稱的 hello 重複該主機 hello 匯入路徑。 視需要為其他 Hyper-V 主機伺服器重複動作。
 
 ## <a name="step-5-configure-network-mapping"></a>步驟 5：設定網路對應
-1. 在 [快速入門] 頁面上，按一下 [對應網路] 。
-2. 選取您想要從其中對應網路的來源 VMM 伺服器，然後選取對應網路的目標 VMM 伺服器。 隨即會顯示來源網路的清單和與其相關聯的目標網路。 目前尚未對應的網路會顯示空白值。
-3. 在 [來源上的網路]  >  [對應] 中選取網路。 服務會偵測目標伺服器上的 VM 網路並加以顯示。 按一下來源和目標網路名稱旁邊的資訊圖示，以檢視每個網路的子網路。
+1. 在 hello 快速入門 頁面上，按一下 **對應網路**。
+2. 選取您想 toomap 網路與然後 hello 要對應網路的目標 VMM 伺服器 toowhich hello hello 來源 VMM 伺服器。 會顯示來源網路及其相關聯的目標網路的 hello 清單。 目前尚未對應的網路會顯示空白值。
+3. 在 [來源上的網路]  >  [對應] 中選取網路。 hello 服務會偵測 hello hello 目標伺服器上的 VM 網路，並加以顯示。 按一下 hello 資訊圖示下一步 toohello 來源和目標網路名稱 tooview hello 子網路的每個網路。
 
     ![設定網路對應](./media/site-recovery-vmm-to-vmm-classic/network-mapping1.png)
-4. 在對話方塊中，從目標 VMM 伺服器選取其中一個 VM 網路。
+4. Hello 對話方塊中選取其中一個 hello VM 網路從 hello 目標 VMM 伺服器。
 
     ![選取目標網路](./media/site-recovery-vmm-to-vmm-classic/network-mapping2.png)
-5. 當您選曲目標網路時，隨即會顯示使用來源網路的受保護雲端。 同時也會顯示與用於保護之雲端相關聯的可用目標網路。 建議您選取所有用於保護之雲端都可用的目標網路。 或者，您也可以移至 VMM 伺服器並修改雲端屬性，以新增想要選擇的 vm 網路所對應的邏輯網路。
-6. 按一下打勾記號完成對應程序。 隨即有個工作啟動來追蹤對應程序。 您可以在 [工作]  索引標籤上檢視它。
+5. 當您選取的目標網路時，hello 使用 hello 來源網路的受保護的雲端會顯示。 也會顯示與用於保護的 hello 雲端相關聯的可用目標網路。 我們建議您選取可用的 tooall hello 雲端都可以使用保護的目標網路。 或者，您也可以移 toohello VMM 伺服器，然後修改 hello 雲端屬性 tooadd hello 邏輯網路對應的 toochoose toohello vm 網路。
+6. 按一下 hello 核取記號 toocomplete hello 對應處理序。 作業會啟動 tootrack hello 對應進度。 您可以檢視其 hello**作業** 索引標籤。
 
 ## <a name="step-6-configure-storage-mapping"></a>步驟 6：設定儲存體對應
-根據預設，當您將來源 Hyper-V 主機伺服器上的虛擬機器複寫至目標 Hyper-V 主機伺服器時，複寫的資料會儲存在為 Hyper-V 管理員中之目標 Hyper-V 主機所指定的預設位置。 如果要進一步控制複寫資料的儲存位置，您可以用以下方式設定儲存體對應：
+根據預設複寫來源 HYPER-V 主機伺服器 tooa 目標 HYPER-V 主機伺服器上的虛擬機器時複寫的資料儲存在 hello hello 目標 HYPER-V 主機在 HYPER-V 管理員中指定的預設位置。 如果要進一步控制複寫資料的儲存位置，您可以用以下方式設定儲存體對應：
 
-1. 在來源和目標 VMM 伺服器上定義儲存體分類。 [深入了解](https://technet.microsoft.com/library/gg610685.aspx)。 分類必須可用於來源與目標雲端中的 Hyper-V 主機伺服器。 分類不需要具有相同類型的儲存體。 例如，您可以將包含 SMB 共用的來源分類對應至包含 CSV 的目標分類。
-2. 設定分類之後，您就可以建立對應。 若要這樣做，請在 [快速入門] 頁面上 > [對應儲存體]。
-3. 按一下 [儲存體] 索引標籤 > [對應儲存體分類]。
-4. 在 [對應儲存體分類]  索引標籤上，選取來源和目標 VMM 伺服器上的分類。 儲存您的設定。
+1. 在這兩個 hello 來源上定義的儲存體分類和目標 VMM 伺服器。 [深入了解](https://technet.microsoft.com/library/gg610685.aspx)。 分類必須是來源和目標雲端中的可用 toohello HYPER-V 主機伺服器。 分類不需 toohave hello 相同類型的儲存體。 例如，您可以對應來源分類，其中包含 SMB 共用 tooa 目標分類包含 Csv。
+2. 設定分類之後，您就可以建立對應。 toodo 這在 hello**快速入門**頁面 >**對應儲存**。
+3. 按一下 hello**儲存體** 索引標籤 >**對應儲存體分類**。
+4. 在 hello**對應儲存體分類**索引標籤上，選取分類 hello 來源與目標 VMM 伺服器。 儲存您的設定。
 
     ![選取目標網路](./media/site-recovery-vmm-to-vmm-classic/storage-mapping.png)
 
 ## <a name="step-7-enable-virtual-machine-protection"></a>步驟 7：啟用虛擬機器保護
-正確設定伺服器、雲端和網路後，您就可以對雲端中的虛擬機器啟用保護。
+伺服器、 雲端和網路已正確設定之後，您可以啟用 hello 雲端中的虛擬機器的保護。
 
-1. 在虛擬機器所在雲端中的 [虛擬機器] 索引標籤上，按一下 [啟用保護]  >  [新增虛擬機器]。
-2. 從雲端中所有虛擬機器的清單，選取您要保護的虛擬機器。
+1. 在 hello**虛擬機器**索引標籤中的 hello 虛擬機器所在的 hello 雲端中，按一下**啟用保護** > **新增虛擬機器**。
+2. 從 hello hello 雲端中虛擬機器清單，選取 hello 其中一個要 tooprotect。
 
     ![啟用虛擬機器保護](./media/site-recovery-vmm-to-vmm-classic/enable-protection.png)
-3. 您可以在 [工作]  索引標籤中追蹤「啟用保護」動作的進度，包括初始複寫。 執行「完成保護」工作之後，虛擬機器即準備好進行容錯移轉。 啟用保護並複寫虛擬機器之後，您將能夠在 Azure 中檢視這些虛擬機器。
+3. 追蹤進度 hello 啟用保護 」 動作 hello**作業**索引標籤上，包括 hello 初始複寫。 Hello 完成保護 」 工作後執行 hello 虛擬機器已做好容錯移轉。 啟用保護，並複寫虛擬機器之後，您會無法 tooview 他們在 Azure 中。
 
     ![虛擬機器保護工作](./media/site-recovery-vmm-to-vmm-classic/vm-jobs.png)
 
 > [!NOTE]
-> 您也可以在 VMM 主控台中啟用虛擬機器的保護。 在虛擬機器屬性中 [Azure Site Recovery] 索引標籤的工具列上按一下 [啟用保護]。
+> 您也可以啟用 hello VMM 主控台中的虛擬機器的保護。 按一下**啟用保護**hello hello 工具列上**Azure Site Recovery** hello 虛擬機器內容 索引標籤。
 >
 >
 
 ### <a name="on-board-existing-virtual-machines"></a>加入現有的虛擬機器
-如果 VMM 中已經有使用「Hyper-V 複本」複寫的現有的虛擬機器，您必須以下列方式將它們加入以使用 Azure Site Recovery 保護：
+如果您有現有的虛擬機器在 VMM 中要與 HYPER-V 複本複寫，您將需要 tooonboard 以供 Azure Site Recovery 保護，如下所示：
 
-1. 請確認您有主要和次要雲端。 請確認裝載現有虛擬機器的 Hyper-V 伺服器位於主要雲端中，且裝載複本虛擬機器的 Hyper-V 伺服器位於次要雲端中。 請確認您已為雲端進行保護設定。 這些設定應符合目前為 Hyper-V 複本所做的設定。 否則虛擬機器複寫可能無法如預期般運作。
-2. 然後啟用主要虛擬機器的保護。 Azure Site Recovery 和 VMM 可確保偵測到相同的複本主機和虛擬機器，且 Azure Site Recovery 會在雲端設定期間使用這些設定，重複使用及重新建立複寫作業。
+1. 請確認您有主要和次要雲端。 請確認裝載現有虛擬機器 hello hello HYPER-V 伺服器位於 hello 主要雲端，然後裝載 hello 複本虛擬機器的 hello HYPER-V 伺服器位於 hello 次要雲端。 請確定您已設定 hello 雲端的保護設定。 hello 設定應符合目前為 HYPER-V 複本設定。 否則虛擬機器複寫可能無法如預期般運作。
+2. 然後啟用 hello 主要虛擬機器的保護。 Azure Site Recovery 和 VMM 可確保 hello 相同的複本主機和虛擬機器偵測到，而且 Azure Site Recovery 會重複使用及重新建立複寫使用雲端組態設定期間的 hello 設定。
 
 ## <a name="test-your-deployment"></a>測試您的部署
-若要測試部署，您可以對單一虛擬機器執行測試容錯移轉，或者建立包含多部虛擬機器的復原方案，再對這個方案執行測試容錯移轉。  測試容錯移轉會在隔離的網路中模擬您的容錯移轉與復原機制。
+tootest 規劃您的部署，您可以執行測試容錯移轉的單一虛擬機器，或建立復原方案包含多個虛擬機器並執行測試容錯移轉的 hello。  測試容錯移轉會在隔離的網路中模擬您的容錯移轉與復原機制。
 
 ### <a name="create-a-recovery-plan"></a>建立復原計畫
-1. 在 [復原方案] 索引標籤上，按一下 [建立復原方案]。
-2. 指定復原方案的名稱，以及來源和目標 VMM 伺服器。 來源伺服器必須有已啟用容錯移轉和復原功能的虛擬機器。 請選取 [Hyper-V]  ，以檢視為 Hyper-V 複寫設定的雲端。
+1. 在 hello**復原計劃**索引標籤上，按一下 **建立復原計劃**。
+2. 指定 hello 復原計劃，以及來源和目標 VMM 伺服器的名稱。 hello 來源伺服器必須具有啟用容錯移轉和復原的虛擬機器。 選取**HYPER-V** tooview 僅雲端設定的 HYPER-V 複寫。
 
     ![建立復原計畫](./media/site-recovery-vmm-to-vmm-classic/recovery-plan1.png)
-3. 在 [選取虛擬機器] 中，選取複寫群組。 所有與複寫群組關聯的虛擬機器，將會被選取並新增至復原方案。 這些虛擬機器會新增到復原方案預設群組 (群組 1)。 您可以視需要新增更多群組。 請注意，複寫之後，虛擬機器將會根據復原方案群組的順序來啟動。
+3. 在 [選取虛擬機器] 中，選取複寫群組。 Hello 複寫群組相關聯的所有虛擬機器將會選取並加入 toohello 復原計劃。 這些虛擬機器會新增 toohello 復原計劃預設群組-群組 1。 您可以視需要新增更多群組。 請注意，當複寫虛擬機器，將會啟動根據 hello hello 復原計畫群組順序。
 
     ![新增虛擬機器](./media/site-recovery-vmm-to-vmm-classic/recovery-plan2.png)
 
-建立復原計畫之後，它會出現在 [復原計畫]  索引標籤上的清單中。
+在建立復原方案之後，它會顯示 hello hello 清單中**復原計劃** 索引標籤。
 
 ### <a name="run-a-test-failover"></a>執行測試容錯移轉
-1. 在 [復原計畫] 索引標籤上，選取計畫，然後按一下 [測試容錯移轉]。
-2. 在 [確認測試容錯移轉] 頁面上，選取 [無]。 請注意，啟用此選項時，容錯移轉複本虛擬機器將不會連線到任何網路。 這將會測試虛擬機器是否依照預期執行容錯移轉，但是不會測試您的複寫網路環境。 請參閱 [執行測試容錯移轉](site-recovery-failover.md) 中有關如何使用不同網路選項的詳細資訊。
-3. 測試虛擬機器將建立在複本虛擬機器所在的相同主機上。 它會新增至複本虛擬機器所在的相同雲端。
+1. 在 hello**復原計劃**索引標籤上，選取 hello 計劃，並按一下**測試容錯移轉**。
+2. 在 hello**確認測試容錯移轉**頁面上，選取**無**。 請注意，使用此選項時啟用的 hello 容錯移轉複本虛擬機器將不會連接的 tooany 網路。 這將會測試，如預期般超過 hello 虛擬機器失敗，但不會測試您的複寫網路環境。 看看過[執行測試容錯移轉](site-recovery-failover.md)如需有關如何 toouse 不同的網路功能選項。
+3. hello 測試虛擬機器將建立的 hello 相同裝載為複本虛擬機器有哪些 hello hello 主機上。 它會加入 toohello 相同的 hello 中複本虛擬機器所在的雲端。
 
 ### <a name="run-a-recovery-plan"></a>執行復原計畫
-複寫之後，複本虛擬機器的 IP 位址可能與主要虛擬機器的 IP 位址不同。 虛擬機器在啟動後將更新他們正在使用的 DNS 伺服器。 您也可以加入指令碼以更新 DNS 伺服器，以確保及時更新。
+複寫 hello 複本虛擬機器可能沒有為 hello 的 IP 位址之後 hello IP 位址的相同 hello 主要虛擬機器。 虛擬機器將會更新他們使用的 hello DNS 伺服器啟動之後。 您也可以加入指令碼 tooupdate hello DNS 伺服器 tooensure 即時更新。
 
-#### <a name="script-to-retrieve-the-ip-address"></a>要擷取 IP 位址的指令碼
-執行此範例指令碼以抓取 IP 位址。
+#### <a name="script-tooretrieve-hello-ip-address"></a>指令碼 tooretrieve hello IP 位址
+執行這個範例指令碼 tooretrieve hello IP 位址。
 
         $vm = Get-SCVirtualMachine -Name <VM_NAME>
         $na = $vm[0].VirtualNetworkAdapters>
         $ip = Get-SCIPAddress -GrantToObjectID $na[0].id
         $ip.address  
 
-#### <a name="script-to-update-dns"></a>要更新 DNS 的指令碼
-執行此範例指令碼來更新 DNS (使用上一個範例指令碼抓取到的 IP 位址)。
+#### <a name="script-tooupdate-dns"></a>指令碼 tooupdate DNS
+執行這個範例指令碼 tooupdate DNS，指定 hello 的 IP 位址擷取使用 hello 先前的範例指令碼。
 
         string]$Zone,
         [string]$name,
@@ -282,53 +282,53 @@ Azure Site Recovery 服務可藉由協調虛擬機器與實體伺服器的複寫
 
 
 ## <a name="privacy-information-for-site-recovery"></a>Site Recovery 的隱私權資訊
-本節提供 Microsoft Azure Site Recovery 服務 (「服務」) 的其他隱私權資訊。 若要檢視 Microsoft Azure 服務的隱私權聲明，請參閱 [Microsoft Azure 隱私權聲明](http://go.microsoft.com/fwlink/?LinkId=324899)
+本節中的 hello Microsoft Azure Site Recovery 服務 （「 服務 」） 的其他隱私權資訊。 tooview hello 隱私權聲明，Microsoft Azure 服務，請參閱[Microsoft Azure 隱私權聲明](http://go.microsoft.com/fwlink/?LinkId=324899)
 
 **功能：註冊**
 
 * **作用**：向服務註冊伺服器，如此可以保護虛擬機器
-* **收集的資訊**：註冊之後，服務會從指定提供災害復原的 VMM 伺服器，收集、處理及傳輸管理憑證資訊，使用 VMM 伺服器的服務名稱以及 VMM 伺服器上虛擬機器的名稱。
+* **收集資訊**： 之後註冊的 hello 服務會收集、 處理及傳輸從 hello tooprovide 災害復原使用 hello hello VMM 伺服器，服務名稱指定的 VMM 伺服器的管理憑證資訊與 VMM 伺服器上的虛擬機器雲端 hello 名稱。
 * **資訊的用途**：
 
-  * 管理憑證—用來協助識別及驗證已註冊的 VMM 伺服器，以便存取服務。 服務會使用憑證的公開金鑰部分來保護 token，只有已註冊的 VMM 伺服器可以獲得其存取權。 伺服器必須使用此 token 獲得服務功能的存取權。
-  * VMM 伺服器的名稱—要識別雲端所在之適當 VMM 伺服器並與其通訊時，VMM 伺服器名稱是必要項目。
-  * VMM 伺服器中的雲端名稱—使用如下所述之服務雲端配對/取消配對功能時，雲端名稱為必要項目。 當您決定配對您在主要資料中心的雲端與另一個在復原資料中心的雲端時，復原資料中心的所有雲端名稱都會出現。
-* **選擇**：這項資訊是服務註冊程序中不可或缺的一部分，因為它可幫助您和服務識別您想要提供 Azure Site Recovery 保護的 VMM 伺服器，也可以識別正確註冊的 VMM 伺服器。 如果您不想將此資訊傳送給服務，請勿使用此服務。 如果您已註冊您的伺服器，且稍後想要取消註冊，您可以從服務入口網站 (也就是 Azure 入口網站) 刪除 VMM 伺服器資訊，即可完成動作。
+  * 管理憑證，這用 toohelp 識別及驗證存取 toohello 服務的 hello 註冊 VMM 伺服器。 hello 服務會使用 hello 公開金鑰部分 hello 憑證 toosecure 只 hello 的語彙基元註冊 VMM 伺服器可以存取。 hello 伺服器需要 toouse 這個語彙基元 toogain 存取 toohello 服務功能。
+  * Hello VMM 伺服器的名稱 — hello VMM 伺服器名稱是必要的 tooidentify 和與 hello 哪些 hello 雲端位於適當 VMM 伺服器通訊。
+  * Hello VMM 伺服器中的雲端名稱： hello 雲端名稱時，需要使用 hello 服務雲端配對/取消配對功能如下所述。 當您決定 toopair 主要資料中心的雲端，與 hello 復原資料中心中的另一個雲端時，則會顯示 hello hello 復原資料中心的所有 hello 雲端名稱。
+* **選擇**： 這項資訊是 hello 服務註冊程序中不可或缺的一部分，因為它可協助您和 hello 服務 tooidentify hello VMM 伺服器，您想 tooprovide Azure Site Recovery 保護，因為 tooidentify hello正確註冊的 VMM 伺服器。 如果您不想 toosend 此資訊 toohello 服務，不會使用此服務。 如果您註冊您的伺服器，並稍後想 toounregister，您可以從 hello 服務入口網站 （也就是 hello Azure 入口網站) 刪除 hello VMM 伺服器資訊。
 
 **功能：啟用 Azure Site Recovery 保護**
 
-* **作用**：安裝在 VMM 伺服器上的 Azure Site Recovery 提供者是用來和服務通訊的管道。 提供者是裝載在 VMM 程序中的動態連結程式庫 (DLL)。 安裝提供者之後，“Datacenter Recovery” 功能會在 VMM 系統管理員主控台中啟用。 雲端中所有新的或現有的虛擬機器都可以啟用稱為 “Datacenter Recovery” 的屬性以協助保護虛擬機器。 一旦設定此屬性之後，提供者會將虛擬機器的名稱和識別碼傳送至服務。 虛擬保護是由 Windows Server 2012 或 Windows Server 2012 R2 Hyper-V 複寫技術啟用。 虛擬機器資料會從一個 Hyper-V 主機複寫至另一個 (通常位於不同的「復原」資料中心)。
-* **收集的資訊**：服務會收集、處理和傳輸虛擬機器的中繼資料，包括名稱、識別碼、虛擬網路和所屬雲端。
-* **資訊的用途**：服務會使用上述資訊，在您的服務入口網站填入虛擬機器資訊。
-* **選擇**：這是服務不可或缺的一部分，而且無法關閉。 如果您不想傳送這項資訊至服務，請勿啟用任何虛擬機器的 Azure Site Recovery 保護。 請注意，所有由提供者傳送給服務的資料都是透過 HTTPS 傳送。
+* **其用途**: hello hello VMM 伺服器上安裝 Azure Site Recovery Provider 是 hello 管道來與 hello 服務進行通訊。 hello 提供者是在 hello VMM 程序中裝載的動態連結程式庫 (DLL)。 安裝提供者的 hello 之後, 取得 hello VMM 系統管理員主控台中啟用 hello 「 資料中心復原 」 功能。 在雲端中任何新的或現有虛擬機器可啟用名為 「 資料中心復原 」 的屬性 toohelp 保護 hello 虛擬機器。 這個屬性設定之後，hello 提供者會傳送 hello 名稱和識別碼 hello 虛擬機器 toohello 服務。 hello 虛擬保護是由 Windows Server 2012 或 Windows Server 2012 R2 HYPER-V 複寫技術所啟用的。 從一個 HYPER-V 主機 tooanother （通常位於不同的 「 復原 」 資料中心），取得複寫 hello 虛擬機器資料。
+* **收集資訊**: hello 服務會收集、 處理序，並將傳送 hello 虛擬機器，其中包含 hello 名稱、 識別碼、 虛擬網路，以及 hello hello 雲端名稱的中繼資料它所屬。
+* **資訊的用途**: hello 服務服務 」 入口網站上使用 hello 上述資訊 toopopulate hello 虛擬機器資訊。
+* **選擇**： 這是 hello 服務不可或缺的一部分，而且無法關閉。 如果您不想傳送 toohello 服務這項資訊，請勿啟用任何虛擬機器的 Azure Site Recovery 保護。 請注意，透過 HTTPS 傳送 hello 提供者 toohello 服務所傳送的所有資料。
 
 **功能：復原計畫**
 
-* **作用**：此功能可協助您建立「復原」資料中心的協調計畫。 您可以定義虛擬機器或虛擬機器群組應在復原站台啟動的順序。 您也可以在每個虛擬機器復原時指定任何要執行的自動化指令碼，或任何要採取的手動動作。 容錯移轉 (下一節所述) 通常會在協調復原的復原計畫層級觸發。
-* **收集的資訊**：服務會收集、處理和傳輸復原計畫的中繼資料，包含虛擬機器中繼資料，以及任何自動化指令碼和手動動作備註的中繼資料。
-* **資訊的用途**：上述中繼資料可用來在您的服務入口網站建置復原計畫。
-* **選擇**：這是服務不可或缺的一部分，而且無法關閉。 如果您不想將此資訊傳送給服務，請勿在此服務中建置復原計畫。
+* **其用途**： 這項功能可協助您 toobuild hello 「 復原 」 資料中心協調流程方案。 您可以定義 hello 順序中的 hello 虛擬機器或虛擬機器群組應該啟動在 hello 復原站台。 您也可以指定執行時，任何自動化的指令碼 toobe 或復原每個虛擬機器 hello 時採取的任何手動動作 toobe。 容錯移轉 （涵蓋在 hello 下一節） 通常是在 hello 復原計劃協調的復原層級觸發。
+* **收集資訊**: hello 服務會收集、 處理序，並將傳送 hello 復原計劃，包括虛擬機器中繼資料和中繼資料的任何自動化指令碼和手動動作備註的中繼資料。
+* **資訊的用途**: hello 上面所述的中繼資料是使用的 toobuild hello 復原計劃服務 」 入口網站中。
+* **選擇**： 這是 hello 服務不可或缺的一部分，而且無法關閉。 如果您不想傳送 toohello 服務這項資訊，不建立復原方案中這項服務。
 
 **功能：網路對應**
 
-* **作用**：這項功能可讓您將網路資訊從主要資料中心對應至復原資料中心。 在復原站台上復原虛擬機器時，此對應可協助建立其網路連線。
-* **收集的資訊**：服務的網路對應功能之一是收集、處理和傳輸每個網站 (主要與資料中心) 之邏輯網路的中繼資料。
-* **資訊的用途**：服務會使用中繼資料來填入服務入口網站，您可以在這個入口網站對應網路資訊。
-* **選擇**：這是服務不可或缺的一部分，而且無法關閉。 如果您不想將此資訊傳送給服務，請勿使用網路對應功能。
+* **其用途**： 這項功能可讓您從 hello 主要資料中心 toohello 復原資料中心 toomap 網路資訊。 Hello 虛擬機器會復原 hello 復原站台上，這項對應有助於為其建立的網路連線。
+* **收集資訊**: hello 網路對應功能的一部分，hello 服務會收集、 處理或傳輸 hello hello 邏輯網路，每個站台 （主要和 datacenter） 的中繼資料。
+* **資訊的用途**: hello 服務會使用 hello 中繼資料 toopopulate 服務 」 入口網站，您可以將對應 hello 網路資訊。
+* **選擇**： 這是 hello 服務不可或缺的一部分，而且無法關閉。 如果您不想傳送 toohello 服務這項資訊，請勿使用 hello 網路對應功能。
 
 **功能：容錯移轉 - 已規畫、未規劃、測試**
 
-* **作用**：這項功能可協助虛擬機器從一個 VMM 管理的資料中心容錯移轉至另一個 VMM 管理的資料中心。 容錯移轉動作會在其服務入口網站上由使用者觸發。 容錯移轉的可能原因包括非計劃的事件 (例如自然災害案例)、計劃的事件 (例如資料中心負載平衡)、測試容錯移轉 (例如復原方案排練)。
+* **其用途**： 這項功能有助於從一個 VMM 管理的資料中心 tooanother VMM 受管理的資料中心的虛擬機器容錯移轉。 hello 容錯移轉動作會觸發 hello 使用者在其服務入口網站上。 在容錯移轉的可能原因包括未計劃的事件 (例如在 hello 大小寫的自然的 disaster0; 計劃的事件 （例如資料中心負載平衡），則測試容錯移轉 （例如復原方案演習）。
 
-VMM 伺服器上的提供者會收到來自服務的事件通知，並在 Hyper-V 主機上透過 VMM 介面執行容錯移轉動作。 虛擬機器從一部 Hyper-V 主機實際容錯移轉至另一部 (通常在不同的「復原」資料中心中執行) 的動作會由 Windows Server 2012 或 Windows Server 2012 R2 Hyper-V 複寫技術處理。 完成容錯移轉之後，安裝在「復原」資料中心之 VMM 伺服器上的提供者會傳送成功資訊給服務。
+hello VMM 伺服器上的 hello 提供者取得的 hello hello 服務，事件通知，並且 hello HYPER-V 主機上透過 VMM 介面執行容錯移轉動作。 Hello 從一個 HYPER-V 主機 tooanother （通常在不同 「 復原 」 資料中心執行） 的虛擬機器實際容錯移轉是由 hello Windows Server 2012 或 Windows Server 2012 R2 HYPER-V 複寫技術所處理。 Hello 容錯移轉已完成之後，hello hello hello 「 復原 」 資料中心的 VMM 伺服器上安裝的提供者會傳送 hello 成功資訊 toohello 服務。
 
-* **收集的資訊**：服務會使用上述資訊，在您的服務入口網站上填入容錯移轉動作的狀態。
-* **資訊的用途**：服務使用上述資訊的用途如下所示：
+* **收集資訊**: hello 服務服務 」 入口網站上使用 hello hello 容錯移轉動作資訊的資訊 toopopulate hello 狀態上方。
+* **資訊的用途**: hello 服務會使用上述資訊 hello，如下所示：
 
-  * 管理憑證—用來協助識別及驗證已註冊的 VMM 伺服器，以便存取服務。 服務會使用憑證的公開金鑰部分來保護 token，只有已註冊的 VMM 伺服器可以獲得其存取權。 伺服器必須使用此 token 獲得服務功能的存取權。
-  * VMM 伺服器的名稱—要識別雲端所在之適當 VMM 伺服器並與其通訊時，VMM 伺服器名稱是必要項目。
-  * VMM 伺服器中的雲端名稱—使用如下所述之服務雲端配對/取消配對功能時，雲端名稱為必要項目。 當您決定配對您在主要資料中心的雲端與另一個在復原資料中心的雲端時，復原資料中心的所有雲端名稱都會出現。
-* **選擇**：這是服務不可或缺的一部分，而且無法關閉。 如果您不想將此資訊傳送給服務，請勿使用此服務。
+  * 管理憑證，這用 toohelp 識別及驗證存取 toohello 服務的 hello 註冊 VMM 伺服器。 hello 服務會使用 hello 公開金鑰部分 hello 憑證 toosecure 只 hello 的語彙基元註冊 VMM 伺服器可以存取。 hello 伺服器需要 toouse 這個語彙基元 toogain 存取 toohello 服務功能。
+  * Hello VMM 伺服器的名稱 — hello VMM 伺服器名稱是必要的 tooidentify 和與 hello 哪些 hello 雲端位於適當 VMM 伺服器通訊。
+  * Hello VMM 伺服器中的雲端名稱： hello 雲端名稱時，需要使用 hello 服務雲端配對/取消配對功能如下所述。 當您決定 toopair 主要資料中心的雲端，與 hello 復原資料中心中的另一個雲端時，則會顯示 hello hello 復原資料中心的所有 hello 雲端名稱。
+* **選擇**： 這是 hello 服務不可或缺的一部分，而且無法關閉。 如果您不想傳送 toohello 服務這項資訊，請勿使用此服務。
 
 ## <a name="next-steps"></a>後續步驟
-在您執行測試容錯移轉以檢查您的環境是否如預期般運作之後，請 [深入了解](site-recovery-failover.md) 不同類型的容錯移轉。
+您已經執行您的環境是否正常運作，測試容錯移轉 toocheck 之後[深入了解](site-recovery-failover.md)不同類型的容錯移轉。

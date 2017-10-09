@@ -1,6 +1,6 @@
 ---
 title: "C#：開始使用 Azure SQL Database | Microsoft Docs"
-description: "嘗試用 SQL Database 開發 SQL 和 C# 應用程式，然後使用 SQL Database Library for .NET 以 C# 建立 Azure SQL Database。"
+description: "SQL Database 開發 SQL 和 C# 應用程式，再使用 C# 使用 hello SQL 資料庫 Library for.NET 建立 Azure SQL Database。"
 keywords: "試用 sql、sql c#"
 services: sql-database
 documentationcenter: 
@@ -16,53 +16,53 @@ ms.tgt_pltfrm: csharp
 ms.workload: data-management
 ms.date: 10/04/2016
 ms.author: sstein
-ms.openlocfilehash: c8a2703da1ee3687f8d134e768dd8d31dc4f316b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e880ebabd53546bea37a13186b0f1a13db35b684
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-c-to-create-a-sql-database-with-the-sql-database-library-for-net"></a>以 SQL Database Library for .NET 使用 C# 建立 SQL 資料庫
+# <a name="use-c-toocreate-a-sql-database-with-hello-sql-database-library-for-net"></a>C# toocreate SQL database 使用適用於.NET 的 hello SQL 資料庫程式庫
 
-了解如何使用 C# 透過 [Microsoft Azure SQL Management Library for .NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql) 建立 Azure SQL Database。 本文說明如何使用 SQL 和 C# 建立單一資料庫。 若要建立彈性集區，請參閱 [建立彈性集區](sql-database-elastic-pool-manage-csharp.md)。
+了解如何 toouse C# toocreate Azure SQL 資料庫與 hello [Microsoft Azure SQL Management Library for.NET](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)。 本文說明如何 toocreate 單一資料庫使用 SQL 和 C#。 toocreate 彈性集區，請參閱[建立彈性集區](sql-database-elastic-pool-manage-csharp.md)。
 
-Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 式 API，它會包裝 [Resource Manager 式 SQL Database REST API](https://docs.microsoft.com/rest/api/sql/)。
-
-> [!NOTE]
-> SQL Database 的許多新功能只有在使用 [Azure Resource Manager 部署模型](../azure-resource-manager/resource-group-overview.md)時才支援，所以您應該一律使用最新的**適用於 .NET ([docs](https://docs.microsoft.com/dotnet/api/overview/azure/sql?view=azure-dotnet) | [NuGet Package](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)) 的 Azure SQL Database Management Library**。 支援較舊的[以傳統部署模型為基礎的程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql)，以提供回溯相容性，因此我們建議您使用較新的以 Resource Manager 為基礎的程式庫。
-> 
-> 
-
-若要完成這篇文章中的步驟，您需要下列項目︰
-
-* Azure 訂用帳戶。 如果需要 Azure 訂用帳戶，可以先按一下此頁面頂端的 [免費帳戶]  ，然後再回來完成這篇文章。
-* Visual Studio。 如需免費的 Visual Studio，請參閱 [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs) 頁面。
+hello Azure SQL Database 管理.NET 程式庫提供[Azure Resource Manager](../azure-resource-manager/resource-group-overview.md)-基礎應用程式開發介面中包裝 hello[資源管理員為基礎的 SQL Database REST API](https://docs.microsoft.com/rest/api/sql/)。
 
 > [!NOTE]
-> 本文會建立一個新的空白 SQL Database。 在下列範例中修改 *CreateOrUpdateDatabase(...)* 方法，以複製資料庫、調整資料庫大小、在集區中建立資料庫等等。  
+> 您使用 hello 時，才支援許多新的 SQL Database 功能[Azure Resource Manager 部署模型](../azure-resource-manager/resource-group-overview.md)，因此您一定要使用 hello 最新**Azure SQL Database 管理.NET 程式庫 ([文件](https://docs.microsoft.com/dotnet/api/overview/azure/sql?view=azure-dotnet) | [NuGet 封裝](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql))**。 較舊的 hello[傳統部署模型的基礎程式庫](https://www.nuget.org/packages/Microsoft.WindowsAzure.Management.Sql)回溯相容性，因此，建議使用較新版 hello 基礎的資源管理員程式庫支援。
+> 
 > 
 
-## <a name="create-a-console-app-and-install-the-required-libraries"></a>建立主控台應用程式並安裝必要的程式庫
+toocomplete hello 本文中的步驟，您需要下列 hello:
+
+* Azure 訂用帳戶。 如果您需要 Azure 訂用帳戶，只需按一下**免費帳戶**在 hello 頂端頁面，然後再回來 toofinish 這篇文章。
+* Visual Studio。 一份免費的 Visual Studio，請參閱 hello [Visual Studio 下載](https://www.visualstudio.com/downloads/download-visual-studio-vs)頁面。
+
+> [!NOTE]
+> 本文會建立一個新的空白 SQL Database。 修改 hello *CreateOrUpdateDatabase(...)*方法 hello 遵循範例 toocopy 資料庫，在資料庫調整規模，請建立資料庫集區等等。  
+> 
+
+## <a name="create-a-console-app-and-install-hello-required-libraries"></a>建立主控台應用程式並安裝所需的 hello 程式庫
 1. 啟動 Visual Studio。
 2. 按一下 [檔案] > [新增] > [專案]。
 3. 建立 C# **主控台應用程式** 並將其命名為︰ *SqlDbConsoleApp*
 
-若要使用 C# 建立 SQL Database，請載入必要的管理程式庫 (使用 [封裝管理員主控台](http://docs.nuget.org/Consume/Package-Manager-Console))：
+toocreate C# 中，負載 hello 的 SQL 資料庫所需管理程式庫 (使用 hello[封裝管理員主控台](http://docs.nuget.org/Consume/Package-Manager-Console)):
 
 1. 按一下 [工具] > [NuGet 套件管理員] > [套件管理員主控台]。
-2. 輸入 `Install-Package Microsoft.Azure.Management.Sql -Pre` 以安裝最新的 [Microsoft Azure SQL 管理程式庫](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)。
-3. 輸入 `Install-Package Microsoft.Azure.Management.ResourceManager -Pre` 以安裝 [Microsoft Azure Resource Manager 程式庫](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)。
-4. 輸入 `Install-Package Microsoft.Azure.Common.Authentication -Pre` 以安裝 [Microsoft Azure 通用驗證程式庫](https://www.nuget.org/packages/Microsoft.Azure.Common.Authentication)。 
+2. 型別`Install-Package Microsoft.Azure.Management.Sql -Pre`最新 tooinstall hello [Microsoft Azure SQL 管理程式庫](https://www.nuget.org/packages/Microsoft.Azure.Management.Sql)。
+3. 型別`Install-Package Microsoft.Azure.Management.ResourceManager -Pre`tooinstall hello [Microsoft Azure 資源管理員程式庫](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)。
+4. 型別`Install-Package Microsoft.Azure.Common.Authentication -Pre`tooinstall hello [Microsoft Azure 通用驗證程式庫](https://www.nuget.org/packages/Microsoft.Azure.Common.Authentication)。 
 
 > [!NOTE]
-> 這篇文章中的範例使用每個 API 要求的同步表單，並且封鎖直到基礎服務上的 REST 呼叫完成。 有可用的非同步方法。
+> hello 這篇文章中的範例使用同步表單的每個 API 要求和區塊直到完成 hello REST 呼叫 hello 基礎服務上。 有可用的非同步方法。
 > 
 > 
 
 ## <a name="create-a-sql-database-server-firewall-rule-and-sql-database---c-example"></a>建立 SQL Database 伺服器、防火牆規則和 SQL Database - C# 範例
-下列範例會建立資源群組、伺服器、防火牆規則和 SQL Database。 請參閱[建立用來存取資源的服務主體](#create-a-service-principal-to-access-resources)以取得 `_subscriptionId, _tenantId, _applicationId, and _applicationSecret` 變數。
+hello 下列範例會建立資源群組、 伺服器、 防火牆規則，與 SQL 資料庫。 請參閱，[建立服務主體的 tooaccess 資源](#create-a-service-principal-to-access-resources)tooget hello`_subscriptionId, _tenantId, _applicationId, and _applicationSecret`變數。
 
-以下列內容取代 **Program.cs** 的內容，並以您應用程式的值更新 `{variables}` (請勿包含 `{}`)。
+取代 hello 內容**Program.cs** hello 下列項目，與更新 hello`{variables}`以您的應用程式的值 (不包括 hello `{}`)。
 
     using Microsoft.Azure;
     using Microsoft.Azure.Management.ResourceManager;
@@ -83,7 +83,7 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
         static string _applicationId = "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}";
         static string _applicationSecret = "{your-password}";
 
-        // Create management clients for the Azure resources your app needs to work with.
+        // Create management clients for hello Azure resources your app needs toowork with.
         // This app works with Resource Groups, and Azure SQL Database.
         static ResourceManagementClient _resourceMgmtClient;
         static SqlManagementClient _sqlMgmtClient;
@@ -137,7 +137,7 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
             Console.WriteLine("Database: " + dbr.Id);
 
 
-            Console.WriteLine("Press any key to continue...");
+            Console.WriteLine("Press any key toocontinue...");
             Console.ReadKey();
         }
 
@@ -178,7 +178,7 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
 
         static Database CreateOrUpdateDatabase(SqlManagementClient sqlMgmtClient, string resourceGroupName, string serverName, string databaseName, string databaseEdition, string databasePerfLevel)
         {
-            // Retrieve the server that will host this database
+            // Retrieve hello server that will host this database
             Server currentServer = sqlMgmtClient.Servers.Get(resourceGroupName, serverName);
 
             // Create a database: configure create or update parameters and properties explicitly
@@ -209,19 +209,19 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
 
 
 
-## <a name="create-a-service-principal-to-access-resources"></a>建立用來存取資源的服務主體
-下列 PowerShell 指令碼會建立 Active Directory (AD) 應用程式以及驗證 C# 應用程式所需的服務主體。 指令碼會輸出先前 C# 範例所需的值。 如需詳細資訊，請參閱 [使用 Azure PowerShell 建立用來存取資源的服務主體](../azure-resource-manager/resource-group-authenticate-service-principal.md)。
+## <a name="create-a-service-principal-tooaccess-resources"></a>建立服務主體的 tooaccess 資源
+hello 下列 PowerShell 指令碼會建立 hello Active Directory (AD) 應用程式和 hello 服務主體，我們需要 tooauthenticate 我們 C# 應用程式。 hello 指令碼輸出我們需要 hello 前面 C# 範例的值。 如需詳細資訊，請參閱[使用 Azure PowerShell toocreate 服務主體 tooaccess 資源](../azure-resource-manager/resource-group-authenticate-service-principal.md)。
 
-    # Sign in to Azure.
+    # Sign in tooAzure.
     Add-AzureRmAccount
 
-    # If you have multiple subscriptions, uncomment and set to the subscription you want to work with.
+    # If you have multiple subscriptions, uncomment and set toohello subscription you want toowork with.
     #$subscriptionId = "{xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}"
     #Set-AzureRmContext -SubscriptionId $subscriptionId
 
     # Provide these values for your new AAD app.
-    # $appName is the display name for your app, must be unique in your directory.
-    # $uri does not need to be a real uri.
+    # $appName is hello display name for your app, must be unique in your directory.
+    # $uri does not need toobe a real uri.
     # $secret is a password you create.
 
     $appName = "{app-name}"
@@ -231,19 +231,19 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
     # Create a AAD app
     $azureAdApplication = New-AzureRmADApplication -DisplayName $appName -HomePage $Uri -IdentifierUris $Uri -Password $secret
 
-    # Create a Service Principal for the app
+    # Create a Service Principal for hello app
     $svcprincipal = New-AzureRmADServicePrincipal -ApplicationId $azureAdApplication.ApplicationId
 
-    # To avoid a PrincipalNotFound error, I pause here for 15 seconds.
+    # tooavoid a PrincipalNotFound error, I pause here for 15 seconds.
     Start-Sleep -s 15
 
-    # If you still get a PrincipalNotFound error, then rerun the following until successful. 
+    # If you still get a PrincipalNotFound error, then rerun hello following until successful. 
     $roleassignment = New-AzureRmRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $azureAdApplication.ApplicationId.Guid
 
 
-    # Output the values we need for our C# application to successfully authenticate
+    # Output hello values we need for our C# application toosuccessfully authenticate
 
-    Write-Output "Copy these values into the C# sample app"
+    Write-Output "Copy these values into hello C# sample app"
 
     Write-Output "_subscriptionId:" (Get-AzureRmContext).Subscription.SubscriptionId
     Write-Output "_tenantId:" (Get-AzureRmContext).Tenant.TenantId
@@ -253,9 +253,9 @@ Azure SQL Database Management Library for .NET 提供 [Azure Resource Manager](.
 
 
 ## <a name="next-steps"></a>後續步驟
-既然您已試用 SQL Database 並以 C# 設定資料庫，您就可以進行下列文章：
+現在，您已嘗試 SQL 資料庫並設定資料庫，以使用 C#，您已準備好進行 hello 下列文章：
 
-* [使用 SQL Server Management Studio 連接到 SQL Database 並執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
+* [SQL Server Management Studio 連接 tooSQL 資料庫及執行範例 T-SQL 查詢](sql-database-connect-query-ssms.md)
 
 ## <a name="additional-resources"></a>其他資源
 * [SQL Database](https://azure.microsoft.com/documentation/services/sql-database/)

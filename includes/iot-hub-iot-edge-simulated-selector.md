@@ -2,65 +2,65 @@
 > * [Linux](../articles/iot-hub/iot-hub-linux-iot-edge-simulated-device.md)
 > * [Windows](../articles/iot-hub/iot-hub-windows-iot-edge-simulated-device.md)
 
-[Simulated Device Cloud Upload 範例]的這個逐步解說示範如何使用 [Azure IoT Edge][lnk-sdk]，將裝置到雲端遙測從模擬裝置傳送到 IoT 中樞。
+這個逐步解說中的 hello[模擬裝置雲端上傳範例]為您示範如何 toouse [Azure IoT 邊緣][ lnk-sdk]從模擬 toosend 裝置到雲端遙測 tooIoT 中樞裝置。
 
 本逐步解說涵蓋下列項目：
 
-* **架構**：[Simulated Device Cloud Upload 範例]的架構資訊。
-* **建置和執行**︰建置和執行範例所需的步驟。
+* **架構**: hello 的架構資訊[模擬裝置雲端上傳範例]。
+* **建置並執行**: hello 步驟需要的 toobuild 和執行的 hello 範例。
 
 ## <a name="architecture"></a>架構
 
-[Simulated Device Cloud Upload 範例]示範如何建立閘道，以將遙測從模擬裝置傳送到 IoT 中樞。 裝置可能無法直接連線到 IoT 中樞的原因如下：
+hello[模擬裝置雲端上傳範例]顯示 toocreate 傳送遙測資料閘道如何模擬裝置 tooan IoT 中樞。 裝置可能無法 tooconnect 直接 tooIoT 中樞因為 hello 裝置：
 
 * 未使用 IoT 中樞所了解的通訊協定。
-* 不夠聰明，無法記住 IoT 中樞指派給它的身分識別。
+* 不是十分聰明 tooremember hello 分派識別 tooit IoT 中樞。
 
-IoT Edge 閘道可以下列方式解決這些問題：
+IoT 邊緣閘道可以解決這些問題中 hello 下列方法：
 
-* 閘道了解裝置所使用的通訊協定、從裝置接收裝置到雲端遙測，並使用 IoT 中樞所了解的通訊協定將這些訊息轉送到 IoT 中樞。
+* hello 閘道了解 hello hello 裝置使用的通訊協定、 收到 hello 裝置從裝置到雲端遙測和轉送這些訊息 tooIoT 集線器使用了解的 hello IoT 中樞通訊協定。
 
-* 閘道將 IoT 中樞身分識別對應到裝置，並且會在裝置將訊息傳送到 IoT 中樞時作為 proxy。
+* hello 閘道對應 IoT 中樞識別 toodevices，並會作為 proxy，當裝置傳送訊息 tooIoT 中樞。
 
-下圖顯示範例的主要元件 (包含 IoT Edge 模組)︰
+hello 下列圖表顯示 hello hello 範例的主要元件，包括 hello IoT 邊緣模組：
 
 ![][1]
 
-模組不會彼此直接傳遞訊息。 模組會將訊息發佈到內部訊息代理程式，而內部代理程式會使用訂用帳戶機制將訊息傳遞到其他模組。 如需詳細資訊，請參閱[開始使用 Azure IoT Edge][lnk-gw-getstarted]。
+hello 模組不會將訊息直接 tooeach 其他。 hello 模組發佈訊息 tooan 內部 broker 傳送 hello 訊息 toohello 其他模組使用的訂用帳戶的機制。 如需詳細資訊，請參閱[開始使用 Azure IoT Edge][lnk-gw-getstarted]。
 
 ### <a name="protocol-ingestion-module"></a>通訊協定擷取模組
 
-此模組是一個起點，能透過閘道從裝置取得資料，以及將資料傳遞到雲端。 在範例中，模組會：
+此模組為起點來接收資料，並從裝置透過 hello 閘道，並置於 hello 雲端 hello。 在 hello 模組 hello 範例：
 
-1. 建立模擬溫度資料。 如果您是使用實際裝置，此模組會讀取這些裝置中的資料。
+1. 建立模擬溫度資料。 如果您使用實體裝置，hello 模組會讀取資料，從這些實體裝置。
 1. 建立訊息。
-1. 將模擬溫度資料放到訊息內容。
-1. 將包含假 MAC 位址的屬性新增至訊息。
-1. 讓訊息可供鏈結中的下一個模組使用。
+1. 模擬的 hello 溫度資料放入 hello 訊息內容。
+1. 加入具有假的 MAC 位址 toohello 訊息的屬性。
+1. 讓 hello 訊息可用 toohello 下一個模組中的 hello 鏈結。
 
-在原始程式碼中，上圖中的**通訊協定 X 擷取**模組稱為**模擬裝置**。
+呼叫 hello 模組**通訊協定 X 擷取**hello 在上圖中稱為**模擬的裝置**hello 原始程式碼中。
 
 ### <a name="mac-lt-gt-iot-hub-id-module"></a>MAC &lt;-&gt; IoT 中樞識別碼模組
 
-此模組會掃描具有 Mac 位址屬性的訊息。 在範例中，通訊協定擷取模組會新增 MAC 位址屬性。 如果模組發現這類屬性，就會將包含 IoT 中樞裝置索引鍵的另一個屬性新增到訊息。 接著，模組會讓訊息可供鏈結中的下一個模組使用。
+此模組會掃描具有 Mac 位址屬性的訊息。 在 hello 範例中，hello 通訊協定擷取模組會將 hello MAC 位址屬性。 如果 hello 模組發現這類屬性，就會加入 IoT 中樞裝置金鑰 toohello 訊息的另一個屬性。 hello 模組然後讓 hello 鏈結中的 hello 訊息可用 toohello 下一個模組。
 
-開發人員會設定 MAC 位址與 IoT 中樞身分識別之間的對應，將模擬的裝置與 IoT 中樞裝置身分識別建立關聯。 開發人員會以手動新增對應，作為模組設定的一部分。
+hello 開發人員設定 MAC 位址與 IoT 中樞識別 tooassociate hello 模擬裝置與 IoT 中樞裝置身分識別之間的對應。 hello 開發人員 hello 模組組態的一部分，請以手動方式加入 hello 對應。
 
 > [!NOTE]
-> 此範例使用 MAC 位址作為唯一裝置識別碼，並將它與 IoT 中樞裝置身分識別相互關聯。 不過，您可以撰寫使用不同唯一識別碼的專屬模組。 例如，您的裝置可能會有唯一的序號，或是遙測資料可能包含唯一的內嵌裝置名稱。
+> 此範例使用 MAC 位址作為唯一裝置識別碼，並將它與 IoT 中樞裝置身分識別相互關聯。 不過，您可以撰寫使用不同唯一識別碼的專屬模組。 例如，您的裝置可能會有唯一的數列數字或 hello 遙測資料可能包含重複的內嵌的裝置名稱。
 
 ### <a name="iot-hub-communication-module"></a>IoT 中樞通訊模組
 
-此模組所採用的訊息包含 IoT 中樞裝置索引鍵屬性，已由前一個模組指定。 此模組會使用 HTTP 通訊協定，將訊息內容傳送到 IoT 中樞。 HTTP 是 IoT 中樞所了解的三種通訊協定中的其中一種。
+此模組會採用與 IoT 中樞的訊息已指派 hello 前一個模組的裝置屬性。 hello 模組會傳送 hello 訊息內容 tooIoT 集線器使用 hello HTTP 通訊協定。 HTTP 是 hello 的了解三種通訊協定的 IoT 中樞的其中一個。
 
-此模組不會開啟每個模擬裝置的連線，而是會開啟從閘道至 IoT 中樞的單一 HTTP 連線。 接著，模組會透過該連線，從所有的模擬裝置進行多工連線。 這個方法可讓單一閘道連線許多其他裝置。
+而不是開啟的每個模擬裝置的連線，此模組會從 hello 閘道 toohello IoT 中樞開啟單一 HTTP 連線。 hello 模組然後信號分離透過該連線的所有 hello 模擬裝置的連線。 這個方法可讓單一閘道 tooconnect 許多更多裝置。
 
 ## <a name="before-you-get-started"></a>開始之前
 
 開始之前，您必須：
 
-* 於 Azure 訂用帳戶中[建立 IoT 中樞][lnk-create-hub]時，您需要中樞名稱才能完成此逐步解說。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
-* 將兩個裝置加入 IoT 中樞中，並記下其識別碼和裝置金鑰。 您可以使用[裝置總管][lnk-device-explorer]或 [iothub-explorer][lnk-iothub-explorer] 工具，將您的裝置新增到在上一個步驟中建立的 IoT 中樞並擷取其金鑰。
+* [建立 IoT 中樞][ lnk-create-hub]在您 Azure 訂用帳戶，您需要集線器 toocomplete hello 名稱本逐步解說。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
+* 加入兩個裝置 tooyour IoT 中樞，並記下其識別碼及裝置機碼。 您可以使用 hello[裝置總管][ lnk-device-explorer]或[iot 中樞總管][ lnk-iothub-explorer]工具 tooadd hello 中建立您的裝置 toohello IoT 中樞上一個步驟，並擷取其索引鍵。
 
 ![][2]
 
@@ -69,7 +69,7 @@ IoT Edge 閘道可以下列方式解決這些問題：
 [2]: media/iot-hub-iot-edge-simulated-selector/image2.png
 
 <!-- Links -->
-[Simulated Device Cloud Upload 範例]: https://github.com/Azure/iot-edge/blob/master/samples/simulated_device_cloud_upload/README.md
+[模擬裝置雲端上傳範例]: https://github.com/Azure/iot-edge/blob/master/samples/simulated_device_cloud_upload/README.md
 [lnk-sdk]: https://github.com/Azure/iot-edge
 [lnk-gw-getstarted]: ../articles/iot-hub/iot-hub-linux-iot-edge-get-started.md
 [lnk-free-trial]: https://azure.microsoft.com/pricing/free-trial/

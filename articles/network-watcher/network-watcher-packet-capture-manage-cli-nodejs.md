@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員管理封包擷取 - Azure CLI 1.0 | Microsoft Docs"
-description: "此頁面說明如何使用 Azure CLI 1.0 管理網路監看員的封包擷取功能"
+title: "擷取 Azure 網路監看員-Azure CLI 1.0 aaaManage 封包 |Microsoft 文件"
+description: "此頁面可讓您說明如何 toomanage hello 封包擷取功能，使用 Azure CLI 1.0 網路監看員"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 91588910334859c1ea77186674d5bfb31b311b36
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: c4b710a8d82ccaaf65876a8c2ef845aa97b5f831
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="manage-packet-captures-with-azure-network-watcher-using-azure-cli-10"></a>使用 Azure CLI 1.0，利用 Azure 網路監看員管理封包擷取
 
@@ -29,11 +29,11 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-packet-capture-manage-cli.md)
 > - [Azure REST API](network-watcher-packet-capture-manage-rest.md)
 
-網路監看員封包擷取可讓您建立擷取工作階段來追蹤虛擬機器的流入和流出流量。 系統會為擷取工作階段提供篩選器，以確保您只會擷取到您想要的流量。 封包擷取有助於被動和主動地診斷網路異常。 其他用途包括收集網路統計資料、取得有關網路入侵的資訊，以及偵錯用戶端與伺服器間的通訊等等。 藉由能夠從遠端觸發封包擷取，這項功能可以減輕在所需機器上手動執行封包擷取的工作負擔，進而省下寶貴的時間。
+網路監看員封包擷取可讓您 toocreate 擷取工作階段 tootrack 流量 tooand 從虛擬機器。 篩選器可供 hello 擷取工作階段 tooensure 擷取您想要只 hello 流量。 封包擷取可在主動和被動協助 toodiagnose 網路異常狀況。 其他用途包括收集網路統計資料，取得有關網路入侵，toodebug 用戶端與伺服器通訊，以及執行更多。 透過無法 tooremotely 觸發程序封包擷取，這項功能可以減輕工作 hello 負擔的手動和 hello 想要在電腦上，以節省寶貴的時間執行封包擷取。
 
 本文使用跨平台 Azure CLI 1.0，這適用於 Windows、Mac 和 Linux。
 
-本文會帶領您逐步完成封包擷取目前可用的不同管理工作。
+這篇文章帶領您完成 hello 封包擷取目前可用的不同的管理工作。
 
 - [**啟動封包擷取**](#start-a-packet-capture)
 - [**停止封包擷取**](#stop-a-packet-capture)
@@ -42,19 +42,19 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="before-you-begin"></a>開始之前
 
-本文假設您具有下列資源：
+本文假設您擁有 hello 下列資源：
 
-- 您想要用來建立封包擷取之區域中的網路監看員執行個體
-- 已啟用封包擷取擴充功能的虛擬機器。
+- 執行個體要在 hello 區域網路監看員的 toocreate 封包擷取
+- 虛擬機器與 hello 封包擷取啟用擴充功能。
 
 > [!IMPORTANT]
-> 封包擷取需要在虛擬機器上執行代理程式。 代理程式會安裝為擴充功能。 如需 VM 擴充功能的指示，請瀏覽[虛擬機器擴充功能和功能](../virtual-machines/windows/extensions-features.md)。
+> 封包擷取需要的代理程式 toobe hello 虛擬機器上執行。 hello 代理程式會安裝為擴充功能。 如需 VM 擴充功能的指示，請瀏覽[虛擬機器擴充功能和功能](../virtual-machines/windows/extensions-features.md)。
 
 ## <a name="install-vm-extension"></a>安裝 VM 擴充功能
 
 ### <a name="step-1"></a>步驟 1
 
-執行 `azure vm extension set` Cmdlet 在客體虛擬機器上安裝封包擷取代理程式。
+執行 hello `azure vm extension set` cmdlet tooinstall hello 封包擷取代理程式 hello 客體虛擬機器上的。
 
 若為 Windows 虛擬機器：
 
@@ -70,17 +70,17 @@ azure vm extension set -g resourceGroupName -m virtualMachineName -p Microsoft.A
 
 ### <a name="step-2"></a>步驟 2
 
-為了確定是否已安裝代理程式，請執行 `vm extension get` Cmdlet，並將資源群組和虛擬機器名稱傳遞給它。 檢查結果清單以確定代理程式已安裝。
+tooensure hello 代理程式的安裝，執行 hello `vm extension get` cmdlet 並將它傳遞 hello 資源群組和虛擬機器名稱。 檢查 hello 產生清單 tooensure hello 代理程式已安裝。
 
 ```azurecli
 azure vm extension get -g resourceGroupName -m virtualMachineName
 ```
 
-下列範例是執行 `azure vm extension get` 所得回應的範例
+下列範例中的 hello 是執行 hello 回應的範例`azure vm extension get`
 
 ```
 info:    Executing command vm extension get
-+ Looking up the VM "virtualMachineName"
++ Looking up hello VM "virtualMachineName"
 data:    Publisher                       Name                        Version  State
 data:    ------------------------------  -----------------------     -------  ---------
 data:    Microsoft.Azure.NetworkWatcher  NetworkWatcherAgentWindows  1.4      Succeeded
@@ -89,11 +89,11 @@ info:    vm extension get command OK
 
 ## <a name="start-a-packet-capture"></a>啟動封包擷取
 
-完成上述步驟之後，虛擬機器上便已安裝封包擷取代理程式。
+Hello 前面的步驟完成後，hello 虛擬機器上安裝 hello 封包擷取代理程式。
 
 ### <a name="step-1"></a>步驟 1
 
-下一步是擷取網路監看員執行個體。 此變數會在步驟 4 傳遞至 `network watcher show` Cmdlet。
+hello 下一個步驟是 tooretrieve hello 網路監看員執行個體。 這個變數會傳遞 toohello`network watcher show`步驟 4 中的 cmdlet。
 
 ```azurecli
 azure network watcher show -g resourceGroup -n networkWatcherName
@@ -101,7 +101,7 @@ azure network watcher show -g resourceGroup -n networkWatcherName
 
 ### <a name="step-2"></a>步驟 2
 
-擷取儲存體帳戶。 此儲存體帳戶會用來儲存封包擷取檔案。
+擷取儲存體帳戶。 這個儲存體帳戶是使用的 toostore hello 封包擷取檔案。
 
 ```azurecli
 azure storage account list
@@ -109,13 +109,13 @@ azure storage account list
 
 ### <a name="step-3"></a>步驟 3
 
-可使用篩選器來限制封包擷取所儲存的資料。 下列範例會設定具有多個篩選器的封包擷取。  前三個篩選器只會收集從本機 IP 10.0.0.3 流往目的地連接埠 20、80 和 443 的連出 TCP 流量。  最後一個篩選器只會收集 UDP 流量。
+篩選可使用的 toolimit hello 資料儲存的 hello 封包擷取。 hello 下列範例設定封包擷取與多個篩選器。  hello 前三個篩選器收集傳出的 TCP 流量只會從本機 IP 10.0.0.3 toodestination 連接埠 20、 80 和 443。  hello 最後一個篩選條件會收集只有 UDP 流量。
 
 ```azurecli
 azure network watcher packet-capture create -g resourceGroupName -w networkWatcherName -n packetCaptureName -t targetResourceId -o storageAccountResourceId -f "[{\"protocol\":\"TCP\", \"remoteIPAddress\":\"1.1.1.1-255.255.255\",\"localIPAddress\":\"10.0.0.3\", \"remotePort\":\"20\"},{\"protocol\":\"TCP\", \"remoteIPAddress\":\"1.1.1.1-255.255.255\",\"localIPAddress\":\"10.0.0.3\", \"remotePort\":\"80\"},{\"protocol\":\"TCP\", \"remoteIPAddress\":\"1.1.1.1-255.255.255\",\"localIPAddress\":\"10.0.0.3\", \"remotePort\":\"443\"},{\"protocol\":\"UDP\"}]"
 ```
 
-一個封包擷取可以定義多個篩選器。 如果您使用複雜的篩選器結構，則最好使用 json 檔案形式的篩選器來避免發生語法錯誤。 比方說，使用旗標 "-r" (而不是 "-f") 並傳遞包含下列篩選器之 json 檔案的位置︰
+一個封包擷取可以定義多個篩選器。 如果您使用複雜的篩選條件結構，它是較佳的 toouse 篩選 json 檔案 tooavoid 語法錯誤。 比方說，使用 hello 旗標 」-r"(而不是"-f")，並傳遞 hello 包含下列篩選器的 hello 的 json 檔案的位置：
 
 ```json
 [
@@ -144,13 +144,13 @@ azure network watcher packet-capture create -g resourceGroupName -w networkWatch
 ```
 
 
-下列範例是執行 `network watcher packet-capture create` Cmdlet 後預期會得到的輸出。
+hello 下列範例是執行 hello hello 預期輸出`network watcher packet-capture create`cmdlet。
 
 ```
 data:    Name                            : packetCaptureName
 data:    Etag                            : W/"d59bb2d2-dc95-43da-b740-e0ef8fcacecb"
 data:    Target                          : /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourceGroupName/providers/Microsoft.Compute/virtualMachines/testVM
-data:    Bytes To Capture Per Packet     : 0
+data:    Bytes tooCapture Per Packet     : 0
 data:    Total Bytes Per Session         : 1073741824
 data:    Time Limit In Seconds           : 18000
 data:    Storage Location:
@@ -163,19 +163,19 @@ info:    network watcher packet-capture create command OK
 
 ## <a name="get-a-packet-capture"></a>取得封包擷取
 
-執行 `network watcher packet-capture show` Cmdlet 以擷取目前正在執行或已完成之封包擷取的狀態。
+執行 hello `network watcher packet-capture show` cmdlet，擷取目前正在執行，或已完成的封包擷取 hello 狀態。
 
 ```azurecli
 azure network watcher packet-capture show -g resourceGroupName -w networkWatcherName -n packetCaptureName
 ```
 
-下列範例是 `network watcher packet-capture show` Cmdlet 的輸出。 下列範例是在擷取完成後。 PacketCaptureStatus 值為 Stopped，而 StopReason 為 TimeExceeded。 這個值說明封包擷取已順利完成，並執行了它的時間。
+hello 下列範例是 hello 輸出 hello `network watcher packet-capture show` cmdlet。 hello 下列範例是 hello 擷取完成後。 將停止 hello PacketCaptureStatus 值 StopReason TimeExceeded。 這個值會顯示 hello 封包擷取已順利完成，並執行它的時間。
 
 ```
 data:    Name                            : packetCaptureName
 data:    Etag                            : W/"d59bb2d2-dc95-43da-b740-e0ef8fcacecb"
 data:    Target                          : /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resourceGroupName/providers/Microsoft.Compute/virtualMachines/testVM
-data:    Bytes To Capture Per Packet     : 0
+data:    Bytes tooCapture Per Packet     : 0
 data:    Total Bytes Per Session         : 1073741824
 data:    Time Limit In Seconds           : 18000
 data:    Storage Location:
@@ -188,14 +188,14 @@ info:    network watcher packet-capture show command OK
 
 ## <a name="stop-a-packet-capture"></a>停止封包擷取
 
-藉由執行 `network watcher packet-capture stop` Cmdlet，如果擷取工作階段正在進行中，則會加以停止。
+藉由執行 hello `network watcher packet-capture stop` cmdlet 時，如果擷取工作階段正在進行中它已停止。
 
 ```azurecli
 azure network watcher packet-capture stop -g resourceGroupName -w networkWatcherName -n packetCaptureName
 ```
 
 > [!NOTE]
-> 此 Cmdlet 若執行於目前正在執行的擷取工作階段或已停止的現有工作階段，則不會傳回任何回應。
+> hello cmdlet 會傳回任何回應時執行的目前執行的擷取工作階段或現有的工作階段已經停止。
 
 ## <a name="delete-a-packet-capture"></a>刪除封包擷取
 
@@ -204,13 +204,13 @@ azure network watcher packet-capture delete -g resourceGroupName -w networkWatch
 ```
 
 > [!NOTE]
-> 刪除封包擷取不會刪除儲存體帳戶中的檔案。
+> 刪除封包擷取並不會刪除 hello 儲存體帳戶中的 hello 檔案。
 
 ## <a name="download-a-packet-capture"></a>下載封包擷取
 
-封包擷取工作階段完成後，即可將擷取檔案上傳到 Blob 儲存體或 VM 上的本機檔案。 封包擷取的儲存位置會在建立工作階段時定義。 若要存取這些儲存至儲存體帳戶的擷取檔案，Microsoft Azure 儲存體總管是很便利的工具，您可以在這裡下載︰http://storageexplorer.com/
+您的封包擷取工作階段完成後，請 hello 擷取檔案可上傳的 tooblob 儲存體或 tooa 本機檔案 hello VM 上。 hello 封包擷取 hello 儲存位置被定義在 hello 工作階段的建立。 方便的工具 tooaccess 這些擷取的檔案儲存的 tooa 儲存體帳戶是 Microsoft Azure 儲存體總管 中，這可以在這裡下載： http://storageexplorer.com/
 
-如果指定了儲存體帳戶，封包擷取檔案便會儲存到儲存體帳戶的下列位置︰
+如果指定的儲存體帳戶，則封包擷取檔案會儲存在下列位置的 hello tooa 儲存體帳戶：
 
 ```
 https://{storageAccountName}.blob.core.windows.net/network-watcher-logs/subscriptions/{subscriptionId}/resourcegroups/{storageAccountResourceGroup}/providers/microsoft.compute/virtualmachines/{VMName}/{year}/{month}/{day}/packetCapture_{creationTime}.cap
@@ -218,7 +218,7 @@ https://{storageAccountName}.blob.core.windows.net/network-watcher-logs/subscrip
 
 ## <a name="next-steps"></a>後續步驟
 
-檢視[建立由警示觸發的封包擷取](network-watcher-alert-triggered-packet-capture.md)來了解如何透過虛擬機器警示自動化封包擷取
+了解如何 tooautomate 封包擷取虛擬機器警示藉由檢視[建立警示觸發的封包擷取](network-watcher-alert-triggered-packet-capture.md)
 
 造訪[檢查 IP 流量驗證](network-watcher-check-ip-flow-verify-portal.md)來得知 VM 是否允許特定流量流入或流出
 

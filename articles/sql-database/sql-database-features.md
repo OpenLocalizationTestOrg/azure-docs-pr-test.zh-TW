@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL Database 功能概觀 | Microsoft Docs"
-description: "此頁面會提供 Azure SQL Database 邏輯伺服器和資料庫的概觀，並包含每個所列出功能連結的功能支援矩陣。"
+title: "aaaAzure SQL Database 功能的概觀 |Microsoft 文件"
+description: "此頁面提供概觀 hello Azure SQL Database 邏輯伺服器和資料庫，並包含連結的功能支援矩陣的每個列出的功能。"
 services: sql-database
 documentationcenter: na
 author: CarlRabeler
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 08/25/2017
 ms.author: carlrab
-ms.openlocfilehash: 4ef119d5218c844f3949bf4fc17fb320a7cbf7b4
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 463c88edcd38eabbc768cfb701bc74461836aa36
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-features"></a>Azure SQL Database 功能
 
-Azure SQL Database 與 SQL Server 共用通用基底程式碼，並在資料庫層級支援大部分相同的功能。 Azure SQL Database 和 SQL Server 之間的主要功能差異是執行個體層級。 
+Azure SQL Database 會與 SQL Server 共用的通用基底程式碼，並在 hello 資料庫層級，支援大部分的 hello 相同的功能。 hello Azure SQL Database 與 SQL Server 之間的主要功能差異是 hello 執行個體層級。 
 
-我們會持續新增 Azure SQL Database 的功能。 因此我們鼓勵您造訪我們的 Azure 服務更新網頁，並使用它的篩選條件：
+我們將繼續 tooadd 功能 tooAzure SQL 資料庫。 因此我們建議您 toovisit 我們的服務更新網頁的 Azure 和 toouse 其篩選：
 
-* 篩選出 [SQL Database 服務](https://azure.microsoft.com/updates/?service=sql-database)。
-* 篩選出 SQL Database 功能的「正式運作 [(GA)」公告](http://azure.microsoft.com/updates/?service=sql-database&update-type=general-availability) 。
+* 篩選的 toohello [SQL Database 服務](https://azure.microsoft.com/updates/?service=sql-database)。
+* 篩選 tooGeneral 可用性[(GA) 公告](http://azure.microsoft.com/updates/?service=sql-database&update-type=general-availability)SQL Database 功能。
 
 ## <a name="sql-server-and-sql-database-feature-support"></a>SQL Server 及 SQL Database 功能支援
 
-下表列出 SQL Server 的主要功能，並提供是否支援每項特定功能的相關資訊以及功能詳細資訊連結。 如需移轉現有資料庫解決方案時所要考量的 Transact-SQL 差異，請參閱[解決移轉至 SQL Database 期間的 Transact-SQL 差異](sql-database-transact-sql-information.md)。
+hello 下表列出 hello 的 SQL Server 的主要功能並提供資訊是否支援每個特定的功能和 hello 功能的相關資訊的連結 toomore。 TRANSACT-SQL 的差異 tooconsider 移轉現有的資料庫方案時，請參閱[移轉 tooSQL 資料庫期間解決 TRANSACT-SQL 差異](sql-database-transact-sql-information.md)。
 
 
 | **SQL Server 功能** | **在 Azure SQL Database 中支援** | 
@@ -127,5 +127,5 @@ Azure SQL Database 與 SQL Server 共用通用基底程式碼，並在資料庫�
 
 ## <a name="next-steps"></a>後續步驟
 
-- 如需了解 Azure SQL Database 服務的相關資訊，請參閱[什麼是 SQL Database？](sql-database-technical-overview.md)
-- 如需 Transact-SQL 支援和差異的詳細資訊，請參閱[解決移轉至 SQL Database 期間的 Transact-SQL 差異](sql-database-transact-sql-information.md)。
+- Hello Azure SQL Database 服務的相關資訊，請參閱[SQL Database 是什麼？](sql-database-technical-overview.md)
+- TRANSACT-SQL 支援和差異的相關資訊，請參閱[移轉 tooSQL 資料庫期間解決 TRANSACT-SQL 差異](sql-database-transact-sql-information.md)。

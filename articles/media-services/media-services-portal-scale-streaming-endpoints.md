@@ -1,6 +1,6 @@
 ---
-title: "透過 Azure 入口網站調整串流端點 | Microsoft Docs"
-description: "本教學課程將逐步引導您完成使用 Azure 入口網站調整串流端點的步驟。"
+title: "aaaScale 串流端點，其中包含 hello Azure 入口網站 |Microsoft 文件"
+description: "本教學課程會引導您 hello 步驟調整串流端點，其中包含 hello Azure 入口網站。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,37 +14,37 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/04/2017
 ms.author: juliako
-ms.openlocfilehash: 4bb891371e3fc802fa667688a88878db18e32422
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: e466edf9232558b9e270f54ee2849cd9b22ad121
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="scale-streaming-endpoints-with-the-azure-portal"></a>透過 Azure 入口網站調整串流端點
+# <a name="scale-streaming-endpoints-with-hello-azure-portal"></a>調整串流端點，其中包含 hello Azure 入口網站
 ## <a name="overview"></a>概觀
 
 > [!NOTE]
-> 若要完成此教學課程，您需要 Azure 帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
+> toocomplete 本教學課程中，您需要 Azure 帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
 > 
 > 
 
-**進階**串流端點適合進階工作，提供專用並能靈活調整的頻寬容量。 擁有**進階**串流端點的客戶預設會取得一個串流單位 (SU)。 藉由新增 SU 可以調整串流端點。 每個 SU 可為應用程式提供額外的頻寬容量。 如需有關串流端點類型和 CDN 組態的詳細資訊，請參閱[串流端點概觀](media-services-portal-manage-streaming-endpoints.md)主題。
+**進階**串流端點適合進階工作，提供專用並能靈活調整的頻寬容量。 擁有**進階**串流端點的客戶預設會取得一個串流單位 (SU)。 可以藉由新增 SUs 調整串流端點的 hello。 每個 SU 提供額外的頻寬容量 toohello 應用程式。 如需有關資料流端點類型及 CDN 組態的詳細資訊，請參閱 hello[串流端點概觀](media-services-portal-manage-streaming-endpoints.md)主題。
  
-本主題說明如何調整串流端點。
+本主題說明如何 tooscale 串流端點。
 
 如需定價詳細資料的相關資訊，請參閱＜ [媒體服務定價詳細資料](http://go.microsoft.com/fwlink/?LinkId=275107)＞。
 
 ## <a name="scale-streaming-endpoints"></a>調整串流端點
 
-若要變更串流端點的數目，請執行下列操作：
+資料流處理單位，toochange hello 數目不要 hello 遵循：
 
-1. 在 [Azure 入口網站](https://portal.azure.com/)中，選取您的 Azure 媒體服務帳戶。
-2. 在 [設定] 視窗中，選取 [串流端點]。
-3. 按一下您要調整的串流端點。 
+1. 在 hello [Azure 入口網站](https://portal.azure.com/)，選取您的 Azure Media Services 帳戶。
+2. 在 hello**設定**視窗中，選取**串流端點**。
+3. 按一下您想 tooscale hello 串流端點。 
 
     [!NOTE] 您只能調整 [Premium] \(進階\) 串流端點。
 
-4. 移動滑桿以指定資料流處理單位的數目。
+4. 移動 hello 滑桿 toospecify hello 資料流單位數目。
 
     ![串流端點](./media/media-services-portal-manage-streaming-endpoints/media-services-manage-streaming-endpoints3.png)
 

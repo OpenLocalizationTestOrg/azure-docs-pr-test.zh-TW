@@ -1,19 +1,19 @@
 
 <!-- A-series, Av2-series, D-series, Dv2-series, DS-series*, DSv2-series* -->
 
-- A 系列和 Av2 系列 VM 可以部署在各種不同的硬體類型和處理器上。 根據硬體節流大小，為執行中的執行個體提供一致的處理器效能，不論硬體部署的位置。 若要判斷此大小部署所在的實體硬體，請從虛擬機器內查詢虛擬硬體。
+- hello A 系列和 Av2 系列 Vm 可以部署在各種不同的硬體類型及處理器。 hello 大小是節流處理，根據 hello 硬體，用於執行執行個體，不論 hello 硬體部署的 hello toooffer 一致的處理器效能。 toodetermine hello 實體硬體部署此大小，查詢 hello 虛擬硬體從 hello 虛擬機器內。
 
-- D 系列 VM 是為了執行要求更高計算能力和暫存磁碟效能的應用程式所設計。 D 系列 VM 提供更快的處理器、較高的記憶體與 vCPU 比率，以及適用於暫存磁碟的固態硬碟 (SSD)。 如需詳細資訊，請參閱 Azure 部落格的公告， [新 D 系列的虛擬機器大小](https://azure.microsoft.com/blog/2014/09/22/new-d-series-virtual-machine-sizes/)。
+- D 系列 Vm 是需要較高運算能力和暫存磁碟效能的設計的 toorun 應用程式。 D 系列 Vm 提供更快的處理器、 記憶體-vCPU 比率較高，以及固態硬碟 (SSD) hello 暫存磁碟。 如需詳細資訊，請參閱 < hello 公告 hello Azure 部落格上[新 D 系列虛擬機器大小](https://azure.microsoft.com/blog/2014/09/22/new-d-series-virtual-machine-sizes/)。
 
-- Dv2 系列是原始 D 系列的延續，擁有更強大的 CPU。 Dv2 系列 CPU 比 D 系列 CPU 快約 35%。 它以最新一代的 2.4 GHz Intel Xeon® E5-2673 v3 (Haswell) 處理器為基礎，搭配 Intel Turbo Boost Technology 2.0，最高可達 3.1 GHz。 Dv2 系列的記憶體和磁碟組態和 D 系列一樣。
+- Dv2 系列，後續 toohello 原始的 D 系列、 功能更強大的 CPU。 hello Dv2 數列 CPU 大約是 35%速度 hello D 系列 CPU。 它基礎 hello 最新的層代 2.4 GHz Intel Xeon® E5-2673 v3 (Haswell) 處理器，以 hello Intel 快速提升技術 2.0，最高 too3.1 GHz。 hello Dv2 數列有 hello 相同的記憶體和磁碟組態，如 hello D 系列。
 
-- 基本層大小主要適用於開發工作負載，以及其他不需要負載平衡、自動調整或記憶體高用量虛擬機器的應用程式。 如需更適合用於生產應用程式的 VM 大小相關資訊，請參閱 (虛擬機器的大小) [virtual-machines-size-specs.md]，而如需 VM 價格資訊，請參閱[虛擬機器價格](https://azure.microsoft.com/pricing/details/virtual-machines/)。
+- hello 基本層大小是主要用於開發工作負載，並不需要其他應用程式的負載平衡，自動調整，或需要大量記憶體的虛擬機器。 如需更適合用於生產應用程式的 VM 大小相關資訊，請參閱 (虛擬機器的大小) [virtual-machines-size-specs.md]，而如需 VM 價格資訊，請參閱[虛擬機器價格](https://azure.microsoft.com/pricing/details/virtual-machines/)。
 
 ## <a name="dsv3-series"></a>Dsv3 系列
 
 ACU：160-190
 
-Dsv3 系列大小以 2.3 GHz Intel XEON ® E5-2673 v4 (Broadwell) 處理器為基礎，且搭配 Intel 渦輪加速技術 2.0 可達 3.5 GHz 並可使用進階儲存體。 Dsv3 系列大小提供 CPU、記憶體與暫存儲存憶體組合，適用於大多數生產環境工作負載。
+Dsv3 數列大小基礎 hello 2.3 GHz Intel XEON® E5-2673 v4 (Broadwell) 處理器可以達到 3.5 Intel 快速提升技術 2.0 GHz 和使用進階儲存體。 hello Dsv3 數列大小提供 vCPU、 記憶體和大部分的實際執行工作負載的暫存儲存位置的組合。
 
 
 | 大小             | vCPU | 記憶體：GiB | 暫存儲存體 (SSD) GiB | 最大資料磁碟 | 最大快取和暫存儲存體輸送量︰IOPS / MBps (以 GiB 為單位的快取大小) | 最大取消快取的磁碟輸送量︰IOPS / MBps | 最大 NIC/預期的網路效能 (Mbps) |
@@ -28,9 +28,9 @@ Dsv3 系列大小以 2.3 GHz Intel XEON ® E5-2673 v4 (Broadwell) 處理器為�
 
 ACU：160-190
 
-Dv3 系列大小以 2.3 GHz Intel XEON ® E5-2673 v4 (Broadwell) 處理器為基礎，且搭配 Intel 渦輪加速技術 2.0 可達 3.5 GHz。 Dv3 系列大小提供 CPU、記憶體與暫存儲存體組合，適用於大多數生產環境工作負載。
+Dv3 數列大小基礎 hello 2.3 GHz Intel XEON® E5-2673 v4 (Broadwell) 處理器，並可取得 3.5 Intel 快速提升技術 2.0 GHz。 hello Dv3 數列大小提供 vCPU、 記憶體和大部分的實際執行工作負載的暫存儲存位置的組合。
 
-資料磁碟儲存體與虛擬機器分開計費。 若要使用進階儲存體磁碟，請使用 Dsv3 大小。 Dsv3 大小的定價和計費方式與 Dv3 系列相同。 
+資料磁碟儲存體與虛擬機器分開計費。 toouse 高階儲存體磁碟，使用 hello Dsv3 大小。 hello 定價和計費計量器 Dsv3 大小是 hello 與 Dv3 數列相同。 
 
 
 | 大小            | vCPU | 記憶體：GiB | 暫存儲存體 (SSD) GiB | 最大資料磁碟 | 最大暫存儲存體輸送量：IOPS / 讀取 MBps / 寫入 MBps | 最大 NIC / 網路頻寬 |
@@ -129,10 +129,10 @@ ACU：50 - 100
 | Standard_A7 |8 |56 |605 |16 |16x500 |4 / 2000 |
 <br>
 
-*A0 大小已在實體硬體上過度訂閱。 僅針對這個特定大小，其他客戶部署可能會影響您正在執行的工作負載的效能。 以下概述的相對效能為預期的基準，受限於近似變化性的 15%。
+* hello A0 大小是過度訂閱 hello 實體硬體上。 只有這個特定大小，其他客戶部署可能會影響 hello 執行工作負載效能。 hello 相對效能如下所述做 hello 預期基準，15%的主旨 tooan 近似變化。
 
 ### <a name="standard-a0---a4-using-cli-and-powershell"></a>使用 CLI 和 PowerShell 的標準 A0 - A4
-在傳統部署模型中，部分 VM 大小名稱會與 CLI 和 PowerShell 中的稍有不同：
+在 hello 傳統部署模型中，某些 VM 大小名稱會稍有不同 CLI 和 PowerShell 中：
 
 * Standard_A0 是「特小型」 
 * Standard_A1 是「小型」

@@ -1,7 +1,7 @@
 ## <a name="clean-up-resources"></a>清除資源
 
-在前述步驟中，您在資源群組中建立了 Azure 資源。 如果您認為未來不需要這些資源，可以用刪除資源群組的方式將它們刪除。
+在先前步驟的 hello，您可以建立 Azure 資源群組中的資源。 如果您不希望 tooneed 這些資源在 hello 未來，您可以藉由刪除 hello 資源群組中刪除它們。
  
-1. 從 Azure 入口網站中的 Web 應用程式**概觀**頁面，選取**資源群組**底下的 **myResourceGroup** 連結。
-2. 在 [資源群組] 頁面上，確定所列出的資源是您想要刪除的項目。
-3. 選取 [刪除]，在文字方塊中輸入 **myResourceGroup**，然後再選取 [刪除]。
+1. 從 web 應用程式的**概觀**頁面 hello Azure 入口網站中，選取 hello **myResourceGroup**連結底下**資源群組**。
+2. 在 [hello 資源群組] 頁面，請確定該 hello 列出的資源是您想要 toodelete hello。
+3. 選取**刪除**，型別**myResourceGroup**在 hello 文字方塊中，然後選取 **刪除**。

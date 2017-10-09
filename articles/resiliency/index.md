@@ -1,6 +1,6 @@
 ---
-title: "待提交 |Microsoft Azure"
-description: "待提交。"
+title: "提交 aaaTo |Microsoft Azure"
+description: "toobe 送出。"
 services: 
 documentationcenter: 
 author: squillace
@@ -15,10 +15,10 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 10/21/2016
 ms.author: tysonn
-ms.openlocfilehash: 310083543575f01adb960356350db2351fd992d8
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 78f51c8aeaf673d026b39eaf3f4b94c15e7c8d59
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="to-be-submitted"></a>待提交。
+# <a name="toobe-submitted"></a>toobe 送出。

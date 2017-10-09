@@ -1,5 +1,5 @@
 ---
-title: "Log Analytics 資料安全性 | Microsoft Docs"
+title: "分析資料安全性 aaaLog |Microsoft 文件"
 description: "深入了解 Log Analytics 如何保護您的隱私權和保護您的資料安全。"
 services: log-analytics
 documentationcenter: 
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/03/2017
 ms.author: magoedte
-ms.openlocfilehash: 9ae1629462d375c1061d9c7b25975c789ee661c9
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 130b59f22fc3dd249f32717367cc62ea25c55a21
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="log-analytics-data-security"></a>Log Analytics 資料安全性
-Microsoft 致力於保護您的隱私權和保護資料安全，同時提供軟體和服務，幫助您管理組織的 IT 基礎結構。 我們了解當您將資料委託給他人管理時，將需要嚴格的安全性。 Microsoft 從撰寫程式碼到運作服務均遵守嚴格的規範與安全性指導方針。
+Microsoft 是 tooprotecting 認可您的隱私權和保護您的資料，同時提供軟體和服務，幫助您管理 hello 貴組織的 IT 基礎結構。 我們辨識時委託資料 tooothers 時，該信任需要嚴格的安全性。 Microsoft 遵守 toostrict 相容性與安全性指導方針 — 從 toooperating 服務撰寫程式碼。
 
-保全和保護資料在 Microsoft 是第一要務。 如有任何問題、建議或關於下列任一項資訊的問題 (包括我們的安全性原則)，請與我們連絡：[Azure 支援選項](http://azure.microsoft.com/support/options/)。
+保全和保護資料在 Microsoft 是第一要務。 有任何問題、 建議或關於下列資訊，包括我們的安全性原則的 hello 任一問題與我們連絡[Azure 支援選項](http://azure.microsoft.com/support/options/)。
 
-本文說明 Operations Management Suite (OMS) 中 Log Analytics 資料收集、處理和保全方式。 您可以使用代理程式連接到 Web 服務、使用 System Center Operations Manager 來收集操作資料，或從 Azure 診斷擷取資料供 Log Analytics 使用。 收集的資料會使用憑證型驗證和 SSL 3 透過網際網路傳送至裝載於 Microsoft Azure 的 Log Analytics 服務。 資料會先由代理程式壓縮再傳送出去。
+本文說明如何收集、 處理以及受到 hello Operations Management Suite (OMS) 中的記錄分析資料。 您可以使用代理程式 tooconnect toohello web 服務、 使用 System Center Operations Manager toocollect 操作資料，或從以供記錄分析 Azure 診斷擷取資料。 hello 收集的資料會透過傳送嗨網際網路使用憑證型驗證和 SSL 3 toohello 記錄分析服務，這裝載於 Microsoft Azure。 資料壓縮 hello 代理程式所傳送之前。
 
-Log Analytics 服務會使用下列方法安全地管理您以雲端為基礎的資料：
+hello 記錄分析服務會管理雲端架構資料安全地使用下列方法的 hello:
 
 * 資料隔離
 * 資料保留
@@ -37,16 +37,16 @@ Log Analytics 服務會使用下列方法安全地管理您以雲端為基礎的
 * 安全性標準認證
 
 ## <a name="data-segregation"></a>資料隔離
-客戶資料以邏輯方式分開儲存在 OMS 服務的每個元件上。 每個組織加上標記的所有資料。 這項標記作業在整個資料生命週期持續發生，它會強制執行服務的每個層級。 每個客戶都有專用的 Azure Blob 可裝載長期資料
+客戶資料的各個元件 hello OMS 服務是以邏輯方式分開。 每個組織加上標記的所有資料。 這項標記作業在整個 hello 資料生命週期持續發生，它會強制執行各種層級的 hello 服務。 每個客戶都有專用的 Azure blob 可裝載長期資料的 hello
 
 ## <a name="data-retention"></a>資料保留
-系統會根據價格方案來儲存及保留已編製索引的記錄檔搜尋資料。 如需詳細資訊，請參閱 [Log Analytics 定價](https://azure.microsoft.com/pricing/details/log-analytics/)。
+索引的記錄檔搜尋資料會儲存並保留相應 tooyour 定價計劃。 如需詳細資訊，請參閱 [Log Analytics 定價](https://azure.microsoft.com/pricing/details/log-analytics/)。
 
-Microsoft 會在 OMS 工作區關閉 30 天後刪除客戶資料。 Microsoft 也會刪除資料所在的 Azure 儲存體帳戶。 移除客戶資料時，不會終結任何實體磁碟機。
+Microsoft 會刪除客戶資料在關閉 hello OMS 工作區之後的 30 天。 Microsoft 也會刪除 hello hello 資料所在的 Azure 儲存體帳戶。 移除客戶資料時，不會終結任何實體磁碟機。
 
-下表列出 OMS 中可用的一些解決方案與它們所收集的資料類型範例。
+hello 下表列出了一些 hello OMS 中可用的解決方案和範例 hello 它們所收集的資料類型。
 
-| <bpt id="p1">**</bpt>Solution<ept id="p1">**</ept> | **資料類型** |
+| **方案** | **資料類型** |
 | --- | --- |
 | 組態評估 |組態資料、中繼資料及狀態資料 |
 | 容量規劃 |效能資料和中繼資料 |
@@ -56,67 +56,67 @@ Microsoft 會在 OMS 工作區關閉 30 天後刪除客戶資料。 Microsoft �
 | 變更追蹤 |軟體清查和 Windows 服務中繼資料 |
 | SQL 和 Active Directory 評估 |WMI 資料、登錄資料、效能資料和 SQL Server 動態管理檢視結果 |
 
-下表顯示資料類型範例：
+hello 下表顯示資料類型的範例：
 
 | **資料類型** | **欄位** |
 | --- | --- |
 | 警示 |警示名稱、警示描述、BaseManagedEntityId、問題識別碼、IsMonitorAlert、RuleId、ResolutionState、優先順序、嚴重性、分類、擁有者、ResolvedBy、TimeRaised、TimeAdded、LastModified、LastModifiedBy、LastModifiedExceptRepeatCount、TimeResolved、TimeResolutionStateLastModified、TimeResolutionStateLastModifiedInDB、RepeatCount |
 | 組態 |CustomerID、AgentID、EntityID、ManagedTypeID、ManagedTypePropertyID、CurrentValue、ChangeDate |
-| Event |EventId、EventOriginalID、BaseManagedEntityInternalId、RuleId、PublisherId、PublisherName、FullNumber、Number、Category、ChannelLevel、LoggingComputer、EventData、EventParameters、TimeGenerated、TimeAdded <br>**附註：**當您使用自訂欄位將事件寫入 Windows 事件記錄檔時，OMS 會收集它們。 |
+| Event |EventId、EventOriginalID、BaseManagedEntityInternalId、RuleId、PublisherId、PublisherName、FullNumber、Number、Category、ChannelLevel、LoggingComputer、EventData、EventParameters、TimeGenerated、TimeAdded <br>**注意：**當您撰寫使用自訂欄位的事件 toohello Windows 事件記錄檔中時，OMS 會加以收集。 |
 | 中繼資料 |BaseManagedEntityId、ObjectStatus、OrganizationalUnit、ActiveDirectoryObjectSid、PhysicalProcessors、NetworkName、IPAddress、ForestDNSName、NetbiosComputerName、VirtualMachineName、LastInventoryDate、HostServerNameIsVirtualMachine、IP 位址、NetbiosDomainName、LogicalProcessors、DNSName、DisplayName、DomainDnsName、ActiveDirectorySite、PrincipalName、OffsetInMinuteFromGreenwichTime |
 | 效能 |ObjectName、CounterName、PerfmonInstanceName、PerformanceDataId、PerformanceSourceInternalID、SampleValue、TimeSampled、TimeAdded |
 | 狀況 |StateChangeEventId、StateId、NewHealthState、OldHealthState、Context、TimeGenerated、TimeAdded、StateId2、BaseManagedEntityId、MonitorId、HealthState、LastModified、LastGreenAlertGenerated、DatabaseTimeModified |
 
 ## <a name="physical-security"></a>實體安全性
-OMS 服務中的 Log Analytics 是由 Microsoft 人員操縱，所有活動都有記錄並且可供稽核。 服務完全在 Azure 中執行，並符合 Azure 通用工程準則。 您可以在 [Microsoft Azure 安全性概觀](http://download.microsoft.com/download/6/0/2/6028B1AE-4AEE-46CE-9187-641DA97FC1EE/Windows%20Azure%20Security%20Overview%20v1.01.pdf)的第 18 頁上檢視 Azure 資產之實體安全性的詳細資料。 不再負責管理 OMS 服務的人員，其用來確保區域安全的實體存取權限 (包括傳輸和終止) 將會在一個工作天內變更。 若要了解我們使用的全域實體基礎結構，請參閱 [Microsoft 資料中心](https://www.microsoft.com/en-us/server-cloud/cloud-os/global-datacenters.aspx)。
+在 OMS 服務的 hello 記錄分析由 Microsoft 人員操作，並會記錄所有活動，並且可供稽核。 hello 服務會完全在 Azure 中執行，並符合 Azure 通用工程準則 hello。 您可以 hello 第 18 頁檢視 Azure 資產 hello 實體安全性的詳細[Microsoft Azure 安全性概觀](http://download.microsoft.com/download/6/0/2/6028B1AE-4AEE-46CE-9187-641DA97FC1EE/Windows%20Azure%20Security%20Overview%20v1.01.pdf)。 實體的存取權限 toosecure 區域會變更一個工作天內，也不再有責任 hello OMS 服務，包括傳送和終止的人。 您可以閱讀 hello 全域實體基礎結構我們在使用[Microsoft 資料中心](https://www.microsoft.com/en-us/server-cloud/cloud-os/global-datacenters.aspx)。
 
 ## <a name="incident-management"></a>事件管理
-OMS 具備所有 Microsoft 服務都會遵守的事件管理程序。 總結來說，我們：
+OMS 具備所有 Microsoft 服務都會遵守的事件管理程序。 toosummarize，我們：
 
-* 使用共同責任模型，在此模型中，一部分的安全性責任歸屬 Microsoft，一部分則歸屬客戶
+* 使用共同的責任模型一部分安全性責任所屬 tooMicrosoft 和部分所屬 toohello 客戶
 * 管理 Azure 安全性事件
   * 在偵測到事件時啟動調查
-  * 由待命的事件回應小組成員評估事件的影響和嚴重性。 根據證據，評估結果不一定會導致進一步上報給安全性回應小組。
-  * 由安全性回應專家診斷事件，以進行技術或鑑識調查、找出圍堵、緩和及因應策略。 如果安全性小組認為客戶資料可能已公開給非法或未經授權的個人，則會開始並行執行客戶事件通知程序。  
-  * 恢復穩定並從事件中復原。 事件回應小組會建立復原計畫來減輕問題。 隔離受影響系統之類的危機圍堵步驟可能會立即進行，與診斷並行。 度過立即的危險之後，可能會進行較長期的緩和措施。  
-  * 將事件結案並進行事後檢討。 事件回應小組會建立概述事件細節的事後檢討，以便修改原則、程序和處理程序來防止事件再次發生。
+  * 評估 hello 影響，以及在呼叫事件回應小組成員將事件的嚴重性。 根據辨識項，hello 評估可能或可能不會導致進一步擴大 toohello 安全性回應小組。
+  * 安全性回應專家 tooconduct hello 技術或鑑識調查診斷事件，必須識別內含項目、 降低及因應措施的策略。 如果 hello 安全性團隊認為客戶資料可能會非法或未經授權的公開的 tooan 個別的平行執行的 hello 客戶事件通知處理程序同時開始。  
+  * 穩定，並從 hello 事件復原。 hello 事件回應小組建立復原計劃 toomitigate hello 問題。 隔離受影響系統之類的危機圍堵步驟可能會立即進行，與診斷並行。 較長的詞彙緩和措施可能必須規劃 hello 立即風險過後，會發生。  
+  * 關閉 hello 事件，然後進行事後。 hello 事件回應小組建立概述 hello 詳細資料的 hello 事後事件，hello 意圖 toorevise 原則、 程序，與處理程序 tooprevent hello 事件的循環。
 * 通知客戶發生了安全性事件
-  * 確定受影響客戶的範圍，並盡可能為受影響當事人提供詳盡的通知
-  * 建立通知，為客戶提供足夠詳盡的資訊，在不會過度延遲通知程序的情況下，讓他們能夠在他們那一端進行調查，並符合他們對其使用者所做的任何承諾。
-  * 確認並視需要宣佈事件。
-  * 在不會導致不合理延遲並符合法律或契約承諾的情況下，以事件通知告知客戶。 安全性事件的通知會以 Microsoft 選擇的任何方式 (包括透過電子郵件) 傳送給客戶的一或多位系統管理員。
+  * 判斷受影響的客戶和 tooprovide hello 範圍詳細通知，儘可能會受到影響的任何人
+  * 建立通知 tooprovide 客戶具有夠詳細資訊，以便他們可以進行調查，對其結束和符合任何 tootheir 使用者時不會過度延遲 hello 通知處理程序所做的承諾。
+  * 確認，並宣告 hello 事件，視需要。
+  * 在不會導致不合理延遲並符合法律或契約承諾的情況下，以事件通知告知客戶。 安全性事件的通知會透過任何方式 Microsoft select 中，包括透過電子郵件傳遞 tooone 或多個客戶的系統管理員。
 * 進行小組準備及訓練
-  * Microsoft 人員必須完成安全性和認知訓練，這可幫助他們識別及報告可疑的安全性問題。  
-  * 在 Microsoft Azure 服務工作的操作員身負圍繞在裝載客戶資料之機密系統存取權的附加訓練義務。
+  * Microsoft 人員會需要的 toocomplete 安全性和認知定型，可協助他們 tooidentify 和可能的安全性問題的報表。  
+  * Hello Microsoft Azure 服務使用的運算子具有的加法訓練義務周圍存取 toosensitive 系統裝載客戶資料。
   * Microsoft 安全性回應人員獲得專門針對其角色的訓練
 
 如果發生客戶資料遺失事件，我們會在一天內通知每位客戶。 不過，OMS 從未發生過客戶資料遺失。 此外，我們會複製所建立的資料並分散於各地。
 
-如需 Microsoft 如何回應安全性事件的詳細資訊，請參閱[雲端中的 Microsoft Azure 安全性回應](https://gallery.technet.microsoft.com/Azure-Security-Response-in-dd18c678/file/150826/1/Microsoft Azure Security Response in the cloud.pdf)。
+如需 Microsoft 如何回應 toosecurity 事件的詳細資訊，請參閱[hello 雲端中的 Microsoft Azure 安全性回應](https://gallery.technet.microsoft.com/Azure-Security-Response-in-dd18c678/file/150826/1/Microsoft Azure Security Response in hello cloud.pdf)。
 
 ## <a name="compliance"></a>法規遵循
-OMS 軟體開發和服務小組的資訊安全性即控管程式可支援其商務需求，並且會遵守 [Microsoft Azure 信任中心](https://azure.microsoft.com/support/trust-center/)和 [Microsoft 信任中心法規遵循](https://www.microsoft.com/en-us/TrustCenter/Compliance/default.aspx)所述的法規。 上述位置也會描述 OMS 是如何建立安全性需求、識別安全性控制，以及管理和監視風險。 每年我們都會檢閱原則、標準、程序和指導方針。
+hello OMS 軟體開發和服務小組的資訊安全和控管程式支援其商務需求，並依照遵守 toolaws 出口法規之限制[Microsoft Azure 信任中心](https://azure.microsoft.com/support/trust-center/)和[Microsoft 信任中心的相容性](https://www.microsoft.com/en-us/TrustCenter/Compliance/default.aspx)。 上述位置也會描述 OMS 是如何建立安全性需求、識別安全性控制，以及管理和監視風險。 每年我們都會檢閱原則、標準、程序和指導方針。
 
-每個 OMS 開發小組成員都會獲得正式的應用程式安全性訓練。 在內部，我們使用版本控制系統來開發軟體。 每個軟體專案都受到版本控制系統的保護。
+每個 OMS 開發小組成員都會獲得正式的應用程式安全性訓練。 在內部，我們使用版本控制系統來開發軟體。 每個軟體專案受到 hello 版本控制系統。
 
-Microsoft 備有會監看及評估 Microsoft 中所有服務的安全性和法規遵循小組。 資訊安全人員會組成小組，而且他們與開發 OMS 的工程部門並無關聯。 安全人員有他們自己的管理鏈，並且會獨立評估產品和服務，以確保安全性與法規遵循。
+Microsoft 備有會監看及評估 Microsoft 中所有服務的安全性和法規遵循小組。 資訊安全人員組成 hello 小組，他們不會產生關聯以 hello 工程部門開發 OMS。 hello 安全人員具有自己管理鏈結，並進行獨立的產品和服務 tooensure 安全性與相容性評估。
 
 Microsoft 的董事會會收到有關 Microsoft 所有資訊安全程式的年度報表通知。
 
-OMS 軟體開發和服務小組會積極地與 Microsoft 法律和規範小組及其他產業合作夥伴合作取得各種認證。
+hello OMS 軟體開發和服務小組會積極地與 hello Microsoft 法律和規範小組及其他產業合作夥伴 tooacquire 各種不同的認證。
 
 ## <a name="certifications-and-attestations"></a>認證和證明
-OMS Log Analytics 符合下列需求︰
+OMS 記錄分析會符合下列需求的 hello:
 
 * [ISO/IEC 27001](http://www.iso.org/iso/home/standards/management-standards/iso27001.htm)
 * [ISO/IEC 27018:2014](http://www.iso.org/iso/home/store/catalogue_tc/catalogue_detail.htm?csnumber=61498)
 * [ISO 22301](https://azure.microsoft.com/en-us/blog/iso22301/)
-* PCI 安全標準委員會的[支付卡產業 (PCI 相容) 資料安全標準 (PCI DSS)](https://www.microsoft.com/en-us/TrustCenter/Compliance/PCI)。
+* [付款卡產業 （PCI 相容） 資料安全標準 (PCI DSS)](https://www.microsoft.com/en-us/TrustCenter/Compliance/PCI)由 hello PCI 安全性標準委員會 （英文)。
 * [服務組織控制 (SOC) 1 類型 1 和 SOC 2 類型 1](https://www.microsoft.com/en-us/TrustCenter/Compliance/SOC1-and-2) 相容
 * 擁有 HIPAA 商業夥伴合約之公司的 [HIPAA 和 HITECH](https://www.microsoft.com/en-us/TrustCenter/Compliance/HIPAA)
 * Windows 通用工程準則
 * Microsoft 高可信度電腦運算 (英文)
-* 做為 Azure 服務，OMS 使用的元件會遵守 Azure 的相容性需求。 若要深入了解，請前往 [Microsoft 信任中心法規遵循](https://www.microsoft.com/en-us/TrustCenter/Compliance/default.aspx)。
+* 作為 Azure 服務，OMS 會使用的 hello 元件會遵守 tooAzure 法規遵循需求。 若要深入了解，請前往 [Microsoft 信任中心法規遵循](https://www.microsoft.com/en-us/TrustCenter/Compliance/default.aspx)。
 
 > [!NOTE]
 > 在某些認證/證明中，Log Analytics 會以舊名稱 *Operational Insights* 列出。
@@ -125,42 +125,42 @@ OMS Log Analytics 符合下列需求︰
 
 
 ## <a name="cloud-computing-security-data-flow"></a>雲端運算安全性資料流程
-下圖顯示的雲端安全性架構為貴公司的資訊流程，以及當移至 Log Analytics 服務時如何受到保護，最後由您在 OMS 入口網站中看到。 圖表後面詳述每個步驟的詳細資訊。
+hello 圖的雲端安全性架構 hello 資料流的資訊從您的公司以及如何受到保護原狀移 toohello 記錄分析服務，最後 hello OMS 入口網站中看到您。 Hello 圖表後面詳述每個步驟的詳細資訊。
 
 ![OMS 資料收集與安全性的影像](./media/log-analytics-security/log-analytics-security-diagram.png)
 
 ## <a name="1-sign-up-for-log-analytics-and-collect-data"></a>1.註冊使用 Log Analytics 並收集資料
-為了讓您的組織將資料傳送至 Log Analytics，您會設定 Windows 代理程式，在 Azure 虛擬機器上執行的代理程式，或 OMS Agents for Linux。 如果您使用 Operations Manager 代理程式，則可在 Operations 主控台中使用組態精靈設定它們。 使用者 (可能是您、其他個別使用者或一群人) 會建立一或多個 OMS 帳戶 (OMS 工作區)，並且使用下列其中一個帳戶來註冊代理程式：
+針對您的組織 toosend 資料 tooLog 分析，您可以設定 Windows 代理程式，在 Azure 虛擬機器或 OMS 代理程式上執行適用於 Linux 代理程式。 如果您使用 Operations Manager 代理程式，則您可以使用設定精靈在 hello Operations 主控台 tooconfigure 它們。 使用者 （這可能是您、 其他個別使用者或一群人） 建立一個或多個 OMS 帳戶 （OMS 工作區），並使用其中一個 hello 下列帳戶來註冊代理程式：
 
 * [組織識別碼](../active-directory/sign-up-organization.md)
 * [Microsoft 帳戶 - Outlook、Office Live、MSN](http://www.microsoft.com/account/default.aspx)
 
-OMS 工作區是資料收集、彙總、分析以及呈現的位置。 工作區主要是做為資料分割資料，每個工作區都是唯一的。 例如，您可能想要使用一個 OMS 工作區管理實際執行資料，使用另一個工作區管理測試資料。 工作區也會協助系統管理員控制資料的使用者存取。 每個工作區可以有多個與其關聯的使用者帳戶，每個使用者帳戶可以存取多個 OMS 工作區。 您必須根據資料中心區域建立工作區。 每個工作區都會複寫到區域中的其他資料中心，這主要是為了確保 OMS 服務可用性。
+OMS 工作區是資料收集、彙總、分析以及呈現的位置。 成 toopartition 資料的表示，主要使用工作區和每個工作區是唯一的。 比方說，您可能會想的 toohave 實際執行資料管理的其中一個使用另一個工作區管理 OMS 工作區與測試資料。 工作區也會協助系統管理員控制使用者存取 toohello 資料。 每個工作區可以有多個與其關聯的使用者帳戶，每個使用者帳戶可以存取多個 OMS 工作區。 您必須根據資料中心區域建立工作區。 每個工作區是在 hello 區域中，主要用於 OMS 服務可用性的複寫的 tooother 資料中心。
 
-針對 Operations Manager，當組態精靈完成時，每個 Operations Manager 管理群組就會建立與 Log Analytics 服務的連接。 然後，您會使用 [新增電腦精靈] 來選擇允許管理群組中的哪些電腦將資料傳送至服務。 對於其他代理程式類型，每個都安全地連接至 OMS 服務。
+Operations Manager 的 hello 組態精靈完成時，每個 Operations Manager 管理群組會建立與 hello 記錄分析服務的連線。 然後，您可以使用在 hello 新增電腦精靈 toochoose toosend 資料 toohello 服務允許 hello 管理群組中的哪些電腦。 對於其他代理程式類型，每個安全地連接 toohello OMS 服務。
 
-連線系統與 Log Analytics 服務之間的所有通訊都會加密。  會使用 TLS (HTTPS) 通訊協定來加密。  隨後會進行 Microsoft SDL 程序，使用最先進的密碼編譯通訊協定確保 Log Analytics 保持最新狀態。
+已連線的系統與 hello 記錄分析服務之間的所有通訊都會都加密。  hello (HTTPS) 通訊協定會使用 TLS 進行加密。  hello Microsoft SDL 程序會遵循 tooensure 記錄分析是最新的密碼編譯通訊協定中的 hello 最近進階功能。
 
-會收集 Log Analytics 資料的每個類型代理程式。 所收集的資料類型取決於使用的解決方案類型。 若要查看資料集合摘要，請參閱[從方案庫新增 Log Analytics 方案](log-analytics-add-solutions.md)。 此外，大部分方案都會有更詳細的集合資訊。 解決方案是預先定義的檢視、記錄搜尋查詢、資料收集規則，以及處理邏輯的組合。 只有系統管理員可以使用 Log Analytics 來匯入方案。 在匯入解決方案之後，便會移到 Operations Manager 管理伺服器 (如果使用的話)，然後移至您所選擇的代理程式。 之後，代理程式會收集資料。
+會收集 Log Analytics 資料的每個類型代理程式。 hello 收集的資料類型就會根據使用的解決方案 hello 類型。 您可以看到資料集合中的摘要[hello 解決方案資源庫中的新增記錄分析解決方案](log-analytics-add-solutions.md)。 此外，大部分方案都會有更詳細的集合資訊。 解決方案是預先定義的檢視、記錄搜尋查詢、資料收集規則，以及處理邏輯的組合。 只有系統管理員可以使用記錄分析 tooimport 方案。 匯入 hello 解決方案之後，它是移動的 toohello Operations Manager 管理伺服器 （如果使用），然後您所選擇的 tooany 代理程式。 之後，hello 代理程式收集 hello 資料。
 
 ## <a name="2-send-data-from-agents"></a>2.從代理程式傳送資料
-您使用註冊金鑰來註冊所有類型的代理程式，而代理程式與 Log Analytics 服務之間會使用憑證型驗證和 SSL 在連接埠 443 建立安全的連線。 OMS 使用密碼存放區來產生及維護金鑰。 私密金鑰每 90 天會輪替一次，其儲存在 Azure 中，並由遵守嚴格法規與相容性作法的 Azure 作業人員管理。
+您註冊使用註冊金鑰的所有代理程式類型和 hello 代理程式和使用憑證型驗證和 SSL 使用連接埠 443 的 hello 記錄分析服務之間建立安全的連線。 OMS 會使用密碼存放區 toogenerate 並維護金鑰。 私用金鑰會循環每隔 90 天，以及儲存在 Azure 中，與 hello Azure 所管理遵循嚴格的法規和相容性做法的作業。
 
-使用 Operations Manager，您會向 Log Analytics 服務註冊工作區，然後會在 Operations Manager 管理伺服器之間建立安全的 HTTPS 連線。
+使用 Operations Manager，您註冊工作區與 hello 記錄分析服務，並且 hello Operations Manager 管理伺服器之間建立安全的 HTTPS 連線。
 
-對於 Azure 虛擬機器上執行的 Windows 代理程式，唯讀的儲存體金鑰可用來讀取 Azure 資料表中的診斷事件。
+對於 Azure 虛擬機器上執行的 Windows 代理程式，唯讀的儲存體金鑰是使用的 tooread Azure 資料表中的診斷事件。
 
-如果任何代理程式因為任何原因而無法與服務通訊，收集的資料會儲存在本機的暫時快取，且管理伺服器在 2 個小時內每 8 分鐘會嘗試重新傳送資料。 代理程式的快取資料會受到作業系統的認證存放區保護。 如果服務在 2 個小時後無法處理資料，代理程式會將資料排入佇列。 如果佇列已滿，OMS 會開始卸除資料類型，最先卸除的是效能資料。 代理程式佇列限制為登錄機碼，因此您可以視需要加以修改。 收集的資料會壓縮，並且傳送給服務，略過內部部署資料庫，因此不會對它們產生任何負載。 傳送收集的資料之後，會從快取中移除。
+如果任何代理程式無法 toocommunicate toohello 服務因為任何原因，hello 收集的資料儲存在暫時快取，而且 hello 管理伺服器會嘗試 tooresend hello 資料兩小時內每 8 分鐘。 hello 代理程式的快取的資料受到 hello 作業系統的認證存放區。 如果 hello 服務無法處理 hello 資料在兩個小時後，hello 代理程式會將佇列 hello 資料。 如果 hello 佇列已滿，OMS 會開始卸除的資料類型，從開始效能資料。 hello 代理程式佇列限制是登錄機碼，因此您可以修改它，如有必要。 收集的資料壓縮，然後傳送 toohello 服務，而略過內部部署資料庫，因此不會新增任何負載 toothem。 Hello 收集後資料會傳送，會從 hello 快取中移除。
 
-如上所述，代理程式中的資料會透過 SSL 傳送到 Microsoft Azure 資料中心。 (選擇性) 您可以使用 ExpressRoute 為資料提供額外的安全性。 ExpressRoute 可供直接從現有 WAN 網路 (例如網路服務提供者所提供的多重通訊協定標籤交換 (MPLS) VPN) 連線至 Azure。 如需詳細資訊，請參閱 [ExpressRoute](https://azure.microsoft.com/services/expressroute/)。
+如上面所述，從您的代理程式的資料會透過 SSL tooMicrosoft Azure 資料中心中傳送。 （選擇性） 您可以使用 ExpressRoute tooprovide 額外的安全性 hello 資料。 ExpressRoute 是方式 toodirectly 連接 tooAzure 從現有的 WAN 網路，例如多重通訊協定標籤交換 (MPLS) VPN，網路服務提供者所提供。 如需詳細資訊，請參閱 [ExpressRoute](https://azure.microsoft.com/services/expressroute/)。
 
-## <a name="3-the-log-analytics-service-receives-and-processes-data"></a>3.Log Analytics 服務接收和處理資料
-Log Analytics 服務會確保內送資料是來自信任的來源，方法是驗證憑證和與 Azure 驗證的資料完整性。 未處理的原始資料會儲存為 [Microsoft Azure 儲存體](../storage/common/storage-introduction.md)中的 Blob，且未加密。 不過，每個 Azure 儲存體 Blob 都有唯一一組僅供該使用者存取的金鑰。 所儲存的資料類型取決於匯入和用來收集資料的解決方案類型。 然後，Log Analytics 服務會為 Azure 儲存體 Blob 處理未經處理的資料。
+## <a name="3-hello-log-analytics-service-receives-and-processes-data"></a>3.hello 記錄分析服務接收和處理資料
+hello 記錄分析服務會確保內送資料是來自受信任的來源驗證憑證與使用 Azure 驗證 hello 資料完整性。 hello 未處理的原始資料會儲存為中的 blob [Microsoft Azure 儲存體](../storage/common/storage-introduction.md)且未加密。 不過，每個 Azure 儲存體 blob 會有一組的唯一索引鍵集中，可存取的只有 toothat 使用者。 hello 的類型儲存的資料取決於 hello 類型已匯入和使用 toocollect 資料的解決方案。 然後，hello 記錄分析服務會處理 hello Azure 儲存體 blob 的 hello 未經處理資料。
 
-## <a name="4-use-log-analytics-to-access-the-data"></a>4.使用 Log Analytics 來存取資料
-您可以在 OMS 入口網站使用組織帳戶或您先前設定的 Microsoft 帳戶來登入 Log Analytics。 OMS 入口網站與 OMS 中的 Log Analytics 之間的所有流量會透過安全的 HTTPS 通道傳送。 在使用 OMS 入口網站時，使用者用戶端 (網頁瀏覽器) 上會產生工作階段識別碼，而且資料會儲存在本機快取，直到工作階段終止。 終止時便會刪除快取。 未包含個人識別資訊的用戶端 Cookie 不會自動移除。 工作階段 Cookie 會標示為 HTTPOnly，並受到保護。 經過預先決定的閒置時間後，OMS 入口網站工作階段就會終止。
+## <a name="4-use-log-analytics-tooaccess-hello-data"></a>4.使用記錄分析 tooaccess hello 資料
+您可以使用 hello 組織帳戶或您先前設定的 Microsoft 帳戶，就可登入 tooLog 分析 hello OMS 入口網站中。 在 OMS 中的記錄分析 hello OMS 入口網站之間的所有流量會透過安全 HTTPS 通道都傳送。 當使用 hello OMS 入口網站時，工作階段識別碼所產生的 hello 使用者用戶端 （web 瀏覽器） 和資料會儲存在本機快取，直到 hello 工作階段已終止。 當終止時，會刪除 hello 快取。 未包含個人識別資訊的用戶端 Cookie 不會自動移除。 工作階段 Cookie 會標示為 HTTPOnly，並受到保護。 預先決定的閒置時間後 hello OMS 入口網站工作階段已終止。
 
-使用 OMS 入口網站，您可以將資料匯出至 CSV 檔案，而且您可以使用搜尋 API 存取資料。 CSV 匯出是限制為每此只能匯出 50,000 個資料列，而 API 資料則限制為每次只能搜尋 5,000 個資料列。
+使用 hello OMS 入口網站，您可以匯出資料 tooa CSV 檔案，而且您可以存取使用搜尋 Api 的資料。 CSV 匯出有限的 too50，每個匯出和 API 資料 000 資料列，則受限制的 too5，每一搜尋 000 資料列。
 
 ## <a name="next-steps"></a>後續步驟
-* [開始使用 Log Analytics](log-analytics-get-started.md) 以深入了解 Log Analytics，並幾分鐘內就啟動並執行。
+* [開始使用記錄分析](log-analytics-get-started.md)toolearn 深入了解記錄分析，以及如何取得最新且正在執行，以分鐘為單位。

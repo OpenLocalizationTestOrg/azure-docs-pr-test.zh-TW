@@ -1,6 +1,6 @@
 ---
-title: "Azure Mobile Engagement Web SDK 版本資訊 | Microsoft Docs"
-description: "Azure Mobile Engagement Web SDK 的最新更新與程序"
+title: "aaaAzure Mobile Engagement Web SDK 版本資訊 |Microsoft 文件"
+description: "Azure Mobile Engagement 的 Web sdk hello 最新更新和程序"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: js
 ms.topic: article
 ms.date: 10/18/2016
 ms.author: piyushjo
-ms.openlocfilehash: dc90620d284bdcae888b990f55191be18b29d6f5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a082f1fec07341b5cc06efe50512c2dcf01ec1df
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-mobile-engagement-web-sdk-release-notes"></a>Azure Mobile Engagement Web SDK 版本資訊
 ## <a name="202-10182016"></a>2.0.2 (10/18/2016)
@@ -26,16 +26,16 @@ ms.lasthandoff: 07/11/2017
 * 已修正停用 Cookie 之瀏覽器的當機問題。
 
 ## <a name="201-6102016"></a>2.0.1 (6/10/2016)
-* 在 Internet Explorer 8 和 Internet Explorer 9 中停用 SDK。
+* 已停用的 hello Internet Explorer 8 和 Internet Explorer 9 中的 SDK。
 * 已修正 Opera 網頁瀏覽器偵測。
 
 ## <a name="200-672016"></a>2.0.0 (6/7/2016)
 * 發行 Azure Mobile Engagement。
-* 更新後，連接字串組態將能取代 `appId` 組態。
-* 已新增 API 以啟用及停用代理程式。
+* 更新的 hello 所以`appId`取代連接字串組態設定。
+* 加入應用程式開發介面 tooenable 及停用 hello 代理程式。
 * 增強安全性。
-* 更新後，可使用來自瀏覽器的原生 JSON API。
-* 移除在裝置之間傳送和接收訊息的 API。
-* 已移除和已被取代的 XMPP 連線相關的回呼。
-* 移除觸達功能支援。
+* 更新的 toouse 原生的 JSON Api，從瀏覽器。
+* 移除 hello API，可傳送和接收裝置之間的訊息。
+* 移除的回呼相關的 toohello 取代 XMPP 連線。
+* 已移除的 hello 觸達功能的支援。
 

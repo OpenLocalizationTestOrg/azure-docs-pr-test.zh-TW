@@ -1,6 +1,6 @@
 ---
-title: "建立 Hive 資料表，並從 Azure Blob 儲存體載入資料 | Microsoft Docs"
-description: "建立 Hive 資料表，並將 Blob 中的資料載入 Hive 資料表"
+title: "aaaCreate Hive 資料表和資料從 Azure Blob 儲存體載入 |Microsoft 文件"
+description: "建立登錄區資料表，並載入 blob toohive 資料表中的資料"
 services: machine-learning,storage
 documentationcenter: 
 author: bradsev
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/29/2017
 ms.author: bradsev
-ms.openlocfilehash: eca4ecd8f639bb9816903f4b1d1f999755da819c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 09622972bcac31c2971858393a8340f24e4b7390
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-hive-tables-and-load-data-from-azure-blob-storage"></a>建立 Hive 資料表，並從 Azure Blob 儲存體載入資料
-本主題會顯示泛型 Hive 查詢，這類查詢可建立 Hive 資料表，並從 Azure Blob 儲存體載入資料。 同時也會提供一些關於資料分割 Hive 資料表，以及使用最佳化單欄式資料列 (ORC) 格式來提升查詢效能的指引。
+本主題會顯示泛型 Hive 查詢，這類查詢可建立 Hive 資料表，並從 Azure Blob 儲存體載入資料。 在分割區資料表，使用 hello 最佳化的資料列單欄式 (ORC) 格式化 tooimprove 查詢效能，也會提供一些指引。
 
-此 **功能表** 所連結的主題會說明如何將資料內嵌至目標環境，以在 Team Data Science Process (TDSP) 期間儲存和處理該資料。
+這**功能表**連結 tootopics 描述 tooingest 資料可以儲存和處理期間 hello 資料的目標環境 hello 小組資料科學程序 (TDSP) 的方式。
 
 [!INCLUDE [cap-ingest-data-selector](../../includes/cap-ingest-data-selector.md)]
 
@@ -31,101 +31,101 @@ ms.lasthandoff: 08/29/2017
 本文假設您已經：
 
 * 建立 Azure 儲存體帳戶。 如需相關指示，請參閱[關於 Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)。
-* 佈建含有 HDInsight 服務的自訂 Hadoop 叢集。  如需指示，請參閱 [自訂適用於進階分析的 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md)。
-* 啟用叢集的遠端存取、登入，然後開啟 Hadoop 命令列主控台。 如需指示，請參閱 [存取 Hadoop 叢集的前端節點](machine-learning-data-science-customize-hadoop-cluster.md#headnode)。
+* 自訂的 Hadoop 叢集以 hello HDInsight 服務使用者佈建。  如需指示，請參閱 [自訂適用於進階分析的 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md)。
+* 啟用遠端存取 toohello 叢集中，登入，並開啟 hello Hadoop 命令列主控台。 如果您需要的指示，請參閱[存取 hello 的 Hadoop 叢集前端節點](machine-learning-data-science-customize-hadoop-cluster.md#headnode)。
 
-## <a name="upload-data-to-azure-blob-storage"></a>將資料上傳至 Azure Blob 儲存體
-如果您遵循[設定適用於進階分析的 Azure 虛擬機器](machine-learning-data-science-setup-virtual-machine.md)中所提供的指示建立了 Azure 虛擬機器，應該已將這個指令碼檔案下載至虛擬機器上的 C:\\Users\\\<使用者名稱\>\\Documents\\Data Science Scripts 目錄中。 這些 Hive 查詢只要求您插入自己的資料結構描述，以及已準備好進行提交之適當欄位中的 Azure Blob 儲存體設定。
+## <a name="upload-data-tooazure-blob-storage"></a>上傳資料 tooAzure blob 儲存體
+如果您建立 Azure 虛擬機器中提供的 hello 指示[設定 Azure 虛擬機器執行進階分析](machine-learning-data-science-setup-virtual-machine.md)，此指令碼檔案應該已經下載的 toohello *c:\\使用者\\\<使用者名\>\\文件\\資料科學指令碼*hello 虛擬機器上的目錄。 這些 Hive 查詢只需要您插入您自己的資料結構描述和準備送出 hello 適當欄位 toobe 中的 Azure blob 儲存體設定中。
 
-我們假設 Hive 資料表的資料為 **未壓縮的** 表格格式，而且資料已上傳至 Hadoop 叢集所使用之儲存體帳戶的預設 (或其他) 容器。
+我們假設 hello Hive 資料表的資料在**未壓縮**表格式格式和 hello 資料已經上傳 toohello 預設 （或其他 tooan） hello hello Hadoop 叢集所使用的儲存體帳戶的容器。
 
-如果您想要使用 **NYC 計程車車程資料**進行練習，您需要︰
+如果您想在 hello toopractice **NYC 計程車路線資料**，您需要：
 
-* **下載** 24 個 [NYC 計程車車程資料](http://www.andresmh.com/nyctaxitrips) 檔案 (12 個車程檔案和 12 個費用檔案)，
+* **下載**hello 24 [NYC 計程車路線資料](http://www.andresmh.com/nyctaxitrips)檔案 （12 個路線檔案和 12 個價位檔案）
 * **解壓縮** 為 .csv 檔案，然後
-* **上傳** 檔案到 [針對進階分析程序和技術自訂 Azure HDInsight Hadoop 叢集](machine-learning-data-science-customize-hadoop-cluster.md) 主題所述之程序所建立的 Azure 儲存體帳戶預設值 (或適當容器)。 請參閱此 [頁面](machine-learning-data-science-process-hive-walkthrough.md#upload)，以了解將 .csv 檔案上傳至儲存體帳戶上之預設容器的程序。
+* **上傳**它們 toohello 預設 （或適當的容器） 的 hello hello hello 中所述的程序所建立的 Azure 儲存體帳戶[自訂 Azure HDInsight Hadoop 叢集以提供進階分析程序和技術](machine-learning-data-science-customize-hadoop-cluster.md)主題。 hello 程序 tooupload hello.csv 檔案 toohello 預設容器 hello 儲存體帳戶上的可以找到此[頁面](machine-learning-data-science-process-hive-walkthrough.md#upload)。
 
-## <a name="submit"></a>如何提交 Hive 查詢
+## <a name="submit"></a>如何 toosubmit Hive 查詢
 您可以使用下列方法來提交 Hive 查詢：
 
 1. [透過 Hadoop 叢集前端節點中的 Hadoop 命令列提交 Hive 查詢](#headnode)
-2. [利用 Hive 編輯器提交 Hive 查詢](#hive-editor)
+2. [提交 Hive 查詢以 hello 登錄區編輯器](#hive-editor)
 3. [利用 Azure PowerShell 命令提交 Hive 查詢](#ps)
 
-Hive 查詢類似 SQL。 如果您熟悉 SQL，您可能會發現 [Hive for SQL 使用者功能提要](http://hortonworks.com/wp-content/uploads/2013/05/hql_cheat_sheet.pdf) 很有用。
+Hive 查詢類似 SQL。 如果您熟悉 SQL，您可能會發現 hello [SQL 使用者小工作表的 Hive](http://hortonworks.com/wp-content/uploads/2013/05/hql_cheat_sheet.pdf)很有用。
 
-提交 Hive 查詢時，您也可以控制 Hive 查詢輸出的目的地，它是否會出現在螢幕上，或是輸出到前端節點上的本機檔案或 Azure Blob。
+當提交 Hive 查詢，您也可以控制 hello 目的地的 Hive 查詢從 hello 輸出無論 hello 螢幕或 tooa 本機檔案上 hello 前端節點或 tooan Azure blob。
 
 ### <a name="headnode"></a> 1.透過 Hadoop 叢集前端節點中的 Hadoop 命令列提交 Hive 查詢
-如果 Hive 查詢相當複雜，在 Hadoop 叢集的前端節點中直接提交 Hive 查詢，通常會導致整備速度比使用 Hive 編輯器或 Azure PowerShell 指令碼進行提交還快。
+如果 hello Hive 查詢就會很複雜，提交直接在 hello hello Hadoop 叢集前端節點通常會導致 toofaster 返回比提交 hive 控制檔的編輯器或 Azure PowerShell 指令碼。
 
-登入 Hadoop 叢集的前端節點、在前端節點的桌面上開啟 Hadoop 命令列，然後輸入命令 `cd %hive_home%\bin`。
+登入 toohello hello Hadoop 叢集前端節點，開啟 hello Hadoop 命令列桌面上 hello hello 前端節點，然後輸入命令`cd %hive_home%\bin`。
 
-您有三種方式可在 Hadoop 命令列中提交 Hive 查詢：
+Hello Hadoop 命令列中有三種方式 toosubmit Hive 查詢：
 
 * 直接
 * 使用 .hql 檔案
-* 利用 Hive 命令主控台
+* 以 hello Hive 命令主控台
 
 #### <a name="submit-hive-queries-directly-in-hadoop-command-line"></a>在 Hadoop 命令列中直接提交 Hive 查詢。
-您可以執行類似 `hive -e "<your hive query>;` 的命令，在 Hadoop 命令列中直接提交簡單的 Hive 查詢。 在下列範例中，紅色方塊框起來的是提交 Hive 查詢的命令，而綠色方塊框起來的則是 Hive 查詢的輸出。
+您可以執行的命令，像`hive -e "<your hive query>;`toosubmit 簡單 Hive 查詢直接在 Hadoop 命令列。 以下是的範例，其中 hello 紅色方塊外框 hello 命令送出 hello Hive 查詢，而 hello hello Hive 查詢的綠色方塊外框 hello 輸出。
 
 ![建立工作區](./media/machine-learning-data-science-move-hive-tables/run-hive-queries-1.png)
 
 #### <a name="submit-hive-queries-in-hql-files"></a>提交 .hql 檔案中的 Hive 查詢。
-若 Hive 查詢更複雜且有多行，則在命令列或 Hive 命令主控台中編輯查詢並不實際。 替代方法是在 Hadoop 叢集的前端節點中使用文字編輯器，將 Hive 查詢儲存於前端節點本機目錄上的 .hql 檔案中。 然後可以使用 `-f` 引數提交 .hql 檔案中的 Hive 查詢，如下所示：
+當 hello Hive 查詢較為複雜，而且擁有多行時，並不實用編輯命令列或 Hive 命令主控台中的查詢。 替代方式是 toouse 文字編輯器中的 hello Hadoop 叢集 toosave hello Hive 查詢.hql 檔案中的 hello 前端節點的本機目錄中的 hello 前端節點。 然後可以使用 hello 送出 hello.hql 檔案中的 hello Hive 查詢`-f`引數，如下所示：
 
-    hive -f "<path to the .hql file>"
+    hive -f "<path toohello .hql file>"
 
 ![建立工作區](./media/machine-learning-data-science-move-hive-tables/run-hive-queries-3.png)
 
 **隱藏 Hive 查詢的進度狀態畫面顯示**
 
-根據預設，在 Hadoop 命令列中提交 Hive 查詢之後，Map/Reduce 作業的進度會顯示於螢幕上。 若要隱藏 Map/Reduce 工作進度的畫面顯示，您可以在命令列中使用引數 `-S` (大寫的 "S")，如下所示：
+根據預設，Hive 查詢提交的 Hadoop 命令列中之後, hello hello Map/Reduce 作業進度會列印螢幕上。 toosuppress hello hello Map/Reduce 作業進度的螢幕列印，您可以使用引數`-S`(大寫為"S") 中 hello 命令列，如下所示：
 
-    hive -S -f "<path to the .hql file>"
-。    hive -S -e "<Hive queries>"
+    hive -S -f "<path toohello .hql file>"
+.    hive -S -e "<Hive queries>"
 
 #### <a name="submit-hive-queries-in-hive-command-console"></a>在 Hive 命令主控台中提交 Hive 查詢。
-您也可以在 Hadoop 命令列中執行 `hive` 命令，先進入 Hive 命令主控台，然後在 Hive 命令主控台中提交 Hive 查詢。 範例如下。 在此範例中，這兩個紅色方塊反白顯示的命令分別是用來進入 Hive 命令主控台，以及在 Hive 命令主控台中提交 Hive 查詢。 綠色方塊反白顯示的是 Hive 查詢的輸出。
+您可以執行命令，以也先輸入 hello Hive 命令主控台`hive`在 Hadoop 命令列，然後提交 Hive 命令主控台中的 Hive 查詢。 範例如下。 在此範例中，hello 兩個紅色方塊反白顯示 hello 命令會使用 tooenter hello Hive 命令主控台中，而且 hello Hive 查詢提交 Hive 命令主控台中，分別。 hello 綠色方塊反白顯示 hello hello Hive 查詢的輸出。
 
 ![建立工作區](./media/machine-learning-data-science-move-hive-tables/run-hive-queries-2.png)
 
-上述範例會在螢幕上直接輸出 Hive 查詢結果。 您也可以將輸出寫入前端節點上的本機檔案，或寫入 Azure Blob。 接著，您可以使用其他工具，進一步分析 Hive 查詢的輸出。
+hello 前面的範例直接輸出畫面上 hello Hive 查詢的結果。 您也可以撰寫 hello 前端節點或 tooan Azure blob 上的 hello 輸出 tooa 本機檔案。 然後，您可以使用其他工具 toofurther 分析 hello 的 Hive 查詢的輸出。
 
-**將 Hive 查詢結果輸出到本機檔案。**
-若要將 Hive 查詢結果輸出到前端節點上的本機目錄，您必須在 Hadoop 命令列中提交 Hive 查詢，如下所示：
+**輸出 Hive 查詢結果 tooa 本機檔案。**
+toooutput Hive 查詢結果 tooa 本機目錄 hello 前端節點上的，您有 toosubmit hello Hive 查詢 hello Hadoop 命令列中，如下所示：
 
-    hive -e "<hive query>" > <local path in the head node>
+    hive -e "<hive query>" > <local path in hello head node>
 
-在下列範例中，Hive 查詢的輸出會寫入 `C:\apps\temp` 目錄中的 `hivequeryoutput.txt` 檔案。
+在下列範例的 hello，Hive 查詢的 hello 輸出寫入檔案`hivequeryoutput.txt`目錄中`C:\apps\temp`。
 
 ![建立工作區](./media/machine-learning-data-science-move-hive-tables/output-hive-results-1.png)
 
-**將 Hive 查詢結果輸出到 Azure Blob**
+**輸出 Hive 查詢的結果 tooan Azure blob**
 
-您也可以將 Hive 查詢結果輸出到 Hadoop 叢集預設容器內的 Azure Blob。 此作業的 Hive 查詢如下所示：
+您也可以輸出 hello Hive 查詢的結果 tooan hello hello Hadoop 叢集的預設容器內的 Azure blob。 這個 hello Hive 查詢如下所示：
 
-    insert overwrite directory wasb:///<directory within the default container> <select clause from ...>
+    insert overwrite directory wasb:///<directory within hello default container> <select clause from ...>
 
-在下列範例中，Hive 查詢的輸出會寫入 Hadoop 叢集預設容器內的 Blob 目錄 `queryoutputdir` 。 在此處，您只需提供目錄名稱，而不需提供 Blob 名稱。 如果您同時提供目錄和 Blob 名稱 (例如 `wasb:///queryoutputdir/queryoutput.txt`)，則會擲回錯誤。
+在下列範例的 hello，Hive 查詢 hello 輸出寫入 tooa blob 目錄`queryoutputdir`hello hello Hadoop 叢集的預設容器內。 在這裡，您只需要 tooprovide hello 目錄名稱，不含 hello blob 名稱。 如果您同時提供目錄和 Blob 名稱 (例如 `wasb:///queryoutputdir/queryoutput.txt`)，則會擲回錯誤。
 
 ![建立工作區](./media/machine-learning-data-science-move-hive-tables/output-hive-results-2.png)
 
-如果您使用 Azure 儲存體總管開啟 Hadoop 叢集的預設容器，則可以看到如下圖所示的 Hive 查詢輸出。 您可以套用篩選條件 (以紅色方塊反白顯示)，只擷取名稱中具有指定字母的 Blob。
+如果您開啟 hello 預設容器，使用 Azure 儲存體總管 hello Hadoop 叢集，您可以看到 hello Hive 查詢的 hello 的輸出 hello 遵循圖所示。 您可以套用 hello 篩選器 （以紅色方塊反白顯示） tooonly 擷取 hello blob 名稱中指定的字元。
 
 ![建立工作區](./media/machine-learning-data-science-move-hive-tables/output-hive-results-3.png)
 
-### <a name="hive-editor"></a> 2.利用 Hive 編輯器提交 Hive 查詢
-您也可以在網頁瀏覽器中輸入https://&#60;Hadoop 叢集名稱>.azurehdinsight.net/Home/HiveEditor 格式的 URL，以使用查詢主控台 (Hive 編輯器)。 您必須登入才能看到此主控台，因此您在這裡需要 Hadoop 叢集認證。
+### <a name="hive-editor"></a> 2.提交 Hive 查詢以 hello 登錄區編輯器
+您也可以輸入 hello 表單的 URL，使用 hello 查詢主控台 （登錄區編輯器） *https://&#60;Hadoop 叢集名稱 >.azurehdinsight.net/Home/HiveEditor*在網頁瀏覽器。 您必須登入 hello，請參閱此主控台，因此您需要以下 Hadoop 叢集認證。
 
 ### <a name="ps"></a> 3.利用 Azure PowerShell 命令提交 Hive 查詢
-您也可以使用 PowerShell 提交 Hive 查詢。 如需指示，請參閱 [使用 PowerShell 提交 Hive 工作](../hdinsight/hdinsight-hadoop-use-hive-powershell.md)。
+您也可以使用 PowerShell toosubmit Hive 查詢。 如需指示，請參閱 [使用 PowerShell 提交 Hive 工作](../hdinsight/hdinsight-hadoop-use-hive-powershell.md)。
 
 ## <a name="create-tables"></a>建立 Hive 資料庫和資料表
-Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts/sample_hive_create_db_tbls_load_data_generic.hql)中共用，並且可從該處下載。
+hello Hive 查詢中共用 hello [GitHub 儲存機制](https://github.com/Azure/Azure-MachineLearning-DataScience/tree/master/Misc/DataScienceProcess/DataScienceScripts/sample_hive_create_db_tbls_load_data_generic.hql)而且可以從該處下載。
 
-以下是建立 Hive 資料表的 Hive 查詢。
+以下是建立的 Hive 資料表的 hello Hive 查詢。
 
     create database if not exists <database name>;
     CREATE EXTERNAL TABLE if not exists <database name>.<table name>
@@ -140,34 +140,34 @@ Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearn
     ROW FORMAT DELIMITED FIELDS TERMINATED BY '<field separator>' lines terminated by '<line separator>'
     STORED AS TEXTFILE LOCATION '<storage location>' TBLPROPERTIES("skip.header.line.count"="1");
 
-以下是您需要插入的欄位和其他設定的說明：
+以下是 hello 的描述，您需要在 tooplug hello 欄位以及其他組態：
 
-* **&#60;資料庫名稱>**：您要建立之資料庫的名稱。 如果您只想要使用預設資料庫，則可省略「create database...」  查詢。
-* **&#60;資料表名稱>**：您想要在指定資料庫內建立之資料表的名稱。 如果您想要使用預設資料庫，可透過 &#60;資料表名稱> 直接參考資料表，而不需要使用 &#60;資料庫名稱>。
-* **&#60;欄位分隔符號>**：上傳至 Hive 資料表的資料檔中分隔欄位的分隔符號。
-* **&#60;資料行分隔符號>**：用來分隔資料檔中各行的分隔符號。
-* **&#60;儲存體位置>**：用來儲存 Hive 資料表資料的 Azure 儲存體位置。 如果您未指定 LOCATION &#60;儲存體位置>，資料庫和資料表預設會儲存在 Hive 叢集之預設容器的 hive/warehouse/ 目錄中。 如果您想要指定儲存體位置，儲存體位置必須位於資料庫和資料表的預設容器內。 這個位置必須是叢集之預設容器的相對位置，其格式為 'wasb:///&#60;directory 1>/' 或 'wasb:///&#60;directory 1>/&#60;directory 2>/' 等。執行查詢之後，系統會在預設容器內建立相對目錄。
-* **TBLPROPERTIES("skip.header.line.count"="1")**：如果資料檔有標頭行，您就必須在 create table 查詢的**結尾**處新增這個屬性。 否則，載入的標頭行會做為資料表的記錄。 如果資料檔不含標頭行，則可在查詢中省略此設定。
+* **&#60; 資料庫名稱 >**: hello 的 toocreate hello 資料庫名稱。 如果您只想 toouse hello 預設資料庫，hello 查詢*建立資料庫...*可以省略。
+* **&#60; 資料表名稱 >**: hello 的 toocreate hello 指定資料庫中的 hello 資料表名稱。 如果您想 toouse hello 預設資料庫，可以透過直接參考 hello 資料表*&#60; 資料表名稱 >*而不 &#60; 資料庫名稱 >。
+* **&#60; 欄位的分隔符號 >**: hello 分隔符號分隔 hello 資料檔案 toobe 中的欄位，上傳 toohello Hive 資料表。
+* **&#60; 行分隔符號 >**: hello 分隔符號，用來分隔 hello 資料檔案中的行。
+* **&#60; 儲存體位置 >**: hello Azure 儲存體位置 toosave hello 資料的 Hive 資料表。 如果您未指定*位置 &#60; 儲存體位置 >*、 hello 資料庫和 hello 資料表會儲存在*hive/倉儲/*目錄中的 hello Hive 叢集預設 hello 預設容器。 如果您想 toospecify hello 儲存位置，hello 儲存位置有 toobe hello hello 資料庫和資料表的預設容器內。 這個位置已經 toobe 稱為 hello 格式中的 hello 叢集中的位置相對的 toohello 預設容器*'wasb: / / &#60; 目錄 1 > /'*或*' wasb: / / &#60; 目錄 1 > / &#60;目錄 2 > /'*等等。Hello 查詢執行之後，hello 相對目錄會建立 hello 預設容器內。
+* **TBLPROPERTIES("skip.header.line.count"="1")**: hello 資料檔案的標頭行，如果您有 tooadd 這個屬性**hello 結尾**的 hello*建立資料表*查詢。 否則，為記錄 toohello 資料表載入 hello 標頭行。 如果 hello 資料檔案沒有標頭行，此設定可省略 hello 查詢中。
 
-## <a name="load-data"></a>將資料載入至 Hive 資料表
-以下是將資料載入 Hive 資料表的 Hive 查詢。
+## <a name="load-data"></a>載入資料 tooHive 資料表
+以下是將資料載入的 Hive 資料表的 hello Hive 查詢。
 
-    LOAD DATA INPATH '<path to blob data>' INTO TABLE <database name>.<table name>;
+    LOAD DATA INPATH '<path tooblob data>' INTO TABLE <database name>.<table name>;
 
-* **&#60;Blob 資料路徑>**：如果要上傳至 Hive 資料表的 Blob 檔案是在 HDInsight Hadoop 叢集的預設容器中，則 &#60;Blob 資料路徑> 的格式應該是 'wasb:///&#60;此容器中的目錄>/&#60;Blob 檔案名稱>'。 Blob 檔案也可以位於 HDInsight Hadoop 叢集的其他容器中。 在此情況下， *&#60;blob 資料路徑>* 的格式應該是 *'wasb://&#60;container name>@&#60;storage account name>.blob.core.windows.net/&#60;blob file name>'*。
+* **&#60; 路徑 tooblob 資料 >**： 如果 hello blob 檔案上傳 toobe toohello Hive 資料表中的 hello HDInsight Hadoop 叢集中的 hello 預設容器，hello *（& s) #60; 路徑 tooblob 資料 >* hello 格式應該是*' wasb: / / &#60; 在此容器中的目錄 > / &#60; blob 檔案名稱 >'*。 hello blob 檔案，也可以在 hello HDInsight Hadoop 叢集中的其他容器中。 在此情況下， *&#60; 路徑 tooblob 資料 >* hello 格式應該是*' wasb: / / （& s) #60; 容器名稱 > @ （& s) #60; 儲存體帳戶名稱 >.blob.core.windows.net/ &#60; blob 檔案名稱 >'*.
 
   > [!NOTE]
-  > 上傳至 Hive 資料表的 Blob 資料必須位於 Hadoop 叢集儲存體帳戶的預設或其他容器中。 否則，「LOAD DATA」  查詢會失敗並提報它無法存取資料。
+  > hello blob 資料上傳 toobe tooHive 資料表有 toobe hello 預設或 hello hello Hadoop 叢集的儲存體帳戶的其他容器中。 否則，hello*將資料載入*抱怨無法存取 hello 資料的查詢失敗。
   >
   >
 
 ## <a name="partition-orc"></a>進階主題：資料分割資料表及使用 ORC 格式儲存 Hive 資料
-如果資料量很大，對於只需掃描資料表中數個資料分割的查詢而言，分割資料表就很有助益。 例如，依日期分割網站的記錄資料就很合理。
+Hello 資料很大，分割 hello 資料表是有幫助，只需要 tooscan hello 資料表的幾個資料分割的查詢。 比方說，它是網站的日期合理 toopartition hello 記錄資料。
 
-除了資料分割 Hive 資料表之外，對於使用最佳化單欄式資料列 (ORC) 格式來儲存 Hive 資料也很有幫助。 如需 ORC 格式的詳細資訊，請參閱<a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC#LanguageManualORC-ORCFiles" target="_blank">在 Hive 讀取、寫入及處理資料時使用 ORC 檔案提升效能</a>。
+在加法 toopartitioning Hive 資料表，也很有幫助 toostore hello Hive 資料 hello 最佳化的資料列單欄式 (ORC) 格式。 如需 ORC 格式的詳細資訊，請參閱<a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC#LanguageManualORC-ORCFiles" target="_blank">在 Hive 讀取、寫入及處理資料時使用 ORC 檔案提升效能</a>。
 
 ### <a name="partitioned-table"></a>資料分割資料表
-以下是建立資料分割資料表和並將資料載入其中的 Hive 查詢。
+以下是建立資料分割的資料表和資料載入其中的 hello Hive 查詢。
 
     CREATE EXTERNAL TABLE IF NOT EXISTS <database name>.<table name>
     (field1 string,
@@ -176,10 +176,10 @@ Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearn
     )
     PARTITIONED BY (<partitionfieldname> vartype) ROW FORMAT DELIMITED FIELDS TERMINATED BY '<field separator>'
          lines terminated by '<line separator>' TBLPROPERTIES("skip.header.line.count"="1");
-    LOAD DATA INPATH '<path to the source file>' INTO TABLE <database name>.<partitioned table name>
+    LOAD DATA INPATH '<path toohello source file>' INTO TABLE <database name>.<partitioned table name>
         PARTITION (<partitionfieldname>=<partitionfieldvalue>);
 
-查詢資料分割資料表時，建議在** 子句的**開頭`where`新增資料分割條件，這樣就能大幅提升搜尋效率。
+查詢時資料分割的資料表，建議在 hello tooadd hello 分割區條件**開頭**的 hello`where`子句，因為這樣可改善 hello 的大幅搜尋的效率。
 
     select
         field1, field2, ..., fieldN
@@ -187,9 +187,9 @@ Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearn
     where <partitionfieldname>=<partitionfieldvalue> and ...;
 
 ### <a name="orc"></a>使用 ORC 格式儲存 Hive 資料
-您無法將資料從 Blob 儲存體直接載入以 ORC 格式儲存的 Hive 資料表。 以下是您為了將資料從 Azure Blob 載入到以 ORC 格式儲存的 Hive 資料表所需採取的步驟。
+您無法直接將資料載入從 blob 儲存體以 hello ORC 格式儲存的 Hive 資料表。 以下是 hello 步驟需要 tootake tooload 資料從 Azure 的 hello blob tooHive ORC 格式儲存的資料表。
 
-建立外部資料表 **STORED AS TEXTFILE** ，並將資料從 Blob 儲存體載入該資料表。
+建立外部資料表**儲存成文字檔**並從 blob 儲存體 toohello 資料表載入資料。
 
         CREATE EXTERNAL TABLE IF NOT EXISTS <database name>.<external textfile table name>
         (
@@ -202,9 +202,9 @@ Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearn
             lines terminated by '<line separator>' STORED AS TEXTFILE
             LOCATION 'wasb:///<directory in Azure blob>' TBLPROPERTIES("skip.header.line.count"="1");
 
-        LOAD DATA INPATH '<path to the source file>' INTO TABLE <database name>.<table name>;
+        LOAD DATA INPATH '<path toohello source file>' INTO TABLE <database name>.<table name>;
 
-建立和步驟 1 中建立的外部資料表具備相同結構描述及相同欄位分隔符號的內部資料表，並使用 ORC 格式儲存 Hive 資料。
+建立內部資料表以 hello 相同結構描述以 hello 相同欄位分隔符號，並將儲存的步驟 1 中的 hello 外部資料表 hello hello ORC 格式的登錄區資料。
 
         CREATE TABLE IF NOT EXISTS <database name>.<ORC table name>
         (
@@ -215,13 +215,13 @@ Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearn
         )
         ROW FORMAT DELIMITED FIELDS TERMINATED BY '<field separator>' STORED AS ORC;
 
-從步驟 1 中的外部資料表選取資料，並插入 ORC 資料表
+在步驟 1 中的 hello 外部資料表選取資料和插入 hello ORC 資料表
 
         INSERT OVERWRITE TABLE <database name>.<ORC table name>
             SELECT * FROM <database name>.<external textfile table name>;
 
 > [!NOTE]
-> 如果 TEXTFILE 資料表 &#60;資料庫名稱>.&#60;外部文字檔資料表名稱> 具有資料分割，則在步驟 3 中，`SELECT * FROM <database name>.<external textfile table name>` 命令會選取資料分割變數做為所傳回資料集中的欄位。 將它插入 &#60;資料庫名稱>.&#60;ORC 資料表名稱> 會失敗，因為 &#60;資料庫名稱>.&#60;ORC 資料表名稱> 沒有資料分割參數可做為資料表結構描述中的欄位。 在此情況下，您需要明確選取要插入 &#60;資料庫名稱>.&#60;ORC 資料表名稱> 的欄位，如下所示：
+> 如果 hello 文字檔資料表*&#60; 資料庫名稱 >。 （& s) #60; 外部文字檔資料表名稱 >*有資料分割，在步驟 3 中 hello`SELECT * FROM <database name>.<external textfile table name>`選取 hello 資料分割的變數，在 hello 欄位傳回的資料集的命令。 插入 hello *（& s) #60; 資料庫名稱 >。 （& s) #60; ORC 資料表名稱 >*失敗後*（& s) #60; 資料庫名稱 >。 （& s) #60; ORC 資料表名稱 >*沒有 hello 分割變數hello 資料表結構描述中的欄位。 在此情況下，您需要插入太 toospecifically 選取 hello 欄位 toobe*&#60; 資料庫名稱 >。 &#60; ORC 資料表名稱 >* ，如下所示：
 >
 >
 
@@ -230,8 +230,8 @@ Hive 查詢會在 [GitHub 存放庫](https://github.com/Azure/Azure-MachineLearn
            FROM <database name>.<external textfile table name>
            WHERE <partition variable>=<partition value>;
 
-將所有資料插入 &#60;資料庫名稱>.&#60;ORC 資料表名稱> 之後，當您使用下列查詢時，即可安全捨棄 &#60;外部文字檔資料表名稱>：
+很安全 toodrop hello *&#60; 外部文字檔資料表名稱 >*時使用下列查詢，所有的資料之後 hello 已插入至*（& s) #60; 資料庫名稱 >。 （& s) #60; ORC 資料表名稱 >*:
 
         DROP TABLE IF EXISTS <database name>.<external textfile table name>;
 
-依照此程序執行之後，您應該會有含 ORC 格式之資料的資料表可供使用。  
+完成此程序之後，您應該有資料表 hello ORC 格式準備 toouse 中的資料。  

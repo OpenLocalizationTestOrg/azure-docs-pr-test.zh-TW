@@ -1,6 +1,6 @@
 ---
-title: "使用 .NET 的 Azure 儲存體範例 | Microsoft Docs"
-description: "檢視、下載及執行 Azure 儲存體的範例程式碼和應用程式。 探索使用 .NET 儲存體用戶端程式庫之 Blob、佇列、資料表和檔案的入門範例。"
+title: "aaaAzure 使用適用於.NET 的儲存體範例 |Microsoft 文件"
+description: "檢視、下載及執行 Azure 儲存體的範例程式碼和應用程式。 探索使用者入門範例 blob、 佇列、 表格和檔案，使用 hello.NET 儲存體用戶端程式庫。"
 services: storage
 documentationcenter: na
 author: seguler
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: storage
 ms.date: 01/12/2017
 ms.author: seguler
-ms.openlocfilehash: d2b6b3d9483f230ad25ae47255a4f28c1a67e064
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 9a7055645b0f0658b850f024b8b19ab19840330e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-storage-samples-using-net"></a>使用 .NET 的 Azure 儲存體範例
 
 ## <a name="net-sample-index"></a>.NET 範例索引
 
-下表提供我們的範例儲存機制和每個範例所涵蓋案例的概觀。 按一下連結即可檢視 GitHub 中對應的範例程式碼。
+hello 表概略說明我們的範例儲存機制和 hello 案例涵蓋的每個範例。 按一下 hello 連結 tooview hello 對應範例程式碼在 GitHub 中。
 
 <table style="font-size:90%"><thead><tr><th style="font-size:110%">端點</th><th style="font-size:110%">案例</th><th style="font-size:110%">範例程式碼</th></tr></thead><tbody> 
 <tr> 
@@ -197,13 +197,13 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="azure-code-samples-library"></a>Azure 程式碼範例程式庫
 
-若要檢視完整的範例程式庫，請移至 [Azure 程式碼範例](https://azure.microsoft.com/resources/samples/?service=storage)程式庫，其中包含您可以下載並在本機執行的「Azure 儲存體」範例。 程式碼範例程式庫會提供 .zip 格式的範例程式碼。 或者，您可以瀏覽並複製每個範例的 GitHub 儲存機制。
+tooview hello 完整的範例程式庫，請移 toohello [Azure 程式碼範例](https://azure.microsoft.com/resources/samples/?service=storage)程式庫，包括 Azure 儲存體，您可以下載並在本機執行的範例。 hello 程式碼範例庫提供以.zip 格式的範例程式碼。 或者，您可以瀏覽，然後複製每個範例 hello GitHub 儲存機制。
 
 [!INCLUDE [storage-dotnet-samples-include](../../includes/storage-dotnet-samples-include.md)]
 
 ## <a name="getting-started-guides"></a>入門指南
 
-如果您要尋找有關如何安裝和開始使用「Azure 儲存體用戶端程式庫」的指示，請查看下列指南。
+請參閱下列指南，如果您要尋找的指示 hello tooinstall 並開始使用 hello Azure 儲存體用戶端程式庫。
 
 * [Getting Started with Azure Blob Service in .NET (開始使用 .NET 中的 Azure Blob 服務)](storage-dotnet-how-to-use-blobs.md)
 * [Getting Started with Azure Queue Service in .NET (開始使用 .NET 中的 Azure 佇列服務)](storage-dotnet-how-to-use-queues.md)

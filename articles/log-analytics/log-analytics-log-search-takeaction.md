@@ -1,6 +1,6 @@
 ---
-title: "Log Analytics 中由使用者初始化的 Azure 自動化 Runbook 動作 | Microsoft Docs"
-description: "本文說明如何視需要從 Log Analytics 搜尋結果執行自動化 Runbook。"
+title: "aaaUser 起始 Azure 自動化 Runbook 中的動作記錄分析 |Microsoft 文件"
+description: "本文說明如何 toorun 自動化 runbook 的記錄分析搜尋結果視。"
 services: log-analytics
 documentationcenter: 
 author: mgoedtel
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/04/2017
 ms.author: magoedte
-ms.openlocfilehash: ff938697add98f3d21b4971175432335ee2e39ba
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 53c25431572babd5fd54bf964e4683077e2a4c2d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="take-action-with-an-automation-runbook-from-a-log-analytics-log-search-result"></a>從 Log Analytics 記錄搜尋結果利用自動化 Runbook 採取動作
 
-從 Azure Log Analytics 中的記錄搜尋結果，您現在可以選取 [採取動作] 執行自動化 Runbook。  Runbook 可用來修復問題或採取其他動作，例如收集疑難排解資訊、傳送電子郵件，或建立服務要求。 
+從 Azure Log Analytics 中的記錄搜尋結果，您現在可以選取**採取的動作**toorun 自動化 runbook。  hello runbook 可用 tooremediate hello 問題或執行某些其他動作，例如收集疑難排解資訊、 傳送電子郵件，或建立服務要求。 
 
 ## <a name="components-and-features-used"></a>使用的元件和功能
 * [Azure 自動化帳戶](../automation/automation-offering-get-started.md)
 * [Log Analytics 工作區](../log-analytics/log-analytics-overview.md)
 
-## <a name="to-initiate-runbook-from-log-search"></a>從記錄搜尋初始化 Runbook
+## <a name="tooinitiate-runbook-from-log-search"></a>從記錄檔搜尋 tooinitiate runbook
 
-若要對事件採取動作，並從記錄搜尋結果初始化 Runbook，首先請建立記錄搜尋，然後就可以從結果中視需要叫用 Runbook。  您可以利用 Azure 或 [OMS 入口網站](../log-analytics/log-analytics-log-searches.md)中的記錄搜尋功能達到此目的。  在此範例中，我們會透過這項功能的基本示範，從 Azure 入口網站執行記錄搜尋。
+您開始建立記錄檔搜尋 tootake 事件和啟動 runbook，以從您的記錄搜尋結果的動作，，並從 hello 結果叫用 runbook 隨。  這可以從 hello Azure 中的 hello 記錄搜尋功能來達成或[OMS 入口網站](../log-analytics/log-analytics-log-searches.md)。  在此範例中，我們會從 hello 與基本示範這項功能的 Azure 入口網站執行記錄搜尋。
 
-1. 在 Azure 入口網站的 [中樞] 功能表上按一下 [更多服務]，然後選取 [Log Analytics]。  
-2. 在 [Log Analytics] 記錄搜尋上，選取您的 Log Analytics 工作區，然後在工作區刀鋒視窗上選取 [記錄搜尋]。  
-3. 在 [記錄搜尋] 刀鋒視窗中，執行記錄搜尋。  
-4. 從記錄搜尋結果中，按一下其中一個欄位左邊的省略符號，然後從快顯視窗中，選取 [對...採取動作]。<br><br> ![從搜尋結果中選取採取動作](./media/log-analytics-log-search-takeaction/log-search-takeaction-menuoption.png) 
-5. 從 [採取動作] 刀鋒視窗中，選取 [執行 Runbook]，然後在 [執行 Runbook] 刀鋒視窗中，您可以選取要執行的 Runbook。  您可以在連結至記錄 Log Analytics 工作區的自動化帳戶中選取任何 Runbook。  請注意：
+1. 在 hello Azure 入口網站，hello 中樞功能表上按一下 **更多服務**選取**記錄分析**。  
+2. 在 hello 記錄分析刀鋒視窗中，選取您的記錄分析工作區，hello 工作區刀鋒視窗上選取**記錄搜尋**。  
+3. Hello 記錄搜尋 刀鋒視窗中，執行記錄搜尋。  
+4. 從 hello 記錄搜尋結果中，按一下 hello 橢圓形 toohello 左邊的 hello 欄位，並從 hello 快顯視窗，選取一個**採取的動作**。<br><br> ![從搜尋結果中選取採取動作](./media/log-analytics-log-search-takeaction/log-search-takeaction-menuoption.png) 
+5. 從 hello 採取動作刀鋒視窗中，選取**執行 runbook**，在 hello**執行 runbook**刀鋒視窗，您可以選取 runbook toorun。  您可以選取任何 runbook 中 hello 是連結的 toohello 記錄分析工作區的自動化帳戶。  請注意 hello 下列：
 
     * Runbook 是依標籤來組織。
-    * 從搜尋結果的欄位中，可直接選取 Runbook 輸入參數值。  出現的下拉式清單會顯示結果中所有可供選取的欄位。  
-    * 您選擇執行 Runbook 的地方，可以是您在有問題的電腦上已安裝的[混合式 Runbook 背景工作角色](../automation/automation-hybrid-runbook-worker.md)，前提是您有對應的混合式 Runbook 背景工作群組，而且這台電腦是唯一成員。  如果混合式背景工作群組的名稱符合記錄搜尋結果中的電腦名稱，則會自動選取該群組。    
+    * Runbook 輸入的參數值可以直接從 hello 搜尋結果的 hello 欄位中選取。  顯示所有 hello 可用的欄位從 hello 結果 tooselect 即會出現下拉式清單。  
+    * 您也可以選擇 toorun hello runbook 上[混合式 runbook 背景工作](../automation/automation-hybrid-runbook-worker.md)您已安裝在具有 hello 問題，如果您有對應的混合式 Runbook 背景工作群組只包含該機器為成員的 hello 電腦上。  如果 hello hello Hybrid Worker 群組名稱符合 hello hello 記錄搜尋結果中的 hello 電腦名稱，然後會自動選取 hello 群組。    
 
-6. 按一下 [執行] 之後，Runbook 作業刀鋒視窗會開啟，讓您檢閱作業的狀態。   
+6. 按一下 之後**執行**，hello runbook 作業刀鋒視窗會開啟 tooallow 您 tooreview hello hello 工作狀態。   
 
-如果您選取的 Runbook 已設定為[從 Log Analytics 警示呼叫](../automation/automation-invoke-runbook-from-omsla-alert.md)，它會有一個 **Object** 類型的輸入參數，稱為 **WebhookData**。  如果是必要的輸入參數，您需要將搜尋結果傳遞給 Runbook，它才能將 JSON 格式的字串轉換成物件類型，讓您篩選要在 Runbook 活動中參考的特定項目。  作法是從下拉式清單中選取 [搜尋結果 (Object)]。<br><br> ![選取 Webhook 資料物件給 Runbook 參數](media/log-analytics-log-search-takeaction/select-runbook-and-properties.png)   
+如果您選取的 runbook 時設定的 toobe[記錄分析警示從呼叫](../automation/automation-invoke-runbook-from-omsla-alert.md)，它有輸入的參數呼叫**WebhookData**也就是**物件**型別。  如果 hello 輸入的參數是必要的因此它可以將 hello JSON 格式化字串轉換成物件類型可讓您將 runbook 活動中參照的特定項目上的 toofilter 需要 toopass hello 搜尋結果 toohello runbook。  您可以選取**搜尋結果 （物件）** hello 下拉式清單中。<br><br> ![選取 Webhook 資料物件給 Runbook 參數](media/log-analytics-log-search-takeaction/select-runbook-and-properties.png)   
     
 ## <a name="next-steps"></a>後續步驟
 
-* 檢閱 [Log Analytics 記錄檔搜尋參考資料](log-analytics-search-reference.md) ，以檢視 Log Analytics 中提供的所有搜尋欄位和 Facet。
-* 若要了解如何自動叫用自動化 Runbook，請檢閱[從 OMS Log Analytics 警示呼叫 Azure 自動化 Runbook](../automation/automation-invoke-runbook-from-omsla-alert.md)。  
+* 檢閱 hello[記錄分析記錄搜尋參考](log-analytics-search-reference.md)tooview hello 的所有搜尋欄位和 facet 用於記錄分析。
+* toolearn tooinvoke 自動化 runbook 自動檢閱[呼叫 Azure 自動化 runbook 從 OMS 記錄分析警示](../automation/automation-invoke-runbook-from-omsla-alert.md)。  

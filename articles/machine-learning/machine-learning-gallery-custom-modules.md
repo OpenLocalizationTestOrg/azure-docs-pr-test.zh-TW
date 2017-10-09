@@ -1,5 +1,5 @@
 ---
-title: "Cortana Intelligence Gallery 自訂模組 | Microsoft Docs"
+title: "aaaCortana 智慧組件庫中的自訂模組 |Microsoft 文件"
 description: "探索 Cortana Intelligence Gallery 中的自訂機器學習服務模組。"
 services: machine-learning
 documentationcenter: 
@@ -14,84 +14,84 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/14/2017
 ms.author: roopalik;garye
-ms.openlocfilehash: 56c308643ad6d20170174725f76f6ddbc76b3e22
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e2a2d39935e6d367eb192de723fb82318d04e2be
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="discover-custom-machine-learning-modules-in-cortana-intelligence-gallery"></a>探索 Cortana Intelligence Gallery 中的自訂機器學習服務模組
 [!INCLUDE [machine-learning-gallery-item-selector](../../includes/machine-learning-gallery-item-selector.md)]
 
 ## <a name="custom-modules-for-machine-learning-studio"></a>Machine Learning studio 的自訂模組
-Cortana Intelligence Gallery 提供數個[自訂模組](https://gallery.cortanaintelligence.com/customModules)，可擴充 Azure Machine Learning Studio 的功能。 您可以匯入這些模組用於您的實驗，以便開發更進階的預測性分析解決方案。
+Cortana 智慧組件庫提供數個[自訂模組](https://gallery.cortanaintelligence.com/customModules)，擴充 hello Azure Machine Learning Studio 功能。 因此您可以開發更進階的預測分析解決方案，您可以將 hello 模組 toouse 匯入您實驗中。
 
-目前，Gallery 提供*時間序列分析**關聯規則**叢集演算法*(k-means 除外) 和*視覺效果*，以及其他的主力公用程式模組。
+目前，hello 組件庫會提供模組上*時間序列分析*，*關聯規則*，*叢集演算法*（除了 k-means) 和*視覺效果*，和其他 workhorse 公用程式的模組。
 
 
 ## <a name="discover"></a>探索
-若要瀏覽 [Gallery 中的](http://gallery.cortanaintelligence.com)自訂模組，請在 [更多] 下方選取 [自訂模組]。
+toobrowse 自訂模組[hello 組件庫中](http://gallery.cortanaintelligence.com)下**詳細**，選取**自訂模組**。
 
-![選取 Gallery 首頁上的自訂模組](media/machine-learning-gallery-custom-modules/select-custom-modules-in-gallery.png)
+![Hello 組件庫主頁面上選取 自訂模組](media/machine-learning-gallery-custom-modules/select-custom-modules-in-gallery.png)
 
-**[自訂模組](https://gallery.cortanaintelligence.com/customModules)**頁面會顯示最近新增及熱門的模組清單。 若要檢視所有的自訂模組，請選取 [查看全部] 按鈕。 若要搜尋特定的自訂模組，請選取 [查看全部]，然後選取篩選準則。 您也可以在資源庫頁面頂端的 [搜尋] 方塊中輸入搜尋字詞。
+hello **[自訂模組](https://gallery.cortanaintelligence.com/customModules)**頁面會顯示最近新增且受歡迎的模組清單。 tooview 所有的自訂模組選取 hello**查看所有** 按鈕。 選取特定的自訂模組的 toosearch**查看所有**，，然後選取篩選準則。 您也可以搜尋詞彙在輸入 hello**搜尋**hello hello 圖庫頁頂端的方塊。
 
-![選取 [查看全部] 可瀏覽所有的自訂模組](media/machine-learning-gallery-custom-modules/click-see-all-for-all-custom-modules.png)
+![所有的自訂模組選取 「 查看所有"toobrowse](media/machine-learning-gallery-custom-modules/click-see-all-for-all-custom-modules.png)
 
 ### <a name="understand"></a>了解
 
-若要了解已發佈的自訂模組如何運作，請選取自訂模組開啟模組詳細資料頁面。 詳細資料頁面可提供一致且資訊豐富的學習經驗。 例如，詳細資料頁面會反白顯示模組目的，並列出預期的輸入、輸出和參數。 詳細資料頁面也提供基礎原始程式碼的連結，讓您可以檢查和自訂程式碼。
+已發行的自訂模組的運作方式，toounderstand 選取 hello 自訂模組 tooopen hello 模組詳細資料頁面。 hello 詳細資料 頁面會提供一致且有用的學習經驗。 例如，hello 詳細資料 頁面會反白顯示 hello 目的 hello 模組，並列出預期的輸入、 輸出和參數。 hello 詳細資料頁面中也有連結 toohello 基礎來源程式碼，您可以檢查和自訂。
 
 ### <a name="comment-and-share"></a>註解和共用
-在自訂模組詳細資料頁面上的 [註解] 區段中，您可以留言、提供意見反應，或詢問有關模組的問題。 您甚至可以在 Twitter 或 LinkedIn 上與朋友或同事分享模組。 您也可以用電子郵件寄出模組詳細資料頁面連結，以邀請其他使用者檢視該頁面。
+在自訂模組詳細資料頁面上，在 hello**註解** 區段中，您可以註解、 提供意見反應，或詢問 hello 模組有關的問題。 您甚至可以與朋友或同事 Twitter 或 LinkedIn 共用 hello 模組。 您也可以用電子郵件連結 toohello 模組詳細資料 頁面，tooinvite 其他使用者 tooview hello 頁面。
 
 ![與朋友分享此項目](media/machine-learning-gallery-how-to-use-contribute-publish/share-links.png)
 
 ![新增您自己的留言](media/machine-learning-gallery-how-to-use-contribute-publish/comments.png)
 
 ## <a name="import"></a>Import
-您可以從 Gallery 將任何自訂模組匯入到您自己的實驗中。
+您可以從 hello 圖庫 tooyour 自己實驗來匯入任何自訂的模組。
 
-Cortana Intelligence Gallery 提供兩種匯入模組複本的方式：
+Cortana 智慧組件庫會提供兩種方式 tooimport hello 模組的複本：
 
-* **從 Gallery**。 當您從 Gallery 匯入自訂模組，您也會獲得範例實驗，以舉例說明如何使用模組。
-* **從 Machine Learning Studio 內**。 您可以在使用 Machine Learning Studio 時，可以匯入任何自訂模組 (在此狀況下，您無法取得範例實驗)。
+* **從圖庫 hello**。 當您從 hello 資源庫匯入自訂的模組時，您也可以取得範例實驗，可讓您如何 toouse hello 模組的範例。
+* **從 Machine Learning Studio 內**。 Machine Learning Studio 中作業時，您可以匯入任何自訂的模組 （在此情況下，就無法取得 hello 範例實驗）。
 
-### <a name="from-the-gallery"></a>從 Gallery
+### <a name="from-hello-gallery"></a>從 hello 組件庫
 
-1. 在 Gallery 中開啟模組詳細資料頁面。 
+1. 在 hello 組件庫中，開啟 hello 模組詳細資料頁面。 
 2. 選取 [在 Studio 中開啟]。
    
-    ![從 Gallery 開啟自訂模組](media/machine-learning-gallery-custom-modules/open-custom-module-from-gallery.png)
+    ![從 hello 圖庫開啟自訂模組](media/machine-learning-gallery-custom-modules/open-custom-module-from-gallery.png)
    
-每個自訂模組都包含示範如何使用模組的範例實驗。 當您選取 [在 Studio 中開啟]時，範例實驗會在 Machine Learning Studio 工作區中開啟。 (如果您尚未登入 Studio，會提示您先使用您的 Microsoft 帳戶登入。)
+每個自訂的模組包含範例實驗示範如何 toouse hello 模組。 當您選取**在 Studio 中開啟**，開啟 Machine Learning Studio 工作區中的 hello 範例實驗。 (如果您沒有已登入 tooStudio，系統會提示您 toofirst 使用您的 Microsoft 帳戶登入。)
 
-除了範例實驗外，自訂模組也會複製到您的工作區。 此外，自訂模組會連同所有內建或自訂 Machine Learning Studio 模組一起放在模組選擇區中。 現在，您可以將自訂模組用於您自己的實驗中，就如同工作區中任何其他的模組。
+此外 toohello 範例實驗，hello 自訂模組是複製的 tooyour 工作區。 此外，自訂模組會連同所有內建或自訂 Machine Learning Studio 模組一起放在模組選擇區中。 現在，您可以將自訂模組用於您自己的實驗中，就如同工作區中任何其他的模組。
 
 ### <a name="from-within-machine-learning-studio"></a>從 Machine Learning Studio 內
 
 1. 在 Machine Learning Studio 中，選取 [新增]。
-2. 選取 [模組]。 您可以從 Gallery 模組清單中選擇，或使用 [搜尋] 方塊尋找特定模組。
-3. 將滑鼠指向模組，然後選取 [匯入模組]。 (若要取得模組的相關資訊，請選取 [View in Gallery (在 Gallery 中檢視)]。 這會將您帶往 Gallery 中的模組詳細資料頁面。)
+2. 選取 [模組]。 您可以選擇從資源庫模組的清單，或使用 hello 尋找模組**搜尋**方塊。
+3. 將滑鼠指向模組，然後選取 [匯入模組]。 (tooget 模組的相關資訊 hello，選取**組件庫中的檢視**。 這會帶您 toohello 模組詳細資料頁面 hello 組件庫中。）
    
     ![將自訂模組匯入 Machine Learning Studio](media/machine-learning-gallery-custom-modules/add-custom-module-in-studio.png)
 
-自訂模組會複製到您的工作區，並連同內建或自訂的 Machine Learning 模組一起放在模組選擇區中。 現在，您可以將自訂模組用於您自己的實驗中，就如同工作區中任何其他的模組。
+hello 自訂模組會複製的 tooyour 工作區，並放置於您與您的內建或自訂 Machine Learning Studio 模組的模組調色盤。 現在，您可以將自訂模組用於您自己的實驗中，就如同工作區中任何其他的模組。
 
 ## <a name="use"></a>使用
 
-無論您選擇哪一種方式匯入自訂模組，當您匯入模組時，模組會放在 Machine Learning Studio 的模組選擇區中。 從模組選擇區中，您可以將自訂模組用於工作區中的任何實驗中，就如同任何其他模組一般。
+不論哪一種方法，您會選擇的 tooimport 自訂模組，當您匯入 hello 模組，hello 模組會置於您在 Machine Learning Studio 中的模組調色盤。 從您模組的調色盤，您可以使用任何實驗中 hello 自訂模組中工作區中，就像任何其他模組。
 
-若要使用匯入的模組：
+toouse 匯入的模組：
 
 1. 建立實驗，或開啟現有的實驗。
-2. 若要展開工作區中的自訂模組清單，在模組選擇區中 [自訂]。 模組選擇區位在實驗畫布左側。
+2. tooexpand hello 清單中的 hello 模組調色盤中的工作區中的自訂模組選取**自訂**。 hello 模組調色盤是 toohello hello 實驗畫布左邊。
    
     ![Studio 調色盤中的自訂模組清單](media/machine-learning-gallery-custom-modules/custom-module-in-studio-palette.png)
-3. 選取您匯入的模組，並將它拖曳至您的實驗。
+3. 選取您要匯入，hello 模組，並將它拖曳 tooyour 實驗。
 
 
-**[移至資源庫](http://gallery.cortanaintelligence.com)**
+**[移 toohello 組件庫](http://gallery.cortanaintelligence.com)**
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 

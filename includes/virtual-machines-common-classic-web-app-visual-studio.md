@@ -1,41 +1,41 @@
 
 
-建立 Azure 的 Web 應用程式專案時，您可以在 Azure 中佈建虛擬機器。 您可以接著使用其他軟體來設定虛擬機器，或將虛擬機器用於診斷或偵測用途。
+建立 Azure 的 Web 應用程式專案時，您可以在 Azure 中佈建虛擬機器。 您可以再設定 hello 虛擬機器與其他軟體，或使用 hello 虛擬機器進行診斷或偵錯。
 
-若要在建立 Web 應用程式時建立虛擬機器，請依照下列步驟進行：
+toocreate 虛擬機器，當您建立 web 應用程式，請遵循下列步驟：
 
-1. 在 Visual Studio 中，按一下 [檔案]  >  [新增]  >  [專案]  >  [Web]，然後選擇 [ASP.NET Web 應用程式] \(在 [Visual C#] 或 [Visual Basic] 節點底下)。
-2. 在 [新增 ASP.NET 專案] 對話方塊中，選取您要的 Web 應用程式類型，然後在對話方塊的 Azure 區段 (位於右下角) 中，確定已勾選 [雲端中的主機] 核取方塊 (在某些安裝中，此核取方塊會標示為 [建立遠端資源])。
+1. 在 Visual Studio 中，按一下 **檔案** > **新增** > **專案** > **Web**，然後選擇 **ASP.NET Web 應用程式**(下 hello **Visual C#**或**Visual Basic**節點)。
+2. 在 hello**新增 ASP.NET 專案**對話方塊中，選取 hello 類型 web 應用程式，並在 hello Azure hello 對話方塊 （位於 hello 右下角） 區段，請確定該 hello **hello 雲端中的主機**選取核取方塊 (此核取方塊會標示為**建立遠端資源**某些安裝中)。
    
     ![][0]
-3. 針對此範例，請在 Microsoft Azure 底下的下拉式清單方塊中，選擇 [虛擬機器 (v1)]，然後按一下 [確定] 按鈕。
-4. 如果系統提示您登入，請登入 Azure。 [建立虛擬機器]  對話方塊隨即出現。
+3. 此範例中，在 Microsoft Azure 的 hello 下拉式清單中選擇 [**虛擬機器 (v1)**，然後按一下hello**確定**] 按鈕。
+4. 登入 tooAzure 如果系統提示您輸入。 hello**建立虛擬機器** 對話方塊隨即出現。
    
     ![][2]
-5. 在 [DNS 名稱]  方塊中，輸入虛擬機器的名稱。 DNS 名稱在 Azure 中必須是唯一的。 如果您輸入的名稱無法使用，便會出現紅色的驚嘆號。
-6. 在 [映像]  清單中，選擇您想要做為虛擬機器基礎的映像。 您可以選擇任何標準 Azure 虛擬機器映像，或是您已上傳到 Azure 的映像。
-7. 除非您計畫安裝其他的 Web 伺服器，否則請將 [Enable IIS and Web Deploy]  核取方塊保持為已勾選。 如果停用 [Web 部署]，您將無法從 Visual Studio 發佈。 您可以將 IIS 和 Web 部署加入任何已封裝的 Windows Server 映像，包括您專屬的自訂映像。
-8. 在 [大小]  清單中，選擇虛擬機器的大小。
-9. 指定此虛擬機器的登入認證。 請記下這些資訊，因為您在透過遠端桌面存取機器時將會需要這些資訊。
-10. 在 [位置]  清單中，選擇要裝載虛擬機器的區域。
-11. 按一下 [確定]  按鈕開始建立虛擬機器。 您可以在 [輸出]  視窗中查看作業的進度。
+5. 在 hello **DNS 名稱**方塊中，輸入 hello 虛擬機器的名稱。 hello DNS 名稱必須是在 Azure 中是唯一的。 如果您輸入的 hello 名稱無法使用，則會出現紅色驚嘆號。
+6. 在 hello**映像**清單中，選擇您想要讓 toobase hello 虛擬機器的 hello 映像。 您可以選擇任何 hello 標準 Azure 虛擬機器映像或您已上傳 tooAzure 的映像。
+7. 保留 hello**啟用 IIS 和 Web Deploy**選取除非您計劃 tooinstall 不同的網頁伺服器的核取方塊。 如果您停用 Web Deploy，將無法從 Visual Studio 無法 toopublish。 您可以新增 IIS 和 Web Deploy tooany hello 封裝 Windows Server 映像，包括您自己的自訂映像。
+8. 在 hello**大小**清單中，選擇 hello hello 虛擬機器大小。
+9. 指定 hello 登入此虛擬機器的認證。 請記下它們，因為您需要它們 tooaccess hello 透過遠端桌面的電腦。
+10. 在 hello**位置**清單中，選擇 hello 區域 toohost hello 虛擬機器。
+11. 按一下 hello**確定**按鈕 toostart 建立 hello 的虛擬機器。 您可以依照 hello 作業進度的 hello 在 hello**輸出**視窗。
     
     ![][3]
-12. 佈建虛擬機器時，系統會在解決方案的 **PublishScripts** 節點中建立發佈的指令碼。 發佈的指令碼會在 Azure 中執行與佈建虛擬機器。 [輸出]  視窗會顯示狀態。 指令碼會執行下列動作以設定虛擬機器。
+12. Hello 虛擬機器已佈建時，會建立已發行的指令碼中**PublishScripts**方案中的節點。 hello 已發行的指令碼執行和佈建虛擬機器在 Azure 中。 hello**輸出** 視窗會顯示 hello 狀態。 hello 指令碼會執行下列動作 tooset hello 虛擬機器的 hello:
     
-    * 如果虛擬機器不存在，則建立虛擬機器。
-    * 只有當指定的區域中沒有名稱開頭為 `devtest`的儲存體帳戶存在時，才會建立此名稱的儲存體帳戶。
-    * 為虛擬機器建立作為容器的雲端服務，並為 Web 應用程式建立 Web 角色。
-    * 在虛擬機器上設定 Web 部署。
-    * 在虛擬機器上設定 IIS 和 ASP.NET。
+    * 如果不存在，請建立 hello 虛擬機器。
+    * 建立儲存體帳戶名稱的開頭與`devtest`，但前提是已經沒有儲存體帳戶 hello 指定區域中。
+    * 建立雲端服務，為容器的 hello 虛擬機器，並建立 hello web 應用程式的 web 角色。
+    * Hello 虛擬機器上，會設定 Web Deploy。
+    * 設定 IIS 和 ASP.NET hello 虛擬機器上。
     
     ![][4]
-13. (選擇性) 您可以連線到新的虛擬機器。 在**伺服器總管**中，展開**虛擬機器**節點，選擇您所建立的虛擬機器節點，並在其捷徑功能表上，選擇 [使用遠端桌面連線]。 或者，您可以在 [Cloud Explorer] 中的捷徑功能表上選擇 [在入口網站中開啟]，並連線至虛擬機器。
+13. （選擇性）您可以連接 toohello 新的虛擬機器。 在**伺服器總管**，依序展開 hello**虛擬機器**節點，選擇 hello 節點 hello 您所建立的虛擬機器和其捷徑功能表上，選擇**使用遠端桌面連線**. 或者，在**Cloud Explorer**您可以選擇**在入口網站中開啟**hello 快顯功能表且 toohello 虛擬機器連線。
     
     ![][5]
 
 ## <a name="next-steps"></a>後續步驟
-如果您想要自訂您所建立的已發佈指令碼，請閱讀 [使用 Windows PowerShell 指令碼發佈至開發和測試環境](http://msdn.microsoft.com/library/dn642480.aspx)中更深入的資訊。
+如果您想 toocustomize hello 已發行的指令碼在建立時，讀取在深入資訊[使用 Windows PowerShell 指令碼 tooPublish tooDev 和測試環境](http://msdn.microsoft.com/library/dn642480.aspx)。
 
 [0]: ./media/virtual-machines-common-classic-web-app-visual-studio/CreateVM_NewProject.PNG
 [1]: ./media/dotnet-visual-studio-create-virtual-machine/CreateVM_SignIn.PNG

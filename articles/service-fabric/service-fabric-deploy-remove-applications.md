@@ -1,6 +1,6 @@
 ---
-title: "Azure Service Fabric 應用程式部署 | Microsoft Docs"
-description: "如何使用 PowerShell 部署和移除 Service Fabric 中的應用程式。"
+title: "aaaAzure Service Fabric 應用程式部署 |Microsoft 文件"
+description: "如何使用 PowerShell 的 Service Fabric toodeploy 及移除應用程式。"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/01/2017
 ms.author: ryanwi
-ms.openlocfilehash: edef23a8cdab7fd0bef54456f0caabb9db273bf9
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 3de9c6a937ee7b29bf9ec86d6e9e631487797507
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-and-remove-applications-using-powershell"></a>使用 PowerShell 部署與移除應用程式
 > [!div class="op_single_selector"]
@@ -30,43 +30,43 @@ ms.lasthandoff: 07/11/2017
 
 <br/>
 
-[封裝應用程式類型][10]後，即可將它部署至 Azure Service Fabric 叢集中。 部署涉及下列三個步驟：
+[封裝應用程式類型][10]後，即可將它部署至 Azure Service Fabric 叢集中。 部署包含下列三個步驟的 hello:
 
-1. 將應用程式封裝上傳至映像存放區
-2. 註冊應用程式類型
-3. 建立應用程式執行個體
+1. 上傳 hello 應用程式封裝 toohello 映像存放區
+2. 註冊 hello 應用程式類型
+3. 建立 hello 應用程式執行個體
 
-在應用程式中部署且個體開始在叢集中執行之後，您就可以刪除應用程式執行個體和其應用程式類型。 從叢集完全移除應用程式需要執行下列步驟︰
+部署應用程式的執行個體正在執行中 hello 叢集後，您可以刪除 hello 應用程式執行個體和其應用程式類型。 toocompletely 移除從 hello 叢集中的應用程式牽涉到 hello 下列步驟：
 
-1. 移除 (或刪除) 執行中的應用程式執行個體
-2. 取消註冊不再需要的應用程式類型
-3. 移除映像存放區中的應用程式封裝
+1. 移除 （或刪除） 執行應用程式執行個體的 hello
+2. 如果您不再需要取消註冊 hello 應用程式類型
+3. 移除 hello 映像存放區中的 hello 應用程式套件
 
-如果您在本機開發叢集上使用 [Visual Studio 部署和偵錯應用程式](service-fabric-publish-app-remote-cluster.md)，則先前所有步驟都會透過 PowerShell 指令碼自動處理。  在應用程式專案的 [指令碼] 資料夾中可找到這個指令碼。 本文提供該指令碼的背景資料，讓您可以在 Visual Studio 之外執行相同的作業。 
+如果您使用[用於部署和偵錯應用程式的 Visual Studio](service-fabric-publish-app-remote-cluster.md)在本機開發叢集上，所有 hello 前面的步驟都是透過 PowerShell 指令碼會自動處理。  此指令碼位於 hello*指令碼*hello 應用程式專案的資料夾。 這篇文章提供背景資訊，讓您可以執行，該指令碼內容正在進行 hello Visual Studio 之外，相同的作業。 
  
-## <a name="connect-to-the-cluster"></a>連接到叢集
-執行本文中的任何 PowerShell 命令之前，請一律透過使用 [Connect-ServiceFabricCluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) 連接至 Service Fabric 叢集的方式啟動。 若要連線至本機開發叢集，請執行下列命令︰
+## <a name="connect-toohello-cluster"></a>Toohello 叢集連線
+在本文中執行任何 PowerShell 命令之前，一律使用啟動[Connect-servicefabriccluster](/powershell/module/servicefabric/connect-servicefabriccluster?view=azureservicefabricps) tooconnect toohello Service Fabric 叢集。 tooconnect toohello 本機開發叢集，請執行下列 hello:
 
 ```powershell
 PS C:\>Connect-ServiceFabricCluster
 ```
 
-針對連線至遠端叢集，或連線至使用 Azure Active Directory、X509 憑證或 Windows Active Directory 保護的叢集，如需相關的範例，請參閱[連線至安全的叢集](service-fabric-connect-to-secure-cluster.md)。
+如需範例連接 tooa 遠端叢集或叢集使用 Azure Active Directory，X509 保護的憑證或 Windows Active Directory，請參閱[連接 tooa 安全叢集](service-fabric-connect-to-secure-cluster.md)。
 
-## <a name="upload-the-application-package"></a>上傳應用程式封裝
-上傳應用程式封裝會將它放在一個可由內部 Service Fabric 元件存取的位置。
-如果您想要在本機確認應用程式封裝，使用 [Test-ServiceFabricApplicationPackage](/powershell/module/servicefabric/test-servicefabricapplicationpackage?view=azureservicefabricps) cmdlet。
+## <a name="upload-hello-application-package"></a>上傳 hello 應用程式套件
+正在上傳的 hello 應用程式封裝會將它放在內部的 Service Fabric 元件所存取的位置。
+如果您想 tooverify hello 應用程式封裝在本機，使用 hello[測試 ServiceFabricApplicationPackage](/powershell/module/servicefabric/test-servicefabricapplicationpackage?view=azureservicefabricps) cmdlet。
 
-[Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) 命令會將應用程式封裝上傳至叢集映像存放區。
-**Get ImageStoreConnectionStringFromClusterManifest** Cmdlet 是 Service Fabric SDK PowerShell 模組的一部分，可用來取得映像存放區連接字串。  若要匯入 SDK 模組，請執行︰
+hello[複製 ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps)命令上傳 hello 應用程式封裝 toohello 叢集映像存放區。
+hello **Get ImageStoreConnectionStringFromClusterManifest** cmdlet，這是 hello Service Fabric SDK PowerShell 模組的一部分，是使用的 tooget hello 映像儲存連接字串。  tooimport hello SDK 模組，執行：
 
 ```powershell
 Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
 ```
 
-假設您在 Visual Studio 2015 中建置並封裝名為 *MyApplication* 的應用程式。 根據預設，ApplicationManifest.xml 中列出的應用程式類型名稱會是 "MyApplicationType"。  應用程式封裝 (其中包含必要的應用程式資訊清單、服務資訊清單和程式碼/組態/資料封裝) 位於 *C:\Users\<username\>\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug*。 
+假設您在 Visual Studio 2015 中建置並封裝名為 *MyApplication* 的應用程式。 根據預設，hello hello ApplicationManifest.xml 中列出的應用程式類型名稱是"MyApplicationType"。  hello 應用程式封裝，其中包含 hello 必要的應用程式資訊清單、 服務資訊清單，以及程式碼/config/資料的封裝，位於*C:\Users\<username\>\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug*。 
 
-下列命令會列出應用程式封裝的內容︰
+hello 下列命令會列出 hello hello 應用程式封裝內容：
 
 ```powershell
 PS C:\> $path = 'C:\Users\<user\>\Documents\Visual Studio 2015\Projects\MyApplication\MyApplication\pkg\Debug'
@@ -96,13 +96,13 @@ C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\MYAPPLICATION\MYAPPLICATION\
             Settings.xml
 ```
 
-如果應用程式封裝是大型且/或有許多檔案，您可以[壓縮](service-fabric-package-apps.md#compress-a-package)。 壓縮會減少檔案大小和數目。
-副作用是註冊和取消註冊應用程式類型會比較快。 目前上傳時間可能會變慢，特別是當您包含壓縮封裝的時間。 
+如果 hello 應用程式套件很大且/或有許多檔案，您可以[壓縮](service-fabric-package-apps.md#compress-a-package)。 hello 壓縮會減少 hello 大小和檔案的 hello 數目。
+hello 副作用就是該註冊和取消註冊 hello 應用程式類型為更快。 上傳時間可能較慢目前，特別是當您包含 hello 階段 toocompress hello 封裝。 
 
-若要壓縮封裝，請使用相同的 [Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) 命令。 壓縮可與上傳分開進行，方法為使用 `SkipCopy` 旗標，或是與上傳作業共同進行。 在壓縮封裝上套用壓縮為無作業。
-若要將已壓縮的封裝解壓縮，請使用相同的 [Copy-ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) 命令搭配 `UncompressPackage` 參數。
+toocompress 封裝時，使用 hello 相同[複製 ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps)命令。 壓縮可以個別從完成上傳、 使用 hello`SkipCopy`旗標，或與 hello 一起上傳作業。 在壓縮封裝上套用壓縮為無作業。
+toouncompress 壓縮封裝，使用 hello 相同[複製 ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps)命令與 hello`UncompressPackage`切換。
 
-下列 Cmdlet 會在不將封裝複製到映像存放區的情況下壓縮封裝。 該套件現在包含 `Code` 及 `Config` 封裝的 ZIP 壓縮檔案。 應用程式和服務資訊清單不會壓縮，因為有許多內部作業都需要它們 (例如特定驗證的封裝共用、應用程式類型名稱及版本擷取)。 對資訊清單進行壓縮，將會使這些作業效率不佳。
+hello 下列指令程式會壓縮 hello 封裝但不複製該項 toohello 映像存放區。 hello 封裝現在包含 hello 的 zip 的檔案`Code`和`Config`封裝。 不壓縮 hello 應用程式和 hello 服務資訊清單，因為它們所需的許多內部的作業 （例如共用、 應用程式類型名稱和版本擷取針對特定的驗證封裝）。 壓縮 hello 資訊清單會使這些操作效率不佳。
 
 ```
 PS C:\> Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $path -CompressPackage -SkipCopy
@@ -118,8 +118,8 @@ C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\MYAPPLICATION\MYAPPLICATION\
        ServiceManifest.xml
 ```
 
-針對大型應用程式封裝，壓縮會很花時間。 為了獲得最佳結果，請使用快速的 SSD 磁碟機。 壓縮時間和已壓縮封裝的大小也會根據封裝內容而有所不同。
-例如，以下是一些封裝的壓縮統計資料，其顯示初始和壓縮的封裝大小，以壓縮時間。
+針對大型應用程式封裝，hello 壓縮會使用時間。 為了獲得最佳結果，請使用快速的 SSD 磁碟機。 hello 壓縮時間和 hello hello 壓縮封裝大小也有所不同 hello 套件內容。
+例如，以下是某些封裝，以顯示 hello 初始和 hello 與 hello 壓縮時間的壓縮的套件大小的壓縮統計資料。
 
 |初始大小 (MB)|檔案計數|壓縮時間|壓縮的封裝大小 (MB)|
 |----------------:|---------:|---------------:|---------------------------:|
@@ -129,44 +129,44 @@ C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\MYAPPLICATION\MYAPPLICATION\
 |2048|1000|00:01:04.3775554|1231|
 |5012|100|00:02:45.2951288|3074|
 
-一旦壓縮封裝後，可以視需要將它上傳到一或多個 Service Fabric 叢集。 已壓縮及未壓縮套件的部署機制皆相同。 如果封裝已壓縮，它會以壓縮的形式儲存在叢集映像存放區中，並在應用程式執行之前於節點上解壓縮。
+一旦封裝壓縮檔，它可以上傳的 tooone 或視需要的多個 Service Fabric 叢集。 hello 部署機制是相同的壓縮和未壓縮的封裝。 如果 hello 封裝已壓縮，因此儲存 hello 叢集映像存放區中，而且執行 hello 應用程式之前，hello 節點上進行壓縮。
 
 
-下列範例會將套件上傳至映像存放區中的 "MyApplicationV1" 資料夾︰
+hello 下列範例會上傳 hello 封裝 toohello 映像存放區，名為"MyApplicationV1 」 的資料夾：
 
 ```powershell
 PS C:\> Copy-ServiceFabricApplicationPackage -ApplicationPackagePath $path -ApplicationPackagePathInImageStore MyApplicationV1 -ImageStoreConnectionString (Get-ImageStoreConnectionStringFromClusterManifest(Get-ServiceFabricClusterManifest)) -TimeoutSec 1800
 ```
 
-**Get ImageStoreConnectionStringFromClusterManifest** Cmdlet 是 Service Fabric SDK PowerShell 模組的一部分，可用來取得映像存放區連接字串。  若要匯入 SDK 模組，請執行︰
+hello **Get ImageStoreConnectionStringFromClusterManifest** cmdlet，這是 hello Service Fabric SDK PowerShell 模組的一部分，是使用的 tooget hello 映像儲存連接字串。  tooimport hello SDK 模組，執行：
 
 ```powershell
 Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
 ```
 
-如果您未指定 -ApplicationPackagePathInImageStore 參數，應用程式套件會複製到映像存放區中的 "Debug" 資料夾。
+如果您未指定 hello *-ApplicationPackagePathInImageStore*參數，hello 應用程式套件複製到 hello"Debug"資料夾中 hello 映像存放區中。
 
-上傳封裝的時間會根據多個因素而有所不同。 這些因素有些是封裝中的檔案數目、封裝大小和檔案大小。 在來源電腦及 Service Fabric 叢集之間的網路速度也會影響上傳時間。 [Copy-servicefabricapplicationpackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) 的預設逾時值為 30 分鐘。
-根據所述的因素，您可能必須增加逾時。 如果要在複製呼叫中壓縮封裝，您需要同時考慮壓縮時間。
+hello 花的時間 tooupload 封裝多個因素而有所不同。 這些因素有些 hello 中 hello 封裝、 hello 封裝大小，以及 hello 檔案大小的檔案數目。 hello hello 來源電腦與 hello Service Fabric 叢集之間的網路速度也會影響 hello 上傳時間。 hello 預設逾時[複製 ServiceFabricApplicationPackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps)為 30 分鐘。
+視 hello 所述的因素，您可能必須 tooincrease hello 逾時。 如果您壓縮 hello hello 複製呼叫中的封裝，您需要 tooalso 考慮 hello 壓縮時間。
 
-請參閱[了解映像存放區連接字串](service-fabric-image-store-connection-string.md)，以取得有關映像存放區和映像存放區連接字串的補充資訊。
+請參閱[hello 映像存放區連接字串了解](service-fabric-image-store-connection-string.md)如需關於 hello 映像存放區，以及映像存放區連接字串的補充資訊。
 
-## <a name="register-the-application-package"></a>註冊應用程式封裝
-註冊應用程式套件時，應用程式類型和應用程式資訊清單中宣告的版本可供使用。 系統會讀取在上一個步驟上傳的套件，請確認套件、處理套件內容，然後將處理過的套件複製至內部系統位置。  
+## <a name="register-hello-application-package"></a>註冊 hello 應用程式套件
+hello 應用程式類型和版本 hello 註冊 hello 應用程式封裝時變成可供使用的應用程式資訊清單中宣告。 hello 系統讀取 hello 封裝上傳 hello 上一個步驟中，會驗證 hello 封裝、 處理 hello 套件內容，以及複製 hello 處理封裝 tooan 內部系統位置。  
 
-執行 [Register-servicefabricapplicationtype](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) Cmdlet，將應用程式類型註冊在叢集，使它可供部署使用︰
+執行 hello[暫存器 ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) cmdlet tooregister hello hello 叢集中的應用程式類型，並使其可供部署：
 
 ```powershell
 PS C:\> Register-ServiceFabricApplicationType MyApplicationV1
 Register application type succeeded
 ```
 
-"MyApplicationV1" 是應用程式套件所在映像存放區中的資料夾。 名稱為 "MyApplicationType" 和版本為 "1.0.0" (兩者都在應用程式資訊清單中) 的應用程式類型，現在已註冊在叢集中。
+「 MyApplicationV1 」 是 hello hello 應用程式封裝所在位置的映像存放區中的 hello 資料夾。 hello 應用程式類型具有名稱"MyApplicationType"和"1.0.0 版 」 （兩者都在 hello 應用程式資訊清單中找到） 現在會 hello 叢集中註冊。
 
-[Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 命令只有在系統成功註冊應用程式封裝之後才會返回。 註冊所需時間取決於應用程式封裝的大小和內容。 **-TimeoutSec** 參數可在必要時用來提供較長的逾時 (預設逾時為 60 秒)。
+hello[暫存器 ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) hello 系統已成功註冊的 hello 應用程式封裝之後，才會傳回命令。 時間長度，註冊會取決於 hello 大小和 hello 應用程式套件的內容。 如有需要 hello **-TimeoutSec**參數可以是使用的 toosupply 較長逾時 （hello 預設逾時為 60 秒）。
 
-如果您有大型應用程式套件或如果您遇到逾時，使用 **-Async** 參數。 當叢集接受暫存器命令時會傳回此命令，並視需要繼續處理。
-[Get-ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) 命令會列出所有成功註冊的應用程式類型版本和其註冊狀態。 您可以使用此命令以判斷何時會完成註冊。
+如果您有大型應用程式套件，或者如果您遇到逾時，使用 hello **-Async**參數。 hello 叢集接受 hello 註冊命令，並視需要 hello 處理作業會繼續時，就會傳回 hello 命令。
+hello [Get ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps)命令列出所有已成功註冊應用程式類型版本及其註冊狀態。 您可以使用這個命令 toodetermine hello 註冊完成。
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationType
@@ -177,8 +177,8 @@ Status                 : Available
 DefaultParameters      : { "Stateless1_InstanceCount" = "-1" }
 ```
 
-## <a name="create-the-application"></a>建立應用程式
-您可以使用 [New-ServiceFabricApplication](/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps) Cmdlet，從任何已成功註冊的應用程式類型版本，將應用程式具現化。 每個應用程式名稱的開頭必須為 "fabric:" 配置，而且必須是每個應用程式執行個體的唯一名稱。 如果已在目標應用程式類型的應用程式資訊清單中定義預設服務，也會一併建立這些服務。
+## <a name="create-hello-application"></a>建立 hello 應用程式
+您可以從已成功註冊使用 hello 任何應用程式類型版本的應用程式具現化[新增 ServiceFabricApplication](/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps) cmdlet。 每個應用程式的 hello 名稱必須以 hello 開頭*"fabric:"*配置，而且必須是唯一的每個應用程式執行個體。 也會建立任何 hello hello 目標應用程式類型的應用程式資訊清單中定義的預設服務。
 
 ```powershell
 PS C:\> New-ServiceFabricApplication fabric:/MyApp MyApplicationType 1.0.0
@@ -190,7 +190,7 @@ ApplicationParameters  : {}
 ```
 多個應用程式執行個體可以針對任何指定的已註冊應用程式類型版本來建立。 每個應用程式執行個體將在隔離狀態下執行，包含本身的工作目錄和程序。
 
-若要查看哪些具名的應用程式和服務正在叢集中執行，請執行 [Get-servicefabricapplication](/powershell/servicefabric/vlatest/get-servicefabricapplication) 和 [Get-servicefabricservice](/powershell/module/servicefabric/get-servicefabricservice?view=azureservicefabricps) Cmdlet︰
+toosee 名為應用程式和服務正在執行 hello 的 hello 叢集中[Get ServiceFabricApplication](/powershell/servicefabric/vlatest/get-servicefabricapplication)和[Get ServiceFabricService](/powershell/module/servicefabric/get-servicefabricservice?view=azureservicefabricps) cmdlet:
 
 ```powershell
 PS C:\> Get-ServiceFabricApplication  
@@ -214,7 +214,7 @@ HealthState            : Ok
 ```
 
 ## <a name="remove-an-application"></a>移除應用程式
-當不再需要應用程式執行個體時，您可以使用 [Remove-ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps) Cmdlet，依名稱永久移除它。 [Remove-ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps) 也會自動移除屬於應用程式的所有服務，永久地移除所有服務狀態。 
+當不再需要應用程式執行個體時，您可以永久移除它的名稱使用 hello[移除 ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps) cmdlet。 [移除 ServiceFabricApplication](/powershell/module/servicefabric/remove-servicefabricapplication?view=azureservicefabricps)會自動移除屬於 toohello 應用程式以及，永久移除所有的服務狀態的所有服務。 
 
 > [!WARNING]
 > 此作業無法回復，且應用程式狀態無法復原。
@@ -231,9 +231,9 @@ PS C:\> Get-ServiceFabricApplication
 ```
 
 ## <a name="unregister-an-application-type"></a>取消註冊應用程式類型
-當不再需要應用程式類型的特定版本時，您應該使用 [Unregister-ServiceFabricApplicationType](/powershell/module/servicefabric/unregister-servicefabricapplicationtype?view=azureservicefabricps) Cmdlet 取消註冊該應用程式類型。 取消註冊未使用的應用程式類型會釋放映像存放區已使用的儲存空間。 只要沒有對應的應用程式針對應用程式類型進行具現化，且沒有擱置中的應用程式升級進行參考該類性，便可取消註冊該應用程式類型。
+當不再需要特定版本的應用程式類型時，您應該取消註冊 hello 應用程式類型使用 hello[取消註冊 ServiceFabricApplicationType](/powershell/module/servicefabric/unregister-servicefabricapplicationtype?view=azureservicefabricps) cmdlet。 取消登錄未使用的應用程式類型版本所使用儲存空間 hello 映像存放區。 只要沒有對應的應用程式針對應用程式類型進行具現化，且沒有擱置中的應用程式升級進行參考該類性，便可取消註冊該應用程式類型。
 
-執行 [Get-ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) Cmdlet，查看目前註冊在叢集中的應用程式類型：
+執行[Get ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) toosee hello 應用程式類型目前已登錄在 hello 叢集中：
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationType
@@ -244,14 +244,14 @@ Status                 : Available
 DefaultParameters      : { "Stateless1_InstanceCount" = "-1" }
 ```
 
-執行 [Unregister-servicefabricapplicationtype](/powershell/module/servicefabric/unregister-servicefabricapplicationtype?view=azureservicefabricps)，取消註冊特定應用程式類型︰
+執行[取消註冊 ServiceFabricApplicationType](/powershell/module/servicefabric/unregister-servicefabricapplicationtype?view=azureservicefabricps) toounregister 特定應用程式類型：
 
 ```powershell
 PS C:\> Unregister-ServiceFabricApplicationType MyApplicationType 1.0.0
 ```
 
-## <a name="remove-an-application-package-from-the-image-store"></a>從映像存放區移除應用程式封裝
-當不再需要應用程式封裝時，您可以從映像存放區刪除它，以釋放系統資源。
+## <a name="remove-an-application-package-from-hello-image-store"></a>移除 hello 映像存放區中的應用程式套件
+當不再需要的應用程式封裝時，您可以將它刪除 hello 映像存放區 toofree 系統資源。
 
 ```powershell
 PS C:\>Remove-ServiceFabricApplicationPackage -ApplicationPackagePathInImageStore MyApplicationV1 -ImageStoreConnectionString (Get-ImageStoreConnectionStringFromClusterManifest(Get-ServiceFabricClusterManifest))
@@ -259,19 +259,19 @@ PS C:\>Remove-ServiceFabricApplicationPackage -ApplicationPackagePathInImageStor
 
 ## <a name="troubleshooting"></a>疑難排解
 ### <a name="copy-servicefabricapplicationpackage-asks-for-an-imagestoreconnectionstring"></a>Copy-ServiceFabricApplicationPackage 要求 ImageStoreConnectionString
-Service Fabric SDK 環境應已正確設定預設值。 但若有需要，所有命令的 ImageStoreConnectionString都應符合 Service Fabric 叢集正在使用的值。 您可以在使用 [Get-ServiceFabricClusterManifest](/powershell/module/servicefabric/get-servicefabricclustermanifest?view=azureservicefabricps) 和 Get-ImageStoreConnectionStringFromClusterManifest 命令擷取的叢集資訊清單 ImageStoreConnectionString 中找到此值：
+hello Service Fabric SDK 環境應該已經有 hello 正確設定預設值。 但所有命令的 hello ImageStoreConnectionString 如有需要應符合 hello 值該 hello Service Fabric 叢集所使用。 您可以在 hello 叢集資訊清單中找到 hello ImageStoreConnectionString 使用 hello 擷取[Get ServiceFabricClusterManifest](/powershell/module/servicefabric/get-servicefabricclustermanifest?view=azureservicefabricps)和 Get ImageStoreConnectionStringFromClusterManifest 命令：
 
 ```powershell
 PS C:\> Get-ImageStoreConnectionStringFromClusterManifest(Get-ServiceFabricClusterManifest)
 ```
 
-**Get ImageStoreConnectionStringFromClusterManifest** Cmdlet 是 Service Fabric SDK PowerShell 模組的一部分，可用來取得映像存放區連接字串。  若要匯入 SDK 模組，請執行︰
+hello **Get ImageStoreConnectionStringFromClusterManifest** cmdlet，這是 hello Service Fabric SDK PowerShell 模組的一部分，是使用的 tooget hello 映像儲存連接字串。  tooimport hello SDK 模組，執行：
 
 ```powershell
 Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
 ```
 
-會在叢集資訊清單中找到 ImageStoreConnectionString：
+hello ImageStoreConnectionString hello 叢集資訊清單中找到：
 
 ```xml
 <ClusterManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="Server-Default-SingleNode" Version="1.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
@@ -285,22 +285,21 @@ Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\Se
     [...]
 ```
 
-請參閱[了解映像存放區連接字串](service-fabric-image-store-connection-string.md)，以取得有關映像存放區和映像存放區連接字串的補充資訊。
+請參閱[hello 映像存放區連接字串了解](service-fabric-image-store-connection-string.md)如需關於 hello 映像存放區，以及映像存放區連接字串的補充資訊。
 
 ### <a name="deploy-large-application-package"></a>部署大型應用程式封裝
 問題︰大型應用程式封裝 (GB 的順序) 的 [Copy-servicefabricapplicationpackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) 逾時。
 請嘗試︰
-- 使用`TimeoutSec`參數指定 [Copy-servicefabricapplicationpackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) 命令的較大逾時。 此逾時預設為 30 分鐘。
-- 檢查來源電腦與叢集之間的網路連線。 如果連線速度變慢，請考慮使用更佳網路連線的電腦。
-如果用戶端電腦與叢集在不同的區域中，請考慮使用與叢集接近或相同區域中的用戶端電腦。
-- 請檢查是否到達外部節流。 例如，當映像存放區設定為使用 Azure 儲存體時，上傳可能受到節流控制。
+- 使用`TimeoutSec`參數指定 [Copy-servicefabricapplicationpackage](/powershell/module/servicefabric/copy-servicefabricapplicationpackage?view=azureservicefabricps) 命令的較大逾時。 根據預設，hello 逾時為 30 分鐘的時間。
+- 請檢查您的來源電腦與叢集之間的 hello 網路連線。 如果 hello 連接相當緩慢，請考慮使用較佳的網路連線的機器。
+如果 hello 用戶端電腦 hello 叢集以外的另一個區域中，請考慮在接近或相同區域內的用戶端電腦使用為 hello 叢集。
+- 請檢查是否到達外部節流。 例如，設定的 toouse azure 儲存體 hello 映像存放區時，可能會進行節流處理上傳。
 
-問題︰上傳封裝順利完成，但 [Register-servicefabricapplicationtype](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 逾時。
-請嘗試︰
-- 複製到映像存放區之前[壓縮封裝](service-fabric-package-apps.md#compress-a-package)。
-壓縮會減少檔案的大小和數目，而後者則可減少資料傳輸量和 Service Fabric 必須執行的工作。 上傳作業可能會變慢 (尤其是如果您包含壓縮時間)，但註冊和取消註冊應用程式類型會比較快。
+問題︰上傳封裝順利完成，但 [Register-servicefabricapplicationtype](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 逾時。請嘗試︰
+- [壓縮 hello 封裝](service-fabric-package-apps.md#compress-a-package)複製 toohello 映像存放區之前。
+hello 壓縮會減少 hello 大小，必須執行 hello 檔案數目，而後者可減少流量的 hello 數量和使用該服務的網狀架構。 hello 上傳作業可能會變慢 （特別是如果您包含 hello 壓縮時間），但註冊和取消註冊 hello 應用程式類型時，速度加快。
 - 使用 `TimeoutSec` 參數指定 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的較大逾時。
-- 指定 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的 `Async` 參數。 當叢集接受命令時會傳回此命令，而且會繼續以非同步方式進行應用程式類型的註冊。 基於這個理由，在此情況下不需要指定較高的逾時。 [Get-ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) 命令會列出所有成功註冊的應用程式類型版本和其註冊狀態。 您可以使用此命令以判斷何時會完成註冊。
+- 指定 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的 `Async` 參數。 hello 叢集接受 hello 命令並 hello 應用程式類型的 hello 註冊會以非同步方式繼續時，就會傳回 hello 命令。 基於這個理由，沒有任何需要 toospecify 較高的逾時在此情況下。 hello [Get ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps)命令列出所有已成功註冊應用程式類型版本及其註冊狀態。 您可以使用這個命令 toodetermine hello 註冊完成。
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationType
@@ -314,10 +313,10 @@ DefaultParameters      : { "Stateless1_InstanceCount" = "-1" }
 ### <a name="deploy-application-package-with-many-files"></a>部署具有很多檔案的應用程式封裝
 問題︰具有很多檔案的應用程式封裝 (以千計的順序) [Register-servicefabricapplicationtype](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的逾時。
 請嘗試︰
-- 複製到映像存放區之前[壓縮封裝](service-fabric-package-apps.md#compress-a-package)。 壓縮會減少檔案的數目。
+- [壓縮 hello 封裝](service-fabric-package-apps.md#compress-a-package)複製 toohello 映像存放區之前。 hello 壓縮會減少檔案的 hello 數目。
 - 使用 `TimeoutSec` 參數指定 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的較大逾時。
-- 指定 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的 `Async` 參數。 當叢集接受命令時會傳回此命令，而且會繼續以非同步方式進行應用程式類型的註冊。
-基於這個理由，在此情況下不需要指定較高的逾時。 [Get-ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps) 命令會列出所有成功註冊的應用程式類型版本和其註冊狀態。 您可以使用此命令以判斷何時會完成註冊。
+- 指定 [Register-ServiceFabricApplicationType](/powershell/module/servicefabric/register-servicefabricapplicationtype?view=azureservicefabricps) 的 `Async` 參數。 hello 叢集接受 hello 命令並 hello 應用程式類型的 hello 註冊會以非同步方式繼續時，就會傳回 hello 命令。
+基於這個理由，沒有任何需要 toospecify 較高的逾時在此情況下。 hello [Get ServiceFabricApplicationType](/powershell/module/servicefabric/get-servicefabricapplicationtype?view=azureservicefabricps)命令列出所有已成功註冊應用程式類型版本及其註冊狀態。 您可以使用這個命令 toodetermine hello 註冊完成。
 
 ```powershell
 PS C:\> Get-ServiceFabricApplicationType
@@ -337,6 +336,6 @@ DefaultParameters      : { "Stateless1_InstanceCount" = "-1" }
 
 [在 Service Fabric 中模型化應用程式](service-fabric-application-model.md)
 
-<!--Link references--In actual articles, you only need a single period before the slash-->
+<!--Link references--In actual articles, you only need a single period before hello slash-->
 [10]: service-fabric-application-model.md
 [11]: service-fabric-application-upgrade.md

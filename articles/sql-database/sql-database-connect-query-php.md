@@ -1,6 +1,6 @@
 ---
-title: "使用 .PHP 查詢 Azure SQL Database | Microsoft Docs"
-description: "本主題說明如何使用 PHP 來建立連線到 Azure SQL Database 的程式，並使用 Transact-SQL 陳述式查詢。"
+title: "Azure SQL Database 的 aaaUse PHP tooquery |Microsoft 文件"
+description: "本主題說明如何 toouse PHP toocreate 連接 tooan Azure SQL Database 和查詢使用 TRANSACT-SQL 陳述式的程式。"
 services: sql-database
 documentationcenter: 
 author: CarlRabeler
@@ -15,51 +15,51 @@ ms.devlang: php
 ms.topic: hero-article
 ms.date: 08/08/2017
 ms.author: carlrab
-ms.openlocfilehash: 3a43472ad2be4a0fd6f7126f72433acd8b5f25fd
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5fc49dcc42ab07cc1bec554be39bdf08dbd6f75e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-php-to-query-an-azure-sql-database"></a>使用 PHP 查詢 Azure SQL 資料庫
+# <a name="use-php-tooquery-an-azure-sql-database"></a>使用 PHP tooquery Azure SQL database
 
-此快速入門教學課程示範如何使用 [PHP](http://php.net/manual/en/intro-whatis.php) 來建立程式以連線至 Azure SQL 資料庫，並使用 Transact-SQL 陳述式來查詢資料。
+本快速入門教學課程示範如何 toouse [PHP](http://php.net/manual/en/intro-whatis.php) toocreate 程式 tooconnect tooan Azure SQL 資料庫，將 TRANSACT-SQL 陳述式 tooquery 資料。
 
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本快速入門教學課程，請確定您具有下列項目︰
+toocomplete 此快速入門教學課程，請確定您擁有 hello 下列：
 
-- Azure SQL Database。 本快速入門使用其中一個快速入門建立的資源︰ 
+- Azure SQL Database。 本快速入門會使用 hello 資源建立在其中一個這些快速入門： 
 
    - [建立 DB - 入口網站](sql-database-get-started-portal.md)
    - [建立 DB - CLI](sql-database-get-started-cli.md)
    - [建立 DB - PowerShell](sql-database-get-started-powershell.md)
 
-- 在此快速入門教學課程中，您所使用電腦的公用 IP 位址[伺服器層級防火牆規則](sql-database-get-started-portal.md#create-a-server-level-firewall-rule)。
+- A[伺服器層級防火牆規則](sql-database-get-started-portal.md#create-a-server-level-firewall-rule)您使用此快速入門教學課程中的 hello 電腦 hello 公用 IP 位址。
 
 - 您已安裝適用於您作業系統的 PHP 和相關軟體。
 
-    - **MacOS**：安裝 Homebrew 和 PHP，安裝 ODBC 驅動程式和 SQLCMD，然後再安裝 PHP Driver for SQL Server。 請參閱[步驟 1.2、1.3 和 2.1](https://www.microsoft.com/en-us/sql-server/developer-get-started/php/mac/)。
-    - **Ubuntu**：安裝 PHP 和其他必要的套件，然後安裝 PHP Driver for SQL Server。 請參閱[步驟 1.2 和 2.1](https://www.microsoft.com/sql-server/developer-get-started/php/ubuntu/)。
-    - **Windows**：安裝 PHP for IIS Express 的最新版本、Microsoft Drivers for SQL Server in IIS Express 的最新版本、Chocolatey、ODBC 驅動程式，以及 SQLCMD。 請參閱[步驟 1.2 和 1.3](https://www.microsoft.com/sql-server/developer-get-started/php/windows/)。    
+    - **MacOS**： 安裝 Homebrew 和 PHP，依序安裝 hello ODBC 驅動程式和 SQLCMD 和 hello PHP Driver for SQL Server。 請參閱[步驟 1.2、1.3 和 2.1](https://www.microsoft.com/en-us/sql-server/developer-get-started/php/mac/)。
+    - **Ubuntu**： 安裝 PHP 和其他必要的封裝，然後再安裝 hello PHP Driver for SQL Server。 請參閱[步驟 1.2 和 2.1](https://www.microsoft.com/sql-server/developer-get-started/php/ubuntu/)。
+    - **Windows**： 安裝 hello 最新版本的 PHP 的 IIS Express，hello 最新版本的 IIS Express、 Chocolatey、 hello ODBC 驅動程式和 SQLCMD 中的 SQL Server 的 Microsoft 驅動程式。 請參閱[步驟 1.2 和 1.3](https://www.microsoft.com/sql-server/developer-get-started/php/windows/)。    
 
 ## <a name="sql-server-connection-information"></a>SQL Server 連線資訊
 
-取得連線到 Azure SQL Database 所需的連線資訊。 您在下一個程序中需要完整的伺服器名稱、資料庫名稱和登入資訊。
+收到 hello 連線所需的資訊 tooconnect toohello Azure SQL database。 您需要 hello 完整的伺服器名稱、 資料庫名稱，以及 hello 下一個程序中的登入資訊。
 
-1. 登入 [Azure 入口網站](https://portal.azure.com/)。
-2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
-3. 在您資料庫的 [概觀] 頁面上，檢閱如下圖所示的完整伺服器名稱。 您可以將滑鼠移至伺服器名稱上，以帶出 [按一下以複製] 選項。  
+1. 登入 toohello [Azure 入口網站](https://portal.azure.com/)。
+2. 選取**SQL 資料庫**從 hello 左側功能表中，按一下您的資料庫上 hello **SQL 資料庫**頁面。 
+3. 在 hello**概觀**頁面為您的資料庫檢閱 hello 完整伺服器名稱 hello 下列影像所示。 您可以將滑鼠停留在 hello 伺服器名稱 toobring 向上 hello**按一下 toocopy**選項。  
 
    ![server-name](./media/sql-database-connect-query-dotnet/server-name.png) 
 
-4. 如果您忘記伺服器登入資訊，請瀏覽至 [SQL Database 伺服器] 頁面來檢視伺服器系統管理員名稱，並視需要重設密碼。     
+4. 如果忘記您的伺服器登入資訊，請瀏覽 toohello SQL 資料庫伺服器頁面 tooview hello 伺服器管理員的名稱，如有需要，重設 hello 密碼。     
     
-## <a name="insert-code-to-query-sql-database"></a>插入程式碼以查詢 SQL 資料庫
+## <a name="insert-code-tooquery-sql-database"></a>插入程式碼 tooquery SQL 資料庫
 
 1. 在您慣用的文字編輯器中，建立新的檔案 **sqltest.php**。  
 
-2. 使用下列程式碼取代內容，並為您的伺服器、資料庫、使用者和密碼新增適當的值。
+2. 以下列程式碼並新增值 hello 適當伺服器、 資料庫、 使用者及密碼的 hello 取代 hello 內容。
 
    ```PHP
    <?php
@@ -69,7 +69,7 @@ ms.lasthandoff: 08/18/2017
        "Uid" => "your_username",
        "PWD" => "your_password"
    );
-   //Establishes the connection
+   //Establishes hello connection
    $conn = sqlsrv_connect($serverName, $connectionOptions);
    $tsql= "SELECT TOP 20 pc.Name as CategoryName, p.name as ProductName
            FROM [SalesLT].[ProductCategory] pc
@@ -86,15 +86,15 @@ ms.lasthandoff: 08/18/2017
    ?>
    ```
 
-## <a name="run-the-code"></a>執行程式碼
+## <a name="run-hello-code"></a>執行 hello 程式碼
 
-1. 在命令提示字元中，執行下列命令：
+1. 在 hello 命令提示字元中執行下列命令的 hello:
 
    ```php
    php sqltest.php
    ```
 
-2. 請確認前 20 個資料列已傳回，然後關閉應用程式視窗。
+2. 請確認 hello 前 20 個資料列會傳回，，然後關閉 hello 應用程式視窗。
 
 ## <a name="next-steps"></a>後續步驟
 - [設計您的第一個 Azure SQL Database](sql-database-design-first-database.md)

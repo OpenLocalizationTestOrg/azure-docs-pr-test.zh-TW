@@ -1,5 +1,5 @@
 ---
-title: "Azure Data Lake Store 與 Azure 儲存體 Blob 比較 | Microsoft Docs"
+title: "與 Azure 儲存體 Blob 的資料湖存放區比較 aaaAzure |Microsoft 文件"
 description: "Azure Data Lake Store 與 Azure 儲存體 Blob 比較"
 services: data-lake-store
 documentationcenter: 
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/29/2017
 ms.author: nitinme
-ms.openlocfilehash: 29f074f1ced5a3f4305d961a98f45e4a3b7792ef
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: a86553260853b4527992d54782ab1b4d7d20e27f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="comparing-azure-data-lake-store-and-azure-blob-storage"></a>比較 Azure Data Lake Store 和 Azure Blob 儲存體
-本文章中的表格摘要說明 Azure Data Lake Store 與 Azure Blob 儲存體之間的差異，以及巨量資料處理的一些重要層面。 Azure Blob 儲存體是一般用途的可調整物件存放區，針對各種不同的儲存體案例所設計。 Azure Data Lake Store 是超大規模儲存機制，已針對巨量資料分析的工作負載最佳化。
+本文章中的 hello 表格摘要說明 hello 差異 Azure 資料湖存放區與 Azure Blob 儲存體沿著巨量資料處理的一些重要層面。 Azure Blob 儲存體是一般用途的可調整物件存放區，針對各種不同的儲存體案例所設計。 Azure Data Lake Store 是超大規模儲存機制，已針對巨量資料分析的工作負載最佳化。
 
 |  | Azure Data Lake Store | Azure Blob 儲存體 |
 | --- | --- | --- |
 | 目的 |適用於巨量資料分析工作負載的最佳化儲存機制 |適用於各種不同儲存體案例的一般用途物件存放區 |
 | 使用案例 |批次、互動式、資料流分析、機器學習的資料，例如記錄檔、IoT 資料、點擊串流、大型資料集 |任何類型的文字或二進位資料，例如應用程式後端、備份資料、串流和一般用途資料的媒體儲存體 |
-| 重要概念 |Data Lake Store 帳戶包含資料夾，其中又包含儲存為檔案的資料 |儲存體帳戶包含容器，其中又包含 Blob 形式的資料 |
+| 重要概念 |Data Lake Store 帳戶包含資料夾，其中又包含儲存為檔案的資料 |儲存體帳戶沒有容器，而後者又 hello 格式的 blob 資料 |
 | Structure |階層式檔案系統 |具有扁平命名空間的物件存放區 |
 | API |透過 HTTPS 的 REST API |透過 HTTP/HTTPS 的 REST API |
 | 伺服器端 API |[WebHDFS 相容的 REST API](https://msdn.microsoft.com/library/azure/mt693424.aspx) |[Azure Blob 儲存體 REST API](https://msdn.microsoft.com/library/azure/dd135733.aspx) |
 | Hadoop 檔案系統用戶端 |是 |是 |
 | 資料作業 - 驗證 |採用 [Azure Active Directory 身分識別](../active-directory/active-directory-authentication-scenarios.md) |採用共用密碼 - [帳戶存取金鑰](../storage/common/storage-create-storage-account.md#manage-your-storage-account)和[共用存取簽章金鑰](../storage/common/storage-dotnet-shared-access-signature-part-1.md)。 |
-| 資料作業 - 驗證通訊協定 |OAuth 2.0。 呼叫必須包含由 Azure Active Directory 發行的有效 JWT (JSON Web 權杖) |雜湊式訊息驗證碼 (HMAC)。 呼叫必須包含透過 HTTP 要求之一部分的 Base64 編碼 SHA-256 雜湊。 |
+| 資料作業 - 驗證通訊協定 |OAuth 2.0。 呼叫必須包含由 Azure Active Directory 發行的有效 JWT (JSON Web 權杖) |雜湊式訊息驗證碼 (HMAC)。 呼叫必須包含 Base64 編碼 sha-256 雜湊 hello HTTP 要求的上方。 |
 | 資料作業 - 授權 |POSIX 存取控制清單 (ACL)  ACL 採用 Azure Active Directory 身分識別，可設為檔案或資料夾層級。 |針對帳戶層級授權 – 使用[帳戶存取金鑰](../storage/common/storage-create-storage-account.md#manage-your-storage-account)<br>針對帳戶、容器或 Blob 授權 - 使用[共用存取簽章金鑰](../storage/common/storage-dotnet-shared-access-signature-part-1.md) |
 | 資料作業 - 稽核 |可用。 需詳細資訊請參閱 [這裡](data-lake-store-diagnostic-logs.md) 。 |可用 |
 | 待用資料加密 |透明、伺服器端 <ul><li>使用服務管理的金鑰</li><li>在 Azure KeyVault 中使用客戶管理的金鑰</li></ul> |<ul><li>透明、伺服器端</li> <ul><li>使用服務管理的金鑰</li><li>在 Azure KeyVault 中使用客戶管理的金鑰 (即將推出)</li></ul><li>用戶端加密</li></ul> |

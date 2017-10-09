@@ -1,5 +1,5 @@
 ---
-title: "針對 Azure 中的 Kubernetes 容器進行負載平衡 | Microsoft Docs"
+title: "aaaLoad 平衡在 Azure 中的 Kubernetes 容器 |Microsoft 文件"
 description: "在 Azure Container Service 中由外部連接並針對 Kubernetes 叢集內的多個容器進行負載平衡。"
 services: container-service
 documentationcenter: 
@@ -17,52 +17,52 @@ ms.workload: na
 ms.date: 05/17/2017
 ms.author: danlep
 ms.custom: mvc
-ms.openlocfilehash: ab46bb204f14424e394ced499ffbc0ef1cada15b
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 8073c8d3a015a53a532c326749571cb2582e1bac
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="load-balance-containers-in-a-kubernetes-cluster-in-azure-container-service"></a>在 Azure Container Service 中針對 Kubernetes 叢集內的容器進行負載平衡 
-本文將介紹在 Azure Container Service 中 Kubernetes 叢集內進行負載平衡。 負載平衡提供服務可供外部存取的 IP 位址，並將網路流量分散於代理程式 VM 中執行的 Pod 之間。
+本文將介紹在 Azure Container Service 中 Kubernetes 叢集內進行負載平衡。 負載平衡 hello 服務提供外部存取的 IP 位址，並將散發代理程式 Vm 中執行的 hello pod 之間的網路流量。
 
-您可以設定 Kubernetes 服務使用 [Azure Load Balancer](../../load-balancer/load-balancer-overview.md) 來管理外部網路 (TCP) 流量。 透過其他設定，便可以達成 HTTP 或 HTTPS 流量 (或更進階的案例) 的負載平衡和路由。
+您可以設定 Kubernetes 服務 toouse [Azure 負載平衡器](../../load-balancer/load-balancer-overview.md)toomanage 外部網路 (TCP) 流量。 透過其他設定，便可以達成 HTTP 或 HTTPS 流量 (或更進階的案例) 的負載平衡和路由。
 
 ## <a name="prerequisites"></a>必要條件
 * 在 Azure Container Service 中[部署 Kubernetes 叢集](container-service-kubernetes-walkthrough.md)
-* [將您的用戶端連接到](../container-service-connect.md)您的叢集
+* [將用戶端連線](../container-service-connect.md)tooyour 叢集
 
 ## <a name="azure-load-balancer"></a>Azure Load Balancer
 
-根據預設，在 Azure Container Service 中部署的 Kubernetes 叢集包含代理程式 VM 的網際網路對應 Azure Load Balancer。 (將針對主要 VM 設定個別的負載平衡器資源)。Azure Load Balancer 是第 4 層負載平衡器。 目前，負載平衡器只支援 Kubernetes 中的 TCP 流量。
+根據預設，Kubernetes 叢集部署在 Azure 容器服務包括 Vm hello 代理程式 」 的網際網路對向 Azure 負載平衡器。 （個別負載平衡器資源 hello 主要 Vm 的設定）。Azure Load Balancer 是第 4 層負載平衡器。 目前，hello 負載平衡器只會支援 TCP 流量 Kubernetes 中。
 
-建立 Kubernetes 服務時，您可以自動設定 Azure Load Balancer 允許存取服務。 若要設定負載平衡器，請將服務 `type` 設定為 `LoadBalancer`。 負載平衡器會建立一個規則，將連入服務流量的公用 IP 位址和連接埠號碼對應到代理程式 VM 中 Pod 的私人 IP 位址和連接埠號碼 (回應流量反之亦然)。 
+建立 Kubernetes 服務時，您可以自動設定 hello Azure 負載平衡器 tooallow 存取 toohello 服務。 tooconfigure hello 負載平衡器集 hello 服務`type`太`LoadBalancer`。 hello 負載平衡器會建立規則 toomap 公用 IP 位址和連接埠號碼的連入服務流量 toohello 私人 IP 位址和連接埠號碼 hello pod 的代理程式 Vm 中 （反之亦然回應流量）。 
 
- 下列兩個範例顯示如何將 Kubernetes 服務 `type` 設定為 `LoadBalancer`。 (嘗試這些範例之後，如果您不再需要它們，請刪除部署)。
+ 下列兩個範例顯示如何 tooset hello Kubernetes 服務`type`太`LoadBalancer`。 （之後嘗試 hello 範例中，刪除 hello 部署如果不再需要）。
 
-### <a name="example-use-the-kubectl-expose-command"></a>範例︰使用 `kubectl expose` 命令 
-[Kubernetes 逐步解說](container-service-kubernetes-walkthrough.md)包含如何使用 `kubectl expose` 命令與其 `--type=LoadBalancer` 旗標公開服務的範例。 步驟如下：
+### <a name="example-use-hello-kubectl-expose-command"></a>範例： 使用 hello`kubectl expose`命令 
+hello [Kubernetes 逐步解說](container-service-kubernetes-walkthrough.md)包含的範例 tooexpose 服務以 hello`kubectl expose`命令及其`--type=LoadBalancer`旗標。 Hello 步驟如下：
 
-1. 啟動新的容器部署。 例如，下列命令會啟動稱為 `mynginx` 的新部署。 部署會包含三個以 Nginx Web 伺服器的 Docker 映像為基礎的容器。
+1. 啟動新的容器部署。 例如，hello 下列命令啟動新的部署呼叫`mynginx`。 hello 部署包含三個容器，根據 hello Nginx 網頁伺服器 hello Docker 映像。
 
     ```console
     kubectl run mynginx --replicas=3 --image nginx
     ```
-2. 確認容器正在執行。 例如，如果您使用 `kubectl get pods` 查詢容器，您會看到類似下列的輸出：
+2. 請確認正在 hello 容器。 例如，如果您查詢的 hello 容器`kubectl get pods`，您會看到類似 toohello 下列輸出：
 
     ![取得 Nginx 容器](./media/container-service-kubernetes-load-balancing/nginx-get-pods.png)
 
-3. 若要設定負載平衡器以接受部署的外部流量，請搭配 `--type=LoadBalancer` 執行 `kubectl expose`。 下列命令會在連接埠 80 上公開 Nginx 伺服器：
+3. tooconfigure hello 負載平衡器 tooaccept 外部流量 toohello 部署，執行`kubectl expose`與`--type=LoadBalancer`。 hello 下列命令會公開連接埠 80 上的 hello Nginx 伺服器：
 
     ```console
     kubectl expose deployments mynginx --port=80 --type=LoadBalancer
     ```
 
-4. 輸入 `kubectl get svc` 以查看叢集中服務的狀態。 負載平衡器設定規則時，服務的 `EXTERNAL-IP` 會顯示為 `<pending>`。 幾分鐘之後，外部 IP 位址會完成設定： 
+4. 型別`kubectl get svc`toosee hello hello 叢集中的 hello 服務狀態。 雖然 hello 負載平衡器設定 hello 規則 hello `EXTERNAL-IP` hello 的服務，會顯示為`<pending>`。 請稍候幾分鐘設定 hello 外部 IP 位址： 
 
     ![設定 Azure Load Balancer](./media/container-service-kubernetes-load-balancing/nginx-external-ip.png)
 
-5. 確認您可以在外部 IP 位址存取服務。 例如，開啟網頁瀏覽器並前往顯示的 IP 位址。 瀏覽器會顯示 Nginx Web 伺服器正在其中一個容器中執行。 或者，執行 `curl` 或 `wget` 命令。 例如：
+5. 請確認您可以存取位於 hello 外部 IP 位址的 hello 服務。 例如，開啟所顯示的網頁瀏覽器 toohello IP 位址。 hello 瀏覽器會顯示執行其中 hello 容器中的 hello Nginx 網頁伺服器。 或者，執行的 hello`curl`或`wget`命令。 例如：
 
     ```
     curl 13.82.93.130
@@ -72,19 +72,19 @@ ms.lasthandoff: 08/18/2017
 
     ![使用 curl 存取 Nginx](./media/container-service-kubernetes-load-balancing/curl-output.png)
 
-6. 若要查看 Azure Load Balancer 的組態，請移至 [Azure 入口網站](https://portal.azure.com)。
+6. hello Azure 負載平衡器，請移 toohello toosee hello 組態[Azure 入口網站](https://portal.azure.com)。
 
-7. 瀏覽您容器服務叢集的資源群組，並選取代理程式 VM 的負載平衡器。 其名稱應該與容器服務相同。 (請勿選擇主要節點的負載平衡器。主要節點就是名稱包含 **master-lb** 的節點)。 
+7. 瀏覽的容器服務叢集中的 hello 資源群組，然後選取 hello hello 代理程式 Vm 的負載平衡器。 其名稱應該 hello 與 hello 容器服務相同。 (不選擇 hello hello 主要節點的負載平衡器，其名稱包含一個 hello **master lb**。) 
 
     ![資源群組中的負載平衡器](./media/container-service-kubernetes-load-balancing/container-resource-group-portal.png)
 
-8. 若要查看負載平衡器組態的詳細資訊，請按一下 [負載平衡規則] 和已設定規則的名稱。
+8. toosee hello 詳細資料的 hello 負載平衡器組態，按一下**負載平衡規則**和 hello hello 規則的設定名稱。
 
     ![負載平衡器規則](./media/container-service-kubernetes-load-balancing/load-balancing-rules.png) 
 
-### <a name="example-specify-type-loadbalancer-in-the-service-configuration-file"></a>範例︰在服務組態檔中指定 `type: LoadBalancer`
+### <a name="example-specify-type-loadbalancer-in-hello-service-configuration-file"></a>範例： 指定`type: LoadBalancer`hello 服務組態檔中
 
-如果您從 YAML 或 JSON [服務組態檔 (英文)](https://kubernetes.io/docs/user-guide/services/operations/#service-configuration-file)部署 Kubernetes 容器應用程式，請透過將下列一行加入至服務規格中，以指定外部負載平衡器：
+如果您部署 Kubernetes 容器應用程式從 YAML 或 JSON[服務組態檔](https://kubernetes.io/docs/user-guide/services/operations/#service-configuration-file)，加入下列行 toohello 服務規格的 hello 來指定外部負載平衡器：
 
 ```YAML
  "type": "LoadBalancer"
@@ -92,53 +92,53 @@ ms.lasthandoff: 08/18/2017
 
 
 
-下列步驟使用 Kubernetes [訪客留言範例 (英文)](https://github.com/kubernetes/kubernetes/tree/master/examples/guestbook)。 此範例是以 Redis 和 PHP Docker 映像為基礎的多層式 Web 應用程式。 您可以在服務組態檔中指定前端 PHP 伺服器使用 Azure Load Balancer。
+hello 下列步驟使用 hello Kubernetes[訪客簿範例](https://github.com/kubernetes/kubernetes/tree/master/examples/guestbook)。 此範例是以 Redis 和 PHP Docker 映像為基礎的多層式 Web 應用程式。 您可以在 hello 服務組態檔中指定該 hello 前端 PHP 伺服器使用 hello Azure 負載平衡器。
 
-1. 從 [GitHub (英文)](https://github.com/kubernetes/kubernetes/tree/master/examples/guestbook/all-in-one) 下載檔案 `guestbook-all-in-one.yaml`。 
-2. 瀏覽 `frontend` 服務的 `spec`。
-3. 取消註解行 `type: LoadBalancer`。
+1. 下載 hello 檔案`guestbook-all-in-one.yaml`從[GitHub](https://github.com/kubernetes/kubernetes/tree/master/examples/guestbook/all-in-one)。 
+2. 瀏覽 hello `spec` hello`frontend`服務。
+3. Hello 行取消註解`type: LoadBalancer`。
 
     ![服務組態中的負載平衡器](./media/container-service-kubernetes-load-balancing/guestbook-frontend-loadbalance.png)
 
-4. 儲存檔案，並執行下列命令以部署應用程式︰
+4. 儲存 hello 檔案，並部署 hello 應用程式藉由執行下列命令的 hello:
 
     ```
     kubectl create -f guestbook-all-in-one.yaml
     ```
 
-5. 輸入 `kubectl get svc` 以查看叢集中服務的狀態。 負載平衡器設定規則時，`frontend` 服務的 `EXTERNAL-IP` 會顯示為 `<pending>`。 幾分鐘之後，外部 IP 位址會完成設定： 
+5. 型別`kubectl get svc`toosee hello hello 叢集中的 hello 服務狀態。 雖然 hello 負載平衡器設定 hello 規則 hello`EXTERNAL-IP`的 hello`frontend`服務會顯示為`<pending>`。 請稍候幾分鐘設定 hello 外部 IP 位址： 
 
     ![設定 Azure Load Balancer](./media/container-service-kubernetes-load-balancing/guestbook-external-ip.png)
 
-6. 確認您可以在外部 IP 位址存取服務。 例如，您可以開啟網頁瀏覽器並前往服務的外部 IP 位址。
+6. 請確認您可以存取位於 hello 外部 IP 位址的 hello 服務。 例如，您可以開啟網頁瀏覽器 toohello 外部 IP 位址的 hello 服務。
 
     ![外部存取訪客留言](./media/container-service-kubernetes-load-balancing/guestbook-web.png)
 
     您可以加入訪客留言項目。
 
-7. 若要查看 Azure Load Balancer 的組態，請瀏覽 [Azure 入口網站](https://portal.azure.com)中叢集的負載平衡器資源。 請參閱前一個範例中的步驟。
+7. hello Azure 負載平衡器，瀏覽 hello 中的 hello 叢集 hello 負載平衡器資源 toosee hello 組態[Azure 入口網站](https://portal.azure.com)。 請參閱 hello hello 前一個範例中的步驟。
 
 ### <a name="considerations"></a>考量
 
-* 負載平衡器規則會以非同步的方式建立，且已佈建之平衡器的相關資訊會在服務的 `status.loadBalancer` 欄位中發行。
-* 每個服務都會在負載平衡器中被自動指定屬於自己的虛擬 IP 位址。
-* 如果您想要透過 DNS 名稱來連絡負載平衡器，請與您的網域服務提供者合作建立規則之 IP 位址的 DNS 名稱。
+* Hello 負載平衡器規則的建立會以非同步方式時發生，並且在 hello 服務會發行有關佈建的 hello 平衡器資訊`status.loadBalancer`欄位。
+* 每個服務會自動指派自己 hello 負載平衡器中的虛擬 IP 位址。
+* 如果您想 tooreach hello 負載平衡器 DNS 名稱時，使用您的網域服務提供者 toocreate hello 規則的 IP 位址的 DNS 名稱。
 
 ## <a name="http-or-https-traffic"></a>HTTP 或 HTTPS 流量
 
-若要將 HTTP 或 HTTPS 流量負載平衡到容器 Web 應用程式，並管理傳輸層安全性 (TLS) 的憑證，您可以使用 Kubernetes [輸入 (英文)](https://kubernetes.io/docs/user-guide/ingress/) 資源。 輸入是允許傳入連線連絡叢集服務的規則集合。 若要使輸入資源順利運作，Kubernetes 叢集必須具備執行中的[輸入控制器 (英文)](https://kubernetes.io/docs/user-guide/ingress/#ingress-controllers)。
+tooload 平衡 HTTP 或 HTTPS 流量 toocontainer web 應用程式和管理的傳輸層安全性 (TLS) 憑證，您可以使用 hello Kubernetes[輸入](https://kubernetes.io/docs/user-guide/ingress/)資源。 輸入是規則以允許傳入的連接 tooreach hello 叢集服務的集合。 輸入資源 toowork，hello Kubernetes 叢集必須有[輸入控制器](https://kubernetes.io/docs/user-guide/ingress/#ingress-controllers)執行。
 
-Azure Container Service 不會自動實作 Kubernetes 輸入控制器。 有數個控制器實作可供使用。 目前，建議您使用 [Nginx 輸入控制器 (英文)](https://github.com/kubernetes/ingress/tree/master/examples/deployment/nginx) 來設定輸入規則，並針對 HTTP 與 HTTPS 流量進行負載平衡。 
+Azure Container Service 不會自動實作 Kubernetes 輸入控制器。 有數個控制器實作可供使用。 目前，hello [Nginx 輸入控制器](https://github.com/kubernetes/ingress/tree/master/examples/deployment/nginx)建議 tooconfigure 輸入規則和負載平衡 HTTP 及 HTTPS 流量。 
 
-如需詳細資訊，請參閱 [Nginx 輸入控制器文件集 (英文)](https://github.com/kubernetes/ingress/tree/master/controllers/nginx/README.md)。
+如需詳細資訊，請參閱 hello [Nginx 輸入控制器文件集](https://github.com/kubernetes/ingress/tree/master/controllers/nginx/README.md)。
 
 > [!IMPORTANT]
-> 在 Azure Container Service 中使用 Nginx 輸入控制器時，您必須使用 `type: LoadBalancer` 將控制器部署公開為服務。 這會設定 Azure Load Balancer 將流量路由傳送到控制器。 如需詳細資訊，請參閱上一節。
+> 當 Azure 容器服務中使用 hello Nginx 輸入控制站，您必須公開 hello 控制站部署成與服務`type: LoadBalancer`。 這會設定 hello Azure 負載平衡器 tooroute 流量 toohello 控制站。 如需詳細資訊，請參閱 hello 上一節。
 
 
 ## <a name="next-steps"></a>後續步驟
 
-* 請參閱 [Kubernetes LoadBalancer 文件集 (英文)](https://kubernetes.io/docs/user-guide/load-balancer/)
+* 請參閱 hello [Kubernetes 負載平衡器文件](https://kubernetes.io/docs/user-guide/load-balancer/)
 * 深入了解 [Kubernetes 輸入和輸入控制器 (英文)](https://kubernetes.io/docs/user-guide/ingress/)
 * 請參閱 [Kubernetes 範例 (英文)](https://github.com/kubernetes/kubernetes/tree/master/examples)
 

@@ -1,15 +1,15 @@
 
-使用 [az webapp create](/cli/azure/appservice/web#create) 命令，在 `myAppServicePlan` App Service 方案中建立 [API 應用程式](../articles/app-service-api/app-service-api-apps-why-best-platform.md)。 
+建立[API 應用程式](../articles/app-service-api/app-service-api-apps-why-best-platform.md)在 hello`myAppServicePlan`應用程式服務方案以 hello [az webapp 建立](/cli/azure/appservice/web#create)命令。 
 
-Web 應用程式會為您的 API 提供裝載空間，以及提供 URL 來檢視已部署的應用程式。
+hello web 應用程式提供裝載您的 API，並提供 URL tooview hello 部署應用程式。
 
-在下列命令中，使用唯一的名稱取代 *\<app_name>*。 如果 `<app_name>` 不是唯一的，您會收到錯誤訊息「具有指定名稱 <app_name> 的網站已經存在」。 Web 應用程式的預設 URL 是 `https://<app_name>.azurewebsites.net`。 
+下列命令，取代在 hello  *\<app_name >*具有唯一的名稱。 如果`<app_name>`是不是唯一，您會收到 hello 錯誤訊息 「 具有指定名稱 < app_name > 網站已經存在 」。 hello hello web 應用程式的 URL 是的預設`https://<app_name>.azurewebsites.net`。 
 
 ```azurecli-interactive
 az webapp create --name <app_name> --resource-group myResourceGroup --plan myAppServicePlan
 ```
 
-建立 Web 應用程式後，Azure CLI 會顯示類似下列範例的資訊：
+Hello web 應用程式建立後，hello Azure CLI 顯示資訊的類似 toohello 下列範例：
 
 ```json
 {

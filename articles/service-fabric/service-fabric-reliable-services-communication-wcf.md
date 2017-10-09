@@ -1,6 +1,6 @@
 ---
-title: "Reliable Services WCF 通訊堆疊 | Microsoft Docs"
-description: "Service Fabric 內建的 WCF 通訊堆疊提供 Reliable Services 專用的用戶端服務 WCF 通訊。"
+title: "aaaReliable 服務 WCF 通訊堆疊 |Microsoft 文件"
+description: "hello 內建 WCF 通訊堆疊中 Service Fabric 提供可靠的服務的 WCF 用戶端服務通訊。"
 services: service-fabric
 documentationcenter: .net
 author: BharatNarasimman
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 06/07/2017
 ms.author: bharatn
-ms.openlocfilehash: 7037620ebdc26a9f18531064bf45d058f5060e39
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7feebef4d46a6ae66d05129f47f9b5911e82aec9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="wcf-based-communication-stack-for-reliable-services"></a>適用於 Reliable Services 的 WCF 式通訊堆疊
-Reliable Services 架構允許服務作者選擇其想要針對服務使用的通訊堆疊。 他們可以透過從 **CreateServiceReplicaListeners 或 CreateServiceInstanceListeners** 方法傳回的 [ICommunicationListener](service-fabric-reliable-services-communication.md) ，來外掛所選擇的通訊堆疊。 服務作者如果想要使用 Windows Communication Foundation (WCF) 式通訊，架構可提供以 WCF 式實作的通訊堆疊。
+hello 可靠服務架構可讓服務的服務想 toouse 作者 toochoose hello 通訊堆疊。 它們可以透過 hello 他們所選擇的 hello 通訊堆疊，插入**ICommunicationListener**傳回 hello [CreateServiceReplicaListeners 或 CreateServiceInstanceListeners](service-fabric-reliable-services-communication.md)方法。 hello 架構提供服務作者都想 toouse WCF 為基礎的通訊以 hello Windows Communication Foundation (WCF) 為基礎的 hello 通訊堆疊的實作。
 
 ## <a name="wcf-communication-listener"></a>WCF 通訊接聽程式
-**ICommunicationListener** 的 ECF 特定實作係由 **Microsoft.ServiceFabric.Services.Communication.Wcf.Runtime.WcfCommunicationListener** 類別提供。
+hello 特定 WCF 實作**ICommunicationListener**係由 hello **Microsoft.ServiceFabric.Services.Communication.Wcf.Runtime.WcfCommunicationListener**類別。
 
 假設我們有類型 `ICalculator`
 
@@ -37,7 +37,7 @@ public interface ICalculator
 }
 ```
 
-我們可以透過下列方式在服務中建立 WCF 通訊接聽程式。
+我們可以在 hello 服務 hello 下列方式來建立 WCF 通訊接聽程式。
 
 ```csharp
 
@@ -48,13 +48,13 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
             wcfServiceObject:this,
             serviceContext:context,
             //
-            // The name of the endpoint configured in the ServiceManifest under the Endpoints section
-            // that identifies the endpoint that the WCF ServiceHost should listen on.
+            // hello name of hello endpoint configured in hello ServiceManifest under hello Endpoints section
+            // that identifies hello endpoint that hello WCF ServiceHost should listen on.
             //
             endpointResourceName: "WcfServiceEndpoint",
 
             //
-            // Populate the binding information that you want the service to use.
+            // Populate hello binding information that you want hello service toouse.
             //
             listenerBinding: WcfUtility.CreateTcpListenerBinding()
         )
@@ -63,8 +63,8 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
 ```
 
-## <a name="writing-clients-for-the-wcf-communication-stack"></a>撰寫適用於 WCF 通訊堆疊的用戶端
-為了撰寫能夠使用 WCF 來與服務進行通訊的用戶端，架構提供了 **WcfClientCommunicationFactory**，也就是 [ClientCommunicationFactoryBase](service-fabric-reliable-services-communication.md)的 WCF 特定實作。
+## <a name="writing-clients-for-hello-wcf-communication-stack"></a>撰寫 hello WCF 通訊堆疊的用戶端
+撰寫用戶端與服務使用 WCF，hello framework toocommunicate 提供**WcfClientCommunicationFactory**，這是 hello 特定 WCF 實作[ClientCommunicationFactoryBase](service-fabric-reliable-services-communication.md).
 
 ```csharp
 
@@ -76,7 +76,7 @@ public WcfCommunicationClientFactory(
     object callback = null);
 ```
 
-WCF 通訊通道可以從 **WcfCommunicationClientFactory** 建立的 **WcfCommunicationClient** 來存取。
+您可以從 hello 存取 hello WCF 通訊通道**WcfCommunicationClient**建立 hello **WcfCommunicationClientFactory**。
 
 ```csharp
 
@@ -90,7 +90,7 @@ public class WcfCommunicationClient : ServicePartitionClient<WcfCommunicationCli
 
 ```
 
-用戶端程式碼可以使用 **WcfCommunicationClientFactory** 連同實作 **ServicePartitionClient** 的 **WcfCommunicationClient** 來決定服務端點，並與服務通訊。
+用戶端程式碼可以使用 hello **WcfCommunicationClientFactory**以及 hello **WcfCommunicationClient**實作**ServicePartitionClient** toodeterminehello 服務端點，並與 hello 服務進行通訊。
 
 ```csharp
 // Create binding
@@ -102,7 +102,7 @@ var wcfClientFactory = new WcfCommunicationClientFactory<ICalculator>
     (clientBinding: binding, servicePartitionResolver: partitionResolver);
 
 //
-// Create a client for communicating with the ICalculator service that has been created with the
+// Create a client for communicating with hello ICalculator service that has been created with the
 // Singleton partition scheme.
 //
 var calculatorServiceCommunicationClient =  new WcfCommunicationClient(
@@ -111,14 +111,14 @@ var calculatorServiceCommunicationClient =  new WcfCommunicationClient(
                 ServicePartitionKey.Singleton);
 
 //
-// Call the service to perform the operation.
+// Call hello service tooperform hello operation.
 //
 var result = calculatorServiceCommunicationClient.InvokeWithRetryAsync(
                 client => client.Channel.Add(2, 3)).Result;
 
 ```
 > [!NOTE]
-> 預設 ServicePartitionResolver 假設用戶端正在與服務相同的叢集中執行。 如果不是這樣，請建立 ServicePartitionResolver 物件，並傳入叢集連接端點。
+> hello 預設 ServicePartitionResolver 假設該 hello 用戶端在相同叢集 hello 服務執行。 如果也就不是 hello 的情況下，建立 ServicePartitionResolver 物件，並傳入 hello 叢集連接端點。
 > 
 > 
 

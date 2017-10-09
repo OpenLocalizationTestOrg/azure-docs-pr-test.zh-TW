@@ -1,6 +1,6 @@
 ---
-title: "使用 DMV 監視工作負載 | Microsoft Docs"
-description: "了解如何使用 DMV 監視工作負載。"
+title: "aaaMonitor 您的工作負載使用 Dmv |Microsoft 文件"
+description: "深入了解如何 toomonitor 您使用 Dmv 的工作負載。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,24 +15,24 @@ ms.workload: data-services
 ms.custom: performance
 ms.date: 10/31/2016
 ms.author: joeyong;barbkess
-ms.openlocfilehash: 7ce6c2cdf1e28852da536414533ccdcdaeb437e5
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: acccf952d165ccec3de3b4b1c633b18bbbf78077
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="monitor-your-workload-using-dmvs"></a>使用 DMV 監視工作負載
-本文說明如何使用動態管理檢視 (DMV)，在 Azure SQL 資料倉儲中監視工作負載及調查查詢執行。
+本文說明如何 toouse 動態管理檢視 (Dmv) toomonitor 您的工作負載，並調查在 Azure SQL 資料倉儲中的查詢執行。
 
 ## <a name="permissions"></a>權限
-若要查詢此文章中的 DMV，您需要「檢視資料庫狀態」或「控制」權限。 通常授與「檢視資料庫狀態」是慣用的權限，因為它較具限制性。
+tooquery hello Dmv 在本文中，您需要 VIEW DATABASE STATE 或 CONTROL 權限。 通常，授與的 VIEW DATABASE STATE 是慣用的 hello 權限，因為它是更具限制性。
 
 ```sql
-GRANT VIEW DATABASE STATE TO myuser;
+GRANT VIEW DATABASE STATE toomyuser;
 ```
 
 ## <a name="monitor-connections"></a>監視連接
-所有針對 SQL 資料倉儲的登入都會記錄到 [sys.dm_pdw_exec_sessions][sys.dm_pdw_exec_sessions]。  這個 DMV 會包含最後 10,000 筆登入。  Session_id 是主索引鍵，並依序指派給每個新的登入。
+所有登入 tooSQL 資料倉儲會記錄太[sys.dm_pdw_exec_sessions][sys.dm_pdw_exec_sessions]。  此 DMV 包含 hello 上次 10000 的登入。  hello session_id hello 主索引鍵，並依序指派給每個新的登入。
 
 ```sql
 -- Other Active Connections
@@ -40,16 +40,16 @@ SELECT * FROM sys.dm_pdw_exec_sessions where status <> 'Closed' and session_id <
 ```
 
 ## <a name="monitor-query-execution"></a>監視查詢執行
-SQL 資料倉儲上所執行的所有查詢會都記錄到 [sys.dm_pdw_exec_requests][sys.dm_pdw_exec_requests]。  這個 DMV 會包含最後 10,000 筆執行的查詢。  Request_id 可唯一識別每筆查詢，而且是此 DMV 的主索引鍵。  Request_id 會依序指派給每筆新查詢，並加上 QID 代表查詢識別碼。  查詢此 DMV 來尋找指定的 session_id，即會顯示指定登入的所有查詢。
+SQL 資料倉儲上執行的所有查詢會都記錄太[sys.dm_pdw_exec_requests][sys.dm_pdw_exec_requests]。  此 DMV 包含 hello 上次執行的查詢 10,000。  hello request_id 唯一識別每個查詢，而且 hello 針對這個 DMV 的主索引鍵。  hello request_id 依序指派給每個新的查詢，並加上 //WWW.AMAZON.COM/APPLIED-MICROSOFT-SERVER-ANALYSIS-SERVICES/DP/0976635356/REF，代表查詢的識別碼。  查詢此 DMV 來尋找指定的 session_id，即會顯示指定登入的所有查詢。
 
 > [!NOTE]
 > 預存程序會使用多個要求 ID。  要求 ID 是依序指派。 
 > 
 > 
 
-請遵循以下步驟來調查特定查詢的查詢執行計畫和時間。
+以下是步驟 toofollow tooinvestigate 查詢執行計畫和特定查詢的時間。
 
-### <a name="step-1-identify-the-query-you-wish-to-investigate"></a>步驟 1︰識別您想要調查的查詢
+### <a name="step-1-identify-hello-query-you-wish-tooinvestigate"></a>步驟 1： 識別您想 tooinvestigate hello 查詢
 ```sql
 -- Monitor active queries
 SELECT * 
@@ -63,18 +63,18 @@ SELECT TOP 10 *
 FROM sys.dm_pdw_exec_requests 
 ORDER BY total_elapsed_time DESC;
 
--- Find a query with the Label 'My Query'
--- Use brackets when querying the label column, as it it a key word
+-- Find a query with hello Label 'My Query'
+-- Use brackets when querying hello label column, as it it a key word
 SELECT  *
 FROM    sys.dm_pdw_exec_requests
 WHERE   [label] = 'My Query';
 ```
 
-從前述的查詢結果中，記下您想要調查之查詢的 **要求 ID** 。
+從上述查詢結果的 hello**注意 hello 要求識別碼**希望 tooinvestigate hello 查詢。
 
- 狀態的查詢會因為並行限制而進入佇列。 這些查詢也會顯示在 sys.dm_pdw_waits 等候查詢中，類型為 UserConcurrencyResourceType。 如需並行限制的詳細資料，請參閱[並行和工作負載管理][Concurrency and workload management]。 查詢也會因其他原因 (例如物件鎖定) 而等候。  如果您的查詢正在等候資源，請參閱本文稍後的[檢查正在等候資源的查詢][Investigating queries waiting for resources]。
+查詢中 hello **Suspended**狀態因為 tooconcurrency 限制加入佇列。 這些查詢也會出現在類型為 UserConcurrencyResourceType hello sys.dm_pdw_waits 等候查詢。 如需並行限制的詳細資料，請參閱[並行和工作負載管理][Concurrency and workload management]。 查詢也會因其他原因 (例如物件鎖定) 而等候。  如果您的查詢正在等候資源，請參閱本文稍後的[檢查正在等候資源的查詢][Investigating queries waiting for resources]。
 
-若要簡化在 sys.dm_pdw_exec_requests 資料表中查閱查詢的方式，請使用 [LABEL][LABEL] 來將可在 sys.dm_pdw_exec_requests 檢視中查閱的註解指派給您的查詢。
+hello sys.dm_pdw_exec_requests 資料表，請使用中的查詢 toosimplify hello 查閱[標籤][ LABEL] tooassign 可以查閱 hello sys.dm_pdw_exec_requests 檢視中的註解 tooyour 查詢。
 
 ```sql
 -- Query with Label
@@ -84,11 +84,11 @@ OPTION (LABEL = 'My Query')
 ;
 ```
 
-### <a name="step-2-investigate-the-query-plan"></a>步驟 2︰ 調查查詢計劃
-使用要求識別碼，從 [sys.dm_pdw_request_steps][sys.dm_pdw_request_steps] 擷取查詢的分散式 SQL (DSQL) 計畫。
+### <a name="step-2-investigate-hello-query-plan"></a>步驟 2： 調查 hello 查詢計劃
+使用 hello 要求識別碼 tooretrieve hello 查詢的分散式的 SQL (DSQL) 計劃從[sys.dm_pdw_request_steps][sys.dm_pdw_request_steps]。
 
 ```sql
--- Find the distributed query plan steps for a specific query.
+-- Find hello distributed query plan steps for a specific query.
 -- Replace request_id with value from Step 1.
 
 SELECT * FROM sys.dm_pdw_request_steps
@@ -96,51 +96,51 @@ WHERE request_id = 'QID####'
 ORDER BY step_index;
 ```
 
-當 DSQL 計劃所花的時間超出預期時，有可能是含有許多 DSQL 步驟的複雜計劃所導致，或只是某個步驟需要長時間處理。  如果計劃是含有數個移動作業的許多步驟，請考慮最佳化您的資料表散發以減少資料移動。 [資料表散發][Table distribution]一文說明為何需要移動資料才能解決查詢，並說明最小化資料移動的一些散發策略。
+當 DSQL 計劃所花的時間超出預期時，hello 原因可能是複雜的計劃與許多 DSQL 步驟或只在一個步驟，花費的時間過長。  如果 hello 計劃使用數種移動作業的許多步驟，請考慮最佳化的資料表散發 tooreduce 資料移動。 hello[資料表散發][ Table distribution]篇文章說明為何必須是移動的 toosolve 查詢資料，並說明某些發佈策略 toominimize 資料移動。
 
-進一步調查單一步驟 (長時間執行查詢步驟的 *operation_type* 資料行) 的詳細資料，並且記下**步驟索引**：
+tooinvestigate 取得進一步的詳細資料的單一步驟中，hello *operation_type*資料行的 hello 長時間執行的查詢步驟並注意 hello**步驟索引**:
 
 * 針對下列 **SQL 作業**繼續執行步驟 3a：OnOperation、RemoteOperation、ReturnOperation。
 * 針對下列 **資料移動作業**繼續執行步驟 3b：ShuffleMoveOperation、BroadcastMoveOperation、TrimMoveOperation、PartitionMoveOperation、MoveOperation、CopyOperation。
 
-### <a name="step-3a-investigate-sql-on-the-distributed-databases"></a>步驟 3a︰調查分散式資料庫上的 SQL
-使用要求識別碼及步驟索引，從 [sys.dm_pdw_sql_requests][sys.dm_pdw_sql_requests] 擷取詳細資料，其中包含所有分散式資料庫上查詢步驟的執行資訊。
+### <a name="step-3a-investigate-sql-on-hello-distributed-databases"></a>步驟 3a: hello 散發資料庫上調查 SQL
+使用要求識別碼 hello 和 hello 步驟索引 tooretrieve 詳細資料，從[sys.dm_pdw_sql_requests][sys.dm_pdw_sql_requests]，其中包含所有 hello 的執行資訊 hello 查詢步驟的散發資料庫。
 
 ```sql
--- Find the distribution run times for a SQL step.
+-- Find hello distribution run times for a SQL step.
 -- Replace request_id and step_index with values from Step 1 and 3.
 
 SELECT * FROM sys.dm_pdw_sql_requests
 WHERE request_id = 'QID####' AND step_index = 2;
 ```
 
-當查詢步驟正在執行時，可以使用 [DBCC PDW_SHOWEXECUTIONPLAN][DBCC PDW_SHOWEXECUTIONPLAN] 針對正在特定散發上執行的步驟，從 SQL Server 計畫快取擷取 SQL Server 預估計畫。
+當執行 hello 查詢步驟時， [DBCC PDW_SHOWEXECUTIONPLAN] [ DBCC PDW_SHOWEXECUTIONPLAN]可以是使用的 tooretrieve hello SQL Server 估計計劃的 hello hello 步驟執行在特定的 SQL Server 計畫快取發佈。
 
 ```sql
--- Find the SQL Server execution plan for a query running on a specific SQL Data Warehouse Compute or Control node.
+-- Find hello SQL Server execution plan for a query running on a specific SQL Data Warehouse Compute or Control node.
 -- Replace distribution_id and spid with values from previous query.
 
 DBCC PDW_SHOWEXECUTIONPLAN(1, 78);
 ```
 
-### <a name="step-3b-investigate-data-movement-on-the-distributed-databases"></a>步驟 3b︰調查分散式資料庫的資料移動
-使用要求識別碼和步驟索引，從 [sys.dm_pdw_dms_workers][sys.dm_pdw_dms_workers] 擷取在每個散發上執行之資料移動步驟的相關資訊。
+### <a name="step-3b-investigate-data-movement-on-hello-distributed-databases"></a>步驟 3b： 調查 hello 散發資料庫上的資料移動
+使用要求識別碼 hello 和 hello 資料移動步驟，從每個通訊群組上執行的步驟索引 tooretrieve 資訊[sys.dm_pdw_dms_workers][sys.dm_pdw_dms_workers]。
 
 ```sql
--- Find the information about all the workers completing a Data Movement Step.
+-- Find hello information about all hello workers completing a Data Movement Step.
 -- Replace request_id and step_index with values from Step 1 and 3.
 
 SELECT * FROM sys.dm_pdw_dms_workers
 WHERE request_id = 'QID####' AND step_index = 2;
 ```
 
-* 檢查 *total_elapsed_time* 資料行，查看是否有特定散發，在資料移動上比其他散發用了更多時間。
-* 如果是長時間執行的散發，請檢查 *rows_processed* 資料行，查看從該散發移動的資料列數是否遠多過其他散發。 若是如此，這可能表示基礎資料的扭曲。
+* 檢查 hello *total_elapsed_time*資料行 toosee 如果特定的分佈耗費時間大幅多於移動資料的其他人。
+* Hello 長時間執行的散發，請檢查 hello *rows_processed*如果 hello 數目的資料列已從該發佈移遠比其他資料行 toosee。 若是如此，這可能表示基礎資料的扭曲。
 
-如果查詢正在執行，可以使用 [DBCC PDW_SHOWEXECUTIONPLAN][DBCC PDW_SHOWEXECUTIONPLAN]，針對特定散發內目前正在執行的 SQL 步驟，從 SQL Server 計畫快取擷取 SQL Server 預估計畫。
+如果 hello 查詢正在執行， [DBCC PDW_SHOWEXECUTIONPLAN] [ DBCC PDW_SHOWEXECUTIONPLAN]可以是使用的 tooretrieve hello SQL Server 估計計劃的 hello hello 目前執行 SQL 步驟內特定的 SQL Server 計畫快取發佈。
 
 ```sql
--- Find the SQL Server estimated plan for a query running on a specific SQL Data Warehouse Compute or Control node.
+-- Find hello SQL Server estimated plan for a query running on a specific SQL Data Warehouse Compute or Control node.
 -- Replace distribution_id and spid with values from previous query.
 
 DBCC PDW_SHOWEXECUTIONPLAN(55, 238);
@@ -149,7 +149,7 @@ DBCC PDW_SHOWEXECUTIONPLAN(55, 238);
 <a name="waiting"></a>
 
 ## <a name="monitor-waiting-queries"></a>監視等候中的查詢
-如果您發現您的查詢因為正在等候資源而沒有進度，以下查詢可顯示查詢正在等候的所有資源。
+如果您發現您的查詢無法達成的進度因為它正在等待資源時，以下是查詢正在等候會顯示所有 hello 資源的查詢。
 
 ```sql
 -- Find queries 
@@ -171,15 +171,15 @@ WHERE waits.request_id = 'QID####'
 ORDER BY waits.object_name, waits.object_type, waits.state;
 ```
 
-如果查詢正在主動等候另一個查詢的資源，則狀態會是 **AcquireResources**。  如果查詢具有全部的所需資源，則狀態會是 **Granted**。
+如果 hello 查詢正在等候資源的其他查詢，則將 hello 狀態**AcquireResources**。  如果 hello 查詢具有所有所需的 hello 資源，則將 hello 狀態**Granted**。
 
 ## <a name="monitor-tempdb"></a>監視 tempdb
-高 tempdb 使用量是效能緩慢及記憶體不足問題的根本原因。 請先檢查是否有資料扭曲或品質低落的資料列群組，並採取適當的動作。 如果您在查詢執行期間發現 tempdb 達到其上限，請考慮調整您的資料倉儲。 以下描述如何識別每個節點上每個查詢的 tempdb 使用量。 
+高 tempdb 使用量可以 hello 效能變慢，記憶體不足問題根本原因。 請先檢查是否有資料扭曲或較差的品質的資料列群組以及採取 hello 適當的動作。 如果您在查詢執行期間發現 tempdb 達到其上限，請考慮調整您的資料倉儲。 hello 下列程式碼說明如何 tooidentify tempdb 使用量，每個查詢，每個節點上。 
 
-建立下列檢視，以針對 sys.dm_pdw_sql_requests 建立適當節點識別碼的關聯。 這可讓您運用其他傳遞 DMV，並將這些資料表與 sys.dm_pdw_sql_requests 聯結。
+建立下列的 sys.dm_pdw_sql_requests 檢視 tooassociate hello 適當的節點識別碼 hello。 這將會啟用您 tooleverage 其他傳遞 Dmv，並聯結這些資料表與 sys.dm_pdw_sql_requests。
 
 ```sql
--- sys.dm_pdw_sql_requests with the correct node id
+-- sys.dm_pdw_sql_requests with hello correct node id
 CREATE VIEW sql_requests AS
 (SELECT
        sr.request_id,
@@ -200,7 +200,7 @@ CREATE VIEW sql_requests AS
 FROM sys.pdw_distributions AS d
 RIGHT JOIN sys.dm_pdw_sql_requests AS sr ON d.distribution_id = sr.distribution_id)
 ```
-執行下列查詢可監視 tempdb：
+執行下列查詢 toomonitor tempdb hello:
 
 ```sql
 -- Monitor tempdb
@@ -233,9 +233,9 @@ ORDER BY sr.request_id;
 ```
 ## <a name="monitor-memory"></a>監視記憶體
 
-記憶體是效能緩慢及記憶體不足問題的根本原因。 請先檢查是否有資料扭曲或品質低落的資料列群組，並採取適當的動作。 如果您在查詢執行期間發現 SQL Server 記憶體使用量達到其上限，請考慮調整您的資料倉儲。
+記憶體可能 hello 效能變慢，記憶體不足問題根本原因。 請先檢查是否有資料扭曲或較差的品質的資料列群組以及採取 hello 適當的動作。 如果您在查詢執行期間發現 SQL Server 記憶體使用量達到其上限，請考慮調整您的資料倉儲。
 
-下列查詢會傳回每個節點的 SQL Server 記憶體使用量和記憶體不足壓力：   
+hello，下列查詢會傳回 SQL Server 記憶體使用量和記憶體不足的壓力每個節點： 
 ```sql
 -- Memory consumption
 SELECT
@@ -258,7 +258,7 @@ pc1.counter_name = 'Total Server Memory (KB)'
 AND pc2.counter_name = 'Target Server Memory (KB)'
 ```
 ## <a name="monitor-transaction-log-size"></a>監視交易記錄大小
-下列查詢會傳回每個發佈上的交易記錄大小。 請檢查是否有資料扭曲或品質低落的資料列群組，並採取適當的動作。 如果其中一個記錄檔達到 160 GB，您應該考慮將您的執行個體相應放大或限制您交易的大小。 
+hello 下列查詢會傳回 hello 交易記錄大小在每個發佈。 請如果您有資料扭曲或較差的品質的資料列群組，並採取 hello 適當的動作，檢查。 如果其中一個 hello 記錄檔達到 160 GB，您應該考慮您的執行個體向上擴充或限制您交易的大小。 
 ```sql
 -- Transaction log size
 SELECT
@@ -272,7 +272,7 @@ AND counter_name = 'Log File(s) Used Size (KB)'
 AND counter_name = 'Target Server Memory (KB)'
 ```
 ## <a name="monitor-transaction-log-rollback"></a>監視交易記錄復原
-如果您的查詢失敗或需要長時間才能繼續，您可以檢查及監視是否有任何交易復原。
+如果您的查詢失敗，或花很長的時間 tooproceed，您可以檢查和監視您如有任何交易回復。
 ```sql
 -- Monitor rollback
 SELECT 

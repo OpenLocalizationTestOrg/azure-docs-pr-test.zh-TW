@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Site Recovery 中將 VMware 複寫至 Azure 如何運作？ | Microsoft Docs"
-description: "本文提供使用 Azure Site Recovery 服務將內部部署 VMware VM 和實體伺服器複寫至 Azure 時所用元件和架構的概觀"
+title: "Azure Site Recovery 中的 VMware 複寫 tooAzure 運作 aaaHow？ | Microsoft Docs"
+description: "本文提供元件和複寫在內部部署 VMware Vm 和實體伺服器 tooAzure 以 hello Azure Site Recovery 服務時使用的架構的概觀"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -16,74 +16,74 @@ ms.date: 05/29/2017
 ms.author: raynew
 ROBOTS: NOINDEX, NOFOLLOW
 redirect_url: vmware-walkthrough-architecture
-ms.openlocfilehash: 81f02c1277ae8a2c377ca0d6db67ec4211e9aa5e
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: f0fb834f8b251640f97e4d0163b2b9e54de691e1
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-does-vmware-replication-to-azure-work-in-site-recovery"></a>在 Site Recovery 中將 VMware 複寫至 Azure 如何運作？
+# <a name="how-does-vmware-replication-tooazure-work-in-site-recovery"></a>VMware 複寫 tooAzure 的運作方式在站台復原中？
 
-本文說明使用 [Azure Site Recovery](site-recovery-overview.md) 服務將內部部署 VMware 虛擬機器和 Windows/Linux 實體伺服器複寫至 Azure 時的相關元件和程序。
+本文說明 hello 元件和複寫時所涉及程序內部使用 hello VMware 虛擬機器和實體 Windows/Linux 的伺服器，tooAzure [Azure Site Recovery](site-recovery-overview.md)服務。
 
-當您將實體內部部署伺服器複寫至 Azure 時，複寫作業也會使用與 VMware VM 複寫相同的元件和程序，但有下列差異︰
+當您複製實體在內部部署伺服器 tooAzure 時，複寫會使用也 hello 相同元件和處理程序作為 VMware VM 複寫，但這些差異：
 
-- 您可以針對組態伺服器使用實體伺服器，而不是 VMware VM。
-- 您需要內部部署的 VMware 基礎結構以供進行容錯回復。 您無法容錯回復到實體機器。
+- 您可以使用實體伺服器 hello 組態伺服器，而不是 VMware VM。
+- 您需要內部部署的 VMware 基礎結構以供進行容錯回復。 您不能容錯回復 tooa 實體機器。
 
-請在本文下方張貼意見，或在 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)中提出問題。
+張貼於 hello 下方的本文中，任何註解或詢問問題中 hello [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
 
 
 ## <a name="architectural-components"></a>架構元件
 
-將 VMware VM 和實體伺服器複寫至 Azure 時，涉及許多元件。
+有多個元件所涉及複寫 VMware Vm 和實體伺服器 tooAzure 時。
 
 **元件** | <bpt id="p1">**</bpt>Location<ept id="p1">**</ept> | **詳細資料**
 --- | --- | ---
-**Azure** | 在 Azure 中，您需要 Azure 帳戶、Azure 儲存體帳戶和 Azure 網路。 | 所複寫的資料會儲存在儲存體帳戶中，而在從內部部署網站進行容錯移轉時，便會以複寫的資料建立 Azure VM。 Azure VM 在建立後會連線到 Azure 虛擬網路。
-**組態伺服器** | 單一內部部署管理伺服器 (VMWare VM)，它會執行部署所需的所有內部部署元件，包括組態伺服器、處理序伺服器、主要目標伺服器 | 組態伺服器元件會協調內部部署與 Azure 之間的通訊，以及管理資料複寫。
- **處理序伺服器**：  | 預設會安裝在組態伺服器上。 | 會做為複寫閘道器。 接收複寫資料，以快取、壓縮和加密進行最佳化，然後將複寫資料傳送至 Azure 儲存體。<br/><br/> 處理序伺服器還會處理用來保護機器的行動服務的推入安裝，並執行 VMWare VM 的自動探索。<br/><br/> 隨著部署規模擴大，您可以新增更多個別的專用處理序伺服器，以處理日益增加的複寫流量。
- **主要目標伺服器** | 預設會安裝在內部部署組態伺服器上。 | 在從 Azure 容錯回復期間，處理複寫資料。<br/><br/> 如果容錯回復的流量很高，您可以部署個別的主要目標伺服器來供容錯回復使用。
-**VMware 伺服器** | VMware VM 裝載在 vSphere ESXi 伺服器上，我們建議使用 vCenter 伺服器來管理主機。 | 您可以將 VMware 伺服器新增至您的復原服務保存庫。
-**複寫的機器** | 行動服務將會安裝在您要複寫的每部 VMware VM 上。 您可以手動將它安裝在每部電腦上，或是從處理序伺服器進行推入安裝。
+**Azure** | 在 Azure 中，您需要 Azure 帳戶、Azure 儲存體帳戶和 Azure 網路。 | 複寫的資料會儲存在 hello 儲存體帳戶，並從您的內部部署站台容錯移轉發生時，將會建立與 hello 複寫資料的 Azure Vm。 在建立時即 hello Azure Vm 會連線 toohello Azure 虛擬網路。
+**組態伺服器** | 單一內部部署 (VMWare VM) 執行的管理伺服器所需的 hello 部署，包括 hello 組態伺服器、 處理序伺服器、 主要目標伺服器的所有 hello 在內部部署元件 | hello 組態伺服器元件會協調在內部部署與 Azure 之間的通訊並管理資料複寫。
+ **處理序伺服器**：  | Hello 組態伺服器上的預設安裝。 | 會做為複寫閘道器。 接收複寫資料、 最佳化與快取、 壓縮和加密，並將它傳送 tooAzure 儲存體。<br/><br/> hello 處理序伺服器也會處理推入安裝的 hello 行動服務 tooprotected 機器，並執行的 VMware Vm 的自動探索。<br/><br/> 隨著您的部署，您可以加入其他個別的專用處理序伺服器 toohandle 增加磁碟區的複寫流量。
+ **主要目標伺服器** | Hello 在內部部署組態伺服器上的預設安裝。 | 在從 Azure 容錯回復期間，處理複寫資料。<br/><br/> 如果容錯回復的流量很高，您可以部署個別的主要目標伺服器來供容錯回復使用。
+**VMware 伺服器** | VMware Vm 上 vSphere ESXi 伺服器，以及建議的 vCenter server toomanage hello 主機。 | 您新增 VMware 伺服器 tooyour 復原服務保存庫。
+**複寫的機器** | hello 行動服務將會安裝在每個 VMware 想 tooreplicate VM 上。 它可以手動安裝在每部電腦上，或從 hello 處理序伺服器推入安裝。
 
-了解[支援矩陣](site-recovery-support-matrix-to-azure.md)中每個元件的部署必要條件和需求。
+深入了解 hello 部署先決條件和需求的每個元件在 hello[支援矩陣](site-recovery-support-matrix-to-azure.md)。
 
-**圖 1：VMware 到 Azure 的元件**
+**圖 1: VMware tooAzure 元件**
 
 ![元件](./media/site-recovery-components/arch-enhanced.png)
 
 ## <a name="replication-process"></a>複寫程序
 
-1. 您要設定部署 (包括 Azure 元件) 和復原服務保存庫。 在保存庫中指定複寫來源和目標、設定組態伺服器、新增 VMware 伺服器、建立複寫原則、部署行動服務、啟用複寫，以及執行測試容錯移轉。
-2.  機器根據複寫原則開始複寫，並將資料的初始複本複寫到 Azure 儲存體。
-4. 初始複寫完成之後，就會開始將差異變更複寫到 Azure。 機器的追蹤變更會保存在 .hrl 檔案中。
-    - 複寫機器會在輸入連接埠 HTTPS 443 上與組態伺服器進行通訊，以管理複寫。
-    - 複寫機器會在輸入連接埠 HTTPS 9443 (可加以設定) 上將複寫資料傳送至處理序伺服器。
-    - 組態伺服器會透過輸出連接埠 HTTPS 443 與 Azure 協調複寫管理。
-    - 處理序伺服器會透過輸出連接埠 443，接收來源機器所傳來的資料、將其最佳化並加密，再將它傳送至 Azure 儲存體。
-    - 如果您啟用多部 VM 一致性，則複寫群組中的機器會透過連接埠 20004 彼此通訊。 如果您將多部機器群組為幾個共用當機時保持一致復原點和應用程式一致復原點的複寫群組，當這些群組在進行容錯移轉時，便會使用多部 VM。 如果機器執行的是相同的工作負載，且需要保持一致，此功能就很實用。
-5. 流量透過網際網路複寫到 Azure 儲存體的公用端點。 或者，您可以使用 Azure ExpressRoute [公用對等](../expressroute/expressroute-circuit-peerings.md#public-peering)。 不支援從內部部署網站透過站台對站台 VPN 將流量複寫至 Azure。
+1. 您設定 hello 部署，包含 Azure 的元件，與復原服務保存庫。 Hello 保存庫中指定 hello 複寫來源和目標，設定 hello 組態伺服器，新增 VMware 伺服器、 建立複寫原則，部署 hello 行動服務、 啟用複寫，以及執行測試容錯移轉。
+2.  機器會開始複寫 hello 複寫原則，根據與 hello 資料的初始複本會複寫的 tooAzure 儲存體。
+4. 在 hello 初始複寫完成後，就會開始複寫差異變更 tooAzure。 機器的追蹤變更會保存在 .hrl 檔案中。
+    - 複寫機器 hello 組態與伺服器通訊連接埠 HTTPS 443 輸入複寫管理的。
+    - 複寫機器複寫資料 toohello 處理序伺服器連接埠上傳送 HTTPS 9443 輸入 （可以在設定）。
+    - hello 組態伺服器協調使用 Azure 的複寫管理透過 HTTPS 443 輸出連接埠。
+    - hello 處理序伺服器接收資料從來源機器、 最佳化及加密，並將它 tooAzure 儲存體傳送連接埠 443 輸出。
+    - 如果您啟用多重 VM 一致性，然後 hello 複寫群組中的電腦與對方進行通訊透過連接埠 20004。 如果您將多部機器群組為幾個共用當機時保持一致復原點和應用程式一致復原點的複寫群組，當這些群組在進行容錯移轉時，便會使用多部 VM。 這非常有用，如果電腦執行 hello 相同的工作負載，而且需要 toobe 一致。
+5. 流量會複寫的 tooAzure 儲存體公用端點，超過 hello 網際網路。 或者，您可以使用 Azure ExpressRoute [公用對等](../expressroute/expressroute-circuit-peerings.md#public-peering)。 不支援透過站對站 VPN 從內部部署站台 tooAzure 複寫流量。
 
-**圖 2：VMware 到 Azure 的複寫**
+**圖 2: VMware tooAzure 複寫**
 
 ![增強](./media/site-recovery-components/v2a-architecture-henry.png)
 
 ## <a name="failover-and-failback-process"></a>容錯移轉和容錯回復程序
 
-1. 確認測試容錯移轉如預期般運作之後，您可以視需要執行至 Azure 的未計劃容錯移轉。 不支援有計劃的容錯移轉。
-2. 您可以容錯移轉單一機器，或建立[復原計劃](site-recovery-create-recovery-plans.md)，來容錯移轉多部 VM。
-3. 當您執行容錯移轉時，會在 Azure 中建立複本 VM。 您要認可讓容錯移轉開始存取來自複本 Azure VM 的工作負載。
-4. 當主要的內部部署網站恢復可用狀態時，您就可以容錯回復。 您要設定容錯回復基礎結構、開始將機器從次要網站複寫到主要網站，以及從次要網站執行非計劃性容錯移轉。 在認可此容錯移轉後，資料會回到內部部署網站，而您必須再次啟用複寫至 Azure 的功能。 [深入了解](site-recovery-failback-azure-to-vmware.md)
+1. 在您確認測試容錯移轉正常運作之後，您可以視需要執行未規劃的容錯移轉 tooAzure。 不支援有計劃的容錯移轉。
+2. 您可以容錯移轉單一電腦，或建立[復原計劃](site-recovery-create-recovery-plans.md)，toofail 於多個 Vm。
+3. 當您執行容錯移轉時，會在 Azure 中建立複本 VM。 您從 Azure VM 的 hello 複本認可容錯移轉 toostart 存取 hello 工作負載。
+4. 當主要的內部部署網站恢復可用狀態時，您就可以容錯回復。 您設定容錯回復基礎結構，開始從主要的 hello 次要站台 toohello 複寫 hello 機器，並從 hello 次要站台執行未規劃的容錯移轉。 確認此容錯移轉之後，資料將會回復在內部，並再次需要 tooenable 複寫 tooAzure。 [深入了解](site-recovery-failback-azure-to-vmware.md)
 
 容錯回復有以下幾項需求︰
 
 
-- **Azure 中的暫存處理序伺服器**︰如果您想要在容錯移轉後從 Azure 容錯回復，您必須將 Azure VM 設定為處理序伺服器，以處理來自 Azure 的複寫。 容錯回復完成後，您可以刪除此 VM。
-- **VPN 連線**：如需容錯回復，您需要設定從 Azure 網路到內部部署網站的 VPN 連線 (或 Azure ExpressRoute)。
-- **個別內部部署主要目標伺服器**︰內部部署主要目標伺服器會處理容錯回復。 主要目標伺服器預設會安裝在管理伺服器上，但如果要容錯回復大量資料，您應該就此目的設定個別的內部部署主要目標伺服器。
-- **容錯回復原則**︰若要複寫回到內部部署網站，您需要容錯回復原則。 此原則會在您建立複寫原則時自動建立。
-- **VMware 基礎結構**：您必須容錯回復到內部部署 VMware VM。 這表示您需要內部部署 VMware 基礎結構，即使是將內部部署實體伺服器複寫到 Azure。
+- **在 Azure 中的暫存處理序伺服器**： 如果您想 toofail 從 Azure 容錯移轉之後您將需要 tooset 設定處理序伺服器，從 Azure toohandle 複寫為 Azure vm。 容錯回復完成後，您可以刪除此 VM。
+- **VPN 連線**： 您必須容錯回復的 VPN 連線 （或 Azure ExpressRoute） 設定從 hello Azure 網路 toohello 在內部部署站台。
+- **另一個在內部部署主要目標伺服器**: hello 在內部部署主要目標伺服器可處理容錯回復。 hello 管理伺服器上，預設會安裝 hello 主要目標伺服器，但如果您在容錯回較大量的流量您應該設定不同內部部署主要目標伺服器針對此目的。
+- **容錯回復原則**: tooreplicate 後 tooyour 內部網站，您需要容錯回復原則。 此原則會在您建立複寫原則時自動建立。
+- **VMware 基礎結構**： 您必須容錯回復 tooan 內部部署 VMware VM。 這表示您需要在內部部署 VMware 基礎結構中，即使您要複寫在內部部署實體伺服器 tooAzure。
 
 **圖 3：VMware/實體容錯回復**
 
@@ -92,4 +92,4 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-檢閱[支援矩陣](site-recovery-support-matrix-to-azure.md)
+檢閱 hello[支援矩陣](site-recovery-support-matrix-to-azure.md)

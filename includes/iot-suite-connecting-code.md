@@ -1,24 +1,24 @@
-## <a name="specify-the-behavior-of-the-iot-device"></a>指定 IoT 裝置的行為
+## <a name="specify-hello-behavior-of-hello-iot-device"></a>指定 hello IoT 裝置 hello 的行為
 
-IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT 中樞交換之訊息的格式。
+hello IoT 中樞序列化程式用戶端程式庫會使用模型 toospecify hello 格式的 hello 訊息 hello 裝置交換與 IoT 中樞。
 
-1. 在 `#include` 陳述式之後新增下列變數宣告。 使用您在遠端監視解決方案儀表板中為裝置記下的值來取代 [Device Id] 和 [Device Key] 預留位置值。 使用解決方案儀表板中的「IoT 中樞主機名稱」來取代 [IoTHub Name]。 例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：
+1. 加入下列變數宣告之後 hello hello`#include`陳述式。 取代 hello 預留位置值 [裝置識別碼] 和 [裝置機碼] 與您記下您的裝置 hello 遠端監視方案儀表板中的值。 使用從 hello 方案儀表板 tooreplace [iot 中樞名稱] 的 hello IoT 中樞的主機名稱。 例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：
    
     ```c
     static const char* deviceId = "[Device Id]";
     static const char* connectionString = "HostName=[IoTHub Name].azure-devices.net;DeviceId=[Device Id];SharedAccessKey=[Device Key]";
     ```
 
-1. 新增下列程式碼以定義可讓裝置與 IoT 中樞通訊的模型。 此模型會指定裝置：
+1. 新增下列程式碼 toodefine hello 模型，可讓與 IoT 中樞 hello 裝置 toocommunicate hello。 此模型會指定該 hello 裝置：
 
    - 可以傳送溫度、外部溫度、濕度及裝置識別碼作為遙測資料。
-   - 可以將裝置相關中繼資料傳送給 IoT 中樞。 裝置會在啟動時傳送 **DeviceInfo** 物件中的基本中繼資料。
-   - 可以將回報的屬性傳送給 IoT 中樞內的裝置對應項。 這些回報的屬性會依組態、裝置及系統屬性分組。
-   - 可以接收 IoT 中樞內裝置對應項中設定的所需屬性，並根據這些屬性採取動作。
-   - 可以回應透過解決方案入口網站叫用的 **Reboot** 和 **InitiateFirmwareUpdate** 直接方法。 裝置會使用回報的屬性來傳送它所支援之直接方法的相關資訊。
+   - 可以傳送嗨裝置 tooIoT 中樞的相關中繼資料。 hello 裝置傳送基本中繼資料**DeviceInfo**在啟動時的物件。
+   - 可以傳送報告的內容，toohello 裝置的兩個在 IoT 中樞。 這些回報的屬性會依組態、裝置及系統屬性分組。
+   - 可以接收及處理在 IoT 中樞中的 hello 裝置兩個設定所需的屬性。
+   - 可以回應 toohello**重新開機**和**InitiateFirmwareUpdate**直接叫用透過 hello 方案入口網站的方法。 hello 裝置傳送它支援使用報告的屬性 hello 直接方法的相關資訊。
    
     ```c
-    // Define the Model
+    // Define hello Model
     BEGIN_NAMESPACE(Contoso);
 
     /* Reported properties */
@@ -74,7 +74,7 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
       WITH_DESIRED_PROPERTY(double, TemperatureMeanValue, onDesiredTemperatureMeanValue),
       WITH_DESIRED_PROPERTY(uint8_t, TelemetryInterval, onDesiredTelemetryInterval),
 
-      /* Direct methods implemented by the device */
+      /* Direct methods implemented by hello device */
       WITH_METHOD(Reboot),
       WITH_METHOD(InitiateFirmwareUpdate, ascii_char_ptr, FwPackageURI),
 
@@ -85,15 +85,15 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
     END_NAMESPACE(Contoso);
     ```
 
-## <a name="implement-the-behavior-of-the-device"></a>實作裝置的行為
-現在，請新增程式碼來實作模型中所定義的行為。
+## <a name="implement-hello-behavior-of-hello-device"></a>可實作 hello 裝置 hello 行為
+現在加入程式碼會實作 hello hello 模型中定義的行為。
 
-1. 新增下列函式，這些函式會處理在解決方案儀表板中設定的所需屬性。 這些所需屬性是在模型中定義：
+1. 加入下列函式可處理預期的 hello 屬性設定 hello 方案儀表板中的 hello。 Hello 模型中定義這些所需的屬性：
 
     ```c
     void onDesiredTemperatureMeanValue(void* argument)
     {
-      /* By convention 'argument' is of the type of the MODEL */
+      /* By convention 'argument' is of hello type of hello MODEL */
       Thermostat* thermostat = argument;
       printf("Received a new desired_TemperatureMeanValue = %f\r\n", thermostat->TemperatureMeanValue);
 
@@ -101,13 +101,13 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
 
     void onDesiredTelemetryInterval(void* argument)
     {
-      /* By convention 'argument' is of the type of the MODEL */
+      /* By convention 'argument' is of hello type of hello MODEL */
       Thermostat* thermostat = argument;
       printf("Received a new desired_TelemetryInterval = %d\r\n", thermostat->TelemetryInterval);
     }
     ```
 
-1. 新增下列函式，這些函式會處理透過 IoT 中樞叫用的直接方法。 這些直接方法是在模型中定義：
+1. 加入下列函式可處理 hello 直接的方法，透過 hello IoT 中樞叫用的 hello。 Hello 模型中定義這些直接的方法：
 
     ```c
     /* Handlers for direct methods */
@@ -130,26 +130,26 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
     }
     ```
 
-1. 新增下列函式，此函式會傳送訊息給預先設定的解決方案：
+1. 新增下列傳送郵件 toohello 預先設定的解決方案函式的 hello:
    
     ```c
-    /* Send data to IoT Hub */
+    /* Send data tooIoT Hub */
     static void sendMessage(IOTHUB_CLIENT_HANDLE iotHubClientHandle, const unsigned char* buffer, size_t size)
     {
       IOTHUB_MESSAGE_HANDLE messageHandle = IoTHubMessage_CreateFromByteArray(buffer, size);
       if (messageHandle == NULL)
       {
-        printf("unable to create a new IoTHubMessage\r\n");
+        printf("unable toocreate a new IoTHubMessage\r\n");
       }
       else
       {
         if (IoTHubClient_SendEventAsync(iotHubClientHandle, messageHandle, NULL, NULL) != IOTHUB_CLIENT_OK)
         {
-          printf("failed to hand over the message to IoTHubClient");
+          printf("failed toohand over hello message tooIoTHubClient");
         }
         else
         {
-          printf("IoTHubClient accepted the message for delivery\r\n");
+          printf("IoTHubClient accepted hello message for delivery\r\n");
         }
 
         IoTHubMessage_Destroy(messageHandle);
@@ -158,7 +158,7 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
     }
     ```
 
-1. 新增下列回呼處理常式，此處理常式會在裝置將新回報的屬性值傳送給預先設定的解決方案後執行：
+1. 新增下列 hello 裝置已傳送新的報告的屬性值 toohello 預先設定的方案時執行的回呼處理常式的 hello:
 
     ```c
     /* Callback after sending reported properties */
@@ -169,15 +169,15 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
     }
     ```
 
-1. 新增下列函式，以將您的裝置連接到雲端中的預先設定解決方案，然後交換資料。 此函式會執行下列步驟：
+1. 加入下列 hello 函式 tooconnect hello 雲端中您裝置 toohello 預先設定的解決方案，並交換資料。 此函式會執行下列步驟的 hello:
 
-    - 將平台初始化。
-    - 使用序列化程式庫來註冊 Contoso 命名空間。
-    - 使用裝置連接字串將用戶端初始化。
-    - 建立「控溫器」模型的執行個體。
+    - 初始化 hello 平台。
+    - 使用 hello 序列化文件庫中註冊 hello Contoso 命名空間。
+    - 初始化用戶端 hello hello 裝置連接字串。
+    - 建立執行個體的 hello **Thermostat**模型。
     - 建立並傳送回報的屬性值。
     - 傳送 **DeviceInfo** 物件。
-    - 建立迴圈來每秒傳送遙測資料。
+    - 每秒建立迴圈 toosend 遙測。
     - 將所有資源取消初始化。
 
       ```c
@@ -185,13 +185,13 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
       {
         if (platform_init() != 0)
         {
-          printf("Failed to initialize the platform.\n");
+          printf("Failed tooinitialize hello platform.\n");
         }
         else
         {
           if (SERIALIZER_REGISTER_NAMESPACE(Contoso) == NULL)
           {
-            printf("Unable to SERIALIZER_REGISTER_NAMESPACE\n");
+            printf("Unable tooSERIALIZER_REGISTER_NAMESPACE\n");
           }
           else
           {
@@ -203,10 +203,10 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
             else
             {
       #ifdef MBED_BUILD_TIMESTAMP
-              // For mbed add the certificate information
+              // For mbed add hello certificate information
               if (IoTHubClient_SetOption(iotHubClientHandle, "TrustedCerts", certificates) != IOTHUB_CLIENT_OK)
               {
-                  printf("Failed to set option \"TrustedCerts\"\n");
+                  printf("Failed tooset option \"TrustedCerts\"\n");
               }
       #endif // MBED_BUILD_TIMESTAMP
               Thermostat* thermostat = IoTHubDeviceTwin_CreateThermostat(iotHubClientHandle);
@@ -229,17 +229,17 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
                 thermostat->System.Platform = "Plat 9.75";
                 thermostat->System.Processor = "i3-7";
                 thermostat->System.SerialNumber = "SER21";
-                /* Specify the signatures of the supported direct methods */
-                thermostat->SupportedMethods = "{\"Reboot\": \"Reboot the device\", \"InitiateFirmwareUpdate--FwPackageURI-string\": \"Updates device Firmware. Use parameter FwPackageURI to specifiy the URI of the firmware file\"}";
+                /* Specify hello signatures of hello supported direct methods */
+                thermostat->SupportedMethods = "{\"Reboot\": \"Reboot hello device\", \"InitiateFirmwareUpdate--FwPackageURI-string\": \"Updates device Firmware. Use parameter FwPackageURI toospecifiy hello URI of hello firmware file\"}";
 
-                /* Send reported properties to IoT Hub */
+                /* Send reported properties tooIoT Hub */
                 if (IoTHubDeviceTwin_SendReportedStateThermostat(thermostat, deviceTwinCallback, NULL) != IOTHUB_CLIENT_OK)
                 {
                   printf("Failed sending serialized reported state\n");
                 }
                 else
                 {
-                  printf("Send DeviceInfo object to IoT Hub at startup\n");
+                  printf("Send DeviceInfo object tooIoT Hub at startup\n");
       
                   thermostat->ObjectType = "DeviceInfo";
                   thermostat->IsSimulatedDevice = 0;
@@ -296,7 +296,7 @@ IoT 中樞序列化程式用戶端程式庫會使用模型來指定裝置與 IoT
       }
     ```
    
-    以下是一個傳送給預先設定之解決方案的範例「遙測」訊息，可供您參考：
+    如需參考，以下是範例**遙測**傳送訊息 toohello 預先設定的方案：
    
     ```
     {"DeviceId":"mydevice01", "Temperature":50, "Humidity":50, "ExternalTemperature":55}

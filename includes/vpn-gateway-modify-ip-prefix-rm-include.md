@@ -1,6 +1,6 @@
-### <a name="noconnection"></a>修改區域網路閘道 IP 位址首碼 - 沒有閘道連線
+### <a name="noconnection"></a>toomodify 區域網路閘道 IP 位址首碼不閘道連線
 
-若要新增其他位址首碼：
+tooadd 其他位址前置詞：
 
 ```powershell
 $local = Get-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName -ResourceGroupName MyRGName `
@@ -8,8 +8,8 @@ Set-AzureRmLocalNetworkGateway -LocalNetworkGateway $local `
 -AddressPrefix @('10.0.0.0/24','20.0.0.0/24','30.0.0.0/24')
 ```
 
-若要移除位址首碼：<br>
-省略您不再需要的首碼。 此範例中不再需要首碼 20.0.0.0/24 (來自先前的範例)，因此我們將更新區域網路閘道，並排除該首碼。
+tooremove 位址首碼：<br>
+會省略您不再需要的 hello 前置詞。 在此範例中，我們不再需要的前置詞 20.0.0.0/24 （從 hello 上述範例中），因此，我們更新 hello 區域網路閘道，但不包括該前置詞。
 
 ```powershell
 $local = Get-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName -ResourceGroupName MyRGName `
@@ -17,39 +17,39 @@ Set-AzureRmLocalNetworkGateway -LocalNetworkGateway $local `
 -AddressPrefix @('10.0.0.0/24','30.0.0.0/24')
 ```
 
-### <a name="withconnection"></a>修改區域網路閘道 IP 位址首碼 - 現有閘道連線
+### <a name="withconnection"></a>toomodify 區域網路閘道的 IP 位址首碼為現有的閘道連線
 
-如果您有閘道連線並想要新增或移除包含在區域網路閘道中的 IP 位址首碼，您必須依序執行下列步驟。 這會導致您 VPN 連線的停機時間。 修改 IP 位址首碼時，您不需要刪除 VPN 閘道。 您只需要移除連線。
+如果您有閘道連接和要 tooadd 或移除 hello IP 位址前置詞包含在您的本機網路閘道，您會需要 toodo hello 依照依順序的步驟。 這會導致您 VPN 連線的停機時間。 修改 IP 位址前置詞，您無須 toodelete hello VPN 閘道。 您只需要 tooremove hello 連線。
 
 
-1. 移除連線。
+1. 移除 hello 連線。
 
   ```powershell
   Remove-AzureRmVirtualNetworkGatewayConnection -Name MyGWConnectionName -ResourceGroupName MyRGName
   ```
-2. 修改區域網路閘道的位址首碼。
+2. 修改您的本機網路閘道的 hello 位址首碼。
    
-  設定 LocalNetworkGateway 的變數。
+  設定 hello LocalNetworkGateway hello 變數。
 
   ```powershell
   $local = Get-AzureRmLocalNetworkGateway -Name MyLocalNetworkGWName -ResourceGroupName MyRGName
   ```
    
-  修改首碼。
+  修改 hello 前置詞。
    
   ```powershell
   Set-AzureRmLocalNetworkGateway -LocalNetworkGateway $local `
   -AddressPrefix @('10.0.0.0/24','20.0.0.0/24','30.0.0.0/24')
   ```
-3. 建立連線。 在此範例中，我們會設定 IPsec 連線類型。 當您重新建立連線時，請使用針對設定指定的連線類型。 對於其他連線類型，請參閱 [PowerShell Cmdlet](https://msdn.microsoft.com/library/mt603611.aspx) 頁面。
+3. 建立 hello 連線。 在此範例中，我們會設定 IPsec 連線類型。 當您重新建立您的連線時，使用指定的 hello 連接類型來設定。 其他連接類型，請參閱 hello [PowerShell cmdlet](https://msdn.microsoft.com/library/mt603611.aspx)頁面。
    
-  設定 VirtualNetworkGateway 的變數。
+  設定 hello VirtualNetworkGateway hello 變數。
 
   ```powershell
   $gateway1 = Get-AzureRmVirtualNetworkGateway -Name RMGateway  -ResourceGroupName MyRGName
   ```
    
-  建立連線。 此範例使用您在步驟 2 中設定的 $local 變數。
+  建立 hello 連線。 這個範例會使用 hello 變數 $local 您在步驟 2 中設定。
 
   ```powershell
   New-AzureRmVirtualNetworkGatewayConnection -Name MyGWConnectionName `

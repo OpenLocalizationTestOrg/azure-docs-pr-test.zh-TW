@@ -1,5 +1,5 @@
 ---
-title: "Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密 | Microsoft Docs"
+title: "aaaAzure 磁碟加密，適用於 Windows 和 Linux IaaS Vm |Microsoft 文件"
 description: "本文提供 Windows 和 Linux IaaS VM 適用的 Microsoft Azure 磁碟加密概觀。"
 services: security
 documentationcenter: na
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/07/2017
 ms.author: kakhan
-ms.openlocfilehash: a4f20fc19ae40561d042d5cff744a030014f75c7
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: b685abdcc908e66d2352ec5ac2d9996aa75af1b6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-disk-encryption-for-windows-and-linux-iaas-vms"></a>Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密
-Microsoft Azure 強烈承諾確保您的資料隱私權、資料主權，並透過一系列進階技術來加密、控制和管理加密金鑰、控制和稽核資料存取，讓您控制您的 Azure 託管資料。 這會提供 Azure 客戶靈活度，可選擇最符合其商務需求的解決方案。 本文中，我們將為您介紹新的技術解決方案「Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密」，以協助保護及保障您的資料，以便符合組織的安全性和符合性的承諾。 本文提供有關如何使用 Azure 磁碟加密功能的詳細指引，包括支援的案例和使用者體驗。
+Microsoft Azure 是強式認可的 tooensuring 資料隱私權，資料 sovereignty 和 toocontrol 您的 Azure 託管可讓您透過的進階的技術 tooencrypt 範圍資料控制和管理加密金鑰控制和稽核資料的存取。 這會提供 Azure 客戶 hello 彈性 toochoose hello 解決方案以最符合其商務需求。 本文中，我們將介紹新技術解決方案 tooa 「 適用於 Windows 和 Linux IaaS VM 的 Azure 磁碟加密 」 toohelp 保護與防衛資料 toomeet 您組織的安全性與相容性承諾。 hello 紙張提供詳細的指引 toouse hello Azure 磁碟加密功能，包括 hello 如何支援案例和 hello 使用者經驗。
 
 > [!NOTE]
 > 某些建議可能會增加資料、網路或計算資源的使用量，導致額外的授權或訂用帳戶成本。
 
 ## <a name="overview"></a>概觀
-Azure 磁碟加密是協助您加密 Windows 和 Linux IaaS 虛擬機器磁碟的新功能。 Azure 磁碟加密利用 Windows 的業界標準 [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) 功能和 Linux 的 [DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) 功能，為 OS 和資料磁碟提供磁碟區加密。 此解決方案與 [Azure Key Vault](https://azure.microsoft.com/documentation/services/key-vault/) 整合，協助您控制及管理金鑰保存庫訂用帳戶中的磁碟加密金鑰與密碼。 此解決方案也可確保虛擬機器磁碟上的所有待用資料都會在您的 Azure 儲存體中加密。
+Azure 磁碟加密是協助您加密 Windows 和 Linux IaaS 虛擬機器磁碟的新功能。 Azure 磁碟加密會利用 hello 業界標準[BitLocker](https://technet.microsoft.com/library/cc732774.aspx)功能的 Windows 和 hello [DM Crypt](https://en.wikipedia.org/wiki/Dm-crypt) Linux tooprovide 磁碟區加密 hello OS 與 hello 資料磁碟的功能。 與整合 hello 方案[Azure 金鑰保存庫](https://azure.microsoft.com/documentation/services/key-vault/)toohelp 您控制和管理您金鑰保存庫的訂用帳戶中的 hello 磁碟加密金鑰和密碼。 hello 方案也能確保 hello 虛擬機器磁碟上的所有資料會留在您 Azure 儲存體都加密。
 
 Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密現已在所有 Azure 公用區域和 AzureGov 區域**正式推出**，可供用於標準 VM 和具有高階儲存體的 VM。
 
 ### <a name="encryption-scenarios"></a>加密案例
-Azure 磁碟加密解決方案支援下列客戶案例：
+hello Azure 磁碟加密解決方案支援下列客戶案例 hello:
 
 * 對透過加密的 VHD 和加密金鑰建立的新 IaaS VM 啟用加密
-* 對透過受支援 Azure 資源庫映像建立的新 IaaS VM 啟用加密
+* 在 從支援的 hello Azure 資源庫映像建立新的 IaaS Vm 上啟用加密
 * 在 Azure 中執行的現有 IaaS VM 上啟用加密
 * 在 Windows IaaS VM 上停用加密
 * 在 Linux IaaS VM 的資料磁碟機上停用加密
@@ -43,11 +43,11 @@ Azure 磁碟加密解決方案支援下列客戶案例：
 * 現有已加密非高階儲存體 VM 的更新加密設定
 * 備份與還原以金鑰加密金鑰進行加密的已加密 VM
 
-在 Microsoft Azure 中啟用時，解決方案會對 IaaS VM 支援下列案例：
+hello 解決方案支援 IaaS Vm 的下列案例，當啟用 Microsoft Azure 中的 hello:
 
 * 與 Azure 金鑰保存庫整合
 * 標準層 VM：[A、D、DS、G、GS、F 等系列 IaaS VM](https://azure.microsoft.com/pricing/details/virtual-machines/)
-* 對透過受支援 Azure 資源庫映像的 Windows 和 Linux IaaS VM 以及受控磁碟 VM 啟用加密
+* 在 Windows 和 Linux IaaS Vm 和 hello 從受管理的磁碟 Vm 上啟用加密支援 Azure 資源庫映像
 * 在 Windows IaaS VM 與受管理磁碟 VM 的作業系統與資料磁碟機上停用加密
 * 在 Linux IaaS VM 與受管理磁碟 VM 的資料磁碟機上停用加密
 * 在執行 Windows Client OS 的 IaaS VM 上啟用加密
@@ -58,12 +58,12 @@ Azure 磁碟加密解決方案支援下列客戶案例：
 * 現有已加密非高階儲存體 VM 的更新加密設定
 * 支援所有 Azure 公用區域與 AzureGov 區域
 
-此解決方案不支援下列案例、功能和技術：
+hello 方案不支援下列案例、 功能和技術的 hello:
 
 * 基本層 IaaS VM
 * 在 Linux IaaS VM 的 OS 磁碟機上停用加密
-* 如果已加密 Linux IaaS VM 的 OS 磁碟機，請將資料磁碟機上的加密停用
-* 使用傳統 VM 建立方法所建立的 IaaS VM
+* 停用加密資料磁碟機上的，如果 hello 作業系統磁碟機已加密適用於 Linux Iaas Vm
+* 使用 hello 傳統 VM 建立方法所建立的 IaaS Vm
 * 「不」支援透過 Windows 和 Linux IaaS VM 客戶自訂映像上啟用加密。 目前不支援在 Linux LVM OS 磁碟機上啟用加密。 此支援會立即出現。
 * 與您的內部部署金鑰管理服務整合
 * Azure 檔案 (共用檔案系統)、網路檔案系統 (NFS)、動態磁碟區和以軟體型 RAID 系統所設定的 Windows VM
@@ -71,84 +71,84 @@ Azure 磁碟加密解決方案支援下列客戶案例：
 * 現有已加密高階儲存體 VM 的更新加密設定。
 
 > [!NOTE]
-> 只有使用 KEK 組態加密的 VM 支援備份和還原已加密的 VM。 未使用 KEK 加密的 VM 則不支援。 KEK 是啟用 VM 加密的選擇性參數。 即將提供此支援。
+> 備份與還原加密的 Vm 支援只會加密與 hello KEK 組態的 Vm。 未使用 KEK 加密的 VM 則不支援。 KEK 是啟用 VM 加密的選擇性參數。 即將提供此支援。
 > 不支援現有已加密高階儲存體 VM 的更新加密設定。 即將提供此支援。
 
 ### <a name="encryption-features"></a>加密功能
-為 Azure IaaS VM 啟用並部署 Azure 磁碟加密時，會啟用下列功能，視提供的組態而定：
+當您啟用並部署 Azure IaaS Vm 的 Azure 磁碟加密時，hello 下列功能已啟用，根據提供的 hello 組態：
 
-* 加密 OS 磁碟區以保護儲存體中的待用開機磁碟區
-* 加密資料磁碟區以保護儲存體中的待用資料磁碟區
-* 在 Windows IaaS VM 的 OS 和資料磁碟機上停用加密
-* 在 Linux IaaS VM 的資料磁碟機上停用加密 (僅在 OS 磁碟機「並未」加密時)
-* 保護金鑰保存庫訂用帳戶中的加密金鑰和密碼
-* 報告已加密 IaaS VM 的加密狀態
-* 從 IaaS 虛擬機器移除磁碟加密組態設定
-* 使用 Azure 備份服務來備份和還原已加密的 VM
+* Hello OS 磁碟區 tooprotect hello 開機磁碟區的存放裝置中的靜止的加密
+* 資料磁碟區 tooprotect hello 資料磁碟區的存放裝置中的靜止的加密
+* 適用於 Windows 的 IaaS Vm 停用加密 hello OS 和資料磁碟機
+* 停用加密 hello 的資料磁碟機適用於 Linux IaaS Vm （只有當作業系統不是加密磁碟機）
+* 保護 hello 加密金鑰和金鑰保存庫訂用帳戶中的密碼
+* 報告 hello hello 加密狀態加密 IaaS VM
+* 磁碟加密組態設定從 hello IaaS 虛擬機器之移除
+* 備份和還原的加密 Vm 使用 hello Azure 備份服務
 
 > [!NOTE]
-> 只有使用 KEK 組態加密的 VM 支援備份和還原已加密的 VM。 未使用 KEK 加密的 VM 則不支援。 KEK 是啟用 VM 加密的選擇性參數。
+> 備份與還原加密的 Vm 支援只會加密與 hello KEK 組態的 Vm。 未使用 KEK 加密的 VM 則不支援。 KEK 是啟用 VM 加密的選擇性參數。
 
 Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密解決方案包含：
 
-* Windows 的磁碟加密擴充功能。
-* Linux 的磁碟加密擴充功能。
-* 磁碟加密 PowerShell Cmdlet。
-* 磁碟加密 Azure 命令列介面 (CLI) Cmdlet。
-* 磁碟加密 Azure Resource Manager 範本。
+* 適用於 Windows hello 磁碟加密延伸模組。
+* 適用於 Linux hello 磁碟加密延伸模組。
+* hello 磁碟加密 PowerShell 指令程式。
+* hello 磁碟加密 Azure 命令列介面 (CLI) cmdlet。
+* hello 磁碟加密 Azure Resource Manager 範本。
 
-執行 Windows 或 Linux OS 的 IaaS VM 支援 Azure 磁碟加密解決方案。 如需支援的作業系統相關詳細資訊，請參閱「必要條件」一節。
+hello Azure 磁碟加密解決方案可支援執行 Windows 或 Linux 作業系統的 IaaS Vm。 如需支援的 hello 作業系統的詳細資訊，請參閱 hello < 先決條件 > 一節。
 
 > [!NOTE]
 > 使用 Azure 磁碟加密來加密 VM 磁碟完全免費。
 
 ### <a name="value-proposition"></a>價值主張
-當您套用 Azure 磁碟加密管理解決方案時，可滿足下列商務需求：
+當您套用 hello Azure 磁碟加密管理解決方案時，可以滿足下列商務需求的 hello:
 
-* 待用 IaaS VM 會受到保護，因您使用了業界標準的加密技術解決組織安全性和合規性的需求。
+* IaaS Vm 保護待用，因為您可以使用業界標準加密技術 tooaddress 組織的安全性與相容性的需求。
 * IaaS VM 會在客戶控制的金鑰和原則下開機，且您可以在金鑰保存庫中稽核其使用狀況。
 
 ### <a name="encryption-workflow"></a>加密工作流程
-若要啟用 Windows 和 Linux VM 的磁碟加密，請執行下列作業︰
+適用於 Windows 和 Linux Vm tooenable 磁碟加密 hello 遵循：
 
-1. 從先前的加密案例中選擇一個加密案例。
-2. 選擇透過 Azure 磁碟加密 Resource Manager 範本、PowerShell Cmdlet 或 CLI 命令啟用磁碟加密，並指定加密組態。
+1. 選擇加密的情況下從 hello 之前加密案例。
+2. 參加 tooenabling 磁碟加密透過 hello Azure 磁碟加密 Resource Manager 範本、 PowerShell cmdlet 或 CLI 命令，並指定 hello 加密組態。
 
-   * 針對客戶加密的 VHD 案例，請將加密的 VHD 上傳至儲存體帳戶並將加密金鑰資料上傳至金鑰保存庫。 接著，提供加密組態資訊以在新的 IaaS VM 上啟用加密。
-   * 針對透過 Marketplace 所建立的新 VM 和已在 Azure 中執行的現有 VM，提供加密組態以在 IaaS VM 上啟用加密。
+   * Hello 客戶加密 VHD 案例中上, 傳加密的 hello VHD tooyour 儲存體帳戶和 hello 加密金鑰材料 tooyour 金鑰保存庫。 然後，提供新的 IaaS VM 上的 hello 加密組態 tooenable 加密。
+   * 針對新的 Vm 中建立的 hello Marketplace 並已在 Azure 中執行的現有 Vm，提供 hello 加密組態 tooenable 加密上 hello IaaS VM。
 
-3. 授與存取至 Azure 平台，以從您的金鑰保存庫讀取加密金鑰資料 (Windows 系統的 BitLocker 加密金鑰和 Linux 的複雜密碼)，藉以在 IaaS VM 上啟用加密。
+3. 授與存取 toohello Azure 平台 tooread hello 加密金鑰材料 （BitLocker 加密金鑰的 Windows 系統），適用於 Linux 的複雜密碼從您的金鑰保存庫 tooenable 加密 hello IaaS VM 上。
 
-4. 提供 Azure Active Directory (Azure AD) 應用程式身分識別，以將加密金鑰資料寫入至金鑰保存庫。 如此可針對步驟 2 中所述的案例在 IaaS VM 上啟用加密。
+4. 提供 hello Azure Active Directory (Azure AD) 應用程式識別 toowrite hello 加密金鑰材料 tooyour 金鑰保存庫。 如此可讓上述步驟 2 中的 hello 案例 hello IaaS VM 上的加密。
 
-5. Azure 會使用加密和金鑰保存庫組態更新 VM 服務模型，並建立加密的 VM。
+5. Azure 會加密與 hello 金鑰保存庫設定，會更新 hello VM 服務模型，並設定加密 VM。
 
  ![Azure 中的 Microsoft Antimalware](./media/azure-security-disk-encryption/disk-encryption-fig1.png)
 
 ### <a name="decryption-workflow"></a>解密工作流程
-若要停用 IaaS VM 的磁碟加密，請完成下列高階步驟：
+對於 IaaS Vm，完成下列高層級步驟的 hello toodisable 磁碟加密：
 
-1. 選擇透過 Azure 磁碟加密 Resource Manager 範本或 PowerShell Cmdlet，在 Azure 中的執行中 IaaS VM 上停用加密 (解密)，並指定解密組態。
+1. 在 Azure 中執行的 IaaS VM 上選擇 toodisable 加密 （解密），透過 hello Azure 磁碟加密 Resource Manager 範本或 PowerShell 指令程式，並指定 hello 解密組態。
 
- 此步驟會在執行中 Windows IaaS VM 上停用 OS 或資料磁碟區或兩者的加密。 但是如前一節所述，並不支援停用 Linux 的 OS 磁碟加密。 只要 OS 磁碟機未加密，就只允許對 Linux VM 上的資料磁碟機執行解密步驟。
-2. Azure 會更新 VM 服務模型，且 IaaS VM 會標示為已解密。 VM 的待用內容不會再加密。
+ 此步驟會停用加密 hello OS 或 hello 資料磁碟區上或兩者都執行 Windows IaaS VM 的 hello。 不過，如 hello 前一節中所述，停用作業系統磁碟加密 for Linux 不支援。 hello 解密步驟只適用於 Linux Vm 上的資料磁碟機，只要 hello OS 磁碟不會加密。
+2. 更新 azure hello VM 服務模型，且會標示解密 hello IaaS VM。 hello VM hello 內容已不再加密在靜止。
 
 > [!NOTE]
-> 停用加密作業並不會刪除您的金鑰保存庫和加密金鑰資料 (Windows 系統的 BitLocker 加密金鑰或 Linux 的複雜密碼)。
- > 不支援停用 Linux 適用的作業系統磁碟加密。 只允許對 Linux VM 上的資料磁碟機執行解密步驟。
-如果 OS 磁碟機已加密，就不支援將 Linux 的資料磁碟加密停用。
+> hello 停用加密作業不會刪除您金鑰保存庫和 hello 加密金鑰內容 （BitLocker 加密金鑰適用於 Windows 系統） 或適用於 Linux 的複雜密碼。
+ > 不支援停用 Linux 適用的作業系統磁碟加密。 hello 解密步驟只適用於 Linux Vm 上的資料磁碟機。
+不支援停用適用於 Linux 的資料磁碟加密，如果 hello 作業系統磁碟機已加密。
 
 ## <a name="prerequisites"></a>必要條件
-針對「概觀」一節所提到支援的案例，在 Azure IaaS VM 上啟用 Azure 磁碟加密之前，請參閱下列必要條件：
+您可以啟用 Azure IaaS Vm 上的 Azure 磁碟加密 hello < 概觀 > 一節中所討論的 hello 支援案例之前，請參閱 hello 下列必要條件：
 
-* 您必須擁有有效的作用中 Azure 訂用帳戶，才能在 Azure 支援的區域中建立資源。
-* 下列 Windows Server 版本支援 Azure 磁碟加密：Windows Server 2008 R2、Windows Server 2012、Windows Server 2012 R2 和 Windows Server 2016。
-* 下列 Windows 用戶端版本支援 Azure 磁碟加密：Windows 8 Client 和 Windows 10 Client。
+* 您必須擁有有效的作用中 Azure 訂用 toocreate 資源 hello 支援地區的 Azure 中。
+* 支援 azure 磁碟加密： hello 遵循 Windows Server 版本： Windows Server 2008 R2、 Windows Server 2012、 Windows Server 2012 R2 和 Windows Server 2016。
+* 支援 azure 磁碟加密： hello 遵循 Windows 用戶端版本： Windows 8 用戶端和 Windows 10 用戶端。
 
 > [!NOTE]
-> 針對 Windows Server 2008 R2，您必須先安裝 .NET Framework 4.5，才能在 Azure 中啟用加密。 您可以透過安裝選用的更新 Windows Server 2008 R2 x64 型系統的 Microsoft .NET Framework 4.5.2 ([KB2901983](https://support.microsoft.com/kb/2901983))，從 Windows Update 安裝它。
+> 針對 Windows Server 2008 R2，您必須先安裝 .NET Framework 4.5，才能在 Azure 中啟用加密。 安裝從 Windows Update 安裝 hello 選用更新適用於 Windows Server 2008 R2 x64 型系統的 Microsoft.NET Framework 4.5.2 ([KB2901983](https://support.microsoft.com/kb/2901983))。
 
-* 在下列以 Azure 資源庫為基礎的 Linux 伺服器散發套件和版本上支援 Azure 磁碟加密︰
+* 支援 azure 磁碟加密 hello 下列 Azure 資源庫依據的 Linux 伺服器發行，版本：
 
 | Linux 散發套件 | 版本 | 支援加密的磁碟區類型|
 | --- | --- |--- |
@@ -175,116 +175,116 @@ Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密解決方案包含：
 | SLES | 11-SP4 (高階) | 資料磁碟 |
 | SLES | 11 SP4 | 資料磁碟 |
 
-* Azure 磁碟加密需要您的金鑰保存庫和 VM 位於相同的 Azure 區域和訂用帳戶中。
+* Azure 磁碟加密需要，您的金鑰保存庫和 Vm 位於 hello 相同 Azure 地區和訂用帳戶。
 
 > [!NOTE]
-> 若在不同的區域設定資源，會導致 Azure 磁碟加密功能啟用失敗。
+> 在不同的區域中設定 hello 資源會導致失敗啟用 hello Azure 磁碟加密 」 功能。
 
-* 若要安裝及設定 Azure 磁碟加密的金鑰保存庫，請參閱本文＜必要條件＞一節中的**安裝及設定 Azure 磁碟加密的金鑰保存庫**。
-* 若要針對 Azure 磁碟加密在 Azure Active Directory 中安裝與設定 Azure AD 應用程式 ，請參閱本文＜必要條件＞一節中的**在 Azure Active Directory 中設定 Azure AD 應用程式**。
-* 若要針對 Azure AD 應用程式安裝與設定金鑰保存庫存取原則，請參閱本文＜必要條件＞一節中的**設定 Azure AD 應用程式的金鑰保存庫存取原則**
-* 若要準備預先加密的 Windows VHD，請參閱＜附錄＞中的**準備預先加密的 Windows VHD** 一節。
-* 若要準備預先加密的 Linux VHD，請參閱＜附錄＞中的**準備預先加密的 Linux VHD** 一節。
-* Azure 平台需要存取您金鑰保存庫中的加密金鑰或密碼，讓它們可供虛擬機器用來開機和解密虛擬機器作業系統磁碟區。 若要授與權限至 Azure 平台，請設定金鑰保存庫中的 **EnabledForDiskEncryption** 屬性。 如需詳細資訊，請參閱＜附錄＞中的**安裝及設定 Azure 磁碟加密的金鑰保存庫**。
-* 您的金鑰保存庫密碼和 KEK URL 必須已設定版本。 Azure 會強制執行設定版本的這項限制。 針對有效的密碼和 KEK URL，請參閱下列範例︰
+* tooset 和 Azure 磁碟加密設定金鑰保存庫，請參閱 > 一節**設定安裝及設定 Azure 磁碟加密金鑰保存庫**在 hello*必要條件*本文一節。
+* tooset 和設定 Azure Active directory 中的 Azure AD 應用程式，Azure 磁碟加密，請參閱 > 一節**設定 Azure Active Directory 中的 hello Azure AD 應用程式**在 hello*必要條件*本文一節。
+* tooset 和設定 hello hello Azure AD 應用程式的金鑰保存庫的存取原則，請參閱 > 一節**設定 hello hello Azure AD 應用程式的金鑰保存庫的存取原則**在 hello*必要條件*區段這篇文章。
+* tooprepare 預先加密的 Windows VHD，請參閱 > 一節**準備預先加密的 Windows VHD**在 hello*附錄*。
+* tooprepare 預先加密的 Linux VHD，請參閱 > 一節**準備預先加密的 Linux VHD**在 hello*附錄*。
+* hello Azure 平台需要存取 toohello 加密金鑰或密碼中您金鑰保存庫 toomake 它們可用 toohello 虛擬機器開機和解密 hello 虛擬機器作業系統磁碟區時。 toogrant 權限 tooAzure 平台組 hello **EnabledForDiskEncryption** hello 金鑰保存庫中的屬性。 如需詳細資訊，請參閱**設定安裝及設定 Azure 磁碟加密金鑰保存庫**hello 附錄中。
+* 您的金鑰保存庫密碼和 KEK URL 必須已設定版本。 Azure 會強制執行設定版本的這項限制。 有效的密碼及 KEK Url，請參閱下列範例中的 hello:
 
   * 有效祕密 URL 的範例︰https://contosovault.vault.azure.net/secrets/BitLockerEncryptionSecretWithKek/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   * 有效 KEK URL 的範例：https://contosovault.vault.azure.net/keys/diskencryptionkek/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-* Azure 磁碟加密不支援將連接埠號碼指定為金鑰保存庫密碼和 KEK URL 的一部分。 如需不支援和支援的金鑰保存庫 URL 範例，請參閱下列各項︰
+* Azure 磁碟加密不支援將連接埠號碼指定為金鑰保存庫密碼和 KEK URL 的一部分。 如需不支援和支援的金鑰保存庫 Url 的範例，請參閱 hello 下列：
 
   * 無法接受的金鑰保存庫 URL https://contosovault.vault.azure.net:443/secrets/contososecret/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   * 可接受的金鑰保存庫 URL：https://contosovault.vault.azure.net/secrets/contososecret/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-* 若要啟用 Azure 磁碟加密功能，IaaS VM 必須符合下列網路端點組態需求：
-  * 若要取得用來連線至金鑰保存庫的權杖，IaaS VM 必須能連線至 Azure Active Directory 端點 \[login.microsoftonline.com\]。
-  * 若要將加密金鑰寫入至您的金鑰保存庫，IaaS VM 必須能連接至金鑰保存庫端點。
-  * IaaS VM 必須能連接至託管 Azure 擴充儲存機制的 Azure 儲存體端點，和託管 VHD 檔案的 Azure 儲存體帳戶。
+* tooenable hello Azure 磁碟加密 」 功能，hello IaaS Vm 必須符合下列網路端點的組態需求的 hello:
+  * tooget 語彙基元 tooconnect tooyour 金鑰保存庫，hello IaaS VM 必須是 Azure Active Directory 無法 tooconnect tooan 的端點， \[login.microsoftonline.com\]。
+  * toowrite hello 加密金鑰 tooyour 金鑰保存庫，hello IaaS VM 必須是能夠 tooconnect toohello 金鑰保存庫端點。
+  * hello IaaS VM 必須能夠 tooconnect tooan Azure 儲存體端點主機 hello Azure 延伸模組儲存機制和主機 hello VHD 檔案的 Azure 儲存體帳戶。
 
   > [!NOTE]
-  > 如果您的安全性原則會限制從 Azure VM 至網際網路的存取，您可以解析前述的 URI，並設定特定的規則以允許和這些 IP 的輸出連線。
+  > 如果您的安全性原則會限制從 Azure Vm toohello 網際網路存取，您可以解決 hello 前面的 URI，並設定特定規則 tooallow 的傳出連線 toohello Ip。
   >
-  >設定與存取防火牆後的 Azure 金鑰保存庫 (英文) (https://docs.microsoft.com/en-us/azure/key-vault/key-vault-access-behind-firewall)
+  >tooconfigure 和防火牆 (https://docs.microsoft.com/en-us/azure/key-vault/key-vault-access-behind-firewall) 存取 Azure 金鑰保存庫
 
-* 使用最新版的 Azure PowerShell SDK 版本來設定 Azure 磁碟加密。 下載最新版的 [Azure PowerShell 版本](https://github.com/Azure/azure-powershell/releases)
+* 使用 Azure PowerShell SDK 版本 tooconfigure Azure 磁碟加密 hello 最新版本。 下載 hello 最新版本[Azure PowerShell 版本](https://github.com/Azure/azure-powershell/releases)
 
  > [!NOTE]
-  > [Azure PowerShell SDK 1.1.0 版](https://github.com/Azure/azure-powershell/releases/tag/v1.1.0-January2016)不支援 Azure 磁碟加密。 如果您收到與使用 Azure PowerShell 1.1.0 相關的錯誤，請參閱[與 Azure PowerShell 1.1.0 相關的 Azure 磁碟加密錯誤](http://blogs.msdn.com/b/azuresecurity/archive/2016/02/10/azure-disk-encryption-error-related-to-azure-powershell-1-1-0.aspx)。
+  > [Azure PowerShell SDK 1.1.0 版](https://github.com/Azure/azure-powershell/releases/tag/v1.1.0-January2016)不支援 Azure 磁碟加密。 如果您收到錯誤與相關 toousing Azure PowerShell 1.1.0，請參閱[Azure 磁碟加密相關錯誤 tooAzure PowerShell 1.1.0](http://blogs.msdn.com/b/azuresecurity/archive/2016/02/10/azure-disk-encryption-error-related-to-azure-powershell-1-1-0.aspx)。
 
-* 若要執行任何 Azure CLI 命令並使其與您的 Azure 訂用帳戶建立關聯，您必須先安裝 Azure CLI：
-  * 若要安裝 Azure CLI 並使其與您的 Azure 訂用帳戶建立關聯，請參閱[如何安裝和設定 Azure CLI](../cli-install-nodejs.md)。
-  * 若要使用適用於 Mac、Linux 和 Windows 的 Azure CLI 搭配 Azure Resource Manager，請參閱 [Resource Manager 模式中的 Azure CLI 命令](../virtual-machines/azure-cli-arm-commands.md)。
+* toorun 任何 Azure CLI 命令並將它與您 Azure 訂用帳戶產生關聯，您必須先安裝 Azure CLI:
+  * tooinstall Azure CLI 和與您 Azure 訂用帳戶產生關聯，請參閱[如何 tooinstall 及設定 Azure CLI](../cli-install-nodejs.md)。
+  * toouse Azure CLI Mac、 Linux 和 Windows 使用 Azure 資源管理員中，請參閱[Resource Manager 模式中的 Azure CLI 命令](../virtual-machines/azure-cli-arm-commands.md)。
 
-* 在加密受控磁碟時，必要的先決條件是先擷取受控磁碟的快照集或先在 Azure 磁碟加密之外備份磁碟再啟用加密。  若未備妥備份，當加密期間發生任何未預期的失敗時，將可能會讓磁碟和 VM 變得無法存取又沒有復原選項。  Set-AzureRmVMDiskEncryptionExtension 目前不會備份受控磁碟，而且除非指定了 -skipVmBackup 參數，否則在針對受控磁碟使用時將會發生錯誤。  除非您已在 Azure 磁碟加密之外建立備份，否則使用此參數並不安全。   若指定了 -skipVmBackup 參數，此 Cmdlet 在執行加密之前將不會先備份受控磁碟。  因此，我們才會認為必要的先決條件就是先備妥受控磁碟 VM 的備份，再啟用 Azure 磁碟加密，以防之後需要進行復原。  
+* 加密受管理的磁碟，時必要的先決條件 tootake hello 管理磁碟的快照集或 Azure 磁碟加密先前 tooenabling 加密之外的 hello 磁碟的備份。  若未備妥備份，任何未預期的失敗期間加密可能會讓 hello 磁碟和 VM 不含修復選項無法存取。  設定 AzureRmVMDiskEncryptionExtension 目前未不受管理的磁碟備份，然後會發生錯誤，如果使用針對受管理的磁碟，除非已指定 hello-skipVmBackup 參數。  這個參數是不安全的 toouse 除非之外 Azure 磁碟加密已進行過備份。   指定 hello-skipVmBackup 參數時，hello cmdlet 不會使受管理的 hello 磁碟先前 tooencryption 的備份。  基於這個理由，則會視為確定 hello 受管理磁碟 VM 處於位置先前 tooenabling Azure 磁碟加密修復是更新的備份所需的必要先決條件 toomake。  
 > [!NOTE]
- > 除非您已在 Azure 磁碟加密之外建立快照集或備份，否則請永遠不要使用 -skipVmBackup 參數。 
+ > 除非快照集或備份已發出 Azure 磁碟加密外，應該永遠不會使用 hello-skipVmBackup 參數。 
 
-* Azure 磁碟加密解決方案對 Windows IaaS VM 使用 BitLocker 外部金鑰保護裝置。 對於加入網域的 VM，請勿推送任何會強制使用 TPM 保護裝置的群組原則。 如需關於「在不含相容 TPM 的情形下允許使用 BitLocker」的群組原則相關資訊，請參閱 [BitLocker 群組原則參考文件](https://technet.microsoft.com/library/ee706521)。
-* 適用於具有自訂群組原則且已加入網域之虛擬機器上的 Bitlocker 原則必須包含下列設定：`Configure user storage of bitlocker recovery information -> Allow 256-bit recovery key` 當 Bitlocker 的自訂群組原則設定不相容時，Azure 磁碟加密將會失敗。 在沒有正確原則設定的電腦上，您可能必須套用新的原則、強制新的原則進行更新 (gpupdate.exe /force)，然後重新啟動。  
-* 若要建立 Azure AD 應用程式、建立金鑰保存庫或設定現有的金鑰保存庫並啟用加密，請參閱 [Azure 磁碟加密的必要條件 PowerShell 指令碼](https://github.com/Azure/azure-powershell/blob/master/src/ResourceManager/Compute/Commands.Compute/Extension/AzureDiskEncryption/Scripts/AzureDiskEncryptionPreRequisiteSetup.ps1)。
-* 若要使用 Azure CLI 設定磁碟加密必要條件，請參閱[此 Bash 指令碼](https://github.com/ejarvi/ade-cli-getting-started)。
-* 若要使用 Azure 備份服務來備份和還原已加密的 VM，在透過 Azure 磁碟加密啟用加密時，請使用 Azure 磁碟加密金鑰組態來加密您的 VM。 備份服務只支援使用 KEK 組態加密的 VM。 請參閱[如何使用 Azure 備份加密來備份與還原加密的虛擬機器](https://docs.microsoft.com/en-us/azure/backup/backup-azure-vms-encryption) (英文)。
+* hello Azure 磁碟加密解決方案會使用適用於 Windows 的 IaaS Vm hello BitLocker 外部金鑰保護裝置。 對於加入網域的 VM，請勿推送任何會強制使用 TPM 保護裝置的群組原則。 在不含相容 TPM 的允許 BitLocker"hello 群組原則的相關資訊，請參閱[BitLocker 群組原則參考](https://technet.microsoft.com/library/ee706521)。
+* 已加入網域的虛擬機器上的 Bitlocker 原則的自訂群組原則必須包含下列設定的 hello:`Configure user storage of bitlocker recovery information -> Allow 256-bit recovery key`當 Azure 磁碟加密 Bitlocker 的自訂群組原則設定不相容時，將會失敗。 在沒有 hello 的機器上可能需要正確的原則設定，套用 hello 新原則，強制新原則 tooupdate hello (gpupdate.exe /force) 並再重新啟動。  
+* toocreate Azure AD 應用程式中，建立金鑰保存庫，或設定現有的金鑰保存庫並啟用加密，請參閱 hello[必要條件 PowerShell 指令碼的 Azure 磁碟加密](https://github.com/Azure/azure-powershell/blob/master/src/ResourceManager/Compute/Commands.Compute/Extension/AzureDiskEncryption/Scripts/AzureDiskEncryptionPreRequisiteSetup.ps1)。
+* 請參閱 < 使用 Azure CLI hello tooconfigure 磁碟加密必要條件[此 Bash 指令碼](https://github.com/ejarvi/ade-cli-getting-started)。
+* toouse hello Azure 備份服務 tooback 向上及還原加密的 Vm，啟用加密時使用 Azure 磁碟加密，請使用 hello Azure 磁碟加密金鑰組態來加密您的 Vm。 hello 備份服務支援 KEK 設定只會使用加密的 Vm。 請參閱[tooback 向上及還原加密使用 Azure 備份加密的虛擬機器](https://docs.microsoft.com/en-us/azure/backup/backup-azure-vms-encryption)。
 
-* 在加密 Linux 作業系統磁碟區時請注意，您目前需要在加密程序結束時重新啟動 VM。 這可以透過入口網站、PowerShell 或 CLI 來完成。   若要追蹤加密進度，請定期輪詢 Get-AzureRmVMDiskEncryptionStatus https://docs.microsoft.com/en-us/powershell/module/azurerm.compute/get-azurermvmdiskencryptionstatus 所傳回的狀態訊息。  加密完成後，此命令所傳回的狀態訊息將會指出這一點。  例如，「ProgressMessage：已成功加密作業系統磁碟，請重新啟動 VM」。此時即可重新啟動及使用 VM。  
+* 加密的 Linux 作業系統磁碟區，請注意，在 VM 重新啟動目前需要在 hello hello 程序的結尾。 這可以透過 hello 入口網站、 powershell 或 CLI 來完成。   tootrack hello 進度的加密，會定期輪詢 hello Get AzureRmVMDiskEncryptionStatus https://docs.microsoft.com/en-us/powershell/module/azurerm.compute/get-azurermvmdiskencryptionstatus 所傳回的狀態訊息。  一旦完成加密，此命令傳回 hello hello 狀態訊息會指出這。  例如，"ProgressMessage： 成功地加密作業系統磁碟，請重新啟動 hello VM"在 VM 可重新啟動及使用此點 hello。  
 
-* 適用於 Linux 的 Azure 磁碟加密會要求資料磁碟先在 Linux 中擁有已掛接的檔案系統，然後才會執行加密
+* 適用於 Linux 的 azure 磁碟加密要求資料磁碟 toohave Linux 先前 tooencryption 掛接的檔案系統
 
-* 適用於 Linux 的 Azure 磁碟加密不支援遞迴掛接的資料磁碟。 例如，如果目標系統已在 /foo/bar 掛接一個磁碟，又在 /foo/bar/baz 掛接另一個磁碟，則 /foo/bar/baz 的加密會成功，但 /foo/bar 的加密則會失敗。 
+* 以遞迴方式掛接的磁碟不會受到 hello Azure 磁碟加密適用於 Linux 的資料。 例如，如果 hello 目標系統已掛接的磁碟上 /foo/bar，然後另 /foo/bar/baz，/foo/bar/baz hello 加密將會成功，但加密/foo/列將會失敗。 
 
-* 只有符合上述必要條件的 Azure 資源庫支援的映像才會支援 Azure 磁碟加密。 由於客戶自訂映像上可能存在自訂的資料分割配置和流程表現方式，因此系統不支援這些映像。 此外，即使以資源庫映像為基礎的 VM 一開始符合必要條件，但如果該 VM 在建立之後做過修改，則也可能會變得不相容。  為此，建議的 Linux VM 加密程序是從全新的資源庫映像來開始、加密 VM，然後再視需要於 VM 中新增自訂軟體或資料。  
+* Azure 磁碟加密才支援在符合 hello 上述必要條件的支援的 Azure 資源庫映像上。 由於 toocustom 資料分割配置和處理程序的行為可能存在於這些映像不支援客戶的自訂映像。 此外，即使以資源庫映像為基礎的 VM 一開始符合必要條件，但如果該 VM 在建立之後做過修改，則也可能會變得不相容。  ，因此，hello 建議加密 Linux VM 的程序是從全新的組件庫映像 toostart、 加密 hello VM，然後再將自訂軟體或資料 toohello 所需的 VM。  
 
 > [!NOTE]
-> 只有使用 KEK 組態加密的 VM 支援備份和還原已加密的 VM。 未使用 KEK 加密的 VM 則不支援。 KEK 是啟用 VM 的選擇性參數。
+> 備份與還原加密的 Vm 支援只會加密與 hello KEK 組態的 Vm。 未使用 KEK 加密的 VM 則不支援。 KEK 是啟用 VM 的選擇性參數。
 
-#### <a name="set-up-the-azure-ad-application-in-azure-active-directory"></a>在 Azure Active Directory 中設定 Azure AD 應用程式
-當您需要在 Azure 中執行中的 VM 上啟用加密時，Azure 磁碟加密會產生並將加密金鑰寫入金鑰保存庫。 在金鑰保存庫中管理加密金鑰需要 Azure AD 驗證。
+#### <a name="set-up-hello-azure-ad-application-in-azure-active-directory"></a>Hello Azure AD 應用程式中設定 Azure Active Directory
+當您需要在 Azure 中執行中的 VM 上啟用加密 toobe 時，會產生 Azure 磁碟加密，並寫入 hello 加密金鑰 tooyour 金鑰保存庫。 在金鑰保存庫中管理加密金鑰需要 Azure AD 驗證。
 
-基於此目的，請建立 Azure AD 應用程式。 您可以在部落格文章 [Azure Key Vault - 逐步解說](http://blogs.technet.com/b/kv/archive/2015/06/02/azure-key-vault-step-by-step.aspx)的「取得應用程式的身分識別」一節中找到註冊應用程式的詳細步驟。 這篇文章也包含一些有關安裝及設定金鑰保存庫的實用範例。 針對驗證目的，您可以使用用戶端密碼式驗證或用戶端憑證式 Azure AD 驗證。
+基於此目的，請建立 Azure AD 應用程式。 您可以找到詳細的步驟槲崞紵錭 hello 「 hello 應用程式取得身分識別 」 一節中 hello 部落格文章[Azure 金鑰保存庫-Step by Step](http://blogs.technet.com/b/kv/archive/2015/06/02/azure-key-vault-step-by-step.aspx)。 這篇文章也包含一些有關安裝及設定金鑰保存庫的實用範例。 針對驗證目的，您可以使用用戶端密碼式驗證或用戶端憑證式 Azure AD 驗證。
 
 #### <a name="client-secret-based-authentication-for-azure-ad"></a>Azure AD 的用戶端密碼式驗證
-下列各節可協助您設定 Azure AD 的用戶端密碼式驗證。
+hello 以下各節可協助您設定 Azure AD 的用戶端密碼型驗證。
 
 ##### <a name="create-an-azure-ad-application-by-using-azure-powershell"></a>使用 Azure PowerShell 來建立 Azure AD 應用程式
-使用下列 PowerShell Cmdlet 建立 Azure AD 應用程式︰
+使用下列 PowerShell 指令程式 toocreate Azure AD 應用程式的 hello:
 
     $aadClientSecret = "yourSecret"
     $azureAdApplication = New-AzureRmADApplication -DisplayName "<Your Application Display Name>" -HomePage "<https://YourApplicationHomePage>" -IdentifierUris "<https://YouApplicationUri>" -Password $aadClientSecret
     $servicePrincipal = New-AzureRmADServicePrincipal –ApplicationId $azureAdApplication.ApplicationId
 
 > [!NOTE]
-> $azureAdApplication.ApplicationId 是 Azure AD ClientID，而 $aadClientSecret 是用戶端密碼，您稍後應該會用該資訊來啟用 Azure 磁碟加密。 適當地保護 Azure AD 用戶端密碼。
+> $azureAdApplication.ApplicationId hello Azure AD ClientID，而 $aadClientSecret hello 用戶端密碼，您應該使用更新版本 tooenable Azure 磁碟加密。 適當地保護 hello Azure AD 用戶端密碼。
 
-##### <a name="setting-up-the-azure-ad-client-id-and-secret-from-the-azure-classic-portal"></a>從 Azure 傳統入口網站設定 Azure AD 用戶端識別碼和密碼
-您也可以使用 [Azure 傳統入口網站]( https://manage.windowsazure.com)設定您的 Azure AD 用戶端識別碼和密碼。 若要執行這項工作，請執行下列步驟︰
+##### <a name="setting-up-hello-azure-ad-client-id-and-secret-from-hello-azure-classic-portal"></a>從 hello Azure 傳統入口網站設定 hello Azure AD 用戶端識別碼和密碼
+您也可以設定您的 Azure AD 用戶端識別碼和密碼使用 hello [Azure 傳統入口網站]( https://manage.windowsazure.com)。 tooperform 這項工作，請勿遵循 hello:
 
-1. 按一下 [Active Directory] 索引標籤。
+1. 按一下 hello **Active Directory**  索引標籤。
 
  ![Azure 磁碟加密](./media/azure-security-disk-encryption/disk-encryption-fig3.png)
 
-2. 按一下 [新增應用程式]，並輸入應用程式名稱。
+2. 按一下**新增應用程式**，然後類型 hello 應用程式的名稱。
 
  ![Azure 磁碟加密](./media/azure-security-disk-encryption/disk-encryption-fig4.png)
 
-3. 按一下箭號按鈕，然後設定應用程式的屬性。
+3. 按一下 hello 箭號按鈕，然後設定 hello 應用程式屬性。
 
  ![Azure 磁碟加密](./media/azure-security-disk-encryption/disk-encryption-fig5.png)
 
-4. 按一下左下角的核取記號來完成。 應用程式組態頁面隨即出現，而 Azure AD 用戶端識別碼會顯示在頁面底部。
+4. 按一下 hello 較低的左上的角 toofinish hello 核取記號。 hello 應用程式組態 頁面隨即出現，並在 hello hello 頁面底部會顯示 hello Azure AD 用戶端識別碼。
 
  ![Azure 磁碟加密](./media/azure-security-disk-encryption/disk-encryption-fig6.png)
 
-5. 按一下 [儲存] 按鈕來儲存 Azure AD 用戶端密碼。 請注意在金鑰文字方塊中的 Azure AD 用戶端密碼。 適當地保護該密碼。
+5. 按一下 hello 儲存 hello Azure AD 用戶端密碼**儲存** 按鈕。 請注意在 hello 索引鍵 文字方塊中的 hello Azure AD 用戶端密碼。 適當地保護該密碼。
 
  ![Azure 磁碟加密](./media/azure-security-disk-encryption/disk-encryption-fig7.png)
 
  > [!NOTE]
- > 在 Azure 傳統入口網站上不支援上述流程。
+ > hello Azure 傳統入口網站不支援 hello 上述流程。
 
 ##### <a name="use-an-existing-application"></a>使用現有的應用程式
-若要執行下列命令，請取得並使用 [Azure AD PowerShell 模組](https://technet.microsoft.com/library/jj151815.aspx)。
+tooexecute hello 下列命令，取得及使用 hello [Azure AD PowerShell 模組](https://technet.microsoft.com/library/jj151815.aspx)。
 
 > [!NOTE]
-> 下列命令必須從新的 PowerShell 視窗執行。 請勿使用 Azure PowerShell 或 Azure Resource Manager 視窗來執行這些命令。 我們建議使用此方法是因為這些 Cmdlet 在 MSOnline 模組或 Azure AD PowerShell 中。
+> hello 下列命令必須從執行新的 PowerShell 視窗。 請勿使用 Azure PowerShell 或 hello Azure 資源管理員視窗 tooexecute hello 命令。 我們建議您使用這種方法，因為這些 cmdlet 在 hello MSOnline 模組或 Azure AD PowerShell。
 
     $clientSecret = ‘<yourAadClientSecret>’
     $aadClientID = '<Client ID of your Azure AD application>'
@@ -295,23 +295,23 @@ Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密解決方案包含：
 > [!NOTE]
 > Linux VM 目前不支援 Azure AD 憑證式驗證。
 
-以下各節會說明如何設定 Azure AD 的憑證式驗證。
+hello 以下各節顯示如何 tooconfigure Azure AD 的憑證式驗證。
 
 ##### <a name="create-an-azure-ad-application"></a>建立 Azure AD 應用程式
-若要建立 Azure AD 應用程式，請執行下列 PowerShell Cmdlet︰
+toocreate Azure AD 應用程式中，執行下列 PowerShell 指令程式的 hello:
 
 > [!NOTE]
-> 使用您的安全密碼來取代下列 `yourpassword` 字串，並保護密碼。
+> 取代下列 hello`yourpassword`安全密碼，並保護 hello 密碼的字串。
 
     $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate("C:\certificates\examplecert.pfx", "yourpassword")
     $keyValue = [System.Convert]::ToBase64String($cert.GetRawCertData())
     $azureAdApplication = New-AzureRmADApplication -DisplayName "<Your Application Display Name>" -HomePage "<https://YourApplicationHomePage>" -IdentifierUris "<https://YouApplicationUri>" -KeyValue $keyValue -KeyType AsymmetricX509Cert
     $servicePrincipal = New-AzureRmADServicePrincipal –ApplicationId $azureAdApplication.ApplicationId
 
-完成此步驟之後，請將 PFX 檔案上傳至您的金鑰保存庫，並啟用將該憑證部署到 VM 所需的存取原則。
+在您完成此步驟之後上, 傳 PFX 檔案 tooyour 金鑰保存庫，並讓 hello 存取所需的原則 toodeploy 該憑證 tooa VM。
 
 ##### <a name="use-an-existing-azure-ad-application"></a>使用現有的 Azure AD 應用程式
-如果您要為現有應用程式設定憑證式驗證，請使用此處所示的 PowerShell Cmdlet。 務必從新的 PowerShell 視窗執行它們。
+如果您要設定現有的應用程式的憑證驗證，請使用如下所示的 hello PowerShell cmdlet。 要確定 tooexecute 其新的 PowerShell 視窗。
 
     $certLocalPath = 'C:\certs\myaadapp.cer'
     $aadClientID = '<Client ID of your Azure AD application>'
@@ -322,13 +322,13 @@ Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密解決方案包含：
     $credValue = [System.Convert]::ToBase64String($binCert);
     New-MsolServicePrincipalCredential -AppPrincipalId $aadClientID -Type asymmetric -Value $credValue -Usage verify
 
-完成此步驟之後，請將 PFX 檔案上傳至您的金鑰保存庫，並啟用將憑證部署到 VM 所需的存取原則。
+在您完成此步驟之後上, 傳 PFX 檔案 tooyour 金鑰保存庫，並啟用 hello toodeploy hello 憑證 tooa VM 所需的存取原則。
 
-##### <a name="upload-a-pfx-file-to-your-key-vault"></a>將 PFX 檔案上傳至金鑰保存庫
-如需此程序的詳細說明，請參閱[官方 Azure Key Vault 團隊部落格](http://blogs.technet.com/b/kv/archive/2015/07/14/vm_2d00_certificates.aspx)。 不過，對於這項工作您只需要下列 PowerShell Cmdlet。 務必從 Azure PowerShell 主控台執行它們。
+##### <a name="upload-a-pfx-file-tooyour-key-vault"></a>上傳 PFX 檔案 tooyour 金鑰保存庫
+此程序的詳細說明，請參閱[hello 官方 Azure 金鑰保存庫團隊部落格](http://blogs.technet.com/b/kv/archive/2015/07/14/vm_2d00_certificates.aspx)。 不過，hello 下列 PowerShell 指令程式是您只需要 hello 工作。 要確定 tooexecute 從 Azure PowerShell 主控台。
 
 > [!NOTE]
-> 使用您的安全密碼來取代下列 `yourpassword` 字串，並保護密碼。
+> 取代下列 hello`yourpassword`安全密碼，並保護 hello 密碼的字串。
 
     $certLocalPath = 'C:\certs\myaadapp.pfx'
     $certPassword = "yourpassword"
@@ -355,8 +355,8 @@ Windows 和 Linux IaaS VM 適用的 Azure 磁碟加密解決方案包含：
     Set-AzureKeyVaultSecret -VaultName $keyVaultName -Name $keyVaultSecretName -SecretValue $secret
     Set-AzureRmKeyVaultAccessPolicy -VaultName $keyVaultName -ResourceGroupName $resourceGroupName –EnabledForDeployment
 
-##### <a name="deploy-a-certificate-in-your-key-vault-to-an-existing-vm"></a>將金鑰保存庫中的憑證部署至現有 VM
-PFX 上傳完成之後，使用下列作業將金鑰保存庫中的憑證部署至現有 VM︰
+##### <a name="deploy-a-certificate-in-your-key-vault-tooan-existing-vm"></a>部署您的金鑰保存庫 tooan 現有的 VM 中的憑證
+完成上傳 hello PFX 之後，部署 hello 金鑰保存庫 tooan hello 下列現有 VM 中的憑證：
  ```
     $resourceGroupName = ‘yourResourceGroup’
     $keyVaultName = ‘yourKeyVaultName’
@@ -369,8 +369,8 @@ PFX 上傳完成之後，使用下列作業將金鑰保存庫中的憑證部署�
     Update-AzureRmVM -VM $vm  -ResourceGroupName $resourceGroupName
  ```
 
-#### <a name="set-up-the-key-vault-access-policy-for-the-azure-ad-application"></a>設定 Azure AD 應用程式的金鑰保存庫存取原則
-您的 Azure AD 應用程式需要權限，才能存取保存庫中的金鑰或密碼。 使用 [`Set-AzureKeyVaultAccessPolicy`](/powershell/module/azure/set-azurekeyvaultaccesspolicy?view=azuresmps-3.7.0) Cmdlet 可授與應用程式權限，使用用戶端識別碼 (登錄應用程式時所產生) 做為 _–ServicePrincipalName_ 參數值。 若要深入了解，請參閱部落格文章 [Azure Key Vault - 逐步解說](http://blogs.technet.com/b/kv/archive/2015/06/02/azure-key-vault-step-by-step.aspx)。 以下是如何透過 PowerShell 執行這項工作的範例：
+#### <a name="set-up-hello-key-vault-access-policy-for-hello-azure-ad-application"></a>設定 hello hello Azure AD 應用程式的金鑰保存庫的存取原則
+Azure AD 應用程式需要權限 tooaccess hello 金鑰或 hello 保存庫中的密碼。 使用 hello [ `Set-AzureKeyVaultAccessPolicy` ](/powershell/module/azure/set-azurekeyvaultaccesspolicy?view=azuresmps-3.7.0) cmdlet toogrant toohello 應用程式權限，使用 hello 用戶端識別碼 （這產生 hello 應用程式註冊時） 為 hello _– ServicePrincipalName_參數值。 toolearn 詳細資訊，請參閱 hello 部落格文章[Azure 金鑰保存庫-Step by Step](http://blogs.technet.com/b/kv/archive/2015/06/02/azure-key-vault-step-by-step.aspx)。 以下是範例如何 tooperform 這工作透過 PowerShell:
 
     $keyVaultName = '<yourKeyVaultName>'
     $aadClientID = '<yourAadAppClientID>'
@@ -378,148 +378,148 @@ PFX 上傳完成之後，使用下列作業將金鑰保存庫中的憑證部署�
     Set-AzureRmKeyVaultAccessPolicy -VaultName $keyVaultName -ServicePrincipalName $aadClientID -PermissionsToKeys 'WrapKey' -PermissionsToSecrets 'Set' -ResourceGroupName $rgname
 
 > [!NOTE]
-> 若要使用 Azure 磁碟加密，您必須對 Azure AD 用戶端應用程式設定下列存取原則：_WrapKey_ 和 _Set_ 權限。
+> Azure 磁碟加密會需要下列存取原則 tooyour Azure AD 用戶端應用程式的 tooconfigure hello: _WrapKey_和_設定_權限。
 
 ## <a name="terminology"></a>術語
-若要了解此技術所使用的一些常用術語，請使用以下術語表：
+toounderstand 某些 hello 的通用詞彙使用這項技術，使用 hello 下術語表：
 
 | 術語 | 定義 |
 | --- | --- |
 | Azure AD | Azure AD 是 [Azure Active Directory](https://azure.microsoft.com/documentation/services/active-directory/)。 Azure AD 帳戶是從金鑰保存庫驗證、儲存和擷取密碼的必要條件。 |
 | Azure 金鑰保存庫 | Key Vault 是密碼編譯金鑰管理服務，它是基於美國聯邦資訊處理標準 (FIPS) 驗證的硬體安全性模組，可協助您保護密碼編譯金鑰和敏感性密碼。 如需詳細資訊，請參閱 [Key Vault](https://azure.microsoft.com/services/key-vault/) 文件。 |
 | ARM | Azure Resource Manager |
-| BitLocker |[BitLocker](https://technet.microsoft.com/library/hh831713.aspx) 是一種業界認可的 Windows 磁碟區加密技術，用來在 Windows IaaS VM 上啟用磁碟加密。 |
-| BEK | BitLocker 加密金鑰可用來加密作業系統開機磁碟區和資料磁碟區。 BitLocker 金鑰會在金鑰保存庫中以密碼形式保護。 |
+| BitLocker |[BitLocker](https://technet.microsoft.com/library/hh831713.aspx)是業界公認的 Windows 磁碟區加密技術，Windows IaaS Vm 上已使用 tooenable 磁碟加密。 |
+| BEK | BitLocker 加密金鑰是使用的 tooencrypt hello OS 開機磁碟區和資料磁碟區。 hello BitLocker 金鑰會受金鑰保存庫中，為機密資料。 |
 | CLI | 請參閱 [Azure 命令列介面](../cli-install-nodejs.md)。 |
-| DM-Crypt |[DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt) 是基於 Linux 的透明磁碟加密子系統，用來在 Linux IaaS VM 上啟用磁碟加密。 |
-| KEK | 金鑰加密金鑰是非對稱金鑰 (RSA 2048)，可用來保護或包裝密碼。 您可以提供硬體安全性模組 (HSM) 保護的金鑰或軟體保護的金鑰。 如需詳細資訊，請參閱 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) 文件。 |
+| DM-Crypt |[DM Crypt](https://en.wikipedia.org/wiki/Dm-crypt)是 Linux IaaS Vm 已使用 tooenable 磁碟加密的 hello 以 Linux 為基礎、 透明磁碟加密子系統。 |
+| KEK | Hello 非對稱金鑰 (RSA 2048)，您可以使用 tooprotect 或換行 hello 秘密金鑰加密金鑰。 您可以提供硬體安全性模組 (HSM) 保護的金鑰或軟體保護的金鑰。 如需詳細資訊，請參閱 [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) 文件。 |
 | PS Cmdlet | 請參閱 [Azure PowerShell Cmdlet](/powershell/azure/overview)。 |
 
 ### <a name="set-up-and-configure-your-key-vault-for-azure-disk-encryption"></a>針對 Azure 磁碟加密安裝及設定您的金鑰保存庫
-Azure 磁碟加密會協助您保護金鑰保存庫中的磁碟加密金鑰和密碼。 若要設定 Azure 磁碟加密的金鑰保存庫，請完成下列各節中的步驟。
+Azure 磁碟加密協助保護 hello 磁碟加密金鑰和金鑰保存庫中的密碼。 Azure 磁碟加密金鑰保存庫註冊 tooset，完成 hello 每 hello 下列各節中的步驟。
 
 #### <a name="create-a-key-vault"></a>建立金鑰保存庫
-若要建立金鑰保存庫，請使用下列選項之一︰
+toocreate 金鑰保存庫，可使用其中一種 hello 下列選項：
 
 * ["101-Key-Vault-Create" Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/101-key-vault-create)
 * [Azure PowerShell 金鑰保存庫 Cmdlet](/powershell/module/azurerm.keyvault/#key_vault)
 * Azure Resource Manager
-* 如何[保護您的金鑰保存庫](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-secure-your-key-vault)
+* 如何太[安全金鑰保存庫](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-secure-your-key-vault)
 
 > [!NOTE]
-> 如果您已為訂用帳戶設定了金鑰保存庫，請跳至下一節。
+> 如果您已經有設定金鑰保存庫，您訂用帳戶，略過 toohello 下一節。
 
 ![Azure 金鑰保存庫](./media/azure-security-disk-encryption/keyvault-portal-fig1.png)
 
 #### <a name="set-up-a-key-encryption-key-optional"></a>設定金鑰加密金鑰 (選擇性)
-如果您想針對 BitLocker 加密金鑰使用 KEK 增加額外的安全性，請將 KEK 新增至您的金鑰保存庫。 使用 [`Add-AzureKeyVaultKey`](/powershell/module/azurerm.keyvault/add-azurermkeyvaultkey) Cmdlet 在金鑰保存庫中建立金鑰加密金鑰。 您也可以從內部部署金鑰管理 HSM 匯入 KEK。 如需詳細資訊，請參閱 [Key Vault 文件](https://azure.microsoft.com/documentation/services/key-vault/)。
+如果您想要 toouse KEK 額外的 hello BitLocker 加密金鑰的安全性，新增 KEK tooyour 金鑰保存庫。 使用 hello [ `Add-AzureKeyVaultKey` ](/powershell/module/azurerm.keyvault/add-azurermkeyvaultkey) cmdlet toocreate hello 金鑰保存庫中的加密金鑰。 您也可以從內部部署金鑰管理 HSM 匯入 KEK。 如需詳細資訊，請參閱 [Key Vault 文件](https://azure.microsoft.com/documentation/services/key-vault/)。
 
     Add-AzureKeyVaultKey [-VaultName] <string> [-Name] <string> -Destination <string> {HSM | Software}
 
-您可以移至 Azure Resource Manager 或使用金鑰保存庫介面來新增 KEK。
+您可以加入 hello KEK 移 tooAzure 資源管理員，或使用您金鑰保存庫的介面。
 
 ![Azure 金鑰保存庫](./media/azure-security-disk-encryption/keyvault-portal-fig2.png)
 
 #### <a name="set-key-vault-permissions"></a>設定金鑰保存庫的權限
-Azure 平台需要存取您金鑰保存庫中的加密金鑰或密碼，讓該資訊可供 VM 用來開機和解密磁碟區。 若要授與權限給 Azure 平台，使用金鑰保存庫的 PowerShell Cmdlet 設定金鑰保存庫中的 **EnabledForDiskEncryption** 屬性：
+hello Azure 平台需要存取 toohello 加密金鑰或密碼中您金鑰保存庫 toomake 它們可用 toohello 開機和解密 hello 磁碟區的 VM。 toogrant 權限 toohello Azure 平台組 hello **EnabledForDiskEncryption** hello 機碼中的屬性保存庫使用 hello 金鑰保存庫 PowerShell cmdlet:
 
     Set-AzureRmKeyVaultAccessPolicy -VaultName <yourVaultName> -ResourceGroupName <yourResourceGroup> -EnabledForDiskEncryption
 
-您也可以造訪 [Azure 資源 Explorer](https://resources.azure.com) 來設定 **EnabledForDiskEncryption** 屬性。
+您也可以設定 hello **EnabledForDiskEncryption**屬性，方法是瀏覽 hello [Azure 資源總管](https://resources.azure.com)。
 
-如之前所提及，您必須在金鑰保存庫上設定 **EnabledForDiskEncryption** 屬性。 否則，部署作業將會失敗。
+如先前所述，您必須設定 hello **EnabledForDiskEncryption**金鑰保存庫上的屬性。 否則，hello 部署將會失敗。
 
-您可以從金鑰保存庫介面設定 Azure AD 應用程式的存取原則，如下所示︰
+您可以設定存取原則的 Azure AD 應用程式與 hello 金鑰保存庫的介面，如下所示：
 
 ![Azure 金鑰保存庫](./media/azure-security-disk-encryption/keyvault-portal-fig3.png)
 
 ![Azure 金鑰保存庫](./media/azure-security-disk-encryption/keyvault-portal-fig3b.png)
 
-在 [進階存取原則] 索引標籤中，請確定您已為 Azure 磁碟加密啟用金鑰保存庫︰
+在 hello**進階存取權原則**索引標籤上，請確定您的金鑰保存庫已啟用 Azure 磁碟加密：
 
 ![Azure 金鑰保存庫](./media/azure-security-disk-encryption/keyvault-portal-fig4.png)
 
 ## <a name="disk-encryption-deployment-scenarios-and-user-experiences"></a>磁碟加密部署案例和使用者體驗
-您可以啟用許多磁碟加密案例，步驟可能會因案例而有所不同。 下列各節涵蓋更詳細的案例。
+您可以啟用多個磁碟加密案例，並 hello 步驟可能會相應 toohello 案例而有所不同。 hello 下列各節涵蓋 hello 更詳細的案例。
 
-### <a name="enable-encryption-on-new-iaas-vms-that-are-created-from-the-marketplace"></a>在透過 Marketplace 所建立的新 IaaS VM 上啟用加密
-您可以使用 [Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-encrypt-create-new-vm-gallery-image)，透過 Azure 中的 Marketplace 在新 IaaS Windows VM 上啟用磁碟加密。
+### <a name="enable-encryption-on-new-iaas-vms-that-are-created-from-hello-marketplace"></a>在新建立的 hello Marketplace IaaS Vm 上啟用加密
+您可以啟用 hello Azure 中的服務商場中的新 IaaS Windows VM 上的磁碟加密使用 hello [Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-encrypt-create-new-vm-gallery-image)。
 
-1. 在 Azure 快速入門範本上按一下 [部署至 Azure]，在 [參數] 刀鋒視窗中輸入加密組態，然後按一下 [確定]。
+1. Hello Azure 快速入門在範本上，按一下 **部署 tooAzure**，hello 上輸入 hello 加密組態**參數**刀鋒視窗中，然後再按一下**確定**。
 
-2. 選取訂用帳戶、資源群組、資源群組位置、法律條款與合約，然後按一下 [建立] 以在新 IaaS VM 上啟用加密。
+2. Hello 訂用帳戶、 資源群組、 資源群組位置、 法律條款和協議中，選取，然後按一下**建立**tooenable 加密新的 IaaS VM 上。
 
 > [!NOTE]
-> 此範本會建立使用 Windows Server 2012 資源庫映像的新加密 Windows VM。
+> 此範本會建立新的加密的 Windows VM 使用 Windows Server 2012 hello 資源庫映像。
 
-您可以使用此 [Resource Manager 範本](https://aka.ms/fde-rhel)，在具有 200 GB RAID-0 陣列的新 IaaS RedHat Linux 7.2 VM 上啟用磁碟加密。 在您部署範本之後，請確認 VM 加密狀態，方法是使用[在執行中的 Linux VM 上加密 OS 磁碟機](#encrypting-os-drive-on-a-running-linux-vm)中所述的 `Get-AzureRmVmDiskEncryptionStatus` Cmdlet。 當電腦傳回 _VMRestartPending_ 的狀態，重新啟動 VM。
+您可以使用此 [Resource Manager 範本](https://aka.ms/fde-rhel)，在具有 200 GB RAID-0 陣列的新 IaaS RedHat Linux 7.2 VM 上啟用磁碟加密。 部署 hello 範本之後，請使用 hello 確認 hello VM 加密狀態`Get-AzureRmVmDiskEncryptionStatus`cmdlet，如中所述[加密作業系統磁碟機上執行的 Linux VM](#encrypting-os-drive-on-a-running-linux-vm)。 Hello 機器時傳回狀態_VMRestartPending_，重新啟動 hello VM。
 
-針對透過 Marketplace 案例使用 Azure AD 用戶端識別碼的新 VM，以下資料表列出其 Resource Manager 範本參數︰
+hello 下表列出 hello 資源管理員範本參數的新 Vm 從 hello Marketplace 案例使用 Azure AD 用戶端識別碼：
 
 | 參數 | 說明 |
 | --- | --- |
-| adminUserName | 虛擬機器的系統管理使用者名稱。 |
-| adminPassword | 虛擬機器的系統管理使用者密碼。 |
-| newStorageAccountName | 要儲存作業系統和資料 VHD 的儲存體帳戶名稱。 |
-| vmSize | VM 的大小。 目前僅支援標準的 A、D 和 G 系列。 |
-| virtualNetworkName | VM NIC 應該隸屬的 VNet 名稱。 |
-| subnetName | VM NIC 應該隸屬的 VNet 中子網路的名稱。 |
-| AADClientID | 具有權限可將密碼寫入金鑰保存庫之 Azure AD 應用程式的用戶端識別碼。 |
-| AADClientSecret | 具有權限可將密碼寫入金鑰保存庫之 Azure AD 應用程式的用戶端密碼。 |
-| keyVaultURL | 應上傳 BitLocker 金鑰的金鑰保存庫 URL。 您可以使用 Cmdlet `(Get-AzureRmKeyVault -VaultName,-ResourceGroupName ).VaultURI` 來取得它。 |
-| keyEncryptionKeyURL | 用來加密所產生 BitLocker 金鑰的金鑰加密金鑰 URL (選擇性)。 |
-| keyVaultResourceGroup | 金鑰保存庫的資源群組。 |
-| vmName | 要執行加密作業所在 VM 的名稱。 |
+| adminUserName | Hello 虛擬機器的系統管理員使用者名稱。 |
+| adminPassword | Hello 虛擬機器的系統管理員使用者密碼。 |
+| newStorageAccountName | Hello 儲存體帳戶 toostore OS 和資料 Vhd 的名稱。 |
+| vmSize | Hello VM 的大小。 目前僅支援標準的 A、D 和 G 系列。 |
+| virtualNetworkName | Hello VNet 該 hello VM NIC 的名稱都必須屬於。 |
+| subnetName | Hello 在 hello VNet 該 hello VM NIC 的子網路名稱都必須屬於。 |
+| AADClientID | Hello Azure AD 應用程式，其權限 toowrite 密碼 tooyour 金鑰保存庫的用戶端識別碼。 |
+| AADClientSecret | Hello Azure AD 應用程式，其權限 toowrite 密碼 tooyour 金鑰保存庫的用戶端密碼。 |
+| keyVaultURL | URL 的 hello 金鑰保存庫的 BitLocker 金鑰應該上傳至該 hello。 您可以使用 hello cmdlet 來取得`(Get-AzureRmKeyVault -VaultName,-ResourceGroupName ).VaultURI`。 |
+| keyEncryptionKeyURL | URL 是使用的 tooencrypt hello 的 hello 金鑰的加密金鑰的產生 BitLocker 金鑰 （選擇性）。 |
+| keyVaultResourceGroup | Hello 金鑰保存庫的資源群組。 |
+| vmName | Hello hello 加密作業的 VM 名稱是 toobe 上執行。 |
 
 > [!NOTE]
-> _KeyEncryptionKeyURL_ 是選擇性參數。 您可以使用自己的 KEK，在金鑰保存庫中進一步保護資料加密金鑰 (複雜密碼)。
+> _KeyEncryptionKeyURL_ 是選擇性參數。 您可以整合您自己 KEK toofurther 保護 hello 資料加密金鑰 （複雜密碼） 在金鑰保存庫中。
 
 ### <a name="enable-encryption-on-new-iaas-vms-that-are-created-from-customer-encrypted-vhd-and-encryption-keys"></a>在透過客戶加密 VHD 和加密金鑰所建立的新 IaaS VM 上啟用加密
-在這個案例中，您可以使用 Resource Manager 範本、PowerShell Cmdlet 或 CLI 命令啟用加密。 下列各節將更加詳細地說明 Resource Manager 範本和 CLI 命令。
+在此案例中，您可以啟用加密使用 hello Resource Manager 範本、 PowerShell cmdlet 或 CLI 命令。 hello 下列各節說明在更詳細的 hello Resource Manager 範本和 CLI 命令。
 
-遵循下列其中一節的指示來準備可用於 Azure 的預先加密映像。 映像建立之後，您可以使用下一節的步驟來建立加密的 Azure VM。
+從其中一個預先加密可以在 Azure 中使用的映像準備陳述式的這些章節，請遵循 hello 指示。 建立 hello 映像之後，您可以使用下一個區段 toocreate hello 加密的 Azure VM 中的 hello 步驟。
 
 * [準備已預先加密的 Windows VHD](#preparing-a-pre-encrypted-windows-vhd)
 * [準備已預先加密的 Linux VHD](#preparing-a-pre-encrypted-linux-vhd)
 
-#### <a name="using-the-resource-manager-template"></a>使用 Resource Manager 範本
-您可以使用 [Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-encrypt-create-pre-encrypted-vm)在加密的 VHD 上啟用磁碟加密。
+#### <a name="using-hello-resource-manager-template"></a>使用 hello Resource Manager 範本
+您也可以使用 hello 加密 VHD 上啟用磁碟加密[Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-encrypt-create-pre-encrypted-vm)。
 
-1. 在 Azure 快速入門範本上按一下 [部署至 Azure]，在 [參數] 刀鋒視窗中輸入加密組態，然後按一下 [確定]。
+1. Hello Azure 快速入門在範本上，按一下 **部署 tooAzure**，hello 上輸入 hello 加密組態**參數**刀鋒視窗中，然後再按一下**確定**。
 
-2. 選取訂用帳戶、資源群組、資源群組位置、法律條款與合約，然後按一下 [建立] 以在新 IaaS VM 上啟用加密。
+2. Hello 訂用帳戶、 資源群組、 資源群組位置、 法律條款和協議中，選取，然後按一下**建立**tooenable 加密 hello 新 IaaS VM。
 
-以下資料表列出加密 VHD 的 Resource Manager 範本參數︰
+hello 下表列出 hello 資源管理員範本參數的加密 VHD:
 
 | 參數 | 說明 |
 | --- | --- |
-| newStorageAccountName | 要儲存加密的作業系統 VHD 的儲存體帳戶名稱。 此儲存體帳戶應該已建立在與 VM 相同的資源群組和相同的位置中。 |
-| osVhdUri | 來自儲存體帳戶作業系統 VHD 的 URI。 |
+| newStorageAccountName | 名稱的 hello 儲存體帳戶 toostore hello 加密 OS VHD。 這個儲存體帳戶應該已經建立 hello 中相同的資源群組和 hello VM 相同的位置。 |
+| osVhdUri | Hello OS VHD 從 hello 儲存體帳戶的 URI。 |
 | osType | 作業系統產品類型 (Windows/Linux)。 |
-| virtualNetworkName | VM NIC 應該隸屬的 VNet 名稱。 名稱應該已建立在與 VM 相同的資源群組和相同的位置中。 |
-| subnetName | VM NIC 應該隸屬的 VNet 上子網路的名稱。 |
-| vmSize | VM 的大小。 目前僅支援標準的 A、D 和 G 系列。 |
-| keyVaultResourceID | 在 Azure Resource Manager 中識別金鑰保存庫資源的 ResourceID。 您可以使用 PowerShell Cmdlet `(Get-AzureRmKeyVault -VaultName &lt;yourKeyVaultName&gt; -ResourceGroupName &lt;yourResourceGroupName&gt;).ResourceId` 來取得它。 |
-| keyVaultSecretUrl | 在金鑰保存庫中所設定的磁碟加密金鑰的 URL。 |
-| keyVaultKekUrl | 用來加密所產生磁碟加密金鑰的金鑰加密金鑰的 URL。 |
-| vmName | IaaS VM 的名稱。 |
+| virtualNetworkName | Hello VNet 該 hello VM NIC 的名稱都必須屬於。 hello 名稱應該已經建立 hello 中相同的資源群組和 hello VM 相同的位置。 |
+| subnetName | Hello hello VNet 該 hello VM NIC 上的子網路名稱都必須屬於。 |
+| vmSize | Hello VM 的大小。 目前僅支援標準的 A、D 和 G 系列。 |
+| keyVaultResourceID | hello ResourceID 識別 hello Azure 資源管理員中的金鑰保存庫資源。 您可以使用 hello PowerShell cmdlet 來取得`(Get-AzureRmKeyVault -VaultName &lt;yourKeyVaultName&gt; -ResourceGroupName &lt;yourResourceGroupName&gt;).ResourceId`。 |
+| keyVaultSecretUrl | 設定 hello 金鑰保存庫中的 hello 磁碟加密金鑰的 URL。 |
+| keyVaultKekUrl | Hello hello 產生磁碟加密金鑰加密的金鑰的加密金鑰的 URL。 |
+| vmName | Hello IaaS VM 的名稱。 |
 
 #### <a name="using-powershell-cmdlets"></a>使用 PowerShell Cmdlet
-您可以使用 PowerShell Cmdlet [`Set-AzureRmVMOSDisk`](/powershell/module/azurerm.compute/set-azurermvmosdisk) 在加密的 VHD 上啟用磁碟加密。  
+您也可以使用 hello PowerShell cmdlet 在您已加密的 VHD 上啟用磁碟加密[ `Set-AzureRmVMOSDisk` ](/powershell/module/azurerm.compute/set-azurermvmosdisk)。  
 
 #### <a name="using-cli-commands"></a>使用 CLI 命令
-若要使用 CLI 命令啟用此案例的磁碟加密，請執行下列步驟：
+tooenable 磁碟加密，此案例中使用 CLI 命令，不要 hello 遵循：
 
 1. 設定金鑰保存庫的存取原則：
 
-   * 設定 **EnabledForDiskEncryption** 旗標︰
+   * 設定 hello **EnabledForDiskEncryption**旗標：
 
     `azure keyvault set-policy --vault-name <keyVaultName> --enabled-for-disk-encryption true`
-   * 設定權限給 Azure AD 應用程式，以將密碼寫入至您的金鑰保存庫：
+   * 設定權限 tooAzure AD 應用程式 toowrite 密碼 tooyour 金鑰保存庫：
 
     `azure keyvault set-policy --vault-name <keyVaultName> --spn <aadClientID> --perms-to-keys '["wrapKey"]' --perms-to-secrets '["set"]'`
 
-2. 若要在現有或執行中的 VM 上啟用加密，請輸入︰
+2. 在現有或未執行 VM，型別上 tooenable 加密：
 
  `azure vm enable-disk-encryption --resource-group <resourceGroupName> --name <vmName> --aad-client-id <aadClientId> --aad-client-secret <aadClientSecret> --disk-encryption-key-vault-url <keyVaultURL> --disk-encryption-key-vault-id <keyVaultResourceId> --volume-type [All|OS|Data]`
 
@@ -527,7 +527,7 @@ Azure 平台需要存取您金鑰保存庫中的加密金鑰或密碼，讓該�
 
  `azure vm show-disk-encryption-status --resource-group <resourceGroupName> --name <vmName> --json`
 
-4. 若要從您加密的 VHD 啟用新 VM 上的加密，請使用以下參數搭配 `azure vm create` 命令：
+4. 新的 VM，從您加密 VHD，使用下列參數以 hello 的 hello tooenable 加密`azure vm create`命令：
 
  ```
    * disk-encryption-key-vault-id <disk-encryption-key-vault-id>
@@ -537,50 +537,50 @@ Azure 平台需要存取您金鑰保存庫中的加密金鑰或密碼，讓該�
  ```
 
 ### <a name="enable-encryption-on-existing-or-running-iaas-windows-vm-in-azure"></a>在 Azure 中現有或執行中的 IaaS Windows VM 上啟用加密
-在這個案例中，您可以使用 Resource Manager 範本、PowerShell Cmdlet 或 CLI 命令啟用加密。 下列各節將更加詳細地說明如何使用 Resource Manager 範本和 CLI 命令來啟用它。
+在此案例中，您可以啟用加密使用 hello Resource Manager 範本、 PowerShell cmdlet 或 CLI 命令。 hello 下列各節詳細說明如何 tooenable 它使用 hello Resource Manager 範本和 CLI 命令。
 
-#### <a name="using-the-resource-manager-template"></a>使用 Resource Manager 範本
-您可以使用 [Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-encrypt-running-windows-vm)，在 Azure 中現有或執行中的 IaaS Windows VM 上啟用磁碟加密。
+#### <a name="using-hello-resource-manager-template"></a>使用 hello Resource Manager 範本
+您可以啟用現有的或使用 hello 在 Azure 中執行 IaaS Windows Vm 上的磁碟加密[Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-encrypt-running-windows-vm)。
 
-1. 在 Azure 快速入門範本上按一下 [部署至 Azure]，在 [參數] 刀鋒視窗中輸入加密組態，然後按一下 [確定]。
+1. Hello Azure 快速入門在範本上，按一下 **部署 tooAzure**，hello 上輸入 hello 加密組態**參數**刀鋒視窗中，然後再按一下**確定**。
 
-2. 選取訂用帳戶、資源群組、資源群組位置、法律條款與合約，然後按一下 [建立] 以在現有或執行中的 IaaS VM 上啟用加密。
+2. Hello 訂用帳戶、 資源群組、 資源群組位置、 法律條款和協議中，選取，然後按一下**建立**tooenable hello 現有或執行 IaaS VM 上的加密。
 
-針對使用 Azure AD 用戶端識別碼的現有或執行中 VM，以下資料表列出其 Resource Manager 範本參數︰
+hello 下表列出針對現有的或執行 Vm 所使用的 Azure AD 用戶端識別碼 hello 資源管理員範本參數：
 
 | 參數 | 說明 |
 | --- | --- |
-| AADClientID | 具有權限可將密碼寫入金鑰保存庫之 Azure AD 應用程式的用戶端識別碼。 |
-| AADClientSecret | 具有權限可將密碼寫入金鑰保存庫之 Azure AD 應用程式的用戶端密碼。 |
-| keyVaultName | 應上傳 BitLocker 金鑰的金鑰保存庫名稱。 您可以使用 Cmdlet `(Get-AzureRmKeyVault -ResourceGroupName <yourResourceGroupName>). Vaultname` 來取得它。 |
-|  keyEncryptionKeyURL | 用來加密所產生 BitLocker 金鑰的金鑰加密金鑰 URL。 如果您在 UseExistingKek 下拉式清單中選取 [nokek]，此參數是選擇性的。 如果您在 UseExistingKek 下拉式清單中選取 [kek]，您必須輸入 _keyEncryptionKeyURL_ 值。 |
-| volumeType | 執行加密作業所在磁碟區的類型。 有效值為 _OS_、_Data_ 和 _All_。 |
-| sequenceVersion | BitLocker 作業的順序版本。 每當在相同的 VM 上執行磁碟加密作業時便遞增此版本號碼。 |
-| vmName | 要執行加密作業所在 VM 的名稱。 |
+| AADClientID | Hello Azure AD 應用程式，其權限 toowrite 密碼 toohello 金鑰保存庫的用戶端識別碼。 |
+| AADClientSecret | Hello Azure AD 應用程式，其權限 toowrite 密碼 toohello 金鑰保存庫的用戶端密碼。 |
+| keyVaultName | 名稱 hello 金鑰保存庫的 BitLocker 金鑰應該上傳至該 hello。 您可以使用 hello cmdlet 來取得`(Get-AzureRmKeyVault -ResourceGroupName <yourResourceGroupName>). Vaultname`。 |
+|  keyEncryptionKeyURL | URL 是使用的 tooencrypt hello 的 hello 金鑰的加密金鑰的產生 BitLocker 金鑰。 這個參數是選擇性，如果您選取**nokek** hello UseExistingKek 下拉式清單中。 如果您選取**kek**在 hello UseExistingKek 下拉式清單中，您必須輸入 hello _keyEncryptionKeyURL_值。 |
+| volumeType | Hello 加密作業執行的磁碟區的類型。 有效值為 _OS_、_Data_ 和 _All_。 |
+| sequenceVersion | 序列版的 hello BitLocker 作業。 每次磁碟加密作業不會對 hello 遞增此版本號碼相同的 VM。 |
+| vmName | Hello hello 加密作業的 VM 名稱是 toobe 上執行。 |
 
 > [!NOTE]
-> _KeyEncryptionKeyURL_ 是選擇性參數。 您可以使用自己的 KEK，在金鑰保存庫中進一步保護資料加密金鑰 (BitLocker 加密密碼)。
+> _KeyEncryptionKeyURL_ 是選擇性參數。 您可以將自己 KEK toofurther 保護 hello 資料加密金鑰 （BitLocker 加密機密） 帶入 hello 金鑰保存庫中。
 
 #### <a name="using-powershell-cmdlets"></a>使用 PowerShell Cmdlet
-如需使用 PowerShell Cmdlet 以 Azure 磁碟加密來啟用加密的相關資訊，請參閱部落格文章[探索使用 Azure PowerShell 的 Azure 磁碟加密 - 第 1 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/17/explore-azure-disk-encryption-with-azure-powershell.aspx)和[探索使用 Azure PowerShell 的 Azure 磁碟加密 - 第 2 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2.aspx)。
+如需使用 PowerShell cmdlet 來啟用與 Azure 磁碟加密的加密資訊，請參閱 hello 部落格文章[瀏覽 Azure 磁碟加密使用 Azure PowerShell-第 1 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/17/explore-azure-disk-encryption-with-azure-powershell.aspx)和[瀏覽 Azure 磁碟加密使用 Azure PowerShell-第 2 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2.aspx)。
 
 #### <a name="using-cli-commands"></a>使用 CLI 命令
-若要在 Azure 中使用 CLI 命令來啟用現有或執行中 IaaS Windows VM 上的加密，請執行下列步驟：
+在現有的或使用 CLI 命令，在 Azure 中執行 IaaS Windows VM 上 tooenable 加密 hello 遵循：
 
-1. 若要設定金鑰保存庫的存取原則：
-   * 設定 **EnabledForDiskEncryption** 旗標︰
+1. tooset hello 金鑰保存庫中的存取原則：
+   * 設定 hello **EnabledForDiskEncryption**旗標：
 
     `azure keyvault set-policy --vault-name <keyVaultName> --enabled-for-disk-encryption true`
-   * 設定權限給 Azure AD 應用程式，以將密碼寫入至您的金鑰保存庫：
+   * 設定權限 tooAzure AD 應用程式 toowrite 密碼 tooyour 金鑰保存庫：
 
     `azure keyvault set-policy --vault-name <keyVaultName> --spn <aadClientID> --perms-to-keys '["wrapKey"]' --perms-to-secrets '["set"]'`
-2. 若要在現有或執行中的 VM 上啟用加密︰
+2. 在現有或未執行 VM 上 tooenable 加密：
 
  `azure vm enable-disk-encryption --resource-group <resourceGroupName> --name <vmName> --aad-client-id <aadClientId> --aad-client-secret <aadClientSecret> --disk-encryption-key-vault-url <keyVaultURL> --disk-encryption-key-vault-id <keyVaultResourceId> --volume-type [All|OS|Data]`
-3. 若要取得加密狀態：
+3. tooget 加密的狀態：
 
  `azure vm show-disk-encryption-status --resource-group <resourceGroupName> --name <vmName> --json`
-4. 若要從您加密的 VHD 啟用新 VM 上的加密，請使用以下參數搭配 `azure vm create` 命令：
+4. 新的 VM，從您加密 VHD，使用下列參數以 hello 的 hello tooenable 加密`azure vm create`命令：
 
  ```
    * disk-encryption-key-vault-id <disk-encryption-key-vault-id>
@@ -590,41 +590,41 @@ Azure 平台需要存取您金鑰保存庫中的加密金鑰或密碼，讓該�
  ```
 
 ### <a name="enable-encryption-on-an-existing-or-running-iaas-linux-vm-in-azure"></a>在 Azure 中現有或執行中的 IaaS Linux VM 上啟用加密
-您可以使用 [Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-encrypt-running-linux-vm)，在 Azure 中現有或執行中的 IaaS Linux VM 上啟用磁碟加密。
+您可以啟用磁碟上現有的或執行 IaaS Linux VM 在 Azure 中的加密使用 hello [Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-encrypt-running-linux-vm)。
 
-1. 在 Azure 快速入門範本上按一下 [部署至 Azure]，在 [參數] 刀鋒視窗中輸入加密組態，然後按一下 [確定]。
+1. 按一下**部署 tooAzure** hello Azure 快速入門在範本上，輸入 hello 加密組態上 hello**參數**刀鋒視窗中，然後再按一下**確定**。
 
-2. 選取訂用帳戶、資源群組、資源群組位置、法律條款與合約，然後按一下 [建立] 以在現有或執行中的 IaaS VM 上啟用加密。
+2. Hello 訂用帳戶、 資源群組、 資源群組位置、 法律條款和協議中，選取，然後按一下**建立**tooenable hello 現有或執行 IaaS VM 上的加密。
 
-針對使用 Azure AD 用戶端識別碼的現有或執行中 VM，以下資料表列出其 Resource Manager 範本參數︰
+hello 下表列出針對現有的或執行 Vm，使用 Azure AD 用戶端識別碼，資源管理員範本參數：
 
 | 參數 | 說明 |
 | --- | --- |
-| AADClientID | 具有權限可將密碼寫入金鑰保存庫之 Azure AD 應用程式的用戶端識別碼。 |
-| AADClientSecret | 具有權限可將密碼寫入金鑰保存庫之 Azure AD 應用程式的用戶端密碼。 |
-| keyVaultName | 應上傳 BitLocker 金鑰的金鑰保存庫名稱。 您可以使用 Cmdlet `(Get-AzureRmKeyVault -ResourceGroupName <yourResourceGroupName>). Vaultname` 來取得它。 |
-|  keyEncryptionKeyURL | 用來加密所產生 BitLocker 金鑰的金鑰加密金鑰 URL。 如果您在 UseExistingKek 下拉式清單中選取 [nokek]，此參數是選擇性的。 如果您在 UseExistingKek 下拉式清單中選取 [kek]，您必須輸入 _keyEncryptionKeyURL_ 值。 |
-| volumeType | 執行加密作業所在磁碟區的類型。 支援的有效值為 _OS_ 或 _All_ (適用於 RHEL 7.2、CentOS 7.2 和 Ubuntu 16.04)，和 _Data_ (適用於所有其他的散發套件)。 |
-| sequenceVersion | BitLocker 作業的順序版本。 每當在相同的 VM 上執行磁碟加密作業時便遞增此版本號碼。 |
-| vmName | 要執行加密作業所在 VM 的名稱。 |
-| passPhrase | 輸入強式複雜密碼做為資料加密金鑰。 |
+| AADClientID | Hello Azure AD 應用程式，其權限 toowrite 密碼 toohello 金鑰保存庫的用戶端識別碼。 |
+| AADClientSecret | Hello Azure AD 應用程式，其權限 toowrite 密碼 tooyour 金鑰保存庫的用戶端密碼。 |
+| keyVaultName | 名稱 hello 金鑰保存庫的 BitLocker 金鑰應該上傳至該 hello。 您可以使用 hello cmdlet 來取得`(Get-AzureRmKeyVault -ResourceGroupName <yourResourceGroupName>). Vaultname`。 |
+|  keyEncryptionKeyURL | URL 是使用的 tooencrypt hello 的 hello 金鑰的加密金鑰的產生 BitLocker 金鑰。 這個參數是選擇性，如果您選取**nokek** hello UseExistingKek 下拉式清單中。 如果您選取**kek**在 hello UseExistingKek 下拉式清單中，您必須輸入 hello _keyEncryptionKeyURL_值。 |
+| volumeType | Hello 加密作業執行的磁碟區的類型。 支援的有效值為 _OS_ 或 _All_ (適用於 RHEL 7.2、CentOS 7.2 和 Ubuntu 16.04)，和 _Data_ (適用於所有其他的散發套件)。 |
+| sequenceVersion | 序列版的 hello BitLocker 作業。 每次磁碟加密作業不會對 hello 遞增此版本號碼相同的 VM。 |
+| vmName | Hello hello 加密作業的 VM 名稱是 toobe 上執行。 |
+| passPhrase | 輸入強式複雜密碼做為 hello 資料加密金鑰。 |
 
 > [!NOTE]
-> _KeyEncryptionKeyURL_ 是選擇性參數。 您可以使用自己的 KEK，在金鑰保存庫中進一步保護資料加密金鑰 (複雜密碼)。
+> _KeyEncryptionKeyURL_ 是選擇性參數。 您可以整合您自己 KEK toofurther 保護 hello 資料加密金鑰 （複雜密碼） 在金鑰保存庫中。
 
 #### <a name="cli-commands"></a>CLI 命令
-您可以安裝並使用 [CLI 命令](../cli-install-nodejs.md)在加密的 VHD 上啟用磁碟加密。 若要在 Azure 中使用 CLI 命令來啟用現有或執行中 IaaS Linux VM 上的加密，請執行下列步驟：
+您可以啟用磁碟加密加密 VHD 上安裝和使用 hello [CLI 命令](../cli-install-nodejs.md)。 在現有的或使用 CLI 命令，在 Azure 中執行 IaaS Linux Vm 上 tooenable 加密 hello 遵循：
 
-1. 設定金鑰保存庫的存取原則：
+1. Hello 金鑰保存庫中設定存取原則：
 
- * 設定 **EnabledForDiskEncryption** 旗標︰
+ * 設定 hello **EnabledForDiskEncryption**旗標：
 
     `azure keyvault set-policy --vault-name <keyVaultName> --enabled-for-disk-encryption true`
- * 設定權限給 Azure AD 應用程式，以將密碼寫入至您的金鑰保存庫：
+ * 設定權限 tooAzure AD 應用程式 toowrite 密碼 tooyour 金鑰保存庫：
 
     `azure keyvault set-policy --vault-name <keyVaultName> --spn <aadClientID> --perms-to-keys '["wrapKey"]' --perms-to-secrets '["set"]'`
 
-2. 若要在現有或執行中的 VM 上啟用加密︰
+2. 在現有或未執行 VM 上 tooenable 加密：
 
  `azure vm enable-disk-encryption --resource-group <resourceGroupName> --name <vmName> --aad-client-id <aadClientId> --aad-client-secret <aadClientSecret> --disk-encryption-key-vault-url <keyVaultURL> --disk-encryption-key-vault-id <keyVaultResourceId> --volume-type [All|OS|Data]`
 
@@ -632,7 +632,7 @@ Azure 平台需要存取您金鑰保存庫中的加密金鑰或密碼，讓該�
 
  `azure vm show-disk-encryption-status --resource-group <resourceGroupName> --name <vmName> --json`
 
-4. 若要從您加密的 VHD 啟用新 VM 上的加密，請使用以下參數搭配 `azure vm create` 命令：
+4. 新的 VM，從您加密 VHD，使用下列參數以 hello 的 hello tooenable 加密`azure vm create`命令：
  ```
    * disk-encryption-key-vault-id <disk-encryption-key-vault-id>
    * disk-encryption-key-url <disk-encryption-key-url>
@@ -640,22 +640,22 @@ Azure 平台需要存取您金鑰保存庫中的加密金鑰或密碼，讓該�
    * key-encryption-key-url <key-encryption-key-url>
  ```
 
-### <a name="get-the-encryption-status-of-an-encrypted-iaas-vm"></a>取得已加密 IaaS VM 的加密狀態
-您可以使用 Azure Resource Manager、[PowerShell Cmdlet](/powershell/azure/overview) 或 CLI 命令取得加密狀態。 下列章節將說明如何使用 Azure 傳統入口網站和 CLI 命令來取得加密狀態。
+### <a name="get-hello-encryption-status-of-an-encrypted-iaas-vm"></a>取得加密的 IaaS VM hello 加密狀態
+您可以使用 Azure 資源管理員，取得 hello 加密狀態[PowerShell cmdlet](/powershell/azure/overview)，或 CLI 命令。 hello 下列各節說明 toouse hello Azure 傳統入口網站和 CLI 命令 tooget hello 加密狀態。
 
-#### <a name="get-the-encryption-status-of-an-encrypted-windows-vm-by-using-azure-resource-manager"></a>使用 Azure Resource Manager 取得已加密 Windows VM 的加密狀態
-您可以從 Azure Resource Manager 取得 IaaS VM 的加密狀態，請執行以下步驟：
+#### <a name="get-hello-encryption-status-of-an-encrypted-windows-vm-by-using-azure-resource-manager"></a>使用 Azure 資源管理員取得加密的 Windows VM hello 加密狀態
+您可以藉由 hello 下列取得 hello 加密的 hello IaaS VM 的狀態從 Azure 資源管理員：
 
-1. 登入 [Azure 傳統入口網站](https://portal.azure.com/)，然後按一下左窗格中的 [虛擬機器] 以查看您訂用帳戶中虛擬機器的摘要檢視。 您可以從 [訂用帳戶] 下拉式清單中選取訂用帳戶名稱，以篩選虛擬機器檢視。
+1. 登入 toohello [Azure 傳統入口網站](https://portal.azure.com/)，然後按一下**虛擬機器**hello 左的窗格 toosee hello 您訂用帳戶中的虛擬機器的摘要檢視中。 您可以篩選 hello 虛擬機器 檢視中 hello 選取 hello 訂用帳戶名稱**訂用帳戶**下拉式清單。
 
-2. 在 [虛擬機器] 頁面頂端，按一下 [資料行]。
+2. 頂端的 hello hello**虛擬機器**頁面上，按一下**資料行**。
 
-3. 從 [選擇資料行] 刀鋒視窗選取 [磁碟加密]，並按一下 [更新]。 您應該會看到磁碟加密資料行顯示出每個 VM 的加密狀態為_已啟用_或_未啟用_，如下圖所示：
+3. 在 hello**選擇資料行**刀鋒視窗中，選取**磁碟加密**，然後按一下**更新**。 您應該會看到 hello 磁碟加密資料行顯示 hello 加密狀態_啟用_或_未啟用_針對每個 VM，hello 遵循圖所示：
 
  ![Azure 中的 Microsoft Antimalware](./media/azure-security-disk-encryption/disk-encryption-fig2.png)
 
-#### <a name="get-the-encryption-status-of-an-encrypted-windowslinux-iaas-vm-by-using-the-disk-encryption-powershell-cmdlet"></a>使用磁碟加密 PowerShell Cmdlet 取得已加密 (Windows/Linux) IaaS VM 的加密狀態
-您可以透過磁碟加密 PowerShell Cmdlet `Get-AzureRmVMDiskEncryptionStatus` 來取得 IaaS VM 的加密狀態。 若要取得 VM 的加密設定，請輸入以下資訊︰
+#### <a name="get-hello-encryption-status-of-an-encrypted-windowslinux-iaas-vm-by-using-hello-disk-encryption-powershell-cmdlet"></a>使用 hello 磁碟加密 PowerShell cmdlet 來取得 hello 加密的加密 (Windows/Linux) IaaS VM 的狀態
+您可以從 hello 磁碟加密 PowerShell cmdlet 來取得 hello IaaS VM hello 加密狀態`Get-AzureRmVMDiskEncryptionStatus`。 tooget hello 加密設定，讓您的 VM，請輸入 hello 下列：
 
     C:\> Get-AzureRmVmDiskEncryptionStatus  -ResourceGroupName $ResourceGroupName -VMName $VMName
     -ExtensionName $ExtensionName
@@ -665,7 +665,7 @@ Azure 平台需要存取您金鑰保存庫中的加密金鑰或密碼，讓該�
     OsVolumeEncryptionSettings : Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings
     ProgressMessage            : https://rheltest1keyvault.vault.azure.net/secrets/bdb6bfb1-5431-4c28-af46-b18d0025ef2a/abebacb83d864a5fa729508315020f8a
 
-您可以檢查 _Get-AzureRmVMDiskEncryptionStatus_ 的輸出來取得加密金鑰 URL。
+您可以檢查的 hello 輸出_Get AzureRmVMDiskEncryptionStatus_加密金鑰的 Url。
 
     C:\> $status = Get-AzureRmVmDiskEncryptionStatus  -ResourceGroupName $ResourceGroupName -VMName
     e $VMName -ExtensionName $ExtensionName
@@ -684,96 +684,96 @@ Azure 平台需要存取您金鑰保存庫中的加密金鑰或密碼，讓該�
     ---------                                                                                                               -----------
     https://rheltest1keyvault.vault.azure.net/secrets/bdb6bfb1-5431-4c28-af46-b18d0025ef2a/abebacb83d864a5fa729508315020f8a Microsoft.Azure.Management....
 
-OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，顯示這兩個磁碟區都是使用 Azure 磁碟加密來加密。 如需使用 PowerShell Cmdlet 以 Azure 磁碟加密來啟用加密的相關資訊，請參閱部落格文章[探索使用 Azure PowerShell 的 Azure 磁碟加密 - 第 1 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/17/explore-azure-disk-encryption-with-azure-powershell.aspx)和[探索使用 Azure PowerShell 的 Azure 磁碟加密 - 第 2 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2.aspx)。
+hello OSVolumeEncrypted 和 DataVolumesEncrypted 設定值會設定 too_Encrypted_，會顯示這兩個磁碟區使用 Azure 磁碟加密進行加密。 如需使用 PowerShell cmdlet 來啟用與 Azure 磁碟加密的加密資訊，請參閱 hello 部落格文章[瀏覽 Azure 磁碟加密使用 Azure PowerShell-第 1 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/17/explore-azure-disk-encryption-with-azure-powershell.aspx)和[瀏覽 Azure 磁碟加密使用 Azure PowerShell-第 2 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/21/explore-azure-disk-encryption-with-azure-powershell-part-2.aspx)。
 
 > [!NOTE]
-> 在 Linux VM 上，`Get-AzureRmVMDiskEncryptionStatus` Cmdlet 報告加密狀態需要三至四分鐘。
+> Linux Vm 上花費三 toofour 分鐘 hello `Get-AzureRmVMDiskEncryptionStatus` cmdlet tooreport hello 加密狀態。
 
-#### <a name="get-the-encryption-status-of-the-iaas-vm-from-the-disk-encryption-cli-command"></a>透過磁碟加密 CLI 命令取得 IaaS VM 的加密狀態
-您可以使用磁碟加密 CLI 命令 `azure vm show-disk-encryption-status` 取得 IaaS VM 的加密狀態。 若要取得 VM 的加密設定，請進入您的 Azure CLI 工作階段：
+#### <a name="get-hello-encryption-status-of-hello-iaas-vm-from-hello-disk-encryption-cli-command"></a>收到 hello 磁碟加密 CLI 命令的 hello IaaS VM 的 hello 加密狀態
+您可以使用 hello 磁碟加密 CLI 命令，以取得 IaaS VM hello hello 加密狀態`azure vm show-disk-encryption-status`。 tooget hello 加密設定，讓您的 VM，請輸入您的 Azure CLI 工作階段：
 
     azure vm show-disk-encryption-status --resource-group <yourResourceGroupName> --name <yourVMName> --json  
 
 #### <a name="disable-encryption-on-running-windows-iaas-vm"></a>在執行中 Windows IaaS VM 上停用加密
-您可以透過 Azure 磁碟加密 Resource Manager 範本或 PowerShell Cmdlet，在執行中 Windows 或 Linux IaaS VM 上停用加密，並指定解密組態。
+您可以停用加密透過 hello Azure 磁碟加密 Resource Manager 範本或 PowerShell cmdlet 執行的 Windows 或 Linux IaaS VM，並指定 hello 解密。
 
 ##### <a name="windows-vm"></a>Windows VM
-停用加密步驟會在執行中 Windows IaaS VM 上停用 OS、資料磁碟區或兩者的加密。 您無法停用 OS 磁碟區並將資料磁碟區保持加密狀態。 執行停用加密步驟時，Azure 傳統部署模型會更新 VM 服務模型，且 Windows IaaS VM 會標示為已解密。 VM 的待用內容不會再加密。 解密並不會刪除您的金鑰保存庫和加密金鑰資料 (Windows 系統的 BitLocker 加密金鑰或 Linux 的複雜密碼)。
+hello 停用加密步驟會停用加密 hello OS、 hello 資料磁碟區，或兩者上執行 Windows IaaS VM 的 hello。 您無法停用 hello OS 磁碟區，並保留 hello 資料磁碟區加密。 Hello 停用加密步驟執行時，hello Azure 傳統部署模型更新 hello VM 的服務模型，且會標示解密 hello Windows IaaS VM。 hello VM hello 內容已不再加密在靜止。 hello 解密並不會刪除您金鑰保存庫和 hello 加密金鑰內容 （BitLocker 加密金鑰適用於 Windows 和 Linux 的複雜密碼）。
 
 ##### <a name="linux-vm"></a>Linux VM
-停用加密步驟會在執行中 Linux IaaS VM 上停用資料磁碟區的加密。 此步驟僅適用於 OS 磁碟機未加密的情況。
+hello 停用加密步驟會停用加密 hello hello 執行 Linux IaaS VM 上的資料量。 如果 hello OS 磁碟未加密，僅適用於此步驟。
 
 > [!NOTE]
-> Linux VM 不允許在 OS 磁碟上停用加密。
+> 在 Linux Vm 上不允許停用加密 hello OS 磁碟上。
 
 ##### <a name="disable-encryption-on-an-existing-or-running-iaas-vm"></a>在現有或執行中 IaaS VM 上停用加密
-您可以使用 [Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-decrypt-running-windows-vm)，在執行中 Windows IaaS VM 上停用磁碟加密。
+您可以停用對於執行 Windows IaaS Vm 中使用 hello 磁碟加密[Resource Manager 範本](https://github.com/Azure/azure-quickstart-templates/tree/master/201-decrypt-running-windows-vm)。
 
-1. 在 Azure 快速入門範本上按一下 [部署至 Azure]，在 [參數] 刀鋒視窗中輸入解密組態，然後按一下 [確定]。
+1. Hello Azure 快速入門在範本上，按一下 **部署 tooAzure**，hello 上輸入 hello 解密組態**參數**刀鋒視窗中，然後再按一下**確定**。
 
-2. 選取訂用帳戶、資源群組、資源群組位置、法律條款與合約，然後按一下 [建立] 以在新 IaaS VM 上啟用加密。
+2. Hello 訂用帳戶、 資源群組、 資源群組位置、 法律條款和協議中，選取，然後按一下**建立**tooenable 加密新的 IaaS VM 上。
 
-對於 Linux VM，您可以使用[在執行中的 Linux VM 上停用加密](https://aka.ms/decrypt-linuxvm)範本來停用加密。
+適用於 Linux Vm，您可以使用停用加密 hello[停用執行中的 Linux VM 上的加密](https://aka.ms/decrypt-linuxvm)範本。
 
-以下資料表列出可供在執行中 IaaS VM 上停用加密的 Resource Manager 範本參數︰
+hello 下表列出用來停用加密，在執行中的 IaaS VM 上的資源管理員範本參數：
 
 | 參數 | 說明 |
 | --- | --- |
-| vmName | 要執行加密作業所在 VM 的名稱。
-| volumeType | 執行解密作業所在磁碟區的類型。 有效值為 _OS_、_Data_ 和 _All_。 若未在 _Data_ 磁碟區上停用加密，則無法在執行中 Windows IaaS VM OS/開機磁碟區上停用加密。 也請注意 Linux VM 不允許在 OS 磁碟上停用加密。 |
-| sequenceVersion | BitLocker 作業的順序版本。 每當在相同的 VM 上執行磁碟解密作業時便遞增此版本號碼。 |
+| vmName | Hello hello 加密作業的 VM 名稱是 toobe 上執行。
+| volumeType | 執行解密作業所在磁碟區的類型。 有效值為 _OS_、_Data_ 和 _All_。 您無法停用加密不在執行上 Windows IaaS VM OS/開機磁碟區停用加密 hello_資料_磁碟區。 也請注意，停用加密 hello OS 磁碟上不允許在 Linux Vm 上。 |
+| sequenceVersion | 序列版的 hello BitLocker 作業。 每次磁碟解密作業不會對 hello 遞增此版本號碼相同的 VM。 |
 
 ##### <a name="disable-encryption-on-an-existing-or-running-iaas-vm"></a>在現有或執行中 IaaS VM 上停用加密
-若要使用 PowerShell Cmdlet 在現有或執行中 IaaS VM 上停用加密，請參閱 [`Disable-AzureRmVMDiskEncryption`](/powershell/module/azurerm.compute/disable-azurermvmdiskencryption)。 此 Cmdlet 同時支援 Windows 和 Linux VM。 若要停用加密，它會在虛擬機器上安裝擴充功能。 如果未指定 _Name_ 參數，則會建立使用預設名稱 _AzureDiskEncryption for Windows VMs_ 的擴充功能。
+toodisable 加密上現有的或執行 IaaS VM 使用 hello PowerShell cmdlet，請參閱[ `Disable-AzureRmVMDiskEncryption` ](/powershell/module/azurerm.compute/disable-azurermvmdiskencryption)。 此 Cmdlet 同時支援 Windows 和 Linux VM。 toodisable 加密，它會在 hello 虛擬機器上安裝擴充功能。 如果 hello_名稱_未指定參數，hello 預設名稱的延伸模組_Windows Vm AzureDiskEncryption_建立。
 
-在 Linux VM 上會使用 AzureDiskEncryptionForLinux 擴充功能。
+在 Linux Vm 上使用 hello AzureDiskEncryptionForLinux 延伸模組。
 
 > [!NOTE]
-> 此 Cmdlet 會重新啟動虛擬機器。
+> 此 cmdlet 會重新啟動 hello 虛擬機器。
 
 ### <a name="enable-encryption-on-pre-encrypted-iaas-vm-with-azure-managed-disk"></a>在具有 Azure 受管理磁碟且預先加密的 IaaS VM 上啟用加密
-使用 Azure 受管理磁碟 ARM 範本，以使用位於以下位置的 ARM 範本從預先加密的 VHD 建立加密的 VM   
+使用加密的 VM，從使用 hello ARM 範本預先加密的 VHD 位於 hello Azure 受管理磁碟臂範本 toocreate   
 [從預先加密的 VHD/儲存體 blob 建立新的已加密受管理磁碟] (https://github.com/Azure/azure-quickstart-templates/tree/master/201-create-encrypted-managed-disk)
 
 ### <a name="enable-encryption-on-a-new-linux-iaas-vm-with-azure-managed-disk"></a>在具有 Azure 受管理磁碟的新 Linux IaaS VM 上啟用加密
-使用 Azure 受管理磁碟 ARM 範本，以使用位於以下位置的 ARM 範本建立新的已加密 Linux IaaS VM   
+使用新的加密使用 hello ARM 範本位於 Linux IaaS VM 的 hello Azure 受管理磁碟臂範本 toocreate   
 [使用完整磁碟加密部署 RHEL 7.2] (https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-full-disk-encrypted-rhel)
 
 ### <a name="enable-encryption-on-a-new-windows-iaas-vm-with-azure-managed-disk"></a>在具有 Azure 受管理磁碟的新 Windows IaaS VM 上啟用加密
- 使用 Azure 受管理磁碟 ARM 範本，以使用位於以下位置的 ARM 範本建立新的已加密 Linux IaaS VM   
+ 使用新的加密使用 hello ARM 範本位於 Linux IaaS VM 的 hello Azure 受管理磁碟臂範本 toocreate   
  [從資源庫映像建立新的已加密 Windows IaaS 受管理磁碟 VM] (https://github.com/Azure/azure-quickstart-templates/tree/master/201-encrypt-create-new-vm-gallery-image-managed-disks)
 
   > [!NOTE]
-  >您必須在啟用 Azure 磁碟加密之前，先在 Azure 磁碟加密之外對以受控磁碟為基礎的 VM 執行個體建立快照集和/或備份。  您可以從入口網站建立受控磁碟的快照集，也可以使用 Azure 備份來建立。  擁有備份可確保在加密期間發生任何非預期的失敗時，能有復原選項可供選擇。  在建立備份後，您就可以使用 Set-AzureRmVMDiskEncryptionExtension Cmdlet 並指定 -skipVmBackup 參數來加密受控磁碟。  在建立好備份並指定了這個參數之前，對以受控磁碟為基礎的 VM 執行這個命令都將會失敗。    
+  >它是強制性 toosnapshot 及/或備份的受管理的磁碟基礎的外部 VM 執行個體和先前 tooenabling Azure 磁碟加密。  Hello 受管理磁碟的快照集可以取自 hello 入口網站，或可以使用 Azure 備份。  備份確保復原選項可以在 hello 案例中的任何未預期的失敗期間加密。  建立備份之後，hello 組 AzureRmVMDiskEncryptionExtension 指令程式可以藉由指定 hello-skipVmBackup 參數是使用的 tooencrypt 管理磁碟。  在建立好備份並指定了這個參數之前，對以受控磁碟為基礎的 VM 執行這個命令都將會失敗。    
  
 ### <a name="update-encryption-settings-of-an-existing-encrypted-non-premium-vm"></a>現有已加密非高階 VM 的更新加密設定
-  針對執行中的 VM 使用現有 Azure 磁碟加密支援的介面 [PS Cmdlet、CLI 或 ARM 範本] 更新加密設定，如 AAD 用戶端識別碼/密碼、金鑰加密金鑰 [KEK]、Windows VM 適用的 BitLocker 加密金鑰，或 Linux VM 適用的複雜密碼等。僅支援非高階儲存體所支援 VM 的更新加密設定。 不支援高階儲存體所支援 VM 的。
+  使用 hello 現有 Azure 磁碟加密支援的介面執行 VM [PS 指令程式，CLI 或 ARM 範本] tooupdate hello 加密設定喜歡 AAD 用戶端識別碼/密碼、 加密金鑰 [KEK]，Windows VM 或複雜密碼的 BitLocker 加密金鑰只有非 premium 儲存體所支援的 Vm 支援 Linux VM 等 hello 更新加密設定。 不支援高階儲存體所支援 VM 的。
 
 ## <a name="appendix"></a>附錄
-### <a name="connect-to-your-subscription"></a>連線至您的訂用帳戶
-在繼續之前，請先參閱本文中＜必要條件＞一節。 確定已符合所有必要條件之後，請透過下列方式連接至您的訂用帳戶︰
+### <a name="connect-tooyour-subscription"></a>連接 tooyour 訂用帳戶
+在繼續之前，檢閱 hello*必要條件*〉 一節。 確定已符合所有必要條件之後，請進行 hello 下列連接 tooyour 訂用帳戶：
 
-1. 開始 Azure PowerShell 工作階段，並使用下列命令登入您的 Azure 帳戶：
+1. 啟動 Azure PowerShell 工作階段，以登入 Azure 帳戶 tooyour hello 下列命令：
 
     `Login-AzureRmAccount`
 
-2. 如果您有多個訂用帳戶，並想要指定要使用的其中一個，請輸入下列內容以查看您帳戶的訂用帳戶：
+2. 如果您有多個訂用帳戶，而且想 toospecify 一個 toouse，輸入下列帳戶 toosee hello 訂閱 hello:
 
     `Get-AzureRmSubscription`
 
-3. 若要指定要使用的訂用帳戶，請輸入：
+3. 您想 toouse，toospecify hello 訂用帳戶類型：
 
     `Select-AzureRmSubscription -SubscriptionName <Yoursubscriptionname>`
 
-4. 若要確認訂用帳戶設定正確無誤，請輸入：
+4. tooverify hello 訂用帳戶設定正確無誤，輸入：
 
     `Get-AzureRmSubscription`
 
-5. 若要確認已安裝 Azure 磁碟加密 Cmdlet，請輸入：
+5. tooconfirm hello Azure 磁碟加密會安裝 cmdlet，類型：
 
     `Get-command *diskencryption*`
 
-6. 下列的輸出可以確認 Azure 磁碟加密 PowerShell 的安裝：
+6. hello 下列輸出會確認 hello Azure 磁碟加密 PowerShell 安裝：
 
 ```
     PS C:\Windows\System32\WindowsPowerShell\v1.0> get-command *diskencryption*
@@ -784,38 +784,38 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
 ```
 
 ### <a name="prepare-a-pre-encrypted-windows-vhd"></a>準備已預先加密的 Windows VHD
-下列各節是準備預先加密的 Windows VHD 以在 Azure IaaS 中部署為加密的 VHD 的必要項目。 使用該資訊以在 Azure Site Recovery 或 Azure 上準備並啟動全新的 Windows VM (VHD)。
+hello 以下各節是必要的 tooprepare 預先加密為加密的 VHD 在 Azure IaaS 中部署 Windows VHD。 使用 hello 資訊 tooprepare 和開機全新 Windows VM (VHD)，在 Azure Site Recovery 或 Azure。
 
-#### <a name="update-group-policy-to-allow-non-tpm-for-os-protection"></a>更新群組原則以對作業系統保護允許非 TPM
-設定 **BitLocker 磁碟機加密**的 BitLocker 群組原則設定，其位於此路徑**本機電腦原則** > **電腦設定** > **系統管理範本** > **Windows 元件**。 將這個設定變更為**作業系統磁碟機** > **啟動時需要其他驗證** > **在不含相容 TPM 的情形下允許使用 BitLocker**，如下圖所示：
+#### <a name="update-group-policy-tooallow-non-tpm-for-os-protection"></a>更新群組原則 tooallow 非 TPM OS 保護
+設定 hello BitLocker 群組原則設定**BitLocker 磁碟機加密**，這會在下看到**本機電腦原則** > **電腦設定**  > **系統管理範本** > **Windows 元件**。 變更此設定太**作業系統磁碟機** > **需要在啟動時的其他驗證** > **不含相容 TPM允許使用BitLocker**hello 遵循圖所示：
 
 ![Azure 中的 Microsoft Antimalware](./media/azure-security-disk-encryption/disk-encryption-fig8.png)
 
 #### <a name="install-bitlocker-feature-components"></a>安裝 BitLocker 功能元件
-針對 Windows Server 2012 和更新版本，請使用下列命令︰
+Windows Server 2012 和更新版本中，使用下列命令的 hello:
 
     dism /online /Enable-Feature /all /FeatureName:BitLocker /quiet /norestart
 
-針對 Windows Server 2008 R2，請使用下列命令︰
+Windows Server 2008 R2，使用下列命令的 hello:
 
     ServerManagerCmd -install BitLockers
 
-#### <a name="prepare-the-os-volume-for-bitlocker-by-using-bdehdcfg"></a>使用 `bdehdcfg` 準備用於 BitLocker 的 OS 磁碟區
-若要壓縮作業系統磁碟分割並為 BitLocker 準備電腦，請執行下列命令：
+#### <a name="prepare-hello-os-volume-for-bitlocker-by-using-bdehdcfg"></a>使用 BitLocker 的準備 hello OS 磁碟區`bdehdcfg`
+toocompress hello OS 磁碟分割和 BitLocker 的準備 hello 機器，執行下列命令的 hello:
 
     bdehdcfg -target c: shrink -quiet
 
-#### <a name="protect-the-os-volume-by-using-bitlocker"></a>使用 BitLocker 保護作業系統磁碟區
-使用 [`manage-bde`](https://technet.microsoft.com/library/ff829849.aspx) 命令，以使用外部的金鑰保護裝置在開機磁碟區上啟用加密。 也將外部金鑰 (.bek 檔案) 放置於外部磁碟機或磁碟區。 下次重新開機後，會在系統/開機磁碟區上啟用加密。
+#### <a name="protect-hello-os-volume-by-using-bitlocker"></a>使用 BitLocker 來保護 hello OS 磁碟區
+使用 hello [ `manage-bde` ](https://technet.microsoft.com/library/ff829849.aspx)命令 tooenable 加密使用外部的金鑰保護裝置 hello 開機磁碟區上。 此外 hello 外接式磁碟機或磁碟區上放置 hello 外部索引鍵 （.bek 檔案）。 Hello 下次重新開機後 hello 系統/開機磁碟區上啟用加密。
 
     manage-bde -on %systemdrive% -sk [ExternalDriveOrVolume]
     reboot
 
 > [!NOTE]
-> 使用不同的資料/資源 VHD 來準備 VM，才能使用 BitLocker 取得外部金鑰。
+> 做好使用 BitLocker 取得 hello 外部索引鍵與個別資料/資源 VHD hello VM。
 
 #### <a name="encrypting-an-os-drive-on-a-running-linux-vm"></a>在執行中的 Linux VM 上加密 OS 磁碟機
-下列散發套件支援在執行中的 Linux VM 上加密 OS 磁碟機︰
+加密作業系統磁碟機上執行的 Linux VM 的支援下列散發 hello:
 
 * RHEL 7.2
 * CentOS 7.2
@@ -823,33 +823,33 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
 
 ##### <a name="prerequisites-for-os-disk-encryption"></a>OS 磁碟加密的必要條件
 
-* 必須從 Azure Resource Manager 的Marketplace 映像建立 VM。
+* 從 Marketplace 映像 hello Azure 資源管理員中，必須先建立 hello VM。
 * 具有至少 4 GB RAM 的 Azure VM (建議大小為 7 GB)。
-* (適用於 RHEL 和 CentOS) 停用 SELinux。 若要停用 SELinux，請參閱「4.4.2. 停用 SELinux」，其位於 VM 上的 [SELinux 使用者和系統管理員指南](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/SELinux_Users_and_Administrators_Guide/sect-Security-Enhanced_Linux-Working_with_SELinux-Changing_SELinux_Modes.html#sect-Security-Enhanced_Linux-Enabling_and_Disabling_SELinux-Disabling_SELinux)。
-* 停用 SELinux 之後，至少重新啟動 VM 一次。
+* (適用於 RHEL 和 CentOS) 停用 SELinux。 toodisable SELinux，請參閱 「 4.4.2。 以停用 SELinux"hello [SELinux 使用者和系統管理員指南](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/SELinux_Users_and_Administrators_Guide/sect-Security-Enhanced_Linux-Working_with_SELinux-Changing_SELinux_Modes.html#sect-Security-Enhanced_Linux-Enabling_and_Disabling_SELinux-Disabling_SELinux)hello VM 上。
+* 停用 SELinux 之後，重新啟動 hello VM 至少一次。
 
 ##### <a name="steps"></a>步驟
-1. 使用先前指定的其中一個散發套件來建立 VM。
+1. 建立 VM 使用其中一種 hello 先前指定的分佈。
 
- 若為 CentOS 7.2，支援透過特殊映像加密 OS 磁碟。 若要使用此映像，請在建立 VM 時指定 "7.2n" 做為 SKU︰
+ 若為 CentOS 7.2，支援透過特殊映像加密 OS 磁碟。 toouse 此映像，指定 「 7.2n"hello SKU，當您建立 hello VM 為：
  ```
     Set-AzureRmVMSourceImage -VM $VirtualMachine -PublisherName "OpenLogic" -Offer "CentOS" -Skus "7.2n" -Version "latest"
  ```
-2. 根據您的需求設定 VM。 如果您要加密所有 (OS + 資料) 磁碟機，必須可從 /etc/fstab 指定和掛接資料磁碟機。
+2. 設定 hello VM 相應 tooyour 需求。 如果您正在 tooencrypt hello （OS + 資料） 的所有磁碟機，hello 資料磁碟機就會需要 toobe 指定和從 /etc/fstab 裝載。
 
  > [!NOTE]
- > 使用 UUID=... 來指定 /etc/fstab 中的資料磁碟機，而不是指定區塊裝置名稱 (例如 /dev/sdb1)。 加密期間，VM 上的磁碟機順序會變更。 如果 VM 依賴特定的區塊裝置順序，則無法在加密後掛接裝置。
+ > 使用 UUID =...toospecify /etc/hosts fstab 而不是指定 hello 區塊裝置名稱 (例如，/dev/sdb1) 中的資料磁碟機。 在加密期間，hello hello VM 上的磁碟機變更的順序。 如果您的 VM 依賴封鎖裝置的特定順序，它將會失敗 toomount 它們加密之後。
 
-3. 登出 SSH 工作階段。
+3. 登出 hello SSH 工作階段。
 
-4. 若要加密 OS，請在[啟用加密](#enable-encryption-on-existing-or-running-iaas-linux-vm-in-azure)時將 volumeType 指定為 **All** 或 **OS**。
+4. tooencrypt hello 的作業系統上，指定做為 volumeType**所有**或**OS**時您[啟用加密](#enable-encryption-on-existing-or-running-iaas-linux-vm-in-azure)。
 
  > [!NOTE]
- > 未以 `systemd` 服務的形式執行的所有使用者空間程序皆應使用 `SIGKILL` 來終止。 重新啟動 VM。 當您在執行中的 VM 上啟用 OS 磁碟加密時，請規劃 VM 停機時間。
+ > 未以 `systemd` 服務的形式執行的所有使用者空間程序皆應使用 `SIGKILL` 來終止。 重新啟動 hello VM。 當您在執行中的 VM 上啟用 OS 磁碟加密時，請規劃 VM 停機時間。
 
-5. 使用[下一節](#monitoring-os-encryption-progress)的指示定期監視加密進度。
+5. 定期監視加密進度 hello 使用 hello hello 指示[下一節](#monitoring-os-encryption-progress)。
 
-6. 在 Get-AzureRmVmDiskEncryptionStatus 顯示「VMRestartPending」之後，請登入 VM 或使用入口網站、PowerShell 或 CLI 來重新啟動 VM。
+6. Get AzureRmVmDiskEncryptionStatus 顯示 「 VMRestartPending 」 之後，重新啟動您的 VM 在 tooit 登入或使用 hello 入口網站、 PowerShell 或 CLI。
     ```
     C:\> Get-AzureRmVmDiskEncryptionStatus  -ResourceGroupName $ResourceGroupName -VMName $VMName
     -ExtensionName $ExtensionName
@@ -857,25 +857,25 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
     OsVolumeEncrypted          : VMRestartPending
     DataVolumesEncrypted       : NotMounted
     OsVolumeEncryptionSettings : Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings
-    ProgressMessage            : OS disk successfully encrypted, reboot the VM
+    ProgressMessage            : OS disk successfully encrypted, reboot hello VM
     ```
-重新開機之前，我們建議您儲存 VM 的[開機診斷](https://azure.microsoft.com/en-us/blog/boot-diagnostics-for-virtual-machines-v2/)。
+您重新開機之前，我們建議您儲存[開機診斷](https://azure.microsoft.com/en-us/blog/boot-diagnostics-for-virtual-machines-v2/)的 hello VM。
 
 #### <a name="monitoring-os-encryption-progress"></a>監視 OS 加密進度
 有三種方式可監視 OS 加密進度：
 
-* 使用 `Get-AzureRmVmDiskEncryptionStatus` Cmdlet，並查看 ProgressMessage 欄位︰
+* 使用 hello `Get-AzureRmVmDiskEncryptionStatus` cmdlet，並檢查 hello ProgressMessage 欄位：
     ```
     OsVolumeEncrypted          : EncryptionInProgress
     DataVolumesEncrypted       : NotMounted
     OsVolumeEncryptionSettings : Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings
     ProgressMessage            : OS disk encryption started
     ```
- VM 達到「OS disk encryption started」之後，需要在進階儲存體所支援的 VM 上耗費大約 40 至 50 分鐘。
+ Hello VM 達到 「 作業系統磁碟加密已啟動 」 之後，它會有約 40 too50 分鐘高階儲存體的備份 VM。
 
- 由於 WALinuxAgent 發生 [388 號問題](https://github.com/Azure/WALinuxAgent/issues/388)，某些散發套件的 `OsVolumeEncrypted` 和 `DataVolumesEncrypted` 會顯示為 `Unknown`。 若使用 WALinuxAgent 2.1.5 和更新版本，就會自動修正此問題。 如果您在輸出中看到 `Unknown`，可以使用 Azure 資源 Explorer 確認磁碟加密狀態。
+ 由於 WALinuxAgent 發生 [388 號問題](https://github.com/Azure/WALinuxAgent/issues/388)，某些散發套件的 `OsVolumeEncrypted` 和 `DataVolumesEncrypted` 會顯示為 `Unknown`。 若使用 WALinuxAgent 2.1.5 和更新版本，就會自動修正此問題。 如果您看到`Unknown`在 hello 輸出中，您可以使用 hello Azure 資源總管確認磁碟加密狀態。
 
- 移至 [Azure 資源 Explorer](https://resources.azure.com/)，然後在左側選取面板中展開這個階層︰
+ 跳過[Azure 資源總管](https://resources.azure.com/)，然後展開左側 hello 選取面板中的此階層：
 
  ~~~~
  |-- subscriptions
@@ -889,23 +889,23 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
                                         |-- InstanceView
 ~~~~                
 
- 在 InstanceView 中，向下捲動以查看磁碟機的加密狀態。
+ 在 hello InstanceView，捲動 toosee hello 加密狀態，您的磁碟機。
 
  ![VM 執行個體檢視](./media/azure-security-disk-encryption/vm-instanceview.png)
 
-* 查看[開機診斷](https://azure.microsoft.com/en-us/blog/boot-diagnostics-for-virtual-machines-v2/)。 來自 ADE 擴充功能的訊息應該會在前面加上 `[AzureDiskEncryption]`。
+* 查看[開機診斷](https://azure.microsoft.com/en-us/blog/boot-diagnostics-for-virtual-machines-v2/)。 訊息從 hello ADE 延伸前面應該要有`[AzureDiskEncryption]`。
 
-* 透過 SSH 登入 VM，並從下列位置取得擴充功能記錄檔：
+* 登入 toohello 透過 SSH 的 VM，並取得 hello 延伸模組中的記錄檔：
 
     /var/log/azure/Microsoft.Azure.Security.AzureDiskEncryptionForLinux
 
- 不建議在 OS 加密進行時登入 VM。 其他兩個方法都失敗時，只複製記錄檔。
+ 我們建議，您沒有登入 toohello VM OS 加密進行中時。 Hello 其他兩個方法都失敗時才複製 hello 記錄檔。
 
 #### <a name="prepare-a-pre-encrypted-linux-vhd"></a>準備已預先加密的 Linux VHD
 ##### <a name="ubuntu-16"></a>Ubuntu 16
-在發佈安裝期間執行下列步驟以設定加密︰
+設定加密 hello 發佈安裝期間執行 hello 下列：
 
-1. 在分割磁碟時選取 [設定加密的磁碟區]。
+1. 選取**設定加密的磁碟區**當您分割 hello 磁碟。
 
  ![Ubuntu 16.04 設定](./media/azure-security-disk-encryption/ubuntu-1604-preencrypted-fig1.png)
 
@@ -913,7 +913,7 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
 
  ![Ubuntu 16.04 設定](./media/azure-security-disk-encryption/ubuntu-1604-preencrypted-fig2.png)
 
-3. 提供複雜密碼。 這是您要上傳至金鑰保存庫的複雜密碼。
+3. 提供複雜密碼。 這是您上傳 toohello 金鑰保存庫的 hello 複雜密碼。
 
  ![Ubuntu 16.04 設定](./media/azure-security-disk-encryption/ubuntu-1604-preencrypted-fig3.png)
 
@@ -921,21 +921,21 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
 
  ![Ubuntu 16.04 設定](./media/azure-security-disk-encryption/ubuntu-1604-preencrypted-fig4.png)
 
-5. 啟動 VM 時會要求輸入複雜密碼，請使用步驟 3 中提供的複雜密碼。
+5. 當您啟動 hello VM，並會要求輸入複雜密碼時，使用您在步驟 3 中提供的 hello 複雜密碼。
 
  ![Ubuntu 16.04 設定](./media/azure-security-disk-encryption/ubuntu-1604-preencrypted-fig5.png)
 
-6. 使用[這些指示](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-create-upload-ubuntu/)準備要上傳到 Azure 的 VM。 還不要執行最後一個步驟 (解除佈建 VM)。
+6. 將上傳至 Azure 中，使用準備 hello VM[這些指示](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-create-upload-ubuntu/)。 請勿執行 hello 最後一個步驟 (解除佈建 hello VM)。
 
-設定加密來與 Azure 搭配運作，請執行下列步驟：
+設定使用 Azure 加密 toowork 執行 hello 下列：
 
-1. 在 /usr/local/sbin/azure_crypt_key.sh 下，使用以下指令碼的內容建立檔案。 請注意 KeyFileName，因為它是 Azure 使用的複雜密碼檔案名稱。
+1. 建立 hello 下列指令碼中的 hello 內容 /usr/local/sbin/azure_crypt_key.sh 下的檔案。 因為它是供 Azure hello 複雜密碼的檔案名稱，請特別注意 toohello KeyFileName。
 
     ```
     #!/bin/sh
     MountPoint=/tmp-keydisk-mount
     KeyFileName=LinuxPassPhraseFileName
-    echo "Trying to get the key from disks ..." >&2
+    echo "Trying tooget hello key from disks ..." >&2
     mkdir -p $MountPoint
     modprobe vfat >/dev/null 2>&1
     modprobe ntfs >/dev/null 2>&1
@@ -957,8 +957,8 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
     done
 
       if [ $OPENED -eq 0 ]; then
-        echo "FAILED to find suitable passphrase file ..." >&2
-        echo -n "Try to enter your password: " >&2
+        echo "FAILED toofind suitable passphrase file ..." >&2
+        echo -n "Try tooenter your password: " >&2
         read -s -r A </dev/console
         echo -n "$A"
      else
@@ -966,14 +966,14 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
     fi
 ```
 
-2. 在 */etc/crypttab* 中變更 crypt 設定。 它看起來應該如下所示：
+2. 變更中的 hello crypt config */etc/hosts crypttab*。 它看起來應該如下所示：
  ```
     xxx_crypt uuid=xxxxxxxxxxxxxxxxxxxxx none luks,discard,keyscript=/usr/local/sbin/azure_crypt_key.sh
     ```
 
-3. 如果您正在 Windows 中編輯 *azure_crypt_key.sh* 並將它複製到 Linux，執行 `dos2unix /usr/local/sbin/azure_crypt_key.sh`。
+3. 如果您要編輯*azure_crypt_key.sh* Windows 和您在複製它 tooLinux，執行`dos2unix /usr/local/sbin/azure_crypt_key.sh`。
 
-4. 在指令碼中新增可執行檔權限︰
+4. 加入可執行檔的權限 toohello 指令碼：
  ```
     chmod +x /usr/local/sbin/azure_crypt_key.sh
  ```
@@ -985,32 +985,32 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
     nls_utf8
     nls_iso8859-1
 ```
-6. 執行 `update-initramfs -u -k all` 來更新 initramfs，以讓 `keyscript` 生效。
+6. 執行`update-initramfs -u -k all`tooupdate hello initramfs toomake hello`keyscript`才會生效。
 
-7. 現在您可以取消佈建 VM。
+7. 現在您可以取消佈建 hello VM。
 
  ![Ubuntu 16.04 設定](./media/azure-security-disk-encryption/ubuntu-1604-preencrypted-fig6.png)
 
-8. 繼續進行下一個步驟，並[將 VHD 上傳](#upload-encrypted-vhd-to-an-azure-storage-account)到 Azure。
+8. 繼續下一個步驟中 toohello 和[上傳 VHD](#upload-encrypted-vhd-to-an-azure-storage-account)至 Azure。
 
 ##### <a name="opensuse-132"></a>openSUSE 13.2
-若要在發佈安裝期間設定加密，請執行下列步驟︰
-1. 分割磁碟時，請選取 [加密磁碟區群組]，然後輸入密碼。 這是您要上傳到金鑰保存庫的密碼。
+tooconfigure 加密 hello 發佈在安裝期間，請勿 hello 遵循：
+1. 當您分割 hello 磁碟時，請選取**加密磁碟區群組**，然後輸入密碼。 這是您要上傳 tooyour 金鑰保存庫的 hello 密碼。
 
  ![openSUSE 13.2 設定](./media/azure-security-disk-encryption/opensuse-encrypt-fig1.png)
 
-2. 使用您的密碼啟動 VM。
+2. 開機 hello VM 使用您的密碼。
 
  ![openSUSE 13.2 設定](./media/azure-security-disk-encryption/opensuse-encrypt-fig2.png)
 
-3. 請依照[準備 Azure 的 SLES 或 openSUSE 虛擬機器](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-suse-create-upload-vhd/#prepare-opensuse-131)中的指示準備 VM 以上傳至 Azure。 還不要執行最後一個步驟 (解除佈建 VM)。
+3. 準備 hello VM 中的 hello 指示上載 tooAzure [SLES 或 openSUSE 虛擬機器做好 Azure](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-suse-create-upload-vhd/#prepare-opensuse-131)。 請勿執行 hello 最後一個步驟 (解除佈建 hello VM)。
 
-若要設定加密來與 Azure 搭配運作，請執行下列步驟：
-1. 編輯 /etc/dracut.conf 並新增下面這一行︰
+有了 Azure，tooconfigure 加密 toowork hello 遵循：
+1. 編輯 hello /etc/dracut.conf 並加入以下的 hello:
     ```
     add_drivers+=" vfat ntfs nls_cp437 nls_iso8859-1"
     ```
-2. 註解化 /usr/lib/dracut/modules.d/90crypt/module-setup.sh 檔案結尾的這幾行程式碼：
+2. Hello hello 結束這行程式碼的註解檔案 /usr/lib/dracut/modules.d/90crypt/module-setup.sh:
  ```
     #        inst_multiple -o \
     #        $systemdutildir/system-generators/systemd-cryptsetup-generator \
@@ -1023,7 +1023,7 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
     #        inst_script "$moddir"/crypt-run-generator.sh /sbin/crypt-run-generator
  ```
 
-3. 在 /usr/lib/dracut/modules.d/90crypt/parse-crypt.sh 檔案開頭附加下面這一行：
+3. 附加在 hello 檔案 /usr/lib/dracut/modules.d/90crypt/parse-crypt.sh hello 開頭的行下 hello:
  ```
     DRACUT_SYSTEMD=0
  ```
@@ -1035,12 +1035,12 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
 ```
     if [ 1 ]; then
 ```
-4. 編輯 /usr/lib/dracut/modules.d/90crypt/cryptroot-ask.sh 並將它附加至「# Open LUKS device」：
+4. 編輯 /usr/lib/dracut/modules.d/90crypt/cryptroot-ask.sh，並將其附加到太 「 # 開啟 LUKS 裝置 」:
 
     ```
     MountPoint=/tmp-keydisk-mount
     KeyFileName=LinuxPassPhraseFileName
-    echo "Trying to get the key from disks ..." >&2
+    echo "Trying tooget hello key from disks ..." >&2
     mkdir -p $MountPoint >&2
     modprobe vfat >/dev/null >&2
     modprobe ntfs >/dev/null >&2
@@ -1057,12 +1057,12 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
     fi
     done
     ```
-5. 執行 `/usr/sbin/dracut -f -v` 以更新 initrd。
+5. 執行`/usr/sbin/dracut -f -v`tooupdate hello initrd。
 
-6. 現在您可以取消佈建 VM，並[將 VHD 上傳](#upload-encrypted-vhd-to-an-azure-storage-account)到 Azure。
+6. 現在您可以取消佈建 hello VM 和[上傳 VHD](#upload-encrypted-vhd-to-an-azure-storage-account)至 Azure。
 
 ##### <a name="centos-7"></a>CentOS 7
-若要在發佈安裝期間設定加密，請執行下列步驟︰
+tooconfigure 加密 hello 發佈在安裝期間，請勿 hello 遵循：
 1. 在分割磁碟時選取 [加密資料]。
 
  ![CentOS 7 設定](./media/azure-security-disk-encryption/centos-encrypt-fig1.png)
@@ -1071,26 +1071,26 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
 
  ![CentOS 7 設定](./media/azure-security-disk-encryption/centos-encrypt-fig2.png)
 
-3. 提供複雜密碼。 這是您要上傳到金鑰保存庫的複雜密碼。
+3. 提供複雜密碼。 這是您要上傳 tooyour 金鑰保存庫的 hello 複雜密碼。
 
  ![CentOS 7 設定](./media/azure-security-disk-encryption/centos-encrypt-fig3.png)
 
-4. 啟動 VM 時會要求輸入複雜密碼，請使用步驟 3 中提供的複雜密碼。
+4. 當您啟動 hello VM，並會要求輸入複雜密碼時，使用您在步驟 3 中提供的 hello 複雜密碼。
 
  ![CentOS 7 設定](./media/azure-security-disk-encryption/centos-encrypt-fig4.png)
 
-5. 請依照[準備 Azure 的 CentOS 式虛擬機器](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-create-upload-centos/#centos-70)中的「CentOS 7.0+」指示準備 VM 以上傳至 Azure。 還不要執行最後一個步驟 (解除佈建 VM)。
+5. 上傳至 Azure，使用中的 hello"CentOS 7.0 + 」 指示準備 hello VM [CentOS 為基礎的虛擬機器做好 Azure](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-create-upload-centos/#centos-70)。 請勿執行 hello 最後一個步驟 (解除佈建 hello VM)。
 
-6. 現在您可以取消佈建 VM，並[將 VHD 上傳](#upload-encrypted-vhd-to-an-azure-storage-account)到 Azure。
+6. 現在您可以取消佈建 hello VM 和[上傳 VHD](#upload-encrypted-vhd-to-an-azure-storage-account)至 Azure。
 
-若要設定加密來與 Azure 搭配運作，請執行下列步驟：
+有了 Azure，tooconfigure 加密 toowork hello 遵循：
 
-1. 編輯 /etc/dracut.conf 並新增下面這一行︰
+1. 編輯 hello /etc/dracut.conf 並加入以下的 hello:
     ```
     add_drivers+=" vfat ntfs nls_cp437 nls_iso8859-1"
     ```
 
-2. 註解化 /usr/lib/dracut/modules.d/90crypt/module-setup.sh 檔案結尾的這幾行程式碼：
+2. Hello hello 結束這行程式碼的註解檔案 /usr/lib/dracut/modules.d/90crypt/module-setup.sh:
 ```
     #        inst_multiple -o \
     #        $systemdutildir/system-generators/systemd-cryptsetup-generator \
@@ -1103,7 +1103,7 @@ OSVolumeEncrypted 和 DataVolumesEncrypted 的設定值設定為 _Encrypted_，�
     #        inst_script "$moddir"/crypt-run-generator.sh /sbin/crypt-run-generator
 ```
 
-3. 在 /usr/lib/dracut/modules.d/90crypt/parse-crypt.sh 檔案開頭附加下面這一行：
+3. 附加在 hello 檔案 /usr/lib/dracut/modules.d/90crypt/parse-crypt.sh hello 開頭的行下 hello:
 ```
     DRACUT_SYSTEMD=0
 ```
@@ -1115,11 +1115,11 @@ to
 ```
     if [ 1 ]; then
 ```
-4. 編輯 /usr/lib/dracut/modules.d/90crypt/cryptroot-ask.sh 並將此附加在「# Open LUKS device」之後：
+4. 編輯 /usr/lib/dracut/modules.d/90crypt/cryptroot-ask.sh 並附加之後 hello 「 # 開啟 LUKS 裝置 」:
     ```
     MountPoint=/tmp-keydisk-mount
     KeyFileName=LinuxPassPhraseFileName
-    echo "Trying to get the key from disks ..." >&2
+    echo "Trying tooget hello key from disks ..." >&2
     mkdir -p $MountPoint >&2
     modprobe vfat >/dev/null >&2
     modprobe ntfs >/dev/null >&2
@@ -1136,17 +1136,17 @@ to
     fi
     done
     ```    
-5. 執行「/usr/sbin/dracut -f -v」來更新 initrd。
+5. 執行 hello"/ usr/來啟動/dracut-f-v"tooupdate hello initrd。
 
 ![CentOS 7 設定](./media/azure-security-disk-encryption/centos-encrypt-fig5.png)
 
-### <a name="upload-encrypted-vhd-to-an-azure-storage-account"></a>上傳加密的 VHD 至 Azure 儲存體帳戶
-啟用 BitLocker 加密或 DM-Crypt 加密之後，需要將本機加密的 VHD 上傳至儲存體帳戶。
+### <a name="upload-encrypted-vhd-tooan-azure-storage-account"></a>上傳加密的 VHD tooan Azure 儲存體帳戶
+在啟用 BitLocker 加密或 DM Crypt 加密之後，hello 本機加密 VHD 需要上傳 toobe tooyour 儲存體帳戶。
 
     Add-AzureRmVhd [-Destination] <Uri> [-LocalFilePath] <FileInfo> [[-NumberOfUploaderThreads] <Int32> ] [[-BaseImageUriToPatch] <Uri> ] [[-OverWrite]] [ <CommonParameters>]
 
-### <a name="upload-the-disk-encryption-secret-for-the-pre-encrypted-vm-to-your-key-vault"></a>上傳已預先加密 VM 的磁碟加密密碼至金鑰保存庫
-先前取得的磁碟加密密碼必須上傳，做為金鑰保存庫中的密碼。 金鑰保存庫必須為 Azure AD 用戶端啟用磁碟加密以及權限。
+### <a name="upload-hello-disk-encryption-secret-for-hello-pre-encrypted-vm-tooyour-key-vault"></a>上傳 hello 預先加密 VM tooyour 金鑰保存庫的 hello 磁碟加密密碼
+您所取得的 hello 磁碟加密密碼之前必須上傳做為金鑰保存庫中的密碼。 hello 金鑰保存庫需要 toohave 磁碟加密，並啟用您的 Azure AD 用戶端權限。
 
     $AadClientId = "YourAADClientId"
     $AadClientSecret = "YourAADClientSecret"
@@ -1158,9 +1158,9 @@ to
 
 
 #### <a name="disk-encryption-secret-not-encrypted-with-a-kek"></a>未使用 KEK 加密的磁碟加密密碼
-若要在金鑰保存庫中設定密碼，請使用 [Set-AzureKeyVaultSecret](/powershell/module/azurerm.keyvault/set-azurekeyvaultsecret)。 如果您有 Windows 虛擬機器，bek 檔案會以 base64 字串編碼，然後使用 `Set-AzureKeyVaultSecret` Cmdlet 上傳至您的金鑰保存庫。 如果是 Linux，複雜密碼會以 base64 字串編碼，然後上傳至金鑰保存庫。 此外，請確定在金鑰保存庫中建立密碼時會設定下列標籤。
+註冊您的金鑰保存庫，使用中的 hello 密碼 tooset[組 AzureKeyVaultSecret](/powershell/module/azurerm.keyvault/set-azurekeyvaultsecret)。 如果您有 Windows 虛擬機器，hello bek 檔案編碼為 base64 字串，然後再上傳 tooyour 金鑰保存庫使用 hello `Set-AzureKeyVaultSecret` cmdlet。 適用於 Linux，hello 複雜密碼會編碼為 base64 字串，然後再上傳 toohello 金鑰保存庫。 此外，請確定下列標記該 hello 會設定當您建立 hello 金鑰保存庫中的 hello 密碼。
 
-    # This is the passphrase that was provided for encryption during the distribution installation
+    # This is hello passphrase that was provided for encryption during hello distribution installation
     $passphrase = "contoso-password"
 
     $tags = @{"DiskEncryptionKeyEncryptionAlgorithm" = "RSA-OAEP"; "DiskEncryptionKeyFileName" = "LinuxPassPhraseFileName"}
@@ -1171,12 +1171,12 @@ to
     $secret = Set-AzureKeyVaultSecret -VaultName $KeyVaultName -Name $secretName -SecretValue $secureSecretValue -tags $tags
     $secretUrl = $secret.Id
 
-在下一個步驟中使用 `$secretUrl`，以便[在不使用 KEK 的狀況下連接 OS 磁碟](#without-using-a-kek)。
+使用 hello `$secretUrl` hello 下一個步驟中[附加 hello OS 磁碟，而不使用 KEK](#without-using-a-kek)。
 
 #### <a name="disk-encryption-secret-encrypted-with-a-kek"></a>使用 KEK 加密的磁碟加密密碼
-將密碼上傳至金鑰保存庫之前，您可以選擇性地使用金鑰加密金鑰來加密密碼。 使用包裝 [API](https://msdn.microsoft.com/library/azure/dn878066.aspx) 先加密使用金鑰加密金鑰的密碼。 這個包裝作業的輸出是 base64 URL 編碼的字串，您可以接著使用 [`Set-AzureKeyVaultSecret`](/powershell/module/azurerm.keyvault/set-azurekeyvaultsecret) Cmdlet 將它上傳做為密碼。
+您上傳 hello toohello 秘密金鑰保存庫之前，您可以選擇性地加密它所使用的加密金鑰。 使用 hello 包裝[API](https://msdn.microsoft.com/library/azure/dn878066.aspx) toofirst 加密 hello 使用 hello 金鑰的加密金鑰的密碼。 hello 這個 wrap 作業的輸出是 base64 URL 編碼字串，如此您可以再使用上傳做為密碼 hello [ `Set-AzureKeyVaultSecret` ](/powershell/module/azurerm.keyvault/set-azurekeyvaultsecret) cmdlet。
 
-    # This is the passphrase that was provided for encryption during the distribution installation
+    # This is hello passphrase that was provided for encryption during hello distribution installation
     $passphrase = "contoso-password"
 
     Add-AzureKeyVaultKey -VaultName $KeyVaultName -Name "keyencryptionkey" -Destination Software
@@ -1262,11 +1262,11 @@ to
 
     $secretUrl = $response.id
 
-在下一個步驟中使用 `$KeyEncryptionKey` 和 `$secretUrl`，以便[使用 KEK 連接 OS 磁碟](#using-a-kek)。
+使用`$KeyEncryptionKey`和`$secretUrl`hello 下一個步驟中[附加 hello OS 磁碟使用 KEK](#using-a-kek)。
 
 ### <a name="specify-a-secret-url-when-you-attach-an-os-disk"></a>連接 OS 磁碟時，指定密碼的 URL
 #### <a name="without-using-a-kek"></a>不使用 KEK
-當您在連接 OS 磁碟時，需要傳遞 `$secretUrl`。 URL 已在「未使用 KEK 加密的磁碟加密密碼」一節中產生。
+雖然您正在附加 hello OS 磁碟，您需要 toopass `$secretUrl`。 產生 hello 「 未加密的 KEK 與磁碟加密密碼 」 一節中的 hello URL。
 
     Set-AzureRmVMOSDisk `
             -VM $VirtualMachine `
@@ -1279,7 +1279,7 @@ to
             -DiskEncryptionKeyUrl $SecretUrl
 
 #### <a name="using-a-kek"></a>使用 KEK
-連接 OS 磁碟時，傳遞 `$KeyEncryptionKey` 和 `$secretUrl`。 URL 已在「未使用 KEK 加密的磁碟加密密碼」一節中產生。
+當您附加 hello OS 磁碟時，傳遞`$KeyEncryptionKey`和`$secretUrl`。 產生 hello 「 未加密的 KEK 與磁碟加密密碼 」 一節中的 hello URL。
 
     Set-AzureRmVMOSDisk `
             -VM $VirtualMachine `
@@ -1294,7 +1294,7 @@ to
             -KeyEncryptionKeyURL $KeyEncryptionKey.Id
 
 ## <a name="download-this-guide"></a>下載此指南
-您可以從 [TechNet 資源庫](https://gallery.technet.microsoft.com/Azure-Disk-Encryption-for-a0018eb0)下載此指南。
+您可以下載本指南從 hello [TechNet 資源庫](https://gallery.technet.microsoft.com/Azure-Disk-Encryption-for-a0018eb0)。
 
 ## <a name="for-more-information"></a>取得詳細資訊
 [探索使用 Azure PowerShell 的 Azure 磁碟加密 - 第 1 部分](http://blogs.msdn.com/b/azuresecurity/archive/2015/11/16/explore-azure-disk-encryption-with-azure-powershell.aspx?wa=wsignin1.0)  

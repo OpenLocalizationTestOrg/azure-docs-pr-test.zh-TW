@@ -1,6 +1,6 @@
 ---
-title: "如何使用資料表儲存體 (C++) | Microsoft Docs"
-description: "使用 Azure 表格儲存體 (NoSQL 資料存放區) 將結構化的資料儲存在雲端。"
+title: "aaaHow toouse 資料表儲存體 （c + +） |Microsoft 文件"
+description: "使用 Azure 資料表儲存體，NoSQL 資料存放區的 hello 雲端中儲存結構化的資料。"
 services: storage
 documentationcenter: .net
 author: seguler
@@ -14,21 +14,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/28/2017
 ms.author: seguler
-ms.openlocfilehash: d68843153921c72f6e808f62e82d3686c7e2f160
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8eee0031350ab6ff3f76fb288b2f896687aa17a3
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-table-storage-from-c"></a>如何使用 C++ 的資料表儲存體
+# <a name="how-toouse-table-storage-from-c"></a>如何 toouse 從 c + + 的資料表儲存體
 [!INCLUDE [storage-selector-table-include](../../includes/storage-selector-table-include.md)]
 [!INCLUDE [storage-table-cosmos-db-langsoon-tip-include](../../includes/storage-table-cosmos-db-langsoon-tip-include.md)]
 
-## <a name="overview"></a>Overview
-本指南將示範如何使用 Azure 資料表儲存體服務執行一般案例。 這些範例均以 C++ 撰寫，並使用 [Azure Storage Client Library for C++](https://github.com/Azure/azure-storage-cpp/blob/master/README.md)。 所涵蓋的案例包括**建立和刪除資料表**，以及**使用資料表實體**。
+## <a name="overview"></a>概觀
+本指南將說明如何使用 tooperform 常見案例 hello Azure 資料表儲存體服務。 hello 範例以 c + + 撰寫，並使用 hello [c + + 的 Azure 儲存體用戶端程式庫](https://github.com/Azure/azure-storage-cpp/blob/master/README.md)。 hello 涵蓋案例包括**建立和刪除資料表**和**處理資料表實體**。
 
 > [!NOTE]
-> 本指南以 Azure Storage Client Library for C++ 1.0.0 版和更新版本為對象。 建議的版本是 Storage Client Library 2.2.0，可透過 [NuGet](http://www.nuget.org/packages/wastorage) 或 [GitHub](https://github.com/Azure/azure-storage-cpp/) 取得。
+> 此指南的目標 hello Azure 儲存體用戶端程式庫，c + + 1.0.0 版和更新版本。 hello 建議版本是儲存體用戶端程式庫 2.2.0，也就是可透過使用[NuGet](http://www.nuget.org/packages/wastorage)或[GitHub](https://github.com/Azure/azure-storage-cpp/)。
 > 
 > 
 
@@ -37,17 +37,17 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [storage-create-account-include](../../includes/storage-create-account-include.md)]
 
 ## <a name="create-a-c-application"></a>建立 C++ 應用程式
-在本指南中，您將使用可以在 C++ 應用程式內執行的儲存體功能。 若要這樣做，您需要安裝 Azure Storage Client Library for C++，並在 Azure 訂用帳戶中建立 Azure 儲存體帳戶。  
+在本指南中，您將使用可以在 C++ 應用程式內執行的儲存體功能。 toodo 因此，您將需要 tooinstall hello for c + + 的 Azure 儲存體用戶端程式庫，並在您的 Azure 訂用帳戶中建立 Azure 儲存體帳戶。  
 
-若要安裝 Azure Storage Client Library for C++，您可以使用下列方法：
+tooinstall hello Azure 儲存體用戶端程式庫的 c + +，，您可以使用下列方法的 hello:
 
-* **Linux：** 遵循 [Azure Storage Client Library for C++ 讀我檔案](https://github.com/Azure/azure-storage-cpp/blob/master/README.md) 頁面中提供的指示進行。  
-* **Windows：**在 Visual Studio 中，按一下 [工具] > [NuGet 套件管理員] > [套件管理員主控台]。 在 [NuGet 套件管理員主控台](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) 中輸入下列命令，然後按下 Enter。  
+* **Linux:**按照上 hello hello 指示[for c + + 讀我檔案的 Azure 儲存體用戶端程式庫](https://github.com/Azure/azure-storage-cpp/blob/master/README.md)頁面。  
+* **Windows：**在 Visual Studio 中，按一下 [工具] > [NuGet 套件管理員] > [套件管理員主控台]。 型別 hello 下列命令到 hello [NuGet Package Manager console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console)按下 Enter。  
   
      Install-Package wastorage
 
-## <a name="configure-your-application-to-access-table-storage"></a>設定您的應用程式來存取資料表儲存體
-在您要使用 Azure 儲存體 API 來存取資料表的 C++ 檔案頂端，加入下列 include 陳述式：  
+## <a name="configure-your-application-tooaccess-table-storage"></a>設定您的應用程式 tooaccess 資料表儲存體
+加入 hello 下列包含您想要 toouse hello Azure 儲存體 Api tooaccess 資料表 hello c + + 檔案的陳述式 toohello 頂端：  
 
 ```cpp
 #include <was/storage_account.h>
@@ -55,72 +55,72 @@ ms.lasthandoff: 07/11/2017
 ```
 
 ## <a name="set-up-an-azure-storage-connection-string"></a>設定 Azure 儲存體連接字串
-Azure 儲存體用戶端會使用儲存體連接字串來儲存存取資料管理服務時所用的端點與認證。 執行用戶端應用程式時，您必須提供下列格式的儲存體連接字串。 使用您的儲存體帳戶名稱和儲存體存取金鑰，來輸入 [Azure 入口網站](https://portal.azure.com)中所列的儲存體帳戶的 AccountName 和 AccountKey 值。 如需有關儲存體帳戶和存取金鑰的資訊，請參閱 [關於 Azure 儲存體帳戶](storage-create-storage-account.md)。 本範例將示範如何宣告靜態欄位來存放連接字串：  
+Azure 儲存體用戶端會使用儲存體連接字串 toostore 端點和認證來存取資料管理服務。 當執行用戶端應用程式，您必須提供 hello 遵循格式中的 hello 儲存體連接字串。 使用的儲存體帳戶和 hello 儲存體存取金鑰 hello 儲存體帳戶的 hello 名稱列在 hello [Azure 入口網站](https://portal.azure.com)hello *AccountName*和*AccountKey*值。 如需有關儲存體帳戶和存取金鑰的資訊，請參閱 [關於 Azure 儲存體帳戶](storage-create-storage-account.md)。 此範例顯示如何宣告靜態欄位 toohold hello 連接字串：  
 
 ```cpp
-// Define the connection string with your values.
+// Define hello connection string with your values.
 const utility::string_t storage_connection_string(U("DefaultEndpointsProtocol=https;AccountName=your_storage_account;AccountKey=your_storage_account_key"));
 ```
 
-若要在本機 Windows 電腦中測試您的應用程式，可以使用隨 [Azure SDK](https://azure.microsoft.com/downloads/) 一起安裝的 Azure [儲存體模擬器](storage-use-emulator.md)。 儲存體模擬器是一個公用程式，可模擬本機開發電腦上的 Azure Blob、佇列和表格服務。 下列範例示範如何宣告靜態欄位以便將連接字串存放到本機儲存體模擬器中：  
+tootest 您的應用程式在本機 Windows 型電腦，您可以使用 hello Azure[儲存體模擬器](storage-use-emulator.md)會隨 hello [Azure SDK](https://azure.microsoft.com/downloads/)。 hello 儲存體模擬器是模擬 hello Azure Blob、 佇列和表格服務在本機開發電腦上可用的公用程式。 hello 下列範例顯示如何宣告靜態欄位 toohold hello 連接字串 tooyour 本機儲存體模擬器：  
 
 ```cpp
-// Define the connection string with Azure storage emulator.
+// Define hello connection string with Azure storage emulator.
 const utility::string_t storage_connection_string(U("UseDevelopmentStorage=true;"));  
 ```
 
-若要啟動 Azure 儲存體模擬器，請按一下 [開始] 按鈕或按下 [Windows] 鍵。 開始輸入 **Azure 儲存體模擬器**，然後從應用程式清單選取 [Microsoft Azure 儲存體模擬器]。  
+toostart hello Azure 儲存體模擬器，請按一下 hello**啟動**按鈕或按 hello Windows 鍵。 開始輸入**Azure 儲存體模擬器**，然後選取**Microsoft Azure 儲存體模擬器**hello 清單中的應用程式。  
 
-下列範例假設您已經使用這兩個方法之一來取得儲存體連接字串。  
+hello 下列範例假設您已使用下列兩種方法 tooget hello 儲存體連接字串的其中一個。  
 
 ## <a name="retrieve-your-connection-string"></a>擷取連接字串
-您可以使用 **cloud_storage_account** 類別來代表儲存體帳戶資訊。 若要從儲存體連接字串擷取儲存體帳戶資訊，您可以使用 parse 方法。
+您可以使用 hello**驗證 cloud_storage_account**類別 toorepresent 您儲存體帳戶資訊。 tooretrieve 您的儲存體帳戶資訊 hello 儲存體連接字串，您可以使用 hello parse 方法。
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 ```
 
-接著，取得 **cloud_table_client** 類別的參考，因為這可讓您取得資料表儲存體服務內儲存的資料表和實體的參考物件。 下列程式碼會使用我們在前面擷取的儲存體帳戶物件建立 **cloud_table_client** 物件：  
+接下來，取得參考 tooa **cloud_table_client**類別，它可讓您取得的物件參考的資料表，並儲存在 hello 資料表儲存體服務的實體。 hello 下列程式碼會建立**cloud_table_client**使用 hello 我們擷取上述的儲存體帳戶物件的物件：  
 
 ```cpp
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 ```
 
 ## <a name="create-a-table"></a>建立資料表
-**cloud_table_client** 物件可讓您取得資料表和實體的參考物件。 下列程式碼會建立 **cloud_table_client** 物件，並使用該物件建立新資料表。
+**cloud_table_client** 物件可讓您取得資料表和實體的參考物件。 hello 下列程式碼會建立**cloud_table_client**物件，並使用它 toocreate 新的資料表。
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);  
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Retrieve a reference to a table.
+// Retrieve a reference tooa table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Create the table if it doesn't exist.
+// Create hello table if it doesn't exist.
 table.create_if_not_exists();  
 ```
 
-## <a name="add-an-entity-to-a-table"></a>將實體加入至資料表
-若要將實體新增至資料表，請建立一個新的 **table_entity** 物件，然後將該物件傳遞至 **table_operation::insert_entity**。 下列程式碼會使用客戶名字做為資料列索引鍵，並使用姓氏做為資料分割索引鍵。 實體的資料分割索引鍵和資料列索引鍵共同唯一識別資料表中的實體。 相較於查詢具有不同資料分割索引鍵的實體，查詢具有相同資料分割索引鍵的實體速度會較快，但使用不同的資料分割索引鍵可獲得更大的平行操作延展性。 如需詳細資訊，請參閱 [Microsoft Azure 儲存體效能與延展性檢查清單](storage-performance-checklist.md)。
+## <a name="add-an-entity-tooa-table"></a>加入實體 tooa 表
+tooadd 實體 tooa 資料表，建立新**table_entity**物件，並將它傳遞到太**table_operation:: insert_entity**。 hello 下列程式碼會使用 hello 客戶名字當做 hello 資料列索引鍵和最後一個名稱當做 hello 資料分割索引鍵。 在一起，實體的資料分割和資料列索引鍵可唯一識別 hello 資料表中的 hello 實體。 以 hello 可速度比不同的查詢相同的資料分割索引鍵的實體資料分割索引鍵，但使用不同的資料分割索引鍵可讓平行作業更佳的延展性。 如需詳細資訊，請參閱 [Microsoft Azure 儲存體效能與延展性檢查清單](storage-performance-checklist.md)。
 
-下列程式碼會建立 **table_entity** 的新執行個體，其中含有一些要儲存的客戶資料。 程式碼接著會呼叫 **table_operation::insert_entity** 來建立 **table_operation** 物件，以便將實體插入資料表中，並將新的資料表與該物件建立關聯。 最後，程式碼會針對 **cloud_table** 物件呼叫 execute 方法。 此外，新的 **table_operation** 會傳送一個要求到資料表服務，以便將新的客戶實體插入到 "people" 資料表。  
+hello 下列程式碼建立的新執行個體**table_entity**與儲存某些客戶資料 toobe。 hello 程式碼的下一個呼叫**table_operation:: insert_entity** toocreate **table_operation**物件 tooinsert 實體插入資料表中，並將相關聯 hello 與它的新資料表實體。 最後，hello 程式碼會呼叫 hello hello 上執行方法**cloud_table**物件。 與新的 hello **table_operation**會要求 toohello 資料表服務 tooinsert hello 新客戶的實體將傳送至 hello 「 的人 」 資料表。  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Retrieve a reference to a table.
+// Retrieve a reference tooa table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Create the table if it doesn't exist.
+// Create hello table if it doesn't exist.
 table.create_if_not_exists();
 
 // Create a new customer entity.
@@ -132,30 +132,30 @@ properties[U("Email")] = azure::storage::entity_property(U("Walter@contoso.com")
 
 properties[U("Phone")] = azure::storage::entity_property(U("425-555-0101"));
 
-// Create the table operation that inserts the customer entity.
+// Create hello table operation that inserts hello customer entity.
 azure::storage::table_operation insert_operation = azure::storage::table_operation::insert_entity(customer1);
 
-// Execute the insert operation.
+// Execute hello insert operation.
 azure::storage::table_result insert_result = table.execute(insert_operation);
 ```
 
 ## <a name="insert-a-batch-of-entities"></a>插入實體批次
-您可以在單一寫入操作中，插入實體批次至資料表服務。 下列程式碼會建立一個 **table_batch_operation** 物件，然後在其中新增三個插入操作。 加入每個插入操作的方式都是建立新的實體物件、設定其值，然後針對 **table_batch_operation** 物件呼叫 insert 方法，以便將實體與新的插入操作建立關聯。 接著會呼叫 **cloud_table.execute** 來執行操作。  
+您可以插入實體 toohello 表格服務的批次中一個寫入作業。 hello 下列程式碼會建立**table_batch_operation**物件，並將三個 insert 作業 tooit。 每項插入作業會加入藉由建立新的實體物件，設定其值，而且呼叫 hello 插入上 hello 方法**table_batch_operation**物件 tooassociate hello 實體與新插入作業。 然後， **cloud_table.execute**稱為 tooexecute hello 作業。  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
 // Define a batch operation.
 azure::storage::table_batch_operation batch_operation;
 
-// Create a customer entity and add it to the table.
+// Create a customer entity and add it toohello table.
 azure::storage::table_entity customer1(U("Smith"), U("Jeff"));
 
 azure::storage::table_entity::properties_type& properties1 = customer1.properties();
@@ -163,7 +163,7 @@ properties1.reserve(2);
 properties1[U("Email")] = azure::storage::entity_property(U("Jeff@contoso.com"));
 properties1[U("Phone")] = azure::storage::entity_property(U("425-555-0104"));
 
-// Create another customer entity and add it to the table.
+// Create another customer entity and add it toohello table.
 azure::storage::table_entity customer2(U("Smith"), U("Ben"));
 
 azure::storage::table_entity::properties_type& properties2 = customer2.properties();
@@ -171,7 +171,7 @@ properties2.reserve(2);
 properties2[U("Email")] = azure::storage::entity_property(U("Ben@contoso.com"));
 properties2[U("Phone")] = azure::storage::entity_property(U("425-555-0102"));
 
-// Create a third customer entity to add to the table.
+// Create a third customer entity tooadd toohello table.
 azure::storage::table_entity customer3(U("Smith"), U("Denise"));
 
 azure::storage::table_entity::properties_type& properties3 = customer3.properties();
@@ -179,44 +179,44 @@ properties3.reserve(2);
 properties3[U("Email")] = azure::storage::entity_property(U("Denise@contoso.com"));
 properties3[U("Phone")] = azure::storage::entity_property(U("425-555-0103"));
 
-// Add customer entities to the batch insert operation.
+// Add customer entities toohello batch insert operation.
 batch_operation.insert_or_replace_entity(customer1);
 batch_operation.insert_or_replace_entity(customer2);
 batch_operation.insert_or_replace_entity(customer3);
 
-// Execute the batch operation.
+// Execute hello batch operation.
 std::vector<azure::storage::table_result> results = table.execute_batch(batch_operation);
 ```
 
-以下是批次操作的一些注意事項：  
+批次作業上一些事情 toonote:  
 
-* 您可以在單一批次中最多執行 100 個插入、刪除、合併、取代、插入或合併，以及插入或取代操作的任意組合。  
-* 當擷取操作是批次中的唯一操作時，批次操作可以包含擷取操作。  
-* 單一批次操作中的所有實體必須具有相同的資料分割索引鍵。  
-* 一個批次操作的資料裝載限制為 4MB。  
+* 您可以執行向上 too100 插入、 刪除、 合併、 取代、 插入-或-「 合併 」 和插入或取代作業的單一批次中的任何組合。  
+* 批次作業可以有擷取作業，如果它是 hello hello 批次中的唯一作業。  
+* 在單一批次作業中的所有實體必須都有 hello 相同的資料分割索引鍵。  
+* 批次作業是有限的 tooa 4 MB 的資料承載。  
 
 ## <a name="retrieve-all-entities-in-a-partition"></a>擷取資料分割中的所有實體
-若要向資料表查詢資料分割中的所有實體，請使用 **table_query** 物件。 下列程式碼範例會指定篩選器來篩選出資料分割索引鍵為 'Smith' 的實體。 此範例會將查詢結果中每個實體的欄位列印至主控台。  
+資料表的資料分割，使用中的所有實體 tooquery **table_query**物件。 hello 下列程式碼範例指定篩選，其中 'smith ' 距離是 hello 資料分割索引鍵的實體。 這個範例會列印 hello hello 查詢結果 toohello 主控台中的每個實體的欄位。  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Construct the query operation for all customer entities where PartitionKey="Smith".
+// Construct hello query operation for all customer entities where PartitionKey="Smith".
 azure::storage::table_query query;
 
 query.set_filter_string(azure::storage::table_query::generate_filter_condition(U("PartitionKey"), azure::storage::query_comparison_operator::equal, U("Smith")));
 
-// Execute the query.
+// Execute hello query.
 azure::storage::table_query_iterator it = table.execute_query(query);
 
-// Print the fields for each customer.
+// Print hello fields for each customer.
 azure::storage::table_query_iterator end_of_results;
 for (; it != end_of_results; ++it)
 {
@@ -228,22 +228,22 @@ for (; it != end_of_results; ++it)
 }  
 ```
 
-此範例中的查詢會顯示符合篩選準則的所有實體。 如果您有大型資料表，而必需要經常下載資料表實體，建議您將資料改為儲存在 Azure 儲存體 Blob 中。
+此範例中的 hello 查詢會符合 hello 篩選準則的所有 hello 實體。 如果您有大型資料表，而且通常需要 toodownload hello 資料表實體，我們建議，您將資料儲存在 Azure 儲存體 blob 中改用。
 
 ## <a name="retrieve-a-range-of-entities-in-a-partition"></a>擷取資料分割中某個範圍的實體
-如果您不想要查詢資料分割中的所有實體，可結合資料分割索引鍵篩選器與資料列索引鍵篩選器來指定範圍。 下列程式碼範例會使用兩個篩選器來取得資料分割 'Smith' 中，資料列索引鍵 (名字) 是以字母 'E' 前之字母為開頭的所有實體，然後會列印查詢結果。  
+如果您不想 tooquery 所有 hello 實體資料分割中的，您可以藉由結合 hello 與資料列索引鍵的篩選資料分割索引鍵篩選指定範圍。 hello 下列程式碼範例會使用兩個篩選 tooget 所有實體分割區 'Smith' hello 資料列索引鍵 （第一個名稱） 早於 'E' hello 字母中開頭為字母，然後列印 hello 查詢結果中。  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Create the table query.
+// Create hello table query.
 azure::storage::table_query query;
 
 query.set_filter_string(azure::storage::table_query::combine_filter_conditions(
@@ -252,10 +252,10 @@ query.set_filter_string(azure::storage::table_query::combine_filter_conditions(
     azure::storage::query_logical_operator::op_and,
     azure::storage::table_query::generate_filter_condition(U("RowKey"), azure::storage::query_comparison_operator::less_than, U("E"))));
 
-// Execute the query.
+// Execute hello query.
 azure::storage::table_query_iterator it = table.execute_query(query);
 
-// Loop through the results, displaying information about the entity.
+// Loop through hello results, displaying information about hello entity.
 azure::storage::table_query_iterator end_of_results;
 for (; it != end_of_results; ++it)
 {
@@ -268,22 +268,22 @@ for (; it != end_of_results; ++it)
 ```
 
 ## <a name="retrieve-a-single-entity"></a>擷取單一實體
-您可以撰寫查詢來擷取單一特定實體。 下列程式碼使用 **table_operation::retrive_entity** 指定客戶 'Jeff Smith'。 此方法只會傳回一個實體而非一個集合，且傳回的值位於 **table_result** 中。 若要從資料表服務中擷取單一實體，最快的方法是在查詢中同時指定資料分割索引鍵和資料列索引鍵。  
+您可以撰寫查詢 tooretrieve 單一的特定實體。 hello 下列程式碼使用**table_operation:: retrieve_entity** toospecify hello 客戶 ' Jeff Smith'。 這個方法會傳回單一實體，而不是集合，且 hello 傳回的值位於**table_result**。 在查詢中指定資料分割和資料列索引鍵是最快方式 tooretrieve hello 與 hello 表格服務的單一實體。  
 
 ```cpp
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Retrieve the entity with partition key of "Smith" and row key of "Jeff".
+// Retrieve hello entity with partition key of "Smith" and row key of "Jeff".
 azure::storage::table_operation retrieve_operation = azure::storage::table_operation::retrieve_entity(U("Smith"), U("Jeff"));
 azure::storage::table_result retrieve_result = table.execute(retrieve_operation);
 
-// Output the entity.
+// Output hello entity.
 azure::storage::table_entity entity = retrieve_result.entity();
 const azure::storage::table_entity::properties_type& properties = entity.properties();
 
@@ -293,16 +293,16 @@ std::wcout << U("PartitionKey: ") << entity.partition_key() << U(", RowKey: ") <
 ```
 
 ## <a name="replace-an-entity"></a>取代實體
-若要更新實體，請從資料表服務擷取該實體、修改實體物件，然後將變更儲存回資料表服務。 下列程式碼會變更現有客戶的電話號碼和電子郵件地址。 此程式碼會使用 **table_operation:: replace_entity**，而不是呼叫 **table_operation:: insert_entity**。 如此會完全取代伺服器上的實體，但如果伺服器上的實體自擷取後產生變化，操作就會失敗。 如此會造成失敗，是為了防止應用程式意外覆寫該應用程式的其他元件在擷取後到更新前的這段期間所做的變更。 正確處理此失敗的方式為重新擷取實體、進行變更 (如果仍然有效)，然後再執行一次 **table_operation::replace_entity** 操作。 下一節將示範如何覆寫此行為。  
+tooreplace 實體，擷取與 hello 表格服務，修改 hello 實體物件，然後再儲存 hello 變更變回 toohello 表格服務。 hello 下列程式碼變更現有的客戶電話號碼和電子郵件地址。 此程式碼會使用 **table_operation:: replace_entity**，而不是呼叫 **table_operation:: insert_entity**。 這會導致 hello 實體 toobe 完全取代 hello 在伺服器上，除非變更 hello hello 伺服器上的實體自擷取後，在此情況下 hello 作業將會失敗。 此失敗是的 tooprevent hello 擷取和更新您的應用程式的另一個元件之間，進行您的應用程式不慎覆寫變更。 hello 正確處理失敗的恢復 tooretrieve hello 實體，進行變更 （如果仍然有效），然後再執行另一個**table_operation:: replace_entity**作業。 hello 下一節將示範如何 toooverride 這種行為。  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
 // Replace an entity.
@@ -316,24 +316,24 @@ properties_to_replace[U("Phone")] = azure::storage::entity_property(U("425-555-0
 // Specify a new email address.
 properties_to_replace[U("Email")] = azure::storage::entity_property(U("JeffS@contoso.com"));
 
-// Create an operation to replace the entity.
+// Create an operation tooreplace hello entity.
 azure::storage::table_operation replace_operation = azure::storage::table_operation::replace_entity(entity_to_replace);
 
-// Submit the operation to the Table service.
+// Submit hello operation toohello Table service.
 azure::storage::table_result replace_result = table.execute(replace_operation);
 ```
 
 ## <a name="insert-or-replace-an-entity"></a>插入或取代實體
-如果從伺服器擷取的實體自擷取後發生變化，**table_operation::replace_entity** 操作將失敗。 此外，您必須先從伺服器擷取實體，**table_operation::replace_entity** 才會成功。 但有時候，您可能不知道實體是否存在伺服器上，而實體中目前儲存的值並不重要，此時您的更新就應該加以完全覆寫。 若要達成此目的，您要使用 **table_operation::insert_or_replace_entity** 操作。 此操作會插入實體 (如果其目前並不存在) 或取代實體 (如果其已存在)，不論上次是何時更新。 在下列程式碼範例中，仍會擷取 Jeff Smith 的客戶實體，但接著會透過 **table_operation::insert_or_replace_entity** 將它儲存回伺服器。 在擷取後到更新前的這段期間對實體所做的任何更新，都會遭到覆寫。  
+**table_operation:: replace_entity** hello 實體已變更，因為它從 hello 伺服器擷取作業會失敗。 此外，您必須從第一次在順序中的 hello 伺服器擷取 hello 實體**table_operation:: replace_entity** toobe 成功。 有時候，不過，您不知道是否 hello 實體 hello 伺服器上存在和 hello 目前儲存在它的值無關-您的更新應該覆寫它們全部。 tooaccomplish，您會使用**table_operation:: insert_or_replace_entity**作業。 如果它不存在，或予以取代，若是如此，無論 hello 上次更新已進行時，這項作業會插入 hello 實體。 在下列程式碼範例的 hello，仍會擷取 Jeff Smith 的 hello customer 實體，但它再儲存後 toohello 伺服器透過**table_operation:: insert_or_replace_entity**。 將覆寫進行 toohello 實體 hello 擷取和更新作業之間的任何更新。  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
 // Insert-or-replace an entity.
@@ -348,37 +348,37 @@ properties_to_insert_or_replace[U("Phone")] = azure::storage::entity_property(U(
 // Specify an email address.
 properties_to_insert_or_replace[U("Email")] = azure::storage::entity_property(U("Jeffsm@contoso.com"));
 
-// Create an operation to insert-or-replace the entity.
+// Create an operation tooinsert-or-replace hello entity.
 azure::storage::table_operation insert_or_replace_operation = azure::storage::table_operation::insert_or_replace_entity(entity_to_insert_or_replace);
 
-// Submit the operation to the Table service.
+// Submit hello operation toohello Table service.
 azure::storage::table_result insert_or_replace_result = table.execute(insert_or_replace_operation);
 ```
 
 ## <a name="query-a-subset-of-entity-properties"></a>查詢實體屬性的子集
-一項資料表查詢可以只擷取實體的少數屬性。 下列程式碼中的查詢會使用 **table_query::set_select_columns** 方法，只傳回資料表中實體的電子郵件地址。  
+查詢 tooa 資料表可從實體擷取少數的屬性。 hello hello 下列程式碼中的查詢會使用 hello **table_query:: set_select_columns**方法 tooreturn 只有 hello 電子郵件地址 hello 資料表中的實體。  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Define the query, and select only the Email property.
+// Define hello query, and select only hello Email property.
 azure::storage::table_query query;
 std::vector<utility::string_t> columns;
 
 columns.push_back(U("Email"));
 query.set_select_columns(columns);
 
-// Execute the query.
+// Execute hello query.
 azure::storage::table_query_iterator it = table.execute_query(query);
 
-// Display the results.
+// Display hello results.
 azure::storage::table_query_iterator end_of_results;
 for (; it != end_of_results; ++it)
 {
@@ -400,59 +400,59 @@ for (; it != end_of_results; ++it)
 > 
 
 ## <a name="delete-an-entity"></a>刪除實體
-擷取實體之後，可以輕鬆地將它刪除。 擷取實體之後，請以要刪除的實體呼叫 **table_operation::delete_entity**。 接著，呼叫 **cloud_table.execute** 方法。 下列程式碼會擷取並刪除資料分割索引鍵為 "Smith" 且資料列索引鍵為 "Jeff" 的實體。  
+擷取實體之後，可以輕鬆地將它刪除。 Hello 實體擷取之後，呼叫**table_operation:: delete_entity**與 hello 實體 toodelete。 然後呼叫 hello **cloud_table.execute**方法。 hello 下列程式碼會擷取和刪除資料分割索引鍵為"Smith"與"Jeff"的資料列索引鍵的實體。  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Create an operation to retrieve the entity with partition key of "Smith" and row key of "Jeff".
+// Create an operation tooretrieve hello entity with partition key of "Smith" and row key of "Jeff".
 azure::storage::table_operation retrieve_operation = azure::storage::table_operation::retrieve_entity(U("Smith"), U("Jeff"));
 azure::storage::table_result retrieve_result = table.execute(retrieve_operation);
 
-// Create an operation to delete the entity.
+// Create an operation toodelete hello entity.
 azure::storage::table_operation delete_operation = azure::storage::table_operation::delete_entity(retrieve_result.entity());
 
-// Submit the delete operation to the Table service.
+// Submit hello delete operation toohello Table service.
 azure::storage::table_result delete_result = table.execute(delete_operation);  
 ```
 
 ## <a name="delete-a-table"></a>刪除資料表
-最後，下列程式碼範例會從儲存體帳戶刪除資料表。 已刪除的資料表在刪除後一段時間內，將無法重新建立。  
+最後，下列程式碼範例的 hello 會從儲存體帳戶刪除資料表。 已刪除的資料表將無法使用 toobe 重新建立一段時間 hello 刪除。  
 
 ```cpp
-// Retrieve the storage account from the connection string.
+// Retrieve hello storage account from hello connection string.
 azure::storage::cloud_storage_account storage_account = azure::storage::cloud_storage_account::parse(storage_connection_string);
 
-// Create the table client.
+// Create hello table client.
 azure::storage::cloud_table_client table_client = storage_account.create_cloud_table_client();
 
-// Create a cloud table object for the table.
+// Create a cloud table object for hello table.
 azure::storage::cloud_table table = table_client.get_table_reference(U("people"));
 
-// Create an operation to retrieve the entity with partition key of "Smith" and row key of "Jeff".
+// Create an operation tooretrieve hello entity with partition key of "Smith" and row key of "Jeff".
 azure::storage::table_operation retrieve_operation = azure::storage::table_operation::retrieve_entity(U("Smith"), U("Jeff"));
 azure::storage::table_result retrieve_result = table.execute(retrieve_operation);
 
-// Create an operation to delete the entity.
+// Create an operation toodelete hello entity.
 azure::storage::table_operation delete_operation = azure::storage::table_operation::delete_entity(retrieve_result.entity());
 
-// Submit the delete operation to the Table service.
+// Submit hello delete operation toohello Table service.
 azure::storage::table_result delete_result = table.execute(delete_operation);
 ```
 
 ## <a name="next-steps"></a>後續步驟
-了解資料表儲存體的基礎概念之後，請依照下列連結深入了解 Azure 儲存體：  
+現在，您學到的資料表儲存體的 hello 基本概念，請遵循這些連結 toolearn 深入了解 Azure 儲存體：  
 
-* [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md) 是一個免費的獨立應用程式，可讓您在 Windows、MacOS 和 Linux 上以視覺化方式處理 Azure 儲存體資料。
-* [如何使用 C++ 的 Blob 儲存體](storage-c-plus-plus-how-to-use-blobs.md)
-* [如何使用 C++ 的佇列儲存體](storage-c-plus-plus-how-to-use-queues.md)
+* [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)是免費的獨立應用程式，可讓您以視覺化方式與在 Windows、 macOS 和 Linux 上的 Azure 儲存體資料 toowork microsoft。
+* [如何 toouse 從 c + + 的 Blob 儲存體](storage-c-plus-plus-how-to-use-blobs.md)
+* [如何 toouse 佇列儲存體從 c + +](storage-c-plus-plus-how-to-use-queues.md)
 * [以 C++ 列出 Azure 儲存體資源](storage-c-plus-plus-enumeration.md)
 * [Storage Client Library for C++ 參考資料](http://azure.github.io/azure-storage-cpp)
 * [Azure 儲存體文件](https://azure.microsoft.com/documentation/services/storage/)

@@ -1,6 +1,6 @@
 ---
-title: "使用 AzCopy on Linux 複製或移動資料到 Azure 儲存體 | Microsoft Docs"
-description: "使用 AzCopy on Linux 公用程式來從 Blob 和檔案內容移動或來回複製資料。 從本機檔案複製資料到 Azure 儲存體，或在儲存體帳戶內或之間複製資料。 輕鬆地將資料移轉至 Azure 儲存體。"
+title: "aaaCopy 或移動資料 tooAzure 利用 azcopy 進行 Linux 上的儲存體 |Microsoft 文件"
+description: "使用 hello AzCopy 上的 Linux 公用程式 toomove 或複製資料 tooor 從 blob 和檔案的內容。 複製資料 tooAzure 存放裝置從本機檔案，或複製資料內或之間的儲存體帳戶。 輕鬆地將移轉您的資料 tooAzure 儲存體。"
 services: storage
 documentationcenter: 
 author: seguler
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: seguler
-ms.openlocfilehash: d17f63dcee590529756d48d699f78b3fb30f973c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: dccb03c9e8cc3ea661494e7834f307b0e3e30cb9
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="transfer-data-with-azcopy-on-linux"></a>使用 AzCopy on Linux 傳送資料
-AzCopy on Linux 是個命令列公用程式，專為使用簡單命令高效率地將資料複製到和複製出 Microsoft Azure Blob 和檔案儲存體所設計。 您可以從儲存體帳戶內或是在儲存體帳戶之間，從一個物件複製資料到另一個物件。
+在 Linux 上的 AzCopy 是設計來複製資料 tooand 從 Microsoft Azure Blob 和檔案的儲存體使用簡單的命令，以獲得最佳效能的命令列公用程式。 儲存體帳戶內或之間的儲存體帳戶，您可以從一個物件 tooanother 複製資料。
 
 有兩個 AzCopy 版本可供您下載。 AzCopy on Linux 內建有 .NET Core Framework，其以提供 POSIX 樣式命令列選項的 Linux 平台為目標。 [AzCopy on Windows](storage-use-azcopy.md) 內建有 .NET Framework，並且提供 Windows 樣式的命令列選項。 本文涵蓋之內容包括 AzCopy on Linux。
 
 ## <a name="download-and-install-azcopy"></a>下載並安裝 AzCopy
 ### <a name="installation-on-linux"></a>在 Linux 上安裝
 
-AzCopy on Linux 需要在平台上有 .NET Core framework。 請參閱 [.NET Core](https://www.microsoft.com/net/core#linuxubuntu) \(英文\) 頁面上的安裝指示。
+在 Linux 上的 AzCopy 需要 hello 平台上的.NET Core framework。 請參閱 hello hello 安裝指示[.NET Core](https://www.microsoft.com/net/core#linuxubuntu)頁面。
 
-例如，讓我們在 Ubuntu 16.10 上安裝 .NET Core。 如需最新安裝指南，請造訪 [.NET Core on Linux](https://www.microsoft.com/net/core#linuxubuntu) \(英文\) 安裝頁面。
+例如，讓我們在 Ubuntu 16.10 上安裝 .NET Core。 Hello 最新的安裝指南，請瀏覽[Linux 上的.NET Core](https://www.microsoft.com/net/core#linuxubuntu)安裝 頁面。
 
 
 ```bash
@@ -48,7 +48,7 @@ tar -xf azcopy.tar.gz
 sudo ./install.sh
 ```
 
-安裝 AzCopy on Linux 之後，您便可移除解壓縮後的檔案。 或者，如果您沒有 superuser 權限，也可以使用解壓縮資料夾中的 shell 指令碼「azcopy」執行 AzCopy。 
+在 Linux 上的 AzCopy 會安裝之後，您可以移除 hello 擷取檔案。 或者如果您沒有 superuser 權限，您也可以執行使用 hello 殼層指令碼的 AzCopy 'azcopy' hello 解壓縮的資料夾中。 
 
 ### <a name="alternative-installation-on-ubuntu"></a>Ubuntu 上的替代安裝
 
@@ -122,13 +122,13 @@ sudo apt-get install azcopy
 ```
 
 ## <a name="writing-your-first-azcopy-command"></a>撰寫第一個 AzCopy 命令
-AzCopy 命令的基本語法是：
+hello 的 AzCopy 命令的基本語法如下：
 
 ```azcopy
 azcopy --source <source> --destination <destination> [Options]
 ```
 
-下列範例會示範各種不同的 Microsoft Azure Blob 和檔案資料複製案例。 如需每個範例中所使用參數的詳細說明，請參閱 `azcopy --help`功能表。
+hello 遵循範例示範如何從 Microsoft Azure Blob 和檔案複製資料 tooand 的各種案例。 請參閱 toohello`azcopy --help`功能表 hello 參數，每個範例中所使用的詳細說明。
 
 ## <a name="blob-download"></a>Blob：下載
 ### <a name="download-single-blob"></a>下載單一 Blob
@@ -141,7 +141,7 @@ azcopy \
     --include "abc.txt"
 ```
 
-如果資料夾 `/mnt/myfiles` 不存在，AzCopy 會加以建立並將 `abc.txt ` 下載到新資料夾。
+如果 hello 資料夾`/mnt/myfiles`不存在，AzCopy 會加以建立，並下載`abc.txt `hello 新資料夾。
 
 ### <a name="download-single-blob-from-secondary-region"></a>從次要地區下載單一 Blob
 
@@ -165,7 +165,7 @@ azcopy \
     --recursive
 ```
 
-假設下列 Blob 位於指定容器中：  
+假設下列 hello 位於 hello 指定容器的 blob:  
 
 ```
 abc.txt
@@ -175,7 +175,7 @@ vd1/a.txt
 vd1/abcd.txt
 ```
 
-下載作業之後，目錄 `/mnt/myfiles` 會包含下列檔案：
+Hello 下載作業之後，hello 目錄`/mnt/myfiles`包含下列檔案的 hello:
 
 ```
 /mnt/myfiles/abc.txt
@@ -198,7 +198,7 @@ azcopy \
     --recursive
 ```
 
-假設下列 Blob 位於指定容器中。 會下載所有以首碼 `a` 開頭的 Blob。
+假設 hello 下列 blob 位於 hello 指定的容器。 以 hello 前置詞開頭的所有 blob`a`下載。
 
 ```
 abc.txt
@@ -209,7 +209,7 @@ vd1\a.txt
 vd1\abcd.txt
 ```
 
-下載作業之後，資料夾 `/mnt/myfiles` 會包含下列檔案：
+Hello 下載作業之後，hello 資料夾`/mnt/myfiles`包含下列檔案的 hello:
 
 ```
 /mnt/myfiles/abc.txt
@@ -217,9 +217,9 @@ vd1\abcd.txt
 /mnt/myfiles/abc2.txt
 ```
 
-首碼會套用到虛擬目錄，虛擬目錄會構成第一部分的 Blob 名稱。 在上述範例中，虛擬目錄不符合指定的首碼，所以不會下載任何 Blob。 此外，如果未指定選項 `--recursive` ，則 AzCopy 不會下載任何 Blob。
+hello 前置詞會套用 toohello 虛擬目錄，可形成 hello hello blob 名稱第一個部分。 Hello 虛擬目錄在 hello 上述範例中，它不符合 hello 指定之前置詞，因此沒有 blob 下載。 此外，如果 hello 選項`--recursive`未指定，AzCopy 不會下載任何 blob。
 
-### <a name="set-the-last-modified-time-of-exported-files-to-be-same-as-the-source-blobs"></a>將匯出檔案的最後修改時間設定為與來源 Blob 相同的最後修改時間
+### <a name="set-hello-last-modified-time-of-exported-files-toobe-same-as-hello-source-blobs"></a>設定 hello toobe 匯出的檔案的上次修改時間與 hello 來源 blob 相同
 
 ```azcopy
 azcopy \
@@ -229,7 +229,7 @@ azcopy \
     --preserve-last-modified-time
 ```
 
-您也可以根據其最後修改時間，將 Blob 從下載作業中排除。 例如，如果您想要排除最後修改時間比目的地檔案還要新或相同的 Blob，請新增 `--exclude-newer` 選項：
+您也可以從其上次修改時間為基礎的 hello 下載作業排除的 blob。 例如，如果您想 tooexclude blob 的上次修改的時間為 hello 相同或較 hello 目的地檔案，加入 hello`--exclude-newer`選項：
 
 ```azcopy
 azcopy \
@@ -240,7 +240,7 @@ azcopy \
     --exclude-newer
 ```
 
-或者，如果您想要排除最後修改時間比目的地檔案還要舊或相同的 Blob，請新增 `--exclude-older` 選項：
+如果您想 tooexclude blob 的上次修改的時間為 hello 相同或比 hello 目的地檔案還舊，新增 hello 或`--exclude-older`選項：
 
 ```azcopy
 azcopy \
@@ -262,9 +262,9 @@ azcopy \
     --include "abc.txt"
 ```
 
-如果指定的目的地容器不存在，則 AzCopy 會建立此容器並將檔案上傳至該容器中。
+如果 hello 指定的目的地容器不存在，AzCopy 建立及上傳 hello 到其中的檔案。
 
-### <a name="upload-single-file-to-virtual-directory"></a>上傳單一檔案到虛擬目錄
+### <a name="upload-single-file-toovirtual-directory"></a>單一檔案上傳 toovirtual 目錄
 
 ```azcopy
 azcopy \
@@ -274,7 +274,7 @@ azcopy \
     --include "abc.txt"
 ```
 
-如果指定的虛擬目錄不存在，則 AzCopy 會上傳檔案並在 Blob 名稱中加上此虛擬目錄 (例如，上述範例中的 `vd/abc.txt`)。
+如果 hello 指定虛擬目錄不存在，AzCopy 上傳 hello 檔案 tooinclude hello 中的虛擬目錄 hello blob 名稱 (*例如*， `vd/abc.txt` hello 上述範例中)。
 
 ### <a name="upload-all-files"></a>上傳所有檔案
 
@@ -286,7 +286,7 @@ azcopy \
     --recursive
 ```
 
-指定 `--recursive` 選項以遞迴方式將指定目錄的內容上傳到 Blob 儲存體，這表示也會上傳所有的子資料夾及其檔案。 例如，假設下列檔案位於 `/mnt/myfiles`資料夾內：
+指定選項`--recursive`hello 上傳 hello 內容所指定目錄 tooBlob 儲存體以遞迴方式，這表示所有子資料夾及檔案會上傳以及。 比方說，假設 hello 下列檔案位於資料夾`/mnt/myfiles`:
 
 ```
 /mnt/myfiles/abc.txt
@@ -296,7 +296,7 @@ azcopy \
 /mnt/myfiles/subfolder/abcd.txt
 ```
 
-上傳作業之後，容器會包含下列檔案：
+Hello 上傳作業之後，hello 容器會包含下列檔案的 hello:
 
 ```
 abc.txt
@@ -306,7 +306,7 @@ subfolder/a.txt
 subfolder/abcd.txt
 ```
 
-未指定選項 `--recursive` 時，只會上傳下列三個檔案：
+當 hello 選項`--recursive`未指定，只有 hello 下列三個檔案上傳：
 
 ```
 abc.txt
@@ -325,7 +325,7 @@ azcopy \
     --recursive
 ```
 
-假設下列檔案位於 `/mnt/myfiles`資料夾內：
+假設 hello 下列檔案位於資料夾`/mnt/myfiles`:
 
 ```
 /mnt/myfiles/abc.txt
@@ -336,7 +336,7 @@ azcopy \
 /mnt/myfiles/subfolder/abcd.txt
 ```
 
-上傳作業之後，容器會包含下列檔案：
+Hello 上傳作業之後，hello 容器會包含下列檔案的 hello:
 
 ```
 abc.txt
@@ -346,7 +346,7 @@ subfolder/a.txt
 subfolder/abcd.txt
 ```
 
-未指定選項 `--recursive` 時，AzCopy 會跳過子目錄中的檔案：
+當 hello 選項`--recursive`未指定，AzCopy 會略過在子目錄中的檔案：
 
 ```
 abc.txt
@@ -354,8 +354,8 @@ abc1.txt
 abc2.txt
 ```
 
-### <a name="specify-the-mime-content-type-of-a-destination-blob"></a>指定目的地 blob 的 MIME 內容類型
-根據預設，AzCopy 會將目的地 blob 的內容類型設定為 `application/octet-stream`。 但是，您可以透過 `--set-content-type [content-type]` 選項明確指定內容類型。 此語法會在上傳作業中設定所有 Blob 的內容類型。
+### <a name="specify-hello-mime-content-type-of-a-destination-blob"></a>指定目的地 blob hello MIME 內容的類型
+根據預設，AzCopy 設定 hello 的目的地 blob 的內容型別太`application/octet-stream`。 不過，您可以明確指定 hello 透過 hello 選項的內容類型`--set-content-type [content-type]`。 此語法中上傳作業設定 hello 的所有 blob 的內容類型。
 
 ```azcopy
 azcopy \
@@ -366,7 +366,7 @@ azcopy \
     --set-content-type "video/mp4"
 ```
 
-若已指定選項 `--set-content-type` 但未指定任何值，則 AzCopy 會根據副檔名來設定每個 blob 或檔案的內容類型。
+如果 hello 選項`--set-content-type`AzCopy 會將每個 blob 或檔案，但沒有值，指定的內容類型，根據 tooits 副檔名。
 
 ```azcopy
 azcopy \
@@ -404,7 +404,7 @@ azcopy \
 
 當您未以 --sync-copy 選項複製 Blob 時，系統會執行[伺服器端複製](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx) \(英文\) 作業。
 
-### <a name="copy-single-blob-from-secondary-region-to-primary-region"></a>將單一 Blob 從次要地區複製到主要區域
+### <a name="copy-single-blob-from-secondary-region-tooprimary-region"></a>從次要區域 tooprimary 區域複製單一 blob
 
 ```azcopy
 azcopy \
@@ -429,7 +429,7 @@ azcopy \
     --include-snapshot
 ```
 
-複製作業之後，目標容器會包含 Blob 及其快照集。 容器包含下列 Blob 及其快照集：
+Hello 複製作業之後，hello 目標容器包含 hello blob 和其快照集。 hello 容器包含 hello 下列 blob 和其快照集：
 
 ```
 abc.txt
@@ -438,9 +438,9 @@ abc (2014-02-21 150331).txt
 ```
 
 ### <a name="synchronously-copy-blobs-across-storage-accounts"></a>以同步方式跨儲存體帳戶複製 Blob
-根據預設，AzCopy 會以非同步方式在兩個儲存體端點之間複製資料。 因此，複製作業會在背景中使用並未以 SLA 規範應以多快速度複製 Blob 的備用頻寬能力執行。 
+根據預設，AzCopy 會以非同步方式在兩個儲存體端點之間複製資料。 因此，複製 hello 背景使用的備用頻寬容量且沒有 SLA 方面的速度有多快 blob 中的 hello 複製作業執行。 
 
-`--sync-copy` 選項可確保複製作業達到一致的速度。 AzCopy 執行同步複製的方式是先將要複製的 blob，從指定的來源下載到本機記憶體，再上傳至 Blob 儲存體目的地。
+hello`--sync-copy`選項可確保 hello 複製作業取得一致的速度。 AzCopy 下載 hello blob 執行 hello 同步複本 toocopy hello 從指定來源 toolocal 記憶體，並再將其上傳 toohello Blob 儲存體目的地。
 
 ```azcopy
 azcopy \
@@ -452,7 +452,7 @@ azcopy \
     --sync-copy
 ```
 
-相較於非同步複製，`--sync-copy` 可能會產生額外的輸出成本。 建議的方法是在與您來源儲存體帳戶位於同一區域的 Azure VM 中使用這個選項，以避免產生輸出成本。
+`--sync-copy`可能會產生額外的輸出成本比較 tooasynchronous 複製。 hello 建議的方法是 toouse 處於 hello Azure VM 中的這個選項與您來源儲存體帳戶 tooavoid 出口成本相同的區域。
 
 ## <a name="file-download"></a>檔案：下載
 ### <a name="download-single-file"></a>下載單一檔案
@@ -465,7 +465,7 @@ azcopy \
     --include "abc.txt"
 ```
 
-如果指定的來源是 Azure 檔案共用，則您必須指定確切檔案名稱 (例如，`abc.txt`) 以下載單一檔案，或指定 `--recursive` 選項以遞迴方式下載共用中的所有檔案。 嘗試同時指定檔案模式和 `--recursive` 選項會造成錯誤。
+如果 hello 指定來源是 Azure 的檔案共用，則您必須指定 hello 確切的檔名，(*例如* `abc.txt`) toodownload 單一檔案，或指定選項`--recursive`toodownload 所有檔案在 hello 共用以遞迴方式。 檔案模式和選項，嘗試 toospecify`--recursive`一起會產生錯誤。
 
 ### <a name="download-all-files"></a>下載所有檔案
 
@@ -526,7 +526,7 @@ azcopy \
 ```
 當您跨檔案共用複製檔案時，系統會執行[伺服器端複製](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx)作業。
 
-### <a name="copy-from-file-share-to-blob"></a>從檔案共用複製到 Blob
+### <a name="copy-from-file-share-tooblob"></a>從檔案共用 tooblob 複製
 
 ```azcopy
 azcopy \ 
@@ -536,9 +536,9 @@ azcopy \
     --dest-key <key2> \
     --recursive
 ```
-當您將檔案從檔案共用複製到 Blob 時，系統會執行[伺服器端複製](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx)作業。
+當您複製檔案從檔案共用 tooblob，[伺服器端副本](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx)執行作業。
 
-### <a name="copy-from-blob-to-file-share"></a>從 Blob 複製到檔案共用
+### <a name="copy-from-blob-toofile-share"></a>複製 blob toofile 共用
 
 ```azcopy
 azcopy \
@@ -548,10 +548,10 @@ azcopy \
     --dest-key <key2> \
     --recursive
 ```
-當您將檔案從 Blob 複製到檔案共用時，系統會執行[伺服器端複製](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx)作業。
+當您複製檔案從 blob toofile 共用，[伺服器端副本](http://blogs.msdn.com/b/windowsazurestorage/archive/2012/06/12/introducing-asynchronous-cross-account-copy-blob.aspx)執行作業。
 
 ### <a name="synchronously-copy-files"></a>以同步方式複製檔案
-您可以指定 `--sync-copy` 選項，以同步方式從檔案儲存體複製資料到檔案儲存體、從檔案儲存體複製資料到 Blob 儲存體，以及從 Blob 儲存體複製資料到檔案儲存體。 AzCopy 會將來源資料下載至本機記憶體，然後上傳到目的地，來執行此項作業。 在此情況下，會產生標準輸出成本。
+您可以指定 hello`--sync-copy`同步選項 toocopy 資料從檔案儲存體 tooFile 存放裝置、 檔案儲存體 tooBlob 儲存體和 Blob 儲存體 tooFile 儲存體。 AzCopy 會藉由下載 hello 來源資料 toolocal 記憶體，然後將它上傳 toodestination 執行此作業。 在此情況下，會產生標準輸出成本。
 
 ```azcopy
 azcopy \
@@ -563,13 +563,13 @@ azcopy \
     --sync-copy
 ```
 
-從檔案儲存體複製到 Blob 儲存體時，預設的 Blob 類型是區塊 Blob，使用者可以指定 `/BlobType:page` 選項來變更目的地 Blob 類型。
+當複製檔案的儲存體 tooBlob 儲存體，hello 預設 blob 型別是區塊 blob，使用者可以指定選項`/BlobType:page`toochange hello 目的地 blob 類型。
 
-請注意，相較於非同步複製，`--sync-copy` 可能會產生額外的輸出成本。 建議的方法是在與您來源儲存體帳戶位於同一區域的 Azure VM 中使用這個選項，以避免產生輸出成本。
+請注意，`--sync-copy`可能會產生額外成本比較 tooasynchronous 複製的輸出。 hello 建議的方法是 toouse 處於 hello Azure VM 中的這個選項與您來源儲存體帳戶 tooavoid 出口成本相同的區域。
 
 ## <a name="other-azcopy-features"></a>其他 AzCopy 功能
-### <a name="only-copy-data-that-doesnt-exist-in-the-destination"></a>只複製目的地中沒有的資料
-`--exclude-older` 和 `--exclude-newer` 參數分別可讓您在複製作業中排除較舊或較新的來源資源。 如果您只想複製目的地中沒有的來源資源，則可以在 AzCopy 命令中同時指定這兩個參數：
+### <a name="only-copy-data-that-doesnt-exist-in-hello-destination"></a>只複製 hello 目的地中不存在的資料
+hello`--exclude-older`和`--exclude-newer`參數可讓您從要複製，分別 tooexclude 更舊或更新的來源資源。 如果您只想 toocopy 來源資源不存在於 hello 目的地中，您可以在 hello AzCopy 命令中指定這兩個參數：
 
     --source http://myaccount.blob.core.windows.net/mycontainer --destination /mnt/myfiles --source-key <sourcekey> --recursive --exclude-older --exclude-newer
 
@@ -577,15 +577,15 @@ azcopy \
 
     --source http://myaccount.blob.core.windows.net/mycontainer --destination http://myaccount.blob.core.windows.net/mycontainer1 --source-key <sourcekey> --dest-key <destkey> --recursive --exclude-older --exclude-newer
 
-### <a name="use-a-configuration-file-to-specify-command-line-parameters"></a>使用組態檔指定命令列參數
+### <a name="use-a-configuration-file-toospecify-command-line-parameters"></a>使用組態檔 toospecify 命令列參數
 
 ```azcopy
 azcopy --config-file "azcopy-config.ini"
 ```
 
-您可以在組態檔中包含任何 AzCopy 命令列參數。 AzCopy 處理檔案中的參數，就好像在命令列上指定這些參數一様，執行使用檔案內容的直接取代。
+您可以在組態檔中包含任何 AzCopy 命令列參數。 AzCopy 處理程序 hello hello 檔案中的參數，如同它們已執行 hello 檔案直接替代與 hello 內容的 hello 命令列上指定。
 
-假設名為 `copyoperation` 且包含下列資料行的組態檔。 每個 AzCopy 參數可以指定在同一行。
+假設名為組態檔`copyoperation`，其中包含下列行 hello。 每個 AzCopy 參數可以指定在同一行。
 
     --source http://myaccount.blob.core.windows.net/mycontainer --destination /mnt/myfiles --source-key <sourcekey> --recursive --quiet
 
@@ -597,7 +597,7 @@ azcopy --config-file "azcopy-config.ini"
     --recursive
     --quiet
 
-如果您將參數分割成兩行，如以下的 `--source-key` 參數所示，則 AzCopy 會失敗：
+AzCopy 失敗如果 hello 參數分成兩行，如下所示為 hello`--source-key`參數：
 
     http://myaccount.blob.core.windows.net/mycontainer
     /mnt/myfiles
@@ -617,7 +617,7 @@ azcopy \
     --include abc.txt
 ```
 
-您也可以在容器 URI 上指定 SAS：
+您也可以指定 SAS hello 容器 URI 上：
 
 ```azcopy
 azcopy \
@@ -626,14 +626,14 @@ azcopy \
     --recursive
 ```
 
-請注意，AzCopy 目前僅支援[帳戶 SAS](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-shared-access-signature-part-1) \(英文\)。
+請注意，AzCopy 目前僅支援 hello[帳戶 SAS](https://docs.microsoft.com/en-us/azure/storage/storage-dotnet-shared-access-signature-part-1)。
 
 ### <a name="journal-file-folder"></a>日誌檔案資料夾
-每次發佈命令至 AzCopy 時，它會檢查預設資料夾或透過此選項指定的資料夾中是否有日誌檔案存在。 如果在這兩個地方都找不到日誌檔案，AzCopy 會將此作業視為新的作業，並產生新的日誌檔案。
+每次您提交命令 tooAzCopy，它會檢查日誌檔是否存在於 hello 預設資料夾，或是否有您指定透過這個選項的資料夾中。 如果在任一處，hello 日誌檔不存在，AzCopy hello 作業視為新，並產生新的日誌檔。
 
-如果找到日誌檔案，則 AzCopy 會檢查所輸入的命令列是否符合日誌檔案中的命令列。 如果這兩個命令列相符，AzCopy 便會繼續未完成的作業。 如果這兩個命令列不符，AzCopy 會提示使用者覆寫日誌檔案並開始新的作業，或取消目前作業。
+如果 hello 日誌檔案存在，AzCopy 會檢查您輸入的 hello 命令列是否符合 hello hello 筆記本檔案中的命令列。 如果兩個命令列 hello 相符，AzCopy 會繼續 hello 未完成作業。 如果不相符，AzCopy 會提示使用者 tooeither 覆寫 hello 日誌檔案 toostart，新增作業或 toocancel hello 目前的作業。
 
-如果您想要使用預設的日誌檔案位置：
+如果您想 hello 日誌檔 toouse hello 預設位置：
 
 ```azcopy
 azcopy \
@@ -643,9 +643,9 @@ azcopy \
     --resume
 ```
 
-如果省略 `--resume`，或指定 `--resume` 選項但沒有指定資料夾路徑 (如上所示)，則 AzCopy 會在預設位置上建立日誌檔案，預設位置是 `~\Microsoft\Azure\AzCopy`。 如果日誌檔案已存在，則 AzCopy 會根據此日誌檔案繼續作業。
+如果您省略選項`--resume`，或指定選項`--resume`未 hello 資料夾路徑，如上所示，AzCopy 會建立 hello 日誌檔 hello 預設位置，也就是在`~\Microsoft\Azure\AzCopy`。 如果 hello 日誌檔已經存在，然後 AzCopy 會繼續 hello hello 日誌檔為基礎的作業。
 
-如果您想要指定自訂的日誌檔案位置：
+如果您想 toospecify hello 日誌檔的自訂位置：
 
 ```azcopy
 azcopy \
@@ -655,12 +655,12 @@ azcopy \
     --resume "/mnt/myjournal"
 ```
 
-如果日誌檔案不存在，本範例將建立日誌檔案。 如果日誌檔案已存在，則 AzCopy 會根據此日誌檔案繼續作業。
+如果不存在，此範例會建立 hello 日誌檔。 如果檔案存在，然後 AzCopy 會繼續依據 hello 日誌檔的 hello 作業。
 
-如果您想要繼續 AzCopy 作業，請重複相同的命令。 然後 AzCopy on Linux 會提示您確認：
+如果您想 tooresume AzCopy 作業時，重複 hello 相同的命令。 然後 AzCopy on Linux 會提示您確認：
 
 ```azcopy
-Incomplete operation with same command line detected at the journal directory "/home/myaccount/Microsoft/Azure/AzCopy", do you want to resume the operation? Choose Yes to resume, choose No to overwrite the journal to start a new operation. (Yes/No)
+Incomplete operation with same command line detected at hello journal directory "/home/myaccount/Microsoft/Azure/AzCopy", do you want tooresume hello operation? Choose Yes tooresume, choose No toooverwrite hello journal toostart a new operation. (Yes/No)
 ```
 
 ### <a name="output-verbose-logs"></a>輸出詳細資訊記錄檔
@@ -673,31 +673,31 @@ azcopy \
     --verbose
 ```
 
-### <a name="specify-the-number-of-concurrent-operations-to-start"></a>指定要啟動的並行作業數目
-`--parallel-level` 選項可指定並行複製作業的數目。 根據預設，AzCopy 依預設會啟動特定數量的並行作業，以提高資料傳輸的輸送量。 並行作業數目等於您所擁有處理器數目的八倍。 如果您在低頻寬的網路上執行 AzCopy，則您可以針對平行層級指定較低的數字，以避免因為資源競爭所導致的失敗。
+### <a name="specify-hello-number-of-concurrent-operations-toostart"></a>指定的並行作業 toostart hello
+選項`--parallel-level`指定 hello 並行的複製作業數目。 根據預設，AzCopy 會啟動特定數目的並行作業 tooincrease hello 資料傳輸輸送量。 並行作業的 hello 數目等於八次 hello 您擁有的處理器數目。 如果您正在執行 AzCopy 透過低頻寬網路，您可以指定較低的數字-平行層級 tooavoid 失敗的資源競爭所造成。
 
 [!TIP]
->若要檢視 AzCopy 參數的完整清單，請參閱 [azcopy --說明] 功能表。
+>tooview hello 完整清單的 AzCopy 參數，請查看 'azcopy-說明' 功能表。
 
 ## <a name="known-issues-and-best-practices"></a>已知問題和最佳作法
-### <a name="error-net-core-is-not-found-in-the-system"></a>錯誤：在系統中找不到 .NET Core。
-如果您遇到錯誤，表示系統中並未安裝 .NET Core，則可能遺失 .NET Core 二進位 `dotnet` 的 PATH。
+### <a name="error-net-core-is-not-found-in-hello-system"></a>錯誤： Hello 系統中找不到.NET Core。
+如果您遇到錯誤，指出 hello 系統中未安裝的.NET Core，hello 路徑 toohello.NET Core 二進位`dotnet`可能會遺失。
 
-若要解決此問題，請在系統中尋找 .NET Core 二進位：
+在順序 tooaddress 此問題，尋找 hello 系統中的 hello.NET Core 二進位檔：
 ```bash
 sudo find / -name dotnet
 ```
 
-這樣會傳回 dotnet 二進位的路徑。 
+這會傳回 hello 路徑 toohello dotnet 二進位。 
 
     /opt/rh/rh-dotnetcore11/root/usr/bin/dotnet
     /opt/rh/rh-dotnetcore11/root/usr/lib64/dotnetcore/dotnet
     /opt/rh/rh-dotnetcore11/root/usr/lib64/dotnetcore/shared/Microsoft.NETCore.App/1.1.2/dotnet
 
-現在將此路徑新增至 PATH 變數。 針對 sudo，請編輯 secure_path，使其包含 dotnet 二進位的路徑：
+現在加入此路徑 toohello 路徑變數。 Sudo，編輯 secure_path toocontain hello 路徑 toohello dotnet 二進位：
 ```bash 
 sudo visudo
-### Append the path found in the preceding example to 'secure_path' variable
+### Append hello path found in hello preceding example too'secure_path' variable
 ```
 
 在此範例中，secure_path 變數會顯示為：
@@ -706,10 +706,10 @@ sudo visudo
 secure_path = /sbin:/bin:/usr/sbin:/usr/bin:/opt/rh/rh-dotnetcore11/root/usr/bin/
 ```
 
-針對目前使用者，請編輯 .bash_profile/.profile，使其在 PATH 變數中包含 dotnet 二進位的路徑 
+Hello 目前的使用者編輯.bash_profile/.profile tooinclude hello 路徑 toohello dotnet 二進位 PATH 變數中 
 ```bash
 vi ~/.bash_profile
-### Append the path found in the preceding example to 'PATH' variable
+### Append hello path found in hello preceding example too'PATH' variable
 ```
 
 確認 .NET Core 現在位於 PATH 中：
@@ -719,7 +719,7 @@ sudo which dotnet
 ```
 
 ### <a name="error-installing-azcopy"></a>安裝 AzCopy 時發生錯誤
-如果您遇到 AzCopy 安裝的問題，可以嘗試使用解壓縮 `azcopy` 資料夾中的 bash 指令碼執行 AzCopy。
+如果您遇到的 AzCopy 安裝問題，您可以嘗試的 toorun AzCopy hello 中使用 hello bash 指令碼擷取`azcopy`資料夾。
 
 ```bash
 cd azcopy
@@ -727,25 +727,25 @@ cd azcopy
 ```
 
 ### <a name="limit-concurrent-writes-while-copying-data"></a>限制複製資料時的並行寫入
-使用 AzCopy 複製 Blob 或檔案時，請留意當您在複製資料時，另一個應用程式可能正在修改該資料。 請儘可能地確定在複製作業過程中，您正要複製的資料並不在修改中。 例如，當複製與 Azure 虛擬機器相關聯的 VHD 時，請確定目前沒有其他應用程式正在寫入此 VHD。 要這樣做的一個好方法是租用要複製的資源。 此外，您可以首先建立 VHD 的快照，然後複製此快照。
+當您複製 blob 或利用 azcopy 進行的檔案時，請注意，另一個應用程式可能會修改 hello 資料將複製時。 可能的話，請確定不會被您要複製的 hello 資料修改 hello 複製作業期間。 比方說，當複製與 Azure 虛擬機器相關聯的 VHD，請確定沒有其他應用程式目前正在撰寫 toohello VHD。 這是預設租用 hello 資源 toobe 複製的好方法 toodo。 或者，您可以先建立 hello VHD 的快照集，然後複製 hello 快照集。
 
-如果您無法在複製時防止其他應用程式寫入 Blob 或檔案，請記住，工作完成時，複製的資源可能不再與來源資源完全相同。
+如果您不能防止其他應用程式無法寫入 tooblobs 或檔案，它們會被複製，則請記住，hello 時間 hello 作業完成時，hello 複製的資源可能不再需要完整的同位檢查，但 hello 來源資源。
 
 ### <a name="run-one-azcopy-instance-on-one-machine"></a>在一部電腦上執行一個 AzCopy 執行個體。
-AzCopy 設計為充分利用電腦資源來加速資料傳輸，建議您在一部電腦上只執行一個 AzCopy 執行個體，如果需要更多並行作業，您可以指定 `--parallel-level` 選項。 如需詳細資訊，請在命令列上輸入 `AzCopy --help parallel-level` 。
+AzCopy 是設計的 toomaximize hello 善用您的電腦資源 tooaccelerate hello 資料傳輸，因此建議您只有一個 AzCopy 執行個體執行一個在電腦上，並指定 hello 選項`--parallel-level`如果您需要更多的並行作業。 如需詳細資訊，請輸入`AzCopy --help parallel-level`在 hello 命令列。
 
 ## <a name="next-steps"></a>後續步驟
-如需關於 Azure 儲存體和 AzCopy 的詳細資訊，請參閱下列資源：
+如需 Azure 儲存體和 AzCopy 的詳細資訊，請參閱下列資源的 hello:
 
 ### <a name="azure-storage-documentation"></a>Azure 儲存體文件：
-* [Azure 儲存體簡介](storage-introduction.md)
+* [簡介 tooAzure 儲存體](storage-introduction.md)
 * [建立儲存體帳戶](storage-create-storage-account.md)
 * [使用儲存體總管來管理 Blob](https://docs.microsoft.com/en-us/azure/vs-azure-tools-storage-explorer-blobs) \(英文\)
-* [使用 Azure CLI 2.0 搭配 Azure 儲存體](storage-azure-cli.md)
-* [如何使用 C++ 的 Blob 儲存體](storage-c-plus-plus-how-to-use-blobs.md)
-* [如何使用 Java 的 Blob 儲存體](storage-java-how-to-use-blob-storage.md)
-* [如何使用 Node.js 的 Blob 儲存體](storage-nodejs-how-to-use-blob-storage.md)
-* [如何使用 Python 的 Blob 儲存體](storage-python-how-to-use-blob-storage.md)
+* [使用 Azure CLI 2.0 hello 與 Azure 儲存體](storage-azure-cli.md)
+* [如何 toouse 從 c + + 的 Blob 儲存體](storage-c-plus-plus-how-to-use-blobs.md)
+* [如何從 Java 的 Blob 儲存體 toouse](storage-java-how-to-use-blob-storage.md)
+* [如何 toouse Node.js 從 Blob 儲存體](storage-nodejs-how-to-use-blob-storage.md)
+* [如何 toouse 來自 Python 的 Blob 儲存體](storage-python-how-to-use-blob-storage.md)
 
 ### <a name="azure-storage-blog-posts"></a>Azure 儲存體部落格文章：
 * [宣告 AzCopy on Linux 預覽](https://azure.microsoft.com/en-in/blog/announcing-azcopy-on-linux-preview/) \(英文\)

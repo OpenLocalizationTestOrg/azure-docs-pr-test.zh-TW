@@ -1,6 +1,6 @@
 ---
-title: "開始使用 HDInsight 上的 HBase 範例 - Azure | Microsoft Docs"
-description: "遵循此 Apache HBase 範例開始在 HDInsight 上使用 Hadoop。 使用 Hive 從 HBase Shell 建立資料表並加以查詢。"
+title: "aaaGet 開始使用 HDInsight 的 Azure 上 HBase 範例 |Microsoft 文件"
+description: "請遵循此 Apache HBase 範例 toostart HDInsight 上使用 hadoop。 從 hello HBase 殼層建立資料表，並加以查詢，使用登錄區。"
 keywords: "hbasecommand,hbase 範例"
 services: hdinsight
 documentationcenter: 
@@ -16,65 +16,65 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: jgao
-ms.openlocfilehash: bbd8a838062795ee03ae02dc5e3fd45d841a6e17
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 43419780142b320b16180a2b1f25020dee2f7a11
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-an-apache-hbase-example-in-hdinsight"></a>開始使用 HDInsight 中的 Apache HBase 範例
 
-了解如何使用 Hive 在 HDInsight 中建立 HBase 叢集、建立 HBase 資料表，以及查詢資料表。 如需一般 HBase 資訊，請參閱 [HDInsight HBase 概觀][hdinsight-hbase-overview]。
+了解如何建立 HBase 資料表 toocreate 在 HDInsight HBase 叢集，以及使用 Hive 查詢的資料表。 如需一般 HBase 資訊，請參閱 [HDInsight HBase 概觀][hdinsight-hbase-overview]。
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
 ## <a name="prerequisites"></a>必要條件
-開始嘗試進行本 HBase 範例之前，您必須具備下列項目：
+開始嘗試這個 HBase 範例之前，您必須具備下列項目 hello:
 
 * **Azure 訂用帳戶**。 請參閱 [取得 Azure 免費試用](https://azure.microsoft.com/documentation/videos/get-azure-free-trial-for-testing-hadoop-in-hdinsight/)。
 * [安全殼層 (SSH)](hdinsight-hadoop-linux-use-ssh-unix.md)。 
 * [cURL](http://curl.haxx.se/download.html)。
 
 ## <a name="create-hbase-cluster"></a>建立 HBase 叢集
-下列程序會使用 Azure Resource Manager 範本建立 3.4 版以 Linux 為基礎的 HBase 叢集和相依的預設 Azure 儲存體帳戶。 若要了解此程序與其他叢集建立方法中使用的參數，請參閱 [在 HDInsight 中建立以 Linux 為基礎的 Hadoop 叢集](hdinsight-hadoop-provision-linux-clusters.md)。
+hello 下列程序會使用 Azure Resource Manager 範本 toocreate 版本 3.4 linux HBase 叢集和 hello 相依的預設 Azure 儲存體帳戶。 toounderstand hello 參數用於 hello 程序和其他叢集建立方法，請參閱[HDInsight 叢集建立 Linux Hadoop](hdinsight-hadoop-provision-linux-clusters.md)。
 
-1. 按一下以下影像，在 Azure 入口網站中開啟範本。 此範本位於公用 Blob 容器中。 
+1. 按一下下列映像 tooopen hello 範本 hello Azure 入口網站中的 hello。 hello 範本位於 公用 blob 容器中。 
    
-    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-linux%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hbase-tutorial-get-started-linux/deploy-to-azure.png" alt="Deploy to Azure"></a>
-2. 從 [自訂部署] 刀鋒視窗，輸入下列值：
+    <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-hbase-linux%2Fazuredeploy.json" target="_blank"><img src="./media/hdinsight-hbase-tutorial-get-started-linux/deploy-to-azure.png" alt="Deploy tooAzure"></a>
+2. 從 hello**自訂部署**刀鋒視窗中，輸入下列值的 hello:
    
-   * **訂用帳戶**：選取用來建立叢集的 Azure 訂用帳戶。
+   * **訂用帳戶**： 選取您是使用的 toocreate hello 叢集的 Azure 訂閱。
    * **資源群組**：建立 Azure 資源管理群組，或選取現有的資源管理群組。
-   * **位置**：指定資源群組的位置。 
-   * **叢集名稱**：輸入 HBase 叢集的名稱。
-   * **叢集登入名稱和密碼**：預設登入名稱是 **admin**。
-   * **SSH 使用者名稱和密碼**：預設使用者名稱是 **sshuser**。  您可以將它重新命名。
+   * **位置**： 指定 hello hello 資源群組的位置。 
+   * **ClusterName**： 輸入 hello HBase 叢集的名稱。
+   * **叢集登入名稱和密碼**: hello 預設登入名稱是**admin**。
+   * **SSH 使用者名稱和密碼**: hello 預設使用者名稱是**sshuser**。  您可以將它重新命名。
      
      其他參數都是選擇性的。  
      
-     每個叢集都具備 Azure 儲存體帳戶相依性。 刪除叢集之後，資料會保留在儲存體帳戶中。 叢集預設儲存體帳戶名稱是附加 "store" 的叢集名稱。 它會硬式編碼在範本變數區段中。
-3. 選取 [我同意上方所述的條款及條件]，然後按一下 [購買]。 大約需要 20 分鐘的時間來建立叢集。
+     每個叢集都具備 Azure 儲存體帳戶相依性。 刪除叢集之後，hello 資料會保留 hello 儲存體帳戶中。 hello 叢集預設儲存體帳戶名稱是與 「 市集 」 附加 hello 叢集名稱。 它是硬式編碼 hello 範本變數區段中。
+3. 選取**toohello 條款和條件前面所述，即表示我同意**，然後按一下**購買**。 它會採用約 20 分鐘 toocreate 叢集。
 
 > [!NOTE]
-> 刪除 HBase 叢集之後，您可以使用相同的預設 Blob 容器建立另一個 HBase 叢集。 這個新叢集會挑選您在原始叢集中建立的 HBase 資料表。 為了避免不一致，建議您在刪除叢集之前，先停用 HBase 資料表。
+> 刪除 HBase 叢集之後，您可以使用 hello 來建立另一個 HBase 叢集相同的預設 blob 容器。 hello 新叢集挑選您建立 hello 原始叢集中的 hello HBase 資料表。 tooavoid 不一致，我們建議您刪除 hello 叢集之前，停用 hello HBase 資料表。
 > 
 > 
 
 ## <a name="create-tables-and-insert-data"></a>建立資料表和插入資料
-您可以使用 SSH 來連線到 HBase 叢集，然後使用 HBase Shell 來建立 HBase 資料表、插入及查詢資料。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
+您可以使用 SSH tooconnect tooHBase 叢集，然後使用 HBase 殼層 toocreate HBase 資料表插入資料及查詢資料。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md)。
 
-對大多數人而言，資料會以表格形式出現：
+對大多數人來說，資料會出現在 hello 表格式格式：
 
 ![HDInsight HBase 表格式資料][img-hbase-sample-data-tabular]
 
-在 HBase (實作 BigTable) 中，相同的資料看起來如下：
+HBase （BigTable 的實作），在 hello 相同的資料如下所示：
 
 ![HDInsight HBase BigTable 資料][img-hbase-sample-data-bigtable]
 
 
-**使用 HBase Shell**
+**toouse hello HBase 殼層**
 
-1. 從 SSH，執行下列 HBase 命令：
+1. Ssh，執行下列命令 HBase hello:
    
     ```bash
     hbase shell
@@ -103,20 +103,20 @@ ms.lasthandoff: 08/03/2017
     get 'Contacts', '1000'
     ```
    
-    您會看到與使用掃描命令相同的結果，因為只有一個資料列。
+    您應該看到的 hello 相同的結果做為使用 hello 掃描命令，因為只有一個資料列。
    
-    如需 HBase 資料表結構描述的詳細資訊，請參閱 [HBase 結構描述設計簡介][hbase-schema]。 如需其他 HBase 命令，請參閱 [Apache HBase 參考指南][hbase-quick-start]。
-5. 結束 Shell
+    如需 hello HBase 資料表的結構描述的詳細資訊，請參閱[簡介 tooHBase 結構描述設計][hbase-schema]。 如需其他 HBase 命令，請參閱 [Apache HBase 參考指南][hbase-quick-start]。
+5. 結束 hello 殼層
    
     ```hbaseshell
     exit
     ```
 
-**將資料大量載入連絡人 HBase 資料表中**
+**toobulk hello 連絡人 HBase 資料表將資料載入**
 
 HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請參閱 [大量載入](http://hbase.apache.org/book.html#arch.bulk.load)。
 
-您可以在公用 Blob 容器中找到資料檔案範例 (*wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt*)。  資料檔案的內容：
+您可以在公用 Blob 容器中找到資料檔案範例 (*wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt*)。  hello hello 資料檔案內容為：
 
     8396    Calvin Raji      230-555-0191    230-555-0191    5415 San Gabriel Dr.
     16600   Karen Wu         646-555-0113    230-555-0192    9265 La Paz
@@ -129,32 +129,32 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
     4761    Caleb Alexander  670-555-0141    230-555-0199    4775 Kentucky Dr.
     16443   Terry Chander    998-555-0171    230-555-0200    771 Northridge Drive
 
-您可以選擇性地建立文字檔，並將檔案上載至自己的儲存體帳戶。 如需指示，請參閱[在 HDInsight 中將 Hadoop 工作的資料上傳][hdinsight-upload-data]。
+您可以選擇性地建立文字檔，並上傳 hello 檔案 tooyour 自己的儲存體帳戶。 Hello 指示，請參閱[HDInsight 中的 Hadoop 工作的資料上傳][hdinsight-upload-data]。
 
 > [!NOTE]
-> 此程序會使用您在上一個程序中建立的連絡人 HBase 資料表。
+> 此程序會使用您已建立 hello 最後一個程序中的 hello 連絡人 HBase 資料表。
 > 
 
-1. 從 SSH，執行下列命令，將資料檔案轉換成 StoreFiles 並存放在 Dimporttsv.bulk.output 所指定的相對路徑。  如果您在 HBase Shell 中，請使用 exit 命令來結束。
+1. Ssh，執行下列命令 tootransform hello 資料檔案 tooStoreFiles，並儲存在 Dimporttsv.bulk.output 所指定的相對路徑的 hello。  如果您是在 HBase 殼層中，使用 hello 結束命令 tooexit。
 
     ```bash   
     hbase org.apache.hadoop.hbase.mapreduce.ImportTsv -Dimporttsv.columns="HBASE_ROW_KEY,Personal:Name,Personal:Phone,Office:Phone,Office:Address" -Dimporttsv.bulk.output="/example/data/storeDataFileOutput" Contacts wasb://hbasecontacts@hditutorialdata.blob.core.windows.net/contacts.txt
     ```
 
-2. 執行下列命令，將資料從 /example/data/storeDataFileOutput 上傳至 HBase 資料表：
+2. 執行 hello /example/data/storeDataFileOutput toohello HBase 資料表中的下列命令 tooupload hello 資料：
    
     ```bash
     hbase org.apache.hadoop.hbase.mapreduce.LoadIncrementalHFiles /example/data/storeDataFileOutput Contacts
     ```
 
-3. 您可以開啟 HBase Shell，並使用掃描命令來列出資料表內容。
+3. 您可以開啟 hello HBase 殼層，並使用 hello 掃描命令 toolist hello 資料表內容。
 
-## <a name="use-hive-to-query-hbase"></a>使用 Hive 查詢 HBase
+## <a name="use-hive-tooquery-hbase"></a>使用 Hive tooquery HBase
 
-您可以使用 Hive 查詢 HBase 資料表中的資料。 在本節中，您會建立對應至 HBase 資料表的 Hive 資料表，並用以查詢您 HBase 資料表中的資料。
+您可以使用 Hive 查詢 HBase 資料表中的資料。 在本節中，您建立的 Hive 資料表的對應 toohello HBase 資料表，並使用它 tooquery hello 資料 HBase 資料表中。
 
-1. 開啟 **PuTTY**，然後連線到叢集。  請參閱先前程序中的指示。
-2. 在 SSH 工作階段中，使用以下命令啟動 Beeline：
+1. 開啟**PuTTY**，並連接 toohello 叢集。  請參閱 hello hello 前程序中的指示。
+2. 從 hello SSH 工作階段，使用下列命令 toostart Beeline hello:
 
     ```bash
     beeline -u 'jdbc:hive2://localhost:10001/;transportMode=http' -n admin
@@ -162,7 +162,7 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
 
     如需有關 Beeline 的詳細資訊，請參閱[利用 Beeline 搭配使用 Hive 與 HDInsight 中的 Hadoop](hdinsight-hadoop-use-hive-beeline.md)。
        
-3. 執行下列 HiveQL 指令碼以建立對應到 HBase 資料表的 Hive 資料表。 在執行此陳述式前，請確定您已使用 HBase Shell 建立參考先前本教學課程的範例資料表。
+3. 執行下列 HiveQL 指令碼 toocreate hello 對應 toohello HBase 資料表的 Hive 資料表。 請確定您已建立使用 hello HBase 殼層，然後再執行此陳述式參考稍早在本教學課程中的 hello 範例資料表。
 
     ```hiveql   
     CREATE EXTERNAL TABLE hbasecontacts(rowkey STRING, name STRING, homephone STRING, officephone STRING, officeaddress STRING)
@@ -171,7 +171,7 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
     TBLPROPERTIES ('hbase.table.name' = 'Contacts');
     ```
 
-4. 執行下列 HiveQL 指令碼，以查詢 HBase 資料表中的資料：
+4. 執行下列 HiveQL 指令碼 tooquery hello 資料 hello HBase 資料表中的 hello:
 
     ```hiveql   
     SELECT count(rowkey) FROM hbasecontacts;
@@ -179,16 +179,16 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
 
 ## <a name="use-hbase-rest-apis-using-curl"></a>使用 Curl 來使用 HBase REST API
 
-透過 [基本驗證](http://en.wikipedia.org/wiki/Basic_access_authentication)來保護 REST API 的安全。 您應該一律使用安全 HTTP (HTTPS) 提出要求，確保認證安全地傳送至伺服器。
+hello REST API 會透過保護[基本驗證](http://en.wikipedia.org/wiki/Basic_access_authentication)。 您永遠都應該使用安全 HTTP (HTTPS) toohelp 確保您的認證會安全地傳送 toohello 伺服器提出要求。
 
-2. 使用下列命令列出現有的 HBase 資料表：
+2. 使用下列命令 toolist hello 現有 HBase 資料表的 hello:
 
     ```bash
     curl -u <UserName>:<Password> \
     -G https://<ClusterName>.azurehdinsight.net/hbaserest/
     ```
 
-3. 使用下列命令建立含兩個資料欄系列的新 HBase 資料表：
+3. 使用下列命令 toocreate 具有兩個資料行家族的新 HBase 資料表的 hello:
 
     ```bash   
     curl -u <UserName>:<Password> \
@@ -199,8 +199,8 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
     -v
     ```
 
-    結構描述是以 JSON 格式提供。
-4. 使用下列命令插入一些資料：
+    hello 結構描述提供 hello JSon 格式。
+4. 使用下列命令 tooinsert hello 某些資料：
 
     ```bash   
     curl -u <UserName>:<Password> \
@@ -211,14 +211,14 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
     -v
     ```
    
-    您必須使用 base64 編碼 -d 參數中指定的值。 在範例中︰
+    您必須 base64 編碼 hello hello-d 參數中指定的值。 在 hello 範例：
    
    * MTAwMA==: 1000
    * UGVyc29uYWw6TmFtZQ==: Personal:Name
    * Sm9obiBEb2xl: John Dole
      
-     [false-row-key](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/rest/package-summary.html#operation_cell_store_single) 可讓您插入多個 (批次) 值。
-5. 使用下列命令取得資料列：
+     [false-資料列索引鍵](https://hbase.apache.org/apidocs/org/apache/hadoop/hbase/rest/package-summary.html#operation_cell_store_single)可讓您 tooinsert （批次） 的多個值。
+5. 使用下列命令 tooget 一個資料列的 hello:
    
     ```bash 
     curl -u <UserName>:<Password> \
@@ -232,30 +232,30 @@ HBase 包含數個將資料載入資料表的方法。  如需詳細資訊，請
 > [!NOTE]
 > Thrift 不受 HDInsight 中的 HBase 所支援。
 >
-> 在使用 Curl 或與 WebHCat 進行任何其他 REST 通訊時，您必須提供 HDInsight 叢集系統管理員的使用者名稱和密碼來驗證要求。 您也必須在用來將要求傳送至伺服器的統一資源識別項 (URI) 中使用叢集名稱：
+> 當使用 WebHCat Curl 或任何其他的 REST 通訊，您必須驗證 hello 要求藉由提供 hello 使用者名稱和 hello HDInsight 叢集系統管理員密碼。 您也必須使用 hello 統一資源識別元 (URI) 的一部分使用 toosend hello 要求 toohello 伺服器 hello 叢集名稱：
 > 
 >   
 >        curl -u <UserName>:<Password> \
 >        -G https://<ClusterName>.azurehdinsight.net/templeton/v1/status
 >   
->    您應該會收到類似下列的回應：
+>    您應該會收到回應類似 toohello 下列回應：
 >   
 >        {"status":"ok","version":"v1"}
    
 
 
 ## <a name="check-cluster-status"></a>檢查叢集狀態
-HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。 使用 Web UI，您可要求關於區域的統計資料或資訊。
+HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。 使用 hello Web UI，您可以要求統計資料或區域的相關資訊。
 
-**存取 HBase 主要 UI**
+**tooaccess hello HBase 主要 UI**
 
-1. 登入 Ambari Web UI (https://&lt;Clustername>.azurehdinsight.net)。
-2. 按一下左側功能表的 [HBase]。
-3. 按一下頁面頂端的 [快速連結]，指向使用中的 Zookeeper 節點連結，然後按一下 [HBase 主要 UI]。  UI 會在另一個瀏覽器索引標籤中開啟：
+1. 登入 hello https:// 在 hello Ambari Web UI&lt;Clustername >。.azurehdinsight.net。
+2. 按一下**HBase** hello 左側功能表中。
+3. 按一下**快速連結**在 hello active 動物園管理員節點連結點 toohello，hello 頁面頂端，然後按一下 **HBase 主要 UI**。  在另一個瀏覽器索引標籤中開啟 hello UI:
 
   ![HDInsight HBase HMaster UI](./media/hdinsight-hbase-tutorial-get-started-linux/hdinsight-hbase-hmaster-ui.png)
 
-  HBase 主要 UI 包含下列區段：
+  hello HBase 主要 UI 包含下列各節的 hello:
 
   - 區域伺服器
   - 備份主機
@@ -263,8 +263,8 @@ HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。 使用 Web UI，
   - 工作
   - 軟體屬性
 
-## <a name="delete-the-cluster"></a>刪除叢集
-為了避免不一致，建議您在刪除叢集之前，先停用 HBase 資料表。
+## <a name="delete-hello-cluster"></a>刪除 hello 叢集
+tooavoid 不一致，我們建議您刪除 hello 叢集之前，停用 hello HBase 資料表。
 
 [!INCLUDE [delete-cluster-warning](../../includes/hdinsight-delete-cluster-warning.md)]
 
@@ -273,9 +273,9 @@ HDInsight 中的 HBase 隨附於 Web UI，以供監視叢集。 使用 Web UI，
 如果您在建立 HDInsight 叢集時遇到問題，請參閱[存取控制需求](hdinsight-administer-use-portal-linux.md#create-clusters)。
 
 ## <a name="next-steps"></a>後續步驟
-在本文中，您已了解如何建立 HBase 叢集，以及如何建立資料表，並從 HBase Shell 檢視這些資料表中的資料。 您同時也了解到如何使用 Hive 查詢 HBase 資料表中的資料，以及如何使用 HBase C# REST API 建立 HBase 資料表，並擷取其資料表中的資料。
+在本文中，您學會如何 toocreate HBase 叢集和 toocreate 資料表和檢視 hello 從這些資料表中的資料 hello HBase 殼層。 您也學到如何 toouse Hive HBase 資料表和如何 toouse hello toocreate HBase REST Api C# 中的資料 HBase 資料表的查詢，並從 hello 資料表擷取資料。
 
-若要深入了解，請參閱：
+toolearn 詳細資訊，請參閱：
 
 * [HDInsight HBase 概觀][hdinsight-hbase-overview]：HBase 是建置於 Hadoop 上的 Apache 開放原始碼 NoSQL 資料庫，可針對大量非結構化及半結構化資料，提供隨機存取功能和強大一致性。
 

@@ -1,6 +1,6 @@
 ---
-title: "Azure 虛擬機器擴展集常見問題集 | Microsoft Docs"
-description: "取得關於虛擬機器擴展集常見問題集的解答。"
+title: "aaaAzure 虛擬機器規模設定常見問題集 |Microsoft 文件"
+description: "取得虛擬機器擴展集相關常見問題的解答 toofrequently。"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -16,15 +16,15 @@ ms.topic: article
 ms.date: 7/20/2017
 ms.author: negat
 ms.custom: na
-ms.openlocfilehash: f320dd5d1f8c99317792f4ae9e09bc5adaf79e25
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 0deb9e2bb79f87f17bbf748397b94dc53070cfbb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-virtual-machine-scale-sets-faqs"></a>Azure 虛擬機器擴展集常見問題集
 
-取得關於 Azure 中虛擬機器擴展集常見問題集的解答。
+取得在 Azure 中設定 toofrequently 關於虛擬機器規模集的解答。
 
 ## <a name="autoscale"></a>Autoscale
 
@@ -40,7 +40,7 @@ ms.lasthandoff: 08/03/2017
 
 是。 如需根據 Azure 服務匯流排主題和佇列長度自動調整的範例，請參閱 [Azure 監視器的自動調整常用計量](https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/)。
 
-如需服務匯流排佇列，請使用下列 JSON：
+服務匯流排佇列，請使用下列 JSON hello:
 
 ```json
 "metricName": "MessageCount",
@@ -48,7 +48,7 @@ ms.lasthandoff: 08/03/2017
 "metricResourceUri": "/subscriptions/s1/resourceGroups/rg1/providers/Microsoft.ServiceBus/namespaces/mySB/queues/myqueue"
 ```
 
-如需儲存體佇列，請使用下列 JSON：
+儲存體佇列，請使用下列 JSON hello:
 
 ```json
 "metricName": "ApproximateMessageCount",
@@ -61,13 +61,13 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="should-i-autoscale-by-using-host-based-metrics-or-a-diagnostics-extension"></a>我應該使用主機型計量或診斷擴充功能進行自動調整？
 
-您可以在 VM 上建立自動調整設定，以使用主機層級計量或客體 OS 型計量。
+您可以建立自動調整設定在 VM toouse 主機層級度量或客體作業系統為基礎的度量。
 
 如需支援的計量資訊，請參閱 [Azure 監視器的自動調整常見計量](https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-autoscale-common-metrics)。 
 
 如需虛擬機器擴展集的完整範例，請參閱[使用虛擬機器擴展集的 Resource Manager 範本進行進階自動調整設定](https://docs.microsoft.com/azure/monitoring-and-diagnostics/insights-advanced-autoscale-virtual-machine-scale-sets)。 
 
-此範例使用主機層級 CPU 計量及訊息計數計量。
+hello 範例會使用 hello 主機層級 CPU 度量和訊息計數 」 指標。
 
 
 
@@ -75,26 +75,26 @@ ms.lasthandoff: 08/03/2017
 
 您可以透過 PowerShell 或 Azure CLI，建立虛擬機器擴展集計量的警示。 如需詳細資訊，請參閱 [Azure 監視器 PowerShell 快速入門範例](https://azure.microsoft.com/documentation/articles/insights-powershell-samples/#create-alert-rules)和 [Azure 監視器跨平台 CLI 快速入門範例](https://azure.microsoft.com/documentation/articles/insights-cli-samples/#work-with-alerts)。
 
-虛擬機器擴展集的 TargetResourceId 如下所示： 
+hello TargetResourceId hello 虛擬機器擴展集看起來像這樣： 
 
 /subscriptions/yoursubscriptionid/resourceGroups/yourresourcegroup/providers/Microsoft.Compute/virtualMachineScaleSets/yourvmssname
 
-您可以選擇任何 VM 效能計數器做為要設定警示的計量。 如需詳細資訊，請參閱 [Azure 監視器的自動調整常用計量](https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/)一文中的 [Resource Manager 型 Windows VM 的客體 OS 計量](https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/#guest-os-metrics-resource-manager-based-windows-vms)和 [Linux VM 的客體 OS 計量](https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/#guest-os-metrics-linux-vms)。
+您可以選擇任何 VM 效能計數器為 hello 度量 tooset 的警示。 如需詳細資訊，請參閱[資源管理員為基礎的 Windows Vm 的客體 OS 度量](https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/#guest-os-metrics-resource-manager-based-windows-vms)和[適用於 Linux Vm 的客體 OS 度量](https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/#guest-os-metrics-linux-vms)在 hello [Azure 監視自動調整常見標準](https://azure.microsoft.com/documentation/articles/insights-autoscale-common-metrics/)發行項。
 
 ### <a name="how-do-i-set-up-autoscale-on-a-virtual-machine-scale-set-by-using-powershell"></a>如何使用 PowerShell 在虛擬機器擴展集上設定自動調整？
 
-若要使用 PowerShell 在虛擬機器擴展集上設定自動調整，請參閱部落格文章[如何將自動調整新增至 Azure 虛擬機器擴展集](https://msftstack.wordpress.com/2017/03/05/how-to-add-autoscale-to-an-azure-vm-scale-set/)。
+tooset 設定自動調整規模上的虛擬機器擴展集使用 PowerShell，請參閱 hello 部落格文章[tooadd 自動調整規模 tooan Azure 虛擬機器規模的設定方式](https://msftstack.wordpress.com/2017/03/05/how-to-add-autoscale-to-an-azure-vm-scale-set/)。
 
 
 
 
 ## <a name="certificates"></a>憑證
 
-### <a name="how-do-i-securely-ship-a-certificate-to-the-vm-how-do-i-provision-a-virtual-machine-scale-set-to-run-a-website-where-the-ssl-for-the-website-is-shipped-securely-from-a-certificate-configuration-the-common-certificate-rotation-operation-would-be-almost-the-same-as-a-configuration-update-operation-do-you-have-an-example-of-how-to-do-this"></a>如何安全地將憑證送至 VM？ 如何佈建虛擬機器擴展集來執行網站 (其中網站的 SSL 會安全地從憑證組態送出)？ (常見的憑證旋轉作業幾乎與組態更新作業相同。)您是否有如何進行這項操作的範例？ 
+### <a name="how-do-i-securely-ship-a-certificate-toohello-vm-how-do-i-provision-a-virtual-machine-scale-set-toorun-a-website-where-hello-ssl-for-hello-website-is-shipped-securely-from-a-certificate-configuration-hello-common-certificate-rotation-operation-would-be-almost-hello-same-as-a-configuration-update-operation-do-you-have-an-example-of-how-toodo-this"></a>如何安全地發行憑證 toohello VM？ 如何佈建虛擬機器規模集 toorun 其中 hello hello 網站的 SSL 於安全的憑證設定的網站？ (hello 常見的憑證旋轉作業將會幾乎 hello 相同的組態更新作業。)您是否有如何的範例 toodo 這？ 
 
-若要安全地將憑證送至 VM，您可以將客戶憑證直接安裝至客戶金鑰保存庫中的 Windows 憑證存放區。
+toosecurely 出貨憑證 toohello VM，您可以直接在 hello 客戶的金鑰保存庫中的 Windows 憑證存放區安裝客戶憑證。
 
-使用下列 JSON：
+使用下列 JSON hello:
 
 ```json
 "secrets": [
@@ -112,7 +112,7 @@ ms.lasthandoff: 08/03/2017
 ]
 ```
 
-程式碼支援 Windows 和 Linux。
+hello 的程式碼支援 Windows 和 Linux。
 
 如需詳細資訊，請參閱[建立或更新虛擬機器擴展集](https://msdn.microsoft.com/library/mt589035.aspx)。
 
@@ -121,7 +121,7 @@ ms.lasthandoff: 08/03/2017
 
 1.  在金鑰保存庫中建立自我簽署憑證。
 
-    使用下列 PowerShell 命令：
+    使用下列 PowerShell 命令的 hello:
 
     ```powershell
     Import-Module "C:\Users\mikhegn\Downloads\Service-Fabric-master\Scripts\ServiceFabricRPHelpers\ServiceFabricRPHelpers.psm1"
@@ -131,13 +131,13 @@ ms.lasthandoff: 08/03/2017
     Invoke-AddCertToKeyVault -SubscriptionId <Your SubID> -ResourceGroupName KeyVault -Location westus -VaultName MikhegnVault -CertificateName VMSSCert -Password VmssCert -CreateSelfSignedCertificate -DnsName vmss.mikhegn.azure.com -OutputPath c:\users\mikhegn\desktop\
     ```
 
-    此命令可讓您輸入 Azure Resource Manager 範本。
+    此命令提供下列 hello hello Azure Resource Manager 範本的輸入。
 
-    如需如何在金鑰保存庫中建立自我簽署憑證的範例，請參閱 [Service Fabric 叢集安全性案例](https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security/)一文。
+    如需如何 toocreate 自我簽署的憑證中金鑰保存庫，請參閱[Service Fabric 叢集安全性案例](https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security/)。
 
-2.  變更 Resource Manager 範本。
+2.  變更 hello Resource Manager 範本。
 
-    將這個屬性新增至 **virtualMachineProfile** 成為虛擬機器擴展集資源的一部分︰
+    新增此屬性太**virtualMachineProfile**，hello 一部分的虛擬機器規模集資源：
 
     ```json 
     "osProfile": {
@@ -161,9 +161,9 @@ ms.lasthandoff: 08/03/2017
     ```
   
 
-### <a name="can-i-specify-an-ssh-key-pair-to-use-for-ssh-authentication-with-a-linux-virtual-machine-scale-set-from-a-resource-manager-template"></a>是否可指定 SSH 金鑰組以便透過 Resource Manager 範本中的 Linux 虛擬機器擴展集來進行 SSH 驗證？  
+### <a name="can-i-specify-an-ssh-key-pair-toouse-for-ssh-authentication-with-a-linux-virtual-machine-scale-set-from-a-resource-manager-template"></a>可以指定 SSH 驗證 SSH 金鑰組的 toouse 設定資源管理員範本中的 Linux 虛擬機器比例嗎？  
 
-是。 **osProfile** 的 REST API 類似於標準 VM REST API。 
+是。 hello REST API 的**osProfile**是類似 toohello 標準 VM REST API。 
 
 在您的範本中包含 **osProfile**︰
 
@@ -185,22 +185,22 @@ ms.lasthandoff: 08/03/2017
 }
 ```
  
-此 JSON 區塊使用於 [101-vm-sshkey GitHub 快速入門範本](https://github.com/Azure/azure-quickstart-templates/blob/master/101-vm-sshkey/azuredeploy.json)。
+在中使用此 JSON 區塊[hello 101-vm-sshkey GitHub 快速入門範本](https://github.com/Azure/azure-quickstart-templates/blob/master/101-vm-sshkey/azuredeploy.json)。
  
-OS 設定檔也會使用於 [grelayhost.json GitHub 快速入門範本](https://github.com/ExchMaster/gadgetron/blob/master/Gadgetron/Templates/grelayhost.json)。
+hello OS 設定檔也會用於[hello grelayhost.json GitHub 快速啟動範本](https://github.com/ExchMaster/gadgetron/blob/master/Gadgetron/Templates/grelayhost.json)。
 
 如需詳細資訊，請參閱[建立或更新虛擬機器擴展集](https://msdn.microsoft.com/library/azure/mt589035.aspx#linuxconfiguration)。
   
 
 ### <a name="how-do-i-remove-deprecated-certificates"></a>如何移除已被取代的憑證？ 
 
-若要移除已被取代的憑證，請從保存庫憑證清單中移除舊的憑證。 將您想要的所有憑證保留在清單中的電腦上。 這樣不會從所有的 VM 移除憑證。 但也不會將憑證新增至虛擬機器擴展集中所建立的新 VM。 
+tooremove 取代 hello 保存庫憑證清單中移除 hello 舊憑證的憑證。 將保留的 tooremain hello 清單中電腦上的所有 hello 憑證。 這不會移除 hello 憑證所有 Vm。 它也不會新增 hello 憑證 toonew hello 虛擬機器規模集中建立的 Vm。 
 
-若要從現有的 VM 中移除憑證，請撰寫自訂指令碼擴充孤能，以從您的憑證存放區中手動移除憑證。
+現有的 Vm 所傳來的 tooremove hello 憑證撰寫自訂指令碼延伸 toomanually 移除 hello 憑證從憑證存放區。
  
-### <a name="how-do-i-inject-an-existing-ssh-public-key-into-the-virtual-machine-scale-set-ssh-layer-during-provisioning-i-want-to-store-the-ssh-public-key-values-in-azure-key-vault-and-then-use-them-in-my-resource-manager-template"></a>如何在佈建期間將現有的 SSH 公開金鑰插入至虛擬機器擴展集 SSH 層？ 我想要將 SSH 公開金鑰值儲存在 Azure Key Vault 中，然後在我的 Resource Manager 範本中使用它們。
+### <a name="how-do-i-inject-an-existing-ssh-public-key-into-hello-virtual-machine-scale-set-ssh-layer-during-provisioning-i-want-toostore-hello-ssh-public-key-values-in-azure-key-vault-and-then-use-them-in-my-resource-manager-template"></a>我如何插入現有的 SSH 公開金鑰 hello 虛擬機器規模集 SSH 層佈建期間？ 我想 toostore hello SSH 公開金鑰值在 Azure 金鑰保存庫，然後在 我的資源管理員範本中使用它們。
 
-如果您只透過 SSH 公開金鑰提供 VM，則不需要將公開金鑰放在 Key Vault 中。 公開金鑰不是密碼。
+如果您要提供 hello Vm 只能與 SSH 公開金鑰，您不需要 tooput hello 公用金鑰在金鑰保存庫。 公開金鑰不是密碼。
  
 您可以在建立 Linux VM 時以純文字提供 SSH 公開金鑰：
 
@@ -218,54 +218,54 @@ OS 設定檔也會使用於 [grelayhost.json GitHub 快速入門範本](https://
  
 linuxConfiguration 元素名稱 | 必要 | 類型 | 說明
 --- | --- | --- | --- |  ---
-ssh | 否 | 集合 | 指定 Linux OS 的 SSH 金鑰組態
-路徑 | 是 | String | 指定 SSH 金鑰或憑證必須位於的 Linux 檔案路徑
+ssh | 否 | 集合 | 指定 Linux 作業系統的 hello SSH 金鑰設定
+路徑 | 是 | String | 指定其中 hello SSH 金鑰或憑證應該位於 hello Linux 檔案路徑
 keyData | 是 | String | 指定 base64 編碼的 SSH 公開金鑰
 
-如需範例，請參閱 [101-vm-sshkey GitHub 快速入門範本](https://github.com/Azure/azure-quickstart-templates/blob/master/101-vm-sshkey/azuredeploy.json)。
+如需範例，請參閱[hello 101-vm-sshkey GitHub 快速入門範本](https://github.com/Azure/azure-quickstart-templates/blob/master/101-vm-sshkey/azuredeploy.json)。
 
  
-### <a name="when-i-run-update-azurermvmss-after-adding-more-than-one-certificate-from-the-same-key-vault-i-see-the-following-message"></a>當我在從相同金鑰保存庫新增一個以上的憑證之後執行 `Update-AzureRmVmss` 時，我會看到下列錯誤︰
+### <a name="when-i-run-update-azurermvmss-after-adding-more-than-one-certificate-from-hello-same-key-vault-i-see-hello-following-message"></a>當我執行`Update-AzureRmVmss`之後從 hello 加入一個以上的憑證相同金鑰保存庫，我看到下列訊息 hello:
  
 >Update-AzureRmVmss: 清單密碼包含重複的 /subscriptions/<my-subscription-id>/resourceGroups/internal-rg-dev/providers/Microsoft.KeyVault/vaults/internal-keyvault-dev 執行個體，不允許這種情況。
  
-如果您嘗試重新新增相同的保存庫，而不是對現有的來源保存庫使用新的保存庫憑證，就會發生這種情形。 如果您要新增其他密碼，`Add-AzureRmVmssSecret` 命令無法正常運作。
+如果您嘗試 toore 此情形-新增的 hello 相同保存庫而不是使用新的保存庫憑證 hello 現有來源保存庫。 hello`Add-AzureRmVmssSecret`命令無法正常運作如果您要新增其他機密資料。
  
-若要從相同金鑰保存庫新增更多密碼，請更新 $vmss.properties.osProfile.secrets[0].vaultCertificates 清單。
+tooadd hello 從多個密碼相同的金鑰保存庫中，更新 hello $vmss.properties.osProfile.secrets[0].vaultCertificates 清單。
  
-如需預期的輸入結構，請參閱[建立或更新虛擬機器擴展集](https://msdn.microsoft.com/library/azure/mt589035.aspx)。
+如 hello 預期輸入的結構，請參閱 <<c0> [ 建立或更新虛擬機器設定](https://msdn.microsoft.com/library/azure/mt589035.aspx)。
  
-在金鑰保存庫中的虛擬機器擴展集物件中尋找密碼。 然後，將憑證參考 (URL 及密碼存放區名稱) 新增至與保存庫相關聯的清單。
+尋找在 hello 虛擬機器規模集物件的 hello 金鑰保存庫中的 hello 密碼。 接著，新增您 hello 保存庫相關聯的憑證 （hello URL 和 hello 密碼存放區名稱） 的參考 toohello 清單。
 
 > [!NOTE] 
-> 目前，您無法使用虛擬機器擴展集 API 從 VM 中移除憑證。
+> 目前，您無法使用 hello 虛擬機器規模集 API，從 Vm 移除憑證。
 >
 
-新的 VM 不會有舊的憑證。 不過，具有憑證且已經部署的 VM 會有舊的憑證。
+新的 Vm 不會有 hello 舊的憑證。 不過，具有 hello 憑證，且其已部署的 Vm 會具備 hello 舊憑證。
  
-### <a name="can-i-push-certificates-to-the-virtual-machine-scale-set-without-providing-the-password-when-the-certificate-is-in-the-secret-store"></a>當憑證位於密碼存放區時，可以將憑證推送至虛擬機器擴展集而無須提供密碼？
+### <a name="can-i-push-certificates-toohello-virtual-machine-scale-set-without-providing-hello-password-when-hello-certificate-is-in-hello-secret-store"></a>可以推播憑證 toohello 虛擬機器擴展集而不需 hello 密碼存放區 hello 憑證時提供 hello 密碼嗎？
 
-您不需要使用硬式編碼在指令碼中寫入密碼。 您可以使用您用來執行部署指令碼的權限動態擷取密碼。 如果您的指令碼會從密碼存放區金鑰保存庫移動憑證，則密碼存放區 `get certificate` 命令也會輸出 pfx 檔案的密碼。
+您不需要 toohard 程式碼在指令碼中的密碼。 您可以動態擷取密碼與 hello 權限，您使用 toorun hello 部署指令碼。 如果您將憑證移動 hello 密碼存放區的金鑰保存庫中的指令碼，hello 密碼存放區`get certificate`命令也會輸出 hello hello.pfx 檔案的密碼。
  
-### <a name="how-does-the-secrets-property-of-virtualmachineprofileosprofile-for-a-virtual-machine-scale-set-work-why-do-i-need-the-sourcevault-value-when-i-have-to-specify-the-absolute-uri-for-a-certificate-by-using-the-certificateurl-property"></a>虛擬機器擴展集的 virtualMachineProfile.osProfile 的 Secrets 屬性如何運作？ 當我必須使用 certificateUrl 屬性來指定憑證的絕對 URI 時，為什麼需要 sourceVault 值？ 
+### <a name="how-does-hello-secrets-property-of-virtualmachineprofileosprofile-for-a-virtual-machine-scale-set-work-why-do-i-need-hello-sourcevault-value-when-i-have-toospecify-hello-absolute-uri-for-a-certificate-by-using-hello-certificateurl-property"></a>虛擬機器規模的 virtualMachineProfile.osProfile hello 機密屬性如何設定工作？ 當使用 hello certificateUrl 屬性 hello 憑證的絕對 URI 的 toospecify 為什麼需要 hello sourceVault 值？ 
 
-必須在 OS 設定檔的 Secrets 屬性中顯示 Windows 遠端管理 (WinRM) 憑證參考。 
+Windows 遠端管理 (WinRM) 憑證參考中必須要有 hello hello OS 設定檔的密碼屬性。 
 
-指出來源保存庫的目的是要強制執行使用者的 Azure 雲端服務模型中存在的存取控制清單 (ACL) 原則。 如果未指定來源保存庫，則沒有權限可存取密碼或將密碼部署至金鑰保存庫的使用者便能夠透過計算資源提供者 (CRP)。 甚至不存在的資源也會有 ACL。
+指出 hello 來源保存庫的 hello 目的是 tooenforce 存取控制清單 (ACL) 原則存在於使用者的 Azure 雲端服務模型中。 如果未指定 hello 來源保存庫，沒有權限 toodeploy 或存取機密資料 tooa 金鑰保存庫的使用者將能夠 toothrough 計算資源提供者 (CRP)。 甚至不存在的資源也會有 ACL。
 
-如果您提供不正確的來源保存庫識別碼，但為有效的金鑰保存庫 URL，則系統會在您輪詢作業時報告錯誤。
+如果您提供有效的金鑰保存庫 URL 但不正確的來源保存庫識別碼，輪詢 hello 作業時報告錯誤。
  
-### <a name="if-i-add-secrets-to-an-existing-virtual-machine-scale-set-are-the-secrets-injected-into-existing-vms-or-only-into-new-ones"></a>如果我將密碼新增至現有虛擬機器擴展集，則新的密碼會插入現有的 VM，或只會插入新的 VM？ 
+### <a name="if-i-add-secrets-tooan-existing-virtual-machine-scale-set-are-hello-secrets-injected-into-existing-vms-or-only-into-new-ones"></a>如果我要加入現有的虛擬機器規模集的密碼 tooan，hello 機密資料插入到現有的 Vm，或只有新的嗎？ 
 
-憑證會新增至所有 VM，甚至是既有的 VM。 如果虛擬機器擴展集 upgradePolicy 屬性設定為 **manual**，當您在 VM 上執行手動更新時，憑證會新增至 VM。
+憑證會加入 tooall Vm，即使預先存在的。 如果您的虛擬機器規模集 upgradePolicy 屬性設定太**手動**，hello 憑證會新增 toohello VM，當您在 hello VM 上執行的手動更新。
  
 ### <a name="where-do-i-put-certificates-for-linux-vms"></a>將 Linux VM 的憑證放在哪裡？
 
-若要了解如何部署 Linux VM 的憑證，請參閱[將憑證從客戶管理的金鑰保存庫部署到 VM](https://blogs.technet.microsoft.com/kv/2015/07/14/deploy-certificates-to-vms-from-customer-managed-key-vault/)。
+如何 toodeploy 憑證適用於 Linux Vm，請參閱的 toolearn[部署從客戶管理的金鑰保存庫憑證 tooVMs](https://blogs.technet.microsoft.com/kv/2015/07/14/deploy-certificates-to-vms-from-customer-managed-key-vault/)。
   
-### <a name="how-do-i-add-a-new-vault-certificate-to-a-new-certificate-object"></a>如何將新的保存庫憑證新增至新的憑證物件？
+### <a name="how-do-i-add-a-new-vault-certificate-tooa-new-certificate-object"></a>如何新增新保存庫憑證 tooa 新憑證的物件？
 
-若要將保存庫憑證新增至現有的密碼，請參閱下列 PowerShell 範例。 只使用一個密碼物件。
+tooadd 保存庫憑證 tooan 現有密碼，請參閱下列 PowerShell 範例 hello。 只使用一個密碼物件。
  
 ```powershell
 $newVaultCertificate = New-AzureRmVmssVaultCertificateConfig -CertificateStore MY -CertificateUrl https://sansunallapps1.vault.azure.net:443/secrets/dg-private-enc/55fa0332edc44a84ad655298905f1809
@@ -275,55 +275,55 @@ $vmss.VirtualMachineProfile.OsProfile.Secrets[0].VaultCertificates.Add($newVault
 Update-AzureRmVmss -VirtualMachineScaleSet $vmss -ResourceGroup $rg -Name $vmssName
 ```
  
-### <a name="what-happens-to-certificates-if-you-reimage-a-vm"></a>如果您重新安裝映像 VM，憑證會發生什麼事？
+### <a name="what-happens-toocertificates-if-you-reimage-a-vm"></a>發生什麼情況 toocertificates VM 重新製作映像？
 
-如果您重新安裝 VM 映像，則會刪除憑證。 重新安裝映像會刪除整個 OS 磁碟。 
+如果您重新安裝 VM 映像，則會刪除憑證。 刪除 hello 整個作業系統磁碟重新安裝映像。 
  
-### <a name="what-happens-if-you-delete-a-certificate-from-the-key-vault"></a>如果您從 Key Vault 中刪除憑證會發生什麼事？
+### <a name="what-happens-if-you-delete-a-certificate-from-hello-key-vault"></a>如果您從 hello 金鑰保存庫刪除憑證，怎樣？
 
-如果從金鑰保存庫中刪除密碼，然後您對所有 VM 執行 `stop deallocate` 而後再次啟動它們，您會發生失敗。 發生失敗的原因是 CRP 需要從金鑰保存庫擷取密碼，但無法這麼做。 在此案例中，您可以從虛擬機器擴展集模型刪除憑證。 
+如果從 hello 金鑰保存庫中刪除 hello 密碼，然後執行`stop deallocate`為您的 Vm，然後再次啟動，您將遇到失敗。 hello 失敗發生因為 hello CRP 需要 tooretrieve hello 金鑰保存庫中的 hello 機密資料，但它不能。 在此案例中，您可以刪除 hello 憑證從 hello 虛擬機器規模集模型。 
 
-CRP 元件不會保存客戶密碼。 如果您對虛擬機器擴展集中的所有 VM 執行 `stop deallocate`，則會刪除快取。 在此案例中會從金鑰保存庫中擷取密碼。
+hello CRP 元件不會保留客戶機密資料。 如果您執行`stop deallocate`hello 虛擬機器規模集中的所有 vm，已刪除的 hello 快取。 在此案例中，從 hello 金鑰保存庫擷取密碼。
 
-您不會在相應放大時遇到此問題，因為 Azure Service Fabric 中有一個快取的密碼副本 (在單一網狀架構租用戶模型中)。
+向外延展，因為沒有快取的密碼的複本 hello Azure Service Fabric 中 （在 hello 單一網狀架構租用戶模型） 時，不會遇到這個問題。
  
-### <a name="why-do-i-have-to-specify-the-exact-location-for-the-certificate-url-httpsname-of-the-vaultvaultazurenet443secretsexact-location-as-indicated-in-service-fabric-cluster-security-scenarioshttpsazuremicrosoftcomdocumentationarticlesservice-fabric-cluster-security"></a>為什麼我必須指定憑證 URL 的確切位置 (https://<name of the vault>.vault.azure.net:443/secrets/<exact location>)，如 [Service Fabric 叢集安全性案例](https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security/)所示？
+### <a name="why-do-i-have-toospecify-hello-exact-location-for-hello-certificate-url-httpsname-of-hello-vaultvaultazurenet443secretsexact-location-as-indicated-in-service-fabric-cluster-security-scenarioshttpsazuremicrosoftcomdocumentationarticlesservice-fabric-cluster-security"></a>為什麼必須 hello 憑證 URL 的 toospecify hello 確切位置 (https://<name of hello vault>.vault.azure.net:443/secrets/<exact location>)，如下所示[Service Fabric 叢集安全性案例](https://azure.microsoft.com/documentation/articles/service-fabric-cluster-security/)？
  
-Azure Key Vault 文件表示「取得密碼 REST API」應傳回最新版的密碼 (若未指定版本的話)。
+hello Azure Key Vault 文件會指出該 hello 取得密碼 REST API 應傳回 hello hello 密碼的最新的版本，如果未指定 hello 版本。
  
 方法 | URL
 --- | ---
 GET | https://mykeyvault.vault.azure.net/secrets/{密碼-名稱}/{密碼-版本}?api-version={api-版本}
 
-將 {密碼-名稱} 替換為名稱，以及將 {密碼-版本} 替換為您想要擷取的密碼版本。 可能會排除密碼版本。 在此情況下會擷取目前的版本。
+取代 {*密碼名稱*} 與 hello 名稱取代 {*密碼-版本*} 想 tooretrieve hello 版本 hello 密碼。 可能會排除 hello 密碼版本。 在此情況下，會擷取 hello 目前版本。
   
-### <a name="why-do-i-have-to-specify-the-certificate-version-when-i-use-key-vault"></a>使用 Key Vault 時，為什麼必須指定憑證版本？
+### <a name="why-do-i-have-toospecify-hello-certificate-version-when-i-use-key-vault"></a>為什麼當我使用金鑰保存庫有 toospecify hello 憑證版本？
 
-指定憑證版本的 Key Vault 需求目的是要讓使用者清楚了解其 VM 上所部署的憑證。
+hello 目的 hello 金鑰保存庫需求 toospecify hello 憑證版本是的 toomake 它清除 toohello 使用者 Vm 上部署何種憑證。
 
-如果您建立 VM，然後更新金鑰保存庫中的密碼，新的憑證不會下載至您的 VM。 但您的 VM 似乎會參考它，且新的 VM 會取得新的密碼。 若要避免這個問題，您必須參考密碼版本。
+如果您建立的 VM，然後更新您的密碼在 hello 金鑰保存庫 hello 新憑證不是下載的 tooyour Vm。 但您的 Vm 會出現 tooreference，且新的 Vm 取得 hello 新密碼。 tooavoid，您會需要的 tooreference 密碼版本。
 
-### <a name="my-team-works-with-several-certificates-that-are-distributed-to-us-as-cer-public-keys-what-is-the-recommended-approach-for-deploying-these-certificates-to-a-virtual-machine-scale-set"></a>我的小組會使用發佈給我們做為 .cer 公開金鑰的多個憑證。 將這些憑證部署至虛擬機器擴展集的建議方法為何？
+### <a name="my-team-works-with-several-certificates-that-are-distributed-toous-as-cer-public-keys-what-is-hello-recommended-approach-for-deploying-these-certificates-tooa-virtual-machine-scale-set"></a>我的小組會搭配幾個散發 toous 為.cer 公開金鑰的憑證。 什麼是建議的方法來部署這些憑證 tooa 虛擬機器規模集的 hello？
 
-若要將 .cer 公開金鑰部署至虛擬機器擴展集，您可以產生僅包含 .cer 檔案的 .pfx 檔案。 若要這樣做，請使用 `X509ContentType = Pfx`。 例如，載入 .cer 檔案做為 C# 或 PowerShell 中的 x509Certificate2 物件，然後呼叫此方法。 
+toodeploy.cer 公開金鑰 tooa 虛擬機器規模集，您可以產生僅包含.cer 檔案的.pfx 檔案。 toodo 此，請使用`X509ContentType = Pfx`。 例如，當做 C# 或 PowerShell 中的 x509Certificate2 物件載入 hello.cer 檔案，然後呼叫 hello 方法。 
 
 如需詳細資訊，請參閱 [X509Certificate.Export 方法 (X509ContentType, String)](https://msdn.microsoft.com/library/24ww6yzk(v=vs.110.aspx))。
 
-### <a name="i-do-not-see-an-option-for-users-to-pass-in-certificates-as-base64-strings-most-other-resource-providers-have-this-option"></a>我看不到可供使用者傳入憑證做為 base64 字串的選項。 大部分其他資源提供者都有這個選項。
+### <a name="i-do-not-see-an-option-for-users-toopass-in-certificates-as-base64-strings-most-other-resource-providers-have-this-option"></a>我看不到憑證中的使用者 toopass 選項 base64 字串。 大部分其他資源提供者都有這個選項。
 
-若要模擬傳入憑證做為 base64 字串，您可以在 Resource Manager 範本中擷取最新版的 URL。 在 Resource Manager 範本中包含下列 JSON 屬性︰
+tooemulate 傳入做為 base64 字串憑證，您可以擷取 hello 最新版本 URL 中的資源管理員範本。 包括下列資源管理員範本中的 JSON 屬性的 hello:
 
 ```json 
 "certificateUrl": "[reference(resourceId(parameters('vaultResourceGroup'), 'Microsoft.KeyVault/vaults/secrets', parameters('vaultName'), parameters('secretName')), '2015-06-01').secretUriWithVersion]"
 ```
  
-### <a name="do-i-have-to-wrap-certificates-in-json-objects-in-key-vaults"></a>我們必須在金鑰保存庫的 JSON 物件中包裝憑證嗎？
+### <a name="do-i-have-toowrap-certificates-in-json-objects-in-key-vaults"></a>有金鑰保存庫中的 JSON 物件中 toowrap 憑證嗎？
 
 在虛擬機器擴展集和 VM 中，憑證必須包裝在 JSON 物件中。 
 
-我們也支援內容類型 application/x-pkcs12。 如需使用 application/x-pkcs12 的相關指示，請參閱 [Azure Key Vault 中的 PFX 憑證](http://www.rahulpnath.com/blog/pfx-certificate-in-azure-key-vault/)。
+我們也支援 hello 內容類型的應用程式/x-pkcs12。 如需使用 application/x-pkcs12 的相關指示，請參閱 [Azure Key Vault 中的 PFX 憑證](http://www.rahulpnath.com/blog/pfx-certificate-in-azure-key-vault/)。
  
-我們目前不支援 .cer 檔案。 若要使用 .cer 檔案，請將它們匯出到 .pfx 容器。
+我們目前不支援 .cer 檔案。 toouse.cer 檔案，將它們匯出到.pfx 容器。
 
 
 
@@ -331,11 +331,11 @@ GET | https://mykeyvault.vault.azure.net/secrets/{密碼-名稱}/{密碼-版本}
 
 ### <a name="are-virtual-machine-scale-sets-pci-compliant"></a>虛擬機器擴展集符合 PCI 規範嗎？
 
-虛擬機器擴展集是以 CRP 為基礎的精簡 API 層。 這兩個元件都在 Azure 服務樹狀目錄中計算平台的一部分。
+虛擬機器擴展集是之上 hello CRP 精簡型的應用程式開發介面層級。 兩個元件均 hello Azure 服務樹狀目錄中的 hello 運算平台的一部分。
 
-就相容性的觀點而言，虛擬機器擴展集是 Azure 計算平台的基本部分。 它們會與 CRP 本身共用一個小組、工具、程序、部署方法、安全性控制、Just-In-Time (JIT) 編譯、監控、警示等。 虛擬機器擴展集符合支付卡產業 (PCI) 規範，因為 CRP 是目前 PCI 資料安全標準 (DSS) 證明的一部分。
+相容性的觀點而言，虛擬機器擴展集是 hello Azure 運算平台的基礎部分。 它們 hello CRP 本身的情況下，共用小組、 工具、 處理程序、 部署方法，安全性控制，在 just-in-time (JIT) 編譯、 監視、 警示與等等。 虛擬機器擴展集是付款卡產業 (PCI)-因為 hello CRP 屬於 hello 目前 PCI 資料安全標準 (DSS) 情況證明相容。
 
-如需詳細資訊，請參閱 [Microsoft 信任中心](https://www.microsoft.com/TrustCenter/Compliance/PCI)。
+如需詳細資訊，請參閱[hello Microsoft 信任中心](https://www.microsoft.com/TrustCenter/Compliance/PCI)。
 
 
 
@@ -346,7 +346,7 @@ GET | https://mykeyvault.vault.azure.net/secrets/{密碼-名稱}/{密碼-版本}
 
 ### <a name="how-do-i-delete-a-virtual-machine-scale-set-extension"></a>如何刪除虛擬機器擴展集擴充功能？
 
-若要刪除虛擬機器擴展集擴充功能，請使用下列 PowerShell 範例︰
+toodelete 的虛擬機器擴展集延伸模組，使用下列 PowerShell 範例的 hello:
 
 ```powershell
 $vmss = Get-AzureRmVmss -ResourceGroupName "resource_group_name" -VMScaleSetName "vmssName" 
@@ -356,22 +356,22 @@ $vmss=Remove-AzureRmVmssExtension -VirtualMachineScaleSet $vmss -Name "extension
 Update-AzureRmVmss -ResourceGroupName "resource_group_name" -VMScaleSetName "vmssName" -VirtualMacineScaleSet $vmss
 ```
  
-您可以在 `$vmss` 中找到 extensionName 值。
+您可以找到中的 hello extensionName 值`$vmss`。
    
 ### <a name="is-there-a-virtual-machine-scale-set-template-example-that-integrates-with-operations-management-suite"></a>是否有與 Operations Management Suite 整合的虛擬機器擴展集範本範例？
 
-如需與 Operations Management Suite 整合的虛擬機器擴展集範本範例，請參閱[部署 Azure Service Fabric 叢集並使用 Log Analytics 來啟用監視](https://github.com/krnese/AzureDeploy/tree/master/OMS/MSOMS/ServiceFabric)中的第二個範例。
+虛擬機器擴展集整合與 Operations Management Suite 的範本範例，請參閱中的 hello 第二個範例[部署 Azure Service Fabric 叢集，並啟用監視，可使用記錄分析](https://github.com/krnese/AzureDeploy/tree/master/OMS/MSOMS/ServiceFabric)。
    
-### <a name="extensions-seem-to-run-in-parallel-on-virtual-machine-scale-sets-this-causes-my-custom-script-extension-to-fail-what-can-i-do-to-fix-this"></a>擴充功能似乎會在虛擬機器擴展集上平行執行。 這會導致自訂指令碼擴充功能失敗。 可以做什麼來修正這個問題？
+### <a name="extensions-seem-toorun-in-parallel-on-virtual-machine-scale-sets-this-causes-my-custom-script-extension-toofail-what-can-i-do-toofix-this"></a>延伸模組看起來 toorun 以平行方式上的虛擬機器規模集。 這會導致我的自訂指令碼延伸 toofail。 怎麼 toofix 這？
 
-若要了解虛擬機器擴展集中的擴充功能排序，請參閱 [Azure 虛擬機器擴展集中的擴充功能排序](https://msftstack.wordpress.com/2016/05/12/extension-sequencing-in-azure-vm-scale-sets/)。
+請參閱 < 關於虛擬機器擴展集，在擴充功能順序 toolearn[在 Azure 虛擬機器擴展集延伸模組排序](https://msftstack.wordpress.com/2016/05/12/extension-sequencing-in-azure-vm-scale-sets/)。
  
  
-### <a name="how-do-i-reset-the-password-for-vms-in-my-virtual-machine-scale-set"></a>如何重設虛擬機器擴展集中 VM 的密碼？
+### <a name="how-do-i-reset-hello-password-for-vms-in-my-virtual-machine-scale-set"></a>如何重設 hello 密碼對於 Vm 在我的虛擬機器規模集？
 
-若要重設虛擬機器擴展集中 VM 的密碼，請使用 VM 存取擴充功能。 
+Vm 的虛擬機器規模的 tooreset hello 密碼設定，請使用 VM 存取擴充功能。 
 
-使用下列 PowerShell 範例：
+使用下列 PowerShell 範例 hello:
 
 ```powershell
 $vmssName = "myvmss"
@@ -387,24 +387,24 @@ Update-AzureRmVmss -ResourceGroupName $vmssResourceGroup -Name $vmssName -Virtua
 ```
  
  
-### <a name="how-do-i-add-an-extension-to-all-vms-in-my-virtual-machine-scale-set"></a>如何將擴充功能新增至虛擬機器擴展集中的所有 VM？
+### <a name="how-do-i-add-an-extension-tooall-vms-in-my-virtual-machine-scale-set"></a>如何在我的虛擬機器規模集中新增擴充功能 tooall Vm？
 
-將更新原則設定為**自動**時，使用新的擴充屬性重新部署範本便會更新所有 VM。
+如果更新原則設定太**自動**，重新部署的 hello 新延伸模組屬性的 hello 範本更新所有 Vm。
 
-如果更新原則設定為**手動**，請先更新擴充功能，然後手動更新 VM 中的所有執行個體。
+如果更新原則設定太**手動**，第一次更新 hello 副檔名，並以手動方式更新您的 Vm 中的所有執行個體。
 
   
-### <a name="if-the-extensions-associated-with-an-existing-virtual-machine-scale-set-are-updated-are-existing-vms-affected-that-is-will-the-vms-not-match-the-virtual-machine-scale-set-model-or-are-they-ignored-when-an-existing-machine-is-service-healed-or-reimaged-are-the-scripts-that-are-currently-configured-on-the-virtual-machine-scale-set-executed-or-are-the-scripts-that-were-configured-when-the-vm-was-first-created-used"></a>如果更新與現有虛擬機器擴展集相關聯的擴充功能，現有的 VM 是否會受影響？ (也就是，VM「不」符合虛擬機器擴展集模型嗎？)或者會忽略它們？ 當現有機器為服務所修復或重新安裝映像時，是否會執行目前在虛擬機器擴展集上設定的指令碼，或是否會使用第一次建立 VM 時設定的指令？
+### <a name="if-hello-extensions-associated-with-an-existing-virtual-machine-scale-set-are-updated-are-existing-vms-affected-that-is-will-hello-vms-not-match-hello-virtual-machine-scale-set-model-or-are-they-ignored-when-an-existing-machine-is-service-healed-or-reimaged-are-hello-scripts-that-are-currently-configured-on-hello-virtual-machine-scale-set-executed-or-are-hello-scripts-that-were-configured-when-hello-vm-was-first-created-used"></a>Hello 與現有的虛擬機器規模集相關聯的延伸模組更新時，如果現有的 Vm 會受到影響？ (也就是將 hello Vm*不*相符 hello 虛擬機器擴充集模型嗎？)或者會忽略它們？ 當現有的機器是服務修復或重新安裝映像時，會 hello hello 虛擬機器規模集執行，目前設定的指令碼或 hello 指令碼已設定使用時，會先建立 VM 的 hello？
 
-如果已更新虛擬機器擴展集模型中的擴充定義且 upgradePolicy 屬性設定為 **automatic**，則會更新 VM。 如果 upgradePolicy 屬性設定為 **manual**，則會將擴充功能標示為不符合模型。 
+如果 hello 延伸定義在 hello 虛擬機器擴展集模型已更新，而且 hello upgradePolicy 屬性設定太**自動**，它會更新 hello Vm。 如果 hello upgradePolicy 屬性設定太**手動**，延伸模組已標示為不符合 hello 模型。 
 
-如果現有 VM 為服務所修復，它會呈現重新開機狀態，且不會重新執行擴充功能。 若已重新安裝映像，就像是以來源映像取代 OS 磁碟機。 系統會執行最新模型的任何特製化項目，例如擴充功能。
+如果服務修復現有的 VM，它會顯示為重新開機，並 hello 擴充功能不會重新執行。 如果它的映像後，就像是 hello 作業系統磁碟機取代 hello 來源映像。 執行從 hello 最新的模型，例如延伸模組的任何特製化。
  
-### <a name="how-do-i-join-a-virtual-machine-scale-set-to-an-azure-ad-domain"></a>如何將虛擬機器擴展集加入至 Azure AD 網域？
+### <a name="how-do-i-join-a-virtual-machine-scale-set-tooan-azure-ad-domain"></a>如何將虛擬機器規模集 tooan Azure AD 網域的聯結？
 
-若要將虛擬機器擴展集加入至 Azure Active Directory (Azure AD) 網域，您可以定義擴充功能。 
+toojoin 虛擬機器規模集 tooan Azure Active Directory (Azure AD) 網域，您可以定義擴充功能。 
 
-若要定義擴充功能，請使用 JsonADDomainExtension 屬性︰
+toodefine 擴充功能，使用 hello JsonADDomainExtension 屬性：
 
 ```json
 "extensionProfile": {
@@ -431,20 +431,20 @@ Update-AzureRmVmss -ResourceGroupName $vmssResourceGroup -Name $vmssName -Virtua
 }
 ```
  
-### <a name="my-virtual-machine-scale-set-extension-is-trying-to-install-something-that-requires-a-reboot-for-example-commandtoexecute-powershellexe--executionpolicy-unrestricted-install-windowsfeature-name-fs-resource-manager-includemanagementtools"></a>我的虛擬機器擴展集擴充功能正嘗試安裝需要重新開機的項目。 例如："commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted Install-WindowsFeature –Name FS-Resource-Manager –IncludeManagementTools"
+### <a name="my-virtual-machine-scale-set-extension-is-trying-tooinstall-something-that-requires-a-reboot-for-example-commandtoexecute-powershellexe--executionpolicy-unrestricted-install-windowsfeature-name-fs-resource-manager-includemanagementtools"></a>我的虛擬機器規模集擴充功能正嘗試 tooinstall 而需要重新開機的項目。 例如："commandToExecute": "powershell.exe -ExecutionPolicy Unrestricted Install-WindowsFeature –Name FS-Resource-Manager –IncludeManagementTools"
 
-如果虛擬機器擴展集擴充功能正嘗試安裝需要重新開機的項目，您可以使用 Azure 自動化預期狀態設定 (自動化 DSC) 擴充功能。 如果作業系統是 Windows Server 2012 R2，Azure 會提取 Windows Management Framework (WMF) 5.0 安裝程式，重新開機，然後繼續進行設定。 
+如果虛擬機器規模集擴充功能會嘗試 tooinstall 而需要重新開機的項目，您可以使用 hello Azure 自動化 Desired State Configuration (Automation DSC) 的延伸模組。 如果 hello 作業系統是 Windows Server 2012 R2，Azure 會提取在 hello Windows Management Framework (WMF) 5.0 安裝程式中重新開機，然後再繼續執行 hello 組態。 
  
 ### <a name="how-do-i-turn-on-antimalware-in-my-virtual-machine-scale-set"></a>如何在虛擬機器擴展集中開啟反惡意程式碼？
 
-若要在虛擬機器擴展集上開啟反惡意程式碼，請使用下列 PowerShell 範例︰
+tooturn 虛擬機器的標尺上的反惡意程式碼上設定，請使用下列 PowerShell 範例 hello:
 
 ```powershell
 $rgname = 'autolap'
 $vmssname = 'autolapbr'
 $location = 'eastus'
  
-# Retrieve the most recent version number of the extension.
+# Retrieve hello most recent version number of hello extension.
 $allVersions= (Get-AzureRmVMExtensionImage -Location $location -PublisherName "Microsoft.Azure.Security" -Type "IaaSAntimalware").Version
 $versionString = $allVersions[($allVersions.count)-1].Split(".")[0] + "." + $allVersions[($allVersions.count)-1].Split(".")[1]
  
@@ -454,9 +454,9 @@ Add-AzureRmVmssExtension -VirtualMachineScaleSet $VMSS -Name "IaaSAntimalware" -
 Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineScaleSet $VMSS 
 ```
 
-### <a name="i-need-to-execute-a-custom-script-thats-hosted-in-a-private-storage-account-the-script-runs-successfully-when-the-storage-is-public-but-when-i-try-to-use-a-shared-access-signature-sas-it-fails-this-message-is-displayed-missing-mandatory-parameters-for-valid-shared-access-signature-linksas-works-fine-from-my-local-browser"></a>我需要執行裝載於私人儲存體帳戶的自訂指令碼。 當儲存體為公用儲存體時，指令碼會執行成功，但是當我嘗試使用共用存取簽章 (SAS) 時，它就會失敗。 隨即顯示此訊息：「遺漏有效的共用存取簽章的強制參數」。 Link+SAS 可從我的本機瀏覽器正常運作。
+### <a name="i-need-tooexecute-a-custom-script-thats-hosted-in-a-private-storage-account-hello-script-runs-successfully-when-hello-storage-is-public-but-when-i-try-toouse-a-shared-access-signature-sas-it-fails-this-message-is-displayed-missing-mandatory-parameters-for-valid-shared-access-signature-linksas-works-fine-from-my-local-browser"></a>我需要 tooexecute 裝載在私人儲存體帳戶中之自訂指令碼。 hello 指令碼順利執行時 hello 儲存體是公用的但是當我嘗試 toouse 共用存取簽章 (SAS)，它將會失敗。 隨即顯示此訊息：「遺漏有效的共用存取簽章的強制參數」。 Link+SAS 可從我的本機瀏覽器正常運作。
 
-若要執行裝載於私人儲存體帳戶的自訂指令碼，請使用儲存體帳戶金鑰和名稱來進行受保護的設定。 如需詳細資訊，請參閱[適用於 Windows 的自訂指令碼擴充功能](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-extensions-customscript/#template-example-for-a-windows-vm-with-protected-settings)。
+tooexecute 裝載在私人儲存體帳戶之自訂指令碼會設定與 hello 儲存體帳戶金鑰和名稱的受保護的設定。 如需詳細資訊，請參閱[適用於 Windows 的自訂指令碼擴充功能](https://azure.microsoft.com/documentation/articles/virtual-machines-windows-extensions-customscript/#template-example-for-a-windows-vm-with-protected-settings)。
 
 
 
@@ -466,9 +466,9 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 
 ## <a name="networking"></a>網路
  
-### <a name="is-it-possible-to-assign-a-network-security-group-nsg-to-a-scale-set-so-that-it-will-apply-to-all-the-vm-nics-in-the-set"></a>是否可以將「網路安全性群組」(NSG) 指派給擴展集，以便將它套用至擴展集中的所有 VM NIC？
+### <a name="is-it-possible-tooassign-a-network-security-group-nsg-tooa-scale-set-so-that-it-will-apply-tooall-hello-vm-nics-in-hello-set"></a>是否可能 tooassign 網路安全性群組 (NSG) tooa 縮放設定，讓它將會套用在 hello 集中 tooall hello VM Nic？
 
-是。 您可以透過在網路設定檔的 networkInterfaceConfigurations 區段中參考「網路安全性群組」，將它直接套用至擴展集。 範例：
+是。 直接 tooa 規模調整集合參考 hello networkInterfaceConfigurations hello 網路設定檔 區段中，可以套用網路安全性群組。 範例：
 
 ```json
 "networkProfile": {
@@ -506,27 +506,27 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 }
 ```
 
-### <a name="how-do-i-do-a-vip-swap-for-virtual-machine-scale-sets-in-the-same-subscription-and-same-region"></a>如何在相同訂用帳戶和相同區域中進行虛擬機器擴展集的 VIP 交換？
+### <a name="how-do-i-do-a-vip-swap-for-virtual-machine-scale-sets-in-hello-same-subscription-and-same-region"></a>如何進行 VIP 交換的虛擬機器規模集中 hello 相同訂用帳戶和相同的區域？
 
-如果您擁有兩個含 Azure Load Balancer 前端的虛擬機器擴展集，而且它們位於相同的訂用帳戶和區域，則您可以解除配置每個擴展集的公用 IP 位址，並指派給另一個。 例如，請參閱 [VIP 交換：Azure Resource Manager 中藍綠色版本部署](https://msftstack.wordpress.com/2017/02/24/vip-swap-blue-green-deployment-in-azure-resource-manager/) \(英文\)。 這確實意味著在網路層級取消配置/配置資源時會產生延遲。 更快的選項是搭配兩個後端集區和一個路由規則來使用 Azure 應用程式閘道。 或者，您可以透過 [Azure App Service](https://azure.microsoft.com/en-us/services/app-service/) 裝載應用程式，以提供在預備與生產位置之間快速切換的支援。
+如果您有兩個虛擬機器規模設定具有 Azure 負載平衡器前端，而且它們處於 hello 相同訂用帳戶和地區，您無法取消配置每個從 hello 公用 IP 位址，並指派其他 toohello。 例如，請參閱 [VIP 交換：Azure Resource Manager 中藍綠色版本部署](https://msftstack.wordpress.com/2017/02/24/vip-swap-blue-green-deployment-in-azure-resource-manager/) \(英文\)。 雖然 hello 資源會取消配置/配置在 hello 網路層級意味著延遲。 更快的選項是使用兩個後端集區和路由規則 toouse Azure 應用程式閘道。 或者，您可以透過 [Azure App Service](https://azure.microsoft.com/en-us/services/app-service/) 裝載應用程式，以提供在預備與生產位置之間快速切換的支援。
  
-### <a name="how-do-i-specify-a-range-of-private-ip-addresses-to-use-for-static-private-ip-address-allocation"></a>如何指定要用於靜態私人 IP 位址配置的私人 IP 位址範圍？
+### <a name="how-do-i-specify-a-range-of-private-ip-addresses-toouse-for-static-private-ip-address-allocation"></a>如何指定的私人 IP 位址 toouse 靜態私人 IP 位址配置的範圍？
 
 系統會從您指定的子網路選取 IP 位址。 
 
-虛擬機器擴展集 IP 位址的配置方法永遠是「動態」的，但這並不表示可以變更這些 IP 位址。 在此情況下，「動態」只表示您不會在 PUT 要求中指定 IP 位址。 使用子網路指定靜態設定。 
+hello 配置方法的虛擬機器規模集的 IP 位址永遠是 「 動態 」，但這並不表示這些 IP 位址，可以變更。 在此情況下，「 動態 」 只表示您沒有在 PUT 要求中指定 hello IP 位址。 指定 hello 靜態使用 hello 子網路設定。 
     
-### <a name="how-do-i-deploy-a-virtual-machine-scale-set-to-an-existing-azure-virtual-network"></a>如何將虛擬機器擴展集部署至現有的 Azure 虛擬網路？ 
+### <a name="how-do-i-deploy-a-virtual-machine-scale-set-tooan-existing-azure-virtual-network"></a>我要如何部署虛擬機器規模集 tooan 現有 Azure 虛擬網路？ 
 
-若要將虛擬機器擴展集部署至現有的 Azure 虛擬網路，請參閱[將虛擬機器擴展集部署至現有的虛擬網路](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-existing-vnet)。 
+toodeploy 的虛擬機器擴展集 tooan 現有的 Azure 虛擬網路，請參閱[部署虛擬機器規模集 tooan 現有虛擬網路](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-existing-vnet)。 
 
-### <a name="how-do-i-add-the-ip-address-of-the-first-vm-in-a-virtual-machine-scale-set-to-the-output-of-a-template"></a>如何將虛擬機器擴展集中第一個 VM 的 IP 位址新增至範本的輸出？
+### <a name="how-do-i-add-hello-ip-address-of-hello-first-vm-in-a-virtual-machine-scale-set-toohello-output-of-a-template"></a>如何新增 hello IP 位址第一個 VM 中的虛擬機器擴展集 toohello 範本輸出的 hello？
 
-若要將虛擬機器擴展集中第一個 VM 的 IP 位址新增至範本的輸出，請參閱 [ARM︰取得 VMSS 的私人 IP](http://stackoverflow.com/questions/42790392/arm-get-vmsss-private-ips)。
+hello tooadd hello IP 位址第一個 VM 範本時，虛擬機器規模集 toohello 輸出中的看到[ARM： 取得 VMSS 私用 Ip](http://stackoverflow.com/questions/42790392/arm-get-vmsss-private-ips)。
 
 ### <a name="can-i-use-scale-sets-with-accelerated-networking"></a>我可以搭配加速的網路使用擴展集嗎？
 
-是。 若要使用加速的網路，請在擴展集的 networkInterfaceConfigurations 設定中，將enableAcceleratedNetworking 設為 true。 例如
+是。 網路功能，加速 toouse enableAcceleratedNetworking tootrue 在設定中設定您的標尺集的 networkInterfaceConfigurations。 例如
 ```json
 "networkProfile": {
     "networkInterfaceConfigurations": [
@@ -546,18 +546,18 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 }
 ```
 
-### <a name="how-can-i-configure-the-dns-servers-used-by-a-scale-set"></a>如何設定擴展集所使用的 DNS 伺服器？
+### <a name="how-can-i-configure-hello-dns-servers-used-by-a-scale-set"></a>如何設定規模集所使用的 hello DNS 伺服器？
 
-若要建立含自訂 DNS 設定的 VM 擴展集，請將 dnsSettings JSON 封包加入至擴展集 networkInterfaceConfigurations 區段。 範例：
+toocreate VM 規模調整設定自訂的 DNS 設定，並將 dnsSettings JSON 封包 toohello 規模調整集合 networkInterfaceConfigurations > 一節。 範例：
 ```json
     "dnsSettings":{
         "dnsServers":["10.0.0.6", "10.0.0.5"]
     }
 ```
 
-### <a name="how-can-i-configure-a-scale-set-to-assign-a-public-ip-address-to-each-vm"></a>如何設定擴展集以將公用 IP 位址指派給每部 VM？
+### <a name="how-can-i-configure-a-scale-set-tooassign-a-public-ip-address-tooeach-vm"></a>我要如何設定公用 IP 位址 tooeach VM 規模集 tooassign？
 
-若要建立 VM 擴展集以將公用 IP 位址指派給每部 VM，請確定 Microsoft.Compute/virtualMAchineScaleSets 資源的 API 版本為 2017-03-30，並將 _publicipaddressconfiguration_ JSON 封包加入至擴展集 ipConfigurations 區段。 範例：
+toocreate VM 規模調整集合，會將指派的公用 IP 位址 tooeach VM，請確定 hello API 版的 hello Microsoft.Compute/virtualMAchineScaleSets 資源 2017年-03-30，並新增_publicipaddressconfiguration_ JSON 封包toohello 規模調整集合 ipConfigurations > 一節。 範例：
 
 ```json
     "publicipaddressconfiguration": {
@@ -568,25 +568,25 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
     }
 ```
 
-### <a name="can-i-configure-a-scale-set-to-work-with-multiple-application-gateways"></a>我可以設定擴展集以搭配多個應用程式閘道使用嗎？
+### <a name="can-i-configure-a-scale-set-toowork-with-multiple-application-gateways"></a>可以與多個應用程式閘道設定小數位數組 toowork 嗎？
 
-是。 您可以將多個應用程式閘道後端位址集區的資源識別碼新增至擴展集網路設定檔之 _ipConfigurations_ 區段中的 _applicationGatewayBackendAddressPools_ 清單。
+是。 您可以加入 hello 資源識別碼的多個應用程式閘道後端位址集區 toohello _applicationGatewayBackendAddressPools_列入 hello _ipConfigurations_規模集的區段網路設定檔。
 
 ## <a name="scale"></a>調整
 
 ### <a name="in-what-case-would-i-create-a-virtual-machine-scale-set-with-fewer-than-two-vms"></a>在何種情況下，我會建立具有兩部以下 VM 的虛擬機器擴展集？
 
-建立具有兩部以下 VM 的虛擬機器擴展集的原因之一，就是要使用虛擬機器擴展集的彈性屬性。 例如，您可部署沒有任何 VM 的虛擬機器擴展集來定義您的基礎結構，而不必支付 VM 執行成本。 然後，當您準備好要部署 VM 時，將虛擬機器擴展集的「容量」增加至生產執行個體計數。
+其中一個原因 toocreate 的虛擬機器擴展集少於兩個 Vm 會 toouse hello 彈性屬性的虛擬機器規模設定。 比方說，您無法部署虛擬機器規模集與零 Vm toodefine 基礎結構而不必付出 VM 執行成本。 然後，當您準備好 toodeploy Vm，增加 hello 「 容量 」 的 hello 虛擬機器擴充集 toohello 生產執行個體計數。
 
-建立具有兩部以下 VM 的虛擬機器擴展集的另一個原因，就是相較於使用具有離散 VM 的可用性設定組，您可能比較不擔心可用性。 虛擬機器擴展集讓您能夠使用可取代的無差異計算單位。 此種一致性是虛擬機器擴展集與可用性設定組的關鍵區別指標。 許多無狀態的工作負載都不會追蹤個別的單位。 如果工作負載減少，您可以相應減少為一個計算單位，然後在工作負載增加時相應增加為許多計算單位。
+建立具有兩部以下 VM 的虛擬機器擴展集的另一個原因，就是相較於使用具有離散 VM 的可用性設定組，您可能比較不擔心可用性。 虛擬機器擴展集可讓您使用無的計算的單位，可替代方式 toowork。 此種一致性是虛擬機器擴展集與可用性設定組的關鍵區別指標。 許多無狀態的工作負載都不會追蹤個別的單位。 Hello 工作負載會卸除，您可以縮小 tooone 計算單位，並再 toomany 向上延展 hello 工作負載增加時。
 
-### <a name="how-do-i-change-the-number-of-vms-in-a-virtual-machine-scale-set"></a>如何變更虛擬機器擴展集中的 VM 數目？
+### <a name="how-do-i-change-hello-number-of-vms-in-a-virtual-machine-scale-set"></a>如何變更虛擬機器規模集中的 Vm hello 數目？
 
-若要變更虛擬機器擴展集中的 VM 數目，請參閱[變更虛擬機器擴展集的執行個體計數](https://msftstack.wordpress.com/2016/05/13/change-the-instance-count-of-an-azure-vm-scale-set/)。
+toochange hello 數目 Vm 規模集中的虛擬機器，請參閱[變更 hello 的虛擬機器規模集的執行個體計數](https://msftstack.wordpress.com/2016/05/13/change-the-instance-count-of-an-azure-vm-scale-set/)。
 
 ### <a name="how-do-i-define-custom-alerts-for-when-certain-thresholds-are-reached"></a>如何定義觸達特定臨界值時的自訂警示？
 
-您在處理指定之臨界值的警示時有一些彈性。 例如，您可以定義自訂的 webhook。 下列 webhook 範例來自 Resource Manager 範本：
+您在處理指定之臨界值的警示時有一些彈性。 例如，您可以定義自訂的 webhook。 hello 下列 webhook 範例是從資源管理員範本：
 
 ```json
 {
@@ -624,7 +624,7 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
         ],
 ```
 
-在此範例中，警示會在觸達臨界值時移至 Pagerduty.com。
+在此範例中，警示會進入 tooPagerduty.com 達到臨界值時。
 
 
 
@@ -632,19 +632,19 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 
 ### <a name="how-do-i-create-a-scale-set-in-an-existing-resource-group"></a>我如何在現有資源群組中建立擴展集？
 
-您尚無法從 Azure 入口網站在現有資源群組中建立擴展集，但您從 Azure Resource Manager 範本部署擴展集時，可以指定現有的資源群組。 您也可以在使用 Azure PowerShell 或 CLI 建立擴展集時，指定現有的資源群組。
+建立小數位數的集合中現有的資源群組還不能從 hello Azure 入口網站，但部署小數位數設定的 Azure Resource Manager 範本時，您可以指定現有的資源群組。 您也可以在使用 Azure PowerShell 或 CLI 建立擴展集時，指定現有的資源群組。
 
-### <a name="can-we-move-a-scale-set-to-another-resource-group"></a>是否可以將擴展集移至另一個資源群組？
+### <a name="can-we-move-a-scale-set-tooanother-resource-group"></a>我們可以將規模調整集合 tooanother 資源群組嗎？
 
-是，您可以將擴展集資源移至新的訂用帳戶或資源群組。
+是，您可以移動標尺組資源 tooa 新訂用帳戶或資源群組。
 
-### <a name="how-to-i-update-my-virtual-machine-scale-set-to-a-new-image-how-do-i-manage-patching"></a>如何將虛擬機器擴展集更新為新的映像？ 如何管理修補？
+### <a name="how-tooi-update-my-virtual-machine-scale-set-tooa-new-image-how-do-i-manage-patching"></a>如何更新 tooI 我虛擬機器規模集 tooa 新映像嗎？ 如何管理修補？
 
-若要將虛擬機器擴展集更新為新的映像，以及管理修補，請參閱[升級虛擬機器擴展集](https://docs.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set)。
+請參閱您的虛擬機器規模集 tooa 新的映像，以及 toomanage 修補的 tooupdate[升級虛擬機器規模集](https://docs.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set)。
 
-### <a name="can-i-use-the-reimage-operation-to-reset-a-vm-without-changing-the-image-that-is-i-want-reset-a-vm-to-factory-settings-rather-than-to-a-new-image"></a>是否可以使用重新安裝映像作業來重設 VM，而不變更映像？ (也就是，我想要將 VM 重設為原廠設定，而不是新的映像。)
+### <a name="can-i-use-hello-reimage-operation-tooreset-a-vm-without-changing-hello-image-that-is-i-want-reset-a-vm-toofactory-settings-rather-than-tooa-new-image"></a>可以使用 hello 重新安裝映像作業 tooreset VM 而不需要變更 hello 映像嗎？ (也就是，我想重設 VM toofactory 設定而不是 tooa 新映像。)
 
-是，您可以使用重新安裝映像作業來重設 VM，而不需變更映像。 不過，如果虛擬機器擴展集參考 `version = latest` 的平台映像，當您呼叫 `reimage` 時，您的 VM 可以更新為較新版本的 OS 映像。
+是，您可以使用 hello 重新安裝映像作業 tooreset VM 而不需要變更 hello 映像。 不過，如果虛擬機器規模集參考與平台映像`version = latest`，您的 VM 可以更新 tooa 更新的 OS 映像，當您呼叫`reimage`。
 
 如需詳細資訊，請參閱[管理虛擬機器擴展集中的所有 VM](https://docs.microsoft.com/rest/api/virtualmachinescalesets/manage-all-vms-in-a-set)。
 
@@ -654,7 +654,7 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 
 ### <a name="how-do-i-turn-on-boot-diagnostics"></a>如何開啟開機診斷？
 
-若要開啟開機診斷，首先建立儲存體帳戶。 然後，將此 JSON 區塊放在虛擬機器擴展集 **virtualMachineProfile** 中，並更新此虛擬機器擴展集︰
+開機診斷 tooturn 首先，建立儲存體帳戶。 然後，將此 JSON 區塊放在您的虛擬機器規模集**virtualMachineProfile**，並更新 hello 虛擬機器規模集：
 
 ```json
 "diagnosticsProfile": {
@@ -665,7 +665,7 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 }
 ```
 
-建立新的 VM 時，VM 的 InstanceView 會顯示螢幕擷取畫面等的詳細資料。 以下是範例：
+建立新的 VM 時，hello hello VM InstanceView 屬性會顯示 hello 螢幕擷取畫面和等等的 hello 詳細資料。 以下是範例：
  
 ```json
 "bootDiagnostics": {
@@ -677,28 +677,28 @@ Update-AzureRmVmss -ResourceGroupName $rgname -Name $vmssname -VirtualMachineSca
 
 ## <a name="virtual-machine-properties"></a>虛擬機器屬性
 
-### <a name="how-do-i-get-property-information-for-each-vm-without-making-multiple-calls-for-example-how-would-i-get-the-fault-domain-for-each-of-the-100-vms-in-my-virtual-machine-scale-set"></a>如何取得每部 VM 的屬性資訊，而不進行多次呼叫？ 例如，如何針對虛擬機器擴展集中的 100 部 VM 取得各自的容錯網域？
+### <a name="how-do-i-get-property-information-for-each-vm-without-making-multiple-calls-for-example-how-would-i-get-hello-fault-domain-for-each-of-hello-100-vms-in-my-virtual-machine-scale-set"></a>如何取得每部 VM 的屬性資訊，而不進行多次呼叫？ 例如，如何會取得 hello 容錯網域 hello 的每個 100 Vm 在我的虛擬機器規模集？
 
-若要取得每部 VM 的屬性資訊，而不進行多次呼叫，您可以對下列資源 URI 進行 REST API`GET`，藉此呼叫 `ListVMInstanceViews`：
+為每個 VM，而不需要進行多次呼叫 tooget 屬性資訊，您可以呼叫`ListVMInstanceViews`藉由 REST API `GET` hello 下列資源 URI 上：
 
 /subscriptions/<subscription_id>/resourceGroups/<resource_group_name>/providers/Microsoft.Compute/virtualMachineScaleSets/<scaleset_name>/virtualMachines?$expand=instanceView&$select=instanceView
 
-### <a name="can-i-pass-different-extension-arguments-to-different-vms-in-a-virtual-machine-scale-set"></a>是否可以將不同的擴充引數傳遞至虛擬機器擴展集中的不同 VM？
+### <a name="can-i-pass-different-extension-arguments-toodifferent-vms-in-a-virtual-machine-scale-set"></a>可以傳入不同延伸引數 toodifferent Vm 虛擬機器規模集嗎？
 
-否，您無法將不同的擴充引數傳遞至虛擬機器擴展集中的不同 VM。 不過，擴充功能可以根據它們執行所在 VM 的唯一屬性來行動，例如根據電腦名稱。 擴充功能也可以在 http://169.254.169.254 上查詢執行個體中繼資料，以取得 VM 詳細資訊。
+否，您無法傳遞不同的延伸引數 toodifferent Vm 中虛擬機器規模集。 不過，擴充功能可做根據 hello 的 hello VM，執行在 hello 電腦名稱的唯一屬性。 延伸模組也可以查詢執行個體中繼資料上 http://169.254.169.254 tooget hello VM 的詳細資訊。
 
 ### <a name="why-are-there-gaps-between-my-virtual-machine-scale-set-vm-machine-names-and-vm-ids-for-example-0-1-3"></a>為何我的虛擬機器擴展集 VM 電腦名稱與 VM 識別碼之間會有落差？ 例如：0、1、3...
 
-您的虛擬機器擴展集 VM 電腦名稱與 VM 識別碼之間有落差，是因為虛擬機器擴展集將 **overprovision** 屬性設定為預設值 **true**。 如果過度佈建設定為 **true**，則會建立超過要求的 VM。 然後會刪除額外的 VM。 在此情況下，您會取得更高的部署可靠性，但代價是連續的命名和連續的網路位址轉譯 (NAT) 規則。 
+會虛擬機器規模集 VM 電腦名稱與 VM 識別碼之間的間距，因為虛擬機器規模集**overprovision**屬性設定為 toohello 預設值的**true**。 如果過度佈建太設定**true**，要求會建立多個 Vm。 然後會刪除額外的 VM。 在此情況下，您會取得部署增加的可靠性，但在 hello 費用連續命名連續網路位址轉譯 (NAT) 規則。 
 
-您可以將此屬性設定為 **false**。 若為小型虛擬機器擴展集，這就不會大幅影響部署可靠性。
+您可以設定此屬性太**false**。 若為小型虛擬機器擴展集，這就不會大幅影響部署可靠性。
 
-### <a name="what-is-the-difference-between-deleting-a-vm-in-a-virtual-machine-scale-set-and-deallocating-the-vm-when-should-i-choose-one-over-the-other"></a>刪除虛擬機器擴展集中的 VM 與解除配置 VM 之間的差異為何？ 我何時應該選擇優先其中一個？
+### <a name="what-is-hello-difference-between-deleting-a-vm-in-a-virtual-machine-scale-set-and-deallocating-hello-vm-when-should-i-choose-one-over-hello-other"></a>Hello 刪除虛擬機器規模集中的 VM 和解除配置 hello VM 之間的差異為何？ 我何時應該選擇一種其他 hello？
 
-刪除虛擬機器擴展集中的 VM 與解除配置 VM 之間的主要差異在於 `deallocate` 不會刪除虛擬硬碟 (VHD)。 執行 `stop deallocate` 會產生相關的儲存體成本。 基於下列原因之一，您可能會採用其中一種做法：
+hello 刪除虛擬機器規模集中的 VM 和解除配置 hello VM 之間的主要差異在於`deallocate`並不會刪除 hello 虛擬硬碟 (Vhd)。 執行 `stop deallocate` 會產生相關的儲存體成本。 您可能會使用其中一個或另一個用於 hello 下列原因之一 hello:
 
-- 您想要停止支付計算成本，但又想要保留 VM 的磁碟狀態。
-- 您想要更快速地啟動一組 VM，則可相應放大虛擬機器擴展集。
-  - 關於這種情況，您可能已建立自己的自動調整引擎，並想要更快速的端對端擴展。
-- 您的虛擬機器擴展集並未平均分散於各容錯網域或更新網域。 這可能是因為您選擇性地刪除 VM，或是因為 VM 在過度佈建之後遭到刪除。 在虛擬機器擴展集上接續執行 `stop deallocate` 和 `start`，可讓 VM 平均分散於各容錯網域或更新網域。
+- 您想 toostop 支付計算費用，但是您想要的 hello Vm tookeep hello 磁碟狀態。
+- 您無法擴充虛擬機器規模集比快速 toostart 一組的 Vm。
+  - 相關的 toothis 案例中，您可能已建立您自己的自動調整引擎和想更快的端對端小數位數。
+- 您的虛擬機器擴展集並未平均分散於各容錯網域或更新網域。 這可能是因為您選擇性地刪除 VM，或是因為 VM 在過度佈建之後遭到刪除。 執行`stop deallocate`後面`start`hello 虛擬機器擴展集平均分散 hello Vm 容錯網域或更新網域。
 

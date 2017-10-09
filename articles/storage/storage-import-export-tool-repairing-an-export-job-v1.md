@@ -1,6 +1,6 @@
 ---
-title: "修復 Azure 匯入/匯出匯出作業 - v1 | Microsoft Docs"
-description: "了解如何修復使用 Azure 匯入/匯出服務建立和執行的匯出作業。"
+title: "Azure 匯入/匯出匯出工作-v1 aaaRepairing |Microsoft 文件"
+description: "了解如何匯出工作，所建立及執行使用 toorepair hello Azure 匯入/匯出服務。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: 30ca0f8d06cb1927c19e66035ff485db0fc09e5a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 96c674fc7c697c37882fb2980c340303896ac6c8
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="repairing-an-export-job"></a>修復匯出作業
-完成匯出作業之後，您可以在內部部署上執行 Microsoft Azure 匯入/匯出工具，以便：  
+匯出工作完成後，您可以執行 Microsoft Azure 匯入/匯出工具提供從內部部署的 hello:  
   
-1.  下載 Azure 匯入/匯出服務無法匯出的檔案。  
+1.  下載 hello Azure 匯入/匯出服務是無法 tooexport 任何檔案。  
   
-2.  驗證磁碟機上已正確匯出的檔案。  
+2.  驗證 hello 磁碟機上的 hello 檔案已正確匯出。  
   
-您必須能夠連線到 Azure 儲存體，才能使用這項功能。  
+您必須擁有連線 tooAzure 儲存體 toouse 這項功能。  
   
-用於修復匯出作業的命令是 **RepairExport**。
+hello 命令來修復匯入工作是**RepairExport**。
 
 ## <a name="repairexport-parameters"></a>RepairExport 參數
 
-您可以搭配 **RepairExport** 指定下列參數：  
+hello 指定下列參數可以與**RepairExport**:  
   
 |參數|說明|  
 |---------------|-----------------|  
-|**/r:<RepairFile\>**|必要。 修復檔案的路徑，可追蹤修復進度，並可讓您繼續中斷的修復。 每個磁碟機必須只能有一個修復檔案。 當您啟動指定磁碟機的修復時，您將會傳入尚不存在之修復檔的路徑。 若要恢復中斷的修復，您應傳入現有修復檔案名稱。 一律必須指定對應於目標磁碟機的修復檔。|  
-|**/logdir:\><LogDirectory**|選用。 記錄檔目錄。 詳細資訊記錄檔會寫入至這個目錄。 如未指定記錄檔目錄，則會使用目前的目錄做為記錄檔目錄。|  
-|**/d:<TargetDirectory\>**|必要。 要驗證及修復的目錄。 這通常是匯出磁碟機的根目錄，但也可能是含有匯出檔案複本的網路檔案共用。|  
-|**/bk:<BitLockerKey\>**|選用。 如果您希望該工具解除鎖定存放匯出檔案的加密磁碟機，您應指定 BitLocker 金鑰。|  
-|**/sn:<StorageAccountName\>**|必要。 匯出作業的儲存體帳戶名稱。|  
-|**/sk:<StorageAccountKey\>**|如果未指定 (且只有在未指定) 容器 SAS 時，才是**必要**參數。 匯出作業之儲存體帳戶的帳戶金鑰。|  
-|**/csas:<ContainerSas\>**|如果未指定 (且只有在未指定) 儲存體帳戶金鑰時，才是**必要**參數。 存取與匯出作業相關聯的 Blob 所用的容器 SAS。|  
-|**/CopyLogFile:<DriveCopyLogFile\>**|必要。 磁碟機複製記錄檔的路徑。 此檔案是由 Windows Azure 匯入/匯出服務所產生，您可以從與作業相關聯的 blob 儲存體下載。 複製記錄檔包含所要修復之失敗 blob 或檔案的相關資訊。|  
-|**/ManifestFile:<DriveManifestFile\>**|選用。 匯出磁碟機的資訊清單檔案路徑。 此檔案是由 Windows Azure 匯入/匯出服務所產生並儲存在匯出磁碟機上，並選擇性地儲存在與作業相關聯之儲存體帳戶的 blob 中。<br /><br /> 工具將會使用此檔案內含的 MD5 雜湊，驗證匯出磁碟機上的檔案內容。 任何被斷定為損毀的檔案都將會下載並重新寫入至目標目錄。|  
+|**/r:<RepairFile\>**|必要。 路徑 toohello 修復檔案，追蹤 hello hello 修復進度，並可讓您 tooresume 中斷的修復。 每個磁碟機需要一個修復檔案，而且只能有一個。 當您開始在給定的磁碟機的修復時，您將會傳入 hello 路徑 tooa 修復檔案尚不存在。 tooresume 中斷的修復，您應傳入 hello 現有的修復檔名稱。 一律必須指定 hello 修復檔案對應 toohello 目標磁碟機。|  
+|**/logdir:\><LogDirectory**|選用。 hello 記錄檔目錄。 詳細資訊記錄檔會寫入 toothis 目錄。 如果未不指定任何記錄檔目錄，則 hello 目前的目錄會用作 hello 記錄檔目錄。|  
+|**/d:<TargetDirectory\>**|必要。 hello 目錄 toovalidate 和修復。 這通常是 hello 根目錄的 hello 匯出磁碟機，但無法同時也網路檔案共用包含匯出的 hello 檔案的複本。|  
+|**/bk:<BitLockerKey\>**|選用。 如果您想 hello 工具 toounlock 儲存加密 hello 匯出的檔案，您應該指定 hello BitLocker 金鑰。|  
+|**/sn:<StorageAccountName\>**|必要。 hello 名稱 hello hello 儲存體帳戶匯出工作。|  
+|**/sk:<StorageAccountKey\>**|如果未指定 (且只有在未指定) 容器 SAS 時，才是**必要**參數。 hello hello hello 的儲存體帳戶的帳戶金鑰匯出工作。|  
+|**/csas:<ContainerSas\>**|**需要**如果且只有未指定 hello 儲存體帳戶金鑰。 用於存取與 hello 匯出工作相關聯的 hello blob hello 容器 SAS。|  
+|**/CopyLogFile:<DriveCopyLogFile\>**|必要。 hello 路徑 toohello 磁碟機複製記錄檔。 hello 檔案 hello Windows Azure 匯入/匯出服務所產生，並可從 hello 與 hello 工作相關聯的 blob 儲存體下載。 hello 複製記錄檔包含失敗的 blob 或檔案，也就是 toobe 修復的相關資訊。|  
+|**/ManifestFile:<DriveManifestFile\>**|選用。 hello 路徑 toohello 匯出磁碟機的資訊清單檔案。 這個檔案是 hello Windows Azure 匯入/匯出服務所產生，而且儲存 hello 匯出磁碟機，並選擇性地在 hello 與 hello 工作相關聯的儲存體帳戶中的 blob。<br /><br /> hello hello hello 匯出磁碟機上的檔案的內容將會驗證與此檔案包含 hello MD5 雜湊。 決定的 toobe 損毀的檔案會下載並重寫 toohello 目標目錄。|  
   
-## <a name="using-repairexport-mode-to-correct-failed-exports"></a>使用 RepairExport 模式來更正失敗的匯出  
-您可以使用 Azure 匯入/匯出工具來下載無法匯出的檔案。 複製記錄檔會包含無法匯出的檔案清單。  
+## <a name="using-repairexport-mode-toocorrect-failed-exports"></a>使用 RepairExport 模式 toocorrect 無法匯出  
+您可以使用無法 tooexport hello Azure 匯入/匯出工具 toodownload 檔案。 hello 複製記錄檔會包含失敗 tooexport 的檔案清單。  
   
-匯出失敗的原因包括下列可能性︰  
+hello 的匯出失敗的原因包括下列可能性 hello:  
   
 -   損壞的磁碟機  
   
--   儲存體帳戶金鑰會在移轉過程中變更  
+-   hello hello 傳輸程序期間變更的儲存體帳戶金鑰  
   
-若要在 **RepairExport** 模式中執行此工具，您必須先將含有匯出檔案的磁碟機連接到您的電腦。 接下來，執行 Azure 匯入/匯出工具，並使用 `/d` 參數指定該磁碟機的路徑。 您也必須指定您下載之磁碟機複製記錄檔的路徑。 下列命令行範例會執行工具，以修復任何無法匯出的檔案︰  
+中的 toorun hello 工具**RepairExport**模式中，您必須先包含 hello 匯出的檔案 tooyour 電腦 tooconnect hello 磁碟機。 接下來，執行 Azure 匯入/匯出工具，以 hello 指定 hello 路徑 toothat 磁碟機 hello`/d`參數。 您也需要您下載的 toospecify hello 路徑 toohello 磁碟機的複製記錄檔。 hello 下方的下列命令列範例會執行 hello 工具 toorepair 失敗 tooexport 任何檔案：  
   
 ```  
 WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C3U.log  
 ```  
   
-以下的複製記錄檔範例顯示 blob 中無法匯出的一個區塊︰  
+hello 如下顯示的一個區塊中 hello blob 失敗 tooexport 複製記錄檔的範例：  
   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
@@ -81,20 +81,20 @@ WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bob
 </DriveLog>  
 ```  
   
-此複製記錄檔指出當 Windows Azure 匯入/匯出服務將其中一個 blob 區塊下載至匯出磁碟機上的檔案時所發生的錯誤。 已成功下載檔案的其他元件，並已正確設定檔案長度。 在此情況下，工具會開啟磁碟機上的這個檔案，從儲存體帳戶下載此區塊，並將它寫入至從位移 65536 開始且長度為 65536 的檔案範圍。  
+hello 複製記錄檔指出 hello Windows Azure 匯入/匯出服務將其中一個下載 hello 匯出磁碟機上的 hello blob 的區塊 toohello 檔案時發生失敗。 hello hello 檔案成功，下載的其他元件，並已正確設定 hello 檔案長度。 在此情況下，hello 工具會開啟 hello hello 磁碟機上的檔案，請下載 hello 區塊從 hello 儲存體帳戶，並將它寫 toohello 檔案範圍從長度為 65536 位移 65536 開始。  
   
-## <a name="using-repairexport-to-validate-drive-contents"></a>使用 RepairExport 驗證磁碟機內容  
-您也可以使用 Azure 匯入/匯出服務搭配 **RepairExport** 選項，以驗證磁碟機上的內容是否正確。 每個匯出磁碟機上的資訊清單檔案都包含磁碟機內容適用的 MD5。  
+## <a name="using-repairexport-toovalidate-drive-contents"></a>使用 RepairExport toovalidate 磁碟機內容  
+您也可以使用 Azure 匯入/匯出以 hello **RepairExport** hello 磁碟機上的選項 toovalidate hello 內容是否正確。 hello 每個匯出磁碟機上的資訊清單檔包含 hello hello 磁碟機內容的 md5。  
   
-Azure 匯入/匯出服務也可以在匯出期間將資訊清單檔案儲存到儲存體帳戶。 當作業完成時，可透過 [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 作業，取得資訊清單檔案的位置。 如需磁碟機資訊清單檔案的格式，請參閱[匯入/匯出服務資訊清單檔案格式](storage-import-export-file-format-metadata-and-properties.md)。  
+hello Azure 匯入/匯出服務也可以儲存 hello 資訊清單檔案 tooa 儲存體帳戶期間 hello 匯出程序。 hello hello 資訊清單檔案的位置可透過 hello [Get Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) hello 作業已完成的作業。 請參閱[匯入/匯出服務資訊清單檔案格式](storage-import-export-file-format-metadata-and-properties.md)有關 hello 格式的磁碟機資訊清單檔案。  
   
-下列範例示範如何搭配 **/ManifestFile** 和 **/CopyLogFile** 參數執行 Azure 匯入/匯出工具：  
+hello 下列範例示範如何 toorun hello 以 hello 的 Azure 匯入/匯出工具**/ManifestFile**和**/CopyLogFile**參數：  
   
 ```  
 WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bobmediaaccount /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GELxmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /CopyLogFile:C:\WAImportExport\9WM35C3U.log /ManifestFile:G:\9WM35C3U.manifest  
 ```  
   
-以下是資訊清單檔案的範例：  
+hello 以下是範例資訊清單檔案：  
   
 ```xml
 <?xml version="1.0" encoding="utf-8"?>  
@@ -131,7 +131,7 @@ WAImportExport.exe RepairExport /r:C:\WAImportExport\9WM35C3U.rep /d:G:\ /sn:bob
 </DriveManifest>  
 ``` 
   
-完成修復程序之後，工具會讀取資訊清單檔案中參考的每個檔案，並以 MD5 雜湊驗證檔案的完整性。 在上述資訊清單中，將會逐步進行下列元件。  
+分頁裝訂的 hello 修復程序之後, hello 工具會透過參考 hello 資訊清單檔中每個檔案讀取，並確認 hello 檔案的完整性與 hello MD5 雜湊。 對於上述的 hello 資訊清單，它將會經歷下列元件的 hello。  
 
 ```  
 G:\pictures\city\redmond.jpg, offset 0, length 3584  
@@ -153,12 +153,12 @@ G:\pictures\wild\canyon.jpg, offset 8163, length 2721
 G:\pictures\wild\canyon.jpg.properties  
 ```
 
-工具將會下載驗證失敗的所有元件，並將它們重新寫入至磁碟機上的相同檔案。  
+Hello 驗證失敗的任何元件會下載 hello 工具，而且重寫的 toohello 相同 hello 磁碟機的檔案。  
   
 ## <a name="next-steps"></a>後續步驟
  
-* [設定 Azure 匯入/匯出工具](storage-import-export-tool-setup-v1.md)   
+* [正在設定 hello Azure 匯入/匯出工具](storage-import-export-tool-setup-v1.md)   
 * [針對匯入作業準備硬碟](storage-import-export-tool-preparing-hard-drives-import-v1.md)   
 * [利用複製記錄檔檢閱作業狀態](storage-import-export-tool-reviewing-job-status-v1.md)   
 * [修復匯入作業](storage-import-export-tool-repairing-an-import-job-v1.md)   
-* [針對 Azure 匯入/匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)
+* [疑難排解 hello Azure 匯入/匯出工具](storage-import-export-tool-troubleshooting-v1.md)

@@ -1,6 +1,6 @@
 ---
-title: "從 Java SDK 移轉至 Maven - 更新舊版 Azure Service Fabric Java 應用程式以使用 Maven | Microsoft Docs"
-description: "更新用於使用 Service Fabric Java SDK 的舊版 Java 應用程式，以從 Maven 擷取 Service Fabric Java 相依性。 完成此設定之後，就能夠建置舊版 Java 應用程式。"
+title: "從 Java SDK tooMaven-aaaMigrate 更新舊的 Azure 服務網狀架構 Java 應用程式 toouse Maven |Microsoft 文件"
+description: "更新 hello 舊版 Java 應用程式使用 toouse hello Service Fabric Java SDK，從 Maven toofetch 服務網狀架構 Java 相依性。 完成此安裝後，舊版的 Java 應用程式將無法 toobuild。"
 services: service-fabric
 documentationcenter: java
 author: sayantancs
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/23/2017
 ms.author: saysa
-ms.openlocfilehash: 2123c5f26d77045bd22af56a844fdbf222930e7b
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 11b979facd7b3865141a6d3a035a6021dd06ca0c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="update-your-previous-java-service-fabric-application-to-fetch-java-libraries-from-maven"></a>更新先前的 Java Service Fabric 應用程式，以從 Maven 擷取 Java 程式庫
-我們最近已將 Service Fabric Java 二進位檔從 Service Fabric Java SDK 移至 Maven 主機。 您現在可以使用 **mavencentral** 擷取最新的 Service Fabric Java 相依性。 本快速入門可協助您更新要與以 Maven 為基礎的組建相容的現有 Java 應用程式，您稍早使用 Yeoman 範本或 Eclipse 建立這些應用程式，以便搭配 Service Fabric Java SDK 使用。
+# <a name="update-your-previous-java-service-fabric-application-toofetch-java-libraries-from-maven"></a>更新您先前 Java Service Fabric 應用程式 toofetch Java 文件庫從 Maven
+我們最近已從 hello Service Fabric Java SDK tooMaven 裝載移服務網狀架構 Java 二進位檔。 現在您可以使用**mavencentral** toofetch hello 最新 Service Fabric Java 相依性。 此快速入門可協助您更新現有的 Java 應用程式，您稍早建立 toobe 搭配 Service Fabric Java SDK，使用任一 Yeoman 範本或 Eclipse toobe 與 hello 基礎 Maven 組建相容。
 
 ## <a name="prerequisites"></a>必要條件
-1. 首先，您必須解除安裝現有的 Java SDK。
+1. 首先，您必須 toouninstall hello 現有 Java SDK。
 
   ```bash
   sudo dpkg -r servicefabricsdkjava
   ```
-2. 依照[這裡](service-fabric-cli.md)所述的步驟，安裝最新的 Service Fabric CLI。
+2. 安裝 hello 最新的 Service Fabric CLI 下列 hello 所述的步驟[這裡](service-fabric-cli.md)。
 
-3. 若要建置和處理 Service Fabric Java 應用程式，您必須確定已安裝 JDK 1.8 和 Gradle。 如果尚未安裝，您可以執行下列命令來安裝 JDK 1.8 (openjdk-8-jdk) 和 Gradle -
+3. toobuild 及 hello 服務網狀架構 Java 應用程式上的工作，您必須確認您有 JDK 1.8 且 Gradle 安裝 tooensure。 如果尚未安裝，您可以執行 JDK 1.8 (openjdk-8-jdk) 和 Gradle-下列 tooinstall hello
 
  ```bash
  sudo apt-get install openjdk-8-jdk-headless
  sudo apt-get install gradle
  ```
-4. 依照[這裡](service-fabric-application-lifecycle-sfctl.md)所述的步驟，更新您應用程式的安裝/解除安裝指令碼，以使用新的 Service Fabric CLI。 您可以參考我們的快速入門[範例](https://github.com/Azure-Samples/service-fabric-java-getting-started)以供參考。
+4. 更新 hello 安裝/解除安裝指令碼的應用程式 toouse hello hello 步驟所述的新服務網狀架構 CLI[這裡](service-fabric-application-lifecycle-sfctl.md)。 您可以使用參照 tooour 入門[範例](https://github.com/Azure-Samples/service-fabric-java-getting-started)供參考。
 
 >[!TIP]
-> 解除安裝 Service Fabric Java SDK 之後，Yeoman 將無法運作。 依照[這裡](service-fabric-create-your-first-linux-application-with-java.md)所提及的必要條件，啟動並執行 Service Fabric Yeoman Java 範本產生器。
+> 解除安裝之後 hello Service Fabric Java SDK，Yeoman 將無法運作。 請依照下列所提及的 hello 必要條件[這裡](service-fabric-create-your-first-linux-application-with-java.md)toohave 服務網狀架構 Yeoman Java 向上範本產生器以及如何使用。
 
 ## <a name="service-fabric-java-libraries-on-maven"></a>Maven 上的 Service Fabric Java 程式庫
-Service Fabric Java 程式庫已裝載於 Maven 中。 您可以在專案的 ``pom.xml`` 或 ``build.gradle`` 中新增相依性，以從 **mavenCentral** 使用 Service Fabric Java 程式庫。
+Service Fabric Java 程式庫已裝載於 Maven 中。 您可以在 hello 新增 hello 相依性``pom.xml``或``build.gradle``從您專案 toouse 服務網狀架構 Java 程式庫**mavenCentral**。
 
 ### <a name="actors"></a>動作項目
 
@@ -90,7 +90,7 @@ Service Fabric Java 程式庫已裝載於 Maven 中。 您可以在專案的 ``p
 ### <a name="others"></a>其他
 #### <a name="transport"></a>傳輸
 
-Service Fabric Java 應用程式的傳輸層支援。 除非您在傳輸層進行程式設計，否則不需要明確地將此相依性新增至 Reliable Actor 或服務應用程式。
+Service Fabric Java 應用程式的傳輸層支援。 您不需要 tooexplicitly 將此相依性 tooyour Reliable Actor 或服務應用程式，除非您在 hello 傳輸層級進行程式設計。
 
   ```XML
   <dependency>
@@ -111,7 +111,7 @@ Service Fabric Java 應用程式的傳輸層支援。 除非您在傳輸層進�
 
 #### <a name="fabric-support"></a>網狀架構支援
 
-Service Fabric 的系統層級支援，其可與原生 Service Fabric 執行階段交談。 您不需要明確地將此相依性新增至 Reliable Actor 或服務應用程式。 當您納入上述其他相依性時，可從 Maven 自動提取此相依性。
+系統層級支援適用於 Service Fabric，交談 toonative Service Fabric 執行階段。 您不需要 tooexplicitly 加入此相依性 tooyour Reliable Actor 或服務應用程式。 從 Maven 自動擷取這取得，當您包含 hello 上述其他相依性。
 
   ```XML
   <dependency>
@@ -133,7 +133,7 @@ Service Fabric 的系統層級支援，其可與原生 Service Fabric 執行階�
 
 ## <a name="migrating-service-fabric-stateless-service"></a>移轉 Service Fabric 無狀態服務
 
-若要能夠使用從 Maven 提取的 Service Fabric 相依性，建立現有的 Service Fabric 無狀態 Java 服務，您需要更新服務內的 ``build.gradle`` 檔案。 它先前通常如下所示 -
+現有 Service Fabric 無狀態 Java service 使用 Service Fabric 從 Maven 提取的相依性，您需要 tooupdate hello toobe 無法 toobuild ``build.gradle`` hello 服務內的檔案。 先前使用它 toobe 類似如下-
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -166,7 +166,7 @@ task copyDeps <<{
     }
 }
 ```
-現在，若要從 Maven 提取相依性，**已更新**的 ``build.gradle`` 會有對應的組件，如下所示 -
+現在，從 Maven，toofetch hello 相依性 hello**更新**``build.gradle``必須 hello 對應組件，如下所示-
 ```
 repositories {
         mavenCentral()
@@ -219,20 +219,20 @@ task copyDeps <<{
     }
 }
 ```
-一般而言，若要取得有關如何組建指令碼看起來像 Service Fabric 無狀態 Java 服務的整體概念，您可以參考我們的快速入門範例中的任何範例。 以下是 EchoServer 範例的 [build.gradle](https://github.com/Azure-Samples/service-fabric-java-getting-started/blob/master/Services/EchoServer/EchoServer1.0/EchoServerService/build.gradle)。
+一般情況下，tooget hello 如何建置指令碼的整體概念看起來會像 Service Fabric 無狀態 Java 服務，您可以從我們的快速入門範例會參考 tooany 範例。 以下是 hello [build.gradle](https://github.com/Azure-Samples/service-fabric-java-getting-started/blob/master/Services/EchoServer/EchoServer1.0/EchoServerService/build.gradle) hello EchoServer 範例。
 
 ## <a name="migrating-service-fabric-actor-service"></a>移轉 Service Fabric 動作項目服務
 
-若要能夠使用從 Maven 提取的 Service Fabric 相依性，建立現有的 Service Fabric 動作項目 Java 應用程式，您需要更新介面套件和服務套件內的 ``build.gradle`` 檔案。 如果您有 TestClient 套件，您需要一併更新。 因此，針對您的動作項目 ``Myactor``，以下是您需要更新的位置 -
+使用 Service Fabric 相依性從 Maven 提取您現有 Service Fabric 動作項目 Java 應用程式，您需要 tooupdate hello toobe 無法 toobuild ``build.gradle`` hello 介面封裝內和 hello 服務封裝中的檔案。 如果您有 TestClient 封裝，您會需要 tooupdate 也一併。 因此，您的動作項目``Myactor``，hello 以下是需要 tooupdate-hello 地方
 ```
 ./Myactor/build.gradle
 ./MyactorInterface/build.gradle
 ./MyactorTestClient/build.gradle
 ```
 
-#### <a name="updating-build-script-for-the-interface-project"></a>更新介面專案的組建指令碼
+#### <a name="updating-build-script-for-hello-interface-project"></a>更新 hello 介面專案的組建指令碼
 
-它先前通常如下所示 -
+先前使用它 toobe 類似如下-
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -240,7 +240,7 @@ dependencies {
 .
 .
 ```
-現在，若要從 Maven 提取相依性，**已更新**的 ``build.gradle`` 會有對應的組件，如下所示 -
+現在，從 Maven，toofetch hello 相依性 hello**更新**``build.gradle``必須 hello 對應組件，如下所示-
 ```
 repositories {
     mavenCentral()
@@ -271,9 +271,9 @@ compileJava.dependsOn(explodeDeps)
 .
 ```
 
-#### <a name="updating-build-script-for-the-actor-project"></a>更新動作項目專案的組建指令碼
+#### <a name="updating-build-script-for-hello-actor-project"></a>更新 hello 執行者專案的組建指令碼
 
-它先前通常如下所示 -
+先前使用它 toobe 類似如下-
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -312,7 +312,7 @@ task copyDeps<< {
     }
 }
 ```
-現在，若要從 Maven 提取相依性，**已更新**的 ``build.gradle`` 會有對應的組件，如下所示 -
+現在，從 Maven，toofetch hello 相依性 hello**更新**``build.gradle``必須 hello 對應組件，如下所示-
 ```
 repositories {
     mavenCentral()
@@ -370,9 +370,9 @@ task copyDeps<< {
 }
 ```
 
-#### <a name="updating-build-script-for-the-test-client-project"></a>更新測試用戶端專案的組建指令碼
+#### <a name="updating-build-script-for-hello-test-client-project"></a>更新 hello 測試用戶端專案的組建指令碼
 
-此處的變更類似於上一節所討論的變更，也就是動作項目專案。 Gradle 指令碼先前通常如下所示 -
+以下變更是上一節，也就是 hello 執行者專案中所討論的類似 toohello 對。 先前 hello 的 Gradle toobe 用指令碼，如下所示-喜歡
 ```
 dependencies {
     compile fileTree(dir: '/opt/microsoft/sdk/servicefabric/java/packages/lib', include: ['*.jar'])
@@ -412,7 +412,7 @@ task copyDeps<< {
         }
 }
 ```
-現在，若要從 Maven 提取相依性，**已更新**的 ``build.gradle`` 會有對應的組件，如下所示 -
+現在，從 Maven，toofetch hello 相依性 hello**更新**``build.gradle``必須 hello 對應組件，如下所示-
 ```
 repositories {
     mavenCentral()
@@ -476,4 +476,4 @@ task copyDeps<< {
 
 * [使用 Yeoman 在 Linux 上建立和部署第一個 Service Fabric Java 應用程式](service-fabric-create-your-first-linux-application-with-java.md)
 * [在 Linux 上使用適用於 Eclipse 的 Service Fabric 外掛程式建立和部署第一個 Service Fabric Java 應用程式](service-fabric-get-started-eclipse.md)
-* [使用 Service Fabric CLI 與 Service Fabric 叢集互動](service-fabric-cli.md)
+* [互動使用 hello 服務網狀架構 CLI Service Fabric 叢集](service-fabric-cli.md)

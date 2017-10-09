@@ -1,6 +1,6 @@
 ---
-title: "動作項目型 Azure 微服務中的事件 | Microsoft Docs"
-description: "Service Fabric Reliable Actor 事件簡介。"
+title: "以行動為基礎的 Azure microservices aaaEvents |Microsoft 文件"
+description: "服務網狀架構 Reliable Actors 的簡介 tooevents。"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/13/2017
 ms.author: amanbha
-ms.openlocfilehash: d936670c548ff709fc2e935d3f28d94e4bde8a04
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a51e41c35441a5fea508138968b36a35f0ba6699
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="actor-events"></a>動作項目事件
-動作項目事件會將最佳效果通知從動作項目傳送到用戶端。 動作項目事件是為了動作項目與用戶端之間的通訊而設計，不應用於動作項目與動作項目之間的通訊。
+動作項目事件會提供從 hello 執行者 toohello 用戶端方式 toosend 最佳通知。 動作項目事件是為了動作項目與用戶端之間的通訊而設計，不應用於動作項目與動作項目之間的通訊。
 
-下列程式碼片段顯示如何在應用程式中使用動作項目事件。
+hello 下列程式碼片段顯示如何在應用程式中的 toouse 動作項目事件。
 
-定義描述動作項目所發佈事件的介面。 此介面必須衍生自 `IActorEvents` 介面。 方法的引數必須是 [資料合約序列化](service-fabric-reliable-actors-notes-on-actor-type-serialization.md)。 當事件通知是單向且為最佳效果時，方法必須傳回無效。
+定義描述 hello 事件 hello 動作項目所發行的介面。 此介面必須衍生自 hello`IActorEvents`介面。 hello 方法的 hello 引數必須是[資料合約序列化](service-fabric-reliable-actors-notes-on-actor-type-serialization.md)。 hello 方法必須傳回 void，為事件通知是一種方式和最佳效果。
 
 ```csharp
 public interface IGameEvents : IActorEvents
@@ -39,7 +39,7 @@ public interface GameEvents implements ActorEvents
     void gameScoreUpdated(UUID gameId, String currentScore);
 }
 ```
-宣告由動作項目介面中動作項目發佈的事件。
+宣告 hello hello 執行者介面中的 hello 執行者所發行的事件。
 
 ```csharp
 public interface IGameActor : IActor, IActorEventPublisher<IGameEvents>
@@ -57,7 +57,7 @@ public interface GameActor extends Actor, ActorEventPublisherE<GameEvents>
     CompletableFuture<String> getGameScore();
 }
 ```
-在用戶端上，實作事件處理常式。
+Hello 用戶端，實作 hello 事件處理常式。
 
 ```csharp
 class GameEventsHandler : IGameEvents
@@ -78,7 +78,7 @@ class GameEventsHandler implements GameEvents {
 }
 ```
 
-在用戶端上，對發佈事件的動作項目建立 Proxy，並訂閱其事件。
+Hello 用戶端上建立發行 hello 事件 proxy toohello 動作項目，並訂閱 tooits 事件。
 
 ```csharp
 var proxy = ActorProxy.Create<IGameActor>(
@@ -93,9 +93,9 @@ GameActor actorProxy = ActorProxyBase.create<GameActor>(GameActor.class, new Act
 return ActorProxyEventUtility.subscribeAsync(actorProxy, new GameEventsHandler());
 ```
 
-發生容錯移轉時，動作項目會容錯移轉至不同的程序或節點。 動作項目 Proxy 會管理使用中的訂用帳戶，並自動重新訂閱。 您可以透過 `ActorProxyEventExtensions.SubscribeAsync<TEvent>` API 控制重新訂閱間隔。 若要取消訂閱，請使用 `ActorProxyEventExtensions.UnsubscribeAsync<TEvent>` API。
+在 hello 事件中的容錯移轉期間，hello 執行者可以容錯移轉 tooa 不同處理序或節點。 hello 執行者 proxy 管理 hello 使用中的訂閱，並自動重新訂閱。 您可以控制透過 hello hello 重新訂用帳戶間隔`ActorProxyEventExtensions.SubscribeAsync<TEvent>`應用程式開發介面。 toounsubscribe，使用 hello`ActorProxyEventExtensions.UnsubscribeAsync<TEvent>`應用程式開發介面。
 
-在動作項目上，當事件發生時只發佈事件。 如果有訂閱者訂閱事件，動作項目執行階段會將事件傳送至通知。
+在 hello 動作項目，只要將發行 hello 事件發生。 如果 「 訂閱者 」 toohello 事件，hello 執行者執行階段會傳送它們 hello 通知。
 
 ```csharp
 var ev = GetEvent<IGameEvents>();

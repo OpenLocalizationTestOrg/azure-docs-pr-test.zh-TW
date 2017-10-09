@@ -1,6 +1,6 @@
 ---
-title: "Azure Multi-Factor Authentication 文件 - 教學課程和 API 參考 | Microsoft Docs"
-description: "了解如何透過可提供簡單登入程序的各種驗證方法，部署 Multi-Factor Authentication。 教學課程、SDK 等等。"
+title: "aaaAzure multi-factor Authentication 文件-教學課程中，API 參考 |Microsoft 文件"
+description: "深入了解如何 toodeploy 利用某個範圍的驗證方法的多因素驗證提供一個簡單的登入流程。 教學課程、SDK 等等。"
 services: multi-factor-authentication
 author: carolz
 manager: carolz
@@ -12,15 +12,15 @@ ms.devlang: na
 ms.topic: landing-page
 ms.date: 01/23/2017
 ms.author: carolz
-ms.openlocfilehash: c4aaa14007bf441f99ef6599bda411bcaed92a92
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 0ede2ad48a3d4e756aeb0b1f6bc0e07e4e7b1fcc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/19/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="multi-factor-authentication-documentation"></a>Multi-Factor Authentication 文件
 
-了解如何部署和管理 Azure Multi-Factor Authentication，這是雙步驟的身分驗證系統。 教學課程、SDK 和其他文件會示範如何透過各種驗證方法提供強式驗證，同時提供簡單登入程序。
+深入了解如何 toodeploy 和管理 Azure Multi-factor Authentication，兩個步驟身分識別驗證系統。 教學課程、 SDK 和其他文件會顯示您如何 toodeliver 增強式驗證使用的驗證方法的範圍時提供一個簡單的登入流程。
 
 <ul class="panelContent cardsFTitle">
     <li>
@@ -88,7 +88,7 @@ ms.lasthandoff: 07/19/2017
                         </div>
                     </div>
                     <div class="cardText">
-                        <h3>開始在雲端中使用 Azure Multi-Factor Authentication</h3>
+                        <h3>開始使用 Azure multi-factor Authentication hello 雲端中</h3>
                     </div>
                 </div>
             </div>

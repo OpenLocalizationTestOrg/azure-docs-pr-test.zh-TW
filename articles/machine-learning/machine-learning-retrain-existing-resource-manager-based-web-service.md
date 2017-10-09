@@ -1,6 +1,6 @@
 ---
-title: "重新訓練現有的預測 Web 服務 | Microsoft Docs"
-description: "了解如何在 Azure Machine Learning 中重新定型模型，以及使用新定型的模型來更新 Web 服務。"
+title: "aaaRetrain 預測的現有 web 服務 |Microsoft 文件"
+description: "了解 tooretrain 模型和更新 hello web 服務 toouse hello 新定型的模型在 Azure Machine Learning 中。"
 services: machine-learning
 documentationcenter: 
 author: vDonGlover
@@ -14,100 +14,100 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/11/2017
 ms.author: v-donglo
-ms.openlocfilehash: bdc994daf441d397157f8e6cbcf84d72584927f0
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: fb0760d0a2adc34fc5f3df1ae41bdac075f91bf4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="retrain-an-existing-predictive-web-service"></a>重新定型現有的預測 Web 服務
-本文件描述下列案例的重新定型程序︰
+本文件說明 hello 重新訓練 hello 遵照案例的程序：
 
 * 您有訓練實驗和預測實驗，您已部署為實際運作的 Web 服務。
-* 您有新的資料想要讓預測 Web 服務用來執行其評分。
+* 您有新的資料，您希望您預測的 web 服務 toouse tooperform 其計分。
 
 > [!NOTE] 
-> 若要部署新的 Web 服務，您必須在要部署 Web 服務的訂用帳戶中具備足夠的權限。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。 
+> toodeploy 新的 web 服務，您必須擁有足夠的權限 hello 訂用帳戶 toowhich 您部署 hello web 服務。 如需詳細資訊，請參閱[管理 Web 服務使用 hello Azure 機器學習 Web 服務網站](machine-learning-manage-new-webservice.md)。 
 
-從您現有的 Web 服務和實驗開始，您必須請遵循下列步驟︰
+從您現有的 web 服務和實驗，您需要 toofollow 下列步驟：
 
-1. 更新模型。
-   1. 修改您的訓練實驗，允許 Web 服務輸入和輸出。
-   2. 將訓練實驗部署為定型 Web 服務。
-   3. 使用訓練實驗批次執行服務 (BES) 重新定型模型。
-2. 使用 Azure Machine Learning PowerShell Cmdlet 來更新預測實驗。
-   1. 登入您的 Azure Resource Manager 帳戶。
-   2. 取得 Web 服務定義。
-   3. 將 Web 服務定義匯出為 JSON。
-   4. 在 JSON 中將參考更新為 ilearner blob。
-   5. 將 JSON 匯入至 Web 服務定義。
-   6. 使用新的 Web 服務定義更新 Web 服務。
+1. 更新 hello 模型。
+   1. 修改您的 web 服務輸入及輸出的定型實驗 tooallow。
+   2. 訓練的 web 服務來部署 hello 定型實驗。
+   3. 使用 hello 定型實驗的批次執行服務 (BES) tooretrain hello 模型。
+2. 使用 hello Azure 機器學習 PowerShell cmdlet tooupdate hello 預測實驗。
+   1. 登入 tooyour Azure 資源管理員帳戶。
+   2. 收到 hello web 服務定義。
+   3. 將 hello web 服務定義匯出為 JSON。
+   4. 更新 hello JSON 中的 hello 參考 toohello ilearner 做為 blob。
+   5. Hello JSON 匯入 web 服務定義。
+   6. 使用新的 web 服務定義來更新 hello web 服務。
 
-## <a name="deploy-the-training-experiment"></a>部署訓練實驗
-若要將訓練實驗部署為重新定型 Web 服務，您必須將 Web 服務輸入和輸出新增至模型。 藉由將 *Web 服務輸出* 模組連接至實驗的 *[培訓模型][train-model]* 模組，即可讓訓練實驗產生可在預測實驗中使用的定型模型。 如果您有「評估模型」模組，您也可以附加 Web 服務輸出，以取得評估結果做為輸出。
+## <a name="deploy-hello-training-experiment"></a>部署 hello 定型實驗
+toodeploy hello 訓練試驗訓練的 web 服務，您必須新增 web 服務輸入及輸出 toohello 模型。 藉由連接*Web 服務輸出*模組 toohello 實驗的*[定型模型][ train-model]* 模組，啟用 hello 定型實驗tooproduce 新定型的模型，您可以使用預測實驗中。 如果您有*評估模型*模組，您也可以附加 web 服務輸出 tooget hello 評估的結果做為輸出。
 
-若要更新您的訓練實驗︰
+tooupdate 定型實驗：
 
-1. 將「Web 服務輸入」模組連接至您的資料輸入 (例如，「清除遺漏資料」模組)。 通常，您會想要確保您的輸入資料與原始的訓練資料以相同方式處理。
-2. 將 *Web 服務輸出* 模組連接至 *訓練模型* 模組的輸出。
-3. 如果您有「評估模型」模組，且您想要輸出評估結果，請將「Web 服務輸出」模組連接至「評估模型」模組的輸出。
+1. 連接*Web 服務輸入*模組 tooyour 資料輸入 (例如，*清除遺漏資料*模組)。 您通常會想 tooensure 中處理您的輸入的資料相同的 hello 與原始定型資料的方式。
+2. 連接*Web 服務輸出*模組 toohello 輸出您*定型模型*模組。
+3. 如果您有*評估模型*模組，而且您想要將 toooutput hello 評估結果，連接*Web 服務輸出*模組 toohello 輸出您*評估模型*模組。
 
 執行您的實驗。
 
-接下來您必須將訓練實驗部署為可產生訓練模型與模型評估結果的 Web 服務。  
+接下來，您必須部署 hello 定型實驗做會產生定型的模型和模型的評估結果為 web 服務。  
 
-在實驗畫布底端，按一下 [設定 Web 服務]，然後選取 [部署 Web 服務 [新式]]。 Azure Machine Learning Web Services 入口網站會開啟 [部署 Web 服務] 頁面。 輸入您的 Web 服務名稱，選擇付款方案，然後按一下 [部署] 。 您只能使用批次執行方法來建立定型模型。
+在 hello hello 實驗畫布底部，按一下 **設定 Web 服務**，然後選取**部署 Web 服務 [New]**。 hello Azure 機器學習 Web 服務入口網站開啟 toohello**部署 Web 服務**頁面。 輸入您的 Web 服務名稱，選擇付款方案，然後按一下部署 。 您只能使用 hello 批次執行方法來建立定型的模型。
 
-## <a name="retrain-the-model-with-new-data-by-using-bes"></a>使用 BES 以新資料重新定型模型
-在此範例中，我們使用 C# 建立重新訓練應用程式。 您也可以使用 Python 或 R 範例程式碼來完成這項工作。
+## <a name="retrain-hello-model-with-new-data-by-using-bes"></a>使用 BES 進行重新培訓 hello 模型使用新的資料
+此範例中，我們會使用重新訓練應用程式的 C# toocreate hello。 您也可以使用 Python 或 R 的範例程式碼 tooaccomplish 這項工作。
 
-若要呼叫重新定型 API：
+重新訓練應用程式開發介面 toocall hello:
 
 1. 在 Visual Studio 中建立 C# 主控台應用程式：[新增] > [專案] > [Visual C#] > [Windows 傳統桌面] > [主控台應用程式 (.NET Framework)]。
-2. 登入 Machine Learning Web 服務入口網站。
-3. 按一下您要使用的 Web 服務。
+2. 登入 toohello 機器學習 Web 服務入口網站。
+3. 按一下您正在使用的 hello web 服務。
 4. 按一下 [取用] 。
-5. 在 [取用] 頁面底部的 [範例程式碼] 區段，按一下 [批次]。
-6. 複製可用於批次執行的範例 C# 程式碼，然後貼入 Program.cs 檔案。 請確定命名空間保持不變。
+5. 在 hello 底部 hello**取用** 頁面的 hello**範例程式碼**區段中，按一下**批次**。
+6. 複製 hello C# 程式碼範例的批次執行，並將它貼到 hello Program.cs 檔案。 請確定該 hello 命名空間會保持不變。
 
-新增 NuGet 套件 Microsoft.AspNet.WebApi.Client，如註解中所述。 若要新增指向 Microsoft.WindowsAzure.Storage.dll 的參考，您可能需要先安裝 [Azure 儲存體服務的用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage)。
+新增 hello NuGet 封裝 Microsoft.AspNet.WebApi.Client，hello 註解中所指定。 tooadd hello 參考 tooMicrosoft.WindowsAzure.Storage.dll，您可能必須先 tooinstall hello [Azure 儲存體服務的用戶端程式庫](https://www.nuget.org/packages/WindowsAzure.Storage)。
 
-下列螢幕擷取畫面顯示 Azure Machine Learning Web 服務入口網站的 [取用]頁面。
+hello 下列螢幕擷取畫面顯示 hello**取用**hello Azure 機器學習 Web 服務入口網站頁面中的。
 
 ![取用頁面][1]
 
-### <a name="update-the-apikey-declaration"></a>更新 apikey 宣告
-找到 **apikey** 宣告：
+### <a name="update-hello-apikey-declaration"></a>更新 hello apikey 宣告
+找出 hello **apikey**宣告：
 
-    const string apiKey = "abc123"; // Replace this with the API key for the web service
+    const string apiKey = "abc123"; // Replace this with hello API key for hello web service
 
-在 [取用] 頁面的 [基本取用資訊] 區段中，找到主索引鍵，將其複製到 **apiKey** 宣告。
+在 hello**基本耗用量資訊**區段 hello**取用**頁面上，找出 hello 主索引鍵並將它複製 toohello **apikey**宣告。
 
-### <a name="update-the-azure-storage-information"></a>更新 Azure 儲存體資訊
-BES 範例程式碼會將檔案從本機磁碟機 (例如，C:\temp\CensusIpnput.csv) 上傳至 Azure 儲存體、加以處理後，再將結果寫回 Azure 儲存體。  
+### <a name="update-hello-azure-storage-information"></a>更新 hello Azure 儲存體資訊
+hello BES 範例程式碼會將檔案從本機磁碟機 (例如，"C:\temp\CensusIpnput.csv 」) tooAzure 儲存體上傳、 加以處理，並將 hello 結果後 tooAzure 儲存體。  
 
-若要更新 Azure 儲存體資訊，您必須從 Azure 傳統入口網站擷取儲存體帳戶名稱、金鑰，以及儲存體帳戶的容器資訊，然後更新對應項目。執行實驗之後，產生的工作流程應該會如下所示︰
+tooupdate hello Azure 儲存體資訊，您必須擷取 hello hello Azure 傳統入口網站，從儲存體帳戶的名稱、 金鑰和容器資訊，然後執行實驗之後, 更新 hello correspondi hello 所產生的儲存體帳戶工作流程應該類似 toohello 下列：
 
-![執行後產生的工作流程][4]程式碼中的 ng 值。
+![執行後產生的工作流程][4]ng hello 程式碼中的值。
 
-1. 登入 Azure 傳統入口網站。
-2. 在左側導覽中，按一下 [儲存體] 。
-3. 在儲存體帳戶的清單中，選取要儲存重新定型模型的帳戶。
-4. 按一下此頁面底部的 [管理存取金鑰] 。
-5. 複製並儲存 **主要存取金鑰** ，然後關閉對話方塊。
-6. 按一下頁面頂端的 [容器] 。
-7. 您可以使用現有容器，或建立新的容器並儲存名稱。
+1. 登入 toohello Azure 傳統入口網站。
+2. 在 hello 左側瀏覽資料行中，按一下 **儲存體**。
+3. 從儲存體帳戶的 hello 清單中選取一個 toostore hello 重新定型模型。
+4. 在 hello hello 頁面底部，按一下**管理存取金鑰**。
+5. 複製並儲存 hello**主要存取金鑰**和 hello 關閉對話方塊。
+6. 在 hello hello 頁面頂端，按一下**容器**。
+7. 選取現有的容器，或建立一個新並儲存 hello 名稱。
 
-找到 StorageAccountName、StorageAccountKey、StorageContainerName 宣告，更新為您從傳統入口網站儲存的值。
+找出 hello *StorageAccountName*， *StorageAccountKey*，和*StorageContainerName*宣告和更新您儲存從 hello 傳統入口網站的 hello 值.
 
     const string StorageAccountName = "mystorageacct"; // Replace this with your Azure storage account name
     const string StorageAccountKey = "a_storage_account_key"; // Replace this with your Azure Storage key
     const string StorageContainerName = "mycontainer"; // Replace this with your Azure Storage container name
 
-您也必須確保程式碼中指定的位置有輸入檔案。
+您也必須確定該 hello 輸入的檔可在您指定在 hello 程式碼中的 hello 位置。
 
-### <a name="specify-the-output-location"></a>指定輸出位置
-在要求承載中指定輸出位置時，必須將 RelativeLocation  中指定檔案的副檔名指定為 `ilearner`。 請參閱下列範例：
+### <a name="specify-hello-output-location"></a>指定 hello 輸出位置
+當您在 hello 要求裝載中指定 hello 輸出位置時，hello hello 檔案中指定的副檔名*RelativeLocation*必須指定為`ilearner`。 請參閱下列範例中的 hello:
 
     Outputs = new Dictionary<string, AzureBlobDataReference>() {
         {
@@ -115,33 +115,33 @@ BES 範例程式碼會將檔案從本機磁碟機 (例如，C:\temp\CensusIpnput
             new AzureBlobDataReference()
             {
                 ConnectionString = storageConnectionString,
-                RelativeLocation = string.Format("{0}/output1results.ilearner", StorageContainerName) /*Replace this with the location you want to use for your output file and a valid file extension (usually .csv for scoring results or .ilearner for trained models)*/
+                RelativeLocation = string.Format("{0}/output1results.ilearner", StorageContainerName) /*Replace this with hello location you want toouse for your output file and a valid file extension (usually .csv for scoring results or .ilearner for trained models)*/
             }
         },
 
-以下是重新定型輸出的範例︰![重新定型輸出][6]
+hello 以下是範例的輸出重新訓練：![重新訓練輸出][6]
 
-## <a name="evaluate-the-retraining-results"></a>評估重新定型結果
-當您執行應用程式時，輸出會包含存取評估結果所需的 URL 和共用存取簽章權杖。
+## <a name="evaluate-hello-retraining-results"></a>評估 hello 定型的結果
+當您執行 hello 應用程式時，hello 輸出會包括 hello URL 和必要 tooaccess hello 評估結果的共用的存取簽章 token。
 
-您可以組合 output2 輸出結果中的 BaseLocation、RelativeLocation、SasBlobToken (如之前重新訓練輸出的圖中所示)，再將完整 URL 貼入瀏覽器網址列，便能看到重新訓練模型的執行結果。  
+您可以看到 hello 重新定型模型的 hello 效能結果，藉由結合 hello *BaseLocation*， *RelativeLocation*，和*SasBlobToken* hello 輸出結果如*output2* （如 hello 上述重新訓練輸出影像所示） 並貼入 hello 瀏覽器網址列中的 hello 完整 URL。  
 
-查看結果以判斷新的定型模型的執行效能是否良好並足以取代現有模型。
+請檢查 hello 結果 toodetermine 是否 hello 新定型的模型執行現有的指引也足夠 tooreplace hello。
 
-複製輸出結果中的 BaseLocation、RelativeLocation、SasBlobToken。
+複製 hello *BaseLocation*， *RelativeLocation*，和*SasBlobToken* hello 輸出結果。
 
-## <a name="retrain-the-web-service"></a>重新定型 Web 服務
-當您重新定型新的 Web 服務時，可以更新預測性 Web 服務定義以參考新的定型模型。 Web 服務定義是 Web 服務定型模型的內部表示法，且不可直接修改。 請確定您要擷取的是預測性實驗而非訓練實驗的 Web 服務定義。
+## <a name="retrain-hello-web-service"></a>進行重新培訓 hello web 服務
+當您重新訓練新的 web 服務時，您會更新 hello 預測 web 服務定義 tooreference hello 新定型的模型。 hello web 服務定義是 hello 定型模型的 hello web 服務的內部表示法，而且不是直接修改。 請確定您會預測實驗和未定型實驗擷取 hello web 服務定義。
 
-## <a name="sign-in-to-azure-resource-manager"></a>登入 Azure Resource Manager
-您必須先在 PowerShell 環境中，使用 [Add-AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet 登入您的 Azure 帳戶。
+## <a name="sign-in-tooazure-resource-manager"></a>登入 tooAzure 資源管理員
+您必須先登入 tooyour 從 hello PowerShell 環境中的 Azure 帳戶，使用 hello[新增 AzureRmAccount](https://msdn.microsoft.com/library/mt619267.aspx) cmdlet。
 
-## <a name="get-the-web-service-definition-object"></a>取得 Web 服務定義物件
-接下來，呼叫 [Get-AzureRmMlWebService](https://msdn.microsoft.com/library/mt619267.aspx) Cmdlet 取得 Web 服務定義物件。
+## <a name="get-hello-web-service-definition-object"></a>取得 hello Web 服務定義物件
+接下來，呼叫 hello 取得 hello Web 服務定義物件[Get AzureRmMlWebService](https://msdn.microsoft.com/library/mt619267.aspx) cmdlet。
 
     $wsd = Get-AzureRmMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-SouthCentralUS'
 
-若要判斷現有 Web 服務的資源群組名稱，執行不含任何參數的 Get-AzureRmMlWebService cmdlet 來顯示您訂用帳戶中的 Web 服務。 找出 Web 服務，再查看其 Web 服務識別碼。 資源群組的名稱是識別碼中的第四個元素，緊接在 resourceGroups  元素之後。 在下列範例中，資源群組名稱是 Default-MachineLearning-SouthCentralUS。
+toodetermine hello 資源群組名稱的現有 web 服務，在您訂用帳戶中執行不含任何參數 toodisplay hello web 服務的 hello Get AzureRmMlWebService cmdlet。 找出 hello web 服務，然後查看 其 web 服務識別碼。 hello hello 資源群組名稱是 hello 識別碼 hello 第四個元素後方 hello *resourceGroups*項目。 在下列範例的 hello，hello 資源群組名稱會是預設-MachineLearning-SouthCentralUS。
 
     Properties : Microsoft.Azure.Management.MachineLearning.WebServices.Models.WebServicePropertiesForGraph
     Id : /subscriptions/<subscription ID>/resourceGroups/Default-MachineLearning-SouthCentralUS/providers/Microsoft.MachineLearning/webServices/RetrainSamplePre.2016.8.17.0.3.51.237
@@ -150,18 +150,18 @@ BES 範例程式碼會將檔案從本機磁碟機 (例如，C:\temp\CensusIpnput
     Type : Microsoft.MachineLearning/webServices
     Tags : {}
 
-或者，若要判斷現有 Web 服務的資源群組名稱，登入 Azure Machine Learning Web 服務入口網站。 選取 Web 服務。 資源群組名稱是 Web 服務 URL 的第五個元素，緊接在 resourceGroups  元素之後。 在下列範例中，資源群組名稱是 Default-MachineLearning-SouthCentralUS。
+或者，toodetermine hello 資源群組名稱的現有 web 服務，請登入 toohello Azure 機器學習 Web 服務入口網站。 選取 hello web 服務。 hello 資源群組名稱是 hello hello web 服務，URL hello 第五個項目後方 hello *resourceGroups*項目。 在下列範例的 hello，hello 資源群組名稱會是預設-MachineLearning-SouthCentralUS。
 
     https://services.azureml.net/subscriptions/<subcription ID>/resourceGroups/Default-MachineLearning-SouthCentralUS/providers/Microsoft.MachineLearning/webServices/RetrainSamplePre.2016.8.17.0.3.51.237
 
 
-## <a name="export-the-web-service-definition-object-as-json"></a>將 Web 服務定義物件匯出為 JSON
-若要將定義修改為定型模型以使用新定型的模型，您必須先使用 [Export-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767935.aspx) Cmdlet 將其匯出為 JSON 格式檔案。
+## <a name="export-hello-web-service-definition-object-as-json"></a>匯出為 JSON 的 hello Web 服務定義物件
+hello 定型的模型 toouse hello toomodify hello 定義新定型模型，您必須先使用 hello[匯出 AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767935.aspx) cmdlet tooexport 它 tooa JSON 格式的檔案。
 
     Export-AzureRmMlWebService -WebService $wsd -OutputFile "C:\temp\mlservice_export.json"
 
-## <a name="update-the-reference-to-the-ilearner-blob"></a>將參考更新為 ilearner blob
-在資產中，找出 [定型模型]，使用 ilearner blob 的 URI 更新 locationInfo 節點中的 uri 值。 URI 的產生方式為結合來自 BES 重新定型呼叫輸出的 BaseLocation 和 RelativeLocation。
+## <a name="update-hello-reference-toohello-ilearner-blob"></a>更新 hello 參考 toohello ilearner 做為 blob
+在 [hello 資產，找出 hello [定型的模型]，更新 hello *uri* hello 中的值*locationInfo*節點以 hello hello ilearner 做為 blob 的 URI。 hello URI 由產生結合 hello *BaseLocation*和 hello *RelativeLocation* hello BES 訓練呼叫 hello 輸出。
 
      "asset3": {
         "name": "Retrain Sample [trained model]",
@@ -176,14 +176,14 @@ BES 範例程式碼會將檔案從本機磁碟機 (例如，C:\temp\CensusIpnput
         }
       },
 
-## <a name="import-the-json-into-a-web-service-definition-object"></a>將 JSON 匯入至 Web 服務定義物件
-您必須使用 [Import-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767925.aspx) Cmdlet 將修改過的 JSON 檔案轉換回可用來更新預測性實驗的 Web 服務定義物件。
+## <a name="import-hello-json-into-a-web-service-definition-object"></a>Hello JSON 匯入 Web 服務定義物件
+您必須使用 hello[匯入 AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767925.aspx) cmdlet tooconvert hello 修改回您可以使用 tooupdate hello predicative 實驗的 Web 服務定義物件的 JSON 檔案。
 
     $wsd = Import-AzureRmMlWebService -InputFile "C:\temp\mlservice_export.json"
 
 
-## <a name="update-the-web-service"></a>更新 Web 服務
-最後，使用 [Update-AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767922.aspx) Cmdlet 來更新預測性實驗。
+## <a name="update-hello-web-service"></a>更新 hello web 服務
+最後，使用 hello[更新 AzureRmMlWebService](https://msdn.microsoft.com/library/azure/mt767922.aspx) cmdlet tooupdate hello 預測實驗。
 
     Update-AzureRmMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-SouthCentralUS'
 

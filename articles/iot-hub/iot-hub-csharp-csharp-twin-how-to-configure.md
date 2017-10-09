@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure IoT 中樞裝置對應項屬性 (.NET/.NET) | Microsoft Docs"
-description: "如何使用 Azure IoT 中樞裝置對應項來設定裝置。 您可以使用適用於 .NET 的 Azure IoT 裝置 SDK，實作模擬裝置應用程式，也可以使用適用於 .NET 的 Azure IoT 服務 SDK，實作服務應用程式，以修改使用裝置對應項的裝置設定。"
+title: "aaaUse Azure IoT Hub 裝置的兩個屬性 (.NET/.NET) |Microsoft 文件"
+description: "如何 toouse Azure IoT Hub 裝置雙 tooconfigure 裝置。 您可以使用.NET tooimplement 模擬的裝置應用程式的 hello Azure IoT 裝置 SDK 和 hello Azure IoT 服務 SDK for.NET tooimplement 修改使用裝置的兩個裝置設定的服務應用程式。"
 services: iot-hub
 documentationcenter: .net
 author: dsk-2015
@@ -14,67 +14,67 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/10/2017
 ms.author: dkshir
-ms.openlocfilehash: 679cda28bf3ce9fb207fe3693a3453b355f1de15
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 486436d29abfd5158c253adc5abf5935e0e1fdba
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="use-desired-properties-to-configure-devices"></a>使用所需屬性來設定裝置
+# <a name="use-desired-properties-tooconfigure-devices"></a>使用所需的屬性 tooconfigure 裝置
 [!INCLUDE [iot-hub-selector-twin-how-to-configure](../../includes/iot-hub-selector-twin-how-to-configure.md)]
 
-在本教學課程結尾，您將會有兩個 .NET 主控台應用程式：
+在本教學課程的 hello 結束時，您將擁有兩個.NET 主控台應用程式：
 
-* **SimulateDeviceConfiguration**，這是模擬裝置應用程式，可等候所需的設定更新，並報告模擬設定更新程序的狀態。
-* **SetDesiredConfigurationAndQuery**，這是後端應用程式，可在裝置上設定所需的設定，並查詢設定更新程序。
+* **SimulateDeviceConfiguration**，模擬的裝置應用程式等候的所需的組態更新，並報告 hello 模擬的組態更新程序的狀態。
+* **SetDesiredConfigurationAndQuery**、 設定 hello 後端應用程式預期在裝置上的設定和查詢 hello 組態更新程序。
 
 > [!NOTE]
-> [Azure IoT SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式之 Azure IoT SDK 的相關資訊。
+> hello 文章[Azure IoT Sdk] [ lnk-hub-sdks]提供 hello Azure IoT Sdk 的相關資訊，您可以使用 toobuild 裝置與後端應用程式。
 > 
 > 
 
-若要完成此教學課程，您需要下列項目：
+toocomplete 需要 hello 下列本教學課程：
 
 * Visual Studio 2015 或 Visual Studio 2017。
 * 使用中的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
 
-如果您遵循[開始使用裝置對應項][lnk-twin-tutorial]教學課程進行，您便已經有一個 IoT 中樞和一個稱為 **myDeviceId** 的裝置身分識別。 在該情況下，您可以直接跳到[建立模擬裝置應用程式][lnk-how-to-configure-createapp]一節。
+如果您遵循 hello[開始使用裝置雙][ lnk-twin-tutorial]教學課程中，您已經有 IoT 中樞和裝置身分識別稱為**myDeviceId**。 在此情況下，您可以略過 toohello[建立 hello 模擬的裝置應用程式][ lnk-how-to-configure-createapp] > 一節。
 
 [!INCLUDE [iot-hub-get-started-create-hub](../../includes/iot-hub-get-started-create-hub.md)]
 
 [!INCLUDE [iot-hub-get-started-create-device-identity](../../includes/iot-hub-get-started-create-device-identity-portal.md)]
 
 <a id="#create-the-simulated-device-app"></a>
-## <a name="create-the-simulated-device-app"></a>建立模擬裝置應用程式
-在本節中，您將建立 .NET 主控台應用程式，此應用程式會以 **myDeviceId** 連接到您的中樞、等候所需的設定更新，然後報告模擬設定更新程序上的更新。
+## <a name="create-hello-simulated-device-app"></a>建立 hello 模擬的裝置應用程式
+在本節中，您會建立.NET 主控台應用程式連接成 tooyour 中樞**myDeviceId**等候所需的組態更新，然後報告 hello 模擬的組態更新程序中的 更新。
 
-1. 在 Visual Studio 中，使用 [主控台應用程式] 專案範本，建立新的 Visual C# Windows 傳統桌面專案。 將專案命名為 **SimulateDeviceConfiguration**。
+1. 在 Visual Studio 中，建立新的 Visual C# Windows 傳統桌面專案使用 hello**主控台應用程式**專案範本。 名稱 hello 專案**SimulateDeviceConfiguration**。
    
     ![新的 Visual C# Windows 傳統裝置應用程式][img-createdeviceapp]
 
-1. 在方案總管中，以滑鼠右鍵按一下 **SimulateDeviceConfiguration** 專案，然後按一下 [管理 NuGet 套件...]。
-1. 在 [NuGet 套件管理員] 視窗中，選取 [瀏覽]，並搜尋 **microsoft.azure.devices.client**。 選取 [安裝] 來安裝 **Microsoft.Azure.Devices.Client** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 裝置 SDK][lnk-nuget-client-sdk] NuGet 套件與其相依項目，並新增對它的參考。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 hello **SimulateDeviceConfiguration**專案，然後再按一下**管理 NuGet 封裝...**.
+1. 在 hello **NuGet 套件管理員**視窗中，選取**瀏覽**並搜尋**microsoft.azure.devices.client**。 選取**安裝**tooinstall hello **Microsoft.Azure.Devices.Client**封裝，並接受使用規定 hello。 此程序下載、 安裝，並新增參考 toohello [Azure IoT 裝置 SDK] [ lnk-nuget-client-sdk] NuGet 封裝和其相依性。
    
     ![NuGet 套件管理員視窗用戶端應用程式][img-clientnuget]
-1. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
+1. 新增下列 hello`using`在 hello hello 最上方的陳述式**Program.cs**檔案：
    
         using Microsoft.Azure.Devices.Client;
         using Microsoft.Azure.Devices.Shared;
         using Newtonsoft.Json;
 
-1. 將下列欄位新增到 **Program** 類別。 將預留位置的值取代為您在上一節中所記下的裝置連接字串。
+1. 新增下列欄位 toohello hello**程式**類別。 取代您記下 hello 前一節中的 hello 裝置連接字串中的 hello 預留位置的值。
    
         static string DeviceConnectionString = "HostName=<yourIotHubName>.azure-devices.net;DeviceId=<yourIotDeviceName>;SharedAccessKey=<yourIotDeviceAccessKey>";
         static DeviceClient Client = null;
         static TwinCollection reportedProperties = new TwinCollection();
 
-1. 將下列方法加入至 **Program** 類別：
+1. 新增下列方法 toohello hello**程式**類別：
  
         public static void InitClient()
         {
             try
             {
-                Console.WriteLine("Connecting to hub");
+                Console.WriteLine("Connecting toohub");
                 Client = DeviceClient.CreateFromConnectionString(DeviceConnectionString, TransportType.Mqtt);
             }
             catch (Exception ex)
@@ -83,9 +83,9 @@ ms.lasthandoff: 07/29/2017
                 Console.WriteLine("Error in sample: {0}", ex.Message);
             }
         }
-    **Client** 物件會公開從裝置來與裝置對應項進行互動時所需的所有方法。 以上所示的程式碼會初始化**用戶端**物件，然後擷取 **myDeviceId** 的裝置對應項。
+    hello**用戶端**物件會公開您需要將裝置從 hello 裝置的雙具備 toointeract 所有 hello 方法。 hello，如上所示的程式碼初始化 hello**用戶端**物件，然後按一下 擷取的 hello 裝置兩個**myDeviceId**。
 
-1. 將下列方法新增至 **Program** 類別。 這個方法會設定本機裝置上的遙測資料起始值，然後更新裝置對應項。
+1. 新增下列方法 toohello hello**程式**類別。 這個方法會設定初始值遙測 hello hello 本機裝置上，然後更新 hello 裝置兩個。
 
         public static async void InitTelemetry()
         {
@@ -116,7 +116,7 @@ ms.lasthandoff: 07/29/2017
             }
         }
 
-1. 將下列方法新增至 **Program** 類別。 這是會在裝置對應項中偵測到「所需屬性」變更的回呼。
+1. 新增下列方法 toohello hello**程式**類別。 這是會偵測到變更的回呼*所需屬性*在 hello 裝置兩個。
 
         private static async Task OnDesiredPropertyChanged(TwinCollection desiredProperties, object userContext)
         {
@@ -154,9 +154,9 @@ ms.lasthandoff: 07/29/2017
             }
         }
 
-    此方法會依設定更新要求，在本機裝置對應項物件上更新所報告的屬性，並將狀態設為 **Pending**，然後更新服務上的裝置對應項。 成功更新裝置對應項之後，就會呼叫下一個點中所述的方法 `CompleteConfigChange`，完成設定變更。
+    此方法更新 hello 回報 hello 組態與 hello 本機裝置兩個物件上的內容更新要求和設定 hello 狀態太**暫止**，然後更新 hello 裝置 hello 服務上的兩個。 已成功更新之後 hello 裝置兩個，完成 hello 組態變更呼叫 hello 方法`CompleteConfigChange`hello 下一個點中所述。
 
-1. 將下列方法新增至 **Program** 類別。 這個方法會模擬裝置重設，然後更新本機回報屬性，將狀態設定為 **Success**，並移除 **pendingConfig** 項目。 然後更新服務上的裝置對應項。 
+1. 新增下列方法 toohello hello**程式**類別。 這個方法可以模擬裝置重設，然後更新 hello 太 hello 狀態設定本機的報告的屬性**成功**和移除 hello **pendingConfig**項目。 然後，它會更新 hello 裝置的兩個 hello 服務上。 
 
         public static async void CompleteConfigChange()
         {
@@ -174,7 +174,7 @@ ms.lasthandoff: 07/29/2017
                 currentTelemetryConfig["pendingConfig"] = null;
 
                 await Client.UpdateReportedPropertiesAsync(reportedProperties);
-                Console.WriteLine("Config change complete \nPress any key to exit.");
+                Console.WriteLine("Config change complete \nPress any key tooexit.");
             }
             catch (AggregateException ex)
             {
@@ -191,7 +191,7 @@ ms.lasthandoff: 07/29/2017
             }
         }
 
-1. 最後，將下列幾行新增至 **Main** 方法：
+1. 最後會加入下列行 toohello hello **Main**方法：
 
         try
         {
@@ -217,31 +217,31 @@ ms.lasthandoff: 07/29/2017
         }
 
    > [!NOTE]
-   > 本教學課程不會模擬並行組態更新的任何行為。 某些組態更新程序可能在更新執行時能夠接受目標組態的變更，部分程序可能必須將變更排入佇列，還有部分程序可能會因錯誤條件而拒絕變更。 請務必考慮您的特定程序所需的行為，並在初始化組態變更之前新增適當的邏輯。
+   > 本教學課程不會模擬並行組態更新的任何行為。 某些組態更新處理程序可能會無法 tooaccommodate 變更目標組態的 hello 更新執行時，有些可能會有 tooqueue，以及一些無法拒絕它們與錯誤狀況。 請確定 tooconsider hello 特定組態程序中，所要的行為，並加入初始化 hello 組態變更之前的 hello 適當的邏輯。
    > 
    > 
-1. 建置方案，然後按一下 **F5** 從 Visual Studio 執行裝置應用程式。 在輸出主控台上，應該會有訊息指出：您模擬的裝置正在擷取裝置對應項、設定遙測資料和等候所需的屬性變更。 保持應用程式執行。
+1. 建置 hello 方案，然後從 Visual Studio 執行 hello 裝置應用程式，依序按一下**F5**。 Hello 輸出在主控台上，您應該會看到 hello 訊息，指出您模擬的裝置是擷取 hello 裝置兩個、 設定 hello 遙測和等候所需的屬性變更。 保留 hello 應用程式執行。
 
-## <a name="create-the-service-app"></a>建立服務應用程式
-在本節中，您將建立 .NET 主控台應用程式，在與 **myDeviceId** 相關聯的裝置對應項上，以新的遙測組態物件來更新「所需屬性」。 然後，它會查詢儲存在 IoT 中樞的裝置對應項，並顯示裝置的所需和所報告組態之間的差異。
+## <a name="create-hello-service-app"></a>建立 hello 服務應用程式
+在本節中，您將建立.NET 主控台應用程式的更新 hello*所需屬性*上 hello 與相關聯的裝置兩個**myDeviceId**與新的遙測組態物件。 接著會查詢儲存在 hello IoT 中樞中的 hello 裝置雙，並顯示 hello 差異 hello 想要與報告的 hello 裝置組態。
 
-1. 在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。 將專案命名為 **SetDesiredConfigurationAndQuery**。
+1. 在 Visual Studio 中，將 Visual C# Windows 傳統桌面專案 toohello 目前方案使用 hello**主控台應用程式**專案範本。 名稱 hello 專案**SetDesiredConfigurationAndQuery**。
    
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
-1. 在 [方案總管] 中，以滑鼠右鍵按一下 **SetDesiredConfigurationAndQuery** 專案，然後按一下 [管理 NuGet 套件...]。
-1. 在 [Nuget 套件管理員] 視窗中選取 [瀏覽]、搜尋 **microsoft.azure.devices**、選取 [安裝] 以安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並新增對它的參考。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 hello **SetDesiredConfigurationAndQuery**專案，然後再按一下**管理 NuGet 封裝...**.
+1. 在 hello **NuGet 套件管理員**視窗中，選取**瀏覽**，搜尋**microsoft.azure.devices**，選取**安裝**tooinstallhello **Microsoft.Azure.Devices**封裝，並接受使用規定 hello。 此程序下載、 安裝，並新增參考 toohello [Azure IoT 服務 SDK] [ lnk-nuget-service-sdk] NuGet 封裝和其相依性。
    
-    ![NuGet 套件管理員視窗][img-servicenuget]
-1. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
+    ![NuGet 封裝管理員視窗][img-servicenuget]
+1. 新增下列 hello`using`在 hello hello 最上方的陳述式**Program.cs**檔案：
    
         using Microsoft.Azure.Devices;
         using System.Threading;
         using Newtonsoft.Json;
-1. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在上一節中為中樞所建立的 IoT 中樞連接字串。
+1. 新增下列欄位 toohello hello**程式**類別。 取代 hello hello 中樞在 hello 上一節中所建立的 IoT 中樞連接字串中的 hello 預留位置的值。
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-1. 將下列方法加入至 **Program** 類別：
+1. 新增下列方法 toohello hello**程式**類別：
    
         static private async Task SetDesiredConfigurationAndQuery()
         {
@@ -275,37 +275,37 @@ ms.lasthandoff: 07/29/2017
             }
         }
    
-    **Registry** 物件會公開從服務來與裝置對應項進行互動時所需的所有方法。 此程式碼會初始化 **Registry** 物件，擷取 **myDeviceId** 的裝置對應項，然後以新的遙測組態物件來更新其所需屬性。
-    之後，它每隔 10 秒就會查詢儲存在 IoT 中樞的裝置對應項，並列印所需和所報告的遙測組態。 請參閱 [IoT 中樞查詢語言][lnk-query]，以了解如何產生跨所有裝置的實用報告。
+    hello**登錄**物件會公開與裝置雙 hello 服務從所有 hello 方法 toointeract 必要。 這個程式碼初始化 hello**登錄**物件，擷取 hello 的裝置兩個**myDeviceId**，然後使用新的遙測組態物件中更新其所需的屬性。
+    之後，它會查詢 hello 裝置雙儲存在 hello IoT 中樞每隔 10 秒鐘，而想要的沖印 hello，與回報遙測組態。 請參閱 toohello [IoT 中樞的查詢語言][ lnk-query] toolearn toogenerate 豐富報告的方式，跨所有裝置。
    
    > [!IMPORTANT]
-   > 為了便於說明，此應用程式每 10 秒查詢一次 IoT 中樞。 跨許多裝置時，請使用查詢來產生適合使用者的報告，而非偵測變更。 如果您的解決方案需要裝置事件的即時通知，請使用[對應項通知][lnk-twin-notifications]。
+   > 為了便於說明，此應用程式每 10 秒查詢一次 IoT 中樞。 使用跨許多裝置和非 toodetect 變更查詢 toogenerate 面對使用者的報表。 如果您的解決方案需要裝置事件的即時通知，請使用[對應項通知][lnk-twin-notifications]。
    > 
    > 
-1. 最後，將下列幾行新增至 **Main** 方法：
+1. 最後，加入下列行 toohello hello **Main**方法：
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         SetDesiredConfigurationAndQuery();
-        Console.WriteLine("Press any key to quit.");
+        Console.WriteLine("Press any key tooquit.");
         Console.ReadLine();
-1. 在 [方案總管] 中，開啟 [設定起始專案...]，並確定 **SetDesiredConfigurationAndQuery** 專案的 [動作] 是 [啟動]。 建置方案。
-1. 在 **SimulateDeviceConfiguration** 裝置應用程式執行的狀態下，使用 **F5** 從 Visual Studio 執行服務應用程式。 您應該會看到回報的設定從 **Pending** 變更成 **Success**，作用中的新傳送頻率是五分鐘，而不是 24 小時。
+1. 在 hello 方案總管 中，開啟 hello**設定啟始專案...** ，請確定 hello**動作**如**SetDesiredConfigurationAndQuery**專案是**啟動**。 建置 hello 方案。
+1. 與**SimulateDeviceConfiguration**裝置應用程式執行的執行的 hello 服務應用程式，從 Visual Studio 使用**F5**。 您應該會看見 hello 報告的設定，變更從**暫止**太**成功**傳送 hello 新使用中而不是 24 小時的五分鐘的頻率。
 
  ![已成功設定裝置][img-deviceconfigured]
    
    > [!IMPORTANT]
-   > 裝置報告作業和查詢結果之間的延遲最多一分鐘。 這是為了讓查詢基礎結構能夠以非常高的延展性運作。 若要擷取單一裝置對應項的一致檢視，請使用 **Registry** 類別中的 **getDeviceTwin** 方法。
+   > 沒有向上 tooa 分鐘 hello 裝置報告作業和 hello 查詢結果之間的延遲。 這是 tooenable hello 查詢在極高的小數位數的基礎結構 toowork。 tooretrieve 一致檢視的單一裝置的兩個使用 hello **getDeviceTwin**方法在 hello**登錄**類別。
    > 
    > 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您將會從解決方案後端將所需的組態設為「所需屬性」，還會撰寫裝置應用程式來偵測該變更並模擬多步驟更新程序，以透過報告屬性來回報其狀態。
+在本教學課程中，您可以設定為所需的組態*所需屬性*hello 方案從備份結束時，和寫入裝置的應用程式 toodetect 的變更，並模擬報告其狀態報告的 hello 透過多個步驟更新程序屬性。
 
-使用下列資源來了解如何：
+下列資源 toolearn 如何使用 hello 至：
 
-* 從裝置傳送遙測，請參閱[開始使用 IoT 中樞][lnk-iothub-getstarted]教學課程，
-* 在大量裝置上排定或執行作業，請參閱[排定及廣播作業][lnk-schedule-jobs]教學課程。
-* 以互動方式控制裝置 (例如，從使用者控制的應用程式開啟風扇)，請參閱[使用直接方法][lnk-methods-tutorial]教學課程。
+* 從以 hello 的裝置將遙測傳送[開始使用 IoT 中樞][ lnk-iothub-getstarted]教學課程中，
+* 排程執行，或是執行大量的裝置上的作業，請參閱 「 hello[排程和廣播的工作][ lnk-schedule-jobs]教學課程。
+* 控制裝置以互動方式 （例如開啟風扇從使用者控制的應用程式），以 hello[使用直接的方法][ lnk-methods-tutorial]教學課程。
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-csharp-twin-how-to-configure/servicesdknuget.png

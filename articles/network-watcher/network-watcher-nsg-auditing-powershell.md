@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員安全性群組檢視自動化 NSG 稽核 | Microsoft Docs"
-description: "此頁面說明如何設定網路安全性群組的稽核"
+title: "使用 Azure 網路監看員安全性的群組檢視稽核的 aaaAutomate NSG |Microsoft 文件"
+description: "此頁面提供有關指示 tooconfigure 稽核的網路安全性群組"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: a91da330e677c85f16f6f4e506613576b6507d7c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 24fc418c433fceaf55a74b7c3b0e354dc46c8729
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="automate-nsg-auditing-with-azure-network-watcher-security-group-view"></a>使用 Azure 網路監看員安全性群組檢視自動化 NSG 稽核
 
-客戶通常面臨難以驗證其基礎結構的安全性狀態之挑戰。 這項挑戰在其 Azure 中的 VM 沒有不同。 請務必根據套用的網路安全性群組 (NSG) 規則，具有類似的安全性設定檔。 您現在可以使用安全性群組檢視，取得套用到 NSG 中 VM 的規則清單。 您可以每週頻率定義黃金 NSG 安全性設定檔並起始安全性群組檢視，並比較輸出與標準設定檔且建立報告。 如此一來，您可以輕鬆識別不符合指定安全性設定檔規定的所有 VM。
+客戶通常會面對 hello 挑戰的驗證基礎結構的 hello 安全性狀態。 這項挑戰在其 Azure 中的 VM 沒有不同。 很重要的 toohave 類似的安全性設定檔為基礎套用 hello 網路安全性群組 (NSG) 規則。 使用 hello 安全性的群組檢視，您現在可以取得 hello 套用規則 tooa NSG 中的 VM 清單。 您可以定義標準的 NSG 安全性設定檔並起始以每週的步調安全性的群組檢視和比較 hello 輸出 toohello 標準設定檔和建立報表。 如此一來您可以識別就能輕鬆所有不符合規定的安全性設定檔的 toohello hello Vm。
 
 如果您不熟悉網路安全性群組，請造訪[網路安全性概觀](../virtual-network/virtual-networks-nsg.md)
 
 ## <a name="before-you-begin"></a>開始之前
 
-在此案例中，您可以比較已知的良好基準與針對虛擬機器傳回的安全性群組檢視結果。
+在此案例中，您可以比較已知的理想基準 toohello 安全性群組檢視虛擬機器所傳回的結果。
 
-此案例假設您已依照[建立網路監看員](network-watcher-create.md)中的步驟建立網路監看員。 此案例也假設已有具有有效虛擬機器的資源群組可供使用。
+此案例假設您已依照中的 hello 步驟[建立網路監看員](network-watcher-create.md)toocreate 網路監看員。 hello 案例也會假設具有有效的虛擬機器的資源群組存在 toobe 使用。
 
 ## <a name="scenario"></a>案例
 
-本文章涵蓋的案例會取得虛擬機器的安全性群組檢視。
+本文涵蓋的 hello 案例取得 hello 安全性的群組檢視虛擬機器。
 
 在此案例中，您將會：
 
@@ -45,7 +45,7 @@ ms.lasthandoff: 07/11/2017
 
 ## <a name="retrieve-rule-set"></a>擷取規則集
 
-此範例中的第一個步驟是使用現有的基準。 下列範例是使用此範例中用作為基準的 `Get-AzureRmNetworkSecurityGroup` cmdlet，擷取自現有網路安全性小組的某些 JSON。
+在此範例中的 hello 第一個步驟是 toowork 與現有的基準。 hello 下列範例是擷取自現有網路安全性群組使用 hello 某些 json `Get-AzureRmNetworkSecurityGroup` hello 基準為用於此範例中的 cmdlet。
 
 ```json
 [
@@ -112,9 +112,9 @@ ms.lasthandoff: 07/11/2017
 ]
 ```
 
-## <a name="convert-rule-set-to-powershell-objects"></a>將規則集轉換成 PowerShell 物件
+## <a name="convert-rule-set-toopowershell-objects"></a>轉換規則集 tooPowerShell 物件
 
-在此步驟中，我們會讀取稍早使用預期要在此範例的網路安全性群組上之規則建立的 JSON 檔案。
+在此步驟中，我們正在閱讀的 hello 規則，會在此範例中的 hello 網路安全性群組的預期的 toobe 稍早建立的 json 檔案。
 
 ```powershell
 $nsgbaserules = Get-Content -Path C:\temp\testvm1-nsg.json | ConvertFrom-Json
@@ -122,7 +122,7 @@ $nsgbaserules = Get-Content -Path C:\temp\testvm1-nsg.json | ConvertFrom-Json
 
 ## <a name="retrieve-network-watcher"></a>擷取網路監看員
 
-下一步是擷取網路監看員執行個體。 `$networkWatcher` 變數會傳遞至 `AzureRmNetworkWatcherSecurityGroupView` Cmdlet。
+hello 下一個步驟是 tooretrieve hello 網路監看員執行個體。 hello`$networkWatcher`變數傳遞 toohello `AzureRmNetworkWatcherSecurityGroupView` cmdlet。
 
 ```powershell
 $nw = Get-AzurermResource | Where {$_.ResourceType -eq "Microsoft.Network/networkWatchers" -and $_.Location -eq "WestCentralUS" } 
@@ -131,7 +131,7 @@ $networkWatcher = Get-AzureRmNetworkWatcher -Name $nw.Name -ResourceGroupName $n
 
 ## <a name="get-a-vm"></a>取得 VM
 
-必須有虛擬機器才能執行 `Get-AzureRmNetworkWatcherSecurityGroupView` Cmdlet。 下列範例會取得 VM 物件。
+虛擬機器為必要的 toorun hello`Get-AzureRmNetworkWatcherSecurityGroupView`針對 cmdlet。 下列範例中的 hello 取得 VM 物件。
 
 ```powershell
 $VM = Get-AzurermVM -ResourceGroupName "testrg" -Name "testvm1"
@@ -139,17 +139,17 @@ $VM = Get-AzurermVM -ResourceGroupName "testrg" -Name "testvm1"
 
 ## <a name="retrieve-security-group-view"></a>擷取安全性群組檢視
 
-下一步是擷取安全性群組檢視的結果。 此結果會與稍早顯示的「基準」JSON 相比較。
+hello 下一個步驟是 tooretrieve hello 安全性的群組檢視結果。 這個結果會是比較的 toohello 稍早顯示的 「 數基準 」 json。
 
 ```powershell
 $secgroup = Get-AzureRmNetworkWatcherSecurityGroupView -NetworkWatcher $networkWatcher -TargetVirtualMachineId $VM.Id
 ```
 
-## <a name="analyzing-the-results"></a>分析結果
+## <a name="analyzing-hello-results"></a>分析 hello 結果
 
-回應會依網路介面群組。 所傳回的不同類型規則為有效及預設的安全性規則。 結果會依子網路或虛擬 NIC 上的套用方式進一步細分。
+hello 回應分組依據的網路介面。 hello 不同類型傳回的規則會生效，且預設安全性規則。 hello 結果進一步細分由及其套用方式，在子網路或虛擬 nic。
 
-下列 PowerShell 指令碼會比較安全性群組檢視與 NSG 現有輸出的結果。 下列範例是結果與 `Compare-Object` cmdlet 比較方式的簡單範例。
+hello 下列 PowerShell 指令碼比較 hello hello NSG 的安全性的群組檢視 tooan 現有輸出結果。 hello 下列範例是簡單的範例的方式比較 hello 結果與`Compare-Object`cmdlet。
 
 ```powershell
 Compare-Object -ReferenceObject $nsgbaserules `
@@ -157,7 +157,7 @@ Compare-Object -ReferenceObject $nsgbaserules `
 -Property Name,Description,Protocol,SourcePortRange,DestinationPortRange,SourceAddressPrefix,DestinationAddressPrefix,Access,Priority,Direction
 ```
 
-以下是結果範例。 您可以看到第一個規則集中的兩個規則未出現在比較中。
+下列範例中的 hello 是 hello 結果。 您可以看到兩個已 hello 第一個規則集合中的 hello 規則沒有出現在 hello 比較。
 
 ```
 Name                     : My2ndRuleDoNotDelete
@@ -187,7 +187,7 @@ SideIndicator            : <=
 
 ## <a name="next-steps"></a>後續步驟
 
-如果設定已變更，請參閱[管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)以追蹤有問題的網路安全性群組和安全性規則。
+如果設定已變更，請參閱[管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)tootrack 向 hello 網路安全性群組和安全性規則，會有問題。
 
 
 

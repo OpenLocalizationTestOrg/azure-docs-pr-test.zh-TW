@@ -1,5 +1,5 @@
 ---
-title: "SQL 資料倉儲中的透明資料加密 (入口網站) | Microsoft Docs"
+title: "SQL 資料倉儲 （入口網站） 中的資料加密 aaaTransparent |Microsoft 文件"
 description: "SQL 資料倉儲中的透明資料加密 (TDE)"
 services: sql-data-warehouse
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.topic: article
 ms.custom: security
 ms.date: 10/31/2016
 ms.author: rortloff;barbkess
-ms.openlocfilehash: b1db3bdfdfb54bda325c9b971cfcb4dd5efa333a
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 8233886ecf170844104e0d1459e2a829cafa9b8d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="get-started-with-transparent-data-encryption-tde-in-sql-data-warehouse"></a>開始使用 SQL 資料倉儲中的透明資料加密 (TDE)
 > [!div class="op_single_selector"]
@@ -31,30 +31,30 @@ ms.lasthandoff: 07/11/2017
 > 
 
 ## <a name="required-permssions"></a>需要的權限
-您必須是系統管理員或 dbmanager 角色的成員，才能啟用透明資料加密 (TDE)。
+tooenable 透明資料加密 (TDE)，您必須是系統管理員或 hello dbmanager 角色的成員。
 
 ## <a name="enabling-encryption"></a>啟用加密
-若要啟用 SQL 資料倉儲的 TDE，請遵循下列步驟：
+tooenable TDE SQL 資料倉儲，請遵循下列 hello 步驟：
 
-1. 在 [Azure 入口網站](https://portal.azure.com)
-2. 在資料庫刀鋒視窗中，按一下 [設定]  按鈕
-3. 選取 [透明資料加密]  選項 ![][1]
-4. 選取 [開啟] 設定 ![][2]
+1. 開啟 hello 資料庫在 hello [Azure 入口網站](https://portal.azure.com)
+2. 在 hello 資料庫刀鋒視窗中，按一下 hello**設定**按鈕
+3. 選取 hello**透明資料加密**選項![][1]
+4. 選取 hello**上**設定![][2]
 5. 選取 [儲存]
    ![][3]  
 
 ## <a name="disabling-encryption"></a>停用加密
-若要停用 SQL 資料倉儲的 TDE，請遵循下列步驟：
+toodisable TDE SQL 資料倉儲，請遵循下列 hello 步驟：
 
-1. 在 [Azure 入口網站](https://portal.azure.com)
-2. 在資料庫刀鋒視窗中，按一下 [設定]  按鈕
-3. 選取 [透明資料加密]  選項 ![][1]
-4. 選取 [關閉] 設定 ![][4]
+1. 開啟 hello 資料庫在 hello [Azure 入口網站](https://portal.azure.com)
+2. 在 hello 資料庫刀鋒視窗中，按一下 hello**設定**按鈕
+3. 選取 hello**透明資料加密**選項![][1]
+4. 選取 hello**關閉**設定![][4]
 5. 選取 [儲存]
    ![][5]  
 
 ## <a name="encryption-dmvs"></a>加密 DMV
-可以使用下列 DMW 來確認加密：
+確認加密時，可以使用下列 Dmv 的 hello:
 
 * [sys.databases]
 * [sys.dm_pdw_nodes_database_encryption_keys]

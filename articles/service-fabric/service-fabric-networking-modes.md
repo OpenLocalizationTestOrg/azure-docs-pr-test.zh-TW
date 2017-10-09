@@ -1,6 +1,6 @@
 ---
-title: "設定 Azure Service Fabric 容器服務的網路模式 | Microsoft Docs"
-description: "了解如何設定 Azure Service Fabric 支援的不同網路模式。"
+title: "網路模式 Azure Service Fabric 容器服務 aaaConfigure |Microsoft 文件"
+description: "了解如何 toosetup hello 不同的網路模式，Azure Service Fabric 支援。"
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: f792f9604a5d6e62551ed92c1049d6e2b4216417
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 5c5dd4c590c7698a947503cbe8ef66ff7d6b503a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-fabric-container-networking-modes"></a>Service Fabric 容器網路模式
 
-容器服務之 Service Fabric 叢集中提供的預設網路模式是 `nat` 網路模式。 使用 `nat` 網路模式，讓一個以上的容器服務接聽相同連接埠會導致部署錯誤。 為了執行在相同通訊埠上接聽的數個服務，Service Fabric 支援 `open` 網路模式 (5.7 版或更高版本)。 使用 `open` 網路模式，每個容器服務會取得動態指派 IP 位址，在內部允許多個服務接聽相同的連接埠。   
+hello 預設網路模式提供 hello Service Fabric 中容器服務叢集為 hello`nat`網路模式。 以 hello`nat`網路模式中，有一個以上的容器服務接聽 toohello 相同連接埠會導致部署錯誤。 執行數個服務接聽相同的連接埠，Service Fabric 支援的 hello hello`open`網路模式 （5.7 或更高版本）。 以 hello`open`網路模式，每個容器服務取得內部允許多個服務 toolisten toohello 相同的連接埠的動態指派的 IP 位址。   
 
-因此，使用單一服務類型 (具有在服務資訊清單中定義的靜態端點)，就可以使用 `open` 網路模式建立和刪除新的服務，而不會造成部署錯誤。 同樣地，可以使用相同 `docker-compose.yml` 檔案 (具有靜態連接埠對應) 來建立多個服務。
+因此，靜態端點 hello 服務資訊清單中定義的單一服務類型，與新的服務可能會建立及刪除沒有部署錯誤使用 hello`open`網路模式。 同樣地，可以使用相同的 hello`docker-compose.yml`檔案具有靜態連接埠對應建立多個服務。
 
-不建議使用動態指派 IP 來探索服務，因為當服務重新啟動或移至其他節點時，IP 位址會變更。 只使用 **Service Fabric 命名服務**或 **DNS 服務**來進行服務探索。 
+使用動態指派 IP toodiscover 服務的 hello 不建議 hello 的 IP 位址變更自 hello 服務重新啟動或移動 tooanother 節點時。 只使用 hello **Service Fabric 命名服務**或 hello **DNS 服務**的服務探索。 
 
 
 > [!WARNING]
-> 在 Azure 中每個 vNET 僅允許總計 4096 個 IP。 因此，節點數目和容器服務執行個體數目的總和 (使用 `open` 網路) 在 vNET 中不能超過 4096 個。 對於這類高密度案例，建議使用 `nat` 網路模式。
+> 在 Azure 中每個 vNET 僅允許總計 4096 個 IP。 因此，hello 的 hello 節點數目和 hello 容器服務執行個體數目的總和 (使用`open`網路) 不能超過 4096 vNET 中的。 這類適用之高密度的情況下，hello`nat`建議您在網路模式。
 >
 
 ## <a name="setting-up-open-networking-mode"></a>設定開啟網路模式
 
-1. 藉由啟用 `fabricSettings` 下的 DNS 服務和 IP 提供者，設定 Azure Resource Manager 範本。 
+1. 啟用 DNS 服務設定 hello Azure Resource Manager 範本和 hello IP 提供者下`fabricSettings`。 
 
     ```json
     "fabricSettings": [
@@ -78,7 +78,7 @@ ms.lasthandoff: 08/18/2017
             ],
     ```
 
-2. 設定網路設定檔區段，以允許在叢集的每個節點上設定多個 IP 位址。 下列範例會針對 Windows Service Fabric 叢集，在每個節點上設定五個 IP 位址 (因此您可以有五個服務執行個體接聽每個節點上的連接埠)。
+2. 設定 hello 網路設定檔區段 tooallow toobe hello 叢集的每個節點上設定的多個 IP 位址。 hello 下列範例會設定每個節點的五個 IP 位址 （因此您可以有五個接聽 toohello 連接埠，每個節點上的服務執行個體） 的 Windows Service Fabric 叢集。
 
     ```json
     "variables": {
@@ -175,7 +175,7 @@ ms.lasthandoff: 08/18/2017
               }
     ```
 
-    對於 Linux 叢集，會新增額外公用 IP 設定以允許輸出連線。 下列程式碼片段會針對 Linux 叢集的每個節點設定五個 IP 位址：
+    適用於 Linux 叢集的其他公用 IP 組態會加入 tooallow 的傳出連線。 hello 下列程式碼片段會設定每個 Linux 叢集節點的五個 IP 位址：
 
     ```json
     "networkProfile": {
@@ -292,14 +292,14 @@ ms.lasthandoff: 08/18/2017
               }
     ```
 
-3. 僅適用於 Windows 叢集，使用下列值設定 NSG 規則，以開啟 vNET 的連接埠 UDP/53：
+3. 適用於 Windows 叢集僅設定 NSG 規則 hello vnet 的連接埠 UDP/53 開啟以 hello 下列值：
 
    | 優先順序 |    名稱    |    來源      |  目的地   |   服務    | 動作 |
    |:--------:|:----------:|:--------------:|:--------------:|:------------:|:------:|
    |     2000 | Custom_Dns | VirtualNetwork | VirtualNetwork | DNS (UDP/53) | 允許  |
 
 
-4. 在應用程式資訊清單中為每個服務指定網路模式 `<NetworkConfig NetworkType="open">`。  模式 `open` 會導致服務取得專用 IP 位址。 如果未指定模式，則會預設為基本 `nat` 模式。 因此，在下列資訊清單範例中，`NodeContainerServicePackage1` 和 `NodeContainerServicePackage2` 可以分別接聽相同通訊埠 (這兩個服務都會在 `Endpoint1` 上接聽)。
+4. 指定每個服務的 hello 應用程式資訊清單中的 hello 網路模式`<NetworkConfig NetworkType="open">`。  hello 模式`open`導致 hello 服務取得專用的 IP 位址。 如果未指定的模式，則預設 toohello 基本`nat`模式。 因此，在下列資訊清單的範例，hello`NodeContainerServicePackage1`和`NodeContainerServicePackage2`可以每個接聽 toohello 相同的連接埠 (這兩個服務都在接聽`Endpoint1`)。
 
     ```xml
     <?xml version="1.0" encoding="UTF-8"?>
@@ -329,7 +329,7 @@ ms.lasthandoff: 08/18/2017
       </ServiceManifestImport>
     </ApplicationManifest>
     ```
-您可以跨 Windows 叢集之應用程式內的服務，混合和比對不同網路模式。 因此，您可以讓某些服務在 `open` 模式中，以及某些服務在 `nat` 網路模式中。 當使用 `nat` 設定服務時，接聽的連接埠必須是唯一的。 在 Linux 叢集上不支援針對不同服務混合網路模式。 
+您可以跨 Windows 叢集之應用程式內的服務，混合和比對不同網路模式。 因此，您可以讓某些服務在 `open` 模式中，以及某些服務在 `nat` 網路模式中。 當服務設定為`nat`，它會接聽 toomust hello 連接埠是唯一的。 在 Linux 叢集上不支援針對不同服務混合網路模式。 
 
 
 ## <a name="next-steps"></a>後續步驟
@@ -337,5 +337,5 @@ ms.lasthandoff: 08/18/2017
 
 * [Service Fabric 應用程式模型](service-fabric-application-model.md)
 * [Service Fabric 服務資訊清單資源](service-fabric-application-model.md)
-* [將 Windows 容器部署至 Windows Server 2016 上的 Service Fabric](service-fabric-get-started-containers.md)
-* [將 Docker 容器部署至 Linux 上的 Service Fabric](service-fabric-get-started-containers-linux.md)
+* [部署 Windows 容器 tooService 網狀架構上 Windows Server 2016](service-fabric-get-started-containers.md)
+* [部署 Docker 容器 tooService Linux 上的網狀架構](service-fabric-get-started-containers-linux.md)

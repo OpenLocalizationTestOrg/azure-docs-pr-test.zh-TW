@@ -1,5 +1,5 @@
 ---
-title: "Azure AD v2 iOS 快速入門 - 簡介 | Microsoft Docs"
+title: "aaaAzure AD v2 iOS 入門-簡介 |Microsoft 文件"
 description: "iOS (Swift) 應用程式如何呼叫需要來自 Azure Active Directory v2 端點之存取權杖的 API"
 services: active-directory
 documentationcenter: dev-center-name
@@ -13,17 +13,17 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 05/09/2017
 ms.author: andret
-ms.openlocfilehash: 948693c8501ecc46a1508e5ea085846d0910783e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: f40aebbb75490912e533aecc7eedfb2b2dcd8c6c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="call-the-microsoft-graph-api-from-an-ios-app"></a>從 iOS 應用程式呼叫 Microsoft Graph API
+# <a name="call-hello-microsoft-graph-api-from-an-ios-app"></a>從 iOS 應用程式呼叫 hello Microsoft Graph API
 
-本指南示範原生 iOS 應用程式 (Swift) 如何取得存取權杖，以及如何呼叫 Microsoft Graph API 或需要來自 Azure Active Directory v2 端點之存取權杖的其他 API。
+本指南示範如何取得存取權杖和呼叫 hello Microsoft Graph API 或需要向 Azure Active Directory v2 端點的存取權杖的其他 Api 的原生 iOS 應用程式 (Swift)。
 
-在本指南最後，您的應用程式將能夠使用個人帳戶 (包括 outlook.com、live.com 和其他帳戶)，以及使用來自使用 Azure Active Directory 之任何公司或組織的公司與學校帳戶呼叫受保護的 API。
+在 hello 本指南結尾，您的應用程式將會無法 toocall 受保護應用程式開發介面使用個人帳戶 （包括 outlook.com、 live.com 和其他項目），以及工作及學校帳戶，從任何的公司或組織有 Azure Active Directory。
 
 > ### <a name="pre-requisites"></a>必要條件
 > - 本指南需要 XCode 8.x。 您可以[從這裡](https://geo.itunes.apple.com/us/app/xcode/id497799835?mt=12 "XCode 下載 URL") 下載 XCode。
@@ -33,21 +33,21 @@ ms.lasthandoff: 08/29/2017
 
 ![本指南使用方式](media/active-directory-mobileanddesktopapp-ios-introduction/iosintro.png)
 
-本指南建立的範例應用程式可讓 iOS 應用程式查詢 Microsoft Graph API，或查詢可接受來自 Azure Active Directory v2 端點之權杖的 Web API。 針對這個案例，系統會透過授權標頭將一個權杖新增到 HTTP 要求。 權杖取得和更新作業是由 Microsoft Authentication Library (MSAL) 處理。
+本指南所建立的 hello 範例應用程式可讓 iOS 應用程式 tooquery hello Microsoft Graph API 或 Web API 可接受來自 Azure Active Directory v2 端點的語彙基元。 對於此案例中，權杖就會加入 tooHTTP 透過 hello 授權標頭的要求。 權杖取得和更新是由 hello Microsoft 驗證程式庫 (MSAL) 處理。
 
 
 ### <a name="handling-token-acquisition-for-accessing-protected-web-apis"></a>處理權杖取得以存取受保護的 Web API
 
-使用者完成驗證之後，範例應用程式就會收到一個權杖，可用來查詢 Microsoft Graph API 或由 Microsoft Azure Active Directory v2 保護的 Web API。
+Hello 使用者驗證之後，hello 範例應用程式會收到可使用的 tooquery hello Microsoft Graph API 或 Microsoft Azure Active Directory v2 所保護的 Web API 的語彙基元。
 
-像 Microsoft 圖形這樣的 API 需要存取權杖，才能允許存取特定資源，例如讀取使用者的設定檔、存取使用者的行事曆，或傳送電子郵件。 您的應用程式可以使用 MSAL，以透過指定 API 範圍來要求存取權杖。 此存取權杖接著會新增到 HTTP 授權標頭，這些是針對受保護資源發出之每個呼叫的授權標頭。
+例如，Microsoft Graph 需要存取特定資源 – 例如，tooread 存取語彙基元 tooallow 使用者設定檔，Api 會存取使用者的行事曆，或傳送電子郵件。 您的應用程式可以使用 MSAL，以透過指定 API 範圍來要求存取權杖。 加入的 toohello hello 對所提出的每個呼叫的 HTTP 授權標頭的受保護資源，則此存取權杖。
 
 MSAL 會為您管理快取和重新整理存取權杖，因此您的應用程式不需要執行這些作業。
 
 
 ### <a name="nuget-packages"></a>NuGet 套件
 
-本指南會使用以下 NuGet 套件：
+本指南會使用下列 NuGet 套件 hello:
 
 |程式庫|說明|
 |---|---|

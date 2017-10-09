@@ -1,5 +1,5 @@
 ---
-title: "Datamarket 過時 | Microsoft Docs"
+title: "aaaDatamarket 取代 |Microsoft 文件"
 description: "Azure Data Market 取代。"
 services: machine-learning
 documentationcenter: 
@@ -14,27 +14,27 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: LuisCa
-ms.openlocfilehash: e40b69f97878a6072a64912f017f8e5621ba6e71
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ee9fb0c6e4ffd87239220976ea2984afab9fffae
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="datamarket-is-now-deprecated"></a>DataMarket 現在已過時
 
-[Microsoft DataMarket](https://datamarket.azure.com/datasets) 現在已過時，因此裝載在該處的 Machine Learning API 現在也已過時。
+hello [Microsoft DataMarket](https://datamarket.azure.com/datasets)是現在已被取代，因此 hello 有裝載的機器學習 Api 現在也已被取代。
 
-您現在可以在[辨識服務 API](https://www.microsoft.com/cognitive-services) (英文) 中找到這些功能 (和其他功能)。
+您現在可以在 hello 中找到這些功能 （和更多）[認知的服務應用程式開發介面](https://www.microsoft.com/cognitive-services)。
 
 ## <a name="text-analytics-api"></a>Text Analytics API
 
-先前的 DataMarket Text Analytics API 客戶應該開始使用[辨識服務文字分析 API](https://www.microsoft.com/cognitive-services/text-analytics-api) (英文)。
-辨識服務文字分析 API 支援舊版 DataMarket 的所有案例，以及語言偵測和主題偵測等其他案例。
+舊的 DataMarket 文字分析 API 客戶應該開始使用 hello[認知服務文字分析 API](https://www.microsoft.com/cognitive-services/text-analytics-api)。
+hello 認知服務文字分析 API 支援所有 hello 未版本，以及其他的案例，例如語言偵測和主題偵測先前 DataMarket 的 hello 案例。
 
 
 ## <a name="recommendations-api"></a>建議 API 
 
-先前的 DataMarket Recommendations API 客戶應該開始使用[辨識服務建議 API](https://www.microsoft.com/cognitive-services/recommendations-api)。
-辨識服務文字分析 API 支援舊版 DataMarket 的所有案例，以及批次支援等其他案例，還提供較佳的離線度量來評估模型品質。 
+舊的 DataMarket 建議 API 客戶應該開始使用 hello[認知的服務建議 API](https://www.microsoft.com/cognitive-services/recommendations-api)。
+hello 認知的服務建議 API 支援所有 hello hello 未版本，較早的 DataMarket 的案例，以及其他案例，例如批次支援和更好的離線度量 tooevaluate hello 品質模型。 
 
-如需如何開始使用辨識服務建議 API 的詳細資訊，請參閱[移轉至 Azure 辨識服務建議 API](http://aka.ms/recomigrate) (英文)。
+如需有關如何使用 toostart hello 認知的服務建議 API 的詳細資訊，請參閱[移轉 tooAzure 認知的服務建議 API](http://aka.ms/recomigrate)。

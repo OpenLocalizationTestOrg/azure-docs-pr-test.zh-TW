@@ -1,6 +1,6 @@
 ---
-title: "Azure 中 Linux VM 的可用性設定組教學課程 | Microsoft Docs"
-description: "了解 Azure 中 Linux VM 的可用性設定組。"
+title: "aaaAvailability 適用於 Linux Vm 在 Azure 中設定教學課程 |Microsoft 文件"
+description: "適用於 Linux Vm 在 Azure 中，以了解 hello 可用性設定組。"
 documentationcenter: 
 services: virtual-machines-linux
 author: cynthn
@@ -16,16 +16,16 @@ ms.topic: article
 ms.date: 05/22/2017
 ms.author: cynthn
 ms.custom: mvc
-ms.openlocfilehash: 63fe3f165864f06228604cac56d06cc061ab25f5
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 2a91e4a6057180035ec51410d9fffccaca343758
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-to-use-availability-sets"></a>如何使用可用性設定組
+# <a name="how-toouse-availability-sets"></a>如何 toouse 可用性設定組
 
 
-在本教學課程中，您會學到如何使用稱為「可用性設定組」的功能，增加 Azure 虛擬機器解決方案的可用性和可靠性。 可用性設定組可確保您在 Azure 上部署的 VM 會分散到多個各自獨立的硬體叢集中。 這麼做可以確保當 Azure 發生硬體或軟體故障時，受到影響的只會是一小部分的 VM，整體解決方案會維持可用且正常運作，而作為使用者的客戶卻不會發現故障情形。
+在本教學課程中，您將學習如何 tooincrease hello 可用性和可靠性的虛擬機器上使用此功能的 Azure 方案的呼叫可用性設定組。 可用性設定組，請確定您在 Azure 上部署的 Vm 會分散到多個隔離的硬體叢集該 hello。 如此一來，可確保如果在 Azure 中的硬體或軟體失敗，會影響您的 Vm 子組可用且正常運作，從您的客戶使用它的 hello 觀點來看，將會保留您的整體解決方案。
 
 在本教學課程中，您將了解如何：
 
@@ -37,20 +37,20 @@ ms.lasthandoff: 08/29/2017
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 
-如果您選擇在本機安裝和使用 CLI，本教學課程會要求您執行 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
+如果您選擇 tooinstall，並在本機上使用 hello CLI，本教學課程需要您執行 hello Azure CLI 版本 2.0.4 或更新版本。 執行`az --version`toofind hello 版本。 如果您需要 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。 
 
 ## <a name="availability-set-overview"></a>可用性設定組概觀
 
-可用性設定組是一種可在 Azure 中使用的邏輯群組功能，用以確保其中所放置的 VM 資源在部署到 Azure 資料中心時會彼此隔離。 Azure 可確保您在可用性設定組中所放置的 VM，會橫跨多部實體伺服器、計算機架、儲存體單位和網路交換器來執行。 如此便能確保當硬體或 Azure 軟體發生故障時，只有一小部分的 VM 會受到影響，整個應用程式會保持運作狀態，可供客戶繼續使用。 如果您想要建置可靠的雲端解決方案，就一定要運用可用性設定組功能。
+可用性設定組中您在其中放置 hello VM 資源時，都是彼此隔離的 Azure 資料中心內部署的 Azure tooensure 是一種邏輯群組功能，您可以使用。 Azure 可確保該 hello 您放置多個實體伺服器上執行可用性設定組內的 Vm、 計算機架、 儲存體單位及網路交換器。 這樣可以確保在 hello 事件中的硬體或 Azure 軟體失敗，會影響 Vm 的子集，整體應用程式將保持為設定並繼續 toobe 可用 tooyour 客戶。 使用可用性設定組時，重要的功能 tooleverage 想 toobuild 可靠的雲端解決方案。
 
-請想想典型的 VM 架構解決方案，在此解決方案中，您可能有 4 個前端 Web 伺服器，並使用 2 個後端 VM 來裝載資料庫。 在使用 Azure 時，建議您先定義兩個可用性設定組，再部署 VM︰一個可用性設定組用來放置「Web」層，另一個可用性設定組用來放置「資料庫」層。 當您建立新的 VM 時，您便可以將可用性設定組指定為 az vm create 命令的參數，Azure 會自動確保您在可用性設定組內所建立的 VM，會跨多個實體硬體資源來隔離。 這表示，如果其中一個用來執行 Web 伺服器或資料庫伺服器 VM 的實體硬體發生問題，您知道 Web 伺服器和資料庫 VM 的其他執行個體會繼續正常執行，因為它們位於不同硬體上。
+請想想典型的 VM 架構解決方案，在此解決方案中，您可能有 4 個前端 Web 伺服器，並使用 2 個後端 VM 來裝載資料庫。 有了 Azure，您會想 toodefine 兩個可用性設定組才能部署您的 Vm: hello"web"層和一個可用性設定 hello 「 資料庫 」 層的一個可用性設定組。 當您建立新的 VM，您可以接著指定 hello 可用性設定組參數 toohello az vm 建立命令，以及 Azure 會自動確保該 hello hello 可用中所建立的 Vm 組會隔離跨多個實體硬體資源。 這表示如果 hello 實體硬體上執行您的 Web 伺服器或資料庫伺服器 Vm 的其中一個發生問題，您知道該 hello 網頁伺服器及資料庫 Vm 的其他執行個體將會繼續執行正常因為它們是在不同硬體上。
 
-如果您想要在 Azure 中部署可靠的虛擬機器架構解決方案，請務必使用可用性設定組。
+當您想 toodeploy 可靠 VM 為基礎的解決方案在 Azure 中，您應該一律使用可用性設定組。
 
 
 ## <a name="create-an-availability-set"></a>建立可用性設定組
 
-您可以使用 [az vm availability-set create](/cli/azure/vm/availability-set#create) 來建立可用性設定組。 在此範例中，我們將針對 *myResourceGroupAvailability* 資源群組中名為 *myAvailabilitySet* 的可用性設定組，同時將更新數目和容錯網域數目設為 *2*。
+您可以使用 [az vm availability-set create](/cli/azure/vm/availability-set#create) 來建立可用性設定組。 在此範例中，我們設定兩個 hello 的更新和容錯網域數目在*2* hello 可用性名為*myAvailabilitySet*在 hello *myResourceGroupAvailability*資源群組。
 
 建立資源群組。
 
@@ -67,13 +67,13 @@ az vm availability-set create \
     --platform-update-domain-count 2
 ```
 
-可用性設定組可讓您跨「容錯網域」和「更新網域」來隔離資源。 **容錯網域**代表以隔離方式集合在一起的伺服器、網路和儲存體資源。 在前面的範例中，我們表示我們想在部署 VM 時，讓可用性設定組分散到至少兩個容錯網域。 我們也表示我們想要讓可用性設定組分散到兩個**更新網域**。  兩個更新網域可確保當 Azure 執行軟體更新時，我們的 VM 資源是隔離的，以免 VM 中執行的所有軟體同時更新。
+可用性設定組可讓您 tooisolate 資源跨 「 故障網域 」 和 「 更新網域 」。 **容錯網域**代表以隔離方式集合在一起的伺服器、網路和儲存體資源。 在上述範例中的 hello，我們表示我們想要我們可用性設定組 toobe 我們 Vm 部署時，分散在至少兩個容錯網域。 我們也表示我們想要讓可用性設定組分散到兩個**更新網域**。  兩個更新網域確保 Azure 會執行軟體更新 VM 資源都會隔離，導致無法更新在 hello 我們 VM 執行的所有 hello 軟體相同的時間。
 
 ## <a name="configure-virtual-network"></a>設定虛擬網路
-請先建立支援的虛擬網路資源，才可部署一些 VM 及測試您的平衡器。 如需虛擬網路的詳細資訊，請參閱[管理 Azure 虛擬網路](tutorial-virtual-network.md)教學課程。
+您將一些 Vm 部署，並可以測試您平衡器之前，先建立 hello 支援的虛擬網路資源。 如需有關虛擬網路的詳細資訊，請參閱 hello[管理 Azure 虛擬網路](tutorial-virtual-network.md)教學課程。
 
 ### <a name="create-network-resources"></a>建立網路資源
-使用 [az network vnet create](/cli/azure/network/vnet#create) 建立虛擬網路。 下列範例會建立名為 myVnet 的虛擬網路和名為 mySubnet 的子網路：
+使用 [az network vnet create](/cli/azure/network/vnet#create) 建立虛擬網路。 hello 下列範例會建立虛擬網路，名為*myVnet*與子網路，名為*mySubnet*:
 
 ```azurecli-interactive 
 az network vnet create \
@@ -81,7 +81,7 @@ az network vnet create \
     --name myVnet \
     --subnet-name mySubnet
 ```
-使用 [az network nic create](/cli/azure/network/nic#create) 建立虛擬 NIC。 下列範例會建立三個虛擬 NIC。 (您在下列步驟中針對應用程式建立的每部 VM 都有一個虛擬 NIC)。 您可以隨時建立其他虛擬 NIC 和 VM，並將它們新增至負載平衡器︰
+使用 [az network nic create](/cli/azure/network/nic#create) 建立虛擬 NIC。 hello 下列範例會建立三個虛擬 Nic。 （每個 VM 的虛擬 NIC 建立 hello 下列中的應用程式的步驟）。 您可以隨時建立其他虛擬 Nic 和 Vm，並將它們加入 toohello 負載平衡器：
 
 ```bash
 for i in `seq 1 3`; do
@@ -97,9 +97,9 @@ done
 
 ## <a name="create-vms-inside-an-availability-set"></a>建立位於可用性設定組內的 VM
 
-您必須將 VM 建立於可用性設定組內，才能確保 VM 會在硬體中正確地分散。 您無法在建立可用性設定組之後，將現有的 VM 加入至其中。 
+Vm 必須確定正確分散 hello 硬體的 hello 可用性集 toomake 內建立。 您無法加入現有 VM tooan 可用性設定組建立之後。 
 
-當您使用 [az vm create](/cli/azure/vm#create) 建立 VM 時，會使用 `--availability-set` 參數來指定可用性設定組，以指定可用性設定組的名稱。
+當您建立 VM 使用[az vm 建立](/cli/azure/vm#create)指定 hello 可用性設定組使用 hello`--availability-set`參數 toospecify hello 名稱 hello 可用性設定組。
 
 ```azurecli-interactive 
 for i in `seq 1 2`; do
@@ -116,13 +116,13 @@ for i in `seq 1 2`; do
 done 
 ```
 
-現在，我們新建立的可用性設定組內有兩部虛擬機器。 由於它們位於相同的可用性設定組內，Azure 會確保 VM 和其所有資源 (包括資料磁碟) 會分散到隔離開來的實體硬體中。 這樣的分佈方式有助於確保 VM 解決方案整體有更高的可用性。
+現在，我們新建立的可用性設定組內有兩部虛擬機器。 因為它們是在 hello 相同可用性設定組，Azure 可確保該 hello Vm 及其所有資源 （包括資料磁碟） 會分散到隔離的實體硬體。 這樣的分佈方式有助於確保 VM 解決方案整體有更高的可用性。
 
-當您新增 VM 時，您可能會遇到特定 VM 大小已不再適用於可用性設定組的情況。 此問題的發生原因是，其容量已經不足，無法既新增 VM，又保持可用性設定組所強制實施的隔離規則。 您可以使用 `--availability-set list-sizes` 參數，檢查看看有哪些 VM 大小可在現有的可用性設定組內使用。
+當您新增 Vm 可能會遇到的一件事是特定的 VM 大小已不再可用 toouse 可用性集內。 如果不再有足夠的容量 tooadd 它同時保留 hello 隔離規則 hello 可用性設定組會強制執行，可能會發生此問題。 您可以檢查 toosee 哪些 VM 大小是使用中的現有的可用性設定組使用 hello toouse`--availability-set list-sizes`參數。
 
 ## <a name="check-for-available-vm-sizes"></a>檢查可用的 VM 大小 
 
-您稍後可以將更多 VM 加入至可用性設定組，但是需要知道硬體上有哪些可用的 VM 大小。 針對可用性設定組，使用 [az vm availability-set list-sizes](/cli/azure/availability-set#list-sizes) 來列出硬體叢集上所有可用的大小。
+您可以加入更多的 Vm toohello 可用性設定組更新版本中，但您需要一個 tooknow hello 硬體上可用哪些 VM 大小。 使用[az vm 可用性設定組清單大小](/cli/azure/availability-set#list-sizes)toolist hello 硬體上的 hello 可用大小叢集以 hello 可用性設定組。
 
 ```azurecli-interactive 
 az vm availability-set list-sizes \
@@ -140,7 +140,7 @@ az vm availability-set list-sizes \
 > * 在可用性設定組中建立 VM
 > * 檢查可用的 VM 大小
 
-請前進到下一個教學課程，以了解虛擬機器擴展集。
+前進 toohello 下一個教學課程的 toolearn 有關虛擬機器規模集。
 
 > [!div class="nextstepaction"]
 > [建立 VM 擴展集](tutorial-create-vmss.md)

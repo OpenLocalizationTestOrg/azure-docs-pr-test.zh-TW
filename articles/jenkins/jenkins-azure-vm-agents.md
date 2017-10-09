@@ -1,5 +1,5 @@
 ---
-title: "使用 Azure VM 代理程式與 Jenkins 持續整合。"
+title: "與 Jenkins 連續整合 aaaUse Azure VM 代理程式。"
 description: "Azure VM 代理程式作為 Jenkins 從屬。"
 services: multiple
 documentationcenter: 
@@ -15,57 +15,57 @@ ms.topic: hero-article
 ms.date: 6/7/2017
 ms.author: mlearned
 ms.custom: Jenkins
-ms.openlocfilehash: 0b22a559fbc03158a6d4398603d1a7d2874d7b67
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 2388e6919d0280372166fbd325d80dafb00d7550
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-vm-agents-for-continuous-integration-with-jenkins"></a>使用 Azure VM 代理程式與 Jenkins 持續整合。
 
-本快速入門示範如何在 Azure 中使用 Jenkins Azure VM 代理程式外掛程式來建立隨選 Linux (Ubuntu) 代理程式。
+本快速入門示範如何 toouse 會 hello Jenkins Azure VM 代理程式外掛程式 toocreate 隨 Linux (Ubuntu) 代理程式在 Azure 中。
 
 ## <a name="prerequisites"></a>必要條件
 
-若要完成本快速入門：
+toocomplete 本快速入門：
 
-* 如果您還沒有 Jenkins Master，可以開始使用[解決方案範本](install-jenkins-solution-template.md) 
-* 如果您還沒有 Azure 服務主體，請參閱[使用 Azure CLI 2.0 建立 Azure 服務主體](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2fazure%2fazure-resource-manager%2ftoc.json)。
+* 如果您還沒有 Jenkins master，就可以開始 hello[方案範本](install-jenkins-solution-template.md) 
+* 請參閱太[使用 Azure CLI 2.0 建立 Azure 服務主體](https://docs.microsoft.com/en-us/cli/azure/create-an-azure-service-principal-azure-cli?toc=%2fazure%2fazure-resource-manager%2ftoc.json)如果您還沒有 Azure 服務主體。
 
 ## <a name="install-azure-vm-agents-plugin"></a>安裝 Azure VM 代理程式外掛程式
 
-如果您是從[解決方案範本](install-jenkins-solution-template.md)開始，Azure VM 代理程式會安裝在 Jenkins Master 中。
+如果您從 hello 啟動[方案範本](install-jenkins-solution-template.md)，會安裝在 hello Jenkins master 中的 hello Azure VM 代理程式外掛程式。
 
-否則，從 Jenkins 儀表板內安裝 **Azure VM 代理程式**外掛程式。
+否則，安裝 hello **Azure VM 代理程式**hello Jenkins 儀表板中的外掛程式。
 
-## <a name="configure-the-plugin"></a>設定外掛程式
+## <a name="configure-hello-plugin"></a>設定 hello 外掛程式
 
-* 在 Jenkins 儀表板中，按一下 [管理 Jenkins] -> [設定系統] ->。 捲動到頁面底部，並尋找包含 [新增雲端] 下拉式清單的區段。 從功能表中，選取 **Microsoft Azure VM 代理程式**
-* 從 Azure 認證下拉式清單中選取現有的帳戶。  若要新增新的 **Microsoft Azure 服務主體，**請輸入下列值：訂用帳戶識別碼、用戶端識別碼、用戶端密碼和 OAuth 2.0 權杖端點。
+* 在 hello Jenkins 儀表板內，按一下**管理 Jenkins-> 設定系統->** 。 捲動 toohello hello 頁面的底部，找出與 hello 下拉式清單中的 hello 區段**加入新的雲端**。 從 [hello] 功能表中，選取**Microsoft Azure VM 代理程式**
+* 從 hello Azure 認證下拉式清單中選取現有的帳戶。  新的 tooadd **Microsoft Azure 服務主體，**輸入 hello 下列值： 訂用帳戶 ID、 用戶端識別碼、 用戶端密碼和 OAuth 2.0 權杖端點。
 
 ![Azure 認證](./media/jenkins-azure-vm-agents/service-principal.png)
 
-* 按一下 [確認設定]，確定設定檔設定是否正確。
-* 儲存設定，然後繼續下一個步驟。
+* 按一下**確認組態**toomake hello 設定檔設定是否正確。
+* 儲存 hello 組態，並繼續 toohello 下一個步驟。
 
 ## <a name="template-configuration"></a>範本設定
 
 ### <a name="general-configuration"></a>一般設定
-接著，設定用來定義 Azure VM 代理程式的範本。 
+接著，設定使用 toodefine Azure VM 代理程式的範本。 
 
-* 按一下 [新增]可新增範本。 
+* 按一下**新增**tooadd 範本。 
 * 提供新範本的名稱。 
-* 針對標籤，請輸入 "ubuntu"。 會在作業設定期間使用此標籤。
-* 從下拉式方塊中選取所需的區域。
-* 選取所需的 VM 大小。
-* 指定 Azure 儲存體帳戶名稱或保持空白，就會使用預設名稱 "jenkinsarmst"。
-* 指定保留時間 (以分鐘為單位)。 此設定會定義自動刪除閒置的代理程式之前，Jenkins 可以等待的分鐘數。 如果您不想要自動刪除閒置的代理程式，可以指定 0。
+* 為 hello 標籤，請輸入"ubuntu。 」 此標籤還可用於 hello 工作設定。
+* 從 hello 下拉式方塊中選取 hello 所需的區域。
+* 選取 hello 所需的 VM 大小。
+* 指定 hello Azure 儲存體帳戶名稱，或保持空白 toouse hello 預設名稱 「 jenkinsarmst。 」
+* 指定以分鐘為單位的 hello 保留時間。 此設定會定義 hello Jenkins 可以自動刪除閒置的代理程式之前等待的分鐘數。 如果您不想自動刪除閒置的代理程式 toobe，指定為 0。
 
 ![一般設定](./media/jenkins-azure-vm-agents/general-config.png)
 
 ### <a name="image-configuration"></a>映像設定
 
-若要建立 Linux (Ubuntu) 代理程式，請選取 [映像參考]，並使用下列設定作為範例。 請參閱 [Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/category/compute?subcategories=virtual-machine-images&page=1) 以取得最新版的 Azure 支援映像。
+toocreate Linux (Ubuntu) 代理程式中，選取**映像參考**並使用 hello 遵循組態的範例。 請參閱太[Azure Marketplace](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/category/compute?subcategories=virtual-machine-images&page=1) hello 最新的 Azure 支援映像。
 
 * 映像發佈者︰Canonical
 * 映像提供：UbuntuServer
@@ -84,23 +84,23 @@ sudo apt-get install -y openjdk-7-jdk
 ```
 ![映像設定](./media/jenkins-azure-vm-agents/image-config.png)
 
-* 按一下 [驗證範本] 以確認設定。
+* 按一下**驗證範本**tooverify hello 組態。
 * 按一下 [儲存] 。
 
 ## <a name="create-a-job-in-jenkins"></a>在 Jenkins 中建立作業
 
-* 在 Jenkins 儀表板中，按一下 [新增項目] 。 
+* 在 hello Jenkins 儀表板內，按一下**新項目**。 
 * 輸入名稱並選取 [Freestyle 專案]，然後按一下 [確定]。
-* 在 [一般] 索引標籤中，選取 [限制可執行專案的位置] 並在標籤運算式中輸入 "ubuntu"。 現在，您會在下拉式清單中看到 "ubuntu"。
+* 在 hello**一般**索引標籤、 選取"限制可以執行專案"和"ubuntu"標籤運算式中的型別。 現在，您會看到 「 ubuntu"hello 下拉式清單中。
 * 按一下 [儲存] 。
 
 ![設定作業](./media/jenkins-azure-vm-agents/job-config.png)
 
 ## <a name="build-your-new-project"></a>建置新專案
 
-* 返回 Jenkins 儀表板。
-* 以滑鼠右鍵按一下您所建立的新作業，然後按一下 [立即建置]。 隨即開始建置。 
-* 當建置完成之後，請移至 [主控台輸出]。 您會看到在 Azure 上看到建置在遠端執行。
+* 返回 toohello Jenkins 儀表板。
+* Hello 新工作時，以滑鼠右鍵按一下您建立群組，然後按一下 **現在就建置**。 隨即開始建置。 
+* Hello 建置完成之後，請跳過**主控台輸出**。 您會看到 hello 建置在 Azure 上已從遠端執行。
 
 ![主控台輸出](./media/jenkins-azure-vm-agents/console-output.png)
 

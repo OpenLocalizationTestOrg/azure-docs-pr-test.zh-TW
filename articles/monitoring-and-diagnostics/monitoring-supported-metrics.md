@@ -1,5 +1,5 @@
 ---
-title: "Azure 監視器計量 - 每個資源類型所支援的計量 | Microsoft Docs"
+title: "監視度量的每個資源類型的支援度量 aaaAzure |Microsoft 文件"
 description: "AAzure 監視器每一個資源類型的可用計量清單。"
 author: johnkemnetz
 manager: orenr
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/05/2017
 ms.author: johnkem
-ms.openlocfilehash: 4cd72c8193d66f164d9afa53af4b5203369b32dc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 66834238a1a4fcd7db1464cc023c18ee2563517a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="supported-metrics-with-azure-monitor"></a>支援 Azure 監視器的計量
-Azure 監視器提供數種與計量進行互動的方式，包括在入口網站中製作計量圖表、透過 REST API 存取計量，或使用 PowerShell 或 CLI 查詢計量。 以下是目前可供 Azure 監視器計量管線使用的所有計量完整清單。
+Azure 監視度量，包括圖表它們 hello 入口網站中，透過 hello REST API 存取他們或查詢它們提供數種方式 toointeract 使用 PowerShell 或 CLI。 以下是目前可供 Azure 監視器計量管線使用的所有計量完整清單。
 
 > [!NOTE]
-> 其他計量可在入口網站中或使用舊版 API 提供。 這份清單僅包含使用彙總 Azure 監視器計量管線的公開預覽時可供使用的公開預覽計量。
+> 其他度量資訊可能用於 hello 入口網站或使用舊版 Api。 此清單只會包含可用使用 hello 公開預覽狀態的彙總的 hello Azure 監視度量管線的公用預覽度量。
 >
 >
 
@@ -38,40 +38,40 @@ Azure 監視器提供數種與計量進行互動的方式，包括在入口網�
 |SuccessfullConnectionsPerSec|每秒連線成功的次數|每秒計數|平均值|成功完成連線的速率。|
 |TotalConnectionFailures|連線失敗的總計|Count|平均值|連線嘗試失敗的總計。|
 |CurrentUserSessions|目前的使用者工作階段|Count|平均值|目前建立的使用者工作階段數目。|
-|QueryPoolBusyThreads|查詢集區忙碌執行緒|Count|平均值|查詢執行緒集區中的忙碌執行緒數目。|
-|CommandPoolJobQueueLength|命令集區作業佇列長度|Count|平均值|命令執行緒集區佇列中的作業數目。|
-|ProcessingPoolJobQueueLength|處理集區作業佇列長度|Count|平均值|處理執行緒集區佇列中的非 I/O 作業數目。|
+|QueryPoolBusyThreads|查詢集區忙碌執行緒|Count|平均值|Hello 查詢執行緒集區中的忙碌執行緒數目。|
+|CommandPoolJobQueueLength|命令集區作業佇列長度|Count|平均值|Hello hello 命令執行緒集區佇列中的作業數目。|
+|ProcessingPoolJobQueueLength|處理集區作業佇列長度|Count|平均值|Hello hello 處理執行緒集區佇列中的非 i/o 作業數目。|
 |CurrentConnections|連接：目前的連接|Count|平均值|目前已建立的用戶端連接數目。|
-|CleanerCurrentPrice|記憶體︰清除工具目前價格|Count|平均值|記憶體目前的價格 ($/位元組/時間)，並正規化為 1000。|
-|CleanerMemoryShrinkable|記憶體︰可壓縮的清除器記憶體|位元組|平均值|背景清除器將清除的記憶體數量，以 KB 為單位。|
-|CleanerMemoryNonshrinkable|記憶體︰不可壓縮的清除器記憶體|位元組|平均值|背景清除器將不會清除的記憶體數量，以 KB 為單位。|
-|MemoryUsage|記憶體：記憶體使用量|位元組|平均值|伺服器處理序用於計算清除器記憶體價格的記憶體使用量。 等於計數器 Process\PrivateBytes 加上記憶體對應的資料大小，忽略 xVelocity 記憶體內部分析引擎 (VertiPaq) 在超出 xVelocity 引擎記憶體限制外對應或配置的任何記憶體。|
+|CleanerCurrentPrice|記憶體︰清除工具目前價格|Count|平均值|目前的記憶體，$/ 位元組/時間、 標準化的 too1000 價格。|
+|CleanerMemoryShrinkable|記憶體︰可壓縮的清除器記憶體|位元組|平均值|記憶體數量，以位元組為單位，主旨 toopurging hello 背景清除器造成的。|
+|CleanerMemoryNonshrinkable|記憶體︰不可壓縮的清除器記憶體|位元組|平均值|記憶體數量，以位元組為單位，不主旨 toopurging hello 背景清除器造成的。|
+|MemoryUsage|記憶體：記憶體使用量|位元組|平均值|Hello 伺服器處理序用於計算清除器記憶體價格的記憶體使用量。 等於 toocounter Process\PrivateBytes 加上 hello 的記憶體對應資料大小，忽略對應或 hello xVelocity 記憶體中分析引擎 (VertiPaq) hello xVelocity 引擎記憶體限制超過配置任何記憶體。|
 |MemoryLimitHard|記憶體︰固定記憶體限制|位元組|平均值|組態檔中的固定記憶體限制。|
 |MemoryLimitHigh|記憶體︰記憶體上限|位元組|平均值|來自組態檔的記憶體上限。|
 |MemoryLimitLow|記憶體︰記憶體下限|位元組|平均值|來自組態檔的記憶體下限。|
 |MemoryLimitVertiPaq|記憶體︰記憶體限制 VertiPaq|位元組|平均值|來自組態檔的記憶體內部限制。|
 |Quota|記憶體︰配額|位元組|平均值|目前的記憶體配額，以位元組為單位。 記憶體配額也就是指授與使用的記憶體，或是保留的記憶體。|
 |QuotaBlocked|記憶體︰封鎖的配額|Count|平均值|在釋放其他記憶體配額之前，目前已封鎖的配額要求數目。|
-|VertiPaqNonpaged|記憶體︰未分頁的 VertiPaq|位元組|平均值|工作集中已封鎖來供記憶體內部引擎使用的記憶體位元組。|
+|VertiPaqNonpaged|記憶體︰未分頁的 VertiPaq|位元組|平均值|Hello 記憶體中引擎 hello 工作集，用於鎖定的記憶體位元組數。|
 |VertiPaqPaged|記憶體︰分頁的 VertiPaq|位元組|平均值|可供記憶體內部資料使用的分頁記憶體位元組。|
 |RowsReadPerSec|處理︰每秒讀取的資料列|每秒計數|平均值|從所有關聯式資料庫讀取資料列的速率。|
 |RowsConvertedPerSec|處理︰每秒轉換的資料列|每秒計數|平均值|處理期間資料列轉換的速率。|
 |RowsWrittenPerSec|處理︰每秒寫入的資料列|每秒計數|平均值|處理期間資料列寫入的速率。|
-|CommandPoolBusyThreads|執行緒︰命令集區的忙碌執行緒數|Count|平均值|命令執行緒集區中的忙碌執行緒數。|
-|CommandPoolIdleThreads|執行緒︰命令集區的閒置執行緒數|Count|平均值|命令執行緒集區中的閒置執行緒數。|
-|LongParsingBusyThreads|執行緒︰完整剖析的忙碌執行緒數|Count|平均值|完整剖析執行緒集區中的忙碌執行緒數目。|
-|LongParsingIdleThreads|執行緒︰完整剖析的閒置執行緒數|Count|平均值|完整剖析執行緒集區中的閒置執行緒數目。|
-|LongParsingJobQueueLength|執行緒︰完整剖析的作業佇列長度|Count|平均值|完整剖析執行緒集區佇列中的作業數目。|
-|ProcessingPoolBusyIOJobThreads|執行緒︰處理集區的忙碌 I/O 作業執行緒數|Count|平均值|處理執行緒集區中執行 I/O 作業的執行緒數目。|
-|ProcessingPoolBusyNonIOThreads|執行緒︰處理集區的忙碌非 I/O 執行緒數|Count|平均值|處理執行緒集區中執行非 I/O 作業的執行緒數目。|
-|ProcessingPoolIOJobQueueLength|執行緒：處理集區 I/O 作業佇列長度|Count|平均值|處理執行緒集區佇列中的 I/O 作業數目。|
-|ProcessingPoolIdleIOJobThreads|執行緒︰處理集區的閒置 I/O 作業執行緒數|Count|平均值|處理執行緒集區中 I/O 作業的閒置執行緒數目。|
-|ProcessingPoolIdleNonIOThreads|執行緒︰處理集區的閒置非 I/O 執行緒數|Count|平均值|處理執行緒集區中專供非 I/O 作業使用的閒置執行緒數目。|
-|QueryPoolIdleThreads|執行緒︰查詢集區的閒置執行緒數|Count|平均值|處理執行緒集區中 I/O 作業的閒置執行緒數目。|
-|QueryPoolJobQueueLength|執行緒︰查詢集區的作業佇列長度|Count|平均值|查詢執行緒集區佇列中的作業數目。|
-|ShortParsingBusyThreads|執行緒︰簡短剖析的忙碌執行緒數|Count|平均值|簡短剖析執行緒集區中的忙碌執行緒數目。|
-|ShortParsingIdleThreads|執行緒︰簡短剖析的閒置執行緒數|Count|平均值|簡短剖析執行緒集區中的閒置執行緒數目。|
-|ShortParsingJobQueueLength|執行緒︰簡短剖析的作業佇列長度|Count|平均值|簡短剖析執行緒集區佇列中的作業數目。|
+|CommandPoolBusyThreads|執行緒︰命令集區的忙碌執行緒數|Count|平均值|Hello 命令執行緒集區中的忙碌執行緒數目。|
+|CommandPoolIdleThreads|執行緒︰命令集區的閒置執行緒數|Count|平均值|Hello 命令執行緒集區中的閒置執行緒數目。|
+|LongParsingBusyThreads|執行緒︰完整剖析的忙碌執行緒數|Count|平均值|Hello 完整剖析執行緒集區中的忙碌執行緒數目。|
+|LongParsingIdleThreads|執行緒︰完整剖析的閒置執行緒數|Count|平均值|Hello 完整剖析執行緒集區中的閒置執行緒數目。|
+|LongParsingJobQueueLength|執行緒︰完整剖析的作業佇列長度|Count|平均值|Hello hello 完整剖析執行緒集區佇列中的作業數目。|
+|ProcessingPoolBusyIOJobThreads|執行緒︰處理集區的忙碌 I/O 作業執行緒數|Count|平均值|Hello 處理執行緒集區中執行 I/O 作業的執行緒數目。|
+|ProcessingPoolBusyNonIOThreads|執行緒︰處理集區的忙碌非 I/O 執行緒數|Count|平均值|Hello 處理執行緒集區中執行非 i/o 作業的執行緒數目。|
+|ProcessingPoolIOJobQueueLength|執行緒：處理集區 I/O 作業佇列長度|Count|平均值|Hello hello 處理執行緒集區佇列中的 I/O 作業數目。|
+|ProcessingPoolIdleIOJobThreads|執行緒︰處理集區的閒置 I/O 作業執行緒數|Count|平均值|Hello 處理執行緒集區中 I/O 作業的閒置執行緒數目。|
+|ProcessingPoolIdleNonIOThreads|執行緒︰處理集區的閒置非 I/O 執行緒數|Count|平均值|Hello 處理執行緒集區中的閒置執行緒數目的專用 toonon i/o 作業。|
+|QueryPoolIdleThreads|執行緒︰查詢集區的閒置執行緒數|Count|平均值|Hello 處理執行緒集區中 I/O 作業的閒置執行緒數目。|
+|QueryPoolJobQueueLength|執行緒︰查詢集區的作業佇列長度|Count|平均值|Hello hello 查詢執行緒集區佇列中的作業數目。|
+|ShortParsingBusyThreads|執行緒︰簡短剖析的忙碌執行緒數|Count|平均值|Hello 簡短剖析執行緒集區中的忙碌執行緒數目。|
+|ShortParsingIdleThreads|執行緒︰簡短剖析的閒置執行緒數|Count|平均值|Hello 簡短剖析執行緒集區中的閒置執行緒數目。|
+|ShortParsingJobQueueLength|執行緒︰簡短剖析的作業佇列長度|Count|平均值|Hello hello 簡短剖析執行緒集區佇列中的作業數目。|
 |memory_thrashing_metric|記憶體猛移|百分比|平均值|記憶體猛移的平均值。|
 
 ## <a name="microsoftapimanagementservice"></a>Microsoft.ApiManagement/service
@@ -88,20 +88,20 @@ Azure 監視器提供數種與計量進行互動的方式，包括在入口網�
 
 |計量|計量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
-|CoreCount|專用核心計數|Count|總計|Batch 帳戶中的專用核心總數|
-|TotalNodeCount|專用節點計數|Count|總計|Batch 帳戶中的專用節點總數|
-|LowPriorityCoreCount|LowPriority 核心計數|Count|總計|Batch 帳戶中的低優先順序核心總數|
-|TotalLowPriorityNodeCount|低優先順序節點計數|Count|總計|Batch 帳戶中的低優先順序節點總數|
+|CoreCount|專用核心計數|Count|總計|Hello 批次帳戶中的專用核心總數|
+|TotalNodeCount|專用節點計數|Count|總計|專用 hello 批次帳戶中的節點總數|
+|LowPriorityCoreCount|LowPriority 核心計數|Count|總計|Hello 批次帳戶中的低優先順序核心總數|
+|TotalLowPriorityNodeCount|低優先順序節點計數|Count|總計|Hello 批次帳戶中的低優先權的節點總數|
 |CreatingNodeCount|建立節點計數|Count|總計|正在建立的節點數目|
 |StartingNodeCount|啟動節點計數|Count|總計|啟動的節點數目|
-|WaitingForStartTaskNodeCount|等候啟動工作節點計數|Count|總計|等待啟動工作完成的節點數目|
-|StartTaskFailedNodeCount|啟動工作失敗的節點計數|Count|總計|啟動工作失敗的節點數目|
+|WaitingForStartTaskNodeCount|等候啟動工作節點計數|Count|總計|等候 hello 開始工作 toocomplete 的節點數目|
+|StartTaskFailedNodeCount|啟動工作失敗的節點計數|Count|總計|未能 hello 開始工作的節點數目|
 |IdleNodeCount|閒置的節點計數|Count|總計|閒置節點的數目|
 |OfflineNodeCount|離線節點計數|Count|總計|離線節點的數目|
 |RebootingNodeCount|重新啟動節點計數|Count|總計|重新啟動節點的數目|
 |RebootingNodeCount|重新安裝映像節點計數|Count|總計|重新安裝映像的節點數目|
 |RunningNodeCount|執行節點計數|Count|總計|執行節點的數目|
-|LeavingPoolNodeCount|離開集區節點計數|Count|總計|離開集區的節點數目|
+|LeavingPoolNodeCount|離開集區節點計數|Count|總計|離開 hello 集區的節點數目|
 |UnusableNodeCount|無法使用的節點計數|Count|總計|無法使用的節點數目|
 |PreemptedNodeCount|先占節點計數|Count|總計|先占節點的數量|
 |TaskStartEvent|工作啟動的事件|Count|總計|已啟動的工作總次數|
@@ -301,11 +301,11 @@ Azure 監視器提供數種與計量進行互動的方式，包括在入口網�
 
 |計量|計量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
-|Percentage CPU|Percentage CPU|百分比|平均值|目前虛擬機器正在使用中的已配置計算單位百分比|
-|Network In|Network In|位元組|總計|虛擬機器 (連入流量) 在所有網路介面上接收到的位元組數目|
-|Network Out|Network Out|位元組|總計|虛擬機器 (連出流量) 在所有網路介面上送出的位元組數目|
+|Percentage CPU|Percentage CPU|百分比|平均值|目前正在使用 hello 虛擬機器的已配置的計算單位的 hello 百分比|
+|Network In|Network In|位元組|總計|hello 接收位元組數所有網路介面上的 hello 虛擬機器 （連入流量）|
+|Network Out|Network Out|位元組|總計|hello 數字的位元組所 hello （傳出流量） 的虛擬機器的所有網路介面上的逾時|
 |Disk Read Bytes|Disk Read Bytes|位元組|總計|在監視期間從磁碟讀取的位元組總計|
-|Disk Write Bytes|Disk Write Bytes|位元組|總計|在監視期間寫入磁碟的位元組總計|
+|Disk Write Bytes|Disk Write Bytes|位元組|總計|在監視期間寫入 toodisk 的位元組總數|
 |Disk Read Operations/Sec|Disk Read Operations/Sec|每秒計數|平均值|磁碟讀取 IOPS|
 |Disk Write Operations/Sec|Disk Write Operations/Sec|每秒計數|平均值|磁碟寫入 IOPS|
 
@@ -313,11 +313,11 @@ Azure 監視器提供數種與計量進行互動的方式，包括在入口網�
 
 |計量|計量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
-|Percentage CPU|Percentage CPU|百分比|平均值|目前虛擬機器正在使用中的已配置計算單位百分比|
-|Network In|Network In|位元組|總計|虛擬機器 (連入流量) 在所有網路介面上接收到的位元組數目|
-|Network Out|Network Out|位元組|總計|虛擬機器 (連出流量) 在所有網路介面上送出的位元組數目|
+|Percentage CPU|Percentage CPU|百分比|平均值|目前正在使用 hello 虛擬機器的已配置的計算單位的 hello 百分比|
+|Network In|Network In|位元組|總計|hello 接收位元組數所有網路介面上的 hello 虛擬機器 （連入流量）|
+|Network Out|Network Out|位元組|總計|hello 數字的位元組所 hello （傳出流量） 的虛擬機器的所有網路介面上的逾時|
 |Disk Read Bytes|Disk Read Bytes|位元組|總計|在監視期間從磁碟讀取的位元組總計|
-|Disk Write Bytes|Disk Write Bytes|位元組|總計|在監視期間寫入磁碟的位元組總計|
+|Disk Write Bytes|Disk Write Bytes|位元組|總計|在監視期間寫入 toodisk 的位元組總數|
 |Disk Read Operations/Sec|Disk Read Operations/Sec|每秒計數|平均值|磁碟讀取 IOPS|
 |Disk Write Operations/Sec|Disk Write Operations/Sec|每秒計數|平均值|磁碟寫入 IOPS|
 
@@ -325,11 +325,11 @@ Azure 監視器提供數種與計量進行互動的方式，包括在入口網�
 
 |計量|計量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
-|Percentage CPU|Percentage CPU|百分比|平均值|目前虛擬機器正在使用中的已配置計算單位百分比|
-|Network In|Network In|位元組|總計|虛擬機器 (連入流量) 在所有網路介面上接收到的位元組數目|
-|Network Out|Network Out|位元組|總計|虛擬機器 (連出流量) 在所有網路介面上送出的位元組數目|
+|Percentage CPU|Percentage CPU|百分比|平均值|目前正在使用 hello 虛擬機器的已配置的計算單位的 hello 百分比|
+|Network In|Network In|位元組|總計|hello 接收位元組數所有網路介面上的 hello 虛擬機器 （連入流量）|
+|Network Out|Network Out|位元組|總計|hello 數字的位元組所 hello （傳出流量） 的虛擬機器的所有網路介面上的逾時|
 |Disk Read Bytes|Disk Read Bytes|位元組|總計|在監視期間從磁碟讀取的位元組總計|
-|Disk Write Bytes|Disk Write Bytes|位元組|總計|在監視期間寫入磁碟的位元組總計|
+|Disk Write Bytes|Disk Write Bytes|位元組|總計|在監視期間寫入 toodisk 的位元組總數|
 |Disk Read Operations/Sec|Disk Read Operations/Sec|每秒計數|平均值|磁碟讀取 IOPS|
 |Disk Write Operations/Sec|Disk Write Operations/Sec|每秒計數|平均值|磁碟寫入 IOPS|
 
@@ -407,58 +407,58 @@ Azure 監視器提供數種與計量進行互動的方式，包括在入口網�
 
 |計量|計量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
-|d2c.telemetry.ingress.allProtocol|遙測訊息傳送嘗試|Count|總計|要嘗試傳送至您 IoT 中樞的裝置到雲端遙測訊息數目|
-|d2c.telemetry.ingress.success|已傳送的遙測訊息|Count|總計|成功傳送至您 IoT 中樞的裝置到雲端遙測訊息數目|
-|c2d.commands.egress.complete.success|完成的命令|Count|總計|裝置成功完成的雲端到裝置命令數目|
-|c2d.commands.egress.abandon.success|放棄的命令|Count|總計|裝置放棄的雲端到裝置命令數目|
-|c2d.commands.egress.reject.success|拒絕的命令|Count|總計|裝置拒絕的雲端到裝置命令數目|
-|devices.totalDevices|裝置總計|Count|總計|向 IoT 中樞註冊的裝置數目|
-|devices.connectedDevices.allProtocol|連接的裝置|Count|總計|連接至 IoT 中樞的裝置數目|
-|d2c.telemetry.egress.success|已傳遞的遙測訊息|Count|總計|訊息成功寫入端點的次數 (總計)|
-|d2c.telemetry.egress.dropped|捨棄的訊息|Count|總計|由於傳遞端點已無作用而卸除的訊息數目|
-|d2c.telemetry.egress.orphaned|被遺棄的訊息|Count|總計|不符合任何路由 (包括後援路由) 的訊息計數|
-|d2c.telemetry.egress.invalid|無效的訊息|Count|總計|因為與端點不相容而未傳遞的訊息計數|
-|d2c.telemetry.egress.fallback|符合後援條件的訊息|Count|總計|寫入後援端點的訊息數目|
-|d2c.endpoints.egress.eventHubs|傳遞至事件中樞端點的訊息|Count|總計|訊息成功寫入事件中樞端點的次數|
-|d2c.endpoints.latency.eventHubs|事件中樞端點的訊息延遲|毫秒|平均值|訊息輸入到 IoT 中樞與訊息輸入到事件中樞端點之間的平均延遲，以毫秒為單位|
-|d2c.endpoints.egress.serviceBusQueues|傳遞至服務匯流排佇列端點的訊息|Count|總計|訊息成功寫入服務匯流排佇列端點的次數|
-|d2c.endpoints.latency.serviceBusQueues|服務匯流排佇列端點的訊息延遲|毫秒|平均值|訊息輸入到 IoT 中樞與訊息輸入到服務匯流排佇列端點之間的平均延遲，以毫秒為單位|
-|d2c.endpoints.egress.serviceBusTopics|傳遞至服務匯流排主題端點的訊息|Count|總計|訊息成功寫入服務匯流排主題端點的次數|
-|d2c.endpoints.latency.serviceBusTopics|服務匯流排主題端點的訊息延遲|毫秒|平均值|訊息輸入到 IoT 中樞與訊息輸入到服務匯流排主題端點之間的平均延遲，以毫秒為單位|
-|d2c.endpoints.egress.builtIn.events|傳遞至內建端點 (訊息/事件) 的訊息|Count|總計|訊息成功寫入內建端點 (訊息/事件) 的次數|
-|d2c.endpoints.latency.builtIn.events|內建端點 (訊息/事件) 的訊息延遲|毫秒|平均值|訊息輸入到 IoT 中樞與訊息輸入到內建端點 (訊息/事件) 之間的平均延遲，以毫秒為單位 |
-|d2c.twin.read.success|裝置的成功對應項讀取|Count|總計|裝置起始的所有成功對應項讀取的計數。|
-|d2c.twin.read.failure|裝置的失敗對應項讀取|Count|總計|裝置起始的所有失敗對應項讀取的計數。|
-|d2c.twin.read.size|裝置的對應項讀取回應大小|位元組|平均值|裝置起始的所有成功對應項讀取的平均值、最小值和最大值。|
-|d2c.twin.update.success|裝置的成功對應項更新|Count|總計|裝置起始的所有成功對應項更新的計數。|
-|d2c.twin.update.failure|裝置的失敗對應項更新|Count|總計|裝置起始的所有失敗對應項更新的計數。|
-|d2c.twin.update.size|裝置的對應項更新大小|位元組|平均值|裝置起始的所有成功對應項更新的大小平均值、最小值和最大值。|
-|c2d.methods.success|成功直接方法叫用|Count|總計|所有成功直接方法呼叫的計數。|
-|c2d.methods.failure|失敗直接方法叫用|Count|總計|所有失敗直接方法呼叫的計數。|
-|c2d.methods.requestSize|直接方法叫用的要求大小|位元組|平均值|所有成功直接方法要求的平均值、最小值和最大值。|
-|c2d.methods.responseSize|直接方法叫用的回應大小|位元組|平均值|所有成功直接方法回應的平均值、最小值和最大值。|
-|c2d.twin.read.success|後端的成功對應項讀取|Count|總計|後端起始的所有成功對應項讀取的計數。|
-|c2d.twin.read.failure|後端的失敗對應項讀取|Count|總計|後端起始的所有失敗對應項讀取的計數。|
-|c2d.twin.read.size|後端的對應項讀取回應大小|位元組|平均值|後端起始的所有成功對應項讀取的平均值、最小值和最大值。|
-|c2d.twin.update.success|後端的成功對應項更新|Count|總計|後端起始的所有成功對應項更新的計數。|
-|c2d.twin.update.failure|後端的失敗對應項更新|Count|總計|後端起始的所有失敗對應項更新的計數。|
-|c2d.twin.update.size|後端的對應項更新大小|位元組|平均值|後端起始的所有成功對應項更新的大小平均值、最小值和最大值。|
-|twinQueries.success|成功對應項查詢|Count|總計|所有成功對應項查詢的計數。|
-|twinQueries.failure|失敗對應項查詢|Count|總計|所有失敗對應項查詢的計數。|
-|twinQueries.resultSize|對應項查詢結果大小|位元組|平均值|所有成功對應項查詢的結果大小平均值、最小值和最大值。|
-|jobs.createTwinUpdateJob.success|成功建立的對應項更新作業|Count|總計|所有成功建立的對應項更新作業計數。|
-|jobs.createTwinUpdateJob.failure|建立失敗的對應項更新作業|Count|總計|所有建立失敗的對應項更新作業計數。|
-|jobs.createDirectMethodJob.success|成功建立的方法叫用作業|Count|總計|所有成功建立的直接方法叫用作業計數。|
-|jobs.createDirectMethodJob.failure|建立失敗的方法叫用作業|Count|總計|所有建立失敗的直接方法叫用作業計數。|
-|jobs.listJobs.success|成功呼叫列出作業|Count|總計|所有成功呼叫列出作業的計數。|
-|jobs.listJobs.failure|呼叫列出作業失敗|Count|總計|所有呼叫列出作業失敗的計數。|
-|jobs.cancelJob.success|成功取消作業|Count|總計|所有成功呼叫取消作業的計數。|
-|jobs.cancelJob.failure|取消作業失敗|Count|總計|所有呼叫取消作業失敗的計數。|
-|jobs.queryJobs.success|成功作業查詢|Count|總計|所有成功呼叫查詢作業的計數。|
-|jobs.queryJobs.failure|失敗作業查詢|Count|總計|所有呼叫查詢作業失敗的計數。|
-|jobs.completed|已完成的工作|Count|總計|所有已完成的作業計數。|
-|jobs.failed|失敗作業|Count|總計|所有失敗作業計數。|
-|d2c.telemetry.ingress.sendThrottle|節流錯誤數目|Count|總計|因裝置輸送量節流而導致的節流錯誤數目|
+|d2c.telemetry.ingress.allProtocol|遙測訊息傳送嘗試|Count|總計|送出的遙測裝置到雲端訊息嘗試 toobe 數目 tooyour IoT 中樞|
+|d2c.telemetry.ingress.success|已傳送的遙測訊息|Count|總計|裝置到雲端遙測訊息數目已成功傳送 tooyour IoT 中樞|
+|c2d.commands.egress.complete.success|完成的命令|Count|總計|雲端到裝置命令已順利完成 hello 裝置數目|
+|c2d.commands.egress.abandon.success|放棄的命令|Count|總計|放棄 hello 裝置的雲端到裝置命令數目|
+|c2d.commands.egress.reject.success|拒絕的命令|Count|總計|雲端到裝置 hello 裝置被拒絕的命令數目|
+|devices.totalDevices|裝置總計|Count|總計|已登錄的裝置數 tooyour IoT 中樞|
+|devices.connectedDevices.allProtocol|連接的裝置|Count|總計|連接的裝置數目 tooyour IoT 中樞|
+|d2c.telemetry.egress.success|已傳遞的遙測訊息|Count|總計|訊息已成功地寫入 tooendpoints （總計） 的次數|
+|d2c.telemetry.egress.dropped|捨棄的訊息|Count|總計|卸除，因為 hello 傳遞端點已無作用的訊息數目|
+|d2c.telemetry.egress.orphaned|被遺棄的訊息|Count|總計|訊息不符合任何包括 hello 後援路由的路由的 hello 數目|
+|d2c.telemetry.egress.invalid|無效的訊息|Count|總計|hello 的訊息計數不會傳遞到期 tooincompatibility 與 hello 端點|
+|d2c.telemetry.egress.fallback|符合後援條件的訊息|Count|總計|寫入 toohello 後援端點的訊息數|
+|d2c.endpoints.egress.eventHubs|訊息傳遞 tooEvent 中樞端點|Count|總計|訊息已成功寫入的 tooEvent 中心端點的次數|
+|d2c.endpoints.latency.eventHubs|事件中樞端點的訊息延遲|毫秒|平均值|hello 之間的平均延遲訊息輸入 toohello IoT 中樞與訊息輸入至事件中心的端點，以毫秒為單位|
+|d2c.endpoints.egress.serviceBusQueues|訊息傳遞 tooService 匯流排佇列端點|Count|總計|訊息已成功寫入的 tooService 匯流排佇列端點的次數|
+|d2c.endpoints.latency.serviceBusQueues|服務匯流排佇列端點的訊息延遲|毫秒|平均值|hello 之間的平均延遲訊息輸入 toohello IoT 中樞與訊息輸入至服務匯流排佇列端點，以毫秒為單位|
+|d2c.endpoints.egress.serviceBusTopics|訊息傳遞 tooService 匯流排主題端點|Count|總計|訊息已成功寫入的 tooService 匯流排主題端點的次數|
+|d2c.endpoints.latency.serviceBusTopics|服務匯流排主題端點的訊息延遲|毫秒|平均值|hello 之間的平均延遲訊息輸入 toohello IoT 中樞與訊息輸入至服務匯流排主題端點，以毫秒為單位|
+|d2c.endpoints.egress.builtIn.events|訊息傳遞 toohello 內建端點 （訊息/事件）|Count|總計|訊息已成功寫入的 toohello 內建端點 （訊息/事件） 的次數|
+|d2c.endpoints.latency.builtIn.events|Hello 內建端點 （訊息/事件） 的訊息延遲|毫秒|平均值|hello 之間的平均延遲訊息輸入 toohello IoT 中樞與訊息輸入至 hello 內建端點 （訊息/事件），以毫秒為單位 |
+|d2c.twin.read.success|裝置的成功對應項讀取|Count|總計|讀取所有成功的裝置啟動兩個 hello 計數。|
+|d2c.twin.read.failure|裝置的失敗對應項讀取|Count|總計|所有的 hello 計數失敗裝置起始兩個讀取。|
+|d2c.twin.read.size|裝置的對應項讀取回應大小|位元組|平均值|hello 平均、 最小值 和所有成功的最大裝置起始 twin 讀取。|
+|d2c.twin.update.success|裝置的成功對應項更新|Count|總計|所有成功的裝置啟動兩個更新的 hello 計數。|
+|d2c.twin.update.failure|裝置的失敗對應項更新|Count|總計|hello 計數的所有失敗的裝置啟動兩個更新。|
+|d2c.twin.update.size|裝置的對應項更新大小|位元組|平均值|hello 平均、 最小值 和所有成功的最大大小裝置起始 twin 更新。|
+|c2d.methods.success|成功直接方法叫用|Count|總計|所有成功的直接方法呼叫 hello 計數。|
+|c2d.methods.failure|失敗直接方法叫用|Count|總計|所有的 hello 計數無法直接方法呼叫。|
+|c2d.methods.requestSize|直接方法叫用的要求大小|位元組|平均值|hello 平均、 最小值 和所有成功的直接方法要求的最大值。|
+|c2d.methods.responseSize|直接方法叫用的回應大小|位元組|平均值|hello 平均、 最小值 和所有成功的直接方法回應的最大值。|
+|c2d.twin.read.success|後端的成功對應項讀取|Count|總計|讀取所有成功的後端初始化兩個 hello 計數。|
+|c2d.twin.read.failure|後端的失敗對應項讀取|Count|總計|所有的 hello 計數失敗後結束起始兩個讀取。|
+|c2d.twin.read.size|後端的對應項讀取回應大小|位元組|平均值|hello 平均、 最小值和最大值的所有成功後結束起始 twin 讀取。|
+|c2d.twin.update.success|後端的成功對應項更新|Count|總計|所有成功的後端初始化兩個更新的 hello 計數。|
+|c2d.twin.update.failure|後端的失敗對應項更新|Count|總計|所有的 hello 計數失敗後結束起始兩個更新。|
+|c2d.twin.update.size|後端的對應項更新大小|位元組|平均值|hello 平均、 最小值 和所有成功的最大大小後結束起始 twin 更新。|
+|twinQueries.success|成功對應項查詢|Count|總計|所有成功的兩個查詢的 hello 計數。|
+|twinQueries.failure|失敗對應項查詢|Count|總計|所有失敗的兩個查詢的 hello 計數。|
+|twinQueries.resultSize|對應項查詢結果大小|位元組|平均值|hello 平均、 最小值、 和 hello 所有成功的兩個查詢的結果大小的最大值。|
+|jobs.createTwinUpdateJob.success|成功建立的對應項更新作業|Count|總計|hello 所有成功建立兩個更新作業數目。|
+|jobs.createTwinUpdateJob.failure|建立失敗的對應項更新作業|Count|總計|建立兩個更新作業的所有失敗的 hello 計數。|
+|jobs.createDirectMethodJob.success|成功建立的方法叫用作業|Count|總計|hello 所有成功建立直接的方法引動過程作業數目。|
+|jobs.createDirectMethodJob.failure|建立失敗的方法叫用作業|Count|總計|建立直接的方法引動過程作業的所有失敗的 hello 計數。|
+|jobs.listJobs.success|成功呼叫 toolist 工作|Count|總計|所有成功呼叫 toolist 作業 hello 計數。|
+|jobs.listJobs.failure|失敗的呼叫 toolist 工作|Count|總計|所有的失敗的呼叫 toolist 作業 hello 計數。|
+|jobs.cancelJob.success|成功取消作業|Count|總計|所有成功的 hello 計數呼叫 toocancel 作業。|
+|jobs.cancelJob.failure|取消作業失敗|Count|總計|所有失敗的呼叫 toocancel 作業 hello 計數。|
+|jobs.queryJobs.success|成功作業查詢|Count|總計|所有成功呼叫 tooquery 作業 hello 計數。|
+|jobs.queryJobs.failure|失敗作業查詢|Count|總計|所有的失敗的呼叫 tooquery 作業 hello 計數。|
+|jobs.completed|已完成的工作|Count|總計|hello 與所有已完成的工作數目。|
+|jobs.failed|失敗作業|Count|總計|hello 所有失敗的作業數目。|
+|d2c.telemetry.ingress.sendThrottle|節流錯誤數目|Count|總計|由於 toodevice 輸送量流速節流錯誤的數目|
 |dailyMessageQuotaUsed|已使用的訊息總數|Count|平均值|今日已使用的總訊息數|
 
 ## <a name="microsofteventhubnamespaces"></a>Microsoft.EventHub/namespaces
@@ -531,12 +531,12 @@ Azure 監視器提供數種與計量進行互動的方式，包括在入口網�
 
 |計量|計量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
-|registration.all|註冊作業|Count|總計|所有成功註冊作業 (建立、更新、查詢和刪除) 的計數。 |
-|registration.create|註冊建立作業|Count|總計|所有成功註冊建立的計數。|
-|registration.update|註冊更新作業|Count|總計|所有成功註冊更新的計數。|
-|registration.get|註冊讀取作業|Count|總計|所有成功註冊查詢的計數。|
-|registration.delete|註冊刪除作業|Count|總計|所有成功註冊刪除的計數。|
-|incoming|傳入訊息|Count|總計|所有成功傳送 API 呼叫的計數。 |
+|registration.all|註冊作業|Count|總計|hello （建立更新查詢和刪除） 的所有註冊成功的作業數目。 |
+|registration.create|註冊建立作業|Count|總計|所有成功的登錄建立 hello 計數。|
+|registration.update|註冊更新作業|Count|總計|hello 所有註冊成功的更新計數。|
+|registration.get|註冊讀取作業|Count|總計|hello 所有註冊成功的查詢數目。|
+|registration.delete|註冊刪除作業|Count|總計|所有註冊成功的刪除動作的 hello 計數。|
+|incoming|傳入訊息|Count|總計|hello 計數的所有成功傳送的 API 呼叫。 |
 |incoming.scheduled|傳送已排程的推播通知|Count|總計|取消已排程的推播通知|
 |incoming.scheduled.cancel|取消已排程的推播通知|Count|總計|取消已排程的推播通知|
 |scheduled.pending|暫止已排程的通知|Count|總計|暫止已排程的通知|
@@ -545,52 +545,52 @@ Azure 監視器提供數種與計量進行互動的方式，包括在入口網�
 |installation.upsert|建立或更新安裝作業|Count|總計|建立或更新安裝作業|
 |installation.patch|修補安裝作業|Count|總計|修補安裝作業|
 |installation.delete|刪除安裝作業|Count|總計|刪除安裝作業|
-|outgoing.allpns.success|成功通知|Count|總計|所有成功通知的計數。|
-|outgoing.allpns.invalidpayload|承載錯誤|Count|總計|因為 PNS 傳回錯誤承載錯誤而失敗的推播計數。|
-|outgoing.allpns.pnserror|外部通知系統錯誤|Count|總計|因為與 PNS 通訊發生問題 (不包括驗證問題) 而失敗的推播計數。|
-|outgoing.allpns.channelerror|通道錯誤|Count|總計|因為通道無效、未與正確的應用程式相關聯、已節流處理或過期，導致失敗的推播計數。|
-|outgoing.allpns.badorexpiredchannel|錯誤或過期的通道錯誤|Count|總計|因為註冊中的通道/權杖/registrationId 過期或無效，導致失敗的推播計數。|
-|outgoing.wns.success|WNS 成功通知|Count|總計|所有成功通知的計數。|
-|outgoing.wns.invalidcredentials|WNS 授權錯誤 (無效認證)|Count|總計|因為 PNS 不接受提供的認證或已封鎖認證，導致失敗的推播計數。 (Windows Live 無法識別認證)。|
-|outgoing.wns.badchannel|WNS 不正確的通道錯誤|Count|總計|因為無法識別註冊中的 ChannelURI (WNS 狀態︰404 找不到)，導致失敗的推播計數。|
-|outgoing.wns.expiredchannel|WNS 過期通道錯誤|Count|總計|因為 ChannelURIi 過期 (WNS 狀態︰ 410 不存在) 而失敗的推播計數。|
-|outgoing.wns.throttled|WNS 節流通知|Count|總計|因為 WNS 正在節流此應用程式，導致失敗的推播計數 (WNS 狀態︰406 無法接受)。|
+|outgoing.allpns.success|成功通知|Count|總計|hello 所有成功通知數目。|
+|outgoing.allpns.invalidpayload|承載錯誤|Count|總計|hello 失敗，因為 hello PNS 傳回不正確的承載錯誤的推播通知數目。|
+|outgoing.allpns.pnserror|外部通知系統錯誤|Count|總計|hello 失敗，因為發生問題，與 hello PNS （不包括驗證問題） 進行通訊的推播通知數目。|
+|outgoing.allpns.channelerror|通道錯誤|Count|總計|推播通知失敗，因為 hello 通道無效未正確調整應用程式，或已過期的 hello 與相關聯的 hello 計數。|
+|outgoing.allpns.badorexpiredchannel|錯誤或過期的通道錯誤|Count|總計|推播通知失敗，因為 hello 通道/語彙基元/registrationId hello 註冊中已過期或無效的 hello 計數。|
+|outgoing.wns.success|WNS 成功通知|Count|總計|hello 所有成功通知數目。|
+|outgoing.wns.invalidcredentials|WNS 授權錯誤 (無效認證)|Count|總計|推播通知失敗，因為 hello PNS 並未接受 hello 提供封鎖或認證 hello hello 計數。 （Windows Live 無法辨識 hello 認證）。|
+|outgoing.wns.badchannel|WNS 不正確的通道錯誤|Count|總計|hello 失敗，因為無法辨識 hello ChannelURI hello 註冊中的推播通知的計數 (WNS 狀態： 404 找不到)。|
+|outgoing.wns.expiredchannel|WNS 過期通道錯誤|Count|總計|hello 失敗，因為 hello ChannelURI 已過期的推播通知的計數 (WNS 狀態： 410 已移走)。|
+|outgoing.wns.throttled|WNS 節流通知|Count|總計|hello 失敗，因為 WNS 節流時設定此應用程式的推播通知的計數 (WNS 狀態： 406 無法接受)。|
 |outgoing.wns.tokenproviderunreachable|WNS 授權錯誤 (無法連線)|Count|總計|無法連線到 Windows Live。|
-|outgoing.wns.invalidtoken|WNS 授權錯誤 (無效權杖)|Count|總計|提供給 WNS 的權杖無效 (WNS 狀態︰ 401 未經授權)。|
-|outgoing.wns.wrongtoken|WNS 授權錯誤 (錯誤權杖)|Count|總計|提供給 WNS 的權杖有效，但卻是給另一個應用程式 (WNS 狀態︰403 禁止)。 如果註冊中的 ChannelURI 與另一個應用程式相關聯，可能會發生這種情形。 請檢查用戶端應用程式相關聯的應用程式，就是認證位於通知中樞的同一個應用程式。|
-|outgoing.wns.invalidnotificationformat|WNS 無效通知格式|Count|總計|通知的格式無效 (WNS 狀態︰400)。 請注意，WNS 不會拒絕所有無效承載。|
-|outgoing.wns.invalidnotificationsize|WNS 無效通知大小錯誤|Count|總計|通知承載太大 (WNS 狀態︰413)。|
-|outgoing.wns.channelthrottled|WNS 通道已節流處理|Count|總計|因為註冊中的 ChannelURI 已節流處理而捨棄通知 (WNS 回應標頭︰X-WNS-NotificationStatus:channelThrottled)。|
-|outgoing.wns.channeldisconnected|WNS 通道已中斷連線|Count|總計|因為註冊中的 ChannelURI 已節流處理而捨棄通知 (WNS 回應標頭︰X-WNS-DeviceConnectionStatus: disconnected)。|
-|outgoing.wns.dropped|WNS 已捨棄通知|Count|總計|因為註冊中的 ChannelURI 已節流處理而捨棄通知 (X-WNS-NotificationStatus: dropped 但不是 X-WNS-DeviceConnectionStatus: disconnected)。|
+|outgoing.wns.invalidtoken|WNS 授權錯誤 (無效權杖)|Count|總計|hello 提供語彙基元 tooWNS 無效 (WNS 狀態： 401 未經授權)。|
+|outgoing.wns.wrongtoken|WNS 授權錯誤 (錯誤權杖)|Count|總計|hello 語彙基元提供 tooWNS 是否有效，但另一個應用程式 (WNS 狀態： 403 禁止)。 這可能會發生在 hello 登錄中的 hello ChannelURI 是否與另一個應用程式相關聯。 請檢查該 hello 用戶端應用程式是否 hello 與相關聯的認證都在 hello 通知中樞的同一個應用程式。|
+|outgoing.wns.invalidnotificationformat|WNS 無效通知格式|Count|總計|hello 通知 hello 格式不正確 (WNS 狀態： 400)。 請注意，WNS 不會拒絕所有無效承載。|
+|outgoing.wns.invalidnotificationsize|WNS 無效通知大小錯誤|Count|總計|hello 通知裝載會太大 (WNS 狀態： 413)。|
+|outgoing.wns.channelthrottled|WNS 通道已節流處理|Count|總計|hello 通知已遭丟棄，因為已節流 hello 註冊中的 hello ChannelURI (WNS 回應標頭： X-WNS-NotificationStatus:channelThrottled)。|
+|outgoing.wns.channeldisconnected|WNS 通道已中斷連線|Count|總計|hello 通知已遭丟棄，因為已節流 hello 註冊中的 hello ChannelURI (WNS 回應標頭： X-WNS-DeviceConnectionStatus： 中斷連接)。|
+|outgoing.wns.dropped|WNS 已捨棄通知|Count|總計|hello 通知已遭丟棄，因為已節流 hello ChannelURI hello 註冊中的 (X-WNS-NotificationStatus： 已卸除，但不是 X-WNS-DeviceConnectionStatus： 中斷連接)。|
 |outgoing.wns.pnserror|WNS 錯誤|Count|總計|因為與 WNS 通訊錯誤而未傳遞通知。|
 |outgoing.wns.authenticationerror|WNS 驗證錯誤|Count|總計|因為與 Windows Live 通訊錯誤、無效認證或不正確的權杖，導致未傳遞通知。|
-|outgoing.apns.success|APNS 成功通知|Count|總計|所有成功通知的計數。|
-|outgoing.apns.invalidcredentials|APNS 授權錯誤|Count|總計|因為 PNS 不接受提供的認證或已封鎖認證，導致失敗的推播計數。|
-|outgoing.apns.badchannel|APNS 不正確的通道錯誤|Count|總計|因為權杖無效而失敗的推播計數 (APNS 狀態碼︰8)。|
-|outgoing.apns.expiredchannel|APNS 過期通道錯誤|Count|總計|由 APNS 意見反應通道宣告失效的權杖計數。|
-|outgoing.apns.invalidnotificationsize|APNS 無效通知大小錯誤|Count|總計|因為承載太大而失敗的推播計數 (APNS 狀態碼︰7)。|
-|outgoing.apns.pnserror|APNS 錯誤|Count|總計|因為與 APNS 通訊錯誤而失敗的推播計數。|
-|outgoing.gcm.success|GCM 成功通知|Count|總計|所有成功通知的計數。|
-|outgoing.gcm.invalidcredentials|GCM 授權錯誤 (無效認證)|Count|總計|因為 PNS 不接受提供的認證或已封鎖認證，導致失敗的推播計數。|
-|outgoing.gcm.badchannel|GCM 不正確的通道錯誤|Count|總計|因為無法識別註冊中的 registrationId 而失敗的推播計數 (GCM 結果：無效註冊)。|
-|outgoing.gcm.expiredchannel|GCM 過期通道錯誤|Count|總計|因為註冊中的 registrationId 過期而失敗的推播計數 (GCM 結果：NotRegistered)。|
-|outgoing.gcm.throttled|GCM 已將通知節流處理|Count|總計|因為 GCM 已將此應用程式節流處理而失敗的推播計數 (GCM 狀態碼︰501-599 或結果：Unavailable)。|
-|outgoing.gcm.invalidnotificationformat|GCM 無效通知格式|Count|總計|因為承載未正確格式化而失敗的推播計數 (GCM 結果︰InvalidDataKey 或 InvalidTtl)。|
-|outgoing.gcm.invalidnotificationsize|GCM 無效通知大小錯誤|Count|總計|因為承載太大而失敗的推播計數 (GCM 結果︰MessageTooBig)。|
-|outgoing.gcm.wrongchannel|GCM 不正確的通道錯誤|Count|總計|因為註冊中的 registrationId 未與目前的應用程式相關聯，導致失敗的推播計數 (GCM 結果：InvalidPackageName)。|
-|outgoing.gcm.pnserror|GCM 錯誤|Count|總計|因為與 GCM 通訊錯誤而失敗的推播計數。|
-|outgoing.gcm.authenticationerror|GCM 驗證錯誤|Count|總計|因為 PNS 不接受提供的認證、已封鎖認證，或應用程式中未正確設定 SenderId，導致失敗的推播計數 (GCM 結果︰MismatchedSenderId)。|
-|outgoing.mpns.success|MPNS 成功通知|Count|總計|所有成功通知的計數。|
-|outgoing.mpns.invalidcredentials|MPNS 無效認證|Count|總計|因為 PNS 不接受提供的認證或已封鎖認證，導致失敗的推播計數。|
-|outgoing.mpns.badchannel|MPNS 不正確的通道錯誤|Count|總計|因為無法識別註冊中的 ChannelURI 而失敗的推播計數 (MPNS 狀態︰404 找不到)。|
-|outgoing.mpns.throttled|MPNS 已將通知節流處理|Count|總計|因為 MPNS 正在節流此應用程式，導致失敗的推播計數 (MPNS 狀態︰406 無法接受)。|
-|outgoing.mpns.invalidnotificationformat|MPNS 無效通知格式|Count|總計|因為通知的承載太大而失敗的推播計數。|
-|outgoing.mpns.channeldisconnected|MPNS 通道已中斷連線|Count|總計|因為註冊中的 ChannelURI 中斷連線而失敗的推播計數 (MPNS 狀態︰412 找不到)。|
-|outgoing.mpns.dropped|MPNS 已捨棄通知|Count|總計|MPNS 已捨棄的推播計數 (MPNS 回應標頭︰X-NotificationStatus: QueueFull 或 Suppressed)。|
-|outgoing.mpns.pnserror|MPNS 錯誤|Count|總計|因為與 MPNS 通訊錯誤而失敗的推播計數。|
-|outgoing.mpns.authenticationerror|MPNS 驗證錯誤|Count|總計|因為 PNS 不接受提供的認證或已封鎖認證，導致失敗的推播計數。|
-|notificationhub.pushes|所有外寄通知|Count|總計|通知中樞的所有外寄通知|
+|outgoing.apns.success|APNS 成功通知|Count|總計|hello 所有成功通知數目。|
+|outgoing.apns.invalidcredentials|APNS 授權錯誤|Count|總計|推播通知失敗，因為 hello PNS 並未接受 hello 提供封鎖或認證 hello hello 計數。|
+|outgoing.apns.badchannel|APNS 不正確的通道錯誤|Count|總計|hello 計數失敗，因為 hello 語彙基元不正確的推播通知 (APNS 狀態碼： 8)。|
+|outgoing.apns.expiredchannel|APNS 過期通道錯誤|Count|總計|hello 計數失效 hello APNS 回饋通道語彙基元。|
+|outgoing.apns.invalidnotificationsize|APNS 無效通知大小錯誤|Count|總計|hello 計數失敗，因為 hello 承載太大的推播通知 (APNS 狀態碼： 7)。|
+|outgoing.apns.pnserror|APNS 錯誤|Count|總計|hello 計數的推播通知，因為與 APNS 通訊錯誤而失敗。|
+|outgoing.gcm.success|GCM 成功通知|Count|總計|hello 所有成功通知數目。|
+|outgoing.gcm.invalidcredentials|GCM 授權錯誤 (無效認證)|Count|總計|推播通知失敗，因為 hello PNS 並未接受 hello 提供封鎖或認證 hello hello 計數。|
+|outgoing.gcm.badchannel|GCM 不正確的通道錯誤|Count|總計|hello 失敗，因為無法辨識 hello registrationId hello 註冊中的推播通知的計數 (GCM 結果： 無效的登錄)。|
+|outgoing.gcm.expiredchannel|GCM 過期通道錯誤|Count|總計|hello 失敗，因為在 hello 登錄中的 hello registrationId 已過期的推播通知的計數 (GCM 結果： NotRegistered)。|
+|outgoing.gcm.throttled|GCM 已將通知節流處理|Count|總計|hello 失敗，因為 GCM 節流此應用程式的推播通知的計數 (GCM 狀態碼： 501-599 或結果： 無法使用)。|
+|outgoing.gcm.invalidnotificationformat|GCM 無效通知格式|Count|總計|hello 失敗，因為 hello 承載格式不正確的推播通知的計數 (GCM 結果： InvalidDataKey 或 InvalidTtl)。|
+|outgoing.gcm.invalidnotificationsize|GCM 無效通知大小錯誤|Count|總計|hello 失敗，因為 hello 承載太大的推播通知的計數 (GCM 結果： MessageTooBig)。|
+|outgoing.gcm.wrongchannel|GCM 不正確的通道錯誤|Count|總計|hello 計數失敗，因為在 hello 登錄中的 hello registrationId 的推播通知的相關聯 toohello 目前的應用程式 (GCM 結果： InvalidPackageName)。|
+|outgoing.gcm.pnserror|GCM 錯誤|Count|總計|hello 計數的推播通知，因為與 GCM 通訊錯誤而失敗。|
+|outgoing.gcm.authenticationerror|GCM 驗證錯誤|Count|總計|hello 失敗，因為 hello PNS 並未接受 hello 可讓您提供認證 hello 認證遭到封鎖或 hello SenderId 未正確設定 hello 應用程式中的推播通知的計數 (GCM 結果： MismatchedSenderId)。|
+|outgoing.mpns.success|MPNS 成功通知|Count|總計|hello 所有成功通知數目。|
+|outgoing.mpns.invalidcredentials|MPNS 無效認證|Count|總計|推播通知失敗，因為 hello PNS 並未接受 hello 提供封鎖或認證 hello hello 計數。|
+|outgoing.mpns.badchannel|MPNS 不正確的通道錯誤|Count|總計|hello 失敗，因為無法辨識 hello ChannelURI hello 註冊中的推播通知的計數 (MPNS 狀態： 404 找不到)。|
+|outgoing.mpns.throttled|MPNS 已將通知節流處理|Count|總計|hello 失敗，因為此應用程式調整流速 MPNS 的推播通知的計數 (WNS MPNS: 406 無法接受)。|
+|outgoing.mpns.invalidnotificationformat|MPNS 無效通知格式|Count|總計|推播通知失敗，因為 hello hello 通知裝載過大的 hello 計數。|
+|outgoing.mpns.channeldisconnected|MPNS 通道已中斷連線|Count|總計|hello 失敗，因為在 hello 登錄中的 hello ChannelURI 已中斷連線的推播通知的計數 (MPNS 狀態： 412 找不到)。|
+|outgoing.mpns.dropped|MPNS 已捨棄通知|Count|總計|hello 丟棄 mpns 的推播通知的計數 (MPNS 回應標頭： X NotificationStatus: QueueFull 或 Suppressed)。|
+|outgoing.mpns.pnserror|MPNS 錯誤|Count|總計|hello 計數的推播通知，因為與 MPNS 通訊錯誤而失敗。|
+|outgoing.mpns.authenticationerror|MPNS 驗證錯誤|Count|總計|推播通知失敗，因為 hello PNS 並未接受 hello 提供封鎖或認證 hello hello 計數。|
+|notificationhub.pushes|所有外寄通知|Count|總計|Hello 通知中樞的所有外寄通知|
 |incoming.all.requests|所有傳入要求|Count|總計|針對通知中樞傳入的要求總數|
 |incoming.all.failedrequests|所有傳入的失敗要求|Count|總計|針對通知中樞傳入的失敗要求總數|
 
@@ -604,49 +604,49 @@ Azure 監視器提供數種與計量進行互動的方式，包括在入口網�
 |SuccessfullConnectionsPerSec|每秒連線成功的次數|每秒計數|平均值|成功完成連線的速率。|
 |TotalConnectionFailures|連線失敗的總計|Count|平均值|連線嘗試失敗的總計。|
 |CurrentUserSessions|目前的使用者工作階段|Count|平均值|目前建立的使用者工作階段數目。|
-|QueryPoolBusyThreads|查詢集區忙碌執行緒|Count|平均值|查詢執行緒集區中的忙碌執行緒數目。|
-|CommandPoolJobQueueLength|命令集區作業佇列長度|Count|平均值|命令執行緒集區佇列中的作業數目。|
-|ProcessingPoolJobQueueLength|處理集區作業佇列長度|Count|平均值|處理執行緒集區佇列中的非 I/O 作業數目。|
+|QueryPoolBusyThreads|查詢集區忙碌執行緒|Count|平均值|Hello 查詢執行緒集區中的忙碌執行緒數目。|
+|CommandPoolJobQueueLength|命令集區作業佇列長度|Count|平均值|Hello hello 命令執行緒集區佇列中的作業數目。|
+|ProcessingPoolJobQueueLength|處理集區作業佇列長度|Count|平均值|Hello hello 處理執行緒集區佇列中的非 i/o 作業數目。|
 |CurrentConnections|連接：目前的連接|Count|平均值|目前已建立的用戶端連接數目。|
-|CleanerCurrentPrice|記憶體︰清除工具目前價格|Count|平均值|記憶體目前的價格 ($/位元組/時間)，並正規化為 1000。|
-|CleanerMemoryShrinkable|記憶體︰可壓縮的清除器記憶體|位元組|平均值|背景清除器將清除的記憶體數量，以 KB 為單位。|
-|CleanerMemoryNonshrinkable|記憶體︰不可壓縮的清除器記憶體|位元組|平均值|背景清除器將不會清除的記憶體數量，以 KB 為單位。|
-|MemoryUsage|記憶體：記憶體使用量|位元組|平均值|伺服器處理序用於計算清除器記憶體價格的記憶體使用量。 等於計數器 Process\PrivateBytes 加上記憶體對應的資料大小，忽略 xVelocity 記憶體內部分析引擎 (VertiPaq) 在超出 xVelocity 引擎記憶體限制外對應或配置的任何記憶體。|
+|CleanerCurrentPrice|記憶體︰清除工具目前價格|Count|平均值|目前的記憶體，$/ 位元組/時間、 標準化的 too1000 價格。|
+|CleanerMemoryShrinkable|記憶體︰可壓縮的清除器記憶體|位元組|平均值|記憶體數量，以位元組為單位，主旨 toopurging hello 背景清除器造成的。|
+|CleanerMemoryNonshrinkable|記憶體︰不可壓縮的清除器記憶體|位元組|平均值|記憶體數量，以位元組為單位，不主旨 toopurging hello 背景清除器造成的。|
+|MemoryUsage|記憶體：記憶體使用量|位元組|平均值|Hello 伺服器處理序用於計算清除器記憶體價格的記憶體使用量。 等於 toocounter Process\PrivateBytes 加上 hello 的記憶體對應資料大小，忽略對應或 hello xVelocity 記憶體中分析引擎 (VertiPaq) hello xVelocity 引擎記憶體限制超過配置任何記憶體。|
 |MemoryLimitHard|記憶體︰固定記憶體限制|位元組|平均值|組態檔中的固定記憶體限制。|
 |MemoryLimitHigh|記憶體︰記憶體上限|位元組|平均值|來自組態檔的記憶體上限。|
 |MemoryLimitLow|記憶體︰記憶體下限|位元組|平均值|來自組態檔的記憶體下限。|
 |MemoryLimitVertiPaq|記憶體︰記憶體限制 VertiPaq|位元組|平均值|來自組態檔的記憶體內部限制。|
 |Quota|記憶體︰配額|位元組|平均值|目前的記憶體配額，以位元組為單位。 記憶體配額也就是指授與使用的記憶體，或是保留的記憶體。|
 |QuotaBlocked|記憶體︰封鎖的配額|Count|平均值|在釋放其他記憶體配額之前，目前已封鎖的配額要求數目。|
-|VertiPaqNonpaged|記憶體︰未分頁的 VertiPaq|位元組|平均值|工作集中已封鎖來供記憶體內部引擎使用的記憶體位元組。|
+|VertiPaqNonpaged|記憶體︰未分頁的 VertiPaq|位元組|平均值|Hello 記憶體中引擎 hello 工作集，用於鎖定的記憶體位元組數。|
 |VertiPaqPaged|記憶體︰分頁的 VertiPaq|位元組|平均值|可供記憶體內部資料使用的分頁記憶體位元組。|
 |RowsReadPerSec|處理︰每秒讀取的資料列|每秒計數|平均值|從所有關聯式資料庫讀取資料列的速率。|
 |RowsConvertedPerSec|處理︰每秒轉換的資料列|每秒計數|平均值|處理期間資料列轉換的速率。|
 |RowsWrittenPerSec|處理︰每秒寫入的資料列|每秒計數|平均值|處理期間資料列寫入的速率。|
-|CommandPoolBusyThreads|執行緒︰命令集區的忙碌執行緒數|Count|平均值|命令執行緒集區中的忙碌執行緒數。|
-|CommandPoolIdleThreads|執行緒︰命令集區的閒置執行緒數|Count|平均值|命令執行緒集區中的閒置執行緒數。|
-|LongParsingBusyThreads|執行緒︰完整剖析的忙碌執行緒數|Count|平均值|完整剖析執行緒集區中的忙碌執行緒數目。|
-|LongParsingIdleThreads|執行緒︰完整剖析的閒置執行緒數|Count|平均值|完整剖析執行緒集區中的閒置執行緒數目。|
-|LongParsingJobQueueLength|執行緒︰完整剖析的作業佇列長度|Count|平均值|完整剖析執行緒集區佇列中的作業數目。|
-|ProcessingPoolBusyIOJobThreads|執行緒︰處理集區的忙碌 I/O 作業執行緒數|Count|平均值|處理執行緒集區中執行 I/O 作業的執行緒數目。|
-|ProcessingPoolBusyNonIOThreads|執行緒︰處理集區的忙碌非 I/O 執行緒數|Count|平均值|處理執行緒集區中執行非 I/O 作業的執行緒數目。|
-|ProcessingPoolIOJobQueueLength|執行緒：處理集區 I/O 作業佇列長度|Count|平均值|處理執行緒集區佇列中的 I/O 作業數目。|
-|ProcessingPoolIdleIOJobThreads|執行緒︰處理集區的閒置 I/O 作業執行緒數|Count|平均值|處理執行緒集區中 I/O 作業的閒置執行緒數目。|
-|ProcessingPoolIdleNonIOThreads|執行緒︰處理集區的閒置非 I/O 執行緒數|Count|平均值|處理執行緒集區中專供非 I/O 作業使用的閒置執行緒數目。|
-|QueryPoolIdleThreads|執行緒︰查詢集區的閒置執行緒數|Count|平均值|處理執行緒集區中 I/O 作業的閒置執行緒數目。|
-|QueryPoolJobQueueLength|執行緒︰查詢集區的作業佇列長度|Count|平均值|查詢執行緒集區佇列中的作業數目。|
-|ShortParsingBusyThreads|執行緒︰簡短剖析的忙碌執行緒數|Count|平均值|簡短剖析執行緒集區中的忙碌執行緒數目。|
-|ShortParsingIdleThreads|執行緒︰簡短剖析的閒置執行緒數|Count|平均值|簡短剖析執行緒集區中的閒置執行緒數目。|
-|ShortParsingJobQueueLength|執行緒︰簡短剖析的作業佇列長度|Count|平均值|簡短剖析執行緒集區佇列中的作業數目。|
+|CommandPoolBusyThreads|執行緒︰命令集區的忙碌執行緒數|Count|平均值|Hello 命令執行緒集區中的忙碌執行緒數目。|
+|CommandPoolIdleThreads|執行緒︰命令集區的閒置執行緒數|Count|平均值|Hello 命令執行緒集區中的閒置執行緒數目。|
+|LongParsingBusyThreads|執行緒︰完整剖析的忙碌執行緒數|Count|平均值|Hello 完整剖析執行緒集區中的忙碌執行緒數目。|
+|LongParsingIdleThreads|執行緒︰完整剖析的閒置執行緒數|Count|平均值|Hello 完整剖析執行緒集區中的閒置執行緒數目。|
+|LongParsingJobQueueLength|執行緒︰完整剖析的作業佇列長度|Count|平均值|Hello hello 完整剖析執行緒集區佇列中的作業數目。|
+|ProcessingPoolBusyIOJobThreads|執行緒︰處理集區的忙碌 I/O 作業執行緒數|Count|平均值|Hello 處理執行緒集區中執行 I/O 作業的執行緒數目。|
+|ProcessingPoolBusyNonIOThreads|執行緒︰處理集區的忙碌非 I/O 執行緒數|Count|平均值|Hello 處理執行緒集區中執行非 i/o 作業的執行緒數目。|
+|ProcessingPoolIOJobQueueLength|執行緒：處理集區 I/O 作業佇列長度|Count|平均值|Hello hello 處理執行緒集區佇列中的 I/O 作業數目。|
+|ProcessingPoolIdleIOJobThreads|執行緒︰處理集區的閒置 I/O 作業執行緒數|Count|平均值|Hello 處理執行緒集區中 I/O 作業的閒置執行緒數目。|
+|ProcessingPoolIdleNonIOThreads|執行緒︰處理集區的閒置非 I/O 執行緒數|Count|平均值|Hello 處理執行緒集區中的閒置執行緒數目的專用 toonon i/o 作業。|
+|QueryPoolIdleThreads|執行緒︰查詢集區的閒置執行緒數|Count|平均值|Hello 處理執行緒集區中 I/O 作業的閒置執行緒數目。|
+|QueryPoolJobQueueLength|執行緒︰查詢集區的作業佇列長度|Count|平均值|Hello hello 查詢執行緒集區佇列中的作業數目。|
+|ShortParsingBusyThreads|執行緒︰簡短剖析的忙碌執行緒數|Count|平均值|Hello 簡短剖析執行緒集區中的忙碌執行緒數目。|
+|ShortParsingIdleThreads|執行緒︰簡短剖析的閒置執行緒數|Count|平均值|Hello 簡短剖析執行緒集區中的閒置執行緒數目。|
+|ShortParsingJobQueueLength|執行緒︰簡短剖析的作業佇列長度|Count|平均值|Hello hello 簡短剖析執行緒集區佇列中的作業數目。|
 |memory_thrashing_metric|記憶體猛移|百分比|平均值|記憶體猛移的平均值。|
 
 ## <a name="microsoftsearchsearchservices"></a>Microsoft.Search/searchServices
 
 |計量|計量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
-|SearchLatency|搜尋延遲|秒|平均值|搜尋服務的平均搜尋延遲|
-|SearchQueriesPerSecond|每秒搜尋查詢|每秒計數|平均值|搜尋服務的每秒搜尋查詢|
-|ThrottledSearchQueriesPercentage|節流的搜尋查詢百分比|百分比|平均值|已針對搜尋查詢進行節流的搜尋服務百分比|
+|SearchLatency|搜尋延遲|秒|平均值|平均搜尋延遲 hello 搜尋服務|
+|SearchQueriesPerSecond|每秒搜尋查詢|每秒計數|平均值|每秒的 hello 搜尋服務的搜尋查詢|
+|ThrottledSearchQueriesPercentage|節流的搜尋查詢百分比|百分比|平均值|搜尋查詢，hello 搜尋服務已節流的百分比|
 
 ## <a name="microsoftservicebusnamespaces"></a>Microsoft.ServiceBus/namespaces
 
@@ -797,4 +797,4 @@ Azure 監視器提供數種與計量進行互動的方式，包括在入口網�
 ## <a name="next-steps"></a>後續步驟
 * [了解 Azure 監視器中的計量](monitoring-overview-metrics.md)
 * [建立計量警示](insights-receive-alert-notifications.md)
-* [將計量匯出至儲存體、事件中樞或 Log Analytics](monitoring-overview-of-diagnostic-logs.md)
+* [匯出度量 toostorage、 事件中心或記錄分析](monitoring-overview-of-diagnostic-logs.md)

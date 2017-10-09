@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中使用 Terraform 建立基本基礎結構 | Microsoft Docs"
-description: "了解如何使用 Terraform 建立 Azure 資源"
+title: "aaaCreate 基本基礎結構在 Azure 中的使用 Terraform |Microsoft 文件"
+description: "深入了解如何 toocreate Azure 使用 Terraform 資源"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: echuvyrov
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 06/14/2017
 ms.author: echuvyrov
-ms.openlocfilehash: 9660a95b440c2e4311829979e270d9f10099f624
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 916a838c118f28b3fbd373188e0acb2afc655081
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-basic-infrastructure-in-azure-by-using-terraform"></a>在 Azure 中使用 Terraform 建立基本基礎結構
-本文說明將虛擬機器和基礎結構佈建至 Azure 需進行的步驟。 您將了解如何撰寫 Terraform 指令碼，以及如何在雲端基礎結構中進行變更前將其視覺化。 您也將了解如何在 Azure 中使用 Terraform 建立基礎結構。
+本文將告訴您需要 tootake tooprovision 虛擬機器，以及基礎結構，到 Azure 的 hello 步驟。 您將學習如何 toowrite Terraform 指令碼和 toovisualize hello 如何才能變更可讓這些雲端基礎結構。 您也將學習如何在 Azure 中使用 Terraform 的 toocreate 基礎結構。
 
-首先，在您所選的文字編輯器 (Visual Studio Code/Sublime/Vim/等等) 中，建立名為 \terraform_azure101.tf 的檔案。 檔案的確切名稱並不重要，因為 Terraform 接受以資料夾名稱作為參數：資料夾中的所有指令碼都會執行。 將下列程式碼貼到新檔案中：
+tooget 啟動，建立一個稱為 \terraform_azure101.tf 文字編輯器 （Visual Studio 程式碼/適/Vim/等等） 所選擇的檔案。 hello 的 hello 檔案的確切名稱不重要，因為 Terraform 接受 hello 做為參數的資料夾名稱： hello 資料夾中的所有指令碼會執行。 貼上下列程式碼 hello 新檔案中的 hello:
 
 ~~~~
-# Configure the Microsoft Azure Provider
-# NOTE: if you defined these values as environment variables, you do not have to include this block
+# Configure hello Microsoft Azure Provider
+# NOTE: if you defined these values as environment variables, you do not have tooinclude this block
 provider "azurerm" {
   subscription_id = "your_subscription_id_from_script_execution"
   client_id       = "your_appId_from_script_execution"
@@ -42,46 +42,46 @@ resource "azurerm_resource_group" "helloterraform" {
     location = "West US"
 }
 ~~~~
-在指令碼的 `provider` 區段中，您可以告訴 Terraform 使用 Azure 提供者在指令碼中佈建資源。 若要取得 subscription_id、appId、password、and tenant_id 的值，請參閱[安裝和設定 Terraform](terraform-install-configure.md) 指南。 如果您已為此區塊中的值建立環境變數，就不需要將其納入。 
+在 hello `provider` hello 部分指令碼，您可告知 Terraform toouse Azure 提供者 tooprovision 資源 hello 指令碼中。 tooget 值 subscription_id、 appId、 密碼和 tenant_id，請參閱 hello[安裝及設定 Terraform](terraform-install-configure.md)指南。 如果您已經建立 hello 值的環境變數，此區塊中，您不需要 tooinclude 它。 
 
-`azurerm_resource_group` 資源指示 Terraform 建立新的資源群組。 您可以在本文稍後看到更多在 Terraform 中可用的資源類型。
+hello`azurerm_resource_group`資源會指示 Terraform toocreate 新的資源群組。 您可以在本文稍後看到更多在 Terraform 中可用的資源類型。
 
-## <a name="execute-the-script"></a>執行指令碼
-儲存指令碼之後，結束並返回主控台/命令列，然後輸入下列命令：
+## <a name="execute-hello-script"></a>執行 hello 指令碼
+儲存 hello 指令碼之後，結束 toohello 主控台命令列，然後輸入 hello 下列：
 ```
 terraform init
 ```
-為 Azure 初始化 Terraform 提供者。 接著輸入下列內容：
+azure tooinitialize Terraform 提供者。 然後輸入 hello 下列：
 ```
 terraform plan terraformscripts
 ```
-我們假設 `terraformscripts` 是儲存指令碼的資料夾。 我們使用 `plan` Terraform 命令，該命令會查看指令碼中定義的資源。 它會將這些資源與 Terraform 所儲存的狀態資訊進行比較，然後輸出計劃性執行，而「不需」在 Azure 中實際建立資源。 
+我們假設`terraformscripts`hello 資料夾儲存 hello 指令碼。 我們使用 hello `plan` Terraform 命令，查看 hello hello 指令碼中定義的資源。 在比較 toohello Terraform 所儲存的狀態資訊，然後輸出 hello 計劃的執行_沒有_實際上在 Azure 中建立資源。 
 
-執行上述命令之後，您應該會看到如下列畫面的內容：
+Hello 前一個命令執行之後，您應該會看到像下列螢幕 hello:
 
 ![Terraform plan](linux/media/terraform/tf_plan2.png)
 
-如果一切看起來正確無誤，請執行下列命令，在 Azure 中佈建這個新的資源群組： 
+如果一切正確，佈建在 Azure 中的這個新資源群組，藉由執行下列 hello: 
 ```
 terraform apply terraformscripts
 ```
-在 Azure 入口網站中，您應該會看到名為 `terraformtest` 的新空白資源群組。 在下一節中，您要將虛擬機器以及該虛擬機器支援的所有基礎結構新增至資源群組。
+在 hello Azure 入口網站，您應該會看到 hello 新空的資源群組稱為`terraformtest`。 在 hello 下列區段，您將虛擬機器，而且所有 hello 支援該虛擬機器 toohello 資源群組的基礎結構。
 
 ## <a name="provision-an-ubuntu-vm-with-terraform"></a>使用 Terraform 佈建 Ubuntu VM
-我們來使用佈建執行 Ubuntu 之虛擬機器所需的詳細資料，擴充已經建立的 Terraform 指令碼。 您在下列各節中佈建的資源包括：
+讓我們來擴充虛擬機器執行 Ubuntu hello Terraform 指令碼，我們建立了具有必要 tooprovision hello 詳細資料。 您在下列各節的 hello 佈建的 hello 資源包括：
 
 * 有單一子網路的網路
 * 網路介面卡 
 * 有儲存體容器的儲存體帳戶
 * 公用 IP
-* 使用先前所有資源的虛擬機器 
+* 虛擬機器，它會利用所有的 hello 先前的資源 
 
-如需每個 Azure Terraform 資源的完整文件，請參閱 [Terraform 文件](https://www.terraform.io/docs/providers/azurerm/index.html) \(英文\)。
+如需每個 hello Azure Terraform 資源的完整文件，請參閱 hello [Terraform 文件](https://www.terraform.io/docs/providers/azurerm/index.html)。
 
-為了方便起見，也提供完整版的[佈建指令碼](#complete-terraform-script)。
+hello 完整版的 hello[佈建指令碼](#complete-terraform-script)也為了方便起見。
 
-### <a name="extend-the-terraform-script"></a>擴充 Terraform 指令碼
-使用下列資源擴充建立的指令碼： 
+### <a name="extend-hello-terraform-script"></a>擴充 hello Terraform 指令碼
+擴充 hello 下列資源以建立 hello 指令碼： 
 ~~~~
 # create a virtual network
 resource "azurerm_virtual_network" "helloterraformnetwork" {
@@ -99,7 +99,7 @@ resource "azurerm_subnet" "helloterraformsubnet" {
     address_prefix = "10.0.2.0/24"
 }
 ~~~~
-上述指令碼會建立虛擬網路與該虛擬網路中的子網路。 請注意您已透過 "${azurerm_resource_group.helloterraform.name}" 在虛擬網路和子網路定義中建立之資源群組的參考。
+hello 至上一個指令碼會建立虛擬網路與該虛擬網路中的子網路。 請注意您已經建立透過 hello 虛擬網路和 hello 子網路定義中的"${azurerm_resource_group.helloterraform.name}"hello 參考 toohello 資源群組。
 
 ~~~~
 # create public IP
@@ -129,7 +129,7 @@ resource "azurerm_network_interface" "helloterraformnic" {
     }
 }
 ~~~~
-上述指令碼的程式碼片段會建立公用 IP，以及建立使用該公用 IP 的網路介面。 請注意 subnet_id 和 public_ip_address_id 的參考。 Terraform 具有內建智慧，可了解網路介面相依於在網路介面建立之前所需建立的資源。
+hello 先前的指令碼片段會建立公用 IP 與網路介面，可利用建立 hello 公用 IP。 請注意 hello 參考 toosubnet_id public_ip_address_id。 Terraform 具有內建智慧 toounderstand hello 該網路介面具有相依性 hello 資源建立 hello hello 網路介面建立之前，需要 toobe。
 
 ~~~~
 # create a random id
@@ -158,7 +158,7 @@ resource "azurerm_storage_container" "helloterraformstoragestoragecontainer" {
     depends_on = ["azurerm_storage_account.helloterraformstorage"]
 }
 ~~~~
-現在，您建立了儲存體帳戶，並且在該儲存體帳戶內定義了儲存體容器。 此儲存體帳戶是您為要建立的虛擬機器存放虛擬硬碟 (VHD) 的位置。
+現在，您建立了儲存體帳戶，並且在該儲存體帳戶內定義了儲存體容器。 這個儲存體帳戶是您用來儲存虛擬硬碟 (Vhd) hello toobe 建立相關的虛擬機器。
 
 ~~~~
 # create virtual machine
@@ -198,25 +198,25 @@ resource "azurerm_virtual_machine" "helloterraformvm" {
     }
 }
 ~~~~
-最後，先前的程式碼片段會建立虛擬機器，使用已佈建的所有資源。 這些資源是儲存體帳戶和 VHD 的容器、指定公用 IP 與子網路的網路介面，以及您已建立的資源群組。 請注意 vm_size 屬性，可供指令碼指定 Azure A0 SKU。
+最後，hello 先前程式碼片段會建立虛擬機器，它會利用所有已佈建的 hello 資源。 它們是儲存體帳戶和容器的 VHD，網路介面與公用 IP 子網路指定，而且 hello 資源群組已建立。 請注意 hello vm_size 屬性，其中 hello 指令碼會指定 Azure A0 SKU。
 
-### <a name="execute-the-script"></a>執行指令碼
-儲存完整的指令碼後，結束並返回主控台/命令列，然後輸入下列命令：
+### <a name="execute-hello-script"></a>執行 hello 指令碼
+Hello 儲存了完整的指令碼，結束 toohello 主控台/命令列與 hello 下列輸入：
 ```
 terraform apply terraformscripts
 ```
-稍後，資源 (包括虛擬機器) 就會出現在 Azure 入口網站的 `terraformtest` 資源群組中。
+一段時間後 hello 資源，包括虛擬機器時，會出現在 hello `terraformtest` hello Azure 入口網站中的資源群組。
 
 ## <a name="complete-terraform-script"></a>完成 Terraform 指令碼
 
-為了方便起見，以下是佈建本文中所有基礎結構的完整 Terraform 指令碼。
+為了方便起見，以下是 hello 完整 Terraform 指令碼來佈建所有 hello 基礎結構的本文中所討論。
 
 ```
 variable "resourcesname" {
   default = "helloterraform"
 }
 
-# Configure the Microsoft Azure Provider
+# Configure hello Microsoft Azure Provider
 provider "azurerm" {
   subscription_id = "XXX"
   client_id       = "XXX"
@@ -339,4 +339,4 @@ resource "azurerm_virtual_machine" "helloterraformvm" {
 ```
 
 ## <a name="next-steps"></a>後續步驟
-您已使用 Terraform 在 Azure 中建立基本基礎結構。 如需更多複雜案例 (包括使用負載平衡器、虛擬機器擴展集的範例)，請參閱許多[適用於 Azure 的 Terraform 範例](https://github.com/hashicorp/terraform/tree/master/examples)。 如需支援的 Azure 提供者最新清單，請參閱 [Terraform 文件](https://www.terraform.io/docs/providers/azurerm/index.html) \(英文\)。
+您已使用 Terraform 在 Azure 中建立基本基礎結構。 如需更多複雜案例 (包括使用負載平衡器、虛擬機器擴展集的範例)，請參閱許多[適用於 Azure 的 Terraform 範例](https://github.com/hashicorp/terraform/tree/master/examples)。 支援的 Azure 提供者的最新清單，請參閱 hello [Terraform 文件](https://www.terraform.io/docs/providers/azurerm/index.html)。

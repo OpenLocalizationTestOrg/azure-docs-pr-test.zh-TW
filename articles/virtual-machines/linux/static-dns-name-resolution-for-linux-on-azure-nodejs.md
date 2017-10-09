@@ -1,5 +1,5 @@
 ---
-title: "在 Azure 上針對 VM 名稱解析使用內部 DNS | Microsoft Docs"
+title: "aaaUsing vm 的內部 DNS 名稱在 Azure 上的解析 |Microsoft 文件"
 description: "在 Azure 上針對 VM 名稱解析使用內部 DNS。"
 services: virtual-machines-linux
 documentationcenter: 
@@ -15,38 +15,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/05/2016
 ms.author: v-livech
-ms.openlocfilehash: bfba2cf38a0624e8480a32bf153f391d820da5a1
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 94fd6577aa51ce5db4dc26649b415ddeeb410eb6
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="using-internal-dns-for-vm-name-resolution-on-azure"></a>在 Azure 上針對 VM 名稱解析使用內部 DNS
 
-這篇文章說明如何使用虛擬 NIC 卡 (VNic) 和 DNS 標籤名稱設定 Linux VM 的靜態內部 DNS 名稱。 靜態 DNS 名稱是用於永久基礎結構服務，例如 Jenkins 組建伺服器，它用於這份文件或 Git 伺服器。
+本文將說明如何 tooset 靜態內部 DNS 命名適用於 Linux Vm 使用虛擬 NIC 卡 (VNic) 和標籤的 DNS 名稱。 靜態 DNS 名稱是用於永久基礎結構服務，例如 Jenkins 組建伺服器，它用於這份文件或 Git 伺服器。
 
-這些需求包括：
+hello 需求如下：
 
 * [一個 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)
 * [SSH 公開金鑰和私密金鑰檔案](mac-create-ssh-keys.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 
-## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
-您可以使用下列其中一個 CLI 版本來完成工作︰
+## <a name="cli-versions-toocomplete-hello-task"></a>CLI 版本 toocomplete hello 工作
+您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本：
 
-- [Azure CLI 1.0](#quick-commands) – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0](static-dns-name-resolution-for-linux-on-azure.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 1.0](#quick-commands) – 我們 CLI hello 傳統和資源管理部署模型 （此文件）
+- [Azure CLI 2.0](static-dns-name-resolution-for-linux-on-azure.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -hello 資源管理部署模型我們下一個層代 CLI
 
 
 ## <a name="quick-commands"></a>快速命令
 
-如果您需要快速完成工作，接下來這一節將詳細說明所需的命令。 每個步驟的詳細資訊和內容可在文件其他地方找到，[從這裡開始](#detailed-walkthrough)。  
+如果您需要 tooquickly 完成 hello 工作，下列區段的 hello 詳細資料所需的 hello 命令。 詳細資訊和內容的每個步驟可以找到 hello hello 文件的其餘部分[這裡啟動](#detailed-walkthrough)。  
 
 必要條件︰資源群組、VNet、具有 SSH 輸入的 NSG、子網路。
 
 ### <a name="create-a-vnic-with-a-static-internal-dns-name"></a>使用靜態內部 DNS 名稱建立 VNic
 
-`-r` CLI 旗標是用於設定 DNS 標籤，它提供 VNic 的靜態 DNS 名稱。
+hello `-r` cli 旗標適用於設定 hello DNS 標籤，可提供 hello VNic hello 靜態 DNS 名稱。
 
 ```azurecli
 azure network nic create jenkinsVNic \
@@ -57,9 +57,9 @@ azure network nic create jenkinsVNic \
 -r jenkins
 ```
 
-### <a name="deploy-the-vm-into-the-vnet-nsg-and-connect-the-vnic"></a>將 VM 部署至 VNet、NSG 並連接 VNic
+### <a name="deploy-hello-vm-into-hello-vnet-nsg-and-connect-hello-vnic"></a>部署到 hello VNet，NSG hello VM，以及連線 hello VNic
 
-在部署至 Azure 期間，`-N` 將 VNic 連接到新的 VM。
+hello`-N`連接 hello VNic toohello hello 部署 tooAzure 期間的新 VM。
 
 ```azurecli
 azure vm create jenkins \
@@ -77,24 +77,24 @@ azure vm create jenkins \
 
 ## <a name="detailed-walkthrough"></a>詳細的逐步解說
 
-Azure 上完整的連續整合和連續部署 (CiCd) 基礎結構需要特定的伺服器是靜態或長時間執行的伺服器。  像虛擬網路 (VNet) 和網路安全性群組 (NSG) 之類的 Azure 資產，最好是當做很少部署的靜態且長久的資源。  VNet 部署之後可供新的部署重複使用，完全不會對基礎結構造成負面影響。  新增至此靜態網路，Git 存放庫伺服器和 Jenkins 自動化伺服器會將 CiCd 傳遞至您的開發或測試環境。  
+完整的持續整合與連續部署 (CiCd) 在 Azure 上的基礎結構需要特定伺服器 toobe 靜態或長時間執行的伺服器。  建議您使用 Azure 資產，例如 hello 虛擬網路 (Vnet) 和網路安全性群組 (Nsg)，應為靜態和長時間存在很少部署的資源。  部署的 VNet 之後, 可以重複使用由沒有任何負面影響 toohello 基礎結構的新部署。  加入 toothis 靜態網路 Git 儲存機制中伺服器與 Jenkins 自動化傳遞 CiCd tooyour 開發或測試環境。  
 
-僅可在 Azure 虛擬網路內解析內部 DNS 名稱。  因為 DNS 名稱是內部的，它們不會解析至外部網際網路，為基礎結構提供額外安全性。
+僅可在 Azure 虛擬網路內解析內部 DNS 名稱。  Hello DNS 名稱是內部的因為它們不是解析 toohello 外部網際網路上，提供額外的安全性 toohello 基礎結構。
 
 _將任何範例換成您自己的名稱。_
 
-## <a name="create-the-resource-group"></a>建立資源群組
+## <a name="create-hello-resource-group"></a>建立 hello 資源群組
 
-需要資源群組以組織我們在本逐步解說中建立的所有項目。  如需 Azure 資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+資源群組是需要的 tooorganize 我們在本逐步解說中建立的所有項目。  如需 Azure 資源群組的詳細資訊，請參閱 [Azure Resource Manager 概觀](../../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ```azurecli
 azure group create myResourceGroup \
 --location westus
 ```
 
-## <a name="create-the-vnet"></a>建立 VNet
+## <a name="create-hello-vnet"></a>建立 hello VNet
 
-第一個步驟是建立可放入 VM 的 VNet。  在本逐步解說中，VNet 包含的一個子網路。  如需 Azure VNet 的詳細資訊，請參閱[使用 Azure CLI 建立虛擬網路](../../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+hello 第一個步驟是的 toobuild VNet toolaunch hello 到 Vm。  hello VNet 包含此逐步解說中的一個子網路。  如需有關 Azure Vnet 的詳細資訊，請參閱[建立虛擬網路使用 Azure CLI hello](../../virtual-network/virtual-networks-create-vnet-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ```azurecli
 azure network vnet create myVNet \
@@ -103,9 +103,9 @@ azure network vnet create myVNet \
 --location westus
 ```
 
-## <a name="create-the-nsg"></a>建立 NSG
+## <a name="create-hello-nsg"></a>建立 hello NSG
 
-子網路是建置在現有網路安全性群組的背後，所以我們在子網路之前建置 NSG。  Azure NSG 相當於網路層的防火牆。  如需 Azure NSG 的詳細資訊，請參閱[如何在 Azure CLI 中建立 NSG](../../virtual-network/virtual-networks-create-nsg-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+hello 子網路是內建背後現有的網路安全性群組，所以我們建置 hello NSG 之前 hello 子網路。  Azure 的 Nsg 是相等的 tooa hello 網路層級的防火牆。  如需有關 Azure Nsg 的詳細資訊，請參閱[toocreate Nsg 中的如何 hello Azure CLI](../../virtual-network/virtual-networks-create-nsg-arm-cli.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ```azurecli
 azure network nsg create myNSG \
@@ -115,7 +115,7 @@ azure network nsg create myNSG \
 
 ## <a name="add-an-inbound-ssh-allow-rule"></a>新增輸入 SSH 允許規則
 
-由於需要從網際網路存取 Linux VM，因此需要有規則來允許輸入連接埠 22 流量通過網路流向 Linux VM 的連接埠 22。
+hello Linux VM 需要的 hello 需要讓規則，允許輸入連接埠 22 流量 toobe 傳遞 hello 網路 tooport 22 hello Linux VM 上的網際網路存取權。
 
 ```azurecli
 azure network nsg rule create inboundSSH \
@@ -131,9 +131,9 @@ azure network nsg rule create inboundSSH \
 --destination-port-range 22
 ```
 
-## <a name="add-a-subnet-to-the-vnet"></a>將子網路新增至 VNet
+## <a name="add-a-subnet-toohello-vnet"></a>新增子網路 toohello VNet
 
-VNet 內的 VM 必須位於子網路。  每一個 VNet 可以有多個子網路。  建立子網路，並將子網路和 NSG 產生關聯，以便將防火牆新增至子網路。
+Hello VNet 必須位於子網路內的 Vm。  每一個 VNet 可以有多個子網路。  建立 hello 子網路，並將 hello 子網路與 hello NSG tooadd 防火牆 toohello 子網路產生關聯。
 
 ```azurecli
 azure network vnet subnet create mySubNet \
@@ -143,11 +143,11 @@ azure network vnet subnet create mySubNet \
 --network-security-group-name myNSG
 ```
 
-子網路現在已新增至 VNet 內，而且與 NSG 及與 NSG 規則相關聯。
+現在 hello 子網路是新增 hello VNet 內，並與 hello NSG 與 hello NSG 規則相關聯。
 
 ## <a name="creating-static-dns-names"></a>建立靜態 DNS 名稱
 
-Azure 非常有彈性，但是若要針對 VM 名稱解析使用 DNS 名稱，您需要使用 DNS 標籤將它們建立為虛擬網路卡 (VNics)。  VNic 很重要，因為您可以將它們連接至不同的 VM 以重複使用，這樣可讓 VNic 保持為靜態資源，而 VM 可以是暫時的。  使用 VNic 上的 DNS 標籤，我們就可以從 VNet 中的其他 VM 啟用簡單名稱解析。  使用可解析的名稱，會讓其他 VM 依據 DNS 名稱 `Jenkins` 存取自動化伺服器，或以 `gitrepo` 存取 Git 伺服器。  建立 VNic，並將它與先前步驟中建立的子網路產生關聯。
+Azure 是非常有彈性，但 toouse Vm 名稱解析的 DNS 名稱，您需要的 toocreate 它們當做虛擬網路卡 (VNics) 使用 DNS 標籤。  VNics 而言很重要，因為您可以重複使用這些連接這些 toodifferent Vm 期間 hello Vm 可能是暫時性，維持 hello VNic 為靜態的資源。  使用標記 hello VNic 上的 DNS，我們將無法 tooenable hello VNet 中的其他 Vm 所傳來的簡單名稱解析。  使用可解析名稱可讓其他 Vm tooaccess hello automation 伺服器 hello DNS 名稱`Jenkins`或 hello Git 伺服器`gitrepo`。  建立 VNic，並將它與 hello hello 上一個步驟中建立子網路產生關聯。
 
 ```azurecli
 azure network nic create jenkinsVNic \
@@ -158,11 +158,11 @@ azure network nic create jenkinsVNic \
 -r jenkins
 ```
 
-## <a name="deploy-the-vm-into-the-vnet-and-nsg"></a>將 VM 部署至 VNet 和 NSG
+## <a name="deploy-hello-vm-into-hello-vnet-and-nsg"></a>部署至 hello VNet hello VM 和 NSG
 
-我們現在有 VNet、該 VNet 內的子網路，還有 NSG 做為防火牆來封鎖所有輸入流量 (除了用於 SSH 的連接埠 22)，以保護我們的子網路。  現在可以將 VM 部署在這個現有的網路基礎結構內。
+我們現在有 VNet，而該 VNet 和我們的子網路防火牆 tooprotect 作為透過 ssh 封鎖所有傳入的流量，除了連接埠 22 NSG 內部的子網路。  hello VM 現在可以部署在現有的網路基礎結構內。
 
-您可以使用 Azure CLI 和 `azure vm create` 命令，將 Linux VM 部署至現有的 Azure 資源群組、VNet、子網路和 VNic。  如需使用 CLI 來部署完整 VM 的詳細資訊，請參閱[使用 Azure CLI 建立完整的 Linux 環境](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+使用 hello Azure CLI 和 hello`azure vm create`命令 hello Linux VM 是已部署的 toohello 現有的 Azure 資源群組、 VNet、 子網路和 VNic。  如需有關使用 hello CLI toodeploy 完成 VM 的詳細資訊，請參閱[使用 hello Azure CLI 建立完整的 Linux 環境](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 ```azurecli
 azure vm create jenkins \
@@ -178,7 +178,7 @@ azure vm create jenkins \
 --nic-name jenkinsVNic
 ```
 
-我們使用 CLI 旗標來呼叫現有的資源，以指示 Azure 將 VM 部署在現有的網路內。  重申一次，VNet 和子網路部署之後，就可以在 Azure 區域內保持為靜態或永久性資源。  
+使用 hello CLI 旗標 toocall 出現有的資源，我們指示 Azure toodeploy hello VM hello 現有網路內。  tooreiterate，一旦部署 VNet 和子網路，他們可以保留為您的 Azure 區域內的靜態或永久資源。  
 
 ## <a name="next-steps"></a>後續步驟
 * [直接使用 Azure CLI 命令，建立自訂的 Linux VM 環境](create-cli-complete.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

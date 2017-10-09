@@ -1,6 +1,6 @@
 ---
-title: "檢視 Azure Web Apps 分析資料 | Microsoft Docs"
-description: "您可以使用 Azure Web Apps 分析解決方案在所有 Azure Web 應用程式資源之間收集不同的計量，以深入了解 Azure Web 應用程式。"
+title: "Azure Web 應用程式分析資料 aaaView |Microsoft 文件"
+description: "您可以使用 Azure Web 應用程式有關的 hello Azure Web 應用程式分析解決方案 toogain insights 藉由收集不同的度量資訊，透過 Azure Web 應用程式的所有資源。"
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -14,20 +14,20 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: banders
-ms.openlocfilehash: f480188c46f16473bf294c857cd07e3cec5dc0ba
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 7e9725f95c9faf01da89184975ad5444dd19ff95
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="view-analytic-data-for-metrics-across-all-your-azure-web-app-resources"></a>檢視所有 Azure Web 應用程式資源之間的計量分析資料
 
 ![Web Apps 符號](./media/log-analytics-azure-web-apps-analytics/azure-web-apps-analytics-symbol.png)  
-Azure Web Apps 分析 (預覽) 解決方案會收集所有 Azure Web 應用程式資源之間的不同計量，以深入了解 [Azure Web Apps](../app-service-web/app-service-web-overview.md)。 透過此解決方案，您可以分析與搜尋 Web 應用程式資源計量資料。
+hello Azure Web 應用程式分析 （預覽） 解決方案提供深入了解您[Azure Web Apps](../app-service-web/app-service-web-overview.md)藉由收集不同的度量資訊，透過 Azure Web 應用程式的所有資源。 Hello 方案，您可以分析，並搜尋的 web 應用程式資源的度量資料。
 
-使用此解決方案，您可以檢視：
+使用 hello 方案，您可以檢視:
 
-- 回應時間最長的 Web Apps 排行榜
+- 具有 hello 最高的回應時間的最上層 Web 應用程式
 - 整個 Web Apps 間的要求數，包括成功與失敗的要求
 - 傳入和傳出流量最高的 Web Apps 排行榜
 - CPU 與記憶體使用率最高的服務方案排行榜
@@ -35,27 +35,27 @@ Azure Web Apps 分析 (預覽) 解決方案會收集所有 Azure Web 應用程�
 
 ## <a name="connected-sources"></a>連接的來源
 
-不同於大部分其他 Log Analytics 解決方案，代理程式不會收集 Azure Web Apps 的資料。 解決方案使用的所有資料直接來自於 Azure。
+不同於大部分其他 Log Analytics 解決方案，代理程式不會收集 Azure Web Apps 的資料。 Hello 方案所使用的所有資料都是直接來自 Azure。
 
 | 連接的來源 | 支援 | 說明 |
 | --- | --- | --- |
-| [Windows 代理程式](log-analytics-windows-agents.md) | 否 | 解決方案不會收集來自 Windows 代理程式的資訊。 |
-| [Linux 代理程式](log-analytics-linux-agents.md) | 否 | 解決方案不會收集來自 Linux 代理程式的資訊。 |
-| [SCOM 管理群組](log-analytics-om-agents.md) | 否 | 解決方案不會收集來自連線 SCOM 管理群組的代理程式之中的資訊。 |
-| [Azure 儲存體帳戶](log-analytics-azure-storage.md) | 否 | 解決方案不會收集來自 Azure 儲存體的資訊。 |
+| [Windows 代理程式](log-analytics-windows-agents.md) | 否 | hello 方案不會從 Windows 代理程式收集的資訊。 |
+| [Linux 代理程式](log-analytics-linux-agents.md) | 否 | hello 解決方案不會收集從 Linux 代理程式的資訊。 |
+| [SCOM 管理群組](log-analytics-om-agents.md) | 否 | hello 方案不會從已連線的 SCOM 管理群組中的代理程式收集的資訊。 |
+| [Azure 儲存體帳戶](log-analytics-azure-storage.md) | 否 | hello 方案會從 Azure 儲存體不收集資訊。 |
 
 ## <a name="prerequisites"></a>必要條件
 
-- 若要存取 Azure Web 應用程式資源計量資訊，您必須有 Azure 訂用帳戶。
+- tooaccess Azure Web 應用程式資源的度量資訊，您必須具有 Azure 訂用帳戶。
 
 ## <a name="configuration"></a>組態
 
-執行下列步驟為您的工作區設定 Azure Web Apps 分析解決方案。
+執行下列步驟為您的工作區 tooconfigure hello Azure Web 應用程式分析解決方案的 hello。
 
-1. 從 [Azure Marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureWebAppsAnalyticsOMS?tab=Overview) 或使用[從方案庫加入 Log Analytics 方案](log-analytics-add-solutions.md)中所述的程序，啟用 Azure Web Apps 分析解決方案。
-2. [使用 PowerShell 允許 Azure 資源計量記錄至 OMS (Enable Azure resource metrics logging to OMS using PowerShell)](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell)。
+1. 啟用從 hello Azure Web 應用程式分析解決方案[Azure marketplace](https://azuremarketplace.microsoft.com/marketplace/apps/Microsoft.AzureWebAppsAnalyticsOMS?tab=Overview)或使用 hello 程序中所述[hello 解決方案資源庫中的新增記錄分析解決方案](log-analytics-add-solutions.md)。
+2. [啟用使用 PowerShell 的 Azure 資源計量記錄 tooOMS](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell)。
 
-Azure Web Apps 分析解決方案會從 Azure 收集兩組計量：
+hello Azure Web 應用程式分析解決方案會從 Azure 收集兩組度量：
 
 - Azure Web Apps 計量
   - 平均記憶體工作集
@@ -72,59 +72,59 @@ Azure Web Apps 分析解決方案會從 Azure 收集兩組計量：
   - Http 佇列長度
   - 記憶體百分比
 
-如果您使用的是專用的服務方案，則只會收集 App Service 方案計量。 這不適用於免費或共用的 App Service 方案。
+如果您使用的是專用的服務方案，則只會收集 App Service 方案計量。 這不會套用 toofree 或共用 App Service 方案。
 
-如果您使用 OMS 入口網站新增解決方案，會看見下列圖格。 您必須[使用 PowerShell 允許 Azure 資源計量記錄至 OMS (enable Azure resource metrics logging to OMS using PowerShell)](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell)。
+如果您新增使用 hello OMS 入口網站的 hello 解決方案，您會看到 hello 下列磚。 您需要[啟用使用 PowerShell 的 Azure 資源計量記錄 tooOMS](https://blogs.technet.microsoft.com/msoms/2017/01/17/enable-azure-resource-metrics-logging-using-powershell)。
 
 ![執行評估通知](./media/log-analytics-azure-web-apps-analytics/performing-assessment.png)
 
-在您設定解決方案後，資料應會在 15 分鐘內開始流向您的工作區。
+設定 hello 方案之後，資料應該開始送 tooyour 15 分鐘內的工作區。
 
-## <a name="using-the-solution"></a>使用解決方案
+## <a name="using-hello-solution"></a>使用 hello 解決方案
 
-當您將 Azure Web Apps 分析解決方案新增至工作區時，[Azure Web Apps 分析] 圖格會新增至 [概觀] 儀表板。 此圖格會顯示該解決方案在您的 Azure 訂用帳戶中可存取的 Azure Web Apps 數目。
+當您新增 hello Azure Web 應用程式分析解決方案 tooyour 工作區時，hello **Azure Web 應用程式分析**tooyour 概觀儀表板的磚加入。 此磚會顯示 hello hello 方案具有存取 tooin 您 Azure 訂用帳戶的 Azure Web 應用程式數目的計數。
 
 ![Azure Web Apps 分析圖格](./media/log-analytics-azure-web-apps-analytics/azure-web-apps-analytics-tile.png)
 
 ### <a name="view-azure-web-apps-analytics-information"></a>檢視 Azure Web Apps 分析資訊
 
-按一下 [Azure Web Apps 分析] 圖格開啟 [Azure Web Apps 分析] 儀表板。 此儀表板包含下表中的刀鋒視窗。 每個刀鋒視窗會針對所指定的範圍與時間範圍，列出最多 10 個符合該刀鋒視窗準則的項目。 您可以按一下刀鋒視窗底部的 [查看全部]，或按一下刀鋒視窗標頭，以執行記錄搜尋來傳回所有記錄。
+按一下 hello **Azure Web 應用程式分析**磚 tooopen hello **Azure Web 應用程式分析**儀表板。 hello 儀表板會納入 hello 下表中的 hello 刀鋒視窗。 每個刀鋒視窗會列出 tooten hello 刀鋒視窗的準則指定領域和時間範圍比對的項目。 您可以執行，即可傳回的所有記錄的記錄搜尋**查看所有**底部 hello 的 hello 刀鋒視窗，或按一下 hello 刀鋒視窗中的標頭。
 
 [!include[log-analytics-log-search-nextgeneration](../../includes/log-analytics-log-search-nextgeneration.md)]
 
 | 資料欄 | 說明 |
 | --- | --- |
 | Azure Web Apps |   |
-| Web Apps 要求趨勢 | 針對您已選取的日期範圍顯示 Web Apps 要求趨勢的折線圖，並顯示前十名 Web 要求清單。 按一下折線圖可執行記錄搜尋，以搜尋 <code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"* (MetricName=Requests OR MetricName=Http*) &#124; measure avg(Average) by MetricName interval 1HOUR</code> <br>按一下 Web 要求項目可執行記錄搜尋，以搜尋所要求的 Web 要求計量趨勢。 |
-| Web Apps 回應時間 | 針對您所選取的日期範圍，顯示 Web Apps 回應時間的折線圖。 另外也顯示前十名 Web Apps 回應時間清單。 按一下該圖表可執行記錄搜尋，以搜尋 <code>Type:AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"* MetricName="AverageResponseTime" &#124; measure avg(Average) by Resource interval 1HOUR</code><br> 按一下某個 Web 應用程式可執行記錄搜尋，以傳回該 Web 應用程式的回應時間。 |
-| Web Apps 流量 | 顯示 Web Apps 流量 (MB) 的折線圖，並列出 Web Apps 流量排行榜。 按一下該圖表可執行記錄搜尋，以搜尋 <code>Type:AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"*  MetricName=BytesSent OR BytesReceived &#124; measure sum(Average) by Resource interval 1HOUR</code><br> 它會顯示過去一分鐘有流量的所有 Web Apps。 按一下某個 Web 應用程式可執行記錄搜尋，以顯示針對該 Web 應用程式收到與傳送的位元組數。 |
+| Web Apps 要求趨勢 | 顯示的 hello hello 日期範圍內，您已選取的 Web 應用程式要求趨勢的折線圖，顯示 hello 前十個 web 要求的清單。 按一下 hello 行圖表 toorun 記錄搜尋<code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"* (MetricName=Requests OR MetricName=Http*) &#124; measure avg(Average) by MetricName interval 1HOUR</code> <br>按一下 web 要求的項目 toorun hello web 要求度量趨勢，要求的記錄搜尋。 |
+| Web Apps 回應時間 | 顯示 hello Web 應用程式回應時間，您已選取的 hello 日期範圍內的折線圖。 也 hello 一份清單會顯示前十個 Web 應用程式回應時間。 按一下 hello 圖表 toorun 記錄搜尋<code>Type:AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"* MetricName="AverageResponseTime" &#124; measure avg(Average) by Resource interval 1HOUR</code><br> 按一下 Web 應用程式 toorun 傳回 hello Web 應用程式的回應時間的記錄搜尋。 |
+| Web Apps 流量 | 以 mb 為單位顯示折線圖的 Web 應用程式的流量，並列出 hello 頂端 Web 應用程式的流量。 按一下 hello 圖表 toorun 記錄搜尋<code>Type:AzureMetrics ResourceId=*"/MICROSOFT.WEB/SITES/"*  MetricName=BytesSent OR BytesReceived &#124; measure sum(Average) by Resource interval 1HOUR</code><br> 它會顯示 hello 過去一分鐘的所有 Web 應用程式的流量。 按一下 記錄搜尋，顯示位元組接收和傳送 hello Web 應用程式的 Web 應用程式 toorun。 |
 | Azure App Service 方案 |   |
-| CPU 使用率 &gt; 80% 的 App Service 方案 | 顯示 CPU 使用率大於 80% 的 App Service 方案總數，並依 CPU 使用率列出前 10 名 App Service 方案。 按一下總數區可執行記錄搜尋，以搜尋 <code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SERVERFARMS/"* MetricName=CpuPercentage &#124; measure Avg(Average) by Resource</code><br> 它會顯示 App Service 方案清單及其平均 CPU 使用率。 按一下某個 App Service 方案可執行記錄搜尋，以顯示平均 CPU 使用率。 |
-| 記憶體使用率 &gt; 80% 的 App Service 方案 | 顯示記憶體使用率大於 80% 的 App Service 方案總數，並依記憶體使用率列出前 10 名 App Service 方案。 按一下總數區可執行記錄搜尋，以搜尋 <code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SERVERFARMS/"* MetricName=MemoryPercentage &#124; measure Avg(Average) by Resource</code><br> 它會顯示 App Service 方案清單及其平均記憶體使用率。 按一下某個 App Service 方案可執行記錄搜尋，以顯示其平均記憶體使用率。 |
+| CPU 使用率 &gt; 80% 的 App Service 方案 | 顯示應用程式服務方案具有 CPU 使用率超過 80%和清單 hello 前 10 個應用程式服務方案的 CPU 使用率 hello 的總數。 按一下 hello 總面積 toorun 記錄搜尋<code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SERVERFARMS/"* MetricName=CpuPercentage &#124; measure Avg(Average) by Resource</code><br> 它會顯示 App Service 方案清單及其平均 CPU 使用率。 按一下 應用程式服務方案的 toorun 顯示其平均 CPU 使用率記錄搜尋。 |
+| 記憶體使用率 &gt; 80% 的 App Service 方案 | 顯示應用程式服務方案具有記憶體使用率超過 80%和清單 hello 前 10 個應用程式服務方案的記憶體使用量 hello 的總數。 按一下 hello 總面積 toorun 記錄搜尋<code>Type=AzureMetrics ResourceId=*"/MICROSOFT.WEB/SERVERFARMS/"* MetricName=MemoryPercentage &#124; measure Avg(Average) by Resource</code><br> 它會顯示 App Service 方案清單及其平均記憶體使用率。 按一下 [App Service 方案的 toorun 記錄搜尋] 顯示其平均記憶體使用率。 |
 | Azure Web Apps 活動記錄 |   |
-| Azure Web Apps 活動稽核 | 顯示有[活動記錄](log-analytics-activity.md)的 Web Apps 總數，並列出前 10 名的活動記錄作業。 按一下總數區可執行記錄搜尋，以搜尋 <code>Type=AzureActivity ResourceProvider= "Azure Web Sites" &#124; measure count() by OperationName</code><br> 它會顯示活動記錄作業清單。 按一下活動記錄作業可記錄搜尋，以列出作業記錄。 |
+| Azure Web Apps 活動稽核 | 顯示 hello 與 Web 應用程式的總數[活動記錄](log-analytics-activity.md)和清單 hello 前 10 個活動記錄檔作業。 按一下 hello 總面積 toorun 記錄搜尋<code>Type=AzureActivity ResourceProvider= "Azure Web Sites" &#124; measure count() by OperationName</code><br> 它會顯示一份 hello 活動記錄檔作業。 按一下 [活動記錄檔作業 toorun 列出 hello hello 作業記錄的記錄搜尋]。 |
 
 
 
 ### <a name="azure-web-apps"></a>Azure Web Apps 
 
-在儀表板中，您可以向下鑽研以深入了解您的 Web Apps 計量。 這第一組刀鋒視窗會顯示 Web Apps 要求的趨勢、錯誤數目 (例如 HTTP404)、流量，以及一段時間的平均回應時間。 它也會顯示不同 Web Apps 的這些計量細目。
+在 hello 儀表板，您可以向下鑽研 tooget 您 Web 應用程式的度量的更多見解。 刀鋒視窗的這個第一組經過一段時間顯示 hello hello Web 應用程式要求，數目錯誤 (例如，HTTP404)、 傳輸，以及平均回應時間趨勢。 它也會顯示不同 Web Apps 的這些計量細目。
 
 ![Azure Web Apps 刀鋒視窗](./media/log-analytics-azure-web-apps-analytics/web-apps-dash01.png)
 
-顯示該資料的主要原因是讓您可以識別回應時間最長的 Web 應用程式，並調查找出根本原因。 此外也會套用臨界值限制，幫助您更容易找出有問題之處。
+顯示您資料的主要原因是，讓您可以識別 Web 應用程式具有高的回應時間和調查 toofind hello 根本原因。 閾值限制也是套用的 toohelp 您更輕鬆地識別 hello 的問題。
 
 - 紅色的 Web Apps 其回應時間超過 1 秒。
 - 橘色的 Web Apps 其回應時間超過 0.7 秒，不到 1 秒。
 - 綠色的 Web Apps 其回應時間不到 0.7 秒。
 
-在下列記錄搜尋範例影像中，您可以看到 *anugup3* Web 應用程式的回應時間遠多於其他的 Web 應用程式。
+在下列記錄搜尋範例影像中的 hello，您可以看到該 hello *anugup3* web 應用程式有更高的回應時間比 hello 其他 web 應用程式。
 
 ![記錄搜尋範例](./media/log-analytics-azure-web-apps-analytics/web-app-search-example.png)
 
 ### <a name="app-service-plans"></a>App Service 方案
 
-如果您使用專用的服務方案，則亦可收集您 App Service 方案的計量。 在這個檢視中，您會看到 CPU 或記憶體使用率高 (&gt; 80%) 的 App Service 方案。 此外，也會顯示記憶體或 CPU 使用率高的應用程式服務排行榜。 同樣地會套用臨界值限制，來幫助您更容易找出有問題的應用程式。
+如果您使用專用的服務方案，則亦可收集您 App Service 方案的計量。 在這個檢視中，您會看到 CPU 或記憶體使用率高 (&gt; 80%) 的 App Service 方案。 此外也會顯示 hello 與記憶體或 CPU 使用率過高的最上層應用程式服務。 同樣地，閾值限制是套用的 toohelp 您更輕鬆地識別 hello 的問題。
 
 - 紅色的 App Service 方案其 CPU/記憶體使用率高於 80%。
 - 橘色的 App Service 方案其 CPU/記憶體使用率高於 60%，低於 80%。
@@ -134,11 +134,11 @@ Azure Web Apps 分析解決方案會從 Azure 收集兩組計量：
 
 ## <a name="azure-web-apps-log-searches"></a>Azure Web Apps 記錄搜尋
 
-**熱門 Azure Web Apps 搜尋查詢清單**顯示 Web Apps 的所有相關活動記錄，讓您深入了解在您 Web Apps 資源上執行的作業。 此外也會列出所有相關的作業，以及其發生的次數。
+hello**清單的熱門 Azure Web 應用程式的搜尋查詢**會顯示所有 hello 對 Web 應用程式，提供您 Web 應用程式的資源執行的 hello 操作的深入資訊與相關的活動記錄檔。 它也會列出所有 hello 相關的作業和它們所發生的 hello 次數。
 
-您可以從使用任何的記錄搜尋查詢開始，來輕鬆建立警示。 例如，您可能會想要在計量平均回應時間超過 1 秒時即建立警示。
+您可以使用任何 hello 記錄搜尋查詢做為起點，您可以輕鬆地建立警示。 比方說，您可能會想 toocreate 警示的度量的平均回應時間大於每 1 秒時。
 
 ## <a name="next-steps"></a>後續步驟
 
 - 建立特定計量的[警示](log-analytics-alerts-creating.md)。
-- 使用[記錄搜尋](log-analytics-log-searches.md)檢視活動記錄的詳細資訊。
+- 使用[記錄搜尋](log-analytics-log-searches.md)tooview 的詳細資訊，從您的活動記錄檔。

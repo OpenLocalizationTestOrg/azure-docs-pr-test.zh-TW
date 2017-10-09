@@ -1,5 +1,5 @@
 ---
-title: "Azure 服務匯流排管理程式庫| Microsoft Docs"
+title: "aaaAzure 服務匯流排管理程式庫 |Microsoft 文件"
 description: "從 .NET 管理服務匯流排命名空間和傳訊實體。"
 services: service-bus-messaging
 documentationcenter: na
@@ -14,15 +14,15 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: sethm
-ms.openlocfilehash: 1db00dc1f91e8976b622030450445babbe547ad8
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 9e4ad91f22815ca0838e6e4647a3606109b2b441
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="service-bus-management-libraries"></a>服務匯流排管理程式庫
 
-Azure 服務匯流排管理程式庫可以動態佈建服務匯流排命名空間和實體。 這適合複雜的部署和傳訊案例，且可讓您以程式設計方式決定要佈建的實體。 這些程式庫目前適用於 .NET。
+服務匯流排命名空間和實體時，動態地佈建 hello Azure 服務匯流排管理程式庫。 這可讓複雜的部署和傳訊的案例，並可讓您 tooprogrammatically 決定哪些實體 tooprovision。 這些程式庫目前適用於 .NET。
 
 ## <a name="supported-functionality"></a>支援的功能
 
@@ -33,26 +33,26 @@ Azure 服務匯流排管理程式庫可以動態佈建服務匯流排命名空�
 
 ## <a name="prerequisites"></a>必要條件
 
-若要開始使用服務匯流排管理程式庫，您必須使用 Azure Active Directory (AAD) 服務來驗證。 AAD 會要求您以提供 Azure 資源存取權的服務主體來進行驗證。 如需建立服務主體的詳細資訊，請參閱以下其中一篇文章：  
+tooget 開始使用 hello 服務匯流排管理程式庫，您必須向 hello Azure Active Directory (AAD) 服務。 AAD 會要求您驗證做為服務主體時，可提供存取 tooyour Azure 資源。 如需建立服務主體的詳細資訊，請參閱以下其中一篇文章：  
 
-* [使用 Azure 入口網站來建立可存取資源的 Active Directory 應用程式和服務主體](/azure/azure-resource-manager/resource-group-create-service-principal-portal)
-* [使用 Azure PowerShell 建立用來存取資源的服務主體](/azure/azure-resource-manager/resource-group-authenticate-service-principal)
-* [使用 Azure CLI 建立用來存取資源的服務主體](/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli)
+* [使用 hello Azure 入口網站 toocreate Active Directory 應用程式和服務主體可存取資源](/azure/azure-resource-manager/resource-group-create-service-principal-portal)
+* [使用 Azure PowerShell toocreate 服務主體 tooaccess 資源](/azure/azure-resource-manager/resource-group-authenticate-service-principal)
+* [使用 Azure CLI toocreate 服務主體 tooaccess 資源](/azure/azure-resource-manager/resource-group-authenticate-service-principal-cli)
 
-這些教學課程會提供您 `AppId` (用戶端識別碼)、`TenantId` 和 `ClientSecret` (驗證金鑰)，全部由管理程式庫用於驗證。 針對您想要執行的資源群組，您必須具備「擁有者」權限。
+這些教學課程提供您與`AppId`（用戶端識別碼）、 `TenantId`，和`ClientSecret`（驗證金鑰），全部都是用於驗證由 hello 管理程式庫。 您必須擁有**擁有者**想 toorun hello 資源群組的權限。
 
 ## <a name="programming-pattern"></a>程式設計模式
 
-操控任何服務匯流排資源的模式，都會遵循共通的協定：
+hello 模式 toomanipulate 任何服務匯流排資源會遵循一般的通訊協定：
 
-1. 使用 **Microsoft.IdentityModel.Clients.ActiveDirectory** 程式庫從 Azure Active Directory 取得權杖。
+1. 取得語彙基元，從 Azure Active Directory 使用 hello **Microsoft.IdentityModel.Clients.ActiveDirectory**程式庫。
    ```csharp
    var context = new AuthenticationContext($"https://login.microsoftonline.com/{tenantId}");
 
    var result = await context.AcquireTokenAsync("https://management.core.windows.net/", new ClientCredential(clientId, clientSecret));
    ```
 
-1. 建立 `ServiceBusManagementClient` 物件。
+1. 建立 hello`ServiceBusManagementClient`物件。
 
    ```csharp
    var creds = new TokenCredentials(token);
@@ -62,7 +62,7 @@ Azure 服務匯流排管理程式庫可以動態佈建服務匯流排命名空�
    };
    ```
 
-1. 將 `CreateOrUpdate` 參數設定為您指定的值。
+1. 設定 hello `CreateOrUpdate` tooyour 參數指定值。
 
    ```csharp
    var queueParams = new QueueCreateOrUpdateParameters()
@@ -72,7 +72,7 @@ Azure 服務匯流排管理程式庫可以動態佈建服務匯流排命名空�
    };
    ```
 
-1. 執行呼叫。
+1. Execute 呼叫 hello。
 
    ```csharp
    await sbClient.Queues.CreateOrUpdateAsync(resourceGroupName, namespaceName, QueueName, queueParams);

@@ -1,6 +1,6 @@
 ---
-title: "透過 Azure CLI 1.0 使用 SMB 在 Linux VM 上掛接 Azure 檔案儲存體 | Microsoft Docs"
-description: "如何使用 SMB 在 Linux VM 上掛接 Azure 檔案儲存體"
+title: "aaaMount Linux Vm 上使用 SMB 與 Azure CLI 1.0 的 Azure 檔案儲存體 |Microsoft 文件"
+description: "如何 toomount Linux Vm 上使用 SMB 的 Azure 檔案儲存體"
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
 author: vlivech
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 12/07/2016
 ms.author: v-livech
-ms.openlocfilehash: 4951860630f0aad107d0846d52ebe4423ee0b91c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 14a4224228cadb0ae2f05e8e5c8022ee84f138a4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="mount-azure-file-storage-on-linux-vms-by-using-smb-with-azure-cli-10"></a>透過 Azure CLI 1.0 使用 SMB 在 Linux VM 上掛接 Azure 檔案儲存體
 
-本文說明如何使用伺服器訊息區 (SMB) 通訊協定在 Linux VM 上掛接 Azure 檔案儲存體。 檔案儲存體可透過標準的 SMB 通訊協定在雲端中提供檔案共用。 這些需求包括：
+本文示範如何使用 Linux VM 上的 Azure 檔案儲存體 toomount hello 伺服器訊息區塊 (SMB) 通訊協定。 檔案存放裝置提供透過 hello 標準 SMB 通訊協定的 hello 雲端中的檔案共用。 hello 需求如下：
 
 * [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)
 * [安全殼層 (SSH) 公開金鑰和私密金鑰檔案](mac-create-ssh-keys.md)
 
-## <a name="cli-versions-to-use"></a>要使用的 CLI 版本
-您可以使用下列其中一個命令列介面 (CLI) 版本來完成工作︰
+## <a name="cli-versions-toouse"></a>CLI 版本 toouse
+您可以使用下列命令列介面 (CLI) 版本的 hello 其中完成 hello 工作：
 
-- [Azure CLI 1.0](#quick-commands) – 適用於傳統和資源管理部署模型的 CLI (本文章)
-- [Azure CLI 2.0](mount-azure-file-storage-on-linux-using-smb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
+- [Azure CLI 1.0](#quick-commands) – 我們 CLI hello 傳統和資源管理部署模型 （此文件）
+- [Azure CLI 2.0](mount-azure-file-storage-on-linux-using-smb-nodejs.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)-hello 資源管理部署模型我們下一個層代 CLI
 
 
 ## <a name="quick-commands"></a>快速命令
-若要快速完成工作，請遵循本節中的步驟。 如需詳細資訊和內容，請從＜[詳細的逐步解說](mount-azure-file-storage-on-linux-using-smb.md#detailed-walkthrough)＞一節來開始。
+tooaccomplish hello 工作快速，請遵循本節中的 hello 步驟。 如需詳細資訊和內容，開始 hello [< 詳細逐步解說 >](mount-azure-file-storage-on-linux-using-smb.md#detailed-walkthrough) > 一節。
 
 ### <a name="prerequisites"></a>必要條件
 * 資源群組
@@ -49,20 +49,20 @@ ms.lasthandoff: 07/11/2017
 
 將任何範例換成您自己的設定。
 
-### <a name="create-a-directory-for-the-local-mount"></a>建立本機掛接的目錄
+### <a name="create-a-directory-for-hello-local-mount"></a>建立 hello 本機掛接的目錄
 
 ```bash
 mkdir -p /mnt/mymountpoint
 ```
 
-### <a name="mount-the-file-storage-smb-share-to-the-mount-point"></a>掛接檔案儲存體 SMB 共用至掛接點
+### <a name="mount-hello-file-storage-smb-share-toohello-mount-point"></a>掛接 hello 檔案儲存體 SMB 共用 toohello 掛接點
 
 ```bash
 sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mymountpoint -o vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
 ```
 
-### <a name="persist-the-mount-after-a-reboot"></a>在重新開機之後保留掛接
-將下面這行新增至 `/etc/fstab`：
+### <a name="persist-hello-mount-after-a-reboot"></a>在重新開機後持續 hello 掛接
+新增以下太 hello`/etc/fstab`:
 
 ```bash
 //myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
@@ -70,13 +70,13 @@ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mymountpoi
 
 ## <a name="detailed-walkthrough"></a>詳細的逐步解說
 
-檔案儲存體可在使用標準 SMB 通訊協定的雲端中提供檔案共用。 有了最新版本的檔案儲存體，您也可以從支援 SMB 3.0 的任何作業系統掛接檔案共用。 在 Linux 上使用 SMB 掛接時，您可以輕鬆地將備份放到有 SLA 支援的強大、永久封存儲存體位置。
+檔案存放裝置提供 hello 雲端中的檔案共用使用 hello 標準 SMB 通訊協定。 Hello 最新版本的檔案儲存體中，您也可以從任何作業系統，支援 SMB 3.0 裝載檔案共用。 當您使用 SMB 裝載在 Linux 上時，您取得簡單備份 tooa 穩固、 永久封存儲存體位置的 SLA 支援。
 
-將檔案從 VM 移至裝載在檔案儲存體上的 SMB 掛接，可方便您對記錄進行偵錯。 這是因為相同的 SMB 共用也可掛接至 Mac、Linux 或 Windows 工作站的本機上。 SMB 並非即時串流 Linux 或應用程式記錄的最佳解決方案，因為 SMB 通訊協定的建置目的不是要處理如此繁重的記錄職責。 專用的整合記錄層級工具，像是 Fluentd，是比透過 SMB 收集 Linux 和應用程式記錄輸出更好的選擇。
+檔案存放裝置上，從裝載 VM tooan SMB 掛接移動檔案是很好的方法 toodebug 記錄。 這是因為可以在本機裝載相同的 SMB 共用的 hello tooyour Mac、 Linux 或 Windows 的工作站。 SMB 不 hello Linux 資料流處理的最佳解決方案，或因為 hello SMB 通訊協定不是應用程式記錄檔即時建置 toohandle 這類大量記錄的責任。 專用的整合記錄層級工具，像是 Fluentd，是比透過 SMB 收集 Linux 和應用程式記錄輸出更好的選擇。
 
-對於此詳細逐步解說，我們會建立必要的先決條件，先建立檔案儲存體共用，然後透過 SMB 在 Linux VM 上掛接它。
+此詳細逐步解說中，我們會建立 hello 必要條件需要 toofirst 建立 hello 檔案存放裝置共用，然後再將它裝載透過 SMB，Linux VM 上。
 
-1. 使用下列程式碼來建立 Azure 儲存體帳戶︰
+1. 使用下列程式碼的 hello 建立 Azure 儲存體帳戶：
 
     ```azurecli
     azure storage account create myStorageAccount \
@@ -86,17 +86,17 @@ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mymountpoi
     -g myResourceGroup
     ```
 
-2. 顯示儲存體帳戶金鑰。
+2. 顯示 hello 儲存體帳戶金鑰。
 
-    在建立儲存體帳戶時，帳戶金鑰會成對建立，因此您可以輪替金鑰，而不會干擾到服務。 當您將金鑰切換為金鑰組中的第二個金鑰時，您會建立新的金鑰組。 新的儲存體帳戶金鑰一律會成對建立，確保您永遠有至少一個準備切換到的未使用儲存體金鑰。 若要顯示儲存體帳戶金鑰，請使用下列程式碼︰
+    當您建立儲存體帳戶時，會建立 hello 帳戶金鑰組中，讓它們可以旋轉沒有任何服務中斷。 當您切換 toohello 第二個金鑰 hello 配對中時，您會建立新的金鑰組。 新的儲存體帳戶金鑰一律會在配對，確保永遠有至少一個未使用的儲存體金鑰準備 tooswitch 來建立。 tooshow hello 儲存體帳戶金鑰，請使用下列程式碼的 hello:
 
     ```azurecli
     azure storage account keys list myStorageAccount \
     --resource-group myResourceGroup
     ```
-3. 建立檔案儲存體共用。
+3. 建立 hello 檔案存放裝置共用。
 
-    檔案儲存體共用包含 SMB 共用。 配額永遠是以 GB 表示。 若要建立檔案儲存體共用，請使用下列程式碼：
+    hello 檔案存放裝置共用包含 hello SMB 共用。 hello 配額一律會以表示 (gb)。 toocreate hello 的儲存體檔案共用，請使用下列程式碼的 hello:
 
     ```azurecli
     azure storage share create mystorageshare \
@@ -105,23 +105,23 @@ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mymountpoi
     --account-key nPOgPR<--snip-->4Q==
     ```
 
-4. 建立掛接點目錄。
+4. 建立 hello 掛接點目錄。
 
-    您必須在 Linux 檔案系統上建立本機目錄，以供 SMB 共用來掛接。 任何從本機掛接目錄寫入或讀取的項目會轉送給裝載於檔案儲存體上的 SMB 共用。 若要建立目錄，請使用下列程式碼：
+    您必須在 hello Linux 檔案系統 toomount hello SMB 共用中建立本機目錄。 任何寫入或讀取 hello 本機掛接目錄轉送的 toohello SMB 共用上裝載的檔案存放裝置。 下列程式碼使用 hello toocreate hello 目錄：
 
     ```bash
     sudo mkdir -p /mnt/mymountdirectory
     ```
 
-5. 使用下列程式碼來掛接 SMB 共用︰
+5. 掛接的 hello SMB 共用上使用下列程式碼的 hello:
 
     ```azurecli
     sudo mount -t cifs //myStorageAccount.file.core.windows.net/mystorageshare /mnt/mymountdirectory -o vers=3.0,username=myStorageAccount,password=myStorageAccountkey,dir_mode=0777,file_mode=0777
     ```
 
-6. 透過重新開機持續 SMB 掛接。
+6. 保存的 hello SMB 裝載重新開機。
 
-    當您重新開機 Linux VM 時，掛接的 SMB 共用會在關機期間取消掛接。 若要在開機時重新掛接 SMB 共用，您必須新增一行至 Linux /etc/fstab。 Linux 會使用 fstab 檔案來列出它在開機程序期間所必須掛接的檔案系統。 新增 SMB 共用可確保檔案儲存體共用是 Linux VM 的永久掛接檔案系統。 當您使用 cloud-init 時，便可以將檔案儲存體 SMB 共用新增至新的 VM。
+    當您重新啟動 hello Linux VM 時，hello 掛接的 SMB 共用正在卸載所造成關機期間。 tooremount hello SMB 共用上開機，您必須新增列 toohello Linux /etc/fstab。 Linux 使用 hello fstab 檔案 toolist hello 檔案系統，它需要 toomount hello 開機程序期間。 新增 hello SMB 共用可確保該 hello 檔案存放裝置共用是 hello Linux VM 的永久掛接的檔案系統。 加入 hello 檔案存放裝置的 SMB 共用 tooa 新的 VM 時，可能您使用雲端 init。
 
     ```bash
     //myaccountname.file.core.windows.net/mysharename /mymountpoint cifs vers=3.0,username=myaccountname,password=StorageAccountKeyEndingIn==,dir_mode=0777,file_mode=0777
@@ -129,6 +129,6 @@ sudo mount -t cifs //myaccountname.file.core.windows.net/mysharename /mymountpoi
 
 ## <a name="next-steps"></a>後續步驟
 
-- [在建立期間使用 cloud-init 自訂 Linux VM](using-cloud-init.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [在 Linux VM 中新增磁碟](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [使用 Azure CLI 將 Linux VM 上的磁碟加密](encrypt-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [在建立期間使用雲端 init toocustomize Linux VM](using-cloud-init.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [新增磁碟 tooa Linux VM](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [使用 Azure CLI hello 加密 Linux VM 上的磁碟](encrypt-disks.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

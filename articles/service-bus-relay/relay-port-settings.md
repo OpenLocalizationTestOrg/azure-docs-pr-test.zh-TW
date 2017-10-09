@@ -1,5 +1,5 @@
 ---
-title: "Azure 轉送連接埠設定 | Microsoft Docs"
+title: "aaaAzure 轉送連接埠設定 |Microsoft 文件"
 description: "Azure 轉送連接埠值的相關詳細資料。"
 services: service-bus-relay
 documentationcenter: na
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/03/2017
 ms.author: sethm
-ms.openlocfilehash: 5906495c565dad583e74a43b2e5eed57e0c68df1
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: e66785f786ee241c974d250f9ec29dfcc1fdc3fe
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-relay-port-settings"></a>Azure 轉送連接埠設定
 
-下表說明 Azure 轉送的連接埠值所需的設定。
+hello 下表描述 hello 必要的組態之連接埠值 Azure 轉送。
 
 ## <a name="hybrid-connections"></a>混合式連線
-混合式連線使用 WebSockets 做為基礎傳輸機制，僅使用 **HTTPS**。 
+混合式連線會使用 WebSockets hello 基礎傳輸機制，會使用為**HTTPS**只。 
 
 ## <a name="wcf-relays"></a>WCF 轉送
   
@@ -49,6 +49,6 @@ ms.lasthandoff: 07/11/2017
 |[WS2007HttpRelayBinding 類別](/dotnet/api/microsoft.servicebus.ws2007httprelaybinding) (服務)|無論是|9351/HTTP|
 
 ## <a name="next-steps"></a>後續步驟
-若要深入了解 Azure 轉送，請造訪下列連結：
+toolearn 深入了解 Azure 轉送，請前往下列連結：
 * [什麼是 Azure 轉送？](relay-what-is-it.md)
 * [轉送常見問題集](relay-faq.md)

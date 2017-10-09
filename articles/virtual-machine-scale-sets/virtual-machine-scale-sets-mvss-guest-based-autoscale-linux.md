@@ -1,6 +1,6 @@
 ---
 title: "在 Linux 擴展集範本中搭配客體計量使用 Azure 自動調整規模 | Microsoft Docs"
-description: "了解如何在 Linux 虛擬機器擴展集範本中使用客體計量自動調整規模"
+description: "深入了解如何在 Linux 虛擬機器擴展集範本中使用客體度量 tooautoscale"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -15,21 +15,21 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: negat
-ms.openlocfilehash: ac0bbb4dbfccca3f3fc31526aeff11afe55d44be
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 7afbef943a5f15c7a72dcf7114f46d521c504424
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="autoscale-using-guest-metrics-in-a-linux-scale-set-template"></a>在 Linux 擴展集範本中使用客體計量自動調整規模
 
-在 Azure 中蒐集自 VM 和擴展集的計量有兩種類型：部分來自主機 VM，其他則來自客體 VM。 主機計量不需要額外的安裝，因為它們會由主機 VM 所收集，而客體計量需要我們在客體 VM 中安裝 [Windows Azure 診斷擴充功能](../virtual-machines/windows/extensions-diagnostics-template.md)或 [Linux Azure 診斷擴充功能](../virtual-machines/linux/diagnostic-extension.md)。 使用客體計量而非主機計量的一個常見原因是，客體計量會提供比主機計量更大的計量選取範圍。 記憶體耗用量計量即為一例，這類計量只能透過客體計量使用。 [這裡](../monitoring-and-diagnostics/monitoring-supported-metrics.md)會列出支援的主機度量，而常用的客體計量則列於[這裡](../monitoring-and-diagnostics/insights-autoscale-common-metrics.md)。 本文將說明如何根據適用於 Linux 擴展集的客體計量來修改[最基本可行的擴展集範本](./virtual-machine-scale-sets-mvss-start.md)，以使用自動調整規模規則。
+有兩種類型的度量資訊在 Azure 中的 Vm 所傳來蒐集和調整規模設定： 某些伴隨 hello 從裝載 VM 和其他項目來自 hello 客體 VM。 主機計量不需要額外的安裝程式因為它們會收集 hello 主機 VM，而客體度量需要我們 tooinstall hello [Windows Azure 診斷擴充功能](../virtual-machines/windows/extensions-diagnostics-template.md)或 hello [Linux Azure 診斷延伸模組](../virtual-machines/linux/diagnostic-extension.md)hello 在客體 VM。 一個常見原因 toouse 客體度量資訊而不是度量的主機計量是度量的客體度量會提供比主機計量較大選取範圍。 記憶體耗用量計量即為一例，這類計量只能透過客體計量使用。 hello 支援主機度量資訊會列出[這裡](../monitoring-and-diagnostics/monitoring-supported-metrics.md)，並列出常用的客體度量[這裡](../monitoring-and-diagnostics/insights-autoscale-common-metrics.md)。 本文將說明如何 toomodify hello[可行的最小小數位數設定範本](./virtual-machine-scale-sets-mvss-start.md)toouse 自動調整規模規則根據來賓 Linux 規模集的度量。
 
-## <a name="change-the-template-definition"></a>變更範本定義
+## <a name="change-hello-template-definition"></a>變更 hello 樣板定義
 
-您可以在[這裡](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json)看到最基本可行的擴展集範本，並在[這裡](https://raw.githubusercontent.com/gatneil/mvss/guest-based-autoscale-linux/azuredeploy.json)看到使用以客體為基礎之自動調整規模部署 Linux 擴展集的範本。 讓我們逐步檢查用來建立此範本 (`git diff minimum-viable-scale-set existing-vnet`) 的差異：
+可以看到我們可行的最小小數位數的設定範本[這裡](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json)，而且可以看到我們的範本部署與來賓型自動調整規模設定的 hello Linux 比例[這裡](https://raw.githubusercontent.com/gatneil/mvss/guest-based-autoscale-linux/azuredeploy.json)。 讓我們來檢查此範本 hello 差異比對使用 toocreate (`git diff minimum-viable-scale-set existing-vnet`) 逐一：
 
-首先，我們會加入適用於 `storageAccountName` 和 `storageAccountSasToken` 的參數。 診斷代理程式會將計量資料儲存於此儲存體帳戶的[表格](../cosmos-db/table-storage-how-to-use-dotnet.md)中。 從 Linux 診斷代理程式 3.0 版開始，不再支援使用儲存體存取金鑰。 我們必須使用 [SAS 權杖](../storage/common/storage-dotnet-shared-access-signature-part-1.md)。
+首先，我們會加入適用於 `storageAccountName` 和 `storageAccountSasToken` 的參數。 hello 診斷代理程式會儲存在度量資料[資料表](../cosmos-db/table-storage-how-to-use-dotnet.md)此儲存體帳戶中。 為準，hello Linux 診斷代理程式 3.0 版，不再支援使用儲存體存取金鑰。 我們必須使用 [SAS 權杖](../storage/common/storage-dotnet-shared-access-signature-part-1.md)。
 
 ```diff
      },
@@ -45,7 +45,7 @@ ms.lasthandoff: 08/29/2017
    },
 ```
 
-接下來，我們會修改擴展集 `extensionProfile` 以包含診斷擴充功能。 在此設定中，我們會指定要從中收集計量之擴展集的資源識別碼，以及要用來儲存計量的儲存體帳戶和 SAS 權杖。 此外，也會指定彙總計量資訊的頻率 (在此案例中為每隔一分鐘)，以及要追蹤的計量 (在此案例中為已使用記憶體的百分比)。 如需此設定及已使用記憶體的百分比以外之計量的詳細資訊，請參閱[這份文件](../virtual-machines/linux/diagnostic-extension.md)。
+接下來，我們會修改 hello 規模集`extensionProfile`tooinclude hello 診斷延伸模組。 在此組態中，我們指定 hello 資源識別碼 hello 標尺集 toocollect 度量資訊，以及儲存體帳戶和 SAS 權杖 toouse toostore hello 度量 hello。 此外，我們也會指定頻率 hello 度量會彙總 （在此情況下每隔一分鐘） 和 （在此案例的百分比用記憶體） 的度量 tootrack。 如需此設定及已使用記憶體的百分比以外之計量的詳細資訊，請參閱[這份文件](../virtual-machines/linux/diagnostic-extension.md)。
 
 ```diff
                  }
@@ -108,7 +108,7 @@ ms.lasthandoff: 08/29/2017
        }
 ```
 
-最後，會加入 `autoscaleSettings` 資源，以根據這些計量來設定自動調整規模。 此資源含有 `dependsOn` 子句，其會參考擴展集以確定擴展集存在，然後再嘗試自動調整其規模。 如果我們選擇不同的計量來自動調整規模，可以使用來自診斷擴充功能設定的 `counterSpecifier`，作為自動調整規模設定中的 `metricName`。 如需自動調整規模設定的詳細資訊，請參閱[自動調整規模的最佳做法](..//monitoring-and-diagnostics/insights-autoscale-best-practices.md)和 [Azure 監視器 REST API 參考文件](https://msdn.microsoft.com/library/azure/dn931928.aspx) \(英文\)。
+最後，我們會加入`autoscaleSettings`資源 tooconfigure 自動調整規模根據這些度量。 這項資源`dependsOn`可參考 hello 小數位數設定 tooensure hello 規模集存在，然後再嘗試 tooautoscale 它。 如果我們選擇不同的度量 tooautoscale 上時，我們會使用 hello`counterSpecifier`從 hello 診斷延伸模組設定為 hello `metricName` hello 自動調整規模設定中。 如需自動調整規模設定的詳細資訊，請參閱 hello[自動調整規模的最佳作法](..//monitoring-and-diagnostics/insights-autoscale-best-practices.md)和 hello [Azure 監視 REST API 參考文件](https://msdn.microsoft.com/library/azure/dn931928.aspx)。
 
 ```diff
 +    },

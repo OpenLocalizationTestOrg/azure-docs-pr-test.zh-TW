@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 上的 Linux 來執行 Cassandra | Microsoft Docs"
-description: "如何從 Node.js 應用程式在 Azure 虛擬機器的 Linux 上執行 Cassandra 叢集"
+title: "透過在 Azure 上的 Linux Cassandra aaaRun |Microsoft 文件"
+description: "如何 toorun Cassandra on Linux 的 Azure 虛擬機器中從叢集 Node.js 應用程式"
 services: virtual-machines-linux
 documentationcenter: nodejs
 author: tomarcher
@@ -15,104 +15,104 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/17/2017
 ms.author: tarcher
-ms.openlocfilehash: 1ff3d77ced6c9d90029b251490c05e52d9b43515
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 381ca301bbe88d3740cf182f9c44fada5b9ba7cc
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="running-cassandra-with-linux-on-azure-and-accessing-it-from-nodejs"></a>在 Azure 上執行 Cassandra 搭配 Linux 並透過 Node.js 進行存取
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 請參閱 [Datastax Enterprise](https://azure.microsoft.com/documentation/templates/datastax) 的 Resource Manager 範本和 [CentOS 上的 Spark 叢集和 Cassandra](https://azure.microsoft.com/documentation/templates/spark-and-cassandra-on-centos/)。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文件涵蓋使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。 請參閱 [Datastax Enterprise](https://azure.microsoft.com/documentation/templates/datastax) 的 Resource Manager 範本和 [CentOS 上的 Spark 叢集和 Cassandra](https://azure.microsoft.com/documentation/templates/spark-and-cassandra-on-centos/)。
 
 ## <a name="overview"></a>概觀
 Microsoft Azure 是一個開放雲端平台，可執行 Microsoft 和非 Microsoft 軟體，包括作業系統、應用程式伺服器、傳訊中介軟體，以及來自商業和開放原始碼模型的 SQL 和 NoSQL 資料庫。 如果要在包括 Azure 在內的公用雲端上建立具有恢復功能的服務，應用程式伺服器和儲存層都必須要有仔細的規劃和審慎的架構。 Cassandra 的分散式儲存架構天生就有助於建置可針對叢集失敗容錯的高可用性系統。 Cassandra 是一種雲端等級的 NoSQL 資料庫，由 Apache Software Foundation 維護 (網址 cassandra.apache.org)；Cassandra 以 Java 撰寫，因此可以在 Windows 與 Linux 平台上執行。
 
-本文的重點將說明如何利用 Microsoft Azure 虛擬機器和虛擬網路，在 Ubuntu 上部署 Cassandra 做為單一和多重資料中心叢集。 用於實際執行環境最佳化工作負載的叢集部署超出本文的範圍，因為它需要多磁碟節點設定、適當的環狀拓撲設計及資料模型來支援所需的複寫、資料一致性、輸送量和高可用性需求。
+這篇文章 hello 重點是 tooshow Cassandra 部署在 Ubuntu 上的做為單一及多資料中心叢集，利用 Microsoft Azure 虛擬機器和虛擬網路。 hello 叢集部署的實際執行最佳化工作負載超出本文的範圍因為它需要多重磁碟的節點設定，適當的環形拓撲設計和資料模型化 toosupport hello 需要複寫資料一致性、 輸送量和高可用性需求。
 
-本文採用基本的方式說明建置 Cassandra 叢集所牽涉的工作，比起 Docker、Chef 或 Puppet，前者可讓基礎結構部署輕鬆許多。  
+建置 hello Cassandra 叢集的相關內容的基本方法 tooshow 比較 Docker、 Chef 或 Puppet 這可以讓您輕鬆許多 hello 基礎結構部署這個發行項會使用。  
 
-## <a name="the-deployment-models"></a>部署模型
-Microsoft Azure 網路功能可供部署獨立的私人叢集，透過限制其存取權以達到精細的網路安全性。  由於本文是關於基本層級的 Cassandra 部署，因此我們將不會著重在一致性層級和輸送量的最佳儲存體設計。 以下是我們假設叢集的網路功能需求清單：
+## <a name="hello-deployment-models"></a>hello 部署模型
+Microsoft Azure 網路允許隔離私用的叢集，可以在其中的 hello 存取限制的 tooattain 正常更細緻的網路安全性的 hello 的部署。  這篇文章是關於顯示在基本層級的 hello Cassandra 部署，因為我們將不著重在 hello 一致性層級和輸送量的 hello 最佳的儲存體設計中。 以下是我們假設叢集的網路需求的 hello 清單：
 
 * 外部系統無法從 Azure 內部或外部存取 Cassandra 資料庫
-* Cassandra 叢集必須位於 thrift 流量的負載平衡器後方
+* Cassandra 叢集中有 toobe thrift 流量負載平衡器後方
 * 在每個資料中心部署 Cassandra 節點為兩個群組以提高叢集可用性
-* 鎖定叢集，只有應用程式伺服器陣列可直接存取資料庫
+* 鎖定 hello 叢集因此，只有應用程式伺服器陣列具有存取 toohello 資料庫直接
 * 除了 SSH 以外，沒有其他公用網路端點
 * 每個 Cassandra 節點需要固定的內部 IP 位址
 
-Cassandra 可以部署到單一 Azure 區域或多個區域，視工作負載的分散特性而定。 多重區域部署模型透過相同的 Cassandra 基礎結構，可用來服務接近特定地理位置的使用者。 Cassandra 的內建節點複寫負責同步處理來自多個資料中心的多重主機寫入，並且對應用程式提供一致的資料檢視。 多重區域部署也可以協助降低更多 Azure 服務中斷的風險。 Cassandra 的可微調一致性和複寫拓撲有助於滿足應用程式不同的 RPO 需求。
+Cassandra 可以部署的 tooa 單一 Azure 區域，或是根據 hello 分散式本質 hello 工作負載的 toomultiple 區域。 多區域部署模型可運用 tooserve 使用者更接近 tooa 特定地理位置透過 hello 相同 Cassandra 基礎結構。 Cassandra 的內建節點複寫會負責 hello 同步處理的多重主機寫入來自多個資料中心，並顯示 hello 資料 tooapplications 一致檢視。 多區域部署也會協助 hello 風險降低的 hello 更廣泛的 Azure 服務中斷。 Cassandra 的可微調一致性和複寫拓撲有助於滿足應用程式不同的 RPO 需求。
 
 ### <a name="single-region-deployment"></a>單一區域部署
-我們將從單一區域部署開始，並學習建立多重區域模型。 我們將使用 Azure 虛擬網路功能建立獨立的子網路，以滿足先前所描述的網路安全性需求。  建立單一區域部署的程序使用 Ubuntu 14.04 LTS 和 Cassandra 2.08；不過，程序要改採用其他 Linux 版本也非常容易。 下列是單一區域部署的一些系統特性。  
+我們將開始的單一區域部署和蒐集 hello datacenter 中建立多區域模型的知識。 Azure 虛擬網路將會使用的 toocreate 隔離子網路，如此即可符合上述 hello 網路安全性需求。  建立 hello 單一區域部署中所述的 hello 程序會使用 Ubuntu 14.04 LTS 和 Cassandra 2.08;不過，hello 程序很容易就會採用的 toohello 其他 Linux 變異。 hello 以下是一些 hello 單一區域部署的 hello 系統特性。  
 
-**高可用性：** Cassandra 節點 (如圖 1 所示) 已部署至兩個可用性設定組，因此，節點會散佈於多個容錯網域之間，以獲取高可用性。 利用每個可用性設定組進行標註的 VM 會對應至 2 個容錯網域。  Microsoft Azure 會使用容錯網域的概念來管理意外關機時間 (例如，硬體或軟體失敗)，同時使用升級網域的概念 (例如，主機或客體 OS 修補/升級、應用程式升級) 來管理排程的停機時間。 如需用來取得高可用性之容錯和升級網域的角色，請參閱 [Azure 應用程式的災害復原與高可用性](http://msdn.microsoft.com/library/dn251004.aspx) 。
+**高可用性：** hello Cassandra 節點顯示在圖 1 所部署的 hello tootwo 可用性設定組，以便 hello 節點高可用性的多個容錯網域之間分佈。 標註具有每個可用性設定組的 Vm 是對應的 too2 容錯網域。  容錯網域 toomanage 意外關機時 hello 概念，例如主機或客體 OS 修補程式/升級 （應用程式升級） 的升級網域的時間 （例如硬體或軟體失敗） 的 Microsoft Azure 會使用 hello 概念用來管理排定停機時間。 請參閱[災害復原與高可用性 Azure 應用程式](http://msdn.microsoft.com/library/dn251004.aspx)hello 角色容錯網域和升級網域中取得高可用性。
 
 ![單一區域部署](./media/cassandra-nodejs/cassandra-linux1.png)
 
 圖 1：單一區域部署
 
-請注意，在撰寫本文時，Azure 不允許將一組 VM 明確對應到特定容錯網域。因此，即使使用如圖 1 所示的部署模型，統計上來說有可能所有的虛擬機器都對應到兩個容錯網域而不是四個。
+請注意在 hello 撰寫本文時，Azure 將不允許的一組 Vm tooa 特定容錯網域; hello 明確對應因此，即使與圖 1 所示的 hello 部署模型，它是統計上可能 hello 的所有虛擬機器都可能對應的 tootwo 容錯網域，而不是四個。
 
-**負載平衡 Thrift 流量：** Web 伺服器內部的 Thrift 用戶端程式庫會透過內部負載平衡器連線到叢集。 這需要將內部負載平衡器新增到「資料」子網路的程序 (請參閱圖 1)，這個子網路位於裝載 Cassandra 叢集的雲端服務內容中。 一旦定義內部負載平衡器之後，每個節點所需要的負載平衡端點，必須使用具有先前定義之負載平衡器名稱的負載平衡集註解來新增。 如需詳細資訊，請參閱 [Azure內部負載平衡 ](../../../load-balancer/load-balancer-internal-overview.md)。
+**負載平衡 Thrift 流量：** Thrift hello web 伺服器內的用戶端程式庫 toohello 叢集連線透過內部負載平衡器。 這需要新增 hello 內部負載平衡器 toohello 「 資料 」 的子網路的 hello 程序 （請參閱圖 1） hello hello 雲端服務裝載 hello Cassandra 叢集內容中。 一旦定義 hello 內部負載平衡器之後，每個節點會需要 hello 負載平衡端點 toobe 加入 hello 註解的負載平衡集與先前定義的負載平衡器名稱。 如需詳細資訊，請參閱 [Azure內部負載平衡 ](../../../load-balancer/load-balancer-internal-overview.md)。
 
-**叢集種子：** 務必選取可用性最高的節點做為種子，因為新的節點會與種子節點進行通訊以探索叢集的拓撲。 將每個可用性設定組中的一個節點指定為種子節點，可避免單一失敗點。
+**叢集種子：**很重要的種子為 hello 新節點會與種子節點 toodiscover hello 拓樸 hello 叢集的通訊，tooselect hello 大多數的高可用性節點。 從每個可用性設定組的一個節點指定為種子節點 tooavoid 單一失敗點。
 
-**複寫因數和一致性層級：** Cassandra 內建的高可用性和資料耐久性的特點在於複寫因數 (RF - 儲存在叢集上的每個資料列複本數) 和一致性層級 (將結果傳回呼叫端之前要讀取/寫入的複本數)。 複寫因數是在 KEYSPACE (類似關聯式資料庫) 建立期間所指定，而一致性層級是在發出 CRUD 查詢的同時所指定。 如需一致性詳細資料和仲裁計算的公式，請參閱 Cassandra 文件中的 [一致性設定](http://www.datastax.com/documentation/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html) 。
+**複寫因數和一致性層級：** Cassandra 的內建高可用性和資料耐久性的特點在於 hello 複寫因數 (RF-複本儲存在 hello 叢集上每個資料列數目) 和一致性層級 （數目讀取/寫入，再傳回 hello 結果 toohello 呼叫端複本 toobe)。 而 hello 一致性層級指定時發出 hello CRUD 查詢 hello KEYSPACE （類似 tooa 關聯式資料庫） 建立期間指定複寫因數。 請參閱 Cassandra 文件，網址[設定的一致性](http://www.datastax.com/documentation/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html)一致性的詳細資料和 hello 仲裁計算公式。
 
-Cassandra 支援兩種類型的資料完整性模型 – 一致性和最終一致性。「複寫因素」和「一致性層級」將一起判斷資料會在寫入作業完成時就達成一致，或者最終才達成一致。 例如，指定「一致性層級」為 QUORUM，將永遠確保在任何一致性層級時的資料一致性，低於達到 QUORUM (例如 ONE) 所需寫入的複本數目，會造成資料在最終才達成一致。
+Cassandra 支援兩種類型的資料完整性模型 – 一致性和最終一致性。hello 複寫因數和一致性層級會一起判斷 hello 資料會一致儘速寫入作業已完成，或將最終保持一致。 例如，指定仲裁 hello 一致性層級將一律可確保資料一致性，同時 hello 數目複本 toobe 撰寫成所需的 tooattain 底下的任何一致性層仲裁 （例如一個） 會導致取得一致的最終結果的資料。
 
-以上顯示的 8 節點叢集，使用 3 的複寫因素和 QUORUM (為了一致性而讀取或寫入 2 個節點) 讀取/寫入的一致性層級，在應用程式開始注意失敗之前，每個複寫群組最多只能有 1 個節點可避免理論性遺失。 這假設所有關鍵值空間都已經順利平衡讀取/寫入要求。  我們將針對已部署的叢集使用下列參數：
+如上所示，以複寫因數 3 及仲裁的 hello 8 個節點叢集 （2 個節點讀取或寫入的一致性） 讀取/寫入一致性層級，可以繼續執行的 hello 理論上遺失在 hello hello 應用程式啟動之前的大部分 1 的節點，每個複寫群組請注意 hello 失敗。 這是假設所有的 hello 空格有對稱讀取/寫入要求。  hello 以下是我們將會用於叢集部署的 hello hello 參數：
 
 單一區域 Cassandra 叢集設定：
 
 | 叢集參數 | 值 | 備註 |
 | --- | --- | --- |
-| 節點數目 (N) |8 |叢集中的節點總數 |
+| 節點數目 (N) |8 |Hello 叢集中的節點總數 |
 | 複寫因素 (RF) |3 |指定資料列的複本數目 |
-| 一致性層級 (寫入) |QUORUM[(RF/2) +1) = 2] 公式結果無條件捨去 |在回應傳送至呼叫者之前，最多寫入 2 個複本；第 3 個複本會以最終一致的方式寫入。 |
-| 一致性層級 (讀取) |QUORUM [(RF/2) +1= 2] 公式結果無條件捨去 |在傳送回應給呼叫者之前讀取 2 個複本。 |
-| 複寫策略 |如需 NetworkTopologyStrategy 的詳細資訊，請參閱 Cassandra 文件中的 [資料複寫](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureDataDistributeReplication_c.html) (英文) |了解部署拓撲並將複本放在節點上，最後所有複本就不會都位於相同的機架上 |
-| Snitch |如需 GossipingPropertyFileSnitch 的詳細資訊，請參閱 Cassandra 文件中的 [Snitches](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureSnitchesAbout_c.html) (英文) |NetworkTopologyStrategy 使用 Snitch 的概念來了解拓撲。 GossipingPropertyFileSnitch 在將各個節點對應到資料中心與機架時提供較好的控制。 叢集再使用 Gossip 來散佈這項資訊。 相對於 PropertyFileSnitch，這在動態 IP 設定中簡單許多 |
+| 一致性層級 (寫入) |QUORUM[(RF/2) +1) = 2] hello 結果的 hello 公式無條件捨去 |寫入在 hello 大部分 2 個複本之前傳送 hello 回應 toohello 呼叫端;第 3 個複本會寫入最終一致的方式。 |
+| 一致性層級 (讀取) |仲裁 [(RF/2) + 1 = 2] hello 公式的結果 hello 無條件捨去 |讀取傳送回應 toohello 呼叫端之前的 2 個複本。 |
+| 複寫策略 |如需 NetworkTopologyStrategy 的詳細資訊，請參閱 Cassandra 文件中的 [資料複寫](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureDataDistributeReplication_c.html) (英文) |了解 hello 部署拓撲，並將複本放在節點上，使所有 hello 複本不都會出現在 hello 相同機架 |
+| Snitch |如需 GossipingPropertyFileSnitch 的詳細資訊，請參閱 Cassandra 文件中的 [Snitches](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureSnitchesAbout_c.html) (英文) |NetworkTopologyStrategy 使用告密者 toounderstand hello 拓撲的概念。 GossipingPropertyFileSnitch 可提供更好的控制權，對應每個節點 toodata 置中與機架中。 hello 叢集然後使用八卦 toopropagate 這項資訊。 這是在動態 IP 設定相對 tooPropertyFileSnitch 更簡單 |
 
-**Cassandra 叢集的 Azure 考量：** Microsoft Azure 虛擬機器功能會使用 Azure Blob 儲存體來取得磁碟持續性；Azure 儲存體會基於高持久性因素來為每個磁碟儲存 3 個複本。 這表示已插入 Cassandra 資料表的每個資料列都已經儲存於 3 個複本中，因此，即使複寫因數 (RF) 為 1，也已經兼顧到資料一致性。 複寫因數是 1 的主要問題在於，即使單一 Cassandra 節點失敗，應用程式還是會經歷停機時間。 不過，如果節點因為 Azure 網狀架構控制器所辨識出的問題 (例如，硬體、系統軟體失敗) 而關閉，它將會使用相同的儲存體磁碟機，在其位置中佈建新的節點。 佈建新節點來取代舊節點，可能需要幾分鐘的時間。  類似於如客體 OS 變更、Cassandra 升級及應用程式變更等預定維護活動，Azure 網狀架構控制器會在叢集中執行節點的輪流升級。  輪流升級也可能會一次關閉數個節點，因此，叢集可能會遇到數個磁碟分割短暫停機的狀況。 不過，資料將不會因為內建的 Azure 儲存體備援而遺失。  
+**Cassandra 叢集的 Azure 考量：** Microsoft Azure 虛擬機器功能會使用 Azure Blob 儲存體來取得磁碟持續性；Azure 儲存體會基於高持久性因素來為每個磁碟儲存 3 個複本。 這表示每個插入 Cassandra 資料表的資料列已經儲存在 3 個複本，因此資料的一致性是已處理即使 hello 複寫因數 (RF) 為 1。 複寫因數是 1 hello 主要問題是 hello 應用程式將會經歷停機時間，即使單一 Cassandra 節點失敗。 不過，如果節點已關閉的 hello 問題 （例如硬體、 系統軟體失敗） 辨識由 Azure 網狀架構控制器，它將會提供新的節點在它的地方使用 hello 相同的存放磁碟機。 佈建新節點 tooreplace hello 舊其中一個可能需要幾分鐘的時間。  同樣地，對於客體作業系統變更這類的計劃性的維護活動，Cassandra 升級和應用程式變更 Azure 網狀架構控制器執行輪流升級的 hello 節點 hello 叢集中。  輪流升級也可能需要幾個節點下一次，因此 hello 叢集可能會遇到短暫的停機時間為幾個資料分割。 不過，hello 資料不會遺失到期 toohello 內建的 Azure 儲存體備援。  
 
-對於部署到 Azure 但不需要高可用性的系統 (例如，大約 99.9，相當於每年 8.76 個小時，請參閱 [高可用性](http://en.wikipedia.org/wiki/High_availability) 以了解詳細資訊)，您可以採用 RF=1 和一致性層級=ONE 來執行。  對於具有高可用性需求的應用程式，RF=3 和一致性層級=QUORUM 將可容忍其中一個節點其中一個複本的停機時間。 不能在傳統部署 (例如內部部署) 中使用 RF=1，因為像是磁碟損壞所產生的問題可能會導致資料遺失。   
+系統部署不需要高可用性的 tooAzure (例如大約 99.9 即相等 too8.76 小時/年，請參閱 <<c0> [ 高可用性](http://en.wikipedia.org/wiki/High_availability)如需詳細資訊) 可能無法與 RF toorun = 1 且一致性層級 = 其中一個。  應用程式具有高可用性需求，RF = 3 和一致性層級 = 仲裁可以容忍 hello 的其中一個 hello 節點 hello 複本的停機。 RF = 1 在傳統的部署 （例如內部部署） 不能因為 toohello 可能會遺失資料造成磁碟故障時提供類似的問題。   
 
 ## <a name="multi-region-deployment"></a>多重區域部署
-Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即進行多重區域部署，而不需使用任何外部工具。 這與傳統的關聯式資料庫相當不同，後者在設定資料庫鏡像以進行多重主機寫入時相當複雜。 Cassandra 的多重區域設定有助於包括下列的使用案例：
+Cassandra 的資料中心感知的複寫和有助於 hello 多區域部署不含 hello hello 現成上面所述的一致性模型需要的任何外部工具。 這是相當不同 hello 傳統關聯式資料庫中可能相當複雜的多重主機寫入的資料庫鏡像的 hello 安裝程式。 Cassandra 中設定多區域可協助進行 hello 使用案例包括下列 hello:
 
-**以近接性為基礎的部署：** 清除租用戶使用者與區域對應的多租用戶應用程式，可以因為多地區叢集的低延遲而受益。 例如，適用於教育機構的學習管理系統可以在美國東部和美國西部區域部署分散式叢集，分別做為適用於交易與分析的校園。 資料可以在讀取和寫入期間維持本機一致性，而且最終可在這兩個區域間維持一致性。 其他的範例還有媒體發佈、電子商務，以及可為地理位置集中之使用者提供服務的一切 (這是此部署模型的絕佳使用案例)。
+**鄰近性基礎的部署：**多租用戶應用程式，以清除對應的租用戶使用者-到-區域，可以發展的 hello 多區域叢集的低延遲。 例如學習管理系統的教育機構可以分散式的叢集部署在美國東部和美國西部地區 tooserve hello 個別園區針對交易式，以及分析。 hello 資料可以在 hello 時間讀取和寫入本機一致，而且可以是跨兩個 hello 區最終保持一致。 其他的範例還有媒體發佈、電子商務，以及可為地理位置集中之使用者提供服務的一切 (這是此部署模型的絕佳使用案例)。
 
-**高可用性：**備援是取得軟體和硬體高可用性的關鍵因數；如需詳細資訊，請參閱＜在 Microsoft Azure 上建置可靠的雲端系統＞。 在 Microsoft Azure 上，實現真正備援的唯一可靠方式就是部署多區域叢集。 應用程式可部署於主動/主動或主動/被動模式中，如果其中一個區域已關閉，Azure 流量管理員就能將流量重新導向至作用中的區域。  使用單一區域部署時，如果可用性是 99.9，則兩個區域的部署可以達到 99.9999 的可用性，計算公式如下：(1-(1-0.999) * (1-0.999))*100)。如需詳細資訊，請參閱上述文件。
+**高可用性：**備援是取得軟體和硬體高可用性的關鍵因數；如需詳細資訊，請參閱＜在 Microsoft Azure 上建置可靠的雲端系統＞。 Microsoft Azure 上 hello 達成，則為 true 的備援性的唯一可靠方式就是藉由部署多區域叢集。 應用程式可以部署在主動-主動或主動-被動模式中，如果其中一個 hello 區域已關閉，Azure Traffic Manager 可以將重新導向流量 toohello 使用中的區域。  使用 hello 單一區域部署時，如果 hello 可用性是 99.9，兩個區域部署可以達到 99.9999 hello 公式所計算的可用性: (1-(1-0.999) * (1-0.999)) * 100)。hello 上方紙張，如需詳細資訊，請參閱。
 
-**災害復原：**如果設計正確，多區域的 Cassandra 叢集就能承受重大的資料中心中斷。 如果某個區域已關閉，部署到其他區域的應用程式就能開始為使用者提供服務。 和所有其他的商務持續實作一樣，應用程式必須能對非同步管線中的資料所產生的部分資料遺失進行容錯。 不過，相較於傳統資料庫復原程序所花費的時間，Cassandra 能夠更快速地進行復原。 圖 2 顯示每個區域中有八個節點的典型多區域部署模型。 這兩個區域是彼此具備相同對稱性的鏡映影像。真實世界的設計取決於工作負載類型 (例如，交易或分析)、RPO、RTO、資料一致性，以及可用性需求。
+**災害復原：**如果設計正確，多區域的 Cassandra 叢集就能承受重大的資料中心中斷。 如果一個區域已關閉，hello 部署應用程式 tooother 區域可以開始處理 hello 終端使用者。 類似的任何商務持續性實作，hello 應用程式有 toobe 的 hello 非同步管線中的 hello 資料造成部分資料遺失容錯。 不過，Cassandra 讓 hello 復原更 swifter 於 hello 傳統資料庫復原程序所花費的時間。 圖 2 顯示 hello 一般多區域部署模型，具有八個節點，在每個區域。 這兩個區域是彼此的 hello 的鏡像映像相同的對稱。真實世界的設計是根據 hello 工作負載類型 （例如交易式或分析）、 RPO、 RTO、 資料一致性和可用性需求而定。
 
 ![多區域部署](./media/cassandra-nodejs/cassandra-linux2.png)
 
 圖 2：多區域 Cassandra 部署
 
 ### <a name="network-integration"></a>網路整合
-部署至私人網路、位於兩個區域的虛擬機器設定組使用 VPN 通道彼此通訊。 VPN 通道連線在網路部署程序期間佈建的兩個軟體閘道。 這兩個區域有類似的網路架構，分別稱為 "Web" 和「資料」子網路。Azure 網路功能允許建立多個子網路，以及根據網路安全性的需要套用 ACL。 設計資料中心之間的叢集拓撲時，需要考量網路流量的通訊延遲與經濟影響。
+設定虛擬機器位於兩個區域部署的 tooprivate 網路與彼此通訊使用 VPN 通道。 hello VPN 通道連接兩個的軟體閘道 hello 網路部署程序期間佈建。 兩個區域有類似的網路架構，以"web"和"data"的子網路。Azure 網路可讓 hello 建立所需數量的子網路，並視需要透過網路安全性套用 Acl。 設計 hello 叢集拓撲時間的資料中心的通訊延遲與 hello 經濟影響 hello 網路流量需要 toobe 視為。
 
 ### <a name="data-consistency-for-multi-data-center-deployment"></a>多重資料中心部署的資料一致性
-分散式部署需要留意叢集拓撲對輸送量和高可用性的影響。 選取 RF 和一致性層級時，也必須以不需根據所有資料中心可用性進行仲裁的這種方式。
-對於需要高度一致性的系統，LOCAL_QUORUM 的一致性層級 (針對讀取和寫入) 可確保來自本機節點的本機讀取和寫入達到要求，同時資料會以非同步方式複寫到遠端資料中心。  表 2 摘要多重區域叢集 (稍後詳細說明) 的設定詳細資料。
+分散式部署需要 toobe 留意 hello 叢集拓撲影響產能和高可用性。 hello RF 和一致性層級需要 toobe hello 仲裁的方式選取不需要依賴的所有 hello 資料中心的 hello 可用性。
+針對需要高的一致性，LOCAL_QUORUM 一致性層級 （適用於讀取和寫入） 將會確認該 hello 本機系統讀取和寫入符合從本機 hello 節點，而資料是以非同步方式複寫 toohello 遠端資料中心。  表 2 摘述 hello 設定寫 hello hello 稍後所述的多地區叢集的詳細資料。
 
 **兩個區域的 Cassandra 叢集組態**
 
 | 叢集參數 | 值 | 備註 |
 | --- | --- | --- |
-| 節點數目 (N) |8 + 8 |叢集中的節點總數 |
+| 節點數目 (N) |8 + 8 |Hello 叢集中的節點總數 |
 | 複寫因素 (RF) |3 |指定資料列的複本數目 |
-| 一致性層級 (寫入) |LOCAL_QUORUM [(sum(RF)/2) +1) = 4] 公式結果無條件捨去 |2 個節點會以同步方式寫入第一個資料中心；仲裁所需的其他 2 個節點會以非同步方式寫入第二個資料中心。 |
-| 一致性層級 (讀取) |LOCAL_QUORUM ((RF/2) +1) = 2 公式結果無條件捨去 |只會達到來自一個區域的讀取要求；在回應傳送回用戶端之前，會讀取 2 個節點。 |
-| 複寫策略 |如需 NetworkTopologyStrategy 的詳細資訊，請參閱 Cassandra 文件中的 [資料複寫](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureDataDistributeReplication_c.html) (英文) |了解部署拓撲並將複本放在節點上，最後所有複本就不會都位於相同的機架上 |
-| Snitch |如需 GossipingPropertyFileSnitch 的詳細資訊，請參閱 Cassandra 文件中的 [Snitches](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureSnitchesAbout_c.html) (英文) |NetworkTopologyStrategy 使用 Snitch 的概念來了解拓撲。 GossipingPropertyFileSnitch 在將各個節點對應到資料中心與機架時提供較好的控制。 叢集再使用 Gossip 來散佈這項資訊。 相對於 PropertyFileSnitch，這在動態 IP 設定中簡單許多 |
+| 一致性層級 (寫入) |LOCAL_QUORUM [(sum(RF)/2) +1) = 4] hello 公式的結果 hello 無條件捨去 |2 個節點將會寫入 toohello 第一個資料中心以同步方式;hello 額外 2 個節點所需的仲裁會撰寫以非同步方式 toohello 第 2 個資料中心。 |
+| 一致性層級 (讀取) |LOCAL_QUORUM ((RF/2) + 1) = 2 會無條件捨去 hello 公式的結果 hello |讀取要求符合從只有一個區域。傳送後 toohello 用戶端 hello 回應之前，會讀取的 2 個節點。 |
+| 複寫策略 |如需 NetworkTopologyStrategy 的詳細資訊，請參閱 Cassandra 文件中的 [資料複寫](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureDataDistributeReplication_c.html) (英文) |了解 hello 部署拓撲，並將複本放在節點上，使所有 hello 複本不都會出現在 hello 相同機架 |
+| Snitch |如需 GossipingPropertyFileSnitch 的詳細資訊，請參閱 Cassandra 文件中的 [Snitches](http://www.datastax.com/documentation/cassandra/2.0/cassandra/architecture/architectureSnitchesAbout_c.html) (英文) |NetworkTopologyStrategy 使用告密者 toounderstand hello 拓撲的概念。 GossipingPropertyFileSnitch 可提供更好的控制權，對應每個節點 toodata 置中與機架中。 hello 叢集然後使用八卦 toopropagate 這項資訊。 這是在動態 IP 設定相對 tooPropertyFileSnitch 更簡單 |
 
-## <a name="the-software-configuration"></a>軟體設定
-部署期間將使用下列軟體版本：
+## <a name="hello-software-configuration"></a>hello 軟體組態
+hello 部署可以使用下列軟體版本的 hello:
 
 <table>
 <tr><th>軟體</th><th>來源</th><th>版本</th></tr>
@@ -122,57 +122,57 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 <tr><td>Ubuntu    </td><td>[Microsoft Azure](https://azure.microsoft.com/) </td><td>14.04 LTS</td></tr>
 </table>
 
-由於下載 JRE 時需要手動接受 Oracle 授權，為了簡化部署，請將所有必要的軟體下載到桌面，稍後上傳到我們要建立來做為叢集部署初期使用的 Ubuntu 範本映像。
+因為下載 JRE 需要手動接受 Oracle 授權、 toosimplify hello 部署下載所有 hello 稍後上傳到 hello Ubuntu 範本映像，我們將建立為前兆 toohello 叢集所需的軟體 toohello 桌面部署。
 
-將上述軟體下載到本機電腦上已知的下載目錄 (例如，Windows 上的 %TEMP%/downloads，或者大多數 Linux 散發套件或 Mac 上的 ~/Downloads)。
+下載軟體上方 hello hello 本機電腦上的已知的下載目錄 （例如在 Windows 上的 %TEMP%/downloads 或 ~/Downloads 多數 Linux 散發套件或 Mac 上的）。
 
 ### <a name="create-ubuntu-vm"></a>建立 UBUNTU VM
-在此步驟的程序中，我們將建立包含必要軟體的 Ubuntu 映像，讓映像可以重複用於佈建多個 Cassandra 節點。  
+在此步驟中的 hello 程序我們將使用 hello 先決條件軟體建立 Ubuntu 映像以便 hello 映像可重複用於佈建 Cassandra 的數個節點。  
 
 #### <a name="step-1-generate-ssh-key-pair"></a>步驟 1：產生 SSH 金鑰組
-在佈建階段，Azure 需要 PEM 或 DER 編碼的 X509 公用金鑰。 請參考如何在 Azure 上使用 SSH 搭配 Linux (英文) 上的指示來產生公用/私密金鑰組。 如果您計劃在 Windows 或 Linux 上使用 putty.exe 做為 SSH 用戶端，您必須使用 puttygen.exe，將 PEM 編碼的 RSA 私密金鑰轉換為 PPK 格式。如需此操作的指示，請參閱上述網頁。
+Azure 需要的 X509 公開金鑰 PEM 或 DER 編碼 hello 佈建時間。 產生公開/私密金鑰的金鑰組，使用位於如何 hello 指示 tooUse SSH 與 Azure 上的 Linux。 如果您打算 toouse putty.exe 為 Windows 或 Linux 上的 SSH 用戶端時，您會有 tooconvert hello PEM 編碼 RSA 私用金鑰 tooPPK 格式使用 puttygen.exe;hello 這個指示 hello 上方網頁中。
 
 #### <a name="step-2-create-ubuntu-template-vm"></a>步驟 2：建立 Ubuntu 範本 VM
-若要建立範本 VM，請登入 Azure 傳統入口網站，並使用下列順序：依序按一下 [新增]、[計算]、[虛擬機器]、[從資源庫]、[UBUNTU]、[Ubuntu Server 14.04 LTS]，然後按一下向右箭號。 如需說明如何建立 Linux VM 的教學課程，請參閱建立執行 Linux 的虛擬機器 (英文)。
+登入 hello Azure 傳統入口網站並使用 hello 下列順序的 toocreate hello 範本 VM： 按一下 [新增]、 計算、 虛擬機器，從組件庫、 UBUNTU、 Ubuntu Server 14.04 LTS、，然後按一下hello 向右箭號。 描述如何 toocreate Linux VM，請參閱教學課程建立執行 Linux 之虛擬機器。
 
-在 [虛擬機器設定] 的第 1 個畫面上輸入下列資訊：
+輸入下列資訊在 hello 「 虛擬機器設定 」 畫面 #1 hello:
 
 <table>
 <tr><th>欄位名稱              </td><td>       欄位值               </td><td>         備註                </td><tr>
-<tr><td>版本發行日期    </td><td> 從下拉式清單選取日期</td><td></td><tr>
-<tr><td>[虛擬機器名稱]    </td><td> cass-template                   </td><td> 這是 VM 的主機名稱 </td><tr>
-<tr><td>層次                     </td><td> 標準                           </td><td> 保留預設值              </td><tr>
-<tr><td>大小                     </td><td> A1                              </td><td>根據 IO 需求選取 VM。針對此目的保留預設值 </td><tr>
+<tr><td>版本發行日期    </td><td> 選取的日期，從 hello 下拉式清單</td><td></td><tr>
+<tr><td>[虛擬機器名稱]    </td><td> cass-template                   </td><td> 這是 hello hello VM 主機名稱 </td><tr>
+<tr><td>層次                     </td><td> 標準                           </td><td> 保留預設值，hello              </td><tr>
+<tr><td>大小                     </td><td> A1                              </td><td>必須選取 VM 根據 hello IO 的 hello;針對此用途保留 hello 預設值， </td><tr>
 <tr><td> [新使用者名稱] 中             </td><td> localadmin                       </td><td> "admin" 在 Ubuntu 12.xx 以及更新版本中是保留的使用者名稱</td><tr>
-<tr><td> 驗證         </td><td> 按一下核取方塊                 </td><td>如果您想要以 SSH 金鑰確保安全，請核取此方塊 </td><tr>
-<tr><td> 憑證             </td><td> 公用金鑰憑證的檔案名稱 </td><td> 使用先前產生的公開金鑰</td><tr>
+<tr><td> 驗證         </td><td> 按一下核取方塊                 </td><td>檢查您是否 toosecure 使用 SSH 金鑰 </td><tr>
+<tr><td> 憑證             </td><td> hello 公開金鑰憑證檔案名稱 </td><td> 使用 hello 先前產生的公開金鑰</td><tr>
 <tr><td> 新密碼    </td><td> 強式密碼 </td><td> </td><tr>
 <tr><td> 確認密碼    </td><td> 強式密碼 </td><td></td><tr>
 </table>
 
-在 [虛擬機器設定] 的第 2 個畫面上輸入下列資訊：
+輸入下列資訊在 hello 「 虛擬機器設定 」 畫面 #2 的 hello:
 
 <table>
 <tr><th>欄位名稱             </th><th> 欄位值                       </th><th> 備註                                 </th></tr>
 <tr><td> 雲端服務    </td><td> 建立新的雲端服務    </td><td>雲端服務是一個運算如虛擬機器等資源的容器</td></tr>
 <tr><td> 雲端服務 DNS 名稱    </td><td>ubuntu-template.cloudapp.net    </td><td>提供一個機器中立的負載平衡器名稱</td></tr>
-<tr><td> [區域/同質群組/虛擬網路] </td><td>    美國西部    </td><td> 選取您 Web 應用程式存取 Cassandra 叢集時的來源地區</td></tr>
-<tr><td>儲存體帳戶 </td><td>    使用預設值    </td><td>使用預設的儲存體帳戶或在特定區域中預先建立的儲存體帳戶</td></tr>
+<tr><td> [區域/同質群組/虛擬網路] </td><td>    美國西部    </td><td> 選取 web 應用程式存取 hello Cassandra 叢集中的區域</td></tr>
+<tr><td>儲存體帳戶 </td><td>    使用預設值    </td><td>使用 hello 預設儲存體帳戶或特定區域的預先建立的儲存體帳戶</td></tr>
 <tr><td>可用性集合 </td><td>    None </td><td>    保留為空白</td></tr>
-<tr><td>端點    </td><td>使用預設值 </td><td>    使用預設的 SSH 設定 </td></tr>
+<tr><td>端點    </td><td>使用預設值 </td><td>    使用 hello 預設 SSH 組態 </td></tr>
 </table>
 
-按一下向右箭號，保留第 3 個畫面上的預設值，然後按一下 [確認] 按鈕以完成 VM 佈建程序。 請稍候幾分鐘，名稱為 “ubuntu-template” 的 VM 應該會變成「執行中」狀態。
+按一下向右箭號，保留 hello 預設值 #3 的 hello 畫面上，按 hello 「 檢查 」 按鈕 toocomplete hello VM 佈建程序。 請稍候幾分鐘 hello VM 與 hello 名稱 「 ubuntu-範本 」 應該是 「 執行 」 狀態。
 
-### <a name="install-the-necessary-software"></a>安裝必要軟體
+### <a name="install-hello-necessary-software"></a>安裝必要軟體 hello
 #### <a name="step-1-upload-tarballs"></a>步驟 1：上傳 tarball
-使用 scp 或 pscp，並使用下列命令格式將先前下載的軟體複製到 ~/downloads 目錄中：
+使用 scp 或 pscp，複製 hello 先前下載的軟體太 ~ / [下載] 目錄使用下列命令格式的 hello:
 
 ##### <a name="pscp-server-jre-8u5-linux-x64targz-localadminhk-cas-templatecloudappnethomelocaladmindownloadsserver-jre-8u5-linux-x64targz"></a>pscp server-jre-8u5-linux-x64.tar.gz localadmin@hk-cas-template.cloudapp.net:/home/localadmin/downloads/server-jre-8u5-linux-x64.tar.gz
-針對 JRE 和 Cassandra 重複上述命令。
+重複與 hello Cassandra 位元也 JRE hello 上述命令。
 
-#### <a name="step-2-prepare-the-directory-structure-and-extract-the-archives"></a>步驟 2：準備目錄結構並解壓縮封存
-登入 VM、建立目錄結構，然後以進階使用者的身分使用下列 bash 指令碼解壓縮軟體：
+#### <a name="step-2-prepare-hello-directory-structure-and-extract-hello-archives"></a>步驟 2： 準備 hello 目錄結構，並擷取 hello 封存
+登入 hello VM 及建立 hello 目錄結構並擷取軟體做為進階使用者，使用下列的 hello bash 指令碼：
 
     #!/bin/bash
     CASS_INSTALL_DIR="/opt/cassandra"
@@ -242,20 +242,20 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
     unzip $HOME/downloads/$JRE_TARBALL $JRE_INSTALL_DIR
     unzip $HOME/downloads/$CASS_TARBALL $CASS_INSTALL_DIR
 
-    #Change the ownership to the service credentials
+    #Change hello ownership toohello service credentials
 
     chown -R $SVC_USER:$GROUP $CASS_DATA_DIR
     chown -R $SVC_USER:$GROUP $CASS_LOG_DIR
-    echo "edit /etc/profile to add JRE to the PATH"
+    echo "edit /etc/profile tooadd JRE toohello PATH"
     echo "installation is complete"
 
 
-如果您將此指令碼貼到 vim 視窗，請務必使用下列命令移除歸位字元 (‘\r”)：
+如果您將此指令碼貼到 vim 視窗時，請確定 tooremove hello 歸位字元傳回 ('\r 」) 使用下列命令的 hello:
 
     tr -d '\r' <infile.sh >outfile.sh
 
 #### <a name="step-3-edit-etcprofile"></a>步驟 3：編輯 etc/profile
-在結尾附加下列內容：
+附加 hello 下列 hello 結尾：
 
     JAVA_HOME=/opt/java/jdk1.8.0_05
     CASS_HOME= /opt/cassandra/apache-cassandra-2.0.8
@@ -265,7 +265,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
     export PATH
 
 #### <a name="step-4-install-jna-for-production-systems"></a>步驟 4：安裝適用於實際執行系統的 JNA
-使用下列命令序列：下列命令會將 jna-3.2.7.jar 和 jna-platform-3.2.7.jar 安裝到 /usr/share.java 目錄：sudo apt-get install libjna-java
+使用 hello 下列命令順序： hello 下列命令將會安裝 jna 3.2.7.jar 和 jna-平台-3.2.7.jar too/usr/share.java 目錄 sudo apt-get 安裝 libjna java
 
 在 $CASS_HOME/lib 目錄中建立符號連結，以便 Cassandra 啟動指令碼可以找到這些 jar：
 
@@ -274,35 +274,35 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
     ln -s /usr/share/java/jna-platform-3.2.7.jar $CASS_HOME/lib/jna-platform.jar
 
 #### <a name="step-5-configure-cassandrayaml"></a>步驟 5：設定 cassandra.yaml
-編輯每個 VM 的 cassandra.yaml 以反映所有虛擬機器所需的組態，[我們將在實際佈建期間調校此檔案]：
+編輯 cassandra.yaml 上 [我們將調整這 hello 實際佈建期間] 所有 hello 虛擬機器所需的每個 VM tooreflect 組態：
 
 <table>
 <tr><th>欄位名稱   </th><th> 值  </th><th>    備註 </th></tr>
-<tr><td>cluster_name </td><td>    “CustomerService”    </td><td> 使用能反映您部署的名稱</td></tr>
+<tr><td>cluster_name </td><td>    “CustomerService”    </td><td> 使用 hello 名稱反映您的部署</td></tr>
 <tr><td>listen_address    </td><td>[保留為空白]    </td><td> 刪除 “localhost” </td></tr>
 <tr><td>rpc_addres   </td><td>[保留為空白]    </td><td> 刪除 “localhost” </td></tr>
-<tr><td>種子    </td><td>"10.1.2.4、10.1.2.6、10.1.2.8"    </td><td>指定為種子的所有 IP 位址清單。</td></tr>
-<tr><td>endpoint_snitch </td><td> org.apache.cassandra.locator.GossipingPropertyFileSnitch </td><td> 由 NetworkTopologyStrateg 使用來表示資料中心和 VM 的機架</td></tr>
+<tr><td>種子    </td><td>"10.1.2.4、10.1.2.6、10.1.2.8"    </td><td>指定為種子所有 hello IP 位址的清單。</td></tr>
+<tr><td>endpoint_snitch </td><td> org.apache.cassandra.locator.GossipingPropertyFileSnitch </td><td> 這是由用於 hello NetworkTopologyStrateg 推斷 hello 資料中心和 hello 的 hello VM 的機架</td></tr>
 </table>
 
-#### <a name="step-6-capture-the-vm-image"></a>步驟 6：擷取 VM 映像
-使用先前建立的主機名稱 (hk-ca-template.cloudapp.net) 和 SSH 私密金鑰登入虛擬機器。 請參閱「如何在 Azure 上使用 SSH 搭配 Linux」了解如何使用命令 ssh 或 putty.exe 登入的詳細資訊。
+#### <a name="step-6-capture-hello-vm-image"></a>步驟 6： 擷取 hello VM 映像
+登入 hello 使用 hello 主機名稱 (hk-ca-template.cloudapp.net) 和 hello SSH 私密金鑰先前建立的虛擬機器。 請參閱如何 tooUse Linux 的 Azure 上的 SSH 詳細說明如何在使用 toolog hello 命令 ssh 或 putty.exe 上。
 
-執行下列動作擷取映像：
+執行下列一連串動作 toocapture hello 映像的 hello:
 
 ##### <a name="1-deprovision"></a>1.取消佈建
-使用命令 “sudo waagent –deprovision+user” 移除虛擬機器執行個體的特定資訊。 請參閱 [如何擷取 Linux 虛擬機器作為範本使用](capture-image.md) ，以了解映像擷取程序的詳細資訊。
+使用 hello 命令"sudo waagent-取消佈建 + 使用者 」 tooremove 虛擬機器執行個體的特定資訊。 請參閱 < >[如何 tooCapture Linux 虛擬機器](capture-image.md)tooUse 做為範本的詳細 hello 映像擷取程序上。
 
-##### <a name="2-shutdown-the-vm"></a>2：將 VM 關機
-確定已反白顯示虛擬機器，然後按一下底部命令列中的 [關機] 連結。
+##### <a name="2-shutdown-hello-vm"></a>2： 關閉 hello VM
+請確定該 hello 虛擬機器會反白顯示，然後按一下 hello 底部命令列中的 hello 關機連結。
 
-##### <a name="3-capture-the-image"></a>3：擷取映像
-確定已反白顯示虛擬機器，然後按一下底部命令列中的 [擷取] 連結。 在下一個畫面中，指定 [映像名稱] \(例如 hk-cas-2-08-ub-14-04-2014071)、適當的 [映像描述]，然後按一下「確認」記號以完成擷取程序。
+##### <a name="3-capture-hello-image"></a>3： 擷取 hello 映像
+請確定該 hello 虛擬機器會反白顯示，然後按一下 hello 底部命令列中的 hello 擷取連結。 在 hello 下一個畫面中提供的映像名稱 (例如 hk-cas-2-08-ub-14-04-2014071)、 適當的映像的描述，然後按一下 hello 「 檢查 」 標記 toofinish hello 擷取程序。
 
-這需要幾秒鐘的時間，然後您應該就可以在映像庫的 [我的映像] 區段中找到映像。 成功擷取映像之後，來源 VM 就會自動刪除。 
+這需要幾秒鐘的時間和 hello 映像應出現在 hello 映像庫的 我的映像 > 一節。 hello 映像成功擷取後，就會自動刪除 hello 來源 VM。 
 
 ## <a name="single-region-deployment-process"></a>單一區域部署程序
-**步驟 1：建立虛擬網路** 登入 Azure 入口網站，並使用下表中顯示的屬性，建立虛擬網路 (傳統)。 如需程序的詳細步驟，請參閱[建立使用 Azure 入口網站的虛擬網路 (傳統)](../../../virtual-network/virtual-networks-create-vnet-classic-pportal.md)。      
+**步驟 1： 建立虛擬網路 hello**登入 hello Azure 入口網站並建立虛擬網路 （傳統） 與 hello 屬性 hello 下表所示。 請參閱[建立使用 hello Azure 入口網站的虛擬網路 （傳統）](../../../virtual-network/virtual-networks-create-vnet-classic-pportal.md) hello 程序的詳細步驟。      
 
 <table>
 <tr><th>VM 屬性名稱</th><th>值</th><th>備註</th></tr>
@@ -314,17 +314,17 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 <tr><td>CIDR </td><td>/16 (65531)</td><td></td></tr>
 </table>
 
-新增下列子網路：
+新增下列子網路的 hello:
 
 <table>
-<tr><th>Name</th><th>起始 IP</th><th>CIDR</th><th>備註</th></tr>
-<tr><td>Web</td><td>10.1.1.0</td><td>/24 (251)</td><td>Web 伺服陣列的子網路</td></tr>
-<tr><td>data</td><td>10.1.2.0</td><td>/24 (251)</td><td>資料庫節點的子網路</td></tr>
+<tr><th>名稱</th><th>起始 IP</th><th>CIDR</th><th>備註</th></tr>
+<tr><td>Web</td><td>10.1.1.0</td><td>/24 (251)</td><td>Hello web 伺服陣列的子網路</td></tr>
+<tr><td>data</td><td>10.1.2.0</td><td>/24 (251)</td><td>Hello 資料庫節點的子網路</td></tr>
 </table>
 
-透過網路安全性群組可保護「資料」與 Web 子網路，但這已超出本文的討論範圍。  
+資料和網頁的子網路可以保護透過網路安全性群組 hello 涵蓋範圍，其中超出本文的範圍。  
 
-**步驟 2：佈建虛擬網路** 使用先前建立的映像，我們將在雲端伺服器 “hk-c-svc-west” 中建立下列虛擬機器，並將它們繫結到個別的子網路，如下所示：
+**步驟 2： 佈建虛擬機器**使用先前建立的 hello 映像，我們將建立下列 hello 雲端中虛擬機器的 hello 伺服器 」 hk-c-svc-西 」 並將其繫結 toohello 各自的子網路如下所示：
 
 <table>
 <tr><th>機器名稱    </th><th>子網路    </th><th>IP 位址    </th><th>可用性集合</th><th>DC/機架</th><th>是否為種子？</th></tr>
@@ -340,23 +340,23 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 <tr><td>hk-w2-west-us    </td><td>Web    </td><td>10.1.1.5    </td><td>hk-w-aset-1    </td><td>                       </td><td>N/A</td></tr>
 </table>
 
-建立上述 VM 清單需要下列程序：
+建立的 Vm 清單上方的 hello 必須遵循的程序的 hello:
 
 1. 在特定區域中建立空的雲端服務
-2. 從先前擷取的映像建立 VM，並將它附加到先前建立的虛擬網路，然後對所有 VM 重複此步驟
-3. 將內部負載平衡器加入雲端服務，並將它附加到「資料」子網路
-4. 對先前建立的每個 VM，透過連線到先前建立之內部負載平衡器的負載平衡集，新增 thrift 流量的負載平衡端點
+2. 從 hello 先前擷取的映像建立 VM，並將它附加 toohello 先前; 建立的虛擬網路重複此步驟對於所有 hello Vm
+3. 加入內部負載平衡器 toohello 雲端服務，並將它附加 toohello 「 資料 」 的子網路
+4. 如先前所建立的每個 VM，新增 thrift 流量透過負載平衡集連接 toohello 先前建立內部負載平衡器的負載平衡端點
 
-您可以使用 Azure 傳統入口網站執行上述程序；使用 Windows 電腦 (如果您沒有 Windows 電腦的存取權，則使用 Azure 上的 VM)，使用下列 PowerShell 指令碼自動佈建所有 8 個 VM。
+可以使用 Azure 傳統入口網站，執行上述程序的 hello使用 Windows 電腦 （使用的 Azure，如果您沒有存取 tooa Windows 電腦上的 VM），自動使用下列 PowerShell 指令碼 tooprovision hello 所有 8 部 Vm。
 
 **清單 1：佈建虛擬機器的 PowerShell 指令碼**
 
         #Tested with Azure Powershell - November 2014
         #This powershell script deployes a number of VMs from an existing image inside an Azure region
-        #Import your Azure subscription into the current Powershell session before proceeding
-        #The process: 1. create Azure Storage account, 2. create virtual network, 3.create the VM template, 2. crate a list of VMs from the template
+        #Import your Azure subscription into hello current Powershell session before proceeding
+        #hello process: 1. create Azure Storage account, 2. create virtual network, 3.create hello VM template, 2. crate a list of VMs from hello template
 
-        #fundamental variables - change these to reflect your subscription
+        #fundamental variables - change these tooreflect your subscription
         $country="us"; $region="west"; $vnetName = "your_vnet_name";$storageAccount="your_storage_account"
         $numVMs=8;$prefix = "hk-cass";$ilbIP="your_ilb_ip"
         $subscriptionName = "Azure_subscription_name";
@@ -380,8 +380,8 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
         New-AzureService -ServiceName $serviceName -Label "hkcass$region" -Location $azureRegion
         Write-Host "Created $serviceName"
 
-        $VMList= @()   # stores the list of azure vm configuration objects
-        #create the list of VMs
+        $VMList= @()   # stores hello list of azure vm configuration objects
+        #create hello list of VMs
         foreach($vmName in $vmNames)
         {
            $VMList += New-AzureVMConfig -Name $vmName -InstanceSize ExtraSmall -ImageName $imageName |
@@ -394,7 +394,7 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
         #Create internal load balancer
         Add-AzureInternalLoadBalancer -ServiceName $serviceName -InternalLoadBalancerName $ilbName -SubnetName "data" -StaticVNetIPAddress "$ilbIP"
         Write-Host "Created $ilbName"
-        #Add add the thrift endpoint to the internal load balancer for all the VMs
+        #Add add hello thrift endpoint toohello internal load balancer for all hello VMs
         foreach($vmName in $vmNames)
         {
             Get-AzureVM -ServiceName $serviceName -Name $vmName |
@@ -406,22 +406,22 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 
 **步驟 3：在每個 VM 上設定 Cassandra**
 
-登入 VM 並執行下列項目：
+登入 hello VM，並執行下列 hello:
 
-* 編輯 $CASS_HOME/conf/cassandra-rackdc.properties 指定資料中心和機架內容：
+* 編輯 $CASS_HOME/conf/cassandra-rackdc.properties toospecify hello 資料中心和機架屬性：
   
        dc =EASTUS, rack =rack1
-* 編輯 cassandra.yaml 設定種子節點，如下所示：
+* 編輯 cassandra.yaml tooconfigure 種子節點，如下所示：
   
        Seeds: "10.1.2.4,10.1.2.6,10.1.2.8,10.1.2.10"
 
-**步驟 4：啟動 VM，然後測試叢集**
+**步驟 4： 啟動 hello Vm，然後測試 hello 叢集**
 
-登入其中一個節點 (例如 hk-c1-west-us)，然後執行下列命令查看叢集的狀態：
+登入的其中一個 hello 節點 （例如 hk-c1-西-我們） 並執行的 hello 遵循 hello 叢集命令 toosee hello 狀態：
 
        nodetool –h 10.1.2.4 –p 7199 status
 
-您應該會看到類似下面 8 節點叢集的畫面：
+您應該會看到 hello 顯示類似 toohello 其中一個下的 8 個節點叢集：
 
 <table>
 <tr><th>狀態</th><th>位址    </th><th>載入    </th><th>權杖    </th><th>擁有 </th><th>主機識別碼    </th><th>機架</th></tr>
@@ -435,19 +435,19 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 <tr><th>UN    </td><td>10.1.2.11     </td><td>55.29 KB    </td><td>256    </td><td>68.8%    </td><td>Guid (已移除)</td><td>rack4</td></tr>
 </table>
 
-## <a name="test-the-single-region-cluster"></a>測試單一區域叢集
-使用下列步驟測試叢集：
+## <a name="test-hello-single-region-cluster"></a>測試 hello 單一區域叢集
+使用下列步驟 tootest hello 叢集 hello:
 
-1. 使用 Powershell 命令 Get-AzureInternalLoadbalancer Cmdlet 取得內部負載平衡器的 IP 位址 (例如 10.1.2.101)。 命令的語法如下所示：Get-AzureLoadbalancer –ServiceName "hk-c-svc-west-us” [顯示內部負載平衡器以及其 IP 位址的詳細資訊]
-2. 使用 Putty 或 ssh 登入 Web 伺服陣列 VM (例如 hk-w1-west-us)
+1. 使用 hello Powershell 命令 Get-azureinternalloadbalancer commandlet，（例如取得 hello hello 內部負載平衡器的 IP 位址 10.1.2.101)。 hello hello 命令語法如下所示： Get AzureLoadbalancer-ServiceName"hk-c-svc-西-我們"[顯示 hello hello 內部負載平衡器，以及其 IP 位址的詳細資料]
+2. 登入 hello web 伺服陣列 (例如 hk-w1-西-us) 的 VM 使用 Putty 或 ssh
 3. 執行 $CASS_HOME/bin/cqlsh 10.1.2.101 9160
-4. 使用下列 CQL 命令來確認叢集是否正常運作：
+4. 使用下列 CQL 命令 tooverify 如果 hello 叢集正在運作的 hello:
    
      CREATE KEYSPACE customers_ks WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 3 };   USE customers_ks;   CREATE TABLE Customers(customer_id int PRIMARY KEY, firstname text, lastname text);   INSERT INTO Customers(customer_id, firstname, lastname) VALUES(1, 'John', 'Doe');   INSERT INTO Customers(customer_id, firstname, lastname) VALUES (2, 'Jane', 'Doe');
    
      SELECT * FROM Customers;
 
-您應該會看到如下顯示：
+您應該會看到類似下面其中一個 hello 顯示：
 
 <table>
   <tr><th> customer_id </th><th> firstname </th><th> lastname </th></tr>
@@ -455,13 +455,13 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
   <tr><td> 2 </td><td> Jane </td><td> Doe </td></tr>
 </table>
 
-請注意，在步驟 4 中建立的關鍵值空間 (keyspace) 使用 replication_factor 為 3 的 SimpleStrategy。 如果是單一資料中心部署，建議使用 SimpleStrategy，如果是多重資料中心部署，則建議使用 NetworkTopologyStrategy。 replication_factor 為 3 將針對節點失敗提供容錯。
+請注意在步驟 4 中建立該 hello keyspace SimpleStrategy 使用 replication_factor 為 3。 如果是單一資料中心部署，建議使用 SimpleStrategy，如果是多重資料中心部署，則建議使用 NetworkTopologyStrategy。 replication_factor 為 3 將針對節點失敗提供容錯。
 
 ## <a id="tworegion"> </a>多區域部署程序
-我們將運用已經完成的單一區域部署，然後重複相同程序安裝第二個區域。 單一和多重區域部署之間的主要差異在於區域間通訊的 VPN 通道設定。我們將從網路安裝開始、佈建 VM 以及設定 Cassandra。
+會利用 hello 單一區域部署已完成，並重複相同的處理序的 hello 安裝 hello 第二個區域。 hello hello 單一和多個區域部署之間的主要差異是區域間通訊; hello VPN 通道設定即將 hello 網路安裝的開頭、 hello Vm 佈建及設定 Cassandra。
 
-### <a name="step-1-create-the-virtual-network-at-the-2nd-region"></a>步驟 1：在第 2 個區域建立虛擬網路
-登入 Azure 傳統入口網站，並使用表格中所示的屬性來建立虛擬網路。 如需此程序的詳細步驟，請參閱 [在 Azure 傳統入口網站中設定純雲端虛擬網路](../../../virtual-network/virtual-networks-create-vnet-classic-pportal.md) 。      
+### <a name="step-1-create-hello-virtual-network-at-hello-2nd-region"></a>步驟 1： 建立 hello 虛擬網路在 hello 第 2 個區域
+登入 hello Azure 傳統入口網站，並建立具有 hello 屬性顯示 hello 資料表中的虛擬網路。 請參閱[hello Azure 傳統入口網站中設定純雲端虛擬網路](../../../virtual-network/virtual-networks-create-vnet-classic-pportal.md)hello 程序的詳細步驟。      
 
 <table>
 <tr><th>屬性名稱    </th><th>值    </th><th>備註</th></tr>
@@ -475,27 +475,27 @@ Cassandra 的資料中心感知複寫和上述的一致性模型有助於立即�
 <tr><td>CIDR    </td><td>/16 (65531)</td><td></td></tr>
 </table>
 
-新增下列子網路：
+新增下列子網路的 hello:
 
 <table>
-<tr><th>Name    </th><th>起始 IP    </th><th>CIDR    </th><th>備註</th></tr>
-<tr><td>Web    </td><td>10.2.1.0    </td><td>/24 (251)    </td><td>Web 伺服陣列的子網路</td></tr>
-<tr><td>data    </td><td>10.2.2.0    </td><td>/24 (251)    </td><td>資料庫節點的子網路</td></tr>
+<tr><th>名稱    </th><th>起始 IP    </th><th>CIDR    </th><th>備註</th></tr>
+<tr><td>Web    </td><td>10.2.1.0    </td><td>/24 (251)    </td><td>Hello web 伺服陣列的子網路</td></tr>
+<tr><td>data    </td><td>10.2.2.0    </td><td>/24 (251)    </td><td>Hello 資料庫節點的子網路</td></tr>
 </table>
 
 
 ### <a name="step-2-create-local-networks"></a>步驟 2：建立區域網路
-Azure 虛擬網路功能中的「區域網路」是一個 Proxy 位址空間，對應至包括私人雲端或其他 Azure 區域的遠端站台。 此 Proxy 位址空間繫結至一個遠端閘道，將網路路由到正確的網路功能目的地。 請參閱 [設定 VNet 對 VNet 連線](../../../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md) ，以取得建立 VNET 對 VNET 連線的指示。
+Azure 虛擬網路中的區域網路是對應 tooa 遠端站台，包括私人雲端或另一個 Azure 區域的 proxy 位址空間。 這個 proxy 的位址空間是繫結的 tooa 遠端閘道的路由網路 toohello 直接網路目的地。 請參閱[設定 VNet tooVNet 連接](../../../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md)hello 需建立 VNET 對 VNET 連線。
 
-根據下列詳細資料建立兩個區域網路：
+建立 hello 下列詳細資料每兩個本機網路：
 
 | 網路名稱 | VPN 閘道位址 | 位址空間 | 備註 |
 | --- | --- | --- | --- |
-| hk-lnet-map-to-east-us |23.1.1.1 |10.2.0.0/16 |建立區域網路時，提供預留位置閘道位址。 建立閘道之後，就會填入真實的閘道位址。 請確定位址空間完全符合相對的遠端 VNET。在此案例中是在美國東部地區建立的 VNET。 |
-| hk-lnet-map-to-west-us |23.2.2.2 |10.1.0.0/16 |建立區域網路時，提供預留位置閘道位址。 建立閘道之後，就會填入真實的閘道位址。 請確定位址空間完全符合相對的遠端 VNET。在此案例中是在美國西部地區建立的 VNET。 |
+| hk-lnet-map-to-east-us |23.1.1.1 |10.2.0.0/16 |建立 hello 區域網路時提供預留位置閘道位址。 建立 hello 閘道之後，會自動填入 hello 真實的閘道位址。 請確定 hello 位址空間完全相符 hello 個別遠端 VNET。在此情況下 hello VNET 中建立 hello 美東地區。 |
+| hk-lnet-map-to-west-us |23.2.2.2 |10.1.0.0/16 |建立 hello 區域網路時提供預留位置閘道位址。 建立 hello 閘道之後，會自動填入 hello 真實的閘道位址。 請確定 hello 位址空間完全相符 hello 個別遠端 VNET。在此情況下 hello VNET 中建立 hello 美國西部地區。 |
 
-### <a name="step-3-map-local-network-to-the-respective-vnets"></a>步驟 3：將「區域」網路對應至個別 VNET
-從 Azure 傳統入口網站中，選取每個 VNet、按一下 [設定]，勾選 [連線到區域網路]，並根據下列詳細資料選取區域網路：
+### <a name="step-3-map-local-network-toohello-respective-vnets"></a>步驟 3： 對應網路 「 區域 」 toohello 個別 Vnet
+從 hello Azure 傳統入口網站，選取每個 vnet、 按一下 [設定]、 檢查 「 連線 toohello 本機網路 」，然後選取 hello 區域網路，每個 hello 下列詳細資料：
 
 | 虛擬網路 | 區域網路 |
 | --- | --- |
@@ -503,10 +503,10 @@ Azure 虛擬網路功能中的「區域網路」是一個 Proxy 位址空間，�
 | hk-vnet-east-us |hk-lnet-map-to-west-us |
 
 ### <a name="step-4-create-gateways-on-vnet1-and-vnet2"></a>步驟 4：在 VNET1 和 VNET2 上建立閘道
-從兩個虛擬網路的儀表板，按一下 [建立閘道] 可觸發 VPN 閘道的佈建程序。 請稍候幾分鐘，每個虛擬網路的儀表板應該會顯示實際的閘道位址。
+從這兩個 hello 虛擬網路的 hello 儀表板，按一下 建立閘道，其會觸發 hello VPN 閘道的佈建程序。 幾分鐘的時間 hello 儀表板的每個虛擬網路之後應該會顯示 hello 實際的閘道位址。
 
-### <a name="step-5-update-local-networks-with-the-respective-gateway-addresses"></a>步驟 5：更新「區域」網路的個別「閘道」位址
-編輯兩個區域網路，使用剛才佈建的閘道實際 IP 位址取代預留位置閘道 IP 位址。 使用下列對應：
+### <a name="step-5-update-local-networks-with-hello-respective-gateway-addresses"></a>步驟 5: Hello 個別 「 閘道 」 位址更新 「 本機 」 網路
+編輯兩個 hello 區域網路 tooreplace hello 預留位置閘道 IP 位址與 hello 實際 IP 位址的 hello 只佈建閘道。 使用下列對應的 hello:
 
 <table>
 <tr><th>區域網路    </th><th>虛擬網路閘道</th></tr>
@@ -514,14 +514,14 @@ Azure 虛擬網路功能中的「區域網路」是一個 Proxy 位址空間，�
 <tr><td>hk-lnet-map-to-west-us </td><td>hk-vnet-east-us 的閘道</td></tr>
 </table>
 
-### <a name="step-6-update-the-shared-key"></a>步驟 6：更新共用金鑰
-使用下列 Powershell 指令碼來更新每個 VPN 閘道的 IPSec 金鑰 [針對這兩個閘道使用目的金鑰]：Set-AzureVNetGatewayKey -VNetName hk-vnet-east-us -LocalNetworkSiteName hk-lnet-map-to-west-us -SharedKey D9E76BKK Set-AzureVNetGatewayKey -VNetName hk-vnet-west-us -LocalNetworkSiteName hk-lnet-map-to-east-us -SharedKey D9E76BKK
+### <a name="step-6-update-hello-shared-key"></a>步驟 6： 更新 hello 共用的金鑰
+使用下列 Powershell 指令碼 tooupdate hello IPSec 金鑰的每個 VPN 閘道 [使用 hello 起見索引鍵的兩個 hello 閘道] 的 hello： 集 AzureVNetGatewayKey VNetName hk-vnet-東部-我們-LocalNetworkSiteName hk-lnet-map-to-west-us-SharedKey D9E76BKK設定 AzureVNetGatewayKey-VNetName hk-vnet-西-我們-LocalNetworkSiteName hk-lnet-map-to-east-us-SharedKey D9E76BKK
 
-### <a name="step-7-establish-the-vnet-to-vnet-connection"></a>步驟 7：建立 VNET 對 VNET 連線
-從 Azure 傳統入口網站中，使用兩個虛擬網路的 [儀表板] 功能表建立閘道對閘道的連接。 使用底部工具列的 [連線] 功能表項目。 請稍候幾分鐘，儀表板應該會以圖形方式顯示連線詳細資料。
+### <a name="step-7-establish-hello-vnet-to-vnet-connection"></a>步驟 7： 建立 hello VNET 對 VNET 連線
+Hello Azure 傳統入口網站，從使用這兩個 hello 虛擬網路 tooestablish 閘道對閘道連線的 hello 」 儀表板 功能表。 使用 hello 底部工具列中的 hello [連線] 功能表項目。 幾分鐘後 hello 儀表板應以圖形方式顯示 hello 連接詳細資料。
 
-### <a name="step-8-create-the-virtual-machines-in-region-2"></a>步驟 8：在第 2 個區域中建立虛擬機器
-依照在第 1 個區域中部署所述的下列相同步驟，建立 Ubuntu 映像，或者將映像 VHD 檔案複製到位於第 2 個區域的 Azure 儲存體帳戶，然後建立映像。 使用此映像，並在新的雲端服務 hk-c-svc-east-us 建立下列虛擬機器清單：
+### <a name="step-8-create-hello-virtual-machines-in-region-2"></a>步驟 8： 在區域 #2 中建立 hello 虛擬機器
+建立 hello Ubuntu 映像，依據相同的步驟，或複製 hello 映像 VHD 檔案 toohello Azure 儲存體帳戶位於區域 #2 中的下列 hello 區域 #1 部署中所述，建立 hello 映像。 使用此映像，並建立下列清單中的虛擬機器到新的雲端服務 hk-c-svc-東部-我們 hello:
 
 | 機器名稱 | 子網路 | IP 位址 | 可用性集合 | DC/機架 | 是否為種子？ |
 | --- | --- | --- | --- | --- | --- |
@@ -535,62 +535,62 @@ Azure 虛擬網路功能中的「區域網路」是一個 Proxy 位址空間，�
 | hk-w1-east-us |Web |10.2.1.4 |hk-w-aset-1 |N/A |N/A |
 | hk-w2-east-us |Web |10.2.1.5 |hk-w-aset-1 |N/A |N/A |
 
-依照與第 1 個區域相同的指示，但是使用 10.2.xxx.xxx 位址空間。
+後續 hello 相同為區域 #1 的指示，但使用 10.2.xxx.xxx 位址空間。
 
 ### <a name="step-9-configure-cassandra-on-each-vm"></a>步驟 9：在每個 VM 上設定 Cassandra
-登入 VM 並執行下列項目：
+登入 hello VM，並執行下列 hello:
 
-1. 編輯 $CASS_HOME/conf/cassandra-rackdc.properties，以下列格式指定資料中心和機架內容：dc =EASTUS rack =rack1
-2. 編輯 cassandra.yaml 設定種子節點：種子："10.1.2.4,10.1.2.6,10.1.2.8,10.1.2.10,10.2.2.4,10.2.2.6,10.2.2.8,10.2.2.10"
+1. 編輯 $CASS_HOME/conf/cassandra-rackdc.properties toospecify hello 資料中心和機架屬性 hello 格式： dc = EASTUS 機架 = rack1
+2. 編輯 cassandra.yaml tooconfigure 種子節點： 之種子的位置:"10.1.2.4,10.1.2.6,10.1.2.8,10.1.2.10,10.2.2.4,10.2.2.6,10.2.2.8,10.2.2.10"
 
 ### <a name="step-10-start-cassandra"></a>步驟 10：啟動 Cassandra
-登入每個 VM，執行下列命令在背景啟動 Cassandra：$CASS_HOME/bin/cassandra
+登入每個 VM 並啟動 Cassandra hello 背景中執行下列命令的 hello: $CASS_HOME/bin/cassandra
 
-## <a name="test-the-multi-region-cluster"></a>測試多重區域叢集
-現在 Cassandra 已部署 16 個節點，每個 Azure 區域中有 8 個節點。 這些節點如果有共通的叢集名稱和種子節點設定，就是位於相同的叢集中。 使用下列程序測試叢集：
+## <a name="test-hello-multi-region-cluster"></a>測試 hello 多區域叢集
+現在 Cassandra 已部署的 too16 節點含有 8 個節點中每個 Azure 區域。 這些節點位於相同叢集必定 hello 一般的叢集名稱和 hello 種子節點組態的 hello。 使用下列程序 tootest hello 叢集 hello:
 
-### <a name="step-1-get-the-internal-load-balancer-ip-for-both-the-regions-using-powershell"></a>步驟 1：使用 PowerShell 取得這兩個區域的內部負載平衡器 IP
+### <a name="step-1-get-hello-internal-load-balancer-ip-for-both-hello-regions-using-powershell"></a>步驟 1： 取得 hello 內部負載平衡器 IP 這兩個 hello 地區使用 PowerShell
 * Get-AzureInternalLoadbalancer -ServiceName "hk-c-svc-west-us"
 * Get-AzureInternalLoadbalancer -ServiceName "hk-c-svc-east-us"  
   
-    請注意顯示的 IP 位址 (例如西部 - 10.1.2.101，東部 - 10.2.2.101)。
+    請注意 hello IP 位址 (例如西-10.1.2.101，東部-10.2.2.101) 顯示。
 
-### <a name="step-2-execute-the-following-in-the-west-region-after-logging-into-hk-w1-west-us"></a>步驟 2：登入 hk-w1-west-us 後，在西部區域執行下列命令
+### <a name="step-2-execute-hello-following-in-hello-west-region-after-logging-into-hk-w1-west-us"></a>步驟 2: Hello 西區域中執行 hello 下列登入 hk-w1-西-我們之後
 1. 執行 $CASS_HOME/bin/cqlsh 10.1.2.101 9160
-2. 執行下列 CQL 命令：
+2. 執行下列 CQL 命令 hello:
    
      CREATE KEYSPACE customers_ks   WITH REPLICATION = { 'class' : 'NetworkToplogyStrategy', 'WESTUS' : 3, 'EASTUS' : 3};   USE customers_ks;   CREATE TABLE Customers(customer_id int PRIMARY KEY, firstname text, lastname text);   INSERT INTO Customers(customer_id, firstname, lastname) VALUES(1, 'John', 'Doe');   INSERT INTO Customers(customer_id, firstname, lastname) VALUES (2, 'Jane', 'Doe');   SELECT * FROM Customers;
 
-您應該會看到如下顯示：
+您應該會看到類似下面其中一個 hello 顯示：
 
 | customer_id | firstname | lastname |
 | --- | --- | --- |
 | 1 |John |Doe |
 | 2 |Jane |Doe |
 
-### <a name="step-3-execute-the-following-in-the-east-region-after-logging-into-hk-w1-east-us"></a>步驟 3：登入 hk-w1-east-us 後，在東部區域執行下列命令
+### <a name="step-3-execute-hello-following-in-hello-east-region-after-logging-into-hk-w1-east-us"></a>步驟 3： 執行之後登入 hk-w1-東部-我們 hello 東部地區 hello 下列：
 1. 執行 $CASS_HOME/bin/cqlsh 10.2.2.101 9160
-2. 執行下列 CQL 命令：
+2. 執行下列 CQL 命令 hello:
    
      USE customers_ks;   CREATE TABLE Customers(customer_id int PRIMARY KEY, firstname text, lastname text);   INSERT INTO Customers(customer_id, firstname, lastname) VALUES(1, 'John', 'Doe');   INSERT INTO Customers(customer_id, firstname, lastname) VALUES (2, 'Jane', 'Doe');   SELECT * FROM Customers;
 
-您應該會看到針對西部區域執行時相同的顯示畫面：
+您應該會看到相同顯示 hello 西區域中所看到的 hello:
 
 | customer_id | firstname | lastname |
 | --- | --- | --- |
 | 1 |John |Doe |
 | 2 |Jane |Doe |
 
-執行一些插入動作，並且查看複寫到叢集 west-us 部分的那些插入項目。
+執行幾個其他的插入，並查看所取得複寫的 toowest-我們 hello 叢集的一部分。
 
 ## <a name="test-cassandra-cluster-from-nodejs"></a>透過 Node.js 測試 Cassandra 叢集
-使用先前在 "Web" 層中建立的其中一個 Linux VM，我們將執行簡單的 Node.js 指令碼來讀取先前插入的資料
+先前使用其中一種 hello Linux Vm 建立 hello"web"層中，我們將會執行簡單的 Node.js 指令碼 tooread hello 之前插入資料
 
 **步驟 1：安裝 Node.js 和 Cassandra 用戶端**
 
 1. 安裝 Node.js 和 npm
 2. 使用 npm 安裝節點套件"cassandra-client"
-3. 在殼層提示字元中執行下列指令碼，顯示擷取資料的 json 字串：
+3. 執行下列指令碼在 hello 殼層提示字元會顯示 hello 的 hello 擷取資料的 json 字串 hello:
    
         var pooledCon = require('cassandra-client').PooledConnection;
         var ksName = "custsupport_ks";
@@ -606,7 +606,7 @@ Azure 虛擬網路功能中的「區域網路」是一個 Proxy 位址空間，�
            var con = new pooledCon(sysConOptions);
            con.execute(cql,[],function(err) {
            if (err) {
-             console.log("Failed to create Keyspace: " + ksName);
+             console.log("Failed toocreate Keyspace: " + ksName);
              console.log(err);
            }
            else {
@@ -624,7 +624,7 @@ Azure 虛擬網路功能中的「區域網路」是一個 Proxy 位址空間，�
         var con =  new pooledCon(ksConOptions);
           con.execute(cql,params,function(err) {
               if (err) {
-                 console.log("Failed to create column family: " + params[0]);
+                 console.log("Failed toocreate column family: " + params[0]);
                  console.log(err);
               }
               else {
@@ -644,7 +644,7 @@ Azure 虛擬網路功能中的「區域網路」是一個 Proxy 位址空間，�
            updateCustomer(ksConOptions,params);
         }
    
-        //update will also insert the record if none exists
+        //update will also insert hello record if none exists
         function updateCustomer(ksConOptions,params)
         {
           var cql = 'UPDATE customers_cf SET custname=?,custaddress=? where custid=?';
@@ -656,7 +656,7 @@ Azure 虛擬網路功能中的「區域網路」是一個 Proxy 位址空間，�
           con.shutdown();
         }
    
-        //read the two rows inserted above
+        //read hello two rows inserted above
         function readCustomer(ksConOptions)
         {
           var cql = 'SELECT * FROM customers_cf WHERE custid IN (1,2)';
@@ -671,12 +671,12 @@ Azure 虛擬網路功能中的「區域網路」是一個 Proxy 位址空間，�
            con.shutdown();
         }
    
-        //exectue the code
+        //exectue hello code
         createKeyspace(createColumnFamily);
         readCustomer(ksConOptions)
 
 ## <a name="conclusion"></a>結論
-Microsoft Azure 是一個富彈性的平台，可以執行 Microsoft 與開放原始碼軟體，如本練習中所示。 透過將叢集節點分散在多個容錯網域，可以將高度可用的 Cassandra 叢集部署在單一資料中心。 您也可以跨越多個地理位置遙遠的 Azure 區域部署 Cassandra 叢集做為災害防禦系統。 Azure 搭配 Cassandra 可建構現今的網際網路等級服務所需，且具有高擴充性、高可用性以及可進行災害復原的雲端服務。  
+Microsoft Azure 是彈性的平台，可讓 hello Microsoft 以及開放原始碼軟體執行，此練習中所示。 高可用性的 Cassandra 叢集可以部署在單一資料中心透過 hello hello 叢集節點散佈跨多個容錯網域中。 您也可以跨越多個地理位置遙遠的 Azure 區域部署 Cassandra 叢集做為災害防禦系統。 Azure 和 Cassandra 一起啟用 hello 建構可高度擴充、 高可用性和災害復原的雲端服務所需的今天的網際網路規模服務。  
 
 ## <a name="references"></a>參考
 * [http://cassandra.apache.org](http://cassandra.apache.org)

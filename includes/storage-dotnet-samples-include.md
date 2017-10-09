@@ -1,6 +1,6 @@
 ## <a name="net-sample-code-repositories"></a>.NET 範例程式碼儲存機制
 
-以下是 Azure 儲存體 .NET 用戶端程式庫所有範例儲存機制的清單。
+以下是 hello Azure 儲存體.NET 用戶端程式庫的所有我們範例儲存機制的清單。
 
 * [Azure Blob Storage Photo Gallery Web Application (Azure Blob 儲存體影像中心 Web 應用程式)](https://azure.microsoft.com/resources/samples/storage-blobs-dotnet-webapp/)
 * [適用於 .NET 的 Azure Blob 儲存體範例](https://azure.microsoft.com/resources/samples/storage-blob-dotnet-getting-started/)

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Site Recovery 將 VMM 雲端中的 Hyper-V VM 複寫至 Azure 時設定網路對應 | Microsoft Docs"
-description: "說明使用 Azure Site Recovery 將 VMM 雲端中的 Hyper-V VM 複寫至 Azure 時，如何設定網路對應"
+title: "aaaConfigure 網路對應，複寫在 VMM 中的 HYPER-V Vm 雲端與 Azure Site Recovery tooAzure |Microsoft 文件"
+description: "描述如何在 VMM 中的 HYPER-V Vm 進行複寫時，tooconfigure 網路對應雲端 tooAzure 與 Azure Site Recovery"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,47 +14,47 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/23/2017
 ms.author: raynew
-ms.openlocfilehash: ed6f73d8baea5af0d2aa5f0ae885f305911ccc82
-ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
+ms.openlocfilehash: 081a9fdb0ffa4114099e9bcb9c1b1e43ad26ecbb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="step-9-configure-network-mapping-for-hyper-v-replication-with-vmm-to-azure"></a>步驟 9：針對複寫至 Azure 的 Hyper-V 複寫作業 (含 VMM) 設定網路對應
+# <a name="step-9-configure-network-mapping-for-hyper-v-replication-with-vmm-tooazure"></a>步驟 9： 設定 HYPER-V 複寫 （VMM) tooAzure 網路對應
 
-設定[來源和目標的複寫設定](vmm-to-azure-walkthrough-source-target.md)後，使用本文來設定網路對應，以對應內部部署 VMM VM 網路和 Azure 網路。
+設定 hello 之後[來源和目標的複寫設定](vmm-to-azure-walkthrough-source-target.md)，使用此發行項 tooconfigure 網路對應 toomap 在內部部署 VMM VM 網路與 Azure 網路之間。
 
-請在本文下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)上張貼意見或問題。
+在本文中，或在 hello hello 下方張貼意見或疑問[Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
 
 ## <a name="before-you-start"></a>開始之前
 
 - 深入了解[網路對應](vmm-to-azure-walkthrough-network.md#network-mapping-for-replication-to-azure)。
 - [準備 VMM 以進行網路對應](vmm-to-azure-walkthrough-network.md#prepare-vmm-for-network-mapping)。 
-- 確認 VMM 伺服器上的虛擬機器已連接到 VM 網路，以及您已建立至少一個 Azure 虛擬網路。 多個 VM 網路可對應至單一 Azure 網路。
+- 請確認 hello VMM 伺服器上的虛擬機器連線的 tooa VM 網路，而且您已建立至少一個 Azure 虛擬網路。 多個 VM 網路可以是對應的 tooa 單一 Azure 網路。
 
 ## <a name="configure-mapping"></a>設定對應
 
 設定對應，如下所示︰
 
-1. 在 [Site Recovery 基礎結構]  >  [網路對應]  >  [網路對應]中，按一下 [+網路對應] 圖示。
+1. 在**Site Recovery 基礎結構** > **網路對應** > **網路對應**，按一下 hello **+ 的網路對應**圖示。
 
     ![網路對應](./media/vmm-to-azure-walkthrough-network-mapping/network-mapping1.png)
-2. 在 [新增網路對應] 上選取來源 VMM 伺服器，並選 [Azure] 做為目標。
-3. 在容錯移轉後確認訂用帳戶和部署模型。
-4. 在 [來源網路] 中，從與 VMM 伺服器相關聯的清單中，選取您要對應的來源內部部署 VM 網路。
-5. 在 [目標網路] 中，選取複本 Azure VM 建立後所在的 Azure 網路。 然後按一下 [確定] 。
+2. 在**加入網路對應**，選取 hello 來源 VMM 伺服器，和**Azure**為 hello 目標。
+3. 在容錯移轉之後，請確認 hello 訂用帳戶和 hello 部署模型。
+4. 在**來源網路**，選取您想要從 hello VMM 伺服器相關聯的 hello 清單 toomap hello 來源內部部署 VM 網路。
+5. 在**目標網路**，選取 hello 複本 Azure 的 Vm 會位於位置在建立時即 Azure 網路。 然後按一下 [確定] 。
 
     ![網路對應](./media/vmm-to-azure-walkthrough-network-mapping/network-mapping2.png)
 
 以下是網路對應開始時發生的事情︰
 
-* 開始對應時，來源 VM 網路上的現有 VM 會連接到目標網路。 連接到來源 VM 網路的新 VM 會在發生複寫時連接到對應的 Azure 網路。
-* 如果您修改現有的網路對應，則複本虛擬機器會使用新設定進行連線。
-* 如果目標網路具有多個子網路，且其中一個子網路的名稱和來源虛擬機器所在之子網路名稱相同，複本虛擬機器會在容錯移轉之後連線到該目標子網路。
-* 如果沒有目標子網路具有相符的名稱，虛擬機器會連線到網路中的第一個子網路。
+* Hello 來源 VM 網路上的現有 Vm 時開始對應連接的 toohello 目標網路。 新的 Vm 連接的 toohello 來源 VM 網路連線發生複寫時，toohello 對應 Azure 網路。
+* 如果您修改現有的網路對應，複本虛擬機器會連接使用 hello 新設定。
+* 如果 hello 目標網路有多個子網路，而且其中一個子網路具有 hello 相同的 hello 來源虛擬機器上的子網路的名稱，則 hello 複本虛擬機器在容錯移轉之後連接 toothat 目標子網路。
+* 如果不沒有具有相符名稱的任何目標子網路，hello 虛擬機器所連接 toohello hello 網路中的第一個子網路。
 
 
 
 ## <a name="next-steps"></a>後續步驟
 
-移至[步驟 10：建立複寫原則](vmm-to-azure-walkthrough-replication.md)
+跳過[步驟 10： 建立複寫原則](vmm-to-azure-walkthrough-replication.md)

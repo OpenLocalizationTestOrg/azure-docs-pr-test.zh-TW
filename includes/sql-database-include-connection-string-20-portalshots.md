@@ -8,22 +8,22 @@ Latest Freshness check:  2015-09-02 , GeneMi.
 -->
 
 
-### <a name="obtain-the-connection-string-from-the-azure-portal"></a>從 Azure 入口網站取得連接字串
-使用 [Azure 入口網站](https://portal.azure.com/) 來取得用戶端程式與 Azure SQL Database 進行互動所需的連接字串： 
+### <a name="obtain-hello-connection-string-from-hello-azure-portal"></a>從 hello Azure 入口網站取得 hello 連接字串
+使用 hello [Azure 入口網站](https://portal.azure.com/)tooobtain hello 連接字串需要您使用 Azure SQL Database 的用戶端程式 toointeract: 
 
 1. 按一下 [瀏覽] >  [SQL Database]。
-2. 在 [SQL 資料庫]  刀鋒視窗左上角附近的篩選文字方塊中輸入您的資料庫名稱。
-3. 按一下資料庫的資料列。
-4. 在刀鋒視窗顯示您的資料庫之後，為了閱讀方便您可以按一下標準最小化控制項來摺疊用於瀏覽和資料庫篩選的刀鋒視窗。 
+2. Hello 您資料庫的名稱在 hello 篩選文字方塊輸入 hello 左上角附近的 hello **SQL 資料庫**刀鋒視窗。
+3. 按一下您的資料庫 hello 資料列。
+4. Hello 刀鋒視窗中出現為您的資料庫之後，請針對視覺上的方便性，您可以按一下 hello 標準最小化您用來瀏覽和資料庫篩選控制項 toocollapse hello 刀鋒。 
    
-    ![篩選以隔離您的資料庫][10-FilterDatabase]
-5. 在您資料庫的刀鋒視窗上，按一下 [顯示資料庫連接字串] 。
-6. 如果您想要使用 ADO.NET 連線庫，請複製標示為 **ADO**的字串。 
+    ![篩選 tooisolate 您的資料庫][10-FilterDatabase]
+5. 在 hello 刀鋒視窗中為您的資料庫，按一下 **顯示資料庫的連接字串**。
+6. 如果您想 toouse hello ADO.NET 連線庫，複製 hello 字串標示為**ADO**。 
    
-    ![複製資料庫的 ADO 連接字串][20-CopyAdoConnectionString]
-7. 以其中一種格式，將連接字串資訊貼入您的用戶端程式碼中。
+    ![複製資料庫的 hello ADO 連接字串][20-CopyAdoConnectionString]
+7. 在一種格式或另一個，貼入您的用戶端程式碼中的 hello 連接字串資訊。
 
-如需詳細資訊，請參閱<br/>[連接字串與組態檔](http://msdn.microsoft.com/library/ms254494.aspx)。
+如需詳細資訊，請參閱：<br/>[連接字串與組態檔](http://msdn.microsoft.com/library/ms254494.aspx)。
 
 <!-- Image references. -->
 

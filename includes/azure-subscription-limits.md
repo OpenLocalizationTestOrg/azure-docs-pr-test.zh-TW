@@ -12,7 +12,7 @@
 | [同質群組](../articles/virtual-network/virtual-networks-migrate-to-regional-vnet.md)  |256 |256 |
 | 每一訂用帳戶的警示規則 |250 |250 |
 
-<sup>1</sup>雖然只使用部分核心，在計算核心限制時，仍會將超小型執行個體視為一個核心。
+<sup>1</sup>額外小型執行個體計數 hello 核心限制，即使使用部分的核心朝向一個核心。
 
-<sup>2</sup>這包括標準和進階儲存體帳戶。 如果您需要超過 200 個儲存體帳戶，請透過 [Azure 支援](https://azure.microsoft.com/support/faq/)提出要求。 Azure 儲存體團隊將會檢閱您的商務案例，而且可以核准多達 250 個儲存體帳戶。 
+<sup>2</sup>這包括標準和進階儲存體帳戶。 如果您需要超過 200 個儲存體帳戶，請透過 [Azure 支援](https://azure.microsoft.com/support/faq/)提出要求。 hello Azure 儲存體小組將檢閱您的商務案例，並可能核准 too250 儲存體帳戶。 
 

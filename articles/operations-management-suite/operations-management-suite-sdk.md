@@ -1,6 +1,6 @@
 ---
-title: Operations Management Suite (OMS) SDK | Microsoft Docs
-description: "本文列出可供存取 OMS 和 Azure 入口網站外部 OMS 服務的文件和其他可用的資源。  這包括從各種程式設計介面和 PowerShell 等指令碼引擎進行存取的 REST API"
+title: "aaaOperations Management Suite (OMS) SDK |Microsoft 文件"
+description: "本文列出 hello 文件和其他資源可供存取外部 hello OMS 的 OMS 服務和 Azure 入口網站。  這包括從各種程式設計介面和 PowerShell 等指令碼引擎進行存取的 REST API"
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/01/2017
 ms.author: bwren
-ms.openlocfilehash: 03e0f5b6fa26806083cd7852e123495c898bcf0c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 7144f10bba70a8f08cc97cec45b4b0a148892c90
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="operations-management-suite-oms-sdk"></a>Operations Management Suite (OMS) SDK
-[Operations Management Suite (OMS)](operations-management-suite-overview.md) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  本文列出可供存取 OMS 和 Azure 入口網站外部 OMS 服務的文件和其他可用的資源。  這包括從各種程式設計介面和 PowerShell 等指令碼引擎進行存取的 REST API。 
+[Operations Management Suite (OMS)](operations-management-suite-overview.md) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  本文列出 hello 文件和其他資源可供存取外部 hello OMS 的 OMS 服務和 Azure 入口網站。  這包括從各種程式設計介面和 PowerShell 等指令碼引擎進行存取的 REST API。 
 
 ## <a name="automation"></a>自動化
 * [Azure 自動化文件](http://azure.microsoft.com/documentation/services/automation)
@@ -33,7 +33,7 @@ ms.lasthandoff: 07/11/2017
 * [Azure 備份文件](http://azure.microsoft.com/documentation/services/backup)
 * [備份 PowerShell Cmdlet](https://msdn.microsoft.com/library/mt619253.aspx)
 * [備份 REST API](https://msdn.microsoft.com/library/azure/mt772375.aspx)
-* [使用 PowerShell 部署和管理 Windows Server/Windows 用戶端的 Azure 備份](../backup/backup-client-automation.md)
+* [部署和管理備份 tooAzure 使用 PowerShell 的 Windows 伺服器/Windows 用戶端](../backup/backup-client-automation.md)
 
 ## <a name="log-analytics"></a>Log Analytics
 * [Log Analytics 文件](http://azure.microsoft.com/documentation/services/log-analytics)
@@ -51,10 +51,10 @@ ms.lasthandoff: 07/11/2017
 ## <a name="site-recovery"></a>站台復原
 * [Site Recovery PowerShell Cmdlet](https://msdn.microsoft.com/library/mt637930.aspx)
 * [Site Recovery REST API](https://msdn.microsoft.com/library/azure/mt750497.aspx)
-* [將 Azure 自動化 Runbook 新增至復原計劃](../site-recovery/site-recovery-runbook-automation.md)
+* [新增 Azure 自動化 runbook toorecovery 計劃](../site-recovery/site-recovery-runbook-automation.md)
 * [使用 PowerShell 和 Azure Resource Manager 在內部部署 Hyper-V 虛擬機器與 Azure 之間複寫](../site-recovery/site-recovery-deploy-with-powershell-resource-manager.md)
 
 ## <a name="next-steps"></a>後續步驟
-* 閱讀關於[與 OMS 服務進行整合](operations-management-suite-integration.md)的各種選項。
+* 了解 hello 不同的選項[與 OMS 服務進行整合](operations-management-suite-integration.md)。
 * 在 [OMS 中建立自訂解決方案](operations-management-suite-solutions-creating.md)。
 

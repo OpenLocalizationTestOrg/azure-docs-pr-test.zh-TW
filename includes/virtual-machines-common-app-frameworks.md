@@ -1,9 +1,9 @@
 
 
 ## <a name="applications"></a>應用程式
-下表列出一些最受歡迎的應用程式架構範本。 選擇範本，以查看詳細資訊、在 GitHub 中檢視範本，或直接透過 Azure 入口網站部署。
+hello 下表列出某些 hello 最受歡迎的應用程式架構範本。 選擇範本 toosee 的詳細資訊，檢視在 GitHub 中的 hello 範本，或直接透過 hello Azure 入口網站部署。
 
-| 應用程式 | 詳細資訊 | 檢視範本 | 立刻部署 |
+| 應用程式 | 詳細資訊 | 檢視 hello 範本 | 立刻部署 |
 |:--- |:---:|:---:|:---:|
 | Active Directory |[資源庫](https://azure.microsoft.com/documentation/templates/active-directory-new-domain-ha-2-dc/) |[GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/active-directory-new-domain-ha-2-dc) |<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Factive-directory-new-domain-ha-2-dc%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a> |
 | Apache |[資源庫](https://azure.microsoft.com/documentation/templates/apache2-on-ubuntu-vm/) |[GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/apache2-on-ubuntu-vm) |<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fapache2-on-ubuntu-vm%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a> |
@@ -23,13 +23,13 @@
 | WordPress |[資源庫](https://azure.microsoft.com/documentation/templates/wordpress-single-vm-ubuntu/) |[GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/wordpress-single-vm-ubuntu) |<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fwordpress-single-vm-ubuntu%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a> |
 | ZooKeeper |[資源庫](https://azure.microsoft.com/documentation/templates/zookeeper-cluster-ubuntu-vm/) |[GitHub](https://github.com/Azure/azure-quickstart-templates/tree/master/zookeeper-cluster-ubuntu-vm) |<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fzookeeper-cluster-ubuntu-vm%2Fazuredeploy.json" target="_blank"><img src="http://azuredeploy.net/deploybutton.png"/></a> |
 
-除了這些範本之外，還可以搜尋 [資源庫範本](https://azure.microsoft.com/documentation/templates/)。
+此外 toothese 範本，您可以搜尋 hello[組件庫範本](https://azure.microsoft.com/documentation/templates/)。
 
 
 ## <a name="azure-cli-20"></a>Azure CLI 2.0
-這些步驟需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
+這些步驟需要 hello Azure CLI 版本 2.0.4 或更新版本。 執行`az --version`toofind hello 版本。 如果您需要 tooupgrade，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
 
-首先，使用 [az group create](/cli/azure/group#create) 建立資源群組。 然後使用 [az group deployment create](/cli/azure/group/deployment#create) 從範本建立部署。 使用 `--template-uri` 參數以及`--parameters` 中任何必要的範本參數提供範本的完整 URI，如下所示︰
+首先，使用 [az group create](/cli/azure/group#create) 建立資源群組。 然後使用 [az group deployment create](/cli/azure/group/deployment#create) 從範本建立部署。 提供以 hello hello 完整 URI tooyour 範本`--template-uri`參數及任何必要中的範本參數`--parameters`，如下所示：
 
 ```azurecli
 az group create --name myResourceGroup --location eastus
@@ -38,13 +38,13 @@ az group deployment create --resource-group myResourceGroup \
     --parameters '{"sshKeyData": {"value": "ssh-rsa AAAAB3N{snip}B9eIgoZ"}}'
 ```
 
-視不同範本而定，Azure 可能需要花些時間來部署資源。
+根據 hello 範本，可能需要一些時間，Azure toodeploy hello 資源。
 
 
 ## <a name="azure-powershell"></a>Azure PowerShell
-這些步驟需要 Azure PowerShell 模組 3.6 版或更新版本。 執行 `Get-Module -ListAvailable AzureRM` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
+這些步驟需要 hello Azure PowerShell 模組版本 3.6 版或更新版本。 執行`Get-Module -ListAvailable AzureRM`toofind hello 版本。 如果您需要 tooupgrade，請參閱[安裝 Azure PowerShell 模組](/powershell/azure/install-azurerm-ps)。
 
-首先，使用 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 建立資源群組。 然後使用 [New-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment) 從範本建立部署。 使用 `-TemplateURI` 參數提供範本的完整 URI，如下所示︰
+首先，使用 [New-AzureRmResourceGroup](/powershell/module/azurerm.resources/new-azurermresourcegroup) 建立資源群組。 然後使用 [New-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment) 從範本建立部署。 提供以 hello hello 完整 URI tooyour 範本`-TemplateURI`參數，如下所示：
 
 ```powershell
 New-AzureRmResourceGroup -Name "myResourceGroup" -Location "EastUS"
@@ -52,10 +52,10 @@ New-AzureRmResourceGroupDeployment -ResourceGroupName "myResourceGroup" `
      -TemplateUri "https://raw.githubusercontent.com/azure/azure-quickstart-templates/master/{template-name}/azuredeploy.json"
 ```
 
-當您執行 [New-AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment) 命令時，系統會提示您在範本中輸入這些參數的值。 視不同範本而定，Azure 可能需要花些時間來部署資源。
+當您執行 hello[新增 AzureRmResourceGroupDeployment](/powershell/module/azurerm.resources/new-azurermresourcegroupdeployment)命令時，您可能會提示的 tooenter hello 範本中的 hello 參數的值。 根據 hello 範本，可能需要一些時間，Azure toodeploy hello 資源。
 
 
 ## <a name="next-steps"></a>後續步驟
-探索 [GitHub](https://github.com/Azure/azure-quickstart-templates)可自由應用的所有範本。
+探索所有的 hello 範本達成[GitHub](https://github.com/Azure/azure-quickstart-templates)。
 
 深入了解 [Azure 資源管理員](../articles/resource-group-template-deploy.md)。

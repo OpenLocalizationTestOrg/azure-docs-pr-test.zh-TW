@@ -1,6 +1,6 @@
 ---
-title: "檢查與 Azure 網路監看員的連線 - PowerShell | Microsoft Docs"
-description: "此頁面說明如何使用 PowerShell 測試與網路監看員的連線。"
+title: "與 Azure 網路監看員-PowerShell aaaCheck 連線 |Microsoft 文件"
+description: "此頁面說明如何使用 PowerShell 的網路監看員 tootest 連線"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/11/2017
 ms.author: gwallace
-ms.openlocfilehash: a8f936cd23838759dc30b04688d3c6544e4895cc
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 4bcb90a72f178445c38b7bd7fc5054c5d0c200bb
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="check-connectivity-with-azure-network-watcher-using-powershell"></a>使用 PowerShell 檢查與 Azure 網路監看員的連線
 
@@ -27,37 +27,37 @@ ms.lasthandoff: 08/18/2017
 > - [CLI 2.0](network-watcher-connectivity-cli.md)
 > - [Azure REST API](network-watcher-connectivity-rest.md)
 
-了解如何使用連線，確認是否可以建立從虛擬機器到指定端點的直接 TCP 連線。
+了解可以如何建立 toouse 連線 tooverify 如果從虛擬機器 tooa 指定端點的直接 TCP 連接。
 
 ## <a name="before-you-begin"></a>開始之前
 
-本文假設您具有下列資源：
+本文假設您擁有 hello 下列資源：
 
-* 您想要檢查連線之區域中的網路監看員執行個體。
+* 執行個體要 toocheck 連線的網路監看員 hello 區域中。
 
-* 要檢查與其連線的虛擬機器。
+* 虛擬機器與 toocheck 連線。
 
 [!INCLUDE [network-watcher-preview](../../includes/network-watcher-public-preview-notice.md)]
 
 > [!IMPORTANT]
-> 連線檢查需要虛擬機器延伸模組 `AzureNetworkWatcherExtension`。 若要在 Windows VM 上安裝擴充功能，請瀏覽[適用於 Windows 的 Azure 網路監看員代理程式虛擬機器擴充功能](../virtual-machines/windows/extensions-nwa.md)，若要在 Linux VM 上安裝，則請瀏覽[適用於 Linux 的 Azure 網路監看員代理程式虛擬機器擴充功能](../virtual-machines/linux/extensions-nwa.md)。
+> 連線檢查需要虛擬機器延伸模組 `AzureNetworkWatcherExtension`。 Hello 擴充功能安裝在 Windows VM 上瀏覽[Azure 網路監看員的代理程式適用於 Windows 的虛擬機器擴充功能](../virtual-machines/windows/extensions-nwa.md)和如 Linux VM，請造訪[Azure 網路監看員的代理程式虛擬機器擴充功能，適用於 Linux](../virtual-machines/linux/extensions-nwa.md).
 
-## <a name="register-the-preview-capability"></a>註冊預覽功能
+## <a name="register-hello-preview-capability"></a>註冊 hello 預覽功能
 
-連線目前為公開預覽版本，若要使用這項功能，必須先註冊它。 若要這麼做，請執行下列 PowerShell 範例：
+連線目前處於公開預覽，toouse 需要 toobe 註冊這項功能。 toodo，執行下列 PowerShell 範例的 hello:
 
 ```powershell
 Register-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace Microsoft.Network
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Network
 ```
 
-若要確認註冊是否成功，請執行下列 Powershell 範例︰
+tooverify hello 登錄成功，執行下列 Powershell 範例 hello:
 
 ```powershell
 Get-AzureRmProviderFeature -FeatureName AllowNetworkWatcherConnectivityCheck  -ProviderNamespace  Microsoft.Network
 ```
 
-如果已正確註冊該功能，輸出應該會與以下相符︰
+如果 hello 功能已正確註冊，hello 輸出應符合下列 hello:
 
 ```
 FeatureName         ProviderName      RegistrationState
@@ -65,9 +65,9 @@ FeatureName         ProviderName      RegistrationState
 AllowNetworkWatcherConnectivityCheck  Microsoft.Network Registered
 ```
 
-## <a name="check-connectivity-to-a-virtual-machine"></a>檢查與虛擬機器的連線
+## <a name="check-connectivity-tooa-virtual-machine"></a>請檢查連線 tooa 虛擬機器
 
-這個範例會檢查透過連接埠 80 的目的地虛擬機器連線。
+這個範例會檢查透過連接埠 80 連線 tooa 目的地虛擬機器。
 
 ### <a name="example"></a>範例
 
@@ -89,7 +89,7 @@ Test-AzureRmNetworkWatcherConnectivity -NetworkWatcher $networkWatcher -SourceId
 
 ### <a name="response"></a>Response
 
-下列回應是來自上一個範例。  在此回應中，`ConnectionStatus` 為 [無法連線]。 您可以看到傳送的所有探查都失敗。 因為名為 **UserRule_Port80** 的使用者設定 `NetworkSecurityRule` 設定成封鎖連接埠 80 的連入流量，所以虛擬設備的連線失敗。 這項資訊可以用來研究連線問題。
+下列回應 hello 取自 hello 前一個範例。  此回應 hello`ConnectionStatus`是**連線**。 您可以看到所有 hello 探查傳送失敗。 hello 連線無法在 hello 虛擬應用裝置使用者設定的到期 tooa`NetworkSecurityRule`名為**UserRule_Port80**，通訊埠 80 上設定 tooblock 連入流量。 這項資訊可以使用的 tooresearch 連線問題。
 
 ```
 ConnectionStatus : Unreachable
@@ -162,7 +162,7 @@ Hops             : [
 
 ## <a name="validate-routing-issues"></a>驗證路由問題
 
-此範例會檢查虛擬機器與遠端端點之間的連線。
+hello 範例會檢查虛擬機器與遠端端點之間的連線。
 
 ### <a name="example"></a>範例
 
@@ -182,7 +182,7 @@ Test-AzureRmNetworkWatcherConnectivity -NetworkWatcher $networkWatcher -SourceId
 
 ### <a name="response"></a>Response
 
-在下列範例中，`ConnectionStatus` 會顯示為 [無法連線]。 在 `Hops` 詳細資料中，您可以在 `Issues` 下看到已因 `UserDefinedRoute` 而封鎖流量。 
+在下列範例的 hello，hello`ConnectionStatus`會顯示為**連線**。 在 hello`Hops`詳細資料，您可以看到下`Issues`hello 流量遭到封鎖到期 tooa `UserDefinedRoute`。 
 
 ```
 ConnectionStatus : Unreachable
@@ -227,7 +227,7 @@ Hops             : [
 
 ## <a name="check-website-latency"></a>檢查網站延遲
 
-下列範例會檢查網站連線。
+hello 下列範例會檢查 hello 連線 tooa 網站。
 
 ### <a name="example"></a>範例
 
@@ -247,7 +247,7 @@ Test-AzureRmNetworkWatcherConnectivity -NetworkWatcher $networkWatcher -SourceId
 
 ### <a name="response"></a>Response
 
-在下列回應中，您可以看到 `ConnectionStatus` 顯示為 [可以連線]。 連線成功時，會提供延遲值。
+在下列回應 hello，您可以看到 hello`ConnectionStatus`顯示為**Reachable**。 連線成功時，會提供延遲值。
 
 ```
 ConnectionStatus : Reachable
@@ -278,9 +278,9 @@ Hops             : [
                    ]
 ```
 
-## <a name="check-connectivity-to-a-storage-endpoint"></a>檢查與儲存體端點的連線
+## <a name="check-connectivity-tooa-storage-endpoint"></a>請檢查連線 tooa 儲存體端點
 
-下列範例會測試從虛擬機器到部落格儲存體帳戶的連線。
+下列範例中的 hello 測試 hello 連線能力，從虛擬機器 tooa 部落格儲存體帳戶。
 
 ### <a name="example"></a>範例
 
@@ -300,7 +300,7 @@ Test-AzureRmNetworkWatcherConnectivity -NetworkWatcher $networkWatcher -SourceId
 
 ### <a name="response"></a>Response
 
-下列 JSON 是執行前一個 Cmdlet 的範例回應。 因為可以連線目的地，所以 `ConnectionStatus` 屬性會顯示為 [可以連線]。  系統會向您提供連線儲存體 Blob 和延遲所需躍點數目的詳細資料。
+hello 下列 json 是 hello 執行 hello 前一個 cmdlet 的範例回應。 因為取得 hello 目的地，hello`ConnectionStatus`屬性會顯示為**Reachable**。  為您提供有關 hello 數目躍點需要的 tooreach hello 儲存體 blob 和延遲的 hello 詳細資料。
 
 ```
 ConnectionStatus : Reachable
@@ -335,7 +335,7 @@ Hops             : [
 
 造訪[檢查 IP 流量驗證](network-watcher-check-ip-flow-verify-portal.md)來得知 VM 是否允許特定流量流入或流出
 
-如果流量遭到封鎖，但不應如此，請參閱[管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)以追蹤網路安全性群組和所定義的安全性規則。
+如果正在封鎖流量，不應該看到[管理網路安全性群組](../virtual-network/virtual-network-manage-nsg-arm-portal.md)tootrack hello 網路安全性群組和安全性規則所定義的關閉。
 
 <!-- Image references -->
 

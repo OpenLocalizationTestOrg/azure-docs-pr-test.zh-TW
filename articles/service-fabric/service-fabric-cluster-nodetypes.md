@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric 節點類型與 VM 調整集 |Microsoft Docs"
-description: "說明 Service Fabric 節點類型如何與 VM 調整集產生關聯，以及如何遠端連線到 VM 調整集執行個體或叢集節點。"
+title: "aaaService 網狀架構節點型別與 VM 規模集 |Microsoft 文件"
+description: "說明 Service Fabric 節點型別與 tooVM 規模集的關聯，以及 tooremote 連線 tooa 虛擬機器擴展集的執行個體或叢集節點的方式。"
 services: service-fabric
 documentationcenter: .net
 author: ChackDan
@@ -14,51 +14,51 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/05/2017
 ms.author: chackdan
-ms.openlocfilehash: 3b1a22bb3653abb68fc73645ad2cb623fabc7736
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 830ea2816f5864de146a77483c85de26f91c2425
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="the-relationship-between-service-fabric-node-types-and-virtual-machine-scale-sets"></a>Service Fabric 節點類型與虛擬機器調整集之間的關聯性
-虛擬機器調整集是一個 Azure 計算資源，可以用來將一組 VM 當做一個集合加以部署和管理。 在 Service Fabric 叢集中定義的每個節點類型都會安裝為不同的 VM 擴展集。 然後每個節點類型可以獨立相應增加或相應減少，可以開啟不同組的連接埠，並可以有不同的容量度量。
+# <a name="hello-relationship-between-service-fabric-node-types-and-virtual-machine-scale-sets"></a>hello Service Fabric 節點型別和虛擬機器擴展集之間的關聯性
+虛擬機器擴展集是您可以使用 toodeploy 和管理虛擬機器的集合做為一組 Azure 計算資源。 在 Service Fabric 叢集中定義的每個節點類型都會安裝為不同的 VM 擴展集。 然後每個節點類型可以獨立相應增加或相應減少，可以開啟不同組的連接埠，並可以有不同的容量度量。
 
-下列螢幕擷取畫面顯示具有 FrontEnd 和 BackEnd 兩個節點類型的叢集。  每個節點類型各有五個節點。
+下列螢幕擷取畫面的 hello 示範具有兩個節點類型的叢集： 前端及後端。  每個節點類型各有五個節點。
 
 ![有兩個節點類型的叢集螢幕擷取畫面][NodeTypes]
 
-## <a name="mapping-vm-scale-set-instances-to-nodes"></a>將 VM 調整集執行個體對應至節點
-如您在上面看到的，VM 調整集執行個體是從執行個體 0 開始，然後漸漸增加。 編號反映在名稱中。 例如，BackEnd_0 是 BackEnd VM 調整集的執行個體 0。 這個特定的 VM 調整集有五個執行個體，名稱分別是 BackEnd_0、BackEnd_1、BackEnd_2、BackEnd_3、BackEnd_4。
+## <a name="mapping-vm-scale-set-instances-toonodes"></a>對應虛擬機器擴展集的執行個體 toonodes
+您可以看到上方，hello 虛擬機器擴展集的執行個體從執行個體 0 開始，然後向上。 hello 編號會反映在 hello 名稱。 例如，BackEnd_0 是 hello 後端虛擬機器擴展集的執行個體 0。 這個特定的 VM 調整集有五個執行個體，名稱分別是 BackEnd_0、BackEnd_1、BackEnd_2、BackEnd_3、BackEnd_4。
 
-當您相應增加 VM 調整集，就會建立的新執行個體。 VM 調整集的名稱通常是 VM 調整集名稱 + 下一個執行個體編號。 在我們的範例中是 BackEnd_5。
+當您相應增加 VM 調整集，就會建立的新執行個體。 hello VM 規模調整集合名稱 + hello 下一個執行個體數字，通常會是 hello 新虛擬機器擴展集執行個體名稱。 在我們的範例中是 BackEnd_5。
 
-## <a name="mapping-vm-scale-set-load-balancers-to-each-node-typevm-scale-set"></a>將 VM 調整集負載平衡器對應至每個節點類型/VM 調整集
-如果您已從入口網站或使用我們提供的範例 Resource Manager 範本部署您的叢集，您會得到一張資源群組下所有資源的清單，而且您會看到每個 VM 擴展集或節點類型的負載平衡器。
+## <a name="mapping-vm-scale-set-load-balancers-tooeach-node-typevm-scale-set"></a>對應 VM 規模集負載平衡器 tooeach 節點型別/VM 規模集
+如果您已部署您的叢集，從 hello 入口網站，或使用我們提供，然後當您取得一份資源群組下所有資源的 hello 範例資源管理員範本，您會看到每個虛擬機器擴展集或節點類型的 hello 負載平衡器。
 
-名稱類似 **LB-&lt;NodeType name&gt;**。 例如，以下螢幕擷取畫面中的 LB-sfcluster4doc-0：
+hello 名稱會像這樣： **LB 集&lt;NodeType 名稱&gt;**。 例如，以下螢幕擷取畫面中的 LB-sfcluster4doc-0：
 
 ![資源][Resources]
 
-## <a name="remote-connect-to-a-vm-scale-set-instance-or-a-cluster-node"></a>遠端連線到 VM 調整集執行個體或叢集節點
-在叢集中定義的每個節點類型都會安裝為不同的 VM 擴展集。  這表示節點類型可以獨立相應增加或相應減少，且可由不同 VM SKU 組成。 不同於單一執行個體的 VM，VM 調整集的執行個體不會收到自己的虛擬 IP 位址。 所以當您要尋找可用來遠端連線至特定執行個體的 IP 位址和連接埠時，可能有點困難。
+## <a name="remote-connect-tooa-vm-scale-set-instance-or-a-cluster-node"></a>遠端連接 tooa 虛擬機器擴展集的執行個體或叢集節點
+在叢集中定義的每個節點類型都會安裝為不同的 VM 擴展集。  表示 hello 節點型別可以縮放向上或向下獨立和可由不同的 VM Sku。 不同於單一執行個體的 Vm，hello 虛擬機器擴展集的執行個體不會收到自己的虛擬 IP 位址。 因此，它可以是位元挑戰時您所需的 IP 位址和連接埠，您可以使用 tooremote 連接 tooa 特定執行個體。
 
-您可以依照以下步驟來找出它們。
+以下是您可以依照 toodiscover hello 步驟它們。
 
-### <a name="step-1-find-out-the-virtual-ip-address-for-the-node-type-and-then-inbound-nat-rules-for-rdp"></a>步驟 1：找出該節點類型的虛擬 IP 位址，然後找出 RDP 的輸入 NAT 規則
-若要獲得這項資訊，您必須取得 **Microsoft.Network/loadBalancers**的資源定義中定義的輸入 NAT 規則值。
+### <a name="step-1-find-out-hello-virtual-ip-address-for-hello-node-type-and-then-inbound-nat-rules-for-rdp"></a>步驟 1： 了解 hello 節點型別 hello 虛擬 IP 位址，然後 RDP 的輸入 NAT 規則
+中，您需要 tooget hello 順序 tooget 連入的 NAT 規則值所定義的 hello 資源定義的一部分**Microsoft.Network/loadBalancers**。
 
-在入口網站中，瀏覽至 [負載平衡器] 刀鋒視窗的 [設定] 。
+在 hello 入口網站中，瀏覽 toohello 負載平衡器刀鋒視窗，然後**設定**。
 
 ![LBBlade][LBBlade]
 
-在 [設定] 中，按一下 [輸入 NAT 規則]。 這會給您可用來遠端連線至第一個 VM 調整集執行個體的 IP 位址和連接埠。 在以下的螢幕擷取畫面中是 **104.42.106.156** 和 **3389**
+在 [設定] 中，按一下 [輸入 NAT 規則]。 這可讓您 hello IP 位址和連接埠，您可以使用 tooremote 連接 toohello 第一個虛擬機器擴展集的執行個體。 在 hello 以下螢幕擷取畫面，它是**104.42.106.156**和**3389**
 
 ![NATRules][NATRules]
 
-### <a name="step-2-find-out-the-port-that-you-can-use-to-remote-connect-to-the-specific-vm-scale-set-instancenode"></a>步驟 2：找到可用來遠端連線至特定 VM 調整集執行個體/節點的連接埠
-本文稍早討論了如何將 VM 調整集執行個體對應至節點。 我們將使用它來找出確切的連接埠。
+### <a name="step-2-find-out-hello-port-that-you-can-use-tooremote-connect-toohello-specific-vm-scale-set-instancenode"></a>步驟 2： 了解 hello 連接埠，您可以使用 tooremote toohello 特定虛擬機器擴展集執行個體/節點連接
+本文件稍早我討論 hello 虛擬機器擴展集的執行個體將 toohello 節點的對應。 我們將使用該 toofigure 出 hello 確切的通訊埠。
 
-連接埠是以 VM 擴展集執行個體的遞增順序配置。 因此，在 FrontEnd 節點類型的範例中，五個執行個體的每個連接埠分別如下。 您現在需要對您的 VM 擴展集執行個體進行相同的對應。
+hello 連接埠配置以遞增順序 hello 虛擬機器擴展集的執行個體。 因此在 hello 前端節點類型的範例中，每個 hello 五個執行個體的 hello 連接埠是 hello 下列。 您 toodo 現在需要 hello 相同的對應虛擬機器擴展集執行個體。
 
 | **VM 擴展集執行個體** | **連接埠** |
 | --- | --- |
@@ -69,46 +69,46 @@ ms.lasthandoff: 07/11/2017
 | FrontEnd_4 |3393 |
 | FrontEnd_5 |3394 |
 
-### <a name="step-3-remote-connect-to-the-specific-vm-scale-set-instance"></a>步驟 3：遠端連線到特定 VM 調整集執行個體
-在以下螢幕擷取畫面中，使用「遠端桌面連接」來連線到 FrontEnd_1：
+### <a name="step-3-remote-connect-toohello-specific-vm-scale-set-instance"></a>步驟 3： 遠端連線 toohello 特定虛擬機器擴展集執行個體
+Hello 以下螢幕擷取畫面中使用遠端桌面連線 tooconnect toohello FrontEnd_1:
 
 ![RDP][RDP]
 
-## <a name="how-to-change-the-rdp-port-range-values"></a>如何變更 RDP 連接埠範圍值
+## <a name="how-toochange-hello-rdp-port-range-values"></a>Toochange hello RDP 連接埠值的範圍
 ### <a name="before-cluster-deployment"></a>叢集部署之前
-當您使用 Resource Manager 範本設定叢集時，可以在 **inboundNatPools**指定範圍。
+當您設定 hello 叢集使用的資源管理員範本時，您可以指定 hello 範圍 hello **inboundNatPools**。
 
-移至 **Microsoft.Network/loadBalancers**的資源定義。 您會在下面找到 **inboundNatPools**的描述。  取代 *frontendPortRangeStart* 和 *frontendPortRangeEnd* 值。
+移 toohello 資源定義**Microsoft.Network/loadBalancers**。 下，您會發現 hello 描述**inboundNatPools**。  取代 hello *frontendPortRangeStart*和*frontendPortRangeEnd*值。
 
 ![inboundNatPools][InboundNatPools]
 
 ### <a name="after-cluster-deployment"></a>叢集部署之後
-這稍微複雜一點，而且可能會導致 VM 設定被回收。 您現在必須使用 Azure PowerShell 設定新的值。 請確定您的電腦已安裝 Azure PowerShell 1.0+ 或更新版本。 如果您還沒安裝，強烈建議您依照 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)
+這是稍微複雜，而且可能會導致 hello Vm 被回收。 您現在就必須使用 Azure PowerShell tooset 新值。 請確定您的電腦已安裝 Azure PowerShell 1.0+ 或更新版本。 如果您有不這麼做之前，我們強烈建議您遵循所述的 hello 步驟[如何 tooinstall 和設定 Azure PowerShell。](/powershell/azure/overview)
 
-登入您的 Azure 帳戶。 如果這個 PowerShell 命令因為某些原因無法運作，您應該檢查 Azure PowerShell 是否已正確安裝。
+Azure 帳戶登入 tooyour。 如果這個 PowerShell 命令因為某些原因無法運作，您應該檢查 Azure PowerShell 是否已正確安裝。
 
 ```
 Login-AzureRmAccount
 ```
 
-執行下列命令取得負載平衡器的詳細資料，您會看到 **inboundNatPools**的值以及描述：
+執行下列 tooget 詳細資料，您的負載平衡器上的 hello 和您看到的 hello 描述的 hello 值**inboundNatPools**:
 
 ```
 Get-AzureRmResource -ResourceGroupName <RGname> -ResourceType Microsoft.Network/loadBalancers -ResourceName <load balancer name>
 ```
 
-現在將 *frontendPortRangeStart* 和 *frontendPortRangeEnd* 設為您要的值。
+現在設定*frontendPortRangeEnd*和*frontendPortRangeStart* toohello 您想要的值。
 
 ```
 $PropertiesObject = @{
     #Property = value;
 }
-Set-AzureRmResource -PropertyObject $PropertiesObject -ResourceGroupName <RG name> -ResourceType Microsoft.Network/loadBalancers -ResourceName <load Balancer name> -ApiVersion <use the API version that get returned> -Force
+Set-AzureRmResource -PropertyObject $PropertiesObject -ResourceGroupName <RG name> -ResourceType Microsoft.Network/loadBalancers -ResourceName <load Balancer name> -ApiVersion <use hello API version that get returned> -Force
 ```
 
 
 ## <a name="next-steps"></a>後續步驟
-* [「到處部署」功能和與 Azure 受管理叢集比較的概觀](service-fabric-deploy-anywhere.md)
+* [Hello 「 任何位置部署 」 功能與使用 Azure 管理叢集的比較概觀](service-fabric-deploy-anywhere.md)
 * [叢集安全性](service-fabric-cluster-security.md)
 * [ Service Fabric SDK 和開始使用](service-fabric-get-started.md)
 

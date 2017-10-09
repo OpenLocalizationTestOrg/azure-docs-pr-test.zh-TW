@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中控制路由和虛擬設備 - PowerShell | Microsoft Docs"
-description: "了解如何使用 PowerShell 控制路由和虛擬應用裝置。"
+title: "Azure-PowerShell 中的 aaaControl 路由和虛擬設備 |Microsoft 文件"
+description: "深入了解如何使用 PowerShell toocontrol 路由和虛擬裝置。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
-ms.openlocfilehash: 3ab24f193c74449ae7414b4ea0675c0aae0211f4
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: b7b8717529eb2cd8b1d28b8ab9c6e21159d14882
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-user-defined-routes-udr-using-powershell"></a>使用 PowerShell 建立使用者定義的路由 (UDR)
 
@@ -34,21 +34,21 @@ ms.lasthandoff: 07/11/2017
 [!INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
 > [!IMPORTANT]
-> 使用 Azure 資源之前，請務必了解 Azure 目前有 Azure Resource Manager 和「傳統」兩種部署模型。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-resource-manager/resource-manager-deployment-model.md) 。 您可以按一下本文頂端的索引標籤，檢視不同工具的文件。
+> 您可以使用 Azure 資源之前，它是 Azure 目前有兩種部署模型的重要 toounderstand: Azure 資源管理員] 和 [傳統。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-resource-manager/resource-manager-deployment-model.md) 。 您可以按一下上方的這篇文章 hello hello 索引標籤檢視 hello 文件不同的工具。
 >
 
-本文涵蓋之內容包括資源管理員部署模型。 您也可以 [在傳統部署模型中建立 UDR](virtual-network-create-udr-classic-ps.md)。
+本文涵蓋 hello Resource Manager 部署模型。 您也可以[hello 傳統部署模型中建立 UDRs](virtual-network-create-udr-classic-ps.md)。
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-以下的範例 PowerShell 命令會預期已根據上述案例建立簡單的環境。 如果您想要以本文件顯示的方式執行命令，請先依照下列方式建置測試環境：部署[此範本](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before)，按一下 [部署至 Azure]，視情況取代預設參數值，然後遵循入口網站中的指示。
+hello 範例 PowerShell 預期簡單的環境中已經建立下列命令會根據上面的 hello 案例。 如果您想 toorun hello 命令，因為它們會顯示在此文件，第一次建立 hello 測試環境部署[此範本](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before)，按一下 **部署 tooAzure**，取代 hello 預設參數值如果有必要，並遵循中的 hello 指示 hello 入口網站。
 
 [!INCLUDE [azure-ps-prerequisites-include.md](../../includes/azure-ps-prerequisites-include.md)]
 
-## <a name="create-the-udr-for-the-front-end-subnet"></a>建立前端子網路的 UDR
-若要根據上述案例建立前端子網路所需的路由表和路徑，完成下列步驟：
+## <a name="create-hello-udr-for-hello-front-end-subnet"></a>建立 hello UDR hello 前端子網路
+toocreate hello 路由表和所需的 hello 前端子網路的路由會根據上述步驟的完整 hello hello 案例：
 
-1. 建立用來傳送到以後端子網路 (192.168.2.0/24) 為目標的路由，以路由傳送所有流量到 **FW1** 虛擬應用裝置 (192.168.0.4)。
+1. 建立使用路由 toosend 所有流量 toohello 後端子 (192.168.2.0/24) 路由傳送 toobe toohello **FW1**虛擬應用裝置 (已將 192.168.0.4)。
 
     ```powershell
     $route = New-AzureRmRouteConfig -Name RouteToBackEnd `
@@ -56,20 +56,20 @@ ms.lasthandoff: 07/11/2017
     -NextHopIpAddress 192.168.0.4
     ```
 
-2. 在包含路由的 **westus** 區域中建立名為 **UDR-FrontEnd** 的路由表。
+2. 建立名為路由表**UDR 前端**在 hello **uswest**包含 hello 路由的區域。
 
     ```powershell
     $routeTable = New-AzureRmRouteTable -ResourceGroupName TestRG -Location westus `
     -Name UDR-FrontEnd -Route $route
     ```
 
-3. 建立包含子網路所在之 VNet 的變數。 在我們的案例中，VNet 名為 **TestVNet**。
+3. 建立包含 hello VNet hello 子網路所在的變數。 在我們的案例中，hello VNet 命名為**TestVNet**。
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet
     ```
 
-4. 將上方建立的路由表與 **FrontEnd** 子網路建立關聯。
+4. 關聯的 hello toohello 上面所建立的路由表**前端**子網路。
 
     ```powershell
     Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name FrontEnd `
@@ -77,10 +77,10 @@ ms.lasthandoff: 07/11/2017
     ```
 
     > [!WARNING]
-    > 上述命令的輸出會顯示虛擬網路設定物件的內容，此物件只存在於您執行 PowerShell 的電腦上。 您需要執行 **Set-AzureVirtualNetwork** Cmdlet 來將這些設定儲存至 Azure。
+    > hello 上述命令中的 hello 輸出會顯示 hello hello 虛擬網路組態物件，其中只存在於執行 PowerShell 的 hello 電腦上的內容。 您需要 toorun hello**組 AzureVirtualNetwork** cmdlet toosave 這些設定 tooAzure。
     > 
 
-5. 在 Azure 中儲存新的子網路設定。
+5. 儲存在 Azure 中的 hello 新的子網路組態。
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -134,11 +134,11 @@ ms.lasthandoff: 07/11/2017
                                 ...
                             ]    
 
-## <a name="create-the-udr-for-the-back-end-subnet"></a>建立後端子網路的 UDR
+## <a name="create-hello-udr-for-hello-back-end-subnet"></a>建立 hello UDR hello 後端子網路
 
-若要根據上述案例建立後端子網路所需的路由表和路徑，請依照下列步驟執行。
+toocreate hello 路由表和路由所需的 hello 後端子根據 hello 案例以上版本，請遵循下列 hello 步驟。
 
-1. 建立用來傳送到以前端子網路 (192.168.1.0/24) 為目標的路由，以路由傳送所有流量到 **FW1** 虛擬應用裝置 (192.168.0.4)。
+1. 建立使用路由 toosend 所有流量 toohello 前端的子網路 (192.168.1.0/24) 路由傳送 toobe toohello **FW1**虛擬應用裝置 (已將 192.168.0.4)。
 
     ```powershell
     $route = New-AzureRmRouteConfig -Name RouteToFrontEnd `
@@ -146,21 +146,21 @@ ms.lasthandoff: 07/11/2017
     -NextHopIpAddress 192.168.0.4
     ```
 
-2. 在包含上方建立的路由 **uswest** 區域中建立名為 **UDR-BackEnd** 的路由表。
+2. 建立名為路由表**UDR 後端**在 hello **uswest**上面所建立包含 hello 路由的區域。
 
     ```
     $routeTable = New-AzureRmRouteTable -ResourceGroupName TestRG -Location westus `
     -Name UDR-BackEnd -Route $route
     ```
 
-3. 將上方建立的路由表與 **BackEnd** 子網路建立關聯。
+3. 關聯的 hello toohello 上面所建立的路由表**後端**子網路。
 
     ```powershell
     Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name BackEnd `
     -AddressPrefix 192.168.2.0/24 -RouteTable $routeTable
     ```
 
-4. 在 Azure 中儲存新的子網路設定。
+4. 儲存在 Azure 中的 hello 新的子網路組態。
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
@@ -214,15 +214,15 @@ ms.lasthandoff: 07/11/2017
                             ]
 
 ## <a name="enable-ip-forwarding-on-fw1"></a>啟用 FW1 上的 IP 轉送
-若要啟用 **FW1**所使用之 NIC 中的 IP 轉送，請依照下列步驟執行。
+tooenable 在 hello NIC 所使用的 IP 轉送**FW1**，依照下列步驟執行 hello。
 
-1. 建立包含 FW1 所使用 NIC 的設定的變數。 在我們的案例中，NIC 名為 **NICFW1**。
+1. 建立包含 hello 設定 hello NIC FW1 所使用的變數。 在我們的案例中，hello NIC 會命名為**NICFW1**。
 
     ```powershell
     $nicfw1 = Get-AzureRmNetworkInterface -ResourceGroupName TestRG -Name NICFW1
     ```
 
-2. 啟用 IP 轉送並儲存 NIC 設定。
+2. 啟用 IP 轉送，並儲存 hello NIC 設定。
 
     ```powershell
     $nicfw1.EnableIPForwarding = 1

@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 虛擬機器擴展集上部署應用程式 | Microsoft Docs"
-description: "了解如何使用 Azure Resource Manager 範本，在虛擬機器擴展集上部署簡單的自動調整應用程式。"
+title: "aaaDeploy Azure 虛擬機器規模集上的應用程式 |Microsoft 文件"
+description: "了解 toodeploy 簡單的自動調整應用程式上的虛擬機器擴展集使用 Azure Resource Manager 範本。"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: rwike77
@@ -15,25 +15,25 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 08/24/2017
 ms.author: ryanwi
-ms.openlocfilehash: 07883a33382cc660b043c99872312a9e77228253
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 6fccc310312cabfcdddfcbcd2d154fc5cc440417
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="deploy-an-autoscaling-app-using-a-template"></a>使用範本部署自動調整應用程式
 
-[Azure Resource Manager 範本](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment)是部署相關資源群組的絕佳方式。 本教學課程是以[部屬簡單的擴展集](virtual-machine-scale-sets-mvss-start.md)為基礎，並說明如何使用 Azure Resource Manager 範本，在擴展集上部署簡單的自動調整應用程式。  您也可以使用 PowerShell、CLI 或入口網站設定自動調整。 如需詳細資訊，請參閱[自動調整概觀](virtual-machine-scale-sets-autoscale-overview.md)。
+[Azure 資源管理員範本](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#template-deployment)是很好的方法 toodeploy 相關資源的群組。 本教學課程是[部署簡單的小數位數組](virtual-machine-scale-sets-mvss-start.md)，並說明如何 toodeploy 標尺上的簡單的自動調整應用程式設定使用 Azure Resource Manager 範本。  您也可以設定使用 PowerShell、 CLI 或 hello 入口網站的自動調整。 如需詳細資訊，請參閱[自動調整概觀](virtual-machine-scale-sets-autoscale-overview.md)。
 
 ## <a name="two-quickstart-templates"></a>兩個快速入門範本
-當您部署擴展集時，您可以使用 [VM 擴充功能](../virtual-machines/virtual-machines-windows-extensions-features.md)在平台映像上安裝新軟體。 VM 擴充功能是小型的應用程式，可在 Azure 虛擬機器上提供部署後設定和自動化工作，例如部署應用程式。 [Azure/azure-quickstart-templates](https://github.com/Azure/azure-quickstart-templates) 中會提供兩個不同的範例範本，其顯示如何使用 VM 擴充功能在擴展集上部署自動調整應用程式。
+當您部署擴展集時，您可以使用 [VM 擴充功能](../virtual-machines/virtual-machines-windows-extensions-features.md)在平台映像上安裝新軟體。 VM 擴充功能是小型的應用程式，可在 Azure 虛擬機器上提供部署後設定和自動化工作，例如部署應用程式。 中所提供的兩個不同的範例範本[Azure/azure 快速入門-範本](https://github.com/Azure/azure-quickstart-templates)toodeploy 到標尺上的自動調整應用程式設定使用 VM 擴充功能的方式是用來顯示。
 
 ### <a name="python-http-server-on-linux"></a>Linux 上的 Python HTTP 伺服器
-[Linux 上的 Python HTTP 伺服器](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale)範例範本可部署在 Linux 擴展集上執行的簡單自動調整應用程式。  [Bottle](http://bottlepy.org/docs/dev/)、Python Web 架構以及簡單的 HTTP 伺服器都是使用 VM 擴充功能部署在擴展集中的每部 VM 上。 當所有 VM 的平均 CPU 使用率大於 60% 時，擴展集會相應放大，而當平均 CPU 使用率小於 30% 時，擴展集會相應縮小。
+hello [Python HTTP 伺服器在 Linux 上的](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale)範例範本部署 Linux 規模集上執行簡單的自動調整應用程式。  [Bottle](http://bottlepy.org/docs/dev/)、 Python web 架構，而且簡單的 HTTP 伺服器部署中使用自訂指令碼 VM 延伸模組設定的 hello 標尺每個 VM 上。 hello 小數位數時，設定標尺所有 Vm 之間的平均 CPU 使用率超過 60%，並按比例減少 hello 平均 CPU 使用率時少於 30%。
 
-除了擴展集資源以外，*azuredeploy.json* 範例範本也會宣告虛擬網路、公用 IP 位址、負載平衡器和自動調整設定資源。  如需在範本中建立這些資源的詳細資訊，請參閱[具備自動調整功能的 Linux 擴展集](virtual-machine-scale-sets-linux-autoscale.md)。
+此外 toohello 規模調整集合資源，hello *azuredeploy.json*虛擬網路、 公用 IP 位址、 負載平衡和自動調整規模設定的資源，也會宣告範例範本。  如需在範本中建立這些資源的詳細資訊，請參閱[具備自動調整功能的 Linux 擴展集](virtual-machine-scale-sets-linux-autoscale.md)。
 
-在 *azuredeploy.json* 範本中，`Microsoft.Compute/virtualMachineScaleSets` 資源的 `extensionProfile` 屬性可指定自訂指令碼擴充功能。 `fileUris` 指定指令碼位置。 在此情況下，兩個檔案︰*workserver.py*可定義簡單的 HTTP 伺服器，以及 *installserver.sh* 可安裝 Bottle 並啟動 HTTP 伺服器。 `commandToExecute` 指定要在部署擴展集之後執行的命令。
+在 hello *azuredeploy.json*範本、 hello `extensionProfile` hello 屬性`Microsoft.Compute/virtualMachineScaleSets`資源會指定自訂指令碼延伸。 `fileUris`指定 hello 指令碼位置。 在此情況下，兩個檔案： *workserver.py*，而後者可定義簡單的 HTTP 伺服器，和*installserver.sh*，這會安裝 Bottle 和啟動 hello HTTP 伺服器。 `commandToExecute`部署 hello 規模集之後，請指定 hello 命令 toorun。
 
 ```json
           "extensionProfile": {
@@ -59,11 +59,11 @@ ms.lasthandoff: 08/29/2017
 ```
 
 ### <a name="aspnet-mvc-application-on-windows"></a>Windows 上的 ASP.NET MVC 應用程式
-[Windows 上的 ASP.NET MVC 應用程式](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale)範例範本可部署一個簡單的 ASP.NET MVC 應用程式，其在 Windows 擴展集上的 IIS 中執行。  IIS 和 MVC 應用程式是使用 [PowerShell 預期狀態設定 (DSC)](virtual-machine-scale-sets-dsc.md) VM 擴充功能進行部署。  當 CPU 使用率大於 50% 長達 5 分鐘時，擴展集會 (一度在 VM 執行個體上) 相應增加。 
+hello [ASP.NET MVC 應用程式在 Windows 上的](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale)範例範本部署簡單的 ASP.NET MVC 應用程式執行於 IIS 上 Windows 規模集。  IIS hello MVC 應用程式部署和使用 hello [PowerShell 預期狀態設定 (DSC)](virtual-machine-scale-sets-dsc.md) VM 延伸模組。  hello 小數位數設定的標尺 （在上一次的 VM 執行個體） 當 CPU 使用量大於 50 %5 分鐘。 
 
-除了擴展集資源以外，*azuredeploy.json* 範例範本也會宣告虛擬網路、公用 IP 位址、負載平衡器和自動調整設定資源。 此範本也會示範應用程式升級。  如需在範本中建立這些資源的詳細資訊，請參閱[具備自動調整的 Windows 擴展集](virtual-machine-scale-sets-windows-autoscale.md)。
+此外 toohello 規模調整集合資源，hello *azuredeploy.json*虛擬網路、 公用 IP 位址、 負載平衡和自動調整規模設定的資源，也會宣告範例範本。 此範本也會示範應用程式升級。  如需在範本中建立這些資源的詳細資訊，請參閱[具備自動調整的 Windows 擴展集](virtual-machine-scale-sets-windows-autoscale.md)。
 
-在 *azuredeploy.json* 範本中，`Microsoft.Compute/virtualMachineScaleSets` 資源的 `extensionProfile` 屬性會指定[期望狀態組態 (DSC)](virtual-machine-scale-sets-dsc.md) 擴充功能，該功能可從 WebDeploy 套件安裝 IIS 和預設 Web 應用程式。  *IISInstall.ps1* 指令碼會在虛擬機器上安裝 IIS 並且位於 *DSC* 資料夾中。  MVC Web 應用程式位於 *WebDeploy* 資料夾中。  指令碼的安裝路徑和 Web 應用程式是定義於 *azuredeploy.parameters.json* 檔案的 `powershelldscZip` 和 `webDeployPackage` 參數中。 
+在 hello *azuredeploy.json*範本、 hello`extensionProfile`屬性 hello`Microsoft.Compute/virtualMachineScaleSets`資源會指定[預期的狀態設定 (DSC)](virtual-machine-scale-sets-dsc.md)延伸模組，這會安裝 IIS 和預設值WebDeploy 封裝中的 web 應用程式。  hello *IISInstall.ps1*指令碼會在 hello 虛擬機器上安裝 IIS，而且位於 hello *DSC*資料夾。  hello MVC web 應用程式位於 hello *WebDeploy*資料夾。  hello 路徑 toohello 安裝指令碼和 hello web 應用程式會定義在 hello`powershelldscZip`和`webDeployPackage`參數在 hello *azuredeploy.parameters.json*檔案。 
 
 ```json
           "extensionProfile": {
@@ -93,11 +93,11 @@ ms.lasthandoff: 08/29/2017
           }
 ```
 
-## <a name="deploy-the-template"></a>部署範本
-若要部署 [Linux 上的 Python HTTP 伺服器](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale)或 [Windows 上的 ASP.NET MVC 應用程式](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale)範本，最簡單的方式就是使用 GitHub 讀我檔案中的 [部署至 Azure] 按鈕。  您也可以使用 PowerShell 或 Azure CLI 來部署範本範例。
+## <a name="deploy-hello-template"></a>部署 hello 範本
+最簡單方式 toodeploy hello hello [Python HTTP 伺服器在 Linux 上的](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale)或[ASP.NET MVC 應用程式在 Windows 上的](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale)範本為 toouse hello**部署 tooAzure**按鈕位於 hello在 GitHub 中的 hello 讀我檔案。  您也可以使用 PowerShell 或 Azure CLI toodeploy hello 範例範本。
 
 ### <a name="powershell"></a>PowerShell
-從 GitHub 儲存機制將 [Linux 上的 Python HTTP 伺服器](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale)或 [Windows 上的 ASP.NET MVC 應用程式](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale)檔案複製到本機電腦上的資料夾。  開啟 *azuredeploy.parameters.json* 檔案並更新 `vmssName`、`adminUsername` 和 `adminPassword` 參數的預設值。 將下列 PowerShell 指令碼儲存至相同資料夾中的 *deploy.ps1* 作為 *azuredeploy.json* 範本。 若要部署範例範本，請從 PowerShell 命令視窗執行 *deploy.ps1* 指令碼。
+複製 hello [Python HTTP 伺服器在 Linux 上的](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-bottle-autoscale)或[ASP.NET MVC 應用程式在 Windows 上的](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vmss-windows-webapp-dsc-autoscale)hello GitHub 儲存機制 tooa 資料夾從本機電腦上的檔案。  開啟 hello *azuredeploy.parameters.json*檔案並更新 hello 預設值的 hello `vmssName`， `adminUsername`，和`adminPassword`參數。 儲存下列 PowerShell 指令碼太 hello*deploy.ps1* hello 在 hello 與相同的資料夾*azuredeploy.json*範本。 toodeploy hello 範例範本執行 hello *deploy.ps1*從 PowerShell 命令視窗的指令碼。
 
 ```powershell
 param(
@@ -163,7 +163,7 @@ if($resourceProviders.length) {
 $resourceGroup = Get-AzureRmResourceGroup -Name $resourceGroupName -ErrorAction SilentlyContinue
 if(!$resourceGroup)
 {
-    Write-Host "Resource group '$resourceGroupName' does not exist. To create a new resource group, please enter a location.";
+    Write-Host "Resource group '$resourceGroupName' does not exist. toocreate a new resource group, please enter a location.";
     if(!$resourceGroupLocation) {
         $resourceGroupLocation = Read-Host "resourceGroupLocation";
     }
@@ -174,7 +174,7 @@ else{
     Write-Host "Using existing resource group '$resourceGroupName'";
 }
 
-# Start the deployment
+# Start hello deployment
 Write-Host "Starting deployment...";
 if(Test-Path $parametersFilePath) {
     New-AzureRmResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile $templateFilePath -TemplateParameterFile $parametersFilePath;
@@ -191,7 +191,7 @@ IFS=$'\n\t'
 
 # -e: immediately exit if any command has a non-zero exit status
 # -o: prevents errors in a pipeline from being masked
-# IFS new value is less likely to cause confusing bugs when looping arrays or arguments (e.g. $@)
+# IFS new value is less likely toocause confusing bugs when looping arrays or arguments (e.g. $@)
 
 usage() { echo "Usage: $0 -i <subscriptionId> -g <resourceGroupName> -n <deploymentName> -l <resourceGroupLocation>" 1>&2; exit 1; }
 
@@ -238,12 +238,12 @@ if [[ -z "$deploymentName" ]]; then
 fi
 
 if [[ -z "$resourceGroupLocation" ]]; then
-    echo "Enter a location below to create a new resource group else skip this"
+    echo "Enter a location below toocreate a new resource group else skip this"
     echo "ResourceGroupLocation:"
     read resourceGroupLocation
 fi
 
-#templateFile Path - template file to be used
+#templateFile Path - template file toobe used
 templateFilePath="template.json"
 
 if [ ! -f "$templateFilePath" ]; then
@@ -264,7 +264,7 @@ if [ -z "$subscriptionId" ] || [ -z "$resourceGroupName" ] || [ -z "$deploymentN
     usage
 fi
 
-#login to azure using your credentials
+#login tooazure using your credentials
 az account show 1> /dev/null
 
 if [ $? != 0 ];
@@ -272,7 +272,7 @@ then
     az login
 fi
 
-#set the default subscription id
+#set hello default subscription id
 az account set --name $subscriptionId
 
 set +e

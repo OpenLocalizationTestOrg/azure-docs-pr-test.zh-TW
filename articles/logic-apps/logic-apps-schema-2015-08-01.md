@@ -1,5 +1,5 @@
 ---
-title: "August-1-2015 預覽結構描述更新 - Azure Logic Apps | Microsoft Docs"
+title: "aaaSchema 更新年 8 月 1 2015 preview-Azure 邏輯應用程式 |Microsoft 文件"
 description: "使用結構描述 2015-08-01-preview 版本建立 Azure Logic Apps 的 JSON 定義"
 author: stepsic-microsoft-com
 manager: anneta
@@ -15,38 +15,38 @@ ms.topic: article
 ms.custom: H1Hack27Feb2017
 ms.date: 05/31/2016
 ms.author: LADocs; stepsic
-ms.openlocfilehash: 35d7a56d5607dcc18a4407c65b92962d3d0dcd1d
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 950cd18a27aa1859c4f0b6116de3fb8699d746c4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="schema-updates-for-azure-logic-apps---august-1-2015-preview"></a>Azure Logic Apps 的結構描述更新 - 2015 年 8 月 1 日預覽
 
-這個新的結構描述和 Azure Logic Apps 的 API 版本包含重要的改良功能，讓邏輯應用程式更可靠且更輕鬆地使用︰
+這個新的結構描述和 API 版本 Azure 邏輯應用程式包含多個製作邏輯應用程式的重要改良 toouse 可靠且更容易：
 
-*   **APIApp** 動作類型更新為新的 [**APIConnection**](#api-connections) 動作類型。
-*   **Repeat** 重新命名為 [**Foreach**](#foreach) 。
-*   不再需要 [**HTTP 接聽程式** API 應用程式](#http-listener)。
+*   hello **APIApp**動作類型是新的更新的 tooa [ **APIConnection** ](#api-connections)動作類型。
+*   **重複**重新命名過[**Foreach**](#foreach)。
+*   hello [ **HTTP 接聽程式**API 應用程式](#http-listener)已不再需要。
 *   呼叫子工作流程時使用[新的結構描述](#child-workflows)。
 
 <a name="api-connections"></a>
-## <a name="move-to-api-connections"></a>移至 API 連線
+## <a name="move-tooapi-connections"></a>移動 tooAPI 連線
 
-最大的改變是您不再需要將 API Apps 部署至您的 Azure 訂用帳戶，因此您可以使用 API。 以下是您可以使用 API 的方法︰
+hello 最大變更是，您不再需要 toodeploy API 應用程式到您的 Azure 訂閱，您可以使用 Api。 以下是您可以使用 Api 的 hello 方法：
 
 * Managed API
 * 您自訂的 Web API
 
-每一種方式都因為其管理和裝載模型不同，而有稍微不同的處理方式。 此模型的優點之一是您不再受限於只能存取部署在 Azure 資源群組中的資源。 
+每一種方式都因為其管理和裝載模型不同，而有稍微不同的處理方式。 此模型中的其中一個優點是您不再限制 tooresources 部署在 Azure 資源群組中。 
 
 ### <a name="managed-apis"></a>Managed API
 
 Microsoft 會代表您管理某些 API，例如 Office 365、Salesforce、Twitter 和 FTP。 您可以直接使用部分 Managed API (例如 Bing 翻譯)，有些則需要設定。 此組態稱為「連接」 。
 
-例如，當您使用 Office 365 時，您必須建立包含 Office 365 登入權杖的連線。 系統會安全地儲存並重新整理此權杖，讓您的邏輯應用程式隨時都可呼叫 Office 365 API。 或者，如果您想要連線到 SQL 或 FTP 伺服器，您必須建立具有連接字串的連線。 
+例如，當您使用 Office 365 時，您必須建立包含 Office 365 登入權杖的連線。 這個語彙基元會安全地儲存，並重新整理可讓您的邏輯應用程式一律呼叫 hello Office 365 API。 或者，如果您希望 tooconnect tooyour SQL 或 FTP 伺服器時，您必須建立具有 hello 連接字串的連接。 
 
-這些動作在此定義內稱為 `APIConnection`。 以下是一個呼叫 Office 365 來傳送電子郵件的連接範例：
+這些動作在此定義內稱為 `APIConnection`。 呼叫 Office 365 toosend 電子郵件連線的範例如下：
 
 ```
 {
@@ -75,17 +75,17 @@ Microsoft 會代表您管理某些 API，例如 Office 365、Salesforce、Twitte
 }
 ```
 
-`host` 物件是輸入的一部分且對 API 連線是唯一的，並包含兩個部分：`api` 和 `connection`。
+hello`host`物件是輸入部分的唯一 tooAPI 連線，且包含具有組件：`api`和`connection`。
 
-`api` 有用來裝載該 Managed API 的執行階段 URL。 您可以呼叫 `GET https://management.azure.com/subscriptions/{subid}/providers/Microsoft.Web/managedApis/?api-version=2015-08-01-preview`，來查看所有可供使用的 Managed API。
+hello`api`具有 hello 執行階段裝載的受管理應用程式開發介面的 URL。 您可以查看所有可用的 hello 藉由呼叫 managed Api `GET https://management.azure.com/subscriptions/{subid}/providers/Microsoft.Web/managedApis/?api-version=2015-08-01-preview`。
 
-當您使用 API 時，該 API 或許定義了任何*連接參數*。 如果 API 並未定義，則不需任何*連接* 。 如果 API 定義了參數，您就必須建立連線。 建立的連線有您所選擇的名稱。 您接著會在 `host` 物件內的 `connection` 物件中參考該名稱。 若要在資源群組中建立連接，請呼叫：
+當您使用應用程式開發介面時，hello API 可能會或可能不含任何*連接參數*定義。 Hello 應用程式開發介面不是，如果沒有*連接*需要。 如果 hello API，您必須建立連接。 建立 hello 連接都有您所選擇的 hello 名稱。 您再參考 hello 中的 hello 名稱`connection`物件內 hello`host`物件。 toocreate 在資源群組中，呼叫的連接：
 
 ```
 PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/providers/Microsoft.Web/connections/{name}?api-version=2015-08-01-preview
 ```
 
-使用下列主體：
+以 hello 下列主體：
 
 ```
 {
@@ -94,7 +94,7 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
       "id": "/subscriptions/{subid}/providers/Microsoft.Web/managedApis/azureblob"
     },
     "parameterValues": {
-        "accountName": "{The name of the storage account -- the set of parameters is different for each API}"
+        "accountName": "{hello name of hello storage account -- hello set of parameters is different for each API}"
     }
   },
   "location": "{Logic app's location}"
@@ -104,7 +104,7 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 ### <a name="deploy-managed-apis-in-an-azure-resource-manager-template"></a>在 Azure Resource Manager 範本中部署 Managed API
 
 您可以在 Azure Resource Manager 範本中建立完整的應用程式，但前提是不需進行互動式登入。
-如果需要登入，您可以使用 Azure Resource Manager 範本來設定所有項目，但仍然必須造訪入口網站來授權連接。 
+如果登入需要，您可以設定 hello Azure Resource Manager 範本時，所有項目，不過您仍然需要 toovisit hello 入口 tooauthorize hello 連線。 
 
 ```
     "resources": [{
@@ -194,13 +194,13 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
     }]
 ```
 
-在此範例中，您可以看到連接只是存在於資源群組中的資源。 它們會參考您訂用帳戶中可供使用的 Managed API。
+您可以看到在這個範例 hello 連線是只存在於資源群組的資源。 事件所參考 hello 受管理應用程式開發介面使用 tooyou 您訂用帳戶中。
 
 ### <a name="your-custom-web-apis"></a>您自訂的 Web API
 
-如果您使用自己的 API，不是 Microsoft 管理的 API，則應使用內建 **HTTP** 動作來呼叫它們。 為了獲得理想的體驗，您應該公開您 API 的 Swagger 端點。 這個端點可讓邏輯應用程式設計工具呈現您 API 的輸入和輸出。 如果沒有 Swagger，設計工具就只能將輸入和輸出顯示為不透明的 JSON 物件。
+如果您使用您自己的 Api，不受 Microsoft 管理的項目，使用內建的 hello **HTTP**動作 toocall 它們。 為了獲得理想的體驗，您應該公開您 API 的 Swagger 端點。 此端點可讓 hello 邏輯應用程式的設計工具 toorender hello 輸入，而且您 API 的輸出。 沒有 Swagger，hello 設計工具可以只顯示 hello 輸入及輸出為不透明的 JSON 物件。
 
-下列範例顯示新的 `metadata.apiDefinitionUrl` 屬性：
+以下是範例顯示 hello 新`metadata.apiDefinitionUrl`屬性：
 
 ```
 {
@@ -219,13 +219,13 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 }
 ```
 
-如果您將 Web API 裝載於 Azure App Service 上，您的 Web API 就會自動顯示於設計工具的可用動作清單中。 如果不是，則您必須直接貼在 URL 中。 Swagger 端點必須未經驗證，才能在邏輯應用程式設計工具內使用，雖然您可以使用 Swagger 中支援的任何方法來保護 API 本身。
+如果您裝載您的 Web API，Azure App Service 上，您的 Web API 就會自動出現在 hello hello 設計工具中可用動作清單中。 如果沒有，您在 toopaste hello URL 直接。 hello Swagger 端點必須是可 hello 邏輯應用程式的設計工具，用於未經驗證的 toobe，雖然您可以保護任何 Swagger 所支援的方法與 hello API 本身。
 
 ### <a name="call-deployed-api-apps-with-2015-08-01-preview"></a>搭配 2015-08-01-preview 呼叫已部署的 API 應用程式
 
-如果您先前已部署 API 應用程式，您可以使用 **HTTP** 動作呼叫應用程式。
+如果您先前部署 API 應用程式，您可以呼叫 hello 應用程式以 hello **HTTP**動作。
 
-例如，如果您使用 Dropbox 列出檔案，您的 **2014-12-01-preview** 結構描述版本定義可能會有如下的內容：
+例如，如果您使用 Dropbox toolist 檔案，您**2014年-12-01-預覽**結構描述版本定義可能像這樣：
 
 ```
 {
@@ -266,7 +266,7 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 }
 ```
 
-您可以如此範例建構同等的 HTTP 動作，邏輯應用程式定義的 parameters 區段保持不變：
+Hello 的 hello 邏輯應用程式定義的參數區段保持不變時，您可以建構等此範例中，hello 相等 HTTP 動作：
 
 ```
 {
@@ -298,18 +298,18 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 | 動作屬性 | 說明 |
 | --- | --- |
 | `type` |`Http` 而不是 `APIapp` |
-| `metadata.apiDefinitionUrl` |若要在邏輯應用程式設計工具中使用此動作，請包含中繼資料端點，它的建構來源是：`{api app host.gateway}/api/service/apidef/{last segment of the api app host.id}/?api-version=2015-01-14&format=swagger-2.0-standard` |
-| `inputs.uri` |建構來源：`{api app host.gateway}/api/service/invoke/{last segment of the api app host.id}/{api app operation}?api-version=2015-01-14` |
+| `metadata.apiDefinitionUrl` |toouse hello 邏輯應用程式的設計工具，這個動作包括 hello 中繼資料端點，建構自：`{api app host.gateway}/api/service/apidef/{last segment of hello api app host.id}/?api-version=2015-01-14&format=swagger-2.0-standard` |
+| `inputs.uri` |建構來源：`{api app host.gateway}/api/service/invoke/{last segment of hello api app host.id}/{api app operation}?api-version=2015-01-14` |
 | `inputs.method` |一律為 `POST` |
-| `inputs.body` |與 API 應用程式參數相同 |
-| `inputs.authentication` |與 API 應用程式驗證相同 |
+| `inputs.body` |相同 toohello API 應用程式參數 |
+| `inputs.authentication` |相同 toohello API 應用程式驗證 |
 
-此方法應可適用於 API 應用程式的所有動作。 不過，請記住這些先前的 API 應用程式已不再受到支援。 因此，您應該移至兩個其他先前選項其中之一，受管理的 API 或裝載自訂的 Web API。
+此方法應可適用於 API 應用程式的所有動作。 不過，請記住這些先前的 API 應用程式已不再受到支援。 因此您應該一併移動的 hello tooone 上述兩個其他選項，受管理的應用程式開發介面或裝載您自訂的 Web API。
 
 <a name="foreach"></a>
-## <a name="renamed-repeat-to-foreach"></a>將 'repeat' 重新命名為 'foreach'
+## <a name="renamed-repeat-tooforeach"></a>重新命名 'repeat' too'foreach'
 
-針對先前的結構描述版本，我們接到許多的客戶意見，他們覺得 **Repeat** 造成混淆，並沒有正確表達 **Repeat** 真的是 for-each 迴圈。 因此，我們已將 `repeat` 重新命名為 `foreach`。 例如，您先前可以撰寫：
+Hello 先前的結構描述版本，我們收到太多客戶的意見反應，**重複**會造成混淆並沒有正確擷取的**重複**真的 for each 迴圈。 如此一來，我們已重新命名`repeat`太`foreach`。 例如，您先前可以撰寫：
 
 ```
 {
@@ -343,11 +343,11 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 }
 ```
 
-`@repeatItem()` 函式先前是用來參考目前反覆處理的項目。 此函式現已簡化為 `@item()`。 
+hello 函式`@repeatItem()`先前使用的 tooreference hello 目前項目要反覆查看。 此函式現在已簡化太`@item()`。 
 
 ### <a name="reference-outputs-from-foreach"></a>參考來自 'foreach' 的輸出
 
-為簡化方式，從 `foreach` 的動作輸出不會包含在一個稱為 `repeatItems` 的物件。 雖然從先前 `repeat` 範例的輸出是︰
+為簡化，hello 輸出從`foreach`動作不會包含在一個稱為物件`repeatItems`。 雖然 hello 輸出從先前的 hello`repeat`範例是：
 
 ```
 {
@@ -387,7 +387,7 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 ]
 ```
 
-在以前，參考這些輸出時，若要取得動作的主體：
+先前，tooget toohello 本文的 hello 參照這些輸出的動作：
 
 ```
 {
@@ -423,19 +423,19 @@ PUT https://management.azure.com/subscriptions/{subid}/resourceGroups/{rgname}/p
 }
 ```
 
-經過這些變更，已移除函式 `@repeatItem()`、`@repeatBody()` 和 `@repeatOutputs()`。
+這些變更，hello 函式`@repeatItem()`， `@repeatBody()`，和`@repeatOutputs()`會移除。
 
 <a name="http-listener"></a>
 ## <a name="native-http-listener"></a>原生 HTTP 接聽程式
 
-HTTP 接聽程式功能現在是內建的。 因此您不再需要部署 HTTP 接聽程式 API 應用程式。 請參閱 [這裡有關如何讓您的邏輯應用程式端點可供呼叫的完整詳細資料](../logic-apps/logic-apps-http-endpoint.md)。 
+hello 功能現在內建的 HTTP 接聽程式。 因此您不再需要 toodeploy HTTP 接聽程式的 API 應用程式。 請參閱[hello 完整詳細資料的方式 toomake 您邏輯應用程式端點可呼叫這裡](../logic-apps/logic-apps-http-endpoint.md)。 
 
-經過這些變更，我們已移除 `@accessKeys()` 函式，改為以 `@listCallbackURL()` 函式來取得端點 (如果需要)。 此外，您現在必須在邏輯應用程式中至少定義一個觸發程序。 如果您想要 `/run` 工作流程，您必須具備下列其中一個觸發程序：`manual`、`apiConnectionWebhook` 或 `httpWebhook`。
+這些變更，我們移除了 hello`@accessKeys()`函式，我們取代 hello`@listCallbackURL()`取得 hello 端點時所需的函式。 此外，您現在必須在邏輯應用程式中至少定義一個觸發程序。 如果您想太`/run`hello 工作流程，您必須擁有這些觸發程序的其中一個： `manual`， `apiConnectionWebhook`，或`httpWebhook`。
 
 <a name="child-workflows"></a>
 ## <a name="call-child-workflows"></a>呼叫子工作流程
 
-在以前，呼叫子工作流程時必須移至該工作流程、取得存取權杖，然後將權杖貼到要呼叫該子工作流程的邏輯應用程式定義中。 在新的結構描述中，Logic Apps 引擎會在執行階段自動為子工作流程產生 SAS，因此您不需要將任何機密資料貼到定義中。 下列是一個範例：
+之前，呼叫子工作流程，您必須將 toohello 工作流程中，取得 hello 存取權杖，並貼上 hello 語彙基元中您想要 toocall hello 邏輯應用程式定義的子工作流程。 與 hello 新結構描述，引擎會自動產生 SAS，以在執行階段針對 hello Logic Apps 讓您不要有太貼上任何機密 hello 定義 hello 子工作流程。 下列是一個範例：
 
 ```
 "mynestedwf": {
@@ -461,20 +461,20 @@ HTTP 接聽程式功能現在是內建的。 因此您不再需要部署 HTTP �
 }
 ```
 
-第二個改進是我們允許子工作流程完整存取內送要求。 這表示您可以將參數傳入 queries 區段和 headers 物件中，而且您可以完整定義整個主體。
+第二個改進是我們會賦予 hello 子工作流程的完整存取 toohello 連入要求。 這表示您可以在 hello 傳遞參數*查詢*區段在 hello*標頭*物件，而且您可以完全定義 hello 整個本文。
 
-最後是必須對子工作流程進行的變更。 儘管您以前可能會直接呼叫子工作流程，但現在，您必須在工作流程中定義觸發程序端點，以供父工作流程呼叫。 一般而言，您需要新增具有 `manual` 類型的觸發程序，然後在父定義中使用該觸發程序。 請注意，`host` 屬性明確地具有 `triggerName`，因為您一律需指定要叫用的觸發程序。
+最後，有必要的變更 toohello 子工作流程。 雖然您無法直接先前呼叫的子工作流程，您現在必須定義觸發程序端點 hello 父 toocall 的 hello 工作流程中。 一般而言，您可以在其中加入觸發程序具有`manual`類型，而然後 hello 父定義中使用該觸發程序。 請注意 hello`host`屬性特別的是包含`triggerName`您一定要指定觸發程序，因為您叫用。
 
 ## <a name="other-changes"></a>其他變更
 
 ### <a name="new-queries-property"></a>新的 'queries' 屬性
 
-所有動作類型現在支援一個稱為 `queries`的新輸入。 這個輸出可以是結構化物件，而您不必手動組合該字串。
+所有動作類型現在支援一個稱為 `queries`的新輸入。 此輸入可以是結構化的物件，而不是您以手動方式具有 tooassemble hello 字串。
 
-### <a name="renamed-parse-function-to-json"></a>將 'parse()' 函式重新命名為 'json()'
+### <a name="renamed-parse-function-toojson"></a>重新命名 'parse()' 函式 too'json()'
 
-我們很快地將加入更多內容類型，因此已將 `parse()` 函式重新命名為 `json()`。
+我們要加入更多的內容類型過期，因此我們在重新命名 hello`parse()`函式太`json()`。
 
 ## <a name="coming-soon-enterprise-integration-apis"></a>敬請期待：企業整合 API
 
-我們還沒有企業整合 API 的受管理版本，像是 AS2。 同時，您可以透過 HTTP 動作使用現有的已部署 BizTalk API。 如需詳細資訊，請參閱[整合藍圖](http://www.zdnet.com/article/microsoft-outlines-its-cloud-and-server-integration-roadmap-for-2016/)中的「使用已部署的 API 應用程式」。 
+我們沒有 hello 企業整合應用程式開發介面，例如 AS2 的受管理的版本。 同時，您可以使用您現有部署的 BizTalk 應用程式開發介面透過 hello HTTP 動作。 如需詳細資訊，請參閱 「 使用您已部署的應用程式開發介面應用程式 」 在 hello[整合藍圖](http://www.zdnet.com/article/microsoft-outlines-its-cloud-and-server-integration-roadmap-for-2016/)。 

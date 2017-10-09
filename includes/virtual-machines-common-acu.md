@@ -2,10 +2,10 @@
 
 
 
-我們已經建立「Azure 運算單位」(ACU) 概念來提供一種比較各個 Azure SKU 之運算 (CPU) 效能的方法。 這將可協助您輕鬆識別哪個 SKU 最可能符合您的效能需求。  ACU 目前是以「小型 (Standard_A1)」VM 為標準 (數值為 100)，而所有其他 SKU 則大致上代表該 SKU 在執行標準基準測試上可以快多少。 
+我們已經建立 hello Azure 計算單位 (ACU) tooprovide 的方式來計算 (CPU) 的效能比較跨 Azure Sku 的 hello 的概念。 這可協助您輕鬆地識別的 SKU 是最有可能 toosatisfy 效能需求。  ACU 目前是以「小型 (Standard_A1)」VM 為標準 (數值為 100)，而所有其他 SKU 則大致上代表該 SKU 在執行標準基準測試上可以快多少。 
 
 > [!IMPORTANT]
-> ACU 只是一個指導方針。  您工作負載的結果可能會有所不同。 
+> hello ACU 是只是指導方針。  您的工作負載的 hello 結果會有所不同。 
 > 
 > 
 
@@ -35,6 +35,6 @@
 | [L4s-L32s](../articles/virtual-machines/windows/sizes-storage.md) |180 - 240* |
 | [M](../articles/virtual-machines/virtual-machines-windows-sizes-memory.md) | 160-180** |
 
-以 * 標示的 ACU 使用了「Intel® 渦輪」技術來增加 CPU 頻率及提升效能。  提升的程度會依 VM 大小、工作負載及在相同主機上執行的其他工作負載而有所不同。
+標記為 ACUs * 使用 Intel® 快速技術 tooincrease CPU 頻率，並提供效能提升。  hello hello boost 數量可以隨著 hello VM 大小、 工作負載，以及在 hello 上執行其他工作負載相同的主機。
 
 **超執行緒。 

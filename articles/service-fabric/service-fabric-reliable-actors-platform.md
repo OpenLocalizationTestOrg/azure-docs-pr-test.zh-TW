@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric 上的 Reliable Actors | Microsoft Docs"
-description: "說明 Reliable Actors 如何在 Reliable Services 上分層，以及如何使用 Service Fabric 平台的功能。"
+title: "aaaReliable 上 Service Fabric 動作項目 |Microsoft 文件"
+description: "描述如何 Reliable Actors 的分層上可靠的服務，並使用 hello hello Service Fabric 平台功能。"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/07/2017
 ms.author: vturecek
-ms.openlocfilehash: 0a12da52b6e74c721cd25f89e7cde3c07153a396
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: ecffb54139f1171c7839b77fed0be60950881198
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="how-reliable-actors-use-the-service-fabric-platform"></a>Reliable Acto 如何使用 Service Fabric 平台
-本文說明 Reliable Actors 在 Azure Service Fabric 平台上的運作方式。 Reliable Actors 會在名為*動作項目服務*的具狀態可靠服務實作上裝載的架構中執行。 動作項目服務包含管理生命週期和您的動作項目用於發送之訊息所需的所有元件︰
+# <a name="how-reliable-actors-use-hello-service-fabric-platform"></a>Reliable Actors 使用 hello Service Fabric 平台的方式
+本文說明 Reliable Actors hello Azure Service Fabric 平台上的運作方式。 位於呼叫 hello 可設定狀態可靠的服務實作的架構中執行 reliable Actors *actor 服務*。 hello actor 服務包含所有 hello 元件所需的 toomanage hello 生命週期和訊息發送您的動作項目：
 
-* 動作項目執行階段會管理生命週期、記憶體回收，並強制執行單一執行緒存取。
-* 動作項目服務遠端處理接聽程式會接受對動作項目進行的遠端存取呼叫，並將它們傳送到發送器，以路由傳送到適當的動作項目執行個體。
-* 動作項目狀態供應器會包裝狀態供應器 (例如「可靠的集合」狀態供應器)，並提供配接器來進行動作項目狀態管理。
+* hello 動作項目執行階段生命週期，記憶體回收，並強制執行單一執行緒存取。
+* 動作項目服務遠端接聽程式接受遠端存取呼叫 tooactors，並將它們傳送 tooa 發送器 tooroute toohello 適當的動作項目執行個體。
+* hello 動作項目狀態提供者會包裝狀態提供者 （例如 hello 可靠集合狀態提供者），並提供動作項目狀態管理的介面卡。
 
-這些元件一起構成 Reliable Actor 架構。
+這些元件一起表單 hello Reliable Actor 架構。
 
 ## <a name="service-layering"></a>將服務分層
-由於動作項目服務本身是一個 Reliable Service，因此 Reliable Services 的所有 [應用程式模型](service-fabric-application-model.md)、生命週期、[封裝](service-fabric-package-apps.md)、[部署](service-fabric-deploy-remove-applications.md)、升級及調整概念都會以相同方式套用到動作項目服務。 
+Hello actor 服務本身是可靠的服務，因為所有 hello[應用程式模型](service-fabric-application-model.md)，生命週期，[封裝](service-fabric-package-apps.md)，[部署](service-fabric-deploy-remove-applications.md)、 升級和縮放比例的概念可靠的服務套用 hello tooactor 服務相同方式。 
 
 ![將動作項目服務分層][1]
 
-上圖顯示 Service Fabric 應用程式架構和使用者程式碼之間的關聯性。 藍色項目代表 Reliable Services 應用程式架構、橘色代表 Reliable Actor 架構，而綠色代表使用者程式碼。
+hello 上圖顯示 hello hello Service Fabric 應用程式架構和使用者程式碼之間的關聯性。 藍色項目代表 hello 可靠的服務應用程式架構、 橙色代表 hello Reliable Actor 架構，而綠色代表使用者程式碼。
 
-在 Reliable Services 中，您的服務會繼承 `StatefulService` 類別。 這個類別本身是衍生自 `StatefulServiceBase` (或無狀態服務的 `StatelessService`)。 在 Reliable Actors 中，您會使用動作項目服務。 動作項目服務是 `StatefulServiceBase` 類別的不同實作，此類別會實作動作項目執行所在的動作項目模式。 由於動作項目服務本身只是 `StatefulServiceBase` 的實作，因此，您可以自行撰寫衍生自 `ActorService` 的服務，並以您在繼承 `StatefulService` 時所使用的相同方式來實作服務層級功能，例如︰
+可靠的服務，在您的服務會繼承 hello`StatefulService`類別。 這個類別本身是衍生自 `StatefulServiceBase` (或無狀態服務的 `StatelessService`)。 中可靠的動作項目，您可以使用 hello 動作項目服務。 hello actor 服務是 hello 的不同實作`StatefulServiceBase`類別實作 hello actor 模式執行您的動作項目。 因為 hello actor 服務本身是實作的`StatefulServiceBase`，您可以撰寫您自己的服務衍生自`ActorService`和實作服務層級功能 hello 相同的方式進行繼承時`StatefulService`，例如：
 
 * 服務備份與還原。
 * 適用於所有動作項目的共用功能，例如斷路器。
-* 遠端處理程序會在動作項目服務本身，以及每個個別動作項目上進行呼叫。
+* Hello actor 服務本身和每個個別的動作項目上的遠端程序呼叫。
 
 > [!NOTE]
 > Java/Linux 上目前不支援具狀態服務。
 
-### <a name="using-the-actor-service"></a>使用動作項目服務
-動作項目執行個體具有其執行所在之動作項目服務的存取權。 透過動作項目服務，動作項目執行個體可以程式設計方式取得服務內容。 服務內容包含分割區識別碼、服務名稱、應用程式名稱及其他 Service Fabric 平台特定的資訊：
+### <a name="using-hello-actor-service"></a>使用 hello 行動服務
+動作項目執行個體具有存取 toohello 行動服務執行所在。 透過 hello 行動服務，動作項目執行個體可以透過程式設計方式取得 hello 服務內容。 hello 服務內容具有 hello 分割區識別碼、 服務名稱、 應用程式名稱和其他 Service Fabric 平台特定的資訊：
 
 ```csharp
 Task MyActorMethod()
@@ -68,7 +68,7 @@ CompletableFuture<?> MyActorMethod()
 ```
 
 
-就像所有 Reliable Services，動作項目服務必須在 Service Fabric 執行階段，利用某個服務類型來註冊。 為了讓動作項目服務執行您的動作項目執行個體，也必須向動作項目服務註冊動作項目類型。 `ActorRuntime` 註冊方法會替動作項目執行這項工作。 在最簡單的情況下，您只需註冊動作項目類型，並隱含地使用具備預設設定的動作項目服務︰
+如同所有可靠的服務，hello actor 服務必須向 hello Service Fabric 執行階段中的服務類型。 Hello actor 服務 toorun 您的動作項目執行個體，也必須註冊動作項目類型與 hello 動作項目服務。 hello`ActorRuntime`註冊方法為執行者執行這項工作。 在 hello 最簡單的情況下，您就可以註冊您的動作項目類型和 hello actor 服務以預設設定將會隱含使用：
 
 ```csharp
 static class Program
@@ -82,7 +82,7 @@ static class Program
 }
 ```
 
-或者，您可以使用註冊方法提供的 Lambda，來建構自己的動作項目服務。 您可以設定動作項目服務，以及明確地建構您的動作項目執行個體，您可以透過其建構函式，將相依性插入動作項目︰
+或者，您可以使用服務所提供的 hello 註冊方法 tooconstruct hello 執行者自行 lambda。 您可以再設定 hello 行動服務，並明確建構您的動作項目執行個體，您可以在其中插入透過其建構函式的相依性 tooyour 動作項目：
 
 ```csharp
 static class Program
@@ -113,10 +113,10 @@ static class Program
 ```
 
 ### <a name="actor-service-methods"></a>動作項目服務方法
-動作項目服務會實作 `IActorService` (C#) 或 `ActorService` (Java)，而它會接著實作 `IService` (C#) 或 `Service` (Java)。 這是 Reliable Services 遠端處理功能所使用的介面，能夠在服務方法上進行遠端程序呼叫。 它包含的服務層級方法可使用服務遠端處理功能從遠端呼叫。
+hello 行動服務會實作`IActorService`(C#) 或`ActorService`(Java)，它接著會實作`IService`(C#) 或`Service`(Java)。 這是可靠的服務遠端處理，可讓服務方法的遠端程序呼叫所使用的 hello 介面。 它包含的服務層級方法可使用服務遠端處理功能從遠端呼叫。
 
 #### <a name="enumerating-actors"></a>列舉動作項目
-動作項目服務允許用戶端列舉服務所裝載之動作項目的相關中繼資料。 因為動作項目服務是已資料分割的具狀態服務，所以會針對每個分割區執行列舉。 由於每個分割區可能包含許多動作項目，因此，列舉會以一組分頁式結果形式傳回。 頁面會以迴圈方式讀取，直到讀取所有頁面為止。 下列範例示範如何在動作項目服務的其中一個分割區中，建立所有作用中動作項目的清單︰
+hello 行動服務可讓用戶端 hello 執行者 hello 服務裝載 tooenumerate 中繼資料。 因為 hello 行動服務資料分割的可設定狀態服務，執行列舉作業每個資料分割。 因為每個資料分割可能包含許多參與者，以一組分頁式結果傳回 hello 列舉型別。 hello 頁面被迴圈，直到讀取所有頁面。 下列範例會示範如何 hello toocreate 行動服務的一個資料分割中的所有作用中執行者的清單：
 
 ```csharp
 IActorService actorServiceProxy = ActorServiceProxy.Create(
@@ -160,7 +160,7 @@ while (continuationToken != null);
 ```
 
 #### <a name="deleting-actors"></a>刪除動作項目
-動作項目服務也會提供用來刪除動作項目的函式︰
+hello actor 服務也提供函式刪除動作項目：
 
 ```csharp
 ActorId actorToDelete = new ActorId(id);
@@ -179,10 +179,10 @@ ActorService myActorServiceProxy = ActorServiceProxy.create(
 myActorServiceProxy.deleteActorAsync(actorToDelete);
 ```
 
-如需刪除動作項目及其狀態的詳細資訊，請參閱[動作項目生命週期文件](service-fabric-reliable-actors-lifecycle.md)。
+如需有關刪除動作項目和其狀態的詳細資訊，請參閱 hello[執行者生命週期的文件](service-fabric-reliable-actors-lifecycle.md)。
 
 ### <a name="custom-actor-service"></a>自訂動作項目服務
-您可以使用動作項目註冊 lambda，註冊自 `ActorService` (C#) 和 `FabricActorService` (Java) 延伸的自訂動作項目服務。 在此自訂動作項目服務中，您可以撰寫繼承 `ActorService` (C#) 或 `FabricActorService` (Java) 的服務，以實作自己的服務層級功能。 自訂動作項目服務會繼承來自 `ActorService` (C#) 或 `FabricActorService` (Java) 的所有動作項目執行階段功能，並可用來實作您自己的服務方法。
+您可以藉由使用 hello 執行者註冊 lambda，註冊您自己的自訂動作項目服務衍生自`ActorService`(C#) 和`FabricActorService`(Java)。 在此自訂動作項目服務中，您可以撰寫繼承 `ActorService` (C#) 或 `FabricActorService` (Java) 的服務，以實作自己的服務層級功能。 自訂動作項目服務繼承所有 hello 動作項目執行階段功能，從`ActorService`(C#) 或`FabricActorService`(Java) 而且可以使用的 tooimplement 您自己的服務方法。
 
 ```csharp
 class MyActorService : ActorService
@@ -230,7 +230,7 @@ public class Program
 ```
 
 #### <a name="implementing-actor-backup-and-restore"></a>實作動作項目備份與還原
- 在下列範例中，自訂動作項目服務會利用已經存在於 `ActorService`中的遠端處理接聽程式，藉以公開用來備份動作項目資料的方法：
+ 在下列範例的 hello，hello 自訂動作項目服務所公開執行者資料備份方法 tooback 透過 hello 遠端接聽程式中已有運用`ActorService`:
 
 ```csharp
 public interface IMyActorService : IService
@@ -253,7 +253,7 @@ class MyActorService : ActorService, IMyActorService
     {
         try
         {
-           // store the contents of backupInfo.Directory
+           // store hello contents of backupInfo.Directory
            return true;
         }
         finally
@@ -285,7 +285,7 @@ class MyActorServiceImpl extends ActorService implements MyActorService
     {
         try
         {
-           // store the contents of backupInfo.Directory
+           // store hello contents of backupInfo.Directory
            return true;
         }
         finally
@@ -307,7 +307,7 @@ class MyActorServiceImpl extends ActorService implements MyActorService
 ```
 
 
-在此範例中，`IMyActorService` 是遠端處理協定，它會實作 `IService` (C#) 與 `Service` (Java)，然後透過 `MyActorService` 來實作。 藉由新增這個遠端處理協定，透過使用 `ActorServiceProxy` 建立遠端 Proxy，`IMyActorService` 上的方法現在也可供用戶端使用：
+在此範例中，`IMyActorService` 是遠端處理協定，它會實作 `IService` (C#) 與 `Service` (Java)，然後透過 `MyActorService` 來實作。 加上這個遠端服務合約，而方法`IMyActorService`現在也是可用 tooa 用戶端藉由建立透過遠端 proxy `ActorServiceProxy`:
 
 ```csharp
 IMyActorService myActorServiceProxy = ActorServiceProxy.Create<IMyActorService>(
@@ -323,31 +323,31 @@ myActorServiceProxy.backupActorsAsync();
 ```
 
 ## <a name="application-model"></a>應用程式模型
-動作項目服務是 Reliable Services，因此應用程式模型是一樣的。 不過，動作項目架構建置工具可為您產生某些應用程式模型檔案。
+動作項目服務是可靠的服務，因此 hello 應用程式模型是 hello 相同。 不過，hello 執行者 framework 建置工具讓您有產生部分 hello 應用程式模型檔案。
 
 ### <a name="service-manifest"></a>服務資訊清單
-動作項目架構建置工具會自動產生動作項目服務的 ServiceManifest.xml 檔案內容。 此檔案包括：
+hello 執行者 framework 建置工具自動產生 hello 行動服務的 ServiceManifest.xml 檔案內容。 此檔案包括：
 
-* 動作項目服務類型。 類型名稱是根據您的動作項目專案名稱來產生。 根據動作項目上的持續性屬性，也會據以設定 HasPersistedState 旗標。
+* 動作項目服務類型。 hello 型別名稱會產生以動作項目的專案名稱為基礎。 根據您的動作項目上的 hello 持續性屬性，hello HasPersistedState 旗標會也隨之設定。
 * 程式碼封裝。
 * 組態封裝。
 * 資源和端點。
 
 ### <a name="application-manifest"></a>應用程式資訊清單
-動作項目架構建置工具會自動建立適用於您動作項目服務的預設服務定義。 建置工具會填入預設服務屬性︰
+hello 執行者 framework 建置工具自動建立您的行動服務的預設服務定義。 hello 建置工具填入 hello 預設服務屬性：
 
-* 複本集數量取決於動作項目上的持續性屬性。 每當動作項目上的持續性屬性變更時，預設服務定義中的複本集數量會據以重設。
-* 分割區配置和範圍會利用完整的 Int64 索引鍵範圍設定為「平均的 Int64 」。
+* 複本集計數取決於您的動作項目上的 hello 持續性屬性。 在您的動作項目上的每個時間 hello 持續性屬性變更時，會據以重設 hello 預設服務定義中的 hello 複本集計數。
+* 資料分割配置和範圍會設定 tooUniform Int64 hello 完整 Int64 範圍。
 
 ## <a name="service-fabric-partition-concepts-for-actors"></a>動作項目的 Service Fabric 資料分割概念
 動作項目服務是已資料分割的具狀態服務。 動作項目服務的每個分割區都包含一組動作項目。 服務分割區會自動散佈於 Service Fabric 中的多個節點上。 結果就是散佈動作項目執行個體。
 
 ![動作項目的資料分割和散佈][5]
 
-您可以使用不同的分割區配置和分割區索引鍵範圍來建立 Reliable Services。 動作項目服務會搭配完整的 Int64 索引鍵範圍使用 Int64 資料分割配置，來將動作項目對應到分割區。
+您可以使用不同的分割區配置和分割區索引鍵範圍來建立 Reliable Services。 hello 行動服務會使用 hello 完整 Int64 關鍵範圍 toomap 執行者 toopartitions hello Int64 資料分割配置。
 
 ### <a name="actor-id"></a>動作項目識別碼
-服務中建立的每個動作項目都具有與它相關聯的唯一識別碼，由 `ActorId` 類別來表示。 `ActorId` 是不透明的識別碼值，可藉由產生隨機識別碼，在服務分割區上平均散佈動作項目。
+每個動作建立 hello 服務中的項目具有與它所 hello 表示相關聯的唯一識別碼`ActorId`類別。 `ActorId`是不透明的識別碼值，可用於執行者統一分佈在 hello 服務資料分割之間產生隨機識別碼：
 
 ```csharp
 ActorProxy.Create<IMyActor>(ActorId.CreateRandom());
@@ -357,7 +357,7 @@ ActorProxyBase.create<MyActor>(MyActor.class, ActorId.newId());
 ```
 
 
-每個 `ActorId` 雜湊為 int64。 這就是為什麼動作項目服務必須搭配完整的 Int64 索引鍵範圍使用 Int64 資料分割配置的原因。 不過，自訂識別碼值可用於 `ActorID`，包括 GUID/UUID、字串和 Int64。
+每個`ActorId`是雜湊的 tooan Int64。 這就是為什麼 hello actor 服務必須使用 hello 完整 Int64 範圍的 Int64 資料分割配置。 不過，自訂識別碼值可用於 `ActorID`，包括 GUID/UUID、字串和 Int64。
 
 ```csharp
 ActorProxy.Create<IMyActor>(new ActorId(Guid.NewGuid()));
@@ -370,7 +370,7 @@ ActorProxyBase.create(MyActor.class, new ActorId("myActorId"));
 ActorProxyBase.create(MyActor.class, new ActorId(1234));
 ```
 
-您使用 GUID/UUID 和字串時，已將值雜湊為 Int64。 不過，在您將 Int64 明確提供給 `ActorId`之前，Int64 將會直接對應到分割區，而不需進一步雜湊。 您可以使用這項技術控制要將動作項目放置於哪個分割區。
+當您使用的 Guid/Uuid 和字串 hello 值會是雜湊的 tooan Int64。 不過，當您明確地提供 Int64 tooan `ActorId`，hello Int64 會對應直接 tooa 資料分割而不進一步雜湊。 您可以使用這個技巧 toocontrol 分割 hello 執行者會放在其中。
 
 ## <a name="next-steps"></a>後續步驟
 * [動作項目狀態管理](service-fabric-reliable-actors-state-management.md)

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 網路監看員管理網路安全性群組流量記錄 | Microsoft Docs"
-description: "此頁面說明如何在 Azure 網路監看員中管理網路安全性群組流量記錄"
+title: "aaaManage 網路安全性群組流程記錄檔與 Azure 網路監看員 |Microsoft 文件"
+description: "此頁面說明 toomanage 網路安全性小組流程如何登入 Azure 網路監看員"
 services: network-watcher
 documentationcenter: na
 author: georgewallace
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/22/2017
 ms.author: gwallace
-ms.openlocfilehash: 41cb5ffab9bd3a3bed75ffdb6a7383ca1690f810
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: fb250337ab9d1a0c0d0d3569c00bc221dd102a3f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="manage-network-security-group-flow-logs-in-the-azure-portal"></a>在 Azure 入口網站中管理網路安全性群組流量記錄
+# <a name="manage-network-security-group-flow-logs-in-hello-azure-portal"></a>管理網路安全性群組資料流程中的記錄檔 hello Azure 入口網站
 
 > [!div class="op_single_selector"]
 > - [Azure 入口網站](network-watcher-nsg-flow-logging-portal.md)
@@ -29,76 +29,76 @@ ms.lasthandoff: 07/11/2017
 > - [CLI 2.0](network-watcher-nsg-flow-logging-cli.md)
 > - [REST API](network-watcher-nsg-flow-logging-rest.md)
 
-網路安全性群組流量記錄是網路監看員的一項功能，可讓您檢視透過網路安全性群組傳輸的輸入和輸出 IP 流量相關資訊。 這些流量記錄是以 JSON 格式寫入，並提供重要資訊，包括： 
+網路安全性群組流程記錄檔是 tooview ingress 和 egress IP 流量，透過網路安全性群組相關的資訊可讓您的網路監看員的功能。 這些流量記錄是以 JSON 格式寫入，並提供重要資訊，包括： 
 
 - 每個規則的輸出和輸入流量。
-- 套用流量的 NIC。
-- 與流量相關的 5-Tuple 資訊 (來源/目的地 IP、來源/目的地連接埠，通訊協定)。
+- hello NIC hello 流程，適用於。
+- 5 個 tuple hello 資料流程來源/目的地 IP、 來源/目的地連接埠 （通訊協定） 資訊。
 - 流量被允許或拒絕的資訊。
 
 ## <a name="before-you-begin"></a>開始之前
 
-此案例假設您已依照[建立網路監看員執行個體](network-watcher-create.md)中的步驟執行。 此案例也假設您已擁有具備有效虛擬機器的資源群組。
+此案例假設您已依照中的 hello 步驟[建立網路監看員執行個體](network-watcher-create.md)。 hello 案例也會假設您有有效的虛擬機器的資源群組。
 
 ## <a name="register-insights-provider"></a>註冊 Insights 提供者
 
-為了讓流量記錄成功運作，您必須註冊 **Microsoft.Insights** 提供者。 若要註冊提供者，請執行下列步驟： 
+流程記錄 toowork 成功，hello **Microsoft.Insights**必須註冊提供者。 tooregister hello 提供者，採取下列步驟的 hello: 
 
-1. 移至 [訂用帳戶]，然後選取您要為其啟用流量記錄的訂用帳戶。 
-2. 在 [訂用帳戶] 刀鋒視窗中，選取 [資源提供者]。 
-3. 查看提供者清單，並確認 **microsoft.insights** 提供者已註冊。 如果沒有，則選取 [註冊]。
+1. 跳過**訂閱**，然後選取您想要的 tooenable 流程記錄檔的 hello 訂用帳戶。 
+2. 在 hello**訂用帳戶**刀鋒視窗中，選取**資源提供者**。 
+3. 查看 hello 提供者清單，並確認該 hello **microsoft.insights**註冊提供者。 如果沒有，則選取 [註冊]。
 
 ![檢視提供者][providers]
 
 ## <a name="enable-flow-logs"></a>啟用流量記錄
 
-這些步驟會引導您完成在網路安全性群組上啟用流量記錄的程序。
+這些步驟會引導您啟用網路安全性群組上的流量記錄檔的 hello 程序。
 
 ### <a name="step-1"></a>步驟 1
 
-移至網路監看員執行個體，然後選取 [NSG 流量記錄]。
+移 tooa 網路監看員執行個體，然後再選取**NSG 流程記錄**。
 
 ![流量記錄概觀][1]
 
 ### <a name="step-2"></a>步驟 2
 
-從清單中選取網路安全性群組。
+從 hello 清單中選取網路安全性群組。
 
 ![流量記錄概觀][2]
 
 ### <a name="step-3"></a>步驟 3 
 
-在 [流量記錄設定] 刀鋒視窗上，將狀態設為 [開啟] 並設定儲存體帳戶。  完成後，選取 [確定]。 然後選取 [儲存]。
+在 hello**流程記錄設定**刀鋒視窗中，設定 hello 狀態太**上**，然後設定儲存體帳戶。  完成後，選取 [確定]。 然後選取 [儲存]。
 
 ![流量記錄概觀][3]
 
 ## <a name="download-flow-logs"></a>下載流量記錄
 
-流量記錄會儲存在儲存體帳戶中。 下載流量記錄以檢視它們。
+流量記錄會儲存在儲存體帳戶中。 下載您的流程記錄 tooview 它們。
 
 ### <a name="step-1"></a>步驟 1
 
-若要下載流量記錄，請選取 [您可從設定的儲存體帳戶下載流量記錄檔]。 此步驟會帶您前往儲存體帳戶檢視，以便在該處選擇要下載的記錄。
+toodownload 流程記錄檔中，選取**您可以從設定的儲存體帳戶下載流程記錄**。 此步驟會帶您 tooa 儲存體帳戶檢視，您可以選擇哪些記錄檔 toodownload。
 
 ![流量記錄設定][4]
 
 ### <a name="step-2"></a>步驟 2
 
-移至正確的儲存體帳戶。 然後選取 [容器] > [insights-log-networksecuritygroupflowevent]。
+移 toohello 正確的儲存體帳戶。 然後選取 [容器] > [insights-log-networksecuritygroupflowevent]。
 
 ![流量記錄設定][5]
 
 ### <a name="step-3"></a>步驟 3
 
-移至流量記錄的位置並選取它，然後選取 [下載]。
+移 toohello hello 流程記錄檔位置，選取它，並選取**下載**。
 
 ![流量記錄設定][6]
 
-如需記錄結構的相關資訊，請造訪[網路安全性群組流量記錄概觀](network-watcher-nsg-flow-logging-overview.md)。
+Hello 結構 hello 記錄檔的相關資訊，請造訪[網路安全性群組流程記錄概觀](network-watcher-nsg-flow-logging-overview.md)。
 
 ## <a name="next-steps"></a>後續步驟
 
-了解如何[使用 PowerBI 視覺化 NSG 流量記錄](network-watcher-visualize-nsg-flow-logs-power-bi.md)。
+了解如何太[視覺化 NSG 流程記錄與 PowerBI](network-watcher-visualize-nsg-flow-logs-power-bi.md)。
 
 <!-- Image references -->
 [1]: ./media/network-watcher-nsg-flow-logging-portal/figure1.png

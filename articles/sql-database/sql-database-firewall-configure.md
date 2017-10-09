@@ -1,6 +1,6 @@
 ---
-title: "Azure SQL Database 防火牆規則 | Microsoft Docs"
-description: "了解如何以伺服器層級和資料庫層級防火牆規則設定 SQL Database 防火牆，以管理存取權。"
+title: "aaaAzure SQL Database 防火牆規則 |Microsoft 文件"
+description: "了解如何 tooconfigure SQL 資料庫與伺服器層級和資料庫層級防火牆規則 toomanage 存取的防火牆。"
 keywords: "資料庫防火牆"
 services: sql-database
 documentationcenter: 
@@ -17,109 +17,109 @@ ms.tgt_pltfrm: na
 ms.workload: data-management
 ms.date: 04/10/2017
 ms.author: rickbyh
-ms.openlocfilehash: 583c91376418d20d34db17d57d3fa14a1e71cd3b
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 6a8cdf629d0d0e55421a5e9f9b894a21371be568
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="azure-sql-database-server-level-and-database-level-firewall-rules"></a>Azure SQL Database 伺服器層級和資料庫層級防火牆規則 
 
-Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提供關聯式資料庫服務。 為了協助保護您的資料，防火牆會防止對您的資料庫伺服器的所有存取，直到您指定哪些電腦擁有權限。 此防火牆會根據每一個要求的來源 IP 位址來授與資料庫存取權。
+Microsoft Azure SQL Database 為 Azure 和其他網際網路式應用程式提供關聯式資料庫服務。 toohelp 保護您的資料，防火牆會阻止所有存取 tooyour 資料庫伺服器，直到您指定哪些電腦有權限。 hello 防火牆會授與存取 toodatabases hello 來自每個要求的 IP 位址為基礎。
 
 ## <a name="overview"></a>概觀
 
-一開始，防火牆會封鎖對您的 Azure SQL Server 的所有 Transact-SQL 存取。 若要開始使用 Azure SQL Server，您必須指定一或多個伺服器層級防火牆規則，啟用您的 Azure SQL Server 存取。 使用防火牆規則來指定允許網際網路的哪些 IP 位址範圍，以及 Azure 應用程式是否可以嘗試連接到 Azure SQL Server。
+一開始，所有的 TRANSACT-SQL 存取 tooyour Azure SQL 伺服器 hello 防火牆封鎖。 toobegin 使用您的 Azure SQL server，您必須指定一個或多個伺服器層級防火牆規則，讓存取 tooyour Azure SQL 伺服器。 請使用 hello 防火牆規則 toospecify 的 IP 位址範圍從 hello 允許網際網路，而且 Azure 應用程式是否可以嘗試 tooconnect tooyour Azure SQL server。
 
-若只要選擇性地授與 Azure SQL 伺服器上其中一個資料庫的存取權，您必須為所需的資料庫建立資料庫層級規則。 請為資料庫防火牆規則指定一個 IP 位址範圍，該範圍需在伺服器層級防火牆規則中指定的範圍之外，並確認用戶端的 IP 位址在資料庫層級規則中指定的範圍之內。
+tooselectively 授與存取 toojust 其中一個 Azure SQL server 中的 hello 資料庫，您必須建立 hello 需要資料庫的資料庫層級規則。 指定的 IP 位址範圍超出的 hello IP 位址在 hello 的伺服器層級防火牆規則中指定的範圍，請確定 hello hello 用戶端 IP 位址落在 hello hello 資料庫層級規則中指定的範圍內的 hello 資料庫防火牆規則。
 
-來自網際網路和 Azure 的連線嘗試必須先通過防火牆，才能到達您的 Azure SQL Server 或 SQL Database，如下圖所示：
+從連線嘗試 hello 網際網路和 Azure 必須先通過 hello 防火牆才能到達您的 Azure SQL server 或 SQL Database 中 hello 下列圖表所示：
 
    ![圖解防火牆設定。][1]
 
-* **伺服器層級防火牆規則：** 這些規則可讓用戶端存取整個 Azure SQL Server，也就是相同邏輯伺服器內的所有資料庫。 這些規則會儲存在 **master** 資料庫。 使用入口網站或使用 Transact-SQL 陳述式即可設定伺服器層級防火牆規則。 若要使用 Azure 入口網站或 PowerShell 建立伺服器層級的防火牆規則，您必須是訂用帳戶擁有者或訂用帳戶參與者。 若要使用 Transact-SQL 建立伺服器層級的防火牆規則，您必須以伺服器層級的主體登入或 Azure Active Directory 系統管理員身分連接到 SQL 資料庫執行個體 (這表示具有 Azure 層級權限的使用者必須先建立伺服器層級的防火牆規則)。
-* **資料庫層級防火牆規則：** 這些規則可讓用戶端存取同部邏輯伺服器內的特定 (安全) 資料庫。 您可針對每個資料庫 (包括 **master** database0) 建立這些規則，其會存放在個別的資料庫中。 資料庫層級防火牆規則只能使用 Transact-SQL 陳述式設定，且僅可在您已設定第一個伺服器層級防火牆之後進行設定。 如果您在資料庫層級防火牆規則中指定的 IP 位址範圍是在伺服器層級防火牆規則中指定的範圍之外，只有具有資料庫層級範圍中的 IP 位址的那些用戶端才可以存取資料庫。 對於資料庫，您最多可以有 128 個資料庫層級防火牆規則。 主要與使用者資料庫的資料庫層級防火牆規則，僅可透過 Transact-SQL 來建立和管理。 如需設定資料庫層級防火牆規則的詳細資訊，請參閱稍後述於 [sp_set_database_firewall_rule (Azure SQL Databases)](https://msdn.microsoft.com/library/dn270010.aspx) 的範例。
+* **伺服器層級防火牆規則：**這些規則可讓用戶端 tooaccess 整個 Azure SQL 伺服器，也就是所有都 hello 資料庫都 hello 相同邏輯伺服器。 這些規則會儲存在 hello**主要**資料庫。 使用 hello 入口網站，或使用 TRANSACT-SQL 陳述式，可以設定伺服器層級防火牆規則。 使用 hello Azure 入口網站或 PowerShell toocreate 伺服器層級防火牆規則，您必須是 hello 訂用帳戶擁有者或訂閱參與者。 toocreate 使用 Transact SQL 的伺服器層級防火牆規則，您必須連接為 hello 伺服器層級主體登入或 hello Azure Active Directory 系統管理員 （亦即必須先建立伺服器層級防火牆規則 toohello SQL Database 執行個體由使用者以 Azure 層級權限）。
+* **資料庫層級防火牆規則：**這些規則可讓用戶端 tooaccess 某些 （安全） 資料庫內 hello 相同邏輯伺服器。 您可以建立這些規則的每個資料庫 (包括 hello**主要**database0)，並儲存在 hello 個別的資料庫。 資料庫層級防火牆規則來設定它必須使用 TRANSACT-SQL 陳述式，而且只能設定之後 hello 第一個伺服器層級防火牆。 如果您是外部 hello 範圍 hello 伺服器層級防火牆規則中指定的 hello 資料庫層級防火牆規則中指定 IP 位址範圍，只有在 hello 資料庫層級範圍內有 IP 位址的用戶端才可以存取 hello 資料庫。 對於資料庫，您最多可以有 128 個資料庫層級防火牆規則。 主要與使用者資料庫的資料庫層級防火牆規則，僅可透過 Transact-SQL 來建立和管理。 如需有關設定資料庫層級防火牆規則的詳細資訊，請參閱 hello 範例稍後在這個發行項，請參閱[sp_set_database_firewall_rule (Azure SQL Database)](https://msdn.microsoft.com/library/dn270010.aspx)。
 
-**建議：**Microsoft 建議在可行時使用資料庫層級防火牆規則來增強安全性，並且讓您的資料庫更具有可攜性。 當您有多個資料庫具有相同存取需求，且不想花時間個別設定每個資料庫時，請對系統管理員使用伺服器層級的防火牆規則。
+**建議：** Microsoft 建議使用資料庫層級防火牆規則時可能 tooenhance 安全性和 toomake 更容易移植您的資料庫。 系統管理員使用伺服器層級防火牆規則，當您已擁有 hello 的許多資料庫相同的存取需求，且您不想 toospend 個別設定每個資料庫的時間。
 
 > [!Note]
-> 如需可讓業務持續運作的可攜式資料庫資訊，請參閱[災害復原的驗證需求](sql-database-geo-replication-security-config.md)。
+> 業務續航力的 hello 內容中的可攜式資料庫的相關資訊，請參閱[嚴重損壞修復的驗證需求](sql-database-geo-replication-security-config.md)。
 >
 
-### <a name="connecting-from-the-internet"></a>從網際網路連線
+### <a name="connecting-from-hello-internet"></a>從 hello 網際網路連線
 
-當電腦嘗試從網際網路連線到資料庫伺服器時，防火牆會先根據資料庫層級的防火牆規則，檢查連線所要求之資料庫的來源 IP 位址︰
+當電腦嘗試從網際網路 hello tooconnect tooyour 資料庫伺服器時，hello 防火牆會先檢查 hello 源自對 hello 資料庫 hello 連線要求的 hello 資料庫層級防火牆規則的 hello 要求的 IP 位址：
 
-* 如果要求的 IP 位址在資料庫層級防火牆規則中指定的其中一個範圍內，就會允許連線至包含規則的 SQL Database。
-* 如果要求的 IP 位址不在資料庫層級防火牆規則中指定的其中一個範圍內，則會檢查伺服器層級防火牆規則。 如果要求的 IP 位址在伺服器層級防火牆規則中指定的其中一個範圍內，就會允許連線。 伺服器層級防火牆規則適用於 Azure SQL Server 上的所有 SQL Database。  
-* 如果要求的 IP 位址不在任何資料庫層級或伺服器層級防火牆規則中指定的範圍內，連線要求會失敗。
+* 如果 hello 要求 hello IP 位址是其中一個 hello hello 資料庫層級防火牆規則中指定的範圍內，hello 連接授與 toohello 包含 hello 規則的 SQL 資料庫。
+* 如果 hello 要求 hello IP 位址不是其中一個 hello hello 資料庫層級防火牆規則中指定的範圍內，會檢查 hello 伺服器層級防火牆規則。 如果 hello 要求 hello IP 位址是其中一個 hello hello 伺服器層級防火牆規則中指定的範圍內，會授與 hello 連線。 伺服器層級防火牆規則 hello Azure SQL server 上套用 tooall SQL 資料庫。  
+* 如果 hello 要求 hello IP 位址不在任何 hello 資料庫層級中指定 hello 範圍或伺服器層級防火牆規則，hello 連接要求會失敗。
 
 > [!NOTE]
-> 若要從您的本機電腦存取 Azure SQL Database，請確定您的網路和本機電腦上的防火牆允許 TCP 連接埠 1433 上的傳出通訊。
+> tooaccess Azure SQL 資料庫從本機電腦，請確定 hello 網路和本機電腦上的防火牆允許 TCP 通訊埠 1433年上的傳出通訊。
 > 
 
 ### <a name="connecting-from-azure"></a>從 Azure 連線
-若要允許應用程式從 Azure 連接到您的 Azure SQL Server，必須啟用 Azure 連接。 當 Azure 的應用程式嘗試連線到您的資料庫伺服器時，防火牆會確認是否允許 Azure 連線。 開始和結束位址等於 0.0.0.0 的防火牆設定表示允許這些連線。 如果不允許連線嘗試，要求就不會到達 Azure SQL Database 伺服器。
+必須啟用 tooallow 應用程式，從 Azure tooconnect tooyour Azure 的 SQL server，Azure 的連線。 當從 Azure 應用程式嘗試 tooconnect tooyour 資料庫伺服器時，會驗證 hello 防火牆，允許 Azure 連線。 防火牆設定的開始和結束位址等於 too0.0.0.0 表示允許這些連接。 如果不允許 hello 連線嘗試，hello 要求不會到達 hello Azure SQL Database 伺服器。
 
 > [!IMPORTANT]
-> 這個選項會設定防火牆，以允許所有來自 Azure 的連線，包括來自其他客戶訂用帳戶的連線。 選取這個選項時，請確定您的登入和使用者權限會限制為只有授權的使用者才能存取。
+> 這個選項會設定 hello 防火牆 tooallow 從 Azure 連接包括 hello 訂用帳戶的其他客戶的所有連線。 當選取此選項，請確定您的登入與使用者權限限制存取 tooonly 授權使用者。
 > 
 
 ## <a name="creating-and-managing-firewall-rules"></a>建立和管理防火牆規則
-您可使用 [Azure 入口網站](https://portal.azure.com/)，或是以程式設計方式使用 [Azure PowerShell](https://msdn.microsoft.com/library/azure/dn546724.aspx)、[Azure CLI](/cli/azure/sql/server/firewall-rule#create) 或 [REST API](https://msdn.microsoft.com/library/azure/dn505712.aspx)，建立第一個伺服器層級防火牆設定。 後續的伺服器層級防火牆規則可以使用這些方法，以及透過 Transact-SQL 來建立和管理。 
+您可以使用 hello 建立 hello 第一個伺服器層級防火牆設定[Azure 入口網站](https://portal.azure.com/)或以程式設計方式使用[Azure PowerShell](https://msdn.microsoft.com/library/azure/dn546724.aspx)， [Azure CLI](/cli/azure/sql/server/firewall-rule#create)，或使用 hello [REST API](https://msdn.microsoft.com/library/azure/dn505712.aspx)。 後續的伺服器層級防火牆規則可以使用這些方法，以及透過 Transact-SQL 來建立和管理。 
 
 > [!IMPORTANT]
 > 資料庫層級防火牆規則只能使用 Transact-SQL 來建立和管理。 
 >
 
-為了改進效能，系統會暫時在資料庫層級快取伺服器層級防火牆規則。 若應重新整理快取，請參閱 [DBCC FLUSHAUTHCACHE](https://msdn.microsoft.com/library/mt627793.aspx)。 
+tooimprove 效能考量，伺服器層級防火牆規則會暫時快取 hello 資料庫層級。 toorefresh hello 快取，請參閱[DBCC FLUSHAUTHCACHE](https://msdn.microsoft.com/library/mt627793.aspx)。 
 
 > [!TIP]
-> 您可以使用 [SQL Database 稽核](sql-database-auditing.md)來稽核伺服器等級和資料庫等級防火牆的變更。
+> 您可以使用[SQL Database 稽核](sql-database-auditing.md)tooaudit 伺服器層級和資料庫層級防火牆變更。
 >
 
 ### <a name="azure-portal"></a>Azure 入口網站
 
-若要在 Azure 入口網站中設定伺服器層級防火牆規則，您可前往 Azure SQL Database 的 [概觀] 頁面，或是 Azure Database 邏輯伺服器的 [概觀] 頁面。
+tooset hello Azure 入口網站中的伺服器層級防火牆規則，您可以 [進入 toohello 概觀] 頁面上的 Azure SQL 資料庫或 hello 概觀頁面 Azure Database 邏輯伺服器。
 
 > [!TIP]
-> 如需教學課程，請參閱[使用 Azure 入口網站建立 DB](sql-database-get-started-portal.md)。
+> 如需教學課程，請參閱[使用建立 DB hello Azure 入口網站](sql-database-get-started-portal.md)。
 >
 
 **從資料庫概觀頁面**
 
-1. 若要從資料庫概觀頁面設定伺服器層級防火牆規則，請依下圖所示按一下工作列上的 [設定伺服器防火牆]：此時會開啟 [防火牆設定] 頁面。
+1. 按一下 tooset hello 資料庫概觀頁面上，從伺服器層級防火牆規則**設定伺服器防火牆**hello 工具列 hello 下列影像所示： hello**防火牆設定**hello SQL 頁面此時會開啟 資料庫伺服器。
 
       ![伺服器防火牆規則](./media/sql-database-get-started-portal/server-firewall-rule.png) 
 
-2. 按一下工具列上的 [新增用戶端 IP]，以新增您目前所用電腦的 IP 位址，然後再按一下 [儲存]。 系統便會為目前的 IP 位址建立伺服器層級防火牆規則。
+2. 按一下**新增用戶端 IP** hello 工具列 tooadd hello 電腦的 IP 位址 hello 上您目前正在使用，然後按一下**儲存**。 系統便會為目前的 IP 位址建立伺服器層級防火牆規則。
 
       ![設定伺服器防火牆規則](./media/sql-database-get-started-portal/server-firewall-rule-set.png) 
 
 **從伺服器概觀頁面**
 
-伺服器的概觀頁面隨即開啟，其中會顯示完整伺服器名稱 (例如 **mynewserver20170403.database.windows.net**)，並提供進一步的組態選項。
+hello 伺服器隨即開啟，顯示您完全 hello 的概觀頁面格式的伺服器名稱 (例如**mynewserver20170403.database.windows.net**)，並提供進一步組態的選項。
 
-1. 若要從伺服器概觀頁面設定伺服器層級規則，請按一下左側功能表中 [設定] 下方的 [防火牆]，如下圖所示： 
+1. 按一下 [tooset 伺服器概觀] 頁面上，從伺服器層級規則**防火牆**在底下設定 hello 下列影像中顯示 hello 左側功能表中： 
 
      ![邏輯伺服器概觀](./media/sql-database-migrate-your-sql-server-database/logical-server-overview.png)
 
-2. 按一下工具列上的 [新增用戶端 IP]，以新增您目前所用電腦的 IP 位址，然後再按一下 [儲存]。 系統便會為目前的 IP 位址建立伺服器層級防火牆規則。
+2. 按一下**新增用戶端 IP** hello 工具列 tooadd hello 電腦的 IP 位址 hello 上您目前正在使用，然後按一下**儲存**。 系統便會為目前的 IP 位址建立伺服器層級防火牆規則。
 
      ![設定伺服器防火牆規則](./media/sql-database-migrate-your-sql-server-database/server-firewall-rule-set.png)
 
 ### <a name="transact-sql"></a>Transact-SQL
 | 目錄檢視或預存程序 | 等級 | 說明 |
 | --- | --- | --- |
-| [sys.firewall_rules](https://msdn.microsoft.com/library/dn269980.aspx) |伺服器 |顯示目前的伺服器層級防火牆規則 |
+| [sys.firewall_rules](https://msdn.microsoft.com/library/dn269980.aspx) |伺服器 |顯示 hello 目前的伺服器層級防火牆規則 |
 | [sp_set_firewall_rule](https://msdn.microsoft.com/library/dn270017.aspx) |伺服器 |建立或更新伺服器層級防火牆規則 |
 | [sp_delete_firewall_rule](https://msdn.microsoft.com/library/dn270024.aspx) |伺服器 |移除伺服器層級防火牆規則 |
-| [sys.database_firewall_rules](https://msdn.microsoft.com/library/dn269982.aspx) |資料庫 |顯示目前的伺服器層級防火牆規則 |
-| [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx) |資料庫 |建立或更新伺服器層級防火牆規則 |
+| [sys.database_firewall_rules](https://msdn.microsoft.com/library/dn269982.aspx) |資料庫 |顯示 hello 目前的資料庫層級防火牆規則 |
+| [sp_set_database_firewall_rule](https://msdn.microsoft.com/library/dn270010.aspx) |資料庫 |建立或更新 hello 資料庫層級防火牆規則 |
 | [sp_delete_database_firewall_rule](https://msdn.microsoft.com/library/dn270030.aspx) |資料庫 |移除資料庫層級防火牆規則 |
 
 
-下列範例會檢閱現有的規則、在 Contoso 伺服器上啟用 IP 位址範圍，以及刪除防火牆規則：
+hello 下列範例檢閱 hello 現有規則，啟用 hello 伺服器 Contoso 上某個範圍的 IP 位址，並刪除防火牆規則：
    
 ```sql
 SELECT * FROM sys.firewall_rules ORDER BY name;
@@ -132,7 +132,7 @@ EXECUTE sp_set_firewall_rule @name = N'ContosoFirewallRule',
    @start_ip_address = '192.168.1.1', @end_ip_address = '192.168.1.10'
 ```
 
-若要刪除伺服器層級防火牆規則，請執行 sp_delete_firewall_rule 預存程序。 下列範例會刪除名為 ContosoFirewallRule 的規則：
+toodelete 伺服器層級防火牆規則，執行 hello sp_delete_firewall_rule 預存程序。 hello 下列範例會刪除名為 ContosoFirewallRule 的 hello 規則：
    
 ```sql
 EXECUTE sp_delete_firewall_rule @name = N'ContosoFirewallRule'
@@ -141,13 +141,13 @@ EXECUTE sp_delete_firewall_rule @name = N'ContosoFirewallRule'
 ### <a name="azure-powershell"></a>Azure PowerShell
 | Cmdlet | 等級 | 說明 |
 | --- | --- | --- |
-| [Get-AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546731.aspx) |伺服器 |返回目前的伺服器層級防火牆規則 |
+| [Get-AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546731.aspx) |伺服器 |傳回目前伺服器層級防火牆規則 hello |
 | [New-AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546724.aspx) |伺服器 |建立新的伺服器層級防火牆規則 |
-| [Set-AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546739.aspx) |伺服器 |更新現有伺服器層級防火牆規則的屬性 |
+| [Set-AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546739.aspx) |伺服器 |更新現有的伺服器層級防火牆規則 hello 屬性 |
 | [Remove-AzureSqlDatabaseServerFirewallRule](https://msdn.microsoft.com/library/azure/dn546727.aspx) |伺服器 |移除伺服器層級防火牆規則 |
 
 
-下列範例會使用 PowerShell 設定伺服器層級防火牆規則：
+下列範例會設定使用 PowerShell 的伺服器層級防火牆規則的 hello:
 
 ```powershell
 New-AzureRmSqlServerFirewallRule -ResourceGroupName "myResourceGroup" `
@@ -156,19 +156,19 @@ New-AzureRmSqlServerFirewallRule -ResourceGroupName "myResourceGroup" `
 ```
 
 > [!TIP]
-> 如需快速入門內容中的 PowerShell 範例資訊，請參閱[建立 DB - PowerShell](sql-database-get-started-powershell.md)以及[使用 PowerShell 建立單一資料庫和設定防火牆規則](scripts/sql-database-create-and-configure-database-powershell.md)
+> PowerShell 範例 hello 內容中的 快速入門，請參閱[建立資料庫-PowerShell](sql-database-get-started-powershell.md)和[建立單一資料庫，並使用 PowerShell 將防火牆規則設定](scripts/sql-database-create-and-configure-database-powershell.md)
 >
 
 ### <a name="azure-cli"></a>Azure CLI
 | Cmdlet | 等級 | 說明 |
 | --- | --- | --- |
-| [az sql server firewall create](/cli/azure/sql/server/firewall-rule#create) | 建立防火牆規則以允許從輸入的 IP 位址範圍存取伺服器上的所有 SQL Database。|
+| [az sql server firewall create](/cli/azure/sql/server/firewall-rule#create) | Hello hello 輸入 IP 位址範圍內的伺服器上建立防火牆規則 tooallow 存取 tooall SQL 資料庫。|
 | [az sql server firewall delete](/cli/azure/sql/server/firewall-rule#delete)| 刪除防火牆規則。|
-| [az sql server firewall list](/cli/azure/sql/server/firewall-rule#list)| 列出防火牆規則。|
-| [az sql server firewall rule show](/cli/azure/sql/server/firewall-rule#show)| 顯示防火牆規則的詳細資料。|
+| [az sql server firewall list](/cli/azure/sql/server/firewall-rule#list)| 列出 hello 防火牆規則。|
+| [az sql server firewall rule show](/cli/azure/sql/server/firewall-rule#show)| 顯示 hello 的防火牆規則的詳細資料。|
 | [ax sql server firewall rule update](/cli/azure/sql/server/firewall-rule#update)| 更新防火牆規則。
 
-下列範例會使用 Azure CLI 設定伺服器層級防火牆規則： 
+下列範例會設定伺服器層級防火牆規則，使用 Azure CLI hello hello: 
 
 ```azurecli-interactive
 az sql server firewall-rule create --resource-group myResourceGroup --server $servername \
@@ -176,53 +176,53 @@ az sql server firewall-rule create --resource-group myResourceGroup --server $se
 ```
 
 > [!TIP]
-> 如需快速入門內容中的 Azure CLI 範例資訊，請參閱[建立 DB - Azure CLI](sql-database-get-started-cli.md) 以及[使用 Azure CLI 建立單一資料庫和設定防火牆規則](scripts/sql-database-create-and-configure-database-cli.md)
+> 如需 Azure CLI 範例 hello 內容中的 快速入門，請參閱[建立 DDB-Azure CLI](sql-database-get-started-cli.md)和[建立單一資料庫，並設定使用 Azure CLI hello 的防火牆規則](scripts/sql-database-create-and-configure-database-cli.md)
 >
 
 ### <a name="rest-api"></a>REST API
 | API | 等級 | 說明 |
 | --- | --- | --- |
-| [列出防火牆規則](https://msdn.microsoft.com/library/azure/dn505715.aspx) |伺服器 |顯示目前的伺服器層級防火牆規則 |
+| [列出防火牆規則](https://msdn.microsoft.com/library/azure/dn505715.aspx) |伺服器 |顯示 hello 目前的伺服器層級防火牆規則 |
 | [建立防火牆規則](https://msdn.microsoft.com/library/azure/dn505712.aspx) |伺服器 |建立或更新伺服器層級防火牆規則 |
-| [設定防火牆規則](https://msdn.microsoft.com/library/azure/dn505707.aspx) |伺服器 |更新現有伺服器層級防火牆規則的屬性 |
+| [設定防火牆規則](https://msdn.microsoft.com/library/azure/dn505707.aspx) |伺服器 |更新現有的伺服器層級防火牆規則 hello 屬性 |
 | [刪除防火牆規則](https://msdn.microsoft.com/library/azure/dn505706.aspx) |伺服器 |移除伺服器層級防火牆規則 |
 
 ## <a name="server-level-firewall-rule-versus-a-database-level-firewall-rule"></a>伺服器層級防火牆規則與資料庫層級防火牆規則
 問： 某個資料庫的使用者是否應該完全與另一個資料庫隔離？   
-  如果是，請使用資料庫層級防火牆規則授與存取權。 這可避免使用伺服器層級防火牆規則，該規則允許透過防火牆存取所有資料庫，這樣會使得您的防禦程度降低。   
+  如果是，請使用資料庫層級防火牆規則授與存取權。 這可避免使用伺服器層級防火牆規則，允許透過 hello 防火牆存取 tooall 資料庫，請減少 hello 深度防禦。   
  
-問： IP 位址的使用者是否需要存取所有資料庫？   
-  使用伺服器層級防火牆規則來減少您必須設定防火牆規則的次數。   
+問： 請勿在 hello IP 位址的使用者需要存取 tooall 資料庫嗎？   
+  使用伺服器層級防火牆規則 tooreduce hello 數目的時間，您必須設定防火牆規則。   
 
-問： 設定防火牆規則的人員或小組是否只能透過 Azure 入口網站、PowerShell 或 REST API 進行存取？   
+問： 沒有 hello 人員或小組設定 hello 防火牆規則只可以存取透過 hello Azure 網站、 PowerShell 或 REST API 的 hello 嗎？   
   您必須使用伺服器層級防火牆規則。 資料庫層級防火牆規則只能使用 Transact-SQL 來設定。  
 
-問： 設定防火牆規則的人員或小組是否不被允許具有資料庫層級的高層級權限？   
-  使用伺服器層級防火牆規則。 若要使用 Transact-SQL 設定資料庫層級防火牆規則，至少需要資料庫層級的 `CONTROL DATABASE` 權限。  
+問： Hello 人員或小組設定 hello 防火牆規則禁止在 hello 資料庫層級有高層級的權限嗎？   
+  使用伺服器層級防火牆規則。 設定資料庫層級防火牆規則使用 TRANSACT-SQL，至少需要`CONTROL DATABASE`hello 資料庫層級的權限。  
 
-問： 設定或稽核防火牆規則的人員或小組，是否正在為許多 (也許數百個) 資料庫集中管理防火牆規則？   
-  此選項取決於您的需求和環境。 伺服器層級防火牆規則可能會比較容易設定，但是指令碼可以設定資料庫層級的規則。 即使您使用伺服器層級防火牆規則，您可能需要稽核資料庫防火牆規則，以查看具備資料庫 `CONTROL` 權限的使用者是否已建立資料庫層級防火牆規則。   
+問： 是 hello 人員或小組設定或稽核 hello 的防火牆規則，集中管理防火牆規則的許多 (或許是 100) 的資料庫嗎？   
+  此選項取決於您的需求和環境。 伺服器層級防火牆規則可能會更容易 tooconfigure，但是指令碼可以在 hello 資料庫層級設定的規則。 即使您使用伺服器層級防火牆規則，您可能還需要 tooaudit hello 資料庫防火牆規則，toosee，如果使用者具有`CONTROL`hello 資料庫的權限已經建立資料庫層級防火牆規則。   
 
 問： 我是否可以混合使用伺服器層級和資料庫層級防火牆規則？   
   是。 部分使用者 (例如系統管理員) 可能需要伺服器層級防火牆規則。 其他使用者 (例如資料庫應用程式的使用者) 可能需要資料庫層級防火牆規則。   
 
-## <a name="troubleshooting-the-database-firewall"></a>針對資料庫防火牆問題進行疑難排解
-當對於 Microsoft Azure SQL Database 服務的存取未如預期運作時，請考慮下列幾點：
+## <a name="troubleshooting-hello-database-firewall"></a>疑難排解 hello database 防火牆
+請考慮 hello 時存取 toohello Microsoft Azure SQL Database 服務未如預期般運作，下列點：
 
-* **本機防火牆組態：** 在您的電腦可以存取 Azure SQL Database 之前，您可能需要在電腦上為 TCP 連接埠 1433 建立防火牆例外狀況。 如果您是在 Azure 雲端界限內建立連接，您可能必須開啟其他連接埠。 如需詳細資訊，請參閱[針對 ADO.NET 4.5 及 SQL Database 的 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)的〈**SQL Database：外部與內部**〉一節。
-* **網路位址轉譯 (NAT)：** 由於 NAT，您的電腦用來連接到 Azure SQL Database 的 IP 位址，可能會不同於您電腦 IP 組態設定中顯示的 IP 位址。 若要檢視電腦用來連接到 Azure 的 IP 位址，請登入入口網站，並在裝載您資料庫的伺服器上瀏覽至 [設定] 索引標籤。 在 [允許的 IP 位址] 區段底下，[目前的用戶端 IP 位址] 隨即顯示。 對 [允許的 IP 位址] 按一下 [新增]，以允許此電腦存取伺服器。
-* **允許清單的變更尚未生效：** Azure SQL Database 防火牆組態變更可能會延遲最多 5 分鐘才能生效。
-* **登入未獲授權或使用不正確的密碼：** 如果 Azure SQL Database 伺服器上的登入沒有權限，或所使用的密碼不正確，與 Azure SQL Database 伺服器的連線就會遭到拒絕。 建立防火牆設定只會讓用戶端有機會嘗試連線至您的伺服器；每個用戶端必須提供必要的安全性認證。 如需準備登入的詳細資訊，請參閱「管理 Azure SQL Database 中的資料庫、登入和使用者」。
-* **動態 IP 位址：** 如果您有使用動態 IP 位址的網際網路連線，並且在通過防火牆時遇到問題，您可以嘗試下列其中一個解決方案：
+* **本機防火牆組態：**您的電腦可以存取 Azure SQL Database 之前，您可能需要 toocreate 防火牆例外狀況的 TCP 通訊埠 1433年電腦上。 如果您要進行 hello Azure 雲端界限內連線，您可能必須 tooopen 其他連接埠。 如需詳細資訊，請參閱 hello **SQL Database： 內部與外部**區段[ADO.NET 4.5 和 SQL Database 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)。
+* **網路位址轉譯 (NAT):**到期 tooNAT，使用您 SQL 資料庫可能會與您電腦的 IP 組態設定中所顯示的 hello IP 位址不同的電腦 tooconnect tooAzure hello IP 位址。 您的電腦是 tooview hello IP 位址使用 tooconnect tooAzure，登入 toohello 入口網站，並瀏覽 toohello**設定**hello 裝載您資料庫的伺服器上的索引標籤。 在 hello**允許的 IP 位址**區段，hello**目前的用戶端 IP 位址**隨即出現。 按一下**新增**toohello**允許的 IP 位址**tooallow 這部電腦 tooaccess hello 伺服器。
+* **變更 toohello 允許清單有尚未生效：**可能會如往常般的五分鐘延遲變更 toohello Azure SQL Database 防火牆設定 tootake 效果。
+* **hello 登入未獲授權，或使用不正確的密碼：** hello 連接 toohello Azure SQL Database 伺服器登入沒有 hello Azure SQL Database 伺服器的權限，或使用 hello 密碼不正確，遭到拒絕。 建立防火牆設定只提供連接 tooyour 伺服器; 機會 tooattempt 用戶端每個用戶端必須提供 hello 必要的安全性認證。 如需準備登入的詳細資訊，請參閱「管理 Azure SQL Database 中的資料庫、登入和使用者」。
+* **動態 IP 位址：**如果您有使用動態 IP 位址的網際網路連線，並且在經由 hello 防火牆時遇到，您可以嘗試下列解決方案 hello 的其中一個：
   
-  * 要求您的網際網路服務提供者 (ISP) 將可以存取 Azure SQL Database 伺服器的 IP 位址範圍指派給您的用戶端電腦，然後將 IP 位址範圍新增為防火牆規則。
-  * 改為針對您的用戶端電腦取得靜態 IP 位址，然後將 IP 位址新增為防火牆規則。
+  * 要求網際網路服務提供者 (ISP) hello IP 位址範圍指派 tooyour 用戶端電腦的存取 hello Azure SQL Database 伺服器，然後將 hello IP 位址範圍新增為防火牆規則。
+  * 取得靜態 IP 位址改為您的用戶端電腦，然後將 hello IP 位址新增為防火牆規則。
 
 ## <a name="next-steps"></a>後續步驟
 
 - 如需建立資料庫和伺服器層級防火牆規則的快速入門，請參閱[建立 Azure SQL Database](sql-database-get-started-portal.md)。
-- 如需從開放原始碼或協力廠商應用程式連接到 Azure SQL Database 的說明，請參閱 [SQL Database 的用戶端快速入門程式碼範例](https://msdn.microsoft.com/library/azure/ee336282.aspx)。
-- 如需詳細資訊，請參閱[針對 ADO.NET 4.5 及 SQL Database 的 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)的〈**SQL Database：外部與內部**〉一節
+- 連接 tooan Azure SQL database 中的開放原始碼或協力廠商應用程式的說明，請參閱[快速入門用戶端的程式碼範例 tooSQL 資料庫](https://msdn.microsoft.com/library/azure/ee336282.aspx)。
+- 如需其他連接埠的資訊，您可能需要 tooopen，請參閱 hello **SQL Database： 內部與外部**區段[ADO.NET 4.5 和 SQL Database 1433 以外的連接埠](sql-database-develop-direct-route-ports-adonet-v12.md)
 - 如需 Azure SQL Database 安全性的概觀，請參閱[保護您的資料庫](sql-database-security-overview.md)
 
 <!--Image references-->

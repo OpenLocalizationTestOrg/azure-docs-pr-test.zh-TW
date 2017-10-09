@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Machine Learning Web 服務參數 | Microsoft Docs"
-description: "如何使用 Azure Machine Learning Web 服務參數來修改模型在 Web 服務受到存取時的行為。"
+title: "Azure 機器學習 Web 服務參數 aaaUse |Microsoft 文件"
+description: "存取 hello web 服務時，如何 toouse Azure 機器學習 Web 服務參數 toomodify hello 您模型的行為。"
 services: machine-learning
 documentationcenter: 
 author: raymondlaghaeian
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/12/2017
 ms.author: raymondl;garye
-ms.openlocfilehash: 482726c1dae5385964e08b720e529817d5907537
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 214711eb819a6cea34db905abdf015da11e846d4
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="use-azure-machine-learning-web-service-parameters"></a>使用 Azure Machine Learning Web 服務參數
-藉由發行包含可設定參數模組的試驗，來建立 Azure Machine Learning Web 服務。 在某些情況下，您可能想要在執行 Web 服務時之際，變更模組的行為。 「Web 服務參數」可讓您執行這項工作。 
+藉由發行包含可設定參數模組的試驗，來建立 Azure Machine Learning Web 服務。 在某些情況下，您可能想 toochange hello 模組行為 hello web 服務執行時。 *Web 服務參數*toodo 可讓您這項工作。 
 
-常見的範例是設定[匯入資料][reader]模組，讓已發佈之 Web 服務的使用者可以在存取 Web 服務時，指定不同的資料來源。 或者，設定[匯出資料][writer]模組，以便能夠指定不同的目的地。 部分其他範例包括變更[特徵雜湊][feature-hashing]模組的位元數，或變更[以篩選器為基礎的特徵選取][filter-based-feature-selection]模組的所需特徵數。 
+常見的範例設定 hello[匯入資料][ reader]模組，因此 hello 的 hello 使用者發行 web 服務存取 hello web 服務時，可以指定不同的資料來源。 設定 hello 或者[匯出資料][ writer]模組，讓您可以指定不同的目的地。 一些其他範例，包括變更 hello 位元數目做 hello[特徵雜湊][ feature-hashing] hello 功能所需的模組或 hello 數[篩選器為基礎特徵選取] [ filter-based-feature-selection]模組。 
 
-您可以設定 Web 服務參數，並使其與實驗中的一個或多個模組參數產生關聯，而且您可以指定它們是必要還是選用參數。 然後 Web 服務的使用者就可以在呼叫 Web 服務時，提供這些參數的值。 
+您可以設定 Web 服務參數，並使其與實驗中的一個或多個模組參數產生關聯，而且您可以指定它們是必要還是選用參數。 撥打電話 hello web 服務時的 hello web 服務的 hello 使用者然後可以對這些參數提供值。 
 
 [!INCLUDE [machine-learning-free-trial](../../includes/machine-learning-free-trial.md)]
 
-## <a name="how-to-set-and-use-web-service-parameters"></a>如何設定及使用 Web 服務參數
-您可以按一下模組參數旁邊的圖示，然後選取 [設為 Web 服務參數] 來定義 Web 服務參數。 這會建立新的 Web 服務參數並將它連線至該模組參數。 然後，在 Web 服務受到存取時，使用者可以指定 Web 服務參數的值，該值就會套用至模組參數。
+## <a name="how-tooset-and-use-web-service-parameters"></a>如何 tooset 並使用 Web 服務參數
+您可以按一下 hello 圖示下一個 toohello 參數為模組，然後選取 「 設定做為 web 服務參數 」 定義 Web 服務參數。 這會建立新的 Web 服務參數，並將它連接 toothat 模組參數。 然後，當存取 hello web 服務時，hello 使用者可以指定 hello Web 服務參數的值，套用的 toohello 模組參數。
 
-在您定義 Web 服務參數之後，該參數就可以供試驗中任何其他的模組參數使用。 如果您定義和某個模組參數相關聯的 Web 服務參數，那麼只要參數預期具有相同類型的值，您就可以將該 Web 服務參數用於任何其他模組。 例如，如果 Web 服務參數是數值，那麼該參數就只能用於預期值為數值的模組參數。 當使用者設定 Web 服務參數的值時，該值將會套用至所有相關聯的模組參數。
+一旦您定義 Web 服務參數，就是可用 tooany hello 實驗中的其他模組參數。 如果您定義一個模組的參數與關聯的 Web 服務參數，您可以使用該相同的 Web 服務參數，任何其他模組，只要 hello 參數必須要有相同的值類型的 hello 即可。 比方說，如果數字的值為 hello Web 服務參數，然後它可以只用於模組參數所預期的數值。 當 hello 使用者設定 hello Web 服務參數的值時，它將會套用相關聯的 tooall 模組參數。
 
-您可以決定是否要為 Web 服務參數提供預設值。 如果您提供預設值，Web 服務的使用者就可以選擇是否使用該參數。 如果您沒有提供預設值，使用者就需要在存取 Web 服務時輸入值。
+您可以決定是否 tooprovide 預設值為 hello Web 服務參數。 如果您執行動作，然後 hello 參數是選擇性的 hello hello web 服務的使用者。 如果您沒有提供預設值，然後 hello 使用者時需要的 tooenter 值 hello web 服務存取。
 
-Web 服務的 API 文件會包含 Web 服務使用者在存取 Web 服務時，如何以程式設計方式指定 Web 服務參數的資訊。
+hello hello web 服務的 API 文件包含 hello web 服務使用者的有關如何 toospecify hello Web 服務參數以程式設計方式存取 hello web 服務時。
 
 > [!NOTE]
-> 傳統 Web 服務的 API 文件是透過 Machine Learning Studio 中 Web 服務 [儀表板] 的 [API 說明頁面] 連結提供。 新的 Web 服務的 API 文件則是透過 [Azure Machine Learning Web Services](https://services.azureml.net/Quickstart) 入口網站中 Web 服務的 [取用] 和 [Swagger API] 頁面提供。
+> hello API 文件中提供傳統 web 服務透過 hello **API 說明頁面**hello web 服務中的連結**儀表板**Machine Learning Studio 中。 hello API 文件中提供新的 web 服務透過 hello [Azure 機器學習 Web 服務](https://services.azureml.net/Quickstart)入口網站上 hello**取用**和**Swagger API**頁面您web 服務。
 > 
 > 
 
 ## <a name="example"></a>範例
-舉例來說，假設我們有一個[匯出資料][writer]模組實驗，該模組會傳送資訊給 Azure Blob 儲存體。 我們將會定義名為 Blob path 的 Web 服務參數，以在服務被存取時允許 Web 服務使用者將路徑變更至 Blob 儲存體。
+例如，假設我們有實驗[匯出資料][ writer]傳送資訊 tooAzure blob 儲存體的模組。 我們會定義名為"Blob 路徑 」 的 Web 服務參數，可讓 hello web 服務使用者 toochange hello 路徑 toohello blob 儲存體存取 hello 服務時。
 
-1. 在 Machine Learning Studio 中，按一下 [[匯出資料][writer]] 模組來選取它。 其屬性會顯示在試驗畫布右邊的 [屬性] 窗格中。
-2. 指定儲存體類型：
+1. 在機器學習 Studio 中，按一下 hello[匯出資料][ writer]模組 tooselect 它。 其屬性會顯示在 hello 屬性窗格 toohello hello 實驗畫布的權限。
+2. 指定 hello 儲存類型：
    
    * 在 **[請指定資料目的地]**底下，選取 [Azure Blob 儲存體]。
    * 在 **[請指定驗證類型]**底下，選取 [帳戶]。
-   * 輸入 Azure Blob 儲存體的帳戶資訊。 
+   * 輸入 hello hello Azure blob 儲存體帳戶資訊。 
      <p />
-3. 按一下 **[以容器參數為開頭的 Blob 路徑]** 右邊的圖示。 它看起來像這樣：
+3.按一下向右的 hello hello 圖示 toohello**路徑 tooblob 開頭容器參數**。 它看起來像這樣：
    
    ![Web 服務參數圖示][icon]
    
    選取 [設為 Web 服務參數]。
    
-   就會在 **[屬性] 窗格底部的 [Web 服務參數]** 底下新增一個名為 [以容器為開頭的 Blob 路徑] 項目。 這就是現在與此[匯出資料][writer]模組參數關聯的「Web 服務參數」。
-4. 若要重新命名 Web 服務參數，請按一下名稱，輸入 Blob path，然後按 **Enter** 鍵。 
-5. 若要為 Web 服務參數提供預設值，請按一下名稱右邊的圖示，選取 [提供預設值]，輸入值 (例如 container1/output1.csv)，然後按 **Enter** 鍵。
+   項目會加入下**Web 服務參數**在 hello 開頭 hello 名稱"路徑 tooblob 容器"hello 屬性 窗格的底部。 這是 hello Web 服務參數，現在已與此相關聯[匯出資料][ writer]模組參數。
+4. toorename hello Web 服務參數、 按一下 hello 名稱，輸入 「 Blob 路徑 」，然後按 hello **Enter**索引鍵。 
+5. tooprovide hello Web 服務參數，預設值按一下 hello 圖示 toohello 方 hello 名稱、 選取 「 提供預設值 」、 輸入的值 (例如，"container1/output1.csv")，然後按 hello **Enter**索引鍵。
    
    ![Web 服務參數][parameter]
 6. 按一下 **[執行]**。 
-7. 按一下 [部署 Web 服務]，然後選取 [部署 Web 服務 [傳統]] 或 [部署 Web 服務 [新]] 可部署 Web 服務。
+7. 按一下**部署 Web 服務**選取**部署 Web 服務 [傳統]**或**部署 Web 服務 [New]** toodeploy hello web 服務。
 
 > [!NOTE] 
-> 若要部署新的 Web 服務，您必須在要部署 Web 服務的訂用帳戶中具備足夠的權限。 如需詳細資訊，請參閱[使用 Azure Machine Learning Web 服務入口網站管理 Web 服務](machine-learning-manage-new-webservice.md)。 
+> toodeploy 新的 web 服務，您必須擁有足夠的權限 hello 訂用帳戶 toowhich 您部署 hello web 服務。 如需詳細資訊，請參閱[管理 Web 服務使用 hello Azure 機器學習 Web 服務網站](machine-learning-manage-new-webservice.md)。 
 
-Web 服務的使用者現在即可在存取 Web 服務時，為[匯出資料][writer]模組指定新的目的地。
+hello web 服務的 hello 使用者現在可以指定新的目的地 hello[匯出資料][ writer]模組存取 hello web 服務時。
 
 ## <a name="more-information"></a>詳細資訊
-如需更詳細的範例，請參閱 [Machine Learning Blog](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx) 中的 [Web 服務參數](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx)項目。
+如需更詳細的範例，請參閱 hello [Web 服務參數](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx)hello 中的項目[機器學習部落格](http://blogs.technet.com/b/machinelearning/archive/2014/11/25/azureml-web-service-parameters.aspx)。
 
-有關存取 Machine Learning Web 服務的詳細資訊，請參閱[如何使用 Azure Machine Learning Web 服務](machine-learning-consume-web-services.md)。
+如需有關存取機器學習 web 服務的詳細資訊，請參閱[如何 tooconsume Azure 機器學習 Web 服務](machine-learning-consume-web-services.md)。
 
 <!-- Images -->
 [icon]: ./media/machine-learning-web-service-parameters/icon.png
