@@ -1,6 +1,6 @@
 ---
-title: "使用 C# 建立 Azure IoT Edge 模組 | Microsoft Docs"
-description: "本教學課程示範如何使用最新的 Azure IoT Edge NuGet 套件、Visual Studio Code 與 C# 撰寫 BLE 資料轉換器模組。"
+title: "使用 C# 的 Azure IoT 邊緣模組 aaaCreate |Microsoft 文件"
+description: "本教學課程會示範如何 toowrite b 資料轉換器模組使用 hello 最新的 Azure IoT 邊緣 NuGet 封裝，Visual Studio 程式碼和 C#。"
 services: iot-hub
 author: jeffreyCline
 manager: timlt
@@ -12,57 +12,57 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/28/2017
 ms.author: jcline
-ms.openlocfilehash: 7175ffc8de2c043593d61143b402484d33e4a8cc
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: b104609c05d1613e21acc7d7bed547f311179151
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-azure-iot-edge-module-with-cx23"></a><span data-ttu-id="ab35e-104">使用 C&#x23; 建立 Azure IoT Edge 模組</span><span class="sxs-lookup"><span data-stu-id="ab35e-104">Create an Azure IoT Edge Module with C&#x23;</span></span>
+# <a name="create-an-azure-iot-edge-module-with-cx23"></a><span data-ttu-id="76048-104">使用 C&#x23; 建立 Azure IoT Edge 模組</span><span class="sxs-lookup"><span data-stu-id="76048-104">Create an Azure IoT Edge Module with C&#x23;</span></span>
 
-<span data-ttu-id="ab35e-105">本教學課程示範如何使用 `Visual Studio Code` 和 `C#` 建立 `Azure IoT Edge` 的模組。</span><span class="sxs-lookup"><span data-stu-id="ab35e-105">This tutorial showcases how to create a module for `Azure IoT Edge` using `Visual Studio Code` and `C#`.</span></span>
+<span data-ttu-id="76048-105">本教學課程示範如何適用於模組的 toocreate`Azure IoT Edge`使用`Visual Studio Code`和`C#`。</span><span class="sxs-lookup"><span data-stu-id="76048-105">This tutorial showcases how toocreate a module for `Azure IoT Edge` using `Visual Studio Code` and `C#`.</span></span>
 
-<span data-ttu-id="ab35e-106">在本教學課程中，我們將逐步說明環境設定，以及如何使用最新的 `Azure IoT Edge NuGet` 套件撰寫 [BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) 資料轉換器模組。</span><span class="sxs-lookup"><span data-stu-id="ab35e-106">In this tutorial, we walk through environment set-up and how to write a [BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) data converter module using the latest `Azure IoT Edge NuGet` packages.</span></span> 
+<span data-ttu-id="76048-106">在本教學課程中，我們將逐步檢視環境的設定以及如何 toowrite [b](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy)資料轉換器模組使用最新 hello`Azure IoT Edge NuGet`封裝。</span><span class="sxs-lookup"><span data-stu-id="76048-106">In this tutorial, we walk through environment set-up and how toowrite a [BLE](https://en.wikipedia.org/wiki/Bluetooth_Low_Energy) data converter module using hello latest `Azure IoT Edge NuGet` packages.</span></span> 
 
 >[!NOTE]
-<span data-ttu-id="ab35e-107">本教學課程使用支援跨平台相容性的 `.NET Core SDK`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-107">This tutorial is using the `.NET Core SDK`, which supports cross-platform compatibility.</span></span> <span data-ttu-id="ab35e-108">下列教學課程使用 `Windows 10` 作業系統撰寫。</span><span class="sxs-lookup"><span data-stu-id="ab35e-108">The following tutorial is written using the `Windows 10` operating system.</span></span> <span data-ttu-id="ab35e-109">此教學課程中的某些命令可能因您的 `development environment` 而不同。</span><span class="sxs-lookup"><span data-stu-id="ab35e-109">Some of the commands in this tutorial may be different depending on your `development environment`.</span></span> 
+<span data-ttu-id="76048-107">本教學課程使用 hello `.NET Core SDK`，可支援跨平台相容性。</span><span class="sxs-lookup"><span data-stu-id="76048-107">This tutorial is using hello `.NET Core SDK`, which supports cross-platform compatibility.</span></span> <span data-ttu-id="76048-108">hello 下列教學課程以使用 hello`Windows 10`作業系統。</span><span class="sxs-lookup"><span data-stu-id="76048-108">hello following tutorial is written using hello `Windows 10` operating system.</span></span> <span data-ttu-id="76048-109">本教學課程中的 hello 命令的某些可能會不同，取決於您`development environment`。</span><span class="sxs-lookup"><span data-stu-id="76048-109">Some of hello commands in this tutorial may be different depending on your `development environment`.</span></span> 
 
-## <a name="prerequisites"></a><span data-ttu-id="ab35e-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="ab35e-110">Prerequisites</span></span>
+## <a name="prerequisites"></a><span data-ttu-id="76048-110">必要條件</span><span class="sxs-lookup"><span data-stu-id="76048-110">Prerequisites</span></span>
 
-<span data-ttu-id="ab35e-111">在本節中，我們會針對 `Azure IoT Edge` 模組開發設定您的環境。</span><span class="sxs-lookup"><span data-stu-id="ab35e-111">In this section, we set-up your environment for `Azure IoT Edge` module development.</span></span> <span data-ttu-id="ab35e-112">它同時適用於 **64 位元 Windows** 和 **64 位元 Linux (Ubuntu/Debian 8)** 作業系統。</span><span class="sxs-lookup"><span data-stu-id="ab35e-112">It applies to both **64-bit Windows** and **64-bit Linux (Ubuntu/Debian 8)** operating systems.</span></span>
+<span data-ttu-id="76048-111">在本節中，我們會針對 `Azure IoT Edge` 模組開發設定您的環境。</span><span class="sxs-lookup"><span data-stu-id="76048-111">In this section, we set-up your environment for `Azure IoT Edge` module development.</span></span> <span data-ttu-id="76048-112">它會套用 tooboth **64 位元 Windows**和**64 位元 Linux (Ubuntu/Debian 8)**作業系統。</span><span class="sxs-lookup"><span data-stu-id="76048-112">It applies tooboth **64-bit Windows** and **64-bit Linux (Ubuntu/Debian 8)** operating systems.</span></span>
 
-<span data-ttu-id="ab35e-113">需要下列軟體：</span><span class="sxs-lookup"><span data-stu-id="ab35e-113">The following software is required:</span></span>
+<span data-ttu-id="76048-113">hello 下列軟體，則需要：</span><span class="sxs-lookup"><span data-stu-id="76048-113">hello following software is required:</span></span>
 
-- [<span data-ttu-id="ab35e-114">Git 用戶端</span><span class="sxs-lookup"><span data-stu-id="ab35e-114">Git Client</span></span>](https://git-scm.com/downloads)
-- [<span data-ttu-id="ab35e-115">.NET Core SDK</span><span class="sxs-lookup"><span data-stu-id="ab35e-115">.NET Core SDK</span></span>](https://www.microsoft.com/net/core#windowscmd)
-- [<span data-ttu-id="ab35e-116">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="ab35e-116">Visual Studio Code</span></span>](https://code.visualstudio.com/)
+- [<span data-ttu-id="76048-114">Git 用戶端</span><span class="sxs-lookup"><span data-stu-id="76048-114">Git Client</span></span>](https://git-scm.com/downloads)
+- [<span data-ttu-id="76048-115">.NET Core SDK</span><span class="sxs-lookup"><span data-stu-id="76048-115">.NET Core SDK</span></span>](https://www.microsoft.com/net/core#windowscmd)
+- [<span data-ttu-id="76048-116">Visual Studio Code</span><span class="sxs-lookup"><span data-stu-id="76048-116">Visual Studio Code</span></span>](https://code.visualstudio.com/)
 
-<span data-ttu-id="ab35e-117">您不需要針對此範例複製存放庫，但是在本教學課程中討論的所有範例程式碼都位於下列存放庫中：</span><span class="sxs-lookup"><span data-stu-id="ab35e-117">You do not need to clone the repo for this sample, however all of the sample code discussed in this tutorial is located in the following repository:</span></span>
+<span data-ttu-id="76048-117">您不需要為此範例 tooclone hello 儲存機制，不過所有 hello 範例在本教學課程所討論的程式碼都位於下列儲存機制的 hello:</span><span class="sxs-lookup"><span data-stu-id="76048-117">You do not need tooclone hello repo for this sample, however all of hello sample code discussed in this tutorial is located in hello following repository:</span></span>
 
-- <span data-ttu-id="ab35e-118">`git clone https://github.com/Azure-Samples/iot-edge-samples.git`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-118">`git clone https://github.com/Azure-Samples/iot-edge-samples.git`.</span></span>
+- <span data-ttu-id="76048-118">`git clone https://github.com/Azure-Samples/iot-edge-samples.git`。</span><span class="sxs-lookup"><span data-stu-id="76048-118">`git clone https://github.com/Azure-Samples/iot-edge-samples.git`.</span></span>
 - `cd iot-edge-samples/dotnetcore/simulated_ble`
 
-## <a name="getting-started"></a><span data-ttu-id="ab35e-119">開始使用</span><span class="sxs-lookup"><span data-stu-id="ab35e-119">Getting started</span></span>
+## <a name="getting-started"></a><span data-ttu-id="76048-119">開始使用</span><span class="sxs-lookup"><span data-stu-id="76048-119">Getting started</span></span>
 
-1. <span data-ttu-id="ab35e-120">安裝 `.NET Core SDK`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-120">Install `.NET Core SDK`.</span></span>
-2. <span data-ttu-id="ab35e-121">從 Visual Studio Code Marketplace 安裝 `Visual Studio Code` 和 `C# extension`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-121">Install `Visual Studio Code` and the `C# extension` from the Visual Studio Code Marketplace.</span></span>
+1. <span data-ttu-id="76048-120">安裝 `.NET Core SDK`。</span><span class="sxs-lookup"><span data-stu-id="76048-120">Install `.NET Core SDK`.</span></span>
+2. <span data-ttu-id="76048-121">安裝`Visual Studio Code`和 hello`C# extension`從 Visual Studio 程式碼 Marketplace hello。</span><span class="sxs-lookup"><span data-stu-id="76048-121">Install `Visual Studio Code` and hello `C# extension` from hello Visual Studio Code Marketplace.</span></span>
 
-<span data-ttu-id="ab35e-122">有關如何開始使用 `Visual Studio Code` 和 `.NET Core SDK`，請檢視此[快速影片教學課程](https://channel9.msdn.com/Blogs/dotnet/Get-started-VSCode-Csharp-NET-Core-Windows)。</span><span class="sxs-lookup"><span data-stu-id="ab35e-122">View this [quick video tutorial](https://channel9.msdn.com/Blogs/dotnet/Get-started-VSCode-Csharp-NET-Core-Windows) about how to get started using `Visual Studio Code` and the `.NET Core SDK`.</span></span>
+<span data-ttu-id="76048-122">檢視此[快速的視訊教學課程](https://channel9.msdn.com/Blogs/dotnet/Get-started-VSCode-Csharp-NET-Core-Windows)有關 tooget 如何開始使用`Visual Studio Code`和 hello `.NET Core SDK`。</span><span class="sxs-lookup"><span data-stu-id="76048-122">View this [quick video tutorial](https://channel9.msdn.com/Blogs/dotnet/Get-started-VSCode-Csharp-NET-Core-Windows) about how tooget started using `Visual Studio Code` and hello `.NET Core SDK`.</span></span>
 
-## <a name="creating-the-azure-iot-edge-converter-module"></a><span data-ttu-id="ab35e-123">建立 Azure IoT Edge 轉換器模組</span><span class="sxs-lookup"><span data-stu-id="ab35e-123">Creating the Azure IoT Edge converter module</span></span>
+## <a name="creating-hello-azure-iot-edge-converter-module"></a><span data-ttu-id="76048-123">建立 hello Azure IoT 邊緣轉換器模組</span><span class="sxs-lookup"><span data-stu-id="76048-123">Creating hello Azure IoT Edge converter module</span></span>
 
-1. <span data-ttu-id="ab35e-124">初始化新 `.NET Core` 類別庫 C# 專案：</span><span class="sxs-lookup"><span data-stu-id="ab35e-124">Initialize a new `.NET Core` class library C# project:</span></span>
-    - <span data-ttu-id="ab35e-125">開啟命令提示字元 (`Windows + R` -> `cmd` -> `enter`)。</span><span class="sxs-lookup"><span data-stu-id="ab35e-125">Open a command prompt (`Windows + R` -> `cmd` -> `enter`).</span></span>
-    - <span data-ttu-id="ab35e-126">瀏覽到您想要建立 `C#` 專案的資料夾。</span><span class="sxs-lookup"><span data-stu-id="ab35e-126">Navigate to the folder where you'd like to create the `C#` project.</span></span>
-    - <span data-ttu-id="ab35e-127">輸入 **dotnet new classlib -o IoTEdgeConverterModule -f netstandard1.3**。</span><span class="sxs-lookup"><span data-stu-id="ab35e-127">Type **dotnet new classlib -o IoTEdgeConverterModule -f netstandard1.3**.</span></span> 
-    - <span data-ttu-id="ab35e-128">此命令會在專案目錄中建立名為 `Class1.cs` 的空類別。</span><span class="sxs-lookup"><span data-stu-id="ab35e-128">This command creates an empty class called `Class1.cs` in your projects directory.</span></span>
-2. <span data-ttu-id="ab35e-129">輸入 **cd IoTEdgeConverterModule**，瀏覽到我們剛剛建立類別庫專案的資料夾。</span><span class="sxs-lookup"><span data-stu-id="ab35e-129">Navigate to the folder where we just created the class library project by typing **cd IoTEdgeConverterModule**.</span></span>
-3. <span data-ttu-id="ab35e-130">在 `Visual Studio Code` 中輸入 **code .**，開啟專案。</span><span class="sxs-lookup"><span data-stu-id="ab35e-130">Open the project in `Visual Studio Code` by typing **code .**.</span></span>
-4. <span data-ttu-id="ab35e-131">在 `Visual Studio Code` 中開啟專案後，按一下 **IoTEdgeConverterModule.csproj** 便可如下圖所示開啟檔案：</span><span class="sxs-lookup"><span data-stu-id="ab35e-131">Once the project is opened in `Visual Studio Code`, click on the **IoTEdgeConverterModule.csproj** to open the file as shown in the following image:</span></span>
+1. <span data-ttu-id="76048-124">初始化新 `.NET Core` 類別庫 C# 專案：</span><span class="sxs-lookup"><span data-stu-id="76048-124">Initialize a new `.NET Core` class library C# project:</span></span>
+    - <span data-ttu-id="76048-125">開啟命令提示字元 (`Windows + R` -> `cmd` -> `enter`)。</span><span class="sxs-lookup"><span data-stu-id="76048-125">Open a command prompt (`Windows + R` -> `cmd` -> `enter`).</span></span>
+    - <span data-ttu-id="76048-126">瀏覽您要 toocreate hello toohello 資料夾`C#`專案。</span><span class="sxs-lookup"><span data-stu-id="76048-126">Navigate toohello folder where you'd like toocreate hello `C#` project.</span></span>
+    - <span data-ttu-id="76048-127">輸入 **dotnet new classlib -o IoTEdgeConverterModule -f netstandard1.3**。</span><span class="sxs-lookup"><span data-stu-id="76048-127">Type **dotnet new classlib -o IoTEdgeConverterModule -f netstandard1.3**.</span></span> 
+    - <span data-ttu-id="76048-128">此命令會在專案目錄中建立名為 `Class1.cs` 的空類別。</span><span class="sxs-lookup"><span data-stu-id="76048-128">This command creates an empty class called `Class1.cs` in your projects directory.</span></span>
+2. <span data-ttu-id="76048-129">瀏覽 toohello 我們剛建立的資料夾 hello 類別庫專案輸入**cd IoTEdgeConverterModule**。</span><span class="sxs-lookup"><span data-stu-id="76048-129">Navigate toohello folder where we just created hello class library project by typing **cd IoTEdgeConverterModule**.</span></span>
+3. <span data-ttu-id="76048-130">在開啟 hello 專案`Visual Studio Code`輸入**程式碼。**。</span><span class="sxs-lookup"><span data-stu-id="76048-130">Open hello project in `Visual Studio Code` by typing **code .**.</span></span>
+4. <span data-ttu-id="76048-131">一旦 hello 專案以`Visual Studio Code`，按一下 hello **IoTEdgeConverterModule.csproj** tooopen hello 檔案 hello 下列影像所示：</span><span class="sxs-lookup"><span data-stu-id="76048-131">Once hello project is opened in `Visual Studio Code`, click on hello **IoTEdgeConverterModule.csproj** tooopen hello file as shown in hello following image:</span></span>
 
     ![Visual Studio Code 編輯視窗](media/iot-hub-iot-edge-create-module/vscode-edit-csproj.png)
 
-5. <span data-ttu-id="ab35e-133">在上圖的第六行中，於結尾 `PropertyGroup` 標記和結尾 `Project` 標記之間插入下列程式碼片段所顯示的 `XML` Blob，然後按 `Ctrl` + `S` 儲存檔案。</span><span class="sxs-lookup"><span data-stu-id="ab35e-133">Insert the `XML` blob shown in the following code snippet between the closing `PropertyGroup` tag and the closing `Project` tag; line six in the preceding image and save the file by pressing `Ctrl` + `S`.</span></span>
+5. <span data-ttu-id="76048-133">插入 hello `XML` hello 之間 hello 關閉下列程式碼片段所示的 blob`PropertyGroup`標記並 hello 關閉`Project`標記; 行六個 in hello 前面映像並按下儲存 hello 檔案`Ctrl`  +  `S`.</span><span class="sxs-lookup"><span data-stu-id="76048-133">Insert hello `XML` blob shown in hello following code snippet between hello closing `PropertyGroup` tag and hello closing `Project` tag; line six in hello preceding image and save hello file by pressing `Ctrl` + `S`.</span></span>
 
    ```xml
      <ItemGroup>
@@ -72,29 +72,29 @@ ms.lasthandoff: 08/03/2017
      </ItemGroup> 
    ```
 
-6. <span data-ttu-id="ab35e-134">儲存 `.csproj` 檔案之後，`Visual Studio Code` 應會以 `unresolved dependencies` 對話方塊提示您，如下圖所示：</span><span class="sxs-lookup"><span data-stu-id="ab35e-134">Once you save the `.csproj` file, `Visual Studio Code` should prompt you with an `unresolved dependencies` dialog as seen in the following image:</span></span> 
+6. <span data-ttu-id="76048-134">一旦您儲存 hello`.csproj`檔案，`Visual Studio Code`應該會提示您使用`unresolved dependencies`對話方塊 hello 下列影像所示：</span><span class="sxs-lookup"><span data-stu-id="76048-134">Once you save hello `.csproj` file, `Visual Studio Code` should prompt you with an `unresolved dependencies` dialog as seen in hello following image:</span></span> 
 
     ![Visual Studio Code 還原相依性對話方塊](media/iot-hub-iot-edge-create-module/vscode-restore.png)
 
-    <span data-ttu-id="ab35e-136">a) 按一下 `Restore` 可還原專案 `.csproj` 檔案中的所有相依性，包括我們已新增的 `PackageReferences`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-136">a) Click `Restore` to restore all of the references in the projects `.csproj` file including the `PackageReferences` we have added.</span></span> 
+    <span data-ttu-id="76048-136">a） 按一下`Restore`toorestore hello 專案中的 hello 所有參考`.csproj`檔案包括 hello`PackageReferences`我們新增了。</span><span class="sxs-lookup"><span data-stu-id="76048-136">a) Click `Restore` toorestore all of hello references in hello projects `.csproj` file including hello `PackageReferences` we have added.</span></span> 
 
-    <span data-ttu-id="ab35e-137">b) `Visual Studio Code` 會自動在專案 `obj` 資料夾中建立 `project.assets.json` 檔案。</span><span class="sxs-lookup"><span data-stu-id="ab35e-137">b) `Visual Studio Code` automatically creates the `project.assets.json` file in your projects `obj` folder.</span></span> <span data-ttu-id="ab35e-138">此檔案包含您專案相依性的相關資訊，可使後續還原速度更快。</span><span class="sxs-lookup"><span data-stu-id="ab35e-138">This file contains information about your project's dependencies to make subsequent restores quicker.</span></span>
+    <span data-ttu-id="76048-137">b)`Visual Studio Code`會自動建立 hello`project.assets.json`專案中的檔案`obj`資料夾。</span><span class="sxs-lookup"><span data-stu-id="76048-137">b) `Visual Studio Code` automatically creates hello `project.assets.json` file in your projects `obj` folder.</span></span> <span data-ttu-id="76048-138">此檔案包含您的專案相依性 toomake 後續還原更快的相關資訊。</span><span class="sxs-lookup"><span data-stu-id="76048-138">This file contains information about your project's dependencies toomake subsequent restores quicker.</span></span>
  
     >[!NOTE]
-    <span data-ttu-id="ab35e-139">`.NET Core Tools` 現在以 MSBuild 為基礎。</span><span class="sxs-lookup"><span data-stu-id="ab35e-139">`.NET Core Tools` are now MSBuild-based.</span></span> <span data-ttu-id="ab35e-140">這表示會建立 `.csproj` 專案檔案而非 `project.json`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-140">Which means a `.csproj` project file is created instead of a `project.json`.</span></span>
+    <span data-ttu-id="76048-139">`.NET Core Tools` 現在以 MSBuild 為基礎。</span><span class="sxs-lookup"><span data-stu-id="76048-139">`.NET Core Tools` are now MSBuild-based.</span></span> <span data-ttu-id="76048-140">這表示會建立 `.csproj` 專案檔案而非 `project.json`。</span><span class="sxs-lookup"><span data-stu-id="76048-140">Which means a `.csproj` project file is created instead of a `project.json`.</span></span>
 
-    - <span data-ttu-id="ab35e-141">如果 `Visual Studio Code` 沒有提示您也沒有關係，我們可以手動執行此動作。</span><span class="sxs-lookup"><span data-stu-id="ab35e-141">If `Visual Studio Code` does not prompt you that is ok, we can do it manually.</span></span> <span data-ttu-id="ab35e-142">按下 `Ctrl` + `backtick` 鍵或使用功能表 `View` -> `Integrated Terminal`，開啟 `Visual Studio Code` 整合式終端機視窗。</span><span class="sxs-lookup"><span data-stu-id="ab35e-142">Open the `Visual Studio Code` integrated terminal window by pressing the `Ctrl` + `backtick` keys or using the menus `View` -> `Integrated Terminal`.</span></span>
-    - <span data-ttu-id="ab35e-143">在 `Integrated Terminal` 視窗中輸入 **dotnet restore**。</span><span class="sxs-lookup"><span data-stu-id="ab35e-143">In the `Integrated Terminal` window type **dotnet restore**.</span></span>
+    - <span data-ttu-id="76048-141">如果 `Visual Studio Code` 沒有提示您也沒有關係，我們可以手動執行此動作。</span><span class="sxs-lookup"><span data-stu-id="76048-141">If `Visual Studio Code` does not prompt you that is ok, we can do it manually.</span></span> <span data-ttu-id="76048-142">開啟 hello`Visual Studio Code`整合終端機視窗按 hello `Ctrl`  +  `backtick`鍵，或使用 hello 功能表`View`  ->  `Integrated Terminal`。</span><span class="sxs-lookup"><span data-stu-id="76048-142">Open hello `Visual Studio Code` integrated terminal window by pressing hello `Ctrl` + `backtick` keys or using hello menus `View` -> `Integrated Terminal`.</span></span>
+    - <span data-ttu-id="76048-143">在 hello`Integrated Terminal`視窗類型**dotnet 還原**。</span><span class="sxs-lookup"><span data-stu-id="76048-143">In hello `Integrated Terminal` window type **dotnet restore**.</span></span>
     
-7. <span data-ttu-id="ab35e-144">將 `Class1.cs` 檔案重新命名為 `BleConverterModule.cs`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-144">Rename the `Class1.cs` file to `BleConverterModule.cs`.</span></span> 
+7. <span data-ttu-id="76048-144">重新命名 hello`Class1.cs`檔案太`BleConverterModule.cs`。</span><span class="sxs-lookup"><span data-stu-id="76048-144">Rename hello `Class1.cs` file too`BleConverterModule.cs`.</span></span> 
 
-    <span data-ttu-id="ab35e-145">a) 若要重新命名檔案，請先按一下檔案，然後按 `F2` 鍵。</span><span class="sxs-lookup"><span data-stu-id="ab35e-145">a) To rename the file first click on the file then press the `F2` key.</span></span>
+    <span data-ttu-id="76048-145">a) toorename hello 檔案先 hello 檔案上按一下，然後按下 hello`F2`索引鍵。</span><span class="sxs-lookup"><span data-stu-id="76048-145">a) toorename hello file first click on hello file then press hello `F2` key.</span></span>
     
-    <span data-ttu-id="ab35e-146">b) 輸入新名稱 **BleConverterModule**，如下圖所示：</span><span class="sxs-lookup"><span data-stu-id="ab35e-146">b) Type in the new name **BleConverterModule**, as seen in the following image:</span></span>
+    <span data-ttu-id="76048-146">b） 在 hello 新名稱的型別**BleConverterModule**、 hello 下列影像所示：</span><span class="sxs-lookup"><span data-stu-id="76048-146">b) Type in hello new name **BleConverterModule**, as seen in hello following image:</span></span>
 
     ![重新命名類別的 Visual Studio Code](media/iot-hub-iot-edge-create-module/vscode-rename.png)
 
-8. <span data-ttu-id="ab35e-148">將下列程式碼片段複製並貼上到 `BleConverterModule.cs` 檔案中，取代 `BleConverterModule.cs` 檔案中的現有程式碼。</span><span class="sxs-lookup"><span data-stu-id="ab35e-148">Replace the existing code in the `BleConverterModule.cs` file by copying and pasting the following code snippet into your `BleConverterModule.cs` file.</span></span>
+8. <span data-ttu-id="76048-148">Hello hello 中的現有程式碼取代`BleConverterModule.cs`檔案複製並貼上下列程式碼片段至的 hello 您`BleConverterModule.cs`檔案。</span><span class="sxs-lookup"><span data-stu-id="76048-148">Replace hello existing code in hello `BleConverterModule.cs` file by copying and pasting hello following code snippet into your `BleConverterModule.cs` file.</span></span>
 
    ```csharp
    using System;
@@ -151,13 +151,13 @@ ms.lasthandoff: 08/03/2017
    }
    ```
 
-9. <span data-ttu-id="ab35e-149">按 `Ctrl` + `S` 儲存檔案。</span><span class="sxs-lookup"><span data-stu-id="ab35e-149">Save the file by pressing `Ctrl` + `S`.</span></span>
+9. <span data-ttu-id="76048-149">按下儲存 hello 檔案`Ctrl`  +  `S`。</span><span class="sxs-lookup"><span data-stu-id="76048-149">Save hello file by pressing `Ctrl` + `S`.</span></span>
 
-10. <span data-ttu-id="ab35e-150">按 `Ctrl` + `N` 鍵建立名為 `Untitled-1` 的新檔案，如下圖所示：</span><span class="sxs-lookup"><span data-stu-id="ab35e-150">Create a new file called `Untitled-1` by pressing the `Ctrl` + `N` keys as seen in the following image:</span></span>
+10. <span data-ttu-id="76048-150">建立新的檔案稱為`Untitled-1`所按的 hello `Ctrl`  +  `N`金鑰 hello 下列影像所示：</span><span class="sxs-lookup"><span data-stu-id="76048-150">Create a new file called `Untitled-1` by pressing hello `Ctrl` + `N` keys as seen in hello following image:</span></span>
 
     ![Visual Studio Code 新檔案](media/iot-hub-iot-edge-create-module/vscode-new-file.png)
 
-11. <span data-ttu-id="ab35e-152">若要還原序列化我們從模擬的 `BLE` 裝置收到的 `JSON` 物件，請將下列程式碼複製到 `Untitled-1` 檔案程式碼編輯器視窗。</span><span class="sxs-lookup"><span data-stu-id="ab35e-152">To deserialize the `JSON` object that we receive from the simulated `BLE` device, copy the following code into the `Untitled-1` file code editor window.</span></span> 
+11. <span data-ttu-id="76048-152">toodeserialize hello`JSON`物件，我們收到 hello 模擬`BLE`裝置、 hello 成下列程式碼複製 hello`Untitled-1`檔案的程式碼編輯器 視窗。</span><span class="sxs-lookup"><span data-stu-id="76048-152">toodeserialize hello `JSON` object that we receive from hello simulated `BLE` device, copy hello following code into hello `Untitled-1` file code editor window.</span></span> 
 
    ```csharp
    using System;
@@ -173,14 +173,14 @@ ms.lasthandoff: 08/03/2017
    }
    ```
 
-12. <span data-ttu-id="ab35e-153">按 `Ctrl` + `Shift` + `S` 鍵將檔案儲存為 `BleData.cs`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-153">Save the file as `BleData.cs` by pressing `Ctrl` + `Shift` + `S` keys.</span></span>
-    - <span data-ttu-id="ab35e-154">在另存新檔對話方塊的 `Save as Type` 下拉式功能表中，選取 `C# (*.cs;*.csx)`，如下圖所示：</span><span class="sxs-lookup"><span data-stu-id="ab35e-154">On the save as dialog box, in the `Save as Type` dropdown menu, select `C# (*.cs;*.csx)` as seen in the following image:</span></span>
+12. <span data-ttu-id="76048-153">將 hello 檔案儲存為`BleData.cs`按`Ctrl`  +  `Shift`  +  `S`索引鍵。</span><span class="sxs-lookup"><span data-stu-id="76048-153">Save hello file as `BleData.cs` by pressing `Ctrl` + `Shift` + `S` keys.</span></span>
+    - <span data-ttu-id="76048-154">Hello 上將儲存為對話方塊中，在 hello`Save as Type`下拉式功能表中，選取`C# (*.cs;*.csx)`hello 下列影像所示：</span><span class="sxs-lookup"><span data-stu-id="76048-154">On hello save as dialog box, in hello `Save as Type` dropdown menu, select `C# (*.cs;*.csx)` as seen in hello following image:</span></span>
 
     ![Visual Studio Code 另存新檔對話方塊](media/iot-hub-iot-edge-create-module/vscode-save-as.png)
 
-13. <span data-ttu-id="ab35e-156">按 `Ctrl` + `N` 鍵建立名為 `Untitled-1` 的新檔案。</span><span class="sxs-lookup"><span data-stu-id="ab35e-156">Create a new file called `Untitled-1` by pressing the `Ctrl` + `N` keys.</span></span>
+13. <span data-ttu-id="76048-156">建立新的檔案稱為`Untitled-1`所按的 hello `Ctrl`  +  `N`索引鍵。</span><span class="sxs-lookup"><span data-stu-id="76048-156">Create a new file called `Untitled-1` by pressing hello `Ctrl` + `N` keys.</span></span>
 
-14. <span data-ttu-id="ab35e-157">將以下程式碼片段複製並貼上到 `Untitled-1` 檔案中。</span><span class="sxs-lookup"><span data-stu-id="ab35e-157">Copy and paste the following code snippet into the `Untitled-1` file.</span></span> <span data-ttu-id="ab35e-158">這個類別是 `Azure IoT Edge` 模組，我們會使用它來輸出從 `BleConverterModule` 接收的資料。</span><span class="sxs-lookup"><span data-stu-id="ab35e-158">This class is a `Azure IoT Edge` module, which we use to output the data received from our `BleConverterModule`.</span></span>
+14. <span data-ttu-id="76048-157">複製並貼上下列程式碼片段至 hello hello`Untitled-1`檔案。</span><span class="sxs-lookup"><span data-stu-id="76048-157">Copy and paste hello following code snippet into hello `Untitled-1` file.</span></span> <span data-ttu-id="76048-158">這個類別是`Azure IoT Edge`模組，我們會使用來自 toooutput hello 資料我們`BleConverterModule`。</span><span class="sxs-lookup"><span data-stu-id="76048-158">This class is a `Azure IoT Edge` module, which we use toooutput hello data received from our `BleConverterModule`.</span></span>
 
    ```csharp
    using System;
@@ -233,12 +233,12 @@ ms.lasthandoff: 08/03/2017
    }
    ```
 
-15. <span data-ttu-id="ab35e-159">按 `Ctrl` + `Shift` + `S` 將檔案另存為 `DotNetPrinterModule.cs`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-159">Save the file as `DotNetPrinterModule.cs` by pressing `Ctrl` + `Shift` + `S`.</span></span>
-    - <span data-ttu-id="ab35e-160">在另存新檔對話方塊的 `Save as Type` 下拉式功能表中，選取 `C# (*.cs;*.csx)`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-160">On the save as dialog box, in the `Save as Type` dropdown menu, select `C# (*.cs;*.csx)`.</span></span>
+15. <span data-ttu-id="76048-159">將 hello 檔案儲存為`DotNetPrinterModule.cs`按`Ctrl`  +  `Shift`  +  `S`。</span><span class="sxs-lookup"><span data-stu-id="76048-159">Save hello file as `DotNetPrinterModule.cs` by pressing `Ctrl` + `Shift` + `S`.</span></span>
+    - <span data-ttu-id="76048-160">Hello 上將儲存為對話方塊中，在 hello`Save as Type`下拉式功能表中，選取`C# (*.cs;*.csx)`。</span><span class="sxs-lookup"><span data-stu-id="76048-160">On hello save as dialog box, in hello `Save as Type` dropdown menu, select `C# (*.cs;*.csx)`.</span></span>
 
-16. <span data-ttu-id="ab35e-161">按 `Ctrl` + `N` 鍵建立名為 `Untitled-1` 的新檔案。</span><span class="sxs-lookup"><span data-stu-id="ab35e-161">Create a new file called `Untitled-1` by pressing the `Ctrl` + `N` keys.</span></span>
+16. <span data-ttu-id="76048-161">建立新的檔案稱為`Untitled-1`所按的 hello `Ctrl`  +  `N`索引鍵。</span><span class="sxs-lookup"><span data-stu-id="76048-161">Create a new file called `Untitled-1` by pressing hello `Ctrl` + `N` keys.</span></span>
 
-17. <span data-ttu-id="ab35e-162">若要還原序列化我們從 `BleConverterModule` 收到的 `JSON` 物件，請將以下程式碼片段複製並貼上到 `Untitled-1` 檔案中。</span><span class="sxs-lookup"><span data-stu-id="ab35e-162">To deserialize the `JSON` object that we receive from the `BleConverterModule`, Copy and paste the following code snippet into the `Untitled-1` file.</span></span> 
+17. <span data-ttu-id="76048-162">toodeserialize hello`JSON`物件，我們收到 hello `BleConverterModule`，複製和貼上 hello 下列程式碼片段至 hello`Untitled-1`檔案。</span><span class="sxs-lookup"><span data-stu-id="76048-162">toodeserialize hello `JSON` object that we receive from hello `BleConverterModule`, Copy and paste hello following code snippet into hello `Untitled-1` file.</span></span> 
 
    ```csharp
    using System;
@@ -260,12 +260,12 @@ ms.lasthandoff: 08/03/2017
    }
    ```
 
-18. <span data-ttu-id="ab35e-163">按 `Ctrl` + `Shift` + `S` 將檔案另存為 `BleConverterData.cs`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-163">Save the file as `BleConverterData.cs` by pressing `Ctrl` + `Shift` + `S`.</span></span>
-    - <span data-ttu-id="ab35e-164">在另存新檔對話方塊的 `Save as Type` 下拉式功能表中，選取 `C# (*.cs;*.csx)`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-164">On the save as dialog box, in the `Save as Type` dropdown menu, select `C# (*.cs;*.csx)`.</span></span>
+18. <span data-ttu-id="76048-163">將 hello 檔案儲存為`BleConverterData.cs`按`Ctrl`  +  `Shift`  +  `S`。</span><span class="sxs-lookup"><span data-stu-id="76048-163">Save hello file as `BleConverterData.cs` by pressing `Ctrl` + `Shift` + `S`.</span></span>
+    - <span data-ttu-id="76048-164">Hello 上將儲存為對話方塊中，在 hello`Save as Type`下拉式功能表中，選取`C# (*.cs;*.csx)`。</span><span class="sxs-lookup"><span data-stu-id="76048-164">On hello save as dialog box, in hello `Save as Type` dropdown menu, select `C# (*.cs;*.csx)`.</span></span>
 
-19. <span data-ttu-id="ab35e-165">按 `Ctrl` + `N` 鍵建立名為 `Untitled-1` 的新檔案。</span><span class="sxs-lookup"><span data-stu-id="ab35e-165">Create a new file called `Untitled-1` by pressing the `Ctrl` + `N` keys.</span></span>
+19. <span data-ttu-id="76048-165">建立新的檔案稱為`Untitled-1`所按的 hello `Ctrl`  +  `N`索引鍵。</span><span class="sxs-lookup"><span data-stu-id="76048-165">Create a new file called `Untitled-1` by pressing hello `Ctrl` + `N` keys.</span></span>
 
-20. <span data-ttu-id="ab35e-166">將以下程式碼片段複製並貼上到 `Untitled-1` 檔案中。</span><span class="sxs-lookup"><span data-stu-id="ab35e-166">Copy and paste the following code snippet into the `Untitled-1` file.</span></span>
+20. <span data-ttu-id="76048-166">複製並貼上下列程式碼片段至 hello hello`Untitled-1`檔案。</span><span class="sxs-lookup"><span data-stu-id="76048-166">Copy and paste hello following code snippet into hello `Untitled-1` file.</span></span>
 
    ```json
    {
@@ -328,10 +328,10 @@ ms.lasthandoff: 08/03/2017
    }
    ```
 
-21. <span data-ttu-id="ab35e-167">按 `Ctrl` + `Shift` + `S` 將檔案另存為 `gw-config.json`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-167">Save the file as `gw-config.json` by pressing `Ctrl` + `Shift` + `S`.</span></span>
-    - <span data-ttu-id="ab35e-168">在另存新檔對話方塊的 `Save as Type` 下拉式功能表中，選取 `JSON (*.json;*.bowerrc;*.jshintrc;*.jscsrc;*.eslintrc;*.babelrc;*webmanifest)`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-168">On the save as dialog box, in the `Save as Type` dropdown menu, select `JSON (*.json;*.bowerrc;*.jshintrc;*.jscsrc;*.eslintrc;*.babelrc;*webmanifest)`.</span></span>
+21. <span data-ttu-id="76048-167">將 hello 檔案儲存為`gw-config.json`按`Ctrl`  +  `Shift`  +  `S`。</span><span class="sxs-lookup"><span data-stu-id="76048-167">Save hello file as `gw-config.json` by pressing `Ctrl` + `Shift` + `S`.</span></span>
+    - <span data-ttu-id="76048-168">Hello 上將儲存為對話方塊中，在 hello`Save as Type`下拉式功能表中，選取`JSON (*.json;*.bowerrc;*.jshintrc;*.jscsrc;*.eslintrc;*.babelrc;*webmanifest)`。</span><span class="sxs-lookup"><span data-stu-id="76048-168">On hello save as dialog box, in hello `Save as Type` dropdown menu, select `JSON (*.json;*.bowerrc;*.jshintrc;*.jscsrc;*.eslintrc;*.babelrc;*webmanifest)`.</span></span>
 
-22. <span data-ttu-id="ab35e-169">若要啟用將組態檔複製到輸出目錄，請將 `IoTEdgeConverterModule.csproj` 更新為下列 XML blob：</span><span class="sxs-lookup"><span data-stu-id="ab35e-169">To enable copying of the configuration file to the output directory, update the `IoTEdgeConverterModule.csproj` with the following XML blob:</span></span>
+22. <span data-ttu-id="76048-169">tooenable 複製 hello 設定檔 toohello 的輸出目錄中，更新 hello`IoTEdgeConverterModule.csproj`以下列 XML blob 的 hello:</span><span class="sxs-lookup"><span data-stu-id="76048-169">tooenable copying of hello configuration file toohello output directory, update hello `IoTEdgeConverterModule.csproj` with hello following XML blob:</span></span>
 
    ```xml
      <ItemGroup>
@@ -339,13 +339,13 @@ ms.lasthandoff: 08/03/2017
      </ItemGroup>
    ```
     
-   - <span data-ttu-id="ab35e-170">更新後的 `IoTEdgeConverterModule.csproj` 看起來應該如下圖所示：</span><span class="sxs-lookup"><span data-stu-id="ab35e-170">The updated `IoTEdgeConverterModule.csproj` should look like the following image:</span></span>
+   - <span data-ttu-id="76048-170">更新的 hello`IoTEdgeConverterModule.csproj`應該看起來像 hello 下列映像：</span><span class="sxs-lookup"><span data-stu-id="76048-170">hello updated `IoTEdgeConverterModule.csproj` should look like hello following image:</span></span>
 
     ![Visual Studio Code 更新後的 .csproj 檔案](media/iot-hub-iot-edge-create-module/vscode-update-csproj.png)
 
-23. <span data-ttu-id="ab35e-172">按 `Ctrl` + `N` 鍵建立名為 `Untitled-1` 的新檔案。</span><span class="sxs-lookup"><span data-stu-id="ab35e-172">Create a new file called `Untitled-1` by pressing the `Ctrl` + `N` keys.</span></span>
+23. <span data-ttu-id="76048-172">建立新的檔案稱為`Untitled-1`所按的 hello `Ctrl`  +  `N`索引鍵。</span><span class="sxs-lookup"><span data-stu-id="76048-172">Create a new file called `Untitled-1` by pressing hello `Ctrl` + `N` keys.</span></span>
 
-24. <span data-ttu-id="ab35e-173">將以下程式碼片段複製並貼上到 `Untitled-1` 檔案中。</span><span class="sxs-lookup"><span data-stu-id="ab35e-173">Copy and paste the following code snippet into the `Untitled-1` file.</span></span>
+24. <span data-ttu-id="76048-173">複製並貼上下列程式碼片段至 hello hello`Untitled-1`檔案。</span><span class="sxs-lookup"><span data-stu-id="76048-173">Copy and paste hello following code snippet into hello `Untitled-1` file.</span></span>
 
    ```powershell
    Copy-Item -Path $env:userprofile\.nuget\packages\microsoft.azure.devices.gateway.native.windows.x64\1.1.3\runtimes\win-x64\native\* -Destination .\bin\Debug\netstandard1.3
@@ -357,32 +357,32 @@ ms.lasthandoff: 08/03/2017
    Copy-Item -Path $env:userprofile\.nuget\packages\system.collections.specialized\4.3.0\lib\netstandard1.3\* -Destination .\bin\Debug\netstandard1.3
    ```
 
-25. <span data-ttu-id="ab35e-174">按 `Ctrl` + `Shift` + `S` 將檔案另存為 `binplace.ps1`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-174">Save the file as `binplace.ps1` by pressing `Ctrl` + `Shift` + `S`.</span></span>
-    - <span data-ttu-id="ab35e-175">在另存新檔對話方塊的 `Save as Type` 下拉式功能表中，選取 `PowerShell (*.ps1;*.psm1;*.psd1;*.pssc;*.psrc)`。</span><span class="sxs-lookup"><span data-stu-id="ab35e-175">On the save as dialog box, in the `Save as Type` dropdown menu, select `PowerShell (*.ps1;*.psm1;*.psd1;*.pssc;*.psrc)`.</span></span>
+25. <span data-ttu-id="76048-174">將 hello 檔案儲存為`binplace.ps1`按`Ctrl`  +  `Shift`  +  `S`。</span><span class="sxs-lookup"><span data-stu-id="76048-174">Save hello file as `binplace.ps1` by pressing `Ctrl` + `Shift` + `S`.</span></span>
+    - <span data-ttu-id="76048-175">Hello 上將儲存為對話方塊中，在 hello`Save as Type`下拉式功能表中，選取`PowerShell (*.ps1;*.psm1;*.psd1;*.pssc;*.psrc)`。</span><span class="sxs-lookup"><span data-stu-id="76048-175">On hello save as dialog box, in hello `Save as Type` dropdown menu, select `PowerShell (*.ps1;*.psm1;*.psd1;*.pssc;*.psrc)`.</span></span>
 
-26. <span data-ttu-id="ab35e-176">按 `Ctrl` + `Shift` + `B` 鍵建置專案。</span><span class="sxs-lookup"><span data-stu-id="ab35e-176">Build the project by pressing the `Ctrl` + `Shift` + `B` keys.</span></span> <span data-ttu-id="ab35e-177">當您第一次建置專案時，`Visual Studio Code` 會以 `No build task defined.` 對話方塊提示您，如下圖所示：</span><span class="sxs-lookup"><span data-stu-id="ab35e-177">When you build the project for the first time, `Visual Studio Code` prompts you with the `No build task defined.` dialog as seen in the following image:</span></span>
+26. <span data-ttu-id="76048-176">按下 hello 建置 hello 專案`Ctrl`  +  `Shift`  +  `B`索引鍵。</span><span class="sxs-lookup"><span data-stu-id="76048-176">Build hello project by pressing hello `Ctrl` + `Shift` + `B` keys.</span></span> <span data-ttu-id="76048-177">當您第一次建置 hello 的 hello 專案`Visual Studio Code`會提示您以 hello`No build task defined.`對話方塊 hello 下列影像所示：</span><span class="sxs-lookup"><span data-stu-id="76048-177">When you build hello project for hello first time, `Visual Studio Code` prompts you with hello `No build task defined.` dialog as seen in hello following image:</span></span>
 
     ![Visual Studio Code 建置工作對話方塊](media/iot-hub-iot-edge-create-module/vscode-build-task.png)
 
-    <span data-ttu-id="ab35e-179">a) 按一下 `Configure Build Task` 按鈕。</span><span class="sxs-lookup"><span data-stu-id="ab35e-179">a) Click the `Configure Build Task` button.</span></span>
+    <span data-ttu-id="76048-179">a） 按一下 hello `Configure Build Task`  按鈕。</span><span class="sxs-lookup"><span data-stu-id="76048-179">a) Click hello `Configure Build Task` button.</span></span>
 
-    <span data-ttu-id="ab35e-180">b) 在 `Select a Task Runner` 對話方塊下拉式功能表中。</span><span class="sxs-lookup"><span data-stu-id="ab35e-180">b) In the `Select a Task Runner` dialog dropdown menu.</span></span> <span data-ttu-id="ab35e-181">選取 `.NET Core`，如下圖所示：</span><span class="sxs-lookup"><span data-stu-id="ab35e-181">Select `.NET Core` as seen in the following image:</span></span> 
+    <span data-ttu-id="76048-180">b） 在 hello`Select a Task Runner`對話方塊下拉式功能表。</span><span class="sxs-lookup"><span data-stu-id="76048-180">b) In hello `Select a Task Runner` dialog dropdown menu.</span></span> <span data-ttu-id="76048-181">選取`.NET Core`hello 下列影像所示：</span><span class="sxs-lookup"><span data-stu-id="76048-181">Select `.NET Core` as seen in hello following image:</span></span> 
 
     ![Visual Studio Code 選取工作對話方塊](media/iot-hub-iot-edge-create-module/vscode-build-task-runner.png)
 
-    <span data-ttu-id="ab35e-183">c) 按一下 `.NET Core` 項目可在 `.vscode` 目錄中建立 `tasks.json` 檔案，並在 `code editor` 視窗中開啟該檔案。</span><span class="sxs-lookup"><span data-stu-id="ab35e-183">c) Clicking the `.NET Core` item creates the `tasks.json` file in your `.vscode` directory and opens the file in the `code editor` window.</span></span> <span data-ttu-id="ab35e-184">這個檔案不需修改，請關閉索引標籤。</span><span class="sxs-lookup"><span data-stu-id="ab35e-184">There is no need to modify this file, close the tab.</span></span>
+    <span data-ttu-id="76048-183">c） 按一下 hello`.NET Core`項目建立 hello`tasks.json`檔案中您`.vscode`目錄，並開啟 hello 檔案在 hello`code editor`視窗。</span><span class="sxs-lookup"><span data-stu-id="76048-183">c) Clicking hello `.NET Core` item creates hello `tasks.json` file in your `.vscode` directory and opens hello file in hello `code editor` window.</span></span> <span data-ttu-id="76048-184">沒有任何需要 toomodify 此檔案，請關閉 hello 索引標籤。</span><span class="sxs-lookup"><span data-stu-id="76048-184">There is no need toomodify this file, close hello tab.</span></span>
 
-27.  <span data-ttu-id="ab35e-185">按 `Ctrl` + `backtick` 鍵或使用功能表 `View` -> `Integrated Terminal` 開啟 `Visual Studio Code` 整合式終端機視窗，並將 **.\binplace.ps1** 輸入到 `PowerShell` 命令提示字元。</span><span class="sxs-lookup"><span data-stu-id="ab35e-185">Open the `Visual Studio Code` integrated terminal window by pressing the `Ctrl` + `backtick` keys or using the menus `View` -> `Integrated Terminal` and type **.\binplace.ps1** into the `PowerShell` command prompt.</span></span> <span data-ttu-id="ab35e-186">此命令會將我們的所有相依性複製到輸出目錄。</span><span class="sxs-lookup"><span data-stu-id="ab35e-186">This command copies all our dependencies to the output directory.</span></span>
+27.  <span data-ttu-id="76048-185">開啟 hello`Visual Studio Code`整合終端機視窗按 hello `Ctrl`  +  `backtick`鍵，或使用 hello 功能表`View`  ->  `Integrated Terminal`和型別**.\binplace.ps1**到 hello`PowerShell`命令提示字元。</span><span class="sxs-lookup"><span data-stu-id="76048-185">Open hello `Visual Studio Code` integrated terminal window by pressing hello `Ctrl` + `backtick` keys or using hello menus `View` -> `Integrated Terminal` and type **.\binplace.ps1** into hello `PowerShell` command prompt.</span></span> <span data-ttu-id="76048-186">此命令會複製所有我們相依性 toohello 輸出目錄。</span><span class="sxs-lookup"><span data-stu-id="76048-186">This command copies all our dependencies toohello output directory.</span></span>
 
-28. <span data-ttu-id="ab35e-187">輸入 **cd .\bin\Debug\netstandard1.3**，瀏覽到 `Integrated Terminal` 視窗中的專案輸出目錄。</span><span class="sxs-lookup"><span data-stu-id="ab35e-187">Navigate to the projects output directory in the `Integrated Terminal` window by typing **cd .\bin\Debug\netstandard1.3**.</span></span>
+28. <span data-ttu-id="76048-187">瀏覽 toohello 專案輸出目錄中 hello`Integrated Terminal`視窗輸入**cd.\bin\Debug\netstandard1.3**。</span><span class="sxs-lookup"><span data-stu-id="76048-187">Navigate toohello projects output directory in hello `Integrated Terminal` window by typing **cd .\bin\Debug\netstandard1.3**.</span></span>
 
-29. <span data-ttu-id="ab35e-188">將 **.\gw.exe gw-config.json** 輸入到 `Integrated Terminal` 視窗提示中，執行範例專案。</span><span class="sxs-lookup"><span data-stu-id="ab35e-188">Run the sample project by typing **.\gw.exe gw-config.json** into the `Integrated Terminal` window prompt.</span></span> 
-    - <span data-ttu-id="ab35e-189">如果您嚴格遵照本教學課程中的步驟執行，現在應正執行 `Azure IoT Edge BLE Data Converter Module` 範例專案，如下圖所示：</span><span class="sxs-lookup"><span data-stu-id="ab35e-189">If you have followed the steps in this tutorial closely, you should now be running the `Azure IoT Edge BLE Data Converter Module` sample project as seen in the following image:</span></span>
+29. <span data-ttu-id="76048-188">輸入執行 hello 範例專案**。 \gw.exe gw config.json**到 hello`Integrated Terminal`視窗提示。</span><span class="sxs-lookup"><span data-stu-id="76048-188">Run hello sample project by typing **.\gw.exe gw-config.json** into hello `Integrated Terminal` window prompt.</span></span> 
+    - <span data-ttu-id="76048-189">如果您有密切遵循 hello 步驟在本教學課程，您應該立即執行 hello `Azure IoT Edge BLE Data Converter Module` hello 下列影像所示的範例專案：</span><span class="sxs-lookup"><span data-stu-id="76048-189">If you have followed hello steps in this tutorial closely, you should now be running hello `Azure IoT Edge BLE Data Converter Module` sample project as seen in hello following image:</span></span>
     
         ![在 Visual Studio Code 中執行的模擬裝置範例](media/iot-hub-iot-edge-create-module/vscode-run.png)
     
-    - <span data-ttu-id="ab35e-191">如果您想要終止應用程式，請按 `<Enter>` 鍵。</span><span class="sxs-lookup"><span data-stu-id="ab35e-191">If you want to terminate the application, press the `<Enter>` key.</span></span>
+    - <span data-ttu-id="76048-191">如果您想 tooterminate hello 應用程式，請按 hello`<Enter>`索引鍵。</span><span class="sxs-lookup"><span data-stu-id="76048-191">If you want tooterminate hello application, press hello `<Enter>` key.</span></span>
 
 >[!IMPORTANT]
-<span data-ttu-id="ab35e-192">不建議使用 `Ctrl` + `C` 來終止 `IoT Edge` 閘道應用程式 (即 **gw.exe**)。</span><span class="sxs-lookup"><span data-stu-id="ab35e-192">It is not recommended to use `Ctrl` + `C` to terminate the `IoT Edge` gateway application (that is, **gw.exe**).</span></span> <span data-ttu-id="ab35e-193">因為此動作可能會造成程序異常終止。</span><span class="sxs-lookup"><span data-stu-id="ab35e-193">As this action may cause the process to terminate abnormally.</span></span>
+<span data-ttu-id="76048-192">建議您不要 toouse `Ctrl`  +  `C` tooterminate hello`IoT Edge`閘道應用程式 (也就是**gw.exe**)。</span><span class="sxs-lookup"><span data-stu-id="76048-192">It is not recommended toouse `Ctrl` + `C` tooterminate hello `IoT Edge` gateway application (that is, **gw.exe**).</span></span> <span data-ttu-id="76048-193">為此動作可能導致 hello 程序 tooterminate 異常。</span><span class="sxs-lookup"><span data-stu-id="76048-193">As this action may cause hello process tooterminate abnormally.</span></span>
 

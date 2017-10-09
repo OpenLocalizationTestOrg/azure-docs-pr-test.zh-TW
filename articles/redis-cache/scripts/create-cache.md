@@ -1,5 +1,5 @@
 ---
-title: "Azure CLI 指令碼範例 - 建立 Azure Redis 快取 | Microsoft Docs"
+title: "aaaAzure CLI 指令碼範例-建立 Azure Redis 快取 |Microsoft 文件"
 description: "Azure CLI 指令碼範例 - 建立 Azure Redis 快取"
 services: redis-cache
 documentationcenter: 
@@ -15,36 +15,36 @@ ms.tgt_pltfrm: na
 ms.workload: tbd
 ms.date: 04/14/2017
 ms.author: sdanie
-ms.openlocfilehash: c6b153d80de4cbf2bec1bc70d67be7befa0c5ec3
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 85b007a426fbd4752034ec8663835963d140dd75
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="create-an-azure-redis-cache"></a><span data-ttu-id="fa9ca-103">建立 Azure Redis 快取</span><span class="sxs-lookup"><span data-stu-id="fa9ca-103">Create an Azure Redis Cache</span></span>
+# <a name="create-an-azure-redis-cache"></a><span data-ttu-id="ad3b0-103">建立 Azure Redis 快取</span><span class="sxs-lookup"><span data-stu-id="ad3b0-103">Create an Azure Redis Cache</span></span>
 
-<span data-ttu-id="fa9ca-104">在此案例中，您會了解如何建立 Azure Redis 快取。</span><span class="sxs-lookup"><span data-stu-id="fa9ca-104">In this scenario, you learn how to create an Azure Redis Cache.</span></span>
+<span data-ttu-id="ad3b0-104">在此案例中，您學會如何 toocreate Azure Redis 快取。</span><span class="sxs-lookup"><span data-stu-id="ad3b0-104">In this scenario, you learn how toocreate an Azure Redis Cache.</span></span>
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
-## <a name="sample-script"></a><span data-ttu-id="fa9ca-105">範例指令碼</span><span class="sxs-lookup"><span data-stu-id="fa9ca-105">Sample script</span></span>
+## <a name="sample-script"></a><span data-ttu-id="ad3b0-105">範例指令碼</span><span class="sxs-lookup"><span data-stu-id="ad3b0-105">Sample script</span></span>
 
-<span data-ttu-id="fa9ca-106">[!code-azurecli[主要](../../../cli_scripts/redis-cache/create-cache/create-cache.sh "Azure Redis 快取")]</span><span class="sxs-lookup"><span data-stu-id="fa9ca-106">[!code-azurecli[main](../../../cli_scripts/redis-cache/create-cache/create-cache.sh "Azure Redis Cache")]</span></span>
+[!code-azurecli[main](../../../cli_scripts/redis-cache/create-cache/create-cache.sh "Azure Redis Cache")]
 
 [!INCLUDE [cli-script-clean-up](../../../includes/redis-cli-script-clean-up.md)]
 
-## <a name="script-explanation"></a><span data-ttu-id="fa9ca-107">指令碼說明</span><span class="sxs-lookup"><span data-stu-id="fa9ca-107">Script explanation</span></span>
+## <a name="script-explanation"></a><span data-ttu-id="ad3b0-106">指令碼說明</span><span class="sxs-lookup"><span data-stu-id="ad3b0-106">Script explanation</span></span>
 
-<span data-ttu-id="fa9ca-108">此指令碼使用下列命令來建立資源群組與 redis 快取。</span><span class="sxs-lookup"><span data-stu-id="fa9ca-108">This script uses the following commands to create a resource group and a redis cache.</span></span> <span data-ttu-id="fa9ca-109">下表中的每個命令都會連結至命令特定的文件。</span><span class="sxs-lookup"><span data-stu-id="fa9ca-109">Each command in the table links to command specific documentation.</span></span>
+<span data-ttu-id="ad3b0-107">此指令碼會使用下列命令 toocreate hello 資源群組和 redis 快取。</span><span class="sxs-lookup"><span data-stu-id="ad3b0-107">This script uses hello following commands toocreate a resource group and a redis cache.</span></span> <span data-ttu-id="ad3b0-108">Hello 資料表連結 toocommand 特定文件中的每個命令。</span><span class="sxs-lookup"><span data-stu-id="ad3b0-108">Each command in hello table links toocommand specific documentation.</span></span>
 
-| <span data-ttu-id="fa9ca-110">命令</span><span class="sxs-lookup"><span data-stu-id="fa9ca-110">Command</span></span> | <span data-ttu-id="fa9ca-111">注意事項</span><span class="sxs-lookup"><span data-stu-id="fa9ca-111">Notes</span></span> |
+| <span data-ttu-id="ad3b0-109">命令</span><span class="sxs-lookup"><span data-stu-id="ad3b0-109">Command</span></span> | <span data-ttu-id="ad3b0-110">注意事項</span><span class="sxs-lookup"><span data-stu-id="ad3b0-110">Notes</span></span> |
 |---|---|
-| [<span data-ttu-id="fa9ca-112">az group create</span><span class="sxs-lookup"><span data-stu-id="fa9ca-112">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="fa9ca-113">建立用來存放所有資源的資源群組。</span><span class="sxs-lookup"><span data-stu-id="fa9ca-113">Creates a resource group in which all resources are stored.</span></span> |
-| [<span data-ttu-id="fa9ca-114">az redis create</span><span class="sxs-lookup"><span data-stu-id="fa9ca-114">az redis create</span></span>](https://docs.microsoft.com/cli/azure/redis#create) | <span data-ttu-id="fa9ca-115">建立 Redis 快取執行個體。</span><span class="sxs-lookup"><span data-stu-id="fa9ca-115">Create Redis Cache instance.</span></span> |
+| [<span data-ttu-id="ad3b0-111">az group create</span><span class="sxs-lookup"><span data-stu-id="ad3b0-111">az group create</span></span>](https://docs.microsoft.com/cli/azure/group#create) | <span data-ttu-id="ad3b0-112">建立用來存放所有資源的資源群組。</span><span class="sxs-lookup"><span data-stu-id="ad3b0-112">Creates a resource group in which all resources are stored.</span></span> |
+| [<span data-ttu-id="ad3b0-113">az redis create</span><span class="sxs-lookup"><span data-stu-id="ad3b0-113">az redis create</span></span>](https://docs.microsoft.com/cli/azure/redis#create) | <span data-ttu-id="ad3b0-114">建立 Redis 快取執行個體。</span><span class="sxs-lookup"><span data-stu-id="ad3b0-114">Create Redis Cache instance.</span></span> |
 
 
-## <a name="next-steps"></a><span data-ttu-id="fa9ca-116">後續步驟</span><span class="sxs-lookup"><span data-stu-id="fa9ca-116">Next steps</span></span>
+## <a name="next-steps"></a><span data-ttu-id="ad3b0-115">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ad3b0-115">Next steps</span></span>
 
-<span data-ttu-id="fa9ca-117">如需 Azure CLI 的詳細資訊，請參閱 [Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。</span><span class="sxs-lookup"><span data-stu-id="fa9ca-117">For more information on the Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
+<span data-ttu-id="ad3b0-116">如需有關 Azure CLI hello 的詳細資訊，請參閱[Azure CLI 文件](https://docs.microsoft.com/cli/azure/overview)。</span><span class="sxs-lookup"><span data-stu-id="ad3b0-116">For more information on hello Azure CLI, see [Azure CLI documentation](https://docs.microsoft.com/cli/azure/overview).</span></span>
 
-<span data-ttu-id="fa9ca-118">您可以在 [Azure Redis Cache 文件](../cli-samples.md)中找到其他 Azure Redis Cache CLI 指令碼範例。</span><span class="sxs-lookup"><span data-stu-id="fa9ca-118">Additional Azure Redis Cache CLI script samples can be found in the [Azure Redis Cache documentation](../cli-samples.md).</span></span>
+<span data-ttu-id="ad3b0-117">其他的 Azure Redis 快取 CLI 指令碼範例可以在 hello [Azure Redis 快取文件](../cli-samples.md)。</span><span class="sxs-lookup"><span data-stu-id="ad3b0-117">Additional Azure Redis Cache CLI script samples can be found in hello [Azure Redis Cache documentation](../cli-samples.md).</span></span>

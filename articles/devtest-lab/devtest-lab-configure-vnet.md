@@ -1,6 +1,6 @@
 ---
-title: "設定 Azure DevTest Labs 中的虛擬網路 | Microsoft Docs"
-description: "了解如何設定現有的虛擬網路和子網路，並在具備 Azure DevTest Labs 的 VM 中使用它們"
+title: "aaaConfigure 位於 Azure 的 DevTest Labs 虛擬網路 |Microsoft 文件"
+description: "深入了解如何 tooconfigure 現有的虛擬網路和子網路，並將其用於具有 Azure DevTest Labs 的 VM"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,51 +14,51 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/16/2017
 ms.author: tarcher
-ms.openlocfilehash: 848752085729df7d98a3a4b7be36d894c12cd033
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: a11ce8315e3c540e44aeacc9c5ee3dde014d4621
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="configure-a-virtual-network-in-azure-devtest-labs"></a><span data-ttu-id="bb675-103">設定 Azure DevTest Labs 中的虛擬網路</span><span class="sxs-lookup"><span data-stu-id="bb675-103">Configure a virtual network in Azure DevTest Labs</span></span>
-<span data-ttu-id="bb675-104">如 [將具有構件的 VM 加入實驗室](devtest-lab-add-vm-with-artifacts.md)文章中所述，當您在實驗室中建立 VM 時，可以指定已設定的虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="bb675-104">As explained in the article, [Add a VM with artifacts to a lab](devtest-lab-add-vm-with-artifacts.md), when you create a VM in a lab, you can specify a configured virtual network.</span></span> <span data-ttu-id="bb675-105">例如，如果您需要使用以 ExpressRoute 或站台對站台 VPN 設定的虛擬網路從您的 VM 存取公司資源時，就可以這麼做。</span><span class="sxs-lookup"><span data-stu-id="bb675-105">One scenario for doing this is if you need to access your corpnet resources from your VMs using the virtual network that was configured with ExpressRoute or site-to-site VPN.</span></span> <span data-ttu-id="bb675-106">下列各節將說明如何將現有的虛擬網路加入至實驗室的虛擬網路設定，就能在建立 VM 時選擇它。</span><span class="sxs-lookup"><span data-stu-id="bb675-106">The following sections illustrate how to add your existing virtual network into a lab's Virtual Network settings so that it is available to choose when creating VMs.</span></span>
+# <a name="configure-a-virtual-network-in-azure-devtest-labs"></a><span data-ttu-id="26f12-103">設定 Azure DevTest Labs 中的虛擬網路</span><span class="sxs-lookup"><span data-stu-id="26f12-103">Configure a virtual network in Azure DevTest Labs</span></span>
+<span data-ttu-id="26f12-104">Hello 文章所述[加入成品 tooa 實驗室與 VM](devtest-lab-add-vm-with-artifacts.md)，當您建立 VM 在實驗室中，您可以指定設定的虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="26f12-104">As explained in hello article, [Add a VM with artifacts tooa lab](devtest-lab-add-vm-with-artifacts.md), when you create a VM in a lab, you can specify a configured virtual network.</span></span> <span data-ttu-id="26f12-105">執行此動作的其中一個案例是您的公司網路資源，您使用的 Vm 所傳來如果您需要 tooaccess hello 與 ExpressRoute 或站對站 VPN 已經設定的虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="26f12-105">One scenario for doing this is if you need tooaccess your corpnet resources from your VMs using hello virtual network that was configured with ExpressRoute or site-to-site VPN.</span></span> <span data-ttu-id="26f12-106">hello 下列各節將說明如何 tooadd 實驗室的虛擬網路設定，讓建立 Vm 時，它會變成可用 toochoose 到您現有的虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="26f12-106">hello following sections illustrate how tooadd your existing virtual network into a lab's Virtual Network settings so that it is available toochoose when creating VMs.</span></span>
 
-## <a name="configure-a-virtual-network-for-a-lab-using-the-azure-portal"></a><span data-ttu-id="bb675-107">使用 Azure 入口網站設定適用於實驗室的虛擬網路</span><span class="sxs-lookup"><span data-stu-id="bb675-107">Configure a virtual network for a lab using the Azure portal</span></span>
-<span data-ttu-id="bb675-108">下列步驟會逐步引導您將現有虛擬網路 (和子網路) 加入至實驗室，以便在同一個實驗室中建立 VM 時加以使用。</span><span class="sxs-lookup"><span data-stu-id="bb675-108">The following steps walk you through adding an existing virtual network (and subnet) to a lab so that it can be used when creating a VM in the same lab.</span></span> 
+## <a name="configure-a-virtual-network-for-a-lab-using-hello-azure-portal"></a><span data-ttu-id="26f12-107">設定實驗室，使用 hello Azure 入口網站的虛擬網路</span><span class="sxs-lookup"><span data-stu-id="26f12-107">Configure a virtual network for a lab using hello Azure portal</span></span>
+<span data-ttu-id="26f12-108">hello 下列步驟引導您完成新增現有的虛擬網路 （和子網路） tooa 實驗室使 hello 中建立 VM 時才能使用相同的實驗室。</span><span class="sxs-lookup"><span data-stu-id="26f12-108">hello following steps walk you through adding an existing virtual network (and subnet) tooa lab so that it can be used when creating a VM in hello same lab.</span></span> 
 
-1. <span data-ttu-id="bb675-109">登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。</span><span class="sxs-lookup"><span data-stu-id="bb675-109">Sign in to the [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).</span></span>
-2. <span data-ttu-id="bb675-110">選取 [更多服務]，然後從清單中選取 [DevTest Labs]。</span><span class="sxs-lookup"><span data-stu-id="bb675-110">Select **More Services**, and then select **DevTest Labs** from the list.</span></span>
-3. <span data-ttu-id="bb675-111">從實驗室清單中，選取所需的實驗室。</span><span class="sxs-lookup"><span data-stu-id="bb675-111">From the list of labs, select the desired lab.</span></span> 
-4. <span data-ttu-id="bb675-112">在實驗室的刀鋒視窗上，選取 [組態] 。</span><span class="sxs-lookup"><span data-stu-id="bb675-112">On the lab's blade, select **Configuration**.</span></span>
-5. <span data-ttu-id="bb675-113">在實驗室的 [組態] 刀鋒視窗上，選取 [虛擬網路]。</span><span class="sxs-lookup"><span data-stu-id="bb675-113">On the lab's **Configuration** blade, select **Virtual networks**.</span></span>
-6. <span data-ttu-id="bb675-114">在 [虛擬網路]  刀鋒視窗中，您會看到您已針對目前的實驗室設定的虛擬網路清單，以及為實驗室所建立的預設虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="bb675-114">On the **Virtual networks** blade, you see a list of virtual networks configured for the current lab as well as the default virtual network that is created for your lab.</span></span> 
-7. <span data-ttu-id="bb675-115">選取 [+ 新增] 。</span><span class="sxs-lookup"><span data-stu-id="bb675-115">Select **+ Add**.</span></span>
+1. <span data-ttu-id="26f12-109">登入 toohello [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。</span><span class="sxs-lookup"><span data-stu-id="26f12-109">Sign in toohello [Azure portal](http://go.microsoft.com/fwlink/p/?LinkID=525040).</span></span>
+2. <span data-ttu-id="26f12-110">選取**更服務**，然後選取**DevTest Labs**從 hello 清單。</span><span class="sxs-lookup"><span data-stu-id="26f12-110">Select **More Services**, and then select **DevTest Labs** from hello list.</span></span>
+3. <span data-ttu-id="26f12-111">從 hello 清單的實驗室中，選取 hello 所需的實驗室。</span><span class="sxs-lookup"><span data-stu-id="26f12-111">From hello list of labs, select hello desired lab.</span></span> 
+4. <span data-ttu-id="26f12-112">在 hello 實驗室刀鋒視窗中，選取 **組態**。</span><span class="sxs-lookup"><span data-stu-id="26f12-112">On hello lab's blade, select **Configuration**.</span></span>
+5. <span data-ttu-id="26f12-113">在 hello 實驗室**組態**刀鋒視窗中，選取**虛擬網路**。</span><span class="sxs-lookup"><span data-stu-id="26f12-113">On hello lab's **Configuration** blade, select **Virtual networks**.</span></span>
+6. <span data-ttu-id="26f12-114">在 hello**虛擬網路**刀鋒視窗中，您會看到一份 hello 目前實驗室以及 hello 預設建立虛擬網路是您的實驗室中設定虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="26f12-114">On hello **Virtual networks** blade, you see a list of virtual networks configured for hello current lab as well as hello default virtual network that is created for your lab.</span></span> 
+7. <span data-ttu-id="26f12-115">選取 [+ 新增] 。</span><span class="sxs-lookup"><span data-stu-id="26f12-115">Select **+ Add**.</span></span>
    
-    ![將現有的虛擬網路加入至您的實驗室](./media/devtest-lab-configure-vnet/lab-settings-vnet-add.png)
-8. <span data-ttu-id="bb675-117">在 [虛擬網路] 刀鋒視窗中，選取 [選取虛擬網路]。</span><span class="sxs-lookup"><span data-stu-id="bb675-117">On the **Virtual network** blade, select **[Select virtual network]**.</span></span>
+    ![加入現有的虛擬網路 tooyour 實驗室](./media/devtest-lab-configure-vnet/lab-settings-vnet-add.png)
+8. <span data-ttu-id="26f12-117">在 hello**虛擬網路**刀鋒視窗中，選取**[選取虛擬網路]**。</span><span class="sxs-lookup"><span data-stu-id="26f12-117">On hello **Virtual network** blade, select **[Select virtual network]**.</span></span>
    
     ![選取現有的虛擬網路](./media/devtest-lab-configure-vnet/lab-settings-vnets-vnet1.png)
-9. <span data-ttu-id="bb675-119">在 [選擇虛擬網路]  刀鋒視窗中，選取所需的虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="bb675-119">On the **Choose virtual network** blade, select the desired virtual network.</span></span> <span data-ttu-id="bb675-120">刀鋒視窗會顯示訂用帳戶中與實驗室位於相同區域下方的所有虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="bb675-120">The blade shows all the virtual networks that are under the same region in the subscription as the lab.</span></span>  
-10. <span data-ttu-id="bb675-121">選取虛擬網路之後，您會回到 [虛擬網路]。按一下刀鋒視窗底部清單中的子網路。</span><span class="sxs-lookup"><span data-stu-id="bb675-121">After selecting a virtual network, you are returned to the **Virtual network** Click the subnet in the list at the bottom of the blade.</span></span>
+9. <span data-ttu-id="26f12-119">在 hello**選擇虛擬網路**刀鋒視窗中，選取 hello 所需的虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="26f12-119">On hello **Choose virtual network** blade, select hello desired virtual network.</span></span> <span data-ttu-id="26f12-120">hello 刀鋒視窗中顯示所有 hello 虛擬網路會在 hello 相同 hello 實驗室 hello 訂用帳戶中的區域。</span><span class="sxs-lookup"><span data-stu-id="26f12-120">hello blade shows all hello virtual networks that are under hello same region in hello subscription as hello lab.</span></span>  
+10. <span data-ttu-id="26f12-121">選取虛擬網路之後, 您會返回 toohello**虛擬網路**按一下 hello hello 在 hello hello 刀鋒視窗底部的清單中的子網路。</span><span class="sxs-lookup"><span data-stu-id="26f12-121">After selecting a virtual network, you are returned toohello **Virtual network** Click hello subnet in hello list at hello bottom of hello blade.</span></span>
 
     ![子網路清單](./media/devtest-lab-configure-vnet/lab-settings-vnets-vnet2.png)
     
-    <span data-ttu-id="bb675-123">[實驗室子網路] 刀鋒視窗隨即出現。</span><span class="sxs-lookup"><span data-stu-id="bb675-123">The Lab Subnet blade is displayed.</span></span>
+    <span data-ttu-id="26f12-123">hello 實驗室子網路 刀鋒視窗會顯示。</span><span class="sxs-lookup"><span data-stu-id="26f12-123">hello Lab Subnet blade is displayed.</span></span>
 
     ![實驗室子網路刀鋒視窗](./media/devtest-lab-configure-vnet/lab-subnet.png)
 
-11. <span data-ttu-id="bb675-125">指定 [實驗室子網路名稱]。</span><span class="sxs-lookup"><span data-stu-id="bb675-125">Specify a **Lab subnet name**.</span></span>
-12. <span data-ttu-id="bb675-126">若要允許在實驗室 VM 建立期間使用子網路，請選取 [在虛擬機器建立時使用]。</span><span class="sxs-lookup"><span data-stu-id="bb675-126">To allow a subnet to be used in lab VM creation, select **Use in virtual machine creation**.</span></span>
-13. <span data-ttu-id="bb675-127">若要啟用[共用公用 IP 位址](devtest-lab-shared-ip.md)，請選取 [啟用共用公用 IP]。</span><span class="sxs-lookup"><span data-stu-id="bb675-127">To enable a [shared public IP address](devtest-lab-shared-ip.md), select **Enable shared public IP**.</span></span>
-14. <span data-ttu-id="bb675-128">若要允許子網路中使用公用 IP 位址，請選取 [允許建立公用 IP] 。</span><span class="sxs-lookup"><span data-stu-id="bb675-128">To allow public IP addresses in a subnet, select **Allow public IP creation**.</span></span>
-15. <span data-ttu-id="bb675-129">在 [每位使用者的最大虛擬機器數] 欄位中，針對每個子網路指定每位使用者的最大 VM 數。</span><span class="sxs-lookup"><span data-stu-id="bb675-129">In the **Maximum virtual machines per user** field, specify the maximum VMs per user for each subnet.</span></span> <span data-ttu-id="bb675-130">如果您想要不限數目的 VM 數，請將此欄位保留空白。</span><span class="sxs-lookup"><span data-stu-id="bb675-130">If you want an unrestricted number of VMs, leave this field blank.</span></span>
-16. <span data-ttu-id="bb675-131">選取 [確定]，關閉 [實驗室子網路] 刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bb675-131">Select **OK** to close the Lab Subnet blade.</span></span>
-17. <span data-ttu-id="bb675-132">選取 [儲存]，關閉 [虛擬網路] 刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="bb675-132">Select **Save** to close the Virtual network blade.</span></span>
-18. <span data-ttu-id="bb675-133">現在已設定虛擬網路，在建立 VM 時就能選取它。</span><span class="sxs-lookup"><span data-stu-id="bb675-133">Now that the virtual network is configured, it can be selected when creating a VM.</span></span> 
-    <span data-ttu-id="bb675-134">若要查看如何建立 VM 並指定虛擬網路，請參閱 [將具有構件的 VM 加入實驗室](devtest-lab-add-vm-with-artifacts.md)一文。</span><span class="sxs-lookup"><span data-stu-id="bb675-134">To see how to create a VM and specify a virtual network, refer to the article, [Add a VM with artifacts to a lab](devtest-lab-add-vm-with-artifacts.md).</span></span> 
+11. <span data-ttu-id="26f12-125">指定 [實驗室子網路名稱]。</span><span class="sxs-lookup"><span data-stu-id="26f12-125">Specify a **Lab subnet name**.</span></span>
+12. <span data-ttu-id="26f12-126">在實驗室中建立 VM，使用子網路 toobe tooallow 選取**中建立虛擬機器使用**。</span><span class="sxs-lookup"><span data-stu-id="26f12-126">tooallow a subnet toobe used in lab VM creation, select **Use in virtual machine creation**.</span></span>
+13. <span data-ttu-id="26f12-127">tooenable[共用公用 IP 位址](devtest-lab-shared-ip.md)，選取**啟用共用公用 IP**。</span><span class="sxs-lookup"><span data-stu-id="26f12-127">tooenable a [shared public IP address](devtest-lab-shared-ip.md), select **Enable shared public IP**.</span></span>
+14. <span data-ttu-id="26f12-128">tooallow 公用 IP 位址的子網路中，選取**允許公用 IP 建立**。</span><span class="sxs-lookup"><span data-stu-id="26f12-128">tooallow public IP addresses in a subnet, select **Allow public IP creation**.</span></span>
+15. <span data-ttu-id="26f12-129">在 hello**每位使用者最多虛擬機器**欄位中，指定 hello 每位使用者每個子網路的最大 Vm。</span><span class="sxs-lookup"><span data-stu-id="26f12-129">In hello **Maximum virtual machines per user** field, specify hello maximum VMs per user for each subnet.</span></span> <span data-ttu-id="26f12-130">如果您想要不限數目的 VM 數，請將此欄位保留空白。</span><span class="sxs-lookup"><span data-stu-id="26f12-130">If you want an unrestricted number of VMs, leave this field blank.</span></span>
+16. <span data-ttu-id="26f12-131">選取**確定**tooclose hello 實驗室子網路 刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="26f12-131">Select **OK** tooclose hello Lab Subnet blade.</span></span>
+17. <span data-ttu-id="26f12-132">選取**儲存**tooclose hello 虛擬網路 刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="26f12-132">Select **Save** tooclose hello Virtual network blade.</span></span>
+18. <span data-ttu-id="26f12-133">既然 hello 虛擬網路設定，也可以選取建立 VM 時。</span><span class="sxs-lookup"><span data-stu-id="26f12-133">Now that hello virtual network is configured, it can be selected when creating a VM.</span></span> 
+    <span data-ttu-id="26f12-134">toosee 如何 toocreate VM 並指定虛擬網路，請參閱 toohello 文章[加入成品 tooa 實驗室與 VM](devtest-lab-add-vm-with-artifacts.md)。</span><span class="sxs-lookup"><span data-stu-id="26f12-134">toosee how toocreate a VM and specify a virtual network, refer toohello article, [Add a VM with artifacts tooa lab](devtest-lab-add-vm-with-artifacts.md).</span></span> 
 
 [!INCLUDE [devtest-lab-try-it-out](../../includes/devtest-lab-try-it-out.md)]
 
-## <a name="next-steps"></a><span data-ttu-id="bb675-135">後續步驟</span><span class="sxs-lookup"><span data-stu-id="bb675-135">Next steps</span></span>
-<span data-ttu-id="bb675-136">一旦您在實驗室中加入所需的虛擬網路之後，下一個步驟就是 [將 VM 加入至實驗室](devtest-lab-add-vm-with-artifacts.md)。</span><span class="sxs-lookup"><span data-stu-id="bb675-136">Once you have added the desired virtual network to your lab, the next step is to [add a VM to your lab](devtest-lab-add-vm-with-artifacts.md).</span></span>
+## <a name="next-steps"></a><span data-ttu-id="26f12-135">後續步驟</span><span class="sxs-lookup"><span data-stu-id="26f12-135">Next steps</span></span>
+<span data-ttu-id="26f12-136">新增 hello 預期虛擬網路 tooyour 實驗室之後下, 一個步驟的 hello 太[加入 VM tooyour 實驗室](devtest-lab-add-vm-with-artifacts.md)。</span><span class="sxs-lookup"><span data-stu-id="26f12-136">Once you have added hello desired virtual network tooyour lab, hello next step is too[add a VM tooyour lab](devtest-lab-add-vm-with-artifacts.md).</span></span>
 

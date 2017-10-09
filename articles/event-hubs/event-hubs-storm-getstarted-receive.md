@@ -1,5 +1,5 @@
 ---
-title: "使用 Apache Storm 從 Azure 事件中樞接收事件 | Microsoft Docs"
+title: "從 Azure 事件中心使用 Apache Storm aaaReceive 事件 |Microsoft 文件"
 description: "開始使用 Apache Storm 從事件中樞接收事件"
 services: event-hubs
 documentationcenter: 
@@ -14,36 +14,36 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: 3e15370c7602276ef323708632b324fe05497f41
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: a0ab860ee8d504a28aac380c504c928f0d6dbc1e
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="receive-events-from-event-hubs-using-apache-storm"></a><span data-ttu-id="ee8d5-103">使用 Apache Storm 從事件中樞接收事件</span><span class="sxs-lookup"><span data-stu-id="ee8d5-103">Receive events from Event Hubs using Apache Storm</span></span>
+# <a name="receive-events-from-event-hubs-using-apache-storm"></a><span data-ttu-id="cf00a-103">使用 Apache Storm 從事件中樞接收事件</span><span class="sxs-lookup"><span data-stu-id="cf00a-103">Receive events from Event Hubs using Apache Storm</span></span>
 
-<span data-ttu-id="ee8d5-104">[Apache Storm](https://storm.incubator.apache.org) 是分散式即時運算系統，可簡化未繫結資料串流的可靠處理。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-104">[Apache Storm](https://storm.incubator.apache.org) is a distributed real-time computation system that simplifies reliable processing of unbounded streams of data.</span></span> <span data-ttu-id="ee8d5-105">本節說明如何使用「Azure 事件中樞」Storm Spout 來接收來自「事件中樞」的事件。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-105">This section shows how to use an Azure Event Hubs Storm spout to receive events from Event Hubs.</span></span> <span data-ttu-id="ee8d5-106">使用 Apache Storm，您可以將事件分割到多個裝載於不同節點的處理序。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-106">Using Apache Storm, you can split events across multiple processes hosted in different nodes.</span></span> <span data-ttu-id="ee8d5-107">事件中心與 Storm 的整合透過使用 Storm 的 Zookeeper 安裝透明地設定檢查點以檢查其進度、管理持續檢查點以及來自事件中心的平行接收，以簡化事件的使用。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-107">The Event Hubs integration with Storm simplifies event consumption by transparently checkpointing its progress using Storm's Zookeeper installation, managing persistent checkpoints and parallel receives from Event Hubs.</span></span>
+<span data-ttu-id="cf00a-104">[Apache Storm](https://storm.incubator.apache.org) 是分散式即時運算系統，可簡化未繫結資料串流的可靠處理。</span><span class="sxs-lookup"><span data-stu-id="cf00a-104">[Apache Storm](https://storm.incubator.apache.org) is a distributed real-time computation system that simplifies reliable processing of unbounded streams of data.</span></span> <span data-ttu-id="cf00a-105">本節說明如何 toouse Azure 事件中心 Storm spout tooreceive 事件，從事件中樞。</span><span class="sxs-lookup"><span data-stu-id="cf00a-105">This section shows how toouse an Azure Event Hubs Storm spout tooreceive events from Event Hubs.</span></span> <span data-ttu-id="cf00a-106">使用 Apache Storm，您可以將事件分割到多個裝載於不同節點的處理序。</span><span class="sxs-lookup"><span data-stu-id="cf00a-106">Using Apache Storm, you can split events across multiple processes hosted in different nodes.</span></span> <span data-ttu-id="cf00a-107">hello Storm 整合事件中心事件取用，藉以簡化無障礙地檢查點進度使用 Storm 的動物園管理員安裝、 管理持續的檢查點並平行收到來自事件中心。</span><span class="sxs-lookup"><span data-stu-id="cf00a-107">hello Event Hubs integration with Storm simplifies event consumption by transparently checkpointing its progress using Storm's Zookeeper installation, managing persistent checkpoints and parallel receives from Event Hubs.</span></span>
 
-<span data-ttu-id="ee8d5-108">如需事件中樞接收模式的詳細資訊，請參閱 [事件中樞概觀][Event Hubs overview]。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-108">For more information about Event Hubs receive patterns, see the [Event Hubs overview][Event Hubs overview].</span></span>
+<span data-ttu-id="cf00a-108">如需有關事件中心接收模式，請參閱 hello[事件中心概觀][Event Hubs overview]。</span><span class="sxs-lookup"><span data-stu-id="cf00a-108">For more information about Event Hubs receive patterns, see hello [Event Hubs overview][Event Hubs overview].</span></span>
 
-## <a name="create-project-and-add-code"></a><span data-ttu-id="ee8d5-109">建立專案並新增程式碼</span><span class="sxs-lookup"><span data-stu-id="ee8d5-109">Create project and add code</span></span>
+## <a name="create-project-and-add-code"></a><span data-ttu-id="cf00a-109">建立專案並新增程式碼</span><span class="sxs-lookup"><span data-stu-id="cf00a-109">Create project and add code</span></span>
 
-<span data-ttu-id="ee8d5-110">本教學課程使用 [HDInsight Storm][HDInsight Storm] 安裝，其包含在已可使用的事件中樞 Spout 中。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-110">This tutorial uses an [HDInsight Storm][HDInsight Storm] installation, which comes with the Event Hubs spout already available.</span></span>
+<span data-ttu-id="cf00a-110">本教學課程使用[HDInsight Storm] [ HDInsight Storm]安裝隨附於事件中樞 spout 的 hello 已經使用。</span><span class="sxs-lookup"><span data-stu-id="cf00a-110">This tutorial uses an [HDInsight Storm][HDInsight Storm] installation, which comes with hello Event Hubs spout already available.</span></span>
 
-1. <span data-ttu-id="ee8d5-111">請遵循 [HDInsight Storm - 入門](../hdinsight/hdinsight-storm-overview.md) 程序來建立新的 HDInsight 叢集，並透過遠端桌面與其連線。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-111">Follow the [HDInsight Storm - Get Started](../hdinsight/hdinsight-storm-overview.md) procedure to create a new HDInsight cluster, and connect to it via Remote Desktop.</span></span>
-2. <span data-ttu-id="ee8d5-112">將 `%STORM_HOME%\examples\eventhubspout\eventhubs-storm-spout-0.9-jar-with-dependencies.jar` 檔案複製到本機開發環境。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-112">Copy the `%STORM_HOME%\examples\eventhubspout\eventhubs-storm-spout-0.9-jar-with-dependencies.jar` file to your local development environment.</span></span> <span data-ttu-id="ee8d5-113">這包含 events-storm-spout。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-113">This contains the events-storm-spout.</span></span>
-3. <span data-ttu-id="ee8d5-114">使用下列命令將封裝安裝到本機 Maven 存放區。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-114">Use the following command to install the package into the local Maven store.</span></span> <span data-ttu-id="ee8d5-115">這樣可讓您在稍後的步驟中將它加入 Storm 專案中做為參考。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-115">This enables you to add it as a reference in the Storm project in a later step.</span></span>
+1. <span data-ttu-id="cf00a-111">請遵循 hello [HDInsight Storm-開始](../hdinsight/hdinsight-storm-overview.md)程序 toocreate 新的 HDInsight 叢集，並連接 tooit 透過遠端桌面。</span><span class="sxs-lookup"><span data-stu-id="cf00a-111">Follow hello [HDInsight Storm - Get Started](../hdinsight/hdinsight-storm-overview.md) procedure toocreate a new HDInsight cluster, and connect tooit via Remote Desktop.</span></span>
+2. <span data-ttu-id="cf00a-112">複製 hello`%STORM_HOME%\examples\eventhubspout\eventhubs-storm-spout-0.9-jar-with-dependencies.jar`檔案 tooyour 本機開發環境。</span><span class="sxs-lookup"><span data-stu-id="cf00a-112">Copy hello `%STORM_HOME%\examples\eventhubspout\eventhubs-storm-spout-0.9-jar-with-dependencies.jar` file tooyour local development environment.</span></span> <span data-ttu-id="cf00a-113">這包含 hello 事件 storm spout。</span><span class="sxs-lookup"><span data-stu-id="cf00a-113">This contains hello events-storm-spout.</span></span>
+3. <span data-ttu-id="cf00a-114">使用下列命令 tooinstall hello 封裝到 hello 本機 Maven 存放區的 hello。</span><span class="sxs-lookup"><span data-stu-id="cf00a-114">Use hello following command tooinstall hello package into hello local Maven store.</span></span> <span data-ttu-id="cf00a-115">這可讓您 tooadd 它當做 hello Storm 參考專案中稍後的步驟。</span><span class="sxs-lookup"><span data-stu-id="cf00a-115">This enables you tooadd it as a reference in hello Storm project in a later step.</span></span>
 
     ```shell
     mvn install:install-file -Dfile=target\eventhubs-storm-spout-0.9-jar-with-dependencies.jar -DgroupId=com.microsoft.eventhubs -DartifactId=eventhubs-storm-spout -Dversion=0.9 -Dpackaging=jar
     ```
-4. <span data-ttu-id="ee8d5-116">在 Eclipse 中，建立新的 Maven 專案 (依序按一下 [檔案]、[新增]、[專案])。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-116">In Eclipse, create a new Maven project (click **File**, then **New**, then **Project**).</span></span>
+4. <span data-ttu-id="cf00a-116">在 Eclipse 中，建立新的 Maven 專案 (依序按一下 [檔案]、[新增]、[專案])。</span><span class="sxs-lookup"><span data-stu-id="cf00a-116">In Eclipse, create a new Maven project (click **File**, then **New**, then **Project**).</span></span>
    
     ![][12]
-5. <span data-ttu-id="ee8d5-117">選取 [使用預設工作區位置]，然後按 [下一步]。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-117">Select **Use default Workspace location**, then click **Next**</span></span>
-6. <span data-ttu-id="ee8d5-118">選取 [maven-archetype-quickstart] 原型，然後按 [下一步]。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-118">Select the **maven-archetype-quickstart** archetype, then click **Next**</span></span>
-7. <span data-ttu-id="ee8d5-119">插入 **GroupId** 和 **ArtifactId**，然後按一下 [完成]。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-119">Insert a **GroupId** and **ArtifactId**, then click **Finish**</span></span>
-8. <span data-ttu-id="ee8d5-120">在 **pom.xml** 中，於 `<dependency>` 節點中新增下列相依性。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-120">In **pom.xml**, add the following dependencies in the `<dependency>` node.</span></span>
+5. <span data-ttu-id="cf00a-117">選取 [使用預設工作區位置]，然後按 [下一步]。</span><span class="sxs-lookup"><span data-stu-id="cf00a-117">Select **Use default Workspace location**, then click **Next**</span></span>
+6. <span data-ttu-id="cf00a-118">選取 hello **maven 原型-快速入門**原型，然後按一下 [**下一步]**</span><span class="sxs-lookup"><span data-stu-id="cf00a-118">Select hello **maven-archetype-quickstart** archetype, then click **Next**</span></span>
+7. <span data-ttu-id="cf00a-119">插入 **GroupId** 和 **ArtifactId**，然後按一下 [完成]。</span><span class="sxs-lookup"><span data-stu-id="cf00a-119">Insert a **GroupId** and **ArtifactId**, then click **Finish**</span></span>
+8. <span data-ttu-id="cf00a-120">在**pom.xml**，新增下列 hello 中的相依性的 hello`<dependency>`節點。</span><span class="sxs-lookup"><span data-stu-id="cf00a-120">In **pom.xml**, add hello following dependencies in hello `<dependency>` node.</span></span>
 
     ```xml  
     <dependency>
@@ -75,7 +75,7 @@ ms.lasthandoff: 08/18/2017
     </dependency>
     ```
 
-9. <span data-ttu-id="ee8d5-121">在 **src** 資料夾中，建立名為 **Config.properties** 的檔案，複製下列內容，並取代 `receive rule key` 與 `event hub name` 的值：</span><span class="sxs-lookup"><span data-stu-id="ee8d5-121">In the **src** folder, create a file called **Config.properties** and copy the following content, substituting the `receive rule key` and `event hub name` values:</span></span>
+9. <span data-ttu-id="cf00a-121">在 hello **src**資料夾中，建立名為的檔案**Config.properties**和複製 hello 內容之後，以取代 hello`receive rule key`和`event hub name`值：</span><span class="sxs-lookup"><span data-stu-id="cf00a-121">In hello **src** folder, create a file called **Config.properties** and copy hello following content, substituting hello `receive rule key` and `event hub name` values:</span></span>
 
     ```java
     eventhubspout.username = ReceiveRule
@@ -90,8 +90,8 @@ ms.lasthandoff: 08/18/2017
     eventhubspout.checkpoint.interval = 10
     eventhub.receiver.credits = 10
     ```
-    <span data-ttu-id="ee8d5-122">**eventhub.receiver.credits** 的值可決定批次處理多少事件之後，才將它們釋放到 Storm 管線。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-122">The value for **eventhub.receiver.credits** determines how many events are batched before releasing them to the Storm pipeline.</span></span> <span data-ttu-id="ee8d5-123">為了簡單起見，此範例會將此值設定為 10。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-123">For the sake of simplicity, this example sets this value to 10.</span></span> <span data-ttu-id="ee8d5-124">在生產環境中，它通常應設定為較高的值。例如，1024年。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-124">In production, it should usually be set to higher values; for example, 1024.</span></span>
-10. <span data-ttu-id="ee8d5-125">使用下列程式碼，建立稱為 **LoggerBolt** 的新類別：</span><span class="sxs-lookup"><span data-stu-id="ee8d5-125">Create a new class called **LoggerBolt** with the following code:</span></span>
+    <span data-ttu-id="cf00a-122">hello 值**eventhub.receiver.credits**決定多少事件會批次處理才釋放 toohello Storm 管線。</span><span class="sxs-lookup"><span data-stu-id="cf00a-122">hello value for **eventhub.receiver.credits** determines how many events are batched before releasing them toohello Storm pipeline.</span></span> <span data-ttu-id="cf00a-123">為了簡化的 hello 起見，本範例會設定此值 too10。</span><span class="sxs-lookup"><span data-stu-id="cf00a-123">For hello sake of simplicity, this example sets this value too10.</span></span> <span data-ttu-id="cf00a-124">實際執行環境，它通常應該設定 toohigher 值;例如，1024年。</span><span class="sxs-lookup"><span data-stu-id="cf00a-124">In production, it should usually be set toohigher values; for example, 1024.</span></span>
+10. <span data-ttu-id="cf00a-125">建立新的類別稱為**LoggerBolt**以下列程式碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="cf00a-125">Create a new class called **LoggerBolt** with hello following code:</span></span>
     
     ```java
     import java.util.Map;
@@ -130,8 +130,8 @@ ms.lasthandoff: 08/18/2017
     }
     ```
     
-    <span data-ttu-id="ee8d5-126">此 Storm Bolt 會記錄已接收事件的內容。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-126">This Storm bolt logs the content of the received events.</span></span> <span data-ttu-id="ee8d5-127">這可以輕鬆地擴充以將 Tuple 儲存至儲存體服務。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-127">This can easily be extended to store tuples in a storage service.</span></span> <span data-ttu-id="ee8d5-128">[HDInsight 感應器分析教學課程] 使用這種相同的方式，將資料儲存至 HBase。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-128">The [HDInsight sensor analysis tutorial] uses this same approach to store data into HBase.</span></span>
-11. <span data-ttu-id="ee8d5-129">使用下列程式碼，建立稱為 **LogTopology** 的類別：</span><span class="sxs-lookup"><span data-stu-id="ee8d5-129">Create a class called **LogTopology** with the following code:</span></span>
+    <span data-ttu-id="cf00a-126">此出現閃電記錄 hello 內容的 hello 接收到事件。</span><span class="sxs-lookup"><span data-stu-id="cf00a-126">This Storm bolt logs hello content of hello received events.</span></span> <span data-ttu-id="cf00a-127">這可以輕鬆地擴充儲存體服務中的 toostore tuple。</span><span class="sxs-lookup"><span data-stu-id="cf00a-127">This can easily be extended toostore tuples in a storage service.</span></span> <span data-ttu-id="cf00a-128">hello [HDInsight 感應器分析教學課程]HBase 會使用這個相同的方法 toostore 資料。</span><span class="sxs-lookup"><span data-stu-id="cf00a-128">hello [HDInsight sensor analysis tutorial] uses this same approach toostore data into HBase.</span></span>
+11. <span data-ttu-id="cf00a-129">建立類別，稱為**LogTopology**以下列程式碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="cf00a-129">Create a class called **LogTopology** with hello following code:</span></span>
     
     ```java
     import java.io.FileReader;
@@ -182,9 +182,9 @@ ms.lasthandoff: 08/18/2017
                     namespaceName, entityPath, partitionCount, zkEndpointAddress,
                     checkpointIntervalInSeconds, receiverCredits);
         
-            // set the number of workers to be the same as partition number.
-            // the idea is to have a spout and a logger bolt co-exist in one
-            // worker to avoid shuffling messages across workers in storm cluster.
+            // set hello number of workers toobe hello same as partition number.
+            // hello idea is toohave a spout and a logger bolt co-exist in one
+            // worker tooavoid shuffling messages across workers in storm cluster.
             numWorkers = spoutConfig.getPartitionCount();
         
             if (args.length > 0) {
@@ -235,19 +235,19 @@ ms.lasthandoff: 08/18/2017
     }
     ```
 
-    <span data-ttu-id="ee8d5-130">這個類別會建立新的事件中樞 Spout，方法是使用組態檔中的屬性來進行具現化。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-130">This class creates a new Event Hubs spout, using the properties in the configuration file to instantiate it.</span></span> <span data-ttu-id="ee8d5-131">請務必注意此範例所建立的 Spout 工作數目會與事件中樞內的磁碟分割數目相同，這是為了發揮該事件中樞所允許的平行處理原則上限。</span><span class="sxs-lookup"><span data-stu-id="ee8d5-131">It is important to note that this example creates as many spouts tasks as the number of partitions in the event hub, in order to use the maximum parallelism allowed by that event hub.</span></span>
+    <span data-ttu-id="cf00a-130">這個類別會建立新的事件中心 spout，使用中 hello 設定檔 tooinstantiate hello 屬性它。</span><span class="sxs-lookup"><span data-stu-id="cf00a-130">This class creates a new Event Hubs spout, using hello properties in hello configuration file tooinstantiate it.</span></span> <span data-ttu-id="cf00a-131">請務必這個範例會建立最大數量的 toonote spouts hello hello 事件中心中的資料分割的數字順序 toouse hello 最大平行處理該事件中心所允許的工作。</span><span class="sxs-lookup"><span data-stu-id="cf00a-131">It is important toonote that this example creates as many spouts tasks as hello number of partitions in hello event hub, in order toouse hello maximum parallelism allowed by that event hub.</span></span>
 
-## <a name="next-steps"></a><span data-ttu-id="ee8d5-132">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ee8d5-132">Next steps</span></span>
-<span data-ttu-id="ee8d5-133">您可以造訪下列連結以深入了解事件中樞︰</span><span class="sxs-lookup"><span data-stu-id="ee8d5-133">You can learn more about Event Hubs by visiting the following links:</span></span>
+## <a name="next-steps"></a><span data-ttu-id="cf00a-132">後續步驟</span><span class="sxs-lookup"><span data-stu-id="cf00a-132">Next steps</span></span>
+<span data-ttu-id="cf00a-133">您可以進一步了解事件中心瀏覽下列連結查看 hello:</span><span class="sxs-lookup"><span data-stu-id="cf00a-133">You can learn more about Event Hubs by visiting hello following links:</span></span>
 
-* <span data-ttu-id="ee8d5-134">[事件中樞概觀][Event Hubs overview]</span><span class="sxs-lookup"><span data-stu-id="ee8d5-134">[Event Hubs overview][Event Hubs overview]</span></span>
-* [<span data-ttu-id="ee8d5-135">建立事件中樞</span><span class="sxs-lookup"><span data-stu-id="ee8d5-135">Create an event hub</span></span>](event-hubs-create.md)
-* [<span data-ttu-id="ee8d5-136">事件中樞常見問題集</span><span class="sxs-lookup"><span data-stu-id="ee8d5-136">Event Hubs FAQ</span></span>](event-hubs-faq.md)
+* <span data-ttu-id="cf00a-134">[事件中樞概觀][Event Hubs overview]</span><span class="sxs-lookup"><span data-stu-id="cf00a-134">[Event Hubs overview][Event Hubs overview]</span></span>
+* [<span data-ttu-id="cf00a-135">建立事件中樞</span><span class="sxs-lookup"><span data-stu-id="cf00a-135">Create an event hub</span></span>](event-hubs-create.md)
+* [<span data-ttu-id="cf00a-136">事件中樞常見問題集</span><span class="sxs-lookup"><span data-stu-id="cf00a-136">Event Hubs FAQ</span></span>](event-hubs-faq.md)
 
 <!-- Links -->
 [Event Hubs overview]: event-hubs-what-is-event-hubs.md
 [HDInsight Storm]: ../hdinsight/hdinsight-storm-overview.md
-<span data-ttu-id="ee8d5-137">[HDInsight 感應器分析教學課程]: ../hdinsight/hdinsight-storm-sensor-data-analysis.md</span><span class="sxs-lookup"><span data-stu-id="ee8d5-137">[HDInsight sensor analysis tutorial]: ../hdinsight/hdinsight-storm-sensor-data-analysis.md</span></span>
+[HDInsight 感應器分析教學課程]: ../hdinsight/hdinsight-storm-sensor-data-analysis.md
 
 <!-- Images -->
 

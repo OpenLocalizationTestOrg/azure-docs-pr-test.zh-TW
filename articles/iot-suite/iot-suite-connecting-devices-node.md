@@ -1,6 +1,6 @@
 ---
-title: "使用 Node.js 連接裝置 |Microsoft Docs"
-description: "描述如何使用 Node.js 中已寫入的應用程式，將裝置連接至 Azure IoT Suite 預先設定遠端監視方案。"
+title: "一部裝置使用 Node.js aaaConnect |Microsoft 文件"
+description: "描述如何 tooconnect 裝置 toohello Azure IoT 套件預先設定的遠端使用 Node.js 撰寫的應用程式的監視解決方案。"
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,31 +15,31 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 6459b6196eb7f4a083b67e5a421bcc0d51d39e5c
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 80bf2b70f15f539bfce4f135d533c46dd2b3f5a7
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-nodejs"></a><span data-ttu-id="e94c3-103">將裝置連接至遠端監視預先設定方案 (Node.js)</span><span class="sxs-lookup"><span data-stu-id="e94c3-103">Connect your device to the remote monitoring preconfigured solution (Node.js)</span></span>
+# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-nodejs"></a><span data-ttu-id="0446d-103">連接您的裝置 toohello 遠端監視預先設定的解決方案 (Node.js)</span><span class="sxs-lookup"><span data-stu-id="0446d-103">Connect your device toohello remote monitoring preconfigured solution (Node.js)</span></span>
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
-## <a name="create-a-nodejs-sample-solution"></a><span data-ttu-id="e94c3-104">建立 node.js 範例解決方案</span><span class="sxs-lookup"><span data-stu-id="e94c3-104">Create a node.js sample solution</span></span>
+## <a name="create-a-nodejs-sample-solution"></a><span data-ttu-id="0446d-104">建立 node.js 範例解決方案</span><span class="sxs-lookup"><span data-stu-id="0446d-104">Create a node.js sample solution</span></span>
 
-<span data-ttu-id="e94c3-105">請確定 Node.js 0.11.5 版或更新版本已經安裝在您的開發電腦上。</span><span class="sxs-lookup"><span data-stu-id="e94c3-105">Ensure that Node.js version 0.11.5 or later is installed on your development machine.</span></span> <span data-ttu-id="e94c3-106">您可以在命令列執行 `node --version` 來檢查版本。</span><span class="sxs-lookup"><span data-stu-id="e94c3-106">You can run `node --version` at the command line to check the version.</span></span>
+<span data-ttu-id="0446d-105">請確定 Node.js 0.11.5 版或更新版本已經安裝在您的開發電腦上。</span><span class="sxs-lookup"><span data-stu-id="0446d-105">Ensure that Node.js version 0.11.5 or later is installed on your development machine.</span></span> <span data-ttu-id="0446d-106">您可以執行`node --version`hello 命令列 toocheck hello 版本。</span><span class="sxs-lookup"><span data-stu-id="0446d-106">You can run `node --version` at hello command line toocheck hello version.</span></span>
 
-1. <span data-ttu-id="e94c3-107">在開發電腦上建立名為 **RemoteMonitoring** 的資料夾。</span><span class="sxs-lookup"><span data-stu-id="e94c3-107">Create a folder called **RemoteMonitoring** on your development machine.</span></span> <span data-ttu-id="e94c3-108">在命令列環境中瀏覽至此資料夾。</span><span class="sxs-lookup"><span data-stu-id="e94c3-108">Navigate to this folder in your command-line environment.</span></span>
+1. <span data-ttu-id="0446d-107">在開發電腦上建立名為 **RemoteMonitoring** 的資料夾。</span><span class="sxs-lookup"><span data-stu-id="0446d-107">Create a folder called **RemoteMonitoring** on your development machine.</span></span> <span data-ttu-id="0446d-108">瀏覽 toothis 命令列環境中的資料夾。</span><span class="sxs-lookup"><span data-stu-id="0446d-108">Navigate toothis folder in your command-line environment.</span></span>
 
-1. <span data-ttu-id="e94c3-109">執行下列命令，以下載並安裝完成範例應用程式所需的套件︰</span><span class="sxs-lookup"><span data-stu-id="e94c3-109">Run the following commands to download and install the packages you need to complete the sample app:</span></span>
+1. <span data-ttu-id="0446d-109">執行下列的 hello 命令 toodownload 並安裝需要 toocomplete hello 範例應用程式的 hello 封裝：</span><span class="sxs-lookup"><span data-stu-id="0446d-109">Run hello following commands toodownload and install hello packages you need toocomplete hello sample app:</span></span>
 
     ```
     npm init
     npm install azure-iot-device azure-iot-device-mqtt --save
     ```
 
-1. <span data-ttu-id="e94c3-110">在 **RemoteMonitoring** 資料夾中，建立名為 **remote_monitoring.js** 的檔案。</span><span class="sxs-lookup"><span data-stu-id="e94c3-110">In the **RemoteMonitoring** folder, create a file called **remote_monitoring.js**.</span></span> <span data-ttu-id="e94c3-111">在文字編輯器中開啟這個檔案。</span><span class="sxs-lookup"><span data-stu-id="e94c3-111">Open this file in a text editor.</span></span>
+1. <span data-ttu-id="0446d-110">在 hello **RemoteMonitoring**資料夾中，建立名為的檔案**remote_monitoring.js**。</span><span class="sxs-lookup"><span data-stu-id="0446d-110">In hello **RemoteMonitoring** folder, create a file called **remote_monitoring.js**.</span></span> <span data-ttu-id="0446d-111">在文字編輯器中開啟這個檔案。</span><span class="sxs-lookup"><span data-stu-id="0446d-111">Open this file in a text editor.</span></span>
 
-1. <span data-ttu-id="e94c3-112">在 **remote_monitoring.js** 檔案中，新增下列 `require` 陳述式︰</span><span class="sxs-lookup"><span data-stu-id="e94c3-112">In the **remote_monitoring.js** file, add the following `require` statements:</span></span>
+1. <span data-ttu-id="0446d-112">在 hello **remote_monitoring.js** file、 add hello 下列`require`陳述式：</span><span class="sxs-lookup"><span data-stu-id="0446d-112">In hello **remote_monitoring.js** file, add hello following `require` statements:</span></span>
 
     ```nodejs
     'use strict';
@@ -50,14 +50,14 @@ ms.lasthandoff: 08/29/2017
     var Message = require('azure-iot-device').Message;
     ```
 
-1. <span data-ttu-id="e94c3-113">在 `require` 陳述式之後新增下列變數宣告。</span><span class="sxs-lookup"><span data-stu-id="e94c3-113">Add the following variable declarations after the `require` statements.</span></span> <span data-ttu-id="e94c3-114">使用您在遠端監視解決方案儀表板中為裝置記下的值來取代 [Device Id] 和 [Device Key] 預留位置值。</span><span class="sxs-lookup"><span data-stu-id="e94c3-114">Replace the placeholder values [Device Id] and [Device Key] with values you noted for your device in the remote monitoring solution dashboard.</span></span> <span data-ttu-id="e94c3-115">使用解決方案儀表板中的「IoT 中樞主機名稱」來取代 [IoTHub Name]。</span><span class="sxs-lookup"><span data-stu-id="e94c3-115">Use the IoT Hub Hostname from the solution dashboard to replace [IoTHub Name].</span></span> <span data-ttu-id="e94c3-116">例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：</span><span class="sxs-lookup"><span data-stu-id="e94c3-116">For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:</span></span>
+1. <span data-ttu-id="0446d-113">加入下列變數宣告之後 hello hello`require`陳述式。</span><span class="sxs-lookup"><span data-stu-id="0446d-113">Add hello following variable declarations after hello `require` statements.</span></span> <span data-ttu-id="0446d-114">取代 hello 預留位置值 [裝置識別碼] 和 [裝置機碼] 與您記下您的裝置 hello 遠端監視方案儀表板中的值。</span><span class="sxs-lookup"><span data-stu-id="0446d-114">Replace hello placeholder values [Device Id] and [Device Key] with values you noted for your device in hello remote monitoring solution dashboard.</span></span> <span data-ttu-id="0446d-115">使用從 hello 方案儀表板 tooreplace [iot 中樞名稱] 的 hello IoT 中樞的主機名稱。</span><span class="sxs-lookup"><span data-stu-id="0446d-115">Use hello IoT Hub Hostname from hello solution dashboard tooreplace [IoTHub Name].</span></span> <span data-ttu-id="0446d-116">例如，若您的 IoT 中樞主機名稱是 **contoso.azure-devices.net**，請使用 **contoso** 取代 [IoTHub Name]：</span><span class="sxs-lookup"><span data-stu-id="0446d-116">For example, if your IoT Hub Hostname is **contoso.azure-devices.net**, replace [IoTHub Name] with **contoso**:</span></span>
 
     ```nodejs
     var connectionString = 'HostName=[IoTHub Name].azure-devices.net;DeviceId=[Device Id];SharedAccessKey=[Device Key]';
     var deviceId = ConnectionString.parse(connectionString).DeviceId;
     ```
 
-1. <span data-ttu-id="e94c3-117">新增下列變數來定義一些基本遙測資料︰</span><span class="sxs-lookup"><span data-stu-id="e94c3-117">Add the following variables to define some base telemetry data:</span></span>
+1. <span data-ttu-id="0446d-117">加入下列變數 toodefine hello 某些基底的遙測資料：</span><span class="sxs-lookup"><span data-stu-id="0446d-117">Add hello following variables toodefine some base telemetry data:</span></span>
 
     ```nodejs
     var temperature = 50;
@@ -65,7 +65,7 @@ ms.lasthandoff: 08/29/2017
     var externalTemperature = 55;
     ```
 
-1. <span data-ttu-id="e94c3-118">新增下列協助程式來列印作業結果︰</span><span class="sxs-lookup"><span data-stu-id="e94c3-118">Add the following helper function to print operation results:</span></span>
+1. <span data-ttu-id="0446d-118">新增下列 helper 函式 tooprint 作業結果的 hello:</span><span class="sxs-lookup"><span data-stu-id="0446d-118">Add hello following helper function tooprint operation results:</span></span>
 
     ```nodejs
     function printErrorFor(op) {
@@ -75,7 +75,7 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-1. <span data-ttu-id="e94c3-119">新增下列協助程式函式，用來將排遙測值隨機化︰</span><span class="sxs-lookup"><span data-stu-id="e94c3-119">Add the following helper function to use to randomize the telemetry values:</span></span>
+1. <span data-ttu-id="0446d-119">新增下列 helper 函式 toouse toorandomize hello 遙測值的 hello:</span><span class="sxs-lookup"><span data-stu-id="0446d-119">Add hello following helper function toouse toorandomize hello telemetry values:</span></span>
 
     ```nodejs
     function generateRandomIncrement() {
@@ -83,7 +83,7 @@ ms.lasthandoff: 08/29/2017
     }
     ```
 
-1. <span data-ttu-id="e94c3-120">針對裝置在啟動時傳送的 **DeviceInfo** 物件，新增下列定義︰</span><span class="sxs-lookup"><span data-stu-id="e94c3-120">Add the following definition for the **DeviceInfo** object the device sends on startup:</span></span>
+1. <span data-ttu-id="0446d-120">新增下列定義 hello hello **DeviceInfo**物件 hello 裝置會在啟動時傳送：</span><span class="sxs-lookup"><span data-stu-id="0446d-120">Add hello following definition for hello **DeviceInfo** object hello device sends on startup:</span></span>
 
     ```nodejs
     var deviceMetaData = {
@@ -97,7 +97,7 @@ ms.lasthandoff: 08/29/2017
     };
     ```
 
-1. <span data-ttu-id="e94c3-121">針對裝置對應項報告值新增下列定義。</span><span class="sxs-lookup"><span data-stu-id="e94c3-121">Add the following definition for the device twin reported values.</span></span> <span data-ttu-id="e94c3-122">此定義包含裝置支援的直接方法說明︰</span><span class="sxs-lookup"><span data-stu-id="e94c3-122">This definition includes descriptions of the direct methods the device supports:</span></span>
+1. <span data-ttu-id="0446d-121">新增下列 hello hello 裝置兩個定義報告的值。</span><span class="sxs-lookup"><span data-stu-id="0446d-121">Add hello following definition for hello device twin reported values.</span></span> <span data-ttu-id="0446d-122">這個定義包含 hello hello 裝置支援的直接方法的描述：</span><span class="sxs-lookup"><span data-stu-id="0446d-122">This definition includes descriptions of hello direct methods hello device supports:</span></span>
 
     ```nodejs
     var reportedProperties = {
@@ -126,63 +126,63 @@ ms.lasthandoff: 08/29/2017
             "Longitude": -122.125497
         },
         "SupportedMethods": {
-            "Reboot": "Reboot the device",
-            "InitiateFirmwareUpdate--FwPackageURI-string": "Updates device Firmware. Use parameter FwPackageURI to specifiy the URI of the firmware file"
+            "Reboot": "Reboot hello device",
+            "InitiateFirmwareUpdate--FwPackageURI-string": "Updates device Firmware. Use parameter FwPackageURI toospecifiy hello URI of hello firmware file"
         },
     }
     ```
 
-1. <span data-ttu-id="e94c3-123">新增下列函式以處理 **Reboot** 直接方法呼叫：</span><span class="sxs-lookup"><span data-stu-id="e94c3-123">Add the following function to handle the **Reboot** direct method call:</span></span>
+1. <span data-ttu-id="0446d-123">加入下列函式 toohandle hello hello**重新開機**直接方法呼叫：</span><span class="sxs-lookup"><span data-stu-id="0446d-123">Add hello following function toohandle hello **Reboot** direct method call:</span></span>
 
     ```nodejs
     function onReboot(request, response) {
         // Implement actual logic here.
         console.log('Simulated reboot...');
 
-        // Complete the response
+        // Complete hello response
         response.send(200, "Rebooting device", function(err) {
             if(!!err) {
                 console.error('An error occurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
             }
         });
     }
     ```
 
-1. <span data-ttu-id="e94c3-124">新增下列函式以處理 **InitiateFirmwareUpdate** 直接方法呼叫。</span><span class="sxs-lookup"><span data-stu-id="e94c3-124">Add the following function to handle the **InitiateFirmwareUpdate** direct method call.</span></span> <span data-ttu-id="e94c3-125">此直接方法使用參數來指定要下載之韌體映像的位置，並以非同步方式在裝置上啟始韌體更新︰</span><span class="sxs-lookup"><span data-stu-id="e94c3-125">This direct method uses a parameter to specify the location of the firmware image to download, and initiates the firmware update on the device asynchronously:</span></span>
+1. <span data-ttu-id="0446d-124">加入下列函式 toohandle hello hello **InitiateFirmwareUpdate**直接方法呼叫。</span><span class="sxs-lookup"><span data-stu-id="0446d-124">Add hello following function toohandle hello **InitiateFirmwareUpdate** direct method call.</span></span> <span data-ttu-id="0446d-125">這個直接的方法會使用參數的 toospecify hello 位置 hello 韌體映像 toodownload，並起始以非同步方式 hello hello 裝置上的軔體更新：</span><span class="sxs-lookup"><span data-stu-id="0446d-125">This direct method uses a parameter toospecify hello location of hello firmware image toodownload, and initiates hello firmware update on hello device asynchronously:</span></span>
 
     ```nodejs
     function onInitiateFirmwareUpdate(request, response) {
         console.log('Simulated firmware update initiated, using: ' + request.payload.FwPackageURI);
 
-        // Complete the response
+        // Complete hello response
         response.send(200, "Firmware update initiated", function(err) {
             if(!!err) {
                 console.error('An error occurred when sending a method response:\n' + err.toString());
             } else {
-                console.log('Response to method \'' + request.methodName + '\' sent successfully.' );
+                console.log('Response toomethod \'' + request.methodName + '\' sent successfully.' );
             }
         });
 
-        // Add logic here to perform the firmware update asynchronously
+        // Add logic here tooperform hello firmware update asynchronously
     }
     ```
 
-1. <span data-ttu-id="e94c3-126">新增下列程式碼，以建立用戶端執行個體︰</span><span class="sxs-lookup"><span data-stu-id="e94c3-126">Add the following code to create a client instance:</span></span>
+1. <span data-ttu-id="0446d-126">加入下列程式碼 toocreate 用戶端執行個體的 hello:</span><span class="sxs-lookup"><span data-stu-id="0446d-126">Add hello following code toocreate a client instance:</span></span>
 
     ```nodejs
     var client = Client.fromConnectionString(connectionString, Protocol);
     ```
 
-1. <span data-ttu-id="e94c3-127">新增下列程式碼，以便：</span><span class="sxs-lookup"><span data-stu-id="e94c3-127">Add the following code to:</span></span>
+1. <span data-ttu-id="0446d-127">加入下列程式碼的 hello:</span><span class="sxs-lookup"><span data-stu-id="0446d-127">Add hello following code to:</span></span>
 
-    * <span data-ttu-id="e94c3-128">開啟連線。</span><span class="sxs-lookup"><span data-stu-id="e94c3-128">Open the connection.</span></span>
-    * <span data-ttu-id="e94c3-129">傳送 **DeviceInfo** 物件。</span><span class="sxs-lookup"><span data-stu-id="e94c3-129">Send the **DeviceInfo** object.</span></span>
-    * <span data-ttu-id="e94c3-130">設定所需屬性的處理常式。</span><span class="sxs-lookup"><span data-stu-id="e94c3-130">Set up a handler for desired properties.</span></span>
-    * <span data-ttu-id="e94c3-131">傳送報告屬性。</span><span class="sxs-lookup"><span data-stu-id="e94c3-131">Send reported properties.</span></span>
-    * <span data-ttu-id="e94c3-132">登錄直接方法的處理常式。</span><span class="sxs-lookup"><span data-stu-id="e94c3-132">Register handlers for the direct methods.</span></span>
-    * <span data-ttu-id="e94c3-133">開始傳送遙測。</span><span class="sxs-lookup"><span data-stu-id="e94c3-133">Start sending telemetry.</span></span>
+    * <span data-ttu-id="0446d-128">開啟 hello 連接。</span><span class="sxs-lookup"><span data-stu-id="0446d-128">Open hello connection.</span></span>
+    * <span data-ttu-id="0446d-129">傳送嗨**DeviceInfo**物件。</span><span class="sxs-lookup"><span data-stu-id="0446d-129">Send hello **DeviceInfo** object.</span></span>
+    * <span data-ttu-id="0446d-130">設定所需屬性的處理常式。</span><span class="sxs-lookup"><span data-stu-id="0446d-130">Set up a handler for desired properties.</span></span>
+    * <span data-ttu-id="0446d-131">傳送報告屬性。</span><span class="sxs-lookup"><span data-stu-id="0446d-131">Send reported properties.</span></span>
+    * <span data-ttu-id="0446d-132">註冊處理常式的 hello 直接的方法。</span><span class="sxs-lookup"><span data-stu-id="0446d-132">Register handlers for hello direct methods.</span></span>
+    * <span data-ttu-id="0446d-133">開始傳送遙測。</span><span class="sxs-lookup"><span data-stu-id="0446d-133">Start sending telemetry.</span></span>
 
     ```nodejs
     client.open(function (err) {
@@ -242,9 +242,9 @@ ms.lasthandoff: 08/29/2017
     });
     ```
 
-1. <span data-ttu-id="e94c3-134">將變更儲存至 **remote_monitoring.js** 檔案。</span><span class="sxs-lookup"><span data-stu-id="e94c3-134">Save the changes to the **remote_monitoring.js** file.</span></span>
+1. <span data-ttu-id="0446d-134">儲存 hello 變更 toohello **remote_monitoring.js**檔案。</span><span class="sxs-lookup"><span data-stu-id="0446d-134">Save hello changes toohello **remote_monitoring.js** file.</span></span>
 
-1. <span data-ttu-id="e94c3-135">在命令提示字元中執行下列命令，以啟動範例應用程式：</span><span class="sxs-lookup"><span data-stu-id="e94c3-135">Run the following command at a command prompt to launch the sample application:</span></span>
+1. <span data-ttu-id="0446d-135">執行下列命令，在命令提示字元 toolaunch hello 範例應用程式的 hello:</span><span class="sxs-lookup"><span data-stu-id="0446d-135">Run hello following command at a command prompt toolaunch hello sample application:</span></span>
    
     ```
     node remote_monitoring.js

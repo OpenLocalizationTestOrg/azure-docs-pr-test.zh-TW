@@ -7,7 +7,7 @@
 ## [建立第一個邏輯應用程式](logic-apps-create-a-logic-app.md)
 ## [邏輯應用程式範本](logic-apps-use-logic-app-templates.md)
 ## [從範本建立邏輯應用程式](logic-apps-arm-provision.md)
-## [將 MABS 應用程式移至邏輯應用程式](logic-apps-move-from-mabs.md)
+## [移動 MABS toologic 應用程式的應用程式](logic-apps-move-from-mabs.md)
 
 # 作法
 ## 建置
@@ -46,7 +46,7 @@
 ### [EDIFACT 企業整合](logic-apps-enterprise-integration-edifact.md)
 ### [EDIFACT 編碼](logic-apps-enterprise-integration-edifact-encode.md)
 ### [EDIFACT 解碼](logic-apps-enterprise-integration-edifact-decode.md)
-### [如何處理具有 UNH2.5 區段的 EDIFACT 文件](logic-apps-enterprise-integration-edifact_inputfile_unh2.5.md)
+### [如何 toohandle EDIFACT 文件有 UNH2.5 區段](logic-apps-enterprise-integration-edifact_inputfile_unh2.5.md)
 ### [X12 企業整合](logic-apps-enterprise-integration-x12.md)
 ### [X12 編碼](logic-apps-enterprise-integration-x12-encode.md)
 ### [X12 解碼](logic-apps-enterprise-integration-x12-decode.md)
@@ -54,7 +54,7 @@
 ### [錯誤和解決方案](logic-apps-enterprise-integration-b2b-list-errors-solutions.md)
 
 ## 存取內部部署資料
-### [連線至內部部署資料](logic-apps-gateway-connection.md)
+### [Tooon 內部部署資料連接](logic-apps-gateway-connection.md)
 ### [安裝資料閘道](logic-apps-gateway-install.md)
 
 ## 自動化與部署
