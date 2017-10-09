@@ -1,6 +1,6 @@
 ---
-title: "我的雲端服務專案發生什麼狀況？ | Microsoft Docs"
-description: "說明使用 Visual Studio 已連接服務連接至 Azure 儲存體帳戶後，雲端服務專案發生的狀況"
+title: "aaaWhat 發生 toomy 雲端服務專案嗎？ | Microsoft Docs"
+description: "描述連接 tooan 使用 Visual Studio 的 Azure 儲存體帳戶已連接服務之後，在雲端服務專案中會發生什麼事"
 services: storage
 documentationcenter: 
 author: kraigb
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/02/2016
 ms.author: kraigb
-ms.openlocfilehash: 4c9de56f6daf07097c0f593db37d14dce3bce05f
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 52e292558fb66b56e9d2e8e06ff489ae7a4bc845
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
-# <a name="what-happened-to-my-cloud-services-project-visual-studio-azure-storage-connected-service"></a>我的雲端服務專案發生什麼狀況 (Visual Studio Azure 儲存體已連接服務)？
+# <a name="what-happened-toomy-cloud-services-project-visual-studio-azure-storage-connected-service"></a>哪些情形的 toomy 雲端服務專案 （已連線的 Visual Studio Azure 儲存體服務）？
 ## <a name="references-added"></a>加入參考
-Azure 儲存體 NuGet 封裝已加入至 Visual Studio 專案。  
-這個封裝會加入下列 .NET 參考：
+hello Azure 儲存體 NuGet 封裝已加入 tooyour Visual Studio 專案。  
+此套件會加入下列.NET 參考 hello:
 
 * **Microsoft.Data.Edm**
 * **Microsoft.Data.OData**
@@ -35,9 +35,9 @@ Azure 儲存體 NuGet 封裝已加入至 Visual Studio 專案。
 * **System.Spatial**
 
 ## <a name="connection-string-for-azure-storage-added"></a>加入 Azure 儲存體的連接字串
-已使用所選儲存體帳戶的連接字串和金鑰建立元素。 已修改下列檔案：
+使用 hello 選取儲存體帳戶的連接字串和索引鍵的項目所建立。 修改 toohello 下列檔案：
 
-* **ServiceDefinition.csdef**
+* **EndPoints**
 * **ServiceConfiguration.Cloud.cscfg**
 * **ServiceConfiguration.Local.cscfg**
 

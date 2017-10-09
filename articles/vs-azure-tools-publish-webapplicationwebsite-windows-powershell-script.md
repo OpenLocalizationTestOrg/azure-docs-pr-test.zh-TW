@@ -1,6 +1,6 @@
 ---
-title: "Publish-WebApplicationWebSite (Windows PowerShell 指令碼) | Microsoft Docs"
-description: "了解如何將 Web 專案發佈至 Azure 網站。 此指令碼會在您的 Azure 訂用帳戶中建立所需的資源 (如果它們不存在)。"
+title: "aaaPublish WebApplicationWebSite （Windows PowerShell 指令碼） |Microsoft 文件"
+description: "了解如何 toopublish web 專案 tooan Azure 網站。 如果不存在，此指令碼會建立所需的 hello 資源您 Azure 訂用帳戶中。"
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 11/11/2016
 ms.author: kraigb
-ms.openlocfilehash: 07d21b7ce6cd8aee1cff704d316e7a2ca8c00437
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: d46904e30e3c2e040e57888fa31543e8e366527f
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="publish-webapplicationwebsite-windows-powershell-script"></a>Publish-WebApplicationWebSite (Windows PowerShell 指令碼)
 ## <a name="syntax"></a>語法
-將 Web 專案發佈至 Azure 網站。 指令碼會在您的 Azure 訂用帳戶中建立所需的資源 (如果它們不存在)。
+發行的 web 專案 tooan Azure 網站。 若不存在，hello 指令碼會建立所需的 hello 資源您 Azure 訂用帳戶中。
 
     Publish-WebApplicationWebSite
     –Configuration <configuration>
@@ -34,7 +34,7 @@ ms.lasthandoff: 08/29/2017
 
 
 ## <a name="configuration"></a>組態
-描述部署詳細資訊的 JSON 組態檔路徑。
+hello 路徑 toohello JSON 組態檔，描述 hello 部署的 hello 詳細資料。
 
 | 參數 | 預設值 |
 | --- | --- |
@@ -46,7 +46,7 @@ ms.lasthandoff: 08/29/2017
 | 接受萬用字元？ |false |
 
 ## <a name="subscriptionname"></a>SubscriptionName
-您要建立網站的 Azure 訂用帳戶名稱。
+hello hello 想 toocreate hello 網站中的 Azure 訂用帳戶名稱。
 
 | 參數 | 預設值 |
 | --- | --- |
@@ -58,7 +58,7 @@ ms.lasthandoff: 08/29/2017
 | 接受萬用字元？ |false |
 
 ## <a name="webdeploypackage"></a>WebDeployPackage
-要發佈至網站的 Web 部署封裝路徑。 您可以使用 Visual Studio 的 [發佈 Web] 精靈來建立此封裝。 如需詳細資訊，請參閱 [開始使用 Azure 雲端服務和 ASP.NET](http://go.microsoft.com/fwlink/p/?LinkID=623089)。
+hello 路徑 toohello web 部署套件 toopublish toohello 網站。 您可以使用 Visual Studio 中的 hello 發行網站精靈來建立此套件。 如需詳細資訊，請參閱 [開始使用 Azure 雲端服務和 ASP.NET](http://go.microsoft.com/fwlink/p/?LinkID=623089)。
 
 | 參數 | 預設值 |
 | --- | --- |
@@ -70,7 +70,7 @@ ms.lasthandoff: 08/29/2017
 | 接受萬用字元？ |false |
 
 ## <a name="databaseserverpassword"></a>DatabaseServerPassword
-在 Azure 中 SQL Database 的使用者名稱和密碼。
+hello 使用者名稱和密碼 hello Azure 中的 SQL 資料庫。
 
 | 參數 | 預設值 |
 | --- | --- |
@@ -82,7 +82,7 @@ ms.lasthandoff: 08/29/2017
 | 接受萬用字元？ |false |
 
 ## <a name="sendhostmessagestooutput"></a>SendHostMessagesToOutput
-如果為 true，將訊息從指令碼列印至輸出資料流。
+如果為 true，列印訊息從 hello 指令碼 toohello 輸出資料流。
 
 | 參數 | 預設值 |
 | --- | --- |
@@ -94,9 +94,9 @@ ms.lasthandoff: 08/29/2017
 | 接受萬用字元？ |false |
 
 ## <a name="remarks"></a>備註
-如需如何使用指令碼來建立開發和測試環境的完整說明，請參閱 [使用 Windows PowerShell 指令碼來發佈至開發和測試環境](vs-azure-tools-publishing-using-powershell-scripts.md)。
+如需如何 toouse hello 指令碼 toocreate 開發人員和測試環境，請參閱完整說明[使用 Windows PowerShell 指令碼 tooPublish tooDev 和測試環境](vs-azure-tools-publishing-using-powershell-scripts.md)。
 
-JSON 組態檔會指定待部署項目的詳細資料。 它會包含您在建立專案時所指定的資訊，例如網站的名稱和使用者名稱。 它還包含要佈建的資料庫 (如果有的話)。 下列程式碼片段將顯示一個 JSON 組態檔範例：
+hello JSON 組態檔指定部署 toobe hello 的細節。 其中包括建立 hello 專案，例如 hello 名稱和 hello 網站的使用者名稱時指定的 hello 資訊。 它也包含 hello 資料庫 tooprovision，如果有的話。 下列程式碼的 hello 顯示 JSON 組態檔範例：
 
     {
         "environmentSettings": {
@@ -120,7 +120,7 @@ JSON 組態檔會指定待部署項目的詳細資料。 它會包含您在建�
         }
     }
 
-您可以編輯 JSON 組態檔來變更部署項目。 [網站] 區段是必要項目，但 [資料庫] 區段是選用項目。
+您可以編輯 hello JSON 組態檔 toochange 部署的內容。 網站區段為必要項，但 hello 資料庫區段為選擇性。
 
 ## <a name="next-steps"></a>後續步驟
 如需詳細資訊，請參閱 [Publish-WebApplicationVM (Windows PowerShell 指令碼)](vs-azure-tools-publish-webapplicationvm.md)

@@ -1,6 +1,6 @@
 ---
-title: "建立您的第一個 Azure 虛擬網路 | Microsoft Docs"
-description: "了解如何建立 Azure 虛擬網路 (VNet)、將兩部虛擬機器 (VM) 連線至 VNet，以及連線至 VM。"
+title: "您的第一個 Azure 虛擬網路的 aaaCreate |Microsoft 文件"
+description: "了解如何 toocreate Azure 虛擬網路 (VNet)，連接兩個虛擬機器 (VM) toohello VNet，以及連接 toohello Vm。"
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -15,79 +15,79 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/27/2016
 ms.author: jdial
-ms.openlocfilehash: e653764d7cb514d50b44fadd0cc5963dd404d99e
-ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
+ms.openlocfilehash: 1981524cf706d5ebc83b1ff77735617550ff058a
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/29/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-your-first-virtual-network"></a>建立您的第一個虛擬網路
 
-了解如何建立具有兩個子網路的虛擬網路 (VNet)、建立兩個虛擬機器 (VM)，並且將各個 VM 連線至其中一個子網路，如下圖所示：
+深入了解如何 toocreate 兩個子網路，虛擬網路 (VNet) 中建立兩個虛擬機器 (VM)，並連接的 hello 子網路，每個 VM tooone hello 下列圖片所示：
 
 ![虛擬網路圖表](./media/virtual-network-get-started-vnet-subnet/vnet-diagram.png)
 
-Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 您可以控制 Azure 網路設定，以及定義 DHCP 位址區塊、DNS 設定、安全性原則和路由。 若要深入了解 VNet 的概念，請閱讀[虛擬網路概觀](virtual-networks-overview.md)一文。 完成下列步驟來建立如圖片中所示的資源︰
+Azure 虛擬網路 (VNet) 是網路的您自己 hello 雲端中的表示法。 您可以控制 Azure 網路設定，以及定義 DHCP 位址區塊、DNS 設定、安全性原則和路由。 深入了解 VNet 概念，讀取 hello toolearn[虛擬網路概觀](virtual-networks-overview.md)發行項。 完成下列步驟 toocreate hello 資源 hello 圖片所示的 hello:
 
 1. [建立具有兩個子網路的 VNet](#create-vnet)
-2. [建立兩個 VM，其分別有一個網路介面 (NIC)](#create-vms)，並且將網路安全性群組 (NSG) 關聯至每個 NIC
-3. [連線到 VM 以及從 VM 連線](#connect-to-from-vms)
-4. [刪除所有資源](#delete-resources)。 當您在佈建時，您在這個練習中建立的某些資源會產生費用。 若要將費用降至最低，完成練習之後，務必完成此區段中的步驟以刪除您建立的資源。
+2. [建立兩個 Vm，各有一個網路介面 (NIC)](#create-vms)，並將相關聯的網路安全性 (nsg) tooeach NIC
+3. [從 hello Vm 連接 tooand](#connect-to-from-vms)
+4. [刪除所有資源](#delete-resources)。 您會產生費用，某些 hello 它們正在佈建時，在此練習中建立的資源。 toominimize hello 費用之後完成 hello 練習，請, 務必 toocomplete hello 步驟中所建立的這個區段 toodelete hello 資源。
 
-您必須對於如何在完成這篇文章中的步驟之後使用 VNet 有基本的了解。 接下來的步驟可以讓您進一步了解如何更深層地使用 Vnet。
+您必須完成的 hello 本文章中的步驟之後，如何使用 VNet 的基本知識。 接下來的步驟會提供，因此您可以進一步了解如何 toouse 更深層級的 Vnet。
 
 ## <a name="create-vnet"></a>建立具有兩個子網路的虛擬網路
 
-若要建立具有兩個子網路的虛擬網路，請完成下列步驟。 不同的子網路通常用於控制子網路之間的流量。
+toocreate 兩個子網路，完成 hello 遵照的步驟，與虛擬網路。 不同的子網路通常是使用 toocontrol hello 流量子網路之間的流量。
 
-1. 登入 [Azure 入口網站](<https://portal.azure.com>)。 如果您沒有帳戶，您可以註冊[免費試用一個月](https://azure.microsoft.com/free)。 
-2. 在入口網站的 [我的最愛] 窗格中，按一下 [新增]。
-3. 在 [新增] 刀鋒視窗中，按一下 [網路]。 在 [網路] 刀鋒視窗中，按一下 [虛擬網路]，如下圖中所示：
+1. 登入 toohello [Azure 入口網站](<https://portal.azure.com>)。 如果您沒有帳戶，您可以註冊[免費試用一個月](https://azure.microsoft.com/free)。 
+2. 在 hello**我的最愛**窗格，hello 入口網站中，按一下**新增**。
+3. 在 hello**新增**刀鋒視窗中，按一下 **網路**。 在 hello**網路**刀鋒視窗中，按一下 **虛擬網路**hello 下列圖片所示：
 
     ![虛擬網路圖表](./media/virtual-network-get-started-vnet-subnet/virtual-network.png)
 
-4.  在 [虛擬網路] 刀鋒視窗中，保持 [Resource Manager] 選取做為部署模型，然後按一下 [建立]。
-5.  在顯示的 [建立虛擬網路] 刀鋒視窗中，請輸入下列值，然後按一下 [建立]：
+4.  在 hello**虛擬網路**刀鋒視窗中，保留*資源管理員*hello 部署模型，然後按一下以選取**建立**。
+5.  在 hello**刀鋒視窗中建立虛擬網路**出現，輸入 hello 下列值，然後按一下 **建立**:
 
     |**設定**|**值**|**詳細資料**|
     |---|---|---|
-    |**名稱**|*MyVNet*|名稱必須是資源群組中唯一的。|
+    |**名稱**|*MyVNet*|hello 名稱必須是唯一 hello 的資源群組中。|
     |**位址空間**|*10.0.0.0/16*|您可以使用 CIDR 標記法指定您想要的任何位址空間。|
-    |**子網路名稱**|前端|子網路名稱在虛擬網路內必須是唯一的。|
-    |**子網路位址範圍**|*10.0.0.0/24*| 指定的範圍必須存在於您為虛擬網路定義的位址空間。|
-    |**訂用帳戶**|*[您的訂用帳戶]*|選取要在其中建立 VNet 的訂用帳戶。 VNet 存在於單一訂用帳戶中。|
-    |**資源群組**|**建立新的：**MyRG|建立資源群組。 資源群組名稱在您選取的訂用帳戶中必須是唯一的。 若要深入了解資源群組，請閱讀 [Resource Manager](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#resource-groups) 概觀。|
-    |**位置**|美國西部| 通常會選取最接近您實體位置的位置。|
+    |**子網路名稱**|前端|hello 子網路名稱必須是唯一 hello 虛擬網路內。|
+    |**子網路位址範圍**|*10.0.0.0/24*| 您指定的 hello 範圍必須存在於 hello 您定義 hello 虛擬網路的位址空間。|
+    |**訂用帳戶**|*[您的訂用帳戶]*|選取的訂用帳戶 toocreate hello VNet 中。 VNet 存在於單一訂用帳戶中。|
+    |**資源群組**|**建立新的：**MyRG|建立資源群組。 hello 資源群組名稱必須是唯一 hello 您選取的訂用帳戶內。 深入了解資源群組，請閱讀 hello toolearn[資源管理員](../azure-resource-manager/resource-group-overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json#resource-groups)概觀文件。|
+    |**位置**|美國西部| 通常會選取 hello 位置，這是最接近 tooyour 實體位置。|
 
-    VNet 的建立會耗用幾秒鐘時間。 一旦建立，您會看到 Azure 入口網站儀表板。
+    hello VNet 花幾秒 toocreate。 一旦建立之後，您會看到 hello Azure 入口網站儀表板。
 
-6. 建立虛擬網路之後，在 Azure 入口網站 [我的最愛] 窗格中，按一下 [所有資源]。 按一下 [所有資源] 刀鋒視窗中的 [MyVNet] 虛擬網路。 如果您選取的訂用帳戶已有幾個資源，您可以在 [依名稱篩選...] 方塊中輸入 MyVNet， 輕鬆地存取 VNet。
-7. [MyVNet] 刀鋒視窗隨即開啟，並顯示 VNet 的相關資訊，如下列圖片所示︰
+6. Hello，hello Azure 入口網站中建立的虛擬網路與**我的最愛**] 窗格中，按一下 [**所有資源**。 按一下 hello **MyVNet**虛擬網路中 hello**所有資源**刀鋒視窗。 如果您已選取的 hello 訂用帳戶有多項資源，您可以輸入*MyVNet*在 hello**依名稱篩選...** 方塊 tooeasily 存取 hello VNet。
+7. hello **MyVNet**刀鋒視窗會開啟並顯示 hello VNet 的相關資訊，hello 下列圖片所示：
 
     ![虛擬網路圖表](./media/virtual-network-get-started-vnet-subnet/myvnet.png)
 
-8. 如上一張圖片所示，按一下 [子網路] 以顯示在 Vnet 內子網路的清單。 唯一存在的子網路是 [前端]，您在步驟 5 中建立的子網路。
-9. 在 [MyVNet - 子網路] 刀鋒視窗中，按一下 [+ 子網路] 以建立具有下列資訊的子網路，然後按一下 [確定] 以建立子網路︰
+8. Hello 上一張圖片所示，按一下**子網路**toodisplay hello hello VNet 內的子網路的清單。 hello 存在的子網路是**前端**，hello 您在步驟 5 中建立的子網路。
+9. 在 hello MyVNet-子網路刀鋒視窗中，按一下  **+ 子網路**toocreate hello 與子網路下列資訊，然後按一下**確定**toocreate hello 子網路：
 
     |**設定**|**值**|**詳細資料**|
     |---|---|---|
-    |**名稱**|後端|名稱在虛擬網路內必須是唯一的。|
-    |**位址範圍**|*10.0.1.0/24*|指定的範圍必須存在於您為虛擬網路定義的位址空間。|
-    |**網路安全性群組**和**路由表**|「無」(預設值)|網路安全性群組 (NSG) 涵蓋於本文章稍後部分。 若要深入了解使用者定義的路由，請閱讀[使用者定義的路由](virtual-networks-udr-overview.md)文章。|
+    |**名稱**|後端|hello 名稱必須是唯一 hello 虛擬網路內。|
+    |**位址範圍**|*10.0.1.0/24*|您指定的 hello 範圍必須存在於 hello 您定義 hello 虛擬網路的位址空間。|
+    |**網路安全性群組**和**路由表**|「無」(預設值)|網路安全性群組 (NSG) 涵蓋於本文章稍後部分。 更多關於使用者定義的路由，讀取 hello toolearn[使用者定義的路由](virtual-networks-udr-overview.md)發行項。|
 
-10. 將新的子網路新增至 VNet 之後，您可以關閉 [MyVNet – 子網路] 刀鋒視窗，然後關閉 [所有資源] 刀鋒視窗。
+10. Hello 新的子網路加入 toohello VNet 之後，您可以關閉 hello **MyVNet – 子網路**刀鋒視窗中，然後關閉 hello**所有資源**刀鋒視窗。
 
 ## <a name="create-vms"></a>建立虛擬機器
 
-建立 VNet 和子網路之後，您可以建立 VM。 對於此練習，這兩個 VM 都執行 Windows Server 作業系統，不過它們可以執行 Azure 支援的任何作業系統，包括數個不同的 Linux 散發套件。
+與 hello VNet 子網路建立，您可以建立 hello Vm。 針對此練習中，這兩個 Vm 執行 Windows Server 作業系統 hello，不過可以執行任何 Azure，包括數個不同的 Linux 發行版本所支援的作業系統。
 
-### <a name="create-web-server-vm"></a>建立網頁伺服器 VM
+### <a name="create-web-server-vm"></a>建立 VM 的 hello web 伺服器
 
-若要建立網頁伺服器 VM，請完成下列步驟：
+toocreate hello web 伺服器 VM，完成下列步驟的 hello:
 
-1. 在 Azure 入口網站的 [我的最愛] 窗格中，按一下 [新增]、[計算]，然後按一下 [Windows Server 2016 Datacenter]。
-2. 在 [Windows Server 2016 Datacenter] 刀鋒視窗中，按一下 [建立]。
-3. 在顯示的 [基本] 刀鋒視窗中，輸入或選取下列值，然後按一下 [確定]：
+1. 在 hello Azure 入口網站的 我的最愛 窗格中，按一下 **新增**，**計算**，然後**Windows Server 2016 Datacenter**。
+2. 在 hello **Windows Server 2016 Datacenter**刀鋒視窗中，按一下 **建立**。
+3. 在 hello**基本概念**刀鋒視窗中，輸入或選取下列值的 hello，然後按一下**確定**:
 
     |**設定**| **值**|**詳細資料**|
     |---|---|---|
@@ -95,156 +95,156 @@ Azure 虛擬網路 (VNet) 是您的網路在雲端中的身分。 您可以控�
     |**VM 磁碟類型**|SSD|
     |**使用者名稱**|您的選擇|
     |**密碼和確認密碼**|您的選擇|
-    | **訂用帳戶**|*<Your subscription>*|訂用帳戶必須是您在[建立具有兩個子網路的虛擬網路](#create-vnet)一節中步驟 5 所選取的相同訂用帳戶。 連線至 VM 的 VNet 必須存在於與 VM 相同的訂用帳戶。|
-    |**資源群組**|**使用現有︰**選取 MyRG|雖然我們使用針對 Vnet 使用的相同資源群組，資源不需要存在於相同的資源群組。|
-    |**位置**|美國西部|位置必須是您在這篇文章的[建立具有兩個子網路的虛擬網路](#create-vnet)一節中步驟 5 所指定的相同位置。 它們所連線的 VM 和 Vnet 必須存在於相同位置。|
+    | **訂用帳戶**|*<Your subscription>*|hello 訂用帳戶必須是 hello 相同訂用帳戶，您選取在步驟 5 中的 hello[建立具有兩個子網路的虛擬網路](#create-vnet)本文一節。 hello VNet 連接 VM toomust 存在於 hello 相同訂用帳戶為 hello VM。|
+    |**資源群組**|**使用現有︰**選取 MyRG|雖然我們會使用相同的資源群組，如同 hello VNet，hello 的 hello 資源沒有 tooexist hello 中相同的資源群組。|
+    |**位置**|美國西部|hello 位置必須是 hello hello 的步驟 5 中指定的相同位置[建立具有兩個子網路的虛擬網路](#create-vnet)本文一節。 Vm 和 hello Vnet 連線 toomust 存在於 hello 相同位置。|
 
-4. 在 [選擇大小] 刀鋒視窗中，按一下 [DS1_V2 標準]，然後按一下 [選取]。 閱讀 [Windows VM 大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json)文章，以取得 Azure 支援的所有 Windows VM 大小的清單。
-5. 在 [設定] 刀鋒視窗中，輸入或選取下列值，然後按一下 [確定]：
+4. 在 hello**大小選擇 「**刀鋒視窗中，按一下  *DS1_V2 標準*，然後按一下 **選取**。 讀取 hello [Windows VM 大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-network%2ftoc.json)Azure 所支援的所有 Windows VM 大小的清單的發行項。
+5. 在 hello**設定**刀鋒視窗中，輸入或選取下列值的 hello，然後按一下**確定**:
 
     |**設定**|**值**|**詳細資料**|
     |---|---|---|
     |**儲存體：使用受控磁碟**|*是*||
-    |**虛擬網路**| 選取 MyVNet|您可以選取存在於與您建立之 VM 相同位置中的任何 VNet。 若要深入了解 VNet 和子網路，請閱讀[虛擬網路](virtual-networks-overview.md)文章。|
-    |**子網路**|選取 [前端]|您可以選取存在於 VNet 中的任何子網路。|
-    |**公用 IP 位址**|接受預設值|公用 IP 位址可讓您從網際網路連線至 VM。 若要深入了解公用 IP 位址，請閱讀 [IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)文章。|
-    |**網路安全性群組 (防火牆)**|接受預設值|按一下入口網站建立的 [(新的) MyWebServer-nsg] 預設 NSG，以檢視其設定。 在開啟的 [建立網路安全性群組] 刀鋒視窗中，請注意，它具有一個輸入規則以允許來自任何來源 IP 位址的 TCP/3389 (RDP) 流量。|
-    |**所有其他值**|接受預設值|若要深入了解其餘設定，請閱讀[關於 VM](../virtual-machines/windows/overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json) 文章。|
+    |**虛擬網路**| 選取 MyVNet|您可以選取任何存在於 hello 相同的 VNet 位置 hello 您要建立的 VM。 深入了解 Vnet 和子網路，讀取 hello toolearn[虛擬網路](virtual-networks-overview.md)發行項。|
+    |**子網路**|選取 [前端]|您可以選取存在於 hello VNet 內的任何子網路。|
+    |**公用 IP 位址**|接受預設值 hello|公用 IP 位址可讓您 tooconnect toohello VM 從 hello 網際網路。 更多關於公用 IP 位址，讀取 hello toolearn [IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)發行項。|
+    |**網路安全性群組 (防火牆)**|接受預設值 hello|按一下 hello **（新） MyWebServer nsg**預設 NSG hello 入口網站建立 tooview 其設定。 在 hello**建立網路安全性群組**刀鋒視窗中開啟，請注意，它擁有一個輸入規則，允許從任何來源 IP 位址的 TCP/3389 (RDP) 流量。|
+    |**所有其他值**|接受 hello 預設值|深入了解剩餘讀取 hello 設定 hello toolearn[有關 Vm](../virtual-machines/windows/overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)發行項。|
 
-    網路安全性群組 (NSG) 可讓您建立可以流入/流出 VM 之網路流量類型的輸入/輸出規則。 根據預設，會拒絕 VM 的所有輸入流量。 您可以為實際執行網頁伺服器針對 TCP/80 (HTTP) 和 TCP/443 (HTTPS) 新增額外的輸入規則。 因為根據預設沒有輸出流量的規則，所以允許所有輸出流量。 您可以新增/移除規則，以控制每個原則的流量。 若要深入了解 NSG，請閱讀[網路安全性群組](virtual-networks-nsg.md)文章。
+    網路安全性群組 (NSG) 可讓您可以傳送 hello VM 從 tooand 的網路流量 hello 類型 toocreate 輸入/輸出規則。 根據預設，所有的輸入的流量 toohello VM 遭到拒絕。 您可以為實際執行網頁伺服器針對 TCP/80 (HTTP) 和 TCP/443 (HTTPS) 新增額外的輸入規則。 因為根據預設沒有輸出流量的規則，所以允許所有輸出流量。 您可以新增/移除規則 toocontrol 流量根據您的原則。 讀取 hello[網路安全性群組](virtual-networks-nsg.md)文章 toolearn 更多關於 Nsg。
 
-6.  在 [摘要] 刀鋒視窗中檢閱設定，然後按一下 [確定] 以建立 VM。 建立 VM 時，狀態圖格會顯示在入口網站儀表板上。 可能需要數分鐘才會建立。 您不需要等候它完成。 建立 VM 時，您可以繼續下一個步驟。
+6.  在 hello**摘要**刀鋒視窗中，檢閱 hello 設定，然後按一下**確定**toocreate hello VM。 狀態磚會顯示 hello 入口網站儀表板上，為 VM 建立的 hello。 可能需要幾分鐘的時間 toocreate。 您不需要 toowait 它 toocomplete。 您可以繼續 toohello hello 建立 VM 時的下一個步驟。
 
-### <a name="create-database-server-vm"></a>建立資料庫伺服器 VM
+### <a name="create-database-server-vm"></a>建立 hello 資料庫伺服器 VM
 
-若要建立資料庫伺服器 VM，請完成下列步驟：
+toocreate hello 資料庫伺服器 VM，完成下列步驟的 hello:
 
-1.  在 [我的最愛] 窗格中，按一下 [新增]、[計算]，然後按一下 [Windows Server 2016 Datacenter]。
-2.  在 [Windows Server 2016 Datacenter] 刀鋒視窗中，按一下 [建立]。
-3.  在 [基本] 刀鋒視窗中，輸入或選取下列值，然後按一下 [確定]：
+1.  在 hello 我的最愛 窗格中，按一下 **新增**，**計算**，然後**Windows Server 2016 Datacenter**。
+2.  在 hello **Windows Server 2016 Datacenter**刀鋒視窗中，按一下 **建立**。
+3.  在 hello**刀鋒視窗中的基本概念**、 輸入或選取 hello 下列值，然後按一下**確定**:
 
     |**設定**|**值**|**詳細資料**|
     |---|---|---|
-    |**名稱**|MyDBServer|此 VM 伺服器是做為網頁伺服器所連線的資料庫伺服器，但是網際網路無法連線。|
+    |**名稱**|MyDBServer|此 VM 做為資料庫伺服器 hello web 伺服器連接的但該 hello 無法連接網際網路。|
     |**VM 磁碟類型**|SSD||
     |**使用者名稱**|您的選擇||
     |**密碼和確認密碼**|您的選擇||
-    |**訂用帳戶**|<Your subscription>|訂用帳戶必須是您在[建立具有兩個子網路的虛擬網路](#create-vnet)一節中步驟 5 所選取的相同訂用帳戶。|
-    |**資源群組**|**使用現有︰**選取 MyRG|雖然我們使用針對 Vnet 使用的相同資源群組，資源不需要存在於相同的資源群組。|
-    |**位置**|美國西部|位置必須是您在這篇文章的[建立具有兩個子網路的虛擬網路](#create-vnet)一節中步驟 5 所指定的相同位置。|
+    |**訂用帳戶**|<Your subscription>|hello 訂用帳戶必須是 hello 相同的 hello 步驟 5 中選取的訂用帳戶[建立具有兩個子網路的虛擬網路](#create-vnet)本文一節。|
+    |**資源群組**|**使用現有︰**選取 MyRG|雖然我們會使用相同的資源群組，如同 hello VNet，hello 的 hello 資源沒有 tooexist hello 中相同的資源群組。|
+    |**位置**|美國西部|hello 位置必須是 hello hello 的步驟 5 中指定的相同位置[建立具有兩個子網路的虛擬網路](#create-vnet)本文一節。|
 
-4.  在 [選擇大小] 刀鋒視窗中，按一下 [DS1_V2 標準]，然後按一下 [選取]。
-5.  在 [設定] 刀鋒視窗中，輸入或選取下列值，然後按一下 [確定]：
+4.  在 hello**大小選擇 「**刀鋒視窗中，按一下  *DS1_V2 標準*，然後按一下 **選取**。
+5.  在 hello**設定**刀鋒視窗中，輸入或選取下列值的 hello，然後按一下**確定**:
 
     |**設定**|**值**|**詳細資料**|
     |----|----|---|
     |**儲存體：使用受控磁碟**|*是*||
-    |**虛擬網路**|選取 MyVNet|您可以選取存在於與您建立之 VM 相同位置中的任何 VNet。|
-    |**子網路**|選取 [後端]，方法是按一下 [子網路] 方塊，然後從 [選擇子網路] 刀鋒視窗中選取 [後端]|您可以選取存在於 VNet 中的任何子網路。|
-    |**公用 IP 位址**|「無」 – 按一下預設位址，然後從 [選擇公用 IP 位址] 刀鋒視窗中按一下 [無]|如果沒有公用 IP 位址，您只能從另一部連線到相同 VNet 的 VM 連線到 VM。 您無法直接從網際網路連線。|
-    |**網路安全性群組 (防火牆)**|接受預設值| 像是為 MyWebServer VM 建立的預設 NSG，這個 NSG 也有相同的預設輸入規則。 您可以為資料庫伺服器針對 TCP 1433 (MS SQL) 新增額外的輸入規則。 因為根據預設沒有輸出流量的規則，所以允許所有輸出流量。 您可以新增/移除規則，以控制每個原則的流量。|
-    |**所有其他值**|接受預設值||
+    |**虛擬網路**|選取 MyVNet|您可以選取任何存在於 hello 相同的 VNet 位置 hello 您要建立的 VM。|
+    |**子網路**|選取*後端*按一下 hello**子網路**方塊，然後選取**後端**從 hello**選擇子網路**刀鋒視窗|您可以選取存在於 hello VNet 內的任何子網路。|
+    |**公用 IP 位址**|None – 按一下 hello 預設位址，然後按一下 **無**從 hello**選擇公用 IP 位址**刀鋒視窗|沒有公用 IP 位址，您僅能連線 toohello VM 從另一個 VM 連接 toohello 相同的 VNet。 您無法直接從 hello 網際網路連線 tooit。|
+    |**網路安全性群組 (防火牆)**|接受預設值 hello| NSG 也建立 hello MyWebServer VM 此 NSG hello 預設具有 hello 像相同的預設輸入的規則。 您可以為資料庫伺服器針對 TCP 1433 (MS SQL) 新增額外的輸入規則。 因為根據預設沒有輸出流量的規則，所以允許所有輸出流量。 您可以新增/移除規則 toocontrol 流量根據您的原則。|
+    |**所有其他值**|接受 hello 預設值||
 
-6.  在 [摘要] 刀鋒視窗中檢閱設定，然後按一下 [確定] 以建立 VM。 建立 VM 時，狀態圖格會顯示在入口網站儀表板上。 可能需要數分鐘才會建立。 您不需要等候它完成。 建立 VM 時，您可以繼續下一個步驟。
+6.  在 hello**摘要**刀鋒視窗中，檢閱 hello 設定，然後按一下**確定**toocreate hello VM。 狀態磚會顯示 hello 入口網站儀表板上，為 VM 建立的 hello。 可能需要幾分鐘的時間 toocreate。 您不需要 toowait 它 toocomplete。 您可以繼續 toohello hello 建立 VM 時的下一個步驟。
 
 ## <a name="review"></a>檢閱資源
 
-雖然您建立一個 VNet 和兩個 VM，Azure 入口網站會為您在 MyRG 資源群組中建立數個其他資源。 藉由完成下列步驟，檢閱 MyRG 資源群組的內容︰
+雖然您可以建立一個 VNet 和兩個 Vm，hello hello MyRG 資源群組中，為您建立數個其他資源的 Azure 入口網站。 藉由完成下列步驟的 hello 檢閱 hello hello MyRG 資源群組的內容：
 
-1. 在 [我的最愛] 窗格中，按一下 [更多服務]。
-2. 在 [更多服務] 窗格中，在其中具有字詞 [篩選器]  的方塊中輸入 [資源群組]。 當您在篩選清單中看見它時，按一下 [資源群組]。
-3. 在 [資源群組] 窗格中，按一下 [MyRG] 資源群組。 如果您在訂用帳戶中有許多現有的資源群組，您可以在包含文字「依名稱篩選...」的方塊中輸入 MyRG 以快速存取 MyRG 資源群組。
-4.  在 [MyRG] 刀鋒視窗中，您會看到資源群組包含 12 個資源，如下列圖片所示︰
+1. 在 hello**我的最愛** 窗格中，按一下 **更多服務**。
+2. 在 hello**更多服務**窗格中，輸入*資源群組*具有 hello word hello 方塊中*篩選*中。 按一下**資源群組**當您看到它在 hello 篩選清單。
+3. 在 [hello**資源群組**] 窗格中，按一下 hello *MyRG*資源群組。 如果您有許多現有的資源群組訂閱中，您可以輸入*MyRG*中包含的 hello 文字的 hello 方塊*依名稱篩選...* tooquickly 存取 hello MyRG 資源群組。
+4.  在 hello **MyRG**刀鋒視窗中，您會看到 hello 資源群組包含 12 種資源，hello 下列圖片所示：
 
     ![資源群組內容](./media/virtual-network-get-started-vnet-subnet/resource-group-contents.png)
 
-若要深入了解 VM、磁碟和儲存體帳戶，請閱讀[虛擬機器](../virtual-machines/windows/overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)、[磁碟](../virtual-machines/windows/about-disks-and-vhds.md?toc=%2fazure%2fvirtual-network%2ftoc.json)，和[儲存體帳戶](../storage/common/storage-introduction.md?toc=%2fazure%2fvirtual-network%2ftoc.json)概觀文章。 您可以看到入口網站為您建立的兩個預設 NSG。 您也可以看到入口網站建立兩個網路介面 (NIC) 資源。 NIC 可以讓 VM 透過 VNet 連線至其他資源。 閱讀 [NIC](virtual-network-network-interface.md) 文章，以深入了解 NIC。 入口網站也會建立一個公用 IP 位址資源。 公用 IP 位址是公用 IP 位址資源的一項設定。 若要深入了解公用 IP 位址，請閱讀 [IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)文章。
+深入了解 Vm、 磁碟和儲存體帳戶讀取 hello toolearn[虛擬機器](../virtual-machines/windows/overview.md?toc=%2fazure%2fvirtual-network%2ftoc.json)，[磁碟](../virtual-machines/windows/about-disks-and-vhds.md?toc=%2fazure%2fvirtual-network%2ftoc.json)，和[儲存體帳戶](../storage/common/storage-introduction.md?toc=%2fazure%2fvirtual-network%2ftoc.json)概觀文件。 您可以看到 hello 兩個預設 Nsg hello 入口網站為您建立。 您也可以查看該 hello 入口網站建立兩個網路介面 (NIC) 的資源。 一個 NIC 透過 hello VNet 啟用 VM tooconnect tooother 資源。 讀取 hello [NIC](virtual-network-network-interface.md)文章 toolearn 更多關於 Nic。 hello 入口網站也會建立一個公用 IP 位址資源。 公用 IP 位址是公用 IP 位址資源的一項設定。 更多關於公用 IP 位址，讀取 hello toolearn [IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)發行項。
 
-## <a name="connect-to-from-vms"></a>連線至 VM
+## <a name="connect-to-from-vms"></a>Toohello Vm 連線
 
-建立您的 VNet 和兩個 VM 之後，您現在可以藉由完成下列章節中的步驟，連線至 VM︰
+使用您的 VNet 和兩個所建立的 Vm，您現在可以 hello hello 下列各節中的步驟，以連接 toohello Vm:
 
-### <a name="connect-from-internet"></a>從網際網路連線至網頁伺服器 VM
+### <a name="connect-from-internet"></a>從 hello 網際網路連線 toohello web server VM
 
-若要從網際網路連線至網頁伺服器 VM，請完成下列步驟︰
+tooconnect toohello web 伺服器 VM 從 hello 網際網路，完成下列步驟的 hello:
 
-1. 在入口網站中，開啟 MyRG 資源群組，方法是完成這篇文章之[檢閱資源](#review)一節中的步驟。
-2. 在 [MyRG] 刀鋒視窗中，按一下 [MyWebServer] VM。
-3. 在 [MyWebServer] 刀鋒視窗中，按一下 [連線]，如下列圖片所示︰
+1. 在 hello 入口網站開啟 hello MyRG 資源群組，藉由完成 hello 步驟 hello[檢閱資源](#review)本文一節。
+2. 在 hello **MyRG**刀鋒視窗中，按一下 hello **MyWebServer** VM。
+3. 在 hello **MyWebServer**刀鋒視窗中，按一下**連接**hello 下列圖片所示：
 
-    ![連線至網頁伺服器 VM](./media/virtual-network-get-started-vnet-subnet/webserver.png)
+    ![連接 tooweb server VM](./media/virtual-network-get-started-vnet-subnet/webserver.png)
 
-4. 允許您的瀏覽器下載 MyWebServer.rdp 檔案，然後開啟它。
-5. 如果您收到對話方塊，通知您無法驗證遠端連線的發佈者，請按一下 [連線]。
-6. 當輸入您的認證時，請確定您使用您在這篇文章之[建立網頁伺服器 VM](#create-web-server-vm) 一節中步驟 3 指定的使用者名稱和密碼進行登入。 如果顯示的 [Windows 安全性] 方塊未列出正確的認證，您可能需要按一下 [更多選擇]，然後按一下 [使用不同的帳戶]，以便能夠指定正確的使用者名稱和密碼)。 按一下 [確定]以連線至 VM。
-7. 如果您收到 [遠端桌面連線] 方塊，通知您無法驗證遠端電腦的身分識別，請按一下 [是]。
-8. 您現在已經從網際網路連線至 MyWebServer VM。 保持遠端桌面連線開啟來完成下一節中的步驟。
+4. 允許您的瀏覽器 toodownload hello *MyWebServer.rdp*檔案，然後將它開啟。
+5. 如果您收到對話方塊方塊中，通知您該 hello hello 遠端連線的發行者無法驗證，請按一下**連接**。
+6. 當輸入您的認證，請確定您與您指定在步驟 3 中的 hello hello 使用者名稱和密碼登入[建立 hello web 伺服器 VM](#create-web-server-vm)本文一節。 如果 hello **Windows 安全性**出現方塊不會列出 hello 正確的認證，您可能需要 tooclick**更多途徑**，然後**使用不同的帳戶**，因此您可以指定 hello 正確的使用者名稱和密碼）。 按一下**確定**tooconnect toohello VM。
+7. 如果您收到**遠端桌面連線**方塊通知您 hello hello 遠端電腦的身分識別無法驗證，按一下**是**。
+8. 現在您已經從 hello 網際網路連線的 toohello MyWebServer VM。 將保留在 hello 遠端桌面連線開啟 toocomplete hello 步驟 hello 下一節。
 
-遠端連線是連線至公用 IP 位址，該位址指派給這篇文章之[建立具有兩個子網路的虛擬網路](#create-vnet)一節步驟 5 中入口網站建立的公用 IP 位址資源。 允許連線，因為在 **MyWebServer-nsg** NSG 建立的預設規則允許來自任何來源 IP 位址的 TCP/3389 (RDP) 輸入至 VM。 如果您嘗試透過任何其他連接埠連線至 VM，連線會失敗，除非您將其他輸入規則新增至 NSG，允許使用其他連接埠。
+hello 遠端連線是 toohello 指派 toohello 公用 IP 位址資源 hello 入口網站的 hello 的步驟 5 中建立公用 IP 位址[建立具有兩個子網路的虛擬網路](#create-vnet)本文一節。 因為在 hello 建立 hello 預設規則，便會允許 hello 連接**MyWebServer nsg** NSG 允許 TCP/3389 (RDP) 輸入 toohello VM 從任何來源 IP 位址。 如果您嘗試透過任何其他連接埠 tooconnect toohello VM，hello 連線會失敗，除非您新增其他的輸入的規則 toohello NSG 允許 hello 其他連接埠。
 
 >[!NOTE]
->如果您將其他輸入規則新增至 NSG，請確定在 Windows 防火牆上已開啟相同連接埠，否則連線會失敗。
+>如果您新增其他的輸入的規則 toohello NSG，請確定該 hello hello 的 Windows 防火牆上開啟相同的連接埠，或 hello 連接會失敗。
 >
 
-### <a name="connect-to-internet"></a>從網頁伺服器 VM 連線至網際網路
+### <a name="connect-to-internet"></a>從 hello web 伺服器 VM 連線 toohello 網際網路
 
-若要從網頁伺服器 VM 連線輸出至網際網路，請完成下列步驟︰
+tooconnect 輸出 toohello 網際網路從 hello web 伺服器 VM，完成下列步驟的 hello:
 
-1. 如果您還沒有對 MyWebServerVM 的遠端連線，請進行遠端連線至 VM，方法是完成這篇文章之[從網際網路連線至網頁伺服器 VM](#connect-from-internet) 一節中的步驟。
-2. 從 Windows 桌面上，開啟 Internet Explorer。 在 [安裝 Internet Explorer 11] 對話方塊中，按一下 [不使用建議的設定]，然後按一下 [確定]。 建議您接受實際執行伺服器的建議設定。
-3. 在 Internet Explorer 網址列中，輸入 [bing.com](http:www.bing.com)。如果您收到 Internet Explorer 對話方塊，按一下 [新增]，然後在 [信任的網站] 對話方塊中 [新增]，然後按一下 [關閉]。 對於任何其他 Internet Explorer 對話方塊重複此程序。
-4. 在 Bing 搜尋頁面上，輸入 whatsmyipaddress ，然後按一下 [放大鏡] 按鈕。 Bing 會傳回當您建立 VM 時，指派給入口網站建立的公用 IP 位址資源的公用 IP 位址。 如果您檢查 **MyWebServer-ip**資源的設定，您會看到指派給公用 IP 位址資源的相同 IP 位址，如下圖所示。 不過，指派給 VM 的 IP 位址不同。
+1. 如果您還沒有開啟 MyWebServerVM 遠端連線 toohello，讓遠端連線 toohello VM hello 中的 hello 步驟[連接 toohello 網頁伺服器從 hello 網際網路 VM](#connect-from-internet)本文一節。
+2. 從 hello Windows 桌面上，開啟 Internet Explorer。 在 hello**安裝 Internet Explorer 11**對話方塊中，按一下**不使用建議的設定**，然後按一下 **確定**。 它是建議的 tooaccept hello 建議實際執行伺服器的設定。
+3. 在 hello Internet Explorer 網址列中輸入[bing.com](http:www.bing.com)。如果您收到的 Internet Explorer 對話方塊中，按一下**新增**，然後**新增**在 hello**信任的網站**對話方塊，按一下**關閉**。 對於任何其他 Internet Explorer 對話方塊重複此程序。
+4. 在 hello Bing 搜尋頁面中，輸入*whatsmyipaddress*，然後按一下 hello 放大鏡按鈕。 Bing 傳回 hello 公用 IP 位址指派 toohello 公用 IP 位址資源建立 hello 入口網站，當您建立 hello VM。 如果您檢查 hello hello 設定**MyWebServer ip**資源，您看到 hello 分派 toohello 公用 IP 位址資源，相同的 IP 位址中遵循的 hello 圖片所示。 hello IP 位址指派 tooyour VM 不過這會不同。
 
-    ![連線至網頁伺服器 VM](./media/virtual-network-get-started-vnet-subnet/webserver-pip.png)
+    ![連接 tooweb server VM](./media/virtual-network-get-started-vnet-subnet/webserver-pip.png)
 
-5.  保持遠端桌面連線開啟來完成下一節中的步驟。
+5.  將保留在 hello 遠端桌面連線開啟 toocomplete hello 步驟 hello 下一節。
 
-您也可以從 VM 連線至網際網路，因為預設允許來自 VM 的所有輸出連線。 您可以藉由將新增規則新增至套用到 NIC、NIC 連線的子網路或兩者的 NSG，來限制輸出連線。
+因為預設會允許所有從 hello VM 的輸出連線，您就可以 tooconnect toohello 網際網路從 hello VM。 您可以限制的傳出連線，藉由新增加入規則 toohello NSG 套用 toohello NIC，toohello 子網路 hello NIC 連線到，或兩者。
 
-如果使用入口網站將 VM 放在已停止 (解除配置) 狀態，可以變更公用 IP 位址。 如果您需要公用 IP 位址永遠不會變更，您可以為 IP 位址使用靜態配置方法，而不是動態配置方法 (這是預設值)。 若要深入了解配置方法之間的差異，請閱讀 [IP 位址類型和配置方法](virtual-network-ip-addresses-overview-arm.md)文章。
+如果 hello VM 放置於 hello 停止 （取消配置） 的狀態是使用 hello 入口網站，可以變更 hello 公用 IP 位址。 如果您需要 hello 公用 IP 位址永遠不會變更，您可以使用 hello 靜態配置方法 hello IP 位址，而不是 hello 動態配置方法 （即 hello 預設值）。 深入了解 toolearn hello 分派方法之間的差異讀取 hello [IP 位址類型和配置方法](virtual-network-ip-addresses-overview-arm.md)發行項。
 
-### <a name="webserver-to-dbserver"></a>從網頁伺服器 VM 連線至資料庫伺服器 VM
+### <a name="webserver-to-dbserver"></a>從 hello web 伺服器 VM 連線 toohello 資料庫伺服器 VM
 
-若要從網頁伺服器 VM 連線至資料庫伺服器 VM，請完成下列步驟︰
+tooconnect toohello 資料庫伺服器 VM 從 hello web 伺服器 VM，完成下列步驟的 hello:
 
-1. 如果您還沒有對 MyWebServer VM 的遠端連線，請進行遠端連線至 VM，方法是完成這篇文章之[從網際網路連線至網頁伺服器 VM](#connect-from-internet) 一節中的步驟。
-2. 按一下 Windows 桌面左下角的 [開始] 按鈕，然後開始輸入 remote desktop。 當 [開始] 功能表清單顯示 [遠端桌面連線] 時，按一下它。
-3. 在 [遠端桌面連線] 對話方塊中，針對電腦名稱輸入 MyDBServer，然後按一下 [連線]。
-4. 輸入您在這篇文章之[建立資料庫伺服器 VM](#create-database-server-vm) 一節中步驟 3 輸入的使用者名稱和密碼，然後按一下 [確定]。
-5. 如果您收到對話方塊，通知您無法驗證遠端電腦的身分識別，請按一下 [是]。
-6. 保持對兩部伺服器的遠端桌面連線開啟來完成下一節中的步驟。
+1. 如果您還沒有開啟 MyWebServer VM 遠端連線 toohello，讓遠端連線 toohello VM hello 中的 hello 步驟[連接 toohello 網頁伺服器從 hello 網際網路 VM](#connect-from-internet)本文一節。
+2. 按一下 hello 左下角的 hello Windows 桌面上，hello [開始] 按鈕，然後開始輸入*遠端桌面*。 當顯示 hello 開始 功能表清單**遠端桌面連線**，按一下它。
+3. 在 hello**遠端桌面連線**對話方塊方塊中，輸入*MyDBServer* hello 電腦名稱，然後按一下**連接**。
+4. 輸入 hello 使用者名稱和密碼，您輸入在步驟 3 中的 hello[建立 hello 資料庫伺服器 VM](#create-database-server-vm) > 一節的本文中，然後按一下 **確定**。
+5. 如果您收到對話方塊方塊中，通知您該 hello 的身分識別 hello 遠端電腦無法驗證，請按一下**是**。
+6. 保留 hello 遠端桌面連線 tooboth 伺服器開啟 toocomplete hello hello 下一節中的步驟。
 
-您可以從網頁伺服器 VM 連線至資料庫伺服器 VM，原因如下︰
+您即可以 toomake hello 連接 toohello 資料庫伺服器 VM 從 hello 下列原因，hello web 伺服器 VM:
 
-- TCP/3389 輸入連線針對這篇文章之[建立資料庫伺服器 VM](#create-database-server-vm) 一節步驟 5 中建立的預設 NSG 的任何來源 IP 啟用。
-- 您從網頁伺服器 VM 起始連線，它連線到與資料庫伺服器 VM 相同的 VNet。 若要連線至沒有公用 IP 位址指派給它的 VM，您必須從另一個 VM 連線至相同的 VNet，即使 VM 連線至不同的子網路。
-- 即使 VM 連線至不同的子網路，Azure 會建立預設路由，啟用子網路之間的連線。 但是，您可以建立自己的路由來覆寫預設路由。 若要深入了解 Azure 中的路由，請閱讀[使用者定義的路由](virtual-networks-udr-overview.md)文章。
+- Hello 預設的 hello 的步驟 5 中建立的 NSG 中的任何來源 IP 已啟用的輸入的連線 TCP/3389[建立 hello 資料庫伺服器 VM](#create-database-server-vm)本文一節。
+- 起始從 hello web 伺服器 VM，也就是連接的 toohello hello 連接做為 hello 資料庫伺服器 VM 的同一個 VNet。 tooconnect tooa 沒有公用的 IP 位址指派 tooit 的 VM，您必須從連接另一個 VM 連接 toohello 相同 VNet，即使 hello VM 是已連線的 tooa 不同的子網路。
+- 即使 hello Vm 連接的 toodifferent 子網路，Azure 會建立啟用子網路之間連線的預設路由。 您可以建立您自己的不過，覆寫 hello 預設路由。 讀取 hello[使用者定義的路由](virtual-networks-udr-overview.md)文章 toolearn 深入了解 Azure 中的路由。
 
-如果您嘗試起始從網際網路到資料庫伺服器 VM 的遠端連線，如同您在這篇文章之[從網際網路連線至網頁伺服器 VM](#connect-from-internet) 一節中所做的一樣，您會看到 [連線] 選項呈現灰色。連線呈現灰色，因為沒有任何公用 IP 位址指派給 VM，所以從網際網路連線至它的輸入連線是不可能的。
+如果您嘗試 tooinitiate hello 網際網路遠端連線 toohello 資料庫伺服器 VM，您可以如同在 hello[連接 toohello 網頁伺服器從 hello 網際網路 VM](#connect-from-internet) > 一節的本文中，您會看到該 hello**連接**選項呈現灰色。連接灰色，因為沒有任何公用 IP 位址指派 toohello VM，所以不可能從 hello 網際網路的傳入的連接 tooit。
 
-### <a name="connect-to-the-internet-from-the-database-server-vm"></a>從資料庫伺服器 VM 連線至網際網路
+### <a name="connect-toohello-internet-from-hello-database-server-vm"></a>從 hello 資料庫伺服器 VM 連線 toohello 網際網路
 
-從資料庫伺服器 VM 連線輸出至網際網路，方法是完成下列步驟︰
+從 hello 資料庫伺服器 VM，輸出 toohello 網際網路連線藉由完成下列步驟的 hello:
 
-1. 如果您還沒有從 MyWebServer VM 對 MyDBServer VM 的遠端連線，請完成這篇文章之[從網頁伺服器 VM 連線至資料庫伺服器 VM ](#webserver-to-dbserver) 一節中的步驟。
-2. 從 MyDBServer VM 的 Windows 桌面上，開啟 Internet Explorer 並且回應對話方塊，如同您在這篇文章之[從網頁伺服器 VM 連線至網際網路](#connect-to-internet)一節的步驟 2 和 3 中所執行的操作一樣。
-3. 在網址列中，輸入 [bing.com](http:www.bing.com)。
-4. 在顯示的 Internet Explorer 對話方塊中，按一下 [新增]，然後在 [信任的網站] 對話方塊中依序按一下 [新增]、[關閉]。 在顯示的任何其他對話方塊中完成這些步驟。
-5. 在 Bing 搜尋頁面上，輸入 whatsmyipaddress ，然後按一下 [放大鏡] 按鈕。 Bing 會傳回目前由 Azure 基礎結構指派給 VM 的公用 IP 位址。 6. 從 MyWebServer VM 關閉到 MyDBServer VM 的遠端桌面，然後關閉對 MyWebServer VM 的遠端連線。
+1. 如果您還沒有從 hello MyWebServer VM 開啟 MyDBServer VM 遠端連線 toohello，完成 hello 步驟 hello[連接 toohello 資料庫伺服器 VM 從 hello web 伺服器 VM](#webserver-to-dbserver)本文一節。
+2. 從 hello hello MyDBServer VM 上的 Windows 桌面上，開啟 Internet Explorer 並回應 toohello 對話方塊，如同在步驟 2 和 3 的 hello [toohello 網際網路連線從 hello web 伺服器 VM](#connect-to-internet)本文一節。
+3. 在 hello 網址列中輸入[bing.com](http:www.bing.com)。
+4. 按一下**新增**hello Internet Explorer 出現對話方塊，然後在**新增**，然後**關閉**在 hello**信任**網站 對話方塊。 在顯示的任何其他對話方塊中完成這些步驟。
+5. 在 hello Bing 搜尋頁面中，輸入*whatsmyipaddress*，然後按一下 hello 放大鏡按鈕。 Bing hello Azure 基礎結構所傳回公用 IP 位址目前已指派 toohello hello VM。 6. 關閉 hello 遠端桌面 toohello MyDBServer VM 從 hello MyWebServer VM，然後關閉 hello 遠端連線 toohello MyWebServer VM。
 
-允許到網際網路的輸出連線，因為根據預設，允許所有輸出流量，即使公用 IP 位址資源未指派給 MyDBServer VM。 根據預設，所有 VM 都能夠輸出連線至網際網路，無論有無公用 IP 位址資源指派給 VM。 但是，您不能從網際網路連線至公用 IP 位址，如同具有指派公用 IP 位址資源的 MyWebServer VM 那樣。
+hello 輸出連線 toohello 網際網路允許，因為根據預設，允許所有輸出流量即使公用 IP 位址資源未指派 toohello MyDBServer VM。 所有的 Vm，根據預設，會無法 tooconnect 輸出 toohello 網際網路，不論公用 IP 位址指派的資源 toohello VM。 您不能 tooconnect toohello 公用 IP 位址從 hello 網際網路不過，像是已能 toofor hello MyWebServer VM 具有公用 IP 位址指派的資源。
 
 ## <a name="delete-resources"></a>刪除所有資源
 
-若要刪除這篇文章中建立的所有資源，請完成下列步驟︰
+在本文中完成下列步驟的 hello 建立 toodelete 所有資源：
 
-1. 若要檢視這篇文件中建立的 MyRG 資源群組，請完成這篇文章之[檢閱資源](#review)一節中的步驟 1-3。 再次檢閱資源群組中的資源。 如果您建立 MyRG 資源群組，在每個先前步驟中，您會在步驟 4 的圖片中看到 12 個資源顯示。
-2. 在 [MyRG] 刀鋒視窗中，按一下 [刪除] 按鈕。
-3. 入口網站會要求您輸入資源群組的名稱，以確認您想要刪除它。 如果您看到的資源，有別於這篇文章之[檢閱資源](#review)一節步驟 4 中顯示的資源，請按一下 [取消]。 如果您只看到建立的 12 個資源做為這篇文章的一部分，輸入 MyRG 做為資源群組名稱，然後按一下 [刪除]。 刪除資源群組會刪除資源群組內的所有資源，所以務必確認資源群組的內容，然後再刪除它。 入口網站會刪除資源群組內包含的所有資源，然後刪除資源群組本身。 這個程序需要幾分鐘的時間。
+1. 在本文中，完成建立 tooview hello MyRG 資源群組的步驟 1-3 中的 hello[檢閱資源](#review)本文一節。 同樣地，檢閱 hello 資源群組中的 hello 資源。 如果您建立 hello MyRG 資源群組、 每個先前步驟中，您會看到在步驟 4 中的 hello 圖片所示 hello 12 種資源。
+2. 在 hello MyRG 刀鋒視窗中，按一下 hello**刪除** 按鈕。
+3. hello 入口網站需要您想要 toodelete hello 資源群組 tooconfirm tootype hello 名稱它。 如果您看到資源以外的 hello 步驟 4 中所示的 hello 資源[檢閱資源](#review)> 一節的本文中，按一下 **取消**。 如果您看到只有 hello 12 資源建立為這份文件的一部分時，輸入*MyRG* hello 資源群組名稱，然後按一下**刪除**。 刪除資源群組會刪除 hello 資源群組中的所有資源，所以一定會確定 tooconfirm hello 內容的資源群組然後再刪除。 hello 入口網站刪除 hello 的資源群組中包含的所有資源，然後都刪除本身 hello 資源群組。 這個程序需要幾分鐘的時間。
 
 ## <a name="next-steps"></a>接續步驟
 
-在本練習中，您會建立 VNet 和兩個 VM。 在建立 VM 期間，指定一些自訂設定，並且接受數個預設設定。 我們建議您先閱讀下列文章，然後再部署生產環境 Vnet 和 VM，以確保您了解所有可用的設定︰
+在本練習中，您會建立 VNet 和兩個 VM。 在建立 VM 期間，指定一些自訂設定，並且接受數個預設設定。 我們建議您先閱讀下列文章，生產環境的 Vnet 和 tooensure 您了解所有可用設定的 Vm，在部署之前的 hello:
 
 - [虛擬網路](virtual-networks-overview.md)
 - [公用 IP 位址](virtual-network-ip-addresses-overview-arm.md#public-ip-addresses)

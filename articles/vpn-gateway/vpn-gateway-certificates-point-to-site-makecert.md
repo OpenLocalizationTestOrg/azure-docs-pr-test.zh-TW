@@ -1,6 +1,6 @@
 ---
 title: "產生並匯出點對站的憑證：MakeCert：Azure | Microsoft Docs"
-description: "本文包含的步驟可用來建立自我簽署的根憑證、匯出公開金鑰，以及使用 MakeCert 來產生用戶端憑證。"
+description: "本文章包含步驟 toocreate 自我簽署的根憑證、 匯出 hello 公開金鑰，並產生使用 MakeCert 的用戶端憑證。"
 services: vpn-gateway
 documentationcenter: na
 author: cherylmc
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/09/2017
 ms.author: cherylmc
-ms.openlocfilehash: 4c51edac3b1cdafae8f9543bd0e3133b6a050f73
-ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
+ms.openlocfilehash: 0b795ccf74f1f97fbd3de8a0dc339f9cb0b48183
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/18/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="generate-and-export-certificates-for-point-to-site-connections-using-makecert"></a>使用 MakeCert 來產生並匯出點對站連線的憑證
 
-點對站連線使用憑證進行驗證。 本文說明如何建立自我簽署的根憑證，以及使用 MakeCert 來產生用戶端憑證。 如果您要尋找點對站設定步驟 (例如如何上傳根憑證)，請從下列清單中選取其中一篇＜設定點對站＞文章：
+點對站連線使用憑證 tooauthenticate。 本文示範如何 toocreate 的自我簽署根憑證，並產生使用 MakeCert 的用戶端憑證。 如果您要尋找的點對站台的設定步驟，例如 tooupload 根憑證，來選取其中一個 hello '設定點對站' 發行項的 hello 下列清單的方式：
 
 > [!div class="op_single_selector"]
 > * [建立自我簽署憑證 - PowerShell](vpn-gateway-certificates-point-to-site.md)
@@ -34,52 +34,52 @@ ms.lasthandoff: 08/18/2017
 > 
 > 
 
-雖然建議您使用 [Windows 10 PowerShell 步驟](vpn-gateway-certificates-point-to-site.md)建立您的憑證，但是提供這些 MakeCert 指示作為選擇性方法。 您使用任一種方法所產生的憑證可以安裝於[任何支援的用戶端作業系統](vpn-gateway-howto-point-to-site-resource-manager-portal.md#faq)。 不過，MakeCert 具有下列限制：
+雖然我們建議您使用 hello [Windows 10 PowerShell 步驟](vpn-gateway-certificates-point-to-site.md)toocreate 您的憑證，我們提供這些 MakeCert 指示為選擇性的方法。 您可以產生使用哪一種方法的 hello 憑證可以安裝在[任何支援的用戶端作業系統](vpn-gateway-howto-point-to-site-resource-manager-portal.md#faq)。 不過，MakeCert 有下列限制的 hello:
 
-* MakeCert 已被取代。 這表示無法在任何時間點移除這項工具。 當無法再使用 MakeCert 時，任何您已經使用 MakeCert 所產生的憑證將不會受到影響。 MakeCert 只用來產生憑證，而不是驗證機制。
+* MakeCert 已被取代。 這表示無法在任何時間點移除這項工具。 當無法再使用 MakeCert 時，任何您已經使用 MakeCert 所產生的憑證將不會受到影響。 MakeCert 是只使用的 toogenerate hello 憑證，不會做為驗證機制。
 
 ## <a name="rootcert"></a>建立自我簽署根憑證
 
-下列步驟說明如何使用 MakeCert 來建立自我簽署憑證。 這些並非部署模型特定的步驟。 它們同樣適用於資源管理員和傳統部署模型。
+hello 下列步驟顯示如何 toocreate 的自我簽署憑證使用 MakeCert。 這些並非部署模型特定的步驟。 它們同樣適用於資源管理員和傳統部署模型。
 
 1. 下載並安裝 [MakeCert](https://msdn.microsoft.com/library/windows/desktop/aa386968(v=vs.85).aspx)。
-2. 安裝之後，您通常可以在下列路徑中找到 makecert.exe 公用程式：'C:\Program Files (x86)\Windows Kits\10\bin\<arch>'。 雖然，它有可能已安裝到另一個位置。 以系統管理員身分開啟命令提示字元，然後瀏覽至 MakeCert 公用程式的位置。 您可以使用下列範例，並針對適當的位置進行調整：
+2. 安裝之後，您通常可以找到 hello makecert.exe 公用程式在此路徑: ' C:\Program Files (x86) \Windows Kits\10\bin\<a c h >'。 雖然很可能已安裝的 tooanother 位置。 開啟命令提示字元，以系統管理員身分，並瀏覽 toohello hello MakeCert 公用程式位置。 您可以使用下列範例中，調整的 hello 適當的位置 hello:
 
   ```cmd
   cd C:\Program Files (x86)\Windows Kits\10\bin\x64
   ```
-3. 在您電腦上的 [個人] 憑證存放區中建立並安裝憑證。 下列範例會建立對應的 .cer 檔案，您在設定 P2S 時會將此檔案上傳至 Azure。 將 'P2SRootCert' 和 'P2SRootCert.cer' 取代為您想使用的憑證名稱。 憑證位於您的 '[憑證 - 目前的使用者]\[個人]\[憑證]' 中。
+3. 建立及 hello 個人憑證存放區，您的電腦上安裝憑證。 hello 下列範例會建立對應*.cer*設定 P2S 時上, 傳 tooAzure 檔案。 您要 hello 憑證 toouse hello 名稱取代 'P2SRootCert' 和 'P2SRootCert.cer'。 hello 憑證位於您 '憑證-目前 \'。
 
   ```cmd
   makecert -sky exchange -r -n "CN=P2SRootCert" -pe -a sha256 -len 2048 -ss My
   ```
 
-## <a name="cer"></a>匯出公開金鑰 (.cer)
+## <a name="cer"></a>匯出 hello 公開金鑰 (.cer)
 
 [!INCLUDE [Export public key](../../includes/vpn-gateway-certificates-export-public-key-include.md)]
 
-匯出的 .cer 檔案必須上傳到 Azure。 如需相關指示，請參閱[設定點對站連線](vpn-gateway-howto-point-to-site-resource-manager-portal.md#uploadfile)。 若要新增其他可信任的根憑證，請參閱這篇文章的[本節](vpn-gateway-howto-point-to-site-resource-manager-portal.md#add)。
+hello exported.cer 檔案必須上傳的 tooAzure。 如需相關指示，請參閱[設定點對站連線](vpn-gateway-howto-point-to-site-resource-manager-portal.md#uploadfile)。 tooadd 其他信任的根憑證，請參閱[本節](vpn-gateway-howto-point-to-site-resource-manager-portal.md#add)hello 發行項。
 
-### <a name="export-the-self-signed-certificate-and-private-key-to-store-it-optional"></a>匯出自我簽署憑證和私密金鑰來儲存它 (選擇性)
+### <a name="export-hello-self-signed-certificate-and-private-key-toostore-it-optional"></a>匯出 hello 自我簽署的憑證與私用金鑰 toostore 它 （選擇性）
 
-您可能想要匯出自我簽署的根憑證，並將它安全地儲存。 如有需要，您可以稍後在另一部電腦上安裝這個自我簽署憑證，然後產生更多用戶端憑證，或匯出另一個 .cer 檔案。 若要將自我簽署的根憑證匯出為 .pfx，請選取根憑證，然後使用與[匯出用戶端憑證](#clientexport)所述的相同步驟來匯出。
+您可能想 tooexport hello 自我簽署根憑證，並將它安全地儲存。 如有需要，您可以稍後在另一部電腦上安裝這個自我簽署憑證，然後產生更多用戶端憑證，或匯出另一個 .cer 檔案。 tooexport hello 自我簽署根憑證.pfx hello 選取根憑證，使用 hello 相同的步驟中所述[用戶端憑證匯出](#clientexport)。
 
 ## <a name="create-and-install-client-certificates"></a>建立並安裝用戶端憑證
 
-您未直接在用戶端電腦上安裝自我簽署的憑證。 您需要從自我簽署憑證產生用戶端憑證。 您接著會將用戶端憑證匯出並安裝到用戶端電腦。 下列步驟並非針對特定部署模型。 它們同樣適用於資源管理員和傳統部署模型。
+您未直接在 hello 用戶端電腦上安裝 hello 自我簽署的憑證。 您需要 toogenerate hello 自我簽署憑證從用戶端憑證。 您接著匯出，並安裝 hello 用戶端憑證 toohello 用戶端電腦。 hello 步驟不是特定的部署模型。 它們同樣適用於資源管理員和傳統部署模型。
 
 ### <a name="clientcert"></a>產生用戶端憑證 
 
-每個使用點對站連線至 VNet 的用戶端電腦都必須安裝用戶端憑證。 您可以從自我簽署根憑證產生用戶端憑證，然後匯出及安裝用戶端憑證。 如果未安裝用戶端憑證，則驗證會失敗。 
+每個連線 tooa 的用戶端電腦使用點對站台的 VNet 必須安裝用戶端憑證。 您 hello 自我簽署的根憑證，從產生的用戶端憑證，然後匯出及安裝 hello 用戶端憑證。 如果未安裝 hello 用戶端憑證，驗證將會失敗。 
 
-下列步驟將逐步引導您完成從自我簽署的根憑證產生用戶端憑證。 您可以從相同根憑證產生多個用戶端憑證。 當您使用下列步驟產生用戶端憑證時，用戶端憑證會自動安裝在您用來產生憑證的電腦上。 如果您想要在另一部用戶端電腦上安裝用戶端憑證，您可以匯出憑證。
+hello 下列步驟引導您完成從自我簽署的根憑證產生用戶端憑證。 您可以從 hello 產生多個用戶端憑證相同的根憑證。 當您產生用戶端憑證使用 hello 執行下列步驟時，hello 用戶端憑證會自動安裝 hello 電腦上，您會使用 toogenerate hello 憑證。 如果您想 tooinstall 另一部用戶端電腦上的用戶端憑證，您可以匯出 hello 憑證。
  
-1. 在用來建立自我簽署憑證的相同電腦上，以系統管理員身分開啟命令提示字元。
-2. 修改並執行範例以產生用戶端憑證。
-  * 將 *"P2SRootCert"* 變更為您從中產生用戶端憑證的自我簽署根憑證名稱。 確定您使用的是根憑證名稱，亦即您建立自我簽署根憑證時所指定的 'CN=' 值。
-  * 將 *P2SChildCert* 變更為所產生的用戶端憑證要使用的名稱。
+1. Hello 在同一部電腦使用 toocreate hello 的自我簽署憑證，請開啟命令提示字元，以系統管理員身分。
+2. 修改並執行 hello 範例 toogenerate 用戶端憑證。
+  * 變更*"P2SRootCert"* toohello hello hello 用戶端憑證，從產生的自我簽署根名稱。 請確定您使用 hello 根憑證，也就是任何 hello hello 名稱 ' CN =' 的值為您指定當您建立 hello 自我簽署的根。
+  * 變更*P2SChildCert*想 toogenerate 用戶端憑證 toobe toohello 名稱。
 
-  如果您執行以下範例而未做任何修改，您的個人憑證存放區中就會有一個從根憑證 P2SRootCert 產生的用戶端憑證，名為 P2SChildcert。
+  如果您執行而不需修改下列範例中的 hello，hello 結果會是名為 P2SChildcert 所產生的根憑證 P2SRootCert 您個人憑證存放區中的用戶端憑證。
 
   ```cmd
   makecert.exe -n "CN=P2SChildCert" -pe -sky exchange -m 96 -ss My -in "P2SRootCert" -is my -a sha256
@@ -97,5 +97,5 @@ ms.lasthandoff: 08/18/2017
 
 繼續使用您的點對站設定。 
 
-* 如需 **Resource Manager** 部署模型步驟，請參閱[設定 VNet 的點對站連線](vpn-gateway-howto-point-to-site-resource-manager-portal.md)。
-* 如需**傳統**部署模型步驟，請參閱[設定 VNet 的點對站 VPN 連線 (傳統)](vpn-gateway-howto-point-to-site-classic-azure-portal.md)。
+* 如**資源管理員**部署模型的步驟，請參閱[設定點對站連線 tooa VNet](vpn-gateway-howto-point-to-site-resource-manager-portal.md)。
+* 如**傳統**部署模型的步驟，請參閱[設定點對站 VPN 連線 tooa VNet （傳統）](vpn-gateway-howto-point-to-site-classic-azure-portal.md)。

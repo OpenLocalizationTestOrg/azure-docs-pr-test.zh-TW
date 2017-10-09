@@ -1,5 +1,5 @@
 ---
-title: "將 Azure 虛擬網路連接至另一個 VNet︰PowerShell | Microsoft Docs"
+title: "連接 Azure 虛擬網路 tooanother VNet: PowerShell |Microsoft 文件"
 description: "本文將逐步引導您使用 Azure 資源管理員和 PowerShell，將虛擬網路連接在一起。"
 services: vpn-gateway
 documentationcenter: na
@@ -15,17 +15,17 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/02/2017
 ms.author: cherylmc
-ms.openlocfilehash: 8c42c0046ccaa98c572134042fbbb7e883ef93c3
-ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
+ms.openlocfilehash: 2da30c76867cc3f71d040e63e0dd15d153e15c10
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 08/03/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="configure-a-vnet-to-vnet-vpn-gateway-connection-using-powershell"></a>使用 PowerShell 設定 VNet 對 VNet 的 VPN 閘道連線
 
-本文說明如何建立虛擬網路之間的VPN 閘道連線。 虛擬網路可位於相同或不同的區域，以及來自相同或不同的訂用帳戶。 連線來自不同訂用帳戶的 VNet 時，訂用帳戶不需與相同的 Active Directory 租用戶相關聯。 
+本文章將示範如何 toocreate 虛擬網路之間的 VPN 閘道連線。 hello 虛擬網路可在 hello 相同或不同區域，並從 hello 相同或不同的訂用帳戶。 當連接的 Vnet，從不同的訂用帳戶，hello 訂用帳戶不需要與相關聯的 toobe hello 相同的 Active Directory 租用戶。 
 
-本文中的步驟適用於 Resource Manager 部署模型並使用 PowerShell。 您也可從下列清單中選取不同的選項，以使用不同的部署工具或部署模型來建立此組態：
+這篇文章中的 hello 步驟套用 toohello Resource Manager 部署模型，並使用 PowerShell。 您也可以建立此組態使用不同的部署工具或部署模型，從下列清單中的 hello 選取不同的選項：
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](vpn-gateway-howto-vnet-vnet-resource-manager-portal.md)
@@ -37,45 +37,45 @@ ms.lasthandoff: 08/03/2017
 >
 >
 
-將虛擬網路連接至另一個虛擬網路 (VNet 對 VNet)，類似於將 VNet 連接至內部部署網站位置。 這兩種連線類型都使用 VPN 閘道提供使用 IPsec/IKE 的安全通道。 如果您的 Vnet 位在相同區域，您可能會考慮使用 VNet 對等互連來進行連線。 VNet 對等互連不會使用 VPN 閘道。 如需詳細資訊，請參閱 [VNet 對等互連](../virtual-network/virtual-network-peering-overview.md)。
+連接虛擬網路 tooanother 虛擬網路 (VNet 對 VNet) 是類似 tooconnecting VNet tooan 在內部部署站台位置。 這兩種連線類型使用的 VPN 閘道 tooprovide 採用 IPsec/IKE 的安全通道。 如果您的 Vnet hello 中相同的區域，您可能會想 tooconsider 它們使用對等互連的 VNet 連接。 VNet 對等互連不會使用 VPN 閘道。 如需詳細資訊，請參閱 [VNet 對等互連](../virtual-network/virtual-network-peering-overview.md)。
 
-您可以將 VNet 對 VNet 通訊與多站台組態結合。 這可讓您建立使用內部虛擬網路連線結合跨單位連線的網路拓撲，如下圖所示：
+您可以將 VNet 對 VNet 通訊與多站台組態結合。 這可讓您建立結合內部虛擬網路連線使用跨單位連線的網路拓樸 hello 下列圖表所示：
 
 ![關於連線](./media/vpn-gateway-vnet-vnet-rm-ps/aboutconnections.png)
 
 ### <a name="why-connect-virtual-networks"></a>為什麼要連接虛擬網路？
 
-針對下列原因，您可能希望連接虛擬網路：
+您可以遵循原因 hello tooconnect 虛擬網路：
 
 * **跨區域的異地備援和異地目前狀態**
 
   * 您可以使用安全連線設定自己的異地複寫或同步處理，而不用查看網際網路對向端點。
-  * 您可以使用 Azure 流量管理員和負載平衡器，利用異地備援跨多個 Azure 區域設定高度可用的工作負載。 其中一個重要的範例就是使用分散在多個 Azure 區域的可用性群組來設定 SQL Always On。
+  * 您可以使用 Azure 流量管理員和負載平衡器，利用異地備援跨多個 Azure 區域設定高度可用的工作負載。 重要的一個例子是 tooset 設定 SQL Always On 與分配到多個 Azure 區域的可用性群組。
 * **具有隔離或管理界限的區域性多層式應用程式**
 
-  * 在相同區域中，您可以因為隔離或管理需求，設定將多層式應用程式與多個虛擬網路連線在一起。
+  * 在 hello 相同區域中，您可以設定多層應用程式與多個虛擬網路連接在一起，因為 tooisolation 或系統管理需求。
 
-如需 VNet 對 VNet 連線的詳細資訊，請參閱本文結尾處的 [VNet 對 VNet 常見問題集](#faq) 。
+如需 VNet 對 VNet 連線的詳細資訊，請參閱 hello [VNet 對 VNet 常見問題集](#faq)hello 本文結尾處。
 
 ## <a name="which-set-of-steps-should-i-use"></a>我應該使用哪個步驟集？
 
-在本文中，您會看到兩組不同的步驟。 一組步驟適用於[位於相同訂用帳戶中的 VNet](#samesub)，而另一組步驟則適用於[位於不同訂用帳戶中的 VNet](#difsub)。 兩組之間的主要差異在於您是否可以在相同的 PowerShell 工作階段內建立和設定所有的虛擬網路和閘道資源。
+在本文中，您會看到兩組不同的步驟。 一組步驟[Vnet 中的 hello 相同訂用帳戶](#samesub)，而另一個用於[位於不同的訂用帳戶中的 Vnet](#difsub)。 hello hello 組之間的主要差異是您可以在建立及設定中的所有虛擬網路和閘道資源 hello 同一個 PowerShell 工作階段。
 
-本文中的步驟會使用在每個區段開頭宣告的變數。 如果您已經使用現有的 VNet，請修改變數，以在自己的環境中反映設定。 如果您想要了解虛擬網路的名稱解析，請參閱[名稱解析](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)。
+hello 本文章中的步驟使用會在每個區段的 hello 開頭宣告的變數。 如果您已經使用現有的 Vnet，修改 hello 變數 tooreflect hello 中設定您自己的環境。 如果您想要了解虛擬網路的名稱解析，請參閱[名稱解析](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)。
 
-## <a name="samesub"></a>如何連接相同訂用帳戶中的 VNet
+## <a name="samesub"></a>如何 tooconnect Vnet 處於 hello 相同訂用帳戶
 
 ![v2v 圖表](./media/vpn-gateway-vnet-vnet-rm-ps/v2vrmps.png)
 
 ### <a name="before-you-begin"></a>開始之前
 
-開始之前，您必須安裝最新版的 Azure Resource Manager PowerShell Cmdlet (至少 4.0 或更新版本)。 如需如何安裝 PowerShell Cmdlet 的詳細資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azure/overview) 。
+在開始之前，您需要 tooinstall hello 最新版本的 hello Azure 資源管理員 PowerShell cmdlet，至少 4.0 或更新版本。 如需安裝 hello PowerShell cmdlet 的詳細資訊，請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。
 
 ### <a name="Step1"></a>步驟 1 - 規劃 IP 位址範圍
 
-在下列步驟中，我們會建立兩個虛擬網路，以及它們各自的閘道子網路和組態。 接著建立這兩個 VNet 之間的 VPN 連線。 請務必規劃您的網路組態的 IP 位址範圍。 請記住，您必須先確定您的 VNet 範圍或區域網路範圍沒有以任何方式重疊。 在這些範例中，我們不會包含 DNS 伺服器。 如果您想要了解虛擬網路的名稱解析，請參閱[名稱解析](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)。
+在 hello 下列步驟，我們會建立兩個虛擬網路，以及其個別的閘道子網路和設定。 我們再建立 hello 之間的 VPN 連線兩個 Vnet。 它是您的網路設定的重要 tooplan hello IP 位址範圍。 請記住，您必須先確定您的 VNet 範圍或區域網路範圍沒有以任何方式重疊。 在這些範例中，我們不會包含 DNS 伺服器。 如果您想要了解虛擬網路的名稱解析，請參閱[名稱解析](../virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances.md)。
 
-我們會在範例中使用下列值：
+我們使用下列值 hello 範例中的 hello:
 
 **TestVNet1 的值︰**
 
@@ -111,7 +111,7 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="Step2"></a>步驟 2 - 建立及設定 TestVNet1
 
-1. 宣告變數。 下列範例會使用此練習中的值來宣告變數。 在大部分的情況下，您應將值取代為您自己的值。 不過，若您執行這些步驟是為了熟悉此類型的設定，則可以使用這些變數。 視需要修改變數，然後將其複製並貼到您的 PowerShell 主控台中。
+1. 宣告變數。 這個範例會宣告 hello 針對此練習使用 hello 值的變數。 在大部分情況下，您應該 hello 值取代您自己。 不過，您可以使用這些變數，如果您正在透過 hello 步驟 toobecome 熟悉這種類型的組態。 修改 hello 變數，如有需要然後複製並貼至 PowerShell 主控台。
 
   ```powershell
   $Sub1 = "Replace_With_Your_Subcription_Name"
@@ -133,19 +133,19 @@ ms.lasthandoff: 08/03/2017
   $Connection15 = "VNet1toVNet5"
   ```
 
-2. 連線至您的帳戶。 使用下列範例來協助您連接：
+2. Tooyour 帳戶連接。 使用下列範例 toohelp 您連接的 hello:
 
   ```powershell
   Login-AzureRmAccount
   ```
 
-  檢查帳戶的訂用帳戶。
+  請檢查 hello hello 帳戶的訂用帳戶。
 
   ```powershell
   Get-AzureRmSubscription
   ```
 
-  指定您要使用的訂用帳戶。
+  指定您想 toouse hello 訂用帳戶。
 
   ```powershell
   Select-AzureRmSubscription -SubscriptionName $Sub1
@@ -155,9 +155,9 @@ ms.lasthandoff: 08/03/2017
   ```powershell
   New-AzureRmResourceGroup -Name $RG1 -Location $Location1
   ```
-4. 建立 TestVNet1 的子網路設定。 此範例會建立一個名為 TestVNet1 的虛擬網路和三個子網路：一個名為 GatewaySubnet、一個名為 FrontEnd，另一個名為 Backend。 替代值時，務必一律將您的閘道子網路特定命名為 GatewaySubnet。 如果您將其命名為其他名稱，閘道建立會失敗。
+4. 建立 hello TestVNet1 的子網路組態。 此範例會建立一個名為 TestVNet1 的虛擬網路和三個子網路：一個名為 GatewaySubnet、一個名為 FrontEnd，另一個名為 Backend。 替代值時，務必一律將您的閘道子網路特定命名為 GatewaySubnet。 如果您將其命名為其他名稱，閘道建立會失敗。
 
-  下列範例會使用您先前設定的變數。 在此範例中，閘道子網路使用 /27。 雖然您可以建立小至 /29 的閘道子網路，我們建議您選取至少 /28 或 /27，建立包含更多位址的較大子網路。 這將允許足夠的位址，以容納您未來可能需要的其他組態。
+  hello 下列範例會使用您先前設定的 hello 變數。 在此範例中，使用 /27 hello 閘道子網路。 雖然可能 toocreate 閘道子網路為/29，我們建議您建立較大的子網路選取至少是/28 或 /27 包含多個位址。 這可讓足夠位址 tooaccommodate 可能其他組態，您可能想在 hello 未來。
 
   ```powershell
   $fesub1 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName1 -AddressPrefix $FESubPrefix1
@@ -170,13 +170,13 @@ ms.lasthandoff: 08/03/2017
   New-AzureRmVirtualNetwork -Name $VNetName1 -ResourceGroupName $RG1 `
   -Location $Location1 -AddressPrefix $VNetPrefix11,$VNetPrefix12 -Subnet $fesub1,$besub1,$gwsub1
   ```
-6. 要求一個公用 IP 位址，以配置給您將建立給 VNet 使用的閘道。 請注意，AllocationMethod 是動態的。 您無法指定想要使用的 IP 位址。 該 IP 位址會以動態方式配置給您的閘道。 
+6. 要求的公用 IP 位址 toobe 配置的 toohello 閘道您將建立您的 VNet。 請注意該 hello AllocationMethod 是動態。 您無法指定您想 toouse hello IP 位址。 它是動態配置的 tooyour 閘道。 
 
   ```powershell
   $gwpip1 = New-AzureRmPublicIpAddress -Name $GWIPName1 -ResourceGroupName $RG1 `
   -Location $Location1 -AllocationMethod Dynamic
   ```
-7. 建立閘道組態。 閘道器組態定義要使用的子網路和公用 IP 位址。 使用下列範例來建立閘道組態。
+7. 建立 hello 閘道設定。 hello 閘道組態會定義 hello 子網路和公用 IP 位址 toouse hello。 使用 hello 範例 toocreate 閘道設定。
 
   ```powershell
   $vnet1 = Get-AzureRmVirtualNetwork -Name $VNetName1 -ResourceGroupName $RG1
@@ -184,7 +184,7 @@ ms.lasthandoff: 08/03/2017
   $gwipconf1 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName1 `
   -Subnet $subnet1 -PublicIpAddress $gwpip1
   ```
-8. 建立 TestVNet1 的閘道。 在此步驟中，您會建立 TestVNet1 的虛擬網路閘道。 VNet 對 VNet 組態需要 RouteBased VpnType。 建立閘道通常可能需要 45 分鐘或更久，視選取的閘道 SKU 而定。
+8. 建立 TestVNet1 hello 閘道。 在此步驟中，您建立您 TestVNet1 hello 虛擬網路閘道。 VNet 對 VNet 組態需要 RouteBased VpnType。 建立閘道可以通常要花費 45 分鐘以上，視 hello 選取的閘道 SKU。
 
   ```powershell
   New-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1 `
@@ -194,9 +194,9 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="step-3---create-and-configure-testvnet4"></a>步驟 3 - 建立及設定 TestVNet4
 
-設定 TestVNet1 後，請建立 TestVNet4。 遵循下方步驟，視需要替換成您自己的值。 此步驟可以在相同的 PowerShell 工作階段中完成，因為其位於相同的訂用帳戶中。
+設定 TestVNet1 後，請建立 TestVNet4。 請遵循下面取代您自己時所需 hello 值 hello 步驟。 此步驟即可 hello 內相同的 PowerShell 工作階段因為它處於 hello 相同訂用帳戶。
 
-1. 宣告變數。 請務必使用您想用於設定的值來取代該值。
+1. 宣告變數。 為確定 tooreplace 以 hello 的 hello 值的 toouse 您的組態。
 
   ```powershell
   $RG4 = "TestRG4"
@@ -220,7 +220,7 @@ ms.lasthandoff: 08/03/2017
   ```powershell
   New-AzureRmResourceGroup -Name $RG4 -Location $Location4
   ```
-3. 建立 TestVNet4 的子網路設定。
+3. 建立 hello TestVNet4 的子網路組態。
 
   ```powershell
   $fesub4 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName4 -AddressPrefix $FESubPrefix4
@@ -239,14 +239,14 @@ ms.lasthandoff: 08/03/2017
   $gwpip4 = New-AzureRmPublicIpAddress -Name $GWIPName4 -ResourceGroupName $RG4 `
   -Location $Location4 -AllocationMethod Dynamic
   ```
-6. 建立閘道組態。
+6. 建立 hello 閘道設定。
 
   ```powershell
   $vnet4 = Get-AzureRmVirtualNetwork -Name $VnetName4 -ResourceGroupName $RG4
   $subnet4 = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet4
   $gwipconf4 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName4 -Subnet $subnet4 -PublicIpAddress $gwpip4
   ```
-7. 建立 TestVNet4 閘道。 建立閘道通常可能需要 45 分鐘或更久，視選取的閘道 SKU 而定。
+7. 建立 hello TestVNet4 閘道。 建立閘道可以通常要花費 45 分鐘以上，視 hello 選取的閘道 SKU。
 
   ```powershell
   New-AzureRmVirtualNetworkGateway -Name $GWName4 -ResourceGroupName $RG4 `
@@ -254,43 +254,43 @@ ms.lasthandoff: 08/03/2017
   -VpnType RouteBased -GatewaySku VpnGw1
   ```
 
-### <a name="step-4---create-the-connections"></a>步驟 4 - 建立連線
+### <a name="step-4---create-hello-connections"></a>步驟 4-建立 hello 連線
 
-1. 取得這兩個虛擬網路閘道。 如果這兩個閘道皆位於相同的訂用帳戶中 (如同其在此範例中)，您可以在相同的 PowerShell 工作階段中完成此步驟。
+1. 取得這兩個虛擬網路閘道。 如果 hello 閘道 hello 中都相同的訂用帳戶，和它們在 hello 範例中，您可以完成此步驟在 hello 同一個 PowerShell 工作階段。
 
   ```powershell
   $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
   $vnet4gw = Get-AzureRmVirtualNetworkGateway -Name $GWName4 -ResourceGroupName $RG4
   ```
-2. 建立 TestVNet1 至 TestVNet4 的連線。 在此步驟中，您會從 TestVNet1 建立連線至 TestVNet4。 您會看到範例使用共用金鑰。 您可以使用自己的值，作為共用金鑰。 但請務必確認該共用金鑰必須適用於這兩個連線。 建立連線可能需要一段時間才能完成。
+2. 建立 hello TestVNet1 tooTestVNet4 連線。 在此步驟中，您會從 TestVNet1 tooTestVNet4 建立 hello 連線。 您會看見 hello 範例中所參考的共用的金鑰。 您可以使用您自己的值為 hello 共用金鑰。 hello 很重要的是該 hello 共用的金鑰必須符合這兩個連接。 建立連接，可能會同時 toocomplete 短。
 
   ```powershell
   New-AzureRmVirtualNetworkGatewayConnection -Name $Connection14 -ResourceGroupName $RG1 `
   -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet4gw -Location $Location1 `
   -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3'
   ```
-3. 建立 TestVNet4 至 TestVNet1 的連線。 此步驟類似上面的步驟，只不過您是建立 TestVNet4 至 TestVNet1 的連線。 請確認共用的金鑰相符。 稍候幾分鐘就會建立連線。
+3. 建立 hello TestVNet4 tooTestVNet1 連線。 除了您要建立 hello 連線從 TestVNet4 tooTestVNet1 類似 toohello 一個以上版本，則此步驟。 請確定 hello 共用金鑰相符。 幾分鐘後，就會建立 hello 連線。
 
   ```powershell
   New-AzureRmVirtualNetworkGatewayConnection -Name $Connection41 -ResourceGroupName $RG4 `
   -VirtualNetworkGateway1 $vnet4gw -VirtualNetworkGateway2 $vnet1gw -Location $Location4 `
   -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3'
   ```
-4. 確認您的連線。 請參閱 [如何驗證您的連線](#verify)一節。
+4. 確認您的連線。 請參閱 hello 節[如何 tooverify 連線](#verify)。
 
-## <a name="difsub"></a>如何連接不同訂用帳戶中的 VNet
+## <a name="difsub"></a>如何 tooconnect Vnet 位於不同的訂用帳戶
 
 ![v2v 圖表](./media/vpn-gateway-vnet-vnet-rm-ps/v2vdiffsub.png)
 
-在此案例中，我們會連接 TestVNet1 和 TestVNet5。 TestVNet1 和 TestVNet5 位於不同的訂用帳戶中。 訂用帳戶不需與相同的 Active Directory 租用戶相關聯。 這些步驟與前一組步驟的差別在於，第二個訂用帳戶的內容中有些設定步驟需在不同的 PowerShell 工作階段中執行。 尤其是當兩個訂用帳戶分屬不同的組織時。
+在此案例中，我們會連接 TestVNet1 和 TestVNet5。 TestVNet1 和 TestVNet5 位於不同的訂用帳戶中。 hello 訂用帳戶不需要與 hello 相關聯的 toobe 相同的 Active Directory 租用戶。 這些步驟與 hello 先前設定的 hello 差異是部分 hello 組態步驟需要 toobe hello 第二個訂閱 hello 內容中的個別 PowerShell 工作階段中執行。 特別是當 hello 兩個訂用帳戶屬於 toodifferent 組織。
 
 ### <a name="step-5---create-and-configure-testvnet1"></a>步驟 5 - 建立及設定 TestVNet1
 
-您必須完成前一節的[步驟 1](#Step1) 和[步驟 2](#Step2)，以建立並設定 TestVNet1 和 TestVNet1 的 VPN 閘道。 在此設定中，您不需要建立前一節的 TestVNet4 ，雖然您若建立它，它就不與這些步驟發生衝突。 完成步驟 1 和步驟 2 後，繼續進行步驟 6 以建立 TestVNet5。 
+您必須先完成[步驟 1](#Step1)和[步驟 2](#Step2) hello 先前從區段 toocreate 並設定 TestVNet1 hello TestVNet1 VPN 閘道。 此組態中，您不需要的 toocreate TestVNet4 hello 前一節，雖然如果您建立它，它不會衝突進行這些步驟。 一旦您完成步驟 1 和步驟 2，繼續進行步驟 6 toocreate TestVNet5。 
 
-### <a name="step-6---verify-the-ip-address-ranges"></a>步驟 6 - 驗證 IP 位址範圍
+### <a name="step-6---verify-hello-ip-address-ranges"></a>步驟 6-確認 hello IP 位址範圍
 
-請務必確定新虛擬網路的 IP 位址空間 TestVNet5 不會與任何 VNet 範圍或區域網路閘道範圍重疊。 在此範例中，虛擬網路可能屬於不同的組織。 在這個練習中，您可以對 TestVNet5 使用下列的值：
+它是重要 toomake 確定 hello 新的虛擬網路，TestVNet5，hello IP 位址空間不與任何 VNet 範圍或區域網路閘道的範圍重疊。 在此範例中，hello 虛擬網路可能屬於 toodifferent 組織。 針對此練習，您可以使用下列值 hello TestVNet5 hello:
 
 **TestVNet5 的值︰**
 
@@ -309,9 +309,9 @@ ms.lasthandoff: 08/03/2017
 
 ### <a name="step-7---create-and-configure-testvnet5"></a>步驟 7 - 建立及設定 TestVNet5
 
-在新訂用帳戶的內容中，必須完成這個步驟。 此部分可能會由不同組織中擁有訂用帳戶的系統管理員執行。
+Hello hello 新訂用帳戶內容中，必須完成此步驟。 此組件可能會由擁有 hello 訂用帳戶的另一個組織中的 hello 系統管理員執行。
 
-1. 宣告變數。 請務必使用您想用於設定的值來取代該值。
+1. 宣告變數。 為確定 tooreplace 以 hello 的 hello 值的 toouse 您的組態。
 
   ```powershell
   $Sub5 = "Replace_With_the_New_Subcription_Name"
@@ -331,19 +331,19 @@ ms.lasthandoff: 08/03/2017
   $GWIPconfName5 = "gwipconf5"
   $Connection51 = "VNet5toVNet1"
   ```
-2. 連線到訂用帳戶 5。 開啟 PowerShell 主控台並連接到您的帳戶。 使用下列範例來協助您連接：
+2. 連接 toosubscription 5。 開啟 PowerShell 主控台並連接 tooyour 帳戶。 使用下列範例 toohelp 您連接的 hello:
 
   ```powershell
   Login-AzureRmAccount
   ```
 
-  檢查帳戶的訂用帳戶。
+  請檢查 hello hello 帳戶的訂用帳戶。
 
   ```powershell
   Get-AzureRmSubscription
   ```
 
-  指定您要使用的訂用帳戶。
+  指定您想 toouse hello 訂用帳戶。
 
   ```powershell
   Select-AzureRmSubscription -SubscriptionName $Sub5
@@ -353,7 +353,7 @@ ms.lasthandoff: 08/03/2017
   ```powershell
   New-AzureRmResourceGroup -Name $RG5 -Location $Location5
   ```
-4. 建立 TestVNet5 的子網路設定。
+4. 建立 hello TestVNet5 的子網路組態。
 
   ```powershell
   $fesub5 = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName5 -AddressPrefix $FESubPrefix5
@@ -372,38 +372,38 @@ ms.lasthandoff: 08/03/2017
   $gwpip5 = New-AzureRmPublicIpAddress -Name $GWIPName5 -ResourceGroupName $RG5 `
   -Location $Location5 -AllocationMethod Dynamic
   ```
-7. 建立閘道組態。
+7. 建立 hello 閘道設定。
 
   ```powershell
   $vnet5 = Get-AzureRmVirtualNetwork -Name $VnetName5 -ResourceGroupName $RG5
   $subnet5  = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet5
   $gwipconf5 = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPconfName5 -Subnet $subnet5 -PublicIpAddress $gwpip5
   ```
-8. 建立 TestVNet5 閘道。
+8. 建立 hello TestVNet5 閘道。
 
   ```powershell
   New-AzureRmVirtualNetworkGateway -Name $GWName5 -ResourceGroupName $RG5 -Location $Location5 `
   -IpConfigurations $gwipconf5 -GatewayType Vpn -VpnType RouteBased -GatewaySku VpnGw1
   ```
 
-### <a name="step-8---create-the-connections"></a>步驟 8 - 建立連線
+### <a name="step-8---create-hello-connections"></a>步驟 8-建立 hello 連線
 
-在此範例中，因為閘道會在不同的訂用帳戶中，所以我們已將此步驟分作兩個 PowerShell 工作階段，其標示為 [訂用帳戶 1] 和 [訂用帳戶 5]。
+在此範例中，因為 hello 閘道在 hello 不同訂用帳戶，我們已分割此步驟中兩個 PowerShell 工作階段標示為 [訂用帳戶 1] 和 [訂用帳戶 5]。
 
-1. **[訂用帳戶 1]** 取得訂用帳戶 1 的虛擬網路閘道。 先登入並連線至訂用帳戶 1，再執行下列範例︰
+1. **[訂用帳戶 1]**訂用帳戶 1 的 get hello 虛擬網路閘道。 登入，然後再執行下列範例中的 hello 連接 tooSubscription 1:
 
   ```powershell
   $vnet1gw = Get-AzureRmVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
   ```
 
-  複製下列項目的輸出，並透過電子郵件或其他方法將其傳送到訂用帳戶 5 的系統管理員。
+  複製下列項目 hello hello 輸出，並傳送訂用帳戶 5 這些 toohello 系統管理員，透過電子郵件或其他方法。
 
   ```powershell
   $vnet1gw.Name
   $vnet1gw.Id
   ```
 
-  這兩個元素的值會類似下列範例的輸出︰
+  這兩個元素會有值類似 toohello 下列範例輸出：
 
   ```
   PS D:\> $vnet1gw.Name
@@ -411,20 +411,20 @@ ms.lasthandoff: 08/03/2017
   PS D:\> $vnet1gw.Id
   /subscriptions/b636ca99-6f88-4df4-a7c3-2f8dc4545509/resourceGroupsTestRG1/providers/Microsoft.Network/virtualNetworkGateways/VNet1GW
   ```
-2. **[訂用帳戶 5]** 取得訂用帳戶 5 的虛擬網路閘道。 先登入並連線至訂用帳戶 5，再執行下列範例︰
+2. **[訂用帳戶 5]**訂用帳戶 5 get hello 虛擬網路閘道。 登入，然後再執行下列範例中的 hello 連接 tooSubscription 5:
 
   ```powershell
   $vnet5gw = Get-AzureRmVirtualNetworkGateway -Name $GWName5 -ResourceGroupName $RG5
   ```
 
-  複製下列項目的輸出，並透過電子郵件或其他方法將其傳送到訂用帳戶 1 的系統管理員。
+  複製下列項目 hello hello 輸出，並傳送訂用帳戶 1 這些 toohello 系統管理員，透過電子郵件或其他方法。
 
   ```powershell
   $vnet5gw.Name
   $vnet5gw.Id
   ```
 
-  這兩個元素的值會類似下列範例的輸出︰
+  這兩個元素會有值類似 toohello 下列範例輸出：
 
   ```
   PS C:\> $vnet5gw.Name
@@ -432,9 +432,9 @@ ms.lasthandoff: 08/03/2017
   PS C:\> $vnet5gw.Id
   /subscriptions/66c8e4f1-ecd6-47ed-9de7-7e530de23994/resourceGroups/TestRG5/providers/Microsoft.Network/virtualNetworkGateways/VNet5GW
   ```
-3. **[訂用帳戶 1]** 建立 TestVNet1 至 TestVNet5 的連線。 在此步驟中，您會從 TestVNet1 建立連線至 TestVNet5。 此處的差別為直接取得 $vnet5gw，因為其位於不同的訂用帳戶中。 您必須使用上述步驟中從訂用帳戶 1 通訊的值來建立新的 PowerShell 物件。 請使用下方的範例。 以您自己的值來取代名稱、識別碼和共用金鑰。 但請務必確認該共用金鑰必須適用於這兩個連線。 建立連線可能需要一段時間才能完成。
+3. **[訂用帳戶 1]**建立 hello TestVNet1 tooTestVNet5 連線。 在此步驟中，您會從 TestVNet1 tooTestVNet5 建立 hello 連線。 這裡的 hello 差異是因為它是不同的訂用帳戶中的 $vnet5gw 也無法直接取得。 您將需要 toocreate 新的 PowerShell 物件的 hello hello 前面步驟中，用以表示從訂用帳戶 1 的值。 使用下列的 hello 範例。 取代您自己的值為 hello 名稱、 識別碼和共用的金鑰。 hello 很重要的是該 hello 共用的金鑰必須符合這兩個連接。 建立連接，可能會同時 toocomplete 短。
 
-  先連線至訂用帳戶 1，再執行下列範例︰
+  連接 tooSubscription 1，才能執行下列範例中的 hello:
 
   ```powershell
   $vnet5gw = New-Object Microsoft.Azure.Commands.Network.Models.PSVirtualNetworkGateway
@@ -443,9 +443,9 @@ ms.lasthandoff: 08/03/2017
   $Connection15 = "VNet1toVNet5"
   New-AzureRmVirtualNetworkGatewayConnection -Name $Connection15 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet5gw -Location $Location1 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3'
   ```
-4. **[訂用帳戶 5]** 建立 TestVNet5 至 TestVNet1 的連線。 此步驟類似上面的步驟，只不過您是建立 TestVNet5 至 TestVNet1 的連線。 針對基於從訂用帳戶 1 所取得的值來建立 PowerShell 物件，該程序也適用於此處。 在此步驟中，請確認共用金鑰相符。
+4. **[訂用帳戶 5]**建立 hello TestVNet5 tooTestVNet1 連線。 除了您要建立 hello 連線從 TestVNet5 tooTestVNet1 類似 toohello 一個以上版本，則此步驟。 建立根據 hello 值取自訂用帳戶 1 的 PowerShell 物件的相同程序也適用於此處也 hello。 在此步驟中，請確定 hello 共用索引鍵的符合。
 
-  先連線至訂用帳戶 5，再執行下列範例︰
+  連接 tooSubscription 5，才能執行下列範例中的 hello:
 
   ```powershell
   $vnet1gw = New-Object Microsoft.Azure.Commands.Network.Models.PSVirtualNetworkGateway
@@ -454,7 +454,7 @@ ms.lasthandoff: 08/03/2017
   New-AzureRmVirtualNetworkGatewayConnection -Name $Connection51 -ResourceGroupName $RG5 -VirtualNetworkGateway1 $vnet5gw -VirtualNetworkGateway2 $vnet1gw -Location $Location5 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3'
   ```
 
-## <a name="verify"></a>驗證連線
+## <a name="verify"></a>如何 tooverify 連接
 
 [!INCLUDE [vpn-gateway-no-nsg-include](../../includes/vpn-gateway-no-nsg-include.md)]
 
@@ -466,5 +466,5 @@ ms.lasthandoff: 08/03/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-* 一旦完成您的連接，就可以將虛擬機器加入您的虛擬網路。 如需詳細資訊，請參閱 [虛擬機器文件](https://docs.microsoft.com/azure/#pivot=services&panel=Compute) 。
-* 如需 BGP 的相關資訊，請參閱 [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何設定 BGP](vpn-gateway-bgp-resource-manager-ps.md)。
+* 一旦完成您的連線，您可以將虛擬機器 tooyour 虛擬網路。 請參閱 hello[虛擬機器文件](https://docs.microsoft.com/azure/#pivot=services&panel=Compute)如需詳細資訊。
+* BGP 的相關資訊，請參閱 hello [BGP 概觀](vpn-gateway-bgp-overview.md)和[如何 tooconfigure BGP](vpn-gateway-bgp-resource-manager-ps.md)。

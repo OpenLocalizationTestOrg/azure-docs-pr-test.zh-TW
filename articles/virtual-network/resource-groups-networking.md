@@ -1,6 +1,6 @@
 ---
-title: "網路資源提供者概觀 | Microsoft Docs"
-description: "深入了解 Azure 資源管理員中新的網路資源提供者"
+title: "aaaNetwork 資源提供者概觀 |Microsoft 文件"
+description: "深入了解 hello 新的網路資源提供者在 「 Azure 資源管理員"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
-ms.openlocfilehash: 2428c707ddeed281fddd1e57bc5574603f0b9b1c
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 81b8f51fe8ee180d8f7885c6e04eb953904d7be5
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="network-resource-provider"></a>網路資源提供者
-現今企業成功的基礎是可以使用靈活、具彈性、安全且可重複的方式來建置和管理大規模網路感知應用程式。 Azure Resource Manager 可讓您以資源群組中單一資源集合的形式，建立這類應用程式。 管理這類資源時，是透過 Resource Manager 底下的各種資源提供者進行管理。
+支柱需要在今天的商務成就，是 hello 能力 toobuild 和敏捷式軟體開發、 彈性、 安全和可重複的方式來管理大規模的網路應用程式。 Azure 資源管理員可讓您 toocreate 這類應用程式，當做單一集合的資源群組中的資源。 管理這類資源時，是透過 Resource Manager 底下的各種資源提供者進行管理。
 
-Azure 資源管理員會仰賴不同的資源提供者來提供資源的存取權。 有三個主要的資源提供者：網路、儲存體和運算。 本文件討論網路資源提供者的特性和優點，包括：
+Azure 資源管理員必須使用不同的資源提供者 tooprovide 存取 tooyour 資源。 有三個主要的資源提供者：網路、儲存體和運算。 本文將討論 hello 特性和 hello 網路的資源提供者的優點包括：
 
-* **中繼資料** - 您可以使用標記新增資源的資訊。 這些標記可以用來追蹤資源群組和訂用帳戶中的資源使用。
-* **更進一步控制網路** - 網路資源是進行鬆散偶合，而您可以更精密地控制它們。 這表示可以更彈性地管理網路資源。
+* **中繼資料**– 您可以新增資訊 tooresources 使用標記。 這些標記也有使用的 tootrack 資源使用量的資源群組和訂閱。
+* **更進一步控制網路** - 網路資源是進行鬆散偶合，而您可以更精密地控制它們。 這表示您可以更靈活地管理 hello 網路資源。
 * **設定更快速** - 因為網路資源是進行鬆散偶合，所以您可以平行建立並協調網路資源。 這已經大幅減少設定時間。
-* **角色型存取控制** - 除了允許建立自訂角色進行安全管理之外，RBAC 還提供具有特定安全性範圍的預設角色。
-* **更易於管理和部署** - 更容易部署和管理應用程式，因為您可以建立整個應用程式堆疊做為資源群組中的單一資源集合。 而且可以更快速地部署，因為只要提供範本 JSON 裝載即可進行部署。
-* **快速自訂** - 您可以使用宣告樣式範本進行可重複且快速自訂的部署。
-* **可重複自訂** - 您可以使用宣告樣式範本進行可重複且快速自訂的部署。
-* **管理介面** - 您可以使用任何下列任一介面來管理您的資源：
+* **Role Based Access Control** -RBAC 提供預設的角色，與特定安全性範圍，在加法 tooallowing hello 建立自訂的角色，安全管理。
+* **更容易管理和部署**-它是更容易 toodeploy 和管理應用程式，因為您可以可以當做單一集合的資源群組中的資源建立整個應用程式堆疊。 和更快的 toodeploy，因為您可以部署只提供範本的 JSON 裝載。
+* **快速自訂**-您可以使用宣告式樣式範本 tooenable 可重複且快速自訂部署。
+* **可重複自訂**-您可以使用宣告式樣式範本 tooenable 可重複且快速自訂部署。
+* **管理介面**-您可以使用任何下列介面 toomanage hello 資源：
   * REST 型 API
   * PowerShell
   * .NET SDK
@@ -49,15 +49,15 @@ Azure 資源管理員會仰賴不同的資源提供者來提供資源的存取�
 
 ![網路資源模型](./media/resource-groups-networking/Figure2.png)
 
-每項資源均包含一組通用屬性，以及其個別的屬性集。 通用屬性包括：
+每項資源均包含一組通用屬性，以及其個別的屬性集。 hello 的通用屬性包括：
 
 | 屬性 | 說明 | 範例值 |
 | --- | --- | --- |
 | **name** |唯一的資源名稱。 每個資源類型都有自己的命名限制。 |PIP01、VM01、NIC01 |
-| **位置** |資源所在的 Azure 區域 |westus、eastus |
+| **位置** |Azure 中的 hello 資源所在的區域 |westus、eastus |
 | **id** |唯一的 URI 型識別 |/subscriptions/<subGUID>/resourceGroups/TestRG/providers/Microsoft.Network/publicIPAddresses/TestPIP |
 
-您可以在下列各節中查看資源的個別屬性。
+您可以檢查 hello 個別 hello 的以下各節中的資源屬性。
 
 [!INCLUDE [virtual-networks-nrp-pip-include](../../includes/virtual-networks-nrp-pip-include.md)]
 
@@ -85,26 +85,26 @@ Azure 資源管理員會仰賴不同的資源提供者來提供資源的存取�
 ### <a name="rest-api"></a>REST API
 如前所述，網路資源可以透過各種介面進行管理，包括 REST API、.NET SDK、Node.JS SDK、Java SDK、PowerShell、CLI、Azure 入口網站和範本。
 
-Rest API 符合 HTTP 1.1 通訊協定規格。 API 的一般 URI 結構顯示如下：
+hello Rest API 的符合 toohello HTTP 1.1 通訊協定規格。 下列顯示 hello 一般 URI 結構 hello API:
 
     https://management.azure.com/subscriptions/{subscription-id}/providers/{resource-provider-namespace}/locations/{region-location}/register?api-version={api-version}
 
-而以大括弧括住的參數代表下列元素：
+和大括號中的 hello 參數代表 hello 下列項目：
 
 * **subscription-id** - Azure 訂用帳戶識別碼。
-* **resource-provider-namespace** - 正在使用之提供者的命名空間。 網路資源提供者的值是 *Microsoft.Network*。
-* **region-name** - Azure 區域名稱
+* **資源提供者命名空間**-hello 所使用的提供者的命名空間。 hello hello 網路資源提供者的值是*Microsoft.Network*。
+* **區域名稱**-hello Azure 區域名稱
 
-呼叫 REST API 時，支援下列 HTTP 方法：
+hello HTTP 支援下列方法進行呼叫 toohello REST API 時：
 
-* **PUT** - 用來建立所指定類型的資源、修改資源屬性，或變更資源之間的關聯。
-* **GET** - 用來擷取已佈建資源的資訊。
-* **DELETE** - 用來刪除現有資源。
+* **PUT** -用 toocreate 指定類型的資源會修改資源屬性，或變更資源之間的關聯。
+* **取得**-tooretrieve 資訊用於佈建的資源。
+* **刪除**-使用 toodelete 現有的資源。
 
-要求和回應都符合 JSON 裝載格式。 如需詳細資料，請參閱 [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)。
+Hello 要求和回應符合 tooa JSON 裝載格式。 如需詳細資料，請參閱 [Azure 資源管理 API](https://msdn.microsoft.com/library/azure/dn948464.aspx)。
 
 ### <a name="resource-manager-template-language"></a>Resource Manager 範本語言
-除了以命令方式 (透過 API 或 SDK) 管理資源之外，藉由使用「Resource Manager 範本語言」，您還可以使用宣告式程式設計樣式來建置和管理網路資源。
+在加法 toomanaging 資源以命令方式 （透過應用程式開發介面或 SDK） 中，您也可以使用宣告式程式設計樣式 toobuild 和管理網路資源使用資源管理員範本語言 hello。
 
 範本的範例表示法提供如下 –
 
@@ -117,7 +117,7 @@ Rest API 符合 HTTP 1.1 通訊協定規格。 API 的一般 URI 結構顯示如
       "outputs": { <output-of-template> }    
     }
 
-範本主要是透過參數所插入之資源和執行個體值的 JSON 描述。 下列範例可以用來建立具有 2 個子網路的虛擬網路。
+hello 範本是主要的 JSON 描述 hello 資源和透過參數插入 hello 執行個體的值。 下列的 hello 範例可以使用的 toocreate 具有 2 的子網路的虛擬網路。
 
     {
         "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/VNET.json",
@@ -205,7 +205,7 @@ Rest API 符合 HTTP 1.1 通訊協定規格。 API 的一般 URI 結構顯示如
         ]
     }
 
-您可以選擇在使用範本時手動提供參數值，也可以使用參數檔案。 下列範例顯示一組可能的參數值以與上述範本搭配使用：
+您擁有 hello 選項時使用範本，以手動方式提供 hello 參數值，或者您可以使用參數檔案。 hello 下面範例會顯示一組可能的參數值 toobe 上述 hello 範本搭配使用：
 
     {
       "location": {
@@ -232,28 +232,28 @@ Rest API 符合 HTTP 1.1 通訊協定規格。 API 的一般 URI 結構顯示如
     }
 
 
-使用範本的主要優點如下：
+hello 的使用範本的主要優點包括：
 
-* 您可以透過宣告樣式在資源群組中建置複雜的基礎結構。 建立資源 (包括相依性管理) 時的協調是由 Resource Manager 負責。
-* 只要變更參數，即可透過可重複的方式在各種區域和某個區域內建立基礎結構。
-* 宣告樣式可讓建置範本以及推出基礎結構的前置時間變短。
+* 您可以透過宣告樣式在資源群組中建置複雜的基礎結構。 hello 建立 hello 資源，包括相依性管理的協調流程會處理由資源管理員。
+* hello 基礎結構可以建立可重複的方式在各個區域和區域內只要變更參數。
+* hello 宣告式方法會導致 tooshorter 前置重疊時間建置 hello 範本與推出 hello 基礎結構。
 
 如需範例範本，請參閱 [Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates)。
 
-如需有關「Resource Manager 範本語言」的詳細資訊，請參閱 [Azure Resource Manager 範本語言](../azure-resource-manager/resource-group-authoring-templates.md)。
+如需有關 hello 資源管理員範本語言的詳細資訊，請參閱[Azure 資源管理員範本語言](../azure-resource-manager/resource-group-authoring-templates.md)。
 
-上述範例範本使用虛擬網路和子網路資源。 下列是其他您可以使用的網路資源：
+hello 虛擬網路和子網路資源，則會使用上述的 hello 範例範本。 下列是其他您可以使用的網路資源：
 
 ### <a name="using-a-template"></a>使用範本
-您可以使用 PowerShell 或 AzureCLI 從範本部署服務到 Azure，或執行按一下動作來從 GitHub 部署。 若要在 GitHub 中從範本部署服務，請執行下列步驟：
+使用 PowerShell、 AzureCLI，或按一下 toodeploy 執行從 GitHub，您可以部署服務 tooAzure 從範本。 toodeploy 服務範本，以在 GitHub 中，執行下列步驟的 hello:
 
-1. 從 GitHub 開啟 template3 檔案。 在此範例中，請開啟 [具有兩個子網路的虛擬網路](https://github.com/Azure/azure-quickstart-templates/tree/master/101-virtual-network)。
-2. 按一下 [部署至 Azure] ，然後使用您的認證登入 Azure 入口網站。
-3. 驗證範本，然後按一下 [儲存] 。
-4. 按一下 [編輯參數] 並選取位置 (例如*美國西部 (West US)* 做為 vnet 和子網路。
-5. 如有必要，請變更 [ADDRESSPREFIX] 和 [SUBNETPREFIX] 參數，然後按一下 [確定]。
-6. 按一下 [選取資源群組]  ，然後按一下您想要對其新增 vnet 和子網路的資源群組。 或者，您可以按一下 [或建立新的] 來建立新的資源群組。
-7. 按一下 [建立] 。 請注意顯示 [佈建範本部署] 的磚。 完成部署之後，您將會看到類似下面所示的畫面。
+1. 從 GitHub 開啟 hello template3 檔案。 在此範例中，請開啟 [具有兩個子網路的虛擬網路](https://github.com/Azure/azure-quickstart-templates/tree/master/101-virtual-network)。
+2. 按一下**部署 tooAzure**，然後登入 toohello 在 Azure 入口網站使用您的認證。
+3. 確認 hello 範本，然後按一下**儲存**。
+4. 按一下**編輯參數**選取一個位置，例如*美國西部*、 hello vnet 和子網路。
+5. 如有必要，變更 hello **ADDRESSPREFIX**和**SUBNETPREFIX**參數，然後再按一下**確定**。
+6. 按一下**選取資源群組**，然後按一下您想 tooadd hello vnet 和子網路與 hello 資源群組。 或者，您可以按一下 [或建立新的] 來建立新的資源群組。
+7. 按一下 [建立] 。 請注意 hello 磚顯示**佈建的範本部署**。 一旦 hello 部署完成，您會看到以下畫面類似 tooone。
 
 ![範例範本部署](./media/resource-groups-networking/Figure6.png)
 

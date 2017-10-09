@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中控制路由和虛擬設備 - 範本 | Microsoft Docs"
-description: "深入了解如何使用 Azure Resource Manager 範本控制路由和虛擬應用裝置。"
+title: "在 Azure-aaaControl 路由和虛擬應用裝置範本 |Microsoft 文件"
+description: "深入了解如何使用 Azure Resource Manager 範本 toocontrol 路由和虛擬裝置。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
-ms.openlocfilehash: b2c962d5449d18b51cfd84b0e1992695b54d1c48
-ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
+ms.openlocfilehash: 781340593541784d2d9772d310c041ad4a5c3101
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 07/11/2017
+ms.lasthandoff: 10/06/2017
 ---
 # <a name="create-user-defined-routes-udr-using-a-template"></a>使用範本建立使用者定義的路由 (UDR)
 
@@ -31,14 +31,14 @@ ms.lasthandoff: 07/11/2017
 > * [CLI (傳統)](virtual-network-create-udr-classic-cli.md)
 
 > [!IMPORTANT]
-> 使用 Azure 資源之前，請務必了解 Azure 目前有 Azure Resource Manager 和「傳統」兩種部署模型。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-resource-manager/resource-manager-deployment-model.md) 。 您可以按一下本文頂端的索引標籤，檢視不同工具的文件。 本文涵蓋之內容包括資源管理員部署模型。 
+> 您可以使用 Azure 資源之前，它是 Azure 目前有兩種部署模型的重要 toounderstand: Azure 資源管理員] 和 [傳統。 在使用任何 Azure 資源之前，請先確認您了解 [部署模型和工具](../azure-resource-manager/resource-manager-deployment-model.md) 。 您可以按一下上方的這篇文章 hello hello 索引標籤檢視 hello 文件不同的工具。 本文涵蓋 hello Resource Manager 部署模型。 
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
 ## <a name="udr-resources-in-a-template-file"></a>範本檔案中的 UDR 資源
-您可以檢視和下載 [範例範本](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR)。
+您可以檢視和下載 hello[範例範本](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR)。
 
-以下段落顯示此案例的 **azuredeploy-vnet-nsg-udr.json** 檔案中前端 UDR 的定義：
+hello 下一節顯示 hello hello 定義在 hello 前端 UDR **azuredeploy vnet-nsg udr.json** hello 案例中的檔案：
 
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/routeTables",
@@ -59,7 +59,7 @@ ms.lasthandoff: 07/11/2017
         }
       ]
 
-若要建立 UDR 與前端子網路的關聯，您必須變更範本中的子網路定義，並使用 UDR 的參考識別碼。
+tooassociate hello UDR toohello 前端的子網路，您有在 hello 範本，並使用 hello 參考識別碼 hello UDR toochange hello 子網路定義。
 
     "subnets": [
         "name": "[parameters('frontEndSubnetName')]",
@@ -73,9 +73,9 @@ ms.lasthandoff: 07/11/2017
           }
         },
 
-請注意，在範本中已對後端 NSG 和後端子網路完成相同作業。
+請注意 hello 為 hello 後端 NSG 與 hello 後端子 hello 範本中進行相同。
 
-您也需要確定 **FW1** VM 已在將用來接收和轉送封包的 NIC 上的 IP 轉送屬性啟用。 下一節根據上述案例，顯示 azuredeploy-nsg-udr.json 檔案中 FW1 的 NIC 的定義。
+您也需要 tooensure 該 hello **FW1** VM 具有 hello IP 轉送 hello NIC，它會使用的 tooreceive 及轉寄封包上啟用的屬性。 hello 區段顯示 hello 定義 hello FW1 在 hello azuredeploy-nsg-udr.json 檔案中，根據上述的 hello 案例 NIC。
 
     "apiVersion": "2015-06-15",
     "type": "Microsoft.Network/networkInterfaces",
@@ -111,17 +111,17 @@ ms.lasthandoff: 07/11/2017
       "count": "[parameters('fwCount')]"
     }
 
-## <a name="deploy-the-template-by-using-click-to-deploy"></a>使用按一下即部署來部署範本
-公用儲存機制中可用的範例範本會使用一個包含預設值的參數檔案，這些預設值可用來產生上述案例。 若要使用「按一下即部署」來部署此範本，請依循[此連結](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR)，按一下 [部署至 Azure]，視情況取代預設參數值，再依循入口網站中的指示。
+## <a name="deploy-hello-template-by-using-click-toodeploy"></a>使用部署 hello 範本按一下 toodeploy
+hello 範例範本可用 hello 公用儲存機制中的會使用包含 hello 預設值使用 toogenerate hello 案例上面所述的參數檔案。 toodeploy 此範本使用按一下 toodeploy，遵循[此連結](https://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR)，按一下 **部署 tooAzure**、 取代 hello 預設參數值，如有必要，並遵循 hello 入口網站中的 hello 指示。
 
-1. 如果您從未用過 Azure PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) ，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
-2. 執行下列命令以建立資源群組：
+1. 如果您從未使用過 Azure PowerShell，請參閱[如何 tooInstall 和設定 Azure PowerShell](/powershell/azure/overview)並遵循 hello 指示所有 hello 方式 toohello 結束 toosign 至 Azure，然後選取您的訂用帳戶。
+2. 資源群組執行下列命令 toocreate hello:
 
     ```powershell
     New-AzureRmResourceGroup -Name TestRG -Location westus
     ```
 
-3. 執行下列命令來部署範本：
+3. 執行下列命令 toodeploy hello 範本 hello:
 
     ```powershell
     New-AzureRmResourceGroupDeployment -Name DeployUDR -ResourceGroupName TestRG `
@@ -171,22 +171,22 @@ ms.lasthandoff: 07/11/2017
 
         ResourceId        : /subscriptions/[Subscription Id]/resourceGroups/TestRG
 
-## <a name="deploy-the-template-by-using-the-azure-cli"></a>使用 Azure CLI 部署範本
+## <a name="deploy-hello-template-by-using-hello-azure-cli"></a>使用 Azure CLI hello 部署 hello 範本
 
-若要使用 Azure CLI 部署 ARM 範本，請完成下列步驟：
+使用 Azure CLI，完成下列步驟的 hello hello toodeploy hello ARM 範本：
 
-1. 如果您從未使用過 Azure CLI，請參閱 [安裝和設定 Azure CLI](../cli-install-nodejs.md) ，並依照指示進行，直到選取您的 Azure 帳戶和訂用帳戶為止。
-2. 執行下列命令切換至 Resource Manager 模式：
+1. 如果您從未使用過 Azure CLI，請參閱[安裝及設定 hello Azure CLI](../cli-install-nodejs.md)依照 hello 向上 toohello 點，選取您的 Azure 帳戶和訂用帳戶的指示進行。
+2. 執行下列命令 tooswitch tooResource 管理員模式的 hello:
 
     ```azurecli
     azure config mode arm
     ```
 
-    此為上述命令的預期輸出內容：
+    以下是 hello 上述命令中的 hello 預期輸出：
 
         info:    New mode is arm
 
-3. 從您的瀏覽器瀏覽至 **https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**，將 json 檔案的內容複製並貼到您電腦上的新檔案中。 在此案例中，您會將以下的值複製到名為 **c:\udr\azuredeploy.parameters.json** 的檔案。
+3. 從瀏覽器中，瀏覽過**https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.parameters.json**、 hello hello json 檔案，內容複製和貼入新檔案中，您電腦。 此案例中，您會被複製 hello 值 tooa 檔案命名為之下**c:\udr\azuredeploy.parameters.json**。
 
     ```json
         {
@@ -206,7 +206,7 @@ ms.lasthandoff: 07/11/2017
         }
     ```
 
-4. 執行下列命令，以使用先前下載並修改的範本和參數檔案，部署新的 VNet：
+4. 執行下列命令 toodeploy hello 新的 VNet 使用 hello 範本和參數檔案下載，並修改上述的 hello:
 
     ```azurecli
     azure group create -n TestRG -l westus --template-uri 'https://raw.githubusercontent.com/telmosampaio/azure-templates/master/IaaS-NSG-UDR/azuredeploy.json' -e 'c:\udr\azuredeploy.parameters.json'
@@ -229,7 +229,7 @@ ms.lasthandoff: 07/11/2017
         data:    
         info:    group create command OK
 
-5. 執行 下列命令以檢視於新資源群組中建立的資源：
+5. 執行下列命令 tooview hello 資源建立 hello 新資源群組中的 hello:
 
     ```azurecli
     azure group show TestRG
@@ -239,7 +239,7 @@ ms.lasthandoff: 07/11/2017
 
             info:    Executing command group show
             info:    Listing resource groups
-            info:    Listing resources for the group
+            info:    Listing resources for hello group
             data:    Id:                  /subscriptions/[Subscription Id]/resourceGroups/TestRG
             data:    Name:                TestRG
             data:    Location:            westus
@@ -404,5 +404,5 @@ ms.lasthandoff: 07/11/2017
             info:    group show command OK
 
 > [!TIP]
-> 如果沒看到所有資源，請執行 `azure group deployment show` 命令，以確保部署的佈建狀態為 [成功]。
+> 如果看不到 hello 的所有資源，請執行 hello`azure group deployment show`命令 tooensure hello 的 hello 部署佈建狀態是*成功*。
 > 
