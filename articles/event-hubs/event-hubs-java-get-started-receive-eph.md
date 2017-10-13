@@ -1,5 +1,5 @@
 ---
-title: "使用 Java 的 Azure 事件中心 aaaReceive 事件 |Microsoft 文件"
+title: "使用 Java 從 Azure 事件中樞接收事件 | Microsoft Docs"
 description: "開始使用 Java 從事件中樞接收事件"
 services: event-hubs
 documentationcenter: 
@@ -14,49 +14,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: 05414a22e6616296752c678bb0af887d6f070c12
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3c1b455e6298367dc50f0943b58f6cf1e7f1c5fd
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="receive-events-from-azure-event-hubs-using-java"></a>使用 Java 從 Azure 事件中樞接收事件
 
 
 ## <a name="introduction"></a>簡介
-事件中心是可高度擴充擷取系統可以內嵌包含數百萬個事件每秒，讓應用程式 tooprocess 及分析 hello 連接的裝置和應用程式所產生的資料量很大。 收集到事件中樞後，您可以使用任何即時分析提供者或儲存體叢集轉換和儲存資料。
+事件中樞是高度可擴充的擷取系統，每秒可擷取數百萬個事件，讓應用程式能處理並分析已連線裝置與應用程式產生的大量資料。 收集到事件中樞後，您可以使用任何即時分析提供者或儲存體叢集轉換和儲存資料。
 
-如需詳細資訊，請參閱 hello[事件中心概觀][Event Hubs overview]。
+如需詳細資訊，請參閱 [事件中樞概觀][Event Hubs overview]。
 
-本教學課程示範如何 tooreceive 事件到事件中心使用以 Java 撰寫的主控台應用程式。
+本教學課程也會示範如何使用以 Java 撰寫的主控台應用程式，將事件接收到事件中樞。
 
 ## <a name="prerequisites"></a>必要條件
 
-在順序 toocomplete 本教學課程中，您需要下列必要條件 hello:
+若要完成本教學課程，您需要下列必要條件：
 
 * Java 開發環境。 針對本教學課程，我們採用 [Eclipse](https://www.eclipse.org/)。
 * 使用中的 Azure 帳戶。 <br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費帳戶。 如需詳細資料，請參閱 <a href="http://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fdevelop%2Fmobile%2Ftutorials%2Fget-started%2F" target="_blank">Azure 免費試用</a>。
 
 ## <a name="receive-messages-with-eventprocessorhost-in-java"></a>在 Java 中使用 EventProcessorHost 接收訊息
 
-**EventProcessorHost** 是一個 Java 類別，透過管理持續檢查點以及來自事件中樞的平行接收，簡化來自事件中樞之事件的接收作業。 使用 EventProcessorHost，您可以將事件分割到多個接收者，即使裝載於不同的節點時也是一樣。 這個範例會示範如何為單一接收者 toouse EventProcessorHost。
+**EventProcessorHost** 是一個 Java 類別，透過管理持續檢查點以及來自事件中樞的平行接收，簡化來自事件中樞之事件的接收作業。 使用 EventProcessorHost，您可以將事件分割到多個接收者，即使裝載於不同的節點時也是一樣。 這個範例顯示單一接收者如何使用 EventProcessorHost。
 
 ### <a name="create-a-storage-account"></a>建立儲存體帳戶
-您必須擁有 toouse EventProcessorHost， [Azure 儲存體帳戶][Azure Storage account]:
+若要使用 EventProcessorHost，您必須擁有 [Azure 儲存體帳戶][Azure Storage account]：
 
-1. 登入 toohello [Azure 入口網站][Azure portal]，然後按一下**+ 新增**左側 hello 囉 」 畫面。
-2. 按一下 [儲存體]，然後按一下 [儲存體帳戶]。 在 hello**建立儲存體帳戶**刀鋒視窗中，輸入 hello 儲存體帳戶的名稱。 完成 hello 其餘 hello 欄位，選取您想要的地區，然後按一下**建立**。
+1. 登入 [Azure 入口網站][Azure portal]，然後按一下畫面左上方的 [+ 新增]。
+2. 按一下 [儲存體]，然後按一下 [儲存體帳戶]。 在 [建立儲存體帳戶] 刀鋒視窗中，輸入儲存體帳戶名稱。 完成其餘欄位，選取您想要的區域，然後按一下 [建立]。
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-storage2.png)
 
-3. 按一下 hello 新建立的儲存體帳戶，然後再按一下**管理存取金鑰**:
+3. 按一下新建立的儲存體帳戶，然後按一下 [ **管理存取金鑰**]：
    
     ![](./media/event-hubs-dotnet-framework-getstarted-receive-eph/create-storage3.png)
 
-    將複製 hello 主要存取金鑰 tooa 暫存位置，toouse 稍後在本教學課程。
+    將主要存取金鑰複製到暫存位置，以便稍後在此教學課程中使用。
 
-### <a name="create-a-java-project-using-hello-eventprocessor-host"></a>建立 Java 專案使用 hello EventProcessor 主機
-hello 事件中心的 Java 用戶端程式庫是可用於從 hello Maven 專案[Maven 中央儲存機制][Maven Package]，而且可以在 hello 內的相依性宣告之後參考您Maven 專案檔：    
+### <a name="create-a-java-project-using-the-eventprocessor-host"></a>使用 EventProcessor 主機建立 Java 專案
+適用於事件中樞的 Java 用戶端程式庫可以在來自 [Maven 中央儲存機制][Maven Package]的 Maven 專案中使用，而且可在您的 Maven 專案檔內使用下列相依性宣告來參考：    
 
 ```xml
 <dependency>
@@ -76,9 +76,9 @@ hello 事件中心的 Java 用戶端程式庫是可用於從 hello Maven 專案[
 </dependency>
 ```
 
-對於不同類型的建置環境，您可以明確地取得最新發行的 hello JAR 檔案從 hello [Maven 中央儲存機制][ Maven Package]或從[hello 發行發佈點上GitHub](https://github.com/Azure/azure-event-hubs/releases)。  
+對於不同類型的組建環境，您可以明確地從 [Maven 中央儲存機制][Maven Package]或 [GitHub 上的版本發佈點](https://github.com/Azure/azure-event-hubs/releases)取得最新發行的 JAR 檔案。  
 
-1. Hello 遵循範例，先在您最愛的 Java 開發環境中建立新 Maven 專案主控台/shell 應用程式。 hello 類別稱為`ErrorNotificationHandler`。     
+1. 針對下列範例，在您最喜愛的 Java 開發環境中，先為主控台/殼層應用程式建立新的 Maven 專案。 類別稱為 `ErrorNotificationHandler`。     
    
     ```java
     import java.util.function.Consumer;
@@ -93,7 +93,7 @@ hello 事件中心的 Java 用戶端程式庫是可用於從 hello Maven 專案[
         }
     }
     ```
-2. 使用 hello 下列程式碼會呼叫新的類別 toocreate `EventProcessor`。
+2. 使用下列程式碼，建立名為 `EventProcessor`的新類別。
    
     ```java
     import com.microsoft.azure.eventhubs.EventData;
@@ -146,7 +146,7 @@ hello 事件中心的 Java 用戶端程式庫是可用於從 hello Maven 專案[
         }
     }
     ```
-3. 建立一個更多的類別，稱為`EventProcessorSample`，並使用下列程式碼 hello。
+3. 使用下列程式碼，再建立一個名為 `EventProcessorSample` 的類別。
    
     ```java
     import com.microsoft.azure.eventprocessorhost.*;
@@ -192,7 +192,7 @@ hello 事件中心的 Java 用戶端程式庫是可用於從 hello Maven 專案[
                 }
             }
    
-            System.out.println("Press enter toostop");
+            System.out.println("Press enter to stop");
             try
             {
                 System.in.read();
@@ -211,7 +211,7 @@ hello 事件中心的 Java 用戶端程式庫是可用於從 hello Maven 專案[
         }
     }
     ```
-4. 取代 hello 具備 hello 值建立 hello 事件中樞和儲存體帳戶時，使用下列欄位。
+4. 使用您建立事件中樞和儲存體帳戶時所用的值，取代下列欄位。
    
     ```java
     final String namespaceName = "----ServiceBusNamespaceName-----";
@@ -225,12 +225,12 @@ hello 事件中心的 Java 用戶端程式庫是可用於從 hello Maven 專案[
     ```
 
 > [!NOTE]
-> 本教學課程使用單一 EventProcessorHost 執行個體。 tooincrease 輸送量，建議您執行多個執行個體的 EventProcessorHost，最好是在不同電腦上。  這麼做也會提供備援性。 在這些情況下，不同執行個體自動彼此以協調順序 tooload 平衡 hello hello 接收到事件。 如果您想要多個接收者 tooeach 程序*所有*hello 事件，您必須使用 hello **ConsumerGroup**概念。 當從不同的電腦收到事件時，它可能有用 toospecify EventProcessorHost hello 機器 （或角色） 為基礎的執行個體名稱中所部署。
+> 本教學課程使用單一 EventProcessorHost 執行個體。 若要增加輸送量，建議您執行多個 EventProcessorHost 執行個體 (最好能在個別的機器上)。  這麼做也會提供備援性。 在這些情況下，各種執行個體會自動彼此協調以對已接收的事件進行負載平衡。 如果您想要多個接收者都處理 *所有* 事件，則必須使用 **ConsumerGroup** 概念。 收到來自不同電腦的事件時，根據在其中執行 EventProcessorHost 執行個體的電腦 (或角色) 來指定名稱可能十分有用。
 > 
 > 
 
 ## <a name="next-steps"></a>後續步驟
-您可以進一步了解事件中心瀏覽下列連結查看 hello:
+您可以造訪下列連結以深入了解事件中樞︰
 
 * [事件中樞概觀](event-hubs-what-is-event-hubs.md)
 * [建立事件中樞](event-hubs-create.md)

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure 單一簽出 SAML 通訊協定 |Microsoft 文件"
-description: "本文說明 hello Azure Active Directory 中的單一登出 SAML 通訊協定"
+title: "Azure 單一登出 SAML 通訊協定 | Microsoft Docs"
+description: "本文說明 Azure Active Directory 中的單一登出 SAML 通訊協定"
 services: active-directory
 documentationcenter: .net
 author: priyamohanram
@@ -15,21 +15,21 @@ ms.topic: article
 ms.date: 07/19/2017
 ms.author: priyamo
 ms.custom: aaddev
-ms.openlocfilehash: 889c9b3397a601c16ba6971d2b15bfee305576de
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 45e4705f53d80b5fe852c484b5e64d18a8e24f09
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # 單一登出 SAML 通訊協定
-Azure Active Directory (Azure AD) 支援 hello SAML 2.0 web 瀏覽器單一登出設定檔。 單一登出 toowork 正確，hello **LogoutURL** hello 應用程式必須明確地註冊應用程式註冊期間使用 Azure AD。 在登出後，azure AD 使用 hello LogoutURL tooredirect 使用者。
+Azure Active Directory (Azure AD) 支援 SAML 2.0 Web 瀏覽器單一登出設定檔。 若要讓單一登出正常運作，在應用程式註冊期間必須明確向 Azure AD 註冊應用程式的 **LogoutURL**。 使用者登出之後，Azure AD 使用此 LogoutURL 將他們重新導向。
 
-這個圖表可顯示 hello hello Azure AD 單一登出程序工作流程。
+下圖顯示 Azure AD 單一登出程序的工作流程。
 
 ![單一登出工作流程](media/active-directory-single-sign-out-protocol-reference/active-directory-saml-single-sign-out-workflow.png)
 
 ## LogoutRequest
-雲端服務傳送的 hello`LogoutRequest`訊息 tooAzure AD tooindicate 工作階段已終止。 hello 下列摘錄顯示範例`LogoutRequest`項目。
+雲端服務會傳送 `LogoutRequest` 訊息至 Azure AD，指出工作階段已終止。 下列摘錄顯示範例 `LogoutRequest` 元素。
 
 ```
 <samlp:LogoutRequest xmlns="urn:oasis:names:tc:SAML:2.0:metadata" ID="idaa6ebe6839094fe4abc4ebd5281ec780" Version="2.0" IssueInstant="2013-03-28T07:10:49.6004822Z" xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
@@ -39,20 +39,20 @@ Azure Active Directory (Azure AD) 支援 hello SAML 2.0 web 瀏覽器單一登�
 ```
 
 ### LogoutRequest
-hello`LogoutRequest`傳送的項目 tooAzure AD 需要 hello 下列屬性：
+傳送至 Azure AD 的 `LogoutRequest` 元素需要下列屬性：
 
-* `ID`： 這會識別 hello 登出要求。 hello 值`ID`不應以數字開頭。 hello 一般作法是 tooappend**識別碼**toohello GUID 字串表示法。
-* `Version`: Hello 將值設定這個項目太**2.0**。 需要此值。
+* `ID` ：這會識別登出要求。 `ID` 的值不應該以數字開頭。 一般的做法是附加 **id** 至 GUID 的字串表示法。
+* `Version` ：將此元素的值設定為 **2.0**。 需要此值。
 * `IssueInstant`：這是具有國際標準時間 (UTC) 值和[來回行程格式 ("o")](https://msdn.microsoft.com/library/az4se3k1.aspx) 的 `DateTime` 字串。 Azure AD 會預期此類型的值，但不會強制。
 
 ### 簽發者
-hello`Issuer`中的項目`LogoutRequest`必須完全符合其中一個 hello **ServicePrincipalNames** hello Azure AD 中的雲端服務中。 一般而言，這會設定 toohello**應用程式識別碼 URI**應用程式登錄期間指定。
+`LogoutRequest` 中的 `Issuer` 元素必須完全符合 Azure AD 中雲端服務的其中一個 **ServicePrincipalNames**。 一般而言，這會設定為應用程式註冊期間指定的 **應用程式識別碼 URI** 。
 
 ### NameID
-hello 值 hello`NameID`項目必須完全符合 hello`NameID`的 hello 正在登出的使用者。
+`NameID` 元素的值必須完全符合正在登出的使用者的 `NameID`。
 
 ## LogoutResponse
-Azure AD 傳送`LogoutResponse`中回應 tooa`LogoutRequest`項目。 hello 下列摘錄顯示範例`LogoutResponse`。
+Azure AD 會傳送 `LogoutResponse` 以回應 `LogoutRequest` 元素。 下列摘錄顯示範例 `LogoutResponse`。
 
 ```
 <samlp:LogoutResponse ID="_f0961a83-d071-4be5-a18c-9ae7b22987a4" Version="2.0" IssueInstant="2013-03-18T08:49:24.405Z" InResponseTo="iddce91f96e56747b5ace6d2e2aa9d4f8c" xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
@@ -64,12 +64,12 @@ Azure AD 傳送`LogoutResponse`中回應 tooa`LogoutRequest`項目。 hello 下�
 ```
 
 ### LogoutResponse
-Azure AD 設定 hello `ID`，`Version`和`IssueInstant`中 hello 值`LogoutResponse`項目。 它也會設定 hello `InResponseTo` hello 項目 toohello 值`ID`屬性 hello`LogoutRequest`為引發回應 hello。
+Azure AD 會設定 `LogoutResponse` 元素中的 `ID`、`Version` 和 `IssueInstant` 值。 它也會將 `InResponseTo` 元素設定為導出回應的 `LogoutRequest` 的 `ID` 屬性值。
 
 ### 簽發者
-Azure AD 會將此值太`https://login.microsoftonline.com/<TenantIdGUID>/`其中<TenantIdGUID>是 hello hello Azure AD 租用戶的租用戶識別碼。
+Azure AD 會將此值設為 `https://login.microsoftonline.com/<TenantIdGUID>/`，其中，<TenantIdGUID> 是 Azure AD 租用戶的租用戶識別碼。
 
-hello tooevaluate hello 值`Issuer`項目，使用 hello 值 hello**應用程式識別碼 URI**在應用程式登錄期間提供。
+若要評估 `Issuer` 元素的值，請使用應用程式註冊期間提供的 **應用程式識別碼 URI** 的值。
 
 ### 狀態
-Azure AD 使用 hello `StatusCode` hello 中的項目`Status`元素 tooindicate hello 成功或失敗的登出。當 hello 登出嘗試失敗時，hello`StatusCode`項目也可包含自訂錯誤訊息。
+Azure AD 使用 `Status` 元素中的 `StatusCode` 元素，來指出登出成功或失敗。 登出嘗試失敗時， `StatusCode` 元素也可包含自訂錯誤訊息。

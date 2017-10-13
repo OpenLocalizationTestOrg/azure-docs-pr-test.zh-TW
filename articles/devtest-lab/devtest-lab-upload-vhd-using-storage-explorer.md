@@ -1,6 +1,6 @@
 ---
-title: "aaaUpload VHD 檔案使用 Microsoft Azure 儲存體總管 tooAzure DevTest Labs |Microsoft 文件"
-description: "上傳 VHD 檔案 toolab 的儲存體帳戶使用 Microsoft Azure 儲存體總管"
+title: "使用 Microsoft Azure 儲存體總管將 VHD 檔案上傳到 Azure DevTest Labs | Microsoft Docs"
+description: "使用 Microsoft Azure 儲存體總管將 VHD 檔案上傳到實驗室的儲存體帳戶"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,55 +14,55 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/10/2017
 ms.author: tarcher
-ms.openlocfilehash: 686691e3676cea4b2d7cd8bf045bc43a792c667e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 502e2536fb0fd2e9dfc4c7b85a6fb4e18202f38f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="upload-vhd-file-toolabs-storage-account-using-microsoft-azure-storage-explorer"></a>上傳 VHD 檔案 toolab 的儲存體帳戶使用 Microsoft Azure 儲存體總管
+# <a name="upload-vhd-file-to-labs-storage-account-using-microsoft-azure-storage-explorer"></a>使用 Microsoft Azure 儲存體總管將 VHD 檔案上傳到實驗室的儲存體帳戶
 
 [!INCLUDE [devtest-lab-upload-vhd-selector](../../includes/devtest-lab-upload-vhd-selector.md)]
 
-在 Azure 的 DevTest Labs、 VHD 檔案可以是使用的 toocreate 自訂映像，也就是使用的 tooprovision 虛擬機器。 本文將說明如何 toouse [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)tooupload VHD 檔案 tooa 實驗室儲存體帳戶。 一旦您已上傳 VHD 檔案，hello[後續步驟 > 一節](#next-steps)列出說明如何 toocreate hello 從自訂映像上傳 VHD 檔案的某些文件。 如需有關 Azure 中磁碟和 VHD 的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](../virtual-machines/linux/about-disks-and-vhds.md)
+在 Azure DevTest Labs 中，可以使用 VHD 檔案來建立自訂映像，這些映像可用來佈建虛擬機器。 本文說明如何使用 [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)將 VHD 檔案上傳到實驗室的儲存體帳戶。 在您上傳 VHD 檔案之後，[後續步驟](#next-steps)一節會列出一些說明如何從所上傳的 VHD 檔案建立自訂映像的文章。 如需有關 Azure 中磁碟和 VHD 的詳細資訊，請參閱[關於虛擬機器的磁碟和 VHD](../virtual-machines/linux/about-disks-and-vhds.md)
 
 ## <a name="step-by-step-instructions"></a>逐步指示
 
-下列步驟查核行程您上傳 VHD 檔案使用 tooDevTest 實驗室 hello [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)。
+下列步驟將逐步引導您使用 [Microsoft Azure 儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)將 VHD 檔案上傳到 DevTest Labs。
 
-1. [下載並安裝 hello 最新版 Microsoft Azure 儲存體總管 hello](http://www.storageexplorer.com)。
+1. [下載並安裝最新版 Microsoft Azure 儲存體總管](http://www.storageexplorer.com)。
 
-1. 收到 hello 使用 hello Azure 入口網站的 hello 實驗室儲存體帳戶名稱：
+1. 使用 Azure 入口網站來取得實驗室的儲存體帳戶名稱：
 
-    1. 登入 toohello [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+    1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
     
-    1. 選取**更多服務**，然後選取**DevTest Labs**從 hello 清單。
+    1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
     
-    1. 從 hello 清單的實驗室中，選取 hello 所需的實驗室。  
+    1. 從實驗室清單中，選取所需的實驗室。  
     
-    1. 在 hello 實驗室刀鋒視窗中，選取 **組態**。 
+    1. 在實驗室的刀鋒視窗上，選取 [組態] 。 
     
-    1. 在 hello 實驗室**組態**刀鋒視窗中，選取**自訂映像 (Vhd)**。
+    1. 在實驗室的 [組態] 刀鋒視窗上，選取 [自訂映像 (VHD)]。
     
-    1. 在 hello**自訂映像**刀鋒視窗中，選取**+ 加**。 
+    1. 在 [自訂映像] 刀鋒視窗上，選取 [+新增]。 
     
-    1. 在 hello**自訂映像**刀鋒視窗中，選取**VHD**。
+    1. 在 [自訂映像] 刀鋒視窗上，選取 [VHD]。
     
-    1. 在 hello **VHD**刀鋒視窗中，選取**使用 PowerShell 將 VHD 上傳**。
+    1. 在 [VHD] 刀鋒視窗上，選取 [使用 PowerShell 上傳 VHD]。
     
         ![使用 PowerShell 上傳 VHD][0]
     
-    1. hello**上傳映像使用 PowerShell**刀鋒視窗會顯示呼叫 toohello **Add-azurevhd** cmdlet。 hello 第一個參數 (*目的地*) 包含下列格式的 hello 中的 hello 實驗室 hello 儲存體帳戶名稱：
+    1. [使用 PowerShell 上傳映像] 刀鋒視窗會顯示一個對 **Add-AzureVhd** Cmdlet 的呼叫。 第一個參數 (*Destination*) 包含實驗室的儲存體帳戶，其格式如下：
     
         https://<STORAGE-ACCOUNT-NAME>.blob.core.windows.net/uploads/... 
 
-    1. 請記 hello 儲存體帳戶名稱，因為它在稍後步驟中使用。
+    1. 記下儲存體帳戶名稱，因為在稍後的步驟中將會用到。
     
-1. 連接 tooan 使用存放裝置總管的 Azure 訂用帳戶。
+1. 使用儲存體總管連線到 Azure 訂用帳戶。
 
     > [!TIP] 
     > 
-    > 儲存體總管支援數個連線選項。 本節說明您的 Azure 訂用帳戶相關聯的連接 tooa 儲存體帳戶。 toosee hello 儲存體總管支援其他連接選項，請參閱 toohello 文章[開始使用儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)。
+    > 儲存體總管支援數個連線選項。 本節說明如何連線到與您的 Azure 訂用帳戶相關聯的儲存體帳戶。 若要查看儲存體總管所支援的其他連線選項，請參閱[開始使用儲存體總管](../vs-azure-tools-storage-manage-with-storage-explorer.md)一文。
  
     1. 開啟儲存體總管。
     
@@ -70,59 +70,59 @@ ms.lasthandoff: 10/06/2017
     
         ![Azure 帳戶設定][1]
     
-    1. hello 左的窗格會顯示您已登入的 hello Microsoft 帳戶。 tooconnect tooanother 帳戶，請選取**將帳戶加入**，並遵循 hello 對話方塊 toosign 使用至少一個有效的 Azure 訂閱相關聯的 Microsoft 帳戶。
+    1. 左窗格會顯示您已登入的 Microsoft 帳戶。 若要連接到其他帳戶，請選取 [新增帳戶] ，並依照對話方塊使用與至少一個作用中 Azure 訂用帳戶相關聯的 Microsoft 帳戶進行登入。
     
         ![新增帳戶][2]
     
-    1. 一旦您已成功登入 Microsoft 帳戶，hello 左的窗格中填入 hello 與該帳戶相關聯的 Azure 訂用帳戶。 選取 hello Azure 訂用帳戶與您想 toowork，，然後選取**套用**。 (選取**所有訂用帳戶**切換 hello 所有的選取範圍或列出任何 hello Azure 訂用帳戶。)
+    1. 成功使用 Microsoft 帳戶登入後，左窗格會填入與該帳戶相關聯的 Azure 訂用帳戶。 選取您想要使用的訂用帳戶，然後選取 [套用]。 (選取 [所有訂用帳戶] 切換方塊，可選取全部或不選取任何列出的 Azure 訂用帳戶。)
     
         ![選取 Azure 訂用帳戶][3]
     
-    1. hello 左的窗格會顯示 hello 與 hello 選取 Azure 訂用帳戶相關聯的儲存體帳戶。
+    1. 左窗格會顯示與所選 Azure 訂用帳戶相關聯的儲存體帳戶。
     
         ![已選取的 Azure 訂用帳戶][4]
 
-1. 找出 hello 實驗室儲存體帳戶：
+1. 找出實驗室的儲存體帳戶︰
 
-    1. Hello 存放裝置總管左窗格中，找出並展開 hello hello 擁有 hello 實驗室的 Azure 訂用帳戶節點。
+    1. 在儲存體總管的左窗格中，找出並展開擁有實驗室之 Azure 訂用帳戶的節點。
     
-    1. Hello 訂用帳戶的節點下，依序展開**儲存體帳戶**。
+    1. 在訂用帳戶的節點下，展開 [儲存體帳戶]。
 
-    1. 展開 hello 實驗室儲存體帳戶節點 tooreveal 節點**Blob 容器**，**檔案共用**，**佇列**，和**資料表**。
+    1. 展開實驗室的儲存體帳戶節點，以顯示 [Blob 容器]、[檔案共用]、[佇列] 和 [資料表] 的節點。
     
-    1. 展開 hello **Blob 容器**節點。
+    1. 展開 [Blob 容器] 節點。
     
-    1. Hello 右窗格中選取 hello 上傳 blob 容器 toodisplay 其內容。
+    1. 選取上傳 Blob 容器以在右窗格中顯示其內容。
         
         ![上傳目錄][5]
 
-1. 使用儲存體總管的 hello VHD 檔案上傳：
+1. 使用儲存體總管上傳 VHD 檔案︰
 
-    1. Hello 存放裝置總管右窗格中，您應該會看到 hello 中的 hello blob 清單**上載**hello 實驗室儲存體帳戶的 blob 容器。 在 hello blob 編輯器工具列上，選取 **上傳** 
+    1. 在儲存體總管的右窗格中，您應該會在實驗室儲存體帳戶的 [上傳] Blob 容器中看到 Blob 清單。 在 Blob 編輯器工具列中，選取 [上傳] 
         
         ![上傳按鈕][6]
     
-    1. 從 hello**上傳**下拉式選單中，選取**上傳檔案...**.
+    1. 從 [上傳] 下拉式功能表中，選取 [上傳檔案...]。
     
-    1. 在 hello**將檔案上傳**對話方塊中，選取 hello 省略符號。
+    1. 在 [上傳檔案] 對話方塊中，選取省略符號。
         
         ![選取檔案][8]  
 
-    1. 在 hello**選取檔案 tooupload**  對話方塊中，瀏覽 toohello 預期 VHD 檔案，選取它，並選取**開啟**。
+    1. 在 [選取要上傳的檔案] 對話方塊中，瀏覽至所需的 VHD 檔案、加以選取，然後選取 [開啟]。
     
-    1. 當傳回 toohello**將檔案上傳** 對話方塊中，變更**Blob 類型**太**分頁 Blob**。
+    1. 在回到 [上傳檔案] 對話方塊時，將 [Blob 類型] 變更為 [分頁 Blob]。
     
     1. 選取 [上傳] 。
 
         ![選取檔案][9]  
     
-    1. 儲存體總管 hello**活動記錄檔** 窗格會顯示 hello 下載狀態 （與連結 toocancel hello 上傳）。 上傳 VHD 檔案 hello 程序可能很費時視 hello hello VHD 檔案大小和您的連線速度而定。 
+    1. 儲存體總管的 [活動記錄] 窗格會顯示下載狀態 (以及用以取消上傳的連結)。 視 VHD 檔案大小及您的連線速度而定，上傳 VHD 檔案的程序可能會相當長。 
 
         ![上傳檔案狀態][10]  
 
 ## <a name="next-steps"></a>後續步驟
 
-- [在 Azure DevTest Labs 從 VHD 檔案使用 hello Azure 入口網站中建立自訂映像](devtest-lab-create-template.md)
+- [使用 Azure 入口網站在 Azure DevTest Labs 中從 VHD 檔案建立自訂映像](devtest-lab-create-template.md)
 - [使用 PowerShell 在 Azure DevTest Labs 中從 VHD 檔案建立自訂映像](devtest-lab-create-custom-image-from-vhd-using-powershell.md)
 
 [0]: ./media/devtest-lab-upload-vhd-using-storage-explorer/upload-image-using-psh.png

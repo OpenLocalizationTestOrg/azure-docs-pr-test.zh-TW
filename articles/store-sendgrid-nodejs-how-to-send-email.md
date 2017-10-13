@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toouse hello SendGrid 電子郵件服務 (Node.js) |Microsoft 文件"
-description: "深入了解如何在 Azure 上傳送電子郵件以 hello SendGrid 電子郵件服務。 程式碼使用 hello Node.js 應用程式開發介面撰寫的範例。"
+title: "如何使用 SendGrid 電子郵件服務 (Node.js) | Microsoft Docs"
+description: "了解如何在 Azure 使用 SendGrid 電子郵件服務傳送電子郵件。 程式碼範例以 Node.js API 撰寫。"
 services: 
 documentationcenter: nodejs
 author: erikre
@@ -14,22 +14,22 @@ ms.devlang: nodejs
 ms.topic: article
 ms.date: 01/05/2016
 ms.author: erikre
-ms.openlocfilehash: fd617b6aaa656e7b5dd51c51ebb0db1e848450f8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 327cea3a24cc47a9cc463b37cc2346ebc475ef7f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toosend-email-using-sendgrid-from-nodejs"></a>如何 tooSend 電子郵件使用 SendGrid 從 Node.js
-本指南示範如何 tooperform 常見的程式設計工作使用 SendGrid 傳送電子郵件在 Azure 上的服務。 使用 hello Node.js 應用程式開發介面撰寫 hello 範例。 hello 涵蓋案例包括**建構電子郵件**，**傳送電子郵件**，**加入附件**，**使用篩選器**，和**更新屬性**。 如需有關 SendGrid 和傳送電子郵件的詳細資訊，請參閱 hello[接下來的步驟](#next-steps)> 一節。
+# <a name="how-to-send-email-using-sendgrid-from-nodejs"></a>如何使用 SendGrid 透過 Node.js 傳送電子郵件
+本指南示範如何在 Azure 上透過 SendGrid 電子郵件服務執行常見程式設計工作。 這些範例使用 Node.js API 撰寫。 涵蓋的案例包括**建構電子郵件**、**傳送電子郵件**、**新增附件**、**使用篩選器**及**更新屬性**。 如需有關 SendGrid 及傳送電子郵件的詳細資訊，請參閱 [後續步驟](#next-steps) 一節。
 
-## <a name="what-is-hello-sendgrid-email-service"></a>什麼是 hello SendGrid 電子郵件服務？
+## <a name="what-is-the-sendgrid-email-service"></a>什麼是 SendGrid 電子郵件服務？
 SendGrid 是 [雲端架構電子郵件服務]，能提供可靠的 [交易式電子郵件傳遞]、擴充性和即時分析，以及有彈性的 API 來輕鬆進行自訂整合。 常見的 SendGrid 使用案例包括：
 
-* 自動將資料傳送回條 toocustomers
+* 自動傳送回條給客戶
 * 管理通訊群組清單，以便將每月電子傳單和特別優惠傳送給客戶
 * 收集封鎖的電子郵件、客戶的回應情形等項目的即時度量
-* 產生 toohelp 識別趨勢的報表
+* 產生報表，協助找出趨勢
 * 轉寄客戶查詢
 * 透過電子郵件從您的應用程式傳送通知
 
@@ -38,20 +38,20 @@ SendGrid 是 [雲端架構電子郵件服務]，能提供可靠的 [交易式電
 ## <a name="create-a-sendgrid-account"></a>建立 SendGrid 帳戶
 [!INCLUDE [sendgrid-sign-up](../includes/sendgrid-sign-up.md)]
 
-## <a name="reference-hello-sendgrid-nodejs-module"></a>參考 hello SendGrid Node.js 模組
-可以使用下列命令的 hello，透過 hello node 封裝管理員 (npm) 安裝 Node.js 的 hello SendGrid 模組：
+## <a name="reference-the-sendgrid-nodejs-module"></a>參考 SendGrid Node.js 模組
+您可以使用下列命令，透過節點封裝管理員 (npm) 安裝適用於 Node.js 的 SendGrid 模組：
 
     npm install sendgrid
 
-安裝之後，您可以使用下列程式碼的 hello hello 模組要求應用程式中：
+安裝之後，您可以使用下列程式碼要求您應用程式中的模組：
 
     var sendgrid = require('sendgrid')(sendgrid_username, sendgrid_password);
 
-hello SendGrid 模組匯出的 hello **SendGrid**和**電子郵件**函式。
+SendGrid 模組會匯出 **SendGrid** 和 **Email** 函數。
 **SendGrid** 負責透過 Web API 傳送電子郵件，而 **Email** 則負責封裝電子郵件訊息。
 
 ## <a name="how-to-create-an-email"></a>如何：建立電子郵件
-建立電子郵件訊息使用 hello SendGrid 模組包括第一次建立 hello 電子郵件，使用函式，然後將它使用 hello SendGrid 函式傳送的電子郵件訊息。 hello 以下是建立新的訊息使用 hello 電子郵件函式的範例：
+使用 SendGrid 模組建立電子郵件訊息涉及先使用 Email 函數建立電子郵件訊息，再使用 SendGrid 函數傳送該電子郵件訊息。 以下是使用 Email 函數建立新訊息的範例：
 
     var email = new sendgrid.Email({
         to: 'john@contoso.com',
@@ -60,16 +60,16 @@ hello SendGrid 模組匯出的 hello **SendGrid**和**電子郵件**函式。
         text: 'This is a sample email message.'
     });
 
-您也可以指定 HTML 訊息之用戶端的支援設定 hello html 屬性。 例如：
+您也可以設定 html 屬性，為支援 HTML 訊息的用戶端指定一個 HTML 訊息。 例如：
 
     html: This is a sample <b>HTML<b> email message.
 
-設定這兩個的 hello 文字和 html 屬性不支援 HTML 郵件用戶端提供依正常程序到文字內容的後援。
+同時設定 text 和 html 屬性可以為無法支援 HTML 訊息的用戶端提供正常的文字內容遞補。
 
-如需有關 hello 電子郵件函式所支援的所有屬性的詳細資訊，請參閱[sendgrid nodejs][sendgrid-nodejs]。
+如需有關電子郵件函式所支援的所有屬性的詳細資訊，請參閱[sendgrid nodejs][sendgrid-nodejs]。
 
 ## <a name="how-to-send-an-email"></a>如何：傳送電子郵件
-在建立之後使用 hello 電子郵件函式的電子郵件訊息，您可以傳送 hello SendGrid 所提供的 Web API 的使用。 
+使用 Email 函數建立電子郵件訊息之後，您可以使用 SendGrid 所提供的 Web API 進行傳送。 
 
 ### <a name="web-api"></a>Web API
     sendgrid.send(email, function(err, json){
@@ -78,7 +78,7 @@ hello SendGrid 模組匯出的 hello **SendGrid**和**電子郵件**函式。
     });
 
 > [!NOTE]
-> 雖然 hello 上述範例會顯示在電子郵件物件和回呼函式傳遞，您可以也會直接叫用 hello 傳送函式直接指定電子郵件內容。 例如：  
+> 上述範例示範的是傳入一個電子郵件物件和回呼函數，您也可以直接指定電子郵件屬性來直接叫用 send 函數。 例如：  
 > 
 > `````
 > sendgrid.send({
@@ -92,7 +92,7 @@ hello SendGrid 模組匯出的 hello **SendGrid**和**電子郵件**函式。
 > 
 
 ## <a name="how-to-add-an-attachment"></a>如何：新增附件
-附件可以指定 hello 檔案名稱和路徑在 hello 新增 tooa 訊息**檔案**屬性。 下列範例中的 hello 示範傳送附件：
+您可以透過在 **files** 屬性中指定檔案名稱和路徑，將附件新增至訊息中。 下列範例示範如何傳送附件：
 
     sendgrid.send({
         to: 'john@contoso.com',
@@ -103,7 +103,7 @@ hello SendGrid 模組匯出的 hello **SendGrid**和**電子郵件**函式。
             {
                 filename:     '',           // required only if file.content is used.
                 contentType:  '',           // optional
-                cid:          '',           // optional, used toospecify cid for inline content
+                cid:          '',           // optional, used to specify cid for inline content
                 path:         '',           //
                 url:          '',           // == One of these three options is required
                 content:      ('' | Buffer) //
@@ -112,16 +112,16 @@ hello SendGrid 模組匯出的 hello **SendGrid**和**電子郵件**函式。
     });
 
 > [!NOTE]
-> 當使用 hello**檔案**屬性，hello 檔案必須可透過存取[fs.readFile](http://nodejs.org/docs/v0.6.7/api/fs.html#fs.readFile)。 如果您想 tooattach hello 檔案裝載在 Azure 儲存體，例如 Blob 容器，您必須先將 hello 檔案 toolocal 儲存體或 Azure 磁碟機 tooan 使用 hello 附件形式傳送之前**檔案**屬性。
+> 使用 **files** 屬性時，必須要能夠透過 [fs.readFile](http://nodejs.org/docs/v0.6.7/api/fs.html#fs.readFile) 存取檔案。 如果您想要附加的檔案裝載於 Azure 儲存體中 (例如 Blob 容器中)，您就必須先將該檔案複製到本機儲存體或 Azure 磁碟機，才能使用 **files** 屬性以附件形式傳送它。
 > 
 > 
 
-## <a name="how-to-use-filters-tooenable-footers-and-tracking"></a>如何： 使用篩選器 tooEnable 頁尾和追蹤
-SendGrid 提供其他電子郵件功能，透過 hello 使用篩選條件。 這些是可以加入 tooan 電子郵件訊息，若要啟用特定的功能，例如啟用點選追蹤、 Google analytics、 追蹤、 訂用帳戶的設定，依此類推。 如需完整的篩選器清單，請參閱[篩選器設定][Filter Settings]。
+## <a name="how-to-use-filters-to-enable-footers-and-tracking"></a>如何：使用篩選器來啟用頁尾和追蹤
+SendGrid 提供了運用篩選器的其他電子郵件功能。 這些設定可新增到電子郵件以啟用特定功能，例如啟用點擊追蹤、Google 分析、訂閱追蹤等。 如需完整的篩選器清單，請參閱[篩選器設定][Filter Settings]。
 
-篩選可套用的 tooa 訊息使用 hello**篩選**屬性。
+您可以使用 **filters** 屬性在訊息套用篩選器。
 每個篩選器都是由包含篩選器特定設定的雜湊來指定。
-hello 下列範例示範 hello 頁尾，並按一下 追蹤篩選器：
+下列範例示範頁尾和點選追蹤篩選器：
 
 ### <a name="footer"></a>頁尾
     var email = new sendgrid.Email({
@@ -173,10 +173,10 @@ hello 下列範例示範 hello 頁尾，並按一下 追蹤篩選器：
 如需詳細資訊，請參閱[sendgrid nodejs][sendgrid-nodejs]。
 
 ## <a name="how-to-use-additional-sendgrid-services"></a>如何：使用其他 SendGrid 服務
-SendGrid 提供網頁型應用程式開發介面，您可以從 Azure 應用程式使用 tooleverage 其他 SendGrid 功能。 完整的詳細資訊，請參閱 hello [SendGrid API 文件][SendGrid API documentation]。
+SendGrid 提供的網頁式 API 可供從 Azure 應用程式運用其他 SendGrid 功能。 如需完整詳細資料，請參閱 [SendGrid API 文件][SendGrid API documentation]。
 
 ## <a name="next-steps"></a>後續步驟
-既然您已經學會 hello 的 hello SendGrid 電子郵件服務的基本概念，請遵循這些連結 toolearn 更多。
+了解 SendGrid 電子郵件服務的基本概念後，請參考下列連結以取得更多資訊。
 
 * SendGrid Node.js 模組存放庫： [sendgrid nodejs][sendgrid-nodejs]
 * SendGrid API 文件︰<https://sendgrid.com/docs>

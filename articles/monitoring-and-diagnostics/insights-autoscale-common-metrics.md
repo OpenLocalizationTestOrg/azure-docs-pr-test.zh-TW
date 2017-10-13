@@ -1,5 +1,5 @@
 ---
-title: "監視自動調整規模常見標準 aaaAzure |Microsoft 文件"
+title: "Azure 監視器自動調整的常用度量 | Microsoft Docs"
 description: "了解哪些度量常用於自動調整您的雲端服務、虛擬機器和 Web Apps。"
 author: anirudhcavale
 manager: orenr
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/6/2016
 ms.author: ancav
-ms.openlocfilehash: 372a40d72d7a6c22c5ff854b1460ec8a3b7ed1d1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 240a230d09680672ccd5316470a87d047fab9fd1
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-monitor-autoscaling-common-metrics"></a>Azure 監視器自動調整的常用度量
-Azure 監視的自動調整可讓您執行的執行個體 tooscale hello 數目向上或向下根據遙測資料 （度量）。 本文件說明常見的度量，您可能想 toouse。 在 hello Azure 入口網站雲端服務和伺服器陣列而言，您可以選擇由 hello 資源 tooscale hello 公制。 不過，您也可以選擇不同的資源 tooscale 的任何度量。
+Azure 監視器的自動調整可讓您根據遙測資料 (度量) 增加或減少執行中執行個體的數目。 本文件說明您可能會使用的常用度量。 在 Azure 的雲端服務和伺服器陣列入口網站中，您可以選擇要作為調整依據的資源度量。 不過，您也可以選擇其他資源的任何度量來做為調整依據。
 
-Azure 監視的自動調整規模太只適用於[虛擬機器擴展集](https://azure.microsoft.com/services/virtual-machine-scale-sets/)，[雲端服務](https://azure.microsoft.com/services/cloud-services/)，和[應用程式服務-Web 應用程式](https://azure.microsoft.com/services/app-service/web/)。 其他 Azure 服務使用不同的調整方法。
+Azure 監視器自動調整僅適用於[虛擬機器擴展集](https://azure.microsoft.com/services/virtual-machine-scale-sets/)、[雲端服務](https://azure.microsoft.com/services/cloud-services/)和 [App Service - Web Apps](https://azure.microsoft.com/services/app-service/web/)。 其他 Azure 服務使用不同的調整方法。
 
 ## <a name="compute-metrics-for-resource-manager-based-vms"></a>針對以 Resource Manager 為基礎的 VM 來計算度量
-根據預設，以 Resource Manager 為基礎的虛擬機器和虛擬機器擴展集會發出基本 (主機層級) 的度量。 此外，當您設定的 Azure VM，以及 VMSS 收集診斷資料，hello Azure 診斷擴充功能也會發出 （通常稱為 「 客體 OS 度量 」） 的客體 OS 效能計數器。  您在自動調整規則中使用所有這些度量。
+根據預設，以 Resource Manager 為基礎的虛擬機器和虛擬機器擴展集會發出基本 (主機層級) 的度量。 此外，當您設定 Azure VM 和 VMSS 的診斷資料收集時，Azure 診斷擴充也會發出客體 OS 效能計數器 (通常稱為「客體 OS 度量」)。  您在自動調整規則中使用所有這些度量。
 
-您可以使用 hello `Get MetricDefinitions` API/PoSH CLI tooview hello 度量可用於 VMSS 資源。
+您可以使用 `Get MetricDefinitions` API/PoSH/CLI 來檢視 VMSS 資源的可用度量。
 
 如果您使用 VM 擴展集，而且發現特定度量沒有列出來，可能是您的診斷擴充功能已「停用」它。
 
-如果特定的度量不被取樣或在傳送嗨您想要的頻率，您可以更新 hello 診斷組態。
+如果特定度量沒有取樣或以您想要的頻率傳輸，您可以更新診斷的組態設定。
 
-如果任一上述的情況下為 true，則請檢閱[執行 Windows 的虛擬機器中使用 PowerShell tooenable Azure 診斷](../virtual-machines/windows/ps-extensions-diagnostics.md)有關 PowerShell tooconfigure 和更新您的 Azure VM 診斷延伸模組 tooenable hello 度量。 該文章也包含診斷組態檔的範例。
+如果發生上述任一種情況，請檢閱 PowerShell 相關的[使用 PowerShell 在執行 Windows 的虛擬機器中啟用 Azure 診斷](../virtual-machines/windows/ps-extensions-diagnostics.md)，設定和更新 Azure VM 診斷擴充以啟用該度量。 該文章也包含診斷組態檔的範例。
 
 ### <a name="host-metrics-for-resource-manager-based-windows-and-linux-vms"></a>以 Resource Manager 為基礎的 Windows 和 Linux VM 的主機度量
-下列主機層級度量的 hello 會發出預設 Azure VM 和 VMSS Windows 和 Linux 的執行個體。 這些度量會描述您的 Azure VM，但會收集從 hello Azure VM 的主機，而不是透過 hello 客體 VM 上安裝代理程式。 您可以在自動調整規則中使用這些度量。
+在 Windows 和 Linux 執行個體中，根據預設會針對 Azure VM 和 VMSS 發出下列的主機層級度量。 這些度量描述您的 Azure VM，然而是從 Azure VM 主機收集，而不是透過客體 VM 上安裝的代理程式收集。 您可以在自動調整規則中使用這些度量。
 
 - [以 Resource Manager 為基礎的 Windows 和 Linux VM 的主機度量](monitoring-supported-metrics.md#microsoftcomputevirtualmachines)
 - [以 Resource Manager 為基礎的 Windows 和 Linux VM 擴展集的主機度量](monitoring-supported-metrics.md#microsoftcomputevirtualmachinescalesets)
 
 ### <a name="guest-os-metrics-resource-manager-based-windows-vms"></a>客體 OS 度量以 Resource Manager 為基礎的 Windows VM
-當您在 Azure 中建立 VM 時，診斷會啟用使用 hello 診斷延伸模組。 hello 診斷延伸模組會發出一組取自 hello VM 內的度量。 這表示您可以關閉自動調整依預設不發出的度量。
+在 Azure 中建立 VM 時會使用診斷擴充來啟用診斷。 診斷擴充會發出一組取自 VM 內的度量。 這表示您可以關閉自動調整依預設不發出的度量。
 
-您可以使用下列命令在 PowerShell 中的 hello 產生 hello 度量的清單。
+您可以在 PowerShell 中使用下列命令產生度量清單。
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
-您可以建立 hello 下列度量的警示：
+您可以建立下列度量的警示：
 
 | 度量名稱 | 單位 |
 | --- | --- |
@@ -77,22 +77,22 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 | \PhysicalDisk(_Total)\Disk Bytes/sec |每秒位元組 |
 | \PhysicalDisk(_Total)\Disk Read Bytes/sec |每秒位元組 |
 | \PhysicalDisk(_Total)\Disk Write Bytes/sec |每秒位元組 |
-| \PhysicalDisk(_Total)\Avg.磁碟佇列長度 |Count |
-| \PhysicalDisk(_Total)\Avg.磁碟讀取佇列長度 |Count |
-| \PhysicalDisk(_Total)\Avg.磁碟寫入佇列長度 |Count |
+| \PhysicalDisk(_Total)\Avg. 磁碟佇列長度 |Count |
+| \PhysicalDisk(_Total)\Avg. 磁碟讀取佇列長度 |Count |
+| \PhysicalDisk(_Total)\Avg. 磁碟寫入佇列長度 |Count |
 | \LogicalDisk(_Total)\% Free Space |百分比 |
 | \LogicalDisk(_Total)\Free Megabytes |Count |
 
 ### <a name="guest-os-metrics-linux-vms"></a>客體 OS 度量 Linux VM
 當您在 Azure 中建立 VM 時，根據預設會使用診斷擴充來啟用診斷。
 
-您可以使用下列命令在 PowerShell 中的 hello 產生 hello 度量的清單。
+您可以在 PowerShell 中使用下列命令產生度量清單。
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
 ```
 
- 您可以建立 hello 下列度量的警示：
+ 您可以建立下列度量的警示：
 
 | 度量名稱 | 單位 |
 | --- | --- |
@@ -136,10 +136,10 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 | \NetworkInterface\TotalCollisions |Count |
 
 ## <a name="commonly-used-web-server-farm-metrics"></a>常用的 Web (伺服器陣列) 度量
-您也可以執行一般的 web 伺服器度量，例如 hello Http 佇列長度為基礎的自動調整規模。 它的計量名稱是 **HttpQueueLength**。  hello 之後 > 一節列出可用的伺服器陣列 （Web 應用程式） 度量資訊。
+您也可以根據常用的 Web 伺服器度量 (如 Http 佇列長度) 執行自動調整。 它的計量名稱是 **HttpQueueLength**。  下一節會列出可用的伺服器陣列 (Web Apps) 度量。
 
 ### <a name="web-apps-metrics"></a>Web Apps 度量
-您可以使用下列命令在 PowerShell 中的 hello 產生一份 hello Web 應用程式的度量。
+您可以在 PowerShell 中使用下列命令產生 Web Apps 清單。
 
 ```
 Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,Unit
@@ -157,11 +157,11 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 | BytesSent |位元組 |
 
 ## <a name="commonly-used-storage-metrics"></a>常用的儲存體度量
-您可以調整的儲存體佇列長度是 hello hello 儲存體佇列中的訊息數目。 儲存體佇列長度是特殊的度量且 hello 臨界值為 hello 訊息，每個執行個體數目。 比方說，如果有兩個執行個體，而且 hello 閾值設定 too100，調整時發生 hello 總 hello 佇列中的訊息數目為 200。 可以是每個執行個體的 100 個訊息、 120 和 80，或任何其他的組合加總 too200 或多個。
+您可以「儲存體佇列長度」做為調整依據，它是儲存體佇列中的訊息數目。 儲存體佇列長度是特殊度量，臨界值是每個執行個體的訊息數。 比方說，如果有兩個執行個體，且臨界值設定為 100，當佇列中的訊息總數為 200 時，將會進行調整。 可能每個執行個體有 100 個訊息、120 和 80 個訊息，或合計最多 200 個或更多訊息的其他任何組合。
 
-設定此設定，在 hello Azure 入口網站中 hello**設定**刀鋒視窗。 針對 VM 規模集，您可以更新 hello 自動調整規模設定中 hello 資源管理員範本 toouse *metricName*為*ApproximateMessageCount*並傳遞 hello 識別碼 hello 儲存體佇列，做為*metricResourceUri*。
+在 Azure 入口網站的 [設定] 刀鋒視窗中進行此設定。 若使用 VM 擴展集，您可以更新 Resource Manager 範本中的自動調整設定，改為使用 metricName 作為 ApproximateMessageCount，並傳遞儲存體佇列的識別碼作為 *metricResourceUri*。
 
-例如，以傳統的儲存體帳戶 hello 包含自動調整規模設定 metricTrigger:
+例如，使用傳統儲存體帳戶時，自動調整設定 metricTrigger 會包含：
 
 ```
 "metricName": "ApproximateMessageCount",
@@ -169,7 +169,7 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
  "metricResourceUri": "/subscriptions/SUBSCRIPTION_ID/resourceGroups/RES_GROUP_NAME/providers/Microsoft.ClassicStorage/storageAccounts/STORAGE_ACCOUNT_NAME/services/queue/queues/QUEUE_NAME"
  ```
 
-（非傳統） 儲存體帳戶，會包含 hello metricTrigger:
+使用 (非傳統) 儲存體帳戶時，metricTrigger 會包含：
 
 ```
 "metricName": "ApproximateMessageCount",
@@ -178,9 +178,9 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 ```
 
 ## <a name="commonly-used-service-bus-metrics"></a>常用的服務匯流排衡量標準
-您可以調整服務匯流排佇列長度是 hello hello 服務匯流排佇列中的訊息數目。 服務匯流排佇列長度是特殊的度量和 hello 臨界值是每個執行個體訊息的 hello 數目。 比方說，如果有兩個執行個體，而且 hello 閾值設定 too100，調整時發生 hello 總 hello 佇列中的訊息數目為 200。 可以是每個執行個體的 100 個訊息、 120 和 80，或任何其他的組合加總 too200 或多個。
+您可以依服務匯流排佇列長度做為調整依據，它是服務匯流排佇列中的訊息數目。 服務匯流排長度是特殊度量，臨界值是每個執行個體的訊息數。 比方說，如果有兩個執行個體，且臨界值設定為 100，當佇列中的訊息總數為 200 時，將會進行調整。 可能每個執行個體有 100 個訊息、120 和 80 個訊息，或合計最多 200 個或更多訊息的其他任何組合。
 
-針對 VM 規模集，您可以更新 hello 自動調整規模設定中 hello 資源管理員範本 toouse *metricName*為*ApproximateMessageCount*並傳遞 hello 識別碼 hello 儲存體佇列，做為*metricResourceUri*。
+若使用 VM 擴展集，您可以更新 Resource Manager 範本中的自動調整設定，改為使用 metricName 作為 ApproximateMessageCount，並傳遞儲存體佇列的識別碼作為 *metricResourceUri*。
 
 ```
 "metricName": "MessageCount",
@@ -189,6 +189,6 @@ Get-AzureRmMetricDefinition -ResourceId <resource_id> | Format-Table -Property N
 ```
 
 > [!NOTE]
-> 服務匯流排的 hello 資源群組概念不存在，但 Azure 資源管理員會建立每個區域的預設資源群組。 hello 資源群組通常是 hello '預設值-ServiceBus-[region]' 格式。 例如，'Default-ServiceBus-EastUS'、'Default-ServiceBus-WestUS'、'Default-ServiceBus-AustraliaEast' 等。
+> 若使用服務匯流排，資源群組的概念不存在，但 Azure Resource Manager 會建立每個區域的預設資源群組。 此資源群組通常是 'Default-ServiceBus-[region]' 的格式。 例如，'Default-ServiceBus-EastUS'、'Default-ServiceBus-WestUS'、'Default-ServiceBus-AustraliaEast' 等。
 >
 >

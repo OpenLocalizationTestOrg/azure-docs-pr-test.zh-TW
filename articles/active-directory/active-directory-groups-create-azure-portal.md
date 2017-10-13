@@ -1,6 +1,6 @@
 ---
-title: "Azure Active Directory 中的使用者群組 aaaCreate |Microsoft 文件"
-description: "如何 toocreate Azure Active Directory 中的群組，並加入成員 toohello 群組"
+title: "在 Azure Active Directory 中建立使用者群組 | Microsoft Docs"
+description: "如何在 Azure Active Directory 中建立群組並將成員新增到群組中"
 services: active-directory
 documentationcenter: 
 author: curtand
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 08/04/2017
 ms.author: curtand
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: fc583a7f02ce50e7f3b2c8f97a9c032a3e2dc33a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6d3d37761a9fdf9bd9801396d45f2fcd47efb0be
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="create-a-group-and-add-members-in-azure-active-directory"></a>在 Azure Active Directory 中建立群組和新增使用者
 > [!div class="op_single_selector"]
@@ -29,25 +29,25 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-這篇文章說明如何 toocreate 並填入 Azure Active Directory 中的新群組。 使用群組 tooperform 管理工作，例如指派授權或權限的使用者或裝置的 tooa 數次。
+本文說明如何在 Azure Active Directory 中建立及填入新群組。 您可以使用群組來執行管理工作，例如將授權或權限一次指派給數個使用者或裝置。
 
 ## <a name="how-do-i-create-a-group"></a>如何建立群組？
-1. 登入 toohello [Azure 入口網站](https://portal.azure.com)hello 目錄的全域管理員的帳戶。
-2. 選取**更多服務**，輸入**使用者和群組**在 hello 文字方塊中，然後選取  **Enter**。
+1. 使用具備目錄全域管理員身分的帳戶來登入 [Azure 入口網站](https://portal.azure.com) 。
+2. 選取 [更多服務]，在文字方塊中輸入**使用者和群組**，然後選取 **Enter**。
 
    ![開啟使用者管理](./media/active-directory-groups-create-azure-portal/search-user-management.png)
-3. 在 hello**使用者和群組**刀鋒視窗中，選取**所有群組**。
+3. 在 [使用者和群組] 刀鋒視窗上，選取 [所有群組]。
 
-   ![開啟 hello 群組刀鋒視窗](./media/active-directory-groups-create-azure-portal/view-groups-blade.png)
-4. 在 hello**使用者和群組的所有群組**刀鋒視窗中，選取 hello**新增**命令。
+   ![開啟群組刀鋒視窗](./media/active-directory-groups-create-azure-portal/view-groups-blade.png)
+4. 在 [使用者和群組 - 所有群組] 刀鋒視窗上，選取 [新增]。
 
-   ![選取 hello Add 命令](./media/active-directory-groups-create-azure-portal/add-group-command.png)
-5. 在 hello**群組**刀鋒視窗中，加入名稱與 hello 群組的描述。
-6. tooselect 成員 tooadd toohello 群組中，選取**指派**在 hello**成員資格類型**方塊，並選取**成員**。 如需有關如何 toomanage hello 群組成員資格以動態方式的詳細資訊，請參閱[使用屬性 toocreate 進階規則群組的成員資格](active-directory-groups-dynamic-membership-azure-portal.md)。
+   ![選取 [新增] 命令](./media/active-directory-groups-create-azure-portal/add-group-command.png)
+5. 在 [群組]  刀鋒視窗上，輸入群組的名稱和描述。
+6. 若要選取要新增到群組中的成員，請在 [成員資格類型] 方塊中選取 [已指派]，然後選取 [成員]。 如需有關如何動態管理群組成員資格的詳細資訊，請參閱 [使用屬性來建立群組成員資格的進階規則](active-directory-groups-dynamic-membership-azure-portal.md)。
 
-   ![選取成員 tooadd](./media/active-directory-groups-create-azure-portal/select-members.png)
-7. 在 hello**成員**刀鋒視窗中，選取其中一個或多個使用者或裝置 tooadd toohello 群組則選取 hello**選取**按鈕在 hello 底部 hello 刀鋒視窗 tooadd 它們 toohello 群組。 hello**使用者**方塊篩選 hello 顯示根據比對您的使用者或裝置名稱的項目 tooany 部分。 該方塊中不接受任何萬用字元。
-8. 當您完成新增成員 toohello 群組時，選取**建立**上 hello**群組**刀鋒視窗。    
+   ![選取要新增的成員](./media/active-directory-groups-create-azure-portal/select-members.png)
+7. 在 [成員] 刀鋒視窗上，選取一或多個要新增到群組中的使用者或裝置，然後選取刀鋒視窗底部的 [選取] 按鈕來將它們新增到群組中。 [使用者]  方塊會根據將您的輸入內容與使用者或裝置名稱的任何部分進行比對來篩選顯示。 該方塊中不接受任何萬用字元。
+8. 完成將成員新增到群組中時，在 [群組] 刀鋒視窗上選取 [建立]。    
 
    ![建立群組確認](./media/active-directory-groups-create-azure-portal/create-group-confirmation.png)
 

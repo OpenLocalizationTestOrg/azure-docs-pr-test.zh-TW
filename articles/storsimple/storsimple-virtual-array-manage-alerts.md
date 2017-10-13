@@ -1,6 +1,6 @@
 ---
-title: "aaaView 及管理 Microsoft Azure StorSimple Virtual Array 警示 |Microsoft 文件"
-description: "描述 StorSimple Virtual Array 警示條件和嚴重性，以及如何 toouse hello StorSimple Manager 服務 toomanage 警示。"
+title: "檢視和管理 Microsoft Azure StorSimple Virtual Array 警示 | Microsoft Docs"
+description: "描述 StorSimple Virtual Array 警示條件和嚴重性，以及如何使用 StorSimple Manager 服務管理警示。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -15,110 +15,110 @@ ms.workload: NA
 ms.date: 02/27/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b0fb5b1b9064f33df1d8fa7ace45f0d72b0a1622
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3062c7c060c3730c5edef3ada16f3a5077cf5558
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-storsimple-device-manager-toomanage-alerts-for-hello-storsimple-virtual-array"></a>Hello StorSimple Virtual Array 的使用 StorSimple 裝置管理員 toomanage 警示
+# <a name="use-storsimple-device-manager-to-manage-alerts-for-the-storsimple-virtual-array"></a>使用 StorSimple 裝置管理員來管理 StorSimple Virtual Array 的警示
 
 ## <a name="overview"></a>概觀
 
-hello StorSimple 裝置 Manager 服務中的 hello 警示功能提供您 tooreview 一種方式，並清除警示相關的 tooStorSimple 虛擬陣列，即時的方式。 您可以使用 hello 警示上 hello**服務摘要**刀鋒視窗 toocentrally 監視您的 StorSimple 虛擬陣列的 hello 健全狀況問題和 hello 整體的 Microsoft Azure StorSimple 解決方案。
+StorSimple 裝置管理員服務中的警示功能可讓您即時檢閱並清除 StorSimple Virtual Array 的相關警示。 您可以使用 [服務摘要] 刀鋒視窗上的警示，集中監視您的 StorSimple Virtual Array 和整個 Microsoft Azure StorSimple 解決方案的健康狀態。
 
-本教學課程說明如何 tooconfigure 警示通知，常見的警示條件，警示的嚴重性層級，以及如何 tooview 及追蹤的警示。 此外，它會包括警示快速參考資料表，可讓您 tooquickly 找出特定的警示，並適當地回應。
+本教學課程說明如何設定警示通知、常見的警示狀況、警示嚴重性層級及如何檢視和追蹤警示。 此外，也包含警示快速參考表，可讓您快速找出特定的警示並適當地回應。
 
 ![警示頁面](./media/storsimple-virtual-array-manage-alerts/alerts1.png)
 
 ## <a name="configure-alert-settings"></a>設定警示設定
 
-您可以選擇是否要讓 toobe 收到 hello 警示的條件，您的 StorSimple 虛擬陣列的每個電子郵件通知。 此外，您可以識別其他警示通知收件者電子郵件地址輸入 hello**其他電子郵件收件者** 方塊中，並以分號分隔。
+您可以選擇是否要透過電子郵件收到每個 StorSimple Virtual Array 的警示狀況通知。 此外，您可以在 [其他電子郵件收件者] 方塊中輸入電子郵件地址 (以分號隔開)，以識別其他警示通知收件者。
 
 > [!NOTE]
 > 您可以對每一個虛擬陣列輸入最多 20 個電子郵件地址。
 
 
-啟用虛擬陣列的電子郵件通知後，hello 通知清單的成員會收到電子郵件訊息，每次發生嚴重的警示時。 會將傳送 hello 訊息 *storsimple-alerts-noreply@mail.windowsazure.com*  ，並將說明 hello 警示條件。 收件者可以按一下**Unsubscribe** tooremove 本身從 hello 電子郵件通知清單。
+啟用虛擬陣列的電子郵件通知之後，每當發生重大警示時，通知清單的成員將會收到電子郵件訊息。 訊息將會從 *storsimple-alerts-noreply@mail.windowsazure.com* 送出，並說明警示狀況。 收件者可以按一下 [取消訂閱]，將自己從電子郵件通知清單中移除。
 
-#### <a name="tooenable-email-notification-for-alerts"></a>tooenable 警示的電子郵件通知
+#### <a name="to-enable-email-notification-for-alerts"></a>若要啟用警示的電子郵件通知
 
-1. 服務和 hello 移 tooyour StorSimple 裝置管理員**管理**區段中選取，然後按一下 **裝置**。 從顯示的裝置 hello 清單，請選取，然後按一下您的裝置。
+1. 移至您的 StorSimple 裝置管理員服務，然後在 [管理] 區段中，選取並按一下 [裝置]。 從顯示的裝置清單中，選取並按一下您的裝置。
    
     ![警示設定](./media/storsimple-virtual-array-manage-alerts/alerts2.png)
-2. 這會開啟 hello**設定**刀鋒視窗。 在 hello**裝置設定**區段中，選取**一般**。 這會開啟 hello**一般設定**刀鋒視窗。
+2. 這會開啟 [設定] 刀鋒視窗。 在 [裝置設定] 區段中，選取 [一般]。 這會開啟 [一般設定] 刀鋒視窗。
    
     ![警示通知組態](./media/storsimple-virtual-array-manage-alerts/alerts4.png)
-3. 在 hello**一般設定**刀鋒視窗中，跳過**警示設定**區段和 hello 下列設定：
+3. 在 [一般設定] 刀鋒視窗中，移至 [警示設定] 區段，然後進行下列設定︰
    
-   1. 在 hello**啟用電子郵件通知**欄位中，選取**是**。
-   2. 在 hello**電子郵件服務系統管理員**欄位中，選取**是**如果您想 toohave hello 服務系統管理員，而且所有的共同管理員收到 hello 警示通知。
-   3. 在 hello**其他電子郵件收件者**欄位中，輸入 hello 的所有其他收件者應該會收到 hello 警示通知的電子郵件地址。 輸入名稱，格式為 hello  *someone@somewhere.com* 。使用分號 tooseparate hello 電子郵件地址。 您可以對每一個虛擬裝置設定最多 20 個電子郵件地址。
+   1. 在 [啟用電子郵件通知] 欄位中，選取 [是]。
+   2. 如果您想要讓服務管理員和所有共同管理員收到警示通知，請在 [電子郵件服務管理員] 欄位中選取 [是]。
+   3. 在 [其他電子郵件收件者] 欄位中，輸入應該收到警示通知的其他所有收件者的電子郵件地址。 以 *someone@somewhere.com* 格式輸入名稱。使用分號來分隔電子郵件地址。 您可以對每一個虛擬裝置設定最多 20 個電子郵件地址。
       
        ![警示通知組態](./media/storsimple-virtual-array-manage-alerts/alerts6.png)
-   4. 按一下 toosend 測試電子郵件通知，**傳送測試電子郵件**。 hello StorSimple 裝置管理員服務將會顯示狀態訊息轉送 hello 測試通知。
+   4. 若要傳送測試電子郵件通知，請按一下 [傳送測試電子郵件]。 StorSimple 裝置管理員服務在轉寄測試通知時會顯示狀態訊息。
       
        ![已傳送警示測試通知電子郵件](./media/storsimple-virtual-array-manage-alerts/alerts7.png)
       
       > [!NOTE]
-      > 如果 hello 測試通知無法傳送訊息，hello StorSimple 裝置管理員服務將會顯示適當的訊息。 按一下**確定**，稍候幾分鐘，然後再試 toosend 測試通知訊息。
+      > 如果無法傳送測試通知訊息，StorSimple 裝置管理員服務會顯示適當的訊息。 按一下 [ **確定**]，等候幾分鐘，然後嘗試再次傳送測試通知訊息。
       > 
       > 
-   5. 在 hello hello 頁面底部，按一下**儲存**toosave 您的設定。 系統提示您進行確認時，按一下 [是] 。
+   5. 按一下頁面底部的 [儲存]  來儲存您的組態。 系統提示您進行確認時，按一下 [是] 。
       
       ![已傳送警示測試通知電子郵件](./media/storsimple-virtual-array-manage-alerts/alerts10.png)
 
 ## <a name="common-alert-conditions"></a>常見的警示狀況
 
-您的 StorSimple Virtual Array 回應 tooa 各種情況中，會產生警示。 hello 如下 hello 最常見的警示條件類型：
+StorSimple Virtual Array 會產生警示以回應各種不同的狀況。 以下是最常見的警示狀況類型：
 
-* **連線問題** – 當傳送資料有困難時會發生這些警示。 通訊可能會發生問題的資料 tooand 傳輸期間從 hello Azure 儲存體帳戶或到期 toolack hello 虛擬裝置與 hello StorSimple 裝置管理員服務之間的連線。 通訊問題是一些 hello 最複雜 toofix 因為有太多失敗點。 您應該一律先網路連線和網際網路存取可用之前先確認 toomore 上繼續進行進階疑難排解。 如需連接埠和防火牆設定的資訊，請太[StorSimple Virtual Array 系統需求](storsimple-ova-system-requirements.md)。 疑難排解說明，請跳過[hello Test-connection cmdlet 與疑難排解](storsimple-troubleshoot-deployment.md)。
+* **連線問題** – 當傳送資料有困難時會發生這些警示。 在往返於 Azure 儲存體帳戶傳輸資料期間，或因為虛擬裝置與 StorSimple 裝置管理員服務之間沒有連線，可能會發生通訊問題。 通訊問題最難解決，因為失敗點實在太多。 在繼續進行更進階的疑難排解之前，您一定要先確認有網路連線和網際網路存取可用。 如需連接埠和防火牆設定的詳細資訊，請參閱 [StorSimple Virtual Array 系統需求](storsimple-ova-system-requirements.md)。 如需疑難排解的說明，請移至 [Test-Connection Cmdlet 的疑難排解](storsimple-troubleshoot-deployment.md)。
 * **效能問題** – 當系統未以最佳方式運作時，例如負荷過重，就會造成這些警示。
 
-此外，您可能會看到警示相關的 toosecurity、 更新或工作失敗。
+此外，您也可能會看到有關安全性、更新或作業失敗的警示。
 
 ## <a name="alert-severity-levels"></a>警示嚴重性層級
 
-警示有不同的嚴重性層級，視 hello 的 hello 影響而定，警示的情況下會有並 hello 回應 toohello 警示需要。 hello 嚴重性層級為：
+視警示狀況造成的影響和是否需要回應警示而定，警示有不同的嚴重性層級。 嚴重性層級如下：
 
-* **重大**– 此警示會回應 tooa 條件影響 hello 成功的效能，您的系統中。 動作是必要的 tooensure hello StorSimple 服務沒有被中斷。
-* **警告** – 此狀況如果不解決，可能會演變成重大狀況。 您應該調查 hello 狀況並採取任何必要動作 tooclear hello 問題。
+* **重大** – 這個警示是回應會影響系統成功運作的狀況。 需要採取動作以確保 StorSimple 服務不中斷。
+* **警告** – 此狀況如果不解決，可能會演變成重大狀況。 您應該調查這種情況，並採取任何必要的動作來解決問題。
 * **資訊** – 此警示包含適用於追蹤和管理系統的資訊。
 
 ## <a name="view-and-track-alerts"></a>檢視和追蹤警示
 
-hello StorSimple 裝置管理員服務摘要 刀鋒視窗可提供您快速概覽 hello 您虛擬裝置，排列依據嚴重性等級的警示數目。
+StorSimple 裝置管理員服務的摘要刀鋒視窗中，可讓您快速概覽虛擬裝置上的警示數目 (依嚴重性層級排列)。
 
 ![警示儀表板](./media/storsimple-virtual-array-manage-alerts/alerts14.png)
 
-按一下 hello 嚴重性層級 tooopen hello**警示**刀鋒視窗。 hello 結果包含只 hello 符合該嚴重性層級的警示。
+按一下嚴重性層級以開啟 [警示] 刀鋒視窗。 結果只包含符合該嚴重性層級的警示。
 
-![警示報表範圍 tooalert 類型](./media/storsimple-virtual-array-manage-alerts/alerts15.png)
+![限定警示類型的警示報告](./media/storsimple-virtual-array-manage-alerts/alerts15.png)
 
-按一下 hello 清單 tooget 的其他詳細資料 hello 警示，包括 hello 上次報告 hello 警示，hello 次數 hello 裝置上的 hello 警示和 hello 建議的動作 tooresolve hello 警示中的警示。
+按一下清單中的警示來取得警示的其他詳細資料，包括上次報告警示的時間、裝置上發生該警示的次數，以及建議採取來解決警示的動作。
 
 ![警示清單和詳細資料](./media/storsimple-virtual-array-manage-alerts/alerts16.png)
 
-如果您需要 toosend hello 資訊 tooMicrosoft 支援，您可以複製 hello 警示詳細資料 tooa 文字檔案。 您有遵循 hello 建議，並解決 hello 警示狀況的內部之後，您應清除 hello hello 清單中的警示。 從 [hello] 清單中選取 hello 警示，然後按一下**清除**。 tooclear 多個警示，選取每個警示，按一下任何資料行除了 hello**警示**資料行，然後再按一下**清除**全部選取之後 hello 警示 toobe 清除。
+如果您需要將資訊傳送給 Microsoft 支援服務，您可以將警示詳細資料複製到文字檔案。 依照建議解決內部部署警示狀況之後，您應該從清單中清除警示。 從清單中選取警示，然後按一下 [清除]。 若要清除多個警示，請選取每個警示，按一下除了 [警示] 資料行以外的任何資料行，然後在選取要清除的所有警示之後按一下 [清除]。
 
-當您按一下**清除**、 就 hello 機會 tooprovide 註解 hello 警示和 hello 步驟，花費了 tooresolve hello 問題。 
+當您按一下 [ **清除**] 時，您有機會提供警示的相關註解，以及您用來解決問題的步驟。 
 
 ![警示註解](./media/storsimple-virtual-array-manage-alerts/alerts17.png)
 
-如果以新資訊觸發其他事件 hello 系統將會清除某些事件。 
+如果新的資訊觸發另一個事件，系統會清除某些事件。 
 
 ## <a name="sort-and-review-alerts"></a>排序和檢閱警示
 
-hello**警示**刀鋒視窗可以顯示 too250 的警示。 如果您已超過此數目的警示，並非所有的警示會顯示 hello 預設檢視中。 您可以結合下列欄位會顯示哪些警示的 toocustomize hello:
+[警示] 刀鋒視窗最多可顯示 250 個警示。 如果超過該警示數目，則並非所有警示都會出現在預設檢視中。 您可以結合下列欄位來自訂要顯示的通知：
 
-* **狀態** – 您可以顯示 [作用中] 或 [已清除] 警示。 作用中警示仍會觸發系統時已清除的警示已被手動清除由系統管理員，或以程式設計方式清除因為 hello 系統以新資訊更新 hello 警示條件。
+* **狀態** – 您可以顯示 [作用中] 或 [已清除] 警示。 作用中警示仍在系統上觸發，而已清除的警示已由系統管理員手動清除，或因為系統以新資訊更新警示狀況而以程式設計方式清除。
 * **嚴重性** – 您可以顯示所有嚴重性層級 (重大、警告、資訊) 的警示，或只顯示特定嚴重性的警示，例如只有重大警示。
-* **來源**– 您可以顯示所有來源的警示，或限制 hello 警示 toothose 來自 hello 服務或一個或所有 hello 虛擬裝置。
-* **時間範圍**– 藉由指定 hello**從**和**至**日期和時間戳記，您可以查看警示 hello 您感興趣的時間週期期間。
+* **來源** – 您可以顯示所有來源的警示，或只顯示來自服務或其中一個或所有虛擬裝置的警示。
+* **時間範圍** – 您可以指定 [從] 和 [到] 日期和時間戳記，以查看您感興趣的期間內的警示。
 
 ## <a name="alerts-quick-reference"></a>警示快速參考
 
-hello 下表列出一些您可能遇到的問題，以及其他資訊和建議可用 hello StorSimple 警示。 StorSimple Virtual Array 警示可分成下列類別目錄的 hello 的其中一個：
+下表列出一些您可能會遇到的 StorSimple 警示，以及其他資訊和適用的建議。 StorSimple Virtual Array 警示分為下列類別：
 
 * [雲端連線能力警示](#cloud-connectivity-alerts)
 * [組態警示](#configuration-alerts)
@@ -131,43 +131,43 @@ hello 下表列出一些您可能遇到的問題，以及其他資訊和建議�
 
 | 警示文字 | 事件 | 詳細資訊 / 建議的動作 |
 |:--- |:--- |:--- |
-| 裝置 *<device name>* 是未連接 toohello 雲端。 |hello 名為裝置無法連線 toohello 雲端。 |無法連線 toohello 雲端。 這可能是因 tooone hello 以下的：<ul><li>可能有 hello 網路設定，您的裝置上的問題。</li><li>可能有問題 hello 儲存體帳戶認證。</li></ul>如需有關疑難排解連線問題的詳細資訊，請移至 toohello[本機 web UI](storsimple-ova-web-ui-admin.md)的 hello 裝置。 |
+| 裝置 *<device name>* 未連接至雲端。 |指定的裝置無法連接至雲端。 |無法連接至雲端。 這可能是下列其中一個原因所造成：<ul><li>您的裝置上的網路設定可能有問題。</li><li>儲存體帳戶認證可能有問題。</li></ul>如需有關針對連線問題進行疑難排解的詳細資訊，請移至裝置的[本機 Web UI](storsimple-ova-web-ui-admin.md)。 |
 
 ### <a name="configuration-alerts"></a>組態警示
 
 | 警示文字 | 事件 | 詳細資訊 / 建議的動作 |
 |:--- |:--- |:--- |
-| 不支援的內部部署虛擬裝置組態。 |效能變慢。 |hello 目前的組態可能會導致效能降低。 確定您的伺服器符合 hello 最低設定需求。 如需詳細資訊，請移至太[StorSimple 虛擬陣列需求](storsimple-ova-system-requirements.md)。 |
-| <裝置名稱> 上的佈建磁碟空間即將用盡。 |磁碟空間警告。 |佈建磁碟空間偏低。 toofree 佔用空間，建議您移動工作負載 tooanother 磁碟區或共用或刪除資料。 |
+| 不支援的內部部署虛擬裝置組態。 |效能變慢。 |目前的組態可能會導致效能降低。 請確定您的伺服器符合最低組態需求。 如需詳細資訊，請參閱 [StorSimple Virtual Array 需求](storsimple-ova-system-requirements.md)。 |
+| <裝置名稱> 上的佈建磁碟空間即將用盡。 |磁碟空間警告。 |佈建磁碟空間偏低。 若要釋放空間，請考慮將工作負載移到另一個磁碟區或共用或刪除資料。 |
 
 ### <a name="job-failure-alerts"></a>作業失敗警示
 
 | 警示文字 | 事件 | 詳細資訊 / 建議的動作 |
 |:--- |:--- |:--- |
-| 無法完成 <裝置名稱> 的備份。 |備份作業失敗。 |無法建立備份。 請考慮 hello 下列其中一種：<ul><li>連線問題會導致 hello 備份作業無法成功地完成。 確定沒有連線問題。 如需有關疑難排解連線問題的詳細資訊，請移至 toohello[本機 web UI](storsimple-ova-web-ui-admin.md)虛擬裝置。</li><li>您已達到 hello 可用的存放裝置限制。 toofree 佔用空間，請考慮刪除任何不再需要的備份。</li></ul> 解決 hello 問題、 清除 hello 警示和重試 hello 作業。 |
-| 無法完成 <裝置名稱> 的複製。 |複製作業失敗。 |無法建立複製。 請考慮 hello 下列其中一種：<ul><li>您的備份清單可能無效。 重新整理 hello 清單 tooverify 時仍然有效。</li><li>連線問題可能防止 hello 複製操作無法順利完成。 確定沒有連線問題。</li><li>您已達到 hello 可用的存放裝置限制。 toofree 佔用空間，請考慮刪除任何不再需要的備份。</li></ul>解決 hello 問題、 清除 hello 警示和重試 hello 作業。 |
+| 無法完成 <裝置名稱> 的備份。 |備份作業失敗。 |無法建立備份。 請考慮採用下列其中一項︰<ul><li>連線問題可能導致備份作業無法順利完成。 確定沒有連線問題。 如需有關針對連線問題進行疑難排解的詳細資訊，請移至您的虛擬裝置的[本機 Web UI](storsimple-ova-web-ui-admin.md)。</li><li>您已達到可用的儲存體限制。 若要釋放空間，請考慮刪除任何不再需要的備份。</li></ul> 解決問題、清除警示，然後重試作業。 |
+| 無法完成 <裝置名稱> 的複製。 |複製作業失敗。 |無法建立複製。 請考慮採用下列其中一項︰<ul><li>您的備份清單可能無效。 重新整理清單，以便確認它仍然有效。</li><li>連線問題可能導致複製作業無法順利完成。 確定沒有連線問題。</li><li>您已達到可用的儲存體限制。 若要釋放空間，請考慮刪除任何不再需要的備份。</li></ul>解決問題、清除警示，然後重試作業。 |
 
 ### <a name="performance-alerts"></a>效能警示
 
 | 警示文字 | 事件 | 詳細資訊 / 建議的動作 |
 |:--- |:--- |:--- |
-| 您遇到資料傳輸的非預期延遲 |慢速資料傳輸。 |當您超出儲存體服務的 hello 延展性目標時，就會發生節流處理錯誤。 hello 儲存體服務會執行此 tooensure 的任何單一用戶端或租用戶可以在 hello 費用的其他人使用 hello 服務。 如需有關如何疑難排解您的 Azure 儲存體帳戶的詳細資訊，請移太[監視、 診斷和疑難排解 Microsoft Azure 儲存體](../storage/common/storage-monitoring-diagnosing-troubleshooting.md)。 |
-| <裝置名稱> 上的本機保留磁碟空間即將用盡。 |回應時間變慢。 |hello 的 10%的總佈建的大小 <*裝置名稱*> 會保留在 hello 本機裝置和您正在不足 hello 保留空間。 hello 工作負載 <*裝置名稱*> 會產生較高的變換，或您的速率可能最近移轉大量資料。 這可能會導致效能降低。 請考慮的其中一個 hello 動作 tooresolve 下列這樣：<ul><li>增加 hello 雲端頻寬 toothis 裝置。</li><li>請減少或移動工作負載 tooanother 磁碟區或共用。</li></ul> |
+| 您遇到資料傳輸的非預期延遲 |慢速資料傳輸。 |當超出儲存體服務的延展性目標時，會出現節流錯誤。 儲存體服務這麼做是為了確保沒有任何用戶端或是租用戶可犧牲其他服務來使用這項服務。 如需疑難排解 Azure 儲存體帳戶問題的詳細資訊，請參閱[監視、診斷及疑難排解 Microsoft Azure 儲存體的問題](../storage/common/storage-monitoring-diagnosing-troubleshooting.md)。 |
+| <裝置名稱> 上的本機保留磁碟空間即將用盡。 |回應時間變慢。 |在本機裝置上為 <裝置名稱> 佈建的總大小中，有 10% 為保留空間，而該保留空間即將用盡。 <裝置名稱> 的工作負載產生較高的變換率，或您最近可能曾經移轉過大量的資料。 這可能會導致效能降低。 請考慮使用下列其中一個方法來解決這個問題：<ul><li>增加此裝置的雲端頻寬。</li><li>降低工作負載或將工作負載移到另一個磁碟區或共用。</li></ul> |
 
 ### <a name="security-alerts"></a>安全性警示
 
 | 警示文字 | 事件 | 詳細資訊 / 建議的動作 |
 |:--- |:--- |:--- |
-| <裝置名稱> 的密碼即將於 <數字> 天後到期。 |密碼警告。 |您的密碼即將於 <數字> 天後到期。 請考慮變更您的密碼。 如需詳細資訊，請移至太[變更 hello StorSimple Virtual Array 裝置系統管理員密碼](storsimple-virtual-array-change-device-admin-password.md)。 |
+| <裝置名稱> 的密碼即將於 <數字> 天後到期。 |密碼警告。 |您的密碼即將於 <數字> 天後到期。 請考慮變更您的密碼。 如需詳細資訊，請參閱[變更 StorSimple Virtual Array 裝置系統管理員密碼](storsimple-virtual-array-change-device-admin-password.md)。 |
 
 ### <a name="update-alerts"></a>更新警示
 
 | 警示文字 | 事件 | 詳細資訊 / 建議的動作 |
 |:--- |:--- |:--- |
-| 您的裝置有新的更新可用。 |可用的更新 toohello StorSimple Virtual Array。 |您可以安裝新的更新從 hello**維護**頁面。 |
-| 無法掃描 <裝置名稱> 有無新的更新。 |更新失敗。 |安裝新的更新時發生錯誤。 您可以手動安裝 hello 更新。 如果 hello 問題持續發生，請連絡[Microsoft 支援服務](storsimple-contact-microsoft-support.md)。 |
+| 您的裝置有新的更新可用。 |StorSimple Virtual Array 有更新可用。 |您可以從 [維護]  頁面安裝新的更新。 |
+| 無法掃描 <裝置名稱> 有無新的更新。 |更新失敗。 |安裝新的更新時發生錯誤。 您可以手動安裝更新。 若問題持續發生，請連絡 [Microsoft 支援服務](storsimple-contact-microsoft-support.md)。 |
 
 ## <a name="next-steps"></a>後續步驟
 
-* [深入了解 hello StorSimple Virtual Array](storsimple-ova-overview.md)。
+* [深入了解 StorSimple Virtual Array](storsimple-ova-overview.md)。
 

@@ -1,6 +1,6 @@
 ---
-title: "適用於傳統 Linux Vm 設定 aaaAvailability |Microsoft 文件"
-description: "設定可用性設定組新的或現有 Linux 虛擬機器中使用 hello Azure 入口網站和 Azure PowerShell hello 傳統部署模型。"
+title: "傳統 Linux VM 的可用性設定組 | Microsoft Docs"
+description: "使用 Azure 入口網站和 Azure PowerShell，以傳統部署模型設定新的或現有 Linux 虛擬機器的可用性設定組。"
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,14 +15,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2016
 ms.author: cynthn
-ms.openlocfilehash: 8d8d041e3540e42a1921f5665469a2fdcaa30a29
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 41d427862150d17e1ad726afc51114d6f62f5a8e
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="how-tooconfigure-an-availability-set-for-linux-virtual-machines-in-hello-classic-deployment-model"></a>如何 tooconfigure 可用性設定組 hello 傳統部署模型中的 Linux 虛擬機器
+# <a name="how-to-configure-an-availability-set-for-linux-virtual-machines-in-the-classic-deployment-model"></a>如何以傳統部署模型設定 Linux 虛擬機器的可用性設定組
 > [!IMPORTANT] 
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文件涵蓋使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。 您也可以在 Resource Manager 部署中 [設定可用性設定組](../../azure-cli-arm-commands.md#azure-availset-commands-to-manage-your-availability-sets) 。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 您也可以在 Resource Manager 部署中 [設定可用性設定組](../../azure-cli-arm-commands.md#azure-availset-commands-to-manage-your-availability-sets) 。
 
 [!INCLUDE [virtual-machines-common-classic-configure-availability](../../../../includes/virtual-machines-common-classic-configure-availability.md)]

@@ -1,6 +1,6 @@
 ---
-title: "aaaStorSimple 虛擬陣列 web UI 管理 |Microsoft 文件"
-description: "描述如何 tooperform 基本裝置系統管理工作透過 hello StorSimple Virtual Array web UI。"
+title: "StorSimple Virtual Array Web UI 管理 |Microsoft Docs"
+description: "描述如何透過 StorSimple Virtual Array Web UI 執行基本的裝置管理工作。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,100 +14,100 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 12/1/2016
 ms.author: alkohli
-ms.openlocfilehash: 31a20a587c4302231f027fcf772a50df33b23407
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 989e7b697f9b527df549fb32be18edd1d3c8d224
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-web-ui-tooadminister-your-storsimple-virtual-array"></a>使用您的 StorSimple Virtual Array hello Web UI tooadminister
+# <a name="use-the-web-ui-to-administer-your-storsimple-virtual-array"></a>使用 Web UI 來管理 StorSimple Virtual Array
 ![安裝程序流程](./media/storsimple-ova-web-ui-admin/manage4.png)
 
 ## <a name="overview"></a>概觀
-這篇文章中的 hello 教學課程適用於 toohello Microsoft Azure StorSimple Virtual Array （也稱為 hello StorSimple 內部部署虛擬裝置） 執行 2016 年 3 月公開上市 (GA) 版本。 本文說明某些 hello 複雜工作流程及管理工作可以在 hello StorSimple Virtual Array 執行。 您可以管理 hello StorSimple Virtual Array 使用 hello StorSimple Manager 服務 UI （參考的 tooas hello 入口網站 UI） 和 hello hello 裝置的本機 web UI。 本文著重在 hello 工作，您可以使用執行 hello web UI。
+本文中的教學課程適用於執行 2016 年 3 月公開上市 (GA) 版的 Microsoft Azure StorSimple Virtual Array (也稱為 StorSimple 內部部署虛擬裝置)。 本文將說明一些可以在 StorSimple Virtual Array 執行的複雜工作流程和管理工作。 您可以使用 StorSimple Manager 服務 UI (又稱為入口網站 UI) 和裝置的本機 Web UI 來管理 StorSimple Virtual Array。 本文著重於可使用 Web UI 執行的工作。
 
-這篇文章包含下列教學課程的 hello:
+本文包含下列教學課程：
 
-* 取得 hello 服務資料加密金鑰
+* 取得服務資料加密金鑰
 * 疑難排解 Web UI 安裝程式錯誤
 * 產生記錄檔封裝
 * 關閉或重新啟動您的裝置
 
-## <a name="get-hello-service-data-encryption-key"></a>取得 hello 服務資料加密金鑰
-當您以 hello StorSimple Manager 服務註冊第一個裝置時，會產生服務資料加密金鑰。 這個索引鍵是所需要的 hello 服務註冊金鑰 tooregister 其他裝置以 hello StorSimple Manager 服務。
+## <a name="get-the-service-data-encryption-key"></a>取得服務資料加密金鑰
+當您向 StorSimple Manager 服務註冊您的第一個裝置時，會產生服務資料加密金鑰。 這個金鑰需要與服務註冊金鑰搭配使用，以向 StorSimple Manager 服務註冊其他裝置。
 
-如果您有錯置的服務資料加密金鑰，需要 tooretrieve，執行 hello 下列步驟在 hello 本機 web UI hello 裝置註冊服務。
+如果您弄丟您的服務資料加密金鑰而需要擷取它，請在向您的服務註冊的裝置的本機 Web UI 中執行下列步驟。
 
-#### <a name="tooget-hello-service-data-encryption-key"></a>tooget hello 服務資料加密金鑰
-1. 連接 toohello 本機 web UI。 跳過**組態** > **雲端設定**。
-2. 在 hello hello 頁面底部，按一下**Get 的服務資料加密金鑰**。 金鑰將會顯示。 複製並儲存此金鑰。
+#### <a name="to-get-the-service-data-encryption-key"></a>取得服務資料加密金鑰
+1. 連線到本機 Web UI。 移至 [組態]  >  [雲端設定]。
+2. 按一下頁面底部的 [取得服務資料加密金鑰] 。 金鑰將會顯示。 複製並儲存此金鑰。
    
     ![取得服務資料加密金鑰 1](./media/storsimple-ova-web-ui-admin/image27.png)
 
 ## <a name="troubleshoot-web-ui-setup-errors"></a>疑難排解 Web UI 安裝程式錯誤
-在某些情況下當您設定 hello 裝置透過 hello 本機 web UI，您可能會遇到錯誤。 toodiagnose 和疑難排解這類錯誤，您可以執行 hello 診斷測試。
+在某些情況下，當您透過本機 Web UI 設定裝置時，可能會遇到錯誤。 若要診斷和移難排解這類錯誤，您可以執行診斷測試。
 
-#### <a name="toorun-hello-diagnostic-tests"></a>toorun hello 診斷測試
-1. 在本機 web UI hello，移過**疑難排解** > **診斷測試**。
+#### <a name="to-run-the-diagnostic-tests"></a>執行診斷測試
+1. 在本機 Web UI 中，移至 [疑難排解]  >  [診斷測試]。
    
     ![執行診斷 1](./media/storsimple-ova-web-ui-admin/image29.png)
-2. 在 hello hello 頁面底部，按一下**執行診斷測試**。 這會起始測試 toodiagnose 任何可能與您的網路、 裝置、 web proxy、 時間或雲端設定的問題。 系統會通知您該 hello 裝置正在執行測試。
-3. Hello 測試都已完成之後，將會顯示 hello 結果。 hello 下列範例顯示 hello 診斷測試結果。 請注意，hello web proxy 設定未設定此裝置，因此，無法執行 hello web proxy 測試。 所有 hello 其他測試網路設定，DNS 伺服器，以及時間設定成功。
+2. 按一下頁面底部的 [執行診斷測試] 。 這樣會起始測試以診斷和您的網路、裝置、Web Proxy、時間或雲端設定相關的任何可能問題。 您將收到裝置正在執行測試的通知。
+3. 測試完成後會顯示結果。 下列範例顯示診斷測試的結果。 請注意，此裝置上未設定 Web Proxy 設定，因此未執行 Web Proxy 測試。 網路設定、DNS 伺服器和時間設定的所有其他測試均成功。
    
     ![執行診斷 2](./media/storsimple-ova-web-ui-admin/image30.png)
 
 ## <a name="generate-a-log-package"></a>產生記錄檔封裝
-記錄檔套件包含所有 hello 相關記錄，有助於協助 Microsoft 支援服務，任何裝置的問題進行疑難排解。 在此版本中，可以透過 hello 本機 web UI 產生記錄檔套件。
+記錄檔封裝包含有助於 Microsoft 支援小組疑難排解任何裝置問題的所有相關記錄檔。 在此版本中，可透過本機 Web UI 產生記錄檔封裝。
 
-#### <a name="toogenerate-hello-log-package"></a>toogenerate hello 記錄封裝
-1. 在本機 web UI hello，移過**疑難排解** > **系統記錄檔**。
+#### <a name="to-generate-the-log-package"></a>產生記錄檔封裝
+1. 在本機 Web UI 中，移至 [疑難排解]  >  [系統記錄檔]。
    
     ![產生記錄檔封裝 1](./media/storsimple-ova-web-ui-admin/image31.png)
-2. 在 hello hello 頁面底部，按一下**建立記錄檔套件**。 將建立 hello 系統記錄檔的封裝。 這需要幾分鐘的時間。
+2. 按一下頁面底部的 [建立記錄檔封裝] 。 將建立系統記錄檔的封裝。 這需要幾分鐘的時間。
    
     ![產生記錄檔封裝 2](./media/storsimple-ova-web-ui-admin/image32.png)
    
-    已成功建立 hello 封裝，並 tooindicate hello 時間和日期建立 hello 封裝時，將會更新 hello 頁面之後，系統會通知您。
+    系統會通知您已成功建立封裝，並會更新頁面以顯示封裝建立的日期與時間。
    
     ![產生記錄檔封裝 3](./media/storsimple-ova-web-ui-admin/image33.png)
 3. 按一下 [下載記錄檔封裝] 。 壓縮的封裝將會下載到您的系統上。
    
     ![產生記錄檔封裝 4](./media/storsimple-ova-web-ui-admin/image34.png)
-4. 您可以解壓縮 hello 下載記錄檔的封裝，並檢視 hello 系統記錄檔。
+4. 您可以解壓縮下載的記錄檔封裝，並檢視系統記錄檔。
 
 ## <a name="shut-down-and-restart-your-device"></a>關閉並重新啟動您的裝置
-您可以關閉或重新啟動虛擬裝置 hello 本機 web UI。 我們建議，再重新啟動、 hello 主機上讓 hello 磁碟區或共用離線再 hello 裝置。 這樣可以讓資料損毀的可能性降至最低。 
+您可以使用本機 Web UI 關閉或重新啟動您的虛擬裝置。 我們建議您在重新啟動之前，讓主機上的磁碟區或共用離線，然後讓裝置離線。 這樣可以讓資料損毀的可能性降至最低。 
 
-#### <a name="tooshut-down-your-virtual-device"></a>tooshut 向您的虛擬裝置
-1. 在本機 web UI hello，移過**維護** > **電源設定**。
-2. 在 hello hello 頁面底部，按一下**關機**。
+#### <a name="to-shut-down-your-virtual-device"></a>關閉虛擬裝置
+1. 在本機 Web UI 中，移至 [維護]  >  [電源設定]。
+2. 按一下頁面底部的 [關閉] 。
    
     ![裝置關閉 1](./media/storsimple-ova-web-ui-admin/image36.png)
-3. 會出現警告，指出關機的 hello 裝置將會中斷已在進行中，進入停機狀態造成任何 IO。 按一下 [hello] 核取圖示 ![核取圖示](./media/storsimple-ova-web-ui-admin/image3.png)。
+3. 會出現警告，指出關閉裝置將中斷已在進行的任何 IO，因而導致停機。 按一下核取圖示  ![核取圖示](./media/storsimple-ova-web-ui-admin/image3.png)。
    
     ![裝置關閉警告](./media/storsimple-ova-web-ui-admin/image37.png)
    
-    系統會通知您已起始 hello 關閉。
+    系統會通知您已起始關機。
    
     ![已開始關閉裝置](./media/storsimple-ova-web-ui-admin/image38.png)
    
-    hello 裝置會立即關閉。 如果您想 toostart 您的裝置，您需要 toodo，透過 hello HYPER-V 管理員。
+    裝置會立即關閉。 如果您想要啟動您的裝置，您必須透過 Hyper-V 管理員執行。
 
-#### <a name="toorestart-your-virtual-device"></a>toorestart 虛擬裝置
-1. 在本機 web UI hello，移過**維護** > **電源設定**。
-2. 在 hello hello 頁面底部，按一下**重新啟動**。
+#### <a name="to-restart-your-virtual-device"></a>重新啟動虛擬裝置
+1. 在本機 Web UI 中，移至 [維護]  >  [電源設定]。
+2. 按一下頁面底部的 [重新啟動] 。
    
     ![裝置重新啟動](./media/storsimple-ova-web-ui-admin/image36.png)
-3. 會出現警告，指出該重新啟動的 hello 裝置將會中斷已在進行中，導致停機所有 IOs。 按一下 [hello] 核取圖示 ![核取圖示](./media/storsimple-ova-web-ui-admin/image3.png)。
+3. 會出現警告，指出重新啟動裝置將中斷已在進行的任何 IO，因而導致停機。 按一下核取圖示  ![核取圖示](./media/storsimple-ova-web-ui-admin/image3.png)。
    
     ![重新啟動警告](./media/storsimple-ova-web-ui-admin/image37.png)
    
-    系統會通知您已起始 hello 重新啟動。
+    系統會通知您已起始重新啟動。
    
     ![已起始重新啟動](./media/storsimple-ova-web-ui-admin/image39.png)
    
-    在進行 hello 重新啟動時，您將會遺失 hello 連接 toohello UI。 您可以透過定期重新整理 hello UI 監視 hello 重新啟動。 或者，您可以監視透過 HYPER-V 管理員 hello hello 裝置重新啟動狀態。
+    重新啟動時，將會中斷 UI 連線。 您可以定期重新整理 UI 以監視重新啟動的情況。 或者，您可以透過 Hyper-V 管理員監視裝置重新啟動狀態。
 
 ## <a name="next-steps"></a>後續步驟
-了解如何太[使用 hello StorSimple Manager 服務 toomanage 裝置](storsimple-virtual-array-manager-service-administration.md)。
+了解如何 [使用 StorSimple Manager 服務管理裝置](storsimple-virtual-array-manager-service-administration.md)。
 

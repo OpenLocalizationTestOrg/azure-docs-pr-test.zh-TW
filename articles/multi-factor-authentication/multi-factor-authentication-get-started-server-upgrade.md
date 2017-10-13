@@ -1,6 +1,6 @@
 ---
-title: "aaaUpgrade PhoneFactor tooAzure MFA Server |Microsoft 文件"
-description: "開始使用 Azure MFA Server 從 hello 較舊的 phonefactor 代理程式升級時。"
+title: "將 PhoneFactor 升級至 Azure MFA Server | Microsoft Docs"
+description: "當您從舊版的 PhoneFactor Agent 升級時，開始使用 Azure MFA Server。"
 services: multi-factor-authentication
 documentationcenter: 
 author: kgremban
@@ -14,68 +14,68 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 06/06/2017
 ms.author: kgremban
-ms.openlocfilehash: 15b7b8517929c30f66e6a39cd44c69d12d25c6d7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7ab7e693909f807781744ae53eed75d425096590
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="upgrade-hello-phonefactor-agent-tooazure-multi-factor-authentication-server"></a>升級 hello PhoneFactor Agent tooAzure Multi-factor Authentication Server
-tooupgrade hello PhoneFactor Agent v5.x 或較舊 tooAzure Multi-factor Authentication Server、 解除安裝 PhoneFactor Agent hello 和附屬元件第一次。 然後 hello Multi-factor Authentication Server，而且可以安裝及其附屬的元件。
+# <a name="upgrade-the-phonefactor-agent-to-azure-multi-factor-authentication-server"></a>將 PhoneFactor Agent 升級為 Azure Multi-Factor Authentication Server
+若要將 PhoneFactor Agent v5.x 或更舊版本升級至 Azure Multi-factor Authentication Server，請先解除安裝 PhoneFactor Agent 和附屬元件。 然後即可安裝 Multi-Factor Authentication Server 與其附屬元件。
 
-## <a name="uninstall-hello-phonefactor-agent"></a>解除安裝 PhoneFactor Agent hello
+## <a name="uninstall-the-phonefactor-agent"></a>解除安裝 PhoneFactor Agent
 
-1. 首先，請備份 hello PhoneFactor 資料檔案。 hello 預設安裝位置是 C:\Program Files\PhoneFactor\Data\Phonefactor.pfdata。
+1. 首先，備份 PhoneFactor 資料檔案。 預設安裝位置是 C:\Program Files\PhoneFactor\Data\Phonefactor.pfdata。
 
-2. 如果已安裝使用者入口網站 hello:
-  1. 瀏覽 toohello 安裝資料夾，然後備份 hello web.config 檔案。 hello 預設安裝位置是 C:\inetpub\wwwroot\PhoneFactor。
+2. 如果已安裝使用者入口網站：
+  1. 瀏覽至安裝資料夾，然後備份 web.config 檔案。 預設安裝位置是 C:\inetpub\wwwroot\PhoneFactor。
 
-  2. 如果您已新增自訂佈景主題 toohello 入口網站，備份 hello C:\inetpub\wwwroot\PhoneFactor\App_Themes 目錄下的自訂資料夾。
+  2. 如果您已在入口網站中加入自訂佈景主題，請備份 C:\inetpub\wwwroot\PhoneFactor\App_Themes 目錄下的自訂資料夾。
 
-  3. 解除安裝使用者入口網站 hello 透過 hello PhoneFactor Agent (只有安裝在 hello 與相同的伺服器 hello PhoneFactor 代理程式) 或透過 Windows 程式和功能。
+  3. 透過 PhoneFactor Agent 解除安裝使用者入口網站 (唯有安裝在與 PhoneFactor Agent 相同的伺服器時才適用) 或透過 Windows [程式和功能]。
 
-3. 如果已安裝 Mobile App Web Service hello:
+3. 如果已安裝 Mobile App Web 服務：
 
-  1. 移 toohello 安裝資料夾，然後備份 hello web.config 檔案。 hello 預設安裝位置是 C:\inetpub\wwwroot\PhoneFactorPhoneAppWebService。
+  1. 移至安裝資料夾，然後備份 web.config 檔案。 預設安裝位置是 C:\inetpub\wwwroot\PhoneFactorPhoneAppWebService。
 
-  2. 解除安裝 hello Mobile App Web Service 透過 Windows 程式和功能。
+  2. 透過 Windows [程式和功能] 解除安裝 Mobile App Web 服務。
 
-4. 如果已安裝 hello Web 服務 SDK，請在透過 hello PhoneFactor 代理程式或透過 Windows 程式和功能解除安裝。
+4. 如果您已安裝 Web 服務 SDK，請透過 PhoneFactor Agent 或透過 Windows [程式和功能] 解除安裝。
 
-5. 解除安裝 hello PhoneFactor 代理程式，透過 Windows 程式和功能。
+5. 透過 Windows [程式和功能] 解除安裝 PhoneFactor Agent。
 
-## <a name="install-hello-multi-factor-authentication-server"></a>安裝 hello Multi-factor Authentication Server
+## <a name="install-the-multi-factor-authentication-server"></a>安裝 Multi-Factor Authentication Server
 
-hello 安裝路徑從挑選 hello 登錄 hello 先前 PhoneFactor 代理程式安裝，因此它應該安裝相同 hello 位置 (例如 C:\Program Files\PhoneFactor)。 新安裝將會有不同的預設安裝路徑 (例如，C:\Program Files\Multi-Factor Authentication Server)。 hello 左的 hello 先前 PhoneFactor 代理程式應該在安裝期間，會升級，因此您的使用者和設定仍應該有在安裝之後 hello 新的 Multi-factor Authentication Server 資料檔案。
+系統會從先前 PhoneFactor Agent 安裝的登錄接續安裝路徑，因此它應該會安裝在相同位置 (例如，C:\Program Files\PhoneFactor)。 新安裝將會有不同的預設安裝路徑 (例如，C:\Program Files\Multi-Factor Authentication Server)。 先前 PhoneFactor Agent 所留下的資料檔案應該會在安裝期間升級，因此在安裝新的 Multi-Factor Authentication Server 之後，使用者和設定應該會留在原地。
 
-1. 如果出現提示，請啟用 hello Multi-factor Authentication Server，並確定它指派 toohello 正確的複寫群組。
+1. 如果出現提示，請啟用 Multi-Factor Authentication Server，並確認已將它指派給正確的複寫群組。
 
-2. 如果先前已安裝 Web 服務 SDK，hello 安裝 hello 新的 Web 服務 SDK，透過 hello Multi-factor Authentication Server 使用者介面。
+2. 如果您之前已安裝 Web 服務 SDK，請透過 Multi-Factor Authentication Server 使用者介面安裝新的 Web 服務 SDK。
 
-  hello 的預設虛擬目錄名稱現在是**MultiFactorAuthWebServiceSdk**而不是**PhoneFactorWebServiceSdk**。 如果您想 toouse hello 先前的名稱，您必須在安裝期間變更 hello hello 虛擬目錄名稱。 否則，如果您允許 hello 安裝 toouse hello 新的預設名稱，您必須 toochange hello URL 任何應用程式中該參考 hello （例如 hello 使用者入口網站和行動裝置應用程式 Web 服務） 的 Web 服務 SDK toopoint hello 正確位置。
+  預設虛擬目錄名稱現在是 **MultiFactorAuthWebServiceSdk**，而非 **PhoneFactorWebServiceSdk**。 如果您想要使用先前的名稱，必須在安裝期間變更虛擬目錄的名稱。 否則，如果您允許安裝使用新預設名稱，必須變更所有參考 Web 服務 SDK 之應用程式中的 URL (例如使用者入口網站和 Mobile App Web 服務)，使其指向正確位置。
 
-3. 如果 hello hello PhoneFactor 代理程式伺服器，在先前已安裝使用者入口網站安裝 hello 新 Multi-factor Authentication 使用者入口網站透過 hello Multi-factor Authentication Server 使用者介面。
+3. 如果您之前將使用者入口網站安裝在 PhoneFactor Agent Server 上，請透過 Multi-Factor Authentication Server 使用者介面安裝新的 Multi-Factor Authentication 使用者入口網站。
 
-  hello 的預設虛擬目錄名稱現在是**MultiFactorAuth**而不是**PhoneFactor**。 如果您想 toouse hello 先前的名稱，您必須在安裝期間變更 hello hello 虛擬目錄名稱。 否則，如果您允許 hello 安裝 toouse hello 新的預設名稱，您應該按一下 Multi-factor Authentication Server hello hello 使用者入口網站 圖示，並更新 hello 設定 索引標籤上的 hello 使用者入口網站 URL。
+  預設虛擬目錄名稱現在是 **MultiFactorAuth**，而非 **PhoneFactor**。 如果您想要使用先前的名稱，必須在安裝期間變更虛擬目錄的名稱。 否則，如果您允許安裝使用新預設名稱，應該要在 Multi-Factor Authentication Server 中按一下 [使用者入口網站] 圖示，然後更新 [設定] 索引標籤中的使用者入口網站 URL。
 
-4. 如果 hello 使用者入口網站及/或 Mobile App Web Service 先前已安裝在不同的伺服器上 hello PhoneFactor 代理程式：
+4. 如果您之前將使用者入口網站和/或 Mobile App Web 服務安裝在 PhoneFactor Agent 之外的伺服器上：
 
-  1. 請 toohello 安裝位置 (例如 C:\Program Files\PhoneFactor)，並複製一或多個安裝程式 toohello 另一部伺服器。 有 32 位元和 64 位元的 hello 使用者入口網站和行動裝置應用程式 Web 服務的安裝程式。 它們稱為 MultiFactorAuthenticationUserPortalSetupXX.msi 和 MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi。
+  1. 移至安裝位置 (例如，C:\Program Files\PhoneFactor)，然後將一個或多個安裝程式複製到其他伺服器。 使用者入口網站和 Mobile App Web 服務備有 32 位元和 64 位元安裝程式。 它們稱為 MultiFactorAuthenticationUserPortalSetupXX.msi 和 MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi。
 
-  2. tooinstall hello 使用者入口網站 hello 網頁伺服器上，開啟命令提示字元，以系統管理員，然後執行 MultiFactorAuthenticationUserPortalSetupXX.msi。
+  2. 若要將使用者入口網站安裝在 Web 伺服器上，請以系統管理員身分開啟命令提示字元，然後執行 MultiFactorAuthenticationUserPortalSetupXX.msi。
 
-    hello 的預設虛擬目錄名稱現在是**MultiFactorAuth**而不是**PhoneFactor**。 如果您想 toouse hello 先前的名稱，您必須在安裝期間變更 hello hello 虛擬目錄名稱。 否則，如果您允許 hello 安裝 toouse hello 新的預設名稱，您應該按一下 Multi-factor Authentication Server hello hello 使用者入口網站 圖示，並更新 hello 設定 索引標籤上的 hello 使用者入口網站 URL。現有的使用者需要 toobe hello 新 URL 的通知。
+    預設虛擬目錄名稱現在是 **MultiFactorAuth**，而非 **PhoneFactor**。 如果您想要使用先前的名稱，必須在安裝期間變更虛擬目錄的名稱。 否則，如果您允許安裝使用新預設名稱，應該要在 Multi-Factor Authentication Server 中按一下 [使用者入口網站] 圖示，然後更新 [設定] 索引標籤中的使用者入口網站 URL。 您需要通知現有使用者有關新 URL 的資訊。
 
-  3. 移 toohello 使用者入口網站安裝位置 (例如 C:\inetpub\wwwroot\MultiFactorAuth) 並編輯 hello web.config 檔案。 複製您 hello 升級前備份到 hello 新的 web.config 檔案的原始 web.config 檔案中的 hello appSettings 及 applicationSettings 區段中的 hello 值。 如果安裝 hello Web 服務 SDK 時保留 hello 新的預設虛擬目錄名稱，，變更 hello applicationSettings 區段 toopoint toohello 正確的位置中的 hello URL。 如果在 hello 先前的 web.config 檔案中變更了任何其他預設值，適用於那些相同變更 toohello 新的 web.config 檔案。
+  3. 移至使用者入口網站安裝位置 (例如，C:\inetpub\wwwroot\MultiFactorAuth)，然後編輯 web.config 檔案。 在將 web.config 檔案升級為新 web.config 檔案之前備份的原始檔案中，複製 appSettings 和 applicationSettings 區段中的值。 在安裝 Web 服務 SDK 時，如果新的預設虛擬目錄名稱已保留，請變更 applicationSettings 區段中的 URL，以指向正確位置。 如果先前 web.config 檔案中有其他任何經過變更的預設值，請將這些相同變更套用到新的 web.config 檔案。
 
-  4. tooinstall hello Mobile App Web Service hello 網頁伺服器上，開啟命令提示字元，以系統管理員，然後執行 hello MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi。
+  4. 若要將 Mobile App Web 服務安裝在 Web 伺服器上，請以系統管理員身分開啟命令提示字元，然後執行 MultiFactorAuthenticationMobileAppWebServiceSetupXX.msi。
 
-    hello 的預設虛擬目錄名稱現在是**MultiFactorAuthMobileAppWebService**而不是**PhoneFactorPhoneAppWebService**。 如果您想 toouse hello 先前的名稱，您必須在安裝期間變更 hello hello 虛擬目錄名稱。 您可能會想 toochoose 較短的名稱 toomake 輕鬆使用者 tootype 中行動裝置上。 否則，如果您允許 hello 安裝 toouse hello 新的預設名稱，您應該按一下 hello hello Multi-factor Authentication Server 中的行動裝置應用程式圖示，並更新 hello Mobile App Web Service URL。
+    預設虛擬目錄名稱現在是 **MultiFactorAuthMobileAppWebService**，而非 **PhoneFactorPhoneAppWebService**。 如果您想要使用先前的名稱，必須在安裝期間變更虛擬目錄的名稱。 您也許會想要選擇較短的名稱，以便使用者在行動裝置上輸入。 否則，如果您允許安裝使用新預設名稱，應該要在 Multi-Factor Authentication Server 中按一下 [行動應用程式] 圖示，然後更新 Mobile App Web 服務 URL。
 
-  5. 移 toohello Mobile App Web Service 安裝位置 (例如 C:\inetpub\wwwroot\MultiFactorAuthMobileAppWebService) 並編輯 hello web.config 檔案。 複製您 hello 升級前備份到 hello 新的 web.config 檔案的原始 web.config 檔案中的 hello appSettings 及 applicationSettings 區段中的 hello 值。 如果安裝 hello Web 服務 SDK 時保留 hello 新的預設虛擬目錄名稱，，變更 hello applicationSettings 區段 toopoint toohello 正確的位置中的 hello URL。 如果在 hello 先前的 web.config 檔案中變更了任何其他預設值，適用於那些相同變更 toohello 新的 web.config 檔案。
+  5. 移至 Mobile App Web 服務安裝位置 (例如，C:\inetpub\wwwroot\MultiFactorAuthMobileAppWebService)，然後編輯 web.config 檔案。 在將 web.config 檔案升級為新 web.config 檔案之前備份的原始檔案中，複製 appSettings 和 applicationSettings 區段中的值。 在安裝 Web 服務 SDK 時，如果新的預設虛擬目錄名稱已保留，請變更 applicationSettings 區段中的 URL，以指向正確位置。 如果先前 web.config 檔案中有其他任何經過變更的預設值，請將這些相同變更套用到新的 web.config 檔案。
 
 ## <a name="next-steps"></a>後續步驟
 
-- [安裝 hello 使用者入口網站](multi-factor-authentication-get-started-portal.md)hello Azure Multi-factor Authentication Server。
+- 針對 Azure Multi-Factor Authentication Server [安裝使用者入口網站](multi-factor-authentication-get-started-portal.md)。
 
 - 為您的應用程式[設定 Windows 驗證](multi-factor-authentication-get-started-server-windows.md)。 

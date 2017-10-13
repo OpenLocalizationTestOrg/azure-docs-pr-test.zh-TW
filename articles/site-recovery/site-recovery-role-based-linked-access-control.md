@@ -1,6 +1,6 @@
 ---
-title: "aaaUsing 角色型存取控制 toomanage Azure Site Recovery |Microsoft 文件"
-description: "本文說明如何 tooapply 和使用角色型存取控制 (RBAC) toomanage Azure Site Recovery 部署"
+title: "使用角色型存取控制來管理 Azure Site Recovery | Microsoft Docs"
+description: "本文說明如何套用與使用角色型存取控制 (RBAC) 來管理 Azure Site Recovery 部署"
 services: site-recovery
 documentationcenter: 
 author: mayanknayar
@@ -14,36 +14,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/28/2017
 ms.author: manayar
-ms.openlocfilehash: 7b721090351e561b28317ccdcf0ff283e0b146ca
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9dd74014bf05234a83c7678b67b42b96cd8b8d64
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-role-based-access-control-toomanage-azure-site-recovery-deployments"></a>使用角色型存取控制 toomanage Azure Site Recovery 部署
+# <a name="use-role-based-access-control-to-manage-azure-site-recovery-deployments"></a>使用角色型存取控制管理 Azure Site Recovery 部署
 
-Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權管理。 使用 RBAC 時，您可以隔離您的小組內的責任，並授與僅特定存取權限 toousers 需要的 tooperform 特定工作的形式。
+Azure 角色型存取控制 (RBAC) 可以對 Azure 進行更細緻的存取權管理。 您可以使用 RBAC 劃分小組責任，並只將特定存取權限授與需要執行特定工作的使用者。
 
-Azure Site Recovery 提供 3 的內建角色 toocontrol Site Recovery 管理作業。 深入了解 [Azure RBAC 內建角色](../active-directory/role-based-access-built-in-roles.md)
+Azure Site Recovery 提供 3 種內建角色，以控制 Site Recovery 管理作業。 深入了解 [Azure RBAC 內建角色](../active-directory/role-based-access-built-in-roles.md)
 
-* [站台復原參與者](../active-directory/role-based-access-built-in-roles.md#site-recovery-contributor)-這個角色具有所有使用權限必要的 toomanage Azure Site Recovery 作業復原服務保存庫中。 使用者與此角色，不過，無法建立或刪除復原服務保存庫或指派存取權限 tooother 使用者。 此角色最適合用於災害復原的系統管理員可以啟用和管理的應用程式或整個組織，嚴重損壞修復作為可能 hello 案例。
-* [站台復原操作員](../active-directory/role-based-access-built-in-roles.md#site-recovery-operator)-這個角色有權限 tooexecute 和管理員容錯移轉和容錯回復作業。 具有此角色的使用者無法啟用或停用複寫，建立或刪除保存庫，註冊新的基礎結構或指派存取權限 tooother 使用者。 此角色最適合災害復原操作員，當應用程式擁有者和 IT 系統管理員在實際或模擬災害情況 (例如災害復原演習) 中指示時，操作員可以對虛擬機器或應用程式進行容錯移轉。 Post hello 災害的解析度，hello DR 運算子可以重新保護和容錯回復 hello 虛擬機器。
-* [站台復原的讀取器](../active-directory/role-based-access-built-in-roles.md#site-recovery-reader)-這個角色有權限 tooview 站台復原的所有管理作業。 這個角色是保護的適用於 IT 監視主管人員可以監視 hello 的目前狀態，並引發支援票證，必要的。
+* [Site Recovery 參與者](../active-directory/role-based-access-built-in-roles.md#site-recovery-contributor)：此角色具有在復原服務保存庫中管理 Azure Site Recovery 作業所需的所有權限。 不過，具有此角色的使用者無法建立或刪除復原服務保存庫，也無法為其他使用者指派存取權限。 此角色最適合災害復原系統管理員，他們可以為應用程式或整個組織 (視情況而定) 啟用和管理災害復原。
+* [Site Recovery 操作員](../active-directory/role-based-access-built-in-roles.md#site-recovery-operator)：此角色具有執行和管理容錯移轉和容錯回復作業的權限。 具有此角色的使用者無法啟用或停用複寫、建立或刪除保存庫、註冊新的基礎結構，也無法為其他使用者指派存取權限。 此角色最適合災害復原操作員，當應用程式擁有者和 IT 系統管理員在實際或模擬災害情況 (例如災害復原演習) 中指示時，操作員可以對虛擬機器或應用程式進行容錯移轉。 災害解決後，災害復原操作員可以重新保護和容錯回復虛擬機器。
+* [Site Recovery 讀者](../active-directory/role-based-access-built-in-roles.md#site-recovery-reader)：此角色擁有可檢視所有 Site Recovery 管理作業的權限。 此角色最適合 IT 監督主管，以便監控目前的保護狀態，並在需要時提出支援票證。
 
-如果您要尋找 toodefine 您自己的角色的更多控制，請參閱如何太[建置自訂角色](../active-directory/role-based-access-control-custom-roles.md)在 Azure 中。
+如果您想要定義自己的角色以獲得更進一步控制，請參閱如何在 Azure 中[建立自訂角色](../active-directory/role-based-access-control-custom-roles.md)。
 
-## <a name="permissions-required-tooenable-replication-for-new-virtual-machines"></a>TooEnable 複寫所需的新虛擬機器權限
-使用 Azure Site Recovery 的複寫的 tooAzure 新的虛擬機器時，相關聯的 hello 使用者的存取層級是 hello 使用者的驗證的 tooensure hello 具有必要權限 toouse hello Azure 提供的資源 tooSite 復原。
+## <a name="permissions-required-to-enable-replication-for-new-virtual-machines"></a>啟用新虛擬機器複寫所需的權限
+當使用 Azure Site Recovery 將新的虛擬機器複寫至 Azure 時，系統會驗證相關聯使用者的存取層級，以確定使用者擁有使用提供給 Site Recovery 的 Azure 資源所需的權限。
 
-新的虛擬機器的 tooenable 複寫，使用者必須具備：
-* 權限 toocreate hello 選取的資源群組中的虛擬機器
-* 權限 toocreate hello 選取的虛擬網路中的虛擬機器
-* 權限 toowrite toohello 選取儲存體帳戶
+若要啟用新虛擬機器的複寫，使用者必須擁有：
+* 在所選資源群組中建立虛擬機器的權限
+* 在所選虛擬網路中建立虛擬機器的權限
+* 寫入所選儲存體帳戶的權限
 
-使用者需要下列權限 toocomplete 複寫新的虛擬機器的 hello。
+使用者需要下列權限才能完成新虛擬機器的複寫。
 
 > [!IMPORTANT]
->請確認相關的權限會新增每個 hello 部署模型 (資源管理員 / 傳統) 資源部署所用的。
+>確定為每個用於部署資源的部署模型 (Resource Manager/傳統) 新增相關的權限。
 
 | **資源類型** | **部署模型** | **權限** |
 | --- | --- | --- |
@@ -73,11 +73,11 @@ Azure Site Recovery 提供 3 的內建角色 toocontrol Site Recovery 管理作�
 | 資源群組 | 資源管理員 | Microsoft.Resources/deployments/* |
 |  |  | Microsoft.Resources/subscriptions/resourceGroups/read |
 
-請考慮使用 hello '虛擬機器參與者' 和 '傳統虛擬機器參與者'[內建角色](../active-directory/role-based-access-built-in-roles.md)資源管理員] 和 [傳統部署模型分別。
+請考慮分別為 Resource Manager 與傳統部署模型使用「虛擬機器參與者」與「傳統虛擬機器參與者」[內建角色](../active-directory/role-based-access-built-in-roles.md)。
 
 ## <a name="next-steps"></a>後續步驟
-* [角色型存取控制](../active-directory/role-based-access-control-configure.md)： 開始使用 RBAC hello Azure 入口網站中。
-* 了解 toomanage 與的存取方式：
+* [角色型存取控制](../active-directory/role-based-access-control-configure.md)：開始在 Azure 入口網站中使用 RBAC。
+* 了解如何使用下列各項管理存取權：
   * [PowerShell](../active-directory/role-based-access-control-manage-access-powershell.md)
   * [Azure CLI](../active-directory/role-based-access-control-manage-access-azure-cli.md)
   * [REST API](../active-directory/role-based-access-control-manage-access-rest.md)

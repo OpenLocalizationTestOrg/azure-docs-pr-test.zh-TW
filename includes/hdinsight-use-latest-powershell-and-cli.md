@@ -1,7 +1,7 @@
 > [!IMPORTANT]
-> 支援使用 Azure 服務管理員 (ASM) 透過 Azure PowerShell 和 hello Azure CLI 管理 HDInsight 資源是**取代**，以及在 2017 年 1 月 1，已移除。 此文件使用 hello 新 Azure PowerShell cmdlet 和 Azure CLI 命令，可使用 Azure 資源管理員中的步驟 hello。
+> 透過 Azure PowerShell 和 Azure CLI 使用 Azure Service Manager (ASM) 管理 HDInsight 資源的支援**已被取代**，並已在 2017 年 1 月 1 日移除。 本文件中的步驟會使用可與 Azure Resource Manager 搭配使用的新 Azure PowerShell Cmdlet 和 Azure CLI 命令。
 > 
-> Hello 中的 hello 步驟[安裝及設定 Azure CLI](../articles/cli-install-nodejs.md)和[安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)文章 tooinstall hello 最新版本。 如果您有現有的指令碼需要修改 toobe toouse hello 新的 cmdlet 或新的 CLI 命令，請參閱[移轉 tooAzure 資源管理員為基礎的開發工具的 HDInsight 叢集](../articles/hdinsight/hdinsight-hadoop-development-using-azure-resource-manager.md)。
+> 請依照[安裝和設定 Azure CLI](../articles/cli-install-nodejs.md) 和[安裝和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs) 文章中的步驟執行，以安裝最新版本。 如果您需要修改現有指令碼才能使用新的 Cmdlet 或新的 CLI 命令，請參閱 [移轉至以 Azure Resource Manager 為基礎的開發工具 (適用於 HDInsight 叢集)](../articles/hdinsight/hdinsight-hadoop-development-using-azure-resource-manager.md)。
 > 
 > 
 

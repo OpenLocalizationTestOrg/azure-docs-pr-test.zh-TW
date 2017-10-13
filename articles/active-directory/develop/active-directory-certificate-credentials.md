@@ -1,6 +1,6 @@
 ---
-title: "在 Azure AD 中的 aaaCertificate 認證 |Microsoft 文件"
-description: "本文將討論 hello 註冊和使用憑證認證進行應用程式驗證"
+title: "Azure AD 中的憑證認證 | Microsoft Docs"
+description: "本文討論如何註冊和使用憑證認證來進行應用程式驗證"
 services: active-directory
 documentationcenter: .net
 author: navyasric
@@ -15,41 +15,41 @@ ms.topic: article
 ms.date: 06/02/2017
 ms.author: nacanuma
 ms.custom: aaddev
-ms.openlocfilehash: 3508803112ac06268d553db86ab74812aa53e455
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 08bb5140bb35bbd120aaa506afeab8ad247f81e1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="certificate-credentials-for-application-authentication"></a>適用於應用程式驗證的憑證認證
 
-Azure Active Directory 可讓應用程式 toouse 它自己的認證進行驗證，例如 hello OAuth 2.0 用戶端認證授與流程和 hello 代表的資料流程中。
-一種可用形式是認證的 hello 應用程式擁有的憑證簽署的 JSON Web token （jwt） 判斷提示。
+Azure Active Directory 可讓應用程式使用自己的認證進行驗證，例如，在 OAuth 2.0 用戶端認證授與流程和代理者流程中。
+可用的認證形式之一，便是以應用程式擁有的憑證所簽署的 JSON Web 權杖 (JWT) 判斷提示。
 
-## <a name="format-of-hello-assertion"></a>Hello 判斷提示的格式
-toocompute hello 的判斷提示，您可能想 toouse hello 其中許多[JSON Web 權杖](https://jwt.io/)hello 您所選擇的語言中的程式庫。 hello hello 語彙基元所執行的資訊為：
+## <a name="format-of-the-assertion"></a>判斷提示的格式
+為了計算判斷提示，您可能想要使用所選語言中許多 [JSON Web 權杖](https://jwt.io/) \(英文\) 程式庫其中之一。 權杖所攜帶的資訊是︰
 
-#### <a name="header"></a>標頭
+#### <a name="header"></a>頁首
 
 | 參數 |  備註 |
 | --- | --- | --- |
 | `alg` | 應該是 **RS256** |
 | `typ` | 應該是 **JWT** |
-| `x5t` | 應該是 hello X.509 憑證 sha-1 指模 |
+| `x5t` | 應該是 X.509 憑證 SHA-1 憑證指紋 |
 
 #### <a name="claims-payload"></a>宣告 (承載)
 
 | 參數 |  備註 |
 | --- | --- | --- |
 | `aud` | 對象︰應該是 **https://login.microsoftonline.com/*租用戶 ID*/oauth2/權杖** |
-| `exp` | 到期日： hello hello 權杖過期時的日期。 hello 次會表示秒數 hello 從 1970 年 1 月 1 日 (1970年-01-01T0:0:0Z) UTC 直到 hello hello 權杖有效時間過期為止。|
-| `iss` | 發行者： 應該是 hello client_id （hello client 服務的應用程式識別碼） |
-| `jti` | GUID: hello JWT 識別碼 |
-| `nbf` | 不能早： hello 日期之前的 hello 權杖不可用。 hello 次會表示秒數 hello 從 1970 年 1 月 1 日 (1970年-01-01T0:0:0Z) UTC 直到 hello 時間 hello 權杖的發出。 |
-| `sub` | 主旨： 做為`iss`，應該是 hello client_id （hello client 服務的應用程式識別碼） |
+| `exp` | 到期日：權杖到期的日期。 時間會表示為從 1970 年 1 月 1 日 (1970-01-01T0:0:0Z) UTC 到權杖有效時間到期的秒數。|
+| `iss` | 簽發者︰應該是 client_id (用戶端服務的應用程式識別碼) |
+| `jti` | GUID：JWT ID |
+| `nbf` | 生效時間：無法在此日期之前使用權杖。 時間會表示為從 1970 年 1 月 1 日 (1970-01-01T0:0:0Z) UTC 到權杖發出時間的秒數。 |
+| `sub` | 主旨：對於 `iss`，應該是 client_id (用戶端服務的應用程式識別碼) |
 
 #### <a name="signature"></a>簽章
-hello 簽章計算 hello 中所述套用 hello 憑證[JSON Web 語彙基元 RFC7519 規格](https://tools.ietf.org/html/rfc7519)
+簽章是使用 [JSON Web 權杖 RFC7519 規格](https://tools.ietf.org/html/rfc7519) 中所述的憑證計算的
 
 ### <a name="example-of-a-decoded-jwt-assertion"></a>已解碼的 JWT 判斷提示範例
 ```
@@ -73,22 +73,22 @@ hello 簽章計算 hello 中所述套用 hello 憑證[JSON Web 語彙基元 RFC7
 ```
 
 ### <a name="example-of-an-encoded-jwt-assertion"></a>已編碼的 JWT 判斷提示範例
-下列字串 hello 是編碼的判斷提示的範例。 如果您仔細看，會發現三個以點 (.) 分隔的區段。
-hello 第一個區段編碼 hello 標頭，第二個 hello 內容 hello，且 hello 上次 hello hello 憑證 hello 的 hello 前兩個區段的內容中計算所得的簽章。
+下列字串是已編碼判斷提示的範例。 如果您仔細看，會發現三個以點 (.) 分隔的區段。
+第一個區段編碼標頭，第二個區段編碼承載，而最後區段則是使用前兩個區段的內容的憑證所計算的簽章。
 ```
 "eyJhbGciOiJSUzI1NiIsIng1dCI6Imd4OHRHeXN5amNScUtqRlBuZDdSRnd2d1pJMCJ9.eyJhdWQiOiJodHRwczpcL1wvbG9naW4ubWljcm9zb2Z0b25saW5lLmNvbVwvam1wcmlldXJob3RtYWlsLm9ubWljcm9zb2Z0LmNvbVwvb2F1dGgyXC90b2tlbiIsImV4cCI6MTQ4NDU5MzM0MSwiaXNzIjoiOTdlMGE1YjctZDc0NS00MGI2LTk0ZmUtNWY3N2QzNWM2ZTA1IiwianRpIjoiMjJiM2JiMjYtZTA0Ni00MmRmLTljOTYtNjVkYmQ3MmMxYzgxIiwibmJmIjoxNDg0NTkyNzQxLCJzdWIiOiI5N2UwYTViNy1kNzQ1LTQwYjYtOTRmZS01Zjc3ZDM1YzZlMDUifQ.
 Gh95kHCOEGq5E_ArMBbDXhwKR577scxYaoJ1P{a lot of characters here}KKJDEg"
 ```
 
 ### <a name="register-your-certificate-with-azure-ad"></a>使用 Azure AD 註冊您的憑證
-tooassociate hello 與 Azure AD 中的 hello 用戶端應用程式的憑證認證，您需要 tooedit hello 應用程式資訊清單。
-您需要保存的憑證，需要 toocompute:
-- `$base64Thumbprint`其中是 hello base64 編碼的 hello 憑證雜湊
-- `$base64Value`其中是 hello base64 編碼的 hello 憑證未經處理資料
+若要在 Azure AD 中將憑證認證與用戶端應用程式相關聯，您必須編輯應用程式資訊清單。
+擁有憑證之後，您必須計算︰
+- `$base64Thumbprint`，它是憑證雜湊的 base64 編碼
+- `$base64Value`，它是憑證未經處理資料的 base64 編碼
 
-您也需要 tooprovide hello 應用程式資訊清單中的 GUID tooidentify hello 索引鍵 (`$keyId`)
+您也必須提供 GUID 來識別應用程式資訊清單中的金鑰 (`$keyId`)
 
-在 hello hello 用戶端應用程式的 Azure 應用程式註冊，開啟 hello 應用程式資訊清單，並取代 hello *keyCredentials*您新的憑證資訊，請使用下列結構描述的 hello 屬性：
+在適用於用戶端應用程式的 Azure 應用程式註冊中，開啟應用程式資訊清單，然後使用下列結構描述，利用您新的憑證資訊來取代 *keyCredentials* 屬性：
 ```
 "keyCredentials": [
     {
@@ -101,4 +101,4 @@ tooassociate hello 與 Azure AD 中的 hello 用戶端應用程式的憑證認�
 ]
 ```
 
-儲存 hello 編輯 toohello 應用程式資訊清單，並上傳 tooAzure AD。 hello keyCredentials 屬性是多重值，，因此您可以上傳更豐富的金鑰管理的多個憑證。
+儲存對應用程式資訊清單所做的編輯，然後上傳至 Azure AD。 keyCredentials 屬性是多重值，，因此您可能上傳多個憑證以進行更豐富的金鑰管理。

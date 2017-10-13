@@ -1,1 +1,1 @@
-Azure 目前使用兩種部署模型：Resource Manager 和傳統。 hello 兩個模型不是彼此完全相容。 在開始之前，您需要 tooknow 想 toowork 中哪一個模型。 如需 hello 部署模型的資訊，請參閱[了解部署模型](../articles/resource-manager-deployment-model.md)。 如果您是新 tooAzure，我們建議您先使用 hello Resource Manager 部署模型。
+Azure 目前使用兩種部署模型：Resource Manager 和傳統。 兩個模型彼此無法完全相容。 開始之前，您必須知道您想要使用哪一個模型。 如需部署模型的資訊，請參閱[了解部署模型](../articles/resource-manager-deployment-model.md)。 如果您不熟悉 Azure，建議使用 Azure Resource Manager 部署模型。

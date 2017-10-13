@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 媒體服務 REST API aaaCreating 篩選 |Microsoft 文件"
-description: "本主題描述如何 toocreate 篩選讓您的用戶端能夠使用它們 toostream 特定區段的資料流。 媒體服務會建立動態資訊清單 tooachieve 這個選擇性的資料流。"
+title: "使用 Azure 媒體服務 REST API 建立篩選器 | Microsoft Docs"
+description: "本主題說明如何建立篩選器，讓您的用戶端可以使用篩選器來串流特定的資料流區段。 媒體服務會建立動態資訊清單來完成此選擇性資料流。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako;cenkdin
-ms.openlocfilehash: d0b5af3b193b35f22ac70887963c2f0a06b60bde
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 76d2721138668d9f0a908af3fa42840309b068ef
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="creating-filters-with-azure-media-services-rest-api"></a>使用 Azure 媒體服務 REST API 建立篩選器
 > [!div class="op_single_selector"]
@@ -27,14 +27,14 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-從 2.11 版開始，媒體服務可讓您為您資產的 toodefine 篩選器。 這些篩選條件是伺服器端規則，可讓您的客戶 toochoose toodo 等： 播放視訊 （而不是正在播放 hello 整個視訊） 的區段，或指定的音訊和視訊多種客戶的裝置可以處理 （子集而不是所有 hello 多種與相關聯 hello 資產）。 此篩選您的資產會透過封存**動態資訊清單**視訊在您的客戶要求 toostream 時所建立根據指定的篩選器。
+從 2.11 版開始，媒體服務可讓您為資產定義篩選器。 這些篩選器是伺服器端規則，可讓您的客戶選擇執行如下的動作：只播放一段視訊 (而非播放完整視訊)，或只指定您客戶裝置可以處理的一部分音訊和視訊轉譯 (而非與該資產相關的所有轉譯)。 透過在您客戶要求下建立的 **動態資訊清單**可達成對資訊進行這樣的篩選，藉此根據指定的篩選器來串流視訊。
 
-如需詳細資訊相關的 toofilters 和動態資訊清單，請參閱[動態資訊清單概觀](media-services-dynamic-manifest-overview.md)。
+如需篩選器與動態資訊清單的詳細資訊，請參閱 [動態資訊清單概觀](media-services-dynamic-manifest-overview.md)。
 
-本主題說明如何 toouse REST Api toocreate、 更新和刪除篩選。 
+本主題說明如何使用 REST API 建立、更新與刪除篩選器。 
 
-## <a name="types-used-toocreate-filters"></a>使用 toocreate 篩選類型。
-hello 下列使用類型時建立的篩選條件：  
+## <a name="types-used-to-create-filters"></a>用於建立篩選器的類型
+建立篩選器時會使用下列類型：  
 
 * [Filter](https://docs.microsoft.com/rest/api/media/operations/filter)
 * [AssetFilter](https://docs.microsoft.com/rest/api/media/operations/assetfilter)
@@ -45,16 +45,16 @@ hello 下列使用類型時建立的篩選條件：
 
 >在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 
-## <a name="connect-toomedia-services"></a>TooMedia 服務連接
+## <a name="connect-to-media-services"></a>連線到媒體服務
 
-如需有關如何 tooconnect toohello AMS API，請參閱詳細[存取 hello Azure 媒體服務 API 與 Azure AD 驗證](media-services-use-aad-auth-to-access-ams-api.md)。 
+如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。 
 
 >[!NOTE]
->已成功連接之後 toohttps://media.windows.net，您會收到指定另一個媒體服務 URI 的 301 重新導向。 您必須進行的後續呼叫 toohello 新的 URI。
+>順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 後續的呼叫必須送到新的 URI。
 
 ## <a name="create-filters"></a>建立篩選器
 ### <a name="create-global-filters"></a>建立全域篩選器
-toocreate 全域的篩選器，請使用下列 HTTP 要求的 hello:  
+若要建立全域篩選器，請使用下列 HTTP 要求：  
 
 #### <a name="http-request"></a>HTTP 要求
 要求標頭
@@ -107,7 +107,7 @@ Request body
     HTTP/1.1 201 Created 
 
 ### <a name="create-local-assetfilters"></a>建立區域 AssetFilter
-toocreate 本機 AssetFilter，使用下列 HTTP 要求的 hello:  
+若要建立區域 AssetFilter，請使用下列 HTTP 要求：  
 
 #### <a name="http-request"></a>HTTP 要求
 要求標頭
@@ -159,8 +159,8 @@ Request body
     . . . 
 
 ## <a name="list-filters"></a>清單篩選器
-### <a name="get-all-global-filters-in-hello-ams-account"></a>取得所有全域**篩選**hello AMS 帳戶中的 s
-toolist 篩選，請使用下列 HTTP 要求的 hello: 
+### <a name="get-all-global-filters-in-the-ams-account"></a>取得 AMS 帳戶中所有的全域 **篩選器**
+若要列出篩選器，請使用下列 HTTP 要求： 
 
 #### <a name="http-request"></a>HTTP 要求
     GET https://media.windows.net/API/Filters HTTP/1.1 
@@ -197,12 +197,12 @@ toolist 篩選，請使用下列 HTTP 要求的 hello:
 
 
 ## <a name="update-filters"></a>更新篩選器
-使用 PATCH、 PUT 或合併 tooupdate 與新的屬性值篩選器。  如需這些作業的詳細資訊，請參閱 [PATCH、PUT、MERGE](http://msdn.microsoft.com/library/dd541276.aspx)。
+使用 PATCH、PUT 或 MERGE 以新的屬性值更新篩選器。  如需這些作業的詳細資訊，請參閱 [PATCH、PUT、MERGE](http://msdn.microsoft.com/library/dd541276.aspx)。
 
-如果您更新篩選器，就可以在資料流端點 toorefresh hello 規則 too2 分鐘。 如果 hello 內容處理使用此篩選器 （快取和 proxy 和 CDN 中快取），更新此篩選器導致播放失敗。 它是在更新 hello 篩選之後，建議 tooclear hello 快取。 如果這個選項無法執行，請考慮使用不同的篩選器。  
+如果您更新篩選器，則資料流端點需要 2 分鐘的時間來重新整理規則。 如果內容是使用此篩選器提供的 (並快取在 Proxy 與 CDN 快取中)，則更新此篩選器會造成播放程式失敗。 建議在更新篩選器之後清除快取。 如果這個選項無法執行，請考慮使用不同的篩選器。  
 
 ### <a name="update-global-filters"></a>更新全域篩選器
-tooupdate 全域的篩選器，請使用下列 HTTP 要求的 hello: 
+若要更新全域篩選器，請使用下列 HTTP 要求： 
 
 #### <a name="http-request"></a>HTTP 要求
 要求標頭： 
@@ -242,7 +242,7 @@ tooupdate 全域的篩選器，請使用下列 HTTP 要求的 hello:
     } 
 
 ### <a name="update-local-assetfilters"></a>更新區域 AssetFilter
-tooupdate 本機篩選條件，請使用下列 HTTP 要求的 hello: 
+若要更新區域篩選器，請使用下列 HTTP 要求： 
 
 #### <a name="http-request"></a>HTTP 要求
 要求標頭： 
@@ -283,7 +283,7 @@ tooupdate 本機篩選條件，請使用下列 HTTP 要求的 hello:
 
 ## <a name="delete-filters"></a>刪除篩選器
 ### <a name="delete-global-filters"></a>刪除全域篩選器
-toodelete 全域的篩選器，請使用下列 HTTP 要求的 hello:
+若要刪除全域篩選器，請使用下列 HTTP 要求：
 
 #### <a name="http-request"></a>HTTP 要求
     DELETE https://media.windows.net/api/Filters('GlobalFilter') HTTP/1.1 
@@ -297,7 +297,7 @@ toodelete 全域的篩選器，請使用下列 HTTP 要求的 hello:
 
 
 ### <a name="delete-local-assetfilters"></a>刪除區域 AssetFilter
-toodelete 本機 AssetFilter，使用下列 HTTP 要求的 hello:
+若要刪除區域 AssetFilter，請使用下列 HTTP 要求：
 
 #### <a name="http-request"></a>HTTP 要求
     DELETE https://media.windows.net/API/AssetFilters('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592__%23%23%23__LocalFilter') HTTP/1.1 
@@ -310,9 +310,9 @@ toodelete 本機 AssetFilter，使用下列 HTTP 要求的 hello:
     Host: media.windows.net 
 
 ## <a name="build-streaming-urls-that-use-filters"></a>建置使用篩選器的資料流 URL
-如需有關如何 toopublish 及傳遞資產，請參閱詳細[傳遞內容 tooCustomers 概觀](media-services-deliver-content-overview.md)。
+如需如何發佈與傳遞資產的相關資訊，請參閱 [將內容傳遞給客戶概觀](media-services-deliver-content-overview.md)。
 
-hello 下列範例顯示如何 tooadd 篩選 tooyour 串流 Url。
+下列範例顯示如何將篩選器新增至資料流 URL。
 
 **MPEG DASH** 
 

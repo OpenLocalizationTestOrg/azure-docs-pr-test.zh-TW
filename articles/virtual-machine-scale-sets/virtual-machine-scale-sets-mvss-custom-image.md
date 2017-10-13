@@ -1,6 +1,6 @@
 ---
 title: "在 Azure 擴展集範本中參照自訂映像 | Microsoft Docs"
-description: "了解如何 tooadd 自訂映像 tooan 現有 Azure 虛擬機器規模集的範本"
+description: "了解如何將自訂映像新增到現有的「Azure 虛擬機器擴展集」範本"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: gatneil
@@ -15,25 +15,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 5/10/2017
 ms.author: negat
-ms.openlocfilehash: 6a17d989e44d241b460238c0106350c3ef038e56
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cf52fc9e95267c4bc5c0106aadf626685ddd5c24
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="add-a-custom-image-tooan-azure-scale-set-template"></a>新增自訂映像 tooan Azure 的小數位數設定的範本
+# <a name="add-a-custom-image-to-an-azure-scale-set-template"></a>新增自訂映像至 Azure 擴展集範本
 
-本文將說明如何 toomodify hello[可行的最小小數位數設定範本](./virtual-machine-scale-sets-mvss-start.md)toodeploy 從自訂映像。
+本文說明如何修改[最基本的可行擴展集範本](./virtual-machine-scale-sets-mvss-start.md)從自訂映像部署。
 
-## <a name="change-hello-template-definition"></a>變更 hello 樣板定義
+## <a name="change-the-template-definition"></a>變更範本定義
 
-可以看到我們可行的最小小數位數的設定範本[這裡](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json)，而且可以看到我們的範本部署設定從自訂映像的 hello 比例[這裡](https://raw.githubusercontent.com/gatneil/mvss/custom-image/azuredeploy.json)。 讓我們來檢查此範本 hello 差異比對使用 toocreate (`git diff minimum-viable-scale-set custom-image`) 逐一：
+您可以在[這裡](https://raw.githubusercontent.com/gatneil/mvss/minimum-viable-scale-set/azuredeploy.json)看到最基本的可行擴展集範本，並在[這裡](https://raw.githubusercontent.com/gatneil/mvss/custom-image/azuredeploy.json)看到用於從自訂映像部署擴展集的範本。 讓我們逐步檢查用來建立此範本 (`git diff minimum-viable-scale-set custom-image`) 的差異：
 
 ### <a name="creating-a-managed-disk-image"></a>建立受控磁碟映像
 
 如果您已有自訂的受控磁碟映像 (類型為 `Microsoft.Compute/images` 的資源)，則可略過此節。
 
-首先，我們將加入`sourceImageVhdUri`參數，也就是包含 hello 自訂映像 toodeploy 從 Azure 儲存體中的 hello URI toohello 一般化 blob。
+首先，我們會新增 `sourceImageVhdUri` 參數，這是 Azure 儲存體中包含所要部署自訂映像的一般化 blob 其 URI。
 
 
 ```diff
@@ -44,14 +44,14 @@ ms.lasthandoff: 10/06/2017
 +    "sourceImageVhdUri": {
 +      "type": "string",
 +      "metadata": {
-+        "description": "hello source of hello generalized blob containing hello custom image"
++        "description": "The source of the generalized blob containing the custom image"
 +      }
      }
    },
    "variables": {},
 ```
 
-接下來，我們將類型的資源`Microsoft.Compute/images`、 哪些 hello 受管理的磁碟映像為基礎 hello 一般化 blob 位於 URI `sourceImageVhdUri`。 此映像必須在 hello 與使用它的 hello 小數位數組相同的區域。 在 hello hello 映像內容中，我們指定 hello OS 型別，hello hello blob 位置 (從 hello`sourceImageVhdUri`參數)，和 hello 儲存體帳戶類型：
+接著，我們會新增類型為 `Microsoft.Compute/images` 的資源，這是以位在 URI `sourceImageVhdUri` 的一般化 blob 為基礎的受控磁碟映像。 此映像必須位在與使用它的擴展集相同的區域中。 在映像的屬性中，我們會指定作業系統類型、blob 的位置 (從 `sourceImageVhdUri` 參數) 及儲存體帳戶類型：
 
 ```diff
    "resources": [
@@ -78,7 +78,7 @@ ms.lasthandoff: 10/06/2017
 
 ```
 
-在 hello 小數位數設定的資源，我們將新增`dependsOn`子句參考 toohello 自訂映像 toomake 確定 hello 規模調整集合會嘗試從該映像 toodeploy 之前，取得建立 hello 映像：
+在擴展集資源中，我們會新增參照自訂映像的 `dependsOn` 子句，以確定會先建立映像，擴展集才會嘗試從該映像部署：
 
 ```diff
        "location": "[resourceGroup().location]",
@@ -93,9 +93,9 @@ ms.lasthandoff: 10/06/2017
 
 ```
 
-### <a name="changing-scale-set-properties-toouse-hello-managed-disk-image"></a>變更縮放比例設定屬性 toouse hello 受管理的磁碟映像
+### <a name="changing-scale-set-properties-to-use-the-managed-disk-image"></a>變更擴展集屬性以使用受控磁碟映像
 
-在 hello `imageReference` hello 小數位數的設定`storageProfile`，而不是指定 hello 發行者、 方案、 sku 和版本的平台映像，我們在此指定 hello`id`的 hello`Microsoft.Compute/images`資源：
+在擴展集 `storageProfile` 的 `imageReference` 中，我們不會指定發行者、提供項目、sku 及平台映像版本，而是指定 `Microsoft.Compute/images` 資源的 `id`：
 
 ```diff
          "virtualMachineProfile": {
@@ -111,7 +111,7 @@ ms.lasthandoff: 10/06/2017
            "osProfile": {
 ```
 
-在此範例中，我們使用 hello`resourceId`函式 tooget hello 影像資源識別碼 hello 中建立 hello 相同範本。 如果您事先建立 hello 受管理的磁碟映像，您應該改為提供該映像識別碼 hello。 此識別碼 hello 格式必須是： `/subscriptions/<subscription-id>resourceGroups/<resource-group-name>/providers/Microsoft.Compute/images/<image-name>`。
+在此範例中，我們使用 `resourceId` 函式取得以相同範本所建立映像的資源識別碼。 如果您已事先建立受控磁碟映像，您應改為提供該映像的識別碼。 此識別碼的格式必須是：`/subscriptions/<subscription-id>resourceGroups/<resource-group-name>/providers/Microsoft.Compute/images/<image-name>`。
 
 
 ## <a name="next-steps"></a>後續步驟

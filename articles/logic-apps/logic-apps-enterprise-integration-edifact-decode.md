@@ -1,6 +1,6 @@
 ---
-title: "aaaDecode EDIFACT 訊息-Azure 邏輯應用程式 |Microsoft 文件"
-description: "驗證 EDI 並產生通知與 hello EDIFACT 訊息解碼器 hello 企業版整合套件中，Azure 邏輯應用程式"
+title: "將 EDIFACT 訊息解碼 - Azure Logic Apps | Microsoft Docs"
+description: "在 Azure Logic Apps 的企業整合套件中使用 EDIFACT 解碼器，針對交易集驗證 EDI 及產生通知"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: padmavc
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/27/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 94faebdec4e4ffc8ad76ad1609495ddf9f002250
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e3787b48037360bf6066ddce2bacba6842213b2d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="decode-edifact-messages-for-azure-logic-apps-with-hello-enterprise-integration-pack"></a>Azure 邏輯應用程式的 EDIFACT 訊息解碼以 hello 企業版整合套件
+# <a name="decode-edifact-messages-for-azure-logic-apps-with-the-enterprise-integration-pack"></a>使用企業整合套件將 Azure Logic Apps 的 EDIFACT 訊息解碼
 
-與 hello 解碼 EDIFACT 訊息連接器，您可以驗證 EDI 和夥伴特定的屬性、 分割為交易集的交換或保留整個交換，以及產生通知已處理的交易。 toouse 此連接器，您必須加入現有的觸發程序邏輯應用程式中的 hello 連接器 tooan。
+使用 Decode EDIFACT 訊息連接器，您可以驗證 EDI 和夥伴特定的屬性、將交換分割為交易集或保留整個交換，並產生已處理交易的通知。 若要使用此連接器，您必須將連接器新增至邏輯應用程式中的現有觸發程序。
 
 ## <a name="before-you-start"></a>開始之前
 
-以下是您所需要的 hello 項目：
+以下是您所需的項目︰
 
 * Azure 帳戶；您可以建立一個 [免費帳戶](https://azure.microsoft.com/free)
-* 已經定義並與 Azure 訂用帳戶相關聯的[整合帳戶](logic-apps-enterprise-integration-create-integration-account.md)。 您必須為整合帳戶 toouse hello 解碼 EDIFACT 訊息連接器。 
+* 已經定義並與 Azure 訂用帳戶相關聯的[整合帳戶](logic-apps-enterprise-integration-create-integration-account.md)。 您必須有整合帳戶才能使用解碼 EDIFACT 訊息連接器。 
 * 至少已經在整合帳戶中定義兩個[夥伴](logic-apps-enterprise-integration-partners.md)
 * 已經在整合帳戶中定義的 [EDIFACT 合約](logic-apps-enterprise-integration-edifact.md)
 
@@ -37,13 +37,13 @@ ms.lasthandoff: 10/06/2017
 
 1. [建立邏輯應用程式](logic-apps-create-a-logic-app.md)。
 
-2. 沒有觸發程序，hello 解碼 EDIFACT 訊息連接器，所以您必須新增啟動邏輯應用程式，像是要求觸發程序的觸發程序。 在 hello 邏輯應用程式的設計工具，加入觸發程序，然後再加入動作 tooyour 邏輯應用程式。
+2. 解碼 EDIFACT 訊息連接器沒有觸發程序，因此您必須新增觸發程序 (例如要求觸發程序) 來啟動邏輯應用程式。 在 Logic Apps 設計工具中，新增觸發程序，然後將動作新增至您的邏輯應用程式。
 
-3. 在 hello 搜尋方塊中輸入"EDIFACT"做為您的篩選器。 選取 [將 EDIFACT 訊息解碼]。
+3. 在搜尋方塊中，輸入 "EDIFACT" 做為篩選條件。 選取 [將 EDIFACT 訊息解碼]。
    
     ![搜尋 EDIFACT](./media/logic-apps-enterprise-integration-edifact-decode/edifactdecodeimage1.png)
 
-3. 如果您先前未建立任何連線 tooyour 整合帳戶，則會提示您 toocreate 現在該連接。 命名您的連線，並選取您想 tooconnect hello 整合帳戶。
+3. 如果您先前未建立與整合帳戶的任何連線，系統將會提示您立即建立該連線。 替連線命名，然後選取您要連線的整合帳戶。
    
     ![建立整合帳戶](./media/logic-apps-enterprise-integration-edifact-decode/edifactdecodeimage2.png)
 
@@ -52,13 +52,13 @@ ms.lasthandoff: 10/06/2017
     | 屬性 | 詳細資料 |
     | --- | --- |
     | 連線名稱 * |為連接器輸入任何名稱。 |
-    | 整合帳戶 * |輸入整合帳戶的名稱。 請確定應用程式整合帳戶和邏輯位於 hello 相同的 Azure 位置。 |
+    | 整合帳戶 * |輸入整合帳戶的名稱。 確定您的整合帳戶和邏輯應用程式位於相同的 Azure 位置。 |
 
-4. 當您完成建立您的連線 toofinish 時，選擇 **建立**。 連接詳細資料，應該看起來類似 toothis 範例：
+4. 當您完成連線建立時，請選擇 [建立]。 您的連線詳細資料看起來類似此範例：
 
     ![整合帳戶詳細資料](./media/logic-apps-enterprise-integration-edifact-decode/edifactdecodeimage3.png)  
 
-5. 建立您的連線時，此範例中所示之後，請選取 hello EDIFACT 一般檔案訊息 toodecode。
+5. 建立您的連線之後 (如此範例所示)，請選取要解碼的 EDIFACT 一般檔案訊息。
 
     ![整合帳戶連線已建立](./media/logic-apps-enterprise-integration-edifact-decode/edifactdecodeimage4.png)  
 
@@ -68,37 +68,37 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="edifact-decoder-details"></a>EDIFACT 解碼器詳細資料
 
-hello 解碼 EDIFACT 連接器會執行這些工作： 
+解碼 EDIFACT 連接器會執行下列工作︰ 
 
-* 驗證 hello 信封與交易夥伴協議。
-* 比對 hello 傳送者辨識符號 & 識別項以及接收者辨識符號 & 識別項，以解析 hello 協議。
-* Hello 交換具有多個交易根據 hello 協議的接收設定組態時，會分割成多筆交易的交換。
-* 反組譯 hello 交換。
+* 針對交易夥伴協議驗證信封。
+* 比對傳送者辨識符號和識別項，以及接收者辨識符號和識別項，以解析合約。
+* 在交換具有多個交易時，根據合約的接收設定組態，將交換分割成多筆交易。
+* 解譯交換。
 * 驗證 EDI 和夥伴特定屬性，包括：
-  * Hello 交換的信封結構的驗證
-  * 針對 hello 控制結構描述的 hello 信封的結構描述驗證
-  * 針對 hello 訊息結構描述的 hello 交易集資料元素的結構描述驗證
+  * 驗證交換信封結構
+  * 針對控制結構描述進行信封的結構描述驗證
+  * 針對訊息結構描述進行交易集資料元素的結構描述驗證
   * 對交易集資料元素執行 EDI 驗證
-* 驗證 hello 交換、 群組和交易集控制編號並未重複 （若已設定） 
-  * 檢查針對先前已接收交換的 hello 交換控制編號。 
-  * 檢查針對 hello 交換中的其他群組控制編號的 hello 群組控制編號。 
-  * 檢查 hello 交易集控制編號，針對該群組中的其他交易集控制編號。
-* 分割為交易集，hello 交換或保留 hello 整個交換：
+* 驗證交換、群組和交易集控制編號並未重複 (若已設定) 
+  * 針對先前已接收的交換檢查交換控制編號。 
+  * 針對交換中的其他群組控制編號檢查群組控制編號。 
+  * 針對該群組中其他交易集控制編號檢查交易集控制編號。
+* 將交換分割為交易集，或保留整個交換︰
   * 將交換分割為交易集 - 暫止發生錯誤的交易集︰將交換分割為交易集，並剖析每個交易集。 
-  hello X12 解碼動作會輸出太未通過驗證的交易集`badMessages`，並將輸出 hello 剩餘交易設定太`goodMessages`。
+  X12 Decode 動作只會輸出未通過 `badMessages` 驗證的交易集，並將剩餘的交易輸出到 `goodMessages`。
   * 將交換分割為交易集 - 暫止發生錯誤的交換︰將交換分割為交易集，並剖析每個交易集。 
-  如果一或多個交易集驗證失敗 hello 交換中，將輸出 hello X12 解碼動作 hello 的所有交易都集在該交換中太`badMessages`。
-  * 保留交換-發生錯誤時暫停交易集： 保留 hello 交換和處理序 hello 整個批次的交換。 
-  hello X12 解碼動作會輸出太未通過驗證的交易集`badMessages`，並將輸出 hello 剩餘交易設定太`goodMessages`。
-  * 保留交換-發生錯誤時暫停交換： 保留 hello 交換和處理序 hello 整個批次的交換。 
-  如果一或多個交易集驗證失敗 hello 交換中，將輸出 hello X12 解碼動作 hello 的所有交易都集在該交換中太`badMessages`。
+  如果交換中有一或多個交易集無法通過驗證，X12 Decode 動作會將該交換中的所有交易集輸出到 `badMessages`。
+  * 保留交換 - 暫止發生錯誤的交易集︰保留交換並處理整個批次交換。 
+  X12 Decode 動作只會輸出未通過 `badMessages` 驗證的交易集，並將剩餘的交易輸出到 `goodMessages`。
+  * 保留交換 - 暫止發生錯誤的交換︰保留交換並處理整個批次交換。 
+  如果交換中有一或多個交易集無法通過驗證，X12 Decode 動作會將該交換中的所有交易集輸出到 `badMessages`。
 * 產生技術 (控制) 和/或功能確認 (若已設定)。
-  * 技術通知或 hello CONTRL 通知會報告 hello 的 hello 完整接收的交換進行語法檢查的結果。
+  * 技術確認或 CONTRL ACK 會報告完整接收的交換所進行的語法檢查結果。
   * 功能確認會確認接受或拒絕已接收的交換或群組
 
 ## <a name="view-swagger-file"></a>檢視 Swagger 檔案
-tooview hello Swagger 詳細資料，hello EDIFACT 連接器，請參閱[EDIFACT](/connectors/edifact/)。
+若要檢視 EDIFACT 連接器的 Swagger 詳細資料，請參閱 [EDIFACT](/connectors/edifact/)。
 
 ## <a name="next-steps"></a>後續步驟
-[深入了解 hello Enterprise Integration Pack](logic-apps-enterprise-integration-overview.md "深入了解 Enterprise Integration Pack") 
+[深入了解企業整合套件](logic-apps-enterprise-integration-overview.md "了解企業整合套件") 
 

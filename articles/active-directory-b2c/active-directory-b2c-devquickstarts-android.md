@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C︰使用 Android 應用程式取得權杖 | Microsoft Docs"
-description: "這篇文章將示範如何 toocreate AppAuth 使用 Azure Active Directory B2C toomanage 使用者身分識別和驗證使用者的 Android 應用程式。"
+description: "本文將說明如何建立 Android 應用程式，以使用 AppAuth 和 Azure Active Directory B2C 來管理使用者身分識別和驗證使用者。"
 services: active-directory-b2c
 documentationcenter: android
 author: parakhj
@@ -14,22 +14,22 @@ ms.devlang: java
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: parakhj
-ms.openlocfilehash: 0236398673115a34951f035cb1e73e89417abf86
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cd4b8048245be49ea79bcb1b364f2f99c56f8291
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-ad-b2c-sign-in-using-an-android-application"></a>Azure AD B2C︰使用 Android 應用程式登入
 
-hello Microsoft 識別身分平台中使用 OAuth2 和 OpenID Connect 等的開放標準。 這可讓開發人員 tooleverage 他們希望 toointegrate 與我們的服務的任何文件庫。 tooaid 使用我們的平台與其他程式庫開發人員，我們已經撰寫這個一個 toodemonstrate 像幾個逐步解說如何 tooconfigure 第 3 個合作對象文件庫 tooconnect toohello Microsoft 識別平台。 實作的大部分程式庫[hello RFC6749 OAuth2 規格](https://tools.ietf.org/html/rfc6749)將會無法 tooconnect toohello Microsoft 識別身分平台。
+Microsoft 身分識別平台會使用開放式標準，例如 OAuth2 和 OpenID Connect。 這可讓開發人員運用他們想要與我們的服務整合的任何程式庫。 為了協助開發人員使用我們的平台搭配其他程式庫，我們撰寫了幾個逐步解說，示範如何設定第三方程式庫以連線至 Microsoft 身分識別平台。 大部分實作 [RFC6749 OAuth2 規格](https://tools.ietf.org/html/rfc6749) 的程式庫都能連接到 Microsoft 身分識別平台。
 
 > [!WARNING]
-> Microsoft 並不提供第三方程式庫的修正程式，也尚未審查這些程式庫。 這個範例會使用稱為基本案例中的相容性，以 hello Azure AD B2C AppAuth 已測試的第 3 個合作對象程式庫。 問題和功能要求應該導向的 toohello 程式庫的開放原始碼專案。 如需詳細資訊，請參閱[這篇文章](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-libraries)。  
+> Microsoft 並不提供第三方程式庫的修正程式，也尚未審查這些程式庫。 此範例使用已藉由 Azure AD B2C 在基本案例中進行過相容性測試的第三方程式庫，稱為 AppAuth。 問題和功能要求應導向到程式庫的開放原始碼專案。 如需詳細資訊，請參閱[這篇文章](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-libraries)。  
 >
 >
 
-如果您是新 tooOAuth2 或 OpenID Connect 此範例組態中的許多可能不會更有意義 tooyou。 我們建議您查看簡短[我們已記載的 hello 通訊協定概觀](active-directory-b2c-reference-protocols.md)。
+如果您是 OAuth2 或 OpenID Connect 新手，此範例組態可能諸多不太適合您。 建議您查看 [我們在此記載的通訊協定簡短概觀](active-directory-b2c-reference-protocols.md)。
 
 ## <a name="get-an-azure-ad-b2c-directory"></a>取得 Azure AD B2C 目錄
 
@@ -37,33 +37,33 @@ hello Microsoft 識別身分平台中使用 OAuth2 和 OpenID Connect 等的開�
 
 ## <a name="create-an-application"></a>建立應用程式
 
-接下來，您需要 toocreate 應用程式中 B2C 目錄。 提供 Azure AD 需要 toocommunicate 安全地與您的應用程式的資訊。 toocreate 行動裝置應用程式，請遵循[這些指示](active-directory-b2c-app-registration.md)。 請務必：
+接著，您必須在 B2C 目錄中建立應用程式。 這會提供必要資訊給 Azure AD，讓它與應用程式安全地通訊。 如果要建立行動應用程式，請遵循[這些指示](active-directory-b2c-app-registration.md)。 請務必：
 
-* 包含**原生用戶端**hello 應用程式中。
-* 複製 hello**應用程式識別碼**也就是指派的 tooyour 應用程式。 稍後您將會需要此資訊。
+* 在應用程式中加入**原生用戶端**。
+* 複製指派給您的應用程式的 **應用程式識別碼** 。 稍後您將會需要此資訊。
 * 設定原生用戶端**重新導向 URI** (例如，com.onmicrosoft.fabrikamb2c.exampleapp://oauth/redirect)。 稍後您也會需要此資訊。
 
 [!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
 ## <a name="create-your-policies"></a>建立您的原則
 
-在 Azure AD B2C 中，每個使用者體驗皆是由某個 [原則](active-directory-b2c-reference-policies.md)所定義。 此應用程式包含一個身分識別體驗：合併登入和註冊。 您將 toocreate 需要這項原則，如中所述[原則參考文件](active-directory-b2c-reference-policies.md#create-a-sign-up-policy)。 當您建立 hello 原則時，請務必：
+在 Azure AD B2C 中，每個使用者體驗皆是由某個 [原則](active-directory-b2c-reference-policies.md)所定義。 此應用程式包含一個身分識別體驗：合併登入和註冊。 您必須建立此原則，如[原則參考文章](active-directory-b2c-reference-policies.md#create-a-sign-up-policy)所述。 建立此原則時，請務必：
 
-* 選擇 hello**顯示名稱**做為註冊的屬性，在您的原則。
-* 選擇 hello**顯示名稱**和**物件識別碼**中每個原則的應用程式宣告。 您也可以選擇其他宣告。
-* 複製 hello**名稱**的每個原則建立之後。 就不應有 hello 前置詞`b2c_1_`。  稍後您將需要 hello 原則名稱。
+* 在原則中選擇 [顯示名稱] 做為註冊屬性。
+* 在每個原則中，選擇 [顯示名稱] 和 [物件識別碼] 應用程式宣告。 您也可以選擇其他宣告。
+* 在您建立每個原則之後，請複製原則的 [名稱]  。 其前置詞應該為 `b2c_1_`。  您稍後需要用到此原則名稱。
 
 [!INCLUDE [active-directory-b2c-devquickstarts-policy](../../includes/active-directory-b2c-devquickstarts-policy.md)]
 
-您已建立您的原則之後，您便準備好 toobuild 您的應用程式。
+建立您的原則後，就可以開始建置您的應用程式。
 
-## <a name="download-hello-sample-code"></a>下載 hello 範例程式碼
+## <a name="download-the-sample-code"></a>下載範例程式碼
 
-我們[在 GitHub 上](https://github.com/Azure-Samples/active-directory-android-native-appauth-b2c)提供一個使用 AppAuth 和 Azure AD B2C 的操作範例。 您可以下載 hello 程式碼，並執行它。 您可以快速地開始使用您自己的應用程式使用您自己的 Azure AD B2C 組態 hello 中的 hello 指示[README.md](https://github.com/Azure-Samples/active-directory-android-native-appauth-b2c/blob/master/README.md)。
+我們[在 GitHub 上](https://github.com/Azure-Samples/active-directory-android-native-appauth-b2c)提供一個使用 AppAuth 和 Azure AD B2C 的操作範例。 您可以下載程式碼並執行。 您可以依照 [README.md](https://github.com/Azure-Samples/active-directory-android-native-appauth-b2c/blob/master/README.md) 中的指示，使用您自己的 Azure AD B2C 組態，快速開始使用您自己的應用程式。
 
-hello 範例是修改所提供的 hello 範例[AppAuth](https://openid.github.io/AppAuth-Android/)。 請瀏覽其頁面 toolearn 更多關於 AppAuth 和它的功能。
+這個範例修改自 [AppAuth](https://openid.github.io/AppAuth-Android/) 提供的範例。 請瀏覽其頁面，以深入了解 AppAuth 和相關功能。
 
-## <a name="modifying-your-app-toouse-azure-ad-b2c-with-appauth"></a>修改您應用程式 toouse Azure AD B2C AppAuth 與
+## <a name="modifying-your-app-to-use-azure-ad-b2c-with-appauth"></a>修改您的應用程式來使用 Azure AD B2C 和 AppAuth
 
 > [!NOTE]
 > AppAuth 支援 Android API 16 (Jellybean) 和更新版本。 我們建議使用 API 23 和更新版本。
@@ -71,18 +71,18 @@ hello 範例是修改所提供的 hello 範例[AppAuth](https://openid.github.io
 
 ### <a name="configuration"></a>組態
 
-藉由其中一個指定的 hello 探索 URI 或藉由指定 hello 授權端點和權杖的端點 Uri，您可以設定與 Azure AD B2C 通訊。 在任一情況下，您需要下列資訊的 hello:
+您可以指定探索 URI，或指定授權端點和權杖端點 URI，以設定與 Azure AD B2C 通訊。 不論何者，您都需要下列資訊：
 
 * 租用戶識別碼 (例如，contoso.onmicrosoft.com)
 * 原則名稱 (例如，B2C\_1\_SignUpIn)
 
-如果您選擇 tooautomatically 探索 hello 授權和語彙基元端點 Uri，您必須從 hello 探索 URI toofetch 資訊。 URI 可以由取代 hello 租用戶產生的 hello 探索\_識別碼和 hello 原則\_hello 下列 URL 中的名稱：
+如果您選擇自動探索授權和權杖端點 URI，您必須從探索 URI 擷取資訊。 取代下列 URL 中的 Tenant\_ID 和Policy\_Name，即可產生探索 URI︰
 
 ```java
 String mDiscoveryURI = "https://login.microsoftonline.com/<Tenant_ID>/v2.0/.well-known/openid-configuration?p=<Policy_Name>";
 ```
 
-然後，您可以取得 hello 授權和語彙基元端點 Uri，並執行 hello 下列建立 AuthorizationServiceConfiguration 物件：
+然後，您可以取得授權和權杖端點 URI，並執行下列命令來建立 AuthorizationServiceConfiguration 物件︰
 
 ```java
 final Uri issuerUri = Uri.parse(mDiscoveryURI);
@@ -95,15 +95,15 @@ AuthorizationServiceConfiguration.fetchFromIssuer(
           @Nullable AuthorizationServiceConfiguration serviceConfiguration,
           @Nullable AuthorizationException ex) {
         if (ex != null) {
-            Log.w(TAG, "Failed tooretrieve configuration for " + issuerUri, ex);
+            Log.w(TAG, "Failed to retrieve configuration for " + issuerUri, ex);
         } else {
-            // service configuration retrieved, proceed tooauthorization...
+            // service configuration retrieved, proceed to authorization...
         }
       }
   });
 ```
 
-不使用探索 tooobtain hello 授權和語彙基元端點 Uri 時，您也可以指定它們明確取代 hello 租用戶\_識別碼和 hello 原則\_下列 hello URL 名稱：
+除了使用探索來取得授權和權杖端點 URI，您也可以取代下列 URL 中的 Tenant\_ID 和 Policy\_Name，以明確指定它們︰
 
 ```java
 String mAuthEndpoint = "https://login.microsoftonline.com/<Tenant_ID>/oauth2/v2.0/authorize?p=<Policy_Name>";
@@ -111,18 +111,18 @@ String mAuthEndpoint = "https://login.microsoftonline.com/<Tenant_ID>/oauth2/v2.
 String mTokenEndpoint = "https://login.microsoftonline.com/<Tenant_ID>/oauth2/v2.0/token?p=<Policy_Name>";
 ```
 
-執行下列程式碼 toocreate hello AuthorizationServiceConfiguration 物件：
+執行下列程式碼來建立 AuthorizationServiceConfiguration 物件︰
 
 ```java
 AuthorizationServiceConfiguration config =
         new AuthorizationServiceConfiguration(name, mAuthEndpoint, mTokenEndpoint);
 
-// perform hello auth request...
+// perform the auth request...
 ```
 
 ### <a name="authorizing"></a>授權
 
-設定或擷取授權服務組態之後，就可以建構授權要求。 toocreate hello 要求，您將需要下列資訊的 hello:
+設定或擷取授權服務組態之後，就可以建構授權要求。 若要建立要求，您需要下列資訊︰
 
 * 用戶端識別碼 (例如，00000000-0000-0000-0000-000000000000)
 * 使用自訂配置的重新導向 URI (例如，com.onmicrosoft.fabrikamb2c.exampleapp://oauthredirect)
@@ -138,7 +138,7 @@ AuthorizationRequest req = new AuthorizationRequest.Builder(
     .build();
 ```
 
-請參閱 toohello [AppAuth 指南](https://openid.github.io/AppAuth-Android/)上 toocomplete hello hello 程序的其餘部分的方式。 如果您需要 tooquickly 開始使用工作應用程式，請簽出[我們的範例](https://github.com/Azure-Samples/active-directory-android-native-appauth-b2c)。 Hello 中的 hello 步驟[README.md](https://github.com/Azure-Samples/active-directory-android-native-appauth-b2c/blob/master/README.md) tooenter 您自己的 Azure AD B2C 組態。
+有關如何完成此程序的其餘部分，請參閱 [AppAuth 指南](https://openid.github.io/AppAuth-Android/)。 如果您需要快速開始使用一個可操作的應用程式，請參閱[我們的範例](https://github.com/Azure-Samples/active-directory-android-native-appauth-b2c)。 請依照 [README.md](https://github.com/Azure-Samples/active-directory-android-native-appauth-b2c/blob/master/README.md) 中的步驟，輸入自己的 Azure AD B2C 組態。
 
-我們一定是開啟 toofeedback，以及建議 ！ 如果您有本主題中，任何問題，或有改善此內容的建議，我們非常感謝您在 hello hello 頁面底部的意見反應。 功能的要求，將它們加入太[UserVoice](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c)。
+我們歡迎意見反應和建議！ 如果您無法完成此主題，或者有改進此內容的建議，非常歡迎您在頁面底部提供意見反應。 對於功能要求，請將它們新增到 [UserVoice](https://feedback.azure.com/forums/169401-azure-active-directory/category/160596-b2c)。
 

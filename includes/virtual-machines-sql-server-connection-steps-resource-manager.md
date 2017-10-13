@@ -1,36 +1,36 @@
-### <a name="configure-a-dns-label-for-hello-public-ip-address"></a>設定 DNS 標籤 hello 公用 IP 位址
+### <a name="configure-a-dns-label-for-the-public-ip-address"></a>設定公用 IP 位址的 DNS 標籤
 
-tooconnect toohello SQL Server Database Engine 從 hello 網際網路，請考慮建立 DNS 索引標籤的公用 IP 位址。 您可以連線的 IP 位址，但 hello DNS 標籤建立 A 記錄，更容易 tooidentify 並摘要 hello 基礎公用 IP 位址。
+若要從網際網路連線到 SQL Server Database Engine，請考慮建立公用 IP 位址的 DNS 標籤。 您可以經由 IP 位址連線，但 DNS 標籤可建立較容易識別的 A 記錄並擷取基礎公用 IP 位址。
 
 > [!NOTE]
-> 如果您計劃 tooonly 連接 toohello SQL Server 執行個體 hello 相同 DNS 標籤不需要虛擬網路或只會在本機。
+> 如果您計畫只連線到同一個虛擬網路中或只連線到本機的 SQL Server 執行個體，則不需要 DNS 標籤。
 
-先選取 toocreate DNS 標籤**虛擬機器**hello 入口網站中。 選取您的 SQL Server VM toobring 其內容。
+若要建立 DNS 標籤，請先在入口網站選取 [虛擬機器]  。 選取 SQL Server VM 以顯示其屬性。
 
-1. 在 [hello 虛擬機器概觀] 中，選取您**公用 IP 位址**。
+1. 在虛擬機器概觀中，選取您的 [公用 IP 位址]。
 
     ![公用 IP 位址](./media/virtual-machines-sql-server-connection-steps/rm-public-ip-address.png)
 
-1. 在您的公用 IP 位址的 hello 屬性，依序展開**組態**。
+1. 在公用 IP 位址屬性中，展開 [組態] 。
 
-1. 輸入 DNS 標籤名稱。 這個名稱是可以直接是使用的 tooconnect tooyour SQL Server VM 的名稱而不是使用 IP 位址的 A 記錄。
+1. 輸入 DNS 標籤名稱。 此名稱是「A 紀錄」，可用來透過名稱 (而非直接透過 IP 位址) 連線到 SQL Server VM。
 
-1. 按一下 hello**儲存** 按鈕。
+1. 按一下 [儲存]  按鈕。
 
     ![DNS 標籤](./media/virtual-machines-sql-server-connection-steps/rm-dns-label.png)
 
-### <a name="connect-toohello-database-engine-from-another-computer"></a>從另一部電腦連接 toohello Database Engine
+### <a name="connect-to-the-database-engine-from-another-computer"></a>從另一部電腦連接 Database Engine
 
-1. 在電腦上連接 toohello 網際網路上，開啟 SQL Server Management Studio (SSMS)。 如果您沒有 SQL Server Management Studio，您可以在[這裡](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)下載。
+1. 在已連線網際網路的電腦上開啟 SQL Server Management Studio (SSMS)。 如果您沒有 SQL Server Management Studio，您可以在[這裡](https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms)下載。
 
-1. 在 hello**連接 tooServer**或**連接 tooDatabase 引擎**對話方塊中，編輯 hello**伺服器名稱**值。 輸入 hello IP 位址或 hello （決定 hello 先前工作中） 的虛擬機器的完整 DNS 名稱。 您也可以新增逗號並提供 SQL Server 的 TCP 連接埠。 例如： `mysqlvmlabel.eastus.cloudapp.azure.com,1433`。
+1. 在 [連接到伺服器] 或 [連接到 Database Engine] 對話方塊中，編輯 [伺服器名稱] 值。 輸入虛擬機器的 IP 位址或完整 DNS 名稱 (在前一項工作中決定)。 您也可以新增逗號並提供 SQL Server 的 TCP 連接埠。 例如： `mysqlvmlabel.eastus.cloudapp.azure.com,1433`。
 
-1. 在 hello**驗證**方塊中，選取**SQL Server 驗證**。
+1. 在 [驗證] 方塊中，選取 [SQL Server 驗證]。
 
-1. 在 [hello**登入**] 方塊中，輸入 hello 名稱的有效 SQL 登入。
+1. 在 [登入]  方塊中，輸入有效的 SQL 登入名稱。
 
-1. 在 [hello**密碼**] 方塊中，輸入 hello 密碼 hello 登入。
+1. 在 [密碼]  方塊中，輸入登入的密碼。
 
-1. 按一下 [ **連接**]。
+1. 按一下 [連接] 。
 
     ![SSMS 連線](./media/virtual-machines-sql-server-connection-steps/rm-ssms-connect.png)

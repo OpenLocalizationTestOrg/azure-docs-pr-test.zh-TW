@@ -1,6 +1,6 @@
 ---
-title: "aaaEnable access tooAzure DC/OS 容器應用程式 |Microsoft 文件"
-description: "如何 tooenable 公用存取 tooDC/OS Azure 容器服務中的容器。"
+title: "啟用對 Azure DC/OS 容器應用程式的存取 | Microsoft Docs"
+description: "如何在 Azure Container Service 中啟用對 DC/OS 容器的公用存取。"
 services: container-service
 documentationcenter: 
 author: sauryadas
@@ -16,75 +16,75 @@ ms.workload: na
 ms.date: 08/26/2016
 ms.author: saudas
 ms.custom: mvc
-ms.openlocfilehash: 1ba251ba5a176a6a5e1c7831655164e380a62b27
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c9ef5913859cf3a55a2de2107a9304f1d28a4829
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="enable-public-access-tooan-azure-container-service-application"></a>啟用公用存取 tooan Azure 容器服務應用程式
-Hello ACS 在任何 DC/OS 容器[公用代理程式集區](container-service-mesos-marathon-ui.md#deploy-a-docker-formatted-container)會自動公開的 toohello 網際網路。 根據預設，連接埠 **80**、**443**、**8080** 已開啟，在這些連接埠上接聽的任何 (公用) 容器皆可供存取。 本文章將示範如何 tooopen 多連接埠 Azure 容器服務中的應用程式。
+# <a name="enable-public-access-to-an-azure-container-service-application"></a>啟用 Azure Container Service 應用程式的公用存取
+ACS [公用代理程式集區](container-service-mesos-marathon-ui.md#deploy-a-docker-formatted-container) 中的任何 DC/OS 容器都會自動公開到網際網路。 根據預設，連接埠 **80**、**443**、**8080** 已開啟，在這些連接埠上接聽的任何 (公用) 容器皆可供存取。 本文將說明如何在 Azure Container Service 中開啟更多的連接埠供應用程式使用。
 
 ## <a name="open-a-port-portal"></a>開啟連接埠 (入口網站)
-首先，我們需要我們想要的 tooopen hello 連接埠。
+首先，我們必須開啟所需的連接埠。
 
-1. 登入 toohello 入口網站。
-2. 尋找您所部署的 hello 資源群組 hello Azure 容器服務。
-3. 選取 hello 代理程式負載平衡器 (這名為類似太**XXXX 代理程式-lb XXXX**)。
+1. 登入入口網站。
+2. 尋找 Azure Container Service 所部署到的資源群組。
+3. 選取代理程式的負載平衡器 (其名稱類似 **XXXX-agent-lb-XXXX**)。
    
     ![Azure Container Service 的負載平衡器](./media/container-service-enable-public-access/agent-load-balancer.png)
 4. 依序按一下 [探查] 和 [新增]。
    
     ![Azure Container Service 的負載平衡器探查](./media/container-service-enable-public-access/add-probe.png)
-5. 填寫 hello 探查表單，然後按一下**確定**。
+5. 填寫探查表單，然後按一下 [確定] 。
    
    | 欄位 | 說明 |
    | --- | --- |
-   | 名稱 |Hello 探查的描述性名稱。 |
-   | Port |hello 容器 tootest hello 連接埠。 |
-   | Path |（在 HTTP 模式時） hello 相對的網站路徑 tooprobe。 不支援 HTTPS。 |
-   | 間隔 |嘗試 hello 探查之間的時間量以秒為單位。 |
-   | 狀況不良臨界值 |考慮 hello 容器狀況不良之前，先在此連續探查次數。 |
-6. 在 hello 代理程式負載平衡器的 hello 內容中，按一下 **負載平衡規則**然後**新增**。
+   | 名稱 |探查的描述性名稱。 |
+   | 連接埠 |要測試之容器的連接埠。 |
+   | Path |(處於 HTTP 模式時) 探查的相對網站路徑。 不支援 HTTPS。 |
+   | 間隔 |探查嘗試間隔的時間量 (秒)。 |
+   | 狀況不良臨界值 |在將容器視為狀況不良之前的連續探查嘗試次數。 |
+6. 回到代理程式負載平衡器的屬性中，依序按一下 [負載平衡規則] 和 [新增]。
    
     ![Azure Container Service 的負載平衡器規則](./media/container-service-enable-public-access/add-balancer-rule.png)
-7. 填寫 hello 負載平衡器表單，然後按一下**確定**。
+7. 填寫負載平衡器表單，然後按一下 [確定] 。
    
    | 欄位 | 說明 |
    | --- | --- |
-   | 名稱 |Hello 負載平衡器的描述性名稱。 |
-   | Port |hello 公用的連入通訊埠。 |
-   | 後端連接埠 |hello 內部公用連接埠的 hello 容器 tooroute 流量。 |
-   | 後端集區 |此集區中的 hello 容器將是此負載平衡器的 hello 目標。 |
-   | 探查 |如果目標中 hello hello 探查使用 toodetermine**後端集區**狀況良好。 |
-   | 工作階段持續性 |決定應如何從用戶端的流量處理 hello hello 工作階段期間。<br><br>**無**： 來自相同用戶端可以由任何容器的 hello 的後續要求。<br>**用戶端 IP**: hello 相同的用戶端 IP 由處理後續要求 hello 相同的容器。<br>**用戶端 IP 和通訊協定**： 來自相同用戶端 IP 和通訊協定組合都由的 hello 的後續要求 hello 相同的容器。 |
-   | 閒置逾時 |(只有 TCP)以分鐘為單位 hello TCP/HTTP 用戶端不需依賴所開啟的時間 tookeep*保持*訊息。 |
+   | 名稱 |負載平衡器的描述性名稱。 |
+   | 連接埠 |公用的連入通訊埠。 |
+   | 後端連接埠 |要將流量路由傳送到之容器的內部對公用連接埠。 |
+   | 後端集區 |此集區中的容器將會是此負載平衡器的目標。 |
+   | 探查 |用來判斷 **後端集區** 中的目標是否狀況良好的探查。 |
+   | 工作階段持續性 |決定針對工作階段的持續時間，應該如何處理來自用戶端的流量。<br><br>**無**：來自相同用戶端的後續要求可以由任何容器處理。<br>**用戶端 IP**：來自相同用戶端 IP 的後續要求會由相同容器處理。<br>**用戶端 IP 和通訊協定**：來自相同用戶端 IP 和通訊協定組合的後續要求會由相同容器處理。 |
+   | 閒置逾時 |(僅限 TCP) 讓 TCP/HTTP 用戶端保持開啟，而不依賴「keep-alive」  訊息的時間，以分鐘為單位。 |
 
 ## <a name="add-a-security-rule-portal"></a>新增安全性規則 (入口網站)
-接下來，我們需要 tooadd 從我們已開啟的連接埠通過 hello 防火牆會路由傳送流量的安全性規則。
+接下來，我們需要新增會從開啟的連接埠通過防火牆路由傳送流量的安全性規則。
 
-1. 登入 toohello 入口網站。
-2. 尋找您所部署的 hello 資源群組 hello Azure 容器服務。
-3. 選取 hello**公用**代理程式的網路安全性群組 (這名為類似太**XXXX-代理程式-公用-nsg-XXXX**)。
+1. 登入入口網站。
+2. 尋找 Azure Container Service 所部署到的資源群組。
+3. 選取**公用**代理程式網路安全性群組 (其名稱類似 **XXXX-agent-public-nsg-XXXX**)。
    
     ![Azure Container Service 網路安全性群組](./media/container-service-enable-public-access/agent-nsg.png)
 4. 依序選取 [輸入安全性規則] 和 [新增]。
    
     ![Azure Container Service 網路安全性群組規則](./media/container-service-enable-public-access/add-firewall-rule.png)
-5. 填寫 hello 防火牆規則 tooallow 公用連接埠，然後按一下**確定**。
+5. 填寫防火牆規則以允許公用連接埠，然後按一下 [確定] 。
    
    | 欄位 | 說明 |
    | --- | --- |
-   | 名稱 |Hello 防火牆規則的描述性名稱。 |
-   | 優先順序 |Hello 規則的優先順序等級。 hello hello 數字 hello 高 hello 優先順序。 |
-   | 來源 |限制 hello 連入 IP 位址範圍 toobe 允許或拒絕此規則。 使用**任何**toonot 指定限制。 |
-   | 服務 |選取一組適用此安全性規則的預先定義服務。 否則使用**自訂**toocreate 自己。 |
-   | 通訊協定 |根據 **TCP** 或 **UDP** 限制流量。 使用**任何**toonot 指定限制。 |
-   | 連接埠範圍 |當**服務**是**自訂**，指定此規則影響的連接埠範圍，hello。 您可以使用單一連接埠 (例如 **80**) 或 **1024-1500** 之類的範圍。 |
-   | 動作 |允許或拒絕符合 hello 準則的流量。 |
+   | 名稱 |防火牆規則的描述性名稱。 |
+   | 優先順序 |規則的優先順序排名。 編號愈低，優先順序就愈高。 |
+   | 來源 |限制此規則要允許或拒絕的連入 IP 位址範圍。 使用 **任何** 即可不指定限制。 |
+   | 服務 |選取一組適用此安全性規則的預先定義服務。 否則，使用 **自訂** 建立自己的服務。 |
+   | 通訊協定 |根據 **TCP** 或 **UDP** 限制流量。 使用 **任何** 即可不指定限制。 |
+   | 連接埠範圍 |當**服務**是**自訂**時，指定此規則會影響的連接埠範圍。 您可以使用單一連接埠 (例如 **80**) 或 **1024-1500** 之類的範圍。 |
+   | 動作 |允許或拒絕符合條件的流量。 |
 
 ## <a name="next-steps"></a>後續步驟
-深入了解 hello 差異[公用和私用 DC/OS 代理程式](container-service-dcos-agents.md)。
+了解 [公用和私用 DC/OS 代理程式](container-service-dcos-agents.md)之間的差異。
 
 深入了解 [管理 DC/OS 容器](container-service-mesos-marathon-ui.md)。
 

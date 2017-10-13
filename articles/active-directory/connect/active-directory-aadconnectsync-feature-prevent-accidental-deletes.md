@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect 同步：防止意外刪除 |Microsoft Docs"
-description: "本主題描述 hello 防止被意外刪除 （防止意外刪除） 功能，在 Azure AD Connect。"
+description: "本主題說明 Azure AD Connect 中的防止意外刪除 (可防止意外刪除) 功能。"
 services: active-directory
 documentationcenter: 
 author: AndKjell
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 159597f8354806fcaea1430e0ff84956338592a4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a33fb729cff5007e40820af696cfec823a3ecfde
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-ad-connect-sync-prevent-accidental-deletes"></a>Azure AD Connect 同步處理：防止意外刪除
-本主題描述 hello 防止被意外刪除 （防止意外刪除） 功能，在 Azure AD Connect。
+本主題說明 Azure AD Connect 中的防止意外刪除 (可防止意外刪除) 功能。
 
-時安裝 Azure AD Connect，防止被意外刪除預設會啟用並設定的 toonot 中允許超過 500 個刪除匯出。 這項功能是設計的 tooprotect 您從意外組態變更，並變更會影響許多使用者和其他物件的 tooyour 在內部部署目錄。
+安裝 Azure AD Connect 時，依預設會啟用防止意外刪除的功能，並設定為不允許超過 500 個刪除項目的匯出。 這項功能是專門用來保護您免於意外的組態變更及內部部署目錄的變更，因為這會影響許多使用者和其他物件。
 
 ## <a name="what-is-prevent-accidental-deletes"></a>防止意外刪除是什麼
 會看到多項刪除的常見案例包括：
 
-* 變更太[篩選](active-directory-aadconnectsync-configure-filtering.md)其中整個[OU](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering)或[網域](active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering)會變成未選取。
+* 變更未選取整個 [OU](active-directory-aadconnectsync-configure-filtering.md#organizational-unitbased-filtering) 或[網域](active-directory-aadconnectsync-configure-filtering.md#domain-based-filtering)的[篩選](active-directory-aadconnectsync-configure-filtering.md)。
 * OU 中的所有物件遭到刪除。
-* OU 已重新命名，以便在它的所有物件都會都視為 toobe 同步處理的範圍。
+* 重新命名 OU，結果使得其中的所有物件被視為不在同步處理範圍內。
 
-可以使用 PowerShell 變更 hello 預設值為 500 個物件使用`Enable-ADSyncExportDeletionThreshold`。 您應該設定組織的此值 toofit hello 大小。 因為 hello 同步處理排程器執行每隔 30 分鐘，hello 值會是 hello 30 分鐘內出現的刪除數目。
+可以使用 PowerShell 的 `Enable-ADSyncExportDeletionThreshold`進行變更的預設值是 500 個物件。 您應該將此值設定為符合您組織的大小。 由於同步排程器會每隔 30 分鐘執行一次，因此該值是 30 分鐘內看到的刪除數目。
 
-如果有太多的接移刪除 toobe 會匯出 tooAzure AD，則 hello 匯出會停止，您會收到一封電子郵件，像這樣：
+如果有太多刪除預備要匯出到 Azure AD，則匯出會停止，且您會收到如下的電子郵件：
 
 ![防止意外刪除電子郵件](./media/active-directory-aadconnectsync-feature-prevent-accidental-deletes/email.png)
 
-> *Hello (技術連絡人)。（時間） 在 hello 身分識別同步處理服務偵測到刪除的 hello 數目超過 hello 刪除設定的臨界值 （組織名稱）。本次執行身分識別同步處理時，共傳送 (數目) 個物件進行刪除。這在達到或超過設定的 hello 刪除臨界值 （數字） 物件。我們需要您 tooprovide 確認刪除動作應該是之前，我們將繼續處理。請 hello 防止意外刪除，如需此電子郵件訊息中所列的 hello 錯誤詳細資訊，參閱。*
+> *Hello (技術連絡人)。有時身分識別同步處理服務偵測到的刪除數目會超過 (組織名稱) 所設定的刪除閾值。本次執行身分識別同步處理時，共傳送 (數目) 個物件進行刪除。這已到達或超過設定的 (數目) 個物件的刪除閾值。您需先確認要刪除這些項目，才可繼續進行。若要深入了解此電子郵件中列出的錯誤，請參見防止意外刪除。*
 >
 > 
 
-您也可以查看 hello 狀態`stopped-deletion-threshold-exceeded`當您查看 hello**同步處理服務管理員**hello 匯出設定檔的 UI。
+當您查看匯出設定檔的 **Synchronization Service Manager** UI，您也會看到狀態 `stopped-deletion-threshold-exceeded`。
 ![防止意外刪除 Sync Service Manager UI](./media/active-directory-aadconnectsync-feature-prevent-accidental-deletes/syncservicemanager.png)
 
-如果這是非預期的結果，請進行調查，並採取修正動作。 toosee 哪些物件是關於 toobe 刪除，請勿 hello 遵循：
+如果這是非預期的結果，請進行調查，並採取修正動作。 若要查看哪些物件即將被刪除時，請執行下列作業：
 
-1. 啟動**同步處理服務**從 hello 開始] 功能表。
-2. 跳過**連接器**。
-3. 選取 hello 連接器類型**Azure Active Directory**。
-4. 在下**動作**toohello 的權限，選取**搜尋連接器空間**。
-5. 在 hello 下快顯**範圍**，選取**中斷連線後**hello 過去中挑選一次。 按一下 [搜尋] 。 此頁面提供有關 toobe 刪除所有物件的檢視。 按一下每個項目，您可以取得 hello 物件的其他資訊。 您也可以按一下**資料行設定**tooadd 其他屬性 toobe 在 hello 方格中顯示。
+1. 從 [開始] 功能表啟動 [同步處理服務]  。
+2. 移至 [連接器] 。
+3. 選取 **Azure Active Directory**類型的連接器。
+4. 在右側的 [動作] 之下，選取 [搜尋連接器空間]。
+5. 在 [範圍] 下的快顯中，選取 [中斷連線起點]，並選擇一個過去的時間。 按一下 [搜尋] 。 此頁面會顯示所有即將刪除的物件。 按一下每個項目，您就可以了解該物件的其他資訊。 您也可以按一下 [資料行設定]  ，新增其他屬性以顯示在方格中。
 
 ![搜尋連接器空間](./media/active-directory-aadconnectsync-feature-prevent-accidental-deletes/searchcs.png)
 
-如果需要針對所有 hello 刪除，然後 hello 遵循：
+如果想要刪除所有項目，請執行下列作業：
 
-1. tooretrieve hello 目前刪除閾值，執行 hello PowerShell cmdlet `Get-ADSyncExportDeletionThreshold`。 提供 Azure AD 全域系統管理員帳戶與密碼。 hello 預設值為 500。
-2. tootemporarily 停用此保護，並讓這些刪除瀏覽，請執行 hello PowerShell cmdlet: `Disable-ADSyncExportDeletionThreshold`。 提供 Azure AD 全域系統管理員帳戶與密碼。
+1. 若要擷取目前的刪除閾值，請執行 PowerShell Cmdlet `Get-ADSyncExportDeletionThreshold`。 提供 Azure AD 全域系統管理員帳戶與密碼。 預設值為 500。
+2. 若要暫時停用此保護功能並刪除這些項目，請執行 PowerShell Cmdlet： `Disable-ADSyncExportDeletionThreshold`。 提供 Azure AD 全域系統管理員帳戶與密碼。
    ![認證](./media/active-directory-aadconnectsync-feature-prevent-accidental-deletes/credentials.png)
-3. 以 hello Azure 仍然選取 Active Directory 連接器，選取 [hello 動作**執行**選取**匯出**。
-4. toore 啟用 hello 保護執行 hello PowerShell cmdlet: `Enable-ADSyncExportDeletionThreshold -DeletionThreshold 500`。 取代您注意到擷取 hello 目前刪除閾值時的 hello 值為 500。 提供 Azure AD 全域系統管理員帳戶與密碼。
+3. 如果 Azure Active Directory Connector 仍處於選取狀態，請選取 [執行] 動作，再選取 [匯出]。
+4. 若要重新啟用此保護功能，請執行 PowerShell Cmdlet： `Enable-ADSyncExportDeletionThreshold -DeletionThreshold 500`。 使用您在擷取目前刪除閾值時記下的值來取代 500。 提供 Azure AD 全域系統管理員帳戶與密碼。
 
 ## <a name="next-steps"></a>後續步驟
 **概觀主題**

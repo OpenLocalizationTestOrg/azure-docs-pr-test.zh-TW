@@ -1,6 +1,6 @@
 ---
-title: "aaaManage 網路安全性群組-Azure 入口網站 |Microsoft 文件"
-description: "了解如何使用將 toomanage 網路安全性群組 hello Azure 入口網站。"
+title: "管理網路安全性群組 - Azure 入口網站 | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站管理網路安全性群組。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,13 +16,13 @@ ms.workload: infrastructure-services
 ms.date: 02/04/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 53fb29e60cbc2a535f6cf03e430d9e703e97b216
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ecb4fb4608628f5a1bd54fac6af19fecfa4508f2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="manage-network-security-groups-using-hello-azure-portal"></a>管理使用 hello Azure 入口網站的網路安全性群組
+# <a name="manage-network-security-groups-using-the-azure-portal"></a>使用 Azure 入口網站管理網路安全性群組
 
 [!INCLUDE [virtual-networks-create-nsg-selectors-arm-include](../../includes/virtual-networks-create-nsg-selectors-arm-include.md)]
 
@@ -30,68 +30,68 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-本文涵蓋 hello Resource Manager 部署模型。 您也可以[hello 傳統部署模型中建立 Nsg](virtual-networks-create-nsg-classic-ps.md)。
+本文涵蓋之內容包括資源管理員部署模型。 您也可以 [在傳統部署模型中建立 NSG](virtual-networks-create-nsg-classic-ps.md)。
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-hello 範例 PowerShell 預期簡單的環境中已經建立下列命令會根據上面的 hello 案例。 如果您想 toorun hello 命令，因為它們會顯示在此文件，第一次建立 hello 測試環境部署[此範本](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd)，按一下 **部署 tooAzure**，取代 hello 預設參數值如果有必要，並遵循中的 hello 指示 hello 入口網站。 使用以下步驟 hello **RG NSG** hello hello 資源群組 hello 範本名稱已部署至。
+以下的範例 PowerShell 命令會預期已根據上述案例建立簡單的環境。 如果您想要以本文件顯示的方式執行命令，請先依照下列方式建置測試環境：部署[此範本](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd)，按一下 [部署至 Azure]，視情況取代預設參數值，然後遵循入口網站中的指示。 下列步驟使用 **RG-NSG** 作為部署範本之資源群組的名稱。
 
-## <a name="create-hello-nsg-frontend-nsg"></a>建立 hello NSG 前端 NSG
-toocreate hello **NSG 前端**NSG 示 hello 案例以上版本，請遵循下列 hello 步驟。
+## <a name="create-the-nsg-frontend-nsg"></a>建立 NSG-FrontEnd NSG
+若要根據上述案例建立 **NSG-FrontEnd** NSG，請遵循下列步驟執行。
 
-1. 從瀏覽器，瀏覽 toohttp://portal.azure.com，並視需要登入您的 Azure 帳戶。
+1. 透過瀏覽器瀏覽至 http://portal.azure.com，並視需要使用您的 Azure 帳戶登入。
 2. 按一下 [瀏覽] >  > [網路安全性群組]。
    
     ![Azure 入口網站 - NSG](./media/virtual-networks-create-nsg-arm-pportal/figure11.png)
-3. 在 hello**網路安全性群組**刀鋒視窗中，按一下 **新增**。
+3. 在 [網路安全性群組] 刀鋒視窗中，按一下 [新增]。
    
     ![Azure 入口網站 - NSG](./media/virtual-networks-create-nsg-arm-pportal/figure12.png)
-4. 在 hello**建立網路安全性群組**刀鋒視窗中，建立名為 NSG *NSG 前端*hello 中*RG NSG*資源群組，然後再按一下**建立**.
+4. 在 [建立網路安全性群組] 刀鋒視窗的 *RG-NSG* 資源群組中建立名為 *NSG-FrontEnd* 的 NSG，然後按一下 [建立]。
    
     ![Azure 入口網站 - NSG](./media/virtual-networks-create-nsg-arm-pportal/figure13.png)
 
 ## <a name="create-rules-in-an-existing-nsg"></a>建立現有 NSG 中的規則
-toocreate hello Azure 入口網站，從現有 NSG 中的規則，請遵循下列 hello 步驟。
+若要從 Azure 入口網站建立現有 NSG 中的規則，請遵循下列步驟執行。
 
 1. 按一下 [瀏覽] >  > [網路安全性群組]。
-2. 在 hello Nsg 清單中按一下**NSG 前端** > **輸入安全性規則**
+2. 在 NSG 清單中按一下 [NSG-FrontEnd] **NSG-FrontEnd** > 
    
     ![Azure 入口網站 - NSG-FrontEnd](./media/virtual-networks-create-nsg-arm-pportal/figure2.png)
-3. 中的 hello 清單**輸入安全性規則**，按一下 **新增**。
+3. 在 [輸入安全性規則] 清單中，按一下 [新增]。
    
     ![Azure 入口網站 - 新增規則](./media/virtual-networks-create-nsg-arm-pportal/figure3.png)
-4. 在 hello**新增連入的安全性規則**刀鋒視窗中，建立名為的規則*網頁規則*優先順序為*200*允許存取透過*TCP* tooport*80* tooany VM 從任何來源，然後按一下**確定**。 請注意，這些設定大部分已是預設值。
+4. 在 [新增輸入安全性規則] 刀鋒視窗中，建立一個名為 web-rule 的規則，優先順序設為 [200]，以允許從任何來源經由 [TCP] 與連接埠 [80] 存取任何 VM，然後按一下 [確定]。 請注意，這些設定大部分已是預設值。
    
     ![Azure 入口網站 - 規則設定](./media/virtual-networks-create-nsg-arm-pportal/figure4.png)
-5. 幾秒之後，您會看見 hello hello NSG 中的新規則。
+5. 數秒後，您會看到 NSG 中的新規則。
    
     ![Azure 入口網站 - 新增規則](./media/virtual-networks-create-nsg-arm-pportal/figure5.png)
-6. 重複步驟 too6 toocreate 名為的輸入的規則*rdp 規則*優先順序為*250*允許存取透過*TCP* tooport *3389*tooany 從任何來源的 VM。
+6. 重複步驟 6，建立名為 rdp-rule 的輸入規則，設定優先順序為 [250]，並允許透過 [TCP] 連接埠 [3389] 從任何來源存取任何 VM。
 
-## <a name="associate-hello-nsg-toohello-frontend-subnet"></a>Hello NSG toohello 前端子網路建立關聯
+## <a name="associate-the-nsg-to-the-frontend-subnet"></a>建立 NSG 與 FrontEnd 子網路的關聯
 1. 按一下 [瀏覽 >]  >  [資源群組]  >  [RG NSG]。
-2. 在 hello **RG NSG**刀鋒視窗中，按一下  **...**  >  **TestVNet**。
+2. 在 [RG-NSG] 刀鋒視窗中，按一下 [...]  >  [TestVNet]。
    
     ![Azure 入口網站 - TestVNet](./media/virtual-networks-create-nsg-arm-pportal/figure14.png)
-3. 在 hello**設定**刀鋒視窗中，按一下 **子網路** > **前端** > **網路安全性群組** > **NSG 前端**。
+3. 在 [設定] 刀鋒視窗中，按一下 [子網路] > [FrontEnd] > [網路安全性群組] > [NSG-FrontEnd]。
    
     ![Azure 入口網站 - 子網路設定](./media/virtual-networks-create-nsg-arm-pportal/figure15.png)
-4. 在 hello**前端**刀鋒視窗中，按一下 **儲存**。
+4. 在 [FrontEnd] 刀鋒視窗中，按一下 [儲存]。
    
     ![Azure 入口網站 - 子網路設定](./media/virtual-networks-create-nsg-arm-pportal/figure16.png)
 
-## <a name="create-hello-nsg-backend-nsg"></a>建立 hello NSG 後端 NSG
-toocreate hello **NSG 後端**NSG，並將它關聯 toohello**後端**子網路，後續 hello 步驟。
+## <a name="create-the-nsg-backend-nsg"></a>建立 NSG-BackEnd NSG
+若要建立 **NSG-BackEnd** NSG 並將它與 **BackEnd** 子網路建立關聯，請遵循下列步驟。
 
-1. 中的步驟重複 hello[建立 hello NSG 前端 NSG](#Create-the-NSG-FrontEnd-NSG) toocreate NSG 名為*NSG 後端*
-2. 中的步驟重複 hello[建立現有 NSG 中的規則](#Create-rules-in-an-existing-NSG)toocreate hello**輸入**hello 表中的規則。
+1. 重複 [建立 NSG-FrontEnd NSG](#Create-the-NSG-FrontEnd-NSG) 中的步驟，建立名為 *NSG-BackEnd*
+2. 重複 [在現有的 NSG 中建立規則](#Create-rules-in-an-existing-NSG) 中的步驟，建立下表中的 **輸入** 規則。
    
    | 輸入規則 | 輸出規則 |
    | --- | --- |
    | ![Azure 入口網站 - 輸入規則](./media/virtual-networks-create-nsg-arm-pportal/figure17.png) |![Azure 入口網站 - 輸出規則](./media/virtual-networks-create-nsg-arm-pportal/figure18.png) |
-3. 中的步驟重複 hello [hello NSG toohello 前端子網路建立關聯](#Associate-the-NSG-to-the-FrontEnd-subnet)tooassociate hello **NSG 後端**NSG toohello**後端**子網路。
+3. 重複[建立 NSG 與 FrontEnd 子網路的關聯](#Associate-the-NSG-to-the-FrontEnd-subnet)中的步驟，建立 **NSG-Backend** NSG 與 **BackEnd** 子網路的關聯。
 
 ## <a name="next-steps"></a>後續步驟
-* 了解如何太[管理現有的 Nsg](virtual-network-manage-nsg-arm-portal.md)
+* 了解如何 [管理現有的 NSG](virtual-network-manage-nsg-arm-portal.md)
 * [啟用 NSG 的記錄](virtual-network-nsg-manage-log.md) 。
 

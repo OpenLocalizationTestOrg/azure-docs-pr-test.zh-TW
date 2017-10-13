@@ -1,6 +1,6 @@
 ---
-title: "Service Fabric 應用程式中的 aaaManaging 密碼 |Microsoft 文件"
-description: "本文說明 toosecure 密碼 Service Fabric 應用程式中的值。"
+title: "管理 Service Fabric 應用程式中的祕密 | Microsoft Docs"
+description: "本文說明如何保護在 Service Fabric 應用程式中的密碼值。"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,59 +14,59 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: b8cafcb681d95aaa1b8e9a1afaac78ba5b7f58b0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d71924cda8bb3bffbe221946d80dba150359e38e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="managing-secrets-in-service-fabric-applications"></a>管理 Service Fabric 應用程式中的密碼
-本指南會引導您管理 Service Fabric 應用程式中的機密資料的 hello 步驟。 密碼可以是任何機密資訊，例如儲存體連接字串、密碼或其他不會以純文字處理的值。
+本指南將逐步引導您完成管理 Service Fabric 應用程式中密碼的步驟。 密碼可以是任何機密資訊，例如儲存體連接字串、密碼或其他不會以純文字處理的值。
 
-本指南會使用 Azure 金鑰保存庫 toomanage 金鑰和密碼。 不過，*使用*應用程式中的密碼是雲端 tooallow 無從驗證平台應用程式 toobe 部署的 tooa 叢集裝載任何地方。 
+本指南使用 Azure 金鑰保存庫來管理金鑰和密碼。 不過，應用程式中的密碼「使用」  是由平台驗證，讓應用程式可部署至裝載在任何位置的叢集。 
 
 ## <a name="overview"></a>概觀
-hello 建議 toomanage 服務組態設定是透過[服務組態套件][config-package]。 組態套件會有各種版本，並可透過含有健全狀況驗證和自動復原的受管理輪流升級來進行升級。 因為它會減少 hello 的全域服務中斷的可能性，這是慣用的 tooglobal 組態。 加密的密碼也不例外。 Service Fabric 具有內建的功能，可使用憑證加密來加密或解密組態套件 Settings.xml 檔案中的值。
+建議透過[服務組態套件][config-package]來管理服務組態設定。 組態套件會有各種版本，並可透過含有健全狀況驗證和自動復原的受管理輪流升級來進行升級。 這是慣用的全域組態，因為可以減少全域服務中斷的機會。 加密的密碼也不例外。 Service Fabric 具有內建的功能，可使用憑證加密來加密或解密組態套件 Settings.xml 檔案中的值。
 
-hello 下列圖表說明 hello Service Fabric 應用程式中的密碼管理的基本流程：
+下圖說明 Service Fabric 應用程式中密碼管理的基本流程︰
 
 ![密碼管理概觀][overview]
 
 此流程有四個主要步驟︰
 
 1. 取得資料編密憑證。
-2. 在您的叢集安裝 hello 憑證。
-3. 時部署應用程式與 hello 憑證加密密碼的值，並將它們插入服務 Settings.xml 組態檔。
-4. 讀取加密值超出 Settings.xml 解密與 hello 相同的加密憑證。 
+2. 在叢集中安裝憑證。
+3. 在部署應用程式時以憑證來加密密碼的值，並將其插入服務的 Settings.xml 組態檔。
+4. 藉由以相同的編密憑證進行解密，從 Settings.xml 讀取加密的值。 
 
-[Azure 金鑰保存庫][ key-vault-get-started]為憑證的安全儲存位置和方式 tooget 此處使用在 Azure 中的 Service Fabric 叢集上安裝憑證。 如果您並不會部署 tooAzure，您不需要 toouse 金鑰保存庫 toomanage 機密資料，Service Fabric 應用程式中。
+[Azure Key Vault][key-vault-get-started] 在此是當做憑證的安全儲存位置，以及讓憑證安裝在 Azure 中的 Service Fabric 叢集上的方法。 如果您沒有要部署至 Azure，您不需要使用金鑰保存庫管理 Service Fabric 應用程式中的密碼。
 
 ## <a name="data-encipherment-certificate"></a>資料編密憑證
-資料編密憑證只會用於服務的 Settings.xml 中組態值的加密與解密，並無法用來驗證或簽署密碼文字。 hello 憑證必須符合下列需求的 hello:
+資料編密憑證只會用於服務的 Settings.xml 中組態值的加密與解密，並無法用來驗證或簽署密碼文字。 憑證必須符合下列要求：
 
-* hello 憑證必須包含私密金鑰。
-* 金鑰交換，可匯出 tooa 個人資訊交換 (.pfx) 檔案，就必須建立 hello 憑證。
-* hello 憑證的金鑰使用方法必須包含資料編密 (10)，而且不應該包含伺服器驗證用戶端驗證。 
+* 憑證必須包含私密金鑰。
+* 憑證必須是為了進行金鑰交換而建立，且可匯出成個人資訊交換檔 (.pfx)。
+* 憑證的金鑰使用法必須包含資料編密 (10)，而且不應該包含伺服器驗證或用戶端驗證。 
   
-  例如，當建立自我簽署的憑證，使用 PowerShell，hello`KeyUsage`旗標必須設定得`DataEncipherment`:
+  例如，當使用 PowerShell 建立自我簽署的憑證時，`KeyUsage` 旗標必須設定為 `DataEncipherment`：
   
   ```powershell
   New-SelfSignedCertificate -Type DocumentEncryptionCert -KeyUsage DataEncipherment -Subject mydataenciphermentcert -Provider 'Microsoft Enhanced Cryptographic Provider v1.0'
   ```
 
-## <a name="install-hello-certificate-in-your-cluster"></a>在您的叢集安裝 hello 憑證
-此憑證必須安裝在 hello 叢集中的每個節點上。 它會成為在執行階段 toodecrypt 值儲存在 Settings.xml 的服務。 請參閱[如何使用 Azure 資源管理員的叢集 toocreate] [ service-fabric-cluster-creation-via-arm]如需安裝指示。 
+## <a name="install-the-certificate-in-your-cluster"></a>在叢集中安裝憑證
+此憑證必須安裝在叢集中的每個節點上。 它會用在執行階段來解密服務的 Settings.xml 中儲存的值。 請參閱[如何使用 Azure Resource Manager][service-fabric-cluster-creation-via-arm] 建立叢集的安裝指示。 
 
 ## <a name="encrypt-application-secrets"></a>加密應用程式密碼
-hello Service Fabric SDK 有內建的密碼加密和解密函數。 可以在建置階段加密密碼值，然後在服務代碼中以程式設計方式解密和讀取。 
+Service Fabric SDK 有內建密碼加密和解密函式。 可以在建置階段加密密碼值，然後在服務代碼中以程式設計方式解密和讀取。 
 
-下列 PowerShell 命令的 hello 是使用的 tooencrypt 密碼。 此命令只會加密 hello 值。它會**不**簽署 hello 加密文字。 您必須使用 hello 相同安裝在您的叢集 tooproduce 加密文字的密碼值的加密憑證：
+下列 PowerShell 命令會用來加密密碼。 此命令只會將值加密；並**不會**簽署密碼文字。 您必須使用安裝在叢集中相同的編密憑證，以產生密碼值的加密文字︰
 
 ```powershell
 Invoke-ServiceFabricEncryptText -CertStore -CertThumbprint "<thumbprint>" -Text "mysecret" -StoreLocation CurrentUser -StoreName My
 ```
 
-hello 產生的 base-64 字串包含 hello 密碼的加密文字以及已使用的 tooencrypt 的 hello 憑證的相關資訊它。  hello base 64 編碼的字串可插入 hello 與您的服務 Settings.xml 組態檔中的參數`IsEncrypted`屬性設定太`true`:
+產生的 Base-64 字串同時包含密碼的加密文字，以及用來對其加密的憑證相關資訊。  當 `IsEncrypted` 屬性設為 `true` 時，Base-64 編碼的字串可插入到服務的 Settings.xml 組態檔中的參數內：
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -78,10 +78,10 @@ hello 產生的 base-64 字串包含 hello 密碼的加密文字以及已使用�
 ```
 
 ### <a name="inject-application-secrets-into-application-instances"></a>將應用程式密碼插入應用程式執行個體內
-在理想情況下，部署 toodifferent 環境應該盡可能為自動化。 這可以藉由建置環境中執行密碼的加密，並做為參數提供 hello 加密機密資料，建立應用程式執行個體時完成。
+在理想情況下，部署至不同的環境應儘可能自動化。 這可以藉由在建置環境中執行密碼加密，並在建立應用程式執行個體時提供加密的密碼做為參數來實現。
 
 #### <a name="use-overridable-parameters-in-settingsxml"></a>在 Settings.xml 中使用可覆寫參數
-hello Settings.xml 組態檔可讓您可以在應用程式建立時提供的可覆寫參數。 使用 hello`MustOverride`屬性而不是為參數提供一個值：
+Settings.xml 組態檔允許可以在應用程式建立時提供的可覆寫參數。 使用 `MustOverride` 屬性而非提供參數的值︰
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -92,7 +92,7 @@ hello Settings.xml 組態檔可讓您可以在應用程式建立時提供的可�
 </Settings>
 ```
 
-toooverride 值 Settings.xml 中, 宣告覆寫參數 ApplicationManifest.xml 中的 hello 服務：
+若要覆寫 Settings.xml 中的值，請宣告 ApplicationManifest.xml 中服務的覆寫參數︰
 
 ```xml
 <ApplicationManifest ... >
@@ -113,9 +113,9 @@ toooverride 值 Settings.xml 中, 宣告覆寫參數 ApplicationManifest.xml 中
   </ServiceManifestImport>
  ```
 
-現在 hello 值可以指定為*應用程式參數*時建立 hello 應用程式的執行個體。 可以使用 PowerShell 編寫指令碼 (或以 C# 撰寫) 來建立應用程式執行個體，使其在建置流程中很容易整合。
+現在可以在建立應用程式執行個體時，將值指定為「應用程式參數」  。 可以使用 PowerShell 編寫指令碼 (或以 C# 撰寫) 來建立應用程式執行個體，使其在建置流程中很容易整合。
 
-使用 PowerShell，hello 參數是提供的 toohello`New-ServiceFabricApplication`命令做為[雜湊表](https://technet.microsoft.com/library/ee692803.aspx):
+若使用 PowerShell，則參數會提供給 `New-ServiceFabricApplication` 命令當做 [雜湊表](https://technet.microsoft.com/library/ee692803.aspx)：
 
 ```powershell
 PS C:\Users\vturecek> New-ServiceFabricApplication -ApplicationName fabric:/MyApp -ApplicationTypeName MyAppType -ApplicationTypeVersion 1.0.0 -ApplicationParameter @{"MySecret" = "I6jCCAeYCAxgFhBXABFxzAt ... gNBRyeWFXl2VydmjZNwJIM="}
@@ -140,9 +140,9 @@ await fabricClient.ApplicationManager.CreateApplicationAsync(applicationDescript
 ```
 
 ## <a name="decrypt-secrets-from-service-code"></a>解密來自服務代碼的密碼
-Service Fabric 服務是 NETWORK service 預設在 Windows 上執行，並不存取 toocertificates 節點上都安裝 hello 沒有額外的設定。
+Service Fabric 中的服務在「網路服務」下依預設是在 Windows 上執行，而且若沒有額外設定，則沒有安裝在節點上憑證的存取權。
 
-使用資料加密憑證時，您會需要 toomake 確認網路服務或執行任何使用者帳戶 hello 服務都有存取 toohello 憑證的私密金鑰。 服務網狀架構就會授與存取服務的自動如果您將它設定 toodo 因此來處理。 可以藉由定義使用者及憑證的安全性原則，在 ApplicationManifest.xml 中完成此組態。 在下列範例的 hello，hello NETWORK SERVICE 帳戶是指定的讀取權限 tooa 憑證其憑證指紋所定義：
+使用資料編密憑證時，您必須確定「網路服務」或服務在其下執行的任何使用者帳戶，可以存取憑證的私密金鑰。 若您如此設定，Service Fabric 會自動處理授與服務的存取權。 可以藉由定義使用者及憑證的安全性原則，在 ApplicationManifest.xml 中完成此組態。 在下列範例中，已授與「網路服務」帳戶由其憑證指紋所定義的憑證讀取權限︰
 
 ```xml
 <ApplicationManifest … >
@@ -163,12 +163,12 @@ Service Fabric 服務是 NETWORK service 預設在 Windows 上執行，並不存
 ```
 
 > [!NOTE]
-> 複製憑證指紋時從 hello 憑證存放區嵌入式管理單元在 Windows 上，不可見的字元都會放在 hello 指紋字串 hello 開頭。 這個可見的字元可能會導致錯誤時嘗試 toolocate 憑證的指紋，所以要確定 toodelete 這個額外的字元。
+> 當從 Windows 上的憑證存放區嵌入式管理單元中複製憑證指紋時，在憑證指紋字串的開頭會放置不可見的字元。 嘗試按憑證指紋尋找憑證時，這個不可見的字元可能會導致錯誤，因此請務必刪除這個額外的字元。
 > 
 > 
 
 ### <a name="use-application-secrets-in-service-code"></a>在服務代碼中使用應用程式密碼
-從 Settings.xml 存取組態值，設定封裝中的 hello API 允許的值具有 hello 容易解密`IsEncrypted`屬性設定太`true`。 因為加密的 hello 文字包含 hello 憑證用於加密的相關資訊，您不需要 toomanually 尋找 hello 憑證。 hello 憑證只需要 toobe hello 服務執行的 hello 節點上安裝。 只需呼叫 hello`DecryptValue()`方法 tooretrieve hello 原始祕密值：
+存取來自組態套件中 Settings.xml 組態值的 API，可輕鬆解密將 `IsEncrypted` 屬性設為 `true` 的值。 由於加密的文字包含用於加密的憑證相關資訊，因此您不需要手動尋找憑證。 只需要在執行服務的節點上安裝憑證。 只要呼叫 `DecryptValue()` 方法來擷取原始的密碼值︰
 
 ```csharp
 ConfigurationPackage configPackage = this.Context.CodePackageActivationContext.GetConfigurationPackageObject("Config");

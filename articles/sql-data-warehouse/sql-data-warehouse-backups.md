@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure SQL 資料倉儲備份快照，異地備援 |Microsoft 文件"
-description: "了解 SQL 資料倉儲內建的資料庫備份可讓您 toorestore Azure SQL 資料倉儲 tooa 還原點不同的地理區域。"
+title: "Azure SQL 資料倉儲備份 - 快照集、異地備援 | Microsoft Docs"
+description: "了解 SQL 資料倉儲內建資料庫備份，它可以讓您將 Azure SQL 資料倉儲還原到還原點或不同的地理區域。"
 services: sql-data-warehouse
 documentationcenter: 
 author: Lakshmi1812
@@ -15,42 +15,42 @@ ms.workload: NA
 ms.custom: backup-restore
 ms.date: 10/31/2016
 ms.author: lakshmir;barbkess
-ms.openlocfilehash: 34659480485246f54a1490e185fc1b903fb2520d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 54c0149a769e654139bbdf709802d49127f041ac
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="sql-data-warehouse-backups"></a>SQL 資料倉儲備份
-SQL 資料倉儲備份提供本機和異地備份做為其資料倉儲備份功能的一部份。 這些包括 Azure 儲存體 Blob 快照集和異地備援儲存體。 使用資料倉儲備份 toorestore 資料倉儲 tooa 還原點在 hello 主要區域中，或還原 tooa 不同的地理區域。 本文說明 hello 細節 SQL 資料倉儲中的備份。
+SQL 資料倉儲備份提供本機和異地備份做為其資料倉儲備份功能的一部份。 這些包括 Azure 儲存體 Blob 快照集和異地備援儲存體。 使用資料倉儲備份來將您的資料倉儲還原至主要區域中的某一個還原點，或還原至不同的地理區域。 本文說明 SQL 資料倉儲中備份的詳細資訊。
 
 ## <a name="what-is-a-data-warehouse-backup"></a>什麼是資料倉儲備份？
-在資料倉儲備份，hello 資料，您可以使用 toorestore 資料倉儲 tooa 特定時間。  由於 SQL 資料倉儲是一個分散式系統，所以一個資料倉儲備份是由儲存在 Azure Blob 中的許多檔案組成。 
+資料倉儲備份是您可以用來將資料倉儲還原至某一特定時間點的資料。  由於 SQL 資料倉儲是一個分散式系統，所以一個資料倉儲備份是由儲存在 Azure Blob 中的許多檔案組成。 
 
 資料庫備份可保護資料免於意外損毀或刪除，是商務持續性和災害復原策略中不可或缺的一部分。 如需詳細資訊，請參閱[商務持續性概觀](../sql-database/sql-database-business-continuity.md)。
 
 ## <a name="data-redundancy"></a>資料備援
-SQL 資料倉儲會透過將您的資料儲存在本地備援 (LRS) Azure 進階儲存體來保護您的資料。 此 Azure 儲存體功能會將多份同步 hello 資料儲存在 hello 本機資料中心 tooguarantee 透明資料保護中，如果當地語系化的失敗。 資料備援可確保您的資料在發生基礎結構問題 (例如磁碟故障等) 時能夠存留。 資料備援可利用容錯和高可用性基礎結構來確保商務持續性。
+SQL 資料倉儲會透過將您的資料儲存在本地備援 (LRS) Azure 進階儲存體來保護您的資料。 這項 Azure 儲存體功能可將資料的多個同步複本儲存在當地的資料中心，以確保當地語系化失敗時能夠提供透明的資料保護。 資料備援可確保您的資料在發生基礎結構問題 (例如磁碟故障等) 時能夠存留。 資料備援可利用容錯和高可用性基礎結構來確保商務持續性。
 
-toolearn 程式的詳細資訊：
+若要深入了解：
 
-* Azure 高階儲存體，請參閱[簡介 tooAzure 高階儲存體](../storage/common/storage-premium-storage.md)。
+* Azure 進階儲存體，請參閱 [Azure 進階儲存體簡介](../storage/common/storage-premium-storage.md)。
 * 本地備援儲存體，請參閱 [Azure 儲存體複寫](../storage/common/storage-redundancy.md#locally-redundant-storage)。
 
 ## <a name="azure-storage-blob-snapshots"></a>Azure 儲存體 Blob 快照集
-使用 Azure 高階儲存體的優點，作為 SQL 資料倉儲會在本機使用 Azure 儲存體 Blob 快照集 toobackup hello 資料倉儲。 您可以還原資料倉儲 tooa 快照集還原點。 快照集至少每八個小時會啟動，並且可供使用七天。  
+使用 Azure 進階儲存體的一項優點是，SQL 資料倉儲會使用 Azure 儲存體 Blob 快照集來將資料倉儲備份在本地位置。 您可以將資料倉儲還原至快照集還原點。 快照集至少每八個小時會啟動，並且可供使用七天。  
 
-toolearn 程式的詳細資訊：
+若要深入了解：
 
 * Azure Blob 快照集，請參閱[建立 Blob 快照集](../storage/blobs/storage-blob-snapshots.md)。
 
 ## <a name="geo-redundant-backups"></a>異地備援備份
-每 24 小時，SQL 資料倉儲儲存在標準儲存體中的 hello 完整的資料倉儲。 hello 完整的資料倉儲建立 toomatch hello hello 最後一個快照集。 hello 標準儲存體所屬 tooa 地理備援儲存體帳戶，具有讀取存取權 (RA-GRS)。 hello Azure 儲存體 RA-GRS 功能複寫 hello 備份檔案 tooa[成對的資料中心](../best-practices-availability-paired-regions.md)。 此地理複寫可確保萬一您無法存取主要區域中的 hello 快照集，您可以還原資料倉儲。 
+每 24 個小時，SQL 資料倉儲就會在標準儲存體中儲存完整資料倉儲。 完整資料倉儲的建立時間會與上一個快照集的時間相符。 標準儲存體屬於具備讀取權限的異地備援儲存體帳戶 (RA-GRS)。 Azure 儲存體 RA-GRS 功能會將備份檔案複寫到 [配對的資料中心](../best-practices-availability-paired-regions.md)。 萬一您無法存取主要地區中的快照集，此異地複寫可確保您能夠還原資料倉儲。 
 
-這項功能為預設開啟。 如果您不想 toouse 異地備援備份，您也可以 [退出] (https://docs.microsoft.com/powershell/resourcemanager/Azurerm.sql/v2.1.0/Set-AzureRmSqlDatabaseGeoBackupPolicy?redirectedfrom=msdn)。 
+這項功能為預設開啟。 如果您不想要使用異地備援備份，您可以 [退出] (https://docs.microsoft.com/powershell/resourcemanager/Azurerm.sql/v2.1.0/Set-AzureRmSqlDatabaseGeoBackupPolicy?redirectedfrom=msdn)。 
 
 > [!NOTE]
-> 在 Azure 儲存體，hello 詞彙*複寫*參考從一個位置 tooanother toocopying 檔案。 SQL 的*資料庫複寫*參考 tookeeping toomultiple 次要資料庫與主要資料庫同步處理。 
+> 在 Azure 儲存體中，「複寫」一詞指的是將檔案從某個位置複製到另一個位置。 SQL 的「資料庫複寫」  指的是保持多個次要資料庫與主要資料庫同步。 
 > 
 > 
 
@@ -59,15 +59,15 @@ toolearn 程式的詳細資訊：
 >
 > 
 
-toolearn 程式的詳細資訊：
+若要深入了解：
 
 * 異地備援儲存體，請參閱 [Azure 儲存體複寫](../storage/common/storage-redundancy.md)。
 * RA-GRS 儲存體：請參閱 [讀取權限異地備援儲存體](../storage/common/storage-redundancy.md#read-access-geo-redundant-storage)。
 
 ## <a name="data-warehouse-backup-schedule-and-retention-period"></a>資料倉儲備份排程與保留期限
-SQL 資料倉儲線上資料倉儲上建立快照集，每隔四種 tooeight 小時和每一個快照集七天的保留。 您可以還原您的線上資料庫 tooone hello 還原點 hello 在過去七天內。 
+SQL 資料倉儲每四到八小時就會在您的線上資料倉儲上建立快照集，並將每個快照集保留七天。 您可以將線上資料庫還原至過去七天內的其中一個還原點。 
 
-toosee hello 最後一個快照集啟動時，您的線上 SQL 資料倉儲上執行此查詢。 
+若要查看上一個快照集的開始時間，請在您的線上 SQL 資料倉儲上執行此查詢。 
 
 ```sql
 select top 1 *
@@ -75,39 +75,39 @@ from sys.pdw_loader_backup_runs
 order by run_id desc;
 ```
 
-如果您需要 tooretain 快照集的時間超過七天，您可以還原還原點 tooa 新的資料倉儲。 Hello 還原完成之後，SQL 資料倉儲會啟動 hello 新的資料倉儲上建立快照集。 如果您不要進行變更 toohello 新的資料倉儲，hello 快照集保持空白，因此 hello 快照成本最少。 您也可以暫停 hello 資料庫 tookeep SQL 資料倉儲無法建立快照集。
+如果您需要將快照集保留超過七天，您可以將還原點還原至新的資料倉儲。 完成還原之後，SQL 資料倉儲就會開始在新的資料倉儲上建立快照集。 如果您沒有變更新的資料倉儲，快照集就會保持空白，因此快照集成本會降到最低。 您也可以暫停資料庫來避免 SQL 資料倉儲建立快照集。
 
-### <a name="what-happens-toomy-backup-retention-while-my-data-warehouse-is-paused"></a>發生什麼事 toomy 備份保留我的資料倉儲暫停時？
-暫停資料倉儲時，SQL 資料倉儲不會建立快照集，快照集也不會過期。 暫停 hello 資料倉儲時，不會變更 hello 快照集存在時間。 快照集保留根據 hello 資料倉儲已上線，不是行事曆日期的 hello 天數。
+### <a name="what-happens-to-my-backup-retention-while-my-data-warehouse-is-paused"></a>當我的資料倉儲暫停時，我的備份保留期會發生什麼狀況？
+暫停資料倉儲時，SQL 資料倉儲不會建立快照集，快照集也不會過期。 暫停資料倉儲時，快照集存在時間不會改變。 快照集保留期是以資料倉儲上線的天數為依據，而不是以行事曆天數為依據。
 
-例如，如果快照集啟動月 1 日下午 4 點，且 hello 資料倉儲在下午 4 點暫停年 10 月 3 hello 快照就是兩天。 每當 hello 資料倉儲上線 hello 快照集是兩天。 如果 hello 資料倉儲上線年 10 月 5 日下午 4 點，hello 快照集就會是舊的兩天，而會保留 5 天。
+例如，如果快照集是在 10 月 1 日下午 4 點開始，資料倉儲是在 10 月 3 日下午 4 點暫停，快照的存在時間為 2 天。 無論資料倉儲何時恢復上線，快照集的存在時間都是 2 天。 如果資料倉儲在 10 月 5 日下午 4 點恢復上線，快照集的存在時間為 2 天，並會繼續保留 5 天。
 
-Hello 資料倉儲回到線上時，SQL 資料倉儲繼續新的快照集，且他們皆已超過七天的資料過期的快照集。
+當資料倉儲恢復上線時，SQL 資料倉儲會繼續建立新的快照集，並在快照集包含超過 7 天的資料時讓快照集過期。
 
-### <a name="how-long-is-hello-retention-period-for-a-dropped-data-warehouse"></a>Hello 保留期限的已卸除的資料倉儲的時間？
-資料倉儲放置時，會儲存七天 hello 資料倉儲和 hello 快照集，然後移除。 您可以還原 hello 資料倉儲 tooany hello 儲存還原點。
+### <a name="how-long-is-the-retention-period-for-a-dropped-data-warehouse"></a>已卸除資料倉儲的保留期限有多久？
+當資料倉儲被卸除時，資料倉儲和快照集會儲存 7 天，然後就會被移除。 您可以將資料倉儲還原至任何一個已儲存的還原點。
 
 > [!IMPORTANT]
-> 如果您刪除邏輯的 SQL server 執行個體，也會一併刪除屬於 toohello 執行個體的所有資料庫，且無法復原。 您無法還原已刪除的伺服器。
+> 如果您刪除邏輯 SQL Server 執行個體，所有屬於該執行個體的資料庫也會一併刪除，且無法復原。 您無法還原已刪除的伺服器。
 > 
 > 
 
 ## <a name="data-warehouse-backup-costs"></a>資料倉儲備份成本
-hello 總成本的您的主要資料倉儲和七天的 Azure Blob 快照集是圓角的 toohello 最接近的 TB。 例如，如果您的資料倉儲是 1.5 TB hello 快照使用 100 GB，您所要支付 2 TB 的資料至 Azure 高階儲存體費率。 
+您主要資料倉儲和 7 天 Azure Blob 快照集的總成本會四捨五入到最接近的 TB。 例如，如果您的資料倉儲為 1.5 TB，且快照集使用 100 GB，就會以 Azure 進階儲存體費率向您收取 2 TB 資料費用。 
 
 > [!NOTE]
-> 每個快照集是空的一開始，而且會隨著您進行變更 toohello 主要資料倉儲。 所有快照集的大小增加為 hello 資料倉儲的變更。 因此，快照集的 hello 儲存體成本成長變動的相應 toohello 率。
+> 每個快照集一開始都是空白的，然後會隨著您變更主要資料倉儲而成長。 所有快照集的大小都會隨著資料倉儲變更而增加。 因此快照集的儲存體成本也會依據變更的速度而增加。
 > 
 > 
 
-如果您正在使用異地備援儲存體，您會收到個別的儲存體收費項目。 hello 地理備援儲存體是費率支付費用 hello 標準讀取權限地理備援儲存體 (RA-GRS)。
+如果您正在使用異地備援儲存體，您會收到個別的儲存體收費項目。 異地備援儲存體是依據標準讀取權限異地備援儲存體 (RA-GRS) 費率收費。
 
 如需 SQL 資料倉儲價格的相關詳細資訊，請參閱 [SQL 資料倉儲價格](https://azure.microsoft.com/pricing/details/sql-data-warehouse/)。
 
 ## <a name="using-database-backups"></a>使用資料庫備份
-hello 的 SQL 資料倉儲備份的主要用途是 toorestore hello 資料倉儲 tooone hello 還原點 hello 保留期限內。  
+SQL 資料倉儲備份的主要用途，是用來將資料倉儲還原至保留期限內的其中一個還原點。  
 
-* toorestore SQL 資料倉儲，請參閱[還原 SQL 資料倉儲](sql-data-warehouse-restore-database-overview.md)。
+* 若要還原 SQL 資料倉儲，請參閱[還原 SQL 資料倉儲](sql-data-warehouse-restore-database-overview.md)。
 
 ## <a name="related-topics"></a>相關主題
 ### <a name="scenarios"></a>案例
@@ -115,7 +115,7 @@ hello 的 SQL 資料倉儲備份的主要用途是 toorestore hello 資料倉儲
 
 <!-- ### Tasks -->
 
-* toorestore 資料倉儲，請參閱[還原 SQL 資料倉儲](sql-data-warehouse-restore-database-overview.md)
+* 若要還原資料倉儲，請參閱[還原 SQL 資料倉儲](sql-data-warehouse-restore-database-overview.md)
 
 <!-- ### Tutorials -->
 

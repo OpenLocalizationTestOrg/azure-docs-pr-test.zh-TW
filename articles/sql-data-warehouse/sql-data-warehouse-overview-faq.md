@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure SQL 資料倉儲常見問題集 |Microsoft 文件"
+title: "Azure SQL 資料倉儲常見問題集 | Microsoft Docs"
 description: "此文章列出客戶和開發人員針對 Azure SQL 資料倉儲的常見問題集"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: overview
 ms.date: 3/1/2017
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 09fd3f65d9507b09fcb8f477742c7d020add2755
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4c00710ecc0c91f8407eca81b78176075fcbd6ad
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="sql-data-warehouse-frequently-asked-questions"></a>SQL 資料倉儲常見問題集
 
@@ -31,7 +31,7 @@ A. SQL DW 提供數個解決方案來保護資料，例如 TDE 和稽核。 如�
 
 問： 哪裡可以了解 SQL DW 符合規範的法規或企業標準？
 
-A. 請瀏覽 hello [Microsoft 相容性]為不同的相容性供應項目依產品，例如 SOC 和 ISO 頁。 先選擇相容性標題，然後依序展開 [Azure hello Microsoft 範圍中雲端服務] 區段中 hello 右側的 hello 頁面 toosee 何種服務是 Azure 服務都相容。
+A. 請造訪 [Microsoft 合規性]頁面，依產品取得不同的合規性供應項目，例如 SOC 和 ISO。 首先依「合規性」標題選擇，然後在頁面右側的 [Microsoft 範圍內雲端服務] 區段中展開 [Azure]，以查看 Azure 服務符合規範的服務。
 
 問： 可以連接 PowerBI 嗎？
 
@@ -43,7 +43,7 @@ A. 請參閱我們目前的[容量限制]頁面。
 
 問： 為何我的延展/暫停/繼續需要花很久的時間？
 
-A. 有許多因素可能會影響 hello 計算管理作業的時間。 一個導致長時間執行作業的常見原因是交易式回復。 初始化延展或暫停作業時，系統會封鎖所有傳入的工作階段，並清空查詢。 穩定的狀態中的順序 tooleave hello 系統，必須備份作業開始之前先回復交易。 hello 大量 hello 和較大的交易的 hello 記錄檔大小、 hello 長 hello 作業將會停止還原 hello 系統 tooa 穩定的狀態。
+A. 有很多因素可能會影響計算管理作業的時間。 一個導致長時間執行作業的常見原因是交易式回復。 初始化延展或暫停作業時，系統會封鎖所有傳入的工作階段，並清空查詢。 為了使系統能處於穩定的狀態，必須先回復交易才能開始作業。 交易數目越多，或是交易記錄檔的大小越大，將系統還原至穩定的狀態所需的時間便越長，因此使作業停止的時間變得更久。
 
 ## <a name="user-support"></a>使用者支援
 
@@ -73,7 +73,7 @@ A. SQL 資料倉儲支援許多功能，不支援的功能都已記錄在[不支
 
 問： 在 Visual Studio 中是否支援資料庫專案？
 
-A. 針對 SQL 資料倉儲，我們目前在 Visual Studio 中不支援資料庫專案。 如果您想要 toocast 投票 tooget 這項功能，請造訪我們的 User Voice[資料庫專案功能要求]。
+A. 針對 SQL 資料倉儲，我們目前在 Visual Studio 中不支援資料庫專案。 如果您希望投票以取得此功能，請造訪我們的 User Voice [資料庫專案功能要求]。
 
 問： SQL 資料倉儲是否支援 REST API？
 
@@ -84,23 +84,23 @@ A. 是。 大部分可以搭配 SQL Database 使用的 REST 功能也可搭配 S
 
 問： 支援哪些用戶端驅動程式？
 
-A. 可以在 hello 找到驅動程式支援的 DW[連接字串]頁面
+A. 如需 DW 的驅動程式支援，請參閱[連接字串]頁面
 
 問︰PolyBase 針對 SQL 資料倉儲支援何種檔案格式？
 
 答︰Orc、RC、Parquet，以及一般分隔的文字
 
-問： 我可以連接 toofrom SQL DW 使用 PolyBase？ 
+問︰我可以從 SQL DW 使用 PolyBase 連線到哪裡？ 
 
 答︰[Azure Data Lake Store] 和 [Azure 儲存體 Blob]
 
-問： 是否計算下推可能連接儲存體 Blob 或 ADLS tooAzure 時？ 
+問︰連線到 Azure 儲存體 Blob 或 ADLS 時，是否有可能進行計算下推？ 
 
-答： 否，SQL DW PolyBase 僅互動 hello 儲存元件。 
+答︰否，SQL DW PolyBase 只能和儲存元件互動。 
 
-問： 是否可以連線 tooHDI？
+問︰是否可以連線到 HDI？
 
-答： HDI 可以使用 ADLS 或 WASB hello HDFS 圖層。 如果您使用其中之一作為您的 HDFS 層，則您可以將該資料載入到 SQL DW。 不過，您無法產生下推計算 toohello HDI 執行個體。 
+答︰HDI 可以使用 ADLS 或 WASB 作為 HDFS 層。 如果您使用其中之一作為您的 HDFS 層，則您可以將該資料載入到 SQL DW。 不過，您無法針對 HDI 執行個體產生下推計算。 
 
 ## <a name="next-steps"></a>後續步驟
 如需整體 SQL 資料倉儲的詳細資訊，請參閱我們的[概觀]頁面。
@@ -112,7 +112,7 @@ A. 可以在 hello 找到驅動程式支援的 DW[連接字串]頁面
 [Stack Overflow]: http://stackoverflow.com/questions/tagged/azure-sqldw
 [支援票證]: ./sql-data-warehouse-get-started-create-support-ticket.md
 [安全性]: ./sql-data-warehouse-overview-manage-security.md
-[Microsoft 相容性]: https://www.microsoft.com/en-us/trustcenter/compliance/complianceofferings
+[Microsoft 合規性]: https://www.microsoft.com/en-us/trustcenter/compliance/complianceofferings
 [容量限制]: ./sql-data-warehouse-service-capacity-limits.md
 [資料類型]: ./sql-data-warehouse-tables-data-types.md
 [不支援的資料表功能]: ./sql-data-warehouse-tables-overview.md#unsupported-table-features

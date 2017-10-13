@@ -1,6 +1,6 @@
 ---
-title: "使用 Hive 和 Hadoop-Azure HDInsight aaaAnalyze 感應器資料 |Microsoft 文件"
-description: "了解如何使用 tooanalyze 感應器資料 hello Hive 查詢主控台與 HDInsight (Hadoop)，然後在 Microsoft Excel 中使用 PowerView hello 資料視覺化。"
+title: "使用 Hive 及 Hadoop 分析感應器資料 - Azure HDInsight | Microsoft Docs"
+description: "了解如何使用 Hive 查詢主控台搭配 HDInsight (Hadoop) 分析感應器資料，然後在 Microsoft Excel 中使用 Power View 將資料視覺化。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,28 +16,28 @@ ms.topic: article
 ms.date: 04/14/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 70e595705c33d9835dc9809161f79c3ac5ece870
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3abb71c12b4769bebd808276f8bdd832aad22d7a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="analyze-sensor-data-using-hello-hive-query-console-on-hadoop-in-hdinsight"></a>分析在 HDInsight 中的 Hadoop 使用 hello Hive 查詢主控台感應器資料
+# <a name="analyze-sensor-data-using-the-hive-query-console-on-hadoop-in-hdinsight"></a>在 HDInsight 的 Hadoop 上使用 Hive 查詢主控台分析感應器資料
 
-了解如何使用 tooanalyze 感應器資料 hello Hive 查詢主控台與 HDInsight (Hadoop)，然後使用 Power View 在 Microsoft Excel 中的 hello 資料視覺化。
+了解如何使用 Hive 查詢主控台搭配 HDInsight (Hadoop) 分析感應器資料，然後在 Microsoft Excel 中使用 Power View 將資料視覺化。
 
 > [!IMPORTANT]
-> hello 中此文件僅搭配 Windows 為基礎的 HDInsight 叢集的步驟。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+> 本文件的步驟只適用於 Windows HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 
-在此範例中，您可以使用 Hive tooprocess 歷程記錄資料，並找出問題與暖氣和空調系統。 具體來說，必須識別系統是無法 tooreliably 維護組溫度藉由執行下列工作的 hello:
+在此範例中，您會使用 Hive 來處理歷程記錄資料，並找出暖氣及空調系統的問題。 具體而言，您會執行下列工作，找出無法穩定維持所設定之溫度的系統：
 
-* 建立 HIVE 資料表 tooquery 資料儲存在逗號分隔值 (CSV) 檔案。
-* 建立 HIVE 查詢 tooanalyze hello 資料。
-* tooretrieve hello 分析資料，請使用 Microsoft Excel tooconnect tooHDInsight。
-* toovisualize hello 資料，請使用 Power View。
+* 建立 Hive 資料表來查詢逗點分隔值 (CSV) 檔案中儲存的資料。
+* 建立 Hive 查詢以分析資料。
+* 若要擷取已分析的資料，請使用 Microsoft Excel 連接到 HDInsight。
+* 若要將資料視覺化，請使用 Power View。
 
-![Hello 方案架構圖](./media/hdinsight-hive-analyze-sensor-data/hvac-architecture.png)
+![A diagram of the solution architecture](./media/hdinsight-hive-analyze-sensor-data/hvac-architecture.png)
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -49,18 +49,18 @@ ms.lasthandoff: 10/06/2017
 
 * [Microsoft Hive ODBC 驅動程式](http://www.microsoft.com/download/details.aspx?id=40886)
 
-## <a name="toorun-hello-sample"></a>toorun hello 範例
+## <a name="to-run-the-sample"></a>執行範例
 
-1. 從您網頁瀏覽器中，瀏覽 toohello 下列 URL: 
+1. 請使用網頁瀏覽器瀏覽至下列 URL： 
 
          https://<clustername>.azurehdinsight.net
 
-    取代`<clustername>`hello 名稱，為您的 HDInsight 叢集。
+    將 `<clustername>` 替換為 HDInsight 叢集的名稱。
 
-    出現提示時，使用 hello 系統管理員使用者名稱和密碼時佈建此叢集所使用驗證。
+    出現提示時，使用您佈建此叢集時所用的系統管理員使用者名稱和密碼來進行驗證。
 
-2. 從開啟的 hello 網頁上，按一下 [hello**快速入口圖庫**] 索引標籤，然後在 hello**解決方案的範例資料**分類中，按一下 hello**感應器資料分析**範例。
+2. 從開啟的網頁中，按一下 [Getting Started Gallery] 索引標籤，然後在 [搭配範例資料的方案] 類別下，按一下 [感應器資料分析] 範例。
 
     ![開始使用資源庫映像](./media/hdinsight-hive-analyze-sensor-data/getting-started-gallery.png)
 
-3. 請遵循 hello hello 網頁 toofinish hello 範例上所提供的指示。
+3. 依照網頁上提供的指示完成範例。

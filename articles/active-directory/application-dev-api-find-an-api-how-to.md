@@ -1,6 +1,6 @@
 ---
-title: "自訂開發的應用程式所需的特定 API 的 aaaHow toofind |Microsoft 文件"
-description: "您必須在自訂的 tooaccess 特定 API tooconfigure hello 權限如何開發 Azure AD 應用程式"
+title: "如何尋找自訂開發應用程式所需的特定 API | Microsoft Docs"
+description: "如何在您的自訂開發 Azure AD 應用程式中設定存取特定 API 所需的權限"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,28 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 7331129204d8b34b4ef9671749bd702f893768ff
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e0c07fd030339d025894520500d2cd948d31af45
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-toofind-a-specific-api-needed-for-a-custom-developed-application"></a>如何 toofind 特定 API 所需的自訂開發的應用程式
+# <a name="how-to-find-a-specific-api-needed-for-a-custom-developed-application"></a>如何尋找自訂開發應用程式所需的特定 API
 
-存取 tooAPIs 要求設定存取領域和角色。 如果您想 tooexpose 資源應用程式 web 應用程式開發介面 tooclient 應用程式，您需要 tooconfigure 存取領域和角色 hello 應用程式開發介面。 如果您想用戶端應用程式 tooaccess web API，您會需要 tooconfigure 權限 tooaccess hello API hello 應用程式註冊。
+存取 API 需要設定存取範圍和角色。 如果您想要將資源應用程式 Web API 公開給用戶端應用程式，您需要設定 API 的存取範圍和角色。 如果您想要讓用戶端應用程式存取 Web API，您需要設定權限以存取應用程式註冊中的 API。
 
-## <a name="configuring-a-resource-application-tooexpose-web-apis"></a>設定資源應用程式 tooexpose web 應用程式開發介面
+## <a name="configuring-a-resource-application-to-expose-web-apis"></a>設定資源應用程式以公開 Web API
 
-當您的 web 應用程式開發介面，公開 （expose） hello 應用程式開發介面會顯示在 hello**選取應用程式開發介面**清單加入權限 tooan 應用程式註冊時。 tooadd 存取領域，請依照下列所述的 hello 步驟[新增存取領域 tooyour 資源應用程式](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#adding-access-scopes-to-your-resource-application)。
+當您公開 Web API 時，該 API 會在將權限新增到應用程式註冊時顯示於 [選取 API] 清單中。 若要新增存取範圍，請依照[新增資源應用程式的存取範圍](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#adding-access-scopes-to-your-resource-application)中概述的步驟執行。
 
-## <a name="configuring-a-client-application-tooaccess-web-apis"></a>設定用戶端應用程式 tooaccess web 應用程式開發介面
+## <a name="configuring-a-client-application-to-access-web-apis"></a>設定用戶端應用程式以存取 Web API
 
-當您將權限 tooyour 應用程式註冊時，您可以**加入應用程式開發介面存取**tooexposed web Api。 tooaccess web 應用程式開發介面，請遵循所述的 hello 步驟[新增認證或權限 tooaccess web Api](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#to-add-credentials-or-permissions-to-access-web-apis)。
+當您將權限新增到應用程式註冊時，您可以**新增 API 存取**以公開 Web API。 若要存取 Web API，請依照[新增認證或權限以存取 Web API](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#to-add-credentials-or-permissions-to-access-web-apis) 中概述的步驟執行。
 
 ## <a name="next-steps"></a>後續步驟
 
 -   [整合應用程式與 Azure Active Directory](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications)
 
--   [了解 hello Azure Active Directory 應用程式資訊清單](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-manifest)
+-   [了解 Azure Active Directory 應用程式資訊清單](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-manifest)
 
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure Linux VM 上的 Oracle 金閘道 aaaImplement |Microsoft 文件"
+title: "在 Azure Linux VM 上實作 Oracle Golden Gate | Microsoft Docs"
 description: "快速在您的 Azure 環境中啟動並執行 Oracle Golden Gate。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -15,27 +15,27 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/19/2017
 ms.author: rclaus
-ms.openlocfilehash: 320cafd5d23ee472f0af9f92577bc6f432f65778
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a05711357d345267647c02e42336fd37c09e1bff
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="implement-oracle-golden-gate-on-an-azure-linux-vm"></a>在 Azure Linux VM 上實作 Oracle Golden Gate 
 
-hello Azure CLI 會使用的 toocreate 和管理 Azure 資源，從 hello 命令列或指令碼中。 本指南詳述，toouse hello Azure CLI toodeploy 的 Oracle 12c hello Azure Marketplace 的資源庫映像從資料庫的方式。 
+Azure CLI 可用來從命令列或在指令碼中建立和管理 Azure 資源。 本指南詳述如何使用 Azure CLI 從 Azure Marketplace 資源庫映像部署 Oracle 12c 資料庫。 
 
-本文件將按部就班示範如何 toocreate，安裝及設定 Azure VM 上的 Oracle 金閘道。
+這份文件逐步示範如何在 Azure VM 上建立、安裝及設定 Oracle Golden Gate。
 
-開始之前，請確定已安裝 Azure CLI 該 hello。 如需詳細資訊，請參閱 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)。
+開始之前，請確定已安裝 Azure CLI。 如需詳細資訊，請參閱 [Azure CLI 安裝指南](https://docs.microsoft.com/cli/azure/install-azure-cli)。
 
-## <a name="prepare-hello-environment"></a>準備 hello 環境
+## <a name="prepare-the-environment"></a>準備環境
 
-tooperform hello Oracle 金閘道安裝，您需要 toocreate 兩個 Azure Vm 上 hello 相同可用性設定組。 hello Marketplace 映像使用 toocreate hello Vm 是**Oracle: Oracle-資料庫-Ee:12.1.0.2:latest**。
+若要執行 Oracle Golden Gate 的安裝，您需要在相同的可用性設定組建立兩個 Azure VM。 您用來建立 VM 的 Marketplace 映像是 **Oracle:Oracle-Database-Ee:12.1.0.2:latest**。
 
-您也必須熟悉 Unix 編輯器 vi toobe 並且 x11 (X Windows) 的基本知識。
+您也需要熟悉 Unix 編輯器 vi，並且對 x11 (X Windows) 有基本了解。
 
-hello 下面是 hello 環境設定的摘要：
+環境設定的摘要如下：
 > 
 > |  | **主要網站** | **複寫網站** |
 > | --- | --- | --- |
@@ -48,9 +48,9 @@ hello 下面是 hello 環境設定的摘要：
 > | **Golden Gate 流程** |EXTORA |REPORA|
 
 
-### <a name="sign-in-tooazure"></a>登入 tooAzure 
+### <a name="sign-in-to-azure"></a>登入 Azure 
 
-登入 Azure 訂用帳戶以 hello tooyour [az 登入](/cli/azure/#login)命令。 然後依照 hello 螢幕上指示。
+使用 [az login](/cli/azure/#login) 命令登入您的 Azure 訂用帳戶。 然後，遵循螢幕上的指示來進行。
 
 ```azurecli
 az login
@@ -58,9 +58,9 @@ az login
 
 ### <a name="create-a-resource-group"></a>建立資源群組
 
-建立資源群組以 hello [az 群組建立](/cli/azure/group#create)命令。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 
+使用 [az group create](/cli/azure/group#create) 命令來建立資源群組。 Azure 資源群組是在其中部署與管理 Azure 資源的邏輯容器。 
 
-hello 下列範例會建立名為的資源群組`myResourceGroup`在 hello`westus`位置。
+下列範例會在 `westus` 位置建立名為 `myResourceGroup` 的資源群組。
 
 ```azurecli
 az group create --name myResourceGroup --location westus
@@ -68,7 +68,7 @@ az group create --name myResourceGroup --location westus
 
 ### <a name="create-an-availability-set"></a>建立可用性設定組
 
-hello 遵循步驟是選擇性但建議使用。 如需詳細資訊，請參閱 [Azure 可用性設定組指南](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines)。
+下列步驟為選用步驟，但建議執行。 如需詳細資訊，請參閱 [Azure 可用性設定組指南](https://docs.microsoft.com/azure/virtual-machines/windows/infrastructure-availability-sets-guidelines)。
 
 ```azurecli
 az vm availability-set create \
@@ -80,9 +80,9 @@ az vm availability-set create \
 
 ### <a name="create-a-virtual-machine"></a>建立虛擬機器
 
-建立 VM 以 hello [az vm 建立](/cli/azure/vm#create)命令。 
+使用 [az vm create](/cli/azure/vm#create) 命令來建立 VM。 
 
-hello 下列範例會建立名為兩個 Vm`myVM1`和`myVM2`。 如果預設的金鑰位置還沒有 SSH 金鑰，請建立這些金鑰。 toouse 一組特定的金鑰，請使用 hello`--ssh-key-value`選項。
+下列範例會建立兩個 VM，名為 `myVM1` 和 `myVM2`。 如果預設的金鑰位置還沒有 SSH 金鑰，請建立這些金鑰。 若要使用一組特定金鑰，請使用 `--ssh-key-value` 選項。
 
 #### <a name="create-myvm1-primary"></a>建立 myVM1 (主要)：
 ```azurecli
@@ -95,7 +95,7 @@ az vm create \
      --generate-ssh-keys \
 ```
 
-在建立 VM 的 hello 之後, hello Azure CLI 會顯示下列範例的資訊類似 toohello。 (請注意 hello `publicIpAddress`。 此位址是使用的 tooaccess hello VM）。
+建立 VM 後，Azure CLI 會顯示類似下列範例的資訊。 (記下 `publicIpAddress`。 此位址用來存取 VM。)
 
 ```azurecli
 {
@@ -121,13 +121,13 @@ az vm create \
      --generate-ssh-keys \
 ```
 
-記下 hello`publicIpAddress`一併建立它之後。
+在建立之後一樣記下 `publicIpAddress`。
 
-### <a name="open-hello-tcp-port-for-connectivity"></a>開啟 hello 連線的 TCP 連接埠
+### <a name="open-the-tcp-port-for-connectivity"></a>開啟用於連線的 TCP 通訊埠
 
-hello 下一個步驟是 tooconfigure 外部端點，可讓您 tooaccess hello Oracle 資料庫遠端。 tooconfigure hello 外部端點，請執行下列命令的 hello。
+下一個步驟是設定外部端點，可讓您從遠端存取 Oracle 資料庫。 若要設定外部端點，請執行下列命令。
 
-#### <a name="open-hello-port-for-myvm1"></a>開啟 myVM1 hello 連接埠：
+#### <a name="open-the-port-for-myvm1"></a>開啟 myVM1 的連接埠：
 
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup\
@@ -137,7 +137,7 @@ az network nsg rule create --resource-group myResourceGroup\
     --destination-address-prefix '*' --destination-port-range 1521 --access allow
 ```
 
-hello 結果看起來類似 toohello 下列回應：
+結果看起來應該會像下面的回應這樣：
 
 ```bash
 {
@@ -158,7 +158,7 @@ hello 結果看起來類似 toohello 下列回應：
 }
 ```
 
-#### <a name="open-hello-port-for-myvm2"></a>開啟 myVM2 hello 連接埠：
+#### <a name="open-the-port-for-myvm2"></a>開啟 myVM2 的連接埠：
 
 ```azurecli
 az network nsg rule create --resource-group myResourceGroup\
@@ -168,25 +168,25 @@ az network nsg rule create --resource-group myResourceGroup\
     --destination-address-prefix '*' --destination-port-range 1521 --access allow
 ```
 
-### <a name="connect-toohello-virtual-machine"></a>Toohello 虛擬機器連線
+### <a name="connect-to-the-virtual-machine"></a>連接至虛擬機器
 
-使用 hello 下列命令 toocreate 與 hello 虛擬機器的 SSH 工作階段。 Hello IP 位址取代成 hello`publicIpAddress`的虛擬機器。
+使用下列命令，建立與虛擬機器的 SSH 工作階段。 以虛擬機器的 `publicIpAddress` 取代 IP 位址。
 
 ```bash 
 ssh <publicIpAddress>
 ```
 
-### <a name="create-hello-database-on-myvm1-primary"></a>建立 myVM1 hello 資料庫 （主要）
+### <a name="create-the-database-on-myvm1-primary"></a>在 myVM1 (主要) 上建立資料庫
 
-hello Oracle 軟體上已安裝 hello Marketplace 映像，因此 hello 下一個步驟是 tooinstall hello 資料庫。 
+Oracle 軟體已安裝於 Marketplace 映像上，因此下一個步驟是安裝資料庫。 
 
-執行 hello 'oracle' superuser hello 軟體：
+以 'oracle' 超級使用者的身分執行軟體：
 
 ```bash
 sudo su - oracle
 ```
 
-建立 hello 資料庫：
+建立資料庫︰
 
 ```bash
 $ dbca -silent \
@@ -207,7 +207,7 @@ $ dbca -silent \
    -storageType FS \
    -ignorePreReqs
 ```
-輸出應該看起來類似 toohello 下列回應：
+輸出結果看起來應該會像下面的回應這樣：
 
 ```bash
 Copying database files
@@ -236,10 +236,10 @@ Completing Database Creation
 Creating Pluggable Databases
 78% complete
 100% complete
-Look at hello log file "/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb1.log" for more details.
+Look at the log file "/u01/app/oracle/cfgtoollogs/dbca/cdb1/cdb1.log" for more details.
 ```
 
-設定 hello ORACLE_SID 和 ORACLE_HOME 變數。
+設定 ORACLE_SID 和 ORACLE_HOME 變數。
 
 ```bash
 $ ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
@@ -247,7 +247,7 @@ $ ORACLE_SID=gg1; export ORACLE_SID
 $ LD_LIBRARY_PATH=ORACLE_HOME/lib; export LD_LIBRARY_PATH
 ```
 
-（選擇性） 您可以加入 ORACLE_HOME 和 ORACLE_SID toohello.bashrc 檔案，以便這些設定會儲存為未來的登入：
+您可以視需要將 ORACLE_HOME 和 ORACLE_SID 新增到 .bashrc 檔案中，如此可將這些設定儲存，以供日後登入使用：
 
 ```bash
 # add oracle home
@@ -264,12 +264,12 @@ $ sudo su - oracle
 $ lsnrctl start
 ```
 
-### <a name="create-hello-database-on-myvm2-replicate"></a>建立 hello 資料庫上 myVM2 （複寫）
+### <a name="create-the-database-on-myvm2-replicate"></a>在 myVM2 (複寫) 上建立資料庫
 
 ```bash
 sudo su - oracle
 ```
-建立 hello 資料庫：
+建立資料庫︰
 
 ```bash
 $ dbca -silent \
@@ -290,7 +290,7 @@ $ dbca -silent \
    -storageType FS \
    -ignorePreReqs
 ```
-設定 hello ORACLE_SID 和 ORACLE_HOME 變數。
+設定 ORACLE_SID 和 ORACLE_HOME 變數。
 
 ```bash
 $ ORACLE_HOME=/u01/app/oracle/product/12.1.0/dbhome_1; export ORACLE_HOME
@@ -298,7 +298,7 @@ $ ORACLE_SID=cdb1; export ORACLE_SID
 $ LD_LIBRARY_PATH=ORACLE_HOME/lib; export LD_LIBRARY_PATH
 ```
 
-（選擇性） 您可以加入的 ORACLE_HOME 和 ORACLE_SID toohello.bashrc 的檔案，以便這些設定會儲存為未來的登入。
+您可以視需要將 ORACLE_HOME 和 ORACLE_SID 新增到 .bashrc 檔案中，如此可將這些設定儲存，以供日後登入使用。
 
 ```bash
 # add oracle home
@@ -316,7 +316,7 @@ $ lsnrctl start
 ```
 
 ## <a name="configure-golden-gate"></a>設定 Golden Gate 
-tooconfigure 金閘道採取本節中的 hello 步驟。
+若要設定 Golden Gate，請採取本節中的步驟。
 
 ### <a name="enable-archive-log-mode-on-myvm1-primary"></a>在 myVM1 (主要) 上啟用封存記錄模式
 
@@ -346,24 +346,24 @@ SQL> EXIT;
 ```
 
 ### <a name="download-golden-gate-software"></a>下載 Golden Gate 軟體
-toodownload 並準備 hello Oracle 金閘道軟體，完成下列步驟的 hello:
+若要下載並準備 Oracle Golden Gate 軟體，請完成下列步驟︰
 
-1. 下載 hello **fbo_ggs_Linux_x64_shiphome.zip**檔案從 hello [Oracle 金閘道下載頁面](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html)。 在 hello 下載標題**Oracle Linux x86-64 的 Oracle GoldenGate 12.x.x.x**，應該有一組的.zip 檔案 toodownload。
+1. 從 [Oracle Golden Gate 下載分頁](http://www.oracle.com/technetwork/middleware/goldengate/downloads/index.html)下載 **fbo_ggs_Linux_x64_shiphome.zip** 檔案。 在下載標題 **Oracle GoldenGate 12.x.x.x for Oracle Linux x86-64** 底下，應該有一組 .zip 檔可以下載。
 
-2. 下載 hello.zip 檔案 tooyour 用戶端電腦之後，使用安全複製通訊協定 (SCP) toocopy hello 檔案 tooyour VM:
+2. 將 .zip 檔下載到用戶端電腦之後，請使用「安全複製通訊協定 (SCP)」將這些檔案複製到 VM：
 
   ```bash
   $ scp fbo_ggs_Linux_x64_shiphome.zip <publicIpAddress>:<folder>
   ```
 
-3. 移動 hello.zip 檔案 toohello **/opt**資料夾。 然後變更 hello hello 檔案擁有者，如下所示：
+3. 將 .zip 檔移到 **/opt** 資料夾。 接著，變更檔案的擁有者，如下所示︰
 
   ```bash
   $ sudo su -
   # mv <folder>/*.zip /opt
   ```
 
-4. 解壓縮 hello 檔案 （安裝 hello Linux 如果尚未安裝解壓縮公用程式）：
+4. 將檔案解壓縮 (如果您尚未安裝 Linux 解壓縮公用程式，請加以安裝)︰
 
   ```bash
   # yum install unzip
@@ -377,24 +377,24 @@ toodownload 並準備 hello Oracle 金閘道軟體，完成下列步驟的 hello
   # chown -R oracle:oinstall /opt/fbo_ggs_Linux_x64_shiphome
   ```
 
-### <a name="prepare-hello-client-and-vm-toorun-x11-for-windows-clients-only"></a>準備 hello 用戶端和 VM toorun x11 （適用於 Windows 的用戶端只）
+### <a name="prepare-the-client-and-vm-to-run-x11-for-windows-clients-only"></a>讓用戶端和 VM 準備好執行 x11 (僅適用於 Windows 用戶端)
 這是選擇性步驟。 如果您使用 Linux 用戶端或是已設定 x11，可以跳過此步驟。
 
-1. 下載 PuTTY 和 Xming tooyour Windows 電腦：
+1. 將 PuTTY 和 Xming 下載到 Windows 電腦︰
 
   * [下載 PuTTY](http://www.putty.org/)
   * [下載 Xming](https://xming.en.softonic.com/)
 
-2.  安裝 PuTTY 之後，在 hello PuTTY 資料夾 (例如，C:\Program Files\PuTTY) 中執行 puttygen.exe （PuTTY 金鑰產生器）。
+2.  在 PuTTY 安裝好之後，請在 PuTTY 資料夾 (例如 C:\Program Files\PuTTY) 執行 puttygen.exe (PuTTY 金鑰產生器)。
 
 3.  在 PuTTY 金鑰產生器中︰
 
-  - 索引鍵，選取 hello toogenerate**產生** 按鈕。
-  - 複製 hello hello 索引鍵內容 (**Ctrl + C**)。
-  - 選取 hello**儲存私密金鑰** 按鈕。
-  - 忽略 hello 警告，隨即出現，然後選取**確定**。
+  - 若要產生金鑰，請選取 [產生] 按鈕。
+  - 複製金鑰的內容 (**Ctrl+C**)。
+  - 選取 [儲存私密金鑰] 按鈕。
+  - 略過隨之出現的警告，然後選取 [確定]。
 
-    ![Hello PuTTY 金鑰產生器頁面的螢幕擷取畫面](./media/oracle-golden-gate/puttykeygen.png)
+    ![PuTTY 金鑰產生器頁面的螢幕擷取畫面](./media/oracle-golden-gate/puttykeygen.png)
 
 4.  在您的 VM 中，執行下列命令︰
 
@@ -404,61 +404,61 @@ toodownload 並準備 hello Oracle 金閘道軟體，完成下列步驟的 hello
   $ cd .ssh
   ```
 
-5. 建立名為 **authorized_keys** 的檔案。 Hello hello 金鑰內容貼在檔案中，然後將檔案儲存 hello。
+5. 建立名為 **authorized_keys** 的檔案。 在此檔案中貼上金鑰的內容，然後儲存檔案。
 
   > [!NOTE]
-  > hello 金鑰必須包含字串 hello `ssh-rsa`。 此外，hello hello 索引鍵內容必須是單行文字。
+  > 金鑰中必須包含字串 `ssh-rsa`。 此外，金鑰的內容必須是單行文字。
   >  
 
-6. 啟動 PuTTY。 在 hello**類別**窗格中，選取**連接** > **SSH** > **Auth**。在 hello**私密金鑰檔案驗證**方塊中，瀏覽您先前產生的 toohello 索引鍵。
+6. 啟動 PuTTY。 在 [類別] 窗格中，選取 [連線] > [SSH] > [驗證]。 在 [用於驗證的私密金鑰檔] 方塊中，瀏覽至您稍早產生的金鑰。
 
-  ![Hello 設定私密金鑰 頁面上的螢幕擷取畫面](./media/oracle-golden-gate/setprivatekey.png)
+  ![[設定私密金鑰] 頁面上的螢幕擷取畫面](./media/oracle-golden-gate/setprivatekey.png)
 
-7. 在 hello**類別**窗格中，選取**連接** > **SSH** > **X11**。 然後選取 hello**啟用 X11 轉寄**方塊。
+7. 在 [類別] 窗格中，選取 [連線] > [SSH] > [X11]。 然後選取 [啟用 X11 轉送] 方塊。
 
-  ![Hello 啟用 X11 頁面的螢幕擷取畫面](./media/oracle-golden-gate/enablex11.png)
+  ![[啟用 X11] 頁面的螢幕擷取畫面](./media/oracle-golden-gate/enablex11.png)
 
-8. 在 [hello**類別**] 窗格中，跳過**工作階段**。 輸入 hello 主機資訊，然後選取**開啟**。
+8. 在 [類別] 窗格中，移至 [工作階段]。 輸入主機資訊，然後選取 [開啟]。
 
-  ![Hello 工作階段頁面的螢幕擷取畫面](./media/oracle-golden-gate/puttysession.png)
+  ![工作階段分頁的螢幕擷取畫面](./media/oracle-golden-gate/puttysession.png)
 
 ### <a name="install-golden-gate-software"></a>安裝 Golden Gate 軟體
 
-tooinstall Oracle 金閘道，完成下列步驟的 hello:
+若要安裝 Oracle Golden Gate，請完成下列步驟：
 
-1. 以 oracle 的身分登入。 （您應該能夠 toosign 中的，而不會提示輸入密碼）。請確定 Xming 執行之前開始 hello 安裝。
+1. 以 oracle 的身分登入。 (您應該能夠順利登入，而不會收到需要輸入密碼的提示)。請確定 Xming 已在執行，然後才開始安裝。
  
   ```bash
   $ cd /opt/fbo_ggs_Linux_x64_shiphome/Disk1
   $ ./runInstaller
   ```
-2. 選取 'Oracle GoldenGate for Oracle Database 12c'。 然後選取**下一步**toocontinue。
+2. 選取 'Oracle GoldenGate for Oracle Database 12c'。 然後選取 [下一步] 以繼續操作。
 
-  ![Hello 安裝程式選取 [安裝] 頁面的螢幕擷取畫面](./media/oracle-golden-gate/golden_gate_install_01.png)
+  ![安裝程式之 [選取安裝] 分頁的螢幕擷取畫面](./media/oracle-golden-gate/golden_gate_install_01.png)
 
-3. 變更 hello 軟體位置。 然後選取 hello**啟動管理員**方塊，然後輸入 hello 資料庫位置。 選取**下一步**toocontinue。
+3. 變更軟體位置。 然後選取 [啟動管理員] 方塊並輸入資料庫位置。 選取 [下一步] 以繼續操作。
 
-  ![Hello 選取 [安裝] 頁面上的螢幕擷取畫面](./media/oracle-golden-gate/golden_gate_install_02.png)
+  ![[選取安裝] 分頁的螢幕擷取畫面](./media/oracle-golden-gate/golden_gate_install_02.png)
 
-4. 變更 hello 清查目錄，然後選取 **下一步**toocontinue。
+4. 變更清查目錄，然後選取 [下一步] 以繼續操作。
 
-  ![Hello 選取 [安裝] 頁面上的螢幕擷取畫面](./media/oracle-golden-gate/golden_gate_install_03.png)
+  ![[選取安裝] 分頁的螢幕擷取畫面](./media/oracle-golden-gate/golden_gate_install_03.png)
 
-5. 在 hello**摘要**畫面上，選取**安裝**toocontinue。
+5. 在 [摘要] 畫面上，選取 [安裝] 以繼續操作。
 
-  ![Hello 安裝程式選取 [安裝] 頁面的螢幕擷取畫面](./media/oracle-golden-gate/golden_gate_install_04.png)
+  ![安裝程式之 [選取安裝] 分頁的螢幕擷取畫面](./media/oracle-golden-gate/golden_gate_install_04.png)
 
-6. 您可能會提示的 toorun 指令碼 'root' 身分。 如果是，開啟個別的工作階段，ssh toohello sudo tooroot 的 VM，然後再執行 hello 指令碼。 選取 [確定] 以繼續操作。
+6. 系統可能會提示您以 'root' 的身分執行指令碼。 如果是這樣，請開啟不同的工作階段，ssh 為 VM、sudo 為 root，然後執行指令碼。 選取 [確定] 以繼續操作。
 
-  ![Hello 選取 [安裝] 頁面上的螢幕擷取畫面](./media/oracle-golden-gate/golden_gate_install_05.png)
+  ![[選取安裝] 分頁的螢幕擷取畫面](./media/oracle-golden-gate/golden_gate_install_05.png)
 
-7. Hello 安裝完成時，選取**關閉**toocomplete hello 程序。
+7. 當安裝完成時，選取 [關閉] 以完成流程。
 
-  ![Hello 選取 [安裝] 頁面上的螢幕擷取畫面](./media/oracle-golden-gate/golden_gate_install_06.png)
+  ![[選取安裝] 分頁的螢幕擷取畫面](./media/oracle-golden-gate/golden_gate_install_06.png)
 
 ### <a name="set-up-service-on-myvm1-primary"></a>設定 myVM1 (主要) 上的服務
 
-1. 建立或更新 hello tnsnames.ora 檔案：
+1. 建立或更新 tnsnames.ora 檔案：
 
   ```bash
   $ cd $ORACLE_HOME/network/admin
@@ -491,29 +491,29 @@ tooinstall Oracle 金閘道，完成下列步驟的 hello:
     )
   ```
 
-2. 建立 hello 金閘道擁有者和使用者帳戶。
+2. 建立 Golden Gate 擁有者和使用者帳戶。
 
   > [!NOTE]
-  > hello 擁有者的帳戶必須具有 C# # 前置詞。
+  > 擁有者帳戶必須有 C## 前置詞。
   >
 
     ```bash
     $ sqlplus / as sysdba
     SQL> CREATE USER C##GGADMIN identified by ggadmin;
     SQL> EXEC dbms_goldengate_auth.grant_admin_privilege('C##GGADMIN',container=>'ALL');
-    SQL> GRANT DBA tooC##GGADMIN container=all;
+    SQL> GRANT DBA to C##GGADMIN container=all;
     SQL> connect C##GGADMIN/ggadmin
     SQL> ALTER SESSION SET CONTAINER=PDB1;
     SQL> EXIT;
     ```
 
-3. 建立 hello 金閘道測試使用者帳戶：
+3. 建立 Golden Gate 測試使用者帳戶：
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ sqlplus system/OraPasswd1@pdb1
   SQL> CREATE USER test identified by test DEFAULT TABLESPACE USERS TEMPORARY TABLESPACE TEMP;
-  SQL> GRANT connect, resource, dba tootest;
+  SQL> GRANT connect, resource, dba TO test;
   SQL> ALTER USER test QUOTA 100M on USERS;
   SQL> connect test/test@pdb1
   SQL> @demo_ora_create
@@ -521,9 +521,9 @@ tooinstall Oracle 金閘道，完成下列步驟的 hello:
   SQL> EXIT;
   ```
 
-4. 設定 hello 擷取參數檔案。
+4. 設定擷取參數檔案。
 
- 啟動 hello 黃金閘道命令列介面 (ggsci):
+ 啟動 Golden Gate 命令列介面 (ggsci)：
 
   ```bash
   $ sudo su - oracle
@@ -537,7 +537,7 @@ tooinstall Oracle 金閘道，完成下列步驟的 hello:
 
   GGSCI> EDIT PARAMS EXTORA
   ```
-5. 新增 hello 遵循 toohello 擷取參數檔案 （透過使用 vi 命令）。 按下 Esc 鍵，':wq!' toosave 檔案。 
+5. 將下列項目新增至 EXTRACT 參數檔案 (使用 vi 命令)。 按下 Esc 鍵，':wq!' 以儲存檔案。 
 
   ```bash
   EXTRACT EXTORA
@@ -578,7 +578,7 @@ tooinstall Oracle 金閘道，完成下列步驟的 hello:
 
   GGSCI>  START EXTRACT EXTORA
 
-  Sending START request tooMANAGER ...
+  Sending START request to MANAGER ...
   EXTRACT EXTORA starting
 
   GGSCI > info all
@@ -588,7 +588,7 @@ tooinstall Oracle 金閘道，完成下列步驟的 hello:
   MANAGER     RUNNING
   EXTRACT     RUNNING     EXTORA      00:00:11      00:00:04
   ```
-在此步驟中，您會看到啟動 SCN，將更新版本中，使用不同的區段中的 hello:
+在此步驟中，您會找到開始 SCN，將會在稍後於不同區段中使用：
 
   ```bash
   $ sqlplus / as sysdba
@@ -620,7 +620,7 @@ tooinstall Oracle 金閘道，完成下列步驟的 hello:
 ### <a name="set-up-service-on-myvm2-replicate"></a>設定 myVM2 (複寫) 上的服務
 
 
-1. 建立或更新 hello tnsnames.ora 檔案：
+1. 建立或更新 tnsnames.ora 檔案：
 
   ```bash
   $ cd $ORACLE_HOME/network/admin
@@ -659,7 +659,7 @@ tooinstall Oracle 金閘道，完成下列步驟的 hello:
   $ sqlplus / as sysdba
   SQL> alter session set container = pdb1;
   SQL> create user repuser identified by rep_pass container=current;
-  SQL> grant dba toorepuser;
+  SQL> grant dba to repuser;
   SQL> exec dbms_goldengate_auth.grant_admin_privilege('REPUSER',container=>'PDB1');
   SQL> connect repuser/rep_pass@pdb1 
   SQL> EXIT;
@@ -671,14 +671,14 @@ tooinstall Oracle 金閘道，完成下列步驟的 hello:
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ sqlplus system/OraPasswd1@pdb1
   SQL> CREATE USER test identified by test DEFAULT TABLESPACE USERS TEMPORARY TABLESPACE TEMP;
-  SQL> GRANT connect, resource, dba tootest;
+  SQL> GRANT connect, resource, dba TO test;
   SQL> ALTER USER test QUOTA 100M on USERS;
   SQL> connect test/test@pdb1
   SQL> @demo_ora_create
   SQL> EXIT;
   ```
 
-4. REPLICAT 參數檔案 tooreplicate 變更： 
+4. REPLICAT 參數檔案以複寫變更： 
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
@@ -718,22 +718,22 @@ tooinstall Oracle 金閘道，完成下列步驟的 hello:
   GGSCI> ADD REPLICAT INITREP, SPECIALRUN
   ```
 
-### <a name="set-up-hello-replication-myvm1-and-myvm2"></a>設定 hello 複寫 （myVM1 和 myVM2）
+### <a name="set-up-the-replication-myvm1-and-myvm2"></a>設定複寫 (myVM1 和 myVM2)
 
-#### <a name="1-set-up-hello-replication-on-myvm2-replicate"></a>1.設定上 myVM2 hello 複寫 （複寫）
+#### <a name="1-set-up-the-replication-on-myvm2-replicate"></a>1.設定 myVM2 (複寫) 上的複寫
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ ./ggsci
   GGSCI> EDIT PARAMS MGR
   ```
-更新 hello 下列 hello 檔案：
+使用下列內容更新檔案：
 
   ```bash
   PORT 7809
   ACCESSRULE, PROG *, IPADDR *, ALLOW
   ```
-然後重新啟動 hello 管理員服務：
+然後重新啟動管理員服務：
 
   ```bash
   GGSCI> STOP MGR
@@ -741,9 +741,9 @@ tooinstall Oracle 金閘道，完成下列步驟的 hello:
   GGSCI> EXIT
   ```
 
-#### <a name="2-set-up-hello-replication-on-myvm1-primary"></a>2.設定上 myVM1 hello 複寫 （主要）
+#### <a name="2-set-up-the-replication-on-myvm1-primary"></a>2.設定 myVM1 (主要) 上的複寫
 
-啟動 hello 初始載入和檢查發生錯誤：
+啟動初始載入並且檢查錯誤：
 
 ```bash
 $ cd /u01/app/oracle/product/12.1.0/oggcore_1
@@ -751,53 +751,53 @@ $ ./ggsci
 GGSCI> START EXTRACT INITEXT
 GGSCI> VIEW REPORT INITEXT
 ```
-#### <a name="3-set-up-hello-replication-on-myvm2-replicate"></a>3.設定上 myVM2 hello 複寫 （複寫）
+#### <a name="3-set-up-the-replication-on-myvm2-replicate"></a>3.設定 myVM2 (複寫) 上的複寫
 
-變更您之前取得的 hello SCN 編號與 hello 數目：
+使用您之前取得的數字變更 SCN 編號：
 
   ```bash
   $ cd /u01/app/oracle/product/12.1.0/oggcore_1
   $ ./ggsci
   START REPLICAT REPORA, AFTERCSN 1857887
   ```
-hello 複寫已經開始，而且您可以插入新記錄 tooTEST 資料表來測試。
+複寫已開始進行，您可以將新記錄插入測試資料表，以進行測試。
 
 
 ### <a name="view-job-status-and-troubleshooting"></a>檢視作業狀態和疑難排解
 
 #### <a name="view-reports"></a>檢視報告
-tooview 報告 myVM1，執行下列命令的 hello:
+若要檢視 myVM1 上的報告，請執行下列命令：
 
   ```bash
   GGSCI> VIEW REPORT EXTORA 
   ```
  
-tooview 報告 myVM2，執行下列命令的 hello:
+若要檢視 myVM2 上的報告，請執行下列命令：
 
   ```bash
   GGSCI> VIEW REPORT REPORA
   ```
 
 #### <a name="view-status-and-history"></a>檢視狀態和記錄
-tooview 狀態和歷程記錄上 myVM1，執行下列命令的 hello:
+若要檢視 myVM1 上的狀態和記錄，請執行下列命令：
 
   ```bash
   GGSCI> dblogin userid c##ggadmin, password ggadmin 
   GGSCI> INFO EXTRACT EXTORA, DETAIL
   ```
 
-tooview 狀態和歷程記錄上 myVM2，執行下列命令的 hello:
+若要檢視 myVM2 上的狀態和記錄，請執行下列命令：
 
   ```bash
   GGSCI> dblogin userid repuser@pdb1 password rep_pass 
   GGSCI> INFO REP REPORA, DETAIL
   ```
-如此即完成 hello 安裝和 Oracle linux 上金閘道的設定。
+這樣便已完成 Oracle Linux 上的 Golden Gate 安裝和設定。
 
 
-## <a name="delete-hello-virtual-machine"></a>刪除 hello 虛擬機器
+## <a name="delete-the-virtual-machine"></a>刪除虛擬機器
 
-當不再需要時，下列命令的 hello 可以使用的 tooremove hello 資源群組、 VM 和所有相關的資源。
+若不再需要，您可以使用下列命令來移除資源群組、VM 和所有相關資源。
 
 ```azurecli
 az group delete --name myResourceGroup

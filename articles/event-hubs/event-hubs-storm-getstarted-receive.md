@@ -1,5 +1,5 @@
 ---
-title: "從 Azure 事件中心使用 Apache Storm aaaReceive 事件 |Microsoft 文件"
+title: "使用 Apache Storm 從 Azure 事件中樞接收事件 | Microsoft Docs"
 description: "開始使用 Apache Storm 從事件中樞接收事件"
 services: event-hubs
 documentationcenter: 
@@ -14,25 +14,25 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: a0ab860ee8d504a28aac380c504c928f0d6dbc1e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3e15370c7602276ef323708632b324fe05497f41
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="receive-events-from-event-hubs-using-apache-storm"></a>使用 Apache Storm 從事件中樞接收事件
 
-[Apache Storm](https://storm.incubator.apache.org) 是分散式即時運算系統，可簡化未繫結資料串流的可靠處理。 本節說明如何 toouse Azure 事件中心 Storm spout tooreceive 事件，從事件中樞。 使用 Apache Storm，您可以將事件分割到多個裝載於不同節點的處理序。 hello Storm 整合事件中心事件取用，藉以簡化無障礙地檢查點進度使用 Storm 的動物園管理員安裝、 管理持續的檢查點並平行收到來自事件中心。
+[Apache Storm](https://storm.incubator.apache.org) 是分散式即時運算系統，可簡化未繫結資料串流的可靠處理。 本節說明如何使用「Azure 事件中樞」Storm Spout 來接收來自「事件中樞」的事件。 使用 Apache Storm，您可以將事件分割到多個裝載於不同節點的處理序。 事件中心與 Storm 的整合透過使用 Storm 的 Zookeeper 安裝透明地設定檢查點以檢查其進度、管理持續檢查點以及來自事件中心的平行接收，以簡化事件的使用。
 
-如需有關事件中心接收模式，請參閱 hello[事件中心概觀][Event Hubs overview]。
+如需事件中樞接收模式的詳細資訊，請參閱 [事件中樞概觀][Event Hubs overview]。
 
 ## <a name="create-project-and-add-code"></a>建立專案並新增程式碼
 
-本教學課程使用[HDInsight Storm] [ HDInsight Storm]安裝隨附於事件中樞 spout 的 hello 已經使用。
+本教學課程使用 [HDInsight Storm][HDInsight Storm] 安裝，其包含在已可使用的事件中樞 Spout 中。
 
-1. 請遵循 hello [HDInsight Storm-開始](../hdinsight/hdinsight-storm-overview.md)程序 toocreate 新的 HDInsight 叢集，並連接 tooit 透過遠端桌面。
-2. 複製 hello`%STORM_HOME%\examples\eventhubspout\eventhubs-storm-spout-0.9-jar-with-dependencies.jar`檔案 tooyour 本機開發環境。 這包含 hello 事件 storm spout。
-3. 使用下列命令 tooinstall hello 封裝到 hello 本機 Maven 存放區的 hello。 這可讓您 tooadd 它當做 hello Storm 參考專案中稍後的步驟。
+1. 請遵循 [HDInsight Storm - 入門](../hdinsight/hdinsight-storm-overview.md) 程序來建立新的 HDInsight 叢集，並透過遠端桌面與其連線。
+2. 將 `%STORM_HOME%\examples\eventhubspout\eventhubs-storm-spout-0.9-jar-with-dependencies.jar` 檔案複製到本機開發環境。 這包含 events-storm-spout。
+3. 使用下列命令將封裝安裝到本機 Maven 存放區。 這樣可讓您在稍後的步驟中將它加入 Storm 專案中做為參考。
 
     ```shell
     mvn install:install-file -Dfile=target\eventhubs-storm-spout-0.9-jar-with-dependencies.jar -DgroupId=com.microsoft.eventhubs -DartifactId=eventhubs-storm-spout -Dversion=0.9 -Dpackaging=jar
@@ -41,9 +41,9 @@ ms.lasthandoff: 10/06/2017
    
     ![][12]
 5. 選取 [使用預設工作區位置]，然後按 [下一步]。
-6. 選取 hello **maven 原型-快速入門**原型，然後按一下 [**下一步]**
+6. 選取 [maven-archetype-quickstart] 原型，然後按 [下一步]。
 7. 插入 **GroupId** 和 **ArtifactId**，然後按一下 [完成]。
-8. 在**pom.xml**，新增下列 hello 中的相依性的 hello`<dependency>`節點。
+8. 在 **pom.xml** 中，於 `<dependency>` 節點中新增下列相依性。
 
     ```xml  
     <dependency>
@@ -75,7 +75,7 @@ ms.lasthandoff: 10/06/2017
     </dependency>
     ```
 
-9. 在 hello **src**資料夾中，建立名為的檔案**Config.properties**和複製 hello 內容之後，以取代 hello`receive rule key`和`event hub name`值：
+9. 在 **src** 資料夾中，建立名為 **Config.properties** 的檔案，複製下列內容，並取代 `receive rule key` 與 `event hub name` 的值：
 
     ```java
     eventhubspout.username = ReceiveRule
@@ -90,8 +90,8 @@ ms.lasthandoff: 10/06/2017
     eventhubspout.checkpoint.interval = 10
     eventhub.receiver.credits = 10
     ```
-    hello 值**eventhub.receiver.credits**決定多少事件會批次處理才釋放 toohello Storm 管線。 為了簡化的 hello 起見，本範例會設定此值 too10。 實際執行環境，它通常應該設定 toohigher 值;例如，1024年。
-10. 建立新的類別稱為**LoggerBolt**以下列程式碼的 hello:
+    **eventhub.receiver.credits** 的值可決定批次處理多少事件之後，才將它們釋放到 Storm 管線。 為了簡單起見，此範例會將此值設定為 10。 在生產環境中，它通常應設定為較高的值。例如，1024年。
+10. 使用下列程式碼，建立稱為 **LoggerBolt** 的新類別：
     
     ```java
     import java.util.Map;
@@ -130,8 +130,8 @@ ms.lasthandoff: 10/06/2017
     }
     ```
     
-    此出現閃電記錄 hello 內容的 hello 接收到事件。 這可以輕鬆地擴充儲存體服務中的 toostore tuple。 hello [HDInsight 感應器分析教學課程]HBase 會使用這個相同的方法 toostore 資料。
-11. 建立類別，稱為**LogTopology**以下列程式碼的 hello:
+    此 Storm Bolt 會記錄已接收事件的內容。 這可以輕鬆地擴充以將 Tuple 儲存至儲存體服務。 [HDInsight 感應器分析教學課程] 使用這種相同的方式，將資料儲存至 HBase。
+11. 使用下列程式碼，建立稱為 **LogTopology** 的類別：
     
     ```java
     import java.io.FileReader;
@@ -182,9 +182,9 @@ ms.lasthandoff: 10/06/2017
                     namespaceName, entityPath, partitionCount, zkEndpointAddress,
                     checkpointIntervalInSeconds, receiverCredits);
         
-            // set hello number of workers toobe hello same as partition number.
-            // hello idea is toohave a spout and a logger bolt co-exist in one
-            // worker tooavoid shuffling messages across workers in storm cluster.
+            // set the number of workers to be the same as partition number.
+            // the idea is to have a spout and a logger bolt co-exist in one
+            // worker to avoid shuffling messages across workers in storm cluster.
             numWorkers = spoutConfig.getPartitionCount();
         
             if (args.length > 0) {
@@ -235,10 +235,10 @@ ms.lasthandoff: 10/06/2017
     }
     ```
 
-    這個類別會建立新的事件中心 spout，使用中 hello 設定檔 tooinstantiate hello 屬性它。 請務必這個範例會建立最大數量的 toonote spouts hello hello 事件中心中的資料分割的數字順序 toouse hello 最大平行處理該事件中心所允許的工作。
+    這個類別會建立新的事件中樞 Spout，方法是使用組態檔中的屬性來進行具現化。 請務必注意此範例所建立的 Spout 工作數目會與事件中樞內的磁碟分割數目相同，這是為了發揮該事件中樞所允許的平行處理原則上限。
 
 ## <a name="next-steps"></a>後續步驟
-您可以進一步了解事件中心瀏覽下列連結查看 hello:
+您可以造訪下列連結以深入了解事件中樞︰
 
 * [事件中樞概觀][Event Hubs overview]
 * [建立事件中樞](event-hubs-create.md)

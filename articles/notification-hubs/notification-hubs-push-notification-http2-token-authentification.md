@@ -1,6 +1,6 @@
 ---
-title: "aaaToken 基礎 APNS Azure 通知中心中的 (HTTP/2) 驗證 |Microsoft 文件"
-description: "本主題說明如何 tooleverage hello 新適用於 APNS 的權杖驗證"
+title: "適用於 Azure 通知中樞 APNS 的權杖型 (HTTP/2) 驗證 | Microsoft Docs"
+description: "本主題說明如何運用適用於 APNS 的新權杖驗證"
 services: notification-hubs
 documentationcenter: .net
 author: kpiteira
@@ -13,67 +13,67 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 05/17/2017
 ms.author: kapiteir
-ms.openlocfilehash: 3353d7f16033ce0b68edec9ee9aeb98f47faa1fa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5a21bcd9f12fc3f96b17a556ba15526c35ababe2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="token-based-http2-authentication-for-apns"></a>適用於 APNS 的權杖型 (HTTP/2) 驗證
 ## <a name="overview"></a>概觀
-這篇文章說明如何 toouse hello 新 APNS HTTP/2 的通訊協定與權杖型驗證。
+本文說明如何將新的 APNS HTTP/2 通訊協定與權杖型驗證搭配使用。
 
-使用新通訊協定 hello hello 主要優點包括：
--   語彙基元的產生是相當麻煩可用 (比較的 toocertificates)
+使用新通訊協定的主要優點包括：
+-   產生權杖相對輕而易舉 (相較於憑證)
 -   不再需要顧慮到期日 – 您可以控制驗證權杖及其撤銷
--   裝載現在可以註冊 too4 KB
+-   目前的承載上限為 4 KB
 - 同步的意見反應
--   您在 Apple 的最新的通訊協定 – 憑證仍然使用 hello 二進位通訊協定，可標示為已被取代
+-   您會使用 Apple 的最新通訊協定 – 憑證仍使用已遭淘汰的二進位通訊協定
 
 在幾分鐘內透過兩個步驟完成使用此新機制的動作：
-1.  從 hello Apple 開發人員帳戶入口網站取得 hello 所需的資訊
-2.  使用 hello 新資訊來設定您的通知中樞
+1.  從 Apple 開發人員帳戶入口網站取得必要資訊
+2.  使用新資訊設定您的通知中樞
 
-通知中樞現在是所有集合 toouse hello 新驗證系統使用 APNS。 
+通知中樞目前已準備就緒，可將新驗證系統與 APNS 搭配使用。 
 
 請注意，如果您從使用適用於 APNS 的憑證認證進行移轉：
-- 您的憑證覆寫在我們的系統，hello 權杖屬性
-- 但您的應用程式會順暢地繼續 tooreceive 通知。
+- 權杖屬性會在我們的系統覆寫您的憑證，
+- 但您的應用程式仍可順利接收通知。
 
 ## <a name="obtaining-authentication-information-from-apple"></a>從 Apple 取得驗證資訊
-tooenable 權杖型驗證，您需要 hello Apple 開發人員帳戶中的下列屬性：
+若要啟用權杖型驗證，您需要從 Apple 開發人員帳戶取得下列屬性：
 ### <a name="key-identifier"></a>金鑰識別碼
-您可以從 hello Apple 開發人員帳戶中的 「 金鑰 」 頁面取得 hello 金鑰識別碼
+您可以從 Apple 開發人員帳戶中的 [Keys]\(金鑰\) 頁面取得金鑰識別碼
 
 ![](./media/notification-hubs-push-notification-http2-token-authentification/obtaining-auth-information-from-apple.png)
 
 ### <a name="application-identifier--application-name"></a>應用程式識別碼和應用程式名稱
-透過在 hello 開發人員帳戶中的 hello 應用程式識別碼頁面可使用 hello 應用程式名稱。 
+您可以透過開發人員帳戶中的 [App IDs]\(應用程式識別碼\) 頁面取得應用程式名稱。 
 ![](./media/notification-hubs-push-notification-http2-token-authentification/app-name.png)
 
-hello 應用程式識別碼是可透過 hello 開發人員帳戶中的 hello 成員資格詳細資料頁面。
+您可以透過開發人員帳戶中的成員資格詳細資料頁面取得應用程式識別碼。
 ![](./media/notification-hubs-push-notification-http2-token-authentification/app-id.png)
 
 
 ### <a name="authentication-token"></a>驗證權杖
-則產生權杖，應用程式之後，您可以下載 hello 驗證權杖。 如如何 toogenerate 這權杖的詳細資訊，請參閱太[Apple 開發人員文件](http://help.apple.com/xcode/mac/current/#/dev11b059073?sub=dev1eb5dfe65)。
+為應用程式產生權杖之後，您便可以下載該驗證權杖。 如需有關如何產生此權杖的詳細資訊，請參閱 [Apple 開發人員文件](http://help.apple.com/xcode/mac/current/#/dev11b059073?sub=dev1eb5dfe65) (英文)。
 
-## <a name="configuring-your-notification-hub-toouse-token-based-authentication"></a>設定通知中樞 toouse 權杖型驗證
-### <a name="configure-via-hello-azure-portal"></a>透過 hello Azure 入口網站設定
-tooenable 權杖型驗證在 hello 入口網站登入 toohello Azure 入口網站，並移 tooyour 通知中樞 > Notification Services > APNS 面板。 
+## <a name="configuring-your-notification-hub-to-use-token-based-authentication"></a>將您的通知中樞設定為使用權杖型驗證
+### <a name="configure-via-the-azure-portal"></a>透過 Azure 入口網站進行設定
+若要在入口網站中啟用權杖型驗證，請登入 Azure 入口網站，並移至 [通知中樞] > [Notification Services] > [APNS] 面板。 
 
-我們已提供新屬性 – 驗證模式。 選取語彙基元可讓您 tooupdate 您與所有相關語彙基元屬性 hello 的中樞。
+我們已提供新屬性 – 驗證模式。 選取權杖可讓您透過所有相關的權杖屬性更新您的中樞。
 
 ![](./media/notification-hubs-push-notification-http2-token-authentification/azure-portal-apns-settings.png)
 
-- 輸入您從 Apple 開發人員帳戶，擷取 hello 屬性 
+- 輸入您從 Apple 開發人員帳戶擷取的屬性， 
 - 選擇您的應用程式模式 (「生產」或「沙箱」) 
-- 按一下 儲存 tooupdate APNS 憑證。 
+- 按一下 [儲存] 以更新 APNS 認證。 
 
 ### <a name="configure-via-management-api-rest"></a>透過管理 API (REST) 進行設定
 
-您可以使用我們[管理 Api](https://msdn.microsoft.com/library/azure/dn495827.aspx) tooupdate 通知中樞 toouse 權杖型驗證。
-根據您設定的 hello 應用程式是否 （Apple 開發人員帳戶中指定） 的沙箱或實際執行應用程式，使用其中一種 hello 對應的端點：
+您可以使用我們的[管理 API](https://msdn.microsoft.com/library/azure/dn495827.aspx)，將您的通知中樞更新為使用權杖型驗證。
+根據您設定的是的「沙箱」或「生產」應用程式 (在 Apple 開發人員帳戶中指定)，使用其中一個對應端點：
 
 - 沙箱端點：[https://api.development.push.apple.com:443/3/device](https://api.development.push.apple.com:443/3/device)
 - 生產端點：[https://api.push.apple.com:443/3/device](https://api.push.apple.com:443/3/device)
@@ -83,7 +83,7 @@ tooenable 權杖型驗證在 hello 入口網站登入 toohello Azure 入口網�
 > 
 > 
 
-PUT 要求 tooupdate 集線器使用權杖型驗證的範例如下：
+透過權杖型驗證更新中樞的 PUT 要求範例如下：
 
 
         PUT https://{namespace}.servicebus.windows.net/{Notification Hub}?api-version=2017-04
@@ -100,10 +100,10 @@ PUT 要求 tooupdate 集線器使用權杖型驗證的範例如下：
           }
         
 
-### <a name="configure-via-hello-net-sdk"></a>設定透過 hello.NET SDK
-您可以設定程式中樞 toouse 權杖型的驗證，請使用我們[最新的用戶端 SDK](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/1.0.8)。 
+### <a name="configure-via-the-net-sdk"></a>透過 .NET SDK 進行設定
+您可以使用我們的[最新用戶端 SDK](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/1.0.8)，將中樞設定為使用權杖型驗證。 
 
-以下是程式碼範例說明 hello 正確使用方式：
+示範正確使用方式的程式碼範例如下：
 
 
         NamespaceManager nm = NamespaceManager.CreateFromConnectionString(_endpoint);
@@ -111,10 +111,10 @@ PUT 要求 tooupdate 集線器使用權杖型驗證的範例如下：
         string keyId = "YOUR KEY ID HERE";
         string appName = "YOUR APP NAME HERE";
         string appId = "YOUR APP ID HERE";
-        NotificationHubDescription desc = new NotificationHubDescription("PATH tooYOUR HUB");
+        NotificationHubDescription desc = new NotificationHubDescription("PATH TO YOUR HUB");
         desc.ApnsCredential = new ApnsCredential(token, keyId, appId, appName);
         desc.ApnsCredential.Endpoint = @"https://api.development.push.apple.com:443/3/device";
         nm.UpdateNotificationHubAsync(desc);
 
-## <a name="reverting-toousing-certificate-based-authentication"></a>還原 toousing 憑證式驗證
-您可以使用任何上述的方法，並將 hello 憑證而非 hello 語彙基元屬性還原在任何時間 toousing 憑證式驗證。 動作會覆寫 hello 先前預存認證。
+## <a name="reverting-to-using-certificate-based-authentication"></a>還原為使用憑證式驗證
+您可以使用任何上述方法並傳遞憑證而不是權杖屬性，隨時還原為使用憑證式驗證。 該動作會覆寫先前儲存的認證。

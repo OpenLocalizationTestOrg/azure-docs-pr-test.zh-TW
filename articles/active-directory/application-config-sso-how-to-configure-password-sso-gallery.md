@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooconfigure 密碼單一登入 Azure AD 庫應用程式 |Microsoft 文件"
-description: "如何 tooconfigure 的應用程式時，使用安全密碼型單一登入已列入 hello Azure AD 應用程式庫"
+title: "如何為 Azure AD 資源庫應用程式設定密碼單一登入 | Microsoft Docs"
+description: "當應用程式已列在 Azure AD 應用程式庫時，如何為它設定以密碼為基礎的安全單一登入"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,170 +13,170 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 7a93bff119b477d946368686fc2d9006ca2722a9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d4dc110eb25c3e550ac4663d28e626a696b58f62
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-tooconfigure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>如何 tooconfigure 密碼單一登入 Azure AD 庫應用程式
+# <a name="how-to-configure-password-single-sign-on-for-an-azure-ad-gallery-application"></a>如何為 Azure AD 資源庫應用程式設定密碼單一登入
 
-當您新增應用程式從 hello [Azure AD 應用程式庫](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#get-started-with-the-azure-ad-application-gallery)，說明您希望您的使用者 toosign toothat 應用程式中的 hello 選擇。 您可以設定這項選擇隨時藉由選取 hello**單一登入**瀏覽項目在企業中的應用程式 hello [Azure 入口網站](https://portal.azure.com/)。
+當您從 [Azure AD 應用程式庫](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#get-started-with-the-azure-ad-application-gallery)新增應用程式時，您可以選擇希望使用者如何登入該應用程式。 您可以隨時在 [Azure 入口網站](https://portal.azure.com/)中選取企業應用程式的 [單一登入] 瀏覽項目，以設定這個選項。
 
-其中一個 hello 單一登入方法提供 tooyou 為 hello[密碼型單一登入](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work)選項。 這是很好的方式 tooget 啟動快速，整合至 Azure AD 的應用程式，並可讓您：
+可供您使用的其中一個單一登入方法是[以密碼為基礎的單一登入](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work)選項。 這是開始將應用程式快速整合至 Azure AD 的絕佳方法，可讓您︰
 
--   啟用**單一登入您的使用者**由安全地儲存和使用者名稱和密碼的 hello 應用程式重新執行您已與 Azure AD 整合
+-   針對已經與 Azure AD 整合的應用程式，安全地儲存和重播使用者名稱和密碼，以啟用**使用者的單一登入**
 
--   **支援應用程式需要多個登入欄位**需要不只是使用者名稱和密碼欄位 toosign 中的應用程式
+-   針對需要使用者名稱和密碼以外的更多欄位才能登入的應用程式，**支援需要多個登入欄位的應用程式**
 
--   **自訂 hello 標籤**hello 使用者名稱和密碼輸入欄位的使用者看到上 hello[應用程式存取面板](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction)當使用者輸入其認證
+-   針對使用者在[應用程式存取面板](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction)輸入認證時所看到的使用者名稱和密碼輸入欄位，**自訂標籤**
 
--   允許您**使用者**tooprovide 他們自己的使用者名稱和它們所中手動輸入 hello 任何現有應用程式帳戶的密碼[應用程式存取面板](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction)
+-   針對**使用者**在[應用程式存取面板](https://docs.microsoft.com/azure/active-directory/active-directory-saas-access-panel-introduction)手動輸入的任何現有應用程式帳戶，允許他們提供自己的使用者名稱和密碼
 
--   允許**hello 的商務群組的成員**toospecify hello 使用者名稱和密碼使用指派給 tooa 使用者 hello[自助應用程式存取](https://docs.microsoft.com/azure/active-directory/active-directory-self-service-application-access)功能
+-   允許**商務群組的成員**使用[自助應用程式存取](https://docs.microsoft.com/azure/active-directory/active-directory-self-service-application-access)功能，指定要指派給使用者的使用者名稱和密碼
 
--   允許**管理員**toospecify hello 使用者名稱和密碼使用 hello 更新認證指派給 tooa 使用者功能時[指派使用者 tooan 應用程式](#assign-a-user-to-an-application-directly)
+-   允許**管理員**在[將使用者指派至應用程式](#assign-a-user-to-an-application-directly)時，使用更新憑證功能指定要指派給使用者的使用者名稱和密碼
 
--   允許**管理員**toospecify hello 共用使用者名稱或密碼一群人由使用 hello 更新認證的功能時[指派群組 tooan 應用程式](#assign-an-application-to-a-group-directly)
+-   允許**管理員**在[將群組指派至應用程式](#assign-an-application-to-a-group-directly)時，使用更新憑證功能指定一群人使用的共用使用者名稱或密碼
 
-以下說明如何啟用[密碼型單一登入](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work)tooan 應用程式已在 hello [Azure AD 應用程式庫](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#get-started-with-the-azure-ad-application-gallery)。
+以下說明如何為已在 [Azure AD 應用程式庫](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#get-started-with-the-azure-ad-application-gallery)中的應用程式啟用[以密碼為基礎的單一登入](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#how-does-single-sign-on-with-azure-active-directory-work)。
 
 ## <a name="overview-of-steps-required"></a>所需步驟的概觀
-您需要 tooconfigure 從 hello Azure AD 的組件庫的應用程式：
+若要設定 Azure AD 資源庫中的應用程式，您必須：
 
--   [從 hello Azure AD 資源庫新增應用程式](#add-an-application-from-the-azure-ad-gallery)
+-   [從 Azure AD 資源庫新增應用程式](#add-an-application-from-the-azure-ad-gallery)
 
--   [設定密碼單一登入的 hello 應用程式](#configure-the-application-for-password-single-sign-on)
+-   [設定應用程式使用密碼單一登入](#configure-the-application-for-password-single-sign-on)
 
--   [Hello 應用程式 tooa 使用者或群組指派](#assign-the-application-to-a-user-or-a-group)
+-   [將應用程式指派至使用者或群組](#assign-the-application-to-a-user-or-a-group)
 
-    -   [直接指派使用者 tooan 應用程式](#assign-a-user-to-an-application-directly)
+    -   [將使用者直接指派至應用程式](#assign-a-user-to-an-application-directly)
 
-    -   [直接指派應用程式 tooa 群組](#assign-an-application-to-a-group-directly)
+    -   [將應用程式直接指派至群組](#assign-an-application-to-a-group-directly)
 
-## <a name="add-an-application-from-hello-azure-ad-gallery"></a>從 hello Azure AD 資源庫新增應用程式
+## <a name="add-an-application-from-the-azure-ad-gallery"></a>從 Azure AD 資源庫新增應用程式
 
-tooadd hello Azure AD 資源庫，從應用程式，請遵循下列 hello 步驟：
+若要從 Azure AD 資源庫新增應用程式，請依照下列步驟執行：
 
-1.  開啟 hello [Azure 入口網站](https://portal.azure.com)身分登入和**全域管理員**或**共同管理員**
+1.  開啟 [Azure 入口網站](https://portal.azure.com)，然後以**全域管理員**或**共同管理員**身分登入。
 
-2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
-3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
+3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
-4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
+4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
 
-5.  按一下 hello**新增**上 hello hello 右上角的按鈕**企業應用程式**刀鋒視窗
+5.  按一下 [企業應用程式] 刀鋒視窗右上角的 [新增] 按鈕
 
-6.  在 hello**輸入的名稱**文字方塊中，從 hello**從 hello 圖庫新增**> 一節中，輸入 hello 名稱 hello 應用程式
+6.  在 [從資源庫新增] 區段的 [輸入名稱] 文字方塊中，輸入應用程式名稱
 
-7.  選取您想 tooconfigure 進行單一登入的 hello 應用程式
+7.  選取您要設為單一登入的應用程式
 
-8.  然後再加入 hello 應用程式，您可以變更其名稱從 hello**名稱**文字方塊。
+8.  新增應用程式之前，您可以從 [名稱] 文字方塊變更其名稱。
 
-9.  按一下**新增**按鈕，tooadd hello 應用程式。
+9.  按一下 [新增] 按鈕新增應用程式。
 
-短時間，就能 toosee hello 應用程式的組態刀鋒視窗。
+稍候片刻，您便能看見應用程式的設定刀鋒視窗。
 
-## <a name="configure-hello-application-for-password-single-sign-on"></a>設定密碼單一登入的 hello 應用程式
+## <a name="configure-the-application-for-password-single-sign-on"></a>設定應用程式使用密碼單一登入
 
-tooconfigure 單一登入的應用程式，請遵循下列 hello 步驟：
+若要設定應用程式使用單一登入，請依照下列步驟執行：
 
-1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**或**共同管理員**身分登入。
 
-2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
-3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
+3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
-4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
+4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
 
-5.  按一下**所有應用程式**tooview 所有應用程式的清單。
+5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
 
-  * 如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
+  * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
 
-6.  選取您想 tooconfigure 單一登入的 hello 應用程式
+6.  選取您要設定單一登入的應用程式
 
-7.  一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。
+7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。
 
-8.  選取 hello 模式**密碼式登入。**
+8.  選取 [以密碼為基礎的登入] 模式。
 
-9.  [將使用者指派 toohello 應用程式](#assign-a-user-to-an-application-directly)。
+9.  [將使用者指派至應用程式](#assign-a-user-to-an-application-directly)。
 
-10. 此外，您也可以提供代表 hello 使用者認證選取 hello 的 hello 使用者的資料列，並按一下**更新認證**並代表 hello 使用者輸入 hello 使用者名稱和密碼。 否則，使用者在提示的 tooenter hello 認證本身在啟動。
+10. 此外，您也可以選取使用者資料列，按一下 [更新認證]，然後代表使用者輸入使用者名稱和密碼，以代表使用者提供認證。 否則，系統會提示使用者在啟動時自行輸入認證。
 
-## <a name="assign-a-user-tooan-application-directly"></a>直接指派使用者 tooan 應用程式
+## <a name="assign-a-user-to-an-application-directly"></a>將使用者直接指派至應用程式
 
-tooassign 一或多個使用者 tooan 應用程式直接管理，請遵循下列 hello 步驟：
+若要直接將一或多個使用者指派至應用程式，請依照下列步驟執行︰
 
-1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，以**全域管理員**身分登入。
 
-2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
-3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
+3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
-4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
+4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
 
-5.  按一下**所有應用程式**tooview 所有應用程式的清單。
+5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
 
-  * 如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
+  * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
 
-6.  選取您想要使用者 toofrom hello 清單 tooassign hello 應用程式。
+6.  從清單中選取您想要指派使用者的應用程式。
 
-7.  一旦 hello 應用程式載入時，按一下 **使用者和群組**從 hello 應用程式的左導覽功能表。
+7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [使用者和群組]。
 
-8.  按一下 hello**新增**hello 頂端的按鈕**使用者和群組**清單 tooopen hello**將作業加入**刀鋒視窗。
+8.  按一下 [使用者和群組] 清單頂端的 [新增] 按鈕，以開啟 [新增指派] 刀鋒視窗。
 
-9.  按一下 hello**使用者和群組**選取器從 hello**將作業加入**刀鋒視窗。
+9.  從 [新增指派] 刀鋒視窗按一下 [使用者和群組] 選取器。
 
-10. Hello 中的型別**全名**或**電子郵件地址**hello 使用者您感興趣指派到 hello 的**依名稱或電子郵件地址搜尋**搜尋 方塊。
+10. 在 [依姓名或電子郵件地址搜尋] 搜尋方塊中，輸入您有興趣指派之使用者的**全名**或**電子郵件地址**。
 
-11. 將滑鼠停留在 hello**使用者**在 hello 清單 tooreveal**核取方塊**。 按一下 [hello] 核取方塊下一步 toohello 使用者的設定檔的相片或標誌 tooadd 使用者 toohello**選取**清單。
+11. 將滑鼠停留在清單中的**使用者**上方，以顯示**核取方塊**。 按一下使用者設定檔照片或標誌旁邊的核取方塊，將使用者新增至 [已選取] 清單。
 
-12. **選擇性：**如果您希望太**新增多個使用者**，在另一個類型**全名**或**電子郵件地址**到 hello**依名稱搜尋電子郵件地址或**搜尋 方塊中，然後按一下 hello 核取方塊 tooadd 這個使用者 toohello**選取**清單。
+12. **選擇性︰**如果您想要**新增多位使用者**，請在 [依姓名或電子郵件地址搜尋] 搜尋方塊中，輸入另一個**全名**或**電子郵件地址**，然後按一下核取方塊，將此使用者新增至 [已選取] 清單。
 
-13. 當您完成選取的使用者，請按一下 hello**選取**按鈕 tooadd 它們的使用者和群組 toobe toohello 清單指派 toohello 應用程式。
+13. 當您完成選取使用者時，按一下 [選取] 按鈕，將他們新增到要指派至應用程式的使用者和群組清單。
 
-14. **選擇性：**按一下 hello**選取角色**hello 中的選取器**將作業加入**刀鋒視窗 tooselect 角色 tooassign toohello 使用者已選取。
+14. **選擇性︰**按一下 [新增指派] 刀鋒視窗中的 [選取角色] 選取器，以選取要指派給您已選取使用者的角色。
 
-15. 按一下 hello**指派**按鈕 tooassign hello 應用程式 toohello 選取的使用者。
+15. 按一下 [指派] 按鈕，將應用程式指派至選取的使用者。
 
-## <a name="assign-an-application-tooa-group-directly"></a>直接指派應用程式 tooa 群組
+## <a name="assign-an-application-to-a-group-directly"></a>將應用程式直接指派至群組
 
-tooassign 一或多個群組 tooan 的應用程式直接管理，後續 hello 步驟：
+若要直接將一或多個群組指派至應用程式，請依照下列步驟執行︰
 
-1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員。**
+1.  開啟 [Azure 入口網站](https://portal.azure.com/)，以**全域管理員**身分登入。
 
-2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
-3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
+3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
-4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
+4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
 
-5.  按一下**所有應用程式**tooview 所有應用程式的清單。
+5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
 
-  * 如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
+  * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
 
-6.  選取您想要使用者 toofrom hello 清單 tooassign hello 應用程式。
+6.  從清單中選取您想要指派使用者的應用程式。
 
-7.  一旦 hello 應用程式載入時，按一下 **使用者和群組**從 hello 應用程式的左導覽功能表。
+7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [使用者和群組]。
 
-8.  按一下 hello**新增**hello 頂端的按鈕**使用者和群組**清單 tooopen hello**將作業加入**刀鋒視窗。
+8.  按一下 [使用者和群組] 清單頂端的 [新增] 按鈕，以開啟 [新增指派] 刀鋒視窗。
 
-9.  按一下 hello**使用者和群組**選取器從 hello**將作業加入**刀鋒視窗。
+9.  從 [新增指派] 刀鋒視窗按一下 [使用者和群組] 選取器。
 
-10. 型別在 hello**完整的群組名稱**您感興趣指派到 hello hello 群組的**依名稱或電子郵件地址搜尋**搜尋 方塊。
+10. 在 [依姓名或電子郵件地址搜尋] 搜尋方塊中，輸入您有興趣指派之群組的**完整群組名稱**。
 
-11. 將滑鼠停留在 hello**群組**在 hello 清單 tooreveal**核取方塊**。 按一下 [hello] 核取方塊下一步 toohello 群組的設定檔的相片或標誌 tooadd 使用者 toohello**選取**清單。
+11. 將滑鼠停留在清單中的**群組**上方，以顯示**核取方塊**。 按一下群組設定檔照片或標誌旁邊的核取方塊，將使用者新增至 [已選取] 清單。
 
-12. **選擇性：**如果您希望太**新增多個群組**，在另一個類型**完整的群組名稱**到 hello**依名稱或電子郵件地址搜尋**搜尋方塊中，按一下此群組 toohello hello 核取方塊 tooadd**選取**清單。
+12. **選擇性︰**如果您想要**新增多個群組**，請在 [依姓名或電子郵件地址搜尋] 搜尋方塊中，輸入另一個**完整群組名稱**，然後按一下核取方塊，將此群組新增至 [已選取] 清單。
 
-13. 當您完成選取群組，請按一下 hello**選取**按鈕 tooadd 它們的使用者和群組 toobe toohello 清單指派 toohello 應用程式。
+13. 當您完成選取群組時，按一下 [選取] 按鈕，將它們新增到要指派給應用程式的使用者和群組清單。
 
-14. **選擇性：**按一下 hello**選取角色**hello 中的選取器**將作業加入**刀鋒視窗 tooselect 角色 tooassign toohello 群組您已選取。
+14. **選擇性︰**按一下 [新增指派] 刀鋒視窗中的 [選取角色] 選取器，以選取要指派給您已選取群組的角色。
 
-15. 按一下 hello**指派**按鈕 tooassign hello 應用程式 toohello 選取的群組。
+15. 按一下 [指派] 按鈕，將應用程式指派給選取的群組。
 
-在短時間，您已選取的 hello 使用者會無法 toolaunch 中的這些應用程式之後 hello 存取面板。
+稍待片刻，您已選取的使用者便能在存取面板中啟動這些應用程式。
 
 ## <a name="next-steps"></a>後續步驟
-[提供單一登入 tooyour 應用程式與應用程式 Proxy](active-directory-application-proxy-sso-using-kcd.md)
+[使用應用程式 Proxy 提供單一登入應用程式](active-directory-application-proxy-sso-using-kcd.md)

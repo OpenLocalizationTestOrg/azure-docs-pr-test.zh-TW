@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd Azure Active Directory B2B 共同作業使用者 tooa 角色 |Microsoft 文件"
-description: "Azure Active Directory 中新增來賓使用者 tooa 角色"
+title: "新增 Azure Active Directory B2B 共同作業使用者到角色 | Microsoft Docs"
+description: "將來賓使用者新增至 Azure Active Directory 中的角色"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -16,15 +16,15 @@ ms.workload: identity
 ms.date: 03/15/2017
 ms.author: sasubram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: ccc58a0c8ecc73f8e79a8d827efdc0ff93846a96
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e816349ea971c997f655b4d51672dba666bc3e89
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="grant-permissions-toousers-from-partner-organizations-in-your-azure-active-directory-tenant"></a>從夥伴組織中建立您的 Azure Active Directory 租用戶中授與權限 toousers
+# <a name="grant-permissions-to-users-from-partner-organizations-in-your-azure-active-directory-tenant"></a>從 Azure Active Directory 租用戶中的合作夥伴組織授與權限給使用者
 
-Azure Active Directory (Azure AD) B2B 共同作業的使用者會新增為來賓使用者 toohello 目錄，並依預設會限制 hello 目錄中的 guest 權限。 您的企業，可能需要您組織中的有些來賓使用者 toofill 高特殊權限角色。 定義高特殊權限角色 toosupport guest 使用者可以根據組織的需求，依您想要加入的 tooany 角色。
+Azure Active Directory (Azure AD) B2B 共同作業使用者是以來賓使用者身分新增到目錄中，且目錄中的來賓權限預設是有所限制的。 您的公司可能需要某些來賓使用者擁有您組織中的更高權限的角色。 為支援定義更高權限的角色，您可以根據您組織的需求將來賓使用者新增到您想要的任何角色。
 
 ## <a name="default-role"></a>預設角色
 

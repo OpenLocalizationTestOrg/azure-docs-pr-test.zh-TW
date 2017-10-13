@@ -1,14 +1,14 @@
-#### <a name="toocreate-public-endpoints-on-hello-virtual-device"></a>toocreate hello 虛擬裝置上的公用端點
+#### <a name="to-create-public-endpoints-on-the-virtual-device"></a>在虛擬裝置上建立公用端點
 
-1. 登入 toohello Azure 傳統入口網站。
-2. 按一下**虛擬機器**，，然後選取 hello 與虛擬裝置所使用的虛擬機器。
-3. 按一下 [端點] 。 hello**端點**頁面會列出 hello 虛擬機器的所有端點。
-4. 按一下 [新增] 。 hello**加入端點** 對話方塊隨即出現。 按一下 hello 箭號 toocontinue。
-5. Hello**名稱**，輸入 hello 下列命名 hello 端點： **WinRMHttps**。
-6. Hello**通訊協定**，指定**TCP**。
-7. Hello**公用連接埠**，輸入想要 hello 連線 toouse hello 連接埠號碼。
-8. Hello**私用連接埠**，型別**5986**。
-9. 按一下 hello 核取記號 toocreate hello 端點。
+1. 登入 Azure 傳統入口網站。
+2. 按一下 [虛擬機器] ，然後選取想要用來做為虛擬裝置的虛擬機器。
+3. 按一下 [端點] 。 [端點] 頁面會列出虛擬機器的所有端點。
+4. 按一下 [新增] 。 新增端點  對話方塊隨即出現。 按一下箭頭以繼續。
+5. 針對 [名稱]，為端點輸入下列名稱：**WinRMHttps**。
+6. 將 [TCP] 指定為 [通訊協定]。
+7. 針對 [公用連接埠] ，輸入要用於連線的連接埠號碼。
+8. 針對 [私人連接埠]，輸入 **5986**。
+9. 按一下核取記號以建立端點。
 
-建立 hello 端點之後，您可以檢視其詳細資料 toodetermine hello 公用虛擬 IP (VIP) 位址。 請記下此位址。
+建立端點之後，您可以檢視其詳細資料，以確認公用虛擬 IP (VIP) 位址。 請記下此位址。
 

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure SDK for Node.js 的 Azure Data Lake Analytics aaaManage |Microsoft 文件"
-description: "了解如何 toomanage Data Lake Analytics 帳戶，資料來源、 工作和使用者使用 Azure SDK for Node.js"
+title: "使用 Node.js 的 Azure SDK 管理 Azure Data Lake Analytics | Microsoft Docs"
+description: "了解如何使用 Node.js 的 Azure SDK，管理資料湖分析帳戶、資料來源、工作與使用者"
 services: data-lake-analytics
 documentationcenter: 
 author: edmacauley
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-ms.openlocfilehash: 07acd058bf252af2fc98c4cfe87a135e0b79900f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 769cf9b09eecd204c8b5b944065dad57a6d73231
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-azure-data-lake-analytics-using-azure-sdk-for-nodejs"></a>使用 Node.js 的 Azure SDK 管理 Azure 資料湖分析
 [!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-hello Azure SDK for Node.js 可以用來管理 Azure Data Lake Analytics 帳戶、 工作和類別目錄中。 toosee 管理主題使用其他工具中，按一下 [hello] 索引標籤選取上述。
+Node.js 的 Azure SDK 可用於管理 Azure Data Lake Analytics 帳戶、作業與目錄。 若要使用其他工具查看管理主題，請按一下上方選取的索引標籤。
 
 它目前支援︰
 
@@ -37,7 +37,7 @@ hello Azure SDK for Node.js 可以用來管理 Azure Data Lake Analytics 帳戶�
 * 作業管理︰提交、取得、列出及取消。
 * 目錄管理：取得及列出。
 
-## <a name="how-tooinstall"></a>如何 tooInstall
+## <a name="how-to-install"></a>如何安裝
 ```bash
 npm install azure-arm-datalake-analytics
 ```
@@ -51,7 +51,7 @@ npm install azure-arm-datalake-analytics
  var credentials = new msRestAzure.ApplicationTokenCredentials('your-client-id', 'your-domain', 'your-secret');
  ```
 
-## <a name="create-hello-data-lake-analytics-client"></a>建立 hello Data Lake Analytics 用戶端
+## <a name="create-the-data-lake-analytics-client"></a>建立 Data Lake Analytics 用戶端
 ```javascript
 var adlaManagement = require("azure-arm-datalake-analytics");
 var acccountClient = new adlaManagement.DataLakeAnalyticsAccountClient(credentials, 'your-subscription-id');
@@ -66,12 +66,12 @@ var resourceGroupName = 'testrg';
 var accountName = 'testadlaacct';
 var location = 'eastus2';
 
-// A Data Lake Store account must already have been created toocreate
-// a Data Lake Analytics account. See hello Data Lake Store readme for
+// A Data Lake Store account must already have been created to create
+// a Data Lake Analytics account. See the Data Lake Store readme for
 // information on doing so. For now, we assume one exists already.
 var datalakeStoreAccountName = 'existingadlsaccount';
 
-// account object toocreate
+// account object to create
 var accountToCreate = {
   tags: {
     testtag1: 'testvalue1',
@@ -92,14 +92,14 @@ var accountToCreate = {
 client.account.create(resourceGroupName, accountName, accountToCreate, function (err, result, request, response) {
   if (err) {
     console.log(err);
-    /*err has reference toohello actual request and response, so you can see what was sent and received on hello wire.
-      hello structure of err looks like this:
+    /*err has reference to the actual request and response, so you can see what was sent and received on the wire.
+      The structure of err looks like this:
       err: {
         code: 'Error Code',
         message: 'Error Message',
-        body: 'hello response body if any',
-        request: reference tooa stripped version of http request
-        response: reference tooa stripped version of hello response
+        body: 'The response body if any',
+        request: reference to a stripped version of http request
+        response: reference to a stripped version of the response
       }
     */
   } else {
@@ -121,7 +121,7 @@ jobClient.job.list(accountName, function (err, result, request, response) {
 });
 ```
 
-## <a name="get-a-list-of-databases-in-hello-data-lake-analytics-catalog"></a>取得 hello 資料湖分析目錄中的資料庫清單
+## <a name="get-a-list-of-databases-in-the-data-lake-analytics-catalog"></a>取得 Data Lake Analytics 目錄中的資料庫清單
 ```javascript
 var util = require('util');
 var accountName = 'testadlaacct';

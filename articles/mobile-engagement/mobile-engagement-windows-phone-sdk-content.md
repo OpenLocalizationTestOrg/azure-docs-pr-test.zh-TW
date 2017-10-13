@@ -1,6 +1,6 @@
 ---
-title: "aaaWindows Phone Silverlight SDK 內容"
-description: "了解 hello hello Windows Phone Silverlight SDK 內容適用於 Azure Mobile Engagement"
+title: "Windows Phone Silverlight SDK 內容"
+description: "了解適用於 Azure Mobile Engagement 的 Windows Phone Silverlight SDK 的內容"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: c39247383d65200493d028a80d444a6e96a697cd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ce323880100706accf0c08c9929d20908c6198cb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="windows-phone-silverlight-sdk-content"></a>Windows Phone Silverlight SDK 內容
-本文件列出並描述應用程式中的 hello SDK 所部署的 hello 內容。
+本文件列出及說明 SDK 在應用程式中部署的內容。
 
-## <a name="hello-resources-folder"></a>hello`/Resources`資料夾
-這個資料夾會包含所有需要 Mobile Engagement 的 hello 資源。 您也可以自訂它們 toofit 您的應用程式。
+## <a name="the-resources-folder"></a>`/Resources` 資料夾
+此資料夾包含 Mobile Engagement 需要的所有資源。 您也可以自訂它們，以符合您的應用程式。
 
-* `EngagementIconNotification.png`: hello 商標圖示顯示在 [hello 保留的通知，取代這個品牌圖示。
-* `EngagementIconOk.png`: hello 「 確定 」 圖示的 hello 到達 ApplicationBar 的頁面。
-* `EngagementIconCancel.png`: hello [取消] 圖示的 hello 到達頁面的 ApplicationBar。
-* `EngagementIconCloseLight.png`: hello 「 關閉 」 圖示的 hello Mobile Engagement 的觸達 hello Windows Phone 淺色佈景主題的通知。
-* `EngagementIconCloseDark.png`: hello 「 關閉 」 圖示的 hello Mobile Engagement 的觸達 hello Windows Phone 暗色調佈景主題的通知。
-* `EngagementConfiguration.xml`: hello Mobile Engagement 的組態檔，這是您可以在此自訂 Engagement 設定 （Engagement 連接字串中，回報當機等等）。
+* `EngagementIconNotification.png` ：顯示在通知左側的品牌圖示，由您的品牌圖示取代此圖示。
+* `EngagementIconOk.png` ：觸達頁面 ApplicationBar 的「確定」圖示。
+* `EngagementIconCancel.png` ：觸達頁面 ApplicationBar 的 「取消」圖示。
+* `EngagementIconCloseLight.png` ：適用於 Windows Phone 亮色調佈景主題，Engagement 觸達通知的「關閉」圖示。
+* `EngagementIconCloseDark.png` ：適用於 Windows Phone 暗色調佈景主題，Engagement 觸達通知的「關閉」圖示。
+* `EngagementConfiguration.xml` ：Mobile Engagement 的組態檔，您可以在此自訂 Engagement 的設定 (Engagement 連接字串、報告當機等)。
 

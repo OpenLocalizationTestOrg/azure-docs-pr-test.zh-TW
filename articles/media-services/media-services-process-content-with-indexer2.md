@@ -1,6 +1,6 @@
 ---
-title: "媒體檔案，使用 Azure Media Indexer 2 預覽 aaaIndexing |Microsoft 文件"
-description: "Azure Media Indexer 可讓您的媒體檔案可搜尋的 toomake 內容和 toogenerate 全文檢索文字記錄的關閉字幕和關鍵字。 本主題顯示如何 toouse Media Indexer 2 預覽。"
+title: "使用Azure 媒體索引器 2 Preview 編製媒體檔案索引 | Microsoft Docs"
+description: "Azure Media Indexer 讓您能將媒體檔案的內容變成可搜尋，並產生隱藏式字幕和關鍵字的全文檢索記錄。 本主題說明如何使用 Media Indexer 2 Preview。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,48 +14,48 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: adsolank;juliako;
-ms.openlocfilehash: f83fa0db58b828ffa29933d68ce108b4906dcd78
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0afdd1c04e50215a55fb92c70b1210d1f80d8e3f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="indexing-media-files-with-azure-media-indexer-2-preview"></a>使用 Azure Media Indexer 2 Preview 編製媒體檔案索引
-## <a name="overview"></a>概觀
-hello **Azure Media Indexer 2 預覽**媒體處理器 (MP) 可讓您 toomake 媒體檔案和內容可搜尋，以及產生已關閉隱藏式輔助字幕追蹤。 比較的 toohello 舊版[Azure Media Indexer](media-services-index-content.md)， **Azure Media Indexer 2 預覽**執行更快索引，並提供更廣泛的語言支援。 支援的語言包括英文、西班牙文、法文、德文、義大利文、中文 (國語、簡體)、葡萄牙文、阿拉伯文和日文。
+## <a name="overview"></a>Overview
+**Azure Media Indexer 2 Preview** 媒體處理器 (MP) 可讓您將媒體檔案和內容設為可供搜尋，並產生隱藏式輔助字幕追蹤。 相較於舊版的 [Azure Media Indexer](media-services-index-content.md)， **Azure Media Indexer 2 Preview** 編製索引速度更快，並提供更廣泛的語言支援。 支援的語言包括英文、西班牙文、法文、德文、義大利文、中文 (國語、簡體)、葡萄牙文、阿拉伯文和日文。
 
-hello **Azure Media Indexer 2 預覽**MP 目前為預覽狀態。
+**Azure Media Indexer 2 Preview** MP 目前為預覽功能。
 
-本主題說明如何 toocreate 編製索引作業與**Azure Media Indexer 2 預覽**。
+本主題說明如何使用 **Azure Media Indexer 2 Preview**建立索引工作。
 
 > [!NOTE]
-> hello 下列考量適用於：
+> 您必須考量下列事項：
 > 
 > Azure China 和 Azure Government 不支援 Indexer 2。
 > 
-> 建立索引時的內容，請確定 toouse （沒有背景音樂、 噪音、 效果或麥克風雜音） 語音非常清楚的媒體檔案。 適當內容的一些範例有：錄製的會議、演講或簡報。 hello 下列內容可能不適合編製索引： 電影、 電視節目，任何具有混音效果與音效，錄製不佳的內容有背景噪音 （雜音））。
+> 在編製內容索引時，請務必使用語音非常清楚的媒體檔案 (不含背景音樂、噪音、效果或麥克風雜音)。 適當內容的一些範例有：錄製的會議、演講或簡報。 下列內容可能不適合用來編製索引：電影、電視節目、任何具有混合音訊與音效的內容、錄製效果不良有背景噪音 (雜音) 的內容。
 > 
 > 
 
-本主題詳細說明有關**Azure Media Indexer 2 預覽**，並示範如何 toouse 使用 Media Services SDK for.NET
+本主題提供有關 **Azure Media Indexer 2 Preview** 的詳細資訊，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它。
 
 ## <a name="input-and-output-files"></a>輸入和輸出檔案
 ### <a name="input-files"></a>輸入檔案
 音訊或視訊檔案
 
 ### <a name="output-files"></a>輸出檔案
-索引作業可以產生隱藏式的字幕檔案在 hello 下列格式：  
+索引工作可以產生下列格式的隱藏式輔助字幕檔案：  
 
 * **SAMI**
 * **TTML**
 * **WebVTT**
 
-已關閉的字幕 (CC) 檔案，這些格式可以是使用的 toomake 音訊和視訊檔案存取 toopeople 聽覺時。
+這些格式的隱藏式輔助字幕 (CC) 檔案可以用來讓具有聽力障礙的人存取音訊和視訊檔案。
 
-## <a name="task-configuration-preset"></a>工作組態 (預設)
+## <a name="task-configuration-preset"></a>工作設定 (預設)
 以 **Azure 媒體索引器 2 預覽**建立索引工作時，您必須指定設定預設值。
 
-hello 下列 JSON 設定可用的參數。
+下列 JSON 會設定可用的參數。
 
     {
       "version":"1.0",
@@ -72,7 +72,7 @@ hello 下列 JSON 設定可用的參數。
     }
 
 ## <a name="supported-languages"></a>支援的語言
-Azure Media Indexer 2 預覽支援語音轉文字 hello （時在 hello 工作組態中，使用 4 個字元的程式碼以括號指定 hello 語言名稱，如下所示），下列語言：
+Azure Media Indexer 2 Preview 支援下列語言的語音轉文字 (在工作設定中指定語言名稱時，請使用以括號括住的 4 字元程式碼，如下所示)：
 
 * 英文 [EnUs]
 * 西班牙文 [EsEs]
@@ -89,14 +89,14 @@ Azure Media Indexer 2 預覽支援語音轉文字 hello （時在 hello 工作�
 
 ## <a name="supported-file-types"></a>支援的檔案類型
 
-如需支援的檔案類型的資訊，請參閱 hello[支援的轉碼器/格式](media-services-media-encoder-standard-formats.md#input-containerfile-formats)> 一節。
+如需支援的檔案類型資訊，請參閱[支援的轉碼器/格式](media-services-media-encoder-standard-formats.md#input-containerfile-formats)一節。
 
 ## <a name="net-sample-code"></a>.NET 範例程式碼
 
-hello 以下程式顯示如何：
+下列程式將示範如何：
 
-1. 建立資產，並將媒體檔案上傳到 hello 資產。
-2. 使用包含 hello 下列 json 的預設組態檔為基礎的索引工作建立工作。
+1. 建立資產並將媒體檔案上傳到資產。
+2. 根據包含下列 JSON 預設值的設定檔，建立具有索引編製工作的作業。
    
         {
           "version":"1.0",
@@ -111,11 +111,11 @@ hello 以下程式顯示如何：
                "Type":"SpReco"
             }]
         }
-3. 下載 hello 輸出檔案。 
+3. 下載輸出檔案。 
    
 #### <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
 
-設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。 
+設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。 
 
 #### <a name="example"></a>範例
 
@@ -131,7 +131,7 @@ hello 以下程式顯示如何：
     {
         class Program
         {
-            // Read values from hello App.config file.
+            // Read values from the App.config file.
             private static readonly string _AADTenantDomain =
                 ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -151,13 +151,13 @@ hello 以下程式顯示如何：
                 var asset = RunIndexingJob(@"C:\supportFiles\Indexer\BigBuckBunny.mp4",
                                             @"C:\supportFiles\Indexer\config.json");
 
-                // Download hello job output asset.
+                // Download the job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\Indexer\Output");
             }
 
             static IAsset RunIndexingJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload hello input media file toostorage.
+                // Create an asset and upload the input media file to storage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My Indexing Input Asset",
                     AssetCreationOptions.None);
@@ -165,38 +165,38 @@ hello 以下程式顯示如何：
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My Indexing Job");
 
-                // Get a reference tooAzure Media Indexer 2 Preview.
+                // Get a reference to Azure Media Indexer 2 Preview.
                 string MediaProcessorName = "Azure Media Indexer 2 Preview";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from hello specified file.
+                // Read configuration from the specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with hello encoding details, using a string preset.
+                // Create a task with the encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My Indexing Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify hello input asset toobe indexed.
+                // Specify the input asset to be indexed.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job.
+                // Add an output asset to contain the results of the job.
                 task.OutputAssets.AddNew("My Indexing Output Asset", AssetCreationOptions.None);
 
-                // Use hello following event handler toocheck job progress.  
+                // Use the following event handler to check job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch hello job.
+                // Launch the job.
                 job.Submit();
 
-                // Check job execution and wait for job toofinish.
+                // Check job execution and wait for job to finish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, hello event handling
+                // If job state is Error, the event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

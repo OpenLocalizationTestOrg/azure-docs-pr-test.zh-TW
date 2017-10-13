@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure 轉送常見問題集 |Microsoft 文件"
-description: "取得有關 Azure 轉送常見問題的解答 toosome。"
+title: "Azure 轉送常見問題集 | Microsoft Docs"
+description: "獲得一些有關 Azure 轉送常見問題的答案。"
 services: service-bus-relay
 documentationcenter: na
 author: sethmanheim
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/23/2017
 ms.author: sethm
-ms.openlocfilehash: ab14431e27df43287940e7d12ea37e4093638d21
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e8c146f4b6d02449be6ad9e991e52db8dfd58e04
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-relay-faqs"></a>Azure 轉送常見問題集
 
@@ -26,109 +26,109 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="general-questions"></a>一般問題
 ### <a name="what-is-azure-relay"></a>什麼是 Azure 轉送？
-hello [Azure 轉送服務](relay-what-is-it.md)可幫助您更安全地位於內部公司的企業網路 toohello 公用雲端的公開服務，從而完成您的混合式應用程式。 您可以開啟防火牆連接，而不需要干擾變更 tooa 公司網路基礎結構來公開 hello 服務。
+[Azure 轉送服務](relay-what-is-it.md)有助於您的混合式應用程式，方法是協助您更安全地將位於公司企業網路內的服務公開至公用雲端。 您可以在不開啟防火牆連線的情況下公開服務，也不需要對公司網路基礎結構做侵入式變更。
 
 ### <a name="what-is-a-relay-namespace"></a>什麼是轉送命名空間？
-A[命名空間](relay-create-namespace-portal.md)是您可以使用 tooaddress 轉送資源應用程式中的範圍容器。 您必須建立命名空間 toouse 轉送。 這是其中一個 hello 第一個步驟中開始使用。
+[命名空間](relay-create-namespace-portal.md)是範圍容器，您可以用來在應用程式內定址轉送資源。 您必須建立命名空間，才能使用轉送。 這是開始使用的第一個步驟其中之一。
 
-### <a name="what-happened-tooservice-bus-relay-service"></a>哪些情形的 tooService 匯流排轉送服務？
-先前命名為服務匯流排轉送服務的 hello 現在稱為 WCF 轉送。 您可以繼續 toouse 這項服務如往常般。 hello 混合式連線功能是一項服務，從 Azure BizTalk 服務已經 transplanted 的更新的版本。 WCF 轉送和混合式連線繼續 toobe 支援。
+### <a name="what-happened-to-service-bus-relay-service"></a>服務匯流排轉送服務發生什麼事？
+先前稱為「服務匯流排轉送」服務現在稱為「WCF 轉送」。 您可以繼續如常使用這項服務。 混合式連線功能是服務的更新版本，從 Azure BizTalk 服務移植。 會繼續支援「WCF 轉送」和「混合式連線」。
 
 ## <a name="pricing"></a>價格
-部分常見問題集有關此區段答案 hello 轉送定價結構。 如需一般的 Azure 價格資訊，也可以參閱 [Azure 支援常見問題集](http://go.microsoft.com/fwlink/?LinkID=185083)。 如需轉送價格的完整資訊，請參閱[服務匯流排價格詳細資料][Pricing overview]。
+本節提供轉送價格結構的一些常見問題解答。 如需一般的 Azure 價格資訊，也可以參閱 [Azure 支援常見問題集](http://go.microsoft.com/fwlink/?LinkID=185083)。 如需轉送價格的完整資訊，請參閱[服務匯流排價格詳細資料][Pricing overview]。
 
 ### <a name="how-do-you-charge-for-hybrid-connections-and-wcf-relay"></a>混合式連接和 WCF 轉送如何收費？
-如需轉送定價的完整資訊，請參閱 hello[混合式連線和 WCF 轉送][ Pricing overview] hello 服務匯流排定價詳細資料頁面上的資料表。 此外 toohello 價格註明在該頁面上，您必須支付 hello 佈建您的應用程式的資料中心外部輸出的相關聯的資料傳輸。
+如需有關轉送價格的完整資訊，請參閱服務匯流排價格詳細資料頁面上的[混合式連線與 WCF 轉送][Pricing overview]資料表。 除了頁面上註明的價格，您還需支付您的應用程式佈建所在資料中心外部的輸出相關資料傳輸費用。
 
 ### <a name="how-am-i-billed-for-hybrid-connections"></a>混合式連接如何計費？
 以下是混合式連線計費案例的三個範例︰
 
 *   案例 1：
-    *   您有單一的接聽程式，例如 hello 安裝且持續執行 hello 整個月，混合式連線管理員的執行個體。
-    *   您透過 hello 月 hello 連線傳送 3 GB 的資料。 
+    *   您有單一接聽程式，例如已安裝且整個月份持續執行的混合式連線管理員執行個體。
+    *   您在該月份的連線中傳送 3 GB 的資料。 
     *   您的總費用為 $5。
 *   案例 2：
-    *   您有單一的接聽程式，例如 hello 安裝且持續執行 hello 整個月，混合式連線管理員的執行個體。
-    *   您透過 hello 月 hello 連線傳送 10 GB 的資料。
-    *   您的總費用為 $7.5。 $5 hello 連線且前 5 GB + $2.50 的 hello 其他 5 GB 的資料。
+    *   您有單一接聽程式，例如已安裝且整個月份持續執行的混合式連線管理員執行個體。
+    *   您在該月份的連線中傳送 10 GB 的資料。
+    *   您的總費用為 $7.5。 其中 $5 是連線和前面 5 GB 的費用，$2.50 是其他 5 GB 資料的費用。
 *   案例 3：
-    *   您有兩個執行個體，A 和 B 的 hello 安裝且持續執行 hello 整個月，混合式連線管理員。
-    *   您透過連線 A hello 月傳送 3 GB 的資料。
-    *   您透過連線 B hello 月傳送 6 GB 的資料。
-    *   您的總費用為 $10.5。 這是連接的 $5 + $5 的連線 B + $0.50 （適用於 hello 連線 B 上的第六個 gb)。
+    *   您有兩個執行個體，A 和 B，屬於已安裝且整個月份持續執行的混合式連線管理員。
+    *   您在該月份的連線 A 中傳送 3 GB 的資料。
+    *   您在該月份的連線 B 中傳送 6 GB 的資料。
+    *   您的總費用為 $10.5。 其中 $5 是連線 A 的費用、$5 是連線 B 的費用，加上 $0.50 (連線 B 上的第 6 個 GB)。
 
-請注意，hello 價格 hello 範例中使用適用於僅 hello 混合式連線預覽期間。 價格是主體 toochange 在公開上市的混合式連線時。
+請注意，範例中使用的價格僅適用於混合式連線預覽期間。 價格可能會在混合式連線正式運作之後有所變更。
 
 ### <a name="how-are-hours-calculated-for-relay"></a>如何計算轉送時數？
 
-只能在標準層命名空間中使用 WCF 轉送。 否則轉送的價格和[連線配額](../service-bus-messaging/service-bus-quotas.md)會保持不變。 這表示轉送繼續 toobe 計費根據 hello 訊息 （不是作業） 數目和轉送時數。 如需詳細資訊，請參閱 hello [「 混合式連線和 WCF 轉送 」](https://azure.microsoft.com/pricing/details/service-bus/) hello 定價詳細資料 頁面上的資料表。
+只能在標準層命名空間中使用 WCF 轉送。 否則轉送的價格和[連線配額](../service-bus-messaging/service-bus-quotas.md)會保持不變。 這表示轉送將繼續根據訊息數目 (而非作業數) 和轉送時數計費。 如需詳細資訊，請參閱價格詳細資料頁面上的[混合式連線與 WCF 轉送](https://azure.microsoft.com/pricing/details/service-bus/)資料表。
 
-### <a name="what-if-i-have-more-than-one-listener-connected-tooa-specific-relay"></a>如果有多個接聽程式連接的 tooa 特定轉送？
-在某些情況下，單一轉送可能有多個已連線的接聽程式。 將轉送視為開啟連接的 tooit 至少一個轉送接聽程式時。 加入額外的轉送小時 tooan 開放式轉送接聽程式的結果。 hello 數目的轉送的寄件者 （叫用的用戶端或傳送訊息 toorelays） 會連接的 tooa 轉送不會影響 hello 轉送小時的計算。
+### <a name="what-if-i-have-more-than-one-listener-connected-to-a-specific-relay"></a>如果我有一個以上的接聽程式連線到指定的轉送，該怎麼辦？
+在某些情況下，單一轉送可能有多個已連線的接聽程式。 至少有一個轉送接聽程式連線到轉送時，即會被視為開放式轉送。 將接聽程式新增至開放式轉送會導致額外的轉送時數。 連線到轉送的轉送傳送者 (叫用或傳送訊息至轉送的用戶端) 數目不會影響轉送時數的計算。
 
-### <a name="how-is-hello-messages-meter-calculated-for-wcf-relays"></a>針對 WCF 轉送如何計算 hello 訊息 」 計費表？
-(**這適用於僅 tooWCF 轉送。訊息並不是混合式連線的成本。**)
+### <a name="how-is-the-messages-meter-calculated-for-wcf-relays"></a>如何針對 WCF 轉送計算訊息計量？
+(**這只適用於 WCF 轉送。訊息並不是混合式連線的成本。**)
 
-一般情況下，則可計費訊息的轉送會計算使用 hello 相同方法，用於代理實體 （佇列、 主題和訂用帳戶），先前所述。 但是，請注意以下幾個差異。
+一般而言，對代理實體 (佇列、主題和訂用帳戶) 使用先前所述相同方法的轉送會計算計費訊息。 但是，請注意以下幾個差異。
 
-傳送訊息 tooa 服務匯流排轉送視為 「 完整透過 」 傳送收到 hello 訊息 toohello 轉送接聽程式。 它不會被視為傳送作業 toohello 服務匯流排轉送，後面接著傳遞 toohello 轉送接聽程式。 要求-回覆樣式服務叫用 (的向上 too64 KB) 針對轉送接聽程式會導致兩個可計費訊息： hello 要求和回應 hello 一個可計費訊息的一個可計費訊息 (假設 hello 回應也 64 KB 或更小)。 這是有別於使用用戶端和服務之間的佇列 toomediate。 如果您使用用戶端和服務之間的佇列 toomediate，hello 相同的要求-回覆模式需要要求傳送 toohello 佇列，緊接著移除佇列/傳遞從 hello 佇列 toohello 服務。 這後面接著回應傳送 tooanother 佇列，並清除佇列/傳遞該佇列 toohello 用戶端。 使用假設整個 （向上 too64 KB) 的大小相同的 hello，hello 傳送 4 的可計費訊息的佇列模式結果。 您將支付兩次的相同模式您完成使用轉送訊息 tooimplement hello hello 數字。 當然，有優點 toousing 佇列 tooachieve 此模式中的，例如持續性和負載調節。 這些好處可能擔負 hello 額外費用。
+將訊息傳送至服務匯流排轉送會被視為「完整通過」傳送至接收訊息的轉送接聽程式。 它不會被視為送至服務匯流排轉送的傳送作業，其後面接著傳遞至轉送接聽程式。 對於轉送接聽程式的要求-回覆模式服務叫用 (最多 64 KB) 將會產生兩則計費訊息︰一則是要求的計費訊息，一則是回應的計費訊息 (假設回應也是 64 KB 或更小)。 這與使用佇列在用戶端與服務之間居中協調不同。 如果您使用佇列在用戶端與服務之間居中協調，相同要求-回覆模式需要將要求傳送至佇列，後面接著將來自佇列的清除佇列/傳遞傳送至服務。 後面接著將回應傳送至另一個佇列，以及將來自該佇列的清除佇列/傳遞傳送至用戶端。 使用相同的大小假設輸送量 (最多 64 KB)，居中協調的佇列模式會產生 4 則計費訊息。 您要支付兩倍的訊息數目，才能實作使用轉送完成的相同模式。 當然，使用佇列來達成此模式有許多優點，例如，持久性和負載調節。 這些優點可合理解釋額外的費用。
 
-使用 hello 所開啟的轉送**netTCPRelay** WCF 繫結會將訊息視為為個別的訊息，而資料流經 hello 系統的資料流。 當您使用此繫結時，只 hello 寄件者和接聽程式會顯示出來 hello hello 個別傳送和接收之訊息的框架。 針對使用 hello 的轉送**netTCPRelay**繫結時，所有資料會被視為資料流以供計算可計費訊息。 在此情況下，服務匯流排計算 hello 透過以 5 分鐘為基礎的每個個別轉送傳送或接收的資料量總計。 然後，將除以該總資料量 64 KB toodetermine hello 該轉送的可計費訊息數目在該時間內。
+使用 **netTCPRelay** WCF 繫結開啟的轉送不會將訊息視為個別的訊息，但是會視為通過系統的資料流。 當您使用此繫結時，只有傳送者和接聽程式能夠看見傳送和接收之個別訊息的框架。 對於使用 **netTCPRelay** 繫結的轉送，所有資料都會被視為資料流，以便計算計費訊息。 在此情況下，服務匯流排會以 5 分鐘為基礎，計算透過每個個別轉送傳送或接收的資料總量。 然後，它會依據 64 KB 來分割資料總量，以判斷該期間該轉送的計費訊息數目。
 
 ## <a name="quotas"></a>配額
 | 配額名稱 | Scope | 類型 | 超出時的行為 | 值 |
 | --- | --- | --- | --- | --- |
-| 轉送上的並行接聽程式 |實體 |靜態 |其他連接的後續要求會遭到拒絕，並收到 hello 呼叫程式碼例外狀況。 |25 |
-| 並行轉送接聽程式 |全系統 |靜態 |其他連接的後續要求會遭到拒絕，並收到 hello 呼叫程式碼例外狀況。 |2,000 |
+| 轉送上的並行接聽程式 |實體 |靜態 |後續對更多連線的要求將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。 |25 |
+| 並行轉送接聽程式 |全系統 |靜態 |後續對更多連線的要求將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。 |2,000 |
 | 服務命名空間中所有轉送端點的並行轉送連線 |全系統 |靜態 |- |5,000 |
 | 每個服務命名空間的轉送端點 |全系統 |靜態 |- |10,000 |
-| [NetOnewayRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.netonewayrelaybinding.aspx) 和 [NetEventRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.neteventrelaybinding.aspx) 轉送的訊息大小 |全系統 |靜態 |將會拒絕超出這些配額的內送訊息和所呼叫的程式碼的 hello 收到例外狀況。 |64 KB |
+| [NetOnewayRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.netonewayrelaybinding.aspx) 和 [NetEventRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.neteventrelaybinding.aspx) 轉送的訊息大小 |全系統 |靜態 |超出這些配額的內送訊息將會遭到拒絕，而且呼叫端程式碼將會收到例外狀況。 |64 KB |
 | [HttpRelayTransportBindingElement](https://msdn.microsoft.com/library/microsoft.servicebus.httprelaytransportbindingelement.aspx) 和 [NetTcpRelayBinding](https://msdn.microsoft.com/library/microsoft.servicebus.nettcprelaybinding.aspx) 轉送的訊息大小 |全系統 |靜態 |- |無限制 |
 
 ### <a name="does-relay-have-any-usage-quotas"></a>轉送是否有任何使用量配額？
-根據預設，對於所有雲端服務，Microsoft 會設定針對所有客戶的訂用帳戶計算的彙總每月使用量配額。 我們了解有時候您的需求可能會超過這些限制。 您可以隨時連絡客戶服務部門，讓我們知道您的需求並適當地調整這些限制。 服務匯流排的 hello 整體使用量配額如下：
+根據預設，對於所有雲端服務，Microsoft 會設定針對所有客戶的訂用帳戶計算的彙總每月使用量配額。 我們了解有時候您的需求可能會超過這些限制。 您可以隨時連絡客戶服務部門，讓我們知道您的需求並適當地調整這些限制。 服務匯流排的彙總使用量配額如下：
 
 * 50 億則訊息
 * 2 百萬個轉送小時
 
-雖然我們保留 hello 右 toodisable 超過其每月的使用量配額的帳戶，我們提供電子郵件通知，就能讓多個嘗試 toocontact hello 客戶之前採取任何動作。 超出這些配額的客戶仍需負責支付額外費用。
+雖然我們有權停用超出其每月使用量配額的帳戶，但我們將提供電子郵件通知並且在採取任何動作之前多次嘗試連絡客戶。 超出這些配額的客戶仍需負責支付額外費用。
 
 ### <a name="naming-restrictions"></a>命名限制
 轉送命名空間名稱的長度必須介於 6 到 50 個字元之間。
 
 ## <a name="subscription-and-namespace-management"></a>訂用帳戶和命名空間管理
-### <a name="how-do-i-migrate-a-namespace-tooanother-azure-subscription"></a>我要如何移轉命名空間 tooanother Azure 訂用帳戶？
+### <a name="how-do-i-migrate-a-namespace-to-another-azure-subscription"></a>如何將命名空間移轉到另一個 Azure 訂用帳戶？
 
-toomove 一個 Azure 訂用帳戶 tooanother 訂用帳戶中的命名空間，可以是使用 hello [Azure 入口網站](https://portal.azure.com)或使用 PowerShell 命令。 toomove 命名空間 tooanother 訂用帳戶，hello 命名空間必須已經是使用中。 hello 使用者執行 hello 命令必須是這兩個 hello 來源與目標訂用帳戶的系統管理員使用者。
+若要將命名空間從某個 Azure 訂用帳戶移至另一個訂用帳戶，您可以使用 [Azure 入口網站](https://portal.azure.com)或使用 PowerShell 命令。 若要將命名空間移至另一個訂用帳戶，命名空間必須已經是作用中。 執行命令的使用者必須是來源和目標訂用帳戶的系統管理員使用者。
 
 #### <a name="azure-portal"></a>Azure 入口網站
 
-toouse hello Azure 入口網站 toomigrate Azure 轉送命名空間，從一個訂用帳戶 tooanother 訂用帳戶，請參閱[移動資源 tooa 新資源群組或訂用帳戶](../azure-resource-manager/resource-group-move-resources.md#use-portal)。 
+若要使用 Azure 入口網站，將 Azure 轉送命名空間從某個訂用帳戶移轉到另一個訂用帳戶，請參閱[將資源移至新的資源群組或訂用帳戶](../azure-resource-manager/resource-group-move-resources.md#use-portal)。 
 
 #### <a name="powershell"></a>PowerShell
 
-toouse PowerShell toomove 從一個 Azure 訂用帳戶 tooanother 訂用帳戶，使用下列的命令順序的 hello 命名空間。 tooexecute 這項作業，hello 命名空間必須已經是作用中，且執行 hello PowerShell 命令的 hello 使用者必須是這兩個 hello 來源與目標訂用帳戶的系統管理員使用者。
+若要使用 PowerShell 將命名空間從某個 Azure 訂用帳戶移至另一個訂用帳戶，請使用下列的命令順序。 若要執行這項作業，命名空間必須已經是作用中，而且執行 PowerShell 命令的使用者必須是來源與目標訂用帳戶的系統管理員使用者。
 
 ```powershell
-# Create a new resource group in hello target subscription.
+# Create a new resource group in the target subscription.
 Select-AzureRmSubscription -SubscriptionId 'ffffffff-ffff-ffff-ffff-ffffffffffff'
 New-AzureRmResourceGroup -Name 'targetRG' -Location 'East US'
 
-# Move hello namespace from hello source subscription toohello target subscription.
+# Move the namespace from the source subscription to the target subscription.
 Select-AzureRmSubscription -SubscriptionId 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa'
 $res = Find-AzureRmResource -ResourceNameContains mynamespace -ResourceType 'Microsoft.ServiceBus/namespaces'
 Move-AzureRmResource -DestinationResourceGroupName 'targetRG' -DestinationSubscriptionId 'ffffffff-ffff-ffff-ffff-ffffffffffff' -ResourceId $res.ResourceId
 ```
 
 ## <a name="troubleshooting"></a>疑難排解
-### <a name="what-are-some-of-hello-exceptions-generated-by-azure-relay-apis-and-suggested-actions-you-can-take"></a>有哪些 hello 例外狀況的 Azure 應用程式開發介面，轉送，所產生，也建議可以採取的動作嗎？
+### <a name="what-are-some-of-the-exceptions-generated-by-azure-relay-apis-and-suggested-actions-you-can-take"></a>Azure 轉送 API 所產生的例外狀況有哪些，您可以採取的建議動作為何？
 如需常見例外狀況的描述以及您可以採取的建議動作，請參閱[轉送例外狀況][Relay exceptions]。
 
-### <a name="what-is-a-shared-access-signature-and-which-languages-can-i-use-toogenerate-a-signature"></a>什麼是共用的存取簽章，而且可以使用哪些語言 toogenerate 簽章？
-共用存取簽章 (SAS) 是以 SHA-256 安全雜湊或 URI 為基礎的驗證機制。 如需有關如何 toogenerate 自己簽章中節點、 PHP、 Java、 C 和 C# 中，請參閱資訊[搭配共用的存取簽章的服務匯流排驗證][Shared Access Signatures]。
+### <a name="what-is-a-shared-access-signature-and-which-languages-can-i-use-to-generate-a-signature"></a>什麼是共用存取簽章，我可以使用何種語言來產生簽章？
+共用存取簽章 (SAS) 是以 SHA-256 安全雜湊或 URI 為基礎的驗證機制。 如需如何以 Node、PHP、Java、C 和 C# 產生自有簽章的相關資訊，請參閱[具有共用存取簽章的服務匯流排驗證][Shared Access Signatures]。
 
-### <a name="is-it-possible-toowhitelist-relay-endpoints"></a>它是可能 toowhitelist 轉送端點嗎？
-是。 hello 轉接用戶端會建立連接 toohello Azure 轉送服務使用的完整的網域名稱。 客戶可以在防火牆上新增 `*.servicebus.windows.net` 項目以支援 DNS 白名單。
+### <a name="is-it-possible-to-whitelist-relay-endpoints"></a>可以將轉送端點列入白名單嗎？
+是。 轉送用戶端會使用完整的網域名稱連線至 Azure 轉送服務。 客戶可以在防火牆上新增 `*.servicebus.windows.net` 項目以支援 DNS 白名單。
 
 ## <a name="next-steps"></a>後續步驟
 * [建立命名空間](relay-create-namespace-portal.md)

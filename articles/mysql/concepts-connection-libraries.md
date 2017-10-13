@@ -1,6 +1,6 @@
 ---
-title: "Azure 資料庫的 MySQL aaaConnection 文件庫 |Microsoft 文件"
-description: "本文列出的 MySQL 連接 tooAzure 資料庫時，用戶端程式可以使用每個程式庫或驅動程式。"
+title: "適用於 MySQL 的 Azure 資料庫的連線庫 | Microsoft Docs"
+description: "本文將列出用戶端程式在連接到適用於 MySQL 的 Azure 資料庫時可使用的每個程式庫或驅動程式。"
 services: mysql
 author: mswutao
 ms.author: wutao
@@ -9,14 +9,14 @@ editor: jasonwhowell
 ms.service: mysql-database
 ms.topic: article
 ms.date: 06/08/2017
-ms.openlocfilehash: ff439274ec5865d7713dec18d53e7e44f5886457
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e746f28829063f8437ad408c4681f90aec6c0e0a
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="connection-libraries-for-azure-database-for-mysql"></a>適用於 MySQL 的 Azure 資料庫的連線庫
-本主題列出用於 MySQL 連接 tooAzure 資料庫時，用戶端程式可以使用每個程式庫或驅動程式。
+本主題將列出用戶端程式在連接到適用於 MySQL 的 Azure 資料庫時可使用的每個程式庫或驅動程式。
 
 ## <a name="client-interfaces"></a>用戶端介面
 MySQL 提供標準的資料庫驅動程式連線，以搭配應用程式和工具使用 MySQL，其可與 ODBC 和 JDBC 的業界標準相容。 任何使用 ODBC 或 JDBC 的系統都可使用 MySQL。

@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy 第一個應用程式 tooCloud Microsoft Azure 上 Foundry |Microsoft 文件"
-description: "部署應用程式 tooCloud Foundry 在 Azure 上"
+title: "將第一個應用程式部署到 Microsoft Azure 上的 Cloud Foundry | Microsoft Docs"
+description: "將應用程式部署到 Azure 上的 Cloud Foundry"
 services: virtual-machines-linux
 documentationcenter: 
 author: seanmck
@@ -16,136 +16,136 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 06/14/2017
 ms.author: seanmck
-ms.openlocfilehash: 878da38f6eabe32a339f02aa0ead811d6e5af9a8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b617127fc0a3f8dcae293e356ea669edcfa5deff
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="deploy-your-first-app-toocloud-foundry-on-microsoft-azure"></a>部署第一個應用程式 tooCloud Foundry Microsoft Azure 上
+# <a name="deploy-your-first-app-to-cloud-foundry-on-microsoft-azure"></a>將第一個應用程式部署到 Microsoft Azure 上的 Cloud Foundry
 
-[Cloud Foundry](http://cloudfoundry.org) 是 Microsoft Azure 上可用的熱門開放原始碼應用程式平台。 在本文中，我們會示範如何 toodeploy 及管理雲端 Foundry Azure 環境中的應用程式。
+[Cloud Foundry](http://cloudfoundry.org) 是 Microsoft Azure 上可用的熱門開放原始碼應用程式平台。 在本文中，我們會示範如何在 Azure 環境中部署和管理 Cloud Foundry 上的應用程式。
 
 ## <a name="create-a-cloud-foundry-environment"></a>建立 Cloud Foundry 環境
 
 有幾個選項可以用來在 Azure 上建立 Cloud Foundry 環境：
 
-- 使用 hello[關鍵雲端 Foundry 優惠][ pcf-azuremarketplace] hello Azure Marketplace toocreate 包含 PCF Ops Manager 和 hello Azure Service Broker 的標準環境中。 您可以找到[完成指示][ pcf-azuremarketplace-pivotaldocs]部署 hello marketplace 提供 hello 關鍵的文件中。
+- 使用 Azure Marketplace 中的 [Pivotal Cloud Foundry 優惠][pcf-azuremarketplace]以建立標準環境，其中包含 PCF OPS Manager 和 Azure Service Broker。 您可以在 Pivotal 文件中找到部署市集優惠的[完整指示][pcf-azuremarketplace-pivotaldocs]。
 - 建立自訂的環境，方法是[手動部署 Pivotal Cloud Foundry][pcf-custom]。
-- [直接部署 hello 開放原始碼雲端 Foundry 封裝][ oss-cf-bosh]藉由設定[BOSH](http://bosh.io)導向器，協調 hello Foundry 雲端環境的 hello 部署的 VM。
+- [直接部署開放原始碼 Cloud Foundry 套件][oss-cf-bosh]，方法是設定 [BOSH](http://bosh.io) 導向器，這是一個 VM，它會協調 Cloud Foundry 環境的部署。
 
 > [!IMPORTANT] 
-> 如果您要部署 PCF hello Azure Marketplace 中，記下 hello SYSTEMDOMAINURL 和 tooaccess hello 關鍵應用程式管理員 中，這兩種指南所述 hello marketplace 部署所需的 hello 系統管理員認證。 它們是本教學課程所需的 toocomplete。 Marketplace 部署的 hello SYSTEMDOMAINURL 處於 hello 表單 https://system。*ip 位址*。 cf.pcfazure.com。
+> 如果您正在從 Azure Marketplace 部署 PCF，請記下存取 Pivotal Apps Manager 所需的 SYSTEMDOMAINURL 和管理員認證，這兩個項目都在市集部署指南中提及。 需要這兩個項目才能完成本教學課程。 對於市集部署，SYSTEMDOMAINURL 在表單 https://system.*ip-address*.cf.pcfazure.com 中。
 
-## <a name="connect-toohello-cloud-controller"></a>連接 toohello 雲端控制器
+## <a name="connect-to-the-cloud-controller"></a>連線至 Cloud Controller
 
-hello 雲端控制站是 hello 主要進入點 tooa 雲端 Foundry 環境來部署和管理應用程式。 hello 核心雲端控制站應用程式開發介面 (CCAPI) 是 REST API，但可透過各種工具存取。 在此情況下，我們藉此與其互動透過 hello[雲端 Foundry CLI][cf-cli]。 您可以安裝 hello CLI Linux、 MacOS、 或 Windows，但如果您想使用 tooinstall 它，並使用預先安裝在 hello [Azure 雲端殼層][cloudshell-docs]。
+Cloud Controller 是到 Cloud Foundry 環境以部署和管理應用程式的主要進入點。 核心 Cloud Controller API (CCAPI) 是 REST API，但是可以透過各種工具存取。 在此情況下，我們透過 [Cloud Foundry CLI][cf-cli] 與它互動。 您可以在 Linux、MacOS 或 Windows 上安裝 CLI，但是如果您完全不想要安裝，它可以預先安裝在 [Azure Cloud Shell][cloudshell-docs]。
 
-在中，toolog 前面加上`api`toohello SYSTEMDOMAINURL 您從 hello marketplace 部署取得。 因為 hello 預設部署伺服器使用自我簽署的憑證，您也應該包括 hello`skip-ssl-validation`切換。
+若要登入，請在您從市集部署取得的 SYSTEMDOMAINURL 前面加上 `api`。 由於預設部署使用自我簽署憑證，您也應該包含 `skip-ssl-validation` 參數。
 
 ```bash
 cf login -a https://api.SYSTEMDOMAINURL --skip-ssl-validation
 ```
 
-您必須提示的 toolog toohello 雲端控制站中。 使用貴用戶取得 hello marketplace 部署步驟中的 hello 系統管理員帳戶認證。
+系統會提示您登入 Cloud Controller。 使用您從市集部署步驟取得的管理員帳戶認證。
 
-提供雲端 Foundry*入*和*空格*做為命名空間 tooisolate hello 小組和環境中共用的部署。 hello PCF marketplace 部署包含 hello 預設*系統*組織一組的空間建立和 toocontain hello 基礎元件，例如 hello 自動調整服務和 hello Azure 的 service broker。 現在請選擇 hello*系統*空間。
+Cloud Foundry 提供組織和空間 作為命名空間，以隔離共用部署內的小組和環境。 PCF 市集部署包含預設系統組織和建立以包含基礎元件的一組空間，例如自動調整服務和 Azure Service Broker。 目前，選擇系統空間。
 
 
 ## <a name="create-an-org-and-space"></a>建立組織和空間
 
-如果您輸入`cf apps`，您會看到一組內 hello 系統 my.app hello 系統空間中已部署的系統應用程式 
+如果您輸入 `cf apps`，您會看到一組系統應用程式，已部署在系統組織內的系統空間。 
 
-您應該保留 hello*系統*組織保留給系統應用程式，因此建立組織及空間 toohouse 我們的範例應用程式。
+您應該為系統應用程式保留系統組織，因此請建立組織和空間以容納我們的範例應用程式。
 
 ```bash
 cf create-org myorg
 cf create-space dev -o myorg
 ```
 
-使用 hello 目標命令 tooswitch toohello 新組織和空間：
+使用目標命令以切換至新的組織和空間：
 
 ```bash
 cf target -o testorg -s dev
 ```
 
-現在，當您部署應用程式時，它會自動建立在 hello 新組織及空間。 目前沒有的 tooconfirm hello 新組織/在空間中，沒有應用程式輸入`cf apps`一次。
+現在，當您部署應用程式時，會自動在新的組織和空間中建立。 若要確認目前在新的組織/空間中沒有應用程式，請再次輸入 `cf apps`。
 
 > [!NOTE] 
-> 如需入空格及如何使用它們以角色為基礎的存取控制 (RBAC) 的詳細資訊，請參閱 hello[雲端 Foundry 文件][cf-orgs-spaces-docs]。
+> 如需組織和空間以及它們如何用於角色型存取控制 (RBAC) 的詳細資訊，請參閱[Cloud Foundry 文件][cf-orgs-spaces-docs]。
 
 ## <a name="deploy-an-application"></a>部署應用程式
 
-讓我們使用範例雲端 Foundry 應用程式呼叫 Hello Spring 雲端，這是以 Java 撰寫，且根據 hello [Spring 架構](http://spring.io)和[Spring 開機](http://projects.spring.io/spring-boot/)。
+讓我們使用名為 Hello Spring Cloud 的範例 Cloud Foundry 應用程式，該應用程式是以 Java 撰寫，並且根據 [Spring Framework](http://spring.io) 和 [Spring Boot](http://projects.spring.io/spring-boot/)。
 
-### <a name="clone-hello-hello-spring-cloud-repository"></a>複製 hello Hello Spring 雲端儲存機制
+### <a name="clone-the-hello-spring-cloud-repository"></a>複製 Hello Spring Cloud 存放庫
 
-GitHub 上使用 hello Hello Spring 雲端範例應用程式。 複製它 tooyour 環境，並變更到新目錄中 hello:
+Hello Spring Cloud 範例應用程式可以在 GitHub 上取得。 將它複製到您的環境，並且變更到新的目錄：
 
 ```bash
 git clone https://github.com/cloudfoundry-samples/hello-spring-cloud
 cd hello-spring-cloud
 ```
 
-### <a name="build-hello-application"></a>建置 hello 應用程式
+### <a name="build-the-application"></a>建置應用程式
 
-組建 hello 應用程式使用[Apache Maven](http://maven.apache.org)。
+使用 [Apache Maven](http://maven.apache.org) 建置應用程式。
 
 ```bash
 mvn clean package
 ```
 
-### <a name="deploy-hello-application-with-cf-push"></a>部署 hello 與 cf 推入的應用程式
+### <a name="deploy-the-application-with-cf-push"></a>使用 cf push 部署應用程式
 
-您可以部署大部分的應用程式 tooCloud Foundry 使用 hello`push`命令：
+您可以使用 `push` 命令，將大部分的應用程式部署到 Cloud Foundry：
 
 ```bash
 cf push
 ```
 
-當您*發送*應用程式時，雲端 Foundry 會偵測 hello （在這個情況下，Java 應用程式） 的應用程式類型，並識別其相依性 （在此案例中的 hello Spring 架構）。 封裝的所有項目所需 toorun 您的程式碼的獨立容器映像，又稱為*droplet*。 最後，雲端 Foundry 排程 hello 其中一個環境中的 hello 可用電腦上的應用程式，並建立，您可能會達到，hello hello 命令輸出中所提供的 URL。
+當您發送應用程式時，Cloud Foundry 會偵測應用程式類型 (在此案例中為 Java 應用程式)，並且識別其相依性 (在此案例中為 Spring Framework)。 然後它會將執行程式碼所需的所有項目封裝至獨立容器映像，稱為 droplet。 最後，Cloud Foundry 會在環境中其中一部可用的機器上排程應用程式，並且建立您可以在該位置取得它的 URL，該 URL 可以在命令的輸出中取得。
 
 ![cf push 命令的輸出][cf-push-output]
 
-toosee hello hello spring 雲端應用程式，您的瀏覽器中開啟 hello 提供 URL:
+若要查看 hello-spring-cloud 應用程式，請在瀏覽器中開啟提供的 URL：
 
 ![Hello Spring Cloud 的預設 UI][hello-spring-cloud-basic]
 
 > [!NOTE] 
-> 深入了解時會發生什麼事 toolearn `cf push`，請參閱[暫存應用程式如何][ cf-push-docs] hello 雲端 Foundry 文件中。
+> 若要深入了解 `cf push` 期間會發生什麼狀況，請參閱 Cloud Foundry 文件中的[應用程式如何暫存][cf-push-docs]。
 
 ## <a name="view-application-logs"></a>檢視應用程式記錄
 
-您可以使用應用程式的 hello 雲端 Foundry CLI tooview 記錄檔的名稱：
+您可以使用 Cloud Foundry CLI 以根據應用程式的名稱檢視其記錄：
 
 ```bash
 cf logs hello-spring-cloud
 ```
 
-根據預設，hello 記錄命令使用*結尾*，其中會顯示新的記錄檔，當它們被寫入。 toosee 新記錄檔都會出現，請重新整理 hello 瀏覽器中的 hello hello spring 雲端應用程式。
+根據預設，記錄命令會使用 tail，在寫入之後顯示新的記錄。 若要查看出現的新記錄，請在瀏覽器中重新整理 hello-spring-cloud 應用程式。
 
-tooview 記錄已經寫入、 新增 hello`recent`切換：
+若要檢視已寫入的記錄，請新增 `recent` 參數：
 
 ```bash
 cf logs --recent hello-spring-cloud
 ```
 
-## <a name="scale-hello-application"></a>標尺 hello 應用程式
+## <a name="scale-the-application"></a>調整應用程式
 
-根據預設，`cf push` 只會建立應用程式的單一執行個體。 tooensure 高可用性和啟用向外延展的較高的輸送量，您通常想 toorun 多個應用程式的一個執行個體。 您可以輕鬆地向外擴充已部署的應用程式使用 hello`scale`命令：
+根據預設，`cf push` 只會建立應用程式的單一執行個體。 若要確保高可用性，並且啟用相應放大以獲得較高的輸送量，您通常要執行應用程式的多個執行個體。 您可以使用 `scale` 命令，輕鬆地相應放大已部署的應用程式：
 
 ```bash
 cf scale -i 2 hello-spring-cloud
 ```
 
-執行 hello `cf app` hello 應用程式上的命令會顯示雲端 Foundry 建立 hello 應用程式的另一個執行個體。 Hello 應用程式啟動之後，雲端 Foundry 會負載平衡流量 tooit 自動啟動。
+在應用程式上執行 `cf app` 命令，會顯示 Cloud Foundry 正在建立應用程式的另一個執行個體。 應用程式啟動之後，Cloud Foundry 會自動對它啟動負載平衡流量。
 
 
 ## <a name="next-steps"></a>後續步驟
 
-- [讀取 hello 雲端 Foundry 文件][cloudfoundry-docs]
-- [設定雲端 Foundry hello Visual Studio Team Services 外掛程式][vsts-plugin]
-- [設定雲端 Foundry hello Microsoft 記錄分析噴嘴][loganalytics-nozzle]
+- [閱讀 Cloud Foundry 文件][cloudfoundry-docs]
+- [設定適用於 Cloud Foundry 的 Visual Studio Team Services 外掛程式][vsts-plugin]
+- [設定適用於 Cloud Foundry 的 Microsoft Log Analytics Nozzle][loganalytics-nozzle]
 
 <!-- LINKS -->
 

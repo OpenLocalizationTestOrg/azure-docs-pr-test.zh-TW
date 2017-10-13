@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中 SAP 多 SID 組態 aaaCreate |Microsoft 文件"
-description: "指南 toohigh 可用性的 SAP NetWeaver Windows 虛擬機器上的多重 SID 組態"
+title: "在 Azure 中建立 SAP 多 SID 組態 | Microsoft Docs"
+description: "Windows 虛擬機器上的 SAP NetWeaver 多 SID 組態的高可用性指南"
 services: virtual-machines-windows, virtual-network, storage
 documentationcenter: saponazure
 author: goraco
@@ -17,11 +17,11 @@ ms.workload: infrastructure-services
 ms.date: 05/05/2017
 ms.author: rclaus
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: e2a4b12928231743c59af86dab72595ad38d364b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b48df78df9f53ac7bf0804f55a8d36a2fe2f86b4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-an-sap-netweaver-multi-sid-configuration"></a>建立 SAP NetWeaver 多 SID 組態
 
@@ -47,45 +47,45 @@ ms.lasthandoff: 10/06/2017
 [sap-ha-guide-9.6]:sap-high-availability-guide.md#0ba4a6c1-cc37-4bcf-a8dc-025de4263772 
 [sap-ha-guide-10]:sap-high-availability-guide.md#18aa2b9d-92d2-4c0e-8ddd-5acaabda99e9
 
-Microsoft 在 2016 年 9 月發行的功能，可讓您使用 Azure 內部負載平衡器管理多個虛擬 IP 位址。 這項功能已存在於 hello Azure 外部負載平衡器。
+Microsoft 在 2016 年 9 月發行的功能，可讓您使用 Azure 內部負載平衡器管理多個虛擬 IP 位址。 這項功能已存在 Azure 外部負載平衡器。
 
-如果您有 SAP 部署時，您可以使用內部負載平衡器 toocreate Windows 叢集組態中的 SAP ASCS/SCS，述 hello [Windows Vm 上的高可用性的 SAP NetWeaver 指南][ sap-ha-guide].
+如果您有 SAP 部署，可以使用內部負載平衡器針對 SAP 的 ASCS/SCS 建立 Windows 叢集組態，如 [Windows VM 上的高可用性 SAP NetWeaver 指南][sap-ha-guide]所述。
 
-本文著重在從單一 ASCS/SCS 安裝 tooan SAP 多 SID 組態藉由安裝其他 SAP ASCS/SCS toomove 到現有的 Windows Server 容錯移轉叢集 (WSFC) 叢集中叢集執行個體的方式。 完成此程序之後，您將已設定 SAP 多 SID 叢集。
+本文將著重於如何將單一 ASCS/SCS 安裝移至 SAP 多 SID 組態，方法是將其他 SAP ASCS/SCS 叢集執行個體安裝至現有 Windows Server 容錯移轉叢集 (WSFC) 叢集。 完成此程序之後，您將已設定 SAP 多 SID 叢集。
 
 
 ## <a name="prerequisites"></a>必要條件
-您已經設定 WSFC 叢集中使用一個 SAP ASCS/SCS 執行個體，請如所述 hello [Windows Vm 上的高可用性的 SAP NetWeaver 指南][ sap-ha-guide]和此圖表中所示。
+您已經設定用於一個 SAP ASCS/SCS 執行個體的 WSFC 叢集，如 [Windows VM 上的高可用性 SAP NetWeaver 指南][sap-ha-guide]所述及如下圖所示。
 
 ![高可用性的 SAP ASCS/SCS 執行個體][sap-ha-guide-figure-6001]
 
 ## <a name="target-architecture"></a>目標架構
 
-hello 的目標是的 tooinstall 多個 SAP ABAP ASCS 或 SAP Java SCS 叢集執行個體 hello 相同 WSFC 叢集中，如下圖所示：
+目標是在相同 WSAFC 叢集中安裝多個 SAP ABAP ASCS 或 SAP Java SCS 叢集執行個體，如這裡所詳述：
 
 ![Azure 中多個 SAP ASCS/SCS 叢集執行個體][sap-ha-guide-figure-6002]
 
 > [!NOTE]
->沒有為每個 Azure 內部負載平衡器的私用前端 Ip 限制 toohello 數目。
+>每個 Azure 內部負載平衡器的私人前端 IP 有數量限制。
 >
->hello 一個 WSFC 叢集中的 SAP ASCS/SCS 執行個體數目上限是相等的 toohello 的每個 Azure 內部負載平衡器的私用前端 Ip 數目上限。
+>一個 WSFC 叢集中 SAP ASCS/SCS 執行個體數目上限等於每個 Azure 內部負載平衡器的私人前端 IP 數目上限。
 >
 
 如需更多有關負載平衡器限制的資訊，請參閱[網路限制：Azure Resource Manager][networking-limits-azure-resource-manager] 中的「每個負載平衡器的私人前端 IP」。
 
-hello 與兩個高可用性的 SAP 系統的完整說明看起來會像這樣：
+具有兩個高度可用 SAP 系統的完整配置畫面如下所示：
 
 ![具有兩個 SAP 系統 SID 的 SAP 高可用性多 SID 設定][sap-ha-guide-figure-6003]
 
 > [!IMPORTANT]
-> hello 安裝程式必須符合下列條件的 hello:
-> - hello SAP ASCS/SCS 執行個體必須共用 hello 相同 WSFC 叢集。
+> 安裝程式必須符合下列條件︰
+> - SAP ASCS / SCS 執行個體必須共用相同的 WSFC 叢集。
 > - 每個 DBMS SID 必須有其自己專用的 WSFC 叢集。
-> - 屬於 tooone SAP 系統 SID 的 SAP 應用程式伺服器必須有自己專用的 Vm。
+> - SAP 應用程式伺服器屬於必須擁有自己專用 VM 的一個 SAP 系統 SID。
 
 
-## <a name="prepare-hello-infrastructure"></a>準備 hello 基礎結構
-tooprepare 您基礎結構，您可以使用下列參數的 hello 安裝額外的 SAP ASCS/SCS 執行個體：
+## <a name="prepare-the-infrastructure"></a>準備基礎結構
+若要準備您的基礎結構，您可以安裝額外的 SAP ASCS/SCS 執行個體，並使用下列參數︰
 
 | 參數名稱 | 值 |
 | --- | --- |
@@ -101,37 +101,37 @@ tooprepare 您基礎結構，您可以使用下列參數的 hello 安裝額外�
 >
 >針對本文目的，因為已保留探查連接埠 62300，我們會使用探查連接埠 62350。
 
-您可以在 hello 現有 WSFC 叢集包含兩個節點中安裝額外的 SAP ASCS/SCS 執行個體：
+您可以在具有兩個節點的現有 WSFC 叢集中安裝額外 SAP ASCS/SCS 執行個體︰
 
 | 虛擬機器角色 | 虛擬機器主機名稱 | 靜態 IP 位址 |
 | --- | --- | --- |
 | ASCS/SCS 執行個體的第 1 個叢集節點 |pr1-ascs-0 |10.0.0.10 |
 | ASCS/SCS 執行個體的第 2 個叢集節點 |pr1-ascs-1 |10.0.0.9 |
 
-### <a name="create-a-virtual-host-name-for-hello-clustered-sap-ascsscs-instance-on-hello-dns-server"></a>Hello DNS 伺服器上建立叢集的 hello SAP ASCS/SCS 執行個體的虛擬主機名稱
+### <a name="create-a-virtual-host-name-for-the-clustered-sap-ascsscs-instance-on-the-dns-server"></a>在 DNS 伺服器上建立叢集 SAP ASCS/SCS 執行個體的虛擬主機名稱
 
-您可以使用下列參數的 hello 建立 hello hello ASCS/SCS 執行個體的虛擬主機名稱的 DNS 項目：
+您可以使用下列參數為 ASCS/SCS 執行個體的虛擬主機名稱建立 DNS 項目：
 
 | 新的 SAP ASCS/SCS 虛擬主機名稱 | 相關聯的 IP 位址 |
 | --- | --- | --- |
 |pr5-sap-cl |10.0.0.50 |
 
-hello 新的主機名稱和 IP 位址會顯示 hello DNS 管理員 中，在 hello 下列螢幕擷取畫面所示：
+新的主機名稱和 IP 位址會顯示在 DNS 管理員中，如下列螢幕擷取畫面所示︰
 
-![DNS 管理員 清單中反白顯示 hello 定義 hello 新 SAP ASCS/SCS 叢集虛擬名稱和 TCP/IP 位址的 DNS 項目][sap-ha-guide-figure-6004]
+![DNS 管理員清單反白顯示已定義之新的 SAP ASCS/SCS 叢集虛擬名稱和 TCP/IP 位址的 DNS 項目][sap-ha-guide-figure-6004]
 
-建立 DNS 項目 hello 程序也說明 hello 主要詳細[Windows Vm 上的高可用性的 SAP NetWeaver 指南][sap-ha-guide-9.1.1]。
+建立 DNS 項目的程序在主要的 [Windows VM 上的高可用性 SAP NetWeaver 指南][sap-ha-guide-9.1.1]中也有詳細說明。
 
 > [!NOTE]
-> hello 您指派 toohello hello 其他 ASCS/SCS 執行個體的虛擬主機名稱的新 IP 位址必須是 hello 與 hello 新的 IP 位址指派給 toohello SAP 的 Azure 負載平衡器相同。
+> 您指派給 ASCS/SCS 執行個體之虛擬主機名稱的新 IP 位址必須與指派給 SAP Azure Load Balancer 的新 IP 位址相同。
 >
->在我們的案例所 10.0.0.50 hello IP 位址。
+>在我們的案例中，IP 位址是 10.0.0.50。
 
-### <a name="add-an-ip-address-tooan-existing-azure-internal-load-balancer-by-using-powershell"></a>使用 PowerShell 新增 IP 位址 tooan 現有 Azure 內部負載平衡器
+### <a name="add-an-ip-address-to-an-existing-azure-internal-load-balancer-by-using-powershell"></a>使用 PowerShell 將 IP 位址新增至現有的 Azure 內部負載平衡器
 
-以上一個 SAP ASCS/SCS 執行個體中的 toocreate hello 相同 WSFC 叢集，請使用 PowerShell tooadd 現有 Azure 內部負載平衡器 IP 位址 tooan。 每個 IP 位址都需要有自己的負載平衡規則、探查連接埠、前端 IP 集區和後端集區。
+若要在相同的 WSFC 叢集中建立多個 SAP ASCS/SCS 執行個體，請使用 PowerShell 將 IP 位址新增至現有的 Azure 內部負載平衡器。 每個 IP 位址都需要有自己的負載平衡規則、探查連接埠、前端 IP 集區和後端集區。
 
-hello 下列指令碼會新增新 IP 位址 tooan 現有負載平衡器。 更新您的環境的 hello PowerShell 變數。 hello 指令碼會建立所需的所有負載平衡規則的所有 SAP ASCS/SCS 連接埠。
+下列指令碼會將新的 IP 位址新增至現有的負載平衡器。 請更新您環境的 PowerShell 變數。 指令碼會為所有 SAP ASCS/SCS 通訊埠建立所有必要的負載平衡規則。
 
 ```powershell
 
@@ -152,7 +152,7 @@ $count = $ILB.FrontendIpConfigurations.Count + 1
 $FrontEndConfigurationName ="lbFrontendASCS$count"
 $LBProbeName = "lbProbeASCS$count"
 
-# Get hello Azure VNet and subnet
+# Get the Azure VNet and subnet
 $VNet = Get-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $ResourceGroupName
 $Subnet = Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $VNet -Name $SubnetName
 
@@ -175,14 +175,14 @@ $BEConfig = Add-AzureRmLoadBalancerBackendAddressPoolConfig -Name $BackEndConfig
 # Get new updated config
 $ILB = Get-AzureRmLoadBalancer -Name $ILBname -ResourceGroupName $ResourceGroupName
 
-# Assign VM NICs toobackend pool
+# Assign VM NICs to backend pool
 $BEPool = Get-AzureRmLoadBalancerBackendAddressPoolConfig -Name $BackEndConfigurationName -LoadBalancer $ILB
 foreach($VMName in $VMNames){
         $VM = Get-AzureRmVM -ResourceGroupName $ResourceGroupName -Name $VMName
         $NICName = ($VM.NetworkInterfaceIDs[0].Split('/') | select -last 1)        
         $NIC = Get-AzureRmNetworkInterface -name $NICName -ResourceGroupName $ResourceGroupName                
         $NIC.IpConfigurations[0].LoadBalancerBackendAddressPools += $BEPool
-        Write-Host "Assigning network card '$NICName' of hello '$VMName' VM toohello backend pool '$BackEndConfigurationName' ..." -ForegroundColor Green
+        Write-Host "Assigning network card '$NICName' of the '$VMName' VM to the backend pool '$BackEndConfigurationName' ..." -ForegroundColor Green
         Set-AzureRmNetworkInterface -NetworkInterface $NIC
         #start-AzureRmVM -ResourceGroupName $ResourceGroupName -Name $VM.Name
 }
@@ -195,76 +195,76 @@ $FEConfig = get-AzureRMLoadBalancerFrontendIpConfig -Name $FrontEndConfiguration
 $BEConfig = Get-AzureRmLoadBalancerBackendAddressPoolConfig -Name $BackEndConfigurationName -LoadBalancer $ILB
 $HealthProbe  = Get-AzureRmLoadBalancerProbeConfig -Name $LBProbeName -LoadBalancer $ILB
 
-Write-Host "Creating load balancing rules for hello ports: '$Ports' ... " -ForegroundColor Green
+Write-Host "Creating load balancing rules for the ports: '$Ports' ... " -ForegroundColor Green
 
 foreach ($Port in $Ports) {
 
         $LBConfigrulename = "lbrule$Port" + "_$count"
-        Write-Host "Creating load balancing rule '$LBConfigrulename' for hello port '$Port' ..." -ForegroundColor Green
+        Write-Host "Creating load balancing rule '$LBConfigrulename' for the port '$Port' ..." -ForegroundColor Green
 
         $ILB | Add-AzureRmLoadBalancerRuleConfig -Name $LBConfigRuleName -FrontendIpConfiguration $FEConfig  -BackendAddressPool $BEConfig -Probe $HealthProbe -Protocol tcp -FrontendPort  $Port -BackendPort $Port -IdleTimeoutInMinutes 30 -LoadDistribution Default -EnableFloatingIP   
 }
 
 $ILB | Set-AzureRmLoadBalancer
 
-Write-Host "Succesfully added new IP '$ILBIP' toohello internal load balancer '$ILBName'!" -ForegroundColor Green
+Write-Host "Succesfully added new IP '$ILBIP' to the internal load balancer '$ILBName'!" -ForegroundColor Green
 
 ```
-Hello 指令碼執行之後，結果會顯示在 hello hello Azure 入口網站，hello 下列螢幕擷取畫面所示：
+在執行指令碼之後，結果會顯示在 Azure 入口網站中，如下列螢幕擷取畫面所示︰
 
-![前端 IP 集區中 hello Azure 入口網站][sap-ha-guide-figure-6005]
+![Azure 入口網站中新的前端 IP 集區][sap-ha-guide-figure-6005]
 
-### <a name="add-disks-toocluster-machines-and-configure-hello-sios-cluster-share-disk"></a>新增磁碟 toocluster 機器，並設定 hello SIOS 叢集共用磁碟
+### <a name="add-disks-to-cluster-machines-and-configure-the-sios-cluster-share-disk"></a>將磁碟新增至叢集機器，並設定 SIOS 叢集共用磁碟
 
-對於每個額外 SAP ASCS/SCS 執行個體，您必須新增叢集共用磁碟。 Windows Server 2012 R2，hello WSFC 叢集共用磁碟目前正在使用中的 hello SIOS DataKeeper 軟體解決方案。
+對於每個額外 SAP ASCS/SCS 執行個體，您必須新增叢集共用磁碟。 針對 Windows Server 2012 R2，目前使用的 WSFC 叢集共用磁碟是 SIOS DataKeeper 軟體解決方案。
 
-請勿 hello 遵循：
-1. 新增其他磁碟或磁碟的 hello 相同的大小 (您需要 toostripe) tooeach hello 的叢集節點，然後將它們格式化。
+執行下列動作：
+1. 將額外磁碟或大小相同的磁碟 (您需要等量的磁碟) 新增至每個叢集節點中，並將其格式化。
 2. 使用 SIOS DataKeeper 設定儲存體複寫。
 
-此程序假設您已經有安裝 SIOS DataKeeper hello WSFC 叢集的電腦上。 如果您已安裝它，您現在必須設定 hello 機器之間的複寫。 hello 程序中有詳細說明在 hello 主要[Windows Vm 上的高可用性的 SAP NetWeaver 指南][sap-ha-guide-8.12.3.3]。  
+此程序假設您已在 WSFC 叢集機器上安裝了 SIOS DataKeeper。 如果已經安裝，您現在必須在電腦之間設定複寫。 如需此程序的詳細說明，請參閱主要的 [Windows VM 上的高可用性 SAP NetWeaver 指南][sap-ha-guide-8.12.3.3]。  
 
-![DataKeeper 同步鏡像 hello 新 SAP ASCS/SCS 共用磁碟][sap-ha-guide-figure-6006]
+![新的 SAP ASCS/SCS 共用磁碟的 DataKeeper 同步鏡像][sap-ha-guide-figure-6006]
 
 ### <a name="deploy-vms-for-sap-application-servers-and-dbms-cluster"></a>針對 SAP 應用程式伺服器和 DBMS 叢集部署 VM
 
-第二個 SAP 系統 hello，toocomplete hello 基礎結構準備 hello 遵循：
+若要完成第二個 SAP 系統的基礎結構準備，執行下列作業︰
 
 1. 為 SAP 應用程式伺服器部署專用 VM，並將它們放在其自己專用的可用性群組。
 2. 為 DBMS 叢集部署專用 VM，並將它們放在其自己專用的可用性群組。
 
 
-## <a name="install-hello-second-sap-sid2-netweaver-system"></a>安裝第二個 SID2 的 SAP NetWeaver 系統 hello
+## <a name="install-the-second-sap-sid2-netweaver-system"></a>安裝第二個 SAP SID2 NetWeaver 系統
 
-hello 安裝的第二個 SAP SID2 系統的完整程序所述 hello 主要[Windows Vm 上的高可用性的 SAP NetWeaver 指南][sap-ha-guide-9]。
+如需有關安裝第二個 SAP SID2 系統的完整程序說明，請參閱主要的 [Windows VM 上的高可用性 SAP NetWeaver 指南][sap-ha-guide-9]。
 
-hello 高階程序如下所示：
+高階程序如下所示︰
 
-1. [安裝 hello SAP 第一個叢集節點][sap-ha-guide-9.1.2]。  
- 在此步驟中，您要安裝 SAP 與高可用性 ASCS/SCS 執行個體上 hello**現有的 WSFC 叢集節點 1**。
+1. [安裝 SAP 的第一個叢集節點][sap-ha-guide-9.1.2]。  
+ 在此步驟中，您要在**現有 WSFC 叢集節點 1** 上使用高可用性 ASCS/SCS 執行個體安裝 SAP。
 
-2. [修改 hello ASCS/SCS 執行個體的 hello SAP 設定檔][sap-ha-guide-9.1.3]。
+2. [修改 ASCS/SCS 執行個體的 SAP 設定檔][sap-ha-guide-9.1.3]。
 
 3. [設定探查連接埠][sap-ha-guide-9.1.4]。  
- 在此步驟中，您要使用 PowerShell 設定 SAP 叢集資源 SAP SID2 IP 探查連接埠。 其中一個 hello SAP ASCS/SCS 叢集節點上執行這項設定。
+ 在此步驟中，您要使用 PowerShell 設定 SAP 叢集資源 SAP SID2 IP 探查連接埠。 在其中一個 SAP ASCS/SCS 叢集節點上執行此組態。
 
-4. [安裝 hello 資料庫執行個體][sap-ha-快速入門-9.2]。  
+4. [安裝資料庫執行個體][sap-ha-guide-9.2]。  
  在此步驟中，您要在專用的 WSFC 叢集上安裝 DBMS。
 
-5. [安裝 hello 第二個叢集節點][sap-ha-快速入門-9.3]。  
- 在此步驟中，您要安裝 SAP 與現有 WSFC 叢集節點 hello 2 上的高可用性 ASCS/SCS 執行個體。
+5. [安裝第二個叢集節點][sap-ha-guide-9.3]。  
+ 在此步驟中，您要在現有 WSFC 叢集節點 2 上使用高可用性 ASCS/SCS 執行個體安裝 SAP。
 
-6. 開啟 Windows 防火牆連接埠 hello SAP ASCS/SCS 執行個體或甚至 ProbePort。  
- 在用於 SAP ASCS/SCS 執行個體的兩個叢集節點上，您要開啟 SAP ASCS/SCS 所使用的所有 Windows 防火牆連接埠。 這些連接埠會列在 hello [Windows Vm 上的高可用性的 SAP NetWeaver 指南][sap-ha-guide-8.8]。  
- 也開啟 hello Azure 內部負載平衡器探查連接埠，也就是 62350 在我們的案例。
+6. 開啟 SAP ASCS/SCS 執行個體和 ProbePort 的 Windows 防火牆連接埠。  
+ 在用於 SAP ASCS/SCS 執行個體的兩個叢集節點上，您要開啟 SAP ASCS/SCS 所使用的所有 Windows 防火牆連接埠。 如需這些連接埠的清單，請參閱 [Windows VM 上的高可用性 SAP NetWeaver 指南][sap-ha-guide-8.8]。  
+ 此外，開啟 Azure 內部負載平衡器探查連接埠，在我們的案例中為 62350。
 
-7. [變更 hello hello SAP 端 Windows 服務執行個體的啟動類型][sap-ha-guide-9.4]。
+7. [變更 SAP ERS Windows 服務執行個體的啟動類型][sap-ha-guide-9.4]。
 
-8. [安裝 hello SAP 主應用程式伺服器][ sap-ha-guide-9.5]上新的 hello 專用 VM。
+8. 在新的專用 VM 上[安裝 SAP 主要應用程式伺服器][sap-ha-guide-9.5]。
 
-9. [安裝 hello SAP 其他應用程式伺服器][ sap-ha-guide-9.6]上新的 hello 專用 VM。
+9. 在新的專用 VM 上[安裝 SAP 額外應用程式伺服器][sap-ha-guide-9.6]。
 
-10. [測試 hello SAP ASCS/SCS 執行個體容錯移轉和 SIOS 複寫][sap-ha-guide-10]。
+10. [測試 SAP ASCS/SCS 執行個體容錯移轉和 SIOS 複寫][sap-ha-guide-10]。
 
 ## <a name="next-steps"></a>後續步驟
 

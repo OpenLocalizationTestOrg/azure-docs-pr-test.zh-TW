@@ -1,6 +1,6 @@
 ---
-title: "aaaEnable 離線同步處理使用 iOS 行動應用程式 |Microsoft 文件"
-description: "深入了解如何 toouse Azure App Service 行動應用程式 toocache 和同步處理離線 iOS 應用程式資料。"
+title: "啟用 iOS Mobile Apps 的離線同步處理 | Microsoft Docs"
+description: "了解如何使用 Azure App Service Mobile Apps 來快取及同步處理 iOS 應用程式中的離線資料。"
 documentationcenter: ios
 author: ggailey777
 manager: syntaxc4
@@ -14,57 +14,57 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 10/01/2016
 ms.author: glenga
-ms.openlocfilehash: 570ea7cf6694ab7317c977331038929b64508ad3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 44c0d26b2d7d28322d436d4bda319d728c31a635
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="enable-offline-syncing-with-ios-mobile-apps"></a>啟用 iOS Mobile Apps 的離線同步處理
 [!INCLUDE [app-service-mobile-selector-offline](../../includes/app-service-mobile-selector-offline.md)]
 
 ## <a name="overview"></a>概觀
-本教學課程涵蓋與 hello 行動應用程式功能的 Azure App Service 適用於 iOS 的離線同步處理。 使用離線同步處理的使用者可以與行動裝置應用程式 tooview 互動中、 新增或修改資料，即使它們有沒有網路連線。 變更會儲存在本機資料庫中。 Hello 裝置恢復連線後，同步處理 hello 變更 hello 遠端的後端。
+本教學課程涵蓋適用於 iOS 的 Azure App Service Mobile Apps 功能的離線同步處理說明。 透過離線同步處理，終端使用者即使沒有網路連線，也可以和行動裝置 App 互動以檢視、新增、修改資料。 變更會儲存在本機資料庫中。 裝置恢復上線後，這些變更就會與遠端後端進行同步處理。
 
-如果這是您首次經驗與行動應用程式，您應該先完成 hello 教學課程[建立 iOS 應用程式]。 如果您不使用下載的 hello 伺服器快速入門專案，您必須加入 hello 資料存取擴充功能封裝 tooyour 專案。 如需伺服器擴充功能封裝的詳細資訊，請參閱[Azure 行動應用程式使用 hello.NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+如果這是您第一次接觸 Mobile Apps，請先完成[建立 iOS 應用程式] 教學課程。 如果您不使用下載的快速入門伺服器專案，則必須將資料存取擴充套件新增至您的專案。 如需伺服器擴充套件的詳細資訊，請參閱 [使用 Azure Mobile Apps 的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
-toolearn 進一步了解 hello 離線同步處理功能，請參閱[行動應用程式中的離線資料同步]。
+若要深入了解離線同步處理功能，請參閱 [Mobile Apps 中的離線資料同步處理]。
 
-## <a name="review-sync"></a>檢閱 hello 用戶端同步程式碼
-您下載的 hello hello 用戶端專案[建立 iOS 應用程式]教學課程已包含可支援使用本機的核心資料為基礎資料庫的離線同步處理的程式碼。 本節摘要說明在 hello 教學課程的程式碼中已包含內容。 Hello 功能的概念性概觀，請參閱[行動應用程式中的離線資料同步]。
+## <a name="review-sync"></a>檢閱用戶端同步程式碼
+您針對[建立 iOS 應用程式]教學課程下載的用戶端專案，已經包含了使用本機核心資料式資料庫支援離線同步處理的程式碼。 本節將摘要說明已包含在教學課程程式碼中的內容。 如需此功能的概念性概觀，請參閱 [Mobile Apps 中的離線資料同步處理]。
 
-使用行動應用程式的 hello 離線的資料同步處理功能，使用者可以互動本機資料庫即使 hello 網路是無法存取。 toouse 初始化 hello 同步處理內容的應用程式中的這些功能，`MSClient`和參考本機存放區。 然後參考資料表透過 hello **MSSyncTable**介面。
+Mobile Apps 的離線資料同步處理功能可讓終端使用者在無法存取網路時，仍可與本機資料庫互動。 若要在您的應用程式中使用這些功能，您可初始化 `MSClient` 的同步處理內容以及參考本機存放區。 然後透過 **MSSyncTable** 介面參考您的資料表。
 
-在**QSTodoService.m** (OBJECTIVE-C) 或**ToDoTableViewController.swift** hello hello 成員型別 (Swift)，請注意**syncTable**是**MSSyncTable**。 離線同步處理會使用此同步處理資料表介面，而不是 **MSTable**。 使用同步處理資料表時，所有作業移 toohello 本機存放區只能與 hello 遠端端與明確的推入進行同步處理和提取作業。
+在 **QSTodoService.m** (Objective-C) 或 **ToDoTableViewController.swift** (Swift) 中，注意到成員 **syncTable** 的類型為 **MSSyncTable**。 離線同步處理會使用此同步處理資料表介面，而不是 **MSTable**。 使用同步處理資料表時，所有作業都會移至本機存放區，而且只會與具有明確推送和提取作業的遠端後端同步處理。
 
- tooget 參考 tooa 同步處理資料表，使用 hello **syncTableWithName**方法`MSClient`。 tooremove 離線同步處理功能、 使用**tableWithName**改為。
+ 若要取得同步處理資料表的參考，請在 `MSClient` 上使用 **syncTableWithName** 方法。 若要移除離線同步處理功能，請改用 **tableWithName**。
 
-在執行任何資料表的作業之前，必須先初始化 hello 本機存放區。 Hello 相關程式碼如下：
+必須先初始化本機存放區，才可以執行資料表作業。 以下是相關的程式碼：
 
-* **Objective-C**。 在 hello **QSTodoService.init**方法：
+* **Objective-C**。 在 **QSTodoService.init** 方法中：
 
    ```objc
    MSCoreDataStore *store = [[MSCoreDataStore alloc] initWithManagedObjectContext:context];
    self.client.syncContext = [[MSSyncContext alloc] initWithDelegate:nil dataSource:store callback:nil];
    ```    
-* **Swift**。 在 hello **ToDoTableViewController.viewDidLoad**方法：
+* **Swift**。 在 **ToDoTableViewController.viewDidLoad** 方法中︰
 
    ```swift
-   let client = MSClient(applicationURLString: "http:// ...") // URI of hello Mobile App
+   let client = MSClient(applicationURLString: "http:// ...") // URI of the Mobile App
    let managedObjectContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext!
    self.store = MSCoreDataStore(managedObjectContext: managedObjectContext)
    client.syncContext = MSSyncContext(delegate: nil, dataSource: self.store, callback: nil)
    ```
-   這個方法會建立本機存放區使用 hello `MSCoreDataStore` hello 行動應用程式 SDK 的介面提供。 或者，您可以提供不同的本機存放區，藉由實作 hello`MSSyncContextDataSource`通訊協定。 此外，hello 的第一個參數**MSSyncContext**是使用的 toospecify 衝突處理常式。 因為我們傳遞`nil`，我們取得 hello 預設衝突處理常式，在任何衝突時失敗。
+   這方法會以 Mobile Apps SDK 提供的 `MSCoreDataStore` 介面建立一個本機存放區。 或者，您也可以實作 `MSSyncContextDataSource` 通訊協定，改為提供不同的本機存放區。 此外，**MSSyncContext** 的第一個參數是用來指定衝突處理常式。 因為已傳遞 `nil`，所以我們會取得預設衝突處理常式，該處理常式在任何衝突時都會失敗。
 
-現在，讓我們執行 hello 實際的同步處理作業，並從 hello 遠端的後端取得資料：
+現在，讓我們執行實際的同步處理作業，並從遠端後端取得資料：
 
-* **Objective-C**。 `syncData`第一次將新的變更推入，然後呼叫**pullData** tooget hello 遠端的後端的資料。 接著，hello **pullData**方法會取得新的資料與查詢相符：
+* **Objective-C**。 `syncData` 先推送新的變更，然後呼叫 **pullData** 以從遠端後端取得資料。 最後，**pullData** 方法會取得符合查詢的新資料︰
 
    ```objc
    -(void)syncData:(QSCompletionBlock)completion
    {
-       // Push all changes in hello sync context, and then pull new data.
+       // Push all changes in the sync context, and then pull new data.
        [self.client.syncContext pushWithCompletion:^(NSError *error) {
            [self logErrorIfNotNil:error];
            [self pullData:completion];
@@ -75,13 +75,13 @@ toolearn 進一步了解 hello 離線同步處理功能，請參閱[行動應用
    {
        MSQuery *query = [self.syncTable query];
 
-       // Pulls data from hello remote server into hello local table.
-       // We're pulling all items and filtering in hello view.
+       // Pulls data from the remote server into the local table.
+       // We're pulling all items and filtering in the view.
        // Query ID is used for incremental sync.
        [self.syncTable pullWithQuery:query queryId:@"allTodoItems" completion:^(NSError *error) {
            [self logErrorIfNotNil:error];
 
-           // Lets hello caller know that we have finished.
+           // Lets the caller know that we have finished.
            if (completion != nil) {
                dispatch_async(dispatch_get_main_queue(), completion);
            }
@@ -100,18 +100,18 @@ toolearn 進一步了解 hello 離線同步處理功能，請參閱[行動應用
 
           if error != nil {
               // A real application would handle various errors like network conditions,
-              // server conflicts, etc via hello MSSyncContextDelegate
+              // server conflicts, etc via the MSSyncContextDelegate
               print("Error: \(error!.description)")
 
-              // We will discard our changes and keep hello server's copy for simplicity
+              // We will discard our changes and keep the server's copy for simplicity
               if let opErrors = error!.userInfo[MSErrorPushResultKey] as? Array<MSTableOperationError> {
                   for opError in opErrors {
-                      print("Attempted operation tooitem \(opError.itemId)")
+                      print("Attempted operation to item \(opError.itemId)")
                       if (opError.operation == .Insert || opError.operation == .Delete) {
                           print("Insert/Delete, failed discarding changes")
                           opError.cancelOperationAndDiscardItemWithCompletion(nil)
                       } else {
-                          print("Update failed, reverting tooserver's copy")
+                          print("Update failed, reverting to server's copy")
                           opError.cancelOperationAndUpdateItem(opError.serverItem!, completion: nil)
                       }
                   }
@@ -122,35 +122,35 @@ toolearn 進一步了解 hello 離線同步處理功能，請參閱[行動應用
    }
    ```
 
-在 hello Objective C 版本中，在`syncData`，我們先呼叫**pushWithCompletion** hello 同步處理內容上。 這個方法是屬於`MSSyncContext`（而不 hello 同步處理資料表本身） 因為跨所有資料表發送變更。 已修改以某種方式在本機 （透過 CUD 作業） 的記錄傳送 toohello 伺服器。 然後 hello helper **pullData**呼叫，而它會呼叫**MSSyncTable.pullWithQuery** tooretrieve 遠端資料並將它儲存在 hello 本機資料庫。
+在 Objective-C 版本中，於 `syncData`，我們會先在同步處理內容上呼叫 **pushWithCompletion**。 此方法是 `MSSyncContext` 的成員 (而非同步處理資料表本身)，因為它會將變更推送至所有資料表。 只有以某種方式在本機上修改過的記錄 (透過 CUD 作業)，才會傳送至伺服器。 接著會呼叫 **pullData** 協助程式，該程式會呼叫 **MSSyncTable.pullWithQuery** 來擷取遠端資料並存放在本機資料庫中。
 
-在 hello Swift 版本中，hello 推入作業不是絕對必要，因為沒有呼叫太**pushWithCompletion**。 如果正在進行推入作業的 hello 資料表的 hello 同步內容中沒有任何暫止的變更，提取永遠會發出推入第一次。 不過，如果您有一個以上的同步處理資料表時，它是所有設定都一致跨相關資料表最佳的 tooexplicitly 呼叫發送 tooensure。
+在 Swift 版本中，因為推送作業不是絕對必要，所以並沒有呼叫 **pushWithCompletion**。 如果同步處理內容中正在進行推送作業的資料表有任何變更擱置，則提取一律會先發出推送。 不過，如果您有一個以上的同步處理資料表，最好能明確呼叫推送，以確保所有的相關資料表都能一致。
 
-在 hello Objective C 和 Swift 的版本中，您可以使用 hello **pullWithQuery**方法 toospecify 查詢 toofilter hello 想 tooretrieve 記錄。 在此範例中，hello 查詢會擷取所有記錄遠端 hello`TodoItem`資料表。
+在 Objective-C 與 Swift 版本中，您可以使用 **pullWithQuery** 方法來指定查詢，以篩選想要擷取的記錄。 在此範例中，查詢會擷取遠端 `TodoItem` 資料表中的所有記錄。
 
-hello 第二個參數**pullWithQuery**是用於查詢識別碼*增量同步處理*。增量同步處理擷取自 hello 上次同步處理，使用 hello 記錄已修改的記錄`UpdatedAt`時間戳記 (稱為`updatedAt`hello 本機存放區中。) 應該對每個邏輯的查詢中是唯一的描述性字串 hello 查詢識別碼。您的應用程式。 tooopt 未增量同步，傳遞`nil`如 hello 的查詢識別碼。 此方法可能效率不佳，因為它會在每次提取作業擷取所有記錄。
+**pullWithQuery** 的第二個參數是用於「增量同步處理」的查詢識別碼。 增量同步處理會使用記錄的 `UpdatedAt` 時間戳記 (在本機存放區中稱為 `updatedAt`)，僅取出自上次同步處理後修改的記錄。對您應用程式中的每個邏輯查詢而言，查詢識別碼應該是唯一的描述性字串。 若選擇不要增量同步處理，請傳遞 `nil` 做為查詢識別碼。 此方法可能效率不佳，因為它會在每次提取作業擷取所有記錄。
 
-當您修改或加入的資料，當使用者執行 hello 重新整理鍵筆勢，而且在啟動 hello Objective C 應用程式同步處理。
+當您修改或新增資料、使用者執行重新整理動作及啟動時，Objective-C 應用程式就會同步處理。
 
-hello Swift 應用程式進行同步時 hello 使用者執行 hello 重新整理筆勢和啟動。
+當使用者執行重新整理動作及啟動時，Swift 應用程式就會同步處理。
 
-Hello 應用程式同步處理資料時修改 (OBJECTIVE-C)，或是每當 hello 應用程式啟動時 （Objective C 和 Swift），hello 應用程式會假設該 hello 使用者在線上。 在更新版本的區段中，您將更新 hello 應用程式，讓使用者可以編輯，即使它們是離線。
+因為每當資料修改 (Objective-C) 或 App 啟動 (Objective-C 和 Swift) 時，App 就會同步處理，故 App 假設使用者在線上。 在後續章節中，您將會更新 App，讓使用者即使是離線狀態也能進行編輯。
 
-## <a name="review-core-data"></a>檢閱 hello 核心資料模型
-當您使用 hello 的核心資料離線存放區時，您必須定義資料模型中的特定資料表和欄位。 hello 範例應用程式已經包含資料模型與 hello 正確的格式。 在本節中，我們逐步進行這些資料表 tooshow 的使用方式。
+## <a name="review-core-data"></a>檢閱核心資料模型
+在使用「核心資料離線」存放區時，您必須在資料模型中定義特定資料表和欄位。 範例應用程式已經包含具有正確格式的資料模型。 在這一節中，我們會逐步介紹這些資料表並示範其使用方式。
 
-開啟 **QSDataModel.xcdatamodeld**。 四個資料表所使用的三個定義-hello SDK 和一個用於 hello 待辦項目本身：
-  * MS_TableOperations： 曲目 hello 需要 toobe 與 hello 伺服器同步處理的項目。
+開啟 **QSDataModel.xcdatamodeld**。 已定義四個資料表--其中三個由 SDK 使用，而一個是用於 To-do 項目本身：
+  * MS_TableOperations：追蹤需要與伺服器同步的項目。
   * MS_TableOperationErrors：追蹤在離線同步處理期間發生的任何錯誤。
-  * MS_TableConfig： 曲目 hello hello 上次同步處理作業的所有提取作業的上次更新時間。
-  * TodoItem： 儲存 hello 待辦項目。 hello 系統資料行**createdAt**， **updatedAt**，和**版本**是選用的系統屬性。
+  * MS_TableConfig：追蹤所有提取作業的最後一次同步處理作業的上次更新時間。
+  * TodoItem：儲存 To-do 項目。 系統資料行 **createdAt**、**updatedAt** 和 **version** 為選擇性系統屬性。
 
 > [!NOTE]
-> hello 行動應用程式 SDK 保留開頭的資料行名稱"**``**"。 請不要將此前置詞用於系統資料行以外的項目。 否則，當您使用 hello 遠端的後端時，會修改資料行名稱。
+> Mobile Apps SDK 會保留以 "**``**" 為開頭的資料行名稱。 請不要將此前置詞用於系統資料行以外的項目。 否則，當您使用遠端後端時，系統會修改您的資料行名稱。
 >
 >
 
-當您使用 hello 離線同步處理功能時，定義三個系統資料表 hello 和 hello 資料表。
+當您使用離線同步處理功能時，請定義三個系統資料表，以及資料資料表。
 
 ### <a name="system-tables"></a>系統資料表
 
@@ -199,24 +199,24 @@ Hello 應用程式同步處理資料時修改 (OBJECTIVE-C)，或是每當 hello
 | id | 字串 (標示為必要) |遠端存放區中的主索引鍵 |
 | 完成 | Boolean | To-do 項目欄位 |
 | 文字 |String |To-do 項目欄位 |
-| 建立時間 | Date | （選擇性）對應太**createdAt**系統屬性 |
-| 更新時間 | Date | （選擇性）對應太**updatedAt**系統屬性 |
-| 版本 | String | （選擇性）使用的 toodetect 衝突，對應 tooversion |
+| 建立時間 | 日期 | (選擇性) 對應至 **createdAt** 系統屬性 |
+| 更新時間 | 日期 | (選擇性) 對應至 **updatedAt** 系統屬性 |
+| 版本 | String | (選擇性) 用來偵測衝突，對應至版本 |
 
-## <a name="setup-sync"></a>Hello hello 應用程式同步行為變更
-本節中，您會修改 hello 應用程式，使它不會同步啟動應用程式，或當您插入和更新項目上。 其會同步執行 hello 重新整理手勢按鈕時，才。
+## <a name="setup-sync"></a>變更應用程式的同步處理行為
+在本節中，您將修改 App，使它在啟動或有使用者插入並更新項目時不會同步處理。 只有在執行重新整理動作按鈕時，它才會同步。
 
 **Objective-C**：
 
-1. 在**QSTodoListViewController.m**，變更 hello **viewDidLoad**方法 tooremove 太 hello 呼叫`[self refresh]`hello hello 方法結尾。 現在 hello 資料未與 hello 伺服器上啟動應用程式同步處理。 相反地，它會與 hello hello 本機存放區內容同步。
-2. 在**QSTodoService.m**，修改 hello 定義`addItem`，讓它在 hello 項目插入後不會同步處理。 移除 hello`self syncData`封鎖，並取代為下列 hello:
+1. 在 **QSTodoListViewController.m** 中，變更 **viewDidLoad** 方法以移除在方法結尾的 `[self refresh]` 呼叫。 資料現在已經不會在 App 啟動時同步。 反之，它是與本機存放區的內容同步。
+2. 在 **QSTodoService.m** 中，修改 `addItem` 的定義，使其不會在插入項目後同步處理。 移除 `self syncData` 區塊並以下列項目取代：
 
    ```objc
    if (completion != nil) {
        dispatch_async(dispatch_get_main_queue(), completion);
    }
    ```
-3. 修改 hello 定義`completeItem`如先前所述。 移除 hello 區塊`self syncData`並取代為下列 hello:
+3. 如先前所述修改 `completeItem` 的定義。 移除 `self syncData` 的區塊並以下列項目取代：
    ```objc
    if (completion != nil) {
        dispatch_async(dispatch_get_main_queue(), completion);
@@ -225,17 +225,17 @@ Hello 應用程式同步處理資料時修改 (OBJECTIVE-C)，或是每當 hello
 
 **Swift**：
 
-在`viewDidLoad`，請在**ToDoTableViewController.swift**，這裡顯示，toostop 上啟動應用程式同步處理 hello 兩行程式碼的註解。 Hello Swift 待辦事項應用程式在 hello 撰寫本文時，它不會更新 hello 服務新增或完成項目。 它會更新 hello 服務只在啟動應用程式。
+在 **ToDoTableViewController.swift** 的 `viewDidLoad` 中，註解化這兩行以停止在 App 啟動時同步處理。 在本文撰寫期間，當某人新增或完成項目時，Swift Todo App 不會更新服務。 只有在 App 啟動時它才會更新。
 
    ```swift
   self.refreshControl?.beginRefreshing()
   self.onRefresh(self.refreshControl)
 ```
 
-## <a name="test-app"></a>測試 hello 應用程式
-本節中，您可以連接無效 URL toosimulate tooan 離線的案例。 當您將資料的項目時，它們保留在 hello 本機的核心資料存放區，但它們未同步處理 hello 行動裝置應用程式後端。
+## <a name="test-app"></a>測試應用程式
+在本節中，您將連接至無效的 URL，以模擬離線情況。 當您新增資料項目時，這些項目會存放在本機核心資料存放區，但不會同步到行動裝置 App 後端。
 
-1. 變更中的 hello 行動裝置應用程式 URL **QSTodoService.m** tooan 無效的 URL，然後再次執行的 hello 應用程式：
+1. 將 **QSTodoService.m** 中的行動裝置 App URL 變更為無效的 URL，然後再次執行該 App：
 
    **Objective-C**。 在 QSTodoService.m 中：
    ```objc
@@ -245,44 +245,44 @@ Hello 應用程式同步處理資料時修改 (OBJECTIVE-C)，或是每當 hello
    ```swift
    let client = MSClient(applicationURLString: "https://sitename.azurewebsites.net.fail")
    ```
-2. 新增一些 To-do 項目。 結束模擬器 hello （或強制關閉 hello 應用程式），然後重新啟動。 確認已保存您的變更。
+2. 新增一些 To-do 項目。 結束模擬器 (或強制關閉 App)，然後重新啟動它。 確認已保存您的變更。
 
-3. 檢視遠端 hello hello 內容**TodoItem**資料表：
-   * Node.js 的後端，請移 toohello [Azure 入口網站](https://portal.azure.com/)，然後在您行動裝置應用程式後端中，按一下**簡單資料表** > **TodoItem**。  
+3. 檢視遠端 **TodoItem** 資料表的內容：
+   * 針對 Node.js 後端，請移至 [Azure 入口網站](https://portal.azure.com/)，在您的行動裝置 App 後端中按一下 [簡易表]  >  [TodoItem]。  
    * 針對 .NET 後端，請使用 SQL 工具 (例如 SQL Server Management Studio) 或 REST 用戶端 (例如 Fiddler 或 Postman)。  
 
-4. 請確認 hello 新項目有*不*已與 hello 伺服器進行同步處理。
+4. 請確認新項目「尚未」同步處理到伺服器。
 
-5. 變更 hello URL 後 toohello 更正其中中**QSTodoService.m**，並重新執行的 hello 應用程式。
+5. 請將 **QSTodoService.m** 中的 URL 變更回正確的 URL，然後重新執行 App。
 
-6. Hello 清單中的項目，藉以執行 hello 重新整理筆勢。  
+6. 將項目清單往下拉，執行重新整理動作。  
 會出現旋轉進度指示器。
 
-7. 檢視 hello **TodoItem**資料一次。 現在應該顯示 hello 新增和變更待辦項目。
+7. 再次檢視 **TodoItem** 資料。 其中會顯示已變更的新 To-do 項目。
 
 ## <a name="summary"></a>摘要
-toosupport hello 離線同步處理功能，我們使用 hello`MSSyncTable`介面，並初始化`MSClient.syncContext`與本機存放區。 在此情況下，hello 本機存放區當時在核心資料為基礎的資料庫。
+為了支援離線同步處理功能，我們使用了 `MSSyncTable` 介面，並對本機存放區初始化 `MSClient.syncContext`。 在此案例中，本機存放區是以核心資料為基礎的資料庫。
 
-當您使用的核心資料本機存放區時，您必須定義數個資料表以 hello[更正系統屬性](#review-core-data)。
+使用核心資料本機存放區時，您必須使用[正確的系統屬性](#review-core-data)定義數個資料表。
 
-hello 一般建立、 讀取、 更新和刪除 (CRUD) 作業的行動應用程式可視為 hello 應用程式仍然連接，但所有 hello 作業都發生 hello 本機存放區。
+針對行動裝置 App 的建立、讀取、更新及刪除 (CRUD) 等一般作業，會以 App 有如處於連線狀態之下執行，但所有的作業都是對本機存放區執行。
 
-當我們與 hello 伺服器同步 hello 本機存放區時，我們使用 hello **MSSyncTable.pullWithQuery**方法。
+我們使用 **MSSyncTable.pullWithQuery** 方法來同步處理本機存放區與伺服器。
 
 ## <a name="additional-resources"></a>其他資源
-* [行動應用程式中的離線資料同步]
-* [雲端涵蓋： Azure Mobile Services 中的離線同步] \(hello 視訊是關於行動服務，但行動應用程式離線同步運作方式類似。\)
+* [Mobile Apps 中的離線資料同步處理]
+* [雲端報導：Azure Mobile Services 中的離線同步處理] \(雖然影片是關於 Mobile Services，但 Mobile Apps 也是以類似的方式進行離線同步處理。\)
 
 <!-- URLs. -->
 
 
 [建立 iOS 應用程式]: app-service-mobile-ios-get-started.md
-[行動應用程式中的離線資料同步]: app-service-mobile-offline-data-sync.md
+[Mobile Apps 中的離線資料同步處理]: app-service-mobile-offline-data-sync.md
 
 [defining-core-data-tableoperationerrors-entity]: ./media/app-service-mobile-ios-get-started-offline-data/defining-core-data-tableoperationerrors-entity.png
 [defining-core-data-tableoperations-entity]: ./media/app-service-mobile-ios-get-started-offline-data/defining-core-data-tableoperations-entity.png
 [defining-core-data-tableconfig-entity]: ./media/app-service-mobile-ios-get-started-offline-data/defining-core-data-tableconfig-entity.png
 [defining-core-data-todoitem-entity]: ./media/app-service-mobile-ios-get-started-offline-data/defining-core-data-todoitem-entity.png
 
-[雲端涵蓋： Azure Mobile Services 中的離線同步]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
+[雲端報導：Azure Mobile Services 中的離線同步處理]: http://channel9.msdn.com/Shows/Cloud+Cover/Episode-155-Offline-Storage-with-Donna-Malayeri
 [Azure Friday: Offline-enabled apps in Azure Mobile Services]: http://azure.microsoft.com/en-us/documentation/videos/azure-mobile-services-offline-enabled-apps-with-donna-malayeri/

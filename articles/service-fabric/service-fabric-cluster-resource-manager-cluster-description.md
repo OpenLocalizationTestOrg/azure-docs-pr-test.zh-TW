@@ -1,6 +1,6 @@
 ---
-title: "aaaCluster 資源管理員叢集描述 |Microsoft 文件"
-description: "藉由指定容錯網域、 升級 」 網域，節點屬性，以及節點容量 hello 叢集資源管理員說明 Service Fabric 叢集。"
+title: "叢集資源管理員叢集描述 | Microsoft Docs"
+description: "將容錯網域、升級網域、節點屬性和節點容量指定給叢集資源管理員，以描述 Service Fabric 叢集。"
 services: service-fabric
 documentationcenter: .net
 author: masnider
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: masnider
-ms.openlocfilehash: f2822075976bd54402af5ad56991b5b360dfb1d8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e517eda4d3ff7ad81998003688c3cca78f76e179
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="describing-a-service-fabric-cluster"></a>描述 Service Fabric 叢集
-hello Service Fabric 叢集資源管理員會提供數種機制，用來描述叢集。 在執行階段 hello 叢集資源管理員會使用此資訊 tooensure 高可用性的 hello 服務 hello 叢集中執行。 同時強制執行這些重要的規則，它也會嘗試 hello 叢集內的 toooptimize hello 資源耗用量。
+Service Fabric 叢集資源管理員提供數種機制，來描述叢集。 在執行階段，叢集資源管理員會使用此資訊，以確保叢集中執行之服務的高可用性。 在強制執行這些重要規則時，它也會嘗試將叢集的資源消耗量最佳化。
 
 ## <a name="key-concepts"></a>重要概念
-hello 叢集資源管理員支援數個特徵來描述叢集：
+叢集資源管理員支援數個描述叢集的功能︰
 
 * 容錯網域
 * 升級網域
@@ -32,70 +32,70 @@ hello 叢集資源管理員支援數個特徵來描述叢集：
 * 節點容量
 
 ## <a name="fault-domains"></a>容錯網域
-容錯網域是任何連鎖故障區域。 一部電腦是 「 故障 」 網域，（因為它可能無法在它自己的各種理由，從電源供應器失敗 toodrive 失敗 toobad NIC 韌體）。 機器相同的乙太網路交換器是能力的中的連接的 toohello hello 做為相同容錯網域，是能力的共用單一來源，或在單一位置的機器。 因為這是理所當然的硬體錯誤 toooverlap，容錯網域是原本就是以階層方式和它們以服務的網狀架構中的 Uri。
+容錯網域是任何連鎖故障區域。 單一電腦是一個容錯網域 (因為它本身可能因各種原因而失敗，例如電源供應器故障、磁碟機故障或 NIC 韌體不正確)。 連線至相同乙太網路交換器的電腦位於相同的容錯網域，共用單一位置之單一電源的電腦也是如此。 由於硬體故障天生就會重疊，容錯網域本質上就具備階層性，且在 Service Fabric 中以 URI 表示。
 
-請務必確認容錯網域中正確設定了因為服務網狀架構會使用此資訊 toosafely 位置服務。 Service Fabric 不希望 tooplace 服務，例如 hello 遺失的 「 故障 」 網域 （某個元件的 hello 失敗所造成） 會導致服務 toogo 向下。 在 hello Azure Service Fabric 會使用所提供的 hello 環境 toocorrectly hello 容錯網域資訊的環境設定 hello hello 叢集中的節點代表您。 服務網狀架構獨立的容錯網域會定義在 hello 階段設定該 hello 叢集 
+必須正確設定容錯網域，因為 Service Fabric 會使用這項資訊來安全地放置服務。 Service Fabric 放置服務時會注意不要因為遺失容錯網域 (某個元件失敗所造成) 而導致服務中斷。 在 Azure 環境中，Service Fabric 會使用環境所提供的容錯網域資訊，代替您正確地設定叢集中的節點。 對於 Service Fabric Standalone，容錯網域會在叢集設定時定義。 
 
 > [!WARNING]
-> 請務必該 hello 容錯網域資訊提供 tooService 網狀架構的精確度。 例如，假設 Service Fabric 叢集是在 10 部虛擬機器上執行，這些虛擬機器是在五個實體主機上執行。 在此情況下，即使有 10 部虛擬機器，也只有 5 個不同的 (最上層) 容錯網域。 共用相同的實體主機造成的 hello Vm tooshare hello 相同的根容錯網域，因為 Vm 經驗 hello 協調失敗，其實體主機失敗時。  
+> 將正確的容錯網域資訊提供給 Service Fabric 相當重要。 例如，假設 Service Fabric 叢集是在 10 部虛擬機器上執行，這些虛擬機器是在五個實體主機上執行。 在此情況下，即使有 10 部虛擬機器，也只有 5 個不同的 (最上層) 容錯網域。 共用相同的實體主機會造成 VM 共用相同的根容錯網域，因為如果其實體主機失敗，VM 會遇到協調失敗。  
 >
-> 因為 Service Fabric 需要 hello 不 toochange 節點的容錯網域。 確保高可用性的 hello 的 Vm，這類的其他機制[HA Vm](https://technet.microsoft.com/en-us/library/cc967323.aspx)，使用從一部主機 tooanother 透明移轉 Vm。 這些機制不要重新設定或通知 hello 執行 hello VM 內的程式碼。 因此，它們**不支援**作為執行中 Service Fabric 叢集的環境。 Service Fabric 應該採用的 hello 僅高可用性技術。 不需要像是即時 VM 移轉、SAN 或其他項目的機制。 如果與 Service Fabric 搭配使用，這些機制會_減少_應用程式可用性和可靠性，因為它們會導致額外的複雜性、新增集中式失敗來源，並且使用與 Service Fabric 衝突的可靠性和可用性策略。 
+> 因為 Service Fabric 預期節點的容錯網域不會變更。 確保 VM (例如 [HA-VM](https://technet.microsoft.com/en-us/library/cc967323.aspx)) 高可用性的其他機制，是使用從一台主機到另一台主機的 VM 透明移轉。 這些機制不會重新設定或通知在 VM 內的執行中程式碼。 因此，它們**不支援**作為執行中 Service Fabric 叢集的環境。 Service Fabric 應該僅採用高可用性技術。 不需要像是即時 VM 移轉、SAN 或其他項目的機制。 如果與 Service Fabric 搭配使用，這些機制會_減少_應用程式可用性和可靠性，因為它們會導致額外的複雜性、新增集中式失敗來源，並且使用與 Service Fabric 衝突的可靠性和可用性策略。 
 >
 >
 
-在 hello 圖所示我們色彩所有 hello 實體構成 tooFault 網域及清單所有 hello 所產生的不同容錯網域。 在此範例中，我們有資料中心 ("DC")、機架 ("R") 和刀鋒伺服器 ("B")。 理論上，如果每個刀鋒視窗會保留多個虛擬機器，可能有另一個圖層 hello 容錯網域階層中。
+下圖中，我們將所有參與容錯網域的實體塗上顏色，並列出形成的所有不同容錯網域。 在此範例中，我們有資料中心 ("DC")、機架 ("R") 和刀鋒伺服器 ("B")。 如果每個刀鋒伺服器包含一個以上的虛擬機器，可以預料，容錯網域階層中還會有另一層。
 
 <center>
 ![透過容錯網域組織的節點][Image1]
 </center>
 
-在執行階段 hello Service Fabric 叢集資源管理員會考慮 hello hello 叢集中的容錯網域，並計劃配置。 hello 可設定狀態的複本或無狀態的執行個體指定服務的已發佈，讓它們位於不同的容錯網域。 容錯網域之間分散 hello 服務可確保在 hello 階層的任何層級的容錯網域失敗時，不會洩露 hello hello 服務可用性。
+在執行階段，Service Fabric 叢集資源管理員會考慮叢集中的容錯網域，並規劃配置。 指定服務的具狀態複本或無狀態執行個體會分散，讓它們位在不同的容錯網域中。 跨容錯網域分散服務，可確保當容錯網域在階層的任何層級失敗時，服務的可用性不會受到危害。
 
-Service Fabric 叢集資源管理員不在意 hello 容錯網域階層中有多少層級。 不過，它會嘗試 hello 遺失 hello 階層中任何一個部分不會影響執行中服務的 tooensure。 
+Service Fabric 的叢集資源管理員不在乎容錯網域階層中有多少層。 不過，當階層的任何一部分遺失時，它會嘗試確保這不會影響上方執行的服務。 
 
-建議您最好有 hello 深度 hello 容錯網域階層中的每個層級的節點數目相同。 如果 hello 「 樹 」 的容錯網域是在叢集中不平衡，難 hello 叢集資源管理員 toofigure 出 hello 的服務的最佳配置。 不平衡的容錯網域配置表示的某些網域 hello 損失影響 hello 可用性的服務，比其他網域。 如此一來，兩個目標之間損毀 hello 叢集資源管理員： 它想要將服務放在他們的 toouse 「 大量 」 網域中的 hello 機器和其想 tooplace 其他網域中的服務，讓網域中的 hello 遺失並不會造成問題。 
+在容錯網域階層中每個深度上，最好有相同的節點數目。 如果叢集中的容錯網域「樹狀結構」不平衡，叢集資源管理員會很難找出服務的最佳配置。 不平衡的容錯網域配置表示遺失某些網域時，服務可用性受影響的程度可能大於其他網域。 因此，叢集資源管理員在兩個目標之間掙扎︰希望將服務放在該「重負荷」網域中的電腦上以使用這些電腦，也希望在其他網域放置服務時不要因為遺失網域而造成問題。 
 
-不平衡網域外觀為何？ Hello 在圖中，我們會示範兩個不同的叢集配置。 在 hello 第一個範例中，hello 節點平均分佈在 hello 容錯網域。 Hello 第二個範例中，在一個 「 故障 」 網域會有許多節點 hello 超過其他容錯網域。 
+不平衡網域外觀為何？ 下圖中，我們顯示兩個不同的叢集配置。 在第一個範例中，節點平均分散至容錯網域。 在第二個範例中，一個容錯網域比其他容錯網域具有更多節點。 
 
 <center>
 ![兩個不同的叢集配置][Image2]
 </center>
 
-在 Azure 中，為您管理的容錯網域包含節點的 hello 選擇。 不過，根據 hello 您佈建的節點數目您可以仍然得到容錯網域與它們比其他的多個節點。 例如，假設您有五個 hello 叢集中的容錯網域，但會以給定的 NodeType 佈建七個節點。 在此情況下，hello 前兩個容錯網域得到更多的節點。 如果您只有幾個執行個體與多個 NodeTypes 繼續 toodeploy，hello 問題取得較差。 基於這個理由，建議您該 hello 中每個節點類型的節點數目是 hello 容錯網域數目的倍數。
+在 Azure 中會替您選擇哪一個容錯網域包含節點。 不過，根據您佈建的節點數目而定，某些容錯網域的節點最後仍可能比其他容錯網域更多。 例如，假設您在叢集中有五個容錯網域，但佈建特定 NodeType 的七個節點。 在此情況下，前兩個容錯網域最後會有較多節點。 如果您繼續部署多個 NodeType，但只有幾個執行個體，則問題會更糟。 基於這個原因，建議每個節點類型中的節點數目是容錯網域數目的倍數。
 
 ## <a name="upgrade-domains"></a>升級網域
-升級網域是另一項功能，可協助 hello Service Fabric 叢集資源管理員了解 hello 叢集的 hello 版面配置。 升級網域會定義在 hello 升級的節點集相同的時間。 升級的網域說明 hello 叢集資源管理員了解，以及協調管理作業，例如升級。
+升級網域是另一項功能，可協助 Service Fabric 叢集資源管理員了解叢集的配置。 升級網域定義一組同時升級的節點。 升級網域可協助叢集資源管理員了解及協調例如升級的管理作業。
 
-升級網域非常類似容錯網域，但是有幾個主要的差異。 首先，協調硬體失敗的區域會定義容錯網域。 升級網域、 在 hello 相反，由原則所定義。 您取得 toodecide 多少想，而不是它聽寫 hello 環境。 您可能會有與節點一樣多的升級網域。 容錯網域和升級網域的另一個差異在於升級網域不是階層式。 相反地，它們更像是簡單的標記。 
+升級網域非常類似容錯網域，但是有幾個主要的差異。 首先，協調硬體失敗的區域會定義容錯網域。 另一方面，升級網域會定義原則。 您應該決定想要多少個節點，而不是取決於環境。 您可能會有與節點一樣多的升級網域。 容錯網域和升級網域的另一個差異在於升級網域不是階層式。 相反地，它們更像是簡單的標記。 
 
-hello 下列圖表顯示三個升級網域會等量分散於三個容錯網域。 其中也顯示不具狀態服務的三個不同複本有一個可能的位置，而每一個最後都在不同的容錯網域和升級網域。 這個位置可讓 「 故障 」 網域中的服務升級的 hello 中間時的 hello 遺失，並且仍然擁有一份 hello 程式碼和資料。  
+下圖顯示三個升級網域等量分佈在三個容錯網域上。 其中也顯示不具狀態服務的三個不同複本有一個可能的位置，而每一個最後都在不同的容錯網域和升級網域。 在服務升級期間，即使遺失容錯網域，這個位置可讓我們仍然保有一份程式碼和資料。  
 
 <center>
 容錯網域和升級網域的位置![][Image3]
 </center>
 
-有優缺點 toohaving 大量的升級網域。 多個升級網域代表 hello 升級的每個步驟是更精細，因此會影響較少的節點或服務。 如此一來，較少的服務有 toomove 一次引入 hello 系統較少變換。 這通常會 tooimprove 可靠性，因為小於 hello 服務在 hello 升級過程中引用的任何問題所致。 多個升級網域也表示您需要較少的 hello 其他節點 toohandle hello 影響上的可用緩衝區升級。 例如，如果您有五個升級網域，hello 節點中每個處理大約 20%的流量。 如果您需要關閉該升級網域 tootake 升級時，該負載通常需要 toogo 某處。 因為您有四個剩餘的升級網域，每一個都必須有 hello 總流量的大約 5%的空間。 多個升級網域會表示您需要較少的緩衝區 hello hello 叢集中節點上。 例如，請考慮如果您擁有 10 個升級網域。 在此情況下，每個 UD 會只處理 hello 總流量的大約 10%。 當透過 hello 叢集升級步驟時，每個網域只需要 toohave hello 總流量的大約 1.1%的空間。 多個升級網域通常可讓您 toorun 您在高使用率，因為您需要較低的保留容量的節點。 hello 也適用於容錯網域。  
+大量升級網域有其利弊。 升級網域越多表示每個升級步驟會更輕微，因此受影響的節點或服務較少。 因為必須一次移動的服務較少，對系統的影響較小。 這樣較容易改善可靠性，因為升級期間發生的任何問題會影響較少的服務。 升級網域越多，也表示其他節點上需要較少的可用緩衝區來處理升級的影響。 例如，若您有五個升級網域，則每個網域的節點可處理大約 20% 的流量。 如果您需要關閉升級網域以進行升級，則負載通常必須移至別處。 因為您有四個剩餘的升級網域，每一個都必須有大約總流量 5% 的空間。 多個升級網域表示您在叢集之節點上需要較少的緩衝區。 例如，請考慮如果您擁有 10 個升級網域。 在此情況下，每個 UD 只會處理大約總流量的 10%。 當升級步驟是透過叢集時，每個網域只需要有大約總流量 1.1% 的空間。 多個升級網域通常可讓您在更高的使用率之下執行您的節點，因為您需要較少的保留容量。 同樣的作法也適用於容錯網域。  
 
-有許多的 「 升級 」 網域 hello 缺點是升級傾向 tootake 長。 Service Fabric 等候一段時間之後升級網域會完成，而且會執行啟動 tooupgrade hello 之前檢查下一個。 這些延遲啟用偵測 hello 升級所導入，才會繼續執行 hello 升級的問題。 hello 代價是可接受的因為它會防止不正確的變更會影響到太多的 hello 服務一次。
+擁有許多升級網域的缺點是升級通常需要較長的時間。 Service Fabric 會在升級網域完成之後等候一段時間，並且在開始升級下一個升級網域之前執行檢查。 這些延遲可讓系統在升級繼續之前偵測由升級帶來的問題。 缺點是可接受的，因為它會防止不良的變更一次影響到太多服務。
 
-升級網域太少有許多負面的副作用 - 當個別升級網域關閉來升級時，整體容量會有一大部分無法使用。 例如，若您只有三個升級網域，則一次就關閉大約 1/3 的整體服務或叢集容量。 因為您在叢集 toohandle hello 工作負載的 hello 其餘部分有 toohave 足夠的容量，一次向下有非常多的服務不需要這樣做。 維護該緩衝區表示這些節點在一般作業期間的負載比其他期間少。 這會增加執行您的服務中的 hello 成本。
+升級網域太少有許多負面的副作用 - 當個別升級網域關閉來升級時，整體容量會有一大部分無法使用。 例如，若您只有三個升級網域，則一次就關閉大約 1/3 的整體服務或叢集容量。 服務不宜一下子就關閉這麼多，因為叢集的剩餘部分必須有足夠容量來處理工作負載。 維護該緩衝區表示這些節點在一般作業期間的負載比其他期間少。 這會增加執行服務的成本。
 
-沒有任何實際限制 toohello 總數錯誤 」 或 「 升級 」 網域環境中，或條件約束上重疊的方式。 話雖如此，有幾個常見模式：
+環境中的容錯網域或升級網域總數沒有實際限制，它們的重疊方式也不受約束。 話雖如此，有幾個常見模式：
 
 - 1:1 對應的容錯網域和升級網域
 - 每個節點 (實體或虛擬作業系統執行個體) 一個升級網域
-- 其中 hello 容錯網域和升級網域形成矩陣與機器通常會執行下 hello 對角線"等量 」 或 「 矩陣 」 模型
+- 「等量」或「矩陣」模型，其中的容錯網域和升級網域形成一個矩陣，而電腦通常沿著對角線排列。
 
 <center>
 ![容錯網域和升級網域配置][Image4]
 </center>
 
-有沒有最佳回答哪些配置 toochoose，各有一些優點和缺點。 例如，hello 1FD:1UD 模型會是簡單 tooset 最多。 hello 1 的升級網域，每個節點的模型是最接近哪些人只是要使用。 在升級期間每個節點會獨立更新。 這是類似 toohow 少量的機器已在過去的 hello 手動升級。 
+對於選擇哪個配置並沒有最佳答案，每個答案都各有優缺點。 例如，1FD:1UD 模型相當容易設定。 每個節點 1 個升級網域模型，是使用者最常使用的模型。 在升級期間每個節點會獨立更新。 這類似於以往手動升級小型集合機器的方式。 
 
-hello FD/UD 矩陣，其中 hello Fd 和 Ud 形成資料表，而節點都放置啟動沿著 hello 對角線 hello 最常見的模型。 這是預設會在 Azure 中的 Service Fabric 叢集所使用的 hello 模型。 對具有許多節點的叢集的所有項目最後會看起來就像是上述的 hello 密集矩陣模式。
+最常見的模型是 FD/UD 矩陣，其中 FD 和 UD 形成一個表格，而節點沿著對角線開始放置。 這是在 Azure 中的 Service Fabric 叢集預設使用的模型。 對於具有許多節點的叢集，所有項目最後看起來就像是上述的密集矩陣模式。
 
 ## <a name="fault-and-upgrade-domain-constraints-and-resulting-behavior"></a>容錯網域和升級網域的條件約束和導致的行為
-hello 叢集資源管理員會將 hello desire tookeep 服務平衡故障 」 和 「 升級 」 網域做為條件約束。 您可以在 [這篇文章](service-fabric-cluster-resource-manager-management-integration.md)中深入了解條件約束。 hello 容錯和升級網域的條件約束狀態: 「 指定的服務資料分割應該不會在發現差異*大於一*在 hello 的服務物件 （無狀態服務執行個體或可設定狀態的服務複本）兩個網域。 」 這可防止違反這個條件約束的特定移動或排列方式。
+為了讓服務在容錯網域和升級網域之間保持平衡，叢集資源管理員會將這種期望當成一種條件約束。 您可以在 [這篇文章](service-fabric-cluster-resource-manager-management-integration.md)中深入了解條件約束。 容錯網域和升級網域的條件約束表示：「針對特定的服務資料分割，兩個網域之間的服務物件數目 (無狀態服務或具狀態服務副本) 差異決不能「大於一」。 這可防止違反這個條件約束的特定移動或排列方式。
 
 讓我們來看看一個範例。 假設我們的叢集有六個節點，且已設定五個容錯網域和五個升級網域。
 
@@ -107,9 +107,9 @@ hello 叢集資源管理員會將 hello desire tookeep 服務平衡故障 」 �
 | **UD3** | | | |N4 | |
 | **UD4** | | | | |N5 |
 
-現在假設我們建立 TargetReplicaSetSize (或者對於無狀態服務是 InstanceCount) 為五的服務。 N1 N5 進入 hello 複本。 事實上，不論建立多少像這樣的服務，都不會用到 N6。 原因為何？ 讓我們看看 hello 目前的配置和選擇 N6，則會發生什麼事的 hello 差異。
+現在假設我們建立 TargetReplicaSetSize (或者對於無狀態服務是 InstanceCount) 為五的服務。 複本將會落在 N1-N5 上。 事實上，不論建立多少像這樣的服務，都不會用到 N6。 原因為何？ 讓我們看看目前的配置和選擇 N6 時情況如何之間的差異。
 
-以下是我們了及 hello 複本，每個容錯和升級網域總數的 hello 版面配置：
+以下是我們的配置，以及每個容錯網域和升級網域的複本總數。
 
 |  | FD0 | FD1 | FD2 | FD3 | FD4 | UDTotal |
 | --- |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -120,9 +120,9 @@ hello 叢集資源管理員會將 hello desire tookeep 服務平衡故障 」 �
 | **UD4** | | | | |R5 |1 |
 | **FDTotal** |1 |1 |1 |1 |1 |- |
 
-就每個容錯網域和升級網域的節點數而論，在此配置達到平衡。 它也是由平衡 hello 數的每個容錯和升級網域的複本。 每個網域有節點數目相同的 hello 和 hello 相同數目的複本。
+就每個容錯網域和升級網域的節點數而論，在此配置達到平衡。 在每個容錯網域和升級網域的複本數目方面也達到平衡。 每個網域都擁有相同數量的節點，以及相同數量的複本。
 
-現在，讓我們看看改用 N6 而不使用 N2 的情況。 會 hello 複本要如何散發然後？
+現在，讓我們看看改用 N6 而不使用 N2 的情況。 複本將會如何散佈？
 
 |  | FD0 | FD1 | FD2 | FD3 | FD4 | UDTotal |
 | --- |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -133,7 +133,7 @@ hello 叢集資源管理員會將 hello desire tookeep 服務平衡故障 」 �
 | **UD4** | | | | |R4 |1 |
 | **FDTotal** |2 |0 |1 |1 |1 |- |
 
-此配置命名為違反我們 hello 容錯網域條件約束的定義。 FD0 具有兩個複本，而 FD1 零，讓 hello FD0 和差異 FD1 總共有兩個。 hello 叢集資源管理員不允許這種排列方式。 同樣地，如果挑選 N2 和 N6 (而不是 N1 和 N2)，則會得到：
+此配置違反容錯網域條件約束的定義。 FD0 有兩個複本，FD1 沒有複本，所以 FD0 和 FD1 之間的差異合計為 2。 叢集資源管理員不允許這種安排。 同樣地，如果挑選 N2 和 N6 (而不是 N1 和 N2)，則會得到：
 
 |  | FD0 | FD1 | FD2 | FD3 | FD4 | UDTotal |
 | --- |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -144,12 +144,12 @@ hello 叢集資源管理員會將 hello desire tookeep 服務平衡故障 」 �
 | **UD4** | | | | |R4 |1 |
 | **FDTotal** |1 |1 |1 |1 |1 |- |
 
-此配置就容錯網域而言是平衡的。 不過，現在它會違反 hello 升級網域條件約束。 這是因為 UD0 有零個複本，而 UD1 有兩個複本。 因此，此配置命名為也不正確，而且不會挑選 hello 叢集資源管理員所。 
+此配置就容錯網域而言是平衡的。 不過，現在它會違反升級網域條件約束。 這是因為 UD0 有零個複本，而 UD1 有兩個複本。 因此，此配置也無效，而且不會被叢集資源管理員挑選。 
 
 ## <a name="configuring-fault-and-upgrade-domains"></a>設定容錯網域和升級網域
-Azure 託管的 Service Fabric 部署中會自動定義容錯網域和升級網域。 Service Fabric 拾取，並使用從 Azure 的 hello 環境資訊。
+Azure 託管的 Service Fabric 部署中會自動定義容錯網域和升級網域。 Service Fabric 會從 Azure 中取用環境資訊。
 
-如果您正在建立您自己的叢集 （或想 toorun 特定拓撲中開發），您可以自行提供 hello 容錯網域和升級網域的資訊。 在此範例中，我們定義本機開發叢集，具有九個節點，且跨越三個「資料中心」(各有三個機架)。 此叢集也有三個升級網域等量分散於這些三個資料中心。 Hello 組態的範例如下： 
+如果想要建立您自己的叢集 (或想要在開發環境中執行特定拓撲)，您可以自行提供容錯網域和升級網域資訊。 在此範例中，我們定義本機開發叢集，具有九個節點，且跨越三個「資料中心」(各有三個機架)。 此叢集也有三個升級網域等量分散於這些三個資料中心。 設定的範例如下： 
 
 ClusterManifest.xml
 
@@ -243,31 +243,31 @@ ClusterManifest.xml
 ```
 
 > [!NOTE]
-> 透過 Azure Resource Manager 定義叢集時，容錯網域和升級網域會由 Azure 指派。 因此，Azure Resource Manager 範本中的 hello 定義的節點型別和虛擬機器規模集不包含容錯網域 」 或 「 升級 」 網域資訊。
+> 透過 Azure Resource Manager 定義叢集時，容錯網域和升級網域會由 Azure 指派。 因此，Azure Resource Manager 範本中的節點類型和虛擬機器擴展集定義不包含容錯網域或升級網域資訊。
 >
 
 ## <a name="node-properties-and-placement-constraints"></a>節點屬性和放置條件約束
-您有時 （事實上，大部分的 hello 時間） 將只在特定類型的 hello 叢集中的節點執行某些工作負載的 toowant tooensure。 例如，某些工作負載可能需要 GPU 或 SSD，而有些則不用。 目標硬體 tooparticular 工作負載的絕佳範例是有幾乎每個多層式架構。 特定電腦做為 hello 前端或 API 伺服端 hello 應用程式和公開的 toohello 用戶端或 hello 網際網路。 不同的電腦，通常會使用不同的硬體資源，且處理 hello 運算或儲存層的 hello 工作。 這些通常是_不_直接公開 tooclients 或 hello 網際網路。 Service Fabric 需要有特定的工作負載需要特定硬體組態上的 toorun 情況。 例如：
+有時候 (事實上是大部分的情況下) 您會想要確保工作負載只在叢集中的特定節點類型上執行。 例如，某些工作負載可能需要 GPU 或 SSD，而有些則不用。 將硬體專用於特定工作負載的最佳例子幾乎都是多層式架構。 特定電腦作為應用程式的前端或 API 供應端，並且公開至用戶端或網際網路。 其他電腦 (通常有不同的硬體資源) 處理計算層或儲存層的工作。 它們通常_不會_直接公開至用戶端或網際網路。 Service Fabric 認為特定的工作負載有時需要在特定硬體設定上執行。 例如：
 
 * 現有的多層式架構應用程式已「提升並移轉」到 Service Fabric 環境
-* 工作負載需要 toorun 於特定硬體的效能、 小數位數或隔離的理由
+* 針對效能、級別或安全性隔離原因而想要在特定硬體上執行的工作負載
 * 基於原則或資源耗用量的理由，工作負載應該彼此隔離
 
-toosupport 組態，這類服務網狀架構有可以套用的 toonodes 標記的第一個類別的概念。 這些標記稱為**節點屬性**。 **位置條件約束**是 hello 陳述式附加 tooindividual 服務選取一或多個節點的屬性。 放置條件約束會定義應該執行服務的位置。 hello 一組條件約束可延伸-任何索引鍵/值組可以運作。 
+為了支援這種設定，Service Fabric 有一流的標籤概念可運用在節點上。 這些標記稱為**節點屬性**。 **條件約束**是陳述式，會附加至針對一或多個節點屬性選取的個別服務。 放置條件約束會定義應該執行服務的位置。 條件約束集可延伸 - 任何索引鍵/值組都沒問題。 
 
 <center>
 ![叢集配置不同工作負載][Image5]
 </center>
 
 ### <a name="built-in-node-properties"></a>內建節點屬性
-服務網狀架構定義可以自動使用不含 hello 使用者具有 toodefine 某些預設節點屬性它們。 hello 預設屬性，定義每個節點是 hello **NodeType**和 hello **NodeName**。 例如，您可以將放置條件約束撰寫成 `"(NodeType == NodeType03)"`。 通常我們找到了 NodeType toobe hello 最常使用的屬性之一。 因為它與機器類型的對應是 1:1，所以很有用。 機器的每個型別對應 tooa 傳統的多層式架構應用程式中的工作負載類型。
+Service Fabric 定義一些預設節點屬性，可自動使用，而不需要由使用者定義。 每個節點上定義的預設屬性是 **NodeType** 和 **NodeName**。 例如，您可以將放置條件約束撰寫成 `"(NodeType == NodeType03)"`。 我們大致上發現 NodeType 是其中一個最常用的屬性。 因為它與機器類型的對應是 1:1，所以很有用。 每個機器類型都對應至傳統多層式架構應用程式中的工作負載類型。
 
 <center>
 ![放置條件約束和節點屬性][Image6]
 </center>
 
 ## <a name="placement-constraint-and-node-property-syntax"></a>放置條件約束和節點屬性語法 
-hello hello 節點屬性中指定的值可以是字串，bool，或帶正負號長時間。 在 hello 服務的 hello 陳述式會呼叫放置*條件約束*因為它會限制 hello 服務可讓 hello 叢集中執行。 hello 條件約束可以是任何 hello hello 叢集中的另一個節點屬性運作的布林陳述式。 這些布林值的陳述式中的 hello 有效選取器為：
+節點屬性中指定的值可以是字串、bool，或帶正負號長值。 服務的陳述式稱為放置「條件約束」，因為它會限制服務在叢集中可執行的位置。 條件約束可以是任何在叢集中於不同節點上運作的布林值陳述式。 這些布林值陳述式中的有效選取器如下：
 
 1) 建立特定陳述式的條件式檢查
 
@@ -295,9 +295,9 @@ hello hello 節點屬性中指定的值可以是字串，bool，或帶正負號�
   * `"NodeColor != green"`
   * `"((OneProperty < 100) || ((AnotherProperty == false) && (OneProperty >= 100)))"`
 
-只有其中 hello 整體放置 constraint 陳述式會評估太"，則為 True 」 的節點可以有 hello 置於其上的服務。 未定義屬性的節點不符合包含該屬性的任何放置條件約束。
+服務只能放置在整體放置條件約束陳述式評估為 "True" 的節點上。 未定義屬性的節點不符合包含該屬性的任何放置條件約束。
 
-假設該屬性定義指定的節點類型的節點的後的 hello:
+假設某個節點類型已定義下列節點屬性︰
 
 ClusterManifest.xml
 
@@ -314,7 +314,7 @@ ClusterManifest.xml
 獨立部署透過 ClusterConfig.json，Azure 託管叢集透過 Template.json。 
 
 > [!NOTE]
-> 在您的 Azure Resource Manager 範本 hello 節點型別通常已參數化。 它看起來會是 "[parameters('vmNodeType1Name')]"，而不是 "NodeType01"。
+> 在您的 Azure Resource Manager 範本中，節點類型通常已參數化。 它看起來會是 "[parameters('vmNodeType1Name')]"，而不是 "NodeType01"。
 >
 
 ```json
@@ -349,9 +349,9 @@ PowerShell：
 New-ServiceFabricService -ApplicationName $applicationName -ServiceName $serviceName -ServiceTypeName $serviceType -Stateful -MinReplicaSetSize 3 -TargetReplicaSetSize 3 -PartitionSchemeSingleton -PlacementConstraint "HasSSD == true && SomeProperty >= 4"
 ```
 
-如果 NodeType01 的所有節點都是有效的您也可以選取該節點型別中的 hello 條件約束"(NodeType == NodeType01)"。
+如果 NodeType01 的所有節點都是有效的，您也可以使用條件約束 "(NodeType == NodeType01)" 選取該節點類型。
 
-其中一個 hello 酷事情，關於服務的位置限制式是可以進行更新以動態方式在執行階段。 因此如果需要您可以在 hello 叢集移動服務、 加入和移除需求等。Service Fabric 會負責確保，hello 服務停留和可用即使當這類的變更進行。
+服務放置條件約束其中很棒的一點是它們可以在執行階段動態更新。 所以如果您需要，可以在叢集中移動服務、加入和移除需求等等。Service Fabric 會負責確保服務保持執行且可用，即使進行這類變更。
 
 C#：
 
@@ -367,23 +367,23 @@ PowerShell：
 Update-ServiceFabricService -Stateful -ServiceName $serviceName -PlacementConstraints "NodeType == NodeType01"
 ```
 
-放置條件約束會針對每個不同的具名服務執行個體指定。 更新一定要進行 hello 取代 （覆寫） 先前指定什麼。
+放置條件約束會針對每個不同的具名服務執行個體指定。 更新一律會取代 (覆寫) 先前指定的項目。
 
-hello 叢集定義定義 hello 屬性節點上。 變更節點的屬性需要叢集設定升級。 升級的節點屬性需要每個受影響的節點 toorestart tooreport 其新的屬性。 這些輪流升級是由 Service Fabric 管理。
+叢集定義會定義節點上的屬性。 變更節點的屬性需要叢集設定升級。 升級節點的屬性需要每個受影響的節點重新啟動，以報告其新的屬性。 這些輪流升級是由 Service Fabric 管理。
 
 ## <a name="describing-and-managing-cluster-resources"></a>描述與管理叢集資源
-其中一個最重要的任何 orchestrator 工作是 toohelp hello 管理 hello 叢集中的資源耗用量。 管理叢集資源可以表示幾個不同的項目。 首先，確保電腦不會多載。 這表示確定電腦不會執行比它們能夠處理還多的服務。 第二，也無需平衡即重大 toorunning 服務有效率地最佳化。 符合成本的效益或效能的敏感服務供應項目不允許某些節點 toobe 熱有些則是陌生。 Tooresource 競爭與效能不佳，和冷節點代表浪費資源並增加的成本，會導致最忙碌的節點。 
+任何 Orchestrator 的其中一個最重要的作業是協助管理叢集中的資源耗用量。 管理叢集資源可以表示幾個不同的項目。 首先，確保電腦不會多載。 這表示確定電腦不會執行比它們能夠處理還多的服務。 第二，平衡和最佳化，對於有效率地執行服務很重要。 符合成本效益或效能的敏感服務供應項目不允許某些節點忙碌，而其他節點閒置。 忙碌節點會導致資源爭用和效能不佳，而閒置節點代表浪費資源和增加成本。 
 
-Service Fabric 以 `Metrics` 表示資源。 度量資訊是您想 toodescribe tooService 網狀架構的任何邏輯或實體資源。 度量的範例是例如「WorkQueueDepth」或「MemoryInMb」的項目。 在節點上 hello Service Fabric 可以管理的實體資源的相關資訊，請參閱[資源控管](service-fabric-resource-governance.md)。 如需設定自訂計量及其用法的相關資訊，請參閱[這篇文章](service-fabric-cluster-resource-manager-metrics.md)
+Service Fabric 以 `Metrics` 表示資源。 度量是您想要向 Service Fabric 描述的任何邏輯或實體資源。 度量的範例是例如「WorkQueueDepth」或「MemoryInMb」的項目。 如需 Service Fabric 可以在節點上管理之實體資源的詳細資訊，請參閱[資源管理](service-fabric-resource-governance.md)。 如需設定自訂計量及其用法的相關資訊，請參閱[這篇文章](service-fabric-cluster-resource-manager-metrics.md)
 
-計量不同於放置條件約束和節點屬性。 節點屬性都是靜態的描述元的 hello 節點本身。 計量說明節點所擁有的資源，以及在節點上執行時取用的服務。 節點屬性可以是"HasSSD 」，而且無法將設定 tootrue 或 false。 hello 數量的可用空間的 SSD 和多少由服務上是類似"DriveSpaceInMb 」 的度量。 
+計量不同於放置條件約束和節點屬性。 節點屬性是節點本身的靜態描述項。 計量說明節點所擁有的資源，以及在節點上執行時取用的服務。 節點屬性可能是 "HasSSD"，可設為 true 或 false。 該 SSD 上可用 (和服務所耗用) 的空間數量是像 "DriveSpaceInMb" 之類的計量。 
 
-如同位置條件約束和節點屬性 hello Service Fabric 叢集資源管理員不了解哪些 hello 的名稱 hello 度量的平均值的重要 toonote 它。 計量名稱只是字串。 它是很好的作法 toodeclare 單位可能是模稜兩可時，您建立的 hello 度量名稱的一部分。
+必須注意，就像放置條件約束和節點屬性一樣，Service Fabric 叢集資源管理員也不了解計量名稱的意義。 計量名稱只是字串。 如果您建立的計量名稱可能引起歧義，最好宣告單位。
 
 ## <a name="capacity"></a>容量
-如果您關閉所有資源「平衡」，Service Fabric 的叢集資源管理員仍會確保節點不超出其容量。 管理容量溢位是可能的除非 hello 叢集已滿或 hello 工作負載大於任何節點。 容量是另一個*條件約束*該 hello 叢集資源管理員會使用 toounderstand 有多少節點的資源。 剩餘容量也會追蹤 hello 叢集的整體。 度量都以表示 hello 容量和 hello hello 服務層級的耗用量。 例如，hello 度量可能"ClientConnections 」，而且在指定的節點可能有 「 ClientConnections"32768 的容量。 其他節點可以有一些服務，可以為節點上執行假設它目前耗用 32256 hello 標準 「 ClientConnections 」 的其他限制。
+如果您關閉所有資源「平衡」，Service Fabric 的叢集資源管理員仍會確保節點不超出其容量。 除非叢集已滿或工作負載大於任何節點，否則管理容量溢位是可能的。 容量是另一個「條件約束」，可讓叢集資源管理員了解節點使用某項資源的多寡。 另外也會追蹤整個叢集的剩餘容量。 服務層級的容量和耗用量均以度量來表示。 例如，計量可能是 "ClientConnections"，而某個節點的 "ClientConnections" 容量可能是 32768。 其他節點可以有其他限制。在該節點上執行的某些服務可以說它目前耗用 32256 個計量 "ClientConnections"。
 
-在執行階段 hello 叢集資源管理員會追蹤剩餘容量 hello 叢集中，並在節點上。 在順序 tootrack 容量 hello 叢集資源管理員會減去每個服務的使用方式從 hello 服務執行所在之節點的容量。 利用此資訊，hello Service Fabric 叢集資源管理員可找出哪裡 tooplace 或移動複本，讓節點不討論容量。
+在執行階段期間，叢集資源管理員會追蹤叢集中和節點上的剩餘容量。 為了追蹤容量，叢集資源管理員會從服務執行所在的節點容量減去每個服務的使用量。 利用此資訊，Service Fabric 叢集資源管理員即可決定將複本放置或移至何處，不會讓節點超出容量。
 
 <center>
 ![叢集節點和容量][Image7]
@@ -408,7 +408,7 @@ PowerShell：
 New-ServiceFabricService -ApplicationName $applicationName -ServiceName $serviceName -ServiceTypeName $serviceTypeName –Stateful -MinReplicaSetSize 3 -TargetReplicaSetSize 3 -PartitionSchemeSingleton –Metric @("ClientConnections,High,1024,0)
 ```
 
-您可以看到 hello 叢集資訊清單中定義的容量：
+您可以看到叢集資訊清單中定義的容量︰
 
 ClusterManifest.xml
 
@@ -433,19 +433,19 @@ ClusterManifest.xml
 ],
 ```
 
-服務的負載通常會動態變更。 說出複本的負載"ClientConnections 」 的變更從 1024 too2048，但是它上執行，則只有該標準剩餘的 512 容量 hello 節點。 現在，該複本或執行個體的放置已無效，因為該節點上沒有足夠的空間。 hello 叢集資源管理員中有 tookick 和取得回下方容量 hello 節點。 它可減少從該節點 tooother 節點移動一或多個 hello 複本或執行個體是透過容量的 hello 節點上的負載。 當您移動複本，hello 叢集資源管理員會嘗試這些移動 toominimize hello 成本。 移動成本述[本文](service-fabric-cluster-resource-manager-movement-cost.md)更多有關 hello 叢集資源管理員的重新平衡策略和規則描述[這裡](service-fabric-cluster-resource-manager-metrics.md)。
+服務的負載通常會動態變更。 假設複本的負載 "ClientConnections" 從 1024 變成 2048，但它執行所在的節點只剩下該計量的 512 個容量。 現在，該複本或執行個體的放置已無效，因為該節點上沒有足夠的空間。 叢集資源管理員必須介入讓節點回到容量以下。 它可以透過將一或多個複本或執行個體從該節點移至其他節點，來減少超過容量之節點上的負載。 移動複本時，叢集資源管理員會嘗試以最低成本來進行這些移動。 移動成本在[這篇文章](service-fabric-cluster-resource-manager-movement-cost.md)中說明，叢集資源管理員之重新平衡策略和規則的詳細資訊則在[這裡](service-fabric-cluster-resource-manager-metrics.md)說明。
 
 ## <a name="cluster-capacity"></a>叢集容量
-如何沒有 hello Service Fabric 叢集資源管理員保留 hello 整體叢集不要太滿？ 使用動態負載的話，它並沒有太多可以執行的工作。 服務可以有獨立 hello 叢集資源管理員所採取的動作其負載突然增加。 因此，您的叢集今天有充足的空餘空間，明天就可能因為出名而後繼無力。 話雖如此，還有一些會燒 tooprevent 問題的控制項。 我們可以進行 hello 第一件事是防止 hello 建立新的工作負載，可能導致 hello 叢集 toobecome 完整。
+那麼 Service Fabric 叢集資源管理員如何保持不讓整體叢集太滿？ 使用動態負載的話，它並沒有太多可以執行的工作。 服務的負載可能突然增加，而無視於叢集資源管理員所採取的動作。 因此，您的叢集今天有充足的空餘空間，明天就可能因為出名而後繼無力。 話雖如此，但有一些現成的控制可防止問題。 我們可以做的第一件事是防止建立新的工作負載，該工作負載會導致叢集空間變滿。
 
-假設您建立無狀態服務，而它有一些與它相關聯的負載。 讓我們假設 hello 服務重視 hello"DiskSpaceInMb"度量。 我們也假設它是 「 DiskSpaceInMb 「 每個執行個體的 hello 服務的持續 tooconsume 五個單位。 您想 toocreate hello 服務的三個執行個體。 太棒了！ 如此一來，表示我們需要 15 單位 」 DiskSpaceInMb"toobe hello 叢集中，為了讓我們 tooeven 是無法 toocreate 這些服務執行個體。 hello 叢集資源管理員持續計算 hello 容量和每個度量的耗用量，因此它可以判斷 hello hello 叢集中的剩餘容量。 如果沒有足夠的空間，叢集資源管理員拒絕 hello hello 建立服務呼叫。
+假設您建立無狀態服務，而它有一些與它相關聯的負載。 假設服務很注重 "DiskSpaceInMb" 計量。 另外也假設服務的每個執行個體會耗用五個單位的 "DiskSpaceInMb"。 您想要建立服務的三個執行個體。 太棒了！ 這表示叢集中需要有 15 個單位的 "DiskSpaceInMb"，我們才能建立這些服務執行個體。 叢集資源管理員持續計算容量和每個計量的耗用量，讓它可以判斷叢集中的剩餘容量。 如果沒有足夠的空間，叢集資源管理員會拒絕建立服務呼叫。
 
-由於 hello 需求，但是有可用 15 的單位，此空間無法配置許多不同的方式。 例如，15 個不同節點上可能剩餘一個單位的容量，或五個不同節點上剩餘三個單位的容量。 如果 hello 叢集資源管理員可以重新排列項目，讓三個節點上有可用的五個單位的就會將 hello 服務。 除非 hello 叢集幾乎已滿或無法合併 hello 現有服務，因為某些原因，是通常可以重新排列 hello 叢集。
+由於只是要求有 15 個單位可用，有許多不同方式可配置此空間。 例如，15 個不同節點上可能剩餘一個單位的容量，或五個不同節點上剩餘三個單位的容量。 如果叢集資源管理員能夠重新安排讓三個節點上有五個單位可用，就會放置此服務。 重新安排叢集通常都可行，除非叢集幾乎已滿，或因為某些原因致使現有服務無法合併。
 
 ## <a name="buffered-capacity"></a>緩衝處理的容量
-緩衝的容量是 hello 的另一項功能叢集資源管理員。 它可讓 hello 的某些部分的保留整體節點容量。 這個容量緩衝區是唯一使用的 tooplace services 升級和節點失敗時。 緩衝處理的容量是針對所有節點的每個計量進行全域指定。 您挑選 hello 保留容量的 hello 值為 hello 容錯和您擁有 hello 叢集中的升級網域數目的函式。 容錯網域和升級網域越多，表示您可以挑選較小的緩衝容量。 如果您有多個網域，您可以升級與失敗時，預期較少量的叢集 toobe 無法使用。 指定緩衝處理的容量才有意義如果您另有指定的 hello 節點容量標準。
+緩衝處理的容量是叢集資源管理員的另一項功能。 它可以保留整體節點容量的某些部分。 這個容量緩衝區只用來在升級和節點失敗期間放置服務。 緩衝處理的容量是針對所有節點的每個計量進行全域指定。 您挑選的保留容量值取決於叢集中的容錯網域和升級網域數目。 容錯網域和升級網域越多，表示您可以挑選較小的緩衝容量。 如果您有較多網域，則在升級和失敗期間，無法使用的叢集部分當然會比較少。 指定緩衝處理的容量時，必須同時指定計量的節點容量，這樣才有意義。
 
-以下是如何 toospecify 緩衝處理容量的範例：
+以下是指定緩衝處理容量的方式：
 
 ClusterManifest.xml
 
@@ -476,15 +476,15 @@ ClusterManifest.xml
 ]
 ```
 
-hello 叢集超出標準緩衝容量時，就會失敗 hello 建立新的服務。 防止 hello 建立新的服務 toopreserve hello 緩衝區，可確保的升級和失敗不會使節點 toogo 低於產能。 緩衝容量是選擇性，但建議用在已定義計量容量的任何叢集。
+當叢集耗盡計量的緩衝容量時，建立新的服務會失敗。 防止建立新服務以保留緩衝區，可確保升級和失敗不會造成節點超出容量。 緩衝容量是選擇性，但建議用在已定義計量容量的任何叢集。
 
-hello 叢集資源管理員會公開此載入資訊。 對於每個計量，這項資訊包括： 
-  - hello 緩衝處理的容量設定
-  - hello 總容量
-  - hello 目前的耗用量
+叢集資源管理員會公開此負載資訊。 對於每個計量，這項資訊包括： 
+  - 緩衝處理的容量設定
+  - 總容量
+  - 目前的耗用量
   - 每個計量是否被視為平衡
-  - hello 標準差的相關統計資料
-  - 具有大部分和最少負載 hello hello 節點  
+  - 標準差的統計資料
+  - 具有最大和最小負載的節點  
   
 我們可以看到該輸出的範例如下︰
 
@@ -515,10 +515,10 @@ LoadMetricInformation     :
 ```
 
 ## <a name="next-steps"></a>後續步驟
-* 如 hello 叢集資源管理員中的 hello 架構和資訊流程的相關資訊，請參閱[這篇文章](service-fabric-cluster-resource-manager-architecture.md)
-* 定義磁碟重組度量資訊是其中一種方式 tooconsolidate 負載，而不是分配的節點上。toolearn 如何 tooconfigure 磁碟重組，請參閱太[這篇文章](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
-* Hello 從頭開始並[取得簡介 toohello Service Fabric 叢集資源管理員](service-fabric-cluster-resource-manager-introduction.md)
-* toofind 出 hello 叢集資源管理員如何管理和 hello 叢集中的負載平衡簽出 hello 發行項上[平衡負載](service-fabric-cluster-resource-manager-balancing.md)
+* 如需叢集資源管理員內的架構和資訊流程的相關資訊，請參閱[這篇文章](service-fabric-cluster-resource-manager-architecture.md)
+* 定義重組度量是合併 (而不是擴增) 節點上負載的一種方式。若要了解如何設定重組，請參閱 [這篇文章](service-fabric-cluster-resource-manager-defragmentation-metrics.md)
+* 從頭開始，並 [取得 Service Fabric 叢集資源管理員的簡介](service-fabric-cluster-resource-manager-introduction.md)
+* 若要了解叢集資源管理員如何管理並平衡叢集中的負載，請查看關於 [平衡負載](service-fabric-cluster-resource-manager-balancing.md)
 
 [Image1]:./media/service-fabric-cluster-resource-manager-cluster-description/cluster-fault-domains.png
 [Image2]:./media/service-fabric-cluster-resource-manager-cluster-description/cluster-uneven-fault-domain-layout.png

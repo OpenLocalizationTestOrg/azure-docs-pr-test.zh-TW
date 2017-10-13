@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Mobile Engagement 使用者介面為連線到準則"
-description: "了解如何 toouse 目標準則 toosend 推送活動 tooa 選取您的使用者使用 Azure Mobile Engagement 的子集"
+title: "Azure Mobile Engagement 使用者介面 - 觸達準則"
+description: "了解如何透過 Azure Mobile Engagement 使用目標準則傳送推播活動到選取的使用者子集。"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,39 +14,39 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: d956add1b7edc1d49451596019c5a4dec098d724
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 803b44721d0ab1ac7b5a8074e18857fc57adb724
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-targeting-criteria-toosend-push-campaigns-tooa-select-subset-of-your-users"></a>Toouse 目標準則 toosend 推送活動 tooa 如何選取您的使用者子集
-目標觀眾使用 hello 「 新準則 」 按鈕的特定準則是其中一個 hello 最強大的概念 Azure Mobile Engagement 可協助您傳送相關推播 hello 客戶會回應的濫發 everyone tooinstead 的通知。 您可以限制觀眾根據標準的準則，並模擬推播通知 toodetermine 很多人會收到 hello 通知。
+# <a name="how-to-use-targeting-criteria-to-send-push-campaigns-to-a-select-subset-of-your-users"></a>如何使用目標準則傳送推播活動到選取的使用者子集。
+在 Azure Mobile Engagement 中使用 [新增準則] 按鈕透過特定準則來找出目標對象，是一個非常有力的概念，這樣可協助您傳送相關的推播通知給會回應的客戶，而不是濫發垃圾訊息給每個人。 您可以根據標準的準則限制對象，並且模擬推送來判斷有多少人會收到通知。
 
 **另請參閱：**
 
 * [UI 文件 - 觸達 - 新的推播活動][Link 27]
 
 ## <a name="audience-criteria-can-include"></a>對象準則可以包括：
-* * * Technicals: * * 您可鎖定目標根據的 hello hello 分析和監視章節中可以看到相同的技術資訊。 **另請參閱：** [UI 文件 - 分析][Link 15]、[UI 文件 - 監視器][Link 16]
-* **位置：**應用程式，使用 「 即時位置回報 「 地理圍欄可作為準則 tootarget 從 hello GPS 位置的對象的地理位置。 「 延遲區域位置報告 」 呼叫也會使用的 tootarget 從 hello 手機位置的對象 （「 即時位置回報 」 和 「 延遲區域位置回報 」 必須從啟動 hello SDK）。 **另請參閱：** [SDK 文件 - iOS - 整合][Link 5]、[SDK 文件 - Android - 整合][Link 5]
-* **觸達意見反應：** 您可以根據他們上一個透過觸達意見反應的通知、投票和資料推送的觸達意見反應來選擇目標對象。 這可讓您 toobetter 目標觀眾兩個或三個到達您的行銷活動之後無法 hello 第一次。 它也可以用出使用者已經收到一則通知類似內容，藉由設定活動 tooNOT toofilter 傳送 toousers 已經已收到特定的上一個活動。 您甚至可以排除包含特定有效活動的使用者收到新的推播。 **另請參閱：** [UI 文件 - 觸達 - 推播內容][Link 29]
+* * * Technicals: * * 您可鎖定目標根據您所見，分析及監視區段中的相同技術資訊。 **另請參閱：** [UI 文件 - 分析][Link 15]、[UI 文件 - 監視器][Link 16]
+* **位置：** 使用「即時位置報告」與地理柵欄的應用程式，可以使用地理位置當作準則來從 GPS 位置選取對象。 「延遲區域位置報告」呼叫也用來根據手機位置選擇目標對象 (「即時位置報告」和「延遲區域位置報告」必須從 SDK 啟動)。 **另請參閱：** [SDK 文件 - iOS - 整合][Link 5]、[SDK 文件 - Android - 整合][Link 5]
+* **觸達意見反應：** 您可以根據他們上一個透過觸達意見反應的通知、投票和資料推送的觸達意見反應來選擇目標對象。 這讓您能在經過二或三次的觸達活動之後，更精確地選擇目標對象。 藉由設定「不」傳送活動給之前已收到特定活動的使用者，它也可以篩選出已經接收類似內容通知的使用者。 您甚至可以排除包含特定有效活動的使用者收到新的推播。 **另請參閱：** [UI 文件 - 觸達 - 推播內容][Link 29]
 * **安裝追蹤：** 您可以追蹤根據使用者安裝您應用程式之位置所建立的資訊。 **另請參閱：** [UI 文件 - 設定][Link 20]
-* **使用者設定檔：**您可以根據標準使用者資訊的目標，您可以根據您所建立的 hello 自訂的應用程式資訊的目標。 這包括使用者目前登入而回答您要求其相關的 tooset hello 應用程式本身而不是只如何它們所作的反應 tooprevious 活動中的特定問題的使用者。 所有為您應用程式定義的應用程式資訊都顯示在這個清單。
+* **使用者個人檔案：** 您可以根據標準使用者，以及您建立的自訂應用程式資訊來選擇目標。 這包含目前登入的使用者，以及已回答您要求他們在應用程式中設定之特定問題的使用者，而不只是根據他們如何回應之前的活動。 所有為您應用程式定義的應用程式資訊都顯示在這個清單。
 * 區隔：您也可以根據依特定使用者行為 (包含多個準則) 建立的區隔來選擇目標。 所有為您應用程式定義的區隔都顯示在這個清單。 **另請參閱：** [UI 文件 -區隔][Link 18]
-* **應用程式資訊：**可以從 [設定] tootrack 使用者行為建立自訂應用程式資訊標記。 **另請參閱：** [UI 文件 - 設定][Link 20]
+* **應用程式資訊** ：您可以從 [設定] 建立自訂應用程式資訊標記，來追蹤使用者行為。 **另請參閱：** [UI 文件 - 設定][Link 20]
 
 ## <a name="example"></a>範例：
-如果您想 toopush 公告只有 toohello 子集使用者執行應用程式內購買動作。
+如果您只想要推送通知給已執行應用程式內購買動作的部份使用者使用者。
 
-1. 移 tooyour 應用程式設定頁面上，選取 hello"應用程式資訊 功能表，然後選取 新應用程式資訊
+1. 移至您的應用程式設定頁面，選取 [應用程式資訊] 功能表，然後選取 [新增應用程式資訊]
 2. 註冊一個稱為 "inAppPurchase" 的新布林值應用程式資訊
-3. 讓您設定此應用程式資訊的應用程式太"，則為 true 」 時 hello 使用者成功執行應用程式內購買 (使用 hello sendAppInfo (「 inAppPurchase"，...) 函式)
-4. 如果您不想 toodo 這從您的應用程式，您可以從您的後端執行使用 hello 裝置 API）
-5. 然後，您只需要您的通知，限制您的觀眾 toousers 具有"inAppPurchase"的準則設定太 」 為 true 」 toocreate）
+3. 讓您的應用程式將此應用程式資訊在使用者成功執行應用程式內購買 (使用 sendAppInfo("inAppPurchase", ...) 函式) 時設定為 "true"
+4. 如果您不想從您的應用程式執行這項操作，可以從您的後端使用裝置 API 執行
+5. 然後，您只需要建立通知，其準則是將對象限制在 "inAppPurchase" 設為 "true" 的使用者。
 
 > [!NOTE]
-> 目標應用程式資訊標記以外的準則為根據需要 Azure Mobile Engagement toogather 資訊從您的使用者裝置，才會傳送 hello 推入，並可能會導致延遲。 複雜的推送設定選項 (例如更新徽章) 可能也會延遲推送。 使用 hello 推送 API 中的 「 一次完成 「 活動是 hello 絕對最快推入的方法在 Azure Mobile Engagement 中。 使用應用程式資訊標記為推入準則觸達活動 （是使用從 hello 觸達 API 或 hello UI） 是 hello 下一個最快的方法，因為應用程式資訊標記會儲存在 hello 伺服器端上。 使用其他目標條件的推播宣傳活動為 hello 最有彈性，但最慢的推入方法，因為 Azure Mobile Engagement tooquery hello 裝置順序 toosend hello 促銷活動中。
+> 如果目標選取是根據準則而不是應用程式資訊標記，Azure Mobile Engagement 必須先從使用者的裝置收集資訊，才能傳送推送，如此一來可能會導致延遲。 複雜的推送設定選項 (例如更新徽章) 可能也會延遲推送。 在 Azure Mobile Engagement 中，從推播 API 使用「一次性」的活動，絕對是最快速的推送方法。 對於觸達活動只使用應用程式資訊標記做為推送準則 (從觸達 API 或 UI) 是第二種最快的方法，因為應用程式資訊標記儲存在伺服器端。 使用其他目標選取準則來推播活動是最具彈性、但也是最慢的推送方法，因為 Azure Mobile Engagement 必須先查詢裝置才能傳送活動。
 
 ![Reach-Criterion1][29] 
 

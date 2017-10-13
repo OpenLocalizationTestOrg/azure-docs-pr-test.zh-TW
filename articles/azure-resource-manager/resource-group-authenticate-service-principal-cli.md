@@ -1,6 +1,6 @@
 ---
-title: "Azure 應用程式使用 Azure CLI aaaCreate 識別 |Microsoft 文件"
-description: "描述如何 toouse Azure CLI toocreate Azure Active Directory 應用程式和服務主體授與它存取 tooresources 透過以角色為基礎的存取控制。 它會顯示如何使用密碼或憑證 tooauthenticate 應用程式。"
+title: "使用 Azure CLI 建立 Azure App 的身分識別 | Microsoft Docs"
+description: "描述如何使用 Azure CLI 建立 Azure Active Directory 應用程式和服務主體，並透過角色型存取控制將存取權授與資源。 它示範如何使用密碼或憑證來驗證應用程式。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: tomfitz
-ms.openlocfilehash: 0d693ec801d4f4d6c24ec420580776e73014b325
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3c5826d58887ff1af4df8e66999d9c1a1643bcc7
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="use-azure-cli-toocreate-a-service-principal-tooaccess-resources"></a>使用 Azure CLI toocreate 服務主體 tooaccess 資源
+# <a name="use-azure-cli-to-create-a-service-principal-to-access-resources"></a>使用 Azure CLI 建立用來存取資源的服務主體
 
-當您擁有的應用程式或需要 tooaccess 資源的指令碼時，您可以設定 hello 應用程式的身分識別，並驗證它自己的認證與 hello 應用程式。 此身分識別就是所謂的服務主體。 這種方法可讓您︰
+當您有 App 或指令碼需要存取資源時，可以設定 App 的身分識別，並使用 App 自己的認證進行驗證。 此身分識別就是所謂的服務主體。 這種方法可讓您︰
 
-* 指派權限 toohello 不同於您自己的權限的應用程式識別。 一般而言，這些權限會限制的 tooexactly 哪些 hello 應用程式需要 toodo。
+* 將權限指派給不同於您自己權限的 App 身分識別。 一般而言，這些權限只會限制為 App 必須執行的確切權限。
 * 使用憑證在執行無人看管的指令碼時進行驗證。
 
-本文章將示範如何 toouse [Azure CLI 1.0](../cli-install-nodejs.md) tooset 組成的應用程式 toorun 在它自己的認證和身分識別。 安裝新版的 hello [Azure CLI 1.0](../cli-install-nodejs.md) toomake 確定您的環境符合本文章中的 hello 範例。
+本文說明如何使用 [Azure CLI 1.0](../cli-install-nodejs.md) 來設定應用程式，讓它利用自己的認證和身分識別來執行。 安裝最新版的 [Azure CLI 1.0](../cli-install-nodejs.md)，以確定您的環境符合本文中的範例。
 
 ## <a name="required-permissions"></a>所需的權限
-toocomplete 本主題中，您必須在您的 Azure Active Directory 和 Azure 訂用帳戶擁有足夠的權限。 具體來說，您必須是能夠 toocreate hello Azure Active Directory 中的應用程式，並且將 hello 服務主體 tooa 角色指派。 
+若要完成本主題，您必須在 Azure Active Directory 和您的 Azure 訂用帳戶中有足夠的權限。 具體來說，您必須能夠在 Azure Active Directory 中建立應用程式，並將服務主體指派給角色。 
 
-hello 最簡單方式 toocheck 您的帳戶是否有足夠的權限是透過 hello 入口網站。 請參閱[在入口網站中檢查必要的權限](resource-group-create-service-principal-portal.md#required-permissions)。
+檢查您的帳戶是否具有足夠的權限，最簡單的方式是透過入口網站。 請參閱[在入口網站中檢查必要的權限](resource-group-create-service-principal-portal.md#required-permissions)。
 
-現在，任何繼續 tooa 區段[密碼](#create-service-principal-with-password)或[憑證](#create-service-principal-with-certificate)驗證。
+現在，繼續進行[密碼](#create-service-principal-with-password)或[憑證](#create-service-principal-with-certificate)驗證的章節。
 
 ## <a name="create-service-principal-with-password"></a>使用密碼建立服務主體
-在本節中，您要執行 hello 步驟 toocreate hello 與密碼，AD 應用程式，並指派 hello 讀取器角色 toohello 服務主體。
+在本節中，您可以執行步驟來使用密碼建立 AD 應用程式，並將讀取者角色指派給服務主體。
 
-1. 登入 tooyour 帳戶。
+1. 登入您的帳戶。
    
    ```azurecli
    azure login
    ```
-2. toocreate 一個應用程式的身分識別提供 hello hello 應用程式名稱及密碼，hello 下列命令所示：
+2. 若要建立應用程式身分識別，請提供 App 名稱和密碼，如下列命令中所示︰
      
    ```azurecli
    azure ad sp create -n exampleapp -p {your-password}
    ```
      
-   會傳回 hello 新的服務主體。 授與權限時，就需要物件識別碼 hello。 中的記錄時，就需要 hello guid 與 hello 服務主要名稱一起列出。 此 guid 為 hello 與 hello 應用程式識別碼相同的值。Hello 範例應用程式中，這個值會為參考的 tooas hello `Client ID`。 
+   傳回新的服務主體。 授與權限時，需要物件識別碼。 在登入時，則需要隨服務主體名稱列出的 GUID。 此 GUID 是和應用程式識別碼相同的值。 在範例應用程式中，這個值稱為 `Client ID`。 
      
    ```azurecli
    info:    Executing command ad sp create
@@ -65,18 +65,18 @@ hello 最簡單方式 toocheck 您的帳戶是否有足夠的權限是透過 hel
      info:    ad sp create command OK
    ```
 
-3. 授與 hello 服務主體權限您訂用帳戶。 在此範例中，您可以將 hello 服務主體 toohello 讀取器角色，授與權限 tooread hello 訂用帳戶中的所有資源。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 Hello objectid 參數，提供您建立 hello 應用程式時使用的物件識別碼 hello。 然後再執行此命令，您必須等候一段時間的 hello 新服務主體 toopropagate 整個 Azure Active Directory。 當您手動執行這些命令時，通常工作與工作之間經過的時間已足夠。 在指令碼中，您應該加入步驟 toosleep hello 命令之間 (例如`sleep 15`)。 如果您看到主體的錯誤指出 hello 不存在於 hello 目錄，請重新執行 hello 命令。
+3. 授與服務主體對您訂用帳戶的權限。 在此範例中，您會將服務主體新增至「讀取者」角色，以授與讀取訂用帳戶中所有資源的權限。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 針對 objectid 參數，提供您在建立應用程式時所使用的物件識別碼。 執行此命令之前，您必須允許一些時間讓新的服務主體在整個 Azure Active Directory 中傳播。 當您手動執行這些命令時，通常工作與工作之間經過的時間已足夠。 您應該在指令碼中的命令之間加入睡眠步驟 (例如`sleep 15`)。 如果您看到主體不存在於目錄中的錯誤訊息，請重新執行命令。
    
    ```azurecli
    azure role assignment create --objectId ff863613-e5e2-4a6b-af07-fff6f2de3f4e -o Reader -c /subscriptions/{subscriptionId}/
    ```
    
-就這麼簡單！ 您的 AD 應用程式和服務主體已設定好。 hello 下一步 區段會顯示以 hello toolog 透過 Azure CLI 的認證。 如果您想 toouse hello 認證在應用程式程式碼中，您不需要 toocontinue 與這個主題。 您可以跳 toohello[範例應用程式](#sample-applications)登入您的應用程式識別碼和密碼的範例。 
+就這麼簡單！ 您的 AD 應用程式和服務主體已設定好。 下一節會說明如何透過 Azure CLI 以認證來登入。 如果您想要在您的程式碼應用程式中使用認證，則不需要繼續進行本主題。 您可以跳到 [範例應用程式](#sample-applications) ，以查看使用應用程式識別碼和密碼來登入的範例。 
 
 ### <a name="provide-credentials-through-azure-cli"></a>透過 Azure CLI 提供認證
-現在，您必須在 toolog 為 hello tooperform 應用程式的作業。
+現在，您需要以應用程式的形式登入以執行作業。
 
-1. 每當您登入做為服務主體時，您需要 tooprovide hello 租用戶識別碼 hello 目錄的 AD 應用程式。 租用戶是 Azure Active Directory 的執行個體。 tooretrieve hello 您目前已驗證的訂閱，使用的租用戶識別碼：
+1. 每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Azure Active Directory 的執行個體。 若要擷取目前已驗證訂用帳戶的租用戶識別碼，請使用︰
    
    ```azurecli
    azure account show
@@ -94,18 +94,18 @@ hello 最簡單方式 toocheck 您的帳戶是否有足夠的權限是透過 hel
    ...
    ```
    
-     如果您需要 tooget hello 租用戶識別碼的其他訂用帳戶，請使用下列命令的 hello:
+     如果您需要取得其他訂用帳戶的租用戶識別碼，請使用下列命令︰
    
    ```azurecli
    azure account show -s {subscription-id}
    ```
-2. 如果您需要 tooretrieve hello 用戶端識別碼 toouse 登入，請使用：
+2. 如果您需要擷取用戶端識別碼以便用於登入，請使用︰
    
    ```azurecli
    azure ad sp show -c exampleapp --json
    ```
    
-     記錄的 hello 值 toouse 是 hello hello 服務主體名稱中所列的 guid。
+     要用於登入的值是服務主體名稱中所列出的 GUID。
    
    ```azurecli
    [
@@ -121,31 +121,31 @@ hello 最簡單方式 toocheck 您的帳戶是否有足夠的權限是透過 hel
      }
    ]
    ```
-3. Hello 服務主體的身分登入。
+3. 以服務主體的形式登入。
    
    ```azurecli
    azure login -u 7132aca4-1bdb-4238-ad81-996ff91d8db4 --service-principal --tenant {tenant-id}
    ```
    
-    系統提示您輸入 hello 密碼。 提供建立 hello AD 應用程式時，您所指定的 hello 密碼。
+    系統會提示您輸入密碼。 提供您建立 AD 應用程式時指定的密碼。
    
    ```azurecli
    info:    Executing command login
    Password: ********
    ```
 
-您現在會為您建立的 hello 服務主體的 hello 服務主體進行驗證。
+您現在已驗證為您所建立之服務主體的服務主體。
 
-或者，您可以叫用中的 hello 命令列 toolog 從 REST 作業。 從 hello 驗證回應，您可以擷取 hello 存取權杖用於其他作業。 藉由叫用 REST 作業擷取 hello 存取權杖的範例，請參閱[產生存取權杖](resource-manager-rest-api.md#generating-an-access-token)。
+或者，您可以從命令列叫用 REST 作業來登入。 從驗證回應，您可以擷取存取權杖以用於其他作業。 如需叫用 REST 作業擷取存取權杖的範例，請參閱[產生存取權杖](resource-manager-rest-api.md#generating-an-access-token)。
 
 ## <a name="create-service-principal-with-certificate"></a>使用憑證建立服務主體
-在本節中，您可以執行 hello 步驟：
+在本節中，您會執行下列步驟：
 
 * 建立自我簽署憑證
-* hello 憑證與 hello 服務主體建立 hello AD 應用程式
-* 指派 hello 讀取器角色 toohello 服務主體
+* 建立 AD 應用程式 (包含憑證) 和服務主體
+* 將 [讀取者角色] 指派給服務主體
 
-toocomplete 這些步驟，您必須擁有[OpenSSL](http://www.openssl.org/)安裝。
+若要完成這些步驟，您必須安裝 [OpenSSL](http://www.openssl.org/) 。
 
 1. 建立自我簽署憑證。
    
@@ -153,26 +153,26 @@ toocomplete 這些步驟，您必須擁有[OpenSSL](http://www.openssl.org/)安�
    openssl req -x509 -days 3650 -newkey rsa:2048 -out cert.pem -nodes -subj '/CN=exampleapp'
    ```
 
-2. 上述步驟建立兩個檔案-privkey.pem 和 cert.pem hello。 將 hello 公用和私用金鑰結合成單一檔案。
+2. 上一個步驟建立了兩個檔案 - privkey.pem 和 cert.pem。 將公開和私密金鑰結合為單一檔案。
 
    ```
    cat privkey.pem cert.pem > examplecert.pem
    ```
 
-3. 開啟 hello **examplecert.pem**檔案，並尋找 hello 個之間字元的長串**---BEGIN CERTIFICATE---**和**---憑證結尾---**。 將複製 hello 憑證資料。 建立 hello 服務主體時，您可以傳遞做為參數的資料。
+3. 開啟 **examplecert.pem** 檔案並尋找在 **-----BEGIN CERTIFICATE-----** 與 **-----END CERTIFICATE-----** 之間的一長串字元。 複製憑證資料。 您會在建立服務主體時將此資料當作參數傳遞。
 
-4. 登入 tooyour 帳戶。
+4. 登入您的帳戶。
 
    ```azurecli
    azure login
    ```
-5. toocreate hello 服務主體，會提供 hello 名稱 hello 應用程式和 hello 憑證資料，hello 下列命令所示：
+5. 若要建立服務主體，請提供應用程式名稱和憑證資料，如下列命令所示︰
      
    ```azurecli
    azure ad sp create -n exampleapp --cert-value {certificate data}
    ```
      
-   會傳回 hello 新的服務主體。 授與權限時，就需要物件識別碼 hello。 中的記錄時，就需要 hello guid 與 hello 服務主要名稱一起列出。 此 guid 為 hello 與 hello 應用程式識別碼相同的值。Hello 範例應用程式中，這個值會為參考的 tooas hello 用戶端識別碼。 
+   傳回新的服務主體。 授與權限時，需要物件識別碼。 在登入時，則需要隨服務主體名稱列出的 GUID。 此 GUID 是和應用程式識別碼相同的值。 在範例應用程式中，這個值稱為用戶端識別碼。 
      
    ```azurecli
    info:    Executing command ad sp create
@@ -185,16 +185,16 @@ toocomplete 這些步驟，您必須擁有[OpenSSL](http://www.openssl.org/)安�
      data:                      https://www.contoso.org/example
      info:    ad sp create command OK
    ```
-6. 授與 hello 服務主體權限您訂用帳戶。 在此範例中，您可以將 hello 服務主體 toohello 讀取器角色，授與權限 tooread hello 訂用帳戶中的所有資源。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 Hello objectid 參數，提供您建立 hello 應用程式時使用的物件識別碼 hello。 然後再執行此命令，您必須等候一段時間的 hello 新服務主體 toopropagate 整個 Azure Active Directory。 當您手動執行這些命令時，通常工作與工作之間經過的時間已足夠。 在指令碼中，您應該加入步驟 toosleep hello 命令之間 (例如`sleep 15`)。 如果您看到主體的錯誤指出 hello 不存在於 hello 目錄，請重新執行 hello 命令。
+6. 授與服務主體對您訂用帳戶的權限。 在此範例中，您會將服務主體新增至「讀取者」角色，以授與讀取訂用帳戶中所有資源的權限。 若為其他角色，請參閱 [RBAC︰內建角色](../active-directory/role-based-access-built-in-roles.md)。 針對 objectid 參數，提供您在建立應用程式時所使用的物件識別碼。 執行此命令之前，您必須允許一些時間讓新的服務主體在整個 Azure Active Directory 中傳播。 當您手動執行這些命令時，通常工作與工作之間經過的時間已足夠。 您應該在指令碼中的命令之間加入睡眠步驟 (例如`sleep 15`)。 如果您看到主體不存在於目錄中的錯誤訊息，請重新執行命令。
    
    ```azurecli
    azure role assignment create --objectId 7dbc8265-51ed-4038-8e13-31948c7f4ce7 -o Reader -c /subscriptions/{subscriptionId}/
    ```
   
 ### <a name="provide-certificate-through-automated-azure-cli-script"></a>透過自動化的 Azure CLI 指令碼提供憑證
-現在，您必須在 toolog 為 hello tooperform 應用程式的作業。
+現在，您需要以應用程式的形式登入以執行作業。
 
-1. 每當您登入做為服務主體時，您需要 tooprovide hello 租用戶識別碼 hello 目錄的 AD 應用程式。 租用戶是 Azure Active Directory 的執行個體。 tooretrieve hello 您目前已驗證的訂閱，使用的租用戶識別碼：
+1. 每當您以服務主體的形式登入時，都需要提供 AD 應用程式目錄的租用戶識別碼。 租用戶是 Azure Active Directory 的執行個體。 若要擷取目前已驗證訂用帳戶的租用戶識別碼，請使用︰
    
    ```azurecli
    azure account show
@@ -212,12 +212,12 @@ toocomplete 這些步驟，您必須擁有[OpenSSL](http://www.openssl.org/)安�
    ...
    ```
    
-   如果您需要 tooget hello 租用戶識別碼的其他訂用帳戶，請使用下列命令的 hello:
+   如果您需要取得其他訂用帳戶的租用戶識別碼，請使用下列命令︰
    
    ```azurecli
    azure account show -s {subscription-id}
    ```
-2. tooretrieve hello 憑證指紋和移除不必要的字元，請使用：
+2. 若要擷取憑證指紋，然後移除不必要的字元，請使用：
    
    ```
    openssl x509 -in "C:\certificates\examplecert.pem" -fingerprint -noout | sed 's/SHA1 Fingerprint=//g'  | sed 's/://g'
@@ -228,13 +228,13 @@ toocomplete 這些步驟，您必須擁有[OpenSSL](http://www.openssl.org/)安�
    ```
    30996D9CE48A0B6E0CD49DBB9A48059BF9355851
    ```
-3. 如果您需要 tooretrieve hello 用戶端識別碼 toouse 登入，請使用：
+3. 如果您需要擷取用戶端識別碼以便用於登入，請使用︰
    
    ```azurecli
    azure ad sp show -c exampleapp
    ```
    
-   記錄的 hello 值 toouse 是 hello hello 服務主體名稱中所列的 guid。
+   要用於登入的值是服務主體名稱中所列出的 GUID。
      
    ```azurecli
    [
@@ -250,25 +250,25 @@ toocomplete 這些步驟，您必須擁有[OpenSSL](http://www.openssl.org/)安�
      }
    ]
    ```
-4. Hello 服務主體的身分登入。
+4. 以服務主體的形式登入。
    
    ```azurecli
    azure login --service-principal --tenant {tenant-id} -u 4fd39843-c338-417d-b549-a545f584a745 --certificate-file C:\certificates\examplecert.pem --thumbprint {thumbprint}
    ```
 
-您現在會做為 hello hello 您建立的 Azure Active Directory 應用程式之主體的服務進行驗證。
+您現在驗證為您所建立之 Azure Active Directory 應用程式的服務主體。
 
 ## <a name="change-credentials"></a>管理認證
 
-AD 應用程式，因為安全性洩露或認證過期的 toochange hello 認證使用`azure ad app set`。
+若要變更 AD 應用程式認證，不管是因為安全性危害或認證過期，請使用`azure ad app set`。
 
-toochange 密碼，請使用：
+若要變更密碼，使用：
 
 ```azurecli
 azure ad app set --applicationId 4fd39843-c338-417d-b549-a545f584a745 --password p@ssword
 ```
 
-toochange 憑證的值，請使用：
+若要變更憑證值，使用︰
 
 ```azurecli
 azure ad app set --applicationId 4fd39843-c338-417d-b549-a545f584a745 --cert-value {certificate data}
@@ -276,14 +276,14 @@ azure ad app set --applicationId 4fd39843-c338-417d-b549-a545f584a745 --cert-val
 
 ## <a name="debug"></a>偵錯
 
-您可能會遇到下列錯誤，建立服務主體時的 hello:
+建立服務主體時，您可能會遇到下列錯誤︰
 
-* **「 Authentication_Unauthorized"**或**」 沒有訂用帳戶中找到 hello 內容。 」** -您會看到這個錯誤，當您的帳戶未具備 hello[必要的權限](#required-permissions)hello Azure Active Directory tooregister 應用程式上。 通常，只有 Azure Active Directory 中的管理使用者可以註冊應用程式，且您的帳戶不是系統管理員時，就會看到此錯誤。請要求系統管理員 tooeither 指派您 tooan 系統管理員角色或 tooenable 使用者 tooregister 應用程式。
+* **Authentication_Unauthorized」**或**「在內容中找不到訂用帳戶。」** - 當您的帳戶在 Azure Active Directory 上未具備註冊應用程式的[必要權限](#required-permissions)時，您就會看到此錯誤。 通常，只有 Azure Active Directory 中的管理使用者可以註冊應用程式，且您的帳戶不是系統管理員時，就會看到此錯誤。 要求系統管理員將您指派給系統管理員角色，或是讓使用者註冊應用程式。
 
-* 您的帳戶**」 沒有授權 tooperform 動作 'Microsoft.Authorization/roleAssignments/write' 對範圍 ' / 訂用帳戶 / {guid}'。 」** -當您的帳戶未具備足夠的權限 tooassign 角色 tooan 身分識別，您會看到此錯誤。 詢問您的訂用帳戶管理員 tooadd 您 tooUser 存取 」 系統管理員角色。
+* 您的帳戶**「沒有在範圍 '/subscriptions/{guid}' 中執行 'Microsoft.Authorization/roleAssignments/write' 動作的權限。」** - 當您的帳戶沒有足夠權限可將角色指派給身分識別時，您就會看到此錯誤。 要求訂用帳戶管理員將您新增至「使用者存取系統管理員」角色。
 
 ## <a name="sample-applications"></a>範例應用程式
-如需透過不同平台的 hello 應用程式以登入資訊，請參閱：
+如需透過不同平台以應用程式身分登入的資訊，請參閱：
 
 * [.NET](/dotnet/azure/dotnet-sdk-azure-authenticate?view=azure-dotnet)
 * [Java](/java/azure/java-sdk-azure-authenticate)
@@ -292,6 +292,6 @@ azure ad app set --applicationId 4fd39843-c338-417d-b549-a545f584a745 --cert-val
 * [Ruby](https://azure.microsoft.com/documentation/samples/resource-manager-ruby-resources-and-groups/)
 
 ## <a name="next-steps"></a>後續步驟
-* 如需整合到 Azure 的應用程式管理資源的詳細步驟，請參閱[以 hello Azure 資源管理員 API 的開發人員指南 tooauthorization](resource-manager-api-authentication.md)。
-* tooget 需使用憑證和 Azure CLI，請參閱[憑證型驗證的 Azure 服務主體使用 Linux 命令列從](http://blogs.msdn.com/b/arsen/archive/2015/09/18/certificate-based-auth-with-azure-service-principals-from-linux-command-line.aspx)。 
-* 如需可授與或拒絕 toousers 可用動作的清單，請參閱[Azure 資源管理員資源提供者作業](../active-directory/role-based-access-control-resource-provider-operations.md)。
+* 如需有關將應用程式整合至 Azure 來管理資源的詳細步驟，請參閱 [利用 Azure Resource Manager API 進行授權的開發人員指南](resource-manager-api-authentication.md)。
+* 如需使用憑證和 Azure CLI 的詳細資訊，請參閱 [從 Linux 命令列以憑證方式驗證 Azure 服務主體](http://blogs.msdn.com/b/arsen/archive/2015/09/18/certificate-based-auth-with-azure-service-principals-from-linux-command-line.aspx)。 
+* 如需可授與或拒絕使用者的可用動作清單，請參閱 [Azure Resource Manager 資源提供者作業](../active-directory/role-based-access-control-resource-provider-operations.md)。

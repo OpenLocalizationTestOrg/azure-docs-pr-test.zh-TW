@@ -1,5 +1,5 @@
 ---
-title: "aaaPowerShell 指令碼 toocreate Application Insights 資源 |Microsoft 文件"
+title: "建立 Application Insights 資源的 PowerShell 指令碼 | Microsoft Docs"
 description: "自動建立 Application Insights 資源。"
 services: application-insights
 documentationcenter: windows
@@ -13,28 +13,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/19/2016
 ms.author: bwren
-ms.openlocfilehash: 2ac00376d38026d64c2c5deabfaca60588924510
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a828af9c7d207dd84cc626fc70206018fd67e2dd
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="powershell-script-toocreate-an-application-insights-resource"></a>PowerShell 指令碼 toocreate Application Insights 資源
+# <a name="powershell-script-to-create-an-application-insights-resource"></a>建立 Application Insights 資源的 PowerShell 指令碼
 
 
-當您想要 toomonitor 新的應用程式-或新版本的應用程式-與[Azure Application Insights](https://azure.microsoft.com/services/application-insights/)，您設定 Microsoft Azure 中新的資源。 此資源是其中分析及顯示 hello 遙測資料從您的應用程式。 
+當您想要使用 [Azure Application Insights](https://azure.microsoft.com/services/application-insights/) 來監視新的應用程式或新版應用程式時，需在 Microsoft Azure 中設定新的資源。 此資源是分析和顯示應用程式之遙測資料的位置。 
 
-您可以使用 PowerShell 來自動化 hello 建立新的資源。
+您可以使用 PowerShell 將建立新資源的過程自動化。
 
-例如，如果您正在開發行動裝置應用程式，則客戶可能會在任何時候，同時使用數個已發行的應用程式版本。 您不想要從不同版本混 tooget hello 遙測結果。 因此您會取得您的建置程序 toocreate 新資源每個組建。
+例如，如果您正在開發行動裝置應用程式，則客戶可能會在任何時候，同時使用數個已發行的應用程式版本。 您不想取得不同版本混在一起的遙測結果。 因此您讓建置流程針對每個新組建建立新的資源。
 
 > [!NOTE]
-> 如果您想 toocreate 一組資源的所有項目 hello 相同的時間，請考慮[建立 hello 資源使用 Azure 範本](app-insights-powershell.md)。
+> 如果您想要同時建立一組資源，請考慮[使用 Azure 範本來建立資源](app-insights-powershell.md)。
 > 
 > 
 
-## <a name="script-toocreate-an-application-insights-resource"></a>指令碼 toocreate Application Insights 資源
-請參閱 hello 相關的指令程式規格：
+## <a name="script-to-create-an-application-insights-resource"></a>建立 Application Insights 資源的指令碼
+請參閱相關的 Cmdlet 規格：
 
 * [New-AzureRmResource](https://msdn.microsoft.com/library/mt652510.aspx)
 * [New-AzureRmRoleAssignment](https://msdn.microsoft.com/library/mt678995.aspx)
@@ -48,31 +48,31 @@ ms.lasthandoff: 10/06/2017
 # Set Values
 ###########################################
 
-# If running manually, uncomment before hello first 
-# execution toologin toohello Azure Portal:
+# If running manually, uncomment before the first 
+# execution to login to the Azure Portal:
 
 # Add-AzureRmAccount / Login-AzureRmAccount
 
-# Set hello name of hello Application Insights Resource
+# Set the name of the Application Insights Resource
 
 $appInsightsName = "TestApp"
 
-# Set hello application name used for hello value of hello Tag "AppInsightsApp" 
+# Set the application name used for the value of the Tag "AppInsightsApp" 
 
 $applicationTagName = "MyApp"
 
-# Set hello name of hello Resource Group toouse.  
-# Default is hello application name.
+# Set the name of the Resource Group to use.  
+# Default is the application name.
 $resourceGroupName = "MyAppResourceGroup"
 
 ###################################################
-# Create hello Resource and Output hello name and iKey
+# Create the Resource and Output the name and iKey
 ###################################################
 
-# Select hello azure subscription
+# Select the azure subscription
 Select-AzureSubscription -SubscriptionName "MySubscription"
 
-# Create hello App Insights Resource
+# Create the App Insights Resource
 
 
 $resource = New-AzureRmResource `
@@ -84,7 +84,7 @@ $resource = New-AzureRmResource `
   -PropertyObject @{"Application_Type"="web"} `
   -Force
 
-# Give owner access toohello team
+# Give owner access to the team
 
 New-AzureRmRoleAssignment `
   -SignInName "myteam@fabrikam.com" `
@@ -98,10 +98,10 @@ Write-Host "IKey = " $resource.Properties.InstrumentationKey
 
 ```
 
-## <a name="what-toodo-with-hello-ikey"></a>與 hello iKey 哪些 toodo
-每項資源均是由其檢測金鑰 (iKey) 識別。 hello iKey 是 hello 資源建立指令碼的輸出。 組建指令碼應該提供 hello iKey toohello 內嵌在您的應用程式的 Application Insights SDK。
+## <a name="what-to-do-with-the-ikey"></a>如何使用 iKey
+每項資源均是由其檢測金鑰 (iKey) 識別。 iKey 是資源建立指令碼的輸出。 您的建置指令碼應該將 iKey 提供給內嵌在您應用程式中的 Application Insights SDK。
 
-有兩種方式 toomake hello iKey 可用 toohello SDK:
+有兩種方式可讓 SDK 取得 iKey：
 
 * 在 [ApplicationInsights.config](app-insights-configuration-with-applicationinsights-config.md)中： 
   * `<instrumentationkey>`*ikey*`</instrumentationkey>`

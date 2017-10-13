@@ -15,5 +15,5 @@
 | Windows Server 2012 R2 | [376.84](http://us.download.nvidia.com/Windows/Quadro_Certified/376.84/376.84-tesla-desktop-winserver2008-2012r2-64bit-international-whql.exe) (.exe) |
 
 > [!NOTE]
-> 發行當時的 Tesla 驅動程式下載連結。 Hello 最新的驅動程式，請造訪 hello [NVIDIA](http://www.nvidia.com/)網站。
+> 發行當時的 Tesla 驅動程式下載連結。 如需最新的驅動程式，請瀏覽 [NVIDIA](http://www.nvidia.com/) 網站。
 >

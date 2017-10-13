@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Linux Vm aaaReset 存取 hello VMAccess 擴充功能 |Microsoft 文件"
-description: "重設使用 hello VMAccess 擴充功能的 Azure Linux Vm 上的存取。"
+title: "使用 VMAccess 擴充功能重設 Azure Linux VM 的存取 | Microsoft Docs"
+description: "使用 VMAccess 擴充功能重設 Azure Linux VM 的存取。"
 services: virtual-machines-linux
 documentationcenter: 
 author: vlivech
@@ -15,34 +15,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/25/2016
 ms.author: v-livech
-ms.openlocfilehash: 2636655f3f7d14ba30e1dc62c319e4e278521ead
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 278bf1785aac71068ab94cf9916af69a204c44be
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="manage-users-ssh-and-check-or-repair-disks-on-azure-linux-vms-using-hello-vmaccess-extension-with-hello-azure-cli-10"></a>管理使用者、 SSH 和核取，或使用 Azure Linux Vm 上的修復磁片以 hello Azure CLI 1.0 hello VMAccess 擴充功能
-本文章將示範如何 toouse hello Azure VMAcesss Extension toocheck 或修復磁碟、 重設使用者的存取權、 管理使用者帳戶，或重設 Linux 上的 hello SSHD 設定。 hello 文章需要：
+# <a name="manage-users-ssh-and-check-or-repair-disks-on-azure-linux-vms-using-the-vmaccess-extension-with-the-azure-cli-10"></a>使用 VMAccess 擴充功能搭配 Azure CLI 1.0 在 Azure Linux VM 上管理使用者、SSH 及檢查或修復磁碟
+本文將說明如何使用 Azure VMAcesss 延伸模組來檢查或修復磁碟、重設使用者存取、管理使用者帳戶或重設 Linux 上的 SSHD 組態。 本文需要：
 
 * 一個 Azure 帳戶 ([取得免費試用帳戶](https://azure.microsoft.com/pricing/free-trial/))。
-* hello [Azure CLI](../../cli-install-nodejs.md)登入的`azure login`。
-* hello Azure CLI*必須在*Azure Resource Manager 模式`azure config mode arm`。
+* 使用 `azure login` 登入的 [Azure CLI](../../cli-install-nodejs.md)。
+* Azure CLI *必須處於* Azure Resource Manager 模式 `azure config mode arm`。
 
 
-## <a name="cli-versions-toocomplete-hello-task"></a>CLI 版本 toocomplete hello 工作
-您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本：
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+您可以使用下列其中一個 CLI 版本來完成工作︰
 
-- [Azure CLI 1.0](#quick-commands)– 我們 CLI hello 傳統和資源管理部署模型 （此文件）
-- [Azure CLI 2.0](using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -hello 資源管理部署模型我們下一個層代 CLI
+- [Azure CLI 1.0](#quick-commands) – 適用於傳統和資源管理部署模型的 CLI (本文章)
+- [Azure CLI 2.0](using-vmaccess-extension.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
 
 
 ## <a name="quick-commands"></a>快速命令
-有兩種方式 toouse VMAccess Linux Vm 上：
+有兩種方式可在 Linux VM 上使用 VMAccess：
 
-* 使用 Azure CLI 1.0 hello 和 hello 必要參數。
+* 使用 Azure CLI 1.0 和必要的參數。
 * 使用 VMAccess 處理的原始 JSON 檔案並採取行動。
 
-Hello 快速命令區段，我們 toouse hello Azure CLI 1.0`azure vm reset-access`方法。 在 hello 下列命令範例中，會包含 「 範例 」 使用 hello 值從您自己的環境的 hello 值取代。
+針對快速命令區段，我們將使用 Azure CLI 1.0 `azure vm reset-access` 方法。 在下列命令範例中，將包含 "example" 的值取代為您環境中的值。
 
 ## <a name="create-a-resource-group-and-linux-vm"></a>建立資源群組和 Linux VM
 ```bash
@@ -62,7 +62,7 @@ azure vm quick-create \
 ```
 
 ## <a name="reset-root-password"></a>重設根密碼
-tooreset hello 根密碼：
+重設根密碼：
 
 ```azurecli
 azure vm reset-access \
@@ -73,7 +73,7 @@ azure vm reset-access \
 ```
 
 ## <a name="ssh-key-reset"></a>SSH 金鑰重設
-tooreset hello SSH 金鑰的非根使用者：
+若要重設非根使用者的 SSH 金鑰︰
 
 ```azurecli
 azure vm reset-access \
@@ -84,7 +84,7 @@ azure vm reset-access \
 ```
 
 ## <a name="create-a-user"></a>建立使用者
-toocreate 使用者：
+若要建立使用者：
 
 ```azurecli
 azure vm reset-access \
@@ -103,7 +103,7 @@ azure vm reset-access \
 ```
 
 ## <a name="reset-sshd"></a>重設 SSHD
-tooreset hello SSHD 組態：
+重設 SSHD 組態：
 
 ```azurecli
 azure vm reset-access \
@@ -115,14 +115,14 @@ azure vm reset-access \
 
 ## <a name="detailed-walkthrough"></a>詳細的逐步解說
 ### <a name="vmaccess-defined"></a>VMAccess 已定義︰
-hello Linux VM 上的磁碟會顯示錯誤。 由於某種原因而 hello 根密碼重設 Linux VM，或不慎刪除您的 SSH 私密金鑰。 如果，是發生在 hello 天數 hello 資料中心，您會需要那里 toodrive，然後開啟 hello KVM tooget hello 伺服器主控台。 將視為該 KVM 切換器，可讓您 tooaccess hello 主控台 tooreset 存取 tooLinux 或執行磁碟層級維護 hello Azure VMAccess 擴充功能。
+Linux VM 的磁碟顯示錯誤。 您不知怎麼重設 Linux VM的根密碼，或不小心刪除了 SSH 私密金鑰。 如果是過去資料中心的時代發生此狀況，您必須親赴現場，然後再開啟 KVM 才能存取伺服器主控台。 請將 Azure VMAccess 擴充功能想成 KVM 交換器，在此可以存取主控台重設 Linux 存取或執行磁碟等級維護。
 
-Hello 詳細的逐步解說中，我們 toouse hello 完整格式 VMAccess，會使用原始的 JSON 檔案。  從 Azure 範本也可以呼叫這些 VMAccess JSON 檔案。
+在詳細的逐步解說中，我們會使用利用原始 JSON 檔案的完整格式 VMAccess。  從 Azure 範本也可以呼叫這些 VMAccess JSON 檔案。
 
-### <a name="using-vmaccess-toocheck-or-repair-hello-disk-of-a-linux-vm"></a>使用 VMAccess toocheck 或修復 hello 磁碟上的 Linux VM
-使用 VMAccess 可以執行、 fsck hello 磁碟，在 Linux VM 上執行。  您也可以使用 VMAccess 執行磁碟檢查和磁碟修復。
+### <a name="using-vmaccess-to-check-or-repair-the-disk-of-a-linux-vm"></a>使用 VMAccess 檢查或修復 Linux VM 的磁碟
+使用 VMAccess 可以執行在 Linux VM 磁碟上執行的 fsck。  您也可以使用 VMAccess 執行磁碟檢查和磁碟修復。
 
-toocheck，然後按一下 修復 hello 磁碟使用這個 VMAccess 指令碼：
+若要檢查並修復磁碟，請使用這個 VMAccess 指令碼︰
 
 `disk_check_repair.json`
 
@@ -133,7 +133,7 @@ toocheck，然後按一下 修復 hello 磁碟使用這個 VMAccess 指令碼：
 }
 ```
 
-執行與 hello VMAccess 指令碼：
+執行 VMAccess 指令碼搭配︰
 
 ```azurecli
 azure vm extension set \
@@ -144,10 +144,10 @@ azure vm extension set \
   --private-config-path disk_check_repair.json
 ```
 
-### <a name="using-vmaccess-tooreset-user-access-toolinux"></a>使用 VMAccess tooreset 使用者存取 tooLinux
-如果您遺失存取 tooroot Linux VM 上，您可以啟動 VMAccess 指令碼 tooreset hello 根密碼。
+### <a name="using-vmaccess-to-reset-user-access-to-linux"></a>使用 VMAccess 重設 Linux 的使用者存取
+如已無法存取 Linux VM 的根，您可以啟動 VMAccess 指令碼來重設根密碼。
 
-tooreset hello 根密碼，使用此 VMAccess 指令碼：
+若要重設根密碼，請使用這個 VMAccess 指令碼︰
 
 `reset_root_password.json`
 
@@ -158,7 +158,7 @@ tooreset hello 根密碼，使用此 VMAccess 指令碼：
 }
 ```
 
-執行與 hello VMAccess 指令碼：
+執行 VMAccess 指令碼搭配︰
 
 ```azurecli
 azure vm extension set \
@@ -169,7 +169,7 @@ azure vm extension set \
   --private-config-path reset_root_password.json
 ```
 
-tooreset hello SSH 金鑰的非根使用者，使用此 VMAccess 指令碼：
+若要重設非根使用者的 SSH 金鑰，請使用這個 VMAccess 指令碼︰
 
 `reset_ssh_key.json`
 
@@ -180,7 +180,7 @@ tooreset hello SSH 金鑰的非根使用者，使用此 VMAccess 指令碼：
 }
 ```
 
-執行與 hello VMAccess 指令碼：
+執行 VMAccess 指令碼搭配︰
 
 ```azurecli
 azure vm extension set \
@@ -191,10 +191,10 @@ azure vm extension set \
   --private-config-path reset_ssh_key.json
 ```
 
-### <a name="using-vmaccess-toomanage-user-accounts-on-linux"></a>在 Linux 上使用 VMAccess toomanage 使用者帳戶
-VMAccess 是可以是您沒有登入，並使用 sudo 或 hello 根帳號的 Linux VM 上使用的 toomanage 使用者的 Python 指令碼。
+### <a name="using-vmaccess-to-manage-user-accounts-on-linux"></a>使用 VMAccess 管理 Linux 的使用者帳戶
+VMAccess 是一種 Python 指令碼，可用來管理 Linux VM 上的使用者，但不需要登入及使用 sudo 或根帳戶。
 
-toocreate 使用者時，會使用此 VMAccess 指令碼：
+若要建立使用者，請使用這個 VMAccess 指令碼︰
 
 `create_new_user.json`
 
@@ -206,7 +206,7 @@ toocreate 使用者時，會使用此 VMAccess 指令碼：
 }
 ```
 
-執行與 hello VMAccess 指令碼：
+執行 VMAccess 指令碼搭配︰
 
 ```azurecli
 azure vm extension set \
@@ -217,7 +217,7 @@ azure vm extension set \
   --private-config-path create_new_user.json
 ```
 
-toodelete 使用者時，會使用此 VMAccess 指令碼：
+若要刪除使用者，請使用這個 VMAccess 指令碼︰
 
 `remove_user.json`
 
@@ -227,7 +227,7 @@ toodelete 使用者時，會使用此 VMAccess 指令碼：
 }
 ```
 
-執行與 hello VMAccess 指令碼：
+執行 VMAccess 指令碼搭配︰
 
 ```azurecli
 azure vm extension set \
@@ -238,10 +238,10 @@ azure vm extension set \
   --private-config-path remove_user.json
 ```
 
-### <a name="using-vmaccess-tooreset-hello-sshd-configuration"></a>使用 VMAccess tooreset hello SSHD 組態
-若要變更 toohello Linux Vm SSHD 設定及驗證 hello 變更之前關閉 hello SSH 連線，您可能會導致無法 SSH'ing 回。  VMAccess 可以是使用的 tooreset hello SSHD 組態後 tooa 已知的正確設定而不透過 SSH 登入。
+### <a name="using-vmaccess-to-reset-the-sshd-configuration"></a>使用 VMAccess 重設 SSHD 組態
+如果您變更了 Linux VM SSHD 組態，並在驗證變更之前關閉 SSH 連線，您可能無法回到 SSH 作業。  VMAccess 可用來將 SSHD 組態重設回到已知的良好組態，而不需透過 SSH 登入。
 
-tooreset hello SSHD 組態，請使用此 VMAccess 指令碼：
+使用這個 VMAccess 指令碼重設 SSHD 組態：
 
 `reset_sshd.json`
 
@@ -251,7 +251,7 @@ tooreset hello SSHD 組態，請使用此 VMAccess 指令碼：
 }
 ```
 
-執行與 hello VMAccess 指令碼：
+執行 VMAccess 指令碼搭配︰
 
 ```azurecli
 azure vm extension set \
@@ -263,11 +263,11 @@ azure vm extension set \
 ```
 
 ## <a name="next-steps"></a>後續步驟
-更新 Linux 使用 Azure VMAccess 擴充功能是在執行中的 Linux VM 上的一個方法 toomake 變更。  您也可以使用工具像是雲端 init 和 Azure 範本 toomodify Linux VM 上開機。
+使用 Azure VMAccess 延伸模組更新 Linux 是變更執行中的 Linux VM 的一種方法。  您也可以使用類似 cloud-init 和 Azure 範本等工具，以在開機時修改您的 Linux VM。
 
 [有關虛擬機器擴充功能和功能](../windows/extensions-features.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
 [使用 Linux VM 擴充功能編寫 Azure Resource Manager 範本](../windows/template-description.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 
-[在建立期間使用雲端 init toocustomize Linux VM](using-cloud-init.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+[在建立期間使用 cloud-init 自訂 Linux VM](using-cloud-init.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 

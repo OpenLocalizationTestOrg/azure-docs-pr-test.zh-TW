@@ -1,6 +1,6 @@
-## <a name="log-in-tooazure"></a>登入 tooAzure
+## <a name="log-in-to-azure"></a>登入 Azure
 
-您將在 Azure 中使用 hello Azure CLI toocreate hello 所需資源 toohost 您的應用程式。 如果您在 hello 雲端殼層執行 Azure CLI 命令，您已登入。 toorun Azure CLI 命令在本機登入 Azure 訂用帳戶以 hello tooyour [az 登入](/cli/azure/#login)命令，並遵循螢幕上指示 hello。
+您將使用 Azure CLI 在 Azure 中建立裝載應用程式所需的資源。 若您在 Cloud Shell 中執行 Azure CLI 命令，則表示您已經登入。 若要在本機執行 Azure CLI 命令，請使用 [az login](/cli/azure/#login) 命令登入 Azure 訂用帳戶並遵循畫面上的指示。
 
 ```azurecli
 az login

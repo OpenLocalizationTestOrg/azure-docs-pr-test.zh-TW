@@ -1,5 +1,5 @@
 ---
-title: "在 Azure CDN aaaTroubleshooting 檔案壓縮 |Microsoft 文件"
+title: "針對 Azure CDN 中的檔案壓縮進行疑難排解 | Microsoft Docs"
 description: "針對 Azure CDN 檔案壓縮的問題進行疑難排解。"
 services: cdn
 documentationcenter: 
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: mazha
-ms.openlocfilehash: f00b98beaf6b3b3cd30108ece65a8191edc06ff5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5ef8a8262eb40aa827161764f03a63d031e43273
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="troubleshooting-cdn-file-compression"></a>CDN 檔案壓縮疑難排解
 這篇文章可協助您針對 [CDN 檔案壓縮](cdn-improve-performance.md)的問題進行疑難排解。
 
-如果您需要更多說明，在本文中的任何時間點，您可以連絡上 hello Azure 專家[hello MSDN Azure 和 hello 堆疊溢位論壇](https://azure.microsoft.com/support/forums/)。 或者，您也可以提出 Azure 支援事件。 移 toohello [Azure 支援服務網站](https://azure.microsoft.com/support/options/)按一下**取得支援**。
+如果在本文章中有任何需要協助的地方，您可以連絡 [MSDN Azure 和 Stack Overflow 論壇](https://azure.microsoft.com/support/forums/)上的 Azure 專家。 或者，您也可以提出 Azure 支援事件。 請移至 [Azure 支援網站](https://azure.microsoft.com/support/options/)，然後按一下 [取得支援]。
 
 ## <a name="symptom"></a>徵狀
 已為您的端點啟用壓縮，但會傳回未壓縮的檔案。
 
 > [!TIP]
-> toocheck 檔案會被傳回壓縮，是否需要一種工具要的 toouse [Fiddler](http://www.telerik.com/fiddler)或您的瀏覽器[開發人員工具](https://developer.microsoft.com/microsoft-edge/platform/documentation/f12-devtools-guide/)。  核取 hello HTTP 回應標頭傳回您的快取 CDN 內容。  如果名為 `Content-Encoding` 的標頭有 **gzip**、**bzip2** 或 **deflate** 值，內容會進行壓縮。
+> 若要檢查傳回的檔案是否會壓縮，您需要使用 [Fiddler](http://www.telerik.com/fiddler) 之類的工具或您瀏覽器的[開發人員工具](https://developer.microsoft.com/microsoft-edge/platform/documentation/f12-devtools-guide/)。  檢查隨快取的 CDN 內容傳回的 HTTP 回應標頭。  如果名為 `Content-Encoding` 的標頭有 **gzip**、**bzip2** 或 **deflate** 值，內容會進行壓縮。
 > 
 > ![Content-Encoding 標頭](./media/cdn-troubleshoot-compression/cdn-content-header.png)
 > 
@@ -38,21 +38,21 @@ ms.lasthandoff: 10/06/2017
 ## <a name="cause"></a>原因
 有幾個可能的原因，包括︰
 
-* hello 要求內容不符合資格的壓縮。
-* 無法啟用壓縮 hello 要求的檔案類型。
-* hello HTTP 要求不包含標頭要求有效的壓縮類型。
+* 要求的內容不適合進行壓縮。
+* 要求的檔案類型未啟用壓縮。
+* HTTP 要求未包含要求有效壓縮類型的標頭。
 
 ## <a name="troubleshooting-steps"></a>疑難排解步驟
 > [!TIP]
-> 與部署新的端點，CDN 的設定變更都會透過 hello 網路某些時間 toopropagate。  變更通常會在 90 分鐘內套用。  如果這是 hello 您為您的 CDN 端點設定壓縮的第一次，您應該考慮等候 1-2 小時 toobe 確定 hello 壓縮設定都已傳播 toohello 快顯。 
+> 隨著新端點的部署，CDN 組態變更會需要一些時間才能傳播至整個網路。  變更通常會在 90 分鐘內套用。  如果這是您第一次設定 CDN 端點壓縮，您應該考慮先等候 1-2 小時，確定壓縮設定已傳播至 POP。 
 > 
 > 
 
-### <a name="verify-hello-request"></a>確認 hello 要求
-首先，我們應該進行 hello 要求快速例行性檢查。  您可以使用您的瀏覽器[開發人員工具](https://developer.microsoft.com/microsoft-edge/platform/documentation/f12-devtools-guide/)tooview hello 提出的要求。
+### <a name="verify-the-request"></a>驗證要求
+首先，我們應該對要求進行快速的例行性檢查。  您可以使用瀏覽器的 [開發人員工具](https://developer.microsoft.com/microsoft-edge/platform/documentation/f12-devtools-guide/) 來檢視所做的要求。
 
-* 請確認正在傳送嗨要求 tooyour 端點 URL， `<endpointname>.azureedge.net`，並不是您的原點。
-* 請確認 hello 要求包含**Accept-encoding**該標頭包含標頭和 hello 值**gzip**， **deflate**，或**bzip2**.
+* 驗證要求正傳送至您的端點 URL `<endpointname>.azureedge.net`，而不是您的來源。
+* 驗證要求包含 **Accept-Encoding** 標頭，且該標頭的值包含 **gzip**、**deflate** 或 **bzip2**。
 
 > [!NOTE]
 > **來自 Akamai 的 Azure CDN** 設定檔只支援 **gzip** 編碼。
@@ -67,10 +67,10 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-瀏覽在 hello tooyour 端點[Azure 入口網站](https://portal.azure.com)按一下 hello**設定** 按鈕。
+在 [Azure 入口網站](https://portal.azure.com)中瀏覽至您的端點，然後按一下 [設定] 按鈕。
 
 * 驗證已啟用壓縮。
-* 請確認 hello 內容 toobe 壓縮隨附的壓縮格式的 hello 清單中的 hello MIME 類型。
+* 驗證要壓縮之內容的 MIME 類型已包含在壓縮格式清單中。
 
 ![CDN 壓縮設定](./media/cdn-troubleshoot-compression/cdn-compression-settings.png)
 
@@ -80,41 +80,41 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-瀏覽在 hello tooyour 端點[Azure 入口網站](https://portal.azure.com)按一下 hello**管理** 按鈕。  hello 補充入口網站將會開啟。  暫留在 hello **HTTP 大型** 索引標籤，然後暫留在 hello**快取設定**彈出式視窗。  按一下 [壓縮]。 
+在 [Azure 入口網站](https://portal.azure.com)中瀏覽至您的端點，然後按一下 [管理] 按鈕。  即會開啟補充入口網站。  將滑鼠移至 [HTTP 大型] 索引標籤上，然後將滑鼠移至 [快取設定] 飛出視窗上。  按一下 [壓縮]。 
 
 * 驗證已啟用壓縮。
-* 確認 hello**檔案類型**清單包含以逗號分隔清單 （無空格） 的 MIME 類型。
-* 請確認 hello 內容 toobe 壓縮隨附的壓縮格式的 hello 清單中的 hello MIME 類型。
+* 驗證 [檔案類型]  清單包含以逗號分隔 (無空格) 的 MIME 類型清單。
+* 驗證要壓縮之內容的 MIME 類型已包含在壓縮格式清單中。
 
 ![CDN 進階壓縮設定](./media/cdn-troubleshoot-compression/cdn-compression-settings-premium.png)
 
-### <a name="verify-hello-content-is-cached"></a>確認 hello 內容會快取
+### <a name="verify-the-content-is-cached"></a>驗證已快取內容
 > [!NOTE]
 > 如果您的 CDN 設定檔是 **來自 Verizon 的 Azure CDN** 設定檔 (標準或進階)，才能套用此步驟。
 > 
 > 
 
-使用瀏覽器的開發人員工具，請檢查 hello 回應標頭 tooensure hello 檔案會快取，它所要求的 hello 區域中。
+使用您瀏覽器的開發人員工具，檢查回應標頭以確保檔案會快取在要求它的區域中。
 
-* 檢查 hello**伺服器**回應標頭。  hello 標頭應該具有 hello 格式**平台 (POP/伺服器 ID)**、 hello 下列範例所示。
-* 檢查 hello **X 快取**回應標頭。  hello 標頭應該閱讀**叫用**。  
+* 檢查 **Server** 回應標頭。  標頭應該具有格式 **平台 (POP/伺服器識別碼)**，如下列範例所示。
+* 檢查 **X-Cache** 回應標頭。  標頭應為 **HIT**。  
 
 ![CDN 回應標頭](./media/cdn-troubleshoot-compression/cdn-response-headers.png)
 
-### <a name="verify-hello-file-meets-hello-size-requirements"></a>確認 hello 檔案符合 hello 大小需求
+### <a name="verify-the-file-meets-the-size-requirements"></a>驗證檔案符合大小需求
 > [!NOTE]
 > 如果您的 CDN 設定檔是 **來自 Verizon 的 Azure CDN** 設定檔 (標準或進階)，才能套用此步驟。
 > 
 > 
 
-toobe 能夠壓縮，檔案必須符合下列大小需求的 hello:
+若要進行壓縮，檔案必須符合下列的大小需求︰
 
 * 超過 128 個位元組。
 * 小於 1 MB。
 
-### <a name="check-hello-request-at-hello-origin-server-for-a-via-header"></a>檢查 hello 要求在原始伺服器 hello**透過**標頭
-hello**透過**HTTP 標頭顯示由 proxy 伺服器傳遞 toohello hello 要求的網頁伺服器。  Microsoft IIS web 伺服器，預設不會壓縮回應 hello 要求包含當**透過**標頭。  toooverride 這種行為，執行下列 hello:
+### <a name="check-the-request-at-the-origin-server-for-a-via-header"></a>在原始伺服器中檢查要求的 **Via** 標頭
+**Via** HTTP 標頭會向 Web 伺服器指出正在由 Proxy 伺服器傳遞要求。  Microsoft IIS Web 伺服器預設不會在要求包含 **Via** 標頭時壓縮回應。  若要覆寫這個行為，請執行下列作業︰
 
-* **IIS 6**:[設定 HcNoCompressionForProxies ="FALSE"hello IIS Metabase 內容中](https://msdn.microsoft.com/library/ms525390.aspx)
-* **IIS 7 版與**:[同時設定**noCompressionForHttp10**和**noCompressionForProxies** tooFalse hello 伺服器設定中](http://www.iis.net/configreference/system.webserver/httpcompression)
+* **IIS 6**： [在 IIS Metabase 屬性中設定 HcNoCompressionForProxies="FALSE"](https://msdn.microsoft.com/library/ms525390.aspx)
+* **IIS 7 和更新版本**：[在伺服器組態中將 **noCompressionForHttp10** 和 **noCompressionForProxies** 設定為 False](http://www.iis.net/configreference/system.webserver/httpcompression)
 

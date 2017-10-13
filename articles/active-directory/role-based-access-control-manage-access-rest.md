@@ -1,6 +1,6 @@
 ---
-title: "與其他的 Azure AD aaaRole 型存取控制 |Microsoft 文件"
-description: "使用 hello REST API 管理角色型存取控制"
+title: "角色型存取控制與 REST | Microsoft Docs"
+description: "使用 REST API 管理角色型存取控制"
 services: active-directory
 documentationcenter: na
 author: andredm7
@@ -14,41 +14,41 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: andredm
-ms.openlocfilehash: ccd402fd4fe4583288076cac23753dd067694681
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a5c19fd87ce1ae3e199bf1dfc8cf82f5653baac2
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="manage-role-based-access-control-with-hello-rest-api"></a>管理角色型存取控制以 hello REST API
+# <a name="manage-role-based-access-control-with-the-rest-api"></a>使用 REST API 管理角色型存取控制
 > [!div class="op_single_selector"]
 > * [PowerShell](role-based-access-control-manage-access-powershell.md)
 > * [Azure CLI](role-based-access-control-manage-access-azure-cli.md)
 > * [REST API](role-based-access-control-manage-access-rest.md)
 
-角色型存取控制 (RBAC) 在 hello Azure 入口網站和 Azure 資源管理員 API，可協助您管理存取 tooyour 訂用帳戶和細微的層級的資源。 利用此功能，您可以藉由指定在特定範圍的某些角色 toothem 授與存取 Active Directory 使用者、 群組或服務主體。
+Azure 入口網站及 Azure Resource Manager API 中的「角色型存取控制」(RBAC) 可協助您精確管理對您訂用帳戶與資源的存取。 透過這項功能，您可以為 Active Directory 使用者、群組或是服務主體指派特定範圍的一些角色，藉此賦予其存取權限。
 
 ## <a name="list-all-role-assignments"></a>列出所有角色指派
-列出所有的 hello 角色指派，在指定的 hello 範圍及 subscopes。
+列出在指定的範圍和子範圍內的所有角色指派。
 
-toolist 角色指派，您必須能夠存取太`Microsoft.Authorization/roleAssignments/read`hello 範圍的作業。 所有的 hello 內建的角色會授與存取 toothis 作業。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要列出角色指派，您必須具有範圍內的 `Microsoft.Authorization/roleAssignments/read` 作業存取權。 所有內建角色都會獲得這項作業的存取權。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### <a name="request"></a>要求
-使用 hello**取得**方法具有下列 URI 的 hello:
+搭配下列 URI 使用 **GET** 方法：
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments?api-version={api-version}&$filter={filter}
 
-內 hello URI，請遵循替代 toocustomize hello 您的要求：
+在 URI 內進行下列替代動作以自訂要求：
 
-1. 取代*{範圍}*與 hello 想 toolist hello 角色指派的範圍。 hello 遵循範例顯示如何 toospecify hello 不同層級的範圍：
+1. 將 *{scope}* 取代為您要列出角色指派的範圍。 下列範例顯示如何指定不同層級的範圍：
 
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 2. 將 *{api-version}* 取代為 2015-07-01。
-3. 取代*{filter}* hello 條件，您會希望 tooapply toofilter hello 角色指派清單：
+3. 將 *{filter}* 取代為要針對角色指派清單篩選套用的條件：
 
-   * 清單只 hello 的角色指派指定範圍內，不包括在 subscopes hello 角色指派：`atScope()`    
+   * 僅列出指定範圍的角色指派，不包括子範圍內的角色指派： `atScope()`    
    * 僅列出特定使用者、群組或應用程式的角色指派： `principalId%20eq%20'{objectId of user, group, or service principal}'`  
    * 僅列出特定使用者的角色指派，包括從群組繼承的角色指派 | `assignedTo('{objectId of user}')`
 
@@ -79,23 +79,23 @@ toolist 角色指派，您必須能夠存取太`Microsoft.Authorization/roleAssi
 ```
 
 ## <a name="get-information-about-a-role-assignment"></a>取得角色指派的相關資訊
-取得 hello 角色指派的識別項所指定的單一角色指派的相關資訊。
+取得由角色指派識別碼所指定的單一角色指派相關資訊。
 
-tooget 資訊有關角色指派，您必須能夠存取太`Microsoft.Authorization/roleAssignments/read`作業。 所有的 hello 內建的角色會授與存取 toothis 作業。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要取得角色指派的相關資訊，您必須具有 `Microsoft.Authorization/roleAssignments/read` 作業的存取權。 所有內建角色都會獲得這項作業的存取權。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### <a name="request"></a>要求
-使用 hello**取得**方法具有下列 URI 的 hello:
+搭配下列 URI 使用 **GET** 方法：
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-內 hello URI，請遵循替代 toocustomize hello 您的要求：
+在 URI 內進行下列替代動作以自訂要求：
 
-1. 取代*{範圍}*與 hello 想 toolist hello 角色指派的範圍。 hello 遵循範例顯示如何 toospecify hello 不同層級的範圍：
+1. 將 *{scope}* 取代為您要列出角色指派的範圍。 下列範例顯示如何指定不同層級的範圍：
 
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. 取代*{角色-指派-識別碼}* hello hello 角色指派的 GUID 識別碼。
+2. 將 *{role-assignment-id}* 取代為角色指派的 GUID 識別碼。
 3. 將 *{api-version}* 取代為 2015-07-01。
 
 ### <a name="response"></a>Response
@@ -120,26 +120,26 @@ tooget 資訊有關角色指派，您必須能夠存取太`Microsoft.Authorizati
 ```
 
 ## <a name="create-a-role-assignment"></a>建立角色指派
-建立角色指派在 hello hello 指定主體授與的 hello 指定的角色，請指定範圍。
+在指定範圍中建立指定主體授與指定角色的角色指派。
 
-toocreate 角色指派，您必須能夠存取太`Microsoft.Authorization/roleAssignments/write`作業。 Hello 內建角色時，只有*擁有者*和*使用者存取系統管理員*授與存取 toothis 作業。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要建立角色指派，您必須具有 `Microsoft.Authorization/roleAssignments/write` 作業的存取權。 在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### <a name="request"></a>要求
-使用 hello**放**方法具有下列 URI 的 hello:
+搭配下列 URI 使用 **PUT** 方法：
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-內 hello URI，請遵循替代 toocustomize hello 您的要求：
+在 URI 內進行下列替代動作以自訂要求：
 
-1. 取代*{範圍}*與 hello 範圍，此時您希望 toocreate hello 角色指派。 當您在父範圍中建立角色指派時，所有的子領域會繼承 hello 相同的角色指派。 hello 遵循範例顯示如何 toospecify hello 不同層級的範圍：
+1. 將 *{scope}* 取代為您要建立角色指派的範圍。 當您在父範圍內建立角色指派時，所有的子範圍會繼承相同的角色指派。 下列範例顯示如何指定不同層級的範圍：
 
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1   
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. 取代*{角色-指派-識別碼}*以新的 GUID，而成為 hello hello 新角色指派的 GUID 識別碼。
+2. 將 *{role-assignment-id}* 取代為新的 GUID，此 GUID 將成為新角色指派的 GUID 識別碼。
 3. 將 *{api-version}* 取代為 2015-07-01。
 
-Hello 要求主體中，提供 hello 遵循格式中的 hello 值：
+對於要求本文，提供下列格式的值：
 
 ```
 {
@@ -153,8 +153,8 @@ Hello 要求主體中，提供 hello 遵循格式中的 hello 值：
 
 | 元素名稱 | 必要 | 類型 | 說明 |
 | --- | --- | --- | --- |
-| roleDefinitionId |是 |String |hello hello 角色識別碼。 hello hello 識別項的格式如下：`{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id-guid}` |
-| principalId |是 |String |hello Azure AD 主體 （使用者、 群組或服務主體） 的 objectId toowhich hello 角色指派。 |
+| roleDefinitionId |是 |String |角色的識別碼。 此識別碼的格式是： `{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id-guid}` |
+| principalId |是 |String |做為角色指派對象之 Azure AD 主體的 objectId (使用者、群組或服務主體)。 |
 
 ### <a name="response"></a>Response
 狀態碼：201
@@ -178,23 +178,23 @@ Hello 要求主體中，提供 hello 遵循格式中的 hello 值：
 ```
 
 ## <a name="delete-a-role-assignment"></a>刪除角色指派
-刪除角色指派 hello 在指定範圍。
+刪除指定範圍內的角色指派。
 
-toodelete 角色指派，您必須擁有存取 toohello`Microsoft.Authorization/roleAssignments/delete`作業。 Hello 內建角色時，只有*擁有者*和*使用者存取系統管理員*授與存取 toothis 作業。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要刪除角色指派，您必須具有 `Microsoft.Authorization/roleAssignments/delete` 作業的存取權。 在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### <a name="request"></a>要求
-使用 hello**刪除**方法具有下列 URI 的 hello:
+搭配下列 URI 使用 **DELETE** 方法：
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleAssignments/{role-assignment-id}?api-version={api-version}
 
-內 hello URI，請遵循替代 toocustomize hello 您的要求：
+在 URI 內進行下列替代動作以自訂要求：
 
-1. 取代*{範圍}*與 hello 範圍，此時您希望 toocreate hello 角色指派。 hello 遵循範例顯示如何 toospecify hello 不同層級的範圍：
+1. 將 *{scope}* 取代為您要建立角色指派的範圍。 下列範例顯示如何指定不同層級的範圍：
 
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. 取代*{角色-指派-識別碼}* hello 角色指派 id 的 GUID。
+2. 將 *{role-assignment-id}* 取代為角色指派識別碼 GUID。
 3. 將 *{api-version}* 取代為 2015-07-01。
 
 ### <a name="response"></a>Response
@@ -219,27 +219,27 @@ toodelete 角色指派，您必須擁有存取 toohello`Microsoft.Authorization/
 ```
 
 ## <a name="list-all-roles"></a>列出所有角色
-列出所有 hello 角色可供使用時指定的 hello 的指派範圍。
+列出在指定的範圍內可供指派的所有角色。
 
-toolist 角色必須具有存取太`Microsoft.Authorization/roleDefinitions/read`hello 範圍的作業。 所有的 hello 內建的角色會授與存取 toothis 作業。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要列出角色，您必須具有該範圍內 `Microsoft.Authorization/roleDefinitions/read` 作業的存取權。 所有內建角色都會獲得這項作業的存取權。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### <a name="request"></a>要求
-使用 hello**取得**方法具有下列 URI 的 hello:
+搭配下列 URI 使用 **GET** 方法：
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions?api-version={api-version}&$filter={filter}
 
-內 hello URI，請遵循替代 toocustomize hello 您的要求：
+在 URI 內進行下列替代動作以自訂要求：
 
-1. 取代*{範圍}*與 hello 想 toolist hello 角色的範圍。 hello 遵循範例顯示如何 toospecify hello 不同層級的範圍：
+1. 將 *{scope}* 取代為您要列出角色的範圍。 下列範例顯示如何指定不同層級的範圍：
 
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
 2. 將 *{api-version}* 取代為 2015-07-01。
-3. 取代*{filter}* hello 條件，您希望角色 tooapply toofilter hello 清單：
+3. 將 *{filter}* 取代為要針對角色清單篩選套用的條件：
 
-   * 清單角色在 hello 分派可用的指定範圍和其子範圍的任何：`atScopeAndBelow()`
-   * 使用確切的顯示名稱來搜尋角色： `roleName%20eq%20'{role-display-name}'`。 使用 hello URL 編碼形式的 hello 角色 hello 確切的顯示名稱。 例如， `$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
+   * 列出在指定的範圍及其任何子範圍內可供指派的角色： `atScopeAndBelow()`
+   * 使用確切的顯示名稱來搜尋角色： `roleName%20eq%20'{role-display-name}'`。 使用角色確切顯示名稱的 URL 編碼型式。 例如， `$filter=roleName%20eq%20'Virtual%20Machine%20Contributor'` |
 
 ### <a name="response"></a>Response
 狀態碼：200
@@ -251,7 +251,7 @@ toolist 角色必須具有存取太`Microsoft.Authorization/roleDefinitions/read
       "properties": {
         "roleName": "Virtual Machine Contributor",
         "type": "BuiltInRole",
-        "description": "Lets you manage virtual machines, but not access toothem, and not hello virtual network or storage account they\u2019re connected to.",
+        "description": "Lets you manage virtual machines, but not access to them, and not the virtual network or storage account they\u2019re connected to.",
         "assignableScopes": [
           "/"
         ],
@@ -302,23 +302,23 @@ toolist 角色必須具有存取太`Microsoft.Authorization/roleDefinitions/read
 ```
 
 ## <a name="get-information-about-a-role"></a>取得角色的相關資訊
-取得 hello 角色定義識別項所指定的單一角色的相關資訊。 tooget 使用它的顯示名稱的單一角色的相關的資訊，請參閱[列出所有角色](role-based-access-control-manage-access-rest.md#list-all-roles)。
+取得由角色定義識別碼所指定的單一角色相關資訊。 若要使用角色的顯示名稱來取得單一角色的相關資訊，請參閱 [列出所有角色](role-based-access-control-manage-access-rest.md#list-all-roles)。
 
-tooget 有關角色的資訊，您必須能夠存取太`Microsoft.Authorization/roleDefinitions/read`作業。 所有的 hello 內建的角色會授與存取 toothis 作業。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要取得角色的相關資訊，您必須具有 `Microsoft.Authorization/roleDefinitions/read` 作業的存取權。 所有內建角色都會獲得這項作業的存取權。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### <a name="request"></a>要求
-使用 hello**取得**方法具有下列 URI 的 hello:
+搭配下列 URI 使用 **GET** 方法：
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-內 hello URI，請遵循替代 toocustomize hello 您的要求：
+在 URI 內進行下列替代動作以自訂要求：
 
-1. 取代*{範圍}*與 hello 想 toolist hello 角色指派的範圍。 hello 遵循範例顯示如何 toospecify hello 不同層級的範圍：
+1. 將 *{scope}* 取代為您要列出角色指派的範圍。 下列範例顯示如何指定不同層級的範圍：
 
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. 取代*{角色-定義-識別碼}* hello 角色定義的 hello GUID 識別碼。
+2. 將 *{role-definition-id}* 取代為角色定義的 GUID 識別碼。
 3. 將 *{api-version}* 取代為 2015-07-01。
 
 ### <a name="response"></a>Response
@@ -331,7 +331,7 @@ tooget 有關角色的資訊，您必須能夠存取太`Microsoft.Authorization/
       "properties": {
         "roleName": "Virtual Machine Contributor",
         "type": "BuiltInRole",
-        "description": "Lets you manage virtual machines, but not access toothem, and not hello virtual network or storage account they\u2019re connected to.",
+        "description": "Lets you manage virtual machines, but not access to them, and not the virtual network or storage account they\u2019re connected to.",
         "assignableScopes": [
           "/"
         ],
@@ -384,24 +384,24 @@ tooget 有關角色的資訊，您必須能夠存取太`Microsoft.Authorization/
 ## <a name="create-a-custom-role"></a>建立自訂角色
 建立自訂角色。
 
-toocreate 自訂安全性角色，您必須能夠存取太`Microsoft.Authorization/roleDefinitions/write`作業上所有的 hello `AssignableScopes`。 Hello 內建角色時，只有*擁有者*和*使用者存取系統管理員*授與存取 toothis 作業。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要建立自訂角色，您必須在所有 `AssignableScopes` 上都具有 `Microsoft.Authorization/roleDefinitions/write` 作業的存取權。 在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### <a name="request"></a>要求
-使用 hello**放**方法具有下列 URI 的 hello:
+搭配下列 URI 使用 **PUT** 方法：
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-內 hello URI，請遵循替代 toocustomize hello 您的要求：
+在 URI 內進行下列替代動作以自訂要求：
 
-1. 取代*{範圍}* hello 與第一個*AssignableScope*的 hello 自訂角色。 hello 遵循範例顯示如何 toospecify hello 不同層級的範圍。
+1. 將 *{scope}* 取代為自訂角色的第一個 *AssignableScope*。 下列範例顯示如何指定不同層級的範圍。
 
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. 取代*{角色-定義-識別碼}*以新的 GUID，而成為新的自訂角色 hello hello GUID 識別碼。
+2. 將 *{role-definition-id}* 取代為新的 GUID，此 GUID 將成為新自訂角色的 GUID 識別碼。
 3. 將 *{api-version}* 取代為 2015-07-01。
 
-Hello 要求主體中，提供 hello 遵循格式中的 hello 值：
+對於要求本文，提供下列格式的值：
 
 ```
 {
@@ -436,13 +436,13 @@ Hello 要求主體中，提供 hello 遵循格式中的 hello 值：
 
 | 元素名稱 | 必要 | 類型 | 說明 |
 | --- | --- | --- | --- |
-| 名稱 |是 |String |Hello 自訂角色的 GUID 識別碼。 |
-| properties.roleName |是 |String |Hello 自訂角色的顯示名稱。 大小上限為 128 個字元。 |
-| properties.description |否 |String |Hello 自訂角色的描述。 大小上限為 1024 個字元。 |
-| properties.type |是 |String |設定得 「 CustomRole。 」 |
-| properties.permissions.actions |yes |String[] |字串 hello 自訂角色所授與的指定 hello 作業的動作陣列。 |
-| properties.permissions.notActions |否 |String[] |指定 hello 作業 tooexclude hello 自訂角色所授與的 hello 作業的動作字串的陣列。 |
-| properties.assignableScopes |是 |String[] |陣列的範圍中的 hello 可以使用自訂角色。 |
+| 名稱 |是 |String |自訂角色的 GUID 識別碼。 |
+| properties.roleName |是 |String |自訂角色的顯示名稱。 大小上限為 128 個字元。 |
+| properties.description |否 |String |自訂角色的說明。 大小上限為 1024 個字元。 |
+| properties.type |是 |String |設定為 "CustomRole"。 |
+| properties.permissions.actions |yes |String[] |動作字串陣列，此陣列指定自訂角色所授權的作業。 |
+| properties.permissions.notActions |否 |String[] |動作字串陣列，此陣列指定要從自訂角色所授權的作業中排除的作業。 |
+| properties.assignableScopes |是 |String[] |範圍陣列，此陣列指定可在其中使用自訂角色的範圍。 |
 
 ### <a name="response"></a>Response
 狀態碼：201
@@ -487,24 +487,24 @@ Hello 要求主體中，提供 hello 遵循格式中的 hello 值：
 ## <a name="update-a-custom-role"></a>更新自訂角色
 修改自訂角色。
 
-toomodify 自訂安全性角色，您必須能夠存取太`Microsoft.Authorization/roleDefinitions/write`作業上所有的 hello `AssignableScopes`。 Hello 內建角色時，只有*擁有者*和*使用者存取系統管理員*授與存取 toothis 作業。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要修改自訂角色，您必須在所有 `AssignableScopes` 上都具有 `Microsoft.Authorization/roleDefinitions/write` 作業的存取權。 在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### <a name="request"></a>要求
-使用 hello**放**方法具有下列 URI 的 hello:
+搭配下列 URI 使用 **PUT** 方法：
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-內 hello URI，請遵循替代 toocustomize hello 您的要求：
+在 URI 內進行下列替代動作以自訂要求：
 
-1. 取代*{範圍}* hello 與第一個*AssignableScope*的 hello 自訂角色。 hello 遵循範例顯示如何 toospecify hello 不同層級的範圍：
+1. 將 *{scope}* 取代為自訂角色的第一個 *AssignableScope*。 下列範例顯示如何指定不同層級的範圍：
 
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. 取代*{角色-定義-識別碼}* hello 自訂角色的 hello GUID 識別碼。
+2. 將 *{role-definition-id}* 取代為自訂角色的 GUID 識別碼。
 3. 將 *{api-version}* 取代為 2015-07-01。
 
-Hello 要求主體中，提供 hello 遵循格式中的 hello 值：
+對於要求本文，提供下列格式的值：
 
 ```
 {
@@ -539,13 +539,13 @@ Hello 要求主體中，提供 hello 遵循格式中的 hello 值：
 
 | 元素名稱 | 必要 | 類型 | 說明 |
 | --- | --- | --- | --- |
-| 名稱 |是 |String |Hello 自訂角色的 GUID 識別碼。 |
-| properties.roleName |是 |String |Hello 更新自訂角色的顯示名稱。 |
-| properties.description |否 |String |Hello 的描述更新自訂角色。 |
-| properties.type |是 |String |設定得 「 CustomRole。 」 |
-| properties.permissions.actions |yes |String[] |指定 hello 作業 toowhich hello 的動作字串的陣列會更新自訂角色授與的存取。 |
-| properties.permissions.notActions |否 |String[] |從 hello 作業的 hello 更新自訂角色授與的指定 hello 作業 tooexclude 之字串的動作陣列。 |
-| properties.assignableScopes |是 |String[] |陣列的範圍中的 hello 更新自訂角色可用。 |
+| 名稱 |是 |String |自訂角色的 GUID 識別碼。 |
+| properties.roleName |是 |String |已更新的自訂角色顯示名稱。 |
+| properties.description |否 |String |已更新的自訂角色說明。 |
+| properties.type |是 |String |設定為 "CustomRole"。 |
+| properties.permissions.actions |yes |String[] |動作字串的陣列會指定已更新自訂角色授與存取權的作業。 |
+| properties.permissions.notActions |否 |String[] |動作字串陣列，此陣列指定要從已更新之自訂角色所授權的作業中排除的作業。 |
+| properties.assignableScopes |是 |String[] |範圍陣列，此陣列指定可在其中使用已更新之自訂角色的範圍。 |
 
 ### <a name="response"></a>Response
 狀態碼：201
@@ -590,21 +590,21 @@ Hello 要求主體中，提供 hello 遵循格式中的 hello 值：
 ## <a name="delete-a-custom-role"></a>刪除自訂角色
 刪除自訂角色。
 
-toodelete 自訂安全性角色，您必須能夠存取太`Microsoft.Authorization/roleDefinitions/delete`作業上所有的 hello `AssignableScopes`。 Hello 內建角色時，只有*擁有者*和*使用者存取系統管理員*授與存取 toothis 作業。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
+若要刪除自訂角色，您必須在所有 `AssignableScopes` 上都具有 `Microsoft.Authorization/roleDefinitions/delete` 作業的存取權。 在內建角色中，只有「擁有者」和「使用者存取系統管理員」會獲得這項作業的存取權。 如需有關角色指派和管理 Azure 資源存取權的詳細資訊，請參閱 [Azure 角色型存取控制](role-based-access-control-configure.md)。
 
 ### <a name="request"></a>要求
-使用 hello**刪除**方法具有下列 URI 的 hello:
+搭配下列 URI 使用 **DELETE** 方法：
 
     https://management.azure.com/{scope}/providers/Microsoft.Authorization/roleDefinitions/{role-definition-id}?api-version={api-version}
 
-內 hello URI，請遵循替代 toocustomize hello 您的要求：
+在 URI 內進行下列替代動作以自訂要求：
 
-1. 取代*{範圍}*與 hello 想 toodelete hello 角色定義的範圍。 hello 遵循範例顯示如何 toospecify hello 不同層級的範圍：
+1. 將 *{scope}* 取代為您要刪除角色定義的範圍。 下列範例顯示如何指定不同層級的範圍：
 
    * 訂用帳戶：/subscriptions/{subscription-id}  
    * 資源群組：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1  
    * 資源：/subscriptions/{subscription-id}/resourceGroups/myresourcegroup1/providers/Microsoft.Web/sites/mysite1  
-2. 取代*{角色-定義-識別碼}* hello GUID 角色定義識別碼為 hello 自訂角色。
+2. 將 *{role-definition-id}* 取代為自訂角色的 GUID 角色定義識別碼。
 3. 將 *{api-version}* 取代為 2015-07-01。
 
 ### <a name="response"></a>Response

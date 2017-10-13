@@ -1,6 +1,6 @@
 ---
-title: "aaaUsers 標示風險安全性報告 hello Azure Active Directory 入口網站中為 |Microsoft 文件"
-description: "深入了解 hello 使用者標示為在 hello Azure Active Directory 入口網站的風險安全性報告"
+title: "Azure Active Directory 入口網站中標幟為有風險的使用者安全性報告 | Microsoft Docs"
+description: "了解 Azure Active Directory 入口網站中標幟為有風險的使用者安全性報告"
 services: active-directory
 author: MarkusVi
 manager: femila
@@ -13,59 +13,59 @@ ms.workload: identity
 ms.date: 08/24/2017
 ms.author: markvi
 ms.reviewer: dhanyahk
-ms.openlocfilehash: 5077cd61d6119745a85ed712623904633a151331
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 04f15384a7cd0fa03300acdf159d371569ecf9fc
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="users-flagged-for-risk-security-report-in-hello-azure-active-directory-portal"></a>標示為進行風險安全性報告 hello Azure Active Directory 入口網站中的使用者
+# <a name="users-flagged-for-risk-security-report-in-the-azure-active-directory-portal"></a>Azure Active Directory 入口網站中標幟為有風險的使用者安全性報告
 
-與 hello Azure Active Directory (Azure AD) 中的 hello 安全性報表，您可以深入了 hello 機率盜用的使用者帳戶，您的環境中。 
+利用 Azure Active Directory (Azure AD) 中的安全性報告，您可以深入了解環境中使用者帳戶被盜用的可能性。 
 
-Azure Active Directory 偵測到可疑相關的 tooyour 使用者帳戶的動作。 針對每個偵測到的動作，將會建立一筆稱為「風險事件」的記錄。 如需詳細資訊，請參閱 [Azure Active Directory 風險事件](active-directory-identity-protection-risk-events.md)。 
+Azure Active Directory 會偵測使用者帳戶相關的可疑動作。 針對每個偵測到的動作，將會建立一筆稱為「風險事件」的記錄。 如需詳細資訊，請參閱 [Azure Active Directory 風險事件](active-directory-identity-protection-risk-events.md)。 
 
-hello 偵測到有使用的 toocalculate 風險事件：
+偵測到的風險事件用來計算︰
 
-- **高風險的登入**-有風險的登入是可能執行的人不是合法 hello 的使用者帳戶擁有者的登入嘗試的指標。 如需詳細資訊，請參閱[有風險的登入](active-directory-identityprotection.md#risky-sign-ins)。 
+- **有風險的登入** - 有風險的登入表示非使用者帳戶合法擁有者的某人嘗試登入。 如需詳細資訊，請參閱[有風險的登入](active-directory-identityprotection.md#risky-sign-ins)。 
 
 - **標幟為有風險的使用者** - 有風險的使用者表示可能被盜用的使用者帳戶。 如需詳細資訊，請參閱[標幟為有風險的使用者](active-directory-identityprotection.md#users-flagged-for-risk)。  
 
-在 hello Azure 入口網站，您可以找到 hello 安全性報告 hello **Azure Active Directory**刀鋒視窗中 hello**安全性**> 一節。  
+在 Azure 入口網站中，您可以在 [Azure Active Directory] 刀鋒視窗的 [安全性] 區段中找到安全性報告。  
 
 ![有風險的登入](./media/active-directory-reporting-security-user-at-risk/10.png)
 
 
 
-## <a name="what-azure-ad-license-do-you-need-tooaccess-a-security-report"></a>Azure AD 授權您需要 tooaccess 安全性報表嗎？  
+## <a name="what-azure-ad-license-do-you-need-to-access-a-security-report"></a>您需要哪項 Azure AD 授權才能存取安全性報告？  
 
 所有 Azure Active Directory 版本都會為您提供標幟為有風險的使用者報告。  
-不過，報表資料粒度層級 hello hello 版本而異： 
+不過，報告細微性層級因版本而異： 
 
-- 在 hello **Azure Active Directory Free 和 Basic 版本**，您已取得使用者針對風險加上旗標的清單。 
+- 在 [Azure Active Directory Free 和 Basic 版本] 中，您已取得標幟為有風險的使用者清單。 
 
-- hello **Azure Active Directory Premium 1**版本擴充這個模型也啟用 tooexamine hello 已偵測到每個報表的風險事件的基礎部分。 
+- **Azure Active Directory Premium 1** 版本也可讓您檢查每份報告部分已偵測到的基礎風險事件，藉此擴充此模型。 
 
-- hello **Azure Active Directory Premium 2**版本會提供您與 hello 所有基礎的風險事件的最詳細的資訊，並可讓您 tooconfigure 自動回應 tooconfigured 風險的安全性原則層級。
+- **Azure Active Directory Premium 2** 版本可提供有關所有基礎風險事件的最詳細資訊，可讓您設定安全性原則，自動回應已設定的風險層級。
 
 
 
 ## <a name="azure-active-directory-free-and-basic-edition"></a>Azure Active Directory 免費和基本版本
 
-hello 風險 hello Azure Active Directory free 和 basic 版本的報表加上旗標的使用者提供您可能已受到危害的使用者帳戶的清單。 
+Azure Active Directory 免費和基本版本中標幟為有風險的使用者報告，會提供可能遭到盜用的使用者帳戶清單。 
 
 
 ![有風險的登入](./media/active-directory-reporting-security-user-at-risk/03.png)
 
-選取使用者開啟 hello 相關的使用者資料刀鋒視窗。
-針對有風險的使用者，您可以檢閱 hello 使用者的登入歷程記錄，並且如有必要，請重設 hello 密碼。
+選取使用者，即會開啟相關的使用者資料刀鋒視窗。
+針對有風險的使用者，您可以檢閱使用者的登入記錄，如有必要，請重設密碼。
 
 ![有風險的登入](./media/active-directory-reporting-security-user-at-risk/46.png)
 
 
 此對話方塊會提供選項以便：
 
-- 下載 hello 報表
+- 下載報告
 
 - 搜尋使用者
 
@@ -74,34 +74,34 @@ hello 風險 hello Azure Active Directory free 和 basic 版本的報表加上�
 
 ## <a name="azure-active-directory-premium-editions"></a>Azure Active Directory Premium Edition
 
-hello hello Azure Active Directory premium edition 中，風險報表加上旗標的使用者提供讓您：
+Azure Active Directory Premium Edition 中標幟為有風險的使用者報告可提供：
 
 - 可能已遭盜用的[使用者帳戶清單](active-directory-identityprotection.md#users-flagged-for-risk) 
 
-- 彙總資訊 hello[風險事件類型](active-directory-identity-protection-risk-events.md)偵測到的
+- 關於已偵測到之[風險事件類型](active-directory-identity-protection-risk-events.md)的彙總資訊
 
-- 選項 toodownload hello 報表
+- 下載報告的選項
 
-- 選項 tooconfigure[使用者風險補救原則](active-directory-identityprotection.md#user-risk-security-policy)  
+- 選擇設定[使用者風險補救原則](active-directory-identityprotection.md#user-risk-security-policy)  
 
 
 ![有風險的登入](./media/active-directory-reporting-security-user-at-risk/71.png)
 
 當您選取使用者時，即會取得這位使用者的詳細報告檢視，讓您能夠：
 
-- 開啟 檢視所有登入的 hello
+- 開啟 [所有登入] 檢視
 
-- 重設 hello 使用者密碼
+- 重設使用者的密碼
 
 - 關閉所有事件
 
-- 調查 hello 使用者報告的風險事件。 
+- 調查針對該使用者報告的風險事件。 
 
 
 ![有風險的登入](./media/active-directory-reporting-security-user-at-risk/324.png)
 
 
-tooinvestigate 風險事件，從選取一個 hello 清單 tooopen hello**詳細資料**這個風險事件刀鋒視窗。 在 hello**詳細資料**刀鋒視窗中，您已擁有 hello 選項 tooeither[手動關閉風險事件](active-directory-identityprotection.md#closing-risk-events-manually)或重新啟動已手動關閉的風險事件。 
+若要調查風險事件，請從清單中選取一項，以開啟此風險事件的 [詳細資料] 刀鋒視窗。 在 [詳細資料] 刀鋒視窗中，您可以選擇[手動關閉風險事件](active-directory-identityprotection.md#closing-risk-events-manually)或重新啟動已手動關閉的風險事件。 
 
 
 ![有風險的登入](./media/active-directory-reporting-security-user-at-risk/325.png)

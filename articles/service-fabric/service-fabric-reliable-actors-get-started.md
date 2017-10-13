@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 您第一次行動為基礎 Azure 微服務在 C# |Microsoft 文件"
-description: "本教學課程將引導您完成建立、 偵錯和部署簡單動作項目為基礎的服務使用服務網狀架構 Reliable Actors hello 步驟。"
+title: "使用 C# 建立您的第一個動作項目型 Azure 微服務 | Microsoft Docs"
+description: "本教學課程將引導您使用 Service Fabric Reliable Actors，建立、偵錯及部署簡易動作項目型服務的步驟。"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: ab4f75bef0adb6e70f0ead587475b3fb51e6e6a5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3f447e049ccd33c77f422e8aa703ad6646f9ffa2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="getting-started-with-reliable-actors"></a>開始使用 Reliable Actors
 > [!div class="op_single_selector"]
@@ -27,24 +27,24 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-本文章說明 Azure Service Fabric Reliable Actors hello 基本概念，並將引導您建立、 偵錯和部署 Visual Studio 中的簡單 Reliable Actor 應用程式。
+本文說明 Azure Service Fabric Reliable Actors 的基本概念，並將逐步引導您在 Visual Studio 中建立、偵錯及部署簡單的 Reliable Actor 應用程式。
 
 ## <a name="installation-and-setup"></a>安裝與設定
-在開始之前，請確定您已擁有 hello Service Fabric 開發環境設定您的電腦上。
-如果您需要 tooset 它，請參閱詳細的指示[如何 hello 開發環境 tooset](service-fabric-get-started.md)。
+開始之前，確定機器上已設定 Service Fabric 開發環境。
+如果需要加以設定，請參閱 [如何設定開發環境](service-fabric-get-started.md)的詳細指示。
 
 ## <a name="basic-concepts"></a>基本概念
-tooget 入門 Reliable Actors，您只需要 toounderstand 某些基本概念：
+若要開始使用 Reliable Actors，您只需要了解幾個基本概念：
 
-* **動作項目服務**。 Reliable Actors 被封裝在可靠的服務，可以部署在 hello 服務網狀架構基礎結構。 動作項目執行個體會在指定的服務執行個體中啟動。
-* **動作項目註冊**。 為使用可靠的服務，Reliable Actor 服務需要 toobe 向 hello Service Fabric 執行階段。 此外，hello 動作項目類型必須 toobe 向 hello 動作項目執行階段。
-* **動作項目介面**。 hello 執行者介面是使用的 toodefine 執行者的強型別的公用介面。 在 hello Reliable Actor 模型術語，hello 執行者介面會定義的 hello hello 執行者的訊息類型可以了解並處理。 hello 執行者介面由其他的動作，用戶端應用程式太 「 傳送 」 （非同步） 訊息 toohello 動作項目。 Reliable Actors 可實作多個介面。
-* **ActorProxy 類別**。 hello ActorProxy 類別由用戶端應用程式 tooinvoke hello hello 執行者介面透過公開的方法。 hello ActorProxy 類別提供兩個重要功能：
+* **動作項目服務**。 Reliable Actors 封裝在可在 Service Fabric 基礎結構內部署的 Reliable Services 中。 動作項目執行個體會在指定的服務執行個體中啟動。
+* **動作項目註冊**。 和 Reliable Services 一樣，Reliable Actor 服務必須向 Service Fabric 執行階段註冊。 此外，動作項目類型必須向 Actor 執行階段註冊。
+* **動作項目介面**。 動作項目介面用於定義動作項目的強型別公用介面。 在 Reliable Actor 模型術語中，動作項目介面定義動作項目可以了解並處理的訊息類型。 其他的動作項目或用戶端應用程式會使用動作項目介面將訊息「傳送」(非同步) 給動作項目。 Reliable Actors 可實作多個介面。
+* **ActorProxy 類別**。 用戶端應用程式會使用 ActorProxy 類別來叫用透過動作項目介面公開的方法。 ActorProxy 類別提供兩個重要的功能：
   
-  * 名稱解析： 它是無法 toolocate hello hello 叢集 （尋找 hello hello 叢集節點的裝載位置） 中的動作項目。
-  * 錯誤處理： 它可以重試方法引動過程，和重新解析 hello 動作項目位置之後、 需要 hello 執行者 toobe 失敗，例如重新定位 tooanother hello 叢集中的節點。
+  * 名稱解析︰它能夠在叢集中找到動作項目 (尋找裝載動作項目的叢集節點)。
+  * 處理失敗：它可以重試方法叫用並重新解析動作項目位置，例如在需要動作項目重新定位至叢集中另一個節點失敗後進行。
 
-下列規則的相關 tooactor 介面 hello 是值得一提的是：
+值得一提的是下列與動作項目介面相關的規則︰
 
 * 動作項目介面方法無法多載。
 * 動作項目介面方法不能有 out、ref 或選擇性參數。
@@ -55,21 +55,21 @@ tooget 入門 Reliable Actors，您只需要 toounderstand 某些基本概念：
 
 ![適用於 Visual Studio 的 Service Fabric 工具 - 新專案][1]
 
-在 hello 下一步 對話方塊中，您可以選擇 hello 類型的專案，您會想 toocreate。
+在下一個對話方塊中，您可選擇您要建立的專案類型。
 
 ![Service Fabric 專案範本][5]
 
-Hello HelloWorld 專案，讓我們使用 hello 服務網狀架構 Reliable Actors 服務。
+讓我們為 HelloWorld 專案使用 Service Fabric Reliable Actors 服務。
 
-建立 hello 方案之後，您應該會看到下列結構的 hello:
+建立方案之後，您應該會看到下列結構：
 
 ![Service Fabric 專案結構][2]
 
 ## <a name="reliable-actors-basic-building-blocks"></a>Reliable Actors 項目基本建置組塊
 典型的 Reliable Actors 方案是由 3 個專案組成：
 
-* **hello 應用程式專案 (MyActorApplication)**。 這是封裝所有 hello 服務一起部署的 hello 專案。 它包含 hello *ApplicationManifest.xml*和 PowerShell 指令碼，以管理 hello 應用程式。
-* **hello 介面專案 (MyActor.Interfaces)**。 這是包含 hello 執行者的 hello 介面定義的 hello 專案。 在 hello MyActor.Interfaces 專案中，您可以定義將由 hello 執行者 hello 方案中的 hello 介面。 動作項目介面可以定義任何專案中使用任何名稱，不過 hello 介面定義 hello 動作項目實作和呼叫 hello 動作項目，因此它通常會建立有意義 toodefine hello 用戶端共用的 hello 執行者合約中的組件分隔與 hello 動作項目實作，並且可由多個其他專案共用。
+* **應用程式專案 (MyActorApplication)**。 此專案會將所有的服務封裝在一起部署。 其包含了用於管理應用程式的 ApplicationManifest.xml  與 PowerShell 指令碼。
+* **介面專案 (MyActor.Interfaces)**。 此專案包含動作項目的介面定義。 在 MyActor.Interfaces 專案中，您可以定義將由方案中的動作項目使用者介面。 可以在任何專案中使用任何名稱定義動作項目介面，不過該介面會定義由動作項目實作與呼叫動作項目的用戶端所共用的動作項目合約，因此通常適合在不同於動作項目實作的組件中定義該合約，並可由多個其他專案共用。
 
 ```csharp
 public interface IMyActor : IActor
@@ -78,7 +78,7 @@ public interface IMyActor : IActor
 }
 ```
 
-* **hello 行動服務專案 (MyActor)**。 這是 hello 專案使用 toodefine hello Service Fabric 服務進行 toohost hello 動作項目。 它包含 hello 執行者 hello 實作。 動作項目實作是類別，衍生自基底型別 hello`Actor`和實作 hello hello MyActor.Interfaces 專案中所定義的介面。 動作項目類別也必須實作的建構函式可接受`ActorService`執行個體和`ActorId`並將其傳遞 toohello 基底`Actor`類別。 這可允許平台相依性的建構函式相依性插入。
+* **動作項目服務專案 (MyActor)**。 此專案用於定義即將裝載動作項目的 Service Fabric 服務。 它包含動作項目的實作。 動作項目實作是衍生自基底類型 `Actor` 的類別，可實作 MyActor.Interfaces 專案中所定義的介面。 動作項目類別也必須實作建構函式來接受 `ActorService` 執行個體和 `ActorId`，並將它們傳遞至基底 `Actor` 類別。 這可允許平台相依性的建構函式相依性插入。
 
 ```csharp
 [StatePersistence(StatePersistence.Persisted)]
@@ -96,7 +96,7 @@ class MyActor : Actor, IMyActor
 }
 ```
 
-hello actor 服務必須向 hello Service Fabric 執行階段中的服務類型。 在順序 hello Actor 服務 toorun 您的動作項目執行個體，動作項目類型也必須向 hello 動作項目服務。 hello`ActorRuntime`註冊方法為執行者執行這項工作。
+必須在 Service Fabric 執行階段中以某個服務類型註冊動作項目服務。 為了讓動作項目服務執行您的動作項目執行個體，也必須向動作項目服務註冊動作項目類型。 `ActorRuntime` 註冊方法會替動作項目執行這項工作。
 
 ```csharp
 internal static class Program
@@ -120,7 +120,7 @@ internal static class Program
 
 ```
 
-如果您從新的專案，Visual Studio 中啟動，您只能有一個動作項目定義 hello 註冊預設隨附在 Visual Studio 會產生的 hello 程式碼中。 如果您在 hello 服務中定義其他的動作，您會需要使用 tooadd hello 執行者註冊：
+如果您從在 Visual Studio 中建立新專案開始，且您只有一個動作項目定義，則該註冊預設會包含在 Visual Studio 產生的程式碼中。 如果您在服務中定義其他的動作，您必須使用下列項目新增動作項目註冊：
 
 ```csharp
  ActorRuntime.RegisterActorAsync<MyOtherActor>();
@@ -128,19 +128,19 @@ internal static class Program
 ```
 
 > [!TIP]
-> hello Service Fabric 動作項目執行階段發出某些[事件和效能計數器相關 tooactor 方法](service-fabric-reliable-actors-diagnostics.md#actor-method-events-and-performance-counters)。 這些項目對於診斷與效能監視很有幫助。
+> Service Fabric Actors 執行階段會發出某些 [事件和與動作項目方法相關的效能計數器](service-fabric-reliable-actors-diagnostics.md#actor-method-events-and-performance-counters)。 這些項目對於診斷與效能監視很有幫助。
 > 
 > 
 
 ## <a name="debugging"></a>Debugging
-Visual Studio 的 hello Service Fabric 工具支援偵錯在本機電腦上。 您可以叫用 hello F5 鍵啟動偵錯工作階段。 Visual Studio 會建置封裝 (如有必要)。 它也將 hello hello 本機 Service Fabric 叢集上的應用程式部署，並附加 hello 偵錯工具。
+Visual Studio 專用的 Service Fabric 工具支援在本機機器上偵錯。 您可以點擊 F5 鍵開始偵錯工作階段。 Visual Studio 會建置封裝 (如有必要)。 它也會在本機 Service Fabric 叢集上部署應用程式並附加偵錯工具。
 
-在 hello 部署過程中，您可以看到 hello hello 正在**輸出**視窗。
+在部署的過程中，您可在 [輸出]  視窗中查看進度。
 
 ![Service Fabric 偵錯輸出視窗][3]
 
 ## <a name="next-steps"></a>後續步驟
-深入了解[Reliable Actors 使用 hello Service Fabric 平台的方式](service-fabric-reliable-actors-platform.md)。
+深入了解 [Reliable Actor 如何使用 Service Fabric 平台](service-fabric-reliable-actors-platform.md)。
 
 <!--Image references-->
 [1]: ./media/service-fabric-reliable-actors-get-started/reliable-actors-newproject.PNG

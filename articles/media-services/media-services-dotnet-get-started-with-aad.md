@@ -1,6 +1,6 @@
 ---
-title: "Azure AD 驗證 tooaccess 與.NET 的 Azure 媒體服務 API aaaUse |Microsoft 文件"
-description: "本主題說明如何 toouse Azure Active Directory (Azure AD) 驗證 tooaccess Azure 媒體服務 (AMS) 中.NET API。"
+title: "使用 Azure AD 驗證搭配 .NET 存取 Azure 媒體服務 API | Microsoft Docs"
+description: "本主題說明如何使用 Azure Active Directory (Azure AD) 驗證搭配 .NET 存取 Azure 媒體服務 (AMS) API。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -13,88 +13,88 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/17/2017
 ms.author: juliako
-ms.openlocfilehash: 2f750e460d9e476ad92e96adeac6500cb692cd77
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a9355200a05a3aa1b494b76977d38ddc42bfe179
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-azure-ad-authentication-tooaccess-azure-media-services-api-with-net"></a>使用 Azure AD 驗證 tooaccess Azure Media Services API 的.NET
+# <a name="use-azure-ad-authentication-to-access-azure-media-services-api-with-net"></a>使用 Azure AD 驗證搭配 .NET 存取 Azure 媒體服務 API
 
-從 windowsazure.mediaservices 4.0.0.4 開始，Azure 媒體服務支援以 Azure Active Directory (Azure AD) 為主的驗證。 本主題說明如何 toouse Azure AD 驗證 tooaccess 與 Microsoft.NET 的 Azure 媒體服務 API。
+從 windowsazure.mediaservices 4.0.0.4 開始，Azure 媒體服務支援以 Azure Active Directory (Azure AD) 為主的驗證。 本主題說明如何使用 Azure AD 驗證搭配 Microsoft .NET 存取 Azure 媒體服務 API。
 
 ## <a name="prerequisites"></a>必要條件
 
 - 一個 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
-- 媒體服務帳戶。 如需詳細資訊，請參閱[建立 Azure 媒體服務帳戶使用 Azure 入口網站 hello](media-services-portal-create-account.md)。
-- 最新 hello [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices)封裝。
-- 熟悉 hello 主題[存取 Azure 媒體服務應用程式開發介面使用 AAD 驗證概觀](media-services-use-aad-auth-to-access-ams-api.md)。 
+- 媒體服務帳戶。 如需詳細資訊，請參閱[使用 Azure 入口網站建立 Azure 媒體服務帳戶](media-services-portal-create-account.md)。
+- 最新的 [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices) 封裝。
+- 熟讀[使用 AAD 驗證存取 Azure 媒體服務 API 概觀](media-services-use-aad-auth-to-access-ams-api.md)主題。 
 
 使用 Azure AD 驗證搭配 Azure 媒體服務時，您可以下列其中一種方式進行驗證：
 
-- **使用者驗證**驗證使用 hello 應用程式 toointeract 和 Azure Media Services 資源的人員。 hello 互動式應用程式應該會先提示 hello 使用者提供認證。 例如，授權的使用者 toomonitor 編碼工作會使用或即時資料流中的管理主控台應用程式。 
+- **使用者驗證**可驗證使用應用程式與 Azure 媒體服務資源互動的人員。 互動式應用程式應該會先提示使用者輸入認證。 例如，授權的使用者用來監控編碼工作或即時串流的管理主控台應用程式。 
 - **服務主體驗證**會驗證服務。 通常使用這種驗證方法的應用程式有執行精靈服務、中介層服務或排程的工作的應用程式：例如，Web 應用程式、函數應用程式、邏輯應用程式、API 或微服務。
 
 >[!IMPORTANT]
->Azure 媒體服務目前支援 Azure 存取控制服務驗證模型。 不過，存取控制授權即將 toobe 上 2018 年 6 月 1，已被取代。 我們建議您儘速移轉 tooan Azure Active Directory 驗證模型。
+>Azure 媒體服務目前支援 Azure 存取控制服務驗證模型。 不過，存取控制授權將在 2018 年 6 月 1 日被取代。 建議您儘速移轉至 Azure Active Directory 驗證模型。
 
 ## <a name="get-an-azure-ad-access-token"></a>取得 Azure AD 存取權杖
 
-tooconnect toohello Azure 媒體服務 API 與 Azure AD 驗證，hello 用戶端應用程式需要 toorequest Azure AD 存取權杖。 當您使用 Media Services.NET 用戶端 hello SDK hello 和詳細資料如何 tooacquire Azure AD 存取權杖會包裝在 hello 簡化您的許多[AzureAdTokenProvider](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.Authentication/AzureAdTokenProvider.cs)和[AzureAdTokenCredentials](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.Authentication/AzureAdTokenCredentials.cs)類別。 
+若要使用 Azure AD 驗證連線到 Azure 媒體服務 API，用戶端應用程式必須要求 Azure AD 存取權杖。 當您使用媒體服務 .NET 用戶端 SDK 時，許多有關如何取得 Azure AD 存取權杖的詳細資料已為您包裝並簡化於 [AzureAdTokenProvider](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.Authentication/AzureAdTokenProvider.cs) 和 [AzureAdTokenCredentials](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.Authentication/AzureAdTokenCredentials.cs) 類別中。 
 
-例如，您不需要 tooprovide hello Azure AD 授權單位、 Media Services 資源的 URI 或原生 Azure AD 應用程式詳細資料。 這些是已知的 hello Azure AD 存取權杖提供者類別已設定的值。 
+例如，您不需要提供 Azure AD 授權單位、媒體服務資源 URI 或原生 Azure AD 應用程式詳細資料。 這些是已由 Azure AD 存取權杖提供者類別設定的已知值。 
 
-如果您未使用 Azure 媒體服務.NET SDK，我們建議您使用 hello [Azure AD Authentication Library](../active-directory/develop/active-directory-authentication-libraries.md)。 請參閱 hello 參數，您需要與 Azure AD 驗證程式庫 toouse tooget 值[使用 hello Azure 入口網站 tooaccess Azure AD 驗證設定](media-services-portal-get-started-with-aad.md)。
+如果您未使用 Azure 媒體服務 .NET SDK，建議您使用 [Azure AD 驗證程式庫](../active-directory/develop/active-directory-authentication-libraries.md)。 若要取得搭配 Azure AD 驗證程式庫使用所需之參數的值，請參閱[使用 Azure 入口網站存取 Azure AD 驗證設定](media-services-portal-get-started-with-aad.md)。
 
-您也可以取代 hello hello 預設實作的 hello 選項**AzureAdTokenProvider**與您自己的實作。
+您也可以選擇使用您自己的實作來取代預設的 **AzureAdTokenProvider** 實作。
 
 ## <a name="install-and-configure-azure-media-services-net-sdk"></a>安裝及設定 Azure 媒體服務 .NET SDK
 
 >[!NOTE] 
->以 Media Services.NET SDK hello toouse Azure AD 驗證，您需要 toohave hello 最新[NuGet](https://www.nuget.org/packages/windowsazure.mediaservices)封裝。 此外，請加入參考 toohello **Microsoft.IdentityModel.Clients.ActiveDirectory**組件。 如果您使用現有的應用程式，包括 hello **Microsoft.WindowsAzure.MediaServices.Client.Common.Authentication.dll**組件。 
+>若要使用 Azure AD 驗證搭配媒體服務 .NET SDK，您需要最新的 [NuGet](https://www.nuget.org/packages/windowsazure.mediaservices) 封裝。 此外，請將參考加入 **Microsoft.IdentityModel.Clients.ActiveDirectory** 組件。 如果您使用現有的應用程式，請包含 **Microsoft.WindowsAzure.MediaServices.Client.Common.Authentication.dll** 組件。 
 
 1. 在 Visual Studio 中，建立新的 C# 主控台應用程式。
-2. 使用 hello [windowsazure.mediaservices](https://www.nuget.org/packages/windowsazure.mediaservices) NuGet 封裝 tooinstall **Azure Media Services.NET SDK**。 
+2. 使用 [windowsazure.mediaservices](https://www.nuget.org/packages/windowsazure.mediaservices) NuGet 封裝來安裝 **Azure 媒體服務 .NET SDK**。 
 
-    使用 NuGet，tooadd 參考採取下列步驟的 hello： 在**方案總管 中**，hello 專案名稱，以滑鼠右鍵按一下，然後選取**管理 NuGet 封裝**。 接著，搜尋 **windowsazure.mediaservices**，然後選取 [安裝]。
+    若要使用 NuGet 加入參考，請採取下列步驟︰在 [方案總管] 中，以滑鼠右鍵按一下專案名稱，然後選取 [管理 NuGet 封裝]。 接著，搜尋 **windowsazure.mediaservices**，然後選取 [安裝]。
     
     -或-
 
-    執行 hello 下列中的命令**Package Manager Console** Visual Studio 中。
+    在 Visual Studio 的 [封裝管理員主控台] 中，執行下列命令。
 
         Install-Package windowsazure.mediaservices -Version 4.0.0.4
 
-3. 新增**使用**tooyour 原始程式碼。
+3. 新增 **using** 至您的原始程式碼。
 
         using Microsoft.WindowsAzure.MediaServices.Client; 
 
 ## <a name="use-user-authentication"></a>使用使用者驗證
 
-tooconnect toohello Azure 媒體服務 API 與 hello 使用者驗證選項，hello 用戶端應用程式需要的 toorequest 使用 Azure AD 權杖 hello 下列參數：  
+若要利用使用者驗證選項連線到 Azure 媒體服務 API，用戶端應用程式必須使用下列參數要求 Azure AD 權杖：  
 
-- Azure AD 租用戶端點。 hello 租用戶資訊可以擷取從 hello Azure 入口網站。 將滑鼠停留在 hello 登入的使用者在 hello 右上角。
+- Azure AD 租用戶端點。 租用戶資訊可從 Azure 入口網站擷取。 將滑鼠游標停留在右上角登入的使用者。
 - 媒體服務資源 URI。
 - 媒體服務 (原生) 應用程式用戶端識別碼。 
 - 媒體服務 (原生) 應用程式重新導向 URI。 
 
-這些參數的 hello 值位於**AzureEnvironments.AzureCloudEnvironment**。 hello **AzureEnvironments.AzureCloudEnvironment**常數是 helper hello.NET SDK tooget 中的公開的 Azure 資料中心的 hello 正確的環境變數設定值。 
+這些參數的值位於 **AzureEnvironments.AzureCloudEnvironment**。 **AzureEnvironments.AzureCloudEnvironment** 常數是 .NET SDK 中的協助程式，用來取得公用 Azure 資料中心正確的環境變數設定。 
 
-它包含預先定義的環境設定存取 Media Services 在 hello 公用資料中心內。 對於 sovereign 或政府雲端區域，分別可以使用 **AzureChinaCloudEnvironment****AzureUsGovernmentEnvrionment** 或 **AzureGermanCloudEnvironment**。
+它包含預先定義的環境設定，只用於存取公用資料中心的媒體服務。 對於 sovereign 或政府雲端區域，分別可以使用 **AzureChinaCloudEnvironment****AzureUsGovernmentEnvrionment** 或 **AzureGermanCloudEnvironment**。
 
-下列程式碼範例的 hello 建立語彙基元：
+下列程式碼範例會建立權杖：
     
     var tokenCredentials = new AzureAdTokenCredentials("microsoft.onmicrosoft.com", AzureEnvironments.AzureCloudEnvironment);
     var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
   
-toostart 針對媒體服務進行程式設計，您需要 toocreate **CloudMediaContext**代表 hello 伺服器內容的執行個體。 hello **CloudMediaContext**包含參考 tooimportant 集合，包括工作、 資產、 檔案、 存取原則和定位器。 
+若要開始針對媒體服務進行程式設計，您需要建立可呈現伺服器內容的 **CloudMediaContext** 執行個體。 **CloudMediaContext** 包含重要集合的參考，包括工作、資產、檔案、存取原則和定位器。 
 
-您也需要 toopass hello**資源的媒體服務 REST 服務的 URI** toohello **CloudMediaContext**建構函式。 tooget hello 資源 URI 媒體 REST 服務，登入 toohello Azure 入口網站中，選取您的 Azure Media Services 帳戶選取**API 存取**，然後選取**連接 tooAzure Media Services 與使用者驗證**。 
+您還需要將**媒體 REST 服務的資源 URI** 傳遞至 **CloudMediaContext** 建構函式。 若要取得媒體 REST 服務的資源 URI，請登入 Azure 入口網站，選取您的 Azure 媒體服務帳戶，選取 [API 存取權]，然後選取 [使用使用者驗證連線到 Azure 媒體服務]。 
 
-hello 下列程式碼範例會建立**CloudMediaContext**執行個體：
+下列程式碼範例會建立 **CloudMediaContext** 執行個體：
 
     CloudMediaContext context = new CloudMediaContext(new Uri("YOUR REST API ENDPOINT HERE"), tokenProvider);
 
-hello 下列範例顯示如何 toocreate hello Azure AD 權杖和 hello 內容：
+下列範例說明如何建立 Azure AD 權杖和內容：
 
     namespace AADAuthSample
     {
@@ -121,19 +121,19 @@ hello 下列範例顯示如何 toocreate hello Azure AD 權杖和 hello 內容�
     }
 
 >[!NOTE]
->如果您收到例外狀況指出"hello 遠端伺服器傳回錯誤: (401) 未授權，「 請參閱 hello[存取控制](media-services-use-aad-auth-to-access-ams-api.md#access-control)存取 Azure Media Services API 的區段與 Azure AD 驗證的概觀。
+>如果您收到指出「遠端伺服器傳回一個錯誤: (401) 未經授權」的例外狀況，請參閱使用 Azure AD 驗證存取 Azure 媒體服務 API 概觀的[存取控制](media-services-use-aad-auth-to-access-ams-api.md#access-control)一節。
 
 ## <a name="use-service-principal-authentication"></a>使用服務主體驗證
     
-與 hello 服務主體選項 tooconnect toohello Azure Media Services API 中, 介層應用程式 （web API 或 web 應用程式） 需要 toorequests Azure AD 權杖以 hello 下列參數：  
+若要利用服務主體選項連線到 Azure 媒體服務 API，您的中介層應用程式 (Web API 或 Web 應用程式) 必須要求具有下列參數的 Azure AD 權杖：  
 
-- Azure AD 租用戶端點。 hello 租用戶資訊可以擷取從 hello Azure 入口網站。 將滑鼠停留在 hello 登入的使用者在 hello 右上角。
+- Azure AD 租用戶端點。 租用戶資訊可從 Azure 入口網站擷取。 將滑鼠游標停留在右上角登入的使用者。
 - 媒體服務資源 URI。
-- Azure AD 應用程式的值： hello**用戶端識別碼**和**用戶端密碼**。
+- Azure AD 應用程式的值：**用戶端識別碼**和**用戶端祕密**。
 
-hello 值 hello**用戶端識別碼**和**用戶端密碼**參數可以在 hello Azure 入口網站中找到。 如需詳細資訊，請參閱[開始使用 Azure AD 驗證使用 hello Azure 入口網站](media-services-portal-get-started-with-aad.md)。
+**用戶端識別碼**和**用戶端祕密**參數的值可以在 Azure 入口網站中找到。 如需詳細資訊，請參閱[利用 Azure 入口網站開始使用 Azure AD 驗證](media-services-portal-get-started-with-aad.md)。
 
-hello 下列程式碼範例會建立語彙基元使用 hello **AzureAdTokenCredentials**建構函式**AzureAdClientSymmetricKey**做為參數： 
+下列程式碼範例會使用以 **AzureAdClientSymmetricKey** 做為參數的 **AzureAdTokenCredentials** 建構函式建立權杖： 
     
     var tokenCredentials = new AzureAdTokenCredentials("{YOUR Azure AD TENANT DOMAIN HERE}", 
                                 new AzureAdClientSymmetricKey("{YOUR CLIENT ID HERE}", "{YOUR CLIENT SECRET}"), 
@@ -141,21 +141,21 @@ hello 下列程式碼範例會建立語彙基元使用 hello **AzureAdTokenCrede
 
     var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
 
-您也可以指定 hello **AzureAdTokenCredentials**建構函式**AzureAdClientCertificate**做為參數。 
+您也可以指定以 **AzureAdClientCertificate** 做為參數的 **AzureAdTokenCredentials** 建構函式。 
 
-如需有關如何指示 toocreate 及設定憑證的形式，可由 Azure AD，請參閱[驗證與憑證-手動組態步驟的精靈應用程式中的 AD tooAzure](https://github.com/Azure-Samples/active-directory-dotnet-daemon-certificate-credential/blob/master/Manual-Configuration-Steps.md)。
+如需有關如何以可供 Azure AD 使用之形式建立及設定憑證的指示，請參閱[在精靈應用程式中使用憑證向 Azure AD 驗證 - 手動設定步驟](https://github.com/Azure-Samples/active-directory-dotnet-daemon-certificate-credential/blob/master/Manual-Configuration-Steps.md)。
 
     var tokenCredentials = new AzureAdTokenCredentials("{YOUR Azure AD TENANT DOMAIN HERE}", 
                                 new AzureAdClientCertificate("{YOUR CLIENT ID HERE}", "{YOUR CLIENT CERTIFICATE THUMBPRINT}"), 
                                 AzureEnvironments.AzureCloudEnvironment);
 
-toostart 針對媒體服務進行程式設計，您需要 toocreate **CloudMediaContext**代表 hello 伺服器內容的執行個體。 您也需要 toopass hello**資源的媒體服務 REST 服務的 URI** toohello **CloudMediaContext**建構函式。 您可以取得 hello**資源的媒體服務 REST 服務的 URI** hello Azure 的入口網站中的值。
+若要開始針對媒體服務進行程式設計，您需要建立可呈現伺服器內容的 **CloudMediaContext** 執行個體。 您還需要將**媒體 REST 服務的資源 URI** 傳遞至 **CloudMediaContext** 建構函式。 您也可以從 Azure 入口網站取得**媒體 REST 服務的資源 URI** 值。
 
-hello 下列程式碼範例會建立**CloudMediaContext**執行個體：
+下列程式碼範例會建立 **CloudMediaContext** 執行個體：
 
     CloudMediaContext context = new CloudMediaContext(new Uri("YOUR REST API ENDPOINT HERE"), tokenProvider);
     
-hello 下列範例顯示如何 toocreate hello Azure AD 權杖和 hello 內容：
+下列範例說明如何建立 Azure AD 權杖和內容：
 
     namespace AADAuthSample
     {
@@ -187,4 +187,4 @@ hello 下列範例顯示如何 toocreate hello Azure AD 權杖和 hello 內容�
 
 ## <a name="next-steps"></a>後續步驟
 
-開始使用[上傳檔案 tooyour 帳戶](media-services-dotnet-upload-files.md)。
+開始使用[上傳檔案至您的帳戶](media-services-dotnet-upload-files.md)。

@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure Insights 遙測資料模型的應用程式-事件遙測 |Microsoft 文件"
+title: "Azure Application Insights 遙測資料模型 - 事件遙測 | Microsoft Docs"
 description: "事件遙測的 Application Insights 資料模型"
 services: application-insights
 documentationcenter: .net
@@ -12,21 +12,21 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: bwren
-ms.openlocfilehash: cd7dc3c5f4f3df22b7a52ee79fcad566a27a9f4e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 422e193ae10938954602a6ef8c49fd47f473bc01
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="event-telemetry-application-insights-data-model"></a>事件遙測：Application Insights 資料模型
 
-您可以建立事件遙測項目 (在[Application Insights](app-insights-overview.md)) toorepresent 應用程式中發生的事件。 通常它是與使用者互動的事件，例如按一下按鈕或簽出訂單。 它也可以是初始化或組態更新等應用程式生命週期事件。 
+您可以建立事件遙測項目 (在 [Application Insights](app-insights-overview.md) 中) 來代表發生在您應用程式中的事件。 通常它是與使用者互動的事件，例如按一下按鈕或簽出訂單。 它也可以是初始化或組態更新等應用程式生命週期事件。 
 
-語意上來說，事件可能會或可能不是相互關聯的 toorequests。 不過，如果使用得當，事件遙測比要求或追蹤更重要。 代表企業遙測事件，而且應該主旨 tooseparate，較不主動[取樣](app-insights-api-filtering-sampling.md)。
+事件在語意上不一定會與要求相互關聯。 不過，如果使用得當，事件遙測比要求或追蹤更重要。 事件代表商務遙測，且應該會受到個別、較不積極[取樣](app-insights-api-filtering-sampling.md)所影響。
 
 ## <a name="name"></a>名稱
 
-事件名稱。 tooallow 適當的群組和實用的度量，限制您的應用程式，使其產生少量個別的事件名稱。 例如，針對每個產生的事件執行個體，不要使用不同的名稱。
+事件名稱。 若要有適當的分組與實用的計量，請限制應用程式，使其產生少量的個別事件名稱。 例如，針對每個產生的事件執行個體，不要使用不同的名稱。
 
 最大長度︰512 個字元
 

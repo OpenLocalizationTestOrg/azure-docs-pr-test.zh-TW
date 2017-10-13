@@ -1,6 +1,6 @@
 ---
-title: "工作進度 aaaMonitor 使用.NET"
-description: "了解如何 toouse 事件處理常式程式碼 tootrack 作業進度，並將狀態更新傳送。 hello 程式碼範例以 C# 撰寫，並使用 hello Media Services SDK for.NET。"
+title: "使用 .NET 監視工作進度"
+description: "了解如何使用事件處理常式程式碼來追蹤工作進度及傳送狀態更新。 程式碼範例是以 C# 撰寫，並使用 Media Services SDK for .NET。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,11 +14,11 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 530aa1d78437cd7c41b4d9a895f9a0e9de0ad49d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 851981b291115ba31dc40535f8bcc71cdb475717
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="monitor-job-progress-using-net"></a>使用 .NET 監視工作進度
 > [!div class="op_single_selector"]
@@ -28,10 +28,10 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-當您執行工作時，通常會需要方式 tootrack 工作進度。 您可以檢查 hello 進度藉由定義 StateChanged 事件處理常式 （如本主題中所述），或使用 Azure 佇列儲存體 toomonitor Media Services 工作通知 (如所述[這](media-services-dotnet-check-job-progress-with-queues.md)主題)。
+執行作業時，您通常需要設法追蹤作業進度。 定義 StateChanged 事件處理常式 (如本主題中所述) 或使用 Azure 佇列儲存體監視媒體服務工作通知 (如 [本主題](media-services-dotnet-check-job-progress-with-queues.md) 中所述)，即可檢查進度。
 
-## <a name="define-statechanged-event-handler-toomonitor-job-progress"></a>定義 StateChanged 事件處理常式 toomonitor 工作進度
-下列程式碼範例的 hello 定義 hello StateChanged 事件處理常式。 這個事件處理常式會追蹤工作進度，並提供更新的狀態，視 hello 狀態而定。 hello 程式碼也會定義 hello LogJobStop 方法。 此協助程式方法會記錄錯誤詳細資料。
+## <a name="define-statechanged-event-handler-to-monitor-job-progress"></a>定義 StateChanged 事件處理常式來監視工作進度
+下列程式碼定義 StateChanged 事件處理常式。 此事件處理常式可追蹤作業進度，並根據狀態來提供更新的狀態。 程式碼也定義 LogJobStop 方法。 此協助程式方法會記錄錯誤詳細資料。
 
     private static void StateChanged(object sender, JobStateChangedEventArgs e)
     {
@@ -73,7 +73,7 @@ ms.lasthandoff: 10/06/2017
         StringBuilder builder = new StringBuilder();
         IJob job = GetJob(jobId);
 
-        builder.AppendLine("\nThe job stopped due toocancellation or an error.");
+        builder.AppendLine("\nThe job stopped due to cancellation or an error.");
         builder.AppendLine("***************************");
         builder.AppendLine("Job ID: " + job.Id);
         builder.AppendLine("Job Name: " + job.Name);
@@ -96,7 +96,7 @@ ms.lasthandoff: 10/06/2017
             }
         }
         builder.AppendLine("***************************\n");
-        // Write hello output tooa local file and toohello console. hello template 
+        // Write the output to a local file and to the console. The template 
         // for an error output file is:  JobStop-{JobId}.txt
         string outputFile = _outputFilesFolder + @"\JobStop-" + JobIdAsFileName(job.Id) + ".txt";
         WriteToFile(outputFile, builder.ToString());

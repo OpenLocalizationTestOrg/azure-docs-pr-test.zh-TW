@@ -1,5 +1,5 @@
 ---
-title: "aaaWindows 通用應用程式 SDK 升級程序"
+title: "Windows 通用 app SDK 升級程序"
 description: "適用於 Azure Mobile Engagement 的 Windows 通用 app SDK 升級程序"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,47 +14,47 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 95aba5d55cd65d4190aad35737f872414b5ed443
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fe85a99a92fb39082cafe7422b356de1f20f14bd
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="windows-universal-apps-sdk-upgrade-procedures"></a>Windows 通用 app SDK 升級程序
-如果您已經有整合至您的應用程式較舊版本的參與，則必須升級 hello SDK 時，下列點 tooconsider hello。
+如果您已經整合舊版 Engagement 到您的應用程式，在升級 SDK 時您必須考慮以下幾點。
 
-如果您錯過數個版本的 hello SDK 您可能需要指定 toofollow 數個程序。 例如，如果您從 0.10.1 移轉 too0.11.0 您有遵循 hello toofirst"0.9.0 從 too0.10.1 」 程序然後 hello 」 從 0.10.1 too0.11.0 」 程序。
+如果您有錯過幾個版本的 SDK，您必須遵循幾個步驟。 例如，如果您要從 0.10.1 移轉到 0.11.0，必須先遵循「從 0.9.0 到 0.10.1」的程序，然後「從 0.10.1 到 0.11.0」的程序。
 
-## <a name="from-330-too340"></a>從 3.3.0 too3.4.0
+## <a name="from-330-to-340"></a>從 3.3.0 到 3.4.0
 ### <a name="test-logs"></a>測試記錄檔
-主控台記錄檔所產生的 hello SDK 現在可以啟用/停用/篩選。 toocustomize，更新 hello 屬性`EngagementAgent.Instance.TestLogEnabled`hello 值可從 hello 的 tooone`EngagementTestLogLevel`列舉型別，例如：
+SDK 所產生的主控台記錄檔現在可以啟用/停用/篩選。 若要自訂這種情況，請將屬性 `EngagementAgent.Instance.TestLogEnabled` 更新為 `EngagementTestLogLevel` 列舉的其中一個可用值，例如︰
 
             EngagementAgent.Instance.TestLogLevel = EngagementTestLogLevel.Verbose;
             EngagementAgent.Instance.Init();
 
 ### <a name="resources"></a>資源
-已改善 hello 觸達重疊。 它是 hello SDK 的 NuGet 封裝資源的一部分。
+已改善 Reach 重疊。 它是 SDK NuGet 封裝資源的一部分。
 
-升級 toohello hello SDK 新版本時，您可以選擇是否要將 tookeep hello 從現有的檔案覆疊資源的資料夾或不：
+當您升級到新版的 SDK，可以選擇是否要保留資源之重疊資料夾中的現有檔案︰
 
-* 如果 hello 先前覆疊正在為您或您要整合 hello`WebView`項目手動然後您可以決定 tookeep 您現有的檔案，它仍可運作。 
-* 如果您想 tooupdate toohello 新建立的重疊只取代 hello 整個`overlay`從您的資源，以從 hello SDK 套件中的 hello 新資料夾 (UWP 應用程式： hello 升級之後，您可以從 %USERPROFILE%取得新重疊資料夾 hello\\。 nuget\packages\MicrosoftAzure.MobileEngagement\3.4.0\content\win81\Resources)。
+* 如果先前的重疊對您而言可以運作，或是您要手動整合 `WebView` 元素，則您可以決定保留現有檔案，這樣仍然可以運作。 
+* 如果您想要更新為新的重疊，那麼只要將資源的整個 `overlay` 資料夾取代為來自 SDK 封裝的新資料夾 (UWP 應用程式︰升級後，您可以從 %USERPROFILE%\\.nuget\packages\MicrosoftAzure.MobileEngagement\3.4.0\content\win81\Resources 取得新的重疊資料夾)。
 
 > [!WARNING]
-> 使用 hello 新覆疊時，將會覆寫 hello 舊版本上所做的任何自訂。
+> 使用新的重疊會覆寫先前版本上所做的任何自訂。
 > 
 > 
 
-## <a name="from-320-too330"></a>從 3.2.0 too3.3.0
+## <a name="from-320-to-330"></a>從 3.2.0 到 3.3.0
 ### <a name="resources"></a>資源
-此步驟僅涉及自訂資源。 如果您已自訂 hello 資源就會有 toobackup hello （html、 影像、 重疊） 的 SDK 提供他們升級和 reapply 上的自訂升級資源。
+此步驟僅涉及自訂資源。 如果您已自訂透過 SDK (html、影像、重疊) 提供的資源，則您必須先備份這些資源，然後在已升級的資源上升級和重新套用您的自訂。
 
-## <a name="from-310-too320"></a>從 3.1.0 too3.2.0
+## <a name="from-310-to-320"></a>從 3.1.0 到 3.2.0
 ### <a name="resources"></a>資源
-此步驟僅涉及自訂資源。 如果您已自訂 hello 資源就會有 toobackup hello （html、 影像、 重疊） 的 SDK 提供他們升級和 reapply 上的自訂升級資源。
+此步驟僅涉及自訂資源。 如果您已自訂透過 SDK (html、影像、重疊) 提供的資源，則您必須先備份這些資源，然後在已升級的資源上升級和重新套用您的自訂。
 
 ### <a name="webview-integration"></a>Web 檢視整合
-在此版本導入一些改進 toomatch 不同裝置的表單係數。 請確定您的整合的 hello webview 符合 hello 下列：
+部分改善以符合此版本中引進的其他裝置版型規格。 確認您的 Web 檢視符合下列條件：
 
 在您的 XAML page () 中：
 
@@ -73,7 +73,7 @@ ms.lasthandoff: 10/06/2017
     namespace My.Namespace.Example
     {
             /// <summary>
-            /// An empty page that can be used on its own or navigated toowithin a Frame.
+            /// An empty page that can be used on its own or navigated to within a Frame.
             /// </summary>
             public sealed partial class ExampleEngagementReachPage : EngagementPage
             {
@@ -81,25 +81,25 @@ ms.lasthandoff: 10/06/2017
               {
                 this.InitializeComponent();
 
-                /* Set your webview elements toohello correct size. */
+                /* Set your webview elements to the correct size. */
                 SetWebView(width, height);
               }
 
-              #region tooimplement
+              #region to implement
               /* Attach events when page is navigated. */
               protected override void OnNavigatedTo(NavigationEventArgs e)
               {
-                /* Update hello webview when hello app window is resized. */
+                /* Update the webview when the app window is resized. */
                 Window.Current.SizeChanged += DisplayProperties_OrientationChanged;
 
-                /* Update hello webview when hello app/status bar is resized. */
+                /* Update the webview when the app/status bar is resized. */
     #if WINDOWS_PHONE_APP || WINDOWS_UWP
                 ApplicationView.GetForCurrentView().VisibleBoundsChanged += DisplayProperties_VisibleBoundsChanged; 
     #endif
                 base.OnNavigatedTo(e);
               }
 
-              /* When page is left ensure toodetach SizeChanged handler. */
+              /* When page is left ensure to detach SizeChanged handler. */
               protected override void OnNavigatedFrom(NavigationEventArgs e)
               {
                 Window.Current.SizeChanged -= DisplayProperties_OrientationChanged;
@@ -109,7 +109,7 @@ ms.lasthandoff: 10/06/2017
                 base.OnNavigatedFrom(e);
               }
 
-              /* "width" and "height" are hello current size of your application display. */
+              /* "width" and "height" are the current size of your application display. */
     #if WINDOWS_PHONE_APP || WINDOWS_UWP
               double width = ApplicationView.GetForCurrentView().VisibleBounds.Width;
               double height = ApplicationView.GetForCurrentView().VisibleBounds.Height;
@@ -119,10 +119,10 @@ ms.lasthandoff: 10/06/2017
     #endif
 
               /// <summary>
-              /// Set your webview elements toohello correct size.
+              /// Set your webview elements to the correct size.
               /// </summary>
-              /// <param name="width">hello width of your current display.</param>
-              /// <param name="height">hello height of your current display.</param>
+              /// <param name="width">The width of your current display.</param>
+              /// <param name="height">The height of your current display.</param>
               private void SetWebView(double width, double height)
               {
                 #pragma warning disable 4014
@@ -136,7 +136,7 @@ ms.lasthandoff: 10/06/2017
               }
 
               /// <summary>
-              /// Handler that takes hello Windows.Current.SizeChanged and indicates that webviews have toobe resized.
+              /// Handler that takes the Windows.Current.SizeChanged and indicates that webviews have to be resized.
               /// </summary>
               /// <param name="sender">Original event trigger.</param>
               /// <param name="e">Window Size Changed Event arguments.</param>
@@ -145,22 +145,22 @@ ms.lasthandoff: 10/06/2017
                 double width = e.Size.Width;
                 double height = e.Size.Height;
 
-                /* Set your webview elements toohello correct size. */
+                /* Set your webview elements to the correct size. */
                 SetWebView(width, height);
               }
 
     #if WINDOWS_PHONE_APP || WINDOWS_UWP              
               /// <summary>
-              /// Handler that takes hello ApplicationView.VisibleBoundsChanged and indicates that webviews have toobe resized
+              /// Handler that takes the ApplicationView.VisibleBoundsChanged and indicates that webviews have to be resized
               /// </summary>
-              /// <param name="sender">hello related application view.</param>
+              /// <param name="sender">The related application view.</param>
               /// <param name="e">Related event arguments.</param>
               private void DisplayProperties_VisibleBoundsChanged(ApplicationView sender, Object e)
               {
                 double width = sender.VisibleBounds.Width;
                 double height = sender.VisibleBounds.Height;
 
-                /* Set your webview elements toohello correct size. */
+                /* Set your webview elements to the correct size. */
                 SetWebView(width, height);
               }
     #endif
@@ -168,37 +168,37 @@ ms.lasthandoff: 10/06/2017
             }
     }
 
-## <a name="from-200-too300"></a>從 2.0.0 too3.0.0
+## <a name="from-200-to-300"></a>從 2.0.0 到 3.0.0
 ### <a name="resources"></a>資源
-此步驟僅涉及自訂資源。 如果您已自訂 hello 資源就會有 toobackup hello （html、 影像、 重疊） 的 SDK 提供他們升級和 reapply 上的自訂升級資源。
+此步驟僅涉及自訂資源。 如果您已自訂透過 SDK (html、影像、重疊) 提供的資源，則您必須先備份這些資源，然後在已升級的資源上升級和重新套用您的自訂。
 
-## <a name="from-111-too200"></a>從 1.1.1 too2.0.0
-hello 下列程式碼說明如何 toomigrate hello Capptain 服務從 SDK 整合提供 Capptain SAS 到由 Azure Mobile Engagement 應用程式。 
+## <a name="from-111-to-200"></a>從 1.1.1 到 2.0.0
+以下說明如何將 SDK 整合從 Capptain SAS 提供的 Capptain 服務，移轉到由 Azure Mobile Engagement 提供的應用程式內。 
 
 > [!IMPORTANT]
-> Capptain 和 Mobile Engagement 不是 hello 相同的服務和 hello 下列程序只會反白顯示 toomigrate hello 用戶端應用程式的方式。 移轉 hello SDK hello 應用程式中的不會移轉您的資料從 hello Capptain 伺服器 toohello Mobile Engagement 伺服器
+> Capptain 和 Mobile Engagement 是不同的服務，而以下程序只適用於移轉用戶端應用程式。 移轉應用程式中的 SDK「不會」將您的資料從 Capptain 伺服器移轉到 Mobile Engagement 伺服器
 > 
 > 
 
-如果您從舊版移轉，請先參閱 hello Capptain 網站 toomigrate too1.1.1 則套用 hello 遵循程序
+如果您要從舊版移轉，請先參閱 Capptain 網站以移轉到 1.1.1，然後再遵循以下程序
 
 ### <a name="nuget-package"></a>Nuget 封裝
 以 **MicrosoftAzure.MobileEngagement** Nuget 套件取代 **Capptain.WindowsPhone**。
 
 ### <a name="applying-mobile-engagement"></a>套用 Mobile Engagement
-hello SDK 會使用 hello 詞彙`Engagement`。 您需要 tooupdate 專案 toomatch 這項變更。
+SDK 使用 `Engagement`一詞。 您需要更新您的專案，以符合此變更。
 
-您需要 toouninstall 目前 Capptain nuget 套件。 請考慮您在 [Capptain Resources] 資料夾中所有的變更將會移除。 如果您要 tookeep 那些檔案，請建立一份。
+您需要解除安裝目前的 Capptain nuget 封裝。 請考慮您在 [Capptain Resources] 資料夾中所有的變更將會移除。 如果您想要保留這些檔案，請將它們複製一份。
 
-之後，請在您的專案上安裝 hello 新 Microsoft Azure Engagement nuget 封裝。 您可以直接在 [nuget 網站]上找到。 或此處的索引。 這個動作會取代所有的資源檔案由參與，並將新 Engagement DLL tooyour hello 專案參考。
+接下來，在您的專案上安裝新的 Microsoft Azure Engagement nuget 封裝。 您可以直接在 [nuget 網站]上找到。 或此處的索引。 此動作會取代所有 Engagement 使用的資源檔，並將新的 Engagement DLL 新增到您專案的「參考」。
 
-您的 tooclean 您的專案參考刪除 Capptain DLL 的參考。 如果不這樣做，Capptain hello 版本會發生衝突，會發生錯誤。
+您必須刪除 Capptain DLL 參考來清除您專案的參考。 如果沒有這樣做，Capptain 的版本會有衝突並發生錯誤。
 
-如果您已自訂 Capptain 資源，複製舊的檔案內容，並將它們貼在 hello 新 Engagement 檔案中。 請注意，xaml 和 cs 檔案有 toobe 更新。
+若您有自訂的 Capptain 資源，請複製您舊檔案的內容，並在新的 Engagement 檔案中貼上它們。 請注意，xaml 和 cs 檔案兩者都必須更新。
 
-這些步驟都完成之後，您只需要由 hello 新 Engagement 參考 tooreplace 舊 Capptain 參考。
+完成這些步驟之後，您只需要用新的 Engagement 參考取代舊的 Capptain 參考。
 
-1. 所有 Capptain 命名空間都有 toobe 更新。
+1. 所有的 Capptain 命名空間都必須更新。
    
     移轉前：
    
@@ -251,7 +251,7 @@ hello SDK 會使用 hello 詞彙`Engagement`。 您需要 tooupdate 專案 tooma
 4. 重疊項目頁面變更
    
    > [!IMPORTANT]
-   > 重疊項目也會變更。 它的新命名空間為 `Microsoft.Azure.Engagement.Overlay`。 它有 toobe xaml 和 cs 檔案中使用。 此外`CapptainGrid`toobe 名為`EngagementGrid`，`capptain_notification_content`和`capptain_announcement_content`命名`engagement_notification_content`和`engagement_announcement_content`。
+   > 重疊項目也會變更。 它的新命名空間為 `Microsoft.Azure.Engagement.Overlay`。 在 xaml 和 cs 檔案中都必須使用它。 此外，`CapptainGrid` 命名為 `EngagementGrid`，`capptain_notification_content` 和 `capptain_announcement_content` 命名為 `engagement_notification_content` 和 `engagement_announcement_content`。
    > 
    > 
    
@@ -268,24 +268,24 @@ hello SDK 會使用 hello 詞彙`Engagement`。 您需要 tooupdate 專案 tooma
           engagement="using:Microsoft.Azure.Engagement.Overlay"
           ...
         </engagement:EngagementPageOverlay>
-5. Hello 的其他資源，例如 Capptain 圖片和 HTML 檔案，請注意，它們也已重新命名的 toouse 「 參與 」。
+5. 針對其他資源，例如 Capptain 圖片和 HTML 檔案，請注意它們也已重新命名使用 "Engagement"。
 
 ### <a name="project-declaration"></a>專案宣告
 Package.appxmanifest 上的 `File Type Associations` 已經更新自：
 
-* capptain\_到達\_內容 tooengagement\_到達\_內容
-* capptain\_記錄\_檔案 tooengagement\_記錄\_檔案
+* capptain\_reach\_content to engagement\_reach\_content
+* capptain\_log\_file to engagement\_log\_file
 
 ### <a name="application-id--sdk-key"></a>應用程式 ID / SDK 金鑰
-Engagement 使用連接字串。 您沒有 toospecify 應用程式識別碼和與 Mobile Engagement SDK 金鑰，您只需要 toospecify 連接字串。 您可以在您的 EngagementConfiguration 檔案中設定它。
+Engagement 使用連接字串。 您不需要為 Mobile Engagement 指定應用程式 ID 和 SDK 金鑰，您只需要指定連接字串。 您可以在您的 EngagementConfiguration 檔案中設定它。
 
-hello Engagement 組態可以設定您`Resources\EngagementConfiguration.xml`專案檔。
+您可以在專案的 `Resources\EngagementConfiguration.xml` 檔案中設定 Engagement 組態。
 
-編輯此檔案 toospecify:
+編輯此檔案來指定：
 
 * 應用程式在 `<connectionString>` 和 `<\connectionString>` 標記之間的連接字串。
 
-如果您想要在執行階段相反地，您可以呼叫 hello 下列 toospecify hello Engagement 代理程式初始化之前的方法：
+若想要改為在執行階段指定它，您可以在 Engagement 代理程式初始化之前呼叫下列方法：
 
     /* Engagement configuration. */
     EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
@@ -294,10 +294,10 @@ hello Engagement 組態可以設定您`Resources\EngagementConfiguration.xml`專
     /* Initialize Engagement agent with above configuration. */
     EngagementAgent.Instance.Init(args, engagementConfiguration);
 
-您的應用程式的 hello 連接字串會顯示在 hello Azure 傳統入口網站。
+應用程式的連接字串會顯示在 Azure 傳統入口網站中。
 
 ### <a name="items-name-change"></a>項目名稱變更
-所有名為 capptain 的項目已命名為 engagement。 同樣地針對*Capptain*太*Engagement*。
+所有名為 capptain 的項目已命名為 engagement。 同樣地，Capptain 也已命名為 Engagement。
 
 常用 Capptain 項目的範例：
 

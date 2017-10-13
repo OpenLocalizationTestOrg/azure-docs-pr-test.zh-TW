@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toomanage 並行寫入 tooresources 在 Azure 搜尋"
-description: "使用開放式並行存取 tooavoid 中間空中衝突上的更新或刪除 tooAzure 搜尋索引、 索引子、 資料來源。"
+title: "如何在 Azure 搜尋服務中管理對於資源的並行寫入"
+description: "使用開放式同步存取來避免在針對 Azure 搜尋服務索引、索引子及資料來源的更新或刪除過程中發生衝突。"
 services: search
 documentationcenter: 
 author: HeidiSteen
@@ -15,29 +15,29 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 07/21/2017
 ms.author: heidist
-ms.openlocfilehash: c061d2b5c4d2dbd0fd5633405b01ab2912fbc754
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: aee1b7376d4829e3e2f5a232525e3c3cb4df9d8e
+ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/29/2017
 ---
-# <a name="how-toomanage-concurrency-in-azure-search"></a>如何在 Azure 搜尋 toomanage 並行
+# <a name="how-to-manage-concurrency-in-azure-search"></a>如何管理 Azure 搜尋服務中的並行
 
-管理 Azure 搜尋的資源，例如索引和資料來源時，重要 tooupdate 資源安全，特別是如果資源同時存取您的應用程式的不同元件。 當兩個用戶端在未經協調的情況下同時更新資源時，便可能發生競爭情形。 tooprevent，Azure 搜尋優惠*開放式並行存取模型*。 資源上不會有鎖定的情形。 相反地，沒有 ETag 的覆寫識別 hello 資源版本，如此您就可以避免發生意外的要求建立每個資源。
+管理如索引及資料來源的 Azure 搜尋服務資源時，能夠安全地更新資源是一件很重要的事，尤其是在應用程式中有不同的元件正在同時存取資源時。 當兩個用戶端在未經協調的情況下同時更新資源時，便可能發生競爭情形。 為了避免這個問題，Azure 搜尋服務提供了「開放式同步存取模型」。 資源上不會有鎖定的情形。 每個資源都會有一個能識別資源版本的 ETag，使您可以製作能避免意外覆寫的要求。
 
 > [!Tip]
-> [範例 C# 解決方案](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetETagsExplainer) \(英文\) 中的概念程式碼能說明 Azure 搜尋服務中並行控制的運作方式。 hello 程式碼會建立叫用並行控制的條件。 讀取 hello[下方的程式碼片段](#samplecode)就可能足以應付大部分的開發人員，但如果您想 toorun、 編輯 appsettings.json tooadd hello 服務名稱和管理員 api 金鑰。 指定的服務 URL `http://myservice.search.windows.net`，hello 服務名稱是`myservice`。
+> [範例 C# 解決方案](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetETagsExplainer) \(英文\) 中的概念程式碼能說明 Azure 搜尋服務中並行控制的運作方式。 該程式碼會建立能叫用並行控制的條件。 對於大多數開發人員而言，閱讀[下方的程式碼片段](#samplecode)應該就已經足夠，但如果您想要執行該程式碼片段，請編輯 appsettings.json 以新增服務名稱和系統管理員 API 金鑰。 若服務 URL 為 `http://myservice.search.windows.net`，服務名稱將會是 `myservice`。
 
 ## <a name="how-it-works"></a>運作方式
 
-開放式並行存取實作透過存取條件會檢查在撰寫 tooindexes、 索引子、 資料來源及 synonymMap 資源的 API 呼叫。 
+開放式同步存取的實作方式，是透過對寫入索引、索引子、資料來源及 synonymMap 資源的 API 呼叫進行存取條件檢查。 
 
-所有資源都有能提供物件版本資訊的[*實體標記 (ETag)*](https://en.wikipedia.org/wiki/HTTP_ETag)。 您可以藉由先檢查 hello ETag，避免並行更新的一般工作流程中取得、 在本機修改 (更新） 透過確保 hello 資源的 ETag 符合您的本機複本。 
+所有資源都有能提供物件版本資訊的[*實體標記 (ETag)*](https://en.wikipedia.org/wiki/HTTP_ETag)。 透過先檢查 ETag 並確保資源的 ETag 符合您的本機複本，將可以避免在一般工作流程 (取得，於本機修改，更新) 中發生同時更新。 
 
-+ hello REST API 會使用[ETag](https://docs.microsoft.com/rest/api/searchservice/common-http-request-and-response-headers-used-in-azure-search) hello 要求標頭上。
-+ hello.NET SDK 設定透過 accessCondition 物件，並設定 hello hello ETag [If-match |如果-比對-無標頭](https://docs.microsoft.com/rest/api/searchservice/common-http-request-and-response-headers-used-in-azure-search)hello 資源上。 繼承自 [IResourceWithETag (.NET SDK)](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models.iresourcewithetag) \(英文\) 的任何物件都具有 accessCondition 物件。
++ REST API 會在要求標頭上使用 [ETag](https://docs.microsoft.com/rest/api/searchservice/common-http-request-and-response-headers-used-in-azure-search) \(英文\)。
++ .NET SDK 透過 accessCondition 物件設定 ETag，並在資源上設定 [If-Match | If-Match-None 標頭](https://docs.microsoft.com/rest/api/searchservice/common-http-request-and-response-headers-used-in-azure-search) \(英文\)。 繼承自 [IResourceWithETag (.NET SDK)](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.models.iresourcewithetag) \(英文\) 的任何物件都具有 accessCondition 物件。
 
-每次更新資源時，該資源的 ETag 都會自動變更。 當您實作並行管理時，您所做的所有放在前置條件需要 hello 遠端資源的 hello 更新要求 toohave hello hello hello 用戶端上修改過的 hello 資源複本為相同的 ETag。 如果並行處理序已變更 hello 遠端資源，hello ETag 不符 hello 前置條件和 HTTP 412 hello 要求會失敗。 如果您使用 hello.NET SDK，這卻`CloudException`其中 hello`IsAccessConditionFailed()`擴充方法會傳回 true。
+每次更新資源時，該資源的 ETag 都會自動變更。 當您實作並行管理時，所做的就是為更新要求設置前置條件，要求遠端資源的 ETag 必須與您在用戶端上所修改之資源複本的 ETag 相同。 如果並行處理程序已變更遠端資源，其 ETag 將會與前置條件不符，且該要求將會失敗並顯示 HTTP 412。 如果您是使用 .NET SDK，這會顯示為 `CloudException`，其中 `IsAccessConditionFailed()` 擴充方法會傳回 true。
 
 > [!Note]
 > 並行只有一種機制。 無論資源更新是使用哪一種 API，都只會使用這個機制。 
@@ -45,10 +45,10 @@ ms.lasthandoff: 10/06/2017
 <a name="samplecode"></a>
 ## <a name="use-cases-and-sample-code"></a>使用案例和範例程式碼
 
-下列程式碼的 hello 示範 accessCondition 檢查索引鍵更新作業：
+下列程式碼示範金鑰更新作業的 accessCondition 檢查：
 
-+ 如果 hello 資源不存在，無法更新
-+ 如果 hello 資源版本變更，失敗的更新
++ 如果資源已不存在，則更新失敗
++ 如果資源版本變更，則更新失敗
 
 ### <a name="sample-code-from-dotnetetagsexplainer-programhttpsgithubcomazure-samplessearch-dotnet-getting-startedtreemasterdotnetetagsexplainer"></a>[DotNetETagsExplainer 程式](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetETagsExplainer) \(英文\) 的範例程式碼
 
@@ -68,14 +68,14 @@ ms.lasthandoff: 10/06/2017
             DeleteTestIndexIfExists(serviceClient);
 
             // Every top-level resource in Azure Search has an associated ETag that keeps track of which version
-            // of hello resource you're working on. When you first create a resource such as an index, its ETag is
+            // of the resource you're working on. When you first create a resource such as an index, its ETag is
             // empty.
             Index index = DefineTestIndex();
             Console.WriteLine(
                 $"Test index hasn't been created yet, so its ETag should be blank. ETag: '{index.ETag}'");
 
-            // Once hello resource exists in Azure Search, its ETag will be populated. Make sure toouse hello object
-            // returned by hello SearchServiceClient! Otherwise, you will still have hello old object with the
+            // Once the resource exists in Azure Search, its ETag will be populated. Make sure to use the object
+            // returned by the SearchServiceClient! Otherwise, you will still have the old object with the
             // blank ETag.
             Console.WriteLine("Creating index...\n");
             index = serviceClient.Indexes.Create(index);
@@ -83,8 +83,8 @@ ms.lasthandoff: 10/06/2017
             Console.WriteLine($"Test index created; Its ETag should be populated. ETag: '{index.ETag}'");
 
             // ETags let you do some useful things you couldn't do otherwise. For example, by using an If-Match
-            // condition, we can update an index using CreateOrUpdate and be guaranteed that hello update will only
-            // succeed if hello index already exists.
+            // condition, we can update an index using CreateOrUpdate and be guaranteed that the update will only
+            // succeed if the index already exists.
             index.Fields.Add(new Field("name", AnalyzerName.EnMicrosoft));
             index =
                 serviceClient.Indexes.CreateOrUpdate(
@@ -94,16 +94,16 @@ ms.lasthandoff: 10/06/2017
             Console.WriteLine(
                 $"Test index updated; Its ETag should have changed since it was created. ETag: '{index.ETag}'");
 
-            // More importantly, ETags protect you from concurrent updates toohello same resource. If another
-            // client tries tooupdate hello resource, it will fail as long as all clients are using hello right
+            // More importantly, ETags protect you from concurrent updates to the same resource. If another
+            // client tries to update the resource, it will fail as long as all clients are using the right
             // access conditions.
             Index indexForClient1 = index;
             Index indexForClient2 = serviceClient.Indexes.Get("test");
 
-            Console.WriteLine("Simulating concurrent update. toostart, both clients see hello same ETag.");
+            Console.WriteLine("Simulating concurrent update. To start, both clients see the same ETag.");
             Console.WriteLine($"Client 1 ETag: '{indexForClient1.ETag}' Client 2 ETag: '{indexForClient2.ETag}'");
 
-            // Client 1 successfully updates hello index.
+            // Client 1 successfully updates the index.
             indexForClient1.Fields.Add(new Field("a", DataType.Int32));
             indexForClient1 =
                 serviceClient.Indexes.CreateOrUpdate(
@@ -112,7 +112,7 @@ ms.lasthandoff: 10/06/2017
 
             Console.WriteLine($"Test index updated by client 1; ETag: '{indexForClient1.ETag}'");
 
-            // Client 2 tries tooupdate hello index, but fails, thanks toohello ETag check.
+            // Client 2 tries to update the index, but fails, thanks to the ETag check.
             try
             {
                 indexForClient2.Fields.Add(new Field("b", DataType.Boolean));
@@ -125,21 +125,21 @@ ms.lasthandoff: 10/06/2017
             }
             catch (CloudException e) when (e.IsAccessConditionFailed())
             {
-                Console.WriteLine("Client 2 failed tooupdate hello index, as expected.");
+                Console.WriteLine("Client 2 failed to update the index, as expected.");
             }
 
             // You can also use access conditions with Delete operations. For example, you can implement an
-            // atomic version of hello DeleteTestIndexIfExists method from this sample like this:
+            // atomic version of the DeleteTestIndexIfExists method from this sample like this:
             Console.WriteLine("Deleting index...\n");
             serviceClient.Indexes.Delete("test", accessCondition: AccessCondition.GenerateIfExistsCondition());
 
-            // This is slightly better than using hello Exists method since it makes only one round trip to
+            // This is slightly better than using the Exists method since it makes only one round trip to
             // Azure Search instead of potentially two. It also avoids an extra Delete request in cases where
-            // hello resource is deleted concurrently, but this doesn't matter much since resource deletion in
+            // the resource is deleted concurrently, but this doesn't matter much since resource deletion in
             // Azure Search is idempotent.
 
             // And we're done! Bye!
-            Console.WriteLine("Complete.  Press any key tooend application...\n");
+            Console.WriteLine("Complete.  Press any key to end application...\n");
             Console.ReadKey();
         }
 
@@ -173,11 +173,11 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="design-pattern"></a>設計模式
 
-實作開放式並行存取的設計模式應該包含迴圈，重試 hello 存取條件檢查，測試 hello 存取條件，並選擇性地擷取更新的資源嘗試 toore-套用 hello 變更。 
+實作開放式同步存取的設計模式應包含重複嘗試存取條件檢查、測試存取條件，並選擇性擷取更新資源，然後再嘗試重新套用變更的迴圈。 
 
-此程式碼片段說明 synonymMap tooan 索引已經存在的 hello 加法。 此程式碼取自 hello [Azure 搜尋的同義字 （預覽） C# 教學課程](https://docs.microsoft.com/azure/search/search-synonyms-tutorial-sdk)。 
+此程式碼片段說明如何將 synonymMap 新增至已存在的索引。 此程式碼來自 [Azure 搜尋服務的同義字 (預覽) C# 教學課程](https://docs.microsoft.com/azure/search/search-synonyms-tutorial-sdk)。 
 
-hello 片段取得 hello 「 旅館"索引、 檢查 hello 物件版本更新作業，如果 hello 條件失敗時，並再重試 hello 從索引擷取的 hello 伺服器 tooget hello 最新的作業 （向上 toothree 時間），會擲回例外狀況版本。
+該程式碼片段會取得 "hotels" 索引，檢查更新作業的物件版本，在條件失敗的情況下擲回例外狀況，然後重試該作業 (最多三次)，並從自伺服器擷取索引以取得最新版本開始。
 
         private static void EnableSynonymsInHotelsIndexSafely(SearchServiceClient serviceClient)
         {
@@ -190,10 +190,10 @@ hello 片段取得 hello 「 旅館"索引、 檢查 hello 物件版本更新作
                     Index index = serviceClient.Indexes.Get("hotels");
                     index = AddSynonymMapsToFields(index);
 
-                    // hello IfNotChanged condition ensures that hello index is updated only if hello ETags match.
+                    // The IfNotChanged condition ensures that the index is updated only if the ETags match.
                     serviceClient.Indexes.CreateOrUpdate(index, accessCondition: AccessCondition.IfNotChanged(index));
 
-                    Console.WriteLine("Updated hello index successfully.\n");
+                    Console.WriteLine("Updated the index successfully.\n");
                     break;
                 }
                 catch (CloudException e) when (e.IsAccessConditionFailed())
@@ -213,12 +213,12 @@ hello 片段取得 hello 「 旅館"索引、 檢查 hello 物件版本更新作
 
 ## <a name="next-steps"></a>後續步驟
 
-檢閱 hello[同義字 C# 範例](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToSynonyms)toosafely 如何更新現有索引上的多個內容。
+如需如何安全地更新現有索引的詳細內容，請檢閱[同義字 C# 範例](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToSynonyms) \(英文\)。
 
-請嘗試修改 hello 下列任一取樣 tooinclude Etag 或 AccessCondition 物件。
+嘗試修改下列任一範例以包含 ETag 或 AccessCondition 物件。
 
 + [Github 上的 REST API 範例](https://github.com/Azure-Samples/search-rest-api-getting-started) \(英文\) 
-+ [Github 上的 .NET SDK 範例](https://github.com/Azure-Samples/search-dotnet-getting-started) \(英文\)。 此解決方案包括包含 hello 本文章中呈現的程式碼的 hello"DotNetEtagsExplainer 」 專案。
++ [Github 上的 .NET SDK 範例](https://github.com/Azure-Samples/search-dotnet-getting-started) \(英文\)。 此解決方案包括「DotNetEtagsExplainer」專案，其中包含本文所提供的程式碼。
 
 ## <a name="see-also"></a>另請參閱
 

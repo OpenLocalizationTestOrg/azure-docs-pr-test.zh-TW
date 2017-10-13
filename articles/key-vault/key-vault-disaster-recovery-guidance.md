@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 金鑰保存庫會影響 Azure 服務中斷的 hello 事件 aaaWhat toodo |Microsoft 文件"
-description: "了解哪些 toodo hello 事件的 Azure 服務中斷影響 Azure 金鑰保存庫中。"
+title: "發生影響 Azure 金鑰保存庫的 Azure 服務中斷事件時該怎麼辦 | Microsoft Docs"
+description: "了解發生影響「Azure 金鑰保存庫」的 Azure 服務中斷事件時該怎麼辦。"
 services: key-vault
 documentationcenter: 
 author: adamglick
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/07/2017
 ms.author: sumedhb;aglick
-ms.openlocfilehash: 88eec82ada401a28323b3eea126168185ba4cdb0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6419d54c54e7d19103419262b79e7a5268b2268c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-key-vault-availability-and-redundancy"></a>Azure 金鑰保存庫的可用性與備援
-Azure 金鑰保存庫功能備援性 toomake 確保您的金鑰和密碼保持可用 tooyour 應用程式即使 hello 的個別元件服務失敗的多個圖的層。
+Azure 金鑰保存庫具備多層備援功能，以確保您的金鑰和密碼會保持可供應用程式使用，甚至在服務的個別元件失敗時也是如此。
 
-hello 金鑰保存庫的內容都會複寫 hello 區域與 tooa 次要區域內至少 150 英哩離開但 hello 內相同的地理位置。 這可維持您金鑰和密碼的高持久性。 請參閱 hello [Azure 配對區域](https://docs.microsoft.com/en-us/azure/best-practices-availability-paired-regions)如需詳細資訊，針對特定區域對文件。
+金鑰保存庫的內容會在區域內複寫，以及複寫到至少距離 150 英哩但位於相同地理位置內的次要區域。 這可維持您金鑰和密碼的高持久性。 請參閱 [Azure 配對的區域](https://docs.microsoft.com/en-us/azure/best-practices-availability-paired-regions)文件，以取得特定區域配對的詳細資料。
 
-如果 hello 金鑰保存庫服務內的個別元件失敗，hello 區域內的其他元件中的步驟 tooserve 您要求 toomake 確定沒有任何功能降低。 您不需要 tootake 任何動作 tootrigger 這。 它會自動發生，且將透明 tooyou。
+如果金鑰保存庫服務內的個別元件失敗，則區域內的替代元件會接替來處理您的要求，以確保不會導致功能的效能降低。 您不需要採取任何動作以觸發這項功能。 它會以您無法察覺的方式自動發生。
 
-自動路由在 hello 罕見事件中的整個 Azure 區域，就無法使用，您對 Azure 金鑰保存庫，在該區域中的 hello 要求 (*容錯*) tooa 次要區域。 Hello 主要區域再次可用時，要求會路由回到 (*無法回*) toohello 主要區域。 同樣地，您不需要 tootake 任何動作因為這會自動發生。
+在整個 Azure 區域都無法供使用的罕見情況下，您在該區域中所發出的「Azure 金鑰保存庫」要求會自動路由傳送 (容錯移轉) 到次要地區。 當主要區域再次可用時，要求就會路由傳送回 (容錯回復) 主要區域。 同樣地，您不需要採取任何動作，因為這會自動發生。
 
-有幾個警告 toobe 留意：
+有一些要注意的警告事項：
 
-* 在 hello 事件中的區域容錯移轉，可能需要幾分鐘，讓 hello 服務 toofail。 在這段期間發出的要求可能會失敗，直到 hello 容錯移轉完成為止。
+* 發生區域容錯移轉時，可能需要幾分鐘讓服務進行容錯移轉。 在這段時間直到容錯移轉完成之前所發出的要求可能會失敗。
 * 容錯移轉完成之後，您的金鑰保存庫會處於唯讀模式。 在此模式中支援的要求是：
   * 列出金鑰保存庫
   * 取得金鑰保存庫的屬性

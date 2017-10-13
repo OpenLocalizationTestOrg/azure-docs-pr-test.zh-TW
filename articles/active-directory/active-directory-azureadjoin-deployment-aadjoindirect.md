@@ -1,6 +1,6 @@
 ---
-title: "aaaUsage 案例和 Azure AD Join 的部署考量 |Microsoft 文件"
-description: "說明系統管理員如何為其使用者 (員工、學生、其他使用者) 設定 Azure AD Join。 它也會討論使用 Azure AD Join hello 不同真實世界的案例。"
+title: "適用於 Azure AD Join 的使用案例和部署考量| Microsoft Docs"
+description: "說明系統管理員如何為其使用者 (員工、學生、其他使用者) 設定 Azure AD Join。 其中也會討論使用 Azure AD Join 時出現的各種真實案例。"
 services: active-directory
 documentationcenter: 
 author: femila
@@ -15,36 +15,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/16/2017
 ms.author: markvi
-ms.openlocfilehash: 7e57971481aa312ebf8a69999d194f9dcc3d4708
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fd0aab1a14bbd324e734e5efe8fe101e8a8dfefa
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="usage-scenarios-and-deployment-considerations-for-azure-ad-join"></a>適用於 Azure AD Join 的使用案例和部署考量
 ## <a name="usage-scenarios-for-azure-ad-join"></a>適用於 Azure AD Join 的使用案例
-### <a name="scenario-1-businesses-largely-in-hello-cloud"></a>Hello 定域機組中大部分的案例 1： 企業
-Azure Active Directory Join (Azure AD Join) 可以受益您您目前操作和管理您的業務 hello 雲端中的身分識別或要移動 toohello 雲端推出。 您可以使用您已在 Azure AD toosign tooWindows 10 中建立的帳戶。 透過[第一次執行體驗 (FRX) 程序的 hello](active-directory-azureadjoin-user-frx.md)，或是從 Azure AD [hello 設定功能表](active-directory-azureadjoin-user-upgrade.md)，您的使用者可以加入其機器 tooAzure AD。  您的使用者也可以享受單一登入 (SSO) 存取太雲端資源，例如 Office 365，在瀏覽器中或在 Office 應用程式。
+### <a name="scenario-1-businesses-largely-in-the-cloud"></a>案例 1：主要位於雲端的企業
+如果您目前是在雲端為貴公司操作和管理身分識別，或者即將轉向雲端，則可從 Azure Active Directory Join (Azure AD Join) 獲益。 您可以使用在 Azure AD 中建立的帳戶來登入 Windows 10。 透過[初次執行體驗 (FRX) 程序](active-directory-azureadjoin-user-frx.md)或從[設定功能表](active-directory-azureadjoin-user-upgrade.md)加入 Azure AD，您的使用者可將其電腦加入 Azure AD。  您的使用者也可以在瀏覽器或 Office 應用程式中，享受經由單一登入 (SSO) 存取雲端資源，例如 Office 365。
 
 ### <a name="scenario-2-educational-institutions"></a>案例 2：教育機構
-教育機構通常有兩種使用者類型：教職員和學生。 教職員版成員視為長期 hello 組織成員。 為他們建立內部部署帳戶是比較好的做法。 不過學生 shorter-term hello 組織成員，因此可以在 Azure AD 中管理他們的帳戶。 這表示，而不是儲存在內部 toohello 雲端可以推送目錄小數位數。 這也表示學生會是能在他們的 Azure AD 帳戶與 tooWindows toosign 和 tooOffice 365 資源取得存取權，在 Office 應用程式。
+教育機構通常有兩種使用者類型：教職員和學生。 教職成員會被視為組織中的長期成員。 為他們建立內部部署帳戶是比較好的做法。 但學生是組織中較短期的成員，因而可將其帳戶放在 Azure AD 中管理。 這表示可以將目錄範圍推送至雲端，而不是儲存在內部部署 這也表示學生可以使用其 Azure AD 帳戶登入 Windows，並在 Office 應用程式中存取 Office 365 資源。
 
 ### <a name="scenario-3-retail-businesses"></a>案例 3：零售業
-零售業擁有季節性工作者和長期員工。 您通常會為較長期的全職員工建立內部部署帳戶，讓他們能夠使用已加入網域的電腦。 但季節性工作者 shorter-term hello 組織的成員，而且希望 toomanage 其中使用者授權可以更輕鬆地移動其帳戶。 當您使用 Office 365 授權的 hello 雲端中建立他們的使用者帳戶時，這些使用者會獲得 hello 優勢登入 tooWindows 和 Azure AD 帳戶，Office 應用程式，當您離開後可維持更大的彈性與使用者的授權。
+零售業擁有季節性工作者和長期員工。 您通常會為較長期的全職員工建立內部部署帳戶，讓他們能夠使用已加入網域的電腦。 但季節性工作者是組織中較短期的成員，因而適合使用可更輕易四處移動使用者授權的帳戶來管理。 當您在具有 Office 365 授權的雲端中建立這些使用者帳戶時，這些使用者能夠因為使用 Azure AD 帳戶登入 Windows 和 Office 應用程式而獲益，同時在他們離開公司之後對於他們的授權保有更多彈性。
 
 ### <a name="scenario-4-additional-scenarios"></a>案例 4：其他案例
-先前討論過的 hello 優點，以及您從您的使用者因為簡化聯結的經驗、 有效率的裝置管理、 自動的行動裝置管理註冊和單一登入 tooAzure 加入其裝置 tooAzure AD 中獲益AD 和內部部署資源。  
+除了先前討論的案例，您還可以藉由讓使用者將其裝置加入 Azure AD，因為簡化的加入體驗、有效率的裝置管理、自動的行動裝置管理註冊，以及單一登入 Azure AD 和內部部署資源而獲益。  
 
 ## <a name="deployment-considerations-for-azure-ad-join"></a>適用於 Azure AD Join 的部署考量
-### <a name="enable-your-users-toojoin-a-company-owned-device-directly-tooazure-ad"></a>啟用您的使用者 toojoin 公司擁有的裝置直接 tooAzure AD
-企業可以提供僅限雲端帳戶 toopartner 公司和組織。 這些合作夥伴之後就能使用單一登入，輕易地存取公司的應用程式和資源。 這個案例是適用的 toousers 存取主要是在 hello 雲端中，例如 Office 365 或 SaaS 依賴 Azure AD 進行驗證的應用程式的資源。
+### <a name="enable-your-users-to-join-a-company-owned-device-directly-to-azure-ad"></a>讓使用者可將公司擁有的裝置直接加入 Azure AD
+企業可以為合作夥伴公司和組織提供僅限雲端的帳戶。 這些合作夥伴之後就能使用單一登入，輕易地存取公司的應用程式和資源。 此案例適用於主要存取雲端資源的使用者，例如 Office 365 或 SaaS 應用程式，而這類資源會依賴 Azure AD 進行驗證。
 
 ### <a name="prerequisites"></a>必要條件
-**在 hello 企業層級 （系統管理員）**
+**在企業層級 (系統管理員)**
 
 * Azure 訂用帳戶搭配 Azure Active Directory  
 
-**Hello 使用者層級**
+**在使用者層級**
 
 * Windows 10 (專業版和企業版)
 
@@ -53,18 +53,18 @@ Azure Active Directory Join (Azure AD Join) 可以受益您您目前操作和管
 
 ### <a name="user-tasks"></a>使用者工作
 * [設定期間使用 Azure AD 設定新的 Windows 10 裝置](active-directory-azureadjoin-user-frx.md)
-* [設定 Azure AD 與 Windows 10 裝置 hello 設定 功能表](active-directory-azureadjoin-user-upgrade.md)
-* [加入個人的 Windows 10 裝置 tooyour 組織](active-directory-azureadjoin-personal-device.md)
+* [從設定功能表使用 Azure AD 設定 Windows 10 裝置](active-directory-azureadjoin-user-upgrade.md)
+* [將個人的 Windows 10 裝置加入您的組織](active-directory-azureadjoin-personal-device.md)
 
 ## <a name="enable-byod-in-your-organization-for-windows-10"></a>在組織中針對 Windows 10 啟用 BYOD
-您可以設定您的使用者和員工 toouse 其個人的 Windows 裝置 (BYOD) tooaccess 公司應用程式和資源。 使用者可以將其 Azure AD 帳戶 （工作或學校帳戶） tooa 個人的 Windows 裝置 tooaccess 資源安全且相容的方式。
+您可以設定使用者和員工，使用其個人的 Windows 裝置 (BYOD) 來存取公司應用程式和資源。 您的使用者可將其 Azure AD 帳戶 (工作或學校帳戶) 新增到個人的 Windows 裝置，以安全且相容的方式來存取資源。
 
 ### <a name="prerequisites"></a>必要條件
-**在 hello 企業層級 （系統管理員）**
+**在企業層級 (系統管理員)**
 
 * Azure AD 訂用帳戶
 
-**Hello 使用者層級**
+**在使用者層級**
 
 * Windows 10 (專業版和企業版)
 
@@ -72,13 +72,13 @@ Azure Active Directory Join (Azure AD Join) 可以受益您您目前操作和管
 * [設定裝置註冊](active-directory-azureadjoin-setup.md)
 
 ### <a name="user-tasks"></a>使用者工作
-* [加入個人的 Windows 10 裝置 tooyour 組織](active-directory-azureadjoin-personal-device.md)
+* [將個人的 Windows 10 裝置加入您的組織](active-directory-azureadjoin-personal-device.md)
 
 ## <a name="additional-information"></a>其他資訊
-* [Hello 企業版的 Windows 10： 工作的方式 toouse 裝置](active-directory-azureadjoin-windows10-devices-overview.md)
-* [擴充功能 tooWindows 10 裝置透過 Azure Active Directory 加入雲端](active-directory-azureadjoin-user-upgrade.md)
+* [適合企業使用的 Windows 10：使用裝置工作的方式](active-directory-azureadjoin-windows10-devices-overview.md)
+* [透過 Azure Active Directory Join 擴充 Windows 10 裝置的雲端功能](active-directory-azureadjoin-user-upgrade.md)
 * [透過 Microsoft Passport 不需要密碼就能驗證身分識別](active-directory-azureadjoin-passport.md)
 * [了解適用於 Azure AD Join 的使用案例](active-directory-azureadjoin-deployment-aadjoindirect.md)
-* [連接已加入網域裝置 tooAzure AD 進行 Windows 10 體驗](active-directory-azureadjoin-devices-group-policy.md)
+* [將已加入網域裝置連接到 Azure AD 以體驗 Windows 10](active-directory-azureadjoin-devices-group-policy.md)
 * [設定 Azure AD Join](active-directory-azureadjoin-setup.md)
 

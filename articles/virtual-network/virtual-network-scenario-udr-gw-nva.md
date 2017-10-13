@@ -1,6 +1,6 @@
 ---
-title: "aaaHybrid 連線與 2 層應用程式 |Microsoft 文件"
-description: "深入了解如何 toodeploy 虛擬設備以及 UDR toocreate 在 Azure 中的多層式應用程式環境"
+title: "混合式連線與兩層式應用程式 | Microsoft Docs"
+description: "了解如何部署虛擬設備和 UDR 以在 Azure 中建立多層式的應用程式環境"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -14,157 +14,157 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/05/2016
 ms.author: jdial
-ms.openlocfilehash: 53599862289dbf9c6ab3289b0cb8dda6430f20f7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8e464348660114f5e99b4739bb7761b7e53ebf99
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="virtual-appliance-scenario"></a>虛擬設備的案例
-在較大的 Azure 客戶之間常見的案例是 hello 需要 tooprovide 兩層式應用程式公開 toohello 網際網路，同時允許存取 toohello 回復層從內部部署資料中心。 本文件將逐步引導您使用使用者定義的路由 (UDR)、 VPN 閘道和網路的虛擬應用裝置 toodeploy 的案例符合下列需求的 hello 兩層式環境：
+在較大的 Azure 客戶中，常見的案例是需要對網際網路公開兩層式的應用程式，同時允許從內部部署資料中心存取後層。 本文件會逐步引導您完成案例，使用使用者定義路由 (UDR)、VPN 閘道和網路虛擬裝置來部署符合下列需求的兩層式環境︰
 
-* Web 應用程式必須能夠從 hello 公開的網際網路。
-* Web 伺服器裝載 hello 應用程式必須能夠 tooaccess 後端應用程式伺服器。
-* 來自 hello 網際網路 toohello web 應用程式的所有流量必須都通過防火牆的虛擬設備。 這個虛擬設備只用於網際網路流量。
-* 將 toohello 應用程式伺服器的所有流量必須都通過防火牆的虛擬設備。 此虛擬應用裝置將用於存取 toohello 後端結束伺服器，以及存取來自 hello 與內部網路透過 VPN 閘道。
-* 系統管理員必須能夠 toomanage hello 防火牆虛擬應用程式從他們的內部部署電腦、 使用協力廠商防火牆專門用於管理用途的虛擬設備。
+* Web 應用程式必須只允許從公用網際網路存取。
+* 裝載應用程式的網頁伺服器必須能夠存取後端應用程式伺服器。
+* 從網際網路到 Web 應用程式的所有流量都必須通過防火牆虛擬設備。 這個虛擬設備只用於網際網路流量。
+* 經過應用程式伺服器的所有流量都必須通過防火牆虛擬設備。 這個虛擬設備會用於存取後端伺服器，以及存取透過 VPN 閘道來自內部部署的網路。
+* 系統管理員必須能夠使用管理用途專用的第三個防火牆虛擬設備，從他們的內部部署電腦來管理防火牆虛擬設備。
 
-這是標準的 DMZ 和受保護網路的 DMZ 案例。 您可利用 NSG、防火牆虛擬設備或兩者的組合，在 Azure 中建構這類案例。 hello 表會顯示 hello 優缺點 Nsg 與防火牆虛擬應用裝置之間的部分。
+這是標準的 DMZ 和受保護網路的 DMZ 案例。 您可利用 NSG、防火牆虛擬設備或兩者的組合，在 Azure 中建構這類案例。 下表會顯示 NSG 和防火牆虛擬設備之間的優缺點。
 
 |  | 優點 | 缺點 |
 | --- | --- | --- |
 | NSG |無成本。 <br/>整合到 Azure RBAC。 <br/>可在 ARM 範本中建立規則。 |大型環境中的複雜性各有不同。 |
 | 防火牆 |完全掌控資料面。 <br/>透過防火牆主控台集中管理。 |防火牆設備的成本。 <br/>不與 Azure RBAC 相整合。 |
 
-下方的 hello 解決方案會使用防火牆虛擬應用裝置 tooimplement DMZ/保護網路案例。
+下列解決方案使用防火牆虛擬設備實作 DMZ/受保護網路案例。
 
 ## <a name="considerations"></a>考量
-您可以將上述說明今天、，如下所示，使用不同的功能在 Azure 中的 hello 環境的部署。
+您可以使用目前可用的不同功能，在 Azure 中部署上述環境，如下所示。
 
-* **虛擬網路 (VNet)**。 Azure VNet 的作用類似的方式 tooan 在內部部署網路，而且可以分割成子網路 tooprovide 流量隔離和的重要性分離一或多個。
-* **虛擬設備**。 數個合作夥伴提供 hello 可用於 hello 有三個防火牆上面所述的 Azure Marketplace 中的虛擬設備。 
-* **使用者定義路由 (UDR)**。 路由表可以包含 UDRs Azure 網路 toocontrol hello 封包流量的 VNet 中所使用。 這些路由表可以套用的 toosubnets。 在 Azure 中的 hello 最新功能是 hello 能力 tooapply 路由表 toohello GatewaySubnet，提供 hello 能力 tooforward 進入 hello Azure VNet 從混合式連線 tooa 虛擬應用裝置的所有流量。
-* **IP 轉送**。 根據預設，hello Azure 網路引擎轉送封包 toovirtual 網路介面卡 (Nic) 只有 hello 封包目的地 IP 位址符合 hello NIC 的 IP 位址。 因此，如果 UDR 定義 tooa 指定虛擬應用裝置必須傳送封包，hello Azure 網路引擎會卸除的封包。 tooensure hello 封包傳遞 tooa （在本例中為虛擬應用裝置） 不是 hello 實際目的地為 hello 封包的 VM，您需要 IP 轉送 tooenable hello 虛擬應用裝置。
-* **網路安全性群組 (NSG)**。 以下的 hello 範例不會使用 Nsg，但您可以使用此方案 toofurther 篩選 hello 流量進出這些子網路和 Nic 套用 Nsg toohello 子網路和/或 Nic。
+* **虛擬網路 (VNet)**。 Azure VNet 運作的方式與內部部署網路相似，可以切割成一或多個子網路提供流量隔離並區隔問題。
+* **虛擬設備**。 Azure Marketplace 中有數家合作夥伴提供的虛擬設備，可用為上述三種防火牆。 
+* **使用者定義路由 (UDR)**。 路由表可以包含 Azure 網路用來控制 VNet 中封包流程的 UDR。 這些路由表可以套用至子網路。 Azure 其中一項最新功能是能夠將路由表套用至 GatewaySubnet，讓您能夠將從混合式連線進入 Azure VNet 的所有流量都轉送至虛擬設備。
+* **IP 轉送**。 根據預設，只有封包目的地 IP 位址符合 NIC IP 位址時，Azure 網路引擎才會將封包轉送到虛擬網路介面卡 (NIC)。 因此，如果 UDR 定義封包必須傳送到指定的虛擬設備，則 Azure 網路引擎就會卸除此封包。 為確保將封包遞送到不是封包實際目的地的 VM (本例中為虛擬設備)，您需要為虛擬設備啟用 [IP 轉送]。
+* **網路安全性群組 (NSG)**。 下列範例不會使用 NSG，但是您可以在此解決方案中使用子網路所套用的 NSG 和/或 NIC，以進一步篩選出入這些子網路和 NIC 的流量。
 
 ![IPv6 網路連線](./media/virtual-network-scenario-udr-gw-nva/figure01.png)
 
-在此範例中沒有包含 hello 下列訂用帳戶：
+此範例中，有一個訂用帳戶包含下列項目：
 
-* 2 資源群組，不會顯示 hello 圖表中。 
-  * **ONPREMRG**。 包含所有的資源需要 toosimulate 在內部部署網路。
-  * **AZURERG**。 包含針對 hello Azure 虛擬網路環境所需的所有資源。 
-* 名為 VNet **onpremvnet**用的 toomimic 在內部部署資料中心的區段如下所示。
-  * **onpremsn1**。 包含執行 Ubuntu toomimic 在內部部署伺服器的虛擬機器 (VM) 的子網路。
-  * **onpremsn2**。 包含執行 Ubuntu toomimic-內部部署電腦系統管理員使用的 VM 子網路。
-* 還有一個名為防火牆虛擬設備**OPFW**上**onpremvnet**太用 toomaintain 通道**azurevnet**。
+* 2 個資源群組，不顯示在圖表中。 
+  * **ONPREMRG**。 包含模擬內部部署網路所需要的所有資源。
+  * **AZURERG**。 包含 Azure 虛擬網路環境所需要的所有資源。 
+* 名為 **onpremvnet** 的 VNet，用於模仿內部部署資料中心分段，如下所示。
+  * **onpremsn1**。 子網路，內含執行 Ubuntu 以模擬內部部署伺服器的虛擬機器 (VM)。
+  * **onpremsn2**。 子網路，內含執行 Ubuntu 以模擬系統管理員所用之內部部署電腦的 VM。
+* **onpremvnet** 上有一個防火牆虛擬設備名為 **OPFW**，用來維護 **azurevnet** 的通道。
 * 名為 **azurevnet** 的 VNet 分段，如下所示。
-  * **azsn1**。 專用於 hello 外部防火牆的外部防火牆子網路。 所有的網際網路流量都會從這個子網路進入。 此子網路只包含連結的 NIC toohello 外部防火牆。
-  * **azsn2**。 裝載執行做為從 hello 網際網路存取的 web 伺服器的 VM 子網路的前端。
-  * **azsn3**。 裝載執行會 hello 前端 web 伺服器來存取後端應用程式伺服器的 VM 子網路的後端。
-  * **azsn4**。 管理子網路會使用專門 tooprovide 管理存取 tooall 防火牆虛擬應用裝置。 此子網路只包含 hello 解決方案中使用的虛擬應用裝置每個防火牆的 NIC。
-  * **GatewaySubnet**。 Azure 的混合式連線子網路所需的 Azure Vnet 與其他網路之間的 ExpressRoute 與 VPN 閘道 tooprovide 連線。 
-* 有 3 的防火牆虛擬應用裝置，在 hello **azurevnet**網路。 
-  * **AZF1**。 公開外部防火牆 toohello 公用網際網路，在 Azure 中使用公用 IP 位址資源。 您需要 tooensure 3 NIC 的虛擬設備已從 hello 服務商場或直接從您的應用裝置廠商，來佈建的範本。
-  * **AZF2**。 使用 toocontrol 之間流量的內部防火牆**azsn2**和**azsn3**。 這也是 3-NIC 的虛擬設備。
-  * **AZF3**。 管理防火牆存取 tooadministrators hello 從內部部署資料中心，並已連線的 tooa 管理子網路使用 toomanage 所有防火牆應用裝置。 您可以在 hello Marketplace 中找到 2 NIC 的虛擬設備範本，或要求直接從您的應用裝置廠商。
+  * **azsn1**。 專門用於外部防火牆的外部防火牆子網路。 所有的網際網路流量都會從這個子網路進入。 這個子網路只包含連結至外部防火牆的 NIC。
+  * **azsn2**。 前端子網路，裝載的 VM 會作為從網際網路存取的 Web 伺服器執行。
+  * **azsn3**。 後端子網路，裝載的 VM 所執行的後端應用程式伺服器會由前端 Web 伺服器存取。
+  * **azsn4**。 專門提供所有防火牆虛擬設備管理存取的管理子網路。 這個子網路只包含解決方案中所用之每個防火牆虛擬設備的 NIC。
+  * **GatewaySubnet**。 ExpressRoute 和 VPN 閘道所需要的 Azure 混合式連線子網路，以提供 Azure Vnet 和其他網路間的連線。 
+* **azurevnet** 網路有 3 個防火牆虛擬裝置。 
+  * **AZF1**。 在 Azure 中使用公用 IP 位址資源對公用網際網路公開的外部防火牆。 您需確定具備來自 Marketplace 或直接來自設備廠商的佈建 3-NIC 的虛擬設備範本。
+  * **AZF2**。 用以控制 **azsn2** 和 **azsn3** 間流量的內部防火牆。 這也是 3-NIC 的虛擬設備。
+  * **AZF3**。 內部部署資料中心系統管理員可存取的管理防火牆，且已連線到用來管理所有防火牆設備的管理子網路。 您可以在 Marketplace 中找到 2-NIC 虛擬設備的範本，或直接向您的設備廠商要求一份。
 
 ## <a name="user-defined-routing-udr"></a>使用者定義的路由 (UDR)
-在 Azure 中的每個子網路可以是連結的 tooa UDR 使用資料表 toodefine 該子起始的流量路由方式。 如果已不定義任何 UDRs，Azure 會使用預設路由 tooallow 流量 tooflow 從一個子網路 tooanother。 toobetter UDRs 了解，請瀏覽[什麼是使用者定義的路由與 IP 轉送](virtual-networks-udr-overview.md#ip-forwarding)。
+Azure 中的每個子網路都可以連結至 UDR 資料表，這份資料表用以定義如何路由在該子網路中起始的流量。 如未定義任何 UDR，Azure 就會使用預設的路由允許流量在子網路之間流動。 如需進一步了解 UDR，請瀏覽 [什麼是使用者定義路由和 IP 轉送](virtual-networks-udr-overview.md#ip-forwarding)。
 
-tooensure 通訊都會透過 hello 正確的防火牆應用裝置中，根據上述 hello 最後一個需求，您需要 toocreate hello 下列路由表包含在 UDRs **azurevnet**。
+為確保通訊經由正確的防火牆設備完成，根據上述的最後一個需求，您需要建立下列路由表，將 UDR 包含在 **azurevnet**中。
 
 ### <a name="azgwudr"></a>azgwudr
-在此案例中，hello 只從內部部署 tooAzure 流動的流量會使用的 toomanage hello 防火牆連線太**AZF3**，及流量必須經過 hello 內部防火牆， **AZF2**。 因此，只有一個路由是必要的 hello **GatewaySubnet**如下所示。
+在這個案例中，會透過連接到 **AZF3**，使用唯一從內部部署流至 Azure 的流量來管理防火牆，且流量必須通過內部防火牆 **AZF2**。 因此， **GatewaySubnet** 中只有一個必要路由，如下所示。
 
 | 目的地 | 下一個躍點 | 說明 |
 | --- | --- | --- |
-| 10.0.4.0/24 |10.0.3.11 |可讓內部部署傳輸 tooreach 管理防火牆**AZF3** |
+| 10.0.4.0/24 |10.0.3.11 |允許內部部署流量觸達管理防火牆 **AZF3** |
 
 ### <a name="azsn2udr"></a>azsn2udr
 | 目的地 | 下一個躍點 | 說明 |
 | --- | --- | --- |
-| 10.0.3.0/24 |10.0.2.11 |可讓主控透過 hello 應用程式伺服器的流量 toohello 後端子網路**AZF2** |
-| 0.0.0.0/0 |10.0.2.10 |可讓所有透過路由其他流量 toobe **AZF1** |
+| 10.0.3.0/24 |10.0.2.11 |允許流量透過 **AZF2** |
+| 0.0.0.0/0 |10.0.2.10 |允許透過 **AZF1** |
 
 ### <a name="azsn3udr"></a>azsn3udr
 | 目的地 | 下一個躍點 | 說明 |
 | --- | --- | --- |
-| 10.0.2.0/24 |10.0.3.10 |允許流量太**azsn2**應用程式透過伺服器 toohello 網頁伺服器從 tooflow **AZF2** |
+| 10.0.2.0/24 |10.0.3.10 |允許 **azsn2** 的流量透過 **AZF2** 從應用程式伺服器流向 Web 伺服器 |
 
-您也需要 toocreate 路由表中的 hello 子網路**onpremvnet** toomimic hello 內部部署資料中心。
+您也必須為 **onpremvnet** 中的子網路建立路由表，以模擬內部部署資料中心。
 
 ### <a name="onpremsn1udr"></a>onpremsn1udr
 | 目的地 | 下一個躍點 | 說明 |
 | --- | --- | --- |
-| 192.168.2.0/24 |192.168.1.4 |允許流量太**onpremsn2**透過**OPFW** |
+| 192.168.2.0/24 |192.168.1.4 |允許 **onpremsn2** 的流量通過 **OPFW** |
 
 ### <a name="onpremsn2udr"></a>onpremsn2udr
 | 目的地 | 下一個躍點 | 說明 |
 | --- | --- | --- |
-| 10.0.3.0/24 |192.168.2.4 |允許流量 toohello 備份子網路透過 Azure 中**OPFW** |
-| 192.168.1.0/24 |192.168.2.4 |允許流量太**onpremsn1**透過**OPFW** |
+| 10.0.3.0/24 |192.168.2.4 |允許流量透過 **OPFW** |
+| 192.168.1.0/24 |192.168.2.4 |允許 **onpremsn1** 的流量通過 **OPFW** |
 
 ## <a name="ip-forwarding"></a>IP 轉送
-UDR 和 IP 轉送 」 是您可以使用組合 tooallow 虛擬應用裝置 toobe 用 toocontrol 流量流程在 Azure VNet 中的功能。  虛擬應用裝置只是執行以某種方式，例如防火牆或 NAT 裝置的應用程式使用 toohandle 網路流量的 VM。
+UDR 和 IP 轉送兩種功能可以組合使用，以使用虛擬設備來控制 Azure VNet 中的流量流程。  虛擬應用裝置無非就是一個 VM，可執行用來以某種方式處理網路流量的應用程式，例如防火牆或 NAT 裝置。
 
-此 VM 必須是能夠 tooreceive 連入流量的虛擬應用裝置中並未提及 tooitself。 tooallow VM tooreceive 流量定址 tooother 目的地，您必須啟用 IP 轉送 hello VM。 這是 Azure 設定，不是在 hello 客體作業系統設定。 某些類型的應用程式 toohandle 您的虛擬設備仍需要 toorun hello 連入流量，並適當地路由傳送。
+此虛擬應用裝置 VM 必須能夠接收未定址到本身的連入流量。 若要讓 VM 接收定址到其他目的地的流量，您必須針對 VM 啟用 IP 轉送。 這是 Azure 設定，不是客體作業系統中的設定。 虛擬設備仍然需要執行某些類型的應用程式，以處理連入流量並正確予以路由。
 
-toolearn 深入了解 IP 轉送，請瀏覽[什麼是使用者定義的路由與 IP 轉送](virtual-networks-udr-overview.md#ip-forwarding)。
+如需深入了解 IP 轉送，請瀏覽 [什麼是使用者定義路由和 IP 轉送？](virtual-networks-udr-overview.md#ip-forwarding)。
 
-例如，假設您有下列安裝程式在 Azure vnet 中的 hello:
+例如，假設 Azure 虛擬網路中有下列安裝程式︰
 
 * 子網路 **onpremsn1** 包含名為 **onpremvm1** 的 VM。
 * 子網路 **onpremsn2** 包含名為 **onpremvm2** 的 VM。
-* 名為虛擬應用裝置**OPFW**太連接**onpremsn1**和**onpremsn2**。
-* 使用者定義路由連結太**onpremsn1**指定所有流量太**onpremsn2**必須太傳送**OPFW**。
+* 名為 **OPFW** 的虛擬設備連線到 **onpremsn1** 和 **onpremsn2**。
+* 連結至 **onpremsn1** 的使用者定義路由，指定 **onpremsn2** 的所有流量都必須傳送至 **OPFW**。
 
-在這點時，如果**onpremvm1**的連線嘗試 tooestablish **onpremvm2**、 hello UDR 將用於和的流量將傳送太**OPFW**為 hello 下一個躍點。 請記住，hello 實際封包目的地未變更，它仍指出**onpremvm2** hello 目的地。 
+此時，如果 **onpremvm1** 嘗試建立與 **onpremvm2** 的連線，則會使用 UDR，並將流量傳送至 **OPFW** 作為下一個躍點。 請記住，實際的封包目的地並未變更，目的地仍顯示 **onpremvm2** 。 
 
-不含 IP 轉送 」 啟用**OPFW**hello Azure 虛擬網路的邏輯將會卸除 hello 封包，因為它只允許封包傳送 toobe tooa VM，如果 hello VM 的 IP 位址是 hello hello 封包的目的地。
+若 **OPFW**未啟用 [IP 轉送]，Azure 虛擬網路邏輯會卸除封包，因為如果 VM 的 IP 位址是封包的目的地，其只允許將封包傳送到 VM。
 
-使用 IP 轉送，hello Azure 虛擬網路的邏輯會轉送 hello 封包 tooOPFW，而不需要變更其原始目的地位址。 **OPFW**必須處理 hello 封包，並判斷哪些 toodo 它們。
+若使用 [IP 轉送]，Azure 虛擬網路邏輯會將封包轉送到 OPFW，而不會變更其原始的目的地位址。 **OPFW** 必須處理封包，並決定如何加以處理。
 
-上述 toowork hello 案例中，您必須啟用 IP 轉送 」 hello Nic 上**OPFW**， **AZF1**， **AZF2**，和**AZF3**適用於路由 (hello 的連結的 toohello 管理子網路以外的所有 Nic)。 
+為使上述案例得以運作，您必須對用於路由的 **OPFW**、**AZF1**、**AZF2** 和 **AZF3** 的 NIC 啟用 [IP 轉送] \(所有 NIC，連結到管理子網路的 NIC 除外)。 
 
 ## <a name="firewall-rules"></a>防火牆規則
-如上面所述，IP 轉送只可確保傳送封包 toohello 虛擬應用裝置。 您的應用裝置仍然需要 toodecide 哪些 toodo 與這些封包。 在上述的 hello 情況下，您將需要 toocreate hello 依照您的應用裝置中的規則：
+如上所述，[IP 轉送] 只確保將封包傳送到虛擬設備。 您的設備仍然需要決定如何處理這些封包。 在上述案例中，您需要在設備中建立下列規則︰
 
 ### <a name="opfw"></a>OPFW
-OPFW 代表包含 hello 下列規則在內部部署裝置：
+OPFW 代表包含下列規則的內部部署裝置︰
 
-* **路由**: too10.0.0.0/16 的所有流量 (**azurevnet**) 必須透過通道傳送**ONPREMAZURE**。
+* **路由**：10.0.0.0/16 (**azurevnet**) 的所有流量都必須通過通道 **ONPREMAZURE** 傳送。
 * **原則**︰允許 **port2** 和 **ONPREMAZURE** 之間所有的雙向流量。
 
 ### <a name="azf1"></a>AZF1
-AZF1 代表 Azure 的虛擬應用裝置，以包含 hello 下列規則：
+AZF1 代表包含下列規則的 Azure 虛擬設備︰
 
 * **原則**︰允許 **port1** 和 **port2** 之間所有的雙向流量。
 
 ### <a name="azf2"></a>AZF2
-AZF2 代表 Azure 的虛擬應用裝置，以包含 hello 下列規則：
+AZF2 代表包含下列規則的 Azure 虛擬設備︰
 
-* **路由**: too10.0.0.0/16 的所有流量 (**onpremvnet**) 必須透過傳送 toohello Azure 閘道 IP 位址 (例如 10.0.0.1) **port1**。
+* **路由**：10.0.0.0/16 (**onpremvnet**) 的所有流量都必須通過 **port1** 傳送至 Azure 閘道 IP 位址 (即 10.0.0.1)。
 * **原則**︰允許 **port1** 和 **port2** 之間所有的雙向流量。
 
 ## <a name="network-security-groups-nsgs"></a>網路安全性群組 (NSG)
-這個案例中不會使用 NSG。 不過，您可以套用 Nsg tooeach 子網路 toorestrict 傳入和傳出流量。 比方說，您可以套用 hello 遵循 NSG 規則 toohello 外部 FW 子網路。
+這個案例中不會使用 NSG。 不過，您可以將 NSG 套用到每個子網路來限制流量的出入。 例如，您可以將下列 NSG 規則套用至外部 FW 子網路。
 
 **連入**
 
-* 允許從任何 VM 上的 hello 網際網路 tooport 80 的所有 TCP 流量 hello 子網路中。
-* 從網際網路 hello 拒絕所有其他流量。
+* 允許所有來自網際網路的 TCP 流量流向子網路任何 VM 的連接埠 80。
+* 拒絕來自網際網路的所有其他流量。
 
 **連出**
 
-* 拒絕所有流量 toohello 網際網路。
+* 拒絕所有流向網際網路的流量。
 
 ## <a name="high-level-steps"></a>高階步驟
-toodeploy 此案例中，遵循 hello 高階步驟下方。
+若要部署這個案例，請遵循下列的高階步驟。
 
-1. 登入 tooyour Azure 訂用帳戶。
-2. 如果您想 toodeploy VNet toomimic hello 內部部署網路，佈建 hello 資源屬於**ONPREMRG**。
-3. 佈建 hello 資源屬於**AZURERG**。
-4. 從佈建 hello 通道**onpremvnet**太**azurevnet**。
-5. 佈建的所有資源後，登入太**onpremvm2**間的 ping 10.0.3.101 tootest 連線**onpremsn2**和**azsn3**。
+1. 登入您的 Azure 訂用帳戶。
+2. 如果您想要部署 VNet 來模擬內部部署網路，請佈建屬於 **ONPREMRG**的資源。
+3. 佈建屬於 **AZURERG**的資源。
+4. 佈建 **onpremvnet** 到 **azurevnet** 的通道。
+5. 佈建好所有資源之後，請登入 **onpremvm2** 並 ping 10.0.3.101 來測試 **onpremsn2** 和 **azsn3** 之間的連線。
 

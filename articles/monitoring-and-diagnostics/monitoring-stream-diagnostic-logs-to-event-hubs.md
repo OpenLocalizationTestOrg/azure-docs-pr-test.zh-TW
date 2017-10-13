@@ -1,6 +1,6 @@
 ---
-title: "aaaStream Azure 診斷記錄檔 tooan 事件中樞命名空間 |Microsoft 文件"
-description: "了解 toostream Azure 診斷記錄 tooan 事件中樞命名空間的方式。"
+title: "將 Azure 診斷記錄串流至事件中樞命名空間 | Microsoft Docs"
+description: "了解如何將 Azure 診斷記錄串流至事件中樞命名空間。"
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,90 +14,90 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/21/2017
 ms.author: johnkem
-ms.openlocfilehash: 00092ea8f3fe4fa1476e3a697bf1e8645dd21e6e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 01ba8ddfcf90e1368ac147296fd180f99420d96f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="stream-azure-diagnostic-logs-tooan-event-hubs-namespace"></a>資料流 Azure 診斷記錄檔 tooan 事件中樞命名空間
-**[Azure 診斷的記錄檔](monitoring-overview-of-diagnostic-logs.md)**可以接近即時 tooany 應用程式使用 hello 內建 「 匯出 tooEvent 中心 」 中的選項 hello 入口網站中，資料流中，或藉由啟用 hello 的診斷設定透過 hello Azure PowerShell 中的服務匯流排規則識別碼Cmdlet 或 Azure CLI。
+# <a name="stream-azure-diagnostic-logs-to-an-event-hubs-namespace"></a>將 Azure 診斷記錄串流至事件中樞命名空間
+您可以使用入口網站中內建的「匯出至事件中樞」選項，或透過 Azure PowerShell Cmdlet 或 Azure CLI 來啟用診斷設定中服務匯流排規則識別碼的方式，以近乎即時的速度將 **[Azure 診斷記錄](monitoring-overview-of-diagnostic-logs.md)**串流至任何應用程式。
 
 ## <a name="what-you-can-do-with-diagnostics-logs-and-event-hubs"></a>您可以使用診斷記錄和事件中樞執行的項目
-以下是幾個方法，您可能會使用 hello 串流功能的診斷記錄檔：
+這裡有一些您可以使用診斷日誌串流功能的方法：
 
-* **資料流記錄 too3rd 合作對象記錄與遙測系統**– 一段時間，事件中心資料流將成為 hello 機制 toopipe toothird 合作對象 Siem 中的診斷記錄且記錄分析解決方案。
-* **服務健全狀況檢視透過串流處理將 [最忙碌路徑] 資料 tooPowerBI** – 使用事件中心、 Stream Analytics 中，與 power Bi，您可以輕鬆地將 toonear 即時 insights 中的診斷資料轉換在您的 Azure 服務。 [文件本文件提供的絕佳概觀 tooset 向上事件中心使用 Stream Analytics 中，處理資料，以及做為輸出使用 PowerBI](../stream-analytics/stream-analytics-power-bi-dashboard.md)。 以下是設定診斷記錄的一些祕訣︰
+* **串流至第三方記錄與遙測系統** – 經過一段時間，事件中樞串流會成為將活動記錄輸送到第三方 SIEM 與記錄分析解決方案的機制。
+* **將「最忙碌路徑」串流至 PowerBI 以檢視服務健全狀況** – 您可以使用事件中樞、串流分析和 PowerBI，輕鬆快速地將診斷資料轉換為 Azure 服務上的深入解析。 [此文件文章提供絕佳概觀，說明如何設定事件中樞、使用串流分析處理資料，以及使用 PowerBI 作為輸出](../stream-analytics/stream-analytics-power-bi-dashboard.md)。 以下是設定診斷記錄的一些祕訣︰
   
-  * 當您核取 hello 入口網站中的 hello 選項或啟用透過 PowerShell，因此您想 hello 命名空間與 hello 名稱開頭為 tooselect hello 事件中樞時自動建立事件中心的診斷記錄檔分類**insights**.
-  * 下列 SQL 程式碼的 hello 是範例資料流分析查詢，您可以使用 tooparse hello 記錄的所有資料 tooa PowerBI 資料表中：
+  * 當您勾選入口網站中的選項，或透過 PowerShell 進行啟用時，就會自動建立診斷記錄類別的事件中樞，因此您需要選取命名空間中名稱開頭為 **insights-** 的事件中樞。
+  * 下列 SQL 程式碼是您可以使用的範例串流分析查詢，能將所有記錄資料剖析至 PowerBI 表格：
 
     ```sql
     SELECT
-    records.ArrayValue.[Properties you want tootrack]
+    records.ArrayValue.[Properties you want to track]
     INTO
-    [OutputSourceName – hello PowerBI source]
+    [OutputSourceName – the PowerBI source]
     FROM
     [InputSourceName] AS e
     CROSS APPLY GetArrayElements(e.records) AS records
     ```
 
-* **建置自訂的遙測及記錄平台**– 如果您已自訂的遙測平台，或都只考慮的建立一個具有高擴充性 hello 發行-訂閱性質的事件中心可讓您 tooflexibly 內嵌診斷記錄檔。 [請參閱 Dan Rosanova 指南 toousing 事件中心的全球遙測平台中](https://azure.microsoft.com/documentation/videos/build-2015-designing-and-sizing-a-global-scale-telemetry-platform-on-azure-event-Hubs/)。
+* **建置自訂遙測及記錄平台** – 如果您已有自建遙測平台或正好在考慮建置一個，事件中樞所具備的高度可調整的發佈訂閱特質可讓您靈活擷取診斷記錄檔。 [請參閱此處的 Dan Rosanova 指南，以在全球級別的遙測平台中使用事件中樞](https://azure.microsoft.com/documentation/videos/build-2015-designing-and-sizing-a-global-scale-telemetry-platform-on-azure-event-Hubs/)。
 
 ## <a name="enable-streaming-of-diagnostic-logs"></a>啟用診斷記錄的串流
-您可以啟用資料流的診斷記錄檔以程式設計的方式，透過 hello 入口網站，或使用 hello [Azure 監視 REST Api](https://docs.microsoft.com/rest/api/monitor/servicediagnosticsettings)。 無論如何，您建立的診斷設定指定的事件中樞命名空間和 hello 記錄檔分類想 toosend toohello 命名空間中的度量。 事件中心會建立每個您啟用的記錄檔類別目錄的 hello 命名空間中。 診斷**記錄類別**是一種資源可以收集的記錄類型。
+您可以透過入口網站或使用 [Azure 監視器 REST API](https://docs.microsoft.com/rest/api/monitor/servicediagnosticsettings)，啟用以程式控制方式對診斷記錄進行串流的功能。 無論如何，您所建立的診斷設定可讓您指定事件中樞命名空間，以及記錄類別和您需要傳送至命名空間的計量。 針對您所啟用的每個記錄類別，會在命名空間中建立事件中樞。 診斷**記錄類別**是一種資源可以收集的記錄類型。
 
 > [!WARNING]
 > 啟用和串流來自計算資源 (例如，VM 或 Service Fabric) 的診斷記錄 [需要一組不同的步驟](../event-hubs/event-hubs-streaming-azure-diags-data.md)。
 > 
 > 
 
-服務匯流排 hello 或事件中樞命名空間中沒有 toobe hello 發出記錄檔，只要將設定 hello 設定 hello 使用者擁有適當的 RBAC 存取 tooboth 訂閱 hello 資源相同訂用帳戶。
+服務匯流排或事件中樞命名空間不一定要和資源發出記錄檔屬於相同的訂用帳戶，只要進行設定的使用者有這兩個訂用帳戶的適當 RBAC 存取權。
 
-## <a name="stream-diagnostic-logs-using-hello-portal"></a>資料流使用 hello 入口網站的診斷記錄檔
-1. 在 hello 入口網站中，瀏覽 tooAzure 監視器並按一下**診斷設定**
+## <a name="stream-diagnostic-logs-using-the-portal"></a>使用入口網站串流診斷記錄
+1. 在入口網站中，瀏覽至 Azure 監視器，然後按一下 [診斷設定]
 
     ![Azure 監視器的監視區段](media/monitoring-stream-diagnostic-logs-to-event-hubs/diagnostic-settings-blade.png)
 
-2. 選擇性地篩選資源群組或資源類型的 hello 清單，然後按一下 hello 資源，您想要 tooset 診斷設定。
+2. 選擇性地依資源群組或資源類型篩選清單，然後按一下您要設定診斷設定的資源。
 
-3. 如果您選取的 hello 資源上有沒有設定，您必須提示的 toocreate 設定。 按一下「開啟診斷」。
+3. 如果您選取的資源上沒有任何設定，系統會提示您建立設定。 按一下「開啟診斷」。
 
    ![新增診斷設定 - 無現有的設定](media/monitoring-stream-diagnostic-logs-to-event-hubs/diagnostic-settings-none.png)
 
-   如果 hello 資源上的現有設定，您會看到已設定此資源上設定的清單。 按一下「新增診斷設定」。
+   如果資源上已有設定，您將會看此資源上已設定的設定清單。 按一下「新增診斷設定」。
 
    ![新增診斷設定 - 現有的設定](media/monitoring-stream-diagnostic-logs-to-event-hubs/diagnostic-settings-multiple.png)
 
-3. 提供設定名稱，並核取方塊 hello**資料流 tooan 事件中心**，然後選取 事件中樞命名空間。
+3. 為設定提供名稱並核取 [串流至事件中樞] 方塊，然後選取 [事件中樞命名空間]。
    
    ![新增診斷設定 - 現有的設定](media/monitoring-stream-diagnostic-logs-to-event-hubs/diagnostic-settings-configure.png)
     
-   hello 選取命名空間將會建立 （如果這是您第一次資料流診斷記錄） 或資料流處理太 hello 事件中心位置 （如果已經有進行串流處理該記錄檔分類 toothis 命名空間的資源），並 hello 原則定義 hellohello 串流處理機制具有的權限。 現在，事件中心資料流 tooan 需要管理、 傳送和接聽的權限。 您可以建立或修改命名空間的 hello 設定 索引標籤下的 hello 入口網站中的事件中樞命名空間的共用存取原則。 其中一個診斷設定 tooupdate，hello 用戶端必須有 hello ListKey 權限 hello 事件中樞授權規則。
+   選取的命名空間將會是事件中樞的建立所在 (如果這是您第一次的串流診斷記錄) 或串流處理的目的地 (如果已存在將該記錄檔分類串流至此命名空間的資源)，而原則會定義串流機制擁有的權限。 目前，將事件串流到中樞需要管理、傳送和接聽的權限。 您可以在入口網站的 [設定] 索引標籤下，為您的命名空間建立或修改事件中樞命名空間共用存取原則。 若要更新其中一個診斷設定，用戶端必須擁有事件中樞授權規則的 ListKey 權限。
 
 4. 按一下 [儲存] 。
 
-在幾分鐘之後, hello 新設定會出現在此資源，設定的清單，並診斷記錄檔進行串流 toothat 儲存體帳戶，只要產生新的事件資料。
+過了幾分鐘之後，新的設定就會出現在此資源的設定清單中，而且每次產生新的事件資料，都會將診斷記錄串流至該儲存體帳戶。
 
 ### <a name="via-powershell-cmdlets"></a>透過 PowerShell Cmdlet
-hello 透過串流處理 tooenable [Azure PowerShell Cmdlet](insights-powershell-samples.md)，您可以使用 hello`Set-AzureRmDiagnosticSetting`指令程式搭配下列參數：
+若要透過 [Azure PowerShell Cmdlet](insights-powershell-samples.md) 啟用串流功能，您可以使用 `Set-AzureRmDiagnosticSetting` Cmdlet 搭配下列參數︰
 
 ```powershell
 Set-AzureRmDiagnosticSetting -ResourceId [your resource ID] -ServiceBusRuleId [your Service Bus rule ID] -Enabled $true
 ```
 
-服務匯流排規則識別碼 hello 是這種格式的字串： `{Service Bus resource ID}/authorizationrules/{key name}`，例如`/subscriptions/{subscription ID}/resourceGroups/Default-ServiceBus-WestUS/providers/Microsoft.ServiceBus/namespaces/{Service Bus namespace}/authorizationrules/RootManageSharedAccessKey`。
+服務匯流排規則識別碼是此格式的字串︰`{Service Bus resource ID}/authorizationrules/{key name}`，例如，`/subscriptions/{subscription ID}/resourceGroups/Default-ServiceBus-WestUS/providers/Microsoft.ServiceBus/namespaces/{Service Bus namespace}/authorizationrules/RootManageSharedAccessKey`。
 
 ### <a name="via-azure-cli"></a>透過 Azure CLI
-透過 hello 串流 tooenable [Azure CLI](insights-cli-samples.md)，您可以使用 hello`insights diagnostic set`命令如下：
+若要透過 [Azure CLI](insights-cli-samples.md) 啟用串流功能，您可以使用如下的 `insights diagnostic set` 命令︰
 
 ```azurecli
 azure insights diagnostic set --resourceId <resourceID> --serviceBusRuleId <serviceBusRuleID> --enabled true
 ```
 
-使用的 hello 相同格式的服務匯流排規則識別碼 hello PowerShell Cmdlet 的說明。
+如 PowerShell Cmdlet 所述，對服務匯流排規則識別碼使用相同的格式。
 
-## <a name="how-do-i-consume-hello-log-data-from-event-hubs"></a>我要如何使用 hello 記錄資料，從事件中心？
+## <a name="how-do-i-consume-the-log-data-from-event-hubs"></a>我要如何透過事件中樞取用記錄檔資料？
 此處是來自事件中樞的範例輸出資料：
 
 ```json
@@ -164,17 +164,17 @@ azure insights diagnostic set --resourceId <resourceID> --serviceBusRuleId <serv
 | 元素名稱 | 說明 |
 | --- | --- |
 | 記錄數 |此承載中的所有記錄事件的陣列。 |
-| 分析 |Hello 發生事件的時間。 |
+| 分析 |事件發生的時間。 |
 | category |此事件的記錄檔分類。 |
-| resourceId |產生這個事件的 hello 資源的資源識別碼。 |
-| operationName |Hello 作業的名稱。 |
-| 層級 |選用。 表示 hello 記錄事件層級。 |
-| 屬性 |Hello 事件的屬性。 |
+| resourceId |產生此事件之資源的資源識別碼。 |
+| operationName |作業名稱。 |
+| 層級 |選用。 表示記錄事件層級。 |
+| properties |事件的屬性。 |
 
-您可以檢視支援資料流 tooEvent 集線器的所有資源提供者的清單[這裡](monitoring-overview-of-diagnostic-logs.md)。
+您可以在[這裡](monitoring-overview-of-diagnostic-logs.md)檢視支援串流至事件中樞的所有資源提供者清單。
 
 ## <a name="stream-data-from-compute-resources"></a>從計算資源中串流資料
-您也可以串流來自使用 hello Windows Azure 診斷代理程式的計算資源的診斷記錄檔。 [請參閱本文章](../event-hubs/event-hubs-streaming-azure-diags-data.md)如何 tooset 該總。
+您也可以使用 Windows Azure 診斷代理程式，從計算資源中串流診斷記錄。 [請參閱本文章](../event-hubs/event-hubs-streaming-azure-diags-data.md)了解如何設定。
 
 ## <a name="next-steps"></a>後續步驟
 * [深入了解 Azure 診斷記錄檔](monitoring-overview-of-diagnostic-logs.md)

@@ -1,6 +1,6 @@
 ---
-title: "開始連接的實體裝置 tooAzure IoT 中樞 |Microsoft 文件"
-description: "深入了解如何 tooconnect 實體裝置和面板 tooAzure IoT 中樞。 您的裝置可以傳送遙測 tooIoT 中樞和 IoT 中心可以監視和管理您的裝置。"
+title: "開始將實體裝置連線到 Azure IoT 中樞 | Microsoft Docs"
+description: "了解實體裝置和面板如何連線到 Azure IoT 中樞。 您的裝置可以將遙測資料傳送到 IoT 中樞，而 IoT 中樞會監視並管理您的裝置。"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/22/2017
 ms.author: dobett
-ms.openlocfilehash: 47ce289c438b2f495d499d724c38ddc4b3307425
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f4128b6b049aa876e170c56dcf2e40720644dc3d
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-iot-hub-get-started-with-physical-devices-tutorials"></a>Azure IoT 中樞開始使用實體裝置教學課程
 
-這些教學課程介紹 tooAzure IoT 中樞和 hello 裝置 Sdk。 hello 教學課程涵蓋常見 IoT 案例 toodemonstrate hello 功能的 IoT 中樞。 hello 教學課程也說明如何 toocombine IoT 中樞與其他 Azure 服務和工具 toobuild 更強大的 IoT 解決方案。 hello 教學課程中所列 hello 下列表格顯示您如何 toocreate 實體 IoT 裝置。
+這些教學課程將為您介紹 Azure IoT 中樞與裝置的 SDK。 這些教學課程涵蓋的常見 IoT 案例會說明 IoT 中樞的功能。 教學課程也將說明如何將 IoT 中樞與其他 Azure 服務和工具結合，建置更強大的 IoT 解決方案。 下表所列的教學課程會示範如何建立實體 IoT 裝置。
 
 | IoT 裝置                       | 程式設計語言 |
 |---------------------------------|----------------------|
@@ -33,7 +33,7 @@ ms.lasthandoff: 10/06/2017
 | Sparkfun ESP8266 Thing 開發人員      | [Arduino][Th_Ard]              |
 | Adafruit Feather M0             | [Arduino][M0_Ard]              |
 
-此外，您可以使用 IoT 邊緣閘道 tooenable 裝置 tooconnect tooyour IoT 中樞。
+此外，您可以使用 IoT Edge 閘道來將裝置連線到您的 IoT 中樞。
 
 | 閘道裝置               | 程式設計語言 | 平台         |
 |------------------------------|----------------------|------------------|

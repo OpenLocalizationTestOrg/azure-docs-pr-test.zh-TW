@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd B2B 共同作業的使用者 tooAzure Active Directory 沒有邀請函 |Microsoft 文件"
-description: "您可以讓不含兌換邀請中 Azure Active Directory B2B 共同作業新增其他 Azure AD 的來賓使用者 tooyour guest 使用者。"
+title: "無邀請將 B2B 共同作業使用者新增至 Azure Active Directory | Microsoft Docs"
+description: "您可以讓來賓使用者將其他來賓使用者加入您的 Azure AD，而不需在 Azure Active Directory B2B 共同作業中兌換邀請。"
 services: active-directory
 documentationcenter: 
 author: sasubram
@@ -15,21 +15,21 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 03/15/2017
 ms.author: sasubram
-ms.openlocfilehash: 459d99b9f856a35973d1b2cbfabdc23fe40c8f44
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 91b9477cdb679851e7d8d2942c06999a05f64e46
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="add-b2b-collaboration-guest-users-without-an-invitation"></a>在沒有邀請的情況下新增 B2B 共同作業來賓使用者
 
-您可以允許使用者，例如 hello 夥伴 tooyour 組織，而不需要兌換邀請 toobe 夥伴代表 tooadd 使用者。 您必須執行的是您所使用的 hello 夥伴組織的 hello 目錄中的列舉權限授與該使用者 
+您可以允許使用者 (例如合作夥伴代表) 將來自合作夥伴的使用者加入您的組織，而不需要兌換邀請。 您必須做的是將合作夥伴組織在目錄中的列舉權限授與該使用者。 
 
 授與這些權限的時機︰
 
-1. Hello 主機組織 (例如，WoodGrove) 中的使用者邀請 hello 夥伴組織中的一位使用者 (例如， Sam@litware.com) 為來賓。
-2. hello hello 主機組織中的系統管理員設定原則，允許 Sam tooidentify 和從 hello 夥伴組織 (Litware) 新增其他使用者。
-3. 現在 Sam 可以加入其他使用者從 Litware toohello WoodGrove 目錄、 群組或應用程式而不需要兌換邀請 toobe。 如果 Sam Litware 在 hello 適當列舉權限，它會自動發生。
+1. 主組織 (例如，WoodGrove) 中的使用者邀請合作夥伴組織 (例如，Sam@litware.com) 的使用者做為「來賓」。
+2. 主組織中的系統管理員設定原則以允許 Sam 識別及新增來自合作夥伴組織 (Litware) 的使用者。
+3. 現在 Sam 可以將來自 Litware 的其他使用者新增到 WoodGrove 目錄、群組或應用程式，而不需要兌換邀請。 若 Sam 具有 Litware 中的適當列舉權限，這會自動發生。
 
 ### <a name="next-steps"></a>後續步驟
 
@@ -38,7 +38,7 @@ ms.lasthandoff: 10/06/2017
 * [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [Azure Active Directory 系統管理員如何新增 B2B 共同作業使用者？](active-directory-b2b-admin-add-users.md)
 * [資訊工作者如何新增 B2B 共同作業使用者？](active-directory-b2b-iw-add-users.md)
-* [hello hello B2B 共同作業邀請電子郵件項目](active-directory-b2b-invitation-email.md)
+* [B2B 共同作業邀請電子郵件的元素](active-directory-b2b-invitation-email.md)
 * [B2B 共同作業邀請兌換](active-directory-b2b-redemption-experience.md)
 * [Azure AD B2B 共同作業授權](active-directory-b2b-licensing.md)
 * [針對 Azure Active Directory B2B 共同作業問題進行疑難排解](active-directory-b2b-troubleshooting.md)

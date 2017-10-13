@@ -1,7 +1,7 @@
 ---
-title: "aaaAzure AD 連線 Microsoft 雲端德國"
-description: "Azure AD Connect 會整合您的內部部署目錄與 Azure Active Directory。 這可讓您與 Azure AD 整合 Office 365、 Azure 和 SaaS 應用程式的通用識別身分的 tooprovide。"
-keywords: "簡介 tooAzure AD Connect，Azure AD Connect 的概觀，什麼是 Azure AD Connect，安裝 active directory，德國，黑色樹系"
+title: "Microsoft Cloud Germany 中的 Azure AD Connect"
+description: "Azure AD Connect 會整合您的內部部署目錄與 Azure Active Directory。 這可讓您為與 Azure AD 整合的 Office 365、Azure 和 SaaS 應用程式提供通用身分識別。"
+keywords: "Azure AD Connect 簡介, Azure AD Connect 概觀, 何謂 Azure AD Connect, 安裝 active directory, 德國, 黑森林"
 services: active-directory
 documentationcenter: 
 author: billmath
@@ -15,52 +15,52 @@ ms.devlang: na
 ms.topic: get-started-article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: f32194fa6c365614f68e5d1ddcf0dac44d223292
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4c55b116c0dc080ae316caca873a7b693caa793b
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-ad-connect-in-microsoft-cloud-germany---public-preview"></a>Microsoft Cloud Germany 中的 Azure AD Connect - 公開預覽
 ## <a name="introduction"></a>簡介
 Azure AD Connect 可進行內部部署 Active Directory 與 Azure Active Directory 之間的同步處理。
-目前，有許多 hello 案例[Microsoft 雲端德國](https://www.microsoft.com/de-de/cloud/deutschland/default.aspx)必須由 hello 運算子。 使用 Microsoft 雲端德國時，您必須知道的 hello 下列：
+[Microsoft Cloud Germany](https://www.microsoft.com/de-de/cloud/deutschland/default.aspx) 中目前有許多案例必須由操作員來完成。 使用 Microsoft Cloud Germany 時，您必須注意下列事項︰
 
-* 下列 Url，必須先在 proxy 伺服器進行同步處理 toooccur 成功 hello:
+* 下列 URL 必須在 Proxy 伺服器上開啟，才能成功進行同步處理：
   
   * *.microsoftonline.de
   * *.windows.net
   * * 憑證撤銷清單
-* 當您登入時 tooyour Azure AD 目錄中時，您必須使用的帳戶 hello onmicrosoft.de 網域中。
-* 下列功能的 hello 便無法使用：
+* 當您登入 Azure AD 目錄時，必須使用 onmicrosoft.de 網域中的帳戶。
+* 無法使用下列功能：
   * Azure AD Connect Health
   * 自動更新
  
 ## <a name="download"></a>下載
-您可以下載 Azure AD Connect 從 hello 入口網站中的 hello Azure AD Connect 刀鋒視窗。  使用 hello toolocate hello Azure AD Connect 刀鋒視窗下方的指示。
+您可以從入口網站中的 [Azure AD Connect] 刀鋒視窗下載 Azure AD Connect。  使用下列指示來尋找 Azure AD Connect 刀鋒視窗。
 
-### <a name="hello-azure-ad-connect-blade"></a>hello Azure AD Connect 刀鋒伺服器
-一旦您已登入 toohello Azure 入口網站，請勿 hello 遵循：
+### <a name="the-azure-ad-connect-blade"></a>Azure AD Connect 刀鋒視窗
+登入 Azure 入口網站後，請執行下列動作：
 
-1. 移 tooBrowse
+1. 移至瀏覽
 2. 選取 Azure Active Directory
 3. 然後選取 Azure AD Connect
 
-您應該會看到下列 hello:
+您應該會看見下列內容：
 
 ![Azure AD Connect 刀鋒視窗](media/active-directory-aadconnect-germany/germany1.png)
 
-hello 下表描述顯示在 [hello] 刀鋒視窗中的 hello 功能。
+下表描述刀鋒視窗中顯示的功能。
 
-| Title | 說明 |
+| 課程名稱 | 說明 |
 | --- | --- |
 | 同步處理狀態 |讓您知道已啟用或停用同步處理。 |
-| 上次同步處理 |hello 上次成功同步處理完成。 |
-| 同盟網域 |顯示目前設定的同盟網域的 hello 數目。 |
+| 上次同步處理 |上次成功完成同步處理。 |
+| 同盟網域 |顯示目前設定的同盟網域數目。 |
 
 ## <a name="installation"></a>安裝
-tooinstall Azure AD Connect，您可以使用 hello 文件[這裡](active-directory-aadconnect.md#install-azure-ad-connect)。
+若要安裝 Azure AD Connect，您可以使用 [這裡](active-directory-aadconnect.md#install-azure-ad-connect)的文件。
 
 ## <a name="advanced-features-and-additional-information"></a>進階功能和其他資訊
-如需自訂設定或進階組態的其他資訊和指引，請從 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)著手。  此頁面會提供資訊和連結 tooadditional 指引。
+如需自訂設定或進階組態的其他資訊和指引，請從 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)著手。  此頁面會提供其他指引的資訊和連結。
 

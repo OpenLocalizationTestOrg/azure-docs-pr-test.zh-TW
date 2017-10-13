@@ -1,6 +1,6 @@
 ---
-title: "aaaSecuring PaaS 部署 |Microsoft 文件"
-description: " 了解 hello 安全性優點 PaaS 和其他雲端服務模型，並了解建議的做法，來保護您的 Azure PaaS 部署。 "
+title: "保護 PaaS 部署 | Microsoft Docs"
+description: " 了解 PaaS 與其他雲端服務模型相較之下的安全性優點，以及了解保護 Azure PaaS 部署的建議做法。 "
 services: security
 documentationcenter: na
 author: techlake
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/21/2017
 ms.author: terrylan
-ms.openlocfilehash: b94fe03b6f3a43d82e1e6e834f10a423e4c1db95
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f218fe7e59e46683b544fd83bfea505b7cbe2d59
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="securing-paas-deployments"></a>保護 PaaS 部署
 
 本文提供的資訊可協助您：
 
-- 了解 hello 安全性優點裝載 hello 雲端中的應用程式
-- 評估 hello 安全性優點的平台即服務 (PaaS) 和其他雲端服務模型
-- 變更安全性焦點從網路中心 tooan 識別為中心的周邊安全性方法
+- 了解將應用程式裝載在雲端的安全性優點
+- 評估平台即服務 (PaaS) 與其他雲端服務模型相較之下的安全性優點
+- 將您的安全性焦點從以網路為中心變更成以身分識別為中心的周邊安全性方法
 - 實作一般 PaaS 安全性最佳做法建議
 
 ## <a name="cloud-security-advantages"></a>雲端安全性優點
-沒有安全性優點 toobeing hello 雲端中。 在內部部署環境中，組織可能有業的責任和有限的資源可用 tooinvest 在安全性中，會建立攻擊者的所有層級的弱點可能會無法 tooexploit 所在的環境。
+在雲端環境中有一些安全性優點。 在內部部署環境中，組織可能責任重大但可投資在安全性上的資源卻相當有限，導致創造出一種攻擊者能夠利用所有層級弱點的環境。
 
 ![雲端時代的安全性優點][1]
 
-組織會使用的提供者以雲端為基礎的安全性功能和雲端 intelligence 可以 tooimprove 其威脅偵測和回應時間。  移位責任 toohello 雲端提供者，組織即可取得更多安全性涵蓋範圍，讓他們 tooreallocate 安全性資源與預算 tooother 商務優先順序。
+組織能夠藉由使用提供者的雲端型安全性功能和雲端智慧，改進其威脅偵測和回應時間。  藉由將責任轉移給雲端提供者，組織便可擴大安全性涵蓋範圍，而能夠將安全性資源和預算重新配置給其他業務優先順序項目。
 
 ## <a name="division-of-responsibility"></a>責任劃分
-很重要的 toounderstand hello 地分隔您與 Microsoft 之間的責任。 內部部署，您擁有 hello 整疊，但當您移動 toohello 雲端一些責任轉移 tooMicrosoft。 hello 下列責任矩陣顯示 hello 區域 hello 堆疊在 SaaS、 PaaS 和 IaaS 部署中，您必須負責，而且 Microsoft 會負責。
+了解您與 Microsoft 之間的責任劃分相當重要。 在內部部署環境中，您擁有整個堆疊，但是當您移到雲端時，部分責任就會轉移給 Microsoft。 以下責任矩陣圖顯示 SaaS、PaaS 及 IaaS 部署中由您負責和由 Microsoft 負責的堆疊領域。
 
 ![責任區][2]
 
-就所有雲端部署類型而言，您擁有您的資料和身分識別。 您需負責保護資料和身分識別，在內部部署資源的 hello 安全性和 hello 雲端元件，您可以控制 （這會因服務型別）。
+就所有雲端部署類型而言，您擁有您的資料和身分識別。 您需負責保護您資料和身分識別、內部部署資源及您所控制之雲端元件 (因服務類型而異) 的安全性。
 
-一律會保留您 hello 類型，不論的責任是部署的：
+不論部署類型為何，一律由您承擔責任的對象包括：
 
 - 資料
 - 端點
@@ -51,52 +51,52 @@ ms.lasthandoff: 10/06/2017
 - 存取管理
 
 ## <a name="security-advantages-of-a-paas-cloud-service-model"></a>PaaS 雲端服務模型的安全性優點
-使用 hello 相同責任矩陣，讓我們看看 hello 安全性優點與在內部部署的 Azure PaaS 部署。
+讓我們使用相同的責任矩陣圖，來看看 Azure PaaS 部署與內部部署相較之下的安全性優點。
 
 ![PaaS 的安全性優點][3]
 
-開始在 hello 底部 hello 堆疊，hello 實體基礎結構，Microsoft 可降低常見的風險和責任。 因為 microsoft 持續監視 hello Microsoft 雲端時，很難 tooattack。 不會更有意義的攻擊者 toopursue hello Microsoft 雲端為目標。 除非 hello 攻擊者有許多 money 和資源、 hello 攻擊者的是可能 toomove tooanother 目標上。  
+Microsoft 是從堆疊底部的實體基礎結構開始來減輕常見的風險和責任。 由於 Microsoft 雲端受到 Microsoft 持續不斷的監視，因此難以對它進行攻擊。 對攻擊者來說，以 Microsoft 雲端作為目標並非明智之舉。 除非攻擊者擁有許多資金和資源，否則攻擊者就可能轉移到另一個目標。  
 
-在 hello 堆疊的 hello 中間 PaaS 部署，而且在內部部署之間沒有差異。 在 hello 應用程式層與 hello 帳戶和存取管理的圖層上，您會有類似的風險。 Hello 下一節步驟這篇文章，我們將引導您刪除或降低這些風險 toobest 作法。
+在攻擊當中，PaaS 部署與內部部署之間並沒有差異。 在應用程式層以及帳戶和存取管理層，您都有類似的風險。 在本文的＜後續步驟＞一節中，我們將引導您進行將這些風險消除或降到最低的最佳做法。
 
-在 hello 頂端 hello 堆疊、 資料控管和 rights management，您必須可減輕金鑰管理的風險。 (金鑰管理涵蓋在最佳做法中)。額外的責任金鑰管理時，您必須在 PaaS 部署，您不再擁有 toomanage，因此您可以移動資源 tookey 管理中的區域。
+在堆疊頂端的資料控管和權限管理，您需承擔一項可由金鑰管理降低的風險。 (金鑰管理涵蓋在最佳做法中)。雖然金鑰管理是一項額外的責任，但在 PaaS 部署中有些領域已不再需要由您管理，因此您可以將資源轉移到金鑰管理。
 
-hello Azure 平台也提供強式 DDoS 保護透過使用各種網路為基礎的技術。 不過，所有類型的網路型 DDoS 保護方法在每一連結和每一資料中心上都有其限制。 toohelp 避免 hello 影響大型 DDoS 攻擊，您可以利用 Azure 的核心雲端功能，讓您 tooquickly 和自動向外的擴充 toodefend DDoS 攻擊。 在 hello 建議做法文件中的做法，我們會討論更詳細說明。
+Azure 平台也藉由使用各種網路型技術，提供您增強式 DDoS 保護。 不過，所有類型的網路型 DDoS 保護方法在每一連結和每一資料中心上都有其限制。 若要協助避免大型 DDoS 攻擊所帶來的影響，您可以利用可讓您快速且自動相應放大規模來防禦 DDoS 攻擊的 Azure 核心雲端功能。 我們將在建議的做法文章中，更詳細地深入探討如何這麼做。
 
-## <a name="modernizing-hello-defenders-mindset"></a>種 hello defender 的心態
-PaaS 部署可以讓您的整體方法 toosecurity 內的排班。 您不需要的所有項目 toocontrol 轉移自行 toosharing 與 Microsoft 的責任。
+## <a name="modernizing-the-defenders-mindset"></a>讓防禦者的心態邁向現代化
+伴隨 PaaS 部署而來的就是您整體安全性方法的轉變。 您會從需要全部自行控制轉變成與 Microsoft 分享責任。
 
-PaaS 和傳統內部部署之間的另一個重要差異是所定義的 hello 主要的安全性範疇的新檢視。 在過去，hello 主要內部部署安全性周邊網路，最內部的安全性設計使用 hello 網路為其主要安全性樞紐。 PaaS 部署您服務會比較好考慮識別 toobe hello 主要的安全性範疇。
+PaaS 與傳統內部部署的另一個重大差異在於一個新觀點，就是定義主要安全性周邊的是什麼。 在過去，主要內部部署安全性周邊是您的網路，而大多數內部部署安全性設計皆使用網路作為其主要安全性樞紐。 就 PaaS 部署而言，將身分識別視為主要安全性周邊可為您提供較佳的服務。
 
-## <a name="identity-as-hello-primary-security-perimeter"></a>Hello 主要的安全性範疇和身分識別
-其中一個 hello 五種基本的特性的雲端運算廣泛的網路存取，可讓網路中心考慮較不相關。 大部分的雲端運算 tooallow 使用者 tooaccess 資源，無論位置 hello 目標。 對大多數使用者，其位置正在 toobe 某處 hello 網際網路上。
+## <a name="identity-as-the-primary-security-perimeter"></a>以身分識別作為主要安全性周邊
+雲端運算的五個基本特性之一是廣泛的網路存取，這使得以網路為中心的思維不是那麼重要。 雲端運算的大部分目標在於讓使用者不論身在哪個位置都能存取資源。 就大多數使用者而言，他們的位置將是網際網路上的某一處。
 
-hello 下圖顯示如何從網路周邊 tooan 識別周邊發展 hello 安全性範疇。 安全性會變成較少的相關定義網路和更多關於保護您的資料，以及管理您的應用程式和使用者的 hello 安全性。 hello 主要差異是您想 toopush 安全性較接近 toowhat 的重要 tooyour 公司。
+下圖說明安全性周邊如何從網路周邊發展到身分識別周邊。 安全性變得較不著重於防禦您的網路，而是較著重於防禦您的資料，以及管理您應用程式和使用者的安全性。 主要的差異在於您想要讓安全性更貼近於您公司所看重的方面。
 
 ![以身分識別作為新的安全性周邊][4]
 
-一開始，Azure PaaS 服務 (例如 Web 角色和 Azure SQL) 提供極少或未提供任何傳統網路周邊防禦。 它可了解 hello 項目的目的是公開 toobe toohello 網際網路 （web 角色），並驗證提供 hello 新周邊 （例如，BLOB 或 SQL Azure）。
+一開始，Azure PaaS 服務 (例如 Web 角色和 Azure SQL) 提供極少或未提供任何傳統網路周邊防禦。 在認知上，元素的用途是對網際網路公開 (Web 角色)，而驗證則提供新的周邊 (例如 BLOB 或 Azure SQL)。
 
-現代的安全性作法會假設該 hello 敵人已違反 hello 周邊網路。 因此，現代防禦作法已經移動 tooidentity。 組織必須以增強式驗證與授權防疫 (最佳做法) 建立身分識別型安全性周邊。
+新式安全性做法是假設敵人已經突破網路周邊。 因此，新式防禦做法已經轉移到身分識別。 組織必須以增強式驗證與授權防疫 (最佳做法) 建立身分識別型安全性周邊。
 
-## <a name="recommendations-for-managing-hello-identity-perimeter"></a>管理 hello 識別周邊建議的
+## <a name="recommendations-for-managing-the-identity-perimeter"></a>管理身分識別周邊的建議
 
-原則和 hello 周邊網路的模式是十年。 相較之下，hello 產業有較低的經驗與 hello 主要的安全性範疇使用身分識別。 不過，我們已經累積足夠的經驗 tooprovide 已通過驗證的 hello 欄位中的某些一般性建議，並套用 tooalmost 所有 PaaS 服務。
+網路周邊的原則和模式已經存在數十年。 對照之下，業界在使用身分識別作為主要安全性周邊方面就相對較無經驗。 儘管如此，我們也已累積足夠的經驗來提供一些一般性的建議，這些建議已經過實地驗證且適用於幾乎所有 PaaS 服務。
 
-hello 以下摘要說明一般的最佳做法方法 toomanaging 識別外圍。
+以下將摘要說明一個管理您身分識別周邊的一般性最佳做法。
 
-- **您的金鑰或憑證不會喪失**金鑰和認證的安全性很重要的 toosecure PaaS 部署。 遺失金鑰和認證是相當常見的問題。 一個很好的解決方案是 toouse 集中型解決方案金鑰和秘密可以儲存在硬體安全性模組 (HSM)。 Azure 會提供搭配 hello 雲端 HSM [Azure 金鑰保存庫](../key-vault/key-vault-whatis.md)。
-- **不要將認證和其他機密放原始程式碼或 GitHub** hello 只有事情更糟的是比遺失您的金鑰和認證是否有未經授權的合作對象取得存取 toothem。 攻擊者所能 tootake bot 技術 toofind 金鑰和密碼儲存在程式碼儲存機制，例如 GitHub 的優點。 請勿將金鑰和密碼放在這些公用原始程式碼儲存機制中。
-- **保護混合式 PaaS 和 IaaS 服務上的 VM 管理介面**：IaaS 和 PaaS 服務是在虛擬機器 (VM) 上執行。 根據服務的 hello 類型，有數個管理介面可讓您 tooremote 直接管理這些 Vm。 可使用的遠端管理通訊協定包括像是[安全殼層通訊協定 (SSH)](https://en.wikipedia.org/wiki/Secure_Shell)、[遠端桌面通訊協定 (RDP)](https://support.microsoft.com/kb/186607) 及[遠端 PowerShell](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.core/enable-psremoting)。 一般情況下，我們建議您不要啟用遠端的直接存取 tooVMs 從 hello 網際網路。 您應該使用替代方法 (如果可用)，例如使用虛擬私人網路來連線到 Azure 虛擬網路。 如果沒有替代方法可用，則請務必使用複雜密碼，並且如果可以使用雙重要素驗證 (例如 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md))，便使用此驗證。
+- **不要遺失您的金鑰或認證**：保護金鑰和認證對保護 PaaS 部署來說相當重要。 遺失金鑰和認證是相當常見的問題。 其中一個絕佳的解決方案是使用集中式解決方案，將金鑰和密碼存放在硬體安全性模組 (HSM) 中。 Azure 藉由 [Azure Key Vault](../key-vault/key-vault-whatis.md) 提供您一個雲端 HSM。
+- **不要將認證及其他密碼放在原始程式碼或 GitHub 中**：唯一比遺失金鑰和認證更糟的情況就是讓未經授權的一方能夠存取這些機密資料。 攻擊者能夠利用 Bot 技術來尋找存放在程式碼儲存機制 (例如 GitHub) 中的金鑰和密碼。 請勿將金鑰和密碼放在這些公用原始程式碼儲存機制中。
+- **保護混合式 PaaS 和 IaaS 服務上的 VM 管理介面**：IaaS 和 PaaS 服務是在虛擬機器 (VM) 上執行。 視服務類型而定，有數個管理介面可供您從遠端直接管理這些 VM。 可使用的遠端管理通訊協定包括像是[安全殼層通訊協定 (SSH)](https://en.wikipedia.org/wiki/Secure_Shell)、[遠端桌面通訊協定 (RDP)](https://support.microsoft.com/kb/186607) 及[遠端 PowerShell](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.core/enable-psremoting)。 一般而言，建議您不要啟用從網際網路直接遠端存取 VM 的功能。 您應該使用替代方法 (如果可用)，例如使用虛擬私人網路來連線到 Azure 虛擬網路。 如果沒有替代方法可用，則請務必使用複雜密碼，並且如果可以使用雙重要素驗證 (例如 [Azure Multi-Factor Authentication](../multi-factor-authentication/multi-factor-authentication.md))，便使用此驗證。
 - **使用增強式驗證與授權平台**
 
-  - 使用 Azure AD 中的同盟身分識別，而不要使用自訂使用者存放區。 當您使用同盟身分識別時，您充分利用平台為基礎的方法和委派的身分識別授權的 tooyour 協力廠商的 hello 管理。 同盟識別身分方法時尤其重要案例中的員工會終止，而且需要 toobe 資訊會反映透過多個身分識別和授權的系統。
-  - 使用平台提供的驗證與授權機制，而不要使用自訂程式碼。 hello 原因是，開發自訂驗證程式碼可能會出錯。 大部分的開發人員不安全專家，而不太可能 toobe 留意 hello 微妙 hello 中驗證和授權的最新發展。 商業程式碼 (例如來自 Microsoft) 通常都經過廣泛的安全性檢閱。
-  - 使用多重要素驗證。 多因素驗證，則為目前的 hello 標準驗證和授權，因為它可避免 hello 的安全性弱點中使用者名稱和密碼的驗證類型。 存取 tooboth hello Azure 管理 （入口網站/遠端 PowerShell） 介面與服務直接公開 toocustomer 應該設計並設定及 toouse [Azure Multi-factor Authentication (MFA)](../multi-factor-authentication/multi-factor-authentication.md)。
+  - 使用 Azure AD 中的同盟身分識別，而不要使用自訂使用者存放區。 使用同盟身分識別時，您可以利用平台型方法並將已授權之身分識別的管理委派給您的合作夥伴。 在員工已被解雇而該資訊必須透過多個身分識別與授權系統來反映的案例中，同盟身分識別方法尤其重要。
+  - 使用平台提供的驗證與授權機制，而不要使用自訂程式碼。 原因在於開發自訂驗證程式碼可能容易出錯。 您的大多數開發人員都不是安全性專家，因此可能不是很清楚驗證與授權方面的微妙細節和最新發展。 商業程式碼 (例如來自 Microsoft) 通常都經過廣泛的安全性檢閱。
+  - 使用多重要素驗證。 多重要素驗證是現行的驗證與授權標準，因為它可避免使用者名稱與密碼型驗證中固有的安全性弱點。 您應該將 Azure 管理 (入口網站/遠端 PowerShell) 介面和面向客戶之服務的存取方式都設計並設定成使用 [Azure Multi-Factor Authentication (MFA)](../multi-factor-authentication/multi-factor-authentication.md)。
   - 使用標準驗證通訊協定，例如 OAuth2 和 Kerberos。 這些通訊協定已經過廣泛的對等檢閱，而可能作為您驗證與授權平台程式庫的一部分來實作。
 
 ## <a name="next-steps"></a>後續步驟
-在本文中，我們是將焦點放在 Azure PaaS 部署的安全性優點。 接下來，請了解適用於保護您 PaaS Web 和行動解決方案的建議做法。 我們將從 Azure App Service、Azure SQL Database 及「Azure SQL 資料倉儲」開始著手。 發行項上的其他 Azure 服務的建議作法可用，hello 下列清單中將會提供連結：
+在本文中，我們是將焦點放在 Azure PaaS 部署的安全性優點。 接下來，請了解適用於保護您 PaaS Web 和行動解決方案的建議做法。 我們將從 Azure App Service、Azure SQL Database 及「Azure SQL 資料倉儲」開始著手。 當有適用於其他 Azure 服務的建議做法文章推出時，就會在以下清單中提供連結：
 
 - [Azure App Service](security-paas-applications-using-app-services.md)
 - [Azure SQL Database 和 Azure SQL Data Warehouse](security-paas-applications-using-sql.md)

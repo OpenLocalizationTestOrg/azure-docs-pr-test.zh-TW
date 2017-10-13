@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect：宣告式佈建運算式 | Microsoft Docs"
-description: "說明 hello 宣告式佈建運算式。"
+description: "說明宣告式佈建運算式。"
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -14,59 +14,59 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 516bcf1991c608d33aefc19551254d8b2bfc024f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e3a03a97b10e04fb85261620879b2102e1db8465
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-ad-connect-sync-understanding-declarative-provisioning-expressions"></a>Azure AD Connect 同步處理：了解宣告式佈建運算式
-Azure AD Connect 同步處理是以 Forefront Identity Manager 2010 中最先引進的宣告式佈建為基礎。 它可讓您 tooimplement hello 需要 toowrite 不完整的身分識別整合商業邏輯編譯的程式碼。
+Azure AD Connect 同步處理是以 Forefront Identity Manager 2010 中最先引進的宣告式佈建為基礎。 它可讓您實作完整的身分識別整合商務邏輯，而不需要撰寫已編譯的程式碼。
 
-宣告式佈建不可或缺的一部分是 hello 屬性流程中使用的運算式語言。 使用 hello 語言是 Microsoft® Visual Basic® for Applications (VBA) 的子集。 此語言用於 Microsoft Office，而且擁有 VBScript 經驗的使用者也可以辨識它。 hello 宣告式佈建運算式語言 」 只使用函數，並不是結構化的語言。 沒有任何方法或陳述式。 改為巢狀函式 tooexpress 控制程式流程。
+宣告式佈建最主要的部分是在屬性流程中使用運算式語言。 使用的語言是 Microsoft® Visual Basic® for Applications (VBA) 的子集。 此語言用於 Microsoft Office，而且擁有 VBScript 經驗的使用者也可以辨識它。 宣告式佈建運算式語言只會使用函式，而不是結構化語言。 沒有任何方法或陳述式。 函式會改為巢狀函式來表示程式流程。
 
-如需詳細資訊，請參閱[歡迎 toohello Visual Basic for Applications 語言參考適用於 Office 2013](https://msdn.microsoft.com/library/gg264383.aspx)。
+如需詳細資訊，請參閱 [歡迎使用適用於 Office 2013 的 Visual Basic for Applications 語言參考](https://msdn.microsoft.com/library/gg264383.aspx)。
 
-hello 屬性是強型別。 函式只接受 hello 正確型別的屬性。 它也區分大小寫。 函式名稱和屬性名稱兩者都必須有正確的大小寫，否則會擲回錯誤。
+屬性是強型別。 函式只會接受正確類型的屬性。 它也區分大小寫。 函式名稱和屬性名稱兩者都必須有正確的大小寫，否則會擲回錯誤。
 
 ## <a name="language-definitions-and-identifiers"></a>語言定義和識別項
 * 函式名稱後面接著以括弧括住的引數：FunctionName(argument 1, argument N)。
 * 屬性以方括弧識別：[attributeName]
 * 參數以百分比符號識別：%ParameterName%
 * 字串常數以引號括住：例如 "Contoso" (注意：必須使用一般引號 ""，而非智慧引號 “”)
-* 不需要引號和預期的 toobe 十進位表示數字值。 十六進位值前面會加上 &H。 例如，98052、&HFF
+* 數值不加引號，而且必須是十進位。 十六進位值前面會加上 &H。 例如，98052、&HFF
 * 布林值以兩個常數表示：True、False。
 * 內建常數和常值只以其名稱表示：NULL、CRLF、IgnoreThisFlow
 
 ### <a name="functions"></a>Functions
-宣告式佈建會使用許多函數 tooenable hello 可能性 tootransform 屬性值。 這些函式可以巢狀，因此 hello 某個函數的結果會傳遞 tooanother 函式中。
+宣告式佈建會使用許多函式，來啟用轉換屬性值的可能性。 這些函式可以是巢狀的，因此，來自某一個函式的結果會傳遞到另一個函式。
 
 `Function1(Function2(Function3()))`
 
-hello 函式完整清單位於 hello[函數參考](active-directory-aadconnectsync-functions-reference.md)。
+如需函式的完整清單，請參閱 [函式參考](active-directory-aadconnectsync-functions-reference.md)。
 
 ### <a name="parameters"></a>參數
-參數由連接器或由系統管理員使用 PowerShell 定義。 參數通常包含不同於系統 toosystem 的值，例如位於中的 hello hello 網域 hello 使用者名稱。 這些參數可用於屬性流程中。
+參數由連接器或由系統管理員使用 PowerShell 定義。 參數通常會包含隨系統而不同的值，例如使用者所在的網域名稱。 這些參數可用於屬性流程中。
 
-hello Active Directory 連接器提供的 hello 輸入同步處理規則的下列參數：
+Active Directory 連接器對於輸入同步處理規則提供下列參數：
 
 | 參數名稱 | 註解 |
 | --- | --- |
-| Domain.Netbios |Hello 網域目前正在匯入，例如 FABRIKAMSALES 的 Netbios 格式 |
-| Domain.FQDN |Hello 網域目前正在匯入，例如 sales.fabrikam.com 的 FQDN 格式 |
-| Domain.LDAP |LDAP 格式的 hello 網域目前正在匯入，例如 DC = sales，DC = fabrikam，DC = com |
-| Forest.Netbios |Hello 樹系名稱目前正在匯入，例如 FABRIKAMCORP Netbios 格式 |
-| Forest.FQDN |Hello 樹系名稱目前正在匯入，例如 fabrikam.com FQDN 格式 |
-| Forest.LDAP |LDAP 格式的 hello 樹系名稱目前正在匯入，例如 DC = fabrikam，DC = com |
+| Domain.Netbios |目前正在匯入之網域的 NetBIOS 格式，例如 FABRIKAMSALES |
+| Domain.FQDN |目前正在匯入之網域的 FQDN 格式，例如 sales.fabrikam.com |
+| Domain.LDAP |目前正在匯入之網域的 LDAP 格式，例如 DC=sales,DC=fabrikam,DC=com |
+| Forest.Netbios |目前正在匯入之樹系名稱的 Netbios 格式，例如 FABRIKAMCORP |
+| Forest.FQDN |目前正在匯入之樹系名稱的 FQDN 格式，例如 fabrikam.com |
+| Forest.LDAP |目前正在匯入之樹系名稱的 LDAP 格式，例如 DC=fabrikam,DC=com |
 
-hello 系統提供 hello 下列參數，其中使用的 tooget hello 識別碼 hello 連接器目前正在執行：  
+系統會提供下列參數，用來取得目前正在執行之連接器的識別碼：  
 `Connector.ID`
 
-填入 hello metaverse 屬性網域 hello hello 使用者所在位置的 hello 網域 netbios 名稱的範例如下：  
+以下範例會以使用者所在網域的 netbios 名稱填入 Metaverse 屬性網域：  
 `domain` <- `%Domain.Netbios%`
 
 ### <a name="operators"></a>運算子
-可以使用下列運算子的 hello:
+可以使用下列運算子：
 
 * **比較**：<、<=、<>、=、>、>=
 * **數學**：+、-、\*、-
@@ -74,20 +74,20 @@ hello 系統提供 hello 下列參數，其中使用的 tooget hello 識別碼 h
 * **邏輯**：&& (且)、|| (或)
 * **評估順序**：( )
 
-運算子是評估的左的 tooright 而且具有 hello 相同評估優先權。 也就是說，hello \* （乘數） 不會評估前-（減號）。 2\*(5 + 3) 不是相同 hello 2\*5 + 3。 hello 括弧 （） 會使用 toochange hello 評估順序保留時 tooright 評估順序並不適合。
+運算子會由左至右進行評估，且具有相同的評估優先順序。 也就是，不會在 - (減號) 之前評估 \* (乘數)。 2\*(5+3) 與 2\*5+3 不同。 若由左至右的評估順序不適當，則可使用括弧 () 來變更評估順序。
 
 ## <a name="multi-valued-attributes"></a>多重值屬性
-hello 函式可以處理單一值及多重值屬性。 對於多重值屬性，hello 函式的每個值上運作，並套用 hello 相同函式 tooevery 值。
+函式可以在單一值和多重值屬性上操作。 對於多重值屬性，函式會在每個值上進行操作並將相同的函式套用到每個值。
 
-例如：  
-`Trim([proxyAddresses])`執行 Trim hello proxyAddress 屬性中的每個值。  
-`Word([proxyAddresses],1,"@") & "@contoso.com"`針對每個值與@-sign，取代 hello 網域@contoso.com。  
-`IIF(InStr([proxyAddresses],"SIP:")=1,NULL,[proxyAddresses])`尋找 hello SIP 位址，並將它從 hello 值移除。
+例如，  
+`Trim([proxyAddresses])` 在 proxyAddress 屬性中執行每個值的 Trim。  
+`Word([proxyAddresses],1,"@") & "@contoso.com"`針對每個值與@-sign，取代網域@contoso.com。  
+`IIF(InStr([proxyAddresses],"SIP:")=1,NULL,[proxyAddresses])` 尋找 SIP 位址並從各值中移除。
 
 ## <a name="next-steps"></a>後續步驟
-* 深入了解 hello 組態模型[了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
-* 請參閱如何宣告式佈建須使用-蜪鎏中[了解 hello 預設組態](active-directory-aadconnectsync-understanding-default-configuration.md)。
-* 請參閱 toomake 實際變更使用中的宣告式佈建[toomake 變更 toohello 預設組態的方式](active-directory-aadconnectsync-change-the-configuration.md)。
+* 如需組態模型的詳細資訊，請參閱 [了解宣告式佈建](active-directory-aadconnectsync-understanding-declarative-provisioning.md)。
+* 如需了解如何立即使用宣告式佈建，請參閱 [了解預設組態](active-directory-aadconnectsync-understanding-default-configuration.md)。
+* 如需了解如何使用宣告式佈建進行實際變更，請參閱 [如何變更預設組態](active-directory-aadconnectsync-change-the-configuration.md)。
 
 **概觀主題**
 

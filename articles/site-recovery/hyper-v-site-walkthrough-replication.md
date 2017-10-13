@@ -1,6 +1,6 @@
 ---
-title: "HYPER-V VM （不含 System Center VMM) 的複寫 tooAzure 與 Azure Site Recovery 的複寫原則 aaaSet |Microsoft 文件"
-description: "摘要說明複寫 HYPER-V Vm tooAzure 儲存體時，需要建立複寫原則 tooset hello 步驟"
+title: "使用 Azure Site Recovery 設定將 Hyper-V VM (不含 System Center VMM) 複寫至 Azure 的複寫原則 | Microsoft Docs"
+description: "摘要說明您在將 Hyper-V VM 複寫至 Azure 儲存體時，設定複寫原則所需的步驟"
 documentationcenter: 
 author: rayne-wiselman
 manager: carmonm
@@ -13,46 +13,46 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/22/2017
 ms.author: raynew
-ms.openlocfilehash: 4bd7161f4a0f015da0ecf595fbc6861ede5d68b0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ca5bec5cf1152e6259b9fe7a869edd2d62b88e1a
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="step-9-set-up-a-replication-policy-for-hyper-v-vm-replication-tooazure"></a>步驟 9： 設定 HYPER-V 虛擬機器複寫 tooAzure 的複寫原則
+# <a name="step-9-set-up-a-replication-policy-for-hyper-v-vm-replication-to-azure"></a>步驟 9：設定 Hyper-V VM 複寫至 Azure 的複寫原則
 
-本文說明如何建立複寫原則，當您要複寫使用 hello （不含 System Center VMM) 的 HYPER-V Vm tooAzure tooset [Azure Site Recovery](site-recovery-overview.md) hello Azure 入口網站中的服務。
+本文說明如何在 Azure 入口網站中使用 [Azure Site Recovery](site-recovery-overview.md) 服務，在您要將 Hyper-V VM 複寫至 Azure (不含 System Center VMM) 時設定複寫原則。
 
 
-在本文中，或在 hello hello 下方張貼意見或疑問[Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
+請在本文下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)上張貼意見或問題。
 
 ## <a name="about-snapshots"></a>關於快照集
 
-HYPER-V 使用兩種類型的快照集，提供 hello 整部虛擬機器的累加快照集的標準快照集和 hello hello 虛擬機器內的應用程式資料的時間點快照的應用程式一致快照集。
-    - 應用程式一致快照集會使用應用程式處於一致的狀態時 hello 快照時的磁碟區陰影複製服務 (VSS) tooensure。
-    - 如果您啟用應用程式一致快照集時，它會影響來源虛擬機器上執行的應用程式的 hello 效能。 確定您設定的 hello 值小於 hello 您設定其他復原點數目。
+Hyper-V 使用兩種類型的快照，一個是標準快照，提供整個虛擬機器的增量快照，另一個是應用程式一致快照，會建立虛擬機器內應用程式資料的時間點快照。
+    - 應用程式一致快照會使用「磁碟區陰影複製服務」(VSS) 來確保建立快照時，應用程式是處於一致狀態。
+    - 如果您啟用應用程式一致快照，它會影響在來源虛擬機器上執行的應用程式效能。 確認您設定的值低於您設定的其他復原點數目。
 
 ## <a name="set-up-a-replication-policy"></a>設定複寫原則
 
-1. toocreate 新的複寫原則，請按一下**準備基礎結構** > **複寫設定** > **+ 建立及關聯**。
+1. 若要建立新的複寫原則，請按一下 [準備基礎結構] > [複寫設定] > [+建立及關聯]。
 
     ![網路](./media/hyper-v-site-walkthrough-replication/gs-replication.png)
 2. 在 [建立及關聯原則] 中指定原則名稱。
-3. 在**複製頻率**，指定您在 hello 初始複寫 （每隔 30 秒、 5 或 15 分鐘） 之後要 tooreplicate 差異資料的頻率。
+3. 在 [複製頻率] 中，指定您要在初始複寫後複寫差異資料的頻率 (每隔 30 秒、5 或 15 分鐘)。
 
     > [!NOTE]
-    > 複寫 toopremium 存放裝置時，不支援第二個頻率為 30。 hello 限制取決於 hello 高階儲存體所支援的每個 blob (100) 的快照集數目。 [深入了解](../storage/common/storage-premium-storage.md#snapshots-and-copy-blob)。
+    > 複寫到進階儲存體時，不支援 30 秒的頻率。 限制取決於進階儲存體所支援之每 blob (100) 的快照集數目。 [深入了解](../storage/common/storage-premium-storage.md#snapshots-and-copy-blob)。
 
-4. 在**復原點保留**，指定以小時多久 hello 保留週期是每個復原點。 Vm 就能復原 tooany 視窗內的點。
+4. 在 [復原點保留] 中，指定每個復原點的保留週期長度 (以小時為單位)。 VM 可以復原到週期內的任意點。
 5. 在 [應用程式一致快照頻率] 中，指定建立包含應用程式一致快照之復原點的頻率 (1-12 小時)。
-6. 在**初始複寫開始時間**，指定當 toostart hello 初始複寫。 hello 發生複寫的網際網路頻寬，您可能會想 tooschedule 它忙碌的時間之外。 然後按一下 [確定] 。
+6. 在 [初始複寫開始時間]  中，指定開始初始複寫的時間。 複寫會透過您的網際網路頻寬發生，所以您可能想將它排程在忙碌時間之外。 然後按一下 [確定] 。
 
     ![複寫原則](./media/hyper-v-site-walkthrough-replication/gs-replication2.png)
 
-當您建立新的原則時，它會自動與相關聯 hello HYPER-V 站台。 您可以將 HYPER-V 站台 （和中的 hello Vm） 中的多個複寫原則與**複寫**> 原則名稱 >**關聯 HYPER-V 站台**。
+當您建立新的原則時，該原則會自動與 Hyper-V 網站產生關聯。 您可以在 [複寫] > 原則名稱 > [關聯 Hyper-V 網站] 中，將 Hyper-V 網站 (及其中的 VM) 與多個複寫原則建立關聯。
 
 
 
 ## <a name="next-steps"></a>後續步驟
 
-跳過[步驟 10： 啟用複寫](hyper-v-site-walkthrough-enable-replication.md)
+移至[步驟 10：啟用複寫](hyper-v-site-walkthrough-enable-replication.md)

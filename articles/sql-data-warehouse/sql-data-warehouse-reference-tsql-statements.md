@@ -1,6 +1,6 @@
 ---
-title: "資料倉儲 TRANSACT-SQL 參考 aaaSQL |Microsoft 文件"
-description: "如需 SQL 資料倉儲所使用的 hello TRANSACT-SQL 主題的連結 tooreference 內容。"
+title: "SQL 資料倉儲 Transact-SQL 參考 | Microsoft Docs"
+description: "SQL 資料倉儲所使用的 Transact-SQL 主題的參考內容連結。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: kevinvngo
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: reference
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
-ms.openlocfilehash: b4b3c6cf666e9572a910784c39fd1f7c473d8821
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d6ad9db8eae0dc35580194f2ffbf02eeab6b70d2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="transact-sql-topics"></a>Transact-SQL 主題
 ## <a name="data-definition-language-ddl-statements"></a>資料定義語言 (DDL) 陳述式

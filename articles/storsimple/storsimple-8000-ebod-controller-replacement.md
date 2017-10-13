@@ -1,6 +1,6 @@
 ---
-title: "aaaReplace StorSimple 8600 EBOD 控制器 |Microsoft 文件"
-description: "說明如何 tooremove 和取代 StorSimple 8600 裝置上的一個或兩個 EBOD 控制器。"
+title: "更換 StorSimple 8600 EBOD 控制器 | Microsoft Docs"
+description: "說明如何取下並更換 StorSimple 8600 裝置上的一個或兩個 EBOD 控制器。"
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 06/02/2017
 ms.author: alkohli
-ms.openlocfilehash: 8343ed6f48ae97fc9204452f85e1936bfb1d6919
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 45699c267d1009c4884dd164fd3f2950d6d5f555
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="replace-an-ebod-controller-on-your-storsimple-device"></a>更換 StorSimple 裝置上的 EBOD 控制器
 
 ## <a name="overview"></a>概觀
-本教學課程說明如何 tooreplace 上 Microsoft Azure StorSimple 裝置的故障 EBOD 控制器模組。 tooreplace EBOD 控制器模組，您要：
+本教學課程說明如何更換 Microsoft Azure StorSimple 裝置上故障的 EBOD 控制器模組。 若要更換 EBOD 控制器模組，您必須：
 
-* 移除 hello 故障 EBOD 控制器
+* 取下故障的 EBOD 控制器
 * 安裝新的 EBOD 控制器
 
-請考量下列資訊，在您開始前的 hello:
+開始之前，請考量下列資訊：
 
-* 空白的 EBOD 模組必須插入至所有未使用的插槽。 如果插槽處於開啟狀態，不會正確地冷卻 hello 機箱。
-* hello EBOD 控制器是可熱交換，可移除或取代。 請勿取下故障的模組，除非您有更換模組。 當您起始 hello 更換程序時，您必須在 10 分鐘內完成它。
+* 空白的 EBOD 模組必須插入至所有未使用的插槽。 如果插槽處於開啟狀態，機箱將無法適當地冷卻。
+* EBOD 控制器是可熱交換，而且可以取下或更換。 請勿取下故障的模組，除非您有更換模組。 當起始更換程序時，您必須在 10 分鐘內完成。
 
 > [!IMPORTANT]
-> 然後再嘗試 tooremove 或取代任何 StorSimple 元件，請確定您檢閱 hello[安全圖示慣例](storsimple-safety.md#safety-icon-conventions)和其他[安全措施](storsimple-safety.md)。
+> 在嘗試取下或更換任何 StorSimple 元件之前，請確定先閱讀[安全圖示慣例](storsimple-safety.md#safety-icon-conventions)和其他[安全性預防措施](storsimple-safety.md)。
 
 ## <a name="remove-an-ebod-controller"></a>取下 EBOD 控制器
-取代 hello 失敗 EBOD 控制器模組在您的 StorSimple 裝置，請確定該 hello 其他 EBOD 控制器模組已使用中且正在執行。 hello 下列程序及下表說明如何 tooremove hello EBOD 控制器模組。
+在取下 StorSimple 裝置中故障的 EBOD 控制器模組之前，請確定另一個 EBOD 控制器模組作用中且執行中。 下列程序和資料表說明如何取下 EBOD 控制器模組。
 
-#### <a name="tooremove-an-ebod-module"></a>tooremove EBOD 模組
-1. 開啟 hello Azure 入口網站。
-2. 移 tooyour 裝置和瀏覽過**設定** > **硬體健全狀況**，並確認該 hello 的狀態 hello LED hello 使用中 EBOD 控制器模組為綠色，而失敗的 hello LEDEBOD 控制器模組為紅色。
-3. 在 hello hello 裝置背面尋找失敗的 hello EBOD 控制器模組。
-4. 移除 hello 連接纜線，hello EBOD 控制器模組 toohello 控制器再超出 hello 系統 hello EBOD 模組。
-5. 記下 hello 確切 SAS 連接埠已連接的 toohello 控制站的 hello EBOD 控制器模組。 取代 hello EBOD 模組之後，您將會需要的 toorestore hello 系統 toothis 組態。
+#### <a name="to-remove-an-ebod-module"></a>若要取下 EBOD 模組
+1. 開啟 Azure 入口網站。
+2. 移至您的裝置，並瀏覽至 [設定] > [硬體健康狀態]，並確認作用中 EBOD 控制器模組的 LED 狀態為綠色，而故障的 EBOD 控制器模組的 LED 為紅色。
+3. 在裝置背面找出故障的 EBOD 控制器模組。
+4. 先取下將 EBOD 控制器模組連接到控制器的纜線，再從系統取出 EBOD 模組。
+5. 記下已連接至控制器之 EBOD 控制器模組的確切 SAS 連接埠。 在更換 EBOD 模組之後，您必須將系統還原至這個組態。
    
    > [!NOTE]
-   > 一般來說，這將是連接埠 A，標示為**中裝載**hello 下列圖表中。
+   > 通常，這將是連接埠 A，在下圖標示為 [主機輸入]。
    
     ![EBOD 控制器的後擋板](./media/storsimple-ebod-controller-replacement/IC741049.png)
    
@@ -65,21 +65,21 @@ ms.lasthandoff: 10/06/2017
    | 8 |連接埠 C (僅限原廠使用) |
 
 ## <a name="install-a-new-ebod-controller"></a>安裝新的 EBOD 控制器
-hello 下列程序及下表說明如何 tooinstall EBOD 控制器模組在您的 StorSimple 裝置。
+下列程序和資料表說明如何在 StorSimple 中安裝 EBOD 控制器模組。
 
-#### <a name="tooinstall-an-ebod-controller"></a>tooinstall EBOD 控制器
-1. 請檢查有無損壞，特別是 toohello 介面連接器 hello EBOD 裝置。 如果有任何彎曲的插腳，請勿安裝 hello 新 EBOD 控制器。
-2. Hello 閂鎖在 hello 與開啟投影片 hello hello 閂鎖嚙合之前的 hello 機箱模組的位置。
+#### <a name="to-install-an-ebod-controller"></a>若要安裝新的 EBOD 控制器
+1. 請檢查 EBOD 是否損毀，尤其是介面連接器。 如果有任何接腳彎曲，請勿安裝新的 EBOD 控制器。
+2. 當閂鎖在開啟的位置時，將模組滑入機箱，直到閂鎖扣上。
    
     ![安裝 EBOD 控制器](./media/storsimple-ebod-controller-replacement/IC741050.png)
    
-    **圖 2**安裝 hello EBOD 控制器模組
-3. 關閉 hello 閂鎖。 您應該為 hello 閂鎖嚙合時聽到喀。
+    **圖 2** 安裝 EBOD 控制器模組
+3. 關閉閂鎖。 您應該會聽到喀嚓一聲，表示閂鎖已扣上。
    
     ![鬆開 EBOD 閂鎖](./media/storsimple-ebod-controller-replacement/IC741047.png)
    
-    **圖 3**關閉 hello EBOD 模組閂鎖
-4. 重新連線 hello 纜線。 使用 hello hello 更換前出現的確切組態。 請參閱下列圖表中的 hello 和資料表的詳細說明如何 tooconnect hello 纜線。
+    **圖 3** 關閉 EBOD 模組閂鎖
+4. 重新連接纜線。 使用更換之前存在的確切組態。 請參閱下圖和資料表，以取得有關如何連接纜線的詳細資料。
    
     ![將您的 4U 裝置接上纜線，以取得電源](./media/storsimple-ebod-controller-replacement/IC770723.png)
    

@@ -1,6 +1,6 @@
 ---
-title: "aaaNotification 中樞中斷新聞教學課程-Android"
-description: "深入了解如何 toouse Azure Service Bus 通知中樞 toosend 重大消息通知 tooAndroid 裝置。"
+title: "通知中樞即時新聞教學課程 - Android"
+description: "了解如何使用 Azure 服務匯流排通知中樞將本地化重大新聞通知傳送至 Android 裝置。"
 services: notification-hubs
 documentationcenter: android
 author: ysxu
@@ -14,27 +14,27 @@ ms.devlang: java
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: e6eb41bec95c67d7dc059f560194966d04400494
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 76ec01c874fceedab7d76b2ef58e4b45b5489f58
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-notification-hubs-toosend-breaking-news"></a>使用通知中樞 toosend 最新消息
+# <a name="use-notification-hubs-to-send-breaking-news"></a>使用通知中心傳送即時新聞
 [!INCLUDE [notification-hubs-selector-breaking-news](../../includes/notification-hubs-selector-breaking-news.md)]
 
 ## <a name="overview"></a>概觀
-本主題說明如何 toouse Azure 通知中樞 toobroadcast 重大消息通知 tooan Android 應用程式。 完成時，您將會是能 tooregister 中斷您感興趣的新聞分類，並且接收只有那些類別目錄的推播通知。 這個案例是許多應用程式的常見模式，通知其中有傳送 toobe toogroups 的先前尚未宣告欄位，例如 RSS 讀取器、 應用程式等的音樂迷感興趣的使用者。
+本主題將說明如何使用 Azure 通知中心，將即時新聞通知廣播至 Android 應用程式。 完成時，您便能夠註冊您所感興趣的即時新聞類別，並僅接收這些類別的推播通知。 此情況是許多應用程式的共同模式，這些應用程式必須將通知傳送給先前宣告對通知有興趣的使用者群組，例如，RSS 閱讀程式、供樂迷使用的應用程式等等。
 
-啟用廣播的案例包括下列一個或多個*標記*時建立 hello 通知中樞的註冊。 當通知傳送 tooa 標記時，所有已註冊的裝置 hello 標記會收到 hello 通知。 標記是只是字串，因為它們不需要預先佈建 toobe。 如需標記的詳細資訊，請參閱太[通知中樞路由和標記運算式](notification-hubs-tags-segment-push-message.md)。
+在通知中樞內建立註冊時，您可以透過包含一或多個 *tags* 來啟用廣播案例。 當標籤收到通知時，所有已註冊此標籤的裝置都會收到通知。 由於標籤只是簡單的字串而已，您無需預先佈建標籤。 如需標籤的詳細資訊，請參閱 [通知中樞路由與標記運算式](notification-hubs-tags-segment-push-message.md)。
 
 ## <a name="prerequisites"></a>必要條件
-本主題是根據您在建立 hello 應用程式[開始使用通知中樞][get-started]。 開始本教學課程之前，您必須已完成[開始使用通知中樞][get-started]。
+本主題會以您在[開始使用通知中樞][get-started]中所建立的應用程式為基礎。 開始本教學課程之前，您必須已完成[開始使用通知中樞][get-started]。
 
-## <a name="add-category-selection-toohello-app"></a>加入類別目錄選取 toohello 應用程式
-hello 第一個步驟為 tooadd hello UI 項目 tooyour 現有主要活動可讓 hello 使用者 tooselect 類別 tooregister。 使用者選取的 hello 類別會儲存在 hello 裝置。 Hello 應用程式啟動時，裝置註冊會建立您的通知中樞與 hello 選取類別目錄中，為標記。
+## <a name="add-category-selection-to-the-app"></a>在應用程式中新增類別選項
+第一個步驟是在您現有的主要活動上新增 UI 元素，以便使用者選取要註冊的類別。 使用者所選取的類別會儲存在裝置上。 啟動應用程式時，您的通知中心內會建立以所選取類別作為標籤的裝置註冊。
 
-1. 開啟您 res/layout/activity_main.xml 檔案，並取代 hello hello 下列內容：
+1. 開啟您的 res/layout/activity_main.xml 檔案，並替換成下列內容：
    
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -83,7 +83,7 @@ hello 第一個步驟為 tooadd hello UI 項目 tooyour 現有主要活動可讓
                     android:onClick="subscribe"
                     android:text="@string/button_subscribe" />
         </LinearLayout>
-2. 開啟 res/values/strings.xml 檔案並加入下列行 hello:
+2. 開啟您的 res/values/strings.xml 檔案，並新增以下幾行：
    
         <string name="button_subscribe">Subscribe</string>
         <string name="label_world">World</string>
@@ -96,7 +96,7 @@ hello 第一個步驟為 tooadd hello UI 項目 tooyour 現有主要活動可讓
     您的 main_activity.xml 圖形版面配置此時應如下所示：
    
     ![][A1]
-3. 現在建立類別**通知**相同封裝中 hello 做為您**MainActivity**類別。
+3. 現在，在與 **MainActivity** 類別相同的套件中建立 **Notifications** 類別。
    
         import java.util.HashSet;
         import java.util.Set;
@@ -150,7 +150,7 @@ hello 第一個步驟為 tooadd hello UI 項目 tooyour 現有主要活動可讓
                             hub.registerTemplate(regid,"simpleGCMTemplate", templateBodyGCM, 
                                 categories.toArray(new String[categories.size()]));
                         } catch (Exception e) {
-                            Log.e("MainActivity", "Failed tooregister - " + e.getMessage());
+                            Log.e("MainActivity", "Failed to register - " + e.getMessage());
                             return e;
                         }
                         return null;
@@ -167,13 +167,13 @@ hello 第一個步驟為 tooadd hello UI 項目 tooyour 現有主要活動可讓
    
         }
    
-    這個類別使用新聞此裝置有 tooreceive hello 本機儲存體 toostore hello 的類別。 它也包含這些類別的方法 tooregister。
+    本類別會使用本機儲存體來儲存此裝置必須接收的新聞類別。 它也包含註冊這些類別的方法。
 4. 在您的 **MainActivity** 類別中，移除您 **NotificationHub** 和 **GoogleCloudMessaging** 的私人欄位，並新增 [通知] 的欄位：
    
         // private GoogleCloudMessaging gcm;
         // private NotificationHub hub;
         private Notifications notifications;
-5. 然後，在 hello **onCreate**方法，移除 hello 初始化 hello**中樞**欄位和 hello **registerWithNotificationHubs**方法。 然後加入下列行初始化執行個體的 hello hello**通知**類別。 
+5. 接著，在 **onCreate** 方法中，將 **hub** 欄位的初始設定和 **registerWithNotificationHubs** 方法移除。 接著，新增以下幾行以初始化 [通知]  類別的執行個體。 
 
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -188,12 +188,12 @@ hello 第一個步驟為 tooadd hello UI 項目 tooyour 現有主要活動可讓
             notifications.subscribeToCategories(notifications.retrieveCategories());
         }
 
-    `HubName`和`HubListenConnectionString`應該已經設定以 hello`<hub name>`和`<connection string with listen access>`預留位置取代通知中樞名稱和 hello 的連接字串*DefaultListenSharedAccessSignature*取得稍早。
+    `HubName` 與 `HubListenConnectionString` 應已經設定有 `<hub name>` 及 `<connection string with listen access>` 預留位置，以及您稍早取得之 *DefaultListenSharedAccessSignature* 的通知中樞名稱及連接字串。
 
-    > [AZURE.NOTE] 發佈的用戶端應用程式的認證不是一般安全的因為您只應該與用戶端應用程式來散發 hello 接聽 」 存取權的索引鍵。 接聽存取啟用通知，但現有的註冊您的應用程式 tooregister 無法修改，而且無法傳送通知。 hello 完整的存取金鑰會用於傳送通知和變更現有註冊的受保護的後端服務。
+    > [AZURE.NOTE] 因為隨用戶端應用程式散佈的憑證通常不安全，您應只將接聽存取權的金鑰隨用戶端應用程式散佈。 您的應用程式可透過接聽存取權來註冊通知，但無法修改現有的註冊或無法傳送通知。 在安全的後端服務中，會使用完整存取金鑰來傳送通知和變更現有的註冊。
 
 
-1. 然後，加入下列 hello 匯入和`subscribe`方法 toohandle hello 訂閱按鈕 click 事件：
+1. 然後，加入下列匯入及 `subscribe` 方法，以處理 [訂閱] 按鈕的 Click 事件：
    
         import android.widget.CheckBox;
         import java.util.HashSet;
@@ -224,24 +224,24 @@ hello 第一個步驟為 tooadd hello UI 項目 tooyour 現有主要活動可讓
             notifications.storeCategoriesAndSubscribe(categories);
         }
    
-    這個方法會建立一份類別目錄，並使用 hello**通知**類別 toostore hello 本機儲存體中的 hello 清單，並使用您的通知中樞註冊 hello 相對應的標記。 類別目錄會變更時，重新建立 hello 註冊 hello 新類別。
+    此方法會建立一份類別清單，並使用 **Notifications** 類別在本機儲存體中儲存清單，並在通知中心註冊對應標籤。 變更類別時，系統會使用新類別重新建立註冊。
 
-您的應用程式目前處於無法 toostore 一組類別目錄 hello 裝置上的本機儲存體，並向 hello 通知中樞，每當 hello 使用者變更 hello 選取的類別。
+您的應用程式現在可以在裝置上的本機儲存體中儲存一組類別，並在使用者每次變更類別選項時在通知中心註冊。
 
 ## <a name="register-for-notifications"></a>註冊通知
-這些步驟註冊在啟動時使用已儲存在本機儲存體的 hello 類別 hello 通知中樞。
+這些步驟會在啟動時，使用已儲存在本機儲存體中的類別在通知中心註冊。
 
 > [!NOTE]
-> 因為 hello registrationId 指派透過 Google Cloud Messaging (GCM) 可以在任何時間變更，您應該註冊通知經常 tooavoid 通知失敗。 每次該 hello 應用程式啟動時，這個範例會註冊通知。 針對經常執行的應用程式，一天一次以上，您可以可能略過註冊 toopreserve 頻寬如果少於一天，已經過 hello 先前的登錄。
+> 由於 Google 雲端通訊 (GCM) 所指派的 registrationId 可以隨時變更，您應經常註冊通知以避免通知失敗。 此範例會在應用程式每次啟動時註冊通知。 若是經常執行 (一天多次) 的應用程式，如果距離上次註冊的時間不到一天，則您可能可以略過註冊以保留頻寬。
 > 
 > 
 
-1. 新增下列程式碼結尾 hello hello hello **onCreate**方法在 hello **MainActivity**類別：
+1. 在 **MainActivity** 類別的 **onCreate** 方法結尾處，新增下列程式碼：
    
         notifications.subscribeToCategories(notifications.retrieveCategories());
    
-    這可確保，每次 hello 應用程式啟動時從本機儲存體擷取 hello 類別並要求這些分類的登錄。 
-2. 然後更新 hello`onStart()`方法 hello`MainActivity`類別，如下所示：
+    這會確保應用程式每次啟動時都會從本機儲存體擷取類別，並要求這些類別的註冊。 
+2. 然後如下所示，更新 `MainActivity` 類別的 `onStart()` 方法：
    
     @Override  protected void onStart() {
    
@@ -264,41 +264,41 @@ hello 第一個步驟為 tooadd hello UI 項目 tooyour 現有主要活動可讓
         sports.setChecked(categories.contains("sports"));
     }
    
-    這會更新依據先前儲存的類別目錄的 hello 狀態 hello 主要活動。
+    這會根據原先儲存的類別狀態更新主要活動。
 
-hello 應用程式現在已完成，而且可以是儲存一組類別目錄中與 hello 通知中樞的 hello 裝置使用的本機儲存體 tooregister，每當 hello 使用者變更 hello 選取的類別。 接下來，我們會定義可以傳送類別通知 toothis 應用程式後端。
+現在已完成此應用程式，且可在裝置本機儲存體中儲存一組類別，以供每次使用者變更類別選項在通知中心註冊時使用。 接著，我們會定義可將類別通知傳送至此應用程式的後端。
 
 ## <a name="sending-tagged-notifications"></a>傳送加註標記的通知
 [!INCLUDE [notification-hubs-send-categories-template](../../includes/notification-hubs-send-categories-template.md)]
 
-## <a name="run-hello-app-and-generate-notifications"></a>執行 hello 應用程式，並產生通知
-1. 在 Android Studio 中，建置 hello 應用程式並開始在裝置或模擬器上。
+## <a name="run-the-app-and-generate-notifications"></a>執行應用程式並產生通知
+1. 在 Android Studio 中建置應用程式，並在裝置或模擬器上加以啟動。
    
-    Hello 應用程式 UI 提供一組切換，請注意，可讓您選擇以 hello 類別 toosubscribe。
+    請注意，應用程式 UI 提供一組切換，可讓您選擇要訂閱的類別。
 2. 啟用一或多個類別切換，然後按一下 [訂閱] 。
    
-    hello 應用程式將選取的 hello 類別轉換成標記，並從 hello 通知中樞要求新的裝置註冊 hello 選取標記。 hello 已註冊的類別會傳回並顯示在快顯通知。
-3. 藉由執行 hello.NET 主控台應用程式傳送新的通知。  或者，您可以傳送 hello 中使用的通知中樞的 hello 偵錯 索引標籤的標記的範本通知[Azure 傳統入口網站]。
+    應用程式會將選取的類別轉換成標籤，並在通知中心內為選取的標籤要求新裝置註冊。 隨即會傳回已註冊的類別，且會顯示在快顯通知中。
+3. 執行 .NET 主控台應用程式以傳送新的通知。  或者，可以使用 [Azure 傳統入口網站]中通知中樞的 [偵錯] 索引標籤，傳送加註標記的範本通知。
    
-    通知 hello 選取類別目錄會顯示為快顯通知。
+    選取的類別通知會以快顯通知方式出現。
 
 ## <a name="next-steps"></a>後續步驟
-在此教學課程中我們學到如何 toobroadcast 依類別目錄中最新消息。 完成下列其中一個 hello 下列反白顯示其他進階的通知中心案例的教學課程，請考慮：
+在本教學課程中，我們了解到如何按類別廣播即時新聞。 請考慮完成下列其中一個強調其他進階通知中心案例的教學課程：
 
-* [使用通知中樞 toobroadcast 當地語系化重大消息]
+* [使用通知中樞廣播已當地語系化的即時新聞]
   
-    了解如何傳送 tooenable 新聞應用程式的重大 tooexpand hello 當地語系化通知。
+    了解如何擴充即時新聞應用程式，以啟用傳送已當地語系化的通知。
 
 <!-- Images. -->
 [A1]: ./media/notification-hubs-aspnet-backend-android-breaking-news/android-breaking-news1.PNG
 
 <!-- URLs.-->
 [get-started]: notification-hubs-android-push-notification-google-gcm-get-started.md
-[使用通知中樞 toobroadcast 當地語系化重大消息]: /manage/services/notification-hubs/breaking-news-localized-dotnet/
+[使用通知中樞廣播已當地語系化的即時新聞]: /manage/services/notification-hubs/breaking-news-localized-dotnet/
 [Notify users with Notification Hubs]: /manage/services/notification-hubs/notify-users
 [Mobile Service]: /develop/mobile/tutorials/get-started/
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/jj927170.aspx
-[Notification Hubs How-toofor Windows Store]: http://msdn.microsoft.com/library/jj927172.aspx
+[Notification Hubs How-To for Windows Store]: http://msdn.microsoft.com/library/jj927172.aspx
 [Submit an app page]: http://go.microsoft.com/fwlink/p/?LinkID=266582
 [My Applications]: http://go.microsoft.com/fwlink/p/?LinkId=262039
 [Live SDK for Windows]: http://go.microsoft.com/fwlink/p/?LinkId=262253

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure.NET SDK 的 Azure Data Lake Analytics aaaManage |Microsoft 文件"
-description: "了解如何 toomanage Data Lake Analytics 作業、 資料來源的使用者。 "
+title: "使用 Azure .NET SDK 管理 Azure Data Lake Analytics | Microsoft Docs"
+description: "了解如何管理 Data Lake Analytics 工作、資料來源、使用者。 "
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: saveenr
-ms.openlocfilehash: 98630ba411823644a8bce1f1b0c1331f689cbb0c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0f8a95f96ce4c816dfb9132923faa9a9bf20c205
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="manage-azure-data-lake-analytics-using-azure-net-sdk"></a>使用 Azure .NET SDK 管理 Azure Data Lake Analytics
 [!INCLUDE [manage-selector](../../includes/data-lake-analytics-selector-manage.md)]
 
-了解 toomanage Azure Data Lake Analytics 帳戶、 資料來源、 使用者和工作使用 hello Azure.NET SDK。 
+瞭解如何使用 Azure .NET SDK 管理 Azure Data Lake Analytics 的帳戶、資料來源、使用者和作業。 
 
 ## <a name="prerequisites"></a>必要條件
 
 * **已安裝 Visual Studio 2015、Visual Studio 2013 更新 4，或具有 Visual C++ 的 Visual Studio 2012**。
-* **Microsoft Azure SDK for .NET 2.5 版或更新版本**。  安裝使用 hello [Web platform installer](http://www.microsoft.com/web/downloads/platform.aspx)。
+* **Microsoft Azure SDK for .NET 2.5 版或更新版本**。  使用 [Web Platform Installer](http://www.microsoft.com/web/downloads/platform.aspx)來進行安裝。
 * **必要的 NuGet 套件**
 
 ### <a name="install-nuget-packages"></a>安裝 NuGet 套件
@@ -41,7 +41,7 @@ ms.lasthandoff: 10/06/2017
 |[Microsoft.Azure.Management.ResourceManager](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)|1.6.0-preview|
 |[Microsoft.Azure.Graph.RBAC](https://www.nuget.org/packages/Microsoft.Azure.Management.ResourceManager)|3.4.0-preview|
 
-您可以安裝這些套件透過 hello NuGet 命令列以 hello 下列命令：
+您可以透過 NuGet 命令列，使用下列命令來安裝這些套件：
 
 ```
 Install-Package -Id Microsoft.Rest.ClientRuntime.Azure.Authentication  -Version 2.3.1
@@ -62,7 +62,7 @@ string clientid = "1950a258-227b-4e31-a9cf-717495945fc2"; // Sample client ID (t
 
 ## <a name="authentication"></a>驗證
 
-您有多個選項的登入 tooAzure Data Lake Analytics。 hello 下列程式碼片段顯示使用快顯視窗的互動式使用者驗證與驗證的範例。
+您有多個可登入 Azure Data Lake Analytics 的選項。 下列程式碼片段說明使用快顯視窗進行互動式使用者驗證的驗證範例。
 
 ``` csharp
 using System;
@@ -100,10 +100,10 @@ public static Program
 }
 ```
 
-hello 原始程式碼**GetCreds_User_Popup** hello 的其他驗證選項中涵蓋的程式碼和[資料湖分析.NET 驗證選項](https://github.com/Azure-Samples/data-lake-analytics-dotnet-auth-options)
+如需 **GetCreds_User_Popup** 的原始程式碼及其他驗證選項的程式碼，請參閱 [Data Lake Analytics .NET 驗證選項](https://github.com/Azure-Samples/data-lake-analytics-dotnet-auth-options) \(英文\)
 
 
-## <a name="create-hello-client-management-objects"></a>建立 hello 用戶端管理物件
+## <a name="create-the-client-management-objects"></a>建立用戶端管理物件
 
 ``` csharp
 var resourceManagementClient = new ResourceManagementClient(armCreds) { SubscriptionId = subid };
@@ -128,7 +128,7 @@ graphClient.TenantID = domain;
 
 ### <a name="create-an-azure-resource-group"></a>建立 Azure 資源群組
 
-如果您尚未建立一個，您必須有 Azure 資源群組 toocreate Data Lake Analytics 元件。 您將需要您的驗證認證、訂用帳戶 ID 及一個位置。 hello 下列程式碼會示範如何 toocreate 資源群組：
+如果您尚未建立，您必須具有 Azure 資源群組來建立 Data Lake Analytics 元件。 您將需要您的驗證認證、訂用帳戶 ID 及一個位置。 下列程式碼示範如何建立資源群組：
 
 ``` csharp
 var resourceGroup = new ResourceGroup { Location = location };
@@ -138,7 +138,7 @@ resourceManagementClient.ResourceGroups.CreateOrUpdate(groupName, rg);
 
 ### <a name="create-a-data-lake-store-account"></a>建立 Data Lake Store 帳戶
 
-每個 ADLA 帳戶都需要一個 ADLS 帳戶。 如果您還沒有一個 toouse，您可以建立一個以下列程式碼的 hello:
+每個 ADLA 帳戶都需要一個 ADLS 帳戶。 如果您還沒有可用的帳戶，可以使用下列程式碼來建立一個：
 
 ``` csharp
 var new_adls_params = new DataLakeStoreAccount(location: _location);
@@ -147,7 +147,7 @@ adlsAccountClient.Account.Create(rg, adls, new_adls_params);
 
 ### <a name="create-a-data-lake-analytics-account"></a>建立 Data Lake Analytics 帳戶
 
-下列程式碼的 hello 建立 ADLS 帳戶
+下列程式碼會建立一個 ADLS 帳戶
 
 ``` csharp
 var new_adla_params = new DataLakeAnalyticsAccount()
@@ -205,9 +205,9 @@ if (adlaClient.Account.Exists(rg, adla))
 }
 ```
 
-### <a name="get-hello-default-data-lake-store-account"></a>取得 hello 預設 Data Lake Store 帳戶
+### <a name="get-the-default-data-lake-store-account"></a>取得預設的 Data Lake Store 帳戶
 
-每個 Data Lake Analytics 帳戶都必須擁有預設 Data Lake Store 帳戶。 使用此程式碼 toodetermine hello 預設存放區帳戶 Analytics 帳戶。
+每個 Data Lake Analytics 帳戶都必須擁有預設 Data Lake Store 帳戶。 您可以使用此程式碼來判斷 Analytics 帳戶的預設 Store 帳戶。
 
 ``` csharp
 if (adlaClient.Account.Exists(rg, adla))
@@ -219,14 +219,14 @@ if (adlaClient.Account.Exists(rg, adla))
 
 ## <a name="manage-data-sources"></a>管理資料來源
 
-Data Lake Analytics 目前支援下列資料來源的 hello:
+Data Lake Analytics 目前支援下列資料來源：
 
 * [Azure Data Lake Store](../data-lake-store/data-lake-store-overview.md)
 * [Azure 儲存體帳戶](../storage/common/storage-introduction.md)
 
-### <a name="link-tooan-azure-storage-account"></a>連結 tooan Azure 儲存體帳戶
+### <a name="link-to-an-azure-storage-account"></a>連結至 Azure 儲存體帳戶
 
-您可以建立連結 tooAzure 儲存體帳戶。
+您可以建立「Azure 儲存體」帳戶的連結。
 
 ``` csharp
 string storage_key = "xxxxxxxxxxxxxxxxxxxx";
@@ -264,16 +264,16 @@ if (adls_accounts != null)
 ```
 
 ### <a name="upload-and-download-folders-and-files"></a>上傳及下載資料夾和檔案
-您可以使用 hello Data Lake Store 檔案系統用戶端管理物件 tooupload 並下載個別檔案或資料夾從 Azure tooyour 本機電腦，使用下列方法 hello:
+您可以使用 Data Lake Store 檔案系統用戶端管理物件，透過下列方法，將個別的檔案或資料夾上傳至 Azure 及從 Azure 下載到您的本機電腦：
 
 - UploadFolder
 - UploadFile
 - DownloadFolder
 - DownloadFile
 
-hello 這些方法的第一個參數是 hello hello 資料湖存放區帳戶，後面接著 hello 來源路徑與 hello 目的地路徑的參數名稱。
+這些方法的第一個參數是 Data Lake Store 帳戶的名稱，後面接著來源路徑和目的地路徑的參數。
 
-hello 下列範例顯示如何 toodownload 資料夾中的 hello 資料湖存放區。
+下列範例示範如何下載 Data Lake Store 中的資料夾。
 
 ``` csharp
 adlsFileSystemClient.FileSystem.DownloadFolder(adls, sourcePath, destinationPath);
@@ -295,7 +295,7 @@ using (var memstream = new MemoryStream())
 ```
 
 ### <a name="verify-azure-storage-account-paths"></a>確認 Azure 儲存體帳戶路徑
-hello 下列程式碼會檢查當 Azure 儲存體帳戶 (storageAccntName) 存在於資料湖分析帳戶 (analyticsAccountName)，而且如果 hello Azure 儲存體帳戶中存在的容器 (containerName)。
+下列程式碼會檢查 Azure 儲存體帳戶 (storageAccntName) 是否存在於 Data Lake Analytics 帳戶 (analyticsAccountName)，以及容器 (containerName) 是否存在於 Azure 儲存體帳戶。
 
 ``` csharp
 string storage_account = "mystorageaccount";
@@ -305,10 +305,10 @@ bool containerExists = adlaClient.Account.StorageContainerExists(rg, adla, stora
 ```
 
 ## <a name="manage-catalog-and-jobs"></a>管理目錄和作業
-hello DataLakeAnalyticsCatalogManagementClient 物件會提供管理 hello SQL database 針對每個 Azure 資料湖分析帳戶提供的方法。 hello DataLakeAnalyticsJobManagementClient 提供方法 toosubmit 及管理 hello U-SQL 指令碼的資料庫上執行的工作。
+DataLakeAnalyticsCatalogManagementClient 物件會提供方法，用以管理為每個 Azure Data Lake Analytics 帳戶提供的 SQL 資料庫。 DataLakeAnalyticsJobManagementClient 會提供方法來提交及管理使用 U-SQL 指令碼在資料庫上執行的作業。
 
 ### <a name="list-databases-and-schemas"></a>列出資料庫和結構描述
-Hello 幾件事您可以列出，最常見的 hello 包括資料庫和其結構描述。 hello 下列程式碼取得集合的資料庫，並且然後列舉 hello 每個資料庫的結構描述。
+在您可以列出的幾個項目中，最常見的是資料庫和其結構描述。 下列程式碼會取得資料庫的集合，然後列舉每個資料庫的結構描述。
 
 ``` csharp
 var databases = adlaCatalogClient.Catalog.ListDatabases(adla);
@@ -325,7 +325,7 @@ foreach (var db in databases)
 ```
 
 ### <a name="list-table-columns"></a>列出資料表資料行
-hello 下列程式碼會示範如何 tooaccess hello 與資料湖分析目錄管理用戶端 toolist hello 資料表資料行指定的資料庫。
+下列程式碼示範如何使用 Data Lake Analytics 目錄管理用戶端存取資料庫，以列出指定資料表的資料行。
 
 ``` csharp
 var tbl = adlaCatalogClient.Catalog.GetTable(adla, "master", "dbo", "MyTableName");
@@ -352,7 +352,7 @@ foreach (USqlTableColumn utc in columns)
 ```
 
 ### <a name="list-failed-jobs"></a>列出失敗的作業
-hello 下列程式碼列出作業失敗的相關資訊。
+下列程式碼列出失敗作業的相關資訊。
 
 ``` csharp
 var odq = new ODataQuery<JobInformation> { Filter = "result eq 'Failed'" };
@@ -364,7 +364,7 @@ foreach (var j in jobs)
 ```
 
 ### <a name="list-pipelines"></a>列出管線
-hello 下列程式碼列出每個管線的工作提交的 toohello 帳戶的資訊。
+下列程式碼會列出提交給帳戶之作業的每個管線相關資訊。
 
 ``` csharp
 var pipelines = adlaJobClient.Pipeline.List(adla);
@@ -375,7 +375,7 @@ foreach (var p in pipelines)
 ```
 
 ### <a name="list-recurrences"></a>列出週期
-hello 下列程式碼會列出每個循環中的工作提交的 toohello 帳戶資訊。
+下列程式碼會列出提交給帳戶之作業的每個週期相關資訊。
 
 ``` csharp
 var recurrences = adlaJobClient.Recurrence.List(adla);
@@ -387,13 +387,13 @@ foreach (var r in recurrences)
 
 ## <a name="common-graph-scenarios"></a>常見的圖形案例
 
-### <a name="look-up-user-in-hello-aad-directory"></a>查閱 hello AAD 目錄中的使用者
+### <a name="look-up-user-in-the-aad-directory"></a>查詢 AAD 目錄中的使用者
 
 ``` csharp
 var userinfo = graphClient.Users.Get( "bill@contoso.com" );
 ```
 
-### <a name="get-hello-objectid-of-a-user-in-hello-aad-directory"></a>Hello AAD 目錄中取得使用者的 ObjectId hello
+### <a name="get-the-objectid-of-a-user-in-the-aad-directory"></a>取得 AAD 目錄中使用者的 ObjectId
 
 ``` csharp
 var userinfo = graphClient.Users.Get( "bill@contoso.com" );
@@ -401,10 +401,10 @@ Console.WriteLine( userinfo.ObjectId )
 ```
 
 ## <a name="manage-compute-policies"></a>管理計算原則
-hello DataLakeAnalyticsAccountManagementClient 物件提供用來管理 hello 方法計算的資料湖分析帳戶原則。
+DataLakeAnalyticsAccountManagementClient 物件會提供方法，用以管理 Data Lake Analytics 帳戶的計算原則。
 
 ### <a name="list-compute-policies"></a>列出計算原則
-下列程式碼的 hello 擷取 Data Lake Analytics 帳戶的計算原則的清單。
+下列程式碼會擷取 Data Lake Analytics 帳戶的計算原則清單。
 
 ``` csharp
 var policies = adlaAccountClient.ComputePolicies.ListByAccount(rg, adla);
@@ -415,7 +415,7 @@ foreach (var p in policies)
 ```
 
 ### <a name="create-a-new-compute-policy"></a>建立新的計算原則
-下列程式碼的 hello 建立 Data Lake Analytics 帳戶的新計算原則，設定 hello 最大澳洲可用 toohello 指定使用者 too50 和 hello 最小的工作優先權 too250。
+下列程式碼會為 Data Lake Analytics 帳戶建立新的計算原則，其中是將指定使用者可用的 AU 上限設定為 50，而將作業最低優先順序設定為 250。
 
 ``` csharp
 var userAadObjectId = "3b097601-4912-4d41-b9d2-78672fc2acde";

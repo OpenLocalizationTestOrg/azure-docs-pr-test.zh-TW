@@ -1,6 +1,6 @@
 ---
-title: "在 OMS 記錄分析 aaaCollecting 自訂 JSON 資料 |Microsoft 文件"
-description: "JSON 資料的自訂來源可以收集到記錄分析使用 hello OMS Agent for Linux。  這些自訂資料來源可以是會傳回 JSON 的簡單指令碼，例如 curl 或 FluentD 的 300 個以上的外掛程式之一。 本文將針對此資料收集所需的 hello 設定。"
+title: "在 OMS Log Analytics 中收集自訂 JSON 資料 | Microsoft Docs"
+description: "您可以使用 OMS Agent for Linux 將自訂 JSON 資料來源收集到 Log Analytics 中。  這些自訂資料來源可以是會傳回 JSON 的簡單指令碼，例如 curl 或 FluentD 的 300 個以上的外掛程式之一。 本文說明此資料收集所需的設定。"
 services: log-analytics
 documentationcenter: 
 author: mgoedtel
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/04/2017
 ms.author: magoedte
-ms.openlocfilehash: 97d401408a8c206d4a9ef2ec9b13ba1ca6b5e92b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 800ee1269556e7c2d56fbbf2b497c10509b5c78c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="collecting-custom-json-data-sources-with-hello-oms-agent-for-linux-in-log-analytics"></a>以 hello OMS Agent for Linux 的記錄分析收集自訂 JSON 資料來源
-JSON 資料的自訂來源可以收集到記錄分析使用 hello OMS Agent for Linux。  這些自訂資料來源可以是會傳回 JSON 的簡單指令碼，例如 [curl](https://curl.haxx.se/) 或 [FluentD 的 300 個以上的外掛程式](http://www.fluentd.org/plugins/all)之一。 本文將針對此資料收集所需的 hello 設定。
+# <a name="collecting-custom-json-data-sources-with-the-oms-agent-for-linux-in-log-analytics"></a>在 Log Analytics 中使用 OMS Agent for Linux 收集自訂 JSON 資料來源
+您可以使用 OMS Agent for Linux 將自訂 JSON 資料來源收集到 Log Analytics 中。  這些自訂資料來源可以是會傳回 JSON 的簡單指令碼，例如 [curl](https://curl.haxx.se/) 或 [FluentD 的 300 個以上的外掛程式](http://www.fluentd.org/plugins/all)之一。 本文說明此資料收集所需的設定。
 
 > [!NOTE]
 > 需要有 OMS Agent for Linux v1.1.0-217+ 才能收集自訂 JSON 資料
@@ -30,9 +30,9 @@ JSON 資料的自訂來源可以收集到記錄分析使用 hello OMS Agent for 
 
 ### <a name="configure-input-plugin"></a>設定輸入外掛程式
 
-toocollect JSON 資料，記錄分析中的加入`oms.api.`toohello 開頭 FluentD 標籤中輸入的外掛程式。
+若要在 Log Analytics 中收集 JSON 資料，請將 `oms.api.` 新增至輸入外掛程式中的 FluentD 標記開頭。
 
-例如，以下是 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/` 中的個別設定檔 `exec-json.conf`。  這會使用 hello FluentD 外掛程式`exec`toorun curl 命令每隔 30 秒。  hello 輸出此命令會收集 hello JSON 輸出的外掛程式。
+例如，以下是 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/` 中的個別設定檔 `exec-json.conf`。  這會使用 FluentD 外掛程式 `exec` 每隔 30 秒執行一次 curl 命令。  此命令的輸出由 JSON 輸出外掛程式所收集。
 
 ```
 <source>
@@ -56,12 +56,12 @@ toocollect JSON 資料，記錄分析中的加入`oms.api.`toohello 開頭 Fluen
   retry_wait 30s
 </match>
 ```
-hello 設定檔新增至 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/`需要的 toohave 的擁有權變更以 hello 下列命令。
+對於在 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/` 下新增的設定檔，必須使用下列命令變更其擁有權。
 
 `sudo chown omsagent:omiusers /etc/opt/microsoft/omsagent/conf/omsagent.d/exec-json.conf`
 
 ### <a name="configure-output-plugin"></a>設定輸出外掛程式 
-新增下列輸出外掛程式設定 toohello 主要組態中的 hello`/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`或不同的組態檔放入`/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/`
+將下列輸出外掛程式設定新增至 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf` 中的主要設定，或新增為個別的設定檔再放入 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/` 中
 
 ```
 <match oms.api.**>
@@ -79,18 +79,18 @@ hello 設定檔新增至 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsage
 ```
 
 ### <a name="restart-oms-agent-for-linux"></a>重新啟動 OMS Agent for Linux
-重新啟動 hello OMS Agent for Linux 服務以 hello 下列命令。
+使用下列命令重新啟動 OMS Agent for Linux 服務。
 
     sudo /opt/microsoft/omsagent/bin/service_control restart 
 
 ## <a name="output"></a>輸出
-hello 資料將會收集記錄分析記錄類型為`<FLUENTD_TAG>_CL`。
+Log Analytics 中將會收集資料，記錄類型為 `<FLUENTD_TAG>_CL`。
 
-例如，hello 自訂標籤`tag oms.api.tomcat`中記錄分析記錄類型為`tomcat_CL`。  您可以以下列記錄搜尋 hello 擷取這個類型的所有記錄。
+例如，Log Analytics 中的自訂標記 `tag oms.api.tomcat`，記錄類型為 `tomcat_CL`。  您可以使用下列記錄搜尋來擷取此類型的所有記錄。
 
     Type=tomcat_CL
 
-支援巢狀 JSON 資料來源，但編製索引是以父欄位作為基礎。 例如，下列 JSON 資料的 hello 會傳回從做為記錄分析搜尋`tag_s : "[{ "a":"1", "b":"2" }]`。
+支援巢狀 JSON 資料來源，但編製索引是以父欄位作為基礎。 例如，Log Analytics 搜尋會以 `tag_s : "[{ "a":"1", "b":"2" }]` 傳回下列 JSON 資料。
 
 ```
 {
@@ -103,5 +103,5 @@ hello 資料將會收集記錄分析記錄類型為`<FLUENTD_TAG>_CL`。
 
 
 ## <a name="next-steps"></a>後續步驟
-* 深入了解[記錄搜尋](log-analytics-log-searches.md)tooanalyze hello 資料收集的資料來源和解決方案。 
+* 了解 [記錄搜尋](log-analytics-log-searches.md) ，其可分析從資料來源和方案所收集的資料。 
  

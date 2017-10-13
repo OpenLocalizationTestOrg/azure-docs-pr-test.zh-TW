@@ -1,6 +1,6 @@
 ---
-title: "aaaMicrosoft Security Response Center |Microsoft 文件"
-description: "hello 文章提供的 Microsoft Security Response Center (MSRC) 資源可使用的 tooobtain 策劃的清單 MSRC 做法和建議的詳細資訊。"
+title: "Microsoft 安全性回應中心 | Microsoft Docs"
+description: "本文提供的策劃清單可用來取得更多有關 MSRC 作法和建議的 Microsoft 安全性回應中心 (MSRC) 資源的詳細資訊。"
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/09/2017
 ms.author: yurid
-ms.openlocfilehash: db261c34968e61905a5705d3a7d5fbbc8e308744
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bc47589ac769d89b2aa7f7565d08555ace3119d9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="microsoft-security-response-center"></a>Microsoft 安全性回應中心
-由某些 hello world 最有經驗的安全性專家所引導 hello Microsoft Security Response Center (MSRC)。 這些專家會識別、 監視、 回應 tooand 解決安全性事件，而且在內部部署和雲端周圍 hello 時鐘弱點 hello 年的每一天的資料。
+Microsoft 安全性回應中心 (MSRC) 是由某些世界上最資深安全性專家帶領。 這些專家會每天日以繼夜地尋找、監視、回應和解決安全性事件與內部部署和雲端弱點。
 
-此外 toohello 連續工作 hello MSRC 會以 hello 背景、 hello MSRC 小組的資源可用 tooyou 數目，如此您可以了解如何 toosecure 您的 Azure 資產和部署更有效率。
+除了 MSRC 在幕後進行的持續工作，MSRC 團隊有許多可供您使用的資源，讓您可以瞭解如何更有效地保護您的 Azure 資產和部署。
 
-## <a name="hello-msrc-blog"></a>hello MSRC 部落格
-hello [MSRC 部落格](https://blogs.technet.microsoft.com/msrc/)hello 位置 toogo tooget hello 最新消息哪些 hello 上正在進行 MSRC toohelp 保護您雲端的威脅。
+## <a name="the-msrc-blog"></a>MSRC 部落格
+[MSRC 部落格](https://blogs.technet.microsoft.com/msrc/) 是可取得為了協助保護您防範雲端威脅，MSRC 正在進行之動作的最新消息的去處。
 
 ## <a name="white-papers"></a>白皮書
-hello MSRC 已發行的數目[白皮書](https://technet.microsoft.com/library/bb969102.aspx)，這可協助您了解它們的功用，以及它們如何運作。 有些提供深入了解我們如何保護 hello Microsoft 雲端及包含您可以運用的有用資訊 hello 相同的安全性設定。
+MSRC 已發佈一些 [白皮書](https://technet.microsoft.com/library/bb969102.aspx) ，可協助您了解他們執行的動作以及其作法。 有些內容可提供我們如何保護 Microsoft 雲端的深入見解，並且包含有關您如何運用相同安全性組態的實用資訊。
 
 ## <a name="security-researcher-engagement-and-bounty-programs"></a>安全性研究人員的參與和獎勵計畫
-hello MSRC 可支援共同作業和關聯性與安全性研究人員全域 tooadvance Microsoft 產品的安全性。
+MSRC 支援與全球安全性研究人員的合作與關係，以提升 Microsoft 產品的安全性。
 
 Microsoft 獎勵計畫會就嶄新的入侵技術、可以減輕嶄新入侵的具防禦性構想，以及找出 Microsoft 內部部署和雲端軟體的重大弱點方面支付費用給研究人員。
 
-深入了解這些程式在 hello [MSRC Bug 豐富](https://technet.microsoft.com/security/dn425036)頁面和 hello [MSRC 部落格](https://blogs.technet.microsoft.com/msrc/)。
+在 [MSRC 錯誤獎勵](https://technet.microsoft.com/security/dn425036)頁面和 [MSRC 部落格](https://blogs.technet.microsoft.com/msrc/)深入了解這些計畫。
 
-toolearn 深入了解 hello MSRC，請瀏覽 hello [MSRC 首頁](https://technet.microsoft.com/library/dn440717.aspx)。
+若要深入了解 MSRC，請造訪 [MSRC 首頁](https://technet.microsoft.com/library/dn440717.aspx)。

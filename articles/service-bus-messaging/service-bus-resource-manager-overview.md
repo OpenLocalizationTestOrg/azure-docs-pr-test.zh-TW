@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Resource Manager 範本 aaaCreate Azure 服務匯流排資源 |Microsoft 文件"
-description: "使用 Azure Resource Manager 範本 tooautomate hello 建立服務匯流排資源"
+title: "使用 Azure Resource Manager 範本建立 Azure 服務匯流排資源 | Microsoft Docs"
+description: "使用 Azure Resource Manager 範本自動建立服務匯流排資源"
 services: service-bus-messaging
 documentationcenter: .net
 author: sethmanheim
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: dotnet
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: sethm
-ms.openlocfilehash: e539902cae307b63ae7c332580e2064761331ec5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c8142d8edfd3a527b13d655bac21acf5332f2d14
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="create-service-bus-resources-using-azure-resource-manager-templates"></a>使用 Azure Resource Manager 範本建立服務匯流排資源
 
-本文說明如何 toocreate 及部署服務匯流排資源使用 Azure Resource Manager 範本、 PowerShell 和 hello 服務匯流排資源提供者。
+本文說明如何使用 Azure Resource Manager 範本、PowerShell 和服務匯流排資源提供者來建立和部署服務匯流排資源。
 
-Azure 資源管理員範本可協助您定義 hello 資源 toodeploy 解決方案，及 toospecify 參數和變數可讓您針對不同的環境 tooinput 值。 hello 範本包含 JSON 和您可以為您的部署使用 tooconstruct 值的運算式。 如需撰寫 Azure 資源管理員範本，並討論 hello 範本格式的詳細資訊，請參閱[結構和語法的 Azure 資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)。
+Azure Resource Manager 範本會協助您定義要部署給解決方案的資源，以及指定參數和變數，讓您可以針對不同的環境來輸入值。 範本由 JSON 與運算式所組成，可讓您用來為部署建構值。 如需撰寫 Azure Resource Manager 範本和討論範本格式的詳細資訊，請參閱 [Azure Resource Manager 範本的結構和語法](../azure-resource-manager/resource-group-authoring-templates.md)。
 
 > [!NOTE]
-> 如何 hello 這個發行項的顯示中的範例 toouse Azure 資源管理員 toocreate 服務匯流排命名空間和傳訊實體 （佇列）。 如需其他範本的範例，請瀏覽 hello [Azure 快速入門範本組件庫][ Azure Quickstart Templates gallery] ，並搜尋 「 Service Bus 」。
+> 本文中的範例會示範如何使用 Azure Resource Manager 來建立服務匯流排命名空間和訊息實體 (佇列)。 如需其他範本範例，請造訪 [Azure 快速入門範本資源庫][Azure Quickstart Templates gallery]並搜尋「服務匯流排」。
 >
 >
 
 ## <a name="service-bus-resource-manager-templates"></a>服務匯流排 Resource Manager 範本
 
-這些服務匯流排 Azure Resource Manager 範本可供下載和部署。 按一下下列連結以取得有關每個，以在 GitHub 上的連結 toohello 範本的詳細資料的 hello:
+這些服務匯流排 Azure Resource Manager 範本可供下載和部署。 按一下下列連結可取得各自的詳細資料，並附有 GitHub 上的範本連結：
 
 * [建立服務匯流排命名空間](service-bus-resource-manager-namespace.md)
 * [建立服務匯流排命名空間與佇列](service-bus-resource-manager-namespace-queue.md)
@@ -43,25 +43,25 @@ Azure 資源管理員範本可協助您定義 hello 資源 toodeploy 解決方�
 
 ## <a name="deploy-with-powershell"></a>使用 PowerShell 部署
 
-hello 下列程序描述如何 toouse PowerShell toodeploy Azure Resource Manager 範本，建立**標準**層服務匯流排命名空間，而該命名空間內的佇列。 這個範例根據 hello[建立服務匯流排命名空間與佇列](https://github.com/Azure/azure-quickstart-templates/tree/master/201-servicebus-create-queue)範本。 hello 近似工作流程如下所示：
+下列程序描述如何使用 PowerShell 部署建立了**標準**層服務匯流排命名空間的 Azure Resource Manager 範本，以及如何在該命名空間內部署佇列。 這個範例是以[建立有佇列的服務匯流排命名空間](https://github.com/Azure/azure-quickstart-templates/tree/master/201-servicebus-create-queue)範本為基礎。 近似的工作流程如下︰
 
 1. 安裝 PowerShell。
-2. 建立 hello 範本以及 （選擇性） 參數檔案。
-3. 在 PowerShell 中，登入 tooyour Azure 帳戶。
+2. 建立範本和 (選擇性) 參數檔案。
+3. 在 PowerShell 中登入您的 Azure 帳戶。
 4. 如果沒有資源群組，請建立一個新的。
-5. 測試 hello 部署。
-6. 如有需要，請將 hello 部署模式設定。
-7. 部署 hello 範本。
+5. 測試部署。
+6. 如有需要，請設定部署模式。
+7. 部署範本。
 
 如需部署 Azure Resource Manager 範本的完整資訊，請參閱[使用 Azure Resource Manager 範本部署資源][Deploy resources with Azure Resource Manager templates]。
 
 ### <a name="install-powershell"></a>安裝 PowerShell
 
-安裝 Azure PowerShell 中的 hello 指示[開始使用 Azure PowerShell](/powershell/azure/get-started-azureps)。
+依照下列指示安裝 Azure PowerShell：[開始使用 Azure PowerShell](/powershell/azure/get-started-azureps)。
 
 ### <a name="create-a-template"></a>建立範本
 
-再製或複製 hello [201 servicebus-建立-佇列](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.json)從 GitHub 的範本：
+從 GitHub 複製 [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.json) 範本：
 
 ```json
 {
@@ -71,20 +71,20 @@ hello 下列程序描述如何 toouse PowerShell toodeploy Azure Resource Manage
         "serviceBusNamespaceName": {
             "type": "string",
             "metadata": {
-                "description": "Name of hello Service Bus namespace"
+                "description": "Name of the Service Bus namespace"
             }
         },
         "serviceBusQueueName": {
             "type": "string",
             "metadata": {
-                "description": "Name of hello Queue"
+                "description": "Name of the Queue"
             }
         },
         "serviceBusApiVersion": {
             "type": "string",
             "defaultValue": "2015-08-01",
             "metadata": {
-                "description": "Service Bus ApiVersion used by hello template"
+                "description": "Service Bus ApiVersion used by the template"
             }
         }
     },
@@ -131,7 +131,7 @@ hello 下列程序描述如何 toouse PowerShell toodeploy Azure Resource Manage
 
 ### <a name="create-a-parameters-file-optional"></a>建立參數檔案 (選擇性)
 
-toouse 是選擇性參數檔案，複製 hello [201 servicebus-建立-佇列](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.parameters.json)檔案。 取代 hello 值`serviceBusNamespaceName`hello hello 服務匯流排命名空間名稱與您想要此部署中 toocreate 值，取代成 hello`serviceBusQueueName`想 toocreate hello hello 佇列名稱。
+若要使用選擇性的參數檔案，請複製 [201-servicebus-create-queue](https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-queue/azuredeploy.parameters.json) 檔案。 以您要在這個部署中建立的服務匯流排命名空間名稱取代 `serviceBusNamespaceName` 值，並以您要建立的佇列名稱取代 `serviceBusQueueName` 值。
 
 ```json
 {
@@ -151,37 +151,37 @@ toouse 是選擇性參數檔案，複製 hello [201 servicebus-建立-佇列](ht
 }
 ```
 
-如需詳細資訊，請參閱 hello[參數](../azure-resource-manager/resource-group-template-deploy.md#parameter-files)主題。
+如需詳細資訊，請參閱[參數](../azure-resource-manager/resource-group-template-deploy.md#parameter-files)主題。
 
-### <a name="log-in-tooazure-and-set-hello-azure-subscription"></a>登入 tooAzure 並設定 hello Azure 訂用帳戶
+### <a name="log-in-to-azure-and-set-the-azure-subscription"></a>登入 Azure 並設定 Azure 訂用帳戶
 
-從 PowerShell 提示中，執行下列命令的 hello:
+從 PowerShell 提示字元中執行下列命令：
 
 ```powershell
 Login-AzureRmAccount
 ```
 
-您必須提示的 toolog tooyour Azure 帳戶上。 登入之後，執行下列命令 tooview hello 您可用的訂用帳戶。
+系統會提示您登入您的 Azure 帳戶。 登入之後，執行下列命令以檢視可用的訂用帳戶。
 
 ```powershell
 Get-AzureRMSubscription
 ```
 
-這個命令會傳回可用的 Azure 訂用帳戶清單。 藉由執行下列命令的 hello 選擇訂閱 hello 目前工作階段。 取代`<YourSubscriptionId>`想 toouse hello GUID hello Azure 訂用帳戶。
+這個命令會傳回可用的 Azure 訂用帳戶清單。 執行下列命令為目前的工作階段選擇訂用帳戶。 以您要使用的 Azure 訂用帳戶 GUID取代 `<YourSubscriptionId>`。
 
 ```powershell
 Set-AzureRmContext -SubscriptionID <YourSubscriptionId>
 ```
 
-### <a name="set-hello-resource-group"></a>設定 hello 資源群組
+### <a name="set-the-resource-group"></a>設定資源群組
 
-如果您沒有現有的資源群組中，建立新的資源群組以 hello * * 新增 AzureRmResourceGroup * * 命令。 提供 hello 名稱 hello 資源群組及您想要 toouse 的位置。 例如：
+如果沒有現成的資源群組，請使用 **New-AzureRmResourceGroup ** 命令建立新的資源群組。 提供您要使用的資源群組名稱和位置。 例如：
 
 ```powershell
 New-AzureRmResourceGroup -Name MyDemoRG -Location "West US"
 ```
 
-如果成功，則會顯示 hello 新資源群組的摘要。
+如果成功，就會顯示新資源群組的摘要。
 
 ```powershell
 ResourceGroupName : MyDemoRG
@@ -191,44 +191,44 @@ Tags              :
 ResourceId        : /subscriptions/<GUID>/resourceGroups/MyDemoRG
 ```
 
-### <a name="test-hello-deployment"></a>測試 hello 部署
+### <a name="test-the-deployment"></a>測試部署
 
-驗證您的部署執行 hello `Test-AzureRmResourceGroupDeployment` cmdlet。 測試時部署 hello，請在相同的方式執行 hello 部署時提供參數。
-
-```powershell
-Test-AzureRmResourceGroupDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json
-```
-
-### <a name="create-hello-deployment"></a>建立 hello 部署
-
-toocreate hello 新的部署，執行 hello `New-AzureRmResourceGroupDeployment` cmdlet，並提供出現提示時，即 hello 必要參數。 hello 參數包括您的部署，您的資源群組和 hello 路徑或 URL toohello 範本檔案的 hello 名稱的名稱。 如果 hello**模式**未指定參數，hello 預設值是**Incremental**用。 如需詳細資訊，請參閱[累加部署與完整部署](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments)。
-
-hello 下列命令會提示您 hello PowerShell 視窗中的 hello 三個參數：
+執行 `Test-AzureRmResourceGroupDeployment` Cmdlet 驗證部署。 測試部署時，請提供與執行部署時完全一致的參數。
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json
+Test-AzureRmResourceGroupDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
 ```
 
-toospecify 參數檔案，請使用下列命令的 hello。
+### <a name="create-the-deployment"></a>建立部署
+
+若要建立新的部署，請執行 `New-AzureRmResourceGroupDeployment` Cmdlet，並於提示出現時提供必要的參數。 參數會包含部署的名稱、資源群組的名稱，以及範本檔案的路徑或 URL。 如未指定 **Mode** 參數，即會使用預設值 **Incremental**。 如需詳細資訊，請參閱[累加部署與完整部署](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments)。
+
+下列命令會提示您在 PowerShell 視窗中輸入三個參數︰
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json -TemplateParameterFile <path tooparameters file>\azuredeploy.parameters.json
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
 ```
 
-當您執行 hello 部署 cmdlet 時，您也可以使用內嵌參數。 hello 命令如下所示：
+若要改為指定參數檔案，請使用下列命令。
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json -parameterName "parameterValue"
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json -TemplateParameterFile <path to parameters file>\azuredeploy.parameters.json
 ```
 
-toorun[完成](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments)部署、 設定 hello**模式**參數太**完成**:
+執行部署 Cmdlet 時，您也可以使用內嵌參數。 命令如下所示︰
 
 ```powershell
-New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -Mode Complete -ResourceGroupName MyDemoRG -TemplateFile <path tootemplate file>\azuredeploy.json
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json -parameterName "parameterValue"
 ```
 
-### <a name="verify-hello-deployment"></a>確認 hello 部署
-如果已成功部署 hello 資源，hello 部署的摘要會顯示 hello PowerShell 視窗中：
+若要執行[完整](../azure-resource-manager/resource-group-template-deploy.md#incremental-and-complete-deployments)部署，請將 **Mode** 參數設為 **Complete**：
+
+```powershell
+New-AzureRmResourceGroupDeployment -Name MyDemoDeployment -Mode Complete -ResourceGroupName MyDemoRG -TemplateFile <path to template file>\azuredeploy.json
+```
+
+### <a name="verify-the-deployment"></a>驗證部署
+如果資源成功部署，PowerShell 視窗中就會顯示部署的摘要︰
 
 ```powershell
 DeploymentName    : MyDemoDeployment
@@ -247,7 +247,7 @@ Parameters        :
 ```
 
 ## <a name="next-steps"></a>後續步驟
-您現在已經瞭解 hello 基本工作流程和部署 Azure Resource Manager 範本的命令。 如需詳細資訊，請造訪下列連結查看 hello:
+您現在已了解部署 Azure Resource Manager 範本的基本工作流程和命令。 如需更多的詳細資訊，請瀏覽下列連結內容：
 
 * [Azure Resource Manager 概觀][Azure Resource Manager overview]
 * [使用 Resource Manager 範本與 Azure PowerShell 來部署資源][Deploy resources with Azure Resource Manager templates]

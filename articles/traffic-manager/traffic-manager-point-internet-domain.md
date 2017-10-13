@@ -1,6 +1,6 @@
 ---
-title: "aaaPoint 公司網際網路網域 tooa Traffic Manager 網域名稱 |Microsoft 文件"
-description: "本文將協助您點將公司網域名稱 tooa Traffic Manager 網域名稱。"
+title: "將公司網際網路網域指向流量管理員網域名稱 | Microsoft Docs"
+description: "本文將協助您將公司網域名稱指向流量管理員網域名稱。"
 services: traffic-manager
 documentationcenter: 
 author: kumudd
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 10/11/2016
 ms.author: kumud
-ms.openlocfilehash: 84c428f60a1dc70452bf957d98a68c95e0b51715
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0322b3510cfd4f94031d8c1db8f1cc032b997fa8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="point-a-company-internet-domain-tooan-azure-traffic-manager-domain"></a>點將公司網際網路網域 tooan Azure Traffic Manager 網域
+# <a name="point-a-company-internet-domain-to-an-azure-traffic-manager-domain"></a>將公司網際網路網域指向 Azure 流量管理員網域
 
-當您建立流量管理員設定檔時，Azure 會自動為該設定檔指派 DNS 名稱。 toouse 從您的 DNS 區域的名稱建立的 CNAME DNS 記錄，將您的 Traffic Manager 設定檔的 toohello 網域名稱對應。 您可以在 hello 找到 hello Traffic Manager 網域名稱**一般**hello 組態 頁面上的 hello Traffic Manager 設定檔 > 一節。
+當您建立流量管理員設定檔時，Azure 會自動為該設定檔指派 DNS 名稱。 若要使用來自 DNS 區域的名稱，建立對應至流量管理員設定檔網域名稱的 CNAME DNS 記錄。 您可以在流量管理員設定檔的 [組態] 頁面上的 [一般]  區段找到流量管理員網域名稱。
 
-比方說，toopoint 名稱 www.contoso.com toohello Traffic Manager DNS 名稱 contoso.trafficmanager.net，您會建立下列 DNS 資源記錄的 hello:
+例如，若要將名稱 www.contoso.com 指向流量管理員 DNS 名稱 contoso.trafficmanager.net，您會建立下列 DNS 資源記錄：
 
     www.contoso.com IN CNAME contoso.trafficmanager.net
 
-所有流量都要求太*www.contoso.com*太導向*contoso.trafficmanager.net*。
+進入 www.contoso.com 的所有流量要求會被導向至 contoso.trafficmanager.net。
 
 > [!IMPORTANT]
-> 您無法指向第二層網域，例如*contoso.com*，toohello Traffic Manager 網域。 DNS 通訊協定標準不允許第二層網域名稱的 CNAME 記錄。
+> 您無法將第二層網域 (例如 *contoso.com*) 指向流量管理員網域。 DNS 通訊協定標準不允許第二層網域名稱的 CNAME 記錄。
 
 ## <a name="next-steps"></a>後續步驟
 

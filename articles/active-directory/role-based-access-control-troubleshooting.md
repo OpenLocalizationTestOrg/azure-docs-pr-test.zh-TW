@@ -1,5 +1,5 @@
 ---
-title: "aaaTroubleshoot Azure rbac 進行 |Microsoft 文件"
+title: "針對 Azure RBAC 進行疑難排解 | Microsoft Docs"
 description: "取得有關角色型存取控制資源問題或疑問的協助。"
 services: azure-portal
 documentationcenter: na
@@ -14,25 +14,25 @@ ms.topic: article
 ms.date: 07/12/2017
 ms.author: andredm
 ms.reviewer: rqureshi
-ms.openlocfilehash: 15feced32d8459d90c4c246d335932f90e1fc91f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 407c030ea159915d4d7ac21760a3d17ec2204372
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="role-based-access-control-troubleshooting"></a>角色型存取控制疑難排解
 
-文件本文會回答有關 hello 特定存取權限的角色，授與的常見問題，好讓您知道哪些 tooexpect 時使用 hello hello Azure 入口網站中的角色，並可以對存取問題進行疑難排解。 這三種角色涵蓋了所有資源類型︰
+本文將回答關於授與角色之特定存取權限的常見問題，讓您知道在 Azure 入口網站中使用角色時預期能夠使用哪些項目，以及如何針對存取問題進行疑難排解。 這三種角色涵蓋了所有資源類型︰
 
 * 擁有者  
 * 參與者  
 * 讀取者  
 
-擁有者和參與者都具有完整存取 toohello 管理體驗，但參與者無法提供存取 tooother 使用者或群組。 變得更有趣 hello 讀取者角色，使用，因此我們可以在其中花一些時間。 請參閱 hello[角色型存取控制取得啟動文章](role-based-access-control-configure.md)如 toogrant 的存取方式的詳細資訊。
+擁有者與參與者都可以完整存取管理經驗，但參與者無法將存取權限授予其他使用者或群組。 讀取者角色則是比較有趣，因此我們會在本文中多花點時間介紹。 請參閱 [角色型存取控制入門文章](role-based-access-control-configure.md) ，以詳細了解如何授與存取權。
 
 ## <a name="app-service-workloads"></a>應用程式服務工作負載
 ### <a name="write-access-capabilities"></a>寫入存取功能
-如果您授與使用者唯讀存取 tooa 單一 web 應用程式，您可能會不預期會停用某些功能。 下列管理功能的 hello 需要**寫入**存取 tooa web 應用程式 （參與者或擁有者），並在任何唯讀案例中無法使用。
+如果您授與對單一 Web 應用程式授與使用者唯讀存取權限，部分功能可能會在未預期的情況下停用。 以下管理功能需要 Web 應用程式的**寫入**存取權限 (參與者或擁有者)，而且無法在任何唯讀情況中使用。
 
 * 命令 (像是開始、停止等)
 * 變更像是一般組態的設定、調整設定、備份設定與監視設定
@@ -43,54 +43,54 @@ ms.lasthandoff: 10/06/2017
 * 有效的近期部署項目 (以便本機 git 持續部署)
 * 預估的花費
 * Web 測試
-* 虛擬網路 （只顯示 tooa 讀取器如果先前已由具有寫入權限的使用者設定的虛擬網路）。
+* 虛擬網路 (只有當虛擬網路先前是由具備寫入存取權限的使用者所設定，才會顯示出來)。
 
-如果您無法存取任何這些圖格，您需要 tooask 您的系統管理員參與者存取 toohello web 應用程式。
+如果您無法存取上述任何一個磚，請洽詢您的系統管理員，取得 Web 應用程式的參與者存取權限。
 
 ### <a name="dealing-with-related-resources"></a>處理相關資源
-Web 應用程式被複雜的幾個不同的資源，相互作用 hello 存在。 以下是具有多個網站的典型資源群組：
+Web 應用程式因為幾個互有關聯的資源而顯得複雜。 以下是具有多個網站的典型資源群組：
 
 ![Web 應用程式資源群組](./media/role-based-access-control-troubleshooting/website-resource-model.png)
 
-如此一來，如果您授與其他人存取 toojust hello web 應用程式，大部分的 hello hello hello Azure 入口網站中的網站] 刀鋒視窗的功能已停用。
+如此一來，如果您只授予某人 Web 應用程式存取權限，Azure 入口網站的網站刀鋒視窗上的諸多功能即會停用。
 
-這些項目需要**寫入**存取 toohello **App Service 方案**對應 tooyour 網站：  
+這些項目需要對應至您網站的「應用程式服務方案」的**寫入**權：  
 
-* 檢視 hello web 應用程式的定價層 （免費或標準）  
+* 檢視 Web 應用程式的定價層 (免費或標準)  
 * 調整組態 (執行個體數量、虛擬機器大小、自動調整設定)  
 * 配額 (儲存容量、頻寬、CPU)  
 
-這些項目需要**寫入**存取 toohello 整個**資源群組**，其中包含您的網站：  
+這些項目都需要包含您網站的整個「資源群組」的**寫入**權：  
 
-* SSL 憑證和繫結 (可以在 hello 的站台間共用的 SSL 憑證相同的資源群組和地理位置)  
+* SSL 憑證與繫結 (相同資源群組與地理位置中的各個網站之間，可共用 SSL 憑證)  
 * 警示規則  
 * 自動調整設定  
 * 應用程式見解元件  
 * Web 測試  
 
 ## <a name="virtual-machine-workloads"></a>虛擬機器工作負載
-更像透過 web 應用程式，hello 虛擬機器刀鋒視窗上的某些功能需要寫入權限 toohello 虛擬機器或 tooother hello 資源群組中的資源。
+差不多與 Web 應用程式相同的是，虛擬機器分頁上的某些功能需要具備虛擬機器 (或是資源群組中的其他資源) 的寫入存取權限。
 
-虛擬機器是相關的 tooDomain 名稱、 虛擬網路、 儲存體帳戶和警示規則。
+虛擬機器與網域名稱、虛擬網路、儲存體帳戶及警示規則相關。
 
-這些項目需要**寫入**存取 toohello**虛擬機器**:
+這些項目都需要具備「虛擬機器」的**寫入**權：
 
 * 端點  
 * IP 位址  
 * 磁碟  
 * 擴充功能  
 
-這些都需要**寫入**存取 tooboth hello**虛擬機器**，和 hello**資源群組**（hello 網域名稱），就會在：  
+這些項目都需要同時具備「虛擬機器」與所屬之「資源群組」(連同網域名稱) 的**寫入**權：  
 
-* 可用性集合  
+* 可用性設定組  
 * 負載平衡集合  
 * 警示規則  
 
-如果您無法存取任何這些圖格，詢問您的參與者存取 toohello 資源群組系統管理員。
+如果您無法存取上述任何一個磚，請洽詢您的系統管理員，以取得資源群組的參與者存取權限。
 
 ## <a name="see-more"></a>更多資訊
-* [Role Based Access Control](role-based-access-control-configure.md)： 開始使用 RBAC hello Azure 入口網站中。
-* [內建角色](role-based-access-built-in-roles.md)： 取得標準中 RBAC 的 hello 角色的相關詳細資料。
-* [在 Azure rbac 進行的自訂角色](role-based-access-control-custom-roles.md)： 了解 toocreate 自訂角色 toofit 您存取需要的方式。
+* [角色型存取控制](role-based-access-control-configure.md)：開始在 Azure 入口網站中使用 RBAC。
+* [內建角色](role-based-access-built-in-roles.md)︰取得有關 RBAC 中標準角色的詳細資訊。
+* [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)︰了解如何建立自訂角色，以符合您的存取需求。
 * [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)︰追蹤 RBAC 中的角色指派變更。
 

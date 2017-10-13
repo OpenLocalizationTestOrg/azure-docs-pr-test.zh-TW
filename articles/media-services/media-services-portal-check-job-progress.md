@@ -1,6 +1,6 @@
 ---
-title: "aaaMonitor 編碼以 hello Azure 入口網站的工作進度"
-description: "本教學課程會引導您監視您使用 hello Azure 入口網站的工作進度的 hello 步驟。"
+title: "透過 Azure 入口網站監視編碼作業進度"
+description: "本教學課程將逐步引導您完成使用 Azure 入口網站監視作業進度的步驟。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 4282553d5dbed65ea6427bcd6de778795f1ff9ed
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 571d222068e92a45b0e37bec298bab7a6825f731
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="monitor-encoding-job-progress-with-hello-azure-portal"></a>監視以 hello Azure 入口網站的編碼工作進度
+# <a name="monitor-encoding-job-progress-with-the-azure-portal"></a>透過 Azure 入口網站監視編碼作業進度
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-check-job-progress.md)
 > * [.NET](media-services-check-job-progress.md)
@@ -28,21 +28,21 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-## <a name="overview"></a>概觀
+## <a name="overview"></a>Overview
 > [!NOTE]
-> toocomplete 本教學課程中，您需要 Azure 帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
+> 若要完成此教學課程，您需要 Azure 帳戶。 如需詳細資訊，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/)。 
 > 
 > 
 
-當您執行工作時，通常會需要方式 tootrack 工作進度。 
+執行作業時，您通常需要設法追蹤作業進度。 
 
-toomonitor hello 進度 hello 編碼作業中，按一下**設定**（hello 頁面頂端的 hello），然後選取 [**作業**。
+若要監視編碼作業的進度，請按一下 [設定]\(位於頁面頂端)，然後選取 [作業]。
 
-![工作](./media/media-services-portal-vod-get-started/media-services-jobs.png)
+![作業](./media/media-services-portal-vod-get-started/media-services-jobs.png)
 
-您可以按一下 hello 作業 toosee 更多詳細資料。
+您可以按一下作業以查看更多詳細資料。
 
-![工作](./media/media-services-portal-vod-get-started/media-services-job-progress2.png)
+![作業](./media/media-services-portal-vod-get-started/media-services-job-progress2.png)
 
 ## <a name="next-steps"></a>後續步驟
 編碼作業完成之後，您可以發佈並播放您的資產，如 [這裡](media-services-portal-publish.md)所述。

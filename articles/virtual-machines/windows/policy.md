@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中的 Windows Vm 上的原則 aaaEnforce 安全性 |Microsoft 文件"
-description: "如何 tooapply 原則 tooan Azure 資源管理員 Windows 虛擬機器"
+title: "在 Azure 中的 Windows VM 上以原則強制執行安全性 | Microsoft Docs"
+description: "如何將原則套用至 Azure Resource Manager Windows 虛擬機器"
 services: virtual-machines-windows
 documentationcenter: 
 author: singhkays
@@ -15,19 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/02/2017
 ms.author: kasing
-ms.openlocfilehash: b31c8a03ecf8eed6a929f97fe4146ea14364404f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 246f5958478fd6d9afc9ba990413ab08429bd25d
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="apply-policies-toowindows-vms-with-azure-resource-manager"></a>套用原則 tooWindows Vm 與 Azure 資源管理員
-藉由使用原則，組織可以強制執行各種不同的慣例和 hello 企業內的規則。 強制執行 hello 預期行為可以協助降低風險，同時也參與狀況 hello 組織 toohello 成功。 在本文中，我們會說明如何使用 Azure 資源管理員原則 toodefine hello 預期行為，以及在貴組織的虛擬機器。
+# <a name="apply-policies-to-windows-vms-with-azure-resource-manager"></a>使用 Azure Resource Manager 將原則套用至 Windows VM
+藉由使用原則，組織可以強制執行整個企業的各種慣例和規則。 強制執行所要的行為有助於降低風險，同時促進組織的成功。 我們會在本文中說明如何使用 Azure Resource Manager 原則來為組織的虛擬機器定義您所要的行為。
 
-如簡介 toopolicies，請參閱[使用原則 toomanage 資源和控制存取](../../azure-resource-manager/resource-manager-policy.md)。
+如需原則的簡介，請參閱 [使用原則來管理資源和控制存取](../../azure-resource-manager/resource-manager-policy.md)。
 
 ## <a name="permitted-virtual-machines"></a>允許的虛擬機器
-tooensure 貴組織的虛擬機器會與應用程式相容，您可以限制允許使用作業系統的 hello。 在 hello 下列原則範例，您可以允許只建立 Windows Server 2012 R2 Datacenter 虛擬機器 toobe:
+若要確保您組織的虛擬機器與應用程式相容，您可以針對允許使用哪些作業系統設下限制。 您可以透過以下原則範例，允許只能建立 Windows Server 2012 R2 資料中心虛擬機器：
 
 ```json
 {
@@ -79,7 +79,7 @@ tooensure 貴組織的虛擬機器會與應用程式相容，您可以限制允�
 }
 ```
 
-使用任何 Windows Server Datacenter 映像上述原則 tooallow 萬用字元 toomodify hello:
+使用萬用字元修改上述原則，來允許任何 Windows Server Datacenter 映像：
 
 ```json
 {
@@ -88,7 +88,7 @@ tooensure 貴組織的虛擬機器會與應用程式相容，您可以限制允�
 }
 ```
 
-使用任何 Windows Server 2012 R2 Datacenter 或更高版本的映像上述原則 tooallow anyOf toomodify hello:
+使用 anyOf 修改上述原則，來允許任何 Windows Server 2012 R2 Datacenter 或更高版本的映像：
 
 ```json
 {
@@ -109,7 +109,7 @@ tooensure 貴組織的虛擬機器會與應用程式相容，您可以限制允�
 
 ## <a name="managed-disks"></a>受控磁碟
 
-toorequire hello 的使用受管理的磁碟使用 hello 下列原則：
+若要要求使用受控磁碟，請使用以下原則：
 
 ```json
 {
@@ -157,9 +157,9 @@ toorequire hello 的使用受管理的磁碟使用 hello 下列原則：
 
 ## <a name="images-for-virtual-machines"></a>虛擬機器的映像
 
-基於安全性理由，您可以要求只在環境中部署已核准的自訂映像。 您可以指定 hello 資源群組含有 hello 核准的映像，或是 hello 特定核准的映像。
+基於安全性理由，您可以要求只在環境中部署已核准的自訂映像。 您可以指定含有已核准映像的資源群組，或已核准的特定映像。
 
-下列範例中的 hello 需要從核准的資源群組的映像：
+下列範例會從已核准的資源群組要求映像：
 
 ```json
 {
@@ -186,7 +186,7 @@ toorequire hello 的使用受管理的磁碟使用 hello 下列原則：
 } 
 ```
 
-hello 下列範例會指定 hello 核准的映像識別碼：
+下列範例會指定已核准的映像識別碼：
 
 ```json
 {
@@ -197,7 +197,7 @@ hello 下列範例會指定 hello 核准的映像識別碼：
 
 ## <a name="virtual-machine-extensions"></a>虛擬機器延伸模組
 
-您可能想 tooforbid 某些類型的擴充功能的使用方式。 例如，一個延伸模組可能與某些自訂虛擬機器映像不相容。 下列範例會示範如何 hello tooblock 特定擴充功能。 它會使用發行者和類型 toodetermine 哪些延伸模組 tooblock。
+您可能想要禁止使用某些類型的延伸模組。 例如，一個延伸模組可能與某些自訂虛擬機器映像不相容。 下列範例示範如何封鎖特定延伸模組。 它利用發行者和類型來判斷要封鎖哪個延伸模組。
 
 ```json
 {
@@ -227,7 +227,7 @@ hello 下列範例會指定 hello 核准的映像識別碼：
 
 ## <a name="azure-hybrid-use-benefit"></a>Azure Hybrid Use Benefit
 
-當您在內部部署授權時，您可以在虛擬機器上儲存 hello 授權費用。 當您沒有 hello 授權時，您應該禁止 hello 選項。 hello 遵循原則禁止使用 Azure 混合式使用權益 (AHUB):
+如果您有內部部署授權，則可以在虛擬機器上省下授權費用。 如果您沒有授權，則應該禁止使用此選項。 下列原則會禁止使用 Azure Hybrid Use Benefit (AHUB)：
 
 ```json
 {
@@ -250,6 +250,6 @@ hello 下列範例會指定 hello 核准的映像識別碼：
 ```
 
 ## <a name="next-steps"></a>後續步驟
-* 定義原則規則 （如 hello 前面範例所示） 之後, 您會需要 toocreate hello 原則定義，並將它指派 tooa 範圍。 hello 領域可以訂用帳戶、 資源群組或資源。 tooassign 原則透過 hello 入口網站，請參閱[使用 Azure 入口網站 tooassign 和管理資源原則](../../azure-resource-manager/resource-manager-policy-portal.md)。 tooassign 原則透過 REST API、 PowerShell 或 Azure CLI，請參閱[指派及管理透過指令碼的原則](../../azure-resource-manager/resource-manager-policy-create-assign.md)。
-* 如簡介 tooresource 原則，請參閱[資源原則概觀](../../azure-resource-manager/resource-manager-policy.md)。
-* 如需指引企業可以如何使用資源管理員 tooeffectively 管理訂用帳戶，請參閱[Azure 企業版 scaffold-精準的訂閱控管](../../azure-resource-manager/resource-manager-subscription-governance.md)。
+* 定義原則規則 (如上述範例所示) 之後，您必須建立原則定義，並將它指派到某個範圍。 範圍可以是訂用帳戶、資源群組或資源。 若要透過入口網站來指派原則，請參閱[使用 Azure 入口網站來指派和管理資源原則](../../azure-resource-manager/resource-manager-policy-portal.md)。 若要透過 REST API、PowerShell 或 Azure CLI 來指派原則，請參閱[透過指令碼來指派和管理原則](../../azure-resource-manager/resource-manager-policy-create-assign.md)。
+* 如需資源原則的簡介，請參閱[資源原則概觀](../../azure-resource-manager/resource-manager-policy.md)。
+* 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](../../azure-resource-manager/resource-manager-subscription-governance.md)。

@@ -1,6 +1,6 @@
 ---
-title: "aaaTurn StorSimple 8000 系列裝置開啟或關閉 |Microsoft 文件"
-description: "說明如何在新的 StorSimple 裝置，tooturn 開啟的裝置已關閉或失去電源，並關閉執行中的裝置。"
+title: "開啟或關閉 StorSimple 8000 系列裝置 | Microsoft Docs"
+description: "說明如何開啟新的 StorSimple 裝置、開啟曾關閉或失去電源的裝置，以及關閉執行中的裝置。"
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -15,160 +15,160 @@ ms.workload: TBD
 ms.date: 06/29/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 85434bde9377e330cd6ba4797fd5fd68bcee944d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0577c837e0c47ba37a4f586603b0f5b951f1b549
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="turn-on-or-turn-off-your-storsimple-8000-series-device"></a>開啟或關閉 StorSimple 8000 系列裝置
 ## <a name="overview"></a>概觀
-正常系統作業並不需要關閉 Microsoft Azure StorSimple 裝置。 不過，您可能需要新的裝置或裝置已關閉的 toobe tooturn。 一般而言，在您需要更換故障的硬體、實際移動單元，或將裝置報廢的情況下才需要關機。 本教學課程說明開啟和關閉您的 StorSimple 裝置在不同案例中的所需的 hello 程序。
+正常系統作業並不需要關閉 Microsoft Azure StorSimple 裝置。 不過，您可能需要開啟新的裝置，或有裝置必須關閉。 一般而言，在您需要更換故障的硬體、實際移動單元，或將裝置報廢的情況下才需要關機。 本教學課程將說明在不同案例中開啟和關閉 StorSimple 裝置的必要程序。
 
 ## <a name="turn-on-a-new-device"></a>開啟新的裝置
-hello 第一次開啟 hello StorSimple 裝置的步驟有所不同 hello 裝置是否 8100 或 8600 模型。 hello 8100 具有單一主要機箱，而 hello 8600 是雙重機箱裝置，具有主要機箱和 EBOD 機箱。 hello 這兩個模型的詳細的步驟涵蓋下列各節的 hello。
+根據裝置型號是 8100 或 8600，初次開啟 StorSimple 裝置的步驟有所不同。 8100 具有單一主要機箱，而 8600 是具有主要機箱與 EBOD 機箱的雙重機箱裝置。 下列各節涵蓋這兩個型號的詳細步驟。
 
 * [只有主要機箱的新裝置](#new-device-with-primary-enclosure-only)
 * [具有 EBOD 機箱的新裝置](#new-device-with-ebod-enclosure)
 
 ### <a name="new-device-with-primary-enclosure-only"></a>只有主要機箱的新裝置
-hello StorSimple 8100 模型是單一機箱裝置。 您的裝置包含備援電源和冷卻模組 (PCM)。 這兩個 Pcm 必須安裝並連接 toodifferent 電源來源 tooensure 高可用性。
+StorSimple 8100 型是單一機箱裝置。 您的裝置包含備援電源和冷卻模組 (PCM)。 這兩個 PCM 都必須安裝，並且連接到不同的電源來源，以確保高可用性。
 
-執行您的裝置 hello 遵循步驟 toocable 電源。
+請執行下列步驟，以連接您的裝置的電源線。
 
 [!INCLUDE [storsimple-cable-8100-for-power](../../includes/storsimple-cable-8100-for-power.md)]
 
 > [!NOTE]
-> 完成裝置設定和纜線連接指示，請移過[安裝 StorSimple 8100 裝置](storsimple-8100-hardware-installation.md)。 請確定您確實依照 hello 指示進行。
+> 如需完成裝置設定和連接纜線的指示，請移至 [安裝您的 StorSimple 8100 裝置](storsimple-8100-hardware-installation.md)。 請確定有確實地依照指示進行。
 > 
 > 
 
 ### <a name="new-device-with-ebod-enclosure"></a>具有 EBOD 機箱的新裝置
-hello StorSimple 8600 模型有主要機箱和 EBOD 機箱。 這需要 hello 單位 toobe 接上一起取得序列連接 SCSI (SAS) 連線和電源。
+StorSimple 8600 型同時具有主要機箱和 EBOD 機箱。 這需要使用纜線將單元連接在一起，以取得序列連接 SCSI (SAS) 連線與電源。
 
-設定此裝置 hello 第一次，請執行 hello 步驟 SAS 佈線第一次，然後完成 hello 電源佈線的步驟。
+第一次設定此裝置時，請先執行 SAS 佈線步驟，然後再完成電源佈線步驟。
 
 [!INCLUDE [storsimple-sas-cable-8600](../../includes/storsimple-sas-cable-8600.md)]
 
 [!INCLUDE [storsimple-cable-8600-for-power](../../includes/storsimple-cable-8600-for-power.md)]
 
 > [!NOTE]
-> 完成裝置設定和纜線連接指示，請移過[安裝 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)。 請確定您確實依照 hello 指示進行。
+> 如需完成裝置設定和連接纜線的指示，請移至 [安裝您的 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)。 請確定有確實地依照指示進行。
 
 ## <a name="turn-on-a-device-after-shutdown"></a>在關機後開啟裝置
-它已關閉後開啟 StorSimple 裝置 hello 步驟會有所不同 hello 裝置是否 8100 或 8600 模型項目。 hello 8100 具有單一主要機箱，而 hello 8600 是雙重機箱裝置，具有主要機箱和 EBOD 機箱。
+根據裝置型號是 8100 或 8600，StorSimple 裝置關閉後再開啟它的步驟有所不同。 8100 具有單一主要機箱，而 8600 是具有主要機箱與 EBOD 機箱的雙重機箱裝置。
 
 * [只有主要機箱的裝置](#device-with-primary-enclosure-only)
 * [具有 EBOD 機箱的裝置](#device-with-ebod-enclosure)
 
 ### <a name="device-with-primary-enclosure-only"></a>只有主要機箱的裝置
-關閉後，使用下列程序 tooturn StorSimple 裝置沒有 EBOD 機箱與主要機箱上的 hello。
+在關機之後，請使用下列程序來開啟只有主要機箱而沒有 EBOD 機箱的 StorSimple 裝置。
 
-#### <a name="tooturn-on-a-device-with-a-primary-enclosure-only"></a>只有主要機箱的裝置上的 tooturn
-1. 請確定，hello 電源開關這兩個電源和冷卻模組 (Pcm) 是在 hello OFF 位置。 如果 hello 參數不在 hello 關閉 」 位置，然後翻轉 toohello 關閉 」 位置，並等待 hello 燈號 toogo 關閉。
-2. 開啟 hello 裝置 hello 電源開關 」 這兩個 Pcm toohello 開啟 」 位置上。 hello 裝置應開啟。
-3. 核取 hello 遵循 hello 裝置的 tooverify 已完全開啟：
+#### <a name="to-turn-on-a-device-with-a-primary-enclosure-only"></a>若要開啟只有主要機箱的裝置
+1. 請確定電源和冷卻模組 (PCM) 上的電源開關都在 OFF 的位置。 如果開關不是在 OFF 的位置，請將它們切換到 OFF 的位置，並等候燈號熄滅。
+2. 將 PCM 上的電源開關都切換到 ON 的位置，開啟裝置。 裝置應該會開啟。
+3. 檢查下列項目來確認裝置是否完全開啟：
    
-   1. 這兩個 PCM 模組上的 hello 正常 Led 」 皆為綠色。
-   2. 兩個控制器上的 hello 狀態 led 皆為純綠色。
-   3. hello 其中一個 hello 控制站上的藍色 LED 閃爍不停，這表示該 hello 控制器為作用中。
+   1. PCM 模組上的「OK」LED 燈號都是綠色。
+   2. 控制器上的狀態 LED 燈號是持續的綠燈。
+   3. 其中一個控制器上的藍色 LED 燈號正在閃爍，指出控制器正作用中。
       
       如果有任何不符合上述的情況，則裝置的狀態不良。 請 [連絡 Microsoft 支援服務](storsimple-8000-contact-microsoft-support.md)。
 
 ### <a name="device-with-ebod-enclosure"></a>具有 EBOD 機箱的裝置
-關閉後，使用下列程序 tooturn StorSimple 裝置主要機箱與 EBOD 機箱上的 hello。 請確實遵循說明依序執行每個步驟。 失敗 toodo 因此可能會導致資料遺失。
+在關機之後，請使用下列程序來開啟具有主要機箱和 EBOD 機箱的 StorSimple 裝置。 請確實遵循說明依序執行每個步驟。 若沒有這麼做，可能會導致資料遺失。
 
-#### <a name="tooturn-on-a-device-with-a-primary-and-an-ebod-enclosure"></a>tooturn 主要和 EBOD 機箱的裝置上
-1. 請確定該 hello EBOD 機箱已連接的 toohello 主要機箱。 如需詳細資訊，請參閱 [安裝您的 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)。
-2. 請確定該 hello 電源和冷卻模組 (Pcm) 上同時 hello EBOD 與主要機箱已 hello OFF 位置。 如果 hello 參數不在 hello 關閉 」 位置，然後翻轉 toohello 關閉 」 位置，並等待 hello 燈號 toogo 關閉。
-3. 開啟 EBOD 機箱 hello 第一個翻轉 hello 電源開關都在這兩個 Pcm toohello 開啟 」 位置上。 hello PCM Led 應為綠色。 此裝置上的綠色 EBOD 控制器 LED 表示 hello EBOD 機箱已開啟。
-4. 開啟主要機箱 hello 翻轉 hello 電源開關都在這兩個 Pcm toohello 開啟 」 位置上。 hello 整個系統現在應該亮起。
-5. 請確認 hello SAS Led 為綠色，並確保該 hello 之間的連線 hello EBOD 機箱 hello 主要機箱是理想的狀況。
+#### <a name="to-turn-on-a-device-with-a-primary-and-an-ebod-enclosure"></a>若要開啟具有主要和 EBOD 機箱的裝置
+1. 請確定 EBOD 機箱已經連接至主要機箱。 如需詳細資訊，請參閱 [安裝您的 StorSimple 8600 裝置](storsimple-8600-hardware-installation.md)。
+2. 請確定 EBOD 和主要機箱上的電源和冷卻模組 (PCM) 都在 OFF 的位置。 如果開關不是在 OFF 的位置，請將它們切換到 OFF 的位置，並等候燈號熄滅。
+3. 將 PCM 上的電源開關都切換到 ON 的位置，先開啟 EBOD 機箱。 PCM 的 LED 燈號應該是綠色。 此單元上的 EBOD 控制器 LED 綠色燈號指出 EBOD 機箱已經開啟。
+4. 將 PCM 上的電源開關都切換到 ON 的位置，開啟主要機箱。 現在整個系統應該已經開啟。
+5. 確認 SAS LED 燈號都是綠色，確保 EBOD 機箱和主要機箱之間的連線狀態良好。
 
 ## <a name="turn-on-a-device-after-a-power-loss"></a>在電源中斷後開啟裝置
-電源中斷會關閉 StorSimple 裝置。 hello 斷電情形 hello 電源供應器的其中一個或兩個電源供應器上。 hello 復原步驟會有所不同 hello 裝置是否 8100 或 8600 模型項目。 hello 8100 具有單一主要機箱，而 hello 8600 是雙重機箱裝置，具有主要機箱和 EBOD 機箱。 本節說明每個案例中的 hello 復原程序。
+電源中斷會關閉 StorSimple 裝置。 電源中斷可能會發生在其中一個電源供應器或同時發生在兩個電源供應器上。 根據裝置型號是 8100 或 8600，復原步驟有所不同。 8100 具有單一主要機箱，而 8600 是具有主要機箱與 EBOD 機箱的雙重機箱裝置。 本節將說明每個案例的修復程序。
 
 * [只有主要機箱的裝置](#8100)
 * [具有 EBOD 機箱的裝置](#8600)
 
 ### <a name="device-with-primary-enclosure-only-a-name8100"></a>只有主要機箱的裝置 <a name="8100">
-如果有一個電源供應器的電源遺失 tooone hello 系統可以繼續其正常作業。 不過，tooensure 高可用性的 hello 裝置，還原電源 toohello 電源供應器儘速。
+如果其中一個電源供應器的電源中斷，系統還是可以繼續正常作業。 不過，為確保裝置的高可用性，請儘速恢復電源供應器的電源。
 
-如果沒有電源中斷或兩個電源供應器的電源中斷，hello 系統將會關閉以井然有序且受控制的方式。 還原 hello 電源時，將會自動開啟 hello 系統。
+如果同時在兩個電源供應器上發生電源中斷，系統會以有條理的方式關閉。 當電源恢復時，系統將會自動開啟。
 
 ### <a name="device-with-ebod-enclosure-a-name8600"></a>具有 EBOD 機箱的裝置 <a name="8600">
 #### <a name="power-loss-on-one-power-supply"></a>單一電源供應器電源中斷
-如果有一個主要機箱 hello 或 hello EBOD 機箱上的電源供應器的電源遺失 tooone hello 系統可以繼續其正常作業。 不過，tooensure 高可用性的 hello 裝置，請還原電源 toohello 電源供應器儘速。
+如果主要機箱或 EBOD 機箱的其中一個電源供應器電源中斷，系統還是可以繼續正常作業。 不過，為確保裝置的高可用性，請儘速恢復電源供應器的電源。
 
 #### <a name="power-loss-on-both-power-supplies-on-primary-and-ebod-enclosures"></a>主要機箱和 EBOD 機箱的電源供應器同時電源中斷
-如果沒有這兩個電源供應器都有電源中斷或電源中斷，hello EBOD 機箱將立即關閉，並以井然有序且受控制的方式將關閉 hello 主要機箱。 當電源恢復時，會自動啟動 hello 應用裝置。
+如果同時在兩個電源供應器上發生電源中斷，EBOD 機箱將會立即關閉，而主要機箱會以有條理的方式關閉。 當電源恢復時，應用裝置會自動啟動。
 
-如果以手動方式關閉 hello 電源，然後採取下列步驟 toorestore 電源 toohello 系統 hello。
+如果電源是以手動方式關閉，則執行下列步驟來恢復系統的電源。
 
-1. 開啟 hello EBOD 機箱。
-2. Hello EBOD 機箱上 」 之後，請開啟 hello 主要機箱。
+1. 開啟 EBOD 機箱。
+2. 在 EBOD 機箱開啟之後，開啟主要機箱。
 
 ### <a name="power-loss-on-both-power-supplies-on-ebod-enclosure"></a>EBOD 機箱上的兩個電源供應器同時電源中斷
-當您設定您的纜線時，您必須確定 EBOD 絕不會是該 hello 連接單獨 tooa 個別 PDU。 如果在 hello 失敗的 hello EBOD 與主要機箱 hello 系統將復原相同的時間。
+當安裝纜線時，您必須確定 EBOD 機箱絕對不會單獨連接至個別的 PDU。 如果 EBOD 和主要機箱同時故障，系統將會復原。
 
-如果只有 EBOD 機箱 hello 失敗這兩個電源供應器，hello 系統將不會自動復原。 採用 hello 遵循步驟 tooturn hello 系統上，並將它還原 tooa 狀況良好的狀態：
+如果只有 EBOD 機箱的兩個電源供應器同時故障，系統將不會自動復原。 執行下列步驟開啟系統並將其還原至良好狀態：
 
-1. 如果 hello 主要機箱已開啟、 關閉電源和冷卻模組 (Pcm)。
-2. 請等候幾分鐘，讓 hello 系統 tooshut 向下。
-3. 開啟 hello EBOD 機箱。
-4. Hello EBOD 機箱上 」 之後，請開啟 hello 主要機箱。
+1. 如果主要機箱已經開啟，請將電源和冷卻模組 (PCM) 關閉。
+2. 請等候幾分鐘，讓系統關閉。
+3. 開啟 EBOD 機箱。
+4. 在 EBOD 機箱開啟之後，開啟主要機箱。
 
-## <a name="turn-on-a-device-after-hello-primary-and-ebod-enclosure-connection-is-lost"></a>後開啟裝置 hello 主要和 EBOD 機箱連線中斷時
-如果遺失之間 hello 待命控制器與對應 EBOD 控制器 hello hello 連接，hello 裝置會繼續 toowork。 Hello hello 系統作用中控制器與對應 EBOD 控制器 hello 之間的連線遺失時，應該會發生容錯移轉，而 hello 裝置應該繼續 toowork 像平常一樣。
+## <a name="turn-on-a-device-after-the-primary-and-ebod-enclosure-connection-is-lost"></a>在主要機箱和 EBOD 機箱連線中斷後開啟裝置
+如果待命控制器與對應的 EBOD 控制器連線中斷，裝置仍會繼續運作。 如果系統作用中的控制器和對應的 EBOD 控制器連線中斷，則應該會進行容錯移轉且裝置應該會繼續正常運作。
 
-當會移除這兩個序列連接 SCSI (SAS) 纜線或切斷 EBOD 機箱 hello 與 hello 主要機箱之間的 hello 連線時，hello 裝置將會停止運作。 此時，執行下列步驟的 hello。
+當移除兩條序列連接 SCSI (SAS) 纜線，或切斷 EBOD 機箱與主要機箱間的連線，裝置將會停止運作。 此時請執行下列步驟。
 
-### <a name="tooturn-on-hello-device-after-connection-is-lost"></a>tooturn hello 裝置之後，而失去連接
-1. 存取 hello hello 裝置背面。
-2. 如果 hello hello EBOD 機箱與 hello 主要機箱之間的 SAS 纜線連接已損毀，hello EBOD 機箱上所有的 SAS lane Led 都會熄滅。
-3. 在 hello EBOD 機箱與主要機箱 hello 關閉電源和冷卻模組 (Pcm)。
-4. 請等到所有 hello 燈號上兩個 hello 機箱的背面的 hello 都關閉。
-5. 重新插入 hello SAS 纜線，並確保沒有 hello EBOD 機箱與主要機箱 hello 之間良好的連接。
-6. 開啟 EBOD 機箱 hello 第一次 」 這兩個 PCM 開關 toohello 開啟 」 位置。
-7. 請確認 hello EBOD 機箱上檢查 hello 綠色 LED 為 ON。
-8. 開啟 hello 主要機箱。
-9. 請確認 hello 主要機箱上檢查 hello 控制器綠色 LED 為 「 上。
-10. 請確認該 hello hello 主要機箱與 EBOD 機箱連線良好藉由檢查該 hello SAS lane Led （每個 EBOD 控制器的四個） 都上。
+### <a name="to-turn-on-the-device-after-connection-is-lost"></a>若要在連線中斷後開啟裝置
+1. 進入裝置的背面。
+2. 如果在 EBOD 機箱和主要機箱間的 SAS 纜線連線損毀，EBOD 機箱上所有的 SAS 通道 LED 燈號將會關閉。
+3. 關閉 EBOD 機箱和主要機箱上的電源和冷卻模組 (PCM)。
+4. 等候兩個機箱背面的所有燈號關閉。
+5. 重新插入 SAS 纜線，並確定在 EBOD 機箱和主要機箱間有良好的連線。
+6. 將 PCM 上的開關都切換到 ON 的位置，先開啟 EBOD 機箱。
+7. 檢查綠色 LED 燈號是否亮起，確定 EBOD 機箱已經開啟。
+8. 開啟主要機箱。
+9. 透過檢查控制器綠色 LED 燈號是否亮起，確定主要機箱已經開啟。
+10. 透過檢查 SAS 通道 LED 燈號 (每個 EBOD 控制器有 4 個) 全部亮起，確認 EBOD 機箱與主要機箱間的連線良好。
 
 > [!IMPORTANT]
-> 如果 hello SAS 纜線損壞或 hello hello EBOD 機箱與 hello 主要機箱之間的連線是狀況不佳，當您開啟 hello 系統時，它將會進入修復模式。 如果發生此情況，請 [連絡 Microsoft 支援服務](storsimple-8000-contact-microsoft-support.md) 。
+> 如果 SAS 纜線損壞，或是 EBOD 機箱和主要機箱間的連線不佳，則當您開啟系統時，會進入修復模式。 如果發生此情況，請 [連絡 Microsoft 支援服務](storsimple-8000-contact-microsoft-support.md) 。
 
 
 ## <a name="turn-off-a-running-device"></a>關閉執行中的裝置
-執行中的 StorSimple 裝置可能需要 toobe 如果它正在移動、 中斷服務，或有故障元件時，需要取代 toobe 關機。 hello 步驟會有所不同 hello StorSimple 裝置是否 8100 或 8600 模型項目。 hello 8100 具有單一主要機箱，而 hello 8600 是雙重機箱裝置，具有主要機箱和 EBOD 機箱。 本節詳述 hello 步驟 tooshut 關閉執行中的裝置。
+如果執行中的 StorSimple 裝置需要移動、報廢，或是更換運作失常的元件，就可能需要關機。 根據 StorSimple 裝置的型號是 8100 或 8600，步驟會有所不同。 8100 具有單一主要機箱，而 8600 是具有主要機箱與 EBOD 機箱的雙重機箱裝置。 本節將詳細說明關閉執行中裝置的步驟。
 
 * [具有主要機箱的裝置](#8100a)
 * [具有 EBOD 機箱的裝置](#8600a)
 
 ### <a name="device-with-primary-enclosure-a-name8100a"></a>具有主要機箱的裝置 <a name="8100a">
-tooshut hello 裝置以井然有序且受控制的方式，您可以進行透過 hello Azure 傳統入口網站或透過 hello Windows PowerShell for StorSimple。 
+若要依序且以受控制的方式關閉裝置，您可以透過 Azure 傳統入口網站或透過 Windows PowerShell for StorSimple 來執行。 
 
 > [!IMPORTANT]
-> 不會關閉執行中的裝置使用上 hello 裝置背面的 hello hello 電源按鈕。
+> 請勿使用裝置背面的電源按鈕關閉執行中的裝置。
 > 
-> 之前關閉 hello 裝置，請確定所有的 hello 裝置元件皆正常運作。 在 hello Azure 傳統入口網站中瀏覽過**裝置** > **維護** > **硬體狀態**，並確認所有 hello 狀態元件為綠色。 這只適用於狀態良好的系統。 如果 hello 系統關機 tooreplace 的故障元件時，您會看到故障 （紅色） 或降級 （黃色） 狀態 hello hello 中的個別元件**硬體狀態**。
+> 關閉裝置之前，請確定所有的裝置元件狀態良好。 在 Azure 傳統入口網站中，瀏覽至 [裝置]  >  [維護]  >  [硬體狀態]，並確認所有的元件狀態是綠色的。 這只適用於狀態良好的系統。 如果系統正在關閉中以更換故障的元件，您會在 [硬體狀態] 中看到個別元件的失敗 (紅色) 或降級 (黃色) 狀態。
 > 
 > 
 
-您存取 hello Windows PowerShell for StorSimple 或 hello Azure 傳統入口網站之後，請依照中的 hello 步驟[關閉 StorSimple 裝置](storsimple-manage-device-controller.md#shut-down-a-storsimple-device)。 
+存取 Windows PowerShell for StorSimple 或 Azure 傳統入口網站之後，請依照 [關閉 StorSimple 裝置](storsimple-manage-device-controller.md#shut-down-a-storsimple-device)中的步驟進行。 
 
 ### <a name="device-with-ebod-enclosure-a-name8600a"></a>具有 EBOD 機箱的裝置 <a name="8600a">
 > [!IMPORTANT]
-> 之前關閉主要機箱 hello 與 hello EBOD 機箱，請確定所有的 hello 裝置元件皆正常運作。 在 hello Azure 入口網站中瀏覽過**裝置** > **監視器** > **硬體健全狀況**，並確認所有 hello 元件都均狀況良好。
+> 關閉主要機箱和 EBOD 機箱之前，請確定所有裝置元件狀態良好。 在 Azure 入口網站中，瀏覽至 [裝置]  > [監視]  >  [硬體健康狀態]，確認所有的元件狀態都良好。
 
 
-#### <a name="tooshut-down-a-running-device-with-ebod-enclosure"></a>tooshut 關閉具有 EBOD 機箱執行中的裝置
-1. 請遵循所列的所有 hello 步驟[關閉 StorSimple 裝置](storsimple-8000-manage-device-controller.md#shut-down-a-storsimple-device)hello 主要機箱。
-2. 之後 hello 主要機箱已關閉，關閉 hello EBOD 開關關閉電源和冷卻模組 (PCM) 的參數。
-3. hello EBOD 的 tooverify 已關閉、 已關閉的核取所有燈號上 hello hello EBOD 機箱的背面。
+#### <a name="to-shut-down-a-running-device-with-ebod-enclosure"></a>若要關閉具有 EBOD 機箱的執行中裝置
+1. 針對主要機箱，請依照 [關閉 StorSimple 裝置](storsimple-8000-manage-device-controller.md#shut-down-a-storsimple-device) 中列出的所有步驟執行。
+2. 關閉主要機箱之後，將電源和冷卻模組 (PCM) 的開關都切換至 OFF 以關閉 EBOD。
+3. 若要確認 EBOD 已關閉，請檢查 EBOD 機箱背面的所有燈號都已關閉。
 
 > [!NOTE]
-> 會使用的 tooconnect hello EBOD 機箱 toohello 主要機箱的 hello SAS 纜線應該後才會移除之前 hello 系統關機。
+> SAS 纜線是用來連接 EBOD 機箱與主要機箱，且在系統關閉之前都不應該移除。
 
 ## <a name="next-steps"></a>後續步驟
 [Contact Microsoft Support](storsimple-8000-contact-microsoft-support.md) 。

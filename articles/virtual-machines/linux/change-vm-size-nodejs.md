@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooresize Linux VM 以 hello Azure CLI 1.0 |Microsoft 文件"
-description: "如何 tooscale 向上或向下 Linux 虛擬機器，藉由變更調整 hello VM 大小。"
+title: "如何使用 Azure CLI 1.0 重新調整 Linux VM 的大小 | Microsoft Docs"
+description: "如何藉由變更 VM 的大小來相應增加或相應減少 Linux 虛擬機器。"
 services: virtual-machines-linux
 documentationcenter: na
 author: mikewasson
@@ -16,38 +16,38 @@ ms.workload: infrastructure-services
 ms.date: 05/16/2016
 ms.author: mwasson
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 43dd955dc2f2dd9d1b2da07ecbfbf2459bcaa4d2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 72f5a3cd6463befd5108040ed166984281bfc5f0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="resize-a-linux-vm-with-azure-cli-10"></a>使用 Azure CLI 1.0 來調整 Linux VM 大小
 
 ## <a name="overview"></a>概觀
 
-佈建虛擬機器 (VM) 之後，您可以調整 hello VM 向上或向下藉由變更 hello [VM 大小][vm-sizes]。 在某些情況下，您必須先取消配置 hello VM。 這種情況 hello 新大小不是在裝載 hello VM hello 硬體叢集上使用。
+部屬虛擬機器 (VM) 之後，您可以藉由變更 [VM 大小][vm-sizes]來相應增加或減少 VM。 在某些情況下，您必須先解除配置 VM。 如果新的大小無法在裝載 VM 的硬體叢集上取得，可能有這樣的情況。
 
-本文將說明如何使用 hello Linux VM 的 tooresize [Azure CLI][azure-cli]。
+本文說明如何使用 [Azure CLI][azure-cli] 重新調整 Linux VM 的大小。
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-rm-include.md)]
 
-## <a name="cli-versions-toocomplete-hello-task"></a>CLI 版本 toocomplete hello 工作
-您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本：
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+您可以使用下列其中一個 CLI 版本來完成工作︰
 
-- [Azure CLI 1.0](#resize-a-linux-vm) – 我們 CLI hello 傳統和資源管理部署模型 （此文件）
-- [Azure CLI 2.0](change-vm-size.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) -hello 資源管理部署模型我們下一個層代 CLI
+- [Azure CLI 1.0](#resize-a-linux-vm) – 適用於傳統和資源管理部署模型的 CLI (本文章)
+- [Azure CLI 2.0](change-vm-size.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) - 適用於資源管理部署模型的新一代 CLI
 
 
 ## <a name="resize-a-linux-vm"></a>重新調整 Linux VM 的大小
-tooresize VM，執行下列步驟的 hello。
+若要重新調整 VM 的大小，請執行下列步驟。
 
-1. 執行下列 CLI 命令的 hello。 此命令會列出 hello hello hello VM 所在的硬體叢集可用的 VM 大小。
+1. 執行下列 CLI 命令。 這個命令會列出裝載 VM 的硬體叢集上的可用 VM 大小。
    
     ```azurecli
     azure vm sizes -g myResourceGroup --vm-name myVM
     ```
-2. 如果 hello 需要列出大小，請執行下列命令 tooresize hello VM hello。
+2. 如果有列出所需的大小，請執行以下命令來調整 VM 的大小。
    
     ```azurecli
     azure vm set -g myResourceGroup --vm-size <new-vm-size> -n myVM  \
@@ -55,10 +55,10 @@ tooresize VM，執行下列步驟的 hello。
         --boot-diagnostics-storage-uri https://mystorageaccount.blob.core.windows.net/ 
     ```
    
-    hello VM 會重新啟動此程序期間。 Hello 重新啟動之後，您現有的作業系統和資料磁碟將會重新對應。 Hello 暫存磁碟的任何項目將會遺失。
+    在此程序中 VM 會重新啟動。 重新啟動之後，您現有的作業系統和資料磁碟將會重新對應。 暫存磁碟的所有項目將會遺失。
    
-    使用 hello`--enable-boot-diagnostics`選項可讓[開機診斷][boot-diagnostics]，toolog 任何錯誤的相關的 toostartup。
-3. 否則，視 hello 大小未列出，執行下列命令 toodeallocate hello VM、 調整其大小，然後再重新啟動 hello VM hello。
+    使用 `--enable-boot-diagnostics` 選項可讓[開機診斷][boot-diagnostics]記錄任何與啟動相關的錯誤。
+3. 另一方面，如果沒有列出所需的大小，請執行以下命令以將 VM 解除配置、重新調整大小，然後再將它重新啟動。
    
     ```azurecli
     azure vm deallocate -g myResourceGroup myVM
@@ -69,12 +69,12 @@ tooresize VM，執行下列步驟的 hello。
     ```
    
    > [!WARNING]
-   > 解除配置 hello VM 也會釋放指派 toohello VM 的任何動態 IP 位址。 不會影響 hello OS 和資料磁碟。
+   > 將 VM 解除配置也會釋出指派給該 VM 的任何動態 IP 位址。 不會影響作業系統和資料磁碟。
    > 
    > 
 
 ## <a name="next-steps"></a>後續步驟
-如需提高延展性，可執行多個 VM 執行個體並相應放大。如需詳細資訊，請參閱[在虛擬機器擴展集中自動調整 Linux 機器][scale-set]。 
+如需提高延展性，可執行多個 VM 執行個體並相應放大。 如需詳細資訊，請參閱[在虛擬機器擴展集中自動調整 Linux 機器][scale-set]。 
 
 <!-- links -->
 

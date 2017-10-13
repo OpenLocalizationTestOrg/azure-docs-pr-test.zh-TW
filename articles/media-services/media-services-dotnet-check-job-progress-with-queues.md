@@ -1,6 +1,6 @@
 ---
-title: "aaaUse Azure 佇列儲存體 toomonitor Media Services 工作通知使用.NET |Microsoft 文件"
-description: "了解如何 toouse Azure 佇列儲存體 toomonitor Media Services 工作通知。 hello 程式碼範例以 C# 撰寫，並使用 hello Media Services SDK for.NET。"
+title: "使用 Azure 佇列儲存體監視 .NET 的媒體服務工作通知 | Microsoft Docs"
+description: "了解如何使用 Azure 佇列儲存體監視媒體服務工作通知。 程式碼範例是以 C# 撰寫，並使用 Media Services SDK for .NET。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,56 +14,56 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/14/2017
 ms.author: juliako
-ms.openlocfilehash: e4068621ada00d763133dc0d01cfc666b53f8b1b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5ee89d0ae4c3c56d164aff4e321ee99f015ba4fb
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-azure-queue-storage-toomonitor-media-services-job-notifications-with-net"></a>搭配.NET 使用 Azure 佇列儲存體 toomonitor Media Services 工作通知
-當您執行編碼工作時，通常會需要方式 tootrack 工作進度。 您可以設定 Media Services toodeliver 通知太[Azure 佇列儲存體](../storage/storage-dotnet-how-to-use-queues.md)。 您可以取得通知 hello 佇列儲存體監控工作進度。 
+# <a name="use-azure-queue-storage-to-monitor-media-services-job-notifications-with-net"></a>使用 Azure 佇列儲存體監視 .NET 的媒體服務工作通知
+執行編碼作業時，您通常需要設法追蹤作業進度。 您可以設定媒體服務，將通知傳遞給 [Azure 佇列儲存體](../storage/storage-dotnet-how-to-use-queues.md)。 從佇列儲存體取得通知，即可監視作業進度。 
 
-訊息傳遞 tooQueue 存放裝置可以存取從任何地方 hello world。 hello 佇列儲存體傳訊架構是可靠且具有高擴充性。 建議利用其他方法，針對訊息輪詢佇列儲存體。
+使用者可以從世界各個角落存取之前已傳送至佇列儲存體的訊息。 佇列儲存體訊息架構十分可靠，而且具有高擴充性。 建議利用其他方法，針對訊息輪詢佇列儲存體。
 
-編碼工作後一些額外的工作完成的接聽 tooMedia 服務通知的常見案例就是如果您正在開發的內容管理系統需要 tooperform （例如，在工作流程或 toopublish tootrigger hello 下一個步驟內容）。
+舉一個常見的接聽媒體服務通知案例：假設您正在設計一套內容管理系，而且在編碼作業完成之後，這套系統需要執行其他一些工作 (例如，觸發工作流程的下一個步驟或者發佈內容)。
 
-本主題說明如何 tooget 通知訊息從佇列儲存體。  
+本主題示範如何從佇列儲存體取得通知訊息。  
 
 ## <a name="considerations"></a>考量
-開發使用佇列儲存體的媒體服務應用程式時，請考慮下列 hello:
+若您開發的媒體服務應用程式會使用佇列儲存體，請考慮下列幾點：
 
 * 佇列儲存體不保證會按照先進先出 (FIFO) 的順序進行。 如需詳細資訊，請參閱 [Azure 佇列和 Azure 服務匯流排佇列的比較和對比](https://msdn.microsoft.com/library/azure/hh767287.aspx)。
-* 佇列儲存體不是推送服務。 您有 toopoll hello 佇列。
+* 佇列儲存體不是推送服務。 您必須輪詢佇列。
 * 您可以有任意數目的佇列。 如需詳細資訊，請參閱 [佇列服務 REST API](https://docs.microsoft.com/rest/api/storageservices/Queue-Service-REST-API)。
-* 佇列儲存體方面有一些限制和特性 toobe 留意。 如需這些限制與細節的說明，請參閱 [Azure 佇列和 Azure 服務匯流排佇列的異同比較](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)。
+* 佇列儲存體具有一些要注意的限制和細節。 如需這些限制與細節的說明，請參閱 [Azure 佇列和 Azure 服務匯流排佇列的異同比較](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted)。
 
 ## <a name="net-code-example"></a>.NET 程式碼範例
 
-本節中的 hello 程式碼範例並未 hello 遵循：
+本節的程式碼會執行下列動作：
 
-1. 定義 hello **EncodingJobMessage**對應 toohello 通知訊息格式的類別。 hello 程式碼將訊息從 hello 佇列會接收到的 hello 物件還原序列化**EncodingJobMessage**型別。
-2. 載入 hello Media Services 並從 hello app.config 檔案的儲存體帳戶資訊。 hello 程式碼範例會使用此資訊 toocreate hello **CloudMediaContext**和**CloudQueue**物件。
-3. 建立 hello 收到 hello 編碼作業有關的通知訊息的佇列。
-4. 建立結束點所對應 toohello 佇列 hello 通知。
-5. 附加 hello 通知端點 toohello 作業，並送出 hello 編碼工作。 您可以有多個通知附加的結束點 tooa 作業。
-6. 傳遞**NotificationJobState.FinalStatesOnly** toohello **AddNew**方法。 （在此範例中，我們是只有興趣 hello 作業處理的最後狀態）。
+1. 定義一個會對應至通知訊息格式的 **EncodingJobMessage** 類別。 程式碼會將那些從佇列接收到的訊息還原序列化，然後變成 **EncodingJobMessage** 類型的物件。
+2. 從 app.config 檔案載入媒體服務和儲存體帳戶資訊。 這個程式碼範例會使用此資訊來建立 **CloudMediaContext** 和 **CloudQueue** 物件。
+3. 建立一個會接收編碼工作相關通知訊息的佇列。
+4. 建立一個會對應到佇列的通知端點。
+5. 將通知端點附加至工作，然後提交編碼工作。 您可以將多個通知端點附加至工作。
+6. 將 **NotificationJobState.FinalStatesOnly** 傳遞到 **AddNew** 方法 (在此範例中，我們只對工作的最終狀態感興趣)。
 
         job.JobNotificationSubscriptions.AddNew(NotificationJobState.FinalStatesOnly, _notificationEndPoint);
-7. 如果您要傳入**NotificationJobState.All**，您可以獲得所有下列狀態變更通知的 hello： 排入佇列、 排程、 處理和已完成。 不過，如先前所述，佇列儲存體不保證會按照順序傳遞。 tooorder 訊息使用 hello**時間戳記**屬性 (定義於 hello **EncodingJobMessage** hello 下面範例中的型別)。 可能會有重複的訊息。 重複項目，使用 hello toocheck **ETag 屬性**(定義於 hello **EncodingJobMessage**類型)。 可能也會略過某些狀態變更通知。
-8. 等候 hello 作業 tooget toohello 的完成狀態檢查 hello 佇列每隔 10 秒。 處理好訊息之後，請予以刪除。
-9. 刪除佇列 hello 和 hello 通知結束點。
+7. 如果您傳遞 **NotificationJobState.All**，即會取得下列所有狀態變更通知：已排入佇列、已排程、處理中，以及已完成。 不過，如先前所述，佇列儲存體不保證會按照順序傳遞。 若要排序訊息，請使用 **Timestamp** 屬性 (定義於以下範例的 **EncodingJobMessage** 類型上)。 可能會有重複的訊息。 若要檢查重複項，請使用 **ETag 屬性** (定義於 **EncodingJobMessage** 類型上)。 可能也會略過某些狀態變更通知。
+8. 每隔 10 秒檢查佇列一次，等候作業進入已完成狀態。 處理好訊息之後，請予以刪除。
+9. 刪除佇列和通知端點。
 
 > [!NOTE]
-> hello 建議作業的狀態是所接聽的 toonotification 訊息的方式 toomonitor hello 下列範例所示。
+> 要想監視工作的狀態，建議您接聽通知訊息，如下列範例所示。
 >
-> 或者，您無法檢查工作狀態使用 hello **IJob.State**屬性。  相關工作的完成通知訊息可能會到達 hello 狀態之前**IJob**設定得**已經完成**。 hello **IJob.State**屬性會反映 hello 精確狀態與稍微延遲。
+> 或者，使用 **IJob.State** 屬性檢查工作狀態。  在 **IJob** 的狀態設定成 [已完成] 之前，您可能會收到一則有關作業已完成的通知訊息。 **IJob.State** 屬性會延遲片刻再反映正確的狀態。
 >
 >
 
 ### <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
 
-1. 設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。 
-2. 建立新的資料夾 （資料夾可以是任何位置在本機磁碟機上），並將您想要 tooencode 和資料流或漸進式下載.mp4 檔案複製。 在此範例中，會使用 hello"C:\Media 」 路徑。
+1. 設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)所述。 
+2. 建立新的資料夾 (資料夾可在本機磁碟機上任意處)，並複製您想要編碼和串流處理或漸進式下載的 .mp4 檔案。 在此範例中，使用 "C:\Media" 路徑。
 
 ### <a name="code"></a>代碼
 
@@ -86,30 +86,30 @@ namespace JobNotification
         // MessageVersion is used for version control.
         public String MessageVersion { get; set; }
 
-        // Type of hello event. Valid values are
+        // Type of the event. Valid values are
         // JobStateChange and NotificationEndpointRegistration.
         public String EventType { get; set; }
 
-        // ETag is used toohelp hello customer detect if
-        // hello message is a duplicate of another message previously sent.
+        // ETag is used to help the customer detect if
+        // the message is a duplicate of another message previously sent.
         public String ETag { get; set; }
 
-        // Time of occurrence of hello event.
+        // Time of occurrence of the event.
         public String TimeStamp { get; set; }
 
-        // Collection of values specific toohello event.
+        // Collection of values specific to the event.
 
-        // For hello JobStateChange event hello values are:
-        //     JobId - Id of hello Job that triggered hello notification.
-        //     NewState- hello new state of hello Job. Valid values are:
+        // For the JobStateChange event the values are:
+        //     JobId - Id of the Job that triggered the notification.
+        //     NewState- The new state of the Job. Valid values are:
         //          Scheduled, Processing, Canceling, Cancelled, Error, Finished
-        //     OldState- hello old state of hello Job. Valid values are:
+        //     OldState- The old state of the Job. Valid values are:
         //          Scheduled, Processing, Canceling, Cancelled, Error, Finished
 
-        // For hello NotificationEndpointRegistration event hello values are:
-        //     NotificationEndpointId- Id of hello NotificationEndpoint
-        //          that triggered hello notification.
-        //     State- hello state of hello Endpoint.
+        // For the NotificationEndpointRegistration event the values are:
+        //     NotificationEndpointId- Id of the NotificationEndpoint
+        //          that triggered the notification.
+        //     State- The state of the Endpoint.
         //          Valid values are: Registered and Unregistered.
 
         public IDictionary<string, object> Properties { get; set; }
@@ -118,7 +118,7 @@ namespace JobNotification
     class Program
     {
 
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
             ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -137,16 +137,16 @@ namespace JobNotification
         {
             string endPointAddress = Guid.NewGuid().ToString();
 
-            // Create hello context.
+            // Create the context.
             var tokenCredentials = new AzureAdTokenCredentials(_AADTenantDomain, AzureEnvironments.AzureCloudEnvironment);
             var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
 
             _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-            // Create hello queue that will be receiving hello notification messages.
+            // Create the queue that will be receiving the notification messages.
             _queue = CreateQueue(_StorageConnectionString, endPointAddress);
 
-            // Create hello notification point that is mapped toohello queue.
+            // Create the notification point that is mapped to the queue.
             _notificationEndPoint =
                     _context.NotificationEndPoints.Create(
                     Guid.NewGuid().ToString(), NotificationEndPointType.AzureQueue, endPointAddress);
@@ -168,13 +168,13 @@ namespace JobNotification
         {
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(storageAccountConnectionString);
 
-            // Create hello queue client
+            // Create the queue client
             CloudQueueClient queueClient = storageAccount.CreateCloudQueueClient();
 
-            // Retrieve a reference tooa queue
+            // Retrieve a reference to a queue
             CloudQueue queue = queueClient.GetQueueReference(endPointAddress);
 
-            // Create hello queue if it doesn't already exist
+            // Create the queue if it doesn't already exist
             queue.CreateIfNotExists();
 
             return queue;
@@ -184,30 +184,30 @@ namespace JobNotification
         public static IJob SubmitEncodingJobWithNotificationEndPoint(string inputMediaFilePath)
         {
             // Declare a new job.
-            IJob job = _context.Jobs.Create("My MP4 tooSmooth Streaming encoding job");
+            IJob job = _context.Jobs.Create("My MP4 to Smooth Streaming encoding job");
 
-            //Create an encrypted asset and upload hello mp4.
+            //Create an encrypted asset and upload the mp4.
             IAsset asset = CreateAssetAndUploadSingleFile(AssetCreationOptions.StorageEncrypted,
                 inputMediaFilePath);
 
-            // Get a media processor reference, and pass tooit hello name of the
-            // processor toouse for hello specific task.
+            // Get a media processor reference, and pass to it the name of the
+            // processor to use for the specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
-            // Create a task with hello conversion details, using a configuration file.
+            // Create a task with the conversion details, using a configuration file.
             ITask task = job.Tasks.AddNew("My encoding Task",
                 processor,
                 "Adaptive Streaming",
                 Microsoft.WindowsAzure.MediaServices.Client.TaskOptions.None);
 
-            // Specify hello input asset toobe encoded.
+            // Specify the input asset to be encoded.
             task.InputAssets.Add(asset);
 
-            // Add an output asset toocontain hello results of hello job.
+            // Add an output asset to contain the results of the job.
             task.OutputAssets.AddNew("Output asset",
                 AssetCreationOptions.None);
 
-            // Add a notification point toohello job. You can add multiple notification points.  
+            // Add a notification point to the job. You can add multiple notification points.  
             job.JobNotificationSubscriptions.AddNew(NotificationJobState.FinalStatesOnly,
                 _notificationEndPoint);
 
@@ -227,7 +227,7 @@ namespace JobNotification
 
             while (!jobReachedExpectedState)
             {
-                // Specify how often you want tooget messages from hello queue.
+                // Specify how often you want to get messages from the queue.
                 Thread.Sleep(TimeSpan.FromSeconds(10));
 
                 foreach (var message in _queue.GetMessages(10))
@@ -241,7 +241,7 @@ namespace JobNotification
 
                         Console.WriteLine();
 
-                        // Display hello message information.
+                        // Display the message information.
                         Console.WriteLine("EventType: {0}", encodingJobMsg.EventType);
                         Console.WriteLine("MessageVersion: {0}", encodingJobMsg.MessageVersion);
                         Console.WriteLine("ETag: {0}", encodingJobMsg.ETag);
@@ -276,7 +276,7 @@ namespace JobNotification
                             }
                         }
                     }
-                    // Delete hello message after we've read it.
+                    // Delete the message after we've read it.
                     _queue.DeleteMessage(message);
                 }
 
@@ -326,7 +326,7 @@ namespace JobNotification
     }
 }
 ```
-hello 上述範例所產生 hello 遵循輸出。 您的值會不一樣。
+上述範例會產生下列輸出。 您的值會不一樣。
 
     Created assetFile BigBuckBunny.mp4
     Upload BigBuckBunny.mp4
@@ -346,7 +346,7 @@ hello 上述範例所產生 hello 遵循輸出。 您的值會不一樣。
     ETag: 4e381f37c2d844bde06ace650310284d6928b1e50101d82d1b56220cfcb6076c
     TimeStamp: 2013-05-14T20:24:40
         JobId: nb:jid:UUID:526291de-f166-be47-b62a-11ffe6d4be54
-        JobName: My MP4 tooSmooth Streaming encoding job
+        JobName: My MP4 to Smooth Streaming encoding job
         NewState: Finished
         OldState: Processing
         AccountName: westeuropewamsaccount

@@ -14,48 +14,48 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/24/2017
 ms.author: joroja
-ms.openlocfilehash: 90a495029f48d70232ef3f99de4ea4d351395aa7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dc319c97e64e55861b84cc3943667418077a05d8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="walkthrough-integrate-rest-api-claims-exchanges-in-your-azure-ad-b2c-user-journey-as-an-orchestration-step"></a>逐步解說︰將 REST API 宣告交換整合到 Azure AD B2C 使用者旅程圖中以作為協調流程步驟
 
-hello 識別體驗架構 (IEF) 構成 Azure Active Directory B2C (Azure AD B2C) 可讓 hello 身分識別開發人員 toointegrate 與 rest 式 API，在使用者之旅互動。  
+構成 Azure Active Directory B2C (Azure AD B2C) 基礎的識別體驗架構 (IEF)，可讓身分識別開發人員於使用者旅程圖中整合與 RESTful API 的互動。  
 
-在本逐步解說 hello 最後，將無法 toocreate 互動 RESTful 服務的 Azure AD B2C 使用者旅程。
+在本逐步解說結束時，您將能建立與 RESTful 服務互動的 Azure AD B2C 使用者旅程圖。
 
-hello IEF 宣告中傳送資料，並接收回宣告中的資料。 hello REST API 宣告 exchange:
+IEF 會在宣告中傳送資料，並在宣告中收到傳回的資料。 REST API 宣告交換：
 
 - 可以設計成協調流程步驟。
 - 可以觸發外部動作。 例如，它可以在外部資料庫中記錄一個事件。
-- 可以是使用的 toofetch 的值，然後將它儲存在 hello 使用者資料庫。
+- 可用來擷取值，然後將它存放在使用者資料庫中。
 
-您可以使用收到 hello 宣告稍後 toochange hello 流程的執行。
+您稍後可以使用接收的宣告來變更執行流程。
 
-您也可以設計 hello 互動身分驗證設定檔。 如需詳細資訊，請參閱[逐步解說︰將 REST API 宣告交換整合到 Azure AD B2C 使用者旅程圖中以作為使用者輸入的驗證](active-directory-b2c-rest-api-validation-custom.md)。
+您也可以將互動設計成驗證設定檔。 如需詳細資訊，請參閱[逐步解說︰將 REST API 宣告交換整合到 Azure AD B2C 使用者旅程圖中以作為使用者輸入的驗證](active-directory-b2c-rest-api-validation-custom.md)。
 
-當使用者執行設定檔編輯時，我們想要則 hello 案例：
+有個案例是，當使用者執行設定檔編輯時，我們想要：
 
-1. 查閱外部系統中的 hello 使用者。
-2. 收到 hello 縣 （市） 在已註冊該使用者。
-3. 傳回當做宣告該屬性 toohello 應用程式。
+1. 查閱外部系統中的使用者。
+2. 取得註冊該使用者的城市。
+3. 以宣告形式將該屬性傳回應用程式。
 
 ## <a name="prerequisites"></a>必要條件
 
-- Sign-up/登入中, 所述的本機帳戶的 Azure AD B2C 租用戶設定 toocomplete[入門](active-directory-b2c-get-started-custom.md)。
-- 使用 REST API 端點 toointeract。 本逐步解說使用簡單的 Azure 函式應用程式 Webhook 作為範例。
-- *建議*： 完整 hello [REST API 宣告交換逐步解說中的為每個驗證步驟](active-directory-b2c-rest-api-validation-custom.md)。
+- 如[開始使用](active-directory-b2c-get-started-custom.md)所述，設定為完成本機帳戶註冊/登入的 Azure AD B2C 租用戶。
+- 要互動的 REST API 端點。 本逐步解說使用簡單的 Azure 函式應用程式 Webhook 作為範例。
+- *建議*︰完成 [REST API 宣告交換逐步解說以作為驗證步驟](active-directory-b2c-rest-api-validation-custom.md)。
 
-## <a name="step-1-prepare-hello-rest-api-function"></a>步驟 1： 準備 hello REST API 函式
+## <a name="step-1-prepare-the-rest-api-function"></a>步驟 1：準備 REST API 函式
 
 > [!NOTE]
-> 安裝程式的 REST API 函式是在這篇文章 hello 範圍之外。 [Azure 函數](https://docs.microsoft.com/azure/azure-functions/functions-reference)toocreate hello 雲端中的 rest 式服務提供絕佳的工具組。
+> REST API 函式的設定不在本文討論範圍內。 [Azure Functions](https://docs.microsoft.com/azure/azure-functions/functions-reference) 提供了絕佳的工具組，供您在雲端建立 RESTful 服務。
 
-我們已將接收的宣告稱為 Azure 函式設定`email`，然後傳回 hello 宣告和`city`hello 分派值是`Redmond`。 hello 範例 Azure 函式位於[GitHub](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies/tree/master/AzureFunctionsSamples)。
+我們設定了 Azure 函式來接收名為 `email` 的宣告，然後傳回指派值為 `Redmond` 的宣告 `city`。 範例 Azure 函式位於 [GitHub](https://github.com/Azure-Samples/active-directory-b2c-advanced-policies/tree/master/AzureFunctionsSamples) 上。
 
-hello `userMessage` hello Azure 函式傳回的宣告是選擇性的在此內容中，而且 hello IEF 將會忽略它。 您可以使用它的訊息傳遞 toohello 應用程式，並稍後所述 toohello 使用者。
+在此內容中，Azure 函式所傳回的 `userMessage` 宣告是選擇性的，IEF 將予以略過。 您可以選擇使用它作為訊息，以便稍後傳遞給應用程式並向使用者呈現。
 
 ```csharp
 if (requestContentAsJObject.email == null)
@@ -78,14 +78,14 @@ return request.CreateResponse<ResponseContent>(
     "application/json");
 ```
 
-Azure 的函式應用程式可容易 tooget hello 函式 URL，包括 hello 識別碼 hello 特定函式。 在此情況下，hello URL 是： https://wingtipb2cfuncs.azurewebsites.net/api/LookUpLoyaltyWebHook?code=MQuG7BIE3eXBaCZ/YCfY1SHabm55HEphpNLmh1OP3hdfHkvI2QwPrw==。 您可以使用它來測試。
+Azure 函式應用程式可讓您輕鬆地取得函式 URL，此 URL 中包含特定函式的識別碼。 在此案例中，URL 是︰https://wingtipb2cfuncs.azurewebsites.net/api/LookUpLoyaltyWebHook?code=MQuG7BIE3eXBaCZ/YCfY1SHabm55HEphpNLmh1OP3hdfHkvI2QwPrw==。 您可以使用它來測試。
 
-## <a name="step-2-configure-hello-restful-api-claims-exchange-as-a-technical-profile-in-your-trustframeworextensionsxml-file"></a>步驟 2： 設定 hello RESTful API 宣告交換為技術 TrustFrameworExtensions.xml 檔案中設定檔
+## <a name="step-2-configure-the-restful-api-claims-exchange-as-a-technical-profile-in-your-trustframeworextensionsxml-file"></a>步驟 2：在 TrustFrameworExtensions.xml 檔案中，將 RESTful API 宣告交換設為技術設定檔
 
-技術的設定檔是 hello 的 hello exchange 以 hello RESTful 服務所需的完整設定。 開啟 hello TrustFrameworkExtensions.xml 檔案並加入下列 XML 程式碼片段 hello hello`<ClaimsProvider>`項目。
+技術設定檔是 RESTful 服務所需之交換的完整設定。 開啟 TrustFrameworkExtensions.xml 檔案，然後在 `<ClaimsProvider>` 元素內加入下列 XML 程式碼片段。
 
 > [!NOTE]
-> 在下列 XML，RESTful 的提供者的 hello`Version=1.0.0.0`即稱為 hello 通訊協定。 將其視為與 hello 外部服務互動的 hello 函式。 <!-- TODO: A full definition of hello schema can be found...link tooRESTful Provider schema definition>-->
+> 在下列 XML 中，會將 RESTful 提供者 `Version=1.0.0.0` 描述為通訊協定。 請將它視為要與外部服務互動的函式。 <!-- TODO: A full definition of the schema can be found...link to RESTful Provider schema definition>-->
 
 ```XML
 <ClaimsProvider>
@@ -111,18 +111,18 @@ Azure 的函式應用程式可容易 tooget hello 函式 URL，包括 hello 識�
 </ClaimsProvider>
 ```
 
-hello`<InputClaims>`項目會定義會將傳送嗨 IEF toohello REST 服務的 hello 宣告。 在此範例中，hello hello 宣告的內容`givenName`toohello REST 服務以傳送 hello 宣告`email`。  
+`<InputClaims>` 元素會定義將從 IEF 傳送至 REST 服務的宣告。 在此範例中，會將 `givenName` 宣告的內容傳送至 REST 服務以作為宣告 `email`。  
 
-hello`<OutputClaims>`項目會定義 hello 宣告該 hello IEF 就會預期收到來自 hello REST 服務。 Hello 數目所接收的宣告，不論 hello IEF 將會使用僅限於識別這裡。 在此範例中，宣告收到`city`將對應的 tooan IEF 宣告呼叫`city`。
+`<OutputClaims>` 元素會定義 IEF 預期要從 REST 服務收到的宣告。 不論收到多少宣告，IEF 只會使用這裡所識別的宣告。 在此範例中，以 `city` 形式收到的宣告會對應到名為 `city` 的 IEF 宣告。
 
-## <a name="step-3-add-hello-new-claim-city-toohello-schema-of-your-trustframeworkextensionsxml-file"></a>步驟 3： 加入 hello 新宣告`city`toohello TrustFrameworkExtensions.xml 檔案結構描述
+## <a name="step-3-add-the-new-claim-city-to-the-schema-of-your-trustframeworkextensionsxml-file"></a>步驟 3：將新的宣告 `city` 新增至 TrustFrameworkExtensions.xml 檔案的結構描述
 
-hello 宣告`city`尚未定義任何地方我們的結構描述中。 因此，加入在 hello 項目內定義`<BuildingBlocks>`。 您可以找到這個 hello hello TrustFrameworkExtensions.xml 檔案開頭處的項目。
+宣告 `city` 尚未在結構描述的其他地方加以定義。 因此，請在元素 `<BuildingBlocks>` 內部新增定義。 您可以在 TrustFrameworkExtensions.xml 檔案開頭處找到此元素。
 
 ```XML
 <BuildingBlocks>
-    <!--hello claimtype city must be added toohello TrustFrameworkPolicy-->
-    <!-- You can add new claims in hello BASE file Section III, or in hello extensions file-->
+    <!--The claimtype city must be added to the TrustFrameworkPolicy-->
+    <!-- You can add new claims in the BASE file Section III, or in the extensions file-->
     <ClaimsSchema>
         <ClaimType Id="city">
             <DisplayName>City</DisplayName>
@@ -134,14 +134,14 @@ hello 宣告`city`尚未定義任何地方我們的結構描述中。 因此，�
 </BuildingBlocks>
 ```
 
-## <a name="step-4-include-hello-rest-service-claims-exchange-as-an-orchestration-step-in-your-profile-edit-user-journey-in-trustframeworkextensionsxml"></a>步驟 4： 為協調流程中的步驟設定檔編輯使用者旅程中 TrustFrameworkExtensions.xml 包含 hello REST 服務宣告交換
+## <a name="step-4-include-the-rest-service-claims-exchange-as-an-orchestration-step-in-your-profile-edit-user-journey-in-trustframeworkextensionsxml"></a>步驟 4：在 TrustFrameworkExtensions.xml 的設定檔編輯使用者旅程圖中，將 REST 服務宣告交換納入為協調流程步驟
 
-將步驟加入 toohello 設定檔編輯使用者之旅，hello 使用者之後，驗證 （協調流程的步驟 1-4 hello 下列 XML 中），且 hello 使用者提供更新的 hello 設定檔資訊 （步驟 5）。
+在使用者通過驗證之後新增設定檔編輯使用者旅程圖的步驟 (下列 XML 中的協調流程步驟 1-4)，而且使用者已提供更新的設定檔資訊 (步驟 5)。
 
 > [!NOTE]
-> 有許多的使用案例，其中 hello REST API 呼叫可用來當作協調流程步驟。 在協調流程的步驟中，它可用來當作更新 tooan 外部系統使用者順利完成的工作，像是第一次註冊之後，或為設定檔更新 tookeep 資訊同步。 在此情況下，它是使用的 tooaugment hello 資訊之後，編輯 hello 設定檔中提供 toohello 應用程式。
+> 有許多使用案例都可將 REST API 呼叫用來作為協調流程步驟。 作為協調流程步驟，它可在使用者成功完成工作 (例如首次註冊) 後作為外部系統的更新，或作為設定檔更新以讓資訊保持同步。 在此情況下，它會用來加強設定檔編輯之後提供給應用程式的資訊。
 
-複製 hello 設定檔編輯使用者之旅 XML 程式碼從 hello TrustFrameworkBase.xml tooyour TrustFrameworkExtensions.xml 檔案內 hello`<UserJourneys>`項目。 請在 步驟 6 hello 修改。
+將設定檔編輯使用者旅程圖 XML 程式碼從 TrustFrameworkBase.xml 檔案複製到 `<UserJourneys>` 元素內的 TrustFrameworkExtensions.xml 檔案。 然後在步驟 6 中進行修改。
 
 ```XML
 <OrchestrationStep Order="6" Type="ClaimsExchange">
@@ -152,9 +152,9 @@ hello 宣告`city`尚未定義任何地方我們的結構描述中。 因此，�
 ```
 
 > [!IMPORTANT]
-> 如果 hello 順序不符合您的版本，請確定您以 hello 步驟 hello 之前插入 hello 程式碼`ClaimsExchange`類型`SendClaims`。
+> 如果操作順序不符合您的版本，請確定和該步驟一樣在 `ClaimsExchange` 類型 `SendClaims` 前插入程式碼。
 
-hello hello 使用者作業的最終 XML 看起來應該像這樣：
+使用者旅程圖的最終 XML 看起來應該像這樣：
 
 ```XML
 <UserJourney Id="ProfileEdit">
@@ -200,7 +200,7 @@ hello hello 使用者作業的最終 XML 看起來應該像這樣：
                 <ClaimsExchange Id="B2CUserProfileUpdateExchange" TechnicalProfileReferenceId="SelfAsserted-ProfileUpdate" />
             </ClaimsExchanges>
         </OrchestrationStep>
-        <!-- Add a step 6 toohello user journey before hello JWT token is created-->
+        <!-- Add a step 6 to the user journey before the JWT token is created-->
         <OrchestrationStep Order="6" Type="ClaimsExchange">
             <ClaimsExchanges>
                 <ClaimsExchange Id="GetLoyaltyData" TechnicalProfileReferenceId="AzureFunctions-LookUpLoyaltyWebHook" />
@@ -212,11 +212,11 @@ hello hello 使用者作業的最終 XML 看起來應該像這樣：
 </UserJourney>
 ```
 
-## <a name="step-5-add-hello-claim-city-tooyour-relying-party-policy-file-so-hello-claim-is-sent-tooyour-application"></a>步驟 5： 加入 hello 宣告`city`tooyour 信賴憑證者的合作對象原則檔案，因此會傳送 hello 宣告 tooyour 應用程式
+## <a name="step-5-add-the-claim-city-to-your-relying-party-policy-file-so-the-claim-is-sent-to-your-application"></a>步驟 5：將宣告 `city` 新增至您的信賴憑證者原則檔案，以便將宣告傳送至您的應用程式
 
-編輯您 ProfileEdit.xml 信賴憑證者的合作對象 (RP) 檔和修改 hello`<TechnicalProfile Id="PolicyProfile">`元素 tooadd hello 下列： `<OutputClaim ClaimTypeReferenceId="city" />`。
+請編輯您的 ProfileEdit.xml 信賴憑證者 (RP) 檔案，並修改 `<TechnicalProfile Id="PolicyProfile">` 元素以新增下列內容︰`<OutputClaim ClaimTypeReferenceId="city" />`。
 
-您將加入 hello 新宣告之後，hello 技術設定檔看起來像這樣：
+新增宣告之後，技術設定檔看起來像這樣：
 
 ```XML
 <DisplayName>PolicyProfile</DisplayName>
@@ -231,15 +231,15 @@ hello hello 使用者作業的最終 XML 看起來應該像這樣：
 
 ## <a name="step-6-upload-your-changes-and-test"></a>步驟 6：上傳您的變更和測試
 
-覆寫 hello 現有 hello 原則版本。
+覆寫現有的原則版本。
 
-1.  (選擇性:)儲存 hello 現有版本 （下載） 的延伸模組檔案後再繼續。 tookeep hello 初始複雜性低，我們建議您不要上傳多個版本的 hello 延伸模組檔案。
-2.  (選擇性:)藉由變更命名新版 hello 原則編輯檔案的 hello 原則識別碼 hello `PolicyId="B2C_1A_TrustFrameworkProfileEdit"`。
-3.  上傳 hello 延伸模組檔案。
-4.  Hello 原則編輯 RP 檔案上傳。
-5.  使用**立即執行**tootest hello 原則。 Hello IEF 檢閱 hello 語彙基元傳回 toohello 應用程式。
+1.  (選擇性：) 繼續之前，請先儲存擴充檔案的現有版本 (透過下載)。 建議您不要上傳多個擴充檔案版本，以免一開始的複雜性太高。
+2.  (選擇性：) 藉由變更 `PolicyId="B2C_1A_TrustFrameworkProfileEdit"`，來為原則編輯檔案重新命名原則識別碼的新版本。
+3.  上傳擴充檔案。
+4.  上傳原則編輯 RP 檔案。
+5.  使用 [立即執行] 來測試原則。 檢閱 IEF 傳回給應用程式的權杖。
 
-如果所有項目已正確設定時，hello 權杖會包含 hello 新宣告`city`，hello 值`Redmond`。
+如果一切設定皆正確，權杖會包含新的宣告 `city`，且值為 `Redmond`。
 
 ```JSON
 {
@@ -261,4 +261,4 @@ hello hello 使用者作業的最終 XML 看起來應該像這樣：
 
 [使用 REST API 來作為驗證步驟](active-directory-b2c-rest-api-validation-custom.md)
 
-[修改 hello 設定檔編輯 toogather 的其他資訊從您的使用者](active-directory-b2c-create-custom-attributes-profile-edit-custom.md)
+[修改設定檔編輯以從使用者收集其他資訊](active-directory-b2c-create-custom-attributes-profile-edit-custom.md)

@@ -1,6 +1,6 @@
 ---
-title: "從 Linux VM-Azure 資料磁碟 aaaDetach |Microsoft 文件"
-description: "了解 toodetach 從虛擬機器使用 CLI 2.0 或 hello Azure 入口網站在 Azure 中的資料磁碟。"
+title: "從 Linux VM 中斷資料磁碟連結 | Microsoft Docs"
+description: "了解如何使用 CLI 2.0 或 Azure 入口網站，從 Azure 中的虛擬機器中斷資料磁碟連結。"
 services: virtual-machines-linux
 documentationcenter: 
 author: cynthn
@@ -15,22 +15,22 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 03/21/2017
 ms.author: cynthn
-ms.openlocfilehash: 1c6145fc97f13179457225e93e0fb7adc261a65b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3f29547e1da6028b1e4b91d9e29fd3bcdfe08d50
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toodetach-a-data-disk-from-a-linux-virtual-machine"></a>Toodetach 資料從 Linux 虛擬機器的磁碟
+# <a name="how-to-detach-a-data-disk-from-a-linux-virtual-machine"></a>如何從 Linux 虛擬機器中斷資料磁碟連結
 
-當您不再需要的資料磁碟附加的 tooa 虛擬機器時，您可以輕易地中斷。 這會從 hello 虛擬機器，移除 hello 磁碟，但並不會移除從儲存體。 
+當不再需要某個連接至虛擬機器的資料磁碟時，卸離此資料磁碟很簡單。 這會將磁碟從虛擬機器中卸離，但這不會將它從儲存體中移除。 
 
 > [!WARNING]
-> 將磁碟中斷連結時，並不會自動將它刪除。 如果您已訂閱 tooPremium 儲存體，您將繼續 tooincur hello 磁碟的儲存體費用。 如需詳細資訊，請參閱太[定價和計費時使用進階儲存體](../../storage/common/storage-premium-storage.md#pricing-and-billing)。 
+> 將磁碟中斷連結時，並不會自動將它刪除。 如果您已訂閱「進階」儲存體，您將會繼續因該磁碟而導致產生儲存體費用。 如需詳細資訊，請參閱 [使用進階儲存體時的價格和計費](../../storage/common/storage-premium-storage.md#pricing-and-billing)。 
 > 
 > 
 
-若要再次 toouse hello 現有資料 hello 磁碟上的，您可以將它重新附加 toohello 相同的虛擬機器或另一個。  
+如果您想要再次使用磁碟上現有的資料，您可以將磁碟重新連接至相同或其他虛擬機器。  
 
 ## <a name="detach-a-data-disk-using-cli-20"></a>使用 CLI 2.0 中斷資料磁碟連結
 
@@ -38,19 +38,19 @@ ms.lasthandoff: 10/06/2017
 az vm disk detach -g myResourceGroup --vm-name myVm -n myDataDisk
 ```
 
-hello 磁碟留在儲存體，但已不再附加的 tooa 虛擬機器。
+磁碟仍留在儲存體中，但不再連接至虛擬機器。
 
 
-## <a name="detach-a-data-disk-using-hello-portal"></a>卸離資料磁碟使用 hello 入口網站
-1. 在 hello 入口網站的中樞，選取 **虛擬機器**。
-2. 選取 hello hello toodetach 然後按一下資料磁碟的虛擬機器**停止**toodeallocate hello VM。
-3. 在 hello 虛擬機器刀鋒視窗中，選取 **磁碟**。
-4. 頂端的 hello hello**磁碟**刀鋒視窗中，選取**編輯**。
-5. 在 [hello**磁碟**刀鋒視窗中，最右邊的 hello 資料磁碟，您想 toodetach，toohello 按一下 hello![卸離按鈕影像](./media/detach-disk/detach.png)卸離] 按鈕。
-5. Hello 磁碟已被移除後，按一下 [儲存] hello hello 刀鋒視窗的頂端。
-6. 在 hello 虛擬機器刀鋒視窗中，按一下 **概觀**然後按一下hello**啟動**在 hello 刀鋒視窗 toorestart hello VM hello 最上方的按鈕。
+## <a name="detach-a-data-disk-using-the-portal"></a>使用入口網站來中斷資料磁碟連結
+1. 在入口網站中樞中，選取 [虛擬機器] 。
+2. 選取含有您想要中斷連結之資料磁碟的虛擬機器，然後按一下 [停止] 以解除配置該 VM。
+3. 在 [虛擬機器] 刀鋒視窗中，選取 [磁碟]。
+4. 在 [磁碟] 刀鋒視窗頂端，選取 [編輯]。
+5. 在 [磁碟] 刀鋒視窗中，在您想要中斷連結的資料磁碟最右側，按一下 ![中斷連結按鈕影像](./media/detach-disk/detach.png) 中斷連結按鈕。
+5. 移除磁碟之後，按一下刀鋒視窗頂端的 [儲存]。
+6. 在 [虛擬機器] 刀鋒視窗中，按一下 [概觀]，然後按一下刀鋒視窗頂端的 [啟動] 按鈕以重新啟動 VM。
 
-hello 磁碟留在儲存體，但已不再附加的 tooa 虛擬機器。
+磁碟仍留在儲存體中，但不再連接至虛擬機器。
 
 
 
@@ -60,5 +60,5 @@ hello 磁碟留在儲存體，但已不再附加的 tooa 虛擬機器。
 
 
 ## <a name="next-steps"></a>後續步驟
-如果您想 tooreuse hello 資料磁碟時，您可以直接[將它附加 tooanother VM](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+如果您想要重複使用該資料磁碟，只要[將它連結至另一個 VM](add-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
 

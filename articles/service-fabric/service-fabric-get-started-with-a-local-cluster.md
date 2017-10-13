@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy 和升級在本機執行 Azure microservices |Microsoft 文件"
-description: "了解本機的 Service Fabric 叢集，tooset 部署現有的應用程式 tooit，和再升級該應用程式的方式。"
+title: "在本機部署和升級 Azure 微服務 | Microsoft Docs"
+description: "了解如何設定本機 Service Fabric 叢集、將現有的應用程式部署至該叢集，然後升級該應用程式。"
 services: service-fabric
 documentationcenter: .net
 author: rwike77
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/13/2017
 ms.author: ryanwi;mikhegn
-ms.openlocfilehash: e5f5adc9edb71433b2a7635e9d661ff92a4b18ec
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 359677972c7e1fa3f7435052021ddfae5b1ed85e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="get-started-with-deploying-and-upgrading-applications-on-your-local-cluster"></a>在您的本機叢集上開始部署和升級應用程式
-hello Azure Service Fabric SDK 包含的完整本機開發環境，您可以使用 tooquickly 開始部署及管理本機叢集上的應用程式。 本文中，您可以建立本機叢集，部署現有的應用程式 tooit，然後再升級應用程式 tooa 新的版本，所有從 Windows PowerShell。
+Azure Service Fabric SDK 包含完整的本機開發環境，可讓您快速地在本機叢集上開始部署和管理應用程式。 在本文中，您會從 Windows PowerShell 建立本機叢集、將現有的應用程式部署至該叢集，然後將應用程式升級為新版本。
 
 > [!NOTE]
 > 本文假設您已經 [設定開發環境](service-fabric-get-started.md)。
@@ -29,11 +29,11 @@ hello Azure Service Fabric SDK 包含的完整本機開發環境，您可以使�
 > 
 
 ## <a name="create-a-local-cluster"></a>建立本機叢集
-Service Fabric 叢集代表一組您可以部署應用程式的硬體資源。 一般而言，叢集所組成的任何位置從五個 toomany 數以千計的機器。 不過，hello Service Fabric SDK 包含可以在單一電腦執行的叢集設定。
+Service Fabric 叢集代表一組您可以部署應用程式的硬體資源。 通常，叢集是由任意數量的電腦 (從 5 部到數千部) 所組成。 不過，Service Fabric SDK 包含可在一部電腦上執行的叢集組態。
 
-請務必 toounderstand hello Service Fabric 本機叢集，並不是模擬器。 它執行 hello 多電腦叢集找到的相同平台程式碼。 hello 唯一的差異在於，它會執行 hello 平台的處理程序通常會分散到一部電腦上的五個機器。
+請務必了解 Service Fabric 本機叢集不是模擬器。 它會執行在多部電腦的叢集上找到的相同平台程式碼。 唯一的差別在於它會在一部電腦上執行通常分散於五部電腦的平台程序。
 
-hello SDK 提供本機叢集的兩個方式 tooset: Windows PowerShell 指令碼和 hello 本機叢集管理員 系統匣應用程式。 在此教學課程中，我們會使用 hello PowerShell 指令碼。
+SDK 提供兩種方式來設定本機叢集：Windows PowerShell 指令碼和 [本機叢集管理員] 系統匣應用程式。 在本教學課程中，我們會使用 PowerShell 指令碼。
 
 > [!NOTE]
 > 如果您已藉由從 Visual Studio 部署應用程式來建立本機叢集，您可以略過本節。
@@ -41,7 +41,7 @@ hello SDK 提供本機叢集的兩個方式 tooset: Windows PowerShell 指令碼
 > 
 
 1. 以系統管理員身分啟動新的 PowerShell 視窗。
-2. 從 hello SDK 資料夾中執行 hello 叢集安裝指令碼：
+2. 從 SDK 資料夾執行叢集設定指令碼：
    
     ```powershell
     & "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1"
@@ -51,109 +51,109 @@ hello SDK 提供本機叢集的兩個方式 tooset: Windows PowerShell 指令碼
    
     ![叢集設定輸出][cluster-setup-success]
    
-    現在您已經準備就緒 tootry 部署應用程式 tooyour 叢集。
+    您現在已準備好將應用程式部署至您的叢集。
 
 ## <a name="deploy-an-application"></a>部署應用程式
-hello Service Fabric SDK 包含一組豐富的架構和開發人員工具建立應用程式。 如果您想要了解如何 toocreate 應用程式，在 Visual Studio 中，請參閱[Visual Studio 中建立 Service Fabric 應用程式第一次](service-fabric-create-your-first-application-in-visual-studio.md)。
+Service Fabric SDK 包含一組豐富的架構以及用來建立應用程式的開發人員工具。 如果您有興趣學習如何在 Visual Studio 中建立應用程式，請參閱 [在 Visual Studio 中建立第一個 Service Fabric 應用程式](service-fabric-create-your-first-application-in-visual-studio.md)。
 
-在此教學課程中，您使用現有的範例應用程式 （稱為 WordCount），讓您可以專注於 hello 管理方面 hello 平台： 部署、 監視及升級。
+在本教學課程中，您會使用現有的範例應用程式 (稱為 WordCount)，如此您即可專注於平台的管理層面：部署、監視及升級。
 
 1. 以系統管理員身分啟動新的 PowerShell 視窗。
-2. 匯入 hello Service Fabric SDK PowerShell 模組。
+2. 匯入 Service Fabric SDK PowerShell 模組。
    
     ```powershell
     Import-Module "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\Tools\PSModule\ServiceFabricSDK\ServiceFabricSDK.psm1"
     ```
-3. 建立會在下載及部署，例如 C:\ServiceFabric 目錄 toostore hello 應用程式。
+3. 建立目錄以儲存您下載和部署的應用程式，例如 C:\ServiceFabric。
    
     ```powershell
     mkdir c:\ServiceFabric\
     cd c:\ServiceFabric\
     ```
-4. [下載 hello WordCount 應用程式](http://aka.ms/servicefabric-wordcountapp)toohello 您所建立的位置。  注意： hello Microsoft Edge 瀏覽器 hello 會將檔案儲存與*.zip*延伸模組。  也變更 hello 副檔名*.sfpkg*。
-5. 連接 toohello 本機叢集：
+4. [將 WordCount 應用程式下載](http://aka.ms/servicefabric-wordcountapp) 至您建立的位置。  注意︰Microsoft Edge 瀏覽器會使用 .zip  副檔名來儲存檔案。  請將副檔名變更為 .sfpkg 。
+5. 連接到本機叢集：
    
     ```powershell
     Connect-ServiceFabricCluster localhost:19000
     ```
-6. 建立新的應用程式使用的名稱和路徑 toohello 應用程式套件的 hello SDK 的部署命令。
+6. 使用 SDK 的部署命令來建立新的應用程式，並提供應用程式套件的名稱和路徑。
    
     ```powershell  
    Publish-NewServiceFabricApplication -ApplicationPackagePath c:\ServiceFabric\WordCountV1.sfpkg -ApplicationName "fabric:/WordCount"
     ```
    
-    如果一切順利，您應該會看到下列輸出的 hello:
+    如果順利執行，您應該會看到如下的輸出：
    
-    ![部署應用程式 toohello 本機叢集][deploy-app-to-local-cluster]
-7. toosee hello 應用程式的動作，啟動 hello 瀏覽器，並瀏覽過[http://localhost:8081/wordcount/index.html](http://localhost:8081/wordcount/index.html)。 您應該會看到：
+    ![將應用程式部署至本機叢集][deploy-app-to-local-cluster]
+7. 若要查看動作中的應用程式，請啟動瀏覽器並瀏覽至 [http://localhost:8081/wordcount/index.html](http://localhost:8081/wordcount/index.html)。 您應該會看到：
    
     ![部署應用程式 UI][deployed-app-ui]
    
-    hello WordCount 應用程式很簡單。 它包含用戶端 JavaScript 程式碼 toogenerate 隨機五個字元"字組 」，然後是轉送 toohello 透過 ASP.NET Web API 的應用程式。 可設定狀態的服務會追蹤 hello 計算的字組的數目。 它們會分割 hello 的 hello word 的第一個字元為基礎。 您可以在 hello hello WordCount 應用程式找到 hello 原始程式碼[傳統使用者入門範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/WordCount)。
+    WordCount 應用程式很簡單。 它包含的用戶端 JavaScript 程式碼可產生隨機五個字元的「單字」，這些字接著會透過 ASP.NET Web API 轉送至應用程式。 具狀態服務會追蹤已計算的字數。 這些單字會根據單字的第一個字元進行分割。 您可以在[傳統快速入門範例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/WordCount)中找到 WordCount 應用程式的原始程式碼。
    
-    我們所部署的 hello 應用程式包含四個資料分割。 以 A 到 G 開頭的單字會儲存在 hello 第一個資料分割，因此與透過 N H 開頭的單字會儲存在 hello 第二個資料分割，依此類推。
+    我們所部署的應用程式包含四個資料分割。 所以開頭為 A 到 G 的單字會儲存在第一個磁碟分割中，而開頭為 N 到 H 的單字會儲存在第二個資料分割中，依此類推。
 
 ## <a name="view-application-details-and-status"></a>檢視應用程式詳細資料和狀態
-既然我們已部署的 hello 應用程式，讓我們看看一些在 PowerShell 中的 hello 應用程式詳細資料。
+我們現已部署應用程式，讓我們在 PowerShell 中看看一些應用程式詳細資料。
 
-1. 查詢 hello 叢集上的所有已部署應用程式：
+1. 查詢叢集上所有已部署的應用程式：
    
     ```powershell
     Get-ServiceFabricApplication
     ```
    
-    假設您只有部署 hello WordCount 應用程式，您會看到類似的項目：
+    假設您只部署 WordCount 應用程式，您會看到類似下面的內容：
    
     ![在 PowerShell 中查詢所有已部署的應用程式][ps-getsfapp]
-2. 藉由查詢 hello 組包含在 hello WordCount 應用程式的服務移 toohello 下一個層級。
+2. 查詢 WordCount 應用程式中包含的服務集合，進而移至下一個層級。
    
     ```powershell
     Get-ServiceFabricService -ApplicationName 'fabric:/WordCount'
     ```
    
-    ![在 PowerShell 中的 hello 應用程式的清單服務][ps-getsfsvc]
+    ![在 PowerShell 中列出應用程式的服務][ps-getsfsvc]
    
-    hello 應用程式是由兩個服務、 hello web 前端，hello 可設定狀態服務，可管理 hello 文字所組成。
-3. 最後，查看 hello 清單的資料分割的 WordCountService:
+    此應用程式是由兩個服務所組成：Web 前端服務以及可管理文字的具狀態服務。
+3. 最後，看看 WordCountService 的資料分割清單：
    
     ```powershell
     Get-ServiceFabricPartition 'fabric:/WordCount/WordCountService'
     ```
    
-    ![在 PowerShell 中檢視 hello 服務分割][ps-getsfpartitions]
+    ![在 PowerShell 中檢視服務資料分割][ps-getsfpartitions]
    
-    hello 的使用，例如所有 Service Fabric PowerShell 命令的命令集，您可能會連線至本機或遠端任何叢集無法進行。
+    您所使用的命令集 (例如所有的 Service Fabric PowerShell 命令) 適用於任何您可能連接的叢集 (本機或遠端)。
    
-    對於與 hello 叢集更視覺化的方式 toointeract，您可以使用 hello web 為基礎的 Service Fabric 總管工具瀏覽過[http://localhost:19080/總管](http://localhost:19080/Explorer)hello 瀏覽器中。
+    若要以更具視覺效果的方式來與叢集互動，您可以在瀏覽器中瀏覽至 [http://localhost:19080/Explorer](http://localhost:19080/Explorer) ，以使用 Web 型 Service Fabric 總管工具。
    
     ![在 Service Fabric 總管中檢視應用程式詳細資料][sfx-service-overview]
    
    > [!NOTE]
-   > toolearn 進一步了解 Service Fabric 總管，請參閱[視覺化您的叢集，利用 Service Fabric Explorer](service-fabric-visualizing-your-cluster.md)。
+   > 若要深入了解 Service Fabric Explorer，請參閱 [使用 Service Fabric Explorer 視覺化叢集](service-fabric-visualizing-your-cluster.md)。
    > 
    > 
 
 ## <a name="upgrade-an-application"></a>升級應用程式
-Service Fabric 提供無停機時間升級，藉由監視便會復原整個 hello 叢集 hello hello 應用程式的健全狀況。 執行 hello WordCount 應用程式的升級。
+Service Fabric 會在應用程式推展於叢集時監視其健康狀態，進而提供不需停機的升級。 執行 WordCount 應用程式的升級。
 
-hello 新版 hello 應用程式現在會計算某個母音以開頭的單字。 因為 hello 升級中推出，我們會看到兩個 hello 應用程式的行為變更。 首先，hello 速率 hello 計數成長速率應該變慢，因為較少的字詞會被計算。 第二，由於 hello 第一個資料分割都有兩個母音 （A 和 E） 及所有其他資料分割只包含一個每個，計數應該最後開始 toooutpace hello 其他人。
+新版的應用程式現在只會計算以母音開頭的單字。 進行升級時，我們會看到應用程式的行為出現兩項變更。 第一，計數成長的速率應該變慢，因為計算的單字比較少。 第二，由於第一個資料分割有兩個母音 (A 和 E)，而其他每個資料分割只包含一個母音，其計數最後應該會開始超越其他資料分割。
 
-1. [下載 hello WordCount 第 2 版封裝](http://aka.ms/servicefabric-wordcountappv2)toohello 下載 hello 第 1 版套件的相同位置。
-2. 傳回 tooyour PowerShell 視窗，並使用 hello SDK tooregister hello hello 叢集中的新版本升級 命令。 然後開始升級 hello fabric: / WordCount 應用程式。
+1. [將 WordCount 第 2 版套件下載](http://aka.ms/servicefabric-wordcountappv2) 到您下載第 1 版套件的相同位置。
+2. 返回 PowerShell 視窗並使用 SDK 的升級命令在叢集中註冊新版本。 然後開始升級 fabric:/WordCount 應用程式。
    
     ```powershell
     Publish-UpgradedServiceFabricApplication -ApplicationPackagePath C:\ServiceFabric\WordCountV2.sfpkg -ApplicationName "fabric:/WordCount" -UpgradeParameters @{"FailureAction"="Rollback"; "UpgradeReplicaSetCheckTimeout"=1; "Monitored"=$true; "Force"=$true}
     ```
    
-    您應該會看到如 hello 升級輸出在 PowerShell 中的 hello 下列開始。
+    開始升級時，您應該會在 PowerShell 中看到下列輸出。
    
     ![在 PowerShell 中的升級進度][ps-appupgradeprogress]
-3. 繼續 hello 升級時，您可能會發現它更容易 toomonitor 其狀態從 Service Fabric 總管。 啟動瀏覽器視窗並瀏覽過[http://localhost:19080/總管](http://localhost:19080/Explorer)。 展開**應用程式**在 hello 左側 hello 樹狀目錄，然後選擇  **WordCount**，最後再**fabric: / WordCount**。 Hello essentials 索引標籤中，您會看到 hello hello 升級狀態，透過 hello 叢集的升級網域進行時。
+3. 當升級正在進行時，您可能會發現從 Service Fabric 總管監視其狀態更加輕鬆。 啟動瀏覽器視窗並瀏覽至 [http://localhost:19080/Explorer](http://localhost:19080/Explorer)。 展開左邊樹狀目錄中的 [應用程式]，然後選擇 [WordCount]，最後選擇 [fabric:/WordCount]。 在 [基本功能] 索引標籤中，您會在升級繼續進行叢集的升級網域時的狀態。
    
     ![在 Service Fabric 總管中的升級進度][sfx-upgradeprogress]
    
-    Hello 升級繼續進行到每個網域，是執行的 hello 應用程式運作不正確的 tooensure 健康情況檢查。
-4. 如果您重新執行 hello 先前查詢的 hello 組 hello 網狀架構中的服務: / WordCount 應用程式，請注意，hello WordCountService 版本已變更，但 hello WordCountWebService 版本不提供支援：
+    透過每個網域繼續升級時，系統會執行健康狀態檢查，以確保應用程式運作正常。
+4. 如果您對 fabric:/WordCount 應用程式中的服務集合重新執行先前的查詢，請注意，雖然 WordCountService 版本已變更，但 WordCountWebService 版本維持不變：
    
     ```powershell
     Get-ServiceFabricService -ApplicationName 'fabric:/WordCount'
@@ -161,52 +161,52 @@ hello 新版 hello 應用程式現在會計算某個母音以開頭的單字。 
    
     ![在升級後查詢應用程式服務][ps-getsfsvc-postupgrade]
    
-    此範例強調 Service Fabric 如何管理應用程式升級。 它所接觸只有 hello 的一組服務 （或在這些服務的程式碼/組態套件） 已變更，會使升級更快速且更可靠的 hello 程序。
-5. 最後，傳回 toohello hello 新版應用程式的瀏覽器 tooobserve hello 行為。 如預期般，速度變慢，hello 計數進展和 hello 第一個分割區最後會有稍微多個 hello 磁碟區。
+    此範例強調 Service Fabric 如何管理應用程式升級。 只會影響已變更的服務 (或這些服務中的程式碼/組態套件) 集合，讓升級程序變得更快速且更可靠。
+5. 最後，返回瀏覽器來觀察新應用程式版本的行為。 如同預期，計數進度比較緩慢，而第一個磁碟分割最後會有稍微多一些的磁碟區。
    
-    ![檢視 hello 新版本的 hello hello 瀏覽器中的應用程式][deployed-app-ui-v2]
+    ![在瀏覽器中檢視新版的應用程式][deployed-app-ui-v2]
 
 ## <a name="cleaning-up"></a>清除
-包裝之前，這是很重要 hello 本機叢集的 tooremember 真實。 應用程式繼續 toorun hello 背景中，直到您將它們移除。  根據您的應用程式的 hello 本質，執行中應用程式可能佔用大量的資源，您的電腦上。 您有數個選項 toomanage 應用程式和 hello 叢集：
+在我們做結論之前，請務必記得本機叢集是真實的。 應用程式會繼續在背景中執行，直到您將它們移除。  視應用程式的本質而定，執行中應用程式可能會佔用您電腦上的大量資源。 您有數個選項可管理應用程式和叢集：
 
-1. tooremove 個別的應用程式及其所有的資料，執行下列命令的 hello:
+1. 若要移除個別應用程式及其所有資料，請執行下列命令︰
    
     ```powershell
     Unpublish-ServiceFabricApplication -ApplicationName "fabric:/WordCount"
     ```
    
-    或者，您也可以從 hello Service Fabric 總管刪除 hello 應用程式**動作**功能表或 hello hello 左側的應用程式清單檢視中的內容功能表。
+    或者，從 Service Fabric Explorer 的 [動作] 功能表或左窗格中應用程式清單檢視的內容功能表來刪除應用程式。
    
     ![在 Service Fabric 總管中刪除應用程式][sfe-delete-application]
-2. 刪除之後 hello 應用程式從 hello 叢集中，移除註冊 1.0.0 和 2.0.0 的 hello WordCount 應用程式類型版本。 刪除作業會移除 hello 應用程式封裝，包括 hello 程式碼和組態，從 hello 叢集映像存放區。
+2. 在叢集中刪除應用程式之後，將 WordCount 應用程式類型的 1.0.0 和 2.0.0 版取消註冊。 刪除作業會從叢集的映像存放區中移除應用程式套件，包括程式碼和設定。
    
     ```powershell
     Remove-ServiceFabricApplicationType -ApplicationTypeName WordCount -ApplicationTypeVersion 2.0.0
     Remove-ServiceFabricApplicationType -ApplicationTypeName WordCount -ApplicationTypeVersion 1.0.0
     ```
    
-    或者，您也可以在 Service Fabric 總管] 中，選擇 [**解除佈建類型**hello 應用程式。
-3. 按一下 向下 hello 叢集但保留 hello 應用程式資料，然後追蹤、 tooshut**停止本機叢集**hello 系統匣應用程式中。
-4. 完全，按一下 toodelete hello 叢集**移除本機叢集**hello 系統匣應用程式中。 此選項將會導致其他慢速部署 hello 下次您在 Visual Studio 中按下 F5。 只有當您不想在 toouse 這段時間，或如果您需要 tooreclaim 資源，移除 hello 本機叢集。
+    或者，在 Service Fabric Explorer 中為應用程式選擇 [解除佈建類型]  。
+3. 若要關閉叢集，但保留應用程式資料及追蹤，請按一下系統匣應用程式中的 [停止本機叢集]  。
+4. 若要完全刪除叢集，請按一下系統匣應用程式中的 [移除本機叢集]  。 此選項會導致下次您在 Visual Studio 中按 F5 鍵時發生其他緩慢部署。 只有在您計劃一陣子不使用本機叢集或者需要回收資源時，才將本機叢集移除。
 
 ## <a name="one-node-and-five-node-cluster-mode"></a>1 個節點和 5 個節點叢集模式
-開發應用程式時，您常會發現自己快速反覆撰寫程式碼、偵錯、變更程式碼和偵錯。 toohelp 最佳化這個程序，hello 本機叢集可以執行兩種模式： 其中一個節點或五個節點。 這兩個叢集模式各有優點。 五個節點的叢集模式可讓您 toowork 與實際的叢集。 您可以測試容錯移轉案例，使用更多您的服務的執行個體和複本。 最佳化的 toodo 快速部署和註冊服務，toohelp 您快速驗證程式碼使用 hello Service Fabric 執行階段的單一節點叢集模式。
+開發應用程式時，您常會發現自己快速反覆撰寫程式碼、偵錯、變更程式碼和偵錯。 為了協助最佳化這個程序，本機叢集可以用兩種模式執行︰1 個節點或 5 節點。 這兩個叢集模式各有優點。 5 個節點叢集模式可讓您使用實際的叢集。 您可以測試容錯移轉案例，使用更多您的服務的執行個體和複本。 1 個節點叢集模式已最佳化，可進行服務的快速部署和註冊，進而協助您使用 Service Fabric 執行階段快速驗證程式碼。
 
-1 個節點叢集或 5 個節點叢集模式皆不是模擬器。 hello 本機開發叢集執行 hello 多電腦叢集找到的相同平台程式碼。
+1 個節點叢集或 5 個節點叢集模式皆不是模擬器。 本機開發叢集會執行在多部電腦的叢集上找到的相同平台程式碼。
 
 > [!WARNING]
-> 當您變更 hello 叢集模式時，從系統移除 hello 目前叢集，並建立新的叢集。 當您變更叢集模式時，會刪除 hello hello 叢集中儲存的資料。
+> 變更叢集模式時，目前的叢集會從您的系統移除，而建立新的叢集。 當您變更叢集模式時，在叢集中儲存的資料會遭到刪除。
 > 
 > 
 
-toochange hello 模式 tooone 節點的叢集，選取**切換叢集模式**hello 服務網狀架構本機叢集管理員中。
+若要將模式變更為 1 個節點叢集，請選取 Service Fabric 本機叢集管理員中的**交換器叢集模式**。
 
 ![切換叢集模式][switch-cluster-mode]
 
-或者，使用 PowerShell 變更 hello 叢集模式：
+或者，您也可以使用 PowerShell 變更叢集模式︰
 
 1. 以系統管理員身分啟動新的 PowerShell 視窗。
-2. 從 hello SDK 資料夾中執行 hello 叢集安裝指令碼：
+2. 從 SDK 資料夾執行叢集設定指令碼：
    
     ```powershell
     & "$ENV:ProgramFiles\Microsoft SDKs\Service Fabric\ClusterSetup\DevClusterSetup.ps1" -CreateOneNodeCluster
@@ -218,8 +218,8 @@ toochange hello 模式 tooone 節點的叢集，選取**切換叢集模式**hell
 
 ## <a name="next-steps"></a>後續步驟
 * 您現在已部署並升級某些預先建置的應用程式，您可以 [嘗試在 Visual Studio 中建立自己的應用程式](service-fabric-create-your-first-application-in-visual-studio.md)。
-* 本文章中的 hello 本機叢集上執行的所有 hello 動作可都對[Azure 叢集概略](service-fabric-cluster-creation-via-portal.md)以及。
-* 我們執行本文中的 hello 升級為基本。 請參閱 hello[升級文件](service-fabric-application-upgrade.md)toolearn 更多關於 hello 功能及彈性的 Service Fabric 升級。
+* 本文中在本機叢集上執行的所有動作也可以在 [Azure 叢集](service-fabric-cluster-creation-via-portal.md) 上執行。
+* 本文中執行的是基本升級。 若要深入了解 Service Fabric 升級的功用和彈性，請參閱 [升級文件](service-fabric-application-upgrade.md) 。
 
 <!-- Images -->
 

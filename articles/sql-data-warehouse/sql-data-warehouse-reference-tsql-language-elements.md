@@ -1,6 +1,6 @@
 ---
-title: "aaaSQL 資料倉儲 TRANSACT-SQL 語言項目 |Microsoft 文件"
-description: "使用 SQL 資料倉儲的 hello TRANSACT-SQL 語言項目的連結 tooreference 內容的清單。"
+title: "SQL 資料倉儲 Transact-SQL Language 元素 | Microsoft Docs"
+description: "SQL 資料倉儲所使用的 Transact-SQL Language 元素的參考內容連結清單。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: kevinvngo
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: reference
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
-ms.openlocfilehash: db7500b2a1f69a9e3dccddafd27a9cd0d95f9baf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7a20cd8f3c2f304d12a49755dbe6e04f9b1d36df
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="language-elements"></a>語言元素
 ## <a name="core-elements"></a>核心元素
@@ -57,7 +57,7 @@ ms.lasthandoff: 10/06/2017
 * [/ (除)](https://msdn.microsoft.com/library/ms175009.aspx)
 * [模數](https://msdn.microsoft.com/library/ms190279.aspx)
 
-## <a name="wildcard-characters-toomatch"></a>萬用字元的字元 toomatch
+## <a name="wildcard-characters-to-match"></a>相配的萬用字元
 * [= (等於)](https://msdn.microsoft.com/library/ms175118.aspx)
 * [> (大於)](https://msdn.microsoft.com/library/ms178590.aspx)
 * [< (小於)](https://msdn.microsoft.com/library/ms179873.aspx)

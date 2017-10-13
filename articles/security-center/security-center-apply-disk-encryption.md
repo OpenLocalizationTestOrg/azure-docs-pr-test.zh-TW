@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 資訊安全中心 aaaApply 磁碟加密 |Microsoft 文件"
-description: "本文件說明如何 tooimplement hello Azure 資訊安全中心建議事項 * * 適用於磁碟加密 * *。"
+title: "在 Azure 資訊安全中心中套用磁碟加密 | Microsoft Docs"
+description: "本文件說明如何實作 Azure 資訊安全中心建議的「套用磁碟加密」。"
 services: security-center
 documentationcenter: na
 author: TerryLanfear
@@ -14,53 +14,53 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/02/2017
 ms.author: terrylan
-ms.openlocfilehash: cd803f1120018c5c86da91186eec1e59d425ede7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 67cff664f3723b2194ecd1519729cca17069d07f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="apply-disk-encryption-in-azure-security-center"></a>在 Azure 資訊安全中心中套用磁碟加密
-如果您有未使用 Azure 磁碟加密進行加密的 Windows 或 Linux VM 磁碟，Azure 資訊安全中心會建議您套用磁碟加密。 磁碟加密可讓您替 Windows 和 Linux IaaS VM 磁碟加密。  加密是建議使用 hello OS 和 VM 上的資料磁碟區。
+如果您有未使用 Azure 磁碟加密進行加密的 Windows 或 Linux VM 磁碟，Azure 資訊安全中心會建議您套用磁碟加密。 磁碟加密可讓您替 Windows 和 Linux IaaS VM 磁碟加密。  建議您的 VM 上的作業系統和資料磁碟區都進行加密。
 
-磁碟加密使用 hello 業界標準[BitLocker](https://technet.microsoft.com/library/cc732774.aspx)功能的 Windows 和 hello [DM Crypt](https://en.wikipedia.org/wiki/Dm-crypt) Linux 的功能。 這些功能會提供作業系統，而且資料加密 toohelp 保護並保護您的資料符合您組織的安全性和相容性的承諾。 磁碟加密與整合[Azure 金鑰保存庫](https://azure.microsoft.com/documentation/services/key-vault/)toohelp 您控制，和管理您金鑰保存庫的訂用帳戶，同時確保 hello VM 磁碟中的所有資料會留在您都加密中的hello磁碟加密金鑰和密碼[Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/)。
+磁碟加密使用 Windows 的業界標準 [BitLocker](https://technet.microsoft.com/library/cc732774.aspx) 功能和 Linux 的 [DM-Crypt](https://en.wikipedia.org/wiki/Dm-crypt)功能。 這些功能為 OS 和資料提供加密來協助保護資料安全，以符合您的組織安全性和合規性承諾。 磁碟加密與 [Azure 金鑰保存庫](https://azure.microsoft.com/documentation/services/key-vault/)整合，可幫助您控制和管理您的金鑰保存庫訂用帳戶中的磁碟加密金鑰和密碼，同時確保 VM 磁碟中的所有資料會在您的 [Azure 儲存體](https://azure.microsoft.com/documentation/services/storage/)中輕鬆加密。
 
 > [!NOTE]
-> 支援下列 Windows 伺服器作業系統-Windows Server 2008 R2、 Windows Server 2012 和 Windows Server 2012 R2 的 hello azure 磁碟加密。 磁碟加密支援下列 Linux 伺服器作業系統-Ubuntu、 CentOS、 SUSE 和 SUSE Linux Enterprise Server (SLES) hello。
+> 下列 Windows 伺服器作業系統支援 Azure 磁碟加密 - Windows Server 2008 R2、Windows Server 2012 和 Windows Server 2012 R2。 下列 Linux 伺服器作業系統支援磁碟加密 - Ubuntu、CentOS、SUSE 和 SUSE Linux Enterprise Server (SLES)。
 >
 >
 
-## <a name="implement-hello-recommendation"></a>實作 hello 建議
-1. 在 hello**建議**刀鋒視窗中，選取**套用磁碟加密**。
-2. 在 hello**套用磁碟加密**刀鋒視窗中，您會看到一份磁碟加密建議您的 Vm。
-3. 請遵循 hello 指示 tooapply 加密 toothese Vm。
+## <a name="implement-the-recommendation"></a>實作建議
+1. 在 [建議] 刀鋒視窗中，選取 [套用磁碟加密]。
+2. 在 [套用磁碟加密]  刀鋒視窗中，您會看到建議進行磁碟加密的 VM 清單。
+3. 依照指示將加密套用至這些 VM。
 
 ![][1]
 
-tooencrypt 已經由資訊安全中心識別為需要加密的 Azure 虛擬機器，我們建議 hello 下列步驟：
+若要加密已由資訊安全中心識別為需要加密的 Azure 虛擬機器，建議您執行下列步驟︰
 
-* 安裝並設定 Azure PowerShell。 這可讓您 toorun hello PowerShell 命令需要的 tooset hello 必要條件需要 tooencrypt Azure 虛擬機器上。
-* 取得並執行 hello Azure 磁碟加密必要條件 Azure PowerShell 指令碼。
+* 安裝並設定 Azure PowerShell。 這可讓您執行必要的 PowerShell 命令，以便設定用來加密 Azure 虛擬機器的必要條件。
+* 取得並執行 Azure 磁碟加密先決條件 Azure PowerShell 指令碼。
 * 加密虛擬機器。
 
-[加密 Azure 虛擬機器](security-center-disk-encryption.md)逐步引導您完成這些步驟。  本主題假設您使用 Windows 10 做 hello 用戶端電腦，您可以從此處設定磁碟加密。
+[加密 Azure 虛擬機器](security-center-disk-encryption.md)逐步引導您完成這些步驟。  本主題假設您使用 Windows 10 做為用戶端電腦，並從中設定磁碟加密。
 
-有許多方法可以用於 Azure 虛擬機器。 如果您已精通 Azure PowerShell 或 Azure CLI 中，您可能偏好 toouse 替代方式。 toolearn 有關這些其他方法，請參閱[Azure 磁碟加密](../security/azure-security-disk-encryption.md)。
+有許多方法可以用於 Azure 虛擬機器。 如果您已經很熟悉 Azure PowerShell 或 Azure CLI，可能會想要使用其他方法。 若要深入了解其他這些方法，請參閱 [Azure 磁碟加密](../security/azure-security-disk-encryption.md)。
 
 ## <a name="see-also"></a>另請參閱
-這份文件範例說明了如何 tooimplement 會 hello 資訊安全中心建議 」 套用磁碟加密 」。 toolearn 進一步了解磁碟加密，請參閱 hello 下列資訊：
+本文件說明如何實作 Azure 資訊安全中心建議的「套用磁碟加密」。 若要深入了解磁碟加密，請參閱下列主題：
 
-* [使用 Azure 金鑰保存庫的加密和金鑰管理](https://azure.microsoft.com/documentation/videos/azurecon-2015-encryption-and-key-management-with-azure-key-vault/)（視訊、 36 min 39 秒）-深入了解如何 toouse 磁碟加密管理的 IaaS Vm 和 Azure 金鑰保存庫 toohelp 保護，並保護您的資料。
-* [加密 Azure 虛擬機器](security-center-disk-encryption.md)（文件）-深入了解如何 tooencrypt Azure 虛擬機器。
-* [Azure 磁碟加密](../security/azure-security-disk-encryption.md)（文件）-深入了解如何 tooenable 磁碟適用於 Windows 和 Linux Vm 的加密。
+* [Azure 金鑰保存庫的加密和金鑰管理](https://azure.microsoft.com/documentation/videos/azurecon-2015-encryption-and-key-management-with-azure-key-vault/) (影片，36 分 39 秒) -- 了解如何使用 IaaS VM 和 Azure 金鑰保存庫的磁碟加密管理功能，協助保護您的資料。
+* [加密 Azure 虛擬機器](security-center-disk-encryption.md) (文件) - 了解如何加密 Azure 虛擬機器。
+* [Azure 磁碟加密](../security/azure-security-disk-encryption.md) (文件) -- 了解如何為 Windows 和 Linux VM 啟用磁碟加密。
 
-toolearn 有關資訊安全中心的詳細資訊，請參閱 hello 下列資訊：
+如要深入了解資訊安全中心，請參閱下列主題：
 
-* [在 Azure 資訊安全中心中設定安全性原則](security-center-policies.md)-了解如何 tooconfigure 安全性原則。
-* [在 Azure 資訊安全中心中的安全性健全狀況監視](security-center-monitoring.md)-了解如何 toomonitor hello 您的 Azure 資源的健全狀況。
-* [在 Azure 資訊安全中心警示管理，而且有回應 toosecurity](security-center-managing-and-responding-alerts.md) -了解如何 toomanage 和回應 toosecurity 警示。
-* [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助保護您的 Azure 資源。
-* [Azure 資訊安全中心常見問題集](security-center-faq.md)-尋找使用 hello 服務相關的常見問題集。
+* [設定 Azure 資訊安全中心的安全性原則](security-center-policies.md) -- 了解如何設定安全性原則。
+* [Azure 資訊安全中心的安全性健康狀態監視](security-center-monitoring.md) -- 了解如何監視 Azure 資源的健康狀態。
+* [管理與回應 Azure 資訊安全中心的安全性警示](security-center-managing-and-responding-alerts.md) -- 了解如何管理與回應安全性警示。
+* [管理 Azure 資訊安全中心的安全性建議](security-center-recommendations.md) -- 了解建議如何協助您保護您的 Azure 資源。
+* [Azure 安全性中心常見問題集](security-center-faq.md) -- 尋找使用服務的常見問題。
 * [Azure 安全性部落格](http://blogs.msdn.com/b/azuresecurity/) -- 尋找有關 Azure 安全性與相容性的部落格文章。
 
 <!--Image references-->

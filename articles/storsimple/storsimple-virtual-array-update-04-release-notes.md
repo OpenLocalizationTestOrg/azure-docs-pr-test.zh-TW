@@ -1,6 +1,6 @@
 ---
-title: "aaaStorSimple 虛擬陣列更新 0.4 版本資訊 |Microsoft 文件"
-description: "描述重要開啟問題和解決 hello StorSimple Virtual Array 執行更新 0.4。"
+title: "StorSimple Virtual Array Update 0.4 版本資訊| Microsoft Docs"
+description: "描述執行 Update 0.4 之 StorSimple Virtual Array 的重大未決問題和解決方式。"
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,74 +14,74 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/05/2017
 ms.author: alkohli
-ms.openlocfilehash: 1fd174ff483f4f7b1b4a7853c9d9573d1e948cb4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cc2b025b7f3e28954c7f95409ffab03e5cbcf13d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="storsimple-virtual-array-update-04-release-notes"></a>StorSimple Virtual Array Update 0.4 版本資訊
 
 ## <a name="overview"></a>概觀
 
-hello 下列版本資訊找出 hello 重大開啟問題並 hello 更新 Microsoft Azure StorSimple Virtual Array 已解決的問題。
+下列版本資訊指出 Microsoft Azure StorSimple Virtual Array 更新的重大未決問題和已解決問題。
 
-hello 版本資訊會持續更新，並在發現需要因應措施的重大問題時，會加入。 部署 StorSimple 虛擬陣列之前，請仔細檢閱 hello hello 版本資訊中所包含的資訊。
+版本資訊會持續更新，並在發現需要提出因應措施的重大問題時有所增補。 部署 StorSimple Virtual Array 之前，請仔細檢閱版本資訊中所含的資訊。
 
-更新 0.4 對應 toohello 軟體版本**10.0.10289.0**。
+Update 0.4 與軟體版本 **10.0.10289.0** 對應。
 
 > [!NOTE]
-> 更新是干擾性作業，會重新啟動您的裝置。 如果正在進行中的 I/O，hello 裝置會產生停機時間。
+> 更新是干擾性作業，會重新啟動您的裝置。 如果 I/O 正在進行中，裝置就會停機。
 
 
-## <a name="whats-new-in-hello-update-04"></a>新功能更新 0.4 hello
-Update 0.4 是主要的錯誤修正組建，而且包含一些加強功能。 在此版本中，導致備份失敗 hello 前一版中的數個 bug 已解決。 hello 主要增強功能和 bug 修正如下：
+## <a name="whats-new-in-the-update-04"></a>Update 0.4 的新增功能
+Update 0.4 是主要的錯誤修正組建，而且包含一些加強功能。 在此版本中，已修正數個在舊版中導致備份失敗的錯誤。 主要加強功能錯誤修正如下：
 
-- **備份效能增強功能**-此版本中進行了幾個索引鍵增強功能 tooimprove hello 備份效能。 如此一來，hello 備份包含大量的檔案，請參閱大幅縮小程式 hello 時間 toocomplete，完整和增量備份。
+- **備份效能加強功能** - 此版本已進行數個重大加強功能，以改進備份效能。 因此，牽涉到大量檔案備份的時間將能大幅縮短，不論是完整備份或增量備份都是這樣。
 
-- **增強式還原效能**-此版本包含增強功能，可使用大量的檔案時，會大幅提升 hello 還原效能。 如果使用 2-4 百萬個檔案，我們建議您佈建的虛擬陣列 16 GB RAM toosee hello 的增強功能。 當使用少於 2 百萬個檔案，hello hello 虛擬機器的最小需求繼續 toobe 8 GB RAM。
+- **加強的還原效能** - 此版本包含大幅改進大量檔案還原效能的加強功能。 若使用 2 - 4 百萬個檔案，建議您佈建具有 16 GB RAM 的虛擬陣列，看看改良功能的表現。 使用少於 2 百萬個檔案時，虛擬機器的最低需求仍然是 8 GB RAM。
 
-- **改進 tooSupport 封裝**-hello 增強功能，包括登入 hello 磁碟、 CPU、 記憶體、 網路和雲端到 hello 支援封裝，從而提升 hello 的診斷/偵錯裝置問題的程序的統計資料。
+- **對支援套件的改良** - 改良包括將磁碟、CPU、記憶體、網路與雲端的統計資料記錄到支援套件，進而改進診斷/偵錯裝置問題的程序。
 
-- **限制在本機固定的 iSCSI 磁碟區 too200 GB** -本機固定磁碟區，我們建議您在您的 StorSimple Virtual Array 限制 tooa 200 GB iSCSI 磁碟區。 toobe 10%的 hello 佈建磁碟區大小，但的上限為 200 GB，則會繼續 hello 階層式磁碟區的本機保留項目。 
+- **限制本機固定 iSCSI 磁碟區為 200 GB** - 對於本機固定磁碟區，建議您在 StorSimple Virtual Array 上限制為 200 GB iSCSI 磁碟區。 分層磁碟區的本機保留仍為已佈建磁碟區大小的 10 %，但上限為 200 GB。 
 
-- **備份相關的 bug 修正**-在舊版的軟體，提供了有問題的相關的 toobackups，可能導致備份失敗。 此版本已修正這些錯誤。
+- **備份相關錯誤修正** - 在舊版軟體中，有一些備份相關問題會導致備份失敗。 此版本已修正這些錯誤。
 
 
-## <a name="issues-fixed-in-hello-update-04"></a>Hello 0.4 更新中修正的問題
+## <a name="issues-fixed-in-the-update-04"></a>Update 0.4 中修正的問題
 
-hello 下表提供此版本中修正問題的摘要。
+下表提供本版已修正問題的摘要。
 
-| 否。 | 功能 | 問題 |
+| 編號 | 功能 | 問題 |
 | --- | --- | --- |
-| 1 |備份效能|在 hello 較早的版本中 hello 備份包含大量的檔案會花費很長的時間 toocomplete （依 hello 的天數）。 在此版本中，hello 完整和增量備份，請參閱 hello 時間 toocompletion 明顯降低。 |
-| 2 |支援封裝|磁碟、 CPU、 記憶體、 網路和雲端統計資料現在會記錄在 toohello 支援檔進行疑難排解任何裝置問題非常有效 hello 支援封裝中。|
-| 3 |備份 |在舊版中，長時間執行的備份可能會導致空間無暇 hello 導致備份失敗的裝置上。 在此版本中解決這個問題，藉由使用不超過 5 備份 tooqueue 一次。|
-| 4 |iSCSI | 在較早的版本，hello 的階層式或本機固定磁碟區的本機保留會是 hello 佈建磁碟區大小的 10%。 在此版本中，hello 本機保留所有 iSCSI 磁碟區 （本機釘選或階層） 是有限的 too10%期高達最多 200 GB （對於分層磁碟區大於 2 TB） 藉此釋放更多的空間 hello 本機磁碟上。 建議您在此版本中的 hello 固定在本機磁碟區是有限的 too200 GB。|
+| 1 |備份效能|在舊版中，牽涉到大量檔案的備份可能需要非常長的時間才能完成 (數以天計)。 在此版本中，完整與增量備份的完成時間將會大幅縮短。 |
+| 2 |支援封裝|磁碟、CPU、記憶體、網路與雲端統計資料現在會記錄到支援記錄檔，讓支援套件在支援人員針對任何裝置問題進行疑難排解時發揮效用。|
+| 3 |備份 |在舊版中，長時間執行的備份會導致裝置空間耗盡，進而造成備份失敗。 此版本已解決此錯誤，因為現在會將一次可排入佇列的備份數目限制為 5 個。|
+| 4 |iSCSI | 在舊版中，分層或本機固定磁碟區的保留是已佈建磁碟區大小的 10%。 在此版本中，所有 iSCSI 磁碟區 (本機固定或分層) 的本機保留限制為 10 %，且上限為 200 GB (對於大於 2 TB 的分層磁碟區)，因此可讓本機磁碟有更多空間。 建議您在此版本中將本機固定磁碟區限制為 200 GB。|
 
 
-## <a name="known-issues-in-hello-update-04"></a>Hello 0.4 更新中的已知的問題
+## <a name="known-issues-in-the-update-04"></a>Update 0.4 的已知問題
 
-hello 下表提供的已知問題摘要 hello StorSimple Virtual Array 並包含 hello hello 舊版本的版本記錄的問題。 
+下表提供 StorSimple Virtual Array 的已知問題摘要，並包含舊版所列的問題。 
 
 | 否。 | 功能 | 問題 | 因應措施/註解 |
 | --- | --- | --- | --- |
-| **1.** |更新 |hello hello 預覽版本中建立的虛擬裝置不能更新的 tooa 支援公開上市版本。 |這些虛擬裝置必須容錯 hello 公開上市版本使用災害復原 (DR) 工作流程。 |
-| **2.** |佈建的資料磁碟 |一旦您已佈建資料磁碟的某些指定的大小並建立 hello 對應 StorSimple 虛擬裝置，您必須展開或壓縮 hello 資料磁碟。 嘗試在 hello hello 裝置的本機層級中所有的 hello 資料遺失 toodo 結果。 | |
-| **3.** |群組原則 |當裝置已加入網域時，套用群組原則可能會影響 hello 裝置作業。 |確定您的虛擬陣列是自己 Active Directory 的組織單位 (OU) 中並沒有群組原則物件 (GPO) 套用的 tooit。 |
+| **1.** |更新 |預覽版中所建立的虛擬裝置無法更新為支援的正式運作版本。 |必須針對正式運作版本使用災害復原 (DR) 工作流程容錯移轉這些虛擬裝置。 |
+| **2.** |佈建的資料磁碟 |佈建特定指定大小的資料磁碟並建立對應的 StorSimple 虛擬裝置之後，不得展開或壓縮資料磁碟。 嘗試執行會導致裝置本機層中的所有資料遺失。 | |
+| **3.** |群組原則 |若裝置已加入網域，套用群組原則可能會對裝置運作產生不良的影響。 |確定您的虛擬陣列位於它自己的 Active Directory 組織單位 (OU) 中，且沒有套用群組原則物件 (GPO)。 |
 | **4.** |本機 Web UI |Internet Explorer (IE ESC) 如有啟用增強式安全性功能，部分本機 Web UI 頁面 (例如 [疑難排解] 或 [維護]) 可能無法正常運作。 這些頁面上的按鈕也可能無法運作。 |關閉 Internet Explorer 中的增強式安全性功能。 |
-| **5.** |本機 Web UI |在 HYPER-V 虛擬機器，hello hello web UI 會顯示為 10 Gbps 介面中的網路介面。 |這個行為是 Hyper-V 的反射。 Hyper-V 一律會將虛擬網路介面卡顯示為 10 Gbps。 |
-| **6.** |階層式磁碟區或共用 |不支援位元組範圍鎖定處理 hello StorSimple 分層磁碟區的應用程式。 如果啟用位元組範圍鎖定，則 StorSimple 分層無法運作。 |建議的方法包括︰ <br></br>關閉應用程式邏輯中的位元組範圍鎖定。<br></br>選擇此應用程式的 tooput 資料在本機固定磁碟區相對於的 tootiered 磁碟區。<br></br>*需要注意*:，即使之前已完成 hello 還原時使用本機固定磁碟區，且位元組範圍鎖定已啟用，hello 固定在本機磁碟區可以是線上。 在這種情況下，如果還原正在進行中，則您必須等待 hello 還原 toocomplete。 |
-| **7.** |階層式共用 |使用大型檔案可能會導致緩慢分層輸出。 |當使用大型檔案，我們建議您該 hello 最大檔案為小於 3 hello 共用大小的百分比。 |
-| **8.** |共用的已使用容量 |您可能會看見 hello 共用上的任何資料時，共用耗用量。 這是因為共用的 hello 使用容量包括中繼資料。 | |
-| **9.** |災害復原 |您只能執行 hello 災害復原的檔案伺服器 toohello 與 hello 來源裝置相同的網域。 在此版本中不支援災害復原 tooa 另一個網域中的目標裝置。 |新版本將會實作這個功能。 |
-| **10.** |Azure PowerShell |無法透過此版本中的 hello Azure PowerShell 管理 hello StorSimple 虛擬裝置。 |您可以透過 hello Azure 傳統入口網站和 hello 本機 web UI 完成所有 hello 管理 hello 虛擬裝置。 |
-| **11.** |密碼變更 |hello 虛擬陣列裝置主控台只會接受 EN-US 鍵盤格式中的輸入。 | |
-| **12.** |CHAP |CHAP 認證一經建立，即無法移除。 此外，如果您修改 hello CHAP 認證，需要 tootake hello 磁碟區離線，然後使其上線 hello 變更 tootake 效果。 |新版本將會解決此問題。 |
-| **13.** |iSCSI 伺服器 |hello '使用的存放裝置' 顯示的 iSCSI 磁碟區可能會不同 hello StorSimple Manager 服務和 hello iSCSI 主機中。 |hello iSCSI 主機有 hello filesystem 檢視。<br></br>hello 裝置會看見 hello hello 的磁碟區是在 hello 大小上限時配置的區塊。 |
-| **14.** |檔案伺服器 |如果資料夾的檔案中有替代資料流 （廣告） 與其相關聯，hello 廣告未備份或還原透過災害復原、 複製和項目層級復原。 | |
+| **5.** |本機 Web UI |在 Hyper-V 虛擬機器中，Web UI 中的網路介面會顯示為 10 Gbps 介面。 |這個行為是 Hyper-V 的反射。 Hyper-V 一律會將虛擬網路介面卡顯示為 10 Gbps。 |
+| **6.** |階層式磁碟區或共用 |不支援使用 StorSimple 階層式磁碟區之應用程式的位元組範圍鎖定。 如果啟用位元組範圍鎖定，則 StorSimple 分層無法運作。 |建議的方法包括︰ <br></br>關閉應用程式邏輯中的位元組範圍鎖定。<br></br>選擇將這個應用程式的資料放在固定在本機的磁碟區中，而非階層式磁碟區。<br></br>警告：使用固定在本機的磁碟區，並啟用位元組範圍鎖定時，固定在本機的磁碟區可以上線，即使在還原完成之前也是一樣。 在這種情況下，如果正在還原，則必須等待還原完成。 |
+| **7.** |階層式共用 |使用大型檔案可能會導致緩慢分層輸出。 |使用大型檔案時，建議最大檔案不要超過共用大小的 3%。 |
+| **8.** |共用的已使用容量 |您可能會在共用上沒有任何資料時看到共用耗用量。 原因是共用的已使用容量包括中繼資料。 | |
+| **9.** |災害復原 |您只能對與來源裝置網域相同的網域執行檔案伺服器的災害復原。 這個版本不支援另一個網域中目標裝置的災害復原。 |新版本將會實作這個功能。 |
+| **10.** |Azure PowerShell |在這版本中，無法透過 Azure PowerShell 管理 StorSimple 虛擬裝置。 |所有虛擬裝置的管理應該透過 Azure 傳統入口網站和本機 Web UI 來完成。 |
+| **11.** |密碼變更 |虛擬陣列裝置主控台僅接受美式鍵盤格式的輸入。 | |
+| **12.** |CHAP |CHAP 認證一經建立，即無法移除。 此外，如果您修改 CHAP 認證，就必須先讓磁碟區離線再上線，變更才會生效。 |新版本將會解決此問題。 |
+| **13.** |iSCSI 伺服器 |顯示在 iSCSI 磁碟區的 [使用的儲存體] 在 StorSimple Manager 服務與 iSCSI 主機中可能不同。 |ISCSI 主機具有檔案系統檢視。<br></br>裝置會在達到磁碟區大小上限時，看到所配置的區塊。 |
+| **14.** |檔案伺服器 |如果資料夾中的檔案中有與其相關聯的替代資料流 (ADS)，就不會透過災害復原、複製和項目層級復原來備份或還原 ADS。 | |
 | **15.** |檔案伺服器 |不支援符號連結。 | |
-| **16.** |檔案伺服器 |檔案受保護的 Windows 加密檔案系統 (EFS) 時透過複製或儲存在 hello StorSimple Virtual Array 檔案伺服器會造成不支援的組態中。  | |
+| **16.** |檔案伺服器 |如果將 Windows 加密檔案系統 (EFS) 保護的檔案複製或儲存到 StorSimple 虛擬陣列檔案伺服器，將會導致不支援的組態。  | |
 
 ## <a name="next-step"></a>後續步驟
 在您的 StorSimple Virtual Array 上[安裝 Update 0.4](storsimple-virtual-array-install-update-04.md)。

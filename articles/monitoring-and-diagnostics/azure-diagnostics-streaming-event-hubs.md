@@ -1,6 +1,6 @@
 ---
-title: "使用事件中心的 hello 最忙碌路徑中的 Azure 診斷資料 aaaStreaming |Microsoft 文件"
-description: "設定 Azure 診斷使用事件中心結束 tooend，包括常見案例的指引。"
+title: "使用事件中樞串流最忙碌路徑中的 Azure 診斷資料 | Microsoft Docs"
+description: "使用事件中樞設定 Azure 診斷的完整步驟，包括常見案例的指引。"
 services: event-hubs
 documentationcenter: na
 author: rboucher
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/13/2017
 ms.author: robb
-ms.openlocfilehash: a2528ddd0688d1c23a8631e769ca016dd79e4159
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1c05bd6dc4c4d394aa043b9995de9c184e4f14c6
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="streaming-azure-diagnostics-data-in-hello-hot-path-by-using-event-hubs"></a>使用事件中心的 hello 最忙碌路徑中的資料流 Azure 診斷資料
-Azure 診斷功能提供彈性的方式可以 toocollect 度量資訊，並記錄從雲端服務的虛擬機器 (Vm)，然後傳送結果 tooAzure 儲存體。 Hello 年 3 月 2016 (SDK 2.9) 的時間範圍從開始，您可以傳送診斷 toocustom 資料來源和使用，以秒為單位傳送最忙碌路徑資料[Azure 事件中心](https://azure.microsoft.com/services/event-hubs/)。
+# <a name="streaming-azure-diagnostics-data-in-the-hot-path-by-using-event-hubs"></a>使用事件中樞串流最忙碌路徑中的 Azure 診斷資料
+Azure 診斷會提供彈性的方法，用來收集來自雲端服務虛擬機器 (VM) 的度量和記錄檔，再將結果傳輸至 Azure 儲存體。 從 2016 年 3 月 (SDK 2.9) 的時間範圍開始，您可以使用 [Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)，將 Azure 診斷傳送至自訂的資料來源，並立即傳輸最忙碌路徑資料。
 
 支援的資料類型包括：
 
@@ -31,25 +31,25 @@ Azure 診斷功能提供彈性的方式可以 toocollect 度量資訊，並記�
 * 應用程式記錄檔
 * Azure 診斷基礎結構記錄檔
 
-本文章將示範如何從事件中心 tooconfigure Azure 診斷結束 tooend。 也提供下列常見的案例 hello 的指導方針：
+本文說明如何使用事件中樞從端對端設定 Azure 診斷。 另提供以下常見案例的指引：
 
-* Toocustomize hello 的記錄檔和傳送 tooEvent 集線器的度量
-* 如何在每個環境中的 toochange 組態
-* Tooview 事件中心資料的串流
-* 如何 tootroubleshoot hello 連線  
+* 如何自訂傳送到事件中樞的記錄檔和計量
+* 如何變更每個環境中的組態
+* 如何檢視事件中樞串流資料
+* 如何針對連線問題進行疑難排解  
 
 ## <a name="prerequisites"></a>必要條件
-事件中心 receieving 資料從 Azure 診斷的雲端服務、 Vm、 虛擬機器擴展集及啟動 Azure SDK 2.9 hello 和 hello 對應 Azure Tools for Visual Studio 中的 Service Fabric 支援。
+雲端服務、VM、虛擬機器擴展集，以及 Azure SDK 2.9 開始的 Service Fabric 和對應的 Azure Tools for Visual Studio，皆支援從 Azure 診斷接收資料的事件中樞。
 
 * Azure 診斷擴充 1.6 ([Azure SDK for. NET 2.9 或更新版本](https://azure.microsoft.com/downloads/) 預設以此為目標)
 * [Visual Studio 2013 或更新版本](https://www.visualstudio.com/downloads/download-visual-studio-vs.aspx)
-* Azure 診斷的應用程式使用中的現有組態*.wadcfgx*檔案以及其中一個 hello 下列方法：
+* 在應用程式中使用 *.wadcfgx* 檔案和以下任一方法的 Azure 診斷現有組態：
   * Visual Studio： [為 Azure 雲端服務和虛擬機器設定診斷功能](../vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines.md)
   * Windows PowerShell： [使用 PowerShell 在 Azure 雲端服務中啟用診斷](../cloud-services/cloud-services-diagnostics-powershell.md)
-* 事件中樞命名空間佈建每個 hello 發行項，[事件中心快速入門](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
+* 文章中佈建的事件中樞命名空間，[開始使用事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
 
-## <a name="connect-azure-diagnostics-tooevent-hubs-sink"></a>連接 Azure 診斷 tooEvent 中心接收
-根據預設，Azure 診斷一律會傳送記錄檔和度量 tooan Azure 儲存體帳戶。 應用程式可能還會傳送資料 tooEvent 中心透過新增**接收**下 hello 區段**PublicConfig** / **WadCfg** hello元素*.wadcfgx*檔案。 在 Visual Studio 中的 hello *.wadcfgx*檔案會儲存在下列路徑的 hello:**雲端服務專案** > **角色** > **(RoleName)** > **diagnostics.wadcfgx**檔案。
+## <a name="connect-azure-diagnostics-to-event-hubs-sink"></a>將 Azure 診斷連接至事件中樞接收
+根據預設，Azure 診斷一律會將記錄檔和計量傳送至 Azure 儲存體帳戶。 應用程式可能會將資料傳送至事件中樞，方法是將新的 [接收] 區段新增至 *.wadcfgx* 檔案的 **PublicConfig** / **WadCfg** 元素底下。 在 Visual Studio 中，*.wadcfgx* 檔案會儲存在以下路徑：[雲端服務專案] > [角色] > **(RoleName)** > **diagnostics.wadcfgx** 檔案。
 
 ```xml
 <SinksConfig>
@@ -72,18 +72,18 @@ Azure 診斷功能提供彈性的方式可以 toocollect 度量資訊，並記�
 }
 ```
 
-在此範例中，hello 事件中樞設定 URL，將 toohello 完整限定的 hello 事件中樞命名空間： 事件中樞命名空間 +"/"+ 事件中樞名稱。  
+在此範例中，事件中樞 URL 設定為事件中樞的完整命名空間：事件中樞命名空間 + "/" + 事件中樞名稱。  
 
-URL 會顯示在 hello hello 事件中心[Azure 入口網站](http://go.microsoft.com/fwlink/?LinkID=213885)hello 事件中心儀表板上。  
+事件中樞 URL 會在 [Azure 入口網站](http://go.microsoft.com/fwlink/?LinkID=213885) 中的 [事件中樞] 儀表板上顯示。  
 
-hello **Sink**可以設定名稱 tooany 有效的字串，只要 hello 相同的值一致使用整個 hello 設定檔。
+[接收]  名稱可以設定為任何有效的字串，只要在整個組態檔一致使用相同的值即可。
 
 > [!NOTE]
-> 此區段中可能有其他設定的接收，例如 *applicationInsights* 。 Azure 診斷可讓一或多個接收 toobe 定義每個接收也已經宣告在 hello **PrivateConfig** > 一節。  
+> 此區段中可能有其他設定的接收，例如 *applicationInsights* 。 Azure 診斷可以定義一或多個接收，前提是每個接收也在 **PrivateConfig** 區段中宣告。  
 >
 >
 
-hello 事件中心接收必須也要宣告和定義在 hello **PrivateConfig**區段 hello *.wadcfgx*組態檔。
+事件中樞接收也必須宣告並定義於 **.wadcfgx** 組態檔的 *PrivateConfig* 區段。
 
 ```XML
 <PrivateConfig xmlns="http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration">
@@ -104,19 +104,19 @@ hello 事件中心接收必須也要宣告和定義在 hello **PrivateConfig**�
 }
 ```
 
-hello`SharedAccessKeyName`值必須符合共用存取簽章 (SAS) 金鑰和 hello 中已定義的原則**事件中心**命名空間。 瀏覽 toohello 事件中心儀表板中 hello [Azure 入口網站](https://manage.windowsazure.com)，按一下 hello**設定**索引標籤，然後設定具名原則 (例如，"SendRule") 具有*傳送*權限。 hello **StorageAccount**也已經宣告在**PrivateConfig**。 無須 toochange 值如果其正常運作。 在此範例中，我們將保留 hello 值空白，這是下游的資產會設定 hello 值的正負號。 例如，hello *ServiceConfiguration.Cloud.cscfg*環境組態檔設定 hello 適當環境的名稱和金鑰。  
+`SharedAccessKeyName` 值必須符合共用存取簽章 (SAS) 金鑰，以及**事件中樞**命名空間中已定義的原則。 在 [Azure 入口網站](https://manage.windowsazure.com)中瀏覽至 [事件中樞] 儀表板，按一下 [設定] 索引標籤，然後設定具有*傳送*權限的具名原則 (如 "SendRule")。 **StorageAccount** 也已經在 **PrivateConfig** 中宣告。 如果這裡的值可以運作，就不需要變更。 在此範例中，我們保留空白的值，這代表下游資產將會設定值。 例如，*ServiceConfiguration.Cloud.cscfg* 環境組態檔會設定適合環境的名稱和金鑰。  
 
 > [!WARNING]
-> hello 事件中樞的 SAS 金鑰儲存在純文字格式 hello *.wadcfgx*檔案。 通常，此機碼已簽入 toosource 控制或是可從您的組建伺服器中的資產，因此您應該適當地保護。 我們建議您使用與此處的 SAS 金鑰*僅傳送*權限，讓惡意使用者可以寫入 toohello 事件中心，但不是接聽 tooit 或管理它。
+> 事件中樞 SAS 金鑰會以純文字儲存在 *.wadcfgx* 檔案中。 有時候，系統會將該金鑰簽入原始程式碼控制，或做為組建伺服器中的資產提供，因此您應該適當地保護它。 建議您在這裡使用具有「僅限傳送」  權限的 SAS 金鑰，讓惡意使用者只能寫入事件中樞，而無法接聽或加以管理。
 >
 >
 
-## <a name="configure-azure-diagnostics-toosend-logs-and-metrics-tooevent-hubs"></a>設定 Azure 診斷 toosend 記錄檔和度量 tooEvent 集線器
-如前所述，所有的預設和自訂診斷資料，也就是標準和記錄檔，會自動傳送 tooAzure 儲存體以 hello 設定的間隔。 事件中樞與任何其他的接收，您可以指定 hello 階層 toobe 傳送 toohello 事件中樞的任何根或分葉節點。 這包括 ETW 事件、效能計數器、Windows 事件記錄檔和應用程式記錄檔。   
+## <a name="configure-azure-diagnostics-to-send-logs-and-metrics-to-event-hubs"></a>設定 Azure 診斷將記錄檔和計量傳送至事件中樞
+如前文所述，所有預設和自訂診斷資料 (亦即，計量和記錄檔) 會以設定的間隔自動傳送到 Azure 儲存體。 您可以藉由事件中樞和任何其他接收，指定要傳送至事件中樞的階層中任何根節點或分葉節點。 這包括 ETW 事件、效能計數器、Windows 事件記錄檔和應用程式記錄檔。   
 
-請務必的 tooconsider 多少資料點實際上應該傳送 tooEvent 集線器。 一般而言，開發人員會傳輸必須快速取用及解譯的低延遲忙碌路徑資料。 監視警示或自動調整規則的系統即是一例。 開發人員也會設定替代分析存放區或搜尋存放區；例如，Azure 串流分析、Elasticsearch、自訂監視系統，或最愛的他牌監視系統。
+請務必考慮實際上應該將多少資料點傳輸至事件中樞。 一般而言，開發人員會傳輸必須快速取用及解譯的低延遲忙碌路徑資料。 監視警示或自動調整規則的系統即是一例。 開發人員也會設定替代分析存放區或搜尋存放區；例如，Azure 串流分析、Elasticsearch、自訂監視系統，或最愛的他牌監視系統。
 
-hello 下面是一些範例設定。
+以下是一些範例組態。
 
 ```xml
 <PerformanceCounters scheduledTransferPeriod="PT1M" sinks="HotPath">
@@ -146,7 +146,7 @@ hello 下面是一些範例設定。
 }
 ```
 
-在上述範例中的 hello，hello 接收器是套用的 toohello 父**PerformanceCounters** hello 在階層中，這表示所有的子節點**PerformanceCounters**傳送 tooEvent 集線器。  
+在上述範例中，接收會套用至階層中的父 **PerformanceCounters**，這表示所有子 **PerformanceCounters** 將傳送至事件中樞。  
 
 ```xml
 <PerformanceCounters scheduledTransferPeriod="PT1M">
@@ -188,9 +188,9 @@ hello 下面是一些範例設定。
 }
 ```
 
-Hello 前一個範例中的 hello 接收是套用的 tooonly 三個計數器：**要求排入佇列**，**要求遭到拒絕**，和**%Processor time**。  
+在上述範例中，接收只會套用至三個計數器︰**已排入佇列的要求**、**遭拒絕的要求**和 **% 處理器時間**。  
 
-hello 下列範例示範如何開發人員可以限制傳送的資料 toobe hello 重要度量資訊會用於此服務的健全狀況的 hello 數量。  
+下列範例示範開發人員如何將傳送的資料量，限制為用於此服務之健全狀況的關鍵度量。  
 
 ```XML
 <Logs scheduledTransferPeriod="PT1M" sinks="HotPath" scheduledTransferLogLevelFilter="Error" />
@@ -203,32 +203,32 @@ hello 下列範例示範如何開發人員可以限制傳送的資料 toobe hell
 }
 ```
 
-在此範例中，hello 接收器是套用的 toologs，篩選僅 tooerror 層級的追蹤。
+在此範例中，接收會套用至記錄檔，並且只篩選為「錯誤」層級追蹤。
 
 ## <a name="deploy-and-update-a-cloud-services-application-and-diagnostics-config"></a>部署和更新雲端服務應用程式和診斷設定
-Visual Studio 提供 hello 最簡單路徑 toodeploy hello 應用程式和事件中心接收設定。 tooview 和編輯 hello 檔案中，開啟 hello *.wadcfgx* Visual Studio 中的檔案、 加以編輯，然後將其儲存。 hello 路徑**雲端服務專案** > **角色** > **(RoleName)** > **diagnostics.wadcfgx**.  
+Visual Studio 提供最簡單的路徑供您部署應用程式和事件中樞接收組態。 若要檢視及編輯檔案，請在 Visual Studio 中開啟 *.wadcfgx* 檔案，然後再加以編輯和儲存。 其路徑為 [雲端服務專案] > [角色] > (RoleName) > diagnostics.wadcfgx。  
 
-此時，所有部署和部署都更新動作，在 Visual Studio、 Visual Studio Team System，和所有命令或指令碼，MSBuild 會根據，使用 hello **/t： 發行**目標包括 hello *.wadcfgx* hello 封裝程序中。 此外，部署和更新 hello 檔案 tooAzure 使用部署 hello 適當 Azure 診斷代理程式擴充功能在您的 Vm 上。
+此時，Visual Studio、Visual Studio Team System 中的所有部署和部署更新動作，以及所有根據 MSBuild 和使用 **/t:publish** 目標的命令或指令碼，都會在封裝程序中納入 *.wadcfgx* 。 此外，部署和更新會使用 VM 上適當的 Azure 診斷代理程式擴充功能將檔案部署到 Azure。
 
-您部署 hello 應用程式與 Azure 診斷組態後，您會立即看到 hello hello 事件中樞的儀表板中的活動。 這表示您已準備好 toomove tooviewing hello 熱路徑中的資料 hello 接聽程式用戶端或分析工具的選擇。  
+在部署應用程式和 Azure 診斷組態後，您會立即在事件中樞的儀表板中看到活動。 這表示您已準備就緒，可以繼續在接聽程式用戶端或所選的分析工具中檢視最忙碌路徑資料。  
 
-在下列圖 hello，hello 事件中心儀表板會顯示狀況良好傳送診斷資料 toohello 事件中樞一段時間之後開始晚上 11 點。 這是當 hello 應用程式部署與更新*.wadcfgx*檔案，然後 hello 接收的設定正確。
+在下圖中，事件中樞儀表板會顯示從晚上 11 點之後開始傳送到事件中樞，而且狀況良好的診斷資料傳送作業。 也就是使用更新的 *.wadcfgx* 檔案部署應用程式，而且已正確設定接收的時候。
 
 ![][0]  
 
 > [!NOTE]
-> 當您進行更新 toohello Azure 診斷組態檔 (.wadcfgx) 時，建議使用 Visual Studio 發行或 Windows PowerShell 指令碼推送 hello 更新 toohello 整個應用程式，以及 hello 組態。  
+> 當您更新 Azure Diagnostics 組態檔 (.wadcfgx) 時，建議您透過使用 Visual Studio 發行或 Windows PowerShell 指令碼，將更新推送至整個應用程式以及組態。  
 >
 >
 
 ## <a name="view-hot-path-data"></a>檢視忙碌路徑資料
-如先前所討論，有許多接聽 tooand 處理事件中心資料的使用案例。
+如前文所述，接聽和處理事件中樞資料有許多使用案例。
 
-一個簡單的方法是 toocreate 小型測試主控台應用程式 toolisten toohello 事件中樞和列印 hello 輸出資料流。 您可以將下列程式碼，更詳細地說明 hello[開始使用事件中心](../event-hubs/event-hubs-csharp-ephcs-getstarted.md))，在主控台應用程式。  
+一個簡單的作法是建立小型測試主控台應用程式，接聽事件中樞並列印輸出串流。 您可以將下列程式碼 (會在[開始使用事件中樞](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)中詳細說明) 放置在主控台應用程式中。  
 
-請注意，hello 主控台應用程式必須包含 hello[事件處理器主機 NuGet 封裝](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/)。  
+請注意，主控台應用程式必須包含 [Event Processor Host NuGet 套件](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus.EventProcessorHost/)。  
 
-請記得在角括號中 hello tooreplace hello 值**Main**函式，以您的資源的值。   
+請記得使用您資源的值取代 **Main** 函式中角括弧裡面的值。   
 
 ```csharp
 //Console application code for EventHub test client
@@ -303,7 +303,7 @@ namespace EventHubListener
             options.ExceptionReceived += (sender, e) => { Console.WriteLine(e.Exception); };
             eventProcessorHost.RegisterEventProcessorAsync<SimpleEventProcessor>(options).Wait();
 
-            Console.WriteLine("Receiving. Press enter key toostop worker.");
+            Console.WriteLine("Receiving. Press enter key to stop worker.");
             Console.ReadLine();
             eventProcessorHost.UnregisterEventProcessorAsync().Wait();
         }
@@ -312,15 +312,15 @@ namespace EventHubListener
 ```
 
 ## <a name="troubleshoot-event-hubs-sinks"></a>針對事件中樞接收進行疑難排解
-* hello 事件中心不會顯示如預期般的內送或外寄事件活動。
+* 事件中樞不會如預期般顯示傳入或傳出事件活動。
 
-    檢查已成功佈建您的事件中樞。 Hello 中的所有連接資訊**PrivateConfig**區段*.wadcfgx* hello 入口網站中所見，必須符合您的資源 hello 值。 請確定您有 SAS 原則定義 (在 hello 範例為"SendRule 」) hello 入口網站，而且*傳送*授與權限。  
-* 更新之後，hello 事件中心不會再顯示內送或外寄事件 」 活動。
+    檢查已成功佈建您的事件中樞。 **.wadcfgx** 中 *PrivateConfig* 區段的所有連接資訊必須符合在入口網站中所示的資源的值。 請確定您已在入口網站中定義 SAS 原則 (此範例中為 “SendRule”)，並且對其授與「傳送」  權限。  
+* 執行更新之後，事件中樞不會再顯示傳入或傳出事件活動。
 
-    首先，請確定 hello 事件中樞與組態資訊正確，如先前所述。 有時 hello **PrivateConfig**重設部署更新。 hello 建議的修正程式是的 toomake 過的所有變更*.wadcfgx*在 hello 專案，並再推送的完整應用程式更新。 如果不可行，請確定該 hello 診斷更新推播通知的完整**PrivateConfig**包含 hello SAS 金鑰。  
-* 我已嘗試過 hello 建議和 hello 事件中心仍然無法運作。
+    首先，請確定事件中樞和組態資訊正確，如先前所述。 有時候，系統會在部署更新時重設 **PrivateConfig** 。 建議的修正方式是對專案中的 *.wadcfgx* 進行所有變更，然後再推送完整的應用程式更新。 如果不可行，請確定診斷更新推送完整的 **PrivateConfig** ，包括 SAS 金鑰。  
+* 我試過上述建議，不過事件中樞仍然無法運作。
 
-    請試著查看在 hello Azure 儲存體資料表，其中包含本身的 Azure 診斷的記錄檔和錯誤： **WADDiagnosticInfrastructureLogsTable**。 其中一個選項是 toouse 工具，例如[Azure 儲存體總管](http://www.storageexplorer.com)tooconnect toothis 儲存體帳戶，來檢視此資料表，並加入查詢的時間戳記在 hello 過去 24 小時。 您可以使用 hello 工具 tooexport.csv 檔案，並開啟 Microsoft Excel 之類的應用程式。 Excel 就可輕鬆 toosearch 電話卡字串，例如**EventHubs**，toosee 報告哪些錯誤。  
+    請嘗試查看 Azure 儲存體資料表，其中包含記錄檔和 Azure 診斷本身的錯誤︰ **WADDiagnosticInfrastructureLogsTable**。 其中一個選項是使用類似 [Azure 儲存體總管](http://www.storageexplorer.com) 的工具連接到此儲存體帳戶、檢視此資料表，並且新增過去 24 小時內時間戳記的查詢。 您可以使用此工具來匯出 .csv 檔案，並在 Microsoft Excel 之類的應用程式中開啟。 Excel 能輕鬆地搜尋電話卡字串 (如 **EventHubs**)，以便查看系統回報了哪些錯誤。  
 
 ## <a name="next-steps"></a>後續步驟
 •    [深入了解事件中樞](https://azure.microsoft.com/services/event-hubs/)
@@ -379,7 +379,7 @@ namespace EventHubListener
 </DiagnosticsConfiguration>
 ```
 
-hello 互補*ServiceConfiguration.Cloud.cscfg*針對此範例看起來像下列 hello。
+此範例的補充 *ServiceConfiguration.Cloud.cscfg* 如下所示。
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -505,7 +505,7 @@ hello 互補*ServiceConfiguration.Cloud.cscfg*針對此範例看起來像下列 
 ```
 
 ## <a name="next-steps"></a>後續步驟
-您可以進一步了解事件中心瀏覽下列連結查看 hello:
+您可以造訪下列連結以深入了解事件中樞︰
 
 * [事件中樞概觀](../event-hubs/event-hubs-what-is-event-hubs.md)
 * [建立事件中樞](../event-hubs/event-hubs-create.md)

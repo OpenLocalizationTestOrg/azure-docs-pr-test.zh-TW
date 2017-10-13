@@ -1,6 +1,6 @@
 ---
-title: "aaaStream hello Azure 活動記錄檔 tooEvent 中心 |Microsoft 文件"
-description: "了解如何 toostream hello Azure 活動記錄檔 tooEvent 集線器。"
+title: "將 Azure 活動記錄檔串流至事件中樞 | Microsoft Docs"
+description: "了解如何將 Azure 活動記錄檔串流至事件中樞。"
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,69 +14,69 @@ ms.devlang: na
 ms.topic: article
 ms.date: 6/06/2017
 ms.author: johnkem
-ms.openlocfilehash: 336f92771b9d4379ad9dbcadc6997dfae7fae7bc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 88c5701279f370914fac68872d67b02a7571748a
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="stream-hello-azure-activity-log-tooevent-hubs"></a>資料流 hello Azure 活動記錄檔 tooEvent 集線器
-hello [ **Azure 活動記錄檔**](monitoring-overview-activity-logs.md)可以附近使用 hello 內建 「 匯出 」 選項在 hello 入口網站的即時 tooany 應用程式資料流中，或藉由啟用 hello hello 透過記錄檔中的服務匯流排規則識別碼Azure PowerShell Cmdlet 或 Azure CLI。
+# <a name="stream-the-azure-activity-log-to-event-hubs"></a>將 Azure 活動記錄檔串流至事件中樞
+您可以使用入口網站中內建的「匯出」選項，或透過 Azure PowerShell Cmdlet 或 Azure CLI 來啟用記錄設定檔中服務匯流排規則識別碼的方式，迅速將 [**Azure 活動記錄檔**](monitoring-overview-activity-logs.md)串流至任何應用程式。
 
-## <a name="what-you-can-do-with-hello-activity-log-and-event-hubs"></a>您可以使用 hello 活動記錄檔和事件中心執行
-以下是幾個方法，您可能會使用 hello 串流 hello 活動記錄檔的功能：
+## <a name="what-you-can-do-with-the-activity-log-and-event-hubs"></a>您可以使用活動記錄檔與事件中樞執行的項目
+此處提供一些您可以使用活動記錄檔串流功能的方法：
 
-* **資料流 toothird 合作對象記錄與遙測系統**– 一段時間，事件中心資料流將會變成 hello 機制 toopipe 活動記錄，到第三方 Siem 且記錄分析解決方案。
-* **建置自訂的遙測及記錄平台**– 如果您已自訂的遙測平台，或都只考慮的建立一個具有高擴充性 hello 發行-訂閱性質的事件中心可讓您 tooflexibly 內嵌 hello活動記錄檔。 [請參閱 Dan Rosanova 指南 toousing 事件中心的全球遙測平台。](https://azure.microsoft.com/documentation/videos/build-2015-designing-and-sizing-a-global-scale-telemetry-platform-on-azure-event-Hubs/)
+* **串流至協力廠商記錄與遙測系統** – 經過一段時間，事件中樞串流會成為將活動記錄檔輸送到協力廠商的 SIEM 與記錄分析解決方案的機制。
+* **建置自訂遙測及記錄平台** – 如果您已有自建遙測平台或正在考慮建置一個，事件中樞所具備的高度可調整發佈訂閱特質可讓您靈活擷取活動記錄檔。 [請參閱此處的 Dan Rosanova 指南，以在全球級別的遙測平台中使用事件中樞。](https://azure.microsoft.com/documentation/videos/build-2015-designing-and-sizing-a-global-scale-telemetry-platform-on-azure-event-Hubs/)
 
-## <a name="enable-streaming-of-hello-activity-log"></a>啟用資料流的 hello 活動記錄檔
-您可以啟用以程式設計方式或透過 hello 入口網站的 hello 活動記錄檔資料流。 無論如何，您會選擇服務匯流排命名空間和共用的存取原則，該命名空間，且 hello 第一個新活動記錄檔事件發生時，將會建立該命名空間中的事件中心。 如果您沒有服務匯流排命名空間，您必須先 toocreate 其中一個。 如果您先前串流處理的資料活動記錄檔事件 toothis 服務匯流排命名空間，將會重複使用 hello 先前建立的事件中樞。 hello 共用存取原則是定義 hello hello 串流處理機制具有的權限。 現在，資料流 tooan 事件中心需要**管理**，**傳送**，和**接聽**權限。 您可以建立或修改您的服務匯流排命名空間的 hello hello 「 設定 」 索引標籤底下的傳統入口網站中的服務匯流排命名空間共用存取原則。 tooupdate hello 活動記錄檔記錄的設定檔 tooinclude 串流、 變更 hello hello 使用者必須擁有該服務匯流排的授權規則 hello ListKey 權限。
+## <a name="enable-streaming-of-the-activity-log"></a>啟用活動記錄檔的串流功能
+您可以以程式控制的方式，或透過入口網站來啟用活動記錄檔的串流功能。 無論您使用何種方式，您都會選擇服務匯流排命名空間及該命名空間的共用存取原則，而且在第一個新的活動記錄檔事件發生時，該命名空間中將會建立事件中樞。 如果您沒有服務匯流排命名空間，您必須先建立一個。 如果您先前已將活動記錄檔事件串流處理到此服務匯流排命名空間，則會重複使用先前建立的事件中樞。 共用存取原則會定義串流機制具有的權限。 目前，串流到事件中樞需要**管理**、**傳送**和**接聽**權限。 您可以在傳統入口網站 [設定] 索引標籤下，為您的服務匯流排命名空間建立或修改服務匯流排命名空間共用存取原則。 若要更新活動記錄檔設定檔以加入串流，進行變更的使用者必須擁有該服務匯流排授權規則的 ListKey 權限。
 
-hello 服務匯流排或事件中樞命名空間中並沒有 toobe hello 發出記錄檔，只要將設定 hello 設定 hello 使用者擁有適當的 RBAC 存取 tooboth 訂閱 hello 訂用帳戶相同訂用帳戶。
+服務匯流排或事件中樞命名空間不一定要和訂用帳戶發出記錄檔屬於相同的訂用帳戶，只要使用者有適當的設定可 RBAC 存取這兩個訂用帳戶即可。
 
 ### <a name="via-azure-portal"></a>透過 Azure 入口網站
-1. 瀏覽 toohello**活動記錄檔**刀鋒視窗上 hello hello 入口網站的左側使用 hello 功能表。
+1. 使用入口網站左側的功能表，瀏覽至 [活動記錄檔]  刀鋒視窗。
    
-    ![瀏覽 tooActivity 記錄在入口網站](./media/monitoring-overview-activity-logs/activity-logs-portal-navigate.png)
-2. 按一下 hello**匯出**在 hello hello 刀鋒視窗頂端的按鈕。
+    ![在入口網站中瀏覽至活動記錄檔](./media/monitoring-overview-activity-logs/activity-logs-portal-navigate.png)
+2. 按一下刀鋒視窗頂端的 [匯出]  按鈕。
    
     ![入口網站中的匯出按鈕](./media/monitoring-overview-activity-logs/activity-logs-portal-export.png)
-3. 在 hello 刀鋒視窗中出現，您可以選取您想其 toostream 事件和 hello 服務匯流排命名空間中，您想要串流處理這些事件建立事件中樞 toobe hello 區域。
+3. 在出現的刀鋒視窗中，您可以選取想要串流事件的區域，以及服務匯流排命名空間，以在其中建立事件中樞建立以對這些事件進行串流處理。
    
     ![匯出活動記錄檔刀鋒視窗](./media/monitoring-overview-activity-logs/activity-logs-portal-export-blade.png)
-4. 按一下**儲存**toosave 這些設定。 hello 設定會立即會套用的 tooyour 訂用帳戶。
+4. 按一下 [儲存]  來儲存這些設定。 您的訂用帳戶時會立即套用設定。
 
 ### <a name="via-powershell-cmdlets"></a>透過 PowerShell Cmdlet
-如果記錄檔的設定檔已經存在，您必須先 tooremove 該設定檔。
+如果記錄檔設定檔已存在，您必須先移除該設定檔。
 
-1. 使用`Get-AzureRmLogProfile`tooidentify 如果記錄檔的設定檔
-2. 如果是，使用`Remove-AzureRmLogProfile`tooremove 它。
-3. 使用`Set-AzureRmLogProfile`toocreate 設定檔：
+1. 使用 `Get-AzureRmLogProfile` 來識別記錄檔設定檔是否存在
+2. 如果有，使用 `Remove-AzureRmLogProfile` 來進行移除。
+3. 使用 `Set-AzureRmLogProfile` 來建立設定檔：
 
 ```
 Add-AzureRmLogProfile -Name my_log_profile -serviceBusRuleId /subscriptions/s1/resourceGroups/Default-ServiceBus-EastUS/providers/Microsoft.ServiceBus/namespaces/mytestSB/authorizationrules/RootManageSharedAccessKey -Locations global,westus,eastus -RetentionInDays 90 -Categories Write,Delete,Action
 ```
 
-服務匯流排規則識別碼 hello 是這種格式的字串: {服務匯流排資源識別碼} /authorizationrules/ {索引鍵名稱}，例如 
+舉例來說，服務匯流排規則識別碼一組字串，格式如下：{service bus resource ID}/authorizationrules/{key name} 
 
 ### <a name="via-azure-cli"></a>透過 Azure CLI
-如果記錄檔的設定檔已經存在，您必須先 tooremove 該設定檔。
+如果記錄檔設定檔已存在，您必須先移除該設定檔。
 
-1. 使用`azure insights logprofile list`tooidentify 如果記錄檔的設定檔
-2. 如果是，使用`azure insights logprofile delete`tooremove 它。
-3. 使用`azure insights logprofile add`toocreate 設定檔：
+1. 使用 `azure insights logprofile list` 來識別記錄檔設定檔是否存在
+2. 如果有，使用 `azure insights logprofile delete` 來進行移除。
+3. 使用 `azure insights logprofile add` 來建立設定檔：
 
 ```
 azure insights logprofile add --name my_log_profile --storageId /subscriptions/s1/resourceGroups/insights-integration/providers/Microsoft.Storage/storageAccounts/my_storage --serviceBusRuleId /subscriptions/s1/resourceGroups/Default-ServiceBus-EastUS/providers/Microsoft.ServiceBus/namespaces/mytestSB/authorizationrules/RootManageSharedAccessKey --locations global,westus,eastus,northeurope --retentionInDays 90 –categories Write,Delete,Action
 ```
 
-服務匯流排規則識別碼 hello 是這種格式的字串： `{service bus resource ID}/authorizationrules/{key name}`。
+服務匯流排規則識別碼是此格式的字串︰ `{service bus resource ID}/authorizationrules/{key name}`。
 
-## <a name="how-do-i-consume-hello-log-data-from-event-hubs"></a>我要如何使用 hello 記錄資料，從事件中心？
-[這裡會提供 hello hello 活動記錄檔的結構描述](monitoring-overview-activity-logs.md)。 每個事件位於名為「記錄」的 JSON blob 陣列中。
+## <a name="how-do-i-consume-the-log-data-from-event-hubs"></a>我要如何透過事件中樞取用記錄檔資料？
+[記錄檔的結構描述可在此取得](monitoring-overview-activity-logs.md)。 每個事件位於名為「記錄」的 JSON blob 陣列中。
 
 ## <a name="next-steps"></a>後續步驟
-* [封存 hello 活動記錄檔 tooa 儲存體帳戶](monitoring-archive-activity-log.md)
-* [讀取 hello hello Azure 活動記錄檔的概觀](monitoring-overview-activity-logs.md)
+* [將活動記錄檔封存至儲存體帳戶](monitoring-archive-activity-log.md)
+* [閱讀 Azure 活動記錄檔的概觀](monitoring-overview-activity-logs.md)
 * [根據活動記錄檔事件設定警示](insights-auditlog-to-webhook-email.md)
 

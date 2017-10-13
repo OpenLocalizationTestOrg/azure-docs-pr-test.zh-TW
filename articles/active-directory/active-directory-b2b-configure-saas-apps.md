@@ -1,5 +1,5 @@
 ---
-title: "在 Azure Active Directory B2B 共同作業的 aaaConfigure SaaS 應用程式 |Microsoft 文件"
+title: "為 Azure Active Directory 中的 B2B 共同作業設定 SaaS 應用程式 | Microsoft Docs"
 description: "Azure Active Directory B2B 共同作業的程式碼與 PowerShell 範例"
 services: active-directory
 documentationcenter: 
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/23/2017
 ms.author: sasubram
-ms.openlocfilehash: c3f22f81567c04ac23ef2316c09de718ecb15d26
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 149a493f7b369415f0a2726dd6a576f0195c13d9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-saas-apps-for-b2b-collaboration"></a>為 B2B 共同作業設定 SaaS 應用程式
 
@@ -27,86 +27,86 @@ Azure Active Directory (Azure AD) B2B 共同作業可搭配與 Azure AD 整合�
 
 在您查看應用程式特定指示之前，以下是一些主要規則：
 
-* 適用於大部分的 hello 應用程式，使用者安裝程式會以手動方式需要 toohappen。 亦即，使用者必須手動建立 hello 應用程式中。
+* 大部分的應用程式都需要以手動方式進行使用者設定。 也就是說，必須在應用程式中手動建立使用者。
 
-* 支援自動安裝，例如 Dropbox 的應用程式從 hello 應用程式建立個別的邀請。 使用者必須確定 tooaccept 每個邀請。
+* 若為支援自動設定的應用程式 (例如 Dropbox)，則會從應用程式建立個別的邀請。 使用者務必接受每個邀請。
 
-* Hello 使用者屬性，toomitigate 中來賓使用者損害的使用者設定檔磁碟 (UPD) 的所有問題都設定**使用者識別碼**太**user.mail**。
+* 在使用者屬性中，若要減少與來賓使用者中受損使用者設定檔磁碟 (UPD) 相關的任何問題，一律將 [使用者識別碼] 設定為 [user.mail]。
 
 
 ## <a name="dropbox-business"></a>Dropbox Business
 
-tooenable 使用者 toosign 中使用其組織帳戶，您必須手動設定 Dropbox 商務 toouse Azure AD 做為安全性聲明標記語言 (SAML) 身分識別提供者。 如果尚未設定的 toodo Dropbox 商務。 因此，它無法提示或否則允許使用者 toosign 中使用 Azure AD。
+若要讓使用者使用其組織帳戶登入，您必須手動設定 Dropbox Business，才能使用 Azure AD 做為安全性聲明標記語言 (SAML) 識別提供者。 如果 Dropbox Business 已這樣設定，則無法顯示提示或允許使用者使用 Azure AD 進行登入。
 
-1. tooadd hello Dropbox 商務應用程式到 Azure AD 中，選取**企業應用程式**在 hello 左的窗格，然後按一下**新增**。
+1. 若要將 Dropbox Business 應用程式新增至 Azure AD，請選取左的窗格中的 [企業應用程式]，然後按一下 [新增]。
 
-  ![hello hello 企業應用程式 頁面上的 新增 按鈕](media/active-directory-b2b-configure-saas-apps/add-dropbox.png)
+  ![企業應用程式頁面上的 [新增] 按鈕](media/active-directory-b2b-configure-saas-apps/add-dropbox.png)
 
-2. 在 hello**新增應用程式**視窗中，輸入**dropbox**在 hello 搜尋方塊，然後選取  **dropbox 企業版**hello 結果 清單中。
+2. 在 [加入應用程式] 視窗的搜尋方塊中輸入 **dropbox**，然後選取結果清單中的 [商務用 Dropbox]。
 
-  ![搜尋"dropbox"hello 上新增的應用程式頁面](media/active-directory-b2b-configure-saas-apps/add-app-dialog.png)
+  ![在 [加入應用程式] 頁面上搜尋 "dropbox"](media/active-directory-b2b-configure-saas-apps/add-app-dialog.png)
 
-3. 在 hello**單一登入**頁面上，選取**單一登入**在 hello 左的窗格，然後輸入**user.mail**在 hello**使用者識別碼**方塊。 (其預設為 UPN。)
+3. 在 [單一登入] 頁面上，選取左窗格中的 [單一登入]，然後在 [使用者識別碼] 方塊中輸入 **user.mail**。 (其預設為 UPN。)
 
-  ![設定單一登入 hello 應用程式](media/active-directory-b2b-configure-saas-apps/configure-app-sso.png)
+  ![為應用程式設定單一登入](media/active-directory-b2b-configure-saas-apps/configure-app-sso.png)
 
-4. toodownload hello 憑證 toouse Dropbox 組態選取**設定 DropBox**，然後選取**SAML 單一登入服務 URL** hello 清單中。
+4. 若要下載憑證以用於 Dropbox 設定，請選取 [設定 DropBox]，然後選取清單中的 [SAML 單一登入服務 URL]。
 
-  ![下載 hello Dropbox 設定憑證](media/active-directory-b2b-configure-saas-apps/download-certificate.png)
+  ![下載可用於 Dropbox 設定的憑證](media/active-directory-b2b-configure-saas-apps/download-certificate.png)
 
-5. 登入以 hello tooDropbox 登入 URL 從 hello**單一登入**頁面。
+5. 從 [單一登入] 頁面，使用登入 URL 登入 Dropbox。
 
-  ![hello Dropbox 登入頁面](media/active-directory-b2b-configure-saas-apps/sign-in-to-dropbox.png)
+  ![Dropbox 登入頁面](media/active-directory-b2b-configure-saas-apps/sign-in-to-dropbox.png)
 
-6. 在 hello 功能表中，選取 **管理主控台**。
+6. 在功能表上，選取 [系統管理員主控台]。
 
-  ![hello hello Dropbox 功能表上的 「 系統管理員主控台 」 連結](media/active-directory-b2b-configure-saas-apps/dropbox-menu.png)
+  ![Dropbox 功能表上的 [系統管理員主控台] 連結](media/active-directory-b2b-configure-saas-apps/dropbox-menu.png)
 
-7. 在 hello**驗證**對話方塊中，選取**詳細**，hello 憑證上傳，然後在 hello**登入 URL**方塊中，輸入 hello SAML 單一登入 URL。
+7. 在 [驗證] 對話方塊中，選取 [更多]上傳憑證，然後在 [登入 URL] 方塊中，輸入 SAML 單一登入 URL。
 
-  ![hello hello 摺疊 [驗證] 對話方塊中的"More"連結](media/active-directory-b2b-configure-saas-apps/dropbox-auth-01.png)
+  ![摺疊的 [驗證] 對話方塊中的 [更多] 連結](media/active-directory-b2b-configure-saas-apps/dropbox-auth-01.png)
 
-  ![hello 」 登入 URL"hello 中的擴充驗證 對話方塊](media/active-directory-b2b-configure-saas-apps/paste-single-sign-on-URL.png)
+  ![展開的 [驗證] 對話方塊中的 [登入 URL]](media/active-directory-b2b-configure-saas-apps/paste-single-sign-on-URL.png)
 
-8. tooconfigure hello Azure 入口網站中的使用者自動安裝程式選取**佈建**hello 左窗格中，選取**自動**在 hello**佈建模式**方塊，並選取**授權**。
+8. 若要在 Azure 入口網站中設定自動使用者設定，請選取左窗格中的 [佈建]、選取 [佈建模式] 方塊中的 [自動]，然後選取 [授權]。
 
-  ![設定自動使用者佈建在 hello Azure 入口網站](media/active-directory-b2b-configure-saas-apps/set-up-automatic-provisioning.png)
+  ![在 Azure 入口網站中設定自動使用者佈建](media/active-directory-b2b-configure-saas-apps/set-up-automatic-provisioning.png)
 
-Hello Dropbox 應用程式中已設定客體或成員的使用者之後，他們會收到個別的邀請，從 Dropbox。 toouse Dropbox 單一登入，受邀者必須接受 hello 邀請中的連結即可。
+在 Dropbox 應用程式中設定來賓或成員使用者之後，他們就會收到來自 Dropbox 的個別邀請。 若要使用 Dropbox 單一登入，受邀者必須藉由按一下邀請中的連結來接受邀請。
 
 ## <a name="box"></a>Box
-您可以使用 hello SAML 通訊協定為基礎的同盟，以啟用使用者 tooauthenticate 方塊 guest 使用者以 Azure AD 帳戶。 在此程序，您上傳中繼資料 tooBox.com。
+使用以 SAML 通訊協定為基礎的同盟，即可讓使用者使用其 Azure AD 帳戶來驗證 Box 來賓使用者。 在此程序中，您會將中繼資料上傳至 Box.com。
 
-1. 從 hello 企業應用程式中加入 hello Box 應用程式。
+1. 從企業應用程式新增 Box 應用程式。
 
-2. 在 hello 順序中，以設定單一登入：
+2. 請依下列順序設定單一登入：
 
   ![設定 Box 單一登入](media/active-directory-b2b-configure-saas-apps/configure-box-sso.png)
 
- a. 在 hello**登入 URL**方塊中，確定 hello 登入 URL 已設定適當的方塊 hello Azure 入口網站中。 此 URL 是 hello Box.com 租用戶 URL。 它應該遵循命名慣例的 hello *https://.box.com*。  
- hello**識別碼**不適 toothis 應用程式，但它仍會顯示為必要欄位。
+ a. 在 [登入 URL] 方塊中，確定已在 Azure 入口網站中針對 Box 適當設定登入 URL。 此 URL 是 Box.com 租用戶的 URL。 它應該遵循命名慣例 https://.box.com。  
+ [識別碼] 不適用於此應用程式，但它仍會顯示為必要欄位。
 
- b. 在 hello**使用者識別碼**方塊中，輸入**user.mail** （適用於來賓帳戶的 SSO)。
+ b. 在 [使用者識別碼] 方塊中，輸入 **user.mail** (適用於來賓帳戶的 SSO)。
 
  c. 在 [SAML 簽署憑證] 之下，按一下 [建立新憑證]。
 
- d. 設定您 Box.com 租用戶 toouse Azure AD 身分識別提供者的 toobegin 下載 hello 中繼資料檔案，並儲存它 tooyour 本機磁碟機。
+ d. 若要開始將 Box.com 租用戶設定成使用 Azure AD 做為識別提供者，請下載中繼資料檔案，然後將它儲存到本機磁碟機。
 
- e. 轉送 hello 中繼資料檔案 toohello 方塊支援小組，以單一登入您的設定。
+ e. 將設定單一登入的中繼資料檔案轉寄給 Box 支援小組。
 
-3. Azure AD 使用者自動安裝，hello 左窗格中，選取**佈建**，然後選取**授權**。
+3. 若要進行 Azure AD 自動使用者設定，請在左窗格中選取 [佈建]，然後選取 [授權]。
 
-  ![授權 Azure AD tooconnect tooBox](media/active-directory-b2b-configure-saas-apps/auth-azure-ad-to-connect-to-box.png)
+  ![授權 Azure AD 以連線到 Box](media/active-directory-b2b-configure-saas-apps/auth-azure-ad-to-connect-to-box.png)
 
-Dropbox 受邀者，例如方塊受邀者必須兌換邀請他們 hello Box 應用程式。
+如同 Dropbox 受邀者，Box 受邀者也必須從 Box 應用程式兌換其邀請。
 
 ## <a name="next-steps"></a>後續步驟
 
-請參閱下列 Azure AD B2B 共同作業的發行項的 hello:
+請參閱下列有關 Azure AD B2B 共同作業的文章：
 
 * [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [B2B 共同作業使用者屬性](active-directory-b2b-user-properties.md)
-* [新增 B2B 共同作業使用者 tooa 角色](active-directory-b2b-add-guest-to-role.md)
+* [將 B2B 共同作業使用者新增至角色](active-directory-b2b-add-guest-to-role.md)
 * [委派 B2B 共同作業邀請](active-directory-b2b-delegate-invitations.md)
 * [動態群組與 B2B 共同作業](active-directory-b2b-dynamic-groups.md)
 * [B2B 共同作業程式碼與 PowerShell 範例](active-directory-b2b-code-samples.md)

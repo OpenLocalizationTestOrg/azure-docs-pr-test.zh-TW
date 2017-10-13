@@ -1,6 +1,6 @@
 ---
-title: "開始使用 AD Android aaaAzure |Microsoft 文件"
-description: "如何 toobuild 與 Azure AD 進行登入並呼叫 Azure AD 整合的 Android 應用程式會將使用 OAuth 保護應用程式開發介面。"
+title: "Azure AD Android 入門 | Microsoft Docs"
+description: "如何建置 Android 應用程式來與 Azure AD 整合進行登入，並使用 OAuth 呼叫受 Azure AD 保護的 API。"
 services: active-directory
 documentationcenter: android
 author: danieldobalian
@@ -15,107 +15,107 @@ ms.topic: article
 ms.date: 01/07/2017
 ms.author: dadobali
 ms.custom: aaddev
-ms.openlocfilehash: 1aedc8ff60874b405a182a4ccbfb2c8b4d9d3704
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 746cad19093fd2a1ad23ddd9412394f8d9da331c
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="integrate-azure-ad-into-an-android-app"></a>將 Azure AD 整合至 Android 應用程式
 [!INCLUDE [active-directory-devquickstarts-switcher](../../../includes/active-directory-devquickstarts-switcher.md)]
 
 > [!TIP]
-> 嘗試的新 hello 預覽[開發人員入口網站](https://identity.microsoft.com/Docs/Android)，這將會幫助您獲得 Azure AD 在短短幾分鐘內啟動且正在執行。 hello 開發人員入口網站將引導您完成註冊應用程式與 Azure AD 整合您的程式碼 hello 程序。 當您完成時，您會有可驗證租用戶中使用者的簡單應用程式，以及可接受權杖並執行驗證的後端。
+> 試用新的[開發人員入口網站](https://identity.microsoft.com/Docs/Android)預覽版本，這可協助您在短短幾分鐘內啟動並執行 Azure AD。 開發人員入口網站會逐步引導您完成註冊應用程式並將 Azure AD 整合至您的程式碼的程序。 當您完成時，您會有可驗證租用戶中使用者的簡單應用程式，以及可接受權杖並執行驗證的後端。
 >
 >
 
-如果您正在開發的桌面應用程式，Azure Active Directory (Azure AD) 使其簡單又直接您 tooauthenticate 為您的使用者使用其內部部署 Active Directory 帳戶。 它也可讓您的應用程式 toosecurely 取用任何 web API 受到 Azure AD，例如 hello Office 365 Api 或 hello Azure API。
+如果您正在開發桌面應用程式，Azure Active Directory (Azure AD) 讓您可以更簡單直接地用使用者的內部部署 Active Directory 帳戶來驗證他們。 它也可讓您的應用程式安全地使用任何受 Azure AD 保護的 Web API，例如 Office 365 API 或 Azure API。
 
-對於 Android 用戶端需要 tooaccess 受保護的資源，Azure AD 提供 hello Active Directory 驗證程式庫 (ADAL)。 hello 的 ADAL 的唯一目的是 toomake 輕鬆的應用程式 tooget 存取語彙基元。 toodemonstrate 多麼容易，所以我們將會建置 Android 待辦事項清單應用程式：
+對於需要存取受保護資源的 Android 用戶端，Azure AD 提供 Active Directory 驗證程式庫 (ADAL)。 ADAL 的唯一目的是為了讓您的應用程式輕鬆取得存取權杖。 為了示範究竟多麼簡單，我們將建置一個執行下列動作的 Android「待辦事項清單」應用程式：
 
-* 取得存取權杖呼叫待辦事項清單應用程式開發介面使用 hello [OAuth 2.0 驗證通訊協定](https://msdn.microsoft.com/library/azure/dn645545.aspx)。
+* 取得存取權杖來使用 [OAuth 2.0 驗證通訊協定](https://msdn.microsoft.com/library/azure/dn645545.aspx)呼叫待辦事項清單 API。
 * 取得使用者的待辦事項清單。
 * 登出使用者。
 
-tooget 開始，您需要 Azure AD 租用戶，您可以建立使用者，並註冊應用程式。 如果您還沒有租用戶，[深入了解如何 tooget 一個](active-directory-howto-tenant.md)。
+首先，您需要 Azure AD 租用戶，供您建立使用者並註冊應用程式。 如果您還沒有租用戶， [了解如何取得租用戶](active-directory-howto-tenant.md)。
 
-## <a name="step-1-download-and-run-hello-nodejs-rest-api-todo-sample-server"></a>步驟 1： 下載並執行 hello Node.js REST API TODO 範例伺服器
-特別是針對現有的 Azure ad 中建立單一租用戶待辦事項 REST API 範例 toowork 寫入 hello Node.js REST API TODO 範例。 這是快速入門的 hello 的必要條件。
+## <a name="step-1-download-and-run-the-nodejs-rest-api-todo-sample-server"></a>步驟 1：下載並執行 Node.js REST API TODO 範例伺服器
+我們特別撰寫 Node.js REST API TODO 範例，以有別於為 Azure AD 建置單一租用戶 To-Do REST API 的現有範例。 這是快速入門的必要條件。
 
-如需有關如何 tooset 其設定，請參閱我們現有的範例中詳細[Microsoft Azure Active Directory 範例 REST API 服務 for Node.js](active-directory-devquickstarts-webapi-nodejs.md)。
+如需如何設置此 API 的資訊，請參閱現有範例[適用於 Node.js 的 Microsoft Azure Active Directory 範例 REST API 服務](active-directory-devquickstarts-webapi-nodejs.md)。
 
 
 ## <a name="step-2-register-your-web-api-with-your-azure-ad-tenant"></a>步驟 2：向 Azure AD 租用戶註冊 Web API
 Active Directory 支援加入兩種類型的應用程式：
 
-- Web 應用程式開發介面中提供服務 toousers
-- 存取應用程式 （hello 網站上或在裝置上執行） 的 web 應用程式開發介面
+- 將服務提供給使用者的 Web API
+- 會存取這些 Web API 的應用程式 (在 Web 或裝置上執行)
 
-在此步驟中，您正在註冊您在本機執行的測試這個範例的 hello web API。 一般來說，此 web API 是 REST 服務的供應項目功能的應用程式 tooaccess。 Azure AD 可以保護任何端點。
+在此步驟中，您要註冊在本機執行且用來測試此範例的 Web API。 這個 Web API 通常是 REST 服務，提供您想要讓應用程式存取的功能。 Azure AD 可以保護任何端點。
 
-我們假設您正在註冊 hello TODO REST API 參考之前。 但這適用於您想要 Azure Active Directory toohelp 保護任何 web 應用程式開發介面。
+我們假設您是註冊稍早提及的 TODO REST API。 但這個程序適用於任何您要讓 Azure Active Directory 保護的 Web API。
 
-1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
-2. Hello 頂端列上，按一下您的帳戶。 在 hello**目錄**清單中，選擇您想要 tooregister hello Azure AD 租用戶應用程式。
-3. 按一下**更服務**在 hello 左的窗格，然後選取  **Azure Active Directory**。
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
+2. 在頂端列中，按一下您的帳戶。 在 [目錄] 清單中，選擇您要註冊應用程式的 Azure AD 租用戶。
+3. 按一下左側窗格中的 [更多服務]，然後選取 [Azure Active Directory]。
 4. 按一下 [應用程式註冊]，然後選取 [新增]。
-5. 輸入 hello 應用程式的易記名稱 (例如， **TodoListService**)，請選取**Web 應用程式和/或 Web API**，按一下**下一步**。
-6. 對於 hello 登入 URL，請輸入 hello 範例 hello 基底 URL。 依預設，這會是 `https://localhost:8080`。
-7. 按一下**確定**toocomplete hello 註冊。
-8. 仍在 hello Azure 入口網站，移至 tooyour 應用程式頁面、 尋找 hello 應用程式識別碼值，並將它複製。 您稍後在設定應用程式時需要此資訊。
-9. 從 hello**設定** -> **屬性**頁面上，更新 hello 應用程式識別碼 URI-輸入`https://<your_tenant_name>/TodoListService`。 取代`<your_tenant_name>`hello Azure AD 租用戶名稱。
+5. 輸入應用程式的易記名稱，例如 **TodoListService**)，選取 [Web 應用程式和/或 Web API]，然後按 [下一步]。
+6. 在 [登入 URL] 中，輸入範例的基礎 URL。 依預設，這會是 `https://localhost:8080`。
+7. 按一下 [確定] 完成註冊。
+8. 仍是在 Azure 入口網站中，移至您的應用程式頁面，找出 [應用程式識別碼] 的值並複製。 您稍後在設定應用程式時需要此資訊。
+9. 從 [設定]  ->  [屬性] 頁面，更新應用程式識別碼 URI - 輸入 `https://<your_tenant_name>/TodoListService`。 將 `<your_tenant_name>` 取代為您的 Azure AD 租用戶名稱。
 
-## <a name="step-3-register-hello-sample-android-native-client-application"></a>步驟 3： 註冊 hello 範例 Android 原生用戶端應用程式
-在此範例中，您必須註冊您的 Web 應用程式。 這可讓您的應用程式 toocommunicate 與 hello 剛註冊 web 應用程式開發介面。 Azure AD 會拒絕 tooeven 允許登入您的應用程式 tooask，除非它登錄。 屬於 hello hello 模型安全性。
+## <a name="step-3-register-the-sample-android-native-client-application"></a>步驟 3：註冊範例 Android 原生用戶端應用程式
+在此範例中，您必須註冊您的 Web 應用程式。 這可讓您的應用程式與剛註冊的 Web API 通訊。 除非註冊應用程式，否則 Azure AD 甚至會拒絕讓您的應用程式要求登入。 這是模型安全性的一環。
 
-我們假設您正在註冊 hello 範例應用程式先前已參考。 但此程序適用於任何您正在開發的應用程式。
+我們假設您是註冊稍早提及的範例應用程式。 但此程序適用於任何您正在開發的應用程式。
 
 > [!NOTE]
-> 也許您會納悶，為什麼要將應用程式和 Web API 都放在一個租用戶。 答案您可能已經猜到，您可以建置應用程式來存取在另一個租用戶的 Azure AD 中註冊的外部 API。 如果您這樣做，您的客戶將會提示您 tooconsent toohello hello API hello 應用程式中使用。 Active Directory Authentication Library for iOS 會替您處理此同意舉動。 當我們瀏覽更進階的功能，您會看到這是從 Azure 和 Office，以及任何其他服務提供者的 Microsoft 應用程式開發介面的 hello 工作所需的 tooaccess hello 套件很重要的一部分。 現在，因為您註冊您的 web 應用程式開發介面和應用程式在 hello 相同租用戶，您不會看到任何提示，以取得同意。 如果您正在開發應用程式僅供您自己的公司 toouse，這是通常 hello 情況。
+> 也許您會納悶，為什麼要將應用程式和 Web API 都放在一個租用戶。 答案您可能已經猜到，您可以建置應用程式來存取在另一個租用戶的 Azure AD 中註冊的外部 API。 如果您這麼做，系統會提示您的客戶同意您可以使用應用程式中的 API。 Active Directory Authentication Library for iOS 會替您處理此同意舉動。 隨著我們深入更進階的功能，您將了解這是從 Azure 和 Office 及任何其他服務提供者存取 Microsoft API 套件時所需的一件重要工作。 現在，因為您在相同租用戶下註冊您的 Web API 和應用程式，因此您不會看到任何要求同意的提示。 如果您開發的應用程式僅供自己公司使用，通常會是這種情況。
 
-1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
-2. Hello 頂端列上，按一下您的帳戶。 在 hello**目錄**清單中，選擇您想要 tooregister hello Azure AD 租用戶應用程式。
-3. 按一下**更服務**在 hello 左的窗格，然後選取  **Azure Active Directory**。
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
+2. 在頂端列中，按一下您的帳戶。 在 [目錄] 清單中，選擇您要註冊應用程式的 Azure AD 租用戶。
+3. 按一下左側窗格中的 [更多服務]，然後選取 [Azure Active Directory]。
 4. 按一下 [應用程式註冊]，然後選取 [新增]。
-5. 輸入 hello 應用程式的易記名稱 (例如， **TodoListClient Android**)，請選取**原生用戶端應用程式**，按一下**下一步**。
-6. Hello 重新導向 URI 中，輸入`http://TodoListClient`。 按一下 [完成] 。
-7. Hello 應用程式頁面中，找出 hello 應用程式識別碼值，並將它複製。 您稍後在設定應用程式時需要此資訊。
-8. 從 hello**設定**頁面上，選取**必要的使用權限**選取**新增**。  找出並選取 TodoListService，並將 hello**存取 TodoListService**權限下的**委派的權限**，然後按一下**完成**。
+5. 輸入應用程式的易記名稱，例如 **TodoListClient-Android**，選取 [原生用戶端應用程式]，然後按 [下一步]。
+6. 在 [重新導向 URI] 中，輸入 `http://TodoListClient`。 按一下 [完成]。
+7. 在應用程式頁面中，找到應用程式識別碼的值並複製。 您稍後在設定應用程式時需要此資訊。
+8. 在 [設定] 頁面中，選取 [必要的權限]，然後選取 [新增]。  找出並選取 [TodoListService]，然後在 [委派的權限] 底下新增 [存取 TodoListService] 權限，按一下 [完成]。
 
-與 Maven toobuild，您可以使用 pom.xml hello 上方層級：
+若要使用 Maven 來建置，您可以使用最上層的 pom.xml：
 
 1. 將此儲存機制複製到您選擇的目錄：
 
   `$ git clone git@github.com:AzureADSamples/NativeClient-Android.git`  
-2. Hello 中的 hello 步驟[Maven 環境適用於 Android 的必要條件 tooset](https://github.com/MSOpenTech/azure-activedirectory-library-for-android/wiki/Setting-up-maven-environment-for-Android)。
-3. 設定 SDK 19 hello 模擬器。
-4. 移 toohello 您再製 hello 儲存機制的根資料夾。
+2. 請遵循[為 Android 設定 Maven 環境的必要條件](https://github.com/MSOpenTech/azure-activedirectory-library-for-android/wiki/Setting-up-maven-environment-for-Android)中的步驟。
+3. 使用 SDK 19 設定模擬器。
+4. 移至您已複製儲存機制的根資料夾。
 5. 執行這個命令：`mvn clean install`
-6. 變更 hello 目錄 toohello 快速入門範例：`cd samples\hello`
+6. 將目錄變更為快速入門範例：`cd samples\hello`
 7. 執行這個命令：`mvn android:deploy android:run`
 
-   您應該會看到 hello 啟動應用程式。
-8. 輸入測試使用者認證 tootry。
+   您應該會看到應用程式啟動。
+8. 輸入測試使用者認證來測試一下。
 
-JAR 封裝將立即送出 hello AAR 封裝旁邊。
+除了 AAR 套件，也會提交 JAR 套件。
 
-## <a name="step-4-download-hello-android-adal-and-add-it-tooyour-eclipse-workspace"></a>步驟 4： 下載 Android ADAL hello，並將它加入 tooyour Eclipse 工作區
-我們已經讓您 toohave 輕鬆多個選項 toouse ADAL Android 專案中：
+## <a name="step-4-download-the-android-adal-and-add-it-to-your-eclipse-workspace"></a>步驟 4：下載 Android ADAL，並將它加入您的 Eclipse 工作區
+我們提供多個選項，讓您輕鬆地在 Android 專案中使用 ADAL：
 
-* 您可以使用 hello 來源的程式碼 tooimport 此文件庫，到 Eclipse 和連結 tooyour 應用程式。
-* 如果您使用 Android Studio 中，您可以使用 hello AAR 封裝格式，並參考 hello 二進位檔。
+* 您可以使用原始程式碼將此程式庫匯入到 Eclipse，並連結至您的應用程式。
+* 如果您使用 Android Studio，可以使用 AAR 套件格式並參考二進位檔。
 
 ### <a name="option-1-source-zip"></a>選項 1：原始檔 Zip
-toodownload 副本 hello 原始程式碼中，按一下**Download ZIP**右邊 hello hello 頁面。 或者，可以[從 GitHub 下載](https://github.com/AzureAD/azure-activedirectory-library-for-android/archive/v1.0.9.tar.gz)。
+若要下載原始程式碼，按一下頁面右側的 [下載 ZIP]。 或者，可以[從 GitHub 下載](https://github.com/AzureAD/azure-activedirectory-library-for-android/archive/v1.0.9.tar.gz)。
 
 ### <a name="option-2-source-via-git"></a>選項 2：透過 Git 取得原始檔
-透過 Git，SDK 輸入 hello tooget hello 原始碼：
+若要透過 Git 取得 SDK 的原始程式碼，請輸入：
 
     git clone git@github.com:AzureAD/azure-activedirectory-library-for-android.git
     cd ./azure-activedirectory-library-for-android/src
 
 ### <a name="option-3-binaries-via-gradle"></a>選項 3：透過 Gradle 取得二進位檔
-您可以從 hello Maven 中央儲存機制取得 hello 二進位檔。 hello AAR 封裝可以包含在 Android Studio 中的專案中，如下所示：
+您可以從 Maven 中央儲存機制取得二進位檔。 AAR 套件可以在 AndroidStudio 中加入您的專案中，如下所示：
 
 ```gradle
 repositories {
@@ -136,7 +136,7 @@ dependencies {
 ```
 
 ### <a name="option-4-aar-via-maven"></a>選項 4：透過 Maven 取得 AAR
-如果您使用 hello M2Eclipse 外掛程式，您可以指定 pom.xml 檔案中的 hello 相依性：
+如果您使用 M2E 外掛程式，可以在 pom.xml 檔案中指定相依性：
 
 ```xml
 <dependency>
@@ -148,13 +148,13 @@ dependencies {
 ```
 
 
-### <a name="option-5-jar-package-inside-hello-libs-folder"></a>選項 5: Hello 程式庫資料夾內的 JAR 封裝
-從 hello Maven 儲存機制取得 hello JAR 檔案，並將其放置到 hello**程式庫**專案資料夾中的。 您需要 toocopy hello 所需的資源 tooyour 專案，因為 hello JAR 套件不包含它們。
+### <a name="option-5-jar-package-inside-the-libs-folder"></a>選項 5：libs 資料夾內的 JAR 套件
+您可以從 Maven 儲存機制取得 JAR 檔案，並放入專案的 **libs** 資料夾中。 您也需要將必要的資源複製到專案，因為 JAR 套件中沒有它們。
 
-## <a name="step-5-add-references-tooandroid-adal-tooyour-project"></a>步驟 5： 加入參考 tooAndroid ADAL tooyour 專案
-1. 新增參考 tooyour 專案，並將它指定為 Android 程式庫。 如果您不確定如何 toodo，您可以取得更多有關 hello [Android Studio 網站](http://developer.android.com/tools/projects/projects-eclipse.html)。
-2. 新增您的專案設定成偵錯 hello 專案相依性。
-3. 更新您的專案 AndroidManifest.xml 檔案 tooinclude:
+## <a name="step-5-add-references-to-android-adal-to-your-project"></a>步驟 5：將 Android ADAL 參考加入至您的專案
+1. 在專案中加入參考，並指定為 Android 程式庫。 如果您不確定怎麼做，可以從 [Android Studio 網站](http://developer.android.com/tools/projects/projects-eclipse.html)取得詳細資訊。
+2. 加入專案相依性，以針對您的專案設定進行偵錯。
+3. 更新專案的 AndroidManifest.xml 檔案來包含：
 
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -172,11 +172,11 @@ dependencies {
             ....
         <application/>
 
-4. 在您的主要活動建立 AuthenticationContext 的執行個體。 這個呼叫的 hello 詳細資料已超出本主題中，hello 範圍，但是可以藉由查看 hello 很不錯的起點[Android 原生用戶端範例](https://github.com/AzureADSamples/NativeClient-Android)。 在下列範例的 hello，SharedPreferences hello 預設快取，而且授權單位是 hello 形式`https://login.microsoftonline.com/yourtenant.onmicrosoft.com`:
+4. 在您的主要活動建立 AuthenticationContext 的執行個體。 此呼叫的詳細資料超出本主題的範圍，但您可以查看 [Android 原生用戶端範例](https://github.com/AzureADSamples/NativeClient-Android)，由此開始也很不錯。 在以下範例中，SharedPreferences 是預設快取，Authority 格式為 `https://login.microsoftonline.com/yourtenant.onmicrosoft.com`：
 
     `mContext = new AuthenticationContext(MainActivity.this, authority, true); // mContext is a field in your activity`
 
-5. Hello 使用者輸入認證，並接收授權碼之後，請複製此程式碼區塊 toohandle hello 結尾 AuthenticationActivity:
+5. 複製此程式碼區塊，以便於使用者輸入認證並收到授權碼之後處理 AuthenticationActivity 的結束工作：
 
         @Override
          protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -186,7 +186,7 @@ dependencies {
              }
          }
 
-6. tooask 權杖，來定義回呼：
+6. 若要要求權杖，定義回呼：
 
         private AuthenticationCallback<AuthenticationResult> callback = new AuthenticationCallback<AuthenticationResult>() {
 
@@ -223,91 +223,91 @@ dependencies {
     `mContext.acquireToken(MainActivity.this, resource, clientId, redirect, user_loginhint, PromptBehavior.Auto, "",
                    callback);`
 
-以下是 hello 參數說明：
+以下是參數的說明：
 
-* *資源*無須且您正嘗試 tooaccess hello 資源。
+* resource 是必要參數，是您嘗試存取的資源。
 * clientid 是必要參數，來自 AzureAD。
-* *RedirectUri*不是必要的 toobe hello acquireToken 呼叫所提供。 您可以將它設定為您的套件名稱。
-* *PromptBehavior* tooask 認證 tooskip hello 快取與 cookie 可幫助。
-* *回呼*後權杖交換 hello 授權程式碼呼叫。 它有一個 AuthenticationResult 物件，提供存取權杖、過期日期和識別碼權杖資訊。
-* acquireTokenSilent 為選擇性。 Toohandle 快取和權杖重新整理，您可以呼叫它。 它也提供 hello 的同步處理版本。 它接受 userid 作為參數。
+* RedirectUri 在 acquireToken 呼叫中不是必要參數。 您可以將它設定為您的套件名稱。
+* PromptBehavior 有助於在要求認證時略過快取和 Cookie。
+* 授權碼兌換成權杖之後，就會呼叫 callback。 它有一個 AuthenticationResult 物件，提供存取權杖、過期日期和識別碼權杖資訊。
+* acquireTokenSilent 為選擇性。 您可以呼叫它來處理快取和權杖重新整理。 它也提供同步處理版本。 它接受 userid 作為參數。
 
         mContext.acquireTokenSilent(resource, clientid, userId, callback );
 
-使用本逐步解說，您應該有您需要 toosuccessfully 與 Azure Active Directory 整合。 如需此工作的範例，請瀏覽 hello AzureADSamples / GitHub 上的儲存機制。
+經過這個逐步解說，您應該已擁有與 Azure Active Directory 成功整合所需的項目。 如需此工作的更多範例，請瀏覽 GitHub 上的 AzureADSamples/ 儲存機制。
 
 ## <a name="important-information"></a>重要資訊
 ### <a name="customization"></a>自訂
-您的應用程式資源可以覆寫程式庫專案資源。 當您建置應用程式時會發生這種情況。 基於這個理由，您可以自訂您想要的驗證活動配置 hello 方式。 是確定 tookeep hello 識別碼 hello 控制項，ADAL 會使用 (WebView)。
+您的應用程式資源可以覆寫程式庫專案資源。 當您建置應用程式時會發生這種情況。 基於這個理由，您可以依想要的方式自訂驗證活動配置。 請記下 ADAL 使用的控制項 (WebView) 的識別碼。
 
 ### <a name="broker"></a>Broker
-hello Microsoft Intune 公司入口網站應用程式提供 hello broker 元件。 hello 帳戶會建立在 AccountManager。 hello 帳戶類型是"com.microsoft.workaccount。 」 AccountManager 只允許一個 SSO (單一登入) 帳戶。 完成 hello 裝置挑戰的其中一個 hello 應用程式之後，它就會建立 hello 使用者的 SSO cookie。
+Microsoft Intune 公司入口網站應用程式提供「訊息代理程式」元件。 帳戶會在 AccountManager 中建立。 帳戶類型為 "com.microsoft.workaccount"。 AccountManager 只允許一個 SSO (單一登入) 帳戶。 完成其中一個應用程式的裝置挑戰之後，就會建立此使用者的 SSO Cookie。
 
-ADAL 使用 hello broker 帳戶，如果在這個驗證器建立一個使用者帳戶，而且您選擇不 tooskip 它。 您可以略過與 hello broker 使用者：
+如果在這個驗證器上建立使用者帳戶，且您選擇不要略過它，ADAL 會使用訊息代理程式帳戶。 您可以使用以下方法來略過訊息代理程式使用者：
 
    `AuthenticationSettings.Instance.setSkipBroker(true);`
 
-您需要特殊的 RedirectUri tooregister broker 使用量。 RedirectUri 是 hello 格式`msauth://packagename/Base64UrlencodedSignature`。 您可以使用 hello 指令碼 brokerRedirectPrint.ps1 或 hello API 呼叫 mContext.getBrokerRedirectUri，應用程式取得您的 RedirectUri。 hello 簽章是相關的 tooyour 簽署憑證。
+您必須註冊特殊的 RedirectUri 供訊息代理程式使用。 RedirectUri 的格式為 `msauth://packagename/Base64UrlencodedSignature`。 您可以使用指令碼 brokerRedirectPrint.ps1 或使用 API 呼叫 mContext.getBrokerRedirectUri，以取得應用程式的 RedirectUri。 簽章與您的簽署憑證有關。
 
-hello 目前 broker 模型是針對一個使用者。 AuthenticationContext 提供 hello API 方法 tooget hello broker 使用者。
+目前的訊息代理程式模型僅能用於一位使用者。 AuthenticationContext 提供 API 方法來取得訊息代理程式使用者。
 
    `String brokerAccount =  mContext.getBrokerUser(); //Broker user is returned if account is valid.`
 
-您的應用程式資訊清單應該具有下列權限 toouse AccountManager 帳戶 hello。 如需詳細資訊，請參閱 hello [hello Android 網站上的 AccountManager 資訊](http://developer.android.com/reference/android/accounts/AccountManager.html)。
+您的應用程式資訊清單應有下列權限才能使用 AccountManager 帳戶。 如需詳細資訊，請參閱[Android 網站上的 AccountManager 資訊](http://developer.android.com/reference/android/accounts/AccountManager.html)。
 
 * GET_ACCOUNTS
 * USE_CREDENTIALS
 * MANAGE_ACCOUNTS
 
 ### <a name="authority-url-and-ad-fs"></a>授權單位 URL 和 AD FS
-Active Directory Federation Services (AD FS) 無法辨識為生產 STS，因此您需要的執行個體探索 tooturn 和在 hello AuthenticationContext 建構函式傳遞 false。
+Active Directory 同盟服務 (AD FS) 不視為正式的 STS，因此您需要開啟執行個體探索，並在 AuthenticationContext 建構函式上傳遞 false。
 
-hello 授權 URL 需要 STS 執行個體和[租用戶名稱](https://login.microsoftonline.com/yourtenant.onmicrosoft.com)。
+授權單位 URL 需要 STS 執行個體和[租用戶名稱](https://login.microsoftonline.com/yourtenant.onmicrosoft.com)。
 
 ### <a name="querying-cache-items"></a>查詢快取項目
-ADAL 在 SharedPreferences 中提供預設快取與一些簡單的快取查詢函式。 您可以使用從 AuthenticationContext 取得 hello 目前快取：
+ADAL 在 SharedPreferences 中提供預設快取與一些簡單的快取查詢函式。 您可以使用以下方法從 AuthenticationContext 取得目前的快取︰
 
     ITokenCacheStore cache = mContext.getCache();
 
-您也可以提供您的快取實作，如果您想 toocustomize 它。
+如果想要自訂它，您也可以提供您的快取實作。
 
     mContext = new AuthenticationContext(MainActivity.this, authority, true, yourCache);
 
 ### <a name="prompt-behavior"></a>提示行為
-ADAL 提供選項 toospecify 提示行為。 PromptBehavior.Auto 如果 hello 重新整理權杖無效，而且不需要使用者的認證，將會顯示 hello UI。 PromptBehavior.Always 會略過 hello 快取使用量，並永遠顯示 hello UI。
+ADAL 提供可指定提示行為的選項。 如果重新整理權杖無效，而且需要使用者認證，PromptBehavior.Auto 會顯示 UI。 PromptBehavior.Always 會略過快取使用，並一律顯示 UI。
 
 ### <a name="silent-token-request-from-cache-and-refresh"></a>從快取無訊息地要求權杖並重新整理
-無訊息的權杖要求不會使用 hello UI 快顯，而且不需要的活動。 從 hello 快取，如果有的話，它就會傳回語彙基元。 如果 hello 權杖到期時，這個方法會嘗試 toorefresh 它。 如果 hello 重新整理權杖已過期或失敗，它會傳回 AuthenticationException。
+無訊息要求權杖不會使用 UI 快顯，也不需要活動。 它會從快取傳回權杖 (若有的話)。 如果權杖已過期，這個方法會嘗試重新整理它。 如果重新整理權杖已過期或失效，則傳回 AuthenticationException。
 
     Future<AuthenticationResult> result = mContext.acquireTokenSilent(resource, clientid, userId, callback );
 
-您也可以使用此方法進行同步呼叫。 您可以設定 null toocallback 或 acquireTokenSilentSync。
+您也可以使用此方法進行同步呼叫。 您可以將 callback 設為 null，或使用 acquireTokenSilentSync。
 
 ### <a name="diagnostics"></a>診斷
-這些是 hello 主要資訊來源的診斷問題：
+診斷問題的主要資訊來源有：
 
 * 例外狀況
 * 記錄檔
 * 網路追蹤
 
-請注意，相互關聯識別碼 hello 文件庫中的中央 toohello 診斷。 如果您想的 toocorrelate ADAL 要求與其他程式碼中的作業，您可以依每個要求來設定相互關聯識別碼。 如果您沒有設定相互關聯識別碼，ADAL 會隨機產生一個。 所有記錄訊息和網路呼叫，會再印有 hello 相互關聯識別碼。 hello 自我產生每一個要求的識別碼的變更。
+請注意，相互關聯識別碼在程式庫中是診斷的核心。 如果您想要將 ADAL 要求與程式碼中其他的作業相互關聯，您可以依每一個要求來設定相互關聯識別碼。 如果您沒有設定相互關聯識別碼，ADAL 會隨機產生一個。 然後所有記錄訊息和網路呼叫加上相互關聯識別碼的戳記。 自行產生的識別碼隨每個要求而不同。
 
 #### <a name="exceptions"></a>例外狀況
-例外狀況是 hello 先診斷。 我們嘗試 tooprovide 有用的錯誤訊息。 如果您發現沒有幫助的錯誤訊息，請提出問題來告訴我們。 請同時提供裝置資訊，例如機型和 SDK 號碼。
+例外狀況是第一個診斷。 我們試著提供有用的錯誤訊息。 如果您發現沒有幫助的錯誤訊息，請提出問題來告訴我們。 請同時提供裝置資訊，例如機型和 SDK 號碼。
 
 #### <a name="logs"></a>記錄檔
-您可以設定 hello 文件庫 toogenerate 記錄檔訊息，您可以使用 toohelp 診斷問題。 您可以進行 hello 下列呼叫 tooconfigure 回呼，ADAL 會使用 toohand 關閉每個記錄檔訊息，它會產生作為設定記錄。
+您可以設定程式庫來產生記錄訊息，用以協助診斷問題。 設定記錄時，請執行下列呼叫來設定回呼，供 ADAL 用來移交每一個產生的記錄訊息。
 
     Logger.getInstance().setExternalLogger(new ILogger() {
         @Override
         public void Log(String tag, String message, String additionalMessage, LogLevel level, ADALError errorCode) {
         ...
-        // You can write this toolog file depending on level or error code.
+        // You can write this to log file depending on level or error code.
         writeToLogFile(getApplicationContext(), tag +":" + message + "-" + additionalMessage);
         }
     }
 
-Hello，下列程式碼所示，訊息可以寫入 tooa 自訂記錄檔。 不幸的是，從裝置取得記錄檔沒有標準方法。 有一些服務可協助您處理這部份。 您也可以設計您自己的資源，例如傳送嗨檔案 tooa 伺服器。
+可以在自訂記錄檔中寫入訊息，如以下程式碼所示。 不幸的是，從裝置取得記錄檔沒有標準方法。 有一些服務可協助您處理這部份。 您可以也自創方法，例如將檔案傳送到伺服器。
 
     private syncronized void writeToLogFile(Context ctx, String msg) {
        File directory = ctx.getDir(ctx.getPackageName(), Context.MODE_PRIVATE);
@@ -319,55 +319,55 @@ Hello，下列程式碼所示，訊息可以寫入 tooa 自訂記錄檔。 不�
        osw.close();
     }
 
-這些是 hello 記錄層級：
+記錄層級分為：
 * Error (例外狀況)
 * Warn (警告)
 * Info (參考用途)
 * Verbose (更多詳細資料)
 
-您設定 hello 記錄層級，像這樣：
+設定記錄層級的方法如下：
 
     Logger.getInstance().setLogLevel(Logger.LogLevel.Verbose);
 
- 所有的記錄訊息會傳送 toologcat，加法 tooany 自訂記錄回呼中。
-您可以從 logcat 取得記錄 tooa 檔，如下所示：
+ 所有記錄訊息除了傳送至任何自訂記錄檔回呼，也會傳送至 logcat。
+您可以將記錄傳送至檔案形式 logcat，如下所示：
 
     adb logcat > "C:\logmsg\logfile.txt"
 
- 如需 adb 命令的詳細資訊，請參閱 hello [hello Android 網站上的 logcat 資訊](https://developer.android.com/tools/debugging/debugging-log.html#startingLogcat)。
+ 如需有關 adb 命令的詳細資訊，請參閱 [Android 網站上的 logcat 資訊](https://developer.android.com/tools/debugging/debugging-log.html#startingLogcat)。
 
 #### <a name="network-traces"></a>網路追蹤
-您可以使用各種工具 toocapture hello HTTP 流量，ADAL 會產生。  如果您已熟悉 hello OAuth 通訊協定，或您需要 tooprovide 診斷資訊 tooMicrosoft 或其他支援管道，這是最有用。
+您可以使用各種工具來擷取 ADAL 產生的 HTTP 流量。  如果您熟悉 OAuth 通訊協定，或如果您需要提供診斷資訊給 Microsoft 或其他支援管道，這最有用。
 
-Fiddler 是 hello 最簡單的 HTTP 追蹤工具。 使用 hello 下列連結 tooset 它 toocorrectly 記錄 ADAL 的網路流量。 Fiddler 或 Charles toobe 有用追蹤工具，您必須設定它以未加密的 toorecord SSL 流量。  
+Fiddler 是最簡單的 HTTP 追蹤工具。 請使用下列連結來設定它，以正確記錄 ADAL 網路流量。 為了讓追蹤工具 (如 Fiddler、Charles) 更實用，必須將其設定為記錄未加密的 SSL 流量。  
 
 > [!NOTE]
-> 這種方式產生的追蹤可能包含極機密的資訊，例如存取權杖、使用者名稱和密碼。 如果您使用實際執行帳戶，請勿將這些追蹤洩漏給第三方。 如果您需要 toosupply 追蹤 toosomeone 順序 tooget 支援，請使用暫時帳戶使用者名稱和密碼與您不介意共用重現 hello 問題。
+> 這種方式產生的追蹤可能包含極機密的資訊，例如存取權杖、使用者名稱和密碼。 如果您使用實際執行帳戶，請勿將這些追蹤洩漏給第三方。 如果您需要提供追蹤給某人以取得支援，請使用您不介意共用使用者名稱和密碼的暫時帳戶來重現問題。
 
-* 從 hello Telerik 網站：[設定總 Fiddler For Android](http://docs.telerik.com/fiddler/configure-fiddler/tasks/ConfigureForAndroid)
+* 從 Telerik 網站：[設定適用於 Android 的 Fiddler](http://docs.telerik.com/fiddler/configure-fiddler/tasks/ConfigureForAndroid)
 * 從 GitHub：[設定適用於 ADAL 的 Fiddler 規則](https://github.com/AzureAD/azure-activedirectory-library-for-android/wiki/How-to-listen-to-httpUrlConnection-in-Android-app-from-Fiddler)
 
 ### <a name="dialog-mode"></a>對話方塊模式
-hello acquireToken 方法，而活動不支援對話方塊提示字元。
+沒有活動的 acquireToken 方法支援對話方塊提示。
 
 ### <a name="encryption"></a>加密
-ADAL 會加密 hello 語彙基元和 SharedPreferences 中預設的存放區。 您可以查看 hello StorageHelper 類別 toosee hello 詳細資料。 Android 引進 Android KeyStore 4.3 (API 18) 安全儲存體來存放私密金鑰。 ADAL 對 API 18 和更新版本使用此機制。 如果您想要 toouse ADAL 較低的 SDK 版本，您需要 tooprovide 在 AuthenticationSettings.INSTANCE.setSecretKey 祕密金鑰。
+根據預設，ADAL 會加密權杖並儲存在 SharedPreferences 中。 您可以在 StorageHelper 類別查看詳細資料。 Android 引進 Android KeyStore 4.3 (API 18) 安全儲存體來存放私密金鑰。 ADAL 對 API 18 和更新版本使用此機制。 如果您想要使用較低 SDK 版本的 ADAL，您需要在 AuthenticationSettings.INSTANCE.setSecretKey 提供秘密金鑰。
 
 ### <a name="oauth2-bearer-challenge"></a>OAuth2 持有者挑戰
-hello AuthenticationParameters 類別提供的功能 tooget authorization_uri 從 hello OAuth2 bearer 挑戰。
+AuthenticationParameters 類別提供從 OAuth2 持有者挑戰取得 authorization_uri 的功能。
 
 ### <a name="session-cookies-in-webview"></a>WebView 中的工作階段 Cookie
-Android WebView hello 應用程式關閉後，不會清除工作階段 cookie。 您可以使用以下範例程式碼來處理這部分：
+在應用程式關閉後，Android WebView 不會清除工作階段 Cookie。 您可以使用以下範例程式碼來處理這部分：
 
     CookieSyncManager.createInstance(getApplicationContext());
     CookieManager cookieManager = CookieManager.getInstance();
     cookieManager.removeSessionCookie();
     CookieSyncManager.getInstance().sync();
 
-如需 cookie 的詳細資訊，請參閱 hello [hello Android 網站上的 CookieSyncManager 資訊](http://developer.android.com/reference/android/webkit/CookieSyncManager.html)。
+如需有關 Cookie 的詳細資訊，請參閱 [Android 網站上的 CookieSyncManager 資訊](http://developer.android.com/reference/android/webkit/CookieSyncManager.html)。
 
 ### <a name="resource-overrides"></a>資源覆寫
-hello ADAL 程式庫包含英文 ProgressDialog 訊息字串。 如果想要當地語系化的字串，您的應用程式應該覆寫這些英文字串。
+ADAL 程式庫包含 ProgressDialog 訊息的英文字串。 如果想要當地語系化的字串，您的應用程式應該覆寫這些英文字串。
 
      <string name="app_loading">Loading...</string>
      <string name="broker_processing">Broker is processing</string>
@@ -378,9 +378,9 @@ hello ADAL 程式庫包含英文 ProgressDialog 訊息字串。 如果想要當�
      <string name="http_auth_dialog_cancel">Cancel</string>
 
 ### <a name="ntlm-dialog-box"></a>NTLM 對話方塊
-ADAL 1.1.0 版支援透過從 WebViewClient hello onReceivedHttpAuthRequest 事件處理 [NTLM] 對話方塊。 您可以自訂 hello 配置和字串 hello 對話方塊。
+ADAL 1.1.0 版支援 NTLM 對話方塊，此對話方塊是透過 WebViewClient 的 onReceivedHttpAuthRequest 事件來處理。 您可以自訂對話方塊的版面配置和字串。
 
 ### <a name="cross-app-sso"></a>跨應用程式的 SSO
-深入了解[如何 tooenable 跨應用程式使用 ADAL 在 Android 上的 SSO](active-directory-sso-android.md)。  
+了解[如何使用 ADAL 啟用跨應用程式的 SSO](active-directory-sso-android.md)。  
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]

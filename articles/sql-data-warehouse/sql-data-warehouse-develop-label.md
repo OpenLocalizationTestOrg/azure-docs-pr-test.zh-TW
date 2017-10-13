@@ -1,6 +1,6 @@
 ---
-title: "aaaUse 標籤 tooinstrument SQL 資料倉儲中的查詢 |Microsoft 文件"
-description: "使用 Azure SQL 資料倉儲中的標籤 tooinstrument 查詢，來開發方案的秘訣。"
+title: "在 SQL 資料倉儲中使用標籤來檢測查詢 | Microsoft Docs"
+description: "在 Azure SQL 資料倉儲中使用標籤來檢測查詢以開發解決方案的秘訣。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: jrowlandjones
@@ -15,13 +15,13 @@ ms.workload: data-services
 ms.custom: queries
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 82e7ea98e1417134227f1d7c529fdaf2f1df3853
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9e75bbe528a427724a623305fbd45e2277e9d0af
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-labels-tooinstrument-queries-in-sql-data-warehouse"></a>使用 SQL 資料倉儲中的標籤 tooinstrument 查詢
+# <a name="use-labels-to-instrument-queries-in-sql-data-warehouse"></a>在 SQL 資料倉儲中使用標籤來檢測查詢
 SQL 資料倉儲支援稱為查詢標籤的概念。 繼續進行之前，讓我們看看一個範例：
 
 ```sql
@@ -31,11 +31,11 @@ OPTION (LABEL = 'My Query Label')
 ;
 ```
 
-此最後一行標記 hello 字串 ' 我查詢 Label' toohello 查詢。 這是特別有用，因為 hello 標籤是可查詢透過 hello Dmv。 這提供問題的查詢機制 tootrack 和 toohelp 也識別出 ETL 執行的進度。
+最後一行將字串 'My Query Label' 標記為查詢。 這是特別有幫助的動作，因為標籤可透過 DMV 查詢。 這提供一種機制，可追蹤問題查詢，也可以協助透過 ETL 執行識別進度。
 
-此時良好的命名慣例非常有幫助。 如需範例類似 '專案： 程序： 陳述式： 註解' 會有幫助 toouniquely 識別在原始檔控制中的所有 hello 程式碼中的 hello 查詢。
+此時良好的命名慣例非常有幫助。 例如，類似 ' PROJECT : PROCEDURE : STATEMENT : COMMENT' 的項目有助於在原始檔控制中的幾乎所有程式碼中唯一識別查詢。
 
-您可以使用下列查詢會使用 hello 標籤 toosearch hello 動態管理檢視：
+若要根據標籤搜尋，您可以使用下列使用動態管理檢視的查詢：
 
 ```sql
 SELECT  *
@@ -45,7 +45,7 @@ WHERE   r.[label] = 'My Query Label'
 ```
 
 > [!NOTE]
-> 請務必查詢時，您包裝方括號或雙引號括住 hello 字的標籤。 標籤是一個保留的文字，而且如果未分隔，就會造成錯誤。
+> 請務必在查詢時以方括弧或雙引號括住文字標籤。 標籤是一個保留的文字，而且如果未分隔，就會造成錯誤。
 > 
 > 
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure DNS 的 aaaOverview |Microsoft 文件"
+title: "Azure DNS 概觀 | Microsoft Docs"
 description: "在 Microsoft Azure 上裝載 Azure DNS 服務的概觀。 在 Microsoft Azure 上裝載您的網域。"
 services: dns
 documentationcenter: na
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/19/2017
 ms.author: gwallace
-ms.openlocfilehash: a10f87c488356469e9c04aabde31129049563891
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3705457e4c90f8869496f7f5177531bd128d1057
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-dns-overview"></a>Azure DNS 概觀
 
-hello 網域名稱系統或 DNS，負責將轉譯 （或解決） 的網站或服務名稱 tooits IP 位址。 Azure DNS 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 裝載您在 Azure 中的網域，您可以管理您的 DNS 記錄使用相同的認證、 Api、 工具和計費 hello 與其他 Azure 服務。
+網域名稱系統 (DNS) 負責將網站或服務名稱轉譯 (或解析) 為其 IP 位址。 Azure DNS 是 DNS 網域的主機服務，採用 Microsoft Azure 基礎結構提供名稱解析。 只要將您的網域裝載於 Azure，就可以像管理其他 Azure 服務一樣，使用相同的認證、API、工具和計費方式來管理 DNS 記錄。
 
 ![DNS 概觀](./media/dns-overview/scenario.png)
 
 ## <a name="features"></a>特性
 
-* **可靠性和效能** - Azure DNS 中的 DNS 網域是裝載於 Azure 的 DNS 名稱伺服器全球網路。 我們使用任一傳播網路，讓每個 DNS 查詢由 hello 最接近可用 DNS 伺服器回應。 這為您的網域提供快速的效能與高可用性。
+* **可靠性和效能** - Azure DNS 中的 DNS 網域是裝載於 Azure 的 DNS 名稱伺服器全球網路。 我們使用「任一傳播」網路，所以每個 DNS 查詢是由最接近的可用 DNS 伺服器回答。 這為您的網域提供快速的效能與高可用性。
 
-* **緊密整合**-hello Azure DNS 服務可以使用的 toomanage Azure 服務的 DNS 記錄，而且可以是使用的 tooprovide DNS，針對您外部的資源。 Azure DNS 整合 hello Azure 入口網站中，而且會使用相同的認證、 帳單和支援合約 hello 與其他 Azure 服務。
+* **緊密整合** - Azure DNS 服務可用為您 Azure 服務管理 DNS 記錄，也可用來為您的外部資源提供 DNS。 Azure DNS 已在 Azure 入口網站中整合，並且使用與您其他 Azure 服務相同的認證、計費及支援合約。
 
-* **安全性**-hello Azure DNS 服務採用 Azure 資源管理員。 因此可得益於 Resource Manager 的功能，如角色型存取控制、稽核記錄檔、資源鎖定。 您的網域和記錄可以透過 hello Azure 入口網站，Azure PowerShell cmdlet，管理和 hello 跨平台 Azure CLI。 需要 DNS 的自動管理的應用程式可以整合透過 hello hello 服務 REST API 和 Sdk。
+* **安全性** - Azure DNS 服務是以 Azure Resource Manager 為基礎。 因此可得益於 Resource Manager 的功能，如角色型存取控制、稽核記錄檔、資源鎖定。 您可以透過 Azure 入口網站、Azure PowerShell Cmdlet 和跨平台 Azure CLI 來管理網域和記錄。 需要自動化 DNS 管理的應用程式可以透過 REST API 和 SDK 與服務進行整合。
 
-Azure DNS 目前不支援購買網域名稱。 如果您想 toopurchase 網域時，您會需要 toouse 第三方網域名稱註冊機構。 hello 註冊機構通常費用小年費。 hello 網域的 DNS 記錄管理然後裝載在 Azure DNS。 請參閱[委派網域 tooAzure DNS](dns-domain-delegation.md)如需詳細資訊。
+Azure DNS 目前不支援購買網域名稱。 若想要購買網域，必須洽詢第三方網域名稱註冊機構。 註冊機構通常會收取些微年費。 然後便可以在 Azure DNS 裝載這些網域來管理 DNS 記錄。 如需詳細資訊，請參閱 [將網域委派給 Azure DNS](dns-domain-delegation.md) 。
 
 ## <a name="pricing"></a>價格
 
-DNS 計費根據裝載在 Azure 中並以 hello 的 DNS 查詢的 DNS 區域的 hello 數目而定。 深入了解定價，請造訪 toolearn [Azure DNS 定價](https://azure.microsoft.com/pricing/details/dns/)。
+DNS 的計費方式是依據 Azure 中裝載的 DNS 區域數量，以及 DNS 查詢的數量。 若要深入瞭解定價，請瀏覽 [Azure DNS 定價](https://azure.microsoft.com/pricing/details/dns/)。
 
 ## <a name="faq"></a>常見問題集
 
-常見問題集疑問 Azure DNS 的詳細資訊，請參閱 hello [Azure DNS 常見問題集](dns-faq.md)。
+如需有關 Azure DNS 的常見問題集，請參閱 [Azure DNS 常見問題集](dns-faq.md)。
 
 ## <a name="next-steps"></a>後續步驟
 
 如需深入了解 DNS 區域和記錄，請瀏覽：[DNS 區域和記錄的概觀](dns-zones-records.md)。
 
-了解如何太[建立 DNS 區域](./dns-getstarted-create-dnszone-portal.md)Azure DNS 中。
+了解如何在 Azure DNS 中[建立 DNS 區域](./dns-getstarted-create-dnszone-portal.md)。
 
-深入了解一些 hello 另一個索引鍵[網路功能](../networking/networking-overview.md)的 Azure。
+深入了解 Azure 的一些其他重要[網路功能](../networking/networking-overview.md)。
 

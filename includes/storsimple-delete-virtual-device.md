@@ -1,6 +1,6 @@
-#### <a name="toodelete-a-virtual-device"></a>toodelete 虛擬裝置
+#### <a name="to-delete-a-virtual-device"></a>刪除虛擬裝置
 
-1. 登入 toohello Azure 傳統入口網站。
-2. 按一下**虛擬機器**，，然後選取 hello 虛擬裝置。
-3. 按一下**刪除**選擇 toodelete hello 虛擬機器的所有磁碟。
+1. 登入 Azure 傳統入口網站。
+2. 按一下 [虛擬機器] ，然後選取虛擬裝置。
+3. 按一下 [ **刪除** ]，然後選擇刪除所有的虛擬機器磁碟。
 

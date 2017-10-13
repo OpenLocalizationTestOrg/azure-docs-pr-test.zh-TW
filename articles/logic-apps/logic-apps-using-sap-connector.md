@@ -1,6 +1,6 @@
 ---
-title: "aaaConnect tooan 內部 Azure 邏輯應用程式中的 SAP 系統 |Microsoft 文件"
-description: "Tooan 在內部部署 SAP 系統連接與邏輯應用程式工作流程透過 hello 在內部部署資料閘道"
+title: "連線到 Azure Logic Apps 中的內部部署 SAP 系統 | Microsoft Docs"
+description: "透過內部部署資料閘道，連線到邏輯應用程式工作流程中的內部部署 SAP 系統"
 services: logic-apps
 author: padmavc
 manager: anneta
@@ -13,80 +13,80 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 02/01/2017
 ms.author: LADocs; padmavc
-ms.openlocfilehash: 594ec5fed337398bf931d396684630ee9f907d2f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3fea93f558d5a4ef62550fd1f6486903cb812930
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="connect-tooan-on-premises-sap-system-from-logic-apps-with-hello-sap-connector"></a>從邏輯應用程式與 hello SAP 連接器連接 tooan 在內部部署 SAP 系統 
+# <a name="connect-to-an-on-premises-sap-system-from-logic-apps-with-the-sap-connector"></a>使用 SAP 連接器，從邏輯應用程式連線到內部部署 SAP 系統 
 
-hello 在內部部署資料閘道可讓您 toomanage 資料，並安全地存取內部部署的資源。 本主題說明如何連接邏輯應用程式 tooan 在內部部署 SAP 系統。 在此範例中，邏輯應用程式會透過 HTTP 要求 IDOC，並將傳送 hello 回應傳回。    
+內部部署資料閘道可讓您管理資料，並且安全地存取內部部署的資源。 本主題示範如何將邏輯應用程式連線到內部部署 SAP 系統。 在此範例中，邏輯應用程式會透過 HTTP 要求 IDOC，並傳回回應。    
 
 > [!NOTE]
 > 目前限制： 
-> - 邏輯應用程式逾時，如果 hello 回應所需的所有步驟不 hello 內都完成[要求逾時限制](./logic-apps-limits-and-config.md)。 在此情況下，可能會封鎖要求。 
-> - hello 檔案選擇器不會顯示所有的 hello 可用的欄位。 在此案例中，您可以手動新增路徑。
+> - 如果回應所需的所有步驟未在[要求逾時限制](./logic-apps-limits-and-config.md)內完成，則邏輯應用程式會逾時。 在此情況下，可能會封鎖要求。 
+> - 檔案選擇器不會顯示所有可用的欄位。 在此案例中，您可以手動新增路徑。
 
 ## <a name="prerequisites"></a>必要條件
 
-- 安裝及最新設定 hello[在內部部署資料閘道](https://www.microsoft.com/download/details.aspx?id=53127)1.15.6150.1 版本或更新版本。 [如何 tooconnect toohello 內部部署資料閘道，在邏輯應用程式中](http://aka.ms/logicapps-gateway)清單 hello 步驟。 您可以繼續之前，必須安裝 hello 閘道在內部部署電腦上。
+- 安裝及設定最新的[內部部署資料閘道](https://www.microsoft.com/download/details.aspx?id=53127)版本 1.15.6150.1 或更新版本。 [如何連接至邏輯應用程式中的內部部署資料閘道](http://aka.ms/logicapps-gateway)中有列出步驟。 必須先在內部部署機器上安裝閘道，然後才能繼續。
 
-- 下載並安裝 hello 最新 SAP 用戶端程式庫上 hello 相同機器 hello 資料閘道的安裝位置。 使用任何下列 SAP 版本 hello: 
+- 在您已安裝資料閘道的同一部電腦上，下載並安裝最新的 SAP 用戶端程式庫。 使用下列任一 SAP 版本： 
     - SAP 伺服器
-        - 任何 SAP 伺服器的支援 hello.NET 連接器 (NCo) 3.0
+        - 任何支援 .NET 連接器 (NCo) 3.0 的 SAP 伺服器
  
     - SAP 用戶端
         - SAP.NET 連接器 (NCo) 3.0
 
-## <a name="add-triggers-and-actions-for-connecting-tooyour-sap-system"></a>加入觸發程序和連接 tooyour SAP 系統的動作
+## <a name="add-triggers-and-actions-for-connecting-to-your-sap-system"></a>新增用來連線到 SAP 系統的觸發程序和動作
 
-hello SAP 連接器具有的動作，但未觸發程序。 因此，我們有 toouse 另一個觸發程序在 hello hello 工作流程的開頭。 
+SAP 連接器具有動作，但沒有觸發程序。 因此，我們需要在工作流程的開頭使用另一個觸發程序。 
 
-1. 加入 hello 要求/回應觸發程序，然後選取**新步驟**。
+1. 新增要求/回應觸發程序，然後選取 [新增步驟]。
 
-2. 選取**將動作加入**，然後輸入選取 hello SAP 連接器`SAP`hello [搜尋] 欄位中：    
+2. 選取 [新增動作]，然後在搜尋欄位輸入 `SAP` 以選取 SAP 連接器：    
 
      ![選取 SAP 應用程式伺服器或 SAP 訊息伺服器](media/logic-apps-using-sap-connector/sap-action.png)
 
-3. 選取 [**SAP 應用程式伺服器**](https://wiki.scn.sap.com/wiki/display/ABAP/ABAP+Application+Server)或 [**SAP 訊息伺服器**](http://help.sap.com/saphelp_nw70/helpdata/en/40/c235c15ab7468bb31599cc759179ef/frameset.htm)，這取決於您的 SAP 設定。 如果您沒有現有的連接，您必須提示的 toocreate 其中一個。
+3. 選取 [**SAP 應用程式伺服器**](https://wiki.scn.sap.com/wiki/display/ABAP/ABAP+Application+Server)或 [**SAP 訊息伺服器**](http://help.sap.com/saphelp_nw70/helpdata/en/40/c235c15ab7468bb31599cc759179ef/frameset.htm)，這取決於您的 SAP 設定。 如果您目前沒有連線，系統會提示您建立連線。
 
-   1. 選取**連接透過內部部署資料閘道**，並輸入您的 SAP 系統的 hello 詳細資料：   
+   1. 選取 [透過內部部署資料閘道連接]，並輸入 SAP 系統的詳細資料︰   
 
-       ![加入連接字串 tooSAP](media/logic-apps-using-sap-connector/picture2.png)  
+       ![將連接字串新增到 SAP](media/logic-apps-using-sap-connector/picture2.png)  
 
-   2. 在下**閘道**、 選取現有的閘道或新的閘道 tooinstall、 選取**安裝閘道**。
+   2. 在 [閘道] 下方，選取現有閘道，或者，若要安裝新的閘道，請選取 [安裝閘道]。
 
         ![安裝新的閘道](media/logic-apps-using-sap-connector/install-gateway.png)
   
-   3. 您輸入所有 hello 詳細資料之後，請選取**建立**。 
-   邏輯應用程式設定，並測試 hello 連線，並確定 hello 連線正常運作。
+   3. 輸入所有詳細資料之後，選取 [建立]。 
+   Logic Apps 會設定並測試連線，以確定連線運作正常。
 
 4. 輸入 SAP 連線的名稱。
 
-5. 現在可以使用 hello 不同 SAP 選項。 toofind IDOC 分類，則請從 hello 清單中選取。 或以手動方式輸入 hello 路徑中的和選取 hello HTTP 回應 hello**主體**欄位：
+5. 不同的 SAP 選項現已推出。 若要尋找 IDOC 類別，請從清單中進行選取。 或者，以手動方式輸入路徑，並在 **body** 欄位中選取 HTTP 回應：
 
      ![SAP 動作](media/logic-apps-using-sap-connector/picture3.png)
 
-6. 加入建立 hello 動作**HTTP 回應**。 hello 回應訊息應該從 hello SAP 輸出。
+6. 新增用於建立 [HTTP 回應] 的動作。 回應訊息應該都來自 SAP 輸出。
 
-7. 儲存您的邏輯應用程式。 傳送 IDOC 透過 hello HTTP 觸發程序 URL 來測試它。 Hello 傳送 IDOC 之後, 等候 hello 回應 hello 邏輯應用程式：   
+7. 儲存您的邏輯應用程式。 透過 HTTP 觸發程序 URL 傳送 IDOC 加以測試。 傳送 IDOC 之後，請等待邏輯應用程式的回應：   
 
      > [!TIP]
-     > 如何查看太[監視您的 Logic Apps](../logic-apps/logic-apps-monitor-your-logic-apps.md)。
+     > 請查看如何[監視 Logic Apps](../logic-apps/logic-apps-monitor-your-logic-apps.md)。
 
-既然 hello SAP 連接器加入 tooyour 邏輯應用程式，開始探索其他功能：
+現在，SAP 連接器新增至邏輯應用程式，開始探索其他功能︰
 
 - BAPI
 - RFC
 
 ## <a name="get-help"></a>取得說明
 
-tooask 問題回答的問題，以及了解哪些其他 Azure 邏輯應用程式使用者的行為，請瀏覽 hello [Azure 邏輯應用程式論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。
+若要提出問題、回答問題以及了解其他 Azure Logic Apps 使用者的做法，請造訪 [Azure Logic Apps 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=azurelogicapps)。
 
-toohelp 改善 Azure 邏輯應用程式和連接器、 票選或送出意見在 hello [Azure 邏輯應用程式使用者意見反應網站](http://aka.ms/logicapps-wish)。
+若要改善 Azure Logic Apps 和連接器，請在 [Azure Logic Apps 使用者意見反應網站](http://aka.ms/logicapps-wish)上票選或提交想法。
 
 ## <a name="next-steps"></a>後續步驟
 
-- 深入了解如何 toovalidate、 轉換和其他 BizTalk 類似函式，在 hello [Enterprise Integration Pack](../logic-apps/logic-apps-enterprise-integration-overview.md)。 
-- [Tooon 內部部署資料連接](../logic-apps/logic-apps-gateway-connection.md)從邏輯應用程式
+- 了解如何驗證、轉換及[企業整合套件](../logic-apps/logic-apps-enterprise-integration-overview.md)中其他與 BizTalk 類似的功能。 
+- 從邏輯應用程式[連線到內部部署資料](../logic-apps/logic-apps-gateway-connection.md)

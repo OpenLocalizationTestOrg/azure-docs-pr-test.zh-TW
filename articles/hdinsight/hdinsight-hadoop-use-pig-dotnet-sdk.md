@@ -1,6 +1,6 @@
 ---
-title: "aaaRun Apache Pig 工作 Hadoop-Azure HDInsight.NET sdk |Microsoft 文件"
-description: "了解如何 toouse hello.NET SDK 上 HDInsight Hadoop toosubmit Pig 工作 tooHadoop。"
+title: "使用 .NET SDK for Hadoop 執行 Apache Pig 工作 - Azure HDInsight | Microsoft Docs"
+description: "了解如何使用 .NET SDK for Hadoop 將 Pig 工作提交至 HDInsight 上的 Hadoop。"
 services: hdinsight
 documentationcenter: .net
 author: Blackmist
@@ -16,38 +16,38 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 08/15/2017
 ms.author: larryfr
-ms.openlocfilehash: 1d4ceebd7c168372d23fe29a088f04676686de30
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e40d152821b36852c447d5a3adfd39114edbbace
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="run-pig-jobs-using-hello-net-sdk-for-hadoop-in-hdinsight"></a>執行 hello.NET SDK 用於 HDInsight 中的 Hadoop Pig 工作
+# <a name="run-pig-jobs-using-the-net-sdk-for-hadoop-in-hdinsight"></a>在 HDInsight 中使用 .NET SDK for Hadoop 執行 Pig 工作
 
 [!INCLUDE [pig-selector](../../includes/hdinsight-selector-use-pig.md)]
 
-了解 toouse hello.NET SDK 的 Hadoop toosubmit Apache Pig 工作 tooHadoop Azure HDInsight 上的方式。
+了解如何使用 .NET SDK for Hadoop 將 Apache Pig 工作提交至 Azure HDInsight 上的 Hadoop。
 
-hello HDInsight.NET SDK 提供可讓您更輕鬆 toowork 與 HDInsight 叢集與.NET 的.NET 用戶端程式庫。 Pig 可讓您 toocreate MapReduce 作業依照模型化一系列的資料轉換。 在本文件中，您學會如何 toouse 基本 C# 應用程式 toosubmit Pig 工作 tooan HDInsight 叢集。
+HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。 Pig 可讓您透過建立一系列資料轉換的模型，來建立 MapReduce 作業。 在本文件中，您會學習如何使用基本 C# 應用程式將 Pig 作業提交至 HDInsight 叢集。
 
 ## <a name="prerequisites"></a>必要條件
 
-toocomplete hello 本文中的步驟，您需要下列 hello。
+若要完成這篇文章中的步驟，您需要下列項目。
 
 * Azure HDInsight (HDInsight 上的 Hadoop) 叢集 (Windows 或 Linux 型)。
 
   > [!IMPORTANT]
-  > Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+  > Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 * Visual Studio 2012、2013、2015 或 2017。
 
-## <a name="create-hello-application"></a>建立 hello 應用程式
+## <a name="create-the-application"></a>建立應用程式
 
-hello HDInsight.NET SDK 提供.NET 用戶端程式庫，使其更容易 toowork 與.net 的 HDInsight 叢集。
+HDInsight .NET SDK 提供 .NET 用戶端程式庫，讓您輕鬆地從 .NET 使用 HDInsight 叢集。
 
-1. 從 hello**檔案**在 Visual Studio 中，選取功能表**新增**，然後選取 **專案**。
+1. 從 Visual Studio 的 [檔案] 功能表中，選取 [新增]，然後選取 [專案]。
 
-2. Hello 新專案中，類型或選取 hello 下列值：
+2. 對於新的專案，輸入或選取下列值：
 
    | 屬性 | 值 |
    | ------ | ------ |
@@ -55,15 +55,15 @@ hello HDInsight.NET SDK 提供.NET 用戶端程式庫，使其更容易 toowork 
    | 範本 | 主控台應用程式 |
    | 名稱 | SubmitPigJob |
 
-3. 按一下**確定**toocreate hello 專案。
+3. 按一下 [確定]  以建立專案。
 
-4. 從 hello**工具**功能表上，選取**程式庫套件管理員**或**Nuget 套件管理員**，然後選取**Package Manager Console**。
+4. 從 [工具] 功能表中，選取 [程式庫封裝管理員] 或 [Nuget 封裝管理員]，然後選取 [封裝管理員主控台]。
 
-5. tooinstall hello.NET SDK 封裝，請使用下列命令的 hello:
+5. 若要安裝 .NET SDK 封裝，請使用下列命令︰
 
         Install-Package Microsoft.Azure.Management.HDInsight.Job
 
-6. 從 方案總管 中，按兩下  **Program.cs** tooopen 它。 取代 hello 下列 hello 現有程式碼。
+6. 在 [方案總管] 中，按兩下 **Program.cs** 加以開啟。 將現有程式碼取代為下者。
 
     ```csharp
     using Microsoft.Azure.Management.HDInsight.Job;
@@ -83,14 +83,14 @@ hello HDInsight.NET SDK 提供.NET 用戶端程式庫，使其更容易 toowork 
 
             static void Main(string[] args)
             {
-                System.Console.WriteLine("hello application is running ...");
+                System.Console.WriteLine("The application is running ...");
 
                 var clusterCredentials = new BasicAuthenticationCloudCredentials { Username = ExistingClusterUsername, Password = ExistingClusterPassword };
                 _hdiJobManagementClient = new HDInsightJobManagementClient(ExistingClusterUri, clusterCredentials);
 
                 SubmitPigJob();
 
-                System.Console.WriteLine("Press ENTER toocontinue ...");
+                System.Console.WriteLine("Press ENTER to continue ...");
                 System.Console.ReadLine();
             }
 
@@ -107,30 +107,30 @@ hello HDInsight.NET SDK 提供.NET 用戶端程式庫，使其更容易 toowork 
                                 DUMP RESULT;"
                 };
 
-                System.Console.WriteLine("Submitting hello Pig job toohello cluster...");
+                System.Console.WriteLine("Submitting the Pig job to the cluster...");
                 var response = _hdiJobManagementClient.JobManagement.SubmitPigJob(parameters);
-                System.Console.WriteLine("Validating that hello response is as expected...");
+                System.Console.WriteLine("Validating that the response is as expected...");
                 System.Console.WriteLine("Response status code is " + response.StatusCode);
-                System.Console.WriteLine("Validating hello response object...");
+                System.Console.WriteLine("Validating the response object...");
                 System.Console.WriteLine("JobId is " + response.JobSubmissionJsonResponse.Id);
             }
         }
     }
     ```
 
-7. toostart hello 應用程式，請按**F5**。
+7. 若要啟動應用程式，請按 **F5**。
 
-8. tooexit hello 應用程式，請按**ENTER**。
+8. 若要結束應用程式，請按 **ENTER**。
 
 ## <a name="summary"></a>摘要
 
-如您所見，hello Hadoop 的.NET SDK 可讓您 toocreate.NET 應用程式，提交 Pig 工作 tooan HDInsight 叢集，並監控 hello 工作狀態。
+如您所見，.NET SDK for Hadoop 可讓您建立 .NET 應用程式，以將 Pig 作業提交至 HDInsight 叢集，以及監視作業狀態。
 
 ## <a name="next-steps"></a>後續步驟
 
 如需 HDInsight 中 Pig 的詳細資訊，請參閱[搭配使用 Pig 與 HDInsight 上的 Hadoop](hdinsight-use-pig.md)。
 
-如需有關使用 HDInsight Hadoop 的詳細資訊，請參閱下列文件的 hello:
+如需在 HDInsight 上使用 Hadoop 的詳細資訊，請參閱下列文件：
 
 * [搭配使用 Hive 與 HDInsight 上的 Hadoop](hdinsight-use-hive.md)
 * [搭配使用 MapReduce 與 HDInsight 上的 Hadoop](hdinsight-use-mapreduce.md)

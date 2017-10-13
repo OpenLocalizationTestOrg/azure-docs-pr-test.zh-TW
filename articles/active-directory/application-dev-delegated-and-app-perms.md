@@ -1,5 +1,5 @@
 ---
-title: "委派和應用程式的權限 aaaHow toorecognize 差異 |Microsoft 文件"
+title: "如何辨識委派與應用程式權限之間的差異 | Microsoft Docs"
 description: "了解委派與應用程式權限、用戶端如何使用它們，以及如何由您搭配 Azure AD 開發之應用程式的資源來公開"
 services: active-directory
 documentationcenter: 
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: e7b12dbc122522f3672711835c9704ccbe3cdaf3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9faee35fea8fbbc79b4cbcf8af2b4b3e2b6aa946
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-toorecognize-differences-between-delegated-and-application-permissions"></a>Toorecognize 委派和應用程式的權限間的差異
+# <a name="how-to-recognize-differences-between-delegated-and-application-permissions"></a>如何辨識委派與應用程式權限之間的差異
 
 ## <a name="recommended-documents"></a>建議的文件
 
-- 深入了解如何使用用戶端應用程式[委派和應用程式的權限要求](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#permissions)tooaccess 資源。
-- 請參閱逐步指示如何太[設定用戶端應用程式的權限要求](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#configuring-a-client-application-to-access-web-apis)
-- 更深入，了解如何將資源應用程式公開[範圍](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#scopes)和[應用程式角色](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#roles)tooclient 應用程式資訊清單，當委派和應用程式權限分別以 hello Azure入口網站。 
+- 深入了解用戶端應用程式如何使用[委派與應用程式權限要求](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#permissions)來存取資源。
+- 查看有關如何[設定用戶端應用程式的權限要求](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications#configuring-a-client-application-to-access-web-apis)的逐步指示。
+- 您可以深入研究資源應用程式如何將[範圍](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#scopes)與[應用程式角色](https://docs.microsoft.com/azure/active-directory/develop/active-directory-dev-glossary#roles)公開至用戶端應用程式，這在 Azure 入口網站中分別以委派與應用程式權限表示。 
 
 ## <a name="next-steps"></a>後續步驟
 [AzureAD StackOverflow (英文)](http://stackoverflow.com/questions/tagged/azure-active-directory)

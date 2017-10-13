@@ -1,6 +1,6 @@
 ---
-title: "aaaBuild windows Azure HDInsight Java HBase 應用程式 |Microsoft 文件"
-description: "深入了解如何 toouse Apache Maven Java 為基礎的 toobuild Apache HBase 應用程式，然後將它部署 tooa windows Azure HDInsight 叢集。"
+title: "建置 Windows 型 Azure HDInsight 的 Java HBase 應用程式 | Microsoft Docs"
+description: "了解如何使用 Apache Maven 建置以 Java 為基礎的 Apache HBase 應用程式，然後部署至以 Windows 為基礎的 Azure HDInsight 叢集。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,19 +16,19 @@ ms.topic: article
 ms.date: 02/05/2017
 ms.author: larryfr
 ROBOTS: NOINDEX
-ms.openlocfilehash: 33c2f3d12cb6a17b5406817e8bcd3accff239517
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 59c9af5a91b107e68a676f02fe5a936f955b22fa
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="use-maven-toobuild-java-applications-that-use-hbase-with-windows-based-hdinsight-hadoop"></a>使用 Maven toobuild Java 應用程式與 Windows 為基礎的 HDInsight (Hadoop) 使用 HBase
-深入了解如何 toocreate 和建置[Apache HBase](http://hbase.apache.org/)使用 Apache Maven java 應用程式。 然後使用 hello 應用程式與 Azure HDInsight (Hadoop)。
+# <a name="use-maven-to-build-java-applications-that-use-hbase-with-windows-based-hdinsight-hadoop"></a>使用 Maven 建置搭配使用 HBase 和以 Window 為基礎的 HDInsight (Hadoop) 的 Java 應用程式
+了解如何使用 Apache Maven 以 Java 建立和建置 [Apache HBase](http://hbase.apache.org/) 應用程式。 然後在 Azure HDInsight (Hadoop) 中使用此應用程式。
 
-[Maven](http://maven.apache.org/)是軟體專案管理和理解工具，可讓您 toobuild 軟體、 文件和 Java 專案的報表。 在本文中，您將學習如何 toouse 它 toocreate 的基本 Java 應用程式建立、 查詢和刪除 HBase 資料表的 Azure HDInsight 叢集。
+[Maven](http://maven.apache.org/) 是軟體專案管理和理解工具，可讓您建置 Java 專案的軟體、文件及報告。 在本文中，您會了解如何用它來建立基本的 Java 應用程式，以便在 Azure HDInsight 叢集上建立、查詢和刪除 HBase 資料表。
 
 > [!IMPORTANT]
-> 本文件中的 hello 步驟需要使用 Windows 的 HDInsight 叢集。 Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+> 此文件中的步驟需要使用 Windows 的 HDInsight 叢集。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
 ## <a name="requirements"></a>需求
 * [Java platform JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 7 或更新版本
@@ -36,22 +36,22 @@ ms.lasthandoff: 10/06/2017
 * 搭配使用 HBase 和以 Windows 為基礎的 HDInsight 叢集
 
     > [!NOTE]
-    > 與 HDInsight 叢集版本 3.2 和 3.3 過 hello 本文件中的步驟。 提供範例中的 hello 預設值是 HDInsight 3.3 叢集。
+    > 這份文件中的步驟已經過 HDInsight 叢集 3.2 版和 3.3 版的測試. 在範例中提供的預設值是 HDInsight 3.3 叢集。
 
-## <a name="create-hello-project"></a>建立 hello 專案
-1. 從開發環境中的 hello 命令列，變更目錄 toohello 所在的位置 toocreate hello 專案，例如`cd code\hdinsight`。
-2. 使用 hello **mvn**命令，它會隨 Maven，toogenerate hello scaffolding hello 專案。
+## <a name="create-the-project"></a>建立專案
+1. 從開發環境的命令列中，將目錄變更至您想要建立專案的位置，例如 `cd code\hdinsight`。
+2. 使用隨 Maven 一起安裝的 **mvn** 命令來產生專案的結構。
 
         mvn archetype:generate -DgroupId=com.microsoft.examples -DartifactId=hbaseapp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
-    此命令會建立一個目錄 hello 目前的位置，與 hello 所指定的 hello 名稱**artifactID**參數 (**hbaseapp**在此範例中。)此目錄包含下列項目 hello:
+    此命令會在目前的位置建立目錄，其名稱由 **artifactID** 參數指定 (此範例中為 **hbaseapp**)。此目錄包含下列項目：
 
-   * **pom.xml**: hello Project 物件模型 ([POM](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html)) 包含資訊和設定詳細資料使用 toobuild hello 專案。
-   * **src**: hello 目錄，包含 hello **main\java\com\microsoft\examples**目錄中，您將在其中撰寫 hello 應用程式。
-3. 刪除 hello **src\test\java\com\microsoft\examples\apptest.java**檔案，因為它不會在此範例中使用。
+   * **pom.xml**：專案物件模型 ([POM](http://maven.apache.org/guides/introduction/introduction-to-the-pom.html)) 包含用來建置專案之資訊和組態的詳細資料。
+   * **src**：含有 **main\java\com\microsoft\examples** 目錄的目錄，您將在此處撰寫應用程式。
+3. 刪除 **src\test\java\com\microsoft\examples\apptest.java** 檔案，因為此範例中不會用到。
 
-## <a name="update-hello-project-object-model"></a>更新 hello Project 物件模型
-1. 編輯 hello **pom.xml**檔案，然後加入下列程式碼內 hello hello `<dependencies>` > 一節：
+## <a name="update-the-project-object-model"></a>更新專案物件模型
+1. 編輯 **pom.xml** 檔案，並在 `<dependencies>` 區段內加入下列程式碼：
 
         <dependency>
           <groupId>org.apache.hbase</groupId>
@@ -59,20 +59,20 @@ ms.lasthandoff: 10/06/2017
           <version>1.1.2</version>
         </dependency>
 
-    本節說明需要 hello 專案的 Maven **hbase 用戶端**版本**1.1.2**。 在編譯時期，從 hello 預設 Maven 儲存機制下載此相依性。 您可以使用 hello [Maven 中央儲存機制搜尋](http://search.maven.org/#artifactdetails%7Corg.apache.hbase%7Chbase-client%7C0.98.4-hadoop2%7Cjar)toolearn 更多關於此相依性。
+    此區段會告知 Maven，表示專案需要 **hbase-client** 版本 **1.1.2**。 編譯時，將會從預設 Maven 儲存機制下載此相依性。 您可以使用 [Maven 中央儲存機制搜尋](http://search.maven.org/#artifactdetails%7Corg.apache.hbase%7Chbase-client%7C0.98.4-hadoop2%7Cjar) ，進一步了解此相依性的詳細資訊。
 
    > [!IMPORTANT]
-   > hello 版本號碼必須符合所提供的 HDInsight 叢集的 HBase hello 版本。 使用下列資料表 toofind hello 正確的版本號碼的 hello。
+   > 版本號碼必須符合隨附於 HDInsight 叢集的 HBase 版本。 您可以使用下表來尋找正確的版本號碼。
    >
    >
 
-   | HDInsight 叢集版本 | 對 HBase 版本 toouse |
+   | HDInsight 叢集版本 | 要使用的 HBase 版本 |
    | --- | --- |
    | 3.2 |0.98.4-hadoop2 |
    | 3.3 |1.1.2 |
 
-    如需有關 HDInsight 版本和元件的詳細資訊，請參閱[為何 hello 不同 Hadoop 元件適用於 HDInsight](hdinsight-component-versioning.md)。
-2. 如果您使用 HDInsight 3.3 叢集，您也必須加入下列 toohello hello `<dependencies>` > 一節：
+    如需 HDInsight 版本和元件的詳細資訊，請參閱 [HDInsight 提供的 Hadoop 元件有什麼不同](hdinsight-component-versioning.md)。
+2. 如果您使用 HDInsight 3.3 叢集，也必須將下列內容加入 `<dependencies>` 區段︰
 
         <dependency>
             <groupId>org.apache.phoenix</groupId>
@@ -80,8 +80,8 @@ ms.lasthandoff: 10/06/2017
             <version>4.4.0-HBase-1.1</version>
         </dependency>
 
-    此相依性會載入 hello in phoenix 核心元件，Hbase 版本所使用的 1.1.x。
-3. 新增下列程式碼 toohello hello **pom.xml**檔案。 此區段必須是內部 hello `<project>...</project>` hello 中的標記檔案，例如之間`</dependencies>`和`</project>`。
+    此相依性會載入 Phoenix 核心元件，可供 Hbase 1.1.x 版使用。
+3. 將下列程式碼加入 **pom.xml** 檔案。 此區段必須在檔案中的 `<project>...</project>` 標籤內，例如在 `</dependencies>` 和 `</project>` 之間。
 
         <build>
           <sourceDirectory>src</sourceDirectory>
@@ -126,40 +126,40 @@ ms.lasthandoff: 10/06/2017
           </plugins>
         </build>
 
-    hello`<resources>`區段設定資源 (**conf\hbase site.xml**)，其中包含 HBase 組態資訊。
+    `<resources>` 區段會設定包含 HBase 組態資訊的資源 (**conf\hbase-site.xml**)。
 
    > [!NOTE]
-   > 您也可以透過程式碼來設定組態值。 請參閱 hello 註解中 hello **CreateTable**範例所示的方式 toodo 這。
+   > 您也可以透過程式碼來設定組態值。 相關作法請參閱接下來 **CreateTable** 範例中的註解。
    >
    >
 
-    這`<plugins>`區段設定 hello [Maven 編譯器外掛程式](http://maven.apache.org/plugins/maven-compiler-plugin/)和[Maven 陰影外掛程式](http://maven.apache.org/plugins/maven-shade-plugin/)。 hello 編譯器外掛程式會使用的 toocompile hello 拓撲。 hello 陰影外掛程式會使用的 tooprevent 授權重複，Maven 建置 hello JAR 封裝中。 這用 hello 原因是 hello 重複的授權檔案會導致 hello HDInsight 叢集上的執行階段錯誤。 使用 maven-網底-外掛程式以 hello`ApacheLicenseResourceTransformer`實作會避免這個錯誤。
+    此 `<plugins>` 區段會設定 [Maven Compiler 外掛程式](http://maven.apache.org/plugins/maven-compiler-plugin/)和 [Maven Shade 外掛程式](http://maven.apache.org/plugins/maven-shade-plugin/)。 Compiler 外掛程式用來編譯拓撲。 Shade 外掛程式用來防止以 Maven 所建置的 JAR 封裝發生授權重複。 使用此項目的理由在於，重複的授權檔會導致 HDInsight 叢集在執行階段發生錯誤。 使用 maven-shade-plugin 搭配 `ApacheLicenseResourceTransformer` 實作可防止此錯誤。
 
-    hello maven-網底-外掛程式也會產生超級 jar （或 fat jar），其中包含所有 hello 應用程式所需的 hello 相依性。
-4. 儲存 hello **pom.xml**檔案。
-5. 建立新的目錄名稱為**conf**在 hello **hbaseapp**目錄。 在 hello **conf**目錄中，建立名為**hbase-site.xml**。 使用下列 hello 做為 hello hello 檔案內容：
+    maven-shade-plugin 也會產生 uber jar (或 fat jar)，其含有應用程式需要的所有相依性。
+4. 儲存 **pom.xml** 檔案。
+5. 在 **conf** in the **hbaseapp** 的新目錄。 在 **conf** 目錄中，建立名為 **hbase-site.xml** 的檔案。 使用下列項目做為檔案的內容：
 
         <?xml version="1.0"?>
         <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
         <!--
         /**
-          * Copyright 2010 hello Apache Software Foundation
+          * Copyright 2010 The Apache Software Foundation
           *
-          * Licensed toohello Apache Software Foundation (ASF) under one
-          * or more contributor license agreements.  See hello NOTICE file
+          * Licensed to the Apache Software Foundation (ASF) under one
+          * or more contributor license agreements.  See the NOTICE file
           * distributed with this work for additional information
-          * regarding copyright ownership.  hello ASF licenses this file
-          * tooyou under hello Apache License, Version 2.0 (the
+          * regarding copyright ownership.  The ASF licenses this file
+          * to you under the Apache License, Version 2.0 (the
           * "License"); you may not use this file except in compliance
-          * with hello License.  You may obtain a copy of hello License at
+          * with the License.  You may obtain a copy of the License at
           *
           *     http://www.apache.org/licenses/LICENSE-2.0
           *
-          * Unless required by applicable law or agreed tooin writing, software
-          * distributed under hello License is distributed on an "AS IS" BASIS,
+          * Unless required by applicable law or agreed to in writing, software
+          * distributed under the License is distributed on an "AS IS" BASIS,
           * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-          * See hello License for hello specific language governing permissions and
-          * limitations under hello License.
+          * See the License for the specific language governing permissions and
+          * limitations under the License.
           */
         -->
         <configuration>
@@ -177,16 +177,16 @@ ms.lasthandoff: 10/06/2017
           </property>
         </configuration>
 
-    這個檔案將會使用的 tooload hello HBase 組態的 HDInsight 叢集。
+    此檔案用來載入 HDInsight 叢集的 HBase 組態。
 
    > [!NOTE]
-   > 這是最小 hbase-site.xml 檔案，而且包含 hello 裸機的最小設定 hello HDInsight 叢集。
+   > 這是最小的 hbase-site.xml 檔案，其包含 HDInsight 叢集最低限度的設定。
 
-6. 儲存 hello **hbase-site.xml**檔案。
+6. 儲存 **hbase-site.xml** 檔案。
 
-## <a name="create-hello-application"></a>建立 hello 應用程式
-1. 移 toohello **hbaseapp\src\main\java\com\microsoft\examples**目錄和重新命名 hello app.java 檔案太**CreateTable.java**。
-2. 開啟 hello **CreateTable.java**檔案，然後以下列程式碼的 hello 取代 hello 現有內容：
+## <a name="create-the-application"></a>建立應用程式
+1. 移至 **hbaseapp\src\main\java\com\microsoft\examples** 目錄，並將 app.java 檔案重新命名為 **CreateTable.java**。
+2. 開啟 **CreateTable.java** 檔案，並以下列程式碼取代現有的內容：
 
         package com.microsoft.examples;
         import java.io.IOException;
@@ -212,13 +212,13 @@ ms.lasthandoff: 10/06/2017
             //            "zookeepernode0,zookeepernode1,zookeepernode2");
             //config.set("hbase.zookeeper.property.clientPort", "2181");
             //config.set("hbase.cluster.distributed", "true");
-            // hello following sets hello znode root for Linux-based HDInsight
+            // The following sets the znode root for Linux-based HDInsight
             //config.set("zookeeper.znode.parent","/hbase-unsecure");
 
-            // create an admin object using hello config
+            // create an admin object using the config
             HBaseAdmin admin = new HBaseAdmin(config);
 
-            // create hello table...
+            // create the table...
             HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf("people"));
             // ... with two column families
             tableDescriptor.addFamily(new HColumnDescriptor("name"));
@@ -236,9 +236,9 @@ ms.lasthandoff: 10/06/2017
 
             HTable table = new HTable(config, "people");
 
-            // Add each person toohello table
-            //   Use hello `name` column family for hello name
-            //   Use hello `contactinfo` column family for hello email
+            // Add each person to the table
+            //   Use the `name` column family for the name
+            //   Use the `contactinfo` column family for the email
             for (int i = 0; i< people.length; i++) {
               Put person = new Put(Bytes.toBytes(people[i][0]));
               person.add(Bytes.toBytes("name"), Bytes.toBytes("first"), Bytes.toBytes(people[i][1]));
@@ -246,15 +246,15 @@ ms.lasthandoff: 10/06/2017
               person.add(Bytes.toBytes("contactinfo"), Bytes.toBytes("email"), Bytes.toBytes(people[i][3]));
               table.put(person);
             }
-            // flush commits and close hello table
+            // flush commits and close the table
             table.flushCommits();
             table.close();
           }
         }
 
-    這是 hello **CreateTable**類別，會建立資料表，名為**人員**並填入某些預先定義的使用者。
-3. 儲存 hello **CreateTable.java**檔案。
-4. 在 hello **hbaseapp\src\main\java\com\microsoft\examples**目錄中，建立新的檔案命名為**SearchByEmail.java**。 使用下列程式碼做為此檔案的 hello 內容 hello:
+    這是 **CreateTable** 類別，將會建立名為 **people** 的資料表，並填入一些預先定義的使用者。
+3. 儲存 **CreateTable.java** 檔案。
+4. 在 **hbaseapp\src\main\java\com\microsoft\examples** 目錄中，建立名為 **SearchByEmail.java** 的新檔案。 使用下列程式碼做為此檔案的內容：
 
         package com.microsoft.examples;
         import java.io.IOException;
@@ -275,18 +275,18 @@ ms.lasthandoff: 10/06/2017
           public static void main(String[] args) throws IOException {
             Configuration config = HBaseConfiguration.create();
 
-            // Use GenericOptionsParser tooget only hello parameters toohello class
-            // and not all hello parameters passed (when using WebHCat for example)
+            // Use GenericOptionsParser to get only the parameters to the class
+            // and not all the parameters passed (when using WebHCat for example)
             String[] otherArgs = new GenericOptionsParser(config, args).getRemainingArgs();
             if (otherArgs.length != 1) {
               System.out.println("usage: [regular expression]");
               System.exit(-1);
             }
 
-            // Open hello table
+            // Open the table
             HTable table = new HTable(config, "people");
 
-            // Define hello family and qualifiers toobe used
+            // Define the family and qualifiers to be used
             byte[] contactFamily = Bytes.toBytes("contactinfo");
             byte[] emailQualifier = Bytes.toBytes("email");
             byte[] nameFamily = Bytes.toBytes("name");
@@ -295,8 +295,8 @@ ms.lasthandoff: 10/06/2017
 
             // Create a new regex filter
             RegexStringComparator emailFilter = new RegexStringComparator(otherArgs[0]);
-            // Attach hello regex filter tooa filter
-            //   for hello email column
+            // Attach the regex filter to a filter
+            //   for the email column
             SingleColumnValueFilter filter = new SingleColumnValueFilter(
               contactFamily,
               emailQualifier,
@@ -304,11 +304,11 @@ ms.lasthandoff: 10/06/2017
               emailFilter
             );
 
-            // Create a scan and set hello filter
+            // Create a scan and set the filter
             Scan scan = new Scan();
             scan.setFilter(filter);
 
-            // Get hello results
+            // Get the results
             ResultScanner results = table.getScanner(scan);
             // Iterate over results and print  values
             for (Result result : results ) {
@@ -327,9 +327,9 @@ ms.lasthandoff: 10/06/2017
           }
         }
 
-    hello **SearchByEmail**類別可以使用的 tooquery 由電子郵件地址的資料列。 因為它使用規則運算式篩選時，可以在使用 hello 類別時，提供字串或規則運算式。
-5. 儲存 hello **SearchByEmail.java**檔案。
-6. 在 hello **hbaseapp\src\main\hava\com\microsoft\examples**目錄中，建立新的檔案命名為**DeleteTable.java**。 使用下列程式碼做為此檔案的 hello 內容 hello:
+    **SearchByEmail** 類別可用來依電子郵件地址查詢資料列。 因為此類別使用規則運算式篩選器，您可以在使用此類別時提供字串或規則運算式。
+5. 儲存 **SearchByEmail.java** 檔案。
+6. 在 **hbaseapp\src\main\hava\com\microsoft\examples** 目錄中，建立名為 **DeleteTable.java** 的新檔案。 使用下列程式碼做為此檔案的內容：
 
         package com.microsoft.examples;
         import java.io.IOException;
@@ -342,43 +342,43 @@ ms.lasthandoff: 10/06/2017
           public static void main(String[] args) throws IOException {
             Configuration config = HBaseConfiguration.create();
 
-            // Create an admin object using hello config
+            // Create an admin object using the config
             HBaseAdmin admin = new HBaseAdmin(config);
 
-            // Disable, and then delete hello table
+            // Disable, and then delete the table
             admin.disableTable("people");
             admin.deleteTable("people");
           }
         }
 
-    這個類別是清除此範例中，停用和卸除 hello 資料表建立 hello **CreateTable**類別。
-7. 儲存 hello **DeleteTable.java**檔案。
+    此類別是用來清理此範例，作法是停用並卸除 **CreateTable** 類別所建立的資料表。
+7. 儲存 **DeleteTable.java** 檔案。
 
-## <a name="build-and-package-hello-application"></a>建置和封裝 hello 應用程式
-1. 開啟命令提示字元並變更目錄 toohello **hbaseapp**目錄。
-2. 使用下列命令 toobuild JAR 檔案，其中包含 hello 應用程式的 hello:
+## <a name="build-and-package-the-application"></a>建置和封裝應用程式
+1. 開啟命令提示字元，切換至 **hbaseapp** 目錄。
+2. 使用下列命令來建置含有應用程式的 JAR：
 
         mvn clean package
 
-    這會清除任何先前的組建成品、 下載尚未安裝任何相依性，然後建置並封裝 hello 應用程式。
-3. Hello 命令完成時，hello **hbaseapp\target**目錄包含名為**hbaseapp-1.0-SNAPSHOT.jar**。
+    這會清除任何先前的組建成品、下載任何尚未安裝的相依性，然後建置並封裝應用程式。
+3. 指令完成後，**hbaseapp\target** 目錄會包含一個名為 **hbaseapp-1.0-SNAPSHOT.jar** 的檔案。
 
    > [!NOTE]
-   > hello **hbaseapp-1.0-SNAPSHOT.jar**檔案是超級 jar （有時稱為 fat jar，） 包含所有 hello 相依性所需 toorun hello 應用程式。
+   > **hbaseapp-1.0-SNAPSHOT.jar** 檔案是一個 uber jar (有時稱為 fat jar)，內含執行應用程式所需的所有相依性。
 
-## <a name="upload-hello-jar-file-and-start-a-job"></a>上傳 hello JAR 檔案，並啟動工作
-有許多方式 tooupload 檔案 tooyour HDInsight 叢集中所述[HDInsight 中的 Hadoop 工作的資料上傳](hdinsight-upload-data.md)。 hello 下列步驟使用 Azure PowerShell。
+## <a name="upload-the-jar-file-and-start-a-job"></a>上傳 JAR 檔案並啟動工作
+有許多方法可將檔案上傳至 HDInsight 叢集，如 [在 HDInsight 中將 Hadoop 工作的資料上傳](hdinsight-upload-data.md)中所述。 下列步驟會使用 Azure PowerShell。
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
-1. 安裝並設定 Azure PowerShell 之後，建立名為 **hbase-runner.psm1** 的新檔案。 使用此檔案的 hello 內容 hello 下列：
+1. 安裝並設定 Azure PowerShell 之後，建立名為 **hbase-runner.psm1** 的新檔案。 使用下列項目做為此檔案的內容：
 
         <#
         .SYNOPSIS
-        Copies a file toohello primary storage of an HDInsight cluster.
+        Copies a file to the primary storage of an HDInsight cluster.
         .DESCRIPTION
-        Copies a file from a local directory toohello blob container for
-        hello HDInsight cluster.
+        Copies a file from a local directory to the blob container for
+        the HDInsight cluster.
         .EXAMPLE
         Start-HBaseExample -className "com.microsoft.examples.CreateTable"
         -clusterName "MyHDInsightCluster"
@@ -397,11 +397,11 @@ ms.lasthandoff: 10/06/2017
         function Start-HBaseExample {
         [CmdletBinding(SupportsShouldProcess = $true)]
         param(
-        #hello class toorun
+        #The class to run
         [Parameter(Mandatory = $true)]
         [String]$className,
 
-        #hello name of hello HDInsight cluster
+        #The name of the HDInsight cluster
         [Parameter(Mandatory = $true)]
         [String]$clusterName,
 
@@ -409,34 +409,34 @@ ms.lasthandoff: 10/06/2017
         [Parameter(Mandatory = $false)]
         [String]$emailRegex,
 
-        #Use if you want toosee stderr output
+        #Use if you want to see stderr output
         [Parameter(Mandatory = $false)]
         [Switch]$showErr
         )
 
         Set-StrictMode -Version 3
 
-        # Is hello Azure module installed?
+        # Is the Azure module installed?
         FindAzure
 
-        # Get hello login for hello HDInsight cluster
-        $creds=Get-Credential -Message "Enter hello login for hello cluster" -UserName "admin"
+        # Get the login for the HDInsight cluster
+        $creds=Get-Credential -Message "Enter the login for the cluster" -UserName "admin"
 
-        # hello JAR
+        # The JAR
         $jarFile = "wasb:///example/jars/hbaseapp-1.0-SNAPSHOT.jar"
 
-        # hello job definition
+        # The job definition
         $jobDefinition = New-AzureRmHDInsightMapReduceJobDefinition `
             -JarFile $jarFile `
             -ClassName $className `
             -Arguments $emailRegex
 
-        # Get hello job output
+        # Get the job output
         $job = Start-AzureRmHDInsightJob `
             -ClusterName $clusterName `
             -JobDefinition $jobDefinition `
             -HttpCredential $creds
-        Write-Host "Wait for hello job toocomplete ..." -ForegroundColor Green
+        Write-Host "Wait for the job to complete ..." -ForegroundColor Green
         Wait-AzureRmHDInsightJob `
             -ClusterName $clusterName `
             -JobId $job.JobId `
@@ -450,7 +450,7 @@ ms.lasthandoff: 10/06/2017
                     -HttpCredential $creds `
                     -DisplayOutputType StandardError
         }
-        Write-Host "Display hello standard output ..." -ForegroundColor Green
+        Write-Host "Display the standard output ..." -ForegroundColor Green
         Get-AzureRmHDInsightJobOutput `
                     -Clustername $clusterName `
                     -JobId $job.JobId `
@@ -459,10 +459,10 @@ ms.lasthandoff: 10/06/2017
 
         <#
         .SYNOPSIS
-        Copies a file toohello primary storage of an HDInsight cluster.
+        Copies a file to the primary storage of an HDInsight cluster.
         .DESCRIPTION
-        Copies a file from a local directory toohello blob container for
-        hello HDInsight cluster.
+        Copies a file from a local directory to the blob container for
+        the HDInsight cluster.
         .EXAMPLE
         Add-HDInsightFile -localPath "C:\temp\data.txt"
         -destinationPath "example/data/data.txt"
@@ -477,15 +477,15 @@ ms.lasthandoff: 10/06/2017
         function Add-HDInsightFile {
             [CmdletBinding(SupportsShouldProcess = $true)]
             param(
-                #hello path toohello local file.
+                #The path to the local file.
                 [Parameter(Mandatory = $true)]
                 [String]$localPath,
 
-                #hello destination path and file name, relative toohello root of hello container.
+                #The destination path and file name, relative to the root of the container.
                 [Parameter(Mandatory = $true)]
                 [String]$destinationPath,
 
-                #hello name of hello HDInsight cluster
+                #The name of the HDInsight cluster
                 [Parameter(Mandatory = $true)]
                 [String]$clusterName,
 
@@ -496,22 +496,22 @@ ms.lasthandoff: 10/06/2017
 
             Set-StrictMode -Version 3
 
-            # Is hello Azure module installed?
+            # Is the Azure module installed?
             FindAzure
 
-            # Get authentication for hello cluster
+            # Get authentication for the cluster
             $creds=Get-Credential
 
-            # Does hello local path exist?
+            # Does the local path exist?
             if (-not (Test-Path $localPath))
             {
                 throw "Source path '$localPath' does not exist."
             }
 
-            # Get hello primary storage container
+            # Get the primary storage container
             $storage = GetStorage -clusterName $clusterName
 
-            # Upload file toostorage, overwriting existing files if -force was used.
+            # Upload file to storage, overwriting existing files if -force was used.
             Set-AzureStorageBlobContent -File $localPath `
                 -Blob $destinationPath `
                 -force:$force `
@@ -524,7 +524,7 @@ ms.lasthandoff: 10/06/2017
             $sub = Get-AzureRmSubscription -ErrorAction SilentlyContinue
             if(-not($sub))
             {
-                throw "No active Azure subscription found! If you have a subscription, use hello Login-AzureRmAccount cmdlet toologin tooyour subscription."
+                throw "No active Azure subscription found! If you have a subscription, use the Login-AzureRmAccount cmdlet to login to your subscription."
             }
         }
 
@@ -534,7 +534,7 @@ ms.lasthandoff: 10/06/2017
                 [String]$clusterName
             )
             $hdi = Get-AzureRmHDInsightCluster -ClusterName $clusterName
-            # Does hello cluster exist?
+            # Does the cluster exist?
             if (!$hdi)
             {
                 throw "HDInsight cluster '$clusterName' does not exist."
@@ -550,53 +550,53 @@ ms.lasthandoff: 10/06/2017
             $storageAccountKey=(Get-AzureRmStorageAccountKey `
                 -Name $storageAccountName `
             -ResourceGroupName $resourceGroup)[0].Value
-            # Get hello resource group, in case we need that
+            # Get the resource group, in case we need that
             $return.resourceGroup = $resourceGroup
-            # Get hello storage context, as we can't depend
-            # on using hello default storage context
+            # Get the storage context, as we can't depend
+            # on using the default storage context
             $return.context = New-AzureStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
-            # Get hello container, so we know where to
+            # Get the container, so we know where to
             # find/store blobs
             $return.container = $container
-            # Return storage accounts toosupport finding all accounts for
+            # Return storage accounts to support finding all accounts for
             # a cluster
             $return.storageAccount = $storageAccountName
             $return.storageAccountKey = $storageAccountKey
 
             return $return
         }
-        # Only export hello verb-phrase things
+        # Only export the verb-phrase things
         export-modulemember *-*
 
     此檔案包含兩個模組：
 
-   * **新增 HDInsightFile** -使用 tooupload 檔案 tooHDInsight
-   * **開始 HBaseExample** -使用稍早建立的 toorun hello 類別
-2. 儲存 hello **hbase runner.psm1**檔案。
-3. 開啟新的 Azure PowerShell 視窗，將變更目錄 toohello **hbaseapp**目錄，然後執行的 hello 遵從命令。
+   * **Add-HDInsightFile** - 用來將檔案上傳至 HDInsight
+   * **Start-HBaseExample** - 用來執行稍早建立的類別
+2. 儲存 **hbase-runner.psm1** 檔案。
+3. 開啟新的 Azure PowerShell 視窗，切換至 **hbaseapp** 目錄，然後執行下列命令。
 
         PS C:\ Import-Module c:\path\to\hbase-runner.psm1
 
-    變更 hello hello 路徑 toohello 位置**hbase runner.psm1**稍早建立的檔案。 這會註冊此 Azure PowerShell 工作階段的 hello 模組。
-4. 使用 hello 下列命令 tooupload hello **hbaseapp-1.0-SNAPSHOT.jar** tooyour HDInsight 叢集。
+    將路徑變更為稍早建立的 **hbase-runner.psm1** 檔案的位置。 這會為此 Azure PowerShell 工作階段註冊模組。
+4. 使用下列命令將 **hbaseapp-1.0-SNAPSHOT.jar** 上傳至 HDInsight 叢集。
 
         Add-HDInsightFile -localPath target\hbaseapp-1.0-SNAPSHOT.jar -destinationPath example/jars/hbaseapp-1.0-SNAPSHOT.jar -clusterName hdinsightclustername
 
-    取代**hdinsightclustername** hello 名稱，為您的 HDInsight 叢集。 hello 命令會將上傳 hello **hbaseapp-1.0-SNAPSHOT.jar** toohello **（範例/每瓶)** hello 您的 HDInsight 叢集的主要儲存體中的位置。
-5. Hello 檔案上傳之後，使用 hello 下列程式碼 toocreate 資料表使用 hello **hbaseapp**:
+    將 **hdinsightclustername** 換成您的 HDInsight 叢集名稱。 此命令會將 **hbaseapp-1.0-SNAPSHOT.jar** 上傳至 HDInsight 叢集主要儲存體中的 **example/jars** 位置。
+5. 檔案上傳之後，使用以下程式碼建立使用 **hbaseapp** 的資料表：
 
         Start-HBaseExample -className com.microsoft.examples.CreateTable -clusterName hdinsightclustername
 
-    取代**hdinsightclustername** hello 名稱，為您的 HDInsight 叢集。
+    將 **hdinsightclustername** 換成您的 HDInsight 叢集名稱。
 
-    此命令會在 HDInsight 叢集中建立名為 **people** 的新資料表。 此命令不會顯示 hello 主控台視窗中的任何輸出。
-6. 項目在 hello 資料表中，下列命令使用 hello toosearch:
+    此命令會在 HDInsight 叢集中建立名為 **people** 的新資料表。 此命令不會在主控台視窗中顯示任何輸出。
+6. 若要在資料表中搜尋項目，請使用下列命令：
 
         Start-HBaseExample -className com.microsoft.examples.SearchByEmail -clusterName hdinsightclustername -emailRegex contoso.com
 
-    取代**hdinsightclustername** hello 名稱，為您的 HDInsight 叢集。
+    將 **hdinsightclustername** 換成您的 HDInsight 叢集名稱。
 
-    此命令會使用 hello **SearchByEmail**類別 toosearch 任何資料列，其中 hello **contactinformation**資料欄系列和 hello**電子郵件**資料行，包含 hello 字串**contoso.com**。您應該會收到 hello 下列結果：
+    此命令會使用 **SearchByEmail** 類別來搜尋資料行系列 **contactinformation**、資料行 **email** 包含字串 **contoso.com** 的任何資料列。 您應該會得到下列結果：
 
           Franklin Holtz - ID: 2
           Franklin Holtz - franklin@contoso.com - ID: 2
@@ -605,15 +605,15 @@ ms.lasthandoff: 10/06/2017
           Gabriela Ingram - ID: 6
           Gabriela Ingram - gabriela@contoso.com - ID: 6
 
-    使用**fabrikam.com** hello`-emailRegex`值會傳回具有 hello 使用者**fabrikam.com** hello 電子郵件欄位中。 因為這個搜尋藉由使用規則運算式為基礎的篩選，您也可以輸入規則運算式，例如**^ r**，hello 電子郵件會開頭 hello 字母 'r' 的傳回項目。
+    使用 **fabrikam.com** 做為 `-emailRegex` 值會傳回電子郵件欄位中含有 **fabrikam.com** 的使用者。 因為此搜尋是以規則運算式篩選器來實作，您也可以輸入像是 **^r** 這樣的規則運算式，其會傳回電子郵件以字母 'r' 開頭的項目。
 
-## <a name="delete-hello-table"></a>刪除 hello 資料表
-當您完成 hello 範例之後時，使用 hello 下列命令從 hello Azure PowerShell 工作階段 toodelete hello**人員**此範例中使用的資料表：
+## <a name="delete-the-table"></a>刪除資料表
+練習完範例之後，請從 Azure PowerShell 工作階段中使用下列命令，以刪除此範例所使用的 **people** 資料表：
 
     Start-HBaseExample -className com.microsoft.examples.DeleteTable -clusterName hdinsightclustername
 
-取代**hdinsightclustername** hello 名稱，為您的 HDInsight 叢集。
+將 **hdinsightclustername** 換成您的 HDInsight 叢集名稱。
 
 ## <a name="troubleshooting"></a>疑難排解
 ### <a name="no-results-or-unexpected-results-when-using-start-hbaseexample"></a>使用 Start-HBaseExample 時沒有結果或傳回非預期的結果
-使用 hello`-showErr`參數 tooview hello 標準錯誤 (STDERR) 在執行中的 hello 作業時所產生之。
+請使用 `-showErr` 參數，以檢視執行工作時所產生的標準錯誤 (STDERR)。

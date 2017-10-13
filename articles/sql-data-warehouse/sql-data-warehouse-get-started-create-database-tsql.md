@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate SQL 資料倉儲與 TSQL |Microsoft 文件"
-description: "了解如何 toocreate Azure SQL 資料倉儲與 TSQL"
+title: "使用 TSQL 建立 SQL 資料倉儲 | Microsoft Docs"
+description: "了解如何使用 TSQL 建立 Azure SQL 資料倉儲"
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -16,11 +16,11 @@ ms.workload: data-services
 ms.custom: create
 ms.date: 10/31/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: 81ef59a66c61452ff8a2aca29837f155e87d017d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 10d8aa2b3ab8d7d8a9b91e95ffccf03faa89d237
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-sql-data-warehouse-database-by-using-transact-sql-tsql"></a>使用 Transact-SQL (TSQL) 建立 SQL 資料倉儲資料庫
 > [!div class="op_single_selector"]
@@ -30,15 +30,15 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-本文章將示範如何 toocreate SQL 資料倉儲使用 T-SQL。
+本文說明如何使用 T-SQL 建立 SQL 資料倉儲。
 
 ## <a name="prerequisites"></a>必要條件
-tooget 開始，您需要：
+若要開始，您需要：
 
-* **Azure 帳戶**： 瀏覽[Azure 免費試用][ Azure Free Trial]或[MSDN Azure 信用額度][ MSDN Azure Credits] toocreate 帳戶。
-* **Azure SQL server**： 請參閱 [建立 hello Azure 入口網站的 Azure SQL Database 邏輯伺服器] [以 hello Azure 入口網站建立 Azure SQL Database 邏輯伺服器] 或 [使用 PowerShell 建立 Azure SQL Database 邏輯伺服器] [建立 Azure SQL使用 PowerShell 邏輯伺服器的資料庫] 如需詳細資訊。
-* **資源群組**： 請使用相同的資源與您的 Azure SQL server 群組，或參閱的 hello[如何 toocreate 資源群組][how toocreate a resource group]。
-* **環境 tooexecute T-SQL**： 您可以使用[Visual Studio][Installing Visual Studio and SSDT]， [sqlcmd][sqlcmd]，或[SSMS][ SSMS] tooexecute T-SQL。
+* **Azure 帳戶**︰請瀏覽 [Azure 免費試用][Azure Free Trial]或 [MSDN Azure 點數][MSDN Azure Credits]以建立帳戶。
+* **Azure SQL server**： 請參閱 [透過 Azure 入口網站建立 Azure SQL Database 邏輯伺服器] [透過 Azure 入口網站建立 Azure SQL Database 邏輯伺服器] 或 [使用 PowerShell 建立 Azure SQL Database 邏輯伺服器] [建立 Azure SQL使用 PowerShell 邏輯伺服器的資料庫] 如需詳細資訊。
+* **資源群組**︰使用與 Azure SQL Server 相同的資源群組，或參閱[如何建立資源群組][how to create a resource group]。
+* **執行 T-SQL 的環境**︰您可以使用 [Visual Studio][Installing Visual Studio and SSDT]、[sqlcmd][sqlcmd] 或 [SSMS][SSMS] 執行 T-SQL。
 
 > [!NOTE]
 > 建立 SQL 資料倉儲可能會導致新的可計費服務。  如需價格的詳細資訊，請參閱 [SQL 資料倉儲價格][SQL Data Warehouse pricing]。
@@ -46,35 +46,35 @@ tooget 開始，您需要：
 >
 
 ## <a name="create-a-database-with-visual-studio"></a>使用 Visual Studio 建立資料庫
-如果您是新 tooVisual Studio，請參閱 hello 文章[查詢 Azure SQL 資料倉儲 (Visual Studio)][Query Azure SQL Data Warehouse (Visual Studio)]。  toostart，Visual Studio 中開啟 SQL Server 物件總管，並將裝載 SQL 資料倉儲資料庫 toohello 伺服器連線。  一旦連接之後，您可以建立 SQL 資料倉儲由執行下列 SQL 命令，針對 hello hello**主要**資料庫。  此命令會建立 hello 資料庫 MySqlDwDb DW400 服務目標，並允許 hello 資料庫 toogrow tooa 最大大小的 10 TB。
+如果您不熟悉 Visual Studio，請參閱[查詢 Azure SQL 資料倉儲 (Visual Studio)][Query Azure SQL Data Warehouse (Visual Studio)] 一文。  若要開始，請在 Visual Studio 中開啟 SQL Server 物件總管，並連接到將要裝載 SQL 資料倉儲資料庫的伺服器。  連接後，您即可對 **master** 資料庫執行下列 SQL 命令來建立 SQL 資料倉儲。  此命令會建立服務目標為 DW400 的資料庫 MySqlDwDb，並允許此資料庫成長至大小上限 10 TB。
 
 ```sql
 CREATE DATABASE MySqlDwDb COLLATE SQL_Latin1_General_CP1_CI_AS (EDITION='datawarehouse', SERVICE_OBJECTIVE = 'DW400', MAXSIZE= 10240 GB);
 ```
 
 ## <a name="create-a-database-with-sqlcmd"></a>使用 sqlcmd 建立資料庫
-或者，您可以執行下列的命令提示字元的同一個命令使用 sqlcmd 執行 hello 的 hello。
+或者，您可以在命令提示字元執行下列命令，以使用 sqlcmd 執行相同的命令。
 
 ```sql
 sqlcmd -S <Server Name>.database.windows.net -I -U <User> -P <Password> -Q "CREATE DATABASE MySqlDwDb COLLATE SQL_Latin1_General_CP1_CI_AS (EDITION='datawarehouse', SERVICE_OBJECTIVE = 'DW400', MAXSIZE= 10240 GB)"
 ```
 
-hello 預設定序時未指定為定序 SQL_Latin1_General_CP1_CI_AS。  hello`MAXSIZE`可以是 250 GB 到 240 TB 之間。  hello`SERVICE_OBJECTIVE`可介於 DW100 到 DW2000 [DWU][DWU]。  如需所有有效的值的清單，請參閱 hello MSDN 文件[CREATE DATABASE][CREATE DATABASE]。  Hello MAXSIZE 和 SERVICE_OBJECTIVE 來將其變更與[ALTER DATABASE] [ ALTER DATABASE] T-SQL 命令。  建立之後就無法變更資料庫定序 hello。   變更為變更 DWU hello service_objective，將會導致重新啟動服務，這樣會取消航班中的所有查詢時，應注意。  變更 MAXSIZE 並不會重新啟動服務，因為這只是簡單的中繼資料作業。
+未指定定序時的預設值為 COLLATE SQL_Latin1_General_CP1_CI_AS。  `MAXSIZE` 可以介於 250 GB 與 240 TB 之間。  `SERVICE_OBJECTIVE` 可以介於 DW100 與 DW2000 [DWU][DWU] 之間。  如需所有有效值的清單，請參閱 MSDN 文件中的 [CREATE DATABASE][CREATE DATABASE]。  使用 [ALTER DATABASE][ALTER DATABASE] T-SQL 命令可以變更 MAXSIZE 和 SERVICE_OBJECTIVE。  建立資料庫定序之後，就無法進行變更。   變更 SERVICE_OBJECTIVE 時應格外小心，因為變更 DWU 會導致服務重新啟動，而取消所有進行中的查詢。  變更 MAXSIZE 並不會重新啟動服務，因為這只是簡單的中繼資料作業。
 
 ## <a name="next-steps"></a>後續步驟
-您可以佈建完成您的 SQL 資料倉儲後[範例資料載入][ load sample data]或太簽出如何[開發][develop]， [載入][load]，或[移轉][migrate]。
+您的 SQL 資料倉儲完成佈建之後，您可以[載入範例資料][load sample data]或查看如何[開發][develop]、[載入][load]，或[移轉][migrate]。
 
 <!--Article references-->
 [DWU]: ./sql-data-warehouse-overview-what-is.md
-[how toocreate a SQL Data Warehouse from hello Azure portal]: sql-data-warehouse-get-started-provision.md
+[how to create a SQL Data Warehouse from the Azure portal]: sql-data-warehouse-get-started-provision.md
 [Query Azure SQL Data Warehouse (Visual Studio)]: sql-data-warehouse-query-visual-studio.md
 [migrate]: sql-data-warehouse-overview-migrate.md
 [develop]: sql-data-warehouse-overview-develop.md
 [load]: sql-data-warehouse-overview-load.md
 [load sample data]: sql-data-warehouse-load-sample-databases.md
-[Create an Azure SQL database with hello Azure Portal]: ../sql-database/sql-database-get-started.md
+[Create an Azure SQL database with the Azure Portal]: ../sql-database/sql-database-get-started.md
 [Create an Azure SQL database with PowerShell]: ../sql-database/sql-database-create-and-configure-database-powershell
-[how toocreate a resource group]: ../azure-resource-manager/resource-group-template-deploy-portal.md#create-resource-group
+[how to create a resource group]: ../azure-resource-manager/resource-group-template-deploy-portal.md#create-resource-group
 [Installing Visual Studio and SSDT]: sql-data-warehouse-install-visual-studio.md
 [sqlcmd]: sql-data-warehouse-get-started-connect-sqlcmd.md
 

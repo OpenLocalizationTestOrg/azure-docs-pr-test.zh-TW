@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 和管理 Visual Studio 中的 Linux Vm |Microsoft 文件"
-description: "深入了解如何 toouse Visual Studio toocreate 和管理執行 Linux 的 Azure Vm"
+title: "在 Visual Studio 中建立和管理 Linux VM | Microsoft Docs"
+description: "了解如何使用 Visual Studio 建立和管理執行 Linux 的 Azure VM"
 services: visual-studio-online,virtual-machines-linux
 documentationcenter: na
 author: kraigb
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: na
 ms.date: 12/09/2016
 ms.author: kraigb
-ms.openlocfilehash: 44467ba04a98ea7e5bc509677fa7b2654e6d7ab6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fb91e6cf1fd32833d1e9711a55b41dfa410fee5d
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-and-manage-linux-virtual-machines-in-visual-studio"></a>在 Visual Studio 中建立和管理 Linux 虛擬機器
 [!INCLUDE [virtual-machines-common-classic-manage-visual-studio](../../../../includes/virtual-machines-common-classic-manage-visual-studio.md)]

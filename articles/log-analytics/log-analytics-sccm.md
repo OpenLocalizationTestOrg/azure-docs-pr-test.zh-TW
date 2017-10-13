@@ -1,6 +1,6 @@
 ---
-title: "Configuration Manager tooLog 分析 aaaConnect |Microsoft 文件"
-description: "本文示範 hello 步驟 tooconnect Configuration Manager tooLog 分析和分析資料的開始。"
+title: "將 Configuration Manager 連線至 Log Analytics | Microsoft Docs"
+description: "本文說明將 Configuration Manager 連線至 Log Analytics 並開始分析資料的步驟。"
 services: log-analytics
 documentationcenter: 
 author: bandersmsft
@@ -14,44 +14,44 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: banders
-ms.openlocfilehash: dc50ebc46020a806d99d1a3e3d0e91fd09ad2c32
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 62d31ed486458245156f7fc832294d662c62991e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="connect-configuration-manager-toolog-analytics"></a>Connect Configuration Manager tooLog 分析
-您可以連接 System Center Configuration Manager tooLog 分析 OMS toosync 裝置收集資料。 這可讓 Configuration Manager 階層中的資料可在 OMS 中使用。
+# <a name="connect-configuration-manager-to-log-analytics"></a>將 Configuration Manager 連線至 Log Analytics
+您可以在 OMS 中將 System Center Configuration Manager 連線至 Log Analytics 來同步處理裝置集合資料。 這可讓 Configuration Manager 階層中的資料可在 OMS 中使用。
 
 ## <a name="prerequisites"></a>必要條件
 
 Log Analytics 支援 System Center Configuration Manager 目前分支，1606 版和更高版本。  
 
 ## <a name="configuration-overview"></a>組態概觀
-hello 步驟摘要說明 hello 程序 tooconnect Configuration Manager tooLog 分析。  
+下列步驟摘要說明將 Configuration Manager 連線至 Log Analytics 的程序。  
 
-1. 在 hello Azure 管理入口網站中，Configuration Manager 登錄為 Web 應用程式和/或 Web API 的應用程式，並確認您擁有 hello 用戶端識別碼和用戶端秘密金鑰與 Azure Active Directory 中的 hello 註冊。 請參閱[使用入口網站 toocreate Active Directory 應用程式和服務主體可存取資源](../azure-resource-manager/resource-group-create-service-principal-portal.md)如需如何完成此步驟。
-2. 在 hello Azure 管理入口網站中， [Configuration Manager （hello 註冊的 web 應用程式） 提供權限 tooaccess OMS](#provide-configuration-manager-with-permissions-to-oms)。
-3. 在 Configuration Manager[新增連線使用 hello 加入 OMS 連線精靈](#add-an-oms-connection-to-configuration-manager)。
-4. 在 Configuration Manager[更新 hello 連接屬性](#update-oms-connection-properties)如果 hello 密碼或用戶端秘密金鑰曾經過期，或遺失。
-5. Hello OMS 入口網站，從資訊[下載並安裝 Microsoft Monitoring Agent hello](#download-and-install-the-agent) hello 電腦執行 hello Configuration Manager 服務連線點站台系統角色。 hello 代理程式會將 Configuration Manager 資料 tooOMS。
+1. 在 Azure 管理入口網站中，將 Configuration Manager 註冊為 Web 應用程式和/或 Web API 應用程式，並確保您擁有 Azure Active Directory 註冊中的用戶端識別碼和用戶端秘密金鑰。 如需如何完成此步驟的詳細資訊，請參閱[使用入口網站來建立可存取資源的 Active Directory 應用程式和服務主體](../azure-resource-manager/resource-group-create-service-principal-portal.md)。
+2. 在 Azure 管理入口網站中，[為 Configuration Manager (已註冊的 Web 應用程式) 提供存取 OMS 的權限](#provide-configuration-manager-with-permissions-to-oms)。
+3. 在 Configuration Manager 中，[使用新增 OMS 連線精靈新增連線](#add-an-oms-connection-to-configuration-manager)。
+4. 如果密碼或用戶端祕密金鑰過期或遺失，在 Configuration Manager 中[更新連線屬性](#update-oms-connection-properties)。
+5. 使用 OMS 入口網站的資訊，在執行 Configuration Manager 服務連線點網站系統角色的電腦上[下載並安裝 Microsoft Monitoring Agent](#download-and-install-the-agent)。 代理程式會將 Configuration Manager 資料傳送至 OMS。
 6. 在 Log Analytics 中，以電腦群組的形式[從 Configuration Manager 匯入集合](#import-collections)。
 7. 在 Log Analytics 中，以電腦群組的形式[從 Configuration Manager 檢視資料](log-analytics-computer-groups.md)。
 
-閱讀更多有關連接在 Configuration Manager tooOMS [Configuration Manager toohello Microsoft Operations Management Suite 中的資料同步](https://technet.microsoft.com/library/mt757374.aspx)。
+若要深入了解如何將 Configuration Manager 連線至 OMS，請參閱[將資料從 Configuration Manager 同步處理至 Microsoft Operations Management Suite](https://technet.microsoft.com/library/mt757374.aspx)。
 
-## <a name="provide-configuration-manager-with-permissions-toooms"></a>Configuration Manager 提供權限 tooOMS
-hello 下列程序提供具有權限 tooaccess OMS hello Azure 管理入口網站。 具體來說，您必須授與 hello*參與者角色*hello 資源群組中的順序 tooallow toousers hello Azure 管理入口網站 tooconnect Configuration Manager tooOMS。
+## <a name="provide-configuration-manager-with-permissions-to-oms"></a>為 Configuration Manager 提供 OMS 的權限
+下列程序可為 Azure 管理入口網站提供存取 OMS 的權限。 具體來說，您必須授與參與者角色給資源群組中的使用者，以允許 Azure 管理入口網站將 Configuration Manager 連線至 OMS。
 
 > [!NOTE]
-> 您必須為 Configuration Manager 指定 OMS 的權限。 否則，您就會收到錯誤訊息 Configuration Manager 中使用 hello 組態精靈。
+> 您必須為 Configuration Manager 指定 OMS 的權限。 否則，當您在 Configuration Manager 中使用組態精靈時，將會收到錯誤訊息。
 >
 >
 
-1. 開啟 hello [Azure 入口網站](https://portal.azure.com/)按一下**瀏覽** > **記錄分析 (OMS)** tooopen hello 記錄分析 (OMS) 刀鋒視窗。  
-2. 在 hello**記錄分析 (OMS)**刀鋒視窗中，按一下 **新增**tooopen hello **OMS 工作區**刀鋒視窗。  
+1. 開啟 [Azure 入口網站](https://portal.azure.com/)，然後按一下 [瀏覽] > [Log Analytics (OMS)] 以開啟 [Log Analytics (OMS)] 刀鋒視窗。  
+2. 在 [Log Analytics (OMS)] 刀鋒視窗上按一下 [新增]，開啟 [OMS 工作區] 刀鋒視窗。  
    ![OMS 刀鋒視窗](./media/log-analytics-sccm/sccm-azure01.png)
-3. 在 hello **OMS 工作區**刀鋒視窗中，提供下列資訊的 hello，然後按**確定**。
+3. 在 [OMS 工作區] 刀鋒視窗上提供下列資訊，然後按一下 [確定]。
 
    * **OMS 工作區**
    * **訂用帳戶**
@@ -61,76 +61,76 @@ hello 下列程序提供具有權限 tooaccess OMS hello Azure 管理入口網�
      ![OMS 刀鋒視窗](./media/log-analytics-sccm/sccm-azure02.png)  
 
      > [!NOTE]
-     > 上述的 hello 範例會建立新的資源群組。 hello 資源群組都只能使用的 tooprovide Configuration Manager 與在此範例中的權限 toohello OMS 工作區。
+     > 上述範例會建立新的資源群組。 在此範例中，資源群組只會用來為 Configuration Manager 提供 OMS 工作區的權限。
      >
      >
-4. 按一下**瀏覽** > **資源群組**tooopen hello**資源群組**刀鋒視窗。
-5. 在 [hello**資源群組**刀鋒視窗中，按一下 hello tooopen hello 先前建立的資源群組&lt;資源群組名稱&gt;設定] 刀鋒視窗。  
+4. 按一下 [瀏覽] > [資源群組]，開啟 [資源群組] 刀鋒視窗。
+5. 在 [資源群組] 刀鋒視窗中按一下您先前建立的資源群組，開啟 [&lt;資源群組名稱&gt; 設定] 刀鋒視窗。  
    ![資源群組設定刀鋒視窗](./media/log-analytics-sccm/sccm-azure03.png)
-6. 在 hello&lt;資源群組名稱&gt;設定刀鋒視窗中，按一下 存取控制 (IAM) tooopen hello&lt;資源群組名稱&gt;使用者 刀鋒視窗。  
+6. 在 [&lt;資源群組名稱&gt; 設定] 刀鋒視窗中按一下 [存取控制 (IAM)]，開啟 [&lt;資源群組名稱&gt; 使用者] 刀鋒視窗。  
    ![資源群組使用者刀鋒視窗](./media/log-analytics-sccm/sccm-azure04.png)  
-7. 在 [hello&lt;資源群組名稱&gt;使用者] 刀鋒視窗中，按一下**新增**tooopen hello**新增存取**刀鋒視窗。
-8. 在 hello**新增存取**刀鋒視窗中，按一下 **選取角色**，然後選取 hello**參與者**角色。  
+7. 在 [&lt;資源群組名稱&gt; 使用者] 刀鋒視窗中按一下 [新增]，開啟 [新增存取] 刀鋒視窗。
+8. 在 [新增存取] 刀鋒視窗中按一下 [選取角色]，然後選取 [參與者] 角色。  
    ![選取角色](./media/log-analytics-sccm/sccm-azure05.png)  
-9. 按一下**將使用者新增**hello Configuration Manager 使用者進行選取，按一下 **選取**，然後按一下**確定**。  
+9. 按一下 [新增使用者]，選取 Configuration Manager 使用者，然後依序按一下 [選取] 和 [確定]。  
    ![新增使用者](./media/log-analytics-sccm/sccm-azure06.png)  
 
-## <a name="add-an-oms-connection-tooconfiguration-manager"></a>加入 OMS 連線 tooConfiguration 管理員
-在訂單 tooadd OMS 連線，必須具有 Configuration Manager 環境[服務連接點](https://technet.microsoft.com/library/mt627781.aspx)設定為線上模式。
+## <a name="add-an-oms-connection-to-configuration-manager"></a>對 Configuration Manager 新增 OMS 連線
+若要新增 OMS 連線，Configuration Manager 環境的[服務連線點](https://technet.microsoft.com/library/mt627781.aspx)必須設定成線上模式。
 
-1. 在 hello**管理**工作區的 Configuration Manager，選取**OMS Connector**。 這會開啟 hello**加入 OMS 連線精靈**。 選取 [下一步] 。
-2. 在 hello**一般**畫面上，確認您已完成下列動作的 hello 和您擁有詳細資料，每個項目，然後選取 **下一步**。
+1. 在 Configuration Manager 的 [管理] 工作區中選取 [OMS 連接器]。 這會開啟**新增 OMS 連線精靈**。 選取 [下一步] 。
+2. 在 [一般] 畫面上，確認您已完成下列動作而且您有每個項目的詳細資料，然後選取 [下一步]。
 
-   1. 在 hello Azure 管理入口網站，您已註冊，Configuration Manager 做為 Web 應用程式和/或 Web API 的應用程式，而且您擁有 hello， [hello 註冊用戶端識別碼](../active-directory/active-directory-integrating-applications.md)。
-   2. 在 hello Azure 管理入口網站，您已建立 hello Azure Active Directory 中註冊應用程式的應用程式祕密金鑰。  
-   3. Hello Azure 管理入口網站，在您提供了 hello 註冊的 web 應用程式的權限 tooaccess OMS。  
-      ![連接 tooOMS 精靈一般頁面](./media/log-analytics-sccm/sccm-console-general01.png)
-3. 在 hello **Azure Active Directory**畫面上，設定您的連接設定 tooOMS 藉由提供您**租用戶**，**用戶端識別碼**，和**用戶端秘密金鑰** ，然後選取**下一步**。  
-   ![連接 tooOMS 精靈 Azure Active Directory 頁面](./media/log-analytics-sccm/sccm-wizard-tenant-filled03.png)
-4. 如果您已完成所有 hello 其他程序成功，然後 hello 有關 hello **OMS 連線設定**畫面會自動出現在此頁面。 Hello 連接設定的資訊應該會出現為您**Azure 訂用帳戶**， **Azure 資源群組**，和**Operations Management Suite 工作區**。  
-   ![連接 tooOMS 精靈 OMS 連接 頁面](./media/log-analytics-sccm/sccm-wizard-configure04.png)
-5. hello 精靈會連線 toohello OMS 服務使用您已輸入 hello 資訊。 選取您想要使用 OMS toosync，然後按一下 hello 裝置集合**新增**。  
+   1. 在 Azure 管理入口網站中，您已將 Configuration Manager 註冊為 Web 應用程式和/或 Web API 應用程式，而且您擁有[註冊中的用戶端識別碼](../active-directory/active-directory-integrating-applications.md)。
+   2. 在 Azure 管理入口網站中，您已經為 Azure Active Directory 中已註冊的應用程式建立應用程式祕密金鑰。  
+   3. 在 Azure 管理入口網站中，您已經為已註冊的 Web 應用程式提供存取 OMS 的權限。  
+      ![OMS 連線精靈的一般頁面](./media/log-analytics-sccm/sccm-console-general01.png)
+3. 在 [Azure Active Directory] 畫面上對 OMS 設定連線設定 (方法是提供 [租用戶]、[用戶端識別碼] 和 [用戶端秘密金鑰])，然後選取 [下一步]。  
+   ![OMS 連線精靈的 Azure Active Directory 頁面](./media/log-analytics-sccm/sccm-wizard-tenant-filled03.png)
+4. 如果您成功完成其他所有程序，則 [OMS 連線組態] 畫面上的資訊會自動出現在此頁面。 [Azure 訂用帳戶]、[Azure 資源群組] 和 [Operations Management Suite 工作區] 應該會出現連線設定資訊。  
+   ![OMS 連線精靈的 OMS 連線頁面](./media/log-analytics-sccm/sccm-wizard-configure04.png)
+5. 精靈會使用您輸入的資訊連線至 OMS 服務。 選取想要與 OMS 同步處理的裝置集合，然後按一下 [新增]。  
    ![選取集合](./media/log-analytics-sccm/sccm-wizard-add-collections05.png)
-6. 確認您的連線設定上 hello**摘要**畫面，然後選取**下一步**。 hello**進度**螢幕會顯示 hello 連接狀態，則應該**完成**。
+6. 確認 [摘要] 畫面上的連線設定，然後選取 [下一步]。 [進度] 畫面會顯示連線狀態，然後應該 [完成]。
 
 > [!NOTE]
-> 您必須連接 OMS toohello 頂層站台階層中。 如果您連線到 OMS tooa 獨立主要網站，然後再新增管理中心網站 tooyour 環境，您會有 toodelete，並重新建立 hello 新階層中的 hello OMS 連線。
+> 您必須將 OMS 連線至階層中的最上層網站。 如果您將 OMS 連線至獨立主要網站，然後在環境中新增管理中心網站，則必須在新階層內先刪除再重新建立 OMS 連線。
 >
 >
 
-您已將 Configuration Manager tooOMS 連結之後，您可以新增或移除的集合，並檢視 hello hello OMS 連線屬性。
+在將 Configuration Manager 連結至 OMS 之後，您可以新增或移除集合，並檢視 OMS 連線的屬性。
 
 ## <a name="update-oms-connection-properties"></a>更新 OMS 連線屬性
-如果曾密碼或用戶端秘密金鑰會過期，或遺失，您將需要 toomanually 更新 hello OMS 連線內容。
+如果密碼或用戶端秘密金鑰過期或遺失，您必須手動更新 OMS 連線屬性。
 
-1. 在 [組態管理員] 中，瀏覽過**雲端服務**，然後選取**OMS Connector** tooopen hello **OMS 連線內容**頁面。
-2. 這個頁面上，按一下 hello **Azure Active Directory**索引標籤上 tooview 您**租用戶**，**用戶端識別碼**，**用戶端秘密金鑰到期**。 **確認****用戶端秘密金鑰**是否已過期。
+1. 在 Configuration Manager 中瀏覽至 [雲端服務]，然後選取 [OMS 連接器] 以開啟 [OMS 連線屬性] 頁面。
+2. 在此頁面上按一下 [Azure Active Directory] 索引標籤，檢視 [租用戶]、[用戶端識別碼] 和 [用戶端秘密金鑰到期]。 **確認****用戶端秘密金鑰**是否已過期。
 
-## <a name="download-and-install-hello-agent"></a>下載並安裝 hello 代理程式
-1. 在 hello OMS 入口網站，[下載 hello 代理程式安裝程式檔案從 OMS](log-analytics-windows-agents.md#download-the-agent-setup-file-from-oms)。
-2. 使用其中一種下列方法 tooinstall hello hello 代理程式電腦上及設定 hello 執行 hello Configuration Manager 服務連線點站台系統角色：
-   * [Hello 使用安裝代理程式安裝程式](log-analytics-windows-agents.md#install-the-agent-using-setup)
-   * [Hello 使用安裝代理程式 hello 命令列](log-analytics-windows-agents.md#install-the-agent-using-the-command-line)
-   * [安裝在 Azure 自動化中使用 DSC 的 hello 代理程式](log-analytics-windows-agents.md#install-the-agent-using-dsc-in-azure-automation)
+## <a name="download-and-install-the-agent"></a>下載並安裝代理程式
+1. 在 OMS 入口網站中，[從 OMS 下載代理程式安裝檔案](log-analytics-windows-agents.md#download-the-agent-setup-file-from-oms)。
+2. 使用下列其中一個方法，在執行 Configuration Manager 服務連線點網站系統角色的電腦上安裝並設定代理程式：
+   * [使用安裝程式安裝代理程式](log-analytics-windows-agents.md#install-the-agent-using-setup)
+   * [使用命令列安裝代理程式](log-analytics-windows-agents.md#install-the-agent-using-the-command-line)
+   * [使用 Azure 自動化中的 DSC 安裝代理程式](log-analytics-windows-agents.md#install-the-agent-using-dsc-in-azure-automation)
 
 ## <a name="import-collections"></a>匯入集合
-您加入 OMS 連線 tooConfiguration 管理員，並安裝 hello 代理程式後 hello 電腦執行 hello Configuration Manager 服務連線點站台系統角色，hello 下一個步驟是 tooimport 集合從 Configuration Manager 在 OMS 中為電腦群組。
+在 Configuration Manager 新增了 OMS 連線，並在執行 Configuration Manager 服務連線點網站系統角色的電腦上安裝了代理程式之後，下一個步驟是從 Configuration Manager 將集合匯入 OMS 中做為電腦群組。
 
-Hello 集合成員資格資訊啟用匯入之後，會擷取每個過去 3 小時內 tookeep hello 集合成員資格目前。 您可以選擇在任何時候 toodisable 匯入作業。
+啟用匯入之後，每 3 個小時就會擷取一次集合成員資格資訊，以便集合成員資格會隨時保持最新狀態。 您可以隨時選擇停用匯入。
 
-1. 在 hello OMS 入口網站中，按一下 **設定**。
-2. 按一下 hello**電腦群組**索引標籤，然後按一下hello **SCCM**  索引標籤。
-3. 選取 匯入 Configuration Manager 集合成員資格，然後按一下儲存。  
+1. 在 OMS 入口網站中，按一下 [設定]。
+2. 按一下 [電腦群組] 索引標籤，然後按一下 [SCCM] 索引標籤。
+3. 選取 [匯入 Configuration Manager 集合成員資格]，然後按一下 [儲存]。  
    ![電腦群組 - SCCM 索引標籤](./media/log-analytics-sccm/sccm-computer-groups01.png)
 
 ## <a name="view-data-from-configuration-manager"></a>從 Configuration Manager 檢視資料
-在您加入 OMS 連線 tooConfiguration 管理員，並執行 hello Configuration Manager 服務連線點站台系統角色的 hello 電腦上安裝 hello 代理程式之後，從 hello 代理程式的資料會傳送 tooOMS。 在 OMS 中，Configuration Manager 集合會顯示為[電腦群組](log-analytics-computer-groups.md)。 您可以檢視從 hello hello 分組**Configuration Manager**頁面**電腦群組**中**設定**。
+在 Configuration Manager 新增了 OMS 連線，並在執行 Configuration Manager 服務連線點網站系統角色的電腦上安裝了代理程式之後，代理程式的資料會傳送至 OMS。 在 OMS 中，Configuration Manager 集合會顯示為[電腦群組](log-analytics-computer-groups.md)。 您可以從 [設定] 中 [電腦群組]下的 [Configuration Manager] 頁面檢視群組。
 
-之後 hello 匯入集合，您會看到已偵測到多少部電腦與集合成員資格。 您也可以看到已匯入集合的 hello 數目。
+匯入集合之後，您可以看到已偵測到多少部具有集合成員資格的電腦。 您也可以看到已匯入的集合數目。
 
 ![電腦群組 - SCCM 索引標籤](./media/log-analytics-sccm/sccm-computer-groups02.png)
 
-當您按一下其中一個，搜尋會開啟，顯示 hello 的所有匯入群組或屬於 tooeach 群組的所有電腦。 使用 [記錄搜尋](log-analytics-log-searches.md)，您就可以開始深入分析 Configuration Manager 資料。
+當您按一下其中一項時，[搜尋] 會開啟，顯示所有匯入的群組或是屬於每個群組的所有電腦。 使用 [記錄搜尋](log-analytics-log-searches.md)，您就可以開始深入分析 Configuration Manager 資料。
 
 ## <a name="next-steps"></a>後續步驟
-* 使用[記錄搜尋](log-analytics-log-searches.md)tooview 詳細的 Configuration Manager 資料的相關資訊。
+* 請使用 [記錄檔搜尋](log-analytics-log-searches.md)，檢視有關 Configuration Manager 資料的詳細資訊。

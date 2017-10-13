@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Media Services.NET SDK aaaCreating 篩選"
-description: "本主題描述如何 toocreate 篩選讓您的用戶端能夠使用它們 toostream 特定區段的資料流。 媒體服務會建立動態資訊清單 tooachieve 這個選擇性的資料流。"
+title: "使用 Azure 媒體服務 .NET SDK 建立篩選器"
+description: "本主題說明如何建立篩選器，讓您的用戶端可以使用篩選器來串流特定的資料流區段。 媒體服務會建立動態資訊清單來完成此選擇性資料流。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,11 +14,11 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 07/21/2017
 ms.author: juliako;cenkdin
-ms.openlocfilehash: 16d9497d48ab1d3f841dd97efb0f66016a2435c5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6c43473b86c14679ace558de478bd95f41d476da
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="creating-filters-with-azure-media-services-net-sdk"></a>使用 Azure 媒體服務 .NET SDK 建立篩選器
 > [!div class="op_single_selector"]
@@ -27,24 +27,24 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-從 2.11 版開始，媒體服務可讓您為您資產的 toodefine 篩選器。 這些篩選條件是伺服器端規則，可讓您的客戶 toochoose toodo 等： 播放視訊 （而不是正在播放 hello 整個視訊） 的區段，或指定的音訊和視訊多種客戶的裝置可以處理 （子集而不是所有 hello 多種與相關聯 hello 資產）。 您的資產此篩選透過來達成**動態資訊清單**視訊在您的客戶要求 toostream 時所建立根據指定的篩選器。
+從 2.11 版開始，媒體服務可讓您為資產定義篩選器。 這些篩選器是伺服器端規則，可讓您的客戶選擇執行如下的動作：只播放一段視訊 (而非播放完整視訊)，或只指定您客戶裝置可以處理的一部分音訊和視訊轉譯 (而非與該資產相關的所有轉譯)。 透過在您客戶要求下建立的 **動態資訊清單**可達成對資訊進行這樣的篩選，藉此根據指定的篩選器來串流視訊。
 
-如需詳細資訊相關的 toofilters 和動態資訊清單，請參閱[動態資訊清單概觀](media-services-dynamic-manifest-overview.md)。
+如需篩選器與動態資訊清單的詳細資訊，請參閱 [動態資訊清單概觀](media-services-dynamic-manifest-overview.md)。
 
-本主題說明如何 toouse Media Services.NET SDK toocreate、 更新和刪除篩選。 
+本主題說明如何使用媒體服務 .NET SDK 建立、更新與刪除篩選器。 
 
-請注意，是否您更新篩選器，它可能會佔用 too2 分鐘的時間，資料流端點 toorefresh hello 規則。 如果 hello 內容處理使用此篩選器 （快取和 proxy 和 CDN 中快取），更新此篩選器導致播放失敗。 它是在更新 hello 篩選之後，建議 tooclear hello 快取。 如果這個選項無法執行，請考慮使用不同的篩選器。 
+請注意，如果您更新篩選器，則資料流端點最多需要 2 分鐘的時間來重新整理規則。 如果內容是使用此篩選器提供的 (並快取在 Proxy 與 CDN 快取中)，則更新此篩選器會造成播放程式失敗。 建議在更新篩選器之後清除快取。 如果這個選項無法執行，請考慮使用不同的篩選器。 
 
-## <a name="types-used-toocreate-filters"></a>使用 toocreate 篩選類型。
-hello 下列使用類型時建立的篩選條件： 
+## <a name="types-used-to-create-filters"></a>用於建立篩選器的類型
+建立篩選器時會使用下列類型： 
 
-* **IStreamingFilter**。  此類型根據下列 REST API 的 hello[篩選](https://docs.microsoft.com/rest/api/media/operations/filter)
-* **IStreamingAssetFilter**。 此類型根據下列 REST API 的 hello [AssetFilter](https://docs.microsoft.com/rest/api/media/operations/assetfilter)
-* **PresentationTimeRange**。 此類型根據下列 REST API 的 hello [PresentationTimeRange](https://docs.microsoft.com/rest/api/media/operations/presentationtimerange)
-* **FilterTrackSelectStatement** 和 **IFilterTrackPropertyCondition**。 這些類型根據下列 REST Api 的 hello [FilterTrackSelect 和 FilterTrackPropertyCondition](https://docs.microsoft.com/rest/api/media/operations/filtertrackselect)
+* **IStreamingFilter**。  此類型是基於下列的 REST API [Filter](https://docs.microsoft.com/rest/api/media/operations/filter)
+* **IStreamingAssetFilter**。 此類型是基於下列的 REST API [AssetFilter](https://docs.microsoft.com/rest/api/media/operations/assetfilter)
+* **PresentationTimeRange**。 此類型是基於下列的 REST API [PresentationTimeRange](https://docs.microsoft.com/rest/api/media/operations/presentationtimerange)
+* **FilterTrackSelectStatement** 和 **IFilterTrackPropertyCondition**。 這些類型是基於下列的 REST API [FilterTrackSelect 和 FilterTrackPropertyCondition](https://docs.microsoft.com/rest/api/media/operations/filtertrackselect)
 
 ## <a name="createupdatereaddelete-global-filters"></a>建立/更新/讀取/刪除全域篩選器
-hello 下列程式碼會示範 toouse.NET toocreate，如何更新、 讀取和刪除資產篩選。
+下列程式碼示範如何使用.NET 來建立、更新、讀取和刪除資產篩選器。
 
     string filterName = "GlobalFilter_" + Guid.NewGuid().ToString();
 
@@ -73,7 +73,7 @@ hello 下列程式碼會示範 toouse.NET toocreate，如何更新、 讀取和�
 
 
 ## <a name="createupdatereaddelete-asset-filters"></a>建立/更新/讀取/刪除資產篩選器
-hello 下列程式碼會示範 toouse.NET toocreate，如何更新、 讀取和刪除資產篩選。
+下列程式碼示範如何使用.NET 來建立、更新、讀取和刪除資產篩選器。
 
     string assetName = "AssetFilter_" + Guid.NewGuid().ToString();
     var asset = _context.Assets.Create(assetName, AssetCreationOptions.None);
@@ -104,9 +104,9 @@ hello 下列程式碼會示範 toouse.NET toocreate，如何更新、 讀取和�
 
 
 ## <a name="build-streaming-urls-that-use-filters"></a>建置使用篩選器的資料流 URL
-如需有關如何 toopublish 及傳遞資產，請參閱詳細[傳遞內容 tooCustomers 概觀](media-services-deliver-content-overview.md)。
+如需如何發佈與傳遞資產的相關資訊，請參閱 [將內容傳遞給客戶概觀](media-services-deliver-content-overview.md)。
 
-hello 下列範例顯示如何 tooadd 篩選 tooyour 串流 Url。
+下列範例顯示如何將篩選器新增至資料流 URL。
 
 **MPEG DASH** 
 

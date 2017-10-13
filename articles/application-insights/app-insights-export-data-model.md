@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure 應用程式的 Insights 資料模型 |Microsoft 文件"
+title: "Azure Application Insights 資料模型 | Microsoft Docs"
 description: "描述從 JSON 中的連續匯出匯出的屬性，並做為篩選器。"
 services: application-insights
 documentationcenter: 
@@ -13,22 +13,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/21/2016
 ms.author: bwren
-ms.openlocfilehash: 5ff3ce7953b91cc69b5d96c0ea9b6d58a6016e61
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: a485ddd555f65473d81896effc4a3562bda71410
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="application-insights-export-data-model"></a>Application Insights 匯出資料模型
-下表列出的遙測資料從 hello 傳送 hello 屬性[Application Insights](app-insights-overview.md) Sdk toohello 入口網站。
+此表列出從 [Application Insights](app-insights-overview.md) SDK 傳送至入口網站的遙測屬性。
 您會在 [連續匯出](app-insights-export-telemetry.md)的資料輸出中看到這些屬性。
 它們也會出現在[計量瀏覽器](app-insights-metrics-explorer.md)和[診斷搜尋](app-insights-diagnostic-search.md)的屬性篩選中。
 
-點 toonote:
+注意事項：
 
-* `[0]`這些資料表中代表 hello 您擁有其路徑 tooinsert 索引; 中的點但它不一定是 0。
+* `[0]` 代表您必須在路徑中插入索引的一點，但它未必是 0。
 * 持續時間的長度單位是微秒，因此 10000000 == 1 秒。
-* 日期和時間是 UTC，並可以在 hello ISO 格式`yyyy-MM-DDThh:mm:ss.sssZ`
+* 日期和時間是 UTC，並以 ISO 格式 `yyyy-MM-DDThh:mm:ss.sssZ`
 
 
 ## <a name="example"></a>範例
@@ -41,15 +41,15 @@ ms.lasthandoff: 10/06/2017
           "base": "/",
           "hashTag": ""
         },
-        "responseCode": 200, // Sent tooclient
+        "responseCode": 200, // Sent to client
         "success": true, // Default == responseCode<400
-        // Request id becomes hello operation id of child events
+        // Request id becomes the operation id of child events
         "id": "fCOhCdCnZ9I=",  
         "name": "GET Home/Index",
         "count": 1, // 100% / sampling rate
         "durationMetric": {
           "value": 1046804.0, // 10000000 == 1 second
-          // Currently hello following fields are redundant:
+          // Currently the following fields are redundant:
           "count": 1.0,
           "min": 1046804.0,
           "max": 1046804.0,
@@ -75,14 +75,14 @@ ms.lasthandoff: 10/06/2017
       "location": { // derived from client ip
         "continent": "North America",
         "country": "United States",
-        // last octagon is anonymized too0 at portal:
+        // last octagon is anonymized to 0 at portal:
         "clientip": "168.62.177.0",
         "province": "",
         "city": ""
       },
       "data": {
         "isSynthetic": true, // we identified source as a bot
-        // percentage of generated data sent tooportal:
+        // percentage of generated data sent to portal:
         "samplingRate": 100.0,
         "eventTime": "2016-03-21T10:05:45.7334717Z" // UTC
       },
@@ -116,11 +116,11 @@ ms.lasthandoff: 10/06/2017
 
 | Path | 類型 | 注意事項 |
 | --- | --- | --- |
-| context.custom.dimensions [0] |物件 [ ] |由自訂屬性參數設定的索引鍵-值字串組。 索引鍵的最大長度 100，值的最大長度 1024。 超過 100 個唯一值的 hello 屬性可搜尋，但不能用於分割。 每個 ikey 的最大值 200 索引鍵。 |
+| context.custom.dimensions [0] |物件 [ ] |由自訂屬性參數設定的索引鍵-值字串組。 索引鍵的最大長度 100，值的最大長度 1024。 超過 100 個唯一值時，屬性可供搜尋，但無法用來分割。 每個 ikey 的最大值 200 索引鍵。 |
 | context.custom.metrics [0] |物件 [ ] |由自訂測量參數和 TrackMetrics 設定的索引鍵-值組。 索引鍵的最大長度 100，值可能為數值。 |
 | context.data.eventTime |字串 |UTC |
-| context.data.isSynthetic |布林值 |要求出現 toocome 從 bot 或 web 測試。 |
-| context.data.samplingRate |number |Hello 傳送 tooportal SDK 所產生的遙測的百分比。 範圍 0.0-100.0。 |
+| context.data.isSynthetic |布林值 |要求似乎來自 bot 或 web 測試。 |
+| context.data.samplingRate |number |由傳送至入口網站之 SDK 所產生的遙測百分比。 範圍 0.0-100.0。 |
 | context.device |物件 |用戶端裝置 |
 | context.device.browser |字串 |IE, Chrome, ... |
 | context.device.browserVersion |字串 |Chrome 48.0, ... |
@@ -136,14 +136,14 @@ ms.lasthandoff: 10/06/2017
 | context.device.type |字串 |PC, Browser, ... |
 | context.location |物件 |衍生自 clientip。 |
 | context.location.city |字串 |衍生自 clientip (如果已知) |
-| context.location.clientip |字串 |最後一個八邊形是匿名的 too0。 |
+| context.location.clientip |字串 |最後一個八邊形匿名設定為 0。 |
 | context.location.continent |字串 | |
 | context.location.country |字串 | |
 | context.location.province |字串 |州或省 |
-| context.operation.id |字串 |具有相同的作業識別碼時，會顯示為相關項目上，在 hello 入口網站中的 hello 的項目。 通常 hello 要求識別碼。 |
+| context.operation.id |字串 |具有相同作業識別碼的項目會在入口網站中顯示為相關項目。 通常為要求 id。 |
 | context.operation.name |字串 |url 或要求名稱 |
 | context.operation.parentId |字串 |允許巢狀的相關項目。 |
-| context.session.id |字串 |Hello 中的作業群組的識別碼相同的來源。 不執行動作的 30 分鐘的期間發出訊號 hello 工作階段結束。 |
+| context.session.id |字串 |來自相同來源的作業群組識別碼。 在 30 分鐘期間沒有發出工作階段結束訊號的作業。 |
 | context.session.isFirst |布林值 | |
 | context.user.accountAcquisitionDate |字串 | |
 | context.user.anonAcquisitionDate |字串 | |
@@ -165,7 +165,7 @@ ms.lasthandoff: 10/06/2017
 | 事件 [0] urlData.host |字串 | |
 
 ## <a name="exceptions"></a>例外狀況
-報表[例外狀況](app-insights-asp-net-exceptions.md)hello 瀏覽器和伺服器 hello 中。
+回報在伺服器和瀏覽器中的 [例外狀況](app-insights-asp-net-exceptions.md) 。
 
 | Path | 類型 | 注意事項 |
 | --- | --- | --- |
@@ -194,17 +194,17 @@ ms.lasthandoff: 10/06/2017
 | basicException [0] typeName |字串 | |
 
 ## <a name="trace-messages"></a>追蹤訊息
-由傳送[TrackTrace](app-insights-api-custom-events-metrics.md#tracktrace)，以及 hello[記錄配接器](app-insights-asp-net-trace-logs.md)。
+由 [TrackTrace](app-insights-api-custom-events-metrics.md#tracktrace) 及[記錄配接器](app-insights-asp-net-trace-logs.md)傳送。
 
-| Path | 類型 | 注意事項 |
+| 路徑 | 類型 | 注意事項 |
 | --- | --- | --- |
 | 訊息 [0] loggerName |字串 | |
 | 訊息 [0] 參數 |字串 | |
-| 訊息 [0] 原始碼 |字串 |最大長度 10 k hello 記錄訊息。 |
+| 訊息 [0] 原始碼 |字串 |記錄檔訊息，最大長度 10k。 |
 | 訊息 [0] severityLevel |字串 | |
 
 ## <a name="remote-dependency"></a>遠端相依性
-由 TrackDependency 傳送。 使用 tooreport 效能和使用方式[呼叫 toodependencies](app-insights-asp-net-dependencies.md) hello 伺服器和 hello 瀏覽器中的 AJAX 呼叫中。
+由 TrackDependency 傳送。 用於回報伺服器中 [相依性呼叫](app-insights-asp-net-dependencies.md) 以及瀏覽器中 AJAX 呼叫的效能和使用情形。
 
 | Path | 類型 | 注意事項 |
 | --- | --- | --- |
@@ -213,7 +213,7 @@ ms.lasthandoff: 10/06/2017
 | remoteDependency [0] commandName |字串 |例如 "home/index" |
 | remoteDependency [0] 計數 |integer |100/([取樣](app-insights-sampling.md) 率)。 例如 4 =&gt; 25%。 |
 | remoteDependency [0] dependencyTypeName |字串 |HTTP、SQL、... |
-| remoteDependency [0] durationMetric.value |number |從呼叫 toocompletion 的相依性回應時間 |
+| remoteDependency [0] durationMetric.value |number |從根據相依性呼叫回應完成開始計算的時間 |
 | remoteDependency [0] id |字串 | |
 | remoteDependency [0] 名稱 |字串 |Url。 最大長度 250。 |
 | remoteDependency [0] resultCode |字串 |從 HTTP 相依性 |
@@ -225,15 +225,15 @@ ms.lasthandoff: 10/06/2017
 | remoteDependency [0] urlData.host |字串 |最大長度 200 |
 
 ## <a name="requests"></a>要求
-由 [TrackRequest](app-insights-api-custom-events-metrics.md#trackrequest)傳送。 hello 標準模組使用此 tooreports 伺服器回應時間，測量 hello 伺服器。
+由 [TrackRequest](app-insights-api-custom-events-metrics.md#trackrequest)傳送。 標準模組使用它回報在伺服器上測量的伺服器回應時間。
 
 | Path | 類型 | 注意事項 |
 | --- | --- | --- |
 | 要求 [0] 計數 |integer |100/([取樣](app-insights-sampling.md) 率)。 例如：4 =&gt; 25%。 |
-| 要求 [0] durationMetric.value |number |從要求抵達 tooresponse 時間。 1e7 == 1s |
+| 要求 [0] durationMetric.value |number |從要求抵達到回應的時間。 1e7 == 1s |
 | 要求 [0] id |字串 |作業 id |
 | 要求 [0] 名稱 |字串 |GET/POST + url 基底。  最大長度 250 |
-| 要求 [0] responseCode |integer |HTTP 傳送回應 tooclient |
+| 要求 [0] responseCode |integer |傳送至用戶端的 HTTP 回應 |
 | 要求 [0] 成功 |布林值 |預設值 == (responseCode &lt; 400) |
 | 要求 [0] url |字串 |不包括主機 |
 | 要求 [0] urlData.base |字串 | |
@@ -241,18 +241,18 @@ ms.lasthandoff: 10/06/2017
 | 要求 [0] urlData.host |字串 | |
 
 ## <a name="page-view-performance"></a>頁面檢視效能
-傳送嗨瀏覽器。 量值 hello 時間 tooprocess 頁面上，從使用者起始 hello 要求 toodisplay 完成 （不包括非同步 AJAX 呼叫）。
+由瀏覽器傳送。 測量處理頁面的時間，從使用者起始要求到顯示完成 (不包括非同步 AJAX 呼叫)。
 
 內容值會顯示用戶端作業系統和瀏覽器版本。
 
 | Path | 類型 | 注意事項 |
 | --- | --- | --- |
-| clientPerformance [0] clientProcess.value |integer |從接收 hello HTML toodisplaying hello 網頁的結束時間。 |
+| clientPerformance [0] clientProcess.value |integer |從接收 HTML 完成到顯示頁面的時間。 |
 | clientPerformance [0] 名稱 |字串 | |
-| clientPerformance [0] networkConnection.value |integer |所花費時間 tooestablish 網路連線。 |
-| clientPerformance [0] receiveRequest.value |integer |從在回覆傳送嗨要求 tooreceiving hello HTML 的結束時間。 |
-| clientPerformance [0] sendRequest.value |integer |從拍攝的 toosend hello HTTP 要求的時間。 |
-| clientPerformance [0] total.value |integer |無法啟動 toosend hello 要求 toodisplaying hello 頁面上的時間。 |
+| clientPerformance [0] networkConnection.value |integer |建立網路連線所需的時間。 |
+| clientPerformance [0] receiveRequest.value |integer |從傳送要求完成至接收回覆中 HTML 的時間。 |
+| clientPerformance [0] sendRequest.value |integer |傳送 HTTP 要求所需的時間。 |
+| clientPerformance [0] total.value |integer |從開始傳送要求到顯示頁面的時間。 |
 | clientPerformance [0] url |字串 |此要求的 URL |
 | clientPerformance [0] urlData.base |字串 | |
 | clientPerformance [0] urlData.hashTag |字串 | |
@@ -265,7 +265,7 @@ ms.lasthandoff: 10/06/2017
 | Path | 類型 | 注意事項 |
 | --- | --- | --- |
 | 檢視 [0] 計數 |integer |100/([取樣](app-insights-sampling.md) 率)。 例如 4 =&gt; 25%。 |
-| 檢視 [0] durationMetric.value |integer |在 trackPageView() 中或由 startTrackPage() - stopTrackPage() 選擇性設定的值。 無法為 clientPerformance 值 hello 相同。 |
+| 檢視 [0] durationMetric.value |integer |在 trackPageView() 中或由 startTrackPage() - stopTrackPage() 選擇性設定的值。 和 clientPerformance 的值不同。 |
 | 檢視 [0] 名稱 |字串 |頁面標題。  最大長度 250 |
 | 檢視 [0] url |字串 | |
 | 檢視 [0] urlData.base |字串 | |
@@ -294,7 +294,7 @@ ms.lasthandoff: 10/06/2017
 ## <a name="metrics"></a>度量
 由 TrackMetric() 產生。
 
-hello 公制值位於 context.custom.metrics[0]
+度量值位於 context.custom.metrics[0]
 
 例如：
 
@@ -335,13 +335,13 @@ hello 公制值位於 context.custom.metrics[0]
         "sampledValue": 468.71603053650279
       }
 
-目前-但這可能會變更在未來-從標準 SDK 模組 hello，回報的所有值中的 hello`count==1`只 hello 和`name`和`value`欄位很有用。 hello，其方式是不同的唯一情況是如果您撰寫您自己的 TrackMetric 呼叫用以設定 hello 其他參數。
+目前 - 不過未來可能會變更 - 在所有從標準 SDK 模組回報的值中，`count==1` 以及只有 `name` 和 `value` 欄位是有用的。 它們會有差異的唯一案例是，如果您撰寫自己的 TrackMetric 呼叫，而且您在其中設定其他參數。
 
-hello 用途 hello 的其他欄位是 tooallow 度量 toobe hello SDK，tooreduce 流量 toohello 入口網站中的彙總資料。 例如，您可以在傳送每個度量報告之前平均數個連續的讀數。 然後會計算 hello min、 max、 標準差和彙總 （sum 或 average） 的值，並設定讀數 hello 報表所代表的計數 toohello 數目。
+其他欄位的目的是允許度量在 SDK 中彙總，以減少入口網站的流量。 例如，您可以在傳送每個度量報告之前平均數個連續的讀數。 然後您會計算 min、max、標準差和彙總值 (sum 或 average)，並將計數設為報告所代表的讀數數目。
 
-在上述的 hello 表格，我們省略 hello 很少使用的欄位 count、 min、 max、 標準差和 sampledValue。
+在上述資料表中，我們省略了很少使用的欄位計數、min、max、stdDev 和 sampledValue。
 
-您可以使用預先彙總的度量，代替[取樣](app-insights-sampling.md)如果您需要 tooreduce hello 磁碟區的遙測資料。
+除了使用預先彙總的度量，如果您需要減少遙測量，您可以改為使用 [取樣](app-insights-sampling.md) 。
 
 ### <a name="durations"></a>持續時間
 除非另有說明，否則持續時間皆以十分之一微秒表示，所以 10000000.0 表示 1 秒。

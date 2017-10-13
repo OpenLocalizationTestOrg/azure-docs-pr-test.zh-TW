@@ -1,5 +1,5 @@
 ---
-title: "aaaRestore Azure SQL 資料倉儲 （Azure 入口網站） |Microsoft 文件"
+title: "還原 Azure SQL 資料倉儲 (Azure 入口網站) | Microsoft Docs"
 description: "還原 Azure SQL 資料倉儲的 Azure 入口網站工作。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: backup-restore
 ms.date: 09/21/2016
 ms.author: lakshmir;barbkess
-ms.openlocfilehash: cb225d2a21b61acab70a51b69c266f8d3ffacc9a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f6bc8671410dc7015a8d2a4bea1ba11f9ae526c3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="restore-azure-sql-data-warehouse-portal"></a>還原 Azure SQL 資料倉儲 (入口網站)
 > [!div class="op_single_selector"]
@@ -29,71 +29,71 @@ ms.lasthandoff: 10/06/2017
 > * [REST][REST]
 >
 >
-在本文中，您將學習如何使用的 Azure SQL 資料倉儲 toorestore hello Azure 入口網站。
+在本文中，您將了解如何使用 Azure 入口網站來還原 Azure SQL 資料倉儲。
 
 ## <a name="before-you-begin"></a>開始之前
-**請驗證您的 DTU 容量。** SQL 資料倉儲的每個執行個體均由具有預設資料配額單位 (DTU) 的 SQL Database 裝載 (例如，myserver.database.windows.net)。 您可以還原 SQL 資料倉儲之前，請確認您的 SQL server 有足夠的剩餘 hello 資料庫的還原目的地的 DTU 配額。 toolearn 如何 toocalculate DTU 配額或 toorequest 更多 Dtu，請參閱[要求 DTU 配額變更][Request a DTU quota change]。
+**請驗證您的 DTU 容量。** SQL 資料倉儲的每個執行個體均由具有預設資料配額單位 (DTU) 的 SQL Database 裝載 (例如，myserver.database.windows.net)。 在您還原 SQL 資料倉儲之前，請確認您的 SQL 伺服器有足夠的剩餘 DTU 配額可供要還原的資料庫使用。 若要了解如何計算所需 DTU 配額或要求更多 DTU，請參閱 [要求 DTU 配額變更][Request a DTU quota change]。
 
 ## <a name="restore-an-active-or-paused-database"></a>還原作用中或已暫停的資料庫
-toorestore 資料庫：
+還原資料庫：
 
-1. 登入 toohello [Azure 入口網站][Azure portal]。
-2. Hello 左窗格中，選取**瀏覽**，然後選取**SQL 伺服器**。
+1. 登入 [Azure 入口網站][Azure portal]。
+2. 在左窗格中，選取 [瀏覽]，然後選取 [SQL Server]。
 
     ![選取 [瀏覽] > [SQL Server]](./media/sql-data-warehouse-restore-database-portal/01-browse-for-sql-server.png)
 3. 尋找您的伺服器，然後選取它。
 
     ![選取您的伺服器](./media/sql-data-warehouse-restore-database-portal/01-select-server.png)
-4. 您想要從，toorestore，，然後選取它，請尋找 hello SQL 資料倉儲執行個體。
+4. 尋找您想要還原的 SQL 資料倉儲的執行個體，然後選取它。
 
-    ![選取 SQL 資料倉儲 toorestore hello 執行個體](./media/sql-data-warehouse-restore-database-portal/01-select-active-dw.png)
-5. 在 [hello hello 資料倉儲] 刀鋒視窗頂端，選取**還原**。
+    ![選取要還原的 SQL 資料倉儲的執行個體](./media/sql-data-warehouse-restore-database-portal/01-select-active-dw.png)
+5. 在 [資料倉儲] 刀鋒視窗頂端，選取 [還原]。
 
     ![選取 [還原]](./media/sql-data-warehouse-restore-database-portal/01-select-restore-from-active.png)
 6. 指定新的 **資料庫名稱**。
-7. 最新的選取 hello**還原點**。
+7. 選取最新的 **還原點**。
 
-   請確定您選擇 hello 最新的還原點。 以國際標準時間 (UTC) 顯示還原點，因為 hello 預設選項，可能無法 hello 最新的還原點。
+   確定您選擇了最新的還原點。 還原點會以國際標準時間 (UTC) 顯示，因此預設選項可能不是最新的還原點。
 
       ![選取還原點](./media/sql-data-warehouse-restore-database-portal/01-restore-blade-from-active.png)
 8. 選取 [確定] 。
-9. hello 資料庫還原程序會開始，而且您可以使用**通知**toomonitor hello 程序。
+9. 資料庫還原程序將會開始，您可以使用 [通知] 來監視此程序。
 
 > [!NOTE]
-> Hello 還原完成後，您可以依照下列設定復原的資料庫[設定您的資料庫復原後][Configure your database after recovery]。
+> 還原完成後，您可以遵循 [在復原之後設定資料庫][Configure your database after recovery]來設定復原的資料庫。
 >
 >
 
 ## <a name="restore-a-deleted-database"></a>還原已刪除的資料庫
-toorestore 已刪除的資料庫：
+還原已刪除的資料庫：
 
-1. 登入 toohello [Azure 入口網站][Azure portal]。
-2. Hello 左窗格中，選取**瀏覽**，然後選取**SQL 伺服器**。
+1. 登入 [Azure 入口網站][Azure portal]。
+2. 在左窗格中，選取 [瀏覽]，然後選取 [SQL Server]。
 
     ![選取 [瀏覽] > [SQL Server]](./media/sql-data-warehouse-restore-database-portal/01-browse-for-sql-server.png)
 3. 尋找您的伺服器，然後選取它。
 
     ![選取您的伺服器](./media/sql-data-warehouse-restore-database-portal/02-select-server.png)
-4. 捲動 toohello**作業**> 一節，在您的伺服器 刀鋒視窗。
-5. 選取 hello**已刪除資料庫**磚。
+4. 在伺服器的刀鋒視窗上捲動至 [作業] 區段。
+5. 選取 [已刪除的資料庫] 圖格。
 
-    ![選取 hello 已刪除資料庫並排顯示](./media/sql-data-warehouse-restore-database-portal/02-select-deleted-dws.png)
-6. 選取您想 toorestore hello 刪除資料庫。
+    ![選取 [已刪除的資料庫] 圖格](./media/sql-data-warehouse-restore-database-portal/02-select-deleted-dws.png)
+6. 選取您想要還原的已刪除資料庫。
 
-    ![選取資料庫 toorestore](./media/sql-data-warehouse-restore-database-portal/02-select-deleted-dw.png)
+    ![選取要還原的資料庫](./media/sql-data-warehouse-restore-database-portal/02-select-deleted-dw.png)
 7. 指定新的 **資料庫名稱**。
 
-    ![新增 hello 資料庫的名稱](./media/sql-data-warehouse-restore-database-portal/02-restore-blade-from-deleted.png)
+    ![新增資料庫的名稱](./media/sql-data-warehouse-restore-database-portal/02-restore-blade-from-deleted.png)
 8. 選取 [確定] 。
-9. hello 資料庫還原程序會開始，而且您可以使用**通知**toomonitor hello 程序。
+9. 資料庫還原程序將會開始，您可以使用 [通知] 來監視此程序。
 
 > [!NOTE]
-> tooconfigure 資料庫 hello 還原完成之後，請參閱[設定您的資料庫復原後][Configure your database after recovery]。
+> 若要在還原完成之後設定資料庫，請參閱 [在復原之後設定資料庫][Configure your database after recovery]。
 >
 >
 
 ## <a name="next-steps"></a>後續步驟
-關於 hello 業務續航力功能的 Azure SQL Database 版本中，讀取 hello toolearn [Azure SQL Database 業務持續性概觀][Azure SQL Database business continuity overview]。
+若要深入了解 Azure SQL Database 版本的商務持續性功能，請閱讀 [Azure SQL Database 商務持續性概觀][Azure SQL Database business continuity overview]。
 
 <!--Image references-->
 

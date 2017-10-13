@@ -1,6 +1,6 @@
 ---
-title: "在 Azure AD 中的金鑰變換 aaaSigning |Microsoft 文件"
-description: "這篇文章討論 hello Azure Active Directory 的簽署金鑰變換的最佳作法"
+title: "Azure AD 中的簽署金鑰變換 | Microsoft Docs"
+description: "本文討論 Azure Active directory 的簽署金鑰變換最佳做法"
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 07/18/2016
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: ac6ade7f3ba2fbd22ea6d447aa5d07a2d6bdd451
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 228bb9058537af1e4eb38207c376c2eb86aee68c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="signing-key-rollover-in-azure-active-directory"></a>Azure Active Directory 中的簽署金鑰變換
-本主題討論您需要 tooknow 有關 hello Azure Active Directory (Azure AD) toosign 安全性權杖中所使用的公用金鑰。 這些金鑰變換，定期執行，並在發生緊急狀況，無法回復透過立即的重要 toonote 它。 使用 Azure AD 的所有應用程式應該可以 tooprogrammatically 控制代碼 hello 金鑰變換程序或建立定期手動變換程序。 繼續閱讀 toounderstand hello 金鑰的運作，如何 tooassess hello hello 變換 tooyour 應用程式的影響以及如何 tooupdate 您的應用程式或必要時，建立定期手動變換程序 toohandle 金鑰變換。
+本主題討論 Azure Active Directory (Azure AD) 中用來簽署安全性權杖的公開金鑰須知事項。 請務必注意這些金鑰會定期變換，且在緊急狀況下可以立即變換。 所有使用 Azure AD 的應用程式都應該能夠以程式設計方式處理金鑰變換程序或建立定期手動變換程序。 請繼續閱讀以了解金鑰的運作方式、如何評估變換對應用程式的影響，以及必要時如何更新應用程式或建立定期手動變換程序來處理金鑰變換。
 
 ## <a name="overview-of-signing-keys-in-azure-ad"></a>Azure AD 中簽署金鑰的概觀
-Azure AD 使用公開金鑰加密中根據業界標準 tooestablish 信任本身與 hello 之間使用它的應用程式。 實際上，這適用於下列方式 hello: Azure AD 使用公開和私密金鑰的金鑰組所組成的簽署金鑰。 當使用者登入時 tooan 應用程式使用 Azure AD 進行驗證時，Azure AD 會建立包含 hello 使用者的相關資訊的安全性權杖。 這個權杖是由 Azure AD 傳送後 toohello 應用程式之前，請使用其私密金鑰簽署。 hello 語彙基元的 tooverify 有效且確實來自 Azure AD，hello 應用程式必須驗證 hello 權杖之簽章使用 hello hello 租用戶中所包含的 Azure AD 所公開的公開金鑰[OpenID Connect 探索文件](http://openid.net/specs/openid-connect-discovery-1_0.html)或 SAML/Ws-fed[同盟中繼資料文件](active-directory-federation-metadata.md)。
+Azure AD 會使用根據業界標準所建置的公開金鑰加密技術，建立 Azure AD 本身和使用 Azure AD 的應用程式之間的信任。 實際上，其運作方式如下：Azure AD 使用由公開和私密金鑰組所組成的簽署金鑰。 當使用者登入使用 Azure AD 來進行驗證的應用程式時，Azure AD 會建立包含使用者相關資訊的安全性權杖。 此權杖會先由 Azure AD 使用其私密金鑰進行簽署，再傳送回到應用程式。 若要確認該權杖有效且確實來自 Azure AD，應用程式必須使用由 Azure AD 公開且包含在租用戶的 [OpenID Connect 探索文件](http://openid.net/specs/openid-connect-discovery-1_0.html)或 SAML/WS-Fed [同盟中繼資料文件](active-directory-federation-metadata.md)中的公開金鑰來驗證權杖的簽章。
 
-基於安全性考量，Azure AD 簽署金鑰彙定期執行，並在發生緊急狀況，hello 情況下無法回復立即。 任何與 Azure AD 整合的應用程式應該準備的 toohandle 金鑰變換事件無論就可能發生的頻率。 如果沒有，您的應用程式嘗試 toouse 權杖已過期的索引鍵 tooverify hello 簽章，hello 登入要求將會失敗。
+基於安全考量，Azure AD 的簽署金鑰會定期變換，且在緊急情況下可以立即變換。 任何與 Azure AD 整合的應用程式均應準備好處理金鑰變換事件，不論其可能發生頻率為何。 如果沒有，應用程式又嘗試使用過期的金鑰來驗證權杖上的簽章，登入要求便會失敗。
 
-很多個有效的金鑰 hello OpenID Connect 探索文件與 hello 同盟中繼資料文件中可用。 您的應用程式應該準備的 toouse hello 機碼中任何指定的 hello 文件，由於其中一個索引鍵可能會過期，所以另一個可能是一個取代，等等。
+OpenID Connect 探索文件和同盟中繼資料文件中永遠有一個以上的有效金鑰可用。 應用程式應該要已準備好使用文件中指定的任何金鑰，因為某個金鑰可能很快就得要替換，而另一個可能會取代它，依此類推。
 
-## <a name="how-tooassess-if-your-application-will-be-affected-and-what-toodo-about-it"></a>如何 tooassess 如果會影響您的應用程式和資訊，請參閱哪些 toodo
-您的應用程式處理金鑰變換的方式取決於變數，例如 hello 類型的應用程式，或使用何種身分識別通訊協定和文件庫。 下列各節 hello 評估是否 hello 最常見的應用程式類型會受到 hello 金鑰變換並且提供指引 tooupdate hello toosupport 自動變換時，應用程式或手動更新 hello 機碼的方式。
+## <a name="how-to-assess-if-your-application-will-be-affected-and-what-to-do-about-it"></a>如何評估您的應用程式是否會受到影響，以及如何因應
+應用程式處理金鑰變換的方式取決於各種變數，例如應用程式類型或使用的身分識別通訊協定和程式庫。 下列各節會評估最常見的應用程式類型是否會受到金鑰變換所影響，並提供如何更新應用程式以支援自動變換或手動更新金鑰的指引。
 
 * [存取資源的原生用戶端應用程式](#nativeclient)
 * [存取資源的 Web 應用程式 / API](#webclient)
@@ -45,30 +45,30 @@ Azure AD 使用公開金鑰加密中根據業界標準 tooestablish 信任本身
 * [保護資源且使用 Visual Studio 2013 建立的 Web API](#vs2013_webapi)
 * [保護資源且使用 Visual Studio 2012 建立的 Web 應用程式](#vs2012)
 * [保護資源且使用 Visual Studio 2010、2008 或使用 Windows Identity Foundation 建立的 Web 應用程式](#vs2010)
-* [Web 應用程式/保護資源的應用程式開發介面使用任何其他程式庫，或手動實作的 hello 任何支援的通訊協定](#other)
+* [保護資源且使用任何其他程式庫或手動實作任何支援的通訊協定的 Web 應用程式 / API](#other)
 
 本指南 **不** 適用於︰
 
-* 從 Azure AD 應用程式庫 （包括自訂） 加入的應用程式的相關事宜 toosigning 索引鍵的個別的指引。 [相關資訊。](../active-directory-sso-certs.md)
-* 內部透過應用程式 proxy 發行應用程式都沒有 tooworry 有關簽署金鑰。
+* 從 Azure AD 應用程式資源庫 (包括自訂) 新增的應用程式有個別的簽署金鑰指引。 [相關資訊。](../active-directory-sso-certs.md)
+* 透過應用程式 proxy 發佈的內部部署應用程式不需要擔心簽署金鑰。
 
 ### <a name="nativeclient"></a>存取資源的原生用戶端應用程式
-只存取資源 (亦即 Microsoft Graph、 KeyVault、 Outlook 應用程式開發介面和其他 Microsoft 應用程式開發介面） 通常只以取得權杖，並沿著傳遞 toohello 資源擁有者。 假設它們沒有保護的任何資源，它們不會檢查 hello 語彙基元，並因此不需要的 tooensure 正確地簽署。
+只存取資源 (亦即 Microsoft Graph、KeyVault、Outlook API 及其他 Microsoft API) 的應用程式通常只會取得權杖並將它傳遞給資源擁有者。 假設它們並未保護任何資源，它們就不會檢查權杖，因此不需要確定已正確簽署。
 
-原生用戶端應用程式，桌面或行動裝置，是否歸類到此類別，並因此不會受到 hello 換用。
+原生用戶端應用程式 (不論是桌上型或行動) 屬於此分類，因此不受變換影響。
 
 ### <a name="webclient"></a>存取資源的 Web 應用程式 / API
-只存取資源 (亦即 Microsoft Graph、 KeyVault、 Outlook 應用程式開發介面和其他 Microsoft 應用程式開發介面） 通常只以取得權杖，並沿著傳遞 toohello 資源擁有者。 假設它們沒有保護的任何資源，它們不會檢查 hello 語彙基元，並因此不需要的 tooensure 正確地簽署。
+只存取資源 (亦即 Microsoft Graph、KeyVault、Outlook API 及其他 Microsoft API) 的應用程式通常只會取得權杖並將它傳遞給資源擁有者。 假設它們並未保護任何資源，它們就不會檢查權杖，因此不需要確定已正確簽署。
 
-Web 應用程式和 web 應用程式開發介面中使用 hello 僅限應用程式流程 (用戶端認證 / 用戶端憑證) 歸類到此類別，因此不會受到 hello 換用。
+使用應用程式專用流程 (用戶端認證 / 用戶端憑證) 的 Web 應用程式和 web API 屬於此類型，因此不受變換影響。
 
 ### <a name="appservices"></a>保護資源且使用 Azure App Service 建置的 Web 應用程式 / API
-Azure 應用程式服務的驗證 / 授權 (EasyAuth) 功能已擁有 hello 必要的邏輯 toohandle 金鑰變換自動。
+Azure App Service 的驗證/授權 (EasyAuth) 功能已經具有必要的邏輯可自動處理金鑰變換。
 
 ### <a name="owin"></a>使用 .NET OWIN OpenID Connect、WS-Fed 或 WindowsAzureActiveDirectoryBearerAuthentication 中介軟體保護資源的 Web 應用程式 / API
-如果您的應用程式正在使用 hello.NET OWIN OpenID Connect，Ws-fed 或 WindowsAzureActiveDirectoryBearerAuthentication 中介軟體，它已經 hello 必要的邏輯 toohandle 金鑰變換自動。
+如果您的應用程式使用 .NET OWIN OpenID Connect、WS-Fed 或 WindowsAzureActiveDirectoryBearerAuthentication 中介軟體，則它已經具有必要的邏輯可自動處理金鑰變換。
 
-您可以確認您的應用程式正在使用任何這些尋找任何下列程式碼片段，在您的應用程式 Startup.cs 或 Startup.Auth.cs hello
+您可以應用程式的 Startup.cs 或 Startup.Auth.cs 中尋找下列任何程式碼片段，以確認您的應用程式使用任何這些項目
 
 ```
 app.UseOpenIdConnectAuthentication(
@@ -93,9 +93,9 @@ app.UseWsFederationAuthentication(
 ```
 
 ### <a name="owincore"></a>使用 .NET Core OpenID Connect 或 JwtBearerAuthentication 中介軟體保護資源的 Web 應用程式 / API
-如果您的應用程式使用.NET 核心 OWIN OpenID Connect 的 hello 或 JwtBearerAuthentication 中介軟體，它已經 hello 必要的邏輯 toohandle 金鑰變換自動。
+如果您的應用程式使用 .NET Core OWIN OpenID Connect 或 JwtBearerAuthentication 中介軟體，則它已經具有自動處理金鑰變換的必要邏輯。
 
-您可以確認您的應用程式正在使用任何這些尋找任何下列程式碼片段，在您的應用程式 Startup.cs 或 Startup.Auth.cs hello
+您可以應用程式的 Startup.cs 或 Startup.Auth.cs 中尋找下列任何程式碼片段，以確認您的應用程式使用任何這些項目
 
 ```
 app.UseOpenIdConnectAuthentication(
@@ -113,9 +113,9 @@ app.UseJwtBearerAuthentication(
 ```
 
 ### <a name="passport"></a>使用 Node.js passport-azure-ad 模組保護資源的 Web 應用程式 / API
-如果您的應用程式使用 hello Node.js passport ad 模組，它已經有 hello 必要的邏輯 toohandle 金鑰變換自動。
+如果您的應用程式使用 Node.js passport-ad 模組，則它已經具有必要的邏輯可自動處理金鑰變換。
 
-您可以確認您的應用程式 passport ad 藉由搜尋下列程式碼片段，在您的應用程式 app.js hello
+您可以在應用程式的 app.js 中搜尋下列程式碼片段，以確認您的應用程式使用 passport-ad
 
 ```
 var OIDCStrategy = require('passport-azure-ad').OIDCStrategy;
@@ -126,31 +126,31 @@ passport.use(new OIDCStrategy({
 ```
 
 ### <a name="vs2015"></a>保護資源且使用 Visual Studio 2015 或 Visual Studio 2017 建立的 Web 應用程式 / API
-如果使用 Visual Studio 2015 或 Visual Studio 2017 中的 web 應用程式範本建置您的應用程式，而且您選取**工作及學校帳戶**從 hello**變更驗證**功能表上，它已經會自動擁有 hello 必要的邏輯 toohandle 金鑰變換。 這個邏輯內嵌在 hello OWIN OpenID Connect 中介軟體，擷取和快取 hello hello OpenID Connect 探索文件中的索引鍵，而且會定期重新整理。
+如果應用程式是使用 Visual Studio 2015 或 Visual Studio 2017 中的 Web 應用程式範本所建置，而且您已從 [變更驗證] 功能表中選取 [公司和學校帳戶]，則它已經具有自動處理金鑰變換的必要邏輯。 這個內嵌在 OWIN OpenID Connect 中介軟體中的邏輯會從 OpenID Connect 探索文件擷取並快取金鑰，還會定期重新整理金鑰。
 
-如果您手動加入驗證 tooyour 解決方案，您的應用程式可能沒有 hello 必要金鑰變換邏輯。 您將需要 toowrite 它自己，或遵循 hello 中的步驟[Web 應用程式 / 應用程式開發介面使用任何其他程式庫，或手動實作的 hello 任何支援的通訊協定。](#other)。
+如果您是以手動方式在方案中加入驗證，應用程式可能不會有所需的金鑰變換邏輯。 您必須自行撰寫，或依照 [使用任何其他程式庫或手動實作任何支援的通訊協定的 Web 應用程式 / API](#other)中的步驟進行。
 
 ### <a name="vs2013"></a>保護資源且使用 Visual Studio 2013 建立的 Web 應用程式
-如果使用 Visual Studio 2013 中的 web 應用程式範本建置您的應用程式，而且您選取**組織帳戶**從 hello**變更驗證**功能表上，已有 hello 必要邏輯 toohandle 自動金鑰變換。 此邏輯會儲存您的組織唯一識別碼和簽署金鑰資訊與 hello 專案相關聯的兩個資料庫資料表中的 hello。 您可以在 hello 專案的 Web.config 檔案中找到 hello 資料庫 hello 連接字串。
+如果應用程式是使用 Visual Studio 2013 中的 Web 應用程式範本所建置，而且您已從 [變更驗證] 功能表中選取 [組織帳戶]，則它已經具有自動處理金鑰變換的必要邏輯。 此邏輯會將組織的唯一識別碼和簽署金鑰資訊儲存在兩個與專案相關聯的資料庫資料表中。 您可以在專案的 Web.config 檔案中找到資料庫的連接字串。
 
-如果您手動加入驗證 tooyour 解決方案，您的應用程式可能沒有 hello 必要金鑰變換邏輯。 您將需要 toowrite 它自己，或遵循 hello 中的步驟[Web 應用程式 / 應用程式開發介面使用任何其他程式庫，或手動實作的 hello 任何支援的通訊協定。](#other)。
+如果您是以手動方式在方案中加入驗證，應用程式可能不會有所需的金鑰變換邏輯。 您必須自行撰寫，或依照 [使用任何其他程式庫或手動實作任何支援的通訊協定的 Web 應用程式 / API](#other)中的步驟進行。
 
-hello 下列步驟將協助您確認 hello 邏輯正常運作，您的應用程式中。
+下列步驟將協助您確認應用程式中的邏輯能正常運作。
 
-1. 在 Visual Studio 2013 中，開啟 hello 方案，然後按一下 hello**伺服器總管**hello 右側視窗上的索引標籤。
-2. 依序展開 [資料連線]、[DefaultConnection]、[資料表]。 找出 hello **IssuingAuthorityKeys**資料表，以滑鼠右鍵按一下，然後按**顯示資料表資料**。
-3. 在 hello **IssuingAuthorityKeys**資料表中，會有至少一個資料列，對應 toohello hello 金鑰的憑證指紋值。 刪除 hello 資料表中的任何資料列。
-4. 以滑鼠右鍵按一下 hello**租用戶**資料表，然後按一下**顯示資料表資料**。
-5. 在 hello**租用戶**資料表中，會有對應 tooa 唯一的目錄租用戶識別碼的至少一個資料列。 刪除 hello 資料表中的任何資料列。 如果您未刪除 hello 資料列，在這兩個 hello**租用戶**資料表和**IssuingAuthorityKeys**資料表，就會在執行階段發生錯誤。
-6. 建置並執行 hello 應用程式。 您已登入 tooyour 帳戶之後，您可以停止 hello 應用程式。
-7. 傳回 toohello**伺服器總管**並查看 hello 中的 hello 值**IssuingAuthorityKeys**和**租用戶**資料表。 您會發現，他們具有已自動重新擴展 hello hello 同盟中繼資料文件的適當資訊。
+1. 在 Visual Studio 2013 中開啟方案，然後按一下右側視窗上的 [伺服器 Explorer]  索引標籤。
+2. 依序展開 [資料連線]、[DefaultConnection]、[資料表]。 找出 [IssuingAuthorityKeys] 資料表並以滑鼠右鍵按一下，然後按一下 [顯示資料表資料]。
+3. [IssuingAuthorityKeys]  資料表中會有至少一個對應至金鑰指紋值的資料列。 刪除資料表中的任何資料列。
+4. 在 [租用戶] 資料表上按一下滑鼠右鍵，然後按一下 [顯示資料表資料]。
+5. [租用戶]  資料表中會有至少一個對應至唯一目錄租用戶識別碼的資料列。 刪除資料表中的任何資料列。 如果您未刪除 [租用戶] 資料表和 [IssuingAuthorityKeys] 資料表中的資料列，您就會在執行階段收到錯誤。
+6. 建置並執行應用程式。 在登入帳戶之後，即可停止應用程式。
+7. 返回 [伺服器總管]，然後查看 [IssuingAuthorityKeys] 和 [租用戶] 資料表中的值。 您將會發現，它們已自動重新填入同盟中繼資料文件中的適當資訊。
 
 ### <a name="vs2013"></a>保護資源且使用 Visual Studio 2013 建立的 Web API
-如果您使用 hello Web API 範本時，Visual Studio 2013 中建立 web API 應用程式，然後選取**組織帳戶**從 hello**變更驗證**功能表上，您已擁有 hello必要應用程式中的邏輯。
+如果您使用 Web API 範本在 Visual Studio 2013 中建置了 Web API 應用程式，然後從 [變更驗證] 功能表中選取了 [組織帳戶]，則應用程式已經具有所需的邏輯。
 
-如果您手動設定驗證，請遵循以下 toolearn hello 指示如何 tooconfigure Web API tooautomatically 更新金鑰資訊。
+如果您以手動方式設定了驗證，請依照下列指示來了解如何設定 Web API 以自動更新其金鑰資訊。
 
-hello 下列程式碼片段示範如何 tooget hello hello 同盟中繼資料文件，取得最新的金鑰，然後再使用 hello [JWT 權杖處理常式](https://msdn.microsoft.com/library/dn205065.aspx)toovalidate hello 語彙基元。 hello 程式碼片段假設您將使用您自己的快取機制來保存 hello 金鑰 toovalidate 未來語彙基元從 Azure AD，無論在資料庫、 組態檔或其他位置。
+下列程式碼片段示範如何從同盟中繼資料文件取得最新的金鑰，然後使用 [JWT 權杖處理常式](https://msdn.microsoft.com/library/dn205065.aspx) 來驗證權杖。 此程式碼片段假設您將會使用自己的快取機制來保留金鑰，以驗證日後來自 Azure AD 的權杖，不論它位於資料庫、組態檔或其他位置。
 
 ```
 using System;
@@ -172,7 +172,7 @@ namespace JWTValidation
     {
         private string MetadataAddress = "[Your Federation Metadata document address goes here]";
 
-        // Validates hello JWT Token that's part of hello Authorization header in an HTTP request.
+        // Validates the JWT Token that's part of the Authorization header in an HTTP request.
         public void ValidateJwtToken(string token)
         {
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler()
@@ -183,17 +183,17 @@ namespace JWTValidation
 
             TokenValidationParameters validationParams = new TokenValidationParameters()
             {
-                AllowedAudience = "[Your App ID URI goes here, as registered in hello Azure Classic Portal]",
-                ValidIssuer = "[hello issuer for hello token goes here, such as https://sts.windows.net/68b98905-130e-4d7c-b6e1-a158a9ed8449/]",
+                AllowedAudience = "[Your App ID URI goes here, as registered in the Azure Classic Portal]",
+                ValidIssuer = "[The issuer for the token goes here, such as https://sts.windows.net/68b98905-130e-4d7c-b6e1-a158a9ed8449/]",
                 SigningTokens = GetSigningCertificates(MetadataAddress)
 
-                // Cache hello signing tokens by your desired mechanism
+                // Cache the signing tokens by your desired mechanism
             };
 
             Thread.CurrentPrincipal = tokenHandler.ValidateToken(token, validationParams);
         }
 
-        // Returns a list of certificates from hello specified metadata document.
+        // Returns a list of certificates from the specified metadata document.
         public List<X509SecurityToken> GetSigningCertificates(string metadataAddress)
         {
             List<X509SecurityToken> tokens = new List<X509SecurityToken>();
@@ -226,7 +226,7 @@ namespace JWTValidation
                     }
                     else
                     {
-                        throw new InvalidOperationException("There is no RoleDescriptor of type SecurityTokenServiceType in hello metadata");
+                        throw new InvalidOperationException("There is no RoleDescriptor of type SecurityTokenServiceType in the metadata");
                     }
                 }
                 else
@@ -241,17 +241,17 @@ namespace JWTValidation
 ```
 
 ### <a name="vs2012"></a>保護資源且使用 Visual Studio 2012 建立的 Web 應用程式
-如果在 Visual Studio 2012 中建置您的應用程式時，您可能使用 hello 身分識別和存取工具 tooconfigure 您的應用程式。 也很可能您使用 hello[驗證簽發者名稱登錄 (VINR)](https://msdn.microsoft.com/library/dn205067.aspx)。 hello VINR 負責維護關於信任的身分識別提供者 (Azure AD) 的資訊和 hello 金鑰用於其所發行的 toovalidate 語彙基元。 hello VINR 也很容易 tooautomatically 更新 hello 金鑰資訊儲存在 Web.config 檔案中下載 hello 最新的同盟中繼資料文件與您的目錄，檢查是否 hello 組態 hello 與最新相關聯文件和更新 hello 應用程式 toouse hello 新索引鍵為必要。
+如果應用程式是在 Visual Studio 2012 中建置的，您大概是使用身分識別與存取工具來設定應用程式。 您也可能是使用 [驗證簽發者名稱登錄 (VINR)](https://msdn.microsoft.com/library/dn205067.aspx)。 VINR 負責維護信任的識別提供者 (Azure AD) 的相關資訊以及用來驗證其所簽發之權杖的金鑰。 VINR 也可透過下載與目錄相關聯的最新同盟中繼資料文件、使用最新文件檢查組態是否過期，以及視需要讓應用程式更新為使用新金鑰，讓您輕鬆地自動更新 Web.config 檔案中儲存的金鑰資訊。
 
-如果您建立使用 hello 程式碼範例或 Microsoft 所提供的逐步解說文任何的件應用程式，您的專案中已經包含 hello 金鑰變換邏輯。 您會發現以下的 hello 程式碼已經存在專案中。 如果您的應用程式尚無此邏輯，步驟 hello 下方 tooadd 它，它正常運作的 tooverify。
+如果您是使用 Microsoft 所提供的任何程式碼範例或逐步解說文件建立應用程式，則專案中已含有金鑰變換邏輯。 您會發現專案中已存在下列程式碼。 如果應用程式還沒有此邏輯，請遵循下列步驟，以新增此邏輯並確認它能正常運作。
 
-1. 在**方案總管 中**，新增參考 toohello **System.IdentityModel** hello 適當的專案的組件。
-2. 開啟 hello **Global.asax.cs**檔案，然後加入 hello 下列 using 指示詞：
+1. 在 [方案總管] 中，針對適當的專案新增對 **System.IdentityModel** 組件的參考。
+2. 開啟 **Global.asax.cs** 檔案，並新增下列 using 指示詞：
    ```
    using System.Configuration;
    using System.IdentityModel.Tokens;
    ```
-3. 新增下列方法 toohello hello **Global.asax.cs**檔案：
+3. 在 **Global.asax.cs** 檔案中新增下列方法：
    ```
    protected void RefreshValidationSettings()
    {
@@ -261,7 +261,7 @@ namespace JWTValidation
     ValidatingIssuerNameRegistry.WriteToConfig(metadataAddress, configPath);
    }
    ```
-4. 叫用 hello **Refreshvalidationsettings**方法在 hello **application_start （)**方法中的**Global.asax.cs**所示：
+4. 在 **Global.asax.cs** 的 **Application_Start()** 方法中，叫用 **RefreshValidationSettings()** 方法，如下所示︰
    ```
    protected void Application_Start()
    {
@@ -271,11 +271,11 @@ namespace JWTValidation
    }
    ```
 
-一旦您已遵循下列步驟，將會 hello 最新資訊 hello 同盟中繼資料文件，包括 hello 最新的金鑰更新應用程式的 Web.config。 每次應用程式集區回收 IIS; 中，會進行更新根據預設 IIS 設定 toorecycle 應用程式每 29 小時。
+在遵循這些步驟之後，應用程式的 Web.config 將會以同盟中繼資料文件中的最新資訊進行更新，其中也包括最新的金鑰。 此更新會在每次 IIS 回收應用程式集區時進行；依預設，IIS 設定為每隔 29 小時回收應用程式一次。
 
-請遵循以下 hello 金鑰變換邏輯運作的 tooverify hello 步驟。
+請遵循下列步驟來確認金鑰變換邏輯是否能運作。
 
-1. 確認您的應用程式正在使用 hello 開啟 hello 上面的程式碼之後**Web.config**檔案，並瀏覽 toohello  **<issuerNameRegistry>** 區塊，並特別尋找下列幾行 hello:
+1. 在確認應用程式是使用上述程式碼之後，開啟 **Web.config** 檔案並瀏覽至 **<issuerNameRegistry>** 區塊，具體而言，請尋找下列幾行︰
    ```
    <issuerNameRegistry type="System.IdentityModel.Tokens.ValidatingIssuerNameRegistry, System.IdentityModel.Tokens.ValidatingIssuerNameRegistry">
         <authority name="https://sts.windows.net/ec4187af-07da-4f01-b18f-64c2f5abecea/">
@@ -283,31 +283,31 @@ namespace JWTValidation
             <add thumbprint="3A38FA984E8560F19AADC9F86FE9594BB6AD049B" />
           </keys>
    ```
-2. 在 hello  **<add thumbprint=””>** 設定，以不同的字元完全取代將 hello 指紋值。 儲存 hello **Web.config**檔案。
-3. 建置 hello 應用程式，然後執行它。 如果您可以完成 hello 登入程序，您的應用程式已成功更新 hello 金鑰您目錄中的同盟中繼資料文件下載 hello 所需的資訊。 如果您有登入的問題，請確認您的應用程式中的 hello 變更是否正確讀取 hello[加入登入 tooYour Web 應用程式使用 Azure AD](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect)主題，或是下載並檢查下列程式碼範例的 hello: [多租用戶雲端應用程式的 Azure Active Directory](https://code.msdn.microsoft.com/multi-tenant-cloud-8015b84b)。
+2. [IssuingAuthorityKeys] **<add thumbprint=””>** 設定中，將任何字元替換為其他字元以變更指紋值。 儲存 **Web.config** 檔案。
+3. 建置應用程式，然後加以執行。 如果您可以完成登入程序，則應用程式已從目錄的同盟中繼資料文件下載所需資訊，而成功地更新金鑰。 如果您在登入時發生問題，請閱讀[使用 Azure AD 為 Web 應用程式新增登入](https://github.com/Azure-Samples/active-directory-dotnet-webapp-openidconnect)主題，或是下載並檢查下列程式碼範例︰[Azure Active Directory 的多租用戶雲端應用程式](https://code.msdn.microsoft.com/multi-tenant-cloud-8015b84b)，以確定應用程式中的變更是否正確。
 
 ### <a name="vs2010"></a>保護資源且使用 Visual Studio 2008 或 2010 和 Windows Identity Foundation (WIF) v1.0 for .NET 3.5 建立的 Web 應用程式
-如果建置 WIF v1.0 上的應用程式時，就沒有提供的機制 tooautomatically 重新整理您的應用程式組態 toouse 新的金鑰。
+如果您在 WIF v1.0 上建置應用程式，則沒有提供相關機制來將應用程式的組態自動重新整理為使用新的金鑰。
 
-* *最簡單的方式*使用 hello FedUtil 工具 hello WIF SDK，它可以擷取 hello 最新的中繼資料文件並更新您的組態中。
-* 更新您的應用程式 too.NET 4.5，其中包括 hello 位於 hello 系統命名空間的 WIF 最新版本。 然後，您可以使用 hello[驗證簽發者名稱登錄 (VINR)](https://msdn.microsoft.com/library/dn205067.aspx) tooperform hello 應用程式之組態的自動更新。
-* 執行手動的換用根據 hello 指示 hello 指引文件結尾。
+*  使用 WIF SDK 中內含的 FedUtil 工具，它可以擷取最新的中繼資料文件並更新組態。
+* 將應用程式更新至 .NET 4.5，其包含位於「系統」命名空間中的 WIF 的最新版本。 然後，您可以使用 [驗證簽發者名稱登錄 (VINR)](https://msdn.microsoft.com/library/dn205067.aspx) 來執行應用程式組態的自動更新。
+* 根據本指導文件結尾的指示執行手動變換。
 
-Toouse hello FedUtil tooupdate 您設定的指示：
+使用 FedUtil 來更新組態的指示︰
 
-1. 確認您擁有 hello WIF v1.0 SDK 開發電腦上安裝 Visual Studio 2008 或 2010年。 如果尚未安裝，您可以[從這裡下載](https://www.microsoft.com/en-us/download/details.aspx?id=4451)。
-2. 在 Visual Studio 中，開啟 hello 方案然後 hello 適用的專案上按一下滑鼠右鍵並選取**更新同盟中繼資料**。 如果不使用此選項，則尚未安裝 FedUtil 和/或 hello WIF v1.0 SDK。
-3. 從 hello 提示字元中，選取**更新**toobegin 更新您的同盟中繼資料。 如果您有存取 toohello 伺服器環境中裝載 hello 應用程式，您可以選擇使用 FedUtil 的[中繼資料自動更新排程器](https://msdn.microsoft.com/library/ee517272.aspx)。
-4. 按一下**完成**toocomplete hello 更新程序。
+1. 確認 Visual Studio 2008 或 2010 的開發電腦上已安裝 WIF v1.0 SDK。 如果尚未安裝，您可以[從這裡下載](https://www.microsoft.com/en-us/download/details.aspx?id=4451)。
+2. 在 Visual Studio 中開啟方案，然後以滑鼠右鍵按一下適用的專案，並選取 [更新同盟中繼資料] 。 如果無法使用此選項，則表示尚未安裝 FedUtil 和/或 WIF v1.0 SDK。
+3. 在提示中選取 [更新]  ，開始更新同盟中繼資料。 如果您可以存取裝載應用程式的伺服器環境，則可以選擇性地使用 FedUtil 的 [自動中繼資料更新排程器](https://msdn.microsoft.com/library/ee517272.aspx)。
+4. 按一下 [完成]  以完成更新程序。
 
-### <a name="other"></a>Web 應用程式/保護資源的應用程式開發介面使用任何其他程式庫，或手動實作的 hello 任何支援的通訊協定
-如果您使用其他程式庫，或手動實作的任何支援的 hello 通訊協定，您將需要 tooreview hello 文件庫或 hello 金鑰您實作 tooensure 會從 hello OpenID Connect 探索文件或 hello同盟中繼資料文件。 針對這其中一種方式 toocheck 是 toodo tooeither hello OpenID 探索文件或 hello 同盟中繼資料文件的任何呼叫您的程式碼或 hello 程式庫程式碼中的搜尋。
+### <a name="other"></a>保護資源且使用任何其他程式庫或手動實作任何支援的通訊協定的 Web 應用程式 / API
+如果您使用其他程式庫，或手動實作任何支援的通訊協定，您必須檢閱文件庫或您的實作，以確保從 OpenID Connect 探索文件或同盟中繼資料文件擷取金鑰。 檢查的方法之一是在您的程式碼或程式庫的程式碼中，搜尋是否有任何呼叫 OpenID 探索文件或同盟中繼資料文件的情況。
 
-如果索引鍵某處儲存或硬式編碼應用程式中的，您可以手動擷取 hello 金鑰和它據以執行手動的換用根據 hello 指示在 hello 結尾此指引文件的更新。 **強烈鼓勵您加強您的應用程式 toosupport 自動變換**如果 Azure AD 會增加它的容錯移轉模式，或者使用任何 hello 接近這個發行項 tooavoid 未來中斷與額外負荷外的框緊急的頻外換用。
+如果金鑰儲存在某處或硬式編碼在您的應用程式中，您可以手動擷取金鑰並根據本指導文件結尾的指示執行手動變換來更新金鑰。 **強烈建議您增強應用程式來支援自動變換** 時使用本文描述的任何方法，以免未來如果 Azure AD 提高變換頻率或臨時需要緊急變換時，造成運作中斷和超出負荷。
 
-## <a name="how-tootest-your-application-toodetermine-if-it-will-be-affected"></a>如何 tootest 會受到影響，如果您的應用程式 toodetermine
-您可以驗證您的應用程式支援自動金鑰變換下載 hello 指令碼和中的 hello 指示是否[這個 GitHub 儲存機制。](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey)
+## <a name="how-to-test-your-application-to-determine-if-it-will-be-affected"></a>如何測試您的應用程式，以判斷其是否會受影響
+下載指令碼並依照 [此 GitHub 儲存機制](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey)
 
-## <a name="how-tooperform-a-manual-rollover-if-you-application-does-not-support-automatic-rollover"></a>如何 tooperform 手動變換，如果您的應用程式不支援自動變換
-如果應用程式**不**支援自動變換，您將需要的處理序，定期監視 Azure AD 的簽署金鑰，並執行手動的換用 tooestablish 據以。 [此 GitHub 儲存機制](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey)包含指令碼和指示 toodo 這。
+## <a name="how-to-perform-a-manual-rollover-if-you-application-does-not-support-automatic-rollover"></a>如果應用程式不支援自動變換，如何執行手動變換
+如果您的應用程式 **不** 支援自動變換，您必須先建立程序，該程序會定期監視 Azure AD 的簽署金鑰，並據此執行手動變換。 [此 GitHub 儲存機制](https://github.com/AzureAD/azure-activedirectory-powershell-tokenkey) 包含指令碼和如何執行這項操作的指示。
 

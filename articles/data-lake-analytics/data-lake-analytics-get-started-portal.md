@@ -1,6 +1,6 @@
 ---
-title: "開始使用 Azure 入口網站的 Azure Data Lake Analytics 使用 aaaGet |Microsoft 文件"
-description: "了解如何 toouse hello Azure 入口網站 toocreate Data Lake Analytics 帳戶中建立使用 U SQL Data Lake Analytics 工作並送出 hello 作業。 "
+title: "使用 Azure 入口網站開始使用 Azure Data Lake Analytics | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站建立 Data Lake Analytics 帳戶、使用 U-SQL 建立 Data Lake Analytics 作業，以及提交作業。 "
 services: data-lake-analytics
 documentationcenter: 
 author: edmacauley
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 03/21/2017
 ms.author: edmaca
-ms.openlocfilehash: 6bb54404fa42cfed25b18bc2bfb7c72e6c361149
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2722a2d72ed90ea0005362563ecaee30750c040a
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="get-started-with-azure-data-lake-analytics-using-azure-portal"></a>使用 Azure 入口網站開始使用 Azure Data Lake Analytics
 [!INCLUDE [get-started-selector](../../includes/data-lake-analytics-selector-get-started.md)]
 
-了解如何 toouse hello Azure 入口網站 toocreate Azure Data Lake Analytics 帳戶，定義中的工作[U-SQL](data-lake-analytics-u-sql-get-started.md)，並提交作業 toohello 資料湖分析服務。 如需有關 Data Lake Analytics 的詳細資訊，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
+了解如何使用 Azure 入口網站建立 Azure Data Lake Analytics 帳戶、在 [U-SQL](data-lake-analytics-u-sql-get-started.md)中定義作業，以及將作業提交至 Data Lake Analytics 服務。 如需有關 Data Lake Analytics 的詳細資訊，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -31,23 +31,23 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="create-a-data-lake-analytics-account"></a>建立 Data Lake Analytics 帳戶
 
-現在，您會建立 Data Lake Analytics 並 Data Lake Store 帳戶 hello 在相同的時間。  這個步驟很簡單，而且只需要 60 秒 toofinish。
+現在，您會同時建立 Data Lake Analytics 和 Data Lake Store 帳戶。  這個步驟很簡單，只需要大約 60 秒即可完成。
 
-1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 按一下 [新增] >  [資料 + 分析] > [Data Lake Analytics]。
-3. 選取下列項目 hello 的值：
+3. 選取下列項目的值︰
    * **名稱**：替 Data Lake Analytics 帳戶命名 (只允許小寫字母和數字)。
-   * **訂用帳戶**： 選擇 hello 用於 hello Analytics 帳戶的 Azure 訂用帳戶。
+   * **訂用帳戶**：選擇用於分析帳戶的 Azure 訂用帳戶。
    * **資源群組**。 選取現有的 Azure 資源群組，或建立一個新的群組。
-   * **位置**。 選取 Azure 資料中心 hello Data Lake Analytics 帳戶。
-   * **Data Lake Store**： 遵循 hello 指令 toocreate 新的 Data Lake Store 帳戶，或選取現有的我的最愛。 
+   * **位置**。 為 Data Lake Analytics 帳戶選取 Azure 資料中心。
+   * **Data Lake Store**：請依照指示來建立新的 Data Lake Store 帳戶，或選取現有的帳戶。 
 4. (選擇性) 選取 Data Lake Analytics 帳戶的定價層。
 5. 按一下 [建立] 。 
 
 
 ## <a name="your-first-u-sql-script"></a>您的第一個 U-SQL 指令碼
 
-下列文字的 hello 是非常簡單的 U-SQL 指令碼。 它會定義 hello 指令碼內的小型資料集，並接著寫為名的檔案中的 toohello 預設 Data Lake Store 出該資料集`/data.csv`。
+下列文字是很簡單的 U-SQL 指令碼。 它會定義指令碼內的小型資料集，然後將該資料集寫入預設的 Data Lake Store，作為名為 `/data.csv` 的檔案。
 
 ```
 @a  = 
@@ -58,21 +58,21 @@ ms.lasthandoff: 10/06/2017
         ) AS 
               D( customer, amount );
 OUTPUT @a
-    too"/data.csv"
+    TO "/data.csv"
     USING Outputters.Csv();
 ```
 
 ## <a name="submit-a-u-sql-job"></a>提交 U-SQL 作業
 
-1. 從 hello Data Lake Analytics 帳戶中，按一下 **新工作**。
-2. 如上所示的 U-SQL 指令碼貼上 hello hello 文字中。 
+1. 從 Data Lake Analytics 帳戶中，按一下 [新增作業]。
+2. 貼上以上所示的 U-SQL 指令碼文字。 
 3. 按一下 [ **提交作業**]。   
-4. 等候直到在 hello 作業狀態變更太**Succeeded**。
-5. 如果 hello 作業失敗，請參閱[監視和疑難排解資料湖分析作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)。
-6. 按一下 hello**輸出**索引標籤，然後再按一下`data.csv`。 
+4. 請等候作業狀態變更為 [成功]。
+5. 如果作業失敗，請參閱[監視和移難排解 Data Lake Analytics 作業](data-lake-analytics-monitor-and-troubleshoot-jobs-tutorial.md)。
+6. 按一下 [輸出] 索引標籤，然後按一下 `data.csv`。 
 
 ## <a name="see-also"></a>另請參閱
 
-* tooget 開始開發 U-SQL 應用程式，請參閱[使用 Data Lake Tools for Visual Studio 的開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
-* toolearn U-SQL，請參閱[開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
+* 若要開始開發 U-SQL 應用程式，請參閱 [使用適用於 Visual Studio 的 Data Lake 工具開發 U-SQL 指令碼](data-lake-analytics-data-lake-tools-get-started.md)。
+* 若要了解 U-SQL，請參閱 [開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)。
 * 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。

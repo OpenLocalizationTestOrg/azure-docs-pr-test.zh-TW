@@ -1,6 +1,6 @@
 ---
-title: "在 OMS 中目標 aaaSolution |Microsoft 文件"
-description: "方案的目標是在 Operations Management Suite (OMS)，可讓您 toolimit 管理解決方案 tooa 組特定的代理程式的功能。  本文說明如何 toocreate 領域設定並將它套用 tooa 方案。"
+title: "OMS 中的設定解決方案目標 | Microsoft Docs"
+description: "「設定解決方案目標」是 Operations Management Suite (OMS) 中的功能，可讓您限制管理解決方案以針對一組特定的代理程式。  本文說明如何建立範圍設定，並將它套用至解決方案。"
 services: operations-management-suite
 documentationcenter: 
 author: bwren
@@ -14,64 +14,64 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 04/27/2017
 ms.author: bwren
-ms.openlocfilehash: 6f8c8109e0d9e282e18724bf8b673b10de8e498a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cb73a2d7ae57a5a11869259dbe913ae83ffb2b01
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-solution-targeting-in-operations-management-suite-oms-tooscope-management-solutions-toospecific-agents-preview"></a>使用解決方案目標 Operations Management Suite (OMS) tooscope 管理解決方案 toospecific 代理程式 （預覽）
-當您加入方案 tooOMS 時，它會自動部署預設 tooall Windows 和 Linux 代理程式連接的 tooyour 記錄分析工作區。  您可能想的 toomanage 您的成本和限制 hello 量的資料收集的解決方案，藉由限制它 tooa 特定的一組代理程式。  本文說明如何 toouse**方案目標**這是一項 OMS 功能，可讓您 tooapply 範圍 tooyour 解決方案。
+# <a name="use-solution-targeting-in-operations-management-suite-oms-to-scope-management-solutions-to-specific-agents-preview"></a>使用 Operations Management Suite (OMS) 中的「設定解決方案目標」將管理解決方案的範圍設定為特定的代理程式 (預覽)
+當您將解決方案加入 OMS 時，它預設會自動部署到與您 Log Analytics 工作區連線的所有 Windows 與 Linux 代理程式。  您可能會想要管理您的成本，並透過將解決方案限制在一組特定的代理程式，來限制針對該解決方案所收集的資料量。  本文說明如何使用 OMS 功能「設定解決方案目標」，此功能可讓您將範圍套用至解決方案。
 
-## <a name="how-tootarget-a-solution"></a>如何 tootarget 方案
-有三個步驟 tootargeting 方案 hello 下列各節中所述。  請注意，您將需要 hello OMS 入口網站和 hello Azure 入口網站不同的步驟。
+## <a name="how-to-target-a-solution"></a>如何為解決方案設定目標
+為解決方案設定目標有三個步驟，如下列各節中所述。  請注意，針對不同的步驟，您將需要 OMS 入口網站和 Azure 入口網站。
 
 
 ### <a name="1-create-a-computer-group"></a>1.建立電腦群組
-指定您想 tooinclude 範圍中的，藉由建立 hello 電腦[電腦群組](../log-analytics/log-analytics-computer-groups.md)記錄分析中。  hello 電腦群組可以根據 記錄搜尋，或從其他來源，例如 Active Directory 或 WSUS 群組匯入。 做為[下述](#solutions-and-agents-that-cant-be-targeted)，只有電腦直接連線的 tooLog 分析將會包含在 hello 範圍。
+您可以透過在 Log Analytics 中建立[電腦群組](../log-analytics/log-analytics-computer-groups.md)，來指定您想要包含在範圍內的電腦。  電腦群組可以是根據記錄搜尋，或者從其他來源匯入 (例如 Active Directory 或 WSUS 群組)。 [如同下面所述](#solutions-and-agents-that-cant-be-targeted)，只有直接連線至 Log Analytics 的電腦才會包含在範圍內。
 
-一旦建立工作區中的 hello 電腦群組，然後您將會包含在可以套用的 tooone 或其他解決方案領域設定。
+一旦您在工作區中建立電腦群組，便可將它包含在可套用至一或多個解決方案的範圍設定中。
  
  
  ### <a name="2-create-a-scope-configuration"></a>2.建立範圍設定
- A**領域設定**包含一或多個電腦群組，而且可以是套用的 tooone 或其他解決方案。 
+ 「範圍設定」包含一或多個電腦群組，可以套用至一或多個解決方案。 
  
- 建立使用下列程序的 hello 的範圍設定。  
+ 使用下列程序建立範圍設定。  
 
- 1. 在 hello Azure 入口網站中瀏覽過**記錄分析**並選取您的工作區。
- 2. 在 hello 工作區下的 hello 屬性**工作區中的資料來源**選取**範圍組態**。
- 3. 按一下**新增**toocreate 新的領域設定。
- 4. 輸入**名稱**hello 範圍設定。
+ 1. 在 Azure 入口網站中，瀏覽至 [Log Analytics] 並選取您的工作區。
+ 2. 在工作區內容中的 [工作區資料來源] 底下，選取 [範圍設定]。
+ 3. 按一下 [新增] 以建立新的範圍設定。
+ 4. 輸入範圍設定的 [名稱]。
  5. 按一下 [選取電腦群組]。
- 6. 選取您所建立的 hello 電腦群組和 （選擇性） 任何其他群組 tooadd toohello 組態。  按一下 [選取] 。  
- 6. 按一下**確定**toocreate hello 領域設定。 
+ 6. 選取您所建立的電腦群組 (並選擇性地選取其他群組) 以新增至設定。  按一下 [選取] 。  
+ 6. 按一下 [確定] 以建立範圍設定。 
 
 
- ### <a name="3-apply-hello-scope-configuration-tooa-solution"></a>3.適用於 hello 範圍組態 tooa 方案。
-一旦領域設定，然後您可以將它套用 tooone 或其他解決方案。  請注意，雖然單一範圍設定可以搭配多個解決方案使用，但每個解決方案僅可以使用一個範圍設定。
+ ### <a name="3-apply-the-scope-configuration-to-a-solution"></a>3.將範圍設定套用至解決方案。
+一旦您有範圍設定，便可以將它套用至一或多個解決方案。  請注意，雖然單一範圍設定可以搭配多個解決方案使用，但每個解決方案僅可以使用一個範圍設定。
 
-適用於使用下列程序的 hello 領域設定。  
+使用下列程序套用範圍設定。  
 
- 1. 在 hello Azure 入口網站中瀏覽過**記錄分析**並選取您的工作區。
- 2. 在 [hello] 工作區的 hello 內容選取**解決方案**。
- 3. 按一下您想 tooscope hello 方案。
- 4. Hello 下 hello 方案內容中**工作區中的資料來源**選取**方案目標**。  如果不使用 hello 選項然後[無法針對此解決方案](#solutions-and-agents-that-cant-be-targeted)。
- 5. 按一下 [新增範圍設定]。  如果您已經擁有組態套用 toothis 解決方案此選項將無法使用。  您必須移除 hello 現有組態，然後再加入另一個。
- 6. 按一下您所建立的 hello 領域設定。
- 7. 監看式 hello**狀態**的它會顯示 hello 組態 tooensure **Succeeded**。  如果 hello 狀態表示錯誤，然後按一下 hello 橢圓形 toohello 右邊的 hello 設定，並選取**編輯領域設定**toomake 變更。
+ 1. 在 Azure 入口網站中，瀏覽至 [Log Analytics] 並選取您的工作區。
+ 2. 在工作區內容中，選取 [解決方案]。
+ 3. 按一下您想要設定範圍的解決方案。
+ 4. 在解決方案內容中的 [工作區資料來源] 底下，選取 [設定解決方案目標]。  如果該選項無法使用，便代表[此解決方案無法設定目標](#solutions-and-agents-that-cant-be-targeted)。
+ 5. 按一下 [新增範圍設定]。  如果您已經將設定套用到此解決方案，則此選項將無法使用。  您必須移除現有設定，才能新增其他設定。
+ 6. 按一下您所建立的範圍設定。
+ 7. 查看設定的 [狀態]，以確定它顯示 [成功]。  如果狀態顯示發生錯誤，請按一下設定右側的省略符號，並選取 [編輯範圍設定] 以進行變更。
 
 ## <a name="solutions-and-agents-that-cant-be-targeted"></a>無法設定目標的解決方案和代理程式
-以下是代理程式和解決方案，不能與目標方案的 hello 準則。
+下列是無法搭配「設定解決方案目標」使用的代理程式和解決方案準則。
 
-- 方案為目標時，只適用於部署 tooagents toosolutions。
-- 目標方案僅適用於由 Microsoft 提供的 toosolutions。  它不會套用 toosolutions[自己或其他協力廠商所建立](operations-management-suite-solutions-creating.md)。
-- 您可以只會篩選掉 tooLog 分析直接連接的代理程式。  解決方案會自動將部署 tooany 代理程式已連線的 Operations Manager 管理群組，它們包含在範圍組態的一部分。
+- 「設定解決方案目標」僅適用於會部署至代理程式的解決方案。
+- 「設定解決方案目標」僅適用於 Microsoft 提供的解決方案。  不適用於[由您或合作夥伴所建立的](operations-management-suite-solutions-creating.md)解決方案。
+- 您只能篩選掉直接連線至 Log Analytics 的代理程式。  解決方案會自動部署到屬於已連線 Operations Manager 管理群組之一部分的所有代理程式，不論它們是否包含在範圍設定內。
 
 ### <a name="exceptions"></a>例外狀況
-方案的目標不能與 hello 下列方案，即使它們符合 hello 所述的準則。
+「設定解決方案目標」無法搭配下列解決方案使用，即使它們符合上述準則。
 
 - 代理程式健康狀態評估
 
 ## <a name="next-steps"></a>後續步驟
-- 深入了解管理方案包括 hello 方案會在您環境中的可用 tooinstall[新增 Azure Log Analytics management 解決方案 tooyour 工作區](../log-analytics/log-analytics-add-solutions.md)。
+- 在[將 Azure Log Analytics 管理解決方案新增至您的工作區](../log-analytics/log-analytics-add-solutions.md)中深入了解管理解決方案，包含可在您的環境中安裝的可用解決方案。
 - 在 [Log Analytics 記錄檔搜尋中的電腦群組](../log-analytics/log-analytics-computer-groups.md)中深入了解建立電腦群組。

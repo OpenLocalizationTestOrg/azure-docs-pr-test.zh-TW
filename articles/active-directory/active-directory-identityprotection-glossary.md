@@ -1,5 +1,5 @@
 ---
-title: "Active Directory Identity Protection 字彙 aaaAzure |Microsoft 文件"
+title: "Azure Active Directory Identity Protection 詞彙 | Microsoft Docs"
 description: "Azure Active Directory Identity Protection 詞彙"
 services: active-directory
 keywords: "azure active directory identity protection, cloud app discovery, 管理應用程式, 安全性, 風險, 風險層級, 弱點, 安全性原則, 詞彙"
@@ -15,33 +15,33 @@ ms.topic: article
 ms.date: 07/12/2017
 ms.author: markvi
 ms.reviewer: nigu
-ms.openlocfilehash: ff2e96d20e2a3f1df24b78e66be5a0c6807e60a3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2cf64925cff9a78cf83532a1cfd231f7a1d98304
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-active-directory-identity-protection-glossary"></a>Azure Active Directory Identity Protection 詞彙
 ### <a name="at-risk-user"></a>有風險 (使用者)
 具有一或多個作用中風險事件的使用者。 
 
 ### <a name="atypical-sign-in-location"></a>非典型登入位置
-登入不是標準 hello 特定使用者、 類似使用者，或 hello 租用戶的地理位置。
+從特定使用者、類似使用者或租用戶不常用的地理位置登入。
 
 ### <a name="azure-ad-identity-protection"></a>Azure AD Identity Protection
 Azure Active Directory 的安全性模組，可供整合檢視會影響組織身分識別的風險事件和潛在弱點。
 
 ### <a name="conditional-access"></a>條件式存取
-保護存取 tooresources 的原則。 條件式存取規則儲存在 hello Azure Active Directory，而且由 Azure AD 授與存取 toohello 資源之前加以評估。  範例規則包括根據使用者位置、裝置健康狀態或使用者驗證方法來限制存取。
+用來保護資源存取的原則。 條件式存取規則會儲存在 Azure Active Directory 中，並在授與資源的存取權之前由 Azure AD 評估。  範例規則包括根據使用者位置、裝置健康狀態或使用者驗證方法來限制存取。
 
 ### <a name="credentials"></a>認證
-包含之識別與已使用的 toogain 存取 toolocal 和網路資源的識別證明的資訊。 認證範例包括使用者名稱和密碼、智慧卡和憑證。
+包含識別碼以及用來取得存取本機和網路資源之識別證明的資訊。 認證範例包括使用者名稱和密碼、智慧卡和憑證。
 
 ### <a name="event"></a>Event
 Azure Active Directory 中的活動記錄。
 
 ### <a name="false-positive-risk-event"></a>誤判 (風險事件)
-手動設定識別身分保護使用者，表示該 hello 風險事件已調查和不正確地標示為風險事件的風險事件狀態。
+由 Identity Protection 使用者手動設定的風險事件狀態，表示此風險事件已經過調查而且被誤標為風險事件。
 
 ### <a name="identity"></a>身分識別
 必須透過以密碼或憑證等準則為基礎的驗證作業來確認的個人或實體。
@@ -50,88 +50,88 @@ Azure Active Directory 中的活動記錄。
 由 Identity Protection 標示為異常的 AAD 事件，有可能表示身分識別已被入侵。
 
 ### <a name="ignored-risk-event"></a>已忽略 (風險事件)
-手動設定識別身分保護使用者，指出該 hello 風險事件已關閉但不採取補救動作的風險事件狀態。
+由 Identity Protection 使用者手動設定的風險事件狀態，表示此風險事件已關閉，而不需採取補救動作。
 
 ### <a name="impossible-travel-from-atypical-locations"></a>不可能來自非典型位置的移動
-周遊這些之間的風險事件觸發時需要 toophysically 兩個相同的使用者會偵測到，其中至少一個是從非典型的登入位置，以及在 hello hello 登入之間的時間長度小於最小的 hello 時間的 hello 登入。位置。  
+偵測到同一位使用者有兩次登入時所觸發的風險事件，其中至少一次登入是來自非典型登入位置，而且登入之間的時間比在兩地之間實際移動所需的最短時間還要短。  
 
 ### <a name="investigation"></a>調查
-hello 檢閱 hello 活動、 記錄和其他相關資訊的程序相關 tooa 風險事件 toodecide 是否補救或安全防護功能步驟，了解如何 hello 身分識別已遭到洩露，並了解如何 hello使用遭盜用身分識別。
+檢閱風險事件相關活動、記錄檔和其他相關資訊的程序，以決定是否需要採取補救或緩和步驟，了解身分識別是否及如何遭到入侵，以及了解遭到入侵的身分識別如何被利用。
 
 ### <a name="leaked-credentials"></a>認證外洩
-風險事件觸發時發現目前的使用者認證 （使用者名稱和密碼） 公開公佈在我們的研究人員 hello 深色 web。
+當我們的研究人員發現目前的使用者認證 (使用者名稱和密碼) 被公開張貼在黑暗網路 (Dark Web) 中時所觸發的風險事件。
 
 ### <a name="mitigation"></a>緩和
-動作 toolimit 或消除 hello 的攻擊者 tooexploit 遭盜用身分識別或裝置的能力，而不還原 hello 身分識別或裝置 tooa 安全狀態。 緩和措施無法解決先前 hello 身分識別或裝置相關聯的風險事件。
+此動作可限制或消除攻擊者利用遭到入侵的身分識別或裝置的能力，但不需將身分識別或裝置還原至安全的狀態。 緩和並未解決先前與身分識別或裝置相關聯的風險事件。
 
 ### <a name="multi-factor-authentication"></a>Multi-Factor Authentication
-驗證方法，需要兩個或多個驗證方法，其可能包括 hello 使用者擁有的項目，這類憑證;項目 hello 使用者知道，例如使用者名稱、 密碼或複雜密碼。實體的屬性，例如指紋。與個人的屬性，例如個人簽章。
+此種驗證方法需要兩個或更多驗證方法，其中可能包含使用者擁有的事物 (例如憑證)、使用者知道的事物 (例如使用者名稱、密碼或通關密語)、實體屬性 (例如指紋) 以及個人屬性 (例如個人簽章)。
 
 ### <a name="offline-detection"></a>離線偵測
-hello 偵測異常和 hello 事實，已發生的事件之後的事件，例如登入嘗試的 hello 風險評估。
+針對已經發生的事件，偵測異常狀況及評估事件的風險 (例如事後的登入嘗試)。
 
 ### <a name="policy-condition"></a>原則條件
-安全性原則會定義 hello 實體群組、 使用者、 應用程式、 裝置平台，裝置狀態、 IP 範圍 （用戶端類型） 從它 hello 原則中包含或排除的一部分。
+安全性原則的一部分，定義原則中包含或排除的實體 (群組、使用者、應用程式、裝置平台、裝置狀態、IP 範圍、用戶端類型)。
 
 ### <a name="policy-rule"></a>原則規則
-hello 部分說明 hello 情況會觸發 hello 原則以及 hello 所採取動作時，就會觸發 hello 原則的安全性原則。
+安全性原則的一部分，說明會觸發此原則的情況，以及原則觸發時所採取的動作。
 
 ### <a name="prevention"></a>預防
-動作 tooprevent 損害 toohello 透過濫用的組織的身分識別或裝置懷疑，或者知道 toobe 入侵。 防止動作不保護 hello 裝置或識別，並無法解決先前的風險事件。
+預防藉由不當使用疑似或已知遭到入侵的身分識別或裝置來傷害組織的動作。 預防動作並不會保護裝置或身分識別的安全，且不會解決先前的風險事件。
 
 ### <a name="privileged-user"></a>特殊權限 (使用者)
-在 Azure Active Directory，例如為全域管理員，具有永久或暫時的系統管理員權限 tooone 或更多資源的 hello 的風險事件期間，在使用者計費管理員、 服務系統管理員、 使用者管理員和密碼系統管理員。 
+在發生風險事件時，擁有永久或暫時系統管理權限可存取 Azure Active Directory 中一或多項資源的使用者，例如全域管理員，計費管理員、服務管理員、使用者管理員和密碼管理員。 
 
 ### <a name="real-time"></a>即時
 請參閱即時偵測。
 
 ### <a name="real-time-detection"></a>即時偵測
-hello 異常偵測的事件，例如登入嘗試 hello 事件之前的 hello 風險評估允許和 tooproceed。
+在允許事件繼續進行之前，偵測異常狀況及評估事件的風險 (例如登入嘗試)。
 
 ### <a name="remediated-risk-event"></a>已補救 (風險事件)
-自動設定的識別身分保護，指出該 hello 風險事件補救這種類型的風險事件使用 hello 標準的補救動作的風險事件狀態。 例如，當 hello 使用者密碼重設時，許多指示該 hello 先前的密碼已遭到洩露的風險事件都會自動補救。
+Identity Protection 自動設定的風險事件狀態，表示已使用此風險事件類型的標準補救動作來補救此風險事件。 例如，當使用者密碼重設時，會自動補救許多指出先前密碼已遭入侵的風險事件。
 
 ### <a name="remediation"></a>補救
-動作 toosecure 身分識別或先前可疑或已知 toobe 的裝置遭到洩露。 補救動作還原 hello 身分識別或裝置 tooa 安全的狀態，並解決先前 hello 身分識別或裝置相關聯的風險事件。
+用來保護先前疑似或已知遭到入侵的身分識別或裝置的動作。 補救動作可讓身分識別或裝置還原到安全的狀態，以及解決先前與身分識別或裝置相關聯的風險事件。
 
 ### <a name="resolved-risk-event"></a>已解決 (風險事件)
-手動設定識別身分保護使用者，表示 hello 使用者採取適當的補救動作以外的識別身分保護，且該 hello 風險事件應該被視為風險事件狀態已關閉。
+由 Identity Protection 使用者手動設定的風險事件狀態，表示使用者在 Identity Protection 外部採取適當的補救動作，而且應該將風險事件視為已關閉。
 
 ### <a name="risk-event-status"></a>風險事件狀態
-風險事件屬性，指出是否 hello 事件為作用中，而且如果已關閉，關閉它 hello 原因。
+風險事件的屬性，指出事件是否為作用中，若已關閉，則會指出其關閉原因。
 
 ### <a name="risk-event-type"></a>風險事件類型
-某項分類 hello 的風險事件，指出造成 hello 事件 toobe 視為危險的異常 hello 型別。
+風險事件的類別，指出導致事件被視為有風險的異常類型。
 
 ### <a name="risk-level-risk-event"></a>風險層級 (風險事件)
-（高、 中或低） 它們的相對值指示 hello 風險事件 toohelp 識別身分保護使用者 hello 嚴重性排定優先順序採取 tooreduce hello 風險 tootheir 組織 hello 動作。 
+指出風險事件的嚴重性 (高、中或低)，可協助 Identity Protection 使用者排定為了降低組織風險而採取之行動的優先順序。 
 
 ### <a name="risk-level-sign-in"></a>風險層級 (登入)
-表示 （高、 中或低） hello 可能性特定登入，其他人正在嘗試 toouse hello 使用者的身分識別。
+指出特定登入 (其他人正嘗試使用使用者的身分識別) 的可能性 (高、中或低)。
 
 ### <a name="risk-level-user-compromise"></a>風險層級 (使用者入侵)
-Hello 身分識別已遭洩漏的可能性表示 （高、 中或低）。
+指出身分識別遭到入侵的可能性 (高、中或低)。
 
 ### <a name="risk-level-vulnerability"></a>風險層級 (弱點)
-（高、 中或低） 它們的相對值指示 hello 弱點 toohelp 識別身分保護使用者 hello 嚴重性排定優先順序採取 tooreduce hello 風險 tootheir 組織 hello 動作。
+指出弱點的嚴重性 (高、中或低)，可協助 Identity Protection 使用者排定為了降低組織風險而採取之行動的優先順序。
 
 ### <a name="secure-identity"></a>安全 (身分識別)
-採取補救動作，例如密碼變更或重新安裝映像 toorestore 潛在受危害的身分識別 tooan 洩露的狀態機器。
+採取補救動作 (例如變更密碼或機器重新安裝映像)，將可能遭到入侵的身分識別還原至未遭入侵的狀態。
 
 ### <a name="security-policy"></a>安全性原則
-原則規則和條件的集合。 原則可以套用的 tooentities 像是使用者、 群組、 應用程式、 裝置、 裝置平台，裝置狀態、 IP 範圍，以及 Auth2.0 用戶端類型。 啟用原則時，它會評估每次發出資源的語彙基元 hello 原則中所包含的實體時。
+原則規則和條件的集合。 原則可以套用至各種實體，例如使用者、群組、應用程式、裝置、裝置平台、裝置狀態、IP 範圍和 Auth2.0 用戶端類型。 啟用原則後，就會在納入原則的實體被核發資源的權杖時進行評估。
 
 ### <a name="sign-in-v"></a>登入 (動詞)
-在 Azure Active Directory tooauthenticate tooan 身分識別。
+在 Azure Active Directory 中驗證身分識別。
 
 ### <a name="sign-in-n"></a>登入 (名詞)
-hello 程序或驗證 Azure Active Directory 和擷取這項作業的 hello 事件中的身分識別的動作。
+在 Azure Active Directory 中驗證身分識別的程序或動作，以及擷取這項作業的事件。
 
 ### <a name="sign-in-from-anonymous-ip-address"></a>從匿名 IP 位址登入
 從被視為匿名 Proxy IP 位址的 IP 位址成功登入之後所觸發的風險事件。
 
 ### <a name="sign-in-from-infected-device"></a>從受感染的裝置登入
-風險事件觸發時登入來自已知 toobe 裝置所使用一或多個遭入侵，主動嘗試 toocommunicate bot 伺服器的 IP 位址。
+當登入源自已知由一或多個遭入侵裝置 (這類裝置會主動嘗試與 Bot 伺服器通訊) 使用的 IP 位址時所觸發的風險事件。
 
 ### <a name="sign-in-from-ip-address-with-suspicious-activity"></a>從具有可疑活動的 IP 位址登入
 從短期內透過多個使用者帳戶多次嘗試登入失敗的 IP 位址成功登入之後所觸發的風險事件。
@@ -143,7 +143,7 @@ hello 程序或驗證 Azure Active Directory 和擷取這項作業的 hello 事�
 請參閱風險層級 (登入)
 
 ### <a name="sign-in-risk-policy"></a>登入風險原則
-條件式存取原則，評估 hello 風險 tooa 特定登入，並根據預先定義的條件和規則的防護措施。
+一個條件式存取原則，可評估特定登入的風險，並根據預先定義的條件和規則來套用緩和動作。
 
 ### <a name="user-compromise-risk"></a>使用者入侵風險
 請參閱風險層級 (使用者入侵)
@@ -152,13 +152,13 @@ hello 程序或驗證 Azure Active Directory 和擷取這項作業的 hello 事�
 請參閱風險層級 (使用者入侵)。
 
 ### <a name="user-risk-policy"></a>使用者風險原則
-條件式存取原則，會考慮 hello 登入，並根據預先定義的條件和規則的防護措施。
+一個條件式存取原則，可根據預先定義的條件和規則來考量及套用緩和動作。
 
 ### <a name="users-flagged-for-risk"></a>標示有風險的使用者
 具有作用中或已補救之風險事件的使用者
 
 ### <a name="vulnerability"></a>弱點
-設定或讓 hello 目錄很容易遭受 tooexploits 或潛在威脅的 Azure Active Directory 中的條件。
+Azure Active Directory 中的組態或狀況，此組態或狀況會使目錄容易受到入侵或威脅的影響。
 
 ## <a name="see-also"></a>另請參閱
 * [Azure Active Directory Identity Protection](active-directory-identityprotection.md)

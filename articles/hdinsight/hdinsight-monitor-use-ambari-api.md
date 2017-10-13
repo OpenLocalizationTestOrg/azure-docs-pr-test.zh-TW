@@ -1,6 +1,6 @@
 ---
-title: "在 HDInsight 中使用 aaaMonitor Hadoop 叢集 hello Ambari API-Azure |Microsoft 文件"
-description: "用於建立、 管理和監視 Hadoop 叢集 hello Apache Ambari 應用程式開發介面。 運算子直覺式的工具和 Api 隱藏 hello 複雜度的 Hadoop。"
+title: "使用 Ambari API 監視 HDInsight 中的 Hadoop 叢集 - Azure | Microsoft Docs"
+description: "使用 Apache Ambari API 來建立、管理和監視 Hadoop 叢集。 直覺式操作工具和 API 可消除 Hadoop 的複雜性。"
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,53 +16,53 @@ ms.topic: article
 ms.date: 04/07/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: d61a8aae5ddfcd7d44f2e4cc899e0a4da5e5fdcc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b6fc2098027690eb76b69b1427f0e9541b8a7a69
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="monitor-hadoop-clusters-in-hdinsight-using-hello-ambari-api"></a>監視使用 hello Ambari API HDInsight 中的 Hadoop 叢集
-了解使用 Ambari Api toomonitor HDInsight 叢集的方式。
+# <a name="monitor-hadoop-clusters-in-hdinsight-using-the-ambari-api"></a>使用 Ambari API 監視 HDInsight 上的 Hadoop 叢集
+了解如何使用 Ambari API 監視 HDInsight 叢集。
 
 > [!NOTE]
-> 本文章中的 hello 資訊主要是 hello 的提供唯讀 Ambari REST API 版本的 Windows 為基礎的 HDInsight 叢集。 對於 Linux 架構的叢集，請參閱 [使用 Ambari 管理 Hadoop 叢集](hdinsight-hadoop-manage-ambari.md)。
+> 本文中的資訊主要適用於 Windows 架構的 HDInsight 叢集，該叢集提供 Ambari REST API 的唯讀版本。 對於 Linux 架構的叢集，請參閱 [使用 Ambari 管理 Hadoop 叢集](hdinsight-hadoop-manage-ambari.md)。
 > 
 > 
 
 ## <a name="what-is-ambari"></a>什麼是 Ambari？
-[Apache Ambari][ambari-home] 用來佈建、管理和監視 Apache Hadoop 叢集。 它包含的運算子工具的直覺式集合和一組強大的應用程式開發介面中隱藏 hello 複雜度 Hadoop，以簡化 hello 作業的叢集。 如需 hello 應用程式開發介面的詳細資訊，請參閱[Ambari API 參考][ambari-api-reference]。 
+[Apache Ambari][ambari-home] 用來佈建、管理和監視 Apache Hadoop 叢集。 其中包含一組直接易懂的操作員工具和健全的 API 集，可消除 Hadoop 的複雜性，並簡化叢集作業。 如需關於 API 的詳細資訊，請參閱 [Ambari API 參考資料][ambari-api-reference]。 
 
-HDInsight 目前支援僅 hello Ambari 監視功能。 HDInsight  3.0 及 2.1 版叢集可支援 Ambari API 1.0。 本文涵蓋於 HDInsight 3.1 和 2.1 版叢集上存取 Ambari API。 hello hello 兩個之間的主要差異是，某些 hello 元件已變更的新功能 （例如 hello 作業歷程記錄的伺服器) 的 hello 簡介。 
+HDInsight 目前僅支援 Ambari 監視功能。 HDInsight  3.0 及 2.1 版叢集可支援 Ambari API 1.0。 本文涵蓋於 HDInsight 3.1 和 2.1 版叢集上存取 Ambari API。 兩者的主要差別在於某些元件已隨著新功能引進而變更 (例如工作歷程伺服器)。 
 
 **必要條件**
 
-開始本教學課程之前，您必須具備下列項目 hello:
+開始進行本教學課程之前，您必須具備下列項目：
 
 * **具有 Azure PowerShell 的工作站**。
-* (選擇性) [cURL][curl]。 tooinstall，請參閱[cURL 版本和下載][curl-download]。
+* (選擇性) [cURL][curl]。 若要安裝此項目，請參閱 [cURL 版本和下載][curl-download]。
   
   > [!NOTE]
-  > 何時使用 hello cURL 命令在 Windows 中，使用雙引號標記，而不是 hello 選項值的單一引號括起來。
+  > 在 Windows 上使用 cURL 命令時，請針對選項值使用雙引號，而不要使用單引號。
   > 
   > 
-* **Azure HDInsight 叢集**。 如需叢集佈建的指示，請參閱[開始使用 HDInsight][hdinsight-get-started] 或[佈建 HDInsight 叢集][hdinsight-provision]。 您需要下列資料 toogo hello 教學課程的 hello:
+* **Azure HDInsight 叢集**。 如需叢集佈建的指示，請參閱[開始使用 HDInsight][hdinsight-get-started] 或[佈建 HDInsight 叢集][hdinsight-provision]。 進行教學課程時，您將需要以下資料：
   
   | 叢集屬性 | Azure PowerShell 變數名稱 | 值 | 說明 |
   | --- | --- | --- | --- |
-  |   HDInsight 叢集名稱 |$clusterName | |hello 的 HDInsight 叢集的名稱。 |
-  |   叢集使用者名稱 |$clusterUsername | |Hello 叢集建立時所指定叢集使用者名稱。 |
+  |   HDInsight 叢集名稱 |$clusterName | |您的 HDInsight 叢集名稱。 |
+  |   叢集使用者名稱 |$clusterUsername | |建立叢集時指定的叢集使用者名稱。 |
   |   叢集密碼 |$clusterPassword | |叢集使用者密碼。 |
 
 [!INCLUDE [upgrade-powershell](../../includes/hdinsight-use-latest-powershell.md)]
 
 
 ## <a name="jump-start"></a>開始使用
-有幾種方式 toouse Ambari toomonitor HDInsight 叢集。
+您可以透過數種方式使用 Ambari 監視 HDInsight 叢集。
 
 **使用 Azure PowerShell**
 
-下列 Azure PowerShell 指令碼的 hello 取得 hello MapReduce 作業追蹤程式資訊*HDInsight 3.5 叢集中。*  hello 主要差異是我們提取從 hello YARN 服務 （而非 MapReduce） 這些詳細資料。
+以下 Azure PowerShell 指令碼可取得 *HDInsight 3.5 叢集*中的MapReduce 工作追蹤程式資訊。  主要差別在於我們從 YARN 服務 (而非 MapReduce) 提取這些詳細資料。
 
     $clusterName = "<HDInsightClusterName>"
     $clusterUsername = "<HDInsightClusterUsername>"
@@ -78,7 +78,7 @@ HDInsight 目前支援僅 hello Ambari 監視功能。 HDInsight  3.0 及 2.1 �
 
     $response.metrics.'yarn.queueMetrics'
 
-下列 PowerShell 指令碼的 hello 取得 hello MapReduce 作業追蹤程式資訊*HDInsight 2.1 叢集中*:
+以下 PowerShell 指令碼可取得「HDInsight 2.1 叢集中的」MapReduce 工作追蹤程式資訊：
 
     $clusterName = "<HDInsightClusterName>"
     $clusterUsername = "<HDInsightClusterUsername>"
@@ -94,17 +94,17 @@ HDInsight 目前支援僅 hello Ambari 監視功能。 HDInsight  3.0 及 2.1 �
 
     $response.metrics.'mapred.JobTracker'
 
-hello 輸出為：
+輸出如下：
 
 ![Jobtracker Output][img-jobtracker-output]
 
 **使用 cURL**
 
-hello 下列範例會取得叢集資訊使用 cURL:
+以下範例使用 cURL 取得叢集資訊：
 
     curl -u <username>:<password> -k https://<ClusterName>.azurehdinsight.net:443/ambari/api/v1/clusters/<ClusterName>.azurehdinsight.net
 
-hello 輸出為：
+輸出如下：
 
     {"href":"https://hdi0211v2.azurehdinsight.net/ambari/api/v1/clusters/hdi0211v2.azurehdinsight.net/",
      "Clusters":{"cluster_name":"hdi0211v2.azurehdinsight.net","version":"2.1.3.0.432823"},
@@ -121,12 +121,12 @@ hello 輸出為：
         "Hosts":{"cluster_name":"hdi0211v2.azurehdinsight.net",
                  "host_name":"headnode0.{ClusterDNS}.azurehdinsight.net"}}]}
 
-**Hello 2014 年 10 月 8 日發行的**:
+**2014/10/8 版本的相關資訊**：
 
-當使用 hello Ambari 端點，「 https://{clusterDns}.azurehdinsight.net/ambari/api/v1/clusters/{clusterDns}.azurehdinsight.net/services/{servicename}/components/{componentname}"，hello *host_name*欄位傳回 hello 節點，而不是 hello 主機名稱的 hello 完整的網域名稱 (FQDN)。 之前 hello 2014 年 10 月 8 日發行，此範例只是傳回"**headnode0**"。 之後 hello 2014 年 10 月 8 日版本中，您會收到 hello FQDN"**headnode0。 {ClusterDNS}.azurehdinsight.net**"，hello 先前範例所示。 一個虛擬網路 (VNET) 中進行此變更，需要的 toofacilitate 案例可以部署多個叢集類型 （例如 HBase 和 Hadoop） 的位置。 例如，使用 HBase 做為 Hadoop 的後端平台時就是這種情形。
+使用 Ambari 端點 "https://{clusterDns}.azurehdinsight.net/ambari/api/v1/clusters/{clusterDns}.azurehdinsight.net/services/{servicename}/components/{componentname}" 時，host_name 欄位會傳回節點的完整網域名稱 (FQDN)，而不是主機名稱。 在 2014/10/8 版本之前，此範例只會傳回 "**headnode0**"。 在 2014/10/8 版本之後，您會得到 FQDN "**headnode0.{ClusterDNS}.azurehdinsight.net**"，如先前範例所示。 需要此變更，以便將多種叢集類型 (例如 HBase 和 Hadoop) 部屬至一個虛擬網路 (VNET) 中。 例如，使用 HBase 做為 Hadoop 的後端平台時就是這種情形。
 
 ## <a name="ambari-monitoring-apis"></a>Ambari 監視 API
-hello 下表列出一些 hello 最常見 Ambari 監視 API 呼叫。 如需 hello API 的詳細資訊，請參閱[Ambari API 參考][ambari-api-reference]。
+下表列出部分最常用的 Ambari 監視 API 呼叫。 如需 API 的詳細資訊，請參閱 [Ambari API 參考資料][ambari-api-reference]。
 
 | 監視 API 呼叫 | URI | 說明 |
 | --- | --- | --- |
@@ -144,9 +144,9 @@ hello 下表列出一些 hello 最常見 Ambari 監視 API 呼叫。 如需 hell
 | 取得組態資訊 |`/api/v1/clusters/<ClusterName>.azurehdinsight.net/configurations?type=<ConfigType>&tag=<VersionName>` |組態類型：core-site、hdfs-site、mapred-site、hive-site |
 
 ## <a name="next-steps"></a>後續步驟
-現在您已經學會如何 toouse Ambari 監視應用程式開發介面呼叫。 toolearn 詳細資訊，請參閱：
+現在，您已了解如何使用 Ambari 監視 API。 若要深入了解，請參閱：
 
-* [管理 HDInsight 叢集使用 hello Azure 入口網站][hdinsight-admin-portal]
+* [使用 Azure 入口網站管理 HDInsight 叢集][hdinsight-admin-portal]
 * [使用 Azure PowerShell 管理 HDInsight 叢集][hdinsight-admin-powershell]
 * [使用命令列介面管理 HDInsight 叢集][hdinsight-admin-cli]
 * [HDInsight 文件][hdinsight-documentation]

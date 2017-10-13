@@ -1,6 +1,6 @@
 ---
-title: "aaaSynonyms 預覽 Azure 搜尋中的教學課程 |Microsoft 文件"
-description: "新增 Azure 搜尋中的 hello 同義字預覽功能 tooan 索引。"
+title: "Azure 搜尋服務的同義字預覽教學課程 | Microsoft Docs"
+description: "將同義字預覽功能新增至 Azure 搜尋服務中的索引。"
 services: search
 manager: jhubbard
 documentationcenter: 
@@ -12,33 +12,33 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 03/31/2017
 ms.author: heidist
-ms.openlocfilehash: 055c1cbafb945823a3dc4da0c522db236b1d192c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 014959ed471f796d2184f0f8ff10d15cdc8a2ec6
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="synonym-preview-c-tutorial-for-azure-search"></a>Azure 搜尋服務的同義字 (預覽) C# 教學課程
 
-同義字展開查詢比對視為語意相等 toohello 輸入的詞彙的詞彙。 例如，您可以包含 hello 條款"automobile"或"vehicle"的"car"toomatch 文件。
+同義字可藉由比對在語意上視為等於輸入詞彙的詞彙來展開查詢。 例如，您可能希望 "car" 比對包含 "automobile" 或 "vehicle" 詞彙的文件。
 
-在 Azure 搜尋服務中，同義字會定義於*同義字對應*中，透過*對應規則*讓相等的詞彙產生關聯。 您可以建立多個同義字對應、 張貼為整個服務的資源可用 tooany 索引，然後參考 哪一個 toouse hello 欄位層級。 在查詢時，除了 toosearching Azure 搜尋索引，會在同義字地圖中，查閱如果 hello 查詢中使用的欄位上指定的其中一個。
+在 Azure 搜尋服務中，同義字會定義於*同義字對應*中，透過*對應規則*讓相等的詞彙產生關聯。 您可以建立多個同義字對應、將它們張貼為可供任何索引使用的全服務資源，然後參照哪一個要在欄位層級使用。 查詢時，除了搜尋索引，Azure 搜尋服務會查閱同義字對應 (如果在查詢中使用的欄位上指定一個同義字對應)。
 
 > [!NOTE]
-> hello 同義字功能是目前在預覽，並僅支援在 hello 最新預覽版 API 和 SDK 版本 (api 版本 = 2016年-09-01-預覽，SDK 版本 4.x 預覽)。 目前 Azure 入口網站並不支援此功能。 預覽 API 不受 SLA 約束，且預覽功能可能會變更，因此不建議在生產應用程式中使用它們。
+> 同義字功能目前處於預覽狀態，只在最新的預覽 API 和 SDK 版本 (api-version=2016-09-01-Preview, SDK version 4.x-preview) 中提供支援。 這一次沒有 Azure 入口網站支援。 預覽 API 不受 SLA 約束，且預覽功能可能會變更，因此不建議在生產應用程式中使用它們。
 
 ## <a name="prerequisites"></a>必要條件
 
-教學課程需求 hello 如下：
+教學課程包含下列需求︰
 
 * [Visual Studio](https://www.visualstudio.com/downloads/)
 * [Azure 搜尋服務](search-create-service-portal.md)
 * [預覽版本的 Microsoft.Azure.Search .NET 程式庫](https://aka.ms/search-sdk-preview)
-* [如何從.NET 應用程式的 toouse Azure 搜尋](https://docs.microsoft.com/azure/search/search-howto-dotnet-sdk)
+* [如何從 .NET 應用程式使用 Azure 搜尋服務](https://docs.microsoft.com/azure/search/search-howto-dotnet-sdk)
 
 ## <a name="overview"></a>概觀
 
-前-和-後查詢示範 hello 值的同義字。 在本教學課程中，我們使用可執行查詢並傳回範例索引結果的範例應用程式。 hello 範例應用程式會建立名為 「 旅館"填入 兩份文件的小型索引。 hello 應用程式執行搜尋查詢，使用詞彙並不會出現在 hello 索引中的片語，以及 hello 同義字 」 功能，則問題 hello 相同搜尋一次。 hello 的下列程式碼示範 hello 整體流程。
+之前與之後查詢會示範同義字的值。 在本教學課程中，我們使用可執行查詢並傳回範例索引結果的範例應用程式。 範例應用程式會建立名為 "hotels" 並已填入兩份文件的小型索引。 此應用程式會使用未出現在索引中的詞彙和詞句來執行搜尋查詢，啟用同義字功能，然後再次發出相同的搜尋。 下列程式碼示範整體流程。
 
 ```csharp
   static void Main(string[] args)
@@ -63,53 +63,53 @@ ms.lasthandoff: 10/06/2017
       Console.WriteLine("{0}", "Adding synonyms...\n");
       UploadSynonyms(serviceClient);
       EnableSynonymsInHotelsIndex(serviceClient);
-      Thread.Sleep(10000); // Wait for hello changes toopropagate
+      Thread.Sleep(10000); // Wait for the changes to propagate
 
       RunQueriesWithNonExistentTermsInIndex(indexClientForQueries);
 
-      Console.WriteLine("{0}", "Complete.  Press any key tooend application...\n");
+      Console.WriteLine("{0}", "Complete.  Press any key to end application...\n");
 
       Console.ReadKey();
   }
 ```
-hello 步驟 toocreate 並填入 hello 範例索引中會說明[toouse Azure 搜尋.NET 應用程式如何](https://docs.microsoft.com/azure/search/search-howto-dotnet-sdk)。
+[如何從 .NET 應用程式使用 Azure 搜尋服務](https://docs.microsoft.com/azure/search/search-howto-dotnet-sdk)會說明用來建立及填入範例索引的步驟。
 
 ## <a name="before-queries"></a>「之前」查詢
 
 在 `RunQueriesWithNonExistentTermsInIndex` 中，我們使用 "five star"、"internet" 和 "economy AND hotel" 發出搜尋查詢。
 ```csharp
-Console.WriteLine("Search hello entire index for hello phrase \"five star\":\n");
+Console.WriteLine("Search the entire index for the phrase \"five star\":\n");
 results = indexClient.Documents.Search<Hotel>("\"five star\"", parameters);
 WriteDocuments(results);
 
-Console.WriteLine("Search hello entire index for hello term 'internet':\n");
+Console.WriteLine("Search the entire index for the term 'internet':\n");
 results = indexClient.Documents.Search<Hotel>("internet", parameters);
 WriteDocuments(results);
 
-Console.WriteLine("Search hello entire index for hello terms 'economy' AND 'hotel':\n");
+Console.WriteLine("Search the entire index for the terms 'economy' AND 'hotel':\n");
 results = indexClient.Documents.Search<Hotel>("economy AND hotel", parameters);
 WriteDocuments(results);
 ```
-Hello 兩個索引的文件都不包含 hello 詞彙，所以我們取得 hello 以下第一次輸出從 hello `RunQueriesWithNonExistentTermsInIndex`。
+這兩份經過檢索的文件都不包含這些詞彙，所以我們會從第一個 `RunQueriesWithNonExistentTermsInIndex` 取得下列輸出。
 ~~~
-Search hello entire index for hello phrase "five star":
+Search the entire index for the phrase "five star":
 
 no document matched
 
-Search hello entire index for hello term 'internet':
+Search the entire index for the term 'internet':
 
 no document matched
 
-Search hello entire index for hello terms 'economy' AND 'hotel':
+Search the entire index for the terms 'economy' AND 'hotel':
 
 no document matched
 ~~~
 
 ## <a name="enable-synonyms"></a>啟用同義字
 
-啟用同義字的程序包含兩步驟。 我們先定義和上傳的同義字規則，然後設定 欄位 toouse 它們。 hello 程序中所述`UploadSynonyms`和`EnableSynonymsInHotelsIndex`。
+啟用同義字的程序包含兩步驟。 我們會先定義和上傳同義字規則，然後再設定要使用這些規則的欄位。 `UploadSynonyms` 和 `EnableSynonymsInHotelsIndex` 會簡要說明此程序。
 
-1. 新增同義字對應 tooyour 搜尋服務。 在`UploadSynonyms`，我們在我們的同義資料表對應 ' desc synonymmap' 中定義四個規則，並上傳 toohello 服務。
+1. 將同義字對應新增到您的搜尋服務。 在 `UploadSynonyms` 中，我們會在同義字對應'desc-synonymmap' 中定義四個規則並上傳至服務。
 ```csharp
     var synonymMap = new SynonymMap()
     {
@@ -123,9 +123,9 @@ no document matched
 
     serviceClient.SynonymMaps.CreateOrUpdate(synonymMap);
 ```
-同義字對應必須符合 toohello 開放原始碼標準`solr`格式。 hello 格式述[在 Azure 搜尋的同義字](search-synonyms.md)hello 區段下方`Apache Solr synonym format`。
+同義字對應必須符合開放原始碼標準 `solr` 格式。 [Azure 搜尋服務中的同義字](search-synonyms.md)的 `Apache Solr synonym format`一節會說明此格式。
 
-2. 設定可搜尋的欄位 toouse hello 同義字對應 hello 索引定義中。 在`EnableSynonymsInHotelsIndex`，我們會啟用兩個欄位上的同義字`category`和`tags`所設定的 hello `synonymMaps` hello 屬性 toohello 名稱新上傳的同義資料表對應。
+2. 設定可搜尋的欄位，以使用索引定義中的同義字對應。 在 `EnableSynonymsInHotelsIndex` 中，我們會將 `synonymMaps` 屬性設定為新上傳的同義字對應名稱，以在 `category` 和 `tags` 兩個欄位上啟用同義字。
 ```csharp
   Index index = serviceClient.Indexes.Get("hotels");
   index.Fields.First(f => f.Name == "category").SynonymMaps = new[] { "desc-synonymmap" };
@@ -133,37 +133,37 @@ no document matched
 
   serviceClient.Indexes.CreateOrUpdate(index);
 ```
-當您新增同義字對應時，不需要重建索引。 您可以新增同義字對應 tooyour 服務，並再修改任何索引 toouse hello 新同義字對應中的現有欄位定義。 hello 加入的新的屬性索引可用性沒有任何影響。 hello 一樣中停用欄位的同義字。 您可以直接將 hello`synonymMaps`屬性 tooan 空白清單。
+當您新增同義字對應時，不需要重建索引。 您可以將同義字對應新增到您的服務，然後修改任何索引中的現有欄位定義，以使用新的同義字對應。 新增屬性對於索引可用性沒有任何影響。 停用欄位的同義字也是如此。 您只要將 `synonymMaps` 屬性設定為空白清單。
 ```csharp
   index.Fields.First(f => f.Name == "category").SynonymMaps = new List<string>();
 ```
 
 ## <a name="after-queries"></a>「之後」查詢
 
-Hello 同義字對應上傳並 hello 索引是更新的 toouse hello 同義字對應之後，第二個 hello`RunQueriesWithNonExistentTermsInIndex`呼叫輸出 hello 下列：
+上傳同義字對應並將索引更新為使用同義字對應之後，第二個 `RunQueriesWithNonExistentTermsInIndex` 就會呼叫下列輸出︰
 
 ~~~
-Search hello entire index for hello phrase "five star":
+Search the entire index for the phrase "five star":
 
 Name: Fancy Stay        Category: Luxury        Tags: [pool, view, wifi, concierge]
 
-Search hello entire index for hello term 'internet':
+Search the entire index for the term 'internet':
 
 Name: Fancy Stay        Category: Luxury        Tags: [pool, view, wifi, concierge]
 
-Search hello entire index for hello terms 'economy' AND 'hotel':
+Search the entire index for the terms 'economy' AND 'hotel':
 
 Name: Roach Motel       Category: Budget        Tags: [motel, budget]
 ~~~
-hello 尋找 hello hello 規則的文件的第一個查詢`five star=>luxury`。 hello 第二個查詢會展開 hello 搜尋使用`internet,wifi`和 hello 第三個同時使用`hotel, motel`和`economy,inexpensive=>budget`相符尋找 hello 文件。
+第一個查詢會尋找 `five star=>luxury` 規則所產生的文件。 第二個查詢會使用 `internet,wifi` 展開搜尋，而第三個查詢會同時使用 `hotel, motel` 和 `economy,inexpensive=>budget` 來尋找相符的文件。
 
-新增同義字完全變更 hello 搜尋經驗。 在本教學課程中，hello 原始查詢會失敗 tooreturn 有意義的結果，即使我們的索引中的 hello 文件已相關。 藉由啟用同義字，我們可以展開條款共同搭配，hello 索引中的任何變更 toounderlying 資料索引 tooinclude。
+新增同義字會全然改變搜尋經驗。 在本教學課程中，即使我們索引中的文件有關聯，原始查詢也無法傳回有意義的結果。 啟用同義字，我們就可以展開索引以包含常用的詞彙，而不需變更索引中的基礎資料。
 
 ## <a name="sample-application-source-code"></a>範例應用程式的原始程式碼
-您可以找到 hello 範例應用程式上使用此逐步解說中的 hello 完整原始碼[GitHub](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToSynonyms)。
+您可以在 [GitHub](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToSynonyms) 上尋找本逐步解說中所用範例應用程式的完整原始程式碼。
 
 ## <a name="next-steps"></a>後續步驟
 
-* 檢閱[如何在 Azure 搜尋 toouse 同義字](search-synonyms.md)
+* 檢閱[如何在 Azure 搜尋服務中使用同義字](search-synonyms.md)
 * 檢閱[同義字 REST API 文件](https://aka.ms/rgm6rq)
-* 瀏覽 hello 的 hello 參考[.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.search)和[REST API](https://docs.microsoft.com/rest/api/searchservice/)。
+* 瀏覽 [.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.search) 及 [REST API](https://docs.microsoft.com/rest/api/searchservice/) 參考文章。

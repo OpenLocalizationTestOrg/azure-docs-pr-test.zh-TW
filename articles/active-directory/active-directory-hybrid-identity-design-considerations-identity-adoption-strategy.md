@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Active Directory 混合式身分識別設計考量-定義混合式身分識別採用策略 |Microsoft 文件"
-description: "條件式存取控制與 Azure Active Directory 檢查 hello 您挑選驗證 hello 使用者時，才能允許存取 toohello 應用程式特定的條件。 一旦符合這些條件，hello 使用者已驗證，而且允許存取 toohello 應用程式。"
+title: "Azure Active Directory 混合式身分識別設計考量 - 定義混合式身分識別採用策略 | Microsoft Docs"
+description: "透過條件式存取控制，Azure Active Directory 會在驗證使用者時以及允許存取應用程式之前，檢查您挑選的特定條件。 一旦符合這些條件，使用者就會通過驗證並獲允許存取應用程式。"
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,54 +14,54 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 9ffca675d0c714392adfcbbc4dcfad12fccbac78
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2c57b394beb6382807a4c8c83de975a0ae68d726
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="define-a-hybrid-identity-adoption-strategy"></a>定義混合式身分識別採用策略
-在這項工作，您將為您混合式身分識別解決方案 toomeet hello 的商務需求所討論的定義 hello 混合式身分識別採用策略：
+在這項工作中，您將為混合式身分識別解決方案，定義混合式身分識別採用策略，以滿足下列幾節已討論的商務需求：
 
 * [判斷商務需求](active-directory-hybrid-identity-design-considerations-business-needs.md)
 * [判斷目錄同步處理需求](active-directory-hybrid-identity-design-considerations-directory-sync-requirements.md)
 * [判斷多重要素驗證需求](active-directory-hybrid-identity-design-considerations-multifactor-auth-requirements.md)
 
 ## <a name="define-business-needs-strategy"></a>定義商務需求策略
-hello 第一項工作會滿足決定 hello 組織商務需求。  這可能非常廣泛，一不小心就會發生範圍蔓延。  Hello 開頭中保持簡單，但一定要記得 tooplan 設計，可容納並促進 hello 未來變更。  無論它是簡單的設計或非常複雜，Azure Active Directory 是支援 Office 365、 Microsoft Online Services 和雲端感知的應用程式的 hello Microsoft 身分識別平台。
+第一項工作在於判斷組織商務需求。  這可能非常廣泛，一不小心就會發生範圍蔓延。  剛開始要保持簡單，但要時常記住所規劃的設計應該兼顧和推動未來的變更。  無論是簡單或極為複雜的設計，Azure Active Directory 都是支援 Office 365、Microsoft Online Services 和雲端感知應用程式的 Microsoft 身分識別平台。
 
 ## <a name="define-an-integration-strategy"></a>定義整合策略
-Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步處理身分識別和同盟身分識別。  您應該規劃採用這些整合策略的其中一個。  hello 的策略有所不同而且 hello 決策選擇其中一個可能包含，何種類型，您選擇要 tooprovide 的使用者體驗，您擁有 hello 現有基礎結構已經就地、 部分，以及什麼是最符合成本效益的 hello。  
+Microsoft 有三個主要的整合案例，分別為雲端身分識別、同步處理身分識別和同盟身分識別。  您應該規劃採用這些整合策略的其中一個。  您選擇的策略可能不同，決策的因素可能包括您想要提供何種使用者體驗、是否有某種現有的基礎結構已就緒，以及什麼最符合成本效益。  
 
 ![](./media/hybrid-id-design-considerations/integration-scenarios.png)
 
-hello 上方圖中所定義的 hello 案例包括：
+上圖所定義的案例如下：
 
-* **雲端身分識別**： 這些是只存在於 hello 雲端的身分識別。  在 Azure AD 的 hello 案例中，它們會位於特別在 Azure AD 目錄中。
-* **同步處理**： 這些是存在於內部部署身分識別和 hello 雲端中。  使用 Azure AD Connect 時，將會以現有的 Azure AD 帳戶建立或聯結這些使用者。  hello 使用者的密碼雜湊同步處理從 hello 在內部部署環境 toohello 雲端中稱為密碼雜湊。  使用同步處理時 hello 一個需要注意的是，如果 hello 在內部部署環境中停用使用者時，就可以在該帳戶狀態 tooshow 的 too3 時數在 Azure AD 中。  這是因為 toohello 同步處理時間間隔。
-* **同盟**： 這些身分識別存在於這兩個內部部署和 hello 雲端中。  使用 Azure AD Connect 時，將會以現有的 Azure AD 帳戶建立或聯結這些使用者。  
+* **雲端身分識別**：這些是僅存在雲端的身分識別。  就 Azure AD 來說，它們實際上就位於您的 Azure AD 目錄中。
+* **同步處理**：這些是存在於內部部署和雲端的身分識別。  使用 Azure AD Connect 時，將會以現有的 Azure AD 帳戶建立或聯結這些使用者。  在所謂的密碼雜湊中，使用者的密碼雜湊會從內部部署環境同步處理到雲端。  使用同步處理時，必須注意如果在內部部署環境中停用使用者，可能需要經過 3 小時，Azure AD 中才會顯示該帳戶狀態。  這是因為有同步處理時間間隔。
+* **同盟**：這些身分識別同時存在於內部部署和雲端。  使用 Azure AD Connect 時，將會以現有的 Azure AD 帳戶建立或聯結這些使用者。  
 
 > [!NOTE]
-> 如需有關 hello 同步處理選項讀取[整合內部部署身分識別與 Azure Active Directory](connect/active-directory-aadconnect.md)。
+> 如需同步處理選項的詳細資訊，請參閱 [整合內部部署身分識別與 Azure Active Directory](connect/active-directory-aadconnect.md)。
 > 
 > 
 
-下表中的 hello 有助於決定 hello 優點和缺點的 hello 下列策略：
+下表有助於判斷下列每個策略的優缺點：
 
 | 策略 | 優點 | 缺點 |
 | --- | --- | --- |
-| **雲端身分識別** |更容易為小組織的 toomanage。 <br> Tooinstall 在內部部署沒有額外的硬體所需執行任何動作<br>輕鬆地停用 如果 hello 使用者離開公司 hello |存取 hello 雲端中的工作負載時，使用者將需要 toosign 中 <br> 密碼可能會或可能不是 hello 相同的雲端和內部部署身分識別 |
-| **已同步處理** |內部部署密碼會驗證內部部署和雲端目錄  <br>小型、 中型或大型組織更容易 toomanage <br>使用者可以對一些資源進行單一登入 (SSO) <br> Microsoft 對於同步處理的慣用方法 <br> 更容易 toomanage |有些客戶可能不願意 toosynchronize 其目錄以 hello 雲端特定的公司原則到期 |
-| **同盟** |使用者可以有單一登入 (SSO)  <br>如果使用者已終止或離開時，可以立即停用 hello 帳戶和撤銷存取權，<br> 支援同步處理所無法解決的進階案例 |更多步驟 toosetup 和設定 <br> 較高的維護 <br> 可能需要額外的硬體 hello STS 基礎結構 <br> 可能需要額外的硬體 tooinstall hello 同盟伺服器。如果使用 AD FS，則需要額外的軟體 <br> 需要大量的設定才能使用 SSO <br> 重大失敗點的 hello 同盟伺服器已關機，使用者將無法再 tooauthenticate |
+| **雲端身分識別** |在小型組織中易於管理。 <br> 不需要在內部部署安裝 - 不需要額外的硬體<br>使用者離職時輕易停用 |使用者存取雲端中的工作負載時必須登入  <br> 雲端和內部部署身分識別的密碼可能相同，也可能不相同 |
+| **已同步處理** |內部部署密碼會驗證內部部署和雲端目錄  <br>對小型、中型或大型組織來說易於管理 <br>使用者可以對一些資源進行單一登入 (SSO) <br> Microsoft 對於同步處理的慣用方法 <br> 易於管理 |基於公司的特定原則，有些客戶可能不願意將目錄與雲端同步 |
+| **同盟** |使用者可以有單一登入 (SSO)  <br>如果使用者終止或離開時，可以將帳戶立即停用並撤銷存取權。<br> 支援同步處理所無法解決的進階案例 |安裝和設定的詳細步驟 <br> 較高的維護 <br> STS 基礎結構可能需要額外的硬體 <br> 可能需要額外的硬體來安裝同盟伺服器。如果使用 AD FS，則需要額外的軟體 <br> 需要大量的設定才能使用 SSO <br> 重大失敗點是，同盟伺服器關閉時使用者會無法驗證 |
 
 ### <a name="client-experience"></a>用戶端體驗
-您使用的 hello 策略會規定 hello 使用者登入體驗。  hello 下表提供您哪些 hello 使用者應預期其登入的相關資訊會遇到 toobe。  請注意，所有同盟識別提供者並非在所有案例中都支援 SSO。
+您使用的策略決定使用者的登入體驗。  下表提供使用者所預期之登入體驗的相關資訊。  請注意，所有同盟識別提供者並非在所有案例中都支援 SSO。
 
 **加入網域和私人網路應用程式**：
 
 |  | 同步處理身分識別 | 同盟身分識別 |
 | --- | --- | --- |
-| 網頁瀏覽器 |表單型驗證 |單一登入，有時需要 toosupply 組織識別碼 |
+| 網頁瀏覽器 |表單型驗證 |單一登入，有時需要提供組織識別碼 |
 | Outlook |提示輸入認證 |提示輸入認證 |
 | 商務用 Skype (Lync) |提示輸入認證 |在 Lync 中需要單一登入，在 Exchange 中會提示輸入認證 |
 | Skydrive Pro |提示輸入認證 |單一登入 |
@@ -76,41 +76,41 @@ hello 上方圖中所定義的 hello 案例包括：
 | Exchange ActiveSync |提示輸入認證 |在 Lync 中需要單一登入，在 Exchange 中會提示輸入認證 |
 | 行動應用程式 |提示輸入認證 |提示輸入認證 |
 
-如果您有根據工作 1 您有合作對象 IdP 或進行 toouse 第 3 tooprovide 同盟與 Azure AD，您需要支援 toobe 留意 hello 下列功能：
+如果您已在工作 1 確定您擁有第三方的 IdP，或是要使用 IdP 來提供與 Azure AD 的同盟，您需要留意下列支援功能︰
 
-* 這可能會與相容 hello SP Lite 設定檔的任何 SAML 2.0 提供者可支援驗證 tooAzure AD 和相關聯的應用程式
-* 支援被動驗證，這有助於 auth tooOWA，SPO，等等。
-* Exchange Online 用戶端可支援透過 hello SAML 2.0 增強用戶端設定檔 (ECP)
+* 任何與 SP-Lite 設定檔相容的 SAML 2.0 提供者，皆可支援對 Azure AD 和相關聯應用程式的驗證
+* 支援被動驗證，可協助對 OWA、SPO 等的驗證。
+* 可透過 SAML 2.0 增強型用戶端設定檔 (ECP) 支援 Exchange Online 用戶端
 
 您也必須知道無法使用哪些功能：
 
 * 如果沒有 WS-Trust/同盟支援，其他所有使用中用戶端都會中斷
-  * 這表示沒有 Lync 用戶端、 OneDrive 用戶端，Office 訂用帳戶，Office Mobile 先前 tooOffice 2016
-* 轉換 Office toopassive 驗證可讓他們 toosupport 純 SAML 2.0 IdPs，但支援仍會在用戶端的用戶端
+  * 這表示沒有 Office 2016 之前的 Lync 用戶端、OneDrive 用戶端、Office 訂用帳戶、Office Mobile
+* Office 轉換為被動驗證可讓它們支援純 SAML 2.0 IdP，但支援仍然以個別用戶端為準
 
 > [!NOTE]
-> Hello 文章 http://aka.ms/ssoproviders 讀取最新的清單。
+> 如需最新的清單，請參閱 http://aka.ms/ssoproviders 一文。
 > 
 > 
 
 ## <a name="define-synchronization-strategy"></a>定義同步處理策略
-在這項工作中，您將定義 hello 工具將會使用的 toosynchronize hello 組織的內部部署資料 toohello 雲端，以及您應該使用的拓撲。  因為大部分的組織使用 Active Directory，某些詳細資料中提供使用上述的 Azure AD Connect tooaddress hello 問題的詳細資訊。  不具有 Active Directory 環境中，沒有使用 FIM 2010 R2 的相關資訊，或 MIM 2016 toohelp 規劃此策略。  不過，Azure AD Connect 的未來版本將支援 LDAP 目錄，因此視您的時間軸，這項資訊可能是無法 tooassist。
+在這項工作中，您將定義用於將組織的內部部署資料同步處理至雲端的工具，以及您應該使用的拓撲。  因為大部分的組織都使用 Active Directory，我們稍微詳細提供有關使用 Azure AD Connect 來解決上述問題的資訊。  針對沒有 Active Directory 的環境，也提供有關使用 FIM 2010 R2 或 MIM 2016 來協助規劃此策略的資訊。  不過，未來的 Azure AD Connect 版本將支援 LDAP 目錄，因此，視您的時間表而定，這項資訊可以有幫助。
 
 ### <a name="synchronization-tools"></a>同步處理工具
-Hello 年來，有存在數個同步處理工具，並將其用於各種案例中。  目前 Azure AD Connect 是 hello 移 tootool 所有支援的案例所選擇。  AAD 同步和 DirSync 也依然存在，甚至現在就在您的環境中。 
+多年來，已出現許多同步處理工具並用於各種案例。  在所有支援的案例中，Azure AD Connect 是目前首選的工具。  AAD 同步和 DirSync 也依然存在，甚至現在就在您的環境中。 
 
 > [!NOTE]
-> Hello 最新資訊有關 hello 支援功能的各項工具，請參閱[目錄整合工具比較](active-directory-hybrid-identity-design-considerations-tools-comparison.md)發行項。  
+> 如需每一項工具支援的功能的最新資訊，請參閱 [目錄整合工具比較](active-directory-hybrid-identity-design-considerations-tools-comparison.md) 一文。  
 > 
 > 
 
 ### <a name="supported-topologies"></a>支援的拓撲
-定義同步處理策略時，必須決定用 hello 拓撲。 步驟 2，您可以判斷哪些拓樸中發現的資訊是 hello 適當一個 toouse 根據 hello。 hello 單一樹系、 單一 Azure AD 拓撲是最常見的 hello 與單一 Active Directory 樹系和 Azure AD 的單一執行個體所組成。  這會 toobe 大多數的 hello 案例中使用時，則 hello 預期拓撲 hello 圖所示，使用 Azure AD 連接 Express 安裝。
+定義同步處理策略時，必須判斷使用的拓撲。 您可以根據步驟 2 中已判斷的資訊，判斷適合使用的拓撲。 單一樹系、單一 Azure AD 拓撲最常見，由單一 Active Directory 樹系和單一 Azure AD 執行個體所組成。  這將用於大部分的案例中，也是在使用 Azure AD Connect Express 安裝時預期的拓撲，如下圖所示。
 
-![](./media/hybrid-id-design-considerations/single-forest.png)單一樹系案例是非常普遍的大型且更小型組織 toohave 多個樹系，如圖 5 所示。
+![](./media/hybrid-id-design-considerations/single-forest.png) 單一樹系案例。在大型組織，甚至小型組織中，擁有多個樹系很平常，如圖 5 所示。
 
 > [!NOTE]
-> 如需有關 hello 不同內部部署和 Azure AD 與 Azure AD Connect 同步處理的拓樸閱讀 hello 文章[Azure AD Connect 的拓撲](connect/active-directory-aadconnect-topologies.md)。
+> 如需不同的內部部署和 Azure AD 拓撲與 Azure AD Connect 同步處理的詳細資訊，請參閱 [Azure AD Connect 的拓撲](connect/active-directory-aadconnect-topologies.md)一文。
 > 
 > 
 
@@ -118,92 +118,92 @@ Hello 年來，有存在數個同步處理工具，並將其用於各種案例�
 
 多樹系案例
 
-如果 hello 本例然後 hello 多 forest 單一 Azure AD 拓撲應該考慮，如果 hello 下列項目，則為 true:
+如果是這樣，當下列條件成立時，應該採用多樹系單一 Azure AD 拓撲：
 
-* 使用者在所有樹系有只有 1 識別 – 用來唯一識別 [使用者] 區段下方的 hello 更詳細地說明。
-* hello 使用者會驗證其身分識別位於 toohello 樹系
+* 使用者在所有樹系中只有 1 個身分識別 – 下面的唯一識別使用者一節有更詳細的說明。
+* 使用者向他們的身分識別所在的樹系驗證
 * UPN 和來源錨點 (固定 ID) 來自此樹系
-* 所有樹系都可以存取 Azure AD connect – 這表示它不需要加入 toobe 網域，而且可以放在 DMZ 中，如果這簡化此作業。
+* Azure AD Connect 可存取所有樹系 – 這表示不需要加入網域，而且可以放入 DMZ 中 (如果有利於這一點)。
 * 使用者只有一個信箱
-* 裝載使用者信箱的 hello 樹系有 hello 最佳的資料品質 hello Exchange 全域通訊清單 (GAL) 中可見的屬性
-* 如果沒有信箱 hello 使用者，則任何樹系可能會使用的 toocontribute 這些值
-* 如果您有連結的信箱，然後另外還有另一個帳戶中使用不同的樹系 toosign 中。
+* 對於 Exchange 全域通訊清單 (GAL) 中可見的屬性，裝載使用者信箱的樹系有最佳的資料品質
+* 如果使用者沒有信箱，則任何樹系都可用於提供這些值
+* 如果您有連結的信箱，則不同的樹系中還有另一個帳戶用來登入。
 
 > [!NOTE]
-> 存在於這兩個內部部署和 hello 雲端中的物件是 「 連線 」 透過唯一識別碼。 在 hello 內容中的目錄同步作業，這個唯一識別碼是參考的 tooas hello SourceAnchor。 在 hello 內容中的單一登入，這是參考的 tooas hello ImmutableId。 [針對 Azure AD Connect 設計概念](connect/active-directory-aadconnect-design-concepts.md#sourceanchor)的 SourceAnchor 的 hello 使用多個考量。
+> 同時存在於內部部署和雲端的物件透過唯一識別碼「連接」。 就「目錄同步作業」而言，這個唯一識別碼稱為 SourceAnchor。 就「單一登入」而言，這稱為 ImmutableId。 [Azure AD Connect 的設計概念](connect/active-directory-aadconnect-design-concepts.md#sourceanchor) 。
 > 
 > 
 
-如果 hello 上述條件都不成立，而且您有多個使用中的帳戶或多個信箱，Azure AD Connect 將挑選其中一個，並忽略其他 hello。  如果您已連結信箱，但沒有任何其他帳戶，這些帳戶將不會匯出的 tooAzure AD，且該使用者將不會是任何群組的成員。  這是不同的方式就是過去的 hello 與 DirSync 和是刻意 toobetter 支援這些多樹系案例。 多樹系案例是以 hello 圖所示。
+如果上述條件不成立，而且您有多個使用中的帳戶或多個信箱，Azure AD Connect 會挑選其中一個，其他全部忽略。  如果您有連結的信箱，但沒有其他帳戶，這些帳戶不會匯出至 Azure AD，而且該使用者不會是任何群組的成員。  這不同以往在 DirSync 中的情形，主要是為了更充分支援這些多樹系案例。 下圖顯示多樹系案例。
 
 ![](./media/hybrid-id-design-considerations/multiforest-multipleAzureAD.png) 
 
 **多樹系多個 Azure AD 案例**
 
-建議只進行組織，但是它的 Azure AD 中的單一目錄的 toohave 支援它的 Azure AD Connect 同步處理伺服器與 Azure AD 目錄之間保留 1:1 關聯性。  對於每個 Azure AD 執行個體，您需要安裝 Azure AD Connect。  此外，Azure AD 中，依設計隔離並在一個 Azure AD 的執行個體中的使用者並不會無法 toosee 另一個執行個體的使用者。
+在組織的 Azure AD 中，建議只有單一目錄，但只要 Azure AD Connect 同步作業伺服器與 Azure AD 目錄之間維持 1:1 關聯性，則仍然支援。  對於每個 Azure AD 執行個體，您需要安裝 Azure AD Connect。  此外，Azure AD 是隔離設計，一個 Azure AD 執行個體中的使用者看不到其他執行個體中的使用者。
 
-它可，而其中一個支援的 tooconnect 內部部署 Active Directory toomultiple Azure AD 目錄中 hello 圖所示的執行個體：
+可以且支援將一個 Active Directory 內部部署執行個體連接到多個 Azure AD 目錄，如下圖所示：
 
 ![](./media/hybrid-id-design-considerations/single-forest-flitering.png) 
 
 **單一樹系篩選案例**
 
-順序 toodo 這個 hello 下列必須為真：
+若要這麼做，下列條件必須成立：
 
-* Azure AD Connect 同步作業伺服器必須設定篩選，以各自有一組互斥的物件。  這樣做，比方說，藉由範圍的每個伺服器 tooa 特定網域或 OU。
-* DNS 網域只能在單一註冊 Azure AD 目錄，因此 hello hello 中的 hello 使用者的 upn，請在內部部署 AD 必須使用不同的命名空間
-* 一個 Azure AD 的執行個體中的使用者才會從其執行個體可以 toosee 使用者。  將不會在 hello 無法 toosee 使用者其他執行個體
-* 只有其中一個 hello Azure AD 目錄可以啟用 Exchange 混合式 hello 與內部部署 AD
-* 相互專用性也適用於 toowrite 後。  這造成此拓撲不支援部分回寫功能，因為這些功能都假設使用單一內部部署組態。  其中包括：
+* Azure AD Connect 同步作業伺服器必須設定篩選，以各自有一組互斥的物件。  例如，將每個伺服器的範圍限定於特定網域或 OU。
+* DNS 網域只能在單一 Azure AD 目錄中註冊，因此內部部署 AD 中的使用者 UPN 必須使用個別的命名空間。
+* 一個 Azure AD 執行個體中的使用者只能看到他們的執行個體中的使用者。  他們看不到其他執行個體中的使用者
+* 只有其中一個 Azure AD 目錄可以啟用 Exchange 與內部部署 AD 混合
+* 回寫也有互斥性。  這造成此拓撲不支援部分回寫功能，因為這些功能都假設使用單一內部部署組態。  其中包括：
   * 使用預設組態的群組回寫
   * 裝置寫回
 
-請注意 hello 下列不支援，並且不應該被選為實作：
+請注意，不支援下列各項，而且不應該選擇作為實作：
 
-* 不支援多個 Azure AD Connect 同步伺服器連接 toohello 相同的 Azure AD 目錄，即使它們是互斥的設定的 toosynchronize 物件集的 toohave
-* 它不支援 toosync hello 相同使用者 toomultiple Azure AD 目錄。 
-* 它也是不支援的 toomake 變更 toomake 使用者在其中一個做為 Azure AD tooappear 連絡另一個 Azure AD 目錄中的設定。 
-* 它也是不支援的 toomodify Azure AD Connect 同步處理 tooconnect toomultiple Azure AD 目錄。
-* Azure AD 目錄在設計上是隔離的。 是不支援的 toochange hello 組態的其他 Azure AD 目錄中嘗試 toobuild 一般和統一 GAL hello 目錄之間的 Azure AD Connect 同步處理 tooread 資料。 它也是不支援的 tooexport 使用者連絡 tooanother 為在內部部署 AD 中使用 Azure AD Connect 同步處理。
+* 不支援多個 Azure AD Connect 同步作業伺服器連接到相同的 Azure AD 目錄，即使它們已設定為同步處理一組互斥的物件也一樣
+* 它不支援同步處理相同使用者至多個 Azure AD 目錄。 
+* 也不支援進行組態變更，讓一個 Azure AD 中的使用者顯示為另一個 Azure AD 目錄中的連絡人。 
+* 也不支援將 Azure AD Connect 同步處理修改為連接到多個 Azure AD 目錄。
+* Azure AD 目錄在設計上是隔離的。 它不支援將 Azure AD Connect 同步處理變更為從另一個 Azure AD 目錄讀取資料，以嘗試在目錄之間建置一般和統一的 GAL。 也不支援使用 Azure AD Connect 同步處理將使用者匯出為另一個內部部署 AD的連絡人。
 
 > [!NOTE]
-> 如果您的組織會從連接 toohello 網際網路限制網路上的電腦，本文章列出 hello 端點 （Fqdn、 IPv4 和 IPv6 位址範圍），您應該在包含您輸出的允許清單和 Internet Explorer 信任的網站區域的用戶端電腦 tooensure 您的電腦可以成功使用 Office 365。 如需詳細資訊，請參閱 [Office 365 URL 和 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2?ui=en-US&rs=en-US&ad=US)。
+> 如果您的組織禁止您網路上的電腦連線到網際網路，這篇文章列出您在用戶端電腦的輸出允許清單和 Internet Explorer 信任的網站區域中應該加入的端點 (FQDN、IPv4 和 IPv6 位址範圍)，以確保您的電腦可以成功使用 Office 365。 如需詳細資訊，請參閱 [Office 365 URL 和 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2?ui=en-US&rs=en-US&ad=US)。
 > 
 > 
 
 ## <a name="define-multi-factor-authentication-strategy"></a>定義多重要素驗證策略
-在這項工作中，您將定義 hello 多重要素驗證策略 toouse。  Azure Multi-Factor Authentication 有兩個不同的版本。  一個是以雲端為基礎，其他 hello 是在內部部署基礎使用 hello Azure MFA Server。  根據 hello 評估您未在上述您可以判斷哪一種解決方案是 hello 正確的另一個用於您的策略。  使用 hello 表 toodetermine 哪種設計選項最符合您的公司安全性需求：
+在這項工作中，您將定義要使用的多重要素驗證策略。  Azure Multi-Factor Authentication 有兩個不同的版本。  其中一個是雲端型，另一個是使用 Azure MFA Server 的內部部署型。  根據您以上所做的評估，您可以判斷何者是策略的正確解決方案。  使用下表來判斷哪一個設計選項最符合公司的安全性需求：
 
 多重要素設計選項：
 
-| 資產 toosecure | Hello 雲端中的 MFA | MFA 內部部署 |
+| 要保護的資產 | 雲端 MFA | MFA 內部部署 |
 | --- | --- | --- |
 | Microsoft 應用程式 |yes |yes |
-| 在 hello 應用程式庫中的 SaaS 應用程式 |yes |yes |
+| 應用程式資源庫中的 SaaS 應用程式 |yes |yes |
 | 透過 Azure AD App Proxy 發佈的 IIS 應用程式 |yes |yes |
-| 不透過 hello Azure AD 應用程式 Proxy 發行的 IIS 應用程式 |no |yes |
+| 非透過 Azure AD App Proxy 發行的 IIS 應用程式 |no |yes |
 | VPN、RDG 等遠端存取 |no |yes |
 
-即使您可能已結束某個方案策略，您仍然需要 toouse hello 評估上述上您的使用者位於何處。  這可能會導致 hello 方案 toochange。  您可以決定這項需求使用 hello tooassist 表：
+即使已選定策略的解決方案，您仍然需要使用上述評估來判斷使用者位於何處。  這可能會造成解決方案變更。  使用下表來協助判斷：
 
 | 使用者位置 | 建議的設計選項 |
 | --- | --- |
-| Azure Active Directory |多重 Authentication hello 雲端中 |
+| Azure Active Directory |雲端中的 Multi-Factor Authentication |
 | Azure AD 和使用 AD FS 同盟的內部部署 AD |兩者 |
 | Azure AD 和內部部署 AD，使用 Azure AD Connect，沒有密碼同步處理 |兩者 |
 | Azure AD 和內部部署，使用 Azure AD Connect，搭配密碼同步處理 |兩者 |
 | 內部部署 AD |Multi-Factor Authentication Server |
 
 > [!NOTE]
-> 您也應該確定您選取的 hello 多重要素驗證設計選項支援 hello 功能所需的設計。  如需詳細資訊請參閱[為您選擇 hello multi-factor authentication 的安全性解決方案](../multi-factor-authentication/multi-factor-authentication-get-started.md#what-am-i-trying-to-secure)。
+> 您也應該確定您選取的多重要素驗證設計選項，支援您的設計所需的功能。  如需詳細資訊，請參閱 [選擇合適的多重因素安全性解決方案](../multi-factor-authentication/multi-factor-authentication-get-started.md#what-am-i-trying-to-secure)。
 > 
 > 
 
 ## <a name="multi-factor-auth-provider"></a>Multi-Factor Auth Provider
-依預設，擁有 Azure Active Directory 租用戶的全域管理員可以使用 Multi-Factor Authentication。 不過，如果您想要將多重要素驗證 tooall tooextend 的使用者和/或想 tooyour 全域管理員 toobe 無法 tootake 利用功能 hello 管理入口網站、 自訂問候及報告等，然後您必須購買並設定多因素驗證提供者。
+依預設，擁有 Azure Active Directory 租用戶的全域管理員可以使用 Multi-Factor Authentication。 不過，如果您想要將多重要素驗證延伸到所有使用者，及/或想要讓全域管理員利用管理入口網站、自訂問候語及報告等功能，您必須購買並設定 Multi-Factor Authentication 提供者。
 
 > [!NOTE]
-> 您也應該確定您選取的 hello 多重要素驗證設計選項支援 hello 功能所需的設計。 
+> 您也應該確定您選取的多重要素驗證設計選項，支援您的設計所需的功能。 
 > 
 > 
 

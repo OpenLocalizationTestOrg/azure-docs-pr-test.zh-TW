@@ -1,10 +1,10 @@
 <!-- A-series - compute-intensive instances, H-series -->
 
-hello 大小 A8 A11 和 H 數列也是*大量計算執行個體*。 設計和適合需要大量計算執行這些大小的 hello 硬體和網路密集應用程式，包括高效能運算 (HPC) 叢集應用程式、 建模和模擬。 hello A8 A11 數列使用 Intel Xeon E5-2670 @ 2.6 GHZ 和 hello H 數列使用 Intel Xeon E5 2667 v3，3.2 GHz @。 
+A8-A11 和 H 系列大小也稱為 *計算密集型執行個體*。 執行這些大小的硬體是針對計算密集型和網路密集型應用程式 (包括高效能運算 (HPC) 叢集應用程式)、模型化及模擬而設計及最佳化的。 A8-A11 系列使用 Intel Xeon E5-2670 @ 2.6 GHZ，而 H 系列使用 Intel Xeon E5-2667 v3 @ 3.2 GHz。 
 
-Azure H 系列虛擬機器是 hello 下一個產生高效能運算 Vm 旨在高階運算需求，例如屬於分子模型和計算流體動力學。 這些 8 到 16 vCPU Vm 之上 hello Intel Haswell E5 2667 V3 處理器技術將設為特色 DDR4 記憶體和 SSD 基底暫存儲存位置。 
+Azure H 系列虛擬機器是下一代高效能運算 VM，以高端運算需求為目標，例如分子建模以及運算流體力學。 這些 8 與 16 vCPU VM 是以 Intel Haswell E5-2667 V3 處理器技術，搭載 DDR4 記憶體與 SSD 型暫存儲存體為基礎建置。 
 
-此外 toohello 大量 CPU 能力 hello H 系列提供低延遲 RDMA 網路使用 FDR InfiniBand 和數個記憶體組態 toosupport 記憶體密集運算需求的不同選項。
+除了大量的 CPU 能力，H 系列使用 FDR InfiniBand 與數個記憶體組態，針對低延遲 RDMA 網路提供不同的選項，以支援記憶體大量運算需求。
 
 
 

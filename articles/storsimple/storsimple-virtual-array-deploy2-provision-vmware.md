@@ -1,5 +1,5 @@
 ---
-title: "在 VMware 中的 StorSimple Virtual Array aaaProvision |Microsoft 文件"
+title: "在 VMware 中佈建 StorSimple Virtual Array | Microsoft Docs"
 description: "部署 StorSimple Virtual Array 的第二個教學課程，內容為如何在 VMware 中佈建虛擬裝置。"
 services: storsimple
 documentationcenter: NA
@@ -15,81 +15,81 @@ ms.workload: NA
 ms.date: 03/15/2017
 ms.author: alkohli
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 0912c1c315a04ea46b6373a8fcd5554ecae14e61
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 118521a127b2e4b765efabdbdde71605440d81c7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="deploy-storsimple-virtual-array---provision-in-vmware"></a>部署 StorSimple Virtual Array：在 VMware 中佈建
 ![](./media/storsimple-virtual-array-deploy2-provision-vmware/vmware4.png)
 
 ## <a name="overview"></a>概觀
-這個教學課程描述如何 tooprovision 並連接 tooa StorSimple Virtual Array 和更新版本上執行 VMware ESXi 5.5 主機系統。 本文適用於 StorSimple 虛擬陣列在 Azure 入口網站和 Microsoft Azure 政府雲端 hello toohello 部署。
+本教學課程說明如何在執行 VMware ESXi 5.5 及更新版本 的主機系統上佈建及連線到 StorSimple 虛擬陣列。 本文適用於在 Azure 入口網站及 Microsoft Azure 政府服務雲端部署 StorSimple Virtual Array。
 
-您需要系統管理員權限 tooprovision，並連線 tooa 虛擬裝置。 hello 佈建和初始設定可能需要約為 10 分鐘 toocomplete。
+您需要有系統管理員權限，才能佈建並連接至虛擬裝置。 佈建及初始安裝程序可能需要大約 10 分鐘的時間才能完成。
 
 ## <a name="provisioning-prerequisites"></a>佈建的必要條件
-hello 必要條件 tooprovision 執行 VMware ESXi 5.5 主機系統上的虛擬裝置，而且上面，如下所示。
+在執行 VMware ESXi 5.5 及更新版本的主機系統上佈建虛擬裝置的必要條件如下。
 
-### <a name="for-hello-storsimple-device-manager-service"></a>Hello StorSimple 裝置管理員服務
+### <a name="for-the-storsimple-device-manager-service"></a>StorSimple 裝置管理員服務
 在您開始前，請確定：
 
-* 您已完成所有 hello 步驟[準備 hello 入口網站，供 StorSimple Virtual Array](storsimple-virtual-array-deploy1-portal-prep.md)。
-* 您已下載適用於 VMware 的 hello 虛擬裝置映像從 hello Azure 入口網站。 如需詳細資訊，請參閱**步驟 3： 下載 hello 虛擬裝置映像**的[準備 hello 入口網站的 StorSimple Virtual Array 指南](storsimple-virtual-array-deploy1-portal-prep.md)。
+* 您已完成 [準備入口網站以使用 StorSimple Virtual Array](storsimple-virtual-array-deploy1-portal-prep.md)中的所有步驟。
+* 您已經從 Azure 入口網站下載適用於 VMware 的虛擬裝置映像。 如需詳細資訊，請參閱[準備入口網站以使用 StorSimple Virtual Array 指南](storsimple-virtual-array-deploy1-portal-prep.md)的**步驟 3︰下載虛擬裝置映像**。
 
-### <a name="for-hello-storsimple-virtual-device"></a>Hello StorSimple 虛擬裝置
+### <a name="for-the-storsimple-virtual-device"></a>對於 StorSimple 虛擬裝置
 在您部署虛擬裝置之前，請確定：
 
-* 您必須執行 HYPER-V 的存取 tooa 主機系統 (2008 R2 或更新版本)，可以是使用的 tooa 佈建裝置。
-* hello 主機系統是無法 toodedicate hello 下列資源 tooprovision 虛擬裝置：
+* 您可以存取執行 Hyper-V (2008 R2 或更新版本)，且可用來佈建裝置的主機系統。
+* 主機系統能夠把下列資源專門用來佈建虛擬裝置：
 
   * 至少 4 顆核心。
-  * 至少 8 GB 的 RAM。 如果您計劃 tooconfigure hello 虛擬與檔案伺服器陣列，8 GB 支援小於 2 百萬個檔案。 您需要 16 GB RAM toosupport 2-4 百萬個檔案。
+  * 至少 8 GB 的 RAM。 若計畫將虛擬陣列設定為檔案伺服器，8 GB 支援 2 百萬個以下的檔案。 您需要 16 GB RAM 才能支援 2 - 4 百萬個檔案。
   * 一個網路介面。
   * 供系統資料使用的 500 GB 虛擬磁碟。
 
-### <a name="for-hello-network-in-datacenter"></a>資料中心中的 hello 網路
+### <a name="for-the-network-in-datacenter"></a>對於資料中心的網路
 在您開始前，請確定：
 
-* 您已檢閱網路需求 toodeploy hello StorSimple 虛擬裝置並設定的 hello hello 需求依據的資料中心網路。 
+* 您已經檢閱部署 StorSimple 虛擬裝置的網路需求，且已經根據需求設定資料中心的網路。 
 
 ## <a name="step-by-step-provisioning"></a>佈建的逐步指示
-tooprovision 和 tooa 虛擬裝置連線，您需要下列步驟 tooperform hello:
+若要佈建並連接至虛擬裝置，您必須執行下列步驟：
 
-1. 請確認 hello 主機系統有足夠的資源 toomeet hello 最低虛擬裝置需求。
+1. 確認主機系統有足夠的資源來符合最低的虛擬裝置需求。
 2. 在 Hypervisor 中佈建虛擬裝置。
-3. 啟動 hello 虛擬裝置及取得 hello IP 位址。
+3. 啟動虛擬裝置，並取得 IP 位址。
 
 ## <a name="step-1-ensure-host-system-meets-minimum-virtual-device-requirements"></a>步驟 1：確認主機系統符合最低的虛擬裝置需求
-toocreate 虛擬裝置，您將需要：
+若要建立虛擬裝置，您將需要：
 
-* 存取 tooa 主機系統執行 VMware ESXi Server 5.5 及更新版本。
-* 系統 toomanage hello ESXi 主機上的 VMware vSphere client。
+* 能夠存取執行 VMware ESXi 伺服器 5.5 及更新版本的主機系統。
+* 您系統上的 VMware vSphere 用戶端，以便管理 ESXi 主機。
 
   * 至少 4 顆核心。
-  * 至少 8 GB 的 RAM。 如果您計劃 tooconfigure hello 虛擬與檔案伺服器陣列，8 GB 支援小於 2 百萬個檔案。 您需要 16 GB RAM toosupport 2-4 百萬個檔案。
-  * 一個網路介面連接能夠路由流量 tooInternet toohello 網路。 hello 最小的網際網路頻寬應為 5 Mbps tooallow hello 裝置的最佳處理。
+  * 至少 8 GB 的 RAM。 若計畫將虛擬陣列設定為檔案伺服器，8 GB 支援 2 百萬個以下的檔案。 您需要 16 GB RAM 才能支援 2 - 4 百萬個檔案。
+  * 網路介面，且已連線到能夠將流量路由至網際網路的網路。 網際網路頻寬應該至少要有 5 Mbps，以便讓裝置能夠發揮最大功能。
   * 供資料使用的 500 GB 虛擬磁碟。
 
 ## <a name="step-2-provision-a-virtual-device-in-hypervisor"></a>步驟 2：在 Hypervisor 中佈建虛擬裝置
-執行下列步驟 tooprovision 中您的 hypervisor 的虛擬裝置 hello。
+請執行下列步驟，以便在您的 Hypervisor 中佈建虛擬裝置。
 
-1. 複製您的系統上的 hello 虛擬裝置映像。 您下載 hello Azure 入口網站透過這個虛擬映像。
+1. 複製您系統中的虛擬裝置映像。 您已透過 Azure 入口網站下載這個虛擬映像。
 
-   1. 請確定您已下載 hello 最新的映像檔。 如果您先前下載 hello 映像，請再次下載 tooensure 您擁有 hello 最新的映像。 hello 最新的映像有兩個檔案 （而非一個）。
-   2. 記下您稍後在 hello 程序中使用此映像時，會複製 hello 映像的 hello 位置。
+   1. 請確定您已下載最新的映像檔。 如果您稍早下載過映像，請再下載一次，確定您擁有最新映像。 最新映像具有兩個檔案 (而不是一個)。
+   2. 請記下您複製映像的位置，因為稍後會在程序中使用此映像。
 
-2. 登入 toohello ESXi 伺服器使用 hello vSphere 用戶端。 您需要 toohave 系統管理員權限 toocreate 虛擬機器。
+2. 使用 vSphere 用戶端登入 ESXi 伺服器。 您需要有系統管理員權限，才能建立虛擬機器。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image1.png)
-3. 在 hello vSphere 中用戶端 hello 清查區段 hello 左窗格中，選取 hello ESXi 伺服器。
+3. 在 vSphere 用戶端中，選取左窗格 [詳細目錄] 區段中的 [ESXi 伺服器]。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image2.png)
-4. 上傳 hello VMDK toohello ESXi 伺服器。 瀏覽 toohello**組態**hello 右窗格中的索引標籤。 選取 [硬體] 下方的 [儲存體]。
+4. 將 VMDK 上傳至 ESXi 伺服器。 瀏覽至右窗格中的 [組態]  索引標籤。 選取 [硬體] 下方的 [儲存體]。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image3.png)
-5. 在 hello 右窗格中，在**Datastores**，選取 hello tooupload hello VMDK 所在的資料存放區。 hello 資料存放區必須有足夠的可用空間的 hello OS 和資料磁碟。
+5. 在右窗格的 [資料存放區] 下方，選取您要上傳 VMDK 的資料存放區。 資料存放區必須要有足夠的可用空間來容納作業系統和資料磁碟。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image4.png)
 6. 按一下滑鼠右鍵並選取 [瀏覽資料存放區]。
@@ -98,146 +98,146 @@ toocreate 虛擬裝置，您將需要：
 7. 畫面會出現 [資料存放區瀏覽器]  視窗。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image6.png)
-8. 在 [hello] 工具列上，按一下 [![](./media/storsimple-virtual-array-deploy2-provision-vmware/image7.png)圖示 toocreate 新的資料夾。 指定 hello 資料夾名稱，然後記下它。 您稍後在建立虛擬機器時，將會使用該資料夾名稱 (建議的最佳做法)。 按一下 [確定] 。
+8. 在工具列上，按一下 ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image7.png) 圖示來建立新資料夾。 然後指定資料夾的名稱，並把該名稱記下來。 您稍後在建立虛擬機器時，將會使用該資料夾名稱 (建議的最佳做法)。 按一下 [確定] 。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image8.png)
-9. hello 新資料夾會出現在 [hello] 的左窗格 hello**資料存放區的瀏覽器**。
+9. [資料存放區瀏覽器] 的左窗格中會出現新的資料夾。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image9.png)
-10. 按一下 hello 上載圖示![](./media/storsimple-virtual-array-deploy2-provision-vmware/image10.png)選取**上傳檔案**。
+10. 按一下 [上傳] 圖示 ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image10.png)，然後選取 [上傳檔案]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image11.png)
-11. 您所下載的瀏覽和點 toohello VMDK 檔案。 有兩個檔案。 選取檔案 tooupload。
+11. 瀏覽並指向您已下載的 VMDK 檔案。 有兩個檔案。 選取要上傳的檔案。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image12m.png)
-12. 按一下 [開啟] 。 hello VMDK 檔案 toohello hello 上的傳指定的資料存放區開始。 可能需要幾分鐘的時間 hello 檔案 tooupload。
-13. Hello 上傳完成之後，您會看到您所建立的 hello 資料夾中的 hello 資料存放區中的 hello 檔案。
+12. 按一下 [開啟] 。 就會開始將 VMDK 檔案上傳至指定的資料存放區。 檔案可能需要幾分鐘的時間才能上傳完畢。
+13. 上傳完成之後，檔案就會出現在資料存放區裡您所建立的資料夾中。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image14.png)
 
-    現在上傳 hello 第二個 VMDK 檔案 toohello 相同的資料存放區。
-14. 傳回 toohello vSphere 用戶端視窗。 在選取 ESXi 伺服器之後按一下滑鼠右鍵，然後選取 [新增虛擬機器] 。
+    現在將第二個 VMDK 檔案上傳至相同的資料存放區。
+14. 返回 vSphere 用戶端視窗。 在選取 ESXi 伺服器之後按一下滑鼠右鍵，然後選取 [新增虛擬機器] 。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image15.png)
-15. 畫面會出限 [建立新虛擬機器]  視窗。 在 hello**組態**頁面上，選取 hello**自訂**選項。 按一下 [下一步] 。
+15. 畫面會出限 [建立新虛擬機器]  視窗。 在 [設定] 頁面上，選取 [自訂] 選項。 按一下 [下一步] 。
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image16.png)
-16. 在 hello**名稱和位置**頁面上，指定 hello 您的虛擬機器名稱。 這個名稱應該符合您稍早在步驟 8 中指定 hello 資料夾名稱 （建議的最佳作法）。
+16. 在 [名稱和位置] 頁面上，指定虛擬機器的名稱。 這個名稱應該與您之前在步驟 8 中指定的資料夾名稱 (建議的最佳做法) 相同。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image17.png)
-17. 在 hello**儲存體**頁面上，選取您想要 toouse tooprovision VM 的資料存放區。
+17. 在 [儲存體]  頁面上，選取您要用來佈建虛擬機器的資料存放區。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image18.png)
-18. 在 hello**虛擬機器版本**頁面上，選取**虛擬機器版本： 8**。 所有支援的版本 8 too11。
+18. 在 [虛擬機器版本] 頁面上，選取 [虛擬機器版本: 8]。 支援第 8 版到第 11 版。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image19.png)
-19. 在 hello**客體作業系統**頁面上，選取 hello**客體作業系統**為**Windows**。 如**版本**，從 hello 下拉式清單中，選取**Microsoft Windows Server 2012 （64 位元）**。
+19. 在 [客體作業系統] 頁面上，將 [客體作業系統] 選取為 [Windows]。 而對於 [版本]，請從下拉式清單中選取 [Microsoft Windows Server 2012 (64 位元)]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image20.png)
-20. 在 hello **Cpu**頁面上，調整 hello**虛擬通訊端數目**和**的每個虛擬通訊端的核心數目**讓的 hello**核心總數**是 4 個 （或以上）。 按一下 [下一步] 。
+20. 在 [CPU] 頁面上，調整 [虛擬通訊端的數目] 和 [每個虛擬通訊端的核心數目]，以便讓 [核心總數] 至少為 4。 按一下 [下一步] 。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image21.png)
-21. 在 hello**記憶體**頁面上，指定 8 GB （或以上） 的 RAM。 按一下 [下一步] 。
+21. 在 [記憶體]  頁面上，將 RAM 指定為至少為 8 GB。 按一下 [下一步] 。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image22.png)
-22. 在 hello**網路**頁面上，指定 hello hello 網路介面的數目。 hello 最低需求是一個網路介面。
+22. 在 [網路]  頁面上，指定網路介面的數目。 最低需求是一個網路介面。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image23.png)
-23. 在 hello **SCSI 控制器**頁面上，接受預設 hello **LSI 邏輯 SAS 控制器**。
+23. 在 [SCSI 控制器] 頁面上，接受預設的 [LSI Logic SAS 控制器]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image24.png)
-24. 在 hello**選取磁碟**頁面上，選擇**使用現有的虛擬磁碟**。 按一下 [下一步] 。
+24. 在 [選取磁碟] 頁面上，選擇 [使用現有的虛擬硬碟]。 按一下 [下一步] 。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image25.png)
-25. 在 hello**選取現有的磁碟**頁面的 **磁碟檔案路徑**，按一下 **瀏覽**。 這會開啟 [瀏覽資料存放區]  對話方塊。 瀏覽您上傳 hello VMDK toohello 位置。 為合併的 hello 一開始上傳的兩個檔案，現在可以看到 hello 資料存放區中的只能有一個檔案。 選取 hello 檔案，然後按一下**確定**。 按一下 [下一步] 。
+25. 在 [選取現有的磁碟] 頁面的 [磁碟檔案路徑] 下方，按一下 [瀏覽]。 這會開啟 [瀏覽資料存放區]  對話方塊。 瀏覽至您之前上傳 VMDK 的位置。 因為您最初上傳回的兩個檔案已合併，所以您現在於資料存放區中只會看到一個檔案。 選取檔案，然後按一下 [確定] 。 按一下 [下一步] 。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image26.png)
-26. 在 hello**進階選項**頁面上，接受預設值 hello，按一下 **下一步**。
+26. 在 [進階選項] 頁面上，接受預設值並按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image27.png)
-27. 在 hello**準備 tooComplete**頁面上，檢閱與 hello 新的虛擬機器相關聯的所有 hello 設定。 請檢查**編輯 hello 虛擬機器設定完成前的**。 按一下 [繼續]。
+27. 在 [準備完成]  頁面上，檢閱與新的虛擬機器相關的所有設定。 選取 [在完成之前編輯虛擬機器的設定]。 按一下 [繼續]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image28.png)
-28. 在 hello**虛擬機器屬性** 頁面的 hello**硬體**索引標籤上，找出 hello 裝置硬體。 選取 [新增硬碟] 。 按一下 [新增]。
+28. 在 [虛擬機器屬性] 頁面的 [硬體] 索引標籤上尋找裝置的硬體。 選取 [新增硬碟] 。 按一下 [新增]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image29.png)
-29. 您會看到 [新增硬體] 視窗。 Hello 上**裝置類型**頁面的 **選擇 hello 類型的裝置想 tooadd**，選取**硬碟**，按一下**下一步**。
+29. 您會看到 [新增硬體] 視窗。 在 [裝置類型] 頁面的 [選擇您想要新增的裝置類型] 下方，選取 [硬碟] 並按一下 [下一步]。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image30.png)
-30. 在 hello**選取磁碟**頁面上，選擇**建立新的虛擬磁碟**。 按一下 [下一步] 。
+30. 在 [選取磁碟] 頁面上，選擇 [建立新的虛擬磁碟]。 按一下 [下一步] 。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image31.png)
-31. 在 hello**建立磁碟**頁面上，變更 hello**磁碟大小**too500 GB （或以上）。 Hello 最低需求 500 GB 時，一律可以佈建較大的磁碟。 請注意，您無法擴充或縮減 hello 磁碟一次佈建。 如需 hello 大小磁碟 tooprovision 的詳細資訊，檢閱 hello hello 調整大小 > 一節[最佳做法文件](storsimple-ova-best-practices.md)。 在 [磁碟佈建] 下方，選取 [精簡佈建]。 按一下 [下一步] 。
+31. 在 [建立磁碟] 頁面上，將 [磁碟大小] 變更為至少 500 GB。 500 GB 是最低需求，您永遠可以佈建更大的磁碟。 請注意，佈建之後您無法擴充或縮小磁碟。 如需有關要佈建之磁碟大小的詳細資訊，請檢閱[最佳作法文件](storsimple-ova-best-practices.md)中的＜調整大小＞一節。 在 [磁碟佈建] 下方，選取 [精簡佈建]。 按一下 [下一步] 。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image32.png)
-32. 在 hello**進階選項**頁面上，接受預設 hello。
+32. 在 [進階選項]  頁面上，接受預設值。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image33.png)
-33. 在 hello**準備 tooComplete**頁面上，檢閱 hello 磁碟的選項。 按一下 [完成] 。
+33. 在 [準備完成]  頁面上，檢閱磁碟的各個選項。 按一下 [完成] 。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image34.png)
-34. 傳回 toohello 虛擬機器內容頁面。 新的硬碟加入 tooyour 虛擬機器。 按一下 [完成] 。
+34. 返回 [虛擬機器屬性] 頁面。 您的虛擬機器已新增一個硬碟。 按一下 [完成] 。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image35.png)
-35. Hello 右窗格中選取您的虛擬機器，以瀏覽 toohello**摘要** 索引標籤。檢閱您的虛擬機器的 hello 設定。
+35. 在右窗格中選取您的虛擬機器，然後瀏覽至 [摘要]  索引標籤。 請檢閱您虛擬機器的設定。
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image36.png)
 
-您的虛擬機器已成功佈建。 hello 下一個步驟是 toopower 這部電腦上的，取得 hello 的 IP 位址。
+您的虛擬機器已成功佈建。 下一個步驟是啟動該虛擬機器，然後取得 IP 位址。
 
-## <a name="step-3-start-hello-virtual-device-and-get-hello-ip"></a>步驟 3： 啟動 hello 虛擬裝置及取得 hello IP
-執行下列步驟 toostart hello 虛擬裝置，並連接 tooit。
+## <a name="step-3-start-the-virtual-device-and-get-the-ip"></a>步驟 3：啟動虛擬裝置，並取得 IP 位址
+請執行下列步驟來啟動您的虛擬裝置，並連線到該虛擬裝置。
 
-#### <a name="toostart-hello-virtual-device"></a>toostart hello 虛擬裝置
-1. 啟動 hello 虛擬裝置。 在 hello vSphere Configuration Manager hello 左窗格中，選取您的裝置，toobring hello 內容功能表上按一下滑鼠右鍵。 選取 [電源]，然後選取 [開啟電源]。 此時您的虛擬機器應該會開機。 您可以在 hello 右下檢視 hello 狀態**最近工作**hello vSphere 用戶端的窗格。
+#### <a name="to-start-the-virtual-device"></a>啟動虛擬裝置
+1. 啟動虛擬裝置。 在 vSphere 設定管理員中，選取左窗格中您的裝置，然後按一下滑鼠右鍵來開啟操作功能表。 選取 [電源]，然後選取 [開啟電源]。 此時您的虛擬機器應該會開機。 您可以在 vSphere 用戶端的 [最近的工作]  窗格底部檢視狀態。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image37.png)
-2. hello 安裝工作需要幾分鐘的時間 toocomplete。 Hello 裝置開始執行之後，瀏覽 toohello**主控台** 索引標籤。傳送 Ctrl + Alt + Delete toolog toohello 裝置中。 或者，您可以指向 hello hello 主控台視窗上的資料指標，然後按下 Ctrl + Alt + Insert。 hello 預設使用者為*StorSimpleAdmin* hello 預設密碼為*Password1*。
+2. 安裝工作將需要幾分鐘的時間才能完成。 當裝置開始運作時，瀏覽至 [主控台]  索引標籤。 傳送 Ctrl+Alt+Delete 來登入裝置。 或者，您可以讓游標指向主控台視窗，然後按下 Ctrl+Alt+Insert。 預設使用者為 *StorSimpleAdmin*，預設密碼為 *Password1*。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image38.png)
-3. 基於安全性理由，hello 裝置系統管理員密碼到期 hello 第一次登入時。 您已提示的 toochange hello 密碼。
+3. 基於安全性理由，裝置系統管理員密碼會在第一次登入時過期。 系統會提示您變更密碼。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image39.png)
-4. 請輸入至少包含 8 個字元的密碼。 hello 密碼必須包含 3 超出 4 個需求： 大寫字母、 小寫、 數字及特殊字元。 重新輸入 hello 密碼 tooconfirm 它。 系統會通知您該 hello 密碼已變更。
+4. 請輸入至少包含 8 個字元的密碼。 密碼必須包含下列 4 個需求中的 3 個：大寫、小寫、數字和特殊字元。 請重新輸入密碼來加以確認。 系統將會通知您密碼已經變更。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image40.png)
-5. 已成功變更 hello 密碼之後，可能要重新啟動 hello 虛擬裝置。 等候 hello 重新開機 toocomplete。 hello Windows PowerShell 主控台中的 hello 裝置可能會顯示進度列以及。
+5. 密碼變更成功之後，裝置可能會重新開機。 請等待裝置開機完畢。 畫面可能會出現裝置的 Windows PowerShell 主控台及進度列。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image41.png)
-6. 步驟 6 至 8 僅適用於在非 DHCP 環境中開機的情況。 如果您是在 DHCP 環境，然後略過這些步驟，並移 toostep 9。 如果您已啟動您的裝置，在非 DHCP 環境中，您會看到下列畫面 hello。
+6. 步驟 6 至 8 僅適用於在非 DHCP 環境中開機的情況。 如果您是在 DHCP 環境中，請略過這些步驟並前往步驟 9。 如果您是在非 DHCP 環境中讓裝置開機，您會看到下列畫面。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image42m.png)
 
-   接著，設定 hello 網路。
-7. 使用 hello`Get-HcsIpAddress`命令 toolist hello 網路介面啟用虛擬裝置上。 如果您的裝置具有單一網路介面啟用，hello 預設指派名稱 toothis 介面是`Ethernet`。
+   接著，設定網路。
+7. 使用 `Get-HcsIpAddress` 命令來列出虛擬裝置上已啟用的網路介面。 如果您的裝置有已啟用的單一網路介面，系統指派給該介面的預設名稱會是 `Ethernet`。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image43m.png)
-8. 使用 hello `Set-HcsIpAddress` cmdlet tooconfigure hello 網路。 範例如下所示：
+8. 使用 `Set-HcsIpAddress` Cmdlet 來設定網路。 範例如下所示：
 
     `Set-HcsIpAddress –Name Ethernet –IpAddress 10.161.22.90 –Netmask 255.255.255.0 –Gateway 10.161.22.1`
 
     ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image44.png)
-9. Hello 初始設定完成後，已開機 hello 裝置之後，您會看到 hello 裝置橫幅文字。 請記下 hello IP 位址，然後顯示 hello 橫幅文字 toomanage hello 裝置中的 hello URL。 您將使用此 IP 位址 tooconnect toohello web UI 您虛擬裝置並完成 hello 本機安裝及註冊。
+9. 初始安裝程序完成，且裝置已開機之後，您將會看到裝置橫幅文字。 請記下 IP 位址及橫幅文字中的 URL，以便管理裝置。 您將使用此 IP 位址連線到虛擬裝置的 Web UI，以及完成本機安裝和註冊程序。
 
    ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image45.png)
-10. （選擇性）只有當您要部署您的裝置 hello 政府雲端中執行此步驟。 您現在將在您的裝置上啟用 hello 美國聯邦資訊處理標準 (FIPS) 模式。 hello FIPS 140 標準會定義核准 hello 保護機密資料的美國聯邦政府電腦系統所使用的密碼編譯演算法。
+10. (選擇性) 只有當您要在政府服務雲端部署裝置時，才執行這個步驟。 您現在將在您的裝置上啟用美國聯邦資訊處理標準 (FIPS) 模式。 FIPS 140 標準定義核准美國聯邦政府電腦系統所使用的密碼編譯演算法來保護機密資料。
 
-    1. tooenable hello FIPS 模式中，執行下列 cmdlet 的 hello:
+    1. 若要啟用 FIPS 模式，請執行下列 Cmdlet：
 
         `Enable-HcsFIPSMode`
-    2. 重新啟動您的裝置之後您已經啟用 hello FIPS 模式，以便 hello 密碼編譯的驗證才會生效。
+    2. 在您啟用 FIPS 模式之後，重新啟動您的裝置，讓密碼編譯驗證生效。
 
        > [!NOTE]
-       > 您可以在您的裝置上啟用或停用 FIPS 模式。 不支援 FIPS 和非 FIPS 模式之間交替 hello 裝置。
+       > 您可以在您的裝置上啟用或停用 FIPS 模式。 不支援在 FIPS 和非 FIPS 模式之間替換裝置。
        >
        >
 
-如果您的裝置不符合 hello 最低設定需求，您會看到 hello 橫幅文字 （如下所示） 中的錯誤。 您必須 toomodify hello 裝置設定，使其具有足夠的資源 toomeet hello 最低需求。 然後，您可以重新啟動，並連接 toohello 裝置。 在 toohello 最低設定需求，請參閱[步驟 1： 確定 hello 主機系統符合最低虛擬裝置需求](#step-1-ensure-host-system-meets-minimum-virtual-device-requirements)。
+如果裝置不符合最低設定需求，橫幅文字中會出現錯誤訊息 (如下所示)。 您必須修改裝置設定，讓裝置有足夠的資源來符合最低需求。 然後您就可以將裝置重新啟動，並連線到該裝置。 請參閱 [步驟 1：確認主機系統符合最低的虛擬裝置需求](#step-1-ensure-host-system-meets-minimum-virtual-device-requirements)中的最低組態需求。
 
 ![](./media/storsimple-virtual-array-deploy2-provision-vmware/image46.png)
 
-如果您使用 hello 本機 web UI 的 hello 初始設定期間所面對任何其他錯誤，請參閱 toohello 下列工作流程：
+如果您在使用本機 Web UI 進行初始設定時碰到其他任何錯誤，請參閱下列工作流程：
 
-* 也會執行診斷測試[疑難排解 web UI 安裝](storsimple-ova-web-ui-admin.md#troubleshoot-web-ui-setup-errors)。
+* 執行診斷測試來 [疑難排解 Web UI 安裝程式錯誤](storsimple-ova-web-ui-admin.md#troubleshoot-web-ui-setup-errors)。
 * [產生記錄檔封裝及檢視記錄檔](storsimple-ova-web-ui-admin.md#generate-a-log-package)。
 
 ## <a name="next-steps"></a>後續步驟

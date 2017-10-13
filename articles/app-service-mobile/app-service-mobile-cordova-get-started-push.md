@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd 推播通知 tooApache Cordova 應用程式與 Azure 行動應用程式 |Microsoft 文件"
-description: "了解如何 toouse Azure 行動應用程式 toosend 推播通知 tooyour Apache Cordova 應用程式。"
+title: "使用 Azure Mobile Apps 將推播通知新增至 Apache Cordova 應用程式| Microsoft Docs"
+description: "了解如何使用 Azure Mobile Apps 將推播通知傳送至 Apache Cordova 應用程式。"
 services: app-service\mobile
 documentationcenter: javascript
 manager: syntaxc4
@@ -14,24 +14,24 @@ ms.devlang: javascript
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: glenga
-ms.openlocfilehash: 8e1b23d6145b446b6f01599337b677e2f2b31d7e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dc3cab0a6a8b4a56ab0fba1a02e5bba9d0ed1b1f
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="add-push-notifications-tooyour-apache-cordova-app"></a>加入推播通知 tooyour Apache Cordova 應用程式
+# <a name="add-push-notifications-to-your-apache-cordova-app"></a>新增推播通知至您的 Apache Cordova 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started-push](../../includes/app-service-mobile-selector-get-started-push.md)]
 
 ## <a name="overview"></a>概觀
-在本教學課程中，您會新增推播通知 toohello [Apache Cordova 的快速入門] 專案，以便每次將記錄插入推播通知會傳送 toohello 裝置。
+在本教學課程中，您會將推播通知新增至 [Apache Cordova 快速入門] 專案，以便在每次插入一筆記錄時，將推播通知傳送至裝置。
 
-如果您不要使用 hello 下載快速入門的伺服器專案，您需要 hello 推播通知擴充套件。 如需詳細資訊，請參閱[Azure 行動應用程式使用 hello.NET 後端伺服器 SDK][1]。
+如果您不要使用下載的快速入門伺服器專案，則需要推播通知擴充套件。 如需詳細資訊，請參閱[使用適用於 Azure Mobile Apps 的 .NET 後端伺服器 SDK][1]。
 
 ## <a name="prerequisites"></a>必要條件
-本教學課程涵蓋開發使用 Visual Studio 2015 hello Google Android 模擬器、 Android 裝置、 在 Windows 裝置和 iOS 裝置上執行 Apache Cordova 應用程式。
+本教學課程涵蓋使用 Visual Studio 2015 開發且在 Google Android 模擬器、Android 裝置、Windows 裝置和 iOS 裝置上執行的 Apache Cordova 應用程式。
 
-toocomplete 本教學課程中，您需要：
+若要完成本教學課程，您需要：
 
 * 具有 [Visual Studio Community 2015][2] 或更新版本的電腦。
 * [Visual Studio Tools for Apache Cordova][4]。
@@ -46,72 +46,72 @@ toocomplete 本教學課程中，您需要：
 
 [觀看示範本節步驟的視訊][9]
 
-## <a name="update-hello-server-project"></a>更新 hello 伺服器專案
+## <a name="update-the-server-project"></a>更新伺服器專案
 [!INCLUDE [app-service-mobile-update-server-project-for-push-template](../../includes/app-service-mobile-update-server-project-for-push-template.md)]
 
 ## <a name="add-push-to-app"></a>修改您的 Cordova 應用程式
-請確定您的 Apache Cordova 應用程式專案準備 toohandle 安裝 hello Cordova 發送外掛程式; 以及任何平台專屬推入 」 服務的推播通知。
+安裝 Cordova 推播外掛程式，還有平台特定的任何推播服務，確保您的 Apache Cordova 應用程式專案能夠處理推播通知。
 
-#### <a name="update-hello-cordova-version-in-your-project"></a>更新您的專案中的 hello Cordova 版本。
-如果您的專案使用 Apache Cordova 的版本早於 v6.1.1，更新 hello 用戶端專案。 tooupdate hello 專案：
+#### <a name="update-the-cordova-version-in-your-project"></a>更新您的專案中的 Cordova 版本。
+如果您的專案使用 6.1.1 版以前的 Apache Cordova，請更新用戶端專案。 若要更新專案︰
 
-* 以滑鼠右鍵按一下`config.xml`tooopen hello 組態設計工具。
-* 選取 hello 平台 索引標籤。
-* 選擇在 hello 6.1.1 **Cordova CLI**文字方塊。
-* 選擇**建置**，然後**建置方案**tooupdate hello 專案。
+* 以滑鼠右鍵按一下 `config.xml` 開啟組態設計工具。
+* 選取 [平台] 索引標籤。
+* 在 [Cordova CLI] 文字方塊中選擇 6.1.1。
+* 依序選擇 [建置] 和 [建置方案] 來更新專案。
 
-#### <a name="install-hello-push-plugin"></a>安裝 hello 發送外掛程式
-Apache Cordova 應用程式原本就不會處理裝置或網路功能。  這些功能是由 [npm][10] 或 GitHub 上發佈的外掛程式所提供。  hello`phonegap-plugin-push`外掛程式會使用的 toohandle 網路推播通知。
+#### <a name="install-the-push-plugin"></a>安裝推播外掛程式
+Apache Cordova 應用程式原本就不會處理裝置或網路功能。  這些功能是由 [npm][10] 或 GitHub 上發佈的外掛程式所提供。  `phonegap-plugin-push` 外掛程式是用來處理網路推播通知。
 
-您可以使用下列其中一種安裝 hello 發送外掛程式：
+您可透過下列其中一種方式安裝推撥外掛程式：
 
-**從 hello 命令提示字元：**
+**從命令提示：**
 
-執行下列命令的 hello:
+執行以下命令：
 
     cordova plugin add phonegap-plugin-push
 
 **從 Visual Studio 內：**
 
-1. 在 方案總管 中，開啟 hello`config.xml`檔案按一下**外掛程式** > **自訂**，選取**Git**做為安裝來源，然後輸入`https://github.com/phonegap/phonegap-plugin-push`為 hello 來源。
+1. 在方案總管中開啟 `config.xml` 檔案，按一下 [外掛程式] > [自訂]，選取 [Git] 作為安裝來源，然後輸入 `https://github.com/phonegap/phonegap-plugin-push` 作為來源。
 
    ![][img1]
 
-2. 按一下 hello 箭頭下一步 toohello 安裝來源。
-3. 在**SENDER_ID**，如果您已經有 hello Google 開發人員主控台專案的數字的專案 ID，您可以在此處加入。 否則，請輸入預留位置值，例如 777777。  如果您是以 Android 為目標，您可以稍後在 config.xml 中更新此值。
+2. 按一下安裝來源旁邊的箭頭。
+3. 在 **SENDER_ID** 中，如果您已經有 Google 開發人員主控台專案的數值專案識別碼，您可以在此將它新增。 否則，請輸入預留位置值，例如 777777。  如果您是以 Android 為目標，您可以稍後在 config.xml 中更新此值。
 4. 按一下 [新增] 。
 
-現在安裝 hello 發送外掛程式。
+推撥外掛程式現已安裝。
 
-#### <a name="install-hello-device-plugin"></a>安裝 hello 裝置外掛程式
-後續 hello 相同程序使用 tooinstall hello 發送外掛程式。  從 hello 核心外掛程式清單加入 hello 裝置外掛程式 (按一下**外掛程式** > **核心**toofind 它)。 您需要使用此外掛程式 tooobtain hello 平台名稱。
+#### <a name="install-the-device-plugin"></a>安裝裝置外掛程式
+遵循您安裝推播外掛程式時的相同程序。  從核心外掛程式清單中新增裝置外掛程式 (按一下 [外掛程式] > [核心]找到它)。 您需要此外掛程式才能取得平台名稱。
 
 #### <a name="register-your-device-on-application-start-up"></a>在應用程式啟動時註冊您的裝置
-最初，我們包含一些適用於 Android 的最少程式碼。 更新版本中，修改 hello iOS 或 Windows 10 上的應用程式 toorun。
+最初，我們包含一些適用於 Android 的最少程式碼。 之後，將應用程式修改為在 iOS 或 Windows 10 上執行。
 
-1. 加入呼叫太**registerForPushNotifications** hello 登入程序，或在 hello 底部 hello hello 回呼期間**onDeviceReady**方法：
+1. 在登入程序的回呼期間或在 **onDeviceReady** 方法的底部，新增 **registerForPushNotifications** 的呼叫：
 
-        // Login toohello service.
+        // Login to the service.
         client.login('google')
             .then(function () {
                 // Create a table reference
                 todoItemTable = client.getTable('todoitem');
 
-                // Refresh hello todoItems
+                // Refresh the todoItems
                 refreshDisplay();
 
-                // Wire up hello UI Event Handler for hello Add Item
+                // Wire up the UI Event Handler for the Add Item
                 $('#add-item').submit(addItemHandler);
                 $('#refresh').on('click', refreshDisplay);
 
-                    // Added tooregister for push notifications.
+                    // Added to register for push notifications.
                 registerForPushNotifications();
 
             }, handleError);
 
     這個範例示範在成功驗證之後呼叫 **registerForPushNotifications**。  您可以依需要經常呼叫 `registerForPushNotifications()`。
 
-2. 新增新的 hello **registerForPushNotifications**方法，如下所示：
+2. 加入新的 **registerForPushNotifications** 方法，如下所示︰
 
         // Register for Push Notifications. Requires that phonegap-plugin-push be installed.
         var pushRegistration = null;
@@ -122,13 +122,13 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。  這些
               wns: {}
           });
 
-        // Handle hello registration event.
+        // Handle the registration event.
         pushRegistration.on('registration', function (data) {
-          // Get hello native platform of hello device.
+          // Get the native platform of the device.
           var platform = device.platform;
-          // Get hello handle returned during registration.
+          // Get the handle returned during registration.
           var handle = data.registrationId;
-          // Set hello device-specific message template.
+          // Set the device-specific message template.
           if (platform == 'android' || platform == 'Android') {
               // Register for GCM notifications.
               client.push.register('gcm', handle, {
@@ -155,27 +155,27 @@ Apache Cordova 應用程式原本就不會處理裝置或網路功能。  這些
 
         pushRegistration.on('error', handleError);
         }
-3. (Android)在上述程式碼的 hello，取代`Your_Project_ID`以 hello 的數字，請從應用程式的專案 ID [Google 開發人員主控台][18]。
+3. (Android) 在上述程式碼中，從 [Google Developer Console][18] 使用應用程式的數字專案識別碼取代 `Your_Project_ID`。
 
-## <a name="optional-configure-and-run-hello-app-on-android"></a>（選擇性）設定及在 Android 上執行 hello 應用程式
-完成適用於 Android 的這個區段 tooenable 推播通知。
+## <a name="optional-configure-and-run-the-app-on-android"></a>(選擇性) 在 Android 上設定和執行應用程式
+完成本節可以為 Android 啟用推播通知。
 
 #### <a name="enable-gcm"></a>啟用 Firebase 雲端傳訊
-因為我們的目標 hello Google Android 平台一開始，您必須啟用 Firebase Cloud Messaging。
+因為我們一開始是以 Google Android 平台為目標，所以您必須啟用 Firebase 雲端通訊。
 
 [!INCLUDE [notification-hubs-enable-firebase-cloud-messaging](../../includes/notification-hubs-enable-firebase-cloud-messaging.md)]
 
-#### <a name="configure-backend"></a>Hello 行動裝置應用程式後端 toosend 推播要求使用 FCM 設定
+#### <a name="configure-backend"></a>設定行動應用程式後端以使用 FCM 傳送推送要求
 [!INCLUDE [app-service-mobile-android-configure-push](../../includes/app-service-mobile-android-configure-push.md)]
 
 #### <a name="configure-your-cordova-app-for-android"></a>針對 Android 設定您的 Cordova 應用程式
-Cordova 應用程式中開啟 config.xml，並取代`Your_Project_ID`以 hello 的數字，請從 hello 應用程式的專案 ID [Google 開發人員主控台][18]。
+在 Cordova 應用程式中，開啟 config.xml，然後從 [Google Developer Console] 使用應用程式的數字專案識別碼取代 `Your_Project_ID`[18]。
 
         <plugin name="phonegap-plugin-push" version="1.7.1" src="https://github.com/phonegap/phonegap-plugin-push.git">
             <variable name="SENDER_ID" value="Your_Project_ID" />
         </plugin>
 
-開啟 index.js，並更新 hello 程式碼 toouse 您數值專案識別碼。
+開啟 index.js，並更新程式碼以使用您的數值專案識別碼。
 
         pushRegistration = PushNotification.init({
             android: { senderID: 'Your_Project_ID' },
@@ -184,116 +184,116 @@ Cordova 應用程式中開啟 config.xml，並取代`Your_Project_ID`以 hello �
         });
 
 #### <a name="configure-device"></a>設定 Android 裝置進行 USB 偵錯
-您可以部署您的應用程式 tooyour Android 裝置之前，您會需要 tooenable USB 偵錯。  在您的 Android 手機上執行下列步驟：
+在您可以將應用程式部署到您的 Android 裝置之前，您需要啟用 USB 偵錯。  在您的 Android 手機上執行下列步驟：
 
-1. 跳過**設定** > **關於電話**，然後點選 hello**組建編號**直到開發人員模式已啟用 （約七次）。
-2. 回到**設定** > **開發人員選項**啟用**USB 偵錯**，然後使用 USB 纜線連接您的 Android 手機 tooyour 開發電腦。
+1. 移至 [設定] > [關於手機]，然後點選 [組建編號]，直到啟用開發人員模式為止 (大約七次)。
+2. 回到 [設定] > [開發人員選項]，啟用 [USB 偵錯]，然後使用 USB 纜線將 Android 手機連接至開發電腦。
 
-我們測試時使用的是執行 Android 6.0 (Marshmallow) 的 Google Nexus 5 X 裝置。  不過，hello 技術是通用的任何現代的 Android 版本。
+我們測試時使用的是執行 Android 6.0 (Marshmallow) 的 Google Nexus 5 X 裝置。  不過，這些技術在任何現代化 Android 版本中都是相同的。
 
 #### <a name="install-google-play-services"></a>安裝 Google Play 服務
-hello 發送外掛程式依賴 Android Google Play 服務的推播通知。
+推播外掛程式仰賴 Android Google Play 服務來進行推播通知。
 
-1. 在 Visual Studio 中，按一下 **工具** > **Android** > **Android SDK Manager**，依序展開 hello **Extras**資料夾，然後核取 hello 方塊 toomake 確定每個 hello 下列 Sdk 已安裝。
+1. 在 Visual Studio 中，按一下 [工具] > [Android] > [Android SDK 管理員]，然後展開 [Extras] 資料夾並核取方塊，以確定安裝下列所有 SDK。
 
    * Android 2.3 或更新版本
    * Google Repository 版本 27 或更高版本
    * Google Play 服務 9.0.2 或更高版本
 
-2. 按一下**Install Packages**並等候 hello 安裝 toocomplete。
+2. 按一下 [安裝套件]，等待安裝完成。
 
-hello 目前所需的程式庫會列在 hello [phonegap 外掛程式-推入安裝的文件][19]。
+[phonegap-plugin-push 安裝文件][19]中列出目前必要的程式庫。
 
-#### <a name="test-push-notifications-in-hello-app-on-android"></a>在 hello 應用程式在 Android 上測試推播通知
-您現在即可以藉由執行測試推播通知 hello 應用程式與 hello TodoItem 資料表中的插入項目。 您可以測試從 hello 相同的裝置，或從第二台裝置，只要您使用 hello 相同後端。 其中一種 hello 下列方式測試 hello Android 平台上的 Cordova 應用程式：
+#### <a name="test-push-notifications-in-the-app-on-android"></a>在 Android 上的應用程式中測試推播通知
+您現在可以執行應用程式，在 TodoItem 資料表中插入項目，以測試推播通知。 只要是使用相同的後端，您可以從相同的裝置或第二部裝置來測試。 以下列方法之一在 Android 平台上測試 Cordova 應用程式︰
 
-* **實體裝置上：**附加的 Android 裝置的 tooyour 開發電腦的 USB 纜線。  請選取 [裝置]，不要選取 [Google Android 模擬器]。 Visual Studio 部署 hello 應用程式 toohello 裝置，然後執行 hello 應用程式。  您可以再互動 hello hello 裝置上的應用程式。
+* **在實體裝置上︰**使用 USB 纜線將 Android 裝置連接至開發電腦。  請選取 [裝置]，不要選取 [Google Android 模擬器]。 Visual Studio 會將應用程式部署至裝置，然後執行應用程式。  您接著可以在裝置上與應用程式互動。
 
-  改善您的開發經驗。  [Mobizen] [20] 等螢幕畫面分享應用程式可協助您開發 Android 應用程式。  Mobizen 規劃您的電腦上的 Android 螢幕 tooa 網頁瀏覽器。
+  改善您的開發經驗。  [Mobizen] [20] 等螢幕畫面分享應用程式可協助您開發 Android 應用程式。  Mobizen 會將您的 Android 畫面投射至電腦上的網頁瀏覽器。
 
 * **在 Android 模擬器上︰**在模擬器上執行時，還需要其他設定步驟。
 
-    請確定您要部署 tooa hello Android Virtual Device (AVD) manager 中所示，已將設為 hello 目標的 Google Api 的虛擬裝置。
+    請確定您是部署至已將 Google API 設為目標的虛擬裝置，如 Android 虛擬裝置 (AVD) 管理員中所示。
 
     ![](./media/app-service-mobile-cordova-get-started-push/google-apis-avd-settings.png)
 
-    如果您想 toouse 更快的 x86 模擬器中，您[安裝 hello HAXM 驅動程式][ 11]及設定 hello 模擬器 toouse 它。
+    如果您想要使用更快速的 x86 模擬器，請[安裝 HAXM 驅動程式][11]，並設定模擬器來使用它。
 
-    按一下 新增 Google 帳戶 toohello Android 裝置**應用程式** > **設定** > **將帳戶加入**，然後依照 hello 提示。
+    按一下 [應用程式] > [設定] > [新增帳戶] 將 Google 帳戶加入 Android 裝置，然後遵循提示。
 
     ![](./media/app-service-mobile-cordova-get-started-push/add-google-account.png)
 
-    執行 hello todolist 應用程式做之前，插入新的 todo 項目。 此時，通知圖示會顯示 hello 通知區域中。 您可以開啟 hello 通知抽屜 tooview hello 全文檢索的 hello 通知。
+    按照先前的方法執行 todolist 應用程式，然後插入新的 todo 項目。 這次，通知圖示會顯示在通知區域中。 您可以開啟通知抽屜來檢視通知的完整內容。
 
     ![](./media/app-service-mobile-cordova-get-started-push/android-notifications.png)
 
 ## <a name="optional-configure-and-run-on-ios"></a>(選擇性) 在 iOS 上設定和執行
-本章節適用於 iOS 裝置上執行 hello Cordova 專案。 如果未使用 iOS 裝置，可以略過這一節。
+本節適用於在 iOS 裝置上執行 Cordova 專案。 如果未使用 iOS 裝置，可以略過這一節。
 
-#### <a name="install-and-run-hello-ios-remote-build-agent-on-a-mac-or-cloud-service"></a>安裝和遠端執行的 hello iOS 組建代理程式上的 Mac 或雲端服務
-您可以使用 Visual Studio 的 iOS 上執行 Cordova 應用程式之前，請瀏覽 hello 中的 hello 步驟[iOS Setup Guide] [ 12] tooinstall 和執行的 hello 遠端組建代理程式。
+#### <a name="install-and-run-the-ios-remote-build-agent-on-a-mac-or-cloud-service"></a>在 Mac 或雲端服務上安裝及執行 iOS 遠端組建代理程式
+您必須先進行 [iOS 安裝指南][12]中的步驟來安裝和執行遠端組建代理程式，才可以使用 Visual Studio 在 iOS 上執行 Cordova 應用程式。
 
-請確定您可以建立 hello 適用於 iOS 的應用程式。 hello hello 安裝手冊 》 中的步驟都需要的 toobuild Visual Studio 的 ios。 如果您沒有 Mac，您可以建置適用於 iOS 等 MacInCloud 服務上使用 hello 遠端組建代理程式。 如需詳細資訊，請參閱[hello 雲端中執行您的 iOS 應用程式][21]。
+確定您可以建置適用於 iOS 的應用程式。 必須執行安裝指南中的步驟才能從 Visual Studio 針對 iOS 建置。 如果您沒有 Mac，您可以在 MacInCloud 之類的服務上使用遠端組建代理程式來針對 iOS 建置。 如需詳細資訊，請參閱[在雲端中執行 iOS 應用程式][21]。
 
 > [!NOTE]
-> XCode 7 或更新版本是在 iOS 上的必要的 toouse hello 發送外掛程式。
+> 必須有 XCode 7 或更新版本，才能在 iOS 上使用推播外掛程式。
 
-#### <a name="find-hello-id-toouse-as-your-app-id"></a>尋找 hello 識別碼 toouse 做為應用程式的識別碼
-註冊您的推播通知的應用程式之前，開啟 config.xml Cordova 應用程式中，尋找 hello`id`屬性值在 hello widget 元素中，並將它複製供日後使用。 在下列 XML 的 hello，hello ID 是`io.cordova.myapp7777777`。
+#### <a name="find-the-id-to-use-as-your-app-id"></a>尋找要做為應用程式識別碼的識別碼
+在針對推播通知註冊您的應用程式之前，在 Cordova 應用程式中開啟 config.xml，在 widget 元素中尋找 `id` 屬性值，並加以複製以供稍後使用。 在下列 XML 中，識別碼為 `io.cordova.myapp7777777`。
 
         <widget defaultlocale="en-US" id="io.cordova.myapp7777777"
           version="1.0.0" windows-packageVersion="1.1.0.0" xmlns="http://www.w3.org/ns/widgets"
             xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
 
-稍後，當您在 Apple 開發人員入口網站上建立應用程式識別碼時，請使用這個識別碼。 如果您建立不同的應用程式識別碼 hello 開發人員入口網站上，您必須採取一些額外的步驟，稍後在本教學課程。 widget 元素中的 hello ID 必須符合在 hello 開發人員入口網站上的應用程式識別碼 hello。
+稍後，當您在 Apple 開發人員入口網站上建立應用程式識別碼時，請使用這個識別碼。 如果您在開發人員入口網站上建立不同的應用程式識別碼，在本教學課程稍後，您必須採取一些額外的步驟。 Widget 元素中的識別碼必須符合開發人員入口網站上的應用程式識別碼。
 
-#### <a name="register-hello-app-for-push-notifications-on-apples-developer-portal"></a>註冊 Apple 開發人員入口網站上的推播通知的 hello 應用程式
+#### <a name="register-the-app-for-push-notifications-on-apples-developer-portal"></a>在 Apple 的開發人員入口網站註冊應用程式以取得推播通知
 [!INCLUDE [Enable Apple Push Notifications](../../includes/enable-apple-push-notifications.md)]
 
 [觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-5-Set-up-apns-for-push)
 
-#### <a name="configure-azure-toosend-push-notifications"></a>設定 Azure toosend 推播通知
+#### <a name="configure-azure-to-send-push-notifications"></a>設定 Azure 來傳送推播通知
 [!INCLUDE [app-service-mobile-apns-configure-push](../../includes/app-service-mobile-apns-configure-push.md)]
 
 #### <a name="verify-that-your-app-id-matches-your-cordova-app"></a>確認您的應用程式識別碼符合 Cordova 應用程式
-如果您已經在您的 Apple 開發人員帳戶中建立的應用程式識別碼 hello 符合 hello 在 config.xml 中的 hello widget 項目的 ID，您可以略過此步驟。 不過，如果 hello 識別碼不相符，採取下列步驟的 hello:
+如果您在 Apple 開發人員帳戶中建立的應用程式識別碼已經符合 config.xml 中 widget 元素的識別碼，您即可略過此步驟。 不過，如果識別碼不相符，請採取下列步驟︰
 
-1. 從您的專案刪除 hello 平台資料夾。
-2. 從您的專案刪除 hello 外掛程式資料夾。
-3. 從專案刪除 hello node_modules 資料夾。
-4. 更新 config.xml toouse hello Apple 開發人員帳戶中建立的應用程式識別碼中的 hello widget 元素 hello id 屬性。
+1. 從您的專案中刪除 platforms 資料夾。
+2. 從您的專案中刪除 plugins 資料夾。
+3. 從您的專案中刪除 node_modules 資料夾。
+4. 在 config.xml 中更新 widget 元素的 id 屬性，以使用您在 Apple 開發人員帳戶中建立的應用程式識別碼。
 5. 重建您的專案。
 
 ##### <a name="test-push-notifications-in-your-ios-app"></a>在 iOS 應用程式中測試推播通知
-1. 在 Visual Studio 中，請確定**iOS** hello 部署目標，為已選取，然後選擇 **裝置**toorun 已連線的 iOS 裝置上。
+1. 在 Visual Studio 中，確定已選取 **iOS** 做為部署目標，然後選擇 [裝置] 以在連線的 iOS 裝置上執行。
 
-    您可以在 iOS 裝置連線 tooyour 電腦上執行使用 iTunes。 hello iOS 模擬器不支援推播通知。
+    您可以在使用 iTunes 連線至您的 PC 的 iOS 裝置上執行。 iOS 模擬器不支援推播通知。
 
-2. 按 hello**執行**按鈕或**F5**在 Visual Studio toobuild hello 專案並開始 hello 應用程式在 iOS 裝置，然後按一下 **確定**tooaccept 推播通知。
+2. 在 Visual Studio 中，按下 [執行] 按鈕或 **F5** 以建置專案，並在 iOS 裝置上啟動應用程式，然後按一下 [確定] 以接受推播通知。
 
    > [!NOTE]
-   > hello 應用程式要求您的推播通知 hello 第一次執行期間的確認。
+   > 應用程式在第一次執行期間會要求您確認推播通知。
 
-3. 在 hello 應用程式中，輸入工作，，然後按一下hello 加號 （+） 圖示。
-4. 確認通知接收，然後按一下 [確定] toodismiss hello 通知。
+3. 在應用程式中輸入一項工作，然後按一下加號 (+) 圖示。
+4. 確認您已接收到通知，然後按一下 [確定] 以關閉通知。
 
 ## <a name="optional-configure-and-run-on-windows"></a>(選擇性) 在 Windows 上設定和執行
-這個區段可讓您執行 hello Apache Cordova 應用程式專案 （Windows 10 支援 hello PhoneGap 發送外掛程式） 的 Windows 10 裝置上。 如果未使用 Windows 裝置，可以略過這一節。
+本節適用於在 Windows 10 裝置 (Windows 10 支援 PhoneGap 推播外掛程式) 上執行 Apache Cordova 應用程式專案。 如果未使用 Windows 裝置，可以略過這一節。
 
 #### <a name="register-your-windows-app-for-push-notifications-with-wns"></a>向 WNS 註冊 Windows 應用程式以使用推播通知
-toouse hello 存放區選項在 Visual Studio 中，選取 Windows 目標 hello 方案平台清單中，例如**x64**或**x86** (避免**Windows AnyCPU**推播通知）。
+若要使用 Visual Studio 中的 [存放區] 選項，請從 [方案平台] 清單中選取 Windows 目標，例如 **Windows-x64** 或 **Windows-x86** (避免 **Windows-AnyCPU** 使用推播通知)。
 
 [!INCLUDE [app-service-mobile-register-wns](../../includes/app-service-mobile-register-wns.md)]
 
 [觀看示範類似步驟的影片][13]
 
-#### <a name="configure-hello-notification-hub-for-wns"></a>WNS 設定 hello 通知中樞
+#### <a name="configure-the-notification-hub-for-wns"></a>設定 WNS 的通知中樞
 [!INCLUDE [app-service-mobile-configure-wns](../../includes/app-service-mobile-configure-wns.md)]
 
-#### <a name="configure-your-cordova-app-toosupport-windows-push-notifications"></a>設定 Cordova 應用程式 toosupport Windows 推播通知
-開啟 hello 組態設計工具 (config.xml，並選取以滑鼠右鍵按一下**檢視表設計工具**)，請選取 hello **Windows**索引標籤，然後選擇  **Windows 10**下**Windows 目標版本**。
+#### <a name="configure-your-cordova-app-to-support-windows-push-notifications"></a>設定 Cordova 應用程式以支援 Windows 推播通知
+開啟組態設計工具 (以滑鼠右鍵按一下 config.xml 並選取 [檢視表設計工具])，選取 [Windows] 索引標籤，然後選擇 [Windows 目標版本] 下的 [Windows 10]。
 
-建置 toosupport 推播通知，在預設的 （偵錯） 中，開啟 build.json 檔案。 將複製的 「 發行 」 組態 tooyour 偵錯組態。
+若要在您的預設 (偵錯) 組建中支援推播通知，請開啟 build.json 檔案。 將 "release" 組態複製到您的偵錯組態。
 
         "windows": {
             "release": {
@@ -302,7 +302,7 @@ toouse hello 存放區選項在 Visual Studio 中，選取 Windows 目標 hello 
             }
         }
 
-Hello 更新之後，hello build.json 應該包含下列程式碼的 hello:
+更新之後，build.json 應該包含下列程式碼︰
 
     "windows": {
         "release": {
@@ -315,22 +315,22 @@ Hello 更新之後，hello build.json 應該包含下列程式碼的 hello:
             }
         }
 
-建置 hello 應用程式，並確認您有任何錯誤。 您的用戶端應用程式現在應該針對 hello 通知從 hello 行動裝置應用程式後端註冊。 針對方案中每個 Windows 專案重複操作這一節。
+建置應用程式並確認沒有錯誤。 您的用戶端應用程式現在應該註冊來自行動應用程式後端的通知。 針對方案中每個 Windows 專案重複操作這一節。
 
 #### <a name="test-push-notifications-in-your-windows-app"></a>在 Windows 應用程式中測試推播通知
-在 Visual Studio 中，請確定 Windows 平台這類選取做為 hello 部署目標， **x64**或**x86**。 toorun hello 應用程式裝載 Visual Studio 中，在 Windows 10 電腦上的選擇**本機**。
+在 Visual Studio 中，確定已選取 Windows 平台做為部署目標，例如 **Windows-x64** 或 **Windows-x86**。 若要在裝載 Visual Studio 的 Windows 10 電腦上執行應用程式，請選擇 [本機電腦] 。
 
-按 hello 執行按鈕 toobuild hello 專案，並啟動 hello 應用程式。
+按 [執行] 按鈕，以建置專案並啟動應用程式。
 
-在 hello 應用程式中，輸入新的 todoitem 的名稱，然後按一下 hello 加號 （+） 圖示 tooadd 它。
+在應用程式中輸入新 todoitem 的名稱，然後按一下加號 (+) 圖示來加入它。
 
-確認新增 hello 項目時，收到通知。
+確認在加入項目時收到通知。
 
 ## <a name="next-steps"></a>後續步驟
-* 閱讀有關[通知中樞][ 17] toolearn 有關推播通知。
-* 如果您尚未這樣做，繼續 hello 教學課程所[新增驗證][ 14] tooyour Apache Cordova 應用程式。
+* 請參閱[通知中樞][17]，以了解推播通知的相關資訊。
+* 繼續教學課程，在 Apache Cordova 應用程式中[新增驗證][14] (如果尚未這麼做)。
 
-了解如何 toouse hello Sdk。
+了解如何使用 SDK。
 
 * [Apache Cordova SDK][15]
 * [ASP.NET Server SDK][1]

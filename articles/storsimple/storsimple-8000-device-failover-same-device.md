@@ -1,6 +1,6 @@
 ---
-title: "aaaStorSimple 容錯移轉時，適用於 8000 系列裝置的災害復原 |Microsoft 文件"
-description: "深入了解如何透過您的 StorSimple 裝置 toohello toofail 相同的裝置。"
+title: "8000 系列裝置的 StorSimple 容錯移轉和災害復原 | Microsoft Docs"
+description: "了解如何將您的 StorSimple 裝置容錯移轉至相同的裝置。"
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,65 +14,65 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/23/2017
 ms.author: alkohli
-ms.openlocfilehash: b0b4216c7af6745ff68b85ca3d655691b43b4334
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: acc8929dc3476e9590e8e4d9526b38b7c0719570
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="fail-over-your-storsimple-physical-device-toosame-device"></a>容錯移轉您的 StorSimple 實體裝置 toosame 裝置
+# <a name="fail-over-your-storsimple-physical-device-to-same-device"></a>將您的 StorSimple 實體裝置容錯移轉至相同的裝置
 
 ## <a name="overview"></a>概觀
 
-如果沒有損毀，本教學課程的描述 hello 步驟需要的 toofail StorSimple 8000 系列實體裝置 tooitself。 StorSimple 會使用 hello 裝置容錯移轉功能 toomigrate 資料來源的實體裝置在 hello datacenter tooanother 實體裝置中。 本教學課程中的 hello 指導方針適用於執行軟體版本更新 3 及更新版本的 tooStorSimple 8000 系列實體裝置。
+本教學課程說明出現災害時，將 StorSimple 8000 系列實體裝置容錯移轉至本身裝置所需要的步驟。 StorSimple 會使用裝置容錯移轉功能，將資料從資料中心的實體裝置來源移轉至另一個實體裝置。 本教學課程中的指導方針適用於執行軟體版本 Update 3 和更新版本的 StorSimple 8000 系列實體裝置。
 
-深入了解裝置容錯移轉和就是從嚴重損毀，使用的 toorecover toolearn 移過[StorSimple 8000 系列裝置的容錯移轉和災害復原](storsimple-8000-device-failover-disaster-recovery.md)。
+若要深入了解裝置容錯移轉，以及如何用於從災害中復原，請移至 [ StorSimple 8000 系列裝置的容錯移轉與災害復原](storsimple-8000-device-failover-disaster-recovery.md)。
 
-toofail 透過實體裝置 tooanother 實體裝置，請跳過[相同容錯移轉 toohello StorSimple 實體裝置](storsimple-8000-device-failover-physical-device.md)。 透過 StorSimple 雲端應用裝置，StorSimple 實體裝置 tooa toofail 移過[容錯移轉 tooa StorSimple 雲端應用裝置](storsimple-8000-device-failover-cloud-appliance.md)。
+若要將實體裝置容錯移轉至另一個實體裝置，請移至[容錯移轉至相同的 StorSimple 實體裝置](storsimple-8000-device-failover-physical-device.md)。 若要將 StorSimple 實體裝置容錯移轉至 StorSimple 雲端設備，請移至[容錯移轉至 StorSimple 雲端設備](storsimple-8000-device-failover-cloud-appliance.md)。
 
 
 ## <a name="prerequisites"></a>必要條件
 
-- 請確定您已檢閱 hello 考量用於裝置容錯移轉。 如需詳細資訊，請移至太[用於裝置容錯移轉的一般考量](storsimple-8000-device-failover-disaster-recovery.md)。
+- 請確定您已檢閱裝置容錯移轉的注意事項。 如需詳細資訊，請移至[裝置容錯移轉的一般注意事項](storsimple-8000-device-failover-disaster-recovery.md)。
 
 
-## <a name="steps-toofail-over-toohello-same-device"></a>步驟 toofail toohello 透過相同的裝置
+## <a name="steps-to-fail-over-to-the-same-device"></a>容錯移轉至相同裝置的步驟
 
-執行下列步驟，若要透過 toohello toofail hello 相同的裝置。
+如果您需要容錯移轉至相同的裝置，請執行下列步驟。
 
-1. 在您的裝置擷取所有 hello 磁碟區的雲端快照。 如需詳細資訊，請移至太[使用 StorSimple 裝置管理員服務 toocreate 備份](storsimple-8000-manage-backup-policies-u2.md)。
-2. 重設您的裝置 toofactory 預設值。 請遵循 hello 詳細中的指示[tooreset StorSimple 裝置 toofactory 預設設定的方式](storsimple-8000-manage-device-controller.md#reset-the-device-to-factory-default-settings)。
-3. 移 toohello StorSimple 裝置管理員服務，然後選取**裝置**。 在 hello**裝置**刀鋒視窗中，hello 舊裝置應顯示為**離線**。
+1. 建立裝置中所有磁碟區的雲端快照。 如需詳細資訊，請移至[使用 StorSimple 裝置管理員服務建立備份](storsimple-8000-manage-backup-policies-u2.md)。
+2. 將裝置重設為原廠預設值。 請依照 [如何將 StorSimple 裝置重設為原廠預設值](storsimple-8000-manage-device-controller.md#reset-the-device-to-factory-default-settings)中的詳細指示執行。
+3. 移至 StorSimple 裝置管理員服務，然後按一下 [裝置]。 在 [裝置] 刀鋒視窗中，舊的裝置應會顯示成 [離線]。
 
     ![來源裝置離線](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev2.png)
 
-4. 設定裝置，並再次使用 StorSimple 裝置管理員服務重新註冊裝置。 hello 新註冊的裝置應顯示為**已 tooset 準備註冊**。 hello hello 新裝置的裝置名稱為的 hello 相同 hello 舊裝置但加上數字 tooindicate hello 裝置已重設 toofactory 預設和已註冊一次。
+4. 設定裝置，並再次使用 StorSimple 裝置管理員服務重新註冊裝置。 新註冊的裝置應該會顯示成 [準備好進行設定]。 新裝置的裝置名稱與舊裝置的相同，但會加上數字來表示裝置已重設為原廠預設值，並重新註冊。
 
-    ![新註冊的裝置準備好 tooset 向上](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev3.png)
-5. Hello 新裝置，來完成 hello 裝置安裝。 如需詳細資訊，請移至太[步驟 4： 完成基本裝置設定](storsimple-8000-deployment-walkthrough-u2.md#step-4-complete-minimum-device-setup)。 在 hello**裝置**刀鋒視窗中，hello 裝置 hello 狀態變更太**線上**。
+    ![新註冊的裝置已準備好進行設定](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev3.png)
+5. 請完成新裝置的裝置設定。 如需詳細資訊，請移至[步驟 4：完成基本裝置設定](storsimple-8000-deployment-walkthrough-u2.md#step-4-complete-minimum-device-setup)。 在 [裝置] 刀鋒視窗中，裝置的狀態會變更為 [線上]。
 
    > [!IMPORTANT]
-   > **首先，完成 hello 最低設定，或您的 DR 可能會失敗。**
+   > **請先完成基本設定，否則您的 DR 可能會失敗。**
 
     ![新註冊的裝置狀態為線上](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev7.png)
 
-6. 選取 hello 舊裝置 （離線狀態），然後在 hello 命令列中，按一下**容錯移轉**。 在 hello**容錯移轉**刀鋒視窗中，選取舊裝置做為 hello 來源並指定 hello 目標裝置 hello 新註冊的裝置。
+6. 選取舊裝置 (離線狀態)，然後從命令列按一下 [容錯移轉]。 在 [容錯移轉] 刀鋒視窗中，選取舊裝置做為來源，並將目標裝置指定為新註冊的裝置。
 
     ![容錯移轉摘要](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev11.png)
 
-    如需詳細指示，請參閱太[容錯移轉 tooanother 實體裝置](#fail-over-to-another-physical-device)。
+    如需詳細指示，請參閱 [容錯移轉到另一個實體裝置](#fail-over-to-another-physical-device)。
 
-7. 裝置還原作業會建立您可以監視從 hello**作業**刀鋒視窗。
+7. 您可以從 [作業] 刀鋒視窗來監視建立的裝置還原作業。
 
-8. Hello 作業已成功完成之後，存取 hello 新裝置，並瀏覽 toohello**磁碟區容器**刀鋒視窗。 請確認所有 hello 磁碟區容器從 hello 舊裝置已都移轉 toohello 新裝置。
+8. 順利完成作業後，請存取新裝置，並瀏覽到 [磁碟區容器] 刀鋒視窗。 確認舊裝置的所有磁碟區容器已移轉到新的裝置。
 
    ![移轉磁碟區容器](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev13.png)
 
-9. Hello 容錯移轉已完成之後，您可以停用並刪除 hello 入口網站中的 hello 舊裝置。 選取 hello 舊裝置 （離線），以滑鼠右鍵按一下，然後再選取**停用**。 Hello 裝置停用後，會更新 hello 裝置 hello 狀態。
+9. 完成容錯移轉之後，您可以停用舊裝置，並將其從入口網站中刪除。 選取舊裝置 (離線)，按一下滑鼠右鍵，然後選取 [停用]。 停用裝置之後，裝置的狀態也會一併更新。
 
      ![停用來源裝置](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev14.png)
 
-10. 選取 hello 停用裝置，以滑鼠右鍵按一下，然後選取**刪除**。 這會從裝置 hello 清單刪除 hello 裝置。
+10. 選取停用的裝置，按一下滑鼠右鍵，然後選取 [刪除]。 如此會將裝置從裝置清單中刪除。
 
     ![刪除來源裝置](./media/storsimple-8000-device-failover-disaster-recovery/failover-single-dev15.png)
 
@@ -80,6 +80,6 @@ toofail 透過實體裝置 tooanother 實體裝置，請跳過[相同容錯移�
 
 ## <a name="next-steps"></a>後續步驟
 
-* 在您執行容錯移轉之後，您可能需要過[停用或刪除您的 StorSimple 裝置](storsimple-8000-deactivate-and-delete-device.md)。
-* 如需如何 toouse hello StorSimple 裝置管理員服務，請跳過[使用 hello StorSimple 裝置管理員服務 tooadminister StorSimple 裝置](storsimple-8000-manager-service-administration.md)。
+* 執行容錯移轉之後，您可能需要 [停用或刪除 StorSimple 裝置](storsimple-8000-deactivate-and-delete-device.md)。
+* 如需如何使用 StorSimple 裝置管理員服務的相關資訊，請移至[使用 StorSimple 裝置管理員服務管理 StorSimple 裝置](storsimple-8000-manager-service-administration.md)。
 

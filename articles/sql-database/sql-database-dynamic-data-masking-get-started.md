@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure SQL Database 動態資料遮罩 |Microsoft 文件"
-description: "SQL Database 動態資料遮罩會限制機密資料暴露它 toonon 權限的使用者"
+title: "Azure SQL Database 動態資料遮罩 | Microsoft Docs"
+description: "SQL Database 動態資料遮罩可藉由遮罩處理，使不具權限的使用者無法看見機密資料"
 services: sql-database
 documentationcenter: 
 author: ronitr
@@ -15,43 +15,43 @@ ms.tgt_pltfrm: NA
 ms.workload: data-services
 ms.date: 03/09/2017
 ms.author: ronitr; ronmat
-ms.openlocfilehash: 68b55128dc096f7e3dd0e5ed1427b39da5d64736
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 83deadce3cbdd30aa50d22d99378bd86133677c4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="sql-database-dynamic-data-masking"></a>SQL Database 動態資料遮罩
 
-SQL Database 動態資料遮罩會限制機密資料暴露其 toonon 權限的使用者。 
+SQL Database 動態資料遮罩可藉由遮罩處理，使不具權限的使用者無法看見機密資料。 
 
-動態資料遮罩藉此協助防止未經授權的存取 toosensitive 資料啟用客戶 toodesignate 多少 hello 敏感性資料 tooreveal hello 應用程式層上的影響降至最低。 這是 hello hello 查詢結果集內的機密資料隱藏在指定的資料庫欄位，而 hello 資料庫中的 hello 資料不會變更以原則為基礎的安全性功能。
+動態資料遮罩可讓客戶在應用程式層級受到最小影響的情況下指定要顯示多少機密資料，而協助防止未經授權者存取機密資料。 它是以原則為基礎的安全性功能，可針對指定的資料庫欄位隱藏查詢結果集中的機密資料，而不變更資料庫中的資料。
 
-例如，撥接中心的服務代表可能會呼叫端識別其信用卡號碼其中幾個數字，但這些項目不應該是完整的資料公開 toohello 服務代表通話。 所有遮罩但 hello 最後四位數的 hello 任何查詢結果集內任何信用卡號碼可以定義遮罩規則。 另舉一例，適當的資料遮罩可以是定義的 tooprotect 個人識別資訊 (PII) 資料，以便開發人員可以查詢生產環境，供疑難排解之用，而不會違反法務遵循規定。
+例如，客服中心服務代表可透過信用卡號碼的幾個數字來識別來電者，但這些資料項目不應完全公開給服務代表。 可以定義遮罩規則，以針對任何查詢的結果集中任何信用卡號碼的末四碼以外的所有數字進行遮罩處理。 在另一個範例中，可以定義適當的資料遮罩來保護個人識別資訊 (PII) 資料，以便開發人員在生產環境中進行疑難排解用途的查詢，且不會違反法務規定。
 
 ## <a name="sql-database-dynamic-data-masking-basics"></a>SQL Database 動態資料遮罩的基本概念
-您設定的動態資料遮罩原則中 hello Azure 入口網站選取 hello 動態資料遮罩刀鋒視窗中設定 SQL 資料庫或設定 刀鋒視窗中的作業。
+您可以在 Azure 入口網站的 SQL Database [組態] 刀鋒視窗或 [設定] 刀鋒視窗中，選取 [動態資料遮罩] 作業，來設定動態資料遮罩原則。
 
 ### <a name="dynamic-data-masking-permissions"></a>動態資料遮罩權限
-Hello Azure 資料庫系統管理員、 伺服器管理員或安全性主管人員角色可以設定動態資料遮罩。
+動態資料遮罩可由　Azure 資料庫管理員、伺服器管理員或安全性主管人員等角色來設定。
 
 ### <a name="dynamic-data-masking-policy"></a>動態資料遮罩原則
-* **從遮罩排除 SQL 使用者**-一組 SQL 使用者或 AAD 身分識別，讓未遮罩的資料 hello SQL 查詢的結果。 系統管理員權限的使用者一律會從遮罩排除，請參閱 hello 原始資料，沒有任何遮罩。
-* **遮罩規則**-一組定義指定遮罩欄位 toobe hello 和 hello 遮罩函數所使用的規則。 可以使用資料庫結構描述名稱、 資料表名稱，以及資料行名稱來定義指定欄位的 hello。
-* **遮罩函數**-一組控制 hello 公開針對不同的案例資料的方法。
+* **從遮罩處理中排除的 SQL 使用者** - 一組 SQL 使用者或 AAD 身分識別，可在 SQL 查詢結果中取得未經遮罩處理的資料。 具有系統管理員權限的使用者永遠會從遮罩處理中排除，而且會看到沒有任何遮罩的原始資料。
+* **遮罩規則** - 一組規則，定義會遮罩處理的指定欄位和所使用的遮罩函數。 指定的欄位可使用資料庫結構描述名稱、資料表名稱和資料行名稱來定義。
+* **遮罩函數** - 一組方法，可控制不同案例的資料顯示性。
 
 | 遮罩函數 | 遮罩邏輯 |
 | --- | --- |
-| **預設值** |**完整資料加上遮罩相應 toohello hello 的類型指定的欄位**<br/><br/>• 使用 XXXX 或如果 hello hello 欄位大小少於 4 個字元的字串資料類型 （nchar、 ntext、 nvarchar） 較少的 x。<br/>• 針對數值資料類型 (bigint、bit、decimal、int、money、numeric、smallint、smallmoney、tinyint、float、real)，使用零值。<br/>• 針對日期/時間資料類型 (date、datetime2、datetime、datetimeoffset、smalldatetime、time)，使用 01-01-1900 時間。<br/>• SQL variant，hello 型別的預設值 hello 目前會使用。<br/>• For XML hello 文件<masked/>用。<br/>• 針對特殊資料類型 (時間戳記、資料表、hierarchyid、GUID、二進位值、影像、varbinary spatial 類型)，使用空值。 |
-| **信用卡** |**此遮罩方法，可公開 hello 的最後 4 位數指定欄位的 hello** ，並加入做為前置詞的信用卡 hello 形式常數字串。<br/><br/>XXXX-XXXX-XXXX-1234 |
-| **電子郵件** |**此遮罩方法，可 hello 第一個字母曝光，並以 XXX.com 取代 hello 網域**使用常數字串中的前置詞 hello 形式為電子郵件地址。<br/><br/>aXX@XXXX.com |
-| **隨機數字** |**此遮罩方法會產生一個隨機數字**toohello，根據選取的界限與實際的資料類型。 如果指定界限的 hello 相等，遮罩函數的 hello 是固定數目。<br/><br/>![導覽窗格](./media/sql-database-dynamic-data-masking-get-started/1_DDM_Random_number.png) |
-| **自訂文字** |**此遮罩的方法，公開哪些先 hello 和最後一個字元**，並在 hello 中間加入自訂填補字串。 如果 hello 原始字串小於 hello 公開前置詞和後置詞，則會使用 hello 填補字串。 <br/>prefix[padding]suffix<br/><br/>![導覽窗格](./media/sql-database-dynamic-data-masking-get-started/2_DDM_Custom_text.png) |
+| **預設值** |**根據指定欄位的資料類型進行完整遮罩**<br/><br/>• 如果字串資料類型的欄位大小少於 4 個字元 (nchar、ntext、nvarchar)，請使用 XXXX 或更少 X。<br/>• 針對數值資料類型 (bigint、bit、decimal、int、money、numeric、smallint、smallmoney、tinyint、float、real)，使用零值。<br/>• 針對日期/時間資料類型 (date、datetime2、datetime、datetimeoffset、smalldatetime、time)，使用 01-01-1900 時間。<br/>• 對於 SQL 變數，會使用目前類型的預設值。<br/>• 對於 XML 會使用文件 <masked/>。<br/>• 針對特殊資料類型 (時間戳記、資料表、hierarchyid、GUID、二進位值、影像、varbinary spatial 類型)，使用空值。 |
+| **信用卡** |**遮罩方法會公開指定欄位的末四碼**，並新增常數字串做為信用卡格式的前置詞。<br/><br/>XXXX-XXXX-XXXX-1234 |
+| **電子郵件** |**遮罩方法會公開第一個字母並以 XXX.com 取代網域**，使用的常數字串前置詞會以電子郵件地址為格式。<br/><br/>aXX@XXXX.com |
+| **隨機數字** |**遮罩方法會產生一個隨機數字**，其根據為選取的界限與實際資料類型。 如果指定的邊界相等，則遮罩函數是常數。<br/><br/>![導覽窗格](./media/sql-database-dynamic-data-masking-get-started/1_DDM_Random_number.png) |
+| **自訂文字** |**遮罩方法會公開第一個和最後一個字元**，並在中間新增自訂填補字串。 如果原始字串小於公開的前置詞和後置詞，則只會使用填補字串。 <br/>prefix[padding]suffix<br/><br/>![導覽窗格](./media/sql-database-dynamic-data-masking-get-started/2_DDM_Custom_text.png) |
 
 <a name="Anchor1"></a>
 
-### <a name="recommended-fields-toomask"></a>建議的欄位 toomask
-hello DDM 建議引擎，加上旗標特定資料庫中的欄位做為可能含有機密欄位，可能是適合用來遮罩。 在 hello 動態資料遮罩刀鋒視窗中 hello 入口網站中，您會看到 hello 建議為您的資料庫資料行。 您只需要 toodo 是按一下**新增遮罩**一或多個資料行，然後**儲存**tooapply 遮罩這些欄位。
+### <a name="recommended-fields-to-mask"></a>要遮罩處理的建議欄位
+DDM 建議引擎會將您資料庫中的特定欄位標示為潛在敏感性欄位，而這類欄位可能適合進行遮罩處理。 在入口網站的 [動態資料遮罩] 刀鋒視窗中，您會看到您的資料庫的建議資料行。 您只需要對一或多個資料行按一下 [新增遮罩]，然後按一下 [儲存]，以對這些欄位套用遮罩。
 
 ## <a name="set-up-dynamic-data-masking-for-your-database-using-powershell-cmdlets"></a>使用 PowerShell Cmdlet 為您的資料庫設定動態資料遮罩
 請參閱 [Azure SQL Database Cmdlet](https://msdn.microsoft.com/library/azure/mt574084.aspx)。

@@ -1,6 +1,6 @@
 ---
-title: "aaaResource 管理員 REST Api |Microsoft 文件"
-description: "Hello 資源管理員 REST Api 驗證和使用方式範例的概觀"
+title: Resource Manager REST API | Microsoft Docs
+description: "資源管理員 REST API 驗證和使用方式範例的概觀"
 services: azure-resource-manager
 documentationcenter: na
 author: navalev
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/13/2017
 ms.author: navale;tomfitz;
-ms.openlocfilehash: 3ccc3575c5e06c41f2fdc5317711980fc6a2f649
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2f7ba23775545637de865f9ef63680ae22c62164
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="resource-manager-rest-apis"></a>資源管理員 REST API
 > [!div class="op_single_selector"]
@@ -29,22 +29,22 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-每個已部署的範本，之後每個呼叫 tooAzure 資源管理員 中，後面背後的每個設定的儲存體帳戶有一或多個呼叫 toohello Azure 資源管理員的 RESTful API。 本主題是專供的 toothose Api 和如何呼叫它們而不使用任何 SDK。 如果您想要完整控制要求 tooAzure 或您慣用的語言 hello SDK 無法使用或不支援您所需要的 hello 操作，則這個方法會很有用。
+在每次呼叫 Azure Resource Manager 時、每個部署的範本及每個設定的儲存體帳戶背後，都會呼叫 Azure Resource Manager 的 REST API 一次或多次。 本主題專門討論這些 API 以及如何在完全不使用任何 SDK 的情況下呼叫它們。 如果您想要完全控制對 Azure 的要求、或您慣用的語言沒有適用的 SDK 或該 SDK 不支援您需要的作業，這種做法很有用。
 
-這篇文章不會進出公開在 Azure 中，但而是使用某些作業做為範例的連接 toothem 的方式每一種 API。 了解 hello 基本概念之後，您可以閱讀 hello [Azure 資源管理員 REST API 參考](https://docs.microsoft.com/rest/api/resources/)toofind 的詳細資訊的 toouse hello rest hello 應用程式開發介面的方式。
+本文並不會逐一介紹 Azure 中公開的每個 API，而是以某些 API 為例，說明如何連接至這些 API。 了解基本概念後，接著您可以閱讀 [Azure Resource Manager REST API 參考](https://docs.microsoft.com/rest/api/resources/)，找出如何使用其餘 API 的詳細資訊。
 
 ## <a name="authentication"></a>驗證
-Resource Manager 的驗證由 Azure Active Directory (AD) 處理。 tooconnect tooany API，您必須先 tooauthenticate 與 Azure AD tooreceive tooevery 要求，您可以傳遞之驗證語彙基元。 因為我們要描述的純虛擬的呼叫，直接 toohello REST Api，我們假設您不想 tooauthenticate 由提示輸入使用者名稱和密碼。 我們也假設您不使用雙重要素驗證機制。 因此，我們會建立稱為 Azure AD 應用程式和服務主體所使用的 toolog 中。 但是請記住，Azure AD 支援數項驗證程序和全部都可能是該驗證權杖，供後續的 API 要求所使用的 tooretrieve。
+Resource Manager 的驗證由 Azure Active Directory (AD) 處理。 若要連接至任何 API，您必須先向 Azure AD 進行驗證，以接收可以傳遞給每個要求的驗證權杖。 因為我們要說明的是單純地呼叫直接 REST API，因此以您不想遵照提示輸入使用者名稱和密碼的假設來進行驗證。 我們也假設您不使用雙重要素驗證機制。 因此，我們將建立用來登入的 Azure AD 應用程式和服務主體。 但請記住，Azure AD 支援數個驗證程序，而這些程序全都可以用來擷取後續 API 要求所需的驗證權杖。
 請依照[建立 Azure AD 應用程式和服務主體](resource-group-create-service-principal-portal.md)的逐步指示。
 
 ### <a name="generating-an-access-token"></a>產生存取權杖
-Azure AD 的驗證方式是呼叫 tooAzure AD 中，位於 login.microsoftonline.com。tooauthenticate，您需要下列資訊 toohave hello:
+向外呼叫位於 login.microsoftonline.com 的 Azure AD，集合完成對 Azure AD 驗證。 若要驗證，您必須具有下列資訊︰
 
-* Azure AD 租用戶識別碼 （hello Azure AD 使用 toolog 中的名稱，通常 hello 與您的公司相同但並非必要）
-* （已取得 hello Azure AD 應用程式建立步驟期間） 的應用程式識別碼
-* 密碼 （您所選取建立 hello Azure AD 應用程式時）
+* Azure AD 租用戶識別碼 (您用來登入的 Azure AD 名稱，通常與您的公司名稱相同，但不一定如此)
+* 應用程式識別碼 (在 Azure AD 應用程式建立步驟期間取得)
+* 密碼 (在建立 Azure AD 應用程式時選取）
 
-在下列 HTTP 要求的 hello，請確定 tooreplace"Azure AD 租用戶識別碼"，"應用程式識別碼 」 和 「 密碼 」 及 hello 正確的值。
+在下列 HTTP 要求中，務必將 "Azure AD Tenant ID"、"Application ID" 和 "Password" 換成正確的值。
 
 **一般 HTTP 要求︰**
 
@@ -57,7 +57,7 @@ Content-Type: application/x-www-form-urlencoded
 grant_type=client_credentials&resource=https%3A%2F%2Fmanagement.core.windows.net%2F&client_id=<Application ID>&client_secret=<Password>
 ```
 
-...（如果驗證成功） 將導致回應類似 toohello 下列回應：
+... 將 (如果驗證成功) 產生類似下列的回應：
 
 ```json
 {
@@ -69,7 +69,7 @@ grant_type=client_credentials&resource=https%3A%2F%2Fmanagement.core.windows.net
   "access_token": "eyJ0eXAiOiJKV1QiLCJhb...86U3JI_0InPUk_lZqWvKiEWsayA"
 }
 ```
-（在前面回應 hello hello access_token 已縮短的 tooincrease 可讀性）
+(已縮短先前回應中的 access_token，以提高可讀性)
 
 **使用 Bash 產生存取權杖：**
 
@@ -84,16 +84,16 @@ Invoke-RestMethod -Uri https://login.microsoftonline.com/<Azure AD Tenant ID>/oa
  -Body @{"grant_type" = "client_credentials"; "resource" = "https://management.core.windows.net/"; "client_id" = "<application id>"; "client_secret" = "<password you selected for authentication>" }
 ```
 
-hello 回應包含存取權杖、 資訊多久該語彙基元有效，以及相關資訊的資源，您可以使用該語彙基元。
-您在上一個 HTTP 呼叫 hello 中收到 hello 存取權杖必須傳入的所有要求 toohello 資源管理員 API。 您可以將它當做 hello 值"Bearer YOUR_ACCESS_TOKEN"名為 「 授權 」 標頭值。 請注意"Bearer"和存取權杖的 hello 間距。
+此回應包含存取權杖、該權杖有效期間的相關資訊，以及您可以將該權杖用於哪項資源的相關資訊。
+您在先前 HTTP 呼叫中收到的存取權杖，必須傳給對 Resource Manager API 提出的所有要求。 您透過標頭值 "Authorization" 來傳遞它，值為 "Bearer YOUR_ACCESS_TOKEN"。 請注意 "Bearer" 與存取權杖之間的空格。
 
-您可以看到從 hello HTTP 結果上方，hello 權杖的有效期為特定的一段時間期間，您應該快取並重複使用該相同的語彙基元。 即使是針對每個應用程式開發介面呼叫 Azure AD 可能 tooauthenticate，將高效率不佳。
+從上面的 HTTP 結果可以看出，權杖在一段特定時間內保持有效，您在這段期間內應該快取並重複使用該相同權杖。 即使可以對 Azure AD 進行每個 API 呼叫的驗證，但是會很沒效率。
 
 ## <a name="calling-resource-manager-rest-apis"></a>呼叫 Resource Manager REST API
-本主題只會使用幾個應用程式開發介面 tooexplain hello 基本用法的 hello REST 作業。 如需所有 hello 作業的資訊，請參閱[Azure 資源管理員 REST Api](https://docs.microsoft.com/rest/api/resources/)。
+本主題只使用幾個 API 來說明 REST 作業的基本用法。 如需所有作業的相關資訊，請參閱 [Azure Resource Manager REST API](https://docs.microsoft.com/rest/api/resources/)。
 
 ### <a name="list-all-subscriptions"></a>列出所有訂用帳戶
-其中一個 hello 最簡單的作業，您可以為 toolist hello 可用訂用帳戶可以存取。 在 hello 下列要求，您會看到如何 hello 存取權杖以傳遞做為標頭：
+您可以執行的最簡單作業之一，就是列出您可以存取的可用訂用帳戶。 在以下要求中，您會看到如何以標頭形式傳入存取權杖：
 
 (以您實際的存取權杖取代 YOUR_ACCESS_TOKEN。)
 
@@ -104,7 +104,7 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 Content-Type: application/json
 ```
 
-...，如此一來，您以取得訂用帳戶的清單，允許此服務主體 tooaccess
+...因此，您會取得允許此服務主體存取的訂用帳戶清單
 
 (為了便於閱讀，已縮短訂用帳戶識別碼)
 
@@ -126,7 +126,7 @@ Content-Type: application/json
 ```
 
 ### <a name="list-all-resource-groups-in-a-specific-subscription"></a>列出特定訂用帳戶中的所有資源群組
-可用以 hello 資源管理員 Api 的所有資源都在資源群組巢都狀。 您可以使用下列 HTTP GET 要求的 hello 您訂用帳戶中現有的資源群組查詢資源管理員。 請注意如何 hello 訂用帳戶 ID 傳入 hello URL 的一部分此時間。
+適用於 Resource Manager API 的所有資源都放在資源群組中。 您可以使用下列 HTTP GET 要求，向 Resource Manager 查詢訂用帳戶中的現有資源群組。 這次，請注意訂用帳戶識別碼如何作為 URL 的一部分而傳入。
 
 (以實際的存取權杖和訂用帳戶識別碼取代 YOUR_ACCESS_TOKEN 和 SUBSCRIPTION_ID)
 
@@ -137,7 +137,7 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 Content-Type: application/json
 ```
 
-hello 您收到的回應取決於您是否有定義任何資源群組，如果是這樣，多少。
+您收到的回應取決於是否已定義任何資源群組以及群組數量 (若已定義)。
 
 (為了便於閱讀，已縮短訂用帳戶識別碼)
 
@@ -168,9 +168,9 @@ hello 您收到的回應取決於您是否有定義任何資源群組，如果�
 ```
 
 ### <a name="create-a-resource-group"></a>建立資源群組
-目前為止，我們已只被查詢 hello 資源管理員 Api 的資訊。 它是我們建立某些資源，並讓我們開始 hello 它們全部，資源群組的最簡單的時間。 hello 下列 HTTP 要求建立資源群組中 地區/您所選擇的位置，並將標記 tooit。
+到目前為止，我們只向 Resource Manager API 查詢資訊。 現在該建立某些資源，讓我們從最簡單的開始，也就是資源群組。 下列 HTTP 要求會在您選擇的區域/位置建立資源群組，並新增它的標籤。
 
-（取代 YOUR_ACCESS_TOKEN、 SUBSCRIPTION_ID、 RESOURCE_GROUP_NAME 您實際存取權杖、 訂用帳戶 ID 和名稱的 hello 想 toocreate 的資源群組）
+(以您實際的存取權杖、訂用帳戶識別碼和您要建立的資源群組名稱取代 YOUR_ACCESS_TOKEN、SUBSCRIPTION_ID、RESOURCE_GROUP_NAME)
 
 ```HTTP
 PUT /subscriptions/SUBSCRIPTION_ID/resourcegroups/RESOURCE_GROUP_NAME?api-version=2015-01-01 HTTP/1.1
@@ -186,7 +186,7 @@ Content-Type: application/json
 }
 ```
 
-如果成功，會產生下列回應類似 toohello 的回應：
+如果成功，您會收到類似下列的回應：
 
 ```json
 {
@@ -204,14 +204,14 @@ Content-Type: application/json
 
 您已在 Azure 中成功建立資源群組。 恭喜！
 
-### <a name="deploy-resources-tooa-resource-group-using-a-resource-manager-template"></a>部署資源 tooa 資源群組使用資源管理員範本
-Resource Manager 可讓您使用範本來部署資源。 範本定義數個資源及其相依性。 本節中，我們假設您熟悉資源管理員範本和我們剛為您示範如何 toomake hello API 呼叫 toostart 部署。 如需有關建構範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
+### <a name="deploy-resources-to-a-resource-group-using-a-resource-manager-template"></a>使用 Resource Manager 範本將資源部署至資源群組
+Resource Manager 可讓您使用範本來部署資源。 範本定義數個資源及其相依性。 在本節中，我們假設您熟悉 Resource Manager 範本，我們只示範如何進行 API 呼叫以開始部署。 如需有關建構範本的詳細資訊，請參閱[編寫 Azure Resource Manager 範本](resource-group-authoring-templates.md)。
 
-部署範本不會與不同多 toohow 呼叫其他應用程式開發介面。 較特別的是部署範本可能需要很長的時間。 hello API 呼叫只會傳回，也可以 tooyou 為開發人員 tooquery 狀態為 hello 部署 toofind 出 hello 部署完成。 如需詳細資訊，請參閱[追蹤非同步 Azure 作業](resource-manager-async-operations.md)。
+部署範本和呼叫其他 API 沒有多大差異。 較特別的是部署範本可能需要很長的時間。 API 呼叫只是傳回資料，身為開發人員的您要負責查詢部署的狀態，以查明部署何時完成。 如需詳細資訊，請參閱[追蹤非同步 Azure 作業](resource-manager-async-operations.md)。
 
-在此範例中，我們使用 [GitHub](https://github.com/Azure/azure-quickstart-templates) 上提供的公開範本。 我們使用 hello 範本部署 Linux VM toohello 美國西部地區。 即使這個範例會使用公用等 GitHub 儲存機制中可用的範本，您可以改為傳遞 hello 完整範本，為 hello 要求的一部分。 請注意，我們提供了 hello 內所使用的參數值在 hello 要求部署範本。
+在此範例中，我們使用 [GitHub](https://github.com/Azure/azure-quickstart-templates) 上提供的公開範本。 我們使用的範本會將 Linux VM 部署至美國西部區域。 雖然此範例使用 GitHub 等公開存放庫中提供的範本，您還是可以在要求中傳遞完整範本。 請注意，我們在要求中提供的參數值會用在部署的範本內。
 
-（取代 SUBSCRIPTION_ID、 RESOURCE_GROUP_NAME、 DEPLOYMENT_NAME、 YOUR_ACCESS_TOKEN、 GLOBALY_UNIQUE_STORAGE_ACCOUNT_NAME、 ADMIN_USER_NAME、 ADMIN_PASSWORD 和 DNS_NAME_FOR_PUBLIC_IP toovalues 適用於您的要求）
+(將 SUBSCRIPTION_ID、RESOURCE_GROUP_NAME、DEPLOYMENT_NAME、YOUR_ACCESS_TOKEN、GLOBALY_UNIQUE_STORAGE_ACCOUNT_NAME、ADMIN_USER_NAME、ADMIN_PASSWORD 和 DNS_NAME_FOR_PUBLIC_IP 換成適合要求的值)
 
 ```HTTP
 PUT /subscriptions/SUBSCRIPTION_ID/resourcegroups/RESOURCE_GROUP_NAME/providers/microsoft.resources/deployments/DEPLOYMENT_NAME?api-version=2015-01-01 HTTP/1.1
@@ -247,8 +247,8 @@ Content-Type: application/json
 }
 ```
 
-hello 長 JSON 回應此要求已省略的 tooimprove 可讀性，這份文件。 hello 回應會包含您所建立的 hello 樣板化部署的相關資訊。
+為了提高本文件的可讀性，已省略此要求較長的 JSON 回應。 回應會包含您建立之樣板化部署的相關資訊。
 
 ## <a name="next-steps"></a>後續步驟
 
-- toolearn 有關處理非同步 REST 作業，請參閱[追蹤非同步的 Azure 作業](resource-manager-async-operations.md)。
+- 若要了解處理非同步 REST 作業，請參閱[追蹤非同步 Azure 作業](resource-manager-async-operations.md)。

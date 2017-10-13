@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure SQL Database 出 aaaScaling |Microsoft 文件"
-description: "軟體即服務 (SaaS) 開發人員可以輕鬆地建立彈性、 可擴充的資料庫中 hello 雲端使用這些工具"
+title: "使用 Azure SQL Database 相應放大 | Microsoft Docs"
+description: "軟體即服務 (SaaS) 開發人員可以輕鬆地使用這些工具在雲端中建立彈性的可擴充資料庫"
 services: sql-database
 documentationcenter: 
 manager: jhubbard
@@ -15,85 +15,85 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/06/2016
 ms.author: ddove
-ms.openlocfilehash: 82a561e07389d8619727a540fa9424248c087eda
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5bb6d17ffd047ae91476c52750f293414d1dfdd5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="scaling-out-with-azure-sql-database"></a>使用 Azure SQL Database 相應放大
-您可以輕鬆地向外擴充 Azure SQL database 使用 hello**彈性資料庫**工具。 這些工具和功能可讓您使用 hello 幾乎不受限制資料庫的資源**Azure SQL Database** toocreate 解決方案交易式工作負載，以及特別是軟體即服務 (SaaS) 應用程式。 彈性資料庫功能所組成 hello 下列：
+您可以使用 **彈性資料庫** 工具，輕鬆地向外擴充 Azure SQL 資料庫。 這些工具和功能可讓您使用 **Azure SQL Database** 中幾乎不受限制的資料庫資源，建立交易式工作負載的解決方案，尤其是軟體即服務 (SaaS) 應用程式。 彈性資料庫功能的組成如下：
 
-* [彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md): hello 用戶端程式庫是一項功能，可讓您 toocreate 和維護分區化資料庫。  請參閱 [開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)。
-* [彈性資料庫分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md)︰在分區化資料庫之間移動資料。 這可用於將資料從多租用戶資料庫 tooa 單一租用戶資料庫 （或反之亦然）。 請參閱 [彈性資料庫分割合併工具教學課程](sql-database-elastic-scale-configure-deploy-split-and-merge.md)。
-* [彈性資料庫工作](sql-database-elastic-jobs-overview.md)（預覽）： 使用工作 toomanage 大量的 Azure SQL 資料庫。 輕鬆執行系統管理作業，例如結構描述變更、認證管理、參考資料更新、效能資料收集，或使用工作的租用戶 (客戶) 遙測收集。
-* [彈性資料庫查詢](sql-database-elastic-query-overview.md)（預覽）： 可讓您跨越多個資料庫的 toorun Transact SQL 查詢。 這可讓連線 tooreporting 工具，例如 Excel、 power Bi、 Tableau 等等。
-* [彈性交易](sql-database-elastic-transactions-overview.md)： 這項功能可讓您跨越 Azure SQL Database 中的多個資料庫的 toorun 交易。 彈性資料庫交易適用於.NET 應用程式使用 ADO.NET 和整合與 hello 熟悉的程式設計體驗使用 hello [System.Transaction 類別](https://msdn.microsoft.com/library/system.transactions.aspx)。
+* [E彈性資料庫用戶端資料庫](sql-database-elastic-database-client-library.md)：用戶端資料庫這項功能可允許您建立和維護分化資料庫。  請參閱 [開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)。
+* [彈性資料庫分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md)︰在分區化資料庫之間移動資料。 在將資料從多租用戶資料庫移到單一租用戶資料庫 (或相反)，時，此工具十分實用。 請參閱 [彈性資料庫分割合併工具教學課程](sql-database-elastic-scale-configure-deploy-split-and-merge.md)。
+* [彈性資料庫工作](sql-database-elastic-jobs-overview.md) (預覽)：使用工作來管理大量的 Azure SQL 資料庫。 輕鬆執行系統管理作業，例如結構描述變更、認證管理、參考資料更新、效能資料收集，或使用工作的租用戶 (客戶) 遙測收集。
+* [彈性資料庫查詢](sql-database-elastic-query-overview.md) (預覽)：可讓您跨多個 Azure SQL 資料庫執行 Transact-SQL 查詢。 這可讓您連接至報告工具，例如 Excel、PowerBI、Tableau 等等。
+* [彈性交易](sql-database-elastic-transactions-overview.md)︰這項功能可讓您在 Azure SQL Database 中跨多個資料庫執行交易。 彈性資料庫交易適用於使用 ADO .NET 的 .NET 應用程式，而且與以往熟悉使用 [System.Transaction](https://msdn.microsoft.com/library/system.transactions.aspx)類別的程式設計經驗整合。
 
-hello 下圖顯示架構，其中包括 hello**彈性資料庫功能**關聯 tooa 集合的資料庫中。
+下圖顯示的架構包含與資料庫集合有關的 **彈性資料庫功能** 。
 
-此圖中的 hello 資料庫色彩表示結構描述。 資料庫與 hello 相同的色彩共用 hello 相同的結構描述。
+此圖中，資料庫色彩代表結構描述。 相同色彩的資料庫共用相同的結構描述。
 
 1. 一組 **Azure SQL 資料庫** 使用分區化架構裝載於 Azure 中。
-2. hello**彈性資料庫用戶端程式庫**設定使用的 toomanage 分區。
-3. Hello 資料庫子集會放入**彈性集區**。 (請參閱 [何謂集區？](sql-database-elastic-pool.md))。
+2. **彈性資料庫用戶端程式庫** 用來管理分區集。
+3. 一個資料庫子集被放入「彈性集區」中。 (請參閱 [何謂集區？](sql-database-elastic-pool.md))。
 4. **彈性資料庫工作** 會針對所有資料庫執行排定的或 ad-hoc T-SQL 指令碼。
-5. hello**分割合併工具**是從一個分區 tooanother 使用的 toomove 資料。
-6. hello**彈性資料庫查詢**可讓您 toowrite 跨越 hello 分區集內的所有資料庫的查詢。
-7. **彈性交易**可讓您跨越多個資料庫的 toorun 交易。 
+5. **分割合併工具** 用來將資料移到另一個的分區。
+6. **彈性資料庫查詢** 可讓您撰寫一個跨分區集所有資料庫的查詢。
+7. **彈性交易** 可讓您多個資料庫執行交易。 
 
 ![彈性資料庫工具][1]
 
-## <a name="why-use-hello-tools"></a>為何要使用 hello 工具？
+## <a name="why-use-the-tools"></a>為何要使用這些工具？
 已簡單達成雲端應用程式在 VM和 Blob 儲存體方面的彈性和縮放 -- 增加或減少單位，或增加電源即可。 但對於關聯式資料庫中可設定狀態的資料處理，仍然是個挑戰。 在這些情況下出現的挑戰：
 
-* 擴充和縮減容量 hello 關聯式資料庫工作負載的一部分。
+* 針對工作負載的關聯式資料庫部分放大和縮小容量。
 * 管理可能會影響特定資料子集的作用區 - 例如特別忙碌的終端客戶 (租用戶)。
 
-傳統上，這類案例已經解決的投資大規模的資料庫伺服器 toosupport hello 應用程式中。 不過，此選項會受到限制，其中的所有處理都發生在預先定義的商用硬體的 hello 雲端中。 相反地，將資料散發和程序跨越多個具有相同結構化的資料庫 （向外延展模式又稱為 「 分區化 」） 提供替代 tootraditional 成本和彈性方面的向上延展方法。
+傳統上，要解決這類情況，都是經由投資更大型的資料庫伺服器來支援應用程式。 不過，此選項在雲端有其限制，因為所有處理都發生在預先定義的商用硬體上。 相反地，將資料和處理分散至許多相同結構的資料庫 (一種稱為「分區化」的相應放大模式)，不論在成本或彈性上，都是超越傳統相應增加方法的另一種選擇。
 
 ## <a name="horizontal-and-vertical-scaling"></a>水平和垂直縮放
-hello 圖會顯示 hello 這種 hello 基本 hello 彈性資料庫可以調整水平和垂直維度的縮放比例。
+下圖顯示縮放的水平和垂直面向，也是彈性資料庫的基本縮放方法。
 
 ![水平與垂直相應放大][2]
 
-水平調整指的是 tooadding 或移除資料庫中順序 tooadjust 容量或整體效能。 這也稱為「相應放大」。 分區化中，資料分割之間的結構都完全相同的資料庫集合是常見的方式 tooimplement 水平縮放比例。  
+水平縮放是指加入或移除資料庫來調整容量或整體效能。 這也稱為「相應放大」。 分區化是常用的水平縮放實作方法，主要是將資料分割到結構相同的一組資料庫上。  
 
-垂直縮放比例是指 tooincreasing 或減少 hello 的個別資料庫的效能層級，這也稱為 「 向上擴充。 」
+垂直縮放是指增加或減少個別資料庫的效能層級，這也稱為「相應增加」。
 
-大部分雲端級別的資料庫應用程式都採用這些兩種策略的組合。 例如，軟體即服務應用程式可能使用水平縮放 tooprovision 新客戶] 和 [垂直調整 tooallow 每個結束-客戶資料庫 toogrow 或壓縮資源所 hello 工作負載。
+大部分雲端級別的資料庫應用程式都採用這些兩種策略的組合。 比方說，軟體即服務應用程式可能使用水平擴充來供應終端客戶，使用垂直縮放來允許每個終端客戶的資料庫隨工作負載所需而擴大或縮減資源。
 
-* 水平延展使用 hello 管理[彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)。
-* 垂直縮放比例會藉由 Azure PowerShell cmdlet toochange hello 服務層，或將資料庫放在彈性集區。
+* 水平縮放是透過 [彈性資料庫用戶端程式庫](sql-database-elastic-database-client-library.md)來管理。
+* 垂直縮放是透過 Azure PowerShell Cmdlet 變更服務層，或將資料庫放入彈性集區中來達成。
 
 ## <a name="sharding"></a>分區化
-*分區化*跨多個獨立的資料庫是技術 toodistribute 大量的相同結構化資料。 為一般客戶或企業建立軟體即服務 (SAAS) 供應項目的開發人員尤其愛用。 這些客戶通常會參考的 tooas 「 租用 」。 需要使用分區化可能有各種原因：  
+*分區化* 是一種將大量相同結構的資料分散在許多獨立資料庫的技術。 為一般客戶或企業建立軟體即服務 (SAAS) 供應項目的開發人員尤其愛用。 這些一般客戶通常稱為「租用戶」。 需要使用分區化可能有各種原因：  
 
-* hello 的資料量總計是太大 toofit hello 條件約束的單一資料庫內
-* hello 交易輸送量的 hello 整體工作負載超過單一資料庫的 hello 功能
+* 資料總量太大而超出單一資料庫的條件約束
+* 整體工作負載的交易輸送量超過單一資料庫的能力
 * 租用戶可能需要彼此實際隔離，因此每個租用戶需要個別的資料庫
-* 資料庫的各區段可能需要 tooreside 中不同的地理位置的相容性、 效能或地理政治的原因。
+* 基於規範、效能或地理政治的理由，資料庫的不同區段可能需要位於不同的地理位置。
 
-在其他案例，例如擷取的資料，並從分散式裝置分區化可能會使用的 toofill 一組會組織在暫時的資料庫。 例如，個別的資料庫可以專門 tooeach 天或週。 在此情況下，hello 分區化索引鍵可以是整數代表 hello 日期 （若出現在 hello 分區化資料表的所有資料列） 和擷取日期範圍內的資訊的查詢必須路由傳送的 hello 應用程式 toohello 涵蓋 hello 範圍中的資料庫子集問題。
+在其他情況下，例如從分散式裝置擷取資料，分區化可用於填滿一組暫時組織的資料庫。 例如，一個不同的資料庫可專供每日或每週使用。 在此情況下，分區化索引鍵可以是表示日期的整數 (出現在分區化資料表的所有資料列)，而擷取日期範圍資訊的查詢，必須由應用程式遞送至涵蓋相關範圍的資料庫子集。
 
-分區化最適合應用程式中的每筆交易可以限制的 tooa 單一分區化索引鍵的值。 這可確保所有交易都可本機 tooa 特定資料庫。
+當應用程式中的每一筆交易可以限制為單一分區化索引鍵的單一值時，分區化表現最佳。 這可確保所有交易都在特定資料庫的範圍內發生。
 
 ## <a name="multi-tenant-and-single-tenant"></a>多租用戶和單一租用戶
-有些應用程式會使用每個租用戶建立不同的資料庫中的 hello 最簡單的方式。 這是 hello**單一租用戶分區化模式**，提供隔離、 備份/還原功能與調整 hello hello 租用戶的資料粒度的資源。 單一租用戶分區化中，每個資料庫都與特定租用戶識別碼值 （或客戶的機碼值），但該金鑰需要不一定會出現在 hello 資料本身。 它是 hello 應用程式的責任 tooroute 每個要求 toohello 適當的資料庫-和 hello 用戶端程式庫可簡化這行。
+有些應用程式採用最簡單的方法，為每個租用戶建立個別的資料庫。 這就是 **單一租用戶分區化模式** ，在租用戶的細微層級上提供隔離、備份/還原能力和資源縮放。 使用單一租用戶分區化時，每個資料庫與特定的租用戶識別碼值 (或客戶索引鍵值) 相關聯，但該索引鍵不一定出現在資料本身。 應用程式必須負責將每個要求遞送至適當的資料庫 - 用戶端程式庫可以簡化此工作。
 
 ![單一租用戶與多租用戶][4]
 
-其他案例將多個租用戶一起放入資料庫中，而不是將它們隔離至個別的資料庫。 這是一般**多租用戶分區化模式**-和它可能會驅動應用程式管理大量的非常小的租用戶的 hello 事實。 在多租用戶分區化中，hello hello 資料庫資料表中的資料列會是所有設計 toocarry 找出 hello 租用戶識別碼或分區化索引鍵的索引鍵。 同樣地，hello 應用程式層會負責路由租用戶的要求 toohello 適當的資料庫，並支援此 hello 彈性資料庫用戶端程式庫。 此外，資料列層級安全性可以是資料列可以存取的每個租用戶-如需詳細資訊，請參閱 < 使用的 toofilter[多租用戶應用程式的彈性資料庫工具和資料列層級安全性](sql-database-elastic-tools-multi-tenant-row-level-security.md)。 轉散發資料庫之間的資料時可能需要與 hello 多租用戶分區化模式，而且這透過實現 hello 彈性資料庫分割合併工具。 toolearn 有關使用彈性集區，SaaS 應用程式的設計模式的詳細資訊請參閱[設計模式為多租用戶 SaaS 應用程式使用 Azure SQL Database](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
+其他案例將多個租用戶一起放入資料庫中，而不是將它們隔離至個別的資料庫。 這就是典型的**多租用戶分區化模式** - 這可能是因為應用程式管理大量非常小的租用戶所致。 在多租用戶分區化中，資料庫資料表中的資料列都設計成具有索引鍵 (識別租用戶識別碼) 或分區化索引鍵。 同樣地，應用程式層負責將租用戶的要求遞送至適當的資料庫，而彈性資料庫用戶端程式庫支援此功能。 此外，資料列層級安全性可用來篩選每個租用戶可以存取的資料列 - 如需詳細資訊，請參閱[使用彈性資料庫工具和資料列層級安全性的多租用戶應用程式](sql-database-elastic-tools-multi-tenant-row-level-security.md)。 多租用戶分區化模式可能需要在資料庫之間重新分配資料，而彈性資料庫分割合併工具可協助達成此工作。 若要深入了解使用彈性集區的 SaaS 應用程式的設計模式，請參閱 [多租用戶 SaaS 應用程式與 Azure SQL Database 的設計模式](sql-database-design-patterns-multi-tenancy-saas-applications.md)。
 
-### <a name="move-data-from-multiple-toosingle-tenancy-databases"></a>將資料從多個 toosingle 租用戶資料庫移動
-在建立 SaaS 應用程式，最好是一般 toooffer 潛在客戶試用版的 hello 軟體。 在此情況下，它是符合成本效益 toouse hello 資料的多租用戶資料庫。 不過，當潛在客戶變成真正客戶時，單一租用戶資料庫就比較好，因為提供更好的效能。 如果 hello 客戶 hello 試用期間建立的資料，使用 hello[分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md)toomove hello 多租用戶 toohello 新單一租用戶資料庫中的 hello 資料。
+### <a name="move-data-from-multiple-to-single-tenancy-databases"></a>將資料從多租用戶資料庫移到單一租用戶資料庫
+當建立 SaaS 應用程式時，通常會提供試用版軟體給潛在客戶。 在此情況下，使用多租用戶資料庫來處理資料較符合成本效益。 不過，當潛在客戶變成真正客戶時，單一租用戶資料庫就比較好，因為提供更好的效能。 如果客戶已在試用期間建立資料，請使用 [分割合併工具](sql-database-elastic-scale-overview-split-and-merge.md) ，將資料從多租用戶資料庫移到新的單一租用戶資料庫。
 
 ## <a name="next-steps"></a>後續步驟
-範例應用程式，示範 hello 用戶端程式庫，請參閱[彈性資料庫 tools 快速入門](sql-database-elastic-scale-get-started.md)。
+如需示範用戶端程式庫的範例應用程式，請參閱 [開始使用彈性資料庫工具](sql-database-elastic-scale-get-started.md)。
 
-tooconvert 現有資料庫 toouse hello 工具，請參閱[移轉現有的資料庫 tooscale 外](sql-database-elastic-convert-to-use-elastic-tools.md)。
+若要將現有的資料庫轉換為使用該工具，請參閱 [移轉現有的資料庫以相應放大](sql-database-elastic-convert-to-use-elastic-tools.md)。
 
-toosee hello 細節 hello 彈性集區，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool.md)，或建立新的集區與[彈性集區](sql-database-elastic-pool-manage-portal.md)。  
+若要查看彈性集區的細節，請參閱[彈性集區的價格和效能考量](sql-database-elastic-pool.md)，或使用[彈性集區](sql-database-elastic-pool-manage-portal.md)來建立新的集區。  
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

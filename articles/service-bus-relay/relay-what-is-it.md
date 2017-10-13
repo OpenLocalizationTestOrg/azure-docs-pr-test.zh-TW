@@ -1,5 +1,5 @@
 ---
-title: "aaaWhat 是 Azure 轉送和為什麼使用概觀 |Microsoft 文件"
+title: "什麼是 Azure 轉送和為什麼使用的概觀 | Microsoft Docs"
 description: "Azure 轉送的概觀"
 services: service-bus-relay
 documentationcenter: .net
@@ -14,28 +14,28 @@ ms.devlang: multiple
 ms.topic: get-started-article
 ms.date: 08/23/2017
 ms.author: sethm
-ms.openlocfilehash: 4cfd77048210a435c446b908b7896737cad0edbf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 77ee85db0bcc701514a1a98da9405a79d658d49d
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="what-is-azure-relay"></a>什麼是 Azure 轉送？
 
-hello Azure 轉送服務可方便您混合式應用程式藉由啟用您 toosecurely 公開 （expose） 服務，位於公司的企業網路 toohello 公用雲端，而不需要 tooopen 防火牆連線，或需要具侵入性變更 tooa公司網路基礎結構。 轉送支援各種不同的傳輸通訊協定和 Web 服務標準。
+Azure 轉送服務可執行混合式應用程式，方法是讓您以安全的方式向公用雲端公開位於企業網路內部的服務，而無需開啟防火牆連線或要求對企業網路基礎結構的進行侵入式變更。 轉送支援各種不同的傳輸通訊協定和 Web 服務標準。
 
-hello 轉送服務支援傳統單向、 要求/回應，以及對等流量。 它也支援網際網路領域 tooenable 發行/訂閱案例和雙向通訊端通訊上的事件發佈，以提高的點對點效率。 
+轉送服務支援傳統的單向、要求/回應以及對等式流量。 它也支援網際網路範圍內的事件散發，以啟用發佈/訂閱案例和雙向通訊端通訊來提高點對點效率。 
 
-在 hello 轉送資料的傳輸模式，在內部部署服務會 toohello 轉送服務連接透過輸出連接埠，並建立繫結的通訊 tooa 特定會合位址的雙向通訊端。 然後 hello 用戶端可以與 hello 在內部部署服務上通訊，藉由傳送 hello 會合位址為目標的流量 toohello 轉送服務。 hello 轉送服務然後 「 轉送 」 資料 toohello 在內部部署服務，透過雙向通訊端專用的 tooeach 用戶端。 hello 用戶端不需要直接連線 toohello 在內部部署服務，就不需要的 tooknow hello 服務位於何處，而且 hello 在內部部署服務並不需要任何輸入連接埠 hello 防火牆上開啟。
+在轉送的資料傳輸模式中，內部部署服務會透過輸出連接埠連接到轉送服務，並且針對繫結至特定聚合位址的通訊建立雙向通訊端。 用戶端接著可將流量傳送至以會合位址為目標的轉送服務，藉此與內部部署服務通訊。 轉送服務接著會透過每個用戶端專用的雙向通訊端，將資料「轉送」至內部部署服務。 用戶端不需要直接連線到內部部署服務，不需要知道服務所在的位置，而且內部部署服務不需要在防火牆上開啟任何輸入連接埠。
 
-hello 金鑰功能所轉送提供雙向、 緩衝通訊跨網路界限與 TCP 類似的節流設定、 端點的探索、 連線狀態，並依據項目重疊端點安全性。 hello 轉送功能，如 VPN 的網路層級整合技術的不同，該轉送中可能會在單一電腦上已設定領域的 tooa 單一應用程式端點 VPN 技術時更具侵入性因為它是倚賴改變 hello 網路環境.
+轉送所提供的重要功能元素是利用類似 TCP 的節流、端點探索、連線狀態和重疊端點安全性，進行跨越網路界限且未經緩衝處理的雙向通訊。 轉送功能與網路層級整合技術 (例如 VPN) 不同，轉送的範圍可以限定於單一電腦上的單一應用程式端點，而 VPN 技術則比較屬於侵入式，因為其依賴於改變網路環境。
 
 Azure 轉送有兩項功能︰
 
-1. [混合式連線](#hybrid-connections)-啟用多平台案例的使用 hello 開啟標準 web 通訊端。
-2. [WCF 轉送](#wcf-relays)-使用 Windows Communication Foundation (WCF) tooenable 遠端程序呼叫。 WCF 轉送是 hello 舊版轉送提供許多客戶已經使用其 WCF 程式設計模型。
+1. [混合式連線](#hybrid-connections) - 使用開放式標準 Web 通訊端來啟用多平台案例。
+2. [WCF 轉送](#wcf-relays) - 使用 Windows Communication Foundation (WCF) 來啟用遠端程序呼叫。 WCF 轉送是舊版的轉送服務，許多客戶已將該服務用於其 WCF 程式設計模型。
 
-混合式連線和 WCF 轉送可讓公司的企業網路中存在的安全連線 tooassets。 Hello 下表中所述，使用其他 hello 哪一個是取決於您的特定需求：
+混合式連線和 WCF 轉送都能夠對存在於企業網路內的資產進行安全的連線。 視您的特定需求使用其中一項功能，詳述於下表︰
 
 |  | WCF 轉送 | 混合式連線 |
 | --- |:---:|:---:|
@@ -48,20 +48,20 @@ Azure 轉送有兩項功能︰
 
 ## <a name="hybrid-connections"></a>混合式連線
 
-hello [Azure 轉送混合式連線](relay-hybrid-connections-protocol.md)功能是安全、 開放通訊協定的演進 hello 現有的轉送功能，可以在任何平台上，並具備基本的 WebSocket 功能，任何語言中實作的明確包含常用的 web 瀏覽器中的 hello WebSocket API。 混合式連線是以 HTTP 和 Websocket 為基礎。
+[Azure 轉送混合式連線](relay-hybrid-connections-protocol.md)功能是現有轉送功能的安全、開放式通訊協定演化，可以在任何平台上以任何具有基本 WebSocket 功能的語言實作，而基本 WebSocket 功能會明確地將 WebSocket API 納入一般網頁瀏覽器中。 混合式連線是以 HTTP 和 Websocket 為基礎。
 
 ### <a name="service-history"></a>服務歷程記錄
 
-混合式連線取代了 hello 前者，同樣名為建置 hello Azure 服務匯流排的 WCF 轉送的 「 BizTalk 服務 」 功能。 hello 新混合式連接的功能，補充 hello 現有的 WCF 轉送功能，而這些兩個服務的功能存在 hello Azure 轉送服務並存。 它們共用通用的閘道，但有不同的實作方式。
+「混合式連線」會取代先前的功能，該功能同樣名為「BizTalk 服務」功能且建置於 Azure 服務匯流排 WCF 轉送。 新的混合式連線功能可補充現有的 WCF 轉送功能，而這兩個服務功能會並存於 Azure 轉送服務中。 它們共用通用的閘道，但有不同的實作方式。
 
 ## <a name="wcf-relays"></a>WCF 轉送
 
-hello WCF 轉送適用於 hello 完整.NET Framework (NETFX) 和 wcf。 您起始 hello 在內部部署服務與使用 WCF 「 轉送 」 繫結套件 hello 轉送服務之間的連線。 Hello 幕後 hello 轉送繫結對應 toonew 傳輸繫結項目設計 toocreate WCF 通道元件與 hello 雲端中的服務匯流排整合。
+WCF 轉送適用於完整的 .NET Framework (NETFX) 和 WCF。 您在內部部署服務與使用一組 WCF「轉送」繫結的轉送服務之間起始連線。 在幕後，轉送繫結會對應至新的傳輸繫結元素，其設計來建立與雲端中服務匯流排整合的 WCF 通道元件。
 
 ## <a name="architecture-processing-of-incoming-relay-requests"></a>架構：處理內送轉送要求
-當用戶端傳送要求 toohello [Azure 轉送](/azure/service-bus-relay/)hello Azure 負載平衡器服務將其路由傳送的 hello 閘道節點 tooany。 如果 hello 要求是接聽的要求，hello 的 gateway 節點會建立新的轉送。 如果連線要求 tooa 特定轉送 hello 要求，hello 的 gateway 節點會轉送 hello 連線要求 toohello 閘道節點擁有 hello 轉送。 hello 閘道節點擁有 hello 轉送傳送 rendezvous 要求 toohello 接聽用戶端，要求 hello 接聽程式 toocreate 暫時通道 toohello 閘道節點已收到 hello 連線要求。
+當用戶端傳送要求至 [Azure 轉送](/azure/service-bus-relay/)服務時，Azure Load Balancer 會將其路由到任何一個閘道器節點。 如果要求為接聽要求，閘道器節點會建立新的轉送。 如果要求為特定轉送的連線要求，閘道器節點會轉送連線要求給擁有轉送的閘道器節點。 擁有轉送的閘道器節點會傳送會合要求到接聽用戶端，要求接聽程式建立接收連線要求的閘道器節點的暫時通道。
 
-建立 hello 轉送連線時，hello 用戶端可以交換訊息，透過用於 hello rendezvous hello 閘道節點。
+建立轉送連線時，用戶端可以透過用來會合的閘道節點交換訊息。
 
 ![處理內送 WCF 轉送要求](./media/relay-what-is-it/ic690645.png)
 

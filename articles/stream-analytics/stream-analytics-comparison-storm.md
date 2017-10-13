@@ -1,6 +1,6 @@
 ---
-title: "分析平台： Apache Storm 比較 tooStream 分析 |Microsoft 文件"
-description: "取得使用 Apache Storm 比較 tooStream 分析選擇雲端分析平台的指引。 了解功能和差異。"
+title: "分析平台：Apache Storm 與串流分析之間的比較 | Microsoft Docs"
+description: "本文將使用 Apache Storm 與串流分析之間的比較，提供您選擇雲端分析平台的指引。 了解功能和差異。"
 keywords: "分析平台, 分析平台, 雲端分析平台, storm 比較"
 services: stream-analytics
 documentationcenter: 
@@ -15,16 +15,16 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/27/2017
 ms.author: samacha
-ms.openlocfilehash: 5a0ec5b2439596f0da962f04b776472031660062
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 97044cb5d7b0b3fcb3b85328df618a265bc59b61
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="choosing-a-streaming-analytics-platform-comparing-apache-storm-and-azure-stream-analytics"></a>選擇串流分析平台：比較 Apache Storm 與 Azure 串流分析
-Azure 提供多種解決方案來分析串流資料：[Azure 串流分析](https://docs.microsoft.com/azure/stream-analytics/)和 [Azure HDInsight 上的 Apache Storm](https://azure.microsoft.com/services/hdinsight/apache-storm/)。 這兩個分析平台提供 hello PaaS 解決方案的優點。 但 hello 平台都有一些顯著的差異，功能也如同您設定和管理它們的方式。 
+Azure 提供多種解決方案來分析串流資料：[Azure 串流分析](https://docs.microsoft.com/azure/stream-analytics/)和 [Azure HDInsight 上的 Apache Storm](https://azure.microsoft.com/services/hdinsight/apache-storm/)。 這兩個分析平台提供 PaaS 解決方案的優點。 但這兩個平台的功能及設定和管理方式有一些顯著的差異。 
 
-本文章提供您選擇 Apache Storm 或 Azure Stream Analytics 中做為雲端分析平台功能 toohelp 來並行比較。 
+本文將功能對照比較，協助您選擇 Apache Storm 或 Azure 串流分析作為雲端分析平台。 
 
 ## <a name="general-features"></a>一般功能
 
@@ -121,14 +121,14 @@ Azure 提供多種解決方案來分析串流資料：[Azure 串流分析](https
             </td>
             <td width="204" valign="top">
                 <p>
-價格所處理的資料量，且 hello 數目的資料流單位需要每小時 hello 工作正在執行。 
+依處理的資料量和作業執行每小時所需的串流單位數量來計價。 
                 </p>
                     <p>如需詳細資訊，請參閱<a href="http://azure.microsoft.com/pricing/details/stream-analytics/">串流分析定價</a>。</p>
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-購買 hello 單位是以叢集為基礎，而且會負責根據準時 hello hello 叢集正在執行，獨立於部署的工作。
+購買的單位是根據叢集，收費是根據叢集執行的時間，與部署的作業無關。
                 </p>
                 <p>
 如需詳細資訊，請參閱 <a href="http://azure.microsoft.com/pricing/details/hdinsight/">HDInsight 定價</a>。
@@ -189,7 +189,7 @@ Azure 提供多種解決方案來分析串流資料：[Azure 串流分析](https
             </td>
             <td width="246" valign="top">
                 <p>
-必須實作 hello 使用者暫時運算子。
+時態性運算子必須由使用者實作。
                 </p>
             </td>
         </tr>
@@ -201,12 +201,12 @@ Azure 提供多種解決方案來分析串流資料：[Azure 串流分析](https
             </td>
             <td width="204" valign="top">
                 <p>
-使用者可以建立、 偵錯和監視 hello Azure 入口網站中的工作使用衍生自即時資料流的範例資料。
+使用者可以透過 Azure 入口網站，使用衍生自即時資料流的範例資料來建立、偵錯和監視作業。
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-使用 .NET 使用者可以透過 Visual Studio 來開發、偵錯和監視。 使用 Java 或其他語言的使用者可以使用自己選擇的 IDE hello。
+使用 .NET 使用者可以透過 Visual Studio 來開發、偵錯和監視。 使用 Java 或其他語言的使用者可以使用自己選擇的 IDE。
                 </p>
             </td>
         </tr>
@@ -218,12 +218,12 @@ Azure 提供多種解決方案來分析串流資料：[Azure 串流分析](https
             </td>
             <td width="204" valign="top">
                 <p>
-基本的工作狀態和操作記錄檔的可用 toohelp 偵錯。 目前資料流分析不會讓使用者指定內容量納入 hello 記錄檔 （亦即，詳細資訊模式）。
+有基本的作業狀態和作業記錄可協助偵錯。 串流分析目前不允許使用者指定將什麼內容或多少內容包括在記錄中 (亦即，詳細資訊模式)。
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-有詳細的記錄可用。 使用者可以存取 Visual Studio 中或 toohello 叢集中的記錄，並直接存取 hello 記錄檔的記錄檔。
+有詳細的記錄可用。 使用可以在 Visual Studio 中存取記錄，或登入叢集並直接存取記錄。
                 </p>
             </td>
         </tr>
@@ -388,7 +388,7 @@ Azure 入口網站、PowerShell、Visual Studio 和 REST API。
             </td>
             <td width="246" valign="top">
                 <p>
-監視使用實作 hello Storm UI 和 REST Api。
+使用者可使用 Storm UI 和 REST API 實作監視。
                 </p>
             </td>
         </tr>
@@ -400,12 +400,12 @@ Azure 入口網站、PowerShell、Visual Studio 和 REST API。
             </td>
             <td width="204" valign="top">
                 <p>
-延展性取決於 hello Streaming Units 數目 (SUs) 為每個工作。 每個資料流處理單位 too1 總 MB/秒，使用處理最多 50 個單位。 如需詳細資訊，請參閱<a href="https://docs.microsoft.com/azure/stream-analytics/stream-analytics-scale-jobs">標尺 tooincrease 輸送量</a>。
+延展性取決於每個作業的串流單位 (SU) 數目。 每個串流單位每秒最多可處理 1 MB，最多可使用 50 個單位。 如需詳細資訊，請參閱<a href="https://docs.microsoft.com/azure/stream-analytics/stream-analytics-scale-jobs">調整規模以增加輸送量</a>。
                 </p>
             </td>
             <td width="246" valign="top">
                 <p>
-Hello hello HDInsight Storm 叢集的節點數目取決於延展性。 hello 使用者 Azure 配額均 hello 最上層節點的 hello 數目限制。
+延展性取決於 HDInsight Storm 叢集中的節點數目。 節點數目上限取決於使用者的 Azure 配額。
                 </p>
             </td>
         </tr>
@@ -417,7 +417,7 @@ Hello hello HDInsight Storm 叢集的節點數目取決於延展性。 hello 使
             </td>
             <td width="204" valign="top">
                 <p>
-使用者可以增加資料處理，或藉由增加或減少 hello Streaming Units 數目，上限為 1 GB/秒與最佳化成本。
+使用者可以增減串流單位數目來加強資料處理或將成本最佳化，上限為 1 GB/秒。
                 </p>
             </td>
             <td width="246" valign="top">
@@ -475,10 +475,10 @@ Hello hello HDInsight Storm 叢集的節點數目取決於延展性。 hello 使
             </td>
             <td width="246" valign="top">
                 <p>
-99.9%正常運作的 hello Storm 叢集的 SLA。 
+SLA 保證 Storm 叢集的運作時間達 99.9%。 
                 </p>
                 <p>
-Apache Storm 是容錯的串流平台。 不過，它是 hello 使用者的責任 tooensure 串流處理的工作不會中斷的執行。
+Apache Storm 是容錯的串流平台。 不過，使用者有責任確保串流作業執行不會中斷。
                 </p>
             </td>
         </tr>
@@ -519,7 +519,7 @@ Apache Storm 是容錯的串流平台。 不過，它是 hello 使用者的責�
             </td>
             <td width="246" valign="top">
                 <p>
-使用者必須實作此案例中的邏輯 toohandle。
+使用者必須實作邏輯來處理這種情節。
                 </p>
             </td>
         </tr>
@@ -531,7 +531,7 @@ Apache Storm 是容錯的串流平台。 不過，它是 hello 使用者的責�
             </td>
             <td width="204" valign="top">
                 <p>
-可從 Azure Blob 儲存體取得參考資料，記憶體內部快取最大為 100 MB。 Hello 服務重新整理參考資料。
+可從 Azure Blob 儲存體取得參考資料，記憶體內部快取最大為 100 MB。 參考資料由服務重新整理。
                 </p>
             </td>
             <td width="246" valign="top">

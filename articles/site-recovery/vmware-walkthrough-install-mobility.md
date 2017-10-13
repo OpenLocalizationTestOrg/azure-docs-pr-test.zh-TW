@@ -1,6 +1,6 @@
 ---
-title: "aaaInstall hello VMware tooAzure 複寫的行動服務 |Microsoft 文件"
-description: "本文說明如何 tooinstall hello VMware tooAzure 複寫 hello Azure Site Recovery 服務的行動服務代理程式。"
+title: "針對 VMware 到 Azure 的複寫安裝行動服務 | Microsoft Docs"
+description: "本文說明如何使用 Azure Site Recovery 服務，針對 VMware 到 Azure 的複寫安裝行動服務代理程式。"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,40 +14,40 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: d3b7bc9c4d84d13317e0b0b47adcf38e8c41d0bb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bc520bd2ea54208889861a7a3b275e3008a05d53
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="step-10-install-hello-mobility-service"></a>步驟 10： 安裝 hello 行動服務
+# <a name="step-10-install-the-mobility-service"></a>步驟 10：安裝行動服務
 
 
-本文說明如何 tooconfigure 來源和目標設定複寫時 VMware 虛擬機器 tooAzure，使用內部 hello [Azure Site Recovery](site-recovery-overview.md) hello Azure 入口網站中的服務。
+本文說明在 Azure 入口網站中使用 [Azure Site Recovery](site-recovery-overview.md) 服務將內部部署 VMware 虛擬機器複寫至 Azure 時，如何設定來源和目標設定。
 
-hello 行動服務擷取的電腦上的資料寫入，並將它們轉送 toohello 處理序伺服器。 它應該安裝在每部電腦上您想 tooreplicate tooAzure。
+行動服務會擷取機器上的資料寫入，然後將它們轉送到處理伺服器。 此服務應該安裝在您想要複寫至 Azure 的每部機器上。
 
-您可以安裝 hello 行動服務手動啟用複寫時，使用從 hello 站台復原處理序伺服器推入安裝，或是使用 System Center Configuration Manager 的工具。 如果您使用推入安裝，hello 服務已安裝在 hello VM 上，啟用複寫時。
+您可以透過手動方式、使用來自 Site Recovery 處理伺服器的推入安裝 (當啟用複寫時)，或使用 System Center Configuration Manager 工具，來安裝行動服務。 如果您使用推入安裝，則在啟用複寫時，服務就會安裝在 VM 上。
 
-在本文中，或在 hello hello 下方張貼意見或疑問[Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
+請在本文下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)上張貼意見或問題。
 
 ## <a name="install-manually"></a>手動安裝
 
-1. 檢查 hello[必要條件](site-recovery-vmware-to-azure-install-mob-svc.md#prerequisites)進行手動安裝。
-2. 請遵循[這些指示](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-by-using-the-gui)進行手動安裝使用 hello 入口網站。
-3. 如果您偏好 tooinstall 從 hello 命令列，請遵循[這些指示](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-at-a-command-prompt)。
+1. 查看[必要條件](site-recovery-vmware-to-azure-install-mob-svc.md#prerequisites)來進行手動安裝。
+2. 依照[這些指示](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-by-using-the-gui)來使用入口網站進行手動安裝。
+3. 如果您偏好從命令列進行安裝，請依照[這些指示](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-manually-at-a-command-prompt)操作。
 
-## <a name="install-from-hello-process-server"></a>從 hello 處理序伺服器安裝
+## <a name="install-from-the-process-server"></a>從處理伺服器安裝
 
-如果您想 toopush hello 行動服務安裝從 hello 處理序伺服器，當您啟用 VM 的複寫時，您需要可供 hello 處理序伺服器 tooaccess hello VM 的帳戶。 hello 帳戶僅用於 hello 推入安裝。
+如果您想要在為 VM 啟用複寫時，從處理伺服器推送行動服務安裝，則需要有一個可供處理伺服器用來存取該 VM 的帳戶。 此帳戶僅用於推入安裝。
 
-1. 您應該[已建立一個帳戶](vmware-walkthrough-prepare-vmware.md)來供推入安裝使用。 然後，您會指定您想要讓 toouse，當您設定來源站台復原 」 部署期間的 hello 帳戶。
-2. 然後依照[這些指示](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-by-push-installation-from-azure-site-recovery)如果想要在執行 Windows 或 Linux Vm 上的 toopush hello 行動服務。
+1. 您應該[已建立一個帳戶](vmware-walkthrough-prepare-vmware.md)來供推入安裝使用。 接著，您可以指定進行 Site Recovery 部署期間，在設定來源設定時要使用的帳戶。
+2. 接著，如果您想要在執行 Windows 或 Linux 的 VM 上推送行動服務，請依照[這些指示](site-recovery-vmware-to-azure-install-mob-svc.md#install-mobility-service-by-push-installation-from-azure-site-recovery)操作。
 
 ## <a name="other-methods"></a>其他方法
 
-深入了解[安裝 hello 行動服務使用 Configuration Manager](site-recovery-install-mobility-service-using-sccm.md)，或使用[Azure Automation DSC](site-recovery-automate-mobility-service-install.md)。
+了解如何[使用 Configuration Manager](site-recovery-install-mobility-service-using-sccm.md) 或 [Azure Automation DSC](site-recovery-automate-mobility-service-install.md) 來安裝行動服務。
 
 ## <a name="next-steps"></a>後續步驟
 
-跳過[步驟 11： 啟用複寫](vmware-walkthrough-enable-replication.md)
+移至[步驟 11：啟用複寫](vmware-walkthrough-enable-replication.md)

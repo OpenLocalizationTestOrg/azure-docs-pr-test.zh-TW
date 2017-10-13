@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toouse hello Azure 從屬外掛程式與 Hudson 連續整合 |Microsoft 文件"
-description: "描述如何 toouse hello Azure 從屬外掛程式與 Hudson 連續整合。"
+title: "如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合 | Microsoft Docs"
+description: "說明如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合。"
 services: virtual-machines-linux
 documentationcenter: 
 author: rmcmurray
@@ -14,30 +14,30 @@ ms.devlang: java
 ms.topic: article
 ms.date: 04/25/2017
 ms.author: robmcm
-ms.openlocfilehash: cd6e67ad71c208aa56746aa8b70ba507da20bee9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c11b59f8ea432075b147a391de4b7bd3331e639e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-hello-azure-slave-plug-in-with-hudson-continuous-integration"></a>如何 toouse hello Azure 從屬外掛程式與 Hudson 連續整合
-hello Azure 從屬 Hudson 外掛程式可讓您在 Azure 上的 tooprovision 從屬節點時執行分散式組建。
+# <a name="how-to-use-the-azure-slave-plug-in-with-hudson-continuous-integration"></a>如何搭配使用 Azure 從屬外掛程式與 Hudson 連續整合
+適用於 Hudson 的 Azure 從屬外掛程式可讓您在執行分散式組建時在 Azure 上佈建從屬節點。
 
-## <a name="install-hello-azure-slave-plug-in"></a>安裝 hello Azure 從屬外掛程式
-1. 在 hello Hudson 儀表板，按一下 **管理 Hudson**。
-2. 在 hello**管理 Hudson**頁面上，按一下**管理外掛程式**。
-3. 按一下 hello**可用** 索引標籤。
-4. 按一下**搜尋**和型別**Azure** toolimit hello 清單 toorelevant 外掛程式。
+## <a name="install-the-azure-slave-plug-in"></a>安裝 Azure 從屬外掛程式
+1. 在 Hudson 儀表板中，按一下 [ **管理 Hudson**]。
+2. 在 [管理 Hudson] 頁面中，按一下 [管理外掛程式]。
+3. 按一下 [Available]  索引標籤。
+4. 按一下 [搜尋] 並輸入 **Azure**，讓清單只顯示相關外掛程式。
    
-    如果您選擇 tooscroll 透過 hello 可用的外掛程式清單，您會發現 hello Azure 從屬外掛程式在 hello**叢集管理和散佈建置**> 一節中 hello**其他** 索引標籤。
-5. 選取 hello 核取方塊**Azure 從屬 Plugin**。
+    如果您選擇透過捲動來查看可用的外掛程式清單，您會在 [其他] 索引標籤的 [叢集管理和分散式組建] 區段下找到 Azure 從屬外掛程式。
+5. 選取 [ **Azure 從屬外掛程式**] 的核取方塊。
 6. 按一下 [Install] 。
 7. 重新啟動 Hudson。
 
-現在已安裝該外掛程式的 hello，hello 下一個步驟是 tooconfigure hello 與您的 Azure 訂用帳戶設定檔的範本，可用於建立 hello 從屬節點的 VM hello toocreate 外掛程式。
+現在外掛程式已安裝完畢，接下來的步驟是使用您的 Azure 訂用帳戶設定檔來設定外掛程式，以及建立為從屬節點建立 VM 時將使用的範本。
 
-## <a name="configure-hello-azure-slave-plug-in-with-your-subscription-profile"></a>使用您的訂用帳戶設定檔設定 hello Azure 從屬外掛程式
-訂用帳戶設定檔，也參考的 tooas 發行設定，是包含安全認證，以及一些額外的資訊，您將需要使用 Azure toowork 開發環境中的 XML 檔案。 tooconfigure hello Azure 從屬外掛程式，您需要：
+## <a name="configure-the-azure-slave-plug-in-with-your-subscription-profile"></a>使用您的訂用帳戶設定檔來設定 Azure 從屬外掛程式
+訂用帳戶設定檔也稱為發佈設定，它是一個 XML 檔案，內含要與開發環境中的 Azure 搭配運作時所需的安全認證和一些額外資訊。 若要設定 Azure 從屬外掛程式，您需要：
 
 * 訂用帳戶 ID
 * 訂用帳戶的管理憑證
@@ -63,56 +63,56 @@ hello Azure 從屬 Hudson 外掛程式可讓您在 Azure 上的 tooprovision 從
 
     </PublishData>
 
-您的訂用帳戶設定檔之後，請遵循這些步驟 tooconfigure hello Azure 從屬外掛程式。
+有了訂用帳戶設定檔後，請依照下列步驟來設定 Azure 從屬外掛程式。
 
-1. 在 hello Hudson 儀表板，按一下 **管理 Hudson**。
+1. 在 Hudson 儀表板中，按一下 [ **管理 Hudson**]。
 2. 按一下 [ **設定系統**]。
-3. 捲動 hello 頁面 toofind hello**雲端**> 一節。
+3. 向下捲動頁面來找出 [ **雲端** ] 區段。
 4. 按一下 [新增雲端 > Microsoft Azure]。
    
     ![新增雲端][add new cloud]
    
-    這會顯示您的訂用帳戶詳細資料，您需要 tooenter hello 欄位。
+    這會顯示一些欄位，您必須在其中輸入訂用帳戶的詳細資料。
    
     ![設定設定檔][configure profile]
-5. 複製您的訂用帳戶設定檔中的 hello 訂用帳戶識別碼和管理憑證，並將它們貼 hello 適當的欄位。
+5. 從訂用帳戶設定檔中複製訂用帳戶 ID 和管理憑證，然後貼到適當的欄位。
    
-    當複製 hello 訂用帳戶識別碼和管理憑證，**不**包含 hello 引號括住 hello 值。
+    複製訂用帳戶 ID 和管理憑證時，請「勿」  將括住值的引號也包括進來。
 6. 按一下 [ **驗證組態**]。
-7. 當成功驗證 hello 的設定時，按一下 **儲存**。
+7. 成功驗證組態後，按一下 [ **儲存**]。
 
-## <a name="set-up-a-virtual-machine-template-for-hello-azure-slave-plug-in"></a>設定虛擬機器範本的 hello Azure 從屬外掛程式
-虛擬機器範本可定義 hello 參數 hello 外掛程式會在 Azure 上使用 toocreate 從屬節點。 在下列步驟的 hello 我們將建立範本的 Ubuntu vm。
+## <a name="set-up-a-virtual-machine-template-for-the-azure-slave-plug-in"></a>設定 Azure 從屬外掛程式的虛擬機器範本
+虛擬機器範本會定義外掛程式用來在 Azure 上建立從屬節點的參數。 在下列步驟中，我們將會建立 Ubuntu VM 的範本。
 
-1. 在 hello Hudson 儀表板，按一下 **管理 Hudson**。
+1. 在 Hudson 儀表板中，按一下 [ **管理 Hudson**]。
 2. 按一下 [ **設定系統**]。
-3. 捲動 hello 頁面 toofind hello**雲端**> 一節。
-4. Hello 內**雲端**區段中，尋找**加入 Azure 虛擬機器範本**按一下 hello**新增** 按鈕。
+3. 向下捲動頁面來找出 [ **雲端** ] 區段。
+4. 在 [雲端] 區段內，找到 [新增 Azure 虛擬機器範本]，然後按一下 [新增] 按鈕。
    
     ![新增 VM 範本][add vm template]
-5. 指定雲端服務名稱在 hello**名稱**欄位。 如果您指定的 hello 名稱參考 tooan 現有雲端服務，hello VM 將會佈建該服務中。 否則，Azure 會建立一個新的。
-6. 在 hello**描述**欄位中，輸入您要建立 hello 範本的描述文字。 此資訊僅供記錄之用，並不會用於佈建 VM。
-7. 在 hello**標籤**欄位中，輸入**linux**。 此標籤是您要建立使用的 tooidentify hello 範本時，則後續使用的 tooreference hello 範本建立 Hudson 作業。
-8. 選取建立 hello VM 所在的區域。
-9. 選取 hello 適當的 VM 大小。
-10. 指定 hello VM 將會建立儲存體帳戶。 請確定它是在 hello 與 hello 雲端服務，您將使用相同的區域。 如果您想建立新的儲存體 toobe，您可以將此欄位保留空白。
-11. 保留時間指定 hello Hudson 刪除閒置的從屬版本之前的分鐘數。 將此設定保留 hello 預設值為 60。
-12. 在**使用量**，將會使用這個從屬節點時，選取 hello 適當的條件。 就目前的情況，請選取 [ **盡可能利用此節點**]。
+5. 在 [ **名稱** ] 欄位中，指定雲端服務名稱。 如果您指定的名稱參照現有雲端服務，便會在該服務中佈建 VM。 否則，Azure 會建立一個新的。
+6. 在 [ **說明** ] 欄位中，輸入您要建立之範本的說明文字。 此資訊僅供記錄之用，並不會用於佈建 VM。
+7. 在 [標籤] 欄位中，輸入 **linux**。 此標籤可用來識別您要建立的範本，而且後續會用來在建立 Hudson 工作時參照範本。
+8. 選取將要建立 VM 的區域。
+9. 選取適當的 VM 大小。
+10. 指定將要建立 VM 的儲存體帳戶。 請確定它與您將要使用的雲端服務位在相同的區域中。 如果您想要建立新的儲存體，可以將此欄位保留空白。
+11. 保留時間會指定 Hudson 要等待幾分鐘的時間才將閒置的從屬節點刪除。 請讓此欄位保持使用預設值 60。
+12. 在 [ **使用量**] 中，選取將會使用此從屬節點的適當條件。 就目前的情況，請選取 [ **盡可能利用此節點**]。
     
-     此時，您的表單看起來可能有點像 toothis:
+     到目前為止，您的表單應該會與下圖類似：
     
      ![範本設定][template config]
-13. 在**映像系列或識別碼**您有 toospecify 哪些系統映像將會安裝在您的 VM。 您可以從映像系列清單中進行選取，或指定自訂映像。
+13. 在 [ **映像系列或識別碼** ] 中，您必須指定要在您的 VM 上安裝的系統映像。 您可以從映像系列清單中進行選取，或指定自訂映像。
     
-     如果您想 tooselect 從映像系列的清單，請輸入 hello 第一個字元 （區分大小寫） 的 hello 映像系列名稱。 例如，輸入 **U** 將會顯示 Ubuntu Server 系列的清單。 一旦您選取從 hello 清單，Jenkins 將會使用該系統映像，從該系列 hello 最新版本，佈建 VM 時。
+     如果您想從映像系列清單中進行選取，請輸入映像系列名稱的第一個字元 (需區分大小寫)。 例如，輸入 **U** 將會顯示 Ubuntu Server 系列的清單。 在從清單中進行選取後，Jenkins 將會在佈建 VM 時使用該系列的該系統映像的最新版本。
     
      ![作業系統系列清單][OS family list]
     
-     如果您想 toouse 改用自訂影像，請輸入 hello 該自訂映像名稱。 自訂映像名稱不會顯示在清單中讓您擁有 hello 名稱的 tooensure 輸入正確。    
+     如果您想要改用自訂映像，請輸入該自訂映像的名稱。 清單中不會顯示自訂映像名稱，因此您必須確實輸入正確的名稱。    
     
-     此教學課程中，輸入**U** Ubuntu 映像，然後選取清單 toobring **Ubuntu Server 14.04 LTS**。
+     針對此教學課程，請輸入 **U** 來顯示 Ubuntu 映像的`清單，並選取 [Ubuntu Server 14.04 LTS]。
 14. 在 [啟動方法] 中，選取 [SSH]。
-15. 複製下列 hello 指令碼並貼上 hello**初始化指令碼**欄位。
+15. 複製下列指令碼並貼到 [ **Init 指令碼** ] 欄位。
     
          # Install Java
     
@@ -136,22 +136,22 @@ hello Azure 從屬 Hudson 外掛程式可讓您在 Azure 上的 tooprovision 從
     
          sudo apt-get install -y ant
     
-     hello**初始化指令碼**hello 建立 VM 之後將會執行。 在此範例中，hello 指令碼安裝 Java、 git、 以及 ant。
-16. 在 hello **Username**和**密碼**欄位中，輸入您慣用的值會在您的 VM 中建立的 hello 系統管理員帳戶。
-17. 按一下**驗證範本**toocheck，如果您指定的 hello 參數都有效。
-18. 按一下 [儲存] 。
+     [ **Init 指令碼** ] 就會在 VM 建立好之後執行。 在此範例中，指令碼會安裝 Java、git 和 ant。
+16. 在 [使用者名稱] 和 [密碼] 欄位中，針對將在 VM 上建立的系統管理員帳戶輸入偏好使用的值。
+17. 按一下 [ **驗證範本** ] 以檢查所指定的參數是否有效。
+18. 按一下 [ **儲存**]。
 
 ## <a name="create-a-hudson-job-that-runs-on-a-slave-node-on-azure"></a>建立在 Azure 的從屬節點上執行的 Hudson 工作
 在本節中，您將建立在 Azure 的從屬節點上執行的 Hudson 工作。
 
-1. 在 hello Hudson 儀表板，按一下 **新工作**。
-2. 輸入您要建立 hello 工作的名稱。
-3. Hello 作業類型 選取**組建可用樣式軟體工作**。
+1. 在 Hudson 儀表板中，按一下 [ **新增工作**]。
+2. 輸入要建立之工作的名稱。
+3. 針對工作類型選取 [ **建置自由樣式的軟體作業**]。
 4. 按一下 [確定] 。
-5. 在 hello 工作組態頁面上，選取 **限制可以執行這個專案**。
-6. 選取**節點和標籤功能表**選取**linux** （hello 上一節中建立 hello 虛擬機器範本時，我們指定此標籤）。
-7. 在 hello**建置**區段中，按一下**加入建置步驟**選取**執行殼層**。
-8. 編輯下列指令碼、 取代 hello **{您 github 帳戶名稱}**， **{project name}**，和**{您的專案目錄}**與適當的值，並貼上 hello編輯指令碼中出現的 hello 文字區域。
+5. 在工作組態頁面中，選取 [ **限制可以執行這個專案的位置**]。
+6. 選取 [節點和標籤功能表]，然後選取 [linux]\(上一節在建立虛擬機器範本時，我們指定了這個標籤)。
+7. 在 [組件] 區段中，按一下 [新增組件步驟]，然後選取 [執行殼層]。
+8. 編輯下列指令碼，將 **GitHub 帳戶名稱}**、**{專案名稱}** 和 **{專案目錄}** 替換為適當值，並在出現的文字區域中貼上編輯過的指令碼。
    
         # Clone from git repo
    
@@ -169,7 +169,7 @@ hello Azure 從屬 Hudson 外掛程式可讓您在 Azure 上的 tooprovision 從
    
         fi
    
-        # change directory tooproject
+        # change directory to project
    
         cd $currentDir/{your project directory}
    
@@ -177,12 +177,12 @@ hello Azure 從屬 Hudson 外掛程式可讓您在 Azure 上的 tooprovision 從
    
         ant
 9. 按一下 [儲存] 。
-10. 在 hello Hudson 儀表板，找出您剛才建立的 hello 作業，然後按一下 hello**排程組建**圖示。
+10. 在 Hudson 儀表板中，找到您剛才建立的工作，然後按一下 [ **排程組建** ] 圖示。
 
-Hudson 接著會建立使用 hello 範本建立 hello 前一節中的從屬節點，並執行這項工作中的 hello 建置步驟中所指定的 hello 指令碼。
+Hudson 就會使用上一節建立的範本建立從屬節點，並執行您針對這項工作指定於組建步驟中的指令碼。
 
 ## <a name="next-steps"></a>後續步驟
-如需有關使用 Azure 與 Java 的詳細資訊，請參閱 hello [Azure Java 開發人員中心]。
+如需如何搭配使用 Azure 與 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]。
 
 <!-- URL List -->
 

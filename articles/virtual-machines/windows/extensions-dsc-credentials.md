@@ -1,6 +1,6 @@
 ---
-title: "aaaPassing 認證使用 DSC tooAzure |Microsoft 文件"
-description: "安全地傳遞概觀認證 tooAzure 使用 PowerShell 預期狀態設定的虛擬機器"
+title: "使用 DSC 將認證傳遞至 Azure | Microsoft Docs"
+description: "使用 PowerShell 期望的狀態組態將認證安全地傳遞到 Azure 虛擬機器的概觀"
 services: virtual-machines-windows
 documentationcenter: 
 author: zjalexander
@@ -16,23 +16,23 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: na
 ms.date: 09/15/2016
 ms.author: zachal
-ms.openlocfilehash: 306ecd3fd481f49a0beca5052fc7531a52999330
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: acd768c0219ec23c0453a65c575faf5213d9c616
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="passing-credentials-toohello-azure-dsc-extension-handler"></a>傳遞認證 toohello Azure DSC 延伸模組處理常式
+# <a name="passing-credentials-to-the-azure-dsc-extension-handler"></a>將認證傳遞至 Azure DSC 延伸模組處理常式
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-本文涵蓋 Azure hello Desired State Configuration 延伸模組。 Hello DSC 延伸模組處理常式的概觀，請參閱[簡介 toohello Azure Desired State Configuration 延伸模組處理常式](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
+本文涵蓋適用於 Azure 的期望的狀態組態延伸模組。 如需 DSC 延伸模組處理常式的概觀，請參閱 [Azure 期望的狀態組態延伸模組處理常式簡介](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
 
 ## <a name="passing-in-credentials"></a>傳入認證
-Hello 設定程序的一部分，您可能需要 tooset 使用者帳戶、 存取服務，或安裝程式在使用者內容中。 toodo 情況，您需要 tooprovide 認證。 
+設定過程中，您可能需要在使用者內容中設定使用者帳戶、存取服務，或安裝程式。 若要執行這些動作，您需要提供認證。 
 
-DSC 可以參數化設定認證會傳遞至 hello 組態和安全地儲存在 MOF 檔案中。 hello Azure 延伸模組處理常式會提供自動管理的憑證，以簡化認證管理。 
+DSC 允許使用參數化的組態，其中會將認證傳入組態並安全地儲存在 MOF 檔案中。 Azure 延伸模組處理常式會提供憑證的自動管理功能，藉以簡化認證的管理。 
 
-請考慮下列使用 hello 指定的密碼建立本機使用者帳戶的 DSC 設定指令碼的 hello:
+請考慮使用下列 DSC 組態指令碼，此指令碼會建立包含指定的密碼的本機使用者帳戶︰
 
 *user_configuration.ps1*
 
@@ -60,13 +60,13 @@ configuration Main
 } 
 ```
 
-它是重要的 tooinclude*節點 localhost* hello 組態的一部分。 如果此陳述式遺漏，hello 下列步驟不如 hello 延伸模組處理常式特別會尋找 hello 節點 localhost 陳述式。 很重要，因為 tooinclude hello 類型轉換*[PsCredential]*，如這個特定類型的觸發程序 hello 延伸 tooencrypt hello 認證。 
+請務必將 *node localhost* 納入為組態的一部分。 如果遺漏此陳述式，接下來的步驟將無法運作，因為延伸模組處理常式會特別尋找節點 localhost 陳述式。 也請務必納入 typecast *[PsCredential]*，因為這個特定的類型會觸發擴充功能將認證加密。 
 
-發行此指令碼 tooblob 存放裝置：
+將此指令碼發佈至 Blob 儲存體︰
 
 `Publish-AzureVMDscConfiguration -ConfigurationPath .\user_configuration.ps1`
 
-設定 hello Azure DSC 延伸模組，並提供 hello 認證：
+設定 Azure DSC 延伸模組，並提供認證︰
 
 ```
 $configurationName = "Main"
@@ -80,16 +80,16 @@ $vm = Set-AzureVMDSCExtension -VM $vm -ConfigurationArchive $configurationArchiv
 $vm | Update-AzureVM
 ```
 ## <a name="how-credentials-are-secured"></a>保護認證的方式
-執行此程式碼會提示您輸入認證。 一旦提供認證之後，就會很快地儲存在記憶體中。 當發行與`Set-AzureVmDscExtension`cmdlet，它透過 HTTPS toohello VM 傳輸之後，在 Azure 儲存在磁碟上，使用 hello 本機 VM 憑證加密。 簡短解密和重新加密的 toopass 記憶體，則它 tooDSC。
+執行此程式碼會提示您輸入認證。 一旦提供認證之後，就會很快地儲存在記憶體中。 使用 `Set-AzureVmDscExtension` Cmdlet 發佈認證時，會透過 HTTPS 傳輸到 VM，Azure 就會使用本機 VM 憑證，以加密的形式將該認證儲存在 VM 的磁碟上。 接著，它會在記憶體中短暫地解密後再重新加密，以便傳遞給 DSC。
 
-此行為是不同於[使用安全的設定，而 hello 延伸模組處理常式不](https://msdn.microsoft.com/powershell/dsc/securemof)。 hello Azure 環境可讓您安全地透過憑證的方式 tootransmit 組態資料。 使用 hello DSC 延伸模組處理常式時, 沒有任何需要 tooprovide $CertificatePath 或 $CertificateID / $Thumbprint ConfigurationData 中的項目。
+此行為與 [使用不含擴充功能處理常式的安全組態](https://msdn.microsoft.com/powershell/dsc/securemof)不同。 Azure 環境提供一個透過憑證來安全地傳輸組態資料的方式。 使用 DSC 擴充功能處理常式時，不需要在 ConfigurationData 中提供 $CertificatePath 或 $CertificateID / $Thumbprint 項目。
 
 ## <a name="next-steps"></a>後續步驟
-如需有關 hello Azure DSC 延伸模組處理常式的詳細資訊，請參閱[簡介 toohello Azure Desired State Configuration 延伸模組處理常式](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
+如需有關 Azure DSC 擴充功能處理常式的詳細資訊，請參閱 [Azure 期望狀態組態擴充功能處理常式簡介](extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
 
-檢查 hello [hello DSC 延伸模組的 Azure Resource Manager 範本](extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+查看 [適用於 DSC 擴充功能的 Azure Resource Manager 範本](extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-如需有關 PowerShell DSC[造訪 hello PowerShell 文件中心](https://msdn.microsoft.com/powershell/dsc/overview)。 
+如需有關 PowerShell DSC 的詳細資訊，請 [瀏覽 PowerShell 文件中心](https://msdn.microsoft.com/powershell/dsc/overview)。 
 
-toofind 額外的功能，您可以使用 PowerShell DSC[瀏覽 hello PowerShell 資源庫](https://www.powershellgallery.com/packages?q=DscResource&x=0&y=0)的多個 DSC 資源。
+若要尋找您可以使用 PowerShell DSC 來管理的其他功能，請 [瀏覽 PowerShell 資源庫](https://www.powershellgallery.com/packages?q=DscResource&x=0&y=0) 以取得更多 DSC 資源。
 

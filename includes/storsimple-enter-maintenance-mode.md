@@ -1,12 +1,12 @@
 <!--author=SharS last changed: 12/01/15-->
 
-#### <a name="tooenter-maintenance-mode"></a>tooenter 維護模式
-1. 在 hello 序列主控台功能表中，選擇選項 1，**登入的完整存取**。
-2. 型別 hello 密碼。 hello 預設密碼為**Password1**。
-3. 在 hello 命令提示字元中輸入
+#### <a name="to-enter-maintenance-mode"></a>進入維護模式
+1. 在序列主控台功能表中，選擇選項 1 [使用完整存取權登入] 。
+2. 輸入密碼。 預設密碼為 **Password1**。
+3. 在命令提示字元中，輸入：
    
      `Enter-HcsMaintenanceMode`
-4. 您會看到警告訊息，告知您維護模式將會中斷所有的 I/O 要求並切斷 hello 連接 toohello Azure 傳統入口網站，系統將提示您確認。 型別**Y** tooenter 維護模式。
+4. 您將會看到警告訊息，告知您維護模式將中斷所有 I/O 要求並提供與 Azure 傳統入口網站的連線，而系統將提示您進行確認。 輸入 **Y** 以進入維護模式。
    
-    這兩個控制站都將重新啟動。 Hello 重新啟動完成時，會出現另一個訊息，指出該 hello 裝置處於維護模式。
+    這兩個控制站都將重新啟動。 完成重新啟動時，會出現另一個訊息，指出裝置處於維護模式。
 

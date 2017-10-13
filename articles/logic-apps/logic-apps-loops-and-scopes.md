@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 迴圈和範圍，或 debatch 中工作流程-Azure 邏輯應用程式資料 |Microsoft 文件"
-description: "建立動作群組成範圍的資料，透過迴圈 tooiterate 或 debatch 資料 toostart Azure 邏輯應用程式中的多個工作流程。"
+title: "在工作流程中建立迴圈和範圍，或解除批次 (debatch) 資料 - Azure Logic Apps | Microsoft Docs"
+description: "在 Azure Logic Apps 中建立迴圈來逐一查看資料、將動作群組為範圍，或者解除批次資料，以便啟動更多工作流程。"
 services: logic-apps
 documentationcenter: .net,nodejs,java
 author: jeffhollan
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 11/29/2016
 ms.author: LADocs; jehollan
-ms.openlocfilehash: e612ec2e83541f028916a07bf12c44e7b1f57ad1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 413a2ba9107ca259ed577825bf0a17ff5622f1ac
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="logic-apps-loops-scopes-and-debatching"></a>Logic Apps 迴圈、範圍和解除批次處理
   
-邏輯應用程式提供方式 toowork 陣列、 集合、 批次，與工作流程內迴圈的數目。
+Logic Apps 提供數種方法來處理工作流程中的陣列、集合、批次和迴圈。
   
 ## <a name="foreach-loop-and-arrays"></a>ForEach 迴圈和陣列
   
-邏輯應用程式可讓您對資料集的 tooloop 和每個項目執行的動作。  這是可透過 hello`foreach`動作。  在 hello 設計工具中，您可以指定 tooadd for each 迴圈。  選取您想 tooiterate 透過 hello 陣列之後, 您就可以開始加入動作。  您目前是有限的 tooonly 一個動作，每個 「 foreach 迴圈 」，但 hello 即將週中，將會提高此限制。  一次 hello 迴圈中，您可以開始的 toospecify 應該會發生什麼在 hello 陣列的每個值。
+Logic Apps 可讓您在一組資料上進行迴圈，並為每個項目執行動作。  這可透過 `foreach` 動作來達成。  在設計工具中，您可以指定要新增一個 for each 迴圈。  在選取您希望反覆查看的陣列之後，就可以新增動作。  目前您受限於每個 foreach 迴圈只能有一個動作，但在未來幾週內，將會提高此限制。  一旦進入迴圈之後，您就可以開始指定應針對陣列的每個值執行哪些動作。
 
 如果使用程式碼檢視，您就可以指定 for each 迴圈，如下所示。  這是 for each 迴圈的範例，可針對每個包含「microsoft.com」的電子郵件地址傳送傳送電子郵件︰
 
@@ -66,11 +66,11 @@ ms.lasthandoff: 10/06/2017
 }
 ```
   
-  A`foreach`動作可以逐一查看 too5，000 資料列組成的陣列。  預設會平行執行每個反覆運算。  
+  `foreach` 動作可以反覆查看陣列，最多 5,000 個資料列。  預設會平行執行每個反覆運算。  
 
 ### <a name="sequential-foreach-loops"></a>循序 ForEach 迴圈
 
-foreach 迴圈 tooexecute 循序 hello 的 tooenable`Sequential`應加入作業選項。
+若要啟用要循序執行的 foreach 迴圈，應該新增 `Sequential` 作業選項。
 
 ``` json
 "forEach_email": {
@@ -83,9 +83,9 @@ foreach 迴圈 tooexecute 循序 hello 的 tooenable`Sequential`應加入作業�
   
 ## <a name="until-loop"></a>Until 迴圈
   
-  您可以執行某個動作或一系列動作，直到符合某個條件為止。  hello 最常見的案例呼叫端點直到取得所需的 hello 回應。  在 hello 設計工具中，您可以指定 tooadd until 迴圈。  在新增之後 hello 迴圈內的動作，您可以設定 hello 結束條件，以及 hello 迴圈限制。  迴圈循環之間有 1 分鐘的延遲。
+  您可以執行某個動作或一系列動作，直到符合某個條件為止。  對於此迴圈的最常見案例是呼叫端點，直到您取得所需的回應為止。  在設計工具中，您可以指定要新增一個 until 迴圈。  在迴圈中新增動作之後，您就可以設定結束條件以及迴圈限制。  迴圈循環之間有 1 分鐘的延遲。
   
-  如果使用程式碼檢視，您可以指定 until 迴圈，如下所示。  這是呼叫的 HTTP 端點，直到 hello 值 'Completed' hello 回應主體的範例。  它將會在符合下列其中一種情況時完成 
+  如果使用程式碼檢視，您可以指定 until 迴圈，如下所示。  這個範例會呼叫 HTTP 端點，直到回應主體具有「已完成」的值為止。  它將會在符合下列其中一種情況時完成 
   
   * HTTP 回應具有「已完成」的狀態
   * 已嘗試 1 小時的時間
@@ -117,9 +117,9 @@ foreach 迴圈 tooexecute 循序 hello 的 tooenable`Sequential`應加入作業�
   
 ## <a name="spliton-and-debatching"></a>SplitOn 和解除批次處理
 
-有時觸發程序可能會收到項目，toodebatch 並啟動工作流程，每個項目的陣列。  這可以透過 hello 完成`spliton`命令。  根據預設，如果您的觸發程序 Swagger 指定的承載是一個陣列，即會新增 `spliton` ，並針對每個項目開始執行。  SplitOn 只能加入 tooa 觸發程序。  這可以在定義程式碼檢視中手動設定或覆寫。  目前 SplitOn 可以 debatch too5，000 項目組成的陣列。  您不能有`spliton`和也實作 hello 同步回應模式。  呼叫的任何工作流程具有`response`此外動作太`spliton`會以非同步方式執行，並傳送立即`202 Accepted`回應。  
+觸發程序有時可能會接收到您想要解除批次處理並針對每個項目啟動工作流程的項目陣列。  這可透過 `spliton` 命令來完成。  根據預設，如果您的觸發程序 Swagger 指定的承載是一個陣列，即會新增 `spliton` ，並針對每個項目開始執行。  SplitOn 只會新增至觸發程序。  這可以在定義程式碼檢視中手動設定或覆寫。  SplitOn 目前可以解除批次處理陣列，最多 5,000 個項目。  您無法具有 `spliton` 並同時實作同步回應模式。  若所呼叫的任何工作流程除了 `spliton` 之外還有 `response` 動作，將會以非同步方式執行並傳送立即 `202 Accepted` 回應。  
 
-SplitOn 可以指定程式碼檢視中，為下列範例中的 hello。  這會收到項目陣列，並在每一列上解除批次處理。
+SplitOn 可以指定於程式碼檢視中，如下列範例所示。  這會收到項目陣列，並在每一列上解除批次處理。
 
 ```
 {
@@ -139,7 +139,7 @@ SplitOn 可以指定程式碼檢視中，為下列範例中的 hello。  這會�
 
 ## <a name="scopes"></a>範圍
 
-很可能 toogroup 一系列動作一起使用的範圍。  這特別適合用來實作例外狀況處理。  Hello 設計工具中，您可以加入新的領域，並開始新增在其內部的任何動作。  您可以在 hello 如下的程式碼檢視中定義範圍：
+可能可以使用 scope 來將一系列動作群組在一起。  這特別適合用來實作例外狀況處理。  在設計工具中，您可以新增範圍，並開始在其內部新增任何動作。  您可以在程式碼檢視中定義範圍，如下所示︰
 
 
 ```

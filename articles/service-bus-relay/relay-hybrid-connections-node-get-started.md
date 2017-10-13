@@ -1,5 +1,5 @@
 ---
-title: "aaaGet 開始使用 節點中的 Azure 轉送混合式連線 |Microsoft 文件"
+title: "在 Node 中開始使用 Azure 轉送混合式連接 | Microsoft Docs"
 description: "為 Azure 轉送混合式連線撰寫 Node.js 主控台應用程式。"
 services: service-bus-relay
 documentationcenter: node
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: node
 ms.workload: na
 ms.date: 07/07/2017
 ms.author: sethm
-ms.openlocfilehash: 235548399570074f7fd160fec28de8d3633625c5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c3bfc45969f250059988129f532edd12dfe3dcfe
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="get-started-with-relay-hybrid-connections"></a>開始使用轉送混合式連線
 
 [!INCLUDE [relay-selector-hybrid-connections](../../includes/relay-selector-hybrid-connections.md)]
 
-本教學課程中介紹過[Azure 轉送混合式連線](relay-what-is-it.md#hybrid-connections)，並示範如何 toouse Node.js toocreate 傳送用戶端應用程式訊息 tooa 對應接聽程式的應用程式。 
+本教學課程提供 [Azure 轉送混合式連線](relay-what-is-it.md#hybrid-connections)的指示，並示範如何使用 Node.js 來建立用戶端應用程式，以將訊息傳送至對應的接聽端應用程式。 
 
 ## <a name="what-will-be-accomplished"></a>將會完成的工作
 
-因為混合式連線同時需要用戶端和伺服器元件，所以我們將在本教學課程中建立兩個主控台應用程式。 Hello 步驟如下：
+因為混合式連線同時需要用戶端和伺服器元件，所以我們將在本教學課程中建立兩個主控台應用程式。 步驟如下：
 
-1. 建立轉送的命名空間，使用 hello Azure 入口網站。
-2. 建立使用 hello Azure 入口網站的混合式連接。
-3. 主控台應用程式 tooreceive 訊息寫入伺服器。
-4. 撰寫用戶端主控台應用程式 toosend 訊息。
+1. 使用 Azure 入口網站建立轉送命名空間。
+2. 使用 Azure 入口網站建立混合式連線。
+3. 撰寫伺服器主控台應用程式來接收訊息。
+4. 撰寫用戶端主控台應用程式來傳送訊息。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -42,35 +42,35 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [create-account-note](../../includes/create-account-note.md)]
 
-## <a name="1-create-a-namespace-using-hello-azure-portal"></a>1.建立命名空間使用 hello Azure 入口網站
+## <a name="1-create-a-namespace-using-the-azure-portal"></a>1.使用 Azure 入口網站建立命名空間
 
-如果您已經建立的轉送命名空間，跳 toohello[建立使用 hello Azure 入口網站的混合式連接](#2-create-a-hybrid-connection-using-the-azure-portal)> 一節。
+如果您已經建立轉送命名空間，請跳至[使用 Azure 入口網站建立混合式連線](#2-create-a-hybrid-connection-using-the-azure-portal)一節。
 
 [!INCLUDE [relay-create-namespace-portal](../../includes/relay-create-namespace-portal.md)]
 
-## <a name="2-create-a-hybrid-connection-using-hello-azure-portal"></a>2.建立使用 hello Azure 入口網站的混合式連接
+## <a name="2-create-a-hybrid-connection-using-the-azure-portal"></a>2.使用 Azure 入口網站建立混合式連線
 
-如果您已經建立的混合式連線，跳 toohello[建立伺服器應用程式](#3-create-a-server-application-listener)> 一節。
+如果您已經建立混合式連線，請跳至[建立伺服器應用程式](#3-create-a-server-application-listener)一節。
 
 [!INCLUDE [relay-create-hybrid-connection-portal](../../includes/relay-create-hybrid-connection-portal.md)]
 
 ## <a name="3-create-a-server-application-listener"></a>3.建立伺服器應用程式 (接聽程式)
 
-toolisten 及接收來自 hello 轉送訊息，我們會撰寫 Node.js 主控台應用程式。
+為了接聽並接收來自轉送的訊息，我們會撰寫 Node.js 主控台應用程式。
 
 [!INCLUDE [relay-hybrid-connections-node-get-started-server](../../includes/relay-hybrid-connections-node-get-started-server.md)]
 
 ## <a name="4-create-a-client-application-sender"></a>4.建立用戶端應用程式 (傳送者)
 
-toosend 訊息 toohello 轉送，我們會撰寫 Node.js 主控台應用程式。
+為了傳送訊息到轉送，我們會撰寫 Node.js 主控台應用程式。
 
 [!INCLUDE [relay-hybrid-connections-node-get-started-client](../../includes/relay-hybrid-connections-node-get-started-client.md)]
 
-## <a name="5-run-hello-applications"></a>5.執行 hello 應用程式
+## <a name="5-run-the-applications"></a>5.執行應用程式
 
-1. 執行 hello 伺服器應用程式： 從 Node.js 命令提示字元中輸入`node listener.js`。
-2. 執行 hello 用戶端應用程式： 從 Node.js 命令提示字元中輸入`node sender.js`，並輸入一些文字。
-3. 請確定 hello 伺服器應用程式主控台輸出的 hello 文字輸入 hello 用戶端應用程式中。
+1. 執行伺服器應用程式：從 Node.js 命令提示字元中，鍵入 `node listener.js`。
+2. 執行用戶端應用程式：從 Node.js 命令提示字元中，鍵入 `node sender.js`，然後輸入一些文字。
+3. 確定伺服器應用程式主控台有將用戶端應用程式中所輸入的文字輸出。
 
 ![執行應用程式](./media/relay-hybrid-connections-node-get-started/running-applications.png)
 

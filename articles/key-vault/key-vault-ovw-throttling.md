@@ -1,39 +1,39 @@
 ---
 ms.assetid: 
-title: "金鑰保存庫節流指引 aaaAzure |Microsoft 文件"
+title: "Azure Key Vault 節流指導方針 | Microsoft Docs"
 ms.service: key-vault
 author: BrucePerlerMS
 ms.author: bruceper
 manager: mbaldwin
 ms.date: 06/21/2017
-ms.openlocfilehash: a75cf96bc6503e51f14378bee598bad57e85be82
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fe700e22c5323c2a0bdc315e349cd119798bcf40
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-key-vault-throttling-guidance"></a>Azure Key Vault 節流指導方針
 
-節流是限制同時呼叫 toohello Azure 服務 tooprevent 的過度使用資源的 hello 數目的程序初始化。 Azure 金鑰保存庫 (AKV) 是設計的 toohandle 大量的要求。 如果產生大量的要求，就會發生，節流設定您的用戶端要求可協助維護最佳效能和可靠性的 hello AKV 服務。
+節流是您起始來限制 Azure 服務並行呼叫數目，以避免過度使用資源的程序。 Azure Key Vault (AKV) 被設計來處理大量的要求。 如果產生大量的要求，針對用戶端的要求進行節流有助於維護 AKV 服務的最佳效能和可靠性。
 
-節流限制會根據 hello 案例而有所不同。 例如，如果您正在執行大量的寫入，hello 節流可能性高於如果您只執行讀取。
+節流限制視情節而異。 例如，如果您正在執行大量的寫入，則節流的可能性要高於僅執行讀取作業的可能性。
 
 ## <a name="how-does-key-vault-handle-its-limits"></a>Key Vault 如何處理其限制？
 
-金鑰保存庫中的服務限制有 tooprevent 不當使用的資源，並確定所有金鑰保存庫的用戶端的服務品質。 超過服務閾值時，Key Vault 可以限制一段時間內來自該用戶端的任何進一步要求。 發生這種情況，金鑰保存庫會傳回 HTTP 狀態碼 429 (太多要求)，和 hello 要求會失敗。 此外，無法傳回 429 計數朝向 hello 節流閥限制追蹤的金鑰保存庫的要求。 
+Key Vault 中的服務限制是為了防止濫用資源，並確保所有 Key Vault 用戶端的服務品質。 超過服務閾值時，Key Vault 可以限制一段時間內來自該用戶端的任何進一步要求。 當這種情況發生時，Key Vault 會傳回 HTTP 狀態碼 429 (太多要求)，且要求會失敗。 此外，傳回狀態碼 429 的失敗要求會計入 Key Vault 所追蹤的節流限制中。 
 
 如果您有需要更高節流限制的有效商務案例，請與我們連絡。
 
 
-## <a name="how-toothrottle-your-app-in-response-tooservice-limits"></a>如何 toothrottle 回應 tooservice 中的應用程式限制
+## <a name="how-to-throttle-your-app-in-response-to-service-limits"></a>如何為您的應用程式進行節流處理，以回應服務限制
 
-hello 如下**最佳做法**節流您的應用程式：
-- Hello 的減少每個要求的作業。
-- 減少 hello 頻率的要求。
+以下是為您應用程式進行節流處理的**最佳做法**：
+- 減少每個要求的作業數目。
+- 減少要求的頻率。
 - 避免立即重試。 
     - 所有要求都會讓您的使用量限制累加。
 
-當您實作您的應用程式錯誤處理時，使用 hello HTTP 錯誤程式碼 429 toodetect hello 需要用戶端節流。 如果 hello 要求再次失敗，HTTP 429 錯誤代碼，您仍然遇到 Azure 服務的限制。 繼續 toouse hello 建議使用的用戶端節流方法，重試 hello 要求，直到成功為止。
+當您實作應用程式的錯誤處理時，請使用 HTTP 錯誤碼 429 來偵測用戶端節流的需求。 如果要求再次失敗並傳回 HTTP 429 錯誤碼，您仍然遇到 Azure 服務限制。 繼續使用建議的用戶端節流方法，重試要求直到成功為止。
 
 ### <a name="recommended-client-side-throttling-method"></a>建議使用的用戶端節流方法
 
@@ -49,5 +49,5 @@ hello 如下**最佳做法**節流您的應用程式：
 
 ## <a name="see-also"></a>另請參閱
 
-節流 hello Microsoft 雲端上的更深入方向，請參閱[節流模式](https://docs.microsoft.com/azure/architecture/patterns/throttling)。
+如需在 Microsoft Cloud 上進行節流處理的詳細資訊，請參閱[節流模式](https://docs.microsoft.com/azure/architecture/patterns/throttling) \(英文\)。
 

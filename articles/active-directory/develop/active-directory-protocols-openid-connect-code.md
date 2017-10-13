@@ -1,6 +1,6 @@
 ---
-title: "aaaUnderstand hello Azure AD 中的 OpenID Connect 驗證程式碼流程 |Microsoft 文件"
-description: "本文說明如何 toouse HTTP 訊息 tooauthorize 存取 tooweb 應用程式和 web 應用程式開發介面使用 Azure Active Directory 和 OpenID Connect 的租用戶中。"
+title: "了解 Azure AD 中的 OpenID Connect 驗證碼流程 | Microsoft Docs"
+description: "本文章說明如何使用 HTTP 訊息來使用 Azure Active Directory 和 OpenID Connect 授權存取您的租用戶中的 Web 應用程式和 Web API。"
 services: active-directory
 documentationcenter: .net
 author: dstrockis
@@ -15,14 +15,14 @@ ms.topic: article
 ms.date: 02/08/2017
 ms.author: dastrock
 ms.custom: aaddev
-ms.openlocfilehash: fafd8ab906ee576c584fec2ef1e9de83ddb1f6e0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1bb944997caa0c43354e82bf9b1a70e3e104a476
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# 授權存取 tooweb 應用程式使用 OpenID Connect 和 Azure Active Directory
-[OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html)是簡單的身分識別層之上 hello OAuth 2.0 通訊協定。 OAuth 2.0 定義機制 tooobtain 並用**存取權杖**tooaccess 受保護的資源，但它們不會定義標準方法 tooprovide 身分識別資訊。 OpenID Connect 實作驗證做為副檔名 toohello OAuth 2.0 授權程序。 它提供有關 hello 形式 hello 終端使用者資訊`id_token`，它會確認 hello hello 使用者識別，並提供 hello 使用者的基本設定檔資訊。
+# 使用 OpenID Connect 和 Azure Active Directory 授權存取 Web 應用程式
+[OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) 是以 OAuth 2.0 通訊協定為建置基礎的簡單身分識別層。 OAuth 2.0 定義的機制可以取得及使用 **存取權杖** 來存取受保護的資源，但它們不會定義提供身分識別資訊的標準方法。 OpenID Connect 實作驗證來做為 OAuth 2.0 的授權程序的擴充。 它以 `id_token` 形式提供使用者相關資訊，這是可確認使用者的身分識別並提供使用者的基本設定檔資訊。
 
 如果您要建置的 Web 應用程式是裝載於伺服器且透過瀏覽器存取，建議使用 OpenID Connect。
 
@@ -30,18 +30,18 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [active-directory-protocols-getting-started](../../../includes/active-directory-protocols-getting-started.md)] 
 
 ## 使用 OpenID Connect 驗證流程
-hello 最基本登入流程包含下列步驟的 hello-每個詳細資料，如下所述。
+最基本的登入流程包含下列步驟 - 以下將詳細說明每一個步驟。
 
 ![OpenId Connect 驗證流程](media/active-directory-protocols-openid-connect-code/active-directory-oauth-code-flow-web-app.png)
 
 ## OpenID Connect 中繼資料文件
 
-OpenID Connect 描述中繼資料文件，其中包含大部分的 hello 資訊所需的應用程式 tooperform 登入。 這包括 hello Url toouse 和 hello 的 hello 服務的公開金鑰簽署金鑰的位置等資訊。 hello OpenID Connect 的中繼資料文件，請參閱：
+OpenID Connect 所描述的中繼資料文件包含應用程式執行登入所需的大部分資訊。 這包括要使用的 URL、服務的公開簽署金鑰位置等資訊。 可在此找到 OpenID Connect 中繼資料文件：
 
 ```
 https://login.microsoftonline.com/{tenant}/.well-known/openid-configuration
 ```
-hello 中繼資料是簡單的 JavaScript Object Notation (JSON) 文件。 請參閱下列的範例程式碼片段的 hello。 hello 片段的內容中完整說明 hello [OpenID Connect 規格](https://openid.net)。
+中繼資料是簡單的「JavaScript 物件標記法」(JSON) 文件。 如需範例，請參閱下列程式碼片段。 [OpenID Connect 規格](https://openid.net)中有程式碼片段內容的完整說明。
 
 ```
 {
@@ -58,12 +58,12 @@ hello 中繼資料是簡單的 JavaScript Object Notation (JSON) 文件。 請�
 }
 ```
 
-## 傳送 hello 登入要求
-當您的 web 應用程式需要 tooauthenticate hello 使用者時，必須將導向 hello 使用者 toohello`/authorize`端點。 這個要求是類似 toohello 第一個階段 hello [OAuth 2.0 授權碼流程](active-directory-protocols-oauth-code.md)，有幾個重要的區別：
+## 傳送登入要求
+當您的 Web 應用程式需要驗證使用者時，其必須將使用者導向至 `/authorize` 端點。 這個要求類似 [OAuth 2.0 授權碼流程](active-directory-protocols-oauth-code.md)的第一個階段，有幾個重要的區別：
 
-* hello 要求必須包含 hello 範圍`openid`在 hello`scope`參數。
-* hello`response_type`參數必須包含`id_token`。
-* hello 要求必須包含 hello`nonce`參數。
+* 要求必須在 `scope` 參數中包含範圍 `openid`。
+* `response_type` 參數必須包含 `id_token`。
+* 要求必須包含 `nonce` 參數。
 
 因此範例要求會看起來像這樣：
 
@@ -82,21 +82,21 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 
 | 參數 |  | 說明 |
 | --- | --- | --- |
-| tenant |必要 |hello `{tenant}` hello hello 要求路徑中的值可以是使用的 toocontrol 可以登入 hello 應用程式。  hello 允許的值為租用戶識別碼，例如`8eaef023-2b34-4da1-9baa-8bc8c9d6a490`或`contoso.onmicrosoft.com`或`common`租用戶獨立語彙基元 |
-| client_id |必要 |hello 應用程式識別碼指派的 tooyour 應用程式時向 Azure AD 註冊。 您可以將它找到 hello Azure 入口網站中。 按一下**Azure Active Directory**，按一下 **應用程式註冊**、 選擇 hello 應用程式，以及找出 hello 應用程式頁面上的應用程式識別碼 hello。 |
+| tenant |必要 |要求路徑中的 `{tenant}` 值可用來控制可登入應用程式的人員。  租用戶獨立權杖允許的值為租用戶識別碼，例如 `8eaef023-2b34-4da1-9baa-8bc8c9d6a490` 或 `contoso.onmicrosoft.com` 或 `common` |
+| client_id |必要 |向 Azure AD 註冊應用程式時，指派給您的應用程式的識別碼。 您可以在 Azure 入口網站中找到這個值。 依序按一下 [Azure Active Directory]、[應用程式註冊]，選擇應用程式，然後在應用程式頁面上找到 [應用程式識別碼]。 |
 | response_type |必要 |必須包含 OpenID Connect 登入的 `id_token` 。  它也可能包含其他 response_types，例如 `code`。 |
-| scope |必要 |範圍的空格分隔清單。  OpenID Connect，它必須包含 hello 範圍`openid`，會轉譯為 hello 同意 UI 中的 toohello 「 將您登入 」 權限。  您也可以在此要求中包含其他範圍以要求同意。 |
-| nonce |必要 |值，包含在產生 hello hello 應用程式所產生的 hello 要求中包含`id_token`宣告的形式。  hello 應用程式然後確認此值 toomitigate 權杖重新執行攻擊。  hello 值通常是隨機的唯一字串或可以是使用的 tooidentify hello 原點的 hello 要求的 GUID。 |
-| redirect_uri |建議使用 |hello redirect_uri 應用程式，可以傳送及接收您的應用程式驗證回應。  它必須完全符合其中一個 hello redirect_uris 您註冊 hello 入口網站，但它必須是 url 編碼。 |
-| response_mode |建議使用 |指定應該使用的 toosend hello 產生 authorization_code 後 tooyour 應用程式的 hello 方法。  支援的值為 `form_post` (*HTTP 表單公佈*) 或 `fragment` (*URL 片段*)。  Web 應用程式，我們建議使用`response_mode=form_post`tooensure hello 語彙基元 tooyour 應用程式的最安全傳輸。 |
-| state |建議使用 |包含在 hello 要求 hello 權杖回應中傳回的值。  其可以是您想要之任何內容的字串。  隨機產生的唯一值通常用於 [防止跨站台偽造要求攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。  之前發生 hello 驗證要求，例如 hello 頁面或檢視上 hello 狀態也會使用的 tooencode hello 應用程式中的 hello 使用者狀態資訊。 |
-| prompt |選用 |指出 hello 類型所需使用者互動。  目前，hello 只有有效的值為 'none'、 ' 登入' 和 '同意'。  `prompt=login`該要求停止單一登入上強制 hello 使用者 tooenter 他們的認證。  `prompt=none`hello 相反-它會確保該 hello 使用者不提供任何互動式提示擔保。  如果 hello 無法完成要求，以無訊息方式透過單一登入，hello 端點會傳回錯誤。  `prompt=consent`觸發 hello OAuth 同意對話方塊之後 hello 使用者登入時，要求 hello 使用者 toogrant 權限 toohello 應用程式。 |
-| login_hint |選用 |如果您知道事先其使用者名稱，可能會使用的 toopre 填滿 hello 使用者名稱/電子郵件地址欄位 hello 登入頁面的 hello 使用者。  通常應用程式使用此參數在重新驗證，從先前的登入需要擷取 hello 使用者名稱時使用 hello`preferred_username`宣告。 |
+| scope |必要 |範圍的空格分隔清單。  針對 OpenID Connect，即必須包含範圍 `openid`，其會在同意 UI 中轉譯成「讓您登入」權限。  您也可以在此要求中包含其他範圍以要求同意。 |
+| nonce |必要 |包含在要求中的值 (由應用程式所產生)，將會包含在所得的 `id_token` 中來做為宣告。  應用程式接著便可確認此值，以減少權杖重新執行攻擊。  此值通常是隨機的唯一字串或 GUID，可用以識別要求的來源。 |
+| redirect_uri |建議使用 |應用程式的 redirect_uri，您的應用程式可在此傳送及接收驗證回應。  其必須完全符合您在入口網站中註冊的其中一個 redirect_uris，不然就必須得是編碼的 url。 |
+| response_mode |建議使用 |指定將產生的 authorization_code 傳回到應用程式所應該使用的方法。  支援的值為 `form_post` (*HTTP 表單公佈*) 或 `fragment` (*URL 片段*)。  針對 Web 應用程式，建議使用 `response_mode=form_post`，確保會以最安全的方式將權杖傳輸至您的應用程式。 |
+| state |建議使用 |會隨權杖回應傳回之要求中所包含的值。  其可以是您想要之任何內容的字串。  隨機產生的唯一值通常用於 [防止跨站台要求偽造攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。  此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
+| prompt |選用 |表示需要的使用者互動類型。  目前只有 'login'、'none'、'consent' 是有效值。  `prompt=login` 會強制使用者在該要求上輸入認證，否定單一登入。  `prompt=none` 則相反 - 它會確保不會對使用者顯示任何互動式提示。  如果無法透過單一登入以無訊息方式完成要求，端點就會傳回錯誤。  `prompt=consent` 會在使用者登入之後觸發 OAuth 同意對話方塊，詢問使用者是否要授與權限給應用程式。 |
+| login_hint |選用 |如果您事先知道其使用者名稱，可用來預先填入使用者登入頁面的使用者名稱/電子郵件地址欄位。  通常應用程式會在重新驗證期間使用此參數，並已經使用 `preferred_username` 宣告從上一個登入擷取使用者名稱。 |
 
-此時，hello 使用者是他們的認證與完整 hello 驗證要求 tooenter。
+此時，系統會要求使用者輸入其認證並完成驗證。
 
 ### 範例回應
-範例回應 hello 使用者驗證之後，可能看起來像這樣：
+使用者經過驗證之後的範例回應，看起來像這樣：
 
 ```
 POST /myapp/ HTTP/1.1
@@ -108,11 +108,11 @@ id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNB...&state=12345
 
 | 參數 | 說明 |
 | --- | --- |
-| id_token |hello`id_token`要求該 hello 應用程式。 您可以使用 hello `id_token` tooverify hello 使用者的身分識別，並開始與 hello 使用者工作階段。 |
-| state |也會傳回 hello 權杖回應中的 hello 要求中包含一個值。 隨機產生的唯一值通常用於 [防止跨站台偽造要求攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。  之前發生 hello 驗證要求，例如 hello 頁面或檢視上 hello 狀態也會使用的 tooencode hello 應用程式中的 hello 使用者狀態資訊。 |
+| id_token |應用程式要求的 `id_token` 。 您可以使用 `id_token` 確認使用者的身分識別，並以使用者開始工作階段。 |
+| state |要求中包含的值，也會隨權杖回應傳回。 隨機產生的唯一值通常用於 [防止跨站台偽造要求攻擊](http://tools.ietf.org/html/rfc6749#section-10.12)。  此狀態也用於在驗證要求出現之前，於應用程式中編碼使用者的狀態資訊，例如之前所在的網頁或檢視。 |
 
 ### 錯誤回應
-錯誤回應也可能會傳送 toohello`redirect_uri`讓 hello 應用程式可以適當地處理：
+錯誤回應可能也會傳送至 `redirect_uri` ，讓應用程式可以適當地處理：
 
 ```
 POST /myapp/ HTTP/1.1
@@ -124,39 +124,39 @@ error=access_denied&error_description=the+user+canceled+the+authentication
 
 | 參數 | 說明 |
 | --- | --- |
-| 錯誤 |錯誤的程式碼字串是使用的 tooclassify 類型之錯誤的發生，且可以使用的 tooreact tooerrors。 |
-| error_description |特定的錯誤訊息，可協助開發人員會識別 hello 的驗證錯誤的根本原因。 |
+| 錯誤 |用以分類發生的錯誤類型與回應錯誤的錯誤碼字串。 |
+| error_description |協助開發人員識別驗證錯誤根本原因的特定錯誤訊息。 |
 
 #### 授權端點錯誤的錯誤碼
-hello 以下表格說明 hello 各種 hello 中可傳回的錯誤碼`error`hello 錯誤回應的參數。
+下表說明各種可能在錯誤回應的 `error` 參數中傳回的錯誤碼。
 
 | 錯誤碼 | 說明 | 用戶端動作 |
 | --- | --- | --- |
-| invalid_request |通訊協定錯誤，例如遺漏必要的參數。 |修正，然後再重新送出 hello 要求。 這是通常會在初始測試期間擷取到的開發錯誤。 |
-| unauthorized_client |hello 用戶端應用程式不允許 toorequest 授權碼。 |這通常就會發生 hello 用戶端應用程式未在 Azure AD 中註冊，或未加入 toohello 使用者的 Azure AD 租用戶。 hello 應用程式可以提示指示安裝 hello 應用程式，並將它加入 tooAzure AD hello 的使用者。 |
-| access_denied |資源擁有者拒絕同意 |hello 用戶端應用程式可以通知 hello 使用者除非 hello 使用者同意，否則無法繼續進行。 |
-| unsupported_response_type |hello 授權伺服器不支援在 hello 要求中的 hello 回應類型。 |修正，然後再重新送出 hello 要求。 這是通常會在初始測試期間擷取到的開發錯誤。 |
-| server_error |hello 伺服器發生未預期的錯誤。 |重試 hello 要求。 這些錯誤可能是由暫時性狀況所引起。 hello 用戶端應用程式可能會詳述 toohello 使用者其回應，因為 tooa 暫時錯誤而延遲。 |
-| temporarily_unavailable |hello 伺服器就會暫時太忙碌 toohandle hello 要求。 |重試 hello 要求。 hello 用戶端應用程式可能會詳述 toohello 使用者其回應，因為 tooa 暫時性狀況而延遲。 |
-| invalid_resource |hello 目標資源無效，因為它不存在、 Azure AD 無法找到它，或是未正確設定。 |這表示 hello 資源存在，是否尚未設定 hello 租用戶中。 hello 應用程式可以提示指示安裝 hello 應用程式，並將它加入 tooAzure AD hello 的使用者。 |
+| invalid_request |通訊協定錯誤，例如遺漏必要的參數。 |修正並重新提交要求。 這是通常會在初始測試期間擷取到的開發錯誤。 |
+| unauthorized_client |不允許用戶端應用程式要求授權碼。 |這通常會在用戶端應用程式未在 Azure AD 中註冊，或未加入至使用者的 Azure AD 租用戶時發生。 應用程式可以對使用者提示關於安裝應用程式，並將它加入至 Azure AD 的指示。 |
+| access_denied |資源擁有者拒絕同意 |用戶端應用程式可以通知使用者，除非使用者同意，否則無法繼續進行。 |
+| unsupported_response_type |授權伺服器不支援要求中的回應類型。 |修正並重新提交要求。 這是通常會在初始測試期間擷取到的開發錯誤。 |
+| server_error |伺服器發生非預期的錯誤。 |重試要求。 這些錯誤可能是由暫時性狀況所引起。 用戶端應用程式可能會向使用者解釋，說明其回應因暫時性錯誤而延遲。 |
+| temporarily_unavailable |伺服器暫時過於忙碌而無法處理要求。 |重試要求。 用戶端應用程式可能會向使用者解釋，說明其回應因暫時性狀況而延遲。 |
+| invalid_resource |目標資源無效，因為它不存在、Azure AD 無法找到它，或是它並未正確設定。 |這表示尚未在租用戶中設定資源 (如果存在)。 應用程式可以對使用者提示關於安裝應用程式，並將它加入至 Azure AD 的指示。 |
 
-## 驗證 hello id_token
-只接收`id_token`不足夠 tooauthenticate hello 使用者; 您必須驗證 hello 簽章，並確認在 hello hello 宣告`id_token`根據每個應用程式的需求。 hello Azure AD 端點使用 JSON Web 權杖 (Jwt) 和公開金鑰加密 toosign 語彙基元，並確認它們都有效。
+## 驗證 id_token
+僅接收 `id_token` 不足以驗證使用者，您必須驗證簽章，並依照應用程式的需求確認 `id_token` 中的宣告。 Azure AD 端點使用 JSON Web Tokens (JWT) 和公開金鑰加密簽署權杖及驗證其是否有效。
 
-您可以選擇 toovalidate hello`id_token`中用戶端程式碼，但常見作法是將 toosend hello `id_token` tooa 後端伺服器並執行那里 hello 驗證。 一旦您已驗證簽章 hello hello `id_token`，有幾個您所需要的 tooverify 的宣告。
+您可以選擇驗證用戶端程式碼中的 `id_token`，但是常見的作法是將 `id_token` 傳送至後端伺服器，並且在那裡執行驗證。 一旦驗證了 `id_token` 的簽章，就會有數項宣告需要驗證。
 
-您可能也想 toovalidate 宣告的其他宣告根據您的案例。 一些常見的驗證包括：
+您可能也希望根據自己的案例驗證其他宣告。 一些常見的驗證包括：
 
-* 確保 hello 使用者組織已註冊 hello 應用程式。
-* 確保以下人員 hello 使用者擁有適當的授權/權限
+* 確保使用者/組織已註冊應用程式。
+* 確保使用者擁有正確的授權/權限
 * 確保驗證具有特定強度，例如多重要素驗證。
 
-一旦您已驗證 hello `id_token`，您可以開始與 hello 使用者的工作階段，並使用 hello 宣告在 hello `id_token` tooobtain hello 使用者應用程式中的資訊。 這項資訊可以用於顯示、記錄、授權等等。如需有關 hello 語彙基元類型及宣告的詳細資訊，請閱讀[支援權杖和宣告類型](active-directory-token-and-claims.md)。
+驗證 `id_token` 之後，即可利用該使用者開始工作階段，並使用 `id_token` 中的宣告來取得應用程式中的使用者相關資訊。 這項資訊可以用於顯示、記錄、授權等等。如需有關權杖類型及宣告的詳細資訊，請參閱[支援的權杖和宣告類型](active-directory-token-and-claims.md)。
 
 ## 傳送登出要求
-當您想 toosign hello 使用者登出 hello 應用程式時，您的應用程式 cookie 是沒有足夠權限 tooclear 或否則結束 hello 與 hello 使用者的工作階段。  您也必須重新導向 hello 使用者 toohello`end_session_endpoint`的登出。如果您因此無法 toodo，hello 使用者將能夠 tooreauthenticate tooyour 應用程式，而不需輸入其認證，因為它們會有效單一登入工作階段與 hello Azure AD 端點。
+當您想要將使用者登出應用程式時，只是清除應用程式的 Cookie 或結束使用者的工作階段還是不夠。  您也必須將使用者重新導向至 `end_session_endpoint` 以完成登出。  如果不這樣做，使用者可能不需要再次輸入認證就能重新通過應用程式的驗證，因為他們與 Azure AD 端點之間仍然存在有效的單一登入工作階段。
 
-您可以只是重新導向 hello 使用者 toohello `end_session_endpoint` hello OpenID Connect 的中繼資料文件中所列：
+您可以直接將使用者重新導向至 OpenID Connect 中繼資料文件中所列出的 `end_session_endpoint` ：
 
 ```
 GET https://login.microsoftonline.com/common/oauth2/logout?
@@ -166,21 +166,21 @@ post_logout_redirect_uri=http%3A%2F%2Flocalhost%2Fmyapp%2F
 
 | 參數 |  | 說明 |
 | --- | --- | --- |
-| post_logout_redirect_uri |建議使用 |hello 使用者 hello URL 應該會重新導向的 tooafter 成功登出。  如果未包含，hello 使用者會顯示一般的訊息。 |
+| post_logout_redirect_uri |建議使用 |使用者在成功登出之後，應該要前往的 URL。  如果此參數，則會向使用者顯示一般訊息。 |
 
 ## 單一登出
-當您重新導向 hello 使用者 toohello `end_session_endpoint`，Azure AD 會清除從 hello 瀏覽器的 hello 使用者的工作階段。 不過，hello 使用者仍然可能會簽署 tooother 的應用程式使用 Azure AD 進行驗證。 tooenable 這些應用程式 toosign 同時 hello 使用者登出，Azure AD 會傳送給註冊 HTTP GET 要求 toohello `LogoutUrl` hello 的所有應用程式的 hello 使用者目前登入。 應用程式必須藉由清除任何工作階段，可識別 hello 使用者，並傳回回應 toothis 要求`200`回應。  如果想 toosupport 單一登登出您的應用程式中，您必須實作這類`LogoutUrl`在您的應用程式程式碼中。  您可以設定 hello`LogoutUrl`從 hello Azure 入口網站：
+當您將使用者重新導向至 `end_session_endpoint` 時，Azure AD 會清除瀏覽器中的使用者工作階段。 不過，使用者可能仍然登入其他使用 Azure AD 進行驗證的應用程式。 為了讓這些應用程式能同時將使用者登入，Azure AD 會將 HTTP GET 要求傳送至使用者目前登入之所有應用程式的已註冊 `LogoutUrl`。 應用程式必須藉由清除任何可識別使用者的工作階段並傳回 `200` 回應，以回應此要求。  如果您想要在應用程式中支援單一登出，您必須在應用程式的程式碼中實作這類 `LogoutUrl`。  您可以在 Azure 入口網站中設定 `LogoutUrl`：
 
-1. 瀏覽 toohello [Azure 入口網站](https://portal.azure.com)。
-2. 在您的帳戶在 hello 右上角的 hello 頁面，即可選擇您的 Active Directory。
-3. 從 hello 左邊導覽面板中，選擇  **Azure Active Directory**，然後選擇 **應用程式註冊**並選取您的應用程式。
-4. 按一下**屬性**並尋找 hello**登出 URL**文字方塊。 
+1. 瀏覽至 [Azure 入口網站](https://portal.azure.com)。
+2. 在頁面右上角按一下您的帳戶，以選擇您的 Active Directory。
+3. 在左側導覽窗格中，依序選擇 [Azure Active Directory]、[應用程式註冊]，然後選取您的應用程式。
+4. 按一下 [屬性]，找到 [登出 URL] 文字方塊。 
 
 ## 權杖取得
-許多 web 應用程式需要 toonot 登 hello 中唯一的使用者，但也存取代表該使用者使用 OAuth web 服務。 此案例中進行使用者驗證時同時取得結合 OpenID Connect`authorization_code`可以使用的 tooget`access_tokens`使用 hello OAuth 授權碼流程。
+許多 Web Apps 不僅需要將使用者登入，同時需要使用 OAuth 代表使用者來存取 Web 服務。 這個案例針對使用者驗證合併 OpenID Connect，同時使用 OAuth 授權碼流程取得可用來取得 `authorization_code` 的 `access_tokens`。
 
 ## 取得存取權杖
-tooacquire 存取權杖，您需要 toomodify hello 登入要求，從上方：
+若要取得存取權杖，您需要修改上述的登入要求：
 
 ```
 // Line breaks for legibility only
@@ -196,7 +196,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e        // Your registered Applica
 &nonce=678910                                         // Any value, provided by your app
 ```
 
-包括 hello 要求中的權限範圍，並使用`response_type=code+id_token`，hello`authorize`端點可確保該 hello 使用者同意 toohello hello 中指出的權限`scope`查詢參數，並傳回您的應用程式授權碼tooexchange 存取權杖。
+藉由在要求中包含權限範圍，並且使用 `response_type=code+id_token`，`authorize` 端點可確保使用者已經同意 `scope` 查詢參數中表示的權限，並且將授權碼傳回至您的應用程式以交換存取權杖。
 
 ### 成功回應
 使用 `response_mode=form_post` 的成功回應如下所示：
@@ -211,12 +211,12 @@ id_token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1uQ19WWmNB...&code=AwABAA
 
 | 參數 | 說明 |
 | --- | --- |
-| id_token |hello`id_token`要求該 hello 應用程式。 您可以使用 hello `id_token` tooverify hello 使用者的身分識別，並開始與 hello 使用者工作階段。 |
-| code |hello authorization_code hello 要求的應用程式。 hello 應用程式可以使用 hello 目標資源的 hello 授權程式碼 toorequest 存取權杖。 authorization_code 的有效期很短，通常約 10 分鐘後即到期。 |
-| state |如果在 hello 要求中，相同的值應該會出現在 hello 回應 hello 包含狀態參數。 hello 應用程式應該確認 hello 要求和回應中的 hello 狀態值完全相同。 |
+| id_token |應用程式要求的 `id_token` 。 您可以使用 `id_token` 確認使用者的身分識別，並以使用者開始工作階段。 |
+| code |應用程式要求的 authorization_code。 應用程式可以使用授權碼要求目標資源的存取權杖。 authorization_code 的有效期很短，通常約 10 分鐘後即到期。 |
+| state |如果要求中包含狀態參數，回應中就應該出現相同的值。 應用程式應該確認要求和回應中的狀態值完全相同。 |
 
 ### 錯誤回應
-錯誤回應也可能會傳送 toohello`redirect_uri`讓 hello 應用程式可以適當地處理：
+錯誤回應可能也會傳送至 `redirect_uri` ，讓應用程式可以適當地處理：
 
 ```
 POST /myapp/ HTTP/1.1
@@ -228,9 +228,9 @@ error=access_denied&error_description=the+user+canceled+the+authentication
 
 | 參數 | 說明 |
 | --- | --- |
-| 錯誤 |錯誤的程式碼字串是使用的 tooclassify 類型之錯誤的發生，且可以使用的 tooreact tooerrors。 |
-| error_description |特定的錯誤訊息，可協助開發人員會識別 hello 的驗證錯誤的根本原因。 |
+| 錯誤 |用以分類發生的錯誤類型與回應錯誤的錯誤碼字串。 |
+| error_description |協助開發人員識別驗證錯誤根本原因的特定錯誤訊息。 |
 
-如需 hello 可能錯誤碼和其建議用戶端動作的說明，請參閱[授權端點發生錯誤的錯誤代碼](#error-codes-for-authorization-endpoint-errors)。
+如需可能的錯誤碼及建議的用戶端動作說明，請參閱[授權端點錯誤的錯誤碼](#error-codes-for-authorization-endpoint-errors)。
 
-一旦授權`code`和`id_token`，您可以 hello 使用者登入，並代表它取得存取權杖。  toosign hello 中的使用者，您必須驗證 hello`id_token`完全如上面所述。 tooget 存取權杖，您可以依照 hello [使用 hello 授權程式碼 toorequest 存取權杖] 區段中所述的 hello 步驟我們[OAuth 通訊協定文件](active-directory-protocols-oauth-code.md)。
+一旦取得授權 `code` 和 `id_token`，您可以將使用者登入，並且代表他們取得存取權杖。  若要將使用者登入，您必須完整地如上方所述驗證 `id_token` 。 若要取得存取權杖，您可以依照 [OAuth 通訊協定文件](active-directory-protocols-oauth-code.md)中＜使用授權碼來要求存取權杖＞一節中所述的步驟操作。

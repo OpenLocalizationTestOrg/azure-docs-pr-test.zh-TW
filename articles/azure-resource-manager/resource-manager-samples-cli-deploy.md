@@ -1,5 +1,5 @@
 ---
-title: "CLI 指令碼範例-aaaAzure 部署範本 |Microsoft 文件"
+title: "Azure CLI 指令碼範例 - 部署範本 | Microsoft Docs"
 description: "部署 Azure Resource Manager 範本的範例指令碼。"
 services: azure-resource-manager
 documentationcenter: na
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 04/19/2017
 ms.author: tomfitz
-ms.openlocfilehash: 5a94eedbd898ced29d67f8ce3023ca5c65f83af2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 974230f349aec46fde58e69658e05a13bff4296f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-resource-manager-template-deployment---azure-cli-script"></a>Azure Resource Manager 範本部署 - Azure CLI 指令碼
 
-此指令碼會將部署您的訂用帳戶中資源管理員範本 tooa 資源群組。
+此指令碼會將 Resource Manager 範本部署到您的訂用帳戶中的資源群組。
 
 [!INCLUDE [sample-cli-install](../../includes/sample-cli-install.md)]
 
@@ -37,7 +37,7 @@ IFS=$'\n\t'
 
 # -e: immediately exit if any command has a non-zero exit status
 # -o: prevents errors in a pipeline from being masked
-# IFS new value is less likely toocause confusing bugs when looping arrays or arguments (e.g. $@)
+# IFS new value is less likely to cause confusing bugs when looping arrays or arguments (e.g. $@)
 
 usage() { echo "Usage: $0 -i <subscriptionId> -g <resourceGroupName> -n <deploymentName> -l <resourceGroupLocation>" 1>&2; exit 1; }
 
@@ -84,12 +84,12 @@ if [[ -z "$deploymentName" ]]; then
 fi
 
 if [[ -z "$resourceGroupLocation" ]]; then
-    echo "Enter a location below toocreate a new resource group else skip this"
+    echo "Enter a location below to create a new resource group else skip this"
     echo "ResourceGroupLocation:"
     read resourceGroupLocation
 fi
 
-#templateFile Path - template file toobe used
+#templateFile Path - template file to be used
 templateFilePath="template.json"
 
 if [ ! -f "$templateFilePath" ]; then
@@ -110,7 +110,7 @@ if [ -z "$subscriptionId" ] || [ -z "$resourceGroupName" ] || [ -z "$deploymentN
     usage
 fi
 
-#login tooazure using your credentials
+#login to azure using your credentials
 az account show 1> /dev/null
 
 if [ $? != 0 ];
@@ -118,7 +118,7 @@ then
     az login
 fi
 
-#set hello default subscription id
+#set the default subscription id
 az account set --subscription $subscriptionId
 
 #Check for existing RG
@@ -147,7 +147,7 @@ fi
 
 ## <a name="clean-up-deployment"></a>清除部署 
 
-Hello 執行的下列命令 tooremove hello 資源群組和其所有資源。
+執行下列命令來移除資源群組和其所有資源。
 
 ```azurecli
 az group delete --name myResourceGroup
@@ -155,7 +155,7 @@ az group delete --name myResourceGroup
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼會使用下列命令 toocreate hello 部署的 hello。 Hello 資料表中的每個項目連結 toocommand 特定文件。
+此指令碼會使用下列命令來建立部署。 下表中的每個項目都會連結至命令特定的文件。
 
 | 命令 | 注意事項 |
 |---|---|
@@ -167,8 +167,8 @@ az group delete --name myResourceGroup
 
 
 ## <a name="next-steps"></a>後續步驟
-* 如簡介 toodeploying 範本，請參閱[部署資源與資源管理員範本和 Azure PowerShell](resource-group-template-deploy-cli.md)。
+* 如需部署範本的簡介，請參閱[使用 Resource Manager 範本與 Azure PowerShell 來部署資源](resource-group-template-deploy-cli.md)。
 * 如需部署需要 SAS 權杖之範本的詳細資訊，請參閱[使用 SAS 權杖部署私人範本](resource-manager-cli-sas-token.md)。
-* toodefine 參數在範本中，請參閱[撰寫樣板](resource-group-authoring-templates.md#parameters)。
-* 如需指引企業可以如何使用資源管理員 tooeffectively 管理訂用帳戶，請參閱[Azure 企業版 scaffold-精準的訂閱控管](resource-manager-subscription-governance.md)。
+* 若要在範本中定義參數，請參閱 [編寫範本](resource-group-authoring-templates.md#parameters)。
+* 如需關於企業如何使用 Resource Manager 有效地管理訂閱的指引，請參閱 [Azure 企業 Scaffold - 規定的訂用帳戶治理](resource-manager-subscription-governance.md)。
 

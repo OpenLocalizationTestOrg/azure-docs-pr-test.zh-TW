@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Mobile Engagement 使用者介面-首頁"
-description: "深入了解如何 toomanage 您現有的應用程式和使用 Azure Mobile Engagement 專案"
+title: "Azure Mobile Engagement 使用者介面 - 首頁"
+description: "了解如何使用 Azure Mobile Engagement 管理現有的應用程式和專案"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,53 +14,53 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 727dad188c5876d09db84634a17e10b280039c49
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0f15cb975f57f6f5cab12d5118ff50a6fab14388
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toomanage-your-existing-application-and-projects"></a>如何 toomanage 您現有的應用程式和專案
-本文說明 hello**首頁**頁面 hello **Mobile Engagement**入口網站。 使用 hello **Mobile Engagement** toomonitor 入口網站和管理您的行動裝置應用程式。 請注意使用 hello 入口網站，您必須先 toocreate 該 toostart **Azure Mobile Engagement**帳戶。 
+# <a name="how-to-manage-your-existing-application-and-projects"></a>如何管理現有的應用程式和專案
+本文說明 **Mobile Engagement** 入口網站的**首頁**。 使用 **Mobile Engagement** 入口網站可監視與管理您的行動應用程式。 請注意，若要開始使用入口網站，您必須先建立 **Azure Mobile Engagement** 帳戶。 
 
-tooget toohello 首頁上，按一下 [**家用**上 hello hello 頁面左上角。 它包含的所有應用程式屬於 hello 選擇集合 hello 清單。 此頁面上只會顯示您應用程式的快速概觀。
+若要前往首頁，請按一下頁面左上角的 **首頁** 。 若您的應用程式屬於所選集合，則會全部列於此處。 此頁面上只會顯示您應用程式的快速概觀。
 
-hello 首頁也包含所有您可以包含位於您帳戶中的任何應用程式的專案。 請注意，任何人都可以存取的 hello UI hello 首頁上建立帳戶，但是您需要 toogrant 權限 tooother 使用者，使其 toohave 存取 tooyour 自訂應用程式中的**[我的專案**。
+可包含您帳戶中任何應用程式的專案也會顯示在首頁。 請注意，任何人都可以建立帳戶以存取 UI 的首頁，但是您必須將權限授與其他使用者，他們才能在 **我的專案**中存取您自訂的應用程式。
 
-您也可以檢視 hello 選取應用程式的 hello 比較圖表。 或者，選擇 tooview hello 比較圖，針對選取的應用程式專案中。
+您也可以檢視所選應用程式的比較圖表。 或者，您也可以選擇檢視專案中所選應用程式的比較圖表。
 
 ![Home1][0]
 
 ## <a name="my-applications"></a>我的應用程式
-hello 應用程式的快速概觀可以讓您您想要的應用程式的 tooselect tooopen tooview hello 詳細的功能區選項。 您可以按一下應用程式中的 hello 名稱您 tooreturn toohello 最近瀏覽的功能區應用程式的位置，或按一下 hello 齒輪圖示 toogo 直接 toohello [設定] 頁面的 [應用程式。 您可以搜尋、 篩選或排序 hello 資訊顯示 hello 應用程式上的資料表。 您也可以拖曳，並卸除 hello 欄標頭 toochange hello 順序。
+這裡會大略介紹您的應用程式，讓您選取想要開啟的應用程式，以檢視詳細的功能區選項。 您可以按一下應用程式的名稱，回到應用程式中最近瀏覽的功能區位置，或者按一下齒輪圖示，直接移至應用程式的 [設定] 頁面。 您可以搜尋、篩選或排序應用程式表格上所顯示的資訊。 您也可以拖放欄標題來變更順序。
 
-在其他方面，應用程式的 hello 概觀包括：
+此外，應用程式的概觀包括：
 
-* **新使用者趨勢**: hello 過去兩週新使用者的演進。
-* **作用中使用者**: hello 過去 30 天的作用中使用者的數目。
-* **作用中使用者趨勢**: hello 過去兩週作用中使用者的演進。
-* **工作階段**： 工作階段是使用一 hello 使用者所執行的應用程式、 從 hello 時間 hello 使用者開始使用它，直到 hello 使用者停止。
-* **工作階段趨勢**： 工作階段 hello 過去兩週的演進。
+* **新使用者趨勢**：新使用者過去兩個星期的發展。
+* **作用中使用者**：過去 30 天的作用中使用者數目。
+* **作用中使用者趨勢**：作用中使用者過去兩個星期的發展。
+* **工作階段**：工作階段是由使用者執行的一次應用程式使用，從使用者開始使用的時間，直到使用者停止的時間為止。
+* **工作階段趨勢**：工作階段過去兩個星期的發展。
 
-一旦您按一下應用程式，您可以啟動監視和管理您的應用程式，透過 hello UI。 例如：    
+按一下應用程式後，您就可以開始透過使用者介面監視和管理您的應用程式。 例如：    
 
 * [監視應用程式的即時資料](mobile-engagement-user-interface-monitor.md)
-* [分析應用程式的歷程記錄資料](mobile-engagement-user-interface-analytics.md)
-* [建立及管理使用者 tooidentify 習慣的區段](mobile-engagement-user-interface-segments.md)
-* [聯繫 toohello 的推播通知的應用程式的使用者](mobile-engagement-user-interface-reach.md)
+* [分析應用程式的歷史資料](mobile-engagement-user-interface-analytics.md)
+* [建立和管理使用者的使用者分佈以識別使用模式](mobile-engagement-user-interface-segments.md)
+* [透過推播通知觸及應用程式的使用者](mobile-engagement-user-interface-reach.md)
 
 ## <a name="my-projects"></a>我的專案
-您可以使用專案 toogroup 應用程式，並授與權限 tooother 使用者 tooaccess 應用程式。 您授與權限 tooother 使用者藉由提供電子郵件地址。 hello**新專案**按鈕可讓您 toocreate 新的專案只輸入以 「 名稱 」 和 「 描述 」 的新專案。 一旦建立專案之後，您可以按一下 hello 專案名稱 tooedit hello 名稱和描述您的產品和 tooselect 想 toosee 此專案中的所有 hello 應用程式。
+您可以使用專案將您的應用程式分組，並將權限授與其他使用者以便存取您的應用程式。 您可以透過提供電子郵件地址將權限授與其他使用者。 使用 [ **新增專案** ] 按鈕，只要輸入新專案的「名稱」和「說明」，就可以建立新專案。 專案建立之後，可以按一下專案名稱來編輯產品的名稱和說明，以及選取您想要在此專案中查看的所有應用程式。
 
 ![Home6][60]
 
 角色包括：
 
-* **檢視器**: 檢視器是可以只檢視 hello 應用程式相關聯 tooa 專案的使用者。 檢視者可以存取分析和監視資料，並查看觸達結果。 檢視者無法變更任何資訊，也無法管理應用程式或使用者。 檢視者無法建立或變更觸達活動狀態。
+* **檢視者**：只能檢視與專案相關聯之應用程式的使用者。 檢視者可以存取分析和監視資料，並查看觸達結果。 檢視者無法變更任何資訊，也無法管理應用程式或使用者。 檢視者無法建立或變更觸達活動狀態。
 * **開發人員**：除了具備檢視者的權限之外，還可管理應用程式的使用者。 開發人員可以啟用和停用應用程式、變更應用程式的資訊 (例如封裝和簽章)，以及建立觸達活動。 開發人員無法管理使用者。
-* **管理員**：除了具備開發人員的權限之外，還可管理使用者的使用者。 系統管理員可以邀請使用者 toojoin 專案，可以變更使用者角色，可以變更專案的資訊。 在 [設定] 中也可以設定應用程式層級權限。
+* **管理員**：除了具備開發人員的權限之外，還可管理使用者的使用者。 管理員可以邀請使用者加入專案、變更使用者角色，還可以變更專案的資訊。 在 [設定] 中也可以設定應用程式層級權限。
 
-按一下專案 tooview 所有屬於這個專案的 hello 應用程式。 hello 下列影像顯示 hello 選取應用程式的 hello 比較圖表。
+按一下專案即可檢視所有屬於此專案的應用程式。 下圖顯示所選應用程式的比較圖表。
 
 ![Home2][3]
 

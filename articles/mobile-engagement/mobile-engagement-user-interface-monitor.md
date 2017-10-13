@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Mobile Engagement 使用者介面的監視"
-description: "深入了解如何使用 Azure Mobile Engagement 應用程式的 toomonitor 即時資料"
+title: "Azure Mobile Engagement 使用者介面 - 監視"
+description: "了解如何使用 Azure Mobile Engagement 監視應用程式的即時資料"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 3a581e4166bc88e6ee7aa784d4047c94533685b5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5f8a02e35db93585e0fe46d77b3ad18b94c99597
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toomonitor-real-time-data-about-your-application"></a>如何 toomonitor 您的應用程式的即時資料
-本文說明 hello**監視器** 索引標籤的 hello **Mobile Engagement**入口網站。 使用 hello **Mobile Engagement** toomonitor 入口網站和管理您的行動裝置應用程式。 請注意使用 hello 入口網站，您必須先 toocreate 該 toostart **Azure Mobile Engagement**帳戶。 
+# <a name="how-to-monitor-real-time-data-about-your-application"></a>如何監視應用程式的即時資料
+本文說明 **Mobile Engagement** 入口網站的 [監視] 索引標籤。 使用 **Mobile Engagement** 入口網站可監視與管理您的行動應用程式。 請注意，若要開始使用入口網站，您必須先建立 **Azure Mobile Engagement** 帳戶。 
 
-hello 監視器 hello UI 段提供即時分析的資訊，並讓您有 tooset 警示時到達臨界值對於大多數的 hello 相同資訊可在過去在 hello[分析](mobile-engagement-user-interface-analytics.md)區段hello UI。 請參閱 hello**詞彙**> 一節中 hello[概念](http://go.microsoft.com/fwlink/?LinkId=525555)定義的術語和縮寫分析和監視中的主題 (hello 如下： 作用中使用者，新的使用者，保留使用者、 工作階段，使用者路徑圖形、 使用者對應，追蹤 Url、 趨勢、 活動、 事件、 作業、 錯誤、 額外的資訊、 損毀，以及應用程式資訊）。
+UI 的 [監視] 區段提供即時分析資訊，並可讓您設定在 UI 之 [分析](mobile-engagement-user-interface-analytics.md) 區段中過去可用的大多數相同功能達到臨界值時發出警示。 請參閱 **概念** 主題中的 [詞彙](http://go.microsoft.com/fwlink/?LinkId=525555) ﹐了解「分析和監視」中術語和縮寫的定義 (例如：「作用中使用者」、「新增使用者」、「保留使用者」、「工作階段」、「使用者路徑圖表」、「使用者地圖」、「追蹤 URL」、「趨勢」、「活動」、「事件」、「工作」、「錯誤」、「額外資訊」、「損毀」和「應用程式資訊」)。
 
 > [!NOTE]
-> 多區段的 hello **Mobile Engagement**入口網站 UI 包含 hello**顯示說明** 按鈕。 按此按鈕 tooget 區段內容詳細資訊。
+> 許多 **Mobile Engagement** 入口網站 UI 的區段含有 [顯示說明] 按鈕。 按該按鈕，可獲得關於區段的詳細內容資訊。
 > 
 > 
 
 ## <a name="monitor---sessions-jobs-events-errors-and-crashes"></a>監視 - 工作階段、工作、事件、錯誤和損毀
-您可以看到工作階段中和特定螢幕上目前有多少位使用者，或是目前有多少位使用者執行特定動作。 您可以檢視除以「工作階段」、「工作」、「事件」、「錯誤」和「損毀」的使用者活動。 您可以看到 hello 目前的資訊，並顯示 hello 資訊從 hello 過去一小時內，一天或週。 您可以查看所有的每個類別中的 hello 資訊或排序 hello 特定工作階段、 作業、 事件、 錯誤和損毀。  即時監視是很有幫助 toouse 事件，例如推送活動 toosee 期間，如果正在攀升動作右之後傳送推播通知。
+您可以看到工作階段中和特定螢幕上目前有多少位使用者，或是目前有多少位使用者執行特定動作。 您可以檢視除以「工作階段」、「工作」、「事件」、「錯誤」和「損毀」的使用者活動。 您可以查看目前的資訊，並顯示最後一個小時、一天或一週的資訊。 您可以查看每種類別中的所有資訊，或依特定「工作階段」、「工作」、「事件」、「錯誤」和「損毀」中進行排序。  即時監視適用於在事件 (例如推播行銷活動) 期間用來查看傳送推播通知後是否有立即作用的報升。
 
 ![Monitor1][14]  
 
 ## <a name="troubleshooting-with-monitor---events---details"></a>監視 - 事件 - 詳細資料疑難排解
-從您的測試裝置的應用程式中產生事件及搜尋時間監視的事件的詳細資料中是其中一個 hello 您的裝置識別碼測試裝置與 tooconfirm 該 Azure Mobile Engagement 的整合分析、 監控，最簡單方式 toofind 和從您的應用程式正在區段。 一旦您擁有 hello 測試裝置的裝置識別碼，您可以將它在"My 帳戶-Devices"tooyour 測試裝置。 如果您無法產生事件，請確定 Azure Mobile Engagement 已正確整合 Android/iOS/Web/Windows/Windows Phone 應用程式與 hello SDK 中。
+從測試裝置產生應用程式中的事件以及在 [監視 - 事件 - 詳細資料] 中尋找它是一種最簡單的方法，可尋找測試裝置的裝置識別碼，以及確認 Azure Mobile Engagement 分析、監視和區段整合可以從您的應用程式運作。 測試裝置的裝置識別碼之後，即可在 [我的帳戶 - 裝置] 中將它加入測試裝置。 如果您無法產生事件，請確定已使用 SDK 將 Azure Mobile Engagement 正確地整合到 Android/iOS/Web/Windows/Windows Phone 應用程式。
 
 如需詳細資訊，請參閱 [SDK 文件][Link 5]
 
 ![Monitor2][15]  
 
 ## <a name="troubleshooting-with-monitor---crashes---details"></a>監視 - 損毀 - 詳細資料疑難排解
-您可以檢閱損毀資訊有關應用程式從 toohelp 判斷為何損毀您的應用程式監視的當機的詳細資料。 您也應該查閱 hello SDK hello hello SDK for Android/iOS/Web/Windows/Windows Phone 的每個版本的版本資訊中的每個版本的已知問題。
+您可以從 [監視 - 損毀 - 詳細資料] 檢閱應用程式的損毀資訊，以協助判斷您應用程式的損毀原因。 您也應該在 Android/iOS/Web/Windows/Windows Phone 之每個 SDK 版本的版本資訊中，查閱每個 SDK 版本的已知問題。
 
 如需詳細資訊，請參閱 [SDK 文件 - 版本資訊][Link 5]
 
 ![Monitor3][16]
 
 ## <a name="monitor---alerts"></a>監視 - 警示
-您也可以指定要自動傳送 tooyou 透過電子郵件或立即訊息的警示狀況。 (支援任何 XMPP 相容服務，例如 Google 的 GTalk 或 Apple 的 iChat)。警示是根據一個預先定義的偵測臨界值，而此臨界值大於 (>) 或小於 (<) 每秒、分鐘或小時特定數目的工作階段、工作、事件、錯誤或損毀。 警示可以監視某指定類型的所有活動，或只監視特定工作、事件或錯誤活動。 
+您也可以指定透過電子郵件或立即訊息自動傳送給您之警示的條件  (支援任何 XMPP 相容服務，例如 Google 的 GTalk 或 Apple 的 iChat)。警示是根據一個預先定義的偵測臨界值，而此臨界值大於 (>) 或小於 (<) 每秒、分鐘或小時特定數目的工作階段、工作、事件、錯誤或損毀。 警示可以監視某指定類型的所有活動，或只監視特定工作、事件或錯誤活動。 
 
-您也可以指定偵測速率下限，這是 hello 最小數量會分隔兩個通知的相同警示 toomake 確定，您的警示觸發時，您將不會收到的 hello 研究 1 的通知，每個指定的間隔分鐘數。
+您也可以指定最小偵測率，這是分隔相同警示之兩個通知的最小時間量 (分鐘)，藉此確定觸發警示時，指定的每幾分鐘不會收到 1 個以上的通知。
 
 ![Monitor4][17]
 

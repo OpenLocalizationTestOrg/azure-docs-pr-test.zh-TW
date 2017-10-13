@@ -1,5 +1,5 @@
 ---
-title: "在 Azure microservices aaaChange FabricTransport 設定 |Microsoft 文件"
+title: "變更 Azure 微服務中的 FabricTransport 設定 | Microsoft Docs"
 description: "深入了解設定 Azure Service Fabric 動作項目通訊設定。"
 services: Service-Fabric
 documentationcenter: .net
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 04/20/2017
 ms.author: suchiagicha
-ms.openlocfilehash: e312b475407eb95a435b93d80c0f2e9618b9ea1f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 75bdd4644f4ccc583271b9169c50a375e2cd6629
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-fabrictransport-settings-for-reliable-actors"></a>設定 Reliable Actors 的 FabricTransport 設定
 
-以下是您可以設定的 hello 設定：
+您可以進行的設定包括︰
 - C#：[FabricTransportRemotingSettings](
 https://docs.microsoft.com/en-us/java/api/microsoft.servicefabric.services.remoting.fabrictransport._fabric_transport_remoting_settings)
 - Java: [FabricTransportRemotingSettings](https://docs.microsoft.com/java/api/microsoft.servicefabric.services.remoting.fabrictransport._fabric_transport_remoting_settings)
 
-您可以使用以下方式修改 FabricTransport hello 預設組態。
+您可以下列方式修改 FabricTransport 的預設設定。
 
 ## <a name="assembly-attribute"></a>組件屬性
 
-hello [FabricTransportActorRemotingProvider](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.actors.remoting.fabrictransport.fabrictransportactorremotingproviderattribute?redirectedfrom=MSDN#microsoft_servicefabric_actors_remoting_fabrictransport_fabrictransportactorremotingproviderattribute)屬性需要 toobe hello 行動用戶端與行動服務組件上套用。
+[FabricTransportActorRemotingProvider](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicefabric.actors.remoting.fabrictransport.fabrictransportactorremotingproviderattribute?redirectedfrom=MSDN#microsoft_servicefabric_actors_remoting_fabrictransport_fabrictransportactorremotingproviderattribute) 屬性需要在動作項目用戶端和動作項目服務組件上套用。
 
-hello 下列範例顯示如何 toochange hello FabricTransport OperationTimeout 設定的預設值：
+下列範例顯示如何變更 FabricTransport OperationTimeout 設定的預設值：
 
   ```csharp
     using Microsoft.ServiceFabric.Actors.Remoting.FabricTransport;
@@ -49,11 +49,11 @@ hello 下列範例顯示如何 toochange hello FabricTransport OperationTimeout 
 
 ## <a name="config-package"></a>組態封裝
 
-您可以使用[組態封裝](service-fabric-application-model.md)toomodify hello 預設組態。
+您可以使用[組態封裝](service-fabric-application-model.md)修改預設組態。
 
-### <a name="configure-fabrictransport-settings-for-hello-actor-service"></a>設定 FabricTransport hello 行動服務
+### <a name="configure-fabrictransport-settings-for-the-actor-service"></a>設定動作項目服務的 FabricTransport 設定
 
-新增 TransportSettings 區段 hello settings.xml 檔案中。
+在 settings.xml 檔案中新增 TransportSettings 區段。
 
 根據預設，動作項目程式碼會尋找 SectionName 做為「&lt;ActorName&gt;TransportSettings」。 如果找不到，它會以「TransportSettings」檢查 SectionName 。
 
@@ -72,9 +72,9 @@ hello 下列範例顯示如何 toochange hello FabricTransport OperationTimeout 
    </Section>
   ```
 
-### <a name="configure-fabrictransport-settings-for-hello-actor-client-assembly"></a>設定 FabricTransport hello 行動用戶端組件
+### <a name="configure-fabrictransport-settings-for-the-actor-client-assembly"></a>設定動作項目用戶端組件的 FabricTransport 設定
 
-如果 hello 用戶端不以服務的一部分執行，您可以建立 「&lt;用戶端 Exe 名稱&gt;。 settings.xml"相同檔案中 hello 與 hello 用戶端.exe 檔的位置。 然後在該檔案中新增 TransportSettings 區段。 SectionName 應為「TransportSettings」。
+如果用戶端未當作服務一部分執行，則您可以在 client .exe 檔案存在的同一位置中建立「&lt;Client Exe Name&gt;.settings.xml」檔案。 然後在該檔案中新增 TransportSettings 區段。 SectionName 應為「TransportSettings」。
 
   ```xml
   <?xml version="1.0" encoding="utf-8"?>
@@ -96,7 +96,7 @@ hello 下列範例顯示如何 toochange hello FabricTransport OperationTimeout 
 
   * 使用第二個憑證來設定安全動作服務/用戶端的 FabricTransport 設定。
   您可以新增參數 CertificateFindValuebySecondary，將次要憑證資訊加以新增。
-  以下是 hello 接聽程式 TransportSettings hello 範例。
+  以下是接聽程式 TransportSettings 的範例。
 
     ```xml
     <Section Name="TransportSettings">
@@ -110,7 +110,7 @@ hello 下列範例顯示如何 toochange hello FabricTransport OperationTimeout 
     <Parameter Name="CertificateProtectionLevel" Value="EncryptAndSign" />
     </Section>
      ```
-     以下是用戶端 TransportSettings hello hello 範例。
+     以下是用戶端 TransportSettings 的範例。
 
     ```xml
    <Section Name="TransportSettings">
@@ -125,8 +125,8 @@ hello 下列範例顯示如何 toochange hello FabricTransport OperationTimeout 
     </Section>
      ```
     * 使用主體名稱來設定安全動作服務/用戶端的 FabricTransport 設定。
-    使用者需求 tooprovide findType FindBySubjectName，以加入 CertificateIssuerThumbprints 和 CertificateRemoteCommonNames 值。
-  以下是 hello 接聽程式 TransportSettings hello 範例。
+    使用者必須提供 findType 作為 FindBySubjectName,add CertificateIssuerThumbprints and CertificateRemoteCommonNames 值。
+  以下是接聽程式 TransportSettings 的範例。
 
      ```xml
     <Section Name="TransportSettings">
@@ -140,7 +140,7 @@ hello 下列範例顯示如何 toochange hello FabricTransport OperationTimeout 
     <Parameter Name="CertificateProtectionLevel" Value="EncryptAndSign" />
     </Section>
     ```
-  以下是用戶端 TransportSettings hello hello 範例。
+  以下是用戶端 TransportSettings 的範例。
 
     ```xml
      <Section Name="TransportSettings">

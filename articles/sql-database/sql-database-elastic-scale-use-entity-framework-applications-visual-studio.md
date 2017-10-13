@@ -1,5 +1,5 @@
 ---
-title: "使用 Entity Framework aaaUsing 彈性資料庫用戶端程式庫 |Microsoft 文件"
+title: "搭配使用彈性資料庫用戶端程式庫與 Entity Framework | Microsoft Docs"
 description: "使用彈性資料庫用戶端程式庫與和 Entity Framework 來編寫資料庫"
 services: sql-database
 documentationcenter: 
@@ -15,73 +15,73 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: torsteng
-ms.openlocfilehash: 917f6d28d9855c0b42afe2c008613a9bbb3ec6b6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2f0bff394c1e11a270cb324be5a1a45e9e531d7f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="elastic-database-client-library-with-entity-framework"></a>搭配使用彈性資料庫用戶端程式庫與 Entity Framework
-這份文件的 Entity Framework 應用程式，都需要以 hello toointegrate 顯示 hello 變更[彈性資料庫工具](sql-database-elastic-scale-introduction.md)。 hello 重點在於撰寫[分區對應管理](sql-database-elastic-scale-shard-map-management.md)和[資料依存路由](sql-database-elastic-scale-data-dependent-routing.md)以 hello Entity Framework **Code First**方法。 hello [Code First-新的資料庫](http://msdn.microsoft.com/data/jj193542.aspx)EF 教學課程做為我們執行中範例整份文件。 hello 隨附這份文件的範例程式碼是彈性資料庫工具的一部分設定 hello Visual Studio 程式碼範例中的樣本。
+這份文件說明 Entity Framework 應用程式為了要與 [彈性資料庫工具](sql-database-elastic-scale-introduction.md)整合所需做的變更。 重點將著重於使用 Entity Framework **Code First** 方法來編寫[分區對應管理](sql-database-elastic-scale-shard-map-management.md)和[資料相依路由](sql-database-elastic-scale-data-dependent-routing.md)。 這整份文件是以 EF 的 [Code First - 新的資料庫](http://msdn.microsoft.com/data/jj193542.aspx)教學課程作為執行範例。 本文所附的範例程式碼取自於 Visual Studio 程式碼範例中的彈性資料庫工具範例集。
 
-## <a name="downloading-and-running-hello-sample-code"></a>下載並執行 hello 範例程式碼
-這個發行項 toodownload hello 程式碼：
+## <a name="downloading-and-running-the-sample-code"></a>下載並執行範例程式碼
+若要下載本文的程式碼：
 
 * 需要 visual Studio 2012 或更新版本。 
-* 下載 hello[彈性 DB 工具適用於 Azure SQL 的實體架構整合範例](https://code.msdn.microsoft.com/windowsapps/Elastic-Scale-with-Azure-bae904ba)從 MSDN。 將解壓縮 hello 範例 tooa 選擇的位置。
+* 從 MSDN 下載 [Elastic DB Tools for Azure SQL - Entity Framework 整合範例](https://code.msdn.microsoft.com/windowsapps/Elastic-Scale-with-Azure-bae904ba)。 將範例解壓縮至您選擇的位置。
 * 啟動 Visual Studio。 
 * 在 Visual Studio 中，選取 [檔案] -> [開啟專案/方案]。 
-* 在 [hello**開啟專案**] 對話方塊中，瀏覽您所下載的 toohello 範例並選取**EntityFrameworkCodeFirst.sln** tooopen hello 範例。 
+* 在 [開啟專案] 對話方塊中，瀏覽至您下載的範例，然後選取 **EntityFrameworkCodeFirst.sln** 以開啟範例。 
 
-toorun hello 範例中，您需要 toocreate 三個空白的資料庫中 Azure SQL Database:
+若要執行範例，您在 Azure SQL Database 中需要建立三個空的資料庫：
 
 * 分區對應管理員資料庫
 * 分區 1 資料庫
 * 分區 2 資料庫
 
-一旦您已經建立這些資料庫，填寫 hello 預留位置中**Program.cs**您的 Azure SQL DB 伺服器名稱、 hello 資料庫名稱與認證 tooconnect toohello 資料庫。 建置 Visual Studio 中的 hello 方案。 Visual Studio 會下載所需的 hello NuGet 套件 hello 彈性資料庫用戶端程式庫、 Entity Framework 與暫時性錯誤處理 hello 建置程序的一部分。 請確定您的解決方案已啟用還原 NuGet 封裝。 以滑鼠右鍵按一下 hello Visual Studio 方案總管 中的 hello 方案檔，您可以啟用這項設定。 
+建立這些資料庫後，在 **Program.cs** 的預留位置中，填入您的 Azure SQL DB 伺服器名稱、資料庫名稱及用來連接到資料庫的認證。 在 Visual Studio 中建置方案。 在建置過程中，Visual Studio 會下載彈性資料庫用戶端程式庫、Entity Framework 和暫時性錯誤處理所需的 NuGet 封裝。 請確定您的解決方案已啟用還原 NuGet 封裝。 您可以用滑鼠右鍵按一下 Visual Studio [方案總管] 中的方案檔來啟用這個設定。 
 
 ## <a name="entity-framework-workflows"></a>Entity Framework 工作流程
-Entity Framework 開發人員必須依賴 hello 下列四個工作流程 toobuild 應用程式和應用程式物件的 tooensure 持續性的其中一個： 
+Entity Framework 開發人員依賴下列四種工作流程來建置應用程式，以及確保應用程式物件的持續性： 
 
-* **Code First （新的資料庫）**: hello EF 開發人員建立 hello 應用程式程式碼中的 hello 模型，並接著 EF hello 資料庫會從產生它。 
-* **Code First （現有的資料庫）**: hello 開發人員可讓 EF hello hello 模型的應用程式程式碼產生從現有的資料庫。
-* **建立第一個模型**: hello 開發人員建立 hello EF 設計工具中的 hello 模型，並接著 EF hello 資料庫會根據建立 hello 模型。
-* **資料庫的第一個**: hello 開發人員會使用 EF tooling tooinfer hello 模型，從現有的資料庫。 
+* **Code First (新的資料庫)**：EF 開發人員在應用程式碼中建立模型，然後 EF 從它產生資料庫。 
+* **Code First (現有的資料庫)**：開發人員可讓 EF 從現有資料庫產生模型的應用程式碼。
+* **Model First**：開發人員在 EF 設計工具中建立模型，然後 EF 從模型建立資料庫。
+* **Database First**：開發人員使用 EF 工具從現有的資料庫推斷模型。 
 
-所有這些方法會依賴 hello DbContext 類別 tootransparently 管理資料庫連接及應用程式的資料庫結構描述。 我們會討論在 hello 件稍後詳細 hello DbContext 基底類別的不同建構函式可讓不同的層級的控制連線建立啟動載入和結構描述建立資料庫。 挑戰源自主要與 hello 連接管理功能的 hello 資料依存路由介面提供交集 hello database 連接管理 EF 所提供的 hello 事實 hello 彈性資料庫用戶端程式庫。 
+這些方法都依賴 DbContext 類別來自動管理應用程式的資料庫連接和資料庫結構描述。 我們將在本文稍後詳細討論，DbContext 基底類別的不同建構函式允許在不同程度上控制連接建立、資料庫啟動載入和結構描述建立。 問題主要起因於 EF 所提供的資料庫連接管理，與彈性資料庫用戶端程式庫所提供的資料相依路由介面的連接管理功能，兩者交錯。 
 
 ## <a name="elastic-database-tools-assumptions"></a>彈性資料庫工具假設
 關於詞彙定義，請參閱 [彈性資料庫工具字彙](sql-database-elastic-scale-glossary.md)。
 
-在彈性資料庫用戶端程式庫中，您會定義應用程式資料的資料分割，稱為 Shardlet。 Shardlet 的分區化索引鍵來識別和對應的 toospecific 資料庫。 應用程式可能需要的資料庫與散發 hello shardlet tooprovide 足夠容量或指定目前的商務需求的效能。 hello 對應的分區化索引鍵值 toohello 資料庫儲存 hello 彈性資料庫用戶端應用程式開發介面所提供的分區對應。 我們將這項功能稱為 **分區對應管理**，簡稱為 SMM。 hello 分區對應也可做為 hello broker 的要求進行分區化索引鍵的資料庫連線。 我們 toothis 功能作為**資料依存路由**。 
+在彈性資料庫用戶端程式庫中，您會定義應用程式資料的資料分割，稱為 Shardlet。 Shardlet 以分區化索引鍵來識別，而且會對應到特定的資料庫。 根據目前的商務需求，應用程式可依需要而有無數個資料庫，並散發 Shardlet 來提供足夠的容量或效能。 分區化索引鍵值到資料庫的對應，由彈性資料庫用戶端 API 所提供的分區對應來儲存。 我們將這項功能稱為 **分區對應管理**，簡稱為 SMM。 對於攜帶分區化索引鍵的要求，分區對應也充當資料庫連接的代理人。 我們將這項功能稱為 **資料相依路由**。 
 
-hello 分區對應管理員防止不一致的檢視為 shardlet 資料發生並行的 shardlet 管理作業 （例如從一個分區 tooanother 重新配置的資料） 時可能發生的使用者。 toodo，hello hello 用戶端程式庫 broker hello 資料庫連接的應用程式所管理的分區對應。 這可讓 hello 分區對應功能 tooautomatically 終止資料庫連接時分區管理作業可能會影響已建立 hello 連線的 hello shardlet。 這種方法需要 toointegrate 某些 EF 的功能，例如建立新的連線，從現有的一個 toocheck 資料庫存在。 一般情況下，我們觀察已經過的 hello 標準 DbContext 建構函式只有可靠地運作可以順利複製的已關閉的資料庫連接的 EF 工作。 hello 設計原則，彈性資料庫，而是 tooonly broker 開啟連線。 其中一個可能會認為關閉連接，然後再將它傳遞 toohello EF DbContext hello 用戶端程式庫代理或許可以解決此問題。 不過，藉由關閉 hello 連接和信賴憑證者在 EF toore 開啟它，其中一個 foregoes hello 程式庫所執行的 hello 驗證和一致性檢查。 hello 移轉功能 EF，不過，使用這些連接 toomanage hello 基礎資料庫結構描述是透明的 toohello 應用程式的方式。 在理想情況下，我們會 tooretain 等結合所有這些功能從 hello 彈性資料庫用戶端程式庫和 EF hello 中的相同的應用程式。 hello 下列章節會討論這些屬性和更詳細的需求。 
+分區對應管理員可防止使用者檢視 Shardlet 資料時出現不一致，這種情況發生在並行 Shardlet 管理作業中 (例如將資料從一個分區重新放置到另一個分區)。 在作法上，用戶端程式庫所管理的分區對應會代理應用程式的資料庫連接。 這可讓分區對應功能在分區管理作業可能影響已建立連接的 Shardlet 時，自動終止資料庫連接。 這種方法需要與一些 EF 功能整合，例如從現有連接建立新的連接以檢查資料庫是否存在。 一般而言，我們觀察是只有在已關閉的資料庫連接上 (EF 工作可安心複製)，標準 DbContext 建構函式才能可靠地運作。 彈性資料庫的設計原則只是代理已開啟的連接。 有人可能會認為先關閉用戶端程式庫所代理的連接，再交給 EF DbContext，就可以解決這個問題。 不過，若關閉連接並依賴 EF 來重新開啟它，就等於放棄程式庫所執行的驗證和一致性檢查。 不過，EF 的移轉功能會使用這些連接，在應用程式不知情的情況下管理基礎資料庫結構描述。 在理想的情況下，我們希望在相同的應用程式中保留並結合彈性資料庫用戶端程式庫和 EF 提供的所有這些功能。 下一節詳細討論這些屬性和需求。 
 
 ## <a name="requirements"></a>需求
-當使用 hello 彈性資料庫用戶端程式庫和 Entity Framework 應用程式開發介面，我們想要 tooretain hello 下列屬性： 
+當使用彈性資料庫用戶端程式庫和 Entity Framework API 時，我們希望保留下列屬性： 
 
-* **向外延展**: hello 資料 hello 分區化應用程式層的視 hello 容量需求的 hello 應用程式的 tooadd 或移除資料庫。 這表示控制 hello hello 建立和刪除的資料庫和使用 hello 彈性資料庫分區對應管理員 Api toomanage 資料庫和對應的 shardlet。 
-* **一致性**: hello 應用程式會使用分區化，並使用 hello 資料依存路由的功能 hello 用戶端程式庫。 tooavoid 損毀或不正確的查詢結果，在由代理連線 hello 分區對應管理員。 這也會保留驗證和一致性。
-* **Code First**: tooretain hello 的方便性，不論 EF 的程式碼的第一個範例。 在 Code First hello 應用程式中的類別會以透明的方式對應 toohello 基礎資料庫結構。 hello 應用程式程式碼會與 遮罩 hello 基礎資料庫處理所涉及的大部分層面的 DbSets 互動。
-* **結構描述**：Entity Framework 會處理建立初始資料庫結構描述，以及結構描述後續透過移轉的演進。 藉由保留這些功能，調整您的應用程式就容易 hello 資料發展。 
+* **相應放大**：我們想要依需要在分區化應用程式資料層中新增或移除資料庫，以滿足應用程式的容量需求。 這表示控制資料庫的建立和刪除，以及使用彈性資料庫分區對應管理員 API 來管理資料庫，還有 Shardlet 的對應。 
+* **一致性**：應用程式採用分區化，並且使用用戶端程式庫的資料相依路由功能。 為了避免查詢結果損毀或錯誤，由分區對應管理員來代理連接。 這也會保留驗證和一致性。
+* **Code First**：保留 EF code first 典範的便利性。 在 Code First 中，應用程式中的類別直接對應至基礎資料庫結構。 應用程式碼與 DbSets 互動，DbSets 將基礎資料庫處理所需的大部分工作隱藏起來。
+* **結構描述**：Entity Framework 會處理建立初始資料庫結構描述，以及結構描述後續透過移轉的演進。 只要保留這些功能，就可輕鬆隨著資料演進來調整您的應用程式。 
 
-hello 下列指導方針會指示如何 toosatisfy 使用彈性資料庫工具的第一個程式碼應用程式的需求。 
+下列指導方針指示如何使用彈性資料庫工具，以滿足 Code First 應用程式的這些需求。 
 
 ## <a name="data-dependent-routing-using-ef-dbcontext"></a>使用 EF DbContext 的資料相依路由
-資料庫與 Entity Framework 的連接通常是透過 **DbContext**的子類別管理。 從 **DbContext**衍生來建立這些子類別。 這可讓您定義您**DbSets**實作 hello 應用程式的 CLR 物件的資料庫為基礎集合。 我們可以在 hello 內容中的資料依存路由，來識別不一定是保存的其他 EF 程式碼第一個應用程式案例的一些很有幫助屬性： 
+資料庫與 Entity Framework 的連接通常是透過 **DbContext**的子類別管理。 從 **DbContext**衍生來建立這些子類別。 您在此定義 **DbSets** ，為您的應用程式實作 CLR 物件的資料庫支援集合。 就資料相依路由來說，我們可以識別其他 EF Code First 應用程式案例中不一定支援的幾個實用的屬性： 
 
-* hello 資料庫已經存在，且已註冊 hello 彈性資料庫分區對應中。 
-* hello 結構描述的 hello 應用程式已經部署的 toohello 資料庫 （如下所述）。 
-* 資料依存路由 toohello 資料庫的連接是由 hello 分區對應代理。 
+* 資料庫已經存在，而且已在彈性資料庫分區對應中註冊。 
+* 應用程式的結構描述已經部署到資料庫 (如下所述)。 
+* 由分區對應代理資料庫的資料相依路由連接。 
 
-toointegrate **DbContexts**具有資料依存路由的向外延展：
+整合 **DbContexts** 與資料相依路由以相應放大：
 
-1. 建立 hello 分區對應管理員，透過 hello 彈性資料庫用戶端介面的實體資料庫的連接 
-2. 自動換行以 hello hello 連接**DbContext**子類別
-3. 向下 hello 連接傳入 hello **DbContext**基底類別 tooensure hello EF 端上的所有 hello 處理也會都發生。 
+1. 透過分區對應管理員的彈性資料庫用戶端介面，建立實體資料庫連接， 
+2. 使用 **DbContext** 子類別來包裝連接
+3. 將連接向下傳入 **DbContext** 基底類別，以確保也在 EF 端進行所有處理。 
 
-hello，下列程式碼範例將示範這個方法。 （此程式碼也是 hello 隨附的 Visual Studio 專案中）
+下列程式碼範例說明此方法。 (此程式碼也在隨附的 Visual Studio 專案中)
 
     public class ElasticScaleContext<T> : DbContext
     {
@@ -89,10 +89,10 @@ hello，下列程式碼範例將示範這個方法。 （此程式碼也是 hell
     …
 
         // C'tor for data dependent routing. This call will open a validated connection 
-        // routed toohello proper shard by hello shard map manager. 
-        // Note that hello base class c'tor call will fail for an open connection
-        // if migrations need toobe done and SQL credentials are used. This is hello reason for hello 
-        // separation of c'tors into hello data-dependent routing case (this c'tor) and hello internal c'tor for new shards.
+        // routed to the proper shard by the shard map manager. 
+        // Note that the base class c'tor call will fail for an open connection
+        // if migrations need to be done and SQL credentials are used. This is the reason for the 
+        // separation of c'tors into the data-dependent routing case (this c'tor) and the internal c'tor for new shards.
         public ElasticScaleContext(ShardMap shardMap, T shardingKey, string connectionStr)
             : base(CreateDDRConnection(shardMap, shardingKey, connectionStr), 
             true /* contextOwnsConnection */)
@@ -108,26 +108,26 @@ hello，下列程式碼範例將示範這個方法。 （此程式碼也是 hell
             // No initialization
             Database.SetInitializer<ElasticScaleContext<T>>(null);
 
-            // Ask shard map toobroker a validated connection for hello given key
+            // Ask shard map to broker a validated connection for the given key
             SqlConnection conn = shardMap.OpenConnectionForKey<T>
                                 (shardingKey, connectionStr, ConnectionOptions.Validate);
             return conn;
         }    
 
 ## <a name="main-points"></a>重點
-* 新的建構函式取代 hello hello DbContext 子類別中的預設建構函式 
-* hello 新建構函式會採用所需的資料依存路由透過彈性資料庫用戶端程式庫的 hello 引數：
+* 新的建構函式取代 DbContext 子類別的預設建構函式 
+* 新的建構函式接受透過彈性資料庫用戶端程式庫的資料相依路由所需的引數：
   
-  * hello 分區對應 tooaccess hello 資料依存路由的介面，
-  * hello 分區化索引鍵 tooidentify hello shardlet，
-  * 含 hello 資料依存路由連線 toohello 分區的 hello 認證的連接字串。 
-* hello 呼叫 toohello 基底類別建構函式繞道到靜態方法，會執行所有的 hello 步驟所需的資料依存路由。 
+  * 用來存取資料相依路由介面的分區對應，
+  * 用來識別 Shardlet 的分區化索引鍵，
+  * 分區的資料相依路由連接所需的連接字串和認證。 
+* 基底類別建構函式的呼叫會繞道至靜態方法，以執行資料相依路由所需的所有步驟。 
   
-  * 它會使用 hello 分區對應 tooestablish 的開啟連接的 hello OpenConnectionForKey 呼叫的 hello 彈性資料庫用戶端介面。
-  * hello 分區對應會建立保留 hello 指定分區化索引鍵的 hello shardlet 的 hello 開啟連接 toohello 分區。
-  * 這個開啟的連接會傳遞這個連接會 toobe 而非讓 EF 自動建立新的連接使用 EF DbContext tooindicate 後 toohello 基底類別建構函式。 此方式 hello 連線已經加上 hello 彈性資料庫用戶端應用程式開發介面，讓它可以保證在分區對應管理作業的一致性。
+  * 它會在分區對應上使用彈性資料庫用戶端介面的 OpenConnectionForKey 呼叫，以建立開啟的連接。
+  * 分區對應會對分區建立開啟的連接，此分區保留給定分區化索引鍵的 Shardlet。
+  * 這個開啟的連接會傳回給 DbContext 的基底類別建構函式，以指出此連接要給 EF 使用，而不要讓 EF 自動建立新的連接。 如此一來，連接已具有彈性資料庫用戶端 API 的性質，將可以保證分區對應管理作業時的一致性。
 
-用於 DbContext 子類別而不是在程式碼中的 hello 預設建構函式中的 hello 新建構函式。 下列是一個範例： 
+在您的程式碼中使用 DbContext 子類別的新建構函式，而不是預設建構函式。 下列是一個範例： 
 
     // Create and save a new blog.
 
@@ -150,12 +150,12 @@ hello，下列程式碼範例將示範這個方法。 （此程式碼也是 hell
      … 
     }
 
-hello 新建構函式會開啟 hello 保留 hello hello shardlet hello 值所識別的資料連接 toohello 分區**tenantid1**。 hello hello 中的程式碼**使用**區塊會維持不變的 tooaccess hello **DbSet**部落格上的 hello 分區使用 EF **tenantid1**。 這會針對 hello hello 所有資料庫作業現在會使用區塊中的程式碼範圍 toohello 一個分區變更語意其中**tenantid1**會保留。 比方說，LINQ 查詢透過 hello 部落格**DbSet**就只會傳回儲存在目前的分區，hello 上的部落格，但不是 hello 是儲存在其他分區。  
+新的建構函式會對分區開啟連接，此分區保留 **tenantid1**值所識別的分區的資料。 **using** 區塊中的程式碼維持不變，可在 **tenantid1** 的分區上使用 EF 存取部落格的 **DbSet**。 這會變更 using 區塊中的程式碼語意，使得所有資料庫作業現在以一個保留 **tenantid1** 的分區為範圍。 例如，在部落格 **DbSet** 上的 LINQ 查詢只傳回目前分區上儲存的部落格，而不是儲存在其他分區的部落格。  
 
 #### <a name="transient-faults-handling"></a>暫時性錯誤處理
-hello Microsoft Patterns & Practices 團隊發行的 hello [hello 暫時性錯誤處理應用程式區塊](https://msdn.microsoft.com/library/dn440719.aspx)。 hello 程式庫會使用彈性延展 EF 結合的用戶端程式庫。 不過，確保任何暫時性例外狀況傳回 tooa 位置，而我們可以確保該 hello 新建構函式正在使用暫時性錯誤後，讓任何新連接嘗試使用我們強制 hello 建構函式。 否則，不保證分區，且不保證 hello 連線正確連接 toohello 會維護 toohello 分區對應會發生的變更時。 
+Microsoft 模式和作法小組已發佈[暫時性錯誤處理應用程式區塊](https://msdn.microsoft.com/library/dn440719.aspx)。 此程式庫搭配 Elastic Scale 用戶端程式庫並結合 EF 一起使用。 不過，請確定任何暫時性例外狀況都傳回至某處，讓我們可以確定暫時性失敗後會使用新的建構函式，以便使用我們已調整的建構函式來進行任何新的連接嘗試。 否則，無法保證連接至正確的分區，也不能確保分區對應變更發生時會保持連接。 
 
-hello 下列程式碼範例說明如何 SQL 重試原則來使用周圍 hello 新**DbContext**子類別建構函式： 
+下列程式碼範例說明如何在新的 **DbContext** 子類別建構函式周圍使用 SQL 重試原則： 
 
     SqlDatabaseUtils.SqlRetryPolicy.ExecuteAction(() => 
     { 
@@ -171,38 +171,38 @@ hello 下列程式碼範例說明如何 SQL 重試原則來使用周圍 hello �
             } 
         }); 
 
-**SqlDatabaseUtils.SqlRetryPolicy** hello 在上述程式碼會定義為**SqlDatabaseTransientErrorDetectionStrategy** 10，和 5 秒的重試計數等候重試之間的時間。 這種方法很類似 toohello 指引 EF 和使用者起始的交易 (請參閱[限制以重試一次 (EF6 及更新版本) 的執行策略](http://msdn.microsoft.com/data/dn307226)。 這兩種情況需要該 hello 應用程式可以控制 hello 範圍 toowhich hello 暫時性例外狀況傳回： tooeither 重新開啟 hello 交易，或 （如下所示） 重新建立 hello 內容從使用 hello 彈性資料庫 hello 適當建構函式用戶端程式庫。
+上述程式碼中的 **SqlDatabaseUtils.SqlRetryPolicy** 定義為 **SqlDatabaseTransientErrorDetectionStrategy**，並指定重試計數 10，重試之間等待時間為 5 秒。 這種方式類似於 EF 和使用者起始交易的指引 (請參閱 [重試執行策略的限制 (從 EF6 開始)](http://msdn.microsoft.com/data/dn307226))。 這兩種情況都需要應用程式控制暫時性例外狀況傳回的範圍：重新開啟交易，或 (如下所示) 從使用彈性資料庫用戶端程式庫的適當建構函式重新建立內容。
 
-hello 需要 toocontrol 因為暫時性例外狀況傳回範圍中需要我們也會妨礙 hello 內建的 hello 使用**SqlAzureExecutionStrategy**所附 EF。 **SqlAzureExecutionStrategy**會重新開啟連線，但是不會使用**OpenConnectionForKey** ，因此略過所有執行 hello 一部分的 hello 驗證**OpenConnectionForKey**呼叫。 相反地，hello 程式碼範例會使用 hello 內建**DefaultExecutionStrategy** ，也提供的 EF。 相對於太**SqlAzureExecutionStrategy**，其運作正常的暫時性錯誤處理 hello 重試原則的組合。 hello 執行原則設定中 hello **ElasticScaleDbConfiguration**類別。 請注意，我們決定不 toouse **DefaultSqlExecutionStrategy**因為建議 toouse **SqlAzureExecutionStrategy**發生暫時性的例外狀況-這會導致 toowrong 行為所述。 Hello 不同的重試原則和 EF 的詳細資訊，請參閱[Connection Resiliency in EF](http://msdn.microsoft.com/data/dn456835.aspx)。     
+控制暫時性例外狀況把我們帶回範圍中何處的需求，也會妨礙使用 EF 隨附的內建 **SqlAzureExecutionStrategy** 。 **SqlAzureExecutionStrategy** 會重新開啟連接，但不使用 **OpenConnectionForKey**，因此會略過 **OpenConnectionForKey** 呼叫過程中執行的所有驗證。 然而，此程式碼範例會使用同樣是 EF 隨附的內建 **DefaultExecutionStrategy** 。 相對於 **SqlAzureExecutionStrategy**，它會結合暫時性錯誤處理的重試原則一起正確運作。 執行原則設定於 **ElasticScaleDbConfiguration** 類別中。 請注意，我們決定不使用 **DefaultSqlExecutionStrategy**，因為它會在發生暫時性例外狀況時建議使用 **SqlAzureExecutionStrategy**，而這會導致所述的錯誤行為。 如需不同重試原則與 EF 的詳細資訊，請參閱 [EF 的連線恢復功能](http://msdn.microsoft.com/data/dn456835.aspx)。     
 
 #### <a name="constructor-rewrites"></a>建構函式重寫
-hello 上述的程式碼範例說明 hello 預設建構函式重寫為所需的順序 toouse 資料依存路由以 hello Entity Framework 中的應用程式。 下表中的 hello 一般化這個方法 tooother 建構函式。 
+上述程式碼範例說明應用程式所需的預設建構函式重寫，以便使用資料相依路由與 Entity Framework。 下表將這個方法擴及其他建構函式。 
 
 | 目前的建構函式 | 重寫的資料建構函式 | 基底建構函式 | 注意事項 |
 | --- | --- | --- | --- |
-| MyContext() |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |hello 連線需要 toobe hello 分區對應和 hello 資料依存路由索引鍵的函式。 您需要的 EF tooby 行程自動連線建立，並改用 hello 分區對應 toobroker hello 連線。 |
-| MyContext(string) |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |hello 連接是 hello 分區對應和 hello 資料依存路由索引鍵的函式。 固定的資料庫名稱或連接字串將無法運作，您會看到略過驗證的 hello 分區對應。 |
-| MyContext(DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |將取得 hello 連線建立 hello 指定 hello 模型提供的檔名的分區化對應和分區化索引鍵。 將傳遞 toohello 基底 c'tor hello 編譯的模型。 |
-| MyContext(DbConnection, bool) |ElasticScaleContext(ShardMap, TKey, bool) |DbContext(DbConnection, bool) |hello 連線需要 toobe 推斷從 hello 分區對應 hello 索引鍵。 （除非該輸入已經使用 hello 分區對應和 hello 金鑰），不能提供它做為輸入。 將傳遞 hello 布林值。 |
-| MyContext(string, DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |hello 連線需要 toobe 推斷從 hello 分區對應 hello 索引鍵。 （除非已使用該輸入，hello 分區對應和 hello 金鑰），不能提供它做為輸入。 將傳遞 hello 編譯的模型。 |
-| MyContext(ObjectContext, bool) |ElasticScaleContext(ShardMap, TKey, ObjectContext, bool) |DbContext(ObjectContext, bool) |hello 新建構函式需要 tooensure hello 當做輸入傳遞 ObjectContext 中的任何連接是重新路由的 tooa 連接受彈性延展。 ObjectContexts 詳細的討論已超出本文件 hello 範圍。 |
-| MyContext(DbConnection, DbCompiledModel,bool) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel, bool) |DbContext(DbConnection, DbCompiledModel, bool); |hello 連線需要 toobe 推斷從 hello 分區對應 hello 索引鍵。 （除非該輸入已經使用 hello 分區對應和 hello 金鑰），無法提供 hello 連接做為輸入。 模型和布林值會傳遞 toohello 基底類別建構函式。 |
+| MyContext() |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |連接必須是分區對應和資料相依路由索引鍵的函數。 您需要略過由 EF 自動建立連接，改用分區對應來代理連接。 |
+| MyContext(string) |ElasticScaleContext(ShardMap, TKey) |DbContext(DbConnection, bool) |連接是分區對應和資料相依路由索引鍵的函數。 固定的資料庫名稱或連接字串無法運作，因為它們會略過分區對應所執行的驗證。 |
+| MyContext(DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |將使用提供的模型建立給定分區對應和分區化索引鍵的連接。 編譯的模型將會傳遞給基底 c'tor。 |
+| MyContext(DbConnection, bool) |ElasticScaleContext(ShardMap, TKey, bool) |DbContext(DbConnection, bool) |連接必須是從分區對應和索引鍵推斷的函數。 無法提供它做為輸入 (除非該輸入已經使用分區對應和索引鍵)。 將傳遞布林值。 |
+| MyContext(string, DbCompiledModel) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel) |DbContext(DbConnection, DbCompiledModel, bool) |連接必須是從分區對應和索引鍵推斷的函數。 無法提供它做為輸入 (除非該輸入使用分區對應和索引鍵)。 將傳遞編譯的模型。 |
+| MyContext(ObjectContext, bool) |ElasticScaleContext(ShardMap, TKey, ObjectContext, bool) |DbContext(ObjectContext, bool) |新的建構函式必須確定在 ObjectContext 中做為輸入傳遞的任何連接，都會重新路由至 Elastic Scale 所管理的連接。 ObjectContexts 類別的詳細討論已超出本文的範圍。 |
+| MyContext(DbConnection, DbCompiledModel,bool) |ElasticScaleContext(ShardMap, TKey, DbCompiledModel, bool) |DbContext(DbConnection, DbCompiledModel, bool); |連接必須是從分區對應和索引鍵推斷的函數。 無法提供連接做為輸入 (除非該輸入已經使用分區對應和索引鍵)。 模型和布林值會傳遞至基底類別建構函式。 |
 
 ## <a name="shard-schema-deployment-through-ef-migrations"></a>透過 EF 移轉的分區結構描述部署
-管理自動的結構描述是方便 hello Entity Framework 所提供。 Hello 在內容中使用彈性資料庫工具的應用程式，我們想 tooretain 此功能 tooautomatically 佈建 hello 結構描述建立 toonewly 分區時的資料庫會加入 toohello 分區化應用程式。 hello 主要使用案例是在 hello 資料層分區化應用程式使用 EF tooincrease 容量。 信賴憑證者的結構描述管理 EF 的功能與 EF 上建置分區化應用程式減少 hello 資料庫管理工作。 
+自動結構描述管理是 Entity Framework 所提供的便利性。 就使用彈性資料庫工具的應用程式來說，我們希望保留這項功能，以便資料庫加入至分區化應用程式時，自動將結構描述佈建至新建立的分區。 主要使用案例是針對使用 EF 的分區化應用程式，在資料層增加容量。 依賴 EF 的功能來管理結構描述，可減輕以 EF 建置的分區化應用程式所需的資料庫管理工作。 
 
-透過 EF 移轉的結構描述部署在 **未開啟的連接**上表現最好。 這是相較之下 toohello 案例資料依存路由依賴 hello 彈性資料庫用戶端應用程式開發介面所提供的 hello 開啟連接。 另一項差異是 hello 一致性需求： 所有資料依存路由連線 tooprotect 針對並行分區對應管理的理想 tooensure 一致性，同時它不是初始的結構描述部署 tooa 新資料庫的相關問題具有尚未在 hello 分區對應中，尚未註冊，且尚未在已配置 toohold shardlet。 我們因此可依賴此案例中，做為相對於 toodata 依存路由規則的資料庫連接。  
+透過 EF 移轉的結構描述部署在 **未開啟的連接**上表現最好。 這與資料相依路由的情況相反，它依賴彈性資料庫用戶端  API 所提供的已開啟連接。 另一個差異是一致性需求：雖然希望確保所有資料相依路由連接的一致性，以防止並行分區對應操作，但這無關於最初將結構描述部署到尚未在分區對應中註冊且尚未配置來保留 Shardlet 的新資料庫。 因此，我們在此案例中可依賴一般資料庫連接，而不是資料相依路由。  
 
-這會導致 tooan 方法其中透過 EF 移轉的結構描述部署與緊密結合 hello hello 新的資料庫註冊為 hello 應用程式的分區對應中的分區。 這會依賴 hello 下列必要條件： 
+這會形成一種方法，使得透過 EF 移轉的結構描述部署，與新的資料庫在應用程式的分區對應中註冊為分區緊密相關。 這依賴下列必要條件： 
 
-* 已建立 hello 資料庫。 
-* hello 資料庫是空的-它會保留任何的使用者結構描述和任何使用者資料。
-* hello 資料庫尚未無法透過 hello 彈性資料庫用戶端應用程式開發介面資料依存路由的存取。 
+* 已建立資料庫。 
+* 資料庫是空的 - 不含任何使用者結構描述與任何使用者資料。
+* 還不能透過資料相依路由的彈性資料庫用戶端 API 存取資料庫。 
 
-這些先決條件備妥，我們可以建立一般未開啟**SqlConnection** tookick 關閉結構描述部署的 EF 移轉。 hello，下列程式碼範例將示範這個方法。 
+符合這些必要條件後，我們就可以建立一般未開啟的 **SqlConnection** ，以開始進行結構描述部署的 EF 移轉。 下列程式碼範例說明此方法。 
 
-        // Enter a new shard - i.e. an empty database - toohello shard map, allocate a first tenant tooit  
-        // and kick off EF intialization of hello database toodeploy schema 
+        // Enter a new shard - i.e. an empty database - to the shard map, allocate a first tenant to it  
+        // and kick off EF intialization of the database to deploy schema 
 
         public void RegisterNewShard(string server, string database, string connStr, int key) 
         { 
@@ -213,25 +213,25 @@ hello 上述的程式碼範例說明 hello 預設建構函式重寫為所需的�
             connStrBldr.DataSource = server; 
             connStrBldr.InitialCatalog = database; 
 
-            // Go into a DbContext tootrigger migrations and schema deployment for hello new shard. 
+            // Go into a DbContext to trigger migrations and schema deployment for the new shard. 
             // This requires an un-opened connection. 
             using (var db = new ElasticScaleContext<int>(connStrBldr.ConnectionString)) 
             { 
-                // Run a query tooengage EF migrations 
+                // Run a query to engage EF migrations 
                 (from b in db.Blogs 
                     select b).Count(); 
             } 
 
-            // Register hello mapping of hello tenant toohello shard in hello shard map. 
-            // After this step, data-dependent routing on hello shard map can be used 
+            // Register the mapping of the tenant to the shard in the shard map. 
+            // After this step, data-dependent routing on the shard map can be used 
 
             this.ShardMap.CreatePointMapping(key, shard); 
         } 
 
 
-這個範例會顯示 hello 方法**RegisterNewShard**暫存器 hello 在 hello 分區對應中，分區部署 hello 透過 EF 移轉的結構描述和儲存的分區化索引鍵 toohello 分區對應。 它依賴 hello 的建構函式**DbContext**子類別 (**ElasticScaleContext** hello 範例中)，使用 SQL 連接字串做為輸入。 這個建構函式的 hello 程式碼是明瞭，為下列範例所示的 hello: 
+這個範例示範 **RegisterNewShard** 方法，此方法會在分區對應中註冊分區、透過 EF 移轉部署結構描述，並將分區化索引鍵的對應儲存至分區。 它依賴 **DbContext** 子類別 (範例中的 **ElasticScaleContext**) 的建構函式 (接受 SQL 連接字串做為輸入)。 這個建構函式的程式碼簡單易懂，如下列範例所示： 
 
-        // C'tor toodeploy schema and migrations tooa new shard 
+        // C'tor to deploy schema and migrations to a new shard 
         protected internal ElasticScaleContext(string connectionString) 
             : base(SetInitializerForConnection(connectionString)) 
         { 
@@ -240,24 +240,24 @@ hello 上述的程式碼範例說明 hello 預設建構函式重寫為所需的�
         // Only static methods are allowed in calls into base class c'tors 
         private static string SetInitializerForConnection(string connnectionString) 
         { 
-            // We want existence checks so that hello schema can get deployed 
+            // We want existence checks so that the schema can get deployed 
             Database.SetInitializer<ElasticScaleContext<T>>( 
         new CreateDatabaseIfNotExists<ElasticScaleContext<T>>()); 
 
             return connnectionString; 
         } 
 
-其中一個可能使用 hello hello 建構函式繼承自 hello 基底類別版本。 但 hello EF 預設初始設定式的 hello 程式碼需要 tooensure 在連接時使用。 因此 hello 簡短繞道至 hello hello 連接字串 hello 基底類別建構函式呼叫之前的靜態方法。 請注意，分區的 hello 註冊應該執行不發生衝突的 EF hello 初始設定式設定不同的應用程式定義域或處理序 tooensure 中。 
+您可能使用繼承自基底類別的建構函式版本。 但是，程式碼必須確定連接時使用 EF 的預設初始設定式。 因此，在以連接字串呼叫基底類別建構函式之前，先稍微繞道至靜態方法。 請注意，分區的註冊應該在不同的應用程式定義域或程序中執行，以確保 EF 的初始設定式設定不會發生衝突。 
 
 ## <a name="limitations"></a>限制
-這份文件中所述的 hello 方法需要有幾項限制： 
+這份文件中所述的方法有幾個限制： 
 
-* 使用 EF 應用程式**LocalDb**使用彈性資料庫用戶端程式庫之前先 toomigrate tooa 一般 SQL Server 資料庫。 使用 **LocalDb**時，無法透過分區化與 Elastic Scale 來相應放大應用程式。 請注意，仍可使用 **LocalDb**來開發。 
-* 表示資料庫結構描述變更的任何變更 toohello 應用程式需要透過在所有分區的 EF 移轉 toogo。 本文件的 hello 範例程式碼不會示範如何 toodo 這。 請考慮更新資料庫具有 ConnectionString 參數 tooiterate 透過所有分區。擷取 hello T-SQL 指令碼或暫止移轉使用 Update-database 搭配 hello hello-指令碼選項，並套用 hello T-SQL 指令碼 tooyour 分區。  
-* 指定要求，則會假設其資料庫處理的所有包含在單一分區中的 hello hello 要求所提供的分區化索引鍵識別。 不過，這項假設不一定永遠成立。 例如，當不可能 toomake 分區化索引鍵使用。 tooaddress hello，用戶端程式庫提供 hello **MultiShardQuery**類別會實作抽象的查詢數個分區的連線。 學習 toouse hello **MultiShardQuery**搭配 EF 超出本文的 hello 範圍
+* 使用 **LocalDb** 的 EF 應用程式必須先移轉至一般 SQL Server 資料庫，才能使用彈性資料庫用戶端程式庫。 使用 **LocalDb**時，無法透過分區化與 Elastic Scale 來相應放大應用程式。 請注意，仍可使用 **LocalDb**來開發。 
+* 應用程式中涉及資料庫結構描述變更的任何變更，都必須在所有分區上經過 EF 移轉。 這份文件的範例程式碼不示範此作法。 請考慮使用 Update-Database 搭配 ConnectionString 參數，以逐一查看所有分區；或使用 Update-Database 搭配 -Script 選項，以擷取擱置中移轉的 T-SQL 指令碼，然後將 T-SQL 指令碼套用至您的分區。  
+* 提出要求時，將會假定所有資料庫處理都包含在要求所提供的分區化索引鍵所識別的單一分區內。 不過，這項假設不一定永遠成立。 例如，有時無法提供分區化索引鍵。 為了解決這個問題，用戶端程式庫提供 **MultiShardQuery** 類別，此類別實作連接抽象來查詢數個分區。 學習搭配 EF 來使用 **MultiShardQuery** 已超出本文的範圍
 
 ## <a name="conclusion"></a>結論
-Hello 這份文件中所述的步驟，透過 EF 應用程式可以使用 hello 彈性資料庫用戶端程式庫的功能資料依存路由重構建構函式的 hello **DbContext** hello EF 中使用的子類別應用程式。 此限制 hello 變更所需 toothose 位置**DbContext**類別已存在。 此外，EF 應用程式可以繼續從自動結構描述部署 toobenefit 結合叫用 hello 必要 EF 移轉，而 hello 註冊新的分區和 hello 分區對應中的對應的 hello 步驟。 
+透過本文件中所述的步驟，EF 應用程式可以使用彈性資料庫用戶端程式庫的資料相依路由功能，重構 EF 應用程式中使用的 **DbContext** 子類別的建構函式。 已存在 **DbContext** 類別的地方不需要做太多變更。 此外，EF 應用程式可以結合叫用必要 EF 移轉的步驟，以及將新的分區和對應註冊在分區對應中的步驟，以繼續受益於自動結構描述部署。 
 
 [!INCLUDE [elastic-scale-include](../../includes/elastic-scale-include.md)]
 

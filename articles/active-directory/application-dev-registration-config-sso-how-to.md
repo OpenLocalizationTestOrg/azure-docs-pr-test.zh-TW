@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooconfigure 新的多租用戶應用程式 |Microsoft 文件"
-description: "如何 tooconfigure 單一登入功能的自訂應用程式中，您正在開發且登錄至 Azure AD。"
+title: "如何設定新的多租用戶應用程式 | Microsoft Docs"
+description: "如何為您正在開發並向 Azure AD 註冊的自訂應用程式設定單一登入。"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,19 +13,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 4d3499d8885933516d6597fa9f87bcf88cd5a428
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0fdc58d82d9cd2e7edac33cc5af4b98d2fd06c56
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-tooconfigure-a-new-multi-tenant-application"></a>如何 tooconfigure 新的多租用戶應用程式
+# <a name="how-to-configure-a-new-multi-tenant-application"></a>如何設定新的多租用戶應用程式
 
-在您的應用程式中啟用同盟單一登入 (SSO)，會在針對 OpenID Connect、SAML 2.0 或 WS-Fed 透過 Azure AD 進行同盟時自動啟用。 如果您的使用者有 toosign 儘管已有現有的工作階段與 Azure AD，很可能您的應用程式可能設定錯誤。
+在您的應用程式中啟用同盟單一登入 (SSO)，會在針對 OpenID Connect、SAML 2.0 或 WS-Fed 透過 Azure AD 進行同盟時自動啟用。 如果您的使用者儘管目前已經有含 Azure AD 的工作階段還是必須登入，很可能是您的應用程式設定錯誤。
 
-* 如果您使用 ADAL/MSAL，請確定您有**PromptBehavior**設定得**自動**而**永遠**。
+* 如果您使用 ADAL/MSAL，請確定已將 **PromptBehavior** 設為 **Auto**，而不是 **Always**。
 
-* 如果您正在建置行動應用程式，您可能需要其他組態 tooenable 代理或非代理 SSO。
+* 如果您正在建置行動裝置應用程式，您可能需要其他設定來啟用代理或非代理的 SSO。
 
 若是 Android，請參閱[在 Android 上啟用跨應用程式的 SSO](https://docs.microsoft.com/azure/active-directory/develop/active-directory-sso-android)。<br>
 
@@ -39,7 +39,7 @@ ms.lasthandoff: 10/06/2017
 
 [在 iOS 上啟用跨應用程式的 SSO](https://docs.microsoft.com/azure/active-directory/develop/active-directory-sso-ios)<br>
 
-[整合應用程式 tooAzureAD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications)<br>
+[將應用程式整合到 AzureAD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications)<br>
 
 [適用於 AzureAD v2.0 交集應用程式的同意與權限](https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-scopes)<br>
 

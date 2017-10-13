@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Analysis Services 資料庫備份和還原 |Microsoft 文件"
-description: "描述如何 toobackup 和還原 Azure Analysis Services 資料庫。"
+title: "Azure Analysis Services 備份與還原 | Microsoft Docs"
+description: "說明如何備份和還原 Azure Analysis Services 資料庫。"
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -14,30 +14,30 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: owend
-ms.openlocfilehash: cf0a782d237a95fdfa5ef628f998bd053aac0d9f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bffa481a498b130ef1f2388a5ba856da5d164ee0
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="backup-and-restore"></a>備份與還原
 
-備份 Azure Analysis Services 中的表格式模型資料庫是大部分相同 hello 與內部部署 Analysis Services。 hello 的主要差異是您用來儲存備份檔案。 備份檔案必須儲存在 tooa 容器[Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)。 您可以使用您已經有的儲存體帳戶和容器，或是在為您的伺服器設定儲存體設定時再建立帳戶和容器。
+在 Azure Analysis Services 中備份表格式模型資料庫與內部部署的 Analysis Services 情況非常類似。 主要的差異在於備份檔案的儲存位置。 備份檔案必須儲存至 [Azure 儲存體帳戶](../storage/common/storage-create-storage-account.md)中的容器。 您可以使用您已經有的儲存體帳戶和容器，或是在為您的伺服器設定儲存體設定時再建立帳戶和容器。
 
 > [!NOTE]
-> 建立儲存體帳戶會導致產生新的可計費服務。 詳細資訊，請參閱 toolearn [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/blobs/)。
+> 建立儲存體帳戶會導致產生新的可計費服務。 若要深入了解，請參閱 [Azure 儲存體定價](https://azure.microsoft.com/pricing/details/storage/blobs/)。
 > 
 > 
 
-備份會以 .abf 副檔名儲存。 針對記憶體內表格式模型，會同時儲存模型資料和中繼資料。 針對 DirectQuery 表格式模型，則只會儲存模型中繼資料。 備份可以壓縮和加密，依據您選擇的 hello 選項。 
+備份會以 .abf 副檔名儲存。 針對記憶體內表格式模型，會同時儲存模型資料和中繼資料。 針對 DirectQuery 表格式模型，則只會儲存模型中繼資料。 視您選擇的選項而定，可以將備份壓縮和加密。 
 
 
 
 ## <a name="configure-storage-settings"></a>設定儲存體設定
-之前備份，您會需要 tooconfigure 存放裝置設定為您的伺服器。
+進行備份之前，您必須為伺服器設定儲存體設定。
 
 
-### <a name="tooconfigure-storage-settings"></a>tooconfigure 存放裝置設定
+### <a name="to-configure-storage-settings"></a>設定儲存體設定
 1.  在 Azure 入口網站 > [設定] 中，按一下 [備份]。
 
     ![[設定] 中的 [備份]](./media/analysis-services-backup/aas-backup-backups.png)
@@ -58,49 +58,49 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="backup"></a>備份
 
-### <a name="toobackup-by-using-ssms"></a>使用 SSMS toobackup
+### <a name="to-backup-by-using-ssms"></a>使用 SSMS 來進行備份
 
 1. 在 SSMS 中，於資料庫上按一下滑鼠右鍵 > [備份]。
 
 2. 在 [備份資料庫] > [備份檔案] 中，按一下 [瀏覽]。
 
-3. 在 [hello**另存新檔**] 對話方塊中，確認 hello 資料夾路徑，，，然後輸入 hello 備份檔案的名稱。 
+3. 在 [另存新檔] 對話方塊中，確認資料夾路徑，然後輸入備份檔案的名稱。 
 
-4. 在 hello **Backup Database**對話方塊中，選取選項。
+4. 在 [備份資料庫] 對話方塊中，選取選項。
 
-    **允許檔案覆寫**-選取 hello 這個選項 toooverwrite 備份檔案相同的名稱。 如果未選取此選項，您所儲存的 hello 檔案不能有名稱相同的 hello 做為檔案已存在於 hello 相同的位置。
+    **允許檔案覆寫** - 若要覆寫同名的備份檔案，請選取此選項。 如果未選取此選項，您要儲存的檔案就不能與相同位置中已經存在的檔案同名。
 
-    **套用壓縮**-選取這個選項 toocompress hello 備份檔案。 壓縮過的備份檔案可節省磁碟空間，但需要使用稍微多一點的 CPU 資源。 
+    **套用壓縮** - 若要壓縮備份檔案，請選取此選項。 壓縮過的備份檔案可節省磁碟空間，但需要使用稍微多一點的 CPU 資源。 
 
-    **加密備份檔案**-選取這個選項 tooencrypt hello 備份檔案。 此選項需要使用者提供的密碼 toosecure hello 備份檔案。 hello 密碼可防止讀取 hello 備份資料的還原作業以外的任何其他方式。 如果您選擇 tooencrypt 備份，請將 hello 密碼儲存在安全的位置。
+    **加密備份檔案** - 若要將備份檔案加密，請選取此選項。 此選項需要有使用者提供的密碼來保護備份檔案。 此密碼可防止以還原作業以外的任何其他方式讀取備份資料。 如果您選擇將備份加密，請將密碼儲存在安全的位置。
 
-5. 按一下**確定**toocreate 儲存 hello 備份檔案。
+5. 按一下 [確定] 以建立並儲存備份檔案。
 
 
 ### <a name="powershell"></a>PowerShell
 使用 [Backup-ASDatabase](https://docs.microsoft.com/sql/analysis-services/powershell/backup-asdatabase-cmdlet) Cmdlet。
 
 ## <a name="restore"></a>還原
-還原時，您的備份檔案必須是您已設定為您的伺服器 hello 儲存體帳戶中。 如果您需要 toomove 備份檔案從內部部署位置 tooyour 儲存體帳戶，請使用[Microsoft Azure 儲存體總管](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer)或 hello [AzCopy](../storage/common/storage-use-azcopy.md)命令列公用程式。 
+在還原時，您的備份檔案必須位於您為伺服器所設定的儲存體帳戶中。 如果您需要將備份檔案從內部部署位置移至儲存體帳戶，請使用 [Microsoft Azure 儲存體總管](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer)或 [AzCopy](../storage/common/storage-use-azcopy.md) 命令列公用程式。 
 
 
 
 > [!NOTE]
-> 如果您正在從內部部署伺服器中還原，您必須從 hello 模型的角色中移除所有的 hello 網域使用者，並將其加入回 toohello 角色做為 Azure Active Directory 的使用者。
+> 如果您要從內部部署伺服器進行還原，則必須先從該模型的角色中移除所有網域使用者，再將他們新增回角色中成為 Azure Active Directory 使用者。
 > 
 > 
 
-### <a name="toorestore-by-using-ssms"></a>使用 SSMS toorestore
+### <a name="to-restore-by-using-ssms"></a>使用 SSMS 來進行還原
 
 1. 在 SSMS 中，於資料庫上按一下滑鼠右鍵 > [還原]。
 
-2. 在 hello **Backup Database**對話方塊，請在**備份檔案**，按一下 **瀏覽**。
+2. 在 [備份資料庫] 對話方塊的 [備份檔案] 中，按一下 [瀏覽]。
 
-3. 在 hello**尋找資料庫檔案**對話方塊中，您想要 toorestore 選取 hello 檔案。
+3. 在 [尋找資料庫檔案] 對話方塊中，選取您想要還原的檔案。
 
-4. 在**還原資料庫**，選取 hello 資料庫。
+4. 在 [還原資料庫] 中，選取資料庫。
 
-5. 指定選項。 安全性選項必須符合 hello 備份時所使用的備份選項。
+5. 指定選項。 安全性選項必須與您備份時所使用的備份選項相符。
 
 
 ### <a name="powershell"></a>PowerShell

@@ -1,65 +1,65 @@
 <!--author=alkohli last changed: 02/22/2016-->
 
 
-### <a name="tooconfigure-and-register-hello-device"></a>tooconfigure 和註冊 hello 裝置
-1. 存取您 StorSimple 裝置序列主控台 hello Windows PowerShell 介面。 請參閱[使用 PuTTY tooconnect toohello 裝置序列主控台](#use-putty-to-connect-to-the-device-serial-console)如需相關指示。 **剛好是確定 toofollow hello 程序，或將不會無法 tooaccess hello 主控台。**
-2. 在開啟的 hello 工作階段，按下 Enter 一個時間 tooget 命令提示字元。 
-3. 您將會是您想要為您的裝置 tooset 提示的 toochoose hello 語言。 指定 hello 語言，然後按 Enter 鍵。 
+### <a name="to-configure-and-register-the-device"></a>設定和註冊裝置
+1. 存取 StorSimple 裝置序列主控台上的 Windows PowerShell 介面。 如需相關指示，請參閱 [使用 PuTTY 來連接至裝置序列主控台](#use-putty-to-connect-to-the-device-serial-console) 。 **請務必確實依照此程序，否則將無法存取主控台。**
+2. 在開啟的工作階段中，按 Enter 鍵一次以取得命令提示字元。 
+3. 系統將提示您選擇想要為裝置設定的語言。 指定語言，然後按 Enter 鍵。 
    
     ![StorSimple 設定和註冊裝置 1](./media/storsimple-configure-and-register-device-u1/HCS_RegisterYourDevice1-U1-include.png)
-4. 在呈現的 hello 序列主控台功能表，選擇選項 1 toolog 上具有完整存取權。 
+4. 在顯示的序列主控台功能表中，選擇選項 1 以使用完整存取權進行登入。 
    
     ![StorSimple 註冊裝置 2](./media/storsimple-configure-and-register-device-u1/HCS_RegisterYourDevice2_U1-include.png)
    
-     完成步驟 5-12 tooconfigure hello 最小必要的網路設定為您的裝置。 **這些設定步驟必須 toobe hello 裝置 hello 作用中控制器上執行。** hello 序列主控台功能表會指出 hello 橫幅訊息中的 hello 控制器狀態。 如果您未連接 toohello 主動控制器，就會中斷連線，並再連線 toohello 作用中控制器。
-5. 在 hello 命令提示字元中輸入您的密碼。 hello 預設裝置密碼**Password1**。
-6. 下列命令的型別 hello: `Invoke-HcsSetupWizard`。 
-7. 安裝精靈會出現 toohelp 設定 hello hello 裝置的網路設定。 提供下列資訊的 hello hello: 
+     完成步驟 5-12，為裝置設定最小的必要網路設定。 **這些設定步驟必須在裝置的主動控制器上執行。** 序列主控台功能表會在橫幅訊息中指出控制站狀態。 如果您未連接到主動控制器，請中斷連線，然後連接到主動控制器。
+5. 在命令提示字元中，輸入您的密碼。 預設裝置密碼是 **Password1**。
+6. 輸入以下命令： `Invoke-HcsSetupWizard`。 
+7. 安裝精靈將協助您設定裝置的網路設定。 請提供下列資訊： 
    
-   * Hello DATA 0 網路介面的 IP 位址
+   * 適用於 DATA 0 網路介面的 IP 位址
    * 子網路遮罩
    * 閘道器
    * 適用於主要 DNS 伺服器的 IP 位址
      
-        請注意，hello 系統之後 hello 程序中的每個步驟驗證網路設定。
+        請注意，系統在此過程中會於完成每個步驟後便檢查網路設定一次。
      
      > [!NOTE]
-     > 您可能必須 toowait hello 子網路遮罩和套用 hello DNS 設定 toobe 幾分鐘。 如果您收到 「 檢查 hello 網路連線 tooData 0 」 錯誤訊息，請檢查 hello 實體網路連線 hello DATA 0 網路介面在主動控制站。
+     > 您可能需要等候幾分鐘，以套用子網路遮罩和 DNS 設定。 如果您收到「檢查 Data 0 的網路連線」錯誤訊息，請檢查主動控制器之 DATA 0 網路介面上的實體網路連線。
      > 
      > 
-8. (選用) 設定 Web Proxy 伺服器。 雖然 Web Proxy 設定是選用的，但 **請注意，如果您使用 Web Proxy，就只能在此處設定它**。 如需詳細資訊，請移至太[設定 web proxy 為您的裝置](../articles/storsimple/storsimple-configure-web-proxy.md)。
-9. 為裝置設定主要 NTP 伺服器。 NTP 伺服器是必要項目，因為您的裝置必須同步處理時間，才能使用您的雲端服務提供者進行驗證。 請確定您的網路允許 NTP 流量 toopass 從您的資料中心 toohello 網際網路。 如果不可行，請指定內部 NTP 伺服器。 
-10. 基於安全性理由，hello 裝置系統管理員密碼過期之後 hello 第一個工作階段，而且您將需要 toochange 現在 it。 出現提示時，請提供裝置系統管理員密碼。 有效的裝置系統管理員密碼長度必須介於 8 到 15 個字元。 hello 密碼必須包含的 hello 下列三種： 小寫字母、 大寫字母、 數字及特殊字元。
+8. (選用) 設定 Web Proxy 伺服器。 雖然 Web Proxy 設定是選用的，但 **請注意，如果您使用 Web Proxy，就只能在此處設定它**。 如需詳細資訊，請參閱 [設定裝置的 Web Proxy](../articles/storsimple/storsimple-configure-web-proxy.md)。
+9. 為裝置設定主要 NTP 伺服器。 NTP 伺服器是必要項目，因為您的裝置必須同步處理時間，才能使用您的雲端服務提供者進行驗證。 請確定您的網路允許 NTP 流量從您的資料中心通過網際網路。 如果不可行，請指定內部 NTP 伺服器。 
+10. 基於安全性理由，裝置系統管理員密碼會在第一個工作階段之後過期，您必須立即變更。 出現提示時，請提供裝置系統管理員密碼。 有效的裝置系統管理員密碼長度必須介於 8 到 15 個字元。 密碼必須包含下列其中三項：大寫、小寫、數字和特殊字元。
     
     <br/>![StorSimple 註冊裝置 5](./media/storsimple-configure-and-register-device-u1/HCS_RegisterYourDevice5_U1-include.png)
-11. hello hello 安裝精靈中的最後一個步驟以 hello StorSimple Manager 服務註冊您的裝置。 這麼做，您必須使用您在步驟 2 中取得的 hello 服務註冊金鑰。 您提供 hello 註冊金鑰之後，您可能需要 toowait 2-3 分鐘，hello 裝置完成註冊。
+11. 安裝精靈的最後一個步驟是向 StorSimple Manager 服務註冊您的裝置。 基於此因素，您需要使用在步驟 2 中取得的服務註冊金鑰。 提供註冊金鑰之後，您可能需要等待 2-3 分鐘，才能註冊裝置。
     
     > [!NOTE]
-    > 您可以按 Ctrl + C，在任何時間 tooexit hello 安裝精靈。 如果您輸入所有 hello 網路設定 （針對 Data 0、 子網路遮罩和閘道的 IP 位址），則會保留您的項目。
+    > 您可以隨時按 Ctrl + C 來結束安裝精靈。 如果您輸入所有網路設定 (Data 0 的 IP 位址、子網路遮罩和閘道器)，則會保留您的項目。
     > 
     > 
     
     ![StorSimple 註冊裝置 6](./media/storsimple-configure-and-register-device-u1/HCS_RegisterYourDevice6_U1-include.png)
-12. Hello 裝置完成註冊之後，會出現服務資料加密金鑰。 複製這個金鑰，並將它儲存在安全的位置。 **此金鑰必須與 hello 服務註冊金鑰 tooregister 其他裝置以 hello StorSimple Manager 服務。** 請參閱太[StorSimple 安全性](../articles/storsimple/storsimple-security.md)如需有關這個索引鍵。
+12. 註冊裝置之後，隨即會出現服務資料加密金鑰。 複製這個金鑰，並將它儲存在安全的位置。 **這個金鑰需要與服務註冊金鑰搭配使用，來向 StorSimple Manager 服務註冊其他裝置。** 如需這個金鑰的詳細資訊，請參閱 [StorSimple 安全性](../articles/storsimple/storsimple-security.md) 。
     
     ![StorSimple 註冊裝置 7](./media/storsimple-configure-and-register-device-u1/HCS_RegisterYourDevice7_U1-include.png)    
     
     > [!NOTE]
-    > toocopy hello 文字從 hello 序列主控台視窗中，只需選取 hello 文字。 接著，您應該就能 toopaste hello 剪貼簿或任何文字編輯器中。 不要使用 Ctrl + C toocopy hello 服務資料加密金鑰。 使用 Ctrl + C 將導致您 tooexit hello 安裝精靈。 如此一來，不會變更 hello 裝置系統管理員密碼和 hello 裝置將會回復 toohello 預設密碼。
+    > 若要從序列主控台視窗複製文字，只需選取該文字。 然後您應該能夠將它貼到剪貼簿或任何文字編輯器中。 請勿使用 Ctrl + C 來複製服務資料加密金鑰。 使用 Ctrl + C 將導致安裝精靈結束。 如此一來，裝置系統管理員密碼將不會變更，而裝置將還原為預設密碼。
     > 
     > 
-13. 結束 hello 序列主控台。
-14. 傳回 toohello Azure 傳統入口網站，並完成下列步驟的 hello:
+13. 結束序列主控台。
+14. 返回 Azure 傳統入口網站，並完成下列步驟：
     
-    1. 按兩下您的 StorSimple Manager 服務 tooaccess hello**快速入門**頁面。
+    1. 按兩下 StorSimple Manager 服務以存取 [快速入門]  頁面。
     2. 按一下 [檢視連接的裝置] 。
-    3. 在 hello**裝置**頁面上，確認該 hello 裝置已成功連接 toohello 服務查閱 hello 狀態。 hello 裝置狀態應為**線上**。
+    3. 在 [裝置]  頁面上，藉由查閱狀態來確認裝置已成功連接到服務。 裝置狀態應該是 [線上] 。
        
         ![StorSimple 裝置頁面](./media/storsimple-configure-and-register-device-u1/HCS_DevicesPageM_U1-include.png) 
        
-        如果 hello 裝置狀態是**離線**，等待幾分鐘的 hello 裝置 toocome 線上。 
+        如果裝置狀態為 [離線] ，請等待數分鐘，讓裝置上線。 
        
-        如果 hello 裝置依然為離線狀態後幾分鐘的時間，則您需要確定網路防火牆已設定中所述的 toomake [StorSimple 裝置的網路需求](../articles/storsimple/storsimple-system-requirements.md)。 
+        如果數分鐘之後裝置仍然離線，請確定您的防火牆網路已依照 [StorSimple 裝置網路需求](../articles/storsimple/storsimple-system-requirements.md)中的說明加以設定。 
        
-        請確認這供 hello 服務匯流排的 StorSimple Manager 服務的裝置通訊，因此，已針對連出通訊開啟連接埠 9354。
+        請確認連接埠 9354 已開啟供輸出通訊使用，因為 StorSimple Manager 服務對裝置服務匯流排通訊也使用此連接埠。
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooData 分析資料來源"
-description: "如何 tooarticle 反白顯示 tooinclude 資料表和資料行層級資料設定檔註冊在 Azure 資料目錄中，資料來源時，以及如何 toouse 資料設定檔 toounderstand 資料來源。"
+title: "如何對資料來源進行資料分析"
+description: "專門說明如何在 Azure 資料目錄中註冊資料來源時包含資料表和資料行層級的資料設定檔以及如何使用資料設定檔來了解資料來源的操作說明文章。"
 services: data-catalog
 documentationcenter: 
 author: spelluru
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: NA
 ms.workload: data-catalog
 ms.date: 08/03/2017
 ms.author: spelluru
-ms.openlocfilehash: 12c9f38501cdaee903d0dcbbdd0b82395f35a187
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8f4174f0ed74706b8275c8b1f0a62753f2834fa2
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="data-profile-data-sources"></a>對資料來源進行資料分析
 ## <a name="introduction"></a>簡介
-**Microsoft Azure 資料目錄** 是全面管理的雲端服務，可作為企業資料來源的註冊系統和探索系統。 換句話說， **Azure 資料目錄**是協助人員相關的所有探索、 了解，以及使用資料來源，以及協助組織 tooget 其現有的資料來自多個值。 資料來源已向當**Azure 資料目錄**，它的中繼資料會複製，並以 hello 服務編製索引但 hello 劇本那里未結束。
+ 是全面管理的雲端服務，可作為企業資料來源的註冊系統和探索系統。 換句話說，[Azure 資料目錄]  的重點在於協助人們探索、了解，以及使用資料來源，並可協助組織從現有的資料獲得更多價值。 當資料來源向 **Azure 資料目錄**註冊之後，該服務會複製其中繼資料並建立索引，但不僅止於此。
 
-hello**資料分析**功能**Azure 資料目錄**會檢查您的類別目錄中支援的資料來源的 hello 資料並收集統計資料，以及該資料的相關資訊。 它是簡單 tooinclude 資料資產的設定檔。 當您註冊資料資產時，選擇 [**包含資料設定檔**hello 資料來源註冊工具中。
+**Azure 資料目錄**的**資料分析**功能會檢查目錄中所支援資料來源的資料，並收集關於該資料的統計資料和資訊。 想要包含資料資產的設定檔很容易。 當您註冊資料資產時，請選擇資料來源註冊工具中的 [包含資料設定檔]  。
 
 ## <a name="what-is-data-profiling"></a>什麼是資料分析
-資料分析會檢查 hello hello 所註冊的資料來源中的資料，並收集統計資料，以及該資料的相關資訊。 在資料來源探索，這些統計資料可協助您判斷 hello 資料 toosolve hello 適合其商務問題。
+資料分析會檢查所註冊資料來源中的資料，並收集關於該資料的統計資料和資訊。 在探索資料來源期間，這些統計資料可以協助您判斷資料是否適合用來解決他們的商務問題。
 
-<!-- In [How toodiscover data sources](data-catalog-how-to-discover.md), you learn about **Azure Data Catalog's** extensive search capabilities including searching for data assets that have a profile. See [How tooinclude a data profile when registering a data source](#howto). -->
+<!-- In [How to discover data sources](data-catalog-how-to-discover.md), you learn about **Azure Data Catalog's** extensive search capabilities including searching for data assets that have a profile. See [How to include a data profile when registering a data source](#howto). -->
 
-hello 下列資料來源都支援程式碼剖析資料：
+下列資料來源都支援資料分析︰
 
 * SQL Server (包括 Azure SQL DB 和 Azure SQL 資料倉儲) 資料表和檢視
 * Oracle 資料表和檢視
@@ -41,35 +41,35 @@ hello 下列資料來源都支援程式碼剖析資料：
 
 在註冊資料資產時包含資料設定檔可幫助使用者回答資料來源的相關問題，包括︰
 
-* 它可以是使用的 toosolve 我商務問題嗎？
-* Hello 資料是否符合 tooparticular 標準或模式？
-* 有哪些 hello 資料來源的 hello 異常狀況？
+* 是否可用來解決商務問題？
+* 資料是否符合特定標準或模式？
+* 資料來源有哪些異常之處？
 * 將此資料整合到應用程式時可能面臨哪些挑戰？
 
 > [!NOTE]
-> 您也可以加入文件 tooan 資產 toodescribe 資料無法如何整合到應用程式。 請參閱[如何 toodocument 資料來源](data-catalog-how-to-documentation.md)。
+> 您也可以對資產新增說明文件來描述如何將資料整合到應用程式。 請參閱 [如何記載資料來源](data-catalog-how-to-documentation.md)。
 >
 >
 
 <a name="howto"/>
 
-## <a name="how-tooinclude-a-data-profile-when-registering-a-data-source"></a>Tooinclude 資料設定檔時登錄資料來源
-它是簡單 tooinclude 您的資料來源的設定檔。 當您註冊資料來源，在 [hello**註冊物件 toobe**面板 hello 資料來源登錄的工具，請選擇**包含資料設定檔**。
+## <a name="how-to-include-a-data-profile-when-registering-a-data-source"></a>如何在註冊資料來源時包含資料設定檔
+想要包含資料來源的設定檔很容易。 當您註冊資料來源時，在資料來源註冊工具的 [要註冊的物件] 面板中選擇 [包含資料設定檔]。
 
 ![](media/data-catalog-data-profile/data-catalog-register-profile.png)
 
-toolearn 深入了解如何 tooregister 資料來源，請參閱[如何 tooregister 資料來源](data-catalog-how-to-register.md)和[開始使用 Azure 資料目錄](data-catalog-get-started.md)。
+若要深入了解如何註冊資料來源，請參閱[如何註冊資料來源](data-catalog-how-to-register.md)和[開始使用 Azure 資料目錄](data-catalog-get-started.md)。
 
 ## <a name="filtering-on-data-assets-that-include-data-profiles"></a>篩選包含資料設定檔的資料資產
-您可以加入包含資料設定檔的 toodiscover 資料資產，`has:tableDataProfiles`或`has:columnsDataProfiles`做為其中一個搜尋詞彙。
+若要探索包含資料設定檔的資料資產，您可以包含 `has:tableDataProfiles` 或 `has:columnsDataProfiles` 做為搜尋字詞之一。
 
 > [!NOTE]
-> 選取**包含資料設定檔**在 hello 資料來源註冊工具會包含資料表和資料行層級設定檔資訊。 不過，hello 資料目錄應用程式開發介面可讓資料資產 toobe 向只有一組所包含的設定檔資訊。
+> 在資料來源註冊工具中選取 [包含資料設定檔]，即會同時包含資料表和資料行層級的設定檔資訊。 不過，資料目錄 API 讓只含一組設定檔資訊的資料資產能夠加以註冊。
 >
 >
 
 ## <a name="viewing-data-profile-information"></a>檢視資料設定檔資訊
-一旦您找到適合的資料來源與設定檔，您可以檢視 hello 設定檔詳細資料。 tooview hello 資料設定檔，選取的資料資產，並選擇**資料設定檔**hello 資料目錄入口網站視窗中。
+一旦您找到含有設定檔的合適資料來源，您可以檢視資料設定檔的詳細資料。 若要檢視資料設定檔，請在資料目錄入口網站視窗中選取資料資產並選擇 [資料設定檔]  。
 
 ![](media/data-catalog-data-profile/data-catalog-view.png)
 
@@ -78,7 +78,7 @@ toolearn 深入了解如何 tooregister 資料來源，請參閱[如何 tooregis
 ### <a name="object-data-profile"></a>物件資料設定檔
 * 資料列數目
 * 資料表大小
-* Hello 物件上次更新
+* 物件的上次更新時間
 
 ### <a name="column-data-profile"></a>資料行資料設定檔
 * 資料行資料類型
@@ -87,8 +87,8 @@ toolearn 深入了解如何 tooregister 資料來源，請參閱[如何 tooregis
 * 資料行的最小值、最大值、平均值和標準差值
 
 ## <a name="summary"></a>摘要
-資料分析提供統計資料，並註冊資料資產 toohelp 判斷 hello 適用性 hello 資料 toosolve 商務問題的相關資訊。 加上註解和記載資料來源後，資料設定檔可以讓使用者更深入了解資料。
+資料分析可提供關於註冊資料資產的統計資料和資訊，以協助您判斷資料是否適合用來解決商務問題。 加上註解和記載資料來源後，資料設定檔可以讓使用者更深入了解資料。
 
 ## <a name="see-also"></a>另請參閱
-* [如何 tooregister 資料來源](data-catalog-how-to-register.md)
+* [如何註冊資料來源](data-catalog-how-to-register.md)
 * [開始使用 Azure 資料目錄](data-catalog-get-started.md)

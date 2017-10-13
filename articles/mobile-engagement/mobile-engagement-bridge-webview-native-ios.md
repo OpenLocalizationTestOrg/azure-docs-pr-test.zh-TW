@@ -1,6 +1,6 @@
 ---
-title: "使用原生 Mobile Engagement iOS SDK aaaBridge iOS WebView"
-description: "描述如何 toocreate WebView 執行 Javascript 和 hello 原生 Mobile Engagement iOS SDK 之間的橋接器"
+title: "將 iOS WebView 與原生 Mobile Engagement iOS SDK 橋接"
+description: "說明如何在執行 Javascript 的 WebView 與原生的 Mobile Engagement iOS SDK 之間建立橋接器"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,11 +14,11 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 089ed8484722cb5ba624e5dce0e670ab56de514d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 35f7bdbeb480122513ae2a0b04a6d8cfd426802a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="bridge-ios-webview-with-native-mobile-engagement-ios-sdk"></a>將 iOS WebView 與原生 Mobile Engagement iOS SDK 橋接
 > [!div class="op_single_selector"]
@@ -27,25 +27,25 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-某些行動裝置應用程式被設計為混合式應用程式本身 hello 應用程式開發時使用原生 iOS Objective C 程式開發，但是部分或甚至全部 hello 螢幕 iOS WebView 中轉譯。 您仍然可以使用這類應用程式內的 Mobile Engagement iOS SDK，並在本教學課程說明如何 toogo 如何進行此作業。 
+某些行動應用程式設計為混合式應用程式，其中應用程式本身使用原生 iOS Objective-C 開發方式開發，但部份或甚至所有的畫面是在 iOS WebView 中轉譯。 您仍然可以在這類應用程式中使用 Mobile Engagement iOS SDK，而本教學課程將說明做法。 
 
-有兩個方法 tooachieve 這兩者都未記載：
+雖然文件沒有記載，但有兩種方法可以達到此目的：
 
 * 第一種方法是此[連結](http://stackoverflow.com/questions/9826792/how-to-invoke-objective-c-method-from-javascript-and-send-back-data-to-javascrip)中所描述，牽涉到在您的網頁檢視上註冊 `UIWebViewDelegate`，然後以 Javascript「捕捉並立即取消」位置變更來完成。 
-* 第二個其中根據這[WWDC 2013 工作階段](https://developer.apple.com/videos/play/wwdc2013/615)，這就是第一次清潔比 hello，和我們會遵循本指南中的方法。 請注意，這個方法僅適用於 iOS7 和更新版本。 
+* 第二種方法依據此 [WWDC 2013 Session (WWDC 2013 會議)](https://developer.apple.com/videos/play/wwdc2013/615)，這個方法比第一種更為簡潔，我們在此指南中將遵循此方法。 請注意，這個方法僅適用於 iOS7 和更新版本。 
 
-針對 hello iOS 橋接的範例，請遵循下列 hello 步驟：
+針對 iOS 橋接的範例，請遵循下列步驟：
 
-1. 首先，您必須已經完成的 tooensure 我們[快速入門教學課程](mobile-engagement-ios-get-started.md)toointegrate hello Mobile Engagement iOS SDK 混合式應用程式中。 （選擇性） 您也可以啟用，讓您可以查看 hello SDK 方法，當我們從 hello webview 觸發這些測試記錄，如下所示。 
+1. 首先，您必須確定您已經完成我們的 [快速入門教學課程](mobile-engagement-ios-get-started.md) ，以在您的混合式應用程式中整合 Mobile Engagement iOS SDK。 或者，您也可以如下所示啟用測試記錄，如此當我們從 WebView 觸發 SDK 方法時您就可以檢視它們。 
    
         - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
            ....
              [EngagementAgent setTestLogEnabled:YES];
            ....
         }
-2. 現在請確定您的混合式應用程式上有使用 WebView 的畫面。 您可以將它加入 toohello `Main.storyboard` hello 應用程式。 
-3. 關聯與此 webview 您**ViewController**按一下並拖曳 hello webview 從 hello 檢視控制器場景 toohello`ViewController.h`編輯畫面上，將其放在正下方 hello`@interface`列。 
-4. 您這麼做之後，對話方塊隨即會出現要求輸入名稱。 提供與 hello 名稱**webView**。 您`ViewController.h`檔案應該看起來像下列 hello:
+2. 現在請確定您的混合式應用程式上有使用 WebView 的畫面。 您可以將它新增到應用程式的 `Main.storyboard` 。 
+3. 將此 WebView 與您的 **ViewController** 關聯，方法是從 View Controller Scene (檢視控制器場景) 按一下 WebView 並拖曳到 `ViewController.h` 編輯畫面，然後將它放在 `@interface` 程式行下方。 
+4. 您這麼做之後，對話方塊隨即會出現要求輸入名稱。 提供名稱 **webView**。 `ViewController.h` 檔案看起來應該如下所示：
    
         #import <UIKit/UIKit.h>
         #import "EngagementViewController.h"
@@ -54,7 +54,7 @@ ms.lasthandoff: 10/06/2017
         @property (strong, nonatomic) IBOutlet UIWebView *webView;
    
         @end
-5. 我們將會更新 hello`ViewController.m`稍後檔案，但首先我們要建立 hello 橋接器檔案會透過某些常用的 Mobile Engagement iOS SDK 方法建立包裝函式。 建立新的標頭檔稱為**EngagementJsExports.h**使用 hello `JSExport` hello 上述中所述的機制[工作階段](https://developer.apple.com/videos/play/wwdc2013/615)tooexpose hello 原生 iOS 方法。 
+5. 稍後我們將會更新 `ViewController.m` 檔案，但首先我們要建立橋接器檔案，該檔案會透過一些常用的 Mobile Engagement iOS SDK 方法建立包裝函式。 建立名為 **EngagementJsExports.h** 的標頭檔案，它會使用前述[工作階段](https://developer.apple.com/videos/play/wwdc2013/615)中所描述的 `JSExport` 機制來公開原生的 iOS 方法。 
    
         #import <Foundation/Foundation.h>
         #import <JavaScriptCore/JavascriptCore.h>
@@ -72,7 +72,7 @@ ms.lasthandoff: 10/06/2017
         @interface EngagementJs : NSObject <EngagementJsExports>
    
         @end
-6. 接下來，我們將建立 hello hello 橋接器檔第二個部分。 建立一個叫做檔案**EngagementJsExports.m**其中會包含 hello 建立 hello 實際的包裝函式，藉由呼叫 hello Mobile Engagement iOS SDK 方法的實作。 另外請注意，我們正在剖析 hello`extras`收到所傳遞的 hello webview javascript 並放入`NSMutableDictionary`物件 toobe 傳遞以 hello Engagement SDK 方法呼叫。  
+6. 接下來我們將建立橋接器檔案的第二個部分。 建立名為 **EngagementJsExports.m** 的檔案，其中包含透過呼叫 Mobile Engagement iOS SDK 方法建立實際包裝函式的實作。 另外請注意，我們正在貼上的 `extras` 會從 WebView 的 Javascript 傳遞，並放置到 `NSMutableDictionary` 物件中與 Engagement SDK 方法呼叫傳遞。  
    
         #import <UIKit/UIKit.h>
         #import "EngagementAgent.h"
@@ -113,7 +113,7 @@ ms.lasthandoff: 10/06/2017
         }
    
         @end
-7. 現在我們後回來 toohello **ViewController.m**及更新以下列程式碼的 hello: 
+7. 現在我們回到 **ViewController.m** 並使用下列程式碼更新它： 
    
         #import <JavaScriptCore/JavaScriptCore.h>
         #import "ViewController.h"
@@ -158,11 +158,11 @@ ms.lasthandoff: 10/06/2017
         }
    
         @end
-8. 注意 hello 下列點有關 hello **ViewController.m**檔案：
+8. 請注意下列有關 **ViewController.m** 檔案的重點：
    
-   * 在 [hello`loadWebView`方法中，我們會載入本機的 HTML 檔案，稱為**LocalPage.html**接下來，我們將檢閱其程式碼。 
-   * 在 [hello`webViewDidFinishLoad`方法，我們會抓取 hello`JsContext`和我們的包裝函式類別關聯。 這可讓呼叫我們的包裝函式使用 hello 控制代碼的 SDK 方法**EngagementJs** hello web 檢視。 
-9. 建立一個叫做檔案**LocalPage.html**以下列程式碼的 hello:
+   * 在 `loadWebView` 方法中，我們會載入名為 **LocalPage.html** 的本機 HTML 檔案，接著我們會檢閱其程式碼。 
+   * 在 `webViewDidFinishLoad` 方法中，我們會抓取 `JsContext` 並將它與我們的包裝函式類別關聯。 這會允許使用控制代碼 **EngagementJs** 從 webView 呼叫我們的包裝函式 SDK 方法。 
+9. 使用下列程式碼建立名為 **LocalPage.html** 的檔案：
    
         <!doctype html>
         <html>
@@ -186,7 +186,7 @@ ms.lasthandoff: 10/06/2017
                    if(input)
                    {
                        var value = input.value;
-                       // Example of how extras info can be passed with hello Engagement logs
+                       // Example of how extras info can be passed with the Engagement logs
                        var extras = '{"CustomerId":"MS290011"}';
                    }
    
@@ -248,16 +248,16 @@ ms.lasthandoff: 10/06/2017
                </div>
            </body>
         </html>
-10. 請注意 hello 下列點有關上述的 hello HTML 檔案：
+10. 請注意有關上述 HTML 檔案的重點：
     
-    * 它包含一組的輸入方塊，您可以在其中提供資料 toobe 做為事件、 工作、 錯誤、 應用程式資訊的名稱。 當您按一下 hello 按鈕的下一個 tooit 時，進行呼叫，toohello Javascript 最後呼叫 hello 方法從 hello 橋接器檔案 toopass 此呼叫 toohello Mobile Engagement iOS SDK。 
-    * 我們會標記上一些額外的靜態資訊 toohello 事件、 工作以及甚至錯誤 toodemonstrate 如何這無法完成。 此額外資訊則會傳送 JSON 字串，若您查看 hello`EngagementJsExports.m`檔案、 剖析和傳送事件、 工作、 錯誤以及傳遞。 
-    * Mobile Engagement 工作會開始使用您指定在 hello 輸入方塊中，執行 10 秒，並關閉 hello 名稱。 
-    * Mobile Engagement 應用程式資訊或標籤與一起傳遞 'customer_name' hello 靜態金鑰以及 hello 值中輸入的 hello 輸入 hello 值為 hello 標記。 
-11. 執行的 hello 應用程式，您會看到下列 hello。 現在提供一些類似下列的 hello 測試事件的名稱，然後按一下 [**傳送**tooit 下一步]。 
+    * 它包含一組輸入方塊，您可以在當中提供資料，用來做為事件、工作、錯誤，應用程式資訊的名稱。 當您按一下它旁邊的按鈕，便會向 Javascript 進行呼叫，這通常會從橋接器檔案中呼叫方法以將此呼叫傳遞到 Mobile Engagement iOS SDK。 
+    * 我們將一些額外的資訊標記到事件、工作，甚至是錯誤，來示範這是如何完成的。 此額外資訊會以 JSON 字串傳送，它 (如果您查看 `EngagementJsExports.m` 檔案) 可被解析，並隨傳送的事件、工作、錯誤傳遞。 
+    * Mobile Engagement 工作會以您在輸入方塊中指定的名稱開始工作，執行 10 秒鐘之後關閉。 
+    * Mobile Engagement 應用程式資訊或標記會以 'customer_name' 傳遞作為靜態索引鍵，且您在輸入方塊輸入的值會作為此標記的值。 
+11. 執行應用程式，然後您會看到下列畫面。 現在為測試事件提供一些名稱，如下所示，然後按一下旁邊的 [傳送]  。 
     
      ![][1]
-12. 現在，如果您移 toohello**監視器**] 索引標籤的 [應用程式，並查看**事件詳細資料]-> [**，您會看到顯示以及 hello 靜態應用程式的資訊，我們會傳送此事件。 
+12. 現在，如果您移至應用程式的 [監視] 索引標籤，並查看 [事件] -> [詳細資料] 底下，您會看到此事件與我們傳送的靜態應用程式資訊一起顯示。 
     
     ![][2]
 

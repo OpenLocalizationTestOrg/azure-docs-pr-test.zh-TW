@@ -1,6 +1,6 @@
 ---
 title: "Azure AD Connect：針對連線問題進行疑難排解 | Microsoft Docs"
-description: "說明如何 tootroubleshoot 連線問題的 Azure AD Connect。"
+description: "說明如何使用 Azure AD Connect 疑難排解連線問題。"
 services: active-directory
 documentationcenter: 
 author: andkjell
@@ -14,98 +14,98 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 60d6b7c4ad8a3ab907c20e598ec9443f115df287
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f9631e8a383b88421c55d9c42c8059df9e732800
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="troubleshoot-connectivity-issues-with-azure-ad-connect"></a>對 Azure AD Connect 的連線問題進行疑難排解
-這篇文章說明 Azure AD Connect 與 Azure AD 之間的連線的運作方式以及如何 tootroubleshoot 連線的問題。 最有可能 toobe 與 proxy 伺服器的環境中所見，這些問題。
+這篇文章說明 Azure AD Connect 與 Azure AD 之間的連線的運作方式，以及如何疑難排解連線問題。 這些問題最有可能出現在具有 Proxy 伺服器的環境中。
 
-## <a name="troubleshoot-connectivity-issues-in-hello-installation-wizard"></a>疑難排解 hello 安裝精靈 中的連線問題
-Azure AD Connect 使用新式驗證 （使用 hello ADAL 程式庫） 進行驗證。 hello 安裝精靈和適當的 hello 同步處理引擎都需要正確設定，因為這兩個是.NET 應用程式的 machine.config toobe。
+## <a name="troubleshoot-connectivity-issues-in-the-installation-wizard"></a>在安裝精靈中疑難排解連線問題
+Azure AD Connect 使用「新式驗證」(使用 ADAL 程式庫) 來進行驗證。 安裝精靈和同步處理引擎會要求必須正確設定 machine.config，因為這兩個是 .NET 應用程式。
 
-在本文中，我們示範如何 Fabrikam 連接 tooAzure AD 透過其 proxy。 名為 fabrikamproxy 與正在使用連接埠 8080 hello proxy 伺服器。
+在本文中，我們將說明 Fabrikam 如何透過其 Proxy 連接至 Azure AD。 Proxy 伺服器名為 fabrikamproxy，並且正在使用連接埠 8080。
 
-首先我們需要 toomake 確定[ **machine.config** ](active-directory-aadconnect-prerequisites.md#connectivity)已正確設定。  
+首先，我們必須確定已正確設定 [**machine.config**](active-directory-aadconnect-prerequisites.md#connectivity) 。  
 ![machineconfig](./media/active-directory-aadconnect-troubleshoot-connectivity/machineconfig.png)
 
 > [!NOTE]
-> 在某些非 Microsoft 部落格，它會詳細說明，您應該進行變更 toomiiserver.exe.config 改為。 不過，這個檔案是覆寫，因此，即使它的運作方式在初始安裝期間，如果 hello 系統停止運作的第一個升級時每個升級。 基於這個原因，hello 建議改用是 tooupdate machine.config。
+> 在某些非 Microsoft 部落格中，指出了應該改為變更 miiserver.exe.config。 不過，每次升級時都會覆寫這個檔案，因此，即使在初始安裝期間能運作，在第一次升級時系統也會停止運作。 基於該理由，建議您改為更新 machine.config。
 >
 >
 
-hello proxy 伺服器也必須開啟所需的 hello Url。 hello 官方清單記載於[Office 365 Url 與 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)。
+Proxy 伺服器也必須開啟必要的 URL。 如需官方清單，請參閱 [Office 365 URL 與 IP 位址範圍](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)。
 
-個 Url 下表, 中的 hello 完全是 hello 絕對裸機的最小 toobe 無法 tooconnect tooAzure AD。 這份清單並未包含任何選用的功能，例如密碼回寫或 Azure AD Connect Health。 它是文件的此處 toohelp 疑難排解 hello 初始設定。
+在這些 URL 當中，下表是能夠連接到 Azure AD 的最基本項目。 這份清單並未包含任何選用的功能，例如密碼回寫或 Azure AD Connect Health。 在此記錄以便協助疑難排解初始設定。
 
 | URL | 連接埠 | 說明 |
 | --- | --- | --- |
-| mscrl.microsoft.com |HTTP/80 |列出使用的 toodownload CRL。 |
-| \*.verisign.com |HTTP/80 |列出使用的 toodownload CRL。 |
-| \*.entrust.com |HTTP/80 |使用的 toodownload CRL 列出 MFA。 |
-| \*.windows.net |HTTPS/443 |使用中 tooAzure AD toosign。 |
+| mscrl.microsoft.com |HTTP/80 |用來下載 CRL 清單。 |
+| \*.verisign.com |HTTP/80 |用來下載 CRL 清單。 |
+| \*.entrust.com |HTTP/80 |用來下載 MFA 的 CRL 清單。 |
+| \*.windows.net |HTTPS/443 |用來登入 Azure AD。 |
 | secure.aadcdn.microsoftonline-p.com |HTTPS/443 |用於 MFA。 |
-| \*.microsoftonline.com |HTTPS/443 |使用 tooconfigure Azure AD 目錄與匯入/匯出資料。 |
+| \*.microsoftonline.com |HTTPS/443 |用來設定您的 Azure AD 目錄及匯入/匯出資料。 |
 
-## <a name="errors-in-hello-wizard"></a>Hello 精靈中的錯誤
-hello 安裝精靈會使用兩個不同的安全性內容。 在 [hello] 頁面上**連接 tooAzure AD**，它會使用目前登入使用者的 hello。 在 [hello] 頁面上**設定**，它變更 toohello[執行 hello hello 同步處理引擎的服務帳戶](active-directory-aadconnect-accounts-permissions.md#azure-ad-connect-sync-service-account)。 如果發生問題時，它會顯示最有可能已經在 hello**連接 tooAzure AD**因為 hello proxy 設定是全域的 hello 精靈中的頁面。
+## <a name="errors-in-the-wizard"></a>精靈中的錯誤
+安裝精靈會使用兩種不同的安全性內容。 在 [連線到 Azure AD]  頁面上，使用的是目前登入的使用者。 在 [設定] 頁面上，它會變更為[執行同步處理引擎服務的帳戶](active-directory-aadconnect-accounts-permissions.md#azure-ad-connect-sync-service-account)。 如果發生問題，問題最有可能已經出現在精靈中的 [連線到 Azure AD] 頁面，因為 Proxy 組態是全域組態。
 
-下列問題的 hello 是 hello 在 hello 安裝精靈中遇到最常見的錯誤。
+下列問題是您會在安裝精靈中遇到的最常見錯誤。
 
-### <a name="hello-installation-wizard-has-not-been-correctly-configured"></a>hello 安裝精靈設定不正確
-Hello 精靈本身無法到達 hello proxy 時，會出現這個錯誤。  
+### <a name="the-installation-wizard-has-not-been-correctly-configured"></a>安裝精靈未正確設定
+當精靈本身無法連線到 Proxy 時，就會出現此錯誤。  
 ![nomachineconfig](./media/active-directory-aadconnect-troubleshoot-connectivity/nomachineconfig.png)
 
-* 如果您看到此錯誤，請確認 hello [machine.config](active-directory-aadconnect-prerequisites.md#connectivity)是否已正確設定。
-* 如果這看起來正確，請依照下列中的 hello 步驟[驗證 proxy 的連線](#verify-proxy-connectivity)toosee hello 問題是否有外部 hello 精靈 」。
+* 如果您看到此錯誤，請確認是否已經正確設定 [machine.config](active-directory-aadconnect-prerequisites.md#connectivity) 。
+* 如果看起來正確，請依照 [確認 Proxy 連線](#verify-proxy-connectivity) 中的步驟，查看問題是否也出現在精靈以外的地方。
 
 ### <a name="a-microsoft-account-is-used"></a>使用了 Microsoft 帳戶
 如果您使用 **Microsoft 帳戶**而不是**學校或組織帳戶**，就會看到一個一般錯誤。  
 ![使用了 Microsoft 帳戶](./media/active-directory-aadconnect-troubleshoot-connectivity/unknownerror.png)
 
-### <a name="hello-mfa-endpoint-cannot-be-reached"></a>無法連線到 hello MFA 端點
-會出現這個錯誤，如果 hello 端點**https://secure.aadcdn.microsoftonline-p.com**無法連線到您的全域管理員且啟用 MFA。  
+### <a name="the-mfa-endpoint-cannot-be-reached"></a>無法連線 MFA 端點
+如果無法連線到端點 **https://secure.aadcdn.microsoftonline-p.com**，而您的全域系統管理員已啟用 MFA，就會出現此錯誤。  
 ![nomachineconfig](./media/active-directory-aadconnect-troubleshoot-connectivity/nomicrosoftonlinep.png)
 
-* 如果您看到此錯誤，請確認該 hello 端點**secure.aadcdn.microsoftonline p.com** toohello proxy 已加入。
+* 如果您看到此錯誤，請確認是否已將 **secure.aadcdn.microsoftonline-p.com** 端點新增到 Proxy。
 
-### <a name="hello-password-cannot-be-verified"></a>無法驗證 hello 密碼
-如果 hello 安裝精靈已成功連接 tooAzure AD，但無法驗證 hello 密碼本身，您會看到這個錯誤：  
+### <a name="the-password-cannot-be-verified"></a>無法驗證密碼
+如果安裝精靈成功連線到 Azure AD，但密碼本身無法獲得驗證，您就會看到此錯誤：  
 ![badpassword](./media/active-directory-aadconnect-troubleshoot-connectivity/badpassword.png)
 
-* 受到 hello 密碼暫時密碼，而必須變更嗎？ 是它實際 hello 正確的密碼？ 請嘗試 toosign toohttps://login.microsoftonline.com （在 hello Azure AD Connect 的伺服器以外的另一部電腦） 中，並確認 hello 帳戶可供使用。
+* 密碼是暫時密碼，而且必須變更嗎？ 實際上是正確的密碼嗎？ 嘗試登入 https://login.microsoftonline.com (在 Azure AD Connect 伺服器以外的另一部電腦上)，並確認該帳戶是否可用。
 
 ### <a name="verify-proxy-connectivity"></a>確認 Proxy 連線
-tooverify 如果 hello Azure AD Connect 伺服器具有實際連線 hello Proxy 與網際網路上，使用一些 PowerShell toosee hello proxy 或不允許 web 要求。 在 PowerShell 命令提示字元中，執行 `Invoke-WebRequest -Uri https://adminwebservice.microsoftonline.com/ProvisioningService.svc`。 （技術上 hello 第一次呼叫是 toohttps://login.microsoftonline.com 而且這個 URI 可以，但是 hello 其他 URI 是更快的 toorespond）。
+若要確認 Azure AD Connect 伺服器是否確實能夠與 Proxy 和網際網路連線，請使用一些 PowerShell 來查看 Proxy 是否允許 Web 要求。 在 PowerShell 命令提示字元中，執行 `Invoke-WebRequest -Uri https://adminwebservice.microsoftonline.com/ProvisioningService.svc`。 (就技術而言，第一個呼叫是對 https://login.microsoftonline.com 發出，而這個 URI 同樣能夠運作，但另一個 URI 的回應速度較快。)
 
-PowerShell 會使用 machine.config toocontact hello proxy 中的 hello 組態。 在 winhttp/netsh hello 設定應該不會影響這些 cmdlet。
+PowerShell 會使用 machine.config 中的組態來連絡 Proxy。 winhttp/netsh 中設定應該不會影響這些 Cmdlet。
 
-如果 hello proxy 設定正確，您應該取得成功的狀態： ![proxy200](./media/active-directory-aadconnect-troubleshoot-connectivity/invokewebrequest200.png)
+如果 Proxy 設定正確，您應該會收到成功的狀態：![proxy200](./media/active-directory-aadconnect-troubleshoot-connectivity/invokewebrequest200.png)
 
-如果您收到**toohello 遠端伺服器時，無法 tooconnect**、 然後 PowerShell 正嘗試 toomake 直接呼叫，而不使用 hello proxy 或未正確設定 DNS。 請確定 hello **machine.config**檔案已正確設定。
+如果您收到 [無法連接至遠端伺服器]，則表示 PowerShell 正嘗試進行直接呼叫而未使用 Proxy，或是 DNS 設定不正確。 請確定 **machine.config** 檔案設定正確。
 ![unabletoconnect](./media/active-directory-aadconnect-troubleshoot-connectivity/invokewebrequestunable.png)
 
-如果 hello proxy 設定不正確，您會收到錯誤： ![proxy200](./media/active-directory-aadconnect-troubleshoot-connectivity/invokewebrequest403.png)
+如果 Proxy 設定不正確，您將會收到錯誤：![proxy200](./media/active-directory-aadconnect-troubleshoot-connectivity/invokewebrequest403.png)
 ![proxy407](./media/active-directory-aadconnect-troubleshoot-connectivity/invokewebrequest407.png)
 
 | 錯誤 | 錯誤文字 | 註解 |
 | --- | --- | --- |
-| 403 |禁止 |hello proxy 尚未開啟，hello 要求 URL。 重新檢查 hello proxy 設定，並請確定 hello [Url](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2)已經開啟。 |
-| 407 |需要 Proxy 驗證 |hello proxy 伺服器需要登入，然後並未提供任何。 如果您的 proxy 伺服器需要驗證，請確定 toohave hello machine.config 中設定此設定。也請確定您使用網域帳戶時，執行 hello 精靈 hello 使用者和 hello 服務帳戶。 |
+| 403 |禁止 |Proxy 尚未對要求的 URL 開放。 重新瀏覽 Proxy 組態，並確定 [URL](https://support.office.com/article/Office-365-URLs-and-IP-address-ranges-8548a211-3fe7-47cb-abb1-355ea5aa88a2) 已經開啟。 |
+| 407 |需要 Proxy 驗證 |Proxy 伺服器要求提供登入資訊，但並未提供任何登入資訊。 如果您的 Proxy 伺服器需要驗證，請務必在 machine.config 中進行這項設定。 此外，也請確定您將網域帳戶用於執行精靈的使用者，以及用於服務帳戶。 |
 
-## <a name="hello-communication-pattern-between-azure-ad-connect-and-azure-ad"></a>hello Azure AD Connect 與 Azure AD 之間的通訊模式
-如果您已依照上述這些步驟操作卻仍然無法連接，這時可以開始查看網路記錄檔。 本節說明正常和成功的連線模式。 它也會列出常見的紅色 herrings 可以略過，當您正在閱讀 hello 網路記錄檔。
+## <a name="the-communication-pattern-between-azure-ad-connect-and-azure-ad"></a>Azure AD Connect 與 Azure AD 之間的通訊模式
+如果您已依照上述這些步驟操作卻仍然無法連接，這時可以開始查看網路記錄檔。 本節說明正常和成功的連線模式。 它也會列出常見的假象，當您閱讀網路記錄檔時可以略過。
 
-* 沒有呼叫 toohttps://dc.services.visualstudio.com。不需要的 toohave hello 安裝 toosucceed 及這些呼叫的 hello proxy 中開啟這個 URL 可以忽略。
-* 您會看到 dns 解析列出 hello 實際主機 toobe hello DNS 名稱空間 nsatc.net 和 microsoftonline.com 不在其他命名空間中。不過，在 hello 實際伺服器名稱上沒有任何 web 服務要求，您不需要 tooadd 這些 Url toohello proxy。
-* hello 端點 adminwebservice provisioningapi 探索端點和使用 toofind hello 實際的端點 toouse。 這些端點會依據您的區域而有所不同。
+* 有對 https://dc.services.visualstudio.com 發出的呼叫。 並不需要在 Proxy 中開啟此 URL，安裝即可成功，因此可以忽略這些呼叫。
+* 您會看到 DNS 解析列出要在 DNS 命名空間 nsatc.net 中的實際主機，以及其他不在 microsoftonline.com 底下的命名空間。 不過，實際伺服器名稱上沒有任何 Web 服務要求，因此您不需要將這些 URL 新增到 Proxy。
+* 端點 adminwebservice 和 provisioningapi 是探索端點，可用來尋找要使用的實際端點。 這些端點會依據您的區域而有所不同。
 
 ### <a name="reference-proxy-logs"></a>參考 Proxy 記錄檔
-以下是傾印從實際的 proxy 記錄與 hello 安裝精靈頁面，從中拍攝 (相同的端點已經移除重複的項目 toohello)。 本節可以作為您自己 Proxy 和網路記錄檔的參考。 hello 實際的端點可能會不同，您的環境中 (特別是在這些 Url*斜體*)。
+以下是實際 Proxy 記錄檔的傾印及取得它的安裝精靈頁面 (已移除至相同端點的重複項目)。 本節可以作為您自己 Proxy 和網路記錄檔的參考。 您環境中實際的端點可能會有所不同 (特別是以「斜體字」表示的 URL)。
 
-**連接 tooAzure AD**
+**連接至 Azure AD**
 
 | 時間 | URL |
 | --- | --- |
@@ -142,16 +142,16 @@ PowerShell 會使用 machine.config toocontact hello proxy 中的 hello 組態�
 | 1/11/2016 8:49 |connect://*bba800-anchor*.microsoftonline.com:443 |
 
 ## <a name="authentication-errors"></a>驗證錯誤
-本章節涵蓋可從 ADAL （hello 驗證程式庫使用的 Azure AD Connect） 和 PowerShell 傳回的錯誤。 說明 hello 錯誤應有所幫您在了解您的下一個步驟。
+本節涵蓋可能從 ADAL (Azure AD Connect 所使用的驗證程式庫) 和 PowerShell 傳回的錯誤。 其中所說明的錯誤應可幫助您了解後續步驟。
 
 ### <a name="invalid-grant"></a>無效的授與
-無效的使用者名稱或密碼。 如需詳細資訊，請參閱[無法驗證 hello 密碼](#the-password-cannot-be-verified)。
+無效的使用者名稱或密碼。 如需詳細資訊，請參閱[無法驗證密碼](#the-password-cannot-be-verified)。
 
 ### <a name="unknown-user-type"></a>不明的使用者類型
-Azure AD 目錄找不到或無法解析。 或許您嘗試 toologin 以未經驗證的網域使用者名稱嗎？
+Azure AD 目錄找不到或無法解析。 可能是您嘗試以未驗證網域中的使用者名稱登入？
 
 ### <a name="user-realm-discovery-failed"></a>使用者領域探索失敗
-網路或 Proxy 組態問題。 無法連上網路 hello。 請參閱[hello 安裝精靈 中的連線問題進行疑難排解](#troubleshoot-connectivity-issues-in-the-installation-wizard)。
+網路或 Proxy 組態問題。 無法連線到網路。 請參閱[針對安裝精靈中的連線問題進行疑難排解](#troubleshoot-connectivity-issues-in-the-installation-wizard)。
 
 ### <a name="user-password-expired"></a>使用者密碼過期
 您的認證已過期。 請變更密碼。
@@ -160,7 +160,7 @@ Azure AD 目錄找不到或無法解析。 或許您嘗試 toologin 以未經驗
 未知的問題。
 
 ### <a name="authentication-cancelled"></a>驗證取消
-hello 多因素驗證 (MFA) 要求已取消。
+已取消 Multi-Factor Authentication (MFA) 查問。
 
 ### <a name="connecttomsonline"></a>ConnectToMSOnline
 驗證成功，但 Azure AD PowerShell 發生驗證問題。
@@ -178,21 +178,21 @@ hello 多因素驗證 (MFA) 要求已取消。
 驗證成功。 無法從 Azure AD 擷取網域資訊。
 
 ### <a name="unexpected-exception"></a>未預期的例外狀況
-顯示為未預期的錯誤 hello 安裝精靈。 如果您嘗試 toouse 情形**Microsoft 帳戶**而**學校或組織帳戶**。
+在安裝精靈中顯示為未預期的錯誤。 如果您嘗試使用 **Microsoft 帳戶**而不是**學校或組織帳戶**，就可能發生此錯誤。
 
 ## <a name="troubleshooting-steps-for-previous-releases"></a>舊版的疑難排解步驟
-從組建編號 1.1.105.0 （發行 2016 年 2 月） 的版本，已淘汰 hello 登入小幫手。 此區段和 hello 設定不再是必要項目，但會保持為參考。
+從組建編號 1.1.105.0 (於 2016 年 2 月發行) 版本開始即已淘汰登入小幫手。 應該已不再需要本節及組態設定，但仍保留供參考之用。
 
-Hello 單一-登入小幫手 toowork，必須設定 winhttp。 透過 [**netsh**](active-directory-aadconnect-prerequisites.md#connectivity)，即可完成這項設定。  
+若要讓登入小幫手能夠運作，必須設定 winhttp。 透過 [**netsh**](active-directory-aadconnect-prerequisites.md#connectivity)，即可完成這項設定。  
 ![netsh](./media/active-directory-aadconnect-troubleshoot-connectivity/netsh.png)
 
-### <a name="hello-sign-in-assistant-has-not-been-correctly-configured"></a>hello 登入小幫手設定不正確
-Hello 登入小幫手無法連上 hello proxy 或 hello proxy 不允許 hello 要求時，會出現這個錯誤。
+### <a name="the-sign-in-assistant-has-not-been-correctly-configured"></a>登入小幫手未正確設定
+當登入小幫手無法連線到 Proxy 或 Proxy 不允許該要求時，就會出現此錯誤。
 ![nonetsh](./media/active-directory-aadconnect-troubleshoot-connectivity/nonetsh.png)
 
-* 如果您看到此錯誤，請查看中的 hello proxy 組態[netsh](active-directory-aadconnect-prerequisites.md#connectivity)並確認它是否正確。
+* 如果您看到此錯誤，請查看 [netsh](active-directory-aadconnect-prerequisites.md#connectivity) 中的 Proxy 組態，並確認它是否正確。
   ![netshshow](./media/active-directory-aadconnect-troubleshoot-connectivity/netshshow.png)
-* 如果這看起來正確，請依照下列中的 hello 步驟[驗證 proxy 的連線](#verify-proxy-connectivity)toosee hello 問題是否有外部 hello 精靈 」。
+* 如果看起來正確，請依照 [確認 Proxy 連線](#verify-proxy-connectivity) 中的步驟，查看問題是否也出現在精靈以外的地方。
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。

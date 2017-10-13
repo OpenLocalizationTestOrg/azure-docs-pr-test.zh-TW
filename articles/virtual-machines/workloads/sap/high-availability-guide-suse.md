@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure 虛擬機器的高可用性的 SAP NetWeaver SUSE Linux Enterprise Server 上的 SAP 應用程式 |Microsoft 文件"
+title: "SAP NetWeaver 在適用於 SAP 應用程式之 SUSE Linux Enterprise Server 上的 Azure 虛擬機器高可用性 | Microsoft Docs"
 description: "SAP NetWeaver 在適用於 SAP 應用程式之 SUSE Linux Enterprise Server 上的高可用性指南"
 services: virtual-machines-windows,virtual-network,storage
 documentationcenter: saponazure
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 ms.date: 04/27/2017
 ms.author: sedusch
-ms.openlocfilehash: e944103df92d5ffec9196189f138e25972bea79f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 16e09797926f29bc18cb05671c986c74f9c2d4f8
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="high-availability-for-sap-netweaver-on-azure-vms-on-suse-linux-enterprise-server-for-sap-applications"></a>SAP NetWeaver 在適用於 SAP 應用程式之 SUSE Linux Enterprise Server 上的 Azure VM 高可用性
 
@@ -50,13 +50,13 @@ ms.lasthandoff: 10/06/2017
 
 [sap-hana-ha]:sap-hana-high-availability.md
 
-本文說明 toodeploy hello 虛擬機器，設定 hello 虛擬機器、 安裝 hello 叢集架構和安裝高可用性的 SAP NetWeaver 7.50 系統的方式。
-在 hello 範例組態中，安裝命令等。會使用 ASCS 執行個體號碼 00、ERS 執行個體號碼 02 和 SAP 系統識別碼 NWS。 hello 名稱 hello 中的資源 （例如虛擬機器、 虛擬網路） hello 範例假設您已使用 hello[交集範本][ template-converged]與 SAP 系統識別碼 NWS toocreate hello 資源。
+本文說明如何部署虛擬機器、設定虛擬機器、安裝叢集架構，以及安裝高可用性的 SAP NetWeaver 7.50 系統。
+在範例組態中，安裝命令等。會使用 ASCS 執行個體號碼 00、ERS 執行個體號碼 02 和 SAP 系統識別碼 NWS。 範例中資源 (例如虛擬機器、虛擬網路) 的名稱會假設您已使用[交集範本][template-converged]與 SAP 系統識別碼 NWS 來建立資源。
 
-讀取 hello 遵循 SAP 附註和白皮書
+請先閱讀下列 SAP Note 和文件
 
 * SAP Note [1928533]，其中包含：
-  * Hello 部署 SAP 軟體所支援的 Azure VM 大小的清單
+  * SAP 軟體部署支援的 Azure VM 大小清單
   * Azure VM 大小的重要容量資訊
   * 支援的 SAP 軟體，以及作業系統 (OS) 與資料庫組合
   * Microsoft Azure 上 Windows 和 Linux 所需的 SAP 核心版本
@@ -65,32 +65,32 @@ ms.lasthandoff: 10/06/2017
 * SAP Note [2205917] 包含適用於 SUSE Linux Enterprise Server for SAP Applications 的建議 OS 設定
 * SAP Note [1944799] 包含適用於 SUSE Linux Enterprise Server for SAP Applications 的 SAP HANA 指導方針
 * SAP Note [2178632] 包含在 Azure 中針對 SAP 回報的所有監視計量詳細資訊。
-* SAP 附註[2191498]具有 hello 必要 SAP Host Agent 版本適用於在 Azure 中的 Linux。
+* SAP Note [2191498] 包含 Azure 中 Linux 所需的 SAP Host Agent 版本。
 * SAP Note [2243692] 包含 Azure 中 Linux 上的 SAP 授權相關資訊。
 * SAP Note [1984787] 包含 SUSE LINUX Enterprise Server 12 的一般資訊。
-* SAP 附註[1999351] hello Azure 強化監視功能延伸模組適用於 SAP 的其他疑難排解資訊。
+* SAP Note [1999351] 包含 Azure Enhanced Monitoring Extension for SAP 的其他疑難排解資訊。
 * [SAP Community WIKI](https://wiki.scn.sap.com/wiki/display/HOME/SAPonLinuxNotes) 包含 Linux 所需的所有 SAP Note。
 * [適用於 SAP on Linux 的 Azure 虛擬機器規劃和實作][planning-guide]
 * [適用於 SAP on Linux 的 Azure 虛擬機器部署 (本文)][deployment-guide]
 * [適用於 SAP on Linux 的 Azure 虛擬機器 DBMS 部署][dbms-guide]
 * [SAP HANA SR 效能最佳化案例 (英文)][suse-hana-ha-guide]  
-  hello 指南包含所有必要的資訊 tooset SAP HANA 系統複寫在內部。 請使用此指南做為基礎。
-* [高度可用 NFS 的存放裝置與 DRBD Pacemaker] [ suse-drbd-guide] hello 指南包含所有必要的資訊 tooset 高可用性的 NFS 伺服器設定。 請使用此指南做為基礎。
+  此指南包含設定內部部署 SAP HANA 系統複寫的所有必要資訊。 請使用此指南做為基礎。
+* [高可用性的 NFS 儲存體搭配 DRBD 與 Pacemaker][suse-drbd-guide] 此指南包含設定高可用性的 NFS 伺服器所需的所有必要資訊。 請使用此指南做為基礎。
 
 
 ## <a name="overview"></a>概觀
 
-tooachieve 高可用性，SAP NetWeaver 需要 NFS 伺服器。 hello NFS 伺服器不同叢集中設定，並可供多個 SAP 系統。
+為了實現高可用性，SAP NetWeaver 需要使用 NFS 伺服器。 NFS 伺服器會設定於不同叢集中，並可供多個 SAP 系統使用。
 
 ![SAP NetWeaver 高可用性概觀](./media/high-availability-guide-suse/img_001.png)
 
-hello NFS 伺服器，SAP NetWeaver ASCS、 SAP NetWeaver SCS、 SAP NetWeaver 端及 hello SAP HANA 資料庫使用虛擬的主機名稱和虛擬 IP 位址。 在 Azure 上、 負載平衡器需要的 toouse 虛擬 IP 位址。 hello 下列清單顯示 hello hello 負載平衡器組態。
+NFS 伺服器、SAP NetWeaver ASCS、SAP NetWeaver SCS、SAP NetWeaver ERS 和 SAP HANA 資料庫會使用虛擬主機名稱和虛擬 IP 位址。 在 Azure 上必須有負載平衡器才能使用虛擬 IP 位址。 下列清單顯示負載平衡器的組態。
 
 ### <a name="nfs-server"></a>NFS 伺服器
 * 前端組態
   * IP 位址 10.0.0.4
 * 後端組態
-  * 連接 tooprimary 應該 hello NFS 叢集一部分的所有虛擬機器的網路介面
+  * 連線到應該屬於 NFS 叢集一部分之所有虛擬機器的主要網路介面
 * 探查連接埠
   * 連接埠 61000
 * 負載平衡規則
@@ -101,7 +101,7 @@ hello NFS 伺服器，SAP NetWeaver ASCS、 SAP NetWeaver SCS、 SAP NetWeaver �
 * 前端組態
   * IP 位址 10.0.0.10
 * 後端組態
-  * 應該是 hello (A) SCS/端叢集一部分的所有虛擬機器的連線的 tooprimary 網路介面
+  * 連線到應該屬於 (A)SCS/ERS 叢集一部分之所有虛擬機器的主要網路介面
 * 探查連接埠
   * 連接埠 620**&lt;nr&gt;**
 * 負載平衡規則
@@ -117,7 +117,7 @@ hello NFS 伺服器，SAP NetWeaver ASCS、 SAP NetWeaver SCS、 SAP NetWeaver �
 * 前端組態
   * IP 位址 10.0.0.11
 * 後端組態
-  * 應該是 hello (A) SCS/端叢集一部分的所有虛擬機器的連線的 tooprimary 網路介面
+  * 連線到應該屬於 (A)SCS/ERS 叢集一部分之所有虛擬機器的主要網路介面
 * 探查連接埠
   * 連接埠 621**&lt;nr&gt;**
 * 負載平衡規則
@@ -130,7 +130,7 @@ hello NFS 伺服器，SAP NetWeaver ASCS、 SAP NetWeaver SCS、 SAP NetWeaver �
 * 前端組態
   * IP 位址 10.0.0.12
 * 後端組態
-  * 連接 tooprimary 應該 hello HANA 叢集一部分的所有虛擬機器的網路介面
+  * 連線到應該屬於 HANA 叢集一部分之所有虛擬機器的主要網路介面
 * 探查連接埠
   * 連接埠 625**&lt;nr&gt;**
 * 負載平衡規則
@@ -141,23 +141,23 @@ hello NFS 伺服器，SAP NetWeaver ASCS、 SAP NetWeaver SCS、 SAP NetWeaver �
 
 ### <a name="deploying-linux"></a>部署 Linux
 
-hello Azure Marketplace 包含您可以使用 toodeploy 新的虛擬機器的 SAP 應用程式 12 for SUSE Linux Enterprise Server 映像。
-您可以使用其中一個 hello 快速入門範本 github toodeploy 上所有必要的資源。 hello 範本部署 hello 虛擬機器、 hello 負載平衡器、 可用性設定組等等。請遵循這些步驟 toodeploy hello 範本：
+Azure Marketplace 包含 SUSE Linux Enterprise Server for SAP Applications 12 的映像，讓您可用來部署新的虛擬機器。
+您可以使用 Github 上的其中一個快速入門範本來部署所有必要資源。 範本會部署虛擬機器、負載平衡器、可用性設定組等。請遵循下列步驟來部署範本：
 
-1. 開啟 hello [SAP 檔案伺服器範本][ template-file-server] hello Azure 入口網站中   
-1. 輸入下列參數的 hello
+1. 在 Azure 入口網站中開啟 [SAP 檔案伺服器範本][template-file-server]   
+1. 輸入下列參數
    1. 資源前置詞  
-      輸入您想要 toouse hello 前置詞。 hello 值用於部署的 hello 資源做為前置詞。
+      輸入您想要使用的前置詞。 該值會作為所部署之資源的前置詞。
    2. OS 類型  
-      選取其中一個 hello Linux 散發套件。 在此範例中，請選取 SLES 12
+      選取一個 Linux 發行版本。 在此範例中，請選取 SLES 12
    3. 管理員使用者名稱和管理員密碼  
-      會建立新的使用者，可以使用的 toolog toohello 機器上。
+      建立可用來登入電腦的新使用者。
    4. 子網路識別碼  
-      hello 識別碼 hello 子網路 toowhich hello 虛擬機器應該連接到。 如果您想要 toocreate 新的虛擬網路，或選取 hello 子網路的 VPN 或 Express Route 虛擬網路 tooconnect hello 虛擬機器 tooyour 在內部部署網路將會保留空白。 hello 識別碼通常看起來像 /subscriptions/**&lt;訂用帳戶 id&gt;**/resourceGroups/**&lt;資源群組名稱&gt;**/providers/Microsoft.Network/virtualNetworks/**&lt;虛擬網路名稱&gt;**/subnets/**&lt;子網路名稱&gt;**
+      虛擬機器應該連接的子網路識別碼。 如果您想要建立新的虛擬網路，請讓此參數保持空白，或者，您也可以選取將虛擬機器連線到內部部署網路之 VPN 或快速路由虛擬網路的子網路。 識別碼通常如下所示：/subscriptions/**&lt;訂用帳戶識別碼&gt;**/resourceGroups/**&lt;資源群組名稱&gt;**/providers/Microsoft.Network/virtualNetworks/**&lt;虛擬網路名稱&gt;**/subnets/**&lt;子網路名稱&gt;**
 
 ### <a name="installation"></a>安裝
 
-hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonode 1 或**[2]** -適用 toonode 2。
+下列項目會加上下列其中一個前置詞：**[A]** - 適用於所有節點、**[1]** - 僅適用於節點 1 或 **[2]** - 僅適用於節點 2。
 
 1. **[A]** 更新 SLES
 
@@ -170,11 +170,11 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    <pre><code>
    sudo ssh-keygen -tdsa
    
-   # Enter file in which toosave hello key (/root/.ssh/id_dsa): -> ENTER
+   # Enter file in which to save the key (/root/.ssh/id_dsa): -> ENTER
    # Enter passphrase (empty for no passphrase): -> ENTER
    # Enter same passphrase again: -> ENTER
    
-   # copy hello public key
+   # copy the public key
    sudo cat /root/.ssh/id_dsa.pub
    </code></pre>
 
@@ -183,21 +183,21 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    <pre><code>
    sudo ssh-keygen -tdsa
 
-   # insert hello public key you copied in hello last step into hello authorized keys file on hello second server
+   # insert the public key you copied in the last step into the authorized keys file on the second server
    sudo vi /root/.ssh/authorized_keys
    
-   # Enter file in which toosave hello key (/root/.ssh/id_dsa): -> ENTER
+   # Enter file in which to save the key (/root/.ssh/id_dsa): -> ENTER
    # Enter passphrase (empty for no passphrase): -> ENTER
    # Enter same passphrase again: -> ENTER
    
-   # copy hello public key   
+   # copy the public key   
    sudo cat /root/.ssh/id_dsa.pub
    </code></pre>
 
 1. **[1]** 啟用 SSH 存取
 
    <pre><code>
-   # insert hello public key you copied in hello last step into hello authorized keys file on hello first server
+   # insert the public key you copied in the last step into the authorized keys file on the first server
    sudo vi /root/.ssh/authorized_keys
    </code></pre>
 
@@ -209,17 +209,17 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
 
 1. **[A]** 設定主機名稱解析   
 
-   您可以使用 DNS 伺服器，或修改 hello /etc/hosts 所有節點上。 這個範例會示範如何 toouse hello /etc/hosts 檔案。
-   取代 hello IP 位址和下列命令的 hello hello 主機名稱
+   您可以使用 DNS 伺服器，或修改所有節點上的 /etc/hosts。 這個範例示範如何使用 /etc/hosts 檔案。
+   取代下列命令中的 IP 位址和主機名稱
 
    <pre><code>
    sudo vi /etc/hosts
    </code></pre>
    
-   插入 hello 下列各行太/等/主機。 變更您的環境的 hello IP 位址和主機名稱 toomatch   
+   將下列幾行插入至 /etc/hosts。 變更 IP 位址和主機名稱以符合您的環境   
    
    <pre><code>
-   # IP address of hello load balancer frontend configuration for NFS
+   # IP address of the load balancer frontend configuration for NFS
    <b>10.0.0.4 nws-nfs</b>
    </code></pre>
 
@@ -228,39 +228,39 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    <pre><code>
    sudo ha-cluster-init
    
-   # Do you want toocontinue anyway? [y/N] -> y
-   # Network address toobind too(for example: 192.168.1.0) [10.79.227.0] -> ENTER
+   # Do you want to continue anyway? [y/N] -> y
+   # Network address to bind to (for example: 192.168.1.0) [10.79.227.0] -> ENTER
    # Multicast address (for example: 239.x.x.x) [239.174.218.125] -> ENTER
    # Multicast port [5405] -> ENTER
-   # Do you wish toouse SBD? [y/N] -> N
-   # Do you wish tooconfigure an administration IP? [y/N] -> N
+   # Do you wish to use SBD? [y/N] -> N
+   # Do you wish to configure an administration IP? [y/N] -> N
    </code></pre>
 
-1. **[2]**新增節點 toocluster
+1. **[2]** 將節點新增至叢集
    
    <pre><code> 
    sudo ha-cluster-join
 
-   # WARNING: NTP is not configured toostart at system boot.
-   # WARNING: No watchdog device found. If SBD is used, hello cluster will be unable toostart without a watchdog.
-   # Do you want toocontinue anyway? [y/N] -> y
+   # WARNING: NTP is not configured to start at system boot.
+   # WARNING: No watchdog device found. If SBD is used, the cluster will be unable to start without a watchdog.
+   # Do you want to continue anyway? [y/N] -> y
    # IP address or hostname of existing node (for example: 192.168.1.1) [] -> IP address of node 1 for example 10.0.0.10
    # /root/.ssh/id_dsa already exists - overwrite? [y/N] N
    </code></pre>
 
-1. **[A]**變更 hacluster 密碼 toohello 相同的密碼
+1. **[A]** 將 hacluster 密碼變更為同一個密碼
 
    <pre><code> 
    sudo passwd hacluster
    </code></pre>
 
-1. **[A]**設定 corosync toouse 其他傳輸，並加入節點清單。 否則叢集將無法運作。
+1. **[A]** 設定 corosync 以使用其他傳輸，並新增節點清單。 否則叢集將無法運作。
    
    <pre><code> 
    sudo vi /etc/corosync/corosync.conf   
    </code></pre>
 
-   新增下列內容的粗體 toohello 檔 hello。
+   將下列粗體內容新增至檔案。
    
    <pre><code> 
    [...]
@@ -283,7 +283,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
      [...]
    </code></pre>
 
-   然後重新啟動 hello corosync 服務
+   然後重新啟動 corosync 服務
 
    <pre><code>
    sudo service corosync restart
@@ -295,7 +295,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    sudo zypper install drbd drbd-kmp-default drbd-utils
    </code></pre>
 
-1. **[A]**建立 hello drbd 裝置的資料分割
+1. **[A]** 建立 drbd 裝置的分割區
 
    <pre><code>
    sudo sh -c 'echo -e "n\n\n\n\n\nw\n" | fdisk /dev/sdc'
@@ -309,13 +309,13 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    sudo lvcreate -l 100%FREE -n <b>NWS</b> vg_NFS
    </code></pre>
 
-1. **[A]**建立 hello NFS drbd 裝置
+1. **[A]** 建立 NFS drbd 裝置
 
    <pre><code>
    sudo vi /etc/drbd.d/<b>NWS</b>_nfs.res
    </code></pre>
 
-   插入新 drbd 裝置 hello 和結束的 hello 組態
+   插入新 drbd 裝置的組態並結束
 
    <pre><code>
    resource <b>NWS</b>_nfs {
@@ -338,7 +338,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    }
    </code></pre>
 
-   建立 hello drbd 裝置並啟動
+   建立 drbd 裝置並加以啟動
 
    <pre><code>
    sudo drbdadm create-md <b>NWS</b>_nfs
@@ -351,13 +351,13 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    sudo drbdadm new-current-uuid --clear-bitmap <b>NWS</b>_nfs
    </code></pre>
 
-1. **[1]**組 hello 主要節點
+1. **[1]** 設定主要節點
 
    <pre><code>
    sudo drbdadm primary --force <b>NWS</b>_nfs
    </code></pre>
 
-1. **[1]**等候同步處理新 drbd 裝置 hello
+1. **[1]** 等候新的 drbd 裝置完成同步處理
 
    <pre><code>
    sudo cat /proc/drbd
@@ -368,7 +368,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    #    ns:0 nr:0 dw:0 dr:912 al:8 bm:0 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:0
    </code></pre>
 
-1. **[1]** Drbd 裝置 hello 上建立檔案系統
+1. **[1]** 在 drbd 裝置上建立檔案系統
 
    <pre><code>
    sudo mkfs.xfs /dev/drbd0
@@ -377,7 +377,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
 
 ### <a name="configure-cluster-framework"></a>設定叢集架構
 
-1. **[1]**變更 hello 預設設定
+1. **[1]** 變更預設設定
 
    <pre><code>
    sudo crm configure
@@ -388,7 +388,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    crm(live)configure# exit
    </code></pre>
 
-1. **[1]**新增 hello NFS drbd 裝置 toohello 叢集設定
+1. **[1]** 將 NFS drbd 裝置新增至叢集組態
 
    <pre><code>
    sudo crm configure
@@ -407,7 +407,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    crm(live)configure# exit
    </code></pre>
 
-1. **[1]**建立 hello NFS 伺服器
+1. **[1]** 建立 NFS 伺服器
 
    <pre><code>
    sudo crm configure
@@ -422,7 +422,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    crm(live)configure# exit
    </code></pre>
 
-1. **[1]**建立 hello NFS 檔案系統資源
+1. **[1]** 建立 NFS 檔案系統資源
 
    <pre><code>
    sudo crm configure
@@ -446,7 +446,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    crm(live)configure# exit
    </code></pre>
 
-1. **[1]**建立 hello NFS 匯出
+1. **[1]** 建立 NFS 匯出
 
    <pre><code>
    sudo mkdir /srv/nfs/<b>NWS</b>/sidsys
@@ -469,7 +469,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    crm(live)configure# exit
    </code></pre>
 
-1. **[1]**建立虛擬 IP 資源和 hello 內部負載平衡器的健全狀況探查
+1. **[1]** 為內部負載平衡器建立虛擬 IP 資源和健康情況探查
 
    <pre><code>
    sudo crm configure
@@ -491,39 +491,39 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
 
 ### <a name="create-stonith-device"></a>建立 STONITH 裝置
 
-hello STONITH 裝置會使用針對 Microsoft Azure 服務主體 tooauthorize。 請遵循這些步驟 toocreate 服務主體。
+STONITH 裝置會使用服務主體來對 Microsoft Azure 授權。 請遵循下列步驟來建立服務主體。
 
-1. 跳過<https://portal.azure.com>
-1. 開啟 hello Azure Active Directory 刀鋒視窗  
-   請移 tooProperties 並寫下 hello 目錄識別碼。這是 hello**租用戶識別碼**。
+1. 移至 <https://portal.azure.com>
+1. 開啟 [Azure Active Directory] 刀鋒視窗  
+   移至 [屬性]，並記下目錄識別碼。 這是**租用戶識別碼**。
 1. 按一下 [應用程式註冊]
 1. 按一下 [新增]
 1. 輸入名稱、選取應用程式類型 [Web 應用程式/API]、輸入登入 URL (例如 http://localhost )，然後按一下 [建立]
-1. hello 登入 URL 不是，它可以是任何有效的 URL
-1. 選取 hello 新的應用程式，然後按一下 hello 設定 索引標籤中的 索引鍵
+1. 登入 URL 並未使用，而且可以是任何有效的 URL
+1. 選取新的應用程式，然後按一下 [設定] 索引標籤中的金鑰
 1. 輸入新金鑰的說明、選取 [永不過期]，然後按一下 [儲存]
-1. 記下 hello 值。 它會當做 hello 使用**密碼**hello 服務主體
-1. 請記下 hello 應用程式識別碼。它作為 hello 使用者名稱 (**登入識別碼**hello 步驟中) 的 hello 服務主體
+1. 記下值。 此值會用來做為服務主體的**密碼**
+1. 記下應用程式識別碼。 此識別碼會用來做為服務主體的使用者名稱 (以下步驟中的 **login id**)
 
-hello 服務主體沒有權限 tooaccess 您的 Azure 資源預設。 您需要 toogive hello 服務主體的權限 toostart 和停止 （取消配置） hello 叢集的所有虛擬機器。
+服務主體預設沒有存取您 Azure 資源的權限。 您需要為服務主體提供權限來啟動和停止 (解除配置) 叢集的所有虛擬機器。
 
-1. 移 toohttps://portal.azure.com
-1. 開啟 hello 所有資源刀鋒視窗
-1. 選取 hello 虛擬機器
+1. 移至 https://portal.azure.com
+1. 開啟 [所有資源] 刀鋒視窗
+1. 選取虛擬機器
 1. 選取 [存取控制 (IAM)]
 1. 按一下 [新增]
-1. 選取 hello 角色擁有者
-1. 輸入 hello hello 先前建立的應用程式名稱
+1. 選取 [擁有者] 角色
+1. 輸入您先前建立的應用程式名稱
 1. Click OK
 
-#### <a name="1-create-hello-stonith-devices"></a>**[1]**建立 hello STONITH 裝置
+#### <a name="1-create-the-stonith-devices"></a>**[1]** 建立 STONITH 裝置
 
-編輯 hello hello 虛擬機器的權限之後，您可以設定 hello STONITH 裝置 hello 叢集中。
+當您編輯虛擬機器的權限之後，就可以在叢集中設定 STONITH 裝置。
 
 <pre><code>
 sudo crm configure
 
-# replace hello bold string with your subscription id, resource group, tenant id, service principal id and password
+# replace the bold string with your subscription id, resource group, tenant id, service principal id and password
 
 crm(live)configure# primitive rsc_st_azure_1 stonith:fence_azure_arm \
    params subscriptionId="<b>subscription id</b>" resourceGroup="<b>resource group</b>" tenantId="<b>tenant id</b>" login="<b>login id</b>" passwd="<b>password</b>"
@@ -537,7 +537,7 @@ crm(live)configure# commit
 crm(live)configure# exit
 </code></pre>
 
-#### <a name="1-enable-hello-use-of-a-stonith-device"></a>**[1]** STONITH 裝置 hello 使用
+#### <a name="1-enable-the-use-of-a-stonith-device"></a>**[1]** 啟用 STONITH 裝置的使用
 
 <pre><code>
 sudo crm configure property stonith-enabled=true 
@@ -547,34 +547,34 @@ sudo crm configure property stonith-enabled=true
 
 ### <a name="deploying-linux"></a>部署 Linux
 
-hello Azure Marketplace 包含您可以使用 toodeploy 新的虛擬機器的 SAP 應用程式 12 for SUSE Linux Enterprise Server 映像。 hello marketplace 映像包含 SAP NetWeaver hello 資源代理的程式。
+Azure Marketplace 包含 SUSE Linux Enterprise Server for SAP Applications 12 的映像，讓您可用來部署新的虛擬機器。 Marketplace 映像包含 SAP NetWeaver 的資源代理程式。
 
-您可以使用其中一個 hello 快速入門範本 github toodeploy 上所有必要的資源。 hello 範本部署 hello 虛擬機器、 hello 負載平衡器、 可用性設定組等等。請遵循這些步驟 toodeploy hello 範本：
+您可以使用 Github 上的其中一個快速入門範本來部署所有必要資源。 範本會部署虛擬機器、負載平衡器、可用性設定組等。請遵循下列步驟來部署範本：
 
-1. 開啟 hello [ASCS/SCS 多重 SID 範本][ template-multisid-xscs]或 hello[交集範本][ template-converged]上 hello Azure 入口網站的 hello ASCS/SCS 僅限範本建立 hello 負載平衡規則的 SAP NetWeaver ASCS/SCS hello 和端 (只有 Linux) 執行個體，而 hello 交集的範本也會建立資料庫 （例如 Microsoft SQL Server 或 SAP HANA） hello 負載平衡規則。 如果您計劃 tooinstall SAP NetWeaver 架構系統，而且也想 tooinstall hello 資料庫在 hello 相同的電腦，請使用 hello[交集範本][template-converged]。
-1. 輸入下列參數的 hello
+1. 在 Azure 入口網站上開啟 [ASCS/SCS 多重 SID範本][template-multisid-xscs]或[交集範本][template-converged]。ASCS/SCS 範本只會建立 SAP NetWeaver ASCS/SCS 和 ERS (僅限 Linux) 執行個體的負載平衡規則，而交集範本還會建立資料庫 (例如 Microsoft SQL Server 或 SAP HANA) 的負載平衡規則。 如果您打算安裝 SAP NetWeaver 架構的系統，而且也想要在同一部電腦上安裝資料庫，請使用[交集範本][template-converged]。
+1. 輸入下列參數
    1. 資源前置詞 (僅限 ASCS/SCS 多重 SID 範本)  
-      輸入您想要 toouse hello 前置詞。 hello 值用於部署的 hello 資源做為前置詞。
+      輸入您想要使用的前置詞。 該值會作為所部署之資源的前置詞。
    3. Sap 系統識別碼 (僅限交集範本)  
-      輸入 hello 想 tooinstall 的 SAP 系統的 hello SAP 的系統識別碼。 hello 識別碼用於部署的 hello 資源做為前置詞。
+      輸入您想要安裝之 SAP 系統的 SAP 系統識別碼。 該識別碼會作為所部署之資源的前置詞。
    4. 堆疊類型  
-      選取 hello SAP NetWeaver 堆疊類型
+      選取 SAP NetWeaver 堆疊類型
    5. OS 類型  
-      選取其中一個 hello Linux 散發套件。 在此範例中，請選取 SLES 12 BYOS
+      選取一個 Linux 發行版本。 在此範例中，請選取 SLES 12 BYOS
    6. DB 類型  
       選取 HANA
    7. SAP 系統大小  
-      提供的 SAPS hello 新系統的 hello 數量。 如果您不確定需要多少的 SAPS hello 系統，請要求您的 SAP 技術合作夥伴或系統整合者
+      新系統會提供的 SAP 數量。 如果您不確定系統需要多少 SAP，請詢問您的 SAP 技術合作夥伴或系統整合者
    8. 系統可用性  
       選取 HA
    9. 管理員使用者名稱和管理員密碼  
-      會建立新的使用者，可以使用的 toolog toohello 機器上。
+      建立可用來登入電腦的新使用者。
    10. 子網路識別碼  
-   hello 識別碼 hello 子網路 toowhich hello 虛擬機器應該連接到。  如果您想 toocreate 新的虛擬網路，或選取 hello 相同子網路，您在使用或建立為 hello NFS 伺服器部署的一部分，則會保留空白。 hello 識別碼通常看起來像 /subscriptions/**&lt;訂用帳戶 id&gt;**/resourceGroups/**&lt;資源群組名稱&gt;**/providers/Microsoft.Network/virtualNetworks/**&lt;虛擬網路名稱&gt;**/subnets/**&lt;子網路名稱&gt;**
+   虛擬機器應該連接的子網路識別碼。  如果您想要建立新的虛擬網路，請讓此參數保持空白，或者，您也可以選取您在部署 NFS 伺服器的過程中使用或建立的同一個子網路。 識別碼通常如下所示：/subscriptions/**&lt;訂用帳戶識別碼&gt;**/resourceGroups/**&lt;資源群組名稱&gt;**/providers/Microsoft.Network/virtualNetworks/**&lt;虛擬網路名稱&gt;**/subnets/**&lt;子網路名稱&gt;**
 
 ### <a name="installation"></a>安裝
 
-hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonode 1 或**[2]** -適用 toonode 2。
+下列項目會加上下列其中一個前置詞：**[A]** - 適用於所有節點、**[1]** - 僅適用於節點 1 或 **[2]** - 僅適用於節點 2。
 
 1. **[A]** 更新 SLES
 
@@ -587,11 +587,11 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    <pre><code>
    sudo ssh-keygen -tdsa
    
-   # Enter file in which toosave hello key (/root/.ssh/id_dsa): -> ENTER
+   # Enter file in which to save the key (/root/.ssh/id_dsa): -> ENTER
    # Enter passphrase (empty for no passphrase): -> ENTER
    # Enter same passphrase again: -> ENTER
    
-   # copy hello public key
+   # copy the public key
    sudo cat /root/.ssh/id_dsa.pub
    </code></pre>
 
@@ -600,21 +600,21 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    <pre><code>
    sudo ssh-keygen -tdsa
 
-   # insert hello public key you copied in hello last step into hello authorized keys file on hello second server
+   # insert the public key you copied in the last step into the authorized keys file on the second server
    sudo vi /root/.ssh/authorized_keys
    
-   # Enter file in which toosave hello key (/root/.ssh/id_dsa): -> ENTER
+   # Enter file in which to save the key (/root/.ssh/id_dsa): -> ENTER
    # Enter passphrase (empty for no passphrase): -> ENTER
    # Enter same passphrase again: -> ENTER
    
-   # copy hello public key   
+   # copy the public key   
    sudo cat /root/.ssh/id_dsa.pub
    </code></pre>
 
 1. **[1]** 啟用 SSH 存取
 
    <pre><code>
-   # insert hello public key you copied in hello last step into hello authorized keys file on hello first server
+   # insert the public key you copied in the last step into the authorized keys file on the first server
    sudo vi /root/.ssh/authorized_keys
    </code></pre>
 
@@ -626,19 +626,19 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
 
 1. **[A]** 更新 SAP 資源代理程式  
    
-   修補程式 hello 資源代理程式套件是必要的 toouse hello 新的設定，這篇文章中所述。 您可以檢查，如果已經以 hello 下列命令安裝 hello 修補程式
+   資源代理程式套件必須有修補程式才能使用新的組態，本文會有該修補程式的說明。 您可以查看您是否已使用下列命令安裝了修補程式
 
    <pre><code>
    sudo grep 'parameter name="IS_ERS"' /usr/lib/ocf/resource.d/heartbeat/SAPInstance
    </code></pre>
 
-   hello 輸出應類似於
+   輸出應該會類似
 
    <pre><code>
    &lt;parameter name="IS_ERS" unique="0" required="0"&gt;
    </code></pre>
 
-   如果 hello grep 命令找不到 hello IS_ERS 參數，您需要在所列的 tooinstall hello 修補程式[hello SUSE 下載頁面](https://download.suse.com/patch/finder/#bu=suse&familyId=&productId=&dateRange=&startDate=&endDate=&priority=&architecture=&keywords=resource-agents)
+   如果 grep 命令找不到 IS_ERS 參數，您必須安裝 [SUSE 下載頁面](https://download.suse.com/patch/finder/#bu=suse&familyId=&productId=&dateRange=&startDate=&endDate=&priority=&architecture=&keywords=resource-agents)上所列出的修補程式
 
    <pre><code>
    # example for patch for SLES 12 SP1
@@ -649,23 +649,23 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
 
 1. **[A]** 設定主機名稱解析   
 
-   您可以使用 DNS 伺服器，或修改 hello /etc/hosts 所有節點上。 這個範例會示範如何 toouse hello /etc/hosts 檔案。
-   取代 hello IP 位址和下列命令的 hello hello 主機名稱
+   您可以使用 DNS 伺服器，或修改所有節點上的 /etc/hosts。 這個範例示範如何使用 /etc/hosts 檔案。
+   取代下列命令中的 IP 位址和主機名稱
 
    <pre><code>
    sudo vi /etc/hosts
    </code></pre>
    
-   插入 hello 下列各行太/等/主機。 變更您的環境的 hello IP 位址和主機名稱 toomatch   
+   將下列幾行插入至 /etc/hosts。 變更 IP 位址和主機名稱以符合您的環境   
    
    <pre><code>
-   # IP address of hello load balancer frontend configuration for NFS
+   # IP address of the load balancer frontend configuration for NFS
    <b>10.0.0.4 nws-nfs</b>
-   # IP address of hello load balancer frontend configuration for SAP NetWeaver ASCS/SCS
+   # IP address of the load balancer frontend configuration for SAP NetWeaver ASCS/SCS
    <b>10.0.0.10 nws-ascs</b>
-   # IP address of hello load balancer frontend configuration for SAP NetWeaver ERS
+   # IP address of the load balancer frontend configuration for SAP NetWeaver ERS
    <b>10.0.0.11 nws-ers</b>
-   # IP address of hello load balancer frontend configuration for database
+   # IP address of the load balancer frontend configuration for database
    <b>10.0.0.12 nws-db</b>
    </code></pre>
 
@@ -674,39 +674,39 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    <pre><code>
    sudo ha-cluster-init
    
-   # Do you want toocontinue anyway? [y/N] -> y
-   # Network address toobind too(for example: 192.168.1.0) [10.79.227.0] -> ENTER
+   # Do you want to continue anyway? [y/N] -> y
+   # Network address to bind to (for example: 192.168.1.0) [10.79.227.0] -> ENTER
    # Multicast address (for example: 239.x.x.x) [239.174.218.125] -> ENTER
    # Multicast port [5405] -> ENTER
-   # Do you wish toouse SBD? [y/N] -> N
-   # Do you wish tooconfigure an administration IP? [y/N] -> N
+   # Do you wish to use SBD? [y/N] -> N
+   # Do you wish to configure an administration IP? [y/N] -> N
    </code></pre>
 
-1. **[2]**新增節點 toocluster
+1. **[2]** 將節點新增至叢集
    
    <pre><code> 
    sudo ha-cluster-join
 
-   # WARNING: NTP is not configured toostart at system boot.
-   # WARNING: No watchdog device found. If SBD is used, hello cluster will be unable toostart without a watchdog.
-   # Do you want toocontinue anyway? [y/N] -> y
+   # WARNING: NTP is not configured to start at system boot.
+   # WARNING: No watchdog device found. If SBD is used, the cluster will be unable to start without a watchdog.
+   # Do you want to continue anyway? [y/N] -> y
    # IP address or hostname of existing node (for example: 192.168.1.1) [] -> IP address of node 1 for example 10.0.0.10
    # /root/.ssh/id_dsa already exists - overwrite? [y/N] N
    </code></pre>
 
-1. **[A]**變更 hacluster 密碼 toohello 相同的密碼
+1. **[A]** 將 hacluster 密碼變更為同一個密碼
 
    <pre><code> 
    sudo passwd hacluster
    </code></pre>
 
-1. **[A]**設定 corosync toouse 其他傳輸，並加入節點清單。 否則叢集將無法運作。
+1. **[A]** 設定 corosync 以使用其他傳輸，並新增節點清單。 否則叢集將無法運作。
    
    <pre><code> 
    sudo vi /etc/corosync/corosync.conf   
    </code></pre>
 
-   新增下列內容的粗體 toohello 檔 hello。
+   將下列粗體內容新增至檔案。
    
    <pre><code> 
    [...]
@@ -729,7 +729,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
      [...]
    </code></pre>
 
-   然後重新啟動 hello corosync 服務
+   然後重新啟動 corosync 服務
 
    <pre><code>
    sudo service corosync restart
@@ -741,7 +741,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    sudo zypper install drbd drbd-kmp-default drbd-utils
    </code></pre>
 
-1. **[A]**建立 hello drbd 裝置的資料分割
+1. **[A]** 建立 drbd 裝置的分割區
 
    <pre><code>
    sudo sh -c 'echo -e "n\n\n\n\n\nw\n" | fdisk /dev/sdc'
@@ -756,13 +756,13 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    sudo lvcreate -l 50%FREE -n <b>NWS</b>_ERS vg_<b>NWS</b>
    </code></pre>
 
-1. **[A]**建立 hello SCS drbd 裝置
+1. **[A]** 建立 SCS drbd 裝置
 
    <pre><code>
    sudo vi /etc/drbd.d/<b>NWS</b>_ascs.res
    </code></pre>
 
-   插入新 drbd 裝置 hello 和結束的 hello 組態
+   插入新 drbd 裝置的組態並結束
 
    <pre><code>
    resource <b>NWS</b>_ascs {
@@ -785,20 +785,20 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    }
    </code></pre>
 
-   建立 hello drbd 裝置並啟動
+   建立 drbd 裝置並加以啟動
 
    <pre><code>
    sudo drbdadm create-md <b>NWS</b>_ascs
    sudo drbdadm up <b>NWS</b>_ascs
    </code></pre>
 
-1. **[A]**建立 hello 端 drbd 裝置
+1. **[A]** 建立 ERS drbd 裝置
 
    <pre><code>
    sudo vi /etc/drbd.d/<b>NWS</b>_ers.res
    </code></pre>
 
-   插入新 drbd 裝置 hello 和結束的 hello 組態
+   插入新 drbd 裝置的組態並結束
 
    <pre><code>
    resource <b>NWS</b>_ers {
@@ -821,7 +821,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    }
    </code></pre>
 
-   建立 hello drbd 裝置並啟動
+   建立 drbd 裝置並加以啟動
 
    <pre><code>
    sudo drbdadm create-md <b>NWS</b>_ers
@@ -835,14 +835,14 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    sudo drbdadm new-current-uuid --clear-bitmap <b>NWS</b>_ers
    </code></pre>
 
-1. **[1]**組 hello 主要節點
+1. **[1]** 設定主要節點
 
    <pre><code>
    sudo drbdadm primary --force <b>NWS</b>_ascs
    sudo drbdadm primary --force <b>NWS</b>_ers
    </code></pre>
 
-1. **[1]**等候同步處理新 drbd 裝置 hello
+1. **[1]** 等候新的 drbd 裝置完成同步處理
 
    <pre><code>
    sudo cat /proc/drbd
@@ -857,7 +857,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    #     ns:5142732 nr:0 dw:5142732 dr:5133924 al:30 bm:0 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:0
    </code></pre>
 
-1. **[1]** Drbd 裝置 hello 上建立檔案系統
+1. **[1]** 在 drbd 裝置上建立檔案系統
 
    <pre><code>
    sudo mkfs.xfs /dev/drbd0
@@ -867,7 +867,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
 
 ### <a name="configure-cluster-framework"></a>設定叢集架構
 
-**[1]**變更 hello 預設設定
+**[1]** 變更預設設定
 
    <pre><code>
    sudo crm configure
@@ -880,7 +880,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
 
 ## <a name="prepare-for-sap-netweaver-installation"></a>準備進行 SAP NetWeaver 安裝
 
-1. **[A]**建立 hello 共用目錄
+1. **[A]** 建立共用目錄
 
    <pre><code>
    sudo mkdir -p /sapmnt/<b>NWS</b>
@@ -897,7 +897,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    <pre><code>
    sudo vi /etc/auto.master
 
-   # Add hello following line toohello file, save and exit
+   # Add the following line to the file, save and exit
    +auto.master
    /- /etc/auto.direct
    </code></pre>
@@ -907,13 +907,13 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    <pre><code>
    sudo vi /etc/auto.direct
 
-   # Add hello following lines toohello file, save and exit
+   # Add the following lines to the file, save and exit
    /sapmnt/<b>NWS</b> -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/sapmntsid
    /usr/sap/trans -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/trans
    /usr/sap/<b>NWS</b>/SYS -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/sidsys
    </code></pre>
 
-   重新啟動 autofs toomount hello 新的共用
+   重新啟動 autofs 來裝載新的共用
 
    <pre><code>
    sudo systemctl enable autofs
@@ -925,17 +925,17 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    <pre><code>
    sudo vi /etc/waagent.conf
 
-   # Set hello property ResourceDisk.EnableSwap tooy
+   # Set the property ResourceDisk.EnableSwap to y
    # Create and use swapfile on resource disk.
    ResourceDisk.EnableSwap=<b>y</b>
 
-   # Set hello size of hello SWAP file with property ResourceDisk.SwapSizeMB
-   # hello free space of resource disk varies by virtual machine size. Make sure that you do not set a value that is too big. You can check hello SWAP space with command swapon
-   # Size of hello swapfile.
+   # Set the size of the SWAP file with property ResourceDisk.SwapSizeMB
+   # The free space of resource disk varies by virtual machine size. Make sure that you do not set a value that is too big. You can check the SWAP space with command swapon
+   # Size of the swapfile.
    ResourceDisk.SwapSizeMB=<b>2000</b>
    </code></pre>
 
-   重新啟動 hello 代理程式 tooactivate hello 變更
+   重新啟動代理程式以啟動變更
 
    <pre><code>
    sudo service waagent restart
@@ -943,7 +943,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
 
 ### <a name="installing-sap-netweaver-ascsers"></a>安裝 SAP NetWeaver ASCS/ERS
 
-1. **[1]**建立虛擬 IP 資源和 hello 內部負載平衡器的健全狀況探查
+1. **[1]** 為內部負載平衡器建立虛擬 IP 資源和健康情況探查
 
    <pre><code>
    sudo crm node standby <b>nws-cl-1</b>
@@ -987,7 +987,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    crm(live)configure# exit
    </code></pre>
 
-   請確定 hello 叢集狀態為 [確定]，且已啟動的所有資源。 它並不重要上執行哪些節點 hello 資源。
+   請確定叢集狀態正常，且所有資源皆已啟動。 資源在哪一個節點上執行並不重要。
 
    <pre><code>
    sudo crm_mon -r
@@ -1008,15 +1008,15 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
 
 1. **[1]** 安裝 SAP NetWeaver ASCS  
 
-   為根 hello 使用虛擬的主機名稱，例如對應 hello 負載平衡器前端組態 hello ASCS toohello IP 位址的第一個節點上安裝 SAP NetWeaver ASCS <b>nws ascs</b>， <b>10.0.0.10</b>和 hello 執行個體號碼，例如用於 hello 負載平衡器的 hello 探查<b>00</b>。
+   以 root 身分使用虛擬主機名稱 (對應至 ASCS 負載平衡器前端組態的 IP 位址，例如 <b>nws-ascs</b>、<b>10.0.0.10</b>) 和您用於負載平衡器探查的執行個體號碼 (例如 <b>00</b>)，在第一個節點上安裝 SAP NetWeaver ASCS。
 
-   您可以使用 hello sapinst 參數 SAPINST_REMOTE_ACCESS_USER tooallow 非根使用者 tooconnect toosapinst。
+   您可以使用 sapinst 參數 SAPINST_REMOTE_ACCESS_USER 來允許非 root 使用者連線到 sapinst。
 
    <pre><code>
    sudo &lt;swpm&gt;/sapinst SAPINST_REMOTE_ACCESS_USER=<b>sapadmin</b>
    </code></pre>
 
-1. **[1]**建立虛擬 IP 資源和 hello 內部負載平衡器的健全狀況探查
+1. **[1]** 為內部負載平衡器建立虛擬 IP 資源和健康情況探查
 
    <pre><code>
    sudo crm node standby <b>nws-cl-0</b>
@@ -1058,13 +1058,13 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    
    crm(live)configure# commit
    # WARNING: Resources nc_NWS_ASCS,nc_NWS_ERS,nc_NWS_nfs violate uniqueness for parameter "binfile": "/usr/bin/nc"
-   # Do you still want toocommit (y/n)? y
+   # Do you still want to commit (y/n)? y
 
    crm(live)configure# exit
    
    </code></pre>
  
-   請確定 hello 叢集狀態為 [確定]，且已啟動的所有資源。 它並不重要上執行哪些節點 hello 資源。
+   請確定叢集狀態正常，且所有資源皆已啟動。 資源在哪一個節點上執行並不重要。
 
    <pre><code>
    sudo crm_mon -r
@@ -1092,34 +1092,34 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
 
 1. **[2]** 安裝 SAP NetWeaver ERS  
 
-   為根 hello 使用 toohello 的 hello 負載平衡器前端組態 hello 端的 IP 位址，例如對應虛擬主機名稱的第二個節點上安裝 SAP NetWeaver 端<b>nws 端</b>， <b>10.0.0.11</b>hello，例如用於 hello 探查的 hello 負載平衡器的執行個體號碼和<b>02</b>。
+   以 root 身分使用虛擬主機名稱 (對應至 ERS 負載平衡器前端組態的 IP 位址，例如 <b>nws-ers</b>、<b>10.0.0.11</b>) 和您用於負載平衡器探查的執行個體號碼 (例如 <b>02</b>)，在第二個節點上安裝 SAP NetWeaver ERS。
 
-   您可以使用 hello sapinst 參數 SAPINST_REMOTE_ACCESS_USER tooallow 非根使用者 tooconnect toosapinst。
+   您可以使用 sapinst 參數 SAPINST_REMOTE_ACCESS_USER 來允許非 root 使用者連線到 sapinst。
 
    <pre><code>
    sudo &lt;swpm&gt;/sapinst SAPINST_REMOTE_ACCESS_USER=<b>sapadmin</b>
    </code></pre>
 
    > [!NOTE]
-   > 請使用 SWPM SP 20 PL 05 或更高版本。 較低版本未正確設定 hello 權限和 hello 安裝將會失敗。
+   > 請使用 SWPM SP 20 PL 05 或更高版本。 較低版本無法正確設定權限，因而會讓安裝失敗。
    > 
 
-1. **[1]**調整 hello ASCS/SCS 和端執行個體的設定檔
+1. **[1]** 調整 ASCS/SCS 和 ERS 執行個體設定檔
  
    * ASCS/SCS 設定檔
 
    <pre><code> 
    sudo vi /sapmnt/<b>NWS</b>/profile/<b>NWS</b>_<b>ASCS00</b>_<b>nws-ascs</b>
 
-   # Change hello restart command tooa start command
+   # Change the restart command to a start command
    #Restart_Program_01 = local $(_EN) pf=$(_PF)
    Start_Program_01 = local $(_EN) pf=$(_PF)
 
-   # Add hello following lines
+   # Add the following lines
    service/halib = $(DIR_CT_RUN)/saphascriptco.so
    service/halib_cluster_connector = /usr/bin/sap_suse_cluster_connector
 
-   # Add hello keep alive parameter
+   # Add the keep alive parameter
    enque/encni/set_so_keepalive = true
    </code></pre>
 
@@ -1128,7 +1128,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    <pre><code> 
    sudo vi /sapmnt/<b>NWS</b>/profile/<b>NWS</b>_ERS<b>02</b>_<b>nws-ers</b>
 
-   # Add hello following lines
+   # Add the following lines
    service/halib = $(DIR_CT_RUN)/saphascriptco.so
    service/halib_cluster_connector = /usr/bin/sap_suse_cluster_connector
    </code></pre>
@@ -1136,32 +1136,32 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
 
 1. **[A]** 設定保持運作
 
-   透過軟體負載平衡器路由傳送 hello hello ASCS/SCS hello SAP NetWeaver 應用程式伺服器之間的通訊。 hello 負載平衡器會中斷非作用中連線之後可設定的逾時。 tooprevent 這需要 tooset hello SAP NetWeaver ASCS/SCS 設定檔中的參數，並變更 hello Linux 系統設定。 如需詳細資訊，請閱讀 [SAP Note 1410736][1410736]。
+   SAP NetWeaver 應用程式伺服器和 ASCS/SCS 之間的通訊是透過軟體負載平衡器來路由傳送。 在逾時時間 (可設定) 過後，負載平衡器就會將非作用中的連線中斷。 為防止這個情況，您需要在 SAP NetWeaver ASCS/SCS 設定檔中設定參數，並變更 Linux 系統設定。 如需詳細資訊，請閱讀 [SAP Note 1410736][1410736]。
    
-   hello ASCS/SCS 設定檔參數時/encni/set_so_keepalive 已經 hello 最後一個步驟中加入。
+   ASCS/SCS 設定檔參數 enque/encni/set_so_keepalive 已在最後一個步驟中新增。
 
    <pre><code> 
-   # Change hello Linux system configuration
+   # Change the Linux system configuration
    sudo sysctl net.ipv4.tcp_keepalive_time=120
    </code></pre>
 
-1. **[A]** Hello 安裝後設定 hello SAP 使用者
+1. **[A]** 在安裝過後設定 SAP 使用者
  
    <pre><code>
-   # Add sidadm toohello haclient group
+   # Add sidadm to the haclient group
    sudo usermod -aG haclient <b>nws</b>adm   
    </code></pre>
 
-1. **[1]**新增 hello ASCS 和 SAP 端服務 toohello sapservice 檔案
+1. **[1]** 在 sapservice 檔案中新增 ASCS 和 ERS SAP 服務
 
-   加入 hello ASCS 服務項目 toohello 第二個節點和複製 hello 端服務項目 toohello 第一個節點。
+   在第二個節點中新增 ASCS 服務項目，並將 ERS 服務項目複製到第一個節點。
 
    <pre><code>
    cat /usr/sap/sapservices | grep ASCS<b>00</b> | sudo ssh <b>nws-cl-1</b> "cat >>/usr/sap/sapservices"
    sudo ssh <b>nws-cl-1</b> "cat /usr/sap/sapservices" | grep ERS<b>02</b> | sudo tee -a /usr/sap/sapservices
    </code></pre>
 
-1. **[1]**建立 hello SAP 叢集資源
+1. **[1]** 建立 SAP 叢集資源
 
    <pre><code>
    sudo crm configure property maintenance-mode="true"
@@ -1195,7 +1195,7 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
    sudo crm node online <b>nws-cl-0</b>
    </code></pre>
 
-   請確定 hello 叢集狀態為 [確定]，且已啟動的所有資源。 它並不重要上執行哪些節點 hello 資源。
+   請確定叢集狀態正常，且所有資源皆已啟動。 資源在哪一個節點上執行並不重要。
 
    <pre><code>
    sudo crm_mon -r
@@ -1224,39 +1224,39 @@ hello 下列項目會加上  **[A]** -適用 tooall 節點**[1]** -適用 toonod
 
 ### <a name="create-stonith-device"></a>建立 STONITH 裝置
 
-hello STONITH 裝置會使用針對 Microsoft Azure 服務主體 tooauthorize。 請遵循這些步驟 toocreate 服務主體。
+STONITH 裝置會使用服務主體來對 Microsoft Azure 授權。 請遵循下列步驟來建立服務主體。
 
-1. 跳過<https://portal.azure.com>
-1. 開啟 hello Azure Active Directory 刀鋒視窗  
-   請移 tooProperties 並寫下 hello 目錄識別碼。這是 hello**租用戶識別碼**。
+1. 移至 <https://portal.azure.com>
+1. 開啟 [Azure Active Directory] 刀鋒視窗  
+   移至 [屬性]，並記下目錄識別碼。 這是**租用戶識別碼**。
 1. 按一下 [應用程式註冊]
 1. 按一下 [新增]
 1. 輸入名稱、選取應用程式類型 [Web 應用程式/API]、輸入登入 URL (例如 http://localhost )，然後按一下 [建立]
-1. hello 登入 URL 不是，它可以是任何有效的 URL
-1. 選取 hello 新的應用程式，然後按一下 hello 設定 索引標籤中的 索引鍵
+1. 登入 URL 並未使用，而且可以是任何有效的 URL
+1. 選取新的應用程式，然後按一下 [設定] 索引標籤中的金鑰
 1. 輸入新金鑰的說明、選取 [永不過期]，然後按一下 [儲存]
-1. 記下 hello 值。 它會當做 hello 使用**密碼**hello 服務主體
-1. 請記下 hello 應用程式識別碼。它作為 hello 使用者名稱 (**登入識別碼**hello 步驟中) 的 hello 服務主體
+1. 記下值。 此值會用來做為服務主體的**密碼**
+1. 記下應用程式識別碼。 此識別碼會用來做為服務主體的使用者名稱 (以下步驟中的 **login id**)
 
-hello 服務主體沒有權限 tooaccess 您的 Azure 資源預設。 您需要 toogive hello 服務主體的權限 toostart 和停止 （取消配置） hello 叢集的所有虛擬機器。
+服務主體預設沒有存取您 Azure 資源的權限。 您需要為服務主體提供權限來啟動和停止 (解除配置) 叢集的所有虛擬機器。
 
-1. 移 toohttps://portal.azure.com
-1. 開啟 hello 所有資源刀鋒視窗
-1. 選取 hello 虛擬機器
+1. 移至 https://portal.azure.com
+1. 開啟 [所有資源] 刀鋒視窗
+1. 選取虛擬機器
 1. 選取 [存取控制 (IAM)]
 1. 按一下 [新增]
-1. 選取 hello 角色擁有者
-1. 輸入 hello hello 先前建立的應用程式名稱
+1. 選取 [擁有者] 角色
+1. 輸入您先前建立的應用程式名稱
 1. Click OK
 
-#### <a name="1-create-hello-stonith-devices"></a>**[1]**建立 hello STONITH 裝置
+#### <a name="1-create-the-stonith-devices"></a>**[1]** 建立 STONITH 裝置
 
-編輯 hello hello 虛擬機器的權限之後，您可以設定 hello STONITH 裝置 hello 叢集中。
+當您編輯虛擬機器的權限之後，就可以在叢集中設定 STONITH 裝置。
 
 <pre><code>
 sudo crm configure
 
-# replace hello bold string with your subscription id, resource group, tenant id, service principal id and password
+# replace the bold string with your subscription id, resource group, tenant id, service principal id and password
 
 crm(live)configure# primitive rsc_st_azure_1 stonith:fence_azure_arm \
    params subscriptionId="<b>subscription id</b>" resourceGroup="<b>resource group</b>" tenantId="<b>tenant id</b>" login="<b>login id</b>" passwd="<b>password</b>"
@@ -1270,9 +1270,9 @@ crm(live)configure# commit
 crm(live)configure# exit
 </code></pre>
 
-#### <a name="1-enable-hello-use-of-a-stonith-device"></a>**[1]** STONITH 裝置 hello 使用
+#### <a name="1-enable-the-use-of-a-stonith-device"></a>**[1]** 啟用 STONITH 裝置的使用
 
-啟用 hello STONITH 裝置
+啟用 STONITH 裝置的使用
 
 <pre><code>
 sudo crm configure property stonith-enabled=true 
@@ -1280,16 +1280,16 @@ sudo crm configure property stonith-enabled=true
 
 ## <a name="install-database"></a>安裝資料庫
 
-此範例會安裝並設定 SAP HANA 系統複寫。 SAP HANA hello 相同叢集 hello SAP NetWeaver ASCS/SCS 以及端將會執行。 您也可以將 SAP HANA 安裝在專用叢集上。 如需詳細資訊，請參閱 [Azure 虛擬機器 (VM) 上的 SAP HANA 高可用性][sap-hana-ha]。
+此範例會安裝並設定 SAP HANA 系統複寫。 SAP HANA 會在和 SAP NetWeaver ASCS/SCS 與 ERS 相同的叢集中執行。 您也可以將 SAP HANA 安裝在專用叢集上。 如需詳細資訊，請參閱 [Azure 虛擬機器 (VM) 上的 SAP HANA 高可用性][sap-hana-ha]。
 
 ### <a name="prepare-for-sap-hana-installation"></a>準備進行 SAP HANA 安裝
 
-我們通常建議針對儲存資料和記錄檔的磁碟區使用 LVM。 為了測試用途，您也可以選擇 toostore hello 資料和記錄檔直接在一般的磁碟上。
+我們通常建議針對儲存資料和記錄檔的磁碟區使用 LVM。 若要進行測試，您也可以選擇將資料和記錄檔直接儲存在一般磁碟上。
 
 1. **[A]** LVM  
-   以下的 hello 範例假設 hello 虛擬機器有四個資料磁碟連接是應該使用的 toocreate 兩個磁碟區。
+   下列範例假設虛擬機器已連接四個資料磁碟，這些資料磁碟應該用來建立兩個磁碟區。
    
-   建立您想 toouse 的所有磁碟的實體磁碟區。
+   針對您想要使用的所有磁碟建立實體磁碟區。
    
    <pre><code>
    sudo pvcreate /dev/sdd
@@ -1298,7 +1298,7 @@ sudo crm configure property stonith-enabled=true
    sudo pvcreate /dev/sdg
    </code></pre>
    
-   建立 hello 資料檔案的磁碟區群組，一個 hello 記錄檔的磁碟區群組，一個用於 hello 共用目錄的 SAP HANA
+   建立一個適用於資料檔案的磁碟區群組、一個用於記錄檔的磁碟區群組，以及一個用於 SAP HANA 共用目錄的磁碟區群組
    
    <pre><code>
    sudo vgcreate vg_hana_data /dev/sdd /dev/sde
@@ -1306,7 +1306,7 @@ sudo crm configure property stonith-enabled=true
    sudo vgcreate vg_hana_shared /dev/sdg
    </code></pre>
    
-   建立 hello 邏輯磁碟區
+   建立邏輯磁碟區
    
    <pre><code>
    sudo lvcreate -l 100%FREE -n hana_data vg_hana_data
@@ -1317,7 +1317,7 @@ sudo crm configure property stonith-enabled=true
    sudo mkfs.xfs /dev/vg_hana_shared/hana_shared
    </code></pre>
    
-   建立 hello 掛接目錄，並複製 hello 的所有邏輯磁碟區的 UUID
+   建立掛接目錄，並複製所有邏輯磁碟區的 UUID
    
    <pre><code>
    sudo mkdir -p /hana/data
@@ -1326,17 +1326,17 @@ sudo crm configure property stonith-enabled=true
    sudo chattr +i /hana/data
    sudo chattr +i /hana/log
    sudo chattr +i /hana/shared
-   # write down hello id of /dev/vg_hana_data/hana_data, /dev/vg_hana_log/hana_log and /dev/vg_hana_shared/hana_shared
+   # write down the id of /dev/vg_hana_data/hana_data, /dev/vg_hana_log/hana_log and /dev/vg_hana_shared/hana_shared
    sudo blkid
    </code></pre>
    
-   建立 hello autofs 項目三個邏輯磁碟區
+   針對這三個邏輯磁碟區建立 autofs 項目
    
    <pre><code>
    sudo vi /etc/auto.direct
    </code></pre>
    
-   插入此列 toosudo vi /etc/auto.direct
+   將這一行插入 sudo vi /etc/auto.direct
    
    <pre><code>
    /hana/data -fstype=xfs :UUID=<b>&lt;UUID of /dev/vg_hana_data/hana_data&gt;</b>
@@ -1344,7 +1344,7 @@ sudo crm configure property stonith-enabled=true
    /hana/shared -fstype=xfs :UUID=<b>&lt;UUID of /dev/vg_hana_shared/hana_shared&gt;</b>
    </code></pre>
    
-   掛接 hello 新磁碟區
+   掛接新的磁碟區
    
    <pre><code>
    sudo service autofs restart 
@@ -1352,22 +1352,22 @@ sudo crm configure property stonith-enabled=true
 
 1. **[A]** 一般磁碟  
 
-   針對小型或示範系統，您可以將 HANA 資料和記錄檔放在一個磁碟上。 hello 下列命令 /dev/sdc 上建立資料分割並格式化與 xfs。
+   針對小型或示範系統，您可以將 HANA 資料和記錄檔放在一個磁碟上。 下列命令會在 /dev/sdc 上建立磁碟分割，並使用 xfs 來將它格式化。
    ```bash
    sudo sh -c 'echo -e "n\n\n\n\n\nw\n" | fdisk /dev/sdd'
    sudo mkfs.xfs /dev/sdd1
    
-   # write down hello id of /dev/sdd1
+   # write down the id of /dev/sdd1
    sudo /sbin/blkid
    sudo vi /etc/auto.direct
    ```
    
-   插入此列 too/etc/auto.direct
+   將這一行插入 /etc/auto.direct
    <pre><code>
    /hana -fstype=xfs :UUID=<b>&lt;UUID&gt;</b>
    </code></pre>
    
-   建立 hello 目標目錄，並將 hello 磁碟掛接。
+   建立目標目錄並掛接磁碟。
    
    <pre><code>
    sudo mkdir /hana
@@ -1377,9 +1377,9 @@ sudo crm configure property stonith-enabled=true
 
 ### <a name="installing-sap-hana"></a>安裝 SAP HANA
 
-hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳化的案例指南][ suse-hana-ha-guide] tooinstall SAP HANA 系統複寫。 請仔細閱讀，然後再繼續 hello 安裝。
+下列步驟的根據是用來安裝 SAP HANA 系統複寫之 [SAP HANA SR 效能最佳化案例指南 (英文)][suse-hana-ha-guide] 的第 4 章。 請仔細閱讀，然後再繼續安裝。
 
-1. **[A]**從 hello HANA DVD 執行 hdblcm
+1. **[A]** 從 HANA DVD 執行 hdblcm
    
    <pre><code>
    sudo hdblcm --sid=<b>HDB</b> --number=<b>03</b> --action=install --batch --password=<b>&lt;password&gt;</b> --system_user_password=<b>&lt;password for system user&gt;</b>
@@ -1389,18 +1389,18 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
 
 1. **[A]** 升級 SAP 主機代理程式
 
-   Hello 從下載最新 SAP Host Agent 封存 hello [SAP Softwarecenter] [ sap-swcenter]並執行 hello 下列命令 tooupgrade hello 代理程式。 取代 hello 路徑 toohello 封存 toopoint toohello 您下載的檔案。
+   從 [SAP 軟體中心 (英文)][sap-swcenter] 下載最新的 SAP 主機代理程式封存檔，然後執行下列命令來升級代理程式。 取代封存檔的路徑以指向您所下載的檔案。
    <pre><code>
-   sudo /usr/sap/hostctrl/exe/saphostexec -upgrade -archive <b>&lt;path tooSAP Host Agent SAR&gt;</b> 
+   sudo /usr/sap/hostctrl/exe/saphostexec -upgrade -archive <b>&lt;path to SAP Host Agent SAR&gt;</b> 
    </code></pre>
 
 1. **[1]** 建立 HANA 複寫 (以 root 身分執行)  
 
-   執行下列命令的 hello。 請確定 tooreplace 粗體字串 （HANA 系統識別碼 HDB 和執行個體編號 03），與 SAP HANA 安裝 hello 值。
+   執行下列命令。 請務必使用 SAP HANA 安裝的值來取代粗體字串 (HANA 系統識別碼 HDB 和執行個體號碼 03)。
    <pre><code>
    PATH="$PATH:/usr/sap/<b>HDB</b>/HDB<b>03</b>/exe"
    hdbsql -u system -i <b>03</b> 'CREATE USER <b>hdb</b>hasync PASSWORD "<b>passwd</b>"' 
-   hdbsql -u system -i <b>03</b> 'GRANT DATA ADMIN too<b>hdb</b>hasync' 
+   hdbsql -u system -i <b>03</b> 'GRANT DATA ADMIN TO <b>hdb</b>hasync' 
    hdbsql -u system -i <b>03</b> 'ALTER USER <b>hdb</b>hasync DISABLE PASSWORD LIFETIME' 
    </code></pre>
 
@@ -1418,14 +1418,14 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
    hdbsql -u system -i <b>03</b> "BACKUP DATA USING FILE ('<b>initialbackup</b>')" 
    </code></pre>
 
-1. **[1]**切換 toohello HANA sapsid 使用者，並建立 hello 主要站台。
+1. **[1]** 切換至 HANA sapsid 使用者，並建立主要站台。
 
    <pre><code>
    su - <b>hdb</b>adm
    hdbnsutil -sr_enable –-name=<b>SITE1</b>
    </code></pre>
 
-1. **[2]**切換 toohello HANA sapsid 使用者，並建立 hello 次要站台。
+1. **[2]** 切換至 HANA sapsid 使用者，並建立次要站台。
 
    <pre><code>
    su - <b>hdb</b>adm
@@ -1435,12 +1435,12 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
 
 1. **[1]** 建立 SAP HANA 叢集資源
 
-   首先，建立 hello 拓撲。
+   首先，建立拓撲。
    
    <pre><code>
    sudo crm configure
 
-   # replace hello bold string with your instance number and HANA system id
+   # replace the bold string with your instance number and HANA system id
    
    crm(live)configure# primitive rsc_SAPHanaTopology_<b>HDB</b>_HDB<b>03</b>   ocf:suse:SAPHanaTopology \
      operations $id="rsc_sap2_<b>HDB</b>_HDB<b>03</b>-operations" \
@@ -1456,12 +1456,12 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
    crm(live)configure# exit
    </code></pre>
    
-   接下來，建立 hello HANA 資源
+   接下來，建立 HANA 資源
    
    <pre><code>
    sudo crm configure
 
-   # replace hello bold string with your instance number, HANA system id and hello frontend IP address of hello Azure load balancer. 
+   # replace the bold string with your instance number, HANA system id and the frontend IP address of the Azure load balancer. 
     
    crm(live)configure# primitive rsc_SAPHana_<b>HDB</b>_HDB<b>03</b> ocf:suse:SAPHana \
      operations $id="rsc_sap_<b>HDB</b>_HDB<b>03</b>-operations" \
@@ -1499,7 +1499,7 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
    crm(live)configure# exit
    </code></pre>
 
-   請確定 hello 叢集狀態為 [確定]，且已啟動的所有資源。 它並不重要上執行哪些節點 hello 資源。
+   請確定叢集狀態正常，且所有資源皆已啟動。 資源在哪一個節點上執行並不重要。
 
    <pre><code>
    sudo crm_mon -r
@@ -1536,11 +1536,11 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
    # rsc_st_azure_2  (stonith:fence_azure_arm):      <b>Started nws-cl-1</b>
    </code></pre>
 
-1. **[1]**安裝 hello SAP NetWeaver 資料庫執行個體
+1. **[1]** 安裝 SAP NetWeaver 資料庫執行個體
 
-   安裝 hello SAP NetWeaver 資料庫執行個體做為使用虛擬的主機名稱，例如對應 hello 負載平衡器前端組態 hello 資料庫 toohello IP 位址的根目錄<b>nws db</b>和<b>10.0.0.12</b>.
+   以 root 身分使用虛擬主機名稱 (對應至資料庫負載平衡器前端組態的 IP 位址，例如 <b>nws-db</b> 和 <b>10.0.0.12</b>) 來安裝 SAP NetWeaver 資料庫執行個體。
 
-   您可以使用 hello sapinst 參數 SAPINST_REMOTE_ACCESS_USER tooallow 非根使用者 tooconnect toosapinst。
+   您可以使用 sapinst 參數 SAPINST_REMOTE_ACCESS_USER 來允許非 root 使用者連線到 sapinst。
 
    <pre><code>
    sudo &lt;swpm&gt;/sapinst SAPINST_REMOTE_ACCESS_USER=<b>sapadmin</b>
@@ -1548,30 +1548,30 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
 
 ## <a name="sap-netweaver-application-server-installation"></a>SAP NetWeaver 應用程式伺服器安裝
 
-請遵循這些步驟 tooinstall SAP 應用程式伺服器。 hello 以下步驟假設您安裝 hello hello ASCS/SCS 從不同的伺服器上的應用程式伺服器和 HANA 伺服器。 否則某些 hello 執行下列步驟 （例如設定主機名稱解析） 不需要。
+請遵循下列步驟來安裝 SAP 應用程式伺服器。 以下步驟假設您將應用程式伺服器安裝在與 ASCS/SCS 和 HANA 伺服器不同的伺服器上。 否則，您就不必進行以下某些步驟 (例如設定主機名稱解析)。
 
 1. 設定主機名稱解析    
-   您可以使用 DNS 伺服器，或修改 hello /etc/hosts 所有節點上。 這個範例會示範如何 toouse hello /etc/hosts 檔案。
-   取代 hello IP 位址和下列命令的 hello hello 主機名稱
+   您可以使用 DNS 伺服器，或修改所有節點上的 /etc/hosts。 這個範例示範如何使用 /etc/hosts 檔案。
+   取代下列命令中的 IP 位址和主機名稱
    ```bash
    sudo vi /etc/hosts
    ```
-   插入 hello 下列各行太/等/主機。 變更您的環境的 hello IP 位址和主機名稱 toomatch    
+   將下列幾行插入至 /etc/hosts。 變更 IP 位址和主機名稱以符合您的環境    
     
    <pre><code>
-   # IP address of hello load balancer frontend configuration for NFS
+   # IP address of the load balancer frontend configuration for NFS
    <b>10.0.0.4 nws-nfs</b>
-   # IP address of hello load balancer frontend configuration for SAP NetWeaver ASCS/SCS
+   # IP address of the load balancer frontend configuration for SAP NetWeaver ASCS/SCS
    <b>10.0.0.10 nws-ascs</b>
-   # IP address of hello load balancer frontend configuration for SAP NetWeaver ERS
+   # IP address of the load balancer frontend configuration for SAP NetWeaver ERS
    <b>10.0.0.11 nws-ers</b>
-   # IP address of hello load balancer frontend configuration for database
+   # IP address of the load balancer frontend configuration for database
    <b>10.0.0.12 nws-db</b>
-   # IP address of hello application server
+   # IP address of the application server
    <b>10.0.0.8 nws-di-0</b>
    </code></pre>
 
-1. 建立 hello sapmnt 目錄
+1. 建立 sapmnt 目錄
 
    <pre><code>
    sudo mkdir -p /sapmnt/<b>NWS</b>
@@ -1586,7 +1586,7 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
    <pre><code>
    sudo vi /etc/auto.master
 
-   # Add hello following line toohello file, save and exit
+   # Add the following line to the file, save and exit
    +auto.master
    /- /etc/auto.direct
    </code></pre>
@@ -1596,12 +1596,12 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
    <pre><code>
    sudo vi /etc/auto.direct
 
-   # Add hello following lines toohello file, save and exit
+   # Add the following lines to the file, save and exit
    /sapmnt/<b>NWS</b> -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/sapmntsid
    /usr/sap/trans -nfsvers=4,nosymlink,sync <b>nws-nfs</b>:/trans
    </code></pre>
 
-   重新啟動 autofs toomount hello 新的共用
+   重新啟動 autofs 來裝載新的共用
 
    <pre><code>
    sudo systemctl enable autofs
@@ -1613,17 +1613,17 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
    <pre><code>
    sudo vi /etc/waagent.conf
 
-   # Set hello property ResourceDisk.EnableSwap tooy
+   # Set the property ResourceDisk.EnableSwap to y
    # Create and use swapfile on resource disk.
    ResourceDisk.EnableSwap=<b>y</b>
 
-   # Set hello size of hello SWAP file with property ResourceDisk.SwapSizeMB
-   # hello free space of resource disk varies by virtual machine size. Make sure that you do not set a value that is too big. You can check hello SWAP space with command swapon
-   # Size of hello swapfile.
+   # Set the size of the SWAP file with property ResourceDisk.SwapSizeMB
+   # The free space of resource disk varies by virtual machine size. Make sure that you do not set a value that is too big. You can check the SWAP space with command swapon
+   # Size of the swapfile.
    ResourceDisk.SwapSizeMB=<b>2000</b>
    </code></pre>
 
-   重新啟動 hello 代理程式 tooactivate hello 變更
+   重新啟動代理程式以啟動變更
 
    <pre><code>
    sudo service waagent restart
@@ -1633,7 +1633,7 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
 
    安裝主要或其他的 SAP NetWeaver 應用程式伺服器。
 
-   您可以使用 hello sapinst 參數 SAPINST_REMOTE_ACCESS_USER tooallow 非根使用者 tooconnect toosapinst。
+   您可以使用 sapinst 參數 SAPINST_REMOTE_ACCESS_USER 來允許非 root 使用者連線到 sapinst。
 
    <pre><code>
    sudo &lt;swpm&gt;/sapinst SAPINST_REMOTE_ACCESS_USER=<b>sapadmin</b>
@@ -1641,7 +1641,7 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
 
 1. 更新 SAP HANA 安全存放區
 
-   更新 hello SAP HANA 安全儲存 toopoint toohello 虛擬名稱 hello SAP HANA 系統複寫設定。
+   將 SAP HANA 安全存放區更新為指向 SAP HANA 系統複寫設定的虛擬名稱。
    <pre><code>
    su - <b>nws</b>adm
    hdbuserstore SET DEFAULT <b>nws-db</b>:3<b>03</b>15 <b>SAPABAP1</b> <b>&lt;password of ABAP schema&gt;</b>
@@ -1651,5 +1651,5 @@ hello 下列步驟為基礎的 hello 第 4 章[SAP HANA SR-IOV 的效能最佳�
 * [適用於 SAP 的 Azure 虛擬機器規劃和實作][planning-guide]
 * [適用於 SAP 的 Azure 虛擬機器部署][deployment-guide]
 * [適用於 SAP 的 Azure 虛擬機器 DBMS 部署][dbms-guide]
-* toolearn tooestablish 高可用性和 Azure （大型執行個體） 上的 SAP HANA 災害復原計劃的看到[SAP HANA （大型執行個體） 高可用性和災害復原在 Azure 上的](hana-overview-high-availability-disaster-recovery.md)。
-* toolearn tooestablish 高可用性和災害復原的 SAP HANA 規劃 Azure Vm 上的看到[SAP HANA 的高可用性 Azure 虛擬機器 (Vm) 上][sap-hana-ha]
+* 若要了解如何建立高可用性並為 Azure 上的 SAP HANA 規劃災害復原，請參閱 [Azure 上的 SAP HANA (大型執行個體) 高可用性和災害復原](hana-overview-high-availability-disaster-recovery.md)。
+* 若要了解如何建立高可用性並為 Azure VM 上的 SAP HANA 規劃災害復原，請參閱 [Azure 虛擬機器 (VM) 上 SAP HANA 的高可用性][sap-hana-ha]

@@ -1,6 +1,6 @@
 ---
-title: "一部裝置的 Windows 上使用 C aaaConnect |Microsoft 文件"
-description: "描述如何 tooconnect 裝置 toohello Azure IoT 套件預先設定的遠端使用 Windows 上執行的 C 撰寫的應用程式的監視解決方案。"
+title: "在 Windows 上使用 C 連接裝置 | Microsoft Docs"
+description: "描述如何在 Windows 上使用已寫入 C 的應用程式，將裝置連接至 Azure IoT Suite 預先設定遠端監視方案。"
 services: 
 suite: iot-suite
 documentationcenter: na
@@ -15,48 +15,48 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 51041e0cec113a5cfa006ab2276096baf928eef5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d222bcbd64f288d4091acb0ecd2922b9ceee57e5
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="connect-your-device-toohello-remote-monitoring-preconfigured-solution-windows"></a>連接您的裝置 toohello 遠端監視預先設定的解決方案 (Windows)
+# <a name="connect-your-device-to-the-remote-monitoring-preconfigured-solution-windows"></a>將裝置連接至遠端監視預先設定方案 (Windows)
 [!INCLUDE [iot-suite-selector-connecting](../../includes/iot-suite-selector-connecting.md)]
 
 ## <a name="create-a-c-sample-solution-on-windows"></a>在 Windows 上建立 C 範例方案
-hello 下列步驟顯示如何 toocreate hello 遠端監視與通訊的用戶端應用程式已預先設定的方案。 此應用程式是以 C 撰寫並在 Windows 上建置和執行。
+下列步驟說明如何建立用戶端應用程式來與預先設定的遠端監視解決方案進行通訊。 此應用程式是以 C 撰寫並在 Windows 上建置和執行。
 
-在 Visual Studio 2015 或 Visual Studio 2017 建立入門專案，並加入 hello IoT 中樞裝置用戶端 NuGet 封裝：
+在 Visual Studio 2015 或 Visual Studio 2017 中建立入門專案，並新增 IoT 中樞的裝置用戶端 NuGet 套件︰
 
-1. 在 Visual Studio 中建立 C 主控台應用程式使用 Visual c + + hello **Win32 主控台應用程式**範本。 名稱 hello 專案**RMDevice**。
-2. 在 hello**應用程式設定**頁面 hello **Win32 應用程式精靈**，請確認**主控台應用程式**已選取，然後取消核取**先行編譯標頭**和**安全性開發週期 (SDL) 檢查**。
-3. 在**方案總管 中**，刪除 hello 檔 stdafx.h、 targetver.h 和 stdafx.cpp。
-4. 在**方案總管 中**，重新命名 hello 檔案 RMDevice.cpp tooRMDevice.c。
-5. 在**方案總管 中**，以滑鼠右鍵按一下 hello **RMDevice**專案，然後按一下**管理 NuGet 封裝**。 按一下**瀏覽**，然後尋找並安裝下列 NuGet 套件 hello:
+1. 在 Visual Studio 中，使用 Visual C++ **Win32 主控台應用程式** 範本建立 C 主控台應用程式。 將專案命名為 **RMDevice**。
+2. 在 [Win32 應用程式精靈] 的 [應用程式設定] 頁面中，確定已選取 [主控台應用程式]，並取消核取 [預先編譯的標頭] 和 [安全性開發生命週期 (SDL) 檢查]。
+3. 在 [方案總管] 中刪除檔案 stdafx.h、targetver.h 和 stdafx.cpp。
+4. 在 [方案總管] 中將檔案 RMDevice.cpp 重新命名為 RMDevice.c。
+5. 在 [方案總管] 中，以滑鼠右鍵按一下 [RMDevice] 專案，然後按一下 [管理 NuGet 套件]。 按一下 [瀏覽]，然後搜尋並安裝下列 NuGet 套件︰
    
    * Microsoft.Azure.IoTHub.Serializer
    * Microsoft.Azure.IoTHub.IoTHubClient
    * Microsoft.Azure.IoTHub.MqttTransport
-6. 在**方案總管 中**，以滑鼠右鍵按一下 hello **RMDevice**專案，然後按一下**屬性**tooopen hello 專案的**屬性頁** 對話方塊。 如需詳細資訊，請參閱[設定 Visual C++ 專案屬性 (英文)][lnk-c-project-properties]。 
-7. 按一下 hello**連結器**資料夾，然後按一下 hello**輸入**屬性頁。
-8. 新增**crypt32.lib** toohello**其他相依性**屬性。 按一下**確定**然後**確定**再次 toosave hello 專案的屬性值。
+6. 在 [方案總管] 中，以滑鼠右鍵按一下 [RMDevice] 專案，然後按一下 [屬性] 開啟專案的 [屬性頁] 對話方塊。 如需詳細資訊，請參閱[設定 Visual C++ 專案屬性 (英文)][lnk-c-project-properties]。 
+7. 按一下 [連結器]資料夾，然後按一下 [輸入] 屬性頁。
+8. 將 **crypt32.lib** 新增至 [其他相依性] 屬性。 按一下 [確定]，然後再按一下 [確定] 以儲存專案屬性值。
 
-新增 hello Parson JSON 文件庫 toohello **RMDevice**專案，並新增所需的 hello`#include`陳述式：
+將 Parson JSON 程式庫新增至 **RMDevice** 專案，並新增所需的 `#include` 陳述式︰
 
-1. 在適當資料夾中您的電腦上，複製 使用下列命令的 hello hello Parson GitHub 儲存機制：
+1. 在您電腦上的適當資料夾中，使用下列命令複製 Parson GitHub 儲存機制︰
 
     ```
     git clone https://github.com/kgabis/parson.git
     ```
 
-1. Hello parson.h 和 parson.c 檔案複製 hello 本機副本 hello Parson 儲存機制 tooyour **RMDevice**專案資料夾。
+1. 將 Parson.h 和 parson.c 檔案從 Parson 儲存機制的本機複本複製到 **RMDevice** 專案資料夾。
 
-1. 在 Visual Studio 中，以滑鼠右鍵按一下 hello **RMDevice**專案中，按一下 **新增**，然後按一下**現有項目**。
+1. 在 Visual Studio 中，以滑鼠右鍵按一下 **RMDevice** 專案，按一下 [新增]，然後按一下 [現有項目]。
 
-1. 在 hello**加入現有項目**對話方塊中，選取 hello parson.h 和 parson.c 檔案 hello **RMDevice**專案資料夾。 然後按一下 **新增**tooadd 這些兩個檔案 tooyour 專案。
+1. 在 [新增現有項目] 對話方塊中，選取 **RMDevice** 專案資料夾中的 parson.h 和 parson.c 檔案。 然後按一下 [新增]，將這兩個檔案新增至您的專案。
 
-1. 在 Visual Studio 中，開啟 hello RMDevice.c 檔案。 取代現有的 hello`#include`陳述式，以下列程式碼的 hello:
+1. 在 Visual Studio 中，開啟 RMDevice.c 檔案。 以下列程式碼取代現有 `#include` 陳述式：
    
     ```c
     #include "iothubtransportmqtt.h"
@@ -70,15 +70,15 @@ hello 下列步驟顯示如何 toocreate hello 遠端監視與通訊的用戶端
     ```
 
     > [!NOTE]
-    > 現在您可以確認您的專案具有 hello 正確的依存性建置設定。
+    > 現在，您可以藉由建置專案來確認專案已設定正確的相依性。
 
 [!INCLUDE [iot-suite-connecting-code](../../includes/iot-suite-connecting-code.md)]
 
-## <a name="build-and-run-hello-sample"></a>建置並執行 hello 範例
+## <a name="build-and-run-the-sample"></a>建置並執行範例
 
-新增程式碼 tooinvoke hello**遠端\_監視\_執行**函式，然後建置並執行 hello 裝置應用程式。
+新增程式碼來叫用 **remote\_monitoring\_run** 函式，然後建置並執行裝置應用程式。
 
-1. 取代 hello**主要**函式，以下列程式碼 tooinvoke hello**遠端\_監視\_執行**函式：
+1. 將 **main** 函式取代為下列程式碼，以叫用 **remote\_monitoring\_run** 函式︰
    
     ```c
     int main()
@@ -88,9 +88,9 @@ hello 下列步驟顯示如何 toocreate hello 遠端監視與通訊的用戶端
     }
     ```
 
-1. 按一下**建置**然後**建置方案**toobuild hello 裝置應用程式。
+1. 依序按一下 [建置] 和 [建置方案] 以建置裝置應用程式。
 
-1. 在**方案總管] 中**，以滑鼠右鍵按一下 hello **RMDevice**專案中，按一下 [**偵錯**，然後按一下**開始新執行個體**toorun hello範例。 hello 主控台會顯示訊息，因為 hello 應用程式傳送範例遙測 toohello 預先設定的解決方案、 收到 hello 方案儀表板 設定所需的屬性值並予以回應 toomethods hello 方案儀表板從叫用。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 [RMDevice] 專案，並按一下 [偵錯]，然後按一下 [開始新執行個體] 來執行範例。 主控台會在應用程式將範例遙測傳送至預先設定的解決方案時顯示訊息，接收在解決方案儀表板中設定的所需屬性值，以及回應從解決方案儀表板叫用的方法。
 
 [!INCLUDE [iot-suite-visualize-connecting](../../includes/iot-suite-visualize-connecting.md)]
 

@@ -1,6 +1,6 @@
 ---
-title: "HYPER-V 複寫 （搭配 System Center VMM) tooAzure 使用 Azure Site Recovery 保存庫註冊 aaaSet |Microsoft 文件"
-description: "摘要說明您需要 HYPER-V 複寫 （VMM) tooAzure 使用 Azure Site Recovery 保存庫註冊 tooset hello 步驟"
+title: "使用 Azure Site Recovery 設定將 Hyper-V (含 System Center VMM) 複寫至 Azure 的保存庫 | Microsoft Docs"
+description: "摘要說明使用 Azure Site Recovery 設定將 Hyper-V (含 VMM) 複寫至 Azure 的保存庫所需的步驟"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,18 +14,18 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 07/23/2017
 ms.author: raynew
-ms.openlocfilehash: f2c90f3c8b0a48db1e57fefd9829d29cffff8d43
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: af453ec27ba15ad8c59cf9f544584ad18dc0f74a
+ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/29/2017
 ---
 # <a name="step-7-set-up-a-vault-for-hyper-v-replication"></a>步驟 7：設定 Hyper-V 複寫的保存庫
 
-本文說明如何 tooset 保存庫，並指定您想要從您的內部部署位置，使用 hello tooAzure tooreplicate [Azure Site Recovery](site-recovery-overview.md) hello Azure 入口網站中的服務。
+本文說明如何使用 Azure 入口網站中的 [Azure Site Recovery](site-recovery-overview.md) 服務來設定保存庫，並指定要從內部部署位置複寫到 Azure 的項目。
 
 
-在本文中，或在 hello hello 下方張貼意見或疑問[Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
+請在本文下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)上張貼意見或問題。
 
 ## <a name="create-a-recovery-services-vault"></a>建立復原服務保存庫
 
@@ -35,11 +35,11 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="select-a-protection-goal"></a>選取保護目標
 
-選取您想 tooreplicate，而且想要 tooreplicate。
+選取您要複寫的項目以及您要複寫到的位置。
 
 1. 按一下 [復原服務保存庫] > 保存庫。
-2. 在 hello 資源功能表上，按一下  **Site Recovery** > **準備基礎結構** > **保護目標**。
-3. 在**保護目標**，選取**tooAzure** > **是的含 HYPER-V**。 選取**是**tooconfirm 您 nusing VMM。 
+2. 在 [資源功能表] 中，按一下 [Site Recovery] > [準備基礎結構] > [保護目標]。
+3. 在 [保護目標] 中，選取 [至 Azure] > [是，利用 Hyper-V]。 選取 [是] 以確認您未使用 VMM。 
 
      ![選擇目標](./media/vmm-to-azure-walkthrough-create-vault/choose-goals.png)
 
@@ -47,4 +47,4 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="next-steps"></a>後續步驟
 
-跳過[步驟 8： 設定來源和目標](vmm-to-azure-walkthrough-source-target.md)
+移至[步驟 8：設定來源和目標](vmm-to-azure-walkthrough-source-target.md)

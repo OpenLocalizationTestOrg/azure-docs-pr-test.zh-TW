@@ -1,6 +1,6 @@
 ---
-title: "報告 aaaAccess-Azure rbac 進行 |Microsoft 文件"
-description: "產生報告，列出所有變更中存取 tooyour hello 的角色型存取控制與 Azure 訂用帳戶過去 90 天內。"
+title: "存取報告 - Azure RBAC | Microsoft Docs"
+description: "產生一份報告，其中列出您的 Azure 訂用帳戶 (採用角色型存取控制) 在過去 90 天內的所有存取權變更。"
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -15,35 +15,35 @@ ms.date: 07/17/2017
 ms.author: andredm
 ms.reviewer: rqureshi
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 9ad85d3d8e66ce167032638a35e4afffb46d3892
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4e8028ab43ed02ef0c0a1374326b07f72f97d9d9
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-an-access-report-for-role-based-access-control"></a>建立角色型存取控制的存取報告
-有人會授與或撤銷存取權，您的訂閱，在任何時間 hello 變更會記錄在 Azure 的事件。 您可以建立存取變更歷程記錄報表 toosee 所有變更的 hello 過去 90 天內。
+每當有人授與或撤銷您訂用帳戶中的存取權時，變更就會記錄在 Azure 事件中。 您可以建立存取權變更歷程記錄報告，以查看過去 90 天內的所有變更。
 
 ## <a name="create-a-report-with-azure-powershell"></a>使用 Azure PowerShell 建立報告
-toocreate 存取變更歷程記錄報表，在 PowerShell 中，使用 hello [Get AzureRMAuthorizationChangeLog](/powershell/module/azurerm.resources/get-azurermauthorizationchangelog)命令。
+若要在 PowerShell 中建立存取權變更歷程記錄報告，請使用 [Get-AzureRMAuthorizationChangeLog](/powershell/module/azurerm.resources/get-azurermauthorizationchangelog) 命令。
 
-當您呼叫此命令時，您可以指定您想要列出，包括 hello 下列 hello 分派的哪一個屬性：
+呼叫此命令時，您可以指定要列出哪一個指派屬性，其中包括下列屬性︰
 
 | 屬性 | 說明 |
 | --- | --- |
 | **Action** |已授與或已撤銷存取權 |
-| **Caller** |負責 hello 存取 hello 擁有者變更 |
-| **PrincipalId** | hello hello 使用者、 群組或指派 hello 角色的應用程式的唯一識別碼 |
-| **PrincipalName** |hello 名稱的 hello 使用者、 群組或應用程式 |
-| **PrincipalType** |Hello 分派是否針對使用者、 群組或應用程式 |
-| **RoleDefinitionId** |hello hello 角色所授與或撤銷的 GUID |
-| **RoleName** |已授與或撤銷 hello 角色 |
-| **範圍** | hello hello 訂用帳戶、 資源群組或 hello 分派的資源的唯一識別項太適用於| 
-| **ScopeName** |hello hello 訂用帳戶、 資源群組或資源的名稱 |
-| **ScopeType** |Hello 分派是否在 hello 訂用帳戶、 資源群組或資源範圍 |
-| **Timestamp** |hello 日期和時間的存取權已變更 |
+| **Caller** |負責存取權變更的擁有者 |
+| **PrincipalId** | 已指派角色之使用者、群組或應用程式的唯一識別碼 |
+| **PrincipalName** |使用者、群組或應用程式的名稱 |
+| **PrincipalType** |指派對象為使用者、群組或應用程式 |
+| **RoleDefinitionId** |已授與或已撤銷之角色的 GUID |
+| **RoleName** |已授與或已撤銷的角色 |
+| **範圍** | 套用指派之訂用帳戶、資源群組或資源的唯一識別碼 | 
+| **ScopeName** |訂用帳戶、資源群組或資源的名稱 |
+| **ScopeType** |指派的範圍是訂用帳戶、資源群組或資源 |
+| **Timestamp** |變更存取權的日期和時間 |
 
-此範例命令會列出過去七天內 hello 訂用帳戶中的所有存取變更：
+此範例命令會列出過去 7 天訂用帳戶中的所有存取權變更：
 
 ```
 Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::FromDays(7)) | FT Caller,Action,RoleName,PrincipalType,PrincipalName,ScopeType,ScopeName
@@ -52,14 +52,14 @@ Get-AzureRMAuthorizationChangeLog -StartTime ([DateTime]::Now - [TimeSpan]::From
 ![PowerShell Get-AzureRMAuthorizationChangeLog - 螢幕擷取畫面](./media/role-based-access-control-configure/access-change-history.png)
 
 ## <a name="create-a-report-with-azure-cli"></a>使用 Azure CLI 建立報告
-toocreate hello Azure 命令列介面 (CLI)，以存取變更歷程記錄報表使用 hello`azure role assignment changelog list`命令。
+若要在 Azure 命令列介面 (CLI) 中建立存取權變更歷程記錄報告，請使用 `azure role assignment changelog list` 命令。
 
-## <a name="export-tooa-spreadsheet"></a>匯出 tooa 試算表
-toosave hello 報表，或操作 hello 資料、 匯出 hello 存取變成.csv 檔案。 然後，您就可以檢視試算表中檢視 hello 報表。
+## <a name="export-to-a-spreadsheet"></a>匯出為試算表
+若要儲存報告或處理此資料，請將存取權變更匯出為 .csv 檔案。 您即可在試算表中檢閱此報告。
 
 ![以試算表形式來檢視的變更記錄 - 螢幕擷取畫面](./media/role-based-access-control-configure/change-history-spreadsheet.png)
 
 ## <a name="next-steps"></a>後續步驟
 * 使用 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)
-* 深入了解如何 toomanage [Azure rbac 進行使用 powershell](role-based-access-control-manage-access-powershell.md)
+* 了解如何[使用 PowerShell 管理 Azure RBAC](role-based-access-control-manage-access-powershell.md)
 

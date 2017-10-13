@@ -1,6 +1,6 @@
 ---
-title: "aaaCollect 和分析 OMS 記錄分析的 Syslog 訊息 |Microsoft 文件"
-description: "Syslog 是常見的 tooLinux 的事件記錄通訊協定。 這篇文章描述如何記錄分析的 Syslog 訊息 tooconfigure 集合以及的 hello 記錄詳細資料它們建立 hello OMS 儲存機制中。"
+title: "收集與分析 OMS Log Analytics 中的 Syslog 訊息 | Microsoft Docs"
+description: "Syslog 是通用於 Linux 的事件記錄通訊協定。 本文說明如何在 Log Analytics 中設定收集 Syslog 訊息，以及它們在 OMS 儲存機制中建立的記錄詳細資料。"
 services: log-analytics
 documentationcenter: 
 author: mgoedtel
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 07/12/2017
 ms.author: magoedte;bwren
-ms.openlocfilehash: 8bfa0bca3f2f18287d1352c98bbaa2a70e41e276
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7513f405d5c7c05a8e6e2b7b0e6313f23a319c84
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="syslog-data-sources-in-log-analytics"></a>Log Analytics 中的 Syslog 資料來源
-Syslog 是常見的 tooLinux 的事件記錄通訊協定。  應用程式會傳送 hello 本機電腦上儲存或傳遞 tooa Syslog 收集器的訊息。  Hello OMS Agent for Linux 安裝時，它會設定 hello 本機 Syslog 服務精靈 tooforward 訊息 toohello 代理程式。  hello 代理程式接著會傳送 hello 訊息 tooLog 分析 hello OMS 儲存機制中建立對應的記錄的位置。  
+Syslog 是通用於 Linux 的事件記錄通訊協定。  應用程式將傳送的訊息可能會儲存在本機電腦上，或傳遞到 Syslog 收集器。  安裝 OMS Agent for Linux 時，它會設定本機 Syslog 精靈來將訊息轉送到代理程式。  接著，代理程式會將訊息傳送到 Log Analytics，其中對應的記錄會建立於 OMS 儲存機制中。  
 
 > [!NOTE]
-> 記錄分析支援 rsyslog 所在 hello 預設服務精靈所 rsyslog 或 syslog-ng 週日，傳送訊息的集合。 在第 5 版 Red Hat Enterprise Linux、 CentOS 和 Oracle Linux 版本 (sysklog) 上的 hello 預設 syslog 服務精靈不支援 syslog 事件收集。 toocollect syslog 資料，從這一版的這些發佈，hello [rsyslog 精靈](http://rsyslog.com)應該安裝和設定 tooreplace sysklog。
+> Log Analytics 支援收集由 rsyslog 或 syslog-ng 所傳送的訊息，其中 rsyslog 是預設精靈。 Red Hat Enterprise Linux 第 5 版、CentOS 和 Oracle Linux 版本 (sysklog) 不支援預設 syslog 精靈，進行 syslog 事件收集。 若要從這些散發套件的這個版本收集 syslog 資料，應該安裝並設定 [rsyslog 精靈](http://rsyslog.com) 來取代 sysklog。
 >
 >
 
 ![Syslog 收集](media/log-analytics-data-sources-syslog/overview.png)
 
 ## <a name="configuring-syslog"></a>設定 Syslog
-hello OMS Agent for Linux 只會收集 hello 設備與嚴重性其組態中指定的事件。  您可以設定 Syslog 透過 hello OMS 入口網站或管理您的 Linux 代理程式上的組態檔。
+OMS Agent for Linux 只會收集具有其組態中指定之設備和嚴重性的事件。  您可以透過 OMS 入口網站，或藉由管理您 Linux 代理程式上的組態檔來設定 Syslog。
 
-### <a name="configure-syslog-in-hello-oms-portal"></a>在 hello OMS 入口網站中設定 Syslog
-設定 Syslog 從 hello[資料記錄分析設定 功能表](log-analytics-data-sources.md#configuring-data-sources)。  此組態會傳遞 toohello 上每個 Linux 代理程式的組態檔。
+### <a name="configure-syslog-in-the-oms-portal"></a>在 OMS 入口網站中設定 Syslog
+從 [Log Analytics 設定中的 [資料] 功能表](log-analytics-data-sources.md#configuring-data-sources)設定 Syslog。  這個組態會傳遞到每個 Linux 代理程式上的組態檔。
 
-您可以輸入新設備的名稱，然後按一下 **+**設定 Syslog。  每個功能，將會收集僅選取 hello 嚴重性的訊息。  請檢查您想 toocollect hello 特定功能的 hello 嚴重性。  您無法提供任何其他準則 toofilter 訊息。
+您可以輸入新設備的名稱，然後按一下 **+**設定 Syslog。  針對每個設備，僅會收集包含所選嚴重性的訊息。  請檢查您想要收集之特定設備的嚴重性。  您無法提供任何其他準則來篩選訊息。
 
 ![設定 Syslog](media/log-analytics-data-sources-syslog/configure.png)
 
-根據預設，所有的組態變更會自動推入 tooall 代理程式。  如果您想在每個 Linux 代理程式上手動 tooconfigure Syslog，並取消核取方塊 hello*套用下列組態 toomy Linux 電腦*。
+根據預設，所有設定變更都會自動發送給所有代理程式。  如果您想在每個 Linux 代理程式上手動設定 Syslog，則可取消核取 *[Apply below configuration to my Linux machines]* \(將下列設定套用至我的 Linux 機器) 方塊。
 
 ### <a name="configure-syslog-on-linux-agent"></a>在 Linux 代理程式上設定 Syslog
-當 hello [Linux 用戶端上安裝 OMS 代理程式](log-analytics-linux-agents.md)、 安裝定義 hello 設備的預設 syslog 組態檔和嚴重性 hello 訊息被收集。  您可以修改這個檔案 toochange hello 組態。  hello 組態檔是 hello Syslog hello 用戶端的服務精靈已安裝而有所不同。
+當 [OMS 代理程式安裝於 Linux 用戶端](log-analytics-linux-agents.md)時，它會安裝預設的 syslog 組態檔，其中會定義所收集之資訊的設備和嚴重性。  您可以修改此檔案來變更組態。  組態檔會根據用戶端已安裝的 Syslog 精靈而有所不同。
 
 > [!NOTE]
-> 如果您編輯 hello syslog 設定，您必須重新啟動 hello 變更 tootake 效果 hello syslog 服務精靈。
+> 如果您編輯 syslog 組態，則必須重新啟動 syslog 精靈，變更才會生效。
 >
 >
 
 #### <a name="rsyslog"></a>rsyslog
-hello rsyslog 的組態檔是位於**/etc/rsyslog.d/95-omsagent.conf**。  其預設內容如下所示。  這會收集從 hello 本機代理程式傳送的層級的警告或更高版本的所有設備的 syslog 訊息。
+Rsyslog 的組態檔位於 **/etc/rsyslog.d/95-omsagent.conf**。  其預設內容如下所示。  這會針對層級為警告或以上的所有設備收集傳送自本機代理程式的 syslog 訊息。
 
     kern.warning       @127.0.0.1:25224
     user.warning       @127.0.0.1:25224
@@ -71,13 +71,13 @@ hello rsyslog 的組態檔是位於**/etc/rsyslog.d/95-omsagent.conf**。  其�
     local6.warning     @127.0.0.1:25224
     local7.warning     @127.0.0.1:25224
 
-您可以藉由移除 hello 設定檔 > 一節移除設備。  您可以限制收集特定功能的修改該設備項目 hello 嚴重性。  比方說，toolimit hello 使用者或更高的錯誤嚴重性的設備 toomessages 您修改下列 hello 設定檔 toohello 該行：
+您可以藉由移除組態檔的設備區段來移除該設備。  您可以藉由修改特定設備的項目，來限制針對該設備所收集的嚴重性。  例如，若要將使用者設備限制為嚴重性為錯誤或以上的訊息，您要將組態檔的那一行修改為下列內容：
 
     user.error    @127.0.0.1:25224
 
 
 #### <a name="syslog-ng"></a>syslog-ng
-syslog ng hello 組態檔是位於位置**/etc/syslog-ng/syslog-ng.conf**。  其預設內容如下所示。  這會收集 syslog 訊息從 hello 本機代理程式傳送的所有功能和所有的嚴重性。   
+Syslog-ng 的組態檔位於 **/etc/syslog-ng/syslog-ng.conf**。  其預設內容如下所示。  這會針對所有設備和所有嚴重性收集傳送自本機代理程式的 syslog 訊息。   
 
     #
     # Warnings (except iptables) in one file:
@@ -128,7 +128,7 @@ syslog ng hello 組態檔是位於位置**/etc/syslog-ng/syslog-ng.conf**。  �
     filter f_user_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(user); };
     log { source(src); filter(f_user_oms); destination(d_oms); };
 
-您可以藉由移除 hello 設定檔 > 一節移除設備。  您可以限制從其清單中移除特定功能所收集的 hello 嚴重性。  例如，toolimit hello 使用者設備 toojust 警示和重大訊息會修改該區段的 hello 設定檔 toohello 遵循：
+您可以藉由移除組態檔的設備區段來移除該設備。  您可以限制針對特定設備收集的嚴重性，方法是從其清單中移除它們。  例如，若要將使用者設備限制為只有警示和重大訊息，您要將組態檔的那一個區段修改為下列內容：
 
     #OMS_facility = user
     filter f_user_oms { level(alert,crit) and facility(user); };
@@ -136,14 +136,14 @@ syslog ng hello 組態檔是位於位置**/etc/syslog-ng/syslog-ng.conf**。  �
 
 
 ### <a name="collecting-data-from-additional-syslog-ports"></a>從其他 Syslog 連接埠收集資料
-hello OMS 代理程式會接聽連接埠 25224 的 hello 本機用戶端上的 Syslog 訊息。  Hello 代理程式安裝時，是套用預設 syslog 組態，並位於下列位置的 hello:
+OMS 代理程式會在本機用戶端的連接埠 25224 上接聽 Syslog 訊息。  安裝代理程式時，會套用預設 syslog 組態，並可在下列位置找到：
 
 * Rsyslog：`/etc/rsyslog.d/95-omsagent.conf`
 * Syslog-ng：`/etc/syslog-ng/syslog-ng.conf`
 
-您可以藉由建立兩個組態檔變更 hello 連接埠號碼： FluentD 組態檔和 rsyslog-或-syslog-ng 檔案根據已安裝的 hello Syslog 服務精靈。  
+您可以變更連接埠號碼，方法是建立兩個組態檔：FluentD 組態檔和 rsyslog-or-syslog-ng 檔案，依您已安裝的 Syslog 精靈而定。  
 
-* hello FluentD 組態檔應該是新的檔案位於： `/etc/opt/microsoft/omsagent/conf/omsagent.d` hello hello 中的值，取代成**連接埠**與自訂連接埠號碼的項目。
+* FluentD 組態檔應該是新的檔案，位於：`/etc/opt/microsoft/omsagent/conf/omsagent.d`，且會將**連接埠**項目中的值取代為自訂連接埠號碼。
 
         <source>
           type syslog
@@ -156,10 +156,10 @@ hello OMS 代理程式會接聽連接埠 25224 的 hello 本機用戶端上的 S
           type filter_syslog
         </filter>
 
-* 您應針對 rsyslog，建立新的組態檔位於：`/etc/rsyslog.d/`和 hello 值 %syslog_port%取代為您的自訂連接埠號碼。  
+* 針對 rsyslog，您應建立新的組態檔，位於：`/etc/rsyslog.d/`，並將 %SYSLOG_PORT% 值取代為您的自訂連接埠號碼。  
 
     > [!NOTE]
-    > 如果您修改這個值在 hello 組態檔中的`95-omsagent.conf`，它將會覆寫 hello 代理程式會套用預設組態。
+    > 如果您在 `95-omsagent.conf` 組態檔中修改這個值，就會在代理程式套用預設組態時將它覆寫。
     >
 
         # OMS Syslog collection for workspace %WORKSPACE_ID%
@@ -168,34 +168,34 @@ hello OMS 代理程式會接聽連接埠 25224 的 hello 本機用戶端上的 S
         daemon.warning            @127.0.0.1:%SYSLOG_PORT%
         auth.warning              @127.0.0.1:%SYSLOG_PORT%
 
-* hello syslog ng 組態應該修改複製 hello 範例組態，如下所示，並加入 hello 已修改的自訂設定 toohello 結尾 hello syslog ng.conf 組態檔位於`/etc/syslog-ng/`。  請勿**不**使用 hello 預設標籤**%workspace_id%_oms**或**%workspace_id_oms**，定義自訂標籤 toohelp 區別您的變更。  
+* 應修改 syslog ng 組態，方法是複製如下所示的範例組態，並將自訂修改的設定新增至位於 `/etc/syslog-ng/` 之 syslog ng.conf 組態檔的結尾。  請**勿**使用預設標籤 **%workspace_id%_oms** 或 **%workspace_id_oms**，定義自訂標籤可協助您辨別變更。  
 
     > [!NOTE]
-    > 如果您修改 hello hello 組態檔中的預設值，它們將會覆寫 hello 代理程式會套用預設組態。
+    > 如果您在組態檔中修改預設值，就會在代理程式套用預設組態時將它覆寫。
     >
 
         filter f_custom_filter { level(warning) and facility(auth; };
         destination d_custom_dest { udp("127.0.0.1" port(%SYSLOG_PORT%)); };
         log { source(s_src); filter(f_custom_filter); destination(d_custom_dest); };
 
-之後完成的 hello 變更、 hello Syslog 和 hello OMS 代理程式服務必須重新啟動 toobe tooensure hello 組態變更生效。   
+完成變更後，必須將 Syslog 和 OMS 代理程式服務重新啟動，才能確保組態變更生效。   
 
 ## <a name="syslog-record-properties"></a>Syslog 記錄屬性
-Syslog 記錄都有一種**Syslog**和 hello 下表中都有 hello 屬性。
+Syslog 記錄具有 **Syslog** 類型，以及下表中的屬性。
 
 | 屬性 | 說明 |
 |:--- |:--- |
-| 電腦 |從收集 hello 事件的電腦。 |
-| Facility |定義 hello hello 系統產生 hello 訊息的一部分。 |
-| HostIP |Hello 系統傳送 hello 訊息的 IP 位址。 |
-| HostName |Hello 系統傳送 hello 訊息的名稱。 |
-| SeverityLevel |Hello 事件嚴重性層級。 |
-| SyslogMessage |Hello 訊息的文字。 |
-| ProcessID |產生 hello 訊息的 hello 處理序識別碼。 |
-| EventTime |日期和時間 hello 事件所產生。 |
+| 電腦 |收集事件的來源電腦。 |
+| Facility |定義產生訊息之系統的一部分。 |
+| HostIP |傳送訊息之系統的 IP 位址。 |
+| HostName |傳送訊息之系統的名稱。 |
+| SeverityLevel |事件的嚴重性層級。 |
+| SyslogMessage |訊息的文字。 |
+| ProcessID |產生訊息的處理序識別碼。 |
+| EventTime |產生事件的日期和時間。 |
 
 ## <a name="log-queries-with-syslog-records"></a>含有 Syslog 記錄的記錄查詢
-hello 下表提供不同擷取 Syslog 記錄的記錄檔查詢的範例。
+下表提供擷取 Syslog 記錄的不同記錄查詢範例。
 
 | 查詢 | 說明 |
 |:--- |:--- |
@@ -205,7 +205,7 @@ hello 下表提供不同擷取 Syslog 記錄的記錄檔查詢的範例。
 | Type=Syslog &#124; measure count() by Facility |依設備的 Syslog 記錄計數。 |
 
 >[!NOTE]
-> 如果您的工作區已升級的 toohello[新的記錄分析查詢語言](log-analytics-log-search-upgrade.md)，然後 hello 上述查詢會變更 toohello 下列。
+> 如果您的工作區已升級為[新的 Log Analytics 查詢語言](log-analytics-log-search-upgrade.md)，則以上查詢會變更如下。
 
 > | 查詢 | 說明 |
 |:--- |:--- |
@@ -215,6 +215,6 @@ hello 下表提供不同擷取 Syslog 記錄的記錄檔查詢的範例。
 | Syslog &#124; summarize AggregatedValue = count() by Facility |依設備的 Syslog 記錄計數。 |
 
 ## <a name="next-steps"></a>後續步驟
-* 深入了解[記錄搜尋](log-analytics-log-searches.md)tooanalyze hello 資料收集的資料來源和解決方案。
-* 使用[自訂欄位](log-analytics-custom-fields.md)tooparse syslog 記錄，到個別欄位的資料。
-* [設定 Linux 代理程式](log-analytics-linux-agents.md)toocollect 其他類型的資料。
+* 了解 [記錄搜尋](log-analytics-log-searches.md) ，以分析從資料來源和解決方案所收集的資料。
+* 使用 [自訂欄位](log-analytics-custom-fields.md) ，以將來自 syslog 記錄的資料剖析至個別欄位。
+* [設定 Linux 代理程式](log-analytics-linux-agents.md) ，以收集其他類型的資料。

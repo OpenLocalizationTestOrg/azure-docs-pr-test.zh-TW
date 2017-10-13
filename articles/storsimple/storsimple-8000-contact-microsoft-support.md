@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 支援票證或 StorSimple 8000 系列的大小寫 |Microsoft 文件"
-description: "了解如何 toolog 支援要求，您的 StorSimple 8000 系列裝置上啟動支援工作階段。"
+title: "針對 StorSimple 8000 系列建立支援票證或案例 | Microsoft Docs"
+description: "了解如何記錄支援要求和在 StorSimple 8000 系列裝置上啟動支援工作階段。"
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,105 +14,105 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: alkohli;
-ms.openlocfilehash: 832e3ac739dafa6dd8c24aaea38aef9c6f1b27b4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4b5a14237ce79100f980b2186b2c3c887abaa296
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="contact-microsoft-support"></a>連絡 Microsoft 支援服務
 
-hello StorSimple 裝置管理員提供 hello 功能太**記錄新的支援要求**hello 服務摘要 刀鋒視窗中。 如果您使用 StorSimple 解決方案時遇到任何問題，您可以向技術支援人員提出服務要求。 在線上工作階段與支援工程師，您也可能需要支援工作階段的 toostart StorSimple 裝置上。 本文將引導您：
+StorSimple 裝置管理員可讓您在服務摘要刀鋒視窗中**登錄新的支援要求**。 如果您使用 StorSimple 解決方案時遇到任何問題，您可以向技術支援人員提出服務要求。 在與支援工程師進行線上工作階段時，可能也需要在您的 StorSimple 裝置上啟動支援工作階段。 本文將引導您：
 
-* Toocreate 支援的要求。
-* 如何 toomanage 支援要求的生命週期，從 hello 入口網站中。
-* 如何支援工作階段中 toostart hello 您的 StorSimple 裝置的 Windows PowerShell 介面。
+* 如何建立支援要求。
+* 如何在入口網站上管理支援要求的生命週期。
+* 如何在 StorSimple 裝置的 Windows PowerShell 介面中啟動支援工作階段。
 
-檢閱 hello [StorSimple 8000 系列支援 Sla 和資訊](https://msdn.microsoft.com/library/mt433077.aspx)建立支援要求之前。
+建立支援要求之前，請先檢閱 [StorSimple 8000 系列支援 SLA 和資訊](https://msdn.microsoft.com/library/mt433077.aspx) 。
 
 ## <a name="create-a-support-request"></a>建立支援要求
 
-視您[支援計劃](https://azure.microsoft.com/support/plans/)，您可以直接從 hello StorSimple 裝置管理員服務摘要 刀鋒視窗在 StorSimple 裝置上建立支援票證的問題。 執行下列步驟 toocreate 支援要求的 hello:
+視您的[支援方案](https://azure.microsoft.com/support/plans/)而定，您可以直接從 StorSimple 裝置管理員服務摘要刀鋒視窗中，針對 StorSimple 裝置的問題建立支援票證。 執行下列步驟來建立支援要求：
 
-#### <a name="toocreate-a-support-request"></a>toocreate 支援要求
+#### <a name="to-create-a-support-request"></a>建立支援要求
 
-1. 移 tooyour StorSimple 裝置管理員服務。 在 hello 服務摘要刀鋒視窗中設定，請移太**支援 + 疑難排解**區段，然後按一下**新增支援要求**。
+1. 移至您的 StorSimple 裝置管理員服務。 在服務摘要刀鋒視窗的設定中，移至 [支援 + 疑難排解] 區段，然後按一下 [新增支援要求]。
      
     ![透過新的入口網站連絡 MS 支援服務](./media/storsimple-8000-contact-microsoft-support/contactsupport1.png)
    
-2. 在 hello**新增支援要求**刀鋒視窗中，選取**基本概念**。 在 hello**基本概念**刀鋒視窗中，執行下列步驟 hello:
-   1. 從 hello**發出型別**下拉式清單中，選取**技術**。
-   2. 目前的 hello**訂用帳戶**，**服務**型別和 hello**資源**（StorSimple 裝置管理員服務） 會自動選擇。 
-   3. 選取**支援計劃**從 hello 下拉式清單，如果您有多個訂用帳戶相關聯的計劃。 您需要付費的支援計劃 tooenable 技術支援。
+2. 在 [新增支援要求] 刀鋒視窗中，選取 [基本]。 在 [基本] 刀鋒視窗中，執行下列步驟：
+   1. 從 [問題類型] 下拉式清單中，選取 [技術]。
+   2. 自動會選擇目前的 [訂用帳戶]、[服務] 類型和 [資源] \(StorSimple 裝置管理員服務)。 
+   3. 如果您的訂用帳戶有多個相關聯的方案，請從下拉式清單選取**支援方案**。 您必須已付費購買支援方案，才能啟用技術支援。
    4. 按一下 [下一步] 。
 
        ![透過新的入口網站連絡 MS 支援服務](./media/storsimple-8000-contact-microsoft-support/contactsupport2.png)
 
-3. 在 hello**新增支援要求**刀鋒視窗中，選取**步驟 2 問題**。 在 hello**問題**刀鋒視窗中，執行下列步驟 hello:
+3. 在 [新增支援要求] 刀鋒視窗中，選取 [步驟 2 問題]。 在 [問題] 刀鋒視窗中，執行下列步驟：
     
-    1. 選擇 hello**嚴重性**。
-    2. 指定是否 hello 問題通常是相關的 toohello 應用裝置或 hello StorSimple 裝置管理員服務。
-    3. 選擇**類別**這個發行及提供更多**詳細資料**hello 問題有關。
-    4. 提供的 hello 問題 hello 開始日期和時間。
-    5. 在 hello**檔案上傳**，按一下 hello 資料夾圖示 toobrowse tooyour 支援封裝。
+    1. 選擇 [嚴重性]。
+    2. 指定問題是與設備還是 StorSimple 裝置管理員服務有關。
+    3. 選擇這個問題的 [類別]，並提供問題的其他 [詳細資料]。
+    4. 提供問題開始日期與時間。
+    5. 在 [檔案上傳] 中，按一下資料夾圖示，即可瀏覽至您的支援封裝。
     6. 勾選 [共用診斷資訊]。
     7. 按一下 [下一步] 。
 
        ![透過新的入口網站連絡 MS 支援服務](./media/storsimple-8000-contact-microsoft-support/contactsupport3.png) 
 
-4. 在 hello**新增支援要求**刀鋒視窗中，按一下 **步驟 3 連絡人資訊**。 在 hello**連絡資訊**刀鋒視窗中，執行下列步驟 hello:
+4. 在 [新增支援要求] 刀鋒視窗中，按一下 [步驟 3 連絡人資訊]。 在 [連絡人資訊] 刀鋒視窗中，執行下列步驟：
 
-    1. 在 hello**連絡選項**、 提供您偏好的連絡方法 （電話或電子郵件） 和 hello 語言。 根據您的訂用計畫，自動選取 hello 回應時間。
-    2. 在 hello 連絡人資訊，請提供姓名、 電子郵件、 選擇性的連絡人、 國家/地區。 選取 hello**儲存連絡人變更，以供後續支援要求**核取方塊。
+    1. 在 [連絡人選項] 中，提供您偏好的連絡方法 (電話或電子郵件) 以及語言。 會根據您的訂用帳戶方案自動選擇回應時間。
+    2. 在 [連絡人資訊] 中，提供您的姓名、電子郵件、選用連絡方法、國家/地區。 選取 [儲存連絡人變更以供未來的支援要求使用]  核取方塊。
     3. 按一下 [建立] 。
    
         ![透過新的入口網站連絡 MS 支援服務](./media/storsimple-8000-contact-microsoft-support/contactsupport5.png)   
 
-    Microsoft 支援服務將使用 tooyou 出此資訊 tooreach 進一步資訊、 診斷及解決。
-提交您的要求之後，支援工程師會與您連絡儘速 tooproceed 您的要求。
+    Microsoft 支援服務會利用此資訊來連絡您，以取得進一步資訊、進行診斷及解決。
+提交您的要求之後，支援工程師會儘速連絡您來處理您的要求。
 
 ## <a name="manage-a-support-request"></a>管理支援要求
 
-建立支援票證之後, 您可以管理 hello 入口網站中的 hello 票證 hello 生命週期。
+建立支援票證之後，您便可以從入口網站中管理票證的生命週期。
 
-#### <a name="toomanage-your-support-requests"></a>toomanage 您的支援要求
+#### <a name="to-manage-your-support-requests"></a>若要管理支援要求
 
-1. tooget toohello 協助和支援頁面上，瀏覽過**瀏覽 > 說明 + 支援**。
+1. 若要移至說明和支援頁面，請瀏覽至 [瀏覽] > [說明 + 支援]。
 
     ![管理支援要求](./media/storsimple-8000-contact-microsoft-support/managesupport1.png)
 
-2. 表格清單中的所有 hello 支援要求，都會在 hello**說明 + 支援**刀鋒視窗。
+2. [說明 + 支援] 刀鋒視窗中會以表格式清單列出全部的支援要求。
 
     ![管理支援要求](./media/storsimple-8000-contact-microsoft-support/managesupport2.png)
 
-3. 選取並按一下支援要求。 您可以檢視 hello 狀態和 hello 此要求的詳細資料。 按一下**+ 新訊息**如果要 toofollow 此要求。
+3. 選取並按一下支援要求。 您可以檢視此要求的狀態與詳細資料。 如果您想要追蹤此要求，請按一下 [+ New message]\(+ 新訊息\)。
 
     ![管理支援要求](./media/storsimple-8000-contact-microsoft-support/managesupport3.png)
 
 ## <a name="start-a-support-session-in-windows-powershell-for-storsimple"></a>在 Windows PowerShell for StorSimple 中啟動支援工作階段
 
-tootroubleshoot 所有問題，您可能會遇到與 hello StorSimple 裝置，您將需要 tooengage 與 hello Microsoft 技術支援小組。 Microsoft 支援服務可能需要 toouse 支援工作階段 toolog tooyour 裝置上。
+若要對您使用 StorSimple 裝置時可能會遇到的任何問題進行疑難排解，您必須連絡 Microsoft 支援服務小組。 Microsoft 支援服務可能需要使用支援工作階段來登入您的裝置。
 
-執行下列 hello toostart 支援工作階段的步驟：
+執行下列步驟來啟動支援工作階段：
 
-#### <a name="toostart-a-support-session"></a>toostart 支援工作階段
+#### <a name="to-start-a-support-session"></a>啟動支援工作階段
 
-1. 存取 hello 裝置直接使用 hello 序列主控台或透過 telnet 工作階段從遠端電腦。 toodo 中的，遵循 hello 步驟[使用 PuTTY tooconnect toohello 裝置序列主控台](storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console)。
-2. 在開啟的 hello 工作階段，請按 hello **Enter**金鑰 tooget 命令提示字元。
-3. 在 hello 序列主控台功能表中，選取選項 1，**登入的完整存取**。
-4. 在 hello 提示字元中輸入下列密碼 hello:
+1. 從遠端電腦使用序列主控台或透過 telnet 工作階段，直接存取裝置。 如果要這樣做，請依照 [使用 PuTTY 來連接至裝置序列主控台](storsimple-deployment-walkthrough.md#use-putty-to-connect-to-the-device-serial-console)中的步驟進行。
+2. 在開啟的工作階段中，按 **Enter** 鍵來取得命令提示字元。
+3. 在序列主控台功能表中，選取選項 1 [使用完整存取權登入] 。
+4. 在提示字元中輸入下列密碼：
    
     `Password1`
-5. 在 hello 提示字元中輸入下列命令的 hello:
+5. 在出現提示時輸入下列命令：
    
     `Enable-HcsSupportAccess`
-6. 加密的字串將會出現 tooyou。 將此字串複製到 [記事本] 之類的文字編輯器。
-7. 儲存這個字串，並將它傳送電子郵件訊息 tooMicrosoft 支援。
+6. 您會看到加密的字串。 將此字串複製到 [記事本] 之類的文字編輯器。
+7. 儲存這個字串，並透過電子郵件傳送給 Microsoft 支援服務。
 
 > [!IMPORTANT]
-> 您可以執行 `Disable-HcsSupportAccess` 來停用支援存取。 hello StorSimple 裝置也會嘗試 toodisable 支援服務存取 8 小時 hello 工作階段起始後。 啟動支援工作階段後認證您的 StorSimple 裝置的最佳作法 toochange 它。
+> 您可以執行 `Disable-HcsSupportAccess` 來停用支援存取。 在起始工作階段之後 8 小時，StorSimple 裝置也會嘗試停用支援存取。 最好在起始支援工作階段之後變更 StorSimple 裝置認證。
 
 
 ## <a name="next-steps"></a>後續步驟
 
-了解如何太[診斷並解決問題的相關的 tooyour StorSimple 8000 系列裝置](storsimple-troubleshoot-deployment.md)
+了解如何[診斷並解決 StorSimple 8000 系列裝置的相關問題](storsimple-troubleshoot-deployment.md)

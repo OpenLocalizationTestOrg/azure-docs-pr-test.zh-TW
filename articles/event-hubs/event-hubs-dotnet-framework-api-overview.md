@@ -1,6 +1,6 @@
 ---
-title: "hello Azure 事件中心.NET Framework Api 的 aaaOverview |Microsoft 文件"
-description: "一些重要事件中心.NET Framework 用戶端 hello Api 的摘要。"
+title: "Azure 事件中樞 .NET Framework API 概觀 | Microsoft Docs"
+description: "一些主要事件中樞 .NET Framework 用戶端 API 的摘要。"
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,23 +14,23 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: b0e12e43f91b025d7aa4ca03e664b9ff31b04097
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bc525e7ca8b21e9e5f1e36b3152d71420b041700
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="event-hubs-net-framework-api-overview"></a>事件中樞 .NET Framework API 概觀
-本文摘要說明一些 hello 金鑰事件中心.NET Framework 用戶端應用程式開發介面。 分為兩種類別：管理和執行階段 API。 執行階段 Api 包含的所有作業所需 toosend 和接收訊息。 管理作業可讓您 toomanage 事件中心實體狀態，包括建立、 更新和刪除實體。
+本文將摘要列出一些主要事件中樞 .NET Framework 用戶端 API。 分為兩種類別：管理和執行階段 API。 執行階段 API 是由傳送和接收訊息所需的所有作業組成。 管理作業可讓您管理事件中樞實體狀態，方法是建立、更新和刪除實體。
 
-監視案例跨越管理和執行階段。 如需 hello.NET Api 的詳細的參考文件，請參閱 hello[服務匯流排.NET](/dotnet/api/microsoft.servicebus.messaging)和[EventProcessorHost API](/dotnet/api/microsoft.azure.eventhubs.processor)參考。
+監視案例跨越管理和執行階段。 如需 .NET API 的詳細參考文件，請參閱[服務匯流排 .NET](/dotnet/api/microsoft.servicebus.messaging) 和 [EventProcessorHost API](/dotnet/api/microsoft.azure.eventhubs.processor) 參考。
 
 ## <a name="management-apis"></a>管理 API
-tooperform hello 下列管理作業，您必須具有**管理**hello 事件中樞命名空間的權限：
+若要執行下列管理作業，您必須擁有事件中樞命名空間的 **管理** 權限：
 
 ### <a name="create"></a>建立
 ```csharp
-// Create hello event hub
+// Create the event hub
 var ehd = new EventHubDescription(eventHubName);
 ehd.PartitionCount = SampleManager.numPartitions;
 await namespaceManager.CreateEventHubAsync(ehd);
@@ -62,7 +62,7 @@ var eventHubClient = EventHubClient.Create("Event Hub name");
 
 ### <a name="publish-message"></a>發佈訊息
 ```csharp
-// Create hello device/temperature metric
+// Create the device/temperature metric
 var info = new MetricEvent() { DeviceId = random.Next(SampleManager.NumDevices), Temperature = random.Next(100) };
 var data = new EventData(new byte[10]); // Byte array
 var data = new EventData(Stream); // Stream 
@@ -80,10 +80,10 @@ await client.SendAsync(data);
 
 ### <a name="create-consumer"></a>建立取用者
 ```csharp
-// Create hello Event Hubs client
+// Create the Event Hubs client
 var eventHubClient = EventHubClient.Create(EventHubName);
 
-// Get hello default consumer group
+// Get the default consumer group
 var defaultConsumerGroup = eventHubClient.GetDefaultConsumerGroup();
 
 // All messages
@@ -109,11 +109,11 @@ msg = UnicodeEncoding.UTF8.GetString(info);
 ```
 
 ## <a name="event-processor-host-apis"></a>Event Processor Host API
-這些 Api 提供恢復功能 tooworker 的處理程序可能會變成無法使用，可用的背景工作之間分散資料分割。
+這些 API 會透過在可用的背景工作之間散佈資料分割，提供恢復功能給可能會變成無法使用的背景工作角色處理序。
 
 ```csharp
-// Checkpointing is done within hello SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
-// Use hello EventData.Offset value for checkpointing yourself, this value is unique per partition.
+// Checkpointing is done within the SimpleEventProcessor and on a per-consumerGroup per-partition basis, workers resume from where they last left off.
+// Use the EventData.Offset value for checkpointing yourself, this value is unique per partition.
 
 var eventHubConnectionString = System.Configuration.ConfigurationManager.AppSettings["Microsoft.ServiceBus.ConnectionString"];
 var blobConnectionString = System.Configuration.ConfigurationManager.AppSettings["AzureStorageConnectionString"]; // Required for checkpoint/state
@@ -122,11 +122,11 @@ var eventHubDescription = new EventHubDescription(EventHubName);
 var host = new EventProcessorHost(WorkerName, EventHubName, defaultConsumerGroup.GroupName, eventHubConnectionString, blobConnectionString);
 await host.RegisterEventProcessorAsync<SimpleEventProcessor>();
 
-// tooclose
+// To close
 await host.UnregisterEventProcessorAsync();
 ```
 
-hello [IEventProcessor](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor)介面的定義如下：
+[IEventProcessor](/dotnet/api/microsoft.servicebus.messaging.ieventprocessor) 介面定義如下：
 
 ```csharp
 public class SimpleEventProcessor : IEventProcessor
@@ -169,12 +169,12 @@ public class SimpleEventProcessor : IEventProcessor
 ```
 
 ## <a name="next-steps"></a>後續步驟
-toolearn 有關事件中心案例的詳細資訊，請前往下列連結：
+若要深入了解事件中樞案例，請造訪下列連結：
 
 * [Azure 事件中樞是什麼？](event-hubs-what-is-event-hubs.md)
 * [事件中樞程式設計指南](event-hubs-programming-guide.md)
 
-以下是 hello.NET API 參考：
+.NET API 參考如下：
 
 * [Microsoft.ServiceBus.Messaging](/dotnet/api/microsoft.servicebus.messaging)
 * [Microsoft.Azure.EventHubs.EventProcessorHost](/dotnet/api/microsoft.azure.eventhubs.processor.eventprocessorhost)

@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 和上傳 CentOS 基礎 Linux VHD 在 Azure 中"
-description: "了解 toocreate 和上傳 Azure 虛擬硬碟 (VHD)，其中包含 CentOS 為基礎的 Linux 作業系統。"
+title: "在 Azure 中建立及上傳 CentOS 型 Linux VHD"
+description: "了解如何建立及上傳包含 CentOS 型 Linux 作業系統的 Azure 虛擬硬碟 (VHD)。"
 services: virtual-machines-linux
 documentationcenter: 
 author: szarkos
@@ -15,11 +15,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/02/2017
 ms.author: szark
-ms.openlocfilehash: 78f36be1d36e3d44cb836c912d143f2c9a72aab5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 010f4b05b35fa1f31c14f34a5fae9298fcd831e4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="prepare-a-centos-based-virtual-machine-for-azure"></a>準備適用於 Azure 的 CentOS 型虛擬機器
 * [準備適用於 Azure 的 CentOS 6.x 虛擬機器](#centos-6x)
@@ -27,35 +27,35 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [learn-about-deployment-models](../../../includes/learn-about-deployment-models-both-include.md)]
 
-## <a name="prerequisites"></a>必要條件
-本文假設您已安裝 CentOS （或類似的衍生項目） Linux 作業系統 tooa 虛擬硬碟。 多個工具存在 toocreate.vhd 檔案，例如 HYPER-V 之類的虛擬化解決方案。 如需指示，請參閱[安裝 hello HYPER-V 角色和設定虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。
+## <a name="prerequisites"></a>先決條件
+本文假設您已將 CentOS (或類似的衍生物件) Linux 作業系統安裝到虛擬硬碟。 有多個工具可用來建立 .vhd 檔案，例如，像是 Hyper-V 的虛擬化解決方案。 如需指示，請參閱 [安裝 Hyper-V 角色及設定虛擬機器](http://technet.microsoft.com/library/hh846766.aspx)。
 
 **CentOS 安裝注意事項**
 
 * 另請參閱[一般 Linux 安裝注意事項](create-upload-generic.md#general-linux-installation-notes)，了解為 Azure 準備 Linux 的更多祕訣。
-* hello VHDX 格式不支援在 Azure 中，只有**固定 VHD**。  您可以將使用 HYPER-V 管理員 hello 磁碟 tooVHD 格式轉換或 hello convert-vhd 指令程式。 如果您使用 VirtualBox 這表示選取**固定大小**為相對於 toohello 預設建立 hello 磁碟時，動態配置。
-* 安裝 hello Linux 系統時*建議*您使用標準的資料分割，而非 LVM （通常 hello 預設值為許多安裝）。 這樣可避免與複製 Vm，LVM 名稱衝突，特別是當作業系統磁碟需要附加 toobe tooanother 相同的 VM 進行疑難排解。 如果願意，您可以在資料磁碟上使用 [LVM](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [RAID](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
-* 需要掛接 UDF 檔案系統的核心支援。 在第一次開機 Azure hello 上佈建組態會透過附加的 toohello 客體的 UDF 格式化媒體傳遞 toohello Linux VM。 hello Azure Linux 代理程式必須要能夠 toomount hello UDF 檔案系統 tooread 其組態，並佈建 hello VM。
-* Linux Kernel 2.6.37 以下的版本不支援較大 VM 大小 Hyper-V 上的NUMA。 這個問題主要會影響較舊的分佈上游使用 hello Red Hat 2.6.32 核心及已修正 RHEL 6.6 (核心-2.6.32-504) 中。 執行自訂的核心超過 2.6.37 或較舊 RHEL 基礎核心非 2.6.32-504 必須設定系統 hello 開機參數`numa=off`hello 核心 grub.conf 在命令列上。 如需詳細資訊，請參閱 Red Hat [KB 436883](https://access.redhat.com/solutions/436883)。
-* 請勿設定 hello OS 磁碟交換資料分割。 hello Linux 代理程式可以設定的 toocreate 交換磁碟上的檔案 hello 暫存資源。  相關資訊位於下列 hello 步驟。
-* 所有 hello Vhd 必須是 1 MB 的倍數的大小。
+* Azure 不支援 VHDX 格式，只支援 **固定 VHD**。  您可以使用 Hyper-V 管理員或 convert-vhd Cmdlet，將磁碟轉換為 VHD 格式。 如果您是使用 VirtualBox，即會在建立磁碟時選取 [固定大小]  而不是預設的動態配置。
+* 安裝 Linux 系統時，*建議*您使用標準磁碟分割而不是 LVM (常是許多安裝的預設設定)。 這可避免 LVM 與複製之 VM 的名稱衝突，特別是為了疑難排解而需要將作業系統磁碟連接至另一個相同的 VM 時。 如果願意，您可以在資料磁碟上使用 [LVM](configure-raid.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json) 或 [RAID](configure-lvm.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。
+* 需要掛接 UDF 檔案系統的核心支援。 在 Azure 上第一次開機時，佈建組態會透過連接客體的 UDF 格式媒體傳遞至 Linux VM。 Azure Linux 代理程式必須能夠掛接 UDF 檔案系統讀取其組態並佈建 VM。
+* Linux Kernel 2.6.37 以下的版本不支援較大 VM 大小 Hyper-V 上的NUMA。 這個問題主要會影響使用上游 Red Hat 2.6.32 kernel 的較舊散發套件，RHEL 6.6 (kernel-2.6.32-504) 已加以修正。 執行的自訂核心是 2.6.37 以前版本的系統，或 2.6.32-504 以前以 RHEL 為基礎的核心必須在 grub.conf 的核心命令列上設定開機參數 `numa=off`。 如需詳細資訊，請參閱 Red Hat [KB 436883](https://access.redhat.com/solutions/436883)。
+* 請勿在作業系統磁碟上設定交換磁碟分割。 您可以設定 Linux 代理程式在暫存資源磁碟上建立交換檔。  您可以在以下步驟中找到與此有關的詳細資訊。
+* 所有 VHD 的大小都必須是 1 MB 的倍數。
 
 ## <a name="centos-6x"></a>CentOS 6.x
 
-1. 在 HYPER-V 管理員 中，選取 hello 虛擬機器。
+1. 在 Hyper-V 管理員中，選取虛擬機器。
 
-2. 按一下**連接**tooopen hello 虛擬機器的主控台視窗。
+2. 按一下 [連接] ，以開啟虛擬機器的主控台視窗。
 
-3. CentOS 6 NetworkManager 可能會干擾 hello Azure Linux 代理程式。 解除安裝此套件，藉由執行下列命令的 hello:
+3. 在 CentOS 6 中，NetworkManager 可能會對 Azure Linux 代理程式造成干擾。 執行下列命令以將此套件解除安裝：
    
         # sudo rpm -e --nodeps NetworkManager
 
-4. 建立或編輯 hello 檔案`/etc/sysconfig/network`並加入下列文字的 hello:
+4. 建立或編輯檔案 `/etc/sysconfig/network` 並新增下列文字：
    
         NETWORKING=yes
         HOSTNAME=localhost.localdomain
 
-5. 建立或編輯 hello 檔案`/etc/sysconfig/network-scripts/ifcfg-eth0`並加入下列文字的 hello:
+5. 建立或編輯檔案 `/etc/sysconfig/network-scripts/ifcfg-eth0` 並新增下列文字：
    
         DEVICE=eth0
         ONBOOT=yes
@@ -65,16 +65,16 @@ ms.lasthandoff: 10/06/2017
         PEERDNS=yes
         IPV6INIT=no
 
-6. 修改 udev 規則 tooavoid 產生 hello 乙太網路介面的靜態規則。 在 Microsoft Azure 或 Hyper-V 中複製虛擬機器時，這些規則可能會造成問題：
+6. 修改 udev 角色可防止產生乙太網路介面的靜態規則。 在 Microsoft Azure 或 Hyper-V 中複製虛擬機器時，這些規則可能會造成問題：
    
         # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
         # sudo rm -f /etc/udev/rules.d/70-persistent-net.rules
 
-7. 請確定 hello 網路服務將會在開機時啟動藉由執行下列命令的 hello:
+7. 要確保開機時會啟動網路服務，可執行以下命令：
    
         # sudo chkconfig network on
 
-8. 如果您想要 toouse hello OpenLogic 鏡像 hello Azure 資料中心內裝載，然後取代 hello`/etc/yum.repos.d/CentOS-Base.repo`以 hello 下列儲存機制的檔案。  這也會加入 hello **[openlogic]**包含例如 hello Azure Linux 代理程式的其他封裝的儲存機制：
+8. 如果您想要使用在 Azure 資料中心內託管的 OpenLogic 鏡像，請使用下列存放庫來取代 `/etc/yum.repos.d/CentOS-Base.repo` 檔案。  這也會新增包括額外套件 (例如 Azure Linux 代理程式) 的 **[openlogic]** 存放庫：
 
         [openlogic]
         name=CentOS-$releasever - openlogic packages for $basearch
@@ -124,98 +124,98 @@ ms.lasthandoff: 10/06/2017
         gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
     >[!Note]
-    hello 本指南的其餘部分將假設您使用至少 hello`[openlogic]`儲存機制，將會使用的 tooinstall hello Azure Linux 代理程式下方。
+    本指南的其他部分將假設您至少會使用 `[openlogic]` 存放庫，該存放庫稍後將可用來安裝下面的 Azure Linux 代理程式。
 
 
-9. 加入下列行 too/etc/yum.conf hello:
+9. 在 /etc/yum.conf 中加入這一行：
     
         http_caching=packages
 
-10. 執行下列命令 tooclear hello 目前 yum 中繼資料和更新 hello 系統與 hello 最新的套件 hello:
+10. 執行下列命令，以清除目前的 yum 中繼資料並使用最新的套件來更新系統：
     
         # yum clean all
 
-    除非您要建立較舊版本的 CentOS 的映像，我們建議所有 hello 的 tooupdate 封裝 toohello 最新版本：
+    除非您要為舊版 CentOS 建立映像，否則建議您將所有套件更新到最新版本：
 
         # sudo yum -y update
 
     執行此命令之後可能需要重新開機。
 
-11. （選擇性）安裝 hello hello Linux Integration Services (LIS) 的驅動程式。
+11. (選擇性) 安裝 Linux 整合服務 (LIS) 的驅動程式。
    
     >[!IMPORTANT]
-    hello 步驟是**必要**CentOS 6.3 和更早版本，及更新版本的選擇性的。
+    此步驟對 CentOS 6.3 與更舊版本而言為**必要步驟**，但對於較新的版本而言則為選擇性步驟。
 
         # sudo rpm -e hypervkvpd  ## (may return error if not installed, that's OK)
         # sudo yum install microsoft-hyper-v
 
-    或者，您可以依照 hello 手動安裝指示，在 hello [LIS 下載頁面](https://go.microsoft.com/fwlink/?linkid=403033)tooinstall hello RPM 到您的 VM。
+    或者，您可以依照 [LIS 下載頁面](https://go.microsoft.com/fwlink/?linkid=403033)上的手動安裝指示執行，以在您的 VM 上安裝該 RPM。
  
-12. 安裝 hello Azure Linux 代理程式和相依性：
+12. 安裝 Azure Linux 代理程式與相依性：
     
         # sudo yum install python-pyasn1 WALinuxAgent
     
-    如果沒有已移除步驟 3 中所述，hello NetworkManager 和 NetworkManager gnome 封裝將會移除 hello WALinuxAgent 封裝。
+    如果未如步驟 3 所述移除 NetworkManager 和 NetworkManager-gnome 套件，則 WALinuxAgent 套件會將這兩個套件移除。
 
 
-13. 修改 Azure hello 核心開機行幼蟲組態 tooinclude 其他核心參數中。 toodo，開啟`/boot/grub/menu.lst`文字編輯器中，並確保該 hello 預設核心包含下列參數的 hello:
+13. 修改 grub 組態中的核心開機那一行，使其額外包含用於 Azure 的核心參數。 若要這樣做，請在文字編輯器中開啟 `/boot/grub/menu.lst`，並確定預設核心包含以下參數：
     
         console=ttyS0 earlyprintk=ttyS0 rootdelay=300
     
-    這也可確保所有的主控台訊息都會傳送 toohello 第一個序列連接埠，這可協助 Azure 偵錯問題的支援。
+    這也將確保所有主控台訊息都會傳送給第一個序列埠，有助於 Azure 支援團隊進行問題偵錯程序。
     
-    除了上述 toohello 建議太*移除*hello 下列參數：
+    除了上述以外，我們還建議您 *移除* 下列參數：
     
         rhgb quiet crashkernel=auto
     
-    沒有適用於雲端環境，我們想要傳送 toohello 序列連接埠的所有 hello 記錄 toobe 圖形和無訊息的開機。  hello`crashkernel`選項可能會是左設定如有需要，但請注意，這個參數會減少 hello hello 128 MB 以上，VM 中可用的記憶體數量可能會造成問題 hello 較小的 VM 大小。
+    在雲端環境中，我們會將所有記錄傳送到序列埠，因此不適合使用圖形化和無訊息啟動。  如有需要，您可以保留 `crashkernel` 選項的設定，但請注意，此參數將會減少 VM 中約 128MB 或以上的可用記憶體數量，這在較小的 VM 中可能會是個問題。
 
     >[!Important]
-    CentOS 6.5 及更早版本也必須設定 hello 核心參數`numa=off`。 請參閱 Red Hat [KB 436883](https://access.redhat.com/solutions/436883)。
+    CentOS 6.5 與較舊版本也必須設定核心參數 `numa=off`。 請參閱 Red Hat [KB 436883](https://access.redhat.com/solutions/436883)。
 
-14. 請確定該 hello SSH 伺服器是在安裝並設定 toostart 開機時間。  這通常是 hello 預設值。
+14. 確定您已安裝 SSH 伺服器，並已設定為在開機時啟動。  這通常是預設值。
 
-15. 不要在 hello OS 磁碟上建立的交換空間。
+15. 請勿在作業系統磁碟上建立交換空間。
     
-    hello Azure Linux 代理程式可以自動設定使用之後附加的 toohello VM 在 Azure 上佈建的 hello 本機資源磁碟的交換空間。 請注意該 hello 本機資源磁碟是*暫存*磁碟，以及可能會在取消佈建 hello VM 時清空。 在安裝之後 hello Azure Linux 代理程式 （請參閱上一個步驟），修改下列參數中的 hello`/etc/waagent.conf`適當地：
+    Azure Linux 代理程式可在 VM 佈建於 Azure 後，使用附加至 VM 的本機資源磁碟自動設定交換空間。 請注意，資源磁碟是 *暫存* 磁碟，可能會在 VM 取消佈建時清空。 安裝 Azure Linux 代理程式 (請參閱上一個步驟) 後，請在 `/etc/waagent.conf` 中適當修改下列參數：
     
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
         ResourceDisk.MountPoint=/mnt/resource
         ResourceDisk.EnableSwap=y
-        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this toowhatever you need it toobe.
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 
-16. 執行下列命令 toodeprovision hello 虛擬機器的 hello 並準備在 Azure 上佈建：
+16. 執行下列命令，以取消佈建虛擬機器，並準備將它佈建於 Azure 上：
     
         # sudo waagent -force -deprovision
         # export HISTSIZE=0
         # logout
 
-17. 在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。 Linux VHD 是現在準備好 toobe 上傳 tooAzure。
+17. 在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。 您現在可以將 Linux VHD 上傳至 Azure。
 
 
 - - -
 ## <a name="centos-70"></a>CentOS 7.0+
 **CentOS 7 (和類似的衍生項目) 中的變更**
 
-準備 Azure CentOS 7 虛擬機器是非常類似 tooCentOS 6，不過，有數個值得注意的重要差異：
+準備適用於 Azure 的 CentOS 7 虛擬機器會與 CentOS 6 極為類似，不過，其中有幾個重要差異值得注意：
 
-* hello NetworkManager 封裝不會再與 hello Azure Linux 代理程式發生衝突。 依預設會安裝此封裝，建議您不要將它移除。
-* GRUB2 現在用做 hello 預設開機載入器，因此編輯核心參數 hello 程序已變更 （請參閱下方）。
-* XFS 現在是 hello 預設檔案系統。 如有需要，仍可以使用 hello ext4 檔案系統。
+* NetworkManager 封裝不會再與 Azure Linux 代理程式發生衝突。 依預設會安裝此封裝，建議您不要將它移除。
+* GRUB2 現已作為預設的開機載入器使用，因此我們已變更編輯核心參數的程序 (如下所示)。
+* XFS 現為預設的檔案系統。 如有需要，您仍可使用 ext4 檔案系統。
 
 **組態步驟**
 
-1. 在 HYPER-V 管理員 中，選取 hello 虛擬機器。
+1. 在 Hyper-V 管理員中，選取虛擬機器。
 
-2. 按一下**連接**tooopen hello 虛擬機器的主控台視窗。
+2. 按一下 [連接] ，以開啟虛擬機器的主控台視窗。
 
-3. 建立或編輯 hello 檔案`/etc/sysconfig/network`並加入下列文字的 hello:
+3. 建立或編輯檔案 `/etc/sysconfig/network` 並新增下列文字：
    
         NETWORKING=yes
         HOSTNAME=localhost.localdomain
 
-4. 建立或編輯 hello 檔案`/etc/sysconfig/network-scripts/ifcfg-eth0`並加入下列文字的 hello:
+4. 建立或編輯檔案 `/etc/sysconfig/network-scripts/ifcfg-eth0` 並新增下列文字：
    
         DEVICE=eth0
         ONBOOT=yes
@@ -226,11 +226,11 @@ ms.lasthandoff: 10/06/2017
         IPV6INIT=no
         NM_CONTROLLED=no
 
-5. 修改 udev 規則 tooavoid 產生 hello 乙太網路介面的靜態規則。 在 Microsoft Azure 或 Hyper-V 中複製虛擬機器時，這些規則可能會造成問題：
+5. 修改 udev 角色可防止產生乙太網路介面的靜態規則。 在 Microsoft Azure 或 Hyper-V 中複製虛擬機器時，這些規則可能會造成問題：
    
         # sudo ln -s /dev/null /etc/udev/rules.d/75-persistent-net-generator.rules
 
-6. 如果您想要 toouse hello OpenLogic 鏡像 hello Azure 資料中心內裝載，然後取代 hello`/etc/yum.repos.d/CentOS-Base.repo`以 hello 下列儲存機制的檔案。  這也會加入 hello **[openlogic]**包含 hello Azure Linux 代理程式的封裝儲存機制：
+6. 如果您想要使用在 Azure 資料中心內託管的 OpenLogic 鏡像，請使用下列存放庫來取代 `/etc/yum.repos.d/CentOS-Base.repo` 檔案。  這也會新增包含 Azure Linux 代理程式封裝的 **[openlogic]** 儲存機制：
    
         [openlogic]
         name=CentOS-$releasever - openlogic packages for $basearch
@@ -271,65 +271,65 @@ ms.lasthandoff: 10/06/2017
         gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
 
     >[!Note]
-    hello 本指南的其餘部分將假設您使用至少 hello`[openlogic]`儲存機制，將會使用的 tooinstall hello Azure Linux 代理程式下方。
+    本指南的其他部分將假設您至少會使用 `[openlogic]` 存放庫，該存放庫稍後將可用來安裝下面的 Azure Linux 代理程式。
 
-7. 執行下列命令 tooclear hello 目前 yum 中繼資料的 hello 並安裝任何更新：
+7. 執行下列命令，以清除目前的 yum 中繼資料並安裝任何更新：
    
         # sudo yum clean all
 
-    除非您要建立較舊版本的 CentOS 的映像，我們建議所有 hello 的 tooupdate 封裝 toohello 最新版本：
+    除非您要為舊版 CentOS 建立映像，否則建議您將所有套件更新到最新版本：
 
         # sudo yum -y update
 
     執行此命令之後可能需要重新開機。
 
-8. 修改 Azure hello 核心開機行幼蟲組態 tooinclude 其他核心參數中。 toodo，開啟`/etc/default/grub`在文字編輯器，編輯 hello`GRUB_CMDLINE_LINUX`參數，例如：
+8. 修改 grub 組態中的核心開機那一行，使其額外包含用於 Azure 的核心參數。 若要這樣做，請在文字編輯器中開啟 `/etc/default/grub` 並編輯 `GRUB_CMDLINE_LINUX` 參數，例如：
    
         GRUB_CMDLINE_LINUX="rootdelay=300 console=ttyS0 earlyprintk=ttyS0 net.ifnames=0"
    
-   這也可確保所有的主控台訊息都會傳送 toohello 第一個序列連接埠，這可協助 Azure 偵錯問題的支援。 它也會關閉 hello 新 CentOS 7 命名慣例的 Nic。 除了上述 toohello 建議太*移除*hello 下列參數：
+   這也將確保所有主控台訊息都會傳送給第一個序列埠，有助於 Azure 支援團隊進行問題偵錯程序。 也會關閉新的 CentOS 7 對 NIC 的命名慣例。 除了上述以外，我們還建議您 *移除* 下列參數：
    
         rhgb quiet crashkernel=auto
    
-    沒有適用於雲端環境，我們想要傳送 toohello 序列連接埠的所有 hello 記錄 toobe 圖形和無訊息的開機。 hello`crashkernel`選項可能會是左設定如有需要，但請注意，這個參數會減少 hello hello 128 MB 以上，VM 中可用的記憶體數量可能會造成問題 hello 較小的 VM 大小。
+    在雲端環境中，我們會將所有記錄傳送到序列埠，因此不適合使用圖形化和無訊息啟動。 如有需要，您可以保留 `crashkernel` 選項的設定，但請注意，此參數將會減少 VM 中約 128MB 或以上的可用記憶體數量，這在較小的 VM 中可能會是個問題。
 
-9. 在您完成編輯`/etc/default/grub`每個以上版本，執行下列命令 toorebuild hello 幼蟲組態 hello:
+9. 在您參照上述完成編輯 `/etc/default/grub` 之後，請執行下列命令以重建 grub 組態：
    
         # sudo grub2-mkconfig -o /boot/grub2/grub.cfg
 
-10. 如果建置 hello 映像從**VMWare、 VirtualBox 或 KVM:**請 hello HYPER-V 驅動程式隨附的 hello initramfs:
+10. 若要從 **VMWare、VirtualBox 或 KVM 建置映像：**請確定 initramfs 中已包括 Hyper-V 驅動程式：
    
    編輯 `/etc/dracut.conf`，新增內容：
    
         add_drivers+=”hv_vmbus hv_netvsc hv_storvsc”
    
-   重建 hello initramfs:
+   重建 initramfs：
    
         # sudo dracut –f -v
 
-11. 安裝 hello Azure Linux 代理程式和相依性：
+11. 安裝 Azure Linux 代理程式與相依性：
 
         # sudo yum install python-pyasn1 WALinuxAgent
         # sudo systemctl enable waagent
 
-12. 不要在 hello OS 磁碟上建立的交換空間。
+12. 請勿在作業系統磁碟上建立交換空間。
    
-   hello Azure Linux 代理程式可以自動設定使用之後附加的 toohello VM 在 Azure 上佈建的 hello 本機資源磁碟的交換空間。 請注意該 hello 本機資源磁碟是*暫存*磁碟，以及可能會在取消佈建 hello VM 時清空。 在安裝之後 hello Azure Linux 代理程式 （請參閱上一個步驟），修改下列參數中的 hello`/etc/waagent.conf`適當地：
+   Azure Linux 代理程式可在 VM 佈建於 Azure 後，使用附加至 VM 的本機資源磁碟自動設定交換空間。 請注意，資源磁碟是 *暫存* 磁碟，可能會在 VM 取消佈建時清空。 安裝 Azure Linux 代理程式 (請參閱上一個步驟) 後，請在 `/etc/waagent.conf` 中適當修改下列參數：
    
         ResourceDisk.Format=y
         ResourceDisk.Filesystem=ext4
         ResourceDisk.MountPoint=/mnt/resource
         ResourceDisk.EnableSwap=y
-        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this toowhatever you need it toobe.
+        ResourceDisk.SwapSizeMB=2048    ## NOTE: set this to whatever you need it to be.
 
-13. 執行下列命令 toodeprovision hello 虛擬機器的 hello 並準備在 Azure 上佈建：
+13. 執行下列命令，以取消佈建虛擬機器，並準備將它佈建於 Azure 上：
    
         # sudo waagent -force -deprovision
         # export HISTSIZE=0
         # logout
 
-14. 在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。 Linux VHD 是現在準備好 toobe 上傳 tooAzure。
+14. 在 Hyper-V 管理員中，依序按一下 [動作] -> [關閉]。 您現在可以將 Linux VHD 上傳至 Azure。
 
 ## <a name="next-steps"></a>後續步驟
-您要現在準備好 toouse CentOS Linux 虛擬硬碟 toocreate 新虛擬機器在 Azure 中。 如果這是 hello 正在上傳 hello.vhd 檔案 tooAzure 的第一次，請參閱步驟 2 和 3 中的[建立和上傳包含 hello Linux 作業系統的虛擬硬碟](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)。
+您現在可以開始使用您的 CentOS Linux 虛擬硬碟在 Azure 建立新的虛擬機器。 若這是您第一次將該 .vhd 檔案上傳到 Azure，請參閱 [建立及上傳包含 Linux 作業系統的虛擬硬碟](classic/create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)中的步驟 2 和步驟 3。
 

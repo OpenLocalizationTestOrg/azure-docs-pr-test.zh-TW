@@ -1,6 +1,6 @@
 ---
-title: "aaaClaims 感知應用程式的 Azure AD 應用程式 Proxy |Microsoft 文件"
-description: "如何 toopublish 內部接受您的使用者的安全遠端存取的 ADFS 宣告的 ASP.NET 應用程式。"
+title: "宣告感知應用程式 - Azure AD 應用程式 Proxy | Microsoft Docs"
+description: "如何發佈接受 ADFS 宣告的內部部署 ASP.NET 應用程式，讓您的使用者安全地進行遠端存取。"
 services: active-directory
 documentationcenter: 
 author: kgremban
@@ -14,46 +14,46 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/04/2017
 ms.author: kgremban
-ms.openlocfilehash: 7be633225de700226c7c94815eb91b3de2b61cb5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5784222608b01509fc4ff84b1a8792cbcfea89e6
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="working-with-claims-aware-apps-in-application-proxy"></a>在應用程式 Proxy 中使用宣告感知應用程式
-[宣告感知應用程式](https://msdn.microsoft.com/library/windows/desktop/bb736227.aspx)執行重新導向 toohello 安全性權杖服務 (STS)。 hello STS hello 使用者，但是也會語彙基元要求認證，然後重新導向 hello 使用者 toohello 應用程式。 有幾個方式 tooenable 應用程式 Proxy toowork，與這些重新導向。 針對宣告感知應用程式使用此發行項 tooconfigure 您的部署。 
+[宣告感知應用程式](https://msdn.microsoft.com/library/windows/desktop/bb736227.aspx)會執行重新導向至 Security Token Service (STS)。 STS 會向使用者要求認證以交換權杖，然後將使用者重新導向至應用程式。 有幾種方法可以讓應用程式 Proxy 進行這些重新導向。 請按照本文的說明來設定對宣告感知應用程的部署。 
 
 ## <a name="prerequisites"></a>必要條件
-請確定該 hello 宣告感知應用程式的 hello STS 重新導向 toois 與內部網路之外使用。 您可以提供 hello STS 公開透過 proxy，或允許外部連接。 
+確定宣告感知應用程式重新導向的 STS 可從內部部署網路外部使用。 您可以透過 Proxy 將 STS 公開或是允許外部連接，讓 STS 可供使用。 
 
 ## <a name="publish-your-application"></a>發佈您的應用程式
 
-1. 將根據 toohello 指示中所述的應用程式發行[發行應用程式 Proxy](application-proxy-publish-azure-portal.md)。
-2. 瀏覽 toohello 應用程式頁面上，在入口網站，並選取 hello**單一登入**。
-3. 如果您選擇 [Azure Active Directory] 作為您的 [預先驗證方法]，請選取 [Azure AD 單一登入已停用] 作為您的 [內部驗證方法]。 如果您選擇**通過**做為您**預先驗證方法**，您不需要 toochange 任何項目。
+1. 根據 [使用應用程式 Proxy 發佈應用程式](application-proxy-publish-azure-portal.md)中的所述指示來發佈您的應用程式。
+2. 瀏覽至入口網站中的應用程式頁面，然後選取 [單一登入]。
+3. 如果您選擇 [Azure Active Directory] 作為您的 [預先驗證方法]，請選取 [Azure AD 單一登入已停用] 作為您的 [內部驗證方法]。 如果您選擇 [傳遞] 作為您的 [預先驗證方法]，則無需進行任何變更。
 
 ## <a name="configure-adfs"></a>設定 ADFS
 
-您可以使用以下兩種方式之一為宣告感知應用程式設定 ADFS。 hello 第一個是使用自訂網域。 WS-同盟與第二個是 hello。 
+您可以使用以下兩種方式之一為宣告感知應用程式設定 ADFS。 第一種方式是使用自訂網域。 第二種方式是使用 WS-同盟。 
 
 ### <a name="option-1-custom-domains"></a>選項 1：自訂網域
 
-如果所有 hello 內部 Url，您的應用程式的完整網域名稱 (Fqdn)，則您可以設定[自訂網域](active-directory-application-proxy-custom-domains.md)應用程式。 使用 hello 自訂網域 toocreate 外部 Url hello 與 hello 內部 Url 相同。 當您的外部 Url 符合您的內部 Url 時，hello STS 重新導向會使用您的使用者是否在內部部署或遠端。 
+如果您應用程式的所有內部 URL 皆為完整網域名稱 (FQDN)，則您可為您的應用程式設定[自訂網域](active-directory-application-proxy-custom-domains.md)。 請使用自訂網域建立與內部 URL 相同的外部 URL。 當您的外部 URL 與內部 URL 相符時，無論使用者是在內部部署或遠端，STS 重新導向都會運作。 
 
 ### <a name="option-2-ws-federation"></a>選項 2：WS-同盟
 
 1. 開啟 [ADFS 管理]。
-2. 跳過**信賴憑證者信任**，以滑鼠右鍵按一下您要發行應用程式 proxy 的 hello 應用程式，然後選擇 **屬性**。  
+2. 移至 [信賴憑證者信任]，並在您要使用「應用程式 Proxy 」來發佈的應用程式上按一下滑鼠右鍵，然後選擇 [屬性]。  
 
    ![信賴憑證者信任 - 以滑鼠右鍵按一下應用程式名稱 - 螢幕擷取畫面](./media/active-directory-application-proxy-claims-aware-apps/appproxyrelyingpartytrust.png)  
 
-3. 在 hello**端點**索引標籤，在**端點類型**，選取**WS-同盟**。
-4. 下**信任 URL**，輸入您在輸入 hello 下的應用程式 Proxy 的 hello URL**外部 URL**按一下**[確定]**。  
+3. 在 [端點] 索引標籤的 [端點類型] 底下，選取 [WS-同盟]。
+4. 在 [信任的 URL] 底下，輸入您在「應用程式 Proxy」的 [外部 URL] 底下輸入的 URL，然後按一下 [確定]。  
 
    ![新增端點 - 設定 [信任的 URL] 值 - 螢幕擷取畫面](./media/active-directory-application-proxy-claims-aware-apps/appproxyendpointtrustedurl.png)  
 
 ## <a name="next-steps"></a>後續步驟
 * 對於非宣告感知的應用程式，請[啟用單一登入](application-proxy-sso-overview.md)
-* [啟用原生用戶端應用程式 toointeract 與 proxy 應用程式](active-directory-application-proxy-native-client.md)
+* [啟用原生用戶端應用程式以與 Proxy 應用程式互動](active-directory-application-proxy-native-client.md)
 
 

@@ -1,5 +1,5 @@
 ---
-title: "邏輯應用程式連接器的 aaaOverview |Microsoft 文件"
+title: "Logic Apps 連接器概觀 | Microsoft Docs"
 description: "可在邏輯應用程式中使用的連接器概觀"
 services: 
 documentationcenter: 
@@ -15,45 +15,45 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/15/2016
 ms.author: jehollan
-ms.openlocfilehash: dc4cac4c0dfaa2f9fd218ffc04414fa8e52a91d3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9cbb258ae9e32549669623e6824dd9b18fa1f68f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="using-connectors-in-a-logic-app"></a>在邏輯應用程式中使用連接器
-連接器會提供跨服務、 通訊協定和平台快速存取 tooevents、 資料和動作。  hello 的 Logic Apps 支援的連接器的完整清單可以[在這裡找到](apis-list.md)。  連接器可用來當作觸發程序或邏輯應用程式中的動作，而且可能需要設定*連接*toouse (例如： 授權 Twitter 帳戶 tooaccess 或張貼您的身分)。
+連接器可讓您跨服務、通訊協定與平台快速存取事件、資料和動作。  Logic Apps 所支援的連接器完整清單可以 [在這裡找到](apis-list.md)。  連接器可做為邏輯應用程式的觸發程序或動作，而且可能需要設定「連線」  才能使用 (例如︰授權 Twitter 帳戶代表您存取或張貼)。
 
-## <a name="basics"></a>基本概念
-連接器是託管的服務，您可以存取 Dynamics、 Azure、 Salesforce 等其他服務使用邏輯應用程式 toointegrate 一部分[多](apis-list.md)。  連接器是由 Microsoft 所部署和管理，因此您可以建置規模、輸送量和安全性都有人幫您處理的整合工作流程。  您可以藉由搜尋並選取 連接器動作新增連接器 tooa 邏輯應用程式或觸發程序底下**顯示 Microsoft managed Api**。
+## <a name="basics"></a>基本
+連接器是邏輯應用程式中可供您存取以便整合 Dynamics、Azure、Salesforce [等等](apis-list.md)的其他服務的託管服務。  連接器是由 Microsoft 所部署和管理，因此您可以建置規模、輸送量和安全性都有人幫您處理的整合工作流程。  您可以藉由搜尋和選取 [顯示 Microsoft Managed API] 底下的連接器動作或觸發程序，在邏輯應用程式中新增連接器。
 
 ![可供選取觸發程序的 [動作] 功能表][1]
 
-每個連接器動作或觸發程序會將屬性 tooconfigure 的設定。  您可以按一下 hello 資訊按鈕 toolearn 深入了解動作，或參考其文件[toolearn 詳細](apis-list.md)。
+每個連接器動作或觸發程序都有需要設定的屬性集。  您可以按一下 [資訊] 按鈕來深入了解動作，或參考其文件以 [深入了解](apis-list.md)。
 
-如果您想 toointegrate 與服務或應用程式開發介面不是尚未連接器，您也可以擴充邏輯應用程式透過[自訂連接器](../logic-apps/logic-apps-create-api-app.md)或只需要呼叫直接 toohello 服務透過 HTTP 之類的通訊協定。
+如果您想要整合還未成為連接器的服務或 API，您也可以透過 [自訂連接器](../logic-apps/logic-apps-create-api-app.md) 擴充邏輯應用程式，或直接透過 HTTP 等通訊協定呼叫服務。
 
 ## <a name="triggers"></a>觸發程序
-某些連接器有觸發程序，這表示從該連接器的事件將引發邏輯應用程式，並傳入 hello 觸發程序的一部分的任何資料。  觸發程序永遠是 hello 邏輯應用程式中的第一個步驟。  受歡迎的觸發程序所包含的作業如下︰
+某些連接器具有觸發程序，這表示該連接器中的事件會引發邏輯應用程式，並傳入任何資料做為觸發程序的一部分。  觸發程序永遠是邏輯應用程式的第一個步驟。  受歡迎的觸發程序所包含的作業如下︰
 
 * 循環 - 每小時執行一次
 * 收到 HTTP 要求時
-* 項目加入 tooa 佇列中時
+* 佇列中新增項目時
 * 收到電子郵件時
 
-某些觸發程序會引發 hello 即時事件發生時透過通知 toohello 邏輯應用程式和其他人將會需要 hello 邏輯應用程式會檢查的頻率 （向上 tooevery 15 秒) 事件的 hello 服務上設定循環間隔。  
+在事件發生當下，有些觸發程序會在邏輯應用程式收到通知時立刻引發，有些則需要設定循環間隔，以指出邏輯應用程式檢查服務是否發生事件的頻率 (最多為每 15 秒)。  
 
-一旦收到事件時，會引發 hello 邏輯應用程式執行，並開始 hello 工作流程中的 hello 動作。  您也會無法 tooaccess 整個 hello 工作流程觸發 hello 中的任何資料 （如範例 hello 'On 新推文' 觸發程序會傳入 hello 推文 hello 執行）。
+一旦收到事件，就會引發執行邏輯應用程式，並開始工作流程中的動作。  您也可以在整個工作流程存取觸發程序的任何資料 (例如，「有新推文時」觸發程序會讓推文進入執行狀態)。
 
 ## <a name="actions"></a>動作
-大部分的連接器會有一個或多個可當做 hello 工作流程的一部分執行的動作。  動作是 hello 執行之後，就可能發生的任何步驟已引發觸發程序。  tooadd 動作按一下 hello**新步驟**按鈕並搜尋 hello 想 toouse 連接器。  一旦選取 (和之後設定任何[連線](#connections)可能有必要) 您會看到 hello 動作卡，您可以設定。  您可以按一下任一 hello 語彙基元的輸出，從上一個步驟中選取資料，或視需要輸入中的任何其他設定。
+大部分連接器有一或多個可做為工作流程一部分來執行的動作。  動作是觸發程序已引發該次執行之後所發生的任何步驟。  若要新增動作，請按一下 [新增步驟]  按鈕，並搜尋您想要使用的連接器。  一經選取 (以及在設定任何可能需要的 [連線](#connections) 之後)，您就會看到可以設定的動作卡。  您可以按一下輸出的任何權杖以選取先前步驟的資料，或視需要輸入其他任何組態。
 
 ![設定連接器動作][2]
 
 ## <a name="connections"></a>連線
-大部分的連接器都需要您 tooconfigure*連接*才能夠使用 hello 連接器。  A*連接*是任何登入，或需要 tooaccess hello 連接器的連線設定。  對於使用 OAuth、 建立連接的接點表示登入 hello 服務 （例如 Office 365、 Salesforce 或 GitHub） 可以加密和安全地儲存在 Azure 的密碼存放區存取權杖。  其他連接器 (例如 FTP 和 SQL) 則需要包含伺服器位址、使用者名稱和密碼等組態的連線。  這些連線的組態詳細資料也會加密並安全地儲存。  連線會無法 tooaccess hello 服務只要 hello 服務允許。  Azure Active Directory OAuth 連線 （例如 Office 365 和 Dynamics） 我們可以無限期繼續 toorefresh hello 存取權杖。  其他服務則可能會限制權杖的使用時限，在此時限內，完全不需要重新整理權杖。  一般來說，某些動作 (例如變更密碼) 會導致所有存取權杖失效。  
+大部分連接器都必須先設定「連線」  然後才可供使用。  「連線」  是用來存取連接器所需的任何登入或連接組態。  對於使用 OAuth 的連接器，建立連線表示登入服務 (例如 Office 365、Salesforce 或 GitHub)，而您的存取權杖可加密並安全地儲存在 Azure 的密碼存放區。  其他連接器 (例如 FTP 和 SQL) 則需要包含伺服器位址、使用者名稱和密碼等組態的連線。  這些連線的組態詳細資料也會加密並安全地儲存。  只要在服務所允許的時間內，連線均可存取服務。  針對 Azure Active Directory OAuth 連線 (例如 Office 365 和 Dynamics)，我們可以無限期地不斷重新整理存取權杖。  其他服務則可能會限制權杖的使用時限，在此時限內，完全不需要重新整理權杖。  一般來說，某些動作 (例如變更密碼) 會導致所有存取權杖失效。  
 
-按一下 [瀏覽]，然後選取 [API 連線]，即可在 Azure 中檢視和管理連線。  從 hello API 連接資源，您可以檢視、 編輯、 更新或重新授權已建立的任何連線。
+按一下 [瀏覽]，然後選取 [API 連線]，即可在 Azure 中檢視和管理連線。  在 API 連線資源中，您可以檢視、編輯、更新或重新授權任何已建立的連線。
 
 ## <a name="next-steps"></a>後續步驟
 * [建立第一個邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)

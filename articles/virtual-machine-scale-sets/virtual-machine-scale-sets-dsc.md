@@ -1,6 +1,6 @@
 ---
-title: "aaaUsing 預期狀態設定與虛擬機器擴展集 |Microsoft 文件"
-description: "Hello Azure DSC 延伸模組搭配使用虛擬機器規模集"
+title: "搭配虛擬機器擴展集使用期望狀態組態 | Microsoft Docs"
+description: "搭配 Azure DSC 擴充功能使用虛擬機器擴展集"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: zjalexander
@@ -16,17 +16,17 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: na
 ms.date: 04/05/2017
 ms.author: zachal
-ms.openlocfilehash: a35f1ca6700aa4889978032aa512882db50d6573
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b61b0acf3072569ab733a13defb465c921d26187
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="using-virtual-machine-scale-sets-with-hello-azure-dsc-extension"></a>Hello Azure DSC 延伸模組搭配使用虛擬機器規模集
-[虛擬機器擴展集](virtual-machine-scale-sets-overview.md)可以搭配 hello [Azure 預期狀態設定 (DSC)](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)延伸模組處理常式。 虛擬機器擴展集提供方式 toodeploy 管理大量的虛擬機器，並可以彈性地及相應放大回應 tooload 中。 讓它們執行 hello 生產軟體進入線上時，DSC 會為使用的 tooconfigure hello Vm。
+# <a name="using-virtual-machine-scale-sets-with-the-azure-dsc-extension"></a>搭配 Azure DSC 擴充功能使用虛擬機器擴展集
+[虛擬機器擴展集](virtual-machine-scale-sets-overview.md)可以搭配 [Azure 期望狀態設定 (DSC)](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) 擴充功能處理常式來使用。 虛擬機器擴展集提供一個部署及管理大量虛擬機器的方式，可以因應負載情況來彈性地相應縮小和放大。 當 VM 上線時，可使用 DSC 來設定它們，因為它們正在執行生產環境的軟體。
 
-## <a name="differences-between-deploying-toovirtual-machines-and-virtual-machine-scale-sets"></a>部署 tooVirtual 機器和虛擬機器擴展集之間的差異
-虛擬機器擴展集 hello 基礎範本結構會稍有不同的單一 VM。 具體而言，單一 VM 將部署 hello"virtualMachines 」 節點下的延伸模組。 沒有型別"extensions"的項目 DSC 加入 toohello 範本
+## <a name="differences-between-deploying-to-virtual-machines-and-virtual-machine-scale-sets"></a>部署至虛擬機器與部署至虛擬機器擴展集之間的差異
+適用於虛擬機器擴展集的基礎範本結構與單一 VM 有些微不同。 具體來說，單一 VM 會在 "virtualMachines" 節點下部署擴充功能。 有一個類型為 "extensions" 且已將 DSC 加入範本的項目
 
 ```
 "resources": [
@@ -65,7 +65,7 @@ ms.lasthandoff: 10/06/2017
       ]
 ```
 
-虛擬機器規模集節點有一個 「 屬性 」 區段以 hello"VirtualMachineProfile"，"extensionProfile"屬性。 已將 DSC 加入至 "extensions" 下方
+虛擬機器擴展集節點具有 "properties" 區段以及 "VirtualMachineProfile"、"extensionProfile" 屬性。 已將 DSC 加入至 "extensions" 下方
 
 ```
 "extensionProfile": {
@@ -97,14 +97,14 @@ ms.lasthandoff: 10/06/2017
 ```
 
 ## <a name="behavior-for-a-virtual-machine-scale-set"></a>虛擬機器擴展集的行為
-虛擬機器規模集的 hello 行為是單一 VM 的相同 toohello 行為。 建立新的 VM 時，它會自動佈建以 hello DSC 延伸模組。 如果較新版的 hello hello 延伸模組所不需要 WMF，hello VM 重新開機才能回到線上。 一旦它在線上時，它會下載 hello DSC 組態.zip，並在 hello VM 上進行佈建。 更多詳細資料位於[hello Azure DSC 延伸模組概觀](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+虛擬機器擴展集的行為與單一 VM 的行為完全相同。 建立新的 VM 時，會使用 DSC 擴充功能自動進行佈建。 如果擴充功能需要較新版本的 WMF，VM 會在上線之前重新開機。 一旦上線之後，它就會下載 DSC 組態 .zip，並在 VM 上佈建它。 您可以在 [Azure DSC 擴充功能概觀](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)中找到更多詳細資料。
 
 ## <a name="next-steps"></a>後續步驟
-檢查 hello [hello DSC 延伸模組的 Azure Resource Manager 範本](../virtual-machines/windows/extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+查看 [適用於 DSC 擴充功能的 Azure Resource Manager 範本](../virtual-machines/windows/extensions-dsc-template.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-深入了解如何 hello [DSC 延伸模組安全地處理認證](../virtual-machines/windows/extensions-dsc-credentials.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
+了解 [DSC 擴充功能如何安全地處理認證](../virtual-machines/windows/extensions-dsc-credentials.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
 
-如需有關 hello Azure DSC 延伸模組處理常式的詳細資訊，請參閱[簡介 toohello Azure Desired State Configuration 延伸模組處理常式](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
+如需有關 Azure DSC 擴充功能處理常式的詳細資訊，請參閱 [Azure 期望狀態組態擴充功能處理常式簡介](../virtual-machines/windows/extensions-dsc-overview.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。 
 
-如需有關 PowerShell DSC[造訪 hello PowerShell 文件中心](https://msdn.microsoft.com/powershell/dsc/overview)。 
+如需有關 PowerShell DSC 的詳細資訊，請 [瀏覽 PowerShell 文件中心](https://msdn.microsoft.com/powershell/dsc/overview)。 
 

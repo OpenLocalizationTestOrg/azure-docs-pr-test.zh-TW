@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure 媒體服務串流端點概觀 |Microsoft 文件"
+title: "Azure 媒體服務串流端點概觀 | Microsoft Docs"
 description: "本主題提供 Azure 媒體服務串流端點的概觀。"
 services: media-services
 documentationcenter: 
@@ -15,48 +15,48 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: juliako
-ms.openlocfilehash: f27f590175dcc945d1d3299fc0cae5a68cfbf4e9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e454778c558b9c17c47ad9eb651737aa0b5e2605
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="streaming-endpoints-overview"></a>串流端點概觀 
 
 ##<a name="overview"></a>概觀
 
-在 「 Microsoft Azure 媒體服務 」 (AMS)**串流端點**表示串流服務，以便可以將內容直接 tooa 用戶端播放器應用程式或 tooa 內容傳遞網路 (CDN) 進行進一步的發佈。 媒體服務也提供順暢的 Azure CDN 整合。 hello StreamingEndpoint 服務的輸出資料流可以是資產的即時資料流、 隨選，或您，Media Services 帳戶中的漸進式下載的視訊。 每個「Azure 媒體服務」帳戶皆包含一個預設的 StreamingEndpoint。 Hello 帳戶下，可以建立其他的 Streamingendpoint。 StreamingEndpoint 有 1.0 和 2.0 兩個版本。 從 2017 年 1 月 10 日開始，所有新建立的 AMS 帳戶都會包含 2.0 版**預設** StreamingEndpoint。 其他串流端點，您將加入 toothis 帳戶也會是 2.0 版。 這項變更不會影響現有帳戶 hello;現有的 Streamingendpoint 將 1.0 版，而且可以升級的 tooversion 2.0。 透過這項變更會有行為、 帳單和功能的變更 (如需詳細資訊，請參閱 hello**資料流型別和版本**章節詳述如下)。
+在「Microsoft Azure 媒體服務」(AMS) 中，**串流端點**代表可以直接將內容傳遞給用戶端播放程式應用程式，或傳遞給「內容傳遞網路」(CDN) 以進行進一步散發的串流服務。 媒體服務也提供順暢的 Azure CDN 整合。 來自 StreamingEndpoint 服務的輸出資料流可以是即時資料流、隨選視訊，也可以是媒體服務帳戶中漸進式的資產下載。 每個「Azure 媒體服務」帳戶皆包含一個預設的 StreamingEndpoint。 您可以在該帳戶下建立額外的 StreamingEndpoint。 StreamingEndpoint 有 1.0 和 2.0 兩個版本。 從 2017 年 1 月 10 日開始，所有新建立的 AMS 帳戶都會包含 2.0 版**預設** StreamingEndpoint。 您新增到此帳戶的額外串流端點也將會是 2.0 版。 這項變更不會影響現有的帳戶，現有的 StreamingEndpoint 會是 1.0 版並可升級到 2.0 版。 隨著這項變更，將會有行為、計費及功能變更 (如需詳細資訊，請參閱下列**串流類型和版本**一節)。
 
-此外，從 Azure Media Services 開始 hello 2.15 版本 （2017 年 1 月發行），加入下列屬性 toohello 串流端點實體的 hello: **CdnProvider**， **CdnProfile**， **FreeTrialEndTime**， **StreamingEndpointVersion**。 如需這些屬性的詳細概觀，請參閱[這裡](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint)。 
+此外，從 2.15 版開始 (2017 年 1 月發行)，Azure 媒體服務將下列屬性新增至串流端點實體︰**CdnProvider**、**CdnProfile**、**FreeTrialEndTime**、**StreamingEndpointVersion**。 如需這些屬性的詳細概觀，請參閱[這裡](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint)。 
 
-當您建立 Azure Media Services 帳戶預設值為您建立標準的資料流端點中 hello**已停止**狀態。 您無法刪除 hello 預設串流端點。 Hello Azure CDN 可用性 hello 目標區域中，根據預設，新建立的預設串流端點也包含 「 StandardVerizon"CDN 提供者整合。 
+當您建立 Azure 媒體服務帳戶時，系統會為您建立預設標準串流端點 (處於**已停止**狀態)。 您無法刪除預設串流端點。 根據目標區域中的 Azure CDN 可用性而定，依預設，新建立的預設串流端點也包含 "StandardVerizon" CDN 提供者整合。 
 
 >[!NOTE]
->Azure CDN 整合可啟動串流端點的 hello 之前停用。
+>啟動串流端點之前可以停用 Azure CDN 整合。
 
-本主題提供 hello 串流端點所提供的主要功能的概觀。
+本主題簡化串流端點提供的主要功能。
 
 ## <a name="streaming-types-and-versions"></a>串流類型和版本
 
 ### <a name="standardpremium-types-version-20"></a>標準/進階類型 (2.0 版)
 
-從媒體服務的 hello 2017 年 1 月版本開始，您有兩種串流類型：**標準**和**Premium**。 這些類型是"2.0"hello 串流端點版本的一部分。
+從媒體服務的 2017 年 1 月版本開始，您有兩種串流類型︰**標準**和**進階**。 這些類型是串流端點 "2.0" 版的一部分。
 
 類型|說明
 ---|---
-**標準**|這是可行的 hello 大多數的 hello 案例的 hello 預設選項。<br/>使用此選項時，取得/有限 SLA，啟動之後的前 15 天 hello 串流端點是免費的。<br/>如果您建立一個以上的串流端點，只 hello 先其中一個是免費 hello 第 15 天，只要啟動它們會計費的其他人的 hello。 <br/>請注意，免費試用版僅適用於 toonewly 建立媒體服務帳戶和預設串流端點。 現有的資料流端點，此外建立串流端點不包含免費試用期間，即使它們是升級 tooversion 2.0 或 2.0 版會建立。
+**標準**|這是適用於大部分情況的預設選項。<br/>此選項可讓您取得固定/有限 SLA，在啟動串流端點之後，前 15 天免費。<br/>如果您建立多個串流端點，前 15 天只有第一個是免費，其他則一啟動就開始計費。 <br/>請注意，免費試用版僅適用於新建立的媒體服務帳戶和預設串流端點。 現有的串流端點和額外建立的串流端點即使升級至 2.0 版，或建立為 2.0 版，也不含免費試用期。
 **高級**|這個選項適用於需要更大規模或控制的專業案例。<br/>以購買的進階串流單位 (SU) 容量為基礎的變動 SLA，專用的串流端點位於隔離的環境，不會競用資源。
 
-如需詳細資訊，請參閱 hello**比較資料流類型**之後 > 一節。
+如需詳細資訊，請參閱下列**比較串流類型**一節。
 
 ### <a name="classic-type-version-10"></a>傳統類型 (1.0 版)
 
-如果先前 toohello 年 1 月 10 2017年發行建立 AMS 帳戶的使用者，您有**傳統**串流端點的型別。 此類型是 hello 串流端點版本 「 1.0 」 的一部分。
+對於在 2017 年 1 月 10 日之前建立 AMS 帳戶的使用者，您具有**傳統**類型的串流端點。 這個類型是串流端點 "1.0" 版的一部分。
 
-如果您**「 1.0 」 版**串流端點已經 > = 1 的進階串流單位 (SU)，它將進階串流端點，且會提供所有 AMS 功能 (如同 hello**標準/優質**類型)而不需要任何額外的設定步驟。
+如果您的 **"1.0" 版**串流端點有 >= 1 個進階串流單位 (SU)，則會是進階串流端點，且提供所有 AMS 功能 (就像**標準/進階**類型)，不需要任何額外的設定步驟。
 
 >[!NOTE]
->**傳統**串流端點 ("1.0" 版和 0 SU) 提供有限的功能，且不包含 SLA。 建議 toomigrate 太**標準**輸入的 tooget 更好的體驗和 toouse 功能，例如動態封裝或加密與其他功能隨附的 hello**標準**型別。 toomigrate toohello**標準**輸入，請移 toohello [Azure 入口網站](https://portal.azure.com/)選取**opt-in tooStandard**。 如需有關移轉的詳細資訊，請參閱 hello[移轉](#migration-between-types)> 一節。
+>**傳統**串流端點 ("1.0" 版和 0 SU) 提供有限的功能，且不包含 SLA。 建議移轉至**標準**類型，以獲得更好的體驗和使用動態封裝或加密等功能，以及**標準**類型隨附的其他功能。 若要移轉至**標準**類型，請移至 [Azure 入口網站](https://portal.azure.com/)，然後選取 [選擇標準]。 如需移轉的詳細資訊，請參閱[移轉文件](#migration-between-types)一節。
 >
 >請注意，這項作業無法回復，而且會影響價格。
 >
@@ -77,32 +77,32 @@ ms.lasthandoff: 10/06/2017
 功能|標準|高級
 ---|---|---
 前 15 天免費| 是 |否
-Throughput |向上 too600 Mbps 時不會使用 Azure CDN。 隨著 CDN 調整。|每個串流單位 (SU) 200 Mbps。 隨著 CDN 調整。
+輸送量 |未使用 Azure CDN 時最多 600 Mbps。 隨著 CDN 調整。|每個串流單位 (SU) 200 Mbps。 隨著 CDN 調整。
 SLA | 99.9|99.9 (每個 SU 200 Mbps)。
 CDN|Azure CDN、協力廠商 CDN 或沒有 CDN。|Azure CDN、協力廠商 CDN 或沒有 CDN。
 按比例計費| 每日|每日
 動態加密|是|是
 動態封裝|是|是
-調整|自動依據 toohello 目標輸送量。|其他串流單位
+調整|自動相應增加至目標輸送量。|其他串流單位
 IP 篩選/G20/自訂主機|是|是
 漸進式下載|是|是
-建議用法 |Hello 大部分的資料流案例的建議使用。|專業用法。<br/>如果認為您的需求已超過「標準」。 如果您預期有 50,000 位以上的觀眾同時觀看，請連絡我們 (amsstreaming at microsoft.com)。
+建議用法 |建議用於絕大多數的串流案例。|專業用法。<br/>如果認為您的需求已超過「標準」。 如果您預期有 50,000 位以上的觀眾同時觀看，請連絡我們 (amsstreaming at microsoft.com)。
 
 
 ## <a name="migration-between-types"></a>在類型之間移轉
 
-從 | 太| 動作
+從 | 收件人 | 動作
 ---|---|---
-傳統|標準|需要 tooopt 中
+傳統|標準|需要選擇加入
 傳統|高級| 調整 (其他串流單位)
-標準/高階|傳統|無法使用 (如果串流端點版本為 1.0。 它允許設定 scaleunits toochange tooclassic 太"0 的")
-標準 (含/不含 CDN)|Premium hello 與相同的組態|允許在 hello**啟動**狀態。 (透過 Azure 入口網站)
-進階 (含/不含 CDN)|標準 hello 與相同的組態|允許在 hello**啟動**狀態 （透過 Azure 入口網站）
-標準 (含/不含 CDN)|進階搭配不同的設定|允許在 hello**停止**狀態 （透過 Azure 入口網站）。 不允許在執行中狀態的 hello。
-進階 (含/不含 CDN)|標準搭配不同的設定|允許在 hello**停止**狀態 （透過 Azure 入口網站）。 不允許在執行中狀態的 hello。
-1.0 版，SU >= 1，含 CDN|標準/進階，不含 CDN|允許在 hello**停止**狀態。 不允許在 hello**啟動**狀態。
-1.0 版，SU >= 1，含 CDN|標準，含/不含 CDN|允許在 hello**停止**狀態。 不允許在 hello**啟動**狀態。 將會刪除 1.0 版 CDN 並建立和啟動新的 CDN。
-1.0 版，SU >= 1，含 CDN|進階，含/不含 CDN|允許在 hello**停止**狀態。 不允許在 hello**啟動**狀態。 將會刪除傳統 CDN 並建立和啟動新的 CDN。
+標準/高階|傳統|無法使用 (如果串流端點版本為 1.0。 允許變更為傳統並將 scaleunits 設為 "0")
+標準 (含/不含 CDN)|進階搭配相同的設定|在**已啟動**狀態下允許。 (透過 Azure 入口網站)
+進階 (含/不含 CDN)|標準搭配相同的設定|在**已啟動**狀態下允許 (透過 Azure 入口網站)
+標準 (含/不含 CDN)|進階搭配不同的設定|在**已停止**狀態下允許 (透過 Azure 入口網站)。 在執行中狀態下不允許。
+進階 (含/不含 CDN)|標準搭配不同的設定|在**已停止**狀態下允許 (透過 Azure 入口網站)。 在執行中狀態下不允許。
+1.0 版，SU >= 1，含 CDN|標準/進階，不含 CDN|在**已停止**狀態下允許。 在**已啟動**狀態下不允許。
+1.0 版，SU >= 1，含 CDN|標準，含/不含 CDN|在**已停止**狀態下允許。 在**已啟動**狀態下不允許。 將會刪除 1.0 版 CDN 並建立和啟動新的 CDN。
+1.0 版，SU >= 1，含 CDN|進階，含/不含 CDN|在**已停止**狀態下允許。 在**已啟動**狀態下不允許。 將會刪除傳統 CDN 並建立和啟動新的 CDN。
 
 ## <a name="next-steps"></a>後續步驟
 檢閱媒體服務學習路徑。

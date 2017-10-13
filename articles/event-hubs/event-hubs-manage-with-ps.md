@@ -1,6 +1,6 @@
 ---
-title: "aaaUse PowerShell toomanage Azure 事件中樞資源 |Microsoft 文件"
-description: "使用 PowerShell 模組 toocreate 和管理事件中心"
+title: "使用 PowerShell 來管理 Azure 事件中樞資源 | Microsoft Docs"
+description: "使用 PowerShell 模組來建立和管理事件中樞"
 services: event-hubs
 documentationcenter: .NET
 author: sethmanheim
@@ -14,72 +14,72 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: d79cb307c2b4a031d059ce6ca67117ffc0b4600b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2b49c01153b1104612e6ebf9c88566fc40d1f635
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="use-powershell-toomanage-event-hubs-resources"></a>使用 PowerShell toomanage 事件中心的資源
+# <a name="use-powershell-to-manage-event-hubs-resources"></a>使用 PowerShell 來管理事件中樞資源
 
-Microsoft Azure PowerShell 是指令碼環境，您可以使用 toocontrol 並自動化 hello 部署和管理 Azure 服務。 本文說明如何 toouse hello[事件中樞資源管理員 PowerShell 模組](/powershell/module/azurerm.eventhub)tooprovision 和管理事件中心的實體 （命名空間，個別的事件中樞取用者群組） 使用本機的 Azure PowerShell 主控台或指令碼。
+Microsoft Azure PowerShell 是一種指令碼環境，可讓您用來控制及自動化 Azure 服務的部署和管理。 本文說明如何使用本機 Azure PowerShell 主控台或指令碼，運用[事件中樞 Resource Manager PowerShell 模組](/powershell/module/azurerm.eventhub)來佈建和管理事件中樞實體 (命名空間、個別事件中樞和取用者群組)。
 
-您也可以使用 Azure Resource Manager 範本來管理事件中樞資源。 如需詳細資訊，請參閱 hello 文章[建立事件中樞命名空間與使用 Azure Resource Manager 範本事件中樞與取用者群組](event-hubs-resource-manager-namespace-event-hub.md)。
+您也可以使用 Azure Resource Manager 範本來管理事件中樞資源。 如需詳細資訊，請參閱[使用 Azure Resource Manager 範本建立事件中樞命名空間與事件中樞和取用者群組](event-hubs-resource-manager-namespace-event-hub.md)文章。
 
 ## <a name="prerequisites"></a>必要條件
 
-開始之前，您必須先 hello 下列：
+在開始之前，您將需要下列項目：
 
 * Azure 訂用帳戶。 如需取得訂用帳戶的詳細資訊，請參閱[購買選項][purchase options]、[成員優惠][member offers]或[免費帳戶][free account]。
 * 具備 Azure PowerShell 的電腦。 如需指示，請參閱[開始使用 Azure PowerShell Cmdlet](/powershell/azure/get-started-azureps)。
-* PowerShell 指令碼及 NuGet 套件 hello.NET Framework 的基本認識。
+* 大致了解 PowerShell 指令碼、NuGet 封裝和 .NET Framework。
 
 ## <a name="get-started"></a>開始使用
 
-hello 第一個步驟是 toouse PowerShell toolog 中 tooyour Azure 帳戶和 Azure 訂用帳戶。 請依照下列中的 hello 指示[開始使用 Azure PowerShell cmdlet](/powershell/azure/get-started-azureps) toolog 中 tooyour Azure 帳戶，然後擷取並存取您的 Azure 訂用帳戶中的 hello 資源。
+第一個步驟是使用 PowerShell 來登入 Azure 帳戶和 Azure 訂用帳戶。 遵循[開始使用 Azure PowerShell Cmdlet](/powershell/azure/get-started-azureps) 中的指示登入您的 Azure 帳戶，然後擷取及存取 Azure 訂用帳戶中的資源。
 
 ## <a name="provision-an-event-hubs-namespace"></a>佈建事件中樞命名空間
 
-當使用事件中樞命名空間，您可以使用 hello [Get AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/get-azurermeventhubnamespace)，[新增 AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/new-azurermeventhubnamespace)，[移除 AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/remove-azurermeventhubnamespace)與[組 AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/set-azurermeventhubnamespace) cmdlet。
+使用事件中樞命名空間時，您可以使用 [Get-AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/get-azurermeventhubnamespace)、[New-AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/new-azurermeventhubnamespace)、[Remove-AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/remove-azurermeventhubnamespace) 和 [Set-AzureRmEventHubNamespace](/powershell/module/azurerm.eventhub/set-azurermeventhubnamespace) Cmdlet。
 
-此範例會建立一些區域變數中 hello 指令碼。`$Namespace`和`$Location`。
+這個範例會在指令碼中建立幾個區域變數：`$Namespace` 和 `$Location`。
 
-* `$Namespace`這是 hello 我們想 toowork hello 事件中樞命名空間名稱。
-* `$Location`識別 hello 資料中心中的我們將會佈建 hello 命名空間。
-* `$CurrentNamespace`儲存 hello 參考命名空間中，我們擷取 （或建立）。
+* `$Namespace` 為我們想要使用之事件中樞命名空間的名稱。
+* `$Location` 會識別我們將在其中佈建命名空間的資料中心。
+* `$CurrentNamespace` 會儲存我們擷取 (或建立) 的參考命名空間。
 
 在實際的指令碼中，`$Namespace` 和 `$Location` 可以參數的方式傳遞。
 
-Hello 指令碼的這個部分未 hello 遵循：
+這部分的指令碼會執行下列作業：
 
-1. 嘗試 tooretrieve hello 的事件中樞命名空間指定的名稱。
-2. 如果找到 hello 命名空間，它會報告找到的項目。
-3. 如果找不到 hello 命名空間，它會建立 hello 命名空間，並接著會擷取新建立的命名空間的 hello。
+1. 嘗試擷取具有指定名稱的事件中樞命名空間。
+2. 如果找到命名空間，它會回報找到的項目。
+3. 如果找不到命名空間，它會建立命名空間，然後擷取新建立的命名空間。
 
     ```powershell
-    # Query toosee if hello namespace currently exists
+    # Query to see if the namespace currently exists
     $CurrentNamespace = Get-AzureRMEventHubNamespace -ResourceGroupName $ResGrpName -NamespaceName $Namespace
    
-    # Check if hello namespace already exists or needs toobe created
+    # Check if the namespace already exists or needs to be created
     if ($CurrentNamespace)
     {
-        Write-Host "hello namespace $Namespace already exists in hello $Location region:"
+        Write-Host "The namespace $Namespace already exists in the $Location region:"
         # Report what was found
         Get-AzureRMEventHubNamespace -ResourceGroupName $ResGrpName -NamespaceName $Namespace
     }
     else
     {
-        Write-Host "hello $Namespace namespace does not exist."
-        Write-Host "Creating hello $Namespace namespace in hello $Location region..."
+        Write-Host "The $Namespace namespace does not exist."
+        Write-Host "Creating the $Namespace namespace in the $Location region..."
         New-AzureRmEventHubNamespace -ResourceGroupName $ResGrpName -NamespaceName $Namespace -Location $Location
         $CurrentNamespace = Get-AzureRMEventHubNamespace -ResourceGroupName $ResGrpName -NamespaceName $Namespace
-        Write-Host "hello $Namespace namespace in Resource Group $ResGrpName in hello $Location region has been successfully created."
+        Write-Host "The $Namespace namespace in Resource Group $ResGrpName in the $Location region has been successfully created."
     }
     ```
 
 ## <a name="create-an-event-hub"></a>建立事件中心
 
-toocreate 事件中心，執行使用 hello 前一節中的 hello 指令碼命名空間檢查。 然後，使用 hello[新增 AzureRmEventHub](/powershell/module/azurerm.eventhub/new-azurermeventhub) cmdlet toocreate hello 事件中心：
+若要建立事件中樞，請使用上一節中的指令碼來執行命名空間檢查。 然後使用 [New-AzureRmEventHub](/powershell/module/azurerm.eventhub/new-azurermeventhub) Cmdlet，以建立事件中樞：
 
 ```powershell
 # Check if event hub already exists
@@ -87,23 +87,23 @@ $CurrentEH = Get-AzureRMEventHub -ResourceGroupName $ResGrpName -NamespaceName $
 
 if($CurrentEH)
 {
-    Write-Host "hello event hub $EventHubName already exists in hello $Location region:"
+    Write-Host "The event hub $EventHubName already exists in the $Location region:"
     # Report what was found
     Get-AzureRmEventHub -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName
 }
 else
 {
-    Write-Host "hello $EventHubName event hub does not exist."
-    Write-Host "Creating hello $EventHubName event hub in hello $Location region..."
+    Write-Host "The $EventHubName event hub does not exist."
+    Write-Host "Creating the $EventHubName event hub in the $Location region..."
     New-AzureRmEventHub -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName -Location $Location -MessageRetentionInDays 3
     $CurrentEH = Get-AzureRmEventHub -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName
-    Write-Host "hello $EventHubName event hub in Resource Group $ResGrpName in hello $Location region has been successfully created."
+    Write-Host "The $EventHubName event hub in Resource Group $ResGrpName in the $Location region has been successfully created."
 }
 ```
 
 ### <a name="create-a-consumer-group"></a>建立取用者群組
 
-toocreate 取用者群組內的事件中心執行 hello 命名空間和事件中樞檢查 hello 前一節中使用 hello 指令碼。 然後，使用 hello[新增 AzureRmEventHubConsumerGroup](/powershell/module/azurerm.eventhub/new-azurermeventhubconsumergroup) cmdlet toocreate hello hello 事件中心內的取用者群組。 例如：
+若要在事件中樞內建立取用者群組，請使用上一節中的指令碼來執行命名空間和事件中樞檢查。 然後使用 [New-AzureRmEventHubConsumerGroup](/powershell/module/azurerm.eventhub/new-azurermeventhubconsumergroup) Cmdlet，以在事件中樞內建立取用者群組。 例如：
 
 ```powershell
 # Check if consumer group already exists
@@ -111,27 +111,27 @@ $CurrentCG = Get-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -Na
 
 if($CurrentCG)
 {
-    Write-Host "hello consumer group $ConsumerGroupName in event hub $EventHubName already exists in hello $Location region:"
+    Write-Host "The consumer group $ConsumerGroupName in event hub $EventHubName already exists in the $Location region:"
     # Report what was found
     Get-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName
 }
 else
 {
-    Write-Host "hello $ConsumerGroupName consumer group does not exist."
-    Write-Host "Creating hello $ConsumerGroupName consumer group in hello $Location region..."
+    Write-Host "The $ConsumerGroupName consumer group does not exist."
+    Write-Host "Creating the $ConsumerGroupName consumer group in the $Location region..."
     New-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName -ConsumerGroupName $ConsumerGroupName
     $CurrentCG = Get-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName
-    Write-Host "hello $ConsumerGroupName consumer group in event hub $EventHubName in Resource Group $ResGrpName in hello $Location region has been successfully created."
+    Write-Host "The $ConsumerGroupName consumer group in event hub $EventHubName in Resource Group $ResGrpName in the $Location region has been successfully created."
 }
 ```
 
 #### <a name="set-user-metadata"></a>設定使用者中繼資料
 
-在執行之後 hello 指令碼 hello 前幾節中，您可以使用 hello[組 AzureRmEventHubConsumerGroup](/powershell/module/azurerm.eventhub/set-azurermeventhubconsumergroup) cmdlet tooupdate hello 屬性的取用者群組，如 hello 下列範例所示：
+執行先前各節中的指令碼之後，您可以使用 [Set-AzureRmEventHubConsumerGroup](/powershell/module/azurerm.eventhub/set-azurermeventhubconsumergroup) Cmdlet 來更新取用者群組的屬性，如下列範例所示︰
 
 ```powershell
-# Set some user metadata on hello CG
-Write-Host "Setting hello UserMetadata field too'Testing'"
+# Set some user metadata on the CG
+Write-Host "Setting the UserMetadata field to 'Testing'"
 Set-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName -ConsumerGroupName $ConsumerGroupName -UserMetadata "Testing"
 # Show result
 Get-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -NamespaceName $Namespace -EventHubName $EventHubName -ConsumerGroupName $ConsumerGroupName
@@ -139,7 +139,7 @@ Get-AzureRmEventHubConsumerGroup -ResourceGroupName $ResGrpName -NamespaceName $
 
 ## <a name="remove-event-hub"></a>移除事件中樞
 
-您建立 tooremove hello 事件中心，您可以使用 hello `Remove-*` cmdlet，如 hello 下列範例所示：
+若要移除您所建立的事件中樞，可以使用 `Remove-*` Cmdlet，如下列範例所示︰
 
 ```powershell
 # Clean up
@@ -150,8 +150,8 @@ Remove-AzureRmEventHubNamespace -ResourceGroupName $ResGrpName -NamespaceName $N
 
 ## <a name="next-steps"></a>後續步驟
 
-- 請參閱 hello 完整事件中樞資源管理員 PowerShell 模組的文件[這裡](/powershell/module/azurerm.eventhub)。 此頁面會列出所有可用的 Cmdlet。
-- 如需使用 Azure Resource Manager 範本資訊，請參閱 hello 文章[建立事件中樞命名空間與使用 Azure Resource Manager 範本事件中樞與取用者群組](event-hubs-resource-manager-namespace-event-hub.md)。
+- 請在[這裡](/powershell/module/azurerm.eventhub)參閱完整的事件中樞 Resource Manager PowerShell 模組文件。 此頁面會列出所有可用的 Cmdlet。
+- 如需使用 Azure Resource Manager 範本的相關資訊，請參閱[使用 Azure Resource Manager 範本建立事件中樞命名空間與事件中樞和取用者群組](event-hubs-resource-manager-namespace-event-hub.md)文章。
 - [事件中樞 .NET 管理程式庫](event-hubs-management-libraries.md)的相關資訊。
 
 [purchase options]: http://azure.microsoft.com/pricing/purchase-options/

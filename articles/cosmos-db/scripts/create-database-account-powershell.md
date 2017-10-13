@@ -1,5 +1,5 @@
 ---
-title: "PowerShell 指令碼建立 Azure Cosmos DB DocumentDB API 帳戶 aaaAzure |Microsoft 文件"
+title: "Azure PowerShell 指令碼：建立 Azure Cosmos DB DocumentDB API 帳戶 | Microsoft Docs"
 description: "Azure PowerShell 指令碼範例：建立 Azure Cosmos DB DocumentDB API 帳戶"
 services: cosmos-db
 documentationcenter: cosmosdb
@@ -16,11 +16,11 @@ ms.tgt_pltfrm: cosmosdb
 ms.workload: database
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: f0751faeca3c1de5906b675e736c58f3d5beaea9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9b54236ce3446fe1c6a2a30b31f6d91ad43a92d5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-cosmos-db-create-a-documentdb-api-account-using-powershell"></a>Azure Cosmos DB：使用 PowerShell 建立 DocumentDB API 帳戶
 
@@ -30,11 +30,11 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="sample-script"></a>範例指令碼
 
-[!code-powershell[main](../../../powershell_scripts/cosmosdb/create-and-configure-database/create-and-configure-database.ps1?highlight=9,12-15,18,21-23,26-29,32-37 "Create an Azure Cosmos DB account")]
+[!code-powershell[主要](../../../powershell_scripts/cosmosdb/create-and-configure-database/create-and-configure-database.ps1?highlight=9,12-15,18,21-23,26-29,32-37 "建立 Azure Cosmos DB 帳戶")]
 
 ## <a name="clean-up-deployment"></a>清除部署
 
-Hello 指令碼範例執行後，下列命令的 hello 可以使用的 tooremove hello 資源群組和與其相關聯的所有資源。
+在執行過指令碼範例之後，您可以使用下列命令來移除資源群組和所有與其相關聯的資源。
 
 ```powershell
 Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
@@ -42,7 +42,7 @@ Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
 
 ## <a name="script-explanation"></a>指令碼說明
 
-此指令碼會使用下列命令的 hello。 Hello 資料表連結 toocommand 特定文件中的每個命令。
+此指令碼會使用下列命令。 下表中的每個命令都會連結至命令特定的文件。
 
 | 命令 | 注意事項 |
 |---|---|
@@ -53,6 +53,6 @@ Remove-AzureRmResourceGroup -ResourceGroupName "myResourceGroup"
 
 ## <a name="next-steps"></a>後續步驟
 
-如需有關 hello Azure PowerShell 的詳細資訊，請參閱[Azure PowerShell 文件](https://docs.microsoft.com/powershell/)。
+如需有關 Azure PowerShell 的詳細資訊，請參閱 [Azure PowerShell 文件](https://docs.microsoft.com/powershell/)。
 
-其他 Azure Cosmos DB PowerShell 指令碼範例可以在 hello [Azure Cosmos DB PowerShell 指令碼](../powershell-samples.md)。
+您可以在 [Azure Cosmos DB PowerShell 指令碼](../powershell-samples.md)中找到其他 Azure Cosmos DB PowerShell 指令碼範例。

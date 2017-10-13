@@ -1,6 +1,6 @@
 ---
-title: "Azure 部署的 aaaLink 範本 |Microsoft 文件"
-description: "描述如何 toouse 會連結中的 Azure Resource Manager 範本 toocreate 範本模組化的範本方案。 說明如何 toopass 參數值，指定參數檔案，並動態地被建立 Url。"
+title: "連結 Azure 部署的範本 | Microsoft Docs"
+description: "描述如何在「Azure 資源管理員」範本中使用連結的範本，以建立模組化範本方案。 示範如何傳遞參數值、指定參數檔案，以及動態建立 URL。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/31/2017
 ms.author: tomfitz
-ms.openlocfilehash: b935b1810db5ce894d009403cd4bb945cab34ba7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8b58a83ffd473500dd3f76c09e251f9208527d4f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="using-linked-templates-when-deploying-azure-resources"></a>部署 Azure 資源時使用連結的範本
-從在一個 Azure 資源管理員範本，您可以連結 tooanother 範本，可讓您 toodecompose 您部署至一組目標、 目的特定範本。 就像將應用程式分解為數個程式碼類別，分解有利於測試、重複使用和可讀性。  
+您可以從某個 Azure Resource Manager 範本連結到另一個範本，這樣可讓您將部署分解成一組具有目標與特定目的的範本。 就像將應用程式分解為數個程式碼類別，分解有利於測試、重複使用和可讀性。  
 
-您可以從主要範本 tooa 連結的範本，傳遞參數，這些參數可以直接對應 tooparameters 或 hello 呼叫範本所公開的變數。 hello 連結的範本也可以傳遞的輸出變數後 toohello 來源範本，請啟用雙向資料之間交換的範本。
+您可以從主要範本傳遞參數到連結的範本，且那些參數可以直接對應到由發出呼叫之範本所公開的參數或變數。 連結的範本也可以將輸出變數傳遞回來源範本，讓範本之間可進行雙向資料交換。
 
-## <a name="linking-tooa-template"></a>連結 tooa 範本
-您建立兩個範本加入該點 toohello 連結的範本內 hello 主要範本部署資源之間的連結。 設定 hello **templateLink**屬性 toohello hello 連結範本的 URI。 直接在您的範本或參數檔案中，您可以提供參數值為 hello 連結的範本。 hello 下列範例會使用 hello**參數**屬性 toospecify 直接的參數值。
+## <a name="linking-to-a-template"></a>連結至範本
+您可以透過在主要範本中新增指向連結的範本之部署資源，以在兩個範本之間建立連結。 將 **templateLink** 屬性設為連結的範本之 URI。 您可以直接在範本或參數檔中為連結的範本提供參數值。 以下範例會使用 **parameters** 屬性直接指定參數值。
 
 ```json
 "resources": [ 
@@ -48,13 +48,13 @@ ms.lasthandoff: 10/06/2017
 ] 
 ```
 
-如同其他資源類型，您可以設定 hello 連結的範本和其他資源之間的相依性。 因此，當其他資源需要從 hello 連結的範本輸出值，您可以確定 hello 連結的範本部署之前。 或者，您也可以在 hello 連結的範本會依賴其他資源，您可以確定之前 hello 連結的範本部署其他資源。 您可以從連結的範本中擷取值，以 hello，請使用下列語法：
+如同其他資源類型，您可以設定連結的範本和其他資源之間的相依性。 因此，當其他資源需要來自連結的範本的輸出值時，您就能夠確定已在資源需要之前部署連結的範本。 或者，當連結的範本仰賴其他資源時，您可以確定已在連結的範本之前先部署其他資源。 您可以使用下列語法，擷取連結的範本的值：
 
 ```json
 "[reference('linkedTemplate').outputs.exampleProperty.value]"
 ```
 
-hello 資源管理員服務必須能夠 tooaccess hello 連結的範本。 您無法指定本機檔案或只適用於 hello 連結的範本的區域網路的檔案。 您可以只提供 URI 值，其中包含 **http** 或 **https**。 其中一個選項是的 tooplace 您連結的範本，在儲存體帳戶，並使用該項目，例如 hello 下列範例所示為 hello URI:
+Azure Resource Manager 服務必須能夠存取連結的範本。 您無法為連結的範本指定本機檔案或只可在本機網路存取的檔案。 您可以只提供 URI 值，其中包含 **http** 或 **https**。 有一個選項是將連結的範本放在儲存體帳戶中，並將 URI 用於該項目，如下列範例所示：
 
 ```json
 "templateLink": {
@@ -63,9 +63,9 @@ hello 資源管理員服務必須能夠 tooaccess hello 連結的範本。 您�
 }
 ```
 
-雖然 hello 連結的範本必須可從外部使用，但它不需要 toobe 上市 toohello 公用。 您可以加入範本 tooa 私用儲存體帳戶可存取 tooonly hello 儲存體帳戶的擁有者。 然後，在部署期間建立的共用的存取簽章 (SAS) 權杖 tooenable 存取。 您加入 hello 連結的範本的 SAS 權杖 toohello URI。 如需在儲存體帳戶中設定範本並產生 SAS Token 的步驟，請參閱[使用 Resource Manager 範本與 Azure PowerShell 部署資源](resource-group-template-deploy.md)或 [Deploy resources with Resource Manager templates and Azure CLI (使用 Resource Manager 範本和 Azure CLI 部署資源)](resource-group-template-deploy-cli.md)。 
+雖然連結的範本必須可從外部存取，但它不必供大眾存取。 您可以將您的範本新增至只有儲存體帳戶擁有者可以存取的私人儲存體帳戶。 接著，在部署期間建立共用存取簽章 (SAS) Token 來啟用存取權。 您會將該 SAS Token 加入連結範本的 URI。 如需在儲存體帳戶中設定範本並產生 SAS Token 的步驟，請參閱[使用 Resource Manager 範本與 Azure PowerShell 部署資源](resource-group-template-deploy.md)或 [Deploy resources with Resource Manager templates and Azure CLI (使用 Resource Manager 範本和 Azure CLI 部署資源)](resource-group-template-deploy-cli.md)。 
 
-hello 下列範例會顯示該連結 tooanother 範本父範本。 當做參數傳入的 SAS 權杖來存取 hello 連結的範本。
+以下範例顯示連結到其他範本的父範本。 連結的範本是透過以參數傳遞的 SAS Token 來存取。
 
 ```json
 "parameters": {
@@ -87,14 +87,14 @@ hello 下列範例會顯示該連結 tooanother 範本父範本。 當做參數�
 ],
 ```
 
-即使傳入 hello 語彙基元為安全字串，hello hello 連結的範本，包括 hello SAS 權杖，URI 會記錄在 hello 部署作業。 toolimit 曝光設定 hello 權杖到期日。
+即使該 Token 是以安全字串來傳遞，連結範本的 URI (包括 SAS Token) 還是會記錄在部署作業中。 為了限制公開的程度，請為該 Token 設定到期日。
 
-Resource Manager 會以個別部署的方式來處理每一個連結的範本。 在 hello hello 資源群組的部署歷程記錄，您會看到個別的 hello 父系和巢狀的範本部署。
+Resource Manager 會以個別部署的方式來處理每一個連結的範本。 在資源群組的部署歷程記錄中，您會看到父項範本和巢狀範本的個別部署。
 
 ![部署歷程記錄](./media/resource-group-linked-templates/linked-deployment-history.png)
 
-## <a name="linking-tooa-parameter-file"></a>連結 tooa 參數檔案
-hello 下一個範例會使用 hello **parametersLink**屬性 toolink tooa 參數檔案。
+## <a name="linking-to-a-parameter-file"></a>連結到參數檔案
+下一個範例會使用 **parametersLink** 屬性連接至參數檔案。
 
 ```json
 "resources": [ 
@@ -117,12 +117,12 @@ hello 下一個範例會使用 hello **parametersLink**屬性 toolink tooa 參�
 ] 
 ```
 
-hello URI 值為 hello 連結的參數檔案不能是本機檔案，且必須包含**http**或**https**。 hello 參數檔案也可以限制的 tooaccess 透過 SAS 權杖。
+連結參數檔案的 URI 值不能是本機檔案，而且必須包含 **http** 或 **https**。 當然，也可以將參數檔案限制為透過 SAS Token 存取。
 
-## <a name="using-variables-toolink-templates"></a>使用變數 toolink 範本
-hello 前述範例會示範硬式編碼 hello 範本連結的 URL 值。 這種方法可能適用於簡單的範本，但不適合一組大型的模組化範本。 相反地，您可以建立靜態變數以存放 hello 主要範本的基底 URL，然後從該基底 URL 的連結 hello 範本以動態方式建立 Url。 hello 這個方法的優點是您可以輕鬆地移動或 「 分叉 」 hello 範本，因為您只需要在 hello 主要範本 toochange hello 靜態變數。 hello 主要範本會傳遞 hello 正確 hello 整個 Uri 分解範本。
+## <a name="using-variables-to-link-templates"></a>使用變數來連結範本
+先前的範例示範了範本連結的硬式編碼 URL 值。 這種方法可能適用於簡單的範本，但不適合一組大型的模組化範本。 不過，您可以建立一個儲存主要範本之基底 URL 的靜態變數，然後再從該基底 URL 連結動態建立連結的範本之 URL。 這個方法的好處是您可以輕鬆地移動範本或建立分支範本，因為您只需要變更主要範本中的靜態變數。 主要範本會於整個分解的範本傳遞正確的 URI。
 
-hello 下列範例示範如何 toouse 基底 URL toocreate 的兩個 Url 連結範本 (**sharedTemplateUrl**和**vmTemplate**)。 
+下列範例示範如何使用基底 URL 來為連結的範本 (**sharedTemplateUrl** 和 **vmTemplate**) 建立兩個 URL。 
 
 ```json
 "variables": {
@@ -132,7 +132,7 @@ hello 下列範例示範如何 toouse 基底 URL toocreate 的兩個 Url 連結�
 }
 ```
 
-您也可以使用[deployment()](resource-group-template-functions-deployment.md#deployment) tooget hello 基底 URL hello 目前的範本，然後將該 tooget hello URL 範本 hello 中相同的位置。 這個方法很有用，如果變更範本位置 (或許到期 tooversioning) 或您想 tooavoid 硬式編碼 hello 範本檔案中的 Url。 
+您也可以使用 [deployment()](resource-group-template-functions-deployment.md#deployment) 取得目前範本的基底 URL，用來取得相同位置中其他範本的 URL。 如果您的範本位置變更 (可能是版本不同所造成)，或您想要避免在範本檔案中使用硬式編碼 URL，這十分實用。 
 
 ```json
 "variables": {
@@ -141,9 +141,9 @@ hello 下列範例示範如何 toouse 基底 URL toocreate 的兩個 Url 連結�
 ```
 
 ## <a name="complete-example"></a>完整範例
-下列範例範本的 hello 顯示連結的範本 tooillustrate 的簡化的排列 hello 概念的數個本文章中。 它會假設已加入 hello 範本 toohello 公用存取的儲存體帳戶中的相同容器已關閉。 hello 連結的範本會將值後 toohello 主要範本傳入 hello**輸出**> 一節。
+以下範例範本顯示連結範本的簡化設定，以說明本文章中的幾個概念。 範例會假設已經將範本新增到儲存體帳戶中的同一個容器，且已經關閉公開存取。 連結的範本會在 **outputs** 區段中將一個值傳遞給主範本。
 
-hello **parent.json**檔案所組成：
+**parent.json** 檔案的組成：
 
 ```json
 {
@@ -175,7 +175,7 @@ hello **parent.json**檔案所組成：
 }
 ```
 
-hello **helloworld.json**檔案所組成：
+**helloworld.json** 檔案的組成：
 
 ```json
 {
@@ -193,7 +193,7 @@ hello **helloworld.json**檔案所組成：
 }
 ```
 
-在 PowerShell 中，您會取得 hello 容器的語彙基元，並部署與 hello 範本：
+在 PowerShell 中，您會取得容器的 Token 並使用下列方式部署範本：
 
 ```powershell
 Set-AzureRmCurrentStorageAccount -ResourceGroupName ManageGroup -Name storagecontosotemplates
@@ -202,7 +202,7 @@ $url = (Get-AzureStorageBlob -Container templates -Blob parent.json).ICloudBlob.
 New-AzureRmResourceGroupDeployment -ResourceGroupName ExampleGroup -TemplateUri ($url + $token) -containerSasToken $token
 ```
 
-在 Azure CLI 2.0 中，您會取得 hello 容器的語彙基元，並將 hello 範本部署以下列程式碼的 hello:
+在 Azure CLI 2.0 中，您會取得容器的 Token 並使用下列指令碼部署範本：
 
 ```azurecli
 expiretime=$(date -u -d '30 minutes' +%Y-%m-%dT%H:%MZ)
@@ -226,6 +226,6 @@ az group deployment create --resource-group ExampleGroup --template-uri $url?$to
 ```
 
 ## <a name="next-steps"></a>後續步驟
-* toolearn 有關 hello 定義 hello 部署讓您的資源，請參閱[Azure Resource Manager 範本中定義的相依性](resource-group-define-dependencies.md)
-* toolearn 方式 toodefine 一項資源而建立許多執行個體，請參閱[Azure 資源管理員中建立多個執行個體的資源](resource-group-create-multiple.md)
+* 若要了解如何定義您資源的部署順序，請參閱 [定義 Azure Resource Manager 範本中的相依性](resource-group-define-dependencies.md)
+* 若要了解如何定義一個資源，但建立它的多個執行個體，請參閱 [在 Azure Resource Manager 中建立資源的多個執行個體](resource-group-create-multiple.md)
 

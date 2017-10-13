@@ -1,5 +1,5 @@
 ---
-title: "aaaHow toocreate 資料流分析的資料分析處理作業 |Microsoft 文件"
+title: "如何為串流分析建立資料分析處理工作 | Microsoft Docs"
 description: "為串流分析建立資料分析處理工作 | 學習路徑區段。"
 keywords: "資料分析處理"
 documentationcenter: 
@@ -15,35 +15,35 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 03/28/2017
 ms.author: samacha
-ms.openlocfilehash: d4a3c89d8862d59688d06a1719b063efa2ab1c93
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 05fdf1e20efd129cdfc27e1d37bc9e124edf5dcd
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toocreate-a-data-analytics-processing-job-for-stream-analytics"></a>如何 toocreate 處理資料分析工作的資料流分析
-在 Azure Stream Analytics hello 最上層資源是串流分析工作。  它包含一或多個輸入資料來源、 表達 hello 資料轉換、 查詢和結果會寫入一或多個輸出為目標。 這些一起可讓 hello 使用者 tooperform 資料分析的資料流資料處理實例。
+# <a name="how-to-create-a-data-analytics-processing-job-for-stream-analytics"></a>如何為串流分析建立資料分析處理工作
+Azure 串流分析中的最上層資源就是串流分析工作。  其包含一或多個輸入資料來源、一個表示資料轉換的查詢，以及一或多個用來寫入結果的輸出目標。 這些功能結合的結果，讓使用者能夠執行串流資料案例的資料分析處理工作。
 
-toostart 使用 Stream Analytics 中，開始建立新的資料流分析工作。  請注意這個動作沒有任何的計費方式，直到 hello 工作已啟動。
+若要開始使用串流分析，您必須先建立新的串流分析工作。  請注意，直到作業開始之前，這個動作不會以任何方式計費。
 
-1. 登入線上 hello [Azure 傳統入口網站](http://manage.windowsazure.com)或 hello [Azure 入口網站](https://portal.azure.com/)。
-2. Hello 入口網站中：**按一下 新增**，然後按一下 **Data Services**或**資料分析**根據您的入口網站，然後按一下**Azure Stream Analytics**或**串流分析**然後**快速建立**。
+1. 登入線上 [Azure 傳統入口網站](http://manage.windowsazure.com)或 [Azure 入口網站](https://portal.azure.com/)。
+2. 在入口網站中︰按一下 [新增]，根據您的入口網站按一下 [資料服務] 或 [資料分析]，然後按一下 [Azure 串流分析] 或 [串流分析]，再按一下 [快速建立]。
    
    ![資料分析處理工作精靈](./media/stream-analytics-create-a-job/1-stream-analytics-create-a-job.png)  
    
    ![建立資料分析處理工作](./media/stream-analytics-create-a-job/4-stream-analytics-create-a-job.png)  
-3. 指定 hello hello 資料流分析工作所需的組態。
+3. 為串流分析工作指定所需的組態。
    
-   * 在 hello**工作名稱**方塊中，輸入名稱 tooidentify hello 資料流分析工作。 當 hello**工作名稱**驗證時，綠色的核取記號會出現在 hello 工作名稱 方塊。 hello**工作名稱**可能只包含英數字元和 hello '-' 字元，而且必須介於 3 到 63 個字元之間。
-   * 使用**區域**hello Azure 入口網站中或**位置**在 hello Azure 入口網站 toospecify hello toorun hello 作業所在的地理位置。
-   * 如果使用 hello Azure 入口網站，請選取或建立 hello 為儲存體帳戶 toouse**區域監視儲存體帳戶**。 這個儲存體帳戶是使用的 toostore 監視在此區域中執行的所有串流分析工作的資料。
-   * 如果使用 hello Azure 入口網站，指定新的或現有的**資源群組**toohold 相關聯的應用程式的資源。
-4. 一旦設定 hello 新的資料流分析工作選項，按一下**建立串流分析工作**。 可能需要幾分鐘，讓建立 hello 資料流分析工作 toobe。 toocheck hello 狀態，您可以監視 hello 通知中樞中的 hello 進度。
+   * 請在 [工作名稱]  方塊輸入名稱，以識別串流分析工作。 [工作名稱]  經驗證後，[工作名稱] 方塊中便會出現綠色的核取記號。 此 [工作名稱]  只能包含英數及 '-' 字元，且長度必須介於 3 到 63 個字元。
+   * 請使用 Azure 入口網站的 [區域] 或 Azure 入口網站的 [位置]，來指定您要用來執行工作的地理位置。
+   * 如果您使用的是 Azure 入口網站，請選取或建立儲存體帳戶來做為「區域監視儲存體帳戶」 。 此儲存體帳戶會用來儲存在此區域內執行之所有串流分析工作的監視資料。
+   * 如果使用 Azure 入口網站，請指定新的或現有的 **資源群組** 來保存應用程式的相關資源。
+4. 當新的串流分析工作選項設定完畢之後，請按一下 [建立串流分析工作] 。 建立串流分析工作可能需要數分鐘的時間。 若要檢查狀態，您可以監視 [通知中樞] 中的進度。
    
    ![資料分析處理作業通知中樞](./media/stream-analytics-create-a-job/2-stream-analytics-create-a-job.png)  
    
    ![Azure 入口網站中資料分析處理作業的建立作業](./media/stream-analytics-create-a-job/5-stream-analytics-create-a-job.png)  
-5. hello 新作業將會顯示狀態為**Created**。 請注意該 hello**啟動**按鈕已停用。 Hello 作業開始之前，請設定 hello 作業輸入、 查詢和輸出。
+5. 新作業會顯示 [已建立] 的狀態。 請注意，此時 [開始]  按鈕已停用。 請先設定作業輸入、查詢和輸出，才能開始作業。
    
    ![資料分析處理的作業狀態](./media/stream-analytics-create-a-job/3-stream-analytics-create-a-job.png)  
    
@@ -53,7 +53,7 @@ toostart 使用 Stream Analytics 中，開始建立新的資料流分析工作�
 如需進一步的協助，請參閱我們的 [Azure Stream Analytics 論壇](https://social.msdn.microsoft.com/Forums/en-US/home?forum=AzureStreamAnalytics)
 
 ## <a name="next-steps"></a>後續步驟
-* [簡介 tooAzure 資料流分析](stream-analytics-introduction.md)
+* [Azure Stream Analytics 介紹](stream-analytics-introduction.md)
 * [開始使用 Azure Stream Analytics](stream-analytics-real-time-fraud-detection.md)
 * [調整 Azure Stream Analytics 工作](stream-analytics-scale-jobs.md)
 * [Azure Stream Analytics 查詢語言參考](https://msdn.microsoft.com/library/azure/dn834998.aspx)

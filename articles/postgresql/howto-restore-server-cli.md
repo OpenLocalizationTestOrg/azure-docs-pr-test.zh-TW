@@ -1,6 +1,6 @@
 ---
-title: "如何 tooback 及 PostgreSQL 還原 Azure 資料庫中的伺服器 |Microsoft 文件"
-description: "了解如何向上 tooback 和還原 Azure 資料庫中的伺服器為 PostgreSQL 使用 hello Azure CLI。"
+title: "如何在 PostgreSQL 的 Azure 資料庫中備份與還原伺服器 | Microsoft Docs"
+description: "了解如何使用 Azure CLI，在適用於 PostgreSQL 的 Azure 資料庫中備份和還原伺服器。"
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -10,18 +10,18 @@ ms.service: postgresql
 ms.devlang: azure-cli
 ms.topic: article
 ms.date: 06/13/2017
-ms.openlocfilehash: 0b9ed25e3e3a88dd5c7ffe2ae7c27f8eef9be710
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 871887e67d686a965a0648d2c6f0c72b3008db05
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-tooback-up-and-restore-a-server-in-azure-database-for-postgresql-by-using-hello-azure-cli"></a>向上 tooback 和還原 Azure 資料庫中的伺服器為 PostgreSQL 使用 hello Azure CLI
+# <a name="how-to-back-up-and-restore-a-server-in-azure-database-for-postgresql-by-using-the-azure-cli"></a>如何使用 Azure CLI，在適用於 PostgreSQL 的 Azure 資料庫中備份和還原伺服器。
 
-使用 PostgreSQL toorestore 伺服器資料庫 tooan 較早的日期，從 7 too35 天跨越 Azure 資料庫。
+使用 PostgreSQL 的 Azure 資料庫將伺服器資料庫還原到 7 至 35 天前的日期。
 
 ## <a name="prerequisites"></a>必要條件
-toocomplete 此如何 tooguide，您需要：
+若要完成本操作說明指南，您需要：
 - [「適用於 PostgreSQL 的 Azure 資料庫」伺服器和資料庫](quickstart-create-server-database-azure-cli.md)
 
 [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
@@ -29,43 +29,43 @@ toocomplete 此如何 tooguide，您需要：
  
 
 > [!IMPORTANT]
-> 如果您安裝並在本機使用 Azure CLI hello，此方式 tooguide 會要求您使用 Azure CLI 2.0 或更新版本。 tooconfirm hello 版本，在 hello Azure CLI 命令提示字元中輸入`az --version`。 tooinstall 或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
+> 如果您在本機安裝和使用 Azure CLI，本操作說明指南會要求您使用 Azure CLI 2.0 版或更新版本。 若要確認版本，請在 Azure CLI 命令提示字元中輸入 `az --version`。 若要安裝或升級，請參閱[安裝 Azure CLI 2.0]( /cli/azure/install-azure-cli)。
 
 ## <a name="back-up-happens-automatically"></a>備份會自動進行
-當您使用 Azure 資料庫進行 PostgreSQL 時，hello 資料庫服務會自動將 hello 服務的備份每隔 5 分鐘。 
+當您使用 PostgreSQL 的 Azure 資料庫時，資料庫服務每隔 5 分鐘會自動備份一次服務。 
 
-基本層，hello 備份皆可為 7 天。 標準層，hello 備份皆可為 35 天。 如需詳細資訊，請參閱 [PostgreSQL 的 Azure 資料庫定價層](concepts-service-tiers.md)。
+基本層的備份保留 7 天。 標準層的備份保留 35 天。 如需詳細資訊，請參閱 [PostgreSQL 的 Azure 資料庫定價層](concepts-service-tiers.md)。
 
-使用這個自動備份功能，您可以還原 hello 伺服器和其資料庫 tooan 早的日期或時間點。
+透過這個自動備份功能，您可以將伺服器和其資料庫還原至某個較早的日期或時間點。
 
-## <a name="restore-a-database-tooa-previous-point-in-time-by-using-hello-azure-cli"></a>還原資料庫 tooa 前一個點的時間，使用 Azure CLI hello
-使用 Azure 資料庫 PostgreSQL toorestore hello 伺服器 tooa 先前時間點。 hello 還原資料複製的 tooa 新的伺服器，以及 hello 現有的伺服器保持原狀。 例如，如果卸除資料表時不小心正午今天，您可以還原 toohello 正午之前的時間。 然後，您可以擷取遺失的資料表與資料，從還原的 hello 份 hello 伺服器 hello。 
+## <a name="restore-a-database-to-a-previous-point-in-time-by-using-the-azure-cli"></a>使用 Azure CLI 將資料庫還原到過去的時間點
+使用 PostgreSQL 的 Azure 資料庫將伺服器還原至過去的時間點。 還原的資料會複製到新的伺服器，而現有的伺服器則保持原狀。 例如，如果資料表在今天中午意外卸除，您可以還原到中午之前的時間。 然後，您可從伺服器的還原複本擷取遺失的資料表和資料。 
 
-toorestore hello 伺服器，使用 hello Azure CLI [az postgres 伺服器還原](/cli/azure/postgres/server#restore)命令。
+若要還原伺服器，請使用 Azure CLI [az postgres server restore](/cli/azure/postgres/server#restore) 命令。
 
-### <a name="run-hello-restore-command"></a>執行 hello restore 命令
+### <a name="run-the-restore-command"></a>執行 restore 命令
 
-toorestore hello 伺服器 hello Azure CLI 命令提示字元，輸入下列命令的 hello:
+若要還原伺服器，請在 Azure CLI 命令提示字元中輸入下列命令：
 
 ```azurecli-interactive
 az postgres server restore --resource-group myResourceGroup --name mypgserver-restored --restore-point-in-time 2017-04-13T13:59:00Z --source-server mypgserver-20170401
 ```
 
-hello`az postgres server restore`命令需要 hello 下列參數：
+`az postgres server restore` 命令需要下列參數：
 | 設定 | 建議的值 | 說明  |
 | --- | --- | --- |
-| resource-group |  myResourceGroup |  Hello 來源伺服器所在的資源群組。  |
-| 名稱 | mypgserver-restored | hello hello hello restore 命令所建立的新伺服器名稱。 |
-| restore-point-in-time | 2017-04-13T13:59:00Z | 在時間 toorestore 至選取的點。 這個日期和時間必須在 hello 來源伺服器的備份保留期限內。 使用 hello ISO8601 日期和時間格式。 例如，您可以使用自己的當地時區，例如 `2017-04-13T05:59:00-08:00`。 您也可以使用 UTC Zulu 格式，例如 hello `2017-04-13T13:59:00Z`。 |
-| source-server | mypgserver-20170401 | hello 名稱或識別碼 hello 來源伺服器 toorestore 從。 |
+| resource-group |  myResourceGroup |  來源伺服器所在的資源群組。  |
+| 名稱 | mypgserver-restored | 還原命令所建立之新伺服器的名稱。 |
+| restore-point-in-time | 2017-04-13T13:59:00Z | 選取要還原的時間點。 這個日期和時間必須在來源伺服器的備份保留期限內。 請使用 ISO8601 日期和時間格式。 例如，您可以使用自己的當地時區，例如 `2017-04-13T05:59:00-08:00`。 您也可以使用 UTC Zulu 格式，例如 `2017-04-13T13:59:00Z`。 |
+| source-server | mypgserver-20170401 | 要進行還原的來源伺服器之名稱或識別碼。 |
 
-當您還原伺服器 tooan 早的時間點，建立新的伺服器。 hello 原始伺服器和資料庫 hello 從指定的時間點複製的 toohello 新的伺服器。
+當您將伺服器還原到之前的時間點時，會建立新的伺服器。 指定時間點的原始伺服器及其資料庫會複製到新的伺服器。
 
-hello 位置] 和 [定價層的值為 hello 還原伺服器保持 hello 相同為 hello 原始伺服器。 
+已還原伺服器的位置與定價層值與原始伺服器相同。 
 
-hello`az postgres server restore`是同步的命令。 還原 hello 伺服器之後，您可以使用它再次 toorepeat hello 程序的不同點的時間。 
+`az postgres server restore` 命令是同步的。 還原伺服器之後，您可以再次使用它以不同的時間點重複此程序。 
 
-Hello 之後還原程序完成，找出 hello 新伺服器，並確認 hello 資料還原如預期般。
+完成還原程序後，找出新的伺服器，確認資料如預期般還原。
 
 ## <a name="next-steps"></a>後續步驟
 [「適用於 PostgreSQL 的 Azure 資料庫」的連線庫](concepts-connection-libraries.md)

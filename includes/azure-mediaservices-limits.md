@@ -1,5 +1,5 @@
 >[!NOTE]
->如需不固定的資源，您可能會尋求 hello 配額 toobe 引發，開啟支援票證。 請勿**不**tooobtain 較高的限制，嘗試建立額外的 Azure Media Services 帳戶。
+>如果是不固定的資源，您可以建立支援票證，要求增加配額。 **請勿**為了嘗試取得更高的限制而建立其他 Azure 媒體服務。
 
 | 資源 | 預設限制 | 
 | --- | --- | 
@@ -18,28 +18,28 @@
 | 每個串流端點的資料流單位  |10 |
 | 儲存體帳戶 | 1,000<sup>(5)</sup> (固定) |
 | 原則 | 1,000,000<sup>(6)</sup> |
-| 檔案大小| 在某些情況下沒有限制 hello 來處理媒體服務中支援的最大檔案大小。 <sup>7</sup> |
+| 檔案大小| 在某些情況下，對於媒體服務中支援處理的檔案大小上限有所限制。 <sup>7</sup> |
   
-<sup>1</sup> 印度西部無法使用 S3 RU。 如果 hello 客戶變更 hello 類型 （例如，從 S2 tooS1)，則會重設 hello max RU 限制。 
+<sup>1</sup> 印度西部無法使用 S3 RU。 如果客戶變更類型，則會重設最大 RU 限制 (例如，從 S2 到 S1)。 
 
-<sup>2</sup> 這個數目包括佇列、已完成、作用中和已取消的工作。 不包含已刪除的工作。 您可以刪除 hello 舊作業步驟使用**IJob.Delete**或 hello**刪除**HTTP 要求。
+<sup>2</sup> 這個數目包括佇列、已完成、作用中和已取消的工作。 不包含已刪除的工作。 您可以使用 **IJob.Delete** 或 **DELETE** HTTP 要求刪除舊工作。
 
-啟動年 4 月 1，2017，超過 90 天您帳戶中的任何工作記錄將會自動刪除，以及其相關聯的工作記錄，即使 hello 的總記錄數低於 hello 配額上限。 如果您需要 tooarchive hello 作業/工作資訊時，您可以使用所述的 hello 碼[這裡](../articles/media-services/media-services-dotnet-manage-entities.md)。
+從 2017 年 4 月 1 日起，您的帳戶中任何超過 90 天的作業記錄以及其相關工作記錄都會自動刪除，即使記錄總數低於配額上限亦然。 如果您需要封存作業/工作資訊，您可以使用[這裡](../articles/media-services/media-services-dotnet-manage-entities.md)所述的程式碼。
 
-<sup>3</sup>時提出要求 toolist 工作項目，最多 1000 個會傳回每個要求。 如果您需要 tookeep 追蹤所有提交作業，如中所述，您可以使用 top/skip [OData 系統查詢選項](http://msdn.microsoft.com/library/gg309461.aspx)。
+<sup>3</sup> 提出要求來列出工作實體時，每個要求會傳回最多 1000 個。 如果您需要追蹤所有已送出的工作，您可以如 [OData 系統查詢選項](http://msdn.microsoft.com/library/gg309461.aspx)中所述，使用 top/skip。
 
-<sup>4</sup> 定位器並非設計來管理每個使用者的存取控制。 toogive 不同的存取權限 tooindividual 使用者使用數位版權管理 (DRM) 解決方案。 如需詳細資訊，請參閱 [本節](../articles/media-services/media-services-content-protection-overview.md) 。
+<sup>4</sup> 定位器並非設計來管理每個使用者的存取控制。 若要給予個別使用者不同的存取權限，請使用數位版權管理 (DRM) 方案。 如需詳細資訊，請參閱 [本節](../articles/media-services/media-services-content-protection-overview.md) 。
 
-<sup>5</sup> hello 儲存體帳戶必須是從 hello 相同的 Azure 訂用帳戶。
+<sup>5</sup> 儲存體帳戶必須來自相同的 Azure 訂用帳戶。
 
 <sup>6</sup> 對於不同的 AMS 原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 
 
 >[!NOTE]
-> 您應該使用 hello 如果一律使用相同的原則識別碼 hello 相同天 / 存取權限 / 等等。如需詳細資訊與範例，請參閱[本節](../articles/media-services/media-services-dotnet-manage-entities.md#limit-access-policies)。
+> 如果您總是使用相同的天數 / 存取權限 / 等等，您應該使用相同的原則識別碼。如需詳細資訊與範例，請參閱[本節](../articles/media-services/media-services-dotnet-manage-entities.md#limit-access-policies)。
 
-<sup>7</sup>如果您要上傳內容 tooan 資產中 Azure Media Services 與 hello 意圖 tooprocess 使用我們的服務中的 hello 媒體處理器之一 （也就是編碼器諸如標準媒體編碼器和媒體編碼器高階工作流程或分析引擎像正面偵測器），則您應該留意 hello hello 最大大小的條件約束。 
+<sup>7</sup>如果您要將內容上傳至 Azure 媒體服務中的資產，以在我們的服務中透過其中一種媒體處理器加以處理 (也就是像媒體編碼器標準和媒體編碼器高階工作流程之類的編碼器，或像臉部偵測器這類分析引擎)，則您應該注意上小上限的條件約束。 
 
-自 2017 年 15 hello 支援單一 blob 的最大大小是 195 TB-使用檔案 largers 超過此限制，您的工作將會失敗。 我們正在努力修正 tooaddress 這項限制。 此外，hello 的 hello 資產，如下所示為 hello 最大大小的條件約束。
+從 2017 年 5 月 15 日起，單一 blob 支援的大小上限為 195 TB - 如果檔案超過此限制，您的工作將會失敗。 我們正努力製作修正程式來解決此限制。 此外，資產大小上限的條件約束如下所示。
 
 | 媒體保留單元類型 | 檔案輸入大小 (GB)| 
 | --- | --- | 

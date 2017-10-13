@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Mobile Engagement 使用者介面觸達"
-description: "深入了解如何 tooreach toohello 使用者應用程式使用 Azure Mobile Engagement 的推播通知"
+title: "Azure Mobile Engagement 使用者介面 - 觸達"
+description: "了解如何使用 Azure Mobile Engagement 透過推播通知觸及應用程式的使用者"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,67 +14,67 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 40d5162ddeccec82c2c9f5b0d72b4cb10c9ddc38
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ce30456e41ff1a2f4824bcb64246ee115fdd1ef7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooreach-out-toohello-users-of-your-application-with-push-notifications"></a>如何 tooreach toohello 的推播通知的應用程式的使用者
-本文說明 hello**到達**] 索引標籤的 hello **Mobile Engagement**入口網站。 使用 hello **Mobile Engagement** toomonitor 入口網站和管理您的行動裝置應用程式。 請注意使用 hello 入口網站，您必須先 toocreate 該 toostart **Azure Mobile Engagement**帳戶。 如需詳細資訊，請參閱[建立 Azure Mobile Engagement 帳戶](mobile-engagement-create.md)。
+# <a name="how-to-reach-out-to-the-users-of-your-application-with-push-notifications"></a>如何透過推播通知觸及應用程式的使用者
+本文說明 **Mobile Engagement** 入口網站的 [觸達] 索引標籤。 使用 **Mobile Engagement** 入口網站可監視與管理您的行動應用程式。 請注意，若要開始使用入口網站，您必須先建立 **Azure Mobile Engagement** 帳戶。 如需詳細資訊，請參閱[建立 Azure Mobile Engagement 帳戶](mobile-engagement-create.md)。
 
-hello 到達的 hello ui 段您也可以建立/編輯/啟動/完成/監視的 hello 推送活動管理工具，並取得推送通知活動和功能，也可以存取透過 hello 觸達 API （和 hello 低的某些項目上的統計資料層級推送應用程式開發介面）。 請記住，不論您使用 hello 應用程式開發介面或 hello UI，您將需要 toointegrate Azure Mobile Engagement 和觸達每個平台以 hello SDK，才能使用應用程式達到行銷活動。
+UI 的 [觸達] 區段是推送活動管理工具，您可以在此建立/編輯/啟動/完成/監視推播通知活動，並取得推播通知活動的統計資料，您也可以透過「觸達 API」(和低階推送 API 的部份元素) 存取這些功能。 請記住，無論您使用 API 或 UI，都必須先使用 SDK 針對每個平台將 Azure Mobile Engagement 和觸達整合到您的應用程式，才能使用觸達活動。
 
 > [!NOTE]
-> 多區段的 hello **Mobile Engagement**入口網站 UI 包含 hello**顯示說明**] 按鈕。 按此按鈕 tooget 區段內容詳細資訊。
+> 許多 **Mobile Engagement** 入口網站 UI 的區段含有 [顯示說明] 按鈕。 按該按鈕，可獲得關於區段的詳細內容資訊。
 > 
 > 
 
 ## <a name="four-types-of-push-notifications"></a>推播通知的四種類型
-1. 公告功能-可讓您將他們重新導向 tooanother 位置內應用程式或 toosend toosend 廣告郵件 toousers 它們 tooa 網頁或儲存您的應用程式之外。 
-2. 輪詢-可讓您從使用者 toogather 資訊來提問以它們。
-3. 資料推送-可讓您 toosend 二進位或 base64 資料檔案。 資料推送中包含的 hello 資訊在應用程式中傳送 tooyour 應用程式 toomodify 您的使用者目前的體驗。 您的應用程式需要在資料推送的 toobe 無法 tooprocess hello 資料。
+1. 宣告：可讓您傳送廣告訊息給使用者，將他們重新導向至您應用程式內的另一個位置，或者將他們傳送至您應用程式外的網頁或市集。 
+2. 輪詢：可讓您透過詢問使用者問題，從使用者收集資訊。
+3. 資料推送：可讓您傳送二進位或 base64 資料檔案。 資料推送中所包含的資訊會傳送至您的應用程式，以便調整您的使用者在應用程式中目前的體驗。 您的應用程式必須能夠處理資料推送中的資料。
 
 ## <a name="campaign-details"></a>活動詳細資料
-您可以編輯、 複製、 刪除或啟動具有尚未啟動其名稱為上方的活動或您可以按一下 tooopen 它們。 您可以複製已啟用由其名稱將滑鼠停留的活動，或者您可以按一下 tooopen 它們。 不過，活動一旦啟動，您就無法變更。
+您可以停留在活動名稱上或按一下以開啟活動，來編輯、複製、刪除活動或啟動尚未啟動的活動。 您可以停留在活動名稱上或按一下以開啟活動，來複製已經啟動的活動。 不過，活動一旦啟動，您就無法變更。
 
 ![Reach1][18]
 
 ## <a name="reach-feedback"></a>觸達意見反應
-按一下**統計資料**toosee hello 觸達活動詳細資料。 hello**簡單**檢視提供的資料行的橫條圖，啟用活動之後發生了什麼事 hello 表單中的視覺表示法。 hello**進階**提供更細微的 hello 推播宣傳活動詳細資料檢視。 這些詳細資料將無法使用，如果您要傳送的測試活動也就推播傳送的 tooa 測試裝置。 以下是解譯這些詳細資料的方式：
+按一下 [統計資料]  即可檢視觸達活動的詳細資料。 [簡單]  檢視能透過視覺方法，以直條圖形式表示啟用活動之後發生了什麼事。 [進階]  檢視則能提供更細部的推送活動詳細資料。 如果您傳送測試活動，也就是將推送活動傳送到測試裝置，則無法取得這些詳細資料。 以下是解譯這些詳細資料的方式：
 
-1. **推入**-這會指定 hello 訊息推入 toohello 裝置數目。 此數目將取決於 hello 建立 hello 推播宣傳活動時，您指定的目標對象。 如果您未指定任何目標對象，然後此 push 會送出 tooall hello 註冊裝置。 如同其他所有推入服務，我們不執行推送 hello 通知直接 toohello 裝置，但改為將其推送 toohello 各平台特定的推播通知服務 (PNS-APNS/GCM/WNS)，讓它們可以傳送嗨通知 toohello 裝置。 
-2. **傳遞**-這會指定為接收 Mobile Engagement SDK 的 hello 訊息成功傳送嗨 PNS toohello 裝置及認可的數目。 
+1. **已推送** - 這會指出推送至裝置的訊息數目。 這個數目將取決於您在建立推送活動時所指定的目標對象。 如果未指定任何目標對象，則會將此推送活動傳送至所有已註冊的裝置。 和其他所有推送服務一樣，我們並不會直接將通知推送到裝置上，而是會將其推送至各平台特定的推播通知服務 (PNS - APNS/GCM/WNS)，讓這些服務將通知傳送到裝置上。 
+2. **已傳送** - 這會指出 PNS 成功傳送到裝置並且為 Mobile Engagement SDK 認可為已收到的訊息數目。 
    
    *已傳送計數小於已推送計數的原因：*
    
-   1. 如果 hello 使用者解除 hello 應用程式安裝從 hello 裝置但 hello PNS 不知道它在 hello 階段，我們會傳送 hello 發送 toohello PNS 然後 hello 訊息皆會予以捨棄。
-   2. 如果 hello 裝置 hello 應用程式，但 hello 裝置本身很長的時間期間已離線，則 hello PNS 會失敗 toodeliver hello 訊息 toohello 裝置。 
-   3. 如果 hello 訊息傳遞 toohello 裝置取得但 hello Mobile Engagement SDK 在 hello 應用程式中的無法辨識 hello hello 訊息內容，它會捨棄該訊息。 如果 hello 通知 hello 應用程式中的 hello 自訂 hello SDK 和 drop hello 訊息中產生攔截的例外狀況，則會發生此問題。 這也可能會發生 hello hello 裝置上的應用程式是否使用版的 hello Mobile Engagement SDK 不能 toounderstand hello 較新版本的 hello 推播訊息寄件者 hello 平台，但 hello 應用程式已升級之後 hello 通知時，才發送 hello 服務平台。 hello**進階**] 索引標籤將會通知已卸除的訊息數量。 
-   4. 在 iOS 裝置上訊息有時才傳送如果其中一個 hello 裝置位於電力偏低，或 hello 應用程式會耗用大量的電力，當處理遠端通知。 這是 hello 的 iOS 裝置的限制。   
-3. **顯示**-這會指定訊息已成功顯示 toohello 應用程式使用者的 hello 裝置 hello 形式系統推入/out 的-應用程式通知在 hello 通知中心或應用程式內通知內 hello 行動的 hello 數目應用程式。  hello**進階**多少了系統通知和多少應用程式內通知] 索引標籤也將會通知您。 
+   1. 如果使用者已在裝置上解除安裝應用程式，但在我們將推送活動傳送到 PNS 的當下，PNS 並不知道這一點，訊息會遭到捨棄。
+   2. 如果裝置具有應用程式，但裝置本身已離線很久，PNS 就無法將訊息傳送至裝置。 
+   3. 如果訊息確實已傳送給裝置，但應用程式中的 Mobile Engagement SDK 無法辨識訊息的內容，其便會捨棄該訊息。 如果在應用程式中自訂通知時產生了在 SDK 中捕捉到並且會捨棄訊息的例外狀況，就會發生此問題。 如果裝置上的應用程式所使用的 Mobile Engagement SDK 版本不能夠解讀平台所傳送的較新版本推送訊息，則也會發生此問題，但是只會在服務平台分派通知後應用程式已升級時發生。 [進階]  索引標籤會指出已捨棄的訊息數量。 
+   4. 在 iOS 裝置上，如果裝置電力偏低或應用程式在處理遠端通知時耗用大量的電力，訊息有時會無法傳遞。 這是 iOS 裝置的一項限制。   
+3. **已顯示** - 這會指出已透過通知中心內的系統推送/應用程式外通知或行動應用程式內的應用程式內通知的形式，對裝置上的應用程式使用者成功顯示的訊息數。  [進階]  索引標籤會分別指出系統通知和應用程式內通知的數量。 
    
-   *顯示原因計數小於傳遞的計數 (等候 toobe 顯示)*
+   <bpt id="p1">*</bpt>Reasons for Displayed count being less than Delivered count (waiting to be displayed)<ept id="p1">*</ept>
    
-   1. 如果 hello 通知活動的結束日期必須在其上，則很可能已傳送嗨通知，但當 hello 時間來源 tooopen 並將其顯示 toohello 應用程式的使用者，它是已經過期，永遠不會顯示。   
-   2. 如果 hello 通知，則應用程式內通知 hello 通知只會顯示 hello 應用程式使用者開啟 hello 應用程式時。 在其中 hello 應用程式使用者還沒開啟過 hello 應用程式的情況下，hello SDK 會報告已傳送 hello 通知，但尚未顯示，直到開啟 hello 應用程式。 
-   3. 如果 hello 通知是在應用程式通知，並設定 toobe 然後也 hello 通知將會報告為傳遞特定活動/螢幕上顯示，但尚未傳送之前 hello 使用者會開啟 hello 特定螢幕上的應用程式。 
-4. **使用者互動**-這會指定 hello hello 應用程式使用者已互動，而且將包含 hello 訊息，也就是採取動作或結束的訊息數目。 
+   1. 如果通知活動上有結束日期，有可能通知已傳遞，但到了開始時間並該顯示給應用程式使用者時就已經過期而永遠不會顯示。   
+   2. 如果通知是應用程式內通知，則只有在應用程式使用者開啟應用程式時，才會顯示通知。 在應用程式使用者尚未開啟應用程式的情況下，SDK 會回報為已傳遞通知，但直到應用程式開啟時才會顯示通知。 
+   3. 如果通知是應用程式內通知，並設定要顯示在特定活動/畫面上，系統也會將通知回報為已傳遞，但直到使用者開啟應用程式的特定畫面時才會顯示。 
+4. **使用者互動** - 這會指出應用程式使用者已產生互動的訊息數，其中也會包含已採取動作或已結束的訊息。 
    
-   * *hello 應用程式使用者可處理的通知 hello 下列方式之一：*
+   * *應用程式使用者可透過下列任一方式對通知採取動作：*
      
-     1. 如果 hello 通知系統/out 的-應用程式通知或應用程式內通知傳送為僅限通知就 hello 應用程式使用者在 [hello 通知。
-     2. 如果 hello 通知是應用程式內通知與文字或 web 檢視或輪詢然後 hello 應用程式使用者按一下 hello hello 通知中的 [動作] 按鈕。
-     3. 如果 hello 通知，則 web 檢視的應用程式內通知然後 hello 應用程式使用者按一下 [僅 Android] hello web 檢視中的 URL
-   * *hello 應用程式使用者可結束通知 hello 下列方式之一：*
+     1. 如果是系統通知/應用程式外通知或以僅限通知形式傳送的應用程式內通知，應用程式使用者可以按一下通知。
+     2. 如果是具有文字、網頁檢視或投票的應用程式內通知，應用程式使用者可以按一下通知中的 [動作] 按鈕。
+     3. 如果是具有網頁檢視的應用程式內通知，則應用程式使用者可以按一下網頁檢視中的 URL [僅限 Android]
+   * *應用程式使用者可透過下列任一方式結束通知：*
      
-     1. 直接按一下 hello hello 通知 [關閉] 按鈕。 
-     2. 離開撥動或刪除 hello 通知。 
-     3. 以文字/web 內容和輪詢的應用程式內通知是通常顯示的 toohello 兩步驟程序中的應用程式使用者。 第一次他們會看到通知，當使用者按一下它，他們會看到 hello 後續文字/web/輪詢內容。 hello 應用程式使用者可以結束在這些步驟的通知和 hello 進階檢視中的 hello 詳細資料擷取這。 
-5. **已採取動作**-這會指定 hello 訊息已由 hello 應用程式使用者明確已採取動作的數目。 這是 hello 最有趣的數字，因為這樣做會告知應用程式的使用者人數不想要您推入 hello 通知中的 hello 訊息。 
+     1. 直接按一下通知上的 [關閉] 按鈕。 
+     2. 將通知撥開或刪除。 
+     3. 具有文字/網頁內容和投票的應用程式內通知，通常會透過有兩個步驟的程序顯示給應用程式使用者。 他們會先看到通知，當他們按一下通知時，就會看到後續的文字/網頁/投票內容。 應用程式使用者可以在任一步驟結束通知，[進階] 檢視中的詳細資料會捕捉此行為。 
+5. **已採取動作** - 這會指出應用程式使用者已明確採取動作的訊息數。 這是最有意思的數字，因為這個數字會指出有多少應用程式使用者對您在通知中所推送的訊息感興趣。 
 
 > [!NOTE]
-> IOS 和 Windows 平台，如果 hello 使用者具有 hello 應用程式開啟及 hello 行銷活動的"AnyTime"行銷活動則很可能同時從應用程式及應用程式內通知會顯示在 [hello 相同的時間。 這可能會導致顯示計數高於 hello 傳遞。 如果 hello 使用者互動或動作 hello 通知，然後甚至 hello 使用者互動/Actioned 計數可能會大於已傳遞。 
+> 在 iOS 和 Windows 平台上，如果使用者開啟應用程式，且活動是「隨時」行銷活動，則可能會同時顯示應用程式外和應用程式內通知。 這可能會造成「已顯示」計數高於「已傳送」計數。 如果使用者對通知產生互動或採取動作，則甚至是「使用者互動」/「已採取動作」計數也會大於「已傳送」計數。 
 > 
 > 
 

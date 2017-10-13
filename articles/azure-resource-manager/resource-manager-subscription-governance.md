@@ -1,6 +1,6 @@
 ---
-title: "對於企業移動 tooAzure aaaBest 作法 |Microsoft 文件"
-description: "描述 scaffold，企業可以使用 tooensure 安全且容易管理的環境。"
+title: "企業移至 Azure 的最佳作法 | Microsoft Docs"
+description: "說明企業可用來確保安全且可管理環境的 Scaffold。"
 services: azure-resource-manager
 documentationcenter: na
 author: rdendtler
@@ -14,117 +14,117 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/31/2017
 ms.author: rodend;karlku;tomfitz
-ms.openlocfilehash: d1402cf21d0cf740e44c03fc345ecd39a6e1680c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3a19f2cf7566f38f80639d7c966638a3ec900cf4
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="azure-enterprise-scaffold---prescriptive-subscription-governance"></a>Azure 企業 Scaffold - 規定的訂用帳戶治理
-企業正逐漸採用 hello 公用雲端中的為其靈活度和彈性。 它們會利用 hello 雲端優點 toogenerate 營收，或最佳化 hello 商務的資源。 Microsoft Azure 提供許多服務，企業可以組合的建置組塊 tooaddress 像廣泛的工作負載和應用程式。 
+企業日漸採用公用雲端，以獲取其靈活度和彈性。 它們利用雲端的優勢來產生收益，或讓企業的資源達到最佳化。 Microsoft Azure 提供許多服務，企業可以像堆積木一樣組合這些服務，以處理各式各樣的工作負載和應用程式。 
 
-但是，了解 toobegin 很困難。 之後決定 toouse Azure 時，一些經常遇到問題：
+但是，要知道從何著手往往很困難。 決定使用 Azure 之後，經常會產生一些問題︰
 
 * 「如何符合某些國家/地區中資料主權的法律需求？」
 * 「如何確保他人不會不慎變更重要系統？」
 * 「如何知道每個資源支援什麼，才能精準地斟酌考量並回收成本？」
 
-空的訂用帳戶與沒有防護滑軌 hello 潛在是鉅的任務。 此空格可能會妨礙您移動 tooAzure。
+不必期望空的訂用帳戶不需任何防護措施。 這個空白空間可能會阻礙您移至 Azure。
 
-本文章提供起始點的技術專業人員 tooaddress hello 需要控管，並以 hello 它需要的靈活性來平衡。 它引進引導中實作和管理他們的 Azure 訂用帳戶的組織的企業 scaffold hello 概念。 
+本文是技術專業人員處理治理需求並以靈活度需求加以平衡的起點。 文中介紹企業 Scaffold 的概念，以引導組織實作和管理其 Azure 訂用帳戶。 
 
 ## <a name="need-for-governance"></a>治理需求
-當您移動 tooAzure，您必須解決控管早期 tooensure hello 成功使用 hello 企業中的 hello 雲端 hello 的主題。 不幸的是，hello 時間和建立完整的管理系統的科層表示某些業務群組連直接 toovendors 不需要企業 IT。 如果沒有妥善管理 hello 資源，這種方式可以保留 hello 企業開啟 toovulnerabilities。 -靈活度、 彈性和耗用量為基準的價格-hello 公用雲端的 hello 特性而言很重要需要 tooquickly toobusiness 群組符合 hello 要求客戶 （內部和外部）。 但是，企業 IT 需要 tooensure 資料和系統有效地保護。
+移至 Azure 時，您必須處理早期治理主題，以確保在企業內成功使用雲端。 不幸的是，建立全方位治理系統的時間和體系表示某些事業群會直接接洽廠商，而不需企業 IT 部門參與。 如果沒有妥善管理資源，這種方法可能會讓企業遭受攻擊。 公用雲端的特性包含靈活度、彈性和以取用量為基礎的價格，這些特性對於必須快速滿足 (內部和外部) 客戶需求的事業群而言極為重要。 但是，企業 IT 部門需要確保資料和系統受到有效的保護。
 
-在現實生活中，scaffolding 會是使用的 toocreate hello 基礎的 hello 結構。 hello scaffold 引導 hello 一般外框，並提供更具永久性系統 toobe 掛接錨點。 企業 scaffold 是 hello 相同： 一組彈性化控制項和 Azure 建置的 hello 公用雲端服務提供結構 toohello 環境中，與錨點的功能。 它提供 hello 產生器 (IT 和商務群組) foundation toocreate 並附加新的服務。
+在現實生活中，Scaffolding 用來建立結構的基礎。 Scaffold 可引導一般輪廓，並可為即將裝載的永久系統提供更多的錨點。 企業 Scaffold 也是如此︰一組有彈性的控制項和可提供環境結構的 Azure 功能，以及公用雲端上所建置服務的錨點。 它可做為建置者 (IT 和事業群) 建立和附加新服務的基礎。
 
-hello scaffold 根據我們收集從用戶端的各種大小的許多合作的作法。 這些用戶端的範圍從小型組織 hello 雲端 tooFortune 500 企業和獨立軟體廠商會移轉與開發 hello 雲端中的方案中開發方案。 hello 企業 scaffold 是 「 特殊用途的 「 toobe 彈性 toosupport 傳統的 IT 工作負載和敏捷式軟體開發的工作負載;例如，開發人員建立軟體做為服務 (SaaS) 應用程式為基礎的 Azure 功能。
+Scaffold 是以我們經由與各種規模的用戶端合作而蒐集到的實務作法為基礎。 這些用戶端包含在雲端開發解決方案的小型組織，以至 Fortune 500 大企業和在雲端移轉並開發解決方案的獨立軟體廠商。 企業 Scaffold 是「為了特定目的而建置」成彈性支援傳統 IT 工作負載和敏捷式工作負載；例如，建立以 Azure 功能為基礎之軟體即服務 (SaaS) 應用程式的開發人員。
 
-hello 企業 scaffold 是預定的 toobe hello 基礎，在 Azure 中的每個新訂用帳戶。 可讓系統管理員 tooensure 工作負載符合 hello 最小的控管組織的需求而又商業群組和開發人員可以從快速達到他們自己的目標。
+企業 Scaffold 的用意是要成為 Azure 中每個新訂用帳戶的基礎。 它可讓系統管理員確保工作負載符合組織的最低治理需求，而不會阻礙事業群和開發人員快速達成他們自己的目標。
 
 > [!IMPORTANT]
-> 控管是 Azure 重要 toohello 成功。 此發行項的目標 hello 企業 scaffold 的技術實作，但只會牽涉到 hello 更廣泛程序和 hello 元件之間的關聯性。 原則控管往下流動 hello 由上至下，而且會決定哪些 hello 的商務想 tooachieve。 當然，hello 建立 Azure 控管模型包含代表從 IT，但是更重要的是應該具有從商務群組和安全和風險管理增強式表示法。 Hello 結束時，在企業 scaffold 是免除商業風險 toofacilitate 組織的任務和目標。
+> 治理是 Azure 成功的重要關鍵。 本文是以企業 Scaffold 的技術實作為目標，但只論及更廣泛的處理程序和元件之間的關聯性。 原則治理會從上而下流動，並由需要達成的業務來決定。 當然，Azure 治理模型的建立納入 IT 部門代表，但更重要的是應該具有來自事業群領導者及安全性和風險管理階層的強大代表性。 最後，企業 Scaffold 與降低業務風險有關，以達成組織的任務與目標。
 > 
 > 
 
-下列映像的 hello 描述 hello scaffold hello 元件。 hello foundation 依賴部門、 帳戶和訂用帳戶的實心計劃。 hello 功能是由資源管理員的原則和強式命名的標準所組成。 hello scaffold hello 其餘來自核心的 Azure 功能，以及功能，讓安全且容易管理的環境。
+下圖描述 Scaffold 的元件。 其基礎依賴於部門、帳戶和訂用帳戶的可靠計畫。 其要件是由 Resource Manager 原則和強大的命名標準所組成。 Scaffold 的其餘部分是來自 Azure 核心功能，而這些功能可打造出安全且易於管理的環境。
 
 ![scaffold 元件](./media/resource-manager-subscription-governance/components.png)
 
 > [!NOTE]
-> Azure 自 2008 年引進後就急速成長。 這股成長所需 Microsoft 工程小組 toorethink 來管理和部署服務的方法。 hello Azure Resource Manager 模型 2014年中所導入，並取代 hello 傳統部署模型。 資源管理員可讓的組織 toomore 輕鬆地部署、 組織和控制 Azure 資源。 Resource Manager 在建立資源時納入平行處理，以加快部署複雜、互相依存方案的速度。 它也包含細微的存取控制和 hello 能力 tootag 資源的中繼資料。 Microsoft 建議您建立透過 hello 資源管理員模型的所有資源。 hello 企業 scaffold 明確設計 hello 資源管理員的模型。
+> Azure 自 2008 年引進後就急速成長。 此種成長讓 Microsoft 工程設計團隊不得不重新思考其管理和部署服務的方式。 Azure Resource Manager 模型在 2014 年引進，並取代傳統部署模型。 Resource Manager 可讓組織更輕鬆地部署、組織和控制 Azure 資源。 Resource Manager 在建立資源時納入平行處理，以加快部署複雜、互相依存方案的速度。 它還包含細微的存取控制，以及利用中繼資料標記資源的功能。 Microsoft 建議您透過 Resource Manager 模型建立所有的資源。 企業 Scaffold 明顯是針對 Resource Manager 模型而設計。
 > 
 > 
 
 ## <a name="define-your-hierarchy"></a>定義您的階層
-hello scaffold hello foundation 是 hello Azure Enterprise 註冊 （與 hello 企業版入口網站）。 hello enterprise 註冊定義 hello 形狀和使用的公司內的 Azure 服務，且 hello 核心控管結構。 Hello 企業協議內的客戶是否能 toofurther 細分成部門、 帳戶和最後，訂閱 hello 環境。 Azure 訂用帳戶是 hello 基本的單位，其中包含所有資源。 它也可在 Azure 中定義數個限制，例如核心、資源等的數目。
+Azure Enterprise Enrollment (和企業版入口網站) 是 Scaffold 的基礎。 Enterprise Enrollment 是核心治理結構，可定義公司內 Azure 服務的形式和用途。 在企業合約中，客戶能夠進一步將環境細分成部門、帳戶和最終的訂用帳戶。 Azure 訂用帳戶是內含所有資源的基本單位。 它也可在 Azure 中定義數個限制，例如核心、資源等的數目。
 
 ![階層](./media/resource-manager-subscription-governance/agreement.png)
 
-每個企業不同，且在 hello 先前的映像中的 hello 階層可讓針對極大彈性的 Azure hello 公司內的組織方式。 實作包含在此文件中的 hello 指引之前, 您應該模型階層，並了解 hello 影響帳單、 資源的存取和複雜性。
+每個企業都不同，上圖中的階層對於在公司內組織 Azure 的方式容許極大的彈性。 實作本文件內含的指引之前，您應該塑造您的階層，並了解對於計費、資源存取和複雜度的影響。
 
-hello 三種常見的模式為 Azure 註冊項目是：
+Azure Enrollment 的三個常見模式如下︰
 
-* hello**功能**模式
+* **功能**模式
   
     ![函數](./media/resource-manager-subscription-governance/functional.png)
-* hello**業務單位**模式 
+* **業務單位**模式 
   
     ![業務](./media/resource-manager-subscription-governance/business.png)
-* hello**地理**模式
+* **地理**模式
   
     ![地理](./media/resource-manager-subscription-governance/geographic.png)
 
-您套用 hello scaffold 在 hello 訂用帳戶層級 tooextend hello 控管需求 hello 企業版的 hello 訂用帳戶。
+您可在訂用帳戶層級套用 scaffold，將企業的治理需求延伸到訂用帳戶。
 
 ## <a name="naming-standards"></a>命名標準
-hello 第一個 pillar 的 hello scaffold 時命名標準。 設計良好的命名標準可以讓您 tooidentify hello 入口網站、 帳單和指令碼中的資源。 最有可能的是，您已經有內部部署基礎結構的命名標準。 當新增 Azure tooyour 環境時，您應該擴充這些命名標準 tooyour Azure 資源。 命名標準促進更有效率的 hello 環境所有層級管理。
+Scaffold 的第一要件是命名標準。 設計良好的命名標準可讓您識別入口網站中、帳單上和指令碼內的資源。 最有可能的是，您已經有內部部署基礎結構的命名標準。 將 Azure 新增至您的環境時，您應該將這些命名標準延伸至 Azure 資源。 命名標準有助於更有效率地在所有層級管理環境。
 
 > [!TIP]
 > 針對命名慣例：
-> * 檢閱並採用盡可能 hello[模式和實務方針](../guidance/guidance-naming-conventions.md)。 本指南可協助您決定有意義的命名標準。
-> * 將 camelCasing 使用於資源的名稱 (例如 myResourceGroup 和 vnetNetworkName)。 附註： 有某些資源，例如儲存體帳戶，其中 hello 唯一的選項是 toouse 小寫 （和其他特殊字元）。
-> * 請考慮使用 Azure 資源管理員 （hello 下一節中所述） 原則 tooenforce 命名標準。
+> * 檢閱並且盡可能採用[模式與實例指南](../guidance/guidance-naming-conventions.md)。 本指南可協助您決定有意義的命名標準。
+> * 將 camelCasing 使用於資源的名稱 (例如 myResourceGroup 和 vnetNetworkName)。 附註︰有些資源 (例如儲存體帳戶) 的唯一選項是使用小寫 (和其他特殊字元)。
+> * 請考慮使用 Azure Resource Manager 原則 (在下一節中說明) 來強制執行命名標準。
 > 
-> hello 上述秘訣協助您實作一致的命名慣例。
+> 上述的祕訣可協助您實作一致的命名慣例。
 
 ## <a name="policies-and-auditing"></a>原則和稽核
-hello 第二個 pillar 的 hello scaffold 牽涉到建立[Azure 資源管理員原則](resource-manager-policy.md)和[稽核 hello 活動記錄檔](resource-group-audit.md)。 資源管理員原則可讓您在 Azure 中的 hello 能力 toomanage 風險。 您可以定義一些原則，藉由限制、強制執行或稽核特定動作來確保資料主權。 
+Scaffold 的第二要件牽涉到建立 [Azure Resource Manager 原則](resource-manager-policy.md)和[稽核活動記錄檔](resource-group-audit.md)。 Resource Manager 原則讓您能夠管理 Azure 中的風險。 您可以定義一些原則，藉由限制、強制執行或稽核特定動作來確保資料主權。 
 
-* 原則是預設**允許**系統。 您藉由定義並指派原則 tooresources 拒絕或稽核動作的資源控制動作。
+* 原則是預設**允許**系統。 您可定義原則並將原則指派給拒絕或稽核資源動作的資源，藉此控制動作。
 * 原則定義會以原則定義語言 (if-then 條件) 描述原則。
-* 您可使用 JSON (Javascript 物件標記法) 格式的檔案建立原則。 定義原則之後, 您將其指派 tooa 特定範圍： 訂用帳戶、 資源群組或資源。
+* 您可使用 JSON (Javascript 物件標記法) 格式的檔案建立原則。 定義原則後，將它指派給特定的範圍︰訂用帳戶、資源群組或資源。
 
-原則有多個動作可讓更細緻方法 tooyour 案例。 hello 動作包括：
+原則有多個動作可允許細微控管您的案例。 動作如下︰
 
-* **拒絕**： 區塊 hello 資源要求
-* **稽核**： 可讓 hello 要求而且會加入列 toohello 活動記錄 （這可以是使用的 tooprovide 警示或 tootrigger runbook）
-* **附加**： 加入指定的資訊 toohello 資源。 例如，如果資源上沒有 "CostCenter" 標籤，則新增具有預設值的該標籤。
+* **拒絕**︰封鎖資源要求
+* **稽核**︰允許要求，但會在活動記錄檔中加入一行文字 (這可用來提供警示或觸發 Runbook)
+* **附加**︰將指定的資訊新增到資源。 例如，如果資源上沒有 "CostCenter" 標籤，則新增具有預設值的該標籤。
 
 ### <a name="common-uses-of-resource-manager-policies"></a>Resource Manager 原則的常見用途
-Azure 資源管理員的原則是 hello Azure toolkit 中的強大工具。 它們可讓您 tooavoid 未預期的成本、 tooidentify 成本中心透過標記，以及 tooensure 資源的需求均符合該規範。 當原則組合與 hello 內建稽核功能時，您可以以複雜且靈活的解決方案。 原則可讓公司 tooprovide 控制項之 「 傳統 IT 」 的工作負載及"Agile"工作負載;例如，開發客戶應用程式。 hello 我們看到原則的最常見的模式是：
+Azure Resource Manager 原則是 Azure 工具組中功能強大的工具。 這類原則可讓您避免非預期的成本，進而透過標籤來識別資源的成本中心，並確保符合法規需求。 當原則搭配內建稽核功能時，您可以塑造複雜但有彈性的解決方案。 原則可讓公司掌控「傳統 IT」工作負載與「敏捷式」工作負載；例如，開發客戶應用程式。 我們最常見的原則模式如下︰
 
-* **地理-相容性資料 sovereignty** -Azure 提供 hello 世界各地的區域。 企業通常會想 toocontrol 資源 （無論 tooensure 資料 sovereignty tooensure 資源只會建立或關閉 toohello 結束取用者的 hello 資源） 的建立位置。
-* **成本管理** - Azure 訂用帳戶可以包含許多類型的資源。 企業也希望 tooensure 該標準訂閱可讓您避免使用過大的資源，可以成本數百個月份或多個 （美元）。
-* **預設透過必要的標記的控管**-需要標記是其中一個 hello 最常見和高度所需的功能。 使用 Azure 資源管理員原則企業正無法 tooensure 資源會適當地標記。 hello 最常見的標記是： 部門、 資源擁有者，以及環境類型 （例如生產、 測試、 開發）
+* **地區相容性/資料主權** - Azure 提供的區域遍及世界各地。 企業通常會想要控制資源的建立位置 (不論是為了確保資料主權，或只是為了確保資源建立於靠近資源取用者的地方)。
+* **成本管理** - Azure 訂用帳戶可以包含許多類型的資源。 公司通常想要確保標準訂用帳戶避免使用過大的資源，以節省每個月數百美元或更高金額的成本。
+* **透過必要標籤預設治理** - 必要標籤是最常見且高度所需的功能。 使用 Azure Resource Manager 原則，企業就可以確保適當地標記資源。 最常見的標記︰部門、資源擁有者及環境類型 (例如生產、測試、開發)
 
 **範例**
 
 企業營運應用程式的「傳統 IT」訂用帳戶
 
 * 對所有資源強制使用「部門」和「擁有者」標籤
-* 限制資源建立 toohello 北美地區
-* 限制 hello 能力 toocreate G 系列 Vm 與 HDInsight 叢集
+* 限制資源建立於北美地區
+* 限制建立 G 系列 VM 和 HDInsight 叢集的能力
 
 可供業務單位建立雲端應用程式的「敏捷式」環境
 
-* toomeet 資料 sovereignty 需求，允許資源 hello 建立只在特定地區。
-* 對所有資源強制使用「環境」標籤。 如果沒有標籤建立資源，則附加 hello**環境： 未知**標記 toohello 資源。
+* 為了符合資料主權需求，只允許在特定區域建立資源。
+* 對所有資源強制使用「環境」標籤。 如果建立的資源沒有標籤，則將 [環境︰未知] 標籤附加到資源。
 * 當資源建立於北美地區以外時進行稽核，但不阻止。
 * 建立高成本的資源時進行稽核。
 
 > [!TIP]
-> hello 跨組織的資源管理員原則的常見用法是 toocontrol*其中*資源可以建立和*什麼*可以建立類型的資源。 Tooproviding 上的控制項，除了*其中*和*什麼*，許多企業使用原則 tooensure 資源有 hello 適當的中繼資料 toobill 回供取用。 我們建議您套用的 hello 訂用帳戶層級的原則：
+> 各組織最常用的 Resource Manager 原則是控制「何處」可以建立資源以及可以建立「何種」類型的資源。 除了控制「何處」和「何種」以外，許多企業會使用原則來確保資源有適當的中繼資料可收回取用成本。 我們建議針對下列各項在訂用帳戶層級套用原則︰
 > 
 > * 地區相容性/資料主權
 > * 成本管理
@@ -135,14 +135,14 @@ Azure 資源管理員的原則是 hello Azure toolkit 中的強大工具。 它�
 > 
 
 ### <a name="audit---what-happened"></a>稽核 - 發生什麼情形？
-tooview 環境如何運作，您需要 tooaudit 使用者活動。 Azure 中的大多數資源類型都會建立診斷記錄檔，您可以透過記錄檔工具或在 Azure Operations Management Suite 中進行分析。 您可以收集跨多個訂用帳戶 tooprovide 部門的活動記錄檔或企業檢視。 稽核記錄都是重要的診斷工具，而且在 hello Azure 環境中的重要機制 tootrigger 事件。
+若要檢視環境的運作情況，您需要稽核使用者活動。 Azure 中的大多數資源類型都會建立診斷記錄檔，您可以透過記錄檔工具或在 Azure Operations Management Suite 中進行分析。 您可以蒐集多個訂用帳戶的活動記錄檔，以提供部門或企業觀點。 稽核記錄是很重要的診斷工具，同時也是在 Azure 環境中觸發事件的重要機制。
 
-從資源管理員部署的活動記錄可讓您 toodetermine hello**作業**，花費了備妥並且執行它們的人員。 使用 Log Analytics 等工具可以收集和彙總活動記錄檔。
+Resource Manager 部署的活動記錄檔可讓您判斷已發生的**作業**以及其執行者。 使用 Log Analytics 等工具可以收集和彙總活動記錄檔。
 
 ## <a name="resource-tags"></a>資源標籤
-當您組織中的使用者加入資源 toohello 訂用帳戶時，會變得越來越重要 tooassociate 與 hello 適當部門、 客戶及環境的資源。 您可以將附加到中繼資料 tooresources[標記](resource-group-using-tags.md)。 您使用標記 tooprovide hello 資源或資訊 hello 擁有者。 標記 toonot 只彙總與群組資源，以各種方式可讓您，不過基於計費的 hello 使用該資料。 您可以在具有向上 too15 索引鍵： 值配對中的資源標記。 
+隨著組織中的使用者將資源新增至訂用帳戶，讓資源與適當的部門、客戶和環境建立關聯變得越來越重要。 您可以透過[標籤](resource-group-using-tags.md)將中繼資料附加到資源。 您可以使用標籤來提供資源或擁有者的相關資訊。 標籤不僅可讓您以各種方式彙總及群組資源，並可將該資料用於退款目的。 您可以最多使用 15 個機碼值組來標記資源。 
 
-資源標記有彈性，而且應該附加的 toomost 資源。 常見資源標籤的範例如下︰
+資源標籤富有彈性且應該附加到大多數資源。 常見資源標籤的範例如下︰
 
 * BillTo
 * 部門 (或業務單位)
@@ -163,95 +163,95 @@ tooview 環境如何運作，您需要 tooaudit 使用者活動。 Azure 中的�
 > * 虛擬機器
 > * 應用程式服務環境/Web 伺服器
 > 
-> 此標記的策略會識別您的訂用帳戶之間 hello 商務、 財務、 安全性、 風險管理及 hello 環境的整體管理需要哪些中繼資料。 
+> 此標記策略可在所有訂用帳戶上識別業務、財務、安全性、風險管理和環境整體管理方面所需的中繼資料。 
 
 ## <a name="resource-group"></a>資源群組
-資源管理員可讓您 tooput 資源成有意義的群組管理、 計費，或自然親和性。 如先前所述，Azure 有兩個部署模型。 先前的傳統模型，hello 的基本管理單位的 hello 訂用帳戶在 hello。 您很難 toobreak 向訂用帳戶，導致 toohello 建立大量的訂用帳戶內的資源。 使用 hello 資源管理員模型時，我們可了解資源群組的 hello 簡介。 資源群組是資源的容器，其中的資源具有共同的生命週期或共用「所有 SQL 伺服器」或「應用程式 A」等屬性。
+Resource Manager 可讓您將資源放入有意義的群組，以便管理、計費或達到自然親和性。 如先前所述，Azure 有兩個部署模型。 在舊版的傳統模型中，管理的基本單位是訂用帳戶。 訂用帳戶內的資源難以細分，以致建立大量的訂用帳戶。 使用 Resource Manager 模型，我們看到資源群組的引入。 資源群組是資源的容器，其中的資源具有共同的生命週期或共用「所有 SQL 伺服器」或「應用程式 A」等屬性。
 
-資源群組不能包含在彼此，資源只可以隸屬 tooone 資源群組。 您可以將某些動作套用於資源群組中的所有資源。 例如，刪除資源群組中移除 hello 資源群組中的所有資源。 一般而言，您將整個應用程式或相關的系統放 hello 相同的資源群組。 例如，Contoso 的 Web 應用程式的三層應用程式會包含 hello 網頁伺服器、 應用程式伺服器和 SQL server 中 hello 相同的資源群組。
+資源群組不能彼此包含，且資源只能屬於一個資源群組。 您可以將某些動作套用於資源群組中的所有資源。 例如，刪除資源群組即可移除資源群組內的所有資源。 一般而言，您可將整個應用程式或相關系統放在相同的資源群組中。 例如，名為 Contoso Web 應用程式的三層應用程式會包含相同資源群組中的 Web 伺服器、應用程式伺服器和 SQL 伺服器。
 
 > [!TIP]
-> 您將資源群組的組織可能會不同 「 傳統 IT 」 的工作負載太 「 敏捷式軟體開發 IT 」 的工作負載：
+> 就「傳統 IT」工作負載與「敏捷式 IT」工作負載而言，您組織資源群組的方式可能會有所不同：
 > 
-> * 「 傳統 IT 」 的工作負載最常分組 hello 內的項目相同的生命週期，例如應用程式。 依照應用程式分組，即可進行個別應用程式管理。
-> * 「 敏捷式軟體開發 IT 」 的工作負載通常 toofocus 外部客戶面對雲端應用程式上的。 hello 資源群組應該會反映 hello 層面 （例如 Web 層，應用程式層） 的部署和管理。
+> * 「傳統 IT」工作負載通常會依照相同生命週期內的項目分組，例如應用程式。 依照應用程式分組，即可進行個別應用程式管理。
+> * 「敏捷式 IT」工作負載傾向著重於外部客戶面向的雲端應用程式。 資源群組應反映出部署 (例如 Web 層、應用程式) 和管理的層次。
 > 
 > 了解您的工作負載可協助您開發資源群組策略。
 
 ## <a name="role-based-access-control"></a>角色型存取控制
-您可能會問自己 「 誰應該有存取 tooresources 」？ 以及「如何控制此存取權？」 允許或不允許存取 toohello Azure 入口網站，以及控制在 hello 入口網站存取 tooresources 而言十分重要。 
+您可能會自問「誰應擁有資源的存取權？」 以及「如何控制此存取權？」 允許或不允許存取 Azure 入口網站，以及控制入口網站中資源的存取很重要。 
 
-Azure 最初發行時，存取控制項 tooa 訂用帳戶已基本： 系統管理員或共同管理員。 存取 tooa 訂用帳戶中 hello 傳統模型隱含存取 tooall hello 資源 hello 入口網站中。 這種欠缺更細微的控制會造成訂閱 tooprovide 合理的存取控制層級進行 Azure 註冊 toohello 激增。
+Azure 最初發行時，訂用帳戶的存取控制是基本的︰系統管理員或共同管理員。 存取傳統模型中的訂用帳戶，意味著存取入口網站中的所有資源。 缺乏細微控制導致訂用帳戶激增，進而為 Azure Enrollment 提供合理的存取控制層級。
 
-不再需要此種訂用帳戶激增情況。 以角色為基礎的存取控制，您可以將使用者指派給 toostandard 角色 （例如通用的 「 讀取器 」 和 「 寫入器 」 類型的角色）。 您也可以定義自訂角色。
+不再需要此種訂用帳戶激增情況。 使用角色型存取控制，您可以將使用者指派給標準角色 (例如常見的「讀取者」和「寫入者」角色類型)。 您也可以定義自訂角色。
 
 > [!TIP]
-> tooimplement 角色型存取控制：
-> * 您公司的身分識別存放區 (最常見 Active Directory) tooAzure Active Directory 使用 hello AD Connect 工具的連接。
-> * 控制 hello 管理員/共同管理員的訂用帳戶使用受管理的身分識別。 **不要**指派系統管理員/共同管理員 tooa 新訂用帳戶擁有者。 相反地，使用 RBAC 角色 tooprovide**擁有者**權限 tooa 群組或個人。
-> * 新增 Active Directory 中的 Azure 使用者 tooa 群組 （例如，應用程式 X 擁有者）。 使用 hello 同步處理的群組 tooprovide 群組成員 hello 適當的權限 toomanage hello 的資源群組包含 hello 應用程式。
-> * 遵循授與 hello 的 hello 原則**最小權限**必要的 toodo hello 預期的工作。 例如：
->   * 部署群組： 僅能 toodeploy 資源的群組。
->   * 虛擬機器管理： A 也就是可以 toorestart Vm 分組 （適用於作業）
+> 實作角色型存取控制：
+> * 使用 AD Connect 工具，將公司的身份識別存放區 (通常是 Active Directory) 連接到 Azure Active Directory。
+> * 使用受管理的身分識別，控制訂用帳戶的系統管理員/共同管理員。 **不要**將系統管理員/共同管理員指派給新的訂用帳戶擁有者。 相反地，使用 RBAC 角色將**擁有者**權限提供給群組或個人。
+> * 將 Azure 使用者新增至 Active Directory 中的群組 (例如，應用程式 X 擁有者)。 使用已同步處理的群組，提供群組成員管理資源群組 (包含應用程式) 的適當權限。
+> * 依照授與執行預期工作所需**最低權限**的原則。 例如：
+>   * 部署群組︰唯一能夠部署資源的群組。
+>   * 虛擬機器管理︰能夠重新啟動 VM (以便執行作業) 的群組
 > 
 > 這些祕訣可協助您跨訂用帳戶管理使用者存取。
 
 ## <a name="azure-resource-locks"></a>Azure 資源鎖定
-您的組織加入核心服務 toohello 訂用帳戶，變得越來越重要 tooensure 這些服務的可用 tooavoid 業務中斷。 [資源鎖定](resource-group-lock-resources.md)讓您修改或刪除這些裝置會有重大影響您的應用程式或雲端基礎結構上的高價值資源 toorestrict 作業。 您可以套用鎖定 tooa 訂用帳戶、 資源群組或資源。 一般而言，您可以套用鎖定 toofoundational 資源，例如虛擬網路、 閘道和儲存體帳戶。 
+隨著您的組織將核心服務新增至訂用帳戶，確保這些服務的可用性以避免業務中斷變得越來越重要。 [資源鎖定](resource-group-lock-resources.md)可讓您限制對珍貴資源執行的作業，而修改或刪除這類資源會嚴重影響您的應用程式或雲端基礎結構。 您可以將鎖定套用至訂用帳戶、資源群組或資源。 一般而言，您會將鎖定套用至基礎資源，例如虛擬網路、閘道和儲存體帳戶。 
 
-資源鎖定目前支援兩個值︰CanNotDelete 和 ReadOnly。 CanNotDelete 表示 （使用 hello 適當的權限） 的使用者仍然可以讀取或修改資源，但不能予以刪除。 ReadOnly 表示經過授權的使用者無法刪除或修改資源。
+資源鎖定目前支援兩個值︰CanNotDelete 和 ReadOnly。 CanNotDelete 表示使用者 (具有適當權限) 仍可讀取或修改資源，但無法加以刪除。 ReadOnly 表示經過授權的使用者無法刪除或修改資源。
 
-toocreate 或刪除管理鎖定，您必須能夠存取太`Microsoft.Authorization/*`或`Microsoft.Authorization/locks/*`動作。
-Hello 內建角色中，只有擁有者和使用者存取系統管理員會授與這些動作。
+若要建立或刪除管理鎖定，您必須擁有 `Microsoft.Authorization/*` 或 `Microsoft.Authorization/locks/*` 動作的存取權。
+在內建角色中，只有「擁有者」和「使用者存取管理員」被授與這些動作的存取權。
 
 > [!TIP]
-> 應該以鎖定保護核心網路選項。 意外刪除的站對站 VPN 閘道，請將而言 tooan Azure 訂用帳戶。 Azure 不允許您 toodelete 正在使用中，虛擬網路，但套用更多的限制是很有幫助的預防措施。 
+> 應該以鎖定保護核心網路選項。 對 Azure 訂用帳戶而言，意外刪除閘道、站對站 VPN 是個大災難。 Azure 不允許您刪除使用中的虛擬網路，但套用更多的限制是很有用的預防措施。 
 > 
 > * 虛擬網路︰CanNotDelete
 > * 網路安全性群組︰CanNotDelete
 > * 原則︰CanNotDelete
 > 
-> 原則也是重要的 toohello 維護適當的控制項。 我們建議您套用**CanNotDelete**鎖定 toopolices 正在使用中。
+> 原則對於適當控制項的維護也十分重要。 我們建議您將 **CanNotDelete** 鎖定套用到正在使用的原則。
 
 ## <a name="core-networking-resources"></a>核心網路資源
-存取 tooresources 可以是內部 （在 hello 公司的網路） 或外部 (透過 hello 網際網路)。 它是方便使用者在您的組織 tooinadvertently put 的資源在 hello 錯誤的位置，然後可能會開啟 toomalicious 存取。 如同在內部部署裝置，企業必須將適當的控制項 tooensure Azure 使用者做出 hello 正確的決策。 針對訂用帳戶治理，我們會找出可提供基本存取控制的核心資源。 hello 核心資源所組成：
+資源的存取可以是內部的 (在公司網路內) 或外部的 (透過網際網路)。 您組織中的使用者很容易不小心將資源放在錯誤的位置，並可能加以開啟而遭到惡意存取。 針對內部部署裝置，企業必須加上適度的控制，以確保 Azure 使用者能做出適當的決策。 針對訂用帳戶治理，我們會找出可提供基本存取控制的核心資源。 核心資源是由下列各項所組成︰
 
-* **虛擬網路**是子網路的容器物件。 雖然並非絕對必要，通常使用連接的應用程式 toointernal 公司資源時。
-* **網路安全性群組**類似 tooa 防火牆，而且透過 hello 網路提供規則的方式資源可以 「 交談 」。 它們提供更精確地控制如何 / 如果 toohello 網際網路或其他子網路中的可以連接的子網路 （或虛擬機器） hello 相同虛擬網路。
+* **虛擬網路**是子網路的容器物件。 雖然不是絕對必要，但通常使用於將應用程式連接到內部公司資源時。
+* **網路安全性群組**類似於防火牆，可提供資源如何透過網路「交談」的規則。 這類群組可細微控制子網路 (或虛擬機器) 如何/是否可以連接到網際網路或相同虛擬網路中的其他子網路。
 
 ![核心網路](./media/resource-manager-subscription-governance/core-network.png)
 
 > [!TIP]
 > 針對網路：
-> * 建立專用的 tooexternal 向工作負載的虛擬網路和內部網路的工作負載。 這種方式可以減少不小心將適用於外部對向的空間中的內部工作負載的虛擬機器的放置 hello 機會。
-> * 設定網路安全性群組 toolimit 存取。 最少封鎖存取 toohello 網際網路從內部虛擬網路以及從外部虛擬網路的區塊存取 toohello 公司網路。
+> * 建立外部工作負載與內部工作負載專用的虛擬網路。 此方法可減少不慎將預計用於內部工作負載的虛擬機器放入對外空間的機會。
+> * 設定網路安全性群組以限制存取。 至少，封鎖從內部虛擬網路時存取網際網路，以及封鎖從外部虛擬網路存取公司網路。
 > 
 > 這些祕訣可協助您實作安全的網路資源。
 
 ### <a name="automation"></a>自動化
-個別管理資源相當耗時，而且某些作業可能容易發生錯誤。 Azure 提供了各種自動化功能，包括 Azure 自動化、Logic Apps 和 Azure Functions。 [Azure 自動化](../automation/automation-intro.md)可讓系統管理員 toocreate 和管理資源定義 runbook toohandle 一般工作。 您可以使用 PowerShell 程式碼編輯器或圖形化編輯器來建立 Runbook。 您可以產生複雜的多階段工作流程。 Azure 自動化通常是使用的 toohandle 常見工作，例如正在關閉未使用的資源，或在回應 tooa 特定觸發程序中建立資源，而不需要人為介入。
+個別管理資源相當耗時，而且某些作業可能容易發生錯誤。 Azure 提供了各種自動化功能，包括 Azure 自動化、Logic Apps 和 Azure Functions。 [Azure 自動化](../automation/automation-intro.md)可讓系統管理員建立和定義 Runbook，以便處理管理資源時的一般工作。 您可以使用 PowerShell 程式碼編輯器或圖形化編輯器來建立 Runbook。 您可以產生複雜的多階段工作流程。 Azure 自動化通常用來處理一般工作，例如關閉未使用的資源，或建立資源來回應特定觸發程序，而不需要人為介入。
 
 > [!TIP]
 > 針對自動化：
-> * 建立 Azure 自動化帳戶，並檢閱 hello 可用之 runbook （圖形化和命令列） 用於 hello [Runbook 庫](../automation/automation-runbook-gallery.md)。
+> * 建立 Azure 自動化帳戶，並檢閱 [Runbook 資源庫](../automation/automation-runbook-gallery.md)中可用的 Runbook (圖形化和命令列)。
 > * 匯入並自訂重要 Runbook，以便自己使用。
 > 
-> 常見的案例是 hello 能力 tooStart/關機排程上的虛擬機器。 有範例 hello 組件庫中可用的 runbook 同時處理這種情況下，並教導您如何 tooexpand 它。
+> 常見的案例是依照排程啟動/關閉虛擬機器的功能。 資源庫中有範例 Runbook 可用，這些 Runbook 可處理這種情況並教導您如何加以展開。
 > 
 > 
 
 ## <a name="azure-security-center"></a>Azure 資訊安全中心
-可能是其中一個最大障礙 toocloud 採用 hello 已 hello 考量安全性。 風險的 IT 管理員和安全性部門需要 tooensure Azure 中的資源的安全性。 
+過度考量安全性或許是雲端採用的其中一個最大阻礙。 IT 風險管理員和資訊安全部門必須確保 Azure 中的資源是安全的。 
 
-hello [Azure 資訊安全中心](../security-center/security-center-intro.md)提供 hello 安全性狀態的 hello 訂閱中資源的中央檢視，並提供建議，協助防止遭盜用的資源。 它可以啟用更細微的原則 （例如，套用原則 toospecific 資源群組可讓它們可以明智地處理其對 toohello 風險 hello 企業 tootailor）。 最後，Azure 資訊安全中心是開放式平台，可讓 Microsoft 夥伴和獨立軟體廠商 toocreate 軟體連接到 Azure 資訊安全中心 tooenhance 其功能。 
+[Azure 資訊安全中心](../security-center/security-center-intro.md)可供集中檢視訂用帳戶中資源的安全性狀態，並提供有助於預防資源遭到入侵的相關建議。 它可以啟用更細微的原則 (例如，將原則套用至特定的資源群組，讓企業能針對他們所面臨的風險來調整其立場態度)。 最後，Azure 資訊安全中心是一個開放平台，可讓 Microsoft 合作夥伴和獨立軟體廠商建立可外掛到 Azure 資訊安全中心的軟體，以增強其功能。 
 
 > [!TIP]
-> 根據預設，Azure 資訊安全中心會在每個訂用帳戶中啟用。 不過，您必須啟用資料收集虛擬機器 tooallow Azure 資訊安全中心 tooinstall 其代理程式，並開始收集資料。
+> 根據預設，Azure 資訊安全中心會在每個訂用帳戶中啟用。 不過，您必須啟用從虛擬機器收集資料的功能，以允許 Azure 資訊安全中心安裝其代理程式並開始蒐集資料。
 > 
 > ![資料收集](./media/resource-manager-subscription-governance/data-collection.png)
 > 
 > 
 
 ## <a name="next-steps"></a>後續步驟
-* 現在您已經學會有關訂閱控管，它是時間 toosee 實際上這些建議。 請參閱[實作 Azure 訂用帳戶治理的範例](resource-manager-subscription-examples.md)。
+* 既然您已了解訂用帳戶治理，現在就可以參閱這些實務建議。 請參閱[實作 Azure 訂用帳戶治理的範例](resource-manager-subscription-examples.md)。
 

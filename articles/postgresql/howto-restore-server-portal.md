@@ -1,6 +1,6 @@
 ---
-title: "如何 tooRestore Azure PostgreSQL 資料庫中的伺服器 |Microsoft 文件"
-description: "本文說明如何 toorestore Azure Database 中的伺服器使用 PostgreSQL hello Azure 入口網站。"
+title: "如何在適用於 PostgreSQL 的 Azure 資料庫中還原伺服器 | Microsoft Docs"
+description: "本文說明如何使用 Azure 入口網站，在適用於 PostgreSQL 的 Azure 資料庫中還原伺服器。"
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -9,47 +9,47 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 07/20/2017
-ms.openlocfilehash: bc7351f384607397806d837afd3e1d7a26575e0e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3fbdb7741481bd3620466c3489d3609f9ea6961f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toobackup-and-restore-a-server-in-azure-database-for-postgresql-using-hello-azure-portal"></a>TooBackup 和還原 Azure 資料庫中的伺服器使用 PostgreSQL hello Azure 入口網站
+# <a name="how-to-backup-and-restore-a-server-in-azure-database-for-postgresql-using-the-azure-portal"></a>如何使用 Azure 入口網站，在適用於 PostgreSQL 的 Azure 資料庫中備份和還原伺服器
 
 ## <a name="backup-happens-automatically"></a>備份會自動進行
-當使用 Azure 資料庫的 PostgreSQL，hello 資料庫服務會自動將 hello 服務的備份每隔 5 分鐘。 
+使用適用於 PostgreSQL 的 Azure 資料庫時，資料庫服務每隔 5 分鐘會自動備份一次服務。 
 
-hello 備份時，可以使用 7 天內使用基本層次中，則為 35 天使用標準層時。 如需詳細資訊，請參閱[適用於 PostgreSQL 的 Azure 資料庫服務層](concepts-service-tiers.md)
+使用基本層時，備份會保留 7 天，而使用標準層時會保留 35 天。 如需詳細資訊，請參閱[適用於 PostgreSQL 的 Azure 資料庫服務層](concepts-service-tiers.md)
 
-使用這個自動備份功能您可能會到新伺服器 tooan 稍早的時間點還原 hello 伺服器及其所有資料庫。
+透過這個自動備份功能，您可以將伺服器和其所有資料庫還原至新的伺服器，而且還原至更早的時間點。
 
-## <a name="restore-in-hello-azure-portal"></a>將還原的 hello Azure 入口網站
-Azure PostgreSQL 資料庫可讓您 toorestore hello 伺服器回復 tooa 點的時間，並置於 tooa hello 伺服器新複本。 您可以使用這個新的伺服器 toorecover 您的資料。 
+## <a name="restore-in-the-azure-portal"></a>在 Azure 入口網站中還原
+適用於 PostgreSQL 的 Azure 資料庫可讓您將伺服器還原至過去的時間點，並還原至新的伺服器複本。 您可以使用這個新的伺服器復原資料。 
 
-比方說，如果資料表已意外卸除正午現在，您無法還原 toohello 正午之前的時間，擷取 hello 遺漏的資料表和資料從 hello 伺服器的新複本。
+比方說，如果今天中午不小心卸除資料表，您可以還原至中午之前的時刻，然後從該新的伺服器複本擷取遺漏的資料表和資料。
 
-hello 下列的步驟還原 hello 範例伺服器 tooa 點時間：
-1. 登入 hello [Azure 入口網站](https://portal.azure.com/)
-2. 找出您的「適用於 PostgreSQL 的 Azure 資料庫」伺服器。 在 hello Azure 入口網站，按一下**所有資源**從 hello 左側功能表，然後輸入 hello 名稱，例如**mypgserver 20170401**，toosearch 您現有的伺服器。 按一下 hello hello 搜尋結果中所列的伺服器名稱。 hello**概觀**頁面會針對您的伺服器會開啟，並提供進一步組態的選項。
+下列步驟會將範例伺服器還原至某個時間點︰
+1. 登入 [Azure 入口網站](https://portal.azure.com/)
+2. 找出您的「適用於 PostgreSQL 的 Azure 資料庫」伺服器。 在 Azure 入口網站中，從左側功能表按一下 [所有資源]，然後輸入名稱搜尋現有的伺服器，例如 **mypgserver-20170401**。 按一下搜尋結果中列出的伺服器名稱。 伺服器的 [概觀] 頁面隨即開啟，並提供可進一步設定的選項。
 
-   ![Azure 入口網站-搜尋 toolocate 您的伺服器](media/postgresql-howto-restore-server-portal/1-locate.png)
+   ![Azure 入口網站 - 搜尋找出您的伺服器](media/postgresql-howto-restore-server-portal/1-locate.png)
 
-3. 在 hello hello 伺服器概觀刀鋒視窗頂端，按一下 **還原**hello 工具列上。 hello 還原刀鋒視窗隨即開啟。
+3. 在伺服器概觀刀鋒視窗頂端，按一下工具列上的 [還原]。 [還原] 刀鋒視窗隨即開啟。
 
    ![適用於 PostgreSQL 的 Azure 資料庫 - 概觀 - 還原按鈕](./media/postgresql-howto-restore-server-portal/2_server.png)
 
-4. 填寫 hello 還原表單 hello 所需的資訊：
+4. 在 [還原] 表單中填入必要資訊︰
 
    ![適用於 PostgreSQL 的 Azure 資料庫 - 還原資訊 ](./media/postgresql-howto-restore-server-portal/3_restore.png)
-  - **還原點**： 選取在時間點所發生之前 hello 伺服器已變更
-  - **目標伺服器**： 提供新的伺服器名稱，您想要 toorestore
-  - **位置**： 您無法選取 hello 區域，依預設它是與 hello 來源伺服器相同
-  - **定價層**︰還原伺服器時，您無法變更此值。 它是與 hello 來源伺服器相同。 
+  - **還原點**：選取在變更伺服器之前的時間點
+  - **目標伺服器**︰提供要作為還原目的地的新伺服器名稱
+  - **位置**︰您無法選取區域，預設是與來源伺服器相同的區域
+  - **定價層**︰還原伺服器時，您無法變更此值。 它與來源伺服器相同。 
 
-5. 按一下**確定**toorestore hello 伺服器 toorestore tooa 時間點。 
+5. 按一下 [確定] 將伺服器還原至某個時間點。 
 
-6. 一旦 hello 還原完成時，找出 hello 建立 tooverify hello 如預期般，已還原資料的新伺服器。
+6. 完成還原時，找出已建立的新伺服器，確認資料如預期般還原。
 
 ## <a name="next-steps"></a>後續步驟
 - [「適用於 PostgreSQL 的 Azure 資料庫」的連線庫](concepts-connection-libraries.md)

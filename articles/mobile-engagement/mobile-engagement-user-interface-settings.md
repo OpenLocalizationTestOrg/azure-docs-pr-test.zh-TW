@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Mobile Engagement 使用者介面的設定"
-description: "了解如何 toomanage hello 使用 Azure Mobile Engagement 應用程式的全域設定"
+title: "Azure Mobile Engagement 使用者介面 - 設定"
+description: "了解如何使用 Azure Mobile Engagement 管理應用程式的全域設定"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,73 +14,73 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 02d4a36c591fc5e097410b7e931d1c9ce81d68d5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: af5c81df2b9f288161b38625d3ac2adde8fb195d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toomanage-hello-global-settings-of-your-application"></a>如何 toomanage hello 應用程式的全域設定
-hello**設定**功能表選項適用於應用程式會有所不同，視 hello hello 應用程式和 hello 權限，您已獲得 hello 應用程式的平台而定。 設定包括下列 hello： 詳細資料、 專案、 原生推送，推入的速度、 標記 （應用程式資訊） 和置入廣告。 您的應用程式 （使用 hello SDK） 或後端 （使用 hello 裝置 API），可以管理 hello hello 設定 區段中的標記 （應用程式資訊） 功能表選項。 
+# <a name="how-to-manage-the-global-settings-of-your-application"></a>如何管理應用程式的全域設定
+視應用程式平台和您所擁有的該應用程式權限而定，應用程式中所提供的 [ **設定** ] 功能表選項將有所不同。 設定中包含：[詳細資料]、[專案]、[原生推送]、[推送速度]、 [標記 (應用程式資訊)] 和 [商業壓力]。 [設定] 區段中的 [標記 (應用程式資訊)] 功能表選項可透過您的應用程式 (使用 SDK) 或您的後端 (使用裝置 API) 管理。 
 
 > [!NOTE]
-> 多區段的 hello **Mobile Engagement**入口網站 UI 包含 hello**顯示說明** 按鈕。 按此按鈕 tooget 區段內容詳細資訊。
+> 許多 **Mobile Engagement** 入口網站 UI 的區段含有 [顯示說明] 按鈕。 按該按鈕，可獲得關於區段的詳細內容資訊。
 > 
 > 
 
 ## <a name="details"></a>詳細資料
-可讓您 toochange hello 名稱和描述您的應用程式、 應用程式和您的角色權限檢視 hello 擁有者。 
+可讓您變更您應用程式的名稱與說明。檢視您應用程式的擁有者與您的角色權限。 
 
-分析設定可讓您 tooview 或變更 hello 週開始日 hello 天中的保留時間。
+分析組態可讓您檢視或變更每星期的第一天以及保留時間 (以天為單位)。
 
   ![settings1][46]
 
 ## <a name="projects"></a>專案
-可讓您 tooselect 所有專案中您都要應用程式 tooappear。 
+可讓您選取您要應用程式在其中出現的所有專案。 
 
-您也可以搜尋專案和檢視 hello 名稱、 描述、 擁有者，且您的角色權限，任何專案的應用程式的一部分。
+您也可以搜尋專案及檢視您的應用程式所屬之任何專案的名稱、描述、擁有者及您的角色權限。
 
 如需詳細資訊，請參閱 [UI 文件 – 首頁][Link 13]
 
   ![settings3][48]
 
 ## <a name="native-push"></a>原生推送
-可讓您 tooregister 新憑證或刪除與現有憑證進行使用其原生推送。 原生推送，可讓 Azure Mobile Engagement toopush tooyour 應用程式在任何時間，即使未執行。 
+可讓您註冊新憑證來與原生推送搭配使用，或刪除現有憑證。 原生推送可讓 Azure Mobile Engagement 在任何時間 (甚至在它沒有執行時) 推送至您的應用程式。 
 
-至少一個原生推送服務提供的認證或憑證之後, 您可以選取 [任何時間] 時建立觸達活動，以及使用 hello 「 通知 」 參數 hello 推送 API 中。
+在為至少一項原生推送服務提供認證或憑證之後，您可以在建立觸達活動時選擇 [任何時間]，也可以使用 PUSH API 中的 "notifier" 參數。
 
 ### <a name="apple-push-notification-service-apns"></a>Apple Push Notification Service (APNS)
-原生推送使用 tooenable hello Apple Push Notification Service 必須 tooregister 您的憑證。 您將需要 toospecify hello 做為開發 (DEV) 或實際執行環境 （生產環境） 的憑證類型。 然後您會需要上傳憑證和 hello 的密碼。
+若要讓原生推送使用 Apple Push Notification Service，您必須註冊您的憑證。 您將需要指定憑證類型為開發 (DEV) 或生產 (PROD)。 然後您需要上傳您的憑證與密碼。
 
-如需詳細資訊，請參閱： [SDK 文件-iOS-如何 tooPrepare Apple 推播通知您的應用程式][Link 5]
+如需詳細資訊，請參閱：[SDK 文件 - iOS - 如何準備您的應用程式以使用 Apple 推播通知][Link 5]
 
 ![settings4][49]
 
 ### <a name="windows-push-notification-service-wpns"></a>Windows 推播通知服務 (WPNS)
-tooenable 使用 Windows 通知服務的原生推送，您必須提供應用程式的認證。 您將需要您的封裝安全性識別碼 (SID) 與您的秘密金鑰。
+若要讓原生推送使用 Windows 推播通知，您必須提供應用程式的憑證。 您將需要您的封裝安全性識別碼 (SID) 與您的秘密金鑰。
 
 ![settings5][50]
 
 ### <a name="google-cloud-messaging-for-android-gcm"></a>Google Cloud Messaging for Android (GCM)
-原生推送使用 GCM，您需要將來自 Google 的 toofollow hello 指示 tooenable。 然後，您必須貼上在沒有 IP 限制下設定的伺服器簡易 API 金鑰。 Android v1.12.0 + 需要與 hello SDK 整合。
+若要讓原生推送使用 GCM，您必須依照 Google 的指示進行。 然後，您必須貼上在沒有 IP 限制下設定的伺服器簡易 API 金鑰。 需要與 SDK for Android 1.12.0 版以上整合。
 
 如需詳細資訊，請參閱： 
 
-* [SDK 文件 Android 如何 tooIntegrate GCM][Link 5]
+* [SDK 文件 Android 如何整合 GCM][Link 5]
 * [Google 開發人員 GCM 指南](http://developer.android.com/guide/google/gcm/gs.html)
 
 ### <a name="amazon-device-messaging-for-android-adm"></a>Android 的 Amazon 裝置傳訊 (ADM)
-使用 ADM tooenable 原生推送，您必須提供 Amazon<OAuth credentials>用戶端識別碼和用戶端密碼 （需要與 SDK 相整合的 Android v2.1.0 +） 所組成。
+若要讓原生推送使用 ADM，您必須提供由用戶端識別碼和用戶端密碼組成的 <OAuth credentials> (需要與 Android 2.1.0 版以上的 SDK 整合)。
 
 如需詳細資訊，請參閱： 
 
-* [SDK 文件 Android 如何 tooIntegrate ADM][Link 5]
+* [SDK 文件 Android 如何整合 ADM][Link 5]
 * [Amazon 開發人員 ADM 文件](https://developer.amazon.com/sdk/adm/credentials.html#Getting)
 
 ![settings6][51]
 
 ## <a name="push-speed"></a>推送速度
-顯示應用程式的 hello 目前推送速度，並可讓您的應用程式的 toodefine hello 推送速度。
+顯示您的應用程式目前的推送速度，而且可讓您定義應用程式的推送速度。
 
   ![settings7][52]
 

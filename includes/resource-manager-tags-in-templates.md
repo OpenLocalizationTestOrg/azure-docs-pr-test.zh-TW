@@ -1,7 +1,7 @@
-在部署期間，資源 tootag 新增 hello`tags`您要部署的項目 toohello 資源。 提供 hello 標記名稱和值。
+若要在部署期間標記資源，請將 `tags` 元素新增到您正在部署的資源。 提供標籤名稱和值。
 
-### <a name="apply-a-literal-value-toohello-tag-name"></a>套用常值 toohello 標記名稱
-hello 下列範例示範兩個標記的儲存體帳戶 (`Dept`和`Environment`) 設定 tooliteral 值：
+### <a name="apply-a-literal-value-to-the-tag-name"></a>將常值套用至標記名稱
+下列範例說明含有兩個標籤 (`Dept` 和 `Environment`) 並設為常值的儲存體帳戶：
 
 ```json
 {
@@ -27,8 +27,8 @@ hello 下列範例示範兩個標記的儲存體帳戶 (`Dept`和`Environment`) 
 }
 ```
 
-### <a name="apply-an-object-toohello-tag-element"></a>適用於物件 toohello 標記項目
-您可以定義物件參數，其中儲存數個標記，並套用該物件 toohello 標記項目。 Hello 物件中的每個屬性會變成 hello 資源個別標記。 hello 下列範例有一個名為參數`tagValues`也就是套用的 toohello 標記項目。
+### <a name="apply-an-object-to-the-tag-element"></a>將物件套用至標記元素
+您可定義存放數個標籤的物件參數，並將該物件套用至標籤元素。 物件中的每個屬性會變成資源的個別標籤。 下列範例具有名為 `tagValues` 且套用至標籤元素的參數。
 
 ```json
 {
@@ -60,9 +60,9 @@ hello 下列範例示範兩個標記的儲存體帳戶 (`Dept`和`Environment`) 
 }
 ```
 
-### <a name="apply-a-json-string-toohello-tag-name"></a>適用於 JSON 字串 toohello 標記名稱
+### <a name="apply-a-json-string-to-the-tag-name"></a>將 JSON 字串套用至標記名稱
 
-toostore 許多值，在單一標記中，適用於表示 hello 值的 JSON 字串。 hello 整個 JSON 字串都會儲存為一個標籤，不能超過 256 個字元。 hello 下列範例具有名為單一標記`CostCenter`，其中包含從 JSON 字串的數個值：  
+若要將多個值儲存於單一標籤，請套用代表這些值的 JSON 字串。 整個 JSON 字串會儲存為一個不得超過 256 個字元的標籤。 下列範例具有名為 `CostCenter` 的單一標籤，其中包含 JSON 字串中的數個值︰  
 
 ```json
 {

@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 動作群組具有資源管理員範本 |Microsoft 文件"
-description: "了解如何 toocreate 動作群組使用 Azure Resource Manager 範本。"
+title: "使用 Resource Manager 範本建立動作群組 | Microsoft Docs"
+description: "了解如何使用 Azure Resource Manager 範本建立動作群組。"
 author: anirudhcavale
 manager: orenr
 editor: 
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: ancav
-ms.openlocfilehash: 9902b33cad99bd99b3deda0cf6f4ff12278c89c3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 76bf353cac13f1c2169380f8dd3c1e163d4f3f41
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-an-action-group-with-a-resource-manager-template"></a>使用 Resource Manager 範本建立動作群組
-本文章將示範如何 toouse [Azure Resource Manager 範本](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates)tooconfigure 動作群組。 您可以使用範本自動設定可在特定類型的警示中重複使用的動作群組。 這些動作群組，請確定所有 hello 正確時觸發警示時，會收到通知的合作對象。
+本文章將說明如何使用 [Azure Resource Manager 範本](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-authoring-templates)設定動作群組。 您可以使用範本自動設定可在特定類型的警示中重複使用的動作群組。 這些動作群組能確定觸發警示時，所有正確的對象都會收到通知。
 
-hello 基本步驟如下：
+基本步驟為：
 
-1. 建立範本，為描述如何 toocreate hello 動作群組的 JSON 檔案。
+1. 建立一個描述如何建立動作群組的範本作為 JSON 檔案。
 
-2. 使用部署 hello 範本[任何部署方法](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy)。
+2. [使用任何部署方法部署範本](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-template-deploy)。
 
-首先，我們將描述如何 toocreate Resource Manager 範本使用的動作群組 hello 動作定義是硬式編碼 hello 範本中。 其次，我們將描述如何 toocreate 採用 hello webhook 組態資訊的範本輸入參數部署 hello 範本時。
+首先，我們會說明如何建立動作群組的 Resource Manager 範本，其中的動作定義是在範本中硬式編碼。 其次，我們會說明如何建立範本部署時，採用 Webhook 組態資訊作為輸入參數的範本。
 
 ## <a name="resource-manager-templates-for-an-action-group"></a>動作群組的 Resource Manager 範本
 
-toocreate 動作群組，使用資源管理員範本，建立 hello 類型的資源`Microsoft.Insights/actionGroups`。 然後要填入所有相關的屬性。 以下是兩個建立動作群組的範例範本。
+若要使用 Resource Manager 範本建立動作群組，您要建立 `Microsoft.Insights/actionGroups` 類型的資源。 然後要填入所有相關的屬性。 以下是兩個建立動作群組的範例範本。
 
 ```json
 {
@@ -43,13 +43,13 @@ toocreate 動作群組，使用資源管理員範本，建立 hello 類型的資
     "actionGroupName": {
       "type": "string",
       "metadata": {
-        "description": "Unique name (within hello Resource Group) for hello Action group."
+        "description": "Unique name (within the Resource Group) for the Action group."
       }
     },
     "actionGroupShortName": {
       "type": "string",
       "metadata": {
-        "description": "Short name (maximum 12 characters) for hello Action group."
+        "description": "Short name (maximum 12 characters) for the Action group."
       }
     }
   },
@@ -114,13 +114,13 @@ toocreate 動作群組，使用資源管理員範本，建立 hello 類型的資
     "actionGroupName": {
       "type": "string",
       "metadata": {
-        "description": "Unique name (within hello Resource Group) for hello Action group."
+        "description": "Unique name (within the Resource Group) for the Action group."
       }
     },
     "actionGroupShortName": {
       "type": "string",
       "metadata": {
-        "description": "Short name (maximum 12 characters) for hello Action group."
+        "description": "Short name (maximum 12 characters) for the Action group."
       }
     },
     "webhookReceiverName": {
@@ -171,4 +171,4 @@ toocreate 動作群組，使用資源管理員範本，建立 hello 類型的資
 ## <a name="next-steps"></a>後續步驟
 * 深入了解[動作群組](monitoring-action-groups.md)。
 * 深入了解[警示](monitoring-overview-alerts.md)。
-* 深入了解如何 tooadd[警示使用資源管理員範本](monitoring-create-activity-log-alerts-with-resource-manager-template.md)。
+* 了解如何[使用 Resource Manager 範本新增警示](monitoring-create-activity-log-alerts-with-resource-manager-template.md)。

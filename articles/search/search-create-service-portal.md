@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate hello 入口網站中，在 Azure 搜尋服務 |Microsoft 文件"
-description: "佈建 Azure 搜尋服務 hello 入口網站中。"
+title: "在入口網站中建立 Azure 搜尋服務 | Microsoft Docs"
+description: "在入口網站中佈建 Azure 搜尋服務。"
 services: search
 manager: jhubbard
 author: HeidiSteen
@@ -13,101 +13,101 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 05/01/2017
 ms.author: heidist
-ms.openlocfilehash: f1c7197a1467e32bd4b360b165c9059e6bb0e496
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 58f4eab190e40e16ed261c165ffdfc8155eeb434
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="create-an-azure-search-service-in-hello-portal"></a>在 hello 入口網站中建立 Azure 搜尋服務
+# <a name="create-an-azure-search-service-in-the-portal"></a>在入口網站中建立 Azure 搜尋服務
 
-本文說明如何 toocreate 或佈建 Azure 搜尋服務 hello 入口網站中。 如需 PowerShell 的指示，請參閱[使用 PowerShell 管理 Azure 搜尋服務](search-manage-powershell.md)。
+本文說明如何在入口網站中建立或佈建 Azure 搜尋服務。 如需 PowerShell 的指示，請參閱[使用 PowerShell 管理 Azure 搜尋服務](search-manage-powershell.md)。
 
 ## <a name="subscribe-free-or-paid"></a>訂閱 (免費或付費)
 
-[開啟免費的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)並使用免費信用額度 tootry 出支付 Azure 服務。 信用額度用完之後，保留 hello 帳戶，並繼續 toouse 免費的 Azure 服務，例如網站。 除非您明確地變更您的設定，並詢問 toobe 收費，永遠不會收取您的信用卡。
+[開啟免費的 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F)，並使用免費信用額度來試用付費的 Azure 服務。 當您用完信用額度之後，請保留帳戶，並繼續使用免費的 Azure 服務，例如網站。 除非您明確變更您的設定且同意付費，否則我們絕對不會從您的信用卡收取任何費用。
 
 或者，請[啟用 MSDN 訂閱者權益](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/?WT.mc_id=A261C142F)。 MSDN 訂用帳戶每月會提供您信用額度，讓您可以用於 Azure 付費服務。 
 
 ## <a name="find-azure-search"></a>尋找 Azure 搜尋服務
-1. 登入 toohello [Azure 入口網站](https://portal.azure.com/)。
-2. 按一下 hello 加上正負號 （"+"） 中的 hello 左上角。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 按一下左上角的加號 ("+")。
 3. 選取 [Web + 行動] > [Azure 搜尋服務]。
 
 ![](./media/search-create-service-portal/find-search2.png)
 
-## <a name="name-hello-service-and-url-endpoint"></a>服務名稱的 hello 和 URL 端點
+## <a name="name-the-service-and-url-endpoint"></a>為服務和 URL 端點命名
 
-服務名稱是依據 API 呼叫所發出的 hello URL 端點的一部分。 輸入您的服務名稱在 hello **URL**欄位。 
+服務名稱是 URL 端點的一部分，API 呼叫是根據此端點所發出。 在 [URL] 欄位中輸入您的服務名稱。 
 
 服務名稱需求：
    * 長度為 2 到 60 個字元
    * 小寫字母、數字或連字號 ("-")
-   * 沒有破折號 ("-") 為 hello 前 2 個或最後一個單一字元
+   * 不能使用連字號 ("-") 作為前 2 個字元或最後一個字元
    * 不能是連續的破折號 ("-")
 
 ## <a name="select-a-subscription"></a>選取一個訂用帳戶
-如果您有一個以上的訂用帳戶，請選擇一個同樣具有資料或檔案儲存體服務的訂用帳戶。 Azure 搜尋可以自動偵測 Azure 資料表和 Blob 儲存體、 SQL Database 和 Azure Cosmos DB 透過編製索引*索引子*，但只在 hello 服務相同的訂用帳戶。
+如果您有一個以上的訂用帳戶，請選擇一個同樣具有資料或檔案儲存體服務的訂用帳戶。 Azure 搜尋服務可以透過「索引子」自動偵測 Azure 資料表和 Blob 儲存體、SQL Database 和 Azure Cosmos DB 以進行索引編製，但只會針對相同訂用帳戶中的服務。
 
 ## <a name="select-a-resource-group"></a>選取資源群組
-資源群組是一起使用之 Azure 服務和資源的集合。 比方說，如果您使用 Azure 搜尋 tooindex SQL 資料庫，則這兩項服務應該 hello 屬於相同的資源群組。
+資源群組是一起使用之 Azure 服務和資源的集合。 例如，如果您使用 Azure 搜尋服務來編製 SQL 資料庫的索引，則這兩個服務應該屬於同一個資源群組。
 
 > [!TIP]
-> 刪除資源群組時，也會刪除 hello 服務。 利用多個服務，將它們全部放在 hello 原型專案相同的資源群組輕鬆清理之後 hello 專案是透過。 
+> 刪除資源群組也會刪除其中的服務。 針對使用多個服務的原型專案，將它們全部放入同一個資源群組，在專案結束之後就能更容易清除。 
 
 ## <a name="select-a-hosting-location"></a>選取裝載位置 
-作為 Azure 服務，可以在 hello 世界各地的資料中心裝載 Azure 搜尋。 請注意，各地理位置的[價格可能不同](https://azure.microsoft.com/pricing/details/search/) 。
+做為 Azure 服務，Azure 搜尋服務可以裝載於世界各地的資料中心。 請注意，各地理位置的[價格可能不同](https://azure.microsoft.com/pricing/details/search/) 。
 
 ## <a name="select-a-pricing-tier-sku"></a>選取定價層 (SKU)
 [Azure 搜尋服務目前提供多個定價層](https://azure.microsoft.com/pricing/details/search/)︰免費、基本或標準。 每一層都有自己的[容量和限制](search-limits-quotas-capacity.md)。 請參閱[選擇定價層或 SKU](search-sku-tier.md) 以取得指導方針。
 
-在本逐步解說中，我們選擇 hello 標準層針對我們的服務。
+在此逐步解說中，我們已為服務選擇標準層。
 
 ## <a name="create-your-service"></a>建立您的服務
 
-每當您登入記住 toopin 服務 toohello 儀表板，以方便存取。
+請記得將您的服務釘選到儀表板，以方便在登入時存取。
 
 ![](./media/search-create-service-portal/new-service2.png)
 
 ## <a name="scale-your-service"></a>調整您的服務
-它可能需要幾分鐘的時間 toocreate （15 分鐘或更多視 hello 層） 服務。 佈建您的服務之後，您可以調整它 toomeet 您的需求。 因為您的 Azure 搜尋服務選擇 hello 標準層，您可以在兩個維度來調整您的服務： 複本和資料分割。 您已選擇 hello 基本層，您只能新增複本。 如果您佈建 hello 免費服務，就無法使用小數位數。
+可能需要幾分鐘的時間來建立服務 (視層級而定，15 分鐘或更多)。 佈建完您的服務之後，您可以調整它以符合您的需求。 由於您為「Azure 搜尋服務」選擇了「標準」層，因此您可以在兩個維度調整服務︰複本和資料分割。 如果您選擇的是「基本」層，則只能新增複本。 如果您佈建的是免費服務，則無法進行調整。
 
-***資料分割***讓服務 toostore 和搜尋多個文件。
+「資料分割」允許您的服務儲存及搜尋更多文件。
 
-***複本***允許服務 toohandle 的搜尋查詢更高的負載。
+「複本」允許服務來處理更高的搜尋查詢負載。
 
 > [!Important]
 > 服務必須具有 [2 個唯讀 SLA 的複本和 3 個讀/寫 SLA 的複本](https://azure.microsoft.com/support/legal/sla/search/v1_0/)。
 
-1. 移 tooyour hello Azure 入口網站中的搜尋服務刀鋒視窗。
-2. 在 hello 左瀏覽窗格中，選取 **設定** > **標尺**。
-3. 使用 hello slidebar tooadd 複本或資料分割。
+1. 在 Azure 入口網站中移至您的搜尋服務刀鋒視窗。
+2. 在左導覽窗格中，選取 [設定] > [調整]。
+3. 使用滑桿來新增複本或分割區。
 
 ![](./media/search-create-service-portal/settings-scale.png)
 
 > [!Note] 
-> 每個層次都有不同[限制](search-limits-quotas-capacity.md)hello 總數允許在單一服務中的搜尋單位 (複本 * 分割 = 總的搜尋單位)。
+> 關於單一服務中允許的搜尋單位總數 (複本 * 分割區 = 搜尋單位總數)，每一層各有不同的[限制](search-limits-quotas-capacity.md)。
 
-## <a name="when-tooadd-a-second-service"></a>當 tooadd 第二個服務
+## <a name="when-to-add-a-second-service"></a>新增第二個服務的時機
 
-大部分的客戶使用只有一個服務佈建於提供 hello 層[以滑鼠右鍵的資源平衡](search-sku-tier.md)。 一項服務可以裝載多個索引、 主旨 toohello [hello 層您選取的最大限制](search-capacity-planning.md)，與從另一個隔離每個索引。 在 Azure 搜尋中，要求只能是導向的 tooone 索引，從其他意外或故意情況下的資料傳送的 hello 機會降到最低索引 hello 相同服務。
+大部分的客戶都是使用在提供[正確資源平衡](search-sku-tier.md)的層上佈建的單一服務。 單一服務可以裝載多個索引 (數量受限於[所選層的最大限制](search-capacity-planning.md))，且每個索引都互相隔離。 在 Azure 搜尋服務中，要求只能導向到單一索引，以降低意外或刻意從相同服務的其他索引中擷取資料的機會。
 
-雖然大部分的客戶使用只有一個服務，服務備援可能需要如果操作需求 hello 如下：
+雖然大部分的客戶只使用單一服務，但如果操作需求包含下列項目，則可能需要服務備援：
 
-+ 災害復原 (資料中心中斷)。 Azure 搜尋不提供立即中斷的 hello 事件中的容錯移轉。 如需建議和指導方針，請參閱[服務管理](search-manage.md)。
-+ 將調查多租用戶模型的程式判定額外的服務為 hello 最佳設計。 如需詳細資訊，請參閱[針對多租用戶設計](search-modeling-multitenant-saas-applications.md)。
-+ 針對全域部署的應用程式，您可能需要 Azure 搜尋的執行個體的多個區域 toominimize 延遲的應用程式的國際流量。
++ 災害復原 (資料中心中斷)。 Azure 搜尋服務在中斷時不會提供即時容錯移轉。 如需建議和指導方針，請參閱[服務管理](search-manage.md)。
++ 您的多租用戶模型調查判斷額外服務為最佳化設計。 如需詳細資訊，請參閱[針對多租用戶設計](search-modeling-multitenant-saas-applications.md)。
++ 針對全球部署的應用程式，您在多個區域可能都需要 Azure 搜尋服務執行個體，以降低應用程式國際流量的延遲。
 
 > [!NOTE]
-> 在 Azure 搜尋服務中，您無法區隔索引和查詢工作負載，因此您永遠不會針對區隔的工作負載建立多重服務。 索引一律上查詢 hello 服務處於已建立 （您無法在一個服務中建立索引並將它複製 tooanother）。
+> 在 Azure 搜尋服務中，您無法區隔索引和查詢工作負載，因此您永遠不會針對區隔的工作負載建立多重服務。 一律是在建立索引的服務上查詢該索引 (您無法在某個服務中建立索引，並將它複製到另一個服務)。
 >
 
-不需要第二個服務即可獲得高可用性。 使用 2 或多個複本中的 hello 相同的服務時，被達成高可用性的查詢。 複本更新是循序的，這表示當服務更新推出時，至少會有一個複本是可運作的。如需執行時間的詳細資訊，請參閱[服務等級協定](https://azure.microsoft.com/support/legal/sla/search/v1_0/)。
+不需要第二個服務即可獲得高可用性。 當您在同一個服務中使用 2 個或更多的複本，查詢就會達到高可用性。 複本更新是循序的，這表示當服務更新推出時，至少會有一個複本是可運作的。 如需執行時間的詳細資訊，請參閱[服務等級協定](https://azure.microsoft.com/support/legal/sla/search/v1_0/)。
 
 ## <a name="next-steps"></a>後續步驟
-之後佈建 Azure 搜尋服務，您就可以開始太[定義索引](search-what-is-an-index.md)讓您可以上傳，並搜尋您的資料。
+佈建 Azure 搜尋服務之後，您就可以[定義索引](search-what-is-an-index.md)，以便上傳和搜尋您的資料。
 
-從程式碼或指令碼，tooaccess hello 服務提供 hello URL (*服務名稱*。 search.windows.net) 和金鑰。 系統管理金鑰授與完整存取權；查詢金鑰則授與唯讀存取權。 請參閱[如何 toouse Azure 搜尋.net](search-howto-dotnet-sdk.md) tooget 啟動。
+若要從程式碼或指令碼存取服務，請提供 URL (*service-name*.search.windows.net) 和金鑰。 系統管理金鑰授與完整存取權；查詢金鑰則授與唯讀存取權。 請參閱[如何在 .NET 中使用 Azure 搜尋服務](search-howto-dotnet-sdk.md)以便開始使用。
 
 請參閱[建置及查詢您的第一個索引](search-get-started-portal.md)，來取得以入口網站為基礎的快速教學課程。
 

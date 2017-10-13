@@ -1,6 +1,6 @@
 ---
-title: "Azure 的架構設計成 aaaIntegrate 安全性 |Microsoft 文件"
-description: " 本文將協助您了解 hello Azure toomake 上的應用程式及服務架構它更容易 toointegrate 安全性設計及實作。 "
+title: "將安全性整合至 Azure 架構設計 | Microsoft Docs"
+description: " 本文將協助您了解 Azure 上的應用程式及服務架構，可以更輕易地將安全性整合至設計及實作。 "
 services: security
 documentationcenter: na
 author: TomShinder
@@ -14,16 +14,16 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 01/23/2017
 ms.author: terrylan
-ms.openlocfilehash: cfca8a1a2766f72bc3340c4e3df0019eb8b5a1e3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 91e46d690d3e7c298bc3b4020cc383ca99c43c4f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="application-architecture-on-azure"></a>Azure 的應用程式架構
-toohelp 安全上 Microsoft Azure 雲端方案架構穩固相當重要。 架構設計人員、設計人員和實作者都受益於對於應用程式及服務架構的強大知識。 這項基本知識可協助您了解雲端方案的所有 hello 元件，並使其更容易 toointegrate 安全性，您設計和實作的所有層面。
+為了協助保護您在 Microsoft Azure 上以雲端為基礎的解決方案，堅強的架構基礎相當重要。 架構設計人員、設計人員和實作者都受益於對於應用程式及服務架構的強大知識。 此基本知識將幫助您了解所有以雲端為基礎的解決方案的元件，並輕鬆地將安全性整合至您的設計和實作的所有層面。
 
-我們有 hello 下列 toohelp 您架構的調查與設計：
+我們有下列項目可以協助您的架構調查與設計︰
 
 * 架構資訊圖
 * 架構藍圖
@@ -37,21 +37,21 @@ Microsoft 發佈數個與架構相關的海報/資訊圖。 這些包括：
 * [調整雲端服務](https://azure.microsoft.com/documentation/infographics/cloud-services/)
 
 ## <a name="architectural-blueprints"></a>架構藍圖
-Microsoft 發行的高層級的一組[架構藍圖](http://aka.ms/azblueprints)顯示如何使用 Microsoft 產品的系統 toobuild 特定類型。
+Microsoft 發佈一組高階 [架構藍圖](http://aka.ms/azblueprints) ，示範如何使用 Microsoft 產品來建置特定類型的系統。
 每個藍圖都包含：
 
 * 一般以 2D Visio 2003 為基礎的檔案，您可以下載並修改
-* 彩色的 3D 遠近 PDF 檔案 toointroduce hello 藍圖 tooless 技術對象
-* 逐步解說 hello 3D 版本的視訊
+* 彩色的 3D 透視 PDF 檔案，為技術較低的對象介紹藍圖
+* 逐步解說 3D 版本的影片
 
 ## <a name="cloud-and-enterprise-symbol-set"></a>雲端和企業符號集
-[檢視 hello Visio 和訓練影片符號](http://aka.ms/CnESymbolsVideo)然後[下載 hello 雲端和企業符號組](http://aka.ms/CnESymbols)toohelp 建立說明 Azure、 Windows Server、 SQL Server 和更多的技術資料。 如果 hello 書籍訓練人員 toouse Microsoft 產品，您可以使用的架構圖表、 訓練教材、 簡報、 資料工作表、 圖形、 技術白皮書和甚至協力廠商叢書 》 中的 hello 符號。 不過，它們不一定用於使用者介面。
+[檢視 Visio 和符號訓練影片](http://aka.ms/CnESymbolsVideo)，然後[下載雲端和企業符號集](http://aka.ms/CnESymbols)以協助建立可說明 Azure、Windows Server、SQL Server 和其他產品的技術資料。 您可以將符號用在架構圖表、訓練教材、簡報、資料工作表、資訊圖、白皮書，甚至是協力廠商書籍 (如果書籍訓練人員使用 Microsoft 產品)。 不過，它們不一定用於使用者介面。
 
 ## <a name="3d-blueprint-visio-template"></a>3D 藍圖 Visio 範本
-hello 3D 新版 hello [Microsoft 架構藍圖](http://aka.ms/azblueprints)一開始所建立的非 Microsoft 工具。 新的 Visio 2013 (和更新版本) 範本於 2015 年 8 月 5 日推出，做為 [分佈在 EDX.ORG 上之 Microsoft 架構憑證課程](https://docs.microsoft.com/azure/architecture/#microsoft-architecture-certification-course)的一部分。
+3D 版的 [Microsoft 架構藍圖](http://aka.ms/azblueprints) 一開始建立在非 Microsoft 工具中。 新的 Visio 2013 (和更新版本) 範本於 2015 年 8 月 5 日推出，做為 [分佈在 EDX.ORG 上之 Microsoft 架構憑證課程](https://docs.microsoft.com/azure/architecture/#microsoft-architecture-certification-course)的一部分。
 
-hello 範本也會提供外部 hello 課程的。
+此範本在課程外也可供使用。
 
-* [檢視 hello 訓練影片](http://aka.ms/3dBlueprintTemplateVideo)第一個讓您知道它可以執行的動作
-* 下載 hello [Microsoft 3d 藍圖 Visio 範本](http://aka.ms/3DBlueprintTemplate)
-* 下載 hello[雲端和企業符號](https://docs.microsoft.com/azure/architecture/#drawing-symbol-and-icon-sets)toouse hello 3D 範本
+* [檢視訓練影片](http://aka.ms/3dBlueprintTemplateVideo) ，讓您知道它的功能
+* 下載 [Microsoft 3D 藍圖 Visio 範本](http://aka.ms/3DBlueprintTemplate)
+* 下載 [雲端和企業符號](https://docs.microsoft.com/azure/architecture/#drawing-symbol-and-icon-sets) 以搭配 3D 範本使用

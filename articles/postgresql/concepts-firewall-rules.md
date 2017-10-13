@@ -9,51 +9,51 @@ editor: jasonwhowell
 ms.service: postgresql
 ms.topic: article
 ms.date: 05/10/2017
-ms.openlocfilehash: 1d46a4434c483c3612a9a7b4cdef718d6dc3e765
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 150c4f53c5ab6a6425b6af7d286d4c1518b006f8
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-database-for-postgresql-server-firewall-rules"></a>適用於 PostgreSQL 的 Azure 資料庫伺服器防火牆規則
-防火牆會阻止所有存取 tooyour 資料庫伺服器，直到您指定哪些電腦有權限。 hello 防火牆會授與存取 toohello 伺服器 hello 來自每個要求的 IP 位址為基礎。
-tooconfigure 防火牆，您會建立指定的可接受的 IP 位址範圍的防火牆規則。 您可以在 hello 伺服器層級建立防火牆規則。
+防火牆會防止對您資料庫伺服器的所有存取，直到您指定哪些電腦擁有權限。 此防火牆會根據每一個要求的來源 IP 位址來授與伺服器存取權。
+若要設定您的防火牆，您可以建立防火牆規則，指定可接受的 IP 位址範圍。 您可以在伺服器層級建立防火牆規則。
 
-**防火牆規則：**這些規則可讓用戶端 tooaccess 整個 Azure 資料庫 PostgreSQL 伺服器，也就是所有都 hello 資料庫都 hello 相同邏輯伺服器。 藉由使用 hello Azure 入口網站，或使用 Azure CLI 命令，可以設定伺服器層級防火牆規則。 toocreate 伺服器層級防火牆規則，您必須是 hello 訂用帳戶擁有者或訂閱參與者。
+**防火牆規則：**這些規則可讓用戶端完整存取適用於 PostgreSQL 的 Azure 資料庫伺服器，也就是相同邏輯伺服器內的所有資料庫。 使用 Azure 入口網站或使用 Azure CLI 命令，即可設定伺服器層級的防火牆規則。 若要建立伺服器層級的防火牆規則，您必須是訂用帳戶擁有者或訂用帳戶參與者。
 
 ## <a name="firewall-overview"></a>防火牆概觀
-Hello 防火牆封鎖 PostgreSQL 伺服器的所有資料庫存取 tooyour Azure 資料庫的預設值。 toobegin 使用您的伺服器從另一部電腦，您需要 toospecify 其中一個或多伺服器層級防火牆規則 tooenable 存取 tooyour 伺服器。 使用的 IP 位址範圍是從 hello 網際網路 tooallow hello 防火牆規則 toospecify。 存取 toohello Azure 入口網站本身不會受到 hello 防火牆規則。
-從連線嘗試 hello 網際網路和 Azure 必須先通過 hello 防火牆才能到達您的 PostgreSQL 資料庫 hello 下列圖表所示：
+根據預設，防火牆會封鎖對適用於 PostgreSQL 之 Azure 資料庫伺服器的所有資料庫存取。 若要從其他電腦開始使用您的伺服器，請指定一或多個伺服器層級的防火牆規則，以便啟用對伺服器的存取。 使用防火牆規則，來指定允許從網際網路存取的 IP 位址範圍。 存取 Azure 入口網站本身，並不會受到防火牆規則所影響。
+來自網際網路和 Azure 的連接嘗試必須先通過防火牆，才能到達您的 PostgreSQL 資料庫，如下圖所示：
 
-![範例流程的 hello 防火牆的運作方式](media/concepts-firewall-rules/1-firewall-concept.png)
+![防火牆運作方式的範例流程](media/concepts-firewall-rules/1-firewall-concept.png)
 
-## <a name="connecting-from-hello-internet"></a>從 hello 網際網路連線
-伺服器層級防火牆規則 PostgreSQL 伺服器 hello Azure 資料庫上套用 tooall 資料庫。 如果 hello 要求 hello IP 位址是其中一個 hello hello 伺服器層級防火牆規則中指定的範圍內，會授與 hello 連線。
-如果 hello 要求 hello IP 位址不在任何 hello 資料庫層級中指定 hello 範圍或伺服器層級防火牆規則，hello 連接要求會失敗。
-例如，如果您的應用程式會針對 PostgreSQL 連接 JDBC 驅動程式，您可能會遇到 hello 防火牆封鎖 hello 連接時，嘗試 tooconnect 這個錯誤。
+## <a name="connecting-from-the-internet"></a>從網際網路連線
+伺服器層級的防火牆規則可套用至適用於 PostgreSQL 之 Azure 資料庫伺服器上的所有資料庫。 如果要求的 IP 位址在伺服器層級防火牆規則中指定的其中一個範圍內，就會允許連線。
+如果要求的 IP 位址不在任何資料庫層級或伺服器層級防火牆規則中指定的範圍內，連線要求會失敗。
+例如，如果您的應用程式透過適用於 PostgreSQL 的 JDBC 驅動程式來連接，若您在防火牆封鎖連接期間嘗試進行連接，則可能會遇到此錯誤。
 > java.util.concurrent.ExecutionException: java.lang.RuntimeException: org.postgresql.util.PSQLException: FATAL: no pg\_hba.conf entry for host "123.45.67.890", user "adminuser", database "postgresql", SSL
 
 ## <a name="programmatically-managing-firewall-rules"></a>以程式設計方式管理防火牆規則
-除了以程式設計方式使用 Azure CLI toohello Azure 入口網站中，防火牆規則可以是所管理。
+除了 Azure 入口網站之外，防火牆規則還可以程式設計方式使用 Azure CLI 來管理。
 另請參閱[使用 Azure CLI 建立和管理適用於 PostgreSQL 的 Azure 資料庫防火牆規則](howto-manage-firewall-using-cli.md)。
 
-## <a name="troubleshooting-hello-database-firewall"></a>疑難排解 hello database 防火牆
-請考慮 hello PostgreSQL 伺服器服務的存取 toohello Microsoft Azure 資料庫未如預期運作時，下列點：
+## <a name="troubleshooting-the-database-firewall"></a>針對資料庫防火牆問題進行疑難排解
+對於適用於 PostgreSQL 的 Microsoft Azure 資料庫伺服器服務的存取未如預期般運作時，請考慮下列幾點：
 
-* **變更 toohello 允許清單有尚未生效：**可能會如往常般的五分鐘延遲變更 PostgreSQL 伺服器防火牆設定 tootake 效果 toohello Azure 資料庫。
+* **對允許清單的變更尚未生效：**對適用於 PostgreSQL 之 Azure 資料庫伺服器防火牆組態的變更最多可能會延遲 5 分鐘才能生效。
 
-* **hello 登入未獲授權，或使用不正確的密碼：**登入沒有權限 hello Azure 資料庫上使用 PostgreSQL 伺服器或 hello 密碼不正確，如果 hello Azure 資料庫的連接 toohello PostgreSQL server被拒絕。 建立防火牆設定只提供連接 tooyour 伺服器; 機會 tooattempt 用戶端每個用戶端必須提供 hello 必要的安全性認證。
+* **登入未獲授權或使用不正確的密碼：**如果適用於 PostgreSQL 的 Azure 資料庫伺服器上的登入沒有權限，或使用的密碼不正確，與適用於 PostgreSQL 的 Azure 資料庫伺服器連接就會遭到拒絕。 建立防火牆設定只會讓用戶端有機會嘗試連線至您的伺服器；每個用戶端必須提供必要的安全性認證。
 
-例如，使用 JDBC 用戶端，hello 下列錯誤可能會出現。
+例如，使用 JDBC 用戶端，可能會出現下列錯誤。
 > java.util.concurrent.ExecutionException: java.lang.RuntimeException: org.postgresql.util.PSQLException: FATAL: password authentication failed for user "yourusername"
 
-* **動態 IP 位址：**如果您有使用動態 IP 位址的網際網路連線，並且在經由 hello 防火牆時遇到，您可以嘗試下列解決方案 hello 的其中一個：
+* **動態 IP 位址：** 如果您有使用動態 IP 位址的網際網路連線，並且在通過防火牆時遇到問題，您可以嘗試下列其中一個解決方案：
 
-* 要求網際網路服務提供者 (ISP) hello IP 位址範圍指派 tooyour 用戶端電腦的存取 hello Azure Database PostgreSQL 伺服器，然後將 hello IP 位址範圍新增為防火牆規則。
+* 要求您的網際網路服務提供者 (ISP) 將可存取適用於 PostgreSQL 的 Azure 資料庫伺服器之 IP 位址範圍指派給您的用戶端電腦，然後將 IP 位址範圍新增為防火牆規則。
 
-* 取得靜態 IP 位址改為您的用戶端電腦，然後將 hello IP 位址新增為防火牆規則。
+* 改為針對您的用戶端電腦取得靜態 IP 位址，然後將 IP 位址新增為防火牆規則。
 
 ## <a name="next-steps"></a>後續步驟
 如需有關建立伺服器層級和資料庫層級防火牆規則的文章，請參閱：
-* [建立和管理 Azure 資料庫使用 hello Azure 入口網站的 PostgreSQL 防火牆規則](howto-manage-firewall-using-portal.md)
+* [使用 Azure 入口網站建立和管理適用於 PostgreSQL 的 Azure 資料庫防火牆規則](howto-manage-firewall-using-portal.md)
 * [使用 Azure CLI 建立和管理適用於 PostgreSQL 的 Azure 資料庫防火牆規則](howto-manage-firewall-using-cli.md)

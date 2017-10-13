@@ -1,5 +1,5 @@
 ---
-title: "SQL 資料倉儲中的 aaaIndexing 資料表 |Microsoft Azure"
+title: "在 SQL 資料倉儲中編製資料表的索引 | Microsoft Azure"
 description: "開始在 Azure SQL 資料倉儲中編製資料表的索引"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 07/12/2016
 ms.author: shigu;barbkess
-ms.openlocfilehash: e614d63c8fb871f2ba388f14576cf9f282d4b818
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b205ed47833f675286539705e2754d2ea3821b8e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="indexing-tables-in-sql-data-warehouse"></a>在 SQL 資料倉儲中編製資料表的索引
 > [!div class="op_single_selector"]
@@ -33,12 +33,12 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-SQL 資料倉儲提供數個索引選項，包括[叢集資料行存放區索引][clustered columnstore indexes]、[叢集索引和非叢集索引][clustered indexes and nonclustered indexes]。  此外，它也提供一個索引選項，也稱為[堆積][heap]。  本文涵蓋的每個索引類型的 hello 優點，以及您的索引超出最高效能的秘訣 toogetting hello。 請參閱[建立資料表語法][ create table syntax]如需詳細資訊，如何 toocreate SQL 資料倉儲中的資料表。
+SQL 資料倉儲提供數個索引選項，包括[叢集資料行存放區索引][clustered columnstore indexes]、[叢集索引和非叢集索引][clustered indexes and nonclustered indexes]。  此外，它也提供一個索引選項，也稱為[堆積][heap]。  本文涵蓋每種索引類型的優點，以及取得索引的最大效能的祕訣。 如需有關如何在 SQL 資料倉儲中建立資料表的詳細資訊，請參閱[建立資料表語法][create table syntax]。
 
 ## <a name="clustered-columnstore-indexes"></a>叢集資料行存放區索引
-根據預設，若未在資料表上指定任何索引選項，則 SQL 資料倉儲會建立叢集資料行存放區索引。 叢集資料行存放區資料表，提供兩個 hello 最高等級的資料壓縮為 hello 最佳的整體查詢效能。  叢集資料行存放區資料表通常會優於叢集的索引或堆積資料表，和通常是 hello 最好的選擇對於大型資料表。  基於這些理由，叢集資料行存放區時，最佳的地方 toostart hello 您不確定如何 tooindex 您的資料表。  
+根據預設，若未在資料表上指定任何索引選項，則 SQL 資料倉儲會建立叢集資料行存放區索引。 叢集資料行存放區資料表提供最高層級的資料壓縮，以及最佳的整體查詢效能。  叢集資料行存放區資料表通常勝過叢集索引或堆積資料表，而且通常是大型資料表的最佳選擇。  基於這些理由，叢集資料行存放區是您不確定如何編製資料表索引時的最佳起點。  
 
-toocreate 叢集資料行存放區資料表，只要在 hello WITH 子句中指定的叢集資料行存放區索引，或保持關閉狀態 hello WITH 子句：
+若要建立叢集資料行存放區資料表，只要在 WITH 子句中指定 CLUSTERED COLUMNSTORE INDEX，或省略 WITH 子句︰
 
 ```SQL
 CREATE TABLE myTable   
@@ -57,11 +57,11 @@ WITH ( CLUSTERED COLUMNSTORE INDEX );
 * 具有少於 1 億個資料列的小型資料表。  請考慮堆積資料表。
 
 ## <a name="heap-tables"></a>堆積資料表
-當您暫時包括登陸 SQL 資料倉儲上的資料時，您可能會發現使用堆積的資料表會進行更快 hello 整體程序。  這是因為載入 tooheaps 會比 tooindex 資料表更快，且在某些情況下 hello 後續讀取進行從快取。  如果您載入它之前執行多個轉換、 載入 hello tooheap 資料表將會比載入 hello 資料 tooa 快很多的資料只有 toostage 叢集資料行存放區資料表。 此外，載入資料 tooa[暫存資料表][ Temporary]也將載入速度比將載入資料表 toopermanent 儲存體。  
+當您在 SQL 資料倉儲上暫時登陸資料時，可能會發現使用堆積資料表會讓整個程序更快速。  這是因為堆積的載入速度比索引資料表還要快，而在某些情況下，可以從快取進行後續的讀取。  如果您載入資料只是在做執行更多轉換之前的預備，將資料表載入堆積資料表將會遠快於將資料載入叢集資料行存放區資料表。 此外，將資料載入[暫存資料表][Temporary]也會比將資料表載入永久儲存體更快速。  
 
-若為小於 1 億個資料列的小型查閱資料表，堆積資料表通常比較適合。  超過 100 百萬個資料列之後，叢集資料行存放區資料表會立即 tooachieve 最佳的壓縮。
+若為小於 1 億個資料列的小型查閱資料表，堆積資料表通常比較適合。  一旦超過 1 億個資料列，叢集資料行存放區資料表就會開始達到最佳的壓縮。
 
-toocreate 堆積資料表，只要指定堆積 hello WITH 子句中：
+若要建立堆積資料表，只需在 WITH 子句中指定 HEAP︰
 
 ```SQL
 CREATE TABLE myTable   
@@ -74,9 +74,9 @@ WITH ( HEAP );
 ```
 
 ## <a name="clustered-and-nonclustered-indexes"></a>叢集與非叢集索引
-叢集的索引的單一資料列需要 toobe 快速擷取時，可能會優於叢集資料行存放區資料表。  查詢是單一或很少的資料列查閱的叢集索引或非叢集的次要索引，請考慮需要的 tooperformance 極端的速度。  hello 缺點 toousing 叢集索引是無益 hello 叢集的索引資料行上使用選擇性很高的篩選條件的查詢。  非叢集索引可以是其他資料行上的 tooimprove 篩選器加入 tooother 資料行。  不過，它會加入 tooa 資料表每個索引會增加空間和處理時間 tooloads。
+需要快速擷取單一資料列時，叢集索引可能會優於叢集資料行存放區資料表。  對於需要單一或極少數資料列查閱才能疾速執行的查詢，請考慮使用叢集索引或非叢集次要索引。  使用叢集索引的缺點是只有在叢集索引資料行上使用高度選擇性篩選的查詢才可受益。  若要改善其他資料行的篩選，可以將非叢集索引加入至其他資料行。  不過，每個加入至資料表的索引將會新增載入的空間和處理時間。
 
-toocreate 叢集的索引的資料表，只需指定 hello WITH 子句中的叢集索引：
+若要建立叢集索引資料表，只要在 WITH 子句中指定 CLUSTERED INDEX︰
 
 ```SQL
 CREATE TABLE myTable   
@@ -88,16 +88,16 @@ CREATE TABLE myTable
 WITH ( CLUSTERED INDEX (id) );
 ```
 
-tooadd 非叢集索引在資料表中，只要使用 hello，請使用下列語法：
+若要在資料表上新增非叢集索引，只要使用下列語法：
 
 ```SQL
 CREATE INDEX zipCodeIndex ON t1 (zipCode);
 ```
 
 ## <a name="optimizing-clustered-columnstore-indexes"></a>最佳化叢集資料行存放區索引
-叢集資料行存放區資料表會將資料組織成不同區段。  擁有高品質的高區段是資料行存放區資料表上的重要 tooachieving 達到最佳查詢效能。  依資料列壓縮的資料列群組中的 hello 數目，您可以測量區段品質。  區段品質最好是在最有至少 100 K 每個壓縮的資料列的資料列群組，並取得效能，因為 hello 每一列數目資料列群組方法 1,048,576 個資料列，也就是 hello 大部分的資料列群組可以包含的資料列。
+叢集資料行存放區資料表會將資料組織成不同區段。  擁有高區段品質是在資料行存放區資料表上達到最佳查詢效能的關鍵。  壓縮的資料列群組中的資料列數目可以測量區段品質。  每個壓縮的資料列群組至少有 10 萬個資料列時的區段品質最佳，而隨著每個資料列群組的資料列數趨近 1,048,576 個資料列 (這是資料列群組可以包含的最大資料列數)，效能會跟著提升。
 
-檢視下方的 hello 可建立及使用您的系統 toocompute hello 上每個資料列的平均資料列群組，並識別任何的次佳的叢集資料行存放區索引。  您的索引時，將會當做 SQL 陳述式可以是使用的 toorebuild 產生 hello 此檢視表的最後一個資料行。
+以下檢視可以建立於您的系統上並用來計算每個資料列群組的平均資料列數，以及識別任何次佳的叢集資料行存放區索引。  此檢視上的最後一個資料行會產生為 SQL 陳述式，以便用來重建索引。
 
 ```sql
 CREATE VIEW dbo.vColumnstoreDensity
@@ -146,7 +146,7 @@ GROUP BY
 ;
 ```
 
-既然您已經建立 hello 檢視，執行此查詢 tooidentify 資料表具有小於 100 萬個資料列的資料列群組。  當然，您可能想 100k tooincrease hello 臨界值，如果您要尋找更多區段最佳品質。 
+現在您已建立檢視，請執行此查詢來識別哪些資料表的資料列群組中的資料列少於 10 萬個。  當然，如果您要尋求更理想的區段品質，您可能想要提高 10 萬的臨界值。 
 
 ```sql
 SELECT    *
@@ -155,80 +155,80 @@ WHERE    COMPRESSED_rowgroup_rows_AVG < 100000
         OR INVISIBLE_rowgroup_rows_AVG < 100000
 ```
 
-一旦執行 hello 查詢您可以開始在 hello 資料 toolook 及分析您的結果。 下表說明哪些 toolook 為您的資料列群組分析。
+一旦您執行查詢，就可以開始查看資料，並分析您的結果。 此表格會說明在您的資料列群組分析中要尋找的項目。
 
-| 資料欄 | 如何 toouse 這項資料 |
+| 資料欄 | 如何使用這項資料 |
 | --- | --- |
-| [table_partition_count] |如果 hello 資料表已分割，則您可能預期 toosee 較高的開啟資料列群組計數。 Hello 發佈中的每個資料分割理論上可以有與其相關聯的開啟的資料列群組。 將這個因素納入您的分析。 小型資料表已分割，無法藉由移除資料分割完全，因為這樣做會改善壓縮 hello 最佳化。 |
-| [row_count_total] |Hello 資料表的總計資料列計數。 例如，您可以使用此值 toocalculate 百分比的資料列在 hello 壓縮狀態。 |
-| [row_count_per_distribution_MAX] |如果所有資料列平均分散於這個值會是每個發佈的資料列的 hello 目標數目。 比較此值與 hello compressed_rowgroup_count。 |
-| [COMPRESSED_rowgroup_rows] |Hello 資料表的資料行存放區格式中的資料列總數。 |
-| [COMPRESSED_rowgroup_rows_AVG] |如果 hello 平均資料列數目會大幅小於 hello 最大資料列群組的資料列數目，請考慮使用 CTAS 或 ALTER INDEX REBUILD toorecompress hello 資料 |
-| [COMPRESSED_rowgroup_count] |資料行存放區格式中的資料列群組數目。 如果這個數字已經很高的關聯 toohello 資料表中則 hello 資料行存放區密度是低的指標。 |
-| [COMPRESSED_rowgroup_rows_DELETED] |資料行存放區格式中的資料列會以邏輯方式刪除。 如果 hello 數字很高的相對 tootable 大小，請考慮重新建立 hello 磁碟分割或重建 hello 索引，因為它實際上會加以移除。 |
-| [COMPRESSED_rowgroup_rows_MIN] |將此選項搭配 hello 平均和最大資料行 toounderstand hello 範圍的值用於 hello 在您的資料行存放區中的資料列群組。 低的數字，透過 hello 載入閾值 (每個分割區對齊發佈 102400) 建議最佳化位於 hello 資料載入 |
+| [table_partition_count] |如果資料表已分割，您可能會預期看到較高的開放資料列群組計數。 散發套件中的每個分割在理論上有與其相關聯的開放資料列群組。 將這個因素納入您的分析。 已分割的小型資料表可以藉由移除分割進行最佳化，因為這樣會改善壓縮。 |
+| [row_count_total] |資料表的資料列計數。 例如，您可以使用此值來計算資料列的百分比 (壓縮的狀態)。 |
+| [row_count_per_distribution_MAX] |如果所有資料列平均分配，這個值會是每個散發的目標資料列數目。 比較此值與 compressed_rowgroup_count。 |
+| [COMPRESSED_rowgroup_rows] |資料表的資料行存放區格式中的資料列總數。 |
+| [COMPRESSED_rowgroup_rows_AVG] |如果平均資料列數目遠小於資料群組最大的資料列數目，則可考慮使用 CTAS 或 ALTER INDEX REBUILD 重新壓縮資料 |
+| [COMPRESSED_rowgroup_count] |資料行存放區格式中的資料列群組數目。 如果相對於資料表的這個數目很高，表示資料行存放區密度很低。 |
+| [COMPRESSED_rowgroup_rows_DELETED] |資料行存放區格式中的資料列會以邏輯方式刪除。 如果相對於資料表大小的這個數目很高，請考慮重新建立分割或重建索引，因為這樣會將其實際移除。 |
+| [COMPRESSED_rowgroup_rows_MIN] |將它與 AVG 和 MAX 資料行搭配使用，以了解資料行存放區中資料列群組的值範圍。 載入臨界值上較低的數目 (每個分割對齊散發套件 102,400) 表示資料載入可進行最佳化 |
 | [COMPRESSED_rowgroup_rows_MAX] |同上。 |
-| [OPEN_rowgroup_count] |開放資料列群組都正常。 每個資料表散發都應該有一個開放資料列群組 (60)。 過多的數目表示資料跨分割載入。 資料分割策略 toomake 確定它是音效檢查 hello |
-| [OPEN_rowgroup_rows] |每個資料列群組可以有最多 1,048,576 個資料列。 使用此值 toosee 滿 hello 開啟的資料列群組目前是 |
-| [OPEN_rowgroup_rows_MIN] |開啟 [群組]，表示資料是 trickle 載入 hello 資料表或是的 hello 上次載入溢出到此資料列群組的其餘資料列。 使用 hello MIN、 MAX、 AVG 資料行 toosee 多少資料坐在開啟的資料列群組中。 用於小型資料表，它可能是 100%的 hello 的所有資料 ！ 在此情況下 ALTER INDEX REBUILD tooforce hello 資料 toocolumnstore。 |
+| [OPEN_rowgroup_count] |開放資料列群組都正常。 每個資料表散發都應該有一個開放資料列群組 (60)。 過多的數目表示資料跨分割載入。 重複檢查分割策略並確定它是正確的 |
+| [OPEN_rowgroup_rows] |每個資料列群組可以有最多 1,048,576 個資料列。 使用這個值查看開放資料列群組目前的飽和度 |
+| [OPEN_rowgroup_rows_MIN] |開放群組會指出資料是緩慢移動載入資料表，或是先前的載入將剩餘的資料列溢出到此資料列群組。 使用 MIN、MAX、AVG 欄位查看多少資料位於開放資料列群組。 對於小型資料表，可能是所有資料的 100%！ 在此情況下，ALTER INDEX REBUILD 來強制資料進入資料行存放區。 |
 | [OPEN_rowgroup_rows_MAX] |同上。 |
 | [OPEN_rowgroup_rows_AVG] |同上。 |
-| [CLOSED_rowgroup_rows] |查看 hello 關閉資料列群組資料列是例行性檢查。 |
-| [CLOSED_rowgroup_count] |hello 已關閉的資料列群組的數目應該很小，如果任何完全看到的。 已關閉的資料列群組可以是轉換的 toocompressed rowg roups 使用 hello ALTER INDEX...REORGANISE 命令。 不過，通常並不需要。 已關閉的群組會自動轉換的 toocolumnstore hello 背景"tuple mover"處理序的資料列群組。 |
-| [CLOSED_rowgroup_rows_MIN] |關閉資料列群組應該具有極高的填滿率。 如果已關閉的資料列群組的 hello 填滿速率過低時，進一步的分析 hello 資料行存放區則需要。 |
+| [CLOSED_rowgroup_rows] |查看關閉的資料列群組資料列做為例行性檢查。 |
+| [CLOSED_rowgroup_count] |如果發現任何關閉資料列群組，其數目應該很小。 關閉資料列群組可以使用 ALTER INDEX 轉換成壓縮資料列群組...REORGANISE 命令。 不過，通常並不需要。 關閉群組會透過背景 "tuple mover" 程序自動轉換成資料行存放區的資料列群組。 |
+| [CLOSED_rowgroup_rows_MIN] |關閉資料列群組應該具有極高的填滿率。 如果關閉資料列群組的填滿率很低，就需要進一步分析資料行存放區。 |
 | [CLOSED_rowgroup_rows_MAX] |同上。 |
 | [CLOSED_rowgroup_rows_AVG] |同上。 |
-| [Rebuild_Index_SQL] |為資料表的 SQL toorebuild 資料行存放區索引 |
+| [Rebuild_Index_SQL] |用來重建資料表的資料行存放區索引的 SQL |
 
 ## <a name="causes-of-poor-columnstore-index-quality"></a>資料行存放區索引品質不佳的原因
-如果您已識別的資料表具有品質不佳的區段，您會想 tooidentify hello 根本原因。  以下是區段品質不佳的一些其他常見原因︰
+如果您已識別區段品質不佳的資料表，您會想要找出根本原因。  以下是區段品質不佳的一些其他常見原因︰
 
 1. 建立索引時的記憶體壓力
 2. 大量的 DML 作業
 3. 小型或緩慢移動的載入作業
 4. 太多資料分割
 
-這些因素可能會導致資料行存放區索引 toohave 大幅少於 hello 最佳 1 百萬個資料列，每個資料列群組。  它們也可能導致資料列 toogo toohello 差異資料列群組而不是壓縮的資料列群組。 
+這些因素可能會導致資料行存放區索引在每個資料列群組中的資料列大幅少於最佳的 100 萬個。  它們也會造成資料列移至差異資料列群組，而不是壓縮的資料列群組。 
 
 ### <a name="memory-pressure-when-index-was-built"></a>建立索引時的記憶體壓力
-hello 每個壓縮的資料列群組的資料列數目會直接相關的 toohello hello 資料列的寬度和 hello 可用 tooprocess hello 資料列群組的記憶體數量。  當資料列寫 toocolumnstore 資料表，記憶體不足的壓力時，資料行存放區區段品質可能會降低。  因此，hello 最佳作法是只寫入 tooyour 資料行存放區索引的資料表存取 tooas 太多記憶體中的盡可能 toogive hello 工作階段。  因為沒有記憶體和並行存取之間的取捨，hello 指引 hello 右記憶體配置取決於 hello 每一個資料列的資料表時，hello 數量 DWU 您所配置的 tooyour 系統和並行的 hello 數量位置，您可以提供 toohello這撰寫 tooyour 資料表的工作階段。  最佳做法，建議您啟動 xlargerc，如果您使用 DW300 或更少，largerc，如果您使用 DW400 tooDW600 和 mediumrc 如果您使用 DW1000 和更新版本。
+每個壓縮資料列群組的資料列數目，直接與資料列寬度以及可用來處理資料列群組的記憶體數量相關。  當資料列在記憶體不足的狀態下寫入資料行存放區資料表時，資料行存放區區段品質可能會降低。  因此，最佳做法是盡可能讓寫入至您的資料行存放區索引資料表的工作階段能存取較多的記憶體。  因為記憶體與並行存取之間有所取捨，正確的記憶體配置指引取決於您的資料表的每個資料列中的資料、您已配置給您的系統的 DWU 數量，以及您可以提供給將資料寫入至資料表的工作階段的並行存取插槽數量。  最佳做法：如果您使用 DW300 或更少，我們建議從 xlargerc 開始，如果您使用 DW400 至 DW600，則從 largerc 開始，而如果您使用 DW1000 和更高，則從 mediumrc 開始。
 
 ### <a name="high-volume-of-dml-operations"></a>大量的 DML 作業
-大量更新及刪除資料列的 DML 作業可能效率不彰引入 hello 資料行存放區。 當您修改 hello 多數 hello 中的資料列的資料列群組時，這是特別有用。
+更新和刪除資料列的大量 DML 作業，會造成資料行存放區沒有效率。 這在資料列群組中大部分的資料列都已修改時，更是如此。
 
-* 為已刪除，只以邏輯方式刪除資料列從壓縮的資料列群組標示 hello 資料列。 重建 hello 分割區或資料表之前，hello 資料列會保留在 hello 壓縮的資料列群組。
-* 插入資料列加入稱為差異資料列群組的 hello 列 tootooan 內部資料列存放區資料表。 hello 插入資料列才轉換的 toocolumnstore hello 差異資料列群組已滿，而且會標記為關閉。 一旦到達 hello 1,048,576 個資料列最大容量，會關閉資料列群組。 
-* 更新資料行存放區格式的資料列會做為邏輯刪除和插入來處理。 hello 插入資料列可能會儲存在 hello 差異存放區中。
+* 從壓縮的資料列群組刪除資料列僅會以邏輯方式將資料列標示為已刪除。 資料列會保留在壓縮的資料列群組中，直到重建資料分割或資料表為止。
+* 插入資料列會將資料列新增至名為差異資料列群組的內部資料列存放區資料表。 在差異資料列群組已滿且標示為已關閉之前，插入的資料列不會轉換成資料行存放區。 一旦達到 1,048,576 個資料列的容量上限，資料列群組就會關閉。 
+* 更新資料行存放區格式的資料列會做為邏輯刪除和插入來處理。 插入的資料列可儲存在差異存放區。
 
-批次更新和插入超過 hello 大量臨界值的每個資料分割對齊的發佈將會直接 toohello 資料行存放區格式寫入 102,400 個資料列的作業。 不過，假設平均分佈，您必須修改此 toooccur 的單一作業中的多個 6.144 百萬個資料列的 toobe。 如果給定資料分割的資料列的 hello 數對齊發佈是小於 102400 hello 資料列將會移 toohello 差異存放區，而會留在那裡直到足夠的資料列已插入或修改的 tooclose hello 資料列群組或 hello 索引後，已重建。
+超出已對齊分佈之每個資料分割 102,400 個資料列大量臨界值的批次更新和插入作業，將會直接寫入資料行存放區格式。 不過，假設在平均分佈情況下，您將需要在單一作業中修改超過 6.144 百萬個資料列才會發生這種情況。 如果對齊分佈之資料分割的給定資料列數目少於 102,400 個，資料列將會移至差異存放區，且在插入足夠的資料列、修改資料列以關閉資料列群組或已建立索引之前，都會存放於差異存放區。
 
 ### <a name="small-or-trickle-load-operations"></a>小型或緩慢移動的載入作業
-流入 SQL 資料倉儲的小型負載，有時也稱為緩慢移動的負載。 它們通常代表 hello 系統的 內嵌在資料附近常數資料流。 不過，因為這個資料流是附近連續 hello 磁碟區的資料列不是特別大。 通常 hello 資料低於大幅 hello 閾值所需的直接載入 toocolumnstore 格式。
+流入 SQL 資料倉儲的小型負載，有時也稱為緩慢移動的負載。 它們通常代表系統接近連續擷取的串流。 不過，因為這個串流已接近連續狀態，所以資料列的容量並沒有特別大。 通常資料遠低於直接載入資料行存放區格式所需的閾值。
 
-在這些情況下，它通常是更好的 tooland hello 資料第一次在 Azure blob 儲存體，並讓它累積先前 tooloading。 這項技術通常稱為 *微批次處理*。
+在這些情況下，最好先將資料登陸到 Azure Blob 儲存體中，並讓它在載入之前累積。 這項技術通常稱為 *微批次處理*。
 
 ### <a name="too-many-partitions"></a>太多資料分割
-另一件事 tooconsider 是 hello 影響您的叢集資料行存放區資料表上的分割區。  資料分割之前，SQL 資料倉儲已將您的資料分成 60 個資料庫。  進一步分割會分割您的資料。  如果分割資料，則您會想 tooconsider，**每個**磁碟分割將需要 toohave 至少 1 百萬個資料列 toobenefit 從叢集資料行存放區索引。  如果您您資料表分割成多 100 個資料分割，則您的資料表必須從叢集資料行存放區索引的 toohave 至少 6 10 億個資料列 toobenefit (60 分佈 * 100 個資料分割 * 1 百萬個資料列)。 如果 100 的資料分割資料表並沒有 6 10 億個資料列，減少 hello 資料分割數目，或請考慮改用堆積資料表。
+另一個考慮事項是資料分割對於叢集資料行存放區資料表的影響。  資料分割之前，SQL 資料倉儲已將您的資料分成 60 個資料庫。  進一步分割會分割您的資料。  如果您將資料分割，則您要考慮的是 **每個** 資料分割必須有至少 1 百萬個資料列，使用叢集資料行存放區索引才有益。  如果將您的資料表分割成 100 個分割區，則您的資料表需要至少有 60 億個資料列，才會受益於叢集資料行存放區索引 (60 個散發 * 100 個分割區 * 1 百萬個資料列)。 如果您的 100 個分割資料表沒有 60 億個資料列，請減少資料分割數目，或考慮改用堆積資料表。
 
-一旦使用某些資料已載入您的資料表，請遵循以下步驟 tooidentify hello，並重建具有次佳的叢集資料行存放區索引的資料表。
+您的資料表載入一些資料之後，請依照下列步驟來識別並重建具有次佳叢集資料行存放區索引的資料表。
 
-## <a name="rebuilding-indexes-tooimprove-segment-quality"></a>重建索引 tooimprove 區段品質
-### <a name="step-1-identify-or-create-user-which-uses-hello-right-resource-class"></a>步驟 1： 識別或建立使用者使用 hello 右資源類別
-Tooimmediately 改善區段品質的一個快速方法是 toorebuild hello 索引。  hello hello 檢視上方所傳回的 SQL 會傳回您的索引可以是使用的 toorebuild 的 ALTER INDEX REBUILD 陳述式。  請確定您配置足夠記憶體 toohello 工作階段，這將會重建索引時重建您的索引。  toodo，增加 hello 資源的類別權限 toorebuild hello 索引對此資料表 toohello 建議最小值的使用者。  無法變更 hello 資料庫擁有者使用者 hello 資源類別，因此如果您沒有 hello 系統上建立使用者，您必須 toodo 因此第一次。  我們建議的 hello 至少是 xlargerc 如果您使用 DW300 或較少 largerc 如果您使用 DW400 tooDW600 和 mediumrc 如果您使用 DW1000 和更新版本。
+## <a name="rebuilding-indexes-to-improve-segment-quality"></a>重建索引以提升區段品質
+### <a name="step-1-identify-or-create-user-which-uses-the-right-resource-class"></a>步驟 1︰識別或建立會使用適當資源類別的使用者
+立即提升區段品質的快速方法就是重建索引。  上述檢視所傳回的 SQL 會傳回可用來重建索引的 ALTER INDEX REBUILD 陳述式。  重建索引時，請確定配置足夠的記憶體給將會重建索引的工作階段。  若要這樣做，請增加使用者的資源類別，該使用者有權將此資料表上的索引重建為建議的最小值。  無法變更資料庫擁有者使用者的資源類別，所以如果您尚未在系統上建立使用者，您必須先這麼做。  如果您使用 DW300 或更少，我們建議的最小值為 xlargerc，如果您使用 DW400 至 DW600，則為 largerc，而如果您使用 DW1000 和更高，則為 mediumrc。
 
-以下是如何的範例 tooallocate 更多記憶體 tooa 使用者藉由增加其資源類別。  如需有關資源類別，以及如何 toocreate 新的使用者可以在 hello[並行存取，以及工作負載管理][ Concurrency]發行項。
+以下範例示範如何藉由增加資源類別，配置更多記憶體給使用者。  如需資源類別以及如何建立新使用者的詳細資訊，請參閱[並行存取和工作負載管理][Concurrency]一文。
 
 ```sql
 EXEC sp_addrolemember 'xlargerc', 'LoadUser'
 ```
 
 ### <a name="step-2-rebuild-clustered-columnstore-indexes-with-higher-resource-class-user"></a>步驟 2︰使用較高的資源類別使用者重建叢集資料行存放區索引
-Hello 使用者步驟 1 中 (例如 LoadUser) 現在使用較高的資源類別，並執行 hello ALTER INDEX 陳述式，以登入。  請確定此使用者擁有 ALTER 權限 toohello 表正在重建 hello 索引時。  下列範例將示範如何 toorebuild hello 整個資料行存放區索引，或如何 toorebuild 單一磁碟分割。 在大型資料表時，這會是一次的單一資料分割的實際 toorebuild 索引。
+以步驟 1 的使用者身分登入 (例如 LoadUser)，他現在使用較高的資源類別，執行 ALTER INDEX 陳述式。  請確定這個使用者對於重建索引的資料表擁有 ALTER 權限。  這些範例示範如何重建整個資料行存放區索引或如何重建單一資料分割。 在大型資料表上，比較適合一次重建單一資料分割的索引。
 
-或者，而不會重建 hello 索引，您無法複製 hello 資料表 tooa 新資料表使用[CTAS][CTAS]。  哪一種方式最好？ 針對大量的資料，[CTAS][CTAS] 的速度通常比 [ALTER INDEX][ALTER INDEX] 來得快。 對於較小的磁碟區的資料， [ALTER INDEX] [ ALTER INDEX]是更容易 toouse，不需要您 tooswap 移出 hello 資料表。  請參閱**CTAS 和資料分割切換以重建索引**下方如需有關 toorebuild CTAS 搭配的索引。
+或者，您可以使用 [CTAS][CTAS] 資料表複製到新的資料表，而非重建索引。  哪一種方式最好？ 針對大量的資料，[CTAS][CTAS] 的速度通常比 [ALTER INDEX][ALTER INDEX] 來得快。 針對較小量的資料，[ALTER INDEX][ALTER INDEX] 較為容易使用，您不需要交換出資料表。  如需有關如何使用 CTAS 重建索引的詳細資訊，請參閱 **使用 CTAS 和分割切換重建索引** 。
 
 ```sql
--- Rebuild hello entire clustered index
+-- Rebuild the entire clustered index
 ALTER INDEX ALL ON [dbo].[DimProduct] REBUILD
 ```
 
@@ -247,16 +247,16 @@ ALTER INDEX ALL ON [dbo].[FactInternetSales] REBUILD Partition = 5 WITH (DATA_CO
 ALTER INDEX ALL ON [dbo].[FactInternetSales] REBUILD Partition = 5 WITH (DATA_COMPRESSION = COLUMNSTORE)
 ```
 
-在 SQL 資料倉儲中重建索引是一項離線作業。  如需重建索引的詳細資訊，請參閱 ALTER INDEX REBUILD 一節中的 hello[資料行存放區索引重組][ Columnstore Indexes Defragmentation]與 hello 語法主題[ALTER INDEX][ALTER INDEX].
+在 SQL 資料倉儲中重建索引是一項離線作業。  如需重建索引的詳細資訊，請參閱[資料行存放區索引重組][Columnstore Indexes Defragmentation] 和語法主題 [ALTER INDEX][ALTER INDEX] 中的 ALTER INDEX REBUILD 區段。
 
 ### <a name="step-3-verify-clustered-columnstore-segment-quality-has-improved"></a>步驟 3︰確認已改善叢集資料行存放區區段品質
-請重新執行 hello 查詢不良以識別資料表區段品質，並確認區段品質已改善。  如果區段品質無法改善，可能是資料表中的 hello 資料列會額外寬。  請考慮在重建索引時使用較高的資源類別或 DWU。
+請重新執行已識別區段品質不佳之資料表的查詢，並驗證區段品質是否已改善。  如果區段品質並未改善，可能是您的資料表中的資料列過寬。  請考慮在重建索引時使用較高的資源類別或 DWU。
 
 ## <a name="rebuilding-indexes-with-ctas-and-partition-switching"></a>使用 CTAS 和分割切換重建索引
-這個範例會使用[CTAS] [ CTAS]和資料分割切換 toorebuild 的資料表資料分割。 
+這個範例會使用 [CTAS][CTAS] 和分割切換來重建資料表分割區。 
 
 ```sql
--- Step 1: Select hello partition of data and write it out tooa new table using CTAS
+-- Step 1: Select the partition of data and write it out to a new table using CTAS
 CREATE TABLE [dbo].[FactInternetSales_20000101_20010101]
     WITH    (   DISTRIBUTION = HASH([ProductKey])
             ,   CLUSTERED COLUMNSTORE INDEX
@@ -286,17 +286,17 @@ SELECT *
 FROM    [dbo].[FactInternetSales]
 WHERE   1=2 -- Note this table will be empty
 
--- Step 3: Switch OUT hello data 
-ALTER TABLE [dbo].[FactInternetSales] SWITCH PARTITION 2 too [dbo].[FactInternetSales_20000101] PARTITION 2;
+-- Step 3: Switch OUT the data 
+ALTER TABLE [dbo].[FactInternetSales] SWITCH PARTITION 2 TO  [dbo].[FactInternetSales_20000101] PARTITION 2;
 
--- Step 4: Switch IN hello rebuilt data
-ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 too [dbo].[FactInternetSales] PARTITION 2;
+-- Step 4: Switch IN the rebuilt data
+ALTER TABLE [dbo].[FactInternetSales_20000101_20010101] SWITCH PARTITION 2 TO  [dbo].[FactInternetSales] PARTITION 2;
 ```
 
-如需詳細資訊重新建立資料分割使用`CTAS`，請參閱 hello[分割][ Partition]發行項。
+如需使用 `CTAS`重新建立資料分割的更多詳細資料，請參閱[分割區][Partition]一文。
 
 ## <a name="next-steps"></a>後續步驟
-toolearn 詳細資訊，請參閱 hello 文件上[資料表概觀][Overview]，[資料表資料類型][Data Types]，[散發資料表][ Distribute]，[分割資料表][Partition]，[維護資料表統計資料][ Statistics]和[暫存資料表][Temporary]。  toolearn 深入了解最佳做法，請參閱[SQL 資料倉儲的最佳作法][SQL Data Warehouse Best Practices]。
+若要深入了解，請參閱[資料表概觀][Overview]、[資料表資料類型][Data Types]、[散發資料表][Distribute]、[分割資料表][Partition]、[維護資料表統計資料][Statistics]及[暫存資料表][Temporary]等文章。  若要深入了解最佳做法，請參閱 [SQL Data 資料倉儲最佳做法][SQL Data Warehouse Best Practices]。
 
 <!--Image references-->
 

@@ -1,6 +1,6 @@
 ---
 title: "Azure Active Directory B2C：Google+ 設定 | Microsoft Docs"
-description: "提供註冊和登入 tooconsumers 與 Google + 應用程式保護 Azure Active Directory B2C 的帳戶。"
+description: "在受 Azure Active Directory B2C 保護的應用程式中，針對具有 Google+ 帳戶的取用者提供註冊和登入。"
 services: active-directory-b2c
 documentationcenter: 
 author: swkrish
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/06/2016
 ms.author: swkrish
-ms.openlocfilehash: 6ef66eb17777acd95b5f4745ed6097c77e37663b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6ab73e5c79742ab548733f5712dee1e28461db9f
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-tooconsumers-with-google-accounts"></a>Azure Active Directory B2C： 提供與 Google + 帳戶註冊和登入 tooconsumers
+# <a name="azure-active-directory-b2c-provide-sign-up-and-sign-in-to-consumers-with-google-accounts"></a>Azure Active Directory B2C：針對具有 Google+ 帳戶的取用者提供註冊和登入
 ## <a name="create-a-google-application"></a>建立 Google+ 應用程式
-toouse Google + B2C Azure Active Directory (Azure AD) 中的身分識別提供者，您需要 toocreate Google + 應用程式和提供 hello 正確的參數。 您需要 Google + 帳戶 toodo 此。 如果您沒有該帳戶，您可以在 [https://accounts.google.com/SignUp](https://accounts.google.com/SignUp)上申請。
+若要在 Azure Active Directory (Azure AD) B2C 中使用 Google+ 做為身分識別提供者，您必須建立 Google+ 應用程式，並對其提供正確參數。 您需要 Google+ 帳戶才能執行此動作。 如果您沒有該帳戶，您可以在 [https://accounts.google.com/SignUp](https://accounts.google.com/SignUp)上申請。
 
-1. 移 toohello [Google 開發人員主控台](https://console.developers.google.com/)並以您的 Google + 帳戶認證登入。
+1. 前往 [Google 開發人員主控台](https://console.developers.google.com/) ，並以您的 Google + 帳戶認證登入。
 2. 按一下 [建立專案]，輸入 [專案名稱]，接著按一下 [建立]。
    
     ![Google+ - 開始使用](./media/active-directory-b2c-setup-goog-app/google-get-started.png)
    
     ![Google+ - 新增專案](./media/active-directory-b2c-setup-goog-app/google-new-project.png)
-3. 按一下**API Manager** ，然後按一下 [**認證**在 hello 左瀏覽。
-4. 按一下 hello **OAuth 同意畫面**hello 頂端的索引標籤。
+3. 在左側導覽中，按一下 [API 管理員]，然後按一下 [認證]。
+4. 按一下位於頂端的 [OAuth 同意畫面]  索引標籤。
    
     ![Google+ - 認證](./media/active-directory-b2c-setup-goog-app/google-add-cred.png)
 5. 選取或指定有效的**電子郵件地址**、提供**產品名稱**，然後按一下 [儲存]。
@@ -43,19 +43,19 @@ toouse Google + B2C Azure Active Directory (Azure AD) 中的身分識別提供�
 7. 在 [應用程式類型] 下方，選取 [Web 應用程式]。
    
     ![Google+ - OAuth 同意畫面](./media/active-directory-b2c-setup-goog-app/google-web-app.png)
-8. 提供**名稱**針對您的應用程式中，輸入`https://login.microsoftonline.com`在 hello**授權 JavaScript origins**欄位，和`https://login.microsoftonline.com/te/{tenant}/oauth2/authresp`在 hello**授權重新導向 Uri**欄位。 使用您的租用戶名稱 (例如 contosob2c.onmicrosoft.com) 來取代 **{tenant}**。 hello **{tenant}**值會區分大小寫。 按一下 [建立] 。
+8. 提供應用程式的**名稱**，在 [授權 JavaScript 來源] 欄位中輸入 `https://login.microsoftonline.com`，接著在 [授權重新導向 URI] 欄位中輸入 `https://login.microsoftonline.com/te/{tenant}/oauth2/authresp`。 使用您的租用戶名稱 (例如 contosob2c.onmicrosoft.com) 來取代 **{tenant}**。 **{tenant}** 值會區分大小寫。 按一下 [建立] 。
    
     ![Google+ -  建立用戶端識別碼](./media/active-directory-b2c-setup-goog-app/google-create-client-id.png)
-9. 複製的 hello 值**用戶端識別碼**和**用戶端密碼**。 您將需要這兩種 tooconfigure Google + 身分識別提供者，在您的租用戶。 **用戶端密碼** 是重要的安全性認證。
+9. 複製 [用戶端識別碼] 和 [用戶端密碼] 的值。 您必須使用這兩個值，將 Google+ 設為租用戶中的身分識別提供者。 **用戶端密碼** 是重要的安全性認證。
    
     ![Google+ - 用戶端密碼](./media/active-directory-b2c-setup-goog-app/google-client-secret.png)
 
 ## <a name="configure-google-as-an-identity-provider-in-your-tenant"></a>將 Google+ 帳戶於租用戶中設定為識別提供者
-1. 請遵循下列步驟太[瀏覽 toohello B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-b2c-settings)hello Azure 入口網站上。
-2. 在 [hello B2C 功能刀鋒視窗中，按一下 [**身分識別提供者**。
-3. 按一下**+ 加**在 hello hello 刀鋒視窗最上方。
-4. 提供方便**名稱**hello 身分識別提供者組態。 例如，輸入 "G+"。
+1. 遵循下列步驟以 [瀏覽至 B2C 功能刀鋒視窗](active-directory-b2c-app-registration.md#navigate-to-b2c-settings) (位於 Azure 入口網站上)。
+2. 在 B2C 功能刀鋒視窗中，按一下 [ **身分識別提供者**]。
+3. 按一下刀鋒視窗頂端的 [新增]  。
+4. 針對身分識別提供者組態，提供容易辨識的 **名稱** 。 例如，輸入 "G+"。
 5. 按一下 [識別提供者類型]、選取 [Google]，然後按一下 [確定]。
-6. 按一下**設定此身分識別提供者**，然後輸入 hello 用戶端識別碼和用戶端密碼 hello Google + 應用程式，您稍早建立。
-7. 按一下**確定**，然後按一下 [**建立**toosave Google + 設定。
+6. 按一下 [設定此識別提供者]  ，然後輸入您先前建立的 Google+ 應用程式用戶端識別碼和用戶端密碼。
+7. 依序按一下 [確定] 和 [建立]，儲存您的 Google+ 設定。
 

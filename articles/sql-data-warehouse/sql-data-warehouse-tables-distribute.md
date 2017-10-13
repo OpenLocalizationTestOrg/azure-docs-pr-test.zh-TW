@@ -1,5 +1,5 @@
 ---
-title: "SQL 資料倉儲中的 aaaDistributing 資料表 |Microsoft 文件"
+title: "在 SQL 資料倉儲中散發資料表 | Microsoft Docs"
 description: "開始在 Azure SQL 資料倉儲中散發資料表。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 10/31/2016
 ms.author: shigu;barbkess
-ms.openlocfilehash: 65093eeaeb00fef85aaa6070da2c976fed3f4bbe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d0e12bf821a81826a20b8db84e76c48fa60ad9b5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="distributing-tables-in-sql-data-warehouse"></a>在 SQL 資料倉儲中散發資料表
 > [!div class="op_single_selector"]
@@ -33,36 +33,36 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-SQL 資料倉儲是大量平行處理 (MPP) 分散式資料庫系統。  將資料和處理能力分割於多個節點之間，SQL 資料倉儲就能夠提供極大的延展性 - 遠超過任何單一系統。  決定如何 toodistribute 您的 SQL 資料倉儲中的資料最重要的 hello 的其中一個因素 tooachieving 達到最佳效能。   hello 金鑰 toooptimal 效能最小化資料移動，然後依次 hello 金鑰 toominimizing 資料移動選取 hello 右散發策略。
+SQL 資料倉儲是大量平行處理 (MPP) 分散式資料庫系統。  將資料和處理能力分割於多個節點之間，SQL 資料倉儲就能夠提供極大的延展性 - 遠超過任何單一系統。  決定如何在 SQL 資料倉儲內散發資料是達到最佳效能的最重要因素之一。   要達到最佳效能的關鍵是將資料移動降至最低，而將資料移動降至最低的關鍵是選取正確的散發策略。
 
 ## <a name="understanding-data-movement"></a>了解資料移動
-MPP 系統、 在每個資料表中的 hello 資料分割到數個基礎資料庫。  hello 最最佳化查詢 MPP 系統上的可以只傳遞 tooexecute hello 上個別的分散式的資料庫，而不需要互動之間 hello 其他資料庫。  例如，假設您的銷售資料的資料庫有「銷售」和「客戶」兩個資料表。  如果您有需要 toojoin sales 資料表 tooyour 客戶資料表的查詢，並除以銷售和客戶資料表總客戶編號置於個別的資料庫中的每一位客戶，任何加入銷售和客戶的查詢就可以解決在每個不知道資料庫 hello 其他資料庫。  相反地，如果銷售資料除以訂單號碼，而您的客戶資料，客戶數目時，然後任何指定的資料庫不會有 hello 相對應的資料每個客戶，因此如果您想 toojoin 銷售資料 tooyour 客戶資料，您需要tooget hello 資料每個客戶的 hello 其他資料庫。  在第二個範例中，移動資料將需要 toooccur toomove hello 客戶資料 toohello 銷售資料，因此 hello 兩個資料表可以聯結。  
+在 MPP 系統中，每個資料表中的資料會被分到數個基礎資料庫。  MPP 系統上最佳化的查詢可以只傳遞到個別分散式資料庫上執行，與其他資料庫之間不需要互動。  例如，假設您的銷售資料的資料庫有「銷售」和「客戶」兩個資料表。  如果您的查詢需要將銷售資料表和客戶資料表聯結，而您將銷售和客戶資料表都依客戶編號分開，將每個客戶放在不同的資料庫，則任何聯結銷售和客戶的查詢皆可以在各個資料庫中解決，不需要知道其他資料庫的存在。  相較之下，如果您將銷售資料依訂單編號分開，將客戶資料依客戶編號分開，則任何一個資料庫皆不會有每位客戶的相對應資料，因此，如果您想要將銷售資料聯結至客戶資料，便需要從其他資料庫取得每位客戶的資料。  在這第二個範例中，需要移動資料，將客戶資料移至銷售資料，如此才可以聯結兩個資料表。  
 
-資料移動不一定是一件壞事，有時候很有必要 toosolve 查詢。  但當您可以避免這個額外的步驟，自然地查詢的執行速度會更快。  資料移動最常發生於聯結資料表或執行彙總時。  通常您需要 toodo 兩者，您可能無法 toooptimize 一種情況，例如聯結，您仍然必須解決的資料移動 toohelp hello 其他案例中的，例如彙總。  hello 訣竅找出這是較少工作。  在大部分情況下，散發大型事實資料表經常聯結的資料行上是 hello 最有效方法以降低 hello 大部分的資料移動。  散發資料聯結資料行上的進行更多的常見方法 tooreduce 資料移動比散發到彙總中的資料行的資料。
+資料移動不一定是一件壞事，有時候是要解決查詢的必要手段。  但當您可以避免這個額外的步驟，自然地查詢的執行速度會更快。  資料移動最常發生於聯結資料表或執行彙總時。  通常您兩種都需要做，因此即使您可以最佳化其中一種情況，例如聯結，您仍需要資料移動來幫您解決其他案例，例如彙總。  訣竅是找出哪一個較少工作。  大多數情況下，在通常聯結的資料行上散發大型事實資料表，是將資料移動降至最低的最有效方法。  相較於散發彙總牽涉到的資料行資料，散發聯結資料行上的資料，是減少資料移動更為普遍的方法。
 
 ## <a name="select-distribution-method"></a>選擇散發方法
-Hello 幕後 SQL 資料倉儲會將您的資料分割成 60 的資料庫。  每個個別的資料庫是參照的 tooas**發佈**。  當資料載入至每個資料表時，SQL 資料倉儲會如何具有 tooknow toodivide 跨這些 60 發佈資料。  
+SQL 資料倉儲會在幕後將您的資料分成 60 個資料庫。  每個個別的資料庫都稱為 **散發**。  當資料載入每個資料表時，SQL 資料倉儲必須知道如何將資料分成這 60 個散發。  
 
-hello 發佈方法定義在 hello 資料表層級和目前有兩個選擇：
+散發方法會定義於資料表層級，目前有兩個選擇︰
 
 1. **循環配置資源** 會平均但隨機散發資料。
 2. **雜湊散發** 會根據單一資料行的雜湊值散發資料
 
-根據預設，當您未定義的資料散發方式，您的資料表將發佈使用 hello**循環配置資源**發佈方法。  不過，因為您變得較複雜實作中，您會想使用 tooconsider**雜湊散發**資料表 toominimize 資料移動，這會依次最佳化查詢效能。
+根據預設，如果未定義資料散發方式，您的資料表會使用 **循環配置資源** 散發方法進行散發。  不過，當您日益熟練實作，您會考慮使用 **雜湊散發** 資料表將資料移動降至最低，進而使查詢效能達到最佳化。
 
 ### <a name="round-robin-tables"></a>循環配置資源資料表
-使用 hello 散發資料的循環配置資源方法，是非常如何聽起來。  載入資料時，每個資料列會直接傳送 toohello 下一個發佈。  散發 hello 資料的這個方法會一律隨機將 hello 資料非常平均分散到所有 hello 分佈。  也就是說，沒有任何排序完成期間 hello 循環配置資源的程序而放置您的資料。  基於這個理由，循環配置資源散發有時稱為隨機雜湊。  循環配置資源的分散式資料表沒有任何需要 toounderstand hello 資料。  基於這個理由，循環配置資源資料表通常具有良好的載入目標。
+使用循環配置資源方法來散發資料名符其實。  載入資料後，每個資料列只會傳送到下一個散發。  此種資料散發方法一律會將資料非常平均地隨機散發到所有的散發。  也就是說，在放置資料的循環配置資源處理期間，不會進行任何排序。  基於這個理由，循環配置資源散發有時稱為隨機雜湊。  使用循環配置資源分散式資料表，不需要了解資料。  基於這個理由，循環配置資源資料表通常具有良好的載入目標。
 
-根據預設，如果選擇沒有散發方法，則 hello 循環配置資源發佈方法將用於。  不過，雖然循環配置資源表格是簡單的 toouse，因為資料會隨機分佈在 hello 系統表示 hello 系統無法保證的散發每個資料列是上。  在結果中，有時候 hello 系統需求 tooinvoke 資料移動作業 toobetter 組織資料之前它可以解析查詢。  此額外步驟會使您的查詢變慢。
+根據預設，如果未選擇散發方法，則會使用循環配置資源散發方法。  不過，雖然循環配置資源資料表很容易使用，但因為資料會隨機分散於系統，這表示系統無法保證每個資料列位於哪個發散。  因此，系統有時候需要叫用資料移動作業，才能在解析查詢前，更加妥善地組織您的資料。  此額外步驟會使您的查詢變慢。
 
-請考慮使用循環配置資源發佈 hello 下列案例中針對資料表：
+在下列情況下，請考慮對資料表使用循環配置資源散發：
 
 * 以簡單的起點開始使用時
 * 如果沒有明顯的聯結索引鍵
-* 如果不是散發 hello 資料表的雜湊的候選資料行
-* 如果 hello 資料表不會共用共同的聯結索引鍵與其他資料表
-* 如果比其他 hello 查詢中聯結的那麼顯著 hello 聯結
-* 當 hello 資料表是暫時的臨時資料表
+* 如果沒有合適的候選資料行可供雜湊散發資料表
+* 如果資料表並未與其他資料表共用常見的聯結索引鍵
+* 如果此聯結比查詢中的其他聯結較不重要
+* 當資料表是暫存預備資料表時
 
 兩個範例都會建立循環配置資源資料表︰
 
@@ -99,12 +99,12 @@ WITH
 ```
 
 > [!NOTE]
-> 循環配置資源時所明確 DDL 中的 hello 預設資料表類型是最佳做法，讓資料表配置的 hello 意圖清除 tooothers。
+> 雖然循環配置資源是預設資料表類型，但以您的 DDL 明確表示被視為最佳做法，讓其他人能夠清楚了解您的資料表配置的意圖。
 >
 >
 
 ### <a name="hash-distributed-tables"></a>雜湊散發資料表
-使用**雜湊散發**演算法 toodistribute 資料表可以提升效能許多案例中，藉由在查詢時減少資料移動。  分散式的資料表是屬 hello 資料表的雜湊散發資料庫時您所選取的單一資料行上使用雜湊演算法。  hello 散發資料行是決定 hello 資料分成分散式資料庫的方式。  hello 雜湊函式會使用 hello 散發資料行 tooassign 列 toodistributions。  hello 雜湊演算法，並產生分佈是具決定性。  也就是 hello hello 相同的資料類型會一律使用相同的值有 toohello 相同的散發。    
+使用 **雜湊散發** 演算法來散發您的資料表，可減少查詢時的資料移動，進而改善許多案例的效能。  雜湊散發資料表是在您選取的單一資料行上使用雜湊演算法，分配於分散式資料庫間的資料表。  散發資料行可決定如何將資料分配於您的分散式資料庫。  雜湊函式會使用散發資料行將資料列指派給散發。  雜湊演算法與所產生的散發具決定性。  也就是，相同資料類型的相同值永遠都使用相同的散發。    
 
 這個範例會建立依照識別碼散發的資料表︰
 
@@ -127,7 +127,7 @@ WITH
 ```
 
 ## <a name="select-distribution-column"></a>選擇散發資料行
-當您選擇太**雜湊散發**資料表時，您將需要 tooselect 單一散發資料行。  當選取散發資料行，有三個主要的因素 tooconsider。  
+當您選擇 **雜湊散發** 資料表時，您必須選取單一散發資料行。  選取散發資料行時，需要考量三個主要因素。  
 
 選取具有下列特性的單一資料行︰
 
@@ -136,52 +136,52 @@ WITH
 3. 最小化資料移動
 
 ### <a name="select-distribution-column-which-will-not-be-updated"></a>選取不會更新的散發資料行
-散發資料行不可更新，因此，選取具靜態值的資料行。  如果資料行，將需要更新 toobe，通常是不好發佈候選。  如果沒有，您必須更新散發資料行的情況下，作法是先刪除 hello 資料列，然後插入新資料列。
+散發資料行不可更新，因此，選取具靜態值的資料行。  如果資料行需要更新，該資料行通常不是理想的散發候選項目。  如果您必須更新散發資料行，做法是先刪除資料列，然後插入新的資料列。
 
 ### <a name="select-distribution-column-which-will-distribute-data-evenly"></a>選取將平均散發資料的散發資料行
-分散式的系統執行只盡其最慢的發佈時，會很重要的 toodivide hello 工作平均跨順序 tooachieve 平衡執行中的 hello 分佈 hello 系統。  hello hello 工作就會劃分分散式系統的方式根據每個散發 hello 資料所在。  這使得散發 hello 資料，讓每個分佈有相等的工作，並將採用 hello 相同時間 toocomplete hello 工作及其部分的非常重要的 tooselect hello 右散發資料行。  當工作也分成 hello 系統時，hello 資料被平衡 hello 分佈。  當資料不平衡時，我們將此稱為 **資料扭曲**。  
+分散式系統的執行速度只與其最慢的散發一樣快，所以務必將工作平均分配於各散發，以便讓系統達到平衡的執行。  工作會根據每個散發的資料所在位置，分配於分散式系統。  這對於選取正確的散發資料行來散發資料非常重要，如此一來，每個散發都有相等的工作，而且完成其工作部分所需的時間相同。  當工作在系統中分配良好時，資料的散發就會平衡。  當資料不平衡時，我們將此稱為 **資料扭曲**。  
 
-toodivide 資料平均，避免資料扭曲，請選取您的散發資料行時，請考慮下列 hello:
+若要平均分配資料以避免資料扭曲，請在選取散發資料行時考量下列各項︰
 
 1. 選取包含大量相異值的資料行。
 2. 避免將資料散發於含有少許相異值的資料行。
 3. 避免將資料散發於 null 頻繁出現的資料行。
 4. 避免在日期資料行上散發資料。
 
-由於每個值是 60 分佈的雜湊的 too1，tooachieve 平均散發您會想 tooselect 的高唯一且包含超過 60 的唯一值的資料行。  tooillustrate，試想一個情況，資料行僅具有 40 的唯一值。  如果此資料行已選定為 hello 散發索引鍵，hello 資料為該資料表會登陸 40 分佈最多，僅保留任何資料，然後沒有處理 toodo 20 分佈。  相反地，hello 其他 40 分佈會有多個工作 toodo 如果 hello 資料的平均散佈超過 60 份的分佈。  這個案例就是資料扭曲的範例。
+因為每個值會雜湊至 60 個散發之一，若要達到平均散發，您要選取極為獨特並包含超過 60 個唯一值的資料行。  為了方便解說，請考慮資料行只有 40 個唯一值的案例。  如果選取此資料行做為散發索引鍵，則該資料表的資料最多會落在 40 個散發，以致 20 個散發不含任何資料，而且沒有要進行的處理。  相反地，如果資料平均分散於 60 個散發，則其他 40 個散發有更多工作需要進行。  這個案例就是資料扭曲的範例。
 
-MPP 系統中每個查詢步驟會等到所有分佈 toocomplete 之 hello 工作。  如果一個散發是執行作業超過 hello 其他項目，則 hello 資源的 hello 其他分佈基本上會浪費只等待 hello 忙碌中發佈。  當所有散發的工作分配不均時，我們將此稱為 **處理誤差**。  處理誤差會導致查詢 toorun 低於如果 hello 工作負載平均分散到 hello 分佈。  資料扭曲，都會導致 tooprocessing 誤差。
+在 MPP 系統中，每個查詢步驟會等待所有散發完成它們的工作部分。  若某個散發進行的工作較其他散發多，則其他散發的資源會因為等待該忙碌的散發而浪費。  當所有散發的工作分配不均時，我們將此稱為 **處理誤差**。  處理誤差將造成查詢的執行速度比工作負載平均分配於散發時更慢。  資料扭曲將導致處理誤差。
 
-避免依 hello null 值將所有登陸在 hello 相同分配高度可為 null 的資料行上發佈。 散發之日期資料行也可能造成處理誤差的特定日期的所有資料將都登陸在 hello 相同，因為通訊群組。 如果數個使用者會在查詢執行所有篩選 hello 相同的日期，則只有 1 個的 hello 60 分佈會進行所有 hello 工作的特定的日期都只會在一個發佈。 在此案例中，hello 查詢可能都會執行 60 時間低於如果 hello 資料已平均分散到所有 hello 分佈。
+避免散發於高度可為 null 的資料行，因為 null 值將全部落在相同的散發。 散發於日期資料行也可能造成處理誤差，因為指定日期的所有資料將落在相同的散發。 如果數個使用者正在執行的查詢均篩選相同日期，則 60 個散發中只有 1 個會執行所有工作，因為一個指定日期只會在一個散發中。 在此案例中，查詢的執行速度可能比資料平均分配於所有散發時慢 60 倍。
 
-當沒有候選資料行存在，請考慮使用循環配置資源做為 hello 發佈方法。
+若沒有理想的候選資料行存在，則考慮使用循環配置資源做為散發方法。
 
 ### <a name="select-distribution-column-which-will-minimize-data-movement"></a>選取會將資料移動降至最低的散發資料行
-選取 hello 右散發資料行降到最低的資料移動是其中一種 hello 最佳化您的 SQL 資料倉儲的效能最重要的策略。  資料移動最常發生於聯結資料表或執行彙總時。  用於 `JOIN`、`GROUP BY`、`DISTINCT`、`OVER`、`HAVING` 子句的資料行全都是**理想**的雜湊散發候選項目。
+藉由選取適當散發資料行來將資料移動降至最低，是讓 SQL 資料倉儲的效能達到最佳化的最重要策略之一。  資料移動最常發生於聯結資料表或執行彙總時。  用於 `JOIN`、`GROUP BY`、`DISTINCT`、`OVER`、`HAVING` 子句的資料行全都是**理想**的雜湊散發候選項目。
 
-在 hello 相反地，資料行中 hello`WHERE`子句執行**不**讓良好的雜湊資料行的候選項目的限制哪一個分佈參與 hello 查詢，導致處理因為誤差。  這可能會吸引人 toodistribute，但通常可能會造成這項處理誤差的資料行的理想範例為日期資料行。
+另一方面，用於 `WHERE` 子句的資料行 **不是** 理想的雜湊資料行候選項目，因為它們會限制哪些散發參與查詢，因而導致處理誤差。  可能適合用於散發但通常會造成此處理誤差的資料行範例，就是日期資料行。
 
-一般而言，如果您有兩個大型事實資料表經常涉及的聯結中，您會取得 hello 最高效能散發 hello 聯結資料行其中兩個資料表。  如果您有絕不會是聯結的 tooanother 大型事實資料表的資料表，然後尋找經常處於 hello toocolumns`GROUP BY`子句。
+一般而言，如果您有兩個經常涉入聯結的大型事實資料表，將兩個資料表散發在其中一個聯結資料行上可得到最佳效能。  如果您有永遠不會聯結到另一個大型事實資料表的資料表，則尋找經常出現在 `GROUP BY` 子句中的資料行。
 
-有幾個索引鍵的條件加入期間必須符合的 tooavoid 資料移動：
+有幾個關鍵條件必須符合，以避免聯結期間的資料移動︰
 
-1. hello hello 聯結中涉及的資料表必須是分佈在雜湊**一個**hello hello 聯結中參與的資料行。
-2. hello hello 聯結資料行資料類型必須符合這兩個資料表之間。
-3. 必須以等號運算子加入 hello 資料行。
-4. hello 聯結類型可能無法`CROSS JOIN`。
+1. 參與聯結之資料行的相關資料表必須雜湊散發於其中 **一個** 聯結資料行上。
+2. 兩個資料表間聯結資料行的資料類型必須相符。
+3. 資料行必須以 equals 運算子聯結。
+4. 聯結類型可能不是 `CROSS JOIN`。
 
 ## <a name="troubleshooting-data-skew"></a>資料扭曲疑難排解
-當資料表資料發佈使用 hello 雜湊散發方法有某些機率準 toohave 比其他不當比例的詳細資料。 因為 hello 最終結果的分散式查詢必須等候 hello 最長執行發佈 toofinish 誤差過多資料可能會影響查詢效能。 視 hello 程度 hello 資料扭曲您可能需要 tooaddress 它。
+資料表的資料是使用雜湊散發方法來散發時，有些散發可能會扭曲，會比其他資料表具有更多資料。 過多資料扭曲可能會影響查詢效能，因為散發查詢的最終結果必須等待執行時間最長的散發完成。 視資料扭曲的程度而定，您可能需要處理它。
 
 ### <a name="identifying-skew"></a>識別扭曲
-簡單的方式 tooidentify 資料表為準是 toouse `DBCC PDW_SHOWSPACEUSED`。  這是非常快速且簡單的方式 toosee hello 的資料表會儲存在每個資料庫的 hello 60 分佈的資料列數目。  請記住，為了 hello 最平衡效能，hello 分散式資料表中的資料列應該分成平均 hello 的所有分佈。
+識別資料表扭曲的簡單方法是使用 `DBCC PDW_SHOWSPACEUSED`。  這個非常快速且簡單的方式，用來查看儲存在您資料庫中每 60 個散發內的資料表資料列數目。  請記住，為了達到最平衡的效能，分散式資料表中的資料列應該平均分散到所有散發中。
 
 ```sql
 -- Find data skew for a distributed table
 DBCC PDW_SHOWSPACEUSED('dbo.FactInternetSales');
 ```
 
-不過，如果您查詢 hello Azure SQL 資料倉儲動態管理檢視 (DMV)，您可以執行更詳細的分析。  toostart，建立 hello 檢視[dbo.vTableSizes] [ dbo.vTableSizes]使用檢視 hello SQL 從[資料表概觀][ Overview]發行項。  一旦建立 hello 檢視時，執行此查詢 tooidentify，哪些資料表有個以上的資料 10%誤差。
+不過，如果您查詢 Azure SQL 資料倉儲動態管理檢視 (DMV)，則可以執行更詳細的分析。  若要開始，請使用[資料表概觀][Overview]一文中的 SQL 建立 [dbo.vTableSizes][dbo.vTableSizes] 檢視。  建立檢視後，請執行此查詢來識別哪些資料表有 10% 以上的資料扭曲。
 
 ```sql
 select *
@@ -199,14 +199,14 @@ order by two_part_name, row_count
 ```
 
 ### <a name="resolving-data-skew"></a>解決資料扭曲
-不是所有誤差是足夠 toowarrant 修正程式。  在某些情況下，某些查詢中資料表的 hello 效能可能會超過資料扭曲 hello 的傷害。  toodecide，如果您也應該解決資料扭曲在資料表中，您應該了解有關 hello 資料磁碟區和查詢最大的在您的工作負載。   其中一種方式在 hello 誤差影響 toolook 是 hello toouse hello 步驟[查詢監視][ Query Monitoring]文章 toomonitor hello 影響的查詢效能傾斜和特別 hello 影響 toohow 長時間查詢需要 toocomplete hello 個別發佈。
+並非所有的扭曲都足以批准修正。  在某些情況下，某些查詢中的資料表效能可以超越資料扭曲的傷害。  若要決定是否應該解決資料表中的資料扭曲，您應該盡可能了解工作負載中的資料磁區和查詢。   查看扭曲影響的方法之一是使用[查詢監視][Query Monitoring]一文中的步驟，監視扭曲對於查詢效能的影響，尤其是對在個別散發上完成查詢所需時間的影響。
 
-將資料散發是要尋找 hello 資料誤差降至最低，並盡量減少資料移動之間的正確平衡。 這些可以團體的目標，有時候您會想 tookeep 資料偏斜順序 tooreduce 資料移動。 比方說，當 hello 散發資料行經常 hello 聯結和彙總中的共用的資料，您將會最小化資料移動。 hello 擁有 hello 最少的資料移動可能會遠大於 hello 影響的資料扭曲。
+散發資料就是找出將資料扭曲降至最低與將資料移動降至最低兩者之間的正確平衡點。 這些可能是相反的目標，有時候您會想要保留資料扭曲，以減少資料移動。 比方說，當散發資料行經常是聯結和彙總中的共用資料行時，您便會將資料移動降至最低。 擁有最少的資料移動，所帶來的好處可能勝過具有資料扭曲的影響。
 
-hello 的典型方式 tooresolve 資料誤差是 toore-建立 hello 資料表具有不同的散發資料行。 因為沒有任何方法 toochange hello 散發資料行上的現有資料表，資料表的 hello 方式 toochange hello 發佈它 toorecreate 它有 [CTAS] []。  以下是解決資料扭曲的兩個範例：
+解決資料扭曲的一般方式，是重新建立具有不同散發資料行的資料表。 沒有任何方法可變更現有資料表上的散發資料行，所以變更資料表散發的方法是使用 [CTAS][] 重建資料表。  以下是解決資料扭曲的兩個範例：
 
-### <a name="example-1-re-create-hello-table-with-a-new-distribution-column"></a>範例 1： 重新建立 hello 與新的散發資料行的資料表
-這個範例會使用 [CTAS] [] toore-建立具有不同的雜湊散發資料行的資料表。
+### <a name="example-1-re-create-the-table-with-a-new-distribution-column"></a>範例 1︰重建具有新散發資料行的資料表
+此範例會使用 [CTAS][] 來重建具有不同雜湊資料行的資料表。
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales_CustomerKey]
@@ -239,13 +239,13 @@ CREATE STATISTICS [OrderQuantity] ON [FactInternetSales_CustomerKey] ([OrderQuan
 CREATE STATISTICS [UnitPrice] ON [FactInternetSales_CustomerKey] ([UnitPrice]);
 CREATE STATISTICS [SalesAmount] ON [FactInternetSales_CustomerKey] ([SalesAmount]);
 
---Rename hello tables
-RENAME OBJECT [dbo].[FactInternetSales] too[FactInternetSales_ProductKey];
-RENAME OBJECT [dbo].[FactInternetSales_CustomerKey] too[FactInternetSales];
+--Rename the tables
+RENAME OBJECT [dbo].[FactInternetSales] TO [FactInternetSales_ProductKey];
+RENAME OBJECT [dbo].[FactInternetSales_CustomerKey] TO [FactInternetSales];
 ```
 
-### <a name="example-2-re-create-hello-table-using-round-robin-distribution"></a>範例 2： 重新建立 hello 資料表使用循環配置資源發佈
-這個範例會使用 [CTAS] [] toore-建立具有循環配置資源，而不是雜湊散發的資料表。 這項變更將會產生即使資料分佈 hello 成本增加的資料移動。
+### <a name="example-2-re-create-the-table-using-round-robin-distribution"></a>範例 2︰使用循環配置資源散發重建資料表
+此範例會使用 [CTAS][] 來重建具有循環配置資源 (而非雜湊散發) 的資料表。 這項變更將會產生平均的資料散發，但代價是資料移動增加。
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales_ROUND_ROBIN]
@@ -278,13 +278,13 @@ CREATE STATISTICS [OrderQuantity] ON [FactInternetSales_ROUND_ROBIN] ([OrderQuan
 CREATE STATISTICS [UnitPrice] ON [FactInternetSales_ROUND_ROBIN] ([UnitPrice]);
 CREATE STATISTICS [SalesAmount] ON [FactInternetSales_ROUND_ROBIN] ([SalesAmount]);
 
---Rename hello tables
-RENAME OBJECT [dbo].[FactInternetSales] too[FactInternetSales_HASH];
-RENAME OBJECT [dbo].[FactInternetSales_ROUND_ROBIN] too[FactInternetSales];
+--Rename the tables
+RENAME OBJECT [dbo].[FactInternetSales] TO [FactInternetSales_HASH];
+RENAME OBJECT [dbo].[FactInternetSales_ROUND_ROBIN] TO [FactInternetSales];
 ```
 
 ## <a name="next-steps"></a>後續步驟
-toolearn 有關資料表設計的詳細資訊，請參閱 「 hello[散發][Distribute]，[索引][Index]，[分割][Partition]，[資料型別][Data Types]，[統計資料][ Statistics]和[暫存資料表] [ Temporary]文件。
+若要深入了解資料表設計，請參閱[散發][Distribute]、[索引][Index]、[資料分割][Partition]、[資料類型][Data Types]、[統計資料][Statistics] 和 [暫存資料表][Temporary]等文章。
 
 如需最佳做法的概觀，請參閱 [SQL 資料倉儲最佳做法][SQL Data Warehouse Best Practices]。
 

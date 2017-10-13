@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure PowerShell 的 Azure Redis 快取 aaaManage |Microsoft 文件"
-description: "深入了解如何使用 Azure PowerShell 的 Azure Redis cache tooperform 系統管理工作。"
+title: "使用 Azure PowerShell 管理 Azure Redis 快取 | Microsoft Docs"
+description: "了解如何使用 Azure PowerShell 執行 Azure Redis 快取的管理工作。"
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/13/2017
 ms.author: sdanie
-ms.openlocfilehash: 1d526ce65c4bc05345cd6c3ff370211ed562cab4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0a5c95eab3fd01f611fc049e80c5c506857e0b81
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="manage-azure-redis-cache-with-azure-powershell"></a>使用 Azure PowerShell 管理 Azure Redis 快取
 > [!div class="op_single_selector"]
@@ -27,51 +27,51 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-本主題說明您如何 tooperform 常見工作建立、 更新及如何調整您的 Azure Redis 快取執行個體，tooregenerate 存取金鑰，以及如何 tooview 您的快取的資訊。 如需 Azure Redis 快取的 PowerShell Cmdlet 完整清單，請參閱 [Azure Redis 快取的 Cmdlet](https://msdn.microsoft.com/library/azure/mt634513.aspx)。
+本主題顯示如何執行一般工作，例如建立、更新及調整 Azure Redis 快取執行個體，如何重新產生存取金鑰，以及如何檢視您的快取的相關資訊。 如需 Azure Redis 快取的 PowerShell Cmdlet 完整清單，請參閱 [Azure Redis 快取的 Cmdlet](https://msdn.microsoft.com/library/azure/mt634513.aspx)。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
-如需 hello 傳統部署模型的詳細資訊，請參閱[Azure Resource Manager vs 傳統部署： 了解部署模型及 hello 資源的狀態](../azure-resource-manager/resource-manager-deployment-model.md#classic-deployment-characteristics)。
+如需傳統部署模型的詳細資訊，請參閱 [Azure Resource Manager 與傳統部署比較：了解資源的部署模型和狀態](../azure-resource-manager/resource-manager-deployment-model.md#classic-deployment-characteristics)。
 
 ## <a name="prerequisites"></a>必要條件
-如果您已安裝 Azure PowerShell，其必須是 Azure PowerShell 1.0.0 或更新的版本。 您可以檢查您使用此命令在 hello Azure PowerShell 命令提示字元安裝的 Azure PowerShell hello 版本。
+如果您已安裝 Azure PowerShell，其必須是 Azure PowerShell 1.0.0 或更新的版本。 您可以在 Azure PowerShell 命令提示字元下使用這個命令來檢查已安裝的 Azure PowerShell 版本。
 
     Get-Module azure | format-table version
 
 
-首先，您必須登入 tooAzure 與此命令。
+首先，您必須使用此命令登入 Azure。
 
     Login-AzureRmAccount
 
-在 Microsoft Azure 登入的 hello 對話方塊中指定您的 Azure 帳戶並將其密碼的 hello 電子郵件地址。
+在 [Microsoft Azure 登入] 對話方塊中，指定 Azure 帳戶的電子郵件地址和密碼。
 
-接下來，如果您有多個 Azure 訂用帳戶，您需要 tooset 您 Azure 訂用帳戶。 toosee 一份您目前的訂用帳戶，執行此命令。
+接下來，如果您有多個 Azure 訂用帳戶，請設定 Azure 訂用帳戶。 如果想查看目前的訂用帳戶清單，請執行這個命令。
 
     Get-AzureRmSubscription | sort SubscriptionName | Select SubscriptionName
 
-toospecify hello 訂用帳戶，執行下列命令的 hello。 在下列範例的 hello，hello 訂用帳戶名稱是`ContosoSubscription`。
+若要指定訂用帳戶，請執行下列命令。 在下列範例中，訂用帳戶的名稱為 `ContosoSubscription`。
 
     Select-AzureRmSubscription -SubscriptionName ContosoSubscription
 
-您可以使用 Windows PowerShell 的 Azure 資源管理員之前，您需要下列 hello:
+在將 Windows PowerShell 與 Azure 資源管理員搭配使用之前，您需要下列項目：
 
-* Windows PowerShell 3.0 或 4.0 版本。 toofind hello 版本的 Windows PowerShell，輸入：`$PSVersionTable`並確認 hello 值`PSVersion`3.0 或 4.0。 tooinstall 相容的版本，請參閱[Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595)或[Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855)。
+* Windows PowerShell 3.0 或 4.0 版本。 若要找出 Windows PowerShell 的版本，輸入：`$PSVersionTable`，並確認 `PSVersion` 的值是 3.0 或 4.0。 若要安裝相容版本，請參閱 [Windows Management Framework 3.0](http://www.microsoft.com/download/details.aspx?id=34595) 或 [Windows Management Framework 4.0](http://www.microsoft.com/download/details.aspx?id=40855)。
 
-tooget 詳細說明您在此教學課程中，使用 hello Get-help 指令程式中看到任何 cmdlet。
+若要取得您在本教學課程中任何所見 Cmdlet 的詳細說明，請使用 Get-Help Cmdlet。
 
     Get-Help <cmdlet-name> -Detailed
 
-例如，tooget 說明 hello `New-AzureRmRedisCache` cmdlet，類型：
+例如，如需取得 `New-AzureRmRedisCache` Cmdlet 的說明，請輸入：
 
     Get-Help New-AzureRmRedisCache -Detailed
 
-### <a name="how-tooconnect-tooother-clouds"></a>如何 tooconnect tooother 雲端
-根據預設 hello Azure 環境是`AzureCloud`，它代表 hello 全域 Azure 的雲端執行個體。 tooconnect tooa 不同的執行個體，使用 hello`Add-AzureRmAccount`命令與 hello`-Environment`或-`EnvironmentName` hello 所需的環境或環境名稱的命令列參數。
+### <a name="how-to-connect-to-other-clouds"></a>如何連線到其他雲端
+根據預設，Azure 環境是 `AzureCloud`，其代表全域 Azure 雲端執行個體。 若要連線至不同的執行個體，請使用 `Add-AzureRmAccount` 命令搭配 `-Environment` 或使用 -`EnvironmentName` 命令列參數搭配所需的環境或環境名稱。
 
-可用的環境，執行 hello toosee hello 清單`Get-AzureRmEnvironment`cmdlet。
+若要查看可用環境的清單，請執行 `Get-AzureRmEnvironment` Cmdlet。
 
-### <a name="tooconnect-toohello-azure-government-cloud"></a>tooconnect toohello Azure 政府雲端
-tooconnect toohello Azure 政府雲端，使用其中一個 hello 下列命令。
+### <a name="to-connect-to-the-azure-government-cloud"></a>連線到 Azure Government 雲端
+如果要連線到 Azure Government 雲端，請使用下列其中一個命令。
 
     Add-AzureRMAccount -EnvironmentName AzureUSGovernment
 
@@ -79,15 +79,15 @@ tooconnect toohello Azure 政府雲端，使用其中一個 hello 下列命令�
 
     Add-AzureRmAccount -Environment (Get-AzureRmEnvironment -Name AzureUSGovernment)
 
-toocreate hello Azure 政府雲端，使用其中一個 hello 下列位置中的快取。
+如果要在 Azure Government 雲端建立快取，請使用下列其中一個位置。
 
 * 美國政府維吉尼亞州
 * 美國政府愛荷華州
 
-如需 hello Azure 政府雲端的詳細資訊，請參閱[Microsoft Azure 政府](https://azure.microsoft.com/features/gov/)和[Microsoft Azure 政府開發人員指南](../azure-government-developer-guide.md)。
+如需 Azure Government 雲端的詳細資訊，請參閱 [Microsoft Azure Government](https://azure.microsoft.com/features/gov/) 和 [Microsoft Azure Government 開發人員指南](../azure-government-developer-guide.md)。
 
-### <a name="tooconnect-toohello-azure-china-cloud"></a>tooconnect toohello Azure 中國雲端
-tooconnect toohello Azure 中國雲端，使用其中一個 hello 下列命令。
+### <a name="to-connect-to-the-azure-china-cloud"></a>連線到 Azure 中國雲端
+如果要連線到 Azure 中國雲端，請使用下列其中一個命令。
 
     Add-AzureRMAccount -EnvironmentName AzureChinaCloud
 
@@ -95,15 +95,15 @@ tooconnect toohello Azure 中國雲端，使用其中一個 hello 下列命令�
 
     Add-AzureRmAccount -Environment (Get-AzureRmEnvironment -Name AzureChinaCloud)
 
-toocreate hello Azure 中國雲端，使用其中一個 hello 下列位置中的快取。
+如果要在 Azure 中國雲端建立快取，請使用下列其中一個位置。
 
 * 中國東部
 * 中國北部
 
-如需 hello Azure 中國雲端的詳細資訊，請參閱[AzureChinaCloud azure 在中國的 21Vianet 所操作](http://www.windowsazure.cn/)。
+如需 Azure 中國雲端的詳細資訊，請參閱 [由中國的世紀互聯營運的 Azure 中國雲端](http://www.windowsazure.cn/)。
 
-### <a name="tooconnect-toomicrosoft-azure-germany"></a>tooconnect tooMicrosoft Azure 德國
-tooconnect tooMicrosoft Azure 德國，使用其中一個 hello 下列命令。
+### <a name="to-connect-to-microsoft-azure-germany"></a>連線到 Microsoft Azure (德國)
+若要連線到 Microsoft Azure (德國)，請使用下列其中一個命令。
 
     Add-AzureRMAccount -EnvironmentName AzureGermanCloud
 
@@ -112,7 +112,7 @@ tooconnect tooMicrosoft Azure 德國，使用其中一個 hello 下列命令。
 
     Add-AzureRmAccount -Environment (Get-AzureRmEnvironment -Name AzureGermanCloud)
 
-toocreate Microsoft Azure 德國，使用其中一個 hello 下列位置中的快取。
+若要在 Microsoft Azure (德國) 中建立快取，請使用下列其中一個位置。
 
 * 德國中部
 * 德國東北部
@@ -120,51 +120,51 @@ toocreate Microsoft Azure 德國，使用其中一個 hello 下列位置中的�
 如需有關 Microsoft Azure (德國) 的詳細資訊，請參閱 [Microsoft Azure (德國)](https://azure.microsoft.com/overview/clouds/germany/)。
 
 ### <a name="properties-used-for-azure-redis-cache-powershell"></a>用於 Azure Redis 快取 PowerShell 的屬性
-下表中的 hello 包含屬性和描述常用的參數時建立和管理您使用 Azure PowerShell 的 Azure Redis 快取執行個體。
+下表為使用 Azure PowerShell 建立和管理 Azure Redis 快取執行個體時，常用參數的屬性和說明。
 
 | 參數 | 說明 | 預設值 |
 | --- | --- | --- |
-| 名稱 |Hello 快取的名稱 | |
-| 位置 |Hello 快取的位置 | |
-| resourceGroupName |哪些 toocreate hello 快取中的資源群組名稱 | |
-| 大小 |hello hello 快取大小。 有效值為：P1、P2、P3、P4、C0、C1、C2、C3、C4、C5、C6、250MB、1GB、2.5GB、6GB、13GB、26GB、53GB |1GB |
-| ShardCount |hello 分區 toocreate 使用啟用叢集建立進階版快取時數。 有效值為：1、2、3、4、5、6、7、8、9、10 | |
-| SKU |指定 hello hello 快取的 SKU。 有效值為：Basic、Standard、Premium |標準 |
-| RedisConfiguration |指定 Redis 組態設定。 如需每個設定的詳細資訊，請參閱下列資訊 hello [RedisConfiguration 屬性](#redisconfiguration-properties)資料表。 | |
-| EnableNonSslPort |指出是否已啟用 hello 非 SSL 連接埠。 |False |
+| Name |快取的名稱 | |
+| 位置 |快取的位置 | |
+| resourceGroupName |資源群組名稱，將在其中建立快取 | |
+| 大小 |快取的大小。 有效值為：P1、P2、P3、P4、C0、C1、C2、C3、C4、C5、C6、250MB、1GB、2.5GB、6GB、13GB、26GB、53GB |1GB |
+| ShardCount |在啟用叢集的情況下建立進階快取時要建立的分區數目。 有效值為：1、2、3、4、5、6、7、8、9、10 | |
+| SKU |指定快取的 SKU。 有效值為：Basic、Standard、Premium |標準 |
+| RedisConfiguration |指定 Redis 組態設定。 如需每個設定的詳細資訊，請參閱以下的 [RedisConfiguration 屬性](#redisconfiguration-properties) 表格。 | |
+| EnableNonSslPort |指出是否已啟用非 SSL 連接埠。 |False |
 | MaxMemoryPolicy |這個參數已被取代，請改用 RedisConfiguration。 | |
-| StaticIP |當裝載您的快取在 VNET 中，指定唯一的 IP 位址 hello 快取的 hello 子網路中。 如果未提供，其中一個會為您選擇從 hello 子網路。 | |
-| 子網路 |裝載您的快取在 VNET 中，指定哪些 toodeploy hello 快取以 hello hello 子網路名稱。 | |
-| VirtualNetwork |當裝載您的 VNET 中的快取指定的資源識別碼 hello hello 哪些 toodeploy hello 快取中的 VNET。 | |
-| KeyType |指定的便捷鍵 tooregenerate 更新存取金鑰時。 有效值為：Primary、Secondary | |
+| StaticIP |當快取是裝載在 VNET 中，為快取在子網路中指定唯一 IP 位址。 如果未提供，則會從子網路中為您選擇一個。 | |
+| 子網路 |當快取是裝載在 VNET 中，指定要在其中部署快取的子網路。 | |
+| VirtualNetwork |當快取是裝載在 VNET 中，指定要在其中部署快取的 VNET 之資源識別碼。 | |
+| KeyType |指定更新存取金鑰時要重新產生哪一個存取金鑰。 有效值為：Primary、Secondary | |
 
 ### <a name="redisconfiguration-properties"></a>RedisConfiguration 屬性
 | 屬性 | 說明 | 定價層 |
 | --- | --- | --- |
 | rdb-backup-enabled |是否已啟用 [Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
-| rdb-storage-connection-string |hello 連接字串 toohello 儲存體帳戶[Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
-| rdb-backup-frequency |hello 備份頻率[Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
-| maxmemory-reserved |設定 hello[保留記憶體](cache-configure.md#maxmemory-policy-and-maxmemory-reserved)非快取的處理程序 |標準和進階 |
-| maxmemory-policy |設定 hello[收回原則](cache-configure.md#maxmemory-policy-and-maxmemory-reserved)hello 快取 |所有定價層 |
+| rdb-storage-connection-string |[Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
+| rdb-backup-frequency |[Redis 資料持續性](cache-how-to-premium-persistence.md) |僅限進階版 |
+| maxmemory-reserved |設定非快取程序的 [保留記憶體](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) |標準和進階 |
+| maxmemory-policy |設定快取的 [收回原則](cache-configure.md#maxmemory-policy-and-maxmemory-reserved) |所有定價層 |
 | notify-keyspace-events |設定 [Keyspace 通知](cache-configure.md#keyspace-notifications-advanced-settings) |標準和進階 |
 | hash-max-ziplist-entries |設定小型彙總資料類型的 [記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
 | hash-max-ziplist-value |設定小型彙總資料類型的 [記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
 | set-max-intset-entries |設定小型彙總資料類型的 [記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
 | zset-max-ziplist-entries |設定小型彙總資料類型的 [記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
 | zset-max-ziplist-value |設定小型彙總資料類型的 [記憶體最佳化](http://redis.io/topics/memory-optimization) |標準和進階 |
-| 資料庫 |設定資料庫的 hello 數目。 這個屬性僅可以在建立快取時設定。 |標準和進階 |
+| 資料庫 |設定資料庫數目。 這個屬性僅可以在建立快取時設定。 |標準和進階 |
 
-## <a name="toocreate-a-redis-cache"></a>toocreate Redis 快取
-建立新的 Azure Redis 快取執行個體使用 hello[新增 AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) cmdlet。
+## <a name="to-create-a-redis-cache"></a>建立 Redis 快取
+使用 [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) Cmdlet 建立新的 Azure Redis 快取執行個體。
 
 > [!IMPORTANT]
-> hello 第一次您使用 hello Azure 入口網站的訂用帳戶中建立 Redis 快取 hello 入口網站註冊 hello`Microsoft.Cache`該訂用帳戶的命名空間。 如果您嘗試 toocreate hello 先 Redis 快取中使用 PowerShell 的訂用帳戶，您必須先註冊使用下列命令; hello 該命名空間否則指令程式，例如`New-AzureRmRedisCache`和`Get-AzureRmRedisCache`失敗。
+> 您第一次使用 Azure 入口網站在訂用帳戶中建立 Redis 快取時，入口網站會為該訂用帳戶註冊 `Microsoft.Cache` 命名空間。 如果您嘗試使用 PowerShell 在訂用帳戶中建立第一個 Redis 快取，您必須先使用下列命令註冊該命名空間；否則 Cmdlet (例如 `New-AzureRmRedisCache` 和 `Get-AzureRmRedisCache`) 會失敗。
 > 
 > `Register-AzureRmResourceProvider -ProviderNamespace "Microsoft.Cache"`
 > 
 > 
 
-一份可用的參數及描述 toosee `New-AzureRmRedisCache`，請執行 hello 下列命令。
+若要查看 `New-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help New-AzureRmRedisCache -detailed
 
@@ -183,31 +183,31 @@ toocreate Microsoft Azure 德國，使用其中一個 hello 下列位置中的�
 
 
     DESCRIPTION
-        hello New-AzureRmRedisCache cmdlet creates a new redis cache.
+        The New-AzureRmRedisCache cmdlet creates a new redis cache.
 
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache toocreate.
+            Name of the redis cache to create.
 
         -ResourceGroupName <String>
-            Name of resource group in which toocreate hello redis cache.
+            Name of resource group in which to create the redis cache.
 
         -Location <String>
-            Location in which toocreate hello redis cache.
+            Location in which to create the redis cache.
 
         -RedisVersion <String>
             RedisVersion is deprecated and will be removed in future release.
 
         -Size <String>
-            Size of hello redis cache. hello default value is 1GB or C1. Possible values are P1, P2, P3, P4, C0, C1, C2, C3,
+            Size of the redis cache. The default value is 1GB or C1. Possible values are P1, P2, P3, P4, C0, C1, C2, C3,
             C4, C5, C6, 250MB, 1GB, 2.5GB, 6GB, 13GB, 26GB, 53GB.
 
         -Sku <String>
-            Sku of redis cache. hello default value is Standard. Possible values are Basic, Standard and Premium.
+            Sku of redis cache. The default value is Standard. Possible values are Basic, Standard and Premium.
 
         -MaxMemoryPolicy <String>
-            hello 'MaxMemoryPolicy' setting has been deprecated. Please use 'RedisConfiguration' setting tooset
+            The 'MaxMemoryPolicy' setting has been deprecated. Please use 'RedisConfiguration' setting to set
             MaxMemoryPolicy. e.g. -RedisConfiguration @{"maxmemory-policy" = "allkeys-lru"}
 
         -RedisConfiguration <Hashtable>
@@ -216,14 +216,14 @@ toocreate Microsoft Azure 德國，使用其中一個 hello 下列位置中的�
             hash-max-ziplist-value, set-max-intset-entries, zset-max-ziplist-entries, zset-max-ziplist-value, databases.
 
         -EnableNonSslPort <Boolean>
-            EnableNonSslPort is used by Azure Redis Cache. If no value is provided, hello default value is false and the
+            EnableNonSslPort is used by Azure Redis Cache. If no value is provided, the default value is false and the
             non-SSL port will be disabled. Possible values are true and false.
 
         -ShardCount <Integer>
-            hello number of shards toocreate on a Premium Cluster Cache.
+            The number of shards to create on a Premium Cluster Cache.
 
         -VirtualNetwork <String>
-            hello exact ARM resource ID of hello virtual network toodeploy hello redis cache in. Example format: /subscriptions/{
+            The exact ARM resource ID of the virtual network to deploy the redis cache in. Example format: /subscriptions/{
             subid}/resourceGroups/{resourceGroupName}/providers/Microsoft.ClassicNetwork/VirtualNetworks/{vnetName}
 
         -Subnet <String>
@@ -233,38 +233,38 @@ toocreate Microsoft Azure 德國，使用其中一個 hello 下列位置中的�
             Required when deploying a redis cache inside an existing Azure Virtual Network.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-toocreate 預設參數，執行下列命令的 hello 與快取。
+若要使用預設參數建立快取，請執行下列命令。
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US"
 
-`ResourceGroupName``Name`，和`Location`是必要的參數，但 hello 其餘部分是選擇性的而且有預設值。 執行 hello 前一個命令建立的標準 SKU Azure Redis 快取執行個體與 hello 指定的名稱、 位置和資源群組與 hello 非 SSL 連接埠停用的大小為 1GB。
+`ResourceGroupName`、`Name` 和 `Location` 是必要參數，其餘則為選擇性的而且有預設值。 執行先前的命令會建立標準 SKU Azure Redis 快取執行個體，具有指定的名稱、位置和資源群組，大小為 1 GB，且停用非 SSL 連接埠。
 
-toocreate 進階版快取中，指定大小為 P1 (6 GB-60 GB)，P2 (13 GB-130 GB)，P3 (26 GB-260 GB) 或 P4 (53 GB-530 GB)。 tooenable 叢集中，指定使用 hello 分區計數`ShardCount`參數。 hello 下列範例會建立 P1 進階版快取 3 分區。 P1 進階版快取大小，為 6 GB，因為我們指定三個分區 hello 大小總計為 18 GB (3 x 6 GB)。
+若要建立進階快取，請指定大小為 P1 (6 GB - 60 GB)、P2 (13 GB - 130 GB)、P3 (26 GB - 260 GB) 或 P4 (53 GB - 530 GB)。 若要啟用叢集，使用 `ShardCount` 參數指定分區計數。 下列範例會建立具有 3 個分區的 P1 進階快取。 P1 進階快取的大小為 6 GB，因為我們指定三個分區，大小總計為 18 GB (3 x 6 GB)。
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -Sku Premium -Size P1 -ShardCount 3
 
-hello toospecify 值`RedisConfiguration`參數時，括住內部 hello 值`{}`做為索引鍵/值組喜歡`@{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}`。 hello 下列範例會建立具有標準 1 GB 快取`allkeys-random`maxmemory 原則和 keyspace 通知設有`KEA`。 如需詳細資訊，請參閱 [Keyspace 通知 (進階設定)](cache-configure.md#keyspace-notifications-advanced-settings) 和[記憶體原則](cache-configure.md#memory-policies)。
+若要指定 `RedisConfiguration` 參數的值，以索引鍵/值組的方式將值括在 `{}` 內，例如 `@{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}`。 下列範例會建立標準 1 GB 快取，具有 `allkeys-random` maxmemory 原則，且 keyspace 通知設為 `KEA`。 如需詳細資訊，請參閱 [Keyspace 通知 (進階設定)](cache-configure.md#keyspace-notifications-advanced-settings) 和[記憶體原則](cache-configure.md#memory-policies)。
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -RedisConfiguration @{"maxmemory-policy" = "allkeys-random", "notify-keyspace-events" = "KEA"}
 
 <a name="databases"></a>
 
-## <a name="tooconfigure-hello-databases-setting-during-cache-creation"></a>設定快取建立期間 tooconfigure hello 資料庫
-hello`databases`可以設定只有在快取建立期間設定。 hello 下列範例會建立高階 P3 48 資料庫時使用 hello (26 GB) 快取[新增 AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) cmdlet。
+## <a name="to-configure-the-databases-setting-during-cache-creation"></a>在快取建立期間設定資料庫設定
+`databases` 設定僅可以在快取建立期間設定。 下列範例會使用 [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) Cmdlet 建立具有 48 個資料庫的進階 P3 (26 GB) 快取。
 
     New-AzureRmRedisCache -ResourceGroupName myGroup -Name mycache -Location "North Central US" -Sku Premium -Size P3 -RedisConfiguration @{"databases" = "48"}
 
-如需有關 hello`databases`屬性，請參閱[預設 Azure Redis 快取伺服器組態](cache-configure.md#default-redis-server-configuration)。 如需有關建立快取使用 hello[新增 AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx)指令程式，請參閱先前的 hello [toocreate Redis 快取](#to-create-a-redis-cache)> 一節。
+如需 `databases` 屬性的詳細資訊，請參閱 [預設的 Azure Redis 快取伺服器組態](cache-configure.md#default-redis-server-configuration)。 如需使用 [New-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634517.aspx) Cmdlet 建立快取的詳細資訊，請參閱先前的[建立 Redis 快取](#to-create-a-redis-cache)一節。
 
-## <a name="tooupdate-a-redis-cache"></a>tooupdate Redis 快取
-Azure Redis 快取執行個體都會更新使用 hello[組 AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634518.aspx) cmdlet。
+## <a name="to-update-a-redis-cache"></a>更新 Redis 快取
+使用 [Set-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634518.aspx) Cmdlet 更新 Azure Redis 快取執行個體。
 
-一份可用的參數及描述 toosee `Set-AzureRmRedisCache`，請執行 hello 下列命令。
+若要查看 `Set-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Set-AzureRmRedisCache -detailed
 
@@ -280,24 +280,24 @@ Azure Redis 快取執行個體都會更新使用 hello[組 AzureRmRedisCache](ht
         <Integer>] [<CommonParameters>]
 
     DESCRIPTION
-        hello Set-AzureRmRedisCache cmdlet sets redis cache parameters.
+        The Set-AzureRmRedisCache cmdlet sets redis cache parameters.
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache tooupdate.
+            Name of the redis cache to update.
 
         -ResourceGroupName <String>
-            Name of hello resource group for hello cache.
+            Name of the resource group for the cache.
 
         -Size <String>
-            Size of hello redis cache. hello default value is 1GB or C1. Possible values are P1, P2, P3, P4, C0, C1, C2, C3,
+            Size of the redis cache. The default value is 1GB or C1. Possible values are P1, P2, P3, P4, C0, C1, C2, C3,
             C4, C5, C6, 250MB, 1GB, 2.5GB, 6GB, 13GB, 26GB, 53GB.
 
         -Sku <String>
-            Sku of redis cache. hello default value is Standard. Possible values are Basic, Standard and Premium.
+            Sku of redis cache. The default value is Standard. Possible values are Basic, Standard and Premium.
 
         -MaxMemoryPolicy <String>
-            hello 'MaxMemoryPolicy' setting has been deprecated. Please use 'RedisConfiguration' setting tooset
+            The 'MaxMemoryPolicy' setting has been deprecated. Please use 'RedisConfiguration' setting to set
             MaxMemoryPolicy. e.g. -RedisConfiguration @{"maxmemory-policy" = "allkeys-lru"}
 
         -RedisConfiguration <Hashtable>
@@ -306,48 +306,48 @@ Azure Redis 快取執行個體都會更新使用 hello[組 AzureRmRedisCache](ht
             hash-max-ziplist-value, set-max-intset-entries, zset-max-ziplist-entries, zset-max-ziplist-value.
 
         -EnableNonSslPort <Boolean>
-            EnableNonSslPort is used by Azure Redis Cache. hello default value is null and no change will be made toothe
+            EnableNonSslPort is used by Azure Redis Cache. The default value is null and no change will be made to the
             currently configured value. Possible values are true and false.
 
         -ShardCount <Integer>
-            hello number of shards toocreate on a Premium Cluster Cache.
+            The number of shards to create on a Premium Cluster Cache.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-hello`Set-AzureRmRedisCache`指令程式可以使用的 tooupdate 屬性，例如`Size`， `Sku`， `EnableNonSslPort`，和 hello`RedisConfiguration`值。 
+`Set-AzureRmRedisCache` Cmdlet 可用來更新屬性，例如 `Size`、`Sku`、`EnableNonSslPort` 和 `RedisConfiguration` 的值。 
 
-hello 下列的命令更新 hello hello Redis 快取 maxmemory 原則命名 myCache。
+下列命令會更新名為 myCache 的 Redis 快取的 maxmemory-policy。
 
     Set-AzureRmRedisCache -ResourceGroupName "myGroup" -Name "myCache" -RedisConfiguration @{"maxmemory-policy" = "allkeys-random"}
 
 <a name="scale"></a>
 
-## <a name="tooscale-a-redis-cache"></a>tooscale Redis 快取
-`Set-AzureRmRedisCache`可以是使用的 tooscale Azure Redis 快取執行個體時 hello `Size`， `Sku`，或`ShardCount`修改屬性。 
+## <a name="to-scale-a-redis-cache"></a>調整 Redis 快取
+修改 `Size`、`Sku` 或 `ShardCount` 屬性時，可用 `Set-AzureRmRedisCache` 調整 Azure Redis 快取執行個體。 
 
 > [!NOTE]
-> 調整快取使用 PowerShell 是主體 toohello 相同的限制和指導方針調整快取從 hello Azure 入口網站。 您可以調整 tooa 不同定價層與 hello 下列限制。
+> 使用 PowerShell 調整快取，和從 Azure 入口網站調整快取有相同的限制和準則。 您可以調整具有下列限制的不同定價層。
 > 
-> * 您無法調整從較高定價層 tooa 較低的定價層。
-> * 您無法從延展**Premium**快取下 tooa**標準**或**基本**快取。
-> * 您無法從延展**標準**快取下 tooa**基本**快取。
-> * 您可以調整從**基本**快取 tooa**標準**快取，但是您無法變更在 hello hello 大小相同的時間。 如果您需要不同的大小，您可以執行後續的縮放作業 toohello 預期大小。
-> * 您無法從延展**基本**快取直接 tooa **Premium**快取。 您必須從延展**基本**太**標準**一個縮放作業，然後從**標準**太**Premium**中後續的縮放比例作業。
-> * 您無法從較大的向下 toohello 延展**C0 250 MB**大小。
+> * 您無法從較高的定價層調整至較低的定價層。
+> * 您無法從**進階**快取向下調整至**標準**或**基本**快取。
+> * 您無法從**標準**快取向下調整到**基本**快取。
+> * 您可以從**基本**快取調整到**標準**快取，但您無法同時變更大小。 如果您需要不同的大小，您可以進行後續調整作業，調整到您需要的大小。
+> * 您無法直接從**基本**快取調整至**進階**快取。 您必須在單一調整作業中從**基本**調整至**標準**，然後在後續的調整作業中從**標準**調整至**進階**。
+> * 您無法從較大的大小向下調整至 **C0 (250 MB)** 的大小。
 > 
-> 如需詳細資訊，請參閱[如何 tooScale Azure Redis 快取](cache-how-to-scale.md)。
+> 如需詳細資訊，請參閱 [如何調整 Azure Redis 快取](cache-how-to-scale.md)。
 > 
 > 
 
-hello 下列範例示範如何 tooscale 快取命名`myCache`tooa 2.5 GB 的快取。 請注意，此命令可用於基本或標準快取。
+下列範例示範如何將名為 `myCache` 的快取調整為 2.5 GB 快取。 請注意，此命令可用於基本或標準快取。
 
     Set-AzureRmRedisCache -ResourceGroupName myGroup -Name myCache -Size 2.5GB
 
-發出此命令之後，會傳回 hello 快取的 hello 狀態 (類似 toocalling `Get-AzureRmRedisCache`)。 請注意該 hello`ProvisioningState`是`Scaling`。
+發出此命令之後，會傳回快取的狀態 (類似於呼叫 `Get-AzureRmRedisCache`)。 請注意，`ProvisioningState` 為 `Scaling`。
 
     PS C:\> Set-AzureRmRedisCache -Name myCache -ResourceGroupName myGroup -Size 2.5GB
 
@@ -376,14 +376,14 @@ hello 下列範例示範如何 tooscale 快取命名`myCache`tooa 2.5 GB 的快�
     TenantSettings     : {}
     ShardCount         :
 
-Hello 調整大小作業完成時，hello`ProvisioningState`變更太`Succeeded`。 如果您需要 toomake 後續的縮放作業，例如從基本 tooStandard 變更，然後變更 hello 大小，您必須等到 hello 先前作業已完成，或您收到類似 toohello 下列錯誤。
+當調整作業完成時，`ProvisioningState` 會變更為 `Succeeded`。 如果您需要進行後續的調整作業，例如先從基本變更為標準，然後再變更大小，您必須等到先前作業完成，否則會收到類似下列的錯誤。
 
-    Set-AzureRmRedisCache : Conflict: hello resource '...' is not in a stable state, and is currently unable tooaccept hello update request.
+    Set-AzureRmRedisCache : Conflict: The resource '...' is not in a stable state, and is currently unable to accept the update request.
 
-## <a name="tooget-information-about-a-redis-cache"></a>tooget Redis 快取資訊
-您可以擷取有關資訊快取使用 hello [Get AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634514.aspx) cmdlet。
+## <a name="to-get-information-about-a-redis-cache"></a>取得 Redis 快取的資訊
+您可以使用 [Get-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634514.aspx) Cmdlet 擷取快取的相關資訊。
 
-一份可用的參數及描述 toosee `Get-AzureRmRedisCache`，請執行 hello 下列命令。
+若要查看 `Get-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Get-AzureRmRedisCache -detailed
 
@@ -391,46 +391,46 @@ Hello 調整大小作業完成時，hello`ProvisioningState`變更太`Succeeded`
         Get-AzureRmRedisCache
 
     SYNOPSIS
-        Gets details about a single cache or all caches in hello specified resource group or all caches in hello current
+        Gets details about a single cache or all caches in the specified resource group or all caches in the current
         subscription.
 
     SYNTAX
         Get-AzureRmRedisCache [-Name <String>] [-ResourceGroupName <String>] [<CommonParameters>]
 
     DESCRIPTION
-        hello Get-AzureRmRedisCache cmdlet gets hello details about a cache or caches depending on input parameters. If both
+        The Get-AzureRmRedisCache cmdlet gets the details about a cache or caches depending on input parameters. If both
         ResourceGroupName and Name parameters are provided then Get-AzureRmRedisCache will return details about the
         specific cache name provided.
 
-        If only ResourceGroupName is provided than it will return details about all caches in hello specified resource group.
+        If only ResourceGroupName is provided than it will return details about all caches in the specified resource group.
 
-        If no parameters are given than it will return details about all caches hello current subscription.
+        If no parameters are given than it will return details about all caches the current subscription.
 
     PARAMETERS
         -Name <String>
-            hello name of hello cache. When this parameter is provided along with ResourceGroupName, Get-AzureRmRedisCache
-            returns hello details for hello cache.
+            The name of the cache. When this parameter is provided along with ResourceGroupName, Get-AzureRmRedisCache
+            returns the details for the cache.
 
         -ResourceGroupName <String>
-            hello name of hello resource group that contains hello cache or caches. If ResourceGroupName is provided with Name
-            then Get-AzureRmRedisCache returns hello details of hello cache specified by Name. If only hello ResourceGroup
-            parameter is provided, then details for all caches in hello resource group are returned.
+            The name of the resource group that contains the cache or caches. If ResourceGroupName is provided with Name
+            then Get-AzureRmRedisCache returns the details of the cache specified by Name. If only the ResourceGroup
+            parameter is provided, then details for all caches in the resource group are returned.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-tooreturn hello 目前訂用帳戶，所有快取的資訊執行`Get-AzureRmRedisCache`不含任何參數。
+若要傳回目前訂用帳戶中所有快取的相關資訊，請不帶任何參數執行 `Get-AzureRmRedisCache`。
 
     Get-AzureRmRedisCache
 
-在特定的資源群組中，所有快取的 tooreturn 資訊執行`Get-AzureRmRedisCache`以 hello`ResourceGroupName`參數。
+若要傳回特定資源群組中所有快取的相關資訊，請執行 `Get-AzureRmRedisCache` 並使用 `ResourceGroupName` 參數。
 
     Get-AzureRmRedisCache -ResourceGroupName myGroup
 
-tooreturn 資訊特定的快取中，執行`Get-AzureRmRedisCache`以 hello`Name`參數包含 hello 名稱 hello 快取及 hello`ResourceGroupName`與包含該快取的 hello 資源群組的參數。
+若要傳回特定快取的相關資訊，請執行 `Get-AzureRmRedisCache`，並使用 `Name` 參數包含快取名稱，和 `ResourceGroupName` 參數包含快取的資源群組。
 
     PS C:\> Get-AzureRmRedisCache -Name myCache -ResourceGroupName myGroup
 
@@ -456,10 +456,10 @@ tooreturn 資訊特定的快取中，執行`Get-AzureRmRedisCache`以 hello`Name
     TenantSettings     : {}
     ShardCount         :
 
-## <a name="tooretrieve-hello-access-keys-for-a-redis-cache"></a>Redis 快取的 tooretrieve hello 便捷鍵
-tooretrieve hello 快取的存取金鑰，您可以使用 hello [Get AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634516.aspx) cmdlet。
+## <a name="to-retrieve-the-access-keys-for-a-redis-cache"></a>擷取 Redis 快取的存取金鑰
+若要擷取您快取的存取金鑰，您可以使用 [Get-AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634516.aspx) Cmdlet。
 
-一份可用的參數及描述 toosee `Get-AzureRmRedisCacheKey`，請執行 hello 下列命令。
+若要查看 `Get-AzureRmRedisCacheKey`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Get-AzureRmRedisCacheKey -detailed
 
@@ -467,39 +467,39 @@ tooretrieve hello 快取的存取金鑰，您可以使用 hello [Get AzureRmRedi
         Get-AzureRmRedisCacheKey
 
     SYNOPSIS
-        Gets hello accesskeys for hello specified redis cache.
+        Gets the accesskeys for the specified redis cache.
 
 
     SYNTAX
         Get-AzureRmRedisCacheKey -Name <String> -ResourceGroupName <String> [<CommonParameters>]
 
     DESCRIPTION
-        hello Get-AzureRmRedisCacheKey cmdlet gets hello access keys for hello specified cache.
+        The Get-AzureRmRedisCacheKey cmdlet gets the access keys for the specified cache.
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache.
+            Name of the redis cache.
 
         -ResourceGroupName <String>
-            Name of hello resource group for hello cache.
+            Name of the resource group for the cache.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-金鑰快取，呼叫 hello tooretrieve hello `Get-AzureRmRedisCacheKey` cmdlet 並快取的 hello 名稱傳入 hello hello 包含 hello 快取的資源群組的名稱。
+若要擷取您快取的金鑰，請呼叫 `Get-AzureRmRedisCacheKey` Cmdlet，並傳入快取的名稱以及包含快取的資源群組名稱。
 
     PS C:\> Get-AzureRmRedisCacheKey -Name myCache -ResourceGroupName myGroup
 
     PrimaryKey   : b2wdt43sfetlju4hfbryfnregrd9wgIcc6IA3zAO1lY=
     SecondaryKey : ABhfB757JgjIgt785JgKH9865eifmekfnn649303JKL=
 
-## <a name="tooregenerate-access-keys-for-your-redis-cache"></a>tooregenerate Redis 快取的存取金鑰
-tooregenerate hello 快取的存取金鑰，您可以使用 hello[新增 AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634512.aspx) cmdlet。
+## <a name="to-regenerate-access-keys-for-your-redis-cache"></a>重新產生 Redis 快取的存取金鑰
+若要重新產生您快取的存取金鑰，可以使用 [New-AzureRmRedisCacheKey](https://msdn.microsoft.com/library/azure/mt634512.aspx) Cmdlet。
 
-一份可用的參數及描述 toosee `New-AzureRmRedisCacheKey`，請執行 hello 下列命令。
+若要查看 `New-AzureRmRedisCacheKey`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help New-AzureRmRedisCacheKey -detailed
 
@@ -507,49 +507,49 @@ tooregenerate hello 快取的存取金鑰，您可以使用 hello[新增 AzureRm
         New-AzureRmRedisCacheKey
 
     SYNOPSIS
-        Regenerates hello access key of a redis cache.
+        Regenerates the access key of a redis cache.
 
     SYNTAX
         New-AzureRmRedisCacheKey -Name <String> -ResourceGroupName <String> -KeyType <String> [-Force] [<CommonParameters>]
 
     DESCRIPTION
-        hello New-AzureRmRedisCacheKey cmdlet regenerate hello access key of a redis cache.
+        The New-AzureRmRedisCacheKey cmdlet regenerate the access key of a redis cache.
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache.
+            Name of the redis cache.
 
         -ResourceGroupName <String>
-            Name of hello resource group for hello cache.
+            Name of the resource group for the cache.
 
         -KeyType <String>
-            Specifies whether tooregenerate hello primary or secondary access key. Possible values are Primary or Secondary.
+            Specifies whether to regenerate the primary or secondary access key. Possible values are Primary or Secondary.
 
         -Force
-            When hello Force parameter is provided, hello specified access key is regenerated without any confirmation prompts.
+            When the Force parameter is provided, the specified access key is regenerated without any confirmation prompts.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-tooregenerate hello 主要或次要金鑰為快取，呼叫 hello `New-AzureRmRedisCacheKey` cmdlet，並傳入 hello 名稱、 資源群組，並指定`Primary`或`Secondary`hello`KeyType`參數。 在下列範例的 hello，重新產生快取的 hello 次要存取金鑰。
+若要重新產生快取的主要或次要金鑰，請呼叫 `New-AzureRmRedisCacheKey` Cmdlet，並傳入名稱、資源群組，且針對 `KeyType` 參數指定 `Primary` 或 `Secondary`。 在下列範例中，會重新產生快取的次要存取金鑰。
 
     PS C:\> New-AzureRmRedisCacheKey -Name myCache -ResourceGroupName myGroup -KeyType Secondary
 
     Confirm
-    Are you sure you want tooregenerate Secondary key for redis cache 'myCache'?
+    Are you sure you want to regenerate Secondary key for redis cache 'myCache'?
     [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): Y
 
 
     PrimaryKey   : b2wdt43sfetlju4hfbryfnregrd9wgIcc6IA3zAO1lY=
     SecondaryKey : c53hj3kh4jhHjPJk8l0jji785JgKH9865eifmekfnn6=
 
-## <a name="toodelete-a-redis-cache"></a>toodelete Redis 快取
-toodelete Redis 快取中，使用 hello[移除 AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634515.aspx) cmdlet。
+## <a name="to-delete-a-redis-cache"></a>刪除 Redis 快取
+若要刪除 Redis 快取，請使用 [Remove-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634515.aspx) Cmdlet。
 
-一份可用的參數及描述 toosee `Remove-AzureRmRedisCache`，請執行 hello 下列命令。
+若要查看 `Remove-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Remove-AzureRmRedisCache -detailed
 
@@ -563,46 +563,46 @@ toodelete Redis 快取中，使用 hello[移除 AzureRmRedisCache](https://msdn.
         Remove-AzureRmRedisCache -Name <String> -ResourceGroupName <String> [-Force] [-PassThru] [<CommonParameters>
 
     DESCRIPTION
-        hello Remove-AzureRmRedisCache cmdlet removes a redis cache if it exists.
+        The Remove-AzureRmRedisCache cmdlet removes a redis cache if it exists.
 
     PARAMETERS
         -Name <String>
-            Name of hello redis cache tooremove.
+            Name of the redis cache to remove.
 
         -ResourceGroupName <String>
-            Name of hello resource group of hello cache tooremove.
+            Name of the resource group of the cache to remove.
 
         -Force
-            When hello Force parameter is provided, hello cache is removed without any confirmation prompts.
+            When the Force parameter is provided, the cache is removed without any confirmation prompts.
 
         -PassThru
-            By default Remove-AzureRmRedisCache removes hello cache and does not return any value. If hello PassThru par
-            is provided then Remove-AzureRmRedisCache returns a boolean value indicating hello success of hello operatio
+            By default Remove-AzureRmRedisCache removes the cache and does not return any value. If the PassThru par
+            is provided then Remove-AzureRmRedisCache returns a boolean value indicating the success of the operatio
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
-在下列範例的 hello，hello 具名快取`myCache`已移除。
+在下列範例中，會移除名為 `myCache` 的快取。
 
     PS C:\> Remove-AzureRmRedisCache -Name myCache -ResourceGroupName myGroup
 
     Confirm
-    Are you sure you want tooremove redis cache 'myCache'?
+    Are you sure you want to remove redis cache 'myCache'?
     [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): Y
 
 
-## <a name="tooimport-a-redis-cache"></a>tooimport Redis 快取
-您可以將資料匯入 Azure Redis 快取執行個體使用 hello `Import-AzureRmRedisCache` cmdlet。
+## <a name="to-import-a-redis-cache"></a>匯入 Redis 快取
+您可以使用 `Import-AzureRmRedisCache` Cmdlet 將資料匯入 Azure Redis 快取執行個體。
 
 > [!IMPORTANT]
 > 匯入/匯出僅供 [進階層](cache-premium-tier-intro.md) 快取使用。 如需匯入/匯出的詳細資訊，請參閱 [在 Azure Redis 快取中匯入與匯出資料](cache-how-to-import-export-data.md)。
 > 
 > 
 
-一份可用的參數及描述 toosee `Import-AzureRmRedisCache`，請執行 hello 下列命令。
+若要查看 `Import-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Import-AzureRmRedisCache -detailed
 
@@ -610,7 +610,7 @@ toodelete Redis 快取中，使用 hello[移除 AzureRmRedisCache](https://msdn.
         Import-AzureRmRedisCache
 
     SYNOPSIS
-        Import data from blobs tooAzure Redis Cache.
+        Import data from blobs to Azure Redis Cache.
 
 
     SYNTAX
@@ -619,50 +619,50 @@ toodelete Redis 快取中，使用 hello[移除 AzureRmRedisCache](https://msdn.
 
 
     DESCRIPTION
-        hello Import-AzureRmRedisCache cmdlet imports data from hello specified blobs into Azure Redis Cache.
+        The Import-AzureRmRedisCache cmdlet imports data from the specified blobs into Azure Redis Cache.
 
 
     PARAMETERS
         -Name <String>
-            hello name of hello cache.
+            The name of the cache.
 
         -ResourceGroupName <String>
-            hello name of hello resource group that contains hello cache.
+            The name of the resource group that contains the cache.
 
         -Files <String[]>
-            SAS urls of blobs whose content should be imported into hello cache.
+            SAS urls of blobs whose content should be imported into the cache.
 
         -Format <String>
-            Format for hello blob.  Currently "rdb" is hello only supported, with other formats expected in hello future.
+            Format for the blob.  Currently "rdb" is the only supported, with other formats expected in the future.
 
         -Force
-            When hello Force parameter is provided, import will be performed without any confirmation prompts.
+            When the Force parameter is provided, import will be performed without any confirmation prompts.
 
         -PassThru
-            By default Import-AzureRmRedisCache imports data in cache and does not return any value. If hello PassThru
-            parameter is provided then Import-AzureRmRedisCache returns a boolean value indicating hello success of the
+            By default Import-AzureRmRedisCache imports data in cache and does not return any value. If the PassThru
+            parameter is provided then Import-AzureRmRedisCache returns a boolean value indicating the success of the
             operation.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 
-hello 下列命令從匯入資料至 Azure Redis 快取 hello SAS uri 所指定的 hello blob。
+以下命令能將資料從 SAS URI 所指定的 blob 匯入 Azure Redis 快取。
 
     PS C:\>Import-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -Files @("https://mystorageaccount.blob.core.windows.net/mycontainername/blobname?sv=2015-04-05&sr=b&sig=caIwutG2uDa0NZ8mjdNJdgOY8%2F8mhwRuGNdICU%2B0pI4%3D&st=2016-05-27T00%3A00%3A00Z&se=2016-05-28T00%3A00%3A00Z&sp=rwd") -Force
 
-## <a name="tooexport-a-redis-cache"></a>tooexport Redis 快取
-您可以從使用 hello Azure Redis 快取執行個體匯出資料`Export-AzureRmRedisCache`cmdlet。
+## <a name="to-export-a-redis-cache"></a>匯出 Redis 快取
+您可以使用 `Export-AzureRmRedisCache` Cmdlet 從 Azure Redis 快取執行個體匯出資料。
 
 > [!IMPORTANT]
 > 匯入/匯出僅供 [進階層](cache-premium-tier-intro.md) 快取使用。 如需匯入/匯出的詳細資訊，請參閱 [在 Azure Redis 快取中匯入與匯出資料](cache-how-to-import-export-data.md)。
 > 
 > 
 
-一份可用的參數及描述 toosee `Export-AzureRmRedisCache`，請執行 hello 下列命令。
+若要查看 `Export-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Export-AzureRmRedisCache -detailed
 
@@ -670,7 +670,7 @@ hello 下列命令從匯入資料至 Azure Redis 快取 hello SAS uri 所指定�
         Export-AzureRmRedisCache
 
     SYNOPSIS
-        Exports data from Azure Redis Cache tooa specified container.
+        Exports data from Azure Redis Cache to a specified container.
 
 
     SYNTAX
@@ -679,51 +679,51 @@ hello 下列命令從匯入資料至 Azure Redis 快取 hello SAS uri 所指定�
 
 
     DESCRIPTION
-        hello Export-AzureRmRedisCache cmdlet exports data from Azure Redis Cache tooa specified container.
+        The Export-AzureRmRedisCache cmdlet exports data from Azure Redis Cache to a specified container.
 
 
     PARAMETERS
         -Name <String>
-            hello name of hello cache.
+            The name of the cache.
 
         -ResourceGroupName <String>
-            hello name of hello resource group that contains hello cache.
+            The name of the resource group that contains the cache.
 
         -Prefix <String>
-            Prefix toouse for blob names.
+            Prefix to use for blob names.
 
         -Container <String>
             SAS url of container where data should be exported.
 
         -Format <String>
-            Format for hello blob.  Currently "rdb" is hello only supported, with other formats expected in hello future.
+            Format for the blob.  Currently "rdb" is the only supported, with other formats expected in the future.
 
         -PassThru
-            By default Export-AzureRmRedisCache does not return any value. If hello PassThru parameter is provided
-            then Export-AzureRmRedisCache returns a boolean value indicating hello success of hello operation.
+            By default Export-AzureRmRedisCache does not return any value. If the PassThru parameter is provided
+            then Export-AzureRmRedisCache returns a boolean value indicating the success of the operation.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 
-hello 下列命令將資料匯出到 hello SAS uri 所指定的 hello 容器 Azure Redis 快取執行個體。
+以下命令能將資料從 Azure Redis 快取執行個體匯出到 SAS URI 所指定的容器。
 
         PS C:\>Export-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -Prefix "blobprefix"
         -Container "https://mystorageaccount.blob.core.windows.net/mycontainer?sv=2015-04-05&sr=c&sig=HezZtBZ3DURmEGDduauE7
         pvETY4kqlPI8JCNa8ATmaw%3D&st=2016-05-27T00%3A00%3A00Z&se=2016-05-28T00%3A00%3A00Z&sp=rwdl"
 
-## <a name="tooreboot-a-redis-cache"></a>tooreboot Redis 快取
-您可以重新啟動您的 Azure Redis 快取執行個體使用 hello `Reset-AzureRmRedisCache` cmdlet。
+## <a name="to-reboot-a-redis-cache"></a>重新啟動 Redis 快取
+您可以使用 `Reset-AzureRmRedisCache` Cmdlet 重新啟動 Azure Redis 快取執行個體。
 
 > [!IMPORTANT]
 > 重新啟動僅適用於 [進階層](cache-premium-tier-intro.md) 快取。 如需重新啟動快取的詳細資訊，請參閱 [快取管理 - 重新啟動](cache-administration.md#reboot)。
 > 
 > 
 
-一份可用的參數及描述 toosee `Reset-AzureRmRedisCache`，請執行 hello 下列命令。
+若要查看 `Reset-AzureRmRedisCache`的可用參數清單及其說明，請執行下列命令。
 
     PS C:\> Get-Help Reset-AzureRmRedisCache -detailed
 
@@ -740,49 +740,49 @@ hello 下列命令將資料匯出到 hello SAS uri 所指定的 hello 容器 Azu
 
 
     DESCRIPTION
-        hello Reset-AzureRmRedisCache cmdlet reboots hello specified node(s) of an Azure Redis Cache instance.
+        The Reset-AzureRmRedisCache cmdlet reboots the specified node(s) of an Azure Redis Cache instance.
 
 
     PARAMETERS
         -Name <String>
-            hello name of hello cache.
+            The name of the cache.
 
         -ResourceGroupName <String>
-            hello name of hello resource group that contains hello cache.
+            The name of the resource group that contains the cache.
 
         -RebootType <String>
-            Which node tooreboot. Possible values are "PrimaryNode", "SecondaryNode", "AllNodes".
+            Which node to reboot. Possible values are "PrimaryNode", "SecondaryNode", "AllNodes".
 
         -ShardId <Integer>
-            Which shard tooreboot when rebooting a premium cache with clustering enabled.
+            Which shard to reboot when rebooting a premium cache with clustering enabled.
 
         -Force
-            When hello Force parameter is provided, reset will be performed without any confirmation prompts.
+            When the Force parameter is provided, reset will be performed without any confirmation prompts.
 
         -PassThru
-            By default Reset-AzureRmRedisCache does not return any value. If hello PassThru parameter is provided
-            then Reset-AzureRmRedisCache returns a boolean value indicating hello success of hello operation.
+            By default Reset-AzureRmRedisCache does not return any value. If the PassThru parameter is provided
+            then Reset-AzureRmRedisCache returns a boolean value indicating the success of the operation.
 
         <CommonParameters>
-            This cmdlet supports hello common parameters: Verbose, Debug,
+            This cmdlet supports the common parameters: Verbose, Debug,
             ErrorAction, ErrorVariable, WarningAction, WarningVariable,
             OutBuffer, PipelineVariable, and OutVariable. For more information, see
             about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
 
 
-hello 下列命令重新啟動這兩個節點的 hello 指定快取。
+以下命令會重新啟動指定快取的兩個節點。
 
         PS C:\>Reset-AzureRmRedisCache -ResourceGroupName "resourceGroupName" -Name "cacheName" -RebootType "AllNodes"
         -Force
 
 
 ## <a name="next-steps"></a>後續步驟
-toolearn 進一步了解使用 Windows PowerShell 有了 Azure，請參閱下列資源的 hello:
+若要深入了解如何將 Windows PowerShell 與 Azure 搭配使用，請參閱下列資源：
 
 * [MSDN 上的 Azure Redis 快取 Cmdlet 文件](https://msdn.microsoft.com/library/azure/mt634513.aspx)
-* [Azure 資源管理員 Cmdlet](http://go.microsoft.com/fwlink/?LinkID=394765)： 了解 toouse hello Azure Resource Manager 模組中的 hello cmdlet。
-* [使用資源群組您的 Azure 資源 toomanage](../azure-resource-manager/resource-group-template-deploy-portal.md)： 了解如何 toocreate 和管理 hello Azure 入口網站中的資源群組。
+* [Azure Resource Manager Cmdlet](http://go.microsoft.com/fwlink/?LinkID=394765)：了解如何使用 Azure Resource Manager 模組中的 Cmdlet。
+* [使用資源群組管理 Azure 資源](../azure-resource-manager/resource-group-template-deploy-portal.md)：了解如何在 Azure 入口網站中建立和管理資源群組。
 * [Azure 部落格](http://blogs.msdn.com/windowsazure)：深入了解 Azure 的新功能。
 * [Windows PowerShell 部落格](http://blogs.msdn.com/powershell)：深入了解 Windows PowerShell 的新功能。
-* ["Hey, Scripting Guy!"部落格](http://blogs.technet.com/b/heyscriptingguy/)： 從 Windows PowerShell 社群 hello 取得真實世界的秘訣和技巧。
+* ["Hey, Scripting Guy!"部落格](http://blogs.technet.com/b/heyscriptingguy/)：從 Windows PowerShell 社群中取得實際的秘訣及訣竅。
 

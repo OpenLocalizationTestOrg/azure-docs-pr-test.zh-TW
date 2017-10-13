@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure 匯入/匯出中繼資料和屬性檔案格式 |Microsoft 文件"
-description: "深入了解如何 toospecify 中繼資料和屬性的一或多個 blob 的一部分匯入或匯出工作。"
+title: "Azure 匯入/匯出中繼資料和屬性檔案格式 | Microsoft Docs"
+description: "了解如何針對匯入或匯出作業中的一或多個 blob 指定中繼資料和屬性。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,17 +14,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: bb13c1f1a27baea77298cb224970cd521d02d8c0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3f728ad94cdcbd32092b677f11a737ae91376720
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-importexport-service-metadata-and-properties-file-format"></a>Azure 匯入/匯出服務中繼資料和屬性檔案格式
-您可以針對匯入或匯出作業中的一或多個 blob 指定中繼資料和屬性。 tooset 中繼資料或屬性建立為匯入工作一部分的 blob，您會提供包含匯入的 hello 資料 toobe hello 硬碟機上的中繼資料或屬性檔案。 匯出工作，中繼資料和屬性會傳回 tooyou hello 硬碟機上寫入所包含的 tooa 中繼資料或屬性檔案。  
+您可以針對匯入或匯出作業中的一或多個 blob 指定中繼資料和屬性。 若要針對建立為匯入作業一部分的 blob 設定中繼資料或屬性，您可在包含要匯入資料的硬碟上提供中繼資料或屬性檔案。 若為匯出作業，中繼資料和屬性會寫入至中繼資料或屬性檔案 (包含在傳回給您的硬碟上)。  
   
 ## <a name="metadata-file-format"></a>中繼資料檔案格式  
-hello 的中繼資料檔案的格式如下所示：  
+中繼資料檔案的格式如下所示：  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -37,11 +37,11 @@ hello 的中繼資料檔案的格式如下所示：
   
 |XML 元素|類型|說明|  
 |-----------------|----------|-----------------|  
-|`Metadata`|根元素|hello hello 中繼資料檔案的根項目。|  
-|`metadata-name`|String|選用。 hello XML 項目指定 hello 名稱 hello blob hello 中繼資料，其值會指定 hello hello 中繼資料設定值。|  
+|`Metadata`|根元素|中繼資料檔案的根項目。|  
+|`metadata-name`|String|選用。 XML 元素可指定 blob 的中繼資料名稱，而其值可指定中繼資料設定的值。|  
   
 ## <a name="properties-file-format"></a>屬性檔案格式  
-hello 屬性檔的格式如下所示：  
+屬性檔案的格式如下所示：  
   
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>  
@@ -59,15 +59,15 @@ hello 屬性檔的格式如下所示：
   
 |XML 元素|類型|說明|  
 |-----------------|----------|-----------------|  
-|`Properties`|根元素|hello hello 屬性檔的根項目。|  
-|`Last-Modified`|String|選用。 hello 上次修改時間 hello blob。 僅限匯出作業。|  
-|`Etag`|String|選用。 hello blob 的 ETag 值。 僅限匯出作業。|  
-|`Content-Length`|String|選用。 hello 的 hello blob 以位元組為單位的大小。 僅限匯出作業。|  
-|`Content-Type`|String|選用。 hello hello blob 的內容型別。|  
-|`Content-MD5`|String|選用。 hello blob 的 MD5 雜湊。|  
-|`Content-Encoding`|String|選用。 hello blob 的內容編碼方式。|  
-|`Content-Language`|String|選用。 hello blob 的內容語言。|  
-|`Cache-Control`|String|選用。 hello blob 的快取控制字串 hello。|  
+|`Properties`|根元素|屬性檔案的根元素。|  
+|`Last-Modified`|String|選用。 Blob 上次修改時間。 僅限匯出作業。|  
+|`Etag`|String|選用。 Blob 的 ETag 值。 僅限匯出作業。|  
+|`Content-Length`|String|選用。 Blob 大小 (以位元組為單位)。 僅限匯出作業。|  
+|`Content-Type`|String|選用。 Blob 的內容類型。|  
+|`Content-MD5`|String|選用。 Blob 的 MD5 雜湊。|  
+|`Content-Encoding`|String|選用。 Blob 的內容編碼。|  
+|`Content-Language`|String|選用。 Blob 的內容語言。|  
+|`Cache-Control`|String|選用。 Blob 的快取控制字串。|  
 
 ## <a name="next-steps"></a>後續步驟
 

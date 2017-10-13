@@ -1,6 +1,6 @@
 ---
-title: "Azure 服務匯流排和事件中心的通訊協定指南中的 aaaAMQP 1.0 |Microsoft 文件"
-description: "通訊協定指南 tooexpressions 和 Azure 服務匯流排和事件中心的 AMQP 1.0 的說明"
+title: "Azure 服務匯流排和事件中樞的 AMQP 1.0 通訊協定指南 | Microsoft Docs"
+description: "Azure 服務匯流排和事件中樞的 AMQP 1.0 運算式和說明的通訊協定指南"
 services: service-bus-messaging,event-hubs
 documentationcenter: .net
 author: clemensv
@@ -14,139 +14,139 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/07/2017
 ms.author: clemensv;hillaryc;sethm
-ms.openlocfilehash: 882ce0fc84af11d9f61bc95dc3e4db0b67b2b020
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2ef07d78a9d81fac933f2c3359e9ee48f86e6790
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # Azure 服務匯流排和事件中樞的 AMQP 1.0 通訊協定指南
 
-hello 進階訊息佇列通訊協定 1.0 是以非同步方式，安全地儲存，且可靠地將兩個合作對象之間傳輸訊息的標準化的框架和傳輸通訊協定。 它是 hello Azure Service Bus 訊息和 Azure 事件中心的主要通訊協定。 這兩項服務也支援 HTTPS。 改用 AMQP 已捨棄不用 hello 專屬 SBMP 通訊協定也支援。
+進階訊息佇列通訊協定 1.0 是標準化框架處理和傳輸通訊協定，可以非同步、安全且可靠的方式傳輸兩方之間的訊息。 它是 Azure 服務匯流排訊息和 Azure 事件中樞的主要通訊協定。 這兩項服務也支援 HTTPS。 同時支援的專屬 SBMP 通訊協定會慢慢被淘汰，以利採用 AMQP。
 
-AMQP 1.0 是 hello 組成的中介軟體供應商，例如 Microsoft 和 Red Hat 與許多傳訊中介軟體使用者，例如 JP Morgan 尋求代表 hello 涵蓋了金融服務產業的廣泛的業界共同作業的結果。 hello AMQP 通訊協定和延伸模組規格的 hello 技術標準化論壇 OASIS，但它已達成的國際標準，為 ISO/IEC 19494 正式核准。
+AMQP 1.0 是產業共同作業的結果，由中介軟體廠商 (例如 Microsoft 和 Red Hat) 與許多傳訊中介軟體使用者 (例如代表金融服務產業的 JP Morgan Chase) 攜手合作。 OASIS 是 AMQP 通訊協定和擴充規格的技術標準化論壇，它已獲得 ISO/IEC 19494 國際標準的正式核准。
 
 ## 目標
 
-本文簡要摘要說明 hello 核心概念，以及目前正在進行最終處理在 hello OASIS AMQP 技術委員會的草稿延伸模組規格一小群 hello AMQP 1.0 訊息規格的並說明如何在 Azure 服務匯流排實作，這些規格為基礎。
+本文簡短摘要說明 AMQP 1.0 訊息規格的核心概念以及目前正由 OASIS AMQP 技術委員會定案的一小組草稿擴充規格，並說明 Azure 服務匯流排如何根據這些規格進行實作和建置。
 
-hello 目標是要讓 Azure 服務匯流排 AMQP 1.0 透過任何平台 toobe 無法 toointeract 上使用任何現有的 AMQP 1.0 用戶端堆疊的任何開發人員。
+目的是要讓在任何平台上使用任何現有 AMQP 1.0 用戶端堆疊的開發人員，能夠透過 AMQP 1.0 與 Azure 服務匯流排互動。
 
-常見的一般用途 AMQP 1.0 堆疊 (例如 Apache Proton 或 AMQP.NET Lite) 已經實作所有核心 AMQP 1.0 軌跡。 這些基本手勢有時會包裝較高層級的 api。Apache 的 Proton 甚至會提供兩個、 hello 命令式 Messenger API 和 hello 反應式反應器 API。
+常見的一般用途 AMQP 1.0 堆疊 (例如 Apache Proton 或 AMQP.NET Lite) 已經實作所有核心 AMQP 1.0 軌跡。 這些基本軌跡有時會以更高層級的 API 包裝；Apache Proton 甚至會提供命令式 Messenger API 和反應式 Reactor API 等兩個 API 包裝。
 
-在下列討論 hello，我們假設 hello 管理 AMQP 連線、 工作階段和連結和 hello 框架傳輸和處理流程控制會由 hello 個別堆疊 (例如 Apache PROTON-C)，並不需要太多如果有任何特定從應用程式開發人員注意。 我們以抽象方式假設 hello 存在幾個 API 基本型別，例如 hello 能力 tooconnect 和 toocreate 某種形式的*寄件者*和*接收者*抽象物件，則有一些圖形的`send()`和`receive()`作業分別。
+在以下討論中，我們假設 AMQP 連線、工作階段和連結的管理，以及框架傳輸和流量控制都是由個別堆疊 (例如 Apache PROTON-C) 處理，而不需要應用程式開發人員特別注意。 我們會以抽象方式假設存在一些 API 原始物件，像是連線的能力，以及建立某種形式的「傳送者」和「接收者」抽象物件的能力，然後分別會有某種形式的 `send()` 和 `receive()` 作業。
 
 討論 Azure 服務匯流排的進階功能 (例如訊息瀏覽或工作階段管理) 時，將會以 AMQP 詞彙說明這些功能，但也可作為以這個假設 API 抽象概念為基礎的多層式虛擬實作。
 
 ## AMQP 是什麼？
 
-AMQP 是框架處理和傳輸通訊協定。 框架處理表示它會為以網路連線的任一方向流入的二進位資料串流提供結構。 hello 結構提供不同的資料區塊，呼叫的描述*框架*，連接的 hello 合作對象之間交換 toobe。 hello 傳輸功能會確認通訊雙方都可以建立共用的了解關於何時應該傳送框架，和當傳輸應該視為已完成。
+AMQP 是框架處理和傳輸通訊協定。 框架處理表示它會為以網路連線的任一方向流入的二進位資料串流提供結構。 此結構會針對要在已連線方之間交換的不同資料區塊 (稱為框架) 提供略圖。 傳輸功能會確定通訊雙方都可以對於何時應傳送框架以及傳輸何時應視為完成，建立起共識。
 
-不同於稍早過期的草稿 hello AMQP 工作小組所產生的版本仍在使用幾個訊息代理人，hello 工作群組的最終狀態，和標準化 AMQP 1.0 通訊協定不並未規定訊息代理程式或任何特定的拓樸 hello 存在訊息代理程式內的實體。
+與 AMQP 工作群組所產生且稍早過期的草稿版本 (仍有一些訊息代理程式在使用) 不同，工作群組的最終標準化 AMQP 1.0 通訊協定並未規定要存在訊息代理程式或訊息代理人內實體的任何特定拓撲。
 
-hello 通訊協定可支援佇列和發佈/訂閱實體，如同 Azure 服務匯流排訊息代理程式與互動的對稱式端對端通訊。 它也可用來與傳訊基礎結構互動 hello 互動模式的不同於一般佇列，使用 Azure 事件中心的 hello 案例。 事件中心 tooit，傳送事件時的作用就像佇列，但就像是一個序列的儲存體服務時，會讀取事件有點類似於磁帶磁碟機。 hello 用戶端 hello 可用的資料流到挑選位移，並再提供該位移 toohello 最新可用的所有事件。
+此通訊協定可用於對稱的對等通訊，以便與支援佇列及發佈/訂閱實體的訊息代理程式互動，如 Azure 服務匯流排所為。 也可以用來與傳訊基礎結構互動，其互動模式不同於一般佇列 (和 Azure 事件中樞的情況一樣)。 當事件傳送至事件中樞時，事件中樞的作用如同佇列，但從中讀取事件時，其作用比較像是序列儲存體服務；它有點類似磁帶機。 用戶端會挑選可用資料串流的位移，然後取得從該位移至最新可用的所有事件。
 
-hello AMQP 1.0 通訊協定是設計的 toobe 可延伸，進一步啟用規格 tooenhance 其功能。 hello 本文所討論三個延伸模組規格說明這點。 透過其中設定 hello 原生 AMQP TCP 連接埠可能會很困難的現有 HTTPS/WebSockets 基礎結構通訊，繫結規格會定義如何 toolayer AMQP 透過 WebSockets。 與要求/回應中的 hello 訊息基礎結構互動方式為管理用途或 tooprovide 進階功能，hello AMQP 管理規格會定義 hello 所需的基本互動基本型別。 同盟的授權模型整合，hello AMQP 宣告型安全性規格會定義如何 tooassociate 並更新與連結相關聯的授權權杖。
+AMQP 1.0 通訊協定是設計為可延伸的，允許進一步規格以增強其功能。 我們在本文件中討論的三個擴充規格會說明這點。 在透過可能難以設定原生 AMQP TCP 連接埠的現有 HTTPS/WebSockets 基礎結構進行的通訊中，繫結規格會定義如何透過 WebSockets 將 AMQP 分層。 以要求/回應方式與傳訊基礎結構互動，以便進行管理或提供進階功能時，AMQP 管理規格會定義必要的基本互動原始物件。 在同盟授權模型整合中，AMQP 宣告型安全性規格會定義如何產生關聯並更新與連結相關聯的授權權杖。
 
 ## 基本 AMQP 案例
 
-本節說明包括建立連線，工作階段和連結，以及從服務匯流排實體，例如佇列、 主題和訂用帳戶傳輸訊息 tooand Azure 服務匯流排與 AMQP 1.0 hello 基本使用方式。
+本節說明 AMQP 1.0 與 Azure 服務匯流排的基本使用方式，其中包括建立連線、工作階段和連結，以及往返於服務匯流排實體 (例如佇列、主題和訂用帳戶) 傳輸訊息。
 
-hello 最可靠來源 toolearn AMQP 的運作方式是 hello AMQP 1.0 規格，但 hello 規格寫入 tooprecisely 指南實作，而不 tooteach hello 通訊協定。 本節著重於盡可能介紹描述服務匯流排如何使用 AMQP 1.0 的術語。 您可以檢閱更詳盡的簡介 tooAMQP，以及更廣泛的討論，AMQP 1.0，[視訊本課][this video course]。
+了解 AMQP 運作方式的最可靠來源是 AMQP 1.0 規格，但此規格是為了精確引導實作而撰寫，而非用以指導通訊協定。 本節著重於盡可能介紹描述服務匯流排如何使用 AMQP 1.0 的術語。 如需 AMQP 的更完整介紹，以及 AMQP 1.0 的更廣泛討論，您可以觀看[此影片課程][this video course]。
 
 ### 連線和工作階段
 
-通訊程式 AMQP 呼叫 hello*容器*; 這些包含*節點*、 哪些 hello 通訊那些容器內的實體。 佇列就屬於這類節點。 AMQP 允許多工作業，因此在單一連接可以用於許多節點; 之間的通訊路徑例如，應用程式用戶端可以同時從一個佇列，並傳送 tooanother 透過接收 hello 相同網路連線。
+AMQP 會將通訊程式稱為「容器」；其中包含「節點」，也就是這些容器內的通訊實體。 佇列就屬於這類節點。 AMQP 允許多工處理，所以單一連線可以用於節點之間的許多通訊路徑；例如，應用程式用戶端可以同時從一個佇列接收，並透過相同的網路連線傳送到另一個佇列。
 
 ![][1]
 
-hello 網路連線所以錨定 hello 容器。 它是由接聽和接受傳入的 TCP 連線的 「 hello receiver 角色，在進行的傳出 TCP 通訊端連線 tooa 容器 hello 用戶端角色中的 hello 容器啟始。 hello 連接交握包括交涉 hello 通訊協定版本、 宣告或交涉 hello 使用傳輸層安全性 (TLS/SSL) 和在 hello 連接範圍 SASL 為基礎的驗證/授權交握。
+網路連線因此會錨定在容器上。 它是由採用用戶端角色的容器起始，對採用接收者角色的容器進行輸出 TCP 通訊端連線，以接聽和接受輸入 TCP 連線。 連線交握包括交涉通訊協定版本，宣告或交涉傳輸層安全性 (TLS/SSL) 的使用，以及以 SASL 為基礎之連線範圍的驗證/授權交握。
 
-Azure 服務匯流排需要隨時都能 TLS hello 使用。 它支援連線透過 TCP 連接埠 5671、 使 hello TCP 連線進入 hello AMQP 通訊協定交握之前先重疊與 TLS 和也支援透過 TCP 連接埠 5672 連線 hello 伺服器，立即提供的強制升級連接 tooTLS 使用 hello AMQP 規定的模型。 hello AMQP WebSockets 繫結建立通道，然後是相等的 tooAMQP 5671 連線的 TCP 連接埠 443。
+Azure 服務匯流排隨時都需要使用 TLS。 它支援透過 TCP 連接埠 5671 的連線，因此 TCP 連線會在進入 AMQP 通訊協定交握前先與 TLS 覆疊，而且還支援透過 TCP 連接埠 5672 的連線，因此伺服器會使用 AMQP 規定的模型，立即提供強制的 TLS 連線升級。 AMQP WebSockets 繫結會建立透過 TCP 連接埠 443 的通道，其相當於 AMQP 5671 連線。
 
-設定之後 hello 連線和 TLS，服務匯流排提供兩個 SASL 機制選項：
+在設定連線和 TLS 之後，服務匯流排會提供兩個 SASL 機制選項︰
 
-* SASL 純常用於傳遞使用者名稱和密碼認證 tooa 伺服器。 服務匯流排沒有帳戶，但是有具名的[共用存取安全性規則](service-bus-sas.md)，這些規則可授予權限並與某個金鑰相關聯。 hello 規則會使用的名稱為 hello 使用者名稱和 hello 索引鍵 （base64 編碼的文字） 會使用與 hello 密碼。 hello hello 選擇規則相關聯的權限會決定允許 hello 連接上的 hello 作業。
-* SASL 就會使用 ANONYMOUS hello 用戶端想 toouse hello 宣告型安全性 (CBS) 模型，稍後會說明時，略過 SASL 授權。 使用此選項，用戶端可以連線以匿名方式短暫期間哪些 hello 用戶端可以只與 hello CBS 端點互動，必須先完成 hello CBS 交握。
+* SASL PLAIN 常用於將使用者名稱和密碼認證傳送至伺服器。 服務匯流排沒有帳戶，但是有具名的[共用存取安全性規則](service-bus-sas.md)，這些規則可授予權限並與某個金鑰相關聯。 規則名稱可做為使用者名稱，而金鑰 (如 base64 編碼文字) 可做為密碼。 與所選規則相關聯的權限會控管允許在連接上進行的作業。
+* 當用戶端想要使用稍後會說明的宣告型安全性 (CBS) 模型時，可用 SASL ANONYMOU 來略過 SASL 授權。 使用此選項，即可以匿名方式建立短期的用戶端連線，在此連線期間，用戶端只能與 CBS 端點互動，而且 CBS 交握必須完成。
 
-建立 hello 傳輸連線之後，hello 容器每個宣告 hello 框架大小上限願意 toohandle，以及之後的閒置逾時它們會單方面中斷連線，如果 hello 連接上沒有任何活動。
+建立傳輸連線之後，容器會各自宣告它們願意處理的框架大小上限，而在閒置逾時後，如果連線上沒有任何活動，它們就會單方面中斷連線。
 
-他們也會宣告支援的並行通道數量。 通道是 hello 連接之上的傳輸單向、 輸出、 虛擬路徑。 工作階段會從 hello 互連的容器 tooform 雙向通訊路徑的每個通道。
+他們也會宣告支援的並行通道數量。 通道是以連線為基礎的單向、輸出、虛擬傳輸路徑。 工作階段會從每個互連的容器取得通道，以形成雙向通訊路徑。
 
-工作階段的視窗型流量控制模型;建立工作階段時，每個合作對象宣告框架數目是願意 tooaccept 到其接收視窗。 因為 hello 合作對象的交換框架，傳送框架填滿視窗和傳輸停止 hello 視窗已滿時，才 hello 視窗取得重設或擴展使用 hello*流程 performative* (*performative*為 hello AMQP 通訊協定層級筆勢 hello 兩個合作對象之間交換的術語)。
+工作階段具有以時段為基礎的流量控制模型；建立工作階段時，每一方會宣告它願意在接收時段內接受的框架數目。 當各方交換框架時，已傳輸的框架會填滿該時段且傳輸會在時段已滿時停止，直到該時段使用「流程展演」進行重設或擴展為止 (「展演」是 AMQP 用語，表示在雙方之間交換的通訊協定層級軌跡)。
 
-此視窗為基礎的模型是約略相當 toohello TCP 概念的視窗型流量控制，但在 hello hello 通訊端中的工作階段層級。 hello 通訊協定的概念，允許多個並行工作階段的存在，因此高優先順序流量無法超過節流的正常流量中緊迫類似，高速公路 express 的通道。
+這個以時段為基礎的模型大致上類似於 TCP 以時段為基礎的流量控制概念，但屬於通訊端內的工作階段層級。 通訊協定具有允許多個並行工作階段的概念，因此高優先順序的流量可能會衝過節流的正常流量，就像在高速公路快速車道一樣。
 
-Azure 服務匯流排目前只對每個連線使用一個工作階段。 hello 服務匯流排最大的畫面格大小為 262144 位元組 （256 K 位元組） 的服務匯流排一般和事件中心。 進階服務匯流排則為 1,048,576 (1 MB)。 服務匯流排並無任何特定工作階段層級節流 windows，但重設 hello 視窗定期連結層級流程控制的一部分 (請參閱[hello 下一節](#links))。
+Azure 服務匯流排目前只對每個連線使用一個工作階段。 服務匯流排標準和事件中樞的服務匯流排框架大小上限為 262,144 個位元組 (256 KB)。 進階服務匯流排則為 1,048,576 (1 MB)。 服務匯流排不會強加任何特定工作階段層級節流時段，但是會在連結層級流量控制中定期重設時段 (請參閱[下一節](#links))。
 
-連線、通道和工作階段都是暫時的。 如果 hello 基礎連接摺疊的連線，TLS 通道、 SASL 授權內容和工作階段必須重新建立。
+連線、通道和工作階段都是暫時的。 如果基礎連線摺疊，則必須重新建立連線、TLS 通道、SASL 授權內容及工作階段。
 
 ### 連結
 
-AMQP 會透過連結傳輸訊息。 連結已啟用傳輸訊息，以單一方向; 的工作階段建立的通訊路徑hello 傳輸狀態交涉是透過 hello 連結和連接的 hello 合作對象之間的雙向。
+AMQP 會透過連結傳輸訊息。 連結是在能以單一方向傳輸訊息的工作階段中建立的通訊路徑；傳輸狀態交涉會透過連結在已連線方之間雙向進行。
 
 ![][2]
 
-可以依其中一個容器建立連結，在任何時候，而且透過現有的工作階段，讓 AMQP 不同於其他許多通訊協定，包括 HTTP 和 MQTT，hello 啟始的傳輸與傳輸路徑所在 hello 合作對象建立獨佔權限hello 通訊端連線。
+任一容器可以在現有的工作階段中隨時建立連結，這使 AMQP 不同於其他許多通訊協定 (包括 HTTP 和 MQTT)，其中起始傳輸和傳輸路徑是建立通訊端連線之一方的獨佔權限。
 
-hello 起始連結的容器會要求相反容器 tooaccept hello 連結，並選擇傳送者或接收者的角色。 因此，請容器可以啟動建立單向或雙向通訊路徑，以 hello 後者化為成對的連結。
+起始連結的容器會要求相對的容器接受連結，而且選擇傳送者或接收者的角色。 因此，任一容器均可起始建立單向或雙向通訊路徑，而後者會模型化為成對連結。
 
-連結會以節點命名並產生關聯。 Hello 開頭所述，節點會 hello 通訊容器內的實體。
+連結會以節點命名並產生關聯。 如一開始所述，節點是容器內的通訊實體。
 
-在服務匯流排節點是直接的對等 tooa 佇列、 主題、 訂用帳戶或無法傳送信件子佇列的佇列或訂閱。 hello 節點名稱用於 AMQP 因此是實體的 hello 相對 hello hello 服務匯流排命名空間內名稱。 如果佇列名為 **myqueue**，這也是它的 AMQP 節點名稱。 主題的訂用帳戶到 「 訂閱 」 資源集合，因此，訂用帳戶正在排序透過遵循 hello HTTP API 慣例**sub**或主題**mytopic** hello AMQP 節點名稱**mytopic/訂用帳戶/sub**。
+在服務匯流排中，節點直接等同於佇列、主題、訂用帳戶或佇列或訂用帳戶的寄不出信件子佇列。 AMQP 中使用的節點名稱因此是服務匯流排命名空間內實體的相對名稱。 如果佇列名為 **myqueue**，這也是它的 AMQP 節點名稱。 主題訂用帳戶會依循 HTTP API 慣例歸類為 “subscriptions” 資源集合，因此訂用帳戶 **sub** 或主題 **mytopic** 具有 AMQP 節點名稱 **mytopic/subscriptions/sub**。
 
-hello 連線的用戶端也是必要的 toouse 建立連結; 的本機節點名稱Service Bus 不精準有關這些節點名稱，而且無法解譯。 AMQP 1.0 用戶端堆疊通常會使用這些暫時的節點名稱是唯一的 hello 用戶端 hello 範圍中配置 tooassure。
+正在連線的用戶端也必須使用本機節點名稱來建立連結；服務匯流排不會規範這些節點名稱，而且不會加以解譯。 AMQP 1.0 用戶端堆疊通常會使用配置，以確保這些暫時節點名稱是用戶端範圍內的唯一名稱。
 
 ### 傳輸
 
-建立連結後，即可透過該連結傳輸訊息。 在 AMQP，傳輸會執行與明確的通訊協定筆勢 (hello*傳輸*performative)，將訊息從傳送者 tooreceiver 移透過連結。 傳送已完成時，它 「 結束 」，這表示這兩個合作對象已建立該傳輸的 hello 結果的共用了解。
+建立連結後，即可透過該連結傳輸訊息。 在 AMQP 中，會使用明確的通訊協定軌跡執行傳輸 (「傳輸」展演)，以透過連結將訊息從傳送者移到接收者。 傳輸會在「安置好」時完成，這表示雙方已建立該傳輸結果的共識。
 
 ![][3]
 
-在 hello 簡單的情況下，hello 寄件者可以選擇 toosend 訊息 「"預先決定，這表示 hello 用戶端不想要的 hello 結果，而且 hello 接收者不會提供任何意見 hello 運算結果的 hello。 這個模式是 hello AMQP 通訊協定層級，在服務匯流排支援，但未公開在任何 hello 用戶端應用程式開發介面。
+在最簡單的情況下，傳送者可以選擇傳送「預先安置」的訊息，這表示用戶端對結果不感興趣，而且接收者不會提供任何有關作業結果的意見反應。 這個模式由服務匯流排在 AMQP 通訊協定層級支援，但不會顯現在任何用戶端 API 中。
 
-hello 一般案例是尚未，傳送郵件，與 hello 接收器則表示接受或拒絕使用 hello*配置*performative。 在 hello 接收者無法接受 hello 訊息，因為任何原因 hello 拒絕訊息包含 hello 原因，是 AMQP 所定義的錯誤結構資訊時，就會發生拒絕。 如果訊息會被拒絕，因為 Service Bus 內部 toointernal 錯誤，hello 服務會傳回可用於提供診斷提示 toosupport 人員，如果您提出支援要求該結構內的額外資訊。 稍後您會將了解錯誤的詳細資訊。
+一般情況是傳送未安置好的訊息，然後接收者會使用「處置」展演表示接受或拒絕。 拒絕會發生於接收者因為任何原因而無法接受訊息時，而拒絕訊息會包含原因相關資訊，這是 AMQP 所定義的錯誤結構。 如果訊息因為服務匯流排內部的錯誤而被拒絕，則服務會傳回該結構內的額外資訊，而如果您提出支援要求，該資訊即可用來提供診斷提示給支援人員。 稍後您會將了解錯誤的詳細資訊。
 
-拒絕的特殊形式，為 hello*釋放*狀態時，表示該 hello 接收者有沒有技術 objection toohello 傳輸時，但也沒有興趣侷限 hello 傳輸。 確認案例存在，比方說，當訊息傳遞 tooa 服務匯流排用戶端，而且 hello 用戶端選擇太"放棄"hello 訊息因為它無法執行所產生的處理 hello 訊息; hello 工作hello 訊息傳遞本身不是錯誤。 該狀態的一種變化為 hello*修改*狀態，允許變更 toohello 訊息會在釋放。 服務匯流排目前不會使用該狀態。
+「已解除」狀態是一種特殊形式的拒絕，表示接收者對傳輸沒有任何技術異議，但是對於安置傳輸也不感興趣。 該情況的確存在，例如，當訊息傳遞至服務匯流排用戶端，而用戶端因為無法執行處理訊息所產生的工作 (儘管訊息傳遞本身並未出錯) 而選擇「放棄」訊息時。 該狀態的變化是「已修改」狀態，該狀態允許在訊息解除後進行變更。 服務匯流排目前不會使用該狀態。
 
-hello AMQP 1.0 規格定義的進一步配置狀態，稱為*收到*，特別是幫助的 toohandle 連結復原。 連結復原可讓 reconstituting hello 狀態的連結和任何暫止的新的連接和工作階段，當 hello 先前連線和工作階段已遺失的傳遞項目。
+AMQP 1.0 規格會定義稱為「已接收」的進一步處置狀態稱，其對於處理連結復原特別有用。 當先前的連線和工作階段遺失時，連結復原允許重組連結的狀態，以及新連線和工作階段的任何擱置傳遞。
 
-Service Bus 不支援連結復原。如果 hello 用戶端將會遺失尚未訊息 hello 連接 tooService 匯流排傳送暫止，該訊息傳輸都會遺失，和 hello 用戶端必須重新連接，重新建立 hello 連結，然後重試 hello 傳輸。
+服務匯流排不支援連結復原；如果用戶端失去對服務匯流排的連線，而且未安置的訊息傳輸已擱置，該訊息傳輸便會遺失，而用戶端必須重新連線、重建連結，以及重試傳輸。
 
-因此，服務匯流排和事件中心支援 「 至少一次 」 傳輸其中 hello 寄件者可以確保 hello 訊息具有已儲存並接受，但並不支援 「 正好一次 」 在 hello AMQP 層級，其中 hello 系統會嘗試 toorecover 傳輸hello 連結，並繼續 toonegotiate hello 傳遞狀態 tooavoid 出現重複的 hello 訊息傳輸。
+同樣地，服務匯流排和事件中樞都支援「至少一次」傳輸，其中的傳送者可確保訊息已儲存並接受，但是不支援在 AMQP 層級的「剛好一次」傳輸，其中的系統會嘗試復原連結並繼續交涉傳遞狀態，以避免重複傳輸訊息。
 
-傳送 toocompensate 可能重複，服務匯流排佇列和主題支援重複的偵測為選擇性功能。 重複偵測記錄 hello 的所有傳入訊息的訊息識別碼，在使用者定義的時間間隔，然後以無訊息模式所傳送的所有訊息的卸除 hello 相同的訊息識別碼的相同期間。
+為了彌補可能的重複傳送，服務匯流排支援重複偵測佇列和主題 (選用功能)。 重複偵測會在使用者定義的時段內記錄所有內送訊息的訊息識別碼，然後以無訊息方式放棄在該相同時段內使用相同訊息識別碼傳送的所有訊息。
 
 ### 流量控制
 
-此外 toohello 工作階段層級流程控制模型先前所討論，每個連結都有它自己的流程控制模型。 工作階段層級流程控制會防止 hello 容器具有 toohandle 太多框架之後連結層級流程控制放 hello 負責多少訊息它想 toohandle 從連結的應用程式, 和時。
+除了先前討論過的工作階段層級流量控制模型以外，每個連結都有自己的流量控制模型。 工作階段層級流量控制可防止容器必須一次處理太多框架，連結層級流量控制會讓應用程式負責控制它想要從連結處理的訊息數目以及時機。
 
 ![][4]
 
-在連結上傳輸只會發生在 hello 寄件者有足夠*連結信用*。 連結信用為計數器設定 hello 接收者使用 hello*流程*performative，也就是範圍 tooa 連結。 當 hello 寄件者指派連結信用額度時，它會嘗試註冊該信用 toouse 所傳遞訊息。 每個訊息傳遞遞減 1 hello 連結剩餘的信用額度。 當 hello 連結信用額度用完時，便會停止傳遞項目。
+在連結上，傳輸只會發生於傳送者有足夠的連結信用額度時。 連結信用額度是接收者使用「流程」展演所設定的計數器，其範圍是連結。 將連結信用額度指派給傳送者時，將會藉由傳遞訊息來嘗試用完該信用額度。 每個訊息傳遞會使剩餘的連結信用額外遞減 1。 當連結信用額度用完時，便會停止傳遞。
 
-Hello receiver 角色服務匯流排時，它立即提供 hello 寄件者很大的連結信用額度，以便立即傳送訊息。 當使用連結信用額度時，服務匯流排偶爾會將傳送*流程*performative toohello 寄件者 tooupdate hello 連結信用結餘。
+當服務匯流排採用接收者角色時，則會立即將充足的連結信用額度提供給傳送者，以便立即傳送訊息。 使用連結信用額度時，服務匯流排偶爾會傳送流程展演給傳送者，以更新連結信用額度餘額。
 
-在 hello 寄件者角色中，服務匯流排傳送訊息 toouse 上任何未處理的連結信用額度。
+在傳送者角色中，服務匯流排會立即傳送訊息，以用完任何未償付的連結信用額度。
 
-「 接收 」 呼叫 hello API 層級會轉譯成*流程*performative 傳送 hello 用戶端，匯流排和 Service Bus 取用的第一次所花的 hello 信用額度的 tooService 可用，解除鎖定 hello 佇列中，鎖定的訊息和轉移。 如果不沒有傳遞隨時可用的任何訊息，任何連結的任何未完成信用額度與建立特定的實體會維持記錄順序抵達，和訊息會鎖定，可供使用時，toouse 傳送任何未處理的信用額度。
+在 API 層級的「接收」呼叫會轉譯成由用戶端傳送至服務匯流排的流程展演，而服務匯流排會取用佇列中第一個可用、已解除鎖定的訊息，加以鎖定並傳輸，以使用該信用額度。 如果沒有可立即傳遞的訊息，由任何連結使用該特定實體建立的任何未償付信用額度仍會以抵達順序記錄，而訊息會遭到鎖定，並且在能夠使用任何未償付信用額度時進行傳輸。
 
-hello 傳輸到其中一種 hello 終端機的狀態結束時釋放 hello 訊息鎖定*接受*，*拒絕*，或*釋放*。 hello 終止狀態時從服務匯流排移除 hello 訊息*接受*。 它會保留在服務匯流排和 toohello 下一個接收者時傳送嗨到達 hello 的任何其他狀態傳遞。 到達 hello toorepeated 拒絕或釋放到期的 hello 實體所允許的最大傳遞計數時，服務匯流排會自動將 hello 訊息移到 hello 實體無效信件佇列。
+當傳輸進入其中一種終止狀態「已接受」、「已拒絕」或「已解除」時，訊息鎖定就會解除。 終止狀態為「已接受」時，就會從服務匯流排中移除訊息。 它會保留在服務匯流排中，並將在傳輸達到任何其他狀態時，傳遞給下一個接收者。 服務匯流排會在因為重複拒絕或解除而達到實體所允許的最大傳遞計數時，自動將訊息移到實體寄不出的信件佇列中。
 
-即使 hello 服務匯流排應用程式開發介面不會直接公開這類選項今天，較低層級 AMQP 通訊協定用戶端可以使用 hello 連結信用模型 tooturn hello"提取 style"之間的互動"推送型 」 模型發出一個單位的每個接收要求的信用卡藉由發出大量的連結點數，不需要任何進一步的互動，您可以使用，然後接收訊息。 透過 hello 支援推播[MessagingFactory.PrefetchCount](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_PrefetchCount)或[MessageReceiver.PrefetchCount](/dotnet/api/microsoft.servicebus.messaging.messagereceiver#Microsoft_ServiceBus_Messaging_MessageReceiver_PrefetchCount)屬性設定。 時，它們不是零，hello AMQP 用戶端會使用它作為 hello 連結信用額度。
+現在，即使是服務匯流排 API 也不會直接公開這種選項，較低層級的 AMQP 通訊協定用戶端可以使用連結信用額度模型，藉由核發大量的連結信用額度，將針對每個接收要求核發一單位信用額度的「提取式」模型變成「推送式」模型，然後接收可用的訊息，而不需要任何進一步的互動。 推送是透過 [MessagingFactory.PrefetchCount](/dotnet/api/microsoft.servicebus.messaging.messagingfactory#Microsoft_ServiceBus_Messaging_MessagingFactory_PrefetchCount) 或 [MessageReceiver.PrefetchCount](/dotnet/api/microsoft.servicebus.messaging.messagereceiver#Microsoft_ServiceBus_Messaging_MessageReceiver_PrefetchCount) 屬性設定來支援。 如果兩者均不為零，則 AMQP 用戶端會使用它做為連結信用額度。
 
-在此內容中，它的重要 toounderstand hello 的 hello hello 實體內的 hello 訊息鎖定的 hello 到期時鐘，啟動時 hello 訊息取自 hello 實體不當 hello 訊息放 hello 網路上。 只要 hello 用戶端藉由發出連結信用指出整備 tooreceive 訊息，它就會因此預期的 toobe 主動提取訊息 hello 網路而且會準備 toohandle 它們。 否則即使傳送 hello 訊息之前，可能已過期 hello 訊息鎖定。 hello 使用的連結信用流量控制應直接反映 hello 立即整備 toodeal 使用可用的訊息分派 toohello 接收器。
+在此內容中，務必了解實體內訊息鎖定的到期時鐘會在從實體取得訊息時啟動，而不是在訊息放在網路上時啟動。 每當用戶端藉由核發連結信用額度來表示接收訊息的整備性，因此預期會主動提取網路上的訊息並準備好處理它們。 否則訊息鎖定可能會在訊息傳遞之前過期。 使用連結信用流量控制應直接反映出可立即準備處理分派給接收者的可用訊息。
 
-在 [摘要] hello 下列各節提供的圖解概觀 hello performative 流程不同的應用程式開發介面互動期間發生。 每一節會說明不同的邏輯作業。 其中一些互動可能很「緩慢」，這表示它們可能只會在有需要時執行。 建立訊息寄件者在傳送 hello 第一個訊息或要求之前，不一定會網路互動。
+總而言之，下列各節提供在不同 API 互動期間展演流程的圖解概觀。 每一節會說明不同的邏輯作業。 其中一些互動可能很「緩慢」，這表示它們可能只會在有需要時執行。 直到傳送或要求第一個訊息，建立訊息傳送者才會造成網路互動。
 
-hello 下表中的 hello 箭號顯示 hello performative 資料流程方向。
+下表中的箭號會顯示展演流程方向。
 
 #### 建立訊息接收者
 
 | 用戶端 | 服務匯流排 |
 | --- | --- |
-| --> attach(<br/>name={link name},<br/>handle={numeric handle},<br/>role=**receiver**,<br/>source={entity name},<br/>target={client link id}<br/>) |用戶端會做為接收者附加 tooentity |
-| 附加的 hello 連結的服務匯流排回覆 |<-- attach(<br/>name={link name},<br/>handle={numeric handle},<br/>role=**sender**,<br/>source={entity name},<br/>target={client link id}<br/>) |
+| --> attach(<br/>name={link name},<br/>handle={numeric handle},<br/>role=**receiver**,<br/>source={entity name},<br/>target={client link id}<br/>) |用戶端會以接收者身分附加至實體 |
+| 附加至連結結尾的服務匯流排回覆 |<-- attach(<br/>name={link name},<br/>handle={numeric handle},<br/>role=**sender**,<br/>source={entity name},<br/>target={client link id}<br/>) |
 
 #### 建立訊息傳送者
 
@@ -203,7 +203,7 @@ hello 下表中的 hello 箭號顯示 hello performative 資料流程方向。
 
 ### 訊息
 
-hello 下列各節說明使用服務匯流排 hello 標準 AMQP 訊息區段中的屬性，以及它們如何對應 toohello 服務匯流排 API 集。
+下列各節說明服務匯流排會使用標準 AMQP 訊息區段中的哪些屬性，以及它們如何對應到服務匯流排 API 集。
 
 #### 頁首
 
@@ -211,7 +211,7 @@ hello 下列各節說明使用服務匯流排 hello 標準 AMQP 訊息區段中�
 | --- | --- | --- |
 | 持久 |- |- |
 | 優先順序 |- |- |
-| ttl |此訊息 toolive 的時間 |[TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive) |
+| ttl |此訊息的存留時間 |[TimeToLive](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_TimeToLive) |
 | first-acquirer |- |- |
 | delivery-count |- |[DeliveryCount](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeliveryCount) |
 
@@ -220,33 +220,33 @@ hello 下列各節說明使用服務匯流排 hello 標準 AMQP 訊息區段中�
 | 欄位名稱 | 使用量 | API 名稱 |
 | --- | --- | --- |
 | message-id |應用程式為此訊息定義的自由格式識別碼。 用於重複偵測。 |[MessageId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_MessageId) |
-| user-id |應用程式定義的使用者識別碼，服務匯流排無法加以解譯。 |無法透過 hello 服務匯流排 API 存取。 |
-| 太|應用程式定義的目的地識別碼，服務匯流排無法加以解譯。 |[To](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_To) |
+| user-id |應用程式定義的使用者識別碼，服務匯流排無法加以解譯。 |無法透過服務匯流排 API 存取。 |
+| to |應用程式定義的目的地識別碼，服務匯流排無法加以解譯。 |[To](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_To) |
 | 主旨 |應用程式定義的訊息用途識別碼，服務匯流排無法加以解譯。 |[Label](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_Label) |
-| 回覆太|應用程式定義的回覆路徑指示器，服務匯流排無法加以解譯。 |[ReplyTo](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ReplyTo) |
+| reply-to |應用程式定義的回覆路徑指示器，服務匯流排無法加以解譯。 |[ReplyTo](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ReplyTo) |
 | correlation-id |應用程式定義的相互關聯識別碼，服務匯流排無法加以解譯。 |[CorrelationId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_CorrelationId) |
-| Content-Type |Hello 主體中，未解譯的服務匯流排應用程式定義的內容類型指標。 |[ContentType](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ContentType) |
-| content-encoding |應用程式定義的內容編碼指標 hello 主體中，由 Service Bus 不解譯。 |無法透過 hello 服務匯流排 API 存取。 |
-| absolute-expiry-time |宣告在哪一個絕對的立即 hello 訊息過期。 在輸入時忽略 (觀察到標頭 TTL)，在輸出時授權具權威性。 |[ExpiresAtUtc](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ExpiresAtUtc) |
-| creation-time |宣告在哪些時間 hello 訊息已建立。 服務匯流排未使用 |無法透過 hello 服務匯流排 API 存取。 |
+| Content-Type |應用程式為內文定義的內容類型識別碼，服務匯流排無法加以解譯。 |[ContentType](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ContentType) |
+| content-encoding |應用程式為內文定義的內容編碼識別碼，服務匯流排無法加以解譯。 |無法透過服務匯流排 API 存取。 |
+| absolute-expiry-time |宣告訊息會過期的絕對立即時刻。 在輸入時忽略 (觀察到標頭 TTL)，在輸出時授權具權威性。 |[ExpiresAtUtc](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ExpiresAtUtc) |
+| creation-time |宣告訊息的建立時間。 服務匯流排未使用 |無法透過服務匯流排 API 存取。 |
 | group-id |應用程式為一組相關訊息所定義的識別碼。 用於服務匯流排工作階段。 |[SessionId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_SessionId) |
-| group-sequence |識別 hello 相對序號 hello 訊息，在工作階段的計數器。 服務匯流排會忽略。 |無法透過 hello 服務匯流排 API 存取。 |
+| group-sequence |用以識別訊息在工作階段內的相對序號的計數器。 服務匯流排會忽略。 |無法透過服務匯流排 API 存取。 |
 | reply-to-group-id |- |[ReplyToSessionId](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage#Microsoft_ServiceBus_Messaging_BrokeredMessage_ReplyToSessionId) |
 
 ## 進階服務匯流排功能
 
-本章節涵蓋 Azure Service Bus 草稿延伸 tooAMQP，目前正在開發中 hello OASIS 技術委員會的 AMQP 為基礎的進階的功能。 服務匯流排實作這些草稿 hello 最新版本，並採用這些草稿達到標準狀態導入的變更。
+本節涵蓋 Azure 服務匯流排的進階功能，而這些功能是以目前正在 AMQP 的 OASIS Technical Committee 中開發的 AMQP 草稿延伸模組為基礎。 服務匯流排會實作這些草稿的最新版本，而且會採用這些草稿達到標準狀態時所引進的變更。
 
 > [!NOTE]
-> 服務匯流排訊息進階作業透過要求/回應模式受到支援。 hello 文件說明的 hello 詳細資料，這些作業的[服務匯流排 AMQP 1.0： 要求-回應為基礎的作業](service-bus-amqp-request-response.md)。
+> 服務匯流排訊息進階作業透過要求/回應模式受到支援。 如需這些作業的詳細資料，請參閱[服務匯流排中的 AMQP 1.0：要求/回應架構作業](service-bus-amqp-request-response.md)文件的說明。
 > 
 > 
 
 ### AMQP 管理
 
-hello AMQP 管理規格為 hello hello 草稿延伸，這裡所討論的第一個。 此規格會定義一組通訊協定筆勢 hello AMQP 通訊協定的最上層可讓以 hello 透過 AMQP 訊息基礎結構的管理互動。 hello 規格會定義泛型作業例如*建立*，*讀取*，*更新*，和*刪除*管理內的實體訊息基礎架構和一組查詢作業。
+AMQP 管理規格是我們在此討論的第一個草稿延伸模組。 此規格會定義一組以 AMQP 通訊協定為基礎的通訊協定軌跡，以便透過 AMQP 進行訊息基礎結構的管理互動。 此規格定義泛型作業 (例如建立、讀取、更新和刪除)，以便管理傳訊基礎結構內的實體和一組查詢作業。
 
-所有這些筆勢需要要求/回應與之間的互動 hello 用戶端 hello 訊息基礎結構，並因此 hello 規格會定義如何 toomodel 互動模式在 AMQP 之上： hello 用戶端連線 toohello 傳訊基礎結構，初始化工作階段，並再建立一對的連結。 上一個連結，hello 用戶端做為寄件者，並在其他 hello 它做為收件者，如此會建立一組可做為雙向通道的連結。
+上述所有軌跡都需要用戶端與傳訊基礎結構之間的要求/回應互動，因此此規格會定義如何製作 AMQP 上互動模式的模型︰用戶端會連線到傳訊基礎結構、起始工作階段，然後建立一組連結。 在某一個連結上，用戶端會扮演傳送者，而在其他連結上扮演接收者，因此建立一組可做為雙向通道的連結。
 
 | 邏輯作業 | 用戶端 | 服務匯流排 |
 | --- | --- | --- |
@@ -255,41 +255,41 @@ hello AMQP 管理規格為 hello hello 草稿延伸，這裡所討論的第一�
 | 建立要求回應路徑 |--> attach(<br/>name={*link name*},<br/>handle={*numeric handle*},<br/>role=**receiver**,<br/>source=”myentity/$management”,<br/>target=”myclient$id”<br/>) | |
 | 建立要求回應路徑 |沒有動作 |\<-- attach(<br/>name={*link name*},<br/>handle={*numeric handle*},<br/>role=**sender**,<br/>source=”myentity”,<br/>target=”myclient$id”<br/>) |
 
-就地具有該配對的連結，hello 要求/回應實作十分簡單： 要求是傳送 tooan 實體，以了解此模式的 hello 訊息基礎結構內的訊息。 在該要求訊息中的 hello*回覆至*欄位 hello*屬性*部份設定 toohello*目標*到哪些 toodeliver hello 回應 hello 連結的識別項。 處理實體 hello 處理 hello 要求，然後提供 hello 回應 hello 透過會連結其*目標*識別碼符合指定的 hello*回覆給*識別項。
+備妥該組連結，要求/回應實作就相當簡單︰要求是傳送至傳訊基礎結構內了解此模式之實體的訊息。 在該要求訊息中，*properties* 區段中的 *reply-to* 欄位會設定為回應會傳遞至之連結的 *target* 識別碼。 處理實體會處理此要求，然後透過 *target* 識別碼符合所指示 *reply-to* 識別碼的連結傳遞回覆。
 
-hello 模式很明顯地會需要這些 hello 用戶端容器和 hello hello 回覆目的地的用戶端產生識別項是唯一跨越所有用戶端，並基於安全性理由，也難以 toopredict。
+此模式顯然要求回覆目的地的用戶端容器和用戶端產生的識別碼在所有用戶端中是唯一的，而且基於安全性理由，還要難以預測。
 
-hello 訊息交換用於 hello 管理通訊協定，用於所有其他通訊協定相同的模式，就可能發生在 hello 應用程式層級; 該使用 hello它們不會定義新的 AMQP 通訊協定層級手勢。 這是刻意設計的，以便應用程式立即利用符合 AMQP 1.0 堆疊規範的這些擴充功能。
+用於管理通訊協定和所有其他使用相同模組之的訊協定的訊息交換會發生於應用程式層級；它們不會定義新的 AMQP 通訊協定層級軌跡。 這是刻意設計的，以便應用程式立即利用符合 AMQP 1.0 堆疊規範的這些擴充功能。
 
-服務匯流排未目前實作任何 hello 核心功能 hello 管理規格中，但基本 hello 宣告型安全性功能以及幾乎所有 hello hello 管理規格所定義的要求/回應模式hello 進階 hello 下列各節所述的功能。
+服務匯流排目前不會實作管理規格的任何核心功能，但是對宣告型安全性功能以及我們在下列各節中討論的幾乎所有進階功能而言，管理規格所定義的要求/回應模式是基本的。
 
 ### 宣告型授權
 
-hello AMQP 宣告型授權 (CBS) 規格草稿 hello 管理規格要求/回應模式為基礎，並說明如何 toouse 同盟與 AMQP 搭配安全性權杖的通用的模型。
+AMQP 宣告型授權 (CBS) 規格草稿是以管理規格的要求/回應模式為基礎，主要說明如何搭配使用同盟安全性權杖與 AMQP 的廣義模型。
 
-hello 簡介 > 中所討論的 AMQP hello 預設安全性模式根據 SASL，並整合與 hello AMQP 連接交握。 使用 SASL 優點 hello 它所提供的機制的一組已定義從正式依賴 SASL 任何通訊協定有哪些好處可擴充的模型。 這些機制包括"PLAIN"的使用者名稱和密碼、 「 外部 」 toobind tooTLS 層級安全性和 「 匿名 」 tooexpress hello 缺乏明確驗證/授權和其他的機制可讓多種不同的傳輸傳送驗證和/或授權的憑證或語彙基元。
+簡介中所討論的 AMQP 預設安全性模型是以 SASL 為基礎，並與 AMQP 連接交握整合。 使用 SASL 的好處是它會提供已定義一組機制的可延伸模型，任何正式依賴 SASL 的通訊協定均可受惠。 在這些機制之中，“PLAIN” 用於傳輸使用者名稱和密碼，“EXTERNAL” 用於繫結至 TLS 層級安全性，“ANONYMOUS” 用於表示缺少明確的驗證/授權，還有其他各種機制能夠用來傳送驗證和/或授權認證或權杖。
 
 AMQP 的 SASL 整合有兩個缺點︰
 
-* 所有認證和權杖都都限定範圍的 toohello 連接。 傳訊基礎結構可能會想 tooprovide 區分每個實體為基礎; 的存取控制例如，允許 hello 持有人權杖 toosend tooqueue A 但 tooqueue b。Hello 連接上所錨定 hello 授權內容，用於無法 toouse 單一連接及尚未使用不同的存取語彙基元佇列 A 和 b。
-* 存取權杖的有效時間通常有限。 此有效性需要 hello 使用者 tooperiodically 重新取得權杖，並提供發行新的權杖，如果 hello 使用者的存取權限已變更的機會 toohello 權杖簽發者 toorefuse。 AMQP 連線可能會持續很長的時間。 hello SASL 模型僅提供機會 tooset 語彙基元在連接時，可能是 hello 訊息基礎結構，也就是說 toodisconnect hello 用戶端或時，有 hello 權杖到期必須允許與一直持續不斷地的通訊 tooaccept hello 風險用戶端使用者具有存取權限可能已暫時 hello 中撤銷。
+* 所有認證與權杖的範圍都只限於連線。 傳訊基礎結構可能會以每個實體方式提供不同的存取控制；例如，允許權杖的持有者傳送至佇列 A，而不是至佇列 B。使用錨定在連線上的授權內容，就不可能使用單一連線並且對佇列 A 和 B 使用不同的存取權杖。
+* 存取權杖的有效時間通常有限。 此有效性會要求使用者定期重新取得權杖，而如果使用者的存取權限已變更，權杖的簽發者便有機會拒絕簽發全新的權杖。 AMQP 連線可能會持續很長的時間。 SASL 模型只提供一個機會在連線時設定權杖，這表示傳訊基礎結構必須在權杖過期時中斷用戶端的連線，或者必須接受允許與存取權限可能已在其間撤銷的用戶端持續通訊的風險。
 
-服務匯流排所實作的 hello AMQP CBS 規格，這些問題的兩個啟用精緻的因應措施： 它可讓用戶端與每個節點和那些權杖到期，而不會中斷 hello 訊息流程之前 tooupdate tooassociate 存取權杖。
+服務匯流排所實作的 AMQP CBS 規格，可讓這兩個問題獲得圓滿的解決︰它可讓用戶端建立存取權杖與每個節點的關聯，以及在這些權杖過期前進行更新，而不需中斷訊息流程。
 
-CBS 定義名為的虛擬管理節點*$cbs*，toobe hello 訊息基礎結構所提供。 hello 管理節點接受語彙基元，代表 hello 訊息基礎結構中的任何其他節點。
+CBS 會定義由傳訊基礎結構所提供的虛擬管理節點 (名為 *$cbs*)。 管理節點可代表傳訊基礎結構中的任何其他節點接受權杖。
 
-hello 通訊協定手勢都是要求/回覆交換 hello 管理規格所定義。 表示 hello 用戶端會建立一組以 hello 連結*$cbs*節點，然後將要求的輸出連結，然後等候 hello 回應 hello hello 輸入的連結。
+通訊協定軌跡是由管理規格所定義的要求/回覆交換。 這表示用戶端會使用 *$cbs* 節點建立一組連結，在輸出連結上傳送要求，然後在輸入連結上等候回應。
 
-hello 要求訊息具有下列應用程式屬性的 hello:
+要求訊息具有下列應用程式屬性︰
 
-| Key | 選用 | 值類型 | 值內容 |
+| 金鑰 | 選用 | 值類型 | 值內容 |
 | --- | --- | --- | --- |
 | operation |否 |字串 |**put-token** |
-| 類型 |否 |字串 |處於 put 的 hello 語彙基元 hello 型別。 |
-| 名稱 |否 |字串 |套用 hello"audience"toowhich hello token。 |
-| expiration |是 |timestamp |hello hello 權杖的到期時間。 |
+| 類型 |否 |string |正在放置的權杖類型。 |
+| 名稱 |否 |string |套用權杖的「對象」。 |
+| expiration |是 |timestamp |權杖的到期時間。 |
 
-hello*名稱*屬性會識別哪一個 hello 與語彙基元必須是相關聯的 hello 實體。 服務匯流排中的 hello 路徑 toohello 佇列或主題/訂用帳戶。 hello*類型*屬性會識別 hello 語彙基元類型：
+*name* 屬性會識別應與權杖相關聯的實體。 在服務匯流排中，這是佇列或主題/訂用帳戶的路徑。 *type* 屬性會識別權杖類型︰
 
 | 權杖類型 | 權杖描述 | 主體類型 | 注意事項 |
 | --- | --- | --- | --- |
@@ -297,28 +297,28 @@ hello*名稱*屬性會識別哪一個 hello 與語彙基元必須是相關聯的
 | amqp:swt |簡單 Web 權杖 (SWT) |AMQP 值 (字串) |僅支援 AAD/ACS 所簽發的 SWT 權杖 |
 | servicebus.windows.net:sastoken |服務匯流排 SAS 權杖 |AMQP 值 (字串) |- |
 
-權杖會賦予權限。 服務匯流排知道三個基本權限：「傳送」可進行傳送、「接聽」可進行接收，以「管理」可進行管理實體。 AAD/ACS 所簽發的 SWT 權杖會明確將這些權限納入為宣告。 服務匯流排 SAS 權杖，請參閱 toorules hello 命名空間或實體上設定，且這些規則已設定權限。 簽章與 hello 與該規則相關聯的索引鍵的 hello 權杖而讓 hello 語彙基元 express hello 個別權限。 hello 語彙基元相關聯的實體使用*put 語彙基元*允許 hello 連線用戶端 toointeract 與 hello 實體，每個 hello 權杖 權限。 Hello 用戶端會接替 hello 連結*寄件者*角色需要 hello 「 傳送 」 權限; 採用性 hello*接收者*角色需要 hello 「 接聽 」 權限。
+權杖會賦予權限。 服務匯流排知道三個基本權限：「傳送」可進行傳送、「接聽」可進行接收，以「管理」可進行管理實體。 AAD/ACS 所簽發的 SWT 權杖會明確將這些權限納入為宣告。 服務匯流排 SAS 權杖會參考在命名空間或實體上設定的規則，而這些規則是使用權限來設定。 使用與該規則相關聯的金鑰來簽署權杖，以此方式讓權杖表達各自的權限。 與使用 put-token 之實體相關聯的權杖，將允許已連線的用戶端依照每個權杖權限來與實體互動。 用戶端承擔 sender 角色的連結需要「傳送」權限，而承擔 receiver 角色的連結則需要「接聽」權限。
 
-hello 回覆訊息具有 hello 下列*應用程式屬性*值
+回覆訊息具有下列 *application-properties* 值
 
-| Key | 選用 | 值類型 | 值內容 |
+| 金鑰 | 選用 | 值類型 | 值內容 |
 | --- | --- | --- | --- |
 | status-code |否 |int |HTTP 回應碼 **[RFC2616]**。 |
-| status-description |是 |字串 |Hello 狀態的描述。 |
+| status-description |是 |string |狀態的描述。 |
 
-hello 用戶端可以呼叫*put 語彙基元*重複和 hello 訊息基礎結構中的任何實體。 hello 語彙基元是已設定領域的 toohello 目前的用戶端和錨定 hello 目前連接上，表示 hello 伺服器卸除任何保留的語彙基元 hello 連線的時候。
+用戶端可以針對傳訊基礎結構中的任何實體重複呼叫 *put-token*。 權杖的範圍為目前用戶端且錨點為目前連線，這表示伺服器會在連線捨棄時捨棄所有保留的權杖。
 
-目前服務匯流排實作 hello 只允許 CBS 搭配 hello SASL 方法 「 匿名 」。 SSL/TLS 連線一律必須存在先前 toohello SASL 交握。
+目前的服務匯流排實作只允許 CBS 搭配SASL 方法 “ANONYMOUS”。 SSL/TLS 連線必須一律存在於 SASL 交握之前。
 
-hello 匿名機制，因此必須受到 hello 選擇 AMQP 1.0 用戶端。 Hello 初始連接信號交換期間，包括建立 hello 初始工作階段的匿名存取方式，不需要知道的建立者 hello 連接的服務匯流排發生。
+因此所選的 AMQP 1.0 用戶端必須支援 ANONYMOUS 機制。 匿名存取表示發生初始連線交握 (包括建立初始工作階段)，而服務匯流排不知道誰正在建立此連線。
 
-一旦建立 hello 連接和工作階段，附加 hello 連結 toohello *$cbs*節點及傳送嗨*put 語彙基元*要求是 hello，僅允許的作業。 必須設定有效的語彙基元，成功使用*put 語彙基元*要求 20 秒內某些實體節點建立 hello 連線之後，否則 hello 會單方面中斷連線的服務匯流排。
+建立連線和工作階段後，將連結附加至 *$cbs* 節點及傳送 *put-token* 要求是唯一允許的作業。 必須在建立連線後的 20 秒內使用對某個實體節點的 *put-token* 要求成功設定有效的權杖，否則服務匯流排會單方面中斷連線。
 
-hello 用戶端負責後續追蹤的權杖到期。 當權杖到期時，服務匯流排立即卸除所有連結 hello 連接 toohello 個別實體。 tooprevent hello，用戶端可以使用一個新隨時透過 hello 虛擬取代 hello 節點 hello 語彙基元*$cbs*管理節點與 hello 相同*put 語彙基元*軌跡，以及 hello，而不取得hello 裝載的方式流量在不同的連結上的流量。
+用戶端後續會負責追蹤權杖到期。 權杖到期時，服務匯流排會立即卸除個別實體連線上的所有連結。 若要避免這種情況，用戶端可以透過具有相同 *put-token* 軌跡的虛擬 *$cbs* 管理節點隨時使用新的權杖來取代節點的權杖，但不會干擾在不同連結上流動的承載流量。
 
 ## 後續步驟
 
-toolearn 深入了解 AMQP，請造訪下列連結查看 hello:
+若要深入了解 AMQP，請造訪下列連結：
 
 * [服務匯流排 AMQP 概觀]
 * [適用於服務匯流排分割的佇列和主題的 AMQP 1.0 支援]

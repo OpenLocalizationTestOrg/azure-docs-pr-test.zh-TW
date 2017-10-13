@@ -1,7 +1,7 @@
-* **PolicyBased:** PolicyBased Vpn 之前已呼叫 hello 傳統部署模型中的靜態路由閘道。 原則式 Vpn 會加密，並直接透過 IPsec 通道的封包根據 hello 搭配 hello 組合的位址前置詞，您的內部部署網路與 hello Azure VNet 之間設定 IPsec 原則。 hello 原則 （或傳輸選取器） 通常定義為存取清單中 hello VPN 裝置組態。 hello PolicyBased VPN 類型的值是*PolicyBased*。 使用時 PolicyBased VPN，請注意下列限制的 hello:
+* **PolicyBased︰** 原則式 VPN 先前在傳統部署模型內稱為靜態路由閘道。 原則式 VPN 會根據使用內部部署網路與 Azure VNet 之間的位址首碼組合所設定的 IPsec 原則，透過 IPsec 通道加密和導向封包。 原則 (或流量選取器) 通常定義為 VPN 裝置組態中的存取清單。 原則式 VPN 類型的值是 PolicyBased 。 使用 PolicyBased VPN，請記住下列限制︰
   
-  * PolicyBased Vpn 可以**只**hello 基本閘道 SKU 上使用。 這個 VPN 類型與其他閘道 SKU 不相容。
+  * PolicyBased VPN「只有」  在「基本」閘道 SKU 上才能使用。 這個 VPN 類型與其他閘道 SKU 不相容。
   * 使用 PolicyBased VPN 時，您只能有 1 個通道。
   * 您只能將 PolicyBased VPN 用於 S2S 連線，而且僅限用於特定組態。 大多數「VPN 閘道」組態都需要一個 RouteBased VPN。
-* **RouteBased**: RouteBased Vpn 之前已呼叫 hello 傳統部署模型中的動態路由閘道。 RouteBased Vpn hello IP 轉送或路由資料表 toodirect 封包傳送至其相對應的通道介面中使用 「 路由 」。 然後 hello 通道介面加密或解密出 hello 通道 hello 封包。 hello 原則 （或傳輸選取器），針對設定為任何-到-any RouteBased Vpn （或萬用字元）。 hello RouteBased VPN 類型的值是*RouteBased*。
+* **RouteBased︰**路由式 VPN 先前在傳統部署模型內稱為動態路由閘道。 路由式 Vpn 會使用 IP 轉送或路由表中的「路由」，直接封包至其對應的通道介面。 然後，通道介面會加密或解密輸入和輸出通道的封包。 路由式 VPN 的原則或流量選取器會設定為任何對任何 (或萬用字元)。 路由式 VPN 類型的值是 RouteBased 。
 

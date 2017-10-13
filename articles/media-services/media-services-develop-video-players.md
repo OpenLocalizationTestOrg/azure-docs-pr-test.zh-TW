@@ -1,6 +1,6 @@
 ---
-title: "aaaDevelop 影片播放器應用程式"
-description: "hello 主題提供的連結 tooPlayer 架構和外掛程式，您可以使用 toodevelop 自己的用戶端應用程式可以取用從媒體服務串流媒體。"
+title: "開發視訊播放器應用程式"
+description: "本主題會提供 Player Framework 和外掛程式的連結，可讓您開發自己的用戶端應用程式，以使用來自媒體服務的串流媒體。"
 author: Juliako
 manager: cfowler
 editor: 
@@ -14,34 +14,34 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/17/2017
 ms.author: juliako
-ms.openlocfilehash: a66daa4f006a1f05271cc9ed6a02ea7ee460321d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0e88baed8188890e80d4c2e7ee9d510fdabf6e43
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="develop-video-player-applications"></a>開發視訊播放器應用程式
-## <a name="overview"></a>概觀
-Azure Media Services 提供 hello 工具，您需要 toocreate 豐富、 動態的用戶端播放器應用程式，用於大部分平台，包括： iOS 裝置、 Android 裝置、 Windows、 Windows Phone、 Xbox 和機上方塊。 本主題也會提供連結 tooSDKs 和播放器架構，您可以使用 toodevelop 自己的用戶端應用程式可以取用從 Azure 媒體服務串流媒體。
+## <a name="overview"></a>Overview
+Azure 媒體服務提供一些工具，供您用來建立適用於大部分平台的豐富、動態用戶端播放器應用程式，此處所述的平台包括：iOS 裝置、Android 裝置、Windows、Windows Phone、Xbox 和機上盒。 本主題也會提供 SDK 和 Player Framework 連結，可讓您開發自己的用戶端應用程式，使用來自 Azure 媒體服務的串流媒體。
 
 >[!NOTE]
->AMS 帳戶建立時**預設**串流端點就會加入 tooyour 帳戶 hello**已停止**狀態。 串流處理您的內容，並採取利用動態封裝和動態加密，toostart hello 串流端點，您想要從中 toostream 內容已經在 hello toobe**執行**狀態。 
+>建立 AMS 帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 若要開始串流內容並利用動態封裝和動態加密功能，您想要串流內容的串流端點必須處於 [執行中] 狀態。 
  
-## <a name="azure-media-player"></a>Azure 媒體播放器
-[Azure Media Player](http://aka.ms/ampinfo) web 影片播放器 tooplay 後媒體內容從 Microsoft Azure Media Services 上建立各種不同的瀏覽器及裝置。 Azure Media Player 會使用業界標準，例如 HTML5、 媒體來源延伸模組 (MSE) 和加密媒體擴充功能 (EME) tooprovide 豐富的彈性串流處理體驗。 無法在裝置或瀏覽器使用這些標準時，Azure Media Player 則會使用 Flash 和 Silverlight 做為後援技術。 無論用 hello 播放技術，開發人員會有統一的 JavaScript 介面 tooaccess 應用程式開發介面。 這可讓內容由 Azure Media Services toobe 播放跨各種裝置和瀏覽器，而不需要任何額外的工作。
+## <a name="azure-media-player"></a>Azure Media Player
+[Azure 媒體播放器](http://aka.ms/ampinfo) 是一款網頁視訊播放器，可以在各種瀏覽器和裝置上播放 Microsoft Azure 媒體服務的媒體內容。 Azure Media Player 採用業界標準，例如 HTML5、媒體來源延伸模組 (MSE) 和加密媒體擴充功能 (EME)，提供豐富的調適性串流體驗。 無法在裝置或瀏覽器使用這些標準時，Azure Media Player 則會使用 Flash 和 Silverlight 做為後援技術。 不論使用何種播放技術，開發人員都會有統一的 JavaScript 介面來存取應用程式開發介面。 這樣我們就可以在各種裝置和瀏覽器上順利播放 Azure 媒體服務提供的內容。
 
-Microsoft Azure Media Services 可讓內容 toobe 提供 Smooth Streaming、 DASH 和 HLS 資料流格式 tooplay 備份內容。 Azure Media Player 會考量這些不同的格式，並自動播放 hello 根據 hello 平台/瀏覽器功能的最佳連結。 Microsoft Azure 媒體服務也允許利用 PlayReady 加密或 AES 128 位元信封加密，進行資產的動態加密。 只要設定正確，Azure Media Player 允許解密 PlayReady 和 AES 128 位元加密的內容。 
+我們可以利用 Microsoft Azure 媒體服務播放 DASH、Smooth Streaming 和 HLS 資料流等格式的內容。 Azure Media Player 會考量這些不同的格式，並根據平台/瀏覽器功能自動播放最合適的連結。 Microsoft Azure 媒體服務也允許利用 PlayReady 加密或 AES 128 位元信封加密，進行資產的動態加密。 只要設定正確，Azure Media Player 允許解密 PlayReady 和 AES 128 位元加密的內容。 
 
 其他資訊：
 
 * [Azure Media Player](http://aka.ms/ampinfo)
 * [Azure Media Player 文件](http://aka.ms/ampdocs) 
 * [Azure Media Player 開始使用部落格](https://azure.microsoft.com/blog/2015/04/15/announcing-azure-media-player/)
-* [登入，以最新的 Azure Media Player 的 hello toodate 向上 toostay](http://aka.ms/ampsignup)
+* [註冊以持續收到 Azure Media Player 的最新消息](http://aka.ms/ampsignup)
 * [新增功能要求、概念和意見反應](http://aka.ms/ampuservoice) 
 
 ## <a name="other-tools-for-creating-player-applications"></a>其他可用來建立播放器應用程式的工具
-您也可以使用任何下列 Sdk hello:
+您也可以使用任何下列 SDK：
 
 * [Smooth Streaming Client SDK](http://www.iis.net/downloads/microsoft/smooth-streaming) 
 * [Smooth Streaming Windows 市集應用程式](media-services-build-smooth-streaming-apps.md)
@@ -52,15 +52,15 @@ Microsoft Azure Media Services 可讓內容 toobe 提供 Smooth Streaming、 DAS
 * [XBOX Video Application Development](http://xbox.create.msdn.com/) 
 
 ## <a name="advertising"></a>廣告
-Azure Media Services 提供廣告插入 hello Windows 媒體平台的支援： 播放器架構。 具備廣告支援的播放器架構都適用於 Windows 8、Silverlight、Windows Phone 8 和 iOS 裝置。 每個播放器架構包含範例程式碼，為您示範如何 tooimplement 播放器應用程式。 目前有三種不同的廣告可以插入媒體中：
+Azure 媒體服務允許透過 Windows Media 平台插入廣告：Player Framework。 具備廣告支援的播放器架構都適用於 Windows 8、Silverlight、Windows Phone 8 和 iOS 裝置。 每一個播放器架構都有範例程式碼，教您如何實作播放器應用程式。 目前有三種不同的廣告可以插入媒體中：
 
-線性 – 暫停主要影片的 hello 的完整框架廣告
+線性 – 可暫停主要影片的完整框架廣告
 
-非線性 – hello 主要影片播放時顯示的重疊廣告，通常標誌或其他靜態影像放置於 hello 播放程式內。
+非線性 – 播放被當做主要影片而顯示的疊加廣告，通常是播放器中的標誌或其他靜態影像
 
-隨播 – 顯示 hello 播放程式之外的廣告
+隨播 – 顯示在播放器之外的廣告
 
-廣告可以放在任何時間點 hello 主要影片的時間線。 您必須告知 hello player tooplay 當 hello ad，以及哪些廣告 tooplay。 使用一組標準的 XML 格式檔案即可搞定：Video Ad Service Template (VAST)、Digital Video Multiple Ad Playlist (VMAP)、Media Abstract Sequencing Template (MAST) 以及 Digital Video Player Ad Interface Definition (VPAID)。 VAST 檔案會指定哪些廣告 toodisplay。 VMAP 檔案會指定何時 tooplay 各種廣告及包含 VAST XML。 MAST 檔案是另一個方式 toosequence 廣告也可包含 VAST XML。 VPAID 檔案會定義 hello 影片播放器與 hello 廣告或廣告伺服器之間的介面。 如需詳細資訊，請參閱 [插入廣告](https://msdn.microsoft.com/library/dn387398.aspx)。
+廣告可以放在主要影片時間軸的任何時間點。 您必須告訴播放器何時播放廣告以及要播放哪些廣告。 使用一組標準的 XML 格式檔案即可搞定：Video Ad Service Template (VAST)、Digital Video Multiple Ad Playlist (VMAP)、Media Abstract Sequencing Template (MAST) 以及 Digital Video Player Ad Interface Definition (VPAID)。 VAST 檔案會指定要顯示的廣告。 VMAP 檔案會指定何時播放各種廣告而且包含 VAST XML。 MAST 檔案是另一種廣告排序的方法，而且也包含 VAST XML。 VPAID 檔案會定義影片播放器廣告和廣告或廣告伺服器之間的介面。 如需詳細資訊，請參閱 [插入廣告](https://msdn.microsoft.com/library/dn387398.aspx)。
 
 如需了解即時資料流視訊的隱藏式字幕和廣告支援，請參閱 [支援的隱藏式輔助字幕和廣告插入標準](https://msdn.microsoft.com/library/c49e0b4d-357e-4cca-95e5-2288924d1ff3#caption_ad)。
 

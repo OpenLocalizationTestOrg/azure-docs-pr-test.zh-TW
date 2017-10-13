@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: d32547c8018dd1f99c992e95a01d2711d460a261
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f36f16a7bb00ace9fd5164eb38ba77f015f22f5c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-kerberos-constrained-delegation-kcd-on-a-managed-domain"></a>在受管理的網域上設定 Kerberos 限制委派 (KCD)
-許多應用程式需要 tooaccess hello hello 使用者內容中的資源。 Active Directory 支援稱為 Kerberos 委派的機制，可用於此使用案例。 此外，您可以限制委派，以便只有特定的資源可存取 hello hello 使用者內容中。 Azure AD Domain Services 受管理的網域與傳統Active Directory 網域不同，因為前者的權限更為嚴格且更為安全。
+許多應用程式都需要以使用者的登入身分存取資源。 Active Directory 支援稱為 Kerberos 委派的機制，可用於此使用案例。 再者，您可以限制委派，讓使用者的登入身分只能用來存取特定資源。 Azure AD Domain Services 受管理的網域與傳統Active Directory 網域不同，因為前者的權限更為嚴格且更為安全。
 
-本文章將示範如何 tooconfigure kerberos 限制委派，在 Azure AD 網域服務受管理的網域。
+此文章說明如何在 Azure AD Domain Services 受管理的網域上設定 Krberos 限制委派。
 
 ## <a name="kerberos-constrained-delegation-kcd"></a>Kerberos 限制委派 (KCD)
-Kerberos 委派可讓帳戶 tooimpersonate 另一個安全性主體 （例如使用者） tooaccess 資源。 請考慮存取 hello 使用者內容中的後端 web 應用程式開發介面的 web 應用程式。 在此範例中，hello （hello 的服務帳戶或電腦/機器帳戶的內容中執行） 的 web 應用程式會模擬 hello 使用者存取 hello 資源 (後端 web 應用程式開發介面) 時。 Kerberos 委派是不安全的因為它並未限制資源 hello 模擬帳戶可以存取 hello hello 使用者內容中的 hello。
+Kerberos 委派可讓帳戶模擬另一個安全性主體 (例如使用者) 以存取資源。 考慮一個可以使用者登入身分存取後端 Wb API 的 Web 應用程式。 在此案例中，Web 應用程式 (以服務帳戶身分或電腦/機器帳戶身分執行) 在存取資源 (後端 Web API) 時會模擬使用者。 Kerberos 委派不安全，因為它不會限制使用者登入身分中的模擬帳戶可存取的資源。
 
-Kerberos 限制委派 (KCD) 會限制的 hello hello 代表使用者執行的服務/資源 toowhich hello 指定的伺服器可採取動作。 傳統的 KCD 的服務需要網域系統管理員權限 tooconfigure 網域帳戶，它會限制 hello 帳戶 tooa 單一網域。
+Kerberos 限制委派 (KCD) 會限制指定的伺服器可代表使用者存取的服務/資源。 傳統 KCD 需要網域系統管理員權限才能設定服務的網域帳戶，而且會將該帳戶限制在單一網域。
 
-傳統 KCD 也有一些問題。 在舊版作業系統 hello 網域系統管理員設定 hello 服務的位置，hello 服務系統管理員有哪些前端服務委派 toohello 他們所擁有的資源服務不實用的方式 tooknow。 和任何前端服務都可以委派 tooa 資源服務代表一個潛在的攻擊點。 如果裝載前端服務的伺服器已遭到洩露，而且它是設定的 toodelegate tooresource 服務，可能也會有 hello 資源服務。
+傳統 KCD 也有一些問題。 在較早的作業系統中，當網域系統管理員設定服務時，服務系統管理員沒有實用的方式可知道哪個前端服務被委派給他們擁有的資源服務。 此外，任何可委派給資源服務的前端服務都會暴露一個潛在的受攻擊點。 若裝載前端服務的伺服器被入侵，而且它是設定為委派給資源服務，則資源服務可能也會被入侵。
 
 > [!NOTE]
 > 在 Azure AD Domain Services 受管理的網域上，您沒有網域系統管理員權限。 因此，**無法在受管理的網域上設定傳統 KCD**。 使用此文章中所述的資源型 KCD。 此機制也比較安全。
@@ -38,12 +38,12 @@ Kerberos 限制委派 (KCD) 會限制的 hello hello 代表使用者執行的服
 >
 
 ## <a name="resource-based-kerberos-constrained-delegation"></a>資源型 Kerberos 限制委派
-在 Windows Server 2012 R2 和 Windows Server 2012 中，已從 hello 網域系統管理員 toohello 服務系統管理員移轉的 hello 服務的 hello 能力 tooconfigure 限制委派。 如此一來，hello 後端服務系統管理員可以允許或拒絕前端服務。 此模型稱為「資源型 Kerberos 限制委派」。
+在 Windows Server 2012 R2 與 Windows Server 2012 中，為服務設定限制委派的能力已從網域系統管理員轉移至服務系統管理員。 使用這種方式，後端服務系統管理員可以允許或拒絕前端服務。 此模型稱為「資源型 Kerberos 限制委派」。
 
-資源型 KCD 是使用 PowerShell 所設定的。 您可以使用 hello Set-adcomputer 或 Set-aduser cmdlet，根據 hello 模擬帳戶是電腦帳戶或使用者帳戶/服務帳戶。
+資源型 KCD 是使用 PowerShell 所設定的。 視模擬的帳戶是電腦帳戶或使用者帳戶/服務帳戶而定，您必須使用 Set-ADComputer 或 Set-ADUser Cmdlet。
 
 ### <a name="configure-resource-based-kcd-for-a-computer-account-on-a-managed-domain"></a>為受管理的網域上的電腦帳戶設定資源型 KCD
-假設您擁有 hello 電腦上執行的 web 應用程式 ' contoso100-webapp.contoso100.com'。 它需要 tooaccess hello 資源 (web API 上執行 ' contoso100-api.contoso100.com') 的網域使用者的 hello 內容中。 以下是針對此案例設定資源型 KCD 的方式。
+假設您有在電腦 'contoso100-webapp.contoso100.com' 上執行的 Web 應用程式。 它需要以網域使用者的登入身分存取資源 ('contoso100-api.contoso100.com' 上執行的 Web API)。 以下是針對此案例設定資源型 KCD 的方式。
 
 ```
 $ImpersonatingAccount = Get-ADComputer -Identity contoso100-webapp.contoso100.com
@@ -51,7 +51,7 @@ Set-ADComputer contoso100-api.contoso100.com -PrincipalsAllowedToDelegateToAccou
 ```
 
 ### <a name="configure-resource-based-kcd-for-a-user-account-on-a-managed-domain"></a>為受管理的網域上的使用者帳戶設定資源型 KCD
-假設您有 web 應用程式執行為服務帳戶 'appsvc' 以及它 hello 網域使用者內容中需要 tooaccess hello 資源 (web API 執行為服務帳戶-'backendsvc')。 以下是針對此案例設定資源型 KCD 的方式。
+假設您有以服務帳戶 'appsvc' 執行的 Web 應用程式，且它需要以網域使用者登入身分存取資源 (以服務帳戶 - 'backendsvc' 執行的 Web API)。 以下是針對此案例設定資源型 KCD 的方式。
 
 ```
 $ImpersonatingAccount = Get-ADUser -Identity appsvc

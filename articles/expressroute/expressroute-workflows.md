@@ -1,6 +1,6 @@
 ---
-title: "設定 ExpressRoute 電路 aaaWorkflows |Microsoft 文件"
-description: "此頁面會引導您完成設定 ExpressRoute 電路和對等互連的 hello 工作流程"
+title: "設定 ExpressRoute 線路的工作流程 | Microsoft Docs"
+description: "此頁面會引導您完成設定 ExpressRoute 線路的工作流程"
 documentationcenter: na
 services: expressroute
 author: cherylmc
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/12/2017
 ms.author: cherylmc
-ms.openlocfilehash: 8e1dfc137401e0d6d53608ae6c8de0085e182eba
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: cba1b2cfee379e7d2b079bcb3089981ef1044d66
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="expressroute-workflows-for-circuit-provisioning-and-circuit-states"></a>ExpressRoute 工作流程線路佈建和線路狀態
-此頁面會引導您透過 hello 服務佈建和以高層級的路由設定工作流程。
+這個頁面以高階觀點引導您完成服務佈建和路由設定的工作流程。
 
 ![](./media/expressroute-workflows/expressroute-circuit-workflow.png)
 
-hello 圖和相對應的步驟會顯示 hello 工作必須遵循順序 toohave ExpressRoute 循環佈建的端對端。 
+下圖和對應的步驟顯示佈建端對端 ExpressRoute 線路所必須執行的工作。 
 
-1. 使用 PowerShell tooconfigure ExpressRoute 電路。 遵循指示進行 hello hello[建立 ExpressRoute 電路](expressroute-howto-circuit-classic.md)文件以取得更多詳細資料。
-2. 順序從 hello 服務提供者的連線。 此過程視情況而異。 如需有關如何連絡您的連線服務提供者 tooorder 連線。
-3. 請確定，hello 循環已佈建已順利驗證 hello ExpressRoute 循環佈建透過 PowerShell 的狀態。 
-4. 設定路由網域。 如果連線提供者為您管理第 3 層，他們會為您的線路設定路由。 如果您連線服務提供者只提供第 2 層服務，您必須設定每 hello 中所述的指導方針路由[路由需求](expressroute-routing.md)和[路由組態](expressroute-howto-routing-classic.md)頁面。
+1. 使用 PowerShell 來設定 ExpressRoute 線路。 如需更多詳細資料，請依照 [建立 ExpressRoute 線路](expressroute-howto-circuit-classic.md) 一文中的指示進行。
+2. 向服務提供者訂購連線能力。 此過程視情況而異。 如需有關如何訂購連線能力的詳細資訊，請連絡連線提供者。
+3. 請透過 PowerShell 驗證 ExpressRoute 線路佈建狀態，以確定線路已佈建成功。 
+4. 設定路由網域。 如果連線提供者為您管理第 3 層，他們會為您的線路設定路由。 如果連線提供者只提供第 2 層服務，您必須根據[路由需求](expressroute-routing.md)和[路由組態](expressroute-howto-routing-classic.md)頁面所述的指導方針來設定路由。
    
-   * 啟用 Azure 私人互連-您必須啟用此對等互連 tooconnect tooVMs / 雲端服務部署在虛擬網路內。
-   * 啟用 Azure 公用對等互連-您必須啟用 Azure 公用對等互連如果您想 tooconnect tooAzure 服務裝載於公用 IP 位址。 如果您選擇的 Azure 私人互連的 tooenable 預設路由，這是需求 tooaccess Azure 資源。
-   * 啟用 Microsoft 對等互連-您必須啟用 Office 365 和 Dynamics 365 這個 tooaccess。 
+   * 啟用 Azure 私用對等 - 您必須啟用此對等，才能連接到部署在虛擬網路內的 VM / 雲端服務。
+   * 啟用 Azure 公用對等 - 如果您想要連接到裝載於公用 IP 位址的 Azure 服務，則必須啟用 Azure 公用對等。 如果您已選擇啟用 Azure 私用對等的預設路由，則這是存取 Azure 資源的條件。
+   * 啟用 Microsoft 對等 - 您必須啟用此對等，才能存取 Office 365 和 Dynamics 365。 
      
      > [!IMPORTANT]
-     > 您必須確定您使用不同的 proxy 邊緣 tooconnect tooMicrosoft 比 hello 您用於 hello 網際網路。 使用的 hello hello 網際網路和 ExpressRoute 的相同邊緣會導致非對稱路由，而導致您網路的連線中斷。
+     > 必須確定您使用個別的 Proxy / 邊緣來連接到 Microsoft，而不是您用於網際網路的 Proxy / 邊緣。 ExpressRoute 和網際網路使用相同的邊緣會導致路由不對稱，並造成網路連線中斷。
      > 
      > 
      
      ![](./media/expressroute-workflows/routing-workflow.png)
-5. 連結虛擬網路 tooExpressRoute 電路-您可以將虛擬網路 tooyour ExpressRoute 電路的連結。 請依照下列指示[toolink Vnet](expressroute-howto-linkvnet-arm.md) tooyour 循環。 這些 Vnet 可以在 hello 相同 Azure 訂用帳戶 hello ExpressRoute 循環，或可以位於不同的訂用帳戶。
+5. 將虛擬網路連結到 ExpressRoute 線路 - 您可以將虛擬網路連結到 ExpressRoute 線路。 請依照指示 [連結 VNet](expressroute-howto-linkvnet-arm.md) 到您的線路。 這些 VNet 可以與 ExpressRoute 線路位於相同的 Azure 訂用帳戶中，也可以在不同的訂用帳戶中。
 
 ## <a name="expressroute-circuit-provisioning-states"></a>ExpressRoute 線路佈建狀態
 每個 ExpressRoute 線路有兩種狀態：
@@ -50,62 +50,62 @@ hello 圖和相對應的步驟會顯示 hello 工作必須遵循順序 toohave E
 * 服務提供者佈建狀態
 * 狀態
 
-Status 代表 Microsoft 的佈建狀態。 這個屬性是設定 tooEnabled，當您建立 Expressroute 電路
+Status 代表 Microsoft 的佈建狀態。 這個屬性會在您建立 Expressroute 循環時設定為 [Enabled]
 
-hello 連線提供者佈建狀態代表 hello hello 連線提供者端的狀態。 可能是 *NotProvisioned*、*Provisioning* 或 *Provisioned*。 hello ExpressRoute 電路必須位於已佈建狀態，以便您 toobe 無法 toouse 它。
+連線提供者佈建狀態代表連線提供者那端的狀態。 可能是 *NotProvisioned*、*Provisioning* 或 *Provisioned*。 ExpressRoute 線路必須處於 Provisioned 狀態，才可供您使用。
 
 ### <a name="possible-states-of-an-expressroute-circuit"></a>ExpressRoute 線路的可能狀態
-此區段會列出 hello 的 ExpressRoute 電路的可能狀態。
+本節列出 ExpressRoute 線路的可能狀態。
 
 **在建立時**
 
-您會看見 hello ExpressRoute 電路 hello 下列狀態，只要您在執行 hello PowerShell cmdlet toocreate hello ExpressRoute 電路。
+執行 PowerShell Cmdlet 建立 ExpressRoute 線路後，您很快就會看到 ExpressRoute 線路處於下列狀態。
 
     ServiceProviderProvisioningState : NotProvisioned
     Status                           : Enabled
 
 
-**當連線服務提供者處於 hello 的佈建 hello 循環的程序**
+**當連線提供者正在佈建線路時**
 
-您會看到 hello ExpressRoute 電路 hello 下列狀態，只要您在傳遞 hello 服務金鑰 toohello 連線服務提供者，並在開始佈建程序的 hello。
+當您將服務金鑰傳遞給連線提供者且他們也啟動佈建程序時，您快很就會看到 ExpressRoute 線路處於下列狀態。
 
     ServiceProviderProvisioningState : Provisioning
     Status                           : Enabled
 
 
-**當連線服務提供者已完成佈建程序的 hello**
+**當連線提供者完成佈建程序時**
 
-您會看到 hello hello 下列狀態，只要 hello 連線服務提供者已完成 hello 佈建程序中的 ExpressRoute 電路。
+當連線提供者完成佈建程序後，您快很就會看到 ExpressRoute 線路處於下列狀態。
 
     ServiceProviderProvisioningState : Provisioned
     Status                           : Enabled
 
-佈建並啟用僅限 hello 狀態 hello 循環可在適用於您 toobe 無法 toouse 它。 如果您使用第 2 層提供者，則只有當線路處於此狀態下，您才能設定路由。
+線路只能處於 Provisioned 和 Enabled 狀態下，才可供您使用。 如果您使用第 2 層提供者，則只有當線路處於此狀態下，您才能設定路由。
 
-**當連線服務提供者正在取消佈建 hello 循環**
+**當連線提供者正在取消佈建循環時**
 
-如果您要求 hello 服務提供者 toodeprovision hello ExpressRoute 循環，您會看到 hello 循環設定 toohello 遵循 hello 服務提供者完成 hello 解除佈建程序之後的狀態。
+如果您要求服務提供者取消佈建 ExpressRoute 循環，則當服務提供者完成取消佈建程序後，您將會看到已將循環設定為下列狀態。
 
     ServiceProviderProvisioningState : NotProvisioned
     Status                           : Enabled
 
 
-您可以選擇 toore 啟用它，如果需要或是執行 PowerShell 指令程式 toodelete hello 循環。  
+如有需要，您可以選擇重新啟用線路，或執行 PowerShell Cmdlet 刪除線路。  
 
 > [!IMPORTANT]
-> 如果您執行 hello PowerShell cmdlet toodelete hello 循環 hello ServiceProviderProvisioningState 時佈建 」 或 「 已佈建 hello 作業將會失敗。 請先使用您的連線提供者 toodeprovision hello ExpressRoute 循環，然後刪除 hello 循環。 Microsoft 將持續 toobill hello 循環，直到您執行 hello PowerShell cmdlet toodelete hello 循環。
+> 如果您在 ServiceProviderProvisioningState 為 Provisioning 或 Provisioned 時執行 PowerShell Cmdlet 來刪除循環，作業將會失敗。 請和您的連線提供者合作，先取消佈建 ExpressRoute 循環，然後再刪除循環。 Microsoft 將持續收取循環費用，直到您執行 PowerShell Cmdlet 來取消循環為止。
 > 
 > 
 
 ## <a name="routing-session-configuration-state"></a>路由工作階段組態狀態
-hello BGP 佈建狀態可讓您得知是否已經啟用 hello Microsoft edge hello BGP 工作階段。 hello 狀態必須啟用您 toobe 無法 toouse hello 對等互連。
+BGP 佈建狀態可讓您知道 Microsoft 邊緣是否已啟用 BGP 工作階段。 必須是已啟用的狀態，您才能使用對等。
 
-它是特別為 Microsoft 對等互連重要 toocheck hello BGP 工作階段狀態。 在加法 toohello BGP 佈建狀態，則呼叫另一個狀態*公告公用首碼狀態*。 hello 公告公用首碼狀態必須是在*設定*狀態，而同時向上 hello BGP 工作階段 toobe 以及您路由 toowork 端對端。 
+務必檢查 BGP 工作階段狀態，特別是 Microsoft 對等。 除了 BGP 佈建狀態，還有另一個狀態稱為 *已公告公用首碼狀態*。 已公告公用首碼狀態必須是 *已設定* 狀態，BGP 工作階段才能啟動，路由也才能端對端運作。 
 
-如果 hello 公告公用首碼狀態會設 tooa*驗證所需*狀態時，未啟用 hello BGP 工作階段，如 hello 公告前置詞不符合 hello 中 hello 路由所登錄的任何數字。 
+如果已公告公用首碼狀態設為 *需要驗證* 狀態，則不會啟用 BGP 工作階段，因為已公告的首碼不符合任何路由登錄中的 AS 編號。 
 
 > [!IMPORTANT]
-> Hello 公告公用首碼狀態是否在*進行手動驗證*狀態時，您必須開啟支援票證給[Microsoft 支援服務](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)並提供您自己沿著通告 hello IP 位址的辨識項hello 相關聯自發系統編號。
+> 如果公告的公用首碼狀態是 *手動驗證* 狀態，您必須向 [Microsoft 支援](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade) 開啟支援票證，並提供您擁有公告的 IP 位址的證明，以及相關聯的自發系統編號。
 > 
 > 
 
@@ -114,5 +114,5 @@ hello BGP 佈建狀態可讓您得知是否已經啟用 hello Microsoft edge hel
   
   * [建立 ExpressRoute 線路](expressroute-howto-circuit-arm.md)
   * [設定路由](expressroute-howto-routing-arm.md)
-  * [連結的 VNet tooan ExpressRoute 電路](expressroute-howto-linkvnet-arm.md)
+  * [將 VNet 連結到 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 

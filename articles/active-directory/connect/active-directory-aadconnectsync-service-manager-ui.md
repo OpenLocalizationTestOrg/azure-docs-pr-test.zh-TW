@@ -15,24 +15,24 @@ ms.topic: article
 ms.date: 07/13/2017
 ms.author: billmath
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: d33f02822097aa7f83042606ba46fd533e85ac23
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 05dd28bf850a84ff4644c46a45bd941b7c6e7d01
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="introduction-toohello-azure-ad-connect-synchronization-service-manager-ui"></a>簡介 toohello Azure AD Connect 同步處理服務管理員 UI
+# <a name="introduction-to-the-azure-ad-connect-synchronization-service-manager-ui"></a>Azure AD Connect Synchronization Service Manager UI 簡介
 
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/ssmui.png)
 
-hello**同步處理服務管理員**UI 是使用的 tooconfigure 更進階的 hello 同步處理引擎及 toosee hello 操作層面 hello 服務的層面。
+**Synchronization Service Manager** UI 是用來設定更進階的同步處理引擎層面，以及查看服務的操作層面。
 
-啟動 hello**同步處理服務管理員**UI hello 從 [開始] 功能表。 它會命名為**同步處理服務**和位於 hello **Azure AD Connect**群組。  
+您可以從 [開始] 功能表啟動 **Synchronization Service Manager** UI。 它會命名為「同步處理服務」，而且可在 **Azure AD Connect** 群組中找到。  
 ![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/startmenu.png)
 
-按一下頂端的 深入了解不同的索引標籤 hello hello UI 中此主題 toolearn hello hello 連結。
+按一下本主題頂端的連結，以深入了解 UI 中不同的索引標籤。
 
 ## <a name="next-steps"></a>後續步驟
-深入了解 hello [Azure AD Connect 同步處理](active-directory-aadconnectsync-whatis.md)組態。
+深入了解 [Azure AD Connect 同步](active-directory-aadconnectsync-whatis.md) 組態。
 
 深入了解 [整合內部部署身分識別與 Azure Active Directory](active-directory-aadconnect.md)。

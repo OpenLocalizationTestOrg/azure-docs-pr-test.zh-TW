@@ -1,6 +1,6 @@
 ---
-title: "aaaManage 服務網狀架構中的多個環境 |Microsoft 文件"
-description: "Service Fabric 應用程式可以執行的叢集大小介於一個機器 toothousands 的機器。 在某些情況下，您會想 tooconfigure 以不同的方式為這些不同環境的應用程式。 本文件涵蓋如何 toodefine 不同的應用程式參數，每個環境。"
+title: "管理 Service Fabric 中的多個環境 |Microsoft Docs"
+description: "Service Fabric 應用程式可以在任意大小 (從一部電腦至數千部電腦) 的叢集上執行。 在某些情況下，您會想要針對各種環境以不同的方式設定應用程式。 本文說明如何定義每個環境的不同應用程式參數。"
 services: service-fabric
 documentationcenter: .net
 author: mikkelhegn
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 08/18/2017
 ms.author: mikkelhegn
-ms.openlocfilehash: 2b3327e0e1a3bbd35a50835e720619f308b1b501
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9317b3f0b7984e795c4205360ed58e2c4f3fbcb1
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="manage-application-parameters-for-multiple-environments"></a>管理多個環境的應用程式參數
-您可以從一個 toomany 千分位機器的任何位置使用，以建立 Azure Service Fabric 叢集。 應用程式二進位檔可以透過此各式各樣的環境，必須修改才能執行，而您通常想 tooconfigure hello 應用程式不同，根據您要部署至電腦的 hello 數目而定。
+您可以使用任意數量的電腦 (從一至數千部) 來建立 Service Fabric 叢集。 雖然不需針對各種環境進行修改，即可執行應用程式二進位檔，但您通常會視您要部署的機器數目，以不同的方式設定應用程式。
 
-簡單來說，請考慮無狀態服務的 `InstanceCount` 。 當您在 Azure 中執行應用程式時，您通常會想 tooset 此參數 toohello 特殊值為"-1"。 此組態可確保您的服務 hello 叢集 （或 hello 節點類型，如果您已設定放置條件約束中的每個節點） 中的每個節點上執行。 不過，此設定不是適用於單一電腦叢集因為您不能有多個相同接聽 hello 的處理序在單一機器上的端點。 相反地，您通常設定`InstanceCount`太"1 的"。
+簡單來說，請考慮無狀態服務的 `InstanceCount` 。 當您在 Azure 中執行應用程式時，您通常要將此參數設定為特殊值 "-1"。 這樣設定可確保您的服務在叢集中的每個節點上執行 (或節點中的每個節點，如果您已設定放置條件約束)。 不過，此設定不適用於單一電腦叢集，因為您不能有多個在單一電腦的相同端點上接聽的程序。 然而，您通常會將 `InstanceCount` 設定為 "1"。
 
 ## <a name="specifying-environment-specific-parameters"></a>指定環境特有的參數
-hello 方案 toothis 組態問題是一組參數的預設服務和應用程式參數檔案，以填入這些參數的值指定的環境。 預設的服務和應用程式參數設定於 hello 應用程式，但服務資訊清單。 hello hello ServiceManifest.xml 和 ApplicationManifest.xml 檔案的結構描述定義會隨 hello Service Fabric SDK 和工具太*C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*.
+此設定問題的解決方案是一組參數化預設服務和應用程式參數檔案，其中會填入指定之環境的參數值。 預設的服務和應用程式參數是在應用程式和服務資訊清單之中設定。 ServiceManifest.xml 和 ApplicationManifest.xml 檔案的結構描述定義是和 Service Fabric SDK 及工具一起安裝在 *C:\Program Files\Microsoft SDKs\Service Fabric\schemas\ServiceFabricServiceModel.xsd*。
 
 ### <a name="default-services"></a>預設服務
-Service Fabric 應用程式是由服務執行個體集合所組成。 在正在 toocreate 空白的應用程式可能然後動態地建立所有服務執行個體，大部分的應用程式會有一組時，應該一律建立 hello 應用程式具現化的核心服務。 這些是參考的 tooas 「 預設服務 」。 指定在 hello 應用程式資訊清單，其中含有包含方括號中的每個環境設定的預留位置：
+Service Fabric 應用程式是由服務執行個體集合所組成。 雖然您可以先建立一個空的應用程式，然後再動態建立所有的服務執行個體，但是大部分的應用程式都有一組應一律在應用程式具現化時建立的核心服務。 這些稱為「預設服務」。 其在應用程式資訊清單中指定，而方括號中包含每個環境組態的預留位置：
 
 ```xml
   <DefaultServices>
@@ -49,7 +49,7 @@ Service Fabric 應用程式是由服務執行個體集合所組成。 在正在 
   </DefaultServices>
 ```
 
-每個具名參數的 hello 必須定義在 hello hello 應用程式資訊清單參數項目：
+必須在應用程式資訊清單的 [參數] 元素中定義每個具名參數：
 
 ```xml
     <Parameters>
@@ -59,24 +59,24 @@ Service Fabric 應用程式是由服務執行個體集合所組成。 在正在 
     </Parameters>
 ```
 
-hello DefaultValue 屬性指定 hello 值 toobe hello 缺乏更特定參數用於指定的環境。
+DefaultValue 屬性指定當指定的環境缺少更特定的參數時所要使用的值。
 
 > [!NOTE]
-> 並非所有的服務執行個體參數都適用於每個環境組態。 在 hello 上述範例中，hello LowKey，HighKey hello 服務資料分割配置的值必須明確定義 hello 服務的所有執行個體因為 hello 資料分割範圍是 hello 資料定義域而言不 hello 環境的函式。
+> 並非所有的服務執行個體參數都適用於每個環境組態。 在上述範例中，已針對服務的所有執行個體明確定義服務資料分割配置的 LowKey 和 HighKey 值，因為資料分割範圍是資料網域 (而不是環境) 的函數。
 > 
 > 
 
 ### <a name="per-environment-service-configuration-settings"></a>每個環境的服務組態設定
-hello [Service Fabric 應用程式模型](service-fabric-application-model.md)啟用 services tooinclude 設定封裝包含在執行階段可讀取的自訂金鑰-值組。 這些設定的 hello 值可以也來區別環境藉由指定`ConfigOverride`hello 應用程式資訊清單中。
+[Service Fabric 應用程式模型](service-fabric-application-model.md) 可讓服務包含組態封裝，內含可在執行階段讀取的自訂關鍵值組。 在應用程式資訊清單中指定 `ConfigOverride` ，也可依照環境區分這些設定的值。
 
-假設您有下列 hello 的 hello Config\Settings.xml 檔案中設定的 hello`Stateful1`服務：
+假設您在 `Stateful1` 服務的 Config\Settings.xml 檔案中有下列設定：
 
 ```xml
   <Section Name="MyConfigSection">
      <Parameter Name="MaxQueueSize" Value="25" />
   </Section>
 ```
-toooverride 對特定的應用程式環境，這個值建立`ConfigOverride`當您匯入 hello hello 應用程式資訊清單中的服務資訊清單。
+若要覆寫特定應用程式/環境組的這個值，請在應用程式資訊清單中匯入服務資訊清單時建立 `ConfigOverride` 。
 
 ```xml
   <ConfigOverrides>
@@ -89,16 +89,16 @@ toooverride 對特定的應用程式環境，這個值建立`ConfigOverride`當�
      </ConfigOverride>
   </ConfigOverrides>
 ```
-接著可如上所示，依照環境設定此參數。 您可以藉由宣告它 hello 參數 hello 應用程式資訊清單區段中和在 hello 應用程式參數檔案中指定環境特定值。
+接著可如上所示，依照環境設定此參數。 在應用程式資訊清單的參數區段中加以宣告，並在應用程式參數檔案中指定環境特有的值，即可執行這項操作。
 
 > [!NOTE]
-> 在服務組態設定的 hello 情況下，有三個位置的索引鍵的 hello 值可以設定的位置： hello 服務組態的封裝、 hello 應用程式資訊清單和 hello 應用程式參數檔案。 Service Fabric 會一律選擇 hello 應用程式參數檔案從第一次 （如果有指定），然後 hello 應用程式資訊清單，並最後 hello 組態封裝。
+> 在服務組態設定的情況下，有三個地方可以設定索引鍵的值：服務組態封裝、應用程式資訊清單和應用程式參數檔案。 Service Fabric 將一律先從應用程式參數檔案 (若已指定) 進行選擇，然後從應用程式資訊清單選擇，最後再從組態封裝選擇。
 > 
 > 
 
 ### <a name="setting-and-using-environment-variables"></a>設定及使用環境變數 
-您可以指定和 hello ServiceManifest.xml 檔案中設定環境變數，然後覆寫這些每個執行個體為基礎的 hello ApplicationManifest.xml 檔案中。
-hello 下面範例是兩個環境變數，設定一個值，並會覆寫其他 hello。 您可以使用應用程式參數 tooset 環境變數中的值 hello 相同方式，這些已用來設定覆寫。
+您可以在 ServiceManifest.xml 檔案中指定和設定環境變數，然後依據個別執行個體，在 ApplicationManifest.xml 檔案中覆寫這些變數。
+以下範例顯示兩個環境變數，其中一個已設定值，另一個會被覆寫。 您可以使用應用程式參數來設定環境變數值，其方式與將這些用於組態覆寫時一樣。
 
 ```xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -127,7 +127,7 @@ hello 下面範例是兩個環境變數，設定一個值，並會覆寫其他 h
   <DataPackage Name="MyData" Version="DataVersion1" />
 </ServiceManifest>
 ```
-hello ApplicationManifest.xml 中，參考 hello 程式碼封裝在 hello 與 hello ServiceManifest 中的 toooverride hello 環境變數`EnvironmentOverrides`項目。
+若要覆寫 ApplicationManifest.xml 中的環境變數，請使用 `EnvironmentOverrides` 元素來參考 ServiceManifest 中的程式碼封裝。
 
 ```xml
   <ServiceManifestImport>
@@ -137,14 +137,14 @@ hello ApplicationManifest.xml 中，參考 hello 程式碼封裝在 hello 與 he
     </EnvironmentOverrides>
   </ServiceManifestImport>
  ``` 
- 建立名為服務執行個體的 hello 之後您可以從程式碼存取 hello 環境變數。 例如在 C# 中，您可以設定下列 hello
+ 在具名服務執行個體建立之後，您便可以從程式碼存取環境變數。 例如，在 C# 中，您可以執行：
 
 ```csharp
     string EnvVariable = Environment.GetEnvironmentVariable("MyEnvVariable");
 ```
 
 ### <a name="service-fabric-environment-variables"></a>Service Fabric 環境變數
-Service Fabric 具有已針對每個服務執行個體設定的內建環境變數。 hello 的環境變數的完整清單是下面其中 hello 粗體會於 hello 是您將使用您的服務，在 hello 其他正在 Service Fabric 執行階段使用。 
+Service Fabric 具有已針對每個服務執行個體設定的內建環境變數。 完整的環境變數清單如下，其中以粗體顯示的項目是您將在您的服務中使用的項目，而其他項目則是由 Service Fabric 執行階段使用。 
 
 * Fabric_ApplicationHostId
 * Fabric_ApplicationHostType
@@ -166,7 +166,7 @@ Service Fabric 具有已針對每個服務執行個體設定的內建環境變�
 * Fabric_ServicePackageVersionInstance
 * FabricPackageFileName
 
-hello 程式碼 belows 示範如何 toolist hello Service Fabric 環境變數
+下面的程式碼顯示如何列出 Service Fabric 環境變數
  ```csharp
     foreach (DictionaryEntry de in Environment.GetEnvironmentVariables())
     {
@@ -176,7 +176,7 @@ hello 程式碼 belows 示範如何 toolist hello Service Fabric 環境變數
         }
     }
 ```
-hello 以下是範例呼叫的應用程式類型的環境變數`GuestExe.Application`與服務類型呼叫`FrontEndService`在本機開發電腦上執行時。
+以下是具有服務類型 `FrontEndService` 之應用程式類型 `GuestExe.Application` 的範例環境變數 (當在您的本機開發電腦上執行時)。
 
 * **Fabric_ApplicationName = fabric:/GuestExe.Application**
 * **Fabric_CodePackageName = Code**
@@ -185,7 +185,7 @@ hello 以下是範例呼叫的應用程式類型的環境變數`GuestExe.Applica
 * **Fabric_NodeName = _Node_2**
 
 ### <a name="application-parameter-files"></a>應用程式參數檔案
-hello Service Fabric 應用程式專案可以包含一或多個應用程式參數檔案。 每個定義 hello 特定參數的值 hello hello 應用程式資訊清單中所定義：
+Service Fabric 應用程式專案可以包含一或多個應用程式參數檔案。 每個檔案會為應用程式資訊清單中定義的參數定義特定值：
 
 ```xml
     <!-- ApplicationParameters\Local.xml -->
@@ -202,25 +202,25 @@ hello Service Fabric 應用程式專案可以包含一或多個應用程式參�
 
 ![方案總管中的應用程式參數檔案][app-parameters-solution-explorer]
 
-toocreate 參數檔案，只要複製和貼上現有並為它提供新名稱。
+若要建立參數檔案，只需複製並貼上現有的參數檔案並為它提供新名稱。
 
 ## <a name="identifying-environment-specific-parameters-during-deployment"></a>在部署期間識別環境特有的參數
-在部署階段，您會需要 toochoose hello 適當的參數檔案 tooapply 與您的應用程式。 您可以透過 Visual Studio 中的 hello 發行對話方塊，或透過 PowerShell。
+在部署階段，您需選擇要套用於您的應用程式的適當參數檔案。 您可以透過 Visual Studio 中的 [發佈] 對話方塊或透過 PowerShell 進行。
 
 ### <a name="deploy-from-visual-studio"></a>從 Visual Studio 部署
-當您在 Visual Studio 發行您的應用程式時，您可以選擇從 hello 參數可用檔案清單。
+您可以在 Visual Studio 中發佈應用程式時，從可用的參數檔案清單進行選擇。
 
-![在 hello 發行對話方塊中選擇參數檔案][publishdialog]
+![在 [發佈] 對話方塊中選擇參數檔案][publishdialog]
 
 ### <a name="deploy-from-powershell"></a>從 PowerShell 部署
-hello `Deploy-FabricApplication.ps1` hello 應用程式專案範本中所包含的 PowerShell 指令碼接受做為參數的發行設定檔和 hello PublishProfile 包含參考 toohello 應用程式參數檔案。
+應用程式專案範本中包含的 `Deploy-FabricApplication.ps1` PowerShell 指令碼接受發行設定檔作為參數，而 PublishProfile 包含應用程式參數檔案的參考。
 
   ```PowerShell
     ./Deploy-FabricApplication -ApplicationPackagePath <app_package_path> -PublishProfileFile <publishprofile_path>
   ```
 
 ## <a name="next-steps"></a>後續步驟
-toolearn 進一步了解一些 hello 核心概念，本主題中所討論，請參閱 「 hello [Service Fabric 的技術概觀](service-fabric-technical-overview.md)。 如需 Visual Studio 中其他可用的應用程式管理功能的相關資訊，請參閱 [在 Visual Studio 中管理 Service Fabric 應用程式](service-fabric-manage-application-in-visual-studio.md)。
+若要深入了解本主題中討論的一些核心概念，請參閱 [Service Fabric 技術概觀](service-fabric-technical-overview.md)。 如需 Visual Studio 中其他可用的應用程式管理功能的相關資訊，請參閱 [在 Visual Studio 中管理 Service Fabric 應用程式](service-fabric-manage-application-in-visual-studio.md)。
 
 <!-- Image references -->
 

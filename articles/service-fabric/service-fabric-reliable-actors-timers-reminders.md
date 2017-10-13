@@ -1,6 +1,6 @@
 ---
-title: "aaaReliable 執行者計時器和提醒 |Microsoft 文件"
-description: "簡介 tootimers 和服務網狀架構 Reliable Actors 的備忘提醒。"
+title: "Reliable Actors 計時器和提醒 | Microsoft Docs"
+description: "Service Fabric Reliable Actors 計時器和提醒簡介。"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/29/2017
 ms.author: vturecek
-ms.openlocfilehash: c5116ec1923014e131130b9f4e86dd1e133bbf7e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 06b026ce06e0f16a77ac238de0af2263f272933c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="actor-timers-and-reminders"></a>動作項目計時器和提醒
-動作項目可藉由註冊計時器或提醒來排程本身的週期性工作。 本文將說明如何 toouse 計時器和提醒，並說明 hello 兩者之間的差異。
+動作項目可藉由註冊計時器或提醒來排程本身的週期性工作。 本文示範如何使用計時器和提醒，以及說明它們之間的差異。
 
 ## <a name="actor-timers"></a>動作項目計時器
-執行者計時器提供的簡單包裝函式的.NET 或 Java 計時器 tooensure hello 回呼方法會採用 hello 的執行者執行階段提供的 hello 開啟並行保證。
+動作項目計時器提供 .NET 或 Java 計時器的簡單包裝函式，以確保回呼方法採用動作項目執行階段所提供的回合式並行保證。
 
-執行者可以使用 hello `RegisterTimer`(C#) 或`registerTimer`(Java) 和`UnregisterTimer`(C#) 或`unregisterTimer`(Java) 方法在其基底類別 tooregister 和取消註冊計時器。 下列的 hello 範例顯示 hello 計時器應用程式開發介面使用。 hello 應用程式開發介面是非常類似 toohello.NET timer 或 Java 計時器。 在此範例中，當 hello 計時器的到期 hello 執行者執行階段會呼叫 hello `MoveObject`(C#) 或`moveObject`(Java) 方法。 hello 方法保證 toorespect hello 開啟基礎並行存取。 這表示沒有其他動作項目方法或計時器/提醒回呼將在進行中，直到此回呼完成執行為止。
+動作項目可以在其基底類別使用 `RegisterTimer`(C#) 或 `registerTimer`(Java) 和 `UnregisterTimer`(C#) 或 `unregisterTimer`(Java) 方法註冊和取消其計時器。 下列範例示範如何使用計時器 API。 API 和 .NET 計時器或 Java 計時器非常類似。 在此範例中，當計時器到期時，動作項目執行階段將會呼叫 `MoveObject`(C#) 或 `moveObject`(Java) 方法。 此方法保證會採用回合式並行存取。 這表示沒有其他動作項目方法或計時器/提醒回呼將在進行中，直到此回呼完成執行為止。
 
 ```csharp
 class VisualObjectActor : Actor, IVisualObject
@@ -44,9 +44,9 @@ class VisualObjectActor : Actor, IVisualObject
 
         _updateTimer = RegisterTimer(
             MoveObject,                     // Callback method
-            null,                           // Parameter toopass toohello callback method
-            TimeSpan.FromMilliseconds(15),  // Amount of time toodelay before hello callback is invoked
-            TimeSpan.FromMilliseconds(15)); // Time interval between invocations of hello callback method
+            null,                           // Parameter to pass to the callback method
+            TimeSpan.FromMilliseconds(15),  // Amount of time to delay before the callback is invoked
+            TimeSpan.FromMilliseconds(15)); // Time interval between invocations of the callback method
 
         return base.OnActivateAsync();
     }
@@ -93,9 +93,9 @@ public class VisualObjectActorImpl extends FabricActor implements VisualObjectAc
                     this.registerTimer(
                             (o) -> this.moveObject(o),                        // Callback method
                             "moveObject",
-                            null,                                             // Parameter toopass toohello callback method
-                            Duration.ofMillis(10),                            // Amount of time toodelay before hello callback is invoked
-                            Duration.ofMillis(timerIntervalInMilliSeconds));  // Time interval between invocations of hello callback method
+                            null,                                             // Parameter to pass to the callback method
+                            Duration.ofMillis(10),                            // Amount of time to delay before the callback is invoked
+                            Duration.ofMillis(timerIntervalInMilliSeconds));  // Time interval between invocations of the callback method
                     return null;
                 });
     }
@@ -126,16 +126,16 @@ public class VisualObjectActorImpl extends FabricActor implements VisualObjectAc
 }
 ```
 
-hello hello 計時器的下一個週期開始之後 hello 回呼已完成執行。 這表示該 hello 計時器時 hello 回呼正在執行，並已啟動 hello 回呼完成時停止。
+當回呼完成執行後，就會啟動下一期間的計時器。 這表示回呼執行時計時器將會停止，並在回呼完成時重新啟動。
 
-hello 執行者執行階段將變更儲存動作項目 toohello 狀態管理員 hello 回呼完成時。 如果儲存 hello 狀態時，發生錯誤，將會停用該動作項目物件，並將啟用的新執行個體。
+動作項目執行階段會儲存在回呼完成時，對動作項目的狀態管理員所做的變更。 如果儲存狀態時發生錯誤，將會停用該動作項目物件並啟動新的執行個體。
 
-Hello 動作項目停用記憶體回收的一部分時，會停止所有的計時器。 而在此之後不會叫用任何計時器回呼。 此外，hello 執行者執行階段不會保留任何資訊之前停用執行 hello 計時器。 它是最多 toohello 執行者 tooregister 任何需要在 hello 未來重新啟動時的計時器。 如需詳細資訊，請參閱 hello 一節[執行者回收](service-fabric-reliable-actors-lifecycle.md)。
+當動作項目在記憶體回收期間停用時，將會停止所有的計時器。 而在此之後不會叫用任何計時器回呼。 此外，動作項目執行階段並不保留任何停用前執行中的計時器資訊。 由動作項目來決定任何未來重新啟動時所需計時器的註冊。 如需詳細資訊，請參閱 [動作項目記憶體回收](service-fabric-reliable-actors-lifecycle.md)一節。
 
 ## <a name="actor-reminders"></a>動作項目提醒
-提醒會機制 tootrigger 永續性的回呼，在動作項目上指定的時間。 其功能非常類似 tootimers。 但不同於計時器提醒觸發在所有情況下直到 hello 執行者明確取消註冊它們，或明確刪除 hello 動作項目。 具體來說，提醒會觸發跨動作項目和停用和容錯移轉，因為 hello 執行者執行階段保存提醒 hello 執行者的資訊。
+提醒是一個會在指定時間於動作項目上觸發持續性回呼的機制。 其功能很類似計時器。 但與計時器不同的是，在所有情況下都會觸發提醒，直到動作項目明確地取消註冊它們或動作項目明確刪除為止。 具體而言，動作項目的停用和容錯移轉會觸發提醒，因為動作項目執行階段所保存的動作項目提醒相關資訊。
 
-tooregister 提醒，執行者呼叫 hello `RegisterReminderAsync` hello 基底類別，提供 hello 下列範例所示的方法：
+若要註冊提醒，動作項目會呼叫基底類別提供的 `RegisterReminderAsync` 方法，如下列範例所示：
 
 ```csharp
 protected override async Task OnActivateAsync()
@@ -161,14 +161,14 @@ protected CompletableFuture onActivateAsync()
     ActorReminder reminderRegistration = this.registerReminderAsync(
             reminderName,
             state,
-            dueTime,    //hello amount of time toodelay before firing hello reminder
-            period);    //hello time interval between firing of reminders
+            dueTime,    //The amount of time to delay before firing the reminder
+            period);    //The time interval between firing of reminders
 }
 ```
 
-在此範例中， `"Pay cell phone bill"` hello 提醒名稱。 這是 hello 動作項目使用的字串 toouniquely 識別提醒。 `BitConverter.GetBytes(amountInDollars)`(C#) 是與 hello 提醒相關聯的 hello 內容。 它將回復 toohello 動作項目以傳遞的引數 toohello 提醒回撥，也就是`IRemindable.ReceiveReminderAsync`(C#) 或`Remindable.receiveReminderAsync`(Java)。
+在此範例中， `"Pay cell phone bill"` 為該提醒名稱。 這是動作項目用來唯一識別提醒的一個字串。 `BitConverter.GetBytes(amountInDollars)`(C#) 為與提醒相關聯的內容。 其會作為提醒回呼的引數傳回給動作項目，也就是 `IRemindable.ReceiveReminderAsync`(C#) 或 `Remindable.receiveReminderAsync`(Java)。
 
-使用提醒的動作項目必須實作 hello`IRemindable`介面，如以下 hello 範例所示。
+使用提醒的動作項目必須實作 `IRemindable` 介面，如下列範例所示。
 
 ```csharp
 public class ToDoListActor : Actor, IToDoListActor, IRemindable
@@ -209,11 +209,11 @@ public class ToDoListActorImpl extends FabricActor implements ToDoListActor, Rem
 
 ```
 
-Hello Reliable Actors 執行階段提醒觸發時，將會叫用 hello `ReceiveReminderAsync`(C#) 或`receiveReminderAsync`hello 動作項目上的 (Java) 方法。 執行者可以註冊多個備忘提醒，及 hello `ReceiveReminderAsync`(C#) 或`receiveReminderAsync`(Java) 方法會叫用任何這些備忘提醒觸發時機。 hello 動作項目可以使用 hello 提醒名稱傳入 toohello `ReceiveReminderAsync`(C#) 或`receiveReminderAsync`(Java) 方法 toofigure 哪一個已觸發的提醒。
+當觸發提醒時，Reliable Actors 執行階段將會叫用動作項目上的 `ReceiveReminderAsync`(C#) 或 `receiveReminderAsync`(Java) 方法。 一個動作項目可以註冊多個提醒，而每當觸發這些提醒中的任一個時，便會叫用 `ReceiveReminderAsync`(C#) 或 `receiveReminderAsync`(Java) 方法。 動作項目可以使用傳遞至 `ReceiveReminderAsync`(C#) 或 `receiveReminderAsync`(Java) 方法的提醒名稱，以找出已觸發的提醒。
 
-hello 執行者執行階段會儲存 hello 執行者 」 狀態時 hello `ReceiveReminderAsync`(C#) 或`receiveReminderAsync`(Java) 呼叫完成。 如果儲存 hello 狀態時，發生錯誤，將會停用該動作項目物件，並將啟用的新執行個體。
+當 `ReceiveReminderAsync`(C#) 或 `receiveReminderAsync`(Java) 呼叫完成時，動作項目執行階段會儲存動作項目狀態。 如果儲存狀態時發生錯誤，將會停用該動作項目物件並啟動新的執行個體。
 
-toounregister 提醒，執行者呼叫 hello `UnregisterReminderAsync`(C#) 或`unregisterReminderAsync`(Java) 方法，如以下的 hello 範例所示。
+若要將提醒取消註冊，動作項目會呼叫 `UnregisterReminderAsync`(C#) 或 `unregisterReminderAsync`(Java) 方法，如下列範例所示。
 
 ```csharp
 IActorReminder reminder = GetReminder("Pay cell phone bill");
@@ -224,7 +224,7 @@ ActorReminder reminder = getReminder("Pay cell phone bill");
 CompletableFuture reminderUnregistration = unregisterReminderAsync(reminder);
 ```
 
-如上所示，hello `UnregisterReminderAsync`(C#) 或`unregisterReminderAsync`(Java) 方法會接受`IActorReminder`(C#) 或`ActorReminder`(Java) 介面。 hello 執行者基底類別支援`GetReminder`(C#) 或`getReminder`(Java) 方法，可以使用的 tooretrieve hello `IActorReminder`(C#) 或`ActorReminder`傳入 hello 提醒名稱 (Java) 介面。 這是很方便，因為 hello 動作項目不需要 toopersist hello `IActorReminder`(C#) 或`ActorReminder`(Java) 介面傳回從 hello `RegisterReminder`(C#) 或`registerReminder`(Java) 方法呼叫。
+如上所示，`UnregisterReminderAsync`(C#) 或 `unregisterReminderAsync`(Java) 方法會接受 `IActorReminder`(C#) 或 `ActorReminder`(Java) 介面。 動作項目基底類別支援 `GetReminder`(C#) 或 `getReminder`(Java) 方法，在傳遞進提醒名稱時可以用來擷取 `IActorReminder`(C#) 或 `ActorReminder`(Java) 介面。 這很方便，因為動作項目不需保存從 `RegisterReminder`(C#) 或 `registerReminder`(Java) 方法呼叫傳回的 `IActorReminder`(C#) 或 `ActorReminder`(Java) 介面。
 
 ## <a name="next-steps"></a>後續步驟
 深入了解 Reliable Actor 事件和重新進入：

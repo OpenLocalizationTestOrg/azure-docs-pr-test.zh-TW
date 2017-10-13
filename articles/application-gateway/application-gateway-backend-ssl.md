@@ -1,6 +1,6 @@
 ---
-title: "aaaEnabling 結束 tooend Azure 應用程式閘道上的 SSL |Microsoft 文件"
-description: "此頁面提供 SSL 支援 hello 應用程式閘道結束 tooend 的概觀。"
+title: "在 Azure 應用程式閘道上啟用端對端 SSL | Microsoft Docs"
+description: "本頁面提供應用程式閘道端對端 SSL 支援的概觀。"
 documentationcenter: na
 services: application-gateway
 author: amsriva
@@ -15,33 +15,33 @@ ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 ms.date: 07/19/2017
 ms.author: amsriva
-ms.openlocfilehash: c5cb398a1e7d9a08662a3120baad98edb5575917
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 689ee54dc1db2ea371b08270718278fd98c65bb5
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="overview-of-end-tooend-ssl-with-application-gateway"></a>結束 tooend SSL 與應用程式閘道的概觀
+# <a name="overview-of-end-to-end-ssl-with-application-gateway"></a>應用程式閘道端對端 SSL 的概觀
 
-應用程式閘道支援在 hello 閘道進行 SSL 終止後通常流動的流量加密 toohello 後端伺服器。 這項功能可讓 web 伺服器 toobe unburdened 從昂貴加密和解密的額外負荷。 但是對某些客戶未加密的通訊 toohello 後端伺服器不是可接受的選項。 此未加密的通訊可能是因為 toosecurity 需求，相容性需求，或 hello 應用程式可能只接受安全的連線。 針對這類應用程式，應用程式閘道支援結束 tooend SSL 加密。
+應用程式閘道支援在閘道上終止 SSL，之後流量通常會以未加密狀態流至後端伺服器。 這項功能可讓 Web 伺服器不必再負擔昂貴的加密和解密成本。 但對某些客戶來說，對後端伺服器進行未加密的通訊並非可接受的選項。 此未加密的通訊可能是有安全性需要、合規性需求，或應用程式可能只接受安全連線。 對於這類應用程式，應用程式閘道可支援端對端 SSL 加密。
 
 ## <a name="overview"></a>概觀
 
-結束 tooend SSL 可讓您 toosecurely 傳輸時仍利用 hello 7 層負載平衡功能的優點的應用程式閘道提供加密的敏感性資料 toohello 後端。 這其中部分功能會以 cookie 為基礎的工作階段親和性、 URL 為基礎的路由、 支援路由根據站台或能力 tooinject 轉寄-X * 標頭。
+端對端 SSL 可讓您將機密資料以加密方式安全地傳輸到後端，同時又可利用應用程式閘道提供的第 7 層負載平衡功能的好處。 部分功能為 cookie 型工作階段親和性、URL 型路由、支援根據站台或能注入 X-Forwarded-* 標頭的路由。
 
-設定為結束 tooend SSL 通訊模式時，應用程式閘道會終止在 hello 閘道 hello SSL 工作階段，並解密使用者流量。 然後再套用設定的 hello 規則 tooselect 適當的後端集區執行個體 tooroute 流量。 應用程式閘道會起始新的 SSL 連接 toohello 後端伺服器，然後重新加密資料前傳送嗨要求 toohello 後端使用 hello 後端伺服器的公開金鑰憑證。 結束 tooend BackendHTTPSetting tooHTTPS，接著在將通訊協定設定啟用 SSL 套用 tooa 後端集區。 Hello 與結束 tooend 啟用 SSL 的後端集區中每個後端伺服器必須設定憑證 tooallow 安全通訊。
+當設定為端對端 SSL 通訊模式時，應用程式閘道會在閘道上終止 SSL 工作階段，並解密使用者流量。 然後，它會套用所設定的規則來選取要將流量路由傳送到的適當後端集區執行個體。 應用程式閘道接著再起始連往後端伺服器的新 SSL 連線，並先使　用後端伺服器的公開金鑰憑證重新加密資料，再將要求傳輸至後端。 若要啟用端對端 SSL，請將 BackendHTTPSetting 中的通訊協定設為 HTTPS，接著再套用到後端集區。 已啟用端對端 SSL 之後端集區中的每個後端伺服器，都必須設有憑證以便能夠進行安全通訊。
 
-![結束 tooend ssl 案例][1]
+![端對端 SSL 案例][1]
 
-在此範例中，使用 TLS1.2 的要求使用 SSL 的結束 tooend Pool1 中的路由的 toobackend 伺服器。
+在此範例中，使用端對端 SSL，將使用 TLS1.2 的要求路由傳送至 Pool1 中的後端伺服器。
 
-## <a name="end-tooend-ssl-and-whitelisting-of-certificates"></a>結束 tooend SSL 和憑證的允許清單
+## <a name="end-to-end-ssl-and-whitelisting-of-certificates"></a>端對端 SSL 和憑證白名單
 
-應用程式閘道只會與 hello 應用程式閘道使用其憑證有在允許清單中的已知的後端執行個體通訊。 tooenable 允許清單的憑證，您必須上傳 hello 公開金鑰的後端伺服器憑證 toohello 應用程式閘道 （不 hello 根憑證）。 然後允許只有連線 tooknown 和白名單後端。 hello 剩餘後端會導致閘道時發生錯誤。 自我簽署憑證僅供測試之用，並不建議用於生產工作負載。 這類憑證有 toobe 在允許清單與 hello 應用程式閘道 hello 才可以使用先前步驟中所述。
+應用程式閘道只會與已知的後端執行個體通訊，後者已將其憑證加入到應用程式閘道的白名單。 若要啟用憑證白名單，您必須將後端伺服器憑證的公開金鑰上傳至應用程式閘道 (不是根憑證)。 於是，只允許連接至已知和白名單中的後端。 其餘的後端會導致閘道錯誤。 自我簽署憑證僅供測試之用，並不建議用於生產工作負載。 這類憑證也必須如先前步驟所述，加入應用程式閘道的白名單之中，才能使用。
 
 ## <a name="next-steps"></a>後續步驟
 
-在了解結束 tooend SSL 之後, 請繼續太[啟用應用程式閘道結束 tooend SSL](application-gateway-end-to-end-ssl-powershell.md) toocreate 應用程式閘道使用結束 tooend SSL。
+了解端對端 SSL 後，請移至 [在應用程式閘道上啟用端對端 SSL](application-gateway-end-to-end-ssl-powershell.md)，以使用端對端 SSL 建立應用程式閘道。
 
 <!--Image references-->
 

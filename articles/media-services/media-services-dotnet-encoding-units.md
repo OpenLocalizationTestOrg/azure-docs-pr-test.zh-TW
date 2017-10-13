@@ -1,6 +1,6 @@
 ---
-title: "藉由加入編碼單位-Azure 處理 aaaScale 媒體 | Microsoft 文件"
-description: "深入了解如何搭配.NET toohow tooadd 編碼單元"
+title: "藉由新增編碼單元來調整媒體處理的規模 - Azure | Microsoft Docs"
+description: "了解如何使用 .NET 新增編碼單元"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/09/2017
 ms.author: juliako;milangada;
-ms.openlocfilehash: b9f71a6487c5d136319a38a1598d60edfaa81b9e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 72a8729d22a9e76c8076d7a3347619a2163e4f09
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-tooscale-encoding-with-net-sdk"></a>如何使用.NET SDK 編碼 tooscale
+# <a name="how-to-scale-encoding-with-net-sdk"></a>如何使用 .NET SDK 調整編碼
 > [!div class="op_single_selector"]
 > * [入口網站](media-services-portal-scale-media-processing.md)
 > * [.NET](media-services-dotnet-encoding-units.md)
@@ -30,16 +30,16 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-## <a name="overview"></a>概觀
+## <a name="overview"></a>Overview
 > [!IMPORTANT]
-> 請確定 tooreview hello[概觀](media-services-scale-media-processing-overview.md)主題 tooget 調整媒體處理主題的詳細資訊。
+> 請務必檢閱 [概觀](media-services-scale-media-processing-overview.md) 主題，以取得調整媒體處理主題的詳細資訊。
 > 
 > 
 
-toochange hello 保留單位類型及 hello 數目編碼保留的單位使用.NET SDK hello 遵循：
+若要使用 .NET SDK　變更保留單元類型以及編碼保留單元數目，請執行下列動作：
 
     IEncodingReservedUnit encodingS1ReservedUnit = _context.EncodingReservedUnits.FirstOrDefault();
-    encodingS1ReservedUnit.ReservedUnitType = ReservedUnitType.Basic; // Corresponds tooS1
+    encodingS1ReservedUnit.ReservedUnitType = ReservedUnitType.Basic; // Corresponds to S1
     encodingS1ReservedUnit.Update();
     Console.WriteLine("Reserved Unit Type: {0}", encodingS1ReservedUnit.ReservedUnitType);
 
@@ -49,20 +49,20 @@ toochange hello 保留單位類型及 hello 數目編碼保留的單位使用.NE
     Console.WriteLine("Number of reserved units: {0}", encodingS1ReservedUnit.CurrentReservedUnits);
 
 ## <a name="opening-a-support-ticket"></a>建立支援票證
-根據預設，每個 Media Services 帳戶可以調整 tooup too25 編碼和 5 個隨選串流保留單元。 您可以建立支援票證來要求更高的限制。
+依預設，每一個媒體服務帳戶可調整為最多 25 個編碼保留單元和 5 個隨選串流保留單元。 您可以建立支援票證來要求更高的限制。
 
 ### <a name="open-a-support-ticket"></a>開啟支援票證
-請勿 hello tooopen 支援票證，遵循：
+若要建立支援票證，請執行下列動作：
 
-1. 按一下 [取得支援](https://manage.windowsazure.com/?getsupport=true)。 如果您未登入，您將會提示的 tooenter 您的認證。
+1. 按一下 [取得支援](https://manage.windowsazure.com/?getsupport=true)。 如果您未登入，系統會提示您輸入認證。
 2. 選取您的訂用帳戶。
 3. 在支援類型下，選取 [技術]。
 4. 按一下 [建立票證]。
-5. 選取 Azure Media Services"hello 產品清單中顯示 hello 下一個頁面。
+5. 在下一頁顯示的產品清單中，選取 [Azure 媒體服務]。
 6. 選取適合您的問題的 [問題類型]。
 7. 按一下 [繼續]。
 8. 遵循下一頁的指示，然後輸入問題的詳細資訊。
-9. 按一下 提交 tooopen hello 票證。
+9. 按一下 [提交] 來建立票證。
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

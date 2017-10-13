@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate.odc 檔案 tooconnect tooan Azure Analysis Services 伺服器 |Microsoft 文件"
-description: "了解 toocreate Office 資料連線檔案 tooconnect tooand 從 Azure 中的 Analysis Services 伺服器所取得的資料。"
+title: "建立 .odc 檔案以連線至 Azure Analysis Services 伺服器 | Microsoft Docs"
+description: "了解如何建立 Office 資料連線檔案 ，以在 Azure 連線至 Analysis Services 伺服器並從該伺服器中取得資料。"
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,30 +15,30 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/23/2017
 ms.author: owend
-ms.openlocfilehash: 9c8c8df23b17f19905d7ec51af4eb63eb995045e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 530f3b5c9e90cb45ffb6e12d0d08a35f8d687471
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-an-office-data-connection-file"></a>建立 Office 資料連線檔案
 
-本文章中的資訊說明如何建立使用 Office 資料連線檔案 tooconnect tooan Azure Analysis Services 伺服器，從 Excel 2016 的版本號碼 16.0.7369.2117 或更早版本，或 Excel 2013。 還需要有更新的 [MSOLAP.7 提供者](analysis-services-data-providers.md)。
+本文中的資訊說明如何從 Excel 2016 版本號碼 16.0.7369.2117 或更早版本或 Excel 2013，建立 Office 資料連線檔案，以連線至 Azure Analysis Services 伺服器。 還需要有更新的 [MSOLAP.7 提供者](analysis-services-data-providers.md)。
 
 
-1. 複製以下的 hello 範例連接檔案並貼到文字編輯器。 
+1. 複製下面的範例連線檔案，然後貼到文字編輯器。 
 
-2. 在`odc:ConnectionString`，變更下列屬性的 hello:
+2. 在 `odc:ConnectionString` 中，變更下列屬性：
 
-    *   在`Data Source=asazure://<region>.asazure.windows.net/<servername>;`變更`<region>`toohello Analysis Services 伺服器的區域和`<servername>`toohello 伺服器的名稱。
+    *   在 `Data Source=asazure://<region>.asazure.windows.net/<servername>;` 中，將 `<region>` 變更為 Analysis Services 伺服器的區域，並將 `<servername>` 變更為您的伺服器名稱。
 
-    *   在`Initial Catalog=<database>;`變更`<database>`toohello 您資料庫的名稱。
+    *   在 `Initial Catalog=<database>;` 中，將 `<database>` 變更為您的資料庫名稱。
 
-3. 在`<odc:CommandText>Model</odc:CommandText>`變更`Model`toohello 模型或檢視方塊名稱。 
+3. 在 `<odc:CommandText>Model</odc:CommandText>` 中，將 `Model` 變更為您的模型或檢視方塊名稱。 
 
-4. 儲存 hello 檔`.odc`延伸 toohello C:\Users\\*username*\Documents\My 資料來源 資料夾。
+4. 以 `.odc` 副檔名將檔案儲存到 C:\Users\\*username*\Documents\My Data Sources 資料夾。
 
-5. Hello 檔案上按一下滑鼠右鍵，然後按一下**在 Excel 中開啟**。 或在 Excel 中，在 hello**資料**功能區中，按一下 **現有連接**，選取您的檔案，然後按一下**開啟**。
+5. 在檔案上按一下滑鼠右鍵，然後按一下 [在 Excel 中開啟]。 或在 Excel 的 [資料] 功能區上，按一下 [現有連線]，選取您的檔案，然後按一下 [開啟]。
 
 
 

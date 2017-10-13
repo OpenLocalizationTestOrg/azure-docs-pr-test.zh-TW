@@ -1,6 +1,6 @@
 ---
-title: "aaaWeb 應用程式效能監視-Azure Application Insights |Microsoft 文件"
-description: "Application Insights 如何融入 hello devOps 循環"
+title: "Web 應用程式效能監視 - Azure Application Insights | Microsoft Docs"
+description: "Application Insights 如何融入 DevOps 循環"
 services: application-insights
 documentationcenter: 
 author: CFreemanwa
@@ -13,99 +13,99 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 03/14/2017
 ms.author: bwren
-ms.openlocfilehash: bba2d6c59de1794adcbf8e298d0ef4f0dbaa700f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: de94633cabaa7a1562a5a4839a8a8924da91a283
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="deep-diagnostics-for-web-apps-and-services-with-application-insights"></a>使用 Application Insights 深入診斷 Web 應用程式
 ## <a name="why-do-i-need-application-insights"></a>我為什麼需要 Application Insights 呢？
-Application Insights 會監視您正在執行的 Web 應用程式。 它會告訴您有關失敗和效能的問題，並協助您分析客戶如何使用您的應用程式。 它適用於許多平台 (ASP.NET、 J2EE，Node.js，...) 上執行的應用程式，而裝載在 hello 雲端或內部部署。 
+Application Insights 會監視您正在執行的 Web 應用程式。 它會告訴您有關失敗和效能的問題，並協助您分析客戶如何使用您的應用程式。 它適用於在許多平台 (ASP.NET、J2EE、Node.js ...) 上執行的應用程式，並可裝載於雲端或內部部署。 
 
-![Hello 複雜度傳遞 web 應用程式的層面](./media/app-insights-devops/010.png)
+![傳遞 Web 應用程式的複雜度層面](./media/app-insights-devops/010.png)
 
-在執行時，它是不可或缺的 toomonitor 現代應用程式。 最重要的是，您會想 toodetect 失敗之前執行大部分的客戶。 您也想 toodiscover，並修正效能問題，而不嚴重，可能是作業變慢或會導致某些不便 tooyour 使用者。 和 hello 系統執行 tooyour 滿意度，當您想要哪些 hello 使用者所運用的 tooknow： 它們使用 hello 最新功能？ 是否已成功使用它？
+在執行時現代應用程式加以監視十分重要。 最重要的是，您想要在大部分客戶之前偵測到失敗。 您也會想要找出並修正效能問題，儘管這並不嚴重，但或許有某些動作速度變慢，或對您的使用者造成些許不便。 當您滿意系統的執行時，會想要知道使用者正利用它來執行哪些動作︰他們正在使用最新功能嗎？ 是否已成功使用它？
 
-現代化 web 應用程式會以循環的持續傳遞開發： 發行的新功能或改進。觀察程度這也適用於 hello 使用者。規劃 hello 開發該知識為基礎的下一個遞增值。 這個循環的主要部分是 hello 觀察階段。 Application Insights 提供 hello 工具 toomonitor 效能和使用方式的 web 應用程式。
+現代 Web 應用程式是以持續傳遞週期來開發的︰發行新功能或改進功能；觀察其對於使用者的適用程度；根據該知識來規劃下一個增量開發。 此週期的關鍵部分是觀察階段。 Application Insights 提供工具來監視 Web 應用程式的效能和使用方式。
 
-此程序的 hello 最重要層面是診斷和診斷。 如果 hello 應用程式失敗，會在遺失商務。 hello 主要角色的監視架構因此 toodetect 失敗會可靠地，通知您立即和 toopresent hello 資訊所需 toodiagnose hello 問題。 這就是 Application Insights 的確實功用。
+此程序最重要的方面是診斷和判斷。 如果應用程式失敗，則會造成商務損失。 因此，監視架構的主要角色是以可靠的方式偵測失敗、立即通知您，並為您呈現診斷問題所需的資訊。 這就是 Application Insights 的確實功用。
 
 ### <a name="where-do-bugs-come-from"></a>Bug 來自何處？
-Web 系統中的失敗通常是由組態問題或其許多元件之間的互動不良所引起。 hello 第一項工作時處理即時網站事件所以 hello 問題的 tooidentify hello locus： 哪些元件或關聯性是 hello 原因？
+Web 系統中的失敗通常是由組態問題或其許多元件之間的互動不良所引起。 因此，處理即時網站事件時的首要任務就是找出問題所在︰原因出自於哪些元件或關聯性？
 
-我們之中有些人 (灰白頭髮的那些人) 可能還記得那個電腦程式只在一部電腦中執行的單純年代。 hello 開發人員會進行完整的測試之前傳送。擁有出貨，很少會看到，或可再考慮這個。 hello 使用者會 tooput 最多有的 hello 剩餘 bug 多年。 
+我們之中有些人 (灰白頭髮的那些人) 可能還記得那個電腦程式只在一部電腦中執行的單純年代。 開發人員會在交付之前徹底地測試該程式；但交付之後，就很少會再看見或聽到任何有關該程式的事。 使用者必須忍受殘留的 Bug 長達數年之久。 
 
-但現在的情況已變得非常不同。 應用程式，有不同的裝置 toorun 的可能很難 tooguarantee hello 完全相同的行為在每一個。 裝載 hello 雲端中的應用程式表示快速、 修正 bug，但這也表示連續競爭和 hello 期望的新功能頻繁的間隔。 
+但現在的情況已變得非常不同。 您的應用程式要在眾多不同的裝置上執行，而且很難保證在每一個裝置上都會有完全相同的行為。 在雲端中裝載應用程式，表示 Bug 可以快速修正，但這也表示競賽持續進行，並預期新功能會以更頻繁的間隔出現。 
 
-在這些情況下，hello hello bug 計數確實有控制項只方式 tookeep 自動化單元測試。 不可能 toomanually 重新測試上每一次傳遞的所有內容。 單元測試是 hello 的現在經常一部分建置流程。 Hello Xamarin Test Cloud 等工具協助提供自動化的 UI 測試多個瀏覽器版本上。 這些測試區域可讓我們 toohope 該 hello 應用程式內找到的 bug 就能夠維持速率 tooa 最小值。
+在這些情況下，確實控制 Bug 計數的唯一方式是將單位測試自動化。 您無法在每次交付時手動重新測試一切。 單元測試現在是建置程序中常見的一部分。 像是 Xamarin Test Cloud 的工具可藉由在多個瀏覽器版本中提供自動化 UI 測試來提供協助。 這些測試制度讓我們能夠期望在應用程式內發現 Bug 的速度可以保持在最低限度。
 
-典型的 Web 應用程式有許多即時元件。 在加法 toohello 用戶端 （瀏覽器或裝置的應用程式），而且 hello web 伺服器，則可能 toobe 大幅的後端處理。 或許 hello 後端是管線元件中或更加鬆散的共同作業的項目集合。 此外，它們其中有許多都不在您的控制內 - 它們是您所需的外部服務。
+典型的 Web 應用程式有許多即時元件。 除了用戶端 (在瀏覽器或裝置應用程式中) 和 Web 伺服器以外，還可能是實質的後端處理。 後端或許是元件的管線，或是鬆散的共同作業項目集合。 此外，它們其中有許多都不在您的控制內 - 它們是您所需的外部服務。
 
-這類的組態，它可以是，會發生困難而且 uneconomical tootest 或預期，每個可能的失敗模式，除了在 hello 即時系統本身。 
+在這類組態中，很難以經濟實惠的方式測試或預見每個可能的失敗模式 (除了即時系統本身)。 
 
 ### <a name="questions-"></a>問題 ...
 當我們開發 Web 系統時，會自問數個問題：
 
 * 我的應用程式會當機嗎？ 
-* 實際發生什麼事？ -如果要求失敗，我要如何進入那里 tooknow。 我們需要追蹤事件 ...
-* 我的應用程式速度夠快嗎？ 多久花費 toorespond tootypical 要求？
-* 可以載入 hello 伺服器控制代碼 hello 嗎？ 當要求的 hello 速率上升時，未 hello 回應時間會保有穩定嗎？
-* 回應速度是我的相依性-hello REST Api，資料庫和我的應用程式呼叫其他元件。 特別是，如果 hello 系統是慢速，是我的元件，還是我會收到回應變慢其他人？
-* 我的應用程式是否正在運作？ 可以看到它從 hello 世界各地嗎？ 讓我知道它是否會停止...
-* Hello 根本原因為何？ 已在我的元件或相依性的 hello 失敗？ 是通訊問題嗎？
-* 有多少使用者受到影響？ 如果我有一個以上的問題 tootackle，這是最重要的 hello？
+* 實際發生什麼事？ - 如果要求失敗，我想要知道問題出在哪裡。 我們需要追蹤事件 ...
+* 我的應用程式速度夠快嗎？ 回應典型的要求需要多久的時間？
+* 伺服器可以處理負載嗎？ 當要求的速率增加時，可以維持穩定的回應時間嗎？
+* 如何回應是我的相依性 - REST API、資料庫，以及我的應用程式呼叫的其他元件。 尤其當系統變慢時，是我的元件所造成，還是我正在接收來自其他人的慢速回應？
+* 我的應用程式是否正在運作？ 全世界都可以看到它嗎？ 讓我知道它是否會停止...
+* 根本原因為何？ 失敗是在我的元件中，還是相依性的問題？ 是通訊問題嗎？
+* 有多少使用者受到影響？ 如果我有一個以上要解決的問題，哪一個問題最重要？
 
 ## <a name="what-is-application-insights"></a>什麼是 Application Insights？
 ![Application Insights 的基本工作流程](./media/app-insights-devops/020.png)
 
-1. Application Insights 檢測您的應用程式，並傳送遙測資訊，請參閱 hello 應用程式執行時。 您可以建立 hello Application Insights SDK 至 hello 應用程式，或是您可以套用在執行階段檢測。 您可以加入您自己的遙測 toohello 一般模組 hello 前一個方法是更有彈性。
-2. hello 遙測傳送 toohello Application Insights 入口網站，它會在其中儲存及處理。 (雖然 Application Insights 裝載於 Microsoft Azure 中，但是它可以監視任何 Web 應用程式，而不只是 Azure 應用程式)。
-3. hello 遙測會顯示 tooyou hello 表單的圖表和資料表的事件中。
+1. Application Insights 會檢測您的應用程式，並在應用程式執行時，傳送相關的遙測。 您可以在應用程式中建置 Application Insights SDK，或者可以在執行階段運用檢測。 前者是更有彈性的方法，因為您可以將自己的遙測新增到一般模組。
+2. 遙測會傳送到 Application Insights 入口網站，且在其中儲存並處理它 (雖然 Application Insights 裝載於 Microsoft Azure 中，但是它可以監視任何 Web 應用程式，而不只是 Azure 應用程式)。
+3. 遙測會以事件的圖表和表格形式來呈現。
 
 遙測有兩種主要類型︰彙總與原始執行個體。 
 
-* 例如，執行個體資料包含您的 Web 應用程式所收到的要求報告。 您可以尋找並檢查 hello hello Application Insights 入口網站中使用 hello 搜尋工具之要求詳細資料。 hello 執行個體會包含資料，例如您的應用程式花費了 toorespond toohello 要求，時間長度，以及 hello 要求的 URL、 用戶端 hello 的約略位置和其他資料。
-* 彙總的資料包含每單位時間的事件計數，因此您可以比較 hello hello 回應時間的要求率。 它也包含像是要求回應時間的計量資訊。
+* 例如，執行個體資料包含您的 Web 應用程式所收到的要求報告。 您可以使用 Application Insights 入口網站中的搜尋工具，尋找並檢查要求的詳細資料。 執行個體所包含的資料如下：您的應用程式要花費多少時間來回應要求，以及要求的 URL、用戶端的大約位置和其他資料。
+* 彙總的資料包含每個單位時間的事件計數，因此您可以將要求速率與回應時間進行比較。 它也包含像是要求回應時間的計量資訊。
 
-hello 資料主要類別如下：
+資料的主要類別如下：
 
-* 要求 tooyour 應用程式 （通常是 HTTP 要求） 的 URL、 回應時間及成功或失敗的資料。
+* 對您應用程式的要求 (通常是 HTTP 要求)，其中含有 URL 上的資料、回應時間，以及成功或失敗。
 * 相依性 - 您的應用程式所進行的 REST 和 SQL 呼叫，也包含 URI、回應時間和成功
 * 例外狀況，包括堆疊追蹤。
-* 頁面檢視資料，來自 hello 使用者的瀏覽器。
+* 頁面檢視資料，此資料來自使用者的瀏覽器。
 * 計量資訊 (例如效能計數器)，以及您自行撰寫的計量。 
-* 您可以使用 tootrack 商務事件的自訂事件
+* 您可以用來追蹤商務事件的自訂事件
 * 用來偵錯的記錄追蹤。
 
 ## <a name="case-study-real-madrid-fc"></a>案例研究：西班牙皇家馬德里隊
-hello 的 web 服務[真實馬德里 Football 社團](http://www.realmadrid.com/)做大約 450 百萬風扇 hello 世界各地。 風扇透過網頁瀏覽器進行存取，這兩個，而 hello 社團的行動裝置應用程式。 球迷不只可預約門票，也能存取比賽結果、選手及即將舉行的比賽相關資訊和影片剪輯。 他們會使用像是得分進球數等篩選條件進行搜尋。 也有連結 toosocial 媒體。 hello 使用者經驗高度個人化，並設計做為雙向通訊 tooengage 風扇。
+[皇家馬德里足球俱樂部](http://www.realmadrid.com/) 的 Web 服務可服務世界各地大約 450 百萬名球迷。 球迷可透過 Web 瀏覽器和俱樂部的行動應用程式來存取此服務。 球迷不只可預約門票，也能存取比賽結果、選手及即將舉行的比賽相關資訊和影片剪輯。 他們會使用像是得分進球數等篩選條件進行搜尋。 另外還提供社交媒體的連結。 使用者體驗已高度個人化，並設計為可讓球迷參與的雙向溝通。
 
-hello 方案[是服務和應用程式在 Microsoft Azure 上的系統](https://www.microsoft.com/en-us/enterprise/microsoftcloud/realmadrid.aspx)。 延展性是關鍵需求︰流量變化無常，而且可在比賽期間和接近比賽時達到非常高的量。
+此解決方案[是一個 Microsoft Azure 上應用程式和服務的系統](https://www.microsoft.com/en-us/enterprise/microsoftcloud/realmadrid.aspx)。 延展性是關鍵需求︰流量變化無常，而且可在比賽期間和接近比賽時達到非常高的量。
 
-用於真實馬德里，很重要的 toomonitor hello 系統的效能。 Azure 的 Application Insights 提供全方位的視野 hello 系統，確保可靠且高的服務層級。 
+對於皇家馬德里而言，監視系統效能是非常重要的。 Azure Application Insights 能夠提供整個系統的完整檢視，確保提供既可靠又高等級的服務。 
 
-hello 社團也會取得深入了解其風扇的： 它們的位置 （只有 3%是在西班牙），它們在播放程式、 歷程記錄的結果和即將發行的遊戲，以及他們如何回應 toomatch 結果中有哪些感興趣。
+俱樂部也能對球迷進行深入了解︰他們的所在位置 (只有 3% 在西班牙)、他們對於球員、歷史記錄和即將舉行的比賽感興趣的程度為何，以及他們如何回應每場比賽結果。
 
-其中大多數遙測資料會自動收集與任何加入的程式碼，簡化 hello 方案，並降低操作的複雜性。  對於皇家馬德里而言，Application Insights 每個月可處理 38 億個遙測點。
+此遙測資料中大多數都會自動收集，而不需要新增任何程式碼，這可簡化解決方案並降低操作複雜度。  對於皇家馬德里而言，Application Insights 每個月可處理 38 億個遙測點。
 
-實際馬德里使用 hello Power BI 模組 tooview 其遙測。
+皇家馬德里會使用 Power BI 模組來檢視其遙測。
 
 ![Application Insights 遙測的 Power BI 檢視](./media/app-insights-devops/080.png)
 
 ## <a name="smart-detection"></a>智慧型偵測
-[主動診斷](app-insights-proactive-diagnostics.md)是一項最新功能。 您不需提供任何特殊組態，Application Insights 就會自動偵測並警示您，關於您應用程式中異常提高的失敗率。 它是聰明 tooignore 背景為偶爾的失敗，而且也會上升只需按比例 tooa 升高要求。 例如，如果其中一種您而定，hello 服務失敗，或新的 hello 建置您剛剛所部署無法運作太好，則只要您查看您的電子郵件，您愈了解它。 (而且會提供 Webhook，讓您能夠觸發其他應用程式)。
+[主動診斷](app-insights-proactive-diagnostics.md)是一項最新功能。 您不需提供任何特殊組態，Application Insights 就會自動偵測並警示您，關於您應用程式中異常提高的失敗率。 它的智慧型功能足以忽略偶爾失敗的背景，而且也只會依要求中的增加比率按比例提高。 例如，如果您依存的其中一個服務中發生失敗，或者如果您剛部署的新組建並沒有運作得很好，則當您查看電子郵件之後立即就能了解相關資訊 (而且會提供 Webhook，讓您能夠觸發其他應用程式)。
 
-這項功能的另一個層面會執行您的遙測，尋找的異常模式的效能，會永久 toodiscover 每日深入分析。 例如，它會找到與特定地理區域或特定瀏覽器版本相關聯的慢速效能。
+這項功能的另一個層面會針對遙測執行每日的深入分析，以找出很難發現的異常效能模式。 例如，它會找到與特定地理區域或特定瀏覽器版本相關聯的慢速效能。
 
-在這兩種情況下，hello 警示不只會告知 hello 徵狀探索，但也可讓您的資料需要 toohelp 診斷 hello 問題，例如相關的例外狀況報告。
+在這兩種情況下，警示不只會通知您它發現的徵兆，還會為您提供有助於診斷問題所需的資料，例如相關的例外狀況報告。
 
 ![來自主動診斷的電子郵件](./media/app-insights-devops/030.png)
 
-客戶 Samtec 說：「在最近的功能快速轉換期間，我們發現低於調整規模的資料庫已到達它的資源限制並導致逾時。 主動式偵測警示來自所通告，我們已分級非常接近即時的 hello 問題為常值。 與 hello Azure 平台警示結合此警示可協助我們幾乎可立即修正 hello 問題。 總停機時間 < 10 分鐘。」
+客戶 Samtec 說：「在最近的功能快速轉換期間，我們發現低於調整規模的資料庫已到達它的資源限制並導致逾時。 主動偵測警示會在我們分類問題時逐字顯現，非常接近即時公告。 這個與 Azure 平台相結合的警示，幾乎可協助我們即時修正問題。 總停機時間 < 10 分鐘。」
 
 ## <a name="live-metrics-stream"></a>即時計量串流
-部署最新組建的 hello 可以想的體驗。 如果有任何問題，您想要 tooknow 資訊，請立即，如此如有必要，您可以將。 即時計量串流可為您提供大約 1 秒延遲的關鍵計量。
+部署最新組建是令人焦慮的體驗。 如果有任何問題，您會希望立即了解它們，讓您能夠在必要時取消部署。 即時計量串流可為您提供大約 1 秒延遲的關鍵計量。
 
 ![即時計量](./media/app-insights-devops/040.png)
 
@@ -114,44 +114,44 @@ hello 社團也會取得深入了解其風扇的： 它們的位置 （只有 3%
 ![即時失敗事件](./media/app-insights-devops/live-stream-failures.png)
 
 ## <a name="application-map"></a>應用程式對應
-應用程式對應會自動探索您的應用程式的拓撲，用來配置 hello toolet 輕鬆地在您的分散式環境中識別效能瓶頸和有問題的流程，其最上層的效能資訊。 它可讓您 toodiscover 應用程式相依性 Azure 服務上。 您可以了解如果是程式碼相關或相關的相依性分級 hello 問題，而且從單一位置下鑽研至相關的診斷經驗。 比方說，您的應用程式中的 SQL 層的 tooperformance 降低因失敗。 與應用程式對應可以立即看到它，並向下切入到 hello SQL 索引建議程式或查詢 Insights 經驗。
+應用程式對應會自動探索您的應用程式拓撲 (在其上方放置效能資訊)，讓您能夠輕易地在整個分散式環境中識別出效能瓶頸和有問題的流程。 它可讓您探索 Azure 服務上的應用程式相依性。 您可以藉由了解問題是否與程式碼相關或與相依性相關，並從單一位置向內切入到相關診斷體驗，來將問題分類。 例如，您的應用程式可能會因為 SQL 層的效能降低而失敗。 利用應用程式對應，您可以立即看見它並鑽研 SQL 索引建議程式或 Query Insights 體驗。
 
 ![應用程式對應](./media/app-insights-devops/050.png)
 
 ## <a name="application-insights-analytics"></a>Application Insights 分析
-使用 [分析](app-insights-analytics.md)，您就能利用功能強大的 SQL 式語言撰寫任意查詢。  診斷跨 hello 整個應用程式堆疊會變得簡單連接各種不同觀點以及您可以詢問 hello 適當的問題 toocorrelate 服務效能的商務計量與客戶經驗。 
+使用 [分析](app-insights-analytics.md)，您就能利用功能強大的 SQL 式語言撰寫任意查詢。  將各種不同的觀點連結在一起時，跨整個應用程式堆疊的診斷就會變得很容易，而您可以詢問正確的問題，以便將服務效能與商務計量和客戶體驗相互關聯。 
 
-您可以查詢所有遙測的執行個體和度量的未經處理資料儲存在 hello 入口網站中。 hello 語言包括篩選、 聯結、 彙總和其他作業。 您可以計算欄位並執行統計分析。 目前提供表格式和圖形視覺效果。
+您可以查詢您儲存在入口網站中的所有遙測執行個體和未經處理的計量資料。 語言包括篩選、聯結、彙總及其他作業。 您可以計算欄位並執行統計分析。 目前提供表格式和圖形視覺效果。
 
 ![分析查詢和結果圖表](./media/app-insights-devops/025.png)
 
 例如，很容易：
 
-* 分割應用程式的要求效能資料，客戶層 toounderstand 經驗。
+* 依客戶層區隔應用程式的要求效能資來了解他們的體驗。
 * 在即時網站調查期間，搜尋特定錯誤碼或自訂的事件名稱。
-* 向下鑽研至特定客戶 toounderstand hello 應用程式使用功能，如何取得並採用。
-* 追蹤工作階段與特定使用者 tooenable 支援和作業團隊 tooprovide 立即客戶支援服務的回應時間。
-* 判斷常用的應用程式功能 tooanswer 功能優先順序的問題。
+* 向下切入特定客戶的應用程式使用方式，以了解需要和採用哪些功能。
+* 針對特定使用者追蹤工作階段與回應時間，讓支援和營運團隊能夠提供即時客戶支援。
+* 判斷常用的應用程式功能來回答應優先考慮的功能問題。
 
-客戶 DNN 說: 「 Application Insights 提供以 hello 遺漏 hello 方程式所能 toocombine、 排序、 查詢和篩選資料所需的部分。 讓我們的團隊 toouse 自己精巧和體驗 toofind 使用功能強大的查詢語言的資料已允許我們 toofind insights 及解決的問題，我們還不知道我們必須。 許多有趣的答案來自 hello 問題開頭*' 我奇觀 if...'。*"
+客戶 DNN 說：「Application Insights 為我們提供了方程式中遺漏的部分，以便我們能夠視需要結合、排序、查詢及篩選資料。 讓我們的團隊可以使用他們自己的創意和體驗，利用功能強大的查詢語言來尋找資料，讓我們能夠得到相關見解，並解決我們甚至不曾知道我們發生的問題。 許多有趣的答案都是來自開頭為『我想知道如果...』的問題。」
 
 ## <a name="development-tools-integration"></a>開發工具整合
 ### <a name="configuring-application-insights"></a>設定 Application Insights
-Visual Studio 和 Eclipse 有工具 tooconfigure hello 正確 SDK 套件 hello 專案所開發。 沒有功能表命令 tooadd Application Insights。
+Visual Studio 和 Eclipse 提供工具，可為您正在開發的專案設定正確的 SDK 封裝。 有一個功能表命令可新增 Application Insights。
 
-若您使用的追蹤記錄架構，例如 Log4N、 NLog 或 System.Diagnostics.Trace toobe，然後您取得 hello 選項 toosend hello 記錄 tooApplication Insights hello 與其他遙測，以便輕鬆地將要求與 hello 追蹤相互關聯相依性呼叫和例外狀況。
+如果您需要使用追蹤紀錄架構 (例如 Log4N、NLog 或 System.Diagnostics.Trace)，則您可以選擇將記錄傳送到 Application Insights 以及另一個遙測，因此可輕鬆地將追蹤與要求、相依性呼叫及例外狀況相互關聯。
 
 ### <a name="search-telemetry-in-visual-studio"></a>在 Visual Studio 中搜尋遙測
-在開發和偵錯功能，您可以檢視和搜尋 hello 直接在 Visual Studio 中使用相同搜尋機關以 hello web 入口網站中的 hello 的遙測。
+開發並偵錯功能時，您可以使用 Web 入口網站中的相同搜尋功能，在 Visual Studio 中直接搜尋遙測。
 
-當 Application Insights 記錄例外狀況時，您還可以和在 Visual Studio 中檢視 hello 資料點跳直線 toohello 相關的程式碼。
+此外，當 Application Insights 記錄例外狀況時，您可以在 Visual Studio 中檢視資料點，並直接跳到相關的程式碼。
 
 ![Visual Studio 搜尋](./media/app-insights-devops/060.png)
 
-偵錯期間，您在 hello 選項 tookeep hello 遙測在開發電腦、 Visual Studio 中，但不將它傳送 toohello 入口網站加以檢視。 此本機選項可避免與生產環境的遙測偵錯混合在一起。
+偵錯期間，您可以選擇將遙測保留於開發電腦中，在 Visual Studio 中加以檢視，但不會將它傳送到入口網站。 此本機選項可避免與生產環境的遙測偵錯混合在一起。
 
 ### <a name="build-annotations"></a>建置註解
-如果您使用 Visual Studio Team Services toobuild 並部署您的應用程式時，部署註解顯示 hello 入口網站中的圖表上。 如果您的最新版本沒有 hello 標準的任何作用，它就很明顯。
+如果您使用 Visual Studio Team Services 來建置和部署應用程式，則部署註解會出現在入口網站的圖表中。 如果您的最新版本會在計量上產生任何效果，則會變得很明顯。
 
 ![建置註解](./media/app-insights-devops/070.png)
 
@@ -160,7 +160,7 @@ Visual Studio 和 Eclipse 有工具 tooconfigure hello 正確 SDK 套件 hello �
 
 ## <a name="but-what-about"></a>但是，您認為...？
 * [隱私權和儲存體](app-insights-data-retention-privacy.md) - 您的遙測會保留於 Azure 安全伺服器上。
-* 效能-hello 影響是非常低。 遙測會進行批次處理。
+* 效能 - 影響很低。 遙測會進行批次處理。
 * [價格](app-insights-pricing.md) - 您可以開始免費使用，當您處於低用量期間可繼續使用。
 
 
@@ -169,9 +169,9 @@ Visual Studio 和 Eclipse 有工具 tooconfigure hello 正確 SDK 套件 hello �
 > [!VIDEO https://channel9.msdn.com/events/Connect/2016/112/player]
 
 ## <a name="next-steps"></a>後續步驟
-開始使用 Application Insights 很簡單。 hello 主要選項包括：
+開始使用 Application Insights 很簡單。 主要選項包括：
 
-* 檢測已在執行的 Web 應用程式。 這可讓您所有的 hello 內建的效能遙測資料。 其適用於 [Java](app-insights-java-live.md) 和 [IIS 伺服器](app-insights-monitor-performance-live-website-now.md)，以及 [Azure Web 應用程式](app-insights-azure.md)。
+* 檢測已在執行的 Web 應用程式。 這可為您提供所有內建的效能遙測。 其適用於 [Java](app-insights-java-live.md) 和 [IIS 伺服器](app-insights-monitor-performance-live-website-now.md)，以及 [Azure Web 應用程式](app-insights-azure.md)。
 * 在開發期間檢測您的專案。 您可以針對 [ASP.NET](app-insights-asp-net.md) 或 [Java](app-insights-java-get-started.md) 應用程式，以及 [Node.js](app-insights-nodejs.md) 和許多[其他類型](app-insights-platforms.md)執行此動作。 
 * 藉由新增簡短的程式碼片段來檢測 [任何網頁](app-insights-javascript.md) 。
 

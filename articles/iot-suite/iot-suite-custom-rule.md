@@ -1,6 +1,6 @@
 ---
-title: "Azure IoT 套件中的自訂規則 aaaCreate |Microsoft 文件"
-description: "如何 toocreate IoT 套件中的自訂規則預先設定的解決方案。"
+title: "在 Azure IoT 套件中建立自訂規則 | Microsoft Docs"
+description: "如何在 IoT 套件所預先設定的解決方案中建立自訂規則。"
 services: 
 suite: iot-suite
 documentationcenter: 
@@ -15,56 +15,56 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: dobett
-ms.openlocfilehash: 6c5bb2ca54f3f17b99ad482e727c8e9fa28d7fe5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d58c27234ea05a82aaa3e8d72f70c1449980df09
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="create-a-custom-rule-in-hello-remote-monitoring-preconfigured-solution"></a>建立 hello 的自訂規則遠端監視預先設定的解決方案
+# <a name="create-a-custom-rule-in-the-remote-monitoring-preconfigured-solution"></a>在遠端監視預先設定的解決方案中建立自訂規則
 
 ## <a name="introduction"></a>簡介
 
-在預先設定的 hello 方案中，您可以設定[裝置到達特定臨界值的規則時遙測觸發值][lnk-builtin-rule]。 [使用遠端監視預先設定的解決方案 hello 動態遙測][ lnk-dynamic-telemetry]描述如何在加入自訂遙測的值，例如*ExternalTemperature* tooyour 方案。 本文章將示範如何動態遙測 toocreate 自訂規則類型在您的方案中。
+在預先設定的解決方案中，您可以設定[會在裝置的遙測值觸達特定臨界值時觸發的規則][lnk-builtin-rule]。 [搭配使用動態遙測與遠端監視預先設定解決方案][lnk-dynamic-telemetry]會說明如何在解決方案中新增自訂遙測值，例如 ExternalTemperature。 本文則會示範如何在解決方案中建立動態遙測類型的自訂規則。
 
-本教學課程使用的簡單 Node.js 模擬的裝置 toogenerate 動態遙測 toosend toohello 預先設定的方案後端。 然後您自訂的規則中加入 hello **RemoteMonitoring** Visual Studio 方案並部署此自訂的後端 tooyour Azure 訂用帳戶。
+本教學課程使用簡單的 Node.js 模擬裝置，來產生要傳送至預先設定之解決方案後端的動態遙測。 然後，您要在 **RemoteMonitoring** Visual Studio 解決方案中新增自訂規則，並將此自訂後端部署至 Azure 訂用帳戶。
 
-toocomplete 本教學課程中，您需要：
+若要完成本教學課程，您需要：
 
 * 有效的 Azure 訂用帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][lnk_free_trial]。
-* [Node.js] [ lnk-node]版本 0.12.x 或更新版本 toocreate 模擬的裝置。
-* Visual Studio 2015 或 Visual Studio 2017 toomodify 預先設定的 hello 方案回您的新規則的結尾。
+* [Node.js][lnk-node] 0.12.x 版或更新版本，以建立模擬裝置。
+* Visual Studio 2015 或 Visual Studio 2017，以使用新規則修改預先設定的解決方案後端。
 
 [!INCLUDE [iot-suite-provision-remote-monitoring](../../includes/iot-suite-provision-remote-monitoring.md)]
 
-記下您選擇部署的 hello 方案名稱。 本教學課程稍後需要用到此解決方案名稱。
+請記下您為部署選擇的解決方案名稱。 本教學課程稍後需要用到此解決方案名稱。
 
 [!INCLUDE [iot-suite-send-external-temperature](../../includes/iot-suite-send-external-temperature.md)]
 
-您可以停止 hello Node.js 主控台應用程式，確認它傳送**ExternalTemperature**遙測 toohello 預先設定的解決方案。 保持 hello 主控台視窗開啟，因為您此 Node.js 主控台應用程式之後再次執行新增 hello 自訂規則 toohello 方案。
+當您確認 Node.js 主控台應用程式會將 **ExternalTemperature** 遙測傳送至預先設定的解決方案時，便可將其停止。 在將自訂規則新增至解決方案後，您會再次執行此 Node.js 主控台應用程式，因此請將主控台視窗保持開啟狀態。
 
 ## <a name="rule-storage-locations"></a>規則的儲存位置
 
 規則的相關資訊會保存在兩個位置︰
 
-* **DeviceRulesNormalizedTable**資料表-這個資料表會儲存正規化參考 toohello hello 方案入口網站所定義的規則。 Hello 方案入口網站會顯示裝置的規則，它會查詢此資料表的 hello 規則定義。
-* **DeviceRules** blob-此 blob 會儲存所有 hello 規則中定義的所有已註冊的裝置，且定義為參考輸入的 toohello Azure Stream Analytics 工作。
+* **DeviceRulesNormalizedTable** 資料表 – 此資料表會儲存解決方案入口網站所定義之規則的標準化參考。 解決方案入口網站在顯示裝置規則時，會查詢此資料表以取得規則定義。
+* **DeviceRules** Blob – 此 Blob 會儲存所有註冊裝置已定義的所有規則，並且會定義為 Azure 串流分析作業的參考輸入。
  
-當您更新現有的規則，或在 hello 方案入口網站中定義新的規則時，hello 資料表和 blob 會更新的 tooreflect hello 變更。 定義顯示 hello 入口網站中的 hello 規則來自於 hello 資料表存放區，以及定義 hello 串流分析工作所參考來自 hello blob hello 規則。 
+當您在解決方案入口網站中更新現有規則或定義新規則時，資料表和 Blob 皆會更新，以反映所做的變更。 入口網站中顯示的規則定義來自資料表存放區，串流分析作業所參考的規則定義則來自 Blob。 
 
-## <a name="update-hello-remotemonitoring-visual-studio-solution"></a>更新 hello RemoteMonitoring Visual Studio 方案
+## <a name="update-the-remotemonitoring-visual-studio-solution"></a>更新 RemoteMonitoring Visual Studio 解決方案
 
-hello 下列步驟說明如何 toomodify 會 hello RemoteMonitoring Visual Studio 方案 tooinclude 新規則，以便使用 hello **ExternalTemperature**遙測傳送嗨模擬的裝置：
+下列步驟說明如何修改 RemoteMonitoring Visual Studio 解決方案，以納入使用模擬裝置所傳來之 **ExternalTemperature** 遙測的新規則︰
 
-1. 如果您有您尚未這樣做，複製 hello **azure iot-遠端-監視**使用 hello 下列 Git 命令在本機電腦上的儲存機制 tooa 適合位置：
+1. 如果您尚未這麼做，請使用下列 Git 命令將 **azure-iot-remote-monitoring** 儲存機制複製到本機電腦上的適當位置︰
 
     ```
     git clone https://github.com/Azure/azure-iot-remote-monitoring.git
     ```
 
-2. 在 Visual Studio 中，開啟 hello RemoteMonitoring.sln 檔案從您的本機複本的 hello **azure iot-遠端-監視**儲存機制。
+2. 在 Visual Studio 中，從 **azure-iot-remote-monitoring** 儲存機制的本機複本開啟 RemoteMonitoring.sln 檔案。
 
-3. 開啟 hello 檔案 Infrastructure\Models\DeviceRuleBlobEntity.cs 並加入**ExternalTemperature**屬性，如下所示：
+3. 開啟檔案 Infrastructure\Models\DeviceRuleBlobEntity.cs 並新增 **ExternalTemperature** 屬性，如下所示︰
 
     ```csharp
     public double? Temperature { get; set; }
@@ -72,7 +72,7 @@ hello 下列步驟說明如何 toomodify 會 hello RemoteMonitoring Visual Studi
     public double? ExternalTemperature { get; set; }
     ```
 
-4. 在 hello 同一個檔案中新增**ExternalTemperatureRuleOutput**屬性，如下所示：
+4. 在相同的檔案中新增 **ExternalTemperatureRuleOutput** 屬性，如下所示︰
 
     ```csharp
     public string TemperatureRuleOutput { get; set; }
@@ -80,7 +80,7 @@ hello 下列步驟說明如何 toomodify 會 hello RemoteMonitoring Visual Studi
     public string ExternalTemperatureRuleOutput { get; set; }
     ```
 
-5. 開啟 hello 檔案 Infrastructure\Models\DeviceRuleDataFields.cs 並加入下列 hello **ExternalTemperature**屬性之後 hello 現有**溼度**屬性：
+5. 開啟檔案 Infrastructure\Models\DeviceRuleDataFields.cs，並在現有的 **Humidity** 屬性後新增下列 **ExternalTemperature** 屬性：
 
     ```csharp
     public static string ExternalTemperature
@@ -89,7 +89,7 @@ hello 下列步驟說明如何 toomodify 會 hello RemoteMonitoring Visual Studi
     }
     ```
 
-6. 在 hello 同一個檔案中更新 hello **_availableDataFields**方法 tooinclude **ExternalTemperature** ，如下所示：
+6. 在相同的檔案中更新 **_availableDataFields** 方法，以納入 **ExternalTemperature**，如下所示︰
 
     ```csharp
     private static List<string> _availableDataFields = new List<string>
@@ -98,7 +98,7 @@ hello 下列步驟說明如何 toomodify 會 hello RemoteMonitoring Visual Studi
     };
     ```
 
-7. 開啟並修改 hello hello 檔案 Infrastructure\Repository\DeviceRulesRepository.cs **BuildBlobEntityListFromTableRows**方法，如下所示：
+7. 開啟檔案 Infrastructure\Repository\DeviceRulesRepository.cs 並修改 **BuildBlobEntityListFromTableRows** 方法，如下所示︰
 
     ```csharp
     else if (rule.DataField == DeviceRuleDataFields.Humidity)
@@ -113,29 +113,29 @@ hello 下列步驟說明如何 toomodify 會 hello RemoteMonitoring Visual Studi
     }
     ```
 
-## <a name="rebuild-and-redeploy-hello-solution"></a>重建並重新部署 hello 方案。
+## <a name="rebuild-and-redeploy-the-solution"></a>重建並重新部署解決方案。
 
-您現在可以部署更新的 hello 方案 tooyour Azure 訂用帳戶。
+您現在可以在 Azure 訂用帳戶中部署已更新的解決方案。
 
-1. 開啟提升權限的命令提示字元並瀏覽 toohello 根 hello azure iot-遠端-監視儲存機制的本機副本。
+1. 開啟提高權限的命令提示字元，並瀏覽至 azure-iot-remote-monitoring 儲存機制本機複本的根目錄。
 
-2. toodeploy 更新的方案中，執行下列命令以替代的 hello **{部署名稱}** hello 名稱，為您先前所述的預先設定的解決方案部署：
+2. 若要部署已更新的解決方案，請執行下列命令，並將 **{deployment name}** 換成您先前記下之預先設定解決方案部署的名稱︰
 
     ```
     build.cmd cloud release {deployment name}
     ```
 
-## <a name="update-hello-stream-analytics-job"></a>更新 hello 資料流分析工作
+## <a name="update-the-stream-analytics-job"></a>更新串流分析作業
 
-Hello 部署完成時，您可以更新 hello 資料流分析工作 toouse hello 新規則的定義。
+部署完成時，您可以將串流分析作業更新為使用新的規則定義。
 
-1. 在 hello Azure 入口網站，瀏覽 toohello 資源群組，其中包含您預先設定的解決方案的資源。 此資源群組具有您指定的名稱相同的 hello hello hello 部署期間的方案。
+1. 在 Azure 入口網站中，瀏覽至預先設定之解決方案資源所在的資源群組。 此資源群組的名稱和您在部署期間為解決方案所指定的名稱相同。
 
-2. 瀏覽 toohello {部署 name} 的規則資料流分析工作。 
+2. 瀏覽至 {deployment name}-Rules 串流分析作業。 
 
-3. 按一下**停止**toostop hello 資料流分析工作無法執行。 （您必須等候 hello 串流工作 toostop，才能編輯 hello 查詢）。
+3. 按一下 [停止] 讓串流分析作業停止執行  (您必須等到串流作業停止後，才能編輯查詢)。
 
-4. 按一下 [查詢]。 編輯 hello 查詢 tooinclude hello**選取**陳述式**ExternalTemperature**。 hello 下列範例顯示以 hello hello 完整查詢新**選取**陳述式：
+4. 按一下 [查詢]。 編輯查詢以納入 **ExternalTemperature** 的 **SELECT** 陳述式。 下列範例示範具有全新 **SELECT** 陳述式的完整查詢︰
 
     ```
     WITH AlarmsData AS 
@@ -190,39 +190,39 @@ Hello 部署完成時，您可以更新 hello 資料流分析工作 toouse hello
     FROM AlarmsData
     ```
 
-5. 按一下**儲存**toochange hello 更新規則查詢。
+5. 按一下 [儲存] 來變更已更新的規則查詢。
 
-6. 按一下**啟動**toostart hello 資料流分析工作一次執行。
+6. 按一下 [啟動] 讓串流分析作業再次開始執行。
 
-## <a name="add-your-new-rule-in-hello-dashboard"></a>Hello 儀表板中加入您的新規則
+## <a name="add-your-new-rule-in-the-dashboard"></a>在儀表板中新增規則
 
-您現在可以新增 hello **ExternalTemperature**規則 tooa 裝置 hello 方案儀表板中的。
+您現在可以在解決方案儀表板中對裝置新增 **ExternalTemperature** 規則。
 
-1. 瀏覽 toohello 方案入口網站。
+1. 瀏覽至解決方案入口網站。
 
-2. 瀏覽 toohello**裝置**面板。
+2. 瀏覽至 [裝置] 面板。
 
-3. 找出 hello 自訂您建立的裝置傳送**ExternalTemperature**遙測和 hello**裝置詳細資料**] 面板中，按一下 [**加入規則**。
+3. 找出您所建立會傳送 **ExternalTemperature** 遙測的自訂裝置，然後在 [裝置詳細資料] 面板上按一下 [新增規則]。
 
 4. 在 [資料欄位] 中選取 [ExternalTemperature]。
 
-5. 設定**閾值**too56。 然後按一下 [儲存及檢視規則]。
+5. 將 [閾值] 設定為 56。 然後按一下 [儲存及檢視規則]。
 
-6. 傳回 toohello 儀表板 tooview hello 警示歷程記錄。
+6. 返回儀表板以檢視警示歷程記錄。
 
-7. 開始在 hello 保持在開啟的主控台視窗中的 hello Node.js 主控台應用程式 toobegin 傳送**ExternalTemperature**遙測資料。
+7. 在您保持開啟的主控台視窗中，啟動 Node.js 主控台應用程式，以開始傳送 **ExternalTemperature** 遙測資料。
 
-8. 請注意該 hello**警示歷程記錄**觸發 hello 新規則時，表格會顯示新的警示。
+8. 請注意，當有新規則觸發時，[警示歷程記錄] 資料表便會顯示新警示。
  
 ## <a name="additional-information"></a>其他資訊
 
-變更 hello 運算子 **>** 更複雜，而且超出此教學課程中所述的 hello 步驟。 雖然您可以變更 hello 資料流分析工作 toouse 任何您喜歡的運算子，反映 hello 方案入口網站中的運算子是更複雜的工作。 
+變更運算子 **>** 的程序更為複雜，不在本教學課程所述步驟的適用範圍內。 雖然您可以變更串流分析作業，以使用您所想要的任何運算子，但在解決方案入口網站中反映該運算子是更為複雜的工作。 
 
 ## <a name="next-steps"></a>後續步驟
-既然您已經看到如何 toocreate 自訂規則，您可以深入了解預先設定的 hello 方案：
+既然您已了解如何建立自訂規則，您可以進一步了解預先設定的解決方案︰
 
-- [連接邏輯應用程式 tooyour Azure IoT 套件遠端監視預先設定的解決方案][lnk-logic-app]
-- [在 hello 遠端監視的裝置資訊中繼資料已預先設定的解決方案][lnk-devinfo]。
+- [將邏輯應用程式連接至 Azure IoT 套件遠端監視預先設定解決方案][lnk-logic-app]
+- [遠端監視預先設定方案中的裝置資訊中繼資料][lnk-devinfo]。
 
 [lnk-devinfo]: iot-suite-remote-monitoring-device-info.md
 

@@ -1,6 +1,6 @@
 ---
-title: "Linux VM 上以 hello Azure CLI 1.0 的 aaaExpand OS 磁碟 |Microsoft 文件"
-description: "了解如何 tooexpand hello 作業系統 (OS) 上使用 Azure CLI 1.0 hello 和 hello Resource Manager 部署模型的 Linux VM 的虛擬磁碟"
+title: "使用 Azure CLI 1.0 擴充 Linux VM 上的 OS 磁碟 | Microsoft Docs"
+description: "了解如何使用 Azure CLI 1.0 和 Resource Manager 部署模型，來擴充 Linux VM 上的作業系統 (OS) 虛擬磁碟"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,42 +14,42 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 0db78c0b86b48b2c5358611e11bb0b7ad781a559
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0aedcd70b54c2ed47ec327ccf0529a48351353c0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="expand-os-disk-on-a-linux-vm-using-hello-azure-cli-with-hello-azure-cli-10"></a>展開 hello Azure CLI 1.0 搭配使用 Azure CLI hello Linux VM 上的作業系統磁碟
-hello hello 作業系統 (OS) 的預設虛擬硬碟大小通常是 30 GB 在 Azure 中 Linux 虛擬機器 (VM) 上。 您可以[加入資料磁碟](add-disk.md)tooprovide 額外的儲存空間，但是您也可以 tooexpand hello 作業系統磁碟。 這篇文章說明如何 tooexpand hello OS 磁碟針對 Linux VM 以 hello Azure CLI 1.0 中使用未受管理的磁碟。
+# <a name="expand-os-disk-on-a-linux-vm-using-the-azure-cli-with-the-azure-cli-10"></a>透過 Azure CLI 1.0 使用 Azure CLI 擴充 Linux VM 上的 OS 磁碟
+在 Azure 中，Linux 虛擬機器 (VM) 上作業系統 (OS) 的預設虛擬硬碟大小通常是 30 GB。 您可以[新增資料磁碟](add-disk.md)，以提供更多儲存空間，但您也可能想要擴充 OS 磁碟。 本文將詳細說明如何搭配使用非受控磁碟與 Azure CLI 1.0，來擴充 Linux VM 的 OS 磁碟。
 
-## <a name="cli-versions-toocomplete-hello-task"></a>CLI 版本 toocomplete hello 工作
-您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本：
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+您可以使用下列其中一個 CLI 版本來完成工作︰
 
-- [Azure CLI 1.0](#prerequisites) – 我們 CLI hello 傳統和資源管理部署模型 （此文件）
-- [Azure CLI 2.0](expand-disks.md) -hello 資源管理部署模型我們下一個層代 CLI
+- [Azure CLI 1.0](#prerequisites) – 適用於傳統和資源管理部署模型的 CLI (本文章)
+- [Azure CLI 2.0](expand-disks.md) - 適用於資源管理部署模型的新一代 CLI
 
 ## <a name="prerequisites"></a>必要條件
-您需要 hello[最新的 Azure CLI 1.0](../../cli-install-nodejs.md)安裝並登入 tooan [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)，如下所示使用 hello Resource Manager 模式：
+您需要安裝[最新的 Azure CLI 1.0](../../cli-install-nodejs.md)，而且已使用 Resource Manager 模式登入 [Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)，如下所示：
 
 ```azurecli
 azure config mode arm
 ```
 
-Hello 在下列範例中，會取代您自己的值範例參數名稱。 範例參數名稱包含 myResourceGroup 與 myVM。
+在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 myResourceGroup 與 myVM。
 
 ## <a name="expand-os-disk"></a>擴充 OS 磁碟
 
-1. 虛擬硬碟上的作業無法執行以 hello VM 執行。 hello 下列範例會停止並取消配置 hello 名為 VM *myVM* hello 資源群組中名為*myResourceGroup*:
+1. 當 VM 正在執行時，無法對虛擬硬碟執行作業。 下列範例會停止並解除配置名為 myResourceGroup 的資源群組中名為 myVM 的 VM：
 
     ```azurecli
     azure vm deallocate --resource-group myResourceGroup --name myVM
     ```
 
     > [!NOTE]
-    > `azure vm stop`不會釋放 hello 計算資源。 toorelease 計算資源，請使用`azure vm deallocate`。 必須解除配置 hello VM tooexpand hello 虛擬硬碟。
+    > `azure vm stop` 不會釋放計算資源。 若要釋放計算資源，請使用 `azure vm deallocate`。 必須解除配置 VM，才能擴充虛擬硬碟。
 
-2. 更新不受管理的 hello OS 磁碟使用 hello hello 大小`azure vm set`命令。 下列範例會更新 hello hello 名為 VM *myVM* hello 資源群組中名為*myResourceGroup* toobe *50* GB:
+2. 使用 `azure vm set` 命令來更新非受控 OS 磁碟的大小。 下列範例會將名為 myResourceGroup 的資源群組中名為 myVM 的 VM 更新為 50 GB：
 
     ```azurecli
     azure vm set \
@@ -64,7 +64,7 @@ Hello 在下列範例中，會取代您自己的值範例參數名稱。 範例�
     azure vm start --resource-group myResourceGroup --name myVM
     ```
 
-4. SSH tooyour VM 與 hello 適當的認證。 tooverify hello 作業系統磁碟大小已經過調整，請使用`df -h`。 下列範例輸出的 hello 顯示 hello 主要磁碟分割 (*/開發/sda1*) 現在是 50 GB:
+4. 使用適當的認證以 SSH 登入 VM。 若要確認 OS 磁碟已調整大小，請使用 `df -h`。 下列範例輸出顯示主要磁碟分割 (/dev/sda1) 現在是 50 GB：
 
     ```bash
     Filesystem      Size  Used Avail Use% Mounted on
@@ -74,4 +74,4 @@ Hello 在下列範例中，會取代您自己的值範例參數名稱。 範例�
     ```
 
 ## <a name="next-steps"></a>後續步驟
-如果您需要額外的存放裝置，您也[新增資料磁碟 tooa Linux VM](add-disk.md)。 如需磁碟加密的詳細資訊，請參閱[使用 Linux VM 上的加密磁碟 hello Azure CLI](encrypt-disks.md)。
+如果您需要更多儲存空間，您也可以[將資料磁碟新增至 Linux VM](add-disk.md)。 如需磁碟加密的詳細資訊，請參閱[使用 Azure CLI 將 Linux VM 上的磁碟加密](encrypt-disks.md)。

@@ -1,6 +1,6 @@
 ---
-title: "服務網狀架構操作通道 aaaAzure |Microsoft 文件"
-description: "Hello 操作通道的 Azure Service Fabric 叢集所產生的記錄檔的完整清單。"
+title: "Azure Service Fabric 作業通道 | Microsoft Docs"
+description: "完整列出 Azure Service Fabric 叢集的作業通道中所產生的記錄。"
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/19/2017
 ms.author: dekapur
-ms.openlocfilehash: 358782420ed62b202d6a89fe0f200b5ef0384c9c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 934719868ab9968db352db2b440014d35dbc0274
+ms.sourcegitcommit: 422efcbac5b6b68295064bd545132fcc98349d01
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/29/2017
 ---
 # <a name="operational-channel"></a>作業通道 
 
-hello 操作通道是由從 Service Fabric 執行您的節點和您的叢集上的高階動作的記錄檔所組成。 叢集中，hello Azure 診斷代理程式已部署您的叢集，且預設為啟用 「 診斷 」 時設定 tooread hello 操作通道中的記錄檔中。 深入了解設定 hello [Azure 診斷代理程式](service-fabric-diagnostics-event-aggregation-wad.md)的多個記錄檔或效能計數器您叢集 toopick toomodify hello 診斷組態。 
+作業通道包含 Service Fabric 在您的節點和叢集上所執行的高階動作記錄。 當叢集啟用「診斷」時，Azure 診斷代理程式會部署在您的叢集上，而且預設會設定為從作業通道讀入記錄。 深入了解如何設定 [Azure 診斷代理程式](service-fabric-diagnostics-event-aggregation-wad.md)修改叢集的診斷設定，以選取更多記錄或效能計數器。 
 
 ## <a name="operational-channel-logs"></a>作業通道記錄 
 
-以下是 hello 操作通道中服務的網狀架構所提供的記錄檔的完整清單。 
+以下是 Service Fabric 的作業通道中所提供的完整記錄清單。 
 
 | EventId | 名稱 | 來源 (工作) | 等級 |
 | --- | --- | --- | --- |
@@ -56,6 +56,6 @@ hello 操作通道是由從 Service Fabric 執行您的節點和您的叢集上�
 
 ## <a name="next-steps"></a>後續步驟
 
-* 深入了解整體[hello 平台層級的事件產生](service-fabric-diagnostics-event-generation-infra.md)Service Fabric 中
-* 修改您[Azure 診斷](service-fabric-diagnostics-event-aggregation-wad.md)組態 toocollect 更記錄
-* [設定 Application Insights](service-fabric-diagnostics-event-analysis-appinsights.md) toosee 您操作通道記錄
+* 深入了解 Service Fabric 中整個[平台層級的事件產生](service-fabric-diagnostics-event-generation-infra.md)
+* 修改您的 [Azure 診斷](service-fabric-diagnostics-event-aggregation-wad.md)設定以收集更多記錄
+* [設定 Application Insights](service-fabric-diagnostics-event-analysis-appinsights.md) 以查看您的作業通道記錄

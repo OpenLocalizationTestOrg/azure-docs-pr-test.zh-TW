@@ -1,5 +1,5 @@
 ---
-title: "SQL 資料倉儲與 Azure Machine Learning aaaUse |Microsoft 文件"
+title: "搭配使用 Azure 機器學習服務與 SQL 資料倉儲 | Microsoft Docs"
 description: "搭配使用 Azure 機器學習服務與 SQL 資料倉儲以便開發解決方案的秘訣。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,43 +15,43 @@ ms.workload: data-services
 ms.custom: integrate
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
-ms.openlocfilehash: fdfe8c936d2bb7a02163a0bbf6435e1ebd518d4f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c19860c6b5b1c15d1e29ddc67f9cf9ad4618725b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="use-azure-machine-learning-with-sql-data-warehouse"></a>搭配使用 Azure 機器學習服務與 SQL 資料倉儲
-Azure Machine Learning 是完全受管理的預測分析服務，您可以對您的資料在 SQL 資料倉儲中，使用 toocreate 預測模型，並再發行為已備妥取用 web 服務。 您可以了解 hello 基本概念的預測分析和機器學習，藉由讀取[簡介 tooMachine 在 Azure 上學習][Introduction tooMachine Learning on Azure]。  您接著可以學 toocreate，如何訓練、 評分和測試使用 hello 的機器學習模型[教學課程中建立實驗][Create experiment tutorial]。
+Azure 機器學習服務是一項完全受管理的預測性分析服務，您可用來在 SQL 資料倉儲中針對您的資料建立預測模型，並發佈為可供取用 Web 服務。 閱讀 [Azure 上的機器學習服務簡介][Introduction to Machine Learning on Azure]，即可了解預測性分析和機器學習的基本概念。  然後，您可以使用[建立實驗教學課程][Create experiment tutorial]，了解如何建立、定型、評分和測試機器學習模型。
 
-在本文中，您將學習如何遵循使用 hello toodo hello [Azure Machine Learning Studio][Azure Machine Learning Studio]:
+在本文中，您將了解如何使用 [Azure Machine Learning Studio][Azure Machine Learning Studio]：
 
-* 從資料庫 toocreate 讀取資料、 定型和計分的預測模型
-* 寫入資料 tooyour 資料庫
+* 從您的資料庫讀取資料來建立、定型和評分預測模型
+* 將資料寫入您的資料庫
 
 ## <a name="read-data-from-sql-data-warehouse"></a>從 SQL 資料倉儲讀取資料
-我們將從 hello AdventureWorksDW 資料庫中的 Product 資料表讀取資料。
+我們將從 AdventureWorksDW 資料庫中的 Product 資料表讀取資料。
 
 ### <a name="step-1"></a>步驟 1
-按一下以啟動新的實驗 + 新增在 hello hello Machine Learning Studio 視窗底部選取實驗，，然後選取 空白實驗。 選取 hello 預設試驗頂端 hello hello 畫布的名稱，以及將它重新命名 toosomething 有意義，例如，自行車的價格預測。
+按一下 Machine Learning Studio 視窗底部的 [+新增]，選取 [實驗]，然後選取 [空白實驗] 以開始新的實驗。 選取畫布頂端的預設實驗名稱，然後將它重新命名為有意義的名稱，例如，單車價格預測。
 
 ### <a name="step-2"></a>步驟 2
-尋找資料集的 hello 調色盤中的 hello 讀取器模組和 hello 左邊 hello 實驗畫布上的模組。 拖曳 hello 模組 toohello 實驗畫布。
+在實驗畫布左邊的資料集和模組選擇區中尋找 [讀取器] 模組。 將此模組拖曳到實驗畫布。
 ![][drag_reader]
 
 ### <a name="step-3"></a>步驟 3
-選取 hello 讀取器模組，然後填寫 hello 屬性 窗格。
+選取 [讀取器] 模組並填寫屬性窗格。
 
-1. 選取 Azure SQL Database 做為 hello 資料來源。
-2. 資料庫伺服器名稱： 類型 hello 伺服器名稱。 您可以使用 hello [Azure 入口網站][ Azure portal] toofind 這。
+1. 選取 Azure SQL Database 做為資料來源。
+2. 資料庫伺服器名稱：輸入伺服器名稱。 您可以使用 [Azure 入口網站][Azure portal]進行搜尋。
 
 ![][server_name]
 
-1. 資料庫名稱： 類型 hello hello 您剛才指定的伺服器上的資料庫名稱。
-2. 伺服器的使用者帳戶名稱： 輸入 hello 的使用者名稱擁有 hello 資料庫的存取權限的帳戶。
-3. 伺服器使用者帳戶密碼： 提供 hello hello 密碼指定使用者帳戶。
-4. 接受任何伺服器憑證： 如果您想 tooskip 讀取資料之前，檢閱 hello 站台憑證，請使用此選項 （較不安全）。
-5. 資料庫查詢： 輸入 SQL 陳述式描述您想要 tooread hello 資料。 在此情況下，我們會使用下列查詢的 hello 產品資料表讀取資料。
+1. 資料庫名稱：輸入您剛指定的伺服器上的資料庫名稱。
+2. 伺服器使用者帳戶名稱：輸入具有資料庫存取權限的帳戶的使用者名稱。
+3. 伺服器使用者帳戶名稱：提供指定之使用者帳戶的密碼。
+4. 接受任何伺服器憑證：如果您想要在讀取資料前跳過檢閱網站憑證，請使用這個選項 (較不安全)。
+5. 資料庫查詢：輸入 SQL 陳述式，描述您要讀取的資料。 在此情況下，我們將使用下列查詢從 Product 資料表讀取資料。
 
 ```SQL
 SELECT ProductKey, EnglishProductName, StandardCost,
@@ -63,51 +63,51 @@ FROM dbo.DimProduct;
 ![][reader_properties]
 
 ### <a name="step-4"></a>步驟 4
-1. 按一下下 hello 實驗畫布的執行執行 hello 實驗。
-2. Hello 實驗完成時，hello 讀取器模組必須順利完成綠色核取記號 tooindicate。 請注意也 hello hello 右上角中執行狀態的已完成。
+1. 按一下實驗畫布下方的 [執行]，以執行實驗。
+2. 實驗完成時，[讀取器] 模組都會呈現綠色核取標記，表示該模組已順利完成。 同時也請留意位於右上角的「執行完成」狀態。
 
 ![][run]
 
-1. toosee hello 匯入的資料，按一下底端 hello hello 汽車的資料集的 hello 輸出連接埠並選取視覺效果。
+1. 若要查看匯入的資料，請按一下汽車資料集底部的輸出連接埠，然後選取 [視覺化]。
 
 ## <a name="create-train-and-score-a-model"></a>建立、定型和評分模型
 現在您可以使用此資料集：
 
 * 建立模型：處理資料並定義功能
-* 定型 hello 模型： 選擇並套用的學習演算法
-* 分數與測試 hello 模型： 預測新的自行車價格
+* 定型模型：選擇並套用學習演算法
+* 對模型評分和測試：預測新的自行車價格
 
 ![][model]
 
-深入了解 toocreate，如何訓練、 評分和測試的機器學習模型使用 hello toolearn[教學課程中建立實驗][Create experiment tutorial]。
+若要深入了解如何建立、定型、評分和測試機器學習模型，請使用 [建立實驗教學課程][Create experiment tutorial]。
 
-## <a name="write-data-tooazure-sql-data-warehouse"></a>寫入資料 tooAzure SQL 資料倉儲
-我們會撰寫 hello 結果集 tooProductPriceForecast 資料表 hello AdventureWorksDW 資料庫中。
+## <a name="write-data-to-azure-sql-data-warehouse"></a>將資料寫入至 Azure SQL 資料倉儲
+我們會將結果集寫入至 AdventureWorksDW 資料庫中的 ProductPriceForecast 資料表。
 
 ### <a name="step-1"></a>步驟 1
-尋找資料集的 hello 調色盤中的 hello 編寫器模組和 hello 左邊 hello 實驗畫布上的模組。 拖曳 hello 模組 toohello 實驗畫布。
+在實驗畫布左邊的資料集和模組選擇區中尋找 [寫入器] 模組。 將此模組拖曳到實驗畫布。
 
 ![][drag_writer]
 
 ### <a name="step-2"></a>步驟 2
-選取 hello 編寫器模組，然後填寫 hello 屬性 窗格。
+選取 [寫入器] 模組並填寫屬性窗格。
 
-1. 選取 Azure SQL Database 做為資料目的地 hello。
-2. 資料庫伺服器名稱： 類型 hello 伺服器名稱。 您可以使用 hello [Azure 入口網站][ Azure portal] toofind 這。
-3. 資料庫名稱： 類型 hello hello 您剛才指定的伺服器上的資料庫名稱。
-4. 伺服器的使用者帳戶名稱： 輸入 hello 的使用者名稱擁有 hello 資料庫的寫入權限的帳戶。
-5. 伺服器使用者帳戶密碼： 提供 hello hello 密碼指定使用者帳戶。
-6. 接受任何伺服器憑證 （不安全）： 選取此選項，如果您不想 tooview hello 憑證。
-7. 以逗號分隔清單儲存的資料行 toobe： 提供要 toooutput hello 資料集或結果資料行的清單。
-8. 資料表名稱： 指定 hello hello 資料的資料表名稱。
-9. Datatable 資料行的逗號分隔的清單： 指定 hello 資料行名稱 toouse hello 新資料表中。 hello 資料行名稱可以不同於 hello 的 hello 來源資料集中，但您必須列出 hello 相同數目的資料行，您定義的 hello 輸出資料表。
-10. 每個 SQL Azure 作業寫入的資料列數目： 您可以設定 hello 撰寫 tooa SQL 資料庫的一項作業的資料列數目。
+1. 選取 Azure SQL Database 做為資料目的地。
+2. 資料庫伺服器名稱：輸入伺服器名稱。 您可以使用 [Azure 入口網站][Azure portal]進行搜尋。
+3. 資料庫名稱：輸入您剛指定的伺服器上的資料庫名稱。
+4. 伺服器使用者帳戶名稱：輸入具有資料庫寫入權限的帳戶的使用者名稱。
+5. 伺服器使用者帳戶名稱：提供指定之使用者帳戶的密碼。
+6. 接受任何伺服器憑證 (不安全)：如果您不想檢視憑證，請選取此選項。
+7. 要儲存之資料行的逗號分隔清單：提供您要輸出的資料集或結果資料行清單。
+8. 資料表名稱：指定資料表的名稱。
+9. 以逗號分隔的資料表資料行清單：指定要用於新資料表中的資料行名稱。 資料行名稱可與來源資料集中的資料行名稱不同，但您必須在此列出您為輸出資料表定義的相同數目的資料行。
+10. 每個 SQL Azure 作業寫入的資料列數目：您可以設定在單一作業中寫入至 SQL 資料庫的資料列數目。
 
 ![][writer_properties]
 
 ### <a name="step-3"></a>步驟 3
-1. 按一下下 hello 實驗畫布的執行執行 hello 實驗。
-2. Hello 實驗完成時，所有的模組必須已順利完成綠色核取記號 tooindicate。
+1. 按一下實驗畫布下方的 [執行]，以執行實驗。
+2. 實驗完成時，所有模組都會呈現綠色核取標記，表示它們已順利完成。
 
 ## <a name="next-steps"></a>後續步驟
 如需更多開發秘訣，請參閱 [SQL 資料倉儲開發概觀][SQL Data Warehouse development overview]。
@@ -126,7 +126,7 @@ FROM dbo.DimProduct;
 
 [SQL Data Warehouse development overview]: ./sql-data-warehouse-overview-develop.md
 [Create experiment tutorial]: https://azure.microsoft.com/documentation/articles/machine-learning-create-experiment/
-[Introduction toomachine learning on Azure]: https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
+[Introduction to machine learning on Azure]: https://azure.microsoft.com/documentation/articles/machine-learning-what-is-machine-learning/
 [Azure Machine Learning Studio]: https://studio.azureml.net/Home
 [Azure portal]: https://portal.azure.com/
 

@@ -14,11 +14,11 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/06/2017
 ms.author: maheshu
-ms.openlocfilehash: 7c393eead91ff43dd862bbf10e3af44062ffeff9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1a4af8c9a5f30cf7ea24d587866d1b41ab9cfb2c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="third-party-software-compatible-with-azure-ad-domain-services"></a>Azure AD Domain Services 相容的協力廠商軟體
 
@@ -26,7 +26,7 @@ ms.lasthandoff: 10/06/2017
 
 ![One Identity](./media/compatible-software-icons/OneIdentity.png)
 
-一個身分識別驗證服務，可讓 Unix、 Linux 及 Mac OS X 系統 toouse hello 存取、 驗證和授權的組織的現有 Active Directory (AD) 基礎結構。 驗證服務現在支援 Azure Active Directory 網域服務啟用 tooutilize hello 您現有的 SaaS 解決方案已經使用的相同新一代平台的非 Windows 資源。
+One Identity Authentication Services 可讓 Unix、Linux 及 Mac OS X 系統使用組織現有 Active Directory (AD) 基礎結構的存取、驗證及授權。 「驗證服務」現在支援 Azure Active Directory Domain Services，可讓非 Windows 資源利用您現有 SaaS 解決方案已在使用的相同新一代平台。
 
 [One Identity Authentication Services](https://www.quest.com/products/authentication-services/)
 
@@ -37,6 +37,6 @@ ms.lasthandoff: 10/06/2017
 
 ![RedHat](./media/compatible-software-icons/RedHat.png)
 
-Red Hat Enterprise Linux 是企業的 hello world 前置 enterprise Linux 平台建置 toomeet hello 現今的新式需求。 Red Hat Enterprise Linux 是 Microsoft Azure 上的企業 Linux 虛擬機器 (VM) 工作負載的慣用的 hello 選擇。 Red Hat Enterprise Linux 開啟、 可靠且安全設計的客戶針對其商務關鍵性的工作負載-hello 資料中心 toohello Azure 雲端-從要部署更具彈性的平台支援的緊密整合，企業等級從 Red Hat 和 Microsoft 支援。
+Red Hat Enterprise Linux 是為了因應今日現代化企業的需求而建置的世界頂尖企業 Linux 平台。 Red Hat Enterprise Linux 是處理 Microsoft Azure 上企業 Linux 虛擬機器 (VM) 工作負載的建議選項。 Red Hat Enterprise Linux 是一個開放、可靠且安全的平台，專為希望能夠針對其業務關鍵性工作負載進行靈活部署的客戶而設計，從資料中心到 Azure 雲端都有來自 Red Hat 和 Microsoft 的緊密整合、企業級支援作為後盾。
 
-[聯結 RedHat Enterprise Linux 7.2 VM tooAzure AD 網域服務](active-directory-ds-admin-guide-join-rhel-linux-vm.md)
+[將 RedHat Enterprise Linux 7.2 VM 加入 Azure AD Domain Services](active-directory-ds-admin-guide-join-rhel-linux-vm.md)

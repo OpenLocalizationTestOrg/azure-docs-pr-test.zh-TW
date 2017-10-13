@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Premium 和 Standard 受管理磁碟概觀適用於 Linux Vm |Microsoft 文件"
-description: "Azure 受管理磁碟，使用 Azure Linux Vm 時，會為您處理 hello 儲存體帳戶的概觀"
+title: "適用於 Linux VM 的 Azure 進階和標準受控磁碟概觀 | Microsoft Docs"
+description: "使用 Azure Linux VM 時為您處理儲存體帳戶的 Azure 受控磁碟概觀"
 services: virtual-machines-linux
 documentationcenter: na
 author: iainfoulds
@@ -14,10 +14,10 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/15/2017
 ms.author: iainfou
-ms.openlocfilehash: 6940f69fe36655df8433c199711c7eefb3f130cc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9e61c51a888d3a0ecd408242c51b8de477159fd2
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 [!INCLUDE [virtual-machines-managed-disks-overview.md](../../../includes/virtual-machines-managed-disks-overview.md)]

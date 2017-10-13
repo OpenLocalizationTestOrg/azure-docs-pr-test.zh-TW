@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB 中的地理空間資料與 aaaWorking |Microsoft 文件"
-description: "了解如何 toocreate，索引具有 Azure Cosmos DB 空間物件，以及查詢 hello DocumentDB API。"
+title: "使用 Azure Cosmos DB 中的地理空間資料 | Microsoft Docs"
+description: "了解如何使用 Azure Cosmos DB 和 DocumentDB API 建立與查詢空間物件，以及為其編製索引。"
 services: cosmos-db
 documentationcenter: 
 author: arramac
@@ -15,29 +15,29 @@ ms.workload: data-services
 ms.date: 05/22/2017
 ms.author: arramac
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a1e40b78cb4595631d845d46c21d07a30c8b972f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d5785c81fb597e7d30eb7d3a880e7194d8358ed5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="working-with-geospatial-and-geojson-location-data-in-azure-cosmos-db"></a>使用 Azure Cosmos DB 中的地理空間和 GeoJSON 位置資料
-這篇文章是簡介 toohello geospatial 中的功能[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)。 閱讀此文章之後, 將無法 tooanswer hello 下列問題：
+本文將介紹 [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) 中的地理空間功能。 閱讀本文後，您將能夠回答下列問題：
 
 * 如何在 Azure Cosmos DB 中儲存空間資料？
 * 如何以 SQL 和 LINQ 查詢 Azure Cosmos DB 中的地理空間資料？
 * 如何在 Azure Cosmos DB 中啟用或停用空間編製索引？
 
-本文示範如何使用空間資料與 toowork hello DocumentDB API。 請參閱此 [GitHub 專案](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/code-samples/Geospatial/Program.cs)中的程式碼範例。
+本文示範如何透過 DocumentDB API 使用空間資料。 請參閱此 [GitHub 專案](https://github.com/Azure/azure-documentdb-dotnet/blob/master/samples/code-samples/Geospatial/Program.cs)中的程式碼範例。
 
-## <a name="introduction-toospatial-data"></a>簡介 toospatial 資料
-空間資料會描述 hello 位置與形狀的空間中的物件。 在大部分的應用程式，這些對應 tooobjects hello 地球，也就是地理空間資料上。 空間資料可以是個人使用的 toorepresent hello 位置、 感興趣的位置或 hello 界限的縣 （市） 或湖泊。 常見使用案例通常涉及鄰近性查詢，例如「尋找我目前位置附近的所有咖啡廳」。 
+## <a name="introduction-to-spatial-data"></a>空間資料簡介
+空間資料可描述空間中物件的位置和形狀。 在大部分的應用程式中，這些會對應至地球上的物件，也就是地理空間資料。 空間資料可以用來代表人、感興趣的地方、城市邊界或湖泊。 常見使用案例通常涉及鄰近性查詢，例如「尋找我目前位置附近的所有咖啡廳」。 
 
 ### <a name="geojson"></a>GeoJSON
-Azure Cosmos DB 支援索引和查詢表示使用 hello geospatial 點資料[GeoJSON 規格](https://tools.ietf.org/html/rfc7946)。 GeoJSON 資料結構一律為有效的 JSON 物件，因此可透過 Azure Cosmos DB 來儲存及查詢，無須使用任何特殊的工具或程式庫。 hello Azure Cosmos DB Sdk 提供 helper 類別和方法，可讓您輕鬆 toowork 空間資料。 
+Azure Cosmos DB 支援對使用 [GeoJSON 規格 (英文)](https://tools.ietf.org/html/rfc7946) 表示的地理空間點資料執行編製索引和查詢。 GeoJSON 資料結構一律為有效的 JSON 物件，因此可透過 Azure Cosmos DB 來儲存及查詢，無須使用任何特殊的工具或程式庫。 Azure Cosmos DB SDK 提供協助程式類別和方法，以便更容易使用空間資料。 
 
 ### <a name="points-linestrings-and-polygons"></a>點、LineString 和多邊形
-**點** 代表空間中的單一位置。 在地理空間資料點會代表 hello 確切位置，可能是雜貨店、 kiosk、 汽車或某個城市的街道地址。  點會使用其座標組或經緯度，以 GeoJSON (和 Azure Cosmos DB) 來表示。 以下是點的 JSON 範例。
+**點** 代表空間中的單一位置。 在地理空間資料中，某個點所代表的確切位置可能是雜貨店的街道地址、電話亭、汽車或城市。  點會使用其座標組或經緯度，以 GeoJSON (和 Azure Cosmos DB) 來表示。 以下是點的 JSON 範例。
 
 **Azure Cosmos DB 中的點**
 
@@ -49,9 +49,9 @@ Azure Cosmos DB 支援索引和查詢表示使用 hello geospatial 點資料[Geo
 ```
 
 > [!NOTE]
-> hello GeoJSON 規格指定經度第一個和緯度第二個。 如同其他的地圖應用程式，經度和緯度為角度，並以度為表示單位。 經度值會從 hello 子午線衡量，並介於-180 和 180.0 度和緯度值從 hello 赤道衡量，並介於-90.0 和 90.0 度。 
+> GeoJSON 規格會先指定經度，然後再指定緯度。 如同其他的地圖應用程式，經度和緯度為角度，並以度為表示單位。 經度值是從本初子午線測量，並介於 -180 和 180.0 度之間；緯度值是從赤道測量，並介於 -90.0 和 90.0 度之間。 
 > 
-> Azure Cosmos DB 解譯座標表示每個 hello WGS 84 參考系統。 請參閱下方詳細的座標參考系統資料。
+> Azure Cosmos DB 會依照 WGS-84 參考系統所表示的方式來解譯座標。 請參閱下方詳細的座標參考系統資料。
 > 
 > 
 
@@ -72,7 +72,7 @@ Azure Cosmos DB 支援索引和查詢表示使用 hello geospatial 點資料[Geo
 }
 ```
 
-此外 toopoints，GeoJSON 也支援 LineStrings 和多邊形。 **LineStrings**代表一系列的空間中的兩個或多個點且 hello 將它們連接的直線線段。 在地理空間資料 LineStrings 是常用的 toorepresent 高速公路或河。 **多邊形**是由連接的點組成邊界，並形成封閉的 LineString。 多邊形會像湖泊常用的 toorepresent 自然格式或政治轄區像城市與州。 以下是 Azure Cosmos DB 中多邊形的範例。 
+除了點之外，GeoJSON 也支援 Linestring 和多邊形。 **Linestring** 表示空間中一連串的點 (兩個以上)，以及連接這些點的線段。 在地理空間資料中，LineStrings 通常用來代表高速公路或河流。 **多邊形**是由連接的點組成邊界，並形成封閉的 LineString。 多邊形常用來代表自然構成物，例如湖泊，或代表政治管轄權，例如城市和州省。 以下是 Azure Cosmos DB 中多邊形的範例。 
 
 **GeoJSON 中的多邊形**
 
@@ -90,21 +90,21 @@ Azure Cosmos DB 支援索引和查詢表示使用 hello geospatial 點資料[Geo
 ```
 
 > [!NOTE]
-> hello GeoJSON 規格要求有效的多邊形的 hello 所提供的最後一個座標組應可讓相同 hello 為 hello 第一次，toocreate 封閉圖形。
+> GeoJSON 規格需要此資料才能形成有效的多邊形；若要建立一個封閉的形狀，最後一個座標組應該與第一個座標組相同。
 > 
-> 多邊形內的點必須以逆時針順序指定。 順時針旋轉的順序指定的多邊形代表 hello 反 hello 區域內。
+> 多邊形內的點必須以逆時針順序指定。 以順時針順序指定的多邊形，代表區域內的反轉。
 > 
 > 
 
-在加法 tooPoint，LineString 和多邊形，GeoJSON 也會指定如何 hello 表示 toogroup 多個地理空間位置，以及如何 tooassociate 任意數目的屬性與地理位置**功能**。 由於這些物件都是有效的 JSON，因此均可在 Azure Cosmos DB 中儲存及處理。 不過，Azure Cosmos DB 僅支援自動編製點的索引。
+除了點、LineString 和多邊形之外，GeoJSON 也會指定如何將多個地理空間位置的表示加以分組，以及如何將任意屬性與地理位置產生關聯成為 **特徵**的表示。 由於這些物件都是有效的 JSON，因此均可在 Azure Cosmos DB 中儲存及處理。 不過，Azure Cosmos DB 僅支援自動編製點的索引。
 
 ### <a name="coordinate-reference-systems"></a>座標參考系統
-Hello 地球的 hello 圖形是異常，因為地理空間資料的座標被以許多的座標參考系統 (CR)，每個都有自己的畫面格的參考和度量單位。 比方說，「 國家 （地區） 方格的英國"hello 是 「 參照系統是非常精確 hello 英國，但超出它。 
+由於地球的形狀並不規則，地理空間資料的座標可以許多座標參考系統 (CRS) 來表示，而這些系統各有自己的參考框架和測量單位。 例如「英國國家格網參考系統」對英國而言是非常精確的參考系統，但對其他地區則不是。 
 
-hello 最受歡迎使用 CR 今天為 hello World Geodetic System [WGS 84](http://earth-info.nga.mil/GandG/wgs84/)。 GPS 裝置和許多地圖服務，包括 Google 地圖與 Bing Maps API 均是使用 WGS-84。 Azure Cosmos DB 支援索引和查詢使用 hello 只 WGS 84 CRS 地理空間資料。 
+現今最常使用的 CRS 是「全球大地座標系統」[WGS-84](http://earth-info.nga.mil/GandG/wgs84/)。 GPS 裝置和許多地圖服務，包括 Google 地圖與 Bing Maps API 均是使用 WGS-84。 Azure Cosmos DB 僅支援對使用 WGS-84 CRS 的地理空間資料執行編製索引和查詢。 
 
 ## <a name="creating-documents-with-spatial-data"></a>建立具有空間資料的文件
-當您建立包含 GeoJSON 值的文件時，它們會自動索引中的 hello 集合素來 toohello 編製索引原則的空間索引。 如果您是以動態類型的語言 (如 Python 或 Node.js) 使用 Azure Cosmos DB SDK，則必須建立有效的 GeoJSON。
+當您建立包含 GeoJSON 值的文件時，值會根據集合的索引編製原則，自動以空間索引進行索引編製。 如果您是以動態類型的語言 (如 Python 或 Node.js) 使用 Azure Cosmos DB SDK，則必須建立有效的 GeoJSON。
 
 **以 Node.js 建立具有地理空間資料的文件**
 
@@ -118,11 +118,11 @@ var userProfileDocument = {
 };
 
 client.createDocument(`dbs/${databaseName}/colls/${collectionName}`, userProfileDocument, (err, created) => {
-    // additional code within hello callback
+    // additional code within the callback
 });
 ```
 
-如果您正在使用 hello DocumentDB Api，您可以使用 hello`Point`和`Polygon`內 hello 類別`Microsoft.Azure.Documents.Spatial`應用程式物件內的命名空間 tooembed 位置資訊。 這些類別有助於簡化 hello 序列化和還原序列化成 GeoJSON 空間資料。
+如果您使用 DocumentDB API，則可在 `Microsoft.Azure.Documents.Spatial` 命名空間中使用 `Point` 及 `Polygon` 類別，藉此將位置資訊內嵌在應用程式物件中。 這些類別可協助將空間資料序列化和還原序列化簡化成 GeoJSON。
 
 **以 .NET 建立具有地理空間資料的文件**
 
@@ -149,13 +149,13 @@ await client.CreateDocumentAsync(
     });
 ```
 
-如果您沒有 hello 緯度和經度資訊，但有 hello 實體位址或位置的名稱，例如縣市或國家/地區，您可以使用這類 Bing 地圖服務 REST 服務的地理編碼服務查閱 hello 實際座標。 在 [這裡](https://msdn.microsoft.com/library/ff701713.aspx)深入了解 Bing Maps 地理編碼。
+如果您沒有經緯度資訊，但有實體地址或位置名稱，如城市或國家/地區，您可以使用像是 Bing Maps REST 服務之類的地理編碼服務，來查閱實際的座標。 在 [這裡](https://msdn.microsoft.com/library/ff701713.aspx)深入了解 Bing Maps 地理編碼。
 
 ## <a name="querying-spatial-types"></a>查詢空間類型
-既然我們已經看看如何 tooinsert 地理空間資料，讓我們看看如何 tooquery 使用 Azure Cosmos DB SQL 和 LINQ 使用此資料。
+既然我們已經探討過如何插入地理空間資料，現在就來看看如何透過 SQL 和 LINQ 使用 Azure Cosmos DB 查詢此資料。
 
 ### <a name="spatial-sql-built-in-functions"></a>空間 SQL 內建函數
-Azure Cosmos DB 支援 hello 下列開放式地理空間協會 (OGC) 的地理空間查詢內建函式。 如需有關 hello 整組 hello SQL 語言中的內建函式的詳細資訊，請參閱太[查詢 Azure Cosmos DB](documentdb-sql-query.md)。
+Azure Cosmos DB 支援下列開放地理空間協會 (OGC) 內建的地理空間查詢函式。 如需更多完整的 SQL 語言內建函式，請參閱[查詢 Azure Cosmos DB](documentdb-sql-query.md)。
 
 <table>
 <tr>
@@ -164,27 +164,27 @@ Azure Cosmos DB 支援 hello 下列開放式地理空間協會 (OGC) 的地理�
 </tr>
 <tr>
   <td>ST_DISTANCE (spatial_expr, spatial_expr)</td>
-  <td>傳回兩個 hello GeoJSON 點、 多邊形或 LineString 運算式之間的 hello 距離。</td>
+  <td>傳回兩個 GeoJSON Point、Polygon 或 LineString 運算式之間的距離。</td>
 </tr>
 <tr>
   <td>ST_WITHIN (spatial_expr, spatial_expr)</td>
-  <td>傳回指示 hello 第一個 GeoJSON 物件 （點、 多邊形或 LineString） 是否在 hello 第二個 GeoJSON 物件 （點、 多邊形或 LineString） 的布林運算式。</td>
+  <td>傳回布林運算式，指出第一個 GeoJSON 物件 (Point、Polygon 或 LineString) 是否位在第二個 GeoJSON 物件 (Point、Polygon 或 LineString) 內。</td>
 </tr>
 <tr>
   <td>ST_INTERSECTS (spatial_expr, spatial_expr)</td>
-  <td>傳回指出是否要交叉 hello 兩個指定的 GeoJSON 物件 （點、 多邊形或 LineString） 的布林運算式。</td>
+  <td>傳回布林運算式，指出兩個指定的 GeoJSON 物件 (Point、Polygon 或 LineString) 是否相交。</td>
 </tr>
 <tr>
   <td>ST_ISVALID</td>
-  <td>傳回布林值，指出 hello 指定 GeoJSON 點、 多邊形或 LineString 運算式是否有效。</td>
+  <td>傳回布林值，指出指定的 GeoJSON Point、Polygon 或 LineString 運算式是否有效。</td>
 </tr>
 <tr>
   <td>ST_ISVALIDDETAILED</td>
-  <td>傳回包含布林值，如果 hello 指定 GeoJSON 點、 多邊形或 LineString 運算式的 JSON 值有效，而且如果無效，此外 hello 原因，表示為字串值。</td>
+  <td>如果指定的 GeoJSON Point、Polygon 或 LineString 運算式有效，就傳回包含布林值的 JSON 值；但如果是無效的，就會額外加上做為字串值的原因。</td>
 </tr>
 </table>
 
-空間函式可使用的 tooperform 鄰近查詢空間資料。 例如，以下是 hello 的可傳回所有的系列文件，30 公里內指定的位置使用 hello ST_DISTANCE 內建函式的查詢。 
+空間函數可以用來對空間資料執行鄰近性查詢。 例如，以下查詢使用 ST_DISTANCE 內建函數傳回所有家族文件，且這些文件在 30 公里指定位置內。 
 
 **查詢**
 
@@ -198,11 +198,11 @@ Azure Cosmos DB 支援 hello 下列開放式地理空間協會 (OGC) 的地理�
       "id": "WakefieldFamily"
     }]
 
-如果您包含您的編製索引原則中空間索引，然後 「 距離查詢 」 將會服務有效率地利用 hello 索引。 如需有關空間索引的詳細資訊，請參閱以下的 hello 一節。 如果您沒有空間索引 hello 指定路徑，您仍然可以藉由指定執行空間查詢`x-ms-documentdb-query-enable-scan`hello 值與要求標頭設定太 」 為 true 」。 在.NET 中，這可藉由傳遞選擇性 hello **FeedOptions**與引數 tooqueries [EnableScanInQuery](https://msdn.microsoft.com/library/microsoft.azure.documents.client.feedoptions.enablescaninquery.aspx#P:Microsoft.Azure.Documents.Client.FeedOptions.EnableScanInQuery)設定 tootrue。 
+如果您將空間索引編製包含在索引編製原則中，則「距離查詢」將會透過索引獲得有效利用。 如需空間索引編製的詳細資料，請參閱下面的章節。 如果您沒有指定路徑的空間索引，仍然可以透過指定 `x-ms-documentdb-query-enable-scan` 要求標頭 (且值設定為 "true") 執行空間查詢。 在.NET 中，可以傳遞選用的 **FeedOptions** 引數至查詢 (且 [EnableScanInQuery](https://msdn.microsoft.com/library/microsoft.azure.documents.client.feedoptions.enablescaninquery.aspx#P:Microsoft.Azure.Documents.Client.FeedOptions.EnableScanInQuery) 設定為 true)，藉此執行此作業。 
 
-可以使用的 toocheck ST_WITHIN，如果位於多邊形的點。 通常多邊形是使用的 toorepresent 邊界，像是郵遞區號、 狀態界限或自然的資訊。 再次如果您包含您的編製索引原則中空間索引，然後 「 中 」 查詢將會服務有效率地利用 hello 索引。 
+ST_WITHIN 可用來檢查點是否在多邊形內。 多邊形常用來表示邊界，例如郵遞區號、州省邊界或自然構成物。 此外，如果您將空間索引編製包含在索引編製原則中，則「距離內」查詢將會透過索引獲得有效利用。 
 
-ST_WITHIN 中的多邊形引數可以包含單一環形，也就是 hello 多邊形必須不能包含在它們的漏洞。 
+ST_WITHIN 中的多邊形引數只可以包含單一環狀，也就是 Polygon 本身不能有漏洞。 
 
 **查詢**
 
@@ -220,11 +220,11 @@ ST_WITHIN 中的多邊形引數可以包含單一環形，也就是 hello 多邊
     }]
 
 > [!NOTE]
-> 在 Azure Cosmos DB 查詢中，適用於類似 toohow 不相符的類型如果 hello 位置指定值的引數格式不正確或無效，，然後它會太評估**未定義**以及評估 hello 文件 toobe 略過從 hello查詢結果。 如果您的查詢會不傳回任何結果，請執行 ST_ISVALIDDETAILED toodebug hello spatail 類型無效的原因。     
+> 與 Azure Cosmos DB 查詢中不相符類型的運作方式類似，如果任一引數中指定的位置值格式不正確或無效，則會評估為**未定義**，且會在查詢結果中略過已評估的文件。 如果您的查詢沒有傳回任何結果，請執行 ST_ISVALIDDETAILED 來偵錯，了解空間類型無效的原因。     
 > 
 > 
 
-Azure Cosmos DB 也支援執行反向查詢，也就是您可以索引多邊形或線條在 Azure Cosmos DB 中，然後再查詢包含指定的點的 hello 區域。 此模式常用於物流 tooidentify 例如當卡車進入或離開指定的區域。 
+Azure Cosmos DB 也支援反向查詢，亦即您可以在 Azure Cosmos DB 中編製多邊形或線的索引，然後查詢包含指定點的區域。 這是物流業中常用的模式，例如，可用來識別卡車何時進入或離開指定的區域。 
 
 **查詢**
 
@@ -243,7 +243,7 @@ Azure Cosmos DB 也支援執行反向查詢，也就是您可以索引多邊形�
       }
     }]
 
-ST_ISVALID 和 ST_ISVALIDDETAILED 可以是使用的 toocheck，如果空間物件有效。 比方說，下列查詢的 hello 檢查點與超出範圍的緯度值 (-132.8) hello 有效性。 ST_ISVALID 傳回只是布林值，並傳回 ST_ISVALIDDETAILED hello 布林值和字串，包含 hello 原因為何，它被視為無效。
+ST_ISVALID 和 ST_ISVALIDDETAILED 可用來檢查空間物件是否有效。 例如，下列查詢以超出範圍的緯度值 (-132.8)，檢查點的有效性。 ST_ISVALID 只會傳回布林值，而 ST_ISVALIDDETAILED 會傳回布林和字串，字串中包含被視為無效的原因。
 
 ** 查詢 **
 
@@ -255,7 +255,7 @@ ST_ISVALID 和 ST_ISVALIDDETAILED 可以是使用的 toocheck，如果空間物�
       "$1": false
     }]
 
-這些函式也可以使用的 toovalidate 多邊形。 例如，這裡我們使用 ST_ISVALIDDETAILED toovalidate 未關閉的多邊形。 
+這些函數也可以用來驗證多邊形。 例如，這裡我們使用 ST_ISVALIDDETAILED 驗證未封閉的多邊形。 
 
 **查詢**
 
@@ -268,14 +268,14 @@ ST_ISVALID 和 ST_ISVALIDDETAILED 可以是使用的 toocheck，如果空間物�
     [{
        "$1": { 
             "valid": false, 
-            "reason": "hello Polygon input is not valid because hello start and end points of hello ring number 1 are not hello same. Each ring of a Polygon must have hello same start and end points." 
+            "reason": "The Polygon input is not valid because the start and end points of the ring number 1 are not the same. Each ring of a Polygon must have the same start and end points." 
           }
     }]
 
-### <a name="linq-querying-in-hello-net-sdk"></a>Hello.NET SDK 中的 LINQ 查詢
-hello DocumentDB.NET SDK 提供者也虛設常式方法`Distance()`和`Within()`LINQ 運算式中使用。 hello DocumentDB LINQ 提供者會轉譯這些方法呼叫 toohello 對等 SQL 內建函式呼叫 (ST_DISTANCE 和 ST_WITHIN 分別)。 
+### <a name="linq-querying-in-the-net-sdk"></a>.NET SDK 中的 LINQ 查詢
+DocumentDB.NET SDK 也是虛設常式方法 `Distance()` 和 `Within()` 的提供者，供您在 LINQ 運算式中使用。 DocumentDB LINQ 提供者會將這些方法呼叫，轉譯為同等的 SQL 內建函數呼叫 (分別為 ST_DISTANCE 和 ST_WITHIN)。 
 
-以下範例中的 LINQ 查詢，其 「 位置 」 值半徑為 30 的 hello 公里內指定的 hello Azure Cosmos DB 集合中尋找所有文件的點使用 LINQ。
+以下是 LINQ 查詢的範例，該查詢會使用 LINQ 在 Azure Cosmos DB 集合中找出所有文件，而這些文件的「位置」值會在指定點的 30 公里半徑內。
 
 **距離的 LINQ 查詢**
 
@@ -285,7 +285,7 @@ hello DocumentDB.NET SDK 提供者也虛設常式方法`Distance()`和`Within()`
         Console.WriteLine("\t" + user);
     }
 
-同樣地，以下是尋找其 「 位置 」 是 hello 內的所有 hello 文件會都指定方塊/多邊形的查詢。 
+同樣地，以下是尋找所有文件的查詢，這些文件的「位置」均在指定的方塊/多邊形內。 
 
 **範圍內的 LINQ 查詢**
 
@@ -308,21 +308,21 @@ hello DocumentDB.NET SDK 提供者也虛設常式方法`Distance()`和`Within()`
     }
 
 
-既然我們已經探討如何使用 LINQ 與 SQL tooquery 文件讓我們看看如何 tooconfigure Azure Cosmos DB 空間索引。
+既然我們已經探討過如何使用 LINQ 和 SQL 查詢文件，現在來看一下如何針對空間編製索引設定 Azure Cosmos DB。
 
 ## <a name="indexing"></a>編製索引
-如我們所述 hello[結構描述以 Azure Cosmos DB 索引無從驗證](http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf)紙張，我們設計 Azure Cosmos DB 的資料庫引擎 toobe 真正無從驗證結構描述，並提供 JSON 的第一個類別支援。 hello 寫入最佳化資料庫引擎的 Azure Cosmos DB 原本即了解空間資料 （點、 多邊形和線條） 代表 hello GeoJSON 標準中。
+如我們在[使用 Azure Cosmos DB 進行無從驗證結構描述的編製索引 (英文)](http://www.vldb.org/pvldb/vol8/p1668-shukla.pdf) 文件中所述，我們設計的 Azure Cosmos DB 資料庫引擎真正是無從驗證結構描述的，並提供一流的 JSON 支援。 Azure Cosmos DB 的寫入最佳化資料庫引擎原生就能了解以 GeoJSON 標準表示的空間資料 (點、多邊形及線)。
 
-簡單地說，測量 2D 平面座標的投影則漸進式分成使用的儲存格 hello 幾何**quadtree**。 這些資料格都是根據 hello 位置 hello 資料格內的對應的 too1D**希伯特空間填滿曲線**，保留的點的位置。 此外時位置資料具有索引，它將經歷這道程序**鑲嵌式**，也就是 hello 的所有資料格相交的位置識別並儲存為 hello Azure Cosmos DB 索引中的索引鍵。 在查詢時，引數，像是點和多邊形，還有鑲嵌的 tooextract hello 相關的資料格識別碼範圍，然後使用 tooretrieve hello 索引資料。
+簡單來說，大地座標的幾何會投影在 2D 平面上，然後使用 **quadtree**以漸進方式分成格子。 這些格子會根據 **希伯特空間填滿曲線**(Hilbert space filling curve) 內的格子位置對應至 1D，並保留點的位置。 此外，在為位置資料編製索引之後，會經過稱為**鑲嵌式**的處理程序，也就是會將位置上相交的所有格子識別為索引鍵並儲存在 Azure Cosmos DB 索引中。 在查詢時，點和多邊形之類的引數也會經過鑲嵌，以擷取相關的格子 ID 範圍，然後用來從索引擷取資料。
 
-如果您指定包含空間索引的編製索引原則 / * （所有路徑），然後找到 hello 集合內的所有點已編列都索引供有效率空間查詢 （ST_WITHIN 和 ST_DISTANCE）。 空間索引沒有整數位數值，且一律使用預設的整數位數值。
+如果指定的索引編製原則包含 /* (所有路徑) 的空間索引，則表示集合中可找到的所有點均已編製索引，能進行有效率的空間查詢 (ST_WITHIN 和 ST_DISTANCE)。 空間索引沒有整數位數值，且一律使用預設的整數位數值。
 
 > [!NOTE]
 > Azure Cosmos DB 支援自動編製 Point、Polygon 及 LineString 的索引
 > 
 > 
 
-hello 下列 JSON 片段顯示編製索引的原則與啟用的空間索引，也就是索引空間查詢文件中找到任何 GeoJSON 點。 如果您要修改 hello 編製索引原則使用 hello Azure 入口網站，您可以指定下列 JSON 原則 tooenable 空間在集合中索引編製索引的 hello。
+以下 JSON 片段顯示已啟用空間索引的索引編製原則，也就是為文件中可找到的所有 GeoJSON 點編製索引，以用於空間查詢。 如果您要使用 Azure 入口網站修改索引編製原則，可以為索引編製原則指定以下 JSON，藉此啟用集合的空間索引編製。
 
 **已針對點和多邊形啟用空間的集合索引編製原則 JSON**
 
@@ -358,15 +358,15 @@ hello 下列 JSON 片段顯示編製索引的原則與啟用的空間索引，�
        ]
     }
 
-以下是程式碼片段顯示如何 toocreate 具有空間索引的集合針對開啟包含點的所有路徑的.NET 中。 
+以下是 .NET 的程式碼片段示範，供您了解如何建立集合，同時針對所有包含點的路徑啟用空間索引編製。 
 
 **建立含空間索引編制的集合**
 
     DocumentCollection spatialData = new DocumentCollection()
-    spatialData.IndexingPolicy = new IndexingPolicy(new SpatialIndex(DataType.Point)); //override tooturn spatial on by default
+    spatialData.IndexingPolicy = new IndexingPolicy(new SpatialIndex(DataType.Point)); //override to turn spatial on by default
     collection = await client.CreateDocumentCollectionAsync(UriFactory.CreateDatabaseUri("db"), spatialData);
 
-以下是如何修改儲存在文件內的任何點上的空間索引的現有集合 tootake 優點。
+而以下說明如何修改現有的集合，以利用儲存在文件內任何一個點上的空間索引編制。
 
 **修改含空間索引編制的現有集合**
 
@@ -374,7 +374,7 @@ hello 下列 JSON 片段顯示編製索引的原則與啟用的空間索引，�
     collection.IndexingPolicy = new IndexingPolicy(new SpatialIndex(DataType.Point));
     await client.ReplaceDocumentCollectionAsync(collection);
 
-    Console.WriteLine("Waiting for indexing toocomplete...");
+    Console.WriteLine("Waiting for indexing to complete...");
     long indexTransformationProgress = 0;
     while (indexTransformationProgress < 100)
     {
@@ -385,17 +385,17 @@ hello 下列 JSON 片段顯示編製索引的原則與啟用的空間索引，�
     }
 
 > [!NOTE]
-> 如果 hello 位置 GeoJSON hello 文件中的值是格式不正確或不正確，然後它會取得建立索引，空間查詢。 您可以使用 ST_ISVALID 和 ST_ISVALIDDETAILED 驗證位置值。
+> 如果文件中的 GeoJSON 位置值格式不正確或無效，就不會為其編製索引以用於空間查詢。 您可以使用 ST_ISVALID 和 ST_ISVALIDDETAILED 驗證位置值。
 > 
 > 如果您的集合定義包含分割索引鍵，不會報告索引轉換進度。 
 > 
 > 
 
 ## <a name="next-steps"></a>後續步驟
-既然您已經學會有關如何 tooget 入門 geospatial 支援 Azure Cosmos DB 中，您可以：
+既然您已經學會如何開始使用 Azure Cosmos DB 中的地理空間支援，您可以：
 
-* 開始撰寫程式碼以 hello [GitHub 上的地理空間.NET 程式碼範例](https://github.com/Azure/azure-documentdb-dotnet/blob/fcf23d134fc5019397dcf7ab97d8d6456cd94820/samples/code-samples/Geospatial/Program.cs)
-* 取得指針與地理空間查詢在 hello [Azure Cosmos DB 查詢遊樂場](http://www.documentdb.com/sql/demo#geospatial)
+* 使用 [GitHub 上的地理空間 .NET 程式碼範例](https://github.com/Azure/azure-documentdb-dotnet/blob/fcf23d134fc5019397dcf7ab97d8d6456cd94820/samples/code-samples/Geospatial/Program.cs)來開始轉寫程式碼
+* 在 [Azure Cosmos DB 查詢園地 (英文)](http://www.documentdb.com/sql/demo#geospatial) 中瞭解地理空間查詢
 * 深入了解 [Azure Cosmos DB 查詢](documentdb-sql-query.md)
 * 深入了解 [Azure Cosmos DB 編製索引原則](indexing-policies.md)
 

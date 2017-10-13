@@ -4,13 +4,13 @@
 
 # 開始使用
 ## [識別資料庫與資料表](/sql/sql-server/stretch-database/stretch-database-databases-and-tables-stretch-database-advisor)
-## [執行 hello 精靈](/sql/sql-server/stretch-database/get-started-by-running-the-enable-database-for-stretch-wizard)
+## [執行精靈](/sql/sql-server/stretch-database/get-started-by-running-the-enable-database-for-stretch-wizard)
 
 # 作法
 ## 啟用
 ### [啟用資料庫](/sql/sql-server/stretch-database/enable-stretch-database-for-a-database)
 ### [啟用資料表](/sql/sql-server/stretch-database/enable-stretch-database-for-a-table)
-### [選取資料列 toomigrate](/sql/sql-server/stretch-database/select-rows-to-migrate-by-using-a-filter-function-stretch-database)
+### [選取要移轉的資料列](/sql/sql-server/stretch-database/select-rows-to-migrate-by-using-a-filter-function-stretch-database)
 ## 管理
 ### [監視資料移轉](/sql/sql-server/stretch-database/monitor-and-troubleshoot-data-migration-stretch-database)
 ### [暫停與繼續移轉](/sql/sql-server/stretch-database/pause-and-resume-data-migration-stretch-database)

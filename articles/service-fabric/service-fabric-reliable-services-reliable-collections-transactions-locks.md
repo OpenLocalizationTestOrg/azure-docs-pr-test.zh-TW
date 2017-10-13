@@ -1,5 +1,5 @@
 ---
-title: "aaaTransactions 和 Azure Service Fabric 可靠集合中的鎖定模式 |Microsoft 文件"
+title: "Azure Service Fabric Reliable Collections 中的交易和鎖定模式 | Microsoft Docs"
 description: "Azure Service Fabric Reliable State Manager 和 Reliable Collections 交易和鎖定。"
 services: service-fabric
 documentationcenter: .net
@@ -14,36 +14,36 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/1/2017
 ms.author: mcoskun
-ms.openlocfilehash: 340e029aa98f43ad6e46b48f687dad01f9d96f69
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3452473f5b2f86d29e46339c997193bc6403736a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="transactions-and-lock-modes-in-azure-service-fabric-reliable-collections"></a>Azure Service Fabric Reliable Collections 中的交易和鎖定模式
 
 ## <a name="transaction"></a>交易
 交易就是以單一工作邏輯單元執行的一連串作業。
-交易必須呈現出 hello 下列 ACID 屬性。 (請參閱：https://technet.microsoft.com/en-us/library/ms190612)
+交易必須顯現下列 ACID 屬性。 (請參閱：https://technet.microsoft.com/en-us/library/ms190612)
 * **不可部分完成性**︰交易必須是不可部分完成的工作單位。 換句話說，執行其所有資料修改，或完全不執行。
-* **一致性**︰交易完成時，所有資料必須維持一致的狀態。 所有的內部資料結構必須正確 hello hello 交易的結尾處。
-* **隔離**： 並行的交易所做的修改都必須與其他並行的交易所做的 hello 修改。 hello IReliableState 執行 hello 作業取決於用於作業中 itransaction:: hello 隔離等級。
-* **持久性**: 交易已完成之後，其作用便永遠就地 hello 系統中。 hello 修改依然會保存即使在系統失敗的 hello 事件。
+* **一致性**︰交易完成時，所有資料必須維持一致的狀態。 所有內部資料結構在交易結束時必須是正確的。
+* **隔離**︰並行交易所做的修改，必須與任何其他並行交易所做的修改隔離。 ITransaction 內的作業所用的隔離等級是由執行此作業的 IReliableState 所決定。
+* **耐久性**：交易完成之後，其作用會永久存在系統中。 即使發生系統失敗仍會保存修改。
 
 ### <a name="isolation-levels"></a>隔離層級
-隔離等級定義 hello 程度 toowhich hello 交易必須是與其他交易所做的修改隔離。
+隔離層級定義交易必須與其他交易所做的修改隔離的程度。
 可靠的集合支援兩種隔離等級：
 
-* **可重複讀取**： 指定陳述式不能讀取已修改但尚未認可的其他交易的資料和任何其他交易可以修改已讀取的 hello 目前交易中，直到 hello 目前的資料交易完成。 如需詳細資訊，請參閱 [https://msdn.microsoft.com/library/ms173763.aspx](https://msdn.microsoft.com/library/ms173763.aspx)。
-* **快照集**： 指定在交易中任何陳述式所讀取的資料是 hello hello hello 交易開始時就存在的 hello 資料交易一致性版本。
-  hello 交易可以辨識 hello hello 交易開始之前所認可的資料修改。
-  Hello 開頭 hello 目前交易之後，其他交易所進行的資料修改將不會顯示 toostatements hello 目前交易中執行。
-  hello 效果是在交易中的 hello 陳述式會取得 hello 認可資料的快照集，存在於 hello hello 交易開始。
+* **可重複讀取**：指定陳述式無法讀取已經修改但尚未由其他交易確認的資料，以及指定在目前的交易完成之前，任何其他交易都不能修改已經由目前交易讀取的資料。 如需詳細資訊，請參閱 [https://msdn.microsoft.com/library/ms173763.aspx](https://msdn.microsoft.com/library/ms173763.aspx)。
+* **快照集**：指定交易中任何陳述式所讀取的資料都會與交易開始時就存在的資料版本一致。
+  交易只能辨識交易開始之前所認可的資料修改。
+  在目前交易中執行的陳述式無法看到在目前交易開始之後，其他交易所進行的資料修改。
+  效果就如同交易中的陳述式會取得認可資料的快照集，因為這項資料於交易開始時就存在。
   可靠的集合的快照集都是一致的。
   如需詳細資訊，請參閱 [https://msdn.microsoft.com/library/ms173763.aspx](https://msdn.microsoft.com/library/ms173763.aspx)。
 
-可靠的集合會自動選擇 hello 隔離層級 toouse 交易的建立 hello 時根據 hello 作業和 hello hello 複本角色指定讀取作業。
-以下是 hello 資料表，顯示隔離層級預設值為佇列和可靠的字典的作業。
+可靠的集合會依據交易建立時的作業和複本角色，自動選擇要用於指定讀取作業的隔離層級。
+下表說明可靠的字典和佇列作業的隔離等級預設值。
 
 | 作業 \ 角色 | 主要 | 次要 |
 | --- |:--- |:--- |
@@ -54,25 +54,25 @@ ms.lasthandoff: 10/06/2017
 > 單一實體作業的常見範例包括 `IReliableDictionary.TryGetValueAsync`、`IReliableQueue.TryPeekAsync`。
 > 
 
-Hello 可靠字典和 hello 可靠的佇列支援讀取程式寫入。
-換句話說，任何寫入交易內，就會看見 tooa 下列讀取的所屬 toohello 相同的交易。
+可靠的字典和可靠的佇列皆支援「讀寫一致性」(Read Your Writes)。
+換句話說，在屬於相同交易的下列讀取作業皆可看到交易內的任何寫入作業。
 
 ## <a name="locks"></a>鎖定
-可靠的集合中使用嚴格的所有交易實作兩都階段鎖定： 交易不會釋放它所取得 hello 交易終止因中止或認可為止的 hello 鎖定。
+在 Reliable Collections 中，所有交易都會實作嚴格的兩階段鎖定：在以中止或認可來終止交易之前，交易不會釋放它所取得的鎖定。
 
 可靠的字典會針對所有單一實體作業使用資料列層級鎖定。
 可靠的佇列則會針對嚴格交易的 FIFO 屬性交換並行。
 可靠的佇列會使用作業層級的鎖定，允許一次有 `TryPeekAsync` 和/或 `TryDequeueAsync` 的一個交易，以及有 `EnqueueAsync` 的一個交易。
-請注意該 toopreserve FIFO，如果`TryPeekAsync`或`TryDequeueAsync`曾經觀察的 hello 可靠的佇列是空的它們也會鎖定`EnqueueAsync`。
+請注意，為維持 FIFO，如果 `TryPeekAsync` 或 `TryDequeueAsync` 曾觀察到可靠的佇列是空的，則它們也會鎖定 `EnqueueAsync`。
 
 寫入作業一律會採取「獨佔」鎖定。
-對於讀取作業，hello 鎖定取決於一些因素。
+讀取作業的鎖定則取決於一些因素。
 任何使用快照隔離所完成的讀取作業都是無鎖定的。
 任何可重複讀取作業預設都會採用共用鎖定。
-不過，支援可重複讀取的任何讀取作業，如 hello 使用者可以要求的更新鎖定，而不是 hello 共用鎖定。
-更新鎖定是死結的對稱的鎖定使用 tooprevent 常見的多個交易鎖定資源並在稍後更新時所發生形式。
+不過，針對支援可重複讀取的任何讀取作業，使用者可以要求更新鎖定，而不是共用鎖定。
+更新鎖定是一種非對稱式鎖定，用來避免常見的死結，這些死結通常會在多個交易鎖定資源稍後進行可能更新時發生。
 
-hello 下表中可以找到 hello 鎖定相容性矩陣：
+下表中可找到鎖定相容性矩陣：
 
 | 要求 \ 授與 | None | 共用 | 更新 | 獨佔 |
 | --- |:--- |:--- |:--- |:--- |
@@ -80,10 +80,10 @@ hello 下表中可以找到 hello 鎖定相容性矩陣：
 | 更新 |無衝突 |無衝突 |衝突 |衝突 |
 | 獨佔 |無衝突 |衝突 |衝突 |衝突 |
 
-Hello 可靠集合的應用程式開發介面中的逾時引數用於死結偵測。
-例如，兩筆交易 （T1 和 T2） 嘗試 tooread，並更新 K1。
-它有可能 toodeadlock，因為它們都得到擁有 hello 共用鎖定。
-在此情況下，其中之一或兩者的 hello 作業會逾時。
+Reliable Collections API 中的逾時引數是用來進行死結偵測。
+例如，有兩筆交易 (T1 和 T2) 嘗試讀取和更新 K1。
+這樣很可能會形成死結，因為它們最後都會有共用鎖定。
+在這種情況下，其中一個或兩個作業將會逾時。
 
 此死結案例就是更新鎖定可如何防止死結的絕佳範例。
 

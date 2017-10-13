@@ -1,6 +1,6 @@
 ---
-title: "aaaPowerShell 指令碼 toodeploy Windows HPC 叢集 |Microsoft 文件"
-description: "在 Azure 虛擬機器中執行 PowerShell 指令碼 toodeploy Windows HPC Pack 2012 R2 叢集"
+title: "用來部署 Windows HPC 叢集的 PowerShell 指令碼 | Microsoft Docs"
+description: "執行 PowerShell 指令碼，以在 Azure 虛擬機器中部署 Windows HPC Pack 2012 R2 叢集"
 services: virtual-machines-windows
 documentationcenter: 
 author: dlepow
@@ -15,26 +15,26 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 12/29/2016
 ms.author: danlep
-ms.openlocfilehash: 10ce1e9bc4e98954b955549bd72aaaf6106c69fa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 85b125ab19671b61d2541af6378c95feb88bf952
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="create-a-windows-high-performance-computing-hpc-cluster-with-hello-hpc-pack-iaas-deployment-script"></a>Hello HPC Pack IaaS 部署指令碼以建立 Windows 高效能運算 (HPC) 叢集
-在 Azure 虛擬機器中執行 hello HPC Pack IaaS 部署 PowerShell 指令碼 toodeploy 完整的 HPC Pack 2012 R2 叢集，針對 Windows 工作負載。 hello 叢集包含已加入 Active Directory 的前端節點執行 Windows Server 和 Microsoft HPC Pack，而其他視窗計算您所指定的資源。 如果您想要在 Azure 中的 HPC Pack 叢集 toodeploy Linux 工作負載，請參閱[hello HPC Pack IaaS 部署指令碼以建立 Linux HPC 叢集](../../linux/classic/hpcpack-cluster-powershell-script.md)。 您也可以使用 Azure Resource Manager 範本 toodeploy HPC Pack 叢集。 如需範例，請參閱[建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/)和[使用自訂的計算節點映像建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-custom-image/)。
+# <a name="create-a-windows-high-performance-computing-hpc-cluster-with-the-hpc-pack-iaas-deployment-script"></a>使用 HPC Pack IaaS 部署指令碼建立 Windows 高效能運算 (HPC) 叢集
+執行 HPC Pack IaaS 部署 PowerShell 指令碼，以在 Azure 虛擬機器中為 Windows 工作負載部署完整的 HPC Pack 2012 R2 叢集。 叢集是由加入 Active Directory、且執行 Windows Server 和 Microsoft HPC Pack 的前端節點，以及您指定的其他 Windows 計算資源所組成。 如果您想要在 Azure 中為 Linux 工作負載部署 HPC Pack 叢集，請參閱 [使用 HPC Pack IaaS 部署指令碼建立 Linux HPC 叢集](../../linux/classic/hpcpack-cluster-powershell-script.md)。 您也可以使用 Azure 資源管理員範本來部署 HPC Pack 叢集。 如需範例，請參閱[建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster/)和[使用自訂的計算節點映像建立 HPC 叢集](https://azure.microsoft.com/documentation/templates/create-hpc-cluster-custom-image/)。
 
 > [!IMPORTANT] 
-> hello 本文中所述的 PowerShell 指令碼會建立 Microsoft HPC Pack 2012 R2 叢集，在 Azure 中使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。
-> 此外，本文中所述的 hello 指令碼不支援使用 HPC Pack 2016。
+> 本文中所述的 PowerShell 指令碼會使用傳統部署模型，在 Azure 中建立 Microsoft HPC Pack 2012 R2 叢集。 Microsoft 建議讓大部分的新部署使用資源管理員模式。
+> 此外，本文中所述的指令碼不支援 HPC Pack 2016。
 
 [!INCLUDE [virtual-machines-common-classic-hpcpack-cluster-powershell-script](../../../../includes/virtual-machines-common-classic-hpcpack-cluster-powershell-script.md)]
 
 ## <a name="example-configuration-files"></a>範例組態檔
-Hello 在下列範例中，會取代您自己的值，您的訂用帳戶識別碼或名稱和 hello 帳戶和服務名稱。
+在下列範例中，請將訂用帳戶 ID 或名稱及帳戶和服務名稱取代為您自己的值。
 
 ### <a name="example-1"></a>範例 1
-hello 下列組態檔來部署 HPC Pack 叢集前端節點具有本機資料庫和執行 Windows Server 2012 R2 作業系統 hello 的五個計算節點。 所有的 hello 雲端服務都會直接建立在 hello 美國西部的位置。 hello 前端節點做為 hello 網域樹系的網域控制站。
+下列組態檔會部署一個 HPC Pack 叢集，其中包含一個具有本機資料庫的前端節點，以及五個執行 Windows Server 2012 R2 作業系統的計算節點。 所有雲端服務都直接建立在「美國西部」位置。 前端節點會做為網域樹系的網域控制站。
 
 ```Xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -71,8 +71,8 @@ hello 下列組態檔來部署 HPC Pack 叢集前端節點具有本機資料庫�
 ```
 
 ### <a name="example-2"></a>範例 2
-下列組態檔的 hello 部署現有的網域樹系中的 HPC Pack 叢集。 hello 叢集有 1 個前端節點具有本機資料庫，而且 12 個運算節點以 hello 套用 BGInfo VM 擴充功能。
-自動安裝 Windows 更新已停用所有 hello hello 網域樹系中的 Vm。 所有的 hello 雲端服務都會直接建立在東亞 」 位置。 hello 運算節點會建立三個雲端服務和三個儲存體帳戶中： *Myhpccnservice01 0001*太*myhpccn-0005*中*MyHPCCNService01*和*mycnstorage01*;*中的 myhpccn-0006*太*MyHPCCN0010*中*MyHPCCNService02*和*mycnstorage02*; 和*MyHPCCN-0011*太*Myhpccnservice01 0012*中*MyHPCCNService03*和*mycnstorage03*)。 hello 運算節點會從擷取自運算節點的現有私人映像建立。 hello 自動擴增和縮減服務已啟用，預設值擴增和縮減的間隔。
+下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。 叢集中有 1 個具有本機資料庫的前端節點，和 12 個套用了 BGInfo VM 延伸模組的計算節點。
+對於網域樹系中的所有 VM，都會停用 Windows 更新的自動安裝。 所有雲端服務都直接建立在「東亞」位置中。 計算節點會建立在三個雲端服務和三個儲存體帳戶中：*MyHPCCNService01* 和 *mycnstorage01* 中的 *MyHPCCN-0001* 至*MyHPCCN-0005*；*MyHPCCNService02* 和 *mycnstorage02* 中的 *MyHPCCN-0006* 至 *MyHPCCN0010*；以及 *MyHPCCNService03* 和 *mycnstorage03* 中的 *MyHPCCN-0011* 至 *MyHPCCN-0012*)。 計算節點會從擷取自雲端節點的現有私人映像建立。 自動增加和縮減服務會根據預設的增加和縮減間隔來啟用。
 
 ```Xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -135,7 +135,7 @@ hello 下列組態檔來部署 HPC Pack 叢集前端節點具有本機資料庫�
 ```
 
 ### <a name="example-3"></a>範例 3
-下列組態檔的 hello 部署現有的網域樹系中的 HPC Pack 叢集。 hello 叢集包含一個前端節點、 使用 500 GB 資料磁碟，一部資料庫伺服器執行 hello Windows Server 2012 R2 作業系統，以及執行 Windows Server 2012 R2 作業系統 hello 的五個計算節點的兩個 broker 節點。 雲端服務 MyHPCCNService 會建立 hello 同質群組中的 hello *myibaffinitygroup 中*，且 hello 其他雲端服務會建立在 hello 同質群組*myaffinitygroup 中*。 hello 前端節點上啟用 hello HPC 工作排程器 REST API 和 HPC web 入口網站。
+下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。 叢集中包含 1 個前端節點、1 個具有 500 GB 資料磁碟的資料庫伺服器、2 個執行 Windows Server 2012 R2 作業系統的訊息代理程式節點，以及 5 個執行 Windows Server 2012 R2 作業系統的計算節點。 MyHPCCNService 雲端服務會建立在同質群組 *MyIBAffinityGroup* 中，其他雲端服務則是建立在同質群組 *MyAffinityGroup* 中。 前端節點上會啟用 HPC 工作排程器 REST API 和 HPC Web 入口網站。
 
 ```Xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -190,7 +190,7 @@ hello 下列組態檔來部署 HPC Pack 叢集前端節點具有本機資料庫�
 
 
 ### <a name="example-4"></a>範例 4
-下列組態檔的 hello 部署現有的網域樹系中的 HPC Pack 叢集。 hello 叢集有兩個具有本機資料庫的前端節點，會建立兩個 Azure 節點範本，以及三個的大小中 Azure 節點建立 Azure 節點範本*AzureTemplate1*。 Hello 前端節點設定後，可 hello 前端節點上執行的指令碼檔案。
+下列組態檔會在現有的網域樹系中部署 HPC Pack 叢集。 叢集中包含兩個具有本機資料庫的前端節點、建立了兩個 Azure 節點範本，且針對 Azure 節點範本 *AzureTemplate1*建立了 3 個中型大小的 Azure 節點。 在設定完前端節點之後，指令檔會在前端節點上執行。
 
 ```Xml
 <?xml version="1.0" encoding="utf-8" ?>
@@ -257,19 +257,19 @@ hello 下列組態檔來部署 HPC Pack 叢集前端節點具有本機資料庫�
 ```
 
 ## <a name="troubleshooting"></a>疑難排解
-* **「 VNet 不存在 」 錯誤**-如果您 hello 指令碼 toodeploy 多個叢集在 Azure 中同時執行一個訂用帳戶，一或多個部署可能會失敗，錯誤碼為 hello 「 VNet *VNet\_名稱*不存在 」。
-  如果發生這個錯誤，執行一次 hello hello 無法部署指令碼。
-* **問題存取 hello Azure 虛擬網路從 hello 網際網路**-如果以新的網域控制站建立叢集使用 hello 部署指令碼，或您手動升級前端節點 VM toodomain 控制站，您可能會遇到的問題連接 hello Vm toohello 網際網路。 如果 hello 網域控制站，會自動設定轉寄站 DNS 伺服器，而且未正確解析此轉寄站 DNS 伺服器，可能會發生此問題。
+* **「VNet 不存在」錯誤** - 如果您執行指令碼將多個叢集同時部署在 Azure 中的一個訂用帳戶底下，可能會有一或多個部署因發生「VNet *VNet\_Name* 不存在」錯誤而失敗。
+  如果發生此錯誤，請針對失敗的部署重新執行指令碼。
+* **從 Azure 虛擬網路存取網際網路時發生問題** - 如果您使用部署指令碼建立具有新網域控制站的叢集，或手動將前端節點 VM 升級到網域控制站，則在將 VM 連接到網際網路時，可能會發生問題。 如果網域控制站上自動設定了轉寄站 DNS 伺服器，而此轉寄站 DNS 伺服器未正確解析，就可能發生這種問題。
   
-    toowork 解決這個問題，請設定有效的轉寄站 DNS 伺服器，或登入 toohello 網域控制站，移除 hello 轉寄站組態設定。 這項設定，在 伺服器管理員 中按一下的 tooconfigure**工具** >
-    **DNS** tooopen DNS 管理員 中，然後按兩下**轉寄站**。
-* **從大量計算 Vm 存取 RDMA 網路的問題**-如果您新增 Windows Server 計算或 broker 節點如 A8 或 A9 大小使用具備 RDMA 功能的 Vm，您可能會遇到這些 Vm toohello RDMA 應用程式網路連線問題。 發生這個問題的其中一個原因是如果 hello HpcVmDrivers 延伸模組未正確安裝 hello Vm 加入 toohello 叢集時。 例如，擴充功能可能會卡在 hello 安裝狀態。
+    若要解決此問題，請登入網域控制站，並選擇移除轉寄站組態設定，或設定有效的轉寄站 DNS 伺服器。 若要設定這項設定，請在「伺服器管理員」中按一下 [工具]**** >
+    [DNS]**** 以開啟 [DNS 管理員]，然後按兩下 [轉寄站]****。
+* **從計算密集型 VM 存取 RDMA 網路時發生問題** - 如果您使用支援 RDMA 大小 (例如 A8 或 A9) 的 VM 來新增 Windows Server 計算節點 VM 或訊息代理程式節點 VM，則在將這些 VM 連接到 RDMA 應用程式網路時，可能會發生問題。 之所以會發生此問題，其中一個原因是在將 VM 新增到叢集時，未正確安裝 HpcVmDrivers 擴充功能。 比方說，延伸模組可能卡在安裝中狀態。
   
-    此問題，hello Vm 中的 hello 延伸模組的第一個核取 hello 狀態 toowork。 如果 hello 擴充功能未正確安裝，請嘗試從 hello HPC 叢集中移除 hello 節點，並將 hello 節點的一次。 例如，您可以新增計算節點 Vm hello 前端節點上執行 hello Add-hpciaasnode.ps1 指令碼。
+    若要解決這個問題，請先檢查 VM 中的延伸模組狀態。 如果延伸模組未正確安裝，請嘗試從 HPC 叢集中移除節點，然後重新新增節點。 例如，您可以在前端節點上執行 Add-HpcIaaSNode.ps1 指令碼，以新增計算節點 VM。
 
 ## <a name="next-steps"></a>後續步驟
-* 請嘗試在 hello 叢集上執行測試工作負載。 如需範例，請參閱 hello HPC Pack[入門指南](https://technet.microsoft.com/library/jj884144)。
-* 教學課程 tooscript hello 叢集部署和執行 HPC 工作負載，請參閱[開始使用 Azure toorun Excel 和 SOA 工作負載中的 HPC Pack 叢集](../../virtual-machines-windows-excel-cluster-hpcpack.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
-* HPC Pack 工具 toostart 再試一次、 停止、 新增和移除您所建立的叢集計算節點。 請參閱 [在 Azure 中管理 HPC Pack 叢集的計算節點](hpcpack-cluster-node-manage.md)。
-* tooget toosubmit 作業 toohello 叢集設定從本機電腦，請參閱[提交 HPC 作業，從內部部署電腦 tooan HPC Pack 叢集在 Azure 中](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+* 嘗試在叢集上執行測試工作負載。 如需範例，請參閱 HPC Pack [快速入門指南](https://technet.microsoft.com/library/jj884144)。
+* 如需編寫叢集部署指令碼及執行 HPC 工作負載的教學課程，請參閱 [開始使用 Azure 中的 HPC Pack 叢集執行 Excel 和 SOA 工作負載](../../virtual-machines-windows-excel-cluster-hpcpack.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+* 嘗試以 HPC Pack 的工具啟動、停止、新增和移除您所建立之叢集中的計算節點。 請參閱 [在 Azure 中管理 HPC Pack 叢集的計算節點](hpcpack-cluster-node-manage.md)。
+* 若要設定將工作從本機電腦提交至叢集，請參閱 [將 HPC 工作從內部部署電腦提交至 Azure 中的 HPC Pack 叢集](../../virtual-machines-windows-hpcpack-cluster-submit-jobs.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaAuthenticate 與 Mobile Engagement REST Api 手動安裝"
-description: "描述如何 toomanually 安裝 Mobile Engagement REST Api 的驗證"
+title: "使用 Mobile Engagement REST API 進行驗證 - 手動設定"
+description: "描述如何手動設定 Mobile Engagement REST API 的驗證"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,33 +14,33 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 3884f94afcd6b9a62bfcf498fb6ee84bb6e837b7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9d6132e1a01be489b8e8e28a0219cf8a0b50b318
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="authenticate-with-mobile-engagement-rest-apis---manual-setup"></a>使用 Mobile Engagement REST API 進行驗證 - 手動設定
-這是附錄文件太[與 Mobile Engagement REST Api 的驗證](mobile-engagement-api-authentication.md)。 請確定讀取第一個 tooget hello 內容。 此描述您的驗證設定的替代方式 toodo hello 一次性安裝 hello Mobile Engagement REST Api 使用 hello Azure 入口網站。 
+這是 [使用 Mobile Engagement REST API 進行驗證](mobile-engagement-api-authentication.md)的附錄說明文件。 請務必先閱讀它，以取得內容。 這會說明如何使用 Azure 入口網站設定 Mobile Engagement REST API 驗證的一次性設定的替代方式。 
 
 > [!NOTE]
-> 下列的 hello 指示根據這個[Active Directory 指南](../azure-resource-manager/resource-group-create-service-principal-portal.md)和自訂的所需的 Mobile Engagement 應用程式開發介面的驗證內容。 因此如果您想 toounderstand hello 執行下列步驟在詳細資料，請參閱 tooit。 
+> 下列指示是根據這份 [Active Directory 指南](../azure-resource-manager/resource-group-create-service-principal-portal.md) ，並且針對 Mobile Engagement API 驗證所需進行自訂。 如果您想要了解以下的詳細步驟，請參閱它。 
 > 
 > 
 
-1. 登入 tooyour Azure 帳戶透過 hello[傳統入口網站](https://manage.windowsazure.com/)。
-2. 選取**Active Directory** hello 左窗格中。
+1. 透過 [傳統入口網站](https://manage.windowsazure.com/)登入 Azure 帳戶。
+2. 從左窗格中，選取 [ **Active Directory** ]。
    
      ![選取 Active Directory][1]
-3. 選擇 hello**預設的 Active Directory**在 Azure 入口網站。 
+3. 在 Azure 入口網站中選擇 [預設 Active Directory]  。 
    
      ![選擇目錄][2]
    
    > [!IMPORTANT]
-   > 這個方法僅適用於您要使用 hello 預設 Active Directory，您的帳戶，而且將無法運作，如果您已建立您的帳戶在 Active Directory 中進行。 
+   > 這個方法只適用於您在帳戶的預設 Active Directory 中工作時，如果您在帳戶中建立的 Active Directory 中進行則無效。 
    > 
    > 
-4. tooview hello 應用程式在目錄中，按一下 **應用程式**。
+4. 若要檢視目錄中的應用程式，請按一下 [ **應用程式**]。
    
      ![檢視應用程式][3]
 5. 按一下 [加入] 。 
@@ -49,49 +49,49 @@ ms.lasthandoff: 10/06/2017
 6. 按一下 [加入] 
    
      ![新的應用程式][5]
-7. 填入 hello 應用程式和應用程式做為選取的 hello 類型名稱**WEB 應用程式和/或 WEB API**按一下 hello 下一步 按鈕。
+7. 填入應用程式的名稱，然後選取 [WEB 應用程式和/或 WEB API]  作為應用程式的類型，再按一下 [下一步] 按鈕。
    
      ![名稱應用程式][6]
-8. 您可以針對 [登入 URL] 和 [應用程式識別碼 URI] 提供任何 dummy URL。 不會使用我們的案例並不會驗證其本身的 hello Url。  
+8. 您可以針對 [登入 URL] 和 [應用程式識別碼 URI] 提供任何 dummy URL。 我們的案例不會使用它們，且不會驗證 URL 本身。  
    
      ![應用程式屬性][7]
-9. 在這個 hello 結束時，您會有 AAD 應用程式，但您先前提供類似 hello 下列 hello 名稱。 這是您的 **AD\_APP\_NAME**，請記下它。  
+9. 在這結束時，您將會有 AAD 應用程式，且具有您先前提供如下的名稱。 這是您的 **AD\_APP\_NAME**，請記下它。  
    
      ![應用程式名稱][8]
-10. 按一下 hello 應用程式名稱，然後按一下 **設定**。
+10. 按一下應用程式名稱，然後按一下 [設定] 。
     
       ![設定應用程式][9]
-11. 請記下將使用做為用戶端識別碼 hello**用戶端\_識別碼**對於您的 API 呼叫。 
+11. 記下將作為 API 呼叫之 **CLIENT\_ID** 的用戶端識別碼。 
     
      ![設定應用程式][10]
-12. 捲動 toohello**金鑰**區段並加入最好 2 年 （過期） 持續時間的索引鍵，然後按一下**儲存**。 
+12. 向下捲動至 [金鑰] 區段，並加入持續時間最好為 2 年 (到期) 的金鑰，然後按一下 [儲存]。 
     
      ![設定應用程式][11]
-13. 立即複製 hello 值顯示為 hello 金鑰現在只顯示並不會儲存，因此不會再顯示。 如果遺失則您將有 toogenerate 新的金鑰。 這會是 hello **CLIENT_SECRET**對於您的 API 呼叫。 
+13. 立即複製為金鑰顯示的值，因為它只會現在顯示，且不會儲存，因此不會再顯示。 如果您遺失它，則必須產生新的金鑰。 這會是您 API 呼叫的 **CLIENT_SECRET**。 
     
      ![設定應用程式][12]
     
     > [!IMPORTANT]
-    > 此金鑰會過期結尾 hello hello 持續時間，您所指定，請確定 toorenew hello 時間否則一 API 驗證不會再。 如果您認為此金鑰遭到盜用，您也可以將它刪除並重新建立。
+    > 此金鑰將在您指定的持續時間結束時到期，因此到時候請務必更新，否則您的 API 驗證將無法再使用。 如果您認為此金鑰遭到盜用，您也可以將它刪除並重新建立。
     > 
     > 
-14. 按一下**檢視端點**按鈕現在這會開啟 hello**應用程式端點** 對話方塊。 
+14. 按一下 [檢視端點] 按鈕，現在它將會開啟 [應用程式端點] 對話方塊。 
     
     ![][13]
-15. 從 hello 應用程式端點對話方塊中，複製 hello **OAUTH 2.0 權杖端點**。 
+15. 從 [應用程式端點] 對話方塊中，複製 [OAUTH 2.0 權杖端點] 。 
     
     ![][14]
-16. 此端點將處於下列其中 hello hello URL 中的 GUID 是表單的 hello 您**TENANT_ID**所以請記下它： 
+16. 此端點將為下列形式，其中 URL 中的 GUID 是您的 **TENANT_ID**，因此請記下它︰ 
     
         https://login.microsoftonline.com/<GUID>/oauth2/token
-17. 現在我們將繼續在此應用程式上的 tooconfigure hello 權限。 這就 tooopen 向上 hello [Azure 入口網站](https://portal.azure.com)。 
-18. 按一下**資源群組**並尋找 hello **Mobile Engagement**資源群組。  
+17. 現在我們將繼續設定此應用程式上的權限。 這將需要開啟 [Azure 入口網站](https://portal.azure.com)。 
+18. 按一下 [資源群組] 並尋找 [Mobile Engagement] 資源群組。  
     
     ![][15]
-19. 按一下 hello **Mobile Engagement**資源群組，並瀏覽 toohello**設定**這裡刀鋒視窗。 
+19. 按一下 [Mobile Engagement] 資源群組，並瀏覽至此處的 [設定] 刀鋒視窗。 
     
     ![][16]
-20. 按一下**使用者**在 hello 設定 刀鋒視窗，然後按一下**新增**tooadd 使用者。 
+20. 在 [設定] 刀鋒視窗中按一下 [使用者]，然後按一下 [新增] 來新增使用者。 
     
     ![][17]
 21. 按一下 [選取角色] 
@@ -100,14 +100,14 @@ ms.lasthandoff: 10/06/2017
 22. 按一下 [擁有者] 
     
     ![][19]
-23. 應用程式的 hello 名稱搜尋**AD\_應用程式\_名稱**hello [搜尋] 方塊中。 依預設，您不會在這裡看到它。 一旦您找到它，請選取它，然後按一下 **選取**在 hello hello 刀鋒視窗的底部。 
+23. 在 [搜尋] 方塊中搜尋應用程式的名稱 **AD\_APP\_NAME**。 依預設，您不會在這裡看到它。 找到之後請選取它，然後按一下刀鋒視窗底部的 [選取]  。 
     
     ![][20]
-24. 在 hello**加入存取**刀鋒視窗中，它會顯示為**1 個使用者、 群組 0**。 按一下**確定**此刀鋒視窗 tooconfirm hello 變更。 
+24. 在 [新增存取] 刀鋒視窗中，它會顯示為 [1 個使用者、0 個群組]。 按一下此刀鋒視窗中的 [確定]  ，確認變更。 
     
     ![][21]
 
-您現在已完成所需的 hello AAD 設定，而且所有設定 toocall hello 應用程式開發介面。 
+您現在已完成所需的 AAD 組態，可以呼叫 API。 
 
 <!-- Images -->
 [1]: ./media/mobile-engagement-api-authentication-manual/active-directory.png

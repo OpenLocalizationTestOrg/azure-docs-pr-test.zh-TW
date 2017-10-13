@@ -1,6 +1,6 @@
 ---
-title: "ios 的 Swift aaaGet Started with Azure Mobile Engagement |Microsoft 文件"
-description: "深入了解如何 toouse 與分析及推播通知的 Azure Mobile Engagement 適用於 iOS 的應用程式。"
+title: "開始使用適用於 iOS (Swift) 的 Azure Mobile Engagement | Microsoft Docs"
+description: "了解如何使用 iOS 應用程式的 Azure Mobile Engagement 與分析和推播通知。"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,22 +14,22 @@ ms.devlang: swift
 ms.topic: hero-article
 ms.date: 09/20/2016
 ms.author: piyushjo
-ms.openlocfilehash: 9a3841d305745f8b80c6b0c86aabe18e0c7c0e59
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1011b9823333e79a52cd2d187df4f8d063b1f799
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-azure-mobile-engagement-for-ios-apps-in-swift"></a>開始使用適用於 iOS 應用程式 (Swift) 的 Azure Mobile Engagement
 [!INCLUDE [Hero tutorial switcher](../../includes/mobile-engagement-hero-tutorial-switcher.md)]
 
-本主題說明如何 toouse Azure Mobile Engagement toounderstand 您的應用程式使用量和傳送推播通知 toosegmented 使用者 tooan iOS 應用程式。
+本主題說明如何使用 Azure Mobile Engagement 了解您的應用程式使用情形，並將推送通知傳送至 iOS 應用程式的區隔使用者。
 在本教學課程中，您將使用 Apple 推播通知服務 (APNS)，建立可收集基本資料，並接收推播通知的空白 iOS 應用程式。
 
-本教學課程必須 hello 下列需求：
+本教學課程需要下列各項：
 
 * Xcode 8，可以從您的 MAC App Store 安裝
-* hello [Mobile Engagement iOS SDK]
+* [Mobile Engagement iOS SDK]
 * 推播通知憑證 (.p12)，您可以在 Apple Dev Center 取得
 
 > [!NOTE]
@@ -40,37 +40,37 @@ ms.lasthandoff: 10/06/2017
 完成本教學課程是所有其他 iOS 應用程式 Mobile Engagement 教學課程的先決條件。
 
 > [!NOTE]
-> toocomplete 本教學課程中，您必須擁有有效的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-ios-swift-get-started)。
+> 若要完成此教學課程，您必須具備有效的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%2Fmobile-engagement-ios-swift-get-started)。
 > 
 > 
 
 ## <a id="setup-azme"></a>為您的 iOS 應用程式設定 Mobile Engagement
 [!INCLUDE [Create Mobile Engagement App in Portal](../../includes/mobile-engagement-create-app-in-portal-new.md)]
 
-## <a id="connecting-app"></a>連接您的應用程式 toohello Mobile Engagement 後端
-此教學課程提供 < 基本整合 >，其最小的 hello 設定必要的 toocollect 資料，並傳送推播通知。 hello 完整的整合文件可以在 hello [Mobile Engagement iOS SDK 整合](mobile-engagement-ios-sdk-overview.md)
+## <a id="connecting-app"></a>將您的應用程式連線至 Mobile Engagement 後端
+本教學課程將說明「基本整合」，這是收集資料及傳送推播通知時必要的最低設定。 完整的整合文件位於 [Mobile Engagement iOS SDK 整合](mobile-engagement-ios-sdk-overview.md)
 
-我們將使用 XCode toodemonstrate hello 整合，以建立基本應用程式：
+我們將會使用 XCode 建立基本應用程式來示範整合：
 
 ### <a name="create-a-new-ios-project"></a>建立新的 iOS 專案
 [!INCLUDE [Create a new iOS Project](../../includes/mobile-engagement-create-new-ios-app.md)]
 
-### <a name="connect-your-app-toomobile-engagement-backend"></a>連接您的應用程式 tooMobile Engagement 後端
-1. 下載 hello [Mobile Engagement iOS SDK]
-2. 擷取 hello。.tar.gz 檔案 tooa 資料夾中您的電腦
-3. Hello 專案上按一下滑鼠右鍵，然後選取 「 太新增檔案...」
+### <a name="connect-your-app-to-mobile-engagement-backend"></a>將您的應用程式連線至 Mobile Engagement 後端
+1. 下載 [Mobile Engagement iOS SDK]
+2. 將 .tar.gz 檔案解壓縮到電腦中的資料夾
+3. 以滑鼠右鍵按一下專案，然後選取 [Add files to ...]
    
     ![][1]
-4. 瀏覽解壓縮 hello SDK 和選取 hello toohello 資料夾`EngagementSDK`資料夾，然後按 [確定]。
+4. 瀏覽至您解壓縮 SDK 的資料夾，選取 `EngagementSDK` 資料夾，然後按 [OK]。
    
     ![][2]
-5. 開啟 hello `Build Phases`  索引標籤和 hello`Link Binary With Libraries`功能表將 hello 架構，如下所示：
+5. 開啟 `Build Phases` 索引標籤，並在 `Link Binary With Libraries` 功能表中新增框架，如下所示：
    
     ![][3]
-6. 選擇檔案以建立橋接標頭 toobe 無法 toouse hello SDK 的目標 C 應用程式開發介面 > 新增 > 檔案 > iOS > 來源 > 標頭檔。
+6. 選擇 [File] > [New] > [File] > [iOS] > [Source] > [Header File] 來建立「橋接」標頭，以使用 SDK 的 Objective C API。
    
     ![][4]
-7. 編輯 hello 橋接標頭檔 tooexpose Mobile Engagement Objective C 程式碼 tooyour Swift 代碼，請新增下列 imports hello:
+7. 編輯橋接標頭檔案來將 Mobile Engagement Objective-C 程式碼公開至 Swift 程式碼，並新增以下匯入：
    
         /* Mobile Engagement Agent */
         #import "AEModule.h"
@@ -81,13 +81,13 @@ ms.lasthandoff: 10/06/2017
         #import "EngagementViewController.h"
         #import "AEUserNotificationHandler.h"
         #import "AEIdfaProvider.h"
-8. 在建置設定，確定的 hello OBJECTIVE-C 橋接標頭組建 Swift 編譯器的程式碼產生的設定有一個路徑 toothis 標頭。 以下是路徑的範例： **$(SRCROOT)/MySuperApp/MySuperApp-Bridging-Header.h （取決於 hello 路徑）**
+8. 在 [Build Settings]，請確定在 [Swift Compiler - Code Generation] 下的 [Objective-C Bridging Header] 組件設定有指向此標頭的路徑。 路徑的範例： **$(SRCROOT)/MySuperApp/MySuperApp-Bridging-Header.h (依路徑而定)**
    
    ![][6]
-9. 請返回 Azure 入口網站應用程式中 toohello*連接資訊*頁面，並複製 hello 連接字串
+9. 回到 Azure 入口網站中您應用程式的 [連線資訊]  頁面，並複製 [連線字串]。
    
    ![][5]
-10. 現在將 hello 連接字串貼在 hello`didFinishLaunchingWithOptions`委派
+10. 現在 `didFinishLaunchingWithOptions` 代理人中貼上連接字串。
     
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
         {
@@ -97,9 +97,9 @@ ms.lasthandoff: 10/06/2017
         }
 
 ## <a id="monitor"></a>啟用即時監視
-在順序 toostart 傳送資料，並確保 hello 使用者使用中，您必須傳送至少一個螢幕 （活動） toohello Mobile Engagement 後端。
+若要開始傳送資料並確定使用者正在使用，您必須至少傳送一個畫面 (活動) 到 Mobile Engagement 後端。
 
-1. 開啟 hello **ViewController.swift**檔案，並將 hello 基底類別**ViewController** toobe **EngagementViewController**:
+1. 開啟 **ViewController.swift** 檔案，將 **ViewController** 的基底類別取代為 **EngagementViewController**：
    
     `class ViewController : EngagementViewController {`
 
@@ -107,19 +107,19 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [Connect app with real-time monitoring](../../includes/mobile-engagement-connect-app-with-monitor.md)]
 
 ## <a id="integrate-push"></a>啟用推播通知與應用程式內傳訊
-Mobile Engagement 可讓您 toointeract 和與您的使用者使用推播通知及應用程式內訊息的觸達活動 hello 內容中。 此模組會呼叫觸達 hello Mobile Engagement 入口網站中。
-hello 下列各節將會安裝應用程式 tooreceive 它們。
+Mobile Engagement 可讓您透過「推播通知」和「應用程式內傳訊」，於活動進行時與使用者互動和觸達 (REACH)。 此模組在 Mobile Engagement 入口網站中稱為觸達 (REACH)。
+以下各節將設定您的應用程式來接收它們。
 
-### <a name="enable-your-app-tooreceive-silent-push-notifications"></a>啟用您的應用程式 tooreceive 無訊息的推播通知
+### <a name="enable-your-app-to-receive-silent-push-notifications"></a>啟用應用程式接收無聲推播通知
 [!INCLUDE [mobile-engagement-ios-silent-push](../../includes/mobile-engagement-ios-silent-push.md)]
 
-### <a name="add-hello-reach-library-tooyour-project"></a>加入 hello 觸達庫 tooyour 專案
+### <a name="add-the-reach-library-to-your-project"></a>將觸達程式庫加入至專案
 1. 以滑鼠右鍵按一下您的專案
-2. 選取 `Add file too...`
-3. 瀏覽 toohello 資料夾解壓縮 hello SDK 的位置
-4. 選取 hello`EngagementReach`資料夾
+2. 選取 `Add file to ...`
+3. 瀏覽至您解壓縮 SDK 所在的資料夾
+4. 選取 `EngagementReach` 資料夾
 5. 按一下 [新增]
-6. 編輯 hello 橋接標頭檔 tooexpose Mobile Engagement OBJECTIVE-C 觸達標頭，並新增下列 imports hello:
+6. 編輯橋接標頭檔案來將 Mobile Engagement Objective-C 觸達標頭公開，並新增以下匯入：
    
         /* Mobile Engagement Reach */
         #import "AEAnnouncementViewController.h"
@@ -145,7 +145,7 @@ hello 下列各節將會安裝應用程式 tooreceive 它們。
         #import "AEWebAnnouncementJsBridge.h"
 
 ### <a name="modify-your-application-delegate"></a>修改您的應用程式代理人
-1. 內部 hello `didFinishLaunchingWithOptions` -建立觸達模組並將它傳遞 tooyour 現有 Engagement 初始化行：
+1. 在 `didFinishLaunchingWithOptions` 內 - 建立觸達模組並將它傳遞到您現有的 Engagement 初始化行：
    
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool 
         {
@@ -155,8 +155,8 @@ hello 下列各節將會安裝應用程式 tooreceive 它們。
             return true
         }
 
-### <a name="enable-your-app-tooreceive-apns-push-notifications"></a>啟用您的應用程式 tooreceive APNS 的推播通知
-1. 加入下列行 toohello hello`didFinishLaunchingWithOptions`方法：
+### <a name="enable-your-app-to-receive-apns-push-notifications"></a>讓您的應用程式能接收 APNS 推播通知
+1. 將下行新增至 `didFinishLaunchingWithOptions` 方法：
    
         if #available(iOS 8.0, *)
         {
@@ -174,12 +174,12 @@ hello 下列各節將會安裝應用程式 tooreceive 它們。
         {
             application.registerForRemoteNotifications(matching: [.alert, .badge, .sound])
         }
-2. 新增 hello`didRegisterForRemoteNotificationsWithDeviceToken`方法，如下所示：
+2. 新增 `didRegisterForRemoteNotificationsWithDeviceToken` 方法，如下所示：
    
         func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
             EngagementAgent.shared().registerDeviceToken(deviceToken)
         }
-3. 新增 hello`didReceiveRemoteNotification:fetchCompletionHandler:`方法，如下所示：
+3. 新增 `didReceiveRemoteNotification:fetchCompletionHandler:` 方法，如下所示：
    
         func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
             EngagementAgent.shared().applicationDidReceiveRemoteNotification(userInfo, fetchCompletionHandler:completionHandler)

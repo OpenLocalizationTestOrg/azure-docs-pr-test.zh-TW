@@ -1,6 +1,6 @@
 ---
-title: "在 Azure microservices aaaSimulate 錯誤 |Microsoft 文件"
-description: "如何 tooharden 您針對非失誤性和不正常失敗的服務。"
+title: "模擬 Azure 微服務中的錯誤 | Microsoft Docs"
+description: "如何針對非失誤性和失誤性失敗強化服務。"
 services: service-fabric
 documentationcenter: .net
 author: anmolah
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 06/15/2017
 ms.author: anmola
-ms.openlocfilehash: 05467e291dfc0f12a021955f8ea540881ec10746
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7ec671c23e101d0f7401bd4656fb201111602cad
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="simulate-failures-during-service-workloads"></a>模擬服務工作負載期間的失敗案例
-Azure Service Fabric 中的 hello 可測試性案例可讓開發人員 toonot 擔心個別錯誤處理。 不過還是有些案例，可能會需要明確的用戶端工作負載和失敗交錯。 hello 交錯的用戶端工作負載和錯誤，可確保 hello 服務實際執行某些動作失敗時。 獲得 hello 層級，可測試性提供，這些可能是控制項的 hello 工作負載執行的精確時間點。 此錯誤在 hello 應用程式中的不同狀態的歸納可尋找 bug，並改善品質。
+Azure Service Fabric 中的可測試性案例讓開發人員在處理個別錯誤時無需擔心。 不過還是有些案例，可能會需要明確的用戶端工作負載和失敗交錯。 用戶端工作負載和錯誤的交錯，可確保服務在發生失敗時確實執行某些動作。 假設可測試性提供的控制層級，可能是工作負載執行的精確時間點。 此應用程式中不同狀態的錯誤引發可以找到錯誤，並提升品質。
 
 ## <a name="sample-custom-scenario"></a>範例自訂案例
-這項測試顯示的案例與該 interleaves hello 企業工作負載[依正常程序和不正常失敗](service-fabric-testability-actions.md#graceful-vs-ungraceful-fault-actions)。 hello 錯誤應該產生 hello 中間的服務作業，或是為了獲得最佳結果的計算。
+此測試說明了使用 [非失誤性和失誤性失敗](service-fabric-testability-actions.md#graceful-vs-ungraceful-fault-actions)商務工作負載交錯的案例。 為了獲得最佳結果，應該在服務作業或計算過程中引發錯誤。
 
-讓我們逐步解說會顯示四個工作負載服務的範例： A、 B、 C 和 d。 每個對應 tooa 組的工作流程，且無法計算、 儲存體或混合。 為了簡化的 hello 起見，我們將會擷取 hello 工作負載在我們的範例。 在此範例中執行的 hello 不同錯誤是：
+我們來逐一解說某個服務範例，此範例公開四個工作負載：A、B、C 和 D。每個均對應至一組工作流程，且可能是計算、儲存體或混合。 為了簡單起見，我們會在範例中擷取出工作負載。 在此範例中執行的不同錯誤如下︰
 
-* RestartNode： 不正常錯誤 toosimulate 機器重新啟動。
-* RestartDeployedCodePackage： 不正常錯誤 toosimulate 服務主機處理序損毀。
-* RemoveReplica： 依正常程序錯誤 toosimulate 複本移除。
-* MovePrimary： 依正常程序錯誤 toosimulate 複本移動觸發 hello Service Fabric 負載平衡器。
+* RestartNode︰模擬機器重新啟動的失誤性錯誤。
+* RestartDeployedCodePackage︰模擬服務主機處理序當機。
+* RemoveReplica︰模擬複本移除的非失誤性錯誤。
+* MovePrimary︰模擬由 Service Fabric 負載平衡器所觸發的複本移動非失誤性錯誤。
 
 ```csharp
-// Add a reference tooSystem.Fabric.Testability.dll and System.Fabric.dll.
+// Add a reference to System.Fabric.Testability.dll and System.Fabric.dll.
 
 using System;
 using System.Fabric;
@@ -46,7 +46,7 @@ class Test
 {
     public static int Main(string[] args)
     {
-        // Replace these strings with hello actual version for your cluster and application.
+        // Replace these strings with the actual version for your cluster and application.
         string clusterConnection = "localhost:19000";
         Uri applicationName = new Uri("fabric:/samples/PersistentToDoListApp");
         Uri serviceName = new Uri("fabric:/samples/PersistentToDoListApp/PersistentToDoListService");
@@ -93,31 +93,31 @@ class Test
     {
         // Create FabricClient with connection and security information here.
         FabricClient fabricClient = new FabricClient(clusterConnection);
-        // Maximum time toowait for a service toostabilize.
+        // Maximum time to wait for a service to stabilize.
         TimeSpan maxServiceStabilizationTime = TimeSpan.FromSeconds(120);
 
-        // How many loops of faults you want tooexecute.
+        // How many loops of faults you want to execute.
         uint testLoopCount = 20;
         Random random = new Random();
 
         for (var i = 0; i < testLoopCount; ++i)
         {
             var workload = SelectRandomValue<ServiceWorkloads>(random);
-            // Start hello workload.
+            // Start the workload.
             var workloadTask = RunWorkloadAsync(workload);
 
-            // While hello task is running, induce faults into hello service. They can be ungraceful faults like
+            // While the task is running, induce faults into the service. They can be ungraceful faults like
             // RestartNode and RestartDeployedCodePackage or graceful faults like RemoveReplica or MovePrimary.
             var fault = SelectRandomValue<ServiceFabricFaults>(random);
 
-            // Create a replica selector, which will select a primary replica from hello given service tootest.
+            // Create a replica selector, which will select a primary replica from the given service to test.
             var replicaSelector = ReplicaSelector.PrimaryOf(PartitionSelector.RandomOf(serviceName));
-            // Run hello selected random fault.
+            // Run the selected random fault.
             await RunFaultAsync(applicationName, fault, replicaSelector, fabricClient);
-            // Validate hello health and stability of hello service.
+            // Validate the health and stability of the service.
             await fabricClient.ServiceManager.ValidateServiceAsync(serviceName, maxServiceStabilizationTime);
 
-            // Wait for hello workload toofinish successfully.
+            // Wait for the workload to finish successfully.
             await workloadTask;
         }
     }
@@ -145,9 +145,9 @@ class Test
     {
         throw new NotImplementedException();
         // This is where you trigger and complete your service workload.
-        // Note that hello faults induced while your service workload is running will
-        // fault hello primary service. Hence, you will need tooreconnect toocomplete or check
-        // hello status of hello workload.
+        // Note that the faults induced while your service workload is running will
+        // fault the primary service. Hence, you will need to reconnect to complete or check
+        // the status of the workload.
     }
 
     private static T SelectRandomValue<T>(Random random)

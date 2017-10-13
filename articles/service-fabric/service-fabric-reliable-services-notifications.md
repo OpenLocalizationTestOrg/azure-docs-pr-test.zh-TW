@@ -1,5 +1,5 @@
 ---
-title: "aaaReliable 服務通知 |Microsoft 文件"
+title: "Reliable Services 通知 | Microsoft Docs"
 description: "Service Fabric Reliable Services 通知的概念文件"
 services: service-fabric
 documentationcenter: .net
@@ -14,24 +14,24 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 6/29/2017
 ms.author: mcoskun
-ms.openlocfilehash: 8c43190d31dbe82d1dc7fa1c228128bdcc3684f6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c6a53d851510ed5e6eec1f3ac0f636ad034a6d4c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="reliable-services-notifications"></a>Reliable Services 通知
-通知可讓用戶端所進行的 tooan 物件他們感興趣的 tootrack hello 變更。 兩種類型的物件支援通知：「可靠的狀態管理員」和「可靠的字典」。
+通知可讓用戶端追蹤對於他們感興趣物件所進行的變更。 兩種類型的物件支援通知：「可靠的狀態管理員」和「可靠的字典」。
 
 使用通知的常見原因如下：
 
-* 建置具體化檢視，例如次要索引，或篩選的檢視 hello 複本狀態的彙總資料。 可靠的字典中所有索引鍵的排序索引便是其中一個例子。
-* 傳送監視資料，例如 hello 加入 hello 在過去一小時內的使用者數目。
+* 建置具體化檢視 (例如次要索引) 或複本狀態的彙總篩選檢視。 可靠的字典中所有索引鍵的排序索引便是其中一個例子。
+* 傳送監視資料，例如過去一小時內新增的使用者數目。
 
 套用作業過程中即會引發通知。 因為如此，應該以最快速度處理通知，且同步事件不應包含任何耗費資源的作業。
 
 ## <a name="reliable-state-manager-notifications"></a>可靠的狀態管理員通知
-Reliable 狀態管理員提供通知 hello 下列事件：
+可靠的狀態管理員提供下列事件的通知︰
 
 * 交易
   * 認可
@@ -40,16 +40,16 @@ Reliable 狀態管理員提供通知 hello 下列事件：
   * 加入可靠的狀態
   * 移除可靠的狀態
 
-Reliable 狀態管理員會追蹤 hello 目前傳遞的交易。 hello 會導致引發通知 toobe 的交易狀態的唯一變更是認可交易。
+可靠狀態管理員會追蹤目前傳遞的交易。 唯一會造成通知引發的交易狀態變更是認可交易。
 
-可靠的狀態管理員會維護可靠狀態的集合，例如可靠的字典和可靠的佇列。 Reliable 狀態管理員在此集合變更時，就會引發通知： 加入或移除，穩定的狀態或重建 hello 整個集合。
-在三個情況下，就會重建 hello 可靠狀態管理員集合：
+可靠的狀態管理員會維護可靠狀態的集合，例如可靠的字典和可靠的佇列。 可靠的狀態管理員會在此集合變更時引發通知︰加入或移除可靠的狀態，或者重建整個集合時。
+可靠的狀態管理員集合會在下列三種情況下重建：
 
-* 復原： 複本啟動時，它會復原先前的狀態從 hello 磁碟。 在復原 hello 最後，它會使用**NotifyStateManagerChangedEventArgs** toofire 事件包含 hello 組復原可靠的狀態。
-* 完整複製： 複本可以加入 hello 組態集之前，它有 toobe 建置。 有時候，這需要可靠狀態管理員的狀態從 hello 主要複本 toobe 套用的 toohello 閒置次要複本的完整複本。 在 hello 次要複本會使用 Reliable 狀態管理員**NotifyStateManagerChangedEventArgs** toofire 事件包含 hello 組可靠它取得從 hello 主要複本的狀態。
-* 還原方面： 災害復原案例，在 hello 複本的狀態可以從備份還原透過**RestoreAsync**。 在這種情況下，可靠 hello 主要複本上的狀態管理員會使用**NotifyStateManagerChangedEventArgs** toofire 包含 hello 組可靠的狀態，便從 hello 備份還原的事件。
+* 復原︰當複本啟動時，它會從磁碟復原為先前的狀態。 復原結束時，它會利用 **NotifyStateManagerChangedEventArgs** 引發事件，其中包含一組復原的可靠狀態。
+* 完整備份︰在複本可加入組態集之前，必須先建置它。 有時，這需要主要複本的可靠狀態管理員的狀態完整複本，以套用到閒置的次要複本。 次要複本上的可靠狀態管理員會使用 **NotifyStateManagerChangedEventArgs** 引發事件，其中包含一組它從主要複本取得的可靠狀態。
+* 還原︰在災害復原案例中，複本的狀態可經由 **RestoreAsync**從備份還原。 在這類案例中，主要複本上的可靠狀態管理員會使用 **NotifyStateManagerChangedEventArgs** 引發事件，其中包含一組它從備份還原來的可靠狀態。
 
-tooregister 交易通知及/或狀態管理員通知，您需要以 hello tooregister **TransactionChanged**或**StateManagerChanged**可靠狀態管理員上的事件。 常見的位置與這些事件處理常式 tooregister 是 hello 建構函式，您可設定狀態的服務。 當您註冊 hello 建構函式上時，您也不會錯過 hello 存留期間的變更所造成的任何通知**IReliableStateManager**。
+若要註冊交易通知及/或狀態管理員通知，您必須向可靠的狀態管理員分別註冊 **TransactionChanged** 或 **StateManagerChanged** 事件。 註冊這些事件處理常式的常見位置是您的具狀態服務的建構函式。 當您註冊建構函式時，您也不會錯過 **IReliableStateManager**存留期間的變更所造成的任何通知。
 
 ```C#
 public MyService(StatefulServiceContext context)
@@ -60,10 +60,10 @@ public MyService(StatefulServiceContext context)
 }
 ```
 
-hello **TransactionChanged**事件處理常式使用**NotifyTransactionChangedEventArgs** tooprovide hello 事件的詳細資料。 它包含的 hello 動作屬性 (例如， **NotifyTransactionChangedAction.Commit**) 指定變更的 hello 型別。 它也包含 hello 提供變更的參考 toohello 交易的交易屬性。
+**TransactionChanged** 事件處理常式會使用 **NotifyTransactionChangedEventArgs** ，來提供關於事件的詳細資料。 它包含指定變更類型的 Action 屬性 (例如， **NotifyTransactionChangedAction.Commit**)。 它也包含提供「指向變更之交易的參考」的交易屬性。
 
 > [!NOTE]
-> 現在， **TransactionChanged** hello 交易被認可時，才會引發事件。 hello 動作就等於太**NotifyTransactionChangedAction.Commit**。 但是在未來的 hello，可能會引發事件對於其他類型的交易狀態變更。 我們建議您檢查 hello 動作和處理 hello 事件只有在您預期的其中一個。
+> 現在，只有認可交易才會引發 **TransactionChanged** 事件。 此動作等於 **NotifyTransactionChangedAction.Commit**。 但是在未來，可能會有其他類型的交易狀態變更可以引發事件。 我們建議您檢查動作，並只在您預期的事件發生時處理事件。
 > 
 > 
 
@@ -82,9 +82,9 @@ private void OnTransactionChangedHandler(object sender, NotifyTransactionChanged
 }
 ```
 
-hello **StateManagerChanged**事件處理常式使用**NotifyStateManagerChangedEventArgs** tooprovide hello 事件的詳細資料。
+**StateManagerChanged** 事件處理常式使用 **NotifyStateManagerChangedEventArgs** 來提供事件的相關詳細資料。
 **NotifyStateManagerChangedEventArgs** 有兩個子類別︰**NotifyStateManagerRebuildEventArgs** 和 **NotifyStateManagerSingleEntityChangedEventArgs**。
-使用中的 hello 動作屬性**NotifyStateManagerChangedEventArgs** toocast **NotifyStateManagerChangedEventArgs** toohello 正確的子類別：
+您使用 **NotifyStateManagerChangedEventArgs** 中的 Action 屬性將 **NotifyStateManagerChangedEventArgs** 轉換為正確的子類別︰
 
 * **NotifyStateManagerChangedAction.Rebuild**：**NotifyStateManagerRebuildEventArgs**
 * **NotifyStateManagerChangedAction.Add** 和 **NotifyStateManagerChangedAction.Remove**：**NotifyStateManagerSingleEntityChangedEventArgs**
@@ -106,16 +106,16 @@ public void OnStateManagerChangedHandler(object sender, NotifyStateManagerChange
 ```
 
 ## <a name="reliable-dictionary-notifications"></a>可靠的字典通知
-可靠的字典提供 hello 下列事件的通知：
+可靠的字典提供下列事件的通知︰
 
 * 重建︰在 **ReliableDictionary** 從過去復原或複製的本機狀態或備份，復原其狀態時呼叫。
-* 清除： 時呼叫 hello 狀態**ReliableDictionary**已清除透過 hello **ClearAsync**方法。
-* 加入： 當太加入項目時呼叫**ReliableDictionary**。
+* 清除︰在透過 **ClearAsync** 方法清除 **ReliableDictionary** 的狀態時呼叫。
+* 加入︰在已將項目加入至 **ReliableDictionary**時呼叫。
 * 更新︰在已更新 **IReliableDictionary** 中的項目時呼叫。
 * 移除︰在已刪除 **IReliableDictionary** 中的項目時呼叫。
 
-tooget 可靠字典通知，您需要以 hello tooregister **DictionaryChanged**上的事件處理常式**IReliableDictionary**。 常見的位置使用這些事件處理常式 tooregister 處於 hello **ReliableStateManager.StateManagerChanged**將通知。
-註冊時**IReliableDictionary**太加入**IReliableStateManager**可確保您不會遺漏任何通知。
+若要註冊可靠的字典通知，使用者必須在 **IReliableDictionary** 上註冊事件處理常式 **DictionaryChanged**。 註冊這些事件處理常式的常見位置是在 **ReliableStateManager.StateManagerChanged** 加入通知中。
+在將 **IReliableDictionary** 加入 **IReliableStateManager** 時註冊，可確保您不會錯過任何通知。
 
 ```C#
 private void ProcessStateManagerSingleEntityNotification(NotifyStateManagerChangedEventArgs e)
@@ -136,11 +136,11 @@ private void ProcessStateManagerSingleEntityNotification(NotifyStateManagerChang
 ```
 
 > [!NOTE]
-> **ProcessStateManagerSingleEntityNotification**是 hello 範例方法上述該 hello **OnStateManagerChangedHandler**範例會呼叫。
+> **ProcessStateManagerSingleEntityNotification** 是前述 **OnStateManagerChangedHandler** 範例所呼叫的範例方法。
 > 
 > 
 
-hello 上述程式碼中設定 hello **IReliableNotificationAsyncCallback**介面，以及與**DictionaryChanged**。 因為**NotifyDictionaryRebuildEventArgs**包含**IAsyncEnumerable**介面-這必須以非同步方式-列舉 toobe 重建通知會透過引發**RebuildNotificationAsyncCallback**而不是**OnDictionaryChangedHandler**。
+上述程式碼會設定 **IReliableNotificationAsyncCallback** 介面以及 **DictionaryChanged**。 由於 **NotifyDictionaryRebuildEventArgs** 包含需要以非同步方式列舉的 **IAsyncEnumerable** 介面，因此會透過 **RebuildNotificationAsyncCallback** 而不是 **OnDictionaryChangedHandler** 來引發重建通知。
 
 ```C#
 public async Task OnDictionaryRebuildNotificationHandlerAsync(
@@ -158,12 +158,12 @@ public async Task OnDictionaryRebuildNotificationHandlerAsync(
 ```
 
 > [!NOTE]
-> Hello 一部分處理 hello 重建通知，前面的程式碼，在第一個 hello 會維持已清除的彙總的狀態。 正在重建 hello 可靠集合與新的狀態，所有先前的通知是因為不相關。
+> 在上述程式碼中，於處理重建通知的過程中，會先清除所維護的彙總狀態。 因為正在利用新狀態重建可靠的集合，因此與先前的所有通知無關。
 > 
 > 
 
-hello **DictionaryChanged**事件處理常式使用**NotifyDictionaryChangedEventArgs** tooprovide hello 事件的詳細資料。
-**NotifyDictionaryChangedEventArgs** 有五個子類別。 使用中的 hello 動作屬性**NotifyDictionaryChangedEventArgs** toocast **NotifyDictionaryChangedEventArgs** toohello 正確的子類別：
+**DictionaryChanged** 事件處理常式會使用 **NotifyDictionaryChangedEventArgs** 來提供關於事件的詳細資料。
+**NotifyDictionaryChangedEventArgs** 有五個子類別。 使用 **NotifyDictionaryChangedEventArgs** 中的 Action 屬性將 **NotifyDictionaryChangedEventArgs** 轉換為正確的子類別：
 
 * **NotifyDictionaryChangedAction.Rebuild**：**NotifyDictionaryRebuildEventArgs**
 * **NotifyDictionaryChangedAction.Clear**：**NotifyDictionaryClearEventArgs**
@@ -205,15 +205,15 @@ public void OnDictionaryChangedHandler(object sender, NotifyDictionaryChangedEve
 ## <a name="recommendations"></a>建議
 *  完成通知事件。
 *  執行任何耗費資源的作業 (例如 IO 作業) 做為同步事件的一部分。
-* *請勿*處理 hello 事件之前，請檢查 hello 動作類型。 Hello 未來可能會加入新的動作類型。
+*  Action 類型。 未來可能會加入新的 Action 類型。
 
-以下是一些事情 tookeep 記住：
+以下是要牢記在心的一些事項：
 
-* Hello 執行作業的一部分，會引發通知。 例如，還原通知就會引發 hello 的還原作業的最後一個步驟。 處理 hello 通知事件之前，將無法完成還原。
-* Hello 套用作業的一部分，會引發通知，因為用戶端就會看到只在本機認可作業的通知。 而且因為作業會保證在本機認可的 toobe （亦即，記錄），它們可能會或可能不在未來的 hello 中復原。
-* Hello 取消復原路徑上，單一通知會針對每個套用的作業引發。 這表示，如果交易 T1 包含 Create(X)、 Delete(X) 和 Create(X)，您會得到一則通知針對 hello 建立 X、 一個為 hello 刪除，一個用於 hello 建立同樣地，依此順序。
-* 包含多項作業的交易，作業會套用已收到 hello hello 使用者的主要複本上的 hello 順序。
-* 在處理錯誤的進度過程中，某些作業可能會復原。 這類復原作業，輪流 hello hello 複本後 tooa 穩定點狀態，都會引發通知。 復原通知的一個重要差異，是使用重複索引鍵的事件會彙總在一起。 例如，如果復原的交易 T1，您會看到單一通知 tooDelete(X)。
+* 通知會在執行作業過程中引發。 例如，在還原作業的最後一個步驟引發還原通知。 處理通知事件之前，不會完成還原。
+* 因為通知是在套用作業過程中引發，因此，用戶端只會看見本機認可作業的通知。 而且因為作業只保證會在本機認可 (亦即記錄)，所以它們不一定可在未來復原。
+* 在取消復原路徑上，會針對每個套用的作業引發單一通知。 這表示，如果交易 T1 包含 Create(X)、Delete(X)、Create(X)，您將依序得到一個針對 X 建立的通知、一個針對刪除的通知，然後再收到一個建立的通知。
+* 如果是包含多個作業的交易，作業將依使用者在主要本上收到它們的順序套用。
+* 在處理錯誤的進度過程中，某些作業可能會復原。 通知會針對這類復原作業加以引發，將複本狀態輪換回到可靠的時間點。 復原通知的一個重要差異，是使用重複索引鍵的事件會彙總在一起。 例如，如果復原上述的 T1，使用者將會看到 Delete(X) 的單一通知。
 
 ## <a name="next-steps"></a>後續步驟
 * [可靠的集合](service-fabric-work-with-reliable-collections.md)

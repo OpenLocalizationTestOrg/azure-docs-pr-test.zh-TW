@@ -1,6 +1,6 @@
 ---
-title: "Hadoop 叢集的 Azure 上的 aaaUse 指令碼動作 tooinstall Solr |Microsoft 文件"
-description: "了解如何 toocustomize HDInsight 叢集 Solr 使用指令碼動作。"
+title: "使用指令碼動作在 Hadoop 叢集上安裝 Solr - Azure | Microsoft Docs"
+description: "深入了解如何使用指令碼動作來以 Solr 自訂 HDInsight 叢集。"
 services: hdinsight
 documentationcenter: 
 author: nitinme
@@ -16,25 +16,25 @@ ms.topic: article
 ms.date: 02/05/2016
 ms.author: nitinme
 ROBOTS: NOINDEX
-ms.openlocfilehash: 022ba56b7499390a91bfe869e5069893e56b6503
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6efb7ea26c3cdf7748fff4b02b5810c85cc41e1a
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="install-and-use-solr-on-windows-based-hdinsight-clusters"></a>在 Windows 型 HDInsight 叢集上安裝和使用 Solr
 
-了解如何使用指令碼動作 Solr toocustomize Windows 為基礎的 HDInsight 叢集以及如何 toouse Solr toosearch 資料。
+了解如何使用指令碼動作來以 Solr 自訂 Windows 型 HDInsight 叢集，以及如何使用 Solr 搜尋資料。
 
 > [!IMPORTANT]
-> hello 中此文件僅搭配 Windows 為基礎的 HDInsight 叢集的步驟。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。 如需搭配以 Linux 為基礎的叢集使用 Solr 的詳細資訊，請參閱 [在 HDInsight Hadoop 叢集上安裝和使用 Solr (Linux)](hdinsight-hadoop-solr-install-linux.md)
+> 本文件的步驟只適用於 Windows HDInsight 叢集。 Windows 上的 HDInsight 只提供低於 HDInsight 3.4 的版本。 Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。 如需搭配以 Linux 為基礎的叢集使用 Solr 的詳細資訊，請參閱 [在 HDInsight Hadoop 叢集上安裝和使用 Solr (Linux)](hdinsight-hadoop-solr-install-linux.md)
 
 
-您也可以使用「指令碼動作」 ，在 Azure HDInsight 的任一類型的叢集 (Hadoop、Storm、HBase、Spark) 上安裝 Solr。 範例指令碼 tooinstall Solr 在 HDInsight 叢集上的都可從唯讀的 Azure 儲存體 blob [https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1)。
+您也可以使用「指令碼動作」 ，在 Azure HDInsight 的任一類型的叢集 (Hadoop、Storm、HBase、Spark) 上安裝 Solr。 您可以從唯讀的 Azure 儲存體 Blob 取得在 HDInsight 叢集上安裝 Solr 的範例指令碼，網址為 [https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1)。
 
-hello 範例指令碼僅適用於 HDInsight 叢集版本 3.1。 如需 HDInsight 叢集版本的詳細資訊，請參閱 [HDInsight 叢集版本](hdinsight-component-versioning.md)。
+範例指令碼只能與 HDInsight 叢集版本 3.1 搭配使用。 如需 HDInsight 叢集版本的詳細資訊，請參閱 [HDInsight 叢集版本](hdinsight-component-versioning.md)。
 
-使用本主題中的 hello 範例指令碼會建立 windows Solr 叢集使用特定的組態。 如果您想具有不同的集合、 分區、 結構描述、 複本和等等的 tooconfigure hello Solr 叢集中，您必須修改 hello 指令碼和 Solr 二進位檔。
+本主題中使用的範例指令碼會以特定組態建立以 Windows 為基礎的 Solr 叢集。 如果您想要以不同的集合、分區、結構描述和複本等項目設定 Solr 叢集，則必須相應修改指令碼和 Solr 二進位檔。
 
 **相關文章**
 
@@ -44,53 +44,53 @@ hello 範例指令碼僅適用於 HDInsight 叢集版本 3.1。 如需 HDInsight
 * [開發 HDInsight 的指令碼動作指令碼](hdinsight-hadoop-script-actions.md)
 
 ## <a name="what-is-solr"></a>什麼是 Solr？
-<a href="http://lucene.apache.org/solr/features.html" target="_blank">Apache Solr</a> 是可對資料執行強大全文搜尋作業的企業搜尋平台。 雖然 Hadoop 可讓儲存和管理大量的資料，Apache Solr 提供 hello 搜尋功能 tooquickly 擷取 hello 資料。
+<a href="http://lucene.apache.org/solr/features.html" target="_blank">Apache Solr</a> 是可對資料執行強大全文搜尋作業的企業搜尋平台。 Hadoop 可儲存和管理大量資料，而 Apache Solr 則是提供搜尋功能以便快速擷取資料。
 
 ## <a name="install-solr-using-portal"></a>使用入口網站安裝 Solr
-1. 啟動 建立叢集使用 hello**自訂建立**選項，依照[在 HDInsight 中的建立 Hadoop 叢集](hdinsight-provision-clusters.md)。
-2. 在 [hello**指令碼動作**頁面 hello 精靈] 中，按一下**加入指令碼動作**tooprovide 詳細 hello 指令碼動作，如下所示：
+1. 使用 [自訂建立] 選項，依[在 HDInsight 中建立 Hadoop 叢集](hdinsight-provision-clusters.md)中的描述開始建立叢集。
+2. 在精靈的 [指令碼動作] 頁面上，按一下 [加入指令碼動作] 以提供有關指令碼動作的詳細資料，如下所示：
 
-    ![使用指令碼動作 toocustomize 叢集](./media/hdinsight-hadoop-solr-install/hdi-script-action-solr.png "使用指令碼動作 toocustomize 叢集")
+    ![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-solr-install/hdi-script-action-solr.png "使用指令碼動作以自訂叢集")
 
     <table border='1'>
         <tr><th>屬性</th><th>值</th></tr>
         <tr><td>名稱</td>
-            <td>指定 hello 指令碼動作的名稱。 例如，<b>安裝 Solr</b>。</td></tr>
+            <td>指定指令碼動作的名稱。 例如，<b>安裝 Solr</b>。</td></tr>
         <tr><td>指令碼 URI</td>
-            <td>指定 hello 統一資源識別元 (URI) toohello 指令碼會叫用的 toocustomize hello 叢集。 例如，<i>https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1</i></td></tr>
+            <td>指定為自訂叢集叫用的指令碼統一資源識別項 (URI)。 例如，<i>https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1</i></td></tr>
         <tr><td>節點類型</td>
-            <td>指定 hello hello 自訂指令碼執行所在的節點。 您可以選擇 [所有節點]<b></b>、[僅限前端節點]<b></b> 或 [僅限背景工作節點]<b></b>。
+            <td>指定執行自訂指令碼的節點。 您可以選擇 [所有節點]<b></b>、[僅限前端節點]<b></b> 或 [僅限背景工作節點]<b></b>。
         <tr><td>參數</td>
-            <td>指定 hello 參數，如果 hello 指令碼所需。 hello 指令碼 tooinstall Solr 不需要任何參數，因此您可以讓此處空白。</td></tr>
+            <td>如果指令碼要求，請指定參數。 用來安裝 Solr 的指令碼不需要任何參數，因此可以讓此處空白。</td></tr>
     </table>
 
-    您可以在 hello 叢集上新增多個指令碼動作 tooinstall 多個元件。 加入 hello 指令碼之後，按一下 建立 hello 叢集 hello 核取記號 toostart。
+    您可以加入一個以上的指令碼動作，以在叢集上安裝多個元件。 加入指令碼之後，請按一下核取記號以開始建立叢集。
 
 ## <a name="use-solr"></a>使用 Solr
-您必須從以某些資料檔案編製 Solr 的索引來開始。 然後，您可以使用 Solr toorun 搜尋查詢 hello 編製索引的資料。 執行下列步驟 toouse Solr HDInsight 叢集中的 hello:
+您必須從以某些資料檔案編製 Solr 的索引來開始。 然後，您可以使用 Solr 來對已編製索引的資料執行搜尋查詢。 執行下列步驟以在 HDInsight 叢集中使用 Solr：
 
-1. **使用遠端桌面通訊協定 (RDP) tooremote 成 hello HDInsight 叢集安裝 Solr**。 Hello Azure 入口網站，為您建立與 Solr 安裝，且再到遠端 hello 叢集 hello 叢集啟用遠端桌面。 如需指示，請參閱[連接使用 RDP tooHDInsight 叢集](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)。
-2. **上傳資料檔案以對 Solr 編製索引**。 當您建立索引 Solr 時，您放入您可能需要 toosearch 上的文件。 tooindex Solr，使用 RDP tooremote 到 hello 叢集中，瀏覽 toohello 桌面，開啟 hello Hadoop 命令列，並瀏覽過**C:\apps\dist\solr-4.7.2\example\exampledocs**。 執行下列命令的 hello:
+1. **使用遠端桌面通訊協定 (RDP) 遠端登入到已安裝 Solr 的 HDInsight 叢集**。 從 Azure 入口網站，針對您所建立且已安裝 Solr 的叢集啟用遠端桌面，然後遠端登入到叢集。 如需指示，請參閱 [使用 RDP 連接至 HDInsight 叢集](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)。
+2. **上傳資料檔案以對 Solr 編製索引**。 在對 Solr 編製索引時，會在其中放置可能需要搜尋的文件。 若要對 Solr 編製索引，請使用 RDP 遠端登入到叢集、瀏覽至桌面、開啟 Hadoop 命令列，然後瀏覽至 **C:\apps\dist\solr-4.7.2\example\exampledocs**。 執行以下命令：
 
         java -jar post.jar solr.xml monitor.xml
 
-    您會看到下列輸出 hello 主控台上的 hello:
+    您會在主控台上看到下列輸出：
 
         POSTing file solr.xml
         POSTing file monitor.xml
         2 files indexed.
-        COMMITting Solr index changes toohttp://localhost:8983/solr/update..
+        COMMITting Solr index changes to http://localhost:8983/solr/update..
         Time spent: 0:00:01.624
 
-    hello post.jar 公用程式索引兩份範例文件，Solr **solr.xml**和**monitor.xml**。 hello post.jar 公用程式和 hello 範例文件會提供與 Solr 安裝。
-3. **使用 hello Solr hello 內的儀表板 toosearch 編製索引的文件**。 在 hello RDP 工作階段 toohello HDInsight 叢集化，開啟 Internet Explorer 中，並啟動 hello Solr 儀表板在**http://headnodehost:8983/solr #/**。 從 hello 左窗格中，從 hello**核心選取器**下拉式清單中，選取**collection1**，內，按一下 **查詢**。 範例、 以及 tooselect 傳回 Solr 中的所有 hello 文件會都提供下列值的 hello:
+    post.jar 公用程式使用 **solr.xml** 和 **monitor.xml** 這兩個範例文件對 Solr 編製索引。 您可以在 Solr 安裝內取得 post.jar 公用程式和範例文件。
+3. **使用 Solr 儀表板在已編製索引的文件內執行搜尋**。 在連往 HDInsight 叢集的 RDP 工作階段內，開啟 Internet Explorer，然後在 **http://headnodehost:8983/solr/#/** 啟動 Solr 儀表板。 在左窗格的 [核心選取器] 下拉式清單中，選取 [collection1]，然後在其中按一下 [查詢]。 舉例來說，若要選取並傳回 Solr 中的所有文件，請提供下列值：
 
-   * 在 hello **q**文字方塊中，輸入 **\*:**\*。 這會傳回所有的 hello 文件會編製索引 Solr 中。 如果您想要 toosearch hello 文件中的特定字串，您可以輸入該字串。
-   * 在 hello **wt**文字方塊中，選取 hello 輸出格式。 預設值是 [ **json**]。 按一下 [ **執行查詢**]。
+   * 在 [q] 文字方塊中輸入 **:**\*\*。 如此便會傳回已在 Solr 中編製索引的所有文件。 如果您想要搜尋文件內的特定字串，您可以在此輸入該字串。
+   * 在 [ **wt** ] 文字方塊中，選取輸出格式。 預設值是 [ **json**]。 按一下 [ **執行查詢**]。
 
-     ![使用指令碼動作 toocustomize 叢集](./media/hdinsight-hadoop-solr-install/hdi-solr-dashboard-query.png "Solr 儀表板上執行查詢")
+     ![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-solr-install/hdi-solr-dashboard-query.png "在 Solr 儀表板上執行查詢")
 
-     hello 輸出傳回 hello 我們用於索引 Solr 的兩個文件。 hello 輸出看起來像下列 hello:
+     輸出中會傳回兩個我們之前用於對 Solr 編製索引的文件。 輸出結果類似下面：
 
            "response": {
                "numFound": 2,
@@ -99,7 +99,7 @@ hello 範例指令碼僅適用於 HDInsight 叢集版本 3.1。 如需 HDInsight
                "docs": [
                  {
                    "id": "SOLR1000",
-                   "name": "Solr, hello Enterprise Search Server",
+                   "name": "Solr, the Enterprise Search Server",
                    "manu": "Apache Software Foundation",
                    "cat": [
                      "software",
@@ -110,9 +110,9 @@ hello 範例指令碼僅適用於 HDInsight 叢集版本 3.1。 如需 HDInsight
                      "Optimized for High Volume Web Traffic",
                      "Standards Based Open Interfaces - XML and HTTP",
                      "Comprehensive HTML Administration Interfaces",
-                     "Scalability - Efficient Replication tooother Solr Search Servers",
+                     "Scalability - Efficient Replication to other Solr Search Servers",
                      "Flexible and Adaptable with XML configuration and Schema",
-                     "Good unicode support: héllo (hello with an accent over hello e)"
+                     "Good unicode support: héllo (hello with an accent over the e)"
                    ],
                    "price": 0,
                    "price_c": "0,USD",
@@ -143,9 +143,9 @@ hello 範例指令碼僅適用於 HDInsight 叢集版本 3.1。 如需 HDInsight
                  }
                ]
              }
-4. **建議使用： Hello 備份編製索引資料從 Solr tooAzure hello HDInsight 叢集相關聯的 Blob 儲存體**。 很好的作法是，您應該備份到 Azure Blob 儲存體的 hello Solr 叢集節點 hello 編製索引的資料。 執行下列步驟 toodo 因此 hello:
+4. **建議步驟：從 Solr 將已編製索引的資料備份到與 HDInsight 叢集相關聯的 Azure Blob 儲存體**。 您最好從 Solr 叢集節點將已編製索引的資料備份到 Azure Blob 儲存體。 請執行下列步驟來進行此作業：
 
-   1. 從 hello RDP 工作階段中，開啟 Internet Explorer 中，並點 toohello 下列 URL:
+   1. 從 RDP 工作階段開啟 Internet Explorer，然後指向下列 URL：
 
            http://localhost:8983/solr/replication?command=backup
 
@@ -159,18 +159,18 @@ hello 範例指令碼僅適用於 HDInsight 叢集版本 3.1。 如需 HDInsight
              </lst>
              <str name="status">OK</str>
            </response>
-   2. 在 hello 遠端工作階段中，瀏覽過 {SOLR_HOME}\{集合} \data 中。 透過 hello 範例指令碼建立 hello 叢集中，這應該是**C:\apps\dist\solr-4.7.2\example\solr\collection1\data**。 在這個位置，您應該會看到快照集資料夾，以建立一個名稱類似太**快照集。*時間戳記** *。
-   3. 壓縮 hello 快照集資料夾，並將它上傳 tooAzure Blob 儲存體。 從 hello Hadoop 命令列使用下列命令的 hello 巡覽 toohello hello 快照集資料夾位置：
+   2. 在遠端工作階段中，瀏覽至 {SOLR_HOME}\{Collection}\data。 若是透過範例指令碼建立的叢集，則應該是 **C:\apps\dist\solr-4.7.2\example\solr\collection1\data**。 在此位置中，您應該會看到以類似「snapshot.timestamp」的名稱建立的快照資料夾。
+   3. 壓縮快照資料夾，並上傳至 Azure Blob 儲存體。 從 Hadoop 命令列使用下列命令瀏覽至快照資料夾的位置：
 
              hadoop fs -CopyFromLocal snapshot._timestamp_.zip /example/data
 
-       此命令，複製 hello 快照集太/範例/資料/hello 預設儲存體中的 hello 容器下的帳戶與 hello 叢集相關聯。
+       此命令會將快照複製到與叢集相關聯之預設儲存體帳戶內的容器下的 /example/data/。
 
 ## <a name="install-solr-using-aure-powershell"></a>使用 Azure PowerShell 安裝 Solr
-請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell)。  hello 範例會示範如何使用 Azure PowerShell 的 Spark tooinstall。 您需要 toocustomize hello 指令碼 toouse [https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1)。
+請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell)。  此範例示範如何使用 Azure PowerShell 安裝 Spark。 您需要自訂指令碼以使用 [https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1)。
 
 ## <a name="install-solr-using-net-sdk"></a>使用 .NET SDK 安裝 Solr
-請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell)。 hello 範例會示範如何 tooinstall Spark 使用 hello.NET SDK。 您需要 toocustomize hello 指令碼 toouse [https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1)。
+請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell)。 此範例示範如何使用 .NET SDK 安裝 Spark。 您需要自訂指令碼以使用 [https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1](https://hdiconfigactions.blob.core.windows.net/solrconfigactionv01/solr-installer-v01.ps1)。
 
 ## <a name="see-also"></a>另請參閱
 * [在 HDInsight Hadoop 叢集上安裝和使用 Solr (Linux)](hdinsight-hadoop-solr-install-linux.md)

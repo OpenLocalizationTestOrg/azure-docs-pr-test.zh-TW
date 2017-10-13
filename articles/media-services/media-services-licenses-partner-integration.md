@@ -1,6 +1,6 @@
 ---
-title: "aaaUsing 夥伴 toodeliver Widevine 授權 tooAzure Media Services |Microsoft 文件"
-description: "本文說明如何使用 Azure 媒體服務 (AMS) toodeliver 以 PlayReady 和 Widevine DRMs AMS 動態加密的資料流。 hello PlayReady 授權來自 Media Services PlayReady 授權伺服器，並 Widevine 授權傳遞 castLabs 授權伺服器。"
+title: "使用合作夥伴將 Widevine 授權傳遞到 Azure 媒體服務 | Microsoft Docs"
+description: "本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。 PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權由 castLabs 授權伺服器傳遞。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,23 +14,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 3c18a8a22ced239931dea5385020194bd6d83f28
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6867e4f910970121df3858516c6bab3114c3c6f9
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="using-partners-toodeliver-widevine-licenses-tooazure-media-services"></a>使用協力廠商 toodeliver Widevine 授權 tooAzure 媒體服務
-## <a name="overview"></a>概觀
-Microsoft Azure Media Services 可讓您 toodeliver 受到 Widevine DRM，會根據 hello Common Encryption (CENC) 規格加密的 MPEG DASH。
+# <a name="using-partners-to-deliver-widevine-licenses-to-azure-media-services"></a>使用合作夥伴將 Widevine 授權傳遞到 Azure 媒體服務
+## <a name="overview"></a>Overview
+Microsoft Azure 媒體服務可讓您提供受 Widevine DRM 保護的 MPEG-DASH，其會依據「一般加密 (Common Encryption，CENC)」規格進行加密。
 
-從開始 hello Media Services.NET SDK 版本 3.5.2，Media Services 可讓您 tooconfigure Widevine 授權範本，並取得 Widevine 授權。 您也可以使用下列 AMS 夥伴 toohelp 傳遞 Widevine 授權 hello: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/)， [EZDRM](http://ezdrm.com/)， [castLabs](http://castlabs.com/company/partners/azure/)。
+從媒體服務 .NET SDK 版本 3.5.2 開始，媒體服務讓您可設定 Widevine 授權範本並取得 Widevine 授權。 您也可以使用下列 AMS 合作夥伴來協助您傳遞 Widevine 授權：[Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/)、[EZDRM](http://ezdrm.com/)、[castLabs](http://castlabs.com/company/partners/azure/)。
 
 ## <a name="castlabs"></a>castLabs
-您可以使用[castLabs](http://castlabs.com/company/partners/azure/) toodeliver Widevine 授權。 如需詳細資訊，請參閱[使用 castLabs toodeliver DRM 授權 tooAzure 媒體服務](media-services-castlabs-integration.md)
+您可以使用 [castLabs](http://castlabs.com/company/partners/azure/) 傳遞 Widevine 授權。 如需詳細資訊，請參閱 [使用 castLabs 將 DRM 授權傳遞到 Azure 媒體服務](media-services-castlabs-integration.md)
 
 ## <a name="axinom"></a>Axinom
-您可以使用[Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/) toodeliver Widevine 授權。 如需詳細資訊，請參閱[使用 Axinom toodeliver DRM 授權 tooAzure 媒體服務](media-services-axinom-integration.md)
+您可以使用 [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/) 傳遞 Widevine 授權。 如需詳細資訊，請參閱 [使用 Axinom 將 DRM 授權傳遞到 Azure 媒體服務](media-services-axinom-integration.md)
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

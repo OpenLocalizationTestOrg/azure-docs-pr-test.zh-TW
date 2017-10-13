@@ -1,6 +1,6 @@
 ---
-title: "HDInsight 的 Azure 上的 R 伺服器 aaaAzure 儲存解決方案 |Microsoft 文件"
-description: "深入了解使用 R Server HDInsight 上的 hello 不同的儲存體選項可用 toousers"
+title: "適用於 HDInsight 上 R 伺服器的 Azure 儲存體選項 - Azure | Microsoft Docs"
+description: "了解 HDInsight 上 R 伺服器之使用者可用的不同儲存體選項"
 services: HDInsight
 documentationcenter: 
 author: bradsev
@@ -15,52 +15,52 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 06/19/2017
 ms.author: bradsev
-ms.openlocfilehash: ff5e80fee14d5e74cbc22e873e6bc1439a3b6037
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: aef9c15636ccaecce07d4fa218a40ed26ebad9df
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-storage-solutions-for-r-server-on-hdinsight"></a>適用於 HDInsight 上 R 伺服器的 Azure 儲存體選項
 
-Microsoft R Server HDInsight 上有很多的儲存體解決方案 toopersist 資料、 程式碼或包含分析結果的物件。 這些需求包括下列選項的 hello:
+HDInsight 上的 Microsoft R 伺服器有數種儲存體選項可用來保存資料、程式碼或包含分析結果的物件。 這些包括下列選項：
 
 - [Azure Blob](https://azure.microsoft.com/services/storage/blobs/)
 - [Azure Data Lake 儲存體](https://azure.microsoft.com/services/data-lake-store/)
 - [Azure 檔案儲存體](https://azure.microsoft.com/services/storage/files/)
 
-您也可以存取多個 Azure 儲存體帳戶或具有 HDI 叢集容器的 hello 選項。 Azure 檔案儲存體是 hello 邊緣節點可讓您 toomount Azure 儲存體檔案共用，例如 hello Linux 檔案系統上使用方便的資料儲存選項。 但是，只要是擁有受支援作業系統 (例如 Windows 或 Linux) 的系統，就可以掛接和使用「Azure 檔案」共用。 
+您可以使用 HDI 叢集存取多個 Azure 儲存體帳戶或容器。 「Azure 檔案」儲存體是一個可在邊緣節點上使用的方便資料儲存體選項，可讓您掛接「Azure 儲存體」檔案共用 (例如掛接到 Linux 檔案系統)。 但是，只要是擁有受支援作業系統 (例如 Windows 或 Linux) 的系統，就可以掛接和使用「Azure 檔案」共用。 
 
-當您在 HDInsight 中建立 Hadoop 叢集時，可以指定 **Azure 儲存體**帳戶或 **Data Lake Store**。 從該帳戶的特定儲存體容器保存 hello hello 您建立叢集，（例如 hello Hadoop 分散式檔案系統） 的檔案系統。 如需詳細資訊與指導方針，請參閱：
+當您在 HDInsight 中建立 Hadoop 叢集時，可以指定 **Azure 儲存體**帳戶或 **Data Lake Store**。 來自該帳戶的特定儲存體容器，會保留您所建立叢集的檔案系統 (例如，Hadoop 分散式檔案系統)。 如需詳細資訊與指導方針，請參閱：
 
 - [搭配 HDInsight 使用 Azure 儲存體](hdinsight-hadoop-use-blob-storage.md)
 - [搭配 Azure HDInsight 叢集使用 Data Lake Store](hdinsight-hadoop-use-data-lake-store.md)。 
 
-如需有關 hello Azure 儲存體解決方案的詳細資訊，請參閱[簡介 tooMicrosoft Azure 儲存體](../storage/common/storage-introduction.md)。 
+如需有關 Azure 儲存體解決方案的詳細資訊，請參閱 [Microsoft Azure 儲存體簡介](../storage/common/storage-introduction.md)。 
 
-如需選取 hello 最適當儲存體選項 toouse 用於您案例的指引，請參閱[制定時 toouse Azure Blob、 Azure 或 Azure 資料磁碟](../storage/common/storage-decide-blobs-files-disks.md) 
+如需有關如何針對您的情節選取最適儲存體選項的指導方針，請參閱[決定何時使用 Azure Blob、Azure 檔案或 Azure 資料磁碟](../storage/common/storage-decide-blobs-files-disks.md) 
 
 
 ## <a name="use-azure-blob-storage-accounts-with-r-server"></a>搭配 R 伺服器使用 Azure Blob 儲存體帳戶
 
-如有需要，您可以使用 HDI 叢集存取多個 Azure 儲存體帳戶或容器。 toodo 因此，您需要 toospecify hello 其他儲存體帳戶中 hello UI 當您建立 hello 叢集，然後依照這些步驟 toouse 它們使用 R Server。
+如有需要，您可以使用 HDI 叢集存取多個 Azure 儲存體帳戶或容器。 若要這樣做，您必須在建立叢集時於 UI 中指定其他儲存體帳戶，然後遵循下列步驟，以便搭配 R 伺服器使用它們。
 
 > [!WARNING]
-> 基於效能考量，hello HDInsight 叢集建立在 hello 相同資料中心做為您指定的 hello 主要儲存體帳戶。 不支援在 hello HDInsight 叢集以外的不同位置中使用的儲存體帳戶。
+> 基於效能目的，系統會在與您指定的主要儲存體帳戶相同資料中心內建立 HDInsight 叢集。 不支援在與 HDInsight 叢集不同的位置中使用儲存體帳戶。
 
 1. 使用儲存體帳戶名稱 **storage1** 和預設容器 **container1** 建立 HDInsight 叢集。
 2. 指定其他儲存體帳戶 **storage2**。  
-3. 複製 hello mycsv.csv 檔案 toohello /share 目錄，並在該檔案上執行分析。  
+3. 將 mycsv.csv 檔案複製到 /share 目錄，並對該檔案執行分析。  
 
         hadoop fs –mkdir /share
         hadoop fs –copyFromLocal myscsv.scv /share  
 
-4. 在 R 程式碼中，設定 hello 名稱節點太**預設**並設定您的目錄和檔案 tooprocess。  
+4. 在 R 程式碼中，將名稱節點設定為 **default** ，並設定要處理的目錄和檔案。  
 
         myNameNode <- "default"
         myPort <- 0
 
-        #Location of hello data:  
+        #Location of the data:  
         bigDataDirRoot <- "/share"  
 
         #Define Spark compute context:
@@ -69,23 +69,23 @@ Microsoft R Server HDInsight 上有很多的儲存體解決方案 toopersist 資
         #Set compute context:
         rxSetComputeContext(mySparkCluster)
 
-        #Define hello Hadoop Distributed File System (HDFS) file system:
+        #Define the Hadoop Distributed File System (HDFS) file system:
         hdfsFS <- RxHdfsFileSystem(hostName=myNameNode, port=myPort)
 
-        #Specify hello input file tooanalyze in HDFS:
+        #Specify the input file to analyze in HDFS:
         inputFile <-file.path(bigDataDirRoot,"mycsv.csv")
 
-所有 hello 目錄和檔案的參考點 toohello 儲存體帳戶wasb://container1@storage1.blob.core.windows.net。 這是 hello**預設儲存體帳戶**與 hello HDInsight 叢集關聯。
+所有目錄和檔案的參考會指向儲存體帳戶 wasb://container1@storage1.blob.core.windows.net。 這是與 HDInsight 叢集關聯的「預設儲存體帳戶」。
 
-現在，假設您想要 tooprocess 檔案稱為 mySpecial.csv 位於 hello /private 目錄**container2**中**storage2**。
+現在，假設您想要處理名稱為 mySpecial.csv 的檔案，其所在位置為 **storage2** 中 **container2** 的 /private 目錄。
 
-在您的 R 程式碼，指向 hello 名稱節點參考 toohello **storage2**儲存體帳戶。
+在 R 程式碼中，將名稱節點參考指向 **storage2** 儲存體帳戶。
 
 
     myNameNode <- "wasb://container2@storage2.blob.core.windows.net"
     myPort <- 0
 
-    #Location of hello data:
+    #Location of the data:
     bigDataDirRoot <- "/private"
 
     #Define Spark compute context:
@@ -97,12 +97,12 @@ Microsoft R Server HDInsight 上有很多的儲存體解決方案 toopersist 資
     #Define HDFS file system:
     hdfsFS <- RxHdfsFileSystem(hostName=myNameNode, port=myPort)
 
-    #Specify hello input file tooanalyze in HDFS:
+    #Specify the input file to analyze in HDFS:
     inputFile <-file.path(bigDataDirRoot,"mySpecial.csv")
 
-Hello 目錄和檔案參考現在點 toohello 儲存體帳戶的所有wasb://container2@storage2.blob.core.windows.net。 這是 hello**名稱節點**您指定的。
+現在，所有目錄和檔案的參考會指向儲存體帳戶 wasb://container2@storage2.blob.core.windows.net。 這是您已指定的「名稱節點」。
 
-您有 tooconfigure hello /user/RevoShare/<SSH username>目錄**storage2** ，如下所示：
+您必須在 **storage2** 上設定 /user/RevoShare/<SSH username> 目錄，如下所示：
 
 
     hadoop fs -mkdir wasb://container2@storage2.blob.core.windows.net/user
@@ -113,33 +113,33 @@ Hello 目錄和檔案參考現在點 toohello 儲存體帳戶的所有wasb://con
 
 ## <a name="use-an-azure-data-lake-store-with-r-server"></a>搭配 R 伺服器使用 Azure Data Lake Store
 
-toouse 資料湖存放區與您的 HDInsight 帳戶、 您叢集存取 tooeach Azure 資料湖存放區，您想 toouse 需要 toogive。 指示如何 toouse hello Azure 入口網站 toocreate HDInsight 叢集的 Azure Data Lake Store 帳戶為 hello 預設儲存體，或做為額外的存放區，請參閱[建立與使用 Azure 入口網站DataLakeStore的HDInsight叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md).
+若要搭配 HDInsight 帳戶使用 Data Lake 存放區，您必須對叢集提供您想要使用之每個 Azure Data Lake 存放區的存取權。 如需有關如何使用 Azure 入口網站並使用 Azure Data Lake Store 帳戶作為預設儲存體或作為其他存放區來建立 HDInsight 叢集的指示，請參閱 [使用 Azure 入口網站搭配 Data Lake Store 建立 HDInsight 叢集](../data-lake-store/data-lake-store-hdinsight-hadoop-use-portal.md)。
 
-您接著 hello 存放區中使用 R 指令碼更像次要 Azure 儲存體帳戶 hello 上一個程序中所述。
+接著，您會以和使用次要 Azure 儲存體帳戶的方式 (如先前程序所述) 很像的方式，在 R 指令碼中使用存放區。
 
-### <a name="add-cluster-access-tooyour-azure-data-lake-stores"></a>新增叢集存取 tooyour Azure 資料湖存放
+### <a name="add-cluster-access-to-your-azure-data-lake-stores"></a>為叢集新增 Azure Data Lake Store 的存取權
 您可以使用與 HDInsight 叢集相關聯的 Azure Active Directory (Azure AD) 服務主體來存取 Data Lake Store。
 
-tooadd Azure AD 服務主體：
+新增 Azure AD 服務主體：
 
-1. 當您建立您的 HDInsight 叢集時，請選取**叢集 AAD 身分識別**從 hello**資料來源** 索引標籤。
+1. 在建立 HDInsight 叢集時，從 [資料來源] 索引標籤中選取 [叢集 AAD 身分識別]。
 
-2. 在 hello**叢集 AAD 身分識別**對話方塊的 **選取 AD 服務主體**，選取**建立新**。
+2. 在 [叢集 AAD 身分識別] 對話方塊的 [選取 AD 服務主體] 底下，選取 [新建]。
 
-您提供 hello 服務主體名稱，然後建立的密碼之後，請按一下**管理 ADLS 存取**tooassociate hello 服務主體名稱的資料湖存放。
+在為服務主體命名並建立密碼後，請按一下 [管理 ADLS 存取]，以將該服務主體與您的 Data Lake Store 產生關聯。
 
-它也是可能 tooadd 叢集存取 tooone 或更多的資料湖存放下列叢集建立。 開啟 hello Azure 入口網站的資料湖存放區項目，並移過**資料總管 > 存取 > 新增**。 
+建立叢集之後，您也可以新增叢集存取權到一或多個 Data Lake Store。 為 Data Lake Store 開啟 Azure 入口網站入口，並移至 [資料總管] > [存取] > [新增]。 
 
-### <a name="how-tooaccess-hello-data-lake-store-from-r-server"></a>如何 tooaccess hello 從 R 伺服器的資料湖存放區
+### <a name="how-to-access-the-data-lake-store-from-r-server"></a>如何從 R 伺服器存取 Data Lake Store
 
-一旦您已獲得存取 tooa 資料湖存放區，您可以使用 R 伺服器中的 hello 存放區上 HDInsight hello 方式與次要 Azure 儲存體帳戶。 hello hello 前置詞的差別僅**wasb: / /**變更太**adl: / /** ，如下所示：
+一旦您獲得 Data Lake 存放區的存取權，就可以在 HDInsight 上的 R 伺服器中使用該存放區，其方式就和使用次要 Azure 儲存體帳戶一樣。 唯一的差別在於前置詞 **wasb://** 會變更為 **adl://**，如下所示：
 
 
-    # Point toohello ADL store (e.g. ADLtest)
+    # Point to the ADL store (e.g. ADLtest)
     myNameNode <- "adl://rkadl1.azuredatalakestore.net"
     myPort <- 0
 
-    # Location of hello data (assumes a /share directory on hello ADL account)
+    # Location of the data (assumes a /share directory on the ADL account)
     bigDataDirRoot <- "/share"  
 
     # Define Spark compute context
@@ -151,15 +151,15 @@ tooadd Azure AD 服務主體：
     # Define HDFS file system
     hdfsFS <- RxHdfsFileSystem(hostName=myNameNode, port=myPort)
 
-    # Specify hello input file in HDFS tooanalyze
+    # Specify the input file in HDFS to analyze
     inputFile <-file.path(bigDataDirRoot,"AirlineDemoSmall.csv")
 
-    # Create factors for days of hello week
+    # Create factors for days of the week
     colInfo <- list(DayOfWeek = list(type = "factor",
                levels = c("Monday", "Tuesday", "Wednesday", "Thursday",
                           "Friday", "Saturday", "Sunday")))
 
-    # Define hello data source
+    # Define the data source
     airDS <- RxTextData(file = inputFile, missingValueString = "M",
                     colInfo  = colInfo, fileSystem = hdfsFS)
 
@@ -167,7 +167,7 @@ tooadd Azure AD 服務主體：
     model <- rxLinMod(ArrDelay~CRSDepTime+DayOfWeek, data = airDS)
 
 
-hello 下列命令會使用的 tooconfigure hello 與 hello RevoShare 目錄的資料湖儲存體帳戶並新增 hello 範例.csv 檔案 hello 上一個範例：
+下列命令是用來搭配 RevoShare 目錄設定 Data Lake 儲存體帳戶，並新增來自先前範例的範例 .csv 檔案：
 
 
     hadoop fs -mkdir adl://rkadl1.azuredatalakestore.net/user
@@ -183,20 +183,20 @@ hello 下列命令會使用的 tooconfigure hello 與 hello RevoShare 目錄的�
 
 ## <a name="use-azure-file-storage-with-r-server"></a>搭配 R 伺服器使用 Azure 檔案儲存體
 
-也是很方便的資料儲存選項使用 hello 邊緣節點稱為 [Azure 檔案] ((https://azure.microsoft.com/services/storage/files/)。 它可讓您 toomount Azure 儲存體檔案共用 toohello Linux 檔案系統。 這個選項可能很方便的儲存資料檔案、 R 指令碼，以及可能會需要更新版本中，尤其是當它使意義 toouse hello hello 邊緣節點，而不是 HDFS 上的原生檔案系統的結果物件。 
+另外還有可在邊緣節點上使用的便利資料儲存體選項，我們稱之為 [Azure 檔案]((https://azure.microsoft.com/services/storage/files/)。 它可以讓您將 Azure 儲存體的檔案共用掛接至 Linux 檔案系統。 此選項對於儲存資料檔案、R 指令碼與結果物件相當便利，該結果物件在稍後可以於邊緣節點 (而不是 HDFS) 上使用原生檔案系統時需要。 
 
-Azure 檔案的主要優點是可以掛接並使用已受支援的作業系統，例如 Windows 或 Linux 任何系統共用該 hello 檔案。 例如，您本人或您的小組成員所擁有的另一個 HDInsight 叢集，或是 Azure VM 甚或內部部署系統均可使用 Azure 檔案。 如需詳細資訊，請參閱：
+Azure 檔案的主要優點是，只要是擁有受支援作業系統 (例如 Windows 或 Linux) 的系統，就可以掛接和使用檔案共用。 例如，您本人或您的小組成員所擁有的另一個 HDInsight 叢集，或是 Azure VM 甚或內部部署系統均可使用 Azure 檔案。 如需詳細資訊，請參閱：
 
-- [如何 toouse Linux 的 Azure 檔案儲存體](../storage/files/storage-how-to-use-files-linux.md)
-- [如何 toouse Windows 上的 Azure 檔案儲存體](../storage/files/storage-dotnet-how-to-use-files.md)
+- [如何搭配 Linux 使用 Azure 檔案儲存體](../storage/files/storage-how-to-use-files-linux.md)
+- [如何在 Windows 上使用 Azure 檔案儲存體](../storage/files/storage-dotnet-how-to-use-files.md)
 
 
 ## <a name="next-steps"></a>後續步驟
 
-既然您了解 hello Azure 儲存體選項，使用 hello 下列連結 toodiscover 種取得資料科學工作已完成 HDInsight 上的 R 伺服器。
+既然已經了解 Azure 儲存體選項，就可以使用下列連結來探索使用 HDInsight 上之 R 伺服器完成資料科學工作的方式。
 
 * [HDInsight 上的 R 伺服器概觀](hdinsight-hadoop-r-server-overview.md)
 * [開始使用 Hadoop 上的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)
-* [新增 RStudio 伺服器 tooHDInsight （如果不在叢集建立期間新增）](hdinsight-hadoop-r-server-install-r-studio.md)
-* [適用於 HDInsight 中 R 伺服器的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)
+* [將 RStudio Server 新增至 HDInsight (若未在建立叢集期間新增)](hdinsight-hadoop-r-server-install-r-studio.md)
+* [適用於 HDInsight 上 R 伺服器的計算內容選項](hdinsight-hadoop-r-server-compute-contexts.md)
 

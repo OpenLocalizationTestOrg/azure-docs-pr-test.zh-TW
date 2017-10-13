@@ -1,6 +1,6 @@
 ---
-title: "透過 Xamarin Android 行動應用程式驗證 aaaGet 已啟動"
-description: "深入了解如何您的 Xamarin Android 應用程式，透過不同的身分識別提供者，包括 AAD、 Google、 Facebook、 Twitter 和 Microsoft toouse 行動應用程式 tooauthenticate 使用者。"
+title: "開始在 Xamarin Android 中使用行動應用程式的驗證"
+description: "了解如何使用行動應用程式透過眾多識別提供者驗證 Xamarin Android 應用程式使用者，包括 AAD、Google、Facebook、Twitter 和 Microsoft。"
 services: app-service\mobile
 documentationcenter: xamarin
 author: ggailey777
@@ -14,47 +14,47 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: panarasi
-ms.openlocfilehash: 500a4efa816e4f6d75d359e31d6357da56a72f6e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8f9a1109018c708d52cdcb7b8bce43861cecd31c
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="add-authentication-tooyour-xamarinandroid-app"></a>新增驗證 tooyour Xamarin.Android 應用程式
+# <a name="add-authentication-to-your-xamarinandroid-app"></a>將驗證新增至 Xamarin.Android 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
-本主題說明如何 tooauthenticate 使用者的行動裝置應用程式，從用戶端應用程式。 在本教學課程中，您可以新增使用身分識別提供者支援的 Azure 行動應用程式驗證 toohello 快速入門專案。 正在順利通過驗證，並在 hello 行動裝置應用程式中獲得授權之後, 會顯示 hello 使用者識別碼的值。
+本主題說明如何從用戶端應用程式驗證行動應用程式的使用者。 在本教學課程中，您會使用 Azure 行動應用程式所支援的身分識別提供者將驗證新增至快速入門專案。 在行動應用程式中成功驗證並授權之後，就會顯示使用者識別碼值。
 
-本教學課程根據 hello 行動裝置應用程式快速入門。 您必須也先完成 hello 教學課程[建立 Xamarin.Android 應用程式]。 如果您不要使用 hello 下載快速入門的伺服器專案，您必須新增 hello 驗證擴充功能封裝 tooyour 專案。 如需伺服器擴充功能封裝的詳細資訊，請參閱[Azure 行動應用程式使用 hello.NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+本教學課程以行動應用程式快速入門為基礎。 您也必須先完成 [建立 Xamarin.Android 應用程式教學課程]。 如果您不要使用下載的快速入門伺服器專案，必須將驗證擴充套件新增至您的專案。 如需伺服器擴充套件的詳細資訊，請參閱 [使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
 ## <a name="register"></a>註冊應用程式進行驗證，並設定應用程式服務
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-## <a name="redirecturl"></a>新增您的應用程式 toohello 允許外部重新導向 Url
+## <a name="redirecturl"></a>將您的應用程式新增至允許的外部重新導向 URL
 
-安全的驗證會要求您為應用程式定義新的 URL 配置。 Hello 驗證程序完成之後，這可讓 hello 驗證系統 tooredirect 後 tooyour 應用程式。 在本教學課程中，我們使用 hello URL 配置_appname_整個。 不過，您可以使用任何您選擇的 URL 結構描述。 它應該是唯一的 tooyour 行動應用程式。 hello 伺服器端 tooenable hello 重新導向：
+安全的驗證會要求您為應用程式定義新的 URL 配置。 這讓驗證系統能夠在驗證程序完成之後，重新導向回到您的應用程式。 我們會在這整個教學課程中使用 URL 配置 appname。 不過，您可以使用任何您選擇的 URL 結構描述。 它對於您的行動應用程式而言應該是唯一的。 在伺服器端啟用重新導向：
 
-1. 在 hello [Azure 入口網站]，選取您的應用程式服務。
+1. 在 [Azure 入口網站] 中，選取您的 App Service。
 
-2. 按一下 hello**驗證 / 授權**功能表選項。
+2. 按一下 [驗證/授權] 功能表選項。
 
-3. 在 hello**允許外部重新導向 Url**，輸入`url_scheme_of_your_app://easyauth.callback`。  hello **url_scheme_of_your_app**這個字串中為 行動應用程式的 hello URL 配置。  它必須遵循通訊協定的標準 URL 規格 (只使用字母和數字，並以字母為開頭)。  請記下您選擇將會需要 tooadjust hello 在幾個位置的 URL 配置您的行動應用程式程式碼的 hello 字串。
+3. 在 [允許的外部重新導向 URL] 中，輸入 `url_scheme_of_your_app://easyauth.callback`。  此字串中的 **url_scheme_of_your_app** 是您行動應用程式的 URL 配置。  它必須遵循通訊協定的標準 URL 規格 (只使用字母和數字，並以字母為開頭)。  請記下您選擇的字串，因為您將需要在數個位置中使用該 URL 配置來調整您的行動應用程式程式碼。
 
 4. 按一下 [確定] 。
 
 5. 按一下 [儲存] 。
 
-## <a name="permissions"></a>限制 tooauthenticated 使用者權限
+## <a name="permissions"></a>限制只有通過驗證的使用者具有權限
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-在 Visual Studio 或 Xamarin Studio，請裝置或模擬器上執行 hello 用戶端專案。 請確認 hello 應用程式啟動之後，會引發未處理的例外狀況並顯示狀態碼 401 （未經授權）。 這是因為 hello 應用程式嘗試 tooaccess 未經驗證的使用者身分行動裝置應用程式後端。 hello *TodoItem*資料表現在需要驗證。
+在 Visual Studio 或 Xamarin Studio 中，在裝置或模擬器上執行用戶端專案。 確認在應用程式啟動後，發生狀態代碼 401 (未經授權) 的未處理例外狀況。 這是因為應用程式嘗試以未驗證的使用者身分存取您的行動應用程式程式碼。 *TodoItem* 資料表現在需要驗證。
 
-接下來，您將更新從 hello 行動裝置應用程式後端 hello 用戶端應用程式 toorequest 資源與已驗證的使用者。
+接下來，您將會更新用戶端應用程式，利用已驗證的使用者身分來要求行動應用程式後端的資源。
 
-## <a name="add-authentication"></a>新增驗證 toohello 應用程式
-hello 應用程式會更新的 toorequire 使用者 tootap hello**登入**按鈕，然後資料會顯示之前，先驗證。
+## <a name="add-authentication"></a>將驗證新增至應用程式
+應用程式已更新，要求使用者在資料顯示前點選 [登入]  按鈕並驗證。
 
-1. 新增下列程式碼 toohello hello **TodoActivity**類別：
+1. 將下列程式碼加入 **TodoActivity** 類別：
    
         // Define a authenticated user.
         private MobileServiceUser user;
@@ -84,24 +84,24 @@ hello 應用程式會更新的 toorequire 使用者 tootap hello**登入**按鈕
             // Load data only after authentication succeeds.
             if (await Authenticate())
             {
-                //Hide hello button after authentication succeeds.
+                //Hide the button after authentication succeeds.
                 FindViewById<Button>(Resource.Id.buttonLoginUser).Visibility = ViewStates.Gone;
    
-                // Load hello data.
+                // Load the data.
                 OnRefreshItemsSelected();
             }
         }
    
-    這樣會建立新的方法 tooauthenticate 使用者以及方法的處理常式的新**登入** 按鈕。 上述的 hello 範例程式碼中的 hello 使用者會驗證使用 Facebook 登入。 對話是一次驗證使用的 toodisplay hello 使用者識別碼。
+    這會建立一個新方法以驗證使用者，以及建立新 [登入]  按鈕的方法處理常式。 上述範例程式碼中的使用者是使用 Facebook 登入進行驗證。 對話方塊會在驗證後用來顯示使用者識別碼。
    
    > [!NOTE]
-   > 如果您使用 Facebook 以外的身分識別提供者，變更 hello 值太傳遞**LoginAsync** tooone hello 以下的上方： *MicrosoftAccount*， *Twitter*，*Google*，或*WindowsAzureActiveDirectory*。
+   > 如果您使用的身分識別提供者不是 Facebook，請將傳遞給上述 **LoginAsync** 的值變更為下列其中之一：MicrosoftAccount、Twitter、Google 或 WindowsAzureActiveDirectory。
    > 
    > 
-2. 在 hello **OnCreate**方法、 刪除或下列一行程式碼的註解外 hello:
+2. 在 **OnCreate** 方法中，刪除或註解下列程式碼行：
    
         OnRefreshItemsSelected ();
-3. 在 hello Activity_To_Do.axml 檔案中，加入下列 hello *LoginUser*按鈕前 hello 現有*AddItem*按鈕：
+3. 在 Activity_To_Do.axml 檔案中，在現有的 AddItem 按鈕之前加入下列 LoginUser 按鈕定義：
    
           <Button
             android:id="@+id/buttonLoginUser"
@@ -109,10 +109,10 @@ hello 應用程式會更新的 toorequire 使用者 tootap hello**登入**按鈕
             android:layout_height="wrap_content"
             android:onClick="LoginUser"
             android:text="@string/login_button_text" />
-4. 新增下列項目 toohello Strings.xml 資源檔的 hello:
+4. 將下列元素新增到 Strings.xml 資源檔：
    
         <string name="login_button_text">Sign in</string>
-5. 開啟 hello AndroidManifest.xml 檔案，加入下列程式碼內的 hello `<application>` XML 項目：
+5. 開啟 AndroidManifest.xml 檔案，在 `<application>` XML 元素內新增下列程式碼：
 
         <activity android:name="com.microsoft.windowsazure.mobileservices.authentication.RedirectUrlActivity" android:launchMode="singleTop" android:noHistory="true">
           <intent-filter>
@@ -123,7 +123,7 @@ hello 應用程式會更新的 toorequire 使用者 tootap hello**登入**按鈕
           </intent-filter>
         </activity>
 
-6. 在 Visual Studio 或 Xamarin Studio 中，裝置或模擬器上執行 hello 用戶端專案，並使用您所選擇的身分識別提供者登入。 當您已成功登入，hello 應用程式將會顯示登入識別碼，而且 hello 份 todo 項目，以及您可以繼續更新 toohello 資料。
+6. 在 Visual Studio 或 Xamarin Studio 中，在裝置或模擬器上執行用戶端專案，並使用您選擇的身分識別提供者登入。 當您成功登入後，應用程式將會顯示您的登入識別碼以及 todo 項目的清單，您可以對資料進行更新。
 
 <!-- URLs. -->
-[建立 Xamarin.Android 應用程式]: app-service-mobile-xamarin-android-get-started.md
+[建立 Xamarin.Android 應用程式教學課程]: app-service-mobile-xamarin-android-get-started.md

@@ -1,6 +1,6 @@
 ---
-title: "aaaUse 度量 toomonitor Azure IoT 中樞 |Microsoft 文件"
-description: "如何 toouse Azure IoT 中樞度量 tooassess 和監視器 hello IoT 中樞的整體健全狀況。"
+title: "使用計量監視 Azure IoT 中樞 | Microsoft Docs"
+description: "如何使用 Azure IoT 中樞度量來評估和監視 IoT 中樞的整體健全狀況。"
 services: iot-hub
 documentationcenter: 
 author: nberdy
@@ -15,89 +15,89 @@ ms.workload: na
 ms.date: 08/25/2017
 ms.author: nberdy
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 7d045013fb0229f488e72c93a6f668048b9d5c25
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e850370faf2d271b4adad1af48c1ead7b316fa67
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="understand-iot-hub-metrics"></a>了解 IoT 中樞計量
-IoT 中樞度量提供您更佳 hello Azure IoT 資源 hello 狀態相關的資料中您 Azure 訂用帳戶。 IoT 中樞度量啟用您 tooassess hello hello IoT 中心服務和 hello 裝置的整體健全狀況連接 tooit。 使用者互動的統計資料很重要的因為它們可以協助您查看如何運作的 IoT 中樞與說明根本原因問題而不需要 toocontact Azure 支援。
+IoT 中樞度量提供更好的資料，讓您了解 Azure 訂用帳戶中各種 Azure 資源的狀態。 IoT 中樞度量可讓您評估 IoT 中樞服務及其連接之裝置的整體健全狀況。 提供給您的統計資料非常重要，因為它們可以協助您了解其 IoT 中樞的情況，並協助您不需要連絡 Azure 支援人員就解決根本問題。
 
-預設會啟用計量。 您可以檢視來自 hello Azure 入口網站的 IoT 中樞度量。
+預設會啟用計量。 您可以從 Azure 入口網站啟用 IoT 中樞計量。
 
-## <a name="how-tooview-iot-hub-metrics"></a>如何 tooview IoT 中樞度量
-1. 建立 IoT 中樞。 您可以找到指示如何 toocreate hello IoT 中樞[開始][ lnk-get-started]指南。
-2. 開啟您的 IoT 中樞的 hello 刀鋒視窗。 按一下此處的 [計量]。
+## <a name="how-to-view-iot-hub-metrics"></a>如何檢視 IoT 中樞計量
+1. 建立 IoT 中樞。 您可以在[開始使用][lnk-get-started]指南中找到如何建立 IoT 中樞的指示。
+2. 開啟 IoT 中樞的刀鋒視窗。 按一下此處的 [計量]。
    
     ![][1]
-3. Hello 計量刀鋒視窗中，從您可以檢視您的 IoT 中樞 hello 度量，並建立自訂檢視的度量。 您可以按一下 選擇 toosend 度量資料 tooan 事件中樞端點或 Azure 儲存體帳戶**診斷設定**。
+3. 您可以在 [計量] 刀鋒視窗中檢視 IoT 中樞的計量，並建立計量的自訂檢視。 您可以藉由按一下 [診斷設定]，選擇將計量資料傳送到事件中樞端點或 Azure 儲存體帳戶。
    
     ![][2]
 
-## <a name="iot-hub-metrics-and-how-toouse-them"></a>IoT 中樞度量以及如何 toouse 它們
-IoT 中樞提供許多標準 toogive 您概觀中樞和 hello hello 健康狀態的總數連接的裝置。 您可以結合來自多個度量 toopaint 宏觀 hello hello IoT 中樞狀態的資訊。 hello 下表描述每個 IoT 中樞會將追蹤，hello 度量和狀態的方式每個度量與整體 toohello hello IoT 中樞。
+## <a name="iot-hub-metrics-and-how-to-use-them"></a>IoT 中樞度量及其使用方式
+IoT 中樞提供數個度量，以讓您概略了解中樞的健全狀況和所連線裝置的總數。 您可以結合多個度量的資訊，以便更清楚地了解 IoT 中樞的狀態。 下表描述每個 IoT 中樞所追蹤的度量，以及每個度量與 IoT 中樞整體狀態的關聯。
 
-|計量|計量顯示名稱|單位|彙總類型|說明|
+|度量|計量顯示名稱|單位|彙總類型|說明|
 |---|---|---|---|---|
-|d2c.telemetry.ingress.allProtocol|遙測訊息傳送嘗試|Count|總計|送出的遙測裝置到雲端訊息嘗試 toobe 數目 tooyour IoT 中樞|
-|d2c.telemetry.ingress.success|已傳送的遙測訊息|Count|總計|裝置到雲端遙測訊息數目已成功傳送 tooyour IoT 中樞|
-|c2d.commands.egress.complete.success|完成的命令|Count|總計|雲端到裝置命令已順利完成 hello 裝置數目|
-|c2d.commands.egress.abandon.success|放棄的命令|Count|總計|放棄 hello 裝置的雲端到裝置命令數目|
-|c2d.commands.egress.reject.success|拒絕的命令|Count|總計|雲端到裝置 hello 裝置被拒絕的命令數目|
-|devices.totalDevices|裝置總計|Count|總計|已登錄的裝置數 tooyour IoT 中樞|
-|devices.connectedDevices.allProtocol|連接的裝置|Count|總計|連接的裝置數目 tooyour IoT 中樞|
-|d2c.telemetry.egress.success|已傳遞的遙測訊息|Count|總計|訊息已成功地寫入 tooendpoints （總計） 的次數|
-|d2c.telemetry.egress.dropped|捨棄的訊息|Count|總計|卸除的訊息數目，因為它們不符合任何路由 hello 後援路由已停用|
-|d2c.telemetry.egress.orphaned|被遺棄的訊息|Count|總計|訊息不符合任何包括 hello 後援路由的路由的 hello 數目|
-|d2c.telemetry.egress.invalid|無效的訊息|Count|總計|hello 的訊息計數不會傳遞到期 tooincompatibility 與 hello 端點|
-|d2c.telemetry.egress.fallback|符合後援條件的訊息|Count|總計|寫入 toohello 後援端點的訊息數|
-|d2c.endpoints.egress.eventHubs|訊息傳遞 tooEvent 中樞端點|Count|總計|訊息已成功寫入的 tooEvent 中心端點的次數|
-|d2c.endpoints.latency.eventHubs|事件中樞端點的訊息延遲|毫秒|平均值|hello 之間的平均延遲訊息輸入 toohello IoT 中樞與訊息輸入至事件中心的端點，以毫秒為單位|
-|d2c.endpoints.egress.serviceBusQueues|訊息傳遞 tooService 匯流排佇列端點|Count|總計|訊息已成功寫入的 tooService 匯流排佇列端點的次數|
-|d2c.endpoints.latency.serviceBusQueues|服務匯流排佇列端點的訊息延遲|毫秒|平均值|hello 之間的平均延遲訊息輸入 toohello IoT 中樞與訊息輸入至服務匯流排佇列端點，以毫秒為單位|
-|d2c.endpoints.egress.serviceBusTopics|訊息傳遞 tooService 匯流排主題端點|Count|總計|訊息已成功寫入的 tooService 匯流排主題端點的次數|
-|d2c.endpoints.latency.serviceBusTopics|服務匯流排主題端點的訊息延遲|毫秒|平均值|hello 之間的平均延遲訊息輸入 toohello IoT 中樞與訊息輸入至服務匯流排主題端點，以毫秒為單位|
-|d2c.endpoints.egress.builtIn.events|訊息傳遞 toohello 內建端點 （訊息/事件）|Count|總計|訊息已成功寫入的 toohello 內建端點 （訊息/事件） 的次數|
-|d2c.endpoints.latency.builtIn.events|Hello 內建端點 （訊息/事件） 的訊息延遲|毫秒|平均值|hello 之間的平均延遲訊息輸入 toohello IoT 中樞與訊息輸入至 hello 內建端點 （訊息/事件），以毫秒為單位 |
-|d2c.twin.read.success|裝置的成功對應項讀取|Count|總計|讀取所有成功的裝置啟動兩個 hello 計數。|
-|d2c.twin.read.failure|裝置的失敗對應項讀取|Count|總計|所有的 hello 計數失敗裝置起始兩個讀取。|
-|d2c.twin.read.size|裝置的對應項讀取回應大小|位元組|平均值|hello 平均、 最小值 和所有成功的最大裝置起始 twin 讀取。|
-|d2c.twin.update.success|裝置的成功對應項更新|Count|總計|所有成功的裝置啟動兩個更新的 hello 計數。|
-|d2c.twin.update.failure|裝置的失敗對應項更新|Count|總計|hello 計數的所有失敗的裝置啟動兩個更新。|
-|d2c.twin.update.size|裝置的對應項更新大小|位元組|平均值|hello 平均、 最小值 和所有成功的最大大小裝置起始 twin 更新。|
-|c2d.methods.success|成功直接方法叫用|Count|總計|所有成功的直接方法呼叫 hello 計數。|
-|c2d.methods.failure|失敗直接方法叫用|Count|總計|所有的 hello 計數無法直接方法呼叫。|
-|c2d.methods.requestSize|直接方法叫用的要求大小|位元組|平均值|hello 平均、 最小值 和所有成功的直接方法要求的最大值。|
-|c2d.methods.responseSize|直接方法叫用的回應大小|位元組|平均值|hello 平均、 最小值 和所有成功的直接方法回應的最大值。|
-|c2d.twin.read.success|後端的成功對應項讀取|Count|總計|讀取所有成功的後端初始化兩個 hello 計數。|
-|c2d.twin.read.failure|後端的失敗對應項讀取|Count|總計|所有的 hello 計數失敗後結束起始兩個讀取。|
-|c2d.twin.read.size|後端的對應項讀取回應大小|位元組|平均值|hello 平均、 最小值和最大值的所有成功後結束起始 twin 讀取。|
-|c2d.twin.update.success|後端的成功對應項更新|Count|總計|所有成功的後端初始化兩個更新的 hello 計數。|
-|c2d.twin.update.failure|後端的失敗對應項更新|Count|總計|所有的 hello 計數失敗後結束起始兩個更新。|
-|c2d.twin.update.size|後端的對應項更新大小|位元組|平均值|hello 平均、 最小值 和所有成功的最大大小後結束起始 twin 更新。|
-|twinQueries.success|成功對應項查詢|Count|總計|所有成功的兩個查詢的 hello 計數。|
-|twinQueries.failure|失敗對應項查詢|Count|總計|所有失敗的兩個查詢的 hello 計數。|
-|twinQueries.resultSize|對應項查詢結果大小|位元組|平均值|hello 平均、 最小值、 和 hello 所有成功的兩個查詢的結果大小的最大值。|
-|jobs.createTwinUpdateJob.success|成功建立的對應項更新作業|Count|總計|hello 所有成功建立兩個更新作業數目。|
-|jobs.createTwinUpdateJob.failure|建立失敗的對應項更新作業|Count|總計|建立兩個更新作業的所有失敗的 hello 計數。|
-|jobs.createDirectMethodJob.success|成功建立的方法叫用作業|Count|總計|hello 所有成功建立直接的方法引動過程作業數目。|
-|jobs.createDirectMethodJob.failure|建立失敗的方法叫用作業|Count|總計|建立直接的方法引動過程作業的所有失敗的 hello 計數。|
-|jobs.listJobs.success|成功呼叫 toolist 工作|Count|總計|所有成功呼叫 toolist 作業 hello 計數。|
-|jobs.listJobs.failure|失敗的呼叫 toolist 工作|Count|總計|所有的失敗的呼叫 toolist 作業 hello 計數。|
-|jobs.cancelJob.success|成功取消作業|Count|總計|所有成功的 hello 計數呼叫 toocancel 作業。|
-|jobs.cancelJob.failure|取消作業失敗|Count|總計|所有失敗的呼叫 toocancel 作業 hello 計數。|
-|jobs.queryJobs.success|成功作業查詢|Count|總計|所有成功呼叫 tooquery 作業 hello 計數。|
-|jobs.queryJobs.failure|失敗作業查詢|Count|總計|所有的失敗的呼叫 tooquery 作業 hello 計數。|
-|jobs.completed|已完成的工作|Count|總計|hello 與所有已完成的工作數目。|
-|jobs.failed|失敗作業|Count|總計|hello 所有失敗的作業數目。|
+|d2c.telemetry.ingress.allProtocol|遙測訊息傳送嘗試|Count|總計|要嘗試傳送至您 IoT 中樞的裝置到雲端遙測訊息數目|
+|d2c.telemetry.ingress.success|已傳送的遙測訊息|Count|總計|成功傳送至您 IoT 中樞的裝置到雲端遙測訊息數目|
+|c2d.commands.egress.complete.success|完成的命令|Count|總計|裝置成功完成的雲端到裝置命令數目|
+|c2d.commands.egress.abandon.success|放棄的命令|Count|總計|裝置放棄的雲端到裝置命令數目|
+|c2d.commands.egress.reject.success|拒絕的命令|Count|總計|裝置拒絕的雲端到裝置命令數目|
+|devices.totalDevices|裝置總計|Count|總計|向 IoT 中樞註冊的裝置數目|
+|devices.connectedDevices.allProtocol|連接的裝置|Count|總計|連接至 IoT 中樞的裝置數目|
+|d2c.telemetry.egress.success|已傳遞的遙測訊息|Count|總計|訊息成功寫入端點的次數 (總計)|
+|d2c.telemetry.egress.dropped|捨棄的訊息|Count|總計|因為不符合任何路由且後援路由已停用，而捨棄的訊息數目|
+|d2c.telemetry.egress.orphaned|被遺棄的訊息|Count|總計|不符合任何路由 (包括後援路由) 的訊息計數|
+|d2c.telemetry.egress.invalid|無效的訊息|Count|總計|因為與端點不相容而未傳遞的訊息計數|
+|d2c.telemetry.egress.fallback|符合後援條件的訊息|Count|總計|寫入後援端點的訊息數目|
+|d2c.endpoints.egress.eventHubs|傳遞至事件中樞端點的訊息|Count|總計|訊息成功寫入事件中樞端點的次數|
+|d2c.endpoints.latency.eventHubs|事件中樞端點的訊息延遲|毫秒|平均值|訊息輸入到 IoT 中樞與訊息輸入到事件中樞端點之間的平均延遲，以毫秒為單位|
+|d2c.endpoints.egress.serviceBusQueues|傳遞至服務匯流排佇列端點的訊息|Count|總計|訊息成功寫入服務匯流排佇列端點的次數|
+|d2c.endpoints.latency.serviceBusQueues|服務匯流排佇列端點的訊息延遲|毫秒|平均值|訊息輸入到 IoT 中樞與訊息輸入到服務匯流排佇列端點之間的平均延遲，以毫秒為單位|
+|d2c.endpoints.egress.serviceBusTopics|傳遞至服務匯流排主題端點的訊息|Count|總計|訊息成功寫入服務匯流排主題端點的次數|
+|d2c.endpoints.latency.serviceBusTopics|服務匯流排主題端點的訊息延遲|毫秒|平均值|訊息輸入到 IoT 中樞與訊息輸入到服務匯流排主題端點之間的平均延遲，以毫秒為單位|
+|d2c.endpoints.egress.builtIn.events|傳遞至內建端點 (訊息/事件) 的訊息|Count|總計|訊息成功寫入內建端點 (訊息/事件) 的次數|
+|d2c.endpoints.latency.builtIn.events|內建端點 (訊息/事件) 的訊息延遲|毫秒|平均值|訊息輸入到 IoT 中樞與訊息輸入到內建端點 (訊息/事件) 之間的平均延遲，以毫秒為單位 |
+|d2c.twin.read.success|裝置的成功對應項讀取|Count|總計|裝置起始的所有成功對應項讀取的計數。|
+|d2c.twin.read.failure|裝置的失敗對應項讀取|Count|總計|裝置起始的所有失敗對應項讀取的計數。|
+|d2c.twin.read.size|裝置的對應項讀取回應大小|位元組|平均值|裝置起始的所有成功對應項讀取的平均值、最小值和最大值。|
+|d2c.twin.update.success|裝置的成功對應項更新|Count|總計|裝置起始的所有成功對應項更新的計數。|
+|d2c.twin.update.failure|裝置的失敗對應項更新|Count|總計|裝置起始的所有失敗對應項更新的計數。|
+|d2c.twin.update.size|裝置的對應項更新大小|位元組|平均值|裝置起始的所有成功對應項更新的大小平均值、最小值和最大值。|
+|c2d.methods.success|成功直接方法叫用|Count|總計|所有成功直接方法呼叫的計數。|
+|c2d.methods.failure|失敗直接方法叫用|Count|總計|所有失敗直接方法呼叫的計數。|
+|c2d.methods.requestSize|直接方法叫用的要求大小|位元組|平均值|所有成功直接方法要求的平均值、最小值和最大值。|
+|c2d.methods.responseSize|直接方法叫用的回應大小|位元組|平均值|所有成功直接方法回應的平均值、最小值和最大值。|
+|c2d.twin.read.success|後端的成功對應項讀取|Count|總計|後端起始的所有成功對應項讀取的計數。|
+|c2d.twin.read.failure|後端的失敗對應項讀取|Count|總計|後端起始的所有失敗對應項讀取的計數。|
+|c2d.twin.read.size|後端的對應項讀取回應大小|位元組|平均值|後端起始的所有成功對應項讀取的平均值、最小值和最大值。|
+|c2d.twin.update.success|後端的成功對應項更新|Count|總計|後端起始的所有成功對應項更新的計數。|
+|c2d.twin.update.failure|後端的失敗對應項更新|Count|總計|後端起始的所有失敗對應項更新的計數。|
+|c2d.twin.update.size|後端的對應項更新大小|位元組|平均值|後端起始的所有成功對應項更新的大小平均值、最小值和最大值。|
+|twinQueries.success|成功對應項查詢|Count|總計|所有成功對應項查詢的計數。|
+|twinQueries.failure|失敗對應項查詢|Count|總計|所有失敗對應項查詢的計數。|
+|twinQueries.resultSize|對應項查詢結果大小|位元組|平均值|所有成功對應項查詢的結果大小平均值、最小值和最大值。|
+|jobs.createTwinUpdateJob.success|成功建立的對應項更新作業|Count|總計|所有成功建立的對應項更新作業計數。|
+|jobs.createTwinUpdateJob.failure|建立失敗的對應項更新作業|Count|總計|所有建立失敗的對應項更新作業計數。|
+|jobs.createDirectMethodJob.success|成功建立的方法叫用作業|Count|總計|所有成功建立的直接方法叫用作業計數。|
+|jobs.createDirectMethodJob.failure|建立失敗的方法叫用作業|Count|總計|所有建立失敗的直接方法叫用作業計數。|
+|jobs.listJobs.success|成功呼叫列出作業|Count|總計|所有成功呼叫列出作業的計數。|
+|jobs.listJobs.failure|呼叫列出作業失敗|Count|總計|所有呼叫列出作業失敗的計數。|
+|jobs.cancelJob.success|成功取消作業|Count|總計|所有成功呼叫取消作業的計數。|
+|jobs.cancelJob.failure|取消作業失敗|Count|總計|所有呼叫取消作業失敗的計數。|
+|jobs.queryJobs.success|成功作業查詢|Count|總計|所有成功呼叫查詢作業的計數。|
+|jobs.queryJobs.failure|失敗作業查詢|Count|總計|所有呼叫查詢作業失敗的計數。|
+|jobs.completed|已完成的工作|Count|總計|所有已完成的作業計數。|
+|jobs.failed|失敗作業|Count|總計|所有失敗作業計數。|
 
 ## <a name="next-steps"></a>後續步驟
-既然您已看過的 IoT 中樞度量概觀，請依照此連結 toolearn 更多關於管理 Azure IoT 中樞：
+現在您已了解 IoT 中樞度量的概觀，請循著下列連結來深入了解如何管理「Azure IoT 中樞」：
 
 * [作業監視][lnk-monitor]
 
-toofurther 瀏覽的 IoT 中樞的 hello 功能，請參閱：
+若要進一步探索 IoT 中樞的功能，請參閱︰
 
 * [IoT 中樞開發人員指南][lnk-devguide]
 * [使用 Azure IoT Edge 來模擬裝置][lnk-iotedge]

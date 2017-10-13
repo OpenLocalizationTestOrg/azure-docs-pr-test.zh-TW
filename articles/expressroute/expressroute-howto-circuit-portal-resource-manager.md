@@ -1,6 +1,6 @@
 ---
 title: "建立與修改 ExpressRoute 線路：Azure 入口網站 | Microsoft Docs"
-description: "本文說明如何 toocreate，佈建、 驗證、 更新、 刪除和取消佈建 ExpressRoute 電路。"
+description: "本文說明如何建立、佈建、驗證、更新、刪除和取消佈建 ExpressRoute 線路。"
 documentationcenter: na
 services: expressroute
 author: cherylmc
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/07/2017
 ms.author: cherylmc;ganesr
-ms.openlocfilehash: 200418aed6bdebace43a2f57cf532d1c8d13cb83
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e3721cd3c031622788f553e71a6555b844f3f7dc
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="create-and-modify-an-expressroute-circuit"></a>建立和修改 ExpressRoute 線路
 > [!div class="op_single_selector"]
@@ -30,131 +30,131 @@ ms.lasthandoff: 10/06/2017
 > * [PowerShell (傳統)](expressroute-howto-circuit-classic.md)
 >
 
-本文說明如何使用 Azure ExpressRoute 電路 toocreate hello Azure 入口網站與 hello Azure Resource Manager 部署模型。 hello 下列步驟也會顯示 hello 電路 toocheck hello 狀態如何更新，或刪除，並取消佈建它。
+此文章說明如何使用 Azure 入口網站和 Azure Resource Manager 部署模型建立 Azure ExpressRoute 線路。 下列步驟也會示範如何檢查線路的狀態、對它進行更新，或是對它進行刪除及取消佈建。
 
 
 ## <a name="before-you-begin"></a>開始之前
-* 檢閱 hello[必要條件](expressroute-prerequisites.md)和[工作流程](expressroute-workflows.md)開始設定之前。
-* 請確定您有存取 toohello [Azure 入口網站](https://portal.azure.com)。
-* 確定您有權限 toocreate 新網路功能資源。 如果您沒有 hello 正確的權限，請連絡您的帳戶管理員。
-* 您可以[觀賞視訊](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-an-expressroute-circuit)順序的開頭之前 toobetter 了解 hello 步驟。
+* 開始設定之前，請檢閱[必要條件](expressroute-prerequisites.md)和[工作流程](expressroute-workflows.md)。
+* 確定您可以存取 [Azure 入口網站](https://portal.azure.com)。
+* 確定您具有建立新網路資源的權限。 如果您沒有正確的權限，請連絡您的帳戶管理員。
+* 您可以在開始前先[觀賞影片](http://azure.microsoft.com/documentation/videos/azure-expressroute-how-to-create-an-expressroute-circuit)，以便更加了解步驟。
 
 ## <a name="create-and-provision-an-expressroute-circuit"></a>建立和佈建 ExpressRoute 線路
-### <a name="1-sign-in-toohello-azure-portal"></a>1.登入 toohello Azure 入口網站
-從瀏覽器中，瀏覽 toohello [Azure 入口網站](http://portal.azure.com)並以您的 Azure 帳戶登入。
+### <a name="1-sign-in-to-the-azure-portal"></a>1.登入 Azure 入口網站
+透過瀏覽器瀏覽至 [Azure 入口網站](http://portal.azure.com) ，並使用您的 Azure 帳戶登入。
 
 ### <a name="2-create-a-new-expressroute-circuit"></a>2.建立新的 ExpressRoute 線路
 > [!IMPORTANT]
-> ExpressRoute 電路將計費 hello 發出服務金鑰的時間。 請確定您執行此作業，準備好 tooprovision hello 電路 hello 連線服務提供者時。
+> ExpressRoute 線路將會從發出服務金鑰時開始收費。 請確定在連線提供者準備好佈建線路之後，再執行此作業。
 > 
 > 
 
-1. 您可以藉由選取 hello 選項 toocreate 建立 ExpressRoute 電路，新的資源。 按一下**新增** > **網路** > **ExpressRoute**hello 下列影像所示：
+1. 您可以選取建立新資源的選項來建立 ExpressRoute 線路。 按一下 [新增] > [網路] > [ExpressRoute]，如下圖所示：
    
     ![建立 ExpressRoute 線路](./media/expressroute-howto-circuit-portal-resource-manager/createcircuit1.png)
-2. 按一下 之後**ExpressRoute**，您會看到 hello**建立 ExpressRoute 電路**刀鋒視窗。 當您要填入此刀鋒視窗上的 hello 值時，請確定您指定 hello 正確 SKU 層和資料計量。
+2. 按一下 [ExpressRoute] 之後，將會看到 [建立 ExpressRoute 線路] 刀鋒視窗。 填寫此刀鋒視窗上的值時，請確定您指定正確的 SKU 層和資料計量。
    
-   *  決定要啟用 ExpressRoute 標準或 ExpressRoute 進階附加元件。 您可以指定**標準**tooget hello 標準 SKU 或**Premium** hello premium 附加元件。
-   * **資料計量**決定 hello 計費的型別。 您可以指定 [計量付費] 以採用計量付費數據傳輸方案，選取 [無限制] 以採用無限制的資料方案。 請注意，您可以變更從 hello 計費類型**Metered**太**Unlimited**，但您無法變更 hello 類型從**無限制**太**Metered**.
+   *  決定要啟用 ExpressRoute 標準或 ExpressRoute 進階附加元件。 您可以指定 [標準] 來取得標準 SKU，或指定 [進階] 來取得進階附加元件。
+   *  決定計費類型。 您可以指定 [計量付費] 以採用計量付費數據傳輸方案，選取 [無限制] 以採用無限制的資料方案。 請注意，您可以將計費類型從 [計量付費] 變更為 [無限制]，但無法從 [無限制] 變更為 [計量付費]。
      
-     ![設定 hello SKU 層和計量資料](./media/expressroute-howto-circuit-portal-resource-manager/createcircuit2.png)
+     ![設定 SKU 層和資料計量](./media/expressroute-howto-circuit-portal-resource-manager/createcircuit2.png)
 
 > [!IMPORTANT]
-> 請留意對等互連位置該 hello 指出 hello[實體位置](expressroute-locations.md)您與 Microsoft 的互連位置。 這是**不**太連結 「 位置 」 屬性，是指 toohello hello Azure 網路資源提供者所在的地理位置。 雖然無關，它是很好的作法 toochoose 網路資源提供者關閉地理 toohello hello 循環的對等互連位置。 
+> 請留意「對等位置」表示您與 Microsoft 對等互連的[實體位置](expressroute-locations.md) 。 這**不會**連結到「位置」屬性，這是指 Azure 網路資源提供者所在的地理位置。 儘管它們並無關聯，但最好還是選擇地理位置靠近線路對等位置的網路資源提供者。 
 > 
 > 
 
-### <a name="3-view-hello-circuits-and-properties"></a>3.檢視 hello 電路和屬性
-**檢視所有 hello 電路**
+### <a name="3-view-the-circuits-and-properties"></a>3.檢視線路和屬性
+**檢視所有線路**
 
-您可以檢視所有您建立選取的 hello 電路**所有資源**hello 左側功能表上。
+您可以選取左側功能表上的 [所有資源] 來檢視您建立的所有線路。
 
 ![檢視線路](./media/expressroute-howto-circuit-portal-resource-manager/listresource.png)
 
-**檢視 hello 屬性**
+**檢視屬性**
 
-    You can view hello properties of hello circuit by selecting it. On this blade, note hello service key for hello circuit. You must copy hello circuit key for your circuit and pass it down toohello service provider toocomplete hello provisioning process. hello circuit key is specific tooyour circuit.
+    You can view the properties of the circuit by selecting it. On this blade, note the service key for the circuit. You must copy the circuit key for your circuit and pass it down to the service provider to complete the provisioning process. The circuit key is specific to your circuit.
 
 ![檢視屬性](./media/expressroute-howto-circuit-portal-resource-manager/listproperties1.png)
 
-### <a name="4-send-hello-service-key-tooyour-connectivity-provider-for-provisioning"></a>4.佈建傳送嗨服務金鑰 tooyour 連線服務提供者
-在這個刀鋒視窗中，**提供者狀態**提供 hello 的佈建 hello 服務提供者端的目前狀態的相關資訊。 **電路狀態**hello Microsoft 側邊提供 hello 狀態。 如需循環的佈建狀態的詳細資訊，請參閱 hello[工作流程](expressroute-workflows.md#expressroute-circuit-provisioning-states)發行項。
+### <a name="4-send-the-service-key-to-your-connectivity-provider-for-provisioning"></a>4.將服務金鑰傳送給連線提供者以進行佈建
+在此刀鋒視窗上，[提供者狀態] 提供服務提供者端目前的佈建狀態相關資訊。 [線路狀態] 提供 Microsoft 端的狀態。 如需線路佈建狀態的詳細資訊，請參閱[工作流程](expressroute-workflows.md#expressroute-circuit-provisioning-states)文章。
 
-當您建立新的 ExpressRoute 電路時，hello 電路將處於下列狀態的 hello:
+當您建立新的 ExpressRoute 線路時，線路會是下列狀態：
 
 提供者狀態︰未佈建<BR>
 線路狀態：已啟用
 
 ![起始佈建程序](./media/expressroute-howto-circuit-portal-resource-manager/viewstatus.png)
 
-hello 循環會變更 toohello hello 連線服務提供者會在您啟用的 hello 程序中時，下列狀態：
+當連線提供者正在為您啟用線路時，線路會變更為下列狀態：
 
 提供者狀態︰正在佈建<BR>
 線路狀態：已啟用
 
-您 toobe 無法 toouse ExpressRoute 電路，它必須處於下列狀態的 hello:
+若要能夠使用 ExpressRoute 線路，它必須處於下列狀態：
 
 提供者狀態︰已佈建<BR>
 線路狀態：已啟用
 
-### <a name="5-periodically-check-hello-status-and-hello-state-of-hello-circuit-key"></a>5.定期檢查 hello 狀態和 hello 循環索引鍵 hello 狀態
-您可以檢視由選取感興趣的 hello 循環的 hello 屬性。 檢查 hello**提供者狀態**，並確定它已移動過**已佈建**繼續進行之前。
+### <a name="5-periodically-check-the-status-and-the-state-of-the-circuit-key"></a>5.定期檢查線路金鑰的狀態與狀況
+選取感興趣的線路，即可檢視該線路的屬性。 檢查 [提供者狀態]，確定它已變成 [已佈建] 再繼續。
 
 ![線路和提供者狀態](./media/expressroute-howto-circuit-portal-resource-manager/viewstatusprovisioned.png)
 
 ### <a name="6-create-your-routing-configuration"></a>6.建立路由組態
-如需逐步指示，請參閱 toohello [ExpressRoute 電路的路由組態](expressroute-howto-routing-portal-resource-manager.md)文章 toocreate 和修改循環的對等互連。
+如需逐步指示，請參閱 [ExpressRoute 線路路由組態](expressroute-howto-routing-portal-resource-manager.md)一文以建立和修改線路對等。
 
 > [!IMPORTANT]
-> 這些說明僅適用於 toocircuits 與提供層級 2 連線服務的服務提供者所建立。 如果您使用的服務提供者是提供受管理的第 3 層服務 (通常是 IP VPN，如 MPLS)，您的連線提供者會為您設定和管理路由。
+> 這些指示只適用於由提供第 2 層連線服務的服務提供者所建立的線路。 如果您使用的服務提供者是提供受管理的第 3 層服務 (通常是 IP VPN，如 MPLS)，您的連線提供者會為您設定和管理路由。
 > 
 > 
 
-### <a name="7-link-a-virtual-network-tooan-expressroute-circuit"></a>7.連結虛擬網路 tooan ExpressRoute 電路
-接下來，將虛擬網路 tooyour ExpressRoute 電路的連結。 使用 hello[連結虛擬網路 tooExpressRoute 電路](expressroute-howto-linkvnet-arm.md)處理 hello Resource Manager 部署模型時，發行項。
+### <a name="7-link-a-virtual-network-to-an-expressroute-circuit"></a>7.將虛擬網路連結到 ExpressRoute 線路
+接下來，將虛擬網路連結到 ExpressRoute 線路。 當使用 Resource Manager 部署模型時，使用[將虛擬網路連結到 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)文章。
 
-## <a name="getting-hello-status-of-an-expressroute-circuit"></a>取得 hello 狀態的 ExpressRoute 電路
-您可以藉由選取檢視 hello 的循環的狀態。 
+## <a name="getting-the-status-of-an-expressroute-circuit"></a>取得 ExpressRoute 線路的狀態
+選取線路，即可檢視該線路的狀態。 
 
 ![ExpressRoute 線路的狀態](./media/expressroute-howto-circuit-portal-resource-manager/listproperties1.png)
 
 ## <a name="modifying-an-expressroute-circuit"></a>修改 ExpressRoute 線路
 您可以修改 ExpressRoute 線路的某些屬性，而不會影響連線。
 
-您可以 hello 遵循不中斷的情況：
+您可以執行下列工作，而無需中途停機：
 
 * 啟用或停用 ExpressRoute 線路的 ExpressRoute 進階附加元件。
-* 增加 hello 頻寬的 ExpressRoute 電路提供 hello 連接埠的容量不足。 請注意，不支援降級 hello 電路頻寬。 
-* 變更計量計劃的計量資料 tooUnlimited 資料 hello。 請注意該變更 hello 計量計劃從無限制的資料 tooMetered 不支援資料。
+* 只要連接埠有可用的容量，就增加 ExpressRoute 線路的頻寬。 請注意，不支援將線路的頻寬降級。 
+* 將計量方案從 [計量付費] 變更為 [無限制]。 請注意，不支援將計量方案從 [無限制] 變更為 [計量付費]。
 * 您可以啟用和停用 [允許傳統作業]。
 
-如需有關限制和限制的詳細資訊，請參閱 toohello [ExpressRoute 常見問題集](expressroute-faqs.md)。
+如需限制的詳細資訊，請參閱 [ExpressRoute 常見問題集](expressroute-faqs.md)。
 
-toomodify ExpressRoute 循環中，按一下 hello**組態**hello 圖所示。
+若要修改 ExpressRoute 線路，請按一下 [設定]，如下圖所示。
 
 ![修改線路](./media/expressroute-howto-circuit-portal-resource-manager/modifycircuit.png)
 
-您可以修改 hello 頻寬、 SKU，計費模型，並允許傳統 hello 組態刀鋒視窗中的作業。
+您可以在 [設定] 刀鋒視窗中修改頻寬、SKU、計費模型並允許傳統作業。
 
 > [!IMPORTANT]
-> 如果 hello 現有的連接埠上有足夠的容量，您可能必須 toorecreate hello ExpressRoute 電路。 如果沒有任何額外的容量可在該位置，您無法升級 hello 循環。
+> 如果現有的連接埠上沒有足夠的容量，您可能必須重新建立 ExpressRoute 線路。 如果該位置已無額外的容量，您無法升級線路。
 >
-> 您無法減少 hello 頻寬的 ExpressRoute 電路不會中斷。 降級頻寬 toodeprovision hello ExpressRoute 循環會要求您，並再重新佈建新增的 ExpressRoute 電路。
+> 降低 ExpressRoute 線路的頻寬時必須中斷運作。 頻寬降級需要取消佈建 ExpressRoute 線路，然後重新佈建新的 ExpressRoute 線路。
 > 
-> 停用 premium add-on 作業可能會失敗，如果您使用大於 hello 標準循環所允許的資源。
+> 如果您使用的資源超出標準線路所允許的數量，停用進階附加元件作業可能會失敗。
 > 
 > 
 
 ## <a name="deprovisioning-and-deleting-an-expressroute-circuit"></a>取消佈建和刪除 ExpressRoute 線路
-您可以藉由選取 hello 刪除 ExpressRoute 電路**刪除**圖示。 請注意 hello 下列：
+您可以選取**刪除**圖示，刪除 ExpressRoute 線路。 請注意：
 
-* 您必須取消連結從 hello ExpressRoute 電路的所有虛擬網路。 如果此作業失敗，請檢查是否已連結的任何虛擬網路 toohello 循環。
-* 如果 hello ExpressRoute 電路服務提供者佈建狀態為**佈建**或**已佈建**您必須使用您的服務提供者 toodeprovision hello 電路邊。 我們將繼續 tooreserve 資源，並向您收取費用，直到完成取消佈建 hello 電路 hello 服務提供者，並通知我們。
-* 如果 hello 服務提供者已解除佈建 hello 循環 (hello 佈建狀態的服務提供者設定得**未佈建**) 可接著刪除 hello 循環。 這會停止計費 hello 循環
+* 您必須取消連結 ExpressRoute 線路的所有虛擬網路。 如果此操作失敗，請檢查您是否有任何虛擬網路連結至線路。
+* 如果 ExpressRoute 線路服務提供者佈建狀態為「正在佈建」或「已佈建」，您就必須與服務提供者一起合作，取消佈建他們那邊的線路。 我們將繼續保留資源並向您收取費用，直到線路服務提供者完成取消佈建並通知我們。
+* 若服務提供者已取消佈建線路 (服務提供者佈建狀態設定為 [NotProvisioned] )，則您可以刪除線路。 這樣將會停止針對線路計費
 
 ## <a name="next-steps"></a>後續步驟
-建立您的循環之後，請確定您執行 hello 遵循：
+建立好線路後，請務必執行下列作業：
 
 * [建立和修改 ExpressRoute 線路的路由](expressroute-howto-routing-portal-resource-manager.md)
-* [連結您的虛擬網路 tooyour ExpressRoute 電路](expressroute-howto-linkvnet-arm.md)
+* [將虛擬網路連結至 ExpressRoute 線路](expressroute-howto-linkvnet-arm.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaHelp 中 Azure Service Fabric 服務的安全通訊 |Microsoft 文件"
-description: "Azure Service Fabric 叢集中執行的方式 toohelp 安全可靠的服務通訊的概觀。"
+title: "協助保護 Azure Service Fabric 中服務的通訊安全 | Microsoft Docs"
+description: "如何協助保護於 Azure Service Fabric 叢集中所執行之可靠服務的通訊安全概觀。"
 services: service-fabric
 documentationcenter: java
 author: PavanKunapareddyMSFT
@@ -13,11 +13,11 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 06/30/2017
 ms.author: pakunapa
-ms.openlocfilehash: 14db54d50c35478c1f2c156de0dba36f1427c8cb
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c4634e3d8efb1745fffcfe3e647e43d867038716
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="help-secure-communication-for-services-in-azure-service-fabric"></a>協助保護 Azure Service Fabric 中服務的通訊安全
 > [!div class="op_single_selector"]
@@ -27,9 +27,9 @@ ms.lasthandoff: 10/06/2017
 >
 
 ## <a name="help-secure-a-service-when-youre-using-service-remoting"></a>協助保護使用服務遠端處理時的服務安全
-我們將使用的現有[範例](service-fabric-reliable-services-communication-remoting-java.md)，說明如何 tooset 向上可靠的服務的遠端處理功能。 toohelp 保護服務，而您使用服務遠端處理時，請遵循下列步驟：
+我們將使用現有 [範例](service-fabric-reliable-services-communication-remoting-java.md) 以說明如何設定可靠服務的遠端處理功能。 若要協助保護使用服務遠端處理時的服務安全，請遵循下列步驟︰
 
-1. 建立介面， `HelloWorldStateless`，定義可供您服務上的遠端程序呼叫的 hello 方法。 您的服務會使用`FabricTransportServiceRemotingListener`，宣告於 hello`microsoft.serviceFabric.services.remoting.fabricTransport.runtime`封裝。 這是提供遠端功能的 `CommunicationListener` 實作。
+1. 建立 `HelloWorldStateless`介面，這個介面會定義將在您的服務上用於遠端程序呼叫的方法。 您的服務將使用在 `microsoft.serviceFabric.services.remoting.fabricTransport.runtime` 封裝中宣告的 `FabricTransportServiceRemotingListener`。 這是提供遠端功能的 `CommunicationListener` 實作。
 
     ```java
     public interface HelloWorldStateless extends Service {
@@ -53,11 +53,11 @@ ms.lasthandoff: 10/06/2017
     ```
 2. 新增接聽程式設定和安全性認證。
 
-    請確定您想要 toouse toohelp 安全 hello 叢集中的所有 hello 節點已安裝的服務通訊的 hello 憑證。 有兩種方式可提供接聽程式設定和安全性認證：
+    確定您想要用來協助保護服務通訊安全的憑證已安裝在叢集的所有節點上。 有兩種方式可提供接聽程式設定和安全性認證：
 
    1. 使用 [組態封裝](service-fabric-application-model.md)提供它們：
 
-       新增`TransportSettings`hello settings.xml 檔案中的區段。
+       在 settings.xml 檔案中新增 `TransportSettings` 區段。
 
        ```xml
        <!--Section name should always end with "TransportSettings".-->
@@ -72,7 +72,7 @@ ms.lasthandoff: 10/06/2017
 
        ```
 
-       在此情況下，hello`createServiceInstanceListeners`方法看起來像這樣：
+       在此情況下， `createServiceInstanceListeners` 方法看起來像這樣：
 
        ```java
         protected List<ServiceInstanceListener> createServiceInstanceListeners() {
@@ -84,7 +84,7 @@ ms.lasthandoff: 10/06/2017
         }
        ```
 
-        如果您將加入`TransportSettings`沒有任何前置詞，hello settings.xml 檔案中的區段`FabricTransportListenerSettings`會從本節載入所有 hello 設定預設。
+        如果您在 settings.xml 檔案中新增 `TransportSettings` 區段，而沒有任何前置詞，則 `FabricTransportListenerSettings` 預設會載入此區段中的所有設定。
 
         ```xml
         <!--"TransportSettings" section without any prefix.-->
@@ -92,7 +92,7 @@ ms.lasthandoff: 10/06/2017
             ...
         </Section>
         ```
-        在此情況下，hello`CreateServiceInstanceListeners`方法看起來像這樣：
+        在此情況下， `CreateServiceInstanceListeners` 方法看起來像這樣：
 
         ```java
         protected List<ServiceInstanceListener> createServiceInstanceListeners() {
@@ -103,9 +103,9 @@ ms.lasthandoff: 10/06/2017
             return listeners;
         }
        ```
-3. 當您呼叫方法的安全服務上使用 hello 遠端處理堆疊，而不是使用 hello`microsoft.serviceFabric.services.remoting.client.ServiceProxyBase`類別 toocreate 服務 proxy，使用`microsoft.serviceFabric.services.remoting.client.FabricServiceProxyFactory`。
+3. 如果在安全服務上使用遠端堆疊來呼叫方法，而不是使用 `microsoft.serviceFabric.services.remoting.client.ServiceProxyBase` 類別來建立服務 Proxy，請使用 `microsoft.serviceFabric.services.remoting.client.FabricServiceProxyFactory`。
 
-    如果 hello 用戶端程式碼做為服務一部分執行，您可以載入`FabricTransportSettings`hello settings.xml 檔案中。 建立 TransportSettings 區段是類似的 toohello 服務程式碼，如先前所示。 進行下列變更 toohello 用戶端程式碼的 hello:
+    如果用戶端程式碼正在當作服務一部分執行，則可以從 settings.xml 檔案中載入 `FabricTransportSettings` 。 建立與服務程式碼類似的 TransportSettings 區段，如前所示。 對用戶端程式碼進行下列變更：
 
     ```java
 

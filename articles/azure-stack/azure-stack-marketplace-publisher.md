@@ -1,6 +1,6 @@
 ---
-title: "aaaUse hello Marketplace toolkit toocreate 和發行 marketplace 項目 |Microsoft 文件"
-description: "了解 tooquickly 以 hello 發行工具組所建立的 marketplace 項目"
+title: "使用 Marketplace 工具組來建立和發佈 Marketplace 項目 | Microsoft Docs"
+description: "了解如何以發佈工具組快速建立 Marketplace 項目"
 services: azure-stack
 documentationcenter: 
 author: HeathL17
@@ -14,75 +14,75 @@ ms.devlang: na
 ms.topic: article
 ms.date: 7/14/2017
 ms.author: helaw
-ms.openlocfilehash: c1cf9ad1da44787901297eec12faf2a3dea82a6c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5b2c04d2cbc06e1572dc2e40712f6cf9d886aa1e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 #  <a name="add-marketplace-items-using-publishing-tool"></a>使用發佈工具新增 Marketplace 項目
-加入您的內容 toohello [Marketplace</堆疊](azure-stack-marketplace.md)可讓您的方案使用 tooyou 且您的租用戶部署。  hello Marketplace 工具組建立根據您的 IaaS Azure Resource Manager 範本或 VM 擴充功能的 Azure Marketplace 封裝 (.azpkg) 檔案。  您也可以使用 hello Marketplace Toolkit toopublish.azpkg 檔案時，請建立具有 hello 工具或使用[手動](azure-stack-create-and-publish-marketplace-item.md)步驟。  本主題會引導您完成下載 hello 工具、 建立 marketplace 項目，根據 VM 範本中，並再發佈該項目 toohello Marketplace</堆疊。     
+將您的內容新增到 [Azure Stack Marketplace](azure-stack-marketplace.md)，可讓您的解決方案供您和您的租用戶用於部署。  Marketplace 工具組會根據您的 IaaS Azure Resource Manager 範本或 VM 擴充功能，建立 Azure Marketplace 套件 (.azpkg) 檔案。  您也可以使用 Marketplace 工具組來發佈 .azpkg 檔案 (可使用此工具或使用[手動](azure-stack-create-and-publish-marketplace-item.md)步驟建立)。  本主題會逐步引導您下載工具、根據 VM 範本建立 Marketplace 項目，然後將該項目發佈到 Azure Stack Marketplace。     
 
 
 ## <a name="prerequisites"></a>必要條件
- - 您必須在 hello Azure 堆疊主機上執行 hello 工具組，或具有[VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn)從您執行 hello 工具所在的 hello 機器連線。
+ - 您必須在 Azure Stack 主機上執行此工具組，或在執行工具所在的電腦上具有 [VPN](azure-stack-connect-azure-stack.md#connect-to-azure-stack-with-vpn) 連線能力。
 
- - 下載 hello [Azure 堆疊快速入門範本](https://github.com/Azure/AzureStack-QuickStart-Templates/archive/master.zip)和擷取。
+ - 下載 [Azure Stack 快速入門範本](https://github.com/Azure/AzureStack-QuickStart-Templates/archive/master.zip)並解壓縮。
 
- - 下載 hello [Azure 圖庫封裝工具](http://aka.ms/azurestackmarketplaceitem)(AzureGalleryPackage.exe)。 
+ - 下載 [Azure 資源庫封裝工具](http://aka.ms/azurestackmarketplaceitem) (AzureGalleryPackage.exe)。 
 
- - 發行 toohello marketplace 需要圖示和縮圖的檔案。  您可以使用您自己，或是儲存 hello[範例](azure-stack-marketplace-publisher.md#support-files)檔案在本機，這個範例。
+ - 要發佈到 Marketplace 需要有圖示和縮圖檔案。  您可以使用自己的檔案，或是將此範例的[範例](azure-stack-marketplace-publisher.md#support-files)檔案儲存到本機上。
 
-## <a name="download-hello-tool"></a>下載 hello 工具
-hello Marketplace Toolkit 可以是[hello Azure 堆疊工具儲存機制從下載](azure-stack-powershell-download.md)。
+## <a name="download-the-tool"></a>下載工具
+可從 [Azure Stack 工具存放庫](azure-stack-powershell-download.md)下載 Marketplace 工具組。
 
 
 ##  <a name="create-marketplace-items"></a>建立 Marketplace 項目
-在本節中，您可以使用 hello Marketplace Toolkit toocreate.azpkg 格式 marketplace 項目封裝。  
+在本節中，您會使用 Marketplace 工具組建立 .azpkg 格式的 Marketplace 項目套件。  
 
 ### <a name="provide-marketplace-information-with-wizard"></a>以精靈提供 Marketplace 資訊
-1. 從 PowerShell 工作階段中執行 hello Marketplace 工具組：
+1. 從 PowerShell 工作階段中執行 Marketplace 工具組：
 ```PowerShell
     .\MarketplaceToolkit.ps1
 ```
 
-2. 按一下 hello**方案** 索引標籤。此畫面會接受您的 Marketplace 項目相關資訊。 輸入您要它 tooappear hello marketplace 中的程式項目的相關資訊。  您也可以指定[參數檔案](azure-stack-marketplace-publisher.md#use-a-parameters-file)tooprepopulate hello 表單。  
+2. 按一下 [解決方案] 索引標籤。此畫面會接受您的 Marketplace 項目相關資訊。 請輸入您想要顯示在 Marketplace 中的項目相關資訊。  您也可以指定[參數檔案](azure-stack-marketplace-publisher.md#use-a-parameters-file)來預先填入表單。  
     
     ![Marketplace 工具組第一個畫面的螢幕擷取畫面](./media/azure-stack-marketplace-publisher/image7.png)
-3. 按一下 [瀏覽] 以選取每個圖示和螢幕擷取畫面欄位的影像檔。  您可以使用您自己的圖示，或 hello hello 範例圖示[支援檔案](azure-stack-marketplace-publisher.md#support-files)> 一節。
-4. 一旦所有欄位都已都填入，選取 「 預覽解決方案 」 hello 方案 hello Marketplace 中的預覽。  您可以修改並編輯 hello 文字、 影像和螢幕擷取畫面後，再按一下**下一步**。  
+3. 按一下 [瀏覽] 以選取每個圖示和螢幕擷取畫面欄位的影像檔。  您可以使用自己的圖示，或[支援檔案](azure-stack-marketplace-publisher.md#support-files)一節中的範例圖示。
+4. 一旦所有欄位都已填入，請選取「預覽解決方案」來預覽 Marketplace 內的解決方案。  您可以修改並編輯文字、影像和螢幕擷取畫面後，再按一下 [下一步]。  
 
 ### <a name="import-template-and-create-package"></a>匯入範本並建立套件
-本節中，您可以匯入 hello 範本，並為您的方案使用的輸入。
+在本節中，您會匯入範本並使用解決方案的輸入。
 
-1.  按一下**瀏覽**和選取 hello *azuredeploy.json* hello 101 簡單的 Windows VM 資料夾中 hello 下載範本。
+1.  按一下 [瀏覽] 並從所下載範本的 101-Simple-Windows-VM 資料夾中選取 *azuredeploy.json*。
 
     ![Marketplace 工具組第二個畫面的螢幕擷取畫面](./media/azure-stack-marketplace-publisher/image8.png)
-2.  hello 部署精靈會填入*基本*hello 範本中指定每個參數的步驟和輸入項目。  您可以新增其他步驟，並在步驟之間移動輸入項。  例如，您可能會想要為您的解決方案新增「前端設定」和「後端設定」步驟。
-3.  指定 hello 路徑 tooAzureGalleryPackager.exe。  
-4.  按一下**建立**並 hello Marketplace 工具組封裝您的方案到.azpkg 檔案。  完成後，hello 精靈會顯示 hello 路徑 tooyour 方案檔和授與 hello 選項 toocontinue 發行您的封裝 tooAzure 堆疊。
+2.  「部署精靈」中會填入 [基本] 步驟，以及範本中所指定每個參數的輸入項目。  您可以新增其他步驟，並在步驟之間移動輸入項。  例如，您可能會想要為您的解決方案新增「前端設定」和「後端設定」步驟。
+3.  請指定 AzureGalleryPackager.exe 的路徑。  
+4.  按一下 [建立]，然後 Marketplace 工具組便會將您的解決方案封裝到 .azpkg 檔案中。  完成後，精靈會顯示您的解決方案檔案路徑，並讓您選擇繼續將您的套件發佈到 Azure Stack。
 
 
 ## <a name="publish-marketplace-items"></a>發佈 Marketplace 項目
-在本節中，您可以發行 hello marketplace 項目 tooyour Marketplace</堆疊。
+在本節中，您會將您的 Marketplace 項目發佈到 Azure Stack Marketplace。
 
 ![Marketplace 工具組第一個畫面的螢幕擷取畫面](./media/azure-stack-marketplace-publisher/image9.png)
 
-1.  hello 精靈需要資訊 toopublish 方案：
+1.  精靈需要下列資訊來發佈您的解決方案：
     
     |欄位|說明|
     |-----|-----|
     | 服務管理員名稱 | 服務管理員帳戶。  範例：ServiceAdmin@mydomain.onmicrosoft.com |
     | 密碼 | 服務管理員帳戶的密碼。 |
     | API 端點 | Azure Stack Azure Resource Manager 端點。  範例：management.local.azurestack.external |
-2.  按一下**發行**，顯示 hello 發行記錄。
-3.  您是現在可以 toodeploy hello Azure 堆疊入口網站透過您已發行的項目。
+2.  按一下 [發佈]，發佈記錄隨即顯示。
+3.  您現在已可透過 Azure Stack 入口網站部署您發佈的項目。
 
 
 ## <a name="use-a-parameters-file"></a>使用參數檔案
-您也可以使用參數檔案 toocomplete hello marketplace 項目資訊。  
+您也可以使用參數檔案來完成 Marketplace 項目資訊。  
 
-hello Marketplace Toolkit 包含*solution.parameters.ps1*使用 toocreate 參數檔案。
+Marketplace 工具組包含 *solution.parameters.ps1*，可用來建立您自己的參數檔案。
 
 
 ## <a name="support-files"></a>支援檔案

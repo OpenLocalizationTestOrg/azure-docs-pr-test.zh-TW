@@ -1,6 +1,6 @@
 ---
 title: "教學課程：Azure Active Directory 與 Front 整合 | Microsoft Docs"
-description: "了解 tooconfigure 的單一登入 Azure Active Directory 與前端之間。"
+description: "了解如何設定 Azure Active Directory 與 Front 之間的單一登入。"
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,114 +14,114 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/25/2017
 ms.author: jeedes
-ms.openlocfilehash: 4be363a3d338ec9268f3324daab4a80346ec3131
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d936bc50a66ac2a3c17038ff08351edf9902c99f
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-front"></a>教學課程：Azure Active Directory 與 Front 整合
 
-在此教學課程中，您學會如何 toointegrate 與 Azure Active Directory (Azure AD) 的前面。
+在本教學課程中，您將了解如何整合 Front 與 Azure Active Directory (Azure AD)。
 
-與 Azure AD 整合前端可以提供下列優點 hello:
+將 Front 與 Azure AD 整合提供下列優點：
 
-- 您可以控制存取 tooFront Azure AD 中。
-- 您可以啟用您的使用者 tooautomatically get 登入 tooFront （單一登入） 具有其 Azure AD 帳戶。
-- 您可以管理您的帳戶，在單一中央位置-hello Azure 入口網站。
+- 您可以在 Azure AD 中控制可存取 Front 的人員。
+- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Front (單一登入)。
+- 您可以在 Azure 入口網站中集中管理您的帳戶。
 
-如果您想 tooknow 詳細與 Azure AD SaaS 應用程式整合，請參閱[什麼是應用程式存取和單一登入與 Azure Active Directory](active-directory-appssoaccess-whatis.md)。
+如果您想要了解有關 SaaS 應用程式與 Azure AD 之整合的更多詳細資料，請參閱[什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
 ## <a name="prerequisites"></a>必要條件
 
-前端 tooconfigure Azure AD 整合，您需要下列項目 hello:
+若要設定 Azure AD 與 Front 整合，您需要下列項目：
 
 - Azure AD 訂用帳戶
 - 已啟用 Front 單一登入的訂用帳戶
 
 > [!NOTE]
-> 本教學課程中的步驟 tootest hello，不建議使用實際執行環境。
+> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
 
-在本教學課程 tootest hello 步驟，您應該遵循這些建議：
+若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 - 除非必要，否則請勿使用生產環境。
 - 如果您沒有 Azure AD 試用環境，您可以[取得一個月試用](https://azure.microsoft.com/pricing/free-trial/)。
 
 ## <a name="scenario-description"></a>案例描述
-在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程所述的 hello 案例包含兩個主要建置組塊：
+在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
-1. 正在將前端從 hello 組件庫
+1. 從資源庫新增 Front
 2. 設定並測試 Azure AD 單一登入
 
-## <a name="adding-front-from-hello-gallery"></a>正在將前端從 hello 組件庫
-tooconfigure hello 整合前端到 Azure AD，您需要從受管理的 SaaS 應用程式的 hello 圖庫 tooyour 清單 tooadd 前面。
+## <a name="adding-front-from-the-gallery"></a>從資源庫新增 Front
+若要設定將 Front 整合到 Azure AD 中，您需要從資源庫將 Front 新增到受管理的 SaaS 應用程式清單。
 
-**tooadd 前端 hello 圖庫中，從執行下列步驟的 hello:**
+**若要從資源庫新增 Front，請執行下列步驟：**
 
-1. 在 hello  **[Azure 入口網站](https://portal.azure.com)**，請在 hello 左邊的導覽面板中按一下**Azure Active Directory**圖示。 
+1. 在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。 
 
-    ![hello Azure Active Directory 按鈕][1]
+    ![Azure Active Directory 按鈕][1]
 
-2. 瀏覽過**企業應用程式**。 然後跳過**所有應用程式**。
+2. 瀏覽至 [企業應用程式]。 然後移至 [所有應用程式]。
 
-    ![hello 企業應用程式 刀鋒視窗][2]
+    ![企業應用程式刀鋒視窗][2]
     
-3. tooadd 新應用程式中，按一下 **新的應用程式**上 hello 對話方塊上方的按鈕。
+3. 若要新增新的應用程式，請按一下對話方塊頂端的 [新增應用程式] 按鈕。
 
-    ![hello 新應用程式按鈕][3]
+    ![新增應用程式按鈕][3]
 
-4. 在 hello 搜尋方塊中，輸入**前端**，選取**前端**然後按一下 從結果面板**新增**按鈕 tooadd hello 應用程式。
+4. 在搜尋方塊中，輸入 **Front**，從結果面板中選取 [Front]，然後按一下 [新增] 按鈕以新增應用程式。
 
-    ![Hello [結果] 清單中的最上層](./media/active-directory-saas-front-tutorial/tutorial_front_addfromgallery.png)
+    ![結果清單中的 Front](./media/active-directory-saas-front-tutorial/tutorial_front_addfromgallery.png)
 
 ## <a name="configure-and-test-azure-ad-single-sign-on"></a>設定和測試 Azure AD 單一登入
 
 在本節中，您會以名為 "Britta Simon" 的測試使用者身分，設定及測試與 Front 搭配運作的 Azure AD 單一登入。
 
-單一登入 toowork，Azure AD 需要 tooknow hello 對應的使用者在前面是 tooa 使用者在 Azure AD 中。 換句話說，Azure AD 使用者與前面 hello 相關的使用者之間的連結關聯性需要 toobe 建立。
+若要讓單一登入運作，Azure AD 必須知道 Front 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者與 Front 中的相關使用者之間的連結關聯性。
 
-在最前面，將指派 hello hello 值**使用者名稱**做為 hello hello 值的 Azure AD 中**Username** tooestablish hello 連結關聯性。
+在 Front 中，將 Azure AD 中**使用者名稱**的值指派為 **Username** 的值，以建立連結關聯性。
 
-tooconfigure 及測試 Azure AD 單一登入前的，您必須遵循的建置組塊 toocomplete hello:
+若要設定及測試與 Front 搭配運作的 Azure AD 單一登入，您需要完成下列構成要素：
 
-1. **[設定 Azure AD 單一登入](#configure-azure-ad-single-sign-on)** -tooenable 使用者 toouse 這項功能。
-2. **[建立 Azure AD 的測試使用者](#create-an-azure-ad-test-user)** -tootest Azure AD 單一登入與許 Simon。
-3. **[建立最上層測試使用者](#create-a-front-test-user)** -toohave 對應項目許 Simon 前面所連結的 toohello Azure AD 使用者表示法。
-4. **[指派給 Azure AD hello 測試使用者](#assign-the-azure-ad-test-user)** -tooenable 許 Simon toouse Azure AD 單一登入。
-5. **[測試單一登入](#test-single-sign-on)** -tooverify 是否 hello 組態工作。
+1. **[設定 Azure AD 單一登入](#configure-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
+2. **[建立 Azure AD 測試使用者](#create-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
+3. **[建立 Front 測試使用者](#create-a-front-test-user)** - 在 Front 中建立 Britta Simon 的對應項目，且該項目與 Azure AD 中代表使用者的項目連結。
+4. **[指派 Azure AD 測試使用者](#assign-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
+5. **[測試單一登入](#test-single-sign-on)**，驗證組態是否能運作。
 
 ### <a name="configure-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
-在本節中，您啟用 Azure AD 單一登入 hello Azure 入口網站中，並在最上層應用程式中設定單一登入。
+在本節中，您會於 Azure 入口網站啟用 Azure AD 單一登入，然後在您的 Front 應用程式中設定單一登入。
 
-**tooconfigure Azure AD 單一登入前，以執行下列步驟的 hello:**
+**若要設定與 Front 搭配運作的 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 Azure 入口網站上 hello hello**前端**應用程式整合頁面上，按一下 **單一登入**。
+1. 在 Azure 入口網站的 [Front] 應用程式整合頁面上，按一下 [單一登入]。
 
     ![設定單一登入連結][4]
 
-2. 在 hello**單一登入**對話方塊中，選取**模式**為**SAML 型登入**tooenable 單一登入。
+2. 在 [單一登入] 對話方塊上，於 [模式] 選取 [SAML 登入]，以啟用單一登入。
  
     ![單一登入對話方塊](./media/active-directory-saas-front-tutorial/tutorial_front_samlbase.png)
 
-3. 在 hello**前端網域和 Url**區段中，如果您想 tooconfigure hello 應用程式中的**IDP**初始模式：
+3. 如果您想要以 **IDP** 起始模式設定應用程式，請在 [Front 網域及 URL] 區段上執行下列步驟：
 
     ![設定單一登入](./media/active-directory-saas-front-tutorial/tutorial_front_url1.png)
 
-    a. 在 hello**識別碼**文字方塊中，輸入 URL，使用下列模式的 hello:`https://<companyname>.frontapp.com`
+    a. 在 [識別碼] 文字方塊中，使用下列模式輸入 URL：`https://<companyname>.frontapp.com`
 
-    b. 在 hello**回覆 URL**文字方塊中，輸入 URL，使用下列模式的 hello:`https://<companyname>.frontapp.com/sso/saml/callback`
+    b. 在 [回覆 URL] 文字方塊中，以下列模式輸入 URL：`https://<companyname>.frontapp.com/sso/saml/callback`
 
-4. 請檢查**顯示進階的 URL 設定**，如果您想 tooconfigure hello 應用程式中的**SP**初始模式：
+4. 如果您想要以 **SP** 起始模式設定應用程式，請勾選 [顯示進階 URL 設定]：
 
     ![設定單一登入](./media/active-directory-saas-front-tutorial/tutorial_front_url2.png)
 
-    在 hello**登入 URL**文字方塊中，輸入 URL，使用下列模式的 hello:`https://<companyname>.frontapp.com`
+    在 [登入 URL] 文字方塊中，使用下列模式輸入 URL︰`https://<companyname>.frontapp.com`
      
     > [!NOTE] 
-    > 這些都不是真正的值。 這些值與 hello 實際識別項、 回覆 URL 和登入 URL 稍後在教學課程中或連絡所說明的更新[前端用戶端支援小組](mailto:support@frontapp.com)tooget 這些值。 
+    > 這些都不是真正的值。 請使用實際的「識別碼」、「回覆 URL」及「單一登入 URL」更新這些值 (本教學課程稍後會說明)，或連絡 [Front 用戶端支援小組](mailto:support@frontapp.com)以取得這些值。 
 
-5. 在 hello **SAML 簽章憑證**區段中，按一下**Certificate(Base64)**然後儲存您的電腦上的 hello 憑證檔案。
+5. 在 [SAML 簽署憑證] 區段上，按一下 [憑證 (Base64)]，然後將憑證檔案儲存在您的電腦上。
 
     ![設定單一登入](./media/active-directory-saas-front-tutorial/tutorial_front_certificate.png) 
 
@@ -129,13 +129,13 @@ tooconfigure 及測試 Azure AD 單一登入前的，您必須遵循的建置組
 
     ![設定單一登入](./media/active-directory-saas-front-tutorial/tutorial_general_400.png)
     
-7. 在 hello**前端組態**區段中，按一下**設定前端**tooopen**設定登入**視窗。 複製 hello**登出 URL、 SAML 實體識別碼、 和 SAML 單一登入服務 URL**從 hello**快速參考 > 一節。**
+7. 在 [Front 組態] 區段上，按一下 [設定 Front] 以開啟 [設定登入] 視窗。 從 [快速參考] 區段中複製 [登出 URL、SAML 實體識別碼和 SAML 單一登入服務 URL]。
 
     ![設定單一登入](./media/active-directory-saas-front-tutorial/tutorial_front_configure.png) 
 
-8. 以系統管理員身分登入 tooyour 最上層租用戶。
+8. 以系統管理員身分登入 Front 租用戶。
 
-9. 跳過**設定 （齒輪圖示在 hello 左提要欄位中的 hello 底部） > 喜好設定**。
+9. 移至 [設定] \(左側資訊看板底部的齒輪圖示) > [喜好設定]。
    
     ![在應用程式端設定單一登入](./media/active-directory-saas-front-tutorial/tutorial_front_000.png)
 
@@ -143,93 +143,93 @@ tooconfigure 及測試 Azure AD 單一登入前的，您必須遵循的建置組
    
     ![在應用程式端設定單一登入](./media/active-directory-saas-front-tutorial/tutorial_front_001.png)
 
-11. 選取**SAML** hello 下拉式清單中**單一登入**。
+11. 從 [單一登入] 下拉式清單中選取 [SAML]。
    
     ![在應用程式端設定單一登入](./media/active-directory-saas-front-tutorial/tutorial_front_002.png)
 
-12. 在 hello**進入點**文字方塊放 hello 值**單一登入服務 URL**從 Azure AD 應用程式組態精靈。
+12. 在 [進入點] 文字方塊中，放入來自 Azure AD 應用程式組態精靈的 [單一登入服務 URL] 值。
     
     ![在應用程式端設定單一登入](./media/active-directory-saas-front-tutorial/tutorial_front_003.png)
 
-13. 開啟您下載**Certificate(Base64)** [記事本]，複製 hello 到剪貼簿，它的內容中，然後將它貼入 toohello **Signing certificate**文字方塊。
+13. 在記事本中開啟您下載的**憑證 (Base64)** 檔案，將其內容複製到剪貼簿，然後貼到 [簽署憑證] 文字方塊中。
     
     ![在應用程式端設定單一登入](./media/active-directory-saas-front-tutorial/tutorial_front_004.png)
 
-14. 在 hello**服務提供者設定**區段中，執行下列步驟的 hello:
+14. 在 [服務提供者設定] 區段中，執行下列步驟：
 
     ![在應用程式端設定單一登入](./media/active-directory-saas-front-tutorial/tutorial_front_005.png)
 
-    a. 複製 hello 值**實體識別碼**並將它貼到 hello**識別碼** 文字方塊中的**前端網域和 Url** Azure 入口網站中的區段。
+    a. 複製**實體識別碼**值，並在 Azure 入口網站 [Front 網域與 URL] 區段的 [識別碼] 文字方塊中貼上。
 
-    b. 複製 hello 值**ACS URL**並將它貼到 hello**登入 URL**  文字方塊中的**前端網域和 Url** Azure 入口網站中的區段。
+    b. 複製**ACS URL**值，並在 Azure 入口網站 [Front 網域與 URL] 區段的 [單一登入 URL] 文字方塊中貼上。
     
 15. 按一下 [儲存]  按鈕。
 
 > [!TIP]
-> 您現在可以讀取這些指示在 hello 的精簡版本[Azure 入口網站](https://portal.azure.com)，而您要設定 hello 應用程式 ！  加入此應用程式從 hello 之後**Active Directory > 企業應用程式**區段中，只要按一下 hello**單一登入** 索引標籤和存取 hello 內嵌文件，透過 hello **組態**hello 底部的區段。 閱讀更多有關 hello embedded 文件功能： [Azure AD 的內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)
+> 現在，當您設定此應用程式時，在 [Azure 入口網站](https://portal.azure.com)內即可閱讀這些指示的簡要版本！  從 [Active Directory] > [企業應用程式] 區段新增此應用程式之後，只要按一下 [單一登入] 索引標籤，即可透過底部的 [組態] 區段存取內嵌的文件。 您可以從以下連結閱讀更多有關內嵌文件功能的資訊：[Azure AD 內嵌文件]( https://go.microsoft.com/fwlink/?linkid=845985)
 > 
 
 ### <a name="create-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
 
-hello 本節目標在於 toocreate hello 呼叫許 Simon 的 Azure 入口網站中的測試使用者。
+本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。
 
    ![建立 Azure AD 測試使用者][100]
 
-**toocreate 測試使用者在 Azure AD 中，執行下列步驟的 hello:**
+**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-1. 在 hello Azure 入口網站，hello 左窗格中，按一下 hello **Azure Active Directory**  按鈕。
+1. 在 Azure 入口網站的左窗格中，按一下 [Azure Active Directory] 按鈕。
 
-    ![hello Azure Active Directory 按鈕](./media/active-directory-saas-front-tutorial/create_aaduser_01.png)
+    ![Azure Active Directory 按鈕](./media/active-directory-saas-front-tutorial/create_aaduser_01.png)
 
-2. toodisplay hello 使用者清單，請移過**使用者和群組**，然後按一下**所有使用者**。
+2. 若要顯示使用者清單，請移至 [使用者和群組]，然後按一下 [所有使用者]。
 
-    ![hello 「 使用者和群組 」 和 「 所有使用者 」 連結](./media/active-directory-saas-front-tutorial/create_aaduser_02.png)
+    ![[使用者和群組] 與 [所有使用者] 連結](./media/active-directory-saas-front-tutorial/create_aaduser_02.png)
 
-3. tooopen hello**使用者**對話方塊中，按一下 [**新增**頂端的 hello hello**所有使用者**] 對話方塊。
+3. 若要開啟 [使用者] 對話方塊，按一下 [所有使用者] 對話方塊頂端的 [新增]。
 
-    ![hello [新增] 按鈕](./media/active-directory-saas-front-tutorial/create_aaduser_03.png)
+    ![[新增] 按鈕](./media/active-directory-saas-front-tutorial/create_aaduser_03.png)
 
-4. 在 hello**使用者**對話方塊方塊中，執行下列步驟的 hello:
+4. 在 [使用者] 對話方塊中，執行下列步驟：
 
-    ![hello [使用者] 對話方塊](./media/active-directory-saas-front-tutorial/create_aaduser_04.png)
+    ![[使用者] 對話方塊](./media/active-directory-saas-front-tutorial/create_aaduser_04.png)
 
-    a. 在 hello**名稱**方塊中，輸入**BrittaSimon**。
+    a. 在 [名稱] 方塊中，輸入 **BrittaSimon**。
 
-    b. 在 hello**使用者名**方塊中，使用者許 Simon 類型 hello 電子郵件地址。
+    b. 在 [使用者名稱] 方塊中，輸入使用者 Britta Simon 的電子郵件地址。
 
-    c. 選取 hello**顯示密碼**核取方塊，並寫下 hello 值，會顯示在 hello**密碼**方塊。
+    c. 選取 [顯示密碼] 核取方塊，然後記下 [密碼] 方塊中顯示的值。
 
     d. 按一下 [建立] 。
  
 ### <a name="create-a-front-test-user"></a>建立 Front 測試使用者
 
-在本節中，您會於 Front 建立名為 Britta Simon 的使用者。 使用[前端用戶端支援小組](mailto:support@frontapp.com)hello 前端平台中新增 hello 使用者。 您必須先建立和啟動使用者，然後才能使用單一登入。
+在本節中，您會於 Front 建立名為 Britta Simon 的使用者。 請與 [Front 客戶支援小組](mailto:support@frontapp.com)合作，在 Front 平台中新增使用者。 您必須先建立和啟動使用者，然後才能使用單一登入。
 
-### <a name="assign-hello-azure-ad-test-user"></a>指派給 Azure AD hello 測試使用者
+### <a name="assign-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
-在本節中，您可以授與存取 tooFront 啟用許 Simon toouse Azure 單一登入。
+在本節中，您會將 Front 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
-![指派 hello 使用者角色][200] 
+![指派使用者角色][200] 
 
-**tooassign 許 Simon tooFront，執行下列步驟的 hello:**
+**若要將 Britta Simon 指派給 Front，請執行下列步驟：**
 
-1. 在 hello Azure 入口網站，開啟 hello 應用程式檢視，然後導覽 toohello 目錄檢視，並跳過**企業應用程式**然後按一下 **所有應用程式**。
+1. 在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
 
     ![指派使用者][201] 
 
-2. 在 [hello] 應用程式清單中，選取**前端**。
+2. 在應用程式清單中，選取 [Fuse] 。
 
-    ![hello 應用程式清單中的 hello 前方連結](./media/active-directory-saas-front-tutorial/tutorial_front_app.png)  
+    ![應用程式清單中的 Front 連結](./media/active-directory-saas-front-tutorial/tutorial_front_app.png)  
 
-3. 在左側 hello hello 功能表上，按一下**使用者和群組**。
+3. 在左側功能表中，按一下 [使用者和群組]。
 
-    ![hello 「 使用者和群組 」 的連結][202]
+    ![[使用者和群組] 連結][202]
 
 4. 按一下 [新增] 按鈕。 然後選取 [新增指派] 對話方塊上的 [使用者和群組]。
 
-    ![hello 將作業加入窗格][203]
+    ![[新增指派] 窗格][203]
 
-5. 在**使用者和群組**對話方塊中，選取**許 Simon** hello 使用者 清單中。
+5. 在 [使用者和群組] 對話方塊上，選取 [使用者] 清單中的 [Britta Simon]。
 
 6. 按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。
 
@@ -237,13 +237,13 @@ hello 本節目標在於 toocreate hello 呼叫許 Simon 的 Azure 入口網站�
     
 ### <a name="test-single-sign-on"></a>測試單一登入
 
-hello 本節目標在於 tootest 您使用 Azure AD SSOconfiguration hello 存取面板。
+本節的目標是要使用存取面板來測試您的 Azure AD SSO 組態。
 
-當您按一下 hello 前面的圖格 hello 存取面板中時，您應該取得自動登入 tooyour 前端應用程式。 
+當您在「存取面板」中按一下 [Front] 磚時，應該會自動登入您的 Front 應用程式。 
 
 ## <a name="additional-resources"></a>其他資源
 
-* [如何教學課程清單 tooIntegrate SaaS 應用程式與 Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
 <!--Image references-->

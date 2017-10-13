@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure 安全性最佳作法和模式 |Microsoft 文件"
-description: "hello 文章提供有關 Azure 安全性的最佳作法和模式和不同的 Azure 資源的安全性最佳作法的策劃的清單的簡介。"
+title: "Azure 安全性最佳作法與模式 | Microsoft Docs"
+description: "本文提供有關 Azure 安全性最佳作法和模式，以及策劃好的不同 Azure 資源安全性最佳作法清單的簡介。"
 services: azure-security
 documentationcenter: na
 author: TomShinder
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 03/06/2017
 ms.author: terrylan
-ms.openlocfilehash: eaaa9457faa1d5906275eb1fd8988d4d4aad101a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1cc0d2d1e9a62ff8531f963413ff573713d508ad
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-security-best-practices-and-patterns"></a>Azure 安全性最佳作法與模式
-我們目前已有下列 Azure 的安全性最佳作法和模式的發行項的 hello。 此站台，請確定 toovisit toosee 會定期更新 Azure 的安全性最佳作法和模式的 tooour 不斷增長清單：  
+我們目前有下列的 Azure 安全性最佳作法和模式文章。 請務必定期瀏覽此網站，以查看日益增加的 Azure 安全性最佳作法和模式的清單是否有更新︰  
 
 * [Azure 網路安全性最佳作法](azure-security-network-security-best-practices.md)
 * [Azure 資料安全性和加密最佳作法](azure-security-data-encryption-best-practices.md)
@@ -32,18 +32,18 @@ ms.lasthandoff: 10/06/2017
 * [在 Azure 中實作安全的混合式網路架構](../guidance/guidance-iaas-ra-secure-vnet-hybrid.md)
 * [Azure PaaS 最佳作法] (https://docs.microsoft.com/en-us/azure/security/security-paas-deployments)
 
-Azure 提供安全的平台，您可以在其中建立您的解決方案。 我們也提供服務和技術 toomake 方案更安全的 Azure 上。 因為 hello 許多選項可用 tooyou，許多具有有聲什麼 Microsoft 建議最佳作法與改善安全性模式有興趣。
+Azure 提供安全的平台，您可以在其中建立您的解決方案。 我們也提供服務和技術，可讓您的解決方案在 Azure 上更安全。 由於有許多選項可供使用，因此對 Microsoft 針對改善安全性所建議作為最佳做法與模式的內容，許多人都表示感興趣。
 
-我們了解您感興趣，而且已建立的文件，描述您可以執行，給定的 hello 右內容，tooimprove hello 安全性的 Azure 部署的項目集合。
+我們了解您的興趣所在，因此我們建立了一組文件，當中說明在適當的背景環境下您可以執行以改善 Azure 部署安全性的動作。
 
-在這些最佳做法和模式的文章中，我們針對特定的主題討論了一組最佳做法和實用模式。 這些最佳作法和模式衍生自我們的經驗與這些技術和 hello 經驗的客戶想自己。
+在這些最佳做法和模式的文章中，我們針對特定的主題討論了一組最佳做法和實用模式。 這些最佳作法和模式衍生自我們這些技術的經驗和客戶的經驗。
 
-針對每個最佳做法，我們會盡力 tooexplain:
+對於每個最佳作法，我們會說明︰
 
-* 哪些 hello 最佳作法是
-* 為什麼要 tooenable 該最佳作法
-* 如果您無法 tooenable hello 最佳作法，可能 hello 結果
-* 可能的替代方式 toohello 最佳作法
-* 如何了解 tooenable hello 最佳作法
+* 最佳作法是什麼
+* 您為何想要啟用該最佳作法
+* 如果無法啟用最佳作法，結果可能為何
+* 最佳作法的可能替代方案
+* 如何學習啟用最佳作法
 
-我們期待 tooincluding 許多 Azure 安全性的架構和最佳作法的詳細文章。 如果您想要我們主題 tooinclude，讓我們知道在 hello 此頁面底部的 hello 討論區中。
+我們希望在 Azure 安全性架構和最佳作法中納入更多文章。 如果您有希望我們納入的主題，請在本頁面底部的討論區中讓我們知道。

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure 集線器安全推播通知"
-description: "了解如何安全 toosend 推播通知 tooan iOS 應用程式從 Azure。 程式碼範例是以 Objective-C 及 C# 撰寫。"
+title: "Azure 通知中心安全推播"
+description: "了解如何從 Azure 將安全的推播通知傳送至 iOS 應用程式。 程式碼範例是以 Objective-C 及 C# 撰寫。"
 documentationcenter: ios
 author: ysxu
 manager: erikre
@@ -14,11 +14,11 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 86dd8d7042e5b9e55d2d7ff41cb42f23831fc575
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e5f09fb3716303bb21fe7442aa6fa8832174838e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-notification-hubs-secure-push"></a>Azure 通知中心安全推播
 > [!div class="op_single_selector"]
@@ -28,23 +28,23 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-## <a name="overview"></a>概觀
-在 Microsoft Azure 推播通知支援可讓您 tooaccess 方便使用、 多平台、 向外延展的推播基礎結構，可大幅簡化 hello 實作消費者和企業行動應用程式的應用程式的推播通知平台。
+## <a name="overview"></a>Overview
+Microsoft Azure 中的推播通知支援可讓您存取易於使用、多重平台的大規模推播基礎結構，因而可大幅簡化消費者和企業應用程式在行動平台上的推播通知實作。
 
-有時候 tooregulatory 或安全性條件約束，因為應用程式可能會想 tooinclude 中無法透過 hello 標準的推播通知基礎結構傳送的 hello 通知。 本教學課程描述 tooachieve 如何透過 hello 用戶端裝置與 hello 應用程式後端之間的安全、 已驗證連線的機密資訊傳送 hello 相同的體驗。
+基於法規或安全性限制，應用程式有時會想要在通知中加入無法透過標準推播通知基礎結構傳送的內容。 本教學課程說明如何透過用戶端裝置和應用程式後端之間的安全、已驗證連線來傳送敏感資訊，以達到相同體驗。
 
-在高層級，hello 流程如下所示：
+概括而言，流程如下所示：
 
-1. hello 應用程式後端：
+1. 應用程式後端：
    * 在後端資料庫中儲存安全裝載。
-   * 會傳送 hello （傳送不安全的資訊） 此通知 toohello 裝置識別碼。
-2. hello 在裝置上，當收到 hello 通知 hello 應用程式：
-   * hello 裝置會連絡 hello 後端要求 hello 安全內容。
-   * hello 應用程式可以顯示 hello 裝載為 hello 裝置上的通知。
+   * 將此通知的識別碼傳送至裝置 (不會傳送安全資訊)。
+2. 收到通知時，裝置上的應用程式會執行下列動作：
+   * 裝置會連絡後端並要求安全裝載。
+   * 應用程式會以通知的形式在裝置上顯示裝載。
 
-請務必 toonote hello 上述流程中 （並在本教學課程），我們會假設該 hello 裝置會儲存在本機儲存體，驗證語彙基元之後 hello 使用者登入。 這樣可保證完全完美無瑕的體驗，如 hello 裝置可以擷取 hello 通知安全裝載使用這個語彙基元。 如果您的應用程式不會儲存驗證語彙基元 hello 在裝置上，或可以過期這些語彙基元，hello 裝置的應用程式，並收到 hello 通知應該會顯示提示 hello 使用者 toolaunch hello 應用程式的一般通知。 hello 應用程式然後驗證 hello 使用者，並顯示 hello 通知裝載。
+請務必注意在上述流程 (與本教學課程) 中，我們假設使用者登入後，裝置會將驗證權杖儲存在本機儲存體中。 由於裝置可使用此權杖擷取通知的安全裝載，因此可保證完全順暢的體驗。 如果您的應用程式沒有將驗證權杖儲存在裝置上，或如果這些權杖可能會過期，裝置應用程式應在收到通知時顯示一般通知，以提示使用者啟動應用程式。 應用程式會接著驗證使用者，並顯示通知裝載。
 
-此安全發送教學課程會示範如何 toosend 推播通知安全的方式。 hello 教學課程是 hello[通知使用者](notification-hubs-aspnet-backend-ios-apple-apns-notification.md)教學課程中，因此，您應該完成 hello 步驟在該教學課程中第一次。
+本安全推播教學課程說明如何以安全的方式傳送推播通知。 本教學課程會以 [通知使用者](notification-hubs-aspnet-backend-ios-apple-apns-notification.md) 教學課程為基礎，因此您應先完成該教學課程中的步驟。
 
 > [!NOTE]
 > 本教學課程假設您已建立並設定通知中樞，如 [開始使用通知中樞 (iOS)](notification-hubs-ios-apple-push-notification-apns-get-started.md)中所述。
@@ -53,20 +53,20 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [notification-hubs-aspnet-backend-securepush](../../includes/notification-hubs-aspnet-backend-securepush.md)]
 
-## <a name="modify-hello-ios-project"></a>修改 hello iOS 專案
-既然您已修改您應用程式後端 toosend 只 hello*識別碼*的通知，您有 toochange 通知和回撥後端 tooretrieve hello 安全訊息 toobe 顯示您 iOS 應用程式 toohandle。
+## <a name="modify-the-ios-project"></a>修改 iOS 專案
+現在，您已修改應用程式後端將只傳送通知的 *id* ，您必須變更 iOS 應用程式來處理該通知，並回呼後端以擷取要顯示的安全訊息。
 
-tooachieve 此目標中，我們有 toowrite hello 邏輯 tooretrieve hello 安全內容從 hello 應用程式後端。
+若要達到此目標，我們必須撰寫可從應用程式後端擷取安全內容的邏輯。
 
-1. 在**d**，請確定 hello 應用程式暫存器，無訊息的通知，以便在處理傳送嗨後端的通知識別碼 hello。 新增 hello **UIRemoteNotificationTypeNewsstandContentAvailability** didFinishLaunchingWithOptions 中的選項：
+1. 在 **AppDelegate.m**中，請確定應用程式已註冊無訊息通知，以便處理從後端傳送出來的通知識別碼。 在 didFinishLaunchingWithOptions 中新增 **UIRemoteNotificationTypeNewsstandContentAvailability** 選項：
    
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeNewsstandContentAvailability];
-2. 在您**d** hello 頂端新增實作區段，以宣告之後的 hello:
+2. 在 **AppDelegate.m** 的開頭處，新增包含下列宣告的實作區段：
    
         @interface AppDelegate ()
         - (void) retrieveSecurePayloadWithId:(int)payloadId completion: (void(^)(NSString*, NSError*)) completion;
         @end
-3. 然後，加入下列程式碼，以取代 hello 預留位置 hello 實作區段 hello`{back-end endpoint}`與後端先前取得的 hello 端點：
+3. 然後在實作區段中新增下列程式碼，並以先前為後端取得的端點取代預留位置 `{back-end endpoint}` ：
 
 ```
         NSString *const GetNotificationEndpoint = @"{back-end endpoint}/api/notifications";
@@ -115,13 +115,13 @@ tooachieve 此目標中，我們有 toowrite hello 邏輯 tooretrieve hello 安�
         }
 ```
 
-    This method calls your app back-end tooretrieve hello notification content using hello credentials stored in hello shared preferences.
+    This method calls your app back-end to retrieve the notification content using the credentials stored in the shared preferences.
 
-1. 現在我們有 toohandle hello 內送通知，並利用上述 tooretrieve hello 內容 toodisplay hello 方法。 首先，我們有 tooenable 您的 iOS 應用程式 toorun hello 背景中接收推播通知時。 在**XCode**，選取應用程式專案 hello 左面板中，然後按一下您主要的應用程式中的目標 hello**目標**hello 中央窗格中的區段。
-2. 然後按一下您**功能**hello 頂端中央窗格中，在索引標籤，並檢查 hello**遠端通知**核取方塊。
+1. 現在，我們必須處理內送通知，並使用上述方法擷取要顯示的內容。 首先，我們必須啟用您的 iOS 應用程式，可在接收推播通知時於背景中執行。 在 **XCode** 中，在左側面板中選取您的應用程式專案，然後在中央窗格的 [目標] 區段中，按一下您的主要應用程式目標。
+2. 接著按一下中央窗格頂端的 [功能] 索引標籤，並核取 [遠端通知] 核取方塊。
    
     ![][IOS1]
-3. 在**d**新增下列方法 toohandle 推播通知的 hello:
+3. 在 **AppDelegate.m** 中，新增下列可處理推播通知的方法：
    
         -(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
         {
@@ -144,13 +144,13 @@ tooachieve 此目標中，我們有 toowrite hello 邏輯 tooretrieve hello 安�
    
         }
    
-    請注意，它比 toohandle hello 情況下，缺少驗證標頭屬性或 hello 後端拒絕動作。 hello 特定處理這些情況通常取決於您目標的使用者經驗。 其中一個選項是 toodisplay hello 使用者 tooauthenticate tooretrieve hello 實際通知的一般提示字元之下一則通知。
+    請注意，比較理想的案例是處理遺失驗證標頭屬性或遭到後端拒絕的情況。 這些案例的特定處理絕大部分會依您的目標使用者經驗而定。 其中一個選項就是透過一般提示顯示通知，方便使用者進行驗證並擷取實際通知。
 
-## <a name="run-hello-application"></a>執行 hello 應用程式
-toorun hello 應用程式中，執行下列 hello:
+## <a name="run-the-application"></a>執行應用程式
+若要執行應用程式，請執行下列動作：
 
-1. 在 XCode 中，hello 應用程式實體 iOS 裝置上執行 (push 通知將無法運作 hello 模擬器中)。
-2. 在 hello iOS 應用程式 UI 中輸入使用者名稱和密碼。 這些可以是任何字串，但它們必須 hello 相同的值。
-3. 在 hello iOS 應用程式 UI 中按一下**登入**。 然後按一下 [傳送推播] 。 您應該會看到顯示在通知中心中的 hello 安全通知。
+1. 在 XCode 中，在實體 iOS 裝置上執行應用程式 (推播通知無法在模擬器中運作)。
+2. 在 iOS 應用程式 UI 中，輸入使用者名稱和密碼。 這些可以是任何字串，但必須是相同值。
+3. 在 iOS 應用程式 UI 中，按一下 [登入] 。 然後按一下 [傳送推播] 。 您應該會在您的通知中心內看見安全通知。
 
 [IOS1]: ./media/notification-hubs-aspnet-backend-ios-secure-push/secure-push-ios-1.png

@@ -1,6 +1,6 @@
 ---
-title: "使用 aaaControl 路由和虛擬裝置 hello Azure CLI 1.0 |Microsoft 文件"
-description: "了解如何使用 toocontrol 路由和虛擬裝置 hello Azure CLI 1.0。"
+title: "使用 Azure CLI 1.0 控制路由和虛擬應用裝置 | Microsoft Docs"
+description: "了解如何使用 Azure CLI 1.0 控制路由和虛擬應用裝置。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -14,13 +14,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/18/2017
 ms.author: jdial
-ms.openlocfilehash: 1c8a552d949521fa554880c00405e65fa47a8162
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5f21bc7a4fcd9507ea9d6b2b752a2328a7b834f0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="create-user-defined-routes-udr-using-hello-azure-cli-10"></a>建立使用者定義的路由 (UDR) 使用 hello Azure CLI 1.0
+# <a name="create-user-defined-routes-udr-using-the-azure-cli-10"></a>使用 Azure CLI 1.0 建立使用者定義的路由 (UDR)
 
 > [!div class="op_single_selector"]
 > * [PowerShell](virtual-network-create-udr-arm-ps.md)
@@ -29,27 +29,27 @@ ms.lasthandoff: 10/06/2017
 > * [PowerShell (傳統)](virtual-network-create-udr-classic-ps.md)
 > * [CLI (傳統)](virtual-network-create-udr-classic-cli.md)
 
-建立自訂路由和使用 Azure CLI hello 的虛擬應用裝置。
+使用 Azure CLI 建立自訂路由和虛擬應用裝置。
 
-## <a name="cli-versions-toocomplete-hello-task"></a>CLI 版本 toocomplete hello 工作 
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本 
 
-您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本： 
+您可以使用下列其中一個 CLI 版本來完成工作︰ 
 
-- [Azure CLI 1.0](#Create-the-UDR-for-the-front-end-subnet) – 我們 CLI hello 傳統和資源管理部署模型 （此文件）
-- [Azure CLI 2.0](virtual-network-create-udr-arm-cli.md) -hello 資源管理部署模型我們下一個層代 CLI 
+- [Azure CLI 1.0](#Create-the-UDR-for-the-front-end-subnet) – 適用於傳統和資源管理部署模型的 CLI (本文章)
+- [Azure CLI 2.0](virtual-network-create-udr-arm-cli.md) - 適用於資源管理部署模型的新一代 CLI 
 
 
 [!INCLUDE [virtual-network-create-udr-intro-include.md](../../includes/virtual-network-create-udr-intro-include.md)]
 
 [!INCLUDE [virtual-network-create-udr-scenario-include.md](../../includes/virtual-network-create-udr-scenario-include.md)]
 
-下列的 hello 範例 Azure CLI 命令預期已經根據上述的 hello 案例建立簡單的環境。 如果您想 toorun hello 命令，因為它們會顯示在此文件，第一次建立 hello 測試環境部署[此範本](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before)，按一下 **部署 tooAzure**，取代 hello 預設參數值如果有必要，並遵循中的 hello 指示 hello 入口網站。
+以下的範例 Azure CLI 命令是假設您已根據上述案例建立簡單的環境。 如果您想要以本文件顯示的方式執行命令，請先依照下列方式建置測試環境：部署[此範本](http://github.com/telmosampaio/azure-templates/tree/master/IaaS-NSG-UDR-Before)，按一下 [部署至 Azure]，視情況取代預設參數值，然後遵循入口網站中的指示。
 
 
-## <a name="create-hello-udr-for-hello-front-end-subnet"></a>建立 hello UDR hello 前端子網路
-toocreate hello 路由表和路由所需的 hello 前端子網路，根據 hello 案例以上版本，請遵循下列 hello 步驟。
+## <a name="create-the-udr-for-the-front-end-subnet"></a>建立前端子網路的 UDR
+若要根據上述案例建立前端子網路所需的路由表和路由，請依照下列步驟執行。
 
-1. 執行下列命令 toocreate hello hello 前端子網路路由表：
+1. 執行下列命令，建立前端子網路的路由表：
 
     ```azurecli
     azure network route-table create -g TestRG -n UDR-FrontEnd -l uswest
@@ -71,10 +71,10 @@ toocreate hello 路由表和路由所需的 hello 前端子網路，根據 hello
    
     參數：
    
-   * **-g (or --resource-group)**。 將會建立 hello UDR hello 資源群組的名稱。 在本文案例中為 *TestRG*。
-   * **-l (或 --location)**。 Hello 新 UDR 建立所在的 azure 區域。 在本文案例中為 *westus*。
-   * **-n (or --name)**。 名稱 hello 新 UDR。 在本文案例中為 *UDR-FrontEnd*。
-2. 執行下列命令 toocreate hello 路由表 toosend 中路由 hello 所有流量 toohello 後端子 (192.168.2.0/24) toohello **FW1** VM (已將 192.168.0.4):
+   * **-g (or --resource-group)**。 將會在當中建立 UDR 之資源群組的名稱。 在本文案例中為 *TestRG*。
+   * **-l (或 --location)**。 將要建立新 UDR 的 Azure 區域。 在本文案例中為 *westus*。
+   * **-n (or --name)**。 新 UDR 的名稱。 在本文案例中為 *UDR-FrontEnd*。
+2. 執行下列命令，在上方建立的路由表中建立路由，將目的地為後端子網路 (192.168.2.0/24) 的所有流量傳送到 **FW1** VM (192.168.0.4)：
 
     ```azurecli
     azure network route-table route create -g TestRG -r UDR-FrontEnd -n RouteToBackEnd -a 192.168.2.0/24 -y VirtualAppliance -p 192.168.0.4
@@ -97,11 +97,11 @@ toocreate hello 路由表和路由所需的 hello 前端子網路，根據 hello
    
     參數：
    
-   * **-r (或 --route-table-name)**。 將會加入 hello 路由 hello 路由表的名稱。 在本文案例中為 *UDR-FrontEnd*。
-   * **-a (或 --address-prefix)**。 Hello 封包會指向其中的子網路的位址前置詞。 在本文案例中為 *192.168.2.0/24*。
+   * **-r (或 --route-table-name)**。 將會加入路由的路由表的名稱。 在本文案例中為 *UDR-FrontEnd*。
+   * **-a (或 --address-prefix)**。 封包所指向位置的子網路的位址首碼。 在本文案例中為 *192.168.2.0/24*。
    * **-y (或 --next-hop-type)**。 將傳送流量的目標物件類型。 可能的值為 VirtualAppliance、VirtualNetworkGateway、VNETLocal、Internet 或 None。
    * **-p (或 --next-hop-ip-address)**。 下個躍點的 IP 位址。 在本文案例中為 *192.168.0.4*。
-3. Hello 執行的下列命令以 hello 上面所建立的 tooassociate hello 路由表**前端**子網路：
+3. 執行下列命令，將上方建立的路由表關聯至 **FrontEnd** 子網路：
 
     ```azurecli
     azure network vnet subnet set -g TestRG -e TestVNet -n FrontEnd -r UDR-FrontEnd
@@ -110,10 +110,10 @@ toocreate hello 路由表和路由所需的 hello 前端子網路，根據 hello
     輸出：
    
         info:    Executing command network vnet subnet set
-        info:    Looking up hello subnet "FrontEnd"
+        info:    Looking up the subnet "FrontEnd"
         info:    Looking up route table "UDR-FrontEnd"
         info:    Setting subnet "FrontEnd"
-        info:    Looking up hello subnet "FrontEnd"
+        info:    Looking up the subnet "FrontEnd"
         data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/TestRG/providers/Microsoft.Network/
         virtualNetworks/TestVNet/subnets/FrontEnd
         data:    Type                            : Microsoft.Network/virtualNetworks/subnets
@@ -133,33 +133,33 @@ toocreate hello 路由表和路由所需的 hello 前端子網路，根據 hello
    
     參數：
    
-   * **-e (或 --vnet-name)**。 Hello hello 子網路所在的 VNet 的名稱。 在本文案例中為 *TestVNet*。
+   * **-e (或 --vnet-name)**。 子網路所在的 VNet 名稱。 在本文案例中為 *TestVNet*。
 
-## <a name="create-hello-udr-for-hello-back-end-subnet"></a>建立 hello UDR hello 後端子網路
-toocreate hello 路由表和路由所需的 hello 後端子根據上述步驟的完整 hello hello 案例：
+## <a name="create-the-udr-for-the-back-end-subnet"></a>建立後端子網路的 UDR
+若要根據上述案例建立後端子網路所需的路由表和路徑，完成下列步驟：
 
-1. 執行下列命令 toocreate hello hello 後端子網路路由表：
+1. 執行下列命令，建立後端子網路的路由表：
 
     ```azurecli
     azure network route-table create -g TestRG -n UDR-BackEnd -l westus
     ```
 
-2. 執行下列命令 toocreate hello 路由表 toosend 中路由 hello 所有流量 toohello 前端的子網路 (192.168.1.0/24) toohello **FW1** VM (已將 192.168.0.4):
+2. 執行下列命令，在上方建立的路由表中建立路由，將目的地為前端子網路 (192.168.1.0/24) 的所有流量傳送到 **FW1** VM (192.168.0.4)：
 
     ```azurecli
     azure network route-table route create -g TestRG -r UDR-BackEnd -n RouteToFrontEnd -a 192.168.1.0/24 -y VirtualAppliance -p 192.168.0.4
     ```
 
-3. 執行 hello 下列命令以 hello tooassociate hello 路由表**後端**子網路：
+3. 執行下列命令，建立與 **BackEnd** 子網路關聯的路由表：
 
     ```azurecli
     azure network vnet subnet set -g TestRG -e TestVNet -n BackEnd -r UDR-BackEnd
     ```
 
 ## <a name="enable-ip-forwarding-on-fw1"></a>啟用 FW1 上的 IP 轉送
-tooenable 在 hello NIC 所使用的 IP 轉送**FW1**，完成下列步驟 hello:
+若要啟用 **FW1**所使用之 NIC 中的 IP 轉送，完成下列步驟：
 
-1. 執行之後，請注意 hello 值 hello 命令**啟用 IP 轉送**。 才應該設定太*false*。
+1. 執行以下的命令，並注意 [啟用 IP 轉送] 的值。 應該設定為 *false*。
 
     ```azurecli
     azure network nic show -g TestRG -n NICFW1
@@ -168,7 +168,7 @@ tooenable 在 hello NIC 所使用的 IP 轉送**FW1**，完成下列步驟 hello
     輸出：
    
         info:    Executing command network nic show
-        info:    Looking up hello network interface "NICFW1"
+        info:    Looking up the network interface "NICFW1"
         data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/TestRG/providers/Microsoft.Network/
         networkInterfaces/NICFW1
         data:    Name                            : NICFW1
@@ -191,7 +191,7 @@ tooenable 在 hello NIC 所使用的 IP 轉送**FW1**，完成下列步驟 hello
         virtualNetworks/TestVNet/subnets/DMZ
         data:    
         info:    network nic show command OK
-2. 執行下列命令 tooenable IP 轉送的 hello:
+2. 執行下列命令以啟用 IP 轉送：
 
     ```azurecli
     azure network nic set -g TestRG -n NICFW1 -f true
@@ -200,9 +200,9 @@ tooenable 在 hello NIC 所使用的 IP 轉送**FW1**，完成下列步驟 hello
     輸出：
    
         info:    Executing command network nic set
-        info:    Looking up hello network interface "NICFW1"
+        info:    Looking up the network interface "NICFW1"
         info:    Updating network interface "NICFW1"
-        info:    Looking up hello network interface "NICFW1"
+        info:    Looking up the network interface "NICFW1"
         data:    Id                              : /subscriptions/[Subscription Id]/resourceGroups/TestRG/providers/Microsoft.Network/
         networkInterfaces/NICFW1
         data:    Name                            : NICFW1

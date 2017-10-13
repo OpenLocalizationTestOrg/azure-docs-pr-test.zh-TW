@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Media Hyperlapse 的媒體檔案 aaaHyperlapse |Microsoft 文件"
-description: "Azure Media Hyperlapse 能夠利用第一人稱視角或運動攝影的內容，來建立流暢的縮時影片。 本主題說明如何 toouse Media Indexer。"
+title: "Hyperlapse Media 檔案與 Azure 媒體超縮時攝影 | Microsoft Docs"
+description: "Azure Media Hyperlapse 能夠利用第一人稱視角或運動攝影的內容，來建立流暢的縮時影片。 本主題說明如何使用 Media Indexer。"
 services: media-services
 documentationcenter: 
 author: asolanki
@@ -14,37 +14,37 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 03/02/2017
 ms.author: adsolank
-ms.openlocfilehash: 85bb07206d0ca2f5b2fd0767e6ed4904195d3ab6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 02f634c2af04b6b372642ab0e6a17a5d29f16450
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="hyperlapse-media-files-with-azure-media-hyperlapse"></a>Hyperlapse Media 檔案與 Azure Media Hyperlapse
-Azure Media Hyperlapse 是可以使用第一人稱視角或運動攝影機內容建立流暢縮時攝影影片的「媒體處理器 (MP)」。  太 hello 以雲端為基礎的同層級[Microsoft Research 桌面 Hyperlapse 專業版和 phone 基礎 Hyperlapse 行動](http://aka.ms/hyperlapse)，Azure Media Services 的 Microsoft Hyperlapse 利用 hello 大規模的 hello Azure 媒體服務媒體處理平台 toohorizontally 調整和平行處理大量 Hyperlapse 處理。
+Azure Media Hyperlapse 是可以使用第一人稱視角或運動攝影機內容建立流暢縮時攝影影片的「媒體處理器 (MP)」。  Azure 媒體服務的雲端型 Microsoft Hyperlapse 與 [Microsoft Research 的桌面 Hyperlapse Pro 和手機型 Hyperlapse Mobile](http://aka.ms/hyperlapse)相似，它運用大規模的 Azure 媒體服務媒體處理平台來水平調整，並平行化大量的 Hyperlapse 處理。
 
 > [!IMPORTANT]
-> Microsoft Hyperlapse 是設計的 toowork 最佳的第一個人內容，以移動的相機。  雖然仍攝影機錄影畫面仍然可以正常運作，但是對於其他類型的內容無法保證 hello 效能和品質 hello Azure Media Hyperlapse 媒體處理器。  深入了解 Azure Media Services 的 Microsoft Hyperlapse toolearn，請參閱部分的範例影片、 簽出 hello[簡介部落格文章](http://aka.ms/azurehyperlapseblog)從 hello 公開預覽狀態。
+> Microsoft Hyperlapse 是專門使用移動中攝影機拍攝第一人稱視角內容而設計。  雖然攝影機位置固定的內容也可以運作，但 Azure 媒體 Hyperlapse 媒體處理器無法保證其他類型內容的效能及品質。  若要深入了解 Azure 媒體服務的 Microsoft Hyperlapse 並觀賞一些範例影片，請查看公開預覽的 [簡介部落格文章](http://aka.ms/azurehyperlapseblog) 。
 > 
 > 
 
-作業會採用做為 Azure Media Hyperlapse 輸入以及組態檔，指定哪些視訊畫面應該時間屆滿和 toowhat 速度 MP4、 MOV、 或 WMV 資產檔案 （例如第一個 10000 框架在 2 倍）。  hello 輸出是 hello 輸入視訊穩定和時間屆滿轉譯。
+Azure 媒體 Hyperlapse 工作接受輸入 MP4、MOV 或 WMV 資產檔案連同組態檔，以指定影片中要縮時的畫面及其速度 (例如前 10,000 個畫面速度為 2x)。  輸出是輸入影片經過穩定和縮時轉譯的成果。
 
-如需最新 Azure Media Hyperlapse 更新 hello，請參閱[媒體服務部落格](https://azure.microsoft.com/blog/topics/media-services/)。
+如需 Azure 媒體 Hyperlapse 的更新，請參閱 [媒體服務部落格](https://azure.microsoft.com/blog/topics/media-services/)。
 
 ## <a name="hyperlapse-an-asset"></a>將資產進行 Hyperlapse 處理
-首先您需要 tooupload 您所需的輸入的檔案 tooAzure Media Services。  深入了解 toolearn hello 概念上傳與管理內容，讀取 hello[內容管理的發行項](media-services-portal-vod-get-started.md)。
+首先您需要上傳要輸入 Azure 媒體服務的檔案。  若要深入了解上傳和管理內容的相關概念，請閱讀 [內容管理文章](media-services-portal-vod-get-started.md)。
 
 ### <a id="configuration"></a>Hyperlapse 的預設組態
-一旦您的內容在 Media Services 帳戶，您需要的 tooconstruct 預設您的設定。  下表中的 hello 說明 hello 使用者指定的欄位：
+一旦內容在媒體服務帳戶中，您將需要建構預設組態。  下表說明使用者指定的欄位：
 
 | 欄位 | 說明 |
 | --- | --- |
-| StartFrame |hello 框架的 hello Microsoft Hyperlapse 時應該開始進行處理。 |
-| NumFrames |框架 tooprocess 的 hello 數目 |
-| 速度 |使用哪些 toospeed 向上 hello 輸入視訊的 hello 因數。 |
+| StartFrame |開始進行 Microsoft Hyperlapse 處理的畫面。 |
+| NumFrames |要處理的畫面數目。 |
+| 速度 |輸入影片要加速的設定因素。 |
 
-hello 以下是符合 XML 和 JSON 組態檔的範例：
+以下是符合標準的 JSON 和 XML 格式組態檔：
 
 **XML 預設：**
 
@@ -74,14 +74,14 @@ hello 以下是符合 XML 和 JSON 組態檔的範例：
         }
     }
 
-### <a id="sample_code"></a>Microsoft Hyperlapse 以 hello AMS.NET SDK
-hello 下列方法上傳媒體檔案儲存為資產，並建立工作以 hello Azure Media Hyperlapse 媒體處理器。
+### <a id="sample_code"></a> 包含 AMS .NET SDK 的 Microsoft Hyperlapse
+下列方法會將媒體檔案上傳為資產，並使用 Azure 媒體 Hyperlapse 媒體處理器建立工作。
 
 > [!NOTE]
-> 您應該已經 CloudMediaContext 此程式碼 toowork hello 名稱 [內容] 的範圍內。  深入了解此，讀取 hello toolearn[內容管理的發行項](media-services-dotnet-get-started.md)。
+> 為了使程式碼可以運作，您應該已經具備在名稱為「context」之範圍內的 CloudMediaContext。  若要深入了解，請參閱 [內容管理文章](media-services-dotnet-get-started.md)。
 > 
 > [!NOTE]
-> hello 字串引數"hyperConfig 」 是 JSON 或 XML，如上面所述的一致組態預先設定的預期的 toobe。
+> 字串引數 "hyperConfig" 預期為上述符合標準的 JSON 或 XML 格式的預設組態。
 > 
 > 
 
@@ -148,7 +148,7 @@ hello 下列方法上傳媒體檔案儲存為資產，並建立工作以 hello A
                                                  CancellationToken.None);
             progressJobTask.Wait();
 
-            // If job state is Error, hello event handling
+            // If job state is Error, the event handling
             // method for job progress should log errors.  Here we check
             // for error state and exit if needed.
             if (job.State == JobState.Error)

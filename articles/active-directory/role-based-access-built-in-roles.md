@@ -1,6 +1,6 @@
 ---
-title: "aaaActions 以及 NotActions-Azure 角色型存取控制 (RBAC) |Microsoft 文件"
-description: "本主題描述 hello 內建的角色型存取控制 (RBAC) 的角色。 hello 角色持續加入，因此核取 hello 文件有效性。"
+title: "Actions 和 NotActions - Azure 角色型存取控制 | Microsoft Docs"
+description: "本主題說明角色型存取控制 (RBAC) 的內建角色。 角色會持續新增，因此請查看文件更新時間。"
 services: active-directory
 documentationcenter: 
 author: andredm7
@@ -16,35 +16,35 @@ ms.date: 06/28/2017
 ms.author: andredm
 ms.reviewer: 
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 0a4ef9923fe05ec38e968534951911eaa4440b88
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9a5de00793621cfdecea887c53a22d482a25d1b8
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="built-in-roles-for-azure-role-based-access-control"></a>Azure 角色型存取控制的內建角色
-Azure 角色型存取控制 (RBAC) 隨附於下列內建角色指派 toousers、 群組和服務的 hello。 您無法修改 hello 定義的內建的角色。 不過，您可以建立[Azure rbac 進行中的自訂角色](role-based-access-control-custom-roles.md)toofit hello 的特定需求的組織。
+Azure 角色型存取控制 (RBAC) 會隨附三個內建的角色，供您指派給使用者、群組與服務。 您無法修改內建角色定義。 不過，您可以建立 [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md) 以符合您組織的特定需求。
 
 ## <a name="roles-in-azure"></a>Azure 中的角色
-hello 下表提供的 hello 的簡短說明內建的角色。 按一下 hello 角色名稱 toosee hello 的詳細的清單**動作**和**notactions** hello 角色。 hello**動作**屬性會指定 hello Azure 資源上允許的動作。 動作字串可以使用萬用字元。 hello **notactions**屬性會指定 hello 動作排除在 hello 允許的動作。
+下表提供內建角色的簡短描述。 按一下角色名稱，即可查看該角色的詳細 **actions** 和 **notactions** 清單。 **actions** 屬性指定了 Azure 資源上允許的動作。 動作字串可以使用萬用字元。 **notactions** 屬性指定了從允許的動作中排除的動作。
 
-hello 動作會定義您可以在指定的資源類型執行的作業的類型。 例如：
-- **寫入**可讓您 tooperform PUT、 POST、 PATCH、 和刪除作業。
-- **讀取**可讓您 tooperform GET 作業。
+動作會定義您可以對給定資源類型執行的作業類型。 例如：
+- **寫入**可讓您執行 PUT、POST、PATCH 和 DELETE 作業。
+- **讀取**可讓您執行 GET 作業。
 
-本文只解決 hello 今日的不同角色。 當您指派角色 tooa 使用者時，不過，您可以限制 hello 允許進一步的動作所定義的範圍。 這是有幫助，如果您想要讓 toomake 人網站參與者，但是僅針對一個資源群組。
+本文只說明現存的不同角色。 但是當您指派角色給使用者時，可以藉由定義範圍來進一步限制所允許的動作。 如果您想要讓某位使用者成為網站參與者，但僅限於某個資源群組，這會很實用。
 
 > [!NOTE]
-> 不斷演變的 hello Azure 角色定義。 這篇文章會保留為向上 toodate 越好，但是您可以一律找到 hello 最新的角色定義在 Azure PowerShell 中。 使用 hello [Get AzureRmRoleDefinition](/powershell/module/azurerm.resources/get-azurermroledefinition) cmdlet toolist 所有目前的角色。 您可以深入了解在特定角色中使用 tooa`(get-azurermroledefinition "<role name>").actions`或`(get-azurermroledefinition "<role name>").notactions`適用。 使用[Get AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) toolist 作業特定的 Azure 資源提供者。
+> Azure 角色定義不斷地演變。 本文盡可能保持最新內容，但您永遠可以在 Azure PowerShell 中找到最新的角色定義。 使用 [Get-AzureRmRoleDefinition](/powershell/module/azurerm.resources/get-azurermroledefinition) Cmdlet 來列出目前的所有角色。 您可以視情況使用 `(get-azurermroledefinition "<role name>").actions` 或 `(get-azurermroledefinition "<role name>").notactions` 來深入了解特定角色。 使用 [Get-AzureRmProviderOperation](/powershell/module/azurerm.resources/get-azurermprovideroperation) 來列出特定 Azure 資源提供者的作業。
 
 
 | 角色名稱 | 說明 |
 | --- | --- |
-| [API 管理服務參與者](#api-management-service-contributor) |可以管理 API 管理服務和應用程式開發介面 hello |
-| [API 管理服務操作員角色](#api-management-service-operator-role) | 可以管理 API 管理服務，但 hello 本身應用程式開發介面 |
-| [API 管理服務讀取者角色](#api-management-service-reader-role) | 唯讀存取 tooAPI 管理服務和應用程式開發介面 |
+| [API 管理服務參與者](#api-management-service-contributor) |可以管理 API 管理服務和 API |
+| [API 管理服務操作員角色](#api-management-service-operator-role) | 可以管理 API 管理服務，但不能管理 API 本身 |
+| [API 管理服務讀取者角色](#api-management-service-reader-role) | API 管理服務和 API 的唯讀權限 |
 | [Application Insights 元件參與者](#application-insights-component-contributor) |可以管理 Application Insights 元件 |
-| [自動化運算子](#automation-operator) |無法 toostart，停止、 暫停和繼續工作 |
+| [自動化運算子](#automation-operator) |能夠啟動、停止、暫停和繼續工作 |
 | [備份參與者](#backup-contributor) | 可以管理復原服務保存庫中的備份 |
 | [備份操作員](#backup-operator) | 可以管理復原服務保存庫中的備份，但不能移除備份 |
 | [備份讀取者](#backup-reader) | 可以檢視所有的備份管理服務  |
@@ -73,20 +73,20 @@ hello 動作會定義您可以在指定的資源類型執行的作業的類型�
 | [Site Recovery 操作員](#site-recovery-operator) | 可以管理復原服務保存庫中 Site Recovery 的容錯移轉和容錯回復作業 |
 | [Site Recovery 讀取者](#site-recovery-reader) | 可以檢視所有 Site Recovery 管理作業  |
 | [SQL DB 參與者](#sql-db-contributor) |可以管理 SQL 資料庫，但是無法管理它們的安全性相關原則 |
-| [SQL 安全性管理員](#sql-security-manager) |可以管理 hello SQL 伺服器和資料庫的安全性相關原則 |
+| [SQL 安全性管理員](#sql-security-manager) |可以管理 SQL Server 和資料庫的安全性相關原則 |
 | [SQL Server 參與者](#sql-server-contributor) |可以管理 SQL Server 和資料庫，但是無法管理它們的安全性相關原則 |
 | [傳統儲存體帳戶參與者](#classic-storage-account-contributor) |可以管理傳統儲存體帳戶 |
 | [儲存體帳戶參與者](#storage-account-contributor) |可以管理儲存體帳戶 |
 | [支援要求參與者](#support-request-contributor) | 可以建立及管理支援要求 |
-| [使用者存取系統管理員](#user-access-administrator) |可以管理使用者存取 tooAzure 資源 |
-| [傳統虛擬機器參與者](#classic-virtual-machine-contributor) |可管理傳統的虛擬機器，但不是 hello 虛擬網路或儲存體帳戶 toowhich 連線 |
-| [虛擬機器參與者](#virtual-machine-contributor) |可以管理虛擬機器，但不是 hello 虛擬網路或存放裝置帳戶 toowhich 連線 |
+| [使用者存取系統管理員](#user-access-administrator) |可以管理 Azure 資源的使用者存取 |
+| [傳統虛擬機器參與者](#classic-virtual-machine-contributor) |可以管理傳統虛擬機器，但是無法管理它們連接的虛擬網路或儲存體帳戶 |
+| [虛擬機器參與者](#virtual-machine-contributor) |可以管理虛擬機器，但是無法管理它們連接的虛擬網路或儲存體帳戶 |
 | [傳統網路參與者](#classic-network-contributor) |可以管理傳統虛擬網路和保留 IP |
 | [Web 方案參與者](#web-plan-contributor) |可以管理 Web 方案 |
-| [網站參與者](#website-contributor) |可以管理網站，但不是 hello web 計劃 toowhich 連線 |
+| [網站參與者](#website-contributor) |可以管理網站，但是不能管理它們連接的 Web 方案 |
 
 ## <a name="role-permissions"></a>角色權限
-hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括授與權限的 **Actions** 和限制權限的 **NotActions**。
+下表描述賦予每個角色的特定權限。 這可以包括授與權限的 **Actions** 和限制權限的 **NotActions**。
 
 ### <a name="api-management-service-contributor"></a>API 管理服務參與者
 可以管理 API 管理服務
@@ -96,7 +96,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.ApiManagement/Service/* |建立和管理 API 管理服務 |
 | Microsoft.Authorization/*/read |讀取授權 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取角色和角色指派 |
 | Microsoft.Support/* |建立和管理支援票證 |
@@ -107,16 +107,16 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | **動作** |  |
 | --- | --- |
 | Microsoft.ApiManagement/Service/*/read | 讀取 API 管理服務執行個體 |
-| Microsoft.ApiManagement/Service/backup/action | 備份 API 管理服務 toohello 指定容器中使用者，提供儲存體帳戶 |
+| Microsoft.ApiManagement/Service/backup/action | 將 API 管理服務備份到使用者所提供之儲存體帳戶中的指定容器 |
 | Microsoft.ApiManagement/Service/delete | 刪除 API 管理服務執行個體 |
 | Microsoft.ApiManagement/Service/managedeployments/action | 變更 SKU/單位；新增或移除 API 管理服務的區域部署 |
 | Microsoft.ApiManagement/Service/read | 讀取 API 管理服務執行個體的中繼資料 |
-| Microsoft.ApiManagement/Service/restore/action | 還原使用者，提供儲存體帳戶中的 hello 指定容器的 API 管理服務 |
+| Microsoft.ApiManagement/Service/restore/action | 從使用者所提供之儲存體帳戶中的指定容器來還原 API 管理服務 |
 | Microsoft.ApiManagement/Service/updatehostname/action | 設定、更新或移除 API 管理服務的自訂網域名稱 |
 | Microsoft.ApiManagement/Service/write | 建立 API 管理服務的新執行個體 |
 | Microsoft.Authorization/*/read |讀取授權 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取角色和角色指派 |
 | Microsoft.Support/* |建立和管理支援票證 |
@@ -130,7 +130,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.ApiManagement/Service/read | 讀取 API 管理服務執行個體的中繼資料 |
 | Microsoft.Authorization/*/read |讀取授權 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取角色和角色指派 |
 | Microsoft.Support/* |建立和管理支援票證 |
@@ -144,13 +144,13 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
 | Microsoft.Insights/components/* |建立和管理 Insights 元件 |
 | Microsoft.Insights/webtests/* |建立和管理 Web 測試 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
 
 ### <a name="automation-operator"></a>自動化運算子
-無法 toostart，停止、 暫停和繼續工作
+能夠啟動、停止、暫停和繼續工作
 
 | **動作** |  |
 | --- | --- |
@@ -168,13 +168,13 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Automation/automationAccounts/schedules/read |讀取自動化帳戶排程 |
 | Microsoft.Automation/automationAccounts/schedules/write |撰寫自動化帳戶排程 |
 | Microsoft.Insights/components/* |建立和管理 Insights 元件 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
 
 ### <a name="backup-contributor"></a>備份參與者
-可以管理所有的備份管理動作，除了建立復原服務保存庫，並提供存取 tooothers
+可以管理所有備份管理動作，但是不能建立復原服務保存庫，也不能授予存取權給其他人
 
 | **動作** | |
 | --- | --- |
@@ -183,14 +183,14 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/* | 在復原服務保存庫的備份網狀架構內建立和管理備份容器 |
 | Microsoft.RecoveryServices/Vaults/backupJobs/* | 建立和管理備份作業 |
 | Microsoft.RecoveryServices/Vaults/backupJobsExport/action | 將備份作業匯出到 Excel |
-| Microsoft.RecoveryServices/Vaults/backupManagementMetaData/* | 建立和管理中繼資料相關 toobackup 管理 |
+| Microsoft.RecoveryServices/Vaults/backupManagementMetaData/* | 建立和管理與備份管理相關的中繼資料 |
 | Microsoft.RecoveryServices/Vaults/backupOperationResults/* | 建立和管理備份管理作業的結果 |
 | Microsoft.RecoveryServices/Vaults/backupPolicies/* | 建立和管理備份原則 |
 | Microsoft.RecoveryServices/Vaults/backupProtectableItems/* | 建立和管理可以備份的項目 |
 | Microsoft.RecoveryServices/Vaults/backupProtectedItems/* | 建立和管理備份項目 |
 | Microsoft.RecoveryServices/Vaults/backupProtectionContainers/* | 建立和管理保存備份項目的容器 |
-| Microsoft.RecoveryServices/Vaults/certificates/* | 建立及管理復原服務保存庫中的憑證相關的 toobackup |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/* | 建立及管理相關的擴充的資訊 toovault |
+| Microsoft.RecoveryServices/Vaults/certificates/* | 建立和管理備份復原服務保存庫中與備份相關的憑證 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/* | 建立和管理與保存庫相關的擴充資訊 |
 | Microsoft.RecoveryServices/Vaults/read | 讀取復原服務保存庫 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/* | 管理擷取新建立容器的探索作業 |
 | Microsoft.RecoveryServices/Vaults/registeredIdentities/* | 建立和管理註冊的身分識別 |
@@ -201,7 +201,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Support/* |建立和管理支援票證 |
 
 ### <a name="backup-operator"></a>備份操作員
-可以管理建立保存庫、 移除備份和提供存取 tooothers 以外的所有備份的管理動作
+可以管理所有備份管理動作，但是不能建立保存庫、移除備份，也不能授予存取權給其他人
 
 | **動作** | |
 | --- | --- |
@@ -218,21 +218,21 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.RecoveryServices/Vaults/backupFabrics/protectionContainers/read | 讀取保存備份項目的容器 |
 | Microsoft.RecoveryServices/Vaults/backupJobs/* | 建立和管理備份作業 |
 | Microsoft.RecoveryServices/Vaults/backupJobsExport/action | 將備份作業匯出到 Excel |
-| Microsoft.RecoveryServices/Vaults/backupManagementMetaData/read | 讀取的中繼資料相關 toobackup 管理 |
+| Microsoft.RecoveryServices/Vaults/backupManagementMetaData/read | 讀取與備份管理相關的中繼資料 |
 | Microsoft.RecoveryServices/Vaults/backupOperationResults/* | 建立和管理備份管理作業的結果 |
 | Microsoft.RecoveryServices/Vaults/backupPolicies/operationResults/read | 讀取備份原則上執行作業的結果 |
 | Microsoft.RecoveryServices/Vaults/backupPolicies/read | 讀取備份原則 |
 | Microsoft.RecoveryServices/Vaults/backupProtectableItems/* | 建立和管理可以備份的項目 |
 | Microsoft.RecoveryServices/Vaults/backupProtectedItems/read | 讀取備份的項目 |
 | Microsoft.RecoveryServices/Vaults/backupProtectionContainers/read | 讀取保存備份項目的備份容器 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/read | 讀取延伸資訊相關 toovault |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/write | 寫入擴充資訊相關 toovault |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/read | 讀取與保存庫相關的擴充資訊 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/write | 寫入與保存庫相關的擴充資訊 |
 | Microsoft.RecoveryServices/Vaults/read | 讀取復原服務保存庫 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/* | 管理擷取新建立容器的探索作業 |
-| Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read | Hello 保存庫的註冊項目執行讀取作業的結果 |
-| Microsoft.RecoveryServices/Vaults/registeredIdentities/read | 讀取 hello 保存庫的已註冊的項目 |
-| Microsoft.RecoveryServices/Vaults/registeredIdentities/write | 寫入登錄項目 toovault |
-| Microsoft.RecoveryServices/Vaults/usages/read | 讀取的 hello 復原服務保存庫使用的方式 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read | 讀取保存庫中註冊項目上執行作業的結果 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/read | 讀取保存庫中的註冊項目 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/write | 寫入至保存庫的註冊項目 |
+| Microsoft.RecoveryServices/Vaults/usages/read | 讀取復原服務保存庫的使用方式 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |
 | Microsoft.Storage/storageAccounts/read | 讀取儲存體帳戶 |
@@ -252,18 +252,18 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.RecoveryServices/Vaults/backupJobs/operationResults/read  | 讀取備份作業的結果 |
 | Microsoft.RecoveryServices/Vaults/backupJobs/read  | 讀取備份作業 |
 | Microsoft.RecoveryServices/Vaults/backupJobsExport/action | 將備份作業匯出到 Excel |
-| Microsoft.RecoveryServices/Vaults/backupManagementMetaData/read  | 讀取的中繼資料相關 toobackup 管理 |
+| Microsoft.RecoveryServices/Vaults/backupManagementMetaData/read  | 讀取與備份管理相關的中繼資料 |
 | Microsoft.RecoveryServices/Vaults/backupOperationResults/read  | 讀取備份管理作業結果 |
 | Microsoft.RecoveryServices/Vaults/backupPolicies/operationResults/read  | 讀取備份原則上執行作業的結果 |
 | Microsoft.RecoveryServices/Vaults/backupPolicies/read  | 讀取備份原則 |
 | Microsoft.RecoveryServices/Vaults/backupProtectedItems/read  |  讀取備份的項目 |
 | Microsoft.RecoveryServices/Vaults/backupProtectionContainers/read  | 讀取保存備份項目的備份容器 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/read  | 讀取延伸資訊相關 toovault |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/read  | 讀取與保存庫相關的擴充資訊 |
 | Microsoft.RecoveryServices/Vaults/read  | 讀取復原服務保存庫 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/read  | 讀取擷取新建立容器的探索作業結果 |
-| Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read  | Hello 保存庫的註冊項目執行讀取作業的結果 |
-| Microsoft.RecoveryServices/Vaults/registeredIdentities/read  | 讀取 hello 保存庫的已註冊的項目 |
-| Microsoft.RecoveryServices/Vaults/usages/read  |  讀取的 hello 復原服務保存庫使用的方式 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/operationResults/read  | 讀取保存庫中註冊項目上執行作業的結果 |
+| Microsoft.RecoveryServices/Vaults/registeredIdentities/read  | 讀取保存庫中的註冊項目 |
+| Microsoft.RecoveryServices/Vaults/usages/read  |  讀取復原服務保存庫的使用方式 |
 
 ### <a name="billing-reader"></a>帳單讀取器
 可檢視所有帳單資訊
@@ -282,7 +282,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Authorization/*/read |讀取角色和角色指派 |
 | Microsoft.BizTalkServices/BizTalk/* |建立和管理 BizTalk 服務 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
@@ -294,7 +294,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | --- | --- |
 | Microsoft.Authorization/*/read |讀取角色和角色指派 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
@@ -320,7 +320,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Authorization/*/read |讀取角色和角色指派 |
 | Microsoft.DataFactory/dataFactories/* |建立和管理 Data Factory 以及其中的子資源。 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
@@ -331,13 +331,13 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | **動作** |  |
 | --- | --- |
 | Microsoft.Authorization/*/read |讀取角色和角色指派 |
-| Microsoft.Compute/availabilitySets/read |讀取 hello 屬性的可用性設定組 |
-| Microsoft.Compute/virtualMachines/*/read |讀取虛擬機器 （VM 大小、 執行階段狀態，VM 擴充功能等等） 的 hello 屬性 |
+| Microsoft.Compute/availabilitySets/read |讀取可用性設定組的屬性 |
+| Microsoft.Compute/virtualMachines/*/read |讀取虛擬機器的屬性 (VM 大小、執行階段狀態、VM 擴充功能等) |
 | Microsoft.Compute/virtualMachines/deallocate/action |取消配置虛擬機器 |
-| Microsoft.Compute/virtualMachines/read |讀取虛擬機器的 hello 屬性 |
+| Microsoft.Compute/virtualMachines/read |設定虛擬機器的屬性 |
 | Microsoft.Compute/virtualMachines/restart/action |重新啟動虛擬機器 |
 | Microsoft.Compute/virtualMachines/start/action |啟動虛擬機器 |
-| Microsoft.DevTestLab/*/read |讀取的實驗室環境的 hello 屬性 |
+| Microsoft.DevTestLab/*/read |讀取實驗室的屬性 |
 | Microsoft.DevTestLab/labs/createEnvironment/action |建立實驗室環境 |
 | Microsoft.DevTestLab/labs/formulas/delete |刪除公式 |
 | Microsoft.DevTestLab/labs/formulas/read |讀取公式 |
@@ -345,11 +345,11 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.DevTestLab/labs/policySets/evaluatePolicies/action |評估實驗室原則 |
 | Microsoft.Network/loadBalancers/backendAddressPools/join/action |加入負載平衡器後端位址集區 |
 | Microsoft.Network/loadBalancers/inboundNatRules/join/action |加入負載平衡器輸入 NAT 規則 |
-| Microsoft.Network/networkInterfaces/*/read |讀取網路介面的 hello 屬性 （例如，所有的 hello 負載平衡器 hello 網路介面是的一部分） |
-| Microsoft.Network/networkInterfaces/join/action |加入虛擬機器 tooa 網路介面 |
+| Microsoft.Network/networkInterfaces/*/read |讀取網路介面的屬性 (例如網路介面所屬的所有負載平衡器) |
+| Microsoft.Network/networkInterfaces/join/action |將虛擬機器加入網路介面 |
 | Microsoft.Network/networkInterfaces/read |讀取網路介面 |
 | Microsoft.Network/networkInterfaces/write |撰寫網路介面 |
-| Microsoft.Network/publicIPAddresses/*/read |讀取 hello 屬性的公用 IP 位址 |
+| Microsoft.Network/publicIPAddresses/*/read |讀取公用 IP 位址的屬性 |
 | Microsoft.Network/publicIPAddresses/join/action |加入公用 IP 位址 |
 | Microsoft.Network/publicIPAddresses/read |讀取網路公用 IP 位址 |
 | Microsoft.Network/virtualNetworks/subnets/join/action |加入虛擬網路 |
@@ -366,7 +366,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Authorization/\*/read |讀取角色和角色指派 |
 | Microsoft.Insights/alertRules/\* |建立及管理警示規則 |
 | Microsoft.Network/dnsZones/\* |建立和管理 DNS 區域和記錄 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取 hello hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/\* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/\* |建立和管理支援票證 |
@@ -379,7 +379,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Authorization/*/read |讀取角色和角色指派 |
 | Microsoft.DocumentDb/databaseAccounts/* |建立及管理 DocumentDB 帳戶 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
@@ -392,7 +392,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Authorization/*/read |讀取角色和角色指派 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
 | Microsoft.IntelligentSystems/accounts/* |建立及管理 Intelligent Systems 帳戶 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
@@ -415,11 +415,11 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Insights/AlertRules/* |讀取/寫入/刪除警示規則。 |
 | Microsoft.Insights/components/* |讀取/寫入/刪除 Application Insights 元件。 |
 | Microsoft.Insights/DiagnosticSettings/* |讀取/寫入/刪除診斷設定。 |
-| Microsoft.Insights/eventtypes/* |列出訂用帳戶中的活動記錄檔事件 (管理事件)。 此權限是適用的 tooboth 程式設計和入口網站存取 toohello 活動記錄檔。 |
-| Microsoft.Insights/LogDefinitions/* |此權限是必要的使用者需要存取 tooActivity 透過 hello 入口網站的記錄檔。 列出活動記錄檔中的記錄檔分類。 |
+| Microsoft.Insights/eventtypes/* |列出訂用帳戶中的活動記錄檔事件 (管理事件)。 此權限適用於以程式設計方式存取和入口網站存取活動記錄檔。 |
+| Microsoft.Insights/LogDefinitions/* |此為使用者需要透過入口網站存取活動記錄檔時所需的權限。 列出活動記錄檔中的記錄檔分類。 |
 | Microsoft.Insights/MetricDefinitions/* |讀取度量定義 (可用資源的度量類型清單)。 |
 | Microsoft.Insights/Metrics/* |讀取資源的度量。 |
-| Microsoft.Insights/Register/Action |註冊 hello Microsoft.Insights 提供者。 |
+| Microsoft.Insights/Register/Action |註冊 Microsoft Insights 提供者。 |
 | Microsoft.Insights/webtests/* |讀取/寫入/刪除 Application Insights Web 測試。 |
 | Microsoft.OperationalInsights/workspaces/intelligencepacks/* |讀取/寫入/刪除 Log Analytics 解決方案套件。 |
 | Microsoft.OperationalInsights/workspaces/savedSearches/* |讀取/寫入/刪除 Log Analytics 已儲存的搜尋。 |
@@ -435,7 +435,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Authorization/*/read |讀取角色和角色指派 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
 | Microsoft.Network/* |建立和管理網路 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
@@ -447,7 +447,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | --- | --- |
 | Microsoft.Authorization/*/read |讀取角色和角色指派 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
@@ -475,7 +475,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Authorization/*/read |讀取角色和角色指派 |
 | Microsoft.Cache/redis/* |建立和管理 Redis 快取 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
@@ -487,7 +487,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | --- | --- |
 | Microsoft.Authorization/*/read |讀取角色和角色指派 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Scheduler/jobcollections/* |建立和管理工作集合 |
@@ -500,7 +500,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | --- | --- |
 | Microsoft.Authorization/*/read |讀取角色和角色指派 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Search/searchServices/* |建立和管理搜尋服務 |
@@ -516,23 +516,23 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.ClassicCompute/virtualMachines/*/write |撰寫虛擬機器的組態 |
 | Microsoft.ClassicNetwork/*/read |讀取傳統網路的組態資訊 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Security/* |建立和管理安全性元件和原則 |
 | Microsoft.Support/* |建立和管理支援票證 |
 
 ### <a name="site-recovery-contributor"></a>Site Recovery 參與者
-可以管理所有的站台復原管理動作，除了建立復原服務保存庫並指派存取權限 tooother 使用者
+可以管理所有 Site Recovery 管理動作，但是不能建立復原服務保存庫，也不能授予存取權給其他使用者
 
 | **動作** | |
 | --- | --- |
 | Microsoft.Authorization/*/read | 讀取角色和角色指派 |
 | Microsoft.Insights/alertRules/* | 建立及管理警示規則 |
 | Microsoft.Network/virtualNetworks/read | 讀取虛擬網路 |
-| Microsoft.RecoveryServices/Vaults/certificates/write | 更新 hello 保存庫認證憑證 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/* | 建立及管理相關的擴充的資訊 toovault |
-| Microsoft.RecoveryServices/Vaults/monitoringAlerts/*  | 讀取 hello 復原服務保存庫的警示 |
+| Microsoft.RecoveryServices/Vaults/certificates/write | 更新保存庫認證憑證 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/* | 建立和管理與保存庫相關的擴充資訊 |
+| Microsoft.RecoveryServices/Vaults/monitoringAlerts/*  | 讀取復原服務保存庫的警示 |
 | Microsoft.RecoveryServices/Vaults/monitoringConfigurations/ notificationConfiguration/read  | 讀取復原服務保存庫通知設定 |
 | Microsoft.RecoveryServices/Vaults/read | 讀取復原服務保存庫 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/read | 管理擷取新建立容器的探索作業 |
@@ -546,22 +546,22 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.RecoveryServices/Vaults/storageConfig/* | 建立和管理復原服務保存庫的儲存體設定 |
 | Microsoft.RecoveryServices/Vaults/tokenInfo/read | 讀取復原服務保存庫權杖資訊 |
 | Microsoft.RecoveryServices/Vaults/usages/read | 讀取復原服務保存庫的使用量詳細資料 |
-| Microsoft.ResourceHealth/availabilityStatuses/read | 讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |
 | Microsoft.Storage/storageAccounts/read | 讀取儲存體帳戶 |
 | Microsoft.Support/* |建立和管理支援票證 |
 
 ### <a name="site-recovery-operator"></a>Site Recovery 操作員
-可以使用容錯移轉和容錯回復，但是可以不執行其他站台復原 」 管理動作或指派存取 tooother 使用者
+可以容錯移轉和容錯回復，但是無法執行其他 Site Recovery 管理動作或將存取權指派給其他使用者
 
 | **動作** | |
 | --- | --- |
 | Microsoft.Authorization/*/read | 讀取角色和角色指派 |
 | Microsoft.Insights/alertRules/* | 建立及管理警示規則 |
 | Microsoft.Network/virtualNetworks/read | 讀取虛擬網路 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/read | 讀取延伸資訊相關 toovault |
-| Microsoft.RecoveryServices/Vaults/monitoringAlerts/*  | 讀取 hello 復原服務保存庫的警示 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/read | 讀取與保存庫相關的擴充資訊 |
+| Microsoft.RecoveryServices/Vaults/monitoringAlerts/*  | 讀取復原服務保存庫的警示 |
 | Microsoft.RecoveryServices/Vaults/monitoringConfigurations/ notificationConfiguration/read  | 讀取復原服務保存庫通知設定 |
 | Microsoft.RecoveryServices/Vaults/read | 讀取復原服務保存庫 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/read | 管理擷取新建立容器的探索作業 |
@@ -569,7 +569,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.RecoveryServices/Vaults/registeredIdentities/read | 讀取資源的已註冊容器 |
 | Microsoft.RecoveryServices/vaults/replicationAlertSettings/read | 讀取複寫警示設定 |
 | Microsoft.RecoveryServices/vaults/replicationEvents/read | 讀取複寫事件 |
-| Microsoft.RecoveryServices/vaults/replicationFabrics/checkConsistency/action | 檢查一致性 hello 網狀架構 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/checkConsistency/action | 檢查網狀架構的一致性 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/read | 讀取複寫網狀架構 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ reassociateGateway/action | 重新關聯複寫閘道 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/renewcertificate/action | 更新複寫網狀架構憑證 |
@@ -587,7 +587,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/testFailover/action | 啟動受保護項目的測試容錯移轉 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ testFailoverCleanup/action | 啟動測試容錯移轉的清除 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ unplannedFailover/action | 啟動受保護項目的未計劃容錯移轉 |
-| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ updateMobilityService/action | 更新 hello 行動服務 |
+| Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectedItems/ updateMobilityService/action | 更新行動服務 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationProtectionContainers/replicationProtectionContainerMappings/read | 讀取保護容器對應 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationRecoveryServicesProviders/read | 讀取復原服務提供者 |
 | Microsoft.RecoveryServices/vaults/replicationFabrics/ replicationRecoveryServicesProviders/refreshProvider/action | 重新整理復原服務提供者 |
@@ -606,7 +606,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.RecoveryServices/Vaults/storageConfig/read | 讀取復原服務保存庫的儲存體設定 |
 | Microsoft.RecoveryServices/Vaults/tokenInfo/read | 讀取復原服務保存庫權杖資訊 |
 | Microsoft.RecoveryServices/Vaults/usages/read | 讀取復原服務保存庫的使用量詳細資料 |
-| Microsoft.ResourceHealth/availabilityStatuses/read | 讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read | 讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* | 建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read | 讀取資源群組 |
 | Microsoft.Storage/storageAccounts/read | 讀取儲存體帳戶 |
@@ -618,8 +618,8 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | **動作** | |
 | --- | --- |
 | Microsoft.Authorization/*/read | 讀取角色和角色指派 |
-| Microsoft.RecoveryServices/Vaults/extendedInformation/read  | 讀取延伸資訊相關 toovault |
-| Microsoft.RecoveryServices/Vaults/monitoringAlerts/read  | 讀取 hello 復原服務保存庫的警示 |
+| Microsoft.RecoveryServices/Vaults/extendedInformation/read  | 讀取與保存庫相關的擴充資訊 |
+| Microsoft.RecoveryServices/Vaults/monitoringAlerts/read  | 讀取復原服務保存庫的警示 |
 | Microsoft.RecoveryServices/Vaults/monitoringConfigurations/ notificationConfiguration/read  | 讀取復原服務保存庫通知設定 |
 | Microsoft.RecoveryServices/Vaults/read  | 讀取復原服務保存庫 |
 | Microsoft.RecoveryServices/Vaults/refreshContainers/read  | 管理擷取新建立容器的探索作業 |
@@ -654,7 +654,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | --- | --- |
 | Microsoft.Authorization/*/read |讀取角色和角色指派 |
 | Microsoft.Insights/alertRules/* |建立及管理警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Sql/servers/databases/* |建立和管理 SQL 資料庫 |
@@ -672,13 +672,13 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Sql/servers/databases/securityMetrics/* |無法編輯安全性度量 |
 
 ### <a name="sql-security-manager"></a>SQL 安全性管理員
-可以管理 hello SQL 伺服器和資料庫的安全性相關原則
+可以管理 SQL Server 和資料庫的安全性相關原則
 
 | **動作** |  |
 | --- | --- |
 | Microsoft.Authorization/*/read |讀取 Microsoft 授權 |
 | Microsoft.Insights/alertRules/* |建立和管理 Insights 警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Sql/servers/auditingPolicies/* |建立和管理 SQL Server 稽核原則 |
@@ -705,7 +705,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | --- | --- |
 | Microsoft.Authorization/*/read |讀取授權 |
 | Microsoft.Insights/alertRules/* |建立和管理 Insights 警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Sql/servers/* |建立和管理 SQL Server |
@@ -732,27 +732,27 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Authorization/*/read |讀取授權 |
 | Microsoft.ClassicStorage/storageAccounts/* |建立及管理儲存體帳戶 |
 | Microsoft.Insights/alertRules/* |建立和管理 Insights 警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
 
 ### <a name="storage-account-contributor"></a>儲存體帳戶參與者
-可以管理儲存體帳戶，但是不會存取 toothem。
+可管理儲存體帳戶，但無法存取它們。
 
 | **動作** |  |
 | --- | --- |
 | Microsoft.Authorization/*/read |讀取所有授權 |
 | Microsoft.Insights/alertRules/* |建立和管理 Insights 警示規則 |
 | Microsoft.Insights/diagnosticSettings/* |管理診斷設定 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Storage/storageAccounts/* |建立及管理儲存體帳戶 |
 | Microsoft.Support/* |建立和管理支援票證 |
 
 ### <a name="support-request-contributor"></a>支援要求參與者
-可以建立及管理支援票證 hello 訂用帳戶範圍
+可以建立和管理訂用帳戶範圍的支援票證
 
 | **動作** |  |
 | --- | --- |
@@ -761,7 +761,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Resources/subscriptions/resourceGroups/read | 讀取角色和角色指派 |
 
 ### <a name="user-access-administrator"></a>使用者存取系統管理員
-可以管理使用者存取 tooAzure 資源
+可以管理 Azure 資源的使用者存取
 
 | **動作** |  |
 | --- | --- |
@@ -770,7 +770,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Support/* |建立和管理支援票證 |
 
 ### <a name="classic-virtual-machine-contributor"></a>傳統虛擬機器參與者
-可管理傳統虛擬機器，但不是 hello 虛擬網路或儲存體帳戶 toowhich 連線
+可以管理傳統虛擬機器，但是無法管理它們連接的虛擬網路或儲存體帳戶
 
 | **動作** |  |
 | --- | --- |
@@ -787,13 +787,13 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.ClassicStorage/storageAccounts/listKeys/action |列出儲存體帳戶金鑰 |
 | Microsoft.ClassicStorage/storageAccounts/read |讀取傳統儲存體帳戶 |
 | Microsoft.Insights/alertRules/* |建立和管理 Insights 警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
 
 ### <a name="virtual-machine-contributor"></a>虛擬機器參與者
-可以管理虛擬機器，但不是 hello 虛擬網路或存放裝置帳戶 toowhich 連線
+可以管理虛擬機器，但是無法管理它們連接的虛擬網路或儲存體帳戶
 
 | **動作** |  |
 | --- | --- |
@@ -816,7 +816,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Network/publicIPAddresses/read |讀取網路公用 IP 位址 |
 | Microsoft.Network/virtualNetworks/read |讀取虛擬網路 |
 | Microsoft.Network/virtualNetworks/subnets/join/action |加入虛擬網路子網路 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Storage/storageAccounts/listKeys/action |列出儲存體帳戶金鑰 |
@@ -831,7 +831,7 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | Microsoft.Authorization/*/read |讀取授權 |
 | Microsoft.ClassicNetwork/* |建立和管理傳統網路 |
 | Microsoft.Insights/alertRules/* |建立和管理 Insights 警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
@@ -843,32 +843,32 @@ hello 下列表格說明 hello tooeach 權限的特定權限。 這可以包括�
 | --- | --- |
 | Microsoft.Authorization/*/read |讀取授權 |
 | Microsoft.Insights/alertRules/* |建立和管理 Insights 警示規則 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
 | Microsoft.Web/serverFarms/* |建立和管理伺服器陣列 |
 
 ### <a name="website-contributor"></a>網站參與者
-可以管理網站，但不是 hello web 計劃 toowhich 連線
+可以管理網站，但是不能管理它們連接的 Web 方案
 
 | **動作** |  |
 | --- | --- |
 | Microsoft.Authorization/*/read |讀取授權 |
 | Microsoft.Insights/alertRules/* |建立和管理 Insights 警示規則 |
 | Microsoft.Insights/components/* |建立和管理 Insights 元件 |
-| Microsoft.ResourceHealth/availabilityStatuses/read |讀取的 hello 資源健全狀況 |
+| Microsoft.ResourceHealth/availabilityStatuses/read |讀取資源的健康狀態 |
 | Microsoft.Resources/deployments/* |建立和管理資源群組部署 |
 | Microsoft.Resources/subscriptions/resourceGroups/read |讀取資源群組 |
 | Microsoft.Support/* |建立和管理支援票證 |
 | Microsoft.Web/certificates/* |建立和管理網站憑證 |
-| Microsoft.Web/listSitesAssignedToHostName/read |讀取網站指派 tooa 主機名稱 |
+| Microsoft.Web/listSitesAssignedToHostName/read |讀取指派給主機名稱的網站 |
 | Microsoft.Web/serverFarms/join/action |加入伺服器陣列 |
 | Microsoft.Web/serverFarms/read |讀取伺服器陣列 |
-| Microsoft.Web/sites/* |建立和管理網站 （網站架設也需要寫入權限 toohello 相關聯應用程式服務方案） |
+| Microsoft.Web/sites/* |建立和管理網站 (建立網站也需要相關聯應用程式服務方案的寫入權限) |
 
 ## <a name="see-also"></a>另請參閱
-* [角色型存取控制](role-based-access-control-configure.md)： 開始使用 RBAC hello Azure 入口網站中。
-* [在 Azure rbac 進行的自訂角色](role-based-access-control-custom-roles.md)： 了解 toocreate 自訂角色 toofit 您存取需要的方式。
-* [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)︰追蹤 RBAC 中的角色指派變更。
+* [角色型存取控制](role-based-access-control-configure.md)：開始在 Azure 入口網站中使用 RBAC。
+* [Azure RBAC 中的自訂角色](role-based-access-control-custom-roles.md)︰了解如何建立自訂角色，以符合您的存取需求。
+* [建立存取權變更歷程記錄報告](role-based-access-control-access-change-history-report.md)︰記錄 RBAC 中的角色指派變更。
 * [角色型存取控制疑難排解](role-based-access-control-troubleshooting.md)︰取得修正常見問題的建議。

@@ -1,6 +1,6 @@
 ---
-title: "在 Azure API 管理原則中的 aaaHow toouse 屬性"
-description: "深入了解如何在 Azure API 管理原則中的 toouse 屬性。"
+title: "如何在 Azure API 管理原則中使用屬性"
+description: "了解如何在 Azure API 管理原則中使用屬性。"
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,38 +14,38 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: 1ff096deeb97543b48dcf1f40be9dbfcbcd09542
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3b0fe2a300038e13cc488bdb4f50f8be270ea8f4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-properties-in-azure-api-management-policies"></a>如何在 Azure API 管理原則中的 toouse 屬性
-API 管理原則是 hello 的透過組態 API toochange hello 行為允許 hello publisher 的 hello 系統的強大功能。 原則是循序 hello 要求上執行的陳述式的集合或應用程式開發介面的回應。 原則陳述可以使用引述的文字、值、原則運算式及屬性來建構。 
+# <a name="how-to-use-properties-in-azure-api-management-policies"></a>如何在 Azure API 管理原則中使用屬性
+API 管理原則是系統的強大功能，可讓發行者透過設定來變更 API 的行為。 原則是陳述式的集合，會因 API 的要求或回應循序執行。 原則陳述可以使用引述的文字、值、原則運算式及屬性來建構。 
 
-每個 API 管理服務執行個體有一個屬性集合的全域 toohello 服務執行個體索引鍵/值組。 這些屬性可以跨所有應用程式開發介面設定和原則是使用的 toomanage 常數字串值。 每個屬性具有下列屬性的 hello。
+每個 API 管理服務執行個體都有服務執行個體全域適用的之鍵/值組的屬性集合。 這個屬性可用來管理所有 API 組態及原則的常數字串值。 每個屬性都有下列屬性。
 
 | 屬性 | 類型 | 說明 |
 | --- | --- | --- |
-| Name |字串 |hello hello 屬性名稱。 只能包含字母、數字、句點、破折號和底線字元。 |
-| 值 |字串 |hello hello 屬性值。 不能是空白或只由空白字元組成。 |
-| Secret |布林值 |決定是否 hello 值是密碼，以及應該加密。 |
-| 標記 |字串陣列 |選擇性標記，提供可使用的 toofilter hello 屬性清單時。 |
+| Name |string |屬性的名稱。 只能包含字母、數字、句點、破折號和底線字元。 |
+| 值 |string |屬性的值。 不能是空白或只由空白字元組成。 |
+| Secret |布林值 |決定該值是否為密碼且是否應該加密。 |
+| 標記 |字串陣列 |若有提供選用的標記，則可用來篩選屬性清單。 |
 
-屬性在 hello hello 發行者入口網站中設定**屬性** 索引標籤。在下列範例的 hello，會設定三個屬性。
+屬性是在發行者入口網站上的 [屬性]  索引標籤中設定。 在以下範例中，設定了三個屬性。
 
 ![屬性][api-management-properties]
 
-屬性值可以包含常值字串及 [原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)。 hello 下表顯示 hello 先前的三個範例屬性和其屬性。 hello 值`ExpressionProperty`是可傳回字串，包含的原則運算式 hello 目前日期和時間。 hello 屬性`ContosoHeaderValue`標示為機密，因此不會顯示其值。
+屬性值可以包含常值字串及 [原則運算式](https://msdn.microsoft.com/library/azure/dn910913.aspx)。 下表顯示之前的三個範例屬性和其屬性。 `ExpressionProperty` 的值是會傳回包含目前日期與時間之字串的運算式。 `ContosoHeaderValue` 屬性已標記為密碼，所以未顯示其值。
 
-| 名稱 | 值 | Secret | 標記 |
+| Name | 值 | Secret | 標記 |
 | --- | --- | --- | --- |
 | ContosoHeader |TrackingId |False |Contoso |
 | ContosoHeaderValue |•••••••••••••••••••••• |True |Contoso |
 | ExpressionProperty |@(DateTime.Now.ToString()) |False | |
 
-## <a name="toouse-a-property"></a>toouse 屬性
-toouse 原則中的屬性，對雙括號內的位置 hello 屬性名稱類似`{{ContosoHeader}}`hello 下列範例所示。
+## <a name="to-use-a-property"></a>使用屬性
+若要在原則中使用屬性，請將屬性名稱放在雙大括號 (如 `{{ContosoHeader}}`) 內，如以下範例所示。
 
 ```xml
 <set-header name="{{ContosoHeader}}" exists-action="override">
@@ -53,11 +53,11 @@ toouse 原則中的屬性，對雙括號內的位置 hello 屬性名稱類似`{{
 </set-header>
 ```
 
-在此範例中，`ContosoHeader`做為標頭中的 hello 名稱`set-header`原則，和`ContosoHeaderValue`做為該標頭中的 hello 值。 此原則會評估要求或回應 toohello API 管理閘道器，`{{ContosoHeader}}`和`{{ContosoHeaderValue}}`其各自的屬性值取代。
+在此範例中，`ContosoHeader` 是做為 `set-header` 原則中標頭的名稱，且 `ContosoHeaderValue` 是用來做為該標頭的值。 當此原則在對 API 管理閘道提出要求或回應管理閘道期間被評估時，`{{ContosoHeader}}` 和 `{{ContosoHeaderValue}}` 會被其各自的屬性值取代。
 
-屬性可用來當做完整的屬性或項目值 hello 先前範例中所示，但它們也可以插入或結合常值文字運算式的一部分，hello 下列範例所示：`<set-header name = "CustomHeader{{ContosoHeader}}" ...>`
+如前一個範例所示，屬性可以做為完整的屬性或元素值使用，但它們也可以插入部分的常值文字運算式或與之結合，如以下範例所示： `<set-header name = "CustomHeader{{ContosoHeader}}" ...>`
 
-屬性也可以包含原則運算式。 在下列範例的 hello，hello`ExpressionProperty`用。
+屬性也可以包含原則運算式。 以下範例使用 `ExpressionProperty`。
 
 ```xml
 <set-header name="CustomHeader" exists-action="override">
@@ -65,68 +65,68 @@ toouse 原則中的屬性，對雙括號內的位置 hello 屬性名稱類似`{{
 </set-header>
 ```
 
-當評估此原則時，`{{ExpressionProperty}}` 會替代為其值 `@(DateTime.Now.ToString())`。 由於 hello 值為原則運算式，評估 hello 運算式，以及 hello 原則會繼續執行。
+當評估此原則時，`{{ExpressionProperty}}` 會替代為其值 `@(DateTime.Now.ToString())`。 因為該值是原則運算式，所以會評估運算式，且原則會繼續執行。
 
-您可以在 hello 開發人員入口網站中測試時藉由呼叫包含屬性的原則在範圍內的運算。 在下列範例的 hello，此作業稱為 hello 兩個先前的範例與`set-header`原則與屬性。 請注意 hello 回應包含兩個屬性搭配使用原則設定的自訂標頭。
+您可以在開發人員入口網站測試此項目，方法是呼叫在範圍內有包含屬性支援則的作業。 在下列範例中，已使用前兩個含屬性的範例 `set-header` 原則呼叫作業。 請注意，該回應中包含兩個已使用含屬性原則所設定的自訂標頭。
 
 ![開發人員入口網站][api-management-send-results]
 
-如果您看一下 hello [API 偵測器追蹤](api-management-howto-api-inspector.md)呼叫包含 hello 兩個先前範例原則使用的屬性，請參閱 hello 兩`set-header`hello 插入以及 hello 原則運算式的屬性值與原則評估 hello 屬性包含 hello 原則運算式。
+如果您查看包含之前兩個含屬性之範例原則的呼叫的 [API 檢查器追蹤](api-management-howto-api-inspector.md)，會看到兩個已插入屬性值的 `set-header` 原則，以及含原則運算式之屬性的原則運算式評估。
 
 ![API 檢查器追蹤][api-management-api-inspector-trace]
 
-請注意，雖然屬性值可以包含原則運算式，但屬性值不能包含其他屬性。 如果文字包含的屬性參考用於屬性值，例如`Property value text {{MyProperty}}`，屬性參考不會被取代，而且會納入為 hello 屬性值的一部分。
+請注意，雖然屬性值可以包含原則運算式，但屬性值不能包含其他屬性。 如果文字包含做為屬性值的屬性參照 (例如 `Property value text {{MyProperty}}`)，該屬性參照不會被取代，且將會包含做為屬性值的一部分。
 
-## <a name="toocreate-a-property"></a>toocreate 屬性
-toocreate 屬性中，按一下**將屬性加入**上 hello**屬性** 索引標籤。
+## <a name="to-create-a-property"></a>建立屬性
+若要建立屬性，請按一下 [屬性] 索引標籤上的 [新增屬性]。
 
 ![新增屬性][api-management-properties-add-property-menu]
 
-[名稱] 和 [值] 都是必要值。 如果這個屬性值是密碼，請檢查 hello**這是密碼**核取方塊。 輸入一或多個選用標記 toohelp 與組織您的內容，然後按一下 **儲存**。
+[名稱] 和 [值] 都是必要值。 如果此屬性值是密碼，請選取 [這是密碼]  核取方塊。 輸入一或多個選擇性標籤來協助組織您的屬性，然後按一下 [儲存] 。
 
 ![新增屬性][api-management-properties-add-property]
 
-儲存新的屬性時，hello**搜尋屬性**文字方塊中會填入 hello hello 新屬性名稱，並顯示 hello 新屬性。 所有屬性，都清除 toodisplay hello**搜尋屬性**文字方塊中，然後按 enter。
+儲存新屬性之後，[搜尋屬性]  文字方塊會填入新屬性的名稱並且顯示新屬性。 若要顯示所有屬性，請清除 [搜尋屬性]  文字方塊並按 Enter。
 
 ![屬性][api-management-properties-property-saved]
 
-如需建立屬性，使用 hello REST API 的資訊，請參閱[建立屬性，使用 REST API hello](https://msdn.microsoft.com/library/azure/mt651775.aspx#Put)。
+如需使用 REST API 建立屬性的詳細資訊，請參閱 [使用 REST API 建立屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Put)。
 
-## <a name="tooedit-a-property"></a>tooedit 屬性
-tooedit 屬性中，按一下**編輯**hello 屬性 tooedit 旁邊。
+## <a name="to-edit-a-property"></a>編輯屬性
+若要編輯屬性，請按一下屬性旁邊的 [編輯]  來編輯。
 
 ![編輯屬性][api-management-properties-edit]
 
-進行想要的變更，然後按一下 [儲存] 。 如果您變更 hello 屬性名稱，參考該屬性的任何原則將會自動更新的 toouse hello 新名稱。
+進行想要的變更，然後按一下 [儲存] 。 如果您變更屬性名稱，任何參照該屬性的原則會自動更新以使用新的名稱。
 
 ![編輯屬性][api-management-properties-edit-property]
 
-如需編輯該屬性使用 hello REST API 的資訊，請參閱[編輯該屬性使用 REST API hello](https://msdn.microsoft.com/library/azure/mt651775.aspx#Patch)。
+如需使用 REST API 編輯屬性的詳細資訊，請參閱 [使用 REST API 編輯屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Patch)。
 
-## <a name="toodelete-a-property"></a>toodelete 屬性
-toodelete 屬性中，按一下**刪除**hello 屬性 toodelete 旁邊。
+## <a name="to-delete-a-property"></a>刪除屬性
+若要刪除屬性，請按一下屬性旁邊的 [刪除]  來刪除。
 
 ![刪除屬性][api-management-properties-delete]
 
-按一下**是，將它刪除**tooconfirm。
+按一下 [Yes, delete it]  加以確認。
 
 ![Confirm delete][api-management-delete-confirm]
 
 > [!IMPORTANT]
-> Hello 屬性的任何原則所參考時，如果您將無法 toosuccessfully 從使用它的所有原則移除 hello 屬性之前將它刪除。
+> 如有任何原則參照該屬性，則您必須將該屬性從所有使用它的原則中移除，才能成功刪除該屬性。
 > 
 > 
 
-如需刪除該屬性使用 hello REST API 的資訊，請參閱[刪除該屬性使用 REST API hello](https://msdn.microsoft.com/library/azure/mt651775.aspx#Delete)。
+如需使用 REST API 刪除屬性的詳細資訊，請參閱 [使用 REST API 刪除屬性](https://msdn.microsoft.com/library/azure/mt651775.aspx#Delete)。
 
-## <a name="toosearch-and-filter-properties"></a>toosearch 和篩選屬性
-hello**屬性** 索引標籤包含搜尋和篩選功能 toohelp 管理您的屬性。 toofilter hello 屬性清單，以屬性名稱輸入搜尋詞彙在 hello**搜尋屬性**文字方塊。 所有屬性，都清除 toodisplay hello**搜尋屬性**文字方塊中，然後按 enter。
+## <a name="to-search-and-filter-properties"></a>搜尋與篩選屬性
+[屬性]  索引標籤包括可協助您管理屬性的搜尋與篩選功能。 若要按照屬性名稱篩選屬性清單，請在 [搜尋屬性]  文字方塊中輸入搜尋字詞。 若要顯示所有屬性，請清除 [搜尋屬性]  文字方塊並按 Enter。
 
 ![搜尋][api-management-properties-search]
 
-toofilter hello 屬性清單的標記值，將一個或多個標記輸入 hello**依標記篩選**文字方塊。 所有屬性，都清除 toodisplay hello**依標記篩選**文字方塊中，然後按 enter。
+若要按照標籤值篩選屬性清單，請在 [依標籤篩選]  文字方塊中輸入一或多個標籤。 若要顯示所有屬性，請清除 [依標籤篩選]  文字方塊並按 Enter。
 
-![Filter][api-management-properties-filter]
+![篩選器][api-management-properties-filter]
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解原則的使用方式

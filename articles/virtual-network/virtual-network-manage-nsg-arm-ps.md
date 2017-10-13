@@ -1,6 +1,6 @@
 ---
-title: "aaaManage 網路安全性群組-Azure PowerShell |Microsoft 文件"
-description: "了解如何 toomanage 網路使用 PowerShell 的安全性群組。"
+title: "管理網路安全性群組 - Azure PowerShell | Microsoft Docs"
+description: "了解如何使用 PowerShell 管理網路安全性群組。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,11 +16,11 @@ ms.workload: infrastructure-services
 ms.date: 03/14/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 930fe5e0827896ad67b24d84e41a5d3f898ba838
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ca7f4926ca4edf9d20612aca74f6ae5f0ed847b3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-network-security-groups-using-powershell"></a>使用 PowerShell 管理網路安全性群組
 
@@ -29,7 +29,7 @@ ms.lasthandoff: 10/06/2017
 [!INCLUDE [virtual-network-manage-nsg-intro-include.md](../../includes/virtual-network-manage-nsg-intro-include.md)]
 
 > [!NOTE]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文說明如何使用 hello Resource Manager 部署模型，Microsoft 建議您針對大部分新的部署，而不是 hello 傳統部署模型。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用 Resource Manager 部署模型，Microsoft 建議大部分的新部署使用此模型，而不是傳統部署模型。
 >
 
 [!INCLUDE [virtual-network-manage-nsg-arm-scenario-include.md](../../includes/virtual-network-manage-nsg-arm-scenario-include.md)]
@@ -40,7 +40,7 @@ ms.lasthandoff: 10/06/2017
 您可以檢視您現有的 NSG、擷取現有 NSG 的規則，並找出與 NSG 相關聯的資源。
 
 ### <a name="view-existing-nsgs"></a>檢視現有的 NSG
-tooview 所有的現有 Nsg 中的訂用帳戶，執行 hello `Get-AzureRmNetworkSecurityGroup` cmdlet。
+若要檢視訂用帳戶中所有現有的 NSG，請執行 `Get-AzureRmNetworkSecurityGroup` Cmdlet。
 
 預期的結果：
 
@@ -87,7 +87,7 @@ tooview 所有的現有 Nsg 中的訂用帳戶，執行 hello `Get-AzureRmNetwor
     Subnets              : [...]
 
 
-tooview hello 清單 Nsg 在特定的資源群組中，執行 hello `Get-AzureRmNetworkSecurityGroup` cmdlet。
+若要檢視特定資源群組中的 NSG 清單，請執行 `Get-AzureRmNetworkSecurityGroup` Cmdlet。
 
 預期的輸出：
 
@@ -120,7 +120,7 @@ tooview hello 清單 Nsg 在特定的資源群組中，執行 hello `Get-AzureRm
     Subnets              : [...]
 
 ### <a name="list-all-rules-for-an-nsg"></a>列出 NSG 的所有規則
-名為 NSG tooview hello 規則**NSG 前端**，輸入下列命令的 hello:
+若要檢視名為 **NSG-FrontEnd** 之 NSG 的規則，請輸入下列命令：
 
 ```powershell
 Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd | Select SecurityRules -ExpandProperty SecurityRules
@@ -157,17 +157,17 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd | S
     Direction                : Inbound
 
 > [!NOTE]
-> 您也可以使用`Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name "NSG-FrontEnd" | Select DefaultSecurityRules -ExpandProperty DefaultSecurityRules`toolist hello 預設規則從 hello **NSG 前端**NSG。
+> 您也可以使用 `Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name "NSG-FrontEnd" | Select DefaultSecurityRules -ExpandProperty DefaultSecurityRules` 從 **NSG-FrontEnd** NSG 列出預設的規則。
 > 
 
 ### <a name="view-nsgs-associations"></a>檢視 NSG 關聯
-tooview 哪些資源 hello **NSG 前端**NSG 是關聯，請執行的 hello 的下列命令：
+若要檢視與 **NSG-FrontEnd** NSG 相關聯的資源，請執行下列命令：
 
 ```powershell
 Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
 ```
 
-尋找 hello **NetworkInterfaces**和**子網路**屬性如下所示：
+尋找 **NetworkInterfaces** 和 **Subnets** 屬性，如下所示︰
 
     NetworkInterfaces    : []
     Subnets              : [
@@ -177,21 +177,21 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
                              }
                            ]
 
-在 hello 上述範例中，hello NSG 不相關聯的 tooany 網路介面 (Nic)。它是相關聯的 tooa 名為的子網路**前端**。
+在前一個範例中，NSG 沒有與任何網路介面 (NIC) 相關聯，而是與名稱為 **FrontEnd** 的子網路相關聯。
 
 ## <a name="manage-rules"></a>管理規則
-您可以加入現有的 NSG 規則 tooan、 編輯現有的規則和移除規則。
+您可以將規則新增至現有的 NSG、編輯現有的規則，以及移除規則。
 
 ### <a name="add-a-rule"></a>新增規則
-規則，允許 tooadd**輸入**流量 tooport **443**從任何機器 toohello **NSG 前端**NSG，完成下列步驟的 hello:
+若要新增規則，允許來自任何電腦的連接埠 **443** 的**輸入**流量流向 **NSG-FrontEnd** NSG，請完成下列步驟：
 
-1. 執行下列命令 tooretrieve hello 現有 NSG 中的 hello，並將它儲存在變數中：
+1. 執行下列命令來擷取現有的 NSG，並將其儲存在變數中：
 
     ```powershell   
     $nsg = Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     ```
 
-2. 執行下列命令 tooadd hello 規則 toohello NSG:
+2. 執行下列命令，將規則新增至 NSG：
 
     ```powershell
     Add-AzureRmNetworkSecurityRuleConfig -NetworkSecurityGroup $nsg `
@@ -207,12 +207,12 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     -DestinationPortRange 443
     ```
 
-3. toosave hello 變更 toohello NSG，執行下列命令的 hello:
+3. 若要儲存對 NSG 所進行的變更，請執行下列命令：
 
     ```powershell
     Set-AzureRmNetworkSecurityGroup -NetworkSecurityGroup $nsg
     ```
-    顯示只有 hello 安全性規則的預期的輸出：
+    僅顯示安全性規則的預期輸出：
    
         Name                 : NSG-FrontEnd
         ...
@@ -243,15 +243,15 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
                                ]
 
 ### <a name="change-a-rule"></a>變更規則
-建立上述 tooallow toochange hello 規則輸入流量從 hello**網際網路**，請遵循下列 hello 步驟。
+若要變更以上所建立的規則，僅允許來自 **網際網路** 的輸入流量，請依照下列步驟進行。
 
-1. 執行下列命令 tooretrieve hello 現有 NSG 中的 hello，並將它儲存在變數中：
+1. 執行下列命令來擷取現有的 NSG，並將其儲存在變數中：
 
     ```powershell 
     $nsg = Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     ```
 
-2. 執行下列命令以 hello 新規則設定的 hello:
+2. 使用新的規則設定執行下列命令︰
 
     ```powershell
     Set-AzureRmNetworkSecurityRuleConfig -NetworkSecurityGroup $nsg `
@@ -267,13 +267,13 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     -DestinationPortRange 443
     ```
 
-3. toosave hello 變更 toohello NSG，執行下列命令的 hello:
+3. 若要儲存對 NSG 所進行的變更，請執行下列命令：
 
     ```powershell
     Set-AzureRmNetworkSecurityGroup -NetworkSecurityGroup $nsg
     ```
 
-    顯示只有 hello 安全性規則的預期的輸出：
+    僅顯示安全性規則的預期輸出：
    
         Name                 : NSG-FrontEnd
         ...
@@ -304,25 +304,25 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
                                ]
 
 ### <a name="delete-a-rule"></a>刪除規則
-1. 執行下列命令 tooretrieve hello 現有 NSG 中的 hello，並將它儲存在變數中：
+1. 執行下列命令來擷取現有的 NSG，並將其儲存在變數中：
 
     ```powershell
     $nsg = Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     ```
 
-2. 執行 hello hello NSG 中的下列命令 tooremove hello 規則：
+2. 執行下列命令，從 NSG 中移除規則︰
 
     ```powershell
     Remove-AzureRmNetworkSecurityRuleConfig -NetworkSecurityGroup $nsg -Name https-rule
     ```
 
-3. 儲存 hello 所做的變更 toohello NSG，藉由執行下列命令的 hello:
+3. 執行下列命令，以儲存對 NSG 所進行的變更：
 
     ```powershell
     Set-AzureRmNetworkSecurityGroup -NetworkSecurityGroup $nsg
     ```
 
-    預期的輸出顯示只有 hello 安全性規則，請注意 hello **https 規則**不會再列：
+    僅顯示安全性規則的預期輸出，請注意，不再列出 **https-rule** ︰
    
         Name                 : NSG-FrontEnd
         ...
@@ -338,36 +338,36 @@ Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
                                ]
 
 ## <a name="manage-associations"></a>管理關聯
-您可以將關聯 NSG toosubnets 和 Nic。 您也可以中斷 NSG 與其相關聯的任何資源的關聯。
+您可以建立 NSG 與子網路和 NIC 的關聯。 您也可以中斷 NSG 與其相關聯的任何資源的關聯。
 
-### <a name="associate-an-nsg-tooa-nic"></a>關聯 NSG tooa NIC
-tooassociate hello **NSG 前端**NSG toohello **TestNICWeb1** NIC，完成下列步驟的 hello:
+### <a name="associate-an-nsg-to-a-nic"></a>建立 NSG 與 NIC 的關聯
+若要建立 **NSG-FrontEnd** NSG 與 **TestNICWeb1** NIC 的關聯，請完成下列步驟：
 
-1. 執行下列命令 tooretrieve hello 現有 NSG 中的 hello，並將它儲存在變數中：
+1. 執行下列命令來擷取現有的 NSG，並將其儲存在變數中：
 
     ```powershell
     $nsg = Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     ```
 
-2. 執行下列命令 tooretrieve hello 現有 NIC 的 hello，並將它儲存在變數中：
+2. 執行下列命令來擷取現有的 NIC，並將其儲存在變數中：
 
     ```powershell
     $nic = Get-AzureRmNetworkInterface -ResourceGroupName RG-NSG -Name TestNICWeb1
     ```
 
-3. 設定 hello **NetworkSecurityGroup**屬性 hello **NIC** hello 變數 toohello 值**NSG**變數中，輸入下列命令的 hello:
+3. 輸入下列命令，將 **NIC** 變數的 **NetworkSecurityGroup** 屬性設定為 **NSG** 變數的值：
 
     ```powershell
     $nic.NetworkSecurityGroup = $nsg
     ```
 
-4. toosave hello 變更 toohello NIC，執行下列命令的 hello:
+4. 若要儲存對 NIC 所進行的變更，請執行下列命令：
 
     ```powershell
     Set-AzureRmNetworkInterface -NetworkInterface $nic
     ```
    
-    預期的輸出顯示只有 hello **NetworkSecurityGroup**屬性：
+    僅顯示 **NetworkSecurityGroup** 屬性的預期輸出︰
    
         NetworkSecurityGroup : {
                                  "SecurityRules": [],
@@ -378,58 +378,58 @@ tooassociate hello **NSG 前端**NSG toohello **TestNICWeb1** NIC，完成下列
                                }
 
 ### <a name="dissociate-an-nsg-from-a-nic"></a>中斷 NSG 與 NIC 的關聯
-toodissociate hello **NSG 前端**hello 從 NSG **TestNICWeb1** NIC，完成下列步驟的 hello:
+若要中斷 **NSG-FrontEnd** NSG 與 **TestNICWeb1** NIC 的關聯，請完成下列步驟：
 
-1. 執行下列命令 tooretrieve hello 現有 NIC 的 hello，並將它儲存在變數中：
+1. 執行下列命令來擷取現有的 NIC，並將其儲存在變數中：
 
     ```powershell
     $nic = Get-AzureRmNetworkInterface -ResourceGroupName RG-NSG -Name TestNICWeb1
     ```
 
-2. 設定 hello **NetworkSecurityGroup**屬性 hello **NIC**變數太**$null**藉由執行下列命令的 hello:
+2. 執行下列命令，將 **NIC** 變數的 **NetworkSecurityGroup** 屬性設定為 **$null**：
 
     ```powershell
     $nic.NetworkSecurityGroup = $null
     ```
 
-3. toosave hello 變更 toohello NIC，執行下列命令的 hello:
+3. 若要儲存對 NIC 所進行的變更，請執行下列命令：
 
     ```powershell
     Set-AzureRmNetworkInterface -NetworkInterface $nic
     ```
    
-    預期的輸出顯示只有 hello **NetworkSecurityGroup**屬性：
+    僅顯示 **NetworkSecurityGroup** 屬性的預期輸出︰
    
         NetworkSecurityGroup : null
 
 ### <a name="dissociate-an-nsg-from-a-subnet"></a>中斷 NSG 與子網路的關聯
-toodissociate hello **NSG 前端**hello 從 NSG**前端**子網路、 完整 hello 下列步驟：
+若要中斷 **NSG-FrontEnd** NSG 與 **FrontEnd** 子網路的關聯，請完成下列步驟：
 
-1. 執行下列命令 tooretrieve hello 現有 VNet 的 hello，並將它儲存在變數中：
+1. 執行下列命令來擷取現有的 VNet，並將其儲存在變數中：
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName RG-NSG -Name TestVNet
     ```
 
-2. 執行 hello 下列命令 tooretrieve hello**前端**子網路和儲存在變數中：
+2. 執行下列命令來擷取 **FrontEnd** 子網路，並將其儲存在變數中：
 
     ```powershell
     $subnet = Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name FrontEnd
     ```
  
-3. 設定 hello **NetworkSecurityGroup** hello 屬性**子網路**變數太**$null**輸入 hello 下列命令：
+3. 輸入下列命令，將 **subnet** 變數的 **NetworkSecurityGroup** 屬性設定為 **$null**：
 
     ```powershell
     $subnet.NetworkSecurityGroup = $null
     ```
 
-4. toosave hello 變更 toohello 子網路，執行下列命令的 hello:
+4. 若要儲存對子網路所進行的變更，請執行下列命令：
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
     ```
 
-    預期的輸出顯示只有 hello 屬性的 hello**前端**子網路。 請注意，沒有 **NetworkSecurityGroup**的屬性：
+    僅顯示 **FrontEnd** 子網路屬性的預期輸出。 請注意，沒有 **NetworkSecurityGroup**的屬性：
    
             ...
             Subnets           : [
@@ -451,40 +451,40 @@ toodissociate hello **NSG 前端**hello 從 NSG**前端**子網路、 完整 hel
                                     ...
                                 ]
 
-### <a name="associate-an-nsg-tooa-subnet"></a>NSG tooa 子網路建立關聯
-tooassociate hello **NSG 前端**NSG toohello **FronEnd**一次的子網路，完成下列步驟的 hello:
+### <a name="associate-an-nsg-to-a-subnet"></a>建立 NSG 至子網路的關聯
+若要建立 **NSG-FrontEnd** NSG 與 **FronEnd** 子網路的關聯，請完成下列步驟：
 
-1. 執行下列命令 tooretrieve hello 現有 VNet 的 hello，並將它儲存在變數中：
+1. 執行下列命令來擷取現有的 VNet，並將其儲存在變數中：
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName RG-NSG -Name TestVNet
     ```
 
-2. 執行 hello 下列命令 tooretrieve hello**前端**子網路和儲存在變數中：
+2. 執行下列命令來擷取 **FrontEnd** 子網路，並將其儲存在變數中：
 
     ```powershell
     $subnet = Get-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name FrontEnd
     ```
  
-3. 執行下列命令 tooretrieve hello 現有 NSG 中的 hello，並將它儲存在變數中：
+3. 執行下列命令來擷取現有的 NSG，並將其儲存在變數中：
 
     ```powershell
     $nsg = Get-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd
     ```
 
-4. 設定 hello **NetworkSecurityGroup**屬性 hello**子網路**變數太**$null**藉由執行下列命令的 hello:
+4. 執行下列命令，將 **subnet** 變數的 **NetworkSecurityGroup** 屬性設定為 **$null**：
 
     ```powershell
     $subnet.NetworkSecurityGroup = $nsg
     ```
 
-5. toosave hello 變更 toohello 子網路，執行下列命令的 hello:
+5. 若要儲存對子網路所進行的變更，請執行下列命令：
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
     ```
 
-    預期的輸出顯示只有 hello **NetworkSecurityGroup**屬性 hello**前端**子網路：
+    僅顯示 **FrontEnd** 子網路的 **NetworkSecurityGroup** 屬性的預期輸出︰
    
         ...
         "NetworkSecurityGroup": {
@@ -497,19 +497,19 @@ tooassociate hello **NSG 前端**NSG toohello **FronEnd**一次的子網路，�
         ...
 
 ## <a name="delete-an-nsg"></a>刪除 NSG
-如果它不是相關聯 tooany 資源，您只能刪除 NSG。 toodelete NSG 關聯，請遵循下列 hello 步驟。
+您只能刪除與任何資源沒有關聯的 NSG。 若要刪除 NSG，請依照下列步驟進行。
 
-1. toocheck hello 資源相關聯 tooan NSG，執行 hello`azure network nsg show`中所示[檢視 Nsg 關聯](#View-NSGs-associations)。
-2. 如果 hello NSG 相關聯的 tooany Nic，請執行 hello`azure network nic set`中所示[中斷 NIC 的 NSG 關聯](#Dissociate-an-NSG-from-a-NIC)的每個 nic。 
-3. 如果 hello NSG 相關聯的 tooany 子網路，請執行 hello`azure network vnet subnet set`中所示[中斷關聯子網路的 NSG](#Dissociate-an-NSG-from-a-subnet)每個子網路。
-4. toodelete hello NSG，執行下列命令的 hello:
+1. 若要檢查與 NSG 相關聯的資源，請執行 `azure network nsg show` ，如 [檢視 NSG 關聯](#View-NSGs-associations)中所示。
+2. 如果 NSG 與任何 NIC 相關聯，為每個 NIC 執行 `azure network nic set` ，如 [中斷 NSG 與 NIC 的關聯](#Dissociate-an-NSG-from-a-NIC) 中所示。 
+3. 如果 NSG 與任何子網路相關聯，為每個子網路執行 `azure network vnet subnet set` ，如 [中斷 NSG 與子網路的關聯](#Dissociate-an-NSG-from-a-subnet) 中所示。
+4. 若要刪除 NSG，請執行下列命令︰
 
     ```powershell
     Remove-AzureRmNetworkSecurityGroup -ResourceGroupName RG-NSG -Name NSG-FrontEnd -Force
     ```
    
    > [!NOTE]
-   > hello`-Force`參數可確保您不需要 tooconfirm hello 刪除。
+   > `-Force` 參數可確保您不需要確認刪除。
    > 
 
 ## <a name="next-steps"></a>後續步驟

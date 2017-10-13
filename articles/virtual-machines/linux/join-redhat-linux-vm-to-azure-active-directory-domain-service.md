@@ -1,6 +1,6 @@
 ---
-title: "aaaJoin RedHat Linux VM tooan Azure Active Directory DS |Microsoft 文件"
-description: "如何 toojoin 現有 RedHat Enterprise Linux 7 VM tooan Azure Active Directory 網域服務。"
+title: "將 RedHat Linux VM 加入 Azure Active Directory DS | Microsoft Docs"
+description: "如何將現有 RedHat Enterprise Linux 7 VM 加入 Azure Active Directory 網域服務。"
 services: virtual-machines-linux
 documentationcenter: virtual-machines-linux
 author: vlivech
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 12/14/2016
 ms.author: v-livech
-ms.openlocfilehash: f3ba3c764e253191753f1cc5fc8c3b85c53818af
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2e46a0f3c9bdbe267d121b4bf62e25d5d411fcc2
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="join-a-redhat-linux-vm-tooan-azure-active-directory-domain-service"></a>加入 RedHat Linux VM tooan Azure Active Directory 網域服務
+# <a name="join-a-redhat-linux-vm-to-an-azure-active-directory-domain-service"></a>將 RedHat Linux VM 加入 Azure Active Directory 網域服務
 
-本文章將示範如何 toojoin Red Hat Enterprise Linux (RHEL) 7 虛擬機器 tooan Azure Active Directory 網域服務 (AADDS) 管理網域。  hello 需求如下：
+本文說明如何將 Red Hat Enterprise Linux (RHEL) 7 虛擬機器加入 Azure Active Directory Domain Services (AADDS) 管理的網域。  這些需求包括：
 
 - [一個 Azure 帳戶](https://azure.microsoft.com/pricing/free-trial/)
 
@@ -34,7 +34,7 @@ ms.lasthandoff: 10/06/2017
 
 _將任何範例換成您自己的設定。_
 
-### <a name="switch-hello-azure-cli-tooclassic-deployment-mode"></a>切換 hello azure cli tooclassic 部署模式
+### <a name="switch-the-azure-cli-to-classic-deployment-mode"></a>將 azure-cli 切換至傳統部署模式
 
 ```azurecli
 azure config mode asm
@@ -59,7 +59,7 @@ azure vm create myVM \
 -l "West US"
 ```
 
-### <a name="ssh-toohello-vm"></a>SSH toohello VM
+### <a name="ssh-to-the-vm"></a>透過 SSH 連接到 VM
 
 ```bash
 ssh -i ~/.ssh/id_rsa ahmet@myVM
@@ -77,9 +77,9 @@ sudo yum update
 sudo yum -y install realmd sssd krb5-workstation krb5-libs
 ```
 
-現在，hello Linux 虛擬機器上安裝所需的 hello 封裝，hello 下一項工作就會是 toojoin hello 虛擬機器 toohello 受管理的網域。
+既然 Linux 虛擬機器上已安裝必要的封裝，下一個工作是將虛擬機器加入受管理的網域。
 
-### <a name="discover-hello-aad-domain-services-managed-domain"></a>探索 hello AAD 網域服務受管理的網域
+### <a name="discover-the-aad-domain-services-managed-domain"></a>探索 AAD Domain Services 管理的網域
 
 ```bash
 sudo realm discover mydomain.com
@@ -87,19 +87,19 @@ sudo realm discover mydomain.com
 
 ### <a name="initialize-kerberos"></a>初始化 kerberos
 
-請確認您指定隸屬 toohello ' AAD DC Administrators' 群組的使用者身分。 只有這些使用者可以加入電腦 toohello 受管理的網域。
+請確定您是指定屬於 'AAD DC Administrators' 群組的使用者。 只有這些使用者可以將電腦加入受管理的網域。
 
 ```bash
 kinit ahmet@mydomain.com
 ```
 
-### <a name="join-hello-machine-toohello-domain"></a>加入 hello 機器 toohello 網域
+### <a name="join-the-machine-to-the-domain"></a>將電腦加入網域
 
 ```bash
 sudo realm join --verbose mydomain.com -U 'ahmet@mydomain.com'
 ```
 
-### <a name="verify-hello-machine-is-joined-toohello-domain"></a>請確認 hello 電腦聯結的 toohello 網域
+### <a name="verify-the-machine-is-joined-to-the-domain"></a>確認電腦已加入網域
 
 ```bash
 ssh -l ahmet@mydomain.com mydomain.cloudapp.net
@@ -109,4 +109,4 @@ ssh -l ahmet@mydomain.com mydomain.cloudapp.net
 
 * [適用於 Azure 中隨選 Red Hat Enterprise Linux VM 的 Red Hat Update Infrastructure (RHUI)](update-infrastructure-redhat.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
 * [為 Azure Resource Manager 中的虛擬機器設定金鑰保存庫](key-vault-setup.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-* [部署及管理虛擬機器使用的 Azure 資源管理員範本和 hello Azure CLI](../linux/create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+* [使用 Azure Resource Manager 範本和 Azure CLI 部署和管理虛擬機器](../linux/create-ssh-secured-vm-from-template.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)

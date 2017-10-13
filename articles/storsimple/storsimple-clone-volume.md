@@ -1,6 +1,6 @@
 ---
-title: "aaaClone 您的 StorSimple 磁碟區 |Microsoft 文件"
-description: "描述 hello 複製不同類型和當 toouse 它們，並說明如何使用備份組 tooclone 個別磁碟區。"
+title: "複製 StorSimple 磁碟區 | Microsoft Docs"
+description: "說明不同的複製類型以及使用時機，並說明如何使用備份組來複製個別磁碟區。"
 services: storsimple
 documentationcenter: NA
 author: alkohli
@@ -14,50 +14,50 @@ ms.tgt_pltfrm: NA
 ms.workload: TBD
 ms.date: 08/17/2016
 ms.author: alkohli
-ms.openlocfilehash: e98d28db1abeb515ba78ab5860e7c5eba0dfcbb5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8f1936fac543f559a44ad0f9c35b30d1a92dce68
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="use-hello-storsimple-manager-service-tooclone-a-volume"></a>使用 hello StorSimple Manager 服務 tooclone 磁碟區
+# <a name="use-the-storsimple-manager-service-to-clone-a-volume"></a>使用 StorSimple Manager 服務來複製磁碟區
 [!INCLUDE [storsimple-version-selector-clone-volume](../../includes/storsimple-version-selector-clone-volume.md)]
 
-## <a name="overview"></a>概觀
-StorSimple Manager 服務的 hello**備份類別目錄**頁面會顯示所有 hello 的備份組時手動或自動備份所建立的。 您可以使用此頁面 toolist hello 的所有備份的備份原則或磁碟區，選取或刪除的備份，或都使用備份 toorestore 或複製磁碟區。
+## <a name="overview"></a>Overview
+StorSimple Manager 服務 [備份類別目錄]  頁面會顯示在進行手動或自動備份時所建立的所有備份組。 您可以使用此頁面來列出備份原則或磁碟區的所有備份、選取或刪除備份，或是使用備份來還原或複製磁碟區。
 
 ![備份類別目錄頁面](./media/storsimple-clone-volume/HCS_BackupCatalog.png)  
 
-本教學課程說明如何使用備份組 tooclone 個別磁碟區。 它也會說明 hello 差異*暫時性*和*永久*複製。 
+本教學課程說明如何使用備份組來複製個別磁碟區。 它也會說明「暫時性」與「永久」複製之間的差異。 
 
 ## <a name="create-a-clone-of-a-volume"></a>建立磁碟區複製
-您可以建立複本上 hello 相同裝置、 另一個裝置或甚至虛擬機器使用本機或雲端快照。
+您可以使用本機或雲端快照，在相同的裝置、 另一個裝置或甚至虛擬機器上建立複製。
 
-#### <a name="tooclone-a-volume"></a>tooclone 磁碟區
-1. 在 hello StorSimple Manager 服務頁面上，按一下 hello**備份類別目錄**索引標籤並選取備份組。
-2. 展開 hello 備份組 tooview hello 相關聯的磁碟區。 按一下並選取從 hello 備份集的磁碟區。
+#### <a name="to-clone-a-volume"></a>若要複製磁碟區
+1. 在 StorSimple Manager 服務頁面上，按一下  [備份類別目錄]  索引標籤，然後選取備份組。
+2. 展開備份組以檢視相關聯的磁碟區。 從備份組中按一下並選取磁碟區。
    
      ![複製磁碟區](./media/storsimple-clone-volume/HCS_Clone.png) 
-3. 按一下**複製**toobegin hello 選取磁碟區複製。
-4. 在 hello 複製磁碟區精靈下**指定名稱和位置**:
+3. 按一下 [複製]  ，以開始複製選取的磁碟區。
+4. 在 [複製磁碟區精靈] 的 [指定名稱和位置] 下：
    
-   1. 識別目標裝置。 這是指將建立 hello 複製 hello 位置。 您可以選擇 hello 相同的裝置，或指定另一個裝置。 如果您選擇其他雲端服務提供者相關聯的磁碟區 (不 Azure) hello 下拉式清單的 hello 目標裝置只會顯示實體裝置。 您無法在虛擬裝置上複製與其他雲端服務提供者相關聯的磁碟區。
+   1. 識別目標裝置。 這是即將建立複製的位置。 您可以選擇相同的裝置，或指定另一個裝置。 如果您選擇與其他雲端服務提供者相關的磁碟區 (非 Azure)，目標裝置的下拉式清單將只會顯示實體裝置。 您無法在虛擬裝置上複製與其他雲端服務提供者相關聯的磁碟區。
       
       > [!NOTE]
-      > 請確定所需的 hello 複製 hello 容量低於 hello 目標裝置上可用的 hello 容量。
+      > 確定要複製的容量小於目標裝置中可用的容量。
       > 
       > 
-   2. 為複製指定唯一的磁碟區名稱。 hello 名稱必須包含 3 到 127 個字元。
-   3. 按一下 [hello] 箭號圖示 ![arrow-icon](./media/storsimple-clone-volume/HCS_ArrowIcon.png) tooproceed toohello 下一個頁面。
+   2. 為複製指定唯一的磁碟區名稱。 此名稱必須包含 3 到 127 個字元。
+   3. 按一下箭頭圖示  ![arrow-icon](./media/storsimple-clone-volume/HCS_ArrowIcon.png) ，繼續前往下一頁。
 5. 在 [指定可以使用此磁碟區的主機] 下：
    
-   1. 指定 hello 複製存取控制記錄 (ACR)。 您可以新增 ACR，或從 hello 現有清單中選擇。
-   2. 按一下 [hello] 核取圖示 ![核取圖示](./media/storsimple-clone-volume/HCS_CheckIcon.png)toocomplete hello 作業。
-6. 會起始複製工作，且當 hello 複製建立成功時將會通知您。 按一下**檢視工作**toomonitor hello 複製工作上 hello**作業**頁面。
-7. 複製工作已完成之後 hello:
+   1. 指定該複製的存取控制記錄 (ACR)。 您可以加入新的 ACR，或從現有清單中選擇。
+   2. 按一下核取圖示  ![核取圖示](./media/storsimple-clone-volume/HCS_CheckIcon.png)完成操作。
+6. 複製工作隨即起始並在成功建立複製時通知您。 按一下 [檢視工作]，在 [工作] 頁面上監視複製工作。
+7. 複製工作完成後：
    
-   1. 移 toohello**裝置** 頁面上，並選取 hello**磁碟區容器** 索引標籤。 
-   2. 選取 hello 與您用於複製的 hello 來源磁碟區相關聯的磁碟區容器。 在 hello 清單中的磁碟區，您應該會看到剛才建立的 hello 複製。
+   1. 移至 [裝置] 頁面，然後選取 [磁碟區容器] 索引標籤。 
+   2. 選取與複製的來源磁碟區相關聯的磁碟區容器。 您應該會在磁碟區清單中看到剛才建立的複製。
 
 > [!NOTE]
 > 複製的磁碟區上會自動停用監視和預設備份。
@@ -66,27 +66,27 @@ StorSimple Manager 服務的 hello**備份類別目錄**頁面會顯示所有 he
 
 以這種方式建立的複製就是暫時性複製。 如需複製類型的詳細資訊，請參閱 [暫時性與永久複製](#transient-vs-permanent-clones)。
 
-此複製現在是一般的磁碟區，並可以在磁碟區任何作業都可用於 hello 複製。 您需要 tooconfigure 此磁碟區進行任何備份。
+此複製現在是一般的磁碟區，可在磁碟區進行的任何操作都能在此複製進行。 您必須設定此磁碟區以進行任何備份。
 
 ## <a name="transient-vs-permanent-clones"></a>暫時性與永久複製
-只有當您正在複製 tooa 不同裝置上時，會建立暫時性和永久性複本。 您可以複製特定的磁碟區從備份組 tooa 不同的裝置。 以這種方式建立的複製就是「暫時性」  複製。 hello 暫時性複本會有參考 toohello 原始磁碟區，並使用該磁碟區 tooread 在本機寫入。 
+只有在您複製到不同裝置時才會建立暫時性和永久複製。 您可以從備份組複製特定磁碟區到不同裝置。 以這種方式建立的複製就是「暫時性」  複製。 暫時性複製會有原始磁碟區的參考，並在本機寫入時使用該磁碟區來讀取。 
 
-您製作暫時性複本的雲端快照後，將會複製 hello 結果*永久*複製。 hello 永久性複本是獨立的且沒有任何參考 toohello 原始磁碟區複製從。  
+在建立暫時性複製的雲端快照之後，產生的複製就是「永久」  複製。 永久複製獨立且沒有所複製原始磁碟區的任何參考。  
 
 ## <a name="scenarios-for-transient-and-permanent-clones"></a>暫時性複製與永久複製的案例
-hello 下列各節將描述範例可以在其中使用暫時性和永久性複本的情況。
+下列各節將說明可使用暫時性複製與永久複製的範例情況。
 
 ### <a name="item-level-recovery-with-a-transient-clone"></a>使用暫時性複製復原項目層級
-您需要 toorecover 一個年度舊 Microsoft PowerPoint 簡報檔案。 IT 系統管理員識別 hello 從該時間範圍內，特定的備份，然後篩選 hello 磁碟區。 hello 系統管理員，然後複製 hello 磁碟區、 找出您要尋找的 hello 檔案並提供它 tooyou。 在此案例中，使用的是暫時性複製。 
+您要復原過去一年的 Microsoft PowerPoint 簡報檔案。 IT 系統管理員辨識該時間範圍內的特定備份，然後篩選磁碟區。 系統管理員接著再複製磁碟區，找出您要找的檔案再提供給您。 在此案例中，使用的是暫時性複製。 
 
 ![提供的影片](./media/storsimple-clone-volume/Video_icon.png) **提供的影片**
 
-toowatch 的影片示範如何使用 hello 複製和還原功能在 StorSimple toorecover 刪除檔案中，按一下[這裡](https://azure.microsoft.com/documentation/videos/storsimple-recover-deleted-files-with-storsimple/)。
+若要觀看影片示範如何使用 StorSimple 的複製和還原功能來復原已刪除的檔案，請按一下 [這裡](https://azure.microsoft.com/documentation/videos/storsimple-recover-deleted-files-with-storsimple/)。
 
-### <a name="testing-in-hello-production-environment-with-a-permanent-clone"></a>在 hello 與永久性複本的實際執行環境中測試
-您需要 tooverify hello 實際執行環境中測試錯誤。 您建立 hello 磁碟區的複本，您可以在 hello 生產環境中此複本的雲端快照。 hello 複製的磁碟區現在已獨立。 在此案例中，使用的是永久複製。
+### <a name="testing-in-the-production-environment-with-a-permanent-clone"></a>利用永久複製在實際執行環境中進行測試
+您需要確認生產環境中的測試錯誤。 您要使用複製的雲端快照，在生產環境中建立磁碟區的複製。 複製的磁碟區現在是獨立的。 在此案例中，使用的是永久複製。
 
 ## <a name="next-steps"></a>後續步驟
-* 了解如何太[StorSimple 磁碟區從備份組還原](storsimple-restore-from-backup-set.md)。
-* 了解如何太[使用 hello StorSimple Manager 服務 tooadminister StorSimple 裝置](storsimple-manager-service-administration.md)。
+* 了解如何 [從備份組還原 StorSimple 磁碟區](storsimple-restore-from-backup-set.md)。
+* 了解如何 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-manager-service-administration.md)。
 

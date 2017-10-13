@@ -1,5 +1,5 @@
 ---
-title: "Application Insights 中的 aaaPerformance 計數器 |Microsoft 文件"
+title: "Application Insights 中的效能計數器 | Microsoft Docs"
 description: "監視 Application Insights 中的系統和自訂 .NET 效能計數器。"
 services: application-insights
 documentationcenter: 
@@ -13,45 +13,45 @@ ms.devlang: na
 ms.topic: article
 ms.date: 10/11/2016
 ms.author: bwren
-ms.openlocfilehash: 0a51c225f1d1124c9e7fe89f34e747cb26a3589e
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 038d6e051be8112b9264e7efa6485965d11e32c8
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="system-performance-counters-in-application-insights"></a>Application Insights 中的系統效能計數器
-Windows 提供多種[效能計數器](http://www.codeproject.com/Articles/8590/An-Introduction-To-Performance-Counters) (例如 CPU 使用、記憶體、磁碟和網路使用量)。 您也可以自行定義。 [Application Insights](app-insights-overview.md)可以顯示這些效能計數器，如果您的應用程式在 IIS 上執行內部部署主機或虛擬機器 toowhich 您具有系統管理存取權。 hello 圖表指出 hello 資源可用 tooyour 即時應用程式，並有助於 tooidentify 不平衡的負載，伺服器執行個體之間。
+Windows 提供多種[效能計數器](http://www.codeproject.com/Articles/8590/An-Introduction-To-Performance-Counters) (例如 CPU 使用、記憶體、磁碟和網路使用量)。 您也可以自行定義。 如果應用程式是在您具有系統管理存取權的內部部署主機或虛擬機器上於 IIS 下執行，則 [Application Insights](app-insights-overview.md) 可以顯示這些效能計數器。 這些圖表指出即時應用程式可用的資源，而且有助於識別伺服器執行個體之間的不平衡負載。
 
-效能計數器會出現在 hello 伺服器刀鋒視窗，其中伺服器執行個體所包含的資料表分割。
+效能計數器會出現在 [伺服器] 刀鋒視窗中，其包括由伺服器執行個體所分段的資料表。
 
 ![Application Insights 中所報告的效能計數器](./media/app-insights-performance-counters/counters-by-server-instance.png)
 
-(效能計數器不適用於 Azure Web Apps。 不過您也可以[傳送 Azure 診斷 tooApplication Insights](app-insights-azure-diagnostics.md)。)
+(效能計數器不適用於 Azure Web Apps。 但是，您可以[將 Azure 診斷傳送至 Application Insights](app-insights-azure-diagnostics.md))。
 
 ## <a name="view-counters"></a>檢視計數器
-hello 伺服器刀鋒視窗會顯示一組預設的效能計數器。 
+[伺服器] 刀鋒視窗會顯示一組預設效能計數器。 
 
-toosee 其他計數器，編輯 hello 圖表 hello 伺服器刀鋒視窗中，或開啟新[計量瀏覽器](app-insights-metrics-explorer.md)刀鋒視窗並加入新的圖表。 
+若要查看其他計數器，請編輯 [伺服器] 刀鋒視窗上的圖表，或開啟新的[計量瀏覽器](app-insights-metrics-explorer.md)刀鋒視窗，並新增新的圖表。 
 
-當您編輯圖表 hello 可用的計數器會列為度量。
+當您編輯圖表時，可用的計數器會列為計量。
 
 ![Application Insights 中所報告的效能計數器](./media/app-insights-performance-counters/choose-performance-counters.png)
 
-toosee 在一個地方，所有的實用圖表建立[儀表板](app-insights-dashboards.md)並將其釘選 tooit。
+若要在一個地方查看所有最常用的圖表，請建立[儀表板](app-insights-dashboards.md)，並在其中固定這些圖表。
 
 ## <a name="add-counters"></a>新增計數器
-如果您想要的 hello 效能計數器不顯示 hello 度量清單，這是因為 hello Application Insights SDK 不收集 web 伺服器中。 您可以設定它 toodo 因此。
+如果您想要的效能計數器未顯示在計量清單中，則原因是 Application Insights SDK 未在 Web 伺服器中收集它。 您可以設定它執行這項作業。
 
-1. 了解哪些計數器可在您的伺服器在 hello 伺服器使用此 PowerShell 命令：
+1. 在伺服器上使用這個 PowerShell 命令，以找出伺服器中可用的計數器：
    
     `Get-Counter -ListSet *`
    
     (請參閱 [`Get-Counter`](https://technet.microsoft.com/library/hh849685.aspx)。)
 2. 開啟 ApplicationInsights.config。
    
-   * 如果您在開發期間加入 Application Insights tooyour 應用程式，在專案中，編輯 ApplicationInsights.config，然後重新部署 tooyour 伺服器。
-   * 如果您在執行階段使用狀態監視器 tooinstrument web 應用程式中，尋找 ApplicationInsights.config hello 應用程式在 IIS 中的 hello 根目錄中。 在每個伺服器執行個體中於該處對其進行更新。
-3. 編輯 hello 效能收集器指示詞：
+   * 如果您已在開發期間將 Application Insights 新增至應用程式，請編輯專案中的 ApplicationInsights.config，然後將它重新部署至伺服器。
+   * 如果您已在執行階段使用狀態監視器檢測 Web 應用程式，請在 IIS 的應用程式根目錄中找到 ApplicationInsights.config。 在每個伺服器執行個體中於該處對其進行更新。
+3. 編輯效能收集器指示詞：
    
 ```XML
    
@@ -66,14 +66,14 @@ toosee 在一個地方，所有的實用圖表建立[儀表板](app-insights-das
 
 您可以擷取標準計數器以及您自行實作的計數器。 `\Objects\Processes` 是所有 Windows 系統上都具有的標準計數器範例。 `\Sales(photo)\# Items Sold` 是可能在 Web 服務中實作的自訂計數器範例。 
 
-hello 格式是`\Category(instance)\Counter"`，或沒有執行個體的類別，只`\Category\Counter`。
+格式為 `\Category(instance)\Counter"`，若是沒有執行個體的類別，則為 `\Category\Counter`。
 
-`ReportAs`計數器名稱不符合需要`[a-zA-Z()/-_ \.]+`-也就是說，它們包含不在 hello 沿用集合中的字元： 字母、 方括號、 斜線、 連字號、 底線、 空間、 圓點。
+不符合 `[a-zA-Z()/-_ \.]+` 的計數器名稱需要有 `ReportAs`；亦即，它們包含不在下列集合中的字元：字母、圓括號、正斜線、連字號、底線、空格、點。
 
-如果您指定執行個體時，會收集維度"CounterInstanceName"hello 的報告度量。
+如果您指定執行個體，系統會收集它做為報告度量的 "CounterInstanceName" 維度。
 
 ### <a name="collecting-performance-counters-in-code"></a>在程式碼中收集效能計數器
-toocollect 系統效能計數器，並將它們傳送 tooApplication Insights，您可以調整 hello 以下程式碼片段：
+若要收集系統效能計數器並將其傳送至 Application Insights，可以採用下列程式碼片段：
 
 
 ``` C#
@@ -84,7 +84,7 @@ toocollect 系統效能計數器，並將它們傳送 tooApplication Insights，
     perfCollectorModule.Initialize(TelemetryConfiguration.Active);
 ```
 
-或者，您可以執行 hello 相同工作，並使用您建立自訂的度量：
+或者，您可以透過您建立的自訂度量執行相同的作業︰
 
 ``` C#
     var perfCollectorModule = new PerformanceCollectorModule();
@@ -96,28 +96,28 @@ toocollect 系統效能計數器，並將它們傳送 tooApplication Insights，
 ## <a name="performance-counters-in-analytics"></a>Analytics 中的效能計數器
 您可以搜尋並顯示 [Analytics](app-insights-analytics.md) 中的效能計數器報告。
 
-hello **performanceCounters**結構描述會公開 hello `category`，`counter`名稱，和`instance`每個效能計數器的名稱。  在 hello 每個應用程式的遙測，您會看到該應用程式只有 hello 計數器。 例如，toosee 哪些計數器可用： 
+**PerformanceCounters** 結構描述會公開每個效能計數器的 `category`、`counter` 名稱和 `instance` 名稱。  在每個應用程式的遙測中，您只會看到該應用程式的計數器。 例如，若要查看哪些計數器可用︰ 
 
 ![Application Insights 分析中的效能計數器](./media/app-insights-performance-counters/analytics-performance-counters.png)
 
-（'Instance' 這裡是指 toohello 效能計數器執行個體，不 hello 角色或伺服器電腦執行個體。 hello 效能計數器執行個體名稱通常區段計數器，例如處理器時間的 hello hello 程序或應用程式的名稱。）
+(這裡的 'Instance' 指的是效能計數器執行個體，而不是角色或伺服器電腦執行個體。 效能計數器執行個體名稱一般會將計數器分段，例如依處理序或應用程式名稱的處理器時間。)
 
-tooget hello 最近期間上的可用記憶體的圖表： 
+若要取得可用記憶體在最近一段時間的圖表︰ 
 
 ![Application Insights 分析中的記憶體時間圖表](./media/app-insights-performance-counters/analytics-available-memory.png)
 
-類似其他遙測**performanceCounters**也有一個資料行`cloud_RoleInstance`，指出您的應用程式執行所在的 hello 主機伺服器執行個體 hello 識別。 例如，toocompare hello 效能 hello 不同的電腦上的應用程式： 
+與其他遙測一樣，**performanceCounters** 也有 `cloud_RoleInstance` 資料行可指出應用程式執行所在主機伺服器執行個體的身分識別。 例如，若要比較不同機器上的應用程式效能︰ 
 
 ![Application Insights 分析中依角色執行個體分割的效能](./media/app-insights-performance-counters/analytics-metrics-role-instance.png)
 
 ## <a name="aspnet-and-application-insights-counts"></a>ASP.NET 和 Application Insights 計數
-*Hello hello 例外狀況率和例外狀況度量之間的差異為何？*
+*例外狀況率和例外狀況計量之間的差異為何？*
 
-*  是系統效能計數器。 hello CLR 計算所有處理 hello 和未處理例外狀況擲回，並將取樣間隔中的 hello 總計除以 hello hello 間隔長度。 hello Application Insights SDK 會收集此結果，並將它傳送 toohello 入口網站。
-* *例外狀況*TrackException hello 入口網站中的 hello 圖表 hello 取樣間隔所接收的報告是 hello 的計數。 它包含只 hello 處理例外狀況，您已經撰寫 TrackException 呼叫您的程式碼中，且不包含所有[未處理例外狀況](app-insights-asp-net-exceptions.md)。 
+*  是系統效能計數器。 CLR 會計算所有擲回之已處理和未處理的例外狀況，並依據間隔的長度將總數分割為取樣間隔。 Application Insights SDK 會收集此結果並將它傳送至入口網站。
+*  是在圖表的取樣間隔中由入口網站接收之 TrackException 報告的計數。 它只包含您程式碼中撰寫 TrackException 呼叫所在位置的已處理例外狀況，並且不包含所有的 [未處理例外狀況](app-insights-asp-net-exceptions.md)。 
 
 ## <a name="alerts"></a>Alerts
-您可以像其他度量，[設定警示](app-insights-alerts.md)toowarn 您如果效能計數器無法使用外部限制您所指定。 開啟 hello 警示刀鋒視窗，然後按一下 新增警示。
+與其他計量一樣，您可以[設定警示](app-insights-alerts.md)，在效能計數器超出您指定的界限時提出警告。 開啟 [警示] 刀鋒視窗，然後按一下 [新增警示]。
 
 ## <a name="next"></a>接續步驟
 * [相依性追蹤](app-insights-asp-net-dependencies.md)

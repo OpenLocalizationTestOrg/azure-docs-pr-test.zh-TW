@@ -1,6 +1,6 @@
 ---
-title: "aaaMedia Services PlayReady 授權範本概觀"
-description: "本主題提供使用 tooconfigure PlayReady 授權的 PlayReady 授權範本的概觀。"
+title: "媒體服務 PlayReady 授權範本概觀"
+description: "本主題提供了用來設定 PlayReady 授權之 PlayReady 授權範本的概觀。"
 author: juliako
 manager: cfowler
 editor: 
@@ -14,33 +14,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/29/2017
 ms.author: juliako
-ms.openlocfilehash: 5a5ba930c56f70038db204681486ebc4308199fa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: be19f616e36916655390cd05e738e93c08dcdf68
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="media-services-playready-license-template-overview"></a>媒體服務 PlayReady 授權範本概觀
-Azure 媒體服務現在提供一種服務，來傳遞 Microsoft PlayReady 授權。 Hello 使用者播放程式 (例如，Silverlight) 嘗試 tooplay 時受 PlayReady 保護的內容，將要求傳送的 toohello 授權傳遞服務 tooobtain 授權。 如果 hello 授權服務核准 hello 要求，就會發出這是傳送的 toohello 用戶端 hello 授權，而且可以是使用的 toodecrypt 插 hello 指定的內容。
+Azure 媒體服務現在提供一種服務，來傳遞 Microsoft PlayReady 授權。 使用者播放程式 (例如 Silverlight) 嘗試播放 PlayReady 保護內容時，會將要求傳送到授權傳遞服務來取得授權。 如果授權服務核准要求，就會發出傳送給用戶端並可用來解密和播放所指定內容的授權。
 
-媒體服務也會提供可讓您設定 PlayReady 授權的 API。 授權包含 hello 權限和限制您想要 hello PlayReady DRM 執行階段 tooenforce 當使用者想 tooplayback 受保護的內容。
+媒體服務也會提供可讓您設定 PlayReady 授權的 API。 授權包含您要 PlayReady DRM 執行階段在使用者嘗試播放受保護內容時強制執行的權限和限制。
 以下是您可以指定之 PlayReady 授權限制的一些範例：
 
-* hello 從哪些 hello 授權開始生效的日期時間。
-* hello hello 授權到期時的日期時間值。 
-* 針對儲存在永續性儲存體上 hello 用戶端 hello 授權 toobe。 持續性授權是常用的 tooallow 離線播放 hello 內容。
-* hello 最低安全性層級，播放程式必須要有 tooplay 您的內容。 
-* hello 輸出音訊/視訊內容的 hello 輸出控制項的保護層級。 
-* 如需詳細資訊，請參閱下一節 (3.5) 中的 hello hello 輸出控制項[PlayReady 相容性規則](https://www.microsoft.com/playready/licensing/compliance/)文件。
+* 授權從此時間期間起有效的 DateTime。
+* 授權過期的 DateTime 值。 
+* 針對要儲存在用戶端上永續性儲存體的授權。 永續性授權通常會用來允許離線播放內容。
+* 播放器播放您的內容必須具有的最低安全性層級。 
+* audio\video 內容的輸出控制輸出保護層級。 
+* 如需詳細資訊，請參閱 [PlayReady 法規規則](https://www.microsoft.com/playready/licensing/compliance/) 文件中的「輸出控制」區段 (3.5)。
 
 > [!NOTE]
-> 目前，您可以只設定 hello （此為必要權限） 的 hello PlayReady 授權的 PlayRight。 hello PlayRight 讓 hello 用戶端 hello 能力 tooplayback hello 內容。 hello PlayRight 也可讓設定限制特定 tooplayback。 如需詳細資訊，請參閱 [PlayReadyPlayRight](media-services-playready-license-template-overview.md#PlayReadyPlayRight)。
+> 目前，您只能設定 PlayReady 授權的 PlayRight (這是必要權限)。 PlayRight 可讓用戶端播放內容。 PlayRight 也可讓設定限制專屬於播放。 如需詳細資訊，請參閱 [PlayReadyPlayRight](media-services-playready-license-template-overview.md#PlayReadyPlayRight)。
 > 
 > 
 
-使用 Media Services tooconfigure PlayReady 授權，您必須設定 hello Media Services PlayReady 授權範本。 hello 範本是以 XML 定義。
+若要使用媒體服務設定 PlayReady 授權，您必須設定媒體服務 PlayReady 授權範本。 範本會在 XML 中定義。
 
-hello 下列範例會設定基本串流授權的 hello 最簡單的 （且最常見的） 範本。 與此授權，您的用戶端會無法 tooplayback PlayReady 受保護的內容。
+下列範例顯示設定基本串流授權的最簡單 (也是最常見) 範本。 使用此授權，您的用戶端就可以播放您的 PlayReady 受保護內容。
 
     <?xml version="1.0" encoding="utf-8"?>
     <PlayReadyLicenseResponseTemplate xmlns:i="http://www.w3.org/2001/XMLSchema-instance" 
@@ -53,30 +53,30 @@ hello 下列範例會設定基本串流授權的 hello 最簡單的 （且最常
       </LicenseTemplates>
     </PlayReadyLicenseResponseTemplate>
 
-hello XML 符合 toohello PlayReady 授權範本 XML 結構描述 hello PlayReady 授權範本 XML 結構描述 > 一節中所定義。
+XML 符合 PlayReady 授權範本 XML 結構描述，該結構描述是在 PlayReady 授權範本 XML 結構描述區段中定義。
 
-Media Services 也會定義一組可能是使用的 tooserialized 與已還原序列化的 tooand 從 hello XML 的.NET 類別。 對於主要類別的描述，請參閱 [媒體服務 .NET 類別](media-services-playready-license-template-overview.md#classes)。 所使用的 tooconfigure 授權範本。
+媒體服務也會定義一組可以用來在 XML 中序列化和還原序列化的 .NET 類別。 對於主要類別的描述，請參閱 [媒體服務 .NET 類別](media-services-playready-license-template-overview.md#classes)。 其作用是設定授權範本。
 
-如需使用.NET 的端對端範例類別 tooconfigure hello PlayReady 授權範本，請參閱[使用 PlayReady 動態加密和授權傳遞服務](media-services-protect-with-drm.md)。
+如需使用 .NET 類別來設定 PlayReady 授權範本的端對端範例，請參閱 [使用 PlayReady 動態加密和授權傳遞服務](media-services-protect-with-drm.md)。
 
-## <a id="classes"></a>會使用的 tooconfigure 授權範本的 Media Services.NET 類別
-hello 下面是 hello 主要.NET 類別會使用的 tooconfigure Media Services PlayReady 授權範本。 這些類別對應 toohello 中定義的型別[PlayReady 授權範本 XML 結構描述](media-services-playready-license-template-overview.md#schema)。
+## <a id="classes"></a>用來設定授權範本的媒體服務 .NET 類別
+以下是主要的 .NET 類別，可用於設定媒體服務 PlayReady 授權範本。 這些類別對應至 [PlayReady 授權範本 XML 結構描述](media-services-playready-license-template-overview.md#schema)中定義的類型。
 
-hello [MediaServicesLicenseTemplateSerializer](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.mediaserviceslicensetemplateserializer.aspx)類別是使用的 tooserialize 而且 tooand 從 hello Media Services 授權範本 XML 還原序列化。
+[MediaServicesLicenseTemplateSerializer](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.mediaserviceslicensetemplateserializer.aspx) 類別是用來序列化和還原序列化媒體服務授權範本 XML。
 
 ### <a name="playreadylicenseresponsetemplate"></a>PlayReadyLicenseResponseTemplate
-[PlayReadyLicenseResponseTemplate](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadylicenseresponsetemplate.aspx) -這個類別代表傳送後 toohello 終端使用者 hello 回應 hello 範本。 它包含的欄位，自訂資料之間的字串 hello 授權伺服器 hello 應用程式 （可能是適用於自訂應用程式邏輯） 以及一或多個授權範本的清單。
+[PlayReadyLicenseResponseTemplate](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadylicenseresponsetemplate.aspx) - 此類別代表傳回給使用者之回應的範本。 它包含授權伺服器與應用程式之間的自訂資料字串的欄位 (對於自訂應用程式邏輯很有用)，以及一或多個授權範本的清單。
 
-這是 hello hello 範本階層中的 「 最上層 」 類別。 表示 hello 回應範本包含授權範本的清單，然後 hello 授權範本則包含 （直接或間接） 的所有 hello 組成 hello 範本資料 toobe 序列化其他類別。
+這是範本階層中的「最上層」類別。 表示回應範本包含授權範本的清單，而授權範本包含 (直接或間接) 所有其他類別，這些類別組成要序列化的範本資料。
 
 ### <a name="playreadylicensetemplate"></a>PlayReadyLicenseTemplate
-[PlayReadyLicenseTemplate](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadylicensetemplate.aspx) -hello 類別代表用於建立 PlayReady 授權 toobe 傳回 toohello 終端使用者的授權範本。 它包含 hello hello hello 授權中的內容金鑰資料，任何權限或限制 toobe 由執行 hello PlayReady DRM 執行階段時使用 hello 內容金鑰。
+[PlayReadyLicenseTemplate](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadylicensetemplate.aspx) - 類別代表用於建立 PlayReady 授權 (傳回給使用者) 的授權範本。 它包含授權中內容金鑰的資料，和使用內容金鑰時，由 PlayReady DRM 執行階段強制執行的任何權限和限制。
 
 ### <a id="PlayReadyPlayRight"></a>PlayReadyPlayRight
-[PlayReadyPlayRight](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadyplayright.aspx) -此類別代表 PlayReady 授權的 PlayRight hello。 它會授與 hello 使用者 hello 能力 tooplayback，hello 內容主旨 toohello 零或更多限制設定在 hello 授權之下，而且在 hello （針對播放特定原則） PlayRight 本身。 大部分的 hello PlayRight hello 原則有 toodo 輸出限制，以控制可播放 hello 內容的輸出中的 hello 類型與任何必須要備妥使用給定的輸出時的限制。 例如，如果啟用 DigitalVideoOnlyContentRestriction，hello 然後 hello DRM 執行階段將只會允許 hello 視訊 toobe 透過數位輸出 （類比視訊輸出不被允許 toopass hello 內容）。
+[PlayReadyPlayRight](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.contentkeyauthorization.playreadyplayright.aspx) - 此類別代表 PlayReady 授權的 PlayRight。 它授與使用者能力可以播放內容，該內容受限於授權中設定及 PlayRight 本身 (適用於播放特定原則) 的零或多個限制。 大部分的 PlayRight 原則與輸出限制相關，控制內容可以播放的輸出類型，和使用指定輸出時必須套用的任何限制。 例如，如果 DigitalVideoOnlyContentRestriction 已啟用，則 DRM 執行階段只會允許透過數位輸出 (不允許類比視訊輸出傳遞內容) 顯示視訊。
 
 > [!IMPORTANT]
-> 這些類型的限制可能非常強大，但也會影響 hello 經驗。 如果 hello 輸出保護設定過於嚴格，hello 內容可能無法播放某些用戶端上。 如需詳細資訊，請參閱 hello [PlayReady 相容性規則](https://www.microsoft.com/playready/licensing/compliance/)文件。
+> 這些類型的限制非常強大，但也可能會影響客戶體驗。 如果輸出保護設定限制太多，內容可能無法在某些用戶端上播放。 如需詳細資訊，請參閱 [PlayReady 法規規則](https://www.microsoft.com/playready/licensing/compliance/) 文件。
 > 
 > 
 

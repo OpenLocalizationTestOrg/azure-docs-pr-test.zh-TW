@@ -1,6 +1,6 @@
 ---
-title: "aaaOpen 連接埠 tooa Linux VM 與 Azure CLI 1.0 |Microsoft 文件"
-description: "深入了解如何 tooopen 連接埠建立端點 tooyour Linux VM / 使用 hello Azure 資源管理員部署模型和 hello Azure CLI 1.0"
+title: "使用 Azure CLI 1.0 針對 Linux VM 開啟連接埠 | Microsoft Docs"
+description: "了解如何使用 Azure Resource Manager 部署模型和 Azure CLI 1.0 對 Linux VM 開啟連接埠 / 建立端點"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -13,33 +13,33 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 337c37d151f527b43d4852291159b2f70a00accc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 847bc76c37ed929851712ba1c12463a01032e267
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="opening-ports-and-endpoints-tooa-linux-vm-in-azure-using-hello-azure-cli-10"></a>開啟連接埠和端點 tooa Linux VM 在 Azure 中使用 hello Azure CLI 1.0
-您開啟通訊埠，或建立端點，tooa Azure 虛擬機器 (VM) 中藉由建立子網路或 VM 網路介面上的網路篩選條件。 您收到 hello 流量的網路安全性群組附加 toohello 資源上放置控制輸入與輸出流量，這些篩選器。 讓我們使用連接埠 80 上的 Web 流量的常見範例。 本文章將示範如何連接埠 tooa VM 使用 tooopen hello Azure CLI 1.0。
+# <a name="opening-ports-and-endpoints-to-a-linux-vm-in-azure-using-the-azure-cli-10"></a>在 Azure 中使用 Azure CLI 1.0 針對 Linux VM 開啟連接埠和端點
+您可以透過在子網路或 VM 網路介面上建立網路篩選，對 Azure 中的虛擬機器 (VM) 開啟連接埠或建立端點。 您可將控制輸入和輸出流量的這些篩選器放在可接收流量的資源所附加的網路安全性群組上。 讓我們使用連接埠 80 上的 Web 流量的常見範例。 這篇文章說明如何使用 Azure CLI 1.0 來開啟連接埠至 VM。
 
 
-## <a name="cli-versions-toocomplete-hello-task"></a>CLI 版本 toocomplete hello 工作
-您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本：
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+您可以使用下列其中一個 CLI 版本來完成工作︰
 
-- [Azure CLI 1.0](#quick-commands) – 我們 CLI hello 傳統和資源管理部署模型 （此文件）
-- [Azure CLI 2.0](nsg-quickstart.md) -hello 資源管理部署模型我們下一個層代 CLI
+- [Azure CLI 1.0](#quick-commands) – 適用於傳統和資源管理部署模型的 CLI (本文章)
+- [Azure CLI 2.0](nsg-quickstart.md) - 適用於資源管理部署模型的新一代 CLI
 
 
 ## <a name="quick-commands"></a>快速命令
-toocreate 網路安全性群組規則您需要和[hello Azure CLI 1.0](../../cli-install-nodejs.md)已安裝且正在使用的 Resource Manager 模式：
+若要建立「網路安全性群組」和規則，您需要安裝 [the Azure CLI 1.0](../../cli-install-nodejs.md) 和使用 Resource Manager 模式：
 
 ```azurecli
 azure config mode arm
 ```
 
-在 hello 下列範例中，會取代您自己的值的範例參數名稱。 範例參數名稱包括 myResourceGroup、myNetworkSecurityGroup 和 myVnet。
+在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包括 myResourceGroup、myNetworkSecurityGroup 和 myVnet。
 
-適當地輸入您自己的名稱和位置來建立「網路安全性群組」。 hello 下列範例會建立名為的網路安全性群組*myNetworkSecurityGroup*在 hello *eastus*位置：
+適當地輸入您自己的名稱和位置來建立「網路安全性群組」。 下列範例會在 eastus 位置中建立名為 myNetworkSecurityGroup 的網路安全性群組：
 
 ```azurecli
 azure network nsg create \
@@ -48,7 +48,7 @@ azure network nsg create \
     --name myNetworkSecurityGroup
 ```
 
-新增規則 tooallow HTTP 流量 tooyour 網頁伺服器 （或 調整成您自己的案例，例如 SSH 存取或資料庫連線）。 hello 下列範例會建立名為的規則*myNetworkSecurityGroupRule* tooallow TCP 連接埠 80 上的流量：
+新增規則以允許流向您 Web 伺服器的 HTTP 流量 (或針對自己的案例 (例如 SSH 存取或資料庫連接) 進行調整)。 下列範例會建立名為 myNetworkSecurityGroupRule 的規則以允許連接埠 80 上的 TCP 流量︰
 
 ```azurecli
 azure network nsg rule create \
@@ -62,7 +62,7 @@ azure network nsg rule create \
     --access allow
 ```
 
-將 hello 網路安全性群組與您的 VM 網路介面 (NIC) 產生關聯。 hello 下列範例將名為現有 NIC *myNic* hello 名為的網路安全性群組與*myNetworkSecurityGroup*:
+將「網路安全性群組」與 VM 的網路介面 (NIC) 建立關聯。 下列範例將名為 myNic 的現有 NIC 與名為 myNetworkSecurityGroup 的網路安全性群組建立關聯：
 
 ```azurecli
 azure network nic set \
@@ -71,7 +71,7 @@ azure network nic set \
     --name myNic
 ```
 
-或者，您可以將您的網路安全性群組與虛擬網路子網路，而不是只 toohello 網路介面上之單一 VM。 hello 下列範例將現有的子網路，名為*mySubnet*在 hello *myVnet* hello 名為的網路安全性群組與虛擬網路*myNetworkSecurityGroup*:
+或者，您也可以將「網路安全性群組」與虛擬網路的子網路建立關聯，而不是只與單一 VM 上的網路介面建立關聯。 下列範例將 myVnet 虛擬網路中名為 mySubnet 的現有子網路，與名為 myNetworkSecurityGroup 的網路安全性群組建立關聯：
 
 ```azurecli
 azure network vnet subnet set \
@@ -81,14 +81,14 @@ azure network vnet subnet set \
 ```
 
 ## <a name="more-information-on-network-security-groups"></a>網路安全性群組的詳細資訊
-這裡 hello 快速命令可讓您設定 tooget 和流量流動 tooyour VM 執行。 網路安全性群組可提供許多很棒的功能和控制存取 tooyour 資源的資料粒度。 您可以深入了解 [建立網路安全性群組和 ACL 規則](../../virtual-network/virtual-networks-create-nsg-arm-cli.md)。
+這裡的快速命令可讓您使流向您 VM 的流量開始正常運作。 「網路安全性群組」提供許多絕佳的功能和細微性來控制對您資源的存取。 您可以深入了解 [建立網路安全性群組和 ACL 規則](../../virtual-network/virtual-networks-create-nsg-arm-cli.md)。
 
 您可以在 Azure Resource Manager 範本中定義網路安全性群組和 ACL 規則。 深入了解 [使用範本建立網路安全性群組](../../virtual-network/virtual-networks-create-nsg-arm-template.md)。
 
-如果您需要 toouse 唯一外部連接埠 tooan 內部連接埠的連接埠轉送 toomap VM 上，使用 負載平衡器和網路位址轉譯 (NAT) 規則。 例如，您可能想 tooexpose TCP 連接埠 8080 外部並且流量導向 tooTCP 連接埠 80 上的 VM。 您可以深入了解 [建立網際網路面向的負載平衡器](../../load-balancer/load-balancer-get-started-internet-arm-cli.md)。
+如果您需要使用連接埠轉送來將唯一的外部連接埠對應至您 VM 上的內部連接埠，請使用負載平衡器和「網路位址轉譯」(NAT) 規則。 例如，您可能會想要對外公開 TCP 連接埠 8080，然後讓流量導向到 VM 上的 TCP 連接埠 80。 您可以深入了解 [建立網際網路面向的負載平衡器](../../load-balancer/load-balancer-get-started-internet-arm-cli.md)。
 
 ## <a name="next-steps"></a>後續步驟
-在此範例中，您可以建立簡單的規則 tooallow HTTP 流量。 您可以找到有關 hello 下列文件中建立更詳細的環境：
+在此範例中，您建立了簡單的規則來允許 HTTP 流量。 您可以從下列文章中，找到有關建立更詳細環境的資訊︰
 
 * [Azure Resource Manager 概觀](../../azure-resource-manager/resource-group-overview.md)
 * [什麼是網路安全性群組 (NSG)？](../../virtual-network/virtual-networks-nsg.md)

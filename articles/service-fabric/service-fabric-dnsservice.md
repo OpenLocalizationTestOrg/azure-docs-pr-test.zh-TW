@@ -1,6 +1,6 @@
 ---
-title: "服務網狀架構 DNS 服務 aaaAzure |Microsoft 文件"
-description: "使用 Service Fabric dns 服務探索從 microservices hello 叢集內。"
+title: "Azure Service Fabric DNS 服務 | Microsoft Docs"
+description: "使用 Service Fabric 的 DNS 服務來從叢集內部探索微服務。"
 services: service-fabric
 documentationcenter: .net
 author: msfussell
@@ -14,25 +14,25 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 7/27/2017
 ms.author: msfussell
-ms.openlocfilehash: fa536f0e41f52c4942702d0a1bdcd3ed7d418d6d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9871bc5aa4e74ab0faef401d67c4e9558eb5e14b
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="dns-service-in-azure-service-fabric"></a>Azure Service Fabric 中的 DNS 服務
-hello DNS 服務是選用的系統服務，您可以在叢集 toodiscover 啟動其他服務使用 hello DNS 通訊協定。
+「DNS 服務」是一個選用的系統服務，您可以在叢集中啟用以使用 DNS 通訊協定來探索其他服務。
 
-許多服務，特別是容器化服務，可以有現有的 URL 名稱，而且可以 tooresolve 它們使用 hello 標準 DNS 通訊協定 （而非 hello 命名服務通訊協定） 是恰當的特別是在 「 提起和 shift 」 案例。 hello DNS 服務可讓您 toomap DNS 名稱 tooa 服務名稱，並因此解決端點 IP 位址。 
+許多服務 (特別是容器化服務) 都可以有現有的 URL 名稱，因此能夠使用標準 DNS 通訊協定 (而不是「命名服務」通訊協定) 來解析這些名稱，特別是在「隨即轉移」案例中。 DNS 服務可讓您將 DNS 服務對應到某個服務名稱，再由此解析端點 IP 位址。 
 
-hello DNS 服務對應 DNS 名稱 tooservice 名稱，接著解析 hello 命名服務 tooreturn hello 服務端點。 hello hello 服務的 DNS 名稱是在建立 hello 時提供。 
+DNS 服務會將 DNS 名稱對應到服務名稱，接著服務名稱會由命名服務解析並傳回服務端點。 服務的 DNS 名稱是在建立時提供的。 
 
 ![服務端點][0]
 
-## <a name="enabling-hello-dns-service"></a>啟用 hello DNS 服務
-首先您必須在叢集中 tooenable hello DNS 服務。 您想 toodeploy hello 叢集取得 hello 範本。 可以是使用 hello[範例範本](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype)或建立資源管理員範本。 您可以啟用 hello DNS 服務以 hello 下列步驟：
+## <a name="enabling-the-dns-service"></a>啟用 DNS 服務
+首先，您必須在叢集啟用 DNS 服務。 取得您想要部署之叢集的範本。 您可以使用[範例範本](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype)或建立 Resource Manager 範本。 您可以使用下列步驟來啟用 DNS 服務：
 
-1. 請檢查該 hello`apiversion`設定得`2017-07-01-preview`hello`Microsoft.ServiceFabric/clusters`資源，並且如果沒有，請在 hello 下列程式碼片段所示更新它：
+1. 檢查 `Microsoft.ServiceFabric/clusters` 資源的 `apiversion` 是否已設定為 `2017-07-01-preview`，如果不是，請加以更新，如下列程式碼片段所示：
 
     ```json
     {
@@ -44,7 +44,7 @@ hello DNS 服務對應 DNS 名稱 tooservice 名稱，接著解析 hello 命名�
     }
     ```
 
-2. 現在加入 hello 下列啟用 hello DNS 服務`addonFeatures`後面 hello 區段`fabricSettings`區段 hello 下列程式碼片段所示： 
+2. 現在，在 `fabricSettings` 區段之後新增下列 `addonFeatures` 區段以啟用 DNS 服務，如下列程式碼片段所示： 
 
     ```json
         "fabricSettings": [
@@ -55,18 +55,18 @@ hello DNS 服務對應 DNS 名稱 tooservice 名稱，接著解析 hello 命名�
         ],
     ```
 
-3. 一旦您已更新您的叢集範本以 hello 上述變更，套用它們，並讓 hello 升級已完成。 Hello DNS 系統服務完成之後，開始執行在叢集中稱為`fabric:/System/DnsService`hello Service Fabric 總管 中的系統服務區段底下。 
+3. 一旦您使用前面的變更將叢集範本進行更新之後，將它們加以套用，使升級完成。 完成之後，在 Service Fabric Explorer 的系統服務區段下，就有名為 `fabric:/System/DnsService` 的 DNS 系統服務在叢集中執行。 
 
-或者，您可以在叢集建立 hello 時間啟用 hello 透過 hello 入口網站的 DNS 服務。 您可以啟用 hello DNS 服務檢查 hello 方塊`Include DNS service`hello 中`Cluster configuration`功能表 hello 下列螢幕擷取畫面所示：
+或者，您可以在叢集建立時，透過入口網站啟用 DNS 服務。 核取 `Cluster configuration`功能表中的 `Include DNS service` 方塊可啟用 DNS 服務，如下列螢幕擷取畫面所示：
 
-![啟用透過 hello 入口網站的 DNS 服務][2]
+![透過入口網站啟用 DNS 服務][2]
 
 
-## <a name="setting-hello-dns-name-for-your-service"></a>設定您的服務的 hello DNS 名稱
-一旦 hello DNS 服務，正在您的叢集，您可以設定您的服務的 DNS 名稱以宣告方式的預設服務在 hello`ApplicationManifest.xml`或透過 Powershell 命令。
+## <a name="setting-the-dns-name-for-your-service"></a>為您的服務設定 DNS 名稱
+一旦 DNS 服務已在您的叢集中執行，您現在便可以在 `ApplicationManifest.xml` 中透過宣告為預設服務設定 DNS 名稱，或透過 Powershell 命令為服務設定 DNS 名稱。
 
-### <a name="setting-hello-dns-name-for-a-default-service-in-hello-applicationmanifestxml"></a>在 hello ApplicationManifest.xml 中設定的預設服務的 hello DNS 名稱
-開啟您的專案，在 Visual Studio 中或您偏好的編輯器，並開啟 hello`ApplicationManifest.xml`檔案。 移 toohello 預設服務 > 一節，以及每個服務加入 hello`ServiceDnsName`屬性。 hello 下列範例顯示如何 tooset hello hello 服務 DNS 名稱太`service1.application1`
+### <a name="setting-the-dns-name-for-a-default-service-in-the-applicationmanifestxml"></a>在 ApplicationManifest.xml 中為預設服務設定 DNS 名稱
+在 Visual Studio 或慣用的編輯器中開啟您的專案，然後開啟 `ApplicationManifest.xml` 檔案。 移至預設服務區段，然後為每個服務新增 `ServiceDnsName` 屬性。 下列範例示範如何將服務的 DNS 名稱設定為 `service1.application1`
 
 ```xml
     <Service Name="Stateless1" ServiceDnsName="service1.application1">
@@ -75,12 +75,12 @@ hello DNS 服務對應 DNS 名稱 tooservice 名稱，接著解析 hello 命名�
     </StatelessService>
     </Service>
 ```
-Hello 應用程式部署之後，hello Service Fabric 總管 中的 hello 服務執行個體就會顯示 hello DNS 名稱，這個執行個體，hello 遵循圖所示： 
+部署完應用程式之後，在 Service Fabric Explorer 中的服務執行個體會顯示此執行個體的 DNS 名稱，如下圖所示： 
 
 ![服務端點][1]
 
-### <a name="setting-hello-dns-name-for-a-service-using-powershell"></a>設定服務，使用 Powershell 的 hello DNS 名稱
-您可以設定 hello 服務的 DNS 名稱，是在建立使用 hello `New-ServiceFabricService` Powershell。 hello 下列範例會建立新的無狀態服務 hello DNS 名稱`service1.application1`
+### <a name="setting-the-dns-name-for-a-service-using-powershell"></a>使用 Powershell 為服務設定 DNS 名稱
+您可以在建立服務時，使用 `New-ServiceFabricService` Powershell 為服務設定 DNS 名稱。 下列範例會建立 DNS 名稱為 `service1.application1` 的新無狀態服務
 
 ```powershell
     New-ServiceFabricService `
@@ -94,9 +94,9 @@ Hello 應用程式部署之後，hello Service Fabric 總管 中的 hello 服務
 ```
 
 ## <a name="using-dns-in-your-services"></a>在您的服務中使用 DNS
-如果您部署多個服務，您可以找到與其他服務 toocommunicate hello 端點使用的 DNS 名稱。 hello DNS 服務才適用 toostateless 服務，因為 hello DNS 通訊協定無法與可設定狀態的服務進行通訊。 可設定狀態服務，您可以使用 hello 內建的反向 proxy 的 http 呼叫 toocall 特定服務磁碟分割。
+如果您部署多個服務，您便可以使用 DNS 名稱來尋找要通訊對象的其他服務端點。 DNS 服務僅適用於無狀態服務，因為 DNS 通訊協定無法與具狀態服務通訊。 針對具狀態服務，您可以使用 HTTP 呼叫的內建反向 Proxy 來呼叫特定的服務分割區。
 
-hello 下列程式碼會示範如何 toocall 另一個服務，也就是只在一般的 http 呼叫其中 hello URL 的一部分提供 hello 連接埠以及任何選擇性路徑。
+下列程式碼會示範如何呼叫另一個服務，這只是一般的 HTTP 呼叫，其中您會提供連接埠和任何選用路徑作為 URL 的一部分。
 
 ```csharp
 public class ValuesController : Controller
@@ -125,7 +125,7 @@ public class ValuesController : Controller
 ```
 
 ## <a name="next-steps"></a>後續步驟
-深入了解與 hello 叢集內的服務通訊[連接，並與服務通訊](service-fabric-connect-and-communicate-with-services.md)
+若要深入了解叢集內的服務通訊，請參閱[連接服務並與其進行通訊](service-fabric-connect-and-communicate-with-services.md)
 
 [0]: ./media/service-fabric-connect-and-communicate-with-services/dns.png
 [1]: ./media/service-fabric-dnsservice/servicefabric-explorer-dns.PNG

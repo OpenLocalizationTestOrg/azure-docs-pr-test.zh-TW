@@ -1,6 +1,6 @@
 ---
-title: "Azure 媒體分析 ocr aaaDigitize 文字 |Microsoft 文件"
-description: "Azure 媒體分析 OCR （光學字元辨識） 可讓您 tooconvert 文字內容中的視訊檔案為可編輯，搜尋數位文字。  這可讓您 tooautomate hello 擷取有意義的中繼資料從您的媒體 hello 視訊訊號。"
+title: "使用 Azure 媒體分析 OCR 將文字數位化 | Microsoft Docs"
+description: "Azure 媒體分析 OCR (光學字元辨識) 可讓您將視訊檔中的文字內容轉換成可編輯、可搜尋的數位文字。  這可讓您從媒體的視訊訊號自動擷取有意義的中繼資料。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,40 +14,40 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako
-ms.openlocfilehash: 0476c3ba3942b2c5182a34a429909adbf5c75ac9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 43f5b3a9bbec243e668c79702045094fcfedbdda
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-azure-media-analytics-tooconvert-text-content-in-video-files-into-digital-text"></a>視訊檔案中，使用 Azure 媒體分析 tooconvert 文字內容，到數位的文字
+# <a name="use-azure-media-analytics-to-convert-text-content-in-video-files-into-digital-text"></a>使用 Azure 媒體分析以將視訊檔案中的文字內容轉換為數位文字
 ## <a name="overview"></a>概觀
-如果您需要從視訊檔案的內容 tooextract 文字，並產生可編輯的可搜尋數位文字，您應該使用 Azure 媒體分析 OCR （光學字元辨識）。 此 Azure 媒體處理器會偵測視訊檔案的文字內容並產生文字檔案，以供您使用。 OCR 可讓您 tooautomate hello 的有意義的中繼資料中擷取媒體的 hello 視訊訊號。
+如果您需要擷取視訊檔案的文字內容，並產生可編輯、可搜尋的數位文字，您應該使用 Azure 媒體分析 OCR (光學字元辨識)。 此 Azure 媒體處理器會偵測視訊檔案的文字內容並產生文字檔案，以供您使用。 OCR 可讓您從媒體的視訊訊號自動擷取有意義的中繼資料。
 
-搭配使用搜尋引擎，您可以輕鬆地索引時您的媒體依文字、 與增強 hello 發現您的內容。 這在具有大量文字的視訊 (例如視訊錄製或投影片簡報的螢幕擷取) 中非常實用。 hello Azure OCR 媒體處理器最適合用於數位文字。
+搭配搜尋引擎使用時，您可以輕易地依文字編製媒體的索引，並增強探索內容的能力。 這在具有大量文字的視訊 (例如視訊錄製或投影片簡報的螢幕擷取) 中非常實用。 Azure OCR 媒體處理器已針對數位文字進行最佳化。
 
-hello **Azure 媒體 OCR**媒體處理器目前為預覽狀態。
+**Azure 媒體 OCR** 媒體處理器目前為預覽版。
 
-本主題詳細說明有關**Azure 媒體 OCR** ，並示範如何 toouse 使用 Media Services SDK for.NET。 如需詳細資訊和範例，請參閱 [這篇部落格](https://azure.microsoft.com/blog/announcing-video-ocr-public-preview-new-config/)。
+本主題提供有關 **Azure 媒體 OCR** 的詳細資料，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它。 如需詳細資訊和範例，請參閱 [這篇部落格](https://azure.microsoft.com/blog/announcing-video-ocr-public-preview-new-config/)。
 
 ## <a name="ocr-input-files"></a>OCR 輸入檔案
-影片檔案。 目前支援下列格式的 hello: MP4、 MOV、 和 WMV。
+影片檔案。 目前支援下列格式：MP4、MOV 及 WMV。
 
 ## <a name="task-configuration"></a>工作組態
 工作組態 (預設)。 使用 **Azure 媒體 OCR** 建立工作時，您必須使用 JSON 或 XML 來指定組態預設。 
 
 >[!NOTE]
->hello OCR 引擎才會與最小 40 像素 toomaximum 32000 像素的影像區域，做為有效的輸入，在這兩個高度/寬度。
+>OCR 引擎只會接受高度/寬度兩者在最小 40 像素到最大 32000 像素的影像區域為有效的輸入。
 >
 
 ### <a name="attribute-descriptions"></a>屬性描述
 | 屬性名稱 | 說明 |
 | --- | --- |
-|AdvancedOutput| 如果您設定 AdvancedOutput tootrue，hello JSON 輸出會包含位置資料的每個單字 （在加法 toophrases 和區域）。 如果您不想 toosee 這些詳細資料，設定 hello 旗標 toofalse。 hello 預設值為 false。 如需詳細資訊，請參閱 [此部落格](https://azure.microsoft.com/blog/azure-media-ocr-simplified-output/)。|
-| 語言 |（選擇性） 描述文字的哪些 toolook hello 語言。 Hello 下列其中一種： 自動偵測 （預設值）、 阿拉伯文、 ChineseSimplified、 ChineseTraditional、 捷克文丹麥文、 荷蘭文、 英文、 芬蘭文、 法文、 德文、 希臘文、 匈牙利文、 義大利文、 日文、 韓文、 挪威文、 波蘭文、 葡萄牙文、 羅馬尼亞文、 俄文SerbianCyrillic、 SerbianLatin、 斯洛伐克文、 西班牙文、 瑞典文、 土耳其文。 |
-| TextOrientation |（選擇性） 描述 hello 哪些 toolook 文字方向。  「 左 」 表示 hello 的所有字母上方所指朝向 hello 左邊。  預設文字 (像是可在書本中找到的文字) 的方向為 "Up"。  Hello 下列其中一種： 自動偵測 （預設值），最多、 右邊、 向下、 左。 |
-| TimeInterval |（選擇性） 描述 hello 取樣率。  預設值為每 1/2 秒。<br/>JSON 格式 – HH:mm:ss.SSS (預設值 00:00:00.500)<br/>XML 格式 – W3C XSD 持續時間基本型別 (預設值 PT0.5) |
-| DetectRegions |（選擇性）指定區域內 hello 視訊畫面格 toodetect 文字 DetectRegion 物件的陣列。<br/>DetectRegion 物件是由下列四個整數值的 hello:<br/>左 – 從 hello 左邊界的像素為單位<br/>Top – 從 hello 的上邊界的像素為單位<br/>寬度-像素為單位的 hello 區域的寬度<br/>高度-像素為單位的 hello 區域的高度 |
+|AdvancedOutput| 如果您將 AdvancedOutput 設為 true，JSON 輸出就會包含每一個文字的位置資料 (除了片語和區域)。 如果您不想要查看這些詳細資料，請將旗標設定為 false。 預設值為 False。 如需詳細資訊，請參閱 [此部落格](https://azure.microsoft.com/blog/azure-media-ocr-simplified-output/)。|
+| 語言 |(選擇性) 說明要尋找的文字語言。 下列其中一種︰AutoDetect (預設值)、Arabic、ChineseSimplified、ChineseTraditional、Czech Danish、Dutch、English、Finnish、French、German、Greek、Hungarian、Italian、Japanese、Korean、Norwegian、Polish、Portuguese、Romanian、Russian、SerbianCyrillic、SerbianLatin、Slovak、Spanish、Swedish、Turkish。 |
+| TextOrientation |(選擇性) 說明要尋找的文字方向。  "Left" 表示所有字母頂端都會指向左邊。  預設文字 (像是可在書本中找到的文字) 的方向為 "Up"。  下列其中一種︰AutoDetect (預設值)、Up、Right、Down、Left。 |
+| TimeInterval |(選擇性) 說明取樣率。  預設值為每 1/2 秒。<br/>JSON 格式 – HH:mm:ss.SSS (預設值 00:00:00.500)<br/>XML 格式 – W3C XSD 持續時間基本型別 (預設值 PT0.5) |
+| DetectRegions |(選擇性) DetectRegion 物件的陣列，指定在其中偵測文字的視訊畫面格內的區域。<br/>DetectRegion 物件是由下列四個整數值組成︰<br/>左 – 像素的左邊界<br/>上 – 像素的上邊界<br/>寬度 – 以像素為單位的區域寬度<br/>高度 – 以像素為單位的區域高度 |
 
 #### <a name="json-preset-example"></a>JSON 預設範例
 
@@ -91,33 +91,33 @@ hello **Azure 媒體 OCR**媒體處理器目前為預覽狀態。
     </VideoOcrPreset>
 
 ## <a name="ocr-output-files"></a>OCR 輸出檔案
-hello OCR 媒體處理器的 hello 輸出是 JSON 檔案。
+OCR 媒體處理器的輸出是 JSON 檔案。
 
-### <a name="elements-of-hello-output-json-file"></a>Hello 輸出 JSON 檔案的項目
-hello 視訊 OCR 輸出提供在視訊中找到的 hello 字元時間分割資料。  您可以使用的語言或 toohone 中方向等屬性完全 hello 字，您有興趣分析。 
+### <a name="elements-of-the-output-json-file"></a>輸出 JSON 檔案的元素
+視訊 OCR 輸出會在可於視訊上找到的字元中提供時間分段資料。  您可以使用屬性 (例如語言或方向)，確實琢磨您有興趣進行分析的文字。 
 
-hello 輸出內容包含下列屬性的 hello:
+輸出包含下列屬性：
 
 | 元素 | 說明 |
 | --- | --- |
-| 時幅 |hello 視訊的每秒 「 滴答 」 |
+| 時幅 |影片每秒的「刻度」數目 |
 | Offset |時間戳記的時間位移。 在版本 1.0 的影片 API 中，這永遠會是 0。 |
-| 畫面播放速率 |每秒的 hello 視訊畫面格 |
-| width |hello 視訊像素為單位的寬度 |
-| height |hello 視訊像素為單位的高度 |
-| 片段 |以時間為基礎的中繼資料被截斷成哪一個 hello 視訊的區塊的陣列 |
+| 畫面播放速率 |影片的每秒畫面格數 |
+| width |視訊寬度 (以像素為單位) |
+| height |視訊高度 (以像素為單位) |
+| 片段 |在視訊中，將中繼資料切割為以時間為基礎的區塊陣列 |
 | start |片段的開始時間 (以「刻度」為單位) |
 | duration |片段的長度 (以「刻度」為單位) |
-| interval |每個事件內 hello 給定片段的間隔 |
-| 活動 |包含區域的陣列 |
+| interval |指定片段內每個事件的間隔 |
+| events |包含區域的陣列 |
 | region |物件，代表偵測到的單字或片語 |
-| 語言 |區域內偵測到的 hello 文字的語言 |
-| orientation |區域內偵測到的 hello 文字方向 |
+| 語言 |區域內偵測到的文字語言 |
+| orientation |區域內偵測到的文字方向 |
 | lines |區域內偵測到的文字行陣列 |
-| 文字 |實際的 hello 文字 |
+| 文字 |實際的文字 |
 
 ### <a name="json-output-example"></a>JSON 輸出範例
-hello 下列輸出範例包含 hello 一般視訊資訊和數個視訊片段。 在每個視訊片段中，它會包含每個偵測到的 OCR 管理組件以 hello 語言和其文字方向的區域。 hello 區域也包含 hello 一行文字、 與 hello 行的位置，這行中的每個 word 資訊 （word 內容、 位置和信心） 這個區域中的每個字行。 hello 以下是範例，並使某些註解內嵌。
+下列輸出範例包含一般視訊資訊和數個視訊片段。 每個視訊片段都包含 OCR MP 使用語言及其文字方向偵測到的每個區域。 區域也包含這個區域中的每個文字行，以及該行的文字、該行的位置和該行中每個單字的資訊 (單字內容、位置和信賴度)。 以下是範例，而我在其中放入了一些註解。
 
     {
         "version": 1, 
@@ -130,14 +130,14 @@ hello 下列輸出範例包含 hello 一般視訊資訊和數個視訊片段。 
             {
                 "start": 0, 
                 "duration": 180000, 
-                "interval": 90000,  // hello time information about this fragment
+                "interval": 90000,  // the time information about this fragment
                 "events": [
                     [
                        { 
-                            "region": { // hello detected region array in this fragment 
+                            "region": { // the detected region array in this fragment 
                                 "language": "English",  // region language
                                 "orientation": "Up",  // text orientation
-                                "lines": [  // line information array in this region, including hello text and hello position
+                                "lines": [  // line information array in this region, including the text and the position
                                     {
                                         "text": "One Two", 
                                         "left": 10, 
@@ -174,15 +174,15 @@ hello 下列輸出範例包含 hello 一般視訊資訊和數個視訊片段。 
 
 ## <a name="net-sample-code"></a>.NET 範例程式碼
 
-hello 以下程式顯示如何：
+下列程式將示範如何：
 
-1. 建立資產，並將媒體檔案上傳到 hello 資產。
+1. 建立資產並將媒體檔案上傳到資產。
 2. 使用 OCR 設定/預設檔案建立作業。
-3. 下載 hello 輸出 JSON 檔案。 
+3. 下載輸出 JSON 檔案。 
    
 #### <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
 
-設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。 
+設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。 
 
 #### <a name="example"></a>範例
 
@@ -198,7 +198,7 @@ hello 以下程式顯示如何：
     {
         class Program
         {
-            // Read values from hello App.config file.
+            // Read values from the App.config file.
             private static readonly string _AADTenantDomain =
                 ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -214,17 +214,17 @@ hello 以下程式顯示如何：
 
                 _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
-                // Run hello OCR job.
+                // Run the OCR job.
                 var asset = RunOCRJob(@"C:\supportFiles\OCR\presentation.mp4",
                                             @"C:\supportFiles\OCR\config.json");
 
-                // Download hello job output asset.
+                // Download the job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\OCR\Output");
             }
 
             static IAsset RunOCRJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload hello input media file toostorage.
+                // Create an asset and upload the input media file to storage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My OCR Input Asset",
                     AssetCreationOptions.None);
@@ -232,38 +232,38 @@ hello 以下程式顯示如何：
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My OCR Job");
 
-                // Get a reference tooAzure Media OCR.
+                // Get a reference to Azure Media OCR.
                 string MediaProcessorName = "Azure Media OCR";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from hello specified file.
+                // Read configuration from the specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with hello encoding details, using a string preset.
+                // Create a task with the encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My OCR Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify hello input asset.
+                // Specify the input asset.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job.
+                // Add an output asset to contain the results of the job.
                 task.OutputAssets.AddNew("My OCR Output Asset", AssetCreationOptions.None);
 
-                // Use hello following event handler toocheck job progress.  
+                // Use the following event handler to check job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch hello job.
+                // Launch the job.
                 job.Submit();
 
-                // Check job execution and wait for job toofinish.
+                // Check job execution and wait for job to finish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, hello event handling
+                // If job state is Error, the event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

@@ -1,5 +1,5 @@
 ---
-title: "在 Azure 搜尋的 aaaHow toopage 搜尋結果 |Microsoft 文件"
+title: "如何在 Azure 搜尋服務中對搜尋結果分頁 | Microsoft Docs"
 description: "Azure 搜尋服務 (Microsoft Azure 上之託管的雲端搜尋服務) 中的分頁方式。"
 services: search
 documentationcenter: 
@@ -14,36 +14,36 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.date: 08/29/2016
 ms.author: heidist
-ms.openlocfilehash: e3abc1ca4d5994b0a77955379081a4fcfa5a7fa7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1054e15a2751c53aad5dbc8054c4cec41102dee9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toopage-search-results-in-azure-search"></a>在 Azure 搜尋 toopage 搜尋結果的方式
-這篇文章會提供有關如何 toouse hello Azure 搜尋服務 REST API tooimplement 標準的項目搜尋結果頁面上，例如的總次數、 文件擷取、 排序次序和瀏覽的指引。
+# <a name="how-to-page-search-results-in-azure-search"></a>如何在 Azure 搜尋服務中對搜尋結果分頁
+本文提供指引，關於如何使用 Azure 搜尋服務 REST API 來實作搜尋結果頁面的標準項目，例如次數總計、擷取文件、排序次序和導覽。
 
-在每個案例中，如下所述，提供資料或資訊 tooyour 搜尋結果頁面的頁面的相關選項透過 hello 指定[搜尋文件](http://msdn.microsoft.com/library/azure/dn798927.aspx)傳送要求 tooyour Azure 搜尋服務。 要求包含 GET 命令、 路徑和 hello 服務要求功能，就會通知的查詢參數和 tooformulate hello 回應的方式。
+在以下提到的每個案例中，發表資料或資訊到您的搜尋結果頁面的頁面相關選項，會由傳送到 Azure 搜尋服務的 [搜尋文件](http://msdn.microsoft.com/library/azure/dn798927.aspx) 要求所指定。 要求會包含 GET 命令、路徑和查詢參數，這些會對服務通知要求是什麼，以及如何制訂回應。
 
 > [!NOTE]
-> 有效的要求包含一些項目，例如服務 URL 及路徑、HTTP 動詞命令、`api-version` 等。 為求簡單明瞭，我們會修剪 hello 範例 toohighlight 只 hello 語法相關 toopagination。 請參閱 hello [Azure 搜尋服務 REST API](http://msdn.microsoft.com/library/azure/dn798935.aspx)要求語法的詳細文件。
+> 有效的要求包含一些項目，例如服務 URL 及路徑、HTTP 動詞命令、`api-version` 等。 為求簡單明瞭，我們縮減此範例，只突顯與分頁相關的語法。 如需要求語法的詳細資訊，請參閱 [Azure 搜尋服務 REST API](http://msdn.microsoft.com/library/azure/dn798935.aspx) 文件。
 > 
 > 
 
 ## <a name="total-hits-and-page-counts"></a>總點擊數和頁面計數
-顯示 hello 總查詢，傳回的結果數目，然後傳回結果較小的區塊，是基本 toovirtually 所有搜尋頁面。
+顯示從查詢傳回的結果總數，然後以較小的區塊傳回這些結果，幾乎對所有搜尋頁面都相當基本。
 
 ![][1]
 
-在 Azure 搜尋中，您可以使用 hello `$count`， `$top`，和`$skip`參數 tooreturn 這些值。 hello 下列範例顯示的範例要求的總叫用，以傳回`@OData.count`:
+在 Azure 搜尋服務中，您可以使用 `$count`、`$top` 和 `$skip` 參數來傳回這些值。 下列範例示範總點擊數做為 `@OData.count`傳回的範例要求：
 
         GET /indexes/onlineCatalog/docs?$count=true
 
-擷取 15，群組中的文件，也會顯示 hello 的點擊總數，開始 hello 第一頁：
+開始在第一頁擷取文件，以 15 個為一組，同時顯示總點擊數：
 
         GET /indexes/onlineCatalog/docs?search=*$top=15&$skip=0&$count=true
 
-分頁結果同時需要`$top`和`$skip`，其中`$top`批次中指定數目的項目 tooreturn 和`$skip`指定數目的項目 tooskip。 在 hello 遵循範例中，每一頁會顯示 hello 接下來 15 的項目，以表示 hello 累加式跳躍點在 hello`$skip`參數。
+分頁結果需要 `$top` 和 `$skip`，其中 `$top` 指定有多少項目要批次傳回，而 `$skip` 指定有多少項目要略過。 在下列範例中，每個頁面顯示下 15 個項目，表示在 `$skip` 參數中的遞增跳躍。
 
         GET /indexes/onlineCatalog/docs?search=*$top=15&$skip=0&$count=true
 
@@ -52,51 +52,51 @@ ms.lasthandoff: 10/06/2017
         GET /indexes/onlineCatalog/docs?search=*$top=15&$skip=30&$count=true
 
 ## <a name="layout"></a>版面配置
-在搜尋結果 頁面中，您可能想 tooshow 縮圖影像、 欄位、 的子集，以及連結 tooa 完整產品頁面。
+在搜尋結果頁面中，您可能會想要顯示縮圖、欄位子集以及完整產品頁面的連結。
 
  ![][2]
 
-在 Azure 搜尋中，您會使用`$select`和查閱命令 tooimplement 這項體驗。
+在 Azure 搜尋服務中，您可使用 `$select` 和查閱命令來實作這種體驗。
 
-tooreturn 子集並排顯示版面配置的欄位：
+若要傳回並排版面配置的欄位子集：
 
         GET /indexes/ onlineCatalog/docs?search=*&$select=productName,imageFile,description,price,rating 
 
-映像和媒體檔案不是直接搜尋，並應該儲存在另一個存放裝置平台，例如 Azure Blob 儲存體，tooreduce 成本。 在 hello 索引和文件中，定義會儲存 hello hello 外部內容的 URL 地址的欄位。 您接著可以使用 hello 欄位做為映像的參照。 hello URL toohello 映像應該 hello 文件中。
+不能直接搜尋影像和媒體檔案，且應儲存在其他儲存體平台，例如 Azure Blob 儲存體，以降低成本。 在索引和文件中，請定義儲存外部內容 URL 位址的欄位。 然後您可以使用此欄位做為影像參考。 此影像的 URL 應位於此文件中。
 
-產品說明頁面的 tooretrieve **onClick**事件時，使用[查閱文件](http://msdn.microsoft.com/library/azure/dn798929.aspx)toopass hello 文件 tooretrieve hello 索引鍵中的。 hello hello 索引鍵資料類型是`Edm.String`。 在此範例中為 *246810*。 
+若要擷取 **onClick** 事件的產品描述頁面，請使用 [查閱文件](http://msdn.microsoft.com/library/azure/dn798929.aspx) 來傳入此文件的金鑰以進行擷取。 此金鑰的資料類型為 `Edm.String`。 在此範例中為 *246810*。 
 
         GET /indexes/onlineCatalog/docs/246810
 
 ## <a name="sort-by-relevance-rating-or-price"></a>根據相關性、評等或價格排序
-排序通常順序預設 toorelevance，但它是一般 toomake 替代排序次序便於使用，讓客戶可以快速地為不同的次序順序 reshuffle 現有的結果。
+排序次序通常預設為相關性，但也常見到立即可用的替代排序次序，好讓客戶可迅速重新將現有的結果排列為不同的排名次序。
 
  ![][3]
 
-在 Azure 搜尋中，會根據排序 hello`$orderby`運算式，會與編製索引的所有欄位`"Sortable": true.`
+在 Azure 搜尋服務中，對於所有索引編製為 `"Sortable": true.` 的欄位，會根據 `$orderby` 運算式來排序。
 
-相關性和評分設定檔密切相關。 您可以使用預設計分 hello，它會依賴文字分析和統計資料 toorank 順序所有結果，使用較高 toodocuments 的更多或更強的相符項目進行的搜尋詞彙的分數。
+相關性和評分設定檔密切相關。 您可使用預設評分，這會依賴文字分析和統計資料來對所有結果排名次序，與搜尋詞彙有更多或更密切符合的文件會有更高的評分。
 
-替代的排序順序通常與相關聯**onClick**回 tooa 方法會呼叫的事件建立 hello 排序順序。 例如指定頁面項目如下：
+替代的排序次序通常和 **onClick** 事件有關，這會回呼建置此排序次序的方法。 例如指定頁面項目如下：
 
  ![][4]
 
-您會建立接受 hello 選取排序選項做為輸入，並傳回該選項相關聯的 hello 準則的已排序的清單的方法。
+您可建立一個方法，它會接受所選取的排序選項做為輸入，然後對於和該選項相關的準則傳回已排序的清單。
 
  ![][5]
 
 > [!NOTE]
-> 雖然 hello 預設計分足以適用許多情況，我們建議您改為基礎的自訂計分設定檔的相關性。 自訂的計分設定檔可讓您更有幫助 tooyour 商務方式 tooboost 項目。 如需詳細資訊，請參閱 [新增評分設定檔](http://msdn.microsoft.com/library/azure/dn798928.aspx) 。 
+> 雖然預設評分對大多數案例都已足夠，但我們建議改用自訂評分設定檔來建立相關性。 自訂評分設定檔給您提升項目的方式，這會對您的企業更有助益。 如需詳細資訊，請參閱 [新增評分設定檔](http://msdn.microsoft.com/library/azure/dn798928.aspx) 。 
 > 
 > 
 
 ## <a name="faceted-navigation"></a>多面向導覽
-在 [結果] 頁面中，通常位於 hello 側邊或上方頁面上搜尋巡覽常會。 在 Azure 搜尋服務中，多面向導覽會根據預先定義的篩選器提供自我導向的搜尋。 如需詳細資訊，請參閱 [Azure 搜尋服務中的多面向導覽](search-faceted-navigation.md) 。
+搜尋導覽常見於結果頁面上，通常位於頁面的一側或頂端。 在 Azure 搜尋服務中，多面向導覽會根據預先定義的篩選器提供自我導向的搜尋。 如需詳細資訊，請參閱 [Azure 搜尋服務中的多面向導覽](search-faceted-navigation.md) 。
 
-## <a name="filters-at-hello-page-level"></a>Hello 頁面層級篩選
-如果您解決方案設計包含特定類型的內容 （例如，線上零售應用程式已列在 hello hello 頁面頂端的部門） 的專用的搜尋頁面中，您可以插入旁邊的篩選條件運算式**onClick**事件 tooopen 預先狀態中的頁面。 
+## <a name="filters-at-the-page-level"></a>頁面層級的篩選器
+如果解決方案設計包含特定類型之內容的專用搜尋頁面 (例如，線上零售應用程式具有列於頁面頂端的部門)，則您可一起插入篩選運算式和 **onClick** 事件，在預先篩選的狀態下開啟頁面。 
 
-您可以傳送篩選器，但不一定要有搜尋運算式。 例如，hello 下列要求會篩選品牌名稱，傳回符合這些文件。
+您可以傳送篩選器，但不一定要有搜尋運算式。 例如，下列要求會篩選品牌名稱，只傳回符合該名稱的文件。
 
         GET /indexes/onlineCatalog/docs?$filter=brandname eq ‘Microsoft’ and category eq ‘Games’
 

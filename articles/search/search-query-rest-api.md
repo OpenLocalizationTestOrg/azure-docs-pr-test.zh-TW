@@ -1,6 +1,6 @@
 ---
-title: "aaa\"查詢索引 (REST API 的 Azure 搜尋) |Microsoft 文件 」"
-description: "建置在 Azure 搜尋的搜尋查詢，並使用搜尋參數 toofilter 和排序搜尋結果。"
+title: "查詢索引 (REST API - Azure 搜尋服務) | Microsoft Docs"
+description: "在 Azure 搜尋服務中建立搜尋查詢，並使用搜尋參數來篩選及排序搜尋結果。"
 services: search
 documentationcenter: 
 manager: jhubbard
@@ -13,13 +13,13 @@ ms.topic: get-started-article
 ms.tgt_pltfrm: na
 ms.date: 01/12/2017
 ms.author: ashmaka
-ms.openlocfilehash: 2f12238b8f4b045f536489cfc8766fb68307bbe2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 49062bec233ad35cd457f9665fa94c1855343582
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="query-your-azure-search-index-using-hello-rest-api"></a>查詢您的 Azure 搜尋索引使用 hello REST API
+# <a name="query-your-azure-search-index-using-the-rest-api"></a>使用 REST API 查詢 Azure 搜尋服務索引
 > [!div class="op_single_selector"]
 >
 > * [概觀](search-query-overview.md)
@@ -29,37 +29,37 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-本文章將示範如何使用索引的 tooquery hello [Azure 搜尋 REST API](https://docs.microsoft.com/rest/api/searchservice/)。
+本文說明如何使用 [Azure 搜尋服務 REST API](https://docs.microsoft.com/rest/api/searchservice/) 查詢索引。
 
 在開始閱讀本逐步解說前，請先[建立好 Azure 搜尋服務索引](search-what-is-an-index.md)，並[在索引中填入資料](search-what-is-data-import.md)。 如需有關背景資訊，請參閱[全文檢索搜尋如何在 Azure 搜尋服務中運作](search-lucene-query-architecture.md)。
 
 ## <a name="identify-your-azure-search-services-query-api-key"></a>識別 Azure 搜尋服務的查詢 API 金鑰
-Hello Azure 搜尋 REST API 針對每個搜尋作業的重要元件是 hello *api 金鑰*產生 hello 您佈建的服務。 擁有有效的索引鍵建立信任關係，針對每個要求，hello 應用程式正在傳送嗨要求和處理它的 hello 服務之間。
+針對 Azure 搜尋服務 REST API 所執行之每個搜尋作業的主要元件是針對所佈建之服務產生的 API 金鑰  。 擁有有效的金鑰就能為每個要求在傳送要求之應用程式與處理要求之服務間建立信任。
 
-1. toofind 服務的 api 金鑰，您可以登入 toohello [Azure 入口網站](https://portal.azure.com/)
-2. 移 tooyour Azure 搜尋服務的刀鋒視窗
-3. 按一下 hello 「 金鑰 」 圖示
+1. 若要尋找服務的 API 金鑰，您可以登入 [Azure 入口網站](https://portal.azure.com/)
+2. 前往 Azure 搜尋服務的刀鋒視窗。
+3. 按一下 [金鑰] 圖示
 
 您的服務有「系統管理金鑰」和「查詢金鑰」。
 
-* 您的主要和次要*系統管理金鑰*tooall 作業，包括 hello 能力 toomanage hello 服務授與的完整權限、 建立和刪除索引、 索引子和資料來源。 有兩個索引鍵，讓您可以繼續 toouse hello 次要索引鍵，如果您決定 tooregenerate hello 主索引鍵，反之亦然。
-* 您*查詢索引鍵*授與唯讀存取 tooindexes 和文件，並發出搜尋要求的 tooclient 通常分散式應用程式。
+* 主要和次要系統管理金鑰  會授與所有作業的完整權限，包括管理服務以及建立和刪除索引、索引子與資料來源的能力。 由於有兩個金鑰，因此如果您決定重新產生主要金鑰，您可以繼續使用次要金鑰，反之亦然。
+* 查詢金鑰  會授與索引和文件的唯讀存取權，且通常會分派給發出搜尋要求的用戶端應用程式。
 
-基於 hello 查詢索引，您可以使用您的查詢索引鍵的其中一個。 系統管理金鑰也可以用於查詢，但您應該查詢索引鍵使用您的應用程式程式碼中，這更如下所示 hello[最低權限原則](https://en.wikipedia.org/wiki/Principle_of_least_privilege)。
+若要查詢索引，您可以使用其中一個查詢金鑰。 系統管理金鑰也可以用於進行查詢，但是您應該在應用程式的程式碼中使用查詢金鑰，因為查詢金鑰更加符合 [最低權限準則](https://en.wikipedia.org/wiki/Principle_of_least_privilege)。
 
 ## <a name="formulate-your-query"></a>編寫查詢
-有兩種方式的太[搜尋索引使用 REST API hello](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)。 其中一種方式是 tooissue HTTP POST 要求，其中 hello 要求主體中的 JSON 物件中定義查詢參數。 hello 另一種方式是 tooissue HTTP GET 要求，其中定義查詢參數 hello 要求 URL 中。 文章中的多個[放寬限制](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)hello 大小比 GET 的查詢參數。 因此，除非您的情況特殊導致使用 GET 會比較方便，否則建議您使用 POST。
+有兩種方式可以 [使用 REST API 搜尋索引](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)。 其中一種方式是發出 HTTP POST 要求，並將查詢參數定義在要求主體的 JSON 物件中。 另一種方式是發出 HTTP GET 要求，並將查詢參數定義在要求 URL 中。 在查詢參數的大小方面，POST 比 GET 擁有[更寬鬆的限制](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)。 因此，除非您的情況特殊導致使用 GET 會比較方便，否則建議您使用 POST。
 
-POST 與 GET，您需要 tooprovide 您*服務名稱*，*索引名稱*，並適當 hello *API 版本*(hello 目前的 API 版本是`2016-09-01`hello 次發行這份文件） 的 hello 在要求 URL。 為 GET、 hello*查詢字串*在 hello hello URL 的結尾會是您用來提供 hello 查詢參數。 Hello URL 格式，請參閱下面的內容：
+不管是 POST 還是 GET，您都需要在要求 URL 中提供服務名稱、索引名稱和適當的 API 版本 (本文件發行時的最新 API 版本是 `2016-09-01`)。 若為 GET，URL 結尾的「查詢字串」是您用來提供查詢參數的位置。 URL 的格式如下所示：
 
     https://[service name].search.windows.net/indexes/[index name]/docs?[query string]&api-version=2016-09-01
 
-hello 格式化的 POST 是 hello 相同，但只有 api 版本在 hello 查詢字串參數中。
+POST 的格式同上，但查詢字串參數中只有 API 版本。
 
 #### <a name="example-queries"></a>查詢範例
 以下是幾個名為 "hotels" 之索引的查詢範例。 範例中會同時顯示 GET 和 POST 格式的查詢。
 
-搜尋 hello 詞彙 '預算' hello 整個索引並傳回僅 hello`hotelName`欄位：
+在整個索引中搜尋 'budget' 一詞，並只傳回 `hotelName` 欄位：
 
 ```
 GET https://[service name].search.windows.net/indexes/hotels/docs?search=budget&$select=hotelName&api-version=2016-09-01
@@ -71,7 +71,7 @@ POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-ve
 }
 ```
 
-套用篩選器 toohello 索引 toofind 旅館比每晚，$150 廉價，並傳回 hello`hotelId`和`description`:
+將篩選套用到索引，以尋找每晚房價低於美金 $150 元的旅館，並傳回 `hotelId` 和 `description`：
 
 ```
 GET https://[service name].search.windows.net/indexes/hotels/docs?search=*&$filter=baseRate lt 150&$select=hotelId,description&api-version=2016-09-01
@@ -84,7 +84,7 @@ POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-ve
 }
 ```
 
-搜尋 hello 整個索引中，依特定欄位的順序 (`lastRenovationDate`) 以遞減順序，hello 前兩個結果，並只顯示`hotelName`和`lastRenovationDate`:
+搜尋整個索引，依特定欄位 (`lastRenovationDate`) 以遞減順序排序，取前兩個結果，並只顯示 `hotelName` 和 `lastRenovationDate`：
 
 ```
 GET https://[service name].search.windows.net/indexes/hotels/docs?search=*&$top=2&$orderby=lastRenovationDate desc&$select=hotelName,lastRenovationDate&api-version=2016-09-01
@@ -104,11 +104,11 @@ POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-ve
 #### <a name="request-and-request-headers"></a>要求和要求標頭
 您必須為 GET 定義兩個要求標頭，若為 POST 則必須定義三個：
 
-1. hello`api-key`標頭必須設定您在步驟中找到我上述 toohello 查詢索引鍵。 您也可以使用 管理金鑰為 hello`api-key`標頭，但建議您使用的是查詢索引鍵，因為它只會授與唯讀存取 tooindexes 和文件。
-2. hello`Accept`標頭必須設定太`application/json`。
-3. 只有 post hello`Content-Type`標頭也應該設定太`application/json`。
+1. `api-key` 標頭必須設為您在上面的步驟 I 中找到的查詢金鑰。 您也可以使用系統管理金鑰作為 `api-key` 標頭，但建議您使用查詢金鑰，因為其可獨佔授與索引和文件的唯讀存取權。
+2. `Accept` 標頭必須設為 `application/json`。
+3. 僅對於 POST，`Content-Type` 標頭也應該設為 `application/json`。
 
-HTTP GET 要求 toosearch hello 「 旅館"索引使用 Azure 搜尋 REST API，使用簡單的查詢可搜尋 hello 詞彙"motel"hello，請參閱下面的內容：
+請參閱以下內容來取得使用 Azure 搜尋服務 REST API 搜尋 "hotels" 索引的 HTTP GET 要求，其使用簡單的查詢來搜尋 "motel" 一詞：
 
 ```
 GET https://[service name].search.windows.net/indexes/hotels/docs?search=motel&api-version=2016-09-01
@@ -116,7 +116,7 @@ Accept: application/json
 api-key: [query key]
 ```
 
-以下是相同的 hello 範例查詢中，這次使用 HTTP POST:
+以下是相同的查詢範例，但這次使用的是 HTTP POST：
 
 ```
 POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2016-09-01
@@ -129,7 +129,7 @@ api-key: [query key]
 }
 ```
 
-成功的查詢要求會導致狀態碼`200 OK`和 hello 搜尋結果傳回成 JSON hello 回應主體中。 以下是 hello 上述查詢看起來像是，假設 hello 「 旅館"索引填入資料中的 hello 範例會產生哪些 hello[在 Azure 搜尋中使用的資料匯入 hello REST API](search-import-data-rest-api.md) （請注意為了清楚起見，已設定格式 JSON 該 hello）。
+成功的查詢要求會產生 `200 OK` 的狀態碼，且搜尋結果會在回應主體中以 JSON 形式傳回。 以下是上述查詢結果的可能樣貌，此處假設 "hotels" 索引是以 [在 Azure 搜尋服務中使用 REST API 匯入資料](search-import-data-rest-api.md) 中的範例資料填入 (請注意，為了清楚起見，JSON 已經過格式化)。
 
 ```JSON
 {
@@ -162,4 +162,4 @@ api-key: [query key]
 }
 ```
 
-toolearn 詳細資訊，請瀏覽 hello 「 回應 」 一節[搜尋文件](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)。 如需失敗時可能傳回的其他 HTTP 狀態碼詳細資訊，請參閱 [HTTP 狀態碼 (Azure 搜尋服務)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes)。
+若要深入了解，請瀏覽 [搜尋文件](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)的＜回應＞一節。 如需失敗時可能傳回的其他 HTTP 狀態碼詳細資訊，請參閱 [HTTP 狀態碼 (Azure 搜尋服務)](https://docs.microsoft.com/rest/api/searchservice/HTTP-status-codes)。

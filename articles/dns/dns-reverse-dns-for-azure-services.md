@@ -1,6 +1,6 @@
 ---
-title: "Azure 服務的 DNS aaaReverse |Microsoft 文件"
-description: "了解如何 tooconfigure 反向 DNS 查閱，在 Azure 中裝載的服務"
+title: "Azure 服務的反向 DNS | Microsoft Docs"
+description: "了解如何設定 Azure 託管服務的反向 DNS 對應"
 services: dns
 documentationcenter: na
 author: jtuliani
@@ -12,54 +12,54 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/29/2017
 ms.author: jonatul
-ms.openlocfilehash: c6fe1d80232f124be86dd7fc57abc20699be7eba
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 63701e1ce0c1c6dcf2ce02ebce272b8280395e7f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="configure-reverse-dns-for-services-hosted-in-azure"></a>設定 Azure 託管服務的反向 DNS
 
-本文說明如何 tooconfigure 反向 DNS 查閱，在 Azure 中裝載的服務。
+本文說明如何設定 Azure 託管服務的反向 DNS 對應。
 
-Azure 中的服務會使用由 Azure 指派並由 Microsoft 所擁有的 IP 位址。 必須在 hello 對應 Microsoft 屬反向 DNS 查閱區域中建立這些反向 DNS 記錄 （PTR 記錄）。 這篇文章說明如何 toodo 這。
+Azure 中的服務會使用由 Azure 指派並由 Microsoft 所擁有的 IP 位址。 這些反向 DNS 記錄 (PTR 記錄) 必須建立在對應的 Microsoft 擁有之反向 DNS 對應區域中。 本文說明如何執行此作業。
 
-此案例不應混淆 hello 能力太[裝載 hello 反向 DNS 查閱區域用於您指派的 IP 範圍中 Azure DNS](dns-reverse-dns-hosting.md)。 在此情況下，由 hello 反向對應區域的 hello IP 範圍必須指派 tooyour 組織通常由您的 ISP。
+請勿混淆這種情況以及[為在 Azure DNS 中指派的 IP 範圍託管反向 DNS 對應區域](dns-reverse-dns-hosting.md)的功能。 本例中，反向對應區域所代表的 IP 範圍必須指派給您的組織，通常由您的 ISP 指派。
 
 在閱讀本文之前，您應該先熟悉這篇 [Azure 反向 DNS 和支援概觀](dns-reverse-dns-overview.md)。
 
 Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。
-* 在 hello Resource Manager 部署模型，計算資源 （例如虛擬機器、 虛擬機器擴展集或 Service Fabric 叢集） 會公開透過 PublicIpAddress 資源。 使用 hello PublicIpAddress hello 'ReverseFqdn' 屬性所設定反向 DNS 查閱。
-* 在 hello 傳統部署模型中，計算資源會公開使用雲端服務。 使用雲端服務的 hello hello 'ReverseDnsFqdn' 屬性所設定反向 DNS 查閱。
+* 在資源管理員部署模型中，是透過 PublicIpAddress 資源公開計算資源 (例如虛擬機器、虛擬機器擴展集或 Service Fabric 叢集)。 反向 DNS 對應是使用 PublicIpAddress 的 'ReverseFqdn' 屬性設定。
+* 在傳統部署模型中，計算資源是使用雲端服務公開。 反向 DNS 對應是使用雲端服務的 'ReverseDnsFqdn' 屬性設定。
 
-Hello Azure 應用程式服務目前不支援反向 DNS。
+目前不支援 Azure App Service 反向 DNS。
 
 ## <a name="validation-of-reverse-dns-records"></a>反向 DNS 記錄的驗證
 
-第三方不應該能 toocreate Azure 服務對應 tooyour DNS 網域的反向 DNS 記錄。 tooprevent，但 Azure 只允許反向 DNS 記錄，其中 hello 反向 DNS 記錄中指定的網域名稱是 hello 相同，或解析，hello DNS 名稱或 IP 位址的 PublicIpAddress 或雲端服務中 hello 相同的 hello 建立 Azure 訂用帳戶。
+協力廠商應該無法為對應至您 DNS 網域的 Azure 服務建立反向 DNS 記錄。 為避免這個問題，Azure 只允許建立這種條件下的反向 DNS 記錄：反向 DNS 記錄中指定的網域名稱能解析為相同 Azure 訂用帳戶中之 PublicIpAddress 或雲端服務的 DNS 名稱或 IP 位址，或和它們相同。
 
-設定或修改 hello 反向 DNS 記錄時，才會執行這項驗證。 不會執行定期的重新驗證。
+只有設定或修改反向 DNS 記錄時，才會執行這項驗證。 不會執行定期的重新驗證。
 
-例如： 假設 hello PublicIpAddress 資源 hello DNS 名稱 contosoapp1.northus.cloudapp.azure.com 和 23.96.52.53 的 IP 位址。 hello ReverseFqdn hello PublicIpAddress 可以指定為：
-* hello PublicIpAddress hello DNS 名稱、 contosoapp1.northus.cloudapp.azure.com
-* hello DNS 名稱會在 hello 不同 PublicIpAddress 相同訂用帳戶，例如 contosoapp2.westus.cloudapp.azure.com
-* 虛名 DNS 名稱，例如 app1.contoso.com，只要這個名稱是*第一個*設定為 CNAME toocontosoapp1.northus.cloudapp.azure.com 或 tooa 不同 PublicIpAddress hello 中相同的訂用帳戶。
-* 虛名 DNS 名稱，例如 app1.contoso.com，只要這個名稱是*第一個*設定 A 記錄 toohello IP 位址 23.96.52.53 或不同的 PublicIpAddress toohello IP 位址在 hello 相同訂用帳戶。
+例如：假設 PublicIpAddress 資源的 DNS 名稱為 contosoapp1.northus.cloudapp.azure.com，且 IP 位址為 23.96.52.53。 則可將 PublicIpAddress 的 ReverseFqdn 指定為：
+* PublicIpAddress 的 DNS 名稱為 contosoapp1.northus.cloudapp.azure.com。
+* 相同訂用帳戶中不同 PublicIpAddress 的 DNS 名稱，例如 contosoapp2.westus.cloudapp.azure.com。
+* 虛名 DNS 名稱，例如 app1.contoso.com，只要這個名稱是「第一次」設定為 contosoapp1.northus.cloudapp.azure.com 的 CNAME，或相同訂用帳戶中不同 PublicIpAddress 的 CNAME。
+* 虛名 DNS 名稱，例如 app1.contoso.com，只要這個名稱是「第一次」設定為 IP 位址 23.96.52.53 的 A 記錄，或相同訂用帳戶中不同 PublicIpAddress 之 IP 位址的 A 記錄。
 
-hello 相同的條件約束套用至 tooreverse DNS 雲端服務。
+相同的條件約束適用於雲端服務的反向 DNS。
 
 
 ## <a name="reverse-dns-for-publicipaddress-resources"></a>PublicIpAddress 資源的反向 DNS
 
-本節提供如何 tooconfigure 反向 DNS 中 hello Resource Manager 部署模型，使用 Azure PowerShell、 Azure CLI 1.0 或 Azure CLI 2.0 的 PublicIpAddress 資源的詳細的指示。 設定反向 DNS PublicIpAddress 資源的目前不支援透過 hello Azure 入口網站。
+本節會詳細說明如何在資源管理員部署模型中，使用 Azure PowerShell、Azure CLI 1.0 或 Azure CLI 2.0 為 PublicIpAddress 資源設定反向 DNS。 目前不支援透過 Azure 入口網站為 PublicIpAddress 資源設定反向 DNS。
 
 Azure 目前只支援 IPv4 PublicIpAddress 資源的反向 DNS。 其不支援 IPv6。
 
-### <a name="add-reverse-dns-tooan-existing-publicipaddresses"></a>加入現有的 PublicIpAddresses 反向 DNS tooan
+### <a name="add-reverse-dns-to-an-existing-publicipaddresses"></a>將反向 DNS 新增至現有的 PublicIpAddresses
 
 #### <a name="powershell"></a>PowerShell
 
-tooadd 反向 DNS tooan 現有 PublicIpAddress:
+將反向 DNS 新增至現有的 PublicIpAddresses：
 
 ```powershell
 $pip = Get-AzureRmPublicIpAddress -Name "PublicIp" -ResourceGroupName "MyResourceGroup"
@@ -67,7 +67,7 @@ $pip.DnsSettings.ReverseFqdn = "contosoapp1.westus.cloudapp.azure.com."
 Set-AzureRmPublicIpAddress -PublicIpAddress $pip
 ```
 
-tooadd 反向 DNS tooan 現有還沒有 DNS 名稱的 PublicIpAddress，您也必須指定 DNS 名稱：
+若要將反向 DNS 新增至尚未有 DNS 名稱的現有 PublicIpAddress，您也必須指定 DNS 名稱：
 
 ```powershell
 $pip = Get-AzureRmPublicIpAddress -Name "PublicIp" -ResourceGroupName "MyResourceGroup"
@@ -79,13 +79,13 @@ Set-AzureRmPublicIpAddress -PublicIpAddress $pip
 
 #### <a name="azure-cli-10"></a>Azure CLI 1.0
 
-tooadd 反向 DNS tooan 現有 PublicIpAddress:
+將反向 DNS 新增至現有的 PublicIpAddresses：
 
 ```azurecli
 azure network public-ip set -n PublicIp -g MyResourceGroup -f contosoapp1.westus.cloudapp.azure.com.
 ```
 
-tooadd 反向 DNS tooan 現有還沒有 DNS 名稱的 PublicIpAddress，您也必須指定 DNS 名稱：
+若要將反向 DNS 新增至尚未有 DNS 名稱的現有 PublicIpAddress，您也必須指定 DNS 名稱：
 
 ```azurecli
 azure network public-ip set -n PublicIp -g MyResourceGroup -d contosoapp1 -f contosoapp1.westus.cloudapp.azure.com.
@@ -93,13 +93,13 @@ azure network public-ip set -n PublicIp -g MyResourceGroup -d contosoapp1 -f con
 
 #### <a name="azure-cli-20"></a>Azure CLI 2.0
 
-tooadd 反向 DNS tooan 現有 PublicIpAddress:
+將反向 DNS 新增至現有的 PublicIpAddresses：
 
 ```azurecli
 az network public-ip update --resource-group MyResourceGroup --name PublicIp --reverse-fqdn contosoapp1.westus.cloudapp.azure.com.
 ```
 
-tooadd 反向 DNS tooan 現有還沒有 DNS 名稱的 PublicIpAddress，您也必須指定 DNS 名稱：
+若要將反向 DNS 新增至尚未有 DNS 名稱的現有 PublicIpAddress，您也必須指定 DNS 名稱：
 
 ```azurecli
 az network public-ip update --resource-group MyResourceGroup --name PublicIp --reverse-fqdn contosoapp1.westus.cloudapp.azure.com --dns-name contosoapp1
@@ -107,7 +107,7 @@ az network public-ip update --resource-group MyResourceGroup --name PublicIp --r
 
 ### <a name="create-a-public-ip-address-with-reverse-dns"></a>建立具有反向 DNS 的公用 IP 位址
 
-新 toocreate PublicIpAddress hello 與反向 DNS 屬性已指定：
+建立已指定反向 DNS 屬性的新 PublicIpAddress：
 
 #### <a name="powershell"></a>PowerShell
 
@@ -129,7 +129,7 @@ az network public-ip create --name PublicIp --resource-group MyResourceGroup --l
 
 ### <a name="view-reverse-dns-for-an-existing-publicipaddress"></a>檢視現有 PublicIpAddresses 的反向 DNS
 
-tooview hello 針對現有的 PublicIpAddress 設定值：
+檢視現有 PublicIpAddress 已設定的值：
 
 #### <a name="powershell"></a>PowerShell
 
@@ -151,7 +151,7 @@ az network public-ip show --name PublicIp --resource-group MyResourceGroup
 
 ### <a name="remove-reverse-dns-from-existing-public-ip-addresses"></a>移除現有公用 IP 位址的反向 DNS
 
-tooremove 從現有的 PublicIpAddress 反向 DNS 屬性：
+從現有的 PublicIpAddress 移除反向 DNS 屬性：
 
 #### <a name="powershell"></a>PowerShell
 
@@ -176,11 +176,11 @@ az network public-ip update --resource-group MyResourceGroup --name PublicIp --r
 
 ## <a name="configure-reverse-dns-for-cloud-services"></a>設定雲端服務的反向 DNS
 
-本節提供如何 tooconfigure 反向 DNS 雲端服務在 hello 傳統部署模型中，使用 Azure PowerShell 的詳細的指示。 不支援透過 hello Azure 入口網站，Azure CLI 1.0 或 Azure CLI 2.0 設定雲端服務的反向 DNS。
+本節會詳細說明如何在傳統部署模型中，使用 Azure PowerShell 為雲端服務設定反向 DNS。 不支援透過 Azure 入口網站、Azure CLI 1.0 或 Azure CLI 2.0 為雲端服務設定反向 DNS。
 
-### <a name="add-reverse-dns-tooexisting-cloud-services"></a>新增反向 DNS tooexisting 雲端服務
+### <a name="add-reverse-dns-to-existing-cloud-services"></a>將反向 DNS 新增至現有的雲端服務
 
-tooadd 反向 DNS 記錄 tooan 現有雲端服務：
+將反向 DNS 記錄新增至雲端服務：
 
 ```powershell
 Set-AzureService –ServiceName "contosoapp1" –Description "App1 with Reverse DNS" –ReverseDnsFqdn "contosoapp1.cloudapp.net."
@@ -188,7 +188,7 @@ Set-AzureService –ServiceName "contosoapp1" –Description "App1 with Reverse 
 
 ### <a name="create-a-cloud-service-with-reverse-dns"></a>建立具有反向 DNS 的雲端服務
 
-toocreate hello 已經指定反向 DNS 內容與新的雲端服務：
+建立已指定反向 DNS 屬性的新雲端服務：
 
 ```powershell
 New-AzureService –ServiceName "contosoapp1" –Location "West US" –Description "App1 with Reverse DNS" –ReverseDnsFqdn "contosoapp1.cloudapp.net."
@@ -196,7 +196,7 @@ New-AzureService –ServiceName "contosoapp1" –Location "West US" –Descripti
 
 ### <a name="view-reverse-dns-for-existing-cloud-services"></a>檢視現有雲端服務的反向 DNS
 
-tooview hello 反向 DNS 屬性為現有的雲端服務：
+檢視現有雲端服務的反向 DNS 屬性：
 
 ```powershell
 Get-AzureService "contosoapp1"
@@ -204,7 +204,7 @@ Get-AzureService "contosoapp1"
 
 ### <a name="remove-reverse-dns-from-existing-cloud-services"></a>移除現有雲端服務的反向 DNS
 
-tooremove 反向 DNS 屬性從現有的雲端服務：
+從現有的雲端服務移除反向 DNS 屬性：
 
 ```powershell
 Set-AzureService –ServiceName "contosoapp1" –Description "App1 with Reverse DNS" –ReverseDnsFqdn ""
@@ -216,25 +216,25 @@ Set-AzureService –ServiceName "contosoapp1" –Description "App1 with Reverse 
 
 完全免費！  反向 DNS 記錄或查詢不需要額外成本。
 
-### <a name="will-my-reverse-dns-records-resolve-from-hello-internet"></a>將從我反向 DNS 記錄解析 hello 網際網路嗎？
+### <a name="will-my-reverse-dns-records-resolve-from-the-internet"></a>我的反向 DNS 記錄會從網際網路解析嗎？
 
-是。 一旦您設定 hello 反向 DNS 屬性為您的 Azure 服務，Azure 會管理所有 hello DNS 委派和反向 DNS 記錄的 tooensure 解析所有的網際網路使用者所需的 DNS 區域。
+是。 在您為 Azure 服務設定反向 DNS 屬性之後，Azure 會管理所有必要的 DNS 委派和 DNS 區域，以確保反向 DNS 記錄可以為所有網際網路使用者解析。
 
 ### <a name="are-default-reverse-dns-records-created-for-my-azure-services"></a>我的 Azure 服務有沒有建立預設的反向 DNS 記錄？
 
-否。 反向 DNS 是選用的功能。 沒有預設值，如果您選擇不 tooconfigure 建立反向 DNS 記錄它們。
+否。 反向 DNS 是選用的功能。 如果您選擇不設定，則不會建立任何預設反向 DNS 記錄。
 
-### <a name="what-is-hello-format-for-hello-fully-qualified-domain-name-fqdn"></a>什麼是 hello hello 完整網域名稱 (FQDN) 格式？
+### <a name="what-is-the-format-for-the-fully-qualified-domain-name-fqdn"></a>完整網域名稱 (FQDN) 的格式為何？
 
 FQDN 是以正向順序指定，且必須以點結束 (例如，"app1.contoso.com")。
 
-### <a name="what-happens-if-hello-validation-check-for-hello-reverse-dns-ive-specified-fails"></a>發生什麼事如果 hello 的 hello 驗證檢查反向的 DNS 我指定失敗？
+### <a name="what-happens-if-the-validation-check-for-the-reverse-dns-ive-specified-fails"></a>如果我指定的反向 DNS 驗證檢查失敗，會發生什麼事？
 
-其中 hello 反向 DNS 驗證檢查失敗，就會失敗 hello 作業 tooconfigure hello 反向 DNS 記錄。 更正 hello 反向 DNS 值為必要項目，然後重試。
+當反向 DNS 驗證檢查失敗時，設定反向 DNS 記錄的作業也會失敗。 請依要求更正反向 DNS 值，然後再試一次。
 
 ### <a name="can-i-configure-reverse-dns-for-azure-app-service"></a>Azure App Service 可以設定反向 DNS 嗎？
 
-否。 Hello Azure 應用程式服務不支援反向 DNS。
+否。 目前不支援 Azure App Service 反向 DNS。
 
 ### <a name="can-i-configure-multiple-reverse-dns-records-for-my-azure-service"></a>Azure 服務可以設定多個反向 DNS 記錄嗎？
 
@@ -244,13 +244,13 @@ FQDN 是以正向順序指定，且必須以點結束 (例如，"app1.contoso.co
 
 否。 Azure 目前只支援 IPv4 PublicIpAddress 資源和雲端服務的反向 DNS。
 
-### <a name="can-i-send-emails-tooexternal-domains-from-my-azure-compute-services"></a>我可以傳送電子郵件 tooexternal 網域從我的 Azure 計算服務？
+### <a name="can-i-send-emails-to-external-domains-from-my-azure-compute-services"></a>我可以從我的 Azure 計算服務將電子郵件傳送至外部網域嗎？
 
-否。 [Azure 計算服務不支援傳送電子郵件 tooexternal 網域](https://blogs.msdn.microsoft.com/mast/2016/04/04/sending-e-mail-from-azure-compute-resource-to-external-domains/)
+否。 [Azure 計算服務不支援將電子郵件傳送至外部網域](https://blogs.msdn.microsoft.com/mast/2016/04/04/sending-e-mail-from-azure-compute-resource-to-external-domains/)
 
 ## <a name="next-steps"></a>後續步驟
 
 如需反向 DNS 的詳細資訊，請參閱維基百科的 [reverse DNS lookup](http://en.wikipedia.org/wiki/Reverse_DNS_lookup) (反向 DNS 對應)。
 <br>
-了解如何太[主機 hello 反向對應區域，為您的 ISP 指派的 IP 範圍，在 Azure DNS](dns-reverse-dns-for-azure-services.md)。
+了解如何[在 Azure DNS 中為您 ISP 指派的 IP 範圍託管反向對應區域](dns-reverse-dns-for-azure-services.md)。
 

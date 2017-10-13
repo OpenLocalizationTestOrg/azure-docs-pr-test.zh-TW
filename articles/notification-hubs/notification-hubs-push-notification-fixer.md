@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure 通知中樞-診斷指導方針"
-description: "如何 toodiagnose 常見問題與 Azure 通知中心的指導方針。"
+title: "Azure 通知中樞 - 診斷指導方針"
+description: "有關如何診斷 Azure 通知中樞常見問題的指導方針。"
 services: notification-hubs
 documentationcenter: Mobile
 author: ysxu
@@ -14,108 +14,108 @@ ms.devlang: multiple
 ms.topic: article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: e374278f2bfdfad36ba091e8846059cd184c17ef
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 32e3a2e6f840afd865375a622cfae0d33ba65090
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-notification-hubs---diagnosis-guidelines"></a>Azure 通知中樞 - 診斷指導方針
-## <a name="overview"></a>概觀
-Hello 最常見的問題，我們了解 Azure 通知中心客戶之一是 hello 用戶端在裝置上-toofigure 出為什麼會看到其應用程式後端傳送通知的顯示方式為何，通知已被卸除及如何 toofix 這。 本文章中我們將探討 hello 各種原因，通知可能取得卸除或不至於 hello 裝置上。 我們也會查看的方式可分析並找出 hello 根本原因。 
+## <a name="overview"></a>Overview
+最常從 Azure 通知中樞客戶口中聽到的其中一個問題是，如何得知從應用程式後端傳送的通知為什麼無法顯示於用戶端裝置上；這些通知在何處遭到捨棄，為什麼會遭到捨棄，該如何修正？ 在本文章中，我們將探討通知遭到捨棄及未抵達裝置的各種原因。 我們也會探討用來分析及找出根本原因的方法。 
 
-首先，它是關鍵 toounderstand Azure 通知中樞推播通知時通知 toohello 裝置。
+首先，請務必了解 Azure 通知中樞如何將通知推送到裝置。
 ![][0]
 
-資料流程中的一般傳送通知，傳送 hello 訊息從 hello**應用程式後端**太**Azure 通知中樞 (NH)**其接著會納入所有 hello 註冊某些處理程序帳戶 hello 設定標記 （& s） 標記運算式 toodetermine 「 目標 」 也就是所有 hello 註冊需要 tooreceive hello 推播通知。 這些註冊可以跨越任何或所有我們支援的平台，包括 iOS、Google、Windows、Windows Phone、Kindle 及用於中國 Android 的百度。 NH 則推播通知，一旦建立 hello 目標，分成多個批次的註冊，toohello 裝置平台特定**推播通知服務 (PNS)** -例如 Apple 的 APNS、 GCM Google 等等。NH 向的 hello 個別 PNS 根據您在 hello 設定通知中樞 頁面上的 hello Azure 傳統入口網站中設定的 hello 認證。 hello PNS 接著會將轉送 hello 通知 toohello 個別**用戶端裝置**。 這是建議的方式 toodeliver 推播通知和通知傳送嗨最後階段所花費的 hello 平台 PNS 與 hello 裝置之間的附註的 hello 平台。 因此我們有四個主要元件 - *用戶端*、*應用程式後端*、*Azure 通知中樞 (NH)* 和*推播通知服務 (PNS)*，而且其中任何一項可能會導致通知遭到捨棄。 如需此架構的詳細資料，請參閱[通知中樞概觀]。
+在典型的傳送通知流程中，系統會從**應用程式後端**將訊息傳送到 **Azure 通知中樞 (NH)**。接著，Azure 通知中樞會處理所有涉及已設定之標記和標記運算式的註冊來判斷「目標」(亦即所有需要接收推播通知的註冊)。 這些註冊可以跨越任何或所有我們支援的平台，包括 iOS、Google、Windows、Windows Phone、Kindle 及用於中國 Android 的百度。 建立目標後，NH 會將通知分配到多個註冊批次，然後再推送到裝置平台特有的**推播通知服務 (PNS)** (如 Apple 的 APNS、Google 的 GCM 等)。NH 會根據您在 [設定通知中樞] 頁面的 Azure 傳統入口網站中設定的認證來驗證個別 PNS。 隨後，PNS 會將通知轉送到各個**用戶端裝置**。 以上是平台建議的推送通知傳遞方法。請注意，通知傳遞最終的旅程發生在平台 PNS 和裝置之間。 因此我們有四個主要元件 - *用戶端*、*應用程式後端*、*Azure 通知中樞 (NH)* 和*推播通知服務 (PNS)*，而且其中任何一項可能會導致通知遭到捨棄。 如需此架構的詳細資料，請參閱[通知中樞概觀]。
 
-失敗 toodeliver 通知可能會在 hello 初始測試執行階段也可能表示組態問題或是它可能會發生在所有或部分的 hello 通知的生產環境中可能會遭捨棄指出某些更深入的應用程式或傳訊模式的問題。 在 [hello] 區段中下, 面我們將探討各種範圍可從通用 toohello 更少見種類，其中有些可能會發現明顯和其他一些不太多的已卸除的通知案例。 
+通知傳遞失敗可能會發生在初始測試/執行階段，其可能代表組態問題；也有可能發生在所有或部分通知遭到捨棄的生產環境中，其代表較深層的應用程式或訊息模式問題。 在本節的後續內容中，我們會探討各種通知捨棄案例 (常見和罕見)，有些案例是顯而易見的，有些案例則不太明顯。 
 
 ## <a name="azure-notifications-hub-mis-configuration"></a>Azure 通知中樞組態錯誤
-Azure 通知中樞需要 tooauthenticate 本身 hello 內容中的 hello 開發人員應用程式 toobe toosuccessfully 無法傳送通知 toohello 個別 PNS。 這樣做可能 hello 開發人員建立 hello 各平台 （Google、 Apple、 Windows 等等） 的開發人員帳戶，並再註冊他們的應用程式，他們會取得需要 toobe hello 入口網站，在 [通知] 中設定的認證中樞的組態區段。 如果沒有通知要進行到第一個步驟應該 tooensure hello 通知中樞，其比對 hello 應用程式中設定的 hello 正確的認證建立其平台特定的開發人員帳戶。 您會發現我們[快速入門教學課程]有用 toogo 透過此程序，以逐步方式。 以下是一些常見的組態錯誤：
+Azure 通知中樞需要在開發人員應用程式的內容中自行驗證，才能成功地將通知傳送到各個 PNS。 若要讓 Azure 通知中樞自行驗證，開發人員需要向各平台 (Google、Apple、Windows 等) 建立開發人員帳戶，然後在取得認證 (需要在入口網站的 [通知中樞組態] 區段中設定) 之處註冊應用程式。 如果通知無法送出，第一個步驟應是確認於通知中樞內設定的認證是否正確，與在平台專屬開發人員帳戶下由應用程式建立的認證相符。 [使用者入門教學課程] 的逐步教學法將有助於您檢驗此程序。 以下是一些常見的組態錯誤：
 
 1. **一般**
    
-    a） 請確定您的通知中樞名稱 （不含錯字） 是 hello 相同：
+    a) 確認通知中樞名稱與以下各項相同 (無錯別字)：
    
-   * 您要註冊從 hello 用戶端， 
-   * 您要將通知傳送嗨後端中從  
-   * 您已在其中設定 hello PNS 認證和 
-   * 您已經設定的 SAS 認證 hello 用戶端與 hello 後端。 
+   * 從用戶端註冊之處 
+   * 從後端傳送通知之處  
+   * 設定 PNS 認證之處 
+   * 在用戶端和後端上設定 SAS 認證的通知中樞。 
      
-     b） 請確定您使用正確 SAS 組態字串 hello hello 用戶端和 hello 應用程式後端上。 根據經驗法則，為您必須使用 hello **DefaultListenSharedAccessSignature** hello 用戶端上和**DefaultFullSharedAccessSignature** （它將提供權限 toobe hello 應用程式後端無法 toosend 通知 toohello NH)
+     b) 確認在用戶端和應用程式後端上使用正確的 SAS 組態字串。 根據經驗法則，您必須在用戶端上使用 **DefaultListenSharedAccessSignature**，在應用程式後端上使用 **DefaultFullSharedAccessSignature** (賦予將通知傳送到 NH 的權限)。
 2. **Apple Push Notification Service (APNS) 組態**
    
-    您必須維護兩個不同的中樞，一個供生產環境之用，另一個供測試之用。 這表示您將要 toouse 沙箱環境 tooa 個別中樞和您要在實際執行 tooa 個別中樞 toouse hello 憑證中的 hello 憑證上傳。 請勿嘗試 tooupload 不同類型的憑證 toohello 相同的中樞，因為它可能會造成 hello 列關閉通知失敗。 如果您發現自己已不小心上載憑證 toohello 種不同的位置相同的中樞建議 toodelete hello 中樞和全新的開始。 如果基於某些原因，您不能 toodelete hello 集線器，然後在 hello 非常少，您必須刪除所有 hello 現有登錄從 hello 中樞。 
+    您必須維護兩個不同的中樞，一個供生產環境之用，另一個供測試之用。 這表示您需要將於沙箱環境中使用的憑證上載到某一個中樞，再將於生產環境中使用的憑證上載到另一個中樞。 請勿嘗試將不同類型的憑證上載到同一個中樞，因為這樣會導致通知徹底失敗。 如果您發現自己意外地將不同類型的憑證上載到同一個中樞，建議您刪除中樞，重新開始。 如果您基於某些原因無法刪除中樞，至少必須刪除中樞內所有現有註冊。 
 3. **Google 雲端通訊 (GCM) 組態** 
    
     a) 確認您在雲端專案下啟用的是 "Google Cloud Messaging for Android"。 
    
     ![][2]
    
-    b） 請確定您建立 「 伺服器金鑰 」，而哪些 NH 取得 hello 認證與要使用 tooauthenticate GCM。 
+    b) 確認您正在建立「伺服器金鑰」，同時取得 NH 用來驗證 GCM 的認證。 
    
     ![][3]
    
-    c） 請確定您擁有 hello 用戶端，也就是您可以從 hello 儀表板取得完全數值實體上設定 「 專案識別碼 」:
+    c) 確認您已在用戶端上設定「專案 ID」，其為可從儀表板取得的全數值實體。
    
     ![][1]
 
 ## <a name="application-issues"></a>應用程式問題
 1) **標記/ 標記運算式**
 
-如果您使用的標記或標記運算式 toosegment 您的對象，它仍然可以將傳送嗨通知時，沒有找到根據 hello 標記/標記運算式就您傳送的呼叫中指定任何目標。 建議您最好 tooreview 有您註冊 tooensure 標記的相符項目時您傳送通知，然後檢查 只能從 hello 與這些註冊的用戶端 hello 通知回條。 例如 如果 NH 與您註冊已完成所有說 「 政治"標記，而且您要傳送標記通知 」 運動"，它將不會傳送 tooany 裝置。 複雜的案例可能涉及只註冊 "Tag A" OR "Tag B" 的標記運算式，然而在傳送通知時，您設定的目標為 "Tag A && Tag B"。 Hello 自行診斷提示一節，您可以檢閱 hello 標籤它們擁有與您註冊的方式。 
+如果您使用標記或標記運算式來區分對象，在傳送通知時，可能經常會找不到在傳送呼叫中指定之標記/標記運算式所代表的目標。 在傳送通知時，建議您最好檢閱註冊以確認標記相符，並且驗證通知回條僅來自具有這些註冊的用戶端。 例如 假設與 NH 相關的註冊均有 "Politics" 標記，如果您傳送具有 "Sports" 標記的通知，系統不會將該通知傳送到任何裝置。 複雜的案例可能涉及只註冊 "Tag A" OR "Tag B" 的標記運算式，然而在傳送通知時，您設定的目標為 "Tag A && Tag B"。 以下自我診斷秘訣小節提供檢閱註冊和註冊之標記的方法。 
 
 2) **範本問題**
 
-如果您使用範本則可確保您要遵照 hello 指導方針所述[範本指引]。 
+如果您使用範本，請務必遵守 [範本指引]所述的指導方針。 
 
 3) **無效的註冊**
 
-假設已正確設定通知中樞的 hello 和任何標記/標記運算式所使用的有效目標 toowhich hello 通知需要 toobe 傳送嗨尋找正確產生，以平行方式-每個批次的數個處理批次關閉引發 NH傳送訊息 tooa 登錄裝置集合。 
+假設通知傳送的適當目標搜尋起因於通知中樞設定正確且所有標記/標記運算式的用法正確，NH 會以平行方式引發數個處理批次，每個批次都會傳送訊息給一組註冊。 
 
 > [!NOTE]
-> 因為我們不要 hello 以平行方式處理，我們不保證 hello 順序中的 hello 將傳遞通知。 
+> 由於處理採平行方式進行，因此我們無法保證通知的傳遞順序。 
 > 
 > 
 
-現在我們已根據「最多一次」訊息傳遞模式將 Azure 通知中樞最佳化。 這表示我們嘗試刪除重複作業，以便通知會傳遞一次以上 tooa 裝置。 tooensure 這我們查看 hello 註冊，並且確保該只能有一個訊息是每秒傳送的實際傳送 hello 訊息 toohello PNS 之前的裝置識別碼。 每個批次傳送 toohello PNS，接著會接受並驗證 hello 註冊，所以該 hello PNS 批次中偵測到與一或多個 hello 註冊錯誤時，會傳回錯誤 tooAzure NH 並停止處理，藉此卸除完整的批次。 對於使用 TCP 串流通訊協定的 APNS 來說，這種情況尤其顯著。 雖然我們一次最佳化在大部分的傳遞，在此情況下，我們會移除 hello 我們資料庫，然後重試通知傳送該批次中的 hello 裝置 hello 其餘部分從失敗的註冊。
+現在我們已根據「最多一次」訊息傳遞模式將 Azure 通知中樞最佳化。 這表示我們會嘗試刪除重複的項目，避免系統將通知多次傳遞給同一部裝置。 為了確保功效，我們會先檢驗註冊並確認系統只會將一則訊息傳送給一個裝置識別項，然後再實際將訊息傳送給 PNS。 隨著系統將各個批次傳送到 PNS，PSN 會接受及驗證註冊。它可能會在批次的一或多個註冊中偵測到錯誤，再將錯誤傳回 Azure NH 並停止處理，全然捨棄該批次。 對於使用 TCP 串流通訊協定的 APNS 來說，這種情況尤其顯著。 雖然我們已針對最多一次傳遞模式最佳化，而在此案例中我們在資料庫內移除了故障的註冊項目，接著在該批次中針對剩餘的裝置重新嘗試通知傳遞。
 
-您可以取得 hello 傳遞失敗的嘗試針對使用 Azure 通知中心 REST Api hello 註冊資訊時發生錯誤：[每個訊息遙測： 取得通知訊息遙測](https://msdn.microsoft.com/library/azure/mt608135.aspx)和[PNS 意見反應](https://msdn.microsoft.com/library/azure/mt705560.aspx). 請參閱 hello [SendRESTExample](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/SendRestExample)例如程式碼。
+針對錯誤傳遞嘗試，您可以依照使用 Azure 通知中樞 REST API 的註冊來取得錯誤資訊：[每個訊息遙測︰取得通知訊息遙測](https://msdn.microsoft.com/library/azure/mt608135.aspx)以及 [PNS 回應](https://msdn.microsoft.com/library/azure/mt705560.aspx)。 請參閱 [SendRESTExample](https://github.com/Azure/azure-notificationhubs-samples/tree/master/dotnet/SendRestExample) 以取得範例程式碼。
 
 ## <a name="pns-issues"></a>PNS 問題
-一旦 hello 通知訊息已收到 hello 個別 PNS，則其責任 toodeliver hello 通知 toohello 裝置。 Azure 通知中樞超出 hello 的圖片且沒有控制權時，或如果 hello 通知將會傳遞 toohello 裝置 toobe。 Hello 平台通知服務都很穩定，因為通知不要從 hello PNS 就在幾秒鐘的時間通常 tooreach hello 裝置。 如果 hello PNS 不過正在進行節流然後 Azure 通知中心會套用指數型停止策略，如果 hello PNS 會保留 30 分鐘無法連線到然後我們有的原則中放置 tooexpire 且永久卸除這些訊息。 
+待各個 PNS 接收到通知訊息後，它們必須負責將通知傳遞給裝置。 Azure 通知中樞與 PNS 的運作並不相關，也無法控制它們將通知傳遞給裝置的時間和成功與否。 由於平台通知服務已臻完備，因此通知經常能在幾秒鐘之內從 PNS 抵達裝置。 然而，如果 PNS 處於節流狀態，Azure 通知中樞會套用指數退回策略；如果 PNS 持續在 30 分鐘之內無法聯繫，我們將採取既定的原則讓這些訊息到期並永久捨棄。 
 
-如果 PNS 嘗試 toodeliver 通知，但 hello 裝置已離線，hello 通知是由 hello PNS 針對一段有限的時間，儲存和傳遞 toohello 裝置可供使用時。 PNS 只會針對每個應用程式儲存一則最近的通知。 如果多個通知會傳送 hello 裝置離線時，每個新的通知會導致捨棄 toobe hello 事先通知。 保持 hello 最新通知的這個行為是參照的 tooas 聯合中 APNS 通知和 GCM （這會使用摺疊的索引鍵） 在摺疊。 如果 hello 裝置長時間保持離線狀態，則會捨棄它所儲存的任何通知。 資料來源 - [APNS 指引] & [GCM 指引]
+如果 PNS 嘗試傳遞通知但裝置已離線，PNS 會在一段有限的時間內儲存通知，並在可聯繫裝置時再行傳遞。 PNS 只會針對每個應用程式儲存一則最近的通知。 如果在裝置離線時傳送多則通知，每則新通知都會導致前一則通知遭到捨棄。 這個只保留最新通知的行為在 APNS 中稱為聯合通知，在 GCM 中稱為摺疊 (使用摺疊索引鍵之故)。 如果裝置長期處於離線狀態，針對該裝置儲存的所有通知都將遭到捨棄。 資料來源 - [APNS 指引] & [GCM 指引]
 
-與 Azure 通知中心-您可以傳遞聯合的索引鍵，透過 HTTP 標頭使用 hello 泛型`SendNotification`應用程式開發介面 (例如 for.NET SDK – `SendNotificationAsync`) 這也會採用傳遞做為 HTTP 標頭是 toohello 個別 PNS。 
+有了 Azure 通知中樞，您可以使用泛型 `SendNotification` API (如適用於 .NET SDK 的 – `SendNotificationAsync`) 透過 HTTP 標頭傳送聯合索引鍵，該 API 也會採用以原狀傳送到各 PNS 的 HTTP 標頭。 
 
 ## <a name="self-diagnose-tips"></a>自我診斷秘訣
-我們將在這裡檢視 hello 各種途徑 toodiagnose 和根會造成任何通知中樞的問題：
+在以下內容中，我們將檢視各種診斷及找出通知中樞問題之根本原因的途徑：
 
 ### <a name="verify-credentials"></a>驗證認證
 1. **PNS 開發人員入口網站**
    
-    確認它們在 hello 個別 PNS 開發人員入口網站 （APNS、 GCM，WNS 等等） 使用我們[快速入門教學課程]。
+    使用我們的 [使用者入門教學課程]於各個 PNS 開發人員入口網站 (APNS、GCM、WNS 等) 驗證認證。
 2. **Azure 傳統入口網站**
    
-    Toohello 設定 索引標籤 tooreview 去符合 hello 認證與取自 hello PNS 開發人員入口網站。 
+    移至 [設定] 索引標籤以檢閱認證，以及與從 PNS 開發人員入口網站取得的認證比對。 
    
     ![][4]
 
 ### <a name="verify-registrations"></a>驗證註冊
 1. **Visual Studio**
    
-    如果您使用 Visual Studio 進行開發然後您可以連接 tooMicrosoft Azure 和檢視和管理 Azure 服務，包括來自 「 伺服器總管 」 的通知中樞的一大堆。 這能為您的開發/測試環境帶來許多助益。 
+    如果您使用 Visual Studio 來從事開發，可以連接 Microsoft Azure 來檢視及管理多種 Azure 服務，包括從伺服器總管檢視及管理通知中樞。 這能為您的開發/測試環境帶來許多助益。 
    
     ![][9]
    
-    您可以檢視和管理所有 hello 註冊您的中樞中正確地切割分類平台、 原生模式或範本的註冊任何標記，PNS 識別碼、 註冊 id 和 hello 到期日。 您也可以編輯 hello 立即-這是假設如果您想 tooedit 任何標記時，才能註冊。 
+    您可檢視及管理中樞內已按照平台歸類的註冊、原生或範本註冊、任何標記、PNS 識別項、註冊 ID 及到期日。 您也可以隨時編輯註冊；如果您想要編輯任何標記，這項功能便能派上用場。 
    
     ![][8]
    
    > [!NOTE]
-   > Visual Studio 功能 tooedit 註冊應該只用於開發/測試與有限數目的登錄期間。 如果那里，就會發生需要 toofix 您註冊大量，請考慮使用 hello 所描述的匯出/匯入登錄功能這裡-[匯出/匯入登錄](https://msdn.microsoft.com/library/dn790624.aspx)
+   > Visual Studio 的編輯註冊功能僅應用於註冊數量有限的開發/測試期間。 如果您需要修正大量註冊，請考慮使用 [匯出/匯入註冊](https://msdn.microsoft.com/library/dn790624.aspx)
    > 
    > 
 2. **服務匯流排總管**
@@ -125,16 +125,16 @@ Azure 通知中樞需要 tooauthenticate 本身 hello 內容中的 hello 開發�
 ### <a name="verify-message-notifications"></a>驗證訊息通知
 1. **Azure 傳統入口網站**
    
-    您可以移 toohello [偵錯] 索引標籤 toosend 測試通知 tooyour 用戶端，而不需要任何服務後端設定和執行。 
+    您可以前往 [偵錯] 索引標籤傳送測試通知給用戶端，這樣操作不需要任何運作中的服務後端即可完成。 
    
     ![][7]
 2. **Visual Studio**
    
-    您也可以從 Visual Studio 的 hello comforts 傳送測試通知：
+    Visual Studio 還能讓您輕鬆舒適的傳送測試通知：
    
     ![][10]
    
-    您可以閱讀更多在 hello Visual Studio 通知中樞 Azure 總管的功能這裡 
+    以下文章提供 Visual Studio 通知中樞 Azure 總管功能的詳細資料： 
    
    * [VS 伺服器總管概觀]
    * [VS 伺服器總管部落格文章 - 1]
@@ -143,19 +143,19 @@ Azure 通知中樞需要 tooauthenticate 本身 hello 內容中的 hello 開發�
 ### <a name="debug-failed-notifications-review-notification-outcome"></a>偵錯失敗的通知 / 檢閱通知結果
 **EnableTestSend 屬性**
 
-當您傳送通知中樞通知時，一開始它只取得佇列中等待 NH toodo 處理 toofigure 出其所有的目標，然後最終 NH 傳送它 toohello PNS。 這表示，當您使用 REST API 或任何 hello client SDK，hello 成功傳回時為您傳送呼叫只表示 hello 訊息已成功排搭配通知中樞。 它不會讓您瞭解 NH 最後收到 toosend hello 訊息 tooPNS 時，發生了什麼事。 如果您的通知，則不抵達 hello 用戶端裝置，當 NH 嘗試 toodeliver hello 訊息 tooPNS，時發生錯誤，例如 hello 承載大小可能超過允許的 hello PNS 的 hello 上限或是設定 NH 中的 hello 認證是深入了解 hello PNS 錯誤的無效等 tooget，我們引進的屬性，稱為[EnableTestSend 功能]。 當您傳送測試訊息從 hello 入口網站或 Visual Studio 用戶端，並因此允許 toosee 詳細，這個屬性會自動啟用偵錯資訊。 您可以使用這透過採取 hello 範例 hello 都能立即.NET SDK 的 Api，將會加入的 tooall 用戶端 Sdk 最後。 toouse hello REST 呼叫，這只是附加結尾 hello 傳送呼叫中例如稱為 「 測試 」 的 querystring 參數 
+當您透過通知中樞傳送通知時，最初系統只會將其加入佇列並等候 NH 處理，找出通知的所有目標，最後 NH 才會將通知傳送給 PNS。 這表示當您使用 REST API 或任何用戶端 SDK 時，成功傳回傳送呼叫只代表系統已將訊息順利地加入通知中樞的佇列。 我們無從得知 NH 最終將訊息傳送給 PNS 時發生什麼事。 如果通知未抵達用戶端裝置，有可能是當 NH 嘗試將訊息傳遞給 PNS 時發生錯誤 (如承載大小超出 PNS 允許的上限或在 NH 中設定的認證無效等)。為了深入了解 PNS 錯誤，我們推出名為 [EnableTestSend 功能]的屬性。 當您從入口網站或 Visual Studio 用戶端傳送測試訊息時，該屬性會自動啟用，供您查看詳細的偵錯資訊。 以 .NET SDK 為例，您可以透過近期推出的 API 使用該屬性，我們最終也會將該屬性加入所有用戶端 SDK 中。 若要搭配使用該屬性與 REST 呼叫，只要在傳送呼叫結尾附加名為 "test" 的 QueryString 參數即可，例如： 
 
     https://mynamespace.servicebus.windows.net/mynotificationhub/messages?api-version=2013-10&test
 
 *範例 (.NET SDK)*
 
-假設您使用.NET SDK toosend 原生快顯通知：
+假設您使用 .NET SDK 來傳送原生快顯通知：
 
     NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(connString, hubName);
     var result = await hub.SendWindowsNativeNotificationAsync(toast);
     Console.WriteLine(result.State);
 
-`result.State`將只狀態`Enqueued`結尾 hello hello 執行不含任何深入了解什麼發生 tooyour 推入。 現在您可以使用 hello `EnableTestSend` hello 進行初始化時的布林值屬性`NotificationHubClient`，並可以取得有關傳送嗨通知時發生 hello PNS 錯誤的詳細的狀態。 需要額外的時間 tooreturn hello 傳送呼叫，因為它只會傳回 NH 已傳送嗨通知 tooPNS toodetermine hello 結果之後。 
+`result.State` 只會在執行結束時陳述 `Enqueued`，不提供任何有關推播的歷程資訊。 現在您可以使用 `EnableTestSend` 布林值屬性並將 `NotificationHubClient` 初始化，如此便能取得在傳送通知時遭遇之 PNS 錯誤的詳細狀態。 此處的傳送呼叫必須在 NH 將通知傳遞給 PNS 來判斷結果後才會傳回，因此需要花費額外的時間才能傳回。 
 
     bool enableTestSend = true;
     NotificationHubClient hub = NotificationHubClient.CreateClientFromConnectionString(connString, hubName, enableTestSend);
@@ -173,31 +173,31 @@ Azure 通知中樞需要 tooauthenticate 本身 hello 內容中的 hello 開發�
     DetailedStateAvailable
     windows
     7619785862101227384-7840974832647865618-3
-    hello Token obtained from hello Token Provider is wrong
+    The Token obtained from the Token Provider is wrong
 
-此訊息表示 hello 通知中樞的設定不正確的認證或 hello 中樞和 hello hello 註冊發生問題的建議課程會 toodelete 此登錄，讓重新建立之前傳送嗨 hello 用戶端訊息。 
+此訊息指出在通知中樞內設定的認證無效或中樞內的註冊有問題，建議的途徑是刪除該註冊並讓用戶端重新建立，隨後再傳送訊息。 
 
 > [!NOTE]
-> 請注意，hello 使用此屬性有很大節流處理，因此您必須只使用這組有限的註冊開發/測試環境中。 我們只會傳送偵錯通知 too10 裝置。 我們也會有處理每分鐘的偵錯傳送 toobe 10 的限制。 
+> 請注意，該屬性需在嚴密節流的情況下使用，其僅適用於註冊集有限的開發/測試環境。 我們只會傳送偵錯通知給 10 部裝置。 我們的處理中偵錯傳送次數也有每分鐘 10 次的限制。 
 > 
 > 
 
 ### <a name="review-telemetry"></a>檢閱遙測
 1. **使用 Azure 傳統入口網站**
    
-    hello 入口網站可讓您 tooget 通知中樞上的所有 hello 活動的快速概觀。 
+    入口網站能讓您取得通知中樞上所有活動的簡要概觀。 
    
-    a） 從 hello 」 儀表板 索引標籤中，您可以檢視 hello 註冊、 通知，以及每個平台錯誤的彙總的檢視。 
+    a) 在 [儀表板] 索引標籤中，您可以利用彙總檢視查看各平台的註冊、通知及錯誤。 
    
     ![][5]
    
-    b） 您也可以從 hello 「 監視 」 索引標籤 tootake 更深入的探討，特別是在任何 PNS 特定的錯誤傳回 NH 嘗試 toosend hello 通知 toohello PNS 時加入許多其他平台特定的衡量標準。 
+    b) 您也可以從 [監視] 索引標籤加入其他多樣化的平台專用度量，以便深入了解當 NH 嘗試將通知傳送給 PNS 時傳回的任何 PNS 特有錯誤。 
    
     ![][6]
    
-    c） 您的開頭應檢閱 hello**內送訊息**，**註冊作業**，**成功通知**並前往 tooper 平台 索引標籤 tooreview helloPNS 特定錯誤。 
+    c) 您應從檢閱 [傳入訊息]、[註冊作業]、[成功的通知] 開始，然後再移至各平台的索引標籤來檢閱 PNS 特有錯誤。 
    
-    d） 如果您擁有 hello 通知中樞的設定不正確使用 hello 驗證設定然後您會看到 PNS 驗證錯誤。 這是很好的指標 toocheck hello PNS 認證。 
+    d) 如果通知中樞的驗證設定錯誤，您會看見 PNS 驗證錯誤。 這是提醒您檢查 PNS 認證的徵兆。 
 
 2) **程式設計存取**
 
@@ -207,7 +207,7 @@ Azure 通知中樞需要 tooauthenticate 本身 hello 內容中的 hello 開發�
 * [透過 API 存取遙測範例] 
 
 > [!NOTE]
-> 諸如**匯出/匯入註冊**、**透過 API 存取遙測**等數種遙測相關功能僅適用於 Standard 階層。 如果您嘗試 toouse 這些功能，如果您在免費層或基本層然後您會收到例外狀況訊息 toothis 效果時直接從 hello REST Api 中使用它們時使用 hello SDK 和 HTTP 403 （禁止）。 請確定您已透過 Azure 傳統入口網站移 tooStandard 階層。  
+> 諸如**匯出/匯入註冊**、**透過 API 存取遙測**等數種遙測相關功能僅適用於 Standard 階層。 如果您使用 Free 或 Basic 階層但嘗試使用以上功能，系統會顯示與此效果相關的例外狀況訊息 (使用 SDK 時) 和 HTTP 403 (禁止) (直接從 REST API 使用時)。 請務必透過 Azure 傳統入口網站上移至 Standard 階層。  
 > 
 > 
 
@@ -226,7 +226,7 @@ Azure 通知中樞需要 tooauthenticate 本身 hello 內容中的 hello 開發�
 
 <!-- LINKS -->
 [通知中樞概觀]: notification-hubs-push-notification-overview.md
-[快速入門教學課程]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
+[使用者入門教學課程]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
 [範本指引]: https://msdn.microsoft.com/library/dn530748.aspx 
 [APNS 指引]: https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/ApplePushService.html#//apple_ref/doc/uid/TP40008194-CH100-SW4
 [GCM 指引]: http://developer.android.com/google/gcm/adv.html

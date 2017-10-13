@@ -1,5 +1,5 @@
 ---
-title: "在 Azure Data Lake Store aaaEncryption |Microsoft 文件"
+title: "Azure Data Lake Store 中的加密 | Microsoft Docs"
 description: "了解 Azure Data Lake Store 中的加密和金鑰輪替方式"
 services: data-lake-store
 documentationcenter: 
@@ -14,127 +14,127 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 4/14/2017
 ms.author: yagupta
-ms.openlocfilehash: a9f3a2dce8232deba93005594d1e6a21e9c0cbee
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 20444d368c568ee716ff242e33323b91ffd198eb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="encryption-of-data-in-azure-data-lake-store"></a>Azure Data Lake Store 中的資料加密
 
-Azure Data Lake Store 中的加密可協助您保護資料，實作企業安全性原則，並符合合規性需求。 本文章提供 hello 設計的概觀，並討論一些 hello 技術層面的實作。
+Azure Data Lake Store 中的加密可協助您保護資料，實作企業安全性原則，並符合合規性需求。 本文提供設計概觀，並討論實作的一些技術層面。
 
 Data Lake Store 同時支援待用資料和傳輸中資料的加密。 對於待用資料，Data Lake Store 支援「預設開啟」、透明加密。 以下是這些詞彙的更詳細說明︰
 
-* **上預設**: hello 預設設定當您建立新的 Data Lake Store 帳戶時，啟用加密。 之後，會儲存在資料湖存放區的資料會一直持續性的媒體上的加密之前 toostoring。 這是 hello 行為的所有資料，並無法在建立帳戶之後變更。
-* **透明**： 加密資料的先前 toopersisting，和解密資料的先前 tooretrieval 自動的資料湖存放區。 hello 加密 」 設定，並由系統管理員在 hello 資料湖存放區層級管理。 不會變更 toohello 資料存取 Api。 因此，因為加密而與 Data Lake Store 互動的應用程式和服務也不需要變更。
+* **預設開啟**︰建立新的 Data Lake Store 帳戶時，預設設定會啟用加密。 因此，Data Lake Store 中儲存的資料一律會在儲存於持續性媒體之前進行加密。 這是所有資料的行為，建立帳戶之後便無法變更。
+* **透明**：Data Lake Store 會在保存資料前自動加密，以及在擷取之前將資料解密。 系統管理員會在 Data Lake Store 層級設定和管理加密。 資料存取 API 不會變更。 因此，因為加密而與 Data Lake Store 互動的應用程式和服務也不需要變更。
 
-傳輸中的資料 (也稱為移動中的資料) 也一律會在 Data Lake Store 中加密。 此外 tooencrypting 資料先前 toostoring toopersistent 媒體 hello 資料也都受到保護傳輸中使用 HTTPS。 HTTPS 是 hello 唯一的通訊協定支援的資料湖存放區 REST 介面的 hello。 hello 下圖顯示資料湖存放區中加密資料會變成：
+傳輸中的資料 (也稱為移動中的資料) 也一律會在 Data Lake Store 中加密。 除了在儲存至持續性媒體之前加密資料，也一律會使用 HTTPS 保護傳輸中的資料。 HTTPS 是 Data Lake Store REST 介面支援的唯一通訊協定。 下圖顯示如何在 Data Lake Store 中將資料加密︰
 
 ![Data Lake Store 中的資料加密圖表](./media/data-lake-store-encryption/fig1.png)
 
 
 ## <a name="set-up-encryption-with-data-lake-store"></a>使用 Data Lake Store 設定加密
 
-在帳戶建立期間會設定 Data Lake Store 的加密，且預設永遠啟用。 您可以管理您自己的 hello 金鑰，或允許 Data Lake Store toomanage 加以 （這是 hello 預設值）。
+在帳戶建立期間會設定 Data Lake Store 的加密，且預設永遠啟用。 您可以自行管理金鑰，或允許 Data Lake Store 為您管理 (這是預設值)。
 
 如需詳細資訊，請參閱[開始使用](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-get-started-portal)。
 
 ## <a name="how-encryption-works-in-data-lake-store"></a>Data Lake Store 中的加密運作方式
 
-hello 下列資訊涵蓋 toomanage 主要加密金鑰，以及它如何解釋 hello 三種不同的類型可用於資料加密的資料湖存放區索引鍵。
+下列資訊涵蓋如何管理主要加密金鑰，並說明您可以使用於 Data Lake Store 資料加密的三種金鑰類型。
 
 ### <a name="master-encryption-keys"></a>主要加密金鑰
 
-Data Lake Store 提供兩種管理主要加密金鑰 (MEK) 的模式。 現在，假設該 hello 主要加密金鑰是 hello 最上層機碼。 任何資料儲存在資料湖存放區中的必要的 toodecrypt 存取 toohello 主要加密金鑰。
+Data Lake Store 提供兩種管理主要加密金鑰 (MEK) 的模式。 現在，假設主要加密金鑰是最上層金鑰。 需要有主要加密金鑰的存取權，才能將任何儲存在 Data Lake Store 中的資料解密。
 
-如下所示為 hello 兩個模式，來管理 hello 主要加密金鑰：
+管理主要加密金鑰的兩種模式如下︰
 
 *   服務管理的金鑰
 *   客戶管理的金鑰
 
-在這兩種模式中，以將其儲存在 Azure 金鑰保存庫保護 hello 主要加密金鑰。 金鑰保存庫是完全受管理高度安全服務可以使用的 toosafeguard 密碼編譯金鑰的 Azure 上。 如需詳細資訊，請參閱 [Key Vault](https://azure.microsoft.com/services/key-vault)。
+這兩種模式都會將主要加密金鑰儲存在 Azure Key Vault 中進行保護。 Key Vault 是 Azure 上受到完整管理、高度安全的服務，可用來保護加密金鑰。 如需詳細資訊，請參閱 [Key Vault](https://azure.microsoft.com/services/key-vault)。
 
-以下是簡短的 hello 兩種管理 hello MEKs 模式所提供的功能比較。
+以下是兩種管理 MEK 模式所提供的簡潔功能比較。
 
 |  | 服務管理的金鑰 | 客戶管理的金鑰 |
 | --- | --- | --- |
-|儲存資料的方式|儲存的先前 toobeing 永遠加密。|儲存的先前 toobeing 永遠加密。|
-|Hello 主要加密金鑰儲存在哪裡？|金鑰保存庫|金鑰保存庫|
-|是任何加密金鑰儲存在 hello 清除外部金鑰保存庫？ |否|否|
-|可以 hello MEK 擷取金鑰保存庫？|否。 之後 hello MEK 會儲存在金鑰保存庫，它只能用於加密和解密。|否。 之後 hello MEK 會儲存在金鑰保存庫，它只能用於加密和解密。|
-|Hello 金鑰保存庫執行個體和 hello MEK 擁有者是誰？|hello Data Lake Store 服務|您擁有 hello 金鑰保存庫執行個體，這屬於自己的 Azure 訂用帳戶。 hello MEK 金鑰保存庫中可受軟體或硬體。|
-|您可以撤銷存取 toohello MEK hello Data Lake Store 服務嗎？|否|是。 您可以管理在金鑰保存庫的存取控制清單，並移除存取控制的項目 toohello 服務識別 hello Data Lake Store 服務。|
-|您可以永久刪除 hello MEK 嗎？|否|是。 如果您刪除 hello MEK 從金鑰保存庫時，無法解密 hello Data Lake Store 帳戶中的 hello 資料的任何人，包括 hello Data Lake Store 服務。 <br><br> 如果您已經明確備份 hello MEK 先前 toodeleting 它從金鑰保存庫，可以還原 hello MEK，和 hello 然後可復原的資料。 不過，如果您未備份 hello MEK 先前 toodeleting 它從金鑰保存庫，hello Data Lake Store 帳戶中的 hello 資料永遠不會解密之後。|
+|儲存資料的方式|一律在儲存之前加密。|一律在儲存之前加密。|
+|主要加密金鑰的儲存位置|金鑰保存庫|金鑰保存庫|
+|任何加密金鑰是否會完全儲存在 Key Vault 外部？ |否|否|
+|Key Vault 是否可以擷取 MEK？|否。 MEK 儲存於 Key Vault 之後，就只能用來加密和解密。|否。 MEK 儲存於 Key Vault 之後，就只能用來加密和解密。|
+|誰擁有 Key Vault 執行個體和 MEK？|Data Lake Store 服務|您擁有 Key Vault 執行個體，其屬於您自己的 Azure 訂用帳戶。 Key Vault 中的 MEK 可以由軟體或硬體管理。|
+|您是否可以撤銷 Data Lake Store 服務對於 MEK 的存取權？|否|是。 您可以管理 Key Vault 中的存取控制清單，並移除 Data Lake Store 服務之服務識別的存取控制項目。|
+|您是否可以永久刪除 MEK？|否|是。 如果您從 Key Vault 中刪除 MEK，任何人 (包括 Data Lake Store 服務) 都無法將 Data Lake Store 帳戶中的資料解密。 <br><br> 如果從 Key Vault 中刪除 MEK 之前，您已明確進行備份，即可還原 MEK，進而復原資料。 不過，如果從 Key Vault 中刪除 MEK 之前，您尚未進行備份，則 Data Lake Store 帳戶中的資料之後就永遠無法解密。|
 
 
-除了這項差異的人員管理 hello MEK 和 hello 金鑰保存庫執行個體所在，hello rest hello 設計的這兩種模式是 hello 相同。
+除了誰負責管理 MEK 及其所在 Key Vault 執行個體的這項差異，這兩種模式的其餘設計都相同。
 
-當您選擇 hello hello 模式主要加密金鑰時，很重要的 tooremember hello 下列：
+選擇主要加密金鑰的模式時，請務必記住下列幾點：
 
-*   您可以選擇 toouse 客戶管理金鑰管理服務，當您佈建 Data Lake Store 帳戶。
-*   Data Lake Store 帳戶佈建之後，就無法變更 hello 模式。
+*   您可以在佈建 Data Lake Store 帳戶時，選擇使用客戶管理的金鑰或服務管理的金鑰。
+*   佈建 Data Lake Store 帳戶之後，就無法變更模式。
 
 ### <a name="encryption-and-decryption-of-data"></a>資料的加密和解密
 
-有三種類型的資料加密的 hello 設計中使用的索引鍵。 hello 下表提供摘要：
+資料加密設計使用三種金鑰類型。 下表提供摘要：
 
-| Key                   | 縮寫 | 相關聯的項目 | 儲存位置                             | 類型       | 注意事項                                                                                                   |
+| 索引鍵                   | 縮寫 | 相關聯的項目 | 儲存位置                             | 類型       | 注意事項                                                                                                   |
 |-----------------------|--------------|-----------------|----------------------------------------------|------------|---------------------------------------------------------------------------------------------------------|
 | 主要加密金鑰 | MEK          | Data Lake Store 帳戶 | 金鑰保存庫                              | 非對稱 | 它可由 Data Lake Store 或您管理。                                                              |
-| 資料加密金鑰   | DEK          | Data Lake Store 帳戶 | 永續性儲存體，由 Data Lake Store 服務管理 | 對稱  | hello MEK 加密 hello DEK。 hello 加密的 DEK 是永續性的媒體上儲存的內容。 |
-| 區塊加密金鑰  | BEK          | 資料區塊 | None                                         | 對稱  | hello BEK 被衍生自 hello DEK 和 hello 資料區塊。                                                      |
+| 資料加密金鑰   | DEK          | Data Lake Store 帳戶 | 永續性儲存體，由 Data Lake Store 服務管理 | 對稱  | DEK 是由 MEK 加密。 已加密的 DEK 會儲存在持續性媒體上。 |
+| 區塊加密金鑰  | BEK          | 資料區塊 | None                                         | 對稱  | BEK 衍生自 DEK 和資料區塊。                                                      |
 
-hello 下列圖表將說明這些概念：
+下圖說明這些概念：
 
 ![資料加密中的加密](./media/data-lake-store-encryption/fig2.png)
 
-#### <a name="pseudo-algorithm-when-a-file-is-toobe-decrypted"></a>虛擬演算法 toobe 解密檔案時：
-1.  檢查 hello DEK hello Data Lake Store 帳戶是否為快取，並且可供使用。
-    - 如果沒有，然後閱讀 hello 從永續性儲存體，加密 DEK，並將它送出 tooKey 保存庫 toobe 解密。 快取 hello 解密 DEK 在記憶體中。 已經準備好 toouse。
-2.  針對每個區塊 hello 檔案中的資料：
-    - 讀取永續性儲存體中的 hello 加密的資料區塊。
-    - 產生從 hello DEK hello BEK 和 hello 加密的資料區塊。
-    - 使用 hello BEK toodecrypt 資料。
+#### <a name="pseudo-algorithm-when-a-file-is-to-be-decrypted"></a>將檔案解密時的虛擬演算法︰
+1.  檢查 Data Lake Store 帳戶的 DEK 是否已快取並可供使用。
+    - 若非如此，則從永續性儲存體讀取加密的 DEK，並將它傳送至 Key Vault 進行解密。 快取記憶體中已解密的 DEK。 其現在已可供使用。
+2.  對於檔案中的每個資料區塊。
+    - 從永續性儲存體讀取已加密的資料區塊。
+    - 從 DEK 和已加密的資料區塊產生 BEK。
+    - 使用 BEK 將資料解密。
 
 
-#### <a name="pseudo-algorithm-when-a-block-of-data-is-toobe-encrypted"></a>虛擬演算法 toobe 加密的資料區塊時：
-1.  檢查 hello DEK hello Data Lake Store 帳戶是否為快取，並且可供使用。
-    - 如果沒有，然後閱讀 hello 從永續性儲存體，加密 DEK，並將它送出 tooKey 保存庫 toobe 解密。 快取 hello 解密 DEK 在記憶體中。 已經準備好 toouse。
-2.  從 hello DEK 產生唯一 BEK hello 區塊的資料。
-3.  使用 aes-256 加密來加密與 hello BEK，hello 資料區塊。
-4.  永續性儲存體上的資料存放區 hello 加密的資料區塊。
+#### <a name="pseudo-algorithm-when-a-block-of-data-is-to-be-encrypted"></a>將資料區塊加密時的虛擬演算法︰
+1.  檢查 Data Lake Store 帳戶的 DEK 是否已快取並可供使用。
+    - 若非如此，則從永續性儲存體讀取加密的 DEK，並將它傳送至 Key Vault 進行解密。 快取記憶體中已解密的 DEK。 其現在已可供使用。
+2.  從 DEK 產生資料區塊的唯一 BEK。
+3.  經由使用 AES-256 加密的 BEK，將資料區塊加密。
+4.  在永續性儲存體上儲存已加密的資料區塊。
 
 > [!NOTE] 
-> 基於效能考量，hello DEK hello 中的清除快取在記憶體中的一段時間，並會立即被清除之後。 持續在媒體上，它會一律加密儲存 hello MEK。
+> 基於效能考量，DEK 會在記憶體中快取一小段時間，而之後立即遭到清除。 儲存於持續性媒體時，一律會由 MEK 加密。
 
 ## <a name="key-rotation"></a>金鑰輪替
 
-當您使用客戶管理的金鑰時，您可以旋轉 hello MEK。 如何查看客戶管理的金鑰，以建立 Data Lake Store 帳戶 tooset toolearn[入門](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-get-started-portal)。
+當您使用客戶管理的金鑰時，您可以輪替 MEK。 若要了解如何使用客戶管理的金鑰來設定 Data Lake Store 帳戶，請參閱[開始使用](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-get-started-portal)。
 
 ### <a name="prerequisites"></a>必要條件
 
-當您設定 hello Data Lake Store 帳戶時，您已選擇 toouse 您自己的金鑰。 建立 hello 帳戶之後，就無法變更此選項。 hello 下列步驟假設您使用客戶管理的金鑰 （也就是您已選擇您自己的金鑰從金鑰保存庫）。
+當您設定 Data Lake Store 帳戶時，您已選擇使用自己的金鑰。 建立帳戶之後，就無法變更此選項。 下列步驟假設您使用客戶管理的金鑰 (也就是，您已從 Key Vault 中選擇自己的金鑰)。
 
-請注意，是否您使用加密 hello 預設選項，您的資料永遠加密使用金鑰管理的資料湖存放區。 在本選項中，您不需要 hello 能力 toorotate 索引鍵，因為由資料湖存放區。
+請注意，如果您使用預設選項進行加密，一律會使用 Data Lake Store 所管理的金鑰將您的資料加密。 使用此選項時，您無法輪替金鑰，因為金鑰是由 Data Lake Store 管理。
 
-### <a name="how-toorotate-hello-mek-in-data-lake-store"></a>Toorotate hello MEK 資料湖存放區中的方式
+### <a name="how-to-rotate-the-mek-in-data-lake-store"></a>如何在 Data Lake Store 中輪替 MEK
 
-1. 登入 toohello [Azure 入口網站](https://portal.azure.com/)。
-2. 瀏覽 toohello 金鑰保存庫執行個體來儲存您 Data Lake Store 帳戶相關聯的金鑰。 選取 [金鑰]。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 瀏覽至儲存與您的 Data Lake Store 帳戶相關聯之金鑰的 Key Vault 執行個體。 選取 [金鑰]。
 
     ![Key Vault 的螢幕擷取畫面](./media/data-lake-store-encryption/keyvault.png)
 
-3.  選取與您的 Data Lake Store 帳戶相關聯的 hello 金鑰並建立新的版本，此機碼。 請注意，資料湖存放區目前僅支援金鑰輪替 tooa 新版本的金鑰。 它不支援繞 tooa 不同的索引鍵。
+3.  選取與您的 Data Lake Store 帳戶相關聯的金鑰，並建立此金鑰的新版本。 請注意，Data Lake Store 目前只支援新版金鑰的金鑰輪替。 它不支援不同金鑰的輪替。
 
    ![[金鑰] 視窗的螢幕擷取畫面 (醒目提示 [新增版本])](./media/data-lake-store-encryption/keynewversion.png)
 
-4.  瀏覽 toohello 資料湖存放區儲存體帳戶，並選取**加密**。
+4.  瀏覽至 Data Lake Store 儲存體帳戶，然後選取 [加密]。
 
     ![Data Lake Store 儲存體帳戶視窗的螢幕擷取畫面 (醒目提示 [加密])](./media/data-lake-store-encryption/select-encryption.png)
 
-5.  訊息會告知您金鑰新版 hello 索引鍵可供使用。 按一下**旋轉金鑰**tooupdate hello 金鑰 toohello 新版本。
+5.  有一則訊息會通知您，新本的金鑰已可使用。 按一下 [輪替金鑰]，將金鑰更新為新的版本。
 
     ![Data Lake Store 視窗的螢幕擷取畫面 (含有訊息並醒目提示 [輪替金鑰])](./media/data-lake-store-encryption/rotatekey.png)
 
-這項作業花費時間不超過 2 分鐘，而且沒有預期的停機時間，因為 tookey 旋轉。 Hello 作業已完成之後，新版 hello 金鑰 hello 正在使用中。
+這項作業應在 2 分鐘內完成，且預計不會因為金鑰輪替而停機。 在作業完成後，就會使用新版的金鑰。

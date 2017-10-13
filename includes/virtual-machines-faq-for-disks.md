@@ -6,67 +6,67 @@
 
 **何謂 Azure 受控磁碟？**
 
-受控磁碟是可以為您管理儲存體帳戶而簡化 Azure IaaS VM 磁碟管理的一項功能。 如需詳細資訊，請參閱 hello[管理磁碟概觀](../articles/virtual-machines/windows/managed-disks-overview.md)。
+受控磁碟是可以為您管理儲存體帳戶而簡化 Azure IaaS VM 磁碟管理的一項功能。 如需詳細資訊，請參閱[受控磁碟概觀](../articles/virtual-machines/windows/managed-disks-overview.md)。
 
 **如果我從現有的 VHD (大小為 80 GB) 建立標準受控磁碟，需要多少費用？**
 
-80 GB VHD 從建立標準受管理的磁碟視為與 hello 下一個可用的標準磁碟大小，也就是 S10 磁碟相同。 相應 toohello S10 磁碟價格收費。 如需詳細資訊，請參閱 hello[定價頁面](https://azure.microsoft.com/pricing/details/storage)。
+從 80 GB VHD 建立的標準受控磁碟會被視為下一個可用的標準磁碟大小 (S10 磁碟)。 將根據 S10 磁碟定價向您收費。 如需詳細資訊，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/storage)。
 
 **標準受控磁碟有任何交易成本嗎？**
 
-是。 我們會根據每一筆交易向您收費。 如需詳細資訊，請參閱 hello[定價頁面](https://azure.microsoft.com/pricing/details/storage)。
+是。 我們會根據每一筆交易向您收費。 如需詳細資訊，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/storage)。
 
-**標準的受管理磁碟要收費 hello hello hello 磁碟資料的實際大小或佈建的 hello hello 磁碟容量？**
+**對於標準受控磁碟，收費是依據磁碟上的資料實際大小，還是磁碟的佈建容量？**
 
-收費根據佈建的 hello hello 磁碟容量。 如需詳細資訊，請參閱 hello[定價頁面](https://azure.microsoft.com/pricing/details/storage)。
+收費是依據磁碟的佈建容量。 如需詳細資訊，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/storage)。
 
 **進階受控磁碟和非受控磁碟的價格有何不同？**
 
-hello 定價的受管理的高階磁碟是 hello 與未受管理的高階磁碟相同。
+進階受控磁碟與進階非受控磁碟的價格相同。
 
-**可以變更 hello 儲存體帳戶類型 （Standard 或 Premium） 的 我的受管理磁碟嗎？**
+**我是否可以變更受控磁碟的儲存體帳戶類型 (標準或進階)？**
 
-是。 您可以使用 hello Azure 入口網站、 PowerShell 或 hello Azure CLI 變更 hello 儲存體帳戶類型的受管理的磁碟。
+是。 您可以使用 Azure 入口網站、PowerShell 或 Azure CLI 來變更受控磁碟的儲存體帳戶類型。
 
-**有我可以複製或匯出受管理的磁碟 tooa 私人儲存體帳戶的方法嗎？**
+**是否有方法可以將受控磁碟複製或匯出至私人儲存體帳戶？**
 
-是。 您可以使用 hello Azure 入口網站、 PowerShell 或 hello Azure CLI 匯出受管理的磁碟。
+是。 您可以使用 Azure 入口網站、PowerShell 或 Azure CLI 來匯出受控磁碟。
 
-**可以使用 Azure 儲存體帳戶 toocreate 受管理磁碟的 VHD 檔案與不同的訂用帳戶嗎？**
+**我是否可以使用 Azure 儲存體帳戶中的 VHD 檔案，透過不同的訂用帳戶來建立受控磁碟？**
 
 否。
 
-**可以使用 Azure 儲存體帳戶 toocreate 受管理磁碟的 VHD 檔案位於不同的區域嗎？**
+**我是否可以使用 Azure 儲存體帳戶中的 VHD 檔案在不同的區域中建立受控磁碟？**
 
 否。
 
 **客戶使用受控磁碟時是否有任何規模限制？**
 
-受管理的磁碟排除 hello 限制與儲存體帳戶相關聯。 不過，每個訂閱受管理的磁碟的 hello 數目為有限的 too2，根據預設 000。 您可以呼叫支援 tooincrease 這個數字。
+受控磁碟沒有儲存體帳戶方面的限制。 不過，依預設，每一訂用帳戶的受控磁碟數目限制是 2,000 個。 您可以連絡支援人員來增加此數目。
 
 **我是否可以建立受控磁碟的增量快照集？**
 
-否。 hello 目前的快照集功能可讓受管理磁碟的完整複本。 不過，我們正計劃在未來的 hello toosupport 增量快照。
+否。 目前的快照集功能會建立受控磁碟的完整複本。 不過，我們已規劃在未來支援增量快照集。
 
 **可用性設定組中的 VM 是否可以由受控和非受控磁碟混合組成？**
 
-否。 所有受管理的磁碟或未受管理的所有磁碟，必須使用可用性設定組中的 hello Vm。 當您建立可用性設定組時，您可以選擇哪一種磁碟想 toouse。
+否。 可用性設定組中的 VM 必須全部使用受控磁碟，或全部使用非受控磁碟。 當您建立可用性設定組時，可以選擇想要使用的磁碟類型。
 
-**管理磁碟 hello 預設選項處於 hello Azure 入口網站？**
+**受控磁碟是否為 Azure 入口網站中的預設選項？**
 
-目前不可以，但是它會變成 hello 預設，在未來的 hello。
+目前不是，但未來會變成預設值。
 
 **我是否可以建立空的受控磁碟？**
 
-是。 您可以建立空的磁碟。 受管理的磁碟可以建立獨立 VM，比方說，而不用附加它 tooa VM。
+是。 您可以建立空的磁碟。 受控磁碟可在 VM 外獨立建立，例如，不連結至 VM。
 
-**什麼是支援的 hello 容錯網域計數的可用性設定組來使用受管理磁碟？**
+**使用受控磁碟的可用性設定組支援的容錯網域計數為何？**
 
-依據 hello hello 可用性設定組來使用受管理磁碟所在的地區，hello 支援容錯網域計數是 2 或 3。
+根據使用受控磁碟的可用性設定組所在區域，支援的容錯網域計數為 2 或 3。
 
-**如何為 hello 診斷設定的標準儲存體帳戶？**
+**如何設定診斷的標準儲存體帳戶？**
 
-您需要為 VM 診斷設定私人儲存體帳戶。 我們計劃在未來的 hello，tooswitch 診斷也 tooManaged 磁碟。
+您需要為 VM 診斷設定私人儲存體帳戶。 在未來，我們規劃也將診斷切換至受控磁碟。
 
 **受控磁碟適用何種角色型存取控制支援？**
 
@@ -76,20 +76,20 @@ hello 定價的受管理的高階磁碟是 hello 與未受管理的高階磁碟�
 * 參與者：可以管理存取以外的所有項目
 * 讀取者：可以檢視所有項目，但是無法進行變更
 
-**有我可以複製或匯出受管理的磁碟 tooa 私人儲存體帳戶的方法嗎？**
+**是否有方法可以將受控磁碟複製或匯出至私人儲存體帳戶？**
 
-您可以取得 toocopy hello 內容 tooa 私用儲存體帳戶或內部部署儲存體的唯讀共用的存取簽章 URI hello 管理磁碟，並使用它。
+您可以取得受控磁碟的唯讀共用存取簽章 URI，並使用它將內容複製到私人儲存體帳戶或內部部署儲存體。
 
 **我是否可以建立受控磁碟的複本？**
 
-客戶可以擷取受管理的磁碟的快照，然後再使用 hello 快照 toocreate 受管理的另一個磁碟。
+客戶可以建立受控磁碟的快照集，然後使用快照集建立另一個受控磁碟。
 
 **是否仍然支援非受控磁碟？**
 
-是。 我們支援受控磁碟和非受控磁碟。 我們建議您針對新的工作負載使用受管理的磁碟，並移轉您目前的工作負載 toomanaged 磁碟。
+是。 我們支援受控磁碟和非受控磁碟。 我們建議您使用受控磁碟來處理新的工作負載，並將您目前的工作負載移轉至受控磁碟。
 
 
-**如果我建立 128 GB 的磁碟，然後再增加 hello 大小 too130 GB，將我支付 hello 下一個磁碟的大小 (512 GB)？**
+**如果我建立大小為 128 GB 的磁碟，然後將大小增加至 130 GB，我是否必須支付下一個磁碟大小 (512 GB) 的費用？**
 
 是。
 
@@ -101,11 +101,11 @@ Azure 受控磁碟目前只支援本地備援儲存體受控磁碟。
 
 否。 目前不受支援此功能。 
 
-**當特殊的 （不使用 hello 系統準備工具所建立或一般化） 操作系統磁碟使用的 tooprovision VM 可以變更 hello 電腦 name 屬性嗎？**
+**當特製化 (不是透過使用系統準備工具或一般化所建立) 作業系統磁碟用來佈建 VM 時，我是否可以變更電腦名稱屬性？**
 
-否。 您無法更新 hello 電腦名稱 屬性。 hello 新的 VM 會繼承它 hello 父 VM，這是使用的 toocreate hello 作業系統磁碟。 
+否。 您無法更新電腦名稱屬性。 新的 VM 將從其父 VM 繼承它，並用來建立作業系統磁碟。 
 
-**哪裡可以找到範例 Azure Resource Manager 範本 toocreate 與受管理磁碟 Vm？**
+**哪裡可以找到 Azure Resource Manager 範本範例以建立具有受控磁碟的 VM**
 * [使用受控磁碟的範本清單](https://github.com/Azure/azure-quickstart-templates/blob/master/managed-disk-support-list.md)
 * https://github.com/chagarw/MDPP
 
@@ -115,9 +115,9 @@ Azure 受控磁碟目前只支援本地備援儲存體受控磁碟。
 
 是。
 
-**使用者管理 hello 加密金鑰？**
+**誰負責管理加密金鑰？**
 
-Microsoft 會管理 hello 加密金鑰。
+Microsoft 負責管理加密金鑰。
 
 **我是否可以停用受控磁碟的儲存體服務加密？**
 
@@ -125,30 +125,30 @@ Microsoft 會管理 hello 加密金鑰。
 
 **儲存體服務加密是否僅供特定地區使用？**
 
-否。 它提供了管理磁碟可使用的所有 hello 區域。 受控磁碟在所有公開區域和德國都有提供。
+否。 它在受控磁碟可以使用的區域中都有提供。 受控磁碟在所有公開區域和德國都有提供。
 
 **如何查看我的受控磁碟是否加密？**
 
-您可以找出 hello hello Azure 入口網站、 hello Azure CLI 和 PowerShell 從受管理的磁碟建立時的時間。 如果 hello 時間之後 2017 年 6 月 9，便會加密您的磁碟。 
+您可以從 Azure 入口網站、Azure CLI 和 PowerShell 找出建立受控磁碟的時間。 如果時間是在 2017 年 6 月 9 日之後，那麼您的磁碟是加密的。 
 
 **如何加密我在 2017 年 6 月 10 日之前建立的現有磁碟？**
 
-自 2017 年 6 月 10 寫入 tooexisting 管理磁碟的新資料會自動加密。 我們也想要規劃 tooencrypt 現有的資料，並在 hello 背景中將會以非同步方式發生 hello 加密。 如果您現在必須加密現有資料，請建立一份磁碟複本。 新的磁碟將會加密。
+自 2017 年 6 月 10 日起，系統會自動將寫入現有受控磁碟的新資料加密。 我們也計劃對現有資料進行加密，加密將以非同步方式在背景處理。 如果您現在必須加密現有資料，請建立一份磁碟複本。 新的磁碟將會加密。
 
-* [使用 Azure CLI hello 複製受管理的磁碟](../articles/virtual-machines/scripts/virtual-machines-linux-cli-sample-copy-managed-disks-to-same-or-different-subscription.md?toc=%2fcli%2fmodule%2ftoc.json)
+* [使用 Azure CLI 複製受控磁碟](../articles/virtual-machines/scripts/virtual-machines-linux-cli-sample-copy-managed-disks-to-same-or-different-subscription.md?toc=%2fcli%2fmodule%2ftoc.json)
 * [使用 PowerShell 複製受控磁碟](../articles/virtual-machines/scripts/virtual-machines-windows-powershell-sample-copy-managed-disks-to-same-or-different-subscription.md?toc=%2fcli%2fmodule%2ftoc.json)
 
 **受管理的快照集和映像是否加密？**
 
 是。 2017 年 6 月 9 日後建立之所有受管理的快照集和映像都將自動加密。 
 
-**可以轉換 Vm 與位於儲存體帳戶，或已 toomanaged 先前加密的磁碟的 unmanaged 磁碟嗎？**
+**我是否可以將具有非受控磁碟 (位於之前已加密的儲存體帳戶上) 的 VM 轉換為受控磁碟？**
 
 是
 
 **從受控磁碟或快照集匯出的 VHD 是否也會加密？**
 
-否。 但如果您匯出 VHD tooan 加密的加密受管理的磁碟或快照集，儲存體帳戶，然後它會加密。 
+否。 但是，如果將 VHD 從加密的受控磁碟或快照集匯出到加密儲存體帳戶，則會將它加密。 
 
 ## <a name="premium-disks-managed-and-unmanaged"></a>進階磁碟：受控和非受控
 
@@ -156,43 +156,43 @@ Microsoft 會管理 hello 加密金鑰。
 
 是。
 
-**可以附加 premium 和 standard 磁碟 tooa 大小之資料數列不支援進階儲存體，例如 D、 Dv2、 G 或 F 數列嗎？**
+**我是否可以同時將進階和標準資料磁碟連結至不支援進階儲存體的大小系列？例如 D、Dv2、G 或 F 系列？**
 
-否。 您可以附加只標準資料磁碟 tooVMs 針對未使用支援進階儲存體大小數列。
+否。 只有當 VM 未使用支援進階儲存體的大小系列時，您才能將標準資料磁碟連結至 VM。
 
 **如果我從現有的 VHD (大小為 80 GB) 建立進階資料磁碟，需要多少費用？**
 
-80 GB VHD 從建立高階資料磁碟會被視為 hello 下一個可用的 premium 磁碟大小，也就是 P10 磁碟。 相應 toohello P10 磁碟價格收費。
+從 80 GB VHD 建立的進階資料磁碟會被視為下一個可用的進階磁碟大小 (P10 磁碟)。 將根據 P10 磁碟定價向您收費。
 
-**是否有交易成本 toouse 高階儲存體？**
+**使用進階儲存體是否有交易成本？**
 
-依 IOPS 和輸送量的特定限制而佈建的每個磁碟大小，都有固定成本。 hello 其他成本包含傳出的頻寬和快照集的容量，如果適用的話。 如需詳細資訊，請參閱 hello[定價頁面](https://azure.microsoft.com/pricing/details/storage)。
+依 IOPS 和輸送量的特定限制而佈建的每個磁碟大小，都有固定成本。 其他成本包括輸出頻寬和快照集容量 (如果適用的話)。 如需詳細資訊，請參閱[價格頁面](https://azure.microsoft.com/pricing/details/storage)。
 
-**IOPS 及輸送量我可以從 hello 磁碟快取中取得的 hello 限制有哪些？**
+**我可以從磁碟快取取得的 IOPS 和輸送量有何限制？**
 
-hello 結合的限制快取和本機 SSD DS 系列的每個核心的 4,000 IOPS 和每個核心每秒的 33 MB。 hello GS 系列提供每個核心 5,000 IOPS 和每個核心每秒 50 MB。
+DS 系列的快取和本機 SSD 合併限制是每個核心 4,000 IOPS，以及每個核心每秒 33 MB。 GS 系列提供每個核心 5,000 IOPS，以及每個核心每秒 50 MB。
 
-**為的 hello 本機 SSD 支援受管理磁碟 VM？**
+**受控磁碟 VM 是否支援本機 SSD？**
 
-hello 本機 SSD 是隨附於受管理磁碟 VM 的暫存位置。 暫時儲存體不需額外的成本。 我們建議您不要使用此本機 SSD toostore 應用程式資料不是保存在 Azure Blob 儲存體。
+本機 SSD 是受控磁碟 VM 隨附的暫時儲存體。 暫時儲存體不需額外的成本。 建議您不要使用本機 SSD 來儲存應用程式資料，因為它不會保留在 Azure Blob 儲存體中。
 
-**會那里任何影響 hello 的空白位置修剪上使用高階磁碟嗎？**
+**在進階磁碟上使用 TRIM 是否有任何影響？**
 
-Azure 磁碟上是高階或標準磁碟上的空白位置修剪沒有缺點 toohello 使用了。
+在進階或標準磁碟的 Azure 磁碟上使用 TRIM 並無任何不妥。
 
 ## <a name="new-disk-sizes-managed-and-unmanaged"></a>新磁碟大小：受控和非受控
 
-**Hello 支援作業系統和資料磁碟最大磁碟大小為何？**
+**作業系統和資料磁碟支援的最大磁碟大小是多少？**
 
-Azure 支援的作業系統磁碟的 hello 磁碟分割類型為 hello 主開機記錄 (MBR)。 hello MBR 格式支援向上 too2 TB 的磁碟大小。 hello Azure 支援的作業系統磁碟的最大大小為 2 TB。 Azure 支援 too4 TB 的資料磁碟上。 
+Azure 針對作業系統磁碟所支援的磁碟分割類型是主開機記錄 (MBR)。 MBR 格式支援的磁碟大小上限為 2 TB。 Azure 針對作業系統磁碟支援的大小上限為 2 TB。 Azure 支援最大 4 TB 的資料磁碟。 
 
-**支援的 hello 最大頁面 blob 大小為何？**
+**支援的分頁 Blob 大小上限是多少？**
 
-Azure 支援的 hello 最大分頁 blob 大小為 8 TB (8,191 GB)。 我們不支援大於 4 TB (4095 GB) 附加 tooa VM 做為作業系統磁碟或資料的分頁 blob。
+Azure 支援的分頁 Blob 大小上限是 8 TB (8,191 GB)。 我們不支援將大於 4 TB (4,095 GB) 的分頁 Blob 連結到 VM 作為資料或作業系統磁碟。
 
-**我需要 toouse 新版本的 Azure tools toocreate 附加、 調整大小，並上傳大於 1 TB 的磁碟嗎？**
+**我是否需要使用新版 Azure 工具來建立磁碟、連結磁碟、調整磁碟大小及上傳大於 1 TB 的磁碟？**
 
-您不需要 tooupgrade 現有的 Azure tools toocreate、 附加，或調整大小大於 1 TB 的磁碟。 您的 VHD 檔案從 tooupload 內部直接 tooAzure 做為分頁 blob 或未受管理的磁碟，您需要 toouse hello 最新工具組：
+您不需要升級現有的 Azure工具來建立磁碟、連結磁碟或調整大於1 TB 的磁碟大小。 若要將 VHD 檔案從內部部署直接上傳到 Azure 作為分頁 Blob 或非受控磁碟，您需要使用最新的工具集：
 
 |Azure 工具      | 支援的版本                                |
 |-----------------|---------------------------------------------------|
@@ -200,23 +200,23 @@ Azure 支援的 hello 最大分頁 blob 大小為 8 TB (8,191 GB)。 我們不�
 |Azure CLI v1     | 版本號碼 0.10.13：2017 年 5 月發行或更新版本|
 |AzCopy           | 版本號碼 6.1.0：2017 年 6 月發行或更新版本|
 
-Azure CLI v2 和 Azure 儲存體總管的 hello 支援即將推出。 
+即將支援 Azure CLI v2 和 Azure 儲存體總管。 
 
 **針對非受控磁碟或分頁 Blob，是否支援 P4 和 P6 磁碟大小？**
 
 否。 只有受控磁碟才支援 P4 (32 GB) 和 P6 (64 GB) 磁碟大小。 即將支援非受控磁碟和分頁 Blob。
 
-**如果我管理的現有 premium 磁碟小於 hello 少數磁碟啟用 （大約是 2017 年 6 月 15) 之前，已建立 64 GB，如何為它收費？**
+**如果小於 64 GB 的現有進階受控磁碟，是在啟用小型磁碟 (2017 年 6 月 15 日前後) 之前建立，該如何計費？**
 
-現有的小型高階磁碟不超過 64 GB 繼續計費 toobe 相應 toohello P10 定價層。 
+根據 P10 定價層，小於 64 GB 的現有小型進階磁碟繼續計費。 
 
-**我可以切換 hello 磁碟層小於 64 GB 的小型高階磁碟從 P10 tooP4 或 P6？**
+**我要如何將小於 64 GB 的小型進階磁碟的磁碟層，從 P10 切換到 P4 或 P6？**
 
-您可以擷取您的小型磁碟的快照，然後建立 定價層 tooP4 磁碟 tooautomatically 交換器 hello 或 P6 根據 hello 佈建大小。 
+您可以為小型磁碟建立快照集，然後建立一個磁碟，根據佈建大小自動將定價層切換為 P4 或 P6。 
 
 
 ## <a name="what-if-my-question-isnt-answered-here"></a>如果這裡沒有解答我的問題該怎麼辦？
 
-如果這裡未列出您的問題，請告訴我們，我們將協助您找到答案。 您可以將在 hello 本文結尾處將問題張貼 hello 註解中。 tooengage 與 hello Azure 儲存體小組及其他社群成員關於本文中，使用 hello MSDN [Azure 儲存體論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata)。
+如果這裡未列出您的問題，請告訴我們，我們將協助您找到答案。 您可以在此文章結尾處將問題張貼在註解中。 若要就此文章與 Azure 儲存體小組和其他社群成員互動，請使用 MSDN [Azure 儲存體論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=windowsazuredata)。
 
-toorequest 功能提交您的要求和意見 toohello [Azure 儲存體意見反應論壇](https://feedback.azure.com/forums/217298-storage)。
+若要提出功能要求，請將要求和想法提交到 [Azure 儲存體意見反應論壇](https://feedback.azure.com/forums/217298-storage)。

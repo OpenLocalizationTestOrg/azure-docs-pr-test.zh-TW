@@ -1,5 +1,5 @@
 ---
-title: "在虛擬機器擴展集 Vm aaaManage |Microsoft 文件"
+title: "管理虛擬機器擴展集中的 VM | Microsoft Docs"
 description: "使用 Azure PowerShell 管理虛擬機器擴展集中的虛擬機器。"
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -15,23 +15,23 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/27/2016
 ms.author: adegeo
-ms.openlocfilehash: 7d848729c0fc708bd596b61feb528cf4bf4bafd4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d09a020b903e5f43afe03b86c675bcc1eb536cbc
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-virtual-machines-in-a-virtual-machine-scale-set"></a>管理虛擬機器擴展集中的虛擬機器
-使用虛擬機器規模集中的此發行項 toomanage 虛擬機器中的 hello 工作。
+您可以使用本文中的工作來管理虛擬機器擴展集中的虛擬機器。
 
-大部分的包含管理虛擬機器規模集中的 hello 工作需要您知道您想 toomanage hello 機器 hello 執行個體識別碼。 您可以使用[Azure 資源總管](https://resources.azure.com)toofind hello 執行個體識別碼的虛擬機器規模集中的。 您也可以使用資源總管 tooverify hello 狀態的 hello 完成的工作。
+大部分涉及管理擴展集中虛擬機器的工作，都需要您知道要管理的電腦執行個體識別碼。 您可以使用 [Azure 資源總管](https://resources.azure.com) 尋找擴展集中虛擬機器的執行個體識別碼。 您也可以使用資源總管來確認您所完成的工作狀態。
 
-請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)如需有關安裝 hello 最新版本的 Azure PowerShell 中，選取您的訂閱，並登入 tooyour 帳戶資訊。
+如需如何安裝最新版 Azure PowerShell、選取訂用帳戶，以及登入帳戶的相關資訊，請參閱[如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。
 
 ## <a name="display-information-about-a-scale-set"></a>顯示擴展集的相關資訊
-您可以取得規模集，這也是參考的 tooas hello 執行個體檢視的一般資訊。 或者，您可以取得更具體的資訊，例如 hello hello 規模集中的資源的相關資訊。
+您可以取得擴展集，也稱為執行個體檢視的一般資訊。 或者，您可以取得更特定的資訊，如擴展集中的資源資訊。
 
-取代 hello 名稱或資源群組與設定，然後執行 hello 命令的小數位數的值加上引號的 hello:
+將引號值取代為名稱或您的資源群組和擴展集，然後執行命令︰
 
     Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
 
@@ -91,7 +91,7 @@ ms.lasthandoff: 10/06/2017
         Settings                                : {"xmlCfg":"...","storageAccount":"astore"}
     ProvisioningState                           : Succeeded
 
-取代 hello hello 名稱的資源群組和小數位數設定的值加上引號。 取代 *#* 與 hello hello 虛擬機器您要了解 tooget 資訊，，然後執行它的執行個體識別碼：
+將引號值取代為名稱或您的資源群組和擴展集。 將 *#* 取代為您想要取得相關資訊的虛擬機器執行個體識別碼，然後加以執行︰
 
     Get-AzureRmVmssVM -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
@@ -145,11 +145,11 @@ ms.lasthandoff: 10/06/2017
       ProvisioningState           : Succeeded
 
 ## <a name="start-a-virtual-machine-in-a-scale-set"></a>啟動擴展集中的虛擬機器
-取代 hello hello 名稱的資源群組和小數位數設定的值加上引號。 取代 *#* 與 hello 識別碼 hello 虛擬機器，您想 toostart，，然後執行它：
+將引號值取代為名稱或您的資源群組和擴展集。 將 *#* 取代為您想要啟動的虛擬機器識別碼，然後加以執行：
 
     Start-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-在資源總管 中，我們可以看到 hello hello 執行個體的狀態是**執行**:
+在資源總管中，我們可以看到執行個體的狀態是 **執行中**：
 
     "statuses": [
       {
@@ -165,14 +165,14 @@ ms.lasthandoff: 10/06/2017
       }
     ]
 
-您可以在 hello 擴展集不使用 hello-InstanceId 參數來啟動 hello 的所有虛擬機器。
+您可以啟動擴展集中的所有虛擬機器，只要不使用 -InstanceId 參數即可。
 
 ## <a name="stop-a-virtual-machine-in-a-scale-set"></a>停止擴展集中的虛擬機器
-取代 hello hello 名稱的資源群組和小數位數設定的值加上引號。 取代 *#* 與 hello 識別碼 hello 虛擬機器，您想 toostop，，然後執行它：
+將引號值取代為名稱或您的資源群組和擴展集。 將 *#* 取代為您想要停止的虛擬機器識別碼，然後加以執行：
 
     Stop-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-在資源總管 中，我們可以看到 hello hello 執行個體的狀態是**取消配置**:
+在資源總管中，我們可以看到執行個體的狀態是 **解除配置**：
 
     "statuses": [
       {
@@ -188,28 +188,28 @@ ms.lasthandoff: 10/06/2017
       }
     ]
 
-toostop 虛擬機器不取消其配置、 使用 hello-StayProvisioned 參數。 您可以停止 hello 不使用 hello-InstanceId 參數設定中的所有 hello 虛擬機器。
+若要停止虛擬機器但不解除配置，請使用 -StayProvisioned 參數。 您可以停止集合中的所有虛擬機器，只要不使用 -InstanceId 參數即可。
 
 ## <a name="restart-a-virtual-machine-in-a-scale-set"></a>重新啟動擴展集中的虛擬機器
-取代 hello 與資源群組和 hello 規模集的 hello 名稱的值加上引號。 取代 *#* 與 hello 識別碼 hello 虛擬機器，您想 toorestart，，然後執行它：
+將引號值取代為名稱或您的資源群組和擴展集。 將 *#* 取代為您想要重新啟動的虛擬機器識別碼，然後加以執行：
 
     Restart-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name" -InstanceId #
 
-您可以重新啟動不使用 hello-InstanceId 參數設定的 hello hello 的所有虛擬機器。
+您可以重新啟動集合中的所有虛擬機器，只要不使用 -InstanceId 參數即可。
 
 ## <a name="remove-a-virtual-machine-from-a-scale-set"></a>移除擴展集中的虛擬機器
-取代 hello 與資源群組和 hello 規模集的 hello 名稱的值加上引號。 取代 *#* 與 hello 識別碼 hello 虛擬機器，您想 tooremove，，然後執行它：  
+將引號值取代為名稱或您的資源群組和擴展集。 將 *#* 取代為您想要移除的虛擬機器識別碼，然後加以執行：  
 
     Remove-AzureRmVmss -ResourceGroupName "resource group name" –VMScaleSetName "scale set name" -InstanceId #
 
-您可以不使用 hello-InstanceId 參數來移除 hello 虛擬機器規模集一次。
+您可以一次移除虛擬機器擴展集，只要不使用 -InstanceId 參數即可。
 
-## <a name="change-hello-capacity-of-a-scale-set"></a>變更 hello 容量的規模集
-您可以新增或藉由變更 hello 容量 hello 集移除虛擬機器。 取得要 toochange，您想要 toobe，然後再更新 hello 新容量 hello 規模調整集合組 hello 容量 toowhat hello 規模集。 在這些命令，來取代 hello 與資源群組和 hello 規模集的 hello 名稱的值加上引號。
+## <a name="change-the-capacity-of-a-scale-set"></a>變更擴展集的容量
+您可以新增或移除虛擬機器，方法是變更集合的容量。 取得您想要變更的擴展集，設定您想要的容量，然後使用新的容量更新擴展集。 在這些命令中，將引號值取代為名稱或您的資源群組和擴展集。
 
     $vmss = Get-AzureRmVmss -ResourceGroupName "resource group name" -VMScaleSetName "scale set name"
     $vmss.sku.capacity = 5
     Update-AzureRmVmss -ResourceGroupName "resource group name" -Name "scale set name" -VirtualMachineScaleSet $vmss 
 
-如果您要從 hello 規模集移除虛擬機器，就會先移除 hello 最高識別碼 hello 虛擬機器。
+如果您要從擴展集移除虛擬機器，會先移除具有最高識別碼的虛擬機器。
 

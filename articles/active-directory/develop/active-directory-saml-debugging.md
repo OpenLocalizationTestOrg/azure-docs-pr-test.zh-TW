@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toodebug SAML 型單一登入 tooapplications Azure Active Directory 中 |Microsoft 文件"
-description: "深入了解如何 toodebug SAML 型單一登入 tooapplications Azure Active Directory 中 "
+title: "如何針對 Azure Active Directory 中的 SAML 型應用程式單一登入進行偵錯 | Microsoft Docs"
+description: "了解如何偵錯 SAML 型單一登入 Azure Active Directory 中的應用程式  "
 services: active-directory
 author: asmalser-msft
 documentationcenter: na
@@ -15,27 +15,27 @@ ms.date: 07/20/2017
 ms.author: asmalser
 ms.custom: aaddev
 ms.reviewer: dastrock
-ms.openlocfilehash: 846c7b3497c8842947c5b406f4362b9e06785b14
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 31447d597296bac57481dc2acb4a95ee3a104161
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-toodebug-saml-based-single-sign-on-tooapplications-in-azure-active-directory"></a>如何 toodebug SAML 型單一登入 tooapplications Azure Active Directory 中
-偵錯 SAML 型應用程式整合時，通常很有幫助 toouse 這類工具[Fiddler](http://www.telerik.com/fiddler) toosee hello SAML 要求、 hello SAML 回應和 hello 實際 SAML 權杖中發出 toohello 應用程式。 藉由檢查 hello SAML 權杖中，您可以確保所有 hello 必要屬性、 hello hello SAML 主旨中的使用者名稱和 hello 如預期般，透過全都來自 URI 的簽發者。
+# <a name="how-to-debug-saml-based-single-sign-on-to-applications-in-azure-active-directory"></a>如何偵錯 SAML 型單一登入 Azure Active Directory 中的應用程式
+當偵錯 SAML 型的應用程式整合時，使用 [Fiddler](http://www.telerik.com/fiddler) 之類的工具查看 SAML 要求、SAML 回應和發行給應用程式實際的 SAML 權杖，通常很有幫助。 您可以藉由檢查 SAML 權杖，確保所有必要的屬性、SAML 主體中的使用者名稱和簽發者 URI 都能如預期通過。
 
 ![][1]
 
-hello 回應從 Azure AD 包含 hello SAML 權杖通常是 hello https://login.windows.net，從 HTTP 302 重新導向之後發生的其中一個，而且已傳送的 toohello**回覆 URL** hello 應用程式。 
+包含 SAML 權杖的 Azure AD 回應，通常是 HTTP 302 從 https://login.windows.net 重新導向並傳送至已設定的應用程式**回覆 URL** 後，發生的那一個。 
 
-您可以檢視 hello SAML 權杖中選取這一行，然後選取 hello**偵測器 > WebForms** hello 右面板中的索引標籤。 從該處，以滑鼠右鍵按一下 hello **SAMLResponse**值，並選取**傳送 tooTextWizard**。 然後選取**從 Base64**從 hello**轉換**功能表 toodecode hello 語彙基元，並檢視其內容。
+您可以選取這一行，然後在右窗格中選取 [偵測器] > [WebForms]，檢視 SAML 權杖。 在這裡以滑鼠右鍵按一下 [SAMLResponse] 值並選取 [傳送至 TextWizard]。 然後選取 [轉換] 功能表的 [從 Base64]，解碼權杖並查看其內容。
 
-**請注意**: toosee hello 內容的此 HTTP 要求，Fiddler 可能會提示您的 HTTPS 流量，您將需要 tooconfigure 解密 toodo。
+**注意**：為查看這個 HTTP 要求的內容，Fiddler 可能會提示您設定解密 HTTPS 流量，請務必這麼做。
 
 ## <a name="related-articles"></a>相關文章
 * [Article Index for Application Management in Azure Active Directory (Azure Active Directory 中應用程式管理的文件索引)](../active-directory-apps-index.md)
-* [設定單一登入 tooapplications 不在 hello Azure Active Directory 應用程式庫](../active-directory-saas-custom-apps.md)
-* [如何 tooCustomize 中發出的宣告 hello SAML 權杖 Pre-Integrated 應用程式](active-directory-saml-claims-customization.md)
+* [設定對不在 Azure Active Directory 應用程式庫中的應用程式的單一登入](../active-directory-saas-custom-apps.md)
+* [如何為預先整合的應用程式自訂在 SAML 權杖中發出的宣告](active-directory-saml-claims-customization.md)
 
 <!--Image references-->
 [1]: ../media/active-directory-saml-debugging/fiddler.png

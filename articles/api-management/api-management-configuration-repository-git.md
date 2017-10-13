@@ -1,6 +1,6 @@
 ---
-title: "aaaConfigure 使用 Git-Azure API 管理服務 |Microsoft 文件"
-description: "深入了解如何 toosave 並設定您使用 Git 的 API 管理服務組態。"
+title: "使用 Git 設定 API 管理服務 - Azure | Microsoft Docs"
+description: "了解如何使用 Git 儲存和設定 API 管理服務組態。"
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,179 +14,179 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: apimpm
-ms.openlocfilehash: ef7d4c18f2ea3f5c9b86403349a83aef240f979b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f5d6bb7ccbf15424e9940ccda2fac668a2af5a57
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toosave-and-configure-your-api-management-service-configuration-using-git"></a>如何 toosave 並設定您使用 Git 的 API 管理服務設定
+# <a name="how-to-save-and-configure-your-api-management-service-configuration-using-git"></a>如何使用 Git 儲存和設定 API 管理服務組態
 > 
 > 
 
-每個 API 管理服務執行個體維護組態資料庫，其中包含 hello 組態與 hello 服務執行個體的中繼資料的相關資訊。 可以變更 toohello 服務執行個體變更 hello 發行者入口網站中的設定、 使用 PowerShell cmdlet 或 REST API 呼叫。 此外 toothese 方法，您也可以管理您的服務執行個體設定使用 Git，請啟用服務管理案例，例如：
+每個 API 管理服務執行個體會維護組態資料庫，包含服務執行個體的組態和中繼資料的相關資訊。 可以對服務執行個體進行變更，方法是使用PowerShell Cmdlet 或進行 REST API 呼叫，變更發佈者入口網站中的設定。 除了這些方法，您也可以使用 Git 管理服務執行個體組態，啟用下列服務管理案例︰
 
 * 組態版本 - 下載並儲存不同版本的服務組態
-* 大量的組態變更-在本機儲存機制中進行變更 toomultiple 組件的服務組態和整合 hello 變更後 toohello 與單一作業
-* 熟悉 Git 工具鏈和工作流程-使用 hello Git 工具，以及您已熟悉的工作流程
+* 大量的組態變更 - 對本機儲存機制中服務組態的多個部分進行變更，並且使用單一作業將變更整合回伺服器
+* 熟悉的 Git 工具鏈和工作流程 - 使用您已熟悉的 Git 工具和工作流程
 
-hello 下列圖表顯示 hello 不同的方式 tooconfigure 概觀您 API 管理服務執行個體。
+下圖顯示設定您的 API 管理服務執行個體的不同方式的概觀。
 
 ![Git 設定][api-management-git-configure]
 
-當您使用 hello 發行者入口網站、 PowerShell cmdlet 或 REST API hello tooyour 服務進行變更時，您要管理服務設定資料庫使用 hello`https://{name}.management.azure-api.net`端點，右邊 hello hello 圖表所示。 hello 左下的方 hello 圖表將說明如何管理您使用 Git 的服務組態和您服務的 Git 儲存機制位於`https://{name}.scm.azure-api.net`。
+當您使用發佈者入口網站、PowerShell Cmdlet 或 REST API 對服務進行變更時，您會使用 `https://{name}.management.azure-api.net` 端點管理服務組態資料庫，如圖表右側所示。 圖表左側說明如何針對位於 `https://{name}.scm.azure-api.net`的服務，使用 Git 和 Git 儲存機制管理服務組態。
 
-hello 下列步驟提供管理 API 管理服務執行個體使用 Git 的概觀。
+下列步驟提供使用 Git 管理 API 管理服務執行個體的概觀。
 
 1. 存取服務中的 Git 組態
-2. 儲存您服務組態資料庫 tooyour Git 儲存機制
-3. 複製 hello Git 儲存機制 tooyour 本機電腦
-4. 提取下 tooyour 本機 hello 最新的儲存機制和認可並推送變更後 tooyour 儲存機制
-5. 從您的儲存機制的 hello 變更部署至您的服務組態資料庫
+2. 將您的服務組態資料庫儲存至您的 Git 儲存機制
+3. 將 Git 儲存機制複製到本機電腦
+4. 將最新的儲存機制提取至您的本機電腦，認可並且將變更推送回您的儲存機制
+5. 從您的儲存機制將變更部署至您的服務組態資料庫
 
-本文說明如何 tooenable 和您的服務組態使用 Git toomanage hello Git 儲存機制中的 hello 檔案和資料夾提供的參考。
+本文說明如何啟用及使用 Git 來管理您的服務組態，並提供 Git 儲存機制中檔案和資料夾的參考。
 
 ## <a name="access-git-configuration-in-your-service"></a>存取服務中的 Git 組態
-您可以在 hello 右上角的 hello 發行者入口網站中檢視 hello Git 圖示，快速檢視 hello Git 組態狀態。 在此範例中，hello 狀態訊息會指出有未儲存的變更 toohello 儲存機制。 這是因為 hello API 管理服務組態資料庫有尚未儲存 toohello 儲存機制。
+您可以檢視發行者入口網站右上角的 Git 圖示，藉以快速檢視 Git 組態的狀態。 在此範例中，狀態訊息指出存放庫有未儲存的變更。 這是因為 API 管理服務組態資料庫尚未儲存到儲存機制所致。
 
 ![Git 狀態][api-management-git-icon-enable]
 
-tooview 和設定您的 Git 組態設定，您可以按一下 hello Git 圖示，或按一下 hello**安全性**功能表和瀏覽 toohello**設定存放庫** 索引標籤。
+若要檢視並設定您的 Git 組態設定，您可以按一下 [Git] 圖示，或按一下 [安全性] 功能表，然後瀏覽至 [組態儲存機制] 索引標籤。
 
 ![啟用 GIT][api-management-enable-git]
 
 > [!IMPORTANT]
-> 屬性會儲存在 hello 儲存機制，並將保留在其歷程記錄，直到您未定義任何機密停用然後重新啟用 Git 權限。 屬性會提供安全的地方 toomanage 常數字串值，所以您不需 toostore，包括密碼，跨所有應用程式開發介面設定和原則，它們直接在您的原則陳述式中。 如需詳細資訊，請參閱[如何在 Azure API 管理原則中的 toouse 屬性](api-management-howto-properties.md)。
+> 未定義為屬性的任何密碼會儲存在儲存機制，並且仍然保留其歷程記錄，直到您停用然後重新啟用 Git 存取。 屬性會提供一個安全的地方以管理跨所有的 API 組態和原則的常數字串值，包括密碼，因此您不必將它們直接儲存在您的原則陳述式。 如需詳細資訊，請參閱 [如何使用 Azure API 管理原則中的屬性](api-management-howto-properties.md)。
 > 
 > 
 
-啟用或停用使用 hello REST API 的 Git 存取資訊，請參閱[啟用或停用使用 hello REST API 的 Git 存取](https://msdn.microsoft.com/library/dn781420.aspx#EnableGit)。
+如需使用 REST API 啟用或停用 Git 存取的詳細資訊，請參閱 [使用 REST API 啟用或停用 Git 存取](https://msdn.microsoft.com/library/dn781420.aspx#EnableGit)。
 
-## <a name="toosave-hello-service-configuration-toohello-git-repository"></a>toosave hello 服務組態 toohello Git 儲存機制
-hello 複製 hello 儲存機制之前的第一個步驟是 toosave hello 目前狀態的 hello 服務組態 toohello 儲存機制。 按一下**儲存組態 toorepository**。
+## <a name="to-save-the-service-configuration-to-the-git-repository"></a>將服務組態儲存至 Git 儲存機制
+複製儲存機制之前的第一個步驟是將服務組態的目前狀態儲存至儲存機制。 按一下 [將組態儲存至儲存機制] 。
 
 ![儲存組態][api-management-save-configuration]
 
-Hello 確認畫面上進行任何所需的變更，然後按一下 **確定**toosave。
+在 [確認] 畫面上進行任何所需的變更，然後按一下 [確定]  以儲存。
 
 ![儲存組態][api-management-save-configuration-confirm]
 
-在幾分鐘之後會儲存 hello 組態，並且會顯示 hello 儲存機制 hello 組態狀態，包括 hello 日期和時間 hello 最後一項組態變更，而且 hello 之間 hello 服務組態和 hello 上次同步處理儲存機制。
+儲存組態一段時間後，儲存機制的組態狀態隨即顯示，包括最後組態變更和上次同步處理服務組態和儲存機制的日期與時間。
 
 ![組態狀態][api-management-configuration-status]
 
-一旦 toohello 儲存機制時，會儲存 hello 組態，可以被複製。
+一旦組態儲存至儲存機制，就可以複製。
 
-如需執行這項作業使用 hello REST API 的資訊，請參閱[認可組態快照集使用 REST API hello](https://msdn.microsoft.com/library/dn781420.aspx#CommitSnapshot)。
+如需使用 REST API 執行此作業的詳細資訊，請參閱 [使用 REST API 認可組態快照集](https://msdn.microsoft.com/library/dn781420.aspx#CommitSnapshot)。
 
-## <a name="tooclone-hello-repository-tooyour-local-machine"></a>tooclone hello 儲存機制 tooyour 本機電腦
-tooclone 儲存機制，您需要 hello URL tooyour 儲存機制、 使用者名稱和密碼。 hello 使用者名稱和 URL 會顯示 hello hello 頂端附近**設定存放庫** 索引標籤。
+## <a name="to-clone-the-repository-to-your-local-machine"></a>將儲存機制複製到本機電腦
+若要複製儲存機制，您需要儲存機制的 URL、使用者名稱和密碼。 使用者名稱和 URL 會顯示於接近 [組態儲存機制]  索引標籤頂端的地方。
 
 ![git 複製][api-management-configuration-git-clone]
 
-在 hello hello 底端會產生 hello 密碼**設定存放庫** 索引標籤。
+密碼會在 [組態儲存機制]  索引標籤的底端產生。
 
 ![產生密碼][api-management-generate-password]
 
-toogenerate 密碼，必須先確定該 hello**到期**是設定 toohello 預期到期日和時間，然後按一下**產生語彙基元**。
+若要產生密碼，請先確定已將 [到期] 設為所需的到期日期和時間，然後按一下 [產生權杖]。
 
 ![密碼][api-management-password]
 
 > [!IMPORTANT]
-> 記下此密碼。 一旦您離開此頁面 hello 密碼不會再次顯示。
+> 記下此密碼。 一旦您離開此頁面，就不會再次顯示密碼。
 > 
 > 
 
-下列範例使用 hello Git Bash hello 工具[Git for Windows](http://www.git-scm.com/downloads)但您可以使用任何您已熟悉的 Git 工具。
+下列範例會使用來自 [Git for Windows](http://www.git-scm.com/downloads) 的 Git Bash 工具，但是您可以使用任何您已熟悉的 Git 工具。
 
-在 hello 所要的資料夾中開啟您的 Git 工具，並執行下列命令 tooclone hello git 儲存機制 tooyour 本機電腦，請使用 hello 命令 hello 發行者入口網站所提供的 hello。
+在想要的資料夾中開啟 Git 工具，然後執行下列命令，使用發佈者入口網站提供的命令，將 git 儲存機制複製到本機電腦。
 
 ```
 git clone https://bugbashdev4.scm.azure-api.net/
 ```
 
-Hello 使用者名稱和密碼提示時提供。
+出現提示時，請提供使用者名稱和密碼。
 
-如果您收到任何錯誤，請嘗試修改您`git clone`命令 tooinclude hello 使用者名稱和密碼，hello 下列範例所示。
+如果您收到任何錯誤，請嘗試修改您的 `git clone` 命令以包含使用者名稱和密碼，如下列範例所示。
 
 ```
 git clone https://username:password@bugbashdev4.scm.azure-api.net/
 ```
 
-如果這會提供錯誤，請再試一次 URL 編碼 hello 命令 hello 密碼部分。 一個快速方式 toodo 這是 tooopen Visual Studio 中，而且問題 hello 下列命令在 hello**即時運算視窗**。 tooopen hello**即時運算視窗**、 Visual Studio 中開啟任何方案或專案 （或建立新的空白的主控台應用程式），然後選擇  **Windows**，**即時運算**從hello**偵錯**功能表。
+如果發生錯誤，請嘗試 URL 編碼命令的密碼部分。 完成這項操作的其中一個快速方法是開啟 Visual Studio，並且在 [即時運算視窗] 發出下列命令。 若要開啟 [即時運算視窗]，請在 Visual Studio 中開啟任何解決方案或專案 (或建立新的空白主控台應用程式)，然後從 [偵錯] 功能表選擇 [視窗]、[即時運算]。
 
 ```
 ?System.NetWebUtility.UrlEncode("password from publisher portal")
 ```
 
-使用 hello 編碼密碼，以及使用者名稱和儲存機制位置 tooconstruct hello git 命令。
+使用編碼的密碼以及使用者名稱和儲存機制位置以建構 git 命令。
 
 ```
 git clone https://username:url encoded password@bugbashdev4.scm.azure-api.net/
 ```
 
-一旦複製 hello 儲存機制是您可以檢視，並在您的本機檔案系統中使用它。 如需詳細資訊，請參閱 [本機 Git 儲存機制的檔案和資料夾結構參考](#file-and-folder-structure-reference-of-local-git-repository)。
+複製儲存機制之後，您可以在您的本機檔案系統中檢視及使用它。 如需詳細資訊，請參閱 [本機 Git 儲存機制的檔案和資料夾結構參考](#file-and-folder-structure-reference-of-local-git-repository)。
 
-## <a name="tooupdate-your-local-repository-with-hello-most-current-service-instance-configuration"></a>tooupdate 本機儲存機制與 hello 最新的服務執行個體組態
-如果您在 hello 發行者入口網站或使用 hello REST API 中進行變更 tooyour API 管理服務執行個體，您必須先儲存這些變更 toohello 儲存機制之前您可以使用 hello 最新的變更來更新本機儲存機制。 toodo 此，依序按一下**儲存組態 toorepository**上 hello**設定存放庫**hello 發行者入口網站，在索引標籤，然後發出下列命令在本機儲存機制中的 hello。
+## <a name="to-update-your-local-repository-with-the-most-current-service-instance-configuration"></a>使用最新的服務執行個體組態更新本機儲存機制
+如果您在發佈者入口網站中或使用 REST API 變更您的 API 管理服務執行個體，您必須先將這些變更儲存至儲存機制，才能使用最新的變更來更新本機儲存機制。 若要這樣做，請按一下發佈者入口網站中 [組態儲存機制] 索引標籤上的 [將組態儲存至儲存機制]，然後在本機儲存機制中發出下列命令。
 
 ```
 git pull
 ```
 
-執行前`git pull`確認您的本機儲存機制是 hello 資料夾中。 如果您剛完成 hello`git clone`命令時，則您必須變更 hello 目錄 tooyour 儲存機制，藉由執行 hello 下列類似的命令。
+在執行 `git pull` 之前，請確認您是位於本機儲存機制的資料夾中。 如果您已完成 `git clone` 命令，則必須執行類似下列的命令，將目錄變更為您的儲存機制。
 
 ```
 cd bugbashdev4.scm.azure-api.net/
 ```
 
-## <a name="toopush-changes-from-your-local-repo-toohello-server-repo"></a>從本機儲存機制 toohello 伺服器儲存機制的 toopush 變更
-toopush 變更從本機儲存機制 toohello 伺服器儲存機制，您必須認可您的變更，然後將其推送 toohello 伺服器儲存機制。 toocommit 您的變更，開啟您的 Git 命令工具，本機儲存機制，與下列命令的問題 hello 的交換器 toohello 目錄。
+## <a name="to-push-changes-from-your-local-repo-to-the-server-repo"></a>將變更從您的本機儲存機制推送至伺服器儲存機制
+若要將變更從本機儲存機制推送至伺服器儲存機制，必須認可您的變更，然後再將其推送至伺服器儲存機制。 若要認可變更，請開啟您的 Git 命令工具，切換至您的本機儲存機制的目錄，然後發出下列命令。
 
 ```
 git add --all
 git commit -m "Description of your changes"
 ```
 
-toopush hello 的所有認可 toohello 伺服器上執行下列命令 hello。
+若要將所有認可推送至伺服器，請執行下列命令。
 
 ```
 git push
 ```
 
-## <a name="toodeploy-any-service-configuration-changes-toohello-api-management-service-instance"></a>toodeploy 任何服務組態變更 toohello API 管理服務執行個體
-一旦您的本機變更認可並推送 toohello 伺服器儲存機制，您可以將它們部署 tooyour API 管理服務執行個體。
+## <a name="to-deploy-any-service-configuration-changes-to-the-api-management-service-instance"></a>將服務組態變更部署至 API 管理服務執行個體
+一旦您的本機變更被認可並且推送至伺服器儲存機制，您可以將它們部署到您的 API 管理服務執行個體。
 
 ![部署][api-management-configuration-deploy]
 
-如需執行這項作業使用 hello REST API 的資訊，請參閱[部署 Git 變更 tooconfiguration 資料庫使用 REST API hello](https://docs.microsoft.com/en-us/rest/api/apimanagement/tenantconfiguration)。
+如需使用 REST API 執行此作業的詳細資訊，請參閱 [使用 REST API 將 Git 變更部署至組態資料庫](https://docs.microsoft.com/en-us/rest/api/apimanagement/tenantconfiguration)。
 
 ## <a name="file-and-folder-structure-reference-of-local-git-repository"></a>本機 Git 儲存機制的檔案和資料夾結構參考
-hello hello 本機 git 儲存機制中檔案和資料夾包含 hello 關於 hello 服務執行個體的組態資訊。
+本機 git 儲存機制中的檔案和資料夾包含服務執行個體的相關組態資訊。
 
-| Item | 說明 |
+| 項目 | 說明 |
 | --- | --- |
-| 根 api 管理資料夾 |包含最上層 hello 服務執行個體組態 |
-| apis 資料夾 |包含 hello 服務執行個體中的 hello 應用程式開發介面的 hello 組態 |
-| 群組資料夾 |Hello 服務執行個體中包含 hello hello 群組組態 |
-| 原則資料夾 |Hello 服務執行個體中包含 hello 原則 |
-| portalStyles 資料夾 |Hello 服務執行個體中包含 hello hello 開發人員入口網站的自訂項目組態 |
-| 產品資料夾 |Hello 服務執行個體中包含 hello hello 產品的組態 |
-| 範本資料夾 |Hello 服務執行個體中包含 hello hello 電子郵件範本的組態 |
+| 根 api 管理資料夾 |包含服務執行個體的最上層組態 |
+| apis 資料夾 |包含服務執行個體中 apis 的組態 |
+| 群組資料夾 |包含服務執行個體中群組的組態 |
+| 原則資料夾 |包含服務執行個體中的原則 |
+| portalStyles 資料夾 |包含服務執行個體中開發人員入口網站自訂的組態 |
+| 產品資料夾 |包含服務執行個體中產品的組態 |
+| 範本資料夾 |包含服務執行個體中電子郵件範本的組態 |
 
-每個資料夾可以包含一或多個檔案，在某些情況下可以包含一或多個資料夾，例如每個 API、產品或群組的資料夾。 每個資料夾中的 hello 檔案特有的 hello hello 資料夾名稱所描述的實體類型。
+每個資料夾可以包含一或多個檔案，在某些情況下可以包含一或多個資料夾，例如每個 API、產品或群組的資料夾。 每個資料夾中的檔案是特定於資料夾名稱所描述的實體類型。
 
 | 檔案類型 | 目的 |
 | --- | --- |
-| json |Hello 個別實體的組態資訊 |
-| html |通常顯示 hello 開發人員入口網站中的 hello 實體有關的說明。 |
+| json |個別實體的組態資訊 |
+| html |實體的相關描述，通常顯示於開發人員入口網站 |
 | xml |Policy statements |
 | css |開發人員入口網站自訂的樣式表 |
 
-這些檔案可以建立、 刪除、 編輯和管理您的本機檔案系統和 hello 變更部署後 toohello 您 API 管理服務執行個體。
+可以在您的本機檔案系統上建立、刪除、編輯和管理這些檔案，並將變更部署回您的 API 管理服務執行個體。
 
 > [!NOTE]
-> hello 下列實體不會包含在 hello Git 儲存機制中，無法使用 Git 進行設定。
+> 下列實體不包含在 Git 儲存機制，因此無法使用 Git 來設定。
 > 
 > * 使用者
 > * 訂用帳戶
@@ -196,7 +196,7 @@ hello hello 本機 git 儲存機制中檔案和資料夾包含 hello 關於 hell
 > 
 
 ### <a name="root-api-management-folder"></a>根 api 管理資料夾
-hello 根`api-management`資料夾包含`configuration.json`檔案，其中包含最上層 hello hello 遵循格式中的服務執行個體的相關資訊。
+根 `api-management` 資料夾包含 `configuration.json` 檔案，其中包含服務執行個體的最上層資訊，格式如下。
 
 ```json
 {
@@ -214,20 +214,20 @@ hello 根`api-management`資料夾包含`configuration.json`檔案，其中包�
 }
 ```
 
-hello 前四個設定 (`RegistrationEnabled`， `UserRegistrationTerms`， `UserRegistrationTermsEnabled`，和`UserRegistrationTermsConsentRequired`) 對應 toohello 遵循 hello 設定**識別** 索引標籤中 hello**安全性**> 一節。
+前四個設定 (`RegistrationEnabled`、`UserRegistrationTerms`、`UserRegistrationTermsEnabled` 和 `UserRegistrationTermsConsentRequired`) 對應至 [安全性] 區段的 [身分識別] 索引標籤中的下列設定。
 
-| 身分識別設定 | 太對應|
+| 身分識別設定 | 對應至 |
 | --- | --- |
-| RegistrationEnabled |**匿名使用者 toosign 頁面上將重新導向**核取方塊 |
+| RegistrationEnabled | 核取方塊 |
 | UserRegistrationTerms | 文字方塊 |
 | UserRegistrationTermsEnabled | 核取方塊 |
 | UserRegistrationTermsConsentRequired | 核取方塊 |
 
 ![身分識別設定][api-management-identity-settings]
 
-hello 接下來四個設定 (`DelegationEnabled`， `DelegationUrl`， `DelegatedSubscriptionEnabled`，和`DelegationValidationKey`) 對應 toohello 遵循 hello 設定**委派** 索引標籤中 hello**安全性**> 一節。
+接下來四個設定 (`DelegationEnabled`、`DelegationUrl`、`DelegatedSubscriptionEnabled` 和 `DelegationValidationKey`) 對應至 [安全性] 區段的 [委派] 索引標籤中的下列設定。
 
-| 委派設定 | 太對應|
+| 委派設定 | 對應至 |
 | --- | --- |
 | DelegationEnabled |[委派登入和註冊] 核取方塊 |
 | DelegationUrl | 文字方塊 |
@@ -236,56 +236,56 @@ hello 接下來四個設定 (`DelegationEnabled`， `DelegationUrl`， `Delegate
 
 ![委派設定][api-management-delegation-settings]
 
-hello 最終設定， `$ref-policy`，對應 toohello hello 服務執行個體的全域原則陳述式檔案。
+最後的設定 ( `$ref-policy`) 會對應至服務執行個體的全域原則陳述式檔案。
 
 ### <a name="apis-folder"></a>apis 資料夾
-hello`apis`資料夾的每個應用程式開發介面包含一個資料夾，其中包含下列項目 hello hello 服務執行個體中。
+`apis` 資料夾包含服務執行個體中每個 API 的資料夾，其中包含下列項目。
 
-* `apis\<api name>\configuration.json`-這是 hello API 的 hello 組態，而且包含 hello 後端服務 URL 和 hello 作業的相關資訊。 這是 hello 相同的資訊將會傳回，如果您 toocall[取得特定 API](https://msdn.microsoft.com/library/azure/dn781423.aspx#GetAPI)與`export=true`中`application/json`格式。
-* `apis\<api name>\api.description.html`-這是 hello hello API 描述和對應 toohello`description`屬性 hello [API 實體](https://msdn.microsoft.com/library/azure/dn781423.aspx#EntityProperties)。
-* `apis\<api name>\operations\`-此資料夾包含`<operation name>.description.html`toohello 作業 hello API 中的對應的檔案。 每個檔案包含單一作業中 hello API，其對應 toohello hello 描述`description`屬性 hello[作業實體](https://msdn.microsoft.com/library/azure/dn781423.aspx#OperationProperties)hello REST API 中。
+* `apis\<api name>\configuration.json` - 這是 API 的組態，而且包含後端服務 URL 和作業的相關資訊。 此資訊與當您以 `application/json` 格式的 `export=true` 呼叫[取得特定 API](https://msdn.microsoft.com/library/azure/dn781423.aspx#GetAPI) 時傳回的資訊相同。
+* `apis\<api name>\api.description.html` - 這是 API 的說明，並會對應至 [API 實體](https://msdn.microsoft.com/library/azure/dn781423.aspx#EntityProperties)的 `description` 屬性。
+* `apis\<api name>\operations\` - 此資料夾包含 `<operation name>.description.html` 檔案，該檔案對應至 API 中的作業。 每個檔案包含 API 中單一作業的說明，其會對應至 REST API 中[作業實體](https://msdn.microsoft.com/library/azure/dn781423.aspx#OperationProperties)的 `description` 屬性。
 
 ### <a name="groups-folder"></a>群組資料夾
-hello`groups`資料夾包含 hello 服務執行個體中定義的每個群組的資料夾。
+`groups` 資料夾包含服務執行個體中定義的每個群組的資料夾。
 
-* `groups\<group name>\configuration.json`-這是 hello hello 群組組態。 這是 hello 相同的資訊將會傳回，如果您 toocall hello[取得特定群組](https://msdn.microsoft.com/library/azure/dn776329.aspx#GetGroup)作業。
-* `groups\<group name>\description.html`-這是 hello hello 群組描述和對應 toohello`description`屬性 hello[群組實體](https://msdn.microsoft.com/library/azure/dn776329.aspx#EntityProperties)。
+* `groups\<group name>\configuration.json` - 這是群組的組態。 此資訊與當您呼叫 [取得特定群組](https://msdn.microsoft.com/library/azure/dn776329.aspx#GetGroup) 作業時傳回的資訊相同。
+* `groups\<group name>\description.html` - 這是群組的說明，並會對應至[群組實體](https://msdn.microsoft.com/library/azure/dn776329.aspx#EntityProperties)的 `description` 屬性。
 
 ### <a name="policies-folder"></a>原則資料夾
-hello`policies`資料夾包含您的服務執行個體的 hello 原則陳述式。
+`policies` 資料夾包含您的服務執行個體的原則陳述式。
 
 * `policies\global.xml` - 包含在您服務執行個體的全域範圍中定義的原則。
 * `policies\apis\<api name>\` - 如果您在 API 範圍中定義了任何原則，它們就會包含在此資料夾中。
-* `policies\apis\<api name>\<operation name>\`資料夾-如果您有在作業範圍內定義的任何原則，它們包含在這個資料夾中`<operation name>.xml`對應 toohello 原則陳述式，每個作業的檔案。
-* `policies\products\`-如果您有任何定義於產品範圍的原則，它們包含在這個資料夾中，其中包含`<product name>.xml`對應 toohello 每項產品的原則陳述式的檔案。
+* `policies\apis\<api name>\<operation name>\` 資料夾 - 如果您有任何定義於作業範圍中的原則，它們就會包含在此資料夾的 `<operation name>.xml` 檔案中，其會對應至每個作業的原則陳述式。
+* `policies\products\` - 如果您有任何定義於產品範圍中的原則，它們就會包含在此資料夾中，其中包含 `<product name>.xml` 檔案，其會對應至每個產品的原則陳述式。
 
 ### <a name="portalstyles-folder"></a>portalStyles 資料夾
-hello`portalStyles`資料夾包含用於開發人員入口網站的自訂 hello 服務執行個體的組態與樣式表。
+`portalStyles` 資料夾包含適用於服務執行個體的開發人員入口網站自訂的組態和樣式表。
 
-* `portalStyles\configuration.json`-包含 hello hello hello 開發人員入口網站所使用的樣式表名稱
-* `portalStyles\<style name>.css`-每個`<style name>.css`檔案包含樣式 hello 開發人員入口網站 (`Preview.css`和`Production.css`依預設)。
+* `portalStyles\configuration.json` - 包含開發人員入口網站所使用的樣式表名稱
+* `portalStyles\<style name>.css` - 每個 `<style name>.css` 檔案包含開發人員入口網站的樣式 (預設為 `Preview.css` 和 `Production.css`)。
 
 ### <a name="products-folder"></a>產品資料夾
-hello`products`資料夾都包含資料夾，以定義 hello 服務執行個體中每個產品。
+`products` 資料夾包含服務執行個體中定義的每個產品的資料夾。
 
-* `products\<product name>\configuration.json`-這是 hello hello 之產品的組態。 這是 hello 相同的資訊將會傳回，如果您 toocall hello[取得特定產品](https://msdn.microsoft.com/library/azure/dn776336.aspx#GetProduct)作業。
-* `products\<product name>\product.description.html`-這是 hello hello 產品描述及對應 toohello`description`屬性 hello [product 實體](https://msdn.microsoft.com/library/azure/dn776336.aspx#Product)hello REST API 中。
+* `products\<product name>\configuration.json` - 這是產品的組態。 此資訊與當您呼叫 [取得特定產品](https://msdn.microsoft.com/library/azure/dn776336.aspx#GetProduct) 作業時傳回的資訊相同。
+* `products\<product name>\product.description.html` - 這是產品的說明，並會對應至 REST API 中[產品實體](https://msdn.microsoft.com/library/azure/dn776336.aspx#Product)的 `description` 屬性。
 
 ### <a name="templates"></a>範本
-hello`templates`資料夾包含組態的 hello[電子郵件範本](api-management-howto-configure-notifications.md)hello 服務執行個體。
+`templates` 資料夾包含服務執行個體的 [電子郵件範本](api-management-howto-configure-notifications.md) 的組態。
 
-* `<template name>\configuration.json`-這是 hello hello 電子郵件範本的設定。
-* `<template name>\body.html`-這是 hello 主體 hello 電子郵件範本。
+* `<template name>\configuration.json` - 這是電子郵件範本的組態。
+* `<template name>\body.html` - 這是電子郵件範本的主體。
 
 ## <a name="next-steps"></a>後續步驟
-如需其他方式 toomanage 您服務執行個體，請參閱：
+如需管理您的服務執行個體的其他方法的詳細資訊，請參閱︰
 
-* 管理服務執行個體使用下列 PowerShell 指令程式的 hello
+* 使用下列 PowerShell Cmdlet 管理您的服務執行個體
   * [服務部署 PowerShell Cmdlet 參考](https://msdn.microsoft.com/library/azure/mt619282.aspx)
   * [服務管理 PowerShell Cmdlet 參考](https://msdn.microsoft.com/library/azure/mt613507.aspx)
-* 管理您的服務執行個體在 hello 發行者入口網站
+* 在發佈者入口網站中管理您的服務執行個體
   * [管理第一個 API](api-management-get-started.md)
-* 管理服務執行個體使用 hello REST API
+* 使用 REST API 管理您的服務執行個體
   * [API 管理 REST API 參考](https://msdn.microsoft.com/library/azure/dn776326.aspx)
 
 ## <a name="watch-a-video-overview"></a>觀看影片概觀

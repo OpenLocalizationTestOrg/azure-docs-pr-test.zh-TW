@@ -1,5 +1,5 @@
 ---
-title: "開發 Azure 中的資料倉儲 aaaResources |Microsoft 文件"
+title: "在 Azure 中開發資料倉儲的資源 | Microsoft Docs"
 description: "SQL 資料倉儲的開發概念、設計決策、建議和程式碼撰寫技巧。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,17 +15,17 @@ ms.workload: data-services
 ms.custom: develop
 ms.date: 10/31/2016
 ms.author: jrj;barbkess
-ms.openlocfilehash: 67e3a6a3e2664919c3445ea5d5eba251054de020
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b85a4f09e561e429aa5bf46ec680014487fb40c7
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="design-decisions-and-coding-techniques-for-sql-data-warehouse"></a>SQL 資料倉儲的設計決策和程式碼撰寫技術
-看 toobetter 了解這些開發文章關鍵設計決策、 建議和程式碼撰寫技術的 SQL 資料倉儲。
+若要進一步瞭解 SQL 資料倉儲的重要的設計決策、建議和程式碼撰寫技術，請參閱這些開發文章。
 
 ## <a name="key-design-decisions"></a>主要的設計決策
-hello 下列文件會強調一些 hello 重要概念和您將需要 toounderstand hello 開發，您使用 SQL 資料倉儲的分散式的資料倉儲的設計決策：
+下列文章的重點在於使用 SQL 資料倉儲開發分散式資料倉儲時，必須了瞭解的一些重要概念和設計決策：
 
 * [連線][connections]
 * [並行][concurrency]
@@ -50,7 +50,7 @@ hello 下列文件會強調一些 hello 重要概念和您將需要 toounderstan
 * [變數指派][variable assignment]
 
 ## <a name="next-steps"></a>後續步驟
-一旦您已透過 hello 開發文件看透過 hello [TRANSACT-SQL 參考][ Transact-SQL reference] SQL 資料倉儲的 hello 支援語法的詳細頁面。
+仔細閱讀開發文章之後，請查看 [Transact-SQL 參考資料][Transact-SQL reference]頁面，以取得 SQL 資料倉儲支援的語法的詳細資料。
 
 <!--Image references-->
 

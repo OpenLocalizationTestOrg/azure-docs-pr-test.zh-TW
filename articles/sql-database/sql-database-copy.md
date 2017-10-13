@@ -1,5 +1,5 @@
 ---
-title: "Azure SQL database aaaCopy |Microsoft 文件"
+title: "複製 Azure SQL Database | Microsoft Docs"
 description: "建立 Azure SQL Database 的複本"
 services: sql-database
 documentationcenter: 
@@ -15,39 +15,39 @@ ms.author: carlrab
 ms.workload: data-management
 ms.topic: article
 ms.tgt_pltfrm: NA
-ms.openlocfilehash: 64a297d819d6da89600fda60abe8394ae405abfe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8c1e3c80b9f24089dc99463d6ea8ae5d0ea7b19d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="copy-an-azure-sql-database"></a>複製 Azure SQL Database
 
-Azure SQL Database 提供數種方法來建立交易一致的複本的現有的 Azure SQL 資料庫上任一 hello 相同伺服器或不同的伺服器。 您可以使用 hello Azure 入口網站、 PowerShell 或 T-SQL 複製 SQL database。 
+Azure SQL Database 提供數種方式，可讓您在同個伺服器或不同的伺服器上，建立現有 Azure SQL Database 的交易一致性複本。 若要複製 SQL Database，您可使用 Azure 入口網站、PowerShell 或 T-SQL。 
 
 ## <a name="overview"></a>概觀
 
-資料庫複本是 hello hello 的 hello 複製要求的時間為準的來源資料庫的快照集。 您可以選取相同的伺服器或另一部伺服器、 其服務層和效能層級或不同的效能層級內 hello hello 相同服務層 （版本）。 Hello 複製程序完成之後，它會變成完全正常運作且獨立的資料庫。 此時，您可以升級或降級 tooany 版本。 hello 登入、 使用者和權限可以分開管理。  
+資料庫複本是發生複製要求時的來源資料庫快照集。 您可選取同個伺服器或不同的伺服器、其服務層級和效能等級，或同個服務層級 (版本) 中的不同效能等級。 複製完成之後，複本會變成功能完整的獨立資料庫。 此時，您可以將它升級或降級成任何版本。 可以個別管理登入、使用者和權限。  
 
-## <a name="logins-in-hello-database-copy"></a>Hello 資料庫副本中的登入
+## <a name="logins-in-the-database-copy"></a>資料庫複本中的登入
 
-當您複製資料庫 toohello 相同邏輯伺服器，可以使用相同的登入，這兩個資料庫的 hello。 hello 安全性主體使用 toocopy hello 資料庫變成 hello hello 新資料庫上的資料庫擁有者。 所有資料庫使用者、 其權限，以及它們的安全性識別碼 (Sid) 被複製 toohello 資料庫副本。  
+當您將資料庫複製到相同的邏輯伺服器時，可以在這兩個資料庫上使用相同的登入。 您用來複製資料庫的安全性主體會變成新資料庫的資料庫擁有者。 所有資料庫使用者、其權限及其安全性識別碼 (SID) 都會複製到資料庫副本。  
 
-當您複製資料庫 tooa 不同的邏輯伺服器時，hello 安全性主體 hello 新的伺服器上會變成 hello hello 新資料庫上的資料庫擁有者。 如果您使用[自主資料庫使用者](sql-database-manage-logins.md)資料存取，請確定兩者 hello 主要，以及次要資料庫一律會有相同的使用者認證，因此，hello 複製完成後您可以立即存取的 hello 與 hello 相同認證。 
+當您將資料庫複製到不同的邏輯伺服器時，新伺服器上的安全性主體就會變成新資料庫上的資料庫擁有者。 如果您使用[自主資料庫使用者](sql-database-manage-logins.md)來進行資料存取，請確保主要和次要資料庫一律具有相同的使用者認證，以便在複製完成時，您可以使用相同的認證立即存取它。 
 
-如果您使用[Azure Active Directory](../active-directory/active-directory-whatis.md)，您可以完全排除 hello 需要管理 hello 複本中的認證。 不過，當您複製 hello 資料庫 tooa 新伺服器，hello 登入為基礎的存取可能無法運作，因為 hello 登入不存在 hello 新的伺服器上。 toolearn 有關管理登入，當您複製資料庫 tooa 不同的邏輯伺服器，請參閱[toomanage Azure SQL 資料庫安全性之後嚴重損壞修復](sql-database-geo-replication-security-config.md)。 
+如果您使用 [Azure Active Directory](../active-directory/active-directory-whatis.md)，則可以完全不需管理副本中的認證。 不過，當您將資料庫複製到新的伺服器時，以登入為基礎的存取可能無法運作，因為登入不存在於新的伺服器上。 若要了解如何在將資料庫複製到不同的邏輯伺服器時管理登入，請參閱[如何管理災害復原後的 Azure SQL Database 安全性](sql-database-geo-replication-security-config.md)。 
 
-Hello 複製成功之後，會重新對應其他使用者之前，只有 hello 起始登入複製的 hello hello 資料庫擁有者，可以登入 toohello 新資料庫。 tooresolve 登入之後 hello 複製作業已完成，請參閱[解決登入](#resolve-logins)。
+在複製成功之後，重新對應其他使用者之前，只有起始複製的登入 (也就是資料庫擁有者) 可以登入新的資料庫。 若要在複製作業完成之後解析登入，請參閱 [解析登入](#resolve-logins)。
 
-## <a name="copy-a-database-by-using-hello-azure-portal"></a>使用 hello Azure 入口網站中複製資料庫
+## <a name="copy-a-database-by-using-the-azure-portal"></a>使用 Azure 入口網站來複製資料庫
 
-使用資料庫 hello Azure 入口網站，為您的資料庫中，開啟 hello 頁面，然後按一下的 toocopy**複製**。 
+若要使用 Azure 入口網站來複製資料庫，請開啟資料庫頁面，然後按一下 [複製]。 
 
    ![資料庫複本](./media/sql-database-copy/database-copy.png)
 
 ## <a name="copy-a-database-by-using-powershell"></a>使用 PowerShell 來複製資料庫
 
-使用 PowerShell，使用 hello 資料庫 toocopy[新增 AzureRmSqlDatabaseCopy](/powershell/module/azurerm.sql/new-azurermsqldatabasecopy) cmdlet。 
+若要使用 PowerShell 來複製資料庫，請使用 [New-AzureRmSqlDatabaseCopy](/powershell/module/azurerm.sql/new-azurermsqldatabasecopy) Cmdlet。 
 
 ```PowerShell
 New-AzureRmSqlDatabaseCopy -ResourceGroupName "myResourceGroup" `
@@ -58,54 +58,54 @@ New-AzureRmSqlDatabaseCopy -ResourceGroupName "myResourceGroup" `
     -CopyDatabaseName "CopyOfMySampleDatabase"
 ```
 
-如需完整的範例指令碼，請參閱[複製 tooa 新資料庫的伺服器](scripts/sql-database-copy-database-to-new-server-powershell.md)。
+如需完整範例指令碼，請參閱[將資料庫複製到新伺服器](scripts/sql-database-copy-database-to-new-server-powershell.md)。
 
 ## <a name="copy-a-database-by-using-transact-sql"></a>使用 Transact-SQL 來複製資料庫
 
-登入 toohello master 資料庫與 hello 伺服器層級主體登入或建立您想要 toocopy hello 資料庫 hello 登入。 資料庫複製 toosucceed，不是 hello 伺服器層級主體登入必須 hello dbmanager 角色的成員。 如需登入和連線 toohello 伺服器的詳細資訊，請參閱[管理登入](sql-database-manage-logins.md)。
+使用伺服器層級主體登入或建立您要複製之資料庫的登入來登入 master 資料庫。 若要成功複製資料庫，不是伺服器層級主體的登入必須是 dbmanager 角色的成員。 如需登入與連接到伺服器的詳細資訊，請參閱 [管理登入](sql-database-manage-logins.md)。
 
-開始複製 hello 來源資料庫與 hello [CREATE DATABASE](https://msdn.microsoft.com/library/ms176061.aspx)陳述式。 執行這個陳述式會起始 hello 資料庫複製程序。 複製資料庫是非同步程序，因為 hello CREATE DATABASE 陳述式會傳回前 hello 資料庫複製便已完成。
+使用 [CREATE DATABASE](https://msdn.microsoft.com/library/ms176061.aspx) 陳述式，開始複製來源資料庫。 執行此陳述式會起始資料庫複製程序。 因為複製資料庫是非同步程序，所以 CREATE DATABASE 陳述式會在資料庫完成複製之前傳回。
 
-### <a name="copy-a-sql-database-toohello-same-server"></a>複製 SQL 資料庫 toohello 相同的伺服器
-登入 toohello master 資料庫與 hello 伺服器層級主體登入或建立您想要 toocopy hello 資料庫 hello 登入。 資料庫複製 toosucceed，不是 hello 伺服器層級主體登入必須 hello dbmanager 角色的成員。
+### <a name="copy-a-sql-database-to-the-same-server"></a>將 SQL Database 複製到相同伺服器
+使用伺服器層級主體登入或建立您要複製之資料庫的登入來登入 master 資料庫。 若要成功複製資料庫，不是伺服器層級主體的登入必須是 dbmanager 角色的成員。
 
-此命令會將複製 hello 上名為 Database2 Database1 tooa 新資料庫相同的伺服器。 根據資料庫的 hello 大小，hello 複製作業可能需要一些時間 toocomplete。
+此命令會將 Database1 複製到相同伺服器上名為 Database2 的新資料庫。 視資料庫大小而定，複製作業可能需要一些時間才能完成。
 
-    -- Execute on hello master database.
+    -- Execute on the master database.
     -- Start copying.
     CREATE DATABASE Database1_copy AS COPY OF Database1;
 
-### <a name="copy-a-sql-database-tooa-different-server"></a>複製 SQL database tooa 不同伺服器
+### <a name="copy-a-sql-database-to-a-different-server"></a>將 SQL Database 複製到不同伺服器
 
-登入 toohello master hello 目的地伺服器 hello 新資料庫所在 toobe 建立 hello SQL 資料庫伺服器的資料庫。 使用具有相同名稱和密碼 hello hello hello hello 來源 SQL 資料庫伺服器上的來源資料庫的資料庫擁有者的登入。 hello hello 目的地伺服器上的登入也必須是 hello dbmanager 角色的成員，或者是 hello 伺服器層級主體登入。
+登入目的地伺服器的 master 資料庫，也就是即將建立新資料庫的 SQL Database 伺服器。 使用具有與來源 SQL Database 伺服器上來源資料庫的資料庫擁有者相同之名稱和密碼的登入。 目的地伺服器上的登入必須也是 dbmanager 角色的成員或是伺服器層級主體登入。
 
-這個命令會將 Database1 server2 上名為 Database2 server1 tooa 新資料庫上。 根據資料庫的 hello 大小，hello 複製作業可能需要一些時間 toocomplete。
+此命令會將 server1 上的 Database1 複製到 server2 上名為 Database2 的新資料庫。 視資料庫大小而定，複製作業可能需要一些時間才能完成。
 
-    -- Execute on hello master database of hello target server (server2)
-    -- Start copying from Server1 tooServer2
+    -- Execute on the master database of the target server (server2)
+    -- Start copying from Server1 to Server2
     CREATE DATABASE Database1_copy AS COPY OF server1.Database1;
 
 
-### <a name="monitor-hello-progress-of-hello-copying-operation"></a>監視複製作業的 hello hello 進度
+### <a name="monitor-the-progress-of-the-copying-operation"></a>監視複製作業的進度
 
-監視複製程序 hello hello sys.databases 和 sys.dm_database_copies 檢視進行查詢。 Hello 複製正在進行時，hello **state_desc** hello 新資料庫的 hello sys.databases 檢視資料行設定得**複製**。
+藉由查詢 sys.databases 和 sys.dm_database_copies 檢視來監視複製程序。 當複製正在進行時，新資料庫的 sys.databases 檢視的 **state_desc** 資料行會設定為 **COPYING**。
 
-* 如果 hello 複製失敗，hello **state_desc** hello 新資料庫的 hello sys.databases 檢視資料行設定得**懷疑**。 Hello 新的資料庫上執行 hello DROP 陳述式，並再試一次。
-* 如果 hello 複製成功，hello **state_desc** hello 新資料庫的 hello sys.databases 檢視資料行設定得**線上**。 hello 複製已完成，且 hello 新的資料庫是可以變更不會影響 hello 來源資料庫的一般資料庫。
+* 如果複製失敗，新資料庫的 sys.databases 檢視的 **state_desc** 資料行會設定為 **SUSPECT**。 在新的資料庫上執行 DROP 陳述式，稍後再試一次。
+* 如果複製成功，新資料庫的 sys.databases 檢視的 **state_desc** 資料行會設定為 **ONLINE**。 複製已完成且新資料庫是一般資料庫，能夠與來源資料庫分開進行變更。
 
 > [!NOTE]
-> 如果您決定 toocancel hello 複製正在進行時，執行 hello [DROP DATABASE](https://msdn.microsoft.com/library/ms178613.aspx) hello 新資料庫上的陳述式。 或者，在 hello 來源資料庫上執行 hello DROP DATABASE 陳述式也會取消複製程序的 hello。
+> 如果您決定在進行複製時予以取消，請在新資料庫上執行 [DROP DATABASE](https://msdn.microsoft.com/library/ms178613.aspx) 陳述式。 或者，在來源資料庫上執行 DROP DATABASE 陳述式也會取消複製程序。
 > 
 
 ## <a name="resolve-logins"></a>解析登入
 
-Hello 新資料庫在線上 hello 目的地伺服器上之後，請使用 hello [ALTER USER](https://msdn.microsoft.com/library/ms176060.aspx) hello 陳述式 tooremap hello 使用者新資料庫 toologins hello 目的地伺服器上的。 tooresolve 被遺棄使用者，請參閱[被遺棄使用者疑難排解](https://msdn.microsoft.com/library/ms175475.aspx)。 另請參閱[toomanage Azure SQL 資料庫安全性之後嚴重損壞修復](sql-database-geo-replication-security-config.md)。
+在新資料庫於目的地伺服器上線之後，使用 [ALTER USER](https://msdn.microsoft.com/library/ms176060.aspx) 陳述式將使用者從新的資料庫重新對應至目的地伺服器上的登入。 若要解析被遺棄的使用者，請參閱 [被遺棄使用者疑難排解](https://msdn.microsoft.com/library/ms175475.aspx)。 另請參閱 [如何管理災害復原後的 Azure SQL Database 安全性](sql-database-geo-replication-security-config.md)。
 
-Hello 新資料庫中的所有使用者都保有 hello 來源資料庫中的 hello 權限。 起始 hello 資料庫副本的 hello 使用者成為 hello hello 新資料庫的資料庫擁有者，並指派新的安全性識別碼 (SID)。 Hello 複製成功之後，會重新對應其他使用者之前，只有 hello 起始登入複製的 hello hello 資料庫擁有者，可以登入 toohello 新資料庫。
+新資料庫中的所有使用者都保有其在來源資料庫中原有的權限。 起始資料庫複製的使用者會變成新資料庫的資料庫擁有者，並且被指派新的安全性識別碼 (SID)。 在複製成功之後，重新對應其他使用者之前，只有起始複製的登入 (也就是資料庫擁有者) 可以登入新的資料庫。
 
-toolearn 有關管理使用者與登入，當您複製資料庫 tooa 不同的邏輯伺服器，請參閱[toomanage Azure SQL 資料庫安全性之後嚴重損壞修復](sql-database-geo-replication-security-config.md)。
+若要了解將資料庫複製到不同的邏輯伺服器時如何管理使用者與登入，請參閱[如何管理災害復原後的 Azure SQL 資料庫安全性](sql-database-geo-replication-security-config.md)。
 
 ## <a name="next-steps"></a>後續步驟
 
-* 如需登入資訊，請參閱[管理登入](sql-database-manage-logins.md)和[toomanage Azure SQL 資料庫安全性之後嚴重損壞修復](sql-database-geo-replication-security-config.md)。
-* tooexport 資料庫，請參閱[匯出 hello 資料庫 tooa BACPAC](sql-database-export.md)。
+* 如需登入相關資訊，請參閱[管理登入](sql-database-manage-logins.md)以及[如何管理災害復原後的 Azure SQL Database 安全性](sql-database-geo-replication-security-config.md)。
+* 若要匯出資料庫，請參閱[將資料庫匯出至 BACPAC](sql-database-export.md)。

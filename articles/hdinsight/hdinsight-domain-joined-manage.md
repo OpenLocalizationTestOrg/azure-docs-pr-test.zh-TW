@@ -1,6 +1,6 @@
 ---
-title: "aaaManage 已加入網域的 HDInsight 叢集 Azure |Microsoft 文件"
-description: "了解如何 toomanage 已加入網域的 HDInsight 叢集"
+title: "管理已加入網域的 HDInsight 叢集 - Azure | Microsoft Docs"
+description: "了解如何管理已加入網域的 HDInsight 叢集"
 services: hdinsight
 documentationcenter: 
 author: saurinsh
@@ -16,37 +16,37 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 10/25/2016
 ms.author: saurinsh
-ms.openlocfilehash: 233ddf0953e981f9a24b77d9dde194d590e5e6d3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9b56ce6cc5bdd3b8d48d047751e978cad08598e1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="manage-domain-joined-hdinsight-clusters-preview"></a>管理已加入網域的 HDInsight 叢集 (預覽)
-了解 hello 中使用者與 hello 角色加入網域的 HDInsight 及如何 toomanage 已加入網域的 HDInsight 叢集。
+認識已加入網域的 HDInsight 叢集中的使用者和角色，了解如何管理已加入網域的 HDInsight 叢集。
 
 ## <a name="users-of-domain-joined-hdinsight-clusters"></a>已加入網域的 HDInsight 叢集的使用者
-是未加入網域的 HDInsight 叢集有兩個 hello 叢集建立期間建立的使用者帳戶：
+未加入網域的 HDInsight 叢集有兩個使用者帳戶，是在叢集建立期間建立的︰
 
-* **Ambari 系統管理員**：此帳戶亦稱為「Hadoop 使用者」或「HTTP 使用者」。 此帳戶可以在 https:// tooAmbari 上的使用的 toolog&lt;clustername >。.azurehdinsight.net。 同時，也是使用的 toorun Ambari 檢視上的查詢、 執行外部工具 （也就是 PowerShell、 Templeton，Visual Studio），透過作業並 hello hive 控制檔的 ODBC 驅動程式與 BI 工具 （也就是 Excel、 power Bi 或 Tableau） 進行驗證。
-* **SSH 使用者**︰此帳戶可以搭配 SSH 使用，執行 sudo 命令。 它擁有根權限 toohello Linux Vm。
+* **Ambari 系統管理員**：此帳戶亦稱為「Hadoop 使用者」或「HTTP 使用者」。 此帳戶可以用來登入 Ambari，網址是 https://&lt;clustername>.azurehdinsight.net。 它也可以用來在 Ambari 檢視上執行查詢、透過外部工具 (即 PowerShell、Templeton、Visual Studio)執行作業、以及使用 Hive ODBC 驅動程式和 BI 工具 (即 Excel、PowerBI、或 Tableau) 進行驗證。
+* **SSH 使用者**︰此帳戶可以搭配 SSH 使用，執行 sudo 命令。 它具有 Linux VM 上的根權限。
 
-已加入網域的 HDInsight 叢集在加法 tooAmbari Admin 和 SSH 使用者有三個新的使用者。
+除了 Ambari 系統管理員和 SSH 使用者之外，已加入網域的 HDInsight 叢集有三個新的使用者。
 
-* **Ranger admin**： 此帳戶是 hello 本機 Apache Ranger 系統管理員帳戶。 不是 Active Directory 網域使用者。 此帳戶可以是使用的 toosetup 原則，並讓其他使用者的系統管理員或委派系統管理員 （如此這些使用者可以管理原則）。 根據預設，hello 使用者名稱為*管理員*和 hello 密碼是 hello 與 hello Ambari 管理密碼相同。 hello 密碼可以更新從廣 hello [設定] 頁面。
-* **叢集系統管理員的網域使用者**： 此帳戶是指定為 hello 包括 Ambari 和廣的 Hadoop 叢集管理的 active directory 網域使用者。 您必須在叢集建立期間提供此使用者的認證。 此使用者擁有下列權限的 hello:
+* **Ranger 系統管理員**︰此帳戶是本機的 Apache Ranger 系統管理員帳戶。 不是 Active Directory 網域使用者。 此帳戶可以用來設定原則、將其他使用者設為系統管理員、或委派系統管理工作 (讓某些使用者可以管理原則)。 預設的使用者名稱是 admin，密碼則是與 Ambari 系統管理員的密碼相同。 可以在 Ranger 的 [設定] 頁面中更新密碼。
+* **叢集系統管理員網域使用者**︰此帳戶是被指定為 Hadoop 叢集系統管理員 (包括 Ambari 和 Ranger) 的 Active Directory 網域使用者。 您必須在叢集建立期間提供此使用者的認證。 此使用者有下列權限：
 
-  * 加入機器 toohello 網域，並將它們放在 hello 您在叢集建立期間指定的 OU 內。
-  * 建立 hello 您在叢集建立期間指定的 OU 中所有服務主體。
+  * 在叢集建立期間，將機器加入網域，並將它們放入您指定的 OU 中。
+  * 在叢集建立期間，於您指定的 OU 中建立服務主體。
   * 建立反向 DNS 項目。
 
-    請注意 hello 其他 AD 使用者也具備這些權限。
+    請注意，其他的 AD 使用者也有這些權限。
 
-    有一些結束點 hello 叢集 (例如，Templeton) 內的未受廣，而因此並不安全。 這些端點已鎖定的所有使用者，除了 hello 叢集系統管理員的網域使用者。
-* **一般**︰在叢集建立期間，您可以提供多個 Active Directory 群組。 這些群組中的 hello 使用者將無法同步處理的 tooRanger 和 Ambari。 這些使用者是網域使用者，而且必須存取 tooonly 廣受管理端點 (例如，Hiveserver2)。 所有 hello RBAC 原則和稽核將會適用 toothese 使用者。
+    叢集內有些端點 (例如，Templeton) 不受 Ranger 管理，因此不安全。 這些端點會針對所有使用者鎖定，只有叢集系統管理員網域使用者除外。
+* **一般**︰在叢集建立期間，您可以提供多個 Active Directory 群組。 這些群組中的使用者都將同步至 Ranger 和 Ambari。 這些使用者是網域使用者，只有存取 Ranger 管理之端點 (例如Hiveserver2) 的權限。 所有 RBAC 原則和稽核皆不適用於這些使用者。
 
 ## <a name="roles-of-domain-joined-hdinsight-clusters"></a>已加入網域的 HDInsight 叢集的角色
-已加入網域的 HDInsight 有下列角色的 hello:
+已加入網域的 HDInsight 有下列角色︰
 
 * 叢集系統管理員
 * 叢集操作員
@@ -54,57 +54,57 @@ ms.lasthandoff: 10/06/2017
 * 服務操作員
 * 叢集使用者
 
-**這些角色 toosee hello 權限**
+**若要查看這些角色的權限**
 
-1. 開啟 hello Ambari 管理 UI。  請參閱[開啟 hello Ambari 管理 UI](#open-the-ambari-management-ui)。
-2. 從 hello 左窗格中，按一下 **角色**。
-3. 按一下 hello 藍色問號 toosee hello 權限：
+1. 開啟 Ambari 管理 UI。  請參閱[開啟 Ambari 管理 UI](#open-the-ambari-management-ui)。
+2. 按一下左側功能表中的 [角色]。
+3. 按一下藍色問號可查看權限︰
 
     ![已加入網域的 HDInsight 角色權限](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-roles-permissions.png)
 
-## <a name="open-hello-ambari-management-ui"></a>開啟 hello Ambari 管理 UI
-1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
+## <a name="open-the-ambari-management-ui"></a>開啟 Ambari 管理 UI
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 在刀鋒視窗中開啟您的 HDInsight 叢集。 請參閱[列出和顯示叢集](hdinsight-administer-use-management-portal.md#list-and-show-clusters)。
-3. 按一下**儀表板**從 hello 上方功能表 tooopen Ambari。
-4. 登入 tooAmbari 使用 hello 叢集系統管理員的網域使用者名稱和密碼。
-5. 按一下 hello **Admin**從 hello 右上角，然後再按一下下拉式功能表**管理 Ambari**。
+3. 按一下頂端功能表中的 [儀表板]  開啟 Ambari。
+4. 使用叢集系統管理員網域使用者的名稱和密碼登入 Ambari：
+5. 按一下右上角的 [管理] 下拉式功能表，然後按一下 [管理 Ambari]。
 
     ![已加入網域的 HDInsight 管理 Ambari](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-manage-ambari.png)
 
-    hello UI 看起來像：
+    UI 看起來像這樣：
 
     ![已加入網域的 HDInsight 的 Ambari 管理 UI](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui.png)
 
-## <a name="list-hello-domain-users-synchronized-from-your-active-directory"></a>從您的 Active Directory 同步處理清單 hello 網域使用者
-1. 開啟 hello Ambari 管理 UI。  請參閱[開啟 hello Ambari 管理 UI](#open-the-ambari-management-ui)。
-2. 從 hello 左窗格中，按一下 **使用者**。 您應該會看到所有的 hello 使用者進行同步處理從 Active Directory toohello HDInsight 叢集。
+## <a name="list-the-domain-users-synchronized-from-your-active-directory"></a>列出從您的 Active Directory 同步處理的網域使用者
+1. 開啟 Ambari 管理 UI。  請參閱[開啟 Ambari 管理 UI](#open-the-ambari-management-ui)。
+2. 按一下左側功能表中的 [使用者] 。 您應該會看到從您的 Active Directory 同步至 HDInsight 叢集的所有使用者。
 
     ![已加入網域的 HDInsight 的 Ambari 管理 UI 列出使用者](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui-users.png)
 
-## <a name="list-hello-domain-groups-synchronized-from-your-active-directory"></a>從您的 Active Directory 同步處理清單 hello 網域群組
-1. 開啟 hello Ambari 管理 UI。  請參閱[開啟 hello Ambari 管理 UI](#open-the-ambari-management-ui)。
-2. 從 hello 左窗格中，按一下 **群組**。 您應該會看到所有的 hello 群組進行同步處理從 Active Directory toohello HDInsight 叢集。
+## <a name="list-the-domain-groups-synchronized-from-your-active-directory"></a>列出從您的 Active Directory 同步處理的網域群組
+1. 開啟 Ambari 管理 UI。  請參閱[開啟 Ambari 管理 UI](#open-the-ambari-management-ui)。
+2. 按一下左側功能表中的 [群組]。 您應該會看到從您的 Active Directory 同步至 HDInsight 叢集的所有群組。
 
     ![已加入網域的 HDInsight 的 Ambari 管理 UI 列出群組](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui-groups.png)
 
 ## <a name="configure-hive-views-permissions"></a>設定 Hive 檢視權限
-1. 開啟 hello Ambari 管理 UI。  請參閱[開啟 hello Ambari 管理 UI](#open-the-ambari-management-ui)。
-2. 從 hello 左窗格中，按一下 **檢視**。
-3. 按一下**HIVE** tooshow hello 詳細資料。
+1. 開啟 Ambari 管理 UI。  請參閱[開啟 Ambari 管理 UI](#open-the-ambari-management-ui)。
+2. 按一下左側功能表中的 [檢視]。
+3. 按一下 [HIVE] 以顯示詳細資料。
 
     ![已加入網域的 HDInsight 的 Ambari 管理 UI Hive 檢視](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui-hive-views.png)
-4. 按一下 hello **Hive 檢視**連結 tooconfigure hive 控制檔的檢視。
-5. 捲動 toohello**權限**> 一節。
+4. 按一下 [Hive 檢視] 連結以設定 Hive 檢視。
+5. 向下捲動至 [權限]。
 
     ![已加入網域的 HDInsight 的 Ambari 管理 UI Hive 檢視設定權限](./media/hdinsight-domain-joined-manage/hdinsight-domain-joined-ambari-management-ui-hive-views-permissions.png)
-6. 按一下**新增使用者**或**加入群組**，然後指定 hello 使用者或群組，可以使用 hive 控制檔的檢視。
+6. 按一下 [新增使用者] 或 [新增群組]，然後指定可以使用 Hive 檢視的使用者或群組。
 
-## <a name="configure-users-for-hello-roles"></a>設定使用者的 hello 角色
- toosee 清單的角色和其權限，請參閱[角色的網域的 HDInsight 叢集](#roles-of-domain---joined-hdinsight-clusters)。
+## <a name="configure-users-for-the-roles"></a>設定角色的使用者
+ 若要查看角色及其權限的清單，請參閱[已加入網域的 HDInsight 叢集的角色](#roles-of-domain---joined-hdinsight-clusters)。
 
-1. 開啟 hello Ambari 管理 UI。  請參閱[開啟 hello Ambari 管理 UI](#open-the-ambari-management-ui)。
-2. 從 hello 左窗格中，按一下 **角色**。
-3. 按一下**新增使用者**或**加入群組**tooassign toodifferent 角色的使用者和群組。
+1. 開啟 Ambari 管理 UI。  請參閱[開啟 Ambari 管理 UI](#open-the-ambari-management-ui)。
+2. 按一下左側功能表中的 [角色]。
+3. 按一下 [新增使用者] 或 [新增群組] 以將使用者或群組指定至不同角色。
 
 ## <a name="next-steps"></a>後續步驟
 * 如需設定已加入網域的 HDInsight 叢集，請參閱[設定已加入網域的 HDInsight 叢集](hdinsight-domain-joined-configure.md)。

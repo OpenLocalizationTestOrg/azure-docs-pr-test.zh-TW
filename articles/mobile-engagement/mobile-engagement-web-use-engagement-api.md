@@ -1,6 +1,6 @@
 ---
-title: "Mobile Engagement Web SDK Api aaaAzure |Microsoft 文件"
-description: "Azure Mobile Engagement hello 最新更新和 hello Web SDK 的程序"
+title: Azure Mobile Engagement Web SDK API | Microsoft Docs
+description: "Azure Mobile Engagement Web SDK 的最新更新與程序"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,48 +14,48 @@ ms.devlang: js
 ms.topic: article
 ms.date: 06/07/2016
 ms.author: piyushjo
-ms.openlocfilehash: ec1261d6ad573b8c3ad6d5f616ab7bbe560d6fe2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 54c22ce6a03e382b1bbde102bccc97deec249b30
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-azure-mobile-engagement-api-in-a-web-application"></a>使用 web 應用程式中的 hello Azure Mobile Engagement 應用程式開發介面
-這份文件是加法 toohello 文件，告訴您如何太[web 應用程式中整合 Mobile Engagement](mobile-engagement-web-integrate-engagement.md)。 它提供有關如何 toouse hello tooreport Azure Mobile Engagement 應用程式開發介面的詳細資料您的應用程式統計資料。
+# <a name="use-the-azure-mobile-engagement-api-in-a-web-application"></a>在 Web 應用程式中使用 Azure Mobile Engagement API
+此文件是文件的補充，說明如何 [在您的 Web 應用程式中整合 Mobile Engagement](mobile-engagement-web-integrate-engagement.md)。 它會提供關於如何使用 Azure Mobile Engagement API 來回報您應用程式的統計資料之詳細資訊。
 
-hello Mobile Engagement 應用程式開發介面由提供 hello`engagement.agent`物件。 hello Azure Mobile Engagement Web SDK 別名是的預設`engagement`。 您可以重新定義從 hello SDK 設定此別名。
+Mobile Engagement API 是由 `engagement.agent` 物件提供。 預設 Azure Mobile Engagement Web SDK 別名是 `engagement`。 您可以從 SDK 組態來重新定義此別名。
 
 ## <a name="mobile-engagement-concepts"></a>Mobile Engagement 概念
-hello 下列部分精簡常見[Mobile Engagement 概念](mobile-engagement-concepts.md)hello web 平台。
+以下部分簡要說明適用於 Web 平台的 [Mobile Engagement 概念](mobile-engagement-concepts.md) 。
 
 ### <a name="session-and-activity"></a>`Session`和`Activity`
-如果兩個活動之間的多個數秒鐘，hello 使用者停留閒置，hello 使用者的活動順序分成兩個不同的工作階段。 這些幾秒鐘的時間稱為 hello 工作階段逾時。
+如果使用者在兩個活動之間維持閒置超過幾秒鐘，其活動序列會分割成兩個相異的工作階段。 這幾秒被稱為工作階段逾時。
 
-如果 web 應用程式不會宣告 hello 結束使用者活動本身 (透過呼叫 hello`engagement.agent.endActivity`函式)，hello Mobile Engagement 伺服器自動到期 hello hello 應用程式頁面上關閉後的 3 分鐘內的使用者工作階段。 這稱為 hello 伺服器工作階段逾時。
+如果您的 Web 應用程式不自行宣告使用者活動的結束 (透過呼叫 `engagement.agent.endActivity` 函式)，Mobile Engagement 伺服器將會在應用程式頁面關閉後的 3 分鐘之內自動讓使用者工作階段到期。 這被稱為伺服器工作階段逾時。
 
 ### `Crash`
-根據預設，不會建立無法攔截的 JavaScript 例外狀況的自動報告。 不過，您也可以回報當機的 hello`sendCrash`函式 （請參閱報告損毀的 hello > 一節）。
+根據預設，不會建立無法攔截的 JavaScript 例外狀況的自動報告。 不過，您可以透過使用 `sendCrash` 函式來手動報告當機 (請參閱報告當機的章節)。
 
 ## <a name="reporting-activities"></a>報告活動
-使用者活動上的報告包括當使用者啟動新的活動與 hello 使用者結束 hello 目前活動時。
+使用者啟動新的活動以及使用者結束目前活動時報告使用者活動。
 
 ### <a name="user-starts-a-new-activity"></a>使用者啟動新的活動
     engagement.agent.startActivity("MyUserActivity");
 
-您需要 toocall`startActivity()`變更每個階段的使用者活動。 hello 第一個呼叫 toothis 函式會啟動新的使用者工作階段。
+每當使用者活動變更，您就需要呼叫 `startActivity()` 。 第一次呼叫此函數會啟動新的使用者工作階段。
 
-### <a name="user-ends-hello-current-activity"></a>使用者結束 hello 目前活動
+### <a name="user-ends-the-current-activity"></a>使用者結束目前的活動
     engagement.agent.endActivity();
 
-您需要 toocall`endActivity()`至少一次當 hello 使用者完成其最後一個活動。 這會通知 hello Mobile Engagement Web SDK hello 使用者目前閒置，並 hello 使用者工作階段需要 toobe hello 工作階段逾時過期之後關閉。 如果您呼叫`startActivity()`hello 工作階段逾時到期前，只要繼續進行 hello 工作階段。
+使用者完成最後一個活動時，您至少需要呼叫 `endActivity()` 一次。 這會通知 Mobile Engagement Web SDK，說明使用者目前處於閒置狀態，且工作階段逾時到期之後就必須關閉使用者工作階段。 如果您在工作階段逾時到期之前呼叫 `startActivity()` ，工作階段只會繼續。
 
-因為沒有可靠的 hello 導覽器] 視窗已關閉時呼叫，通常很難或是無法 toocatch hello 結尾 web 環境內的使用者活動。 原因是 hello 伺服器自動到期的 Mobile Engagement hello hello 應用程式頁面上關閉後的 3 分鐘內的使用者工作階段。
+因為當導覽視窗關閉時沒有可靠呼叫，在 Web 環境內攔截使用者活動的結束通常很困難或無法達成。 這就是為什麼 Mobile Engagement 伺服器會在應用程式頁面關閉後，於 3 分鐘之內自動讓使用者工作階段到期。
 
 ## <a name="reporting-events"></a>報告事件
 報告事件涵蓋了工作階段事件和獨立事件。
 
 ### <a name="session-events"></a>工作階段事件
-工作階段事件通常是使用者執行的 hello 使用者工作階段期間使用的 tooreport hello 動作。
+工作階段事件通常用來報告在使用者工作階段期間由使用者所執行的動作。
 
 **不含額外資料的範例：**
 
@@ -72,7 +72,7 @@ hello 下列部分精簡常見[Mobile Engagement 概念](mobile-engagement-conce
     }
 
 ### <a name="standalone-events"></a>獨立事件
-不同於工作階段事件獨立發生的事件工作階段的 hello 內容之外。
+與工作階段事件不同，獨立的事件可能發生在工作階段的內容之外。
 
 針對那種情況，請使用 ``engagement.agent.sendEvent``，而不是 ``engagement.agent.sendSessionEvent``。
 
@@ -80,7 +80,7 @@ hello 下列部分精簡常見[Mobile Engagement 概念](mobile-engagement-conce
 報告錯誤涵蓋了工作階段錯誤和獨立錯誤。
 
 ### <a name="session-errors"></a>工作階段錯誤
-工作階段錯誤通常是影響的 hello 使用者 hello 使用者工作階段期間的使用的 tooreport hello 錯誤。
+工作階段錯誤通常用來報告在使用者工作階段期間影響使用者的錯誤。
 
 **不含額外資料的範例：**
 
@@ -103,7 +103,7 @@ hello 下列部分精簡常見[Mobile Engagement 概念](mobile-engagement-conce
     }
 
 ### <a name="standalone-errors"></a>獨立錯誤
-不同於工作階段錯誤，可能會發生工作階段的 hello 內容以外的獨立錯誤。
+不同於工作階段錯誤，獨立錯誤可以出現在工作階段的內容之外。
 
 針對那種情況，請使用 `engagement.agent.sendError`，而不是 `engagement.agent.sendSessionError`。
 
@@ -112,7 +112,7 @@ hello 下列部分精簡常見[Mobile Engagement 概念](mobile-engagement-conce
 
 **範例：**
 
-如果您想 toomonitor AJAX 要求時，您可以使用下列 hello:
+如果您想要監視 AJAX 要求，可以使用下列項目：
 
     // [...]
     xhr.onreadystatechange = function() {
@@ -126,11 +126,11 @@ hello 下列部分精簡常見[Mobile Engagement 概念](mobile-engagement-conce
     // [...]
 
 ### <a name="reporting-errors-during-a-job"></a>報告於作業期間發生的錯誤
-錯誤可能是相關的 tooa 執行而不是 toohello 目前使用者工作階段的作業。
+錯誤可能與正在執行的作業關聯，而不是與目前的使用者作業階段關聯。
 
 **範例：**
 
-如果您想要 tooreport 錯誤如果 AJAX 要求，失敗：
+如果您想要在 AJAX 要求失敗時報告錯誤：
 
     // [...]
     xhr.onreadystatechange = function() {
@@ -147,22 +147,22 @@ hello 下列部分精簡常見[Mobile Engagement 概念](mobile-engagement-conce
     // [...]
 
 ### <a name="reporting-events-during-a-job"></a>在作業期間報告事件
-事件可能會執行作業，而不是目前使用者工作階段 toohello，這 toohello 相關的 tooa`engagement.agent.sendJobEvent`函式。
+透過 `engagement.agent.sendJobEvent` 函式，事件可以與執行中的作業相關，而不是與目前的使用者工作階段相關。
 
 此函式的運作方式與 `engagement.agent.sendJobError`完全相同。
 
 ### <a name="reporting-crashes"></a>報告當機
-使用 hello`sendCrash`函式 tooreport 手動損毀。
+使用 `sendCrash` 函式來手動報告當機。
 
-hello`crashid`引數是可識別 hello 損毀類型的字串。
-hello`crash`引數通常是做為字串 hello 損毀 hello 堆疊追蹤。
+`crashid` 引數是識別當機類型的字串。
+`crash` 引數通常是字串格式的當機的堆疊追蹤。
 
     engagement.agent.sendCrash(crashid, crash);
 
 ## <a name="extra-parameters"></a>額外的參數
-您可以附加任意資料 tooan 事件、 錯誤、 活動或工作。
+您可以將任意資料附加到事件、錯誤、活動或作業。
 
-hello 資料可以是任何的 JSON 物件 （但不是陣列或基本類型）。
+此資料可以是任何 JSON 物件 (但是不是陣列或基本類型)。
 
 **範例：**
 
@@ -170,48 +170,48 @@ hello 資料可以是任何的 JSON 物件 （但不是陣列或基本類型）�
     engagement.agent.sendEvent("video_clicked", extras);
 
 ### <a name="limits"></a>限制
-套用 tooextra 參數的限制是在規則運算式的索引鍵、 值類型和大小的 hello 部分。
+套用至額外參數的限制是在索引鍵、值類型和大小的規則運算式的領域。
 
 #### <a name="keys"></a>之間的信任
-Hello 物件中的每個索引鍵必須符合下列規則運算式的 hello:
+物件中的每個索引鍵都必須符合下列規則運算式：
 
     ^[a-zA-Z][a-zA-Z_0-9]*
 
 這表示索引鍵必須至少以一個字母開頭，後面連接字母、數字或底線 (\_)。
 
 #### <a name="values"></a>值
-值為有限的 toostring、 數字和 Boolean 類型。
+值被限制為字串、數字及布林類型。
 
 #### <a name="size"></a>大小
-額外項目是限制的 too1，024 每個呼叫 （在 hello Mobile Engagement Web SDK 會將其編碼 JSON 中） 之後的字元。
+額外項目限制為一次呼叫 1024 個字元 (在 Mobile Engagement Web SDK 以 JSON 編碼之後)。
 
 ## <a name="reporting-application-information"></a>報告應用程式資訊
-您可以手動追蹤資訊 （或任何其他應用程式特定資訊） 使用報告 hello`sendAppInfo()`函式。
+您可以使用 `sendAppInfo()` 函式手動報告追蹤資訊 (或是任何其他應用程式特定資訊)。
 
-請注意，這項資訊可以累加方式傳送。 只有 hello 最新值的特定索引鍵會保留特定裝置。
+請注意，這項資訊可以累加方式傳送。 只會針對特定裝置保留特定索引鍵的最新值。
 
-類似事件的額外功能，您可以使用任何 JSON 物件 tooabstract 應用程式資訊。 請注意，陣列或子物件會視為一般字串 (使用 JSON 序列化)。
+和事件額外資料一樣，您可以使用任何 JSON 物件來摘錄應用程式資訊。 請注意，陣列或子物件會視為一般字串 (使用 JSON 序列化)。
 
 **範例：**
 
-以下是針對傳送嗨使用者的性別和生日的程式碼範例：
+以下是傳送使用者性別和出生日期的程式碼範例：
 
     var appInfos = {"birthdate":"1983-12-07","gender":"female"};
     engagement.agent.sendAppInfo(appInfos);
 
 ### <a name="limits"></a>限制
-Tooapplication 資訊適用於的限制是 hello 區域的金鑰和大小的規則運算式中。
+套用至應用程式資訊的限制是在索引鍵和大小的規則運算式的領域。
 
 #### <a name="keys"></a>之間的信任
-Hello 物件中的每個索引鍵必須符合下列規則運算式的 hello:
+物件中的每個索引鍵都必須符合下列規則運算式：
 
     ^[a-zA-Z][a-zA-Z_0-9]*
 
 這表示索引鍵必須至少以一個字母開頭，後面連接字母、數字或底線 (\_)。
 
 #### <a name="size"></a>大小
-應用程式的資訊是有限的 too1，024 每個呼叫 （在 hello Mobile Engagement Web SDK 會將其編碼 JSON 中） 之後的字元。
+應用程式資訊限制為一次呼叫 1024 個字元 (在 Mobile Engagement Web SDK 以 JSON 編碼之後)。
 
-在上述範例中的 hello，hello JSON 傳送 toohello 伺服器是 44 個字元：
+在上述範例中，傳送到伺服器的 JSON 會是 44 個字元：
 
     {"birthdate":"1983-12-07","gender":"female"}

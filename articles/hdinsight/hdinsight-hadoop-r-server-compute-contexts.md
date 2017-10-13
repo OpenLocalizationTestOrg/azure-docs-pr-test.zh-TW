@@ -1,6 +1,6 @@
 ---
-title: "R 伺服器 HDInsight 的 Azure 上的 aaaCompute 內容選項 |Microsoft 文件"
-description: "深入了解 hello 不同的計算內容選項可用 toousers 與 HDInsight 上的 R 伺服器"
+title: "適用於 HDInsight 上 R 伺服器的計算內容選項 - Azure | Microsoft Docs"
+description: "了解 HDInsight 上 R 伺服器之使用者可用的不同計算內容選項"
 services: HDInsight
 documentationcenter: 
 author: bradsev
@@ -15,74 +15,74 @@ ms.tgt_pltfrm: na
 ms.workload: data-services
 ms.date: 06/19/2017
 ms.author: bradsev
-ms.openlocfilehash: b3b0d0cc3caa390797dcff8c73d66cd3ad78bcaa
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 47f4441612be4f363ba82cc22b09786a6f3bfdc3
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="compute-context-options-for-r-server-on-hdinsight"></a>適用於 HDInsight 上 R 伺服器的計算內容選項
 
-Azure HDInsight 上的 Microsoft R Server 控制設定 hello 計算內容執行呼叫的方式。 本文概述 hello 選項可用 toospecify 是否及如何執行平行處理跨 hello 邊緣節點或 HDInsight 叢集的核心。
+Azure HDInsight 上的 Microsoft R 伺服器控制如何透過設定計算內容來執行呼叫。 此文章概述可用於指定是否以及如何跨邊緣節點核心或 HDInsight 叢集將執行作業平行化的選項。
 
-hello 邊緣節點的叢集提供方便的位置 tooconnect toohello 叢集和 toorun R 指令碼。 邊緣節點之後，您有 hello 選項執行 hello 平行處理的分散式函式的 ScaleR 跨 hello 核心的 hello 邊緣節點伺服器。 您也可以執行這些 hello hello 叢集節點之間使用 ScaleR 的 Hadoop 對應減少或 Spark 計算內容。
+叢集的邊緣節點提供便利的地方，以便連線到叢集以及執行 R 指令碼。 有了邊緣節點之後，即可選擇跨邊緣節點伺服器的核心，執行 ScaleR 的平行分散式函數。 您也可以使用 ScaleR 的 Hadoop Map Reduce 或 Spark 計算內容，跨越叢集的節點來執行這些函數。
 
 ## <a name="microsoft-r-server-on-azure-hdinsight"></a>Azure HDInsight 上的 Microsoft R 伺服器
-[Azure HDInsight 上的 Microsoft R Server](hdinsight-hadoop-r-server-overview.md) hello 最新功能，提供 R 為基礎的分析。 它可以使用儲存在 HDFS 容器中的資料您[Azure Blob](../storage/common/storage-introduction.md "Azure Blob 儲存體")儲存體帳戶、 資料湖存放區或 hello 本機 Linux 檔案系統。 因為 R Server 根據開放原始碼 R，hello R 為基礎的應用程式建置可以套用的任何 hello 8000 + 開放原始碼 R 封裝。 他們也可以使用中的 hello 常式[RevoScaleR](https://msdn.microsoft.com/microsoft-r/scaler/scaler)，隨附於 R Server 的 Microsoft 的巨量資料分析封裝。  
+[Azure HDInsight 上的 Microsoft R 伺服器](hdinsight-hadoop-r-server-overview.md)可提供最新的 R 型分析功能。 它可以使用儲存在 [Azure Blob](../storage/common/storage-introduction.md "Azure Blob 儲存體") 儲存體帳戶、Data Lake Store 或本機 Linux 檔案系統上之 HDFS 容器中的資料。 R 伺服器是根據開放原始碼 R 所建置，因此您建置的 R 型應用程式可以套用 8000 多個開放原始碼 R 套件中的任何一個。 它們也可以使用 [RevoScaleR](https://msdn.microsoft.com/microsoft-r/scaler/scaler) (R 伺服器隨附的 Microsoft 巨量資料分析套件) 中的常式。  
 
 ## <a name="compute-contexts-for-an-edge-node"></a>邊緣節點的計算內容
-一般情況下，在 hello 邊緣節點 R 伺服器中執行 R 指令碼 hello R 解譯器中執行，該節點上。 hello 例外狀況是呼叫 ScaleR 函式的步驟。 hello ScaleR 呼叫都取決於您如何設定 hello ScaleR 計算內容的運算環境中執行。  當您從邊緣節點執行 R 指令碼時，hello 的 hello 可能的值會計算內容是：
+一般而言，在邊緣節點上 R 伺服器中執行的 R 指令碼會在該節點上的 R 解譯器內執行。 但呼叫 ScaleR 函數的步驟則屬例外。 ScaleR 呼叫會在計算環境中執行，該環境是由您設定 ScaleR 計算內容的方式所決定。  當您從邊緣節點執行 R 指令碼時，可能的計算內容值為：
 
 - 本機循序 (*‘local’*)
 - 本機平行 (*‘localpar’*)
 - Map Reduce
 - Spark
 
-hello *'local'*和*'localpar'*選項的差異只在於如何**rxExec**執行呼叫。 這些兩個其他 rx 函式呼叫中執行以平行方式分散到所有可用的核心除非另行指定，藉由使用 hello ScaleR **numCoresToUse**選項，例如`rxOptions(numCoresToUse=6)`。 平行執行選項提供最佳效能。
+*‘local’* 和 *‘localpar’* 選項的差別只在於執行 **rxExec** 呼叫的方式。 它們都會在所有可用的核心之間，以平行方式執行其他的 rx 函數呼叫，除非已指定，否則皆使用 ScaleR **numCoresToUse** 選項，例如 `rxOptions(numCoresToUse=6)`。 平行執行選項提供最佳效能。
 
-hello 下表摘要說明各種計算如何執行呼叫的內容選項 tooset hello:
+下表摘要說明各種不同的計算內容選項來設定呼叫的執行方式：
 
-| 計算內容  | 如何 tooset                      | 執行內容                        |
+| 計算內容  | 設定方式                      | 執行內容                        |
 | ---------------- | ------------------------------- | ---------------------------------------- |
-| 本機循序 | rxSetComputeContext(‘local’)    | 平行化的執行跨 hello 核心 hello 邊緣節點伺服器，會循序執行的 rxExec 呼叫除外 |
-| 本機平行   | rxSetComputeContext(‘localpar’) | 平行化的執行跨 hello 核心 hello 邊緣節點伺服器 |
-| Spark            | RxSpark()                       | 平行處理分散式經由執行 Spark hello 節點之間的 hello HDI 叢集 |
-| Map Reduce       | RxHadoopMR()                    | 平行處理分散式的執行透過對應減少 hello 節點之間的 hello HDI 叢集 |
+| 本機循序 | rxSetComputeContext(‘local’)    | 跨邊緣節點伺服器的核心平行執行，只有 rxExec 為循序執行 |
+| 本機平行   | rxSetComputeContext(‘localpar’) | 跨邊緣節點伺服器的核心平行執行 |
+| Spark            | RxSpark()                       | 跨 HDI 叢集的節點透過 Spark 平行處理分散式執行 |
+| Map Reduce       | RxHadoopMR()                    | 跨 HDI 叢集的節點透過 Map Reduce 平行處理分散式執行 |
 
 ## <a name="guidelines-for-deciding-on-a-compute-context"></a>用於決定計算內容的指導方針
 
-其中一個 hello 的三個選項選擇提供平行化的執行取決於 hello 本質的分析工作、 hello 大小和 hello 資料的位置。 沒有任何簡單的公式，告訴您的計算內容 toouse。 有，不過，有些可協助您進行 hello 正確的選擇，或至少，幫助您縮小您的選擇，然後再執行基準測試的指導原則。 這些指導原則包括︰
+在這三個提供平行執行的選項中，選擇哪個選項取決於資料的分析工作本質、大小與位置。 沒有任何簡單的公式可告訴您該使用哪個計算內容。 不過，有一些指導原則可協助您做出正確的選擇，或至少幫助您縮小選擇範圍，然後再執行效能評定。 這些指導原則包括︰
 
-- hello 本機 Linux 檔案系統的速度比 HDFS。
-- 如果 hello 資料在本機，而且如果它是在 XDF 重複的分析時，速度加快。
-- 它是比 toostream 少量的文字資料來源的資料。 如果 hello 資料量大，請將它轉換 tooXDF 分析之前。
-- hello 的複製或資料流分析的 hello 資料 toohello 邊緣節點的額外負荷變得難以管理的非常大量的資料。
+- 本機 Linux 檔案系統比 HDFS 還快。
+- 如果資料位於本機，且是 XDF 格式，則重複分析會比較快。
+- 建議您從文字資料來源串流少量資料。 如果資料量比較大，請在分析之前先將它轉換為 XDF。
+- 對於非常大量的資料，將資料複製或串流至邊緣節點以進行分析的額外負荷會變得難以管理。
 - Spark 在 Hadoop 中的分析速度較 Map Reduce 快。
 
-指定這些原則，hello 下列各節提供一些一般法則選取的計算內容。
+在給定這些原則的情況下，以下各節提供一些有關選取計算內容的一般準則。
 
 ### <a name="local"></a>本機
-* 如果資料 tooanalyze hello 量小，而不需要重複的分析，然後進行串流處理它直接在 hello 分析常式使用*'local'*或*'localpar'*。
-* 如果 hello 資料 tooanalyze 數量是小型或中型大小，且需要重複的分析，然後將它複製 toohello 本機檔案系統、 匯入它 tooXDF，以及分析透過*'local'*或*'localpar'*。
+* 如果要分析的資料量很小，而且不需要重複分析，請使用 *'local'* 或 *'localpar'* 直接將它串流到分析常式。
+* 如果要分析的資料量很小或是中等大小，而且需要重複分析，請將它複製到本機檔案系統、匯入至 XDF，然後透過 *'local'* 或 *'localpar'* 分析。
 
 ### <a name="hadoop-spark"></a>Hadoop Spark
-* 如果 hello 資料 tooanalyze 數量很大，將它匯入 tooa Spark 資料框架使用**RxHiveData**或**RxParquetData**，或在 HDFS tooXDF （除非儲存體問題），並進行分析使用 hello Spark計算內容。
+* 如果要分析的資料量很大，請使用 **RxHiveData** 或 **RxParquetData** 將它匯入到 Spark DataFrame，或匯入到 HDFS 中的 XDF (除非儲存體會是問題)，然後使用 Spark 計算內容分析。
 
 ### <a name="hadoop-map-reduce"></a>Hadoop Map Reduce
-* 如果您遇到 hello Spark 計算內容是無法克服問題，因為它是速度較慢，請使用 hello 對應減少的計算內容。  
+* 只有在您使用 Spark 計算內容發生無法克服的問題時才使用 Map Reduce 計算內容，因為它的速度通常會比較慢。  
 
 ## <a name="inline-help-on-rxsetcomputecontext"></a>rxSetComputeContext 的內嵌說明
-如需詳細資訊和範例 ScaleR 的計算內容，請參閱 hello 內嵌在 R 中的說明 hello rxSetComputeContext 方法，例如：
+如需 ScaleR 計算內容的詳細資訊和範例，請參閱 R 中有關 rxSetComputeContext 方法的內嵌說明，例如︰
 
     > ?rxSetComputeContext
 
-您也可以參考 toohello"[ScaleR 分散式運算指南](https://msdn.microsoft.com/microsoft-r/scaler-distributed-computing)"，而且可從 hello [R 伺服器 MSDN](https://msdn.microsoft.com/library/mt674634.aspx "MSDN 上的 R 伺服器")程式庫。
+您也可以參閱可從 [R Server MSDN](https://msdn.microsoft.com/library/mt674634.aspx "MSDN 上的 R 伺服器") 文件庫取得的 [ScaleR 分散式計算指南](https://msdn.microsoft.com/microsoft-r/scaler-distributed-computing) \(英文\)。
 
 ## <a name="next-steps"></a>後續步驟
-在本文中，您學可用 toospecify hello 選項是否及如何執行進行平行處理跨 hello 邊緣節點或 HDInsight 叢集的核心。 toolearn 深入了解如何 toouse R 伺服器與 HDInsight 叢集，請參閱下列主題中的 hello:
+在此文章中，您可以了解可用於指定是否以及如何跨邊緣節點核心或 HDInsight 叢集將執行作業平行化的選項。 若要深入了解如何搭配 HDInsight 叢集使用 R 伺服器，請參閱下列主題：
 
 * [適用於 Hadoop 的 R 伺服器概觀](hdinsight-hadoop-r-server-overview.md)
 * [開始使用適用於 Hadoop 的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)
-* [新增 RStudio 伺服器 tooHDInsight （如果不在叢集建立期間新增）](hdinsight-hadoop-r-server-install-r-studio.md)
-* [適用於 HDInsight R 伺服器的 Azure 儲存體選項](hdinsight-hadoop-r-server-storage.md)
+* [將 RStudio Server 新增至 HDInsight (若未在建立叢集期間新增)](hdinsight-hadoop-r-server-install-r-studio.md)
+* [適用於 HDInsight 上 R 伺服器的 Azure 儲存體選項](hdinsight-hadoop-r-server-storage.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Mobile Engagement 使用者介面-我的帳戶"
-description: "深入了解如何 toomanage 使用 Azure Mobile Engagement 您帳戶設定檔和測試裝置"
+title: "Azure Mobile Engagement 使用者介面 - 我的帳戶"
+description: "了解如何使用 Azure Mobile Engagement 管理帳戶設定檔和測試裝置"
 services: mobile-engagement
 documentationcenter: 
 author: piyushjo
@@ -14,45 +14,45 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 1d85f0e87c43605f59f6536ae42a7fb6a99ee36b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4e463e973dcfa1faa7b08e4738192161980b3aa2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toomanage-your-account-profile-and-test-devices"></a>如何 toomanage 帳戶設定檔和測試裝置
-本文說明 hello**首頁**頁面 hello **Mobile Engagement**入口網站。 使用 hello **Mobile Engagement** toomonitor 入口網站和管理您的行動裝置應用程式。 
+# <a name="how-to-manage-your-account-profile-and-test-devices"></a>如何管理帳戶設定檔和測試裝置
+本文說明 **Mobile Engagement** 入口網站的**首頁**。 使用 **Mobile Engagement** 入口網站可監視與管理您的行動應用程式。 
 
-tooget toohello**我的帳戶**頁面上，按一下您的帳戶上 hello hello 頁面的頂端。
+若要前往 [我的帳戶]  頁面上，按一下您位於頁面頂端的帳戶。
 
-hello 我帳戶 區段中的 UI 是您可以在其中檢視和變更您的帳戶，包括您的設定檔相關聯的 hello 設定並測試裝置識別碼 hello。 這些設定包含項目，也可以透過 hello 裝置 API 存取。
+您可以在 UI 的 [我的帳戶] 區段檢視和變更與您帳戶相關聯的設定，包括您的設定檔設定和測試裝置識別碼。 這些設定所包含的項目，也可以透過裝置 API 存取。
 
 ![MyAccount1][7]  
 
 ## <a name="profile"></a>設定檔：
-您可以檢視或變更下列任何帳戶設定，如下所示。 您也可以提供另一個使用者的權限 toouse hello 從其電子郵件地址為基礎的應用程式[首頁](mobile-engagement-user-interface-home.md)。
+您可以檢視或變更下列任何帳戶設定，如下所示。 您也可以根據使用者的電子郵件地址，從 [首頁](mobile-engagement-user-interface-home.md)授與其他使用者使用您應用程式的權限。
 
 ![MyAccount2][8]  
 
 ## <a name="devices"></a>裝置：
-您可以檢視、 新增或移除測試，您可以使用 tootest hello 測試裝置的裝置識別碼傳回您**到達**或**發送**行銷活動。 內容指示如何 toofind hello 裝置識別碼的每個平台的裝置 (iOS、 Android、 Windows Phone 等) 會顯示當您按一下 [新裝置]。 
+您可以檢視、新增或移除用來測試**觸達**或**推送**活動之測試裝置的測試裝置識別碼。 當您按一下 [新裝置] 時，會顯示如何針對每個平台 (iOS、Android、Windows Phone 等) 尋找裝置之裝置識別碼的內容說明。 
 
 ![MyAccount3][9]  
 
-toouse 推送 API 或 Device API 需要 tooknow 使用者的唯一裝置識別碼 （hello deviceid 參數）。 有數種方式 tooretrieve 它：
+若要使用「推送 API」或「裝置 API」，您需要知道使用者的唯一裝置識別碼 (deviceid 參數)。 有幾種方法可以取得此識別碼：
 
-1. 從您的後端中，您可以使用 hello 裝置 API tooget hello 識別碼的完整清單裝置 hello 「 取得 」 的功能。
-2. 您可以從您的應用程式使用 hello SDK tooget 它。 （在 Android 上，呼叫 hello getDeviceID() 函式的 hello 代理程式類別，並在 iOS 上，閱讀 hello deviceid 屬性 hello 代理程式類別）。
-3. 從觸達宣告，如果 hello 與 hello 公告相關聯的動作 URL 包含 hello {deviceid} 模式，它會自動取代為由觸發 hello 動作 hello 裝置 hello 識別項。
+1. 從您的後端，可以使用裝置 API 的 "Get" 功能來取得裝置識別碼的完整清單。
+2. 從您的應用程式，可以使用 SDK 取得 (在 Android 上，呼叫 Agent 類別的 getDeviceID() 函數；在 iOS 上，讀取 Agent 類別的 deviceid 屬性)。
+3. 在觸達公告中，如果與公告相關聯的動作 URL 包含 {deviceid} 模式，則會自動替換為觸發動作的裝置識別碼。
    http://<example>.com/registeruser?deviceid={deviceid}&otherparam=myparamdata 將會取代為：http://<example>.com/registeruser?deviceid=XXXXXXXXXXXXXXXX&otherparam=myparamdata 
-4. 從觸達 web 宣告，如果 hello hello 公告的 HTML 程式碼包含 hello {deviceid} 模式中，它會自動取代為由顯示 hello web 宣告 hello 裝置 hello 識別碼。
+4. 從觸達 Web 宣告，如果宣告的 HTML 程式碼包含 {deviceid} 模式，則會自動替換為顯示 Web 通知的裝置識別碼。
    「以下是我的裝置識別碼: {deviceid}」將會替換為：「以下是我的裝置識別碼: XXXXXXXXXXXXXXXX」
 5. 在您的裝置上開啟您的應用程式，然後執行應用程式中已被標記的事件。
-   從 [UI-您的應用程式的監視-事件的詳細資料]，尋找 hello 執行 hello 清單所述的事件。
-   按一下 toothis hello 監視器中的事件。
-   您應該在執行此事件之 hello 裝置 hello 清單中找到您的裝置識別碼。
-   然後，您可以複製此裝置識別碼，而其註冊 hello 「 UI-我的帳戶-裝置的新裝置-選取您的裝置平台 」。
-   >（請注意，IDFA 已停用 iOS，當 hello 裝置識別碼會隨著 hello 時間變更，如果您解除安裝再重新安裝您的應用程式）。
+   依序從 UI - 您的應用程式 - [監視] - [事件] - [詳細資料]，在清單中尋找執行的事件。
+   在 [監視] 中按一下此事件。
+   您應該會在已執行此事件的裝置清單中找到裝置識別碼。
+   然後，您就可以複製此裝置識別碼，並且依序在 UI - [我的帳戶] - [裝置] - [新裝置] - [選取您的裝置平台] 中註冊此識別碼。
+   >(請注意，當 iOS 停用 IDFA 時，如果您解除安裝後又重新安裝您的應用程式，裝置識別碼可能會隨時間而變更)。
 
 ## <a name="troubleshooting-guide"></a>疑難排解指南
 * [疑難排解指南 - 服務][Link 24]

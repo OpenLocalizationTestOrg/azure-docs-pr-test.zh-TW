@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooUse Azure 行動應用程式的 Apache Cordova 外掛程式"
-description: "如何 tooUse Azure 行動應用程式的 Apache Cordova 外掛程式"
+title: "如何使用適用於 Azure Mobile Apps 的 Apache Cordova 外掛程式"
+description: "如何使用適用於 Azure Mobile Apps 的 Apache Cordova 外掛程式"
 services: app-service\mobile
 documentationcenter: javascript
 author: ggailey777
@@ -14,19 +14,19 @@ ms.devlang: javascript
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: glenga
-ms.openlocfilehash: d3e0639e6478c409132af25304a2fb0f28401e98
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ebf0e911eeada0e529f908dd3e3430c94edae763
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-toouse-apache-cordova-client-library-for-azure-mobile-apps"></a>如何針對 Azure 行動應用程式的 toouse Apache Cordova 用戶端程式庫
+# <a name="how-to-use-apache-cordova-client-library-for-azure-mobile-apps"></a>如何使用適用於 Azure Mobile Apps 的 Apache Cordova 用戶端程式庫
 [!INCLUDE [app-service-mobile-selector-client-library](../../includes/app-service-mobile-selector-client-library.md)]
 
-本指南將教導您 tooperform 常見的案例，使用最新的 hello [Azure 行動應用程式的 Apache Cordova 外掛程式]。 如果您是新 tooAzure 行動應用程式，請先完成[Azure 行動應用程式快速入門]toocreate 後端，建立資料表，並下載預先建立的 Apache Cordova 專案。 本指南中，我們將重點放在用戶端 hello Apache Cordova 外掛程式。
+本指南說明如何使用最新的 [適用於 Azure Mobile Apps 的 Apache Cordova 外掛程式]執行一般案例。 如果您是 Azure Mobile Apps 的新手，請先完成 [Azure Mobile Apps 快速啟動] 以建立後端、建立資料表及下載預先建置的 Apache Cordova 專案。 在本指南中，我們會著重於用戶端 Apache Cordova 外掛程式。
 
 ## <a name="supported-platforms"></a>支援的平台
-此 SDK 可在 iOS、Android 和 Windows 裝置上支援 Apache Cordova v6.0.0 和更新版本。  hello 平台支援如下所示：
+此 SDK 可在 iOS、Android 和 Windows 裝置上支援 Apache Cordova v6.0.0 和更新版本。  平台支援如下︰
 
 * Android API 19-24 (KitKat 至 Nougat)。
 * iOS 8.0 版和更新版本。
@@ -34,7 +34,7 @@ ms.lasthandoff: 10/06/2017
 * 通用 Windows 平台。
 
 ## <a name="Setup"></a>設定和必要條件
-本指南假設您已建立包含資料表的後端。 本指南假設該 hello 資料表具有 hello 以這些教學課程中的 hello 資料表相同的結構描述。 本指南也會假設您已經加入 hello tooyour Apache Cordova 外掛程式的程式碼。  如果您不這麼做，您可以加入 hello Apache Cordova 外掛程式 tooyour 專案 hello 命令列上：
+本指南假設您已建立包含資料表的後端。 本指南假設資料表的結構描述與這些教學課程中的資料表相同。 本指南也假設您已將 Apache Cordova 外掛程式加入至程式碼。  如果您還沒有這樣做，您可以在命令列將 Apache Cordova 外掛程式新增至您的專案：
 
 ```
 cordova plugin add cordova-plugin-ms-azure-mobile-apps
@@ -44,7 +44,7 @@ cordova plugin add cordova-plugin-ms-azure-mobile-apps
 
 ## <a name="ionic"></a>設定 Ionic v2 應用程式
 
-tooproperly Ionic v2 專案設定中，第一次建立基本應用程式，並加入 hello Cordova 外掛程式：
+若要適當地定 Ionic v2 專案，請先建立基本應用程式，並新增 Cordova 外掛程式：
 
 ```
 ionic start projectName --v2
@@ -52,78 +52,78 @@ cd projectName
 ionic plugin add cordova-plugin-ms-azure-mobile-apps
 ```
 
-新增下列幾行太 hello`app.component.ts` toocreate hello 用戶端物件：
+新增下列行到 `app.component.ts` 以建立用戶端專案：
 
 ```
 declare var WindowsAzure: any;
 var client = new WindowsAzure.MobileServiceClient("https://yoursite.azurewebsites.net");
 ```
 
-您可以立即建立，並在 hello 瀏覽器中執行 hello 專案：
+您現在可以在瀏覽器中建置並執行專案：
 
 ```
 ionic platform add browser
 ionic run browser
 ```
 
-hello Azure 行動應用程式的 Cordova 外掛程式支援兩個 Ionic v1 和 v2 應用程式。  只有 hello Ionic v2 應用程式需要的其他宣告 hello`WindowsAzure`物件。
+Azure Mobile Apps Cordova 外掛程式同時支援 Ionic v1 與 v2 應用程式。  只有 Ionic v2 應用程式需要 `WindowsAzure` 物件的其他宣告。
 
 [!INCLUDE [app-service-mobile-html-js-library.md](../../includes/app-service-mobile-html-js-library.md)]
 
 ## <a name="auth"></a>作法：驗證使用者
-Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、Microsoft 帳戶及 Twitter) 來驗證與授權應用程式使用者。 您可以設定權限針對特定作業的資料表 toorestrict 存取 tooonly 驗證使用者。 您也可以使用伺服器指令碼中的 hello 身分識別通過驗證的使用者 tooimplement 授權規則。 如需詳細資訊，請參閱 hello[開始使用驗證]教學課程。
+Azure App Service 支援使用各種外部識別提供者 (Facebook、Google、Microsoft 帳戶及 Twitter) 來驗證與授權應用程式使用者。 您可以在資料表上設定權限，以限制僅有通過驗證使用者可以存取特定操作。 您也可以在伺服器指令碼中，使用驗證的使用者的身分識別來實作授權規則。 如需詳細資訊，請參閱 [開始使用驗證] 教學課程。
 
-使用驗證時的 Apache Cordova 應用程式中，必須具備下列 Cordova 外掛程式的 hello:
+在 Apache Cordova 應用程式中使用驗證時，下列 Cordova 外掛程式必須可用：
 
 * [cordova-plugin-device]
 * [cordova-plugin-inappbrowser]
 
-支援兩個驗證流程：伺服器流程和用戶端流程。  hello 伺服器流程提供 hello 最簡單的驗證體驗，因為它是倚賴 hello 提供者 web 驗證介面。 hello 用戶端流程可讓與裝置特定功能的更深入整合這類單一登入為依賴特定提供者裝置特有的 Sdk。
+支援兩個驗證流程：伺服器流程和用戶端流程。  由於伺服器流程採用提供者的 Web 驗證介面，因此所提供的驗證體驗也最為簡單。 用戶端流程依賴提供者專屬的裝置專用 SDK，可以與裝置特有的功能深入整合，例如單一登入。
 
 [!INCLUDE [app-service-mobile-html-js-auth-library.md](../../includes/app-service-mobile-html-js-auth-library.md)]
 
 ### <a name="configure-external-redirect-urls"></a>做法︰設定行動 App Service 以使用外部重新導向 URL。
-Apache Cordova 應用程式的數種使用回送功能 toohandle OAuth UI 流動。  在 localhost 上的 OAuth UI 流量會造成問題，因為 hello 驗證服務只知道如何 tooutilize 您預設的服務。  有問題的 OAuth UI 流程範例包括︰
+有數種類型的 Apache Cordova 應用程式會使用回送功能來處理 OAuth UI 流程。  驗證服務預設只知道如何使用您的服務，因此 localhost 上的 OAuth UI 流程會引發問題。  有問題的 OAuth UI 流程範例包括︰
 
-* hello Ripple 模擬器。
+* Ripple 模擬器。
 * Ionic 的即時重新載入。
-* 在本機執行 hello 行動後端
-* 執行比 hello 一個提供給驗證的不同 Azure App Service 中的 hello 行動後端。
+* 在本機執行行動後端
+* 在不同於提供驗證的 Azure App Service 中執行行動後端。
 
-請遵循這些指示 tooadd 您的本機設定 toohello 組態：
+請遵循下列指示來將您的本機設定加入組態︰
 
-1. 登入 toohello [Azure 入口網站]
-2. 選取**所有資源**或**應用程式服務**然後按一下 [hello 行動應用程式名稱。
+1. 登入 [Azure 入口網站]
+2. 選取 [所有資源] 或 [應用程式服務]，然後按一下行動應用程式的名稱。
 3. 按一下 [工具] 
-4. 按一下**資源總管**hello 觀察功能表中，然後按一下**移**。  新的視窗或索引標籤隨即開啟。
-5. 展開 hello **config**， **authsettings** hello 左側導覽中您站台的節點。
+4. 按一下 [觀察] 功能表中的 [資源總管]，然後按一下 [前往]。  新的視窗或索引標籤隨即開啟。
+5. 在左側導覽中，展開網站的 [config]、[authsettings] 節點。
 6. 按一下 [編輯] 
-7. 尋找 hello"allowedExternalRedirectUrls"項目。  它可能設定 toonull 或值的陣列。  變更 hello 值 toohello 下列值：
+7. 尋找「allowedExternalRedirectUrls」元素。  它可能會設定為 null 或值陣列。  將此值變更為下列值︰
 
          "allowedExternalRedirectUrls": [
              "http://localhost:3000",
              "https://localhost:3000"
          ],
 
-    Hello Url 取代為您的服務的 hello Url。  範例包括"http://localhost:3000 」 （適用於 hello Node.js 範例服務) 或 「 http://localhost:4400"（針對 hello Ripple 服務）。  不過，這些 Url 是範例-您的情況，包括 hello 範例中所述的 hello 服務可能會不同。
-8. 按一下 hello**讀/寫**hello hello 畫面右上角的按鈕。
-9. 按一下綠色的 hello**放**] 按鈕。
+    使用您服務的 URL 來取代 URL。  範例包括 "http://localhost:3000" (適用於 Node.js 範例服務) 或 "http://localhost:4400" (適用於 Ripple 服務)。  不過，這些 URL 都是範例 - 您的情況 (包括範例中提及的服務) 可能會有差異。
+8. 按一下螢幕右上角的 [讀/寫]  按鈕。
+9. 按一下綠色 [PUT]  按鈕。
 
-此時會儲存 hello 設定。  請勿關閉 hello 瀏覽器視窗中，直到 hello 設定儲存。
-也新增回送 Url toohello CORS 的這些設定您的應用程式服務：
+此時即會儲存設定。  在設定完成儲存之前，請勿關閉瀏覽器視窗。
+此外，請將這些回送 URL 新增至 App Service 的 CORS 設定：
 
-1. 登入 toohello [Azure 入口網站]
-2. 選取**所有資源**或**應用程式服務**然後按一下 [hello 行動應用程式名稱。
-3. hello 設定] 刀鋒視窗會自動開啟。  如果沒有，請按一下 [所有設定] 。
-4. 按一下**CORS** hello 應用程式開發介面] 功能表底下。
-5. 輸入您想 tooadd hello 提供的方塊中的 hello URL，然後按 Enter。
+1. 登入 [Azure 入口網站]
+2. 選取 [所有資源] 或 [應用程式服務]，然後按一下行動應用程式的名稱。
+3. [設定] 刀鋒視窗隨即自動開啟。  如果沒有，請按一下 [所有設定] 。
+4. 按一下 API 功能表下方的 [CORS]  。
+5. 輸入在提供的方塊中輸入您希望加入的 URL，然後按 Enter 鍵。
 6. 視需要輸入其他的 URL。
-7. 按一下**儲存**toosave hello 設定。
+7. 按一下 [儲存]  來儲存這些設定。
 
-需要大約 10-15 秒 hello 新設定 tootake 效果。
+大約需要 10-15 秒的時間，才能使新的設定生效。
 
 ## <a name="register-for-push"></a>作法：註冊推播通知
-安裝 hello [phonegap 外掛程式的推播]toohandle 推播通知。  此外掛程式可以輕鬆地新增使用`cordova plugin add`命令 hello 命令列上，或透過 Visual Studio 中的 hello Git 外掛程式安裝程式。  以下在 Apache Cordova 應用程式中的程式碼會為您的裝置註冊推播通知：
+安裝 [phonegap-plugin-push] 來處理推播通知。  在命令列中使用 `cordova plugin add` 命令，或在 Visual Studio 內透過 Git 外掛程式安裝程式，即可輕鬆新增此外掛程式。  以下在 Apache Cordova 應用程式中的程式碼會為您的裝置註冊推播通知：
 
 ```
 var pushOptions = {
@@ -142,8 +142,8 @@ pushHandler = PushNotification.init(pushOptions);
 
 pushHandler.on('registration', function (data) {
     registrationId = data.registrationId;
-    // For cross-platform, you can use hello device plugin toodetermine hello device
-    // Best is toouse device.platform
+    // For cross-platform, you can use the device plugin to determine the device
+    // Best is to use device.platform
     var name = 'gcm'; // For android - default
     if (device.platform.toLowerCase() === 'ios')
         name = 'apns';
@@ -153,7 +153,7 @@ pushHandler.on('registration', function (data) {
 });
 
 pushHandler.on('notification', function (data) {
-    // data is an object and is whatever is sent by hello PNS - check hello format
+    // data is an object and is whatever is sent by the PNS - check the format
     // for your particular PNS
 });
 
@@ -162,7 +162,7 @@ pushHandler.on('error', function (error) {
 });
 ```
 
-使用從 hello 伺服器 hello 通知中樞 SDK toosend 推播通知。  永遠不要直接從用戶端傳送推播通知。 這樣做，可以使用的 tootrigger 阻絕服務攻擊通知中樞或 hello PNS。  hello PNS 可能禁止您的流量，因為這類攻擊。
+使用通知中樞 SDK 從伺服器傳送推播通知。  永遠不要直接從用戶端傳送推播通知。 這種方式會被用來對通知中樞或 PNS 觸發阻斷服務攻擊。  PNS 可能會因為這類攻擊而禁止您的流量。
 
 ## <a name="more-information"></a>詳細資訊
 
@@ -172,7 +172,7 @@ pushHandler.on('error', function (error) {
 [Azure 入口網站]: https://portal.azure.com
 [Azure Mobile Apps 快速啟動]: app-service-mobile-cordova-get-started.md
 [開始使用驗證]: app-service-mobile-cordova-get-started-users.md
-[Add authentication tooyour app]: app-service-mobile-cordova-get-started-users.md
+[Add authentication to your app]: app-service-mobile-cordova-get-started-users.md
 
 [適用於 Azure Mobile Apps 的 Apache Cordova 外掛程式]: https://www.npmjs.com/package/cordova-plugin-ms-azure-mobile-apps
 [第一個 Apache Cordova 應用程式]: http://cordova.apache.org/#getstarted

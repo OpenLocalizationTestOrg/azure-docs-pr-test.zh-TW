@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure Mobile Engagement 疑難排解指南-分析"
+title: "Azure Mobile Engagement 疑難排解指南 - 分析"
 description: "Azure Mobile Engagement 中分析、監視、分割，以及儀表板問題的疑難排解指南"
 services: mobile-engagement
 documentationcenter: 
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: mobile-multiple
 ms.workload: mobile
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 69c6ff8f5c8540f8ba8b85b9ffec55acc59329fe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e30c9ac0a8421ffcf4fc3e2548cfd7ac49701900
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="troubleshooting-guide-for-analytics-monitoring-segmentation-and-dashboard-issues"></a>分析、監視、分割，以及儀表板問題的疑難排解指南
-hello 以下是可能的問題可能會遇到與 Azure Mobile Engagement 收集您的應用程式、 裝置和使用者的相關資訊的方式。
+以下是您可能會遇到，有關 Azure Mobile Engagement 如何收集應用程式、裝置和使用者相關資訊的問題。
 
 ## <a name="missingdelayed-information"></a>遺漏/延遲資訊
 ### <a name="issue"></a>問題
@@ -31,32 +31,32 @@ hello 以下是可能的問題可能會遇到與 Azure Mobile Engagement 收集�
 * 達到分割限制。
 
 ### <a name="causes"></a>原因
-* 您可以使用 hello 分析 API，監視應用程式開發介面，和區段 API toosee，如果您是從 hello UI 遺失任何資料會顯示透過 hello 應用程式開發介面。
-* 如果 hello Azure Mobile Engagement SDK 未正確地整合到應用程式，您不是能 toosee hello 分析、 分割、 監視中] 或儀表板中的資訊。
+* 您可以使用分析 API、監視 API 與區段 API，查看是否能透過 API 看到 UI 中遺漏的任何資料。
+* 如果 Azure Mobile Engagement SDK 未正確地整合到您的應用程式中，您就無法查看分析、分割、監視或儀表板中的資訊。
 * 區段建立之後就無法變更，只能「再製」(複製) 或「終結」(刪除) 區段。 區段只能包含 10 個準則。
-* hello 遺失的監視資訊最佳方式 tootest 是 toosetup 測試裝置、 解除安裝和/或 hello 測試裝置上重新安裝 hello 應用程式。
+* 測試監視中遺漏資訊的最佳方式是安裝測試裝置、解除安裝及/或重新安裝測試裝置上的應用程式。
 * 每隔 24 小時會重新整理分析、分割或儀表板的資訊。
-* 等到 24 小時，即使 hello 區段根據先前的資訊建立之後，可能不會顯示新的區段中的資訊。
-* 篩選 hello UI 中的分析資料會顯示所有的範例，這種應用程式的 hello 版本不限 （例如依名稱篩選「當機」會從您的應用程式第 1 版和第 2 版顯示)。
-* hello 期間分析的日期為基礎 hello hello 使用者的裝置設定，讓的使用者的電話已設定不正確的 hello 日期無法顯示在 hello 錯誤時間週期。
-* 當您使用 hello 按鈕時，會記錄資料的任何伺服器端太"test"推播通知，針對實際的推送活動只會記錄資料。
+* 在新區段建立 24 小時之後，新區段中的資訊才會顯示，即使該區段是以先前的資訊為根據。
+* 在 UI 中篩選您的分析資料，無論您的應用程式版本為何，將會顯示此類型的所有範例。(例如，依名稱篩選「當機」會從您的應用程式第 1 版和第 2 版顯示)。
+* 分析的時間週期是以使用者裝置設定的日期為依據，因此使用者的手機日期設定如果不正確，可能會顯示錯誤的時間週期。
+* 當您使用按鈕來「測試」推送時，不會記錄任何伺服器端的資料，只會記錄實際推送活動的資料。
 
 ## <a name="cant-locate-items-in-ui"></a>在 UI 中找不到項目
 ### <a name="issue"></a>問題
 * 無法建立以特定內建或自訂應用程式資訊標記準則為依據的區段。
 * 分析、監視或儀表板中找不到特定內建或自訂應用程式資訊標記準則。
-* 無法解譯分析、 監視、 分割或儀表板中的 hello 資料。
+* 無法解譯分析、監視、分割或儀表板中的資料。
 
 ### <a name="causes"></a>原因
-* 某些內建的項目和應用程式資訊只可用為推入準則標記，但可能不會新增 tooa 區段或看到從分析、 監視中] 或儀表板。 
-* 建立項目和應用程式資訊標記不能加入 tooa 區段中，您將需要 toosetup 清單針對每個活動 tooperform hello 相同函式做為目標為根據的區段中的準則。
-* 請參閱 hello 的內容功能表中的 hello Azure Mobile Engagement UI 更多協助以 hello 分析、 監控、 分割及儀表板區段以及 tooinformation。
+* 部分內建項目與應用程式資訊標記只能做為推送準則使用，無法新增至區段，或是顯示於分析、監視或儀表板中。 
+* 對於無法新增至區段的內建項目與應用程式資訊標記，您必須在每個活動中設定目標準則的清單，來執行以區段為依據之目標的相同函式。
+* 請參閱 Azure Mobile Engagement UI 的分析、監視、分割及儀表板區段中的操作功能表，以取得更多協助與使用方式資訊。
 
 ## <a name="crash-troubleshooting"></a>當機疑難排解
 ### <a name="issue"></a>問題
 * 分析、監視或儀表板中發生應用程式當機。
 
 ### <a name="causes"></a>原因
-* tootroubleshoot 應用程式當機分析 」、 「 監視 」 或 「 儀表板中所見，請確定 toocheck hello 版本和舊版的 hello SDK 的已知問題的資訊。
-* toofurther 疑難排解應用程式當機事件執行從測試裝置，您已安裝的應用程式和查閱您的裝置識別碼 hello Azure Mobile Engagement UI hello < 監視器 – 事件 > 一節中。 然後執行造成您的應用程式 toocrash hello 事件，並且查閱 hello hello Azure Mobile Engagement UI 「 監視器 – 當機 」 一節中的其他資訊。 
+* 如果要疑難排解分析、監視或儀表板中發生的應用程式當機，請務必查看版本資訊，了解舊版 SDK 的已知問題。
+* 若要進一步疑難排解應用程式當機，請在已安裝您應用程式的測試裝置上執行事件，並在 Azure Mobile Engagement UI 的 [監視 – 事件] 區段中查詢您的裝置識別碼。 然後執行造成應用程式當機的事件，並查詢 Azure Mobile Engagement UI 的 [監視 – 當機] 區段中的其他資訊。 
 

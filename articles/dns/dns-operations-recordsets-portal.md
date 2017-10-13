@@ -1,6 +1,6 @@
 ---
-title: "aaaManage DNS 記錄集而且要使用 Azure DNS 記錄 |Microsoft 文件"
-description: "Azure DNS 提供 hello 功能 toomanage DNS 記錄設定和裝載您的網域時，記錄。"
+title: "使用 Azure DNS 管理 DNS 記錄集和記錄 |Microsoft Docs"
+description: "Azure DNS 可在裝載您的網域時，提供管理 DNS 記錄集和記錄的功能。"
 services: dns
 documentationcenter: na
 author: georgewallace
@@ -15,13 +15,13 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 08/16/2016
 ms.author: gwallace
-ms.openlocfilehash: 2e62d017341589eaf8d1f8df2fe5db4b973381d1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 001b80ccba43beab44f6a598f820df65a85a345f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="manage-dns-records-and-record-sets-by-using-hello-azure-portal"></a>使用 hello Azure 入口網站管理 DNS 記錄和資料錄集
+# <a name="manage-dns-records-and-record-sets-by-using-the-azure-portal"></a>使用 Azure 入口網站管理 DNS 記錄和記錄集
 
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](dns-operations-recordsets-portal.md)
@@ -29,76 +29,76 @@ ms.lasthandoff: 10/06/2017
 > * [Azure CLI 2.0](dns-operations-recordsets-cli.md)
 > * [PowerShell](dns-operations-recordsets.md)
 
-本文章將示範如何 toomanage 資料錄集和您所使用的 DNS 區域的記錄 hello Azure 入口網站。
+本文說明如何使用 Azure 入口網站管理 DNS 區域的記錄集和記錄。
 
-它是重要的 toounderstand hello 差異 DNS 資料錄集和個別的 DNS 記錄。 資料錄集是在區域中有的 hello 相同名稱，且會 hello 相同類型的記錄的集合。 如需詳細資訊，請參閱[建立 DNS 記錄集而且要使用的記錄 hello Azure 入口網站](dns-getstarted-create-recordset-portal.md)。
+請務必了解 DNS 記錄集和個別 DNS 記錄之間的差別。 記錄集是指一個區域中有相同名稱和相同類型的記錄集合。 如需詳細資訊，請參閱 [使用 Azure 入口網站建立 DNS 記錄集和記錄](dns-getstarted-create-recordset-portal.md)。
 
 ## <a name="create-a-new-record-set-and-record"></a>建立新的記錄集和記錄
 
-請參閱 toocreate hello Azure 入口網站中設定的記錄[建立 DNS 記錄，使用 hello Azure 入口網站](dns-getstarted-create-recordset-portal.md)。
+若要在 Azure 入口網站中建立記錄集，請參閱 [使用 Azure 入口網站建立 DNS 記錄](dns-getstarted-create-recordset-portal.md)。
 
 ## <a name="view-a-record-set"></a>檢視記錄集
 
-1. 在 hello Azure 入口網站，移 toohello **DNS 區域**刀鋒視窗。
-2. 搜尋 hello 資料錄集，並選取它。 這會開啟 hello 記錄集屬性。
+1. 在 Azure 入口網站中，移至 [DNS 區域]  刀鋒視窗。
+2. 搜尋記錄集並加以選取。 這會開啟記錄集屬性。
 
     ![搜尋資料錄集](./media/dns-operations-recordsets-portal/searchset500.png)
 
-## <a name="add-a-new-record-tooa-record-set"></a>加入新的記錄 tooa 資料錄集
+## <a name="add-a-new-record-to-a-record-set"></a>將新記錄加入記錄集
 
-您可以加總 too20 記錄 tooany 記錄集。 記錄集不能包含兩筆相同的記錄。 可以建立空的資料錄集 （具有零的記錄），但不是會出現在 hello Azure DNS 名稱伺服器。 類型為 CNAME 的記錄集最多只能包含一筆記錄。
+任何記錄集最多只能加入 20 筆記錄。 記錄集不能包含兩筆相同的記錄。 您可以建立空的記錄集 (沒有記錄)，但該記錄集不會出現在 Azure DNS 名稱伺服器上。 類型為 CNAME 的記錄集最多只能包含一筆記錄。
 
-1. 在 hello**記錄設定屬性**刀鋒視窗，您的 DNS 區域，按一下 hello 記錄設定您想 tooadd 某筆記錄。
+1. 在 DNS 區域的 [記錄集屬性]  刀鋒視窗中，按一下您想要在其中新增記錄的記錄集。
 
     ![選取記錄集](./media/dns-operations-recordsets-portal/selectset500.png)
 
-2. 指定 hello 記錄填入 hello 欄位中設定屬性。
+2. 在欄位中填入資料，藉以指定記錄集屬性。
 
     ![新增記錄](./media/dns-operations-recordsets-portal/addrecord500.png)
 
-3. 按一下**儲存**在 hello 頂端 hello 刀鋒視窗 toosave 您的設定。 然後關閉 hello 刀鋒視窗。
-4. 在 hello 角中，您會看到 hello 記錄會儲存。
+3. 按一下刀鋒視窗頂端的 [儲存]  來儲存您的設定。 然後關閉刀鋒視窗。
+4. 您會在角落中看到正在儲存記錄。
 
     ![儲存記錄集](./media/dns-operations-recordsets-portal/saving150.png)
 
-儲存 hello 記錄之後，hello 上 hello 值**DNS 區域**刀鋒視窗中會反映 hello 新記錄。
+儲存記錄之後，[DNS 區域]  刀鋒視窗上的值將會反映新的記錄。
 
 ## <a name="update-a-record"></a>更新記錄
 
-當您更新現有的記錄組中的記錄時，您可以更新 hello 欄位，取決於 hello 您正在使用的記錄類型。
+在更新現有記錄集中的記錄時，您可更新的欄位取決於您正在使用的記錄類型。
 
-1. 在 hello**記錄設定屬性**刀鋒視窗中為您的資料錄集，hello 記錄搜尋。
-2. 修改 hello 記錄。 當您修改記錄時，您可以變更 hello hello 記錄可用的設定。 在下列範例的 hello，hello **IP 位址**選取欄位，而且 hello IP 位址為正在修改的 hello 程序中。
+1. 在記錄集的 [記錄集屬性]  刀鋒視窗中搜尋記錄。
+2. 修改記錄。 當您修改記錄時，您可以變更記錄的可用設定。 在下列範例中，已選取 [IP 位址]  欄位，而該 IP 位址正在進行修改。
 
     ![修改記錄](./media/dns-operations-recordsets-portal/modifyrecord500.png)
 
-3. 按一下**儲存**在 hello 頂端 hello 刀鋒視窗 toosave 您的設定。 Hello 右上角，您會看到已保存 hello 記錄的 hello 通知。
+3. 按一下刀鋒視窗頂端的 [儲存]  來儲存您的設定。 您將會在右上角看到記錄已儲存的通知。
 
     ![已儲存記錄集](./media/dns-operations-recordsets-portal/saved150.png)
 
-Hello 記錄的 hello 值儲存 hello 記錄之後，設定 hello **DNS 區域**刀鋒視窗中會反映 hello 更新記錄。
+儲存記錄之後，[DNS 區域]  刀鋒視窗上記錄集的值將會反映更新的記錄。
 
 ## <a name="remove-a-record-from-a-record-set"></a>從記錄集移除記錄
 
-您可以使用的記錄組從 hello Azure 入口網站 tooremove 記錄。 請注意，從資料錄集移除 hello 最後一筆記錄並不會刪除 hello 記錄集。
+您可以使用 Azure 入口網站來從記錄集移除記錄。 請注意，移除記錄集的最後一筆記錄不會刪除記錄集。
 
-1. 在 hello**記錄設定屬性**刀鋒視窗中為您的資料錄集，hello 記錄搜尋。
-2. 按一下您想 tooremove hello 記錄。 然後選取 [移除] 。
+1. 在記錄集的 [記錄集屬性]  刀鋒視窗中搜尋記錄。
+2. 按一下您想要移除的記錄。 然後選取 [移除] 。
 
     ![移除記錄](./media/dns-operations-recordsets-portal/removerecord500.png)
 
-3. 按一下**儲存**在 hello 頂端 hello 刀鋒視窗 toosave 您的設定。
-4. 移除 hello 記錄之後，hello 上 hello hello 記錄的值**DNS 區域**刀鋒視窗中會反映 hello 移除。
+3. 按一下刀鋒視窗頂端的 [儲存]  來儲存您的設定。
+4. 移除記錄之後，[DNS 區域]  刀鋒視窗上記錄的值將會反映移除。
 
 ## <a name="delete"></a>刪除記錄集
 
-1. 在 hello**記錄設定屬性**刀鋒視窗中為您的資料錄集，按一下**刪除**。
+1. 在記錄集的 [記錄集屬性] 刀鋒視窗中，按一下 [刪除]。
 
     ![刪除記錄集](./media/dns-operations-recordsets-portal/deleterecordset500.png)
 
-2. 訊息會出現，詢問您是否 toodelete hello 記錄集。
-3. 請確認您想 toodelete，，然後按一下設定 hello 名稱相符項目 hello 記錄**是**。
-4. 在 hello **DNS 區域**刀鋒視窗中，確認 hello 記錄集不再顯示。
+2. 隨即會出現訊息，詢問您是否要刪除記錄集。
+3. 確認該名稱符合您想要刪除的記錄集，然後按一下 [是] 。
+4. 在 [DNS 區域]  刀鋒視窗中，確認不再看到該記錄集。
 
 ## <a name="work-with-ns-and-soa-records"></a>使用 NS 和 SOA 記錄
 
@@ -106,22 +106,22 @@ Hello 記錄的 hello 值儲存 hello 記錄之後，設定 hello **DNS 區域**
 
 ### <a name="modify-soa-records"></a>修改 SOA 記錄
 
-您無法加入或移除 hello 自動建立在 hello 區域的 apex 設定 SOA 記錄中的記錄 (名稱 ="@")。 不過，您可以修改任何 hello （除了 「 主機 」） 的 SOA 記錄中的 hello 參數，而且 hello 記錄設定的 TTL。
+您無法在區域頂點 (名稱 = "@") 自動建立的 SOA 記錄集中新增或移除記錄。 不過，您可以修改 SOA 記錄 (「主機」除外) 和記錄集 TTL 內的任何參數。
 
-### <a name="modify-ns-records-at-hello-zone-apex"></a>修改在 hello 區域的 apex NS 記錄
+### <a name="modify-ns-records-at-the-zone-apex"></a>在區域頂點修改 NS 記錄
 
-在 hello 區域的 apex 設定 hello NS 記錄會自動建立與每個 DNS 區域。 它包含 hello hello Azure DNS 名稱伺服器指派的 toohello 區域名稱。
+系統會自動使用每個 DNS 區域在區域頂點建立 NS 記錄集。 此記錄集包含指派給區域的 Azure DNS 名稱伺服器的名稱。
 
-您可以加入其他的名稱伺服器 toothis NS 記錄集，toosupport 共同裝載網域使用一個以上的 DNS 提供者。 您也可以修改 hello TTL 和此記錄集的中繼資料。 不過，您無法移除或修改 hello 預先填入的 Azure DNS 名稱伺服器。
+您可以將其他名稱伺服器新增至此 NS 記錄集，以支援使用多個 DNS 提供者的共同裝載網域。 您也可以修改此記錄集的 TTL 和中繼資料。 不過，您無法移除或修改預先填入的 Azure DNS 名稱伺服器。
 
-請注意這適用於僅 toohello NS 記錄集在 hello 區域的 apex。 如果沒有限制，您可以修改其他 NS 記錄集在您的區域 （做為使用的 toodelegate 子區域）。
+請注意，這只適用於區域頂點的 NS 記錄集。 區域中的其他 NS 記錄集 (如用於委派子區域) 可以修改，沒有任何限制。
 
 ### <a name="delete-soa-or-ns-record-sets"></a>刪除 SOA 或 NS 記錄集
 
-您無法刪除 hello SOA 和 NS 記錄集在 hello 區域的 apex (名稱 ="@")，會自動建立時，建立 hello 區域。 當您刪除 hello 區域時，它們會自動刪除。
+您無法在建立區域時所自動建立的區域頂點 (名稱 = "@") 刪除 SOA 和 NS 記錄集。 當您刪除該區域時，就會自動刪除它們。
 
 ## <a name="next-steps"></a>後續步驟
 
-* 如需有關 Azure DNS 的詳細資訊，請參閱 hello [Azure DNS 概觀](dns-overview.md)。
-* 如需有關如何自動化 DNS 的詳細資訊，請參閱[建立 DNS 區域和使用資料錄集 hello.NET SDK](dns-sdk.md)。
+* 如需 Azure DNS 的詳細資訊，請參閱 [Azure DNS 概觀](dns-overview.md)。
+* 如需自動化 DNS 的相關資訊，請參閱 [使用 .NET SDK 建立 DNS 區域和記錄集](dns-sdk.md)。
 * 如需反向 DNS 記錄的詳細資訊，請參閱 [Azure 反向 DNS 和支援概觀](dns-reverse-dns-overview.md)。

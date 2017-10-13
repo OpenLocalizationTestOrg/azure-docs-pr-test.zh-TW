@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 及管理 Azure 資料庫使用 Azure CLI PostgreSQL 防火牆規則 |Microsoft 文件"
-description: "本文說明如何 toocreate 及 PostgreSQL 防火牆規則，使用 Azure CLI 命令列管理 Azure 資料庫。"
+title: "使用 Azure CLI 建立和管理適用於 PostgreSQL 的 Azure 資料庫防火牆規則 | Microsoft Docs"
+description: "本文說明如何使用 Azure CLI 命令列，建立和管理適用於 PostgreSQL 的 Azure 資料庫防火牆規則。"
 services: postgresql
 author: jasonwhowell
 ms.author: jasonh
@@ -10,70 +10,70 @@ ms.service: postgresql
 ms.devlang: azure-cli
 ms.topic: article
 ms.date: 06/13/2017
-ms.openlocfilehash: 06e34c9e3996c2ec3df63191d794bc34d0ca0cf2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6f081416dd7d78f0153b3fda21a340a8c1a70c5f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-and-manage-azure-database-for-postgresql-firewall-rules-using-azure-cli"></a>使用 Azure CLI 建立和管理適用於 PostgreSQL 的 Azure 資料庫防火牆規則
-伺服器層級防火牆規則可讓系統管理員 toomanage 存取 tooan Azure Database PostgreSQL 伺服器從特定的 IP 位址或 IP 位址範圍。 您可以使用方便 Azure CLI 命令，來建立、 更新、 刪除、 清單，並顯示您的伺服器防火牆規則 toomanage。 如需「適用於 PostgreSQL 的 Azure 資料庫」防火牆的概觀，請參閱[適用於 PostgreSQL 的 Azure 資料庫伺服器防火牆規則](concepts-firewall-rules.md)
+伺服器等級防火牆規則可讓系統管理員從特定的 IP 位址或 IP 位址範圍，管理和存取適用於 PostgreSQL 的 Azure 資料庫伺服器。 透過方便的 Azure CLI 命令，您可以建立、更新、刪除、列出及顯示防火牆規則，以管理您的伺服器。 如需「適用於 PostgreSQL 的 Azure 資料庫」防火牆的概觀，請參閱[適用於 PostgreSQL 的 Azure 資料庫伺服器防火牆規則](concepts-firewall-rules.md)
 
 ## <a name="prerequisites"></a>必要條件
-透過這個方式 tooguide toostep，您需要：
+若要逐步執行本作法指南，您需要︰
 - [「適用於 PostgreSQL 的 Azure 資料庫」伺服器和資料庫](quickstart-create-server-database-azure-cli.md)
-- 安裝[Azure CLI 2.0](/cli/azure/install-azure-cli)命令列公用程式或使用 hello Azure 雲端殼層 hello 瀏覽器中的。
+- 安裝 [Azure CLI 2.0](/cli/azure/install-azure-cli) 命令列公用程式，或在瀏覽器中使用 Azure Cloud Shell。
 
 ## <a name="configure-firewall-rules-for-azure-database-for-postgresql"></a>設定「適用於 PostgreSQL 的 Azure 資料庫」的防火牆規則
-hello [az postgres 伺服器防火牆規則](/cli/azure/postgres/server/firewall-rule)命令會使用的 tooconfigure 防火牆規則。
+[az postgres server firewall-rule](/cli/azure/postgres/server/firewall-rule) 命令可用於設定防火牆規則。
 
 ## <a name="list-firewall-rules"></a>列出防火牆規則 
-toolist hello 現有伺服器防火牆規則 hello 在伺服器上，執行 hello [az postgres 伺服器防火牆規則清單](/cli/azure/postgres/server/firewall-rule#list)命令。
+若要列出伺服器上現有的伺服器防火牆規則，請執行 [az postgres server firewall-rule list](/cli/azure/postgres/server/firewall-rule#list) 命令。
 ```azurecli-interactive
 az postgres server firewall-rule list --resource-group myresourcegroup --server mypgserver-20170401
 ```
-如果依預設，在 JSON 中的任何格式，hello 輸出會列出 hello 規則。 您可以使用 hello 交換器`--output table`更容易閱讀的表格格式做為 hello 輸出。
+輸出會列出規則 (若有的話)，預設為 JSON 格式。 您可以使用參數 `--output table`，以更容易閱讀的資料表格式呈現輸出。
 ```azurecli-interactive
 az postgres server firewall-rule list --resource-group myresourcegroup --server mypgserver-20170401 --output table
 ```
 ## <a name="create-firewall-rule"></a>建立防火牆規則
-新的防火牆規則 hello 在伺服器上，執行 hello toocreate [az postgres 伺服器防火牆規則建立](/cli/azure/postgres/server/firewall-rule#create)命令。 
+若要在伺服器上建立新的防火牆規則，請執行 [az postgres server firewall-rule create](/cli/azure/postgres/server/firewall-rule#create) 命令。 
 
-這個範例允許所有 IP 位址 tooaccess hello 伺服器範圍**mypgserver 20170401.postgres.database.azure.com**
+此範例允許所有 IP 位址範圍存取伺服器 **mypgserver-20170401.postgres.database.azure.com**
 ```azurecli-interactive
 az postgres server firewall-rule create --resource-group myresourcegroup  --server mypgserver-20170401 --name "AllowIpRange" --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
 ```
-tooallow 單數的 IP 位址 tooaccess，提供 hello 起始 IP 和結束 IP，如此範例所示為 hello 相同的位址。
+若要允許單一 IP 位址進行存取，請提供相同的位址作為起始 IP 和結束 IP，如這個範例所示。
 ```azurecli-interactive
 az postgres server firewall-rule create --resource-group myresourcegroup  
 --server mypgserver-20170401 --name "AllowSingleIpAddress" --start-ip-address 13.83.152.1 --end-ip-address 13.83.152.1
 ```
-成功時，hello 命令輸出會列出您已建立，根據預設，在 JSON 格式的 hello 防火牆規則的 hello 詳細資料。 如果失敗，hello 改為輸出 showserror 訊息文字。
+成功時，命令輸出會列出您已建立之防火牆規則的詳細資料，預設為 JSON 格式。 如果失敗，輸出就會改為顯示錯誤訊息文字。
 
 ## <a name="update-firewall-rule"></a>更新防火牆規則 
-更新現有防火牆規則上 hello 伺服器使用[az postgres 伺服器防火牆規則更新](/cli/azure/postgres/server/firewall-rule#update)命令。 提供 hello 做為輸入，而且 hello 起始 IP 和結束 IP 屬性 tooupdate hello 現有防火牆規則名稱。
+請使用 [az postgres server firewall-rule update](/cli/azure/postgres/server/firewall-rule#update) 命令更新伺服器上現有的防火牆規則。 提供現有防火牆規則的名稱作為輸入，以及要更新的起始 IP 和結束 IP 屬性。
 ```azurecli-interactive
 az postgres server firewall-rule update --resource-group myresourcegroup --server mypgserver-20170401 --name "AllowIpRange" --start-ip-address 13.83.152.0 --end-ip-address 13.83.152.255
 ```
-成功時，hello 命令輸出會列出您已更新，根據預設，在 JSON 格式的 hello 防火牆規則的 hello 詳細資料。 如果失敗，hello 改為輸出 showserror 訊息文字。
+成功時，命令輸出會列出您已更新之防火牆規則的詳細資料，預設為 JSON 格式。 如果失敗，輸出就會改為顯示錯誤訊息文字。
 > [!NOTE]
-> 如果 hello 防火牆規則不存在，它取得建立 hello 更新命令。
+> 如果防火牆規則不存在，更新命令則會相關規則。
 
 ## <a name="show-firewall-rule-details"></a>顯示防火牆規則詳細資料
-您也可以顯示 hello 現有防火牆規則的詳細資料的伺服器執行[az postgres 伺服器防火牆規則顯示](/cli/azure/postgres/server/firewall-rule#show)命令。
+您也可以執行 [az postgres server firewall-rule show](/cli/azure/postgres/server/firewall-rule#show) 命令，以顯示伺服器現有的防火牆規則詳細資料。
 ```azurecli-interactive
 az postgres server firewall-rule show --resource-group myresourcegroup --server mypgserver-20170401 --name "AllowIpRange"
 ```
-成功時，hello 命令輸出會列出您已指定，預設會在 JSON 格式的 hello 防火牆規則的 hello 詳細資料。 如果失敗，hello 改為輸出 showserror 訊息文字。
+成功時，命令輸出會列出您已指定之防火牆規則的詳細資料，預設為 JSON 格式。 如果失敗，輸出就會改為顯示錯誤訊息文字。
 
 ## <a name="delete-firewall-rule"></a>刪除防火牆規則
-IP 範圍從 hello 伺服器 toorevoke 存取刪除現有的防火牆規則執行 hello [az postgres 伺服器防火牆規則刪除](/cli/azure/postgres/server/firewall-rule#delete)命令。 提供 hello hello 現有防火牆規則名稱。
+若要從伺服器撤銷 IP 範圍的存取，請執行 [az postgres server firewall-rule delete](/cli/azure/postgres/server/firewall-rule#delete) 命令以刪除現有防火牆規則。 提供現有防火牆規則的名稱。
 ```azurecli-interactive
 az postgres server firewall-rule delete --resource-group myresourcegroup --server mypgserver-20170401 --name "AllowIpRange"
 ```
-成功時，沒有任何輸出。 在發生錯誤時，會傳回 hello 錯誤訊息文字。
+成功時，沒有任何輸出。 發生錯誤時，就會傳回錯誤訊息文字。
 
 ## <a name="next-steps"></a>後續步驟
-- 同樣地，您可以使用網頁瀏覽器太[建立及管理 Azure 資料庫使用 hello Azure 入口網站的 PostgreSQL 防火牆規則](howto-manage-firewall-using-portal.md)
+- 同樣地，您可以透過網頁瀏覽器，[使用 Azure 入口網站建立和管理適用於 PostgreSQL 的 Azure 資料庫防火牆規則](howto-manage-firewall-using-portal.md)
 - 進一步了解[適用於 PostgreSQL 的 Azure 資料庫伺服器防火牆規則](concepts-firewall-rules.md)
-- 連線 PostgreSQL 伺服器 tooan Azure 資料庫的說明，請參閱[PostgreSQL 的 Azure 資料庫的連接程式庫](concepts-connection-libraries.md)
+- 如需連線至「適用於 PostgreSQL 的 Azure 資料庫」伺服器的說明，請參閱[「適用於 PostgreSQL 的 Azure 資料庫」的連線庫](concepts-connection-libraries.md)

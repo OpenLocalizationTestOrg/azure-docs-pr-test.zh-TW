@@ -1,6 +1,6 @@
 ---
-title: "從 Windows VM 磁碟 aaaDetach |Microsoft 文件"
-description: "了解 toodetach 來自 Azure 中使用 hello 傳統部署模型中的虛擬機器的磁碟。"
+title: "從 Windows VM 卸離磁碟 | Microsoft Docs"
+description: "了解如何使用傳統部署模型從 Azure 中的虛擬機器卸離磁碟。"
 services: virtual-machines-windows
 documentationcenter: 
 author: cynthn
@@ -15,19 +15,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/24/2017
 ms.author: cynthn
-ms.openlocfilehash: 6f4fda46b13ec83aed6051dd3c6459a9979de131
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 650c7e10150b95a6ad7cd455746f7c1d77b9b34c
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-toodetach-a-disk-from-a-windows-virtual-machine"></a>如何 toodetach 來自 Windows 虛擬機器的磁碟
+# <a name="how-to-detach-a-disk-from-a-windows-virtual-machine"></a>如何從 Windows 虛擬機器卸離磁碟
 > [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../../../resource-manager-deployment-model.md)。 本文件涵蓋使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。 如需有關磁碟使用 toodetach hello 資源管理員的如何資訊模型，請參閱[這裡](../../virtual-machines-windows-detach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需如何使用 Resource Manager 模型卸離磁碟的詳細資訊，請參閱[這裡](../../virtual-machines-windows-detach-disk.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 [!INCLUDE [howto-detach-disk-windows-linux](../../../../includes/howto-detach-disk-windows-linux.md)]
 
 ## <a name="additional-resources"></a>其他資源
 [有關虛擬機器的磁碟和 VHD](../about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
-[如何 tooattach 資料磁碟 tooa Windows 虛擬機器](attach-disk.md)
+[如何將資料磁碟附加至 Windows 虛擬機器](attach-disk.md)

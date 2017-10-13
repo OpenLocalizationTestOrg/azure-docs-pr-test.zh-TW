@@ -1,6 +1,6 @@
 ---
-title: "Azure Resource Manager 標尺 aaaConvert 設定範本 toouse 受管理的磁碟 |Microsoft 文件"
-description: "小數位數組範本 tooa 受管理的磁碟小數位數組將範本轉換。"
+title: "轉換 Azure Resource Manager 擴展集範本以使用受控磁碟 | Microsoft Docs"
+description: "轉換擴展集範本至受控磁碟擴展集範本。"
 keywords: "虛擬機器擴展集"
 services: virtual-machine-scale-sets
 documentationcenter: 
@@ -16,19 +16,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 5/18/2017
 ms.author: negat
-ms.openlocfilehash: 66c2217647e57ed2cfa39660c0175710ae2e63be
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2f5cb85703888c5056611d466f508547ee72e44b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="convert-a-scale-set-template-tooa-managed-disk-scale-set-template"></a>小數位數組範本 tooa 受管理的磁碟小數位數組將範本轉換
+# <a name="convert-a-scale-set-template-to-a-managed-disk-scale-set-template"></a>轉換擴展集範本至受控磁碟擴展集範本
 
-使用資源管理員範本來建立不使用受管理的磁碟設定的標尺的客戶可能會想 toomodify 它 toouse 管理磁碟。 本文將說明如何 toodo，使用做為範例提取要求從 hello [Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates)，範例資源管理員範本的社群導向的儲存機制。 這裡可以看到 hello 完整提取要求： [https://github.com/Azure/azure-quickstart-templates/pull/2998](https://github.com/Azure/azure-quickstart-templates/pull/2998)，和 hello 相關部分 hello 差異如下，以及說明：
+使用 Resource Manager 範本來建立不使用受控磁碟之擴展集的客戶可能希望修改它以使用受控磁碟。 此文章說明如何使用來自 [Azure 快速入門範本](https://github.com/Azure/azure-quickstart-templates) (提供範例 Resource Manager 範本的社群導向存放庫) 的提取要求範例執行此動作。 您可以在 [https://github.com/Azure/azure-quickstart-templates/pull/2998](https://github.com/Azure/azure-quickstart-templates/pull/2998) 找到完整提取要求，並在下面找到主要差異部分以及說明：
 
-## <a name="making-hello-os-disks-managed"></a>讓受管理的 hello OS 磁碟
+## <a name="making-the-os-disks-managed"></a>將 OS 磁碟設定為受控磁碟
 
-在下面的 hello 差異，我們可以看到我們移除了數個變數相關的 toostorage 帳戶和磁碟內容。 儲存體帳戶類型也不再需要 （Standard_LRS 是 hello 預設值），但我們無法仍指定它我們希望。 針對受控磁碟，只支援 Standard_LRS 與 Premium_LRS。 新的儲存體帳戶尾碼，唯一的字串陣列，sa 計數用於 hello 舊範本 toogenerate 儲存體帳戶名稱。 這些變數就不再需要在 hello 新範本，因為 hello 客戶代表受管理的磁碟會自動建立的儲存體帳戶。 同樣地，vhd 容器名稱和作業系統磁碟名稱就不再需要因為受管理的磁碟會自動命名 hello 基礎儲存體 blob 容器和磁碟。
+在下面的差異中，我們可以看到我們已移除數個與儲存體帳戶相關的變數和磁碟屬性。 儲存體帳戶類型已不再是必要項目 (Standard_LRS 是預設值)，但我們仍然可以視需要指定。 針對受控磁碟，只支援 Standard_LRS 與 Premium_LRS。 我們在舊範本中使用新的儲存體帳戶尾碼、唯一字串陣列與 SA 計數來產生儲存體帳戶名稱。 這些變數在新範本中已不再是必要項目，因為受控磁碟會代表客戶自動建立儲存體帳戶。 同樣地，VHD 容器名稱與 OS 磁碟名稱已不再是必要項目，因為受控磁碟會自動命名底層儲存體 Blob 容器與磁碟。
 
 ```diff
    "variables": {
@@ -52,7 +52,7 @@ ms.lasthandoff: 10/06/2017
 ```
 
 
-在 hello 差異下，我們可以我們已更新 hello，請參閱計算應用程式開發介面版本 too2016-04-30-預覽，這是 hello 最早的必要的版本與小數位數設定的受管理的磁碟支援。 請注意，我們可能仍會使用未受管理的磁碟在 hello 舊語法與 hello 新 api 版本視。 換句話說，如果我們只能更新 hello 計算應用程式開發介面版本，而且不會變更任何其他項目，hello 範本應該繼續執行之前為 toowork。
+在下面的差異中，我們可以看到我們已將計算 API 版本更新為 2016-04-30-preview，這是針對具有擴展集之受控磁碟支援的最低版本。 請注意，我們仍然可以視需要在新 API 版本中搭配舊語法使用受控磁碟。 換句話說，若我們只更新計算 API 版本但未變更任何其他項目，範本應該可繼續如往常一樣運作。
 
 ```diff
 @@ -86,7 +74,7 @@
@@ -66,7 +66,7 @@ ms.lasthandoff: 10/06/2017
    },
 ```
 
-在下面的 hello 差異，我們可以看到，我們正在移除 hello 儲存體帳戶資源從 hello 資源陣列完全。 我們已不再需要它們，因為受控磁碟會代表我們自動建立它們。
+在下面的差異中，我們可以看到我們正在將儲存體帳戶資源完全從資源陣列移除。 我們已不再需要它們，因為受控磁碟會代表我們自動建立它們。
 
 ```diff
 @@ -113,19 +101,6 @@
@@ -91,7 +91,7 @@ ms.lasthandoff: 10/06/2017
        "location": "[resourceGroup().location]",
 ```
 
-在下面我們 hello 差異可以我們會移除 hello，請參閱取決於子句參考 hello 小數位數組 toohello 迴圈已建立儲存體帳戶。 在 hello 舊範本中，這確保 hello 規模集開始建立，但這個子句已不再需要使用受管理磁碟之前，所建立 hello 儲存體帳戶。 我們也會移除 hello vhd 容器的內容，並 hello 作業系統磁碟名稱 屬性，因為這些屬性會自動由幕後 hello 受管理的磁碟。 如果我們必須承擔更多，我們可以加入`"managedDisk": { "storageAccountType": "Premium_LRS" }`hello"osDisk 」 組態，如果我們想高階 OS 磁碟中。 只有 Vm 使用大寫或小寫的 ' hello VM 在 sku 可以使用高階磁碟。
+在下面的差異中，我們可以看到我們正在將從擴展集參考的「相依於」子句移至建立儲存體帳戶的迴圈。 在舊範本中，這可以確保會在開始建立擴展集之前先建立儲存體帳戶，但搭配受控磁碟使用時，此子句已非必要。 我們也已經移除 VHD 容器屬性與 OS 磁碟名稱屬性，因為這些屬性會自動由受控磁碟處理。 如果需要，我們可以在 "osDisk" 設定中新增 `"managedDisk": { "storageAccountType": "Premium_LRS" }`，以建立進階 OS 磁碟。 只有 VM SKU 中具有大寫或小寫 's' 的 VM 可以使用進階磁碟。
 
 ```diff
 @@ -183,7 +158,6 @@
@@ -120,12 +120,12 @@ ms.lasthandoff: 10/06/2017
 
 ```
 
-Hello 小數位數組組態是否 toouse managed 或 unmanaged 的磁碟中沒有明確的屬性。 hello 規模集知道哪些 toouse hello 儲存體設定檔中的 hello 屬性為基礎。 因此，請務必修改 hello 範本 tooensure hello 規模集的 hello 存放裝置設定檔中的 hello 權限的內容時。
+擴展集設定中並沒有明確的屬性可決定要使用受控或非受控磁碟。 擴展集會根據儲存體設定檔中的屬性來判斷要使用的磁碟。 因此，修改範本以確保擴展集的儲存體設定檔中有正確的屬性非常重要。
 
 
 ## <a name="data-disks"></a>資料磁碟
 
-Hello 變更上述，hello 小數位數組會使用受管理的磁碟 hello OS 磁碟，但資料磁碟的情況為何？tooadd 資料磁碟，在相同層級為"osDisk"hello，加入下"storageProfile"hello"dataDisks"屬性。 hello hello 屬性的值是 JSON 物件的清單，每一個都有屬性 （這必須是唯一的每個 VM 上的資料磁碟） 的 「 lun"，"createOption"("empty"是目前 hello 唯一支援的選項)，和 「 diskSizeGB 」 （hello hello 磁碟，以 gb 為單位的大小; 必須是大於 0 且小於 1024年） 在 hello 下列範例中： 
+根據上面的變更，擴展集會針對 OS 磁碟使用受控磁碟，但對於資料磁碟呢？ 若要新增資料磁碟，請在與 "osDisk" 相同層級的 "storageProfile" 下新增 "dataDisks" 屬性。 屬性的值是 JSON 物件清單，其中每個物件都具有屬性 "lun" (對於 VM 上的每個資料磁碟，這必須是唯一的)、"createOption" ("empty" 是目前唯一支援的選項) 與 "diskSizeGB" (以 GB 為單位的磁碟大小，必須大於 0 並小於 1024)，如下列範例中所示： 
 
 ```
 "dataDisks": [
@@ -137,13 +137,13 @@ Hello 變更上述，hello 小數位數組會使用受管理的磁碟 hello OS �
 ]
 ```
 
-如果您指定`n`此陣列中的磁碟，在 hello 標尺每個 VM 設定取得`n`資料磁碟。 但是請注意，這些資料磁碟是未經處理的裝置。 它們並未格式化。 它是最多 toohello 客戶 tooattach、 磁碟分割，以及一個格式 hello 磁碟才能使用它們。 選擇性地，我們也可以指定`"managedDisk": { "storageAccountType": "Premium_LRS" }`它應該是高階資料磁碟的每個資料磁碟物件 toospecify 中。 只有 Vm 使用大寫或小寫的 ' hello VM 在 sku 可以使用高階磁碟。
+若在此陣列中指定 `n` 磁碟，擴展集中的每個 VM 都會取得 `n` 資料磁碟。 但是請注意，這些資料磁碟是未經處理的裝置。 它們並未格式化。 客戶可以決定是否要在使用這些磁碟之前先連結、分割或格式化它們。 或者，我們也可以在每個資料磁碟物件中指定 `"managedDisk": { "storageAccountType": "Premium_LRS" }`，以指定它應該是進階資料磁碟。 只有 VM SKU 中具有大寫或小寫 's' 的 VM 可以使用進階磁碟。
 
-toolearn 進一步了解使用資料磁碟的小數位數的集合，請參閱[本文](./virtual-machine-scale-sets-attached-disks.md)。
+若要深入了解如何搭配擴展集使用資料磁碟，請參閱[此文章](./virtual-machine-scale-sets-attached-disks.md)。
 
 
 ## <a name="next-steps"></a>後續步驟
-例如資源管理員範本使用規模集 」 vmss 」 中搜尋 hello [Azure 快速入門範本 github 儲存機制](https://github.com/Azure/azure-quickstart-templates)。
+如需使用擴展集的範例 Resource Manager 範本，請在 [Azure 快速入門範本 github 儲存機制](https://github.com/Azure/azure-quickstart-templates)中搜尋 "vmss"。
 
-如需一般資訊，請參閱 hello[規模集的主要登陸頁面](https://azure.microsoft.com/services/virtual-machine-scale-sets/)。
+如需一般資訊，請參閱 [擴展集的主要登陸頁面](https://azure.microsoft.com/services/virtual-machine-scale-sets/)。
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaRestore 資料在 Azure tooa Windows Server 或 Windows 電腦 |Microsoft 文件"
-description: "了解 toorestore 資料如何儲存在 Azure tooa Windows Server 或 Windows 電腦。"
+title: "將 Azure 中的資料還原至 Windows Server 或 Windows 電腦 | Microsoft Docs"
+description: "了解如何將儲存於 Azure 中的資料還原至 Windows Server 或 Windows 電腦。"
 services: backup
 documentationcenter: 
 author: saurabhsensharma
@@ -14,172 +14,172 @@ ms.devlang: na
 ms.topic: article
 ms.date: 8/16/2017
 ms.author: saurse;trinadhk;markgal;
-ms.openlocfilehash: 11335495e448986a74f1733406f87e04331641d7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 231dd61f95267b3a504ed70e9b3a5abc470b69b2
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="restore-files-tooa-windows-server-or-windows-client-machine-using-resource-manager-deployment-model"></a>還原檔案 tooa Windows server 或 Windows 用戶端電腦使用資源管理員部署模型
+# <a name="restore-files-to-a-windows-server-or-windows-client-machine-using-resource-manager-deployment-model"></a>使用 Resource Manager 部署模型將檔案還原到 Windows Server 或 Windows 用戶端電腦
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](backup-azure-restore-windows-server.md)
 > * [傳統入口網站](backup-azure-restore-windows-server-classic.md)
 >
 >
 
-這篇文章說明如何從備份保存庫 toorestore 資料。 toorestore 資料，您會使用 hello 復原資料精靈在 hello Microsoft Azure 復原服務 」 (MARS) 代理程式。 當您還原資料時，您可以︰
+此文章說明如何從備份保存庫還原資料。 若要還原資料，您可以使用 Microsoft Azure 復原服務 (MARS) 代理程式中的 [復原資料精靈]。 當您還原資料時，您可以︰
 
-* 相同電腦中的 hello 備份還原資料 toohello 拍攝。
-* 還原資料 tooan 其他機器。
+* 將資料還原到進行備份的相同電腦。
+* 將資料還原至其他電腦。
 
-年 1 月 2017，Microsoft 發行預覽更新 toohello MARS 代理程式。 Bug 修正，以及這項更新啟用立即還原，可讓您 toomount 可寫入的復原點快照集以復原磁碟區。 然後，您可以瀏覽 hello 復原磁碟區並將複製檔案 tooa 本機電腦藉此選擇性地還原檔案。
+2017 年 1 月，Microsoft 推出 MARS 代理程式預覽更新。 這項更新除了錯誤修正之外，還啟用了「立即還原」，允許您掛接可寫入的復原點快照來做為復原磁碟區。 您接著可以探索復磁碟區並將檔案複製至本機電腦，藉此選擇性地還原檔案。
 
 > [!NOTE]
-> hello [2017 年 1 月更新 Azure Backup](https://support.microsoft.com/en-us/help/3216528?preview)如果您想要立即還原 toorestore 資料 toouse，則需要。 也在保存庫在 hello 技術支援文件中所列的地區設定必須加以保護 hello 備份資料。 請參閱 hello [2017 年 1 月更新 Azure Backup](https://support.microsoft.com/en-us/help/3216528?preview) hello 支援 立即還原的地區設定的最新的清單。 「立即還原」目前**無法**在所有地區設定中使用。
+> 如果您要使用「立即還原」來還原資料，必須要有 [2017 年 1 月 Azure 備份更新](https://support.microsoft.com/en-us/help/3216528?preview)。 另外，您也必須在支援文章列出之地區設定的保存庫中，保護備份資料。 請參閱 [2017 年 1 月 Azure 備份更新](https://support.microsoft.com/en-us/help/3216528?preview)，了解支援「立即還原」的最新地區設定清單。 「立即還原」目前**無法**在所有地區設定中使用。
 >
 
-立即還原適用於在 hello Azure 入口網站中的 復原服務保存庫中使用與備份保存庫 hello 傳統入口網站中。 如果您想 toouse 立即還原，下載 hello MARS 更新，並遵循提到立即還原 hello 程序。
+「立即還原」可用於 Azure 入口網站中的復原服務保存庫以及傳統入口網站中的備份保存庫。 如果您想要使用「立即還原」，請下載 MARS 更新，並依照提及「立即還原」部分中的程序進行操作。
 
 [!INCLUDE [learn-about-deployment-models](../../includes/learn-about-deployment-models-rm-include.md)]
 
-## <a name="use-instant-restore-toorecover-data-toohello-same-machine"></a>使用 立即還原 toorecover 資料 toohello 同一部電腦
+## <a name="use-instant-restore-to-recover-data-to-the-same-machine"></a>使用「立即還原」將資料還原至同一台電腦
 
-如果您不小心刪除了檔案，並且想 toorestore 它 toohello 同一部電腦 （從哪些 hello 備份），hello 下列步驟將協助您復原 hello 資料。
+如果您不小心刪除檔案，而您想要將它還原到相同的電腦 (備份進行處)，下列步驟可協助您復原資料。
 
-1. 開啟 hello **Microsoft Azure 備份**中對齊。 如果您不知道 hello 嵌入式管理單元安裝所在，搜尋 hello 電腦或伺服器**Microsoft Azure 備份**。
+1. 開啟 **Microsoft Azure 備份** 嵌入式管理單元。 如果您不知道快照安裝的位置，請在電腦或伺服器上搜尋 **Microsoft Azure 備份**。
 
-    hello 桌面應用程式應該會出現在 hello 搜尋結果中。
+    傳統型應用程式應該會出現在搜尋結果中。
 
-2. 按一下**復原資料**toostart hello 精靈。
+2. 按一下 [復原資料] 以啟動精靈。
 
     ![復原資料](./media/backup-azure-restore-windows-server/recover.png)
 
-3. Hello 上**入門**窗格中，toorestore hello 資料 toohello 相同伺服器或電腦上，選取**這部伺服器 (`<server name>`)**按一下**下一步**。
+3. 在 [開始使用] 窗格中，若要將資料還原至同一台伺服器或電腦，請選取 [這台伺服器 (`<server name>`)] 並按一下 [下一步]。
 
-    ![選擇此伺服器選項 toorestore hello 資料 toohello 同一部電腦](./media/backup-azure-restore-windows-server/samemachine_gettingstarted_instantrestore.png)
+    ![選擇 [這台伺服器] 選項以將資料還原到同一台電腦](./media/backup-azure-restore-windows-server/samemachine_gettingstarted_instantrestore.png)
 
-4. 在 hello**選取復原模式** 窗格中，選擇**個別檔案及資料夾**，然後按一下**下一步**。
+4. 在 [選取復原模式] 窗格上，選擇 [個別檔案與資料夾]，然後按一下 [下一步]。
 
     ![瀏覽檔案](./media/backup-azure-restore-windows-server/samemachine_selectrecoverymode_instantrestore.png)
 
-5. 在 hello**選取磁碟區和日期**窗格中，選取 hello 磁碟區，其中包含 hello 檔案及/或您想要 toorestore 的資料夾。
+5. 在 [選取磁碟區和日期] 窗格上，選取包含您要還原之檔案和/或資料夾的磁碟區。
 
-    Hello 日曆上選取的復原點。 您可以從任何時間的復原點還原。 日期**粗體**表示 hello 至少一個復原點的可用性。 一旦您選取日期，如果有多個復原點可用，請選擇 hello 特定的復原點從 hello**時間**下拉式功能表。
+    在日曆上，選取復原點。 您可以從任何時間的復原點還原。 **粗體**的日期表示至少有一個復原點可用。 一旦您選取一個日期，如果有多個復原點可用，您可以從 [時間] 下拉式功能表選擇特定的復原點。
 
     ![磁碟區和日期](./media/backup-azure-restore-windows-server/samemachine_selectvolumedate_instantrestore.png)
 
-6. 一旦您已選擇 hello 復原點 toorestore，按一下 **掛接**。
+6. 選擇要還原的復原點之後，按一下 [掛接]。
 
-    Azure 備份掛接 hello 本機復原點，並使用它做為復原磁碟區。
+    Azure 備份會掛接本機復原點，並且使用它做為復原磁碟區。
 
-7. 在 hello**瀏覽和復原檔案** 窗格中，按一下 **瀏覽**想 tooopen Windows 檔案總管 並尋找 hello 檔案及資料夾。
+7. 在 [瀏覽及復原檔案] 窗格上，按一下 [瀏覽] 以開啟 [Windows 檔案總管]，然後尋找所需的檔案和資料夾。
 
     ![修復選項](./media/backup-azure-restore-windows-server/samemachine_browserecover_instantrestore.png)
 
 
-8. 在 Windows 檔案總管 中，複製 hello 檔案及/或資料夾想 toorestore，並將它們貼 tooany 位置 toohello 本機伺服器或電腦。 您可以開啟或資料流 hello 檔案直接從 hello 復原磁碟區，並確認 hello 正確版本會復原。
+8. 在 [Windows 檔案總管] 中，複製要還原的檔案和/或資料夾，並將它們貼上至伺服器或電腦的任意本機位置。 您可以直接從復原磁碟區開啟或串流檔案，並確認是否復原正確的版本。
 
-    ![複製並貼上檔案和資料夾從掛接的磁碟區 toolocal 位置](./media/backup-azure-restore-windows-server/samemachine_copy_instantrestore.png)
+    ![複製掛接磁碟區的檔案和資料夾，並貼上至本機位置](./media/backup-azure-restore-windows-server/samemachine_copy_instantrestore.png)
 
-9. 完成還原 hello 檔案及/或資料夾，在 hello**瀏覽和修復檔案** 窗格中，按一下 **卸載**。 然後按一下 **是**tooconfirm 想 toounmount hello 磁碟區。
+9. 當您完成還原檔案和/或資料夾後，請在 [瀏覽及復原檔案] 窗格上，按一下 [卸載]。 按一下 [是] 以確認要卸載磁碟區。
 
-    ![取消掛接 hello 磁碟區，並確認](./media/backup-azure-restore-windows-server/samemachine_unmount_instantrestore.png)
+    ![卸載磁碟區並確認](./media/backup-azure-restore-windows-server/samemachine_unmount_instantrestore.png)
 
     > [!Important]
-    > 如果您沒有按一下 取消掛接，hello 復原磁碟區會保持已掛接 hello 裝載時的時間從 6 小時。 不過，hello 掛接時間是擴充高達 24 小時內進行中的檔案複製時的最大值。 掛上 hello 磁碟區時，將會不執行任何備份作業。 Hello 復原磁碟區未裝載任何的排程備份作業 toorun 期間 hello 當 hello 掛上磁碟區，會執行。
+    > 如果您並未按一下 [卸載]，復原磁碟區會保持掛接 6 個小時 (從掛接後開始計算)。 不過，如果是進行中的檔案複製，掛接時間可擴充至高達 24 小時。 當磁碟區處於掛接狀態時，不會執行任何備份作業。 當掛接磁碟區時，任何排定要執行的備份作業會在復原磁碟區卸載之後才執行。
     >
 
 
-## <a name="use-instant-restore-toorestore-data-tooan-alternate-machine"></a>使用 立即還原 toorestore 資料 tooan 替代機器
-整個伺服器遺失時，您仍然可以從 Azure Backup tooa 不同電腦中復原資料。 hello 下列步驟說明 hello 工作流程。
+## <a name="use-instant-restore-to-restore-data-to-an-alternate-machine"></a>使用「立即還原」將資料還原至其他電腦
+若您遺失整個伺服器，您仍然可從 Azure 備份將資料還原到其他電腦。 下列步驟說明工作流程。
 
 
-包含下列步驟中所使用的 hello 術語：
+這些步驟中所使用的術語包含：
 
-* *來源機器*– 拍攝 hello 從哪個 hello 備份的原始電腦，這是目前無法使用。
-* *目標電腦*– hello 機器 toowhich hello 資料要復原的目的地。
-* *範例保存庫*– hello 復原服務保存庫 toowhich hello*來源機器*和*目標機器*註冊。 <br/>
+*  – 用來進行備份且目前無法使用的的原始電腦。
+*  – 復原資料時的目標電腦。
+* 「範例保存庫」–「來源電腦」和「目標電腦」註冊的復原服務保存庫。 <br/>
 
 > [!NOTE]
-> 備份無法還原的 tooa 目標電腦執行舊版的 hello 作業系統。 例如，從 Windows 7 電腦建立的備份可以還原至 Windows 8 或更新版本的電腦。 執行 Windows 8 電腦的備份無法還原的 tooa Windows 7 電腦。
+> 備份無法還原到執行舊版作業系統的目標電腦。 例如，從 Windows 7 電腦建立的備份可以還原至 Windows 8 或更新版本的電腦。 從 Windows 8 電腦建立的備份無法還原至 Windows 7 電腦。
 >
 >
 
-1. 開啟 hello **Microsoft Azure 備份**在 hello 上對齊*目標機器*。
+1. 在「目標電腦」上開啟 [Microsoft Azure 備份] 嵌入式管理單元。
 
-2. 請確定 hello*目標電腦*和 hello*來源機器*是相同的復原服務保存庫註冊的 toohello。
+2. 確定 [目標電腦] 和 [來源電腦] 已註冊到同一個復原服務保存庫。
 
-3. 按一下**復原資料**tooopen hello**復原資料精靈**。
+3. 按一下 [復原資料] 以開啟 [復原資料精靈]。
 
     ![復原資料](./media/backup-azure-restore-windows-server/recover.png)
 
-4. 在 hello**入門**窗格中，選取**另一部伺服器**
+4. 在 [開始使用] 窗格上，選取 [其他伺服器]
 
     ![其他伺服器](./media/backup-azure-restore-windows-server/alternatemachine_gettingstarted_instantrestore.png)
 
-5. 提供對應 toohello hello 保存庫認證檔案*範例保存庫*，然後按一下**下一步**。
+5. 提供與「範例保存庫」相對應的保存庫認證檔，然後按一下 [下一步]。
 
-    如果 hello 保存庫認證檔案無效 （或已過期），下載新的保存庫認證檔案從 hello*範例保存庫*hello Azure 入口網站中。 一旦您提供有效的保存庫認證，hello 的 hello 對應的備份保存庫會出現的名稱。
+    如果保存庫認證檔無效 (或已過期)，請從 Azure 入口網站中的「範例保存庫」下載新的保存庫認證檔。 一旦您提供有效的保存庫認證檔之後，就會顯示對應的備份保存庫名稱。
 
 
-6. 在 hello**選取備份伺服器**窗格中，選取 hello*來源機器*從 hello 清單中顯示的機器，並提供 hello 複雜密碼。 然後按 [下一步] 。
+6. 在 [選取備份伺服器] 窗格上，從顯示的電腦清單選取 [來源電腦]，並提供複雜密碼。 然後按 [下一步] 。
 
     ![電腦清單](./media/backup-azure-restore-windows-server/alternatemachine_selectmachine_instantrestore.png)
 
-7. 在 hello**選取復原模式**窗格中，選取**個別檔案及資料夾**按一下**下一步**。
+7. 在 [選取復原模式] 窗格上，選取 [個別檔案和資料夾] 並按一下 [下一步]。
 
     ![搜尋](./media/backup-azure-restore-windows-server/alternatemachine_selectrecoverymode_instantrestore.png)
 
-8. 在 hello**選取磁碟區和日期**窗格中，選取 hello 磁碟區，其中包含 hello 檔案及/或您想要 toorestore 的資料夾。
+8. 在 [選取磁碟區和日期] 窗格上，選取包含您要還原之檔案和/或資料夾的磁碟區。
 
-    Hello 日曆上選取的復原點。 您可以從任何時間的復原點還原。 日期**粗體**表示 hello 至少一個復原點的可用性。 一旦您選取日期，如果有多個復原點可用，請選擇 hello 特定的復原點從 hello**時間**下拉式功能表。
+    在日曆上，選取復原點。 您可以從任何時間的復原點還原。 **粗體**的日期表示至少有一個復原點可用。 一旦您選取一個日期，如果有多個復原點可用，您可以從 [時間] 下拉式功能表選擇特定的復原點。
 
     ![搜尋項目](./media/backup-azure-restore-windows-server/alternatemachine_selectvolumedate_instantrestore.png)
 
-9. 按一下**掛接**toolocally 掛接 hello 復原點復原磁碟區上為您*目標機器*。
+9. 按一下 [掛接] 以掛接本機的復原點，做為 [目標電腦] 的復原磁碟區。
 
-10. 在 hello**瀏覽和復原檔案** 窗格中，按一下 **瀏覽**想 tooopen Windows 檔案總管 並尋找 hello 檔案及資料夾。
+10. 在 [瀏覽及復原檔案] 窗格上，按一下 [瀏覽] 以開啟 [Windows 檔案總管]，然後尋找所需的檔案和資料夾。
 
     ![加密](./media/backup-azure-restore-windows-server/alternatemachine_browserecover_instantrestore.png)
 
-11. 在 Windows 檔案總管中，將複製 hello 檔案及/或資料夾從 hello 復原磁碟區並貼 tooyour*目標機器*位置。 您可以開啟或資料流 hello 檔案直接從 hello 復原磁碟區，並確認 hello 正確版本會復原。
+11. 在 [Windows 檔案總管] 中，從復原磁碟區複製檔案和/或資料夾，然後貼上至 [目標電腦] 位置。 您可以直接從復原磁碟區開啟或串流檔案，並確認是否復原正確的版本。
 
     ![加密](./media/backup-azure-restore-windows-server/alternatemachine_copy_instantrestore.png)
 
-12. 完成還原 hello 檔案及/或資料夾，在 hello**瀏覽和修復檔案** 窗格中，按一下 **卸載**。 然後按一下 **是**tooconfirm 想 toounmount hello 磁碟區。
+12. 當您完成還原檔案和/或資料夾後，請在 [瀏覽及復原檔案] 窗格上，按一下 [卸載]。 按一下 [是] 以確認要卸載磁碟區。
 
     ![加密](./media/backup-azure-restore-windows-server/alternatemachine_unmount_instantrestore.png)
 
     > [!Important]
-    > 如果您沒有按一下 取消掛接，hello 復原磁碟區會保持已掛接 hello 裝載時的時間從 6 小時。 不過，hello 掛接時間是擴充高達 24 小時內進行中的檔案複製時的最大值。 掛上 hello 磁碟區時，將會不執行任何備份作業。 Hello 復原磁碟區未裝載任何的排程備份作業 toorun 期間 hello 當 hello 掛上磁碟區，會執行。
+    > 如果您並未按一下 [卸載]，復原磁碟區會保持掛接 6 個小時 (從掛接後開始計算)。 不過，如果是進行中的檔案複製，掛接時間可擴充至高達 24 小時。 當磁碟區處於掛接狀態時，不會執行任何備份作業。 當掛接磁碟區時，任何排定要執行的備份作業會在復原磁碟區卸載之後才執行。
     >
 
 ## <a name="troubleshooting"></a>疑難排解
-如果 Azure 備份不成功掛接 hello 復原磁碟區的按一下的幾分鐘後，即使**掛接**或失敗 toomount hello 復原磁碟區與一個或多個錯誤，請遵循 hello toobegin 通常復原步驟。
+如果即使按一下 [掛接] 數分鐘之後，Azure 備份仍未成功掛接復原磁碟區，或者無法掛接復原磁碟區且有一或多個錯誤，請遵循以下步驟來開始一般復原。
 
-1.  如果已執行數分鐘，請取消 hello 持續掛接程序。
+1.  如果已執行數分鐘，請取消進行中的掛接程序。
 
-2.  確認您是在 hello hello Azure 備份代理程式的最新版本。 toofind hello 版本資訊的 Azure 備份代理程式，按一下 **有關 Microsoft Azure Recovery Services Agent**上 hello**動作**窗格中的 Microsoft Azure Backup 主控台，並確保該 hello **版本**數字是相等 tooor 高於 hello 版本中所述[本文](https://go.microsoft.com/fwlink/?linkid=229525)。 您可以下載從 hello 最新版本[這裡](https://go.microsoft.com/fwLink/?LinkID=288905)
+2.  確認您使用最新版本的 Azure 備份代理程式。 若要了解 Azure 備份代理程式的版本資訊，按一下 Microsoft Azure 備份主控台之 [動作] 窗格中的 [關於 Microsoft Azure 復原服務代理程式]，並且確定**版本**號碼等於或高於[本文](https://go.microsoft.com/fwlink/?linkid=229525)中所述的版本。 您可以從[這裡](https://go.microsoft.com/fwLink/?LinkID=288905)下載最新版本
 
-3.  跳過**裝置管理員** -> **存放裝置控制器**，並確保您可以找出**Microsoft iSCSI 啟動器**。 如果您可以找到它，直接移 toostep 7。 
+3.  移至 [裝置管理員]  ->  [儲存體控制器]，並確保您可以找出 **Microsoft iSCSI 啟動器**。 如果您可以找到它，請直接前往以下的步驟 7。 
 
-4.  如果您無法找出 Microsoft iSCSI 啟動器服務，如步驟 3 中所述，檢查 toosee 是否可以尋找下的一個項目**裝置管理員** -> **存放裝置控制器**呼叫**無法辨識的裝置**硬體識別碼**ROOT\ISCSIPRT**。
+4.  如果您無法如步驟 3 中所述，找到 Microsoft iSCSI 啟動器服務，請查看是否可以在名為 [不明裝置]、硬體識別碼為**ROOT\ISCSIPRT** 的 [裝置管理員]  ->  [儲存體控制器]項目。
 
 5.  以滑鼠右鍵按一下 [不明裝置]，然後選取 [更新驅動程式軟體]。
 
-6.  更新 hello 驅動程式選取 hello 選項太**自動搜尋更新的驅動程式軟體**。 應該在變更完成 hello 更新**不明裝置**太**Microsoft iSCSI 啟動器**如下所示。 
+6.  藉由選取 [自動搜尋更新的驅動程式軟體] 的選項，以更新驅動程式。 完成更新應該會將 [不明裝置] 變更為 [Microsoft iSCSI 啟動器]如下所示。 
 
     ![加密](./media/backup-azure-restore-windows-server/UnknowniSCSIDevice.png)
 
-7.  跳過**工作管理員** -> **服務 （本機）** -> **Microsoft iSCSI 啟動器服務**。 
+7.  移至 [工作管理員]  ->  [服務 (本機)]  ->  [Microsoft iSCSI 啟動器服務]。 
 
     ![加密](./media/backup-azure-restore-windows-server/MicrosoftInitiatorServiceRunning.png)
     
-8.  以滑鼠右鍵按一下 hello 服務，按一下 重新啟動 hello Microsoft iSCSI 啟動器服務**停止**和進一步再次以滑鼠右鍵按一下，並按一下**啟動**。
+8.  以滑鼠右鍵按一下服務，以重新啟動 Microsoft iSCSI 啟動器服務，按一下 [停止] 並且再次以滑鼠右鍵按一下，然後按一下 [啟動]。
 
 9.  使用即時還原重試復原。 
 
-如果 hello 復原仍然失敗，請重新啟動您的伺服器/用戶端。 如果不想要重新開機或 hello 復原仍然失敗甚至 hello 伺服器重新啟動之後，嘗試從其他機器，復原，並連絡 Azure 支援太移[Azure 入口網站](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)和提交支援要求。
+如果復原仍然失敗，請重新啟動您的伺服器/用戶端。 如果不想要重新開機，或者即使在重新啟動伺服器之後復原仍然失敗，請嘗試從其他電腦復原，移至 [Azure 入口網站](https://portal.azure.com/?#blade/Microsoft_Azure_Support/HelpAndSupportBlade)連絡 Azure 支援並且提交支援要求。
 
 ## <a name="next-steps"></a>後續步驟
 * 現在您已復原檔案和資料夾，接下來您可以 [管理您的備份](backup-azure-manage-windows-server.md)。

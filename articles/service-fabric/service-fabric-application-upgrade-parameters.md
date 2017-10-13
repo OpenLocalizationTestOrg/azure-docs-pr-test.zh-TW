@@ -1,6 +1,6 @@
 ---
 title: "應用程式升級：升級參數 | Microsoft Docs"
-description: "描述參數相關的 tooupgrading Service Fabric 應用程式，包括健康情況檢查 tooperform 和原則 tooautomatically 復原 hello 升級。"
+description: "描述升級 Service Fabric 應用程式的相關參數，包括執行健全狀況檢查和自動復原升級的原則。"
 services: service-fabric
 documentationcenter: .net
 author: mani-ramaswamy
@@ -14,50 +14,50 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 8/9/2017
 ms.author: subramar
-ms.openlocfilehash: abd0ba48c223be9aa0909c7a0100ba5986430db3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f09dad590f32c10f75484bba9afb7ea60f29d81e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="application-upgrade-parameters"></a>應用程式升級參數
-本文說明的 hello Azure Service Fabric 應用程式的升級期間 hello 適用於各種不同的參數。 hello 參數包括 hello 名稱和版本的 hello 應用程式。 它們是控制 hello 逾時和 hello 升級期間所套用的健康情況檢查的參數，而且它們會指定必須在升級失敗時套用的 hello 原則。
+本文說明在 Azure Service Fabric 應用程式升級期間套用的各種參數。 參數包含應用程式的名稱和版本。 它們是控制逾時的旋鈕與升級時套用的健康狀態檢查，並且指定升級失敗時必須套用的原則。
 
 <br>
 
 | 參數 | 說明 |
 | --- | --- |
-| ApplicationName |正在升級的 hello 應用程式名稱。 範例：fabric:/VisualObjects、fabric:/ClusterMonitor |
-| TargetApplicationTypeVersion |hello hello hello 升級目標的應用程式類型版本。 |
-| FailureAction |hello hello 升級失敗時，Service Fabric 所採取的動作。 hello 應用程式可能已回復 toohello 更新前版本 （復原），或 hello 升級可能會停止在 hello 目前升級網域。 在 hello 後者的情況下，hello 升級模式也會變更的 tooManual。 允許的值為回復和手動。 |
-| HealthCheckWaitDurationSec |Service Fabric 評估 hello hello 應用程式的健全狀況之前 （以秒為單位） hello 升級後的 hello 時間 toowait 完成 hello 升級網域上。 這段期間也可視為 hello 時間應該先執行應用程式，它可以視為狀況良好。 如果通過 hello 健全狀況檢查，hello 升級程序會繼續 toohello 下一個升級網域。  如果 hello 健全狀況檢查失敗時，Service Fabric 等候一段時間 (hello UpgradeHealthCheckInterval) 後再重試一次，直到達到 HealthCheckRetryTimeout hello 的 hello 健全狀況檢查。 hello 預設和建議的值為 0 秒。 |
-| HealthCheckRetryTimeoutSec |hello 持續時間 （以秒為單位），Service Fabric 會繼續 tooperform 宣告 hello 升級為失敗之前的健全狀況評估。 hello 預設值為 600 秒。 此期間會在達到 HealthCheckWaitDuration 之後開始計算。 在此 HealthCheckRetryTimeout，Service Fabric 可能會執行多個健全狀況檢查的 hello 應用程式健全狀況。 hello 預設值為 10 分鐘，而且應該適當地自訂應用程式。 |
-| HealthCheckStableDurationSec |hello 的持續時間 （以秒為單位） tooverify hello 應用程式之前移動下一個升級網域 toohello 穩定或完成 hello 升級。 這個等候持續時間之後執行 hello 健全狀況檢查的健全狀況使用的 tooprevent 未偵測到變更。 hello 預設值為 120 秒，並應該適當地自訂應用程式。 |
-| UpgradeDomainTimeoutSec |升級單一升級網域的時間上限 (以秒為單位)。 如果達到此逾時，hello 升級就會停止，並繼續根據 UpgradeFailureAction hello 設定。 hello 預設值絕不會是 （無限時），而且應該適當地自訂應用程式。 |
-| UpgradeTimeout |逾時 （以秒為單位），適用於 hello 整個升級。 如果達到此逾時，hello 升級停駐點，並觸發 UpgradeFailureAction。 hello 預設值絕不會是 （無限時），而且應該適當地自訂應用程式。 |
-| UpgradeHealthCheckInterval |會檢查 hello hello 健全狀況狀態的頻率。 Hello hello ClusterManager 區段中指定這個參數*叢集**資訊清單*，而且未指定 hello 升級 cmdlet 的一部分。 hello 預設值為 60 秒。 |
+| ApplicationName |正在升級的應用程式名稱。 範例：fabric:/VisualObjects、fabric:/ClusterMonitor |
+| TargetApplicationTypeVersion |升級目標的應用程式類型的版本。 |
+| FailureAction |升級失敗時，Service Fabric 所採取的動作。 應用程式可能已回復到更新前版本 (回復)，或升級可能已在目前的升級網域停止。 如果是後者，升級模式也會變更為手動。 允許的值為回復和手動。 |
+| HealthCheckWaitDurationSec |在升級網域上完成升級之後，Service Fabric 評估應用程式健康狀態的等待時間 (以秒為單位)。 這段期間也可視為應用程式在被視為健康之前應該執行的時間。 如果健康狀態檢查都通過，則升級程序會繼續進行下一個升級網域。  如果健康狀態檢查失敗，Service Fabric 會等候一定間隔 (UpgradeHealthCheckInterval)，再重試一次健康狀態檢查，直到達到 HealthCheckRetryTimeout 為止。 預設值和建議值為 0 秒。 |
+| HealthCheckRetryTimeoutSec |Service Fabric 在將升級宣告為失敗之前，繼續執行健康狀態評估的持續時間 (以秒為單位)。 預設值為 600 秒。 此期間會在達到 HealthCheckWaitDuration 之後開始計算。 在此 HealthCheckRetryTimeout 之內，Service Fabric 可能會執行多個應用程式健康狀態的健康狀態檢查。 預設值為 10 分鐘，您應該針對您的應用程式適當地加以自訂。 |
+| HealthCheckStableDurationSec |移至下一個升級網域或完成升級之前，要確認應用程式是否穩定的持續時間 (以秒為單位)。 這個等候持續時間是用來在執行健康狀態檢查後，防止未偵測到的健康狀態變更。 預設值為 120 秒鐘，您應該針對您的應用程式適當地加以自訂。 |
+| UpgradeDomainTimeoutSec |升級單一升級網域的時間上限 (以秒為單位)。 如果達到此逾時，升級會停止，然後根據 UpgradeFailureAction 的設定繼續。 預設值為永不 (無限)，您應該針對您的應用程式適當地加以自訂。 |
+| UpgradeTimeout |逾時 (以秒為單位) 適用於整個升級。 如果達到此逾時，升級會停止，並且會觸發 UpgradeFailureAction。 預設值為永不 (無限)，您應該針對您的應用程式適當地加以自訂。 |
+| UpgradeHealthCheckInterval |檢查健全狀況狀態的頻率。 此參數是在「叢集資訊清單」的 [ClusterManager] 區段中指定，而不是指定為升級 Cmdlet 的一部分。 預設值為 60 秒。 |
 
 <br>
 
 ## <a name="service-health-evaluation-during-application-upgrade"></a>應用程式升級期間的服務健康狀態評估
 <br>
-hello 健全狀況評估準則是選擇性的。 如果未指定 hello 健全狀況評估準則，開始升級時，Service Fabric 使用 hello hello ApplicationManifest.xml hello 應用程式執行個體中指定的應用程式健全狀況原則。
+健康狀態評估準則是選擇性的。 如果啟動升級時未指定健康狀態評估準則，則 Service Fabric 會使用應用程式執行個體的 ApplicationManifest.xml 中指定的應用程式健康狀態原則。
 
 <br>
 
 | 參數 | 說明 |
 | --- | --- |
-| ConsiderWarningAsError |預設值為 False。 評估 hello hello 升級期間的應用程式的健全狀況時，請將視為錯誤的 hello hello 應用程式的警告健全狀況事件。 根據預設，Service Fabric 不會評估警告健全狀況事件 toobe 失敗 （錯誤），因此 hello 升級可以繼續執行，即使有警告事件。 |
-| MaxPercentUnhealthyDeployedApplications |預設值和建議值為 0。 指定已部署應用程式的 hello 最大數目 (請參閱 hello[健全狀況 > 一節](service-fabric-health-introduction.md)) 的狀況不良之前可以 hello 應用程式會被視為狀況不良且失敗 hello 升級。 此參數定義 hello 應用程式健全狀況 hello 節點上，並可協助在升級期間偵測問題。 通常，hello 複本 hello 應用程式獲得負載平衡 toohello 其他節點，可讓 hello 應用程式 tooappear 狀況良好，進而 hello 升級 tooproceed。 藉由指定嚴格的 MaxPercentUnhealthyDeployedApplications 健全狀況，Service Fabric 可以快速地偵測 hello 應用程式套件有問題，並協助產生快速升級失敗。 |
-| MaxPercentUnhealthyServices |預設值和建議值為 0。 指定 hello 應用程式會被視為狀況不良，而且失敗 hello 升級前可保留其狀況不良的 hello 應用程式執行個體中的 hello 的服務數目上限。 |
-| MaxPercentUnhealthyPartitionsPerService |預設值和建議值為 0。 指定 hello 服務視為狀況不良之前可能處於不健全狀況服務中的 hello 資料分割數目上限。 |
-| MaxPercentUnhealthyReplicasPerPartition |預設值和建議值為 0。 指定 hello 分割區視為狀況不良之前可以處於狀況不良的資料分割中的 hello 複本數目上限。 |
-| UpgradeReplicaSetCheckTimeout |**無狀態服務**-單一升級網域內 Service Fabric 嘗試 tooensure hello 服務的其他執行個體可用。 如果一個以上的 hello 目標執行個體計數，Service Fabric 會等候多個執行個體 toobe 可用總 tooa 最大逾時值。 透過 hello UpgradeReplicaSetCheckTimeout 屬性會指定這個逾時值。 如果 hello 逾時到期，Service Fabric 會繼續執行 hello 升級時，無論 hello 服務執行個體數目。 如果其中一個 hello 目標執行個體計數，Service Fabric 不會等待，然後進行立即 hello 升級。 **具狀態服務**-單一升級網域內 Service Fabric 嘗試 hello 複本的 tooensure 集有仲裁。 Service Fabric 等候仲裁 toobe 可用總 tooa 最大逾時值 （hello UpgradeReplicaSetCheckTimeout 屬性所指定）。 如果 hello 逾時到期，Service Fabric 會繼續執行 hello 升級時，不論仲裁。 此設定在向前回復時是設定為永不 (無限)，向後回復時則為 900 秒。 |
-| ForceRestart |如果您更新的組態或資料套件而無須更新 hello 服務程式碼時，只有當設定 tootrue hello ForceRestart 屬性，會重新啟動 hello 服務。 Hello 更新完成時，Service Fabric 通知 hello 服務新設定的封裝資料可供使用。 hello 服務會負責套用 hello 變更。 如有必要，hello 服務可以自行重新啟動。 |
+| ConsiderWarningAsError |預設值為 False。 升級期間評估應用程式健康狀態時，將應用程式的警告健康狀態事件視為錯誤。 根據預設，Service Fabric 不會將警告健康狀態事件評估為失敗 (錯誤)，因此，即使有警告事件，升級還是可以繼續執行。 |
+| MaxPercentUnhealthyDeployedApplications |預設值和建議值為 0。 指定應用程式被視為不健康和更新失敗之前，應用程式不健康之已部署的應用程式數目上限 (請參閱 [健康狀態章節](service-fabric-health-introduction.md))。 這個參數定義節點上的應用程式健康狀態，協助在升級期間偵測問題。 應用程式複本通常會負載平衡至其他節點，讓應用程式健康狀態良好，以便繼續升級。 藉由指定嚴謹的 MaxPercentUnhealthyDeployedApplications 健康狀態，Service Fabric 可以快速偵測應用程式封裝的問題，並協助產生失敗快速升級。 |
+| MaxPercentUnhealthyServices |預設值和建議值為 0。 指定應用程式被視為不健康和升級失敗之前，不健康之應用程式執行個體中服務的數目上限。 |
+| MaxPercentUnhealthyPartitionsPerService |預設值和建議值為 0。 指定服務被視為不健康之前，不健康之服務中分割的數目上限。 |
+| MaxPercentUnhealthyReplicasPerPartition |預設值和建議值為 0。 指定分割被視為不健康之前，不健康之分割中複本的數目上限。 |
+| UpgradeReplicaSetCheckTimeout |**無狀態服務**- 在單一升級網域內，Service Fabric 會嘗試確保服務的額外執行個體可用。 如果目標執行個體計數超過一個，Service Fabric 會等到有一個以上的執行個體可用，最多到逾時值上限。 此逾時是使用 UpgradeReplicaSetCheckTimeout 屬性指定。 如果逾時已到期，Service Fabric 會繼續進行升級，不論服務執行個體數目。 如果目標執行個體計數是一個，Service Fabric 不會等待，它會立即繼續進行升級。 **可設定狀態的服務**- 在單一升級網域內，Service Fabric 會嘗試確保複本集有仲裁。 Service Fabric 會等待有仲裁可用，最多到逾時值上限 (由 UpgradeReplicaSetCheckTimeout 屬性指定)。 如果逾時已到期，Service Fabric 會繼續進行升級，不論是否有仲裁。 此設定在向前回復時是設定為永不 (無限)，向後回復時則為 900 秒。 |
+| ForceRestart |如果您更新組態或資料封裝而不更新服務程式碼，只有當 ForceRestart 屬性設為 true 時，服務才會重新啟動。 更新完成時，Service Fabric 會通知服務，新的組態封裝或資料封裝已可使用。 服務會負責套用變更。 必要時，服務可以自行重新啟動。 |
 
 <br>
 <br>
-hello MaxPercentUnhealthyServices、 MaxPercentUnhealthyPartitionsPerService 及 MaxPercentUnhealthyReplicasPerPartition 條件可以指定每個應用程式執行個體的服務類型。 設定這些參數個別服務可讓應用程式 toocontain 不同服務使用不同的評估原則的型別。 例如，特定應用程式執行個體的無狀態閘道器服務類型，可以有與可設定狀態的引擎服務類型不同的 MaxPercentUnhealthyPartitionsPerService。
+可以針對應用程式執行個體的各個服務類型指定 MaxPercentUnhealthyServices、MaxPercentUnhealthyPartitionsPerService 和 MaxPercentUnhealthyReplicasPerPartition 準則。 為每個服務設定這些參數可讓應用程式包含有不同評估原則的不同服務類型。 例如，特定應用程式執行個體的無狀態閘道器服務類型，可以有與可設定狀態的引擎服務類型不同的 MaxPercentUnhealthyPartitionsPerService。
 
 ## <a name="next-steps"></a>後續步驟
 [使用 Visual Studio 升級您的應用程式](service-fabric-application-upgrade-tutorial.md) 將引導您完成使用 Visual Studio 進行應用程式升級的步驟。
@@ -68,8 +68,8 @@ hello MaxPercentUnhealthyServices、 MaxPercentUnhealthyPartitionsPerService 及
 
 [使用 Service Fabric Eclipse 外掛程式升級應用程式](service-fabric-get-started-eclipse.md#upgrade-your-service-fabric-java-application)
 
-讓應用程式升級相容所學習如何 toouse[資料序列化](service-fabric-application-upgrade-data-serialization.md)。
+了解如何使用 [資料序列化](service-fabric-application-upgrade-data-serialization.md)，以讓您的應用程式升級相容。
 
-了解 toouse 把太升級您的應用程式時所進階的功能[進階主題](service-fabric-application-upgrade-advanced.md)。
+參考 [進階主題](service-fabric-application-upgrade-advanced.md)，以了解如何在升級您的應用程式時使用進階功能。
 
-藉由參考 toohello 步驟中的修正應用程式升級的一般問題[疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)。
+參考 [疑難排解應用程式升級](service-fabric-application-upgrade-troubleshooting.md)中的步驟，以修正應用程式升級中常見的問題。

@@ -1,6 +1,6 @@
 ---
-title: "Azure AD Connect 同步： 變更 hello Azure AD 連接同步處理服務帳戶 |Microsoft 文件"
-description: "此主題說明 hello 加密金鑰和方式 tooabandon hello 密碼之後變更。"
+title: "Azure AD Connect 同步處理︰變更 Azure AD Connect 同步處理服務帳戶 | Microsoft Docs"
+description: "本主題文件說明加密金鑰，以及如何在密碼變更後放棄它。"
 services: active-directory
 keywords: "Azure AD 同步處理服務帳戶, 密碼"
 documentationcenter: 
@@ -15,96 +15,96 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/12/2017
 ms.author: billmath
-ms.openlocfilehash: 11948ac4662f722e4f684ef6c9b9ccdc6387e60f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bf6234d0810f870909957ee1c1e33c225a4922b9
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="changing-hello-azure-ad-connect-sync-service-account-password"></a>變更 hello Azure AD Connect 同步處理服務帳戶密碼
-如果您變更 hello Azure AD Connect 同步處理服務帳戶密碼，hello 同步處理服務之前將無法可以開始正常您已在放棄 hello 加密金鑰並重新初始化 hello Azure AD Connect 同步處理服務帳戶密碼。 
+# <a name="changing-the-azure-ad-connect-sync-service-account-password"></a>變更 Azure AD Connect 同步處理服務帳戶密碼
+如果您變更 Azure AD Connect 同步服務帳戶密碼，「同步處理服務」將會無法正確啟動，直到您放棄加密金鑰並將 Azure AD Connect 同步服務帳戶密碼重新初始化為止。 
 
-Azure AD Connect，hello 同步處理服務的一部分使用加密金鑰 toostore hello 密碼的 hello AD DS 和 Azure AD 服務帳戶。  這些帳戶會加密，再將它們儲存在 hello 資料庫中。 
+Azure AD Connect 是同步處理服務的一部分，會使用加密金鑰來儲存 AD DS 與 Azure AD 服務帳戶的密碼。  這些帳戶會先加密再儲存到資料庫中。 
 
-hello 加密金鑰用於保護使用[Windows 資料保護 (DPAPI)](https://msdn.microsoft.com/library/ms995355.aspx)。 DPAPI 保護 hello 加密金鑰使用 hello **hello Azure AD Connect 同步處理服務帳戶的密碼**。 
+所使用的加密金鑰會使用 [Windows 資料保護 (DPAPI)](https://msdn.microsoft.com/library/ms995355.aspx) 來提供保護。 DPAPI 為加密金鑰提供保護的方式是使用 **Azure AD Connect 同步處理服務帳戶的密碼**。 
 
-如果您需要 toochange hello 服務帳戶密碼，您就可以使用中的 hello 程序[Abandoning hello Azure AD 連接同步處理加密金鑰](#abandoning-the-azure-ad-connect-sync-encryption-key)tooaccomplish 這。  如果您因為任何原因需要 tooabandon hello 加密金鑰，也應該使用這些程序。
+如果您需要變更服務帳戶的密碼，您可以使用[放棄 Azure AD Connect 同步處理加密金鑰](#abandoning-the-azure-ad-connect-sync-encryption-key)中的程序來完成這項作業。  如果您基於任何原因而需要放棄加密金鑰，您也應該使用這些程序。
 
-##<a name="issues-that-arise-from-changing-hello-password"></a>所發生的變更 hello 密碼問題
-有兩件事需要 toobe 完成時變更 hello 服務帳戶密碼。
+##<a name="issues-that-arise-from-changing-the-password"></a>變更密碼而引發的問題
+當您在變更服務帳戶的密碼時，有兩件事必須完成。
 
-首先，您必須在 hello Windows 服務控制管理員 toochange hello 密碼。  在此問題獲得解決之前，您會看到下列錯誤︰
+第一件事，您必須在 Windows 服務控制管理員底下變更密碼。  在此問題獲得解決之前，您會看到下列錯誤︰
 
 
-- 如果您嘗試 toostart hello 同步處理服務 Windows 服務控制管理員 」 中，您會收到 hello 錯誤 「**Windows 無法啟動本機電腦上的 hello Microsoft Azure AD 同步服務**"。 **錯誤 1069年: hello 服務未啟動到期 tooa 登入失敗。**"
-- 在 Windows 事件檢視器，hello 系統事件記錄檔包含與錯誤**事件識別碼 7038**和訊息 「**hello ADSync 服務是在無法 toolog 如同 hello 目前已設定密碼到期，toohello 下列錯誤：hello 使用者名稱或密碼不正確。**"
+- 如果您嘗試在 Windows 服務控制管理員中啟動同步處理服務，您會收到錯誤「**Windows 無法在本機電腦上啟動 Microsoft Azure AD 同步處理服務**」。 **錯誤 1069︰由於登入失敗，此服務未啟動。**」
+- 在 Windows 事件檢視器底下，系統事件記錄包含**事件識別碼為 7038** 的錯誤和「**ADSync 服務無法使用目前設定的密碼來登入，因為發生下列錯誤︰使用者名稱或密碼不正確**」的訊息。
 
-第二，在特定情況下更新 hello 密碼時，如果 hello 同步處理服務無法再擷取 hello 透過 DPAPI 的加密金鑰。 沒有 hello 加密金鑰，同步處理服務無法解密，或從 hello 密碼需要的 toosynchronize hello 內部部署 AD 和 Azure AD。
+第二件事，若密碼在特定狀況下做了更新，同步處理服務將無法再透過 DPAPI 擷取加密金鑰。 沒有加密金鑰，同步處理服務就無法將密碼解密，以供用來在內部部署 AD 和 Azure AD 進行同步處理。
 您會看到如下錯誤︰
 
-- 在 「 Windows 服務控制管理員 」 中，如果您試過 toostart hello 同步處理服務，它無法擷取 hello 加密金鑰，其錯誤而失敗 」 * * Windows 無法啟動本機電腦上的 Microsoft Azure AD Sync hello。 如需詳細資訊，檢閱 hello 系統事件記錄檔。 如果這是非 Microsoft 服務，請連絡 hello 服務廠商，並 tooservice 特有的錯誤程式碼，請參閱 * *-21451857952 * * *。 」
-- 在 Windows 事件檢視器，hello 應用程式事件記錄檔包含與錯誤**事件識別碼 6028**和錯誤訊息*"**hello 伺服器加密金鑰無法存取。**"*
+- 如果您嘗試在 Windows 服務控制管理員底下啟動同步處理服務，但此服務無法擷取加密金鑰，此啟動作業便會失敗，並出現錯誤「Windows 無法在本機電腦上啟動 Microsoft Azure AD 同步處理。 如需詳細資訊，請檢閱系統事件記錄。 如果這不是 Microsoft 服務，請連絡服務供應商，並參考服務特有的錯誤碼 **-21451857952****」。
+- Windows 事件檢視器底下的應用程式事件記錄包含**事件識別碼為 6028** 的錯誤和錯誤訊息「無法存取伺服器加密金鑰」。
 
-tooensure，您不會收到這些錯誤，請依照下列中的 hello 程序[Abandoning hello Azure AD 連接同步處理加密金鑰](#abandoning-the-azure-ad-connect-sync-encryption-key)變更 hello 密碼時。
+若要確保不會收到這些錯誤，請在變更密碼時遵循[放棄 Azure AD Connect 同步處理加密金鑰](#abandoning-the-azure-ad-connect-sync-encryption-key)中的程序。
  
-## <a name="abandoning-hello-azure-ad-connect-sync-encryption-key"></a>放棄 hello Azure AD 連接同步處理加密金鑰
+## <a name="abandoning-the-azure-ad-connect-sync-encryption-key"></a>放棄 Azure AD Connect 同步處理加密金鑰
 >[!IMPORTANT]
->hello 下列程序僅適用於 tooAzure AD Connect 組建 1.1.443.0 或更舊版本。
+>下列程序只適用於 Azure AD Connect 組建 1.1.443.0 或更舊版本。
 
-使用下列程序 tooabandon hello 加密金鑰的 hello。
+使用下列程序來放棄加密金鑰。
 
-### <a name="what-toodo-if-you-need-tooabandon-hello-encryption-key"></a>如果您需要 tooabandon hello 加密金鑰哪些 toodo
+### <a name="what-to-do-if-you-need-to-abandon-the-encryption-key"></a>需要放棄加密金鑰時的作法
 
-如果您需要 tooabandon hello 加密金鑰，請使用下列程序 tooaccomplish hello 這項。
+如果您需要放棄加密金鑰，請使用下列程序來完成這項作業。
 
-1. [放棄 hello 現有的加密金鑰](#abandon-the-existing-encryption-key)
+1. [放棄現有的加密金鑰](#abandon-the-existing-encryption-key)
 
-2. [提供 hello 的 hello AD DS 帳戶的密碼](#provide-the-password-of-the-ad-ds-account)
+2. [提供 AD DS 帳戶的密碼](#provide-the-password-of-the-ad-ds-account)
 
-3. [重新初始化 hello hello Azure AD 同步處理帳戶密碼](#reinitialize-the-password-of-the-azure-ad-sync-account)
+3. [重新初始化 Azure AD 同步處理帳戶的密碼](#reinitialize-the-password-of-the-azure-ad-sync-account)
 
-4. [啟動 hello 同步處理服務](#start-the-synchronization-service)
+4. [啟動同步處理服務](#start-the-synchronization-service)
 
-#### <a name="abandon-hello-existing-encryption-key"></a>放棄 hello 現有的加密金鑰
-因此，可以建立該新的加密金鑰，請放棄 hello 現有的加密金鑰：
+#### <a name="abandon-the-existing-encryption-key"></a>放棄現有的加密金鑰
+放棄現有的加密金鑰，以便能夠建立新的加密金鑰︰
 
-1. 登入 tooyour Azure AD 連線伺服器系統管理員身分。
+1. 以系統管理員身分登入您的 Azure AD Connect 伺服器。
 
 2. 啟動新的 PowerShell 工作階段。
 
-3. 瀏覽 toofolder:`$env:Program Files\Microsoft Azure AD Sync\bin\`
+3. 瀏覽至資料夾：`$env:Program Files\Microsoft Azure AD Sync\bin\`
 
-4. 執行 hello 命令：`./miiskmu.exe /a`
+4. 執行命令：`./miiskmu.exe /a`
 
 ![Azure AD Connect 同步處理加密金鑰公用程式](media/active-directory-aadconnectsync-encryption-key/key5.png)
 
-#### <a name="provide-hello-password-of-hello-ad-ds-account"></a>提供 hello 的 hello AD DS 帳戶的密碼
-無法再解密 hello hello 資料庫內儲存的現有密碼，您必須 tooprovide hello 與 hello 的 hello AD DS 帳戶的密碼同步處理服務。 hello 同步處理服務會加密 hello 使用 hello 新的加密金鑰的密碼：
+#### <a name="provide-the-password-of-the-ad-ds-account"></a>提供 AD DS 帳戶的密碼
+因為儲存在資料庫內的現有密碼無法再解密，您必須為同步處理服務提供 AD DS 帳戶的密碼。 同步處理服務會使用新的加密金鑰來將密碼加密︰
 
-1. 啟動 hello Synchronization Service Manager （開始 → 同步處理服務）。
+1. 啟動同步處理服務管理員 ([開始] → [同步處理服務])。
 </br>![Sync Service Manager](./media/active-directory-aadconnectsync-service-manager-ui/startmenu.png)  
-2. 移 toohello**連接器** 索引標籤。
-3. 選取 hello **AD 連接器**對應 tooyour 在內部部署 AD。 如果您有多個 AD 連接器時，重複下列步驟，為每個 hello。
+2. 移至 [連接器] 索引標籤。
+3. 選取與內部部署 AD 對應的 [AD 連接器]。 如果您有多個 AD 連接器，請為每個連接器重複下列步驟。
 4. 選取 [動作] 下方的 [屬性]。
-5. 在 hello 快顯對話方塊中，選取 **連接 tooActive Directory 樹系**:
-6. 輸入 hello hello hello AD DS 帳戶密碼**密碼**文字方塊。 如果您不知道其密碼，您必須設定 tooa 已知值，然後再執行此步驟。
-7. 按一下**確定**toosave hello 新密碼] 和 [關閉 hello 快顯對話方塊。
+5. 在快顯對話方塊中，選取 [連線至 Active Directory 樹系]：
+6. 在 [密碼] 文字方塊中輸入 AD DS 帳戶的密碼。 如果您不知道該帳戶的密碼，您必須先將密碼設定為您知道的值，再執行此步驟。
+7. 按一下 [確定] 以儲存新密碼，然後關閉快顯對話方塊。
 ![Azure AD Connect 同步處理加密金鑰公用程式](media/active-directory-aadconnectsync-encryption-key/key6.png)
 
-#### <a name="reinitialize-hello-password-of-hello-azure-ad-sync-account"></a>重新初始化 hello hello Azure AD 同步處理帳戶密碼
-您無法直接提供 hello hello Azure AD 服務帳戶 toohello 同步處理服務密碼。 相反地，您需要 toouse hello cmdlet**新增 ADSyncAADServiceAccount** tooreinitialize hello Azure AD 服務帳戶。 hello cmdlet 會重設 hello 帳戶密碼，並使其成為可用 toohello 同步服務：
+#### <a name="reinitialize-the-password-of-the-azure-ad-sync-account"></a>重新初始化 Azure AD 同步處理帳戶的密碼
+您無法將 Azure AD 服務帳戶的密碼直接提供給同步處理服務。 相反地，您必須使用 **Add-ADSyncAADServiceAccount** Cmdlet 來重新初始化 Azure AD 服務帳戶。 此 Cmdlet 會重設帳戶密碼，並將密碼提供給同步處理服務︰
 
-1. Hello Azure AD Connect 的伺服器上啟動新的 PowerShell 工作階段。
+1. 在 Azure AD Connect 伺服器上啟動新的 PowerShell 工作階段。
 2. 執行 `Add-ADSyncAADServiceAccount` Cmdlet。
-3. 在 hello 快顯對話方塊中，提供 Azure AD 租用戶 hello Azure AD 全域管理員認證。
+3. 在快顯對話方塊中，提供 Azure AD 租用戶的 Azure AD 全域管理員認證。
 ![Azure AD Connect 同步處理加密金鑰公用程式](media/active-directory-aadconnectsync-encryption-key/key7.png)
-4. 如果成功，您會看到 hello PowerShell 命令提示字元。
+4. 如果成功，您會看到 PowerShell 命令提示字元。
 
-#### <a name="start-hello-synchronization-service"></a>啟動 hello 同步處理服務
-既然 hello 同步處理服務都有存取 toohello 加密金鑰，且所有 hello 密碼需要您可以重新啟動 Windows 服務控制管理員 hello hello 服務：
+#### <a name="start-the-synchronization-service"></a>啟動同步處理服務
+由於同步處理服務已可存取所需要的加密金鑰和所有密碼，您可以在 Windows 服務控制管理員中重新啟動該服務︰
 
 
-1. 移 tooWindows 服務控制管理員 （開始 → 服務）。
+1. 移至 Windows 服務控制管理員 ([開始] → [服務])。
 2. 選取 [Microsoft Azure AD 同步處理]，然後按一下 [重新啟動]。
 
 ## <a name="next-steps"></a>後續步驟

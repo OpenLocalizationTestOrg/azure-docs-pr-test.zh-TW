@@ -1,14 +1,14 @@
 ### <a name="prerequisites"></a>必要條件
 * [SMTP](https://wikipedia.org/wiki/Simple_Mail_Transfer_Protocol) 帳戶  
 
-您可以在邏輯應用程式中使用您的 SMTP 帳戶之前，您必須授權 hello 邏輯應用程式 tooconnect tooyour SMTP 帳戶。幸運的是，您可以輕鬆地在 hello Azure 入口網站上的應用程式邏輯中。  
+您必須先授權邏輯應用程式連線到您的 SMTP 帳戶，才能在該邏輯應用程式中使用您的 SMTP 帳戶。幸運的是，您可以在「Azure 入口網站」上，從邏輯應用程式內輕鬆完成此操作。  
 
-以下是 hello 步驟 tooauthorize 邏輯應用程式 tooconnect tooyour SMTP 帳戶：  
+若要授權邏輯應用程式連線到您的 SMTP 帳戶，其步驟如下：  
 
-1. toocreate 連接 tooSMTP，在 hello 邏輯應用程式設計師中，選取**顯示 Microsoft managed Api** hello 在下拉式清單，然後輸入*SMTP* hello [搜尋] 方塊中。 選取 hello 觸發程序或您一定會喜歡 toouse 的動作：  
+1. 若要建立與 SMTP 的連線，請在邏輯應用程式設計工具中，從下拉式清單中選取 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入「SMTP」。 選取您要使用的觸發程序或動作：  
    ![](./media/connectors-create-api-smtp/smtp-1.png)  
-2. 如果您尚未建立任何連線 tooSMTP 之前，您會取得提示的 tooprovide SMTP 認證。 這些認證會使用的 tooauthorize，您的邏輯應用程式 tooconnect 並存取您的 SMTP 帳戶資料：  
+2. 如果您之前尚未建立任何 SMTP 連線，系統會提示您提供 SMTP 認證。 這些認證將用來授權邏輯應用程式連線及存取您 SMTP 帳戶的資料：  
    ![](./media/connectors-create-api-smtp/smtp-2.png)  
-3. 請注意，已經建立 hello 連接，而且現在可用以 hello 其他 tooproceed 邏輯應用程式中的步驟：  
+3. 請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：  
    ![](./media/connectors-create-api-smtp/smtp-3.png)  
 

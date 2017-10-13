@@ -1,6 +1,6 @@
 ---
-title: "aaaSimulate Azure IoT 邊緣 (Linux) 的裝置 |Microsoft 文件"
-description: "如何在 Linux toocreate 模擬的裝置上的 Azure IoT 邊緣 toouse 傳送遙測透過 IoT 邊緣閘道 tooan IoT 中樞。"
+title: "使用 Azure IoT Edge 來模擬裝置 (Linux) | Microsoft Docs"
+description: "如何在 Linux 上使用 Azure IoT Edge 來建立模擬裝置，以透過 IoT Edge 閘道將遙測資料傳送至 IoT 中樞。"
 services: iot-hub
 documentationcenter: 
 author: chipalost
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/09/2017
 ms.author: andbuc
-ms.openlocfilehash: 168fb8eda8671d02c63073bdf36dfcd88b397fe2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5349960373ae6815862c5f79a69dd6d5d9d624ab
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-azure-iot-edge-toosend-device-to-cloud-messages-with-a-simulated-device-linux"></a>使用模擬的裝置 (Linux) 的 Azure IoT 邊緣 toosend 裝置到雲端訊息
+# <a name="use-azure-iot-edge-to-send-device-to-cloud-messages-with-a-simulated-device-linux"></a>使用 Azure IoT Edge 搭配模擬裝置來傳送裝置到雲端訊息 (Linux)
 
 [!INCLUDE [iot-hub-iot-edge-simulated-selector](../../includes/iot-hub-iot-edge-simulated-selector.md)]
 
 [!INCLUDE [iot-hub-iot-edge-install-build-linux](../../includes/iot-hub-iot-edge-install-build-linux.md)]
 
-## <a name="how-toorun-hello-sample"></a>如何 toorun hello 範例
+## <a name="how-to-run-the-sample"></a>如何執行範例
 
-hello **build.sh**指令碼會產生其輸出中 hello**建置**hello 的本機複本中的資料夾**iot 邊緣**儲存機制。 此輸出會包括 hello 這個範例中使用四個 IoT 邊緣模組。
+**build.sh** 指令碼會在 **iot-edge** 存放庫本機複本的 **build** 資料夾中產生其輸出。 此輸出包含本範例中使用的四個 IoT Edge 模組。
 
-hello 組建指令碼的位置:
+組建指令碼會放置：
 
-* **liblogger.so**在 hello**組建/模組/記錄器**資料夾。
-* **libiothub.so**在 hello **iot 中樞組建/模組**資料夾。
-* **lib\_識別\_map.so**在 hello**組建/模組/identitymap**資料夾。
-* **libsimulated\_device.so**在 hello**組建/模組/模擬\_裝置**資料夾。
+* **liblogger.so** 於 **build/modules/logger** 資料夾。
+* **libiothub.so** 於 **build/modules/iothub** 資料夾。
+* **lib\_identity\_map.so** 於 **build/modules/identitymap** 資料夾。
+* **libsimulated\_device.so** 於 **build/modules/simulated\_device** 資料夾。
 
-使用這些路徑 hello**模組路徑**值 hello 下列 JSON 設定檔中所示：
+使用這些路徑作為**模組路徑**值，如下列 JSON 設定檔所示：
 
-模擬的 hello\_裝置\_雲端\_上傳\_範例程序需要 hello 路徑 tooa JSON 組態檔做為命令列引數。 hello 下列的範例 JSON 檔案中提供 hello SDK 儲存機制**範例\\模擬\_裝置\_雲端\_上傳\_範例\\src\\模擬\_裝置\_雲端\_上傳\_範例\_lin.json**。 此設定檔運作，除非您修改 hello 模組建置指令碼 tooplace hello IoT 邊緣或範例在非預設位置中的可執行檔。
+simulated\_device\_cloud\_upload\_sample 程序會採用 JSON 組態檔的路徑作為命令列引數。 下列範例 JSON 檔會提供於 SDK 存放庫中，位置為：**samples\\simulated\_device\_cloud\_upload\_sample\\src\\simulated\_device\_cloud\_upload\_sample\_lin.json**. 除非您修改 build 指令碼以將 IoT Edge 模組或範例可執行檔放置在非預設位置，否則此組態檔將保有原始功能。
 
 > [!NOTE]
-> hello 模組的路徑是相對 toohello 目錄從您用來執行模擬 hello\_裝置\_雲端\_上傳\_範例可執行檔，不會 hello hello 可執行檔所在的目錄。 hello 範例 JSON 組態檔的預設 toowriting too'deviceCloudUploadGatewaylog.log' 目前的工作目錄中。
+> 模組路徑是您執行 simulated\_device\_cloud\_upload\_sample 可執行檔的相對路徑，不是可執行檔所在的目錄。 範例 JSON 組態檔的預設值為在目前的工作目錄中寫入 'deviceCloudUploadGatewaylog.log'。
 
-在文字編輯器中，開啟 hello 檔案**模擬範例/\_裝置\_雲端\_上傳\_範例/src/模擬\_裝置\_雲端\_上載\_lin.json** hello 的本機複本中**iot 邊緣**儲存機制。 這個檔案設定 hello IoT 邊緣模組在以閘道 hello 範例：
+在文字編輯器中，開啟 **iot-edge** 存放庫之本機複本中的 **samples/simulated\_device\_cloud\_upload\_sample/src/simulated\_device\_cloud\_upload\_lin.json** 檔案。 這個檔案會設定閘道範例中的 IoT Edge 模組︰
 
-* hello **iot 中樞**模組會連線 tooyour IoT 中樞。 您設定 toosend 資料 tooyour IoT 中樞。 具體來說，設定 hello **IoTHubName**值 toohello IoT 中樞名稱，並設定 hello **IoTHubSuffix**值太**azure devices.net**。 設定 hello**傳輸**的值 tooone: **HTTP**， **AMQP**，或**MQTT**。 目前只有 **HTTP** 會為所有裝置訊息共用一個 TCP 連線。 如果設定太 hello 值**AMQP**，或**MQTT**，hello 閘道會維護個別 TCP 連線 tooIoT 中樞的每個裝置。
-* hello**對應**模組將模擬的裝置 tooyour IoT 中樞裝置識別碼的 hello MAC 位址。 請確定**deviceId**值符合 hello 識別碼 hello 兩個裝置，您加入 tooyour IoT 中樞，與該 hello **deviceKey**值包含兩個裝置 hello 索引鍵。
-* hello **BLE1**和**BLE2**模組是 hello 模擬的裝置。 請注意其 MAC 位址比對的方式 hello 中 hello 位址**對應**模組。
-* hello**記錄器**模組會記錄您的閘道活動 tooa 檔案。
-* hello**模組路徑**hello 範例所示的值會假設您是從 hello 執行 hello 範例**建置**hello 的本機複本中的資料夾**iot 邊緣**儲存機制。
-* hello**連結**底部 hello hello JSON 檔案的陣列會連接 hello **BLE1**和**BLE2**模組 toohello**對應**模組和 hello**對應**模組 toohello **iot 中樞**模組。 它也可確保所有訊息也會都記錄 hello**記錄器**模組。
+* **IoTHub** 模組會連接至您的 IoT 中樞。 您必須設定它，以將資料傳送至您的 IoT 中樞。 特別是將 **IoTHubName** 值設定為 IoT 中樞的名稱，並將 **IoTHubSuffix** 值設定為 **azure-devices.net**。 將 **Transport** 值設定為 **HTTP**、**AMQP** 或 **MQTT** 其中一個。 目前只有 **HTTP** 會為所有裝置訊息共用一個 TCP 連線。 如果您將值設定為 **AMQP** 或 **MQTT**，閘道會為每個裝置維持一個連至 IoT 中樞的個別 TCP 連線。
+* **mapping** 模組會將您模擬裝置的 MAC 位址對應到您 IoT 中樞裝置識別碼。 請確定 **deviceId** 值符合您新增至 IoT 中樞之兩個裝置的識別碼，而且 **deviceKey** 值包含這兩個裝置的金鑰。
+* **BLE1** 和 **BLE2** 模組是模擬裝置。 請注意其 MAC 位址如何符合 **mapping** 模組中的 MAC 位址。
+* **Logger** 模組會將閘道活動記錄到檔案。
+* 範例中顯示的 **module path** 值假設您要從 **iot-edge** 存放庫本機複本的 **build** 資料夾執行範例。
+* JSON 檔案底部的 **links** 陣列會將 **BLE1** 和 **BLE2** 模組連接至 **mapping** 模組，再將 **mapping** 模組連接至 **IoTHub** 模組。 它也可確保 **Logger** 模組會記錄所有訊息。
 
 ```json
 {
@@ -149,17 +149,17 @@ hello 組建指令碼的位置:
 }
 ```
 
-儲存 hello 做的變更，您會進行 toohello 組態檔。
+儲存您對組態檔進行的變更。
 
-toorun hello 範例：
+執行範例：
 
-1. 在您的殼層，瀏覽 toohello **iot 邊緣/組建**資料夾。
-2. 執行下列命令的 hello:
+1. 在您的殼層中，瀏覽至 **iot-edge/build** 資料夾。
+2. 執行以下命令：
    
     ```sh
     ./samples/simulated_device_cloud_upload/simulated_device_cloud_upload_sample ../samples/simulated_device_cloud_upload/src/simulated_device_cloud_upload_lin.json
     ```
-3. 您可以使用 hello[裝置總管][ lnk-device-explorer]或[iot 中樞總管][ lnk-iothub-explorer]工具 IoT 中樞收到 hello 的 toomonitor hello 訊息閘道。 例如，使用 iot 中樞總管您就可以監視裝置到雲端訊息使用 hello 下列命令：
+3. 您可以使用[裝置總管][lnk-device-explorer]或 [iothub-explorer][lnk-iothub-explorer] 工具，以監視 IoT 中樞從閘道接收的訊息。 例如，您可以使用 iothub-explorer，然後使用以下命令監控裝置到雲端的訊息：
 
     ```sh
     iothub-explorer monitor-events --login "HostName={Your iot hub name}.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey={Your IoT Hub key}"
@@ -167,15 +167,15 @@ toorun hello 範例：
 
 ## <a name="next-steps"></a>後續步驟
 
-toogain 進一步了解 Azure IoT 邊緣和實驗透過一些程式碼範例，請瀏覽 hello 下列開發人員教學課程和資源：
+如果要更進一步了解 Azure IoT Edge 並實驗一些程式碼範例，請瀏覽下列開發人員教學課程和資源：
 
 * [使用 Azure IoT Edge 從實體裝置傳送裝置到雲端訊息][lnk-physical-device]
 * [Azure IoT Edge][lnk-iot-edge]
 
-toofurther 瀏覽的 IoT 中樞的 hello 功能，請參閱：
+若要進一步探索 IoT 中樞的功能，請參閱︰
 
 * [IoT 中樞開發人員指南][lnk-devguide]
-* [保護您的 IoT 解決方案從接地 hello][lnk-securing]
+* [徹底保護您的 IoT 解決方案][lnk-securing]
 
 <!-- Links -->
 [lnk-iot-edge]: https://github.com/Azure/iot-edge/

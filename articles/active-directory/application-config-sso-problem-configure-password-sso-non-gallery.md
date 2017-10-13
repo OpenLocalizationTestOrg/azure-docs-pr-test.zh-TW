@@ -1,6 +1,6 @@
 ---
-title: "設定密碼單一登入非組件庫的應用程式的 aaaProblem |Microsoft 文件"
-description: "在 hello Azure AD 應用程式庫中設定密碼單一登入的未列出的自訂非組件庫應用程式時，了解 hello 一般問題的人臉"
+title: "為不在資源庫內的應用程式設定密碼單一登入時遇到的問題 | Microsoft Docs"
+description: "了解使用者在為不在資源庫內的自訂應用程式設定密碼單一登入 (這類應用程式不會列於 Azure AD 應用程式庫中) 時所面臨的常見問題"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,17 +13,17 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 3aee0a4c525bb3da338da2da0882ec572cf0e5e6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9c76b6f3495e2dd759a156fcef97b57aece8d632
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="problem-configuring-password-single-sign-on-for-a-non-gallery-application"></a>為不在資源庫內的應用程式設定密碼單一登入時遇到的問題
 
-本文協助您 toounderstand hello 一般問題的人臉設定時**密碼單一登入**與非組件庫的應用程式。
+本文可協助您了解使用者在搭配不在資源庫內的應用程式設定**密碼單一登入**時所面臨的常見問題。
 
-## <a name="how-toocapture-sign-in-fields-for-an-application"></a>Toocapture 登入欄位如何為應用程式
+## <a name="how-to-capture-sign-in-fields-for-an-application"></a>如何擷取應用程式的登入欄位
 
 只有具備 HTML 功能的登入頁面支援登入欄位擷取，而**非標準的登入頁面並不支援**，例如，使用快閃記憶體或其他不具備 HTML 功能技術的頁面。
 
@@ -33,228 +33,228 @@ ms.lasthandoff: 10/06/2017
 
 -   手動登入欄位擷取
 
-**自動登入欄位擷取**適用於大部分 HTML 啟用登入頁面，如果他們使用**已知 DIV 識別碼 hello 使用者名稱和密碼輸入**欄位。 hello 這個運作的方式是透過抓取 hello HTML hello 頁面 toofind DIV 識別碼符合特定準則的上，然後儲存此應用程式的中繼資料，因此我們可以稍後重新執行密碼 tooit。
+**自動登入欄位擷取**適用於大部分具備 HTML 功能的登入頁面，但前提是這些頁面會**針對使用者名稱和密碼輸入欄位使用已知的 DIV 識別碼**。 其運作方式是藉由消除頁面上的 HTML 來尋找符合特定準則的 DIV 識別碼，然後儲存此應用程式的中繼資料，如此便能在稍後重新執行密碼給它。
 
-**手動登入欄位擷取**可用在 hello 應用程式的 hello 案例**供應商並未標示**hello 輸入用來登入的欄位。 手動登入欄位擷取也可用在 hello 情況下，如果 hello**廠商呈現多個欄位**無法自動偵測。 Azure AD 可以儲存資料所多少個欄位上 hello 登入頁面上，只要您告訴我們，這些欄位位於 hello 頁面。
+**手動登入欄位擷取**的適用情況是，應用程式**廠商並未標示**用來登入的輸入欄位。 手動登入欄位擷取也可適用於下列情況：當**廠商呈現多個無法自動偵測的欄位**時。 Azure AD 能在登入頁面上盡可能儲存最多欄位的資料，只要您告知我們那些欄位在頁面上的位置即可。
 
-一般情況下，**如果自動登入欄位擷取無法運作，我們建議嘗試 hello 手動選項。**
+一般而言，**如果自動登入欄位擷取無法運作，我們一律建議嘗試手動選項。**
 
-### <a name="how-tooautomatically-capture-sign-in-fields-for-an-application"></a>Tooautomatically 如何擷取登入應用程式的欄位
+### <a name="how-to-automatically-capture-sign-in-fields-for-an-application"></a>如何自動擷取應用程式的登入欄位
 
-tooconfigure**密碼型單一登入**應用程式使用**自動登入欄位擷取**，依照下列步驟執行 hello:
+若要為使用**自動登入欄位擷取**的應用程式設定**密碼單一登入**，請依照下列步驟執行：
 
-1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**或**共同管理員**身分登入。
 
-2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
-3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
+3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
-4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
+4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
 
-5.  按一下**所有應用程式**tooview 所有應用程式的清單。
+5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
 
-  * 如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
+  * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
 
-6.  選取您想 tooconfigure 單一登入的 hello 應用程式。
+6.  選取您要設定單一登入的應用程式。
 
-7.  一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。
+7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。
 
-8.  選取 hello 模式**密碼式登入。**
+8.  選取 [以密碼為基礎的登入] 模式。
 
-9.  輸入 hello**登入 URL**。 這是讓使用者輸入其使用者名稱和密碼 toosign 中的以 hello URL。 **確認 hello 登入欄位是否顯示在您提供的 hello URL**。
+9.  輸入**登入 URL**。 這是使用者輸入其使用者名稱及密碼來登入的 URL。 **確定在您提供的 URL 上看得到登入欄位**。
 
-10. 按一下 hello**儲存** 按鈕。
+10. 按一下 [儲存]  按鈕。
 
-11. 一旦您這樣做，我們會自動將消除該 URL 的使用者名稱和密碼輸入方塊，並且可讓您 toouse Azure AD toosecurely 傳輸密碼 toothat 應用程式使用 hello 存取面板瀏覽器延伸模組。
+11. 這麼做之後，我們會自動擷取使用者名稱和密碼輸入方塊的該 URL，並可讓您使用 Azure AD 並利用存取面板瀏覽器擴充功能將密碼安全地傳輸到該應用程式。
 
-## <a name="how-toomanually-capture-sign-in-fields-for-an-application"></a>Toomanually 如何擷取登入應用程式的欄位
+## <a name="how-to-manually-capture-sign-in-fields-for-an-application"></a>如何手動擷取應用程式的登入欄位
 
-toomanually 擷取登入欄位，您必須先安裝 hello 存取面板瀏覽器延伸模組和**inPrivate、 incognito，或私用模式中不在執行。** tooinstall hello 瀏覽器延伸模組，後續的 hello 步驟在 hello [tooinstall hello 存取面板瀏覽器延伸模組的方式](#i-cannot-manually-detect-sign-in-fields-for-my-application)> 一節。
+若要手動擷取登入欄位，您必須先安裝存取面板的瀏覽器延伸模組，而且**不能在 InPrivate、incognito 或私人模式中執行**。 若要安裝瀏覽器延伸模組，請依照[如何安裝存取面板的瀏覽器延伸模組](#i-cannot-manually-detect-sign-in-fields-for-my-application)一節中的步驟執行。
 
-tooconfigure**密碼型單一登入**應用程式使用**手動登入欄位擷取**，依照下列步驟執行 hello:
+若要為使用**手動登入欄位擷取**的應用程式設定**密碼單一登入**，請依照下列步驟執行：
 
-1.  開啟 hello [ **Azure 入口網站**](https://portal.azure.com/)身分登入和**全域管理員**或**共同管理員。**
+1.  開啟 [**Azure 入口網站**](https://portal.azure.com/)，然後以**全域管理員**或**共同管理員**身分登入。
 
-2.  開啟 hello **Azure Active Directory 延伸模組**按一下**更多服務**在 hello hello 主要左導覽功能表底部。
+2.  按一下左邊主瀏覽功能表底部的 [更多服務]，以開啟 [Azure Active Directory 延伸模組]。
 
-3.  在中輸入**「 Azure Active Directory**"hello 篩選搜尋方塊和選取 hello **Azure Active Directory**項目。
+3.  在篩選搜尋方塊中輸入 **“Azure Active Directory**”，然後選取 [Azure Active Directory] 項目。
 
-4.  按一下**企業應用程式**從 hello Azure Active Directory 左導覽功能表。
+4.  從 Azure Active Directory 左邊瀏覽功能表，按一下 [企業應用程式]。
 
-5.  按一下**所有應用程式**tooview 所有應用程式的清單。
+5.  按一下 [所有應用程式]，以檢視所有應用程式的清單。
 
-   * 如果看不到您想要顯示於此處的 hello 應用程式，請使用 hello**篩選**控制項上方的 hello hello**所有應用程式清單**組 hello 和**顯示**太選項**所有應用程式。**
+   * 若在這裡沒看到您要顯示的應用程式，請使用 [所有應用程式清單] 頂端的 [篩選] 控制項，並將 [顯示] 選項設定為 [所有應用程式]。
 
-6.  選取您想 tooconfigure 單一登入的 hello 應用程式。
+6.  選取您要設定單一登入的應用程式。
 
-7.  一旦 hello 應用程式載入時，按一下 hello**單一登入**從 hello 應用程式的左導覽功能表。
+7.  應用程式載入之後，按一下應用程式左邊瀏覽功能表中的 [單一登入]。
 
-8.  選取 hello 模式**密碼式登入。**
+8.  選取 [以密碼為基礎的登入] 模式。
 
-9.  輸入 hello**登入 URL**。 這是讓使用者輸入其使用者名稱和密碼 toosign 中的以 hello URL。 **確認 hello 登入欄位是否顯示在您提供的 hello URL**。
+9.  輸入**登入 URL**。 這是使用者輸入其使用者名稱及密碼來登入的 URL。 **確定在您提供的 URL 上看得到登入欄位**。
 
-10. 按一下 hello**儲存** 按鈕。
+10. 按一下 [儲存]  按鈕。
 
-11. 一旦您這樣做，我們會自動將消除該 URL 的使用者名稱和密碼輸入方塊，並且可讓您 toouse Azure AD toosecurely 傳輸密碼 toothat 應用程式使用 hello 存取面板瀏覽器延伸模組。 您可以在 hello 失敗的情況下，**異動 hello 登入模式 toouse 手動登入欄位擷取**繼續 toostep 12。
+11. 這麼做之後，我們會自動擷取使用者名稱和密碼輸入方塊的該 URL，並可讓您使用 Azure AD 並利用存取面板瀏覽器擴充功能將密碼安全地傳輸到該應用程式。 萬一此作業失敗，您可以藉由繼續執行步驟 12 來**變更登入模式以使用手動登入欄位擷取**。
 
 12. 按一下 [設定 &lt;appname&gt; 密碼單一登入設定]。
 
-13. 選取 hello**手動偵測登入欄位**組態選項。
+13. 選取 [手動偵測登入欄位] 設定選項。
 
 14. 按一下 [確定] 。
 
 15. 按一下 [儲存] 。
 
-16. 依照畫面指示 toouse hello 存取面板中的 hello。
+16. 依照畫面指示來使用存取面板。
 
 ## <a name="i-see-a-we-couldnt-find-any-sign-in-fields-at-that-url-error"></a>我看到「在該 URL 找不到任何登入欄位」的錯誤
 
-當自動偵測登入欄位失敗時，您就會看到此錯誤。 此問題，請嘗試手動登入欄位偵測所遵循的 hello 步驟 hello tooresolve [toomanually 如何擷取應用程式的登入欄位](#how-to-manually-capture-sign-in-fields-for-an-application)> 一節。
+當自動偵測登入欄位失敗時，您就會看到此錯誤。 若要解決此問題，請依照[如何手動擷取應用程式的登入欄位](#how-to-manually-capture-sign-in-fields-for-an-application)一節中的步驟，嘗試執行手動登入欄位偵測。
 
-## <a name="i-see-an-unable-toosave-single-sign-on-configuration-error"></a>我看到 「 無法 toosave 單一登入設定 」 錯誤
+## <a name="i-see-an-unable-to-save-single-sign-on-configuration-error"></a>我看到「無法儲存單一登入設定」錯誤
 
-在某些罕見的情況下，更新 hello 單一登入組態可能會失敗。 tooresolve 這重試儲存 hello 單一登入組態一次。
+在某些罕見的情況下，更新單一登入設定可能會失敗。 若要解決此錯誤，請再次嘗試儲存單一登入設定。
 
-如果此問題持續 toofail 一致的方式，提交支援案例，並提供 hello 蒐集在 hello[如何 toosee hello 詳細資料的入口網站的通知](#i-cannot-manually-detect-sign-in-fields-for-my-application)和[tooget 如何藉由傳送通知的詳細資料 tooa 協助支援工程師](#how-to-get-help-by-sending-notification-details-to-a-support-engineer)區段。
+如果這持續不斷失敗，請開啟一個支援案例，並提供[如何查看入口網站通知的詳細資料](#i-cannot-manually-detect-sign-in-fields-for-my-application)和[如何將通知詳細資料傳送給支援工程師以取得協助](#how-to-get-help-by-sending-notification-details-to-a-support-engineer)小節中所收集的資訊。
 
 ## <a name="i-cannot-manually-detect-sign-in-fields-for-my-application"></a>我無法手動偵測應用程式的登入欄位
 
-手動偵測為不使用時，您可能會看到 hello 行為的部分包括：
+當手動偵測無法運作時，您可能看到某些行為，包括：
 
--   hello 手動擷取程序 toowork，但未正確擷取 hello 欄位
+-   手動擷取程序看似正常運作，但擷取的欄位不正確
 
--   hello 右側欄位未取得反白顯示執行 hello 擷取程序時
+-   在執行擷取程序時並未反白顯示適當的欄位
 
--   hello 擷取程序接受我 toohello 應用程式的登入頁面如預期般，但會發生任何事
+-   擷取程序如預期般將我帶到應用程式的登入頁面，但什麼事也沒發生
 
--   手動擷取出現 toowork，但我的使用者瀏覽 toohello hello 存取面板應用程式時，不會發生 SSO。
+-   手動擷取看似正常運作，但是，當我的使用者從存取面板瀏覽至應用程式，SSO 不會發生。
 
-如果您遇到任何問題，請檢查下列 hello:
+如果您遇到這其中任一個問題，請檢查下列內容：
 
--   確定您已擁有 hello hello 存取面板瀏覽器延伸模組最新版本**安裝**和**啟用**hello 中的 hello 步驟[tooinstall 如何 hello 存取面板瀏覽器延伸模組](#how-to-install-the-access-panel-browser-extension)> 一節。
+-   確定您已依照[如何安裝存取面板的瀏覽器延伸模組](#how-to-install-the-access-panel-browser-extension)一節中的步驟，**安裝**並**啟用**最新版本的存取面板瀏覽器延伸模組。
 
--   請確定您未在您的瀏覽器中時嘗試 hello 擷取處理序**incognito、 inPrivate，或私用模式**。 hello 存取面板延伸模組不支援這些模式中。
+-   確定您未在瀏覽器處於 **incognito、InPrivate 或私人模式**時嘗試擷取程序。 這些模式不支援存取面板延伸模組。
 
--   請確定您的使用者沒有 toosign toohello hello 存取面板時在應用程式**incognito、 inPrivate，或私用模式**。 hello 存取面板延伸模組不支援這些模式中。
+-   確定您的使用者未在 **incognito、InPrivate 或私人模式**中，嘗試從存取面板登入應用程式。 這些模式不支援存取面板延伸模組。
 
--   再試一次 hello 手動擷取程序，確保 hello 紅色標記透過 hello 正確的欄位。
+-   再次嘗試手動擷取程序，確保正確的欄位上都有紅色標記。
 
--   Hello 手動擷取程序看起來 toohang，則不會執行 hello 登入頁面上的任何項目 （情況 3 以上），hello 手動擷取處理序再試一次。 但是，此時間之後完成 hello 程序，請按 hello **F12**按鈕 tooopen 瀏覽器的開發人員主控台。 一次，開啟 hello**主控台**和型別**window.location="&lt;輸入設定 hello 應用程式時，您指定的 url 中的 hello 登&gt;"** ，然後按**輸入**。 此強制頁面重新導向的結束 hello 擷取程序，並儲存已擷取的 hello 欄位。
+-   如果手動擷取程序看起來沒有回應，或者登入頁面不會執行任何動作 (上述的案例 3)，請再試一次手動擷取程序。 但這次已完成此程序，請按 **F12** 按鈕，以開啟瀏覽器的開發人員主控台。 位於該處之後，開啟**主控台**並輸入 **window.location="&lt;輸入您在設定應用程式時所指定的登入 url&gt;"**，然後按 **Enter** 鍵。 這樣會強制執行頁面重新導向，以結束擷取程序並儲存已擷取的欄位。
 
-如果這其中沒有任何一種方式適合您，我們很樂意提供協助。 Hello 詳細資料，來嘗試什麼方法，以及所蒐集 hello 中的 hello 資訊提交支援案例[如何 toosee hello 詳細資料的入口網站的通知](#i-cannot-manually-detect-sign-in-fields-for-my-application)和[tooget 如何協助 tooa 支援傳送通知的詳細資料工程](#how-to-get-help-by-sending-notification-details-to-a-support-engineer)區段 （如果適用）。
+如果這其中沒有任何一種方式適合您，我們很樂意提供協助。 請開啟一個支援案例，並提供您所嘗試動作的詳細資料，以及[如何查看入口網站通知的詳細資料](#i-cannot-manually-detect-sign-in-fields-for-my-application)和[如何將通知詳細資料傳送給支援工程師以取得協助](#how-to-get-help-by-sending-notification-details-to-a-support-engineer)小節 (如果適用) 中所收集的資訊。
 
-## <a name="how-tooinstall-hello-access-panel-browser-extension"></a>如何 tooinstall hello 存取面板瀏覽器延伸模組
+## <a name="how-to-install-the-access-panel-browser-extension"></a>如何安裝存取面板的瀏覽器延伸模組
 
-tooinstall hello 存取面板瀏覽器延伸模組，請遵循下列 hello 步驟：
+若要安裝存取面板的瀏覽器延伸模組，請遵循下列步驟：
 
-1.  開啟 hello[存取面板](https://myapps.microsoft.com)其中一種支援的 hello 瀏覽器和登入為**使用者**Azure AD 中。
+1.  在其中一種支援的瀏覽器中開啟[存取面板](https://myapps.microsoft.com)，然後在您的 Azure AD 中以**使用者**身分登入。
 
-2.  按一下**password SSO 應用程式**hello 存取面板中。
+2.  按一下存取面板中的 [密碼-SSO 應用程式]。
 
-3.  在 hello 提示詢問 tooinstall hello 軟體，選取 **立即安裝**。
+3.  在要求安裝軟體的提示中，選取 [立即安裝]。
 
-4.  根據您的瀏覽器就導向的 toohello 下載連結。 **新增**hello 延伸 tooyour 瀏覽器。
+4.  系統會根據您的瀏覽器將您導向至下載連結。 將延伸模組**新增**到瀏覽器中。
 
-5.  如果您的瀏覽器要求，請選取 tooeither**啟用**或**允許**hello 延伸模組。
+5.  如果您的瀏覽器要求，請選取 [啟用] 或 [允許] 該延伸模組。
 
 6.  安裝之後，**重新啟動**瀏覽器工作階段。
 
-7.  到 hello 存取面板登入，請參閱 < 是否您可以**啟動**password SSO 應用程式。
+7.  登入存取面板，並查看您是否可以**啟動**密碼-SSO 應用程式。
 
-您可能也 hello 從下載擴充功能的 Chrome 和 Firefox hello 以下的直接連結：
+您可能也會從下列直接連結中下載適用於 Chrome 和 Firefox 的延伸模組：
 
 -   [Chrome 存取面板延伸模組](https://chrome.google.com/webstore/detail/access-panel-extension/ggjhpefgjjfobnfoldnjipclpcfbgbhl)
 
 -   [Firefox 存取面板延伸模組](https://addons.mozilla.org/firefox/addon/access-panel-extension/)
 
-## <a name="how-toosee-hello-details-of-a-portal-notification"></a>如何 toosee hello 詳細資料的入口網站的通知
+## <a name="how-to-see-the-details-of-a-portal-notification"></a>如何查看入口網站通知的詳細資料
 
-您可以依照以下 hello 步驟看到 hello 詳細資料的任何入口網站的通知：
+您可以依照下列步驟來查看任何入口網站通知的詳細資料：
 
-1.  按一下 hello**通知**hello Azure 入口網站的 hello 右上角的圖示 （hello 鈴聲）
+1.  按一下 Azure 入口網站右上方的 [通知] 圖示 (鐘)。
 
-2.  選取中的任何通知**錯誤**狀態 （紅色 （！） 的 下一步 toothem 與那些）。
+2.  選取處於**錯誤**狀態的任何通知 (旁邊有紅色 (!))。
 
   >!NOTE] 您無法按一下處於**成功**或**進行中**狀態的通知。
   >
   >
 
-3.  這個開啟 hello**通知的詳細資料**刀鋒視窗。
+3.  這會開啟 [通知詳細資料] 刀鋒視窗。
 
-4.  使用此資訊自行 toounderstand 更多有關 hello 問題詳細資料。
+4.  請自行利用這項資訊來了解更多問題的詳細資料。
 
-5.  如果您仍需要協助，您也可以與您的問題共用與支援工程師或 hello 產品群組 tooget 說明這項資訊。
+5.  如果您仍然需要協助，您也可以將這項資訊分享給支援工程師或產品群組，以取得協助來解決您的問題。
 
-6.  按一下 hello**複製****圖示**方 hello toohello**複製錯誤**所有文字方塊 toocopy 都 hello 通知詳細資料 tooshare 與支援或產品的群組工程師。
+6.  按一下 [複製錯誤] 文字方塊右邊的**複製****圖示**，以複製所有通知詳細資料來分享給支援工程師或產品群組工程師。
 
-## <a name="how-tooget-help-by-sending-notification-details-tooa-support-engineer"></a>藉由傳送通知的詳細資料 tooa 支援工程師 tooget 的說明
+## <a name="how-to-get-help-by-sending-notification-details-to-a-support-engineer"></a>如何將通知詳細資料傳送給支援工程師以取得協助
 
-它是非常重要，共用**所有 hello 下面所列的詳細資料**支援工程師，如果您需要協助，以便它們可以協助您快速。 您可以輕鬆**擷取螢幕畫面，**或按一下 hello**複製錯誤圖示**，找到 toohello 右邊 hello**複製錯誤**文字方塊。
+如果您需要協助，一定要與支援工程師分享**下列所有詳細資料**，好讓他們儘快幫助您。 只要**擷取螢幕畫面**，或按一下 [複製錯誤] 文字方塊右邊的**複製錯誤圖示**，輕鬆就能這樣做。
 
 ## <a name="notification-details-explained"></a>說明通知詳細資料
 
-hello 以下說明更每一項 hello 通知項目表示，以及每個提供範例。
+以下詳細說明每個通知項目的意義，並提供個別的範例。
 
 ### <a name="essential-notification-items"></a>必要通知項目
 
--   **標題**– hello hello 通知的描述性標題
+-   **標題** - 通知的描述性標題
 
     -   範例 - **應用程式 Proxy 設定**
 
--   **描述**– hello 所發生的 hello 運算結果的描述
+-   **描述** - 作業所產生之結果的描述
 
     -   範例 - **輸入的內部 URL 正由另一個應用程式使用中**
 
--   **通知識別碼**– hello 的 hello 通知的唯一識別碼
+-   **通知識別碼** - 通知的唯一識別碼
 
     -   範例 - **clientNotification-2adbfc06-2073-4678-a69f-7eb78d96b068**
 
--   **用戶端要求 Id** – 您的瀏覽器所做的 hello 特定要求識別碼
+-   **用戶端要求識別碼** - 瀏覽器所產生的特定要求識別碼
 
     -   範例 - **302fd775-3329-4670-a9f3-bea37004f0bc**
 
--   **時間戳記 UTC** – hello 期間 hello 通知發生，以 UTC 時間戳記
+-   **時間戳記 UTC** - 發生通知期間的時間戳記 (UTC)
 
     -   範例 - **2017-03-23T19:50:43.7583681Z**
 
--   **內部交易識別碼**– hello 我們可能佔用 toolook hello 錯誤，我們系統中的內部識別碼
+-   **內部交易識別碼** - 可用來在系統中查閱錯誤的內部識別碼
 
     -   範例 - **71a2f329-ca29-402f-aa72-bc00a7aca603**
 
--   **UPN** – 執行 hello 作業的 hello 使用者
+-   **UPN** - 執行作業的使用者
 
     -   範例 - **tperkins@f128.info**
 
--   **租用戶識別碼**– hello 唯一 hello 租用戶識別碼 hello 使用者執行 hello 作業人員是的成員
+-   **租用戶識別碼** - 作業執行使用者所屬之租用戶的唯一識別碼
 
     -   範例 - **7918d4b5-0442-4a97-be2d-36f9f9962ece**
 
--   **使用者物件識別碼**– hello 執行 hello 作業的 hello 使用者的唯一識別碼
+-   **使用者物件識別碼** - 執行作業之使用者的唯一識別碼
 
     -   範例 - **17f84be4-51f8-483a-b533-383791227a99**
 
 ### <a name="detailed-notification-items"></a>詳細通知項目
 
--   **顯示名稱**– **（可以是空的）** hello 錯誤的更詳細的顯示名稱
+-   **顯示名稱** - **(可以是空白)** 錯誤的更詳細顯示名稱
 
     -   範例 *- **應用程式 Proxy 設定**
 
--   **狀態**– hello hello 通知的特定狀態
+-   **狀態** - 通知的特定狀態
 
     -   範例 *- **失敗**
 
--   **物件識別碼**– **（可以是空的）** hello 的 hello 針對已執行作業的物件識別碼
+-   **物件識別碼** - **(可以是空白)** 據以執行作業的物件識別碼
 
     -   範例 - **8e08161d-f2fd-40ad-a34a-a9632d6bb599**
 
--   **詳細資料**– hello 的詳細描述所發生的 hello 運算結果
+-   **詳細資料** - 作業所產生之結果的詳細描述
 
     -   範例 - **內部 url 'http://bing.com/' 無效，因為已在使用中**
 
--   **複製錯誤**– 按一下 hello**複製圖示**方 hello toohello**複製錯誤**所有文字方塊 toocopy 都 hello 與支援或產品的群組工程師通知詳細資料 tooshare
+-   **複製錯誤** - 按一下 [複製錯誤] 文字方塊右邊的**複製圖示**，以複製所有通知詳細資料來分享給支援工程師或產品群組工程師
 
     -   範例 - ```{"errorCode":"InternalUrl\_Duplicate","localizedErrorDetails":{"errorDetail":"Internal url 'http://google.com/' is invalid since it is already in use"},"operationResults":\[{"objectId":null,"displayName":null,"status":0,"details":"Internal url 'http://bing.com/' is invalid since it is already in use"}\],"timeStampUtc":"2017-03-23T19:50:26.465743Z","clientRequestId":"302fd775-3329-4670-a9f3-bea37004f0bb","internalTransactionId":"ea5b5475-03b9-4f08-8e95-bbb11289ab65","upn":"tperkins@f128.info","tenantId":"7918d4b5-0442-4a97-be2d-36f9f9962ece","userObjectId":"17f84be4-51f8-483a-b533-383791227a99"}```
 
 ## <a name="next-steps"></a>後續步驟
-[提供單一登入 tooyour 應用程式與應用程式 Proxy](active-directory-application-proxy-sso-using-kcd.md)
+[使用應用程式 Proxy 提供單一登入應用程式](active-directory-application-proxy-sso-using-kcd.md)
 

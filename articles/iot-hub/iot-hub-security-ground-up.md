@@ -1,6 +1,6 @@
 ---
-title: "hello Azure IoT 方案地面向上 aaaSecure |Microsoft 文件"
-description: "如何 toouse hello Microsoft Azure IoT 中樞與套件的內建安全性的功能。"
+title: "徹底保護您的 Azure IoT 解決方案 | Microsoft Docs"
+description: "如何使用 Microsoft Azure IoT 中樞和套件的內建安全性功能。"
 services: iot-hub
 documentationcenter: 
 author: YuriDio
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/24/2017
 ms.author: yurid
-ms.openlocfilehash: 8009b19cf3cdff0507158513097a0709bbac06e6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6a0ac22e85a85dca9bad06aa2c722523d3086537
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 [!INCLUDE [iot-security-ground-up](../../includes/iot-security-ground-up.md)]
 
 ## <a name="see-also"></a>另請參閱
-toolearn 有關保護您的 IoT 解決方案的詳細資訊，請參閱：
+若要深入了解如何保護您的 IoT 解決方案，請參閱︰
 
 * [IoT 安全性最佳做法][lnk-security-best-practices]
 * [IoT 安全性架構][lnk-security-architecture]
 * [保護您的 IoT 部署][lnk-security-deployment]
 
-toofurther 瀏覽的 IoT 中樞的 hello 功能，請參閱：
+若要進一步探索 IoT 中樞的功能，請參閱︰
 
 * [使用 Azure IoT Edge 來模擬裝置][lnk-iotedge]
 

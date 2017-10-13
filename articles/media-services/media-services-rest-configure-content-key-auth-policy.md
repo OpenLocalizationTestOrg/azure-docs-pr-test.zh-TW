@@ -1,6 +1,6 @@
 ---
-title: "與其他-Azure aaaConfigure 內容金鑰授權原則 |Microsoft 文件"
-description: "深入了解如何 tooconfigure 使用媒體服務 REST API 的內容金鑰授權原則。"
+title: "使用 REST 設定內容金鑰授權原則 - Azure | Microsoft Docs"
+description: "了解如何使用媒體服務 REST API 設定內容金鑰的授權原則。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,25 +14,25 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/31/2017
 ms.author: juliako
-ms.openlocfilehash: c058b7682bcbfb736faba18ec7fce33f2f2acb49
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ed20fca35070c190bb63925d0a57cf919bcdd96c
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="dynamic-encryption-configure-content-key-authorization-policy"></a>動態加密：設定內容金鑰授權原則
 [!INCLUDE [media-services-selector-content-key-auth-policy](../../includes/media-services-selector-content-key-auth-policy.md)]
 
 ## <a name="overview"></a>概觀
-Microsoft Azure Media Services 可讓您 toodeliver 您使用進階加密標準 (AES) （使用 128 位元加密金鑰） 和 PlayReady 或 Widevine DRM （動態） 加密的內容。 Media Services 也提供傳遞金鑰和 PlayReady/Widevine 授權 tooauthorized 用戶端的服務。
+Microsoft Azure 媒體服務可讓您傳遞使用進階加密標準 (AES) (使用 128 位元加密金鑰) 和 PlayReady 或 Widevine DRM 所動態加密的內容。 媒體服務也提供服務，可傳遞金鑰和 PlayReady/Widevine 授權給授權用戶端。
 
-如果想要讓 Media Services tooencrypt 資產，您需要 tooassociate 加密金鑰 (**CommonEncryption**或**EnvelopeEncryption**) 與 hello 資產 (如所述[這裡](media-services-rest-create-contentkey.md))此外，也可以設定授權原則 hello 索引鍵 （如本文所述）。
+如果您想要媒體服務加密資產，您需要建立加密金鑰 (**CommonEncryption** 或 **EnvelopeEncryption**) 與資產 (如[這裡](media-services-rest-create-contentkey.md)所述) 的，並且設定金鑰的授權原則 (如本文中所述)。
 
-Media Services 時，播放程式要求串流時，使用指定的 hello 金鑰 toodynamically 加密使用 AES 或 PlayReady 加密的內容。 toodecrypt hello 資料流，hello 播放程式會要求 hello 金鑰從 hello 金鑰傳遞服務。 toodecide hello 使用者獲授權 tooget hello 索引鍵，hello 服務會評估您指定 hello 索引鍵的 hello 授權原則。
+播放程式要求串流時，媒體服務便會使用 AES 或 PlayReady 加密，使用指定的金鑰動態加密您的內容。 為了將串流解密，播放程式將從金鑰傳遞服務要求金鑰。 為了決定使用者是否有權取得金鑰，服務會評估為金鑰指定的授權原則。
 
-媒體服務支援多種方式來驗證提出金鑰要求的使用者。 hello 內容金鑰授權原則可能會有一或多個授權限制：**開啟**或**語彙基元**限制。 hello 權杖限制的原則必須隨附由安全權杖服務 (STS) 發行的權杖。 Media Services 支援語彙基元中 hello**簡單 Web 權杖**([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) 格式和 * * **(JWT) JSON Web 權杖格式。
+媒體服務支援多種方式來驗證提出金鑰要求的使用者。 內容金鑰授權原則可能會有一個或多個授權限制：**open** 或 **token** 限制。 權杖限制原則必須伴隨著安全權杖服務 (STS) 所發出的權杖。 媒體服務支援**簡單 Web 權杖** ([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) 格式和 **JSON Web 權杖** (JWT) 格式的權杖。
 
-媒體服務不提供安全權杖服務。 您可以建立自訂的 STS，或利用 Microsoft Azure ACS tooissue 語彙基元。 hello STS 必須設定的 toocreate hello 指定金鑰簽署權杖和宣告 （如本文所述），指定在 hello 權杖限制組態中的發行。 hello Media Services 金鑰傳遞服務會傳回 hello 加密金鑰 toohello 用戶端 hello 語彙基元有效且 hello hello 權杖中的宣告符合為 hello 內容金鑰設定。
+媒體服務不提供安全權杖服務。 您可以建立自訂 STS，或利用 Microsoft Azure ACS 來發行權杖。 STS 必須設定為建立使用指定金鑰簽署的權杖，並發行在權杖限制組態中指定的宣告 (如本文中所述)。 如果權杖有效，且權杖中的宣告符合為內容金鑰設定的宣告，媒體服務金鑰傳遞服務會將加密金鑰傳回給用戶端。
 
 如需詳細資訊，請參閱
 
@@ -40,31 +40,31 @@ Media Services 時，播放程式要求串流時，使用指定的 hello 金鑰 
 
 [整合 Azure 媒體服務 OWIN MVC 型應用程式與 Azure Active Directory 並根據 JWT 宣告限制內容金鑰傳遞](http://www.gtrifonov.com/2015/01/24/mvc-owin-azure-media-services-ad-integration/)。
 
-[使用 Azure ACS tooissue 語彙基元](http://mingfeiy.com/acs-with-key-services)。
+[使用 Azure ACS 發行權杖](http://mingfeiy.com/acs-with-key-services)。
 
 ### <a name="some-considerations-apply"></a>適用一些考量事項：
-* toobe 無法 toouse 動態封裝和動態加密，請確定將內容串流的端點要從中 toostream hello 處於 hello**執行**狀態。
+* 為了能夠使用動態封裝和動態加密功能，請確定您想要從中串流內容的串流端點是處於 [執行中] 狀態。
 * 您的資產必須包含一組調適性位元速率 MP4 或調適性位元速率 Smooth Streaming 檔案。 如需詳細資訊，請參閱 [為資產編碼](media-services-encode-asset.md)。
 * 使用 **AssetCreationOptions.StorageEncrypted** 選項，上傳資產並為其編碼。
-* 如果您計劃 toohave 需要的多個內容金鑰 hello 相同原則設定，強烈建議 toocreate 單一授權原則和其重複使用於多個內容的索引鍵。
-* hello 金鑰傳遞服務會在快取 ContentKeyAuthorizationPolicy 及其相關的物件 （原則選項和限制） 15 分鐘。  如果您建立 ContentKeyAuthorizationPolicy toouse 「 Token 」 限制，則加以測試，並指定然後 hello 原則更新太 「 開啟 」 限制，需要大約 15 分鐘的時間之前 hello 原則參數 toohello 「 開放 」 版本的 hello 原則。
+* 如果您計劃有多個內容金鑰需要相同的原則組態，強烈建議建立一個授權原則，並針對多個內容金鑰重複使用。
+* 金鑰傳遞服務會快取 ContentKeyAuthorizationPolicy 和其相關物件 (原則選項和限制) 15 分鐘。  如果您建立 ContentKeyAuthorizationPolicy，並指定要使用 "Token" 的限制，那麼便測試它，然後將原則更新為"Open" 限制，將需要大約 15 分鐘，原則才會切換為 "Open" 版本的原則。
 * 如果您加入或更新您的資產傳遞原則，您必須刪除現有的定位程式 (如果有的話)，並建立新的定位器。
 * 您目前無法加密漸進式下載。
 
 ## <a name="aes-128-dynamic-encryption"></a>AES-128 動態加密
 > [!NOTE]
-> 使用媒體服務 REST API，hello hello 時適用下列考量：
+> 使用媒體服務 REST API 時，適用下列考量事項：
 > 
 > 在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。
 > 
-> 已成功連接之後 toohttps://media.windows.net，您會收到指定另一個媒體服務 URI 的 301 重新導向。 您必須進行的後續呼叫 toohello 新的 URI。 如需有關如何 tooconnect toohello AMS API，請參閱詳細[存取 hello Azure 媒體服務 API 與 Azure AD 驗證](media-services-use-aad-auth-to-access-ams-api.md)。
+> 順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 後續的呼叫必須送到新的 URI。 如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。
 > 
 > 
 
 ### <a name="open-restriction"></a>Open 限制
-開放限制表示 hello 系統將會傳送 hello 金鑰 tooanyone 人員提出金鑰要求。 這項限制可用於測試用途。
+Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 這項限制可用於測試用途。
 
-hello 下列範例會建立開放授權原則，並將它加入 toohello 內容金鑰。
+下列範例會建立 open 授權原則，並將它加入至內容金鑰。
 
 #### <a id="ContentKeyAuthorizationPolicies"></a>建立 ContentKeyAuthorizationPolicies
 要求：
@@ -159,7 +159,7 @@ hello 下列範例會建立開放授權原則，並將它加入 toohello 內容�
 
     HTTP/1.1 204 No Content
 
-#### <a id="AddAuthorizationPolicyToKey"></a>新增授權原則 toohello 內容金鑰
+#### <a id="AddAuthorizationPolicyToKey"></a>將授權原則加入內容金鑰
 要求：
 
     PUT https://wamsbayclus001rest-hs.cloudapp.net/api/ContentKeys('nb%3Akid%3AUUID%3A2e6d36a7-a17c-4e9a-830d-eca23ad1a6f9') HTTP/1.1
@@ -181,9 +181,9 @@ hello 下列範例會建立開放授權原則，並將它加入 toohello 內容�
     HTTP/1.1 204 No Content
 
 ### <a name="token-restriction"></a>Token 限制
-本章節描述如何 toocreate 內容金鑰授權原則及關聯 hello 內容金鑰。 hello 授權原則說明哪些授權需求必須符合的 toodetermine，如果 hello 使用者是授權的 tooreceive hello 索引鍵 (hello 「 驗證金鑰 」 清單，例如包含 hello 金鑰簽署該 hello 語彙基元)。
+本節描述如何建立內容金鑰授權原則，然後建立它與內容金鑰的關聯。 授權原則描述必須符合哪些授權需求，以判斷使用者是否有權接收金鑰 (例如，「驗證金鑰」清單是否包含簽署權杖用的金鑰)。
 
-tooconfigure hello 權杖限制選項，就需要 toouse XML toodescribe hello 權杖的授權需求。 hello 權杖限制組態 XML 必須符合 toohello 下列 XML 結構描述。
+若要設定 token 限制選項，您需要使用 XML 來描述權杖的授權需求。 token 限制組態 XML 必須符合下列 XML 結構描述。
 
 #### <a id="schema"></a>Token 限制結構描述
     <?xml version="1.0" encoding="utf-8"?>
@@ -233,12 +233,12 @@ tooconfigure hello 權杖限制選項，就需要 toouse XML toodescribe hello �
       <xs:element name="SymmetricVerificationKey" nillable="true" type="tns:SymmetricVerificationKey" />
     </xs:schema>
 
-當設定 hello**語彙基元**限制原則，您必須指定 hello 主要 * * 驗證金鑰 * *，**簽發者**和**觀眾**參數。 hello * * 主要驗證金鑰 * * 包含 hello 語彙基元的 hello 金鑰簽署，**簽發者**是 hello 安全權杖服務的問題 hello 語彙基元。 hello**觀眾**(有時稱為**範圍**) 描述 hello 意圖 hello token 或 hello 資源的 hello 權杖授與存取權。 hello Media Services 金鑰傳遞服務會驗證這些 hello 權杖中的值符合 hello 範本中的 hello 值。 
+設定 **token** 限制原則時，您必須指定主要**驗證金鑰**、**簽發者**和**對象**參數。 **主要驗證金鑰**包含簽署權杖使用的金鑰，**簽發者**是發行權杖的安全性權杖服務。 **對象** (有時稱為**範圍**) 描述權杖或權杖獲授權存取之資源的用途。 媒體服務金鑰傳遞服務會驗證權杖中的這些值符合在範本中的值。 
 
-hello 下列範例會建立包含權杖限制授權原則。 在此範例中，hello 用戶端必須 toopresent 包含的語彙基元： 簽署金鑰 (VerificationKey)、 權杖簽發者和必要的宣告。
+下列範例會建立具有 token 限制的授權原則。 在此範例中，用戶端必須提出權杖，權杖中包含簽署金鑰 (VerificationKey)、權杖簽發者和必要的宣告。
 
 ### <a name="create-contentkeyauthorizationpolicies"></a>建立 ContentKeyAuthorizationPolicies
-建立 hello 「 權杖限制原則 」 所示[這裡](#ContentKeyAuthorizationPolicies)。
+建立「權杖限制原則」，如 [這裡](#ContentKeyAuthorizationPolicies)所示。
 
 ### <a name="create-contentkeyauthorizationpolicyoptions"></a>建立 ContentKeyAuthorizationPolicyOptions
 要求：
@@ -279,18 +279,18 @@ hello 下列範例會建立包含權杖限制授權原則。 在此範例中，h
 #### <a name="link-contentkeyauthorizationpolicies-with-options"></a>連結 ContentKeyAuthorizationPolicies 與選項
 連結 ContentKeyAuthorizationPolicies 與選項，如 [這裡](#ContentKeyAuthorizationPolicies)所示。
 
-#### <a name="add-authorization-policy-toohello-content-key"></a>新增授權原則 toohello 內容金鑰
-加入顯示 AuthorizationPolicy toohello ContentKey[這裡](#AddAuthorizationPolicyToKey)。
+#### <a name="add-authorization-policy-to-the-content-key"></a>將授權原則加入內容金鑰
+將 AuthorizationPolicy 加入 ContentKey，如 [這裡](#AddAuthorizationPolicyToKey)所示。
 
 ## <a name="playready-dynamic-encryption"></a>PlayReady 動態加密
-Media Services 可讓您 tooconfigure hello 權限和限制您想要 hello PlayReady DRM 執行階段 tooenforce 當使用者想 tooplay 回受保護的內容。 
+媒體服務可讓您設定您要 PlayReady DRM 執行階段在使用者嘗試播放受保護內容時強制執行的權限和限制。 
 
-當保護使用 PlayReady，其中一項 hello 您需要在您的授權原則 toospecify 是 XML 字串，定義 hello [PlayReady 授權範本](media-services-playready-license-template-overview.md)。 
+使用 PlayReady 保護內容時，您需要在驗證原則中指定的其中一件事是定義 [PlayReady 授權範本](media-services-playready-license-template-overview.md)的 XML 字串。 
 
 ### <a name="open-restriction"></a>Open 限制
-開放限制表示 hello 系統將會傳送 hello 金鑰 tooanyone 人員提出金鑰要求。 這項限制可用於測試用途。
+Open 限制表示系統將會傳送金鑰給提出金鑰要求的任何人。 這項限制可用於測試用途。
 
-hello 下列範例會建立開放授權原則，並將它加入 toohello 內容金鑰。
+下列範例會建立 open 授權原則，並將它加入至內容金鑰。
 
 #### <a id="ContentKeyAuthorizationPolicies2"></a>建立 ContentKeyAuthorizationPolicies
 要求：
@@ -368,11 +368,11 @@ hello 下列範例會建立開放授權原則，並將它加入 toohello 內容�
 #### <a name="link-contentkeyauthorizationpolicies-with-options"></a>連結 ContentKeyAuthorizationPolicies 與選項
 連結 ContentKeyAuthorizationPolicies 與選項，如 [這裡](#ContentKeyAuthorizationPolicies)所示。
 
-#### <a name="add-authorization-policy-toohello-content-key"></a>新增授權原則 toohello 內容金鑰
-加入顯示 AuthorizationPolicy toohello ContentKey[這裡](#AddAuthorizationPolicyToKey)。
+#### <a name="add-authorization-policy-to-the-content-key"></a>將授權原則加入內容金鑰
+將 AuthorizationPolicy 加入 ContentKey，如 [這裡](#AddAuthorizationPolicyToKey)所示。
 
 ### <a name="token-restriction"></a>Token 限制
-tooconfigure hello 權杖限制選項，就需要 toouse XML toodescribe hello 權杖的授權需求。 hello 權杖限制組態 XML 必須符合 toohello XML 結構描述所示[這](#schema)> 一節。
+若要設定 token 限制選項，您需要使用 XML 來描述權杖的授權需求。 Token 限制組態 XML 必須符合 [此](#schema) 節。
 
 #### <a name="create-contentkeyauthorizationpolicies"></a>建立 ContentKeyAuthorizationPolicies
 建立 ContentKeyAuthorizationPolicies，如[這裡](#ContentKeyAuthorizationPolicies2)所示。
@@ -416,8 +416,8 @@ tooconfigure hello 權杖限制選項，就需要 toouse XML toodescribe hello �
 #### <a name="link-contentkeyauthorizationpolicies-with-options"></a>連結 ContentKeyAuthorizationPolicies 與選項
 連結 ContentKeyAuthorizationPolicies 與選項，如 [這裡](#ContentKeyAuthorizationPolicies)所示。
 
-#### <a name="add-authorization-policy-toohello-content-key"></a>新增授權原則 toohello 內容金鑰
-加入顯示 AuthorizationPolicy toohello ContentKey[這裡](#AddAuthorizationPolicyToKey)。
+#### <a name="add-authorization-policy-to-the-content-key"></a>將授權原則加入內容金鑰
+將 AuthorizationPolicy 加入 ContentKey，如 [這裡](#AddAuthorizationPolicyToKey)所示。
 
 ## <a id="types"></a>定義 ContentKeyAuthorizationPolicy 時使用的類型
 ### <a id="ContentKeyRestrictionType"></a>ContentKeyRestrictionType
@@ -445,5 +445,5 @@ tooconfigure hello 權杖限制選項，就需要 toouse XML toodescribe hello �
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ## <a name="next-steps"></a>後續步驟
-既然您已設定內容金鑰授權原則，請移 toohello[如何 tooconfigure 資產傳遞原則](media-services-rest-configure-asset-delivery-policy.md)主題。
+現在，您已設定內容金鑰授權原則，請移至 [如何設定資產傳遞原則](media-services-rest-configure-asset-delivery-policy.md) 主題。
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaUsing Axinom toodeliver Widevine 授權 tooAzure Media Services |Microsoft 文件"
-description: "本文說明如何使用 Azure 媒體服務 (AMS) toodeliver 以 PlayReady 和 Widevine DRMs AMS 動態加密的資料流。 hello PlayReady 授權來自 Media Services PlayReady 授權伺服器，並 Widevine 授權傳遞 Axinom 授權伺服器。"
+title: "使用 Axinom 將 Widevine 授權傳遞到 Azure 媒體服務 | Microsoft Docs"
+description: "本文說明如何使用 Azure 媒體服務 (AMS) 來傳遞 AMS 使用 PlayReady 與 Widevine DRM 動態加密的資料流。 PlayReady 授權來自媒體服務 PlayReady 授權伺服器，Widevine 授權由 Axinom 授權伺服器傳遞。"
 services: media-services
 documentationcenter: 
 author: willzhan
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/19/2017
 ms.author: willzhan;Mingfeiy;rajputam;Juliako
-ms.openlocfilehash: 2245d9269c30712ef779973ae021c00c76174d0d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 64e8d4a88ea78e0de065e5a2c12dba4885e08bad
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="using-axinom-toodeliver-widevine-licenses-tooazure-media-services"></a>使用 Axinom toodeliver Widevine 授權 tooAzure 媒體服務
+# <a name="using-axinom-to-deliver-widevine-licenses-to-azure-media-services"></a>使用 Axinom 將 Widevine 授權傳遞到 Azure 媒體服務
 > [!div class="op_single_selector"]
 > * [castLabs](media-services-castlabs-integration.md)
 > * [Axinom](media-services-axinom-integration.md)
@@ -30,51 +30,51 @@ ms.lasthandoff: 10/06/2017
 ## <a name="overview"></a>Overview
 Azure 媒體服務 (AMS) 已新增Google Widevine 動態保護 (如需詳細資訊，請參閱 [Mingfei 的部落格](https://azure.microsoft.com/blog/azure-media-services-adds-google-widevine-packaging-for-delivering-multi-drm-stream/) )。 此外，Azure 媒體播放器 (AMP) 也已新增 Widevine 支援 (如需詳細資訊，請參閱 [AMP 文件](http://amp.azure.net/libs/amp/latest/docs/) )。 談到在配備 MSE 和 EME 的現代瀏覽器上串流處理受到 CENC 與多重原生 DRM (PlayReady 和 Widevine) 保護的 DASH 內容時，這可說是一大成就。
 
-從開始 hello Media Services.NET SDK 版本 3.5.2，Media Services 可讓您 tooconfigure Widevine 授權範本，並取得 Widevine 授權。 您也可以使用下列 AMS 夥伴 toohelp 傳遞 Widevine 授權 hello: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/)， [EZDRM](http://ezdrm.com/)， [castLabs](http://castlabs.com/company/partners/azure/)。
+從媒體服務 .NET SDK 版本 3.5.2 開始，媒體服務讓您可設定 Widevine 授權範本並取得 Widevine 授權。 您也可以使用下列 AMS 合作夥伴來協助您傳遞 Widevine 授權：[Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/)、[EZDRM](http://ezdrm.com/)、[castLabs](http://castlabs.com/company/partners/azure/)。
 
-本文說明如何 toointegrate 和測試 Widevine 授權 Axinom 受管理伺服器。 具體而言，其內容包括：  
+本文說明如何整合和測試受 Axinom 管理的 Widevine 授權伺服器。 具體而言，其內容包括：  
 
 * 使用多重 DRM (PlayReady 和 Widevine) 與對應的授權取得 URL，設定動態一般加密；
-* 順序 toomeet hello 授權伺服器的需求; 在產生的 JWT 語彙基元
+* 產生 JWT 權杖以符合授權伺服器需求；
 * 開發可使用 JWT 權杖驗證處理授權取得作業的 Azure 媒體播放器應用程式；
 
-hello 完整的系統和 hello 傳送的金鑰、 金鑰識別碼、 金鑰種子 JTW 語彙基元，其宣告可以最 hello 下列圖表所描述的內容。
+完整的系統和內容金鑰、金鑰識別碼、金鑰種子、JTW 權杖及其宣告，皆可透過下圖詳盡說明。
 
 ![DASH 和 CENC](./media/media-services-axinom-integration/media-services-axinom1.png)
 
 ## <a name="content-protection"></a>內容保護
-如需設定動態保護和金鑰傳遞原則，請參閱 Mingfei 的部落格：[如何透過 Azure Media Services tooconfigure Widevine 封裝](http://mingfeiy.com/how-to-configure-widevine-packaging-with-azure-media-services)。
+若要設定動態保護和金鑰傳遞原則，請參閱 Mingfei 的部落格： [如何使用 Azure 媒體服務設定 Widevine 封裝](http://mingfeiy.com/how-to-configure-widevine-packaging-with-azure-media-services)(英文)。
 
-您可以使用多重 DRM 為 DASH 串流處理具有兩個 hello 下列設定動態 CENC 保護：
+您可以使用多重 DRM 為同時具有下列二者的 DASH 串流設定動態 CENC 保護：
 
-1. MS Edge 和 IE11 的 PlayReady 保護，可能有權杖授權限制。 hello 權杖限制的原則必須伴隨著權杖核發的權杖服務 (STS)，例如 Azure Active Directory;
+1. MS Edge 和 IE11 的 PlayReady 保護，可能有權杖授權限制。 權杖限制原則必須伴隨著安全權杖服務 (STS) 所發出的權杖，例如 Azure Active Directory；
 2. Chrome 的 Widevine 保護，它可能需要對其他 STS 所發行的權杖進行權杖驗證。 
 
 請參閱＜ [JWT 權杖產生](media-services-axinom-integration.md#jwt-token-generation) ＞一節，了解 Azure Active Directory 為何無法做為 Axinom Widevine 授權伺服器的 STS。
 
 ### <a name="considerations"></a>考量
-1. 您必須使用的 hello Axinom 指定金鑰種子 (8888000000000000000000000000000000000000)，以及您產生的或選取索引鍵識別碼 toogenerate hello 的內容金鑰設定金鑰傳遞服務。 Axinom 授權伺服器會發出包含基礎的內容金鑰的所有授權 hello 上相同金鑰種子，僅適用於測試及生產環境。
-2. hello Widevine 授權取得 URL 進行測試： [https://drm-widevine-licensing.axtest.net/AcquireLicense](https://drm-widevine-licensing.axtest.net/AcquireLicense)。 HTTP 與 HTTS 皆可使用。
+1. 您必須使用 Axinom 指定的金鑰種子 (8888000000000000000000000000000000000000) 和您產生或選取的金鑰識別碼，產生用以設定金鑰傳遞服務的內容金鑰。 Axinom 授權伺服器會根據相同的金鑰種子 (同時適用於測試和生產環境)，發行包含內容金鑰的所有授權。
+2. 測試用的 Widevine 授權取得 URL： [https://drm-widevine-licensing.axtest.net/AcquireLicense](https://drm-widevine-licensing.axtest.net/AcquireLicense)。 HTTP 與 HTTS 皆可使用。
 
 ## <a name="azure-media-player-preparation"></a>準備 Azure 媒體播放器
 AMP 1.4.0 版支援同時使用 PlayReady 和 Widevine DRM 動態封裝的 AMS 內容進行播放。
-Widevine 授權伺服器不需要權杖驗證，如果沒有進行任何額外需要 toodo tootest 保護虛線-內容由 Widevine。 如需範例，hello AMP 團隊提供一個簡單[範例](http://amp.azure.net/libs/amp/latest/samples/dynamic_multiDRM_PlayReadyWidevine_notoken.html)，其中您可以檢視它在邊緣和 IE11 使用 PlayReady 和 Chrome Widevine 使用中工作。
-提供 Axinom hello Widevine 授權伺服器需要 JWT 權杖驗證。 hello JWT 權杖需要 toobe 提交透過 HTTP 標頭 「 X-AxDRM-訊息 」 的授權要求。 基於此目的，您需要遵循之前設定 hello 來源裝載 AMP hello 網頁中的 javascript tooadd hello:
+如果 Widevine 授權伺服器不需要權杖驗證，則不需要執行任何其他動作即可測試受到 Widevine 保護的 DASH 內容。 例如，AMP 團隊提供簡單的 [範例](http://amp.azure.net/libs/amp/latest/samples/dynamic_multiDRM_PlayReadyWidevine_notoken.html)，在此您可以看到在 Edge 和 IE11 中搭配 PlayReady 以及在 Chrome 中搭配 Widevine 皆順利運作。
+Axinom 提供的 Widevine 授權伺服器需要 JWT 權杖驗證。 JWT 權杖必須使用透過 HTTP 標頭 “X-AxDRM-Message” 發出的授權要求來提交。 為此，您必須在設定來源之前，在裝載 AMP 的網頁中新增下列 Javascript：
 
     <script>AzureHtml5JS.KeySystem.WidevineCustomAuthorizationHeader = "X-AxDRM-Message"</script>
 
-hello AMP 程式碼其餘部分是 AMP 文件的標準 AMP API[這裡](http://amp.azure.net/libs/amp/latest/docs/)。
+AMP 程式碼的其餘部分是標準 AMP API，如 [這裡](http://amp.azure.net/libs/amp/latest/docs/)的 AMP 文件所說明。
 
-請注意該 hello javascript 設定自訂的授權標頭仍是 hello 官方長期 AMP 的方法，發行前的短期方法上方。
+請注意，上述用來設定自訂授權標頭的 Javascript 是在 AMP 中正式發行長期方法之前所使用的短期方法。
 
 ## <a name="jwt-token-generation"></a>JWT 權杖產生
-測試用的 Axinom Widevine 授權伺服器需要 JWT 權杖驗證。 此外，hello JWT 權杖中的 hello 宣告的其中一個是複雜的物件類型，而不是基本資料類型。
+測試用的 Axinom Widevine 授權伺服器需要 JWT 權杖驗證。 此外，JWT 權杖中的其中一個宣告屬於複雜物件類型，而非基本資料類型。
 
-可惜的是，Azure AD 只能發行具有基本類型的 JWT 權杖。 同樣地，.NET Framework 應用程式開發介面 （System.IdentityModel.Tokens.SecurityTokenHandler 和 JwtPayload） 只允許您 tooinput 複雜的物件類型做為宣告。 不過，hello 宣告仍會序列化為字串。 因此我們無法用於任何兩個 hello 產生 Widevine 授權要求的 hello JWT 語彙基元。
+可惜的是，Azure AD 只能發行具有基本類型的 JWT 權杖。 同樣地，.NET Framework API (System.IdentityModel.Tokens.SecurityTokenHandler 和 JwtPayload) 也只能讓您輸入複雜物件類型做為宣告。 不過，這些宣告仍會序列化為字串。 因此，這兩者都無法用來產生 Widevine 授權要求的 JWT 權杖。
 
-John Sheehan [JWT Nuget 封裝](https://www.nuget.org/packages/JWT)符合 hello 需求，因此我們 toouse 此 Nuget 封裝。
+John Sheehan 的 [JWT Nuget 套件](https://www.nuget.org/packages/JWT) 符合這些需求，因此我們將使用此 Nuget 套件。
 
-以下是產生以 hello JWT 權杖中的 hello 程式碼測試所需視 Axinom Widevine 授權伺服器所需要的宣告：
+下列程式碼會產生 JWT 權杖，且具有 Axinom Widevine 授權伺服器進行測試時所需的必要宣告：
 
     using System;
     using System.Collections.Generic;
@@ -91,7 +91,7 @@ John Sheehan [JWT Nuget 封裝](https://www.nuget.org/packages/JWT)符合 hello 
             //using John Sheehan's NuGet JWT library: https://www.nuget.org/packages/JWT/
             public static string CreateJwtSheehan(string symmetricKeyHex, string key_id)
             {
-                byte[] symmetricKey = ConvertHexStringToByteArray(symmetricKeyHex);  //hex string toobyte[] Note: Note that hello key is a hex string, however it must be treated as a series of bytes not a string when encoding.
+                byte[] symmetricKey = ConvertHexStringToByteArray(symmetricKeyHex);  //hex string to byte[] Note: Note that the key is a hex string, however it must be treated as a series of bytes not a string when encoding.
 
                 var payload = new Dictionary<string, object>()
                              {
@@ -105,12 +105,12 @@ John Sheehan [JWT Nuget 封裝](https://www.nuget.org/packages/JWT)符合 hello 
                 return token;
             }
 
-            //convert hex string toobyte[]
+            //convert hex string to byte[]
             public static byte[] ConvertHexStringToByteArray(string hexString)
             {
                 if (hexString.Length % 2 != 0)
                 {
-                    throw new ArgumentException(String.Format(System.Globalization.CultureInfo.InvariantCulture, "hello binary key cannot have an odd number of digits: {0}", hexString));
+                    throw new ArgumentException(String.Format(System.Globalization.CultureInfo.InvariantCulture, "The binary key cannot have an odd number of digits: {0}", hexString));
                 }
 
                 byte[] HexAsBytes = new byte[hexString.Length / 2];
@@ -136,12 +136,12 @@ Axinom Widevine 授權伺服器
 
 ### <a name="considerations"></a>考量
 1. 即使 AMS PlayReady 授權傳遞服務會要求驗證權杖之前必須有 “Bearer=”，Axinom Widevine 授權伺服器並不會加以使用。
-2. hello Axinom 通訊金鑰做為簽署金鑰。 請注意該 hello 金鑰是十六進位的字串，不過必須將它視為一系列的位元組不是字串編碼時也一樣。 Hello 方法 ConvertHexStringToByteArray 達到此目的。
+2. Axinom 通訊金鑰會做為簽署金鑰。 請注意，此金鑰是十六進位字串，但在編碼時必須將其視為一系列的位元組，而不是字串。 這可藉由 ConvertHexStringToByteArray 方法來達成。
 
 ## <a name="retrieving-key-id"></a>擷取金鑰識別碼
-您可能已注意到在 hello 程式碼來產生 JWT 權杖的金鑰識別碼是必要。 因為 hello JWT 權杖需要 toobe 準備載入 AMP 播放程式之前，toobe 擷取中的金鑰 ID 必須訂購 toogenerate JWT 權杖中。
+您可能已注意到，在產生 JWT 權杖的程式碼中，金鑰識別碼是必要項目。 由於 JWT 權杖必須在載入 AMP 播放程式之前備妥，因此必須要擷取金鑰識別碼，才能產生 JWT 權杖。
 
-課程有多種方式可以 tooget 保存索引鍵的識別碼。 比方說，有人可能會將金鑰識別碼與內容中繼資料一起儲存在資料庫中。 或者，您可以從 DASH MPD (媒體顯示說明) 檔案擷取金鑰識別碼。 下列的 hello 程式碼是後者的 hello。
+當然，有多種方式可用來取得金鑰識別碼。 比方說，有人可能會將金鑰識別碼與內容中繼資料一起儲存在資料庫中。 或者，您可以從 DASH MPD (媒體顯示說明) 檔案擷取金鑰識別碼。 以下程式碼適用於後者。
 
     //get key_id from DASH MPD
     public static string GetKeyID(string dashUrl)
@@ -175,22 +175,22 @@ Axinom Widevine 授權伺服器
     }
 
 ## <a name="summary"></a>摘要
-使用最新的 Azure 媒體服務內容保護和 Azure Media Player 中 Widevine 支援加法，我們能夠就近 tooimplement 串流的虛線 + 多 native DRM （PlayReady + Widevine） 與 AMS 和 Widevine 授權中這兩個 PlayReady 授權服務hello 遵循新式瀏覽器從 Axinom 伺服器：
+透過 Azure 媒體服務內容保護和 Azure 媒體播放器中最新版的 Widevine 支援，我們得以同時使用 AMS 中的 PlayReady 授權服務和 Axinom 的 Widevine 授權伺服器，為下列現代瀏覽器實作 DASH + 多重原生 DRM (PlayReady + Widevine) 的串流：
 
 * Chrome
 * Windows 10 上的 Microsoft Edge
 * Windows 8.1 和 Windows 10 上的 IE 11
-* (Desktop) Firefox 和 Safari Mac (不限 iOS) 上的也支援透過 Silverlight 和 hello 相同的 URL，使用 Azure Media Player
+* Firefox (桌面) 和 Mac (非 iOS) 上的 Safari 也都可透過 Silverlight 和與 Azure 媒體播放器相同的 URL 受到支援
 
-hello 下列參數需要 hello 迷你解決方案運用 Axinom Widevine 授權伺服器。 除了索引鍵識別碼 hello 其餘的參數所提供的 Axinom 根據其 Widevine server 安裝程式。
+以下是運用 Axinom Widevine 授權伺服器的迷你解決方案所需的參數。 除了金鑰識別碼以外，Axinom 會根據 Widevine 伺服器安裝來提供其餘參數。
 
 | 參數 | 使用方式 |
 | --- | --- |
-| 通訊金鑰識別碼 |必須是包含為 hello 宣告"com_key_id 「 JWT 權杖中的值 (請參閱[這](media-services-axinom-integration.md#jwt-token-generation)> 一節)。 |
-| 通訊金鑰 |您必須使用因為 hello 的 JWT 權杖簽署金鑰 (請參閱[這](media-services-axinom-integration.md#jwt-token-generation)> 一節)。 |
-| 金鑰種子 |必須與任何使用的 toogenerate 內容金鑰指定為內容金鑰識別碼 (請參閱[這](media-services-axinom-integration.md#content-protection)> 一節)。 |
+| 通訊金鑰識別碼 |必須包含在 JWT 權杖中作為宣告 "com_key_id" 的值 (請參閱 [本節](media-services-axinom-integration.md#jwt-token-generation))。 |
+| 通訊金鑰 |必須做為 JWT 權杖的簽署金鑰 (請參閱 [本節](media-services-axinom-integration.md#jwt-token-generation) )。 |
+| 金鑰種子 |必須用來使用任何指定的內容金鑰識別碼來產生內容金鑰 (請參閱 [本節](media-services-axinom-integration.md#content-protection))。 |
 | Widevine 授權取得 URL |必須用於設定 DASH 串流資產傳遞原則 (請參閱 [本節](media-services-axinom-integration.md#content-protection))。 |
-| 內容金鑰識別碼 |必須是 hello 的 JWT 權杖中的權限訊息宣告值的一部分 (請參閱[這](media-services-axinom-integration.md#jwt-token-generation)> 一節)。 |
+| 內容金鑰識別碼 |必須包含其中作為 JWT 權杖之權利訊息宣告值的一部分 (請參閱 [本節](media-services-axinom-integration.md#jwt-token-generation) )。 |
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -199,5 +199,5 @@ hello 下列參數需要 hello 迷你解決方案運用 Axinom Widevine 授權�
 [!INCLUDE [media-services-user-voice-include](../../includes/media-services-user-voice-include.md)]
 
 ### <a name="acknowledgments"></a>通知
-我們想要遵循造成建立這份文件的人 tooacknowledge hello: Kristjan Jõgi 的 Axinom、 Mingfei Yan 和 Amit Rajput。
+我們想要向下列為建立此文件貢獻心力的人員致謝：Kristjan Jõgi of Axinom、Mingfei Yan 及 Amit Rajput。
 

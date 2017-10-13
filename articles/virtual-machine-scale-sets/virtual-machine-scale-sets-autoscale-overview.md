@@ -1,6 +1,6 @@
 ---
-title: "aaaAutomatic 縮放比例和虛擬機器擴充集 |Microsoft 文件"
-description: "了解如何使用診斷和自動調整資源 tooautomatically 標尺虛擬機器規模集中的。"
+title: "自動調整與虛擬機器擴展集 | Microsoft Docs"
+description: "深入了解使用診斷和自動調整資源，以自動調整擴展集中的虛擬機器。"
 services: virtual-machine-scale-sets
 documentationcenter: 
 author: Thraka
@@ -16,23 +16,23 @@ ms.topic: article
 ms.date: 06/05/2017
 ms.author: adegeo
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 25f54b693e3c991577238242008c262023ed479c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 06ff9d9ae1dd8256f0d22c1a60ed6a85554f1f17
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-automatic-scaling-and-virtual-machine-scale-sets"></a>如何 toouse 自動縮放比例和虛擬機器規模集
-自動調整的虛擬機器規模集中的 hello 建立或刪除中設定為 hello 的機器所需 toomatch 效能需求。 當工作的 hello 數量增加時，應用程式可能需要額外的資源 tooenable 它 tooeffectively 執行工作。
+# <a name="how-to-use-automatic-scaling-and-virtual-machine-scale-sets"></a>如何使用自動調整與虛擬機器擴展集
+擴展集內的虛擬機器自動調整是依需求建立或刪除集合中的機器以符合效能需求。 當工作量增長時，應用程式可能需要額外的資源，才能有效執行工作。
 
-自動調整是自動化程序，可協助減輕管理額外負荷。 透過減少額外負荷，您不需要 toocontinually 監視系統效能，或決定如何 toomanage 資源。 調整是一項彈性的程序。 Hello 負載增加時，可以加入更多資源。 還為視需要降低資源可以移除的 toominimize 成本和維護效能層級。
+自動調整是自動化程序，可協助減輕管理額外負荷。 透過減少額外負荷，您便不需要持續監視系統效能或決定資源的管理方式。 調整是一項彈性的程序。 當負載增加時，可以新增更多資源。 此外，可隨著需求的降低來移除資源，以將成本降至最低並維持效能層級。
 
-設定使用 Azure Resource Manager 範本、 Azure PowerShell、 Azure CLI 或 hello Azure 入口網站來設定標尺上的自動調整。
+使用 Azure Resource Manager 範本、Azure PowerShell、Azure CLI 或 Azure 入口網站，在擴展集上設定自動調整。
 
 ## <a name="set-up-scaling-by-using-resource-manager-templates"></a>使用 Resource Manager 範本，設定調整
-您不是分開部署與管理應用程式的每個資源，而是使用範本，藉此經由協調的單一作業來部署所有資源。 在 hello 範本中，應用程式的資源定義時，部署參數指定不同的環境。 hello 範本包含 JSON 和您可以為您的部署使用 tooconstruct 值的運算式。 toolearn 詳細資訊，看看[撰寫 Azure 資源管理員範本](../azure-resource-manager/resource-group-authoring-templates.md)。
+您不是分開部署與管理應用程式的每個資源，而是使用範本，藉此經由協調的單一作業來部署所有資源。 在範本中，會定義應用程式資源，且會針對不同的環境指定部署參數。 範本由 JSON 與運算式所組成，可讓您用來為部署建構值。 若要深入了解，請參閱 [編寫 Azure Resource Manager 範本](../azure-resource-manager/resource-group-authoring-templates.md)。
 
-在 hello 範本中，您可以指定 hello 容量項目：
+在範本中，您可以指定容量元素︰
 
 ```json
 "sku": {
@@ -42,14 +42,14 @@ ms.lasthandoff: 10/06/2017
 },
 ```
 
-容量識別 hello hello 集合中的虛擬機器數目。 您可以藉由部署具有不同值的範本手動變更 hello 容量。 如果您要部署範本 tooonly 變更 hello 容量，您可以包含 hello SKU 元素與 hello 更新容量。
+容量會識別集合中的虛擬機器數目。 您可以使用不同值部署範本，手動變更容量。 如果您部署範本只是要變更容量，您可以僅包含具有更新容量的 SKU 元素。
 
-hello 規模集的容量可以自動調整使用的 hello 組合**autoscaleSettings**資源和 hello 診斷延伸模組。
+透過使用 **autoscaleSettings** 資源和診斷擴充功能，可自動調整擴展集的容量。
 
-### <a name="configure-hello-azure-diagnostics-extension"></a>設定 hello Azure 診斷擴充功能
-自動縮放只能夠如果度量收集是成功 hello 規模集中的每部虛擬機器上。 hello Azure 診斷擴充功能提供符合 hello 自動調整資源 hello 度量集合需求的 hello 監視和診斷功能。 您可以安裝 hello 延伸 hello Resource Manager 範本的一部分。
+### <a name="configure-the-azure-diagnostics-extension"></a>設定 Azure 診斷擴充
+自動調整只能夠在擴展集中的每個虛擬機器上的度量集合成功時完成。 Azure 診斷擴充提供監視和診斷功能，符合自動調整資源的度量集合需求。 您可以安裝擴充做為 Resource Manager 範本的一部分。
 
-此範例會顯示 hello 範本 tooconfigure hello 診斷延伸模組中使用的 hello 變數：
+此範例會顯示在範本中用來設定診斷擴充的變數︰
 
 ```json
 "diagnosticsStorageAccountName": "[concat(parameters('resourcePrefix'), 'saa')]",
@@ -61,9 +61,9 @@ hello 規模集的容量可以自動調整使用的 hello 組合**autoscaleSetti
 "wadcfgxend": "[concat('\"><MetricAggregation scheduledTransferPeriod=\"PT1H\"/><MetricAggregation scheduledTransferPeriod=\"PT1M\"/></Metrics></DiagnosticMonitorConfiguration></WadCfg>')]"
 ```
 
-部署 hello 範本時，會提供參數。 在此範例中，hello （儲存資料） 的 hello 儲存體帳戶名稱和 hello 提供 hello 規模集 （其中收集資料） 的名稱。 也在 Windows Server 本例中，會收集僅 hello 執行緒計數 」 效能計數器。 所有 hello 可用的效能計數器，在 Windows 或 Linux 可以是使用的 toocollect 診斷資訊，而且可以包含在 hello 延伸模組組態。
+參數將會於範本部署時提供。 在這個範例中，會提供儲存體帳戶名稱 (在其中儲存資料) 及擴展集名稱 (在其中收集資料)。 此外，在這個 Windows Server 範例中，將只會收集執行緒計數效能計數器。 Windows 或 Linux 中所有可用的效能計數器都可以用來收集診斷資訊，並且可以包含在擴充組態中。
 
-此範例會顯示 hello 範本中的 hello 延伸模組的 hello 定義：
+此範例會顯示範本中擴充的定義︰
 
 ```json
 "extensionProfile": {
@@ -90,14 +90,14 @@ hello 規模集的容量可以自動調整使用的 hello 組合**autoscaleSetti
 }
 ```
 
-Hello 診斷延伸模組在執行時，要 hello 資料儲存及收集在資料表中，您指定的 hello 儲存體帳戶中。 在 hello **WADPerformanceCounters**資料表中，您可以找到 hello 收集資料：
+當診斷擴充功能執行時，會在您指定的儲存體帳戶中，於資料表中儲存和收集資料。 在 **WADPerformanceCounters** 資料表中，您可以找到收集的資料：
 
 ![](./media/virtual-machine-scale-sets-autoscale-overview/ThreadCountBefore2.png)
 
-### <a name="configure-hello-autoscalesettings-resource"></a>設定 hello autoScaleSettings 資源
-hello autoscaleSettings 資源使用 hello 診斷延伸模組 toodecide hello 資訊是否 tooincrease 或減少 hello 虛擬機器數目 hello 規模設定。
+### <a name="configure-the-autoscalesettings-resource"></a>設定 autoScaleSettings 資源
+autoscaleSettings 資源會使用來自診斷擴充的資訊，以決定是否要在擴展集中增加或減少虛擬機器數目。
 
-此範例顯示 hello 範本中的 hello 資源的 hello 設定：
+此範例會顯示範本中資源的組態︰
 
 ```json
 {
@@ -166,34 +166,34 @@ hello autoscaleSettings 資源使用 hello 診斷延伸模組 toodecide hello �
 }
 ```
 
-在 hello 上述範例中，兩個規則會建立定義 hello 自動調整規模動作。 hello 第一項規則會定義 hello 向外延展動作和 hello 第二個規則定義 hello 標尺的動作。 Hello 規則提供這些值：
+在上述範例中，兩個規則用於定義自動調整動作。 第一個規則定義相應放大動作，第二個規則定義相應縮小動作。 在規則中提供這些值︰
 
 | 規則 | 說明 |
 | ---- | ----------- |
-| metricName        | 此值為 hello 與 hello 效能計數器，您在 hello 診斷延伸模組的 hello wadperfcounter 變數中定義相同的。 在 hello 上述範例中，會使用 hello 執行緒計數計數器。    |
-| metricResourceUri | 此值為 hello 虛擬機器規模集的 hello 資源識別項。 此識別碼包含 hello hello 資源群組名稱、 hello hello 資源提供者名稱和 hello 小數位數組 tooscale hello 名稱。 |
-| timeGrain         | 此值為 hello 的 hello 計量所收集的資料粒度。 在上述範例中的 hello，一分鐘的間隔收集資料。 此值是搭配 timeWindow 使用。 |
-| statistic         | 這個值會決定如何 hello 度量資訊會結合的 tooaccommodate hello 自動調整規模動作。 hello 可能的值為： 平均值、 最小值、 最大值。 |
-| timeWindow        | 此值為 hello 收集執行個體資料的時間範圍。 其值必須介於 5 分鐘到 12 小時之間。 |
-| timeAggregation   | 這個值會決定如何隨著時間結合收集的 hello 資料。 hello 預設值是 Average。 hello 可能的值為： 平均、 最小值、 最大值、 最後一個、 總和、 計數。 |
-| operator          | 這個值是使用的 toocompare hello 度量資料與 hello 臨界值的 hello 運算子。 hello 可能的值為： NotEquals、 GreaterThan、 GreaterThanOrEqual、 LessThan、 LessThanOrEqual 等於。 |
-| threshold         | 此值為 hello 觸發 hello 調整規模動作。 會確定 tooprovide hello hello 臨界值之間有足夠的差異**向外延展**和**標尺中**動作。 如果這兩個動作的相同值，設定 hello，hello 系統將不常變更，而使它無法執行調整動作。 例如，在上述範例中的 hello 中設定兩個 too600 執行緒無法運作。 |
-| direction         | 這個值會決定 hello 為止 hello 臨界值時所執行的動作。 hello 可能的值為增加或減少。 |
-| 類型              | 此值為 hello 應該會發生，且必須設定 tooChangeCount 的動作類型。 |
-| value             | 此值為 hello 加入 tooor 從 hello 規模調整集合中移除的虛擬機器數目。 此值必須是 1 或更大。 |
-| cooldown          | Hello 下一個動作發生之前，這個值會是 hello 數量時間 toowait 自 hello 的最後一個調整動作。 此值必須介於一分鐘到一週之間。 |
+| metricName        | 此值與您在診斷擴充功能的 wadperfcounter 變數中定義的效能計數器相同。 在上述範例中，會使用「執行緒計數」計數器。    |
+| metricResourceUri | 此值是虛擬機器擴展集的資源識別碼。 這個識別碼包含資源群組的名稱、資源提供者的名稱和要調整的擴展集的名稱。 |
+| timeGrain         | 此值是所收集之計量的精細度。 在先前的範例中，資料是以一分鐘的間隔進行收集。 此值是搭配 timeWindow 使用。 |
+| statistic         | 此值會決定如何結合計量以因應自動調整動作的需要。 可能的值為：Average、Min、Max。 |
+| timeWindow        | 此值是收集執行個體資料的時間範圍。 其值必須介於 5 分鐘到 12 小時之間。 |
+| timeAggregation   | 此值會決定收集的資料應如何隨著時間結合。 預設值為 Average。 可能的值為：Average、Minimum、Maximum、Last、Total、Count。 |
+| operator          | 此值是用來比較計量資料和臨界值的運算子。 可能的值為：Equals、NotEquals、GreaterThan、GreaterThanOrEqual、LessThan、LessThanOrEqual。 |
+| threshold         | 此值是觸發調整動作的值。 請確定會在**相應放大**及**相應縮小**動作的臨界值之間提供足夠的差異。 如果您為這兩個動作設定相同值，系統會預期持續性變更，這會防止系統實作調整動作。 例如，在先前的範例中將兩者設定為 600 個執行緒將無法運作。 |
+| direction         | 此值會決定達到臨界值時所採取的動作。 可能的值為 Increase 或 Decrease。 |
+| 類型              | 此值是所應採取的動作類型，必須設為 ChangeCount。 |
+| value             | 此值是從擴展集內新增或移除的虛擬機器數目。 此值必須是 1 或更大。 |
+| cooldown          | 此值是在上一個調整動作之後、下一個動作執行之前的等待時間量。 此值必須介於一分鐘到一週之間。 |
 
-Hello 效能計數器，根據使用的，某些 hello hello 範本組態中的項目會以不同的方式使用。 在上述範例中的 hello，hello 效能計數器是執行緒計數、 hello 臨界值會是向外延展動作，650 和 hello 臨界值是 550 hello 標尺的動作。 如果您使用如 %Processor Time 計數器，hello 臨界值會設定 toohello 判斷調整動作的 CPU 使用量百分比。
+根據您使用的效能計數器而定，會以不同的方式使用範本設定中的某些元素。 在先前的範例中，效能計數器是「執行緒計數」、針對相應放大動作的臨界值為 650，而針對相應縮小動作的臨界值則為 550。 如果您使用如 %Processor Time 的計數器，臨界值會設定為能判斷調整動作的 CPU 使用量百分比。
 
-當觸發調整動作時，高負載，例如 hello 集合的 hello 容量會增加根據 hello hello 範本中的值。 比方說，在小數位數設定的 hello 容量設定 too3 而設定 too1 hello 的調整動作值：
+觸發調整動作 (例如高負載) 時，集合的容量會根據範本中的值而增加。 例如，在容量設為 3 且調整動作值設為 1 的擴展集中：
 
 ![](./media/virtual-machine-scale-sets-autoscale-overview/ResourceExplorerBefore.png)
 
-當 hello 目前負載原因 hello 平均執行緒計數 toogo 超過 650 hello 閾值：
+當目前的負載導致平均執行緒計數超過 650 的臨界值時：
 
 ![](./media/virtual-machine-scale-sets-autoscale-overview/ThreadCountAfter.png)
 
-A**向外延展**原因 hello hello 組 toobe 以一遞增的容量來觸發動作：
+會觸發**相應放大**動作，讓集合的容量增加 1：
 
 ```json
 "sku": {
@@ -203,50 +203,50 @@ A**向外延展**原因 hello hello 組 toobe 以一遞增的容量來觸發動�
 },
 ```
 
-hello 結果會是虛擬機器加入 toohello 規模集：
+結果會將虛擬機器新增至擴展集：
 
 ![](./media/virtual-machine-scale-sets-autoscale-overview/ResourceExplorerAfter.png)
 
-Cooldown 段五分鐘，如果 hello 平均數目的執行緒在 hello 機器上停留超過 600，另一部電腦新增後 toohello 組。 如果 hello 平均執行緒計數停留下方 550，hello 規模集的 hello 容量會減 1，並從 hello 集就會移除機器。
+經過五分鐘的冷卻期間之後，如果機器上的執行緒平均數目仍然超過 600，則會將另一部機器新增至集合。 如果平均執行緒計數保持在 550 以下，則擴展集的容量會減少 1，且機器會從集合中移除。
 
 ## <a name="set-up-scaling-using-azure-powershell"></a>使用 Azure PowerShell 設定調整
 
-使用 PowerShell tooset 自動調整，向上的 toosee 範例查看[監視 Azure PowerShell，快速啟動範例](../monitoring-and-diagnostics/insights-powershell-samples.md)。
+若要查看使用 PowerShell 設定自動調整的範例，請參閱 [Azure 監視器 PowerShell 快速入門範例](../monitoring-and-diagnostics/insights-powershell-samples.md)。
 
 ## <a name="set-up-scaling-using-azure-cli"></a>使用 Azure CLI 設定調整
 
-使用 Azure CLI tooset 自動調整，向上的 toosee 範例查看[Azure 監視跨平台 CLI 快速啟動範例](../monitoring-and-diagnostics/insights-cli-samples.md)。
+若要查看使用 Azure CLI 設定自動調整的範例，請參閱 [Azure 監視器跨平台 CLI 快速入門範例](../monitoring-and-diagnostics/insights-cli-samples.md)。
 
-## <a name="set-up-scaling-using-hello-azure-portal"></a>設定調整使用 hello Azure 入口網站
+## <a name="set-up-scaling-using-the-azure-portal"></a>使用 Azure 入口網站設定調整
 
-toosee 的使用範例 hello Azure 入口網站的 tooset 設定自動調整，查看在[建立虛擬機器擴展集使用 hello Azure 入口網站](virtual-machine-scale-sets-portal-create.md)。
+若要查看使用 Azure 入口網站來設定自動調整的範例，請參閱[使用 Azure 入口網站建立虛擬機器擴展集](virtual-machine-scale-sets-portal-create.md)。
 
 ## <a name="investigate-scaling-actions"></a>調查調整動作
 
 * **Azure 入口網站**  
-目前，您可以取得使用 hello 入口網站的資訊數量有限。
+您目前可以使用入口網站來取得有限的資訊。
 
 * **Azure 資源總管**  
-此工具為 hello 最適合瀏覽 hello 擴展集的目前狀態。 按照此路徑，您應該會看到您建立 hello hello 標尺的執行個體檢視集：  
+此工具是瀏覽擴展集目前狀態的最佳選項。 按照此路徑，您應該會看到您所建立之調整集的執行個體檢視：  
 **訂用帳戶 > {您的訂用帳戶} > resourceGroups > {您的資源群組} > 提供者 > Microsoft.Compute > virtualMachineScaleSets > {您的擴展集} > virtualMachines**
 
 * **Azure PowerShell**  
-使用此命令 tooget 一些資訊：
+使用下列命令可取得某些資訊：
 
   ```powershell
   Get-AzureRmResource -name vmsstest1 -ResourceGroupName vmsstestrg1 -ResourceType Microsoft.Compute/virtualMachineScaleSets -ApiVersion 2015-06-15
   Get-Autoscalesetting -ResourceGroup rainvmss -DetailedOutput
   ```
 
-* Toohello jumpbox 虛擬機器連線，就像任何其他電腦，然後您可以從遠端存取 hello hello 小數位數組 toomonitor 個別處理程序中的虛擬機器時，一樣。
+* 比照任何其他機器連接到 Jumpbox 虛擬機器，您即可從遠端存取調整集內的虛擬機器，以監視個別程序。
 
 ## <a name="next-steps"></a>後續步驟
-* 查看[自動調整虛擬機器規模集中的機器](virtual-machine-scale-sets-windows-autoscale.md)toosee 如何 toocreate 小數位數設定自動調整設定的範例。
+* 請參閱 [在虛擬機器擴展集中自動調整機器](virtual-machine-scale-sets-windows-autoscale.md) ，以查看如何建立已設定自動調整的擴展集。
 
 * 在 [Azure 監視器 PowerShell 快速入門範例](../monitoring-and-diagnostics/insights-powershell-samples.md)中找到 Azure 監視器監視功能的範例
 
-* 了解通知功能[用於 Azure 監視的自動調整規模動作 toosend 電子郵件和 webhook 警示通知](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md)。
+* 若要深入了解通知功能，請參閱[使用自動調整動作在 Azure 監視器中傳送電子郵件和 Webhook 警示通知](../monitoring-and-diagnostics/insights-autoscale-to-webhook-email.md)。
 
-* 深入了解如何太[使用稽核記錄 toosend 電子郵件和 webhook 警示通知，在 Azure 監視器](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
+* 深入了解如何[使用稽核記錄，在 Azure 監視器中傳送電子郵件和 Webhook 警示通知](../monitoring-and-diagnostics/insights-auditlog-to-webhook-email.md)
 
 * 深入了解 [進階自動調整案例](virtual-machine-scale-sets-advanced-autoscale.md)。

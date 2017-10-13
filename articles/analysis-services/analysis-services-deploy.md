@@ -1,6 +1,6 @@
 ---
-title: "使用 SSDT aaaDeploy tooAzure Analysis Services |Microsoft 文件"
-description: "了解表格式模型 tooan toodeploy Azure Analysis Services 如何使用 SSDT 的伺服器。"
+title: "使用 SSDT 部署至 Azure Analysis Services | Microsoft Docs"
+description: "了解如何使用 SSDT 將表格式模型部署至 Azure Analysis Services 伺服器。"
 services: analysis-services
 documentationcenter: 
 author: minewiskan
@@ -15,51 +15,51 @@ ms.tgt_pltfrm: NA
 ms.workload: na
 ms.date: 08/01/2017
 ms.author: owend
-ms.openlocfilehash: e3f3771fe32a37b9e0173c274080c647152edd4c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e9a3aedfb6e55696e1525e226fada1062fd5eda8
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="deploy-a-model-from-ssdt"></a>從 SSDT 部署模型
-您的 Azure 訂用帳戶中建立的伺服器之後，您已準備好 toodeploy 表格式模型資料庫 tooit。 您可以使用 SQL Server Data Tools (SSDT) toobuild 並部署您在處理表格式模型專案。 
+以您的 Azure 訂用帳戶建立伺服器後，您即可將表格式模型資料庫部署至該伺服器。 您可以使用 SQL Server Data Tools (SSDT) 建置與部署您正在使用的表格式模型專案。 
 
 ## <a name="prerequisites"></a>必要條件
-tooget 開始，您需要：
+若要開始，您需要：
 
-* Azure 中的 **Analysis Services 伺服器**。 詳細資訊，請參閱 toolearn[建立 Azure Analysis Services 伺服器](analysis-services-create-server.md)。
-* **表格式模型專案**SSDT 或現有的表格式模型在 hello 1200 或更高的相容性層級中。 未曾建立過？ 再試一次 hello [Adventure Works 網際網路銷售的表格式模型教學課程](https://msdn.microsoft.com/library/hh231691.aspx)。
-* **在內部部署閘道**-如果一或多個資料來源位於內部部署組織的網路中，您需要 tooinstall[在內部部署資料閘道](analysis-services-gateway.md)。 您的伺服器 hello 雲端連線 tooyour 在內部部署資料來源 tooprocess 和重新整理模型中的資料 hello hello 閘道是必要的。
+* Azure 中的 **Analysis Services 伺服器**。 若要深入了解，請參閱[建立 Azure Analysis Services 伺服器](analysis-services-create-server.md)。
+* SSDT 中的**表格式模型專案**，或 1200 或更高相容性層級的現有表格式模型。 未曾建立過？ 嘗試 [Adventure Works 網際網路銷售表格式模型教學課程](https://msdn.microsoft.com/library/hh231691.aspx)。
+* **內部部署閘道** - 如果您組織的網路中有一或多個資料來源為內部部署，您必須安裝[內部部署資料閘道](analysis-services-gateway.md)。 您在雲端中的伺服器必須有閘道，才能連線至您的內部部署資料來源，以處理和重新整理模型中的資料。
 
 > [!TIP]
-> 在部署之前，請確定您可以處理 hello 資料在資料表中。 在 SSDT 中，按一下 [模型]  >  [程序]  >  **Process All** (全部處理)。 如果處理失敗，您就無法部署成功。
+> 部署之前，請確定您可以在資料表中處理資料。 在 SSDT 中，按一下 [模型]  >  [程序]  >  **Process All** (全部處理)。 如果處理失敗，您就無法部署成功。
 > 
 > 
 
-## <a name="toodeploy-a-tabular-model-from-ssdt"></a>toodeploy 從 SSDT 的表格式模型
+## <a name="to-deploy-a-tabular-model-from-ssdt"></a>從 SSDT 部署表格式模型
 
-1. 在部署之前，您會需要 tooget hello 伺服器名稱。 在**Azure 入口網站**> 伺服器 >**概觀** > **伺服器名稱**，複製 hello 伺服器名稱。
+1. 部署之前，您必須先取得伺服器名稱。 在 [Azure 入口網站] > 伺服器 > [概觀]  >  [伺服器名稱] 中，複製伺服器名稱。
    
     ![在 Azure 中取得伺服器名稱](./media/analysis-services-deploy/aas-deploy-get-server-name.png)
-2. 在 SSDT 中 >**方案總管 中**，以滑鼠右鍵按一下 hello 專案 >**屬性**。 接著在**部署** > **伺服器**貼上 hello 伺服器名稱。   
+2. 在 SSDT > [方案總管] 中，以滑鼠右鍵按一下專案 > [屬性]。 接著在 [部署]  >  [伺服器] 中，貼上伺服器名稱。   
    
     ![將伺服器名稱貼到部署伺服器屬性](./media/analysis-services-deploy/aas-deploy-deployment-server-property.png)
-3. 在 [方案總管] 中，以滑鼠右鍵按一下 [屬性]，然後按一下 [部署]。 您可能會提示的 toosign tooAzure 中。
+3. 在 [方案總管] 中，以滑鼠右鍵按一下 [屬性]，然後按一下 [部署]。 系統會提示您登入 Azure。
    
-    ![部署 tooserver](./media/analysis-services-deploy/aas-deploy-deploy.png)
+    ![部署至伺服器](./media/analysis-services-deploy/aas-deploy-deploy.png)
    
-    部署狀態會出現在這兩個 hello 輸出 視窗和部署。
+    部署狀態會出現在 [輸出] 視窗和 [部署] 中。
    
     ![部署狀態](./media/analysis-services-deploy/aas-deploy-status.png)
 
-這就是沒有 tooit ！
+就是這麼簡單！
 
 
 ## <a name="troubleshooting"></a>疑難排解
-如果部署失敗部署中繼資料時，它可能是因為 SSDT 無法 tooyour 伺服器連接。 請確定您可以使用 SSMS 的 tooyour 伺服器連接。 請確定 hello hello 專案的 [部署伺服器] 屬性正確。
+如果在部署中繼資料時部署失敗，則可能是因為 SSDT 無法連線至您的伺服器。 請確定您可以使用 SSMS 連線至您的伺服器。 接著確定專案的 [部署伺服器] 屬性正確。
 
-如果部署失敗的資料表上，它可能是因為您的伺服器無法連線 tooa 資料來源。 如果您的資料來源是內部部署組織的網路中，是確定 tooinstall[在內部部署資料閘道](analysis-services-gateway.md)。
+如果在資料表上部署失敗，則可能是因為您的伺服器無法連線至資料來源。 如果您的組織來源在您組織的網路中為內部部署，請務必安裝[內部部署資料閘道](analysis-services-gateway.md)。
 
 ## <a name="next-steps"></a>後續步驟
-有您的表格式模型部署的 tooyour 伺服器之後，您準備好 tooconnect tooit。 您可以[使用 SSMS 連接 tooit](analysis-services-manage.md) toomanage 它。 而且，您可以[連接使用用戶端工具 tooit](analysis-services-connect.md)喜歡 Power BI、 Power BI Desktop 或 Excel 及建立報表的開始。
+現在您的伺服器上已部署了表格式模型，您即可連線至該伺服器。 您可以[使用 SSMS 連線至該伺服器](analysis-services-manage.md)以進行管理。 此外，您可以[使用用戶端工具連線至該伺服器 ](analysis-services-connect.md) (如 Power BI、Power BI Desktop 或 Excel 等工具)，並開始建立報告。
 

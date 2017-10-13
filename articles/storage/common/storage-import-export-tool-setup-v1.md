@@ -1,6 +1,6 @@
 ---
-title: "向上 hello Azure 匯入/匯出工具 v1 aaaSetting |Microsoft 文件"
-description: "了解組成 hello tooset 磁碟機準備及修復工具 hello Azure 匯入/匯出服務。 這是指 toov1 的 hello 匯入/匯出工具。"
+title: "設定 Azure 匯入/匯出工具 v1 | Microsoft Docs"
+description: "了解如何設定 Azure 匯入/匯出服務的磁碟機準備及修復工具。 這是指 v1 的匯入/匯出工具。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,56 +14,56 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/15/2017
 ms.author: muralikk
-ms.openlocfilehash: 838db815a7d4e6c04369711ef3eedb31fbb0b1b4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4fb4c7e39c0385cae7c7984eb774d6a468ee18e4
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="setting-up-hello-azure-importexport-tool"></a>設定 hello Azure 匯入/匯出工具
-hello Microsoft Azure 匯入/匯出工具是 hello 磁碟機準備及修復工具可讓您以 hello Microsoft Azure 匯入/匯出服務。 您可以使用下列函式的 hello hello 工具：  
+# <a name="setting-up-the-azure-importexport-tool"></a>設定 Azure 匯入/匯出工具
+Microsoft Azure 匯入/匯出工具是磁碟機準備及修復工具，可搭配 Microsoft Azure 匯入/匯出服務使用。 您可以使用此工具來執行下列功能︰  
   
--   在建立匯入工作之前，您可以使用此工具 toocopy 資料 toohello 硬碟要 tooship tooa Windows Azure 資料中心。  
+-   在建立匯入工作之前，您可以使用此工具，將資料複製到要寄送至 Windows Azure 資料中心的硬碟。  
   
--   匯入工作完成後，您可以使用此工具 toorepair 損毀、 遺漏或衝突的任何 blob 與其他 blob。  
+-   匯入工作完成後，您可以使用此工具來修復損毀、遺漏或與其他 Blob 衝突的任何 Blob。  
   
--   您已完成的匯出工作收到 hello 磁碟機之後，您可以使用此工具 toorepair 任何檔案已損毀或遺失 hello 磁碟機上。  
+-   當您收到已完成的匯出工作中的磁碟機後，您可以使用此工具來修復磁碟機上損毀或遺漏的任何檔案。  
   
 ## <a name="prerequisites"></a>必要條件  
-如果您正在匯入工作準備磁碟機，您需要下列必要條件 toomeet hello:  
+如果您要準備匯入作業的磁碟機，您必須符合下列必要條件︰  
   
 -   您必須擁有有效的 Azure 訂用帳戶。  
   
--   您的訂閱必須包含儲存體帳戶具有足夠的可用空間 toostore hello 檔案要 tooimport。  
+-   您的訂用帳戶必須包含可用空間足夠儲存您要匯入之檔案的儲存體帳戶。  
   
--   您至少需要一個 hello 帳戶金鑰的 hello 儲存體帳戶。  
+-   您需要至少一個儲存體帳戶的帳戶金鑰。  
   
--   您需要 Windows 7、 Windows Server 2008 R2 或更新版本安裝 Windows 作業系統的電腦 (hello 「 複製電腦 」)。  
+-   您需要安裝 Windows 7、Windows Server 2008 R2 或更新版本 Windows 作業系統的電腦 (「複製電腦」)。  
   
--   hello 複製電腦上必須安裝.NET Framework 4 hello。  
+-   複製電腦上必須安裝 .NET Framework 4。  
   
--   必須在 hello 複製電腦上啟用 BitLocker。  
+-   複製電腦上必須啟用 BitLocker。  
   
--   您必須包含資料 toobe 匯入的一或多個磁碟機，或空的 3.5 英寸 SATA 硬碟機連線 toohello 複製電腦。  
+-   您將需要一個或多個包含要匯入資料的磁碟機，或連接至複製電腦的空白 3.5 吋 SATA 硬碟。  
   
--   您計劃 tooimport hello 檔案必須能夠從 hello 複製電腦，存取，不論它們在網路共用或本機硬碟上。 
+-   您想匯入的檔案必須可從複製機器上存取，無論它們是在網路共用或本機硬碟上。 
   
-如果您正嘗試 toorepair 匯入已有部分失敗，您需要：  
+如果您嘗試修復已部分失敗的匯入，您將需要︰  
   
--   hello 複製記錄檔  
+-   複製記錄檔  
   
--   hello 儲存體帳戶金鑰  
+-   儲存體帳戶金鑰。  
   
-  如果您正嘗試 toorepair 已有部分失敗的匯出，您需要：  
+  如果您嘗試修復已部分失敗的匯出，您將需要︰  
   
--   hello 複製記錄檔  
+-   複製記錄檔  
   
--   hello 資訊清單檔案 （選擇性）  
+-   資訊清單檔案 (選擇性)  
   
--   hello 儲存體帳戶金鑰  
+-   儲存體帳戶金鑰。  
   
-## <a name="installing-hello-azure-importexport-tool"></a>安裝 hello Azure 匯入/匯出工具  
- hello Azure 匯入/匯出工具包含下列檔案的 hello:  
+## <a name="installing-the-azure-importexport-tool"></a>安裝 Azure 匯入/匯出工具  
+ Azure 匯入/匯出工具包含下列檔案：  
   
 -   WAImportExport.exe  
   
@@ -77,9 +77,9 @@ hello Microsoft Azure 匯入/匯出工具是 hello 磁碟機準備及修復工�
   
 -   Hddid.dll  
   
- 複製這些檔案 tooa 工作目錄，例如`c:\WAImportExport`。 接下來，以系統管理員模式開啟命令列視窗中，並將 hello 上述目錄設為目前的目錄。  
+ 將這些檔案複製到工作目錄，例如，`c:\WAImportExport`。 接下來，在系統管理員模式中開啟命令列視窗，並將上述目錄設為目前的目錄。  
   
- hello 命令，執行不含參數的 hello 工具 toooutput 說明：  
+ 若要輸出命令的說明，執行此工具而不包含參數︰  
   
 ```  
 WAImportExport, a client tool for Microsoft Azure Import/Export service. Microsoft (c) 2013, 2014  
@@ -119,117 +119,117 @@ Preview an Export Job:
 Parameters:  
   
     /j:<JournalFile>  
-        - Required. Path toohello journal file. Each drive must have one and only one  
-          journal file. hello journal file corresponding toohello target drive must always  
+        - Required. Path to the journal file. Each drive must have one and only one  
+          journal file. The journal file corresponding to the target drive must always  
           be specified.  
     /logdir:<LogDirectory>  
-        - Optional. hello log directory. Verbose log files as well as some temporary  
-          files will be written toothis directory. If not specified, current directory  
-          will be used as hello log directory.  
+        - Optional. The log directory. Verbose log files as well as some temporary  
+          files will be written to this directory. If not specified, current directory  
+          will be used as the log directory.  
     /id:<SessionId>  
-        - Required. hello session Id is used tooidentify a copy session. It is used too 
+        - Required. The session Id is used to identify a copy session. It is used to  
           ensure accurate recovery of an interrupted copy session. In addition, files  
-          that are copied in a copy session are stored in a directory named after hello  
-          session Id on hello target drive.  
+          that are copied in a copy session are stored in a directory named after the  
+          session Id on the target drive.  
     /resumesession  
-        - Optional. If hello last copy session was terminated abnormally, this parameter  
-          can be specified tooresume hello session.  
+        - Optional. If the last copy session was terminated abnormally, this parameter  
+          can be specified to resume the session.  
     /abortsession  
-        - Optional. If hello last copy session was terminated abnormally, this parameter  
-          can be specified tooabort hello session.  
+        - Optional. If the last copy session was terminated abnormally, this parameter  
+          can be specified to abort the session.  
     /sn:<StorageAccountName>  
-        - Required. Only applicable for RepairImport and RepairExport. hello name of  
-          hello storage account.  
+        - Required. Only applicable for RepairImport and RepairExport. The name of  
+          the storage account.  
     /sk:<StorageAccountKey>  
-        - Optional. hello key of hello storage account. One of /sk: and /csas: must be  
+        - Optional. The key of the storage account. One of /sk: and /csas: must be  
           specified.  
     /csas:<ContainerSas>  
-        - Optional. A container SAS, in format of <ContainerName>?<SasString>, toobe  
-          used for import hello data. One of /sk: and /csas: must be specified.  
+        - Optional. A container SAS, in format of <ContainerName>?<SasString>, to be  
+          used for import the data. One of /sk: and /csas: must be specified.  
     /t:<TargetDriveLetter>  
-        - Required. Drive letter of hello target drive.  
+        - Required. Drive letter of the target drive.  
     /r:<RepairFile>  
         - Required. Only applicable for RepairImport and RepairExport.  
-          Path toohello file for tracking repair progress. Each drive must have one  
+          Path to the file for tracking repair progress. Each drive must have one  
           and only one repair file.  
     /d:<TargetDirectories>  
         - Required. Only applicable for RepairImport and RepairExport.  
-          For RepairImport, one or more semicolon-separated directories toorepair;  
-          For RepairExport, one directory toorepair, e.g. root directory of hello drive.  
+          For RepairImport, one or more semicolon-separated directories to repair;  
+          For RepairExport, one directory to repair, e.g. root directory of the drive.  
     /format  
-        - Optional. If specified, hello target drive will be formatted. DO NOT specify  
-          this parameter if you do not want tooformat hello drive.  
+        - Optional. If specified, the target drive will be formatted. DO NOT specify  
+          this parameter if you do not want to format the drive.  
     /silentmode  
-        - Optional. If not specified, hello /format parameter will require a confirmation  
-          from console before hello tool formats hello drive. If this parameter is specified,  
-          not confirmation will be given for formatting hello drive.  
+        - Optional. If not specified, the /format parameter will require a confirmation  
+          from console before the tool formats the drive. If this parameter is specified,  
+          not confirmation will be given for formatting the drive.  
     /encrypt  
-        - Optional. If specified, hello target drive will be encrypted with BitLocker.  
-          If hello drive has already been encrypted with BitLocker, do not specify this  
-          parameter and instead specify hello BitLocker key using hello "/k" parameter.  
+        - Optional. If specified, the target drive will be encrypted with BitLocker.  
+          If the drive has already been encrypted with BitLocker, do not specify this  
+          parameter and instead specify the BitLocker key using the "/k" parameter.  
     /bk:<BitLockerKey>  
-        - Optional. hello current BitLocker key if hello drive has already been encrypted  
+        - Optional. The current BitLocker key if the drive has already been encrypted  
           with BitLocker.  
     /Disposition:<Disposition>  
-        - Optional. Specifies hello behavior when a blob with hello same path as hello one  
+        - Optional. Specifies the behavior when a blob with the same path as the one  
           being imported already exists. Valid values are: rename, no-overwrite and  
-          overwrite (case-sensitive). If not specified, "rename" will be used as hello  
+          overwrite (case-sensitive). If not specified, "rename" will be used as the  
           default value.  
     /BlobType:<BlobType>  
-        - Optional. hello blob type for hello imported blob(s). Valid values are BlockBlob  
-          and PageBlob. If not specified, BlockBlob will be used as hello default value.  
+        - Optional. The blob type for the imported blob(s). Valid values are BlockBlob  
+          and PageBlob. If not specified, BlockBlob will be used as the default value.  
     /PropertyFile:<PropertyFile>  
-        - Optional. Path toohello property file for hello file(s) toobe imported.  
+        - Optional. Path to the property file for the file(s) to be imported.  
     /MetadataFile:<MetadataFile>  
-        - Optional. Path toohello metadata file for hello file(s) toobe imported.  
+        - Optional. Path to the metadata file for the file(s) to be imported.  
     /CopyLogFile:<DriveCopyLogFile>  
-        - Required. Only applicable for RepairImport and RepairExport. Path toohello  
+        - Required. Only applicable for RepairImport and RepairExport. Path to the  
           drive copy log file (verbose or error).  
     /ManifestFile:<DriveManifestFile>  
-        - Required. Only applicable for RepairExport. Path toohello drive manifest file.  
+        - Required. Only applicable for RepairExport. Path to the drive manifest file.  
     /PathMapFile:<DrivePathMapFile>  
-        - Optional. Only applicable for RepairImport. Path toohello file containing  
-          mappings of file paths relative toohello drive root toolocations of actual files  
+        - Optional. Only applicable for RepairImport. Path to the file containing  
+          mappings of file paths relative to the drive root to locations of actual files  
           (tab-delimited). When first specified, it will be populated with file paths  
           with empty targets, which means either they are not found in TargetDirectories,  
-          access denied, with invalid name, or they exist in multiple directories. hello  
-          path map file can be manually edited tooinclude hello correct target paths and  
-          specified again for hello tool tooresolve hello file paths correctly.  
+          access denied, with invalid name, or they exist in multiple directories. The  
+          path map file can be manually edited to include the correct target paths and  
+          specified again for the tool to resolve the file paths correctly.  
     /ExportBlobListFile:<ExportBlobListFile>  
-        - Required. Path toohello XML file containing list of blob paths or blob path  
-          prefixes for hello blobs toobe exported. hello file format is hello same as hello  
-          blob list blob format in hello Put Job operation of hello Import/Export service  
+        - Required. Path to the XML file containing list of blob paths or blob path  
+          prefixes for the blobs to be exported. The file format is the same as the  
+          blob list blob format in the Put Job operation of the Import/Export service  
           REST API.  
     /DriveSize:<DriveSize>  
-        - Required. Size of drives toobe used for export. For example, 500GB, 1.5TB.  
+        - Required. Size of drives to be used for export. For example, 500GB, 1.5TB.  
           Note: 1 GB = 1,000,000,000 bytes  
                 1 TB = 1,000,000,000,000 bytes  
     /srcdir:<SourceDirectory>  
-        - Required. Source directory that contains files toobe copied toohello  
+        - Required. Source directory that contains files to be copied to the  
           target drives.  
     /dstdir:<DestinationBlobVirtualDirectory>  
-        - Required. Destination blob virtual directory toowhich hello files will  
+        - Required. Destination blob virtual directory to which the files will  
           be imported.  
     /srcfile:<SourceFilePath>  
-        - Required. Path toohello source file toobe imported.  
+        - Required. Path to the source file to be imported.  
     /dstblob:<DestinationBlobPath>  
-        - Required. Destination blob path for hello file toobe imported.  
+        - Required. Destination blob path for the file to be imported.  
     /skipwrite
-        - Optional. tooskip write process. Used for inplace data drive preparation.
-          Be sure tooreserve enough space (3 GB per 7TB) for drive manifest file!
+        - Optional. To skip write process. Used for inplace data drive preparation.
+          Be sure to reserve enough space (3 GB per 7TB) for drive manifest file!
 Examples:  
   
-    Copy a source directory tooa drive:  
+    Copy a source directory to a drive:  
     WAImportExport.exe PrepImport  
         /j:9WM35C2V.jrn /id:session#1 /sk:VkGbrUqBWLYJ6zg1m29VOTrxpBgdNOlp+kp0C9MEdx3GEL  
         xmBw4hK94f7KysbbeKLDksg7VoN1W/a5UuM2zNgQ== /t:x /format /encrypt /srcdir:d:\movi  
         es\drama /dstdir:movies/drama/  
   
-    Copy another directory toohello same drive following hello above command:  
+    Copy another directory to the same drive following the above command:  
     WAImportExport.exe PrepImport  
         /j:9WM35C2V.jrn /id:session#2 /srcdir:d:\movies\action /dstdir:movies/action/  
   
-    Copy another file toohello same drive following hello above commands:  
+    Copy another file to the same drive following the above commands:  
     WAImportExport.exe PrepImport  
         /j:9WM35C2V.jrn /id:session#3 /srcfile:d:\movies\dvd.vhd /dstblob:movies/dvd.vhd /BlobType:PageBlob  
   
@@ -259,4 +259,4 @@ Examples:
 * [利用複製記錄檔檢閱作業狀態](../storage-import-export-tool-reviewing-job-status-v1.md)   
 * [修復匯入作業](../storage-import-export-tool-repairing-an-import-job-v1.md)   
 * [修復匯出作業](../storage-import-export-tool-repairing-an-export-job-v1.md)   
-* [疑難排解 hello Azure 匯入/匯出工具](storage-import-export-tool-troubleshooting-v1.md)
+* [針對 Azure 匯入/匯出工具進行疑難排解](storage-import-export-tool-troubleshooting-v1.md)

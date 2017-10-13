@@ -1,5 +1,5 @@
 ---
-title: "在 Azure 中的反向 DNS 的 aaaOverview |Microsoft 文件"
+title: "Azure 反向 DNS 概觀 | Microsoft Docs"
 description: "了解反向 DNS 如何運作以及如何在 Azure 中使用"
 services: dns
 documentationcenter: na
@@ -12,38 +12,38 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 05/29/2017
 ms.author: jonatul
-ms.openlocfilehash: 687663fb83469ab8e696bb714649d0856915bad6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 70a1ad070e812951fca3d2b19da12c67f0725dd0
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="overview-of-reverse-dns-and-support-in-azure"></a>Azure 反向 DNS 和支援概觀
 
-本文提供如何反向 DNS 的運作方式，以及 hello 概觀反向 DNS 案例，Azure 支援。
+本文提供反向 DNS 運作方式以及 Azure 支援之反向 DNS 案例的概觀。
 
 ## <a name="what-is-reverse-dns"></a>什麼是反向 DNS？
 
-傳統的 DNS 記錄啟用從 DNS 名稱 （例如，'www.contoso.com') tooan 的 IP 位址 （例如 64.4.6.100) 對應。  反向 DNS 可讓 hello 轉譯的 IP 位址 (64.4.6.100) 後 tooa 名稱 ('www.contoso.com')。
+傳統 DNS 記錄可啟用從 DNS 名稱至 (例如 'www.contoso.com') IP 位址 (例如 64.4.6.100) 的對應。  反向 DNS 則可將 IP 位址 (64.4.6.100) 轉譯回名稱 ('www.contoso.com')。
 
-反向 DNS 記錄使用於多種情況。 例如，反向 DNS 記錄都廣泛利用驗證的電子郵件訊息的寄件者 hello 抵抗電子垃圾郵件。  hello 接收的郵件伺服器擷取 hello hello 傳送伺服器的 IP 位址，反向 DNS 記錄，並確認是否裝載的授權的 toosend hello 傳來的電子郵件原始網域。 
+反向 DNS 記錄使用於多種情況。 例如，透過驗證電子郵件訊息的寄件者，反向 DNS 記錄廣泛用於對抗垃圾電子郵件。  接收端郵件伺服器會擷取傳送端伺服器 IP 位址的反向 DNS 記錄，並確認該主機是否獲授權從原始網域傳送電子郵件。 
 
 ## <a name="how-reverse-dns-works"></a>反向 DNS 的運作方式
 
-反向 DNS 記錄託管於特殊的 DNS 區域，稱為 'ARPA' 區域。  這些區域都會以平行方式，與裝載 'contoso.com'，像是 hello 一般階層構成個別 DNS 階層。
+反向 DNS 記錄託管於特殊的 DNS 區域，稱為 'ARPA' 區域。  這些區域會與一般階層託管網域 (例如 'contoso.com') 同時形成個別的 DNS 階層。
 
-例如，hello 'www.contoso.com' 的 DNS 記錄被實作 hello 名稱在 hello 區域 'contoso.com'，' www' 搭配使用的 DNS 'A' 記錄。  此 A 記錄點 toohello 對應的 IP 位址，在此情況下 64.4.6.100。  hello 反向對應實作分別使用 'PTR' 記錄，名為 '100' hello 區域 '6.4.64.in-addr.arpa' （IP 位址會反轉 ARPA 區域中附註）。此 PTR 記錄，如果它已正確地設定指向 toohello 名稱 'www.contoso.com'。
+例如，DNS 記錄 'www.contoso.com' 是使用 DNS 'A' 記錄名稱 'www' 在區域 'contoso.com' 中實作的。  此 A 記錄會指向對應的 IP 位址，在此情況下為 64.4.6.100。  反向對應會在區域 '6.4.64.in-addr.arpa' 中使用名為 '100' 的 'PTR' 記錄分別實作 (請注意，IP 位址會在 ARPA 區域中反轉)。此 PTR 記錄 (如果它已正確設定) 會指向名稱 'www.contoso.com'。
 
-當組織被指派 IP 位址區塊時，因此也會擷取 hello 右 toomanage hello 對應 ARPA 區域。 hello 對應 toohello IP 位址區塊是供 Azure 所裝載和管理 microsoft ARPA 區域。 您的 ISP 可能會裝載您自己的 IP 位址的 hello ARPA 區域，或可能會允許您選擇，例如 Azure DNS 的 DNS 服務中的 hello ARPA 區域 tooyou 主機。
+當組織獲指派 IP 位址區塊時，也會取得管理對應的 ARPA 區域的權限。 對應至 Azure 所使用 IP 位址區塊的 ARPA 區域會由 Microsoft 託管並管理。 您的 ISP 可能會為您託管您自己 IP 位址的 ARPA 區域，或可能讓您在所選的 DNS 服務 (例如，Azure DNS) 中託管 ARPA 區域。
 
 > [!NOTE]
-> 正向 DNS 對應與反向 DNS 對應會在個別的平行 DNS 階層中實作。 hello 'www.contoso.com' 的反向對應是**不**裝載在 hello 區域 'contoso.com'，而是裝載於 hello 對應 IP 位址區塊的 hello ARPA 區域。 IPv4 和 IPv6 位址區塊使用不同的區域。
+> 正向 DNS 對應與反向 DNS 對應會在個別的平行 DNS 階層中實作。 'www.contoso.com' 的反向對應**不是**在區域 'contoso.com' 中託管，而是在對應的 IP 位址區塊的 ARPA 區域中託管。 IPv4 和 IPv6 位址區塊使用不同的區域。
 
 ### <a name="ipv4"></a>IPv4
 
-IPv4 反向對應區域的 hello 名稱應為下列格式的 hello: `<IPv4 network prefix in reverse order>.in-addr.arpa`。
+IPv4 反向對應區域的名稱格式應該如下：`<IPv4 network prefix in reverse order>.in-addr.arpa`。
 
-例如，在建立反向對應區域 toohost 記錄與 Ip hello 192.0.2.0/24 前置詞中的主機時，hello 區域名稱來建立隔離的 hello 位址 (192.0.2) 然後反轉 hello 順序 (2.0.192) 並加入 hello hello 網路首碼後置詞`.in-addr.arpa`。
+例如，在建立反向區域託管 IP 前置詞為 192.0.2.0/24 的主機記錄時，會先取出位址的網路首碼 (192.0.2)，然後反轉順序 (2.0.192) 並加上尾碼 `.in-addr.arpa`，以這種方式建立區域名稱。
 
 |子網路類別|網路首碼  |反轉的網路首碼  |標準後置詞  |反向區域名稱 |
 |-------|----------------|------------|-----------------|---------------------------|
@@ -53,13 +53,13 @@ IPv4 反向對應區域的 hello 名稱應為下列格式的 hello: `<IPv4 netwo
 
 ### <a name="classless-ipv4-delegation"></a>無類別 IPv4 委派
 
-在某些情況下，配置 tooan 組織 hello IP 範圍小於類別 C （/ 24） 範圍。 在此情況下，hello IP 範圍不是落在區域界限內 hello`.in-addr.arpa`區域階層，因此無法做為子區域委派。
+在某些情況下，配置給組織的 IP 範圍會小於類別 C (/24) 範圍。 本例中，IP 範圍不是落在 `.in-addr.arpa` 區域階層的區域界限內，因此無法委派為子區域。
 
-相反地，使用不同的機制是 tootransfer 控制項的個別的反向對應 (PTR) 記錄 tooa 專用 DNS 區域。 這項機制會委派子區域的每個 IP 範圍，然後對應 hello 的每個 IP 位址範圍個別 toothat 子區域使用 CNAME 記錄。
+改用不同的機制將個別反向對應 (PTR) 記錄的控制權轉移到專用的 DNS 區域。 這項機制會為每個 IP 範圍委派子區域，然後分別將範圍中的每個 IP 位址對應至使用 CNAME 記錄的子區域。
 
-例如，假設組織已授與 hello IP 範圍 192.0.2.128/26 isp。 這代表 64 個 IP 位址，從 192.0.2.128 too192.0.2.191。 此範圍的反向 DNS 實作如下：
-- hello 組織會建立稱為 128 26.2.0.192.in-in-addr.arpa 反向對應區域。 hello 前置詞 ' 128-26' 代表 hello 內的網路區段指派 toohello 組織 hello 類別 C （/ 24） 範圍。
-- hello ISP hello 類別 C 上層區域從建立 NS 記錄 tooset 向上 hello hello 上方區域的 DNS 委派。 它也會建立 CNAME 記錄在 hello 父 (類別 C) 反向對應區域中，對應 hello IP 範圍 toohello 新區域建立 hello 組織中的每個 IP 位址：
+例如，假設 ISP 授與組織的 IP 範圍是 192.0.2.128/26。 這代表 64 個 IP 位址，從 192.0.2.128 到 192.0.2.191。 此範圍的反向 DNS 實作如下：
+- 組織建立名為 128-26.2.0.192.in-addr.arpa 的反向對應區域。 前置詞 '128-26' 代表指派給類別 C (/24) 範圍內組織的網路區段。
+- ISP 會建立 NS 記錄，從類別 C 的上層區域設定上述區域的 DNS 委派。 它也會在上層 (類別 C) 反向對應區域中建立 CNAME 記錄，將 IP 範圍中的每個 IP 位址對應到組織建立的新區域：
 
 ```
 $ORIGIN 2.0.192.in-addr.arpa
@@ -72,7 +72,7 @@ $ORIGIN 2.0.192.in-addr.arpa
 131       CNAME    131.128-26.2.0.192.in-addr.arpa
 ; etc
 ```
-- 然後 hello 組織管理其子區域中的 hello 個別 PTR 記錄。
+- 然後組織管理自己子區域內的個別 PTR 記錄。
 
 ```
 $ORIGIN 128-26.2.0.192.in-addr.arpa
@@ -82,13 +82,13 @@ $ORIGIN 128-26.2.0.192.in-addr.arpa
 131      PTR    partners.contoso.com
 ; etc
 ```
-Hello PTR 記錄的 IP 位址 '192.0.2.129' 查詢的反向查閱名為 '129.2.0.192.in-addr.arpa'。 此查詢會透過 hello CNAME hello 父區域 toohello PTR 記錄中 hello 子區域解析。
+IP 位址 '192.0.2.129' 的反向對應會查詢名為 '129.2.0.192.in-addr.arpa' 的 PTR 記錄。 此查詢透過上層區域的 CNAME 解析成子區域的 PTR 記錄。
 
 ### <a name="ipv6"></a>IPv6
 
-IPv6 反向對應區域的 hello 名稱應為下列形式的 hello:`<IPv6 network prefix in reverse order>.ip6.arpa`
+IPv6 反向對應區域的名稱格式應該如下：`<IPv6 network prefix in reverse order>.ip6.arpa`。
 
-例如： 為與 Ip 主機位於 hello 2001:db8:1000:abdc toohost 記錄建立反向對應區域時:: / 64 的前置詞，會藉由隔離 hello 的 hello 位址的網路首碼建立 hello 區域名稱 (2001:db8:abdc::)。 接下來展開 hello IPv6 網路首碼 tooremove[零壓縮](https://technet.microsoft.com/library/cc781672(v=ws.10).aspx)，如果它是使用的 tooshorten hello IPv6 位址首碼 (2001:0db8:abdc:0000::)。 反向 hello 順序，因為 hello hello 前置詞中的每個十六進位數字之間的分隔符號，請使用句號，toobuild hello 反轉網路首碼 (`0.0.0.0.c.d.b.a.8.b.d.0.1.0.0.2`) 並加入 hello 尾碼`.ip6.arpa`。
+例如： 在建立反向區域託管 IP 前置詞為 2001:db8:1000:abdc::/64 的主機記錄時，會隔離位址的網路首碼 (2001:db8:abdc::) 來建立區域名稱。 接著展開 IPv6 網路首碼以移除[零壓縮](https://technet.microsoft.com/library/cc781672(v=ws.10).aspx)，如果它用來縮短 IPv6 位址首碼 (2001:0db8:abdc:0000::)。 反轉順序，前置詞中每個十六進位數字之間使用句點為分隔符號，建置反轉的網路前置詞 (`0.0.0.0.c.d.b.a.8.b.d.0.1.0.0.2`)，再加上尾碼 `.ip6.arpa`。
 
 
 |網路首碼  |已展開並反轉的網路首碼 |標準後置詞 |反向區域名稱  |
@@ -99,18 +99,18 @@ IPv6 反向對應區域的 hello 名稱應為下列形式的 hello:`<IPv6 networ
 
 ## <a name="azure-support-for-reverse-dns"></a>Azure 的反向 DNS 支援
 
-Azure 支援兩個不同的案例與相關 tooreverse DNS:
+Azure 支援與反向 DNS 相關的兩種不同案例：
 
-**裝載 hello 反向對應區域對應 tooyour IP 位址區塊。**
-可以使用 azure DNS 太[裝載反向對應區域和管理 hello PTR 記錄的每個反向 DNS 查閱](dns-reverse-dns-hosting.md)、 IPv4 和 IPv6。  hello 建立 hello (ARPA) 的反向對應區域，設定 hello 委派的程序，並設定 PTR 記錄是 hello 相同與一般的 DNS 區域。  hello 只差異是，必須設定 hello 委派，透過您的 ISP，而不是 DNS 註冊機構，以及應該用於 hello PTR 記錄類型。
+**託管對應至您 IP 位址區塊的反轉對應區域。**
+Azure DNS 可以用來[託管反轉對應區域和管理每個反向 DNS 對應的 PTR 記錄](dns-reverse-dns-hosting.md)，IPv4 及 IPv6 皆可。  建立反轉對應 (ARPA) 區域、設定委派，以及設定 PTR 記錄的程序與一般的 DNS 區域相同。  唯一的差異是必須透過您的 ISP 設定委派，而不是 DNS 註冊機構，而且僅應該使用 PTR 記錄類型。
 
-**設定 hello 反向 DNS 記錄 hello 分派 tooyour Azure 服務的 IP 位址。** Azure 可讓您太[hello IP 位址配置 tooyour Azure 服務設定 hello 反向對應](dns-reverse-dns-for-azure-services.md)。  Azure 會設定此反向對應為 hello 對應 ARPA 區域中的 PTR 記錄。  由 Microsoft 主控這些 ARPA 區域中，對應 Azure 中，所使用的 tooall hello IP 範圍
+**設定指派給 Azure 服務之 IP 位址的反向 DNS 記錄**。 [Azure 可讓您設定配置給 Azure 服務之 IP 位址的反向對應](dns-reverse-dns-for-azure-services.md)。  此反向對應是由 Azure 設定作為對應 ARPA 區域中的 PTR 記錄。  對應至 Azure 所使用 IP 位址範圍的這些 ARPA 區域會由 Microsoft 託管
 
 ## <a name="next-steps"></a>後續步驟
 
 如需反向 DNS 的詳細資訊，請參閱維基百科的 [reverse DNS lookup](http://en.wikipedia.org/wiki/Reverse_DNS_lookup) (反向 DNS 對應)。
 <br>
-了解如何太[主機 hello 反向對應區域，為您的 ISP 指派的 IP 範圍，在 Azure DNS](dns-reverse-dns-for-azure-services.md)。
+了解如何[在 Azure DNS 中為您 ISP 指派的 IP 範圍託管反向對應區域](dns-reverse-dns-for-azure-services.md)。
 <br>
-了解如何太[管理您的 Azure 服務的反向 DNS 記錄](dns-reverse-dns-for-azure-services.md)。
+了解如何[管理 Azure 服務的反向 DNS 記錄](dns-reverse-dns-for-azure-services.md)。
 

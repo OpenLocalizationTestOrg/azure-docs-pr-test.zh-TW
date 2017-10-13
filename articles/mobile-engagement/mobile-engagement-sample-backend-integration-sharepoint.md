@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Mobile Engagement-後端整合"
-description: "從 SharePoint 的 SharePoint 後端 toocreate 活動與連接 Azure Mobile Engagement"
+title: "Azure Mobile Engagement - 後端整合"
+description: "連接 Azure Mobile Engagement 與 SharePoint 後端以從 SharePoint 建立行銷活動"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,32 +14,32 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 89e1ef57db607d63c326a760b20260ad439f08b2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d49f1094f4c3f170f3618f3e19e42266f9ae8858
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-mobile-engagement---api-integration"></a>Azure Mobile Engagement - API 整合
-在自動化行銷系統中，建立及啟動 hello 行銷活動，也會自動進行。 針對此目的 - Azure Mobile Engagement 也可以使用 API 建立這類自動化行銷活動。 
+在自動化行銷系統中，建立及啟動行銷活動也會自動發生。 針對此目的 - Azure Mobile Engagement 也可以使用 API 建立這類自動化行銷活動。 
 
-通常客戶使用 hello Mobile Engagement 前端介面 toocreate 公告/輪詢等做為其行銷活動的一部分。 但是為 hello 行銷活動會變成成熟，還是需要 tooleverage hello 資料鎖定 hello （就像任何的 CRM 系統或 CMS 系統，例如 SharePoint） 的後端系統中，因此可以建立完全自動化的管線，可在行動中建立活動Engagement 動態 hello 後端系統從流程中的 hello 資料為基礎。 
+通常客戶使用 Mobile Engagement 前端介面建立公告/投票等等做為其行銷活動的一部分。 不過隨著行銷活動成熟，就需要運用後端系統 (例如任何 CRM 系統或 CMS 系統，例如 SharePoint) 中鎖定的資料，以便建立完全自動化的管線，根據從後端系統傳送的資料，在 Mobile Engagement 中動態建立行銷活動。 
 
 ![][5]
 
-此教學課程會透過這類案例，SharePoint 清單行銷資料中的 SharePoint 商務使用者填入而且自動化程序會拾取 hello 清單中的項目，並與 hello Mobile Engagement 系統使用連接 hello 使用 REST Apitoocreate 行銷活動與 hello SharePoint 資料。 
+本教學課程會逐步解說此類案例，其中 SharePoint 商務使用者會以行銷資料填入 SharePoint 清單，自動化程序會從清單挑選項目，並且使用可用的 REST API 與 Mobile Engagement 系統連線，以從 SharePoint 資料建立行銷活動。 
 
 > [!IMPORTANT]
-> 一般情況下，您可以使用這個範例做為起點來了解如何 toocall 如同任何 Mobile Engagement REST API 詳細說明 hello 兩個重要的層面的呼叫 hello Api-正在驗證和傳遞的參數。 
+> 一般而言，您可以使用這個範例做為起點，了解如何呼叫任何 Mobile Engagement REST API，因為它詳細說明呼叫 API 的兩個重要層面 - 驗證和傳遞參數。 
 > 
 > 
 
 ## <a name="sharepoint-integration"></a>SharePoint 整合
-1. 以下是何種 hello 範例 SharePoint 清單如下所示。 **標題**，**類別**， **NotificationTitle**，**訊息**和**URL**用來建立 hello 公告。 有稱為資料行是**IsProcessed** hello 自動化程序範例主控台程式 hello 形式會使用它。 您可以執行這個主控台程式 Azure webjob，讓您可以將它排程，或您可以直接使用 hello SharePoint 工作流程 tooprogram 建立和啟動 hello 公告項目插入至 hello SharePoint 清單時。 在此範例中，我們使用 hello 主控台程式會透過 hello hello SharePoint 中的項目清單，並為每個 Azure Mobile Engagement 建立公告，而且最後標示 hello **IsProcessed**旗標 toobe 則 true成功的通知建立。
+1. 以下是範例 SharePoint 清單的類似外觀。 **標題**、**類別**、**NotificationTitle**、**訊息** 和 **URL** 是用來建立公告。 有稱為 **IsProcessed** 的資料行，由主控台程式形式的範例自動化程序使用。 您可以執行這個主控台程式做為 Azure WebJob，讓您可以排程至程式或直接使用 SharePoint 工作流程，在項目插入至 SharePoint 清單時建立和啟動公告。 在此範例中，我們使用主控台程式，會逐一進行 SharePoint 清單中的項目，並為每個項目在 Azure Mobile Engagement 中建立公告，最後於成功建立公告時將 **IsProcessed** 旗標標示為 true。
    
     ![][1]
-2. 我們使用 hello hello 範例中的程式碼*SharePoint Online 使用 hello 用戶端物件模型中的遠端驗證*[這裡](https://code.msdn.microsoft.com/Remote-Authentication-in-b7b6f43c)tooauthenticate hello SharePoint 清單。
-3. 驗證之後，我們迴圈 hello 清單項目 toofind 出任何新建立的項目 (且其**IsProcessed** = false)。 
+2. 我們是從 *這裡* [使用用戶端物件模型在 SharePoint Online 中遠端驗證](https://code.msdn.microsoft.com/Remote-Authentication-in-b7b6f43c) 的程式碼，以使用 SharePoint 清單進行驗證。
+3. 驗證之後，我們會重複執行清單項目，以找出任何新建立的項目 (其 **IsProcessed** = false)。 
    
          static async void CreateCampaignFromSharepoint()
         {
@@ -52,12 +52,12 @@ ms.lasthandoff: 10/06/2017
                 query.ViewXml = "<View/>";
                 ListItemCollection items = list.GetItems(query);
    
-                // Load hello SharePoint list
+                // Load the SharePoint list
                 clientContext.Load(list);
                 clientContext.Load(items);
                 clientContext.ExecuteQuery();
    
-                // Loop through hello list toogo through all hello items which are newly added
+                // Loop through the list to go through all the items which are newly added
                 foreach (ListItem item in items)
                     if (item["IsProcessed"].ToString() != "Yes")
                     {
@@ -67,16 +67,16 @@ ms.lasthandoff: 10/06/2017
                         string category = item["Category"].ToString();
                         string actionURL = ((FieldUrlValue)item["URL"]).Url;
    
-                        // Send an HTTP request toocreate AzME campaign
+                        // Send an HTTP request to create AzME campaign
                         int campaignId = CreateAzMECampaign
                             (name, notificationTitle, notificationMessage, category, actionURL).Result;
    
                         if (campaignId != -1)
                         {
-                            // If creating campaign is successful then set this tootrue
+                            // If creating campaign is successful then set this to true
                             item["IsProcessed"] = "Yes";
    
-                            // Now try tooactivate hello campaign also
+                            // Now try to activate the campaign also
                             await ActivateAzMECampaign(campaignId);
                         }
                         else
@@ -90,8 +90,8 @@ ms.lasthandoff: 10/06/2017
         }
 
 ## <a name="mobile-engagement-integration"></a>Mobile Engagement 整合
-1. 一旦我們找到需要處理的項目-我們擷取所需的 hello 資訊 toocreate 從 hello 公告清單項目，並呼叫`CreateAzMECampaign`toocreate 它之後再`ActivateAzMECampaign`tooactivate 它。 這些是呼叫 toohello Mobile Engagement 後端基本上 REST API 呼叫。 
-2. hello Mobile Engagement REST Api 需要**基本驗證配置的 HTTP 授權標頭**這組成 hello`ApplicationId`和 hello `ApiKey` hello Azure 入口網站中取得。 請確定您使用從 hello hello 金鑰**api 金鑰**區段和*不*從 hello **sdk 金鑰**> 一節。 
+1. 一旦我們找到需要處理的項目 - 我們會擷取必要的資訊以從清單項目建立公告，並且呼叫 `CreateAzMECampaign` 來建立它，然後呼叫 `ActivateAzMECampaign` 來啟動它。 這些基本上是 REST API 呼叫，呼叫至 Mobile Engagement 後端。 
+2. Mobile Engagement REST API **需要基本驗證配置授權 HTTP 標頭**，由 `ApplicationId` 和 `ApiKey` 組成，您可以從 Azure 入口網站取得。 請確定您使用的金鑰是來自 **api 金鑰** 區段，而不是來自 **sdk 金鑰** 區段。 
    
    ![][2]
    
@@ -107,7 +107,7 @@ ms.lasthandoff: 10/06/2017
            string returnValue = System.Convert.ToBase64String(toEncodeAsBytes);
            return returnValue;
        }  
-3. 建立的 hello 公告類型的活動，而 toohello[文件](https://msdn.microsoft.com/library/azure/mt683750.aspx)。 您需要確定您要指定 hello 活動 toomake`kind`為*公告*和 hello[裝載](https://msdn.microsoft.com/library/azure/mt683751.aspx)並將它傳遞為 FormUrlEncodedContent。 
+3. 度於建立公告類型行銷活動 - 參考 [文件](https://msdn.microsoft.com/library/azure/mt683750.aspx)。 您必須確定您指定行銷活動 `kind` 做為 *公告* 和 [裝載](https://msdn.microsoft.com/library/azure/mt683751.aspx) ，並將它傳遞為 FormUrlEncodedContent。 
    
         static async Task<int> CreateAzMECampaign(string campaignName, string notificationTitle, 
             string notificationMessage, string notificationCategory, string actionURL)
@@ -119,7 +119,7 @@ ms.lasthandoff: 10/06/2017
                 // Add Authorization Header
                 client.DefaultRequestHeaders.TryAddWithoutValidation("Authorization", CreateAuthZHeader());
    
-                // Create hello payload toosend hello content
+                // Create the payload to send the content
                 // Reference -> https://msdn.microsoft.com/library/dn913749.aspx
                 string data =
                     @"{""name"":""" + campaignName + @"""," + 
@@ -135,13 +135,13 @@ ms.lasthandoff: 10/06/2017
                     new KeyValuePair<string, string>("data", data),
                 });
    
-                // Send hello POST request
+                // Send the POST request
                 var response = await client.PostAsync(url + createURIFragment, content);
                 var responseString = response.Content.ReadAsStringAsync().Result;
                 int campaignId = -1;
                 if (response.StatusCode.ToString() == "OK")
                 {
-                    // This is hello campaign id
+                    // This is the campaign id
                     campaignId = Convert.ToInt32(responseString);
                     Console.WriteLine("Campaign successfully created with id {0}", campaignId);
                 }
@@ -152,10 +152,10 @@ ms.lasthandoff: 10/06/2017
                 return campaignId;
             }
         }
-4. 一旦建立 hello 公告，您會看到類似下列 hello Mobile Engagement 入口網站上的 hello (請注意該 hello 狀態 = 草稿 」 和 「 已啟動 = n/A)
+4. 建立公告之後，您會在 Mobile Engagement 入口網站上看到如下的訊息 (請注意，State=Draft 和 Activated = N/A)
    
     ![][3]
-5. `CreateAzMECampaign`建立公告促銷活動，並傳回其 Id toohello 呼叫端。 `ActivateAzMECampaign`需要此識別碼做為 hello 參數 tooactivate hello 行銷活動。 
+5. `CreateAzMECampaign` 會建立公告行銷活動，並將其識別碼傳回給呼叫端。 `ActivateAzMECampaign` 需要此識別碼做為參數來啟動行銷活動。 
    
         static async Task<bool> ActivateAzMECampaign(int campaignId)
         {
@@ -171,7 +171,7 @@ ms.lasthandoff: 10/06/2017
                     new KeyValuePair<string, string>("id", campaignId.ToString()),
                 });
    
-                // Send hello POST request
+                // Send the POST request
                 var response = await client.PostAsync(url + activateUriFragment, content);
                 var responseString = response.Content.ReadAsStringAsync().Result;
                 if (response.StatusCode.ToString() == "OK")
@@ -186,13 +186,13 @@ ms.lasthandoff: 10/06/2017
                 }
             }
         }
-6. 一旦啟動 hello 公告，您會看到類似下列 hello hello Mobile Engagement 入口網站上：
+6. 啟動公告之後，您會在 Mobile Engagement 入口網站上看到如下的訊息：
    
     ![][4]
-7. 一旦取得啟動 hello 行銷活動，同時滿足 hello 準則 hello 活動上的任何裝置就會開始看到通知。 
-8. 您也會發現該 hello 清單項目標示 IsProcessed = false 已設定 tooTrue 建立 hello 公告活動之後。  
+7. 啟動行銷活動之後，滿足行銷活動準則的任何裝置上就能開始看到通知。 
+8. 您也會發現標示為 IsProcessed = false 的清單項目在建立公告行銷活動之後已設定為 True。  
 
-這個範例會建立指定大部分 hello 所需內容的簡單宣告活動。 您可以自訂這個就像您可以從 hello 入口網站使用 hello 資訊[這裡](https://msdn.microsoft.com/library/azure/mt683751.aspx)。 
+此範例會建立簡單的公告行銷活動，指定大部分必要的屬性。 您可以使用 [這裡](https://msdn.microsoft.com/library/azure/mt683751.aspx)的資訊，從入口網站視需要對此進行自訂。 
 
 <!-- Images. -->
 [1]: ./media/mobile-engagement-sample-backend-integration-sharepoint/sharepointlist.png

@@ -1,6 +1,6 @@
 ---
-title: "透過 Microsoft Azure 認證計劃 hello 預先核准 aaaGet |Microsoft 文件"
-description: "深入了解 hello Microsoft Azure 認證的夥伴進行程式設計以及如何在服務的虛擬機器映像、 解決方案範本，開發人員服務或資料 tooget toosell hello Azure Marketplace"
+title: "透過 Microsoft Azure 認證計劃取得預先核准 | Microsoft Docs"
+description: "了解 Microsoft Azure 認證合作夥伴方案，以及如何在 Azure Marketplace 銷售您的虛擬機器映像、解決方案範本、開發人員服務或資料服務"
 services: marketplace-publishing
 documentationcenter: na
 author: HannibalSII
@@ -15,29 +15,29 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 12/05/2016
 ms.author: hascipio
-ms.openlocfilehash: b5741b59435a24125f6ecd55c3e7d934fd012961
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: aadc695b1f07d04f1fcc7f2f2e3ff90fb7f54849
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-pre-approved-via-hello-microsoft-azure-certified-program"></a>取得預先核准經由 hello Microsoft Azure 認證計劃
-這篇文章提供如何 toobecome Microsoft Azure 認證，讓您可以發行成方案 hello Azure Marketplace 和限定為行銷優點的指示。 Hello Microsoft Azure 認證程式和其優點的詳細概觀，請瀏覽[http://azure.com/certified](http://azure.com/certified)。
+# <a name="get-pre-approved-via-the-microsoft-azure-certified-program"></a>透過 Microsoft Azure 認證計劃取得預先核准
+本文提供如何取得 Microsoft Azure 認證的指示，以便您將解決方案發佈至 Azure Marketplace 並有資格享有行銷優勢。 如需 Microsoft Azure 認證計劃及其優點的詳細概觀，請造訪 [http://azure.com/certified](http://azure.com/certified)。
 
 > [!IMPORTANT]
-> hello Azure 憑證時要 toocreate 虛擬機器或 hello Azure Marketplace 的方案範本時，才適用。
+> 只有在您要建立 Azure Marketplace 的虛擬機器或解決方案範本時，才適用 Azure 憑證。
 
 ## <a name="getting-started"></a>開始使用
-1. hello hello 路徑 toogetting 上的第一個步驟您的方案認證和 onboarded toohello Azure Marketplace 是出 hello 應用程式表單上 hello toofill [Microsoft Azure 認證](https://createopportunity.azurewebsites.net)網頁。
-2. 如果您符合 hello 適用性準則，且您的應用程式獲得核准後，我們將開始使用您 tooonboard 您方案 toohello Azure Marketplace。
-3. 如果您正在使用協力廠商客戶經理或 DX 夥伴管理員，請要求他們 toonominate hello Azure 認證您的方案程式或瀏覽 toohello [Microsoft Azure 認證](http://createopportunity.azurewebsites.net)網頁上，填寫 hello 應用程式表單並 hello Microsoft 發起人聯絡人 欄位中輸入 hello 夥伴客戶經理或 DX 夥伴管理員的電子郵件。
+1. 讓您的解決方案獲得認證並在 Azure Marketplace 上架的第一步，就是填妥 [Microsoft Azure 認證](https://createopportunity.azurewebsites.net)網頁上的申請表單。
+2. 如果您符合資格條件且您的應用程式經過核准，我們就會和您一起把您的解決方案上架到 Azure Marketplace。
+3. 如果您與合作夥伴帳戶經理或 DX 夥伴經理接洽，請要求對方在 Azure 認證計劃中提名您的解決方案，或前往 [Microsoft Azure 認證](http://createopportunity.azurewebsites.net)網頁，填妥申請表單並在 [Microsoft 贊助者連絡人] 欄位中輸入您的夥伴客戶經理或 DX 夥伴經理的電子郵件。
 
 > [!IMPORTANT]
-> **「 銷售-從 「 國家/地區**-在 hello Microsoft Azure Marketplace 上排序 toosell 您的服務，您已註冊的實體必須 toobe 從其中一個 hello 核准 「 銷售-從 「 國家/地區。 這項限制是基於付款和稅務理由。 我們正積極尋求 tooexpand 國家/地區這份清單中靠近未來 hello，敬請期待。 Hello 完整清單，請參閱 > 一節 1b 的 hello [Azure Marketplace 參與原則](http://go.microsoft.com/fwlink/?LinkID=526833)。
+> **「銷售來源」國家/地區**：如果要在 Microsoft Azure Marketplace 上銷售服務，您的註冊實體必須是其中一個經過核准的「銷售來源」國家/地區。 這項限制是基於付款和稅務理由。 我們正積極在不久的將來擴充這份國家/地區清單，所以請密切注意。 如需完整清單，請參閱 [Azure Marketplace 參與原則](http://go.microsoft.com/fwlink/?LinkID=526833)的第 1 節 b 項。
 
 
 ## <a name="next-step"></a>後續步驟
-已收到 hello Microsoft Azure 認證程式的預先核准，您就可以太[註冊您的 Microsoft 帳戶與 Microsoft 賣方](marketplace-publishing-accounts-creation-registration.md)。
+一旦您收到 Microsoft Azure 認證計劃的預先核准，即可繼續[將您的 Microsoft 帳戶註冊為 Microsoft 賣方](marketplace-publishing-accounts-creation-registration.md)。
 
 ## <a name="see-also"></a>另請參閱
-* [快速入門： 如何 toopublish 優惠 toohello Azure Marketplace](marketplace-publishing-getting-started.md)
+* [使用者入門：如何將供應項目發佈至 Azure Marketplace](marketplace-publishing-getting-started.md)

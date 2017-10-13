@@ -1,6 +1,6 @@
 ---
-title: "aaaReliable 服務通訊的概觀 |Microsoft 文件"
-description: "模型的概觀 hello 可靠的服務通訊，包括服務上的開啟接聽程式、 解決端點和服務之間進行通訊。"
+title: "Reliable Services 通訊概觀 | Microsoft Docs"
+description: "Reliable Services 通訊模型概觀，其中包括開啟服務的接聽程式、解析端點和服務間通訊。"
 services: service-fabric
 documentationcenter: .net
 author: vturecek
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 04/07/2017
 ms.author: vturecek
-ms.openlocfilehash: 93a7017b50df0822969daa5ad78302c73e8ba641
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b418904f50b772c12bfcdbb95beb9312c8b9fb00
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toouse-hello-reliable-services-communication-apis"></a>如何 toouse hello 可靠的服務通訊的應用程式開發介面
-「Azure Service Fabric 即平台」完全不受服務間的通訊影響。 所有通訊協定和堆疊是可接受的從 UDP tooHTTP。 是由 toohello 服務開發人員 toochoose 服務應該之間的通訊方式。 hello 可靠的服務應用程式架構提供的內建通訊堆疊 Api，您可以使用 toobuild 以及自訂通訊元件。
+# <a name="how-to-use-the-reliable-services-communication-apis"></a>如何使用 Reliable Services 通訊 API
+「Azure Service Fabric 即平台」完全不受服務間的通訊影響。 所有通訊協定和堆疊 (從 UDP 到 HTTP) 都可接受。 它是由服務開發人員選擇服務應有的通訊方式。 Reliable Services 應用程式架構會提供內建的通訊堆疊以及 API，讓您可用來建置自訂通訊元件。
 
 ## <a name="set-up-service-communication"></a>設定服務通訊
-hello 可靠的服務應用程式開發介面會用來進行服務通訊的一個簡單的介面。 tooopen 的端點，您的服務，只需實作此介面：
+Reliable Services API 使用一個簡單的服務通訊介面。 若要開啟服務的端點，只要實作此介面即可：
 
 ```csharp
 
@@ -92,9 +92,9 @@ class MyStatefulService : StatefulService
 }
 ```
 
-在這兩種情況下，您會傳回接聽程式的集合。 這樣服務 toolisten 上多個端點，可能需要使用不同的通訊協定，使用多個接聽程式。 例如，您可能有 HTTP 接聽程式和個別的 WebSocket 接聽程式。 每個接聽程式會取得名稱和 hello 產生集合*名稱： 位址*組會表示為 JSON 物件，當用戶端要求的服務執行個體或資料分割的 hello 接聽位址。
+在這兩種情況下，您會傳回接聽程式的集合。 這可讓您的服務透過多個接聽程式，可能使使用不同的通訊協定，在多個端點上接聽。 例如，您可能有 HTTP 接聽程式和個別的 WebSocket 接聽程式。 每個接聽程式都會獲得一個名稱及所產生的名稱集合：當用戶端要求服務執行個體或資料分割的接聽位址時，系統會以 JSON 物件的形式呈現位址配對。
 
-無狀態服務，在 hello 覆寫會傳回 ServiceInstanceListeners 的集合。 A`ServiceInstanceListener`包含函式 toocreate`ICommunicationListener(C#) / CommunicationListener(Java)`並給予名稱。 可設定狀態服務，hello 覆寫會傳回 ServiceReplicaListeners 的集合。 這是稍有不同的無狀態的對應項目，因為`ServiceReplicaListener`具有選項 tooopen`ICommunicationListener`次要複本上。 您不僅可以在服務中使用多個通訊接聽程式，也可以指定哪些接聽程式要在次要複本上接受要求，以及哪些接聽程式只在主要複本上進行接聽。
+在無狀態服務中，覆寫項會傳回 ServiceInstanceListeners 的集合。 `ServiceInstanceListener` 會包含可建立 `ICommunicationListener(C#) / CommunicationListener(Java)` 的函式，並會為它命名。 就具狀態服務而言，覆寫項則會傳回 ServiceReplicaListeners 集合。 這與其無狀態的對應項稍有不同，因為 `ServiceReplicaListener` 可以選擇在次要複本上將 `ICommunicationListener` 開啟。 您不僅可以在服務中使用多個通訊接聽程式，也可以指定哪些接聽程式要在次要複本上接受要求，以及哪些接聽程式只在主要複本上進行接聽。
 
 例如，您可以有一個只在主要複本上接受 RPC 呼叫的 ServiceRemotingListener，以及一個透過 HTTP 在次要複本上接受讀取要求的第二、自訂接聽程式：
 
@@ -121,7 +121,7 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 >
 >
 
-最後，描述 hello 端點所需的 hello 中的 hello 服務[服務資訊清單](service-fabric-application-model.md)端點上的 [hello] 區段下方。
+最後，在 [服務資訊清單](service-fabric-application-model.md) 中有關端點的區段下方說明服務所需的端點。
 
 ```xml
 <Resources>
@@ -133,7 +133,7 @@ protected override IEnumerable<ServiceReplicaListener> CreateServiceReplicaListe
 
 ```
 
-hello 通訊接聽程式可以存取 hello endpoint 資源從 hello 配置 tooit`CodePackageActivationContext`在 hello `ServiceContext`。 hello 接聽程式可以開始開啟時，接聽要求。
+通訊接聽程式可以從 `ServiceContext` 中的 `CodePackageActivationContext` 存取配置給它的端點資源。 然後接聽程式會在開啟時開始接聽要求。
 
 ```csharp
 var codePackageActivationContext = serviceContext.CodePackageActivationContext;
@@ -147,12 +147,12 @@ int port = codePackageActivationContext.getEndpoint("ServiceEndpoint").getPort()
 ```
 
 > [!NOTE]
-> 端點資源一般的 toohello 整個服務套件，與 hello 服務封裝啟動時，由 Service Fabric 配置它們。 多個服務複本裝載於共用相同的 ServiceHost hello hello 相同連接埠。 這表示該 hello 通訊接聽程式應支援連接埠共用。 hello 建議產生 hello 接聽位址時，這種方式，是 hello 通訊接聽程式 toouse hello 分割區識別碼和複本/執行個體識別碼。
+> 端點資源通用於整個服務封裝，並在服務封裝啟動時由 Service Fabric 配置。 裝載於相同 ServiceHost 的多個服務複本可能會共用相同的連接埠。 這表示通訊接聽程式應該支援連接埠共用。 建議做法是讓通訊接聽程式在產生接聽位址時，使用資料分割識別碼和複本/執行個體識別碼。
 >
 >
 
 ### <a name="service-address-registration"></a>服務位址註冊
-系統服務呼叫 hello*命名服務*Service Fabric 叢集上執行。 hello 命名服務是服務和其每個執行個體或複本 hello 服務正在接聽的位址註冊機構。 當 hello`OpenAsync(C#) / openAsync(Java)`方法`ICommunicationListener(C#) / CommunicationListener(Java)`完成時，其傳回值取得 hello 命名服務中註冊。 這會傳回值，取得已發行在 hello 命名服務是的字串，其值可完全是任何項目。 此字串值是用戶端時，看到他們要求的 hello 命名服務的 hello 服務地址。
+名為「命名服務」  的系統服務會在 Service Fabric 叢集上執行。 命名服務是適用於服務及其位址的註冊機構，而服務的每個執行個體或複本正在其上接聽。 當 `ICommunicationListener(C#) / CommunicationListener(Java)` 的 `OpenAsync(C#) / openAsync(Java)` 方法完成時，它的傳回值會在命名服務中註冊。 這個在命名服務中發佈的傳回值是一個字串，其值完全可以是任何項目。 這個字串值是用戶端向命名服務要求服務的位址時將會看見的內容。
 
 ```csharp
 public Task<string> OpenAsync(CancellationToken cancellationToken)
@@ -169,7 +169,7 @@ public Task<string> OpenAsync(CancellationToken cancellationToken)
 
     this.webApp = WebApp.Start(this.listeningAddress, appBuilder => this.startup.Invoke(appBuilder));
 
-    // hello string returned here will be published in hello Naming Service.
+    // the string returned here will be published in the Naming Service.
     return Task.FromResult(this.publishAddress);
 }
 ```
@@ -184,26 +184,26 @@ public CompletableFuture<String> openAsync(CancellationToken cancellationToken)
     this.webApp = new WebApp(port);
     this.webApp.start();
 
-    /* hello string returned here will be published in hello Naming Service.
+    /* the string returned here will be published in the Naming Service.
      */
     return CompletableFuture.completedFuture(this.publishAddress);
 }
 ```
 
-Service Fabric 提供 Api，可讓用戶端和其他服務 toothen，已要求此位址的服務名稱。 這是很重要，因為 hello 服務位址不是靜態。 服務會移動 hello 叢集中進行資源平衡和可用性。 這是 hello 機制可讓用戶端 tooresolve hello 接聽服務位址。
+Service Fabric 提供 API，讓用戶端和其他服務之後能夠依服務名稱來要求這個位址。 這一點很重要，因為服務位址不是靜態的。 服務會為了資源平衡和可用性目的在叢集中移動。 這是可讓用戶端解析服務接聽位址的機制。
 
 > [!NOTE]
-> 逐步解說的完整如何 toowrite 通訊接聽程式，請參閱 < 針對[與 OWIN 自我主控的服務網狀架構 Web API 服務](service-fabric-reliable-services-communication-webapi.md)C# 中，而 for Java 中，您可以撰寫您自己的 HTTP 伺服器實作，請參閱 EchoServer 應用程式在 https://github.com/Azure-Samples/service-fabric-java-getting-started 範例。
+> 如需如何撰寫通訊接聽程式的完整逐步解說，請參閱 [Service Fabric Web API 服務與 OWIN 自我裝載](service-fabric-reliable-services-communication-webapi.md) (若為 C#)，而您可以撰寫自己的 HTTP 伺服器實作 (若為 Java)，請參閱 https://github.com/Azure-Samples/service-fabric-java-getting-started EchoServer 中的應用程式範例。
 >
 >
 
 ## <a name="communicating-with-a-service"></a>與服務通訊
-hello 可靠的服務應用程式開發介面提供下列文件庫 toowrite 用戶端與服務通訊的 hello。
+Reliable Services API 提供下列程式庫來撰寫與服務通訊的用戶端。
 
 ### <a name="service-endpoint-resolution"></a>服務端點解析
-與服務 hello 第一個步驟 toocommunication 是 tooresolve hello 資料分割或您想要 tootalk hello 服務執行個體的端點位址。 hello`ServicePartitionResolver(C#) / FabricServicePartitionResolver(Java)`公用程式類別，是可協助判斷 hello 在執行階段的服務端點的用戶端的基本基本類型。 在 Service Fabric 術語中，決定 hello 的服務端點的 hello 程序會為參考的 tooas hello*服務端點解析*。
+與服務通訊的第一個步驟是，解析您想要通訊之服務的分割區或執行個體的端點位址。 `ServicePartitionResolver(C#) / FabricServicePartitionResolver(Java)` 公用程式類別是一個基本類型，可協助用戶端在執行階段判斷服務的端點。 在 Service Fabric 術語中，判斷服務端點的程序稱為「服務端點解析」 。
 
-在叢集內的 tooconnect tooservices，ServicePartitionResolver 可以建立使用預設設定。 這是建議大多數的情況下的使用方式的 hello:
+若要連線到叢集內的服務，可以使用預設設定建立 ServicePartitionResolver。 這是大多數情況的建議用法︰
 
 ```csharp
 ServicePartitionResolver resolver = ServicePartitionResolver.GetDefault();
@@ -212,7 +212,7 @@ ServicePartitionResolver resolver = ServicePartitionResolver.GetDefault();
 FabricServicePartitionResolver resolver = FabricServicePartitionResolver.getDefault();
 ```
 
-tooconnect tooservices 不同叢集中，您可以使用一組叢集閘道端點建立 ServicePartitionResolver。 請注意，閘道端點都只是以不同的端點連接 toohello 相同叢集中。 例如：
+若要連線到不同叢集中的服務，可利用一組叢集閘道端點來建立 ServicePartitionResolver。 請注意，閘道端點就只是可用來連接到相同叢集的不同端點。 例如：
 
 ```csharp
 ServicePartitionResolver resolver = new  ServicePartitionResolver("mycluster.cloudapp.azure.com:19000", "mycluster.cloudapp.azure.com:19001");
@@ -221,7 +221,7 @@ ServicePartitionResolver resolver = new  ServicePartitionResolver("mycluster.clo
 FabricServicePartitionResolver resolver = new  FabricServicePartitionResolver("mycluster.cloudapp.azure.com:19000", "mycluster.cloudapp.azure.com:19001");
 ```
 
-或者，`ServicePartitionResolver`可以給函式建立`FabricClient`toouse 內部：
+另外，可為 `ServicePartitionResolver` 指定一個函式來建立 `FabricClient`，以便在內部使用：
 
 ```csharp
 public delegate FabricClient CreateFabricClientDelegate();
@@ -236,7 +236,7 @@ public interface CreateFabricClient {
 }
 ```
 
-`FabricClient`是使用與 hello 叢集上的各種管理操作的 hello Service Fabric 叢集 toocommunicate hello 物件。 當您想要更充分掌控服務分割解析程式與叢集互動的方式時，這非常實用。 `FabricClient`執行的內部快取，因此您很重要的 tooreuse 並一般而言成本較高的 toocreate`FabricClient`盡可能的執行個體。
+`FabricClient` 是為了叢集上各種管理作業而用來與 Service Fabric 叢集通訊的物件。 當您想要更充分掌控服務分割解析程式與叢集互動的方式時，這非常實用。 `FabricClient` 會在內部執行快取但建立的成本通常很高，因此一定要儘可能重複使用 `FabricClient` 執行個體。
 
 ```csharp
 ServicePartitionResolver resolver = new  ServicePartitionResolver(() => CreateMyFabricClient());
@@ -245,7 +245,7 @@ ServicePartitionResolver resolver = new  ServicePartitionResolver(() => CreateMy
 FabricServicePartitionResolver resolver = new  FabricServicePartitionResolver(() -> new CreateFabricClientImpl());
 ```
 
-解決方法是，則使用的 tooretrieve hello 位址的服務或資料分割的服務的服務資料分割。
+解析方法接著可用於擷取服務或已資料分割之服務的服務分割區的位址。
 
 ```csharp
 ServicePartitionResolver resolver = ServicePartitionResolver.GetDefault();
@@ -260,16 +260,16 @@ CompletableFuture<ResolvedServicePartition> partition =
     resolver.resolveAsync(new URI("fabric:/MyApp/MyService"), new ServicePartitionKey());
 ```
 
-可以輕鬆地使用 ServicePartitionResolver，來解決服務位址，但需要更多工作 tooensure hello 解析就可以使用位址正確。 您的用戶端是否 hello 連接嘗試因為暫時性錯誤而失敗，並可重試，需要 toodetect （例如，服務移或暫時無法使用），或永久錯誤 （例如，服務已刪除或 hello 要求的資源不存在）。 服務執行個體或複本可四處移動從節點 toonode 隨時可能有多種原因。 hello 服務位址透過 ServicePartitionResolver 解決您的用戶端程式碼嘗試 tooconnect hello 時間可能會過時。 在此情況下再次 hello 用戶端需要 toore 解析 hello 位址。 提供先前 hello`ResolvedServicePartition`指出，再次 hello 解析程式需要 tootry 而不只是擷取快取的位址。
+服務位址可以使用 ServicePartitionResolver 輕鬆地加以解析，但需要執行更多工作，才能確保解析的位址可正確使用。 您的用戶端必須偵測連線嘗試是否因為暫時性錯誤而失敗且可重試 (例如，服務已移動或暫時無法使用)，或因永久錯誤而失敗 (例如，已刪除服務，或要求的資源不存在)。 服務執行個體或複本隨時都可基於多重因素在節點間移動。 透過 ServicePartitionResolver 解析的服務位址，可能會在您的用戶端程式碼嘗試連線之前過時。 再回到該情況，用戶端必須重新解析位址。 提供先前的 `ResolvedServicePartition` ，表示解析程式需要再試一次，而不只是擷取快取的位址。
 
-一般說來，hello 用戶端程式碼不需要直接操作以 hello ServicePartitionResolver。 就會建立並傳遞 toocommunication hello 可靠的服務應用程式開發介面中的用戶端處理站。 hello 處理站會在內部使用 hello 解析程式 toogenerate 可以是使用的 toocommunicate 與服務的用戶端物件。
+通常用戶端程式碼不需要直接搭配 ServicePartitionResolver 使用。 它已建立並傳遞給 Reliable Services API 中的通訊用戶端 Factory。 Factory 會在內部使用解析程式來產生可用來與服務通訊的用戶端物件。
 
 ### <a name="communication-clients-and-factories"></a>通訊用戶端和 Factory
-hello 通訊 factory 程式庫實作容易正在重試連線 tooresolved 服務端點的典型錯誤處理重試模式。 hello factory 程式庫提供 hello 重試機制，而您提供 hello 錯誤處理常式。
+通訊 Factory 程式庫會實作典型的錯誤處理重試模式，更容易重試與已解析服務端點的連接。 儘管您提供錯誤處理常式，Factory 程式庫還是會提供重試機制。
 
-`ICommunicationClientFactory(C#) / CommunicationClientFactory(Java)`定義會產生可以彼此通訊 tooa Service Fabric 服務的用戶端通訊用戶端處理站實作的 hello 基底介面。 hello 的 hello CommunicationClientFactory 取決於 hello 通訊堆疊，並且在 hello 用戶端希望 toocommunicate hello Service Fabric 服務所使用的實作。 hello 可靠的服務應用程式開發介面提供`CommunicationClientFactoryBase<TCommunicationClient>`。 這提供 hello CommunicationClientFactory 介面的基底實作，並且會執行工作所通用的 tooall hello 通訊堆疊。 （這些工作包括使用 ServicePartitionResolver toodetermine hello 服務端點。） 用戶端通常會實作 hello 抽象 CommunicationClientFactoryBase 類別 toohandle 邏輯的特定 toohello 通訊堆疊。
+`ICommunicationClientFactory(C#) / CommunicationClientFactory(Java)` 定義通訊用戶端 Factory 所實作的基底介面，並產生可以與 Service Fabric 服務通訊的用戶端。 CommunicationClientFactory 的實作取決於用戶端想要通訊的 Service Fabric 服務所使用的通訊堆疊。 Reliable Services API 提供 `CommunicationClientFactoryBase<TCommunicationClient>`。 這樣可以提供 CommunicationClientFactory 介面的基底實作，並執行所有通訊堆疊都通用的工作。 (這些工作包括使用 ServicePartitionResolver 來判斷服務端點)。 用戶端通常會實作 CommunicationClientFactoryBase 抽象類別來處理通訊堆疊專用的邏輯。
 
-hello 通訊的用戶端只會接收位址，並使用它 tooconnect tooa 服務。 hello 用戶端可以使用它想要的任何通訊的協定。
+通訊用戶端只會接收位址，並使用它來連接到服務。 用戶端可以使用它想要的任何通訊協定。
 
 ```csharp
 class MyCommunicationClient : ICommunicationClient
@@ -294,7 +294,7 @@ public class MyCommunicationClient implements CommunicationClient {
 }
 ```
 
-hello 用戶端處理站是主要負責建立通訊的用戶端。 不會保留持續連線，例如 HTTP 用戶端的用戶端 hello factory 只需要 toocreate 和傳回 hello 用戶端。 維護持續連線，某些二進位通訊協定，例如其他通訊協定應該也會驗證 hello factory toodetermine 是否 hello 連線需要 toobe 重新建立。  
+用戶端 Factory 主要是負責建立通訊用戶端。 對於不會維持持續連線的用戶端 (例如 HTTP 用戶端)，用戶端 Factory 只需建立並傳回用戶端。 其他會維持持續連線的通訊協定 (例如某些二進位通訊協定) 也應該由 Factory 驗證，以判斷是否需要重新建立連線。  
 
 ```csharp
 public class MyCommunicationClientFactory : CommunicationClientFactoryBase<MyCommunicationClient>
@@ -337,14 +337,14 @@ public class MyCommunicationClientFactory extends CommunicationClientFactoryBase
 }
 ```
 
-最後，例外狀況處理常式是負責決定哪些動作 tootake 時發生例外狀況。 例外狀況會分類為**可重試**和**不可重試**。
+最後，例外狀況處理常式會負責判斷發生例外狀況時所要採取的動作。 例外狀況會分類為**可重試**和**不可重試**。
 
-* **非可重試**例外狀況只取得重新擲回後 toohello 呼叫端。
+* **不可重試**的例外狀況只會重新擲回給呼叫端。
 * **不可重試**的例外狀況會進一步分類為**暫時性**和**非暫時性**。
-  * **暫時性**例外狀況是只會重試而不重新解決 hello 服務端點位址。 這些會包含暫時性網路問題或不存在服務錯誤回應指出 hello 服務端點位址以外。
-  * **非暫時性**例外狀況是需要 hello 服務端點位址 toobe 重新解決。 這包括例外狀況，以指出 hello 服務端點無法連線，表示 hello 服務移 tooa 不同的節點。
+  * **暫時性** 例外狀況是只會重試而不會重新解析服務端點位址的例外狀況。 這類例外狀況包括暫時性網路問題或服務錯誤回應，但不包括指出服務端點位址不存在的錯誤回應。
+  * **非暫時性** 例外狀況是需要重新解析服務端點位址的例外狀況。 這類例外狀況包括指出無法連上服務端點 (表示服務已移至其他節點) 的例外狀況。
 
-hello`TryHandleException`讓決策，以指定的例外狀況。 如果它**不知道**應該傳回例外狀況的相關哪些決策 toomake **false**。 如果它**知道**哪些決策 toomake，它應該據此設定 hello 結果並傳回**true**。
+`TryHandleException` 會做出有關特定例外狀況的決定。 如果它**不知道**要對例外狀況做出哪些決定，則應傳回 **false**。 如果它**知道**如何做決定，則應該據以設定結果並傳回 **true**。
 
 ```csharp
 class MyExceptionHandler : IExceptionHandler
@@ -360,7 +360,7 @@ class MyExceptionHandler : IExceptionHandler
         result = new ExceptionHandlingRetryResult(exceptionInformation.Exception, false, retrySettings, retrySettings.DefaultMaxRetryCount);
         return true;
 
-        // if exceptionInformation.Exception is unknown (let hello next IExceptionHandler attempt toohandle it)
+        // if exceptionInformation.Exception is unknown (let the next IExceptionHandler attempt to handle it)
         result = null;
         return false;
     }
@@ -383,7 +383,7 @@ public class MyExceptionHandler implements ExceptionHandler {
         result = new ExceptionHandlingRetryResult(exceptionInformation.getException(), false, retrySettings, retrySettings.getDefaultMaxRetryCount());
         return true;
 
-        /* if exceptionInformation.getException() is unknown (let hello next ExceptionHandler attempt toohandle it)
+        /* if exceptionInformation.getException() is unknown (let the next ExceptionHandler attempt to handle it)
          */
         result = null;
         return false;
@@ -392,7 +392,7 @@ public class MyExceptionHandler implements ExceptionHandler {
 }
 ```
 ### <a name="putting-it-all-together"></a>總整理
-與`ICommunicationClient(C#) / CommunicationClient(Java)`， `ICommunicationClientFactory(C#) / CommunicationClientFactory(Java)`，和`IExceptionHandler(C#) / ExceptionHandler(Java)`周圍的通訊協定，建置`ServicePartitionClient(C#) / FabricServicePartitionClient(Java)`一起自動換行，並提供 hello 錯誤處理和服務磁碟分割位址解析圈這些元件。
+使用以通訊協定建構的 `ICommunicationClient(C#) / CommunicationClient(Java)`、`ICommunicationClientFactory(C#) / CommunicationClientFactory(Java)` 和 `IExceptionHandler(C#) / ExceptionHandler(Java)`，`ServicePartitionClient(C#) / FabricServicePartitionClient(Java)` 會將它全部包裝在一起，並為這些元件提供錯誤處理和服務分割區位址解析迴圈。
 
 ```csharp
 private MyCommunicationClientFactory myCommunicationClientFactory;
@@ -405,7 +405,7 @@ var myServicePartitionClient = new ServicePartitionClient<MyCommunicationClient>
 
 var result = await myServicePartitionClient.InvokeWithRetryAsync(async (client) =>
    {
-      // Communicate with hello service using hello client.
+      // Communicate with the service using the client.
    },
    CancellationToken.None);
 
@@ -420,7 +420,7 @@ FabricServicePartitionClient myServicePartitionClient = new FabricServicePartiti
     myPartitionKey);
 
 CompletableFuture<?> result = myServicePartitionClient.invokeWithRetryAsync(client -> {
-      /* Communicate with hello service using hello client.
+      /* Communicate with the service using the client.
        */
    });
 

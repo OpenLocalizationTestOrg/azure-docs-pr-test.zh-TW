@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure 容器執行個體容器群組"
+title: "Azure Container Instances 容器群組"
 description: "了解容器群組在 Azure Container Instances 中的運作方式"
 services: container-instances
 documentationcenter: 
@@ -17,50 +17,50 @@ ms.workload: na
 ms.date: 08/08/2017
 ms.author: seanmck
 ms.custom: mvc
-ms.openlocfilehash: 2b0e784609979045c8f77d7b6d0987ec3fee714c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 25eab41c3f0c986bcce33123f86f4c9638b77191
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="container-groups-in-azure-container-instances"></a>Azure Container Instances 中的容器群組
 
-hello Azure 容器執行個體中的最上層資源是容器群組。 本文說明容器群組為何，以及這些群組能夠實現哪些類型的案例。
+在 Azure Container Instances 中，最上層的資源就是容器群組。 本文說明容器群組為何，以及這些群組能夠實現哪些類型的案例。
 
 ## <a name="how-a-container-group-works"></a>容器群組的運作方式
 
-容器群組是集合的 hello 取得排程的容器相同的主機電腦和共用的生命週期、 區域網路和存放磁碟區。 它是類似 toohello 概念的*pod*中[Kubernetes](https://kubernetes.io/docs/concepts/workloads/pods/pod/)和[DC/OS](https://dcos.io/docs/1.9/deploying-services/pods/)。
+容器群組是容器的集合，這些容器會排程在相同的主機電腦上，並共用生命週期、區域網路和存放磁碟區。 容器群組類似於 [Kubernetes](https://kubernetes.io/docs/concepts/workloads/pods/pod/) 和 [DC/OS](https://dcos.io/docs/1.9/deploying-services/pods/) 中的 *Pod* 概念。
 
-hello 下圖顯示包含多個容器的容器群組的範例。
+下圖舉例說明包含多個容器的容器群組。
 
 ![容器群組範例][container-groups-example]
 
 請注意：
 
-- hello 群組會排定在單一主機上。
-- hello 群組會公開單一公用 IP 位址，與一個公開的連接埠。
-- hello 群組是由兩個容器所組成。 一個容器會接聽通訊埠 80，而其他 hello 接聽通訊埠 5000。
-- hello 群組包含兩個 Azure 檔案共用做為磁碟區掛接，而且每個容器裝載其中一個本機 hello 共用。
+- 此群組排程在單一主機電腦上。
+- 此群組會公開單一的公用 IP 位址，以及一個公開的連接埠。
+- 此群組是由兩個容器所組成。 一個容器接聽連接埠 80，另一個容器接聽連接埠 5000。
+- 此群組包含兩個 Azure 檔案共用來作為磁碟區掛接，而且每個容器會在本機掛接其中一個共用。
 
 ### <a name="networking"></a>網路
 
-容器群組會共用 IP 位址以及該 IP 位址上的連接埠命名空間。 tooenable 外部用戶端 tooreach hello 群組內的容器，您必須公開 hello IP 位址和 hello 容器中的 hello 連接埠。 因為 hello 群組內的容器共用連接埠的命名空間，所以不支援連接埠對應。 群組內的容器可以連線到彼此上 hello localhost 透過它們公開的連接埠即使這些連接埠不會公開外部 hello 群組的 IP 位址。
+容器群組會共用 IP 位址以及該 IP 位址上的連接埠命名空間。 若要讓外部用戶端能夠連線到該群組內的容器，您必須從該容器公開該 IP 位址上的連接埠。 群組內的容器會共用連接埠命名空間，因此不支援連接埠對應。 群組內的容器可以在它們已公開的連接埠上透過 localhost 彼此連線，即使這些連接埠並未在群組的 IP 位址上對外公開也是如此。
 
 ### <a name="storage"></a>儲存體
 
-您可以指定外部磁碟區 toomount 容器群組內。 您可以將這些磁碟區對應到特定群組中的 hello 個別容器內的路徑。
+您可以指定要在容器群組內掛接的外部磁碟區。 您可以將這些磁碟區對應到群組之個別容器內的特定路徑。
 
 ## <a name="common-scenarios"></a>常見案例
 
-多個容器群組是在您想 toodivide 組成的單一功能的工作到容器映像，也可以由不同小組傳遞，有不同的資源需求數少的情況下很有用。 使用範例可能包括：
+如果您想要將單一功能的工作分割成少量的容器映像，以便由不同小組來提供並讓這些映像具有不同的資源需求，則多個容器的群組會很實用。 使用範例可能包括：
 
-- 一個應用程式容器和一個記錄容器。 hello 記錄容器會收集 hello 記錄和度量輸出 hello 主應用程式，並將其寫入 toolong 長期的儲存體。
-- 一個應用程式和一個監視容器。 定期監視容器 hello 可讓要求 toohello 應用程式 tooensure 它正在執行，並正確回應，並引發警示，如果不是。
-- 處理 web 應用程式的容器和容器提取 hello 從原始檔控制的最新內容。
+- 一個應用程式容器和一個記錄容器。 記錄容器收集主應用程式所輸出的記錄和計量，並將這些資料寫入到長期存放區。
+- 一個應用程式和一個監視容器。 監視容器會定期地向應用程式發出要求，以確保它會保持執行狀態並正確回應，如果沒有正確回應則引發警示。
+- 一個容器提供 Web 應用程式，一個容器從原始檔控制提取最新內容。
 
 ## <a name="next-steps"></a>後續步驟
 
-了解如何太[部署多個容器群組](container-instances-multi-container-group.md)與 Azure Resource Manager 範本。
+了解如何使用 Azure Resource Manager 範本來[部署多個容器的群組](container-instances-multi-container-group.md)。
 
 <!-- IMAGES -->
 

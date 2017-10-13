@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooget Azure AD 租用戶 |Microsoft 文件"
-description: "如何 tooget Azure Active Directory 租用戶註冊和建置應用程式。"
+title: "如何取得 Azure AD 租用戶 | Microsoft Docs"
+description: "如何取得 Azure Active Directory 租用戶，以供註冊及建置應用程式使用。"
 services: active-directory
 documentationcenter: 
 author: bryanla
@@ -15,52 +15,52 @@ ms.topic: hero-article
 ms.date: 07/19/2017
 ms.author: bryanla
 ms.custom: aaddev
-ms.openlocfilehash: dcc6b3109528cf763bda9bd527344ea9ab5c0d69
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fe33d490b754e2f793f5c7a13dc55ca038b1b71c
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="how-tooget-an-azure-active-directory-tenant"></a>Tooget Azure Active Directory 的租用戶
-在 Azure Active Directory (Azure AD) 中， [租用戶](https://msdn.microsoft.com/library/azure/jj573650.aspx#BKMK_WhatIsAnAzureADTenant) 代表組織。  它是 hello 組織接收及擁有當它註冊 Azure、 Microsoft Intune 或 Office 365 等 Microsoft 雲端服務的 Azure AD 服務的專用執行個體。  每個 Azure AD 租用戶都不同，並與其他 Azure AD 租用戶分開。  
+# <a name="how-to-get-an-azure-active-directory-tenant"></a>如何取得 Azure Active Directory 租用戶
+在 Azure Active Directory (Azure AD) 中， [租用戶](https://msdn.microsoft.com/library/azure/jj573650.aspx#BKMK_WhatIsAnAzureADTenant) 代表組織。  它是組織在註冊 Microsoft 雲端服務 (例如 Azure、Microsoft Intune 或 Office 365) 時所收到和擁有的專屬 Azure AD 服務執行個體。  每個 Azure AD 租用戶都不同，並與其他 Azure AD 租用戶分開。  
 
-租用戶上存放了 hello 使用者在公司和 hello 其相關資訊的密碼，使用者設定檔資料、 權限，以及等等。  此外，它也會包含群組、 應用程式和相關 tooan 組織和其安全性的其他資訊。
+租用戶可裝載公司中的使用者及其相關資訊 (密碼、使用者設定檔資料、權限等)。  它還包含群組、應用程式和關於組織及其安全性的其他資訊。
 
-tooallow Azure AD 使用者 toosign tooyour 應用程式中的，您必須在您自己的租用戶中註冊您的應用程式。  在 Azure AD 租用戶中發佈應用程式 **完全免費**。  事實上，大部分的開發人員會建立數個租用戶和應用程式，以供實驗、開發、預備和測試等用途使用。  註冊和使用您的應用程式的組織可以選擇 toopurchase 授權，如果他們想 tootake 進階的目錄功能的優點。
+若要允許 Azure AD 使用者登入您的應用程式，您必須在您自己的租用戶中註冊您的應用程式。  在 Azure AD 租用戶中發佈應用程式 **完全免費**。  事實上，大部分的開發人員會建立數個租用戶和應用程式，以供實驗、開發、預備和測試等用途使用。  如果註冊和使用應用程式的組織想要充分利用進階的目錄功能，他們可以選擇購買授權。
 
-因此，要如何取得 Azure AD 租用戶？  hello 程序可能會很少的不同如果您：
+因此，要如何取得 Azure AD 租用戶？  此程序可能會有小小的不同，如果您：
 
 * [具有現有的 Office 365 訂用帳戶](#use-an-existing-office-365-subscription)
 * [具有與 Microsoft 帳戶相關聯的現有 Azure 訂用帳戶](#use-an-msa-azure-subscription)
 * [具有與組織帳戶相關聯的現有 Azure 訂用帳戶](#use-an-organizational-azure-subscription)
-* [在從頭 toostart & 則沒有任何上述 hello](#start-from-scratch)
+* [以上皆無並想要從頭開始](#start-from-scratch)
 
 ## <a name="use-an-existing-office-365-subscription"></a>使用現有的 Office 365 訂用帳戶
-如果您擁有現有的 Office 365 訂用帳戶，就已擁有 Azure AD 租用戶！ 您可以登入 toohello [Azure 入口網站](https://portal.azure.com)與您 O365 帳戶並開始使用 Azure AD。
+如果您擁有現有的 Office 365 訂用帳戶，就已擁有 Azure AD 租用戶！ 您可以使用您的 O365 帳戶登入 [Azure 入口網站](https://portal.azure.com)並開始使用 Azure AD。
 
 ## <a name="use-an-msa-azure-subscription"></a>使用 MSA Azure 訂用帳戶
-如果您先前已使用個別的 Microsoft 帳戶註冊 Azure 訂用帳戶，則您已經有一個租用戶！  當登入 toohello [Azure 入口網站](https://portal.azure.com)，您將會自動登入 tooyour 預設租用戶。 您可用 toouse 此租用戶與您查看符合-但您可能會想 toocreate 組織的系統管理員帳戶。
+如果您先前已使用個別的 Microsoft 帳戶註冊 Azure 訂用帳戶，則您已經有一個租用戶！  當您登入 [Azure 入口網站](https://portal.azure.com)時，會自動登入您的預設租用戶。 您可以視需要任意使用此租用戶，但您可能會想要建立組織系統管理員帳戶。
 
-toodo 因此，請遵循下列步驟。  或者，您可能想 toocreate 新的租用戶，並在下列類似的程序該租用戶中建立系統管理員。
+若要這樣做，請遵循下列步驟。  或者，您可能會想要建立新的租用戶，並按照類似的程序在該租用戶中建立系統管理員。
 
-1. 登入 hello [Azure 入口網站](https://portal.azure.com)與個別帳戶
-2. 瀏覽 toohello"Azure Active Directory"hello 網站區段 (下在 hello 左的導覽列中，找到**更服務**)
-3. 您應該自動登入 toohello 「 預設目錄 」，如果不是您可以切換目錄上您在 hello 右上角中的帳戶名稱即可。
-4. 從 hello**快速工作**區段中，選擇**將使用者新增**。
-5. 在 hello 新增使用者表單中提供下列詳細資料的 hello:
+1. 使用您的個別帳戶登入 [Azure 入口網站](https://portal.azure.com)
+2. 瀏覽至入口網站的 [Azure Active Directory] 區段 (您可在左側瀏覽列的**更多服務**下找到)
+3. 您應該會自動登入「預設目錄」，如果未自動登入，您可以按一下右上角的帳戶名稱切換目錄。
+4. 從 [快速工作] 區段中，選擇 [新增使用者]。
+5. 在 [新增使用者表單] 中，請提供下列詳細資料：
 
    * 名稱：(選擇適當的值)
    * 使用者名稱：(為此系統管理員選擇一個使用者名稱)
-   * 設定檔: （填寫 hello 名字、 最後一個名稱、 工作職稱及部門適當的值）
+   * 設定檔：(在名字、姓氏、職稱和部門中填入適當的值)
    * 角色：全域系統管理員
-6. 當您完成 hello 新增使用者表單，並收到 hello hello 新系統管理使用者的暫時密碼，因為您必須使用此新的使用者，在訂單 toochange hello 密碼 toologin 是確定 toorecord 此密碼。 您也可以傳送嗨密碼直接 toohello 使用者，並使用替代電子郵件。
-7. 按一下**建立**toocreate hello 新使用者。
-8. toochange hello 暫時密碼，登入[https://login.microsoftonline.com](https://login.microsoftonline.com)與此新使用者帳戶並變更 hello 密碼要求時。
+6. 當您完成新增使用者表單，並收到新系統管理使用者的暫時密碼時，請務必記錄此密碼，因為您必須以此新使用者身分登入，才能變更密碼。 您也可以使用替代電子郵件，直接將密碼傳送給使用者。
+7. 按一下 [建立] 來建立新的使用者。
+8. 若要變更暫時密碼，請使用這個新使用者帳戶登入 [https://login.microsoftonline.com](https://login.microsoftonline.com)變更密碼。
 
 ## <a name="use-an-organizational-azure-subscription"></a>使用組織的 Azure 訂用帳戶
-如果您先前已使用組織帳戶註冊 Azure 訂用帳戶，則您已經有一個租用戶！  在 hello [Azure 入口網站](https://portal.azure.com)，當您瀏覽過，您應該找到租用戶 「 更多服務 」 和 「"Azure Active Directory。  您是免費 toouse 此租用戶，如 調整。
+如果您先前已使用組織帳戶註冊 Azure 訂用帳戶，則您已經有一個租用戶！  在 [Azure 入口網站](https://portal.azure.com)中，當您瀏覽至 [更多服務] 和 [Azure Active Directory] 時應該會找到租用戶。  您可以視需要任意使用此租用戶。
 
 ## <a name="start-from-scratch"></a>從頭開始
-如果所有上述 hello 胡說八道 tooyou，別擔心。  請瀏覽[https://account.windowsazure.com/organization](https://account.windowsazure.com/organization)與新的組織註冊 Azure toosign。  當您完成 hello 程序之後時，您必須非常 Azure AD 租用戶與您在註冊時選擇向上 hello 網域名稱。  在 hello [Azure 入口網站](https://portal.azure.com)，您可以藉由瀏覽過找到您的租用戶 hello 左側 nav.中的 「 Azure Active Directory"
+如果上述對您沒有太大的意義，別擔心。  您只需造訪 [https://account.windowsazure.com/organization](https://account.windowsazure.com/organization) ，並以新的組織身分註冊 Azure。  完成此程序時，您將會有自己專屬的 Azure AD 租用戶，並且它會有您在註冊時選擇的網域名稱。  在 [Azure 入口網站](https://portal.azure.com)中，您可以透過瀏覽至左側導覽中的 [Azure Active Directory] 找到租用戶。
 
-註冊 Azure 的 hello 程序的一部分，您會需要的 tooprovide 信用卡詳細資料。  您可以放心繼續執行，您將不會被收取在 Azure AD 中發佈應用程式或建立新租用戶的費用。
+註冊 Azure 的過程中，您將需要提供信用卡的詳細資料。  您可以放心繼續執行，您將不會被收取在 Azure AD 中發佈應用程式或建立新租用戶的費用。

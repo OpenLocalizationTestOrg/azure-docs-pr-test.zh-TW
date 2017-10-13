@@ -1,6 +1,6 @@
 ---
-title: "在 StorSimple aaaManage 存取控制記錄 |Microsoft 文件"
-description: "描述 toouse 存取控制記錄 (Acr) toodetermine 哪些主機可連接 tooa hello StorSimple 裝置上的磁碟區的方式。"
+title: "管理 StorSimple 中的存取控制記錄 | Microsoft Docs"
+description: "說明如何使用存取控制記錄 (ACR) 以判斷哪些主機可以連接至 StorSimple 裝置上的磁碟區。"
 services: storsimple
 documentationcenter: 
 author: alkohli
@@ -14,79 +14,79 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/31/2017
 ms.author: alkohli
-ms.openlocfilehash: cf532206e2c0bc49da853663ba34ae993ec2981d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9173e34f889ce1c082b20bb382cb6ca9a03dd797
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-hello-storsimple-manager-service-toomanage-access-control-records"></a>使用 hello StorSimple Manager 服務 toomanage 存取控制記錄
+# <a name="use-the-storsimple-manager-service-to-manage-access-control-records"></a>使用 StorSimple Manager 服務管理存取控制記錄
 
-## <a name="overview"></a>概觀
-存取控制記錄 (Acr) 可讓您 toospecify 哪些主機可連接 tooa hello StorSimple 裝置上的磁碟區。 Acr tooa 特定磁碟區，並設定包含 hello iSCSI hello 主機的限定名稱 （iqn 相關聯）。 當主機嘗試 tooconnect tooa 磁碟區時，hello 裝置會檢查的 hello 與 hello IQN 名稱，如果沒有符合項目，然後 hello 建立連接該磁碟區相關聯的 ACR。 hello hello 中的存取控制記錄**組態**您 StorSimple 裝置管理員服務刀鋒視窗的區段顯示以 hello 對應 iqn 相關聯的 hello 主機的所有 hello 存取控制記錄。
+## <a name="overview"></a>Overview
+存取控制記錄 (ACR) 可讓您指定哪些主機可連接至 StorSimple 裝置上的磁碟區。 ACR 設為特定的磁碟區，並且包含主機的 iSCSI 限定名稱 (IQN)。 當主機嘗試連線到磁碟區時，裝置會檢查與該磁碟區相關聯的 ACR 的 IQN 名稱，如果相符，則會建立連接。 [StorSimple 裝置管理員服務] 刀鋒視窗之 [設定] 區段中，存取控制記錄會顯示主機的所有存取控制記錄及對應的 IQN。
 
-本教學課程將說明下列 ACR 相關的一般工作的 hello:
+本教學課程將說明下列常見 ACR 相關工作：
 
 * 加入存取控制記錄
 * 編輯存取控制記錄
 * 刪除存取控制記錄
 
 > [!IMPORTANT]
-> * 指派的 ACR tooa 磁碟區時，小心，hello 存取磁碟區不同時由多個非叢集主機因為這可能會損毀 hello 磁碟區。
-> * 當從磁碟區刪除 ACR，請確定該 hello 對應的主機未存取 hello 磁碟區，因為 hello 刪除可能會導致讀寫中斷。
+> * 將 ACR 指派到磁碟區時，請注意磁碟區並未被多個非叢集主機並行存取，因為這可能會損毀磁碟區。
+> * 從磁碟區刪除 ACR 時，請確定對應的主機未存取磁碟區，因為刪除作業可能會導致讀寫中斷。
 
-## <a name="get-hello-iqn"></a>取得 hello IQN
+## <a name="get-the-iqn"></a>取得 IQN
 
-執行下列步驟 tooget hello 執行 Windows Server 2012 的 Windows 主機的 IQN hello。
+請執行下列步驟，以取得正在執行 Windows Server 2012 之 Windows 主機的 IQN。
 
 [!INCLUDE [storsimple-get-iqn](../../includes/storsimple-get-iqn.md)]
 
 
 ## <a name="add-an-access-control-record"></a>加入存取控制記錄
-使用 hello**組態**hello StorSimple 裝置管理員服務刀鋒視窗 tooadd Acr > 一節。 一般而言，您會讓一個 ACR 與一個磁碟區產生關聯。
+您可以使用 [StorSimple 裝置管理員服務] 刀鋒視窗中的 [設定] 區段來新增 ACR。 一般而言，您會讓一個 ACR 與一個磁碟區產生關聯。
 
-執行下列步驟 tooadd ACR hello。
+執行下列步驟以加入 ACR。
 
-#### <a name="tooadd-an-acr"></a>tooadd ACR
+#### <a name="to-add-an-acr"></a>加入 ACR
 
-1. 移 tooyour StorSimple 裝置管理員服務、 按兩下 hello 服務名稱，然後再內 hello**組態**區段中，按一下**存取控制記錄**。
-2. 在 hello**存取控制記錄**刀鋒視窗中，按一下  **+ 新增 ACR**。
+1. 移至 StorSimple 裝置管理員服務，按兩下服務名稱，然後在 [設定] 區段內按一下 [存取控制記錄]。
+2. 在 [存取控制記錄] 刀鋒視窗中，按一下 [+ 新增 ACR]。
 
     ![按一下 [新增 ACR]](./media/storsimple-8000-manage-acrs/createacr1.png)
 
-3. 在 hello**新增 ACR**刀鋒視窗中，執行下列步驟 hello:
+3. 在 [新增 ACR] 刀鋒視窗中，執行下列步驟：
 
     1. 提供 ACR 的名稱。
     
-    2. 提供在 Windows Server 主機 hello IQN 名稱**iSCSI 啟動器名稱 (IQN)**。
+    2. 在 [iSCSI 啟動器名稱 \(IQN)\] 下方，提供 Windows Server 主機的 IQN 名稱。
 
-    3. 按一下**新增**toocreate hello ACR。
+    3. 按一下 [新增] 以建立 ACR。
 
         ![按一下 [新增 ACR]](./media/storsimple-8000-manage-acrs/createacr2.png)
 
-4.  hello 新增 ACR 會顯示在 hello 表格 Acr 清單。
+4.  新增的 ACR 會顯示在 ACR 的表格式清單中。
 
     ![按一下 [新增 ACR]](./media/storsimple-8000-manage-acrs/createacr5.png)
 
 
 ## <a name="edit-an-access-control-record"></a>編輯存取控制記錄
-使用 hello**組態**hello StorSimple 裝置管理員服務刀鋒視窗 tooedit Acr > 一節。
+您可以使用 [StorSimple 裝置管理員服務] 刀鋒視窗中的 [設定] 區段來編輯 ACR。
 
 > [!NOTE]
-> 建議您只修改目前未在使用中的 ACR。 tooedit 與目前正在使用的磁碟區相關聯的 ACR，您必須先進行 hello 磁碟區離線。
+> 建議您只修改目前未在使用中的 ACR。 若要編輯與目前正在使用中的磁碟區相關聯的 ACR，您必須先讓磁碟區離線。
 
-執行下列步驟 tooedit ACR hello。
+執行下列步驟以編輯 ACR。
 
-#### <a name="tooedit-an-access-control-record"></a>tooedit 存取控制記錄
-1.  移 tooyour StorSimple 裝置管理員服務、 按兩下 hello 服務名稱，然後再內 hello**組態**區段中，按一下**存取控制記錄**。
+#### <a name="to-edit-an-access-control-record"></a>編輯存取控制記錄
+1.  移至 StorSimple 裝置管理員服務，按兩下服務名稱，然後在 [設定] 區段內按一下 [存取控制記錄]。
 
-    ![移 tooaccess 控制記錄](./media/storsimple-8000-manage-acrs/createacr1.png)
+    ![移至存取控制記錄](./media/storsimple-8000-manage-acrs/createacr1.png)
 
-2. 在 hello 表格清單中的 hello 存取控制記錄，按一下並選取您想 toomodify ACR hello。
+2. 在存取控制記錄的表格式清單中，按一下並選取您想要修改的 ACR。
 
     ![編輯存取控制記錄](./media/storsimple-8000-manage-acrs/editacr1.png)
 
-3. 在 hello**編輯存取控制記錄**刀鋒視窗中，提供不同的 IQN 對應 tooanother 主機。
+3. 在 [編輯存取控制記錄] 刀鋒視窗中，提供對應至其他主機的不同 IQN。
 
     ![編輯存取控制記錄](./media/storsimple-8000-manage-acrs/editacr2.png)
 
@@ -94,39 +94,39 @@ ms.lasthandoff: 10/06/2017
 
     ![編輯存取控制記錄](./media/storsimple-8000-manage-acrs/editacr3.png)
 
-5. Hello ACR 更新時，會通知您。 hello 表格清單也會更新 tooreflect hello 變更。
+5. ACR 更新時，您會收到通知。 表格式清單也會一併更新以反映變更。
 
    
 ## <a name="delete-an-access-control-record"></a>刪除存取控制記錄
-使用 hello**組態**hello StorSimple 裝置管理員服務刀鋒視窗 toodelete Acr > 一節。
+您可以使用 [StorSimple 裝置管理員服務] 刀鋒視窗中的 [設定] 區段來刪除 ACR。
 
 > [!NOTE]
-> 您只能刪除目前未在使用中的 ACR。 toodelete 與目前正在使用的磁碟區相關聯的 ACR，您必須先進行 hello 磁碟區離線。
+> 您只能刪除目前未在使用中的 ACR。 若要刪除與目前正在使用中的磁碟區相關聯的 ACR，您必須先讓磁碟區離線。
 
-執行下列步驟 toodelete 存取控制記錄的 hello。
+執行下列步驟來刪除存取控制記錄。
 
-#### <a name="toodelete-an-access-control-record"></a>toodelete 存取控制記錄
-1.  移 tooyour StorSimple 裝置管理員服務、 按兩下 hello 服務名稱，然後再內 hello**組態**區段中，按一下**存取控制記錄**。
+#### <a name="to-delete-an-access-control-record"></a>刪除存取控制記錄
+1.  移至 StorSimple 裝置管理員服務，按兩下服務名稱，然後在 [設定] 區段內按一下 [存取控制記錄]。
 
-    ![移 tooaccess 控制記錄](./media/storsimple-8000-manage-acrs/createacr1.png)
+    ![移至存取控制記錄](./media/storsimple-8000-manage-acrs/createacr1.png)
 
-2. 在 hello 表格清單中的 hello 存取控制記錄，按一下並選取您想 toodelete ACR hello。
+2. 在存取控制記錄的表格式清單中，按一下並選取您想要刪除的 ACR。
 
-    ![移 tooaccess 控制記錄](./media/storsimple-8000-manage-acrs/deleteacr1.png)
+    ![移至存取控制記錄](./media/storsimple-8000-manage-acrs/deleteacr1.png)
 
-3. Tooinvoke hello 操作功能表上按一下滑鼠右鍵，然後選取**刪除**。
+3. 以滑鼠右鍵按一下可叫用操作功能表，然後選取 [刪除]。
 
-    ![移 tooaccess 控制記錄](./media/storsimple-8000-manage-acrs/deleteacr2.png)
+    ![移至存取控制記錄](./media/storsimple-8000-manage-acrs/deleteacr2.png)
 
-4. 當提示確認時，檢閱 hello 資訊，然後按一下**刪除**。
+4. 當出現提示確認時，請檢閱資訊，然後按一下 [刪除]。
 
-    ![移 tooaccess 控制記錄](./media/storsimple-8000-manage-acrs/deleteacr3.png)
+    ![移至存取控制記錄](./media/storsimple-8000-manage-acrs/deleteacr3.png)
 
-5. Hello 刪除完成時，會通知您。 hello 表格清單是更新的 tooreflect hello 刪除。
+5. 當刪除作業完成時，您會收到通知。 表格式清單會更新以反映此刪除動作。
 
-    ![移 tooaccess 控制記錄](./media/storsimple-8000-manage-acrs/deleteacr5.png)
+    ![移至存取控制記錄](./media/storsimple-8000-manage-acrs/deleteacr5.png)
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 [管理 StorSimple 磁碟區](storsimple-8000-manage-volumes-u2.md)。
-* 深入了解[使用您的 StorSimple 裝置 hello StorSimple Manager 服務 tooadminister](storsimple-8000-manager-service-administration.md)。
+* 深入了解 [使用 StorSimple Manager 服務管理 StorSimple 裝置](storsimple-8000-manager-service-administration.md)。
 

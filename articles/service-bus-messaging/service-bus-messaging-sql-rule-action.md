@@ -1,5 +1,5 @@
 ---
-title: "在 Azure 中的 aaaSQLRuleAction 語法參考 |Microsoft 文件"
+title: "Azure 中的 SQLRuleAction 語法參考 | Microsoft Docs"
 description: "SQLRuleAction 文法的詳細資料。"
 services: service-bus-messaging
 documentationcenter: na
@@ -14,17 +14,17 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 06/28/2017
 ms.author: sethm
-ms.openlocfilehash: 8ef281f942847bcc535b83a5ffb30d03539734f9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7379b7f58563675f28d77928d933c0d9c7992e71
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="sqlruleaction-syntax"></a>SQLRuleAction 語法
 
-A *SqlRuleAction* hello 的執行個體[SqlRuleAction](/dotnet/api/microsoft.servicebus.messaging.sqlruleaction)類別，而代表 SQL 語言撰寫的動作集基礎的語法，將會針對執行[BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage).   
+*SqlRuleAction* 是 [SqlRuleAction](/dotnet/api/microsoft.servicebus.messaging.sqlruleaction) 類別的執行個體，代表對 [BrokeredMessage](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage)執行的以 SQL 語言為基礎之語法所撰寫的動作集。   
   
-本主題列出 hello SQL 規則動作文法的詳細資料。  
+本主題列出 SQL 規則動作文法的詳細資料。  
   
 ```  
 <statements> ::=
@@ -64,11 +64,11 @@ A *SqlRuleAction* hello 的執行個體[SqlRuleAction](/dotnet/api/microsoft.ser
   
 ## <a name="arguments"></a>引數  
   
--   `<scope>`是選擇性的字串表示的 hello hello 範圍`<property_name>`。 有效值為 `sys` 或 `user`。 hello`sys`值表示系統範圍其中`<property_name>`是 hello 的公用屬性名稱[BrokeredMessage 類別](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage)。 `user`表示使用者領域其中`<property_name>`hello 的索引鍵[BrokeredMessage 類別](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage)字典。 `user`範圍是 hello 預設範圍，如果`<scope>`未指定。  
+-   `<scope>` 是表示 `<property_name>` 範圍的選擇性字串。 有效值為 `sys` 或 `user`。 `sys` 值表示系統範圍，當中 `<property_name>` 為 [BrokeredMessage 類別](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage)的公用屬性名稱。 `user` 表示使用者範圍，當中 `<property_name>` 為 [BrokeredMessage 類別](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage)字典的索引鍵。 如果 `<scope>` 未指定，則 `user` 範圍是預設範圍。  
   
 ### <a name="remarks"></a>備註  
 
-嘗試 tooaccess 不存在系統的屬性時，發生錯誤時，嘗試 tooaccess 不存在使用者屬性不是錯誤。 反之，不存在的使用者屬性會內部評估為未知的值。 未知的值在運算子評估期間會特別處理。  
+嘗試存取不存在的系統屬性時會發生錯誤，而嘗試存取不存在的使用者屬性時不會發生錯誤。 反之，不存在的使用者屬性會內部評估為未知的值。 未知的值在運算子評估期間會特別處理。  
   
 ## <a name="propertyname"></a>property_name  
   
@@ -83,7 +83,7 @@ A *SqlRuleAction* hello 的執行個體[SqlRuleAction](/dotnet/api/microsoft.ser
 ```  
   
 ### <a name="arguments"></a>引數  
- `<regular_identifier>`hello 所代表的字串是下列規則運算式：  
+ `<regular_identifier>` 是由下列規則運算式所表示的字串︰  
   
 ```  
 [[:IsLetter:]][_[:IsLetter:][:IsDigit:]]*  
@@ -97,7 +97,7 @@ A *SqlRuleAction* hello 的執行個體[SqlRuleAction](/dotnet/api/microsoft.ser
   
  `<regular_identifier>` 不能是保留的關鍵字。  
   
- `<delimited_identifier>` 是使用左/右方括弧 ([]) 括住的任何字串。 右方括弧會以兩個右方括弧代表。 hello 以下是範例`<delimited_identifier>`:  
+ `<delimited_identifier>` 是使用左/右方括弧 ([]) 括住的任何字串。 右方括弧會以兩個右方括弧代表。 以下為 `<delimited_identifier>`的範例：  
   
 ```  
 [Property With Space]  
@@ -105,7 +105,7 @@ A *SqlRuleAction* hello 的執行個體[SqlRuleAction](/dotnet/api/microsoft.ser
   
 ```  
   
- `<quoted_identifier>` 是以雙引號括住的任何字串。 識別項中的雙引號會以兩個雙引號表示。 不建議 toouse 引號識別項，因為它容易混淆與字串常數。 盡可能使用分隔的識別碼。 hello 的範例如下的`<quoted_identifier>`:  
+ `<quoted_identifier>` 是以雙引號括住的任何字串。 識別項中的雙引號會以兩個雙引號表示。 不建議使用引號識別項，因為它容易與字串常數造成混淆。 盡可能使用分隔的識別碼。 以下是 `<quoted_identifier>` 的範例：  
   
 ```  
 "Contoso & Northwind"  
@@ -120,7 +120,7 @@ A *SqlRuleAction* hello 的執行個體[SqlRuleAction](/dotnet/api/microsoft.ser
   
 ### <a name="remarks"></a>備註
   
- `<pattern>` 必須是評估為字串的運算式。 它會當做模式中使用 LIKE 運算子的 hello。      它可以包含下列萬用字元 hello:  
+ `<pattern>` 必須是評估為字串的運算式。 它會用來做為 LIKE 運算子的模式。      它可以包含下列萬用字元︰  
   
 -   `%`︰任何零或多個字元的字串。  
   
@@ -135,7 +135,7 @@ A *SqlRuleAction* hello 的執行個體[SqlRuleAction](/dotnet/api/microsoft.ser
   
 ### <a name="remarks"></a>備註
   
- `<escape_char>` 必須是評估為字串為 1 的運算式。 它會當做逸出字元使用 LIKE 運算子的 hello。  
+ `<escape_char>` 必須是評估為字串為 1 的運算式。 它會用來做為 LIKE 運算子的逸出字元。  
   
  例如，`property LIKE 'ABC\%' ESCAPE '\'` 符合 `ABC%` 而不是以 `ABC`開頭的字串。  
   
@@ -148,27 +148,27 @@ A *SqlRuleAction* hello 的執行個體[SqlRuleAction](/dotnet/api/microsoft.ser
   
 ### <a name="arguments"></a>引數  
   
--   `<integer_constant>` 是數字的字串，不會以引號括住且不包含小數點。 hello 值會儲存為`System.Int64`就內部而言，並遵循 hello 相同範圍。  
+-   `<integer_constant>` 是數字的字串，不會以引號括住且不包含小數點。 值會在內部儲存為 `System.Int64`，並遵循相同的範圍。  
   
-     hello 以下是長時間常數的範例：  
+     以下為長常數的範例：  
   
     ```  
     1894  
     2  
     ```  
   
--   `<decimal_constant>` 是數字的字串，不會以引號括住，且包含小數點。 hello 值會儲存為`System.Double`就內部而言，然後遵循 hello 相同的範圍精確度。  
+-   `<decimal_constant>` 是數字的字串，不會以引號括住，且包含小數點。 值會在內部儲存為 `System.Double`，並遵循相同的範圍/精確度。  
   
-     在未來版本中，這個數字可能會儲存在不同的資料型別 toosupport 確切數目語意，因此您不應該依賴 hello 事實 hello 基礎資料類型是`System.Double`如`<decimal_constant>`。  
+     在未來版本中，這個數字可能會以不同的資料類型儲存，以支援實際數字的語意，因此您不應依賴 `<decimal_constant>` 的基本資料型別是 `System.Double`。  
   
-     hello 以下是十進位常數的範例：  
+     以下是十進位常數的範例：  
   
     ```  
     1894.1204  
     2.0  
     ```  
   
--   `<approximate_number_constant>` 是以科學記號標記法撰寫的數字。 hello 值會儲存為`System.Double`就內部而言，然後遵循 hello 相同的範圍精確度。 hello 以下是近似的數值常數的範例：  
+-   `<approximate_number_constant>` 是以科學記號標記法撰寫的數字。 值會在內部儲存為 `System.Double`，並遵循相同的範圍/精確度。 以下是大約數字常數的範例：  
   
     ```  
     101.5E5  
@@ -184,7 +184,7 @@ A *SqlRuleAction* hello 的執行個體[SqlRuleAction](/dotnet/api/microsoft.ser
   
 ### <a name="remarks"></a>備註
   
-布林常數 hello 關鍵字來表示`TRUE`或`FALSE`。 hello 值會儲存為`System.Boolean`。  
+布林值常數由關鍵字 `TRUE` 或 `FALSE` 代表。 值會儲存為 `System.Boolean`。  
   
 ## <a name="stringconstant"></a>string_constant  
   
@@ -206,18 +206,18 @@ A *SqlRuleAction* hello 的執行個體[SqlRuleAction](/dotnet/api/microsoft.ser
   
 ### <a name="remarks"></a>備註  
 
-hello`newid()`函式會傳回**System.Guid**產生 hello`System.Guid.NewGuid()`方法。  
+`newid()` 函式會傳回由 `System.Guid.NewGuid()` 方法所產生的 **System.Guid**。  
   
-hello`property(name)`函式會傳回所參考的 hello 屬性 hello 值`name`。 hello`name`值可以是任何有效的運算式會傳回字串值。  
+`property(name)` 函式會傳回 `name`所參考的屬性值 。 `name` 可以是任何會傳回字串值的有效運算式。  
   
 ## <a name="considerations"></a>考量
 
-- 集合是使用的 toocreate 現有屬性的新屬性或更新 hello 值。
-- 移除是使用的 tooremove 屬性。
-- 設定會在 hello 運算式型別和 hello 現有的屬性類型是不同時盡可能執行隱含轉換。
+- SET 是用來建立新的屬性或更新現有屬性的值。
+- REMOVE 是用來移除屬性。
+- 當運算式類型和現有的屬性型別不同時，SET 會盡可能執行隱含轉換。
 - 如果參考不存在的系統屬性，動作就會失敗。
 - 如果參考不存在的使用者屬性，動作就不會失敗。
-- 在內部不存在使用者屬性評估為 「 不明 」，下列 hello 相同的語意[SQLFilter](/dotnet/api/microsoft.servicebus.messaging.sqlfilter)評估運算子時。
+- 不存在的使用者屬性會內部評估為「不明」，評估運算子時遵循與 [SQLFilter](/dotnet/api/microsoft.servicebus.messaging.sqlfilter) 相同的語意。
 
 ## <a name="next-steps"></a>後續步驟
 

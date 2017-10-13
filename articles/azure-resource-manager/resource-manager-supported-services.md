@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure 資源提供者和資源類型 |Microsoft 文件"
-description: "描述 hello 資源提供者支援資源管理員、 結構描述和可用的 API 版本，以及可以裝載 hello 資源 hello 區域。"
+title: "Azure 資源提供者和資源類型 | Microsoft Docs"
+description: "說明支援資源管理員、其結構描述及可用 API 版本的資源提供者，以及可裝載資源的區域。"
 services: azure-resource-manager
 documentationcenter: na
 author: tfitzmac
@@ -14,15 +14,15 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: 23db1d3808a20166f3b44ec801e1bcc46fbb9bd3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6a9128f45d4199404019cee594842d59c7f1aaf3
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="resource-providers-and-types"></a>資源提供者和類型
 
-在部署資源時，您經常需要 tooretrieve hello 資源提供者和類型資訊。 在本文中，您將了解：
+部署資源時，您經常需要擷取有關資源提供者和類型的資訊。 在本文中，您將了解：
 
 * 在 Azure 中檢視所有資源提供者
 * 檢查資源提供者的註冊狀態
@@ -31,11 +31,11 @@ ms.lasthandoff: 10/06/2017
 * 檢視資源類型的有效位置
 * 檢視資源類型的有效 API 版本
 
-您可以執行下列步驟透過 hello 入口網站、 PowerShell 或 Azure CLI。
+您可以透過入口網站、PowerShell 或 Azure CLI 執行下列步驟。
 
 ## <a name="powershell"></a>PowerShell
 
-toosee 所有資源提供者，在 Azure 和 hello 登錄狀態，您的訂用帳戶，都使用：
+若要查看 Azure 中的所有資源提供者，以及您訂用帳戶的登錄狀態，請使用：
 
 ```powershell
 Get-AzureRmResourceProvider -ListAvailable | Select-Object ProviderNamespace, RegistrationState
@@ -53,7 +53,7 @@ Microsoft.CognitiveServices      Registered
 ...
 ```
 
-註冊資源提供者會設定您的訂用帳戶 toowork hello 資源提供者。 註冊的 hello 範圍一律是 hello 訂用帳戶。 許多資源提供者都會預設為自動註冊。 不過，您可能需要 toomanually 註冊一些資源提供者。 tooregister 資源提供者，您必須擁有的權限 tooperform hello `/register/action` hello 資源提供者的作業。 這項作業包含在 hello 參與者和擁有者角色。
+註冊資源提供者可將您的訂用帳戶設定為可搭配資源提供者使用。 註冊範圍一律是訂用帳戶。 許多資源提供者都會預設為自動註冊。 不過，您可能需要手動註冊某些資源提供者。 若要註冊資源提供者，您必須有權執行資源提供者的 `/register/action` 作業。 這項作業包含在「參與者」和「擁有者」角色中。
 
 ```powershell
 Register-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch
@@ -70,7 +70,7 @@ Locations         : {West Europe, East US, East US 2, West US...}
 
 當訂用帳戶中仍有資源提供者的資源類型時，您無法取消註冊該資源提供者。
 
-為特定資源提供者，使用 toosee 資訊：
+若要查看特定資源提供者的資訊，請使用：
 
 ```powershell
 Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch
@@ -87,7 +87,7 @@ Locations         : {West Europe, East US, East US 2, West US...}
 ...
 ```
 
-toosee hello 資源類型為資源提供者，使用：
+若要查看資源提供者的資源類型，請使用：
 
 ```powershell
 (Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes.ResourceTypeName
@@ -102,9 +102,9 @@ locations
 locations/quotas
 ```
 
-hello API 版本對應 tooa 版本會釋出 hello 資源提供者的 REST API 作業。 資源提供者啟用新功能，因為它會釋出 hello REST API 的新版本。 
+API 版本會對應至資源提供者所發行的 REST API 作業版本。 當資源提供者啟用新功能時，它會發行新版本的 REST API。 
 
-tooget hello 可用的 API 版本的資源類型，使用：
+若要取得資源類型的可用 API 版本，請使用：
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes | Where-Object ResourceTypeName -eq batchAccounts).ApiVersions
@@ -120,9 +120,9 @@ tooget hello 可用的 API 版本的資源類型，使用：
 2015-07-01
 ```
 
-資源管理員支援在所有區域，但您部署的 hello 資源可能不支援在所有區域。 此外，可能會禁止您使用支援 hello 資源某些地區的訂用帳戶限制。 
+所有區域都支援資源管理員，但您部署的資源可能無法在所有區域中受到支援。 此外，您的訂用帳戶上可能會有一些限制，以防止您使用某些支援該資源的區域。 
 
-資源類型的 tooget hello 支援位置使用。
+若要取得資源類型支援的位置，請使用：
 
 ```powershell
 ((Get-AzureRmResourceProvider -ProviderNamespace Microsoft.Batch).ResourceTypes | Where-Object ResourceTypeName -eq batchAccounts).Locations
@@ -139,7 +139,7 @@ West US
 ```
 
 ## <a name="azure-cli"></a>Azure CLI
-toosee 所有資源提供者，在 Azure 和 hello 登錄狀態，您的訂用帳戶，都使用：
+若要查看 Azure 中的所有資源提供者，以及您訂用帳戶的登錄狀態，請使用：
 
 ```azurecli
 az provider list --query "[].{Provider:namespace, Status:registrationState}" --out table
@@ -157,7 +157,7 @@ Microsoft.CognitiveServices      Registered
 ...
 ```
 
-註冊資源提供者會設定您的訂用帳戶 toowork hello 資源提供者。 註冊的 hello 範圍一律是 hello 訂用帳戶。 許多資源提供者都會預設為自動註冊。 不過，您可能需要 toomanually 註冊一些資源提供者。 tooregister 資源提供者，您必須擁有的權限 tooperform hello `/register/action` hello 資源提供者的作業。 這項作業包含在 hello 參與者和擁有者角色。
+註冊資源提供者可將您的訂用帳戶設定為可搭配資源提供者使用。 註冊範圍一律是訂用帳戶。 許多資源提供者都會預設為自動註冊。 不過，您可能需要手動註冊某些資源提供者。 若要註冊資源提供者，您必須有權執行資源提供者的 `/register/action` 作業。 這項作業包含在「參與者」和「擁有者」角色中。
 
 ```azurecli
 az provider register --namespace Microsoft.Batch
@@ -167,7 +167,7 @@ az provider register --namespace Microsoft.Batch
 
 當訂用帳戶中仍有資源提供者的資源類型時，您無法取消註冊該資源提供者。
 
-為特定資源提供者，使用 toosee 資訊：
+若要查看特定資源提供者的資訊，請使用：
 
 ```azurecli
 az provider show --namespace Microsoft.Batch
@@ -186,7 +186,7 @@ az provider show --namespace Microsoft.Batch
 }
 ```
 
-toosee hello 資源類型為資源提供者，使用：
+若要查看資源提供者的資源類型，請使用：
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[*].resourceType" --out table
@@ -203,9 +203,9 @@ locations
 locations/quotas
 ```
 
-hello API 版本對應 tooa 版本會釋出 hello 資源提供者的 REST API 作業。 資源提供者啟用新功能，因為它會釋出 hello REST API 的新版本。 
+API 版本會對應至資源提供者所發行的 REST API 作業版本。 當資源提供者啟用新功能時，它會發行新版本的 REST API。 
 
-tooget hello 可用的 API 版本的資源類型，使用：
+若要取得資源類型的可用 API 版本，請使用：
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[?resourceType=='batchAccounts'].apiVersions | [0]" --out table
@@ -223,9 +223,9 @@ Result
 2015-07-01
 ```
 
-資源管理員支援在所有區域，但您部署的 hello 資源可能不支援在所有區域。 此外，可能會禁止您使用支援 hello 資源某些地區的訂用帳戶限制。 
+所有區域都支援資源管理員，但您部署的資源可能無法在所有區域中受到支援。 此外，您的訂用帳戶上可能會有一些限制，以防止您使用某些支援該資源的區域。 
 
-資源類型的 tooget hello 支援位置使用。
+若要取得資源類型支援的位置，請使用：
 
 ```azurecli
 az provider show --namespace Microsoft.Batch --query "resourceTypes[?resourceType=='batchAccounts'].locations | [0]" --out table
@@ -245,29 +245,29 @@ West US
 
 ## <a name="portal"></a>入口網站
 
-所有資源提供者，在 Azure 和 hello 登錄狀態，您的訂用帳戶中，都選取 toosee**訂閱**。
+訂用帳戶若要查看 Azure 中的所有資源提供者，以及您訂用帳戶的登錄狀態，請選取 [訂用帳戶]。
 
 ![選取 [訂用帳戶]](./media/resource-manager-supported-services/select-subscriptions.png)
 
-選擇 hello 訂用帳戶 tooview。
+選擇要檢視的訂用帳戶。
 
 ![指定訂用帳戶](./media/resource-manager-supported-services/subscription.png)
 
-選取**資源提供者**和檢視 hello 可用的資源提供者清單。
+選取**資源提供者**並檢視可用資源提供者的清單。
 
 ![顯示資源提供者](./media/resource-manager-supported-services/show-resource-providers.png)
 
-註冊資源提供者會設定您的訂用帳戶 toowork hello 資源提供者。 註冊的 hello 範圍一律是 hello 訂用帳戶。 許多資源提供者都會預設為自動註冊。 不過，您可能需要 toomanually 註冊一些資源提供者。 tooregister 資源提供者，您必須擁有的權限 tooperform hello `/register/action` hello 資源提供者的作業。 這項作業包含在 hello 參與者和擁有者角色。 tooregister 資源提供者中，選取**註冊**。
+註冊資源提供者可將您的訂用帳戶設定為可搭配資源提供者使用。 註冊範圍一律是訂用帳戶。 許多資源提供者都會預設為自動註冊。 不過，您可能需要手動註冊某些資源提供者。 若要註冊資源提供者，您必須有權執行資源提供者的 `/register/action` 作業。 這項作業包含在「參與者」和「擁有者」角色中。 若要註冊資源提供者，請選取 [註冊]。
 
 ![註冊資源提供者](./media/resource-manager-supported-services/register-provider.png)
 
 當訂用帳戶中仍有資源提供者的資源類型時，您無法取消註冊該資源提供者。
 
-選取 為特定資源提供者，toosee 資訊**更多服務**。
+若要查看特定資源提供者的資訊，請選取 [更多服務]。
 
 ![選取 [更多服務]](./media/resource-manager-supported-services/more-services.png)
 
-搜尋**資源總管**和選取從 hello 可用的選項。
+搜尋**資源總管**並從可用的選項加以選取。
 
 ![選取 [資源總管]](./media/resource-manager-supported-services/select-resource-explorer.png)
 
@@ -275,20 +275,20 @@ West US
 
 ![選取 [提供者]](./media/resource-manager-supported-services/select-providers.png)
 
-選取 hello 資源提供者和資源類型的 tooview。
+選取資源提供者和您想要檢視的資源類型。
 
 ![選取 [資源類型]](./media/resource-manager-supported-services/select-resource-type.png)
 
-資源管理員支援在所有區域，但您部署的 hello 資源可能不支援在所有區域。 此外，可能會禁止您使用支援 hello 資源某些地區的訂用帳戶限制。 hello 資源總管會顯示 hello 資源類型的有效位置。
+所有區域都支援資源管理員，但您部署的資源可能無法在所有區域中受到支援。 此外，您的訂用帳戶上可能會有一些限制，以防止您使用某些支援該資源的區域。 資源總管會顯示資源類型的有效位置。
 
 ![顯示位置](./media/resource-manager-supported-services/show-locations.png)
 
-hello API 版本對應 tooa 版本會釋出 hello 資源提供者的 REST API 作業。 資源提供者啟用新功能，因為它會釋出 hello REST API 的新版本。 hello 資源總管會顯示 hello 資源類型的有效應用程式開發介面版本。
+API 版本會對應至資源提供者所發行的 REST API 作業版本。 當資源提供者啟用新功能時，它會發行新版本的 REST API。 資源總管會顯示資源類型的有效 API 版本。
 
 ![顯示 API 版本](./media/resource-manager-supported-services/show-api-versions.png)
 
 ## <a name="next-steps"></a>後續步驟
-* toolearn 有關建立資源管理員範本，請參閱[撰寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
-* toolearn 有關部署資源，請參閱[部署應用程式使用 Azure Resource Manager 範本](resource-group-template-deploy.md)。
-* tooview hello 作業為資源提供者，請參閱[Azure REST API](/rest/api/)。
+* 若要了解如何建立資源管理員範本，請參閱 [編寫 Azure 資源管理員範本](resource-group-authoring-templates.md)。
+* 若要了解如何部署資源，請參閱 [使用 Azure 資源管理員範本部署應用程式](resource-group-template-deploy.md)。
+* 若要檢視資源提供者的作業，請參閱 [Azure REST API](/rest/api/)。
 

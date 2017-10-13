@@ -1,6 +1,6 @@
 ---
-title: "使用 Linux VM 上 MongoDB aaaInstall hello Azure CLI 1.0 |Microsoft 文件"
-description: "深入了解如何 tooinstall 及使用 hello Resource Manager 部署模型在 Azure 中 Linux 虛擬機器上設定 MongoDB。"
+title: "使用 Azure CLI 1.0 在 Linux VM 上安裝 MongoDB | Microsoft Docs"
+description: "了解如何使用 Resource Manager 部署模型在 Azure 中的 Linux 虛擬機器上安裝及設定 MongoDB。"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: 4ce21a2c63da7d00a4422e0a6766e2103e7f12d7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c97ade0a3d95824f723aad55776de861fe49441f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooinstall-and-configure-mongodb-on-a-linux-vm-using-hello-azure-cli-10"></a>如何 tooinstall 及使用 Azure CLI 1.0 hello Linux VM 上設定 MongoDB
-[MongoDB](http://www.mongodb.org) 是受歡迎的高效能開放原始碼 NoSQL 資料庫。 本文章將示範如何 tooinstall 及使用 hello Resource Manager 部署模型在 Azure 中 Linux VM 上設定 MongoDB。 範例會詳細說明如何︰
+# <a name="how-to-install-and-configure-mongodb-on-a-linux-vm-using-the-azure-cli-10"></a>如何使用 Azure CLI 1.0 在 Linux VM 上安裝及設定 MongoDB
+[MongoDB](http://www.mongodb.org) 是受歡迎的高效能開放原始碼 NoSQL 資料庫。 本文說明如何使用 Resource Manager 部署模型在 Azure 中的 Linux VM 上安裝及設定 MongoDB。 範例會詳細說明如何︰
 
 * [手動安裝及設定基本 MongoDB 執行個體](#manually-install-and-configure-mongodb-on-a-vm)
 * [使用 Resource Manager 範本建立基本 MongoDB 執行個體](#create-basic-mongodb-instance-on-centos-using-a-template)
 * [使用 Resource Manager 範本建立複雜的 MongoDB 分區化叢集與複本集](#create-a-complex-mongodb-sharded-cluster-on-centos-using-a-template)
 
 
-## <a name="cli-versions-toocomplete-hello-task"></a>CLI 版本 toocomplete hello 工作
-您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本：
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本
+您可以使用下列其中一個 CLI 版本來完成工作︰
 
-- Azure CLI 1.0 – 我們 CLI hello 傳統和資源管理部署模型 （此文件）
-- [Azure CLI 2.0](create-cli-complete-nodejs.md) -hello 資源管理部署模型我們下一個層代 CLI
+- Azure CLI 1.0 - 適用於傳統和資源管理部署模型 (本文) 的 CLI
+- [Azure CLI 2.0](create-cli-complete-nodejs.md) - 適用於資源管理部署模型的新一代 CLI
 
 
 ## <a name="manually-install-and-configure-mongodb-on-a-vm"></a>在 VM 上手動安裝及設定 MongoDB
-MongoDB [提供 Linux 散發版本的安裝指示](https://docs.mongodb.com/manual/administration/install-on-linux/)，包括 Red Hat / CentOS、SUSE、Ubuntu 和 Debian。 hello 下列範例會建立*CentOS* VM 使用 SSH 金鑰儲存在*~/.ssh/id_rsa.pub*。 回應 hello 提示您輸入儲存體帳戶名稱、 DNS 名稱和管理員認證：
+MongoDB [提供 Linux 散發版本的安裝指示](https://docs.mongodb.com/manual/administration/install-on-linux/)，包括 Red Hat / CentOS、SUSE、Ubuntu 和 Debian。 下列範例使用儲存在 ~/.ssh/id_rsa.pub 的 SSH 金鑰建立 CentOS VM。 回答儲存體帳戶名稱、DNS 名稱和系統管理員認證的提示︰
 
 ```azurecli
 azure vm quick-create \
@@ -44,19 +44,19 @@ azure vm quick-create \
     --ssh-publickey-file ~/.ssh/id_rsa.pub 
 ```
 
-登入 toohello VM 使用 hello 結尾 hello hello 前面 VM 建立步驟顯示公用 IP 位址：
+使用前一個 VM 建立步驟結尾所顯示的公用 IP 位址登入 VM︰
 
 ```bash
 ssh azureuser@40.78.23.145
 ```
 
-tooadd hello 安裝來源的 MongoDB，建立**yum**儲存機制檔案，如下所示：
+若要新增 MongoDB 的安裝來源，請建立 yum 存放庫檔案，如下所示︰
 
 ```bash
 sudo touch /etc/yum.repos.d/mongodb-org-3.4.repo
 ```
 
-開啟 hello MongoDB 儲存機制檔案進行編輯。 加入下列行 hello:
+開啟 MongoDB 儲存機制檔案以進行編輯。 加入下列幾行：
 
 ```sh
 [mongodb-org-3.4]
@@ -73,26 +73,26 @@ gpgkey=https://www.mongodb.org/static/pgp/server-3.4.asc
 sudo yum install -y mongodb-org
 ```
 
-依預設，會在可防止您存取 MongoDB 的 CentOS 映像上強制採用 SELinux。 原則管理工具上安裝及設定 SELinux tooallow MongoDB toooperate 預設 TCP 通訊埠 27017，如下所示。 
+依預設，會在可防止您存取 MongoDB 的 CentOS 映像上強制採用 SELinux。 安裝原則管理工具及設定 SELinux，以允許 MongoDB 在其預設 TCP 連接埠 27017 上運作，如下所示。 
 
 ```bash
 sudo yum install -y policycoreutils-python
 sudo semanage port -a -t mongod_port_t -p tcp 27017
 ```
 
-啟動 hello MongoDB 服務，如下所示：
+啟動 MongoDB 服務，如下所示︰
 
 ```bash
 sudo service mongod start
 ```
 
-藉由連接使用 hello 本機驗證 hello MongoDB 安裝`mongo`用戶端：
+藉由使用本機 `mongo` 用戶端連線來確認 MongoDB 安裝︰
 
 ```bash
 mongo
 ```
 
-現在加入一些資料，及搜尋測試 hello MongoDB 執行個體：
+現在，新增一些資料然後進行搜尋，以測試 MongoDB 執行個體︰
 
 ```sh
 > db
@@ -103,7 +103,7 @@ test
 > exit
 ```
 
-如有需要，MongoDB toostart 自動設定系統重新開機期間：
+如有需要，設定 MongoDB 以在系統重新開機期間自動啟動：
 
 ```bash
 sudo chkconfig mongod on
@@ -111,11 +111,11 @@ sudo chkconfig mongod on
 
 
 ## <a name="create-basic-mongodb-instance-on-centos-using-a-template"></a>使用範本在 CentOS 上建立基本 MongoDB 執行個體
-您可以在單一的 CentOS vm 使用 hello GitHub 中的下列 Azure 快速入門範本建立基本的 MongoDB 執行個體。 此範本使用 hello 自訂指令碼擴充功能的 Linux tooadd`yum`儲存機制 tooyour 新建立的 CentOS VM，然後再安裝 MongoDB。
+您可以使用下列來自 GitHub 的 Azure 快速入門範本，在單一 CentOS VM 上建立基本的 MongoDB 執行個體。 這個範本會使用 Linux 適用的自訂指令碼延伸模組將 `yum` 儲存機制新增至您新建立的 CentOS VM，然後安裝 MongoDB。
 
 * [CentOS 上的基本 MongoDB 執行個體](https://github.com/Azure/azure-quickstart-templates/tree/master/mongodb-on-centos) - https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-on-centos/azuredeploy.json
 
-hello 下列範例會建立資源群組名稱 hello`myResourceGroup`在 hello`eastus`區域。 輸入您自己的值，如下所示︰
+下列範例會在 `eastus` 區域建立名為 `myResourceGroup` 的資源群組。 輸入您自己的值，如下所示︰
 
 ```azurecli
 azure group create \
@@ -125,27 +125,27 @@ azure group create \
 ```
 
 > [!NOTE]
-> hello Azure CLI 傳回您 tooa 提示字元建立 hello 部署，但 hello 安裝在幾秒鐘內，並組態採用幾分鐘的時間 toocomplete。 檢查與 hello 部署的 hello 狀態`azure group deployment show myResourceGroup`，據此輸入 hello 的資源群組的名稱。 等候直到在 hello **ProvisioningState**顯示*Succeeded*之前嘗試 tooSSH toohello VM。
+> Azure CLI 會在建立部署後幾秒鐘內讓您回到提示，但是安裝和設定需要幾分鐘才能完成。 使用 `azure group deployment show myResourceGroup` 檢查部署狀態，據以輸入資源群組的名稱。 等到 ProvisioningState 顯示 Succeeded 後，再嘗試將 SSH 連線到 VM。
 
-一旦 hello 部署完成，SSH toohello VM。 取得 hello IP 位址，您的 VM 使用 hello`azure vm show`命令如 hello 下列範例所示：
+一旦部署完成時，SSH 連線到 VM。 使用 `azure vm show` 命令取得 VM 的 IP 位址，如下列範例所示：
 
 ```azurecli
 azure vm show --resource-group myResourceGroup --name myLinuxVM
 ```
 
-接近 hello hello 輸出結尾，會顯示 hello 公用 IP 位址。 SSH tooyour VM hello IP 位址，為您的 VM:
+在輸出的結尾附近，會顯示公用 IP 位址。 SSH 連線到您的 VM，包含您 VM 的 IP 位址︰
 
 ```bash
 ssh azureuser@138.91.149.74
 ```
 
-藉由連接使用 hello 本機驗證 hello MongoDB 安裝`mongo`用戶端，如下所示：
+藉由使用本機 `mongo` 用戶端連線來確認 MongoDB 安裝，如下所示︰
 
 ```bash
 mongo
 ```
 
-現在測試 hello 執行個體加入一些資料，並搜尋，如下所示：
+現在，新增一些資料並進行搜尋來測試執行個體，如下所示︰
 
 ```sh
 > db
@@ -158,14 +158,14 @@ test
 
 
 ## <a name="create-a-complex-mongodb-sharded-cluster-on-centos-using-a-template"></a>使用範本在 CentOS 上建立複雜的 MongoDB 分區化叢集
-您可以建立複雜的 MongoDB 分區化叢集中，並使用 hello GitHub 中的下列 Azure 快速入門範本。 此範本會遵循 hello [MongoDB 分區化叢集的最佳作法](https://docs.mongodb.com/manual/core/sharded-cluster-components/)tooprovide 備援性和高可用性。 hello 範本會建立兩個分區，其中每個複本組中的三個節點。 一個具有三個節點設定的組態伺服器複本也會建立，再加上兩個**mongos**路由器伺服器 tooprovide 一致性 tooapplications 從跨 hello 分區。
+您可以使用下列來自 GitHub 的 Azure 快速入門範本，建立複雜的 MongoDB 分區化叢集。 此範本遵循 [MongoDB 分區化叢集最佳作法](https://docs.mongodb.com/manual/core/sharded-cluster-components/)提供備援和高可用性。 範本會建立兩個分區，其中每個複本集中有三個節點。 還會建立具有三個節點的組態伺服器複本集，加上兩個 mongos 路由器伺服器，以提供跨分區應用程式的一致性。
 
 * [CentOS 上的 MongoDB 分區化叢集](https://github.com/Azure/azure-quickstart-templates/tree/master/mongodb-sharding-centos) - https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/mongodb-sharding-centos/azuredeploy.json
 
 > [!WARNING]
-> 部署這個複雜的 MongoDB 分區化的叢集需要超過 20 個核心，通常是每個訂用帳戶的區域 hello 預設核心計數。 開啟 Azure 支援人員要求 tooincrease 核心計數。
+> 部署這個複雜的 MongoDB 分區化叢集需要超過 20 個核心，通常是每個訂用帳戶區域的預設核心計數。 開啟 Azure 支援要求，以增加核心計數。
 
-hello 下列範例會建立資源群組名稱 hello *myResourceGroup*在 hello *eastus*區域。 輸入您自己的值，如下所示︰
+以下範例會在 eastus 區域建立名為 myResourceGroup 的資源群組。 輸入您自己的值，如下所示︰
 
 ```azurecli
 azure group create \
@@ -175,13 +175,13 @@ azure group create \
 ```
 
 > [!NOTE]
-> hello Azure CLI 傳回您 tooa 提示字元建立 hello 部署的幾秒內，但 hello 安裝和設定可能會花費小時 toocomplete。 檢查與 hello 部署的 hello 狀態`azure group deployment show myResourceGroup`，據此調整 hello 的資源群組的名稱。 等候直到在 hello **ProvisioningState**顯示*Succeeded*之前 toohello Vm 連線。
+> Azure CLI 會在建立部署後幾秒鐘內讓您回到提示，但是安裝和設定需要一個小時以上才能完成。 使用 `azure group deployment show myResourceGroup` 檢查部署狀態，據以調整資源群組的名稱。 等到 ProvisioningState 顯示 Succeeded 後，再連線到 VM。
 
 
 ## <a name="next-steps"></a>後續步驟
-在這些範例中，您連接 toohello MongoDB 執行個體在本機從 hello VM。 如果您想從其他 VM 或網路 tooconnect toohello MongoDB 執行個體，請確定適當的 hello[會建立網路安全性群組規則](nsg-quickstart.md)。
+在這些範例中，您會從 VM 本機連線到 MongoDB 執行個體。 如果您想要從另一個 VM 或網路連線到 MongoDB 執行個體，請確定建立適當的[網路安全性群組規則](nsg-quickstart.md)。
 
-如需有關如何使用範本建立的詳細資訊，請參閱 hello [Azure 資源管理員概觀](../../azure-resource-manager/resource-group-overview.md)。
+如需關於建立範本的詳細資訊，請參閱 [Azure Resource Manager 概觀](../../azure-resource-manager/resource-group-overview.md)。
 
-hello Azure Resource Manager 範本使用 hello 自訂指令碼擴充 toodownload，並在您的 Vm 上執行指令碼。 如需詳細資訊，請參閱[使用 hello Azure 自訂指令碼延伸與 Linux 虛擬機器](extensions-customscript.md)。
+Azure Resource Manager 範本會使用自訂指令碼延伸模組，在您的 VM 上下載並執行指令碼。 如需詳細資訊，請參閱[搭配 Linux 虛擬機器使用 Azure 自訂指令碼擴充功能](extensions-customscript.md)。
 

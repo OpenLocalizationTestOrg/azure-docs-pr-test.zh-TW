@@ -1,6 +1,6 @@
 ---
-title: "aaaPrivileged 身分識別管理訂閱]-[Azure |Microsoft 文件"
-description: "說明 hello 訂用帳戶和授權管理和租用戶中使用 Azure AD Privileged Identity Management 的需求"
+title: "Privileged Identity Management 訂用帳戶 - Azure| Microsoft Docs"
+description: "說明在租用戶中管理及使用 Azure AD Privileged Identity Management 的訂用帳戶和授權需求"
 services: active-directory
 documentationcenter: 
 author: barclayn
@@ -15,32 +15,32 @@ ms.topic: article
 ms.date: 06/01/2017
 ms.author: barclayn
 ms.custom: pim
-ms.openlocfilehash: 2639d13c250a582fdcf0b277c9bab37fdfcabcb6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 62d8f80fa1bec3a1b75e316f0b0ee7be8cbefbff
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-active-directory-privileged-identity-management-subscription-requirements"></a>Azure Active Directory Privileged Identity Management 訂用帳戶需求
 
-Azure AD Privileged Identity Management 可做為 Azure AD Premium P2 hello 版本的一部分。 如需有關 hello P2 和 tooPremium P1 的比較的其他功能，請參閱[Azure Active Directory 版本](../active-directory-editions.md)。
+Azure AD Privileged Identity Management 可在 Azure AD 的 Premium P2 Edition 中使用。 如需 P2 的其他功能資訊以及其與 Premium P1 的比較詳細資訊，請參閱 [Azure Active Directory 版本](../active-directory-editions.md)。
 
 >[!NOTE]
-Azure Active Directory (Azure AD) Privileged Identity Management 在預覽中時，沒有任何租用戶 tootry hello 服務的授權檢查。  現在，Azure AD Privileged Identity Management 到達的正式運作時，必須存在 hello 在 2016 年 12 月之後使用 Privileged Identity Management 的租用戶 toocontinue 才能試用或付費訂閱。
+Azure Active Directory (Azure AD) Privileged Identity Management 處於預覽狀態時，不會對嘗試服務的租用戶進行任何授權檢查。  現在，Azure AD Privileged Identity Management 已公開上市，必須存在試用或付費訂用帳戶，租用戶才能在 2016 年 12 月之後繼續使用 Privileged Identity Management。
   
 
 ## <a name="confirm-your-trial-or-paid-subscription"></a>確認試用或付費訂用帳戶
 
-如果您不確定您的組織是否有試用或購買訂用帳戶，您可以檢查是否有您的租用戶中的訂閱使用包含在 Azure Active Directory 模組的 Windows PowerShell V1 hello 命令。 
+如果您不確定您的組織是否有試用或購買的訂用帳戶時，您可以使用適用於 Windows PowerShell V1 的 Azure Active Directory 模組中包含的命令，檢查您的租用戶中是否有訂用帳戶。 
 1. 開啟 PowerShell 視窗。
-2. 輸入`Connect-MsolService`tooauthenticate 成為您的租用戶中的使用者。
+2. 輸入 `Connect-MsolService` 以在您的租用戶中以使用者身分進行驗證。
 3. 輸入 `Get-MsolSubscription | ft SkuPartNumber,IsTrial,Status`。
 
-此命令會擷取您的租用戶中的 hello 訂閱清單。 如果沒有傳回任何線條，您將需要 Azure AD Premium P2 tooobtain 試用版，購買的 Azure AD Premium P2 訂閱或 EMS E5 訂用帳戶 toouse Azure AD Privileged Identity Management。  讀取 tooget 試用版和開始使用 Azure AD Privileged Identity Management[開始使用 Azure AD Privileged Identity Management](../active-directory-privileged-identity-management-getting-started.md)。
+此命令會擷取您租用戶中的訂用帳戶清單。 如果未傳回任何資料行，您必須取得 Azure AD Premium P2 試用版、購買 Azure AD Premium P2 訂用帳戶或 EMS E5 訂用帳戶，才能使用 Azure AD Privileged Identity Management。  若要取得試用版並開始使用 Azure AD Privileged Identity Management，請參閱[開始使用 Azure AD Privileged Identity Management](../active-directory-privileged-identity-management-getting-started.md)。
 
-如果此命令會傳回中的資料行的 SkuPartNumber"AAD_PREMIUM_P2"或"EMSPREMIUM 」 和 IsTrial 為"True"，這表示 Azure AD Premium P2 試用版已存在於 hello 租用戶。  如果未啟用 hello 訂閱狀態，而且您不需要 Azure AD Premium P2 或 EMS E5 訂閱購買，然後您必須購買的 Azure AD Premium P2 訂閱或使用 Azure AD Privileged Identity Management EMS E5 訂用帳戶 toocontinue。
+如果此命令傳回一個資料行，其中的 SkuPartNumber 為 "AAD_PREMIUM_P2" 或 "EMSPREMIUM" 且 IsTrial 為 "True"，這表示 Azure AD Premium P2 試用版已存在於租用戶。  如果訂用帳戶狀態為未啟用，而且您未購買 Azure AD Premium P2 或 EMS E5 訂用帳戶，則您必須購買 Azure AD Premium P2 訂用帳戶或 EMS E5 訂用帳戶，才能繼續使用 Azure AD Privileged Identity Management。
 
-Azure AD Premium P2 是可透過[Microsoft Enterprise Agreement](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise.aspx)，hello[開啟的大量授權方案](https://www.microsoft.com/en-us/licensing/licensing-programs/open-license.aspx)，和 hello[雲端方案提供者程式](https://partner.microsoft.com/en-US/cloud-solution-provider)。 Azure 和 Office 365 訂閱者也可以線上購買 Azure AD Premium P2。  Azure AD Premium 價格和 tooorder 線上方式可以在找到更多資訊[Azure Active Directory 定價](https://azure.microsoft.com/en-us/pricing/details/active-directory/)。
+您可以透過 [Microsoft Enterprise 合約](https://www.microsoft.com/en-us/licensing/licensing-programs/enterprise.aspx)、[Open Volume 授權方案](https://www.microsoft.com/en-us/licensing/licensing-programs/open-license.aspx)與[雲端解決方案提供者方案](https://partner.microsoft.com/en-US/cloud-solution-provider)取得 Azure AD Premium P2。 Azure 和 Office 365 訂閱者也可以線上購買 Azure AD Premium P2。  如需關於 Azure AD Premium 價格或線上訂購方式的詳細資訊，請瀏覽 [Azure Active Directory 價格](https://azure.microsoft.com/en-us/pricing/details/active-directory/)。
 
 ## <a name="azure-ad-privileged-identity-management-is-not-available-in-tenant"></a>Azure AD Privileged Identity Management 不適用於租用戶
 
@@ -51,9 +51,9 @@ Azure AD Premium P2 是可透過[Microsoft Enterprise Agreement](https://www.mic
 
 當 Azure AD Premium P2 訂用帳戶或 EMS E5 訂用帳戶過期，或使用預覽狀態 Azure AD Privileged Identity Management 的組織未取得 Azure AD Premium P2 或 EMS E5 訂用帳戶時：
 
-- 永久性的角色指派 tooAzure AD 角色不會受到影響。
-- hello hello Azure 入口網站中的 Azure AD Privileged Identity Management 延伸模組，以及 hello Graph API cmdlet 和 PowerShell 的 Azure AD Privileged Identity Management 的介面將不再可供使用者 tooactivate 特殊權限角色管理特殊權限存取，或執行存取檢查的權限的角色。
-- 符合資格的角色指派的 Azure AD 角色將會移除，因為使用者將不再能夠 tooactivate 特殊權限角色。
+- Azure AD 角色的永久角色指派不會受到影響。
+- 使用者無法再利用 Azure 入口網站中的 Azure AD Privileged Identity Management 擴充以及 Azure AD Privileged Identity Management 的 Graph API Cmdlet 和 PowerShell 介面，來啟動特殊權限的角色、管理特殊權限的存取權，或執行特殊權限角色的存取檢閱。
+- Azure AD 角色的合格角色指派將會遭到移除，因為使用者將無法再啟動特殊權限的角色。
 - Azure AD 角色的任何進行中存取檢閱將會結束，而且 Azure AD Privileged Identity Management 組態設定將會遭到移除。
 - Azure AD Privileged Identity Management 將不再傳送有關角色指派變更的電子郵件。
 

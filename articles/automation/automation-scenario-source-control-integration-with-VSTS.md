@@ -1,5 +1,5 @@
 ---
-title: "與 Visual stuido 來 Team Services 原始檔控制的 Azure 自動化 aaaIntegrate |Microsoft 文件"
+title: "整合 Azure 自動化與 Visual Stuido Team Services 原始檔控制 | Microsoft Docs"
 description: "案例將逐步引導您設定 Azure 自動化帳戶與 Visual Stuido Team Services 原始檔控制的整合。"
 services: automation
 documentationcenter: 
@@ -14,89 +14,89 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 ms.date: 01/24/2017
-ms.openlocfilehash: 8f6faa596a5ad1f8b72e820ca320b3e103d83579
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 01f9c01c9e04e02dbb548b68cf99684ba6ddd57e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="azure-automation-scenario---automation-source-control-integration-with-visual-studio-team-services"></a>Azure 自動化案例 - 自動化原始檔控制與 Visual Studio Team Services 的整合
 
-在此案例中，您有 Visual Studio Team Services 專案，您會使用 toomanage Azure 自動化 runbook 或原始檔控制下的 DSC 設定。
-本文說明如何與 Azure 自動化環境讓該持續整合就進行每次簽入 toointegrate VSTS。
+在此案例中，您有 Visual Studio Team Services 專案可用來管理原始檔控制下的 Azure 自動化 Runbook 或 DSC 組態。
+本文說明如何整合 VSTS 與 Azure 自動化環境，以便每次簽入時都能持續整合。
 
-## <a name="getting-hello-scenario"></a>取得 hello 案例
+## <a name="getting-the-scenario"></a>取得案例
 
-此案例包含兩個您可以直接從 hello 匯入的 PowerShell runbook [Runbook 庫](automation-runbook-gallery.md)在 hello Azure 入口網站，或從 hello 下載[PowerShell 資源庫](https://www.powershellgallery.com)。
+此案例包含兩個 PowerShell Runbook，可直接從 Azure 入口網站的 [Powerbook 資源庫](automation-runbook-gallery.md)匯入，也可以從 [PowerShell 資源庫](https://www.powershellgallery.com)下載。
 
 ### <a name="runbooks"></a>Runbook
 
 Runbook | 說明| 
 --------|------------|
-Sync-VSTS | 完成簽入時，從 VSTS 原始檔控制匯入 Runbook 或組態。 如果以手動方式執行，它將會匯入及發行所有 runbook 或設定成 hello 自動化帳戶。| 
-Sync-VSTSGit | 完成簽入時，從 Git 原始檔控制下的 VSTS 匯入 Runbook 或組態。 如果以手動方式執行，它將會匯入及發行所有 runbook 或設定成 hello 自動化帳戶。|
+Sync-VSTS | 完成簽入時，從 VSTS 原始檔控制匯入 Runbook 或組態。 如果以手動執行，它會將所有 Runbook 或組態匯入並發佈到自動化帳戶。| 
+Sync-VSTSGit | 完成簽入時，從 Git 原始檔控制下的 VSTS 匯入 Runbook 或組態。 如果以手動執行，它會將所有 Runbook 或組態匯入並發佈到自動化帳戶。|
 
 ### <a name="variables"></a>變數
 
 變數 | 說明|
 -----------|------------|
-VSToken | 保護變數將會建立包含的資產 hello VSTS 個人存取權杖。 您可以了解如何 toocreate VSTS 個人存取權杖上 hello [VSTS 驗證頁面](https://www.visualstudio.com/en-us/docs/integrate/get-started/auth/overview)。 
+VSToken | 您將建立的安全變數資產，其中包含 VSTS 個人存取權杖。 您可以了解如何在 [VSTS 驗證頁面 (VSTS authentication page)](https://www.visualstudio.com/en-us/docs/integrate/get-started/auth/overview) 建立 VSTS 個人存取權杖。 
 ## <a name="installing-and-configuring-this-scenario"></a>安裝和設定此案例
 
-建立[個人存取權杖](https://www.visualstudio.com/en-us/docs/integrate/get-started/auth/overview)VSTS 您將為您的自動化帳戶使用 toosync hello runbook 或組態中。
+在 VSTS 中建立[個人存取權杖 (personal access token)](https://www.visualstudio.com/en-us/docs/integrate/get-started/auth/overview)，用來將 Runbook 或組態同步處理到您的自動化帳戶。
 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSPersonalToken.png) 
 
-建立[secure 變數](automation-variables.md)在您的自動化帳戶 toohold hello 個人存取權杖，讓 hello runbook 可以驗證 tooVSTS 和同步處理 hello runbook 或設定成 hello 自動化帳戶。 您可以將此命名為 VSToken。 
+在自動化帳戶中建立[安全變數](automation-variables.md)以儲存個人存取權杖，讓 Runbook 可向 VSTS 驗證並將 Runbook 或組態同步處理到自動化帳戶。 您可以將此命名為 VSToken。 
 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSTokenVariable.png)
 
-匯入 hello runbook 會同步您的 runbook 或設定成 hello 自動化帳戶。 您可以使用 hello [VSTS 範例 runbook](https://www.powershellgallery.com/packages/Sync-VSTS/1.0/DisplayScript)或 hello [VSTS 與 Git 範例 runbook] (https://www.powershellgallery.com/packages/Sync-VSTSGit/1.0/DisplayScript) 從 hello PowerShellGallery.com 視您使用 VSTS原始檔控制或 Git 與 VSTS 和部署 tooyour 自動化帳戶。
+匯入的 Runbook 會將您的 Runbook 或組態同步處理到自動化帳戶。 如果您使用 VSTS 原始檔控制，可以使用來自 PowerShellGallery.com 的 [VSTS 範例 Runbook (VSTS sample runbook)](https://www.powershellgallery.com/packages/Sync-VSTS/1.0/DisplayScript)，如果搭配 Git 使用 VSTS，則可以使用 [VSTS with Git 範例 Runbook] (https://www.powershellgallery.com/packages/Sync-VSTSGit/1.0/DisplayScript)，然後再部署至自動化帳戶。
 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSPowerShellGallery.png)
 
 您現在可以[發佈](automation-creating-importing-runbook.md#publishing-a-runbook)此 Runbook，以便建立 Webhook. 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSPublishRunbook.png)
 
-建立[webhook](automation-webhooks.md)此同步 VSTS runbook 和填滿 hello 參數，如下所示。 請確定您複製 hello webhook url 將需於 VSTS 中的服務勾點。 hello VSAccessTokenVariableName 為您建立舊版 toohold hello 個人存取權杖的 hello 安全變數 hello 名稱 (VSToken)。 
+建立此 Sync-VSTS Runbook 的 [Webhook](automation-webhooks.md)，並填入參數，如下所示。 請務必複製 Webhook URL，因為您需要將它當做 VSTS 中的服務勾點。 VSAccessTokenVariableName 是您稍早建立的安全變數名稱 (VSToken)，可保存個人存取權杖。 
 
-整合與 VSTS (同步-VSTS.ps1) 需要下列參數的 hello。
+與 VSTS (Sync-VSTS.ps1) 整合將需要下列參數。
 ### <a name="sync-vsts-parameters"></a>Sync-VSTS Parameters
 
 參數 | 說明| 
 --------|------------|
-WebhookData | 這會包含從 hello VSTS 服務勾點傳送 hello 簽入資訊。 您應該將此參數保留為空白。| 
-ResourceGroup | 這是 hello hello 資源群組中的 hello 自動化帳戶的名稱。|
-AutomationAccountName | hello hello 與 VSTS 將同步的自動化帳戶名稱。|
-VSFolder | VSTS 存在 hello runbook 和組態中的 hello 資料夾的名稱。|
-VSAccount | hello hello Visual Studio Team Services 帳戶名稱。| 
-VSAccessTokenVariableName | hello hello 安全的變數名稱 (VSToken) 保留 hello VSTS 個人存取權杖。| 
+WebhookData | 這將包含從 VSTS 服務勾點傳送的簽入資訊。 您應該將此參數保留為空白。| 
+ResourceGroup | 這是自動化帳戶所在資源群組的名稱。|
+AutomationAccountName | 與 VSTS 同步處理的自動化帳戶名稱。|
+VSFolder | VSTS 中有 Runbook 與組態存在的資料夾名稱。|
+VSAccount | Visual Studio Team Services 帳戶的名稱。| 
+VSAccessTokenVariableName | 保留 VSTS 個人存取權杖的安全變數 (VSToken) 的名稱。| 
 
 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSWebhook.png)
 
-如果您使用 VSTS 含 GIT (同步-VSTSGit.ps1) 需要下列參數的 hello。
+如果您搭配 GIT 使用 VSTS (Sync-VSTSGit.ps1)，將需要下列參數。
 
 參數 | 說明|
 --------|------------|
-WebhookData | 這會包含從 hello VSTS 服務勾點傳送 hello 簽入資訊。 您應該將此參數保留為空白。| ResourceGroup | 這個 hello hello 資源群組的名稱中的 hello 自動化帳戶。|
-AutomationAccountName | hello hello 與 VSTS 將同步的自動化帳戶名稱。|
-VSAccount | hello hello Visual Studio Team Services 帳戶名稱。|
-VSProject | hello VSTS 存在 hello runbook 和組態中的 hello 專案名稱。|
-GitRepo | hello hello Git 儲存機制名稱。|
-GitBranch | hello VSTS Git 儲存機制中的 hello 分支名稱。|
-資料夾 | hello VSTS Git 分支中的 hello 資料夾名稱。|
-VSAccessTokenVariableName | hello hello 安全的變數名稱 (VSToken) 保留 hello VSTS 個人存取權杖。|
+WebhookData | 這將包含從 VSTS 服務勾點傳送的簽入資訊。 您應該將此參數保留為空白。| ResourceGroup | 這是自動化帳戶所在資源群組的名稱。|
+AutomationAccountName | 與 VSTS 同步處理的自動化帳戶名稱。|
+VSAccount | Visual Studio Team Services 帳戶的名稱。|
+VSProject | VSTS 中有 Runbook 與組態存在的專案名稱。|
+GitRepo | Git 儲存機制的名稱。|
+GitBranch | VSTS Git 儲存機制中分支的名稱。|
+資料夾 | VSTS Git 分支中資料夾的名稱。|
+VSAccessTokenVariableName | 保留 VSTS 個人存取權杖的安全變數 (VSToken) 的名稱。|
 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSGitWebhook.png)
 
-建立於 VSTS 中的服務勾點，此 webhook 在程式碼簽入觸發程序的簽入 toohello 資料夾。 選取 Web Hook 做為 hello 服務 toointegrate 與當您建立新的訂用帳戶。 您可以在 [VSTS 服務掛勾說明文件](https://www.visualstudio.com/en-us/docs/marketplace/integrate/service-hooks/get-started)深入了解服務掛勾。
+針對會在程式碼簽入時觸發此 Webhook 的資料夾，在 VSTS 中建立服務掛勾以供簽入使用。 選取 Webhook 作為建立新的訂用帳戶時要與之整合的服務。 您可以在 [VSTS 服務掛勾說明文件](https://www.visualstudio.com/en-us/docs/marketplace/integrate/service-hooks/get-started)深入了解服務掛勾。
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSServiceHook.png)
 
-您應該要能 toodo 所有簽入您的 runbook 和 vsts 組態的並在這些自動現在會同步處理已為您的自動化帳戶。
+您現在應能執行 Runbook 和組態的所有簽入至 VSTS，並讓這些自動同步處理至您的自動化帳戶。
 
 ![](media/automation-scenario-source-control-integration-with-VSTS/VSTSSyncRunbookOutput.png)
 
-如果您手動執行此 runbook，而不由 VSTS 被觸發，則可以是空白 hello webhookdata 參數，它會執行完整同步處理從指定的 hello VSTS 資料夾。
+如果您以手動執行而非由 VSTS 觸發此 Runbook，您可以將 webhookdata 參數保留為空白，它會從指定的 VSTS 資料夾執行完整同步處理。
 
-如果您想 toouninstall hello 案例中，從 VSTS 移除 hello 服務勾點，刪除 hello runbook 和 hello VSToken 變數。
+如果您想要將案例解除安裝，請從 VSTS 移除其服務掛勾，刪除 Runbook 和 VSToken 變數。

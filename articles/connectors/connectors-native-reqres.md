@@ -1,6 +1,6 @@
 ---
-title: "aaaUse 要求和回應動作 |Microsoft 文件"
-description: "Hello 要求和回應觸發程序和動作中的 Azure 邏輯應用程式概觀"
+title: "使用要求和回應動作 | Microsoft Docs"
+description: "Azure 邏輯應用程式中要求和回應之觸發程序與動作的概觀"
 services: 
 documentationcenter: 
 author: jeffhollan
@@ -15,84 +15,84 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/18/2016
 ms.author: jehollan
-ms.openlocfilehash: 24c378cc12d5f3f65116d5e59278236186a99662
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: e45b07d709927af64cfba28dfb0d8ee9cb8893b3
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="get-started-with-hello-request-and-response-components"></a>開始使用 hello 要求和回應的元件
-Hello 要求和回應中元件的邏輯應用程式，您可以在即時 tooevents 回覆。
+# <a name="get-started-with-the-request-and-response-components"></a>開始使用要求和回應元件
+透過邏輯應用程式中的要求和回應元件，您可以即時回應事件。
 
 例如，您可以：
 
-* 從內部部署的資料庫邏輯應用程式透過回應 tooan 含有資料的 HTTP 要求。
+* 透過邏輯應用程式使用內部部署資料庫中的資料回應 HTTP 要求。
 * 從外部 Webhook 事件觸發邏輯應用程式。
 * 從另一個邏輯應用程式內使用要求和回應動作呼叫邏輯應用程式。
 
-請參閱 < 開始使用邏輯應用程式中的 hello 要求和回應動作的 tooget[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
+若要使用邏輯應用程式中的要求和回應動作來開始作業，請參閱 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。
 
-## <a name="use-hello-http-request-trigger"></a>使用 hello HTTP 要求的觸發程序
-觸發程序是可以使用的 toostart hello 工作流程邏輯應用程式中所定義的事件。 [深入了解觸發程序](connectors-overview.md)。
+## <a name="use-the-http-request-trigger"></a>使用 HTTP 要求觸發程序
+觸發程序是一個事件，可用來啟動邏輯應用程式中定義的工作流程。 [深入了解觸發程序](connectors-overview.md)。
 
-以下是如何設定 HTTP tooset 要求 hello 邏輯應用程式的設計工具中的範例順序。
+以下是如何在邏輯應用程式設計工具中設定 HTTP 要求的範例順序。
 
-1. 加入 hello 觸發程序**要求-當 HTTP 要求**邏輯應用程式中。 您可以選擇性地提供 JSON 結構描述 (使用這類工具[JSONSchema.net](http://jsonschema.net)) hello 要求主體。 這可以讓 hello HTTP 要求內容的 hello 設計工具 toogenerate 權杖。
-2. 加入另一個動作，讓您可以將儲存 hello 邏輯應用程式。
-3. 在儲存之後 hello 邏輯應用程式，您可以從 hello 要求卡取得 hello HTTP 要求的 URL。
-4. HTTP POST (您可以使用這類工具[郵差](https://www.getpostman.com/)) toohello URL 觸發程序 hello 邏輯應用程式。
+1. 將 [要求 - 收到 HTTP 要求時]  觸發程序新增到您的邏輯應用程式。 您可以選擇性地提供 JSON 結構描述 (透過使用 [JSONSchema.net](http://jsonschema.net)之類的工具) 來做為要求本文。 這可讓設計工具在 HTTP 要求中產生屬性的權杖。
+2. 新增另一個動作以儲存邏輯應用程式。
+3. 在儲存邏輯應用程式之後，您可以從要求卡片取得 HTTP 要求 URL。
+4. 針對 URL 的 HTTP POST (您可以使用 [Postman](https://www.getpostman.com/)之類的工具) 會觸發邏輯應用程式。
 
 > [!NOTE]
-> 如果您未定義的回應動作， `202 ACCEPTED` toohello 呼叫立即傳回回應。 您可以使用 hello 回應動作 toocustomize 回應。
+> 如果您未定義回應動作，系統會立即將 `202 ACCEPTED` 回應傳回給呼叫者。 您可以使用回應動作以自訂回應。
 > 
 > 
 
 ![回應觸發程序](./media/connectors-native-reqres/using-trigger.png)
 
-## <a name="use-hello-http-response-action"></a>使用 hello HTTP 回應動作
-當您使用的 HTTP 要求所觸發工作流程中才有效 hello HTTP 回應的動作。 如果您未定義的回應動作， `202 ACCEPTED` toohello 呼叫立即傳回回應。  您可以加入回應動作的 hello 工作流程內的任何步驟。 hello 邏輯應用程式只會保留 hello 連入要求開啟之回應的一分鐘。  在一分鐘，如果沒有回應傳送 hello 工作流程 （和回應動作存在 hello 定義中） 後,`504 GATEWAY TIMEOUT`傳回 toohello 呼叫端。
+## <a name="use-the-http-response-action"></a>使用 HTTP 回應動作
+HTTP 回應動作只適用於在 HTTP 要求所觸發的工作流程中使用時。 如果您未定義回應動作，系統會立即將 `202 ACCEPTED` 回應傳回給呼叫者。  您可以在工作流程的任何步驟新增回應動作。 邏輯應用程式只會讓連入要求針對回應開放一分鐘。  一分鐘後，如果工作流程未傳送任何回應 (且定義中存在回應動作)，則系統會將 `504 GATEWAY TIMEOUT` 傳回給呼叫者。
 
-以下是如何 tooadd HTTP 回應動作：
+以下是新增 HTTP 回應動作的方法︰
 
-1. 選取 hello**新步驟** 按鈕。
+1. 選取 [新增步驟]  按鈕。
 2. 選擇 [新增動作] 。
-3. 在 hello 動作搜尋方塊中，輸入**回應**toolist hello 回應動作。
+3. 在動作搜尋方塊中，輸入 **回應** 以列出回應動作。
    
-    ![選取 hello 回應動作](./media/connectors-native-reqres/using-action-1.png)
-4. 新增任何所需的 hello HTTP 回應訊息的參數。
+    ![選取回應動作](./media/connectors-native-reqres/using-action-1.png)
+4. 新增 HTTP 回應訊息所需的任何參數。
    
-    ![完整的 hello 回應動作](./media/connectors-native-reqres/using-action-2.png)
-5. 按一下 hello 左上角 hello 工具列 toosave 和您邏輯應用程式會同時將儲存並發行 （啟動）。
+    ![完成回應動作](./media/connectors-native-reqres/using-action-2.png)
+5. 按一下工具列左上角以便儲存，然後邏輯應用程式便會儲存並發佈 (啟動)。
 
 ## <a name="request-trigger"></a>要求觸發程序
-以下是 hello hello 觸發程序，此連接器支援的詳細資料。 只有一個要求觸發程序。
+以下是此連接器所支援觸發程序的詳細資料。 只有一個要求觸發程序。
 
 | 觸發程序 | 說明 |
 | --- | --- |
 | 要求 |收到 HTTP 要求時發生 |
 
 ## <a name="response-action"></a>回應動作
-以下是此連接器支援的 hello 動作的 hello 詳細資料。 只有一個回應動作，此動作只能在伴隨要求觸發程序時使用。
+以下是此連接器所支援動作的詳細資料。 只有一個回應動作，此動作只能在伴隨要求觸發程序時使用。
 
 | 動作 | 說明 |
 | --- | --- |
-| Response |傳回回應 toohello 相互關聯的 HTTP 要求 |
+| 回應 |傳回相互關聯的 HTTP 要求的回應 |
 
 ### <a name="trigger-and-action-details"></a>觸發程序和動作詳細資料
-hello 下列資料表描述 hello 輸入的欄位 hello 觸發程序和動作，並 hello 對應的輸出詳細資料。
+下表描述觸發程序和動作的輸入欄位，以及對應的輸出詳細資料。
 
 #### <a name="request-trigger"></a>要求觸發程序
-hello 以下是 hello 觸發程序，從傳入的 HTTP 要求的輸入的欄位。
+以下是傳入 HTTP 要求之觸發程序的輸入欄位。
 
 | 顯示名稱 | 屬性名稱 | 說明 |
 | --- | --- | --- |
-| JSON 結構描述 |結構描述 |hello hello HTTP 要求主體的 JSON 結構描述 |
+| JSON 結構描述 |結構描述 |HTTP 要求本文的 JSON 結構描述 |
 
 <br>
 
 **輸出詳細資料**
 
-hello 如下 hello 要求的輸出詳細資料。
+以下是要求的輸出詳細資料。
 
 | 屬性名稱 | 資料類型 | 說明 |
 | --- | --- | --- |
@@ -100,14 +100,14 @@ hello 如下 hello 要求的輸出詳細資料。
 | 內文 |物件 |要求物件 |
 
 #### <a name="response-action"></a>回應動作
-hello 如下 hello HTTP 回應動作的輸入的欄位。 標示 * 代表必要欄位。
+以下是 HTTP 回應動作的輸入欄位。 標示 * 代表必要欄位。
 
 | 顯示名稱 | 屬性名稱 | 說明 |
 | --- | --- | --- |
-| 狀態碼 * |StatusCode |hello HTTP 狀態碼 |
-| headers |headers |JSON 物件的任何回應標頭 tooinclude |
-| 內文 |body |hello 回應主體 |
+| 狀態碼 * |StatusCode |HTTP 狀態碼 |
+| 標頭 |標頭 |要包含的任何回應標頭的 JSON 物件 |
+| 內文 |內文 |回應本文 |
 
 ## <a name="next-steps"></a>後續步驟
-現在，試用 hello 平台和[建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 您可以瀏覽 hello 邏輯應用程式中其他可用的連接器，藉由查看我們[Api 清單](apis-list.md)。
+立即試用平台和 [建立邏輯應用程式](../logic-apps/logic-apps-create-a-logic-app.md)。 您可以查看我們的 [API 清單](apis-list.md)，以探索邏輯應用程式中其他可用的連接器。
 

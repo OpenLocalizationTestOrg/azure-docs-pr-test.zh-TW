@@ -1,6 +1,6 @@
 ---
-title: "aaaConnect tooAzure SQL 資料倉儲-SSMS |Microsoft 文件"
-description: "使用 SQL Server Management Studio (SSMS) tooconnect tooand 查詢 Azure SQL 資料倉儲。"
+title: "連線到 Azure SQL 資料倉儲 - SSMS | Microsoft Docs"
+description: "使用 SQL Server Management Studio (SSMS) 連接及查詢 Azure SQL 資料倉儲。"
 services: sql-data-warehouse
 documentationcenter: 
 author: antvgski
@@ -15,13 +15,13 @@ ms.workload: data-services
 ms.custom: connect
 ms.date: 10/31/2016
 ms.author: anvang;barbkess
-ms.openlocfilehash: bcbaf7139d2e5183b388b8d58c015cf5ad726722
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 207fb9fd861c66039fbde89681aed3df3a2f4021
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="connect-toosql-data-warehouse-with-sql-server-management-studio-ssms"></a>使用 SQL Server Management Studio (SSMS) 連接 tooSQL 資料倉儲
+# <a name="connect-to-sql-data-warehouse-with-sql-server-management-studio-ssms"></a>連接 SQL 資料倉儲與 SQL Server Management Studio (SSMS)
 > [!div class="op_single_selector"]
 > * [Power BI](sql-data-warehouse-get-started-visualize-with-power-bi.md)
 > * [Azure Machine Learning](sql-data-warehouse-get-started-analyze-with-azure-machine-learning.md)
@@ -31,61 +31,61 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-使用 SQL Server Management Studio (SSMS) tooconnect tooand 查詢 Azure SQL 資料倉儲。 
+使用 SQL Server Management Studio (SSMS) 連接及查詢 Azure SQL 資料倉儲。 
 
 ## <a name="prerequisites"></a>必要條件
-toouse 本教學課程中，您需要：
+若要使用本教學課程，您需要：
 
-* 現有的 SQL 資料倉儲。 toocreate 其中一個，請參閱[建立 SQL 資料倉儲][Create a SQL Data Warehouse]。
+* 現有的 SQL 資料倉儲。 若要建立資料倉儲，請參閱 [建立 SQL 資料倉儲][Create a SQL Data Warehouse]。
 * SQL Server Management Studio (SSMS) 已安裝。 如果您尚未安裝，可以免費[安裝 SSMS][Install SSMS]。
-* hello 完整 SQL server 名稱。 toofind，請參閱[連接 tooSQL 資料倉儲][Connect tooSQL Data Warehouse]。
+* 完整的 SQL 伺服器名稱。 若要找到此名稱，請參閱 [連線至 SQL 資料倉儲][Connect to SQL Data Warehouse]。
 
-## <a name="1-connect-tooyour-sql-data-warehouse"></a>1.連接 tooyour SQL 資料倉儲
+## <a name="1-connect-to-your-sql-data-warehouse"></a>1.連接到您的 SQL 資料倉儲
 1. 開啟 SSMS。
-2. 開啟物件總管。 toodo 這個，請選取**檔案** > **連接物件總管**。
+2. 開啟物件總管。 若要這樣做，請選取 [檔案]  >  [連接物件總管]。
    
     ![SQL Server 物件總管][1]
-3. 填寫 hello 連接 tooServer 視窗中的 hello 欄位。
+3. 填寫 [連線到伺服器] 視窗中的欄位。
    
-    ![連接 tooServer][2]
+    ![連線到伺服器][2]
    
-   * **伺服器名稱**。 輸入 hello**伺服器名稱**先前所識別。
+   * **伺服器名稱**。 輸入先前找到的 **伺服器名稱** 。
    * **驗證**。 選取 [SQL Server 驗證] 或 [Active Directory 整合式驗證]。
    * [使用者名稱] 和 [密碼]。 如果上面已選取 [SQL Server 驗證]，請輸入使用者名稱和密碼。
-   * 按一下 [ **連接**]。
-4. tooexplore，展開您的 Azure SQL server。 您可以檢視 hello hello 伺服器相關聯的資料庫。 展開範例資料庫 AdventureWorksDW toosee hello 資料表。
+   * 按一下 [連接] 。
+4. 若要瀏覽，請展開您的 Azure SQL 伺服器。 您可以檢視與伺服器相關聯的資料庫。 展開 AdventureWorksDW 以查看範例資料庫中的資料表。
    
     ![探索 AdventureWorksDW][3]
 
 ## <a name="2-run-a-sample-query"></a>2.執行範例查詢
-現在，連線已建立的 tooyour 資料庫，讓我們來撰寫查詢。
+現已建立對您的資料庫的連線，接著繼續撰寫查詢。
 
 1. 在 [SQL Server 物件總管] 中您的資料庫上按一下滑鼠右鍵。
 2. 選取 [新增查詢] 。 新的查詢視窗隨即開啟。
    
     ![新增查詢][4]
-3. 將這個 TSQL 查詢複製到查詢視窗中 hello:
+3. 將此 TSQL 查詢複製到查詢視窗中：
    
     ```sql
     SELECT COUNT(*) FROM dbo.FactInternetSales;
     ```
-4. 執行 hello 查詢。 toodo 此，依序按一下`Execute`或使用 hello 下列快顯： `F5`。
+4. 執行查詢。 若要這麼做，請按一下 `Execute`，或使用下列快速鍵：`F5`。
    
     ![執行查詢][5]
-5. 查看 hello 查詢結果。 在此範例中，hello FactInternetSales 資料表會有 60398 資料列。
+5. 查看查詢結果。 在此範例中，FactInternetSales 資料表有 60398 個資料列。
    
     ![查詢結果][6]
 
 ## <a name="next-steps"></a>後續步驟
-現在，您可以連接並查詢，再試一次[視覺化 hello 資料與 PowerBI][visualizing hello data with PowerBI]。
+您現在可以連線並查詢，請嘗試[使用 PowerBI 將資料視覺化][visualizing the data with PowerBI]。
 
-tooconfigure 環境以使用 Azure Active Directory 驗證，請參閱[驗證資料倉儲 tooSQL][Authenticate tooSQL Data Warehouse]。
+若要針對 Azure Active Directory 驗證設定您的環境，請參閱[驗證 SQL 資料倉儲][Authenticate to SQL Data Warehouse]。
 
 <!--Arcticles-->
-[Connect tooSQL Data Warehouse]: sql-data-warehouse-connect-overview.md
+[Connect to SQL Data Warehouse]: sql-data-warehouse-connect-overview.md
 [Create a SQL Data Warehouse]: sql-data-warehouse-get-started-provision.md
-[Authenticate tooSQL Data Warehouse]: sql-data-warehouse-authentication.md
-[visualizing hello data with PowerBI]: sql-data-warehouse-get-started-visualize-with-power-bi.md 
+[Authenticate to SQL Data Warehouse]: sql-data-warehouse-authentication.md
+[visualizing the data with PowerBI]: sql-data-warehouse-get-started-visualize-with-power-bi.md 
 
 <!--Other-->
 [Azure portal]: https://portal.azure.com

@@ -1,5 +1,5 @@
 ---
-title: "在 Azure AD B2B 共同作業 aaaUnderstand 的使用者語彙基元 |Microsoft 文件"
+title: "了解 Azure AD B2B 共同作業中的使用者權杖 | Microsoft Docs"
 description: "Azure Active Directory B2B 共同作業的使用者權杖參考資料"
 services: active-directory
 documentationcenter: 
@@ -15,15 +15,15 @@ ms.tgt_pltfrm: NA
 ms.workload: identity
 ms.date: 05/25/2017
 ms.author: sasubram
-ms.openlocfilehash: 968af1c8d1ab6f4b3f50a82f6c998da3955ac364
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 57b170539513953bd6a01ab4dd362a65cf905496
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="understand-user-tokens-in-azure-ad-b2b-collaboration"></a>了解 Azure AD B2B 共同作業中的使用者權杖
 
-如果您想 tooknow 哪些 hello 語彙基元看起來像 B2B 共同作業的使用者，以下是 hello 持有人權杖的詳細資料和 Azure Active Directory (Azure AD) 的客體，並 （適用於 tenantid hello 資源的租用戶中的 Microsoft 帳戶來賓權杖內容04dcc6ab-388a-4559-b527-fbec656300ea)。 toosee hello JSON Web Token (JWT) 內容，使用[https://jwt.io/](https://jwt.io/)或[http://calebb.net](http://calebb.net/)。
+如果您想要了解 B2B 共同作業使用者的權杖看起來像什麼樣子，以下是資源租用戶 (適用於 tenantid:04dcc6ab-388a-4559-b527-fbec656300ea) 中 Azure Active Directory (Azure AD) 來賓與 Microsoft 帳戶來賓的持有人權杖詳細資料和權杖內容。 若要查看「JSON Web 權杖」(JWT) 內容，請使用 [https://jwt.io/](https://jwt.io/) 或 [http://calebb.net](http://calebb.net/)。
 
 ## <a name="azure-ad-guest-token"></a>Azure AD 來賓權杖
 ```
@@ -42,7 +42,7 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ilk0dWVLMm9hSU
 
 * [何謂 Azure AD B2B 共同作業？](active-directory-b2b-what-is-azure-ad-b2b.md)
 * [B2B 共同作業使用者屬性](active-directory-b2b-user-properties.md)
-* [新增 B2B 共同作業使用者 tooa 角色](active-directory-b2b-add-guest-to-role.md)
+* [將 B2B 共同作業使用者新增至角色](active-directory-b2b-add-guest-to-role.md)
 * [委派 B2B 共同作業邀請](active-directory-b2b-delegate-invitations.md)
 * [動態群組與 B2B 共同作業](active-directory-b2b-dynamic-groups.md)
 * [B2B 共同作業程式碼與 PowerShell 範例](active-directory-b2b-code-samples.md)

@@ -1,6 +1,6 @@
 ---
-title: "aaaPlan 容量與縮放比例的 VMware 複寫 tooAzure 與 Azure Site Recovery |Microsoft 文件"
-description: "當複寫與 Azure Site Recovery 的 VMware Vm tooAzure 時使用此發行項 tooplan 容量和小數位數"
+title: "使用 Azure Site Recovery 針對 VMware 到 Azure 的複寫進行容量和規模調整規劃 | Microsoft Docs"
+description: "使用 Azure Site Recovery 將 VMware VM 複寫至 Azure 時，可參考本文來進行容量和規模調整規劃"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,28 +14,28 @@ ms.tgt_pltfrm: na
 ms.workload: storage-backup-recovery
 ms.date: 06/27/2017
 ms.author: rayne
-ms.openlocfilehash: 551533ab7090d85c216be242ea92781deb8287ab
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f5b334e594e3d002e1862b25c4faba7163efa7d4
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="step-3-plan-capacity-and-scaling-for-vmware-tooazure-replication"></a>步驟 3： 規劃容量和 VMware tooAzure 複寫調整
+# <a name="step-3-plan-capacity-and-scaling-for-vmware-to-azure-replication"></a>步驟 3：針對 VMware 到 Azure 的複寫進行容量和規模調整規劃
 
-使用容量規劃和調整，當複寫在內部部署 VMware Vm 和實體伺服器 tooAzure 與此發行項 toofigure [Azure Site Recovery](site-recovery-overview.md)。
+使用這篇文章來了解使用 [Azure Site Recovery](site-recovery-overview.md) 將內部部署 VMware VM 和實體伺服器複寫至 Azure 時，如何進行容量和規模調整規劃。
 
-在本文中，或在 hello hello 下方張貼意見或疑問[Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
+請在本文下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)上張貼意見或問題。
 
 ## <a name="how-do-i-start-capacity-planning"></a>如何開始容量規劃？
 
-您收集資訊的複寫環境，並規劃容量使用這項資訊，以及在本文中反白顯示 hello 考量。
+您需收集複寫環境的相關資訊，然後使用此資訊搭配本文中強調的考量事項來規劃容量。
 
 
 ## <a name="gather-information"></a>收集資訊
 
-1. 下載 hello[部署規劃工具](https://aka.ms/asr-deployment-planner)VMware 複寫。
-2. [閱讀此文章](site-recovery-deployment-planner.md)toounderstand toorun hello 工具的方式。
-3. 使用 hello 工具收集相容和不相容的 Vm，每個 VM，磁碟的相關資訊和資料變換每個磁碟的。 網路頻寬需求和 hello 順利進行複寫和測試容錯移轉所需的 Azure 基礎結構，同時也包含 hello 工具。
+1. 下載用於 VMware 複寫的[部署規劃工具](https://aka.ms/asr-deployment-planner)。
+2. [閱讀這篇文章](site-recovery-deployment-planner.md)以了解如何執行此工具。
+3. 使用此工具，您將可收集相容和不相容 VM、每個 VM 的磁碟，以及每個磁碟的資料變換等相關資訊。 此工具也涵蓋網路頻寬需求，以及要成功複寫和測試容錯移轉所需的 Azure 基礎結構。
 
 ## <a name="replication-considerations"></a>複寫考量
 
@@ -43,24 +43,24 @@ ms.lasthandoff: 10/06/2017
 
 **元件** | **詳細資料** |
 --- | --- | ---
-**複寫** | **每日最大的變更率：**受保護的電腦只能使用一個處理序伺服器，而且單一處理序伺服器可以處理每日的變更率向上 too2 TB。 因此 2 TB 為 hello 最大的每日資料變更率支援的受保護的機器。<br/><br/> **最大輸送量：**複寫的機器可以隸屬 tooone 在 Azure 中的儲存體帳戶。 標準儲存體帳戶可以處理最多 20,000 每秒的要求，並建議來源機器 too20 000 維持 hello 輸入/輸出作業每秒 (IOPS) 數目。 例如，如果您有使用 5 磁碟時，來源電腦，而且每個磁碟會產生 hello 來源電腦上的 120 IOPS （8 千個大小），表示它會在每個磁碟的 IOPS 限制為 500 hello Azure 內。 （儲存體帳戶所需的 hello 數目是等於 toohello 總來源機器 IOPS，除以 20000）。
+**複寫** | **每日變更率上限：**受保護的機器只能使用一部處理序伺服器，而且單一處理序伺服器可處理的每日變更率最多為 2 TB。 因此 2 TB 是針對受保護機器支援的每日資料變更率上限。<br/><br/> **最大輸送量：**複寫的機器可以屬於 Azure 中的一個儲存體帳戶。 標準儲存體帳戶每秒可處理最多 20000 個要求，建議您將來源機器的每秒輸入/輸出作業 (IOPS) 數保持為 20000。 例如，如果您有一部具備 5 個磁碟的來源機器，並且在來源機器上的每個磁碟會產生 120 個 IOP (8K 大小)，則它會在 Azure 每個磁碟 IOPS 限制 500 之內  (所需的儲存體帳戶數目等於來源機器 IOPS 總數除以 20000)。
 
 ## <a name="configuration-server-capacity"></a>組態伺服器容量
 
-hello 組態伺服器應該可以 toohandle hello 每日變更速率容量跨所有受保護的機器上執行的工作負載而且需要足夠的頻寬 toocontinuously 複寫資料 tooAzure 儲存體。
+組態伺服器應該要能夠處理在受保護機器上執行之所有工作負載的每日變更率容量，因此需要足夠頻寬以持續地將資料複寫到 Azure 儲存體。
 
-最佳做法，找出 hello 組態伺服器 hello 上相同的網路和區域網路區段，做為 hello 想 tooprotect 機器。 它可以位於不同的網路，但您想 tooprotect 應該有層級 3 網路可見性 tooit 機器上。
+最佳做法是將組態伺服器放在與您想要保護的機器相同的網路與 LAN 區段上。 它可以位於不同的網路，但是您想要保護的機器應該具有第 3 層網路可見性。
 
 ## <a name="sizing-recommendations"></a>大小調整建議
 
-hello 表格摘要說明根據 CPU 調整建議。
+下表根據 CPU 來摘要說明大小調整建議。
 
 **CPU** | **記憶體** | **快取磁碟大小** | **資料變更率** | **受保護的機器**
 --- | --- | --- | --- | ---
 8 個 vCPU (2 個插槽 * 4 核心 @ 2.5GHz) | 16 GB | 300 GB | 500 GB 或更少 | 複寫少於 100 部機器。
-12 個 vCPU (2 個插槽 * 6 核心 @ 2.5GHz) | 18 GB | 600 GB | 500 GB too1 TB | 複寫 100-150 部機器。
-16 個 vCPU (2 個插槽 * 8 核心 @ 2.5GHz) | 32 GB | 1 TB | 1 TB too2 TB | 複寫 150-200 部機器。
-部署另一個處理序伺服器 | | | > 2 TB | 如果您要複寫 200 個以上的機器，或如果 hello 每日資料變更速率超過 2TB，請部署額外的處理序伺服器。
+12 個 vCPU (2 個插槽 * 6 核心 @ 2.5GHz) | 18 GB | 600 GB | 500 GB 至 1 TB | 複寫 100-150 部機器。
+16 個 vCPU (2 個插槽 * 8 核心 @ 2.5GHz) | 32 GB | 1 TB | 1 TB 至 2 TB | 複寫 150-200 部機器。
+部署另一個處理序伺服器 | | | > 2 TB | 如果您要複寫 200 部以上的機器，或如果每日資料變更率超過 2 TB，部署額外的處理序伺服器。
 
 其中：
 
@@ -70,81 +70,81 @@ hello 表格摘要說明根據 CPU 調整建議。
 ## <a name="process-server-capacity"></a>處理伺服器容量
 
 
-hello 處理序伺服器接收複寫資料從受保護的機器，並最佳化與快取、 壓縮和加密。 然後它會傳送 hello 資料 tooAzure。
+處理序伺服器會從受保護的機器接收複寫資料，並透過快取、壓縮和加密予以最佳化。 然後，它會將資料傳送至 Azure。
 
-- hello 處理序伺服器的電腦應該有足夠的資源 tooperform 這些工作。
-- hello 組態伺服器上預設會安裝第一個處理序伺服器 hello。 您可以部署額外的處理序伺服器 tooscale 您的環境。
-- hello 處理序伺服器會使用以磁碟為基礎的快取。 使用不同的快取磁碟 600 GB 或更多的 toohandle 資料變更，儲存在網路瓶頸後或中斷 hello 事件。
-- 如果您需要 tooprotect 200 個以上的機器，或每日變更率 hello 大於 2 TB，您可以加入處理序伺服器 toohandle hello 複寫載入。 tooscale 外的，您可以：
-    - 增加 hello 組態伺服器的數目。 例如，您可以保護 too400 機器組態，兩台伺服器上。
-    - 新增更多的處理序伺服器，並使用這些 toohandle 流量，而不是 （或其他） hello 組態伺服器。
+- 處理序伺服器機器應該要有足夠的資源來執行這些工作。
+- 組態伺服器上會安裝第一部處理序伺服器。 您可以部署額外的處理序伺服器來調整您的環境。
+- 處理序伺服器使用磁碟快取。 請另外使用一個 600 GB 以上的快取磁碟，來處理發生網路瓶頸或中斷時儲存的資料變更。
+- 如果您要保護超過 200 部機器，或每日變更率大於 2 TB，您可以新增處理序伺服器來處理複寫負載。 若要擴充，您可以：
+    - 增加組態伺服器的數目。 例如，您可以使用兩部組態伺服器保護最多 400 部機器。
+    - 新增更多的處理序伺服器並使用它們來處理流量，以取代 (或搭配) 組態伺服器。
 
 
 ### <a name="example-process-server-scaling"></a>範例處理伺服器調整
 
-hello 下表描述的案例：
+下表描述情況如下的案例：
 
-* 您不打算 toouse hello 組態伺服器的處理序伺服器。
+* 您不打算使用組態伺服器作為處理序伺服器。
 * 您已設定額外的處理序伺服器。
-* 您已設定受保護的虛擬機器 toouse hello 額外的處理序伺服器。
+* 您已設定受保護的虛擬機器，以使用額外的處理伺服器。
 * 每個受保護的來源機器已設定各 100 GB 的 3 個磁碟。
 
 **組態伺服器** | **額外處理序伺服器** | **快取磁碟大小** | **資料變更率** | **受保護的機器**
 --- | --- | --- | --- | ---
 8 個 vCPU (2 個通訊端 * 四核心 @ 2.5 GHz)，16 GB 記憶體 | 4 個 vCPU (2 個通訊端 * 雙核心 @ 2.5 GHz)，8 GB 記憶體 | 300 GB | 250 GB 或更少 | 複寫 85 部或更少的機器。
-8 個 vCPU (2 個通訊端 * 四核心 @ 2.5 GHz)，16 GB 記憶體 | 8 個 vCPU (2 個通訊端 * 四核心 @ 2.5 GHz)，12 GB 記憶體 | 600 GB | 250 GB too1 TB | 複寫 85-150 部機器。
-12 個 vCPU (2 個通訊端 * 六核心 @ 2.5 GHz)，18 GB 記憶體 | 12 個 vCPU (2 個通訊端 * 六核心 @ 2.5 GHz)，24 GB 記憶體 | 1 TB | 1 TB too2 TB | 複寫 150-225 部機器。
+8 個 vCPU (2 個通訊端 * 四核心 @ 2.5 GHz)，16 GB 記憶體 | 8 個 vCPU (2 個通訊端 * 四核心 @ 2.5 GHz)，12 GB 記憶體 | 600 GB | 250 GB 至 1 TB | 複寫 85-150 部機器。
+12 個 vCPU (2 個通訊端 * 六核心 @ 2.5 GHz)，18 GB 記憶體 | 12 個 vCPU (2 個通訊端 * 六核心 @ 2.5 GHz)，24 GB 記憶體 | 1 TB | 1 TB 至 2 TB | 複寫 150-225 部機器。
 
-您可以在其中調整您的伺服器 hello 方式取決於您的喜好設定的向上延展或向外延展模型。  您部署幾個高階組態和處理序伺服器以相應增加，或使用較少的資源部署更多伺服器以相應放大。 比方說，如果您需要 tooprotect 220 機器，您可以執行 hello 下列其中一項：
+您調整伺服器的方式取決於相應增加或相應放大模型的喜好設定。  您部署幾個高階組態和處理序伺服器以相應增加，或使用較少的資源部署更多伺服器以相應放大。 例如，如果您需要保護 220 部機器，您可以執行下列任一項：
 
-* 設定 hello 12 vCPU、 18 GB 的記憶體，與 12 vCPU、 24 GB 的記憶體的額外的處理序伺服器的組態伺服器。 設定受保護的機器 toouse hello 只用於其他處理序伺服器。
-* 設定兩個組態伺服器 （2 x 8 vCPU、 16 GB 的 RAM） 和兩個額外的處理序伺服器 （1 x 8 vCPU 和 4 vCPU x 1 toohandle 135 + 85 [220] 機器）。 設定受保護的機器 toouse hello 只用於其他處理序伺服器。
+* 設定有 12 個 vCPU、18 GB 記憶體的組態伺服器，並另外設定一部有 12 個 vCPU、24 GB 記憶體的處理序伺服器。 將受保護機器設定為只使用額外的處理序伺服器。
+* 設定兩部組態伺服器 (2 x 8 個 vCPU、16 GB RAM)，並另外設定兩部處理序伺服器 (1 x 8 個 vCPU 和 1 x 4 個 vCPU，以處理 135 + 85 [220] 部機器)。 將受保護機器設定為只使用額外的處理序伺服器。
 
 ## <a name="deploy-additional-process-servers"></a>部署額外處理序伺服器
 
-請遵循這些指示 tooset，額外的處理序伺服器。 設定好 hello 伺服器之後，您將移轉來源機器 toouse 它。
+請依照下列指示來設定額外的處理伺服器。 設定伺服器之後，請移轉來源機器以便使用它。
 
-1. 在**站台復原伺服器**，按一下 hello 組態伺服器 > **+ 處理序伺服器**。
+1. 在 [Site Recovery 伺服器] 中，按一下組態伺服器 > [+處理伺服器]。
 2. 在 [伺服器類型] 中，按一下 [處理伺服器 (內部部署)]。
 
     ![處理序伺服器](./media/vmware-walkthrough-capacity/migrate-ps2.png)
-3. 下載 hello Site Recovery 整合安裝程式檔案。
-4. 執行安裝程式 tooinstall hello 處理序伺服器和 hello 保存庫中註冊它。
-5. 在**開始之前**，選取**新增額外的處理序伺服器 tooscale 出部署**。
-6. 在**組態伺服器詳細資料**、 指定 hello 的 hello 組態伺服器上的 IP 位址和 hello 複雜密碼。 如果您沒有 hello 複雜密碼，取得執行**[SiteRecoveryInstallationFolder]\home\sysystems\bin\genpassphrase.exe – n** hello 組態伺服器上。
+3. 下載 Site Recovery「整合安裝」檔案。
+4. 執行安裝程式來安裝處理伺服器，然後在保存庫中註冊它。
+5. 在 [開始之前] 中，選取 [新增額外處理序伺服器以相應放大部署]。
+6. 在 [組態伺服器詳細資料] 中，指定組態伺服器的 IP 位址，以及複雜密碼。 如果您沒有複雜密碼，請在組態伺服器上執行 **[SiteRecoveryInstallationFolder]\home\sysystems\bin\genpassphrase.exe –n** 來取得它。
 
     ![組態伺服器](./media/vmware-walkthrough-capacity/add-ps2.png)
-7. 完成安裝程式在 hello hello 其餘部分相同的方式就像當您設定 hello 組態伺服器。
+7. 執行安裝程式的剩餘步驟，就像您安裝組態伺服器時一樣。
 
-### <a name="migrate-machines-toouse-hello-process-server"></a>移轉機器 toouse hello 處理序伺服器
+### <a name="migrate-machines-to-use-the-process-server"></a>移轉機器以使用處理伺服器
 
-1. 在**設定** > **站台復原伺服器**，按一下 hello 組態伺服器 >**處理伺服器**。
-2. 目前使用中的，以滑鼠右鍵按一下 hello 處理序伺服器 >**交換器**。
+1. 在 [設定] > [Site Recovery 伺服器] 中，按一下組態伺服器 > [處理序伺服器]。
+2. 在目前使用中的處理伺服器上按一下滑鼠右鍵 > [切換]。
 
     ![切換處理伺服器](./media/vmware-walkthrough-capacity/migrate-ps3.png)
-3. 在**選取目標處理序伺服器**，請選取該 hello 伺服器將處理 toouse，再選取 hello Vm hello 處理序伺服器。
-4. 按一下 hello 資訊圖示。 toohelp 您進行載入決策，hello 平均 tooreplicate 會顯示每個選取的 VM toohello 新處理序伺服器所需的空間。
-5. 按一下 hello 核取記號 toostart 複寫 toohello 新處理序伺服器。
+3. 在 [選取目標處理伺服器] 中，選取您想要使用的處理伺服器，然後選取該伺服器將處理的 VM。
+4. 按一下資訊圖示。 為了協助您進行負載決策，會顯示將每個選取的 VM 複寫到新處理伺服器所需的平均空間。
+5. 按一下核取記號以開始複寫到新的處理伺服器。
 
 ## <a name="control-network-bandwidth"></a>控制網路頻寬
 
-當您執行[hello 部署規劃工具](site-recovery-deployment-planner.md)，您必須複寫 （hello 初始複寫，然後差異） toocalculate hello 頻寬，您可以控制 hello 數量所使用頻寬的複寫使用幾個選項：
+在執行[部署規劃工具](site-recovery-deployment-planner.md)來計算複寫 (初始複寫，然後是差異複寫) 所需的頻寬之後，您可以使用幾個選項來控制用於複寫的頻寬大小：
 
-* **節流的頻寬**： 複寫 tooAzure VMware 流量通過特定處理序伺服器。 您可以將做為處理序伺服器 hello 機器上的頻寬節流處理。
-* **影響頻寬**： 您可能會影響用來複寫使用數個登錄機碼的 hello 頻寬：
-  * hello **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\UploadThreadsPerVM**登錄值會指定 hello 磁碟的資料傳輸 （初始或差異複寫） 所使用的執行緒數目。 較高的值會增加 hello 網路頻寬用於複寫。
-  * hello **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\DownloadThreadsPerVM**指定 hello 容錯回復期間用來傳送資料的執行緒數目。
+* **節流頻寬**︰複寫至 Azure 的 VMware 流量會經過特定的處理序伺服器。 您可在執行作為處理序伺服器的機器上進行頻寬節流。
+* **影響頻寬**︰您可以使用幾個登錄機碼來影響用於複寫的頻寬：
+  * **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\UploadThreadsPerVM** 登錄值可指定用於磁碟資料傳輸 (初始或差異複寫) 的執行緒數目。 較高的值可增加複寫所用的網路頻寬。
+  * **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\DownloadThreadsPerVM** 可指定在容錯回復期間用於資料傳輸的執行緒數目。
 
 ### <a name="throttle-bandwidth"></a>節流頻寬
 
-1. 開啟 Azure 備份 MMC 嵌入式管理單元在 hello 機器採取行動的 hello hello 處理序伺服器。 根據預設，備份的捷徑可在 hello 桌面上或 hello 下列資料夾中： C:\Program Files\Microsoft Azure 復原服務 Agent\bin\wabadmin。
-2. 在 hello 嵌入式管理單元，按一下 **變更屬性**。
-3. 在 hello**節流**索引標籤上，選取**啟用網際網路頻寬使用節流設定的備份操作**。
-4. 設定工作的 hello 限制和非工作小時。 有效範圍是從每秒 512 Kbps too102 Mbps。
+1. 在作為處理序伺服器的機器上開啟 Azure 備份 MMC 嵌入式管理單元。 根據預設，備份的捷徑位於桌面上或在下列資料夾中：C:\Program Files\Microsoft Azure Recovery Services Agent\bin\wabadmin。
+2. 在嵌入式管理單元中，按一下 [變更屬性]。
+3. 在 [節流] 索引標籤上，選取 [啟用備份作業的網際網路頻寬使用節流功能]。
+4. 設定工作和非工作時數的限制。 有效範圍是每秒 512 Kbps 到 102 Mbps。
 
     ![節流](./media/vmware-walkthrough-capacity/throttle2.png)
 
-您也可以使用 hello [Set-obmachinesetting](https://technet.microsoft.com/library/hh770409.aspx) cmdlet tooset 節流。 以下是一個範例：
+您也可以使用 [Set-OBMachineSetting](https://technet.microsoft.com/library/hh770409.aspx) Cmdlet 來設定節流。 以下是一個範例：
 
     $mon = [System.DayOfWeek]::Monday
     $tue = [System.DayOfWeek]::Tuesday
@@ -154,14 +154,14 @@ hello 下表描述的案例：
 
 ### <a name="influence-network-bandwidth-for-a-vm"></a>影響 VM 的網路頻寬
 
-1. 在登錄中的 hello VM，請移過**HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Replication**。
-   * tooinfluence hello 頻寬流量複寫在磁碟上，修改 hello 值**UploadThreadsPerVM**，或建立 hello 索引鍵，如果不存在。
-   * 從 Azure 容錯回復流量 tooinfluence hello 頻寬修改 hello 值**DownloadThreadsPerVM**。
-2. hello 預設值為 4。 在過度佈建的網路中，應該修改這些登錄機碼。 hello 上限為 32。 監視流量 toooptimize hello 值。
+1. 在 VM 的登錄中，移至 **HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows Azure Backup\Replication**。
+   * 若要影響複製磁碟上的頻寬流量，請修改 **UploadThreadsPerVM** 的值，如果不存在則請建立機碼。
+   * 若要影響從 Azure 容錯回復流量的頻寬，請修改 **DownloadThreadsPerVM** 的值。
+2. 預設值為 4。 在過度佈建的網路中，應該修改這些登錄機碼。 最大值為 32。 監視流量，將此值最佳化。
 
 
 
 
 ## <a name="next-steps"></a>後續步驟
 
-跳過[步驟 4： 規劃網路](vmware-walkthrough-network.md)。
+移至[步驟 4：規劃網路](vmware-walkthrough-network.md)。

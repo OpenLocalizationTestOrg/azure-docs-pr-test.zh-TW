@@ -1,6 +1,6 @@
 ---
-title: "Azure Media Services 進行資料流處理的 aaaImplement 容錯移轉 |Microsoft 文件"
-description: "本主題說明如何 tooimplement 容錯移轉的串流處理案例。"
+title: "使用 Azure 媒體服務實作容錯移轉串流 | Microsoft Docs"
+description: "本主題說明如何實作容錯移轉串流案例。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,49 +14,49 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/05/2017
 ms.author: juliako
-ms.openlocfilehash: ade0bace57f35ab3ed855d3a98f743e08da4f324
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: aed104c9c74606e0ad69fc2d0bfb2f38d85d795d
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="implement-failover-streaming-with-azure-media-services"></a>使用 Azure 媒體服務實作容錯移轉串流
 
-本逐步解說示範如何從一個資產到另一個隨選串流順序 toohandle 備援 toocopy 內容 (blob)。 這個案例是如果您想透過 Azure 內容傳遞網路 toofail 向上 tooset 之間兩個資料中心，在一個資料中心中斷時很有用。 本逐步解說會使用 Azure Media Services SDK hello、 hello Azure 媒體服務 REST API 和 hello Azure 儲存體 SDK toodemonstrate hello 下列工作：
+本逐步解說示範如何將內容 (Blob) 從一個資產複製到另一個資產，以便處理隨選資料流處理的備援。 如果您想要設定 Azure 內容傳遞網路，以便在某個資料中心發生中斷時在兩個資料中心之間進行容錯移轉，這個案例會很有用。 本逐步解說使用 Azure 媒體服務 SDK、Azure 媒體服務 REST API 和 Azure 儲存體 SDK 來示範下列工作：
 
 1. 在「資料中心 A」中設定媒體服務帳戶。
 2. 將夾層檔上傳到來源資產。
-3. Hello 資產編碼為多位元的速率 MP4 檔案。 
-4. 建立唯讀的共用存取簽章定位器。 這是 hello 來源資產 toohave 讀取權限 toohello 容器 hello 與 hello 來源資產相關聯的儲存體帳戶中。
-5. 收到 hello hello 先前步驟中建立的唯讀共用的存取簽章定位器 hello hello 來源資產容器名稱。 這是必要的複製 （hello 主題稍後說明）。 儲存體帳戶之間的 blob
-6. 建立原始定位器以建立編碼工作的 hello hello 資產。 
+3. 將資產編碼為多位元速率 MP4 檔案。 
+4. 建立唯讀的共用存取簽章定位器。 這是為了讓來源資產能夠存取與來源資產相關聯之儲存體帳戶中的容器。
+5. 從上一個步驟中建立的唯讀共用存取簽章定位器取得來源資產的容器名稱。 必須有此名稱，才能在儲存體帳戶之間複製 Blob (本主題稍後說明)。
+6. 為編碼工作所建立的資產建立原始定位器。 
 
-然後，toohandle hello 容錯移轉：
+接著，若要處理容錯移轉：
 
 1. 在「資料中心 B」中設定媒體服務帳戶。
-2. Hello 目標 Media Services 帳戶中建立目標空白的資產。
-3. 建立寫入共用存取簽章定位器。 這是 hello 目標空白資產 toohave 寫入權限 toohello 容器 hello 目標資產相關聯的 hello 目標儲存體帳戶中。
-4. 使用 「 資料中心 A"中的 hello 來源儲存體帳戶與 「 資料中心 B 」 中的 hello 目標儲存體帳戶之間的 hello Azure 儲存體 SDK toocopy blob （資產檔案） 這些儲存體帳戶設定為與感興趣的 hello 資產相關聯。
-5. 建立了與 hello 目標資產複製的 toohello 目標 blob 容器的 blob （資產檔案） 的關聯。 
-6. 建立原始定位器以 「 資料中心 B"中的 hello 資產，並指定所產生的 「 資料中心 A 」 中的 hello 資產 hello 定位器識別碼
+2. 在目標媒體服務帳戶中建立目標空資產。
+3. 建立寫入共用存取簽章定位器。 這是為了讓目標空白資產能夠寫入到與目標資產相關聯之目標儲存體帳戶中的容器。
+4. 使用「Azure 儲存體 SDK」在「資料中心 A」中的來源儲存體帳戶與「資料中心 B」中的目標儲存體帳戶之間複製 Blob (資產檔案)。 這些儲存體帳戶會與相關資產關聯。
+5. 讓複製到目標 Blob 容器的 Blob (資產檔案) 與目標資產產生關聯。 
+6. 為「資料中心 B」中的資產建立原始定位器，並指定為「資料中心 A」中的資產所產生的定位器識別碼。
 
-這讓 hello hello 相對路徑的 hello Url 所在的串流 Url hello （只有 hello 基底 Url 會不同）。 
+這可提供串流 URL，其中 URL 的相對路徑相同 (只有基底 URL 不同)。 
 
-然後，toohandle 任何中斷時，您可以建立內容傳遞網路之上這些原始定位器。 
+然後，若要處理任何中斷情形，您可以在這些原始定位器之上建立內容傳遞網路。 
 
-hello 下列考量適用於：
+您必須考量下列事項：
 
-* hello Media Services SDK 目前版本不支援以程式設計方式產生 IAssetFile 資訊會與資產檔案相關聯的資產。 請改用 hello CreateFileInfos 媒體服務 REST API toodo 這。 
-* （因為 hello 加密金鑰是在這兩個媒體服務帳戶不同），儲存體加密資產 (AssetCreationOptions.StorageEncrypted) 不支援複寫。 
-* 如果您想 tootake 使用動態封裝，請確定將內容串流的端點要從中 toostream hello 處於 hello**執行**狀態。
+* 目前的媒體服務 SDK 版本不支援以程式設計方式產生可讓資產和資產檔案產生關聯的 IAssetFile 資訊。 請改為使用 CreateFileInfos 媒體服務 REST API 來進行此操作。 
+* 儲存體加密資產 (AssetCreationOptions.StorageEncrypted) 不支援複寫 (因為兩個媒體服務帳戶中的加密金鑰不同)。 
+* 如果您想要利用動態封裝，請確定您想要從中串流內容的串流端點是處於 [執行中] 狀態。
 
 > [!NOTE]
-> 請考慮使用 hello Media Services[複寫器工具](http://replicator.codeplex.com/)做為資料流案例時，手動容錯移轉的替代 tooimplementing。 此工具可讓您 tooreplicate 資產跨兩個 Media Services 帳戶。
+> 請考慮使用媒體服務 [複寫器工具](http://replicator.codeplex.com/) 做為手動實作容錯移轉串流案例的替代方式。 這項工具可讓您跨兩個媒體服務帳戶複製資產。
 > 
 > 
 
 ## <a name="prerequisites"></a>必要條件
-* 在新的或現有的 Azure 訂用帳戶中有兩個媒體服務帳戶。 請參閱[如何 tooCreate Media Services 帳戶](media-services-portal-create-account.md)。
+* 在新的或現有的 Azure 訂用帳戶中有兩個媒體服務帳戶。 請參閱 [如何建立媒體服務帳戶](media-services-portal-create-account.md)。
 * 作業系統：Windows 7、Windows 2008 R2 或 Windows 8。
 * .NET Framework 4.5 或 .NET Framework 4。
 * Visual Studio 2010 SP1 或更新版本 (Professional, Premium、Ultimate 或 Express)。
@@ -64,11 +64,11 @@ hello 下列考量適用於：
 ## <a name="set-up-your-project"></a>設定專案
 在本節中，您會建立 C# Console Application 專案。
 
-1. 使用 Visual Studio toocreate 包含 hello C# 主控台應用程式專案的新方案。 輸入**HandleRedundancyForOnDemandStreaming**的 hello 名稱，然後按一下**確定**。
-2. 建立 hello **SupportFiles**上 hello 資料夾相同層級為 hello **HandleRedundancyForOnDemandStreaming.csproj**專案檔。 在 hello **SupportFiles**資料夾中，建立 hello **OutputFiles**和**MP4Files**資料夾。 將.mp4 檔案複製到 hello **MP4Files**資料夾。 (在此範例中，hello **BigBuckBunny.mp4**檔案使用。) 
-3. 使用**Nuget** tooadd 參考 tooDLLs 相關 tooMedia 服務。 在 **Visual Studio 主要功能表**中，選取 [工具] > [Library Package Manager] > [Package Manager Console]。 在 [hello] 主控台視窗中，輸入**Install-package windowsazure.mediaservices**，然後按 Enter。
+1. 使用 Visual Studio 建立一個包含 C# Console Application 專案的新方案。 輸入 **HandleRedundancyForOnDemandStreaming** 做為名稱，然後按一下 [確定]。
+2. 在與 **HandleRedundancyForOnDemandStreaming.csproj** 專案檔案相同的層級上建立 **SupportFiles** 資料夾。 在 **SupportFiles** 資料夾下建立 **OutputFiles** 和 **MP4Files** 資料夾。 將 .mp4 檔案複製到 **MP4Files** 資料夾  (在此範例中，會使用 **BigBuckBunny.mp4** 檔案)。 
+3. 使用 **Nuget** 將參考新增至與媒體服務相關的 DLL。 在 **Visual Studio 主要功能表**中，選取 [工具] > [Library Package Manager] > [Package Manager Console]。 在主控台視窗中輸入 **Install-package windowsazure.mediaservices**，然後按下 Enter。
 4. 新增此專案所需的其他參考：System.Configuration、System.Runtime.Serialization 和 System.Web。
-5. 取代**使用**陳述式所加入 toohello **Programs.cs**檔案，根據預設，使用下列的 hello:
+5. 將預設新增至 **Programs.cs** 檔的 **using** 陳述式取代為下列陳述式：
    
         using System;
         using System.Configuration;
@@ -87,7 +87,7 @@ hello 下列考量適用於：
         using Microsoft.WindowsAzure.Storage;
         using Microsoft.WindowsAzure.Storage.Blob;
         using Microsoft.WindowsAzure.Storage.Auth;
-6. 新增 hello **appSettings**區段 toohello **.config**檔案，並更新 hello 值根據您的媒體服務和儲存體金鑰和名稱值。 
+6. 將 **appSettings** 區段新增至 **.config** 檔中，並根據媒體服務與儲存體金鑰與名稱值將值更新。 
    
         <appSettings>
           <add key="MediaServicesAccountNameSource" value="Media-Services-Account-Name-Source"/>
@@ -101,11 +101,11 @@ hello 下列考量適用於：
         </appSettings>
 
 ## <a name="add-code-that-handles-redundancy-for-on-demand-streaming"></a>新增可為隨選資料流處理備援的程式碼
-在本節中，您可以建立 hello 能力 toohandle 備援。
+在本節中，您會建立處理備援的能力。
 
-1. 新增下列類別層級欄位 toohello Program 類別的 hello。
+1. 將下列類別層級欄位加入至 Program 類別。
        
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string MediaServicesAccountNameSource = ConfigurationManager.AppSettings["MediaServicesAccountNameSource"];
         private static readonly string MediaServicesAccountKeySource = ConfigurationManager.AppSettings["MediaServicesAccountKeySource"];
         private static readonly string StorageNameSource = ConfigurationManager.AppSettings["MediaServicesStorageAccountNameSource"];
@@ -116,21 +116,21 @@ hello 下列考量適用於：
         private static readonly string StorageNameTarget = ConfigurationManager.AppSettings["MediaServicesStorageAccountNameTarget"];
         private static readonly string StorageKeyTarget = ConfigurationManager.AppSettings["MediaServicesStorageAccountKeyTarget"];
         
-        // Base support files path.  Update this field toopoint toohello base path  
-        // for hello local support files folder that you create. 
+        // Base support files path.  Update this field to point to the base path  
+        // for the local support files folder that you create. 
         private static readonly string SupportFiles = Path.GetFullPath(@"../..\SupportFiles");
         
-        // Paths toosupport files (within hello above base path). 
+        // Paths to support files (within the above base path). 
         private static readonly string SingleInputMp4Path = Path.GetFullPath(SupportFiles + @"\MP4Files\BigBuckBunny.mp4");
         private static readonly string OutputFilesFolder = Path.GetFullPath(SupportFiles + @"\OutputFiles");
         
-        // Class-level field used tookeep a reference toohello service context.
+        // Class-level field used to keep a reference to the service context.
         static private CloudMediaContext _contextSource = null;
         static private CloudMediaContext _contextTarget = null;
         static private MediaServicesCredentials _cachedCredentialsSource = null;
         static private MediaServicesCredentials _cachedCredentialsTarget = null;
 
-2. 取代下列其中一個 hello hello 預設 Main 方法定義。 從 Main 呼叫的方法定義會定義如下。
+2. 以下列其中一項取代預設的 Main 方法定義。 從 Main 呼叫的方法定義會定義如下。
         
         static void Main(string[] args)
         {
@@ -155,46 +155,46 @@ hello 下列考量適用於：
             if (job.State != JobState.Error)
             {
                 IAsset sourceOutputAsset = job.OutputMediaAssets[0];
-                // Get hello locator for Smooth Streaming
+                // Get the locator for Smooth Streaming
                 var sourceOriginLocator = GetStreamingOriginLocator(_contextSource, sourceOutputAsset);
         
                 Console.WriteLine("Locator Id: {0}", sourceOriginLocator.Id);
                 
-                // 1.Create a read-only SAS locator for hello source asset toohave read access toohello container in hello source Storage account (associated with hello source Media Services account)
+                // 1.Create a read-only SAS locator for the source asset to have read access to the container in the source Storage account (associated with the source Media Services account)
                 var readSasLocator = GetSasReadLocator(_contextSource, sourceOutputAsset);
         
-                // 2.Get hello container name of hello source asset from hello read-only SAS locator created in hello previous step
+                // 2.Get the container name of the source asset from the read-only SAS locator created in the previous step
                 string containerName = (new Uri(readSasLocator.Path)).Segments[1];
         
-                // 3.Create a target empty asset in hello target Media Services account
+                // 3.Create a target empty asset in the target Media Services account
                 var targetAsset = CreateTargetEmptyAsset(_contextTarget, containerName);
         
-                // 4.Create a write SAS locator for hello target empty asset toohave write access toohello container in hello target Storage account (associated with hello target Media Services account)
+                // 4.Create a write SAS locator for the target empty asset to have write access to the container in the target Storage account (associated with the target Media Services account)
                 ILocator writeSasLocator = CreateSasWriteLocator(_contextTarget, targetAsset);
         
                 // Get asset container name.
                 string targetContainerName = (new Uri(writeSasLocator.Path)).Segments[1];
         
-                // 5.Copy hello blobs in hello source container (source asset) toohello target container (target empty asset)
+                // 5.Copy the blobs in the source container (source asset) to the target container (target empty asset)
                 CopyBlobsFromDifferentStorage(containerName, targetContainerName, StorageNameSource, StorageKeySource, StorageNameTarget, StorageKeyTarget);
         
-                // 6.Use hello CreateFileInfos Media Services REST API tooautomatically generate all hello IAssetFile’s for hello target asset. 
-                //      This API call is not supported in hello current Media Services SDK for .NET. 
+                // 6.Use the CreateFileInfos Media Services REST API to automatically generate all the IAssetFile’s for the target asset. 
+                //      This API call is not supported in the current Media Services SDK for .NET. 
                 CreateFileInfosForAssetWithRest(_contextTarget, targetAsset, MediaServicesAccountNameTarget, MediaServicesAccountKeyTarget);
         
-                // Check if hello AssetFiles are now  associated with hello asset.
-                Console.WriteLine("Asset files assocated with hello {0} asset:", targetAsset.Name);
+                // Check if the AssetFiles are now  associated with the asset.
+                Console.WriteLine("Asset files assocated with the {0} asset:", targetAsset.Name);
                 foreach (var af in targetAsset.AssetFiles)
                 {
                     Console.WriteLine(af.Name);
                 }
         
-                // 7.Copy hello Origin locator of hello source asset toohello target asset by using hello same Id
+                // 7.Copy the Origin locator of the source asset to the target asset by using the same Id
                 var replicatedLocatorPath = CreateOriginLocatorWithRest(_contextTarget,
                             MediaServicesAccountNameTarget, MediaServicesAccountKeyTarget,
                             sourceOriginLocator.Id, targetAsset.Id);
         
-                // Create a full URL toohello manifest file. Use this for playback
+                // Create a full URL to the manifest file. Use this for playback
                 // in streaming media clients. 
                 string originalUrlForClientStreaming = sourceOriginLocator.Path + GetPrimaryFile(sourceOutputAsset).Name + "/manifest";
         
@@ -208,10 +208,10 @@ hello 下列考量適用於：
                 writeSasLocator.Delete();
         }
 
-3. 從 Main 呼叫下列方法定義的 hello。
+3. 從 Main 呼叫下列方法定義。
 
     >[!NOTE]
-    >對於不同的媒體服務原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 您應該使用 hello 如果一律使用相同的原則識別碼 hello 相同的日期和存取權限。 就地預定的 tooremain 對於較長的時間 （非上載原則） 的定位器原則，例如使用相同識別碼的 hello。 如需詳細資訊，請參閱[這個主題](media-services-dotnet-manage-entities.md#limit-access-policies)。
+    >對於不同的媒體服務原則 (例如 Locator 原則或 ContentKeyAuthorizationPolicy) 有 1,000,000 個原則的限制。 如果您總是使用相同的天數和存取權限，您應該使用相同的原則識別碼。 例如，為預定要長時間維持就地 (非上傳原則) 的定位器原則，使用相同的識別碼。 如需詳細資訊，請參閱[這個主題](media-services-dotnet-manage-entities.md#limit-access-policies)。
 
         public static IAsset CreateAssetAndUploadSingleFile(CloudMediaContext context,
                                                         AssetCreationOptions assetCreationOptions,
@@ -242,49 +242,49 @@ hello 下列考量適用於：
             // Declare a new job.
             IJob job = context.Jobs.Create("My encoding job");
    
-            // Get a media processor reference, and pass tooit hello name of hello 
-            // processor toouse for hello specific task.
+            // Get a media processor reference, and pass to it the name of the 
+            // processor to use for the specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName(context,
                                                     "Media Encoder Standard");
    
-            // Create a task with hello encoding details, using a string preset.
+            // Create a task with the encoding details, using a string preset.
             // In this case "Adaptive Streaming" preset is used.
             ITask task = job.Tasks.AddNew("My encoding task",
                 processor,
                 "Adaptive Streaming",
                 TaskOptions.ProtectedConfiguration);
    
-            // Specify hello input asset toobe encoded.
+            // Specify the input asset to be encoded.
             task.InputAssets.Add(asset);
    
-            // Add an output asset toocontain hello results of hello job. 
+            // Add an output asset to contain the results of the job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means hello output asset is in hello clear (unencrypted). 
+            // means the output asset is in the clear (unencrypted). 
             var outputAssetName = "OutputAsset_" + Guid.NewGuid();
             task.OutputAssets.AddNew(outputAssetName,
                 AssetCreationOptions.None);
    
-            // Use hello following event handler toocheck job progress.  
+            // Use the following event handler to check job progress.  
             job.StateChanged += new
                     EventHandler<JobStateChangedEventArgs>(StateChanged);
    
-            // Launch hello job.
+            // Launch the job.
             job.Submit();
    
             // Optionally log job details. This displays basic job details
-            // toohello console and saves them tooa JobDetails-{JobId}.txt file 
+            // to the console and saves them to a JobDetails-{JobId}.txt file 
             // in your output folder.
             LogJobDetails(context, job.Id);
    
-            // Check job execution and wait for job toofinish. 
+            // Check job execution and wait for job to finish. 
             Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
             progressJobTask.Wait();
    
             // Get an updated job reference.
             job = GetJob(context, job.Id);
    
-            // Since we hello output asset contains a set of Smooth Streaming files,
-            // set hello .ism file toobe hello primary file
+            // Since we the output asset contains a set of Smooth Streaming files,
+            // set the .ism file to be the primary file
             if (job.State != JobState.Error)
                 SetPrimaryFile(job.OutputMediaAssets[0]);
    
@@ -293,8 +293,8 @@ hello 下列考量適用於：
    
         public static ILocator GetStreamingOriginLocator(CloudMediaContext context, IAsset assetToStream)
         {
-            // Get a reference toohello streaming manifest file from hello  
-            // collection of files in hello asset. 
+            // Get a reference to the streaming manifest file from the  
+            // collection of files in the asset. 
             IAssetFile manifestFile = GetPrimaryFile(assetToStream);
    
             // Create a 30-day readonly access policy. 
@@ -304,13 +304,13 @@ hello 下列考量適用於：
                 TimeSpan.FromDays(30),
                 AccessPermissions.Read);
    
-            // Create a locator toohello streaming content on an origin. 
+            // Create a locator to the streaming content on an origin. 
             ILocator originLocator = context.Locators.CreateLocator(LocatorType.OnDemandOrigin,
                 assetToStream,
                 policy,
                 DateTime.UtcNow.AddMinutes(-5));
    
-            // Return hello locator. 
+            // Return the locator. 
             return originLocator;
         }
    
@@ -418,7 +418,7 @@ hello 下列考量適用於：
                         .ToArray();
 
             if (ismAssetFiles.Count() != 1)
-                throw new ArgumentException("hello asset should have only one, .ism file");
+                throw new ArgumentException("The asset should have only one, .ism file");
 
             ismAssetFiles.First().IsPrimary = true;
             ismAssetFiles.First().Update();
@@ -431,7 +431,7 @@ hello 下列考量適用於：
                     where f.Name.EndsWith(".ism")
                     select f;
 
-            // Cast hello reference tooa true IAssetFile type. 
+            // Cast the reference to a true IAssetFile type. 
             IAssetFile manifestFile = theManifest.First();
 
             return manifestFile;
@@ -459,9 +459,9 @@ hello 下列考量適用於：
 
             string blobToken = sourceContainer.GetSharedAccessSignature(new SharedAccessBlobPolicy()
             {
-                // Specify hello expiration time for hello signature.
+                // Specify the expiration time for the signature.
                 SharedAccessExpiryTime = DateTime.Now.AddDays(1),
-                // Specify hello permissions granted by hello signature.
+                // Specify the permissions granted by the signature.
                 Permissions = SharedAccessBlobPermissions.Write | SharedAccessBlobPermissions.Read
             });
 
@@ -473,16 +473,16 @@ hello 下列考量適用於：
 
                 if (sourceCloudBlob.Properties.Length > 0)
                 {
-                    // In Azure Media Services, hello files are stored as block blobs. 
+                    // In Azure Media Services, the files are stored as block blobs. 
                     // Page blobs are not supported by Azure Media Services.  
                     var destinationBlob = targetContainer.GetBlockBlobReference(fileName);
                     destinationBlob.StartCopyFromBlob(new Uri(sourceBlob.Uri.AbsoluteUri + blobToken));
 
                     while (true)
                     {
-                        // hello StartCopyFromBlob is an async operation, 
-                        // so we want toocheck if hello copy operation is completed before proceeding. 
-                        // toodo that, we call FetchAttributes on hello blob and check hello CopyStatus. 
+                        // The StartCopyFromBlob is an async operation, 
+                        // so we want to check if the copy operation is completed before proceeding. 
+                        // To do that, we call FetchAttributes on the blob and check the CopyStatus. 
                         destinationBlob.FetchAttributes();
                         if (destinationBlob.CopyState.Status != CopyStatus.Pending)
                         {
@@ -552,7 +552,7 @@ hello 下列考量適用於：
             StringBuilder builder = new StringBuilder();
             IJob job = GetJob(context, jobId);
 
-            builder.AppendLine("\nThe job stopped due toocancellation or an error.");
+            builder.AppendLine("\nThe job stopped due to cancellation or an error.");
             builder.AppendLine("***************************");
             builder.AppendLine("Job ID: " + job.Id);
             builder.AppendLine("Job Name: " + job.Name);
@@ -573,7 +573,7 @@ hello 下列考量適用於：
                 }
             }
             builder.AppendLine("***************************\n");
-            // Write hello output tooa local file and toohello console. hello template 
+            // Write the output to a local file and to the console. The template 
             // for an error output file is:  JobStop-{JobId}.txt
             string outputFile = OutputFilesFolder + @"\JobStop-" + JobIdAsFileName(job.Id) + ".txt";
             WriteToFile(outputFile, builder.ToString());
@@ -589,7 +589,7 @@ hello 下列考量適用於：
             builder.AppendLine("Job Name: " + job.Name);
             builder.AppendLine("Job submitted (client UTC time): " + DateTime.UtcNow.ToString());
 
-            // Write hello output tooa local file and toohello console. hello template 
+            // Write the output to a local file and to the console. The template 
             // for an error output file is:  JobDetails-{JobId}.txt
             string outputFile = OutputFilesFolder + @"\JobDetails-" + JobIdAsFileName(job.Id) + ".txt";
             WriteToFile(outputFile, builder.ToString());
@@ -603,7 +603,7 @@ hello 下列考量適用於：
             return jobID.Replace(":", "_");
         }
 
-        // Write method output toohello output files folder.
+        // Write method output to the output files folder.
         private static void WriteToFile(string outFilePath, string fileContent)
         {
             StreamWriter sr = File.CreateText(outFilePath);
@@ -613,14 +613,14 @@ hello 下列考量適用於：
 
         private static IJob GetJob(CloudMediaContext context, string jobId)
         {
-            // Use a Linq select query tooget an updated 
+            // Use a Linq select query to get an updated 
             // reference by Id. 
             var jobInstance =
                 from j in context.Jobs
                 where j.Id == jobId
                 select j;
 
-            // Return hello job reference as an Ijob. 
+            // Return the job reference as an Ijob. 
             IJob job = jobInstance.FirstOrDefault();
 
             return job;
@@ -628,13 +628,13 @@ hello 下列考量適用於：
 
         private static IAsset GetAsset(CloudMediaContext context, string assetId)
         {
-            // Use a LINQ Select query tooget an asset.
+            // Use a LINQ Select query to get an asset.
             var assetInstance =
                 from a in context.Assets
                 where a.Id == assetId
                 select a;
 
-            // Reference hello asset as an IAsset.
+            // Reference the asset as an IAsset.
             IAsset asset = assetInstance.FirstOrDefault();
 
             return asset;
@@ -667,8 +667,8 @@ hello 下列考量適用於：
 
         public static void DeleteAccessPolicy(CloudMediaContext context, string existingPolicyId)
         {
-            // toodelete a specific access policy, get a reference toohello policy.  
-            // based on hello policy Id passed toohello method.
+            // To delete a specific access policy, get a reference to the policy.  
+            // based on the policy Id passed to the method.
             var policyInstance =
                     from p in context.AccessPolicies
                     where p.Id == existingPolicyId
@@ -681,7 +681,7 @@ hello 下列考量適用於：
         }
 
         //////////////////////////////////////////////////////
-        /// hello following methods use REST calls.
+        /// The following methods use REST calls.
         //////////////////////////////////////////////////////
 
         public static string GetAcsBearerToken(string clientId, string clientSecret, string scope, string accessControlServiceUri)
@@ -797,7 +797,7 @@ hello 下列考量適用於：
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.MovedPermanently:
-                        //Recurse once with hello mediaServicesApiServerUri redirect Location:
+                        //Recurse once with the mediaServicesApiServerUri redirect Location:
                         if (autoRedirect)
                         {
                             redirectedMediaServicesApiServerUri = response.Headers["Location"];
@@ -809,7 +809,7 @@ hello 下列考量適用於：
                         }
                         else
                         {
-                            Console.WriteLine("Redirection too{0} failed.",
+                            Console.WriteLine("Redirection to {0} failed.",
                                 mediaServicesApiServerUri);
                             return null;
                         }
@@ -940,7 +940,7 @@ hello 下列考量適用於：
         }
 
 ## <a name="next-steps"></a>後續步驟
-您可以立即使用 hello 兩個資料中心之間的流量管理員 tooroute 要求，並因此任何中斷發生容錯移轉。
+您現在可以使用流量管理員在兩個資料中心之間路由傳送要求，因此在任何中斷的情況下容錯移轉。
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 網路安全性群組-Azure PowerShell |Microsoft 文件"
-description: "深入了解如何 toocreate 及部署使用 PowerShell 的網路安全性群組。"
+title: "建立網路安全性群組 - Azure PowerShell | Microsoft Docs"
+description: "了解如何使用 PowerShell 建立和部署網路安全性群組。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,11 +16,11 @@ ms.workload: infrastructure-services
 ms.date: 02/23/2016
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 1c8db773febb163d9cb010d23f2913b5ebe0fa94
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 26fe67b43d63c6685d8ae7644dd7df6931a4d2a5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-network-security-groups-using-powershell"></a>使用 PowerShell 建立網路安全性群組
 
@@ -28,17 +28,17 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [virtual-networks-create-nsg-intro-include](../../includes/virtual-networks-create-nsg-intro-include.md)]
 
-Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建議您建立透過 hello Resource Manager 部署模型的資源。 深入了解 toolearn hello hello 兩個模型之間的差異讀取 hello[了解 Azure 部署模型](../azure-resource-manager/resource-manager-deployment-model.md)發行項。 本文涵蓋 hello Resource Manager 部署模型。 您也可以[hello 傳統部署模型中建立 Nsg](virtual-networks-create-nsg-classic-ps.md)。
+Azure 有兩個部署模型：Azure Resource Manager 和傳統。 Microsoft 建議透過 Resource Manager 部署模型建立資源。 若要深入了解兩個模型的差異，請閱讀[了解 Azure 部署模型](../azure-resource-manager/resource-manager-deployment-model.md)。 本文涵蓋之內容包括資源管理員部署模型。 您也可以 [在傳統部署模型中建立 NSG](virtual-networks-create-nsg-classic-ps.md)。
 
 [!INCLUDE [virtual-networks-create-nsg-scenario-include](../../includes/virtual-networks-create-nsg-scenario-include.md)]
 
-hello 範例 PowerShell 預期簡單的環境中已經建立下列命令會根據上面的 hello 案例。 如果您想 toorun hello 命令，因為它們會顯示在此文件，第一次建立 hello 測試環境部署[此範本](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd)，按一下 **部署 tooAzure**，取代 hello 預設參數值如果有必要，並遵循中的 hello 指示 hello 入口網站。
+以下的範例 PowerShell 命令會預期已根據上述案例建立簡單的環境。 如果您想要以本文件顯示的方式執行命令，請先依照下列方式建置測試環境：部署[此範本](http://github.com/telmosampaio/azure-templates/tree/master/201-IaaS-WebFrontEnd-SQLBackEnd)，按一下 [部署至 Azure]，視情況取代預設參數值，然後遵循入口網站中的指示。
 
-## <a name="how-toocreate-hello-nsg-for-hello-front-end-subnet"></a>如何 toocreate hello NSG hello 前端子網路
-toocreate NSG 名為*NSG 前端*根據 hello 情況，完成下列步驟的 hello:
+## <a name="how-to-create-the-nsg-for-the-front-end-subnet"></a>如何建立前端子網路的 NSG
+若要根據案例建立名為 NSG-FrontEnd 的 NSG，請完成下列步驟：
 
-1. 如果您從未使用過 Azure PowerShell，請參閱[如何 tooInstall 和設定 Azure PowerShell](/powershell/azure/overview)並遵循 hello 指示所有 hello 方式 toohello 結束 toosign 至 Azure，然後選取您的訂用帳戶。
-2. 建立安全性規則，允許從 hello 網際網路 tooport 3389 的存取。
+1. 如果您從未用過 Azure PowerShell，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview) ，並遵循其中的所有指示登入 Azure，然後選取您的訂用帳戶。
+2. 建立允許從網際網路存取連接埠 3389 的安全性規則。
 
     ```powershell
     $rule1 = New-AzureRmNetworkSecurityRuleConfig -Name rdp-rule -Description "Allow RDP" `
@@ -47,7 +47,7 @@ toocreate NSG 名為*NSG 前端*根據 hello 情況，完成下列步驟的 hell
     -DestinationAddressPrefix * -DestinationPortRange 3389
     ```
 
-3. 建立安全性規則，允許從 hello 網際網路 tooport 80 的存取。
+3. 建立允許從網際網路存取連接埠 80 的安全性規則。
 
     ```powershell
     $rule2 = New-AzureRmNetworkSecurityRuleConfig -Name web-rule -Description "Allow HTTP" `
@@ -56,20 +56,20 @@ toocreate NSG 名為*NSG 前端*根據 hello 情況，完成下列步驟的 hell
     -DestinationPortRange 80
     ```
 
-4. 加入新的 NSG 名為的 tooa 上面所建立的 hello 規則**NSG 前端**。
+4. 將上述建立的規則加入名為 **NSG-FrontEnd**的新 NSG。
 
     ```powershell
     $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName TestRG -Location westus `
     -Name "NSG-FrontEnd" -SecurityRules $rule1,$rule2
     ```
 
-5. 請檢查輸入 hello 下列建立 hello NSG 中的 hello 規則：
+5. 輸入下列項目可檢查 NSG 中建立的規則︰
 
     ```powershell
     $nsg
     ```
    
-    輸出顯示只是 hello 安全性規則：
+    輸出僅顯示安全性規則：
    
         SecurityRules        : [
                                  {
@@ -103,7 +103,7 @@ toocreate NSG 名為*NSG 前端*根據 hello 情況，完成下列步驟的 hell
                                    "ProvisioningState": "Succeeded"
                                  }
                                ]
-6. 關聯 NSG toohello 上面所建立的 hello*前端*子網路。
+6. 將上述建立的 NSG 與 *FrontEnd* 子網路建立關聯。
 
     ```powershell
     $vnet = Get-AzureRmVirtualNetwork -ResourceGroupName TestRG -Name TestVNet
@@ -111,7 +111,7 @@ toocreate NSG 名為*NSG 前端*根據 hello 情況，完成下列步驟的 hell
     -AddressPrefix 192.168.1.0/24 -NetworkSecurityGroup $nsg
     ```
 
-    輸出顯示只有 hello*前端*子網路設定，請注意 hello 值 hello **NetworkSecurityGroup**屬性：
+    輸出僅顯示 *FrontEnd* 子網路設定，請注意 **NetworkSecurityGroup** 屬性的值：
    
                     Subnets           : [
                                           {
@@ -135,25 +135,25 @@ toocreate NSG 名為*NSG 前端*根據 hello 情況，完成下列步驟的 hell
                                           }
    
    > [!WARNING]
-   > hello 上述命令中的 hello 輸出會顯示 hello hello 虛擬網路組態物件，其中只存在於執行 PowerShell 的 hello 電腦上的內容。 您需要 toorun hello `Set-AzureRmVirtualNetwork` cmdlet toosave 這些設定 tooAzure。
+   > 上述命令的輸出會顯示虛擬網路設定物件的內容，此物件只存在於您執行 PowerShell 的電腦上。 您需要執行 `Set-AzureRmVirtualNetwork` Cmdlet 來將這些設定儲存至 Azure。
    > 
    > 
-7. 儲存新的 VNet 設定 tooAzure hello。
+7. 將新的 VNet 設定儲存至 Azure。
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
     ```
 
-    輸出顯示只 hello NSG 部分：
+    輸出僅顯示 NSG 部分：
    
         "NetworkSecurityGroup": {
           "Id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/TestRG/providers/Microsoft.Network/networkSecurityGroups/NSG-FrontEnd"
         }
 
-## <a name="how-toocreate-hello-nsg-for-hello-back-end-subnet"></a>如何 toocreate hello NSG hello 後端子
-toocreate NSG 名為*NSG 後端*根據上述的 hello 情況，完成下列步驟的 hello:
+## <a name="how-to-create-the-nsg-for-the-back-end-subnet"></a>如何建立後端子網路的 NSG
+若要根據上述案例建立名為 NSG-BackEnd 的 NSG，請完成下列步驟：
 
-1. 建立安全性規則，允許從 hello 前端的子網路 tooport 1433 （預設通訊埠供 SQL Server） 的存取。
+1. 建立允許從前端子網路存取連接埠 1433 (SQL Server 所使用的預設連接埠) 的安全性規則。
 
     ```powershell
     $rule1 = New-AzureRmNetworkSecurityRuleConfig -Name frontend-rule `
@@ -163,7 +163,7 @@ toocreate NSG 名為*NSG 後端*根據上述的 hello 情況，完成下列步�
     -DestinationAddressPrefix * -DestinationPortRange 1433
     ```
 
-2. 建立封鎖存取 toohello 網際網路的安全性規則。
+2. 建立封鎖存取網際網路的安全性規則。
 
     ```powershell
     $rule2 = New-AzureRmNetworkSecurityRuleConfig -Name web-rule `
@@ -173,7 +173,7 @@ toocreate NSG 名為*NSG 後端*根據上述的 hello 情況，完成下列步�
     -DestinationAddressPrefix Internet -DestinationPortRange *
     ```
 
-3. 加入新的 NSG 名為的 tooa 上面所建立的 hello 規則**NSG 後端**。
+3. 將於上方建立的規則加入名為 **NSG-BackEnd**的新 NSG。
 
     ```powershell
     $nsg = New-AzureRmNetworkSecurityGroup -ResourceGroupName TestRG `
@@ -181,14 +181,14 @@ toocreate NSG 名為*NSG 後端*根據上述的 hello 情況，完成下列步�
     -SecurityRules $rule1,$rule2
     ```
 
-4. 關聯 NSG toohello 上面所建立的 hello*後端*子網路。
+4. 將於上方建立的 NSG 與 *BackEnd* 子網路建立關聯。
 
     ```powershell
     Set-AzureRmVirtualNetworkSubnetConfig -VirtualNetwork $vnet -Name BackEnd ` 
     -AddressPrefix 192.168.2.0/24 -NetworkSecurityGroup $nsg
     ```
 
-    輸出顯示只有 hello*後端*子網路設定，請注意 hello 值 hello **NetworkSecurityGroup**屬性：
+    輸出僅顯示 *BackEnd* 子網路設定，請注意 **NetworkSecurityGroup** 屬性的值：
    
         Subnets           : [
                       {
@@ -203,16 +203,16 @@ toocreate NSG 名為*NSG 後端*根據上述的 hello 情況，完成下列步�
                         "RouteTable": null,
                         "ProvisioningState": "Succeeded"
                       }
-5. 儲存新的 VNet 設定 tooAzure hello。
+5. 將新的 VNet 設定儲存至 Azure。
 
     ```powershell
     Set-AzureRmVirtualNetwork -VirtualNetwork $vnet
     ```
 
-## <a name="how-tooremove-an-nsg"></a>如何 tooremove NSG
-呼叫 toodelete 現有 NSG *NSG 前端*在此情況下，請遵循以下的 hello 步驟：
+## <a name="how-to-remove-an-nsg"></a>如何移除 NSG
+若要刪除現有的 NSG (在此案例中稱為 *NSG-Frontend*)，請依照下列步驟：
 
-執行 hello**移除 AzureRmNetworkSecurityGroup**如下所示，而且是確定 tooinclude hello 資源群組 hello NSG 處於。
+執行如下所示的 **Remove-AzureRmNetworkSecurityGroup**，並確定加入 NSG 所在的資源群組。
 
 ```powershell
 Remove-AzureRmNetworkSecurityGroup -Name "NSG-FrontEnd" -ResourceGroupName "TestRG"

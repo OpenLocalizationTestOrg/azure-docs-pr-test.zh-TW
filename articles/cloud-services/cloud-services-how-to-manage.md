@@ -1,6 +1,6 @@
 ---
-title: "aaaCommon 雲端服務的管理工作 （傳統） |Microsoft 文件"
-description: "了解如何 toomanage 雲端服務的 hello Azure 傳統入口網站。"
+title: "常見的雲端服務管理工作 (傳統) | Microsoft Docs"
+description: "了解如何在 Azure 傳統入口網站中管理雲端服務。"
 services: cloud-services
 documentationcenter: 
 author: Thraka
@@ -14,142 +14,142 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/18/2017
 ms.author: adegeo
-ms.openlocfilehash: 03b1d632f1480d0f65c87b7f8ffc747417acf7b5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 2ee76dfcb579e53975b1f61a6590f8d78dc0961b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toomanage-cloud-services"></a>如何 tooManage 雲端服務
+# <a name="how-to-manage-cloud-services"></a>如何管理雲端服務
 > [!div class="op_single_selector"]
 > * [Azure 入口網站](cloud-services-how-to-manage-portal.md)
 > * [Azure 傳統入口網站](cloud-services-how-to-manage.md)
 >
 >
 
-在 hello**雲端服務**區域 hello Azure 傳統入口網站中，您可以更新服務角色或部署、 升級預備的部署 tooproduction、 連結資源 tooyour 雲端服務，讓您能夠查看 hello 資源相依性和小數位數 hello 資源在一起，並刪除雲端服務或部署。
+在 Azure 傳統入口網站的 [ **雲端服務** ] 區域中，您可以更新服務角色或部署、將預備部署提升至生產、將資源連結至您的雲端服務以便於查看資源相依性，並將資源一起調整，以及刪除雲端服務或部署。
 
 ## <a name="how-to-update-a-cloud-service-role-or-deployment"></a>作法：更新雲端服務角色或部署
-如果您需要 tooupdate hello 應用程式程式碼為雲端服務時，使用**更新**hello 儀表板，**雲端服務** 頁面上，或**執行個體**頁面。 您可以更新單一角色或所有角色。 您將需要 tooupload 新的服務封裝和服務組態檔。
+如果您需要更新雲端服務的應用程式程式碼，請使用儀表板上、[雲端服務] 頁面上或 [執行個體] 頁面上的 [更新]。 您可以更新單一角色或所有角色。 您將需要上傳新的服務套件和服務組態檔。
 
-1. 在 [hello [Azure 傳統入口網站](https://manage.windowsazure.com/)，hello 儀表板，**雲端服務**] 頁面上，或**執行個體**頁面上，按一下**更新**。
+1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中，按一下儀表板上、[雲端服務] 頁面上或 [執行個體] 頁面上的 [更新]。
 
     ![UpdateDeployment](./media/cloud-services-how-to-manage/CloudServices_UpdateDeployment.png)
 
-2. 在**部署標籤**，輸入名稱 tooidentify hello 部署 (例如，mycloudservice4)。 您會發現下的 hello 部署標籤**快速入門**hello 儀表板上。
-3. 在**封裝**，使用**瀏覽**tooupload hello 服務封裝檔 (.cspkg)。
-4. 在**組態**，使用**瀏覽**tooupload hello 服務組態檔 (.cscfg)。
-5. 在**角色**，選取**所有**hello 中的所有角色如果您想 tooupgrade 都雲端服務。 tooperform 單一角色更新，您想要 tooupdate 選取 hello 角色。 即使您選取特定角色 tooupdate，hello 服務組態檔中的 hello 更新會套用的 tooall 角色。
-6. 如果 hello 更新變更 hello 的角色數目或任何角色 hello 大小，選取 hello**角色大小或角色數目變更時，允許更新**核取方塊 tooenable hello 更新 tooproceed。
+2. 在 [部署標籤] 中，輸入部署的識別名稱 (例如，mycloudservice4)。 您將在儀表板的 [快速入門]  下發現此部署標籤。
+3. 在 [封裝] 中，使用 [瀏覽] 上傳服務套件檔 (.cspkg)。
+4. 在 [組態] 中，使用 [瀏覽] 上傳服務組態檔 (.cscfg)。
+5. 若要升級雲端服務中的所有角色，請在 [角色] 中選取 [全部]。 若要執行單一角色更新，請選取您要更新的角色。 即使您選取特定角色來更新，服務組態檔中的更新還是會套用至所有角色。
+6. 如果更新會造成角色數目或任何角色的大小變更，請選取 [Allow update if role sizes or number of roles changes]  核取方塊，讓更新能夠繼續。
 
-    請注意，如果您變更 hello （也就是虛擬機器主控角色執行個體的 hello 大小） 的角色大小或 hello 」 角色數量時，必須重新製作映像，每個角色執行個體 （虛擬機器），而且任何本機資料將會遺失。
+    請注意，如果您變更角色的大小 (亦即，角色執行個體所裝載於之虛擬機器的大小) 或角色數目，則必須重新製作每個角色執行個體 (虛擬機器) 的映像，因而遺失本機資料。
 
-7. 如果服務的任何角色只能有一個角色執行個體，請選取 hello**更新，即使一個或多個角色包含單一執行個體的核取方塊**tooenable hello 升級 tooproceed。
+7. 如果有任何服務角色只有一個角色執行個體，請選取 [Update even if one or more role contain a single instance]  核取方塊，讓升級能夠繼續。
 
-    要讓 Azure 保證服務在雲端服務更新期間有 99.95% 的可用性，每個角色都至少必須有兩個角色執行個體 (虛擬機器)。 可讓一個虛擬機器 tooprocess 用戶端要求而正在更新其他 hello。
+    要讓 Azure 保證服務在雲端服務更新期間有 99.95% 的可用性，每個角色都至少必須有兩個角色執行個體 (虛擬機器)。 如此才能讓一個虛擬機器在受到更新時，還有另一個虛擬機器可以處理用戶端要求。
 
-8. 按一下**確定**（勾選記號） toobegin 更新 hello 服務。
+8. 按一下 [確定]  \(核取記號) 開始更新服務。
 
-## <a name="how-to-swap-deployments-toopromote-a-staged-deployment-tooproduction"></a>如何： 交換部署 toopromote 預備的部署 tooproduction
-使用**交換**toopromote 雲端服務 tooproduction 預備環境部署。 當您決定 toodeploy 雲端服務的新版本時，您可以階段，然後在您的客戶在生產環境中使用 hello 目前版本時，雲端服務的預備環境中測試新版本。 當您準備好 toopromote hello 新發行 tooproduction，您可以使用**交換**兩個部署的位址由哪些 hello tooswitch hello Url。
+## <a name="how-to-swap-deployments-to-promote-a-staged-deployment-to-production"></a>作法：交換部署以使預備部署升格為生產部署
+使用 [交換]  將雲端服務的預備部署升格為生產部署。 當您決定部署新版的雲端服務時，可以在雲端服務預備環境中預備並測試這個新版本，同時讓您的客戶繼續在生產部署中使用目前版本。 當您準備好要將新版部署升格為生產部署時，可以使用 [交換]  將這兩個部署的 URL 位址互換。
 
-您可以交換部署從 hello**雲端服務**頁面或 hello 儀表板。
+您可以在 [雲端服務]  頁面或儀表板交換部署。
 
-1. 在 hello [Azure 傳統入口網站](https://manage.windowsazure.com/)，按一下 **雲端服務**。
-2. 在 hello 清單中的雲端服務，按一下 hello 雲端服務 tooselect 它。
+1. 在 [Azure 傳統入口網站](https://manage.windowsazure.com/)中，按一下 [ **雲端服務**]。
+2. 在雲端服務清單中，按一下雲端服務加以選取。
 3. 按一下 [交換] 。
 
-    hello 下列確認提示隨即開啟。
+    隨即開啟下列確認提示。
 
     ![Cloud Services Swap](./media/cloud-services-how-to-manage/CloudServices_Swap.png)
 
-4. 確認 hello 部署資訊後，按一下**是**tooswap hello 部署。
+4. 確認部署資訊無誤之後，按一下 [是]  交換部署。
 
-    hello 部署交換很快就會因為 hello 唯一變更是 hello 虛擬 IP 位址 (Vip) hello 部署。
+    交換部署的速度很快，因為唯一變更的是部署的虛擬 IP 位址 (VIP)。
 
-    toosave 運算成本，您可以刪除 hello 預備環境，當您確定 hello 新增生產部署如預期執行中的 hello 部署。
+    當您確定新的生產部署如預期執行時，即可刪除預備環境中的部署，以節省運算成本。
 
 ### <a name="common-questions-about-swapping-deployments"></a>交換部署的相關常見問題
 
-**交換部署的 hello 必要條件為何？**
+**交換部署有哪些必要條件？**
 
 成功的部署交換有兩個主要必要條件：
 
-- 如果您想要 toouse 靜態 IP 位址的生產位置，您必須保留以及您預備位置的其中一個。 否則，hello 交換將會失敗。
+- 如果您想要讓生產環境位置使用靜態 IP 位址，就必須為您的預備位置也保留一個靜態 IP 位址。 否則，交換將會失敗。
 
-- 必須先執行所有的執行個體的角色，您可以執行 hello 交換。 您可以查看您的執行個體在 hello Azure 傳統入口網站或使用 hello 狀態[hello Get-azurerole 命令在 Windows PowerShell 中的](/powershell/module/azure/get-azurerole?view=azuresmps-3.7.0)。
+- 您的所有角色執行個體必須都處於執行中狀態，您才能執行交換。 您可以在 Azure 傳統入口網站中，或藉由使用 [Windows PowerShell 中的 Get-AzureRole 命令](/powershell/module/azure/get-azurerole?view=azuresmps-3.7.0)，來檢查執行個體的狀態。
 
-請注意，客體作業系統更新和服務修復作業也可能會導致部署交換 toofail。 如需詳細資訊，請參閱[對雲端服務部署問題進行疑難排解](cloud-services-troubleshoot-deployment-problems.md)。
+請注意，客體 OS 更新和服務修復作業也可能導致部署交換失敗。 如需詳細資訊，請參閱[對雲端服務部署問題進行疑難排解](cloud-services-troubleshoot-deployment-problems.md)。
 
 **交換是否會導致我的應用程式停止運作？我應該如何處理該情況？**
 
-Hello 最後一節所述，部署交換通常是非常快速因為它是只在 hello Azure 負載平衡器組態變更。 不過，在某些情況下，它會花費十秒以上的時間，而導致暫時性的連線失敗。 toolimit 影響 tooyour 客戶，請考慮實作[用戶端重試邏輯](../best-practices-retry-general.md)。
+如最後一節所述，部署交換通常非常快，因為它只是 Azure 負載平衡器中的組態變更。 不過，在某些情況下，它會花費十秒以上的時間，而導致暫時性的連線失敗。 若要限縮對您客戶造成的影響，請考慮實作[用戶端重試邏輯](../best-practices-retry-general.md)。
 
-## <a name="how-to-link-a-resource-tooa-cloud-service"></a>如何： 連結資源 tooa 雲端服務
-tooshow 您的雲端服務相依於其他資源，您可以將連結的 Azure SQL Database 執行個體或儲存體帳戶 toohello 雲端服務。 您可以連結，並取消連結資源的 hello**連結的資源**頁面，然後再監視其 hello 雲端服務儀表板上的使用量。 如果監視開啟連結的儲存體帳戶，您可以監視 hello 雲端服務儀表板上的要求總數。
+## <a name="how-to-link-a-resource-to-a-cloud-service"></a>作法：將資源連結到雲端服務
+若要顯示您的雲端服務對其他資源的依存性，您可以將 Azure SQL Database 執行個體或儲存體帳戶連結到雲端服務。 您可以在 [ **連結的資源** ] 頁面上連結和取消連結資源，然後在雲端服務儀表板上監視其使用率。 如果連結的儲存體帳戶已開啟監視功能，則您可以在雲端服務儀表板上監視 [要求總數]。
 
-使用**連結**toolink 新的或現有 SQL Database 執行個體或儲存體帳戶 tooyour 雲端服務。 然後，您可以調整 hello 資料庫正在使用它在 hello 的 hello 雲端服務角色以及**標尺**頁面。 (儲存體帳戶會在使用量增加時自動調整。)如需詳細資訊，請參閱[如何 tooScale 雲端服務和連結的資源](cloud-services-how-to-scale.md)。
+您可以使用 [連結]  將新的或現有 SQL Database 執行個體或儲存體帳戶連結到您的雲端服務。 然後，您便可以在 [調整]  頁面上調整資料庫以及使用該資料庫的雲端服務角色。 (儲存體帳戶會在使用量增加時自動調整。)如需詳細資訊，請參閱[如何調整雲端服務和連結的資源](cloud-services-how-to-scale.md)。
 
-您也可以監視、 管理及調整 hello 資料庫在 hello**資料庫**hello Azure 傳統入口網站的節點。
+您也可以在 Azure 傳統入口網站的 **資料庫** 節點中監視、管理和調整資料庫。
 
-「 連結 」 資源，這一點而言並不會連接您的應用程式 toohello 資源。 如果您建立新的資料庫使用**連結**，您將需要 tooadd hello 連接字串 tooyour 應用程式程式碼，接著再升級 hello 雲端服務。 如果您的應用程式會使用資源的連結儲存體帳戶中，您也會需要 tooadd 連接字串。
+在這種情況下，將資源「連結」並不會將您的應用程式連接到資源。 如果您使用 [連結] 建立新的資料庫，則需要將連接字串新增至應用程式程式碼，然後升級雲端服務。 如果您的應用程式使用連結的儲存體帳戶中的資源，您也需要新增連接字串。
 
-hello 遵循程序描述如何 toolink 新的 SQL Database 執行個體上部署新的 SQL Database 伺服器，tooa 雲端服務。
+下列程序說明如何將新的 SQL Database 執行個體 (部署於新的 SQL Database 伺服器上) 連結到雲端服務。
 
-### <a name="toolink-a-sql-database-instance-tooa-cloud-service"></a>toolink SQL Database 執行個體 tooa 雲端服務
-1. 在 hello [Azure 傳統入口網站](http://manage.windowsazure.com/)，按一下 **雲端服務**。 然後按一下 hello hello 雲端服務 tooopen hello 儀表板的名稱。
+### <a name="to-link-a-sql-database-instance-to-a-cloud-service"></a>將 SQL Database 執行個體連結到雲端服務
+1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，按一下 [ **雲端服務**]。 然後按一下雲端服務的名稱以開啟儀表板。
 2. 按一下 [Linked Resources] 。
 
-    hello**連結的資源**頁面隨即開啟。
+    [Linked Resources]  頁面隨即開啟。
 
     ![LinkedResourcesPage](./media/cloud-services-how-to-manage/CloudServices_LinkedResourcesPage.png)
 
 3. 按一下 [連結資源] 或 [連結]。
 
-    hello**連結資源**精靈 隨即啟動。
+    [Link Resource]  精靈隨即啟動。
 
     ![Link Page1](./media/cloud-services-how-to-manage/CloudServices_LinkedResources_LinkPage1.png)
 
 4. 按一下 [建立新的資源] 或 [連結現有的資源]。
-5. 選擇資源 toolink hello 類型。 在 hello [Azure 傳統入口網站](http://manage.windowsazure.com/)，按一下  **SQL Database**。 （hello Azure 傳統入口網站支援連結儲存體帳戶 tooa 雲端服務）。
-6. toocomplete hello 的資料庫組態，遵循 hello 的說明 中的指示**SQL 資料庫**hello Azure 傳統入口網站的區域。
+5. 選擇要連結的資源類型。 在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，按一下 [ **SQL Database**]。 (只有 Azure 傳統入口網站支援將儲存體帳戶連結到雲端服務。)
+6. 若要完成資料庫組態，請依照 Azure 傳統入口網站中 [ **SQL Database** ] 區域的說明中的指示執行。
 
-    您可以遵循連結作業 hello 訊息區域中的 hello hello 進度。
+    您可以在訊息區域中追蹤連結作業的進度。
 
-    連結完成時，您可以監視 hello hello 雲端服務儀表板上的 hello 連結資源的狀態。 如需擴充連結的 SQL Database 的資訊，請參閱[如何 tooScale 雲端服務和連結的資源](cloud-services-how-to-scale.md)。
+    連結完成時，您可以在雲端服務儀表板上監視已連結資源的狀態。 如需關於調整已連結之 SQL Database 的詳細資訊，請參閱 [如何調整雲端服務和連結的資源](cloud-services-how-to-scale.md)(英文)。
 
-### <a name="toounlink-a-linked-resource"></a>toounlink 連結的資源
-1. 在 hello [Azure 傳統入口網站](http://manage.windowsazure.com/)，按一下 **雲端服務**。 然後按一下 hello hello 雲端服務 tooopen hello 儀表板的名稱。
-2. 按一下**連結的資源**，然後選取 hello 資源。
-3. 按一下 [取消連結] 。 然後按一下 **是**在 hello 確認提示。
+### <a name="to-unlink-a-linked-resource"></a>取消連結已連結的資源
+1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，按一下 [ **雲端服務**]。 然後按一下雲端服務的名稱以開啟儀表板。
+2. 按一下 [Linked Resources] ，然後選取資源。
+3. 按一下 [取消連結] 。 然後在確認提示處按一下 [是]  。
 
-    取消連結 SQL Database 有 hello 資料庫或應用程式 hello toohello 資料庫的連接上沒有作用。 您仍然可以管理在 hello hello 資料庫**SQL 資料庫**hello Azure 傳統入口網站的區域。
+    取消連結 SQL Database 並不會影響資料庫或是應用程式與資料庫的連線。 您還是可以在 Azure 傳統入口網站的 [ **SQL Database** ] 區域中管理資料庫。
 
 ## <a name="how-to-delete-deployments-and-a-cloud-service"></a>作法：刪除部署和雲端服務
 刪除雲端服務之前，您必須先刪除每個現有的部署。
 
-toosave 運算成本，確認您的生產環境部署的運作正常之後，可以刪除您的預備環境部署。 只要角色執行個體存在，您就需要為其支付運算成本，即使雲端服務未執行也一樣。
+為了節省運算成本，您可以在確認生產部署如預期運作之後刪除預備部署。 只要角色執行個體存在，您就需要為其支付運算成本，即使雲端服務未執行也一樣。
 
-部署或雲端服務，請使用下列程序 toodelete hello。
+使用下列程序，刪除部署或雲端服務。
 
-1. 在 hello [Azure 傳統入口網站](http://manage.windowsazure.com/)，按一下 **雲端服務**。
-2. 選取 hello 雲端服務，然後按一下**刪除**。 （tooselect 雲端服務，而不需要開啟 hello 儀表板中，按一下任何位置 hello 雲端服務項目中的 hello 名稱除外）。
+1. 在 [Azure 傳統入口網站](http://manage.windowsazure.com/)中，按一下 [ **雲端服務**]。
+2. 選取雲端服務，然後按一下 [刪除]。 (若要選取雲端服務而不開啟儀表板，請在雲端服務項目中按一下名稱以外的任何位置。)
 
-    如果您擁有預備環境或生產環境部署，您會看到下列其中一個在 hello hello 視窗底部選擇類似 toohello 的功能表。 您可以刪除 hello 雲端服務之前，您必須刪除現有的部署。
+    如果您有預備或生產的部署，則會在視窗底部看到與下面類似的選項功能表。 刪除雲端服務之前，您必須先刪除任何現有的部署。
 
     ![Delete Menu](./media/cloud-services-how-to-manage/CloudServices_DeleteMenu.png)
 
-3. toodelete 部署中，按一下**刪除生產部署**或**刪除預備環境部署**。 然後，在 hello 確認提示按一下**是**。
-4. 如果您計劃 toodelete hello 雲端服務，請重複步驟 3，如有需要 toodelete 您其他的部署。
-5. toodelete hello 雲端服務，請按一下**刪除雲端服務**。 然後，在 hello 確認提示按一下**是**。
+3. 若要刪除部署，請按一下 [刪除生產部署] 或 [刪除預備部署]。 然後，在確認提示處按一下 [是] 。
+4. 如果您計劃刪除雲端服務，請重複步驟 3 (如果需要) 來刪除另一個部署。
+5. 若要刪除雲端服務，請按一下 [刪除雲端服務] 。 然後，在確認提示處按一下 [是] 。
 
 > [!NOTE]
-> 如果設定為您的雲端服務的詳細資訊監視，Azure 不會刪除監視資料，從儲存體帳戶，當您刪除 hello 雲端服務的 hello。 您以手動方式需要 toodelete hello 資料。 其中 toofind hello 度量資料表的相關資訊，請參閱 「 如何： 存取外部 hello Azure 傳統入口網站的詳細資訊監視資料 」 中[tooMonitor 雲端服務如何](cloud-services-how-to-monitor.md)。
+> 如果對雲端服務設定了詳細資訊監視，則當您刪除該雲端服務時，Azure 並不會從您的儲存體帳戶中刪除監視資料。 您將需要手動刪除資料。 如需有關何處可找到這些計量資料表的詳細資訊，請參閱 [如何監視雲端服務](cloud-services-how-to-monitor.md)中的＜作法：從 Azure 傳統入口網站外部存取詳細資訊監視資料＞。
 >
 >
 
 ## <a name="next-steps"></a>後續步驟
 * [雲端服務的一般設定](cloud-services-how-to-configure.md)。
-* 了解如何太[部署雲端服務](cloud-services-how-to-create-deploy.md)。
+* 了解如何 [部署雲端服務](cloud-services-how-to-create-deploy.md)。
 * 設定 [自訂網域名稱](cloud-services-custom-domain-name.md)。
 * 設定 [SSL 憑證](cloud-services-configure-ssl-certificate.md)。

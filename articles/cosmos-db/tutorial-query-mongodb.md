@@ -1,6 +1,6 @@
 ---
-title: "Azure Cosmos DB： 如何使用 tooquery hello DocumentDB API 嗎？ | Microsoft Docs"
-description: "了解 Azure Cosmos DB tooquery 以 hello DocumentDB API"
+title: "Azure Cosmos DB：如何使用 DocumentDB API 來進行查詢？ | Microsoft Docs"
+description: "了解如何使用適用於 Azure Cosmos DB 的 DocumentDB API 來進行查詢"
 services: cosmos-db
 documentationcenter: 
 author: mimig1
@@ -15,24 +15,24 @@ ms.tgt_pltfrm: na
 ms.workload: 
 ms.date: 05/10/2017
 ms.author: mimig
-ms.openlocfilehash: e3e5a49f7510942bcfb15330e5f86c5dd8b1e5d9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: feffc553a9aa931d96cec71c101674fce08a466b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="azure-cosmos-db-how-tooquery-with-api-for-mongodb"></a>Azure Cosmos DB： 如何使用 MongoDB 的 API tooquery 嗎？
+# <a name="azure-cosmos-db-how-to-query-with-api-for-mongodb"></a>Azure Cosmos DB：如何使用適用於 MongoDB 的 API 來進行查詢？
 
-hello Azure Cosmos DB [API for MongoDB](mongodb-introduction.md)支援[MongoDB 殼層查詢](https://docs.mongodb.com/manual/tutorial/query-documents/)。 
+Azure Cosmos DB [適用於 MongoDB 的 API](mongodb-introduction.md) 支援 [MongoDB 殼層查詢](https://docs.mongodb.com/manual/tutorial/query-documents/)。 
 
-本文涵蓋下列工作的 hello: 
+本文涵蓋下列工作： 
 
 > [!div class="checklist"]
 > * 使用 MongoDB 來查詢資料
 
 ## <a name="sample-document"></a>範例文件
 
-本文章中的 hello 查詢使用 hello 遵循範例文件。
+本文中的查詢使用下列範例文件。
 
 ```json
 {
@@ -64,7 +64,7 @@ hello Azure Cosmos DB [API for MongoDB](mongodb-introduction.md)支援[MongoDB �
 ```
 ## <a id="examplequery1"></a> 範例查詢 1 
 
-指定 hello 範例系列文件上方，hello 下列查詢會傳回 hello 文件，其中 hello 識別碼] 欄位必須符合`WakefieldFamily`。
+在提供上述範例家族文件的情況下，下列查詢會傳回識別碼欄位符合 `WakefieldFamily` 的文件。
 
 **查詢**
     
@@ -114,7 +114,7 @@ hello Azure Cosmos DB [API for MongoDB](mongodb-introduction.md)支援[MongoDB �
 
 ## <a id="examplequery2"></a>範例查詢 2 
 
-hello 下一個查詢會傳回 hello 系列中的 hello 子系。 
+下一個查詢會傳回家族中的所有小孩。 
 
 **查詢**
     
@@ -147,7 +147,7 @@ hello 下一個查詢會傳回 hello 系列中的 hello 子系。
 
 ## <a id="examplequery3"></a>範例查詢 3 
 
-hello 下一個查詢會傳回所有 hello 系列註冊。 
+下一個查詢會傳回已註冊的所有家族。 
 
 **查詢**
     
@@ -156,7 +156,7 @@ hello 下一個查詢會傳回所有 hello 系列註冊。
 
 ## <a id="examplequery4"></a>範例查詢 4
 
-hello 下一個查詢會傳回所有 hello 系列未註冊。 
+下一個查詢會傳回未註冊的所有家族。 
 
 **查詢**
     
@@ -200,7 +200,7 @@ hello 下一個查詢會傳回所有 hello 系列未註冊。
 
 ## <a id="examplequery5"></a>範例查詢 5
 
-hello 下一個查詢會傳回所有尚未註冊 hello 系列和狀態是開頭為 NY。 
+下一個查詢會傳回未註冊且州別為 NY 的所有家族。 
 
 **查詢**
     
@@ -246,7 +246,7 @@ hello 下一個查詢會傳回所有尚未註冊 hello 系列和狀態是開頭�
 
 ## <a id="examplequery6"></a>範例查詢 6
 
-hello 下一個查詢會傳回所有 hello 系列其中子系等級是 8。
+下一個查詢會傳回小孩年級為 8 的所有家族。
 
 **查詢**
   
@@ -291,7 +291,7 @@ hello 下一個查詢會傳回所有 hello 系列其中子系等級是 8。
 
 ## <a id="examplequery7"></a>範例查詢 7
 
-hello 下一個查詢會傳回所有 hello 系列其中的子陣列的大小是 3。
+下一個查詢會傳回小孩陣列大小為 3 的所有家族。
 
 **查詢**
   
@@ -299,16 +299,16 @@ hello 下一個查詢會傳回所有 hello 系列其中的子陣列的大小是 
 
 **結果**
 
-不會傳回任何結果，因為小孩數目不超過 2 個。 只有當參數為 2 時此查詢會成功，而傳回 hello 完整的文件。
+不會傳回任何結果，因為小孩數目不超過 2 個。 只有當參數為 2 時，此查詢才會成功並傳回整個文件。
 
 ## <a name="next-steps"></a>後續步驟
 
-在本教學課程中，您們 hello 下列：
+在本教學課程中，您已完成下列操作：
 
 > [!div class="checklist"]
-> * 了解如何使用 MongoDB tooquery 
+> * 了解如何使用 MongoDB 來進行查詢 
 
-您現在可以如何繼續 toohello 下一個教學課程 toolearn toodistribute 資料全域。
+您現在可以繼續進行到下一個教學課程，以了解如何全域散發您的資料。
 
 > [!div class="nextstepaction"]
 > [全域散發您的資料](tutorial-global-distribution-documentdb.md)

@@ -1,16 +1,16 @@
 ### <a name="prerequisites"></a>必要條件
 * [Yammer](https://www.yammer.com/) 帳戶 
 
-您可以使用您的 Yammer 帳戶在邏輯應用程式之前，您必須授權 hello 邏輯應用程式 tooconnect tooyour Yammer 帳戶。 幸運的是，您可以輕鬆地在 hello Azure 入口網站上的應用程式邏輯中。 
+您必須先授與邏輯應用程式連接到 Yammer 帳戶的權限，之後才能在邏輯應用程式中使用您的 Yammer 帳戶。 所幸，您可以使用 Azure 入口網站在邏輯應用程式內輕易達成這項作業。 
 
-以下是您的邏輯應用程式 tooconnect tooyour Yammer 帳戶 hello 步驟 tooauthorize:
+若要授與邏輯應用程式連接到 Yammer 帳戶的權限，其步驟如下：
 
-1. toocreate 連接 tooYammer，在 hello 邏輯應用程式設計師中，選取**顯示 Microsoft managed Api** hello 在下拉式清單，然後輸入*Yammer* hello [搜尋] 方塊中。 選取 hello 觸發程序或您一定會喜歡 toouse 的動作：  
+1. 若要建立 Yammer 連線，請在邏輯應用程式設計工具中，選取下拉式清單的 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入「Yammer」。 選取您要使用的觸發程序或動作：  
    ![](./media/connectors-create-api-yammer/yammer-1.png)
-2. 如果您尚未建立任何連線 tooYammer 之前，您會取得提示的 tooprovide Yammer 認證。 這些認證會使用的 tooauthorize，您的邏輯應用程式 tooconnect 並存取您的 Yammer 帳戶資料：  
+2. 如果您之前尚未建立任何 Yammer 連線，系統會提示您提供 Yammer 認證。 這些認證會用來授與邏輯應用程式連接並存取 Yammer 帳戶資料的權限：  
    ![](./media/connectors-create-api-yammer/yammer-2.png)
-3. 提供 Yammer 使用者名稱和密碼 tooauthorize 邏輯應用程式：  
+3. 提供您的 Yammer 使用者名稱和密碼以授與邏輯應用程式權限：  
    ![](./media/connectors-create-api-yammer/yammer-3.png)   
-4. 請注意，已經建立 hello 連接，而且現在可用以 hello 其他 tooproceed 邏輯應用程式中的步驟：  
+4. 請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：  
    ![](./media/connectors-create-api-yammer/yammer-4.png)   
 

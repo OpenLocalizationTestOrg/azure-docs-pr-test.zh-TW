@@ -1,6 +1,6 @@
 ---
-title: "aaaManaging 角色在 Azure 中的雲端服務的 Visual Studio |Microsoft 文件"
-description: "了解如何 tooadd] 和 [移除角色在 Azure 中的雲端服務的 Visual Studio。"
+title: "使用 Visual Studio 在 Azure 雲端服務中管理角色 | Microsoft Docs"
+description: "了解如何使用 Visual Studio，在 Azure 雲端服務中新增及移除角色。"
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: na
 ms.workload: multiple
 ms.date: 03/21/2017
 ms.author: kraigb
-ms.openlocfilehash: 131edc534d1110ba3d25cd00a3a24b643576875c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6ed857b857cf8c14506ca39725c214a7fea4fc95
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="managing-roles-in-azure-cloud-services-with-visual-studio"></a>使用 Visual Studio 在 Azure 雲端服務中管理角色
-建立 Azure 雲端服務之後，您可以新增新角色 tooit 或移除現有角色。 您也可以匯入現有的專案，並將它轉換 tooa 角色。 例如，您可以匯入 ASP.NET Web 應用程式，並將它指定為 Web 角色。
+當您建立 Azure 雲端服務之後，您可以在該服務中加入角色或從中移除現有角色。 您也可以匯入現有的專案，並將它轉換成角色。 例如，您可以匯入 ASP.NET Web 應用程式，並將它指定為 Web 角色。
 
-## <a name="adding-a-role-tooan-azure-cloud-service"></a>加入角色 tooan Azure 雲端服務
-hello 步驟會引導您在 Visual Studio 中加入的 web 或背景工作角色 tooan Azure 雲端服務專案。
+## <a name="adding-a-role-to-an-azure-cloud-service"></a>將角色加入至 Azure 雲端服務
+下列步驟會逐步引導您完成將 Web 或背景工作角色加入至 Visual Studio 中的 Azure 雲端服務專案。
 
 1. 在 Visual Studio 中建立或開啟 Azure 雲端服務專案。
 
-1. 在**方案總管 中**，展開 hello 專案節點
+1. 在 [方案總管] 中，展開專案資料夾。
 
-1. 以滑鼠右鍵按一下 hello**角色**節點 toodisplay hello 操作功能表。 Hello 內容功能表中選取**新增**，然後從 hello 目前方案中，選取現有的 web 角色或背景工作角色或建立 web 或背景工作角色專案。 您可以選取適當的專案 (例如 ASP.NET Web 應用程式專案)，並將它與角色專案產生關聯。
+1. 以滑鼠右鍵按一下 [角色] 節點，以顯示操作功能表。 從操作功能表中，選取 [新增]，然後選取現有的 Web 角色或背景工作角色，或是建立 Web 或背景工作角色專案。 您可以選取適當的專案 (例如 ASP.NET Web 應用程式專案)，並將它與角色專案產生關聯。
 
-    ![功能表選項 tooadd 角色 tooan Azure 雲端服務專案](media/vs-azure-tools-cloud-service-project-managing-roles/add-role.png)
+    ![將角色加入至 Azure 雲端服務專案的功能表選項](media/vs-azure-tools-cloud-service-project-managing-roles/add-role.png)
 
 ## <a name="removing-a-role-from-an-azure-cloud-service"></a>從 Azure 雲端服務移除角色
-hello 下列步驟會引導您從 Visual Studio 中的 Azure 雲端服務專案中移除的 web 或背景工作角色。
+下列步驟會逐步引導您完成從 Visual Studio 中的 Azure 雲端服務專案移除 Web 或背景工作角色。
 
 1. 在 Visual Studio 中建立或開啟 Azure 雲端服務專案。
 
-1. 在**方案總管 中**，展開 hello 專案節點
+1. 在 [方案總管] 中，展開專案資料夾。
 
-1. 展開 hello**角色**節點。
+1. 展開 [角色] 節點。
 
-1. 以滑鼠右鍵按一下您想 tooremove，並從 hello 內容功能表中，選取 hello 節點**移除**。 
+1. 以滑鼠右鍵按一下您要移除的節點，然後從操作功能表中選取 [移除]。 
 
-    ![功能表選項 tooadd 角色 tooan Azure 雲端服務](media/vs-azure-tools-cloud-service-project-managing-roles/remove-role.png)
+    ![將角色加入至 Azure 雲端服務的功能表選項](media/vs-azure-tools-cloud-service-project-managing-roles/remove-role.png)
 
-## <a name="readding-a-role-tooan-azure-cloud-service-project"></a>正在重新加入角色 tooan Azure 雲端服務專案
-如果您從雲端服務專案中移除角色，但稍後決定回 tooadd hello 角色加入 toohello 專案中，只有 hello 角色宣告和基本屬性，例如端點和診斷資訊。 沒有其他資源或參考會加入 toohello`ServiceDefinition.csdef`檔案或 toohello`ServiceConfiguration.cscfg`檔案。 如果您想 tooadd 這項資訊，您需要 toomanually 將它加回到這些檔案。
+## <a name="readding-a-role-to-an-azure-cloud-service-project"></a>將角色重新加入至 Azure 雲端服務專案
+如果您從雲端服務專案中移除角色，但稍後決定將該角色重新加入至專案，則只有角色宣告和基本屬性 (例如端點和診斷資訊) 會被加入專案。 不會將任何其他資源或參考加入至 `ServiceDefinition.csdef` 檔案或 `ServiceConfiguration.cscfg` 檔案。 如果您想要加入此資訊，就必須手動將它重新加回這些檔案。
 
-例如，您可能移除 web 服務角色，您稍後決定此角色回的 tooadd 帶入方案中。 如果您這樣做，將會發生錯誤。 tooprevent 這個錯誤，您有 tooadd hello`<LocalResources>`示 hello 遵循 hello 送回 XML 項目`ServiceDefinition.csdef`檔案。 使用 hello 名稱 hello web 服務角色的一部分 hello hello 名稱屬性已加回到專案 hello  **<LocalStorage>** 項目。 在此範例中，是 hello hello web 服務角色名稱**WCFServiceWebRole1**。
+例如，您可能移除了 Web 服務角色，但稍後決定將這個角色重新加回方案。 如果您這樣做，將會發生錯誤。 為了避免這個錯誤，您必須將下列 XML 顯示的 `<LocalResources>` 元素重新加回 `ServiceDefinition.csdef` 檔案。 使用您重新加回專案的 Web 服務角色名稱作為 **<LocalStorage>** 項目的部分名稱屬性。 在此範例中，此 Web 服務角色的名稱是 **WCFServiceWebRole1**。
 
     <WebRole name="WCFServiceWebRole1">
         <Sites>
@@ -72,4 +72,4 @@ hello 下列步驟會引導您從 Visual Studio 中的 Azure 雲端服務專案�
     </WebRole>
 
 ## <a name="next-steps"></a>後續步驟
-- [使用 Visual Studio 設定 Azure 雲端服務的 hello 角色](vs-azure-tools-configure-roles-for-cloud-service.md)
+- [使用 Visual Studio 設定 Azure 雲端服務的角色](vs-azure-tools-configure-roles-for-cloud-service.md)

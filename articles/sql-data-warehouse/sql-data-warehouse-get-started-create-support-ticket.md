@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toocreate SQL 資料倉儲的支援票證 |Microsoft 文件"
-description: "如何 toocreate 支援票證中 Azure SQL 資料倉儲。"
+title: "如何為 SQL 資料倉儲建立支援票證 | Microsoft Docs"
+description: "如何在 Azure SQL 資料倉儲中建立支援票證。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: kevinvngo
@@ -15,70 +15,70 @@ ms.workload: data-services
 ms.custom: manage
 ms.date: 10/31/2016
 ms.author: kevin;barbkess
-ms.openlocfilehash: 72f7eac82112fb7f1bfb05abca4ce40aeb3c828c
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 058ff1229acee5d03db7c0305c5565ae95a85758
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toocreate-a-support-ticket-for-sql-data-warehouse"></a>如何 toocreate 支援票證 SQL 資料倉儲
+# <a name="how-to-create-a-support-ticket-for-sql-data-warehouse"></a>如何為 SQL 資料倉儲建立支援票證
 如果您的 SQL 資料倉儲有任何問題，請建立支援票證，以便我們的工程小組協助您。
 
 > [!NOTE] 
-> 從 2016/12/20，開始 hello Azure 入口網站中的 hello 資源健全狀況檢查不精確。 我們正積極 toofix 此問題。 
+> 截至 2016 年 12 月 20 日時，Azure 入口網站中的資源健全狀況檢查並不正確。 我們正著手解決這個問題。 
 
 
 ## <a name="create-a-support-ticket"></a>建立支援票證
-1. 開啟 hello [Azure 入口網站][Azure portal]。
-2. Hello 首頁畫面上，按一下 hello**說明 + 支援**磚。
+1. 開啟 [Azure 入口網站][Azure portal]。
+2. 在 [首頁] 畫面上，按一下 [說明 + 支援]  圖格。
    
     ![說明 + 支援](./media/sql-data-warehouse-get-started-create-support-ticket/help-support.png)
-3. 在 hello 說明 + 支援刀鋒視窗中，按一下 **建立支援要求**。
+3. 在 [說明 + 支援] 刀鋒視窗上，按一下 [建立支援要求] 。
    
-    ![新增支援要求](./media/sql-data-warehouse-get-started-create-support-ticket/create-support-request.png)
+    ![新的支援要求](./media/sql-data-warehouse-get-started-create-support-ticket/create-support-request.png)
    
     <a name="request-quota-change"></a> 
-4. 選取 hello**要求類型**。
+4. 選取 [要求類型] 。
    
     ![要求類型](./media/sql-data-warehouse-get-started-create-support-ticket/request-type.png)
    
    > [!NOTE]
-   > 根據預設，每個 SQL Server (例如 myserver.database.windows.net) 的 **DTU 配額** 為 45,000。 此配額僅是安全限制。 您可以藉由建立支援票證，並選取 增加配額*配額*hello 要求類型。 toocalculate 乘您 DTU 需求時，由 hello 總 hello 7.5 [DWU] [ DWU]所需。 例如，您想要 toohost 兩 DW6000s 上一個 SQL server，則您應該要求 90000 的 DTU 配額。  您可以在 hello 入口網站中檢視您目前的 DTU 耗用量的 hello SQL server 刀鋒視窗。 已暫停且未暫停資料庫會計入 hello DTU 配額。 
+   > 根據預設，每個 SQL Server (例如 myserver.database.windows.net) 的 **DTU 配額** 為 45,000。 此配額僅是安全限制。 您可以藉由建立支援票證，並選取 [配額]  做為要求類型來增加配額。 若要計算 DTU 需求，將所需的總 [DWU][DWU] 乘以 7.5。 例如，如果您想要在一個 SQL Server 上裝載兩個 DW6000，則應該要求 90,000 的 DTU 配額。  您可以在入口網站的 [SQL Server] 刀鋒視窗中檢視目前的 DTU 耗用量。 已暫停和未暫停的資料庫都會計入 DTU 配額。 
    > 
    > 
-5. 選取 hello**訂用帳戶**主機 hello hello 解決問題，您所回報的資料庫。
+5. 選取主控您回報發生問題之資料庫的 [訂用帳戶]  。
    
-    ![訂用帳戶](./media/sql-data-warehouse-get-started-create-support-ticket/subscription.png)
-6. 選取**SQL 資料倉儲**為 hello 資源。
+    ![訂閱](./media/sql-data-warehouse-get-started-create-support-ticket/subscription.png)
+6. 選取 [SQL 資料倉儲]  做為資源。
    
     ![資源](./media/sql-data-warehouse-get-started-create-support-ticket/resource.png)
 7. 選取 [Azure 支援計劃][Azure support plan]。
    
    * **帳單、配額及訂用帳戶管理** 支援。
-   * **協助修正**支援則透過[開發人員][Developer]、[標準][Standard]、[專業直導][Professional Direct]支援或[頂級][Premier]支援來提供。 中斷的修復問題會同時使用 Azure 客戶所發生的問題是合理預期，導致 Microsoft hello 問題。
-   * **開發人員顧問**和**諮詢服務**位於 hello [Professional 直接][ Professional Direct]和[頂級][ Premier]支援層級。 
+   * **協助修正**支援則透過[開發人員][Developer]、[標準][Standard]、[專業直導][Professional Direct]支援或[頂級][Premier]支援來提供。 客戶在使用 Azure 期間如果遇到可合理認為是 Microsoft 所造成的問題，這類問題即屬於可協助修正的問題。
+   * [專業指導][Professional Direct]和[頂級][Premier]支援層級可提供**開發顧問**和**諮詢服務**。 
      
-     如果您有頂級支援計劃，您也可以報告 SQL 資料倉儲相關問題上 hello [Microsoft Premier online 入口網站][Microsoft Premier online portal]。  請參閱[Azure 支援計劃][ Azure support plan] toolearn 深入了解各種支援計劃，包括範圍，回應時間、 定價，hello 等等。如需有關 Azure 支援的常見問題集，請參閱 [Azure 支援常見問題集][Azure support FAQs]。  
+     如果您有頂級支援計劃，您也可以在 [Microsoft Premier 線上入口網站][Microsoft Premier online portal]回報 SQL 資料倉儲的相關問題。  請參閱 [Azure 支援計畫][Azure support plan]，進一步了解包括範圍、回應時間、價格等各種 Azure 支援計畫。如需有關 Azure 支援的常見問題集，請參閱 [Azure 支援常見問題集][Azure support FAQs]。  
      
      ![支援計劃](./media/sql-data-warehouse-get-started-create-support-ticket/support-plan.png)
-8. 選取 hello**問題類型**和**類別**。 我們已在此範例中，選擇 [工具] 當做 hello 問題類型和做為 hello 類別目錄的 「 用戶端工具 」。 
+8. 選取**問題類型**和**類別**。 在此範例中，我們選擇了 [工具] 做為問題類型，選擇 [用戶端工具] 做為類別。 
    
     ![問題類型類別](./media/sql-data-warehouse-get-started-create-support-ticket/problem-type-category.png)
-9. 描述 hello 問題，然後選擇商務影響的 hello 層級。
+9. 描述問題並選擇商業影響層級。
    
     ![問題說明](./media/sql-data-warehouse-get-started-create-support-ticket/problem-description.png)
 10. 將預先填入此支援票證的您的 **連絡資訊** 。 必要時更新此項目。
     
     ![連絡資訊](./media/sql-data-warehouse-get-started-create-support-ticket/contact-info.png)
-11. 按一下**建立**toosubmit hello 支援要求。
+11. 按一下 [建立]  提交支援要求。
 
 ## <a name="monitor-a-support-ticket"></a>監視支援票證
-提交 hello 支援要求之後，hello Azure 支援小組會與您連絡。 toocheck 您要求的狀態和詳細資訊，請按一下**管理支援要求**hello 儀表板上。
+在您提交支援要求之後，Azure 支援小組會與您連絡。 若要檢查您的要求狀態和詳細資料，請在儀表板上按一下 [管理支援要求]  。
 
 ![檢查狀態](./media/sql-data-warehouse-get-started-create-support-ticket/check-status.png)
 
 ## <a name="other-resources"></a>其他資源
-此外，您可以連線以 hello SQL 資料倉儲社群上[堆疊溢位][ Stack Overflow]或 hello [Azure SQL 資料倉儲 MSDN 論壇][ Azure SQL Data Warehouse MSDN forum].
+此外，您可以在 [Stack Overflow][Stack Overflow] 或在 [Azure SQL 資料倉儲 MSDN 論壇][Azure SQL Data Warehouse MSDN forum]上與 SQL 資料倉儲社群聯繫。
 
 <!--Image references--> 
 

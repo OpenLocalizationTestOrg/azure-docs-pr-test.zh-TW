@@ -1,6 +1,6 @@
 ---
-title: "Azure 匯入/匯出磁碟機資訊清單中向上 aaaBacking |Microsoft 文件"
-description: "了解如何 toohave 您的磁碟機資訊清單 hello Microsoft Azure 匯入/匯出服務會自動備份。"
+title: "備份 Azure 匯入/匯出磁碟機資訊清單 | Microsoft Docs"
+description: "了解如何自動備份 Microsoft Azure 匯入/匯出服務的磁碟機資訊清單。"
 author: muralikk
 manager: syadav
 editor: tysonn
@@ -14,18 +14,18 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: f48b97a2cce62714aace2b30a393305202c7ecd9
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 33eb8e1eea8f8aa7b79ef3e54f2b1ed88dc794ae
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="backing-up-drive-manifests-for-azure-importexport-jobs"></a>備份 Azure 匯入/匯出作業的磁碟機資訊清單
 
-磁碟機資訊清單可以自動備份 tooblobs 所設定的 hello`BackupDriveManifest`屬性太`true`在 hello [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate)或[Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) REST API 作業。 根據預設，hello 磁碟機資訊清單不會備份。 hello 磁碟機資訊清單備份會儲存為 hello 與 hello 工作相關聯的儲存體帳戶內的容器中的區塊 blob。 根據預設，hello 容器名稱是`waimportexport`，但是您可以指定不同的名稱在 hello`DiagnosticsPath`屬性時呼叫 hello`Put Job`或`Update Job Properties`作業。 hello 備份資訊清單的 blob 命名 hello 下列格式： `waies/jobname_driveid_timestamp_manifest.xml`。
+可以藉由在 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 或 [Update Job Properties](/rest/api/storageimportexport/jobs#Jobs_Update) REST API 作業中將 `BackupDriveManifest` 屬性設定為 `true`，將磁碟機資訊清單自動備份到 blob。 根據預設，不會備份磁碟機資訊清單。 磁碟機資訊清單備份會在與工作相關聯的儲存體帳戶內，在容器中儲存為區塊 Blob。 根據預設，容器名稱是 `waimportexport`，但是您可以在呼叫 `Put Job` 或 `Update Job Properties` 作業時，於 `DiagnosticsPath` 屬性中指定不同的名稱。 備份資訊清單 blob 會以下列格式命名︰`waies/jobname_driveid_timestamp_manifest.xml`。
 
- 您可以擷取由呼叫 hello URI hello 備份磁碟機資訊清單作業的 hello [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get)作業。 hello blob URI 會傳回在 hello`ManifestUri`屬性每個磁碟機。
+ 您可以藉由呼叫 [Get Job](/rest/api/storageimportexport/jobs#Jobs_Get) 作業來擷取工作的備份磁碟機資訊清單 URI。 會在每個磁碟機的 `ManifestUri` 屬性中傳回 Blob URI。
 
 ## <a name="next-steps"></a>後續步驟
 
-* [使用 hello 匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)
+* [使用匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)

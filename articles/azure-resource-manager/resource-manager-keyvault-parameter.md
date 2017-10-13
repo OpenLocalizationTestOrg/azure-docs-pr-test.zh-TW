@@ -1,6 +1,6 @@
 ---
-title: "使用資源管理員範本 aaaKey 保存庫密碼 |Microsoft 文件"
-description: "顯示如何 toopass 密碼，以從金鑰保存庫做為參數在部署期間。"
+title: "金鑰保存庫密碼與 Resource Manager 範本 | Microsoft Docs"
+description: "示範如何在部署期間從金鑰保存庫中傳遞密碼做為參數。"
 services: azure-resource-manager,key-vault
 documentationcenter: na
 author: tfitzmac
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/25/2017
 ms.author: tomfitz
-ms.openlocfilehash: 0bb7760c95b3b4ef34c9e5cc2e3421be56b5e5e3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1ca72599e67e79d42a3d430dbb13e89ea7265334
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="use-key-vault-toopass-secure-parameter-value-during-deployment"></a>在部署期間使用金鑰保存庫 toopass 安全的參數值
+# <a name="use-key-vault-to-pass-secure-parameter-value-during-deployment"></a>在部署期間使用 Key Vault 以傳送安全的參數值
 
-當您需要做為參數的 toopass 安全的值 （例如密碼） 在部署期間時，您可以擷取從 hello 值[Azure 金鑰保存庫](../key-vault/key-vault-whatis.md)。 您可以參考 hello 金鑰保存庫和參數檔案中的密碼擷取 hello 值。 hello 值絕不會公開，因為您只能參考其金鑰保存庫識別碼。 您不需要 toomanually 輸入 hello 值 hello 密碼每次部署 hello 資源。 hello 金鑰保存庫可以存在於不同的訂用帳戶，於您要部署的 hello 資源群組中。 當參考 hello 金鑰保存庫，您會加入 hello 訂用帳戶 id。
+當您需要在部署期間，傳送安全值 (例如密碼) 做為參數時，您可以從 [Azure Key Vault](../key-vault/key-vault-whatis.md) 擷取值。 您可以藉由參考金鑰保存庫和參數檔案中的密碼來擷取值。 您只參考其金鑰保存庫識別碼，因此該值絕不會公開。 您不需要在每次部署資源時手動輸入密碼的值。 金鑰保存庫可以存在於與您部署的資源群組的不同訂用帳戶中。 當參考金鑰保存庫時，您納入訂用帳戶識別碼。
 
-在建立 hello 金鑰保存庫時，設定 hello *enabledForTemplateDeployment*屬性太*true*。 藉由設定此值 tootrue，您允許存取從資源管理員範本部署期間。  
+建立金鑰保存庫時，將 *enabledForTemplateDeployment* 屬性設定為 *true*。 將此值設定為 true，即表示您允許在部署期間從 Resource Manager 範本存取。  
 
 ## <a name="deploy-a-key-vault-and-secret"></a>部署金鑰保存庫和密碼
 
-toocreate 金鑰保存庫和密碼，請使用 Azure CLI 或 PowerShell。 請注意該 hello 金鑰保存庫都可使用範本部署。 
+若要建立金鑰保存庫與密碼，請使用 Azure CLI 或 PowerShell。 請注意，金鑰保存庫會針對範本部署啟用。 
 
 對於 Azure CLI，請使用：
 
@@ -53,14 +53,14 @@ $secretvalue = ConvertTo-SecureString $password -AsPlainText -Force
 Set-AzureKeyVaultSecret -VaultName $vaultname -Name "examplesecret" -SecretValue $secretvalue
 ```
 
-## <a name="enable-access-toohello-secret"></a>啟用存取 toohello 密碼
+## <a name="enable-access-to-the-secret"></a>啟用密碼的存取權
 
-不論您使用新的金鑰保存庫或其中一個現有，請確定該部署 hello 範本的 hello 使用者可以存取 hello 密碼。 部署範本參考密碼的 hello 使用者必須擁有 hello `Microsoft.KeyVault/vaults/deploy/action` hello 金鑰保存庫的權限。 hello[擁有者](../active-directory/role-based-access-built-in-roles.md#owner)和[參與者](../active-directory/role-based-access-built-in-roles.md#contributor)這兩種角色會授與此存取權。 您也可以建立[自訂角色](../active-directory/role-based-access-control-custom-roles.md)，授與此權限，並新增 hello 使用者 toothat 角色。 如需新增使用者 tooa 角色資訊，請參閱[tooadministrator 角色在 Azure Active Directory 中的指派給使用者](../active-directory/active-directory-users-assign-role-azure-portal.md)。
+不論您使用新的金鑰保存庫或現有的金鑰保存庫，請確定使用者部署的範本可以存取密碼。 部署範本以參考密碼的使用者必須具有金鑰保存庫的 `Microsoft.KeyVault/vaults/deploy/action` 權限。 [擁有者](../active-directory/role-based-access-built-in-roles.md#owner)和[參與者](../active-directory/role-based-access-built-in-roles.md#contributor)角色皆可授與此權限。 您也可以建立會授與此權限的[自訂角色](../active-directory/role-based-access-control-custom-roles.md)，並將使用者新增至該角色。 如需有關將使用者新增至角色的資訊，請參閱[在 Azure Active Directory 中將使用者指派給系統管理員角色](../active-directory/active-directory-users-assign-role-azure-portal.md)。
 
 
 ## <a name="reference-a-secret-with-static-id"></a>使用靜態識別碼參考密碼
 
-收到金鑰保存庫密碼的 hello 範本就像任何其他範本。 這是因為**參考 hello hello 參數檔案，不是 hello 範本中的金鑰保存庫。** 例如，下列範本的 hello 部署 SQL 資料庫，其中包含系統管理員密碼。 hello 密碼參數是設定 tooa 安全字串。 但是，hello 範本未指定這個值來自何處。
+接收金鑰保存庫密碼的範本與其他任何範本都很像。 這是因為**您參考了參數檔案中的金鑰保存庫，而非範本。** 例如，下列範本部署了包含系統管理員密碼的 SQL 資料庫。 密碼參數會設定為安全字串。 但是，範本並未指定該值來自何處。
 
 ```json
 {
@@ -146,7 +146,7 @@ Set-AzureKeyVaultSecret -VaultName $vaultname -Name "examplesecret" -SecretValue
 }
 ```
 
-現在，建立 hello 上述範本參數檔案。 在 hello 參數檔案中，指定符合 hello hello 範本中的 hello 參數名稱的參數。 Hello 參數值，參考 hello hello 金鑰保存庫中的密碼。 您藉由傳遞 hello hello 金鑰保存庫資源識別碼和密碼 hello hello 名稱參考 hello 密碼。 在下列範例的 hello，hello 金鑰保存庫密碼必須已經存在，而且您提供靜態值其資源 id。
+現在，請為前述範本建立參數檔案。 在參數檔案中，指定符合範本中參數名稱的參數。 針對參數值，參考來自金鑰保存庫的密碼。 您可以藉由傳遞金鑰保存庫的資源識別碼和密碼的名稱來參考密碼。 在下列範例中，金鑰保存庫密碼必須已經存在，而且您要針對其資源識別碼提供靜態值。
 
 ```json
 {
@@ -194,9 +194,9 @@ Set-AzureKeyVaultSecret -VaultName $vaultname -Name "examplesecret" -SecretValue
 
 ## <a name="reference-a-secret-with-dynamic-id"></a>使用動態識別碼參考密碼
 
-hello 上一節示範了如何 toopass 靜態資源識別碼 hello 金鑰保存庫密碼。 不過，在某些情況下，您需要 tooreference 而異的依據目前部署的 hello 金鑰保存庫密碼。 在此情況下，您不能在 hello 參數檔案中的硬式編碼 hello 資源識別碼。 不幸的是，您無法以動態方式產生 hello 資源識別碼 hello 參數檔案中因為 hello 參數檔案中不允許範本運算式。
+上一節已說明如何傳遞金鑰保存庫密碼的靜態資源識別碼。 不過，在某些情況下，您需要參考會隨目前的部署而變化的金鑰保存庫密碼。 在該情況下，您將無法在參數檔中硬式編碼資源識別碼。 不幸的是，因為參數檔中不允許使用範本運算式，因此您無法在參數檔中以動態方式產生資源識別碼。
 
-toodynamically 產生金鑰保存庫密碼 hello 的資源 ID，您必須將移到巢狀範本需要 hello 密碼的 hello 資源。 在主要範本中，加入 hello 巢狀的樣板和傳入的參數，包含 hello 動態產生的資源識別碼。
+若要以動態方式產生金鑰保存庫密碼的資源識別碼，您必須將需要密碼的資源移動到巢狀範本。 在主要範本中，您必須新增巢狀範本，並傳入包含動態產生的資源識別碼的參數。
 
 ```json
 {

@@ -1,6 +1,6 @@
 ---
-title: "建立多位元速率資料流-Azure 的內部編碼器使用 live aaaStream |Microsoft 文件"
-description: "本主題描述如何接收多位元速率建立通道 tooset 即時資料流，從內部部署編碼器。 hello 資料流就可以傳送 tooclient 播放應用程式可以透過一個或多個串流端點，使用其中一種 hello 遵循適應性串流通訊協定： HLS、 Smooth Streaming、 DASH。"
+title: "使用會建立多位元速率串流的內部部署編碼器執行即時串流 | Microsoft Docs"
+description: "本主題描述如何讓通道接收內部部署編碼器的多位元速率即時串流。 串流可以隨即透過一或多個串流端點傳遞給用戶端播放應用程式，使用下列其中一個自動調整串流通訊協定：HLS、Smooth Streaming、DASH。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,170 +14,170 @@ ms.devlang: ne
 ms.topic: article
 ms.date: 04/12/2017
 ms.author: cenkd;juliako
-ms.openlocfilehash: 00709cecfc3b5b5dcfaa8f1e4b25bcf9d470d50b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3f6569d32708c42247e0ffec70389f2e0f07389e
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="live-streaming-with-on-premises-encoders-that-create-multi-bitrate-streams"></a>使用會建立多位元速率串流的內部部署編碼器執行即時串流
 ## <a name="overview"></a>概觀
 在 Azure 媒體服務中，通道代表處理即時串流內容的管線。 通道會以兩種方式之一收到即時輸入串流：
 
-* 在內部部署即時編碼器會傳送多位元速率 RTMP 或 Smooth Streaming (分散 MP4) 資料流 toohello 通道不啟用的 tooperform 即時使用 Media Services 編碼。 hello 內嵌資料流通過通道而不需任何進一步處理。 此方法稱為 *傳遞*。 您可以使用下列有多位元速率 Smooth Streaming 做為輸出的即時編碼器的 hello： 媒體 Excel、 Ateme、 想像通訊、 Envivio、 Cisco、 和元素。 下列即時編碼器的 hello 有做為輸出 RTMP: Adobe Flash 媒體即時編碼器、 Telestream wirecast 編碼、 Haivision、 Teradek 和 tricaster 轉錄。 即時編碼器也可以傳送即時編碼請未啟用的單一位元速率資料流 tooa 通道，但我們不建議。 媒體服務會傳遞給要求 hello 資料流 toocustomers。
+* 內部部署即時編碼器會將多位元速率 RTMP 或 Smooth Streaming (分散式 MP4) 串流傳送到未啟用執行媒體服務即時編碼的通道。 內嵌的串流會通過通道，而不需任何進一步處理。 此方法稱為 *傳遞*。 您可以使用下列以多位元速率 Smooth Streaming 做為輸出的即時編碼器：MediaExcel、Ateme、Imagine Communications、Envivio、Cisco 和 Elemental。 下列即時編碼器會以 RTMP 做為輸出：Adobe Flash Media Live Encoder、Telestream Wirecast、Haivision、Teradek 和 Tricaster。 即時編碼器也會將單一位元速率串流傳送至無法用於即時編碼的通道，但是不建議您使用此方法。 媒體服務會將串流傳遞給要求的客戶。
 
   > [!NOTE]
-  > 使用傳遞的方法是 hello toodo 即時串流處理最經濟的方式。
+  > 使用傳遞方法是進行即時串流的最經濟實惠方式。
 
 
-* 在內部部署即時編碼器會將傳送的單一位元速率串流 toohello 頻道時，啟用即時使用其中一種 hello 下列格式的媒體服務編碼 tooperform: RTP (MPEG-TS)、 RTMP、 或 Smooth Streaming (分散 MP4)。 hello 通道之後會執行即時 hello 連入單一位元速率串流 tooa 多位元速率 （自動調整） 視訊資料流的編碼。 媒體服務會傳遞給要求 hello 資料流 toocustomers。
+* 內部部署即時編碼器會傳送單一位元速率串流至通道，可以使用下列格式之一，以媒體服務執行即時編碼：RTP (MPEG-TS)、RTMP 或 Smooth Streaming (分散的 MP4)。 通道接著會執行即時編碼，將連入的單一位元速率串流編碼成多位元速率 (自動調整) 視訊串流。 媒體服務會將串流傳遞給要求的客戶。
 
-Hello 媒體服務 2.10 從版本開始，當您建立的通道，您可以指定您要如何您通道 tooreceive hello 輸入資料流。 您也可以指定是否要 hello 通道 tooperform 即時將資料流的編碼方式。 您有兩個選擇：
+從媒體服務 2.10 版起，當您建立通道時，可以指定您的通道接收輸入串流的方式。 您也可以指定是否要讓通道執行您串流的即時編碼。 您有兩個選擇：
 
-* **Pass Through**： 指定這個值，如果您計劃 toouse 在內部部署即時編碼器，會將多位元速率串流 （傳遞資料流） 做為輸出。 在此情況下，透過 toohello 輸出而不經過任何編碼傳送 hello 內送資料流。 這是通道的 hello hello 2.10 版前行為。 本主題提供有關使用此類型通道的詳細資訊。
-* **即時編碼**： 如果您計劃 toouse Media Services tooencode 單一位元速率即時串流 tooa 多位元速率串流，請選擇此值。 請注意，在**執行**狀態中離開即時編碼通道將會產生費用。 我們建議您即時資料流的事件之後立即停止執行的頻道是完整 tooavoid 額外每小時費用。 媒體服務會傳遞給要求 hello 資料流 toocustomers。
+* **傳遞**：如果您想要使用會以多位元速率串流 (傳遞串流) 做為輸出的內部部署即時編碼器，請指定這個值。 在此情況下，連入的串流會傳遞至輸出，無須任何編碼。 這是在 2.10 版以前的通道行為。 本主題提供有關使用此類型通道的詳細資訊。
+* **即時編碼**：如果您打算使用媒體服務將單一位元速率即時串流編碼成多位元速率串流，請選擇這個值。 請注意，在**執行**狀態中離開即時編碼通道將會產生費用。 建議您在即時串流事件完成之後立即停止執行的通道，以避免額外的每小時費用。 媒體服務會將串流傳遞給要求的客戶。
 
 > [!NOTE]
-> 本主題討論屬性未啟用的通道 tooperform 即時編碼。 如需使用通道資訊啟用 tooperform 即時編碼，請參閱 <<c0> [ 使用 Azure Media Services toocreate 多位元速率串流的即時串流](media-services-manage-live-encoder-enabled-channels.md)。
+> 本主題討論未啟用而無法執行即時編碼的通道屬性。 如需使用已啟用執行即時編碼通道的相關資訊，請參閱 [使用 Azure 媒體服務建立多位元速率串流的即時串流](media-services-manage-live-encoder-enabled-channels.md)。
 >
 >
 
-下列圖表中的 hello 表示會使用內部部署即時編碼器 toohave 多位元速率 RTMP 或分散的 MP4 (Smooth Streaming) 資料流，做為輸出的即時資料流工作流程。
+下圖顯示一個即時串流工作流程，這個流程利用內部部署即時編碼器以多位元速率 RTMP 或 Fragmented MP4 (Smooth Streaming) 串流做為輸出。
 
 ![即時工作流程][live-overview]
 
 ## <a id="scenario"></a>常見即時串流案例
-hello 下列步驟說明有關建立常見即時資料流的應用程式的工作。
+下列步驟描述當我們建立一般即時串流應用程式時，會涉及到的各種工作。
 
-1. 視訊攝影機 tooa 電腦連線。 啟動並設定內部部署即時編碼器，讓它以多位元速率 RTMP 或 Fragmented MP4 (Smooth Streaming) 串流做為輸出。 如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
+1. 將攝影機連接到電腦。 啟動並設定內部部署即時編碼器，讓它以多位元速率 RTMP 或 Fragmented MP4 (Smooth Streaming) 串流做為輸出。 如需詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
 
     您也可以在建立通道之後執行此步驟。
 2. 建立並啟動通道。
 
-3. 擷取 hello 通道的內嵌 URL。
+3. 擷取通道內嵌 URL。
 
-    hello 即時編碼器會使用 hello 內嵌 URL toosend hello 資料流 toohello 通道。
-4. 擷取 hello 通道預覽 URL。
+    即時編碼器會使用內嵌 URL 來傳送串流到通道。
+4. 擷取通道預覽 URL。
 
-    使用您的通道可正常接收即時資料流 hello 這個 URL tooverify。
+    使用此 URL 來確認您的通道會正確接收即時串流。
 5. 建立程式。
 
-    當您使用 hello Azure 入口網站時，建立程式也會建立資產。
+    使用 Azure 入口網站時，建立程式也會建立資產。
 
-    當您使用 hello.NET SDK 或 REST 時，您需要 toocreate 資產，並指定 toouse 此資產時建立程式。
-6. 發佈與 hello 程式相關聯的 hello 資產。   
+    使用 .NET SDK 或 REST 時，您必須建立資產並指定要在建立程式時使用此資產。
+6. 發行與程式相關聯的資產。   
 
     >[!NOTE]
-    >建立 Azure Media Services 帳戶時，**預設**串流端點就會加入 tooyour 帳戶 hello**已停止**狀態。 hello 串流的端點要從中 toostream 內容已經在 hello toobe**執行**狀態。
+    >建立 Azure 媒體服務帳戶時，**預設**串流端點會新增至 [已停止] 狀態的帳戶。 您想要串流內容的串流端點必須處於 [執行中] 狀態。
 
-7. 當您準備好 toostart 串流並封存，請啟動 hello 程式。
+7. 當您準備好開始串流和封存時，請啟動程式。
 
-8. （選擇性） hello 即時編碼器可以信號的 toostart 公告。 hello 公告 hello 輸出資料流中插入。
+8. 即時編碼器會收到啟動公告的信號 (選擇性)。 公告會插入輸出串流中。
 
-9. 每當您想 toostop 串流並封存 hello 事件時，請停止 hello 程式。
+9. 每當您想要停止串流處理和封存事件時，請停止程式。
 
-10. 刪除 hello 程式 （並選擇性地刪除 hello 資產）。     
+10. 刪除程式 (並選擇性地刪除資產)。     
 
 ## <a id="channel"></a>通道和其相關元件的說明
 ### <a id="channel_input"></a>頻道輸入 (內嵌) 組態
 #### <a id="ingest_protocols"></a>嵌入串流通訊協定
-媒體服務會使用多位元速率分散 MP4 和多位元速率 RTMP 做為串流通訊協定來支援內嵌即時摘要。 當 hello RTMP 內嵌串流通訊協定已選取時，兩個內嵌 （輸入） 端點會建立 hello 通道：
+媒體服務會使用多位元速率分散 MP4 和多位元速率 RTMP 做為串流通訊協定來支援內嵌即時摘要。 選取 RTMP 內嵌串流通訊協定時，會為通道建立兩個 ingest(input) 端點：
 
-* **主要 URL**： 指定 hello 完整的 URL 的 hello 通道主要 RTMP 內嵌端點。
-* **次要 URL** （選擇性）： 指定 hello 完整的 URL 的 hello 通道次要 RTMP 內嵌端點。
+* **主要 URL**：指定通道主要 RTMP 內嵌端點的完整 URL。
+* **次要 URL** (選用)：指定通道次要 RTMP 內嵌端點的完整 URL。
 
-Hello 次要 URL 適用於您想 tooimprove hello 持久性與容錯您內嵌資料流 （以及編碼器容錯移轉及容錯功能），特別是針對下列案例的 hello:
+如果您想要改善內嵌串流的持久性、容錯 (以及編碼器容錯移轉和容錯)，特別是針對下列案例，請使用次要 URL：
 
-- 單一雙推送 tooboth 主要及次要 Url 的編碼器：
+- 單一編碼器雙重推送至主要和次要 URL：
 
-    hello 這個案例的主要用途是 tooprovide 復原 toonetwork 波動越來越 jitters。 部分 RTMP 編碼器無法妥善處理網路中斷連線。 網路中斷連接發生失敗時，可能會停止編碼編碼器，與然後不會傳送 hello 緩衝處理資料時重新連線。 這會導致不連續和資料遺失。 網路中斷連線可能因為網路錯誤或維護 hello Azure 端上。 主要/次要 Url 減少 hello 網路問題，並提供受控制的升級程序。 每次發生排程的網路中斷連接，Media Services 會管理 hello 主要和次要資料庫中斷連接，以及提供延遲 hello 兩者之間中斷連線。 編碼器有時間 tookeep 傳送資料，然後重新連接一次。 hello hello 順序中斷連線可以是隨機的但永遠之間會有延遲主要/次要資料庫或次要/主要資料庫的 Url。 在此案例中，hello 編碼器仍是 hello 單一失敗點。
+    這個案例的主要目的是為網路變動起伏和快速變換提供恢復功能。 部分 RTMP 編碼器無法妥善處理網路中斷連線。 當發生網路中斷連線時，編碼器可能會停止編碼，然後在重新連線時不會傳送緩衝處理過的資料。 這會導致不連續和資料遺失。 網路中斷連線會因為網路不佳或 Azure 端正在進行維護而發生。 主要/次要 URL 會減少網路問題，並提供受控制的升級程序。 每次已排程的網路發生中斷連線時，媒體服務會管理主要和次要中斷連線，並提供兩者之間的延遲中斷連線。 接著，編碼器會有時間持續傳送資料，並再次重新連線。 中斷連線的順序可以是隨機的，但是主要/次要或次要/主要 URL 之間一定會有延遲。 在這種情況下，編碼器仍是單一失敗點。
 
-- 多個編碼器，以每個編碼器發送 tooa 專用點：
+- 多個編碼器的情況下，每個編碼器會推送到專用點：
 
-    這種情況下會提供兩個編碼器和擷取備援。 在此案例中，encoder1 推播通知 toohello 主要 URL，並 encoder2 將推送 toohello 次要 URL。 當編碼器失敗時，hello 其他編碼器可以保留傳送資料。 可以維護資料冗餘，因為媒體服務不會中斷 hello 在主要和次要 Url 相同的時間。 此案例假設編碼器會進行同步處理的時間，並完全提供 hello 相同的資料。  
+    這種情況下會提供兩個編碼器和擷取備援。 在這個案例中，encoder1 會推送至主要 URL，而 encoder2 會推送至次要 URL。 當編碼器失敗時，其他編碼器可以持續傳送資料。 可以維持資料備援，因為媒體服務不會同時中斷主要和次要 URL 的連線。 此案例假設編碼器是時間同步處理，並提供完全相同的資料。  
 
-- 雙推送 tooboth 主要及次要 Url 的多個編碼器：
+- 多個編碼器雙重推送至主要和次要 URL：
 
-    在此案例中，這兩個編碼器發送資料 tooboth 主要及次要 Url。 這提供 hello 最佳可靠性和容錯功能，以及資料重複。 此案例可容許兩個編碼器皆失敗並且中斷連線，即使一個編碼器停止運作。 假設編碼器會進行同步處理的時間，並且提供完全 hello 相同的資料。  
+    在此案例中，兩個編碼器會將資料推送至主要和次要 URL。 這提供最佳的可靠性及容錯功能，以及資料備援。 此案例可容許兩個編碼器皆失敗並且中斷連線，即使一個編碼器停止運作。 它假設編碼器是時間同步處理，並提供完全相同的資料。  
 
 如需 RTMP 即時編碼器的詳細資訊，請參閱 [Azure 媒體服務 RTMP 支援和即時編碼器](http://go.microsoft.com/fwlink/?LinkId=532824)。
 
 #### <a name="ingest-urls-endpoints"></a>內嵌 URL (端點)
-通道所提供的輸入的端點 （內嵌 URL） 您指定在 hello 即時編碼程式，讓可以推送 hello 編碼器串流 tooyour 通道。   
+通道提供一個輸入端點 (內嵌 URL)，您可以在即時編碼器中指定這個端點，這樣編碼器就可以將資料流推播到您的通道。   
 
-您可以取得 hello 內嵌 Url，當您建立 hello 通道。 針對您 tooget 這些 Url，hello 通道中並沒有 toobe hello**執行**狀態。 當您準備好 toostart 推送資料 toohello 通道時，必須在 hello hello 通道**執行**狀態。 Hello 通道開始擷取資料之後，您可以預覽您的資料流透過 hello 預覽 URL。
+當您建立通道時，您可以取得內嵌 URL。 若您要取得這些 URL，通道不一定要在 **執行** 狀態。 當您準備好開始將資料推入通道，通道必須處於 **執行** 狀態。 通道開始內嵌資料後，您可以透過預覽 URL 來預覽資料流。
 
-您可以選擇透過 SSL 連線來內嵌 Fragmented MP4 (Smooth Streaming) 即時資料流。 tooingest over SSL，請確定 tooupdate hello 內嵌 URL tooHTTPS。 目前，您無法內嵌 RTMP over SSL。
+您可以選擇透過 SSL 連線來內嵌 Fragmented MP4 (Smooth Streaming) 即時資料流。 若要透過 SSL 擷取，請務必將擷取 URL 更新為 HTTPS。 目前，您無法內嵌 RTMP over SSL。
 
 #### <a id="keyframe_interval"></a>主要畫面格間隔
-當您使用內部部署即時編碼器 toogenerate 多位元速率串流時，hello 主要畫面格間隔可指定所使用的外部編碼器的 hello 的 hello 圖片群組 (GOP) 的持續時間。 Hello 通道收到此連入的資料流之後，您可以提供您的即時串流 tooclient 播放應用程式中任何 hello 下列格式： Smooth Streaming、 HTTP （虛線） 和 HTTP Live Streaming (HLS) 透過動態彈性資料流。 在執行即時資料流時，會一律動態封裝 HLS。 根據預設，媒體服務會自動計算 hello HLS 區段封裝比率 （每個區段的片段） 接收來自即時編碼程式 hello hello 主要畫面格間隔為基礎。
+當您使用內部部署即時編碼器來產生多位元速率資料流時，主要畫面格間隔會指定圖片群組 (GOP) 持續期間以供該外部編碼器使用。 在通道收到此內送串流之後，您可以再將即時串流傳遞至下列任一形式的用戶端播放應用程式：Smooth Streaming、HTTP 動態調適性串流 (DASH) 及 HTTP 即時串流 (HLS)。 在執行即時資料流時，會一律動態封裝 HLS。 依預設，媒體服務會根據從即時編碼器收到的主要畫面格間隔，自動計算 HLS 區段封裝比例 (每一個區段的片段)。
 
-下表中的 hello 顯示 hello 區段持續時間的計算方式：
+下表顯示如何計算區段持續時間：
 
 | 主要畫面格間隔 | HLS 區段封裝比例 (FragmentsPerSegment) | 範例 |
 | --- | --- | --- |
-| 小於或等於 too3 秒 |3:1 |如果 KeyFrameInterval （或 GOP） 是 2 秒，hello 預設 HLS 區段封裝比率會是 3 too1。 這會建立 6 秒 HLS 區段。 |
-| 3 too5 秒 |2:1 |如果 KeyFrameInterval （或 GOP） 是 4 秒，hello 預設 HLS 區段封裝比率會是 2 too1。 這會建立 8 秒 HLS 區段。 |
-| 大於 5 秒 |1:1 |如果 KeyFrameInterval （或 GOP） 6 秒，hello 預設 HLS 區段封裝比率會是 1 too1。 這會建立 6 秒 HLS 區段。 |
+| 小於或等於 3 秒 |3:1 |如果 KeyFrameInterval (或 GOP) 為 2 秒鐘，則預設 HLS 區段封裝比率會是 3 比 1。 這會建立 6 秒 HLS 區段。 |
+| 3 到 5 秒 |2:1 |如果 KeyFrameInterval (或 GOP) 為 4 秒鐘，則預設 HLS 區段封裝比率會是 2 比 1。 這會建立 8 秒 HLS 區段。 |
+| 大於 5 秒 |1:1 |如果 KeyFrameInterval (或 GOP) 為 6 秒鐘，則預設 HLS 區段封裝比率會是 1 比 1。 這會建立 6 秒 HLS 區段。 |
 
-您可以變更設定 hello 通道的輸出和設定上 ChannelOutputHls FragmentsPerSegment hello 每個區段的片段比率。
+您可以設定通道的輸出並在 ChannelOutputHls 上設定 FragmentsPerSegment，即可變更每個區段比例的片段。
 
-您也可以設定上 ChanneInput hello KeyFrameInterval 屬性，以變更 hello 主要畫面格間隔值。 如果您明確設定 KeyFrameInterval，hello FragmentsPerSegment 透過先前所述的 hello 規則計算 HLS 區段封裝比率。  
+您也可以在 ChanneInput 上設定 KeyFrameInterval 屬性，即可變更主要畫面格間隔值。 如果您明確設定 KeyFrameInterval，就會透過先前所述的規則計算 FragmentsPerSegment HLS 區段封裝比率。  
 
-如果您明確設定 KeyFrameInterval 和 FragmentsPerSegment，Media Services 會使用您設定的 hello 值。
+如果您明確設定 KeyFrameInterval 和 FragmentsPerSegment，媒體服務會使用您所設定的值。
 
 #### <a name="allowed-ip-addresses"></a>允許的 IP 位址
-您可以定義可允許 toopublish 視訊 toothis 通道的 hello IP 位址。 允許的 IP 位址可以指定為 hello 下列其中一種：
+您可以定義允許將視訊發行到這個通道的 IP 位址。 可以將允許的 IP 位址指定為下列其中一項︰
 
 * 單一 IP 位址 (例如 10.0.0.1)
 * 使用 IP 位址和 CIDR 子網路遮罩的 IP 範圍 (例如 10.0.0.1/22)
 * 使用 IP 位址和小數點十進位子網路遮罩的 IP 範圍 (例如 10.0.0.1(255.255.252.0))
 
-如果未指定 IP 位址而且也未定義規則，則任何 IP 位址都不允許。 tooallow 任何 IP 位址，建立一個規則，並設定 0.0.0.0/0。
+如果未指定 IP 位址而且也未定義規則，則任何 IP 位址都不允許。 若要允許任何 IP 位址，請建立規則，並設定 0.0.0.0/0。
 
 ### <a name="channel-preview"></a>通道預覽
 #### <a name="preview-urls"></a>預覽 URL
-通道提供預覽端點 (預覽 URL) toopreview 並驗證您的資料流，然後再進一步處理和傳遞。
+通道會在進一步處理和傳遞之前，提供您用來預覽及驗證串流的預覽端點 (預覽 URL)。
 
-當您建立 hello 通道時，您可以取得 hello 預覽 URL。 對於您 tooget hello URL，hello 通道中並沒有 toobe hello**執行**狀態。 Hello 通道開始擷取資料之後，您可以預覽您的資料流。
+當您建立通道時，您可以取得預覽 URL。 若您要取得此 URL，通道不一定要在 **執行** 狀態。 通道開始內嵌資料後，您就可以預覽您的資料流。
 
-目前，傳送 hello 預覽資料流，只能在分散 MP4 (Smooth Streaming) 格式，不論 hello 指定的輸入的類型。 您可以使用 hello [Smooth Streaming 的健全狀況監視器](http://smf.cloudapp.net/healthmonitor)player tootest hello smooth streaming。 您也可以使用播放程式裝載在 Azure 入口網站 tooview hello 您的資料流。
+無論指定的輸入類型為何，目前預覽串流都只能以分散式 MP4 (Smooth Streaming) 格式傳遞。 您可以使用 [Smooth Streaming 健全狀況監視](http://smf.cloudapp.net/healthmonitor)播放器測試 Smooth Stream。 您也可以使用裝載於 Azure 入口網站中的播放器來檢視您的串流。
 
 #### <a name="allowed-ip-addresses"></a>允許的 IP 位址
-您可以定義可允許 tooconnect toohello 預覽端點的 hello IP 位址。 如果沒有指定 IP 位址，將會允許任何 IP 位址。 允許的 IP 位址可以指定為 hello 下列其中一種：
+您可以定義允許連接到預覽端點的 IP 位址。 如果沒有指定 IP 位址，將會允許任何 IP 位址。 可以將允許的 IP 位址指定為下列其中一項︰
 
 * 單一 IP 位址 (例如 10.0.0.1)
 * 使用 IP 位址和 CIDR 子網路遮罩的 IP 範圍 (例如 10.0.0.1/22)
 * 使用 IP 位址和小數點十進位子網路遮罩的 IP 範圍 (例如 10.0.0.1(255.255.252.0))
 
 ### <a name="channel-output"></a>通道輸出
-通道輸出的相關資訊，請參閱 hello[主要畫面格間隔](#keyframe_interval)> 一節。
+如需通道輸出的相關資訊，請參閱[主要畫面格間隔](#keyframe_interval)一節。
 
 ### <a name="channel-managed-programs"></a>通道管理程式
-通道是與程式，您可以使用 toocontrol hello 發佈和儲存區段中的即時資料流相關聯。 通道會管理程式。 hello 通道和程式的關聯性是內容的非常類似 tootraditional 媒體，其中通道具有常數資料流，而程式是內容的該頻道上的已設定領域的 toosome 逾時事件。
+通道與程式相關聯，而您可以使用程式來控制即時串流中區段的發行和儲存。 通道會管理程式。 「通道」與「程式」的關係與傳統媒體十分類似，其中，通道具有固定的內容串流，而且程式的範圍是該通道上的某個計時事件。
 
-您可以指定您想要 tooretain hello 記錄內容 hello 程式設定 hello 的 hello 數**封存時間長度**長度。 這個值可以設定為 5 分鐘 tooa 最多 25 個小時的最小值。 封存時間長度也會規定 hello 最大用戶端可以從 hello 目前即時位置搜尋的時間量。 程式可以透過 hello 指定時間內，執行但落後 hello 時間長度的內容會持續遭到捨棄。 這個屬性的值也會決定資訊清單所能成長的時間長度 hello 用戶端。
+設定 [ **封存時間範圍** ] 長度，即可指定您想要保留程式之錄製內容的時數。 此值可以設為最少 5 分鐘到最多 25 個小時。 封存時間範圍長度也會指出用戶端可以從目前即時位置及時往回搜尋的最大時間量。 程式在超過指定的時間量後還是可以執行，但是會持續捨棄落後時間範圍長度的內容。 此屬性的這個值也會決定用戶端資訊清單可以成長為多長的時間。
 
-每個程式都與儲存 hello 串流處理內容的資產。 資產是 hello Azure 儲存體帳戶中，對應的 tooa 區塊 blob 容器和 hello 資產中的 hello 檔案會儲存成該容器中的 blob。 toopublish hello 程式讓您的客戶可以檢視 hello 資料流中，您必須建立 OnDemand 定位器 hello 相關聯的資產。 您可以使用這個定位器 toobuild 您可以提供 tooyour 用戶端的串流 URL。
+每個程式都與儲存串流內容的資產相關聯。 資產會對應到 Azure 儲存體帳戶中的區塊 Blob 容器，而資產中的檔案則會儲存為該容器中的 Blob。 若要發行程式讓您的客戶檢視串流，您必須建立相關聯資產的隨選定位器。 您可以使用此定位器來建置可提供給用戶端的串流 URL。
 
-一個通道可支援同時執行的程式，因此您可以建立多個封存 hello toothree 註冊相同的傳入資料流。 您可以視需要發行和封存事件的不同部分。 例如，假設您的商務需求是 tooarchive 6 小時的程式，但 toobroadcast 只有 hello 過去 10 分鐘。 tooaccomplish，您需要 toocreate 兩個同時執行的程式。 一個程式設 tooarchive 6 小時的 hello 事件，但 hello 程式不會發行。 hello 其他程式的組 tooarchive 為 10 分鐘，並發佈此程式。
+通道支援最多三個同時執行的程式，因此您可以建立相同內送串流的多個封存。 您可以視需要發行和封存事件的不同部分。 例如，假設您的商務需求是封存 6 小時的程式，但只廣播最後 10 分鐘。 為了達成此目的，您必須建立兩個同時執行的程式。 其中一個程式設定為封存 6 小時的事件，但是未發行該程式。 另一個程式則設定為封存 10 分鐘，並發行程式。
 
-您不應該將現有程式重複用於新的事件。 而是針對每個事件建立新的程式。 當您準備好 toostart 串流並封存，請啟動 hello 程式。 每當您想 toostop 串流並封存 hello 事件時，請停止 hello 程式。
+您不應該將現有程式重複用於新的事件。 而是針對每個事件建立新的程式。 當您準備好開始串流和封存時，請啟動程式。 每當您想要停止串流處理和封存事件時，請停止程式。
 
-toodelete 封存內容時，會停止和刪除 hello 程式，然後再刪除 hello 相關聯的資產。 如果程式使用資產，則無法刪除它。 必須先刪除 hello 程式。
+若要刪除封存的內容，請停止並刪除程式，然後刪除相關聯的資產。 如果程式使用資產，則無法刪除它。 必須先刪除程式。
 
-即使您停止並刪除 hello 程式之後，則使用者可以在直到您刪除 hello 資產串流處理將封存的內容，視視訊。 如果您想 tooretain hello 封存的內容，但沒有可供串流處理它，請刪除串流定位器 hello。
+即使在停止並刪除程式之後，使用者還是可以視需求將封存的內容串流為視訊，直到您未刪除資產。 如果想要保留封存的內容，但不要讓它可進行串流處理，請刪除串流定位器。
 
 ## <a id="states"></a>通道狀態和計費
-Hello 之通道的目前狀態的可能值包括：
+通道目前狀態的可能值包括︰
 
-* **停止**： 這是在建立之後的 hello 通道 hello 初始狀態。 處於此狀態，可以更新 hello 通道內容，但不是允許串流。
-* **啟動**: hello 通道正在啟動。 在此狀態期間允許任何更新或串流。 Hello 通道發生錯誤時，傳回 toohello**已停止**狀態。
-* **執行**: hello 通道能夠處理即時資料流。
-* **停止**: hello 通道正在停止。 在此狀態期間允許任何更新或串流。
-* **刪除**： 正在刪除 hello 通道。 在此狀態期間允許任何更新或串流。
+* **已停止**：這是通道建立後的初始狀態。 在此狀態下，通道屬性可以更新，但是不允許串流。
+* **啟動中**：正在啟動通道。 在此狀態期間允許任何更新或串流。 如果發生錯誤，通道會回到**已停止**狀態。
+* **執行中**︰通道可以處理即時串流。
+* **停止中**：正在停止通道。 在此狀態期間允許任何更新或串流。
+* **刪除中**：正在刪除通道。 在此狀態期間允許任何更新或串流。
 
-hello 下表顯示如何通道狀態地圖 toohello 計費模式。
+下表顯示通道狀態如何對應至計費模式。
 
 | 通道狀態 | 入口網站 UI 指標 | 是否計費？ |
 | --- | --- | --- | --- |
@@ -187,31 +187,31 @@ hello 下表顯示如何通道狀態地圖 toohello 計費模式。
 | **已停止** |**已停止** |否 |
 
 ## <a id="cc_and_ads"></a>隱藏式字幕和廣告插入
-下表中的 hello 示範字幕和廣告插入支援的標準。
+下表示範支援的隱藏式字幕和廣告插入標準。
 
 | 標準 | 注意事項 |
 | --- | --- |
-| CEA-708 和 EIA-608 (708/608) |Cea-708 和 eia-608 是字幕 hello 美國和加拿大地區的標準。<p><p>目前，字幕功能才會支援傳送嗨編碼的輸入資料流中。 您需要 toouse 即時媒體編碼程式可以將 608 或 708 字幕插入傳送 tooMedia 服務的 hello 編碼資料流中。 Media Services 來提供 hello 與插入的字幕 tooyour 檢視器的內容。 |
-| .ismt 裡面附帶字幕 (Smooth Streaming 文字播放軌) |Media Services 動態封裝可讓您的用戶端 toostream 內容中任何 hello 下列格式： DASH、 HLS 或 Smooth Streaming。 不過，如果您所擷取的分散 MP4 (Smooth Streaming) 含有.ismt （Smooth Streaming 文字播放軌） 內的標題，您可以傳送 hello 資料流 tooonly Smooth Streaming 用戶端。 |
-| SCTE-35 |Scte-35 是已使用 toocue 廣告插入的數位訊號系統。 下游接收器會使用 hello 訊號 toosplice 廣告插入 hello 資料流 hello 分配的時間。 Scte-35 必須以疏鬆播放軌 hello 輸入資料流中傳送。<p><p>分散帶有廣告訊號的 hello 只支援輸入資料流格式的目前 MP4 (Smooth Streaming)。 hello，才支援輸出格式也是 Smooth Streaming。 |
+| CEA-708 和 EIA-608 (708/608) |CEA-708 和 EIA-608 是美國和加拿大的隱藏式字幕標準。<p><p>目前只有編碼的輸入資料流附帶字幕時，才能播放字幕。 您使用的即時媒體編碼器，必須可以將 608 或 708 字幕插入至已傳送至媒體服務的已編碼資料流。 媒體服務會將內含字幕的內容傳遞給您的檢視器。 |
+| .ismt 裡面附帶字幕 (Smooth Streaming 文字播放軌) |媒體服務動態封裝功能可讓您的用戶端傳送以下任何格式的內容：DASH、HLS 或 Smooth Streaming。 不過，如果您內嵌 Fragmented MP4 (Smooth Streaming) 而且在 .ismt 裡面附帶字幕 (Smooth Streaming 文字播放軌)，您就只能將資料流傳遞至 Smooth Streaming 用戶端。 |
+| SCTE-35 |SCTE-35 是數位訊號系統，可用來提示廣告插入。 下游接收端會使用信號並根據分配的時間，將廣告切割成資料流。 SCTE 35 必須以鬆散播放軌的形式傳送至輸入資料流中。<p><p>目前，唯一支援附帶廣告訊號的輸入資料流格式是 Fragmented MP4 (Smooth Streaming)。 唯一支援的輸出格式也是 Smooth Streaming。 |
 
 ## <a id="considerations"></a>考量
-當您使用內部部署即時編碼器 toosend 多位元速率串流 tooa 通道時，適用於下列條件約束的 hello:
+使用內部部署即時編碼器並將多位元速率資料流傳送到通道時，請注意以下限制：
 
-* 請確定您有足夠可用網際網路連線 toosend 資料 toohello 內嵌點。
+* 確定您的網際網路速度夠快，足以將資料傳送至內嵌點。
 * 使用次要內嵌 URL 時會佔用額外的頻寬。
-* hello 傳入多位元速率串流可以有 10 個視訊的品質等級 （層級） 的最大值和最多 5 個音訊音軌。
-* hello 最高平均位元速率 hello 視訊品質等級的其中之一應少於 10 Mbps。
-* hello hello 平均彈性位元速率所有 hello 視訊和音訊資料流的彙總應少於 25 Mbps。
-* 您無法變更 hello hello 通道時的輸入通訊協定，或其相關聯的程式正在執行。 如果您需要不同的通訊協定，則應該為每個輸入通訊協定建立個別的通道。
-* 您可以在通道中內嵌單一位元速率。 但因為 hello 通道不會處理 hello 資料流，hello 用戶端應用程式也會收到單一位元速率資料流。 (不建議這個選項。)
+* 內送的多位元速率資料流最多可以有 10 個視訊品質等級 (亦稱為圖層)，以及最多 5 個音軌。
+* 任何視訊品質等級的最高平均位元速率，應低於 10 Mbps。
+* 所有視訊和音訊串流的平均位元速率彙總，應低於 25 Mbps。
+* 通道或其相關聯程式正在執行時，您無法變更輸入通訊協定。 如果您需要不同的通訊協定，則應該為每個輸入通訊協定建立個別的通道。
+* 您可以在通道中內嵌單一位元速率。 但是，因為通道不會處理串流，用戶端應用程式也會收到單一位元速率資料流。 (不建議這個選項。)
 
-以下是其他考量相關的 tooworking 與通道和相關的元件：
+以下是其他與通道和相關元件應用有關的注意事項：
 
-* 每次您重新設定 hello 即時編碼器，呼叫 hello**重設**hello 通道上的方法。 您重設 hello 通道之前，您會有 toostop hello 程式。 在重設 hello 通道之後，重新啟動 hello 程式。
-* 只有當它在 hello 時才能停止通道**執行**狀態和 hello 通道上的所有程式都已停止。
-* 根據預設，您可以加入只有 5 個通道 tooyour Media Services 帳戶。 如需詳細資訊，請參閱 [配額和限制](media-services-quotas-and-limitations.md)。
-* 您會在通道處於 hello 時，才需要付費**執行**狀態。 如需詳細資訊，請參閱 toohello[通道狀態和計費](media-services-live-streaming-with-onprem-encoders.md#states)> 一節。
+* 每當您重新設定即時編碼器，請呼叫通道上的 **重設** 方法。 重設通道之前，您必須停止程式。 重設通道之後，請重新啟動程式。
+* 只有當通道處於**執行中**的狀態，且通道上的所有程式皆已停止時，才能停止通道。
+* 依預設，您最多只能在媒體服務帳戶中新增 5 個通道。 如需詳細資訊，請參閱 [配額和限制](media-services-quotas-and-limitations.md)。
+* 只有當您的通道處於 **執行中** 狀態時，才會向您計費。 如需詳細資訊，請參閱[通道狀態和帳單寄送](media-services-live-streaming-with-onprem-encoders.md#states)一節。
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]

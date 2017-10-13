@@ -1,6 +1,6 @@
 ---
 title: "教學課程：Azure Active Directory 與 Amazon Web Services (AWS) 整合 | Microsoft Docs"
-description: "了解 tooconfigure 的單一登入 Azure Active Directory 與 Amazon Web Services (AWS) 之間。"
+description: "了解如何設定 Azure Active Directory 與 Amazon Web Services (AWS) 之間的單一登入。"
 services: active-directory
 documentationCenter: na
 author: jeevansd
@@ -14,120 +14,120 @@ ms.topic: article
 ms.date: 07/20/2017
 ms.author: jeedes
 ms.reviewer: jeedes
-ms.openlocfilehash: 1b79572ace63f6174ce4fa014c49bf44bd728228
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0fb9c8f428368271b548e3f174726fa01ea910c5
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="tutorial-azure-active-directory-integration-with-amazon-web-services-aws"></a>教學課程：Azure Active Directory 與 Amazon Web Services (AWS) 整合
 
-在此教學課程中，您學會如何 toointegrate Amazon Web Services (AWS) 與 Azure Active Directory (Azure AD)。
+在本教學課程中，您將了解如何整合 Amazon Web Services (AWS) 與 Azure Active Directory (Azure AD)。
 
-與 Azure AD 整合 Amazon Web Services (AWS) 可以提供下列優點 hello:
+Amazon Web Services (AWS) 與 Azure AD 整合提供下列優點：
 
-- 您可以控制存取 tooAmazon Web Services (AWS) 的 Azure AD 中
-- 您可以使用其 Azure AD 帳戶啟用您的使用者 tooautomatically get 登入 tooAmazon Web Services (AWS) （單一登入）
-- 您可以管理您的帳戶，在單一中央位置-hello Azure 入口網站
+- 您可以在 Azure AD 中控制可存取 Amazon Web Services (AWS) 的人員
+- 您可以讓使用者使用他們的 Azure AD 帳戶自動登入 Amazon Web Services (AWS) (單一登入)
+- 您可以在 Azure 入口網站中集中管理您的帳戶
 
-如果您想 tooknow 詳細與 Azure AD SaaS 應用程式整合，請參閱[什麼是應用程式存取和單一登入與 Azure Active Directory](active-directory-appssoaccess-whatis.md)。
+若您想了解 SaaS app 與 Azure AD 整合的更多詳細資訊，請參閱 [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入](active-directory-appssoaccess-whatis.md)。
 
 <!--## Overview
 
-tooenable single sign-on with Amazon Web Services (AWS), it must be configured toouse Azure Active Directory as an identity provider. This guide provides information and tips on how tooperform this configuration in Amazon Web Services (AWS).
+To enable single sign-on with Amazon Web Services (AWS), it must be configured to use Azure Active Directory as an identity provider. This guide provides information and tips on how to perform this configuration in Amazon Web Services (AWS).
 
 >[!Note]: 
->This embedded guide is brand new in hello new Azure portal, and we’d love toohear your thoughts. Use hello Feedback ? button at hello top of hello portal tooprovide feedback. hello older guide for using hello [Azure classic portal](https://manage.windowsazure.com) tooconfigure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
+>This embedded guide is brand new in the new Azure portal, and we’d love to hear your thoughts. Use the Feedback ? button at the top of the portal to provide feedback. The older guide for using the [Azure classic portal](https://manage.windowsazure.com) to configure this application can be found [here](https://github.com/Azure/AzureAD-App-Docs/blob/master/articles/en-us/_/sso_configure.md).-->
 
 
 ## <a name="prerequisites"></a>必要條件
 
-tooconfigure Azure AD 整合與 Amazon Web Services (AWS)，您需要下列項目 hello:
+若要設定 Azure AD 與 Amazon Web Services (AWS) 整合，您需要下列項目：
 
 - Azure AD 訂用帳戶
 - 已啟用 Amazon Web Services (AWS) 單一登入的訂用帳戶
 
 > [!NOTE]
-> 本教學課程中的步驟 tootest hello，不建議使用實際執行環境。
+> 若要測試本教學課程中的步驟，我們不建議使用生產環境。
 
-在本教學課程 tootest hello 步驟，您應該遵循這些建議：
+若要測試本教學課程中的步驟，您應該遵循這些建議：
 
 - 除非必要，否則您不應使用生產環境，。
 - 如果您沒有 Azure AD 試用環境，您可以在[這裡](https://azure.microsoft.com/pricing/free-trial/)取得一個月試用。
 
 ## <a name="scenario-description"></a>案例描述
-在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程所述的 hello 案例包含兩個主要建置組塊：
+在本教學課程中，您會在測試環境中測試 Azure AD 單一登入。 本教學課程中說明的案例由二個主要建置組塊組成：
 
-1. 新增 Amazon Web Services (AWS) 從 hello 組件庫
+1. 從資源庫新增 Amazon Web Services (AWS)
 2. 設定並測試 Azure AD 單一登入
 
-## <a name="adding-amazon-web-services-aws-from-hello-gallery"></a>新增 Amazon Web Services (AWS) 從 hello 組件庫
-tooconfigure hello 整合 Amazon Web Services (AWS) 至 Azure AD，您需要從受管理的 SaaS 應用程式的 hello 圖庫 tooyour 清單 tooadd Amazon Web Services (AWS)。
+## <a name="adding-amazon-web-services-aws-from-the-gallery"></a>從資源庫新增 Amazon Web Services (AWS)
+若要設定 Amazon Web Services (AWS) 與 Azure AD 整合，您需要從資源庫將 Amazon Web Services (AWS) 新增到受管理的 SaaS App 清單。
 
-**tooadd Amazon Web Services (AWS) 從 hello 組件庫中，執行下列步驟的 hello:**
+**若要從資源庫新增 Amazon Web Services (AWS)，請執行下列步驟：**
 
-1. 在 [hello ** [Azure 入口網站](https://portal.azure.com)**，請在 hello 左邊的導覽面板中按一下**Azure Active Directory**圖示。 
+1. 在 **[Azure 入口網站](https://portal.azure.com)**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。 
 
     ![Active Directory][1]
 
-2. 瀏覽過**企業應用程式**。 然後跳過**所有應用程式**。
+2. 瀏覽至 [企業應用程式]。 然後移至 [所有應用程式]。
 
     ![應用程式][2]
     
-3. 按一下**新增**上 hello hello 對話方塊上方的按鈕。
+3. 按一下對話方塊頂端的 [新增] 按鈕。
 
     ![應用程式][3]
 
-4. 在 [hello] 搜尋方塊中，輸入**Amazon Web Services (AWS)**。
+4. 在搜尋方塊中，輸入 **Amazon Web Services (AWS)**。
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/tutorial_amazonwebservices_search.png)
 
-5. 在 [hello [結果] 窗格中，選取 [ **Amazon Web Services (AWS)**，然後按一下 [**新增**按鈕 tooadd hello 應用程式。
+5. 在結果窗格中，選取 [Amazon Web Services (AWS)]，然後按一下 [新增] 按鈕以新增應用程式。
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/tutorial_amazonwebservices_addfromgallery.png)
 
 ##  <a name="configuring-and-testing-azure-ad-single-sign-on"></a>設定並測試 Azure AD 單一登入
 在本節中，您會以名為 "Britta Simon" 的測試使用者為基礎，設定及測試與 Amazon Web Services (AWS) 搭配運作的 Azure AD 單一登入。
 
-單一登入 toowork，Azure AD 需要 tooknow hello 的對等項目的使用者在 Amazon Web Services (AWS) 是 tooa 使用者在 Azure AD 中。 換句話說，Azure AD 使用者與 hello 相關的使用者在 Amazon Web Services (AWS) 之間的連結關聯性需要 toobe 建立。
+若要讓單一登入運作，Azure AD 必須知道 Amazon Web Services (AWS) 與 Azure AD 中互相對應的使用者。 換句話說，必須在 Azure AD 使用者和 Amazon Web Services (AWS) 中的相關使用者之間建立連結關聯性。
 
-此連結關聯性建立 hello 將值指派為 hello**使用者名稱**做為 hello hello 值的 Azure AD 中**Username** Amazon Web Services (AWS)。
+建立此連結關聯性的方法是將 Azure AD 中**使用者名稱**的值指定為 Amazon Web Services (AWS) 中 **Username** 的值。
 
-tooconfigure 及 Amazon Web Services (AWS) 與 Azure AD 單一登入測試，您必須遵循的建置組塊 toocomplete hello:
+若要使用 Amazon Web Services (AWS) 來設定並測試 Azure AD 單一登入，您需要完成下列建置組塊：
 
-1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** -tooenable 使用者 toouse 這項功能。
-2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** -tootest Azure AD 單一登入與許 Simon。
-3. **[建立測試使用者 Amazon Web Services](#creating-an-amazon-web-services-test-user) ** -toohave 許 Simon 在 Amazon Web Services (AWS) 是連結的 toohello Azure AD 的她的表示法的對應項目。
-4. **[指派 hello Azure AD 的測試使用者](#assigning-the-azure-ad-test-user)** -tooenable 許 Simon toouse Azure AD 單一登入。
-5. **[測試單一登入](#testing-single-sign-on)** -tooverify 是否 hello 組態工作。
+1. **[設定 Azure AD 單一登入](#configuring-azure-ad-single-sign-on)** - 讓您的使用者能夠使用此功能。
+2. **[建立 Azure AD 測試使用者](#creating-an-azure-ad-test-user)** - 使用 Britta Simon 測試 Azure AD 單一登入。
+3. **[建立 Amazon Web Services 測試使用者](#creating-an-amazon-web-services-test-user)** - 使 Amazon Web Services (AWS) 中對應的 Britta Simon 連結到她在 Azure AD 中的代表項目。
+4. **[指派 Azure AD 測試使用者](#assigning-the-azure-ad-test-user)** - 讓 Britta Simon 能夠使用 Azure AD 單一登入。
+5. **[Testing Single Sign-On](#testing-single-sign-on)** - 驗證組態是否能運作。
 
 ### <a name="configuring-azure-ad-single-sign-on"></a>設定 Azure AD 單一登入
 
-在本節中，您啟用 Azure AD 單一登入 hello Azure 入口網站中，並在 Amazon Web Services (AWS) 應用程式中設定單一登入。
+在本節中，您會在 Azure 入口網站中啟用 Azure AD 單一登入，然後在您的 Amazon Web Services (AWS) 應用程式中設定單一登入。
 
-**tooconfigure Azure AD 單一登入與 Amazon Web Services (AWS) 中，執行下列步驟的 hello:**
+**若要使用 Amazon Web Services (AWS) 設定 Azure AD 單一登入，請執行下列步驟：**
 
-1. 在 hello Azure 網站上 hello **Amazon Web Services (AWS)**應用程式整合頁面上，按一下 [**單一登入**。
+1. 在 Azure 入口網站的 [Amazon Web Services (AWS)] 應用程式整合頁面上，按一下 [單一登入]。
 
     ![設定單一登入][4]
 
-2. 在 [hello**單一登入**] 對話方塊中，做為**模式**選取**SAML 型登入**tooenable 單一登入。
+2. 在 [單一登入] 對話方塊上，選取 [以 SAML 為基礎的登入] 作為 [模式]，以啟用單一登入。
  
     ![設定單一登入](./media/active-directory-saas-amazon-web-service-tutorial/tutorial_amazonwebservices_samlbase.png)
 
-3. 在 [hello **Amazon Web Services (AWS) 網域和 Url**區段中，hello 使用者沒有 tooperform 任何步驟，因為與 Azure 已預先整合 hello 應用程式。
+3. 在 [Amazon Web Services (AWS) 網域和 URL] 區段中，使用者不需要執行任何步驟，因為應用程式已經與 Azure 預先整合。
 
     ![設定單一登入](./media/active-directory-saas-amazon-web-service-tutorial/tutorial_amazonwebservices_url.png)
 
-4. 在 [hello **SAML 簽章憑證**區段中，按一下**中繼資料 XML**然後儲存您的電腦上的 hello XML 檔案。
+4. 在 [SAML 簽署憑證] 區段上，按一下 [中繼資料 XML]，然後將 XML 檔案儲存在您的電腦上。
     
     ![設定單一登入](./media/active-directory-saas-amazon-web-service-tutorial/tutorial_amazonwebservices_certificate.png)
 
-5. hello Amazon Web Services (AWS) 的軟體應用程式預期 hello SAML 判斷提示，以特定格式。 請設定下列宣告為此應用程式的 hello。 您可以從 hello 管理 hello 這些屬性的值"**使用者屬性**」 一節，在應用程式整合頁面上。 hello 下列螢幕擷取畫面會顯示這個範例。
+5. Amazon Web Services (AWS) 軟體應用程式預期要有特定格式的 SAML 判斷提示。 請設定此應用程式的下列宣告。 您可以在應用程式整合頁面的 [使用者屬性] 區段中管理這些屬性的值。 以下螢幕擷取畫面顯示上述的範例。
 
     ![設定單一登入](./media/active-directory-saas-amazon-web-service-tutorial/tutorial_amazonwebservices_attribute.png)
 
-6. 在 hello**使用者屬性**區段 hello**單一登入**] 對話方塊中，上述 hello 映像中所示設定 SAML 權杖屬性和執行下列步驟的 hello:
+6. 在 [單一登入] 對話方塊的 [使用者屬性] 區段中，如上圖所示設定 SAML 權杖屬性，然後執行下列步驟：
     
     | 屬性名稱  | 屬性值 | 命名空間 |
     | --------------- | --------------- | --------------- |
@@ -135,25 +135,25 @@ tooconfigure 及 Amazon Web Services (AWS) 與 Azure AD 單一登入測試，您
     | 角色            | user.assignedroles |  https://aws.amazon.com/SAML/Attributes |
     
     >[!TIP]
-    >您需要 tooconfigure hello 使用者佈建在 Azure AD toofetch AWS 主控台全部 hello 角色。 請參閱 hello 佈建步驟。
+    >您需要設定在 Azure AD 中的使用者佈建，以從 AWS 主控台擷取所有角色。 請參閱下面的佈建步驟。
 
-    a. 按一下**加入屬性**tooopen hello**加入屬性**對話方塊。
+    a. 按一下 [新增屬性] 來開啟 [新增屬性] 對話方塊。
 
     ![設定單一登入](./media/active-directory-saas-amazon-web-service-tutorial/tutorial_attribute_04.png)
 
-    b. 在 [hello**名稱**文字方塊中，該資料列所顯示的型別 hello 屬性名稱。
+    b. 在 [名稱] 文字方塊中，輸入該資料列所顯示的屬性名稱。
 
     ![設定單一登入](./media/active-directory-saas-amazon-web-service-tutorial/tutorial_attribute_05.png)
 
-    c. 從 hello**值**清單，顯示該資料列的型別 hello 屬性值。 指定上方加入 hello 命名空間值。
+    c. 在 [值] 清單中，選取該列所顯示的值。 如上所述新增 [命名空間] 值。
     
     d. 按一下 [確定] 。
 
-7. 按一下**儲存**toosave hello 設定在 Azure 上的按鈕。
+7. 按一下 [儲存] 按鈕以在 Azure 上儲存設定。
 
     ![設定單一登入](./media/active-directory-saas-amazon-web-service-tutorial/tutorial_general_400.png)
 
-8. 在不同的瀏覽器視窗中，以系統管理員身分登入 tooyour Amazon Web Services (AWS) 公司網站。
+8. 在不同的瀏覽器視窗中，以系統管理員身分登入您的 Amazon Web Services (AWS) 公司網站。
 
 9. 按一下 [主控台首頁] 。
    
@@ -167,19 +167,19 @@ tooconfigure 及 Amazon Web Services (AWS) 與 Azure AD 單一登入測試，您
    
     ![設定單一登入][13]
 
-12. 在 [hello**設定提供者**對話方塊頁面上，執行下列步驟的 hello:
+12. 在 [設定提供者]  對話方塊頁面上，執行下列步驟：
    
     ![設定單一登入][14]
  
     a. 針對 [提供者類型]，選取 [SAML]。
 
-    b. 在 [hello**提供者名稱**文字方塊中，輸入提供者名稱 (例如： *WAAD*)。
+    b. 在 [提供者名稱] 文字方塊中，輸入提供者名稱 (例如：*WAAD*)。
 
-    c. tooupload 您下載的中繼資料檔案中，按一下 [**選擇檔案**。
+    c. 若要上傳您下載的中繼資料檔，請按一下 [選擇檔案]。
 
     d. 按一下頁面底部的 [新增] 。
 
-13. 在 [hello**驗證提供者資訊**對話方塊頁面上，按一下 [**建立**。 
+13. 在 [驗證提供者資訊] 對話方塊頁面上，按一下 [建立]。 
     
     ![設定單一登入][15]
 
@@ -187,136 +187,136 @@ tooconfigure 及 Amazon Web Services (AWS) 與 Azure AD 單一登入測試，您
     
     ![設定單一登入][16]
 
-15. 在 [hello**設定角色名稱**] 對話方塊中，執行下列步驟的 hello: 
+15. 在 [設定角色名稱]  對話方塊上，執行下列步驟： 
     
     ![設定單一登入][17] 
 
-    a. 在 [hello**角色名稱**文字方塊中，輸入角色名稱 (例如： *TestUser*)。 
+    a. 在 [角色名稱] 文字方塊中，輸入角色名稱 (例如：*TestUser*)。 
 
     b. 按一下頁面底部的 [新增] 。
 
-16. 在 [hello**選取角色類型**] 對話方塊中，執行下列步驟的 hello: 
+16. 在 [選取角色類型]  對話方塊上，執行下列步驟： 
     
     ![設定單一登入][18] 
 
     a. 選取 [識別提供者存取的角色]。 
 
-    b. 在 [hello**授與網頁單一登入 (WebSSO) 存取 tooSAML 提供者**區段中，按一下**選取**。
+    b. 在 [授與 SAML 提供者的 Web 單一登入 (WebSSO) 存取] 區段中，按一下 [選取]。
 
-17. 在 [hello**建立信任**] 對話方塊中，執行下列步驟的 hello:  
+17. 在 [建立信任]  對話方塊上，執行下列步驟：  
     
     ![設定單一登入][19] 
 
-    a. 為 SAML 提供者中，選取您先前建立的 hello SAML 提供者 (例如： *WAAD*)
+    a. 針對 SAML 提供者，請選取您先前建立的 SAML 提供者 (例如：WAAD)
   
     b. 按一下頁面底部的 [新增] 。
 
-18. 在 [hello**確認角色信任**] 對話方塊中，按一下**下一個步驟**。
+18. 在 [確認角色信任] 對話方塊上，按 [下一步]。
     
     ![設定單一登入][32]
 
-19. 在 [hello**附加原則**] 對話方塊中，按一下 [**下一個步驟**。
+19. 在 [附加原則] 對話方塊上，按 [下一步]。
     
     ![設定單一登入][33]
 
-20. 在 [hello**檢閱**] 對話方塊中，執行下列步驟的 hello:
+20. 在 [檢閱]  對話方塊上，執行下列步驟：
     
     ![設定單一登入][34]
  
     a. 按一下 [建立角色]。
 
-    b. 建立所需的角色，並將它們對應 toohello 身分識別提供者。
+    b. 建立所需數量的角色，並將它們對應至識別提供者。
 
-21. 現在設定 hello 使用者佈建 toofetch AWS 全部 hello 角色
+21. 立即設定使用者佈建，以從 AWS 擷取所有角色。
 
-    a. 使用根帳號的 hello AWS 主控台登入
+    a. 在 AWS 主控台中使用您的根帳戶登入
 
-    b. 在右下角的 hello 頂端按一下您名稱，然後按一下 [hello**我的安全性認證**選項。 這會開啟一個畫面顯示警告訊息。 按一下 [hello] 按鈕**安全性認證**按鈕 toopass hello 螢幕。
+    b.這是另一個 C# 主控台應用程式。 在右上角按一下您的名稱，然後按一下 [我的安全性認證] 選項。 這會開啟一個畫面顯示警告訊息。 按一下 [安全性認證] 按鈕以通過此畫面。
         
        ![設定單一登入][36]
 
        ![設定單一登入][37]
 
-    c. 在 [hello 便捷鍵區段按一下 hello**建立新的存取金鑰**] 按鈕。 這會產生存取金鑰識別碼 hello 和語彙基元的值。
+    c. 在 [存取金鑰] 區段中按一下 [建立新的存取金鑰] 按鈕。 這會產生存取金鑰識別碼和權杖值。
     
        ![設定單一登入][38]
 
     d. 複製這兩個值，同時加以下載，您才不會遺失它。
 
-    e. 在 [hello Azure 入口網站中，在 hello Amazon Web Services (AWS) 應用程式整合頁面上，按一下 [**佈建**。
+    e. 在 Azure 入口網站的 [Amazon Web Services (AWS)] 應用程式整合頁面上，按一下 [佈建]。
         
        ![設定單一登入][35]
 
-    f. Hello 佈建模式設定太**自動**
+    f. 將 [佈建模式] 設定為 [自動]。
         
        ![設定單一登入][39]
 
-    g. 現在在 hello **clientsecret**和**密碼語彙基元**hello 對應值，您從 AWS 主控台] 複製貼上。
+    g. 現在於 [clientsecret] 和 [祕密權杖] 中，貼上您從 AWS 主控台複製的對應值。
     
-    h. 您可以按一下 hello**測試連接**按鈕 tootest hello 連線。 一旦成功，就可以開始佈建連接器 hello。
+    h. 您可以按一下 [測試連線] 按鈕來測試連線能力。 一旦成功，您就可以啟動佈建連接器。
        
        ![設定單一登入][40]
 
-    i. 現在啟用 hello 佈建狀態太**上**。 這樣會啟動擷取 hello 角色從 hello 應用程式。
+    i. 現在讓 [佈建狀態] 設定為 [開啟]。 這會開始從應用程式擷取角色。
 
        ![設定單一登入][41]
 
     > [!NOTE]
-    > 執行 azure AD 佈建服務每個從 AWS 某些時間 toosync hello 角色之後。 您應該會看到所有 hello 身分識別提供者都連接至 Azure AD AWS 角色，而且您可以指派 hello 應用程式 toousers 或群組時使用它們。
+    > Azure AD 佈建服務會每隔一段時間執行一次，以從 AWS 同步處理角色。 您應該會看到 Azure AD 中所有識別提供者附加的 AWS 角色，而且您可以在將應用程式指派給使用者或群組時使用這些角色。
 
 <!--### Next steps
 
-tooensure users can sign-in tooAmazon Web Services (AWS) after it has been configured toouse Azure Active Directory, review hello following tasks and topics:
+To ensure users can sign-in to Amazon Web Services (AWS) after it has been configured to use Azure Active Directory, review the following tasks and topics:
 
-- User accounts must be pre-provisioned into Amazon Web Services (AWS) prior toosign-in. tooset this up, see Provisioning.
+- User accounts must be pre-provisioned into Amazon Web Services (AWS) prior to sign-in. To set this up, see Provisioning.
  
-- Users must be assigned access tooAmazon Web Services (AWS) in Azure AD toosign-in. tooassign users, see Users.
+- Users must be assigned access to Amazon Web Services (AWS) in Azure AD to sign-in. To assign users, see Users.
  
-- tooconfigure access polices for Amazon Web Services (AWS) users, see Access Policies.
+- To configure access polices for Amazon Web Services (AWS) users, see Access Policies.
  
-- For additional information on deploying single sign-on toousers, see [this article](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#deploying-azure-ad-integrated-applications-to-users).-->
+- For additional information on deploying single sign-on to users, see [this article](https://docs.microsoft.com/azure/active-directory/active-directory-appssoaccess-whatis#deploying-azure-ad-integrated-applications-to-users).-->
 
 
 ### <a name="creating-an-azure-ad-test-user"></a>建立 Azure AD 測試使用者
-hello 本節目標在於 toocreate hello 呼叫許 Simon 的 Azure 入口網站中的測試使用者。
+本節的目標是要在 Azure 入口網站中建立一個名為 Britta Simon 的測試使用者。
 
 ![建立 Azure AD 使用者][100]
 
-**toocreate 測試使用者在 Azure AD 中，執行下列步驟的 hello:**
+**若要在 Azure AD 中建立測試使用者，請執行下列步驟：**
 
-1. 在 [hello **Azure 入口網站**，在 hello 左側的導覽窗格中，按一下**Azure Active Directory**圖示。
+1. 在 **Azure 入口網站**的左方瀏覽窗格中，按一下 [Azure Active Directory] 圖示。
 
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/create_aaduser_01.png) 
 
-2. 跳過**使用者和群組**按一下**所有使用者**toodisplay hello 使用者清單。
+2. 移至 [使用者和群組]，然後按一下 [所有使用者] 以顯示使用者清單。
     
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/create_aaduser_02.png) 
 
-3. 在 hello hello 對話方塊頂端按一下**新增**tooopen hello**使用者**對話方塊。
+3. 在對話方塊的頂端，按一下 [新增] 以開啟 [使用者] 對話方塊。
  
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/create_aaduser_03.png) 
 
-4. 在 [hello**使用者**對話方塊頁面上，執行下列步驟的 hello:
+4. 在 [使用者]  對話頁面上，執行下列步驟：
  
     ![建立 Azure AD 測試使用者](./media/active-directory-saas-amazon-web-service-tutorial/create_aaduser_04.png) 
 
-    a. 在 [hello**名稱**文字方塊中，輸入**BrittaSimon**。
+    a. 在 [名稱] 文字方塊中，輸入 **BrittaSimon**。
 
-    b. 在 [hello**使用者名**文字方塊中，型別 hello**電子郵件地址**BrittaSimon。
+    b.這是另一個 C# 主控台應用程式。 在 [使用者名稱] 文字方塊中，輸入 BrittaSimon 的**電子郵件地址**。
 
-    c. 選取**顯示密碼**記下 hello hello 值**密碼**。
+    c. 選取 [顯示密碼] 並記下 [密碼] 的值。
 
     d. 按一下 [建立] 。
  
 ### <a name="creating-an-amazon-web-services-test-user"></a>建立 Amazon Web Services 測試使用者
 
-在訂單 tooenable Azure AD 使用者 toolog tooAmazon Web Services (AWS) 中，它們必須佈建到 Amazon Web Services (AWS)。 在 hello 案例 Amazon Web Services (AWS) 中，佈建須手動進行。
+若要讓 Azure AD 使用者能夠登入 Amazon Web Services (AWS)，必須將他們佈建到 Amazon Web Services (AWS) 中。 Amazon Web Services (AWS) 需以手動方式佈建。
 
-**tooprovision 使用者帳戶，執行下列步驟的 hello:**
+**若要佈建使用者帳戶，請執行下列步驟：**
 
-1. 登入 tooyour **Amazon Web Services (AWS)**以系統管理員身分的公司網站。
+1. 以系統管理員身分登入您的 **Amazon Web Services (AWS)** 公司網站。
 
-2. 按一下 hello**主控台首頁**圖示。 
+2. 按一下 [主控台首頁]  圖示。 
    
     ![設定單一登入][11]
 
@@ -324,35 +324,35 @@ hello 本節目標在於 toocreate hello 呼叫許 Simon 的 Azure 入口網站�
    
     ![設定單一登入][28]
 
-4. 在 [hello 儀表板，按一下 [**使用者**，然後按一下 [**建立新的使用者**。 
+4. 在儀表板中，按一下 [使用者]，然後按一下 [建立新使用者]。 
    
     ![設定單一登入][29]
 
-5. Hello 建立使用者在對話方塊上，執行下列步驟的 hello: 
+5. 在 [建立使用者] 對話方塊中，執行下列步驟： 
    
     ![設定單一登入][30]   
     
-    a. 在 [hello**輸入使用者名稱**等文字方塊中，輸入 Brita Simon 的使用者名稱 (userprincipalname) 在 Azure AD 中。
+    a. 在 [輸入使用者名稱] 文字方塊中，輸入 Brita Simon 在 Azure AD 中的使用者名稱 (userprincipalname)。
 
     b. 按一下 [建立]。
         
-### <a name="assigning-hello-azure-ad-test-user"></a>指派 hello Azure AD 的測試使用者
+### <a name="assigning-the-azure-ad-test-user"></a>指派 Azure AD 測試使用者
 
-在本節中，以啟用許 Simon toouse Azure 單一登入授與他們存取 tooAmazon Web Services (AWS)。
+在本節中，您會將 Amazon Web Services (AWS) 的存取權授與 Britta Simon，讓她能夠使用 Azure 單一登入。
 
 ![指派使用者][200] 
 
-**tooassign 許 Simon tooAmazon Web Services (AWS)，執行下列步驟的 hello:**
+**若要將 Britta Simon 指派給 Amazon Web Services (AWS)，請執行下列步驟：**
 
-1. 在 hello Azure 入口網站，開啟 hello 應用程式檢視，然後導覽 toohello 目錄檢視，並跳過**企業應用程式**然後按一下 [**所有應用程式**。
+1. 在 Azure 入口網站中，開啟應用程式檢視，接著瀏覽至目錄檢視並移至 [企業應用程式]，然後按一下 [所有應用程式]。
 
     ![指派使用者][201] 
 
-2. 在 [hello] 應用程式清單中，選取**Amazon Web Services (AWS)**。
+2. 在應用程式清單中，選取 [Amazon Web Services (AWS)] 。
 
     ![設定單一登入](./media/active-directory-saas-amazon-web-service-tutorial/tutorial_amazonwebservices_app.png) 
 
-3. 在左側 hello hello 功能表上，按一下**使用者和群組**。
+3. 在左側功能表中，按一下 [使用者和群組]。
 
     ![指派使用者][202] 
 
@@ -360,23 +360,23 @@ hello 本節目標在於 toocreate hello 呼叫許 Simon 的 Azure 入口網站�
 
     ![指派使用者][203]
 
-5. 在**使用者和群組**對話方塊中，選取**許 Simon** hello 使用者] 清單中。
+5. 在 [使用者和群組] 對話方塊上，選取 [使用者] 清單中的 [Britta Simon]。
 
 6. 按一下 [使用者和群組] 對話方塊上的 [選取] 按鈕。
 
-7. 在**選取角色**索引標籤，選取 hello hello 使用者適當的角色。 所有這些角色會顯示 hello 角色名稱以及身分識別提供者名稱。 如此一來，您可以輕鬆地識別 AWS hello 角色。
+7. 在 [選取角色] 索引標籤上，為使用者選取適當的角色。 所有角色都會以角色名稱和識別提供者名稱顯示。 如此一來，您可以輕鬆地從 AWS 識別角色。
 
 8. 按一下 [新增指派] 對話方塊上的 [指派] 按鈕。
     
 ### <a name="testing-single-sign-on"></a>測試單一登入
 
-在本節中，您可以測試您 Azure AD 單一登入的組態 hello 存取面板。
+在本節中，您會使用存取面板來測試您的 Azure AD 單一登入設定。
 
-當您按一下的 hello Amazon Web Services (AWS) 磚 hello 存取面板中時，您應該取得自動登入 tooyour Amazon Web Services (AWS) 應用程式。 
+當您在存取面板中按一下 [Amazon Web Services (AWS)] 圖格時，應該會自動登入您的 Amazon Web 服務 (AWS) 應用程式。 
 
 ## <a name="additional-resources"></a>其他資源
 
-* [如何教學課程清單 tooIntegrate SaaS 應用程式與 Azure Active Directory](active-directory-saas-tutorial-list.md)
+* [如何與 Azure Active Directory 整合 SaaS 應用程式的教學課程清單](active-directory-saas-tutorial-list.md)
 * [什麼是搭配 Azure Active Directory 的應用程式存取和單一登入？](active-directory-appssoaccess-whatis.md)
 
 

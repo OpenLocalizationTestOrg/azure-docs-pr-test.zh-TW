@@ -1,6 +1,6 @@
 ---
-title: "aaaUse hello Azure 入口網站 toocreate IoT 中樞 |Microsoft 文件"
-description: "如何 toocreate、 管理及刪除透過 hello Azure 入口網站的 Azure IoT 中樞。 其中包括定價層、調整、安全性和傳訊組態的相關資訊。"
+title: "使用 Azure 入口網站建立 IoT 中樞 | Microsoft Docs"
+description: "如何透過 Azure 入口網站建立、管理和刪除 Azure IoT 中樞。 其中包括定價層、調整、安全性和傳訊組態的相關資訊。"
 services: iot-hub
 documentationcenter: 
 author: dominicbetts
@@ -14,52 +14,52 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/26/2017
 ms.author: dobett
-ms.openlocfilehash: 383968c90ee7ef3bff85a6c90efbf5f0e8fbb208
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bca7eea5f44bbed3b784b56edaac235161b43e5e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="create-an-iot-hub-using-hello-azure-portal"></a>建立 IoT 中心使用 hello Azure 入口網站
+# <a name="create-an-iot-hub-using-the-azure-portal"></a>使用 Azure 入口網站建立 IoT 中樞
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
 本文章說明：
 
-* 如何 toofind hello IoT 中樞 hello Azure 入口網站中的服務。
-* 如何 toocreate 並管理 IoT 中樞。
+* 如何在 Azure 入口網站中找到 IoT 中樞服務。
+* 如何建立和管理 IoT 中樞。
 
-## <a name="where-toofind-hello-iot-hub-service"></a>其中 toofind hello IoT 中心服務
+## <a name="where-to-find-the-iot-hub-service"></a>IoT 中樞服務的所在位置
 
-您可以在下列位置 hello 入口網站中的 hello 找到 hello IoT 中樞服務：
+您可以在入口網站的下列位置中找到 IoT 中樞服務：
 
 * 選擇 [+ 新增]，然後選擇 [物聯網]。
-* 在 hello Marketplace，選擇 **物聯網**。
+* 在 Marketplace 中，選擇 [物聯網]。
 
 ## <a name="create-an-iot-hub"></a>建立 IoT 中樞
 
-您可以建立 IoT 中心使用 hello 下列方法：
+您可以使用下列方法建立 IoT 中樞：
 
-* hello **+ 新增**選項會開啟 hello 下列螢幕擷取畫面所示的 hello 刀鋒視窗。 建立 hello IoT 中樞，透過這個方法，以及透過 hello marketplace hello 步驟完全相同。
-* 在 hello Marketplace，選擇 **建立**tooopen hello 刀鋒視窗 hello 下列螢幕擷取畫面所示。
+* [+ 新增] 選項會開啟下列螢幕擷取畫面中顯示的刀鋒視窗。 透過這個方法以及透過 Marketplace 建立 IoT 中樞的步驟完全相同。
+* 在 Marketplace 中，選擇 [建立] 以開啟下列螢幕擷取畫面中顯示的刀鋒視窗。
 
-hello 下列各節說明 hello 幾個步驟 toocreate IoT 中心：
+下列幾節說明建立 IoT 中樞的幾個步驟：
 
-### <a name="choose-hello-name-of-hello-iot-hub"></a>選擇 hello hello IoT 中樞名稱
+### <a name="choose-the-name-of-the-iot-hub"></a>選擇 IoT 中樞的名稱
 
-toocreate IoT 中樞，您必須命名 hello IoT 中樞。 此名稱不得與任何 IoT 中樞之名稱重複。
+若要建立 IoT 中樞，您必須替 IoT 中樞命名。 此名稱不得與任何 IoT 中樞之名稱重複。
 
 [!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
 
-### <a name="choose-hello-pricing-tier"></a>選擇定價層的 hello
+### <a name="choose-the-pricing-tier"></a>選擇定價層。
 
-您可以從 4 個層級中選擇：**免費**、**標準 1**、**標準 2** 和**標準 S3**。 只有 500 裝置 toobe 連線 toohello IoT 中樞，並 too8，每天 000 訊息上，可讓 hello 免費層。
+您可以從 4 個層級中選擇：**免費**、**標準 1**、**標準 2** 和**標準 S3**。 免費層只允許 500 個裝置連接至 IoT 中樞，每天最多 8,000 封訊息。
 
-**標準 S1**： 大量的每個產生的少量資料的裝置與 IoT 解決方案使用 hello S1 版本。 每個單位的 hello S1 edition 可讓向上 too400，000 到所有連線的裝置每天的訊息。
+**標準 S1**：如果 IoT 解決方案擁有大量裝置，但每個裝置只會產生少量資料，請使用 S1 版本。 S1 版本的每個單位可讓您跨所有連接的裝置，每天傳輸高達 400,000 封訊息。
 
-**標準 S2**： 使用 hello S2 edition 的 IoT 解決方案所在的裝置會產生大量的資料。 每個單位的 hello S2 edition 可讓向上 too6 百萬個訊息每日之間所有連線的裝置。
+**標準 S2**：如果 IoT 解決方案中的裝置會產生大量資料，請使用 S2 版本。 S2 版本的每個單位可讓您跨所有連接的裝置，每天傳輸高達 6 百萬封訊息。
 
-**標準 S3**： 產生大量資料的 IoT 解決方案使用 hello S3 版本。 每個單位的 hello S3 edition 可讓向上 too300 百萬個訊息每日之間所有連線的裝置。
+**標準 S3**：如果 IoT 解決方案會產生大量資料，請使用 S3 版本。 S3 版本的每個單位可讓您跨所有連接的裝置，每天傳輸高達 3 億封訊息。
 
 ![][4]
 
@@ -68,77 +68,77 @@ toocreate IoT 中樞，您必須命名 hello IoT 中樞。 此名稱不得與任
 
 ### <a name="iot-hub-units"></a>IoT 中樞單位
 
-hello 訊息允許每個每日的單位數目取決於您的中樞定價層。 例如，如果您想 hello IoT 中樞 toosupport 輸入的 700,000 訊息時，您可以選擇 S1 層的兩個單位。
+每天每單位允許的訊息數目取決於您的中樞定價層。 例如，如果您想要 IoT 中樞支援 700,000 封訊息的輸入，您可以選擇 2 個 S1 層單位。
 
-### <a name="device-toocloud-partitions-and-resource-group"></a>裝置 toocloud 資料分割和資源群組
+### <a name="device-to-cloud-partitions-and-resource-group"></a>裝置到雲端分割及資源群組
 
-您可以變更 hello IoT 中樞的資料分割數目。 hello 的資料分割的預設值為 4，您可以從 hello 下拉式清單選擇不同的數字。
+您可以變更 IoT 中樞的分割數目。 分割的預設數目是 4，您可以從下拉式清單中選擇不同的數字。
 
-您不需要 tooexplicitly 建立空的資源群組。 當您建立資源時，您可以選擇在新的任一 toocreate，或使用現有的資源群組。
+您不需要明確建立空的資源群組。 您可以在建立資源時，選擇建立新的資源群組，或使用現有的資源群組。
 
 ![][5]
 
 ### <a name="choose-subscription"></a>選擇訂用帳戶
 
-Azure IoT 中樞自動列出 hello hello Azure 訂用帳戶的使用者帳戶會連結到。 您可以選擇 hello Azure 訂用帳戶 tooassociate hello IoT 中樞。
+Azure IoT 中樞會自動列出使用者帳戶所連結的 Azure 訂用帳戶。 您可以選擇要與 IoT 中樞相關聯的 Azure 訂用帳戶。
 
-### <a name="choose-hello-location"></a>選擇 hello 位置
+### <a name="choose-the-location"></a>選擇位置
 
-hello 位置選項提供 hello IoT 中樞所在的地區的清單。
+[位置] 選項提供可在其中使用 IoT 中樞的區域清單。
 
-### <a name="create-hello-iot-hub"></a>建立 hello IoT 中樞
+### <a name="create-the-iot-hub"></a>建立 IoT 中樞
 
-上述所有步驟完成時，您可以建立 hello IoT 中樞。 按一下**建立**toostart hello 後端程序 toocreate 及部署您所選擇的 hello 選項與 hello IoT 中樞。
+完成上述的所有步驟之後，您便可以建立 IoT 中樞。 按一下 [建立] 以啟動後端程序，並透過您選擇的選項建立和部署 IoT 中樞。
 
-它可能需要幾分鐘的時間 toocreate hello IoT 中樞，因為它需要花費一些時間 hello 後端部署 toorun hello 適當位置的伺服器上。
+由於要在適當的位置伺服器上執行後端部署需要時間，因此建立 IoT 中樞會需要幾分鐘的時間。
 
-## <a name="change-hello-settings-of-hello-iot-hub"></a>變更 hello hello IoT 中樞設定
+## <a name="change-the-settings-of-the-iot-hub"></a>變更 IoT 中樞的設定
 
-建立從 hello IoT 中樞刀鋒視窗之後，您可以變更現有的 IoT 中樞 hello 設定。
+從 IoT 中樞刀鋒視窗建立 IoT 中樞後，您可以變更此現有 IoT 中樞的設定。
 
 ![][8]
 
-**共用存取原則**： 這些原則定義裝置與服務 tooconnect tooIoT 中樞的 hello 權限。 您可以按一下 [一般] 之下的 [共用存取原則] 來存取這些原則。 在這個刀鋒視窗中，您可以修改現有的原則或新增原則。
+**共用存取原則**：這些原則定義了裝置與服務連接至 IoT 中樞的權限。 您可以按一下 [一般] 之下的 [共用存取原則] 來存取這些原則。 在這個刀鋒視窗中，您可以修改現有的原則或新增原則。
 
 ### <a name="create-a-policy"></a>建立原則
 
-* 按一下**新增**tooopen 刀鋒視窗。 您可以在這裡輸入 hello 新原則的名稱和圖 hello 下列所示，想要與此原則，tooassociate hello 權限：
+* 按一下 [新增] 開啟刀鋒視窗。 您可以在此輸入新的原則名稱以及您想要與此原則產生關聯的權限，如在下一個圖中所示：
 
-    有許多權限可與這些共用原則產生關聯。 hello**登錄讀取**和**登錄寫入**原則授與讀取和寫入存取權限 toohello 身分識別登錄。 自動選擇 hello 寫入選項選擇 hello 讀取選項。
+    有許多權限可與這些共用原則產生關聯。 [登錄讀取] 和 [登錄寫入] 原則會授與讀取和寫入存取權給身分識別登錄。 選擇寫入選項就會自動選擇讀取選項。
 
-    hello**服務連線**原則授與權限 tooaccess 服務端點，例如**接收裝置到雲端**。 hello**裝置連線**原則授與傳送和接收訊息使用 hello IoT 中樞裝置端端點的權限。
+    [服務連線] 原則會授與存取服務端點的權限，例如**接收裝置到雲端**。 [裝置連線] 原則會授與使用 IoT 中樞裝置端端點傳送和接收訊息的權限。
 
-* 按一下**建立**tooadd 此新建立的原則 toohello 現有清單。
+* 按一下 [建立]  將此新建立的原則新增至現有的清單。
 
 ![][10]
 
 ## <a name="endpoints"></a>端點
 
-按一下**端點**toodisplay hello IoT 中樞，您要修改的端點清單。 有兩種類型的端點： hello IoT 中樞，內建的端點和您在建立之後新增 toohello IoT 中樞端點。
+按一下 [端點] 以顯示您正在修改之 IoT 中樞的端點清單。 端點有兩個類型︰IoT 中樞內建的端點，以及您在 IoT 中樞建立後新增的端點。
 
 ![][11]
 
 ### <a name="built-in-endpoints"></a>內建端點
 
-有兩個內建端點：**雲端 toodevice 意見反應**和**事件**。
+有兩種內建端點︰**雲端到裝置回饋**和**事件**。
 
-* **雲端 toodevice 意見反應**設定： 此設定有兩個 subsettings:**雲端 tooDevice TTL** （-存留時間） 和**保留時間**（以小時為單位） 的 hello 訊息。 當您第一次建立 IoT 中樞時，這些設定會有一小時的 hello 預設值。 tooadjust 這些設定，請使用 hello 滑桿，或輸入 hello 值。
-* **事件**設定：這個設定有數個子設定，其中有些是唯讀。 hello 下列清單描述這些設定：
+* **雲端到裝置回饋**設定：此設定有 2 個子設定：訊息的**雲端到裝置 TTL** (存留時間) 和**保留時間** (以小時為單位)。 當您第一次建立 IoT 中樞時，這兩個設定的預設值都是一個小時。 若要調整這些設定，可使用滑桿或輸入值。
+* **事件**設定：這個設定有數個子設定，其中有些是唯讀。 下列清單說明這些設定：
 
-  * **資料分割**： 建立 hello IoT 中樞時，會設定預設值。 您可以變更 hello 透過這項設定的資料分割數目。
+  * **分割**：當 IoT 中樞建立後會設定預設值。 您可以透過此設定變更分割數目。
 
-  * **事件中樞相容的名稱和端點**： 建立 hello IoT 中樞時，事件中心建立在內部，您可能需要存取 toounder 某些情況。 您無法自訂 hello 事件中樞相容名稱與端點的值，但您可以按一下 複製**複製**。
+  * **事件中樞相容的名稱和端點**：建立 IoT 中樞時，事件中樞會在內部建立，而您在某些情況下可能需要其存取權。 您無法自訂事件中樞的相容名稱和端點值，但可以按一下 [複製] 來複製它們。
 
-  * **保留時間**： 依預設，設定 tooone 天，但您可以使用變更 hello 下拉式清單。 這個值是以 hello 裝置到雲端設定的天數。
+  * **保留時間**：預設為一天，但可以使用下拉式清單變更。 這是裝置到雲端設定以天為單位的值。
 
-  * **取用者群組**： 取用者群組可讓多個讀取器 tooread 訊息分開 hello IoT 中樞。 每個 IoT 中樞都是使用預設取用者群組建立的。 不過，您可以新增或刪除使用此設定的取用者群組 tooyour IoT 中樞。
+  * **取用者群組**：取用者群組可讓多個讀取器從 IoT 中樞獨立讀取訊息。 每個 IoT 中樞都是使用預設取用者群組建立的。 不過，您可以使用這個設定新增或刪除 IoT 中樞的取用者群組。
 
   > [!NOTE]
-  > 無法編輯或刪除 hello 預設取用者群組。
+  > 預設的取用者群組無法編輯或刪除。
 
 ### <a name="custom-endpoints"></a>自訂端點
 
-您可以加入自訂端點，在您使用 hello 入口網站的 IoT 中樞上。 從 hello**端點**刀鋒視窗中，按一下 **新增**在 hello 頂端 tooopen hello**加入端點**刀鋒視窗。 輸入 hello 所需的資訊，然後按一下 **確定**。 您的自訂端點現在會列示在 hello 主要**端點**刀鋒視窗。
+您可以使用入口網站在 IoT 中樞上新增自訂端點。 從 [端點] 刀鋒視窗，按一下頂端的 [新增] 以開啟 [新增端點] 刀鋒視窗。 輸入必要資訊，然後按一下 [確定]。 您的自訂端點現在會列在主要 [端點] 刀鋒視窗中。
 
 ![][13]
 
@@ -146,42 +146,42 @@ hello 位置選項提供 hello IoT 中樞所在的地區的清單。
 
 ## <a name="routes"></a>路由
 
-按一下**路由**toomanage IoT 中樞將您的裝置到雲端訊息的分派。
+按一下 [路由] 以管理 IoT 中樞分派您的裝置到雲端訊息的方式。
 
 ![][14]
 
-您可以按一下 新增路由 tooyour IoT 中樞**新增**頂端的 hello hello**路由*** 刀鋒視窗中，輸入所需的 hello 的詳細資訊，並按一下**確定**。 您的路由再列於 hello 主要**路由**刀鋒視窗。 您可以編輯路由的路由 hello 清單中按一下。 tooenable 路由，路由 hello 清單中按一下它，並設定 hello**啟用**太切換**關閉**。 toosave hello 變更，按一下 **確定**在 hello hello 刀鋒視窗的底部。
+您可以將路由新增至 IoT 中樞，方法是按一下 [路由]* 刀鋒視窗頂端的 [新增]、輸入必要資訊，然後按一下 [確定]。 接著您的路由會列在主要 [路由] 刀鋒視窗中。 您可以在路由清單中按一下路由來編輯它。 若要啟用路由，按一下路由清單中的路由，並將 [已啟用] 切換為 [關閉]。 若要儲存變更，請按一下刀鋒視窗底部的 [確定]。
 
 ![][15]
 
 ## <a name="pricing-and-scale"></a>價格和調整
 
-可以變更現有 IoT 中樞定價 hello 透過 hello**定價**設定，以下列例外狀況的 hello:
+現有 IoT 中樞的價格可透過 [價格]  設定變更，但是有下列例外狀況：
 
-* Hello 目前實作中，在 IoT 中樞與可用的 SKU 無法變更層 tooone 的 hello 付費的 Sku，反之亦然。
-* 在 hello Azure 訂用帳戶只能有一個免費層 IoT 中樞。
+* 在目前的實作中，具有免費 SKU 的 IoT 中樞無法變更為付費 SKU 層，反之亦然。
+* 在 Azure 訂用帳戶中只能有一個免費層 IoT 中樞。
 
 ![][12]
 
-Hello 傳送該日的訊息數目超過 hello 較低層的 hello 配額時，才可以移動從較高的 toolower 層。 例如，如果 hello 每天的訊息數目超過 400000，然後 hello 層 hello IoT 中樞可變更。 不過，如果您變更 toohello S1 層 hello IoT 中心已節流的那一天。
+該日傳送的訊息數目超過較低層級的配額時，您才能從較高層級移至較低層級。 例如，如果每天的訊息數目都超過 400,000，則 IoT 中樞的層會變更。 不過，如果您變更為 S1 層，IoT 中樞當天會進行節流。
 
-## <a name="delete-hello-iot-hub"></a>刪除 hello IoT 中樞
+## <a name="delete-the-iot-hub"></a>刪除 IoT 中樞
 
-您可以瀏覽要依序按一下 toodelete toohello IoT 中樞**瀏覽**，然後選擇 hello 適當中樞 toodelete 和。 toodelete hello IoT 中樞中，按一下 hello**刪除**hello IoT 中樞名稱下方的按鈕。
+您可以藉由按一下 [瀏覽] ，然後選擇要刪除的適當中樞，即可瀏覽至您想要刪除的 IoT 中樞。 若要刪除 IoT 中樞，請按一下 IoT 中樞名稱下方的 [刪除] 按鈕。
 
 ## <a name="next-steps"></a>後續步驟
 
-請遵循這些連結 toolearn 更多關於管理 Azure IoT 中樞：
+遵循下列連結以深入了解如何管理 Azure IoT 中樞：
 
 * [大量管理 IoT 裝置][lnk-bulk]
 * [IoT 中樞度量][lnk-metrics]
 * [作業監視][lnk-monitor]
 
-toofurther 瀏覽的 IoT 中樞的 hello 功能，請參閱：
+若要進一步探索 IoT 中樞的功能，請參閱︰
 
 * [IoT 中樞開發人員指南][lnk-devguide]
 * [使用 IoT Edge 來模擬裝置][lnk-iotedge]
-* [保護您的 IoT 解決方案從接地 hello][lnk-securing]
+* [徹底保護您的 IoT 解決方案][lnk-securing]
 
 [4]: ./media/iot-hub-create-through-portal/create-iothub.png
 [5]: ./media/iot-hub-create-through-portal/location1.png

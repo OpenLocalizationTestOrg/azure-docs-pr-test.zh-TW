@@ -1,6 +1,6 @@
 ---
-title: "通用進階報告功能與 MobileApps Engagement aaaWindows"
-description: "如何 tooIntegrate 與 Windows 通用應用程式的 Azure Mobile Engagement"
+title: "Windows 通用進階報告與 MobileApps Engagement"
+description: "如何將 Azure Mobile Engagement 與 Windows 通用 app 整合"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,13 +14,13 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/12/2016
 ms.author: piyushjo;ricksal
-ms.openlocfilehash: 20968f238ef7ae9dc0b8bb6dac3fb8bdb9bc3a10
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: feac309db1ffce0945012e293bfc1df417aed876
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="advanced-reporting-with-hello-windows-universal-apps-engagement-sdk"></a>以 hello Windows 通用應用程式 Engagement SDK 的進階的報告
+# <a name="advanced-reporting-with-the-windows-universal-apps-engagement-sdk"></a>使用 Windows 通用 App Engagement SDK 的進階報告
 > [!div class="op_single_selector"]
 > * [Universal Windows](mobile-engagement-windows-store-advanced-reporting.md)
 > * [Windows Phone Silverlight](mobile-engagement-windows-phone-integrate-engagement.md)
@@ -29,22 +29,22 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-本主題說明 Windows 通用應用程式中的其他報告案例。 這些案例包括您可以選擇建立 hello tooapply toohello 應用程式的選項[入門](mobile-engagement-windows-store-dotnet-get-started.md)教學課程。
+本主題說明 Windows 通用應用程式中的其他報告案例。 這些案例包含的選項可供您選擇套用至 [快速入門](mobile-engagement-windows-store-dotnet-get-started.md) 教學課程中建立的應用程式。
 
 ## <a name="prerequisites"></a>必要條件
 [!INCLUDE [Prereqs](../../includes/mobile-engagement-windows-store-prereqs.md)]
 
-再開始本教學課程，您必須先完成 hello[入門](mobile-engagement-windows-store-dotnet-get-started.md)教學課程中，已刻意直接且簡單。 本教學課程涵蓋您可以選擇的其他選項。
+開始本教學課程之前，您必須先完成 [快速入門](mobile-engagement-windows-store-dotnet-get-started.md) 教學課程，此教學課程相當直接明瞭。 本教學課程涵蓋您可以選擇的其他選項。
 
 ## <a name="specifying-engagement-configuration-at-runtime"></a>指定執行階段的 Engagement 組態
-hello Engagement 組態會集中在 hello`Resources\EngagementConfiguration.xml`檔案的專案，也就是其中指定在 hello[入門](mobile-engagement-windows-store-dotnet-get-started.md)主題。
+Engagement 組態集中在您專案的 `Resources\EngagementConfiguration.xml` 檔案，這是在 [快速入門](mobile-engagement-windows-store-dotnet-get-started.md) 主題中指定的位置。
 
-但是您也可以指定它在執行階段： 您可以呼叫下列方法 hello Engagement 代理程式初始化之前 hello:
+但是您也可以在執行階段指定它：您可以在 Engagement 代理程式初始化之前呼叫下列方法：
 
           /* Engagement configuration. */
           EngagementConfiguration engagementConfiguration = new EngagementConfiguration();
 
-          /* Set hello Engagement connection string. */
+          /* Set the Engagement connection string. */
           engagementConfiguration.Agent.ConnectionString = "Endpoint={appCollection}.{domain};AppId={appId};SdkKey={sdkKey}";
 
           /* Initialize Engagement angent with above configuration. */
@@ -53,14 +53,14 @@ hello Engagement 組態會集中在 hello`Resources\EngagementConfiguration.xml`
 
 
 ## <a name="recommended-method-overload-your-page-classes"></a>建議使用的方法：多載您的 `Page` 類別
-tooactivate Engagement toocompute 使用者、 工作階段、 活動、 當機和技術的統計資料所需的所有 hello 記錄檔的 hello reporting 進行所有您`Page`子類別是繼承自 hello`EngagementPage`類別。
+若要啟用 Engagement 計算使用者、工作階段、活動、當機和技術的統計資料所需的所有記錄檔報告，請讓所有的 `Page` 子類別繼承自 `EngagementPage` 類別。
 
-以下是您應用程式其中一個頁面的範例。 您可以 hello 相同的動作，為您的應用程式的所有頁面。
+以下是您應用程式其中一個頁面的範例。 您可以將相同的方法用於您應用程式的所有頁面。
 
 ### <a name="c-source-file"></a>C# 來源檔案
 修改您頁面的 `.xaml.cs` 檔案：
 
-* 新增 tooyour`using`陳述式：
+* 新增至您的 `using` 陳述式：
   
       using Microsoft.Azure.Engagement;
 * 以 `EngagementPage` 取代 `Page`：
@@ -88,14 +88,14 @@ tooactivate Engagement toocompute 使用者、 工作階段、 活動、 當機�
         }
 
 > [!IMPORTANT]
-> 如果您的頁面會覆寫 hello`OnNavigatedTo`方法，是確定 toocall `base.OnNavigatedTo(e)`。 否則，不會報告 hello 活動 (hello`EngagementPage`呼叫`StartActivity`內其`OnNavigatedTo`方法)。
+> 如果您的頁面會覆寫 `OnNavigatedTo` 方法，請務必呼叫 `base.OnNavigatedTo(e)`。 否則不會報告活動 (`EngagementPage` 會在其 `OnNavigatedTo` 方法內呼叫 `StartActivity`)。
 > 
 > 
 
 ### <a name="xaml-file"></a>XAML 檔案
 修改您頁面的 `.xaml` 檔案：
 
-* 加入 tooyour 命名空間宣告：
+* 新增命名空間宣告：
   
       xmlns:engagement="using:Microsoft.Azure.Engagement"
 * 以 `engagement:EngagementPage` 取代 `Page`：
@@ -115,31 +115,31 @@ tooactivate Engagement toocompute 使用者、 工作階段、 活動、 當機�
             ...
         </engagement:EngagementPage >
 
-### <a name="override-hello-default-behaviour"></a>覆寫預設行為，hello
-根據預設，hello 活動名稱，以及不需額外會報告 hello 頁面 hello 類別名稱。 如果 hello 類別使用 hello"Page"後置詞，Engagement 會移除它。
+### <a name="override-the-default-behaviour"></a>覆寫預設行為
+根據預設，頁面的類別名稱會在報告時做為活動名稱 (沒有額外的名稱)。 如果類別使用 "Page" 尾碼，Engagement 會移除它。
 
-hello 名稱 toooverride hello 預設行為會加入下列程式碼：
+若要覆寫名稱的預設行為，請加入下列程式碼︰
 
-        // in hello .xaml.cs file
+        // in the .xaml.cs file
         protected override string GetEngagementPageName()
         {
           /* your code */
           return "new name";
         }
 
-tooreport 額外的資訊與程式活動中，加入下列程式碼：
+若要報告活動的額外資訊，請加入下列程式碼︰
 
-        // in hello .xaml.cs file
+        // in the .xaml.cs file
         protected override Dictionary<object,object> GetEngagementPageExtra()
         {
           /* your code */
           return extra;
         }
 
-這些方法從呼叫 hello 內`OnNavigatedTo`頁面的方法。
+系統會從您頁面的 `OnNavigatedTo` 方法中呼叫這些方法。
 
 ### <a name="alternate-method-call-startactivity-manually"></a>替代方法：手動呼叫 `StartActivity()`
-如果您無法或不想 toooverload 您`Page`類別，您可以改為啟動您的活動藉由呼叫`EngagementAgent`直接的方法。
+如果您無法或不想要多載您的 `Page` 類別，您可以改為透過直接呼叫 `EngagementAgent` 方法來啟動活動。
 
 我們建議您於 Page 的 `OnNavigatedTo` 方法內呼叫 `StartActivity`。
 
@@ -152,12 +152,12 @@ tooreport 額外的資訊與程式活動中，加入下列程式碼：
 > [!IMPORTANT]
 > 請確定您正確地結束工作階段。
 > 
-> hello Windows 通用 SDK 會自動呼叫 hello `EndActivity` hello 應用程式關閉時的方法。 因此，它是**高**建議 toocall hello`StartActivity`每當 hello 使用者的 hello 活動變更時，方法和太**永不**呼叫 hello`EndActivity`方法。 這個方法會通知 hello Engagement 伺服器 hello 目前的使用者已離開 hello 應用程式，將會影響所有的應用程式記錄檔。
+> 應用程式關閉時，Windows 通用 SDK 會自動呼叫 `EndActivity` 方法。 因此，「強烈」建議每當使用者的活動變更時便叫呼叫 `StartActivity` 方法，並且「絕對不要」呼叫 `EndActivity` 方法。 這個方法會通知 Engagement 伺服器目前的使用者已離開應用程式，這會影響所有應用程式記錄檔。
 > 
 > 
 
 ## <a name="advanced-reporting"></a>進階報告
-（選擇性） 您可能會想 tooreport 應用程式特定事件、 錯誤和作業、 toodo 因此、 使用 hello 其他方法位於 hello`EngagementAgent`類別。 hello Engagement 應用程式開發介面可讓您使用所有參與的進階功能。
+(選擇性) 您可以報告應用程式的特定事件、錯誤和工作；若要這樣做，請使用 `EngagementAgent` 類別中找到的其他方法。 Engagement API 允許使用所有 Engagement 的進階功能。
 
-如需詳細資訊，請參閱[toouse hello 如何進階標記 Windows 通用應用程式中的應用程式開發介面的 Mobile Engagement](mobile-engagement-windows-store-use-engagement-api.md)。
+如需詳細資訊，請參閱 [如何在 Windows 通用 app 中使用進階的 Mobile Engagement 標記 API](mobile-engagement-windows-store-use-engagement-api.md)。
 

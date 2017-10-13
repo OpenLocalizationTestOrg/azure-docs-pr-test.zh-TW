@@ -1,6 +1,6 @@
 ---
-title: "aaaDeploy Spring 開機 Web 應用程式在 Azure 容器服務中的 Linux 上 |Microsoft 文件"
-description: "本教學課程將引導您透過 hello 步驟 toodeploy Spring 開機應用程式為 Linux web 應用程式在 Microsoft Azure 上。"
+title: "在 Azure Container Service 的 Linux 上部署 Spring Boot Web 應用程式 | Microsoft Docs"
+description: "本教學課程會逐步引導您將 Spring Boot 應用程式部署為 Microsoft Azure 上之 Linux Web 應用程式的步驟。"
 services: container-service
 documentationcenter: java
 author: rmcmurray
@@ -15,26 +15,26 @@ ms.topic: article
 ms.date: 08/04/2017
 ms.author: asirveda;robmcm
 ms.custom: mvc
-ms.openlocfilehash: 2c44be1c7f66a38f48239001f0be9e90c7e6edef
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5f0b470bd46cfeaf00b3092dbe9db507ed50f622
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="deploy-a-spring-boot-application-on-linux-in-hello-azure-container-service"></a>部署在 Linux 上 hello Azure 容器服務中的 Spring 開機應用程式
+# <a name="deploy-a-spring-boot-application-on-linux-in-the-azure-container-service"></a>將 Spring Boot 應用程式部署到 Azure Container Service 中的 Linux
 
-hello  **[Spring 架構]**是開放原始碼解決方案，可協助建立企業級應用程式的 Java 開發人員。 其中一個 hello 更常用建置的專案是在該平台是[Spring 開機]，其中提供簡單的方法建立獨立的 Java 應用程式。
+**[Spring Framework]** 是一個開放原始碼解決方案，可協助 Java 開發人員建立企業級應用程式。 [Spring Boot] 是建立在該平台基礎上更為熱門的專案之一，其中會提供用來建立獨立 Java 應用程式的簡化方法。
 
-**[Docker]**  hello 部署、 調整及管理的應用程式容器中執行的是可協助開發人員的開放原始碼解決方案自動化。
+**[Docker]** 是開放原始碼解決方案，可協助開發人員自動化部署、調整及管理容器中執行的應用程式。
 
-本教學課程將引導您完成使用 Docker toodevelop 和 Spring 開機應用程式 tooa Linux 中部署主機 hello [Azure 容器服務 (ACS)]。
+本教學課程會逐步引導您使用 Docker 來開發 Spring Boot 應用程式，並且將其部署至 [Azure Container Service (ACS)] 中的 Linux 主機。
 
 ## <a name="prerequisites"></a>必要條件
 
-在順序 toocomplete hello 步驟本教學課程中，您需要下列必要條件 toohave hello:
+若要完成本教學課程中的步驟，您必須具備下列必要條件：
 
 * Azure 訂用帳戶；如果您還沒有 Azure 訂用帳戶，則可以啟用 [MSDN 訂戶權益]或註冊[免費的 Azure 帳戶]。
-* hello [Azure 命令列介面 (CLI)]。
+* [Azure 命令列介面 (CLI)]。
 * 最新的 [Java 開發工具組 (JDK)]。
 * Apache 的 [Maven] 建置工具 (第 3 版)。
 * [Git] 用戶端。
@@ -42,14 +42,14 @@ hello  **[Spring 架構]**是開放原始碼解決方案，可協助建立企業
 
 > [!NOTE]
 >
-> Toohello 本教學課程的虛擬化需求，因為您無法依照本文中的 hello 步驟執行虛擬機器;啟用虛擬化功能，您必須使用實體電腦。
+> 由於本教學課程的虛擬化需求，您無法遵循本文中關於虛擬機器的步驟；您必須在啟用虛擬化功能的情況下使用實體電腦。
 >
 
-## <a name="create-hello-spring-boot-on-docker-getting-started-web-app"></a>Docker 快速入門的 web 應用程式上建立 hello Spring 開機
+## <a name="create-the-spring-boot-on-docker-getting-started-web-app"></a>建立 Spring Boot on Docker Getting Started Web 應用程式
 
-hello 下列步驟引導您完成必要的 toocreate 簡單的 Spring 開機 web 應用程式並在本機測試 hello 步驟。
+下列步驟將引導您完成建立簡單 Spring Boot Web 應用程式，並在本機測試所需的步驟。
 
-1. 開啟命令提示字元，並建立本機目錄 toohold，您的應用程式，以及變更 toothat 目錄;例如：
+1. 開啟命令提示字元並建立本機目錄來保存您的應用程式，然後變更至該目錄；例如：
    ```
    md C:\SpringBoot
    cd C:\SpringBoot
@@ -60,70 +60,70 @@ hello 下列步驟引導您完成必要的 toocreate 簡單的 Spring 開機 web
    cd /users/robert/SpringBoot
    ```
 
-1. 複製 hello[上開始使用 Docker Spring 開機]範例專案到 hello 目錄，您所建立的; 例如：
+1. 將 [Spring Boot on Docker Getting Started] 範例專案複製到您所建立的目錄中；例如：
    ```
    git clone https://github.com/spring-guides/gs-spring-boot-docker.git
    ```
 
-1. 變更目錄已完成的 toohello 專案;例如：
+1. 將目錄變更至已完成的專案；例如：
    ```
    cd gs-spring-boot-docker/complete
    ```
 
-1. 建置使用 Maven; hello JAR 檔案例如：
+1. 使用 Maven 建立 JAR 檔案；例如：
    ```
    mvn package
    ```
 
-1. 一旦建立 hello web 應用程式之後，變更目錄 toohello`target`目錄 hello JAR 檔案所在的位置，並啟動 hello web 應用程式; 例如：
+1. 建立 Web 應用程式之後，將目錄變更為 JAR 檔案所在的 `target` 目錄，並啟動 Web 應用程式；例如：
    ```
    cd target
    java -jar gs-spring-boot-docker-0.1.0.jar
    ```
 
-1. 藉由瀏覽 tooit 使用網頁瀏覽器，在本機測試 hello web 應用程式。 例如，如果您有 curl 可用而且設定 hello Tomcat 伺服器 toorun 連接埠 80 上：
+1. 測試 Web 應用程式，方法是使用網頁瀏覽器在本機瀏覽它。 例如，如果您有 curl 可用，並將 Tomcat 伺服器設定為在連接埠 80 上執行：
    ```
    curl http://localhost
    ```
 
-1. 您應該會看到下列訊息顯示 hello: **Docker 您好 ！**
+1. 您應該會看到顯示下列訊息：**Hello Docker World!**
 
    ![在本機瀏覽範例應用程式][SB01]
 
-## <a name="create-an-azure-container-registry-toouse-as-a-private-docker-registry"></a>建立 Azure 容器登錄中 toouse 為私用 Docker 登錄
+## <a name="create-an-azure-container-registry-to-use-as-a-private-docker-registry"></a>建立 Azure Container Registry 以用作私人 Docker 登錄
 
-hello 下列步驟引導您完成使用 hello Azure 入口網站 toocreate Azure 容器登錄中。
+下列步驟會逐步引導您使用 Azure 入口網站來建立 Azure Container Registry。
 
 > [!NOTE]
 >
-> 如果您想 toouse hello Azure CLI 而不是 hello Azure 入口網站，請依照下列中的 hello 步驟[建立私用 Docker 容器登錄中使用 Azure CLI 2.0 hello](../../container-registry/container-registry-get-started-azure-cli.md)。
+> 如果您想要使用 Azure CLI 而不是 Azure 入口網站，請遵循下列[使用 Azure CLI 2.0 建立私人 Docker 容器登錄](../../container-registry/container-registry-get-started-azure-cli.md)中的步驟。
 >
 
-1. 瀏覽 toohello [Azure 入口網站]並登入。
+1. 瀏覽至 [Azure 入口網站]並登入。
 
-   一旦您已登入 tooyour hello Azure 入口網站上的帳戶，您可以依照 hello 中的 hello 步驟[建立私用 Docker 容器登錄中使用 Azure 入口網站 hello]發行項，這會在下列步驟 hello paraphrasedsake 直接。
+   一旦您已在 Azure 入口網站登入您的帳戶後，就可以遵循[使用 Azure 入口網站建立私人 Docker 容器登錄]文章中的步驟，為便於了解，會在下列步驟中加以釋義。
 
-1. 按一下功能表圖示 hello **+ 新增**，然後按一下**容器**，然後按一下 **Azure 容器登錄中**。
+1. 依序按一下功能表的 [+ 新增] 圖示、[容器]，以及 [Azure Container Registry]。
    
    ![建立新的 Azure Container Registry][AR01]
 
-1. Hello hello Azure 容器登錄中的範本資訊] 頁面出現時，按一下 [**建立**。 
+1. 當 Azure Container Registry 範本的資訊頁面顯示時，按一下 [建立]。 
 
    ![建立新的 Azure Container Registry][AR02]
 
-1. 當 hello**容器登錄中建立**會顯示頁面中，輸入您**登錄名稱**和**資源群組**，選擇**啟用**的hello **Admin 使用者**，然後按一下**建立**。
+1. 當 [建立容器登錄] 頁面顯示時，輸入您的 [登錄名稱] 和 [資源群組]，針對 [管理使用者] 選擇 [啟用]，然後按一下 [建立]。
 
    ![設定 Azure Container Registry 設定][AR03]
 
-1. 一旦建立容器登錄之後，瀏覽 tooyour 容器登錄中的 hello Azure 入口網站中，然後按一下**便捷鍵**。 記下 hello 使用者名稱和密碼的 hello 接下來的步驟。
+1. 一旦建立容器登錄之後，瀏覽至 Azure 入口網站中的容器登錄，然後按一下 [存取金鑰]。 將後續步驟的使用者名稱和密碼記下。
 
    ![Azure Container Registry 存取金鑰][AR04]
 
-## <a name="configure-maven-toouse-your-azure-container-registry-access-keys"></a>設定 Maven toouse Azure 容器登錄中存取金鑰
+## <a name="configure-maven-to-use-your-azure-container-registry-access-keys"></a>設定要使用 Azure Container Registry 存取金鑰的 Maven
 
-1. 瀏覽 toohello Maven 安裝的設定目錄，並開啟 hello *settings.xml*使用文字編輯器的檔案。
+1. 瀏覽至您 Maven 安裝的設定目錄，並使用文字編輯器開啟 settings.xml 檔案。
 
-1. 從這個教學課程 toohello hello 上一節中加入您 Azure 容器登錄中的存取設定`<servers>`中 hello 集合*settings.xml*檔案; 例如：
+1. 將本教學課程上一節的 Azure Container Registry 存取設定新增至 settings.xml 檔案中的 `<servers>` 集合；例如：
 
    ```xml
    <servers>
@@ -135,9 +135,9 @@ hello 下列步驟引導您完成使用 hello Azure 入口網站 toocreate Azure
    </servers>
    ```
 
-1. 瀏覽 Spring 開機應用程式，完成 toohello 專案目錄 (例如:"*C:\SpringBoot\gs-spring-boot-docker\complete*「 或 」*/users/robert/SpringBoot/gs-spring-boot-docker /完成*")，並開啟 hello *pom.xml*使用文字編輯器的檔案。
+1. 瀏覽至 Spring Boot 應用程式已完成的專案目錄 (例如，"*C:\SpringBoot\gs-spring-boot-docker\complete*" 或 "*/users/robert/SpringBoot/gs-spring-boot-docker/complete*")，並使用文字編輯器開啟 *pom.xml* 檔案。
 
-1. 更新 hello`<properties>`中 hello 集合*pom.xml*檔案 hello 登入伺服器的值具有 Azure 容器登錄 hello 前一節，本教學課程; 例如：
+1. 使用本教學課程上一節的 Azure Container Registry 登入伺服器值來更新 pom.xml 檔案中的 `<properties>` 集合；例如：
 
    ```xml
    <properties>
@@ -146,7 +146,7 @@ hello 下列步驟引導您完成使用 hello Azure 入口網站 toocreate Azure
    </properties>
    ```
 
-1. 更新 hello`<plugins>`中 hello 集合*pom.xml*檔案，因此，hello`<plugin>`包含 hello 登入伺服器位址和登錄名稱 Azure 容器登錄從 hello 本教學課程的上一節。 例如：
+1. 更新 pom.xml 檔案中的 `<plugins>` 集合，以便 `<plugin>` 可包含本教學課程上一節的登入伺服器位址和 Azure Container Registry 的登錄名稱。 例如：
 
    ```xml
    <plugin>
@@ -169,7 +169,7 @@ hello 下列步驟引導您完成使用 hello Azure 入口網站 toocreate Azure
    </plugin>
    ```
 
-1. 瀏覽 toohello 完成 Spring 開機應用程式的專案目錄並執行下列命令 toorebuild hello 應用程式的 hello 並推送 hello 容器 tooyour Azure 容器登錄中：
+1. 瀏覽至您 Spring Boot 應用程式的已完成專案目錄，然後執行下列命令來重建應用程式，並將容器推送到您的 Azure Container Registry：
 
    ```
    mvn package docker:build -DpushImage 
@@ -177,38 +177,38 @@ hello 下列步驟引導您完成使用 hello Azure 入口網站 toocreate Azure
 
 > [!NOTE]
 >
-> 當您要推入您的 Docker 容器 tooAzure 時，您可能會收到類似 tooone hello 遵循即使已成功建立您的 Docker 容器的錯誤訊息：
+> 當您要將 Docker 容器推送至 Azure 時，可能會收到類似下列其中一項的錯誤訊息，即使已成功建立 Docker 容器也一樣：
 >
-> * `[ERROR] Failed tooexecute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: no basic auth credentials`
+> * `[ERROR] Failed to execute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: no basic auth credentials`
 >
-> * `[ERROR] Failed tooexecute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: Incomplete Docker registry authorization credentials. Please provide all of username, password, and email or none.`
+> * `[ERROR] Failed to execute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: Incomplete Docker registry authorization credentials. Please provide all of username, password, and email or none.`
 >
-> 如果發生這種情況，您可能需要 toosign tooyour hello Docker 命令列工具，從 Azure 帳戶中例如：
+> 如果發生這種情況，您可能需要從 Docker 命令列登入 Azure 帳戶；例如：
 >
 > `docker login -u wingtiptoysregistry -p "AbCdEfGhIjKlMnOpQrStUvWxYz" wingtiptoysregistry.azurecr.io`
 >
-> 您接著可以從 hello 命令列; 推送您的容器例如：
+> 接著，您可以從命令列推送您的容器；例如：
 >
 > `docker push wingtiptoysregistry.azurecr.io/gs-spring-boot-docker`
 >
 
 ## <a name="create-a-web-app-on-linux-on-azure-app-service-using-your-container-image"></a>使用您的容器映像在 Azure App Service 上建立 Linux 的 Web 應用程式
 
-1. 瀏覽 toohello [Azure 入口網站]並登入。
+1. 瀏覽至 [Azure 入口網站]並登入。
 
-1. 按一下功能表圖示 hello **+ 新增**，然後按一下 **Web + 行動**，然後按一下 **Linux 上的 Web 應用程式**。
+1. 依序按一下功能表的 [+ 新增] 圖示、[Web + 行動]，以及 [Linux 上的 Web 應用程式]。
    
-   ![在 hello Azure 入口網站中建立新的 web 應用程式][LX01]
+   ![在 Azure 入口網站中建立新的 Web 應用程式][LX01]
 
-1. 當 hello **Linux 上的 Web 應用程式**會顯示頁面中，輸入下列資訊的 hello:
+1. 當 [Linux 上的 Web 應用程式] 頁面顯示時，輸入下列資訊：
 
-   a. 輸入唯一的名稱，如 hello**應用程式名稱**; 例如:"*wingtiptoyslinux*。 」
+   a. 為 [應用程式名稱] 輸入唯一名稱；例如："wingtiptoyslinux"。
 
-   b. 選擇您**訂用帳戶**hello 下拉式清單中。
+   b.這是另一個 C# 主控台應用程式。 從下拉式清單選擇 [訂用帳戶]。
 
-   c. 選擇現有**資源群組**，或指定名稱 toocreate 新的資源群組。
+   c. 選擇現有 [資源群組]，或指定名稱以建立新的資源群組。
 
-   d. 按一下**設定容器**並輸入下列資訊的 hello:
+   d. 按一下 [設定容器]，並輸入下列資訊：
 
       * 選擇 [私人登錄]。
 
@@ -218,7 +218,7 @@ hello 下列步驟引導您完成使用 hello Azure 入口網站 toocreate Azure
 
       * **登入使用者名稱**和**密碼**：從您在先前步驟中使用的**存取金鑰**指定您的登入認證。
    
-   e. 一旦您輸入所有 hello 上述資訊，請按一下**確定**。
+   e. 一旦您輸入上述所有資訊後，按一下 [確定]。
 
    ![設定 Web 應用程式設定][LX02]
 
@@ -226,79 +226,79 @@ hello 下列步驟引導您完成使用 hello Azure 入口網站 toocreate Azure
 
 > [!NOTE]
 >
-> Azure 會自動對應網際網路要求 tooembedded Tomcat 伺服器 hello 標準連接埠 80 或 8080 上執行。 不過，如果您設定您的內嵌的 Tomcat 伺服器 toorun 自訂連接埠時，您會需要 tooadd 定義內嵌的 Tomcat 伺服器 hello 連接埠的環境變數 tooyour web 應用程式。 toodo 因此，使用下列步驟的 hello:
+> Azure 會自動將網際網路要求對應到標準連接埠 80 或 8080 上執行的內嵌 Tomcat 伺服器。 不過，如果您將內嵌 Tomcat 伺服器設定為在自訂連接埠上執行時，則必須將環境變數新增至您的 web 應用程式，其可定義內嵌 Tomcat 伺服器的連接埠。 若要這樣做，請使用下列步驟：
 >
-> 1. 瀏覽 toohello [Azure 入口網站]並登入。
+> 1. 瀏覽至 [Azure 入口網站]並登入。
 > 
-> 2. 按一下 hello 圖示**應用程式服務**。 （請參閱下面的 hello 影像中的項目 #1）。
+> 2. 按一下 [應用程式服務] 的圖示。 (請參閱下列映像中的項目 #1。)
 >
-> 3. Hello 清單中選取您的 web 應用程式。 （項目 #2 在 hello 圖。）
+> 3. 從清單中選取 Web 應用程式。 (下列映像中的項目 #2。)
 >
-> 4. 按一下 [ **應用程式設定**]。 （項目 #3 hello 圖中。）
+> 4. 按一下 [ **應用程式設定**]。 (下列映像中的項目 #3。)
 >
-> 5. 在 hello**應用程式設定**區段中，加入新的環境變數，名為**連接埠**和 hello 值輸入自訂連接埠號碼。 （項目 #4 hello 圖中。）
+> 5. 在 [應用程式設定] 區段中，新增名為 **PORT** 的新環境變數，並輸入值的自訂連接埠號碼。 (下列映像中的項目 #4。)
 >
-> 6. 按一下 [儲存] 。 （項目 #5 hello 圖中。）
+> 6. 按一下 [儲存] 。 (下列映像中的項目 #5。)
 >
-> ![在 hello Azure 入口網站中儲存自訂連接埠號碼][LX03]
+> ![在 Azure 入口網站中儲存自訂連接埠號碼][LX03]
 >
 
 <!--
-##  OPTIONAL: Configure hello embedded Tomcat server toorun on a different port
+##  OPTIONAL: Configure the embedded Tomcat server to run on a different port
 
-hello embedded Tomcat server in hello sample Spring Boot application is configured toorun on port 8080 by default. However, if you want toorun hello embedded Tomcat server toorun on a different port, such as port 80 for local testing, you can configure hello port by using hello following steps.
+The embedded Tomcat server in the sample Spring Boot application is configured to run on port 8080 by default. However, if you want to run the embedded Tomcat server to run on a different port, such as port 80 for local testing, you can configure the port by using the following steps.
 
-1. Go toohello *resources* directory (or create hello directory if it does not exist); for example:
+1. Go to the *resources* directory (or create the directory if it does not exist); for example:
    ```shell
    cd src/main/resources
    ```
 
-1. Open hello *application.yml* file in a text editor if it exists, or create a new YAML file if it does not exist.
+1. Open the *application.yml* file in a text editor if it exists, or create a new YAML file if it does not exist.
 
-1. Modify hello **server** setting so that hello server runs on port 80; for example:
+1. Modify the **server** setting so that the server runs on port 80; for example:
    ```yaml
    server:
       port: 80
    ```
 
-1. Save and close hello *application.yml* file.
+1. Save and close the *application.yml* file.
 -->
 
 ## <a name="next-steps"></a>後續步驟
 
-如需在 Azure 上使用 Spring 開機應用程式的詳細資訊，請參閱下列文章 hello:
+如需在 Azure 上使用 Spring Boot 應用程式的詳細資訊，請參閱下列文章：
 
-* [部署 Spring 開機應用程式 toohello Azure App Service](../../app-service/app-service-deploy-spring-boot-web-app-on-azure.md)
-* [Spring 開機應用程式部署上 Kubernetes 叢集在 hello Azure 容器服務](container-service-deploy-spring-boot-app-on-kubernetes.md)
+* [將 Spring Boot 應用程式部署到 Azure App Service](../../app-service/app-service-deploy-spring-boot-web-app-on-azure.md)
+* [將 Spring Boot 應用程式部署到 Azure Container Service 中的 Kubernetes 叢集](container-service-deploy-spring-boot-app-on-kubernetes.md)
 
-如需有關使用 Azure 與 Java 的詳細資訊，請參閱 hello [Azure Java 開發人員中心]和 hello [Java 工具的 Visual Studio Team Services]。
+如需有關使用 Azure 搭配 Java 的詳細資訊，請參閱 [Azure Java 開發人員中心]和[適用於 Visual Studio Team Services 的 Java 工具]。
 
-如需 Docker 範例專案的 hello Spring 開機進一步詳細資訊，請參閱[上開始使用 Docker Spring 開機]。
+如需 Spring Boot on Docker 範例專案的進一步詳細資訊，請參閱 [Spring Boot on Docker Getting Started]。
 
-如需開始使用您自己 Spring 開機應用程式的說明，請參閱 hello **Spring Initializr** https://start.spring.io/ 在。
+如需開始使用您自己的 Spring Boot 應用程式的說明，請參閱 **Spring Initializr** (網址為 https://start.spring.io/)。
 
-如需開始使用建立簡單的 Spring 開機應用程式的詳細資訊，請參閱 < 在 https://start.spring.io/ hello Spring Initializr。
+如需開始建立簡單 Spring Boot 應用程式的相關詳細資訊，請參閱 Spring Initializr (網址為 https://start.spring.io/)。
 
-針對如何 toouse 自訂的 Docker 映像與 Azure 的其他範例，請參閱[on Linux 的 Azure Web 應用程式中使用自訂的 Docker 映像]。
+如需如何搭配 Azure 使用自訂 Docker 映像的其他範例，請參閱[針對 Linux 上的 Azure Web 應用程式使用自訂 Docker 映像]。
 
 <!-- URL List -->
 
 [Azure 命令列介面 (CLI)]: /cli/azure/overview
-[Azure 容器服務 (ACS)]: https://azure.microsoft.com/services/container-service/
+[Azure Container Service (ACS)]: https://azure.microsoft.com/services/container-service/
 [Azure Java 開發人員中心]: https://azure.microsoft.com/develop/java/
 [Azure 入口網站]: https://portal.azure.com/
-[建立私用 Docker 容器登錄中使用 Azure 入口網站 hello]: /azure/container-registry/container-registry-get-started-portal
-[on Linux 的 Azure Web 應用程式中使用自訂的 Docker 映像]: /azure/app-service-web/app-service-linux-using-custom-docker-image
+[使用 Azure 入口網站建立私人 Docker 容器登錄]: /azure/container-registry/container-registry-get-started-portal
+[針對 Linux 上的 Azure Web 應用程式使用自訂 Docker 映像]: /azure/app-service-web/app-service-linux-using-custom-docker-image
 [Docker]: https://www.docker.com/
 [免費的 Azure 帳戶]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: https://github.com/
 [Java 開發工具組 (JDK)]: http://www.oracle.com/technetwork/java/javase/downloads/
-[Java 工具的 Visual Studio Team Services]: https://java.visualstudio.com/
+[適用於 Visual Studio Team Services 的 Java 工具]: https://java.visualstudio.com/
 [Maven]: http://maven.apache.org/
 [MSDN 訂戶權益]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
-[Spring 開機]: http://projects.spring.io/spring-boot/
-[上開始使用 Docker Spring 開機]: https://github.com/spring-guides/gs-spring-boot-docker
-[Spring 架構]: https://spring.io/
+[Spring Boot]: http://projects.spring.io/spring-boot/
+[Spring Boot on Docker Getting Started]: https://github.com/spring-guides/gs-spring-boot-docker
+[Spring Framework]: https://spring.io/
 
 <!-- IMG List -->
 

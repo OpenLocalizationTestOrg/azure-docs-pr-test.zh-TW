@@ -1,6 +1,6 @@
 ---
-title: "aaaHow toocreate 及發佈產品在 Azure API 管理"
-description: "深入了解如何 toocreate 並發行產品在 Azure API 管理。"
+title: "如何在 Azure API 管理中建立及發行產品"
+description: "了解如何在 Azure API 管理中建立及發行產品。"
 services: api-management
 documentationcenter: 
 author: steved0x
@@ -14,114 +14,114 @@ ms.devlang: na
 ms.topic: article
 ms.date: 12/15/2016
 ms.author: apimpm
-ms.openlocfilehash: f0a37f08b4e29ca68be9caec4c7604e3b4b6aaa6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 73bf4451ba1b71807e22440beecc73a7e8045c5e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-toocreate-and-publish-a-product-in-azure-api-management"></a>如何 toocreate 及發佈產品在 Azure API 管理
-在 Azure API 管理中，產品包含一或多個應用程式開發介面，以及使用量配額與 hello 使用條款。 產品發行之後，開發人員可以訂閱 toohello 產品，並開始 toouse hello 產品的 Api。 hello 主題將提供指南 toocreating 產品，以加入應用程式開發介面，和發行適用於開發人員。
+# <a name="how-to-create-and-publish-a-product-in-azure-api-management"></a>如何在 Azure API 管理中建立及發行產品
+在 Azure API 管理中，產品包含一或多個 API，以及使用量配額與使用規定。 發行產品之後，開發人員便可訂閱產品，並開始使用產品的 API。 本主題提供建立產品、加入 API 和發行供開發人員使用的指引。
 
 ## <a name="create-product"> </a>建立產品
-作業可加入與 hello 發行者入口網站中設定 tooan API。 tooaccess hello 發行者入口網站中，按一下**發行者入口網站**API 管理服務的 hello Azure 入口網站中。
+請在發行者入口網站新增和設定 API 的作業。 若要存取發行者入口網站，請在您「API 管理」服務的「Azure 入口網站」中按一下 [發行者入口網站]。
 
 ![發行者入口網站][api-management-management-console]
 
-> 如果您尚未建立 API 管理服務執行個體，請參閱[建立 API 管理服務執行個體][ Create an API Management service instance]在 hello[開始使用 Azure API 管理][Get started with Azure API Management]教學課程。
+> 如果您尚未建立 API 管理服務執行個體，請參閱[開始使用 Azure API 管理][Get started with Azure API Management]教學課程中的[建立 API 管理服務執行個體][Create an API Management service instance]。
 > 
 > 
 
-按一下**產品**hello 左的 toodisplay hello 上的 [hello] 功能表中**產品**頁面，然後按一下**新增產品**。
+按一下左邊功能表中的 [產品]，以顯示 [產品] 頁面，然後按一下 [新增產品]。
 
 ![產品][api-management-products]
 
 ![New product][api-management-add-new-product]
 
-輸入 hello 產品的描述性名稱在 hello**名稱**欄位以及在 hello hello 產品的描述**描述**欄位。
+在 [名稱] 欄位中輸入產品的描述性名稱，在 [說明] 欄位中輸入產品說明。
 
-API 管理中的產品可以是 [開放] 或 [受保護]。 受保護的產品必須是它們可以用於，開啟時的訂閱的 toobefore 不用在訂用帳戶可以使用產品。 請檢查**需要訂用帳戶**toocreate 的受保護的產品，需要訂用帳戶。 這是 hello 預設設定。
+API 管理中的產品可以是 [開放] 或 [受保護]。 受保護產品必須先擁有訂用帳戶才能使用，開放產品則可以使用而不需訂用帳戶。 若要建立需要訂用帳戶的受保護產品，請核取 [ **需要訂閱** ]。 這是預設設定。
 
-請檢查**需要訂閱核准**如果您想要系統管理員 tooreview 並接受或拒絕的訂閱嘗試 toothis 產品。 如果 hello 方塊未選取，訂閱嘗試將會自動核准。 如需有關訂閱的詳細資訊，請參閱[檢視 「 訂閱者 」 tooa 產品][View subscribers tooa product]。
+如果您希望管理員檢閱並接受或拒絕對此產品的訂閱嘗試，請核取 [Require subscription approval]  。 如果未核取方塊，將會自動核准訂閱嘗試。 如需訂用帳戶的詳細資訊，請參閱[檢視產品的訂閱者][View subscribers to a product]。
 
-tooallow 開發人員帳戶 toosubscribe 多次 toohello 產品，請檢查 hello**允許多個訂閱**核取方塊。 如果未核取此方塊，每個開發人員帳戶可以訂閱一次 toohello 產品。
+若要允許開發人員帳戶訂閱產品多次，請核取 [ **允許多項訂閱** ] 核取方塊。 如果未核取此方塊，則每個開發人員帳戶只能訂閱產品一次。
 
 ![無限制的多項訂閱][api-management-unlimited-multiple-subscriptions]
 
-toolimit hello 計數的多個同時進行的訂閱，檢查 hello**同時訂閱的數目限制**核取方塊，然後輸入 hello 訂用帳戶限制。 在下列範例的 hello，同時訂閱是有限的 toofour 每個開發人員帳戶。
+若要限制多項同時訂閱的數目，請核取 [ **將同時訂閱數目限制為** ] 核取方塊，然後輸入訂閱限制。 在以下範例中，同時訂閱數已限制為每個開發人員帳戶四個。
 
 ![四個多項訂閱][api-management-four-multiple-subscriptions]
 
-一旦設定所有新的產品選項，按一下**儲存**toocreate hello 新產品。
+設定好所有新產品的選項後，請按一下 [ **儲存** ] 來建立新產品。
 
 ![產品][api-management-products-page]
 
-> 根據預設，新的產品為未發行，而是可見的唯一 toohello**管理員**群組。
+> 依預設不會發行新產品，且只有 [Administrators] 群組才能看見。
 > 
 > 
 
-tooconfigure 產品中，按一下 hello 中的 hello 產品名稱**產品** 索引標籤。
+若要設定產品，請在 [產品]  索引標籤中按一下產品名稱。
 
-## <a name="add-apis"></a>新增應用程式開發介面 tooa 產品
-hello**產品**頁面包含四個連結的組態：**摘要**，**設定**，**可視性**，和**訂閱者**。 hello**摘要** 索引標籤是您可以用它來新增應用程式開發介面和發行，或取消發行的產品。
+## <a name="add-apis"> </a>將 API 加入至產品
+[產品] 頁面包含組態的四個連結：**摘要**、**設定**、**可見度**和**訂閱者**。 [ **摘要** ] 索引標籤可讓您加入 API，以及發行或取消發行產品。
 
 ![摘要][api-management-new-product-summary]
 
-發行您的產品之前您需要 tooadd 一或多個應用程式開發介面。 toodo 此，依序按一下**新增應用程式開發介面 tooproduct**。
+發行產品之前，您必須加入一或多個 API。 若要這樣做，請安一下 [加入 API 至產品] 。
 
 ![Add APIs][api-management-add-apis-to-product]
 
-選取 hello 預期應用程式開發介面和按一下**儲存**。
+選取想要的 API，按一下 [儲存] 。
 
-## <a name="add-description"></a>加入描述性資訊 tooa 產品
-hello**設定**索引標籤可讓您 tooprovide hello 產品，例如其用途、 hello 應用程式開發介面，它提供的存取權，以及其他有用的資訊有關的詳細資訊。 hello 內容呼叫 hello 應用程式開發介面，且可以寫入純文字或 HTML 標記中的 hello 開發人員為目標。
+## <a name="add-description"> </a>將描述性資訊加入至產品
+[ **設定** ] 索引標籤可讓您提供產品的詳細資訊，例如用途、它提供存取的 API 及其他有用的資訊。 內容以將會呼叫 API 的開發人員為對象，可使用純文字或 HTML 標記來撰寫。
 
 ![Product settings][api-management-product-settings]
 
-請檢查**需要訂用帳戶**toocreate 受保護的產品需要使用，或清除訂閱 toobe hello 核取方塊 toocreate 已開啟的產品可以呼叫且不用訂用帳戶。
+若要建立需要使用訂用帳戶的受保護產品，請核取 [ **需要訂閱** ]，或是清除核取方塊，以建立不需訂用帳戶即可呼叫的開放產品。
 
-選取**需要訂閱核准**toomanually 如果您想要核准所有產品的訂閱要求。 依預設會自動同意所有產品訂閱。
+如果您要手動核准所有產品訂閱要求，請選取 [ **需要訂閱** ]。 依預設會自動同意所有產品訂閱。
 
-tooallow 開發人員帳戶 toosubscribe 多次 toohello 產品，請檢查 hello**允許多個訂閱**核取方塊，並選擇性地指定限制。 如果未核取此方塊，每個開發人員帳戶可以訂閱一次 toohello 產品。
+若要允許開發人員帳戶訂閱產品多次，請核取 [ **允許多項訂閱** ] 核取方塊，並選擇是否指定限制。 如果未核取此方塊，則每個開發人員帳戶只能訂閱產品一次。
 
-選擇性地填入 hello**使用條款**欄位描述的 「 訂閱者 」 必須接受訂單 toouse hello 產品中的 hello 產品 hello 使用條款。
+選擇性填寫 [ **使用規定** ] 欄位，描述訂閱者必須接受才可使用產品的產品使用規定。
 
 ## <a name="publish-product"> </a>發行產品
-在呼叫 hello 應用程式開發介面的產品前，必須先發佈 hello 產品。 在 hello**摘要**hello 產品的索引標籤上，按一下 **發行**，然後按一下 **是，將它發行**tooconfirm。 按一下 toomake 先前發行的產品私用**取消發行**。
+產品必須發行，才能呼叫產品中的 API。 在產品的 [摘要] 索引標籤上，按一下 [發佈]，然後按一下 [是，發佈] 表示確認。 若要將先前發行的產品設為私人，請按一下 [取消發行] 。
 
 ![Publish product][api-management-publish-product]
 
-## <a name="make-visible"></a>使產品可見 toodevelopers
-hello**可視性**索引標籤可讓您 toochoose 哪些角色可以 toosee hello 產品在 hello 開發人員入口網站並訂閱 toohello 產品。
+## <a name="make-visible"> </a>讓開發人員看見產品
+[ **可見度** ] 索引標籤可讓選擇哪些角色可在開發人員入口網站上看見產品及訂閱產品。
 
 ![Product visibility][api-management-product-visiblity]
 
-tooenable 或停用的群組中的 hello 開發人員的產品的可見性檢查或取消核取 hello hello 群組旁邊的核取方塊，然後按一下**儲存**。
+若要允許或不允許群組中的開發人員看見產品，請核取或取消核取群組旁邊的核取方塊，然後按一下 [儲存] 。
 
-> 如需詳細資訊，請參閱[toocreate 並用群組 toomanage 開發人員帳戶在 Azure API 管理的如何][How toocreate and use groups toomanage developer accounts in Azure API Management]。
+> 如需詳細資訊，請參閱 [如何在 Azure API 管理中建立和使用群組來管理開發人員帳戶][How to create and use groups to manage developer accounts in Azure API Management]。
 > 
 > 
 
-## <a name="view-subscribers"></a>檢視 「 訂閱者 」 tooa 產品
-hello **「 訂閱者 」**索引標籤會列出 hello 開發人員已訂閱 toohello 產品。 hello 詳細資料和設定每位開發人員可以檢視上 hello 開發人員的名稱即可。 在此範例中沒有開發人員尚未訂閱 toohello 產品。
+## <a name="view-subscribers"> </a>檢視產品的訂閱者
+[ **訂閱者** ] 索引標籤會列出已訂閱產品的開發人員。 按一下開發人員的名稱，即可檢視開發人員的詳細資料和設定。 在此範例中，還沒有開發人員訂閱產品。
 
 ![開發人員][api-management-developer-list]
 
 ## <a name="next-steps"> </a>後續步驟
-一次 hello 所需的應用程式開發介面會加入與 hello 產品發行時，開發人員可以訂閱 toohello 產品，並開始 toocall hello 應用程式開發介面。 如需有關這些項目和進階產品組態的示範教學課程，請參閱 [如何在 Azure API 管理中建立和設定進階產品設定][How create and configure advanced product settings in Azure API Management]。
+加入想要的 API 並發行產品之後，開發人員就可以訂閱產品並開始呼叫 API。 如需有關這些項目和進階產品組態的示範教學課程，請參閱 [如何在 Azure API 管理中建立和設定進階產品設定][How create and configure advanced product settings in Azure API Management]。
 
-如需有關使用產品的詳細資訊，請參閱下列視訊 hello。
+如需關於使用產品的詳細資訊，請觀看以下影片。
 
 > [!VIDEO https://channel9.msdn.com/Blogs/AzureApiMgmt/Using-Products/player]
 > 
 > 
 
 [Create a product]: #create-product
-[Add APIs tooa product]: #add-apis
-[Add descriptive information tooa product]: #add-description
+[Add APIs to a product]: #add-apis
+[Add descriptive information to a product]: #add-description
 [Publish a product]: #publish-product
-[Make a product visible toodevelopers]: #make-visible
-[View subscribers tooa product]: #view-subscribers
+[Make a product visible to developers]: #make-visible
+[View subscribers to a product]: #view-subscribers
 [Next steps]: #next-steps
 
 [api-management-management-console]: ./media/api-management-howto-add-products/api-management-management-console.png
@@ -144,10 +144,10 @@ hello **「 訂閱者 」**索引標籤會列出 hello 開發人員已訂閱 too
 [api-management-]: ./media/api-management-howto-add-products/
 
 
-[How tooadd operations tooan API]: api-management-howto-add-operations.md
-[How toocreate and publish a product]: api-management-howto-add-products.md
+[How to add operations to an API]: api-management-howto-add-operations.md
+[How to create and publish a product]: api-management-howto-add-products.md
 [Get started with Azure API Management]: api-management-get-started.md
 [Create an API Management service instance]: api-management-get-started.md#create-service-instance
 [Next steps]: #next-steps
-[How toocreate and use groups toomanage developer accounts in Azure API Management]: api-management-howto-create-groups.md
+[How to create and use groups to manage developer accounts in Azure API Management]: api-management-howto-create-groups.md
 [How create and configure advanced product settings in Azure API Management]: api-management-howto-product-with-rules.md 

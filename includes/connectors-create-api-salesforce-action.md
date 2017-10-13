@@ -1,42 +1,42 @@
-既然您已加入條件，其時間 toodo 一些有趣的 hello hello 觸發程序所產生的資料。 請遵循這些步驟 tooadd hello **Salesforce-取得物件**動作。 這個動作會收到 hello 資料每次建立新的線索。 您也會加入第二個動作將會使用從 Salesforce-Get 物件動作 toosend hello hello 資料使用 Office 365 hello 連接器一封電子郵件。  
+既然您已新增條件，現在即可使用觸發程序所產生的資料來進行一些有趣的操作。 請依照下列步驟來新增「Salesforce - 取得物件」  動作。 這個動作會在每次建立新潛在客戶時取得資料。 您也將新增第二個動作，此動作會使用來自「Salesforce - 取得物件」動作的資料，以使用 Office 365 連接器來傳送電子郵件。  
 
-tooconfigure hello 這個動作，您需要下列資訊 tooprovide hello。 您會發現它是做為某些 hello hello 新檔案的屬性輸入 hello 觸發程序所產生的簡單 toouse 資料：
+若要設定此動作，您將必須提供下列資訊。 您會發現，使用觸發程序所產生的資料做為一些新檔案屬性的輸入相當容易︰
 
 | 建立檔案屬性 | 說明 |
 | --- | --- |
-| 物件類型 |這是您感興趣的 Salesforce 物件 hello 型別。 範例包括潛在客戶、帳戶等。 |
-| 物件識別碼 |這代表 hello 物件的識別碼。 |
+| 物件類型 |這是您感興趣的 Salesforce 物件類型。 範例包括潛在客戶、帳戶等。 |
+| 物件識別碼 |這代表物件的識別碼。 |
 
-1. 選取 [新增動作]  連結。 此隨即開啟 hello 搜尋方塊中，您可以搜尋的任何動作您希望 tootake。 以這個範例來說，感興趣的動作是 Salesforce 動作。      
+1. 選取 [新增動作]  連結。 這會開啟搜尋方塊，您可以在其中搜尋任何想要採取的動作。 以這個範例來說，感興趣的動作是 Salesforce 動作。      
    ![Salesforce 動作圖像 1](./media/connectors-create-api-salesforce/action-1.png)  
-2. 輸入*salesforce*動作相關 toosalesforce 的 toosearch。
-3. 選取**Salesforce-取得物件**hello 動作 tootake 如下。   **請注意**： 您將會是您的 Salesforce 帳戶如果您還沒有這麼做之前您邏輯應用程式 tooaccess 提示的 tooauthorize。    
+2. 輸入 *salesforce* 來搜尋與 salesforce 相關的動作。
+3. 選取 [Salesforce - 取得物件] 做為要採取的動作。   **注意**：如果您先前尚未授權邏輯應用程式存取您的 Salesforce 帳戶，系統將會提示您這麼做。    
    ![Salesforce 動作圖像 2](./media/connectors-create-api-salesforce/action-2.png)    
-4. hello**取得物件**控制隨即開啟。  
-5. 選取*導致*hello 物件類型。
-6. 選取 hello**物件識別碼**控制項。
-7. 選取**...** tooexpand hello 清單可以用於做為輸入動作的語彙基元。       
+4. [取得物件]  控制項隨即開啟。  
+5. 選取 [潛在客戶]  做為物件類型。
+6. 選取 [物件識別碼]  控制項。
+7. 選取 [...]  以展開可用來做為動作輸入的語彙基元清單。       
    ![Salesforce 動作圖像 3](./media/connectors-create-api-salesforce/action-3.png)    
 8. 選取 [潛在客戶識別碼]  控制項。   
    ![Salesforce 動作圖像 4](./media/connectors-create-api-salesforce/action-4.png)     
-9. 請注意該 hello 導致 ID 語彙基元現在位於物件識別碼的控制項，指出該 hello Get 物件動作將會搜尋負責人具有 ID 將會觸發此邏輯應用程式的潛在客戶的相等 toohello 負責人識別碼 hello。  
+9. 請注意，[潛在客戶識別碼] 語彙基元現在位於 [物件識別碼] 控制項中，這表示「取得物件」動作會搜尋識別碼與觸發此邏輯應用程式之潛在客戶的識別碼相等的潛在客戶。  
    ![Salesforce 動作圖像 5](./media/connectors-create-api-salesforce/action-5.png)  
-10. 儲存您的工作。 您現在已完成，您加入 hello Get 物件動作 tooyour 邏輯應用程式。 您的「取得物件」控制項看起來應該會像這樣︰    
+10. 儲存您的工作。 就這麼簡單，您已將「取得物件」動作新增到邏輯應用程式中。 您的「取得物件」控制項看起來應該會像這樣︰    
     ![Salesforce 動作圖像 6](./media/connectors-create-api-salesforce/action-6.png)  
 
-既然您已加入動作 tooget 負責人，您可能想 toodo hello 新建負責人與一些有趣。 在企業中，您可能想 toosend 電子郵件 toonotify 通訊群組清單，確認已建立新的線索。 讓我們使用 hello Office 365 連接器 toosend 電子郵件以及一些來自 hello 新負責人物件在 Salesforce 中的 hello 相關資訊。  
+既然您已新增動作來取得潛在客戶，您可能會想要使用新建立的潛在客戶來執行一些有趣的操作。 在企業中，您可能要想要傳送電子郵件，來通知通訊群組清單已建立新的潛在客戶。 讓我們使用 Office 365 連接器，來傳送含有來自 Salesforce 中新潛在客戶物件一些相關資訊的電子郵件。  
 
-1. 選取**將動作加入**然後輸入*電子郵件*hello 搜尋控制項中。 這樣會篩選相關的 toosending 及接收的電子郵件的 hello 動作 toothose。  
-2. 選取 hello **Office 365 Outlook 的電子郵件傳送**清單項目。 如果您尚未建立*連接*tooyour Office 365 帳戶，您將會提示的 tooenter 您 Office 365 認證 toocreate 現在 it。 完成之後，hello**傳送電子郵件**控制隨即開啟。        
+1. 選取 [新增動作]，然後在搜尋控制項中輸入「電子郵件」。 這會篩選出與傳送和接收電子郵件相關的動作。  
+2. 選取 [Office 365 Outlook - 傳送電子郵件]  清單項目。 如果您尚未建立與 Office 365 帳戶的「連線」  ，系統就會提示您輸入 Office 365 認證來立即建立連線。 完成之後，[傳送電子郵件]  控制項會隨即開啟。        
    ![Salesforce 動作圖像 7](./media/connectors-create-api-salesforce/action-7.png)  
-3. 輸入您想要 toosend 電子郵件 tooin hello hello 電子郵件地址**至**控制項。
-4. 在 hello**主旨**控制中，輸入*新會導致建立*-然後選取 hello*公司*語彙基元。 這會顯示 hello*公司*欄位從 hello 在 Salesforce 中建立新的負責人。  
-5. 在 hello**主體**控制項，您可以的選取任何 hello 語彙基元與 hello 新負責人物件，而且您也可以輸入任何文字，您想要 toodisplay hello 主體中的 hello 電子郵件。 以下是範例：  
+3. 在 [收件者]  控制項中，輸入要接收您電子郵件的電子郵件地址。
+4. 在 [主旨] 控制項中，輸入「已建立新的潛在客戶」，然後選取 [公司] 語彙基元。 這會顯示來自在 Salesforce 中建立之新潛在客戶的 [公司]  欄位。  
+5. 在 [內文]  控制項中，您可以從新潛在客戶物件選取任何語彙基元，也可以輸入您想要顯示在電子郵件內文中的任何文字。 以下是範例：  
    ![Salesforce 動作圖像 8](./media/connectors-create-api-salesforce/action-8.png)   
 6. 儲存您的工作流程。  
 
 就這麼簡單。 您的邏輯應用程式現在已完成。  
 
-現在，您可以測試應用程式邏輯： 在 Salesforce 中建立新的負責人符合您所建立的 hello 條件。  如果您完全按照本逐步解說操作，就只要建立一個電子郵件地址包含 *amazon.com* 的新潛在客戶即可。 幾秒之後，就觸發應用程式邏輯並 hello 結果可能看起來類似 toothis:  
+現在，您可以測試邏輯應用程式︰在 Salesforce 中，建立一個符合您所建立條件的新潛在客戶。  如果您完全按照本逐步解說操作，就只要建立一個電子郵件地址包含 *amazon.com* 的新潛在客戶即可。 幾秒鐘之後，應該會觸發您的邏輯應用程式，而結果看起來可能會像這樣︰  
 ![Salesforce 動作圖像 9](./media/connectors-create-api-salesforce/action-9.png)  
 

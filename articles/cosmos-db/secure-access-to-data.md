@@ -1,5 +1,5 @@
 ---
-title: "aaaLearn toosecure 如何存取在 Azure Cosmos DB toodata |Microsoft 文件"
+title: "了解如何安全存取 Azure Cosmos DB 中的資料 | Microsoft Docs"
 description: "深入了解 Azure Cosmos DB 中的存取控制概念，其中包括主要金鑰、唯讀金鑰、使用者和權限。"
 services: cosmos-db
 author: mimig1
@@ -14,16 +14,16 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/24/2017
 ms.author: mimig
-ms.openlocfilehash: fef7f8e14b488f6ceab0f2aa279a1e99d4416f08
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 383e04f91eec2f465b381ce30f2d6d24c488b731
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="securing-access-tooazure-cosmos-db-data"></a>保護存取 tooAzure Cosmos DB 的資料
-本文提供的保護儲存在存取 toodata 概觀[Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)。
+# <a name="securing-access-to-azure-cosmos-db-data"></a>安全存取 Azure Cosmos DB 資料
+本文提供儲存於 [Microsoft Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/)中資料的安全存取概觀。
 
-Azure Cosmos DB 會使用兩種類型的索引鍵 tooauthenticate 使用者，並提供存取 tooits 資料和資源。 
+Azure Cosmos DB 會使用兩種類型的金鑰來驗證使用者，以允許存取其資料和資源。 
 
 |金鑰類型|資源|
 |---|---|
@@ -34,32 +34,32 @@ Azure Cosmos DB 會使用兩種類型的索引鍵 tooauthenticate 使用者，�
 
 ## <a name="master-keys"></a>主要金鑰 
 
-主要金鑰提供 hello 資料庫帳戶存取 toohello 所有 hello 管理資源。 主要金鑰：  
-- 提供存取 tooaccounts、 資料庫、 使用者和權限。 
-- 不能使用的 tooprovide 細微的存取權 toocollections 和文件。
-- 在 hello 建立帳戶期間建立。
+主要金鑰可讓資料庫帳戶存取所有系統管理資源。 主要金鑰：  
+- 允許存取帳戶、資料庫、使用者和權限。 
+- 無法用來提供集合和文件的更細微存取權。
+- 在帳戶建立期間建立。
 - 可隨時重新產生。
 
-每個帳戶包含兩個主要金鑰︰主要金鑰和次要金鑰。 hello 雙重機碼的目的是，讓您可以重新產生，或復原金鑰，提供持續存取 tooyour 帳戶和資料。 
+每個帳戶包含兩個主要金鑰︰主要金鑰和次要金鑰。 雙重金鑰的目的是讓您可以重新產生或輸替金鑰，以持續存取您的帳戶和資料。 
 
-在加法 toohello 兩個主要金鑰的 hello Cosmos DB 帳戶，有兩個唯讀的索引鍵。 這些的唯讀機碼，僅允許 hello 帳戶上的讀取的作業。 唯讀金鑰並不提供存取 tooread 權限資源。
+除了 Cosmos DB 帳戶的兩個主要金鑰，還有兩個唯讀金鑰。 這些唯讀金鑰只允許帳戶上的讀取作業。 唯讀金鑰不提供存取權來讀取權限資源。
 
-主要、 次要唯讀狀態，而且可以擷取讀寫主要金鑰，並且使用 hello Azure 入口網站重新產生。 相關指示請參閱[檢視、複製和重新產生存取金鑰](manage-account.md#keys)。
+您可以使用 Azure 入口網站來擷取和重新產生主要、次要、唯讀和讀寫主要金鑰。 相關指示請參閱[檢視、複製和重新產生存取金鑰](manage-account.md#keys)。
 
-![在 hello Azure 入口網站-示範 NoSQL 資料庫安全性的存取控制 (IAM)](./media/secure-access-to-data/nosql-database-security-master-key-portal.png)
+![Azure 入口網站中的存取控制 (IAM) - 示範 NoSQL 資料庫安全性](./media/secure-access-to-data/nosql-database-security-master-key-portal.png)
 
-hello 的旋轉您的主要金鑰的程序很簡單。 瀏覽 toohello Azure 入口網站 tooretrieve 次要的索引鍵，然後以您在應用程式中的次要金鑰取代主索引鍵然後旋轉 hello hello Azure 入口網站中的主索引鍵。
+輸替主要金鑰的程序很簡單。 瀏覽至 Azure 入口網站來擷取次要金鑰，在您的應用程式中以次要金鑰取代主要金鑰，然後在 Azure 入口網站中輸替主要金鑰。
 
-![在 hello Azure 入口網站-示範 NoSQL 資料庫安全性的主要金鑰輪替](./media/secure-access-to-data/nosql-database-security-master-key-rotate-workflow.png)
+![Azure 入口網站中的主要金鑰輪替 - 示範 NoSQL 資料庫安全性](./media/secure-access-to-data/nosql-database-security-master-key-rotate-workflow.png)
 
-### <a name="code-sample-toouse-a-master-key"></a>程式碼範例 toouse 主要金鑰
+### <a name="code-sample-to-use-a-master-key"></a>使用主要金鑰的程式碼範例
 
-hello 下列程式碼範例說明如何 toouse Cosmos DB 帳戶端點和服務主要金鑰 tooinstantiate DocumentClient 及建立資料庫。 
+下列程式碼範例說明如何使用 Cosmos DB 帳戶端點和主要金鑰，以具現化 DocumentClient 並建立資料庫。 
 
 ```csharp
-//Read hello Azure Cosmos DB endpointUrl and authorization keys from config.
-//These values are available from hello Azure portal on hello Azure Cosmos DB account blade under "Keys".
-//NB > Keep these values in a safe and secure location. Together they provide Administrative access tooyour DocDB account.
+//Read the Azure Cosmos DB endpointUrl and authorization keys from config.
+//These values are available from the Azure portal on the Azure Cosmos DB account blade under "Keys".
+//NB > Keep these values in a safe and secure location. Together they provide Administrative access to your DocDB account.
 
 private static readonly string endpointUrl = ConfigurationManager.AppSettings["EndPointUrl"];
 private static readonly SecureString authorizationKey = ToSecureString(ConfigurationManager.AppSettings["AuthorizationKey"]);
@@ -78,40 +78,40 @@ Database database = await client.CreateDatabaseAsync(
 
 ## <a name="resource-tokens"></a>資源權杖
 
-資源語彙基元提供 toohello 資料庫內的應用程式資源的存取。 資源權杖：
-- 提供存取 toospecific 集合、 資料分割索引鍵、 文件、 附件、 預存程序、 觸發程序和 Udf。
-- 時，會建立[使用者](#users)授與[權限](#permissions)tooa 特定資源。
+資源權杖允許存取資料庫內的應用程式資源。 資源權杖：
+- 允許存取特定的集合、分割索引鍵、文件、附件、預存程序、觸發程序和 UDF。
+- 在[使用者](#users)被授與特定資源的[權限](#permissions)時建立。
 - 使用 POST、GET 或 PUT 呼叫處理權限資源時重新建立。
-- 使用雜湊資源的語彙基元，特別是建構 hello 使用者、 資源和權限。
-- 是與可自訂的有效期間繫結的時間。 hello 有效時間範圍為 1 小時。 權杖存留期，不過，可明確指定，向上 tooa 最多五個小時。
-- 提供安全的替代 toogiving 出 hello 主要金鑰。 
-- 啟用用戶端 tooread、 寫入和刪除資源，根據 toohello 他們已被授與的權限的 hello Cosmos DB 帳戶中。
+- 使用特別為使用者、資源和權限建構的雜湊資源權杖。
+- 是與可自訂的有效期間繫結的時間。 預設有效時間範圍是一小時。 但可以明確指定權杖存留期，最多五小時。
+- 提供安全的替代方式來分發主要金鑰。 
+- 可讓用戶端根據所授與的權限，讀取、寫入和刪除 Cosmos DB 帳戶中的資源。
 
-您可以使用為資源語彙基元 （藉由建立 Cosmos DB 使用者和權限） 當您想在 Cosmos DB tooprovide 存取 tooresources 帳戶 tooa 用戶端無法信任 hello 主要金鑰。  
+若要對無法託付主要金鑰的用戶端提供 Cosmos DB 帳戶內資源的存取權，您可以使用資源權杖 (方法是建立 Cosmos DB 使用者和權限)。  
 
-Cosmos DB 資源語彙基元提供安全的替代方案，可讓用戶端 tooread、 寫入和刪除資源，根據 toohello 權限已授與，Cosmos DB 帳戶中，而需要在主版，或讀取唯一索引鍵。
+Cosmos DB 資源權杖提供一個安全的替代方式，無需主要或唯讀金鑰，便可讓用戶端根據授與他們的權限，以讀取、寫入和刪除 Cosmos DB 帳戶中的資源。
 
-以下是典型的設計模式，藉此資源語彙基元可能要求、 產生，並傳遞 tooclients:
+以下是典型的設計模式，其中資源權杖可能會被要求、產生和傳遞給用戶端：
 
-1. 中間層服務設定 tooserve 行動應用程式 tooshare 使用者相片。 
-2. hello 中間層服務擁有 hello hello Cosmos 資料庫帳戶主要金鑰。
-3. hello 相片應用程式會安裝在使用者的行動裝置上。 
-4. 在登入時，hello 相片應用程式會建立 hello 與 hello 中間層服務的 hello 使用者識別。 這項機制的身分識別建立已完全啟動 toohello 應用程式。
-5. 一旦建立 hello 身分識別，hello 中間層服務要求 hello 識別為基礎的權限。
-6. hello 中間層服務會傳送為資源語彙基元後 toohello phone 應用程式。
-7. hello 電話應用程式可以繼續 toouse hello 資源語彙基元 toodirectly Cosmos DB 存取的資源定義 hello 資源語彙基元和 hello 間隔 hello 資源語彙基元所允許的 hello 權限。 
-8. Hello 資源權杖過期時，後續要求就會收到 401 未授權例外狀況。  此時，hello 電話應用程式會重新建立 hello 身分識別，並要求新的資源權杖。
+1. 設定中間層服務，以協助行動應用程式分享使用者相片。 
+2. 中間層服務擁有 Cosmos DB 帳戶的主要金鑰。
+3. 使用者的行動裝置上安裝相片應用程式。 
+4. 登入時，相片應用程式會建立中間層服務的使用者身分識別。 這項身分識別建立的機制完全取決於應用程式。
+5. 建立身分識別後，中間層服務會根據身分識別要求權限。
+6. 中間層服務會將資源權杖送回電話應用程式。
+7. 電話應用程式可以繼續使用資源權杖，利用資源權杖所定義的權限並在資源權杖所允許的間隔內，直接存取 Cosmos DB 資源。 
+8. 資源權杖過期時，後續要求會收到 401 未經授權的例外狀況。  此時，電話應用程式會重新建立身分識別，並要求新的資源權杖。
 
     ![Azure Cosmos DB 資源權杖工作流程](./media/secure-access-to-data/resourcekeyworkflow.png)
 
-資源權杖的產生和管理是由原生 Cosmos DB 用戶端程式庫 hello; 處理不過，如果您使用 REST，您必須建構 hello 要求/驗證標頭。 如需有關如何建立 REST 驗證標頭的詳細資訊，請參閱[Cosmos DB 資源的存取控制](https://docs.microsoft.com/rest/api/documentdb/access-control-on-documentdb-resources)或 hello[原始程式碼我們 sdk](https://github.com/Azure/azure-documentdb-node/blob/master/source/lib/auth.js)。
+資源權杖的產生和管理由原生 Cosmos DB 用戶端程式庫處理。不過，如果您使用 REST，您必須建構要求/驗證標頭。 如需有關建立 REST 驗證標頭的詳細資訊，請參閱 [Cosmos DB 資源的存取控制 (英文)](https://docs.microsoft.com/rest/api/documentdb/access-control-on-documentdb-resources) 或 [SDK 的原始程式碼](https://github.com/Azure/azure-documentdb-node/blob/master/source/lib/auth.js)。
 
-中介層服務的範例使用 toogenerate 或 broker 資源語彙基元，請參閱 hello [ResourceTokenBroker 應用程式](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/xamarin/UserItems/ResourceTokenBroker/ResourceTokenBroker/Controllers)。
+如需用來產生或代理資源權杖的中間層服務的範例，請參閱 [ResourceTokenBroker 應用程式](https://github.com/Azure/azure-documentdb-dotnet/tree/master/samples/xamarin/UserItems/ResourceTokenBroker/ResourceTokenBroker/Controllers)。
 
 <a id="users"></a>
 
 ## <a name="users"></a>使用者
-Cosmos DB 使用者會與 Cosmos DB 資料庫相關聯。  每個資料庫都包含零個或多個 Cosmos DB 使用者。  hello 下列程式碼範例會示範如何 toocreate Cosmos DB 使用者資源。
+Cosmos DB 使用者會與 Cosmos DB 資料庫相關聯。  每個資料庫都包含零個或多個 Cosmos DB 使用者。  下列程式碼範例示範如何建立 Cosmos DB 使用者資源。
 
 ```csharp
 //Create a user.
@@ -124,27 +124,27 @@ docUser = await client.CreateUserAsync(UriFactory.CreateDatabaseUri("db"), docUs
 ```
 
 > [!NOTE]
-> 每個的 Cosmos DB 使用者都可以是使用的 tooretrieve hello 清單 PermissionsLink 屬性[權限](#permissions)hello 使用者相關聯。
+> 每個 Cosmos DB 使用者都具有 PermissionsLink 屬性，可用來擷取與使用者相關聯的[權限](#permissions)清單。
 > 
 > 
 
 <a id="permissions"></a>
 
 ## <a name="permissions"></a>權限
-Cosmos DB 權限資源會與 Cosmos DB 使用者相關聯。  每位使用者都包含零個或多個 Cosmos DB 權限。  權限資源會提供 hello 使用者需求時，嘗試 tooaccess 特定應用程式資源的存取 tooa 安全性權杖。
+Cosmos DB 權限資源會與 Cosmos DB 使用者相關聯。  每位使用者都包含零個或多個 Cosmos DB 權限。  當使用者嘗試存取特定的應用程式資源時，權限資源會提供使用者所需的安全性權杖存取權。
 權限資源可能提供兩種可用的存取等級：
 
-* All: hello 使用者 hello 資源上具有完整權限。
-* 請閱讀： hello 使用者只能讀取 hello hello 資源內容，但無法寫入、 更新或刪除作業 hello 資源上的執行。
+* 全部：使用者具有資源的完整權限。
+* 讀取：使用者只能讀取資源的內容，但無法執行資源的寫入、更新或刪除作業。
 
 > [!NOTE]
-> 在訂單 toorun Cosmos DB 預存程序 hello 使用者必須具有 hello All 權限將會執行預存程序中的 hello hello 集合上。
+> 為執行 Cosmos DB 預存程序，使用者必須具備即將執行預存程序之集合的「所有」權限。
 > 
 > 
 
-### <a name="code-sample-toocreate-permission"></a>程式碼範例 toocreate 權限
+### <a name="code-sample-to-create-permission"></a>建立權限的程式碼範例
 
-hello 下列程式碼範例顯示如何 toocreate 權限資源，讀取 hello hello 權限資源，資源語彙基元和 hello 權限聯 hello[使用者](#users)上面所建立。
+下列程式碼範例示範如何建立權限資源，讀取權限資源的資源權杖，並將權限與先前所建立的[使用者](#users)產生關聯。
 
 ```csharp
 // Create a permission.
@@ -159,11 +159,11 @@ docPermission = await client.CreatePermissionAsync(UriFactory.CreateUserUri("db"
 Console.WriteLine(docPermission.Id + " has token of: " + docPermission.Token);
 ```
 
-如果您已經指定您的集合，然後 hello 權限集合中，文件，而附件資源的資料分割索引鍵也必須包含 hello ResourcePartitionKey 加法 toohello ResourceLink 中。
+如果您已指定集合的分割索引鍵，則集合的權限、文件和附件資源也必須包含 ResourceLink 以外的 ResourcePartitionKey。
 
-### <a name="code-sample-tooread-permissions-for-user"></a>使用者的程式碼範例 tooread 權限
+### <a name="code-sample-to-read-permissions-for-user"></a>讀取使用者權限的程式碼範例
 
-tooeasily 取得所有與特定使用者相關聯的權限資源，但是 Cosmos DB 可用權限摘要每個使用者物件。  hello 下列程式碼片段示範上述 tooretrieve hello 權限與 hello 使用者相關聯的建立方式、 建構權限清單，並具現化新 DocumentClient 代表 hello 使用者。
+為了輕鬆取得所有與特定使用者相關聯的權限資源，Cosmos DB 會為每個使用者物件提供權限摘要。  下列程式碼片段示範如何擷取與先前所建立的使用者相關聯的權限、建構權限清單，並代表使用者具現化新的 DocumentClient。
 
 ```csharp
 //Read a permission feed.
@@ -180,6 +180,6 @@ DocumentClient userClient = new DocumentClient(new Uri(endpointUrl), permList);
 ```
 
 ## <a name="next-steps"></a>後續步驟
-* toolearn 進一步了解 Cosmos DB 資料庫安全性，請參閱[Cosmos DB： 資料庫安全性](database-security.md)。
-* toolearn 有關管理主要和唯讀索引鍵，請參閱[如何 toomanage Azure Cosmos DB 帳戶](manage-account.md#keys)。
-* 如何 tooconstruct Azure Cosmos DB 授權權杖，請參閱的 toolearn [Azure Cosmos DB 資源的存取控制](https://docs.microsoft.com/rest/api/documentdb/access-control-on-documentdb-resources)。
+* 若要深入了解 Cosmos DB 資料庫安全性，請參閱 [Cosmos DB 資料庫安全性](database-security.md)。
+* 若要了解如何管理主要和唯讀金鑰，請參閱[如何管理 Azure Cosmos DB 帳戶](manage-account.md#keys)。
+* 若要了解如何建構 Cosmos DB 授權權杖，請參閱 [Cosmos DB 資源的存取控制 (英文)](https://docs.microsoft.com/rest/api/documentdb/access-control-on-documentdb-resources)。

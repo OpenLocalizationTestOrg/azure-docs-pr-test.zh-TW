@@ -1,6 +1,6 @@
 ---
-title: "aaaAdd 或移除節點 tooa 獨立 Service Fabric 叢集 |Microsoft 文件"
-description: "了解 tooadd 或移除節點 tooan Azure Service Fabric 叢集化的實體或虛擬機器執行 Windows Server，可能是在內部部署上，或在任何雲端中。"
+title: "在獨立 Service Fabric 叢集中新增或移除節點 | Microsoft Docs"
+description: "了解如何在執行 Windows Server 的實體或虛擬電腦上 (無論是在內部部署或任何雲端) 對 Azure Service Fabric 叢集新增或移除節點。"
 services: service-fabric
 documentationcenter: .net
 author: dkkapur
@@ -14,29 +14,29 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 2/02/2017
 ms.author: dekapur
-ms.openlocfilehash: 1da908ad9840faa052e0b4021bc2d4ce732b02bc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9c6035e97de38ff63ef074109afd9f3c7484f828
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="add-or-remove-nodes-tooa-standalone-service-fabric-cluster-running-on-windows-server"></a>新增或移除 Windows Server 上執行的節點 tooa 獨立 Service Fabric 叢集
-之後[Windows Server 機器上建立獨立 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)可能會變更您的業務需求，您可能需要 tooadd 或移除節點 tooyour 叢集。 本文章提供詳細的步驟 tooachieve 這。 請注意，在本機開發叢集中，不支援新增/移除節點功能。
+# <a name="add-or-remove-nodes-to-a-standalone-service-fabric-cluster-running-on-windows-server"></a>在執行於 Windows Server 上的獨立 Service Fabric 叢集中新增或移除節點
+[在 Windows Server 機器上建立獨立 Service Fabric 叢集](service-fabric-cluster-creation-for-windows-server.md)之後，您的業務需求可能會改變，因此您可能需要在叢集中新增或移除節點。 本文提供可達成此目的的詳細步驟。 請注意，在本機開發叢集中，不支援新增/移除節點功能。
 
-## <a name="add-nodes-tooyour-cluster"></a>新增節點 tooyour 叢集
-1. 準備 hello 想依照 hello hello 中所述的步驟 tooadd tooyour 叢集的 VM/機器[準備 hello 的電腦上的叢集部署的 toomeet hello 必要條件](service-fabric-cluster-creation-for-windows-server.md)區段
-2. 識別哪些容錯網域和升級網域會持續 tooadd 此 VM/機器
-3. 遠端桌面 (RDP) 至 hello 您想 tooadd toohello 叢集的 VM/電腦
-4. 複製或[下載適用於 Windows Server 服務網狀架構 hello 獨立套件](http://go.microsoft.com/fwlink/?LinkId=730690)toohello VM/機器並將它解壓縮 hello 封裝
-5. 執行 Powershell，使用提高的權限，並瀏覽 toohello hello 解壓縮封裝位置
-6. 執行 hello *AddNode.ps1* hello 參數所描述新節點 tooadd hello 與指令碼。 hello 下面範例會將新的節點稱為 VM5，與類型 NodeType0 和 IP 位址 182.17.34.52，成 UD1 和 fd: / dc1/r0。 hello *ExistingClusterConnectionEndPoint*節點連接端點已在 hello 現有叢集中，它可以是 IP 位址 hello*任何*hello 叢集中的節點。
+## <a name="add-nodes-to-your-cluster"></a>將節點新增至叢集
+1. 依照[準備機器以符合叢集部署的必要條件](service-fabric-cluster-creation-for-windows-server.md)一節所提到的步驟操作，來準備要新增至叢集的 VM/機器
+2. 識別要用來新增此 VM/機器的容錯網域和升級網域
+3. 透過遠端桌面 (RDP) 登入到要新增至叢集的 VM/機器
+4. 複製或[下載適用於 Windows Server 之 Service Fabric 的獨立套件](http://go.microsoft.com/fwlink/?LinkId=730690)到此 VM/機器，然後將套件解壓縮
+5. 以較高的權限 PowerShell，然後瀏覽至解壓縮套件的位置
+6. 使用描述要新增之新節點的參數來執行 *AddNode.ps1* 指令碼。 下列範例會將名為 VM5 的新節點 (類型為 NodeType0 且 IP 位址為 182.17.34.52) 新增至 UD1 和 fd:/dc1/r0。 *ExistingClusterConnectionEndPoint* 是已在現有叢集中之節點的連線端點，這可以是叢集中「任何」節點的 IP 位址。
 
     ```
     .\AddNode.ps1 -NodeName VM5 -NodeType NodeType0 -NodeIPAddressorFQDN 182.17.34.52 -ExistingClientConnectionEndpoint 182.17.34.50:19000 -UpgradeDomain UD1 -FaultDomain fd:/dc1/r0 -AcceptEULA
     ```
-    一旦 hello 指令碼完成執行時，您可以檢查是否已新增 hello 新節點執行 hello [Get ServiceFabricNode](/powershell/module/servicefabric/get-servicefabricnode?view=azureservicefabricps) cmdlet。
+    指令碼執行完成之後，您可以執行 [Get-ServiceFabricNode](/powershell/module/servicefabric/get-servicefabricnode?view=azureservicefabricps) Cmdlet，來檢查是否已新增新節點。
 
-7. tooensure hello 叢集中不同節點之間的一致性，您必須起始組態升級。 執行[Get ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) tooget hello 最新的組態檔，並加入 hello 新加入的節點太 「 節點 」 一節。 也建議 tooalways 具有 hello 最新叢集組態可用在 hello 情況下，您需要 tooredploy hello 與叢集相同的設定。
+7. 為了確保叢集中不同節點間的一致性，您必須起始組態升級。 請執行 [Get-ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) 來取得最新的組態檔，然後將剛新增的節點新增到 "Nodes" 區段。 此外，建議您一律備妥最新的叢集組態，以因應您需要以相同組態重新部署叢集的情況。
 
     ```
         {
@@ -47,17 +47,17 @@ ms.lasthandoff: 10/06/2017
             "upgradeDomain": "UD1"
         }
     ```
-8. 執行[開始 ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) toobegin hello 升級。
+8. 執行 [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) 來開始升級。
 
     ```
-    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path tooConfiguration File>
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File>
 
     ```
-    您可以監視 hello Service Fabric 總管 hello 升級進度。 或者，您也可以執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps)
+    您可以在 Service Fabric Explorer 中監視升級進度。 或者，您也可以執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps)
 
-### <a name="add-nodes-tooclusters-configured-with-windows-security-using-gmsa"></a>新增節點 tooclusters 設定與使用 gMSA 的 Windows 安全性
+### <a name="add-nodes-to-clusters-configured-with-windows-security-using-gmsa"></a>使用 gMSA 將節點新增至已設定 Windows 安全性的叢集
 針對已設定「群組受管理的服務帳戶」(gMSA)(https://technet.microsoft.com/library/hh831782.aspx) 的叢集，可以使用組態升級來新增新的節點：
-1. 執行[Get ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps)上任何 hello 現有節點 tooget hello 最新的組態檔，並加入詳細資料 hello 一新節點中，您想 tooadd hello 「 節點 」 一節。 請確定 hello 新節點屬於相同的 hello 群組 「 受管理的帳戶。 此帳戶應該是所有機器上的「系統管理員」。
+1. 在任何現有的節點上執行 [Get-ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) 來取得最新的組態檔，然後在 "Nodes" 區段中新增有關所要新增之新節點的詳細資料。 請確定新節點屬於相同的群組受管理帳戶。 此帳戶應該是所有機器上的「系統管理員」。
 
     ```
         {
@@ -68,21 +68,21 @@ ms.lasthandoff: 10/06/2017
             "upgradeDomain": "UD1"
         }
     ```
-2. 執行[開始 ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) toobegin hello 升級。
+2. 執行 [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) 來開始升級。
 
     ```
-    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path tooConfiguration File>
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File>
     ```
-    您可以監視 hello Service Fabric 總管 hello 升級進度。 或者，您也可以執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps)
+    您可以在 Service Fabric Explorer 中監視升級進度。 或者，您也可以執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps)
 
-### <a name="add-node-types-tooyour-cluster"></a>新增節點型別 tooyour 叢集
-在排序 tooadd 新的節點類型、 修改組態 tooinclude hello 新節點類型 「 屬性 」 底下的"NodeTypes 」 一節中並開始設定升級使用[開始 ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps)。 Hello 升級完成之後，您可以加入新的節點 tooyour 叢集與此節點類型。
+### <a name="add-node-types-to-your-cluster"></a>將節點類型新增至叢集
+若要新增新的節點類型，請修改您的組態以在 "Properties" 底下的 "NodeTypes" 區段中包含新節點類型，然後使用 [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) 來開始組態升級。 升級完成之後，您便可以將此節點類型的新節點新增到您的叢集。
 
 ## <a name="remove-nodes-from-your-cluster"></a>從叢集移除節點
-可以從組態升級時，使用下列方式 hello 中的叢集移除節點：
+您可以使用組態升級，以下列方式將節點自叢集中移除：
 
-1. 執行[Get ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) tooget hello 最新的組態檔和*移除*hello 節點，從 「 節點 」 一節。
-新增 「 NodesToBeRemoved"hello 參數太 「 安裝 」"FabricSettings 」 區段中的區段。 hello"value"應該是需要 toobe 移除的節點的節點名稱的逗號分隔清單。
+1. 執行 [Get-ServiceFabricClusterConfiguration](/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) 來取得最新的組態檔，然後將節點從 "Nodes" 區段中「移除」。
+將 "NodesToBeRemoved" 參數新增至 "FabricSettings" 區段內的 "Setup" 區段。 "value" 應該是需要移除之節點的節點名稱清單 (以逗號分隔)。
 
     ```
          "fabricSettings": [
@@ -105,25 +105,25 @@ ms.lasthandoff: 10/06/2017
             }
         ]
     ```
-2. 執行[開始 ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) toobegin hello 升級。
+2. 執行 [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) 來開始升級。
 
     ```
-    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path tooConfiguration File>
+    Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File>
 
     ```
-    您可以監視 hello Service Fabric 總管 hello 升級進度。 或者，您也可以執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps)
+    您可以在 Service Fabric Explorer 中監視升級進度。 或者，您也可以執行 [Get-ServiceFabricClusterUpgrade](/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps)
 
 > [!NOTE]
-> 移除節點可能會起始多個升級作業。 某些節點會標示`IsSeedNode=”true”`標記，並且可以由查詢 hello 叢集資訊清單使用`Get-ServiceFabricClusterManifest`。 因為 hello 種子節點必須在這種情況中移動 toobe，可能會超過其他這類節點移除。 hello 叢集必須維護 3 個主要節點類型節點的最小的值。
+> 移除節點可能會起始多個升級作業。 有些節點帶有 `IsSeedNode=”true”` 標記標示，透過使用 `Get-ServiceFabricClusterManifest` 來查詢叢集資訊清單即可識別這些節點。 移除這類節點所需的時間可能比移除其他節點長，因為在這類案例中，需要將種子節點四處移動。 叢集必須至少維持 3 個主要節點類型節點。
 > 
 > 
 
 ### <a name="remove-node-types-from-your-cluster"></a>從叢集移除節點類型
-然後再移除節點型別，請檢查是否有任何參考 hello 節點類型的節點。 移除這些節點，然後再移除 hello 對應的節點類型。 一旦移除所有對應的節點，您可以從 hello 叢集組態移除 hello NodeType 並開始設定升級使用[開始 ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps)。
+移除節點之前，請仔細檢查是否有任何節點參考該節點類型。 請先移除這些節點，然後才移除對應的節點類型。 移除所有對應的節點之後，您便可以將該 NodeType 自叢集組態中移除，然後使用 [Start-ServiceFabricClusterConfigurationUpgrade](/powershell/module/servicefabric/start-servicefabricclusterconfigurationupgrade?view=azureservicefabricps) 來開始組態升級。
 
 
 ### <a name="replace-primary-nodes-of-your-cluster"></a>取代您叢集的主要節點
-hello 取代主要節點應該在另一個，而不是移除，然後將加入批次之後執行的一個節點。
+應以逐一取代主要節點的方式來執行，而不是以批次方式移除後再加入。
 
 
 ## <a name="next-steps"></a>後續步驟

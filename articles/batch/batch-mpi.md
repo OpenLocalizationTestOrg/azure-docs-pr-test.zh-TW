@@ -1,6 +1,6 @@
 ---
-title: "aaaUse 多重執行個體工作 toorun MPI 應用程式-Azure 批次 |Microsoft 文件"
-description: "了解如何使用 hello 多重執行個體工作 tooexecute 訊息傳遞介面 (MPI) 應用程式輸入 Azure 批次中。"
+title: "使用多重執行個體工作執行 MPI 應用程式 - Azure Batch | Microsoft Docs"
+description: "了解如何在 Azure Batch 中使用多重執行個體工作類來執行訊息傳遞介面 (MPI) 應用程式。"
 services: batch
 documentationcenter: .net
 author: tamram
@@ -14,43 +14,43 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: 5/22/2017
 ms.author: tamram
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: b0e3295a6aeb76267c26d5504bcff59de3dc5e22
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 77d12d6d48b22dfb3e7f09f273dffc11401bb15f
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-multi-instance-tasks-toorun-message-passing-interface-mpi-applications-in-batch"></a>批次中使用多個執行個體工作 toorun 訊息傳遞介面 (MPI) 應用程式
+# <a name="use-multi-instance-tasks-to-run-message-passing-interface-mpi-applications-in-batch"></a>在 Batch 中使用多重執行個體工作來執行訊息傳遞介面 (MPI) 應用程式
 
-多個執行個體工作可讓您 toorun Azure 批次工作在多個計算節點上同時。 這些工作可以在 Batch 中實現高效能運算案例，例如訊息傳遞介面 (MPI) 應用程式。 在本文中，您學會如何使用 tooexecute 多重執行個體工作 hello[批次.NET] [ api_net]程式庫。
+多重執行個體工作可讓您在多個計算節點上同時執行 Azure Batch 工作。 這些工作可以在 Batch 中實現高效能運算案例，例如訊息傳遞介面 (MPI) 應用程式。 在本文中，您將了解如何使用 [Batch .NET][api_net] 程式庫來執行多重執行個體工作。
 
 > [!NOTE]
-> 雖然這篇文章中的 hello 範例著重於批次.NET、 MS-MPI，而 Windows 計算節點，這裡所討論的 hello 多重執行個體工作概念會有適用 tooother 平台和技術 （Python 和 Intel MPI Linux 節點上，例如）。
+> 雖然本文中的範例著重於 Batch .NET、MS-MPI 和 Windows 計算節點，不過此處所討論的多重執行個體工作概念也適用於其他平台和技術 (如 Python 和 Linux 節點上的 Intel MPI)。
 >
 >
 
 ## <a name="multi-instance-task-overview"></a>多重執行個體工作概觀
-批次中每項工作通常是在單一計算節點-執行您提交多個工作 tooa 工作，，而 hello 批次服務會排程每個節點上執行的工作。 不過，藉由設定工作的**多重執行個體設定**，告訴批次 tooinstead 建立一項主要工作和數個子任務，然後在多個節點上執行。
+在 Batch 中，每個工作通常是在單一計算節點上執行 -- 您將多個工作提交給作業，而 Batch 服務會將每個工作排定在節點上執行。 不過，藉由設定工作的**多重執行個體設定**，即可告知 Batch 改為建立一個主要工作，以及數個會接著在多個節點上執行的子工作。
 
 ![多重執行個體工作概觀][1]
 
-當您提交多個執行個體設定 tooa 工作的工作時，批次會執行數個步驟的唯一 toomulti 執行個體工作：
+將具有多重執行個體設定的工作提交給作業時，Batch 會執行多重執行個體工作特有的幾個步驟：
 
-1. hello 批次服務會建立一個**主要**和數個**子任務**hello 多重執行個體設定為基礎。 hello 的總工作數目 （再加上所有子主要） 符合 hello 數目**執行個體**（計算節點） hello 多重執行個體設定所指定的。
-2. 批次指定一個 hello 計算節點做為 hello**主要**，並排程 hello hello 主機上的主要工作 tooexecute。 它會排程 hello 子任務 tooexecute hello 餘數 hello 計算節點配置的 toohello 多重執行個體 」 工作的一項子工作，每個節點上。
-3. 主要的 hello 與所有子工作下載任何**通用資源檔**hello 多重執行個體設定所指定的。
-4. 已下載 hello 通用資源檔案之後，主要 hello 與子工作執行 hello**協調命令**hello 多重執行個體設定所指定的。 常用的 tooprepare 節點執行 hello 工作 hello 協調命令。 這可能包括啟動背景服務 (例如[Microsoft MPI][msmpi_msdn]的`smpd.exe`) 和驗證 hello 節點是否準備好 tooprocess 節點間的訊息。
-5. 要執行 hello 主要工作 hello**應用程式命令**hello 主要節點上*之後*hello 協調命令已由主要的 hello 與所有子工作順利完成。 hello 應用程式命令 hello 多重執行個體工作本身，hello 命令列，且只有 hello 主要工作執行。 在 [MS-MPI][msmpi_msdn] 架構的方案中，您會在這裡使用 `mpiexec.exe` 執行已啟用 MPI 的應用程式。
+1. Batch 服務會根據多重執行個體設定，建立一個**主要**工作和數個**子工作**。 工作總數 (主要工作加上所有子工作) 與您在多重執行個體設定中指定的**執行個體** (計算節點) 數目相符。
+2. Batch 能將一個計算節點指定為**主要**節點，然後將主要工作排程在主要節點上執行。 它會將子工作排程在配置給多重執行個體工作所剩餘的計算節點上執行，每個節點一個子工作。
+3. 主要工作和子工作會下載您在多重執行個體設定中指定的任何**一般資源檔**。
+4. 下載一般資源檔之後，主要工作和子工作會執行您在多重執行個體設定中指定的 **協調命令** 。 協調命令通常用來準備執行工作所需的節點。 其中包括啟動背景服務 (如 [Microsoft MPI][msmpi_msdn] 的 `smpd.exe`)，以及確認節點已準備好處理節點間的訊息。
+5. 主要工作及所有子工作順利完成協調命令「之後」，主要工作會在主要節點上執行**應用程式命令**。 應用程式命令是多重執行個體工作自有的命令列，而且只有主要工作能執行。 在 [MS-MPI][msmpi_msdn] 架構的方案中，您會在這裡使用 `mpiexec.exe` 執行已啟用 MPI 的應用程式。
 
 > [!NOTE]
-> 雖然功能不同，但是 hello 「 多個執行個體 」 工作不是唯一的工作類型，例如 hello [StartTask] [ net_starttask]或[JobPreparationTask] [ net_jobprep]. hello 多重執行個體工作是只是標準的批次工作 ([CloudTask] [ net_task]在批次.NET) 的多個執行個體尚未設定。 我們在本文中，為 hello toothis**多重執行個體工作**。
+> 雖然「多重執行個體工作」在功能上不同，但不是特殊的工作類型，例如 [StartTask][net_starttask] 或 [JobPreparationTask][net_jobprep]。 多重執行個體工作只是已設定多重執行個體設定的 Standard Batch 工作 (Batch .NET 中的 [CloudTask][net_task])。 在本文中，我們將它稱為 **多重執行個體工作**。
 >
 >
 
 ## <a name="requirements-for-multi-instance-tasks"></a>多重執行個體工作的需求
-多重執行個體工作需要有**已啟用節點間通訊**和**已停用並行工作執行**的集區。 toodisable 並行工作執行時，set hello [CloudPool.MaxTasksPerComputeNode](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool#Microsoft_Azure_Batch_CloudPool_MaxTasksPerComputeNode) too1 屬性。
+多重執行個體工作需要有**已啟用節點間通訊**和**已停用並行工作執行**的集區。 若要停用並行工作執行，請將 [CloudPool.MaxTasksPerComputeNode](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.cloudpool#Microsoft_Azure_Batch_CloudPool_MaxTasksPerComputeNode) 屬性設定為 1。
 
-這個程式碼片段會示範 toocreate 多重執行個體的集區工作使用 hello 批次.NET 程式庫。
+此程式碼片段會顯示如何使用批次 .NET 程式庫來建立要供多重執行個體工作使用的集區。
 
 ```csharp
 CloudPool myCloudPool =
@@ -67,18 +67,18 @@ myCloudPool.MaxTasksPerComputeNode = 1;
 ```
 
 > [!NOTE]
-> 如果您嘗試的 toorun 停用多個執行個體中的工作集區的節點間通訊，或使用*maxTasksPerNode*值大於 1 時，永遠不會排程 hello 工作-無限期地保持在 hello 「 作用中 」 狀態。 
+> 如果您嘗試在已停用節點間通訊，或「maxTasksPerNode」  值大於 1 的集區中執行多重執行個體工作，則永遠不會排定工作--它會無限期停留在「作用中」狀態。 
 >
 > 多重執行個體工作只可以在 2015 年 12 月 14 日後建立之集區中的節點上執行。
 >
 >
 
-### <a name="use-a-starttask-tooinstall-mpi"></a>使用 StartTask tooinstall MPI
-toorun MPI 應用程式與多重執行個體的工作，您必須先 tooinstall hello 集區中的 hello 計算節點上的 MPI 實作 （MS-MPI 或 Intel MPI，例如）。 這是很好的時間 toouse [StartTask][net_starttask]，它會執行時的節點加入集區，或重新啟動。 此程式碼片段會建立指定 hello MS-MPI 安裝程式封裝中的成為 StartTask[資源檔][net_resourcefile]。 hello 資源檔是下載的 toohello 節點之後，會執行 hello 啟動工作的命令列。 在此情況下，hello 命令列執行 MS-MPI 的自動的安裝。
+### <a name="use-a-starttask-to-install-mpi"></a>使用 StartTask 安裝 MPI
+若要執行具有多重執行個體工作的 MPI 應用程式，您必須先在集區的計算節點上安裝 MPI 實作 (例如 MS-MPI 或 Intel MPI)。 這是使用 [StartTask][net_starttask] 的好時機，每當節點加入集區或重新啟動時，它就會執行。 此程式碼片段會建立 StartTask，指定 MS-MPI 安裝套件來做為[資源檔][net_resourcefile]。 資源檔下載至節點後，便會執行啟動工作的命令列。 在此案例中，命令列會執行 MS-MPI 的自動安裝。
 
 ```csharp
-// Create a StartTask for hello pool which we use for installing MS-MPI on
-// hello nodes as they join hello pool (or when they are restarted).
+// Create a StartTask for the pool which we use for installing MS-MPI on
+// the nodes as they join the pool (or when they are restarted).
 StartTask startTask = new StartTask
 {
     CommandLine = "cmd /c MSMpiSetup.exe -unattend -force",
@@ -88,15 +88,15 @@ StartTask startTask = new StartTask
 };
 myCloudPool.StartTask = startTask;
 
-// Commit hello fully configured pool toohello Batch service tooactually create
-// hello pool and its compute nodes.
+// Commit the fully configured pool to the Batch service to actually create
+// the pool and its compute nodes.
 await myCloudPool.CommitAsync();
 ```
 
 ### <a name="remote-direct-memory-access-rdma"></a>遠端直接記憶體存取 (RDMA)
-當您選擇[具備 RDMA 功能的大小](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)例如 hello A9 計算節點批次集區中的，您的 MPI 應用程式可以利用 Azure 的高效能、 低延遲的遠端直接記憶體存取 (RDMA) 網路。
+當您在 Batch 集區中選擇 [支援 RDMA 大小](../virtual-machines/windows/sizes-hpc.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (如 A9 計算節點) 時，MPI 應用程式可以利用 Azure 高效能、低延遲的遠端直接記憶體存取 (RDMA) 網路。
 
-尋找在 hello 下列發行項指定為 「 具有 RDMA"hello 大小：
+在下列文章中尋找指定為「支援 RDMA」的大小︰
 
 * **CloudServiceConfiguration** 集區
 
@@ -107,22 +107,22 @@ await myCloudPool.CommitAsync();
   * [Azure 中的虛擬機器大小](../virtual-machines/windows/sizes.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json) (Windows)
 
 > [!NOTE]
-> 上的 RDMA tootake 利用[Linux 計算節點](batch-linux-nodes.md)，您必須使用**Intel MPI** hello 節點上。 如需有關 CloudServiceConfiguration 和 VirtualMachineConfiguration 集區的詳細資訊，請參閱 hello 集區 > 一節的 hello[批次功能概觀](batch-api-basics.md)。
+> 若要在 [Linux 計算節點](batch-linux-nodes.md)上利用 RDMA，您必須在節點上使用 **Intel MPI**。 如需 CloudServiceConfiguration 和 VirtualMachineConfiguration 集區的詳細資訊，請參閱 [Batch 功能概觀](batch-api-basics.md)的＜集區＞一節。
 >
 >
 
 ## <a name="create-a-multi-instance-task-with-batch-net"></a>使用 Batch .NET 建立多個執行個體工作
-既然我們已經探討 hello 集區需求和 MPI 套件安裝，讓我們來建立 hello 多重執行個體的工作。 在此片段中，我們會建立標準 [CloudTask][net_task]，然後設定其 [MultiInstanceSettings][net_multiinstance_prop] 屬性。 如先前所述，hello 多重執行個體工作不是不同的工作類型，而多個執行個體設定的標準批次工作。
+既然我們已討論過集區需求和 MPI 套件安裝，現在讓我們建立多重執行個體工作。 在此片段中，我們會建立標準 [CloudTask][net_task]，然後設定其 [MultiInstanceSettings][net_multiinstance_prop] 屬性。 如先前所述，多重執行個體工作不是獨特的工作類型，而只是已設定多重執行個體設定的標準 Batch 工作。
 
 ```csharp
-// Create hello multi-instance task. Its command line is hello "application command"
-// and will be executed *only* by hello primary, and only after hello primary and
-// subtasks execute hello CoordinationCommandLine.
+// Create the multi-instance task. Its command line is the "application command"
+// and will be executed *only* by the primary, and only after the primary and
+// subtasks execute the CoordinationCommandLine.
 CloudTask myMultiInstanceTask = new CloudTask(id: "mymultiinstancetask",
     commandline: "cmd /c mpiexec.exe -wdir %AZ_BATCH_TASK_SHARED_DIR% MyMPIApplication.exe");
 
-// Configure hello task's MultiInstanceSettings. hello CoordinationCommandLine will be executed by
-// hello primary and all subtasks.
+// Configure the task's MultiInstanceSettings. The CoordinationCommandLine will be executed by
+// the primary and all subtasks.
 myMultiInstanceTask.MultiInstanceSettings =
     new MultiInstanceSettings(numberOfNodes) {
     CoordinationCommandLine = @"cmd /c start cmd /c ""%MSMPI_BIN%\smpd.exe"" -d",
@@ -132,15 +132,15 @@ myMultiInstanceTask.MultiInstanceSettings =
     }
 };
 
-// Submit hello task toohello job. Batch will take care of splitting it into subtasks and
-// scheduling them for execution on hello nodes.
+// Submit the task to the job. Batch will take care of splitting it into subtasks and
+// scheduling them for execution on the nodes.
 await myBatchClient.JobOperations.AddTaskAsync("mybatchjob", myMultiInstanceTask);
 ```
 
 ## <a name="primary-task-and-subtasks"></a>主要工作和子工作
-當您建立 hello 工作的多個執行個體設定時，您會指定 hello tooexecute hello 工作的運算節點數目。 當您送出 hello 工作 tooa 作業時，hello 批次服務會建立一個**主要**工作以及足以**子任務**一起與相符的 hello 您指定的節點數目。
+當您建立工作的多重執行個體設定時，您需要指定用來執行工作的計算節點數目。 當您將工作提交給作業時，Batch 服務會建立一個**主要工作**和足夠的**子工作**，而且合計符合您指定的節點數。
 
-這些工作會指派整數識別碼 hello 範圍內的 0 太*numberOfInstances* -1。 識別碼為 0 的 hello 工作是 hello 主要工作，而所有其他的 id 是子工作。 例如，如果您建立下列工作的多個執行個體設定的 hello，hello 主要工作就會有的識別碼為 0，並 hello 子工作會有 1 到 9 的識別碼。
+系統會指派範圍介於 0 到 *numberOfInstances* - 1 的整數識別碼給這些工作。 識別碼 0 的工作是主要工作，其他所有識別碼都是子工作。 比方說，如果您為工作建立下列多重執行個體設定，則主要工作的識別碼為 0，而子工作的識別碼為 1 到 9。
 
 ```csharp
 int numberOfNodes = 10;
@@ -148,37 +148,37 @@ myMultiInstanceTask.MultiInstanceSettings = new MultiInstanceSettings(numberOfNo
 ```
 
 ### <a name="master-node"></a>主要節點
-當您提交多個執行個體工作時，hello 批次服務將指定的 hello 其中一個計算節點為 hello 「 主要 」 節點，並排程 hello hello 主要節點上的主要工作 tooexecute。 hello 子工作會排定的 tooexecute hello 其餘部分的配置 toohello 多重執行個體工作 hello 節點上。
+當您提交多重執行個體工作時，Batch 服務能將一個計算節點指定為「主要」節點，然後將主要工作排程在主要節點上執行。 它會將子工作排程在配置給多重執行個體工作所剩餘的節點上執行。
 
 ## <a name="coordination-command"></a>協調命令
-hello**協調命令**hello 主要和子工作所執行。
+主要工作和子工作都會執行 **協調命令** 。
 
-封鎖的 hello 協調命令的引動過程 hello-批次不會執行 hello 應用程式的命令，直到 hello 協調命令已順利傳回所有子工作。 因此 hello 協調命令就應該啟動任何所需的背景服務，確定它們是供使用，，然後結束。 例如，此解決方案使用 MS-MPI 第 7 版的協調命令 hello 節點上啟動 hello SMPD 服務，然後結束：
+阻止叫用協調命令 -- 在所有子工作的協調命令順利傳回之前，Batch 不會執行應用程式命令。 因此，協調命令應該啟動任何所需的背景服務，確認它們已準備好可供使用，然後結束。 比方說，在使用 MS-MPI 第 7 版的方案中，此協調命令會在節點上啟動 SMPD 服務，然後結束：
 
 ```
 cmd /c start cmd /c ""%MSMPI_BIN%\smpd.exe"" -d
 ```
 
-請注意 hello 使用`start`在此協調命令。 這是必要的因為 hello`smpd.exe`應用程式不會在執行後立即傳回。 而不需 hello hello 使用[啟動][ cmd_start]命令時，此協調命令就不會傳回，並會因此而封鎖 hello 應用程式命令的執行。
+請注意此協調命令中使用 `start` 。 這是必要的，因為 `smpd.exe` 應用程式不會在執行後立即傳回。 如果不使用 [start][cmd_start] 命令，此協調命令就不會傳回，因此將阻止執行應用程式命令。
 
 ## <a name="application-command"></a>應用程式命令
-當主要工作就 hello 與所有子工作完成後，執行 hello 協調命令時，hello 主要工作所執行 hello 多重執行個體工作的命令列*只*。 我們會呼叫這個 hello**應用程式命令**toodistinguish 從 hello 協調命令。
+主要工作及所有子工作完成執行協調命令之後，「只有」 主要工作會執行多重執行個體工作的命令列。 我們將此命令列稱為 **應用程式命令** ，以便與協調命令有所區別。
 
-為 MS-MPI 應用程式，使用 hello 應用程式命令 tooexecute MPI 啟用的應用程式與`mpiexec.exe`。 例如，以下是使用 MS-MPI 第 7 版的方案所執行的應用程式命令：
+針對 MS-MPI 應用程式，使用應用程式命令以 `mpiexec.exe`執行已啟用 MPI 的應用程式。 例如，以下是使用 MS-MPI 第 7 版的方案所執行的應用程式命令：
 
 ```
 cmd /c ""%MSMPI_BIN%\mpiexec.exe"" -c 1 -wdir %AZ_BATCH_TASK_SHARED_DIR% MyMPIApplication.exe
 ```
 
 > [!NOTE]
-> 因為 MS-MPI 的`mpiexec.exe`使用 hello`CCP_NODES`預設變數 (請參閱[環境變數](#environment-variables)) hello 範例上述的應用程式命令列會排除它。
+> 因為 MS-MPI 的 `mpiexec.exe` 預設會使用 `CCP_NODES` 變數 (請參閱[環境變數](#environment-variables))，上述範例應用程式命令列會排除它。
 >
 >
 
 ## <a name="environment-variables"></a>環境變數
-批次建立數個[環境變數][ msdn_env_var] hello 上的特定 toomulti 執行個體工作計算節點配置 tooa 多重執行個體的工作。 您協調和應用程式的命令列可以參考這些環境變數，如指令碼和它們所執行的程式可以 hello。
+Batch 會在配置給多重執行個體工作的計算節點上建立幾個多個執行個體工作特有的[環境變數][msdn_env_var]。 您的協調和應用程式命令列可以參考這些環境變數，它們執行的指令碼和程式也可以。
 
-hello 下列環境變數會建立 hello 批次服務用於多個執行個體的工作：
+以下是 Batch 服務為多重執行個體工作所建立的環境變數︰
 
 * `CCP_NODES`
 * `AZ_BATCH_NODE_LIST`
@@ -187,56 +187,56 @@ hello 下列環境變數會建立 hello 批次服務用於多個執行個體的�
 * `AZ_BATCH_TASK_SHARED_DIR`
 * `AZ_BATCH_IS_CURRENT_NODE_MASTER`
 
-如需這些完整詳細資料和 hello 其他批次計算節點的環境變數，包括其內容與可見性，請參閱[計算節點環境變數][msdn_env_var]。
+如需這些變數和其他 Batch 計算節點環境變數的完整詳細資料 (包括其內容和可見性)，請參閱[計算節點環境變數][msdn_env_var]。
 
 > [!TIP]
-> hello 批次 Linux MPI 程式碼範例包含如何使用這些環境變數的數個範例。 hello[協調 cmd] [ coord_cmd_example] Bash 指令碼會從 Azure 儲存體下載常見的應用程式和輸入的檔案，可讓在 hello 主要節點上的網路檔案系統 (NFS) 共用以及設定 hello 其他節點做為 NFS 用戶端配置 toohello 多重執行個體的工作。
+> Batch Linux MPI 程式碼範例含有幾個如何使用這些環境變數的範例。 [coordination-cmd][coord_cmd_example] Bash 指令碼能從 Azure 儲存體下載一般應用程式和輸入檔案、啟用主要節點上的網路檔案系統 (NFS) 共用，以及將配置給多重執行個體工作的其他節點設定為 NFS 用戶端。
 >
 >
 
 ## <a name="resource-files"></a>資源檔
-有兩個集合的多個執行個體工作的資源檔案 tooconsider:**通用資源檔**，*所有*下載工作 (這兩個主要與子工作)，和 hello**資源檔** hello 多重執行個體工作本身，其中指定*只 hello 主要*工作下載項目。
+多重執行個體工作需要考量兩組資源檔：「所有」工作 (主要工作和子工作) 下載的**一般資源檔**，以及為多重執行個體工作本身指定的**資源檔** (「只有主要工作」會下載)。
 
-您可以指定一或多個**通用資源檔**hello 多重執行個體設定的工作。 從下載這些常見的資源檔[Azure 儲存體](../storage/common/storage-introduction.md)到每個節點的**工作共用的目錄**由主要的 hello 與所有子工作。 您可以從應用程式及協調命令列存取 hello 工作共用的目錄，使用 hello`AZ_BATCH_TASK_SHARED_DIR`環境變數。 hello`AZ_BATCH_TASK_SHARED_DIR`路徑上每個節點配置的 toohello 多重執行個體工作相同，因此您可以共用單一協調命令之間主要的 hello 與所有子工作。 批次不會 「 共用 」 hello 目錄中的遠端存取意義上，但是您可以將它當做掛接或共用點，如稍早在 環境變數的 hello 提示中所述。
+您可以在工作的多重執行個體設定中指定一或多個 **一般資源檔** 。 主要工作及所有子工作會從 [Azure 儲存體](../storage/common/storage-introduction.md)，將這些一般資源檔下載到每個節點的**工作共用目錄**。 您可以使用 `AZ_BATCH_TASK_SHARED_DIR` 環境變數從應用程式命令和協調命令列存取工作共用目錄。 每個配置給多重執行個體工作之節點上的 `AZ_BATCH_TASK_SHARED_DIR` 路徑均完全相同，因此您可以讓主要工作和所有子工作共用一個協調命令。 從遠端存取方面來看，Batch 不會「共用」目錄，不過您可以將它當做掛接點或共用點，如同先前有關環境變數的提示所述。
 
-Hello 多重執行個體工作本身會下載的 toohello 工作的工作目錄，為指定的資源檔`AZ_BATCH_TASK_WORKING_DIR`，根據預設。 如前所述，相較之下 toocommon 資源檔，唯一 hello 主要工作會下載 hello 多重執行個體工作本身為指定的資源檔。
+依預設，您為多重執行個體工作本身所指定的資源檔會下載到工作的工作目錄 ( `AZ_BATCH_TASK_WORKING_DIR`) 中。 如前文所述，相較於一般資源檔，只有主要工作會下載為多重執行個體工作本身所指定的資源檔。
 
 > [!IMPORTANT]
-> 一律使用 hello 環境變數`AZ_BATCH_TASK_SHARED_DIR`和`AZ_BATCH_TASK_WORKING_DIR`toorefer toothese 目錄，在命令列中的。 請勿手動嘗試 tooconstruct hello 路徑。
+> 在命令列中，請一律使用環境變數 `AZ_BATCH_TASK_SHARED_DIR` 和 `AZ_BATCH_TASK_WORKING_DIR` 來參考這些目錄。 請勿嘗試以手動方式建構路徑。
 >
 >
 
 ## <a name="task-lifetime"></a>工作存留期
-hello 存留期 hello 主要工作控制項 hello 工作的存留期 hello 整個多個執行個體。 Hello 主要當結束時，會終止所有 hello 子任務。 主要的 hello hello 結束代碼是 hello 的 hello 工作的結束代碼，因此使用的 toodetermine hello 成功或失敗的重試基於 hello 工作。
+主要工作的存留期控制整個多重執行個體工作的存留期。 當主要工作結束時，所有子工作就會終止。 主要工作的結束代碼就是工作的結束代碼，因此在重試用途上用於判斷工作成功或失敗。
 
-如果任何 hello 子工作失敗，結束使用非零的傳回程式碼，例如 hello 整個多個執行個體工作會失敗。 hello 多重執行個體的工作是終止，然後重試，向上 tooits 重試次數上限。
+如果任何子工作失敗，比方說結束時傳回碼不是零，則整個多重執行個體工作會失敗。 接著會終止並重試多重執行個體工作，直到觸及重試限制為止。
 
-當您刪除多個執行個體工作時，主要的 hello 與所有子工作會一併刪除的 hello 批次服務。 所有的子工作目錄，並從 hello 計算節點，只適用於標準工作會刪除其檔案。
+當您刪除多重執行個體工作時，Batch 服務也會刪除主要工作和所有子工作。 所有子工作目錄及其檔案會從計算節點中刪除，如同在標準工作中一樣。
 
-[TaskConstraints] [ net_taskconstraints]多重執行個體的工作，例如 hello [MaxTaskRetryCount][net_taskconstraint_maxretry]， [MaxWallClockTime][ net_taskconstraint_maxwallclock]，和[RetentionTime] [ net_taskconstraint_retention]屬性，系統會接受標準的工作，並套用 toohello 主要與所有子工作。 不過，如果您變更 hello [RetentionTime] [ net_taskconstraint_retention]新增 hello 多重執行個體工作 toohello 作業，這項變更後的屬性會套用只有 toohello 主要工作。 所有 hello 子任務繼續 toouse hello 原始[RetentionTime][net_taskconstraint_retention]。
+多重執行個體工作的 [TaskConstraints][net_taskconstraints] (例如 [MaxTaskRetryCount][net_taskconstraint_maxretry]、[MaxWallClockTime][net_taskconstraint_maxwallclock], 和 [RetentionTime][net_taskconstraint_retention] 屬性) 都視為用於標準工作，並套用至主要工作和所有子工作。 不過，如果您在多重執行個體工作新增到作業之後變更 [RetentionTime][net_taskconstraint_retention] 屬性，這項變更只會套用到主要作業。 所有的子工作會繼續使用原始 [RetentionTime][net_taskconstraint_retention]。
 
-如果 hello 最近的工作是多個執行個體工作的一部分，則計算節點的最近工作清單會反映出 hello 的子工作的識別碼。
+如果最近的工作是多重執行個體工作的一部分，計算節點的最近工作清單會反映子工作的識別碼。
 
 ## <a name="obtain-information-about-subtasks"></a>取得子工作的相關資訊
-使用 hello 批次.NET 程式庫，呼叫 hello 子任務的 tooobtain 有關[CloudTask.ListSubtasks] [ net_task_listsubtasks]方法。 這個方法會傳回資訊上所有的子工作和資訊 hello 計算執行 hello 工作的節點。 這項資訊，您可以判斷每項子工作的根目錄、 hello 集區識別碼，其目前狀態、 結束代碼，等等。 您可以使用這項資訊結合 hello [PoolOperations.GetNodeFile] [ poolops_getnodefile]方法 tooobtain hello 子任務的檔案。 請注意，這個方法不會傳回 hello 主要工作 （識別碼 0） 的資訊。
+若要使用 Batch .NET 程式庫取得子工作的詳細資訊，請呼叫 [CloudTask.ListSubtasks][net_task_listsubtasks] 方法。 這個方法會傳回所有子工作的相關資訊，以及已執行工作的計算節點的相關資訊。 您可以根據這項資訊判斷每項子工作的根目錄、集區識別碼、其目前狀態、結束代碼等等。 您可以使用這項資訊結合 [PoolOperations.GetNodeFile][poolops_getnodefile] 方法，以取得子工作的檔案。 請注意，這個方法不會傳回主要工作 (識別碼 0) 的相關資訊。
 
 > [!NOTE]
-> 除非另有指明，批次.NET 方法上操作的 hello 多重執行個體[CloudTask] [ net_task]本身套用*只*toohello 主要工作。 例如，當您呼叫 hello [CloudTask.ListNodeFiles] [ net_task_listnodefiles]多重執行個體工作上的方法，只有 hello 主要工作的檔案會傳回。
+> 除非另有指明，否則在多重執行個體 [CloudTask][net_task] 本身執行的 Batch .NET 方法「只會」套用到主要工作。 例如，當您在多重執行個體工作上呼叫 [CloudTask.ListNodeFiles][net_task_listnodefiles] 方法時，只會傳回主要工作的檔案。
 >
 >
 
-hello 下列程式碼片段示範如何 tooobtain 子工作的詳細資訊，以及要求檔案的內容來自 hello 執行所在的節點。
+下列程式碼片段示範如何取得子工作資訊，以及從它們執行所在的節點要求檔案的內容。
 
 ```csharp
-// Obtain hello job and hello multi-instance task from hello Batch service
+// Obtain the job and the multi-instance task from the Batch service
 CloudJob boundJob = batchClient.JobOperations.GetJob("mybatchjob");
 CloudTask myMultiInstanceTask = boundJob.GetTask("mymultiinstancetask");
 
-// Now obtain hello list of subtasks for hello task
+// Now obtain the list of subtasks for the task
 IPagedEnumerable<SubtaskInformation> subtasks = myMultiInstanceTask.ListSubtasks();
 
-// Asynchronously iterate over hello subtasks and print their stdout and stderr
-// output if hello subtask has completed
+// Asynchronously iterate over the subtasks and print their stdout and stderr
+// output if the subtask has completed
 await subtasks.ForEachAsync(async (subtask) =>
 {
     Console.WriteLine("subtask: {0}", subtask.Id);
@@ -265,39 +265,39 @@ await subtasks.ForEachAsync(async (subtask) =>
 ```
 
 ## <a name="code-sample"></a>程式碼範例
-hello [MultiInstanceTasks] [ github_mpi] GitHub 上的程式碼範例示範如何 toouse 多重執行個體工作 toorun [MS-MPI] [ msmpi_msdn]批次計算節點上的應用程式。 中的 hello 步驟[準備](#preparation)和[執行](#execution)toorun hello 範例。
+GitHub 上的 [MultiInstanceTasks][github_mpi] 程式碼範例示範如何使用多重執行個體工作在 Batch 計算節點上執行 [MS-MPI][msmpi_msdn] 應用程式。 請遵循[準備](#preparation)和[執行](#execution)中的步驟來執行範例。
 
 ### <a name="preparation"></a>準備工作
-1. 請依照下列中的 hello 前兩個步驟[如何 toocompile 並執行簡單的 MS-MPI 程式][msmpi_howto]。 這可滿足 hello prerequesites hello 遵循的步驟。
-2. 建置*發行*版的 hello [MPIHelloWorld] [ helloworld_proj] MPI 程式範例。 這是將 hello 多重執行個體的工作所計算節點執行的 hello 程式。
-3. 建立包含 `MPIHelloWorld.exe` (您在步驟 2 所建置) 和 `MSMpiSetup.exe` (您在步驟 1 所下載) 的 zip 檔案。 您將為 hello 下一個步驟中的應用程式封裝上傳此 zip 檔案。
-4. 使用 hello [Azure 入口網站][ portal] toocreate 批次[應用程式](batch-application-packages.md)稱為 「 MPIHelloWorld 」，並指定您建立 hello 上一個步驟中，為 「 1.0 」 版的 hello zip 檔案hello 應用程式封裝。 如需詳細資訊，請參閱[上傳及管理應用程式](batch-application-packages.md#upload-and-manage-applications)。
+1. 遵循[如何編譯及執行簡單的 MS-MPI 程式][msmpi_howto]中的前兩個步驟。 這可滿足下一個步驟的必要條件。
+2. 建置 [MPIHelloWorld][helloworld_proj] 範例 MPI 程式的*發行*版本。 這是多重執行個體工作將在計算節點上執行的程式。
+3. 建立包含 `MPIHelloWorld.exe` (您在步驟 2 所建置) 和 `MSMpiSetup.exe` (您在步驟 1 所下載) 的 zip 檔案。 您會在下一個步驟中，將此 zip 檔案上傳為應用程式套件。
+4. 使用 [Azure 入口網站][portal]建立稱為「MPIHelloWorld」的 Batch [應用程式](batch-application-packages.md)，並將您在上一個步驟所建立的 zip 檔案指定為應用程式套件「1.0」版。 如需詳細資訊，請參閱[上傳及管理應用程式](batch-application-packages.md#upload-and-manage-applications)。
 
 > [!TIP]
-> 建置*發行*版本`MPIHelloWorld.exe`，所以您不需要 tooinclude 其他任何相依性 (例如，`msvcp140d.dll`或`vcruntime140d.dll`) 應用程式封裝中。
+> 建置 `MPIHelloWorld.exe` 的「發行」版本，以便不需要在應用程式套件中包含任何其他相依項目 (例如，`msvcp140d.dll` 或 `vcruntime140d.dll`)。
 >
 >
 
 ### <a name="execution"></a>執行
-1. 下載 hello [azure 批次範例][ github_samples_zip]從 GitHub。
-2. 開啟 hello MultiInstanceTasks**方案**在 Visual Studio 2015 或更新版本。 hello`MultiInstanceTasks.sln`方案檔位於：
+1. 從 GitHub 下載 [azure-batch-samples][github_samples_zip]。
+2. 在 Visual Studio 2015 或更新版本中，開啟 MultiInstanceTasks **方案**。 `MultiInstanceTasks.sln` 方案檔位於︰
 
     `azure-batch-samples\CSharp\ArticleProjects\MultiInstanceTasks\`
-3. 輸入您的批次和儲存體帳戶認證中`AccountSettings.settings`在 hello **Microsoft.Azure.Batch.Samples.Common**專案。
-4. **建置並執行**hello MultiInstanceTasks 方案 tooexecute hello MPI 範例應用程式上的計算的批次集區中的節點。
-5. *選擇性*： 使用 hello [Azure 入口網站][ portal]或 hello[批次總管][ batch_explorer] tooexamine hello 範例集區、 工作和之前的工作 （「 MultiInstanceSamplePool"、"MultiInstanceSampleJob"、"MultiInstanceSampleTask"） 刪除 hello 資源。
+3. 在 **Microsoft.Azure.Batch.Samples.Common** 專案的 `AccountSettings.settings` 中輸入 Batch 和儲存體帳戶的認證。
+4. **建置並執行** MultiInstanceTasks 方案，以在 Batch 集區的計算節點上執行 MPI 範例應用程式。
+5. *選擇性*︰請先使用 [Azure 入口網站][portal] 或 [Batch 總管][batch_explorer] 檢查範例集區、作業和工作 ("MultiInstanceSamplePool"、"MultiInstanceSampleJob"、"MultiInstanceSampleTask")，然後才刪除資源。
 
 > [!TIP]
 > 如果您沒有 Visual Studio，您可以免費下載 [Visual Studio Community][visual_studio]。
 >
 >
 
-從輸出`MultiInstanceTasks.exe`是類似 toohello 下列：
+`MultiInstanceTasks.exe` 的輸出大致如下：
 
 ```
 Creating pool [MultiInstanceSamplePool]...
 Creating job [MultiInstanceSampleJob]...
-Adding task [MultiInstanceSampleTask] toojob [MultiInstanceSampleJob]...
+Adding task [MultiInstanceSampleTask] to job [MultiInstanceSampleJob]...
 Awaiting task completion, timeout in 00:30:00...
 
 Main task [MultiInstanceSampleTask] is in state [Completed] and ran on compute node [tvm-1219235766_1-20161017t162002z]:
@@ -307,7 +307,7 @@ Rank 1 received string "Hello world" from Rank 0
 
 ---- stderr.txt ----
 
-Main task completed, waiting 00:00:10 for subtasks toocomplete...
+Main task completed, waiting 00:00:10 for subtasks to complete...
 
 ---- Subtask information ----
 subtask: 1
@@ -324,12 +324,12 @@ subtask: 2
 Delete job? [yes] no: yes
 Delete pool? [yes] no: yes
 
-Sample complete, hit ENTER tooexit...
+Sample complete, hit ENTER to exit...
 ```
 
 ## <a name="next-steps"></a>後續步驟
-* hello Microsoft HPC 和 Azure 批次小組部落格討論[適用於 Azure 批次上的 Linux 支援的 MPI][blog_mpi_linux]，並包含有關使用[OpenFOAM] [openfoam]與批次。 您可以找到 Python 程式碼範例的 hello [OpenFOAM 範例 GitHub 上的][github_mpi]。
-* 了解如何太[建立集區的 Linux 運算節點](batch-linux-nodes.md)Azure 批次 MPI 方案中使用。
+* Microsoft HPC 和 Azure Batch 小組部落格討論 [Azure Batch 上的 Linux MPI 支援][blog_mpi_linux]，其中包含搭配使用 [OpenFOAM][openfoam] 和 Batch 的相關資訊。 您可以在 [GitHub][github_mpi] 上找到 OpenFOAM 範例的 Python 程式碼範例。
+* 了解如何[建立 Linux 計算節點的集區](batch-linux-nodes.md)以在 Azure Batch MPI 方案中使用。
 
 [helloworld_proj]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/MultiInstanceTasks/MPIHelloWorld
 

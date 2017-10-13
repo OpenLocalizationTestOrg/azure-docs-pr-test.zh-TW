@@ -1,6 +1,6 @@
 ---
-title: "aaaEncrypting 使用 AMS REST API 的儲存體加密內容"
-description: "深入了解如何 tooencrypt 使用 AMS REST Api 的儲存體加密內容。"
+title: "使用 AMS REST API 以儲存體加密來加密您的內容"
+description: "了解如何使用 AMS REST API 以儲存體加密來加密您的內容。"
 services: media-services
 documentationcenter: 
 author: Juliako
@@ -14,58 +14,58 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: juliako
-ms.openlocfilehash: d5f8cb8dd1dcded76c9fededccc772d8102ccbad
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1979f5bf5e8cab88dab5fba49018afacf24504b3
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="encrypting-your-content-with-storage-encryption"></a>以儲存體加密來加密您的內容
 
-強烈建議 tooencrypt 您使用 AES 256 在本機的內容位元加密，然後將它上傳 tooAzure 儲存體的位置儲存加密在靜止。
+高度建議使用 AES-256 位元加密對您的內容進行本機加密，然後將其上傳到將靜止加密儲存的 Azure 儲存體。
 
-這篇文章提供 AMS 儲存體加密的概觀，並顯示您 tooupload hello 儲存體加密內容的方式：
+本文概述 AMS 儲存體加密，並說明如何上傳儲存體加密內容︰
 
 * 建立內容金鑰。
-* 建立資產。 建立 hello 資產時，請設定 hello AssetCreationOption tooStorageEncryption。
+* 建立資產。 建立資產時，請將 AssetCreationOption 設為 StorageEncryption。
   
-     加密的資產有 toobe 內容金鑰相關聯。
-* 連結 hello 內容金鑰 toohello 資產。  
-* 設定 hello 加密相關 hello AssetFile 實體上的參數。
+     加密的資產必須與內容金鑰相關聯。
+* 將內容金鑰連結到資產。  
+* 在 AssetFile 實體上設定加密相關的參數。
 
 ## <a name="considerations"></a>考量 
 
-如果您想 toodeliver 儲存體加密資產時，您必須設定 hello 資產的傳遞原則。 在您的資產進行串流處理之前，請使用 hello 將內容串流伺服器移除 hello 儲存體加密和資料流的 hello 指定傳遞原則。 如需詳細資訊，請參閱 [設定資產傳遞原則](media-services-rest-configure-asset-delivery-policy.md)。
+如果您想要傳遞儲存體加密資產，就必須設定資產的傳遞原則。 資產可以串流處理之前，串流伺服器會移除儲存體加密，並使用指定的傳遞原則來串流您的內容。 如需詳細資訊，請參閱 [設定資產傳遞原則](media-services-rest-configure-asset-delivery-policy.md)。
 
 在媒體服務中存取實體時，您必須在 HTTP 要求中設定特定的標頭欄位和值。 如需詳細資訊，請參閱 [媒體服務 REST API 開發設定](media-services-rest-how-to-use.md)。 
 
-## <a name="connect-toomedia-services"></a>TooMedia 服務連接
+## <a name="connect-to-media-services"></a>連線到媒體服務
 
-如需有關如何 tooconnect toohello AMS API，請參閱詳細[存取 hello Azure 媒體服務 API 與 Azure AD 驗證](media-services-use-aad-auth-to-access-ams-api.md)。 
+如需連線至 AMS API 的詳細資訊，請參閱[使用 Azure AD 驗證存取 Azure 媒體服務 API](media-services-use-aad-auth-to-access-ams-api.md)。 
 
 >[!NOTE]
->已成功連接之後 toohttps://media.windows.net，您會收到指定另一個媒體服務 URI 的 301 重新導向。 您必須進行的後續呼叫 toohello 新的 URI。
+>順利連接到 https://media.windows.net 之後，您會收到 301 重新導向，指定另一個媒體服務 URI。 後續的呼叫必須送到新的 URI。
 
 ## <a name="storage-encryption-overview"></a>儲存體加密概觀
-適用於 hello AMS 儲存體加密**AES CTR**模式加密 toohello 整個檔案。  AES CTR 模式是可加密任意長度資料且不需填補的區塊編碼器。 它的運作方式與 hello AES 演算法，然後 XOR ing hello 輸出的 AES hello 資料 tooencrypt 計數器區塊的加密或解密。  hello 計數器區塊由建構 hello hello InitializationVector toobytes 0 too7 hello 計數器值的值複製，hello 計數器值的 8 位元組 too15 設定 toozero。 Hello 16 位元組計數器區塊，too15 8 個位元組的可用如同簡單的 64 位元不帶正負號的整數，都會加一的每個後續區塊處理的資料保存在網路位元組順序 （也就是 hello 最小顯著性位元組為單位）。 請注意，如果此整數達到 hello 最大值 (0xFFFFFFFFFFFFFFFF) 再增加其重設 hello 區塊計數器 toozero (8 位元組 too15) 而不會影響其他 hello hello 計數器 (也就是 0 位元組 too7) 的 64 位元。   順序 toomaintain hello hello AES CTR 模式加密的安全性、 hello InitializationVector 值指定的索引鍵識別項的每個內容的索引鍵應該是唯一的每個檔案和檔案都必須小於 2 ^64 區塊的長度。  這是 tooensure 計數器值絕不會是可重複使用指定的索引鍵。 如需 hello CTR 模式的詳細資訊，請參閱[wiki 本頁](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#CTR)（hello wiki 文章使用 hello 詞彙"Nonce"，而不是"InitializationVector"）。
+AMS 儲存體加密會將 **AES-CTR** 模式加密套用至整個檔案。  AES CTR 模式是可加密任意長度資料且不需填補的區塊編碼器。 其作業方式是使用 AES 演算法加密計數器區塊，並且對要加密或解密資料的 AES 輸出進行 XOR 處理。  所使用計數器區塊的建構方式是將 InitializationVector 的值複製到計數器值的位元組 0 到 7，而且計數器值的位元組 8 到 15 設定為零。 在 16 位元組的計數器區塊中，位元組 8 到 15 (即最低位元組) 是用作簡單 64 位元不帶正負號的整數，而且每個後續處理的資料區塊都會加一，並會保持網路位元組順序。 請注意，如果此整數達到最大值 (0xFFFFFFFFFFFFFFFF)，則增加它時會將區塊計數器重設為零 (位元組 8 到 15)，而不影響計數器的其他 64 位元 (即位元組 0 到 7)。   為了維護 AES CTR 模式加密的安全性，對每個檔案而言，每個內容金鑰的指定金鑰識別碼應該為唯一，而且檔案的長度應該小於 2^64 個區塊。  這是為了確保計數器值絕不會與指定的索引鍵重複使用。 如需 CTR 模式的詳細資訊，請參閱 [此 Wiki 頁面](https://en.wikipedia.org/wiki/Block_cipher_mode_of_operation#CTR) (Wiki 文章使用 "Nonce" 這個字，而非 "InitializationVector")。
 
-使用**儲存體加密**tooencrypt 您清除的內容，在本機使用 AES 256 位元加密並再將它上傳 tooAzure 儲存體的方式予以儲存加密在靜止。 使用儲存體加密保護的資產會自動加密，並在 「 加密的檔案系統先前 tooencoding，及選擇性地重新加密的先前 toouploading 回為新輸出資產。 儲存體加密的 hello 主要使用案例是當您想的 toosecure 強式加密您高品質的輸入的媒體檔案放在磁碟。
+使用 **儲存體加密** ，使用 AES-256 位元加密對您的純文字內容進行本機加密，然後將其上傳到已靜止加密儲存的 Azure 儲存體。 使用儲存體加密保護的資產會在編碼之前自動解除加密並放在加密的檔案系統中，並且選擇性地在上傳為新的輸出資產之前重新加密。 儲存體加密的主要使用案例是當您想要使用強式加密保護靜止在磁碟上的高品質輸入媒體檔案時。
 
-在順序 toodeliver 儲存體加密資產，您必須設定 hello 資產的傳遞原則，讓媒體服務知道要如何 toodeliver 您的內容。 在您的資產進行串流處理之前，請使用 hello 將內容串流伺服器移除 hello 儲存體加密和資料流的 hello 指定傳遞原則 （例如 AES、 一般加密或不加密）。
+若要傳遞儲存體加密資產，您必須設定資產的傳遞原則，讓媒體服務知道您的內容傳遞方式。 串流處理資產之前，串流伺服器會移除儲存體加密，並使用指定的傳遞原則來串流處理您的內容 (例如，AES、一般加密或不加密)。
 
 ## <a name="create-contentkeys-used-for-encryption"></a>建立要用於加密的 ContentKey
-加密的資產有 toobe 與儲存體加密金鑰相關聯。 您必須建立 hello 內容的索引鍵 toobe 用於加密之前建立 hello 資產檔案。 本章節描述如何 toocreate 內容金鑰。
+加密的資產必須與儲存體加密金鑰相關聯。 您必須先建立要用於加密的內容金鑰，再建立資產檔案。 本節說明如何建立內容金鑰。
 
-hello 以下是產生內容金鑰會與您想要 toobe 加密的資產相關聯的一般步驟。 
+以下是產生您將與要加密資產相關聯的內容金鑰的一般步驟。 
 
 1. 對於儲存體加密，請隨機產生 32 個位元組的 AES 金鑰。 
    
-    這會成為 hello 資產，這表示相關聯的所有檔案的內容索引鍵與該資產將會需要 toouse hello 同內容金鑰解密期間。 
-2. 呼叫 hello [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid)和[GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey)方法 tooget hello 正確的 X.509 憑證必須使用的 tooencrypt 將內容金鑰。
-3. 將內容金鑰加密使用公開金鑰的 X.509 憑證的 hello hello。 
+    這是您資產的內容金鑰，這表示與該資產相關聯的所有檔案都必須在解密期間使用相同的內容金鑰。 
+2. 呼叫 [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) 和 [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) 方法，以取得用來將內容金鑰加密時必須使用的正確 X.509 憑證。
+3. 使用 X.509 憑證的公開金鑰將您的內容金鑰加密。 
    
-   Media Services.NET SDK 會使用 RSA OAEP 執行 hello 加密時。  您可以看到.NET 中的範例 hello [EncryptSymmetricKeyData 函式](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs)。
-4. 建立使用 hello 金鑰識別碼和內容金鑰計算的總和檢查碼值。 下列.NET 範例 hello 計算使用 hello 金鑰識別碼 hello GUID 部分 hello 總和檢查碼，並 hello 清除內容金鑰。
+   媒體服務 .NET SDK 會使用 RSA 和 OAEP 來執行加密作業。  您可以在 [EncryptSymmetricKeyData 函式](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs)中查看 .NET 範例。
+4. 建立使用金鑰識別碼和內容金鑰計算的總和檢查碼值。 下列 .NET 範例會使用金鑰識別碼和明文內容金鑰的 GUID 部分計算總和檢查碼。
 
         public static string CalculateChecksum(byte[] contentKey, Guid keyId)
         {
@@ -74,8 +74,8 @@ hello 以下是產生內容金鑰會與您想要 toobe 加密的資產相關聯�
 
             byte[] encryptedKeyId = null;
 
-            // Checksum is computed by AES-ECB encrypting hello KID
-            // with hello content key.
+            // Checksum is computed by AES-ECB encrypting the KID
+            // with the content key.
             using (AesCryptoServiceProvider rijndael = new AesCryptoServiceProvider())
             {
                 rijndael.Mode = CipherMode.ECB;
@@ -93,22 +93,22 @@ hello 以下是產生內容金鑰會與您想要 toobe 加密的資產相關聯�
             return Convert.ToBase64String(retVal);
         }
 
-1. 建立 hello 內容金鑰以 hello **EncryptedContentKey** （轉換 toobase64 編碼的字串） **ProtectionKeyId**， **ProtectionKeyType**， **ContentKeyType**，和**總和檢查碼**您在先前步驟中收到的值。
+1. 用您在先前步驟中收到的 **EncryptedContentKey** (轉換為 base64 編碼的字串)、**ProtectionKeyId**、**ProtectionKeyType**、**ContentKeyType** 和 **Checksum** 值建立內容金鑰。
 
-    儲存體加密 hello 下列屬性應該包含 hello 要求主體中。
+    對於儲存體加密，要求本文中應該包含下列屬性。
 
     要求本文屬性    | 說明
     ---|---
-    識別碼 | hello 我們所產生的 ContentKey 識別碼自己使用 hello 下列格式，"nb:<NEW GUID>"。
-    ContentKeyType | 這是 hello 內容金鑰類型為此內容金鑰的整數。 我們傳遞儲存體加密的 hello 值 1。
-    EncryptedContentKey | 我們會建立新的內容金鑰值，其為 256 位元 (32 位元組) 的值。 使用 hello 儲存加密 X.509 憑證執行 hello GetProtectionKeyId 與 GetProtectionKey 方法的 HTTP GET 要求來擷取從 Microsoft Azure Media Services，hello 金鑰進行加密。 例如，請參閱下列.NET 程式碼的 hello: hello **EncryptSymmetricKeyData**方法定義[這裡](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs)。
-    ProtectionKeyId | 這是我們的內容金鑰 hello hello 儲存加密 X.509 憑證的已使用的 tooencrypt 保護金鑰識別碼。
-    ProtectionKeyType | 這是 hello hello 已使用的 tooencrypt hello 內容金鑰的保護金鑰的加密類型。 針對本文範例，此值為 StorageEncryption(1)。
-    Checksum |hello MD5 計算總和檢查碼 hello 內容金鑰。 會透過加密 hello 內容金鑰的 hello 內容識別碼，以執行計算。 hello 範例程式碼會示範如何 toocalculate hello 總和檢查碼。
+    識別碼 | 我們使用下列格式自行產生的 ContentKey 識別碼："nb:kid:UUID:<NEW GUID>"。
+    ContentKeyType | 這是針對此內容金鑰以整數表示的內容金鑰類型。 我們會傳遞值 1 來進行儲存體加密。
+    EncryptedContentKey | 我們會建立新的內容金鑰值，其為 256 位元 (32 位元組) 的值。 此金鑰是藉由針對 GetProtectionKeyId 與 GetProtectionKey 方法執行 HTTP GET 要求，使用我們從 Microsoft Azure 媒體服務擷取的儲存體加密 X.509 憑證來加密的。 範例請參閱下列 .NET 程式碼︰[這裡](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs)定義的 **EncryptSymmetricKeyData**方法。
+    ProtectionKeyId | 這是適用於儲存體加密 X.509 憑證的保護金鑰識別碼，可用來加密我們的內容金鑰。
+    ProtectionKeyType | 這是適用於保護金鑰的加密類型，可用來將內容金鑰加密。 針對本文範例，此值為 StorageEncryption(1)。
+    Checksum |MD5 會針對內容金鑰計算出總和檢查碼。 它是使用內容金鑰來將內容識別碼加密計算而得的。 範例程式碼示範如何計算總和檢查碼。
 
 
-### <a name="retrieve-hello-protectionkeyid"></a>擷取 ProtectionKeyId hello
-hello 下列範例顯示如何 tooretrieve hello 的 hello 憑證內容金鑰加密時，您必須使用的憑證指紋 ProtectionKeyId。 執行這個步驟 toomake 確定您的電腦上已經有 hello 適當的憑證。
+### <a name="retrieve-the-protectionkeyid"></a>擷取 ProtectionKeyId
+下列範例示範如何為加密內容金鑰時您必須使用的憑證擷取 ProtectionKeyId (憑證指紋)。 執行此步驟，以確定您的電腦上已經有適當的憑證。
 
 要求：
 
@@ -138,8 +138,8 @@ hello 下列範例顯示如何 tooretrieve hello 的 hello 憑證內容金鑰加
 
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String","value":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C"}
 
-### <a name="retrieve-hello-protectionkey-for-hello-protectionkeyid"></a>擷取 ProtectionKeyId hello ProtectionKey
-hello 下列範例示範如何使用 hello ProtectionKeyId tooretrieve hello X.509 憑證中收到 hello 上一個步驟。
+### <a name="retrieve-the-protectionkey-for-the-protectionkeyid"></a>擷取 ProtectionKeyId 的 ProtectionKey
+下列範例顯示如何使用您在上一個步驟中收到的 ProtectionKeyId 擷取 X.509 憑證。
 
 要求：
 
@@ -172,12 +172,12 @@ hello 下列範例示範如何使用 hello ProtectionKeyId tooretrieve hello X.5
     {"odata.metadata":"https://wamsbayclus001rest-hs.cloudapp.net/api/$metadata#Edm.String",
     "value":"MIIDSTCCAjGgAwIBAgIQqf92wku/HLJGCbMAU8GEnDANBgkqhkiG9w0BAQQFADAuMSwwKgYDVQQDEyN3YW1zYmx1cmVnMDAxZW5jcnlwdGFsbHNlY3JldHMtY2VydDAeFw0xMjA1MjkwNzAwMDBaFw0zMjA1MjkwNzAwMDBaMC4xLDAqBgNVBAMTI3dhbXNibHVyZWcwMDFlbmNyeXB0YWxsc2VjcmV0cy1jZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzR0SEbXefvUjb9wCUfkEiKtGQ5Gc328qFPrhMjSo+YHe0AVviZ9YaxPPb0m1AaaRV4dqWpST2+JtDhLOmGpWmmA60tbATJDdmRzKi2eYAyhhE76MgJgL3myCQLP42jDusWXWSMabui3/tMDQs+zfi1sJ4Ch/lm5EvksYsu6o8sCv29VRwxfDLJPBy2NlbV4GbWz5Qxp2tAmHoROnfaRhwp6WIbquk69tEtu2U50CpPN2goLAqx2PpXAqA+prxCZYGTHqfmFJEKtZHhizVBTFPGS3ncfnQC9QIEwFbPw6E5PO5yNaB68radWsp5uvDg33G1i8IT39GstMW6zaaG7cNQIDAQABo2MwYTBfBgNVHQEEWDBWgBCOGT2hPhsvQioZimw8M+jOoTAwLjEsMCoGA1UEAxMjd2Ftc2JsdXJlZzAwMWVuY3J5cHRhbGxzZWNyZXRzLWNlcnSCEKn/dsJLvxyyRgmzAFPBhJwwDQYJKoZIhvcNAQEEBQADggEBABcrQPma2ekNS3Wc5wGXL/aHyQaQRwFGymnUJ+VR8jVUZaC/U/f6lR98eTlwycjVwRL7D15BfClGEHw66QdHejaViJCjbEIJJ3p2c9fzBKhjLhzB3VVNiLIaH6RSI1bMPd2eddSCqhDIn3VBN605GcYXMzhYp+YA6g9+YMNeS1b+LxX3fqixMQIxSHOLFZ1G/H2xfNawv0VikH3djNui3EKT1w/8aRkUv/AAV0b3rYkP/jA1I0CPn0XFk7STYoiJ3gJoKq9EMXhit+Iwfz0sMkfhWG12/XO+TAWqsK1ZxEjuC9OzrY7pFnNxs4Mu4S8iinehduSpY+9mDd3dHynNwT4="}
 
-### <a name="create-hello-content-key"></a>建立 hello 內容金鑰
-您有擷取 hello X.509 憑證，並使用其公用金鑰 tooencrypt 將內容金鑰之後，建立**ContentKey**實體和其屬性值，據此設定。
+### <a name="create-the-content-key"></a>建立內容金鑰
+在擷取 X.509 憑證並使用其公開金鑰將內容金鑰加密之後，建立 **ContentKey** 實體並據以設定其屬性值。
 
-其中一個 hello 值，您必須設定時建立 hello 內容金鑰是 hello 型別。 發生 hello 儲存體加密，hello 值為 '1'。 
+建立內容金鑰時必須設定的其中一個值是類型。 若為儲存體加密，值會是 '1'。 
 
-下列範例會示範如何 hello toocreate **ContentKey**與**ContentKeyType**設定儲存體加密 ("1") 和 hello **ProtectionKeyType**設定太"0 的"hello 保護金鑰識別碼的 tooindicate 是 hello X.509 憑證指紋。  
+下列範例示範如何建立 **ContentKey** 且針對儲存體加密設定 **ContentKeyType** ("1")，**ProtectionKeyType** 則設定為 "0"，表示保護金鑰識別碼是 X.509 憑證指紋。  
 
 要求
 
@@ -227,7 +227,7 @@ hello 下列範例示範如何使用 hello ProtectionKeyId tooretrieve hello X.5
     "Checksum":"calculated checksum"}
 
 ## <a name="create-an-asset"></a>建立資產
-下列範例會示範如何 hello toocreate 資產。
+下列範例示範如何建立資產。
 
 **HTTP 要求**
 
@@ -245,7 +245,7 @@ hello 下列範例示範如何使用 hello ProtectionKeyId tooretrieve hello X.5
 
 **HTTP 回應**
 
-如果成功，則會傳回 hello 下列：
+如果成功，則會傳回下列內容：
 
     HTP/1.1 201 Created
     Cache-Control: no-cache
@@ -273,8 +273,8 @@ hello 下列範例示範如何使用 hello ProtectionKeyId tooretrieve hello X.5
        "StorageAccountName":"storagetestaccount001"
     }
 
-## <a name="associate-hello-contentkey-with-an-asset"></a>將 hello ContentKey 與資產產生關聯
-建立 hello ContentKey 之後, 將它與關聯使用 hello $links 作業在資產中 hello 下列範例所示：
+## <a name="associate-the-contentkey-with-an-asset"></a>將 ContentKey 與資產產生關聯
+建立 ContentKey 之後, ，使用 $links 作業將其與資產產生關聯，如下列範例所示：
 
 要求：
 
@@ -295,11 +295,11 @@ hello 下列範例示範如何使用 hello ProtectionKeyId tooretrieve hello X.5
     HTTP/1.1 204 No Content 
 
 ## <a name="create-an-assetfile"></a>建立 AssetFile
-hello [AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile)實體代表儲存在 blob 容器的視訊或音訊檔案。 資產檔案一律會與資產相關聯，而資產可包含一或多個資產檔案。 如果資產檔案物件不是 blob 容器中的數位檔案相關聯，hello Media Services 編碼器工作會失敗。
+[AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) 實體代表儲存在 blob 容器中的視訊或音訊檔案。 資產檔案一律會與資產相關聯，而資產可包含一或多個資產檔案。 如果資產檔案物件並未與 blob 容器中的數位檔案相關聯，媒體服務編碼器工作將會失敗。
 
-請注意該 hello **AssetFile**執行個體與 hello 實際媒體檔案的兩個相異的物件。 hello AssetFile 執行個體包含 hello 媒體檔案的相關中繼資料，而 hello 媒體檔案包含 hello 實際的媒體內容。
+請注意， **AssetFile** 執行個體和實際的媒體檔案是兩個不同的物件。 AssetFile 執行個體包含媒體檔案的相關中繼資料，而媒體檔案包含實際的媒體內容。
 
-您將數位媒體檔案上傳到 blob 容器之後，您將使用 hello**合併**HTTP 要求 tooupdate hello AssetFile （本主題中未顯示） 您的媒體檔案的相關資訊。 
+當您將數位媒體檔案上傳至 Blob 容器之後，您將使用 **MERGE** HTTP 要求，以媒體檔案的相關資訊來更新 AssetFile (未顯示在本主題中)。 
 
 **HTTP 要求**
 

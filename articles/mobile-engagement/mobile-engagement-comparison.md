@@ -1,5 +1,5 @@
 ---
-title: "與其他類似的 Azure 服務的 Azure Mobile Engagement aaaComparing"
+title: "比較 Azure Mobile Engagement 與其他類似的 Azure 服務"
 description: "比較 Azure Mobile Engagement 與其他類似的 Azure 服務- HockeyApp、AppInsights、通知中樞"
 services: mobile-engagement
 documentationcenter: mobile
@@ -14,52 +14,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 0859ae9980d0fa96ffbc0edfbd795ccc58d2c843
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7df2eb9ecebe3313dad9c15171552a084787f6b8
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="comparing-azure-mobile-engagement-with-other-similar-azure-services"></a>比較 Azure Mobile Engagement 與其他類似的 Azure 服務
-曾經擴充的 Microsoft Azure 所提供服務的 hello 清單，有時候您可能會想知道如何與 Azure Mobile Engagement 不同，您才剛讀取，或有關此其他服務。 這篇文章嘗試 tooclear hello 混淆，並且會將您導向 toochoose Azure Mobile Engagement 時最適合您的使用量。 
+Microsoft Azure 所提供之軟體的清單會不斷擴大，且您有時可能會想要知道 Azure Mobile Engagement 和您剛剛閱讀或聽過的其他服務有什麼不同。 此文章會嘗試釐清您的疑惑，並在 Azure Mobile Engagement 是最適合您使用的服務時，指示您選擇 Azure Mobile Engagement。 
 
-Azure Mobile Engagement 是服務，特別是目標**如數位商人/CMOs**但無法供任何**行動裝置應用程式擁有者或發行者**誰會想 tooincrease hello 使用方式，保留和monetization 行動應用程式。 
+Azure Mobile Engagement 是針對**數位行銷人員/CMO** 特別提供的服務，但任何想要提高行動應用程式使用量、忠誠度及營收的**行動應用程式擁有者或發行者**也都可以使用。 
 
 它是軟體即服務 (SaaS) 的使用者參與平台，可針對應用程式使用量和即時使用者區隔提供資料導向的深入解析，以及啟用內容感知的推播通知及應用程式內的傳訊功能。 
 
-細分這個定義，是我們的 hello 下列主要特性也會反白顯示其唯一的價值主張：
+除了此定義之外，它還具有以下重要特性，展現其獨特的價值主張：
 
 1. **可感知上下文的推播通知和應用程式內傳訊**
    
-   這是要探討 hello 的 hello 產品-執行目標及個人化的推播通知。 並針對此 toohappen，我們會收集豐富的行為分析資料。 
+   這是產品的其中一項核心功能 - 執行目標性和個人化的推播通知。 而且為了達到此目標，我們收集了豐富的行為分析資料。 
 2. **資料導向深入解析應用程式使用狀況**
    
-   我們提供了跨平台 Sdk toocollect hello 行為分析 hello 應用程式使用者相關。 請注意 hello 詞彙行為分析 （與效能分析），因為我們將重點放在 hello 應用程式使用者使用 hello 應用程式的方式。 我們會收集有關的錯誤、 損毀等，但也就不是 hello 核心焦點 hello 產品的基本效能分析資料。 
+   我們提供跨平台 SDK 來收集與應用程式使用者有關的行為分析。 請注意「行為分析」(針對效能分析) 一詞，因為我們是著重在應用程式使用者如何使用應用程式。 我們確實會收集與錯誤、當機等等有關的基本效能分析資料，但那不是本產品的核心重點。 
 3. **即時使用者區隔**
    
-   一旦您已經收集到應用程式使用者行為分析資料，我們可讓您 toosegment 觀眾根據各種參數和收集的資料 tooenable 您 toorun 目標推送活動。 
+   在您收集應用程式使用者的行為分析資料之後，我們可以讓您依據各種參數與收集的資料區隔您的對象，讓您能夠執行目標性的推播活動。 
 4. **軟體即服務 (SaaS)：**
    
-   我們有入口網站即最佳化的 toointeract hello Azure 管理入口網站從個別檢視豐富 hello 應用程式使用者相關的行為分析，並執行行銷推送活動。 hello 產品是沒有時間中您針對 tooget ！   
+   我們有一個和 Azure 管理入口網站不同的入口網站，該入口網站已經針對和應用程式使用者相關的豐富行為分析互動及加以檢視，以及針對執行行銷推播活動最佳化。 產品已經準備完成，隨時可供您使用！   
 
-這個設定的手中差異，以下是我們如何比較其他看似相似的 Azure 供應項目-請注意 hello 文件還沒做什麼的功能層級的比較，但會使用更多的案例型方法 toodefine 哪些產品最適合：
+了解這些差異之後，以下會說明我們如何與其他看起來類似的 Azure 產品做比較 - 請注意，本文並不做功能層級比較，但會透過以案例為基礎的方式定義哪一個產品最適用：
 
-1. [HockeyApp](https://azure.microsoft.com/services/hockeyapp/)是 hello Microsoft 行動 DevOps 解決方案。 有了它，您可以發佈的測試人員組建 toobeta、 收集損毀資料，並取得使用者意見反應。 它也會與 Visual Studio Team Services 整合，讓您能夠輕鬆建置部署和工作項目整合。 
+1. [HockeyApp](https://azure.microsoft.com/services/hockeyapp/) 是 Microsoft 的行動 DevOps 方案。 利用該解決方案，您可以將組建散發給 Beta 版測試人員、收集損毀資料，以及取得使用者意見反應。 它也會與 Visual Studio Team Services 整合，讓您能夠輕鬆建置部署和工作項目整合。 
    
-   此處的重點 hello 位於 DevOps 與 hello 行動應用程式的相關收集效能分析資料。 您可能會得到整合這兩個 HockeyApps 而且 Mobile Engagement 應用程式，而且也不會不尋常因為即使沒有在 hello 收集資料的部分重疊，hello 核心 hello 產品重點是在不同，而且它們協助達成不同為您的目標。  
-2. [Application Insights](../application-insights/app-insights-overview.md)如果行動應用程式伺服器端，則您將使用 Application Insights toomonitor hello web 伺服器端應用程式但 hello 用戶端戶端行動裝置應用程式，您應該使用 HockeyApp。 
-3. [通知中樞](https://azure.microsoft.com/services/notification-hubs/)提供輕量型 hello 意義上，您不需要在 hello 行動裝置應用程式中的整合 SDK，且可以行動應用程式的完整控制權和它可讓傳送標記的基本功能的推播通知服務。 這非常適合任何應用程式擁有者在乎小於有關目標和更傳送/通訊資訊立即 tootheir 應用程式使用者 （廣播的 tooa 大型母體擴展）。 
+   這裡的重點在 DevOps 及收集與行動應用程式有關的效能分析資料。 您最後可能會在您的應用程式中整合 HockeyApps 與 Mobile Engagement，而且那將會是很正常的情況，因為即使收集的資料中有一些重疊，但這兩項產品的核心重點是不一樣的，因此它們可以協助您達到不同的目標。  
+2. [Application Insights](../application-insights/app-insights-overview.md) 如果您的行動應用程式有伺服器端，您可以使用 Application Insights 監視應用程式的 Web 伺服器端，但對於用戶端行動應用程式，您應該使用 HockeyApp。 
+3. [通知中樞](https://azure.microsoft.com/services/notification-hubs/) 可在您不需要於行動應用程式中整合 SDK 的情況下提供輕量服務，並且您可以完全控制您的行動應用程式，而且它允許傳送具有基本標記功能的推播通知。 對於不在乎目標，比較在乎立即傳送/傳達資訊給應用程式使用者 (向大量使用者廣播) 的任何應用程式擁有者來說，這是很棒的功能。 
    
-   請注意 hello 此處的重點上傳送效能穩定的快速通知基本分割功能。 
+   請注意，這裡的重點在於傳送具有基本區隔能力的超快速通知。 
 
 我們來看一些案例：
 
-1. Tim 是團隊的 hello 數位行銷在其發行為使用者的行動裝置應用程式的 Adventure Works 商店的一部分。 Tim 的目標是下載其行動裝置應用程式的 hello 使用者繼續 toouse tooensure 它頻繁地。 這不只是提升 hello 應用程式的使用者進行購買使用 hello 行動裝置應用程式時，與 hello 應用程式的使用者，但也會增加獲利所附加的品牌。 針對此 Tim 需要目標 toosend 通知 toohello 應用程式使用者的它們有幫助，tooencourage 它們 tooopen hello 應用程式，並於回顧 tooit 通常。 這會是 Tim 將發現 Mobile Engagement 很有用的地方。 
-2. Joann 屬於的 hello hello 開發小組的行動裝置應用程式，在 Adventure Works 和是尋找有關當機，例外狀況，產品 toolog 詳細資料，取得應用程式的效能遙測。 這是 Joann 將發現 HockeyApp 很有用的地方。 Joann 無法整合這兩個 HockeyApp，她的開發人員的焦點案例和 Azure Mobile Engagement 的 Tim hello 的相同應用程式 tooget hello 兩者的最佳。 
-3. 循環配置資源是 hello hello Contoso 新聞網路和所有她是 toosend 出 hello 新聞警示觸發時，立即中斷沒有太多分割新聞警示 tooall 使用者的行動應用程式的開發小組的一部分。 這是 Robin 將發現「通知中樞」很有用的地方。 
-   在此案例中，可能會不過成熟 hello 行動裝置應用程式，因為沒有需求 toodo 有關 hello 應用程式使用者的行為更豐富的分割，以及如何取得詳細資料。 在這次循環配置資源會有 tooevaluate Azure Mobile Engagement。 
+1. Tim 是 Adventure Works 商店中負責為使用者發佈行動應用程式之數位行銷團隊的一員。 Tim 的目標是確保下載其行動應用程式的使用者會繼續並頻繁使用應用程式。 這不只是要提高品牌與應用程式使用者的黏著度，也要在應用程式使用者使用行動應用程式購買商品時提高獲利。 因此，Tim 需要對應用程式使用者傳送會讓他們覺得很有用的目標性通知，以鼓勵使用者開啟應用程式，以及經常回到應用程式。 這會是 Tim 將發現 Mobile Engagement 很有用的地方。 
+2. Joann 是 Adventure Works 中開發團隊的一員，而且正在尋找能夠記錄當機例外狀況相關詳細資料，以及能夠從應用程式取得效能遙測資料的產品。 這是 Joann 將發現 HockeyApp 很有用的地方。 Joann 可以在相同的應用程式中為其開發人員的重點案例整合 HockeyApp，以及為 Tim 整合 Azure Mobile Engagement，來同時提供兩者最好用的功能。 
+3. Robin 是 Contoso News 的行動應用程式網路開發團隊的一員，她最想要的功能是在有新聞警示被觸發時，在沒有大幅度區隔使用者的情況下，盡快向所有使用者傳送重大新聞警示。 這是 Robin 將發現「通知中樞」很有用的地方。 
+   但是在此案例中，隨著應用程式漸趨成熟，還是有可能需要執行更多樣化的區隔，並取得與應用程式使用者行為有關的詳細資料。 此時，Robin 將必須評估 Azure Mobile Engagement。 
 
-toorecap，Mobile Engagement hello 目的不是只 toocollect 分析-它不是 「 另一個分析產品 microsoft 」。 關於傳送目標的推播通知並為此目標，我們會收集行為分析資料但 hello 焦點保留在傳送推播通知，這會導致 hello 大部分意義 toohello 應用程式的使用者，讓它不會顯示為垃圾郵件。 
+總而言之，Mobile Engagement 的用途不止是用來收集分析 - 它「還不是 Microsoft 的另一項分析產品」。 這與傳送目標性推播通知，以及我們為此目標性通知收集行為分析資料有關，但是重點還是在於向應用程式使用者傳送最有意義的推播通知，以避免通知變成垃圾通知。 
 
 如需詳細資料，請參考這段有關 Mobile Engagement 簡略說明的 [快速上手影片](mobile-engagement-overview.md) 。 
 

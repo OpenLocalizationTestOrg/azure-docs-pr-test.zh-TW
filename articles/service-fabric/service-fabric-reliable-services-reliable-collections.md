@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Service Fabric 可設定狀態服務 aaaIntroduction tooReliable 集合 |Microsoft 文件"
-description: "Service Fabric 可設定狀態服務可提供可靠的集合，可讓您 toowrite 高可用、 可擴充且低度延遲的雲端應用程式。"
+title: "Azure Service Fabric 具狀態服務中的 Reliable Collection 簡介 | Microsoft Docs"
+description: "Service Fabric 具狀態服務提供可靠的集合，可讓您撰寫高度可用、可調整且低延遲的雲端應用程式。"
 services: service-fabric
 documentationcenter: .net
 author: mcoskun
@@ -14,44 +14,44 @@ ms.tgt_pltfrm: na
 ms.workload: required
 ms.date: 5/1/2017
 ms.author: mcoskun
-ms.openlocfilehash: 9f67c48f13e8b91b84977e127e2545cbb9d9a158
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d0247ba0242af05ca6dcd8049ff9116683538fa5
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="introduction-tooreliable-collections-in-azure-service-fabric-stateful-services"></a>在 Azure Service Fabric 可設定狀態服務簡介 tooReliable 集合
-可靠的集合可讓您 toowrite 高可用、 可擴充且低度延遲的雲端應用程式就好像您在撰寫單一電腦的應用程式。 hello 中 hello 類別**Microsoft.ServiceFabric.Data.Collections**命名空間提供一組自動讓您的狀態具有高可用性的集合。 開發人員需要 tooprogram 只有 toohello 可靠集合的應用程式開發介面，並讓可靠管理複寫的 hello 和本機狀態的集合。
+# <a name="introduction-to-reliable-collections-in-azure-service-fabric-stateful-services"></a>Azure Service Fabric 具狀態服務中可靠的集合簡介
+可靠的集合可讓您撰寫高度可用、可擴充且低延遲的雲端應用程式，如同您在撰寫單一電腦應用程式一般。 Microsoft.ServiceFabric.Data.Collections 命名空間中的類別提供一組集合，可讓您自動具有高度可用的狀態。 開發人員只需將程式設計為可靠的集合 API，並讓可靠的集合來管理複寫和本機狀態。
 
-hello 可靠的集合和其他高可用性的技術 （例如 Redis、 Azure 資料表服務和 Azure 佇列服務） 之間的主要差異是，hello 狀態就會保留在本機在 hello 服務執行個體時也要成為高可用性。 這表示：
+可靠的集合和其他高可用性技術 (例如 Redis、Azure 表格服務和 Azure 佇列服務) 之間的主要差異是狀態會保留在本機服務執行個體中，但同時也被設定為高可用性。 這表示：
 
 * 所有讀取都在本機，可保障低延遲及高輸送量讀取。
-* 所有寫入都造成 hello 最小網路 Io 數目，會導致低度延遲及高輸送量寫入。
+* 所有寫入都只會產生最少的網路 IO 數，可保障低延遲和高輸送量寫入。
 
 ![集合的演化圖。](media/service-fabric-reliable-services-reliable-collections/ReliableCollectionsEvolution.png)
 
-可靠的集合可以視為 hello 自然演進而來的 hello **System.Collections**類別： 一組新的集合，而不會增加複雜度 hello 雲端和多部電腦的應用程式所設計hello 開發人員。 因此，可靠的集合是：
+我們可將可靠的集合視為 **System.Collections** 類別的自然進化：它們是一組新的集合，專為雲端和多電腦應用程式量身設計，且不會對開發人員提高複雜度。 因此，可靠的集合是：
 
 * 可複寫：進行狀態變更複寫以確保高可用性。
-* 保存： 資料會保存的 toodisk 為持久性免於大規模中斷 （例如，資料中心停電）。
-* 非同步： 應用程式開發介面會非同步 tooensure 產生 IO 時不會封鎖執行緒。
-* 因此您可以輕鬆地管理多個可靠的集合，在服務中異動： 應用程式開發介面利用 hello 抽象的交易。
+* 可保存：資料會保存至磁碟，可在發生大規模中斷 (例如，資料中心停電) 時保障持續性。
+* 非同步：API 是非同步的，可確保在產生 IO 時不會封鎖執行緒。
+* 交易式：API 會利用交易的抽象方法，讓您能夠輕鬆管理服務內多個可靠的集合。
 
-可靠的集合會提供強式一致性可確保超出 hello 方塊 toomake 思考更輕鬆的應用程式狀態。
-強式一致性是由確保的交易的認可完成 hello 整筆交易有登入的複本，包括 hello 主要多數仲裁之後，才完成。
-tooachieve 較弱的一致性，應用程式可以了解後 toohello 用戶端要求者 hello 非同步認可傳回之前。
+Reliable Collection 具有增強式一致性保證，可讓您更輕鬆地推論應用程式的狀態。
+增強式一致性的實現方式是藉由確保僅有在整個交易已記錄到複本多數仲裁之後 (包括主要複本)，才認可交易。
+若要達成較弱的一致性，應用程式可在非同步認可傳回之前，返回向用戶端/要求者進行確認。
 
-hello 可靠集合 Api 是發展的並行集合應用程式開發介面 (位於 hello **System.Collections.Concurrent**命名空間):
+可靠的集合 API 是並行集合 API (位於 **System.Collections.Concurrent** 命名空間) 的一種演化：
 
-* 因為不同於並行的集合，複寫和保存 hello operations 非同步： 傳回的工作。
-* 沒有 out 參數： 使用`ConditionalValue<T>`tooreturn bool 和而不是 out 參數的值。 `ConditionalValue<T>`就像`Nullable<T>`，但不需要 T toobe 結構。
-* 交易： 在交易中的多個可靠集合上使用交易物件 tooenable hello 使用者 toogroup 動作。
+* 非同步：會傳回工作；不同於並行集合，其作業會受到複寫及保存。
+* 沒有 out 參數：使用 `ConditionalValue<T>` 傳回 bool 和值，而不是 out 參數。 `ConditionalValue<T>` 就像 `Nullable<T>`，但不需要 T 就可以成為結構。
+* 交易：使用交易物件，讓使用者可在交易中的多個可靠的集合上群組動作。
 
 現在，Microsoft.ServiceFabric.Data.Collections 包含三個集合：
 
-* [可靠的字典](https://msdn.microsoft.com/library/azure/dn971511.aspx)：表示可複寫、交易式和非同步索引鍵/值組的集合。 類似太**ConcurrentDictionary**、 兩者 hello 索引鍵和 hello 值可以是任何類型。
-* [可靠的佇列](https://msdn.microsoft.com/library/azure/dn971527.aspx)：表示可複寫、交易式和非同步的嚴格先進先出 (FIFO) 佇列。 類似太**ConcurrentQueue**，hello 值可以是任何類型。
-* [可靠的並行佇列](service-fabric-reliable-services-reliable-concurrent-queue.md)︰代表儘可能最佳的複寫、交易與非同步排序序列，以達到高輸送量。 類似 toohello **ConcurrentQueue**，hello 值可以是任何類型。
+* [可靠的字典](https://msdn.microsoft.com/library/azure/dn971511.aspx)：表示可複寫、交易式和非同步索引鍵/值組的集合。 類似於 **ConcurrentDictionary**，其索引鍵和值可以是任何類型。
+* [可靠的佇列](https://msdn.microsoft.com/library/azure/dn971527.aspx)：表示可複寫、交易式和非同步的嚴格先進先出 (FIFO) 佇列。 類似於 **ConcurrentQueue**，其值可以是任何類型。
+* [可靠的並行佇列](service-fabric-reliable-services-reliable-concurrent-queue.md)︰代表儘可能最佳的複寫、交易與非同步排序序列，以達到高輸送量。 類似於 ConcurrentQueue，其值可以是任何類型。
 
 ## <a name="next-steps"></a>後續步驟
 * [Reliable Collection 指導方針與建議](service-fabric-reliable-services-reliable-collections-guidelines.md)

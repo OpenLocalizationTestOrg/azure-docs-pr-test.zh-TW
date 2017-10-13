@@ -1,9 +1,9 @@
-hello Azure CLI 2.0 可讓您 toocreate 和管理您的 Azure 資源上 macOS、 Linux 及 Windows。 這篇文章詳細說明一些最常見命令 toocreate hello 和管理虛擬機器 (Vm)。
+Azure CLI 2.0 可讓您建立及管理 macOS、Linux 和 Windows 上的 Azure 資源。 本文會詳細說明一些最常用來建立和管理虛擬機器 (VM) 的命令。
 
-這篇文章需要 hello Azure CLI 版本 2.0.4 或更新版本。 執行`az --version`toofind hello 版本。 如果您需要 tooupgrade，請參閱[安裝 Azure CLI 2.0](/cli/azure/install-azure-cli)。 您也可以在瀏覽器中使用 [Cloud Shell](/azure/cloud-shell/quickstart)。
+本文需要 Azure CLI 2.0.4 版或更新版本。 執行 `az --version` 以尋找版本。 如果您需要升級，請參閱[安裝 Azure CLI 2.0](/cli/azure/install-azure-cli)。 您也可以從瀏覽器使用 [Cloud Shell](/azure/cloud-shell/quickstart)。
 
 ## <a name="basic-azure-resource-manager-commands-in-azure-cli"></a>Azure CLI 中的基本 Azure Resource Manager 命令
-如需詳細說明使用特定的命令列參數和選項，您可以使用 hello 線上命令說明和選項輸入`az <command> <subcommand> --help`。
+如需特定命令列參數和選項的詳細說明，您可以輸入 `az <command> <subcommand> --help` 來使用線上命令說明和選項。
 
 ### <a name="create-vms"></a>建立 VM
 | 工作 | Azure CLI 命令 |
@@ -33,7 +33,7 @@ hello Azure CLI 2.0 可讓您 toocreate 和管理您的 Azure 資源上 macOS、
 ## <a name="disks-and-images"></a>磁碟和映像
 | 工作 | Azure CLI 命令 |
 | --- | --- |
-| 新增資料磁碟 tooa VM | `az vm disk attach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk --size-gb 128 --new ` |
+| 將資料磁碟新增至 VM | `az vm disk attach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk --size-gb 128 --new ` |
 | 從 VM 移除資料磁碟 | `az vm disk detach --resource-group myResourceGroup --vm-name myVM --disk myDataDisk` |
 | 調整磁碟大小 | `az disk update --resource-group myResourceGroup --name myDataDisk --size-gb 256` |
 | 製作磁碟的快照集 | `az snapshot create --resource-group myResourceGroup --name mySnapshot --source myDataDisk` |
@@ -42,5 +42,5 @@ hello Azure CLI 2.0 可讓您 toocreate 和管理您的 Azure 資源上 macOS、
 
 
 ## <a name="next-steps"></a>後續步驟
-如需其他 hello CLI 命令的範例，請參閱 hello[建立和管理 Linux Vm 以 hello Azure CLI](../articles/virtual-machines/linux/tutorial-manage-vm.md)教學課程。
+如需 CLI 命令的其他範例，請參閱[使用 Azure CLI 建立和管理 Linux VM](../articles/virtual-machines/linux/tutorial-manage-vm.md) 教學課程。
 

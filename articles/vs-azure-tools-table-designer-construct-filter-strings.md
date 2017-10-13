@@ -1,6 +1,6 @@
 ---
-title: "aaaConstructing 篩選字串 hello 資料表設計工具的 |Microsoft 文件"
-description: "建構篩選字串 hello 資料表設計工具"
+title: "建構資料表設計工具的篩選字串 | Microsoft Docs"
+description: "建構資料表設計工具的篩選字串"
 services: visual-studio-online
 documentationcenter: na
 author: kraigb
@@ -14,26 +14,26 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 11/18/2016
 ms.author: kraigb
-ms.openlocfilehash: 48b38d27b97936064daa875e41881d51546bc11f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 069224d84462b4955912ce1462a65298a5acc04a
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="constructing-filter-strings-for-hello-table-designer"></a>建構篩選字串 hello 資料表設計工具
-## <a name="overview"></a>概觀
-在 Azure 資料表中所顯示的 toofilter 資料 hello Visual Studio**資料表設計工具**，建構篩選字串，並將其輸入 hello 篩選欄位。 hello 篩選條件字串語法由 hello WCF 資料服務所定義且類似 tooa SQL WHERE 子句，但會傳送 toohello 表格服務透過 HTTP 要求。 hello**資料表設計工具**控點 hello 適當編碼方式，為您在想要的屬性值，因此 toofilter，您只需要輸入 hello 屬性的名稱、 比較運算子準則值，而且 hello 中的布林運算子來篩選 （選擇性）欄位。 您不需要 tooinclude hello $filter 查詢選項時您所建構 URL tooquery hello 資料表透過 hello[儲存體服務 REST API 參考](http://go.microsoft.com/fwlink/p/?LinkId=400447)。
+# <a name="constructing-filter-strings-for-the-table-designer"></a>建構資料表設計工具的篩選字串
+## <a name="overview"></a>Overview
+若要在 Visual Studio [資料表設計工具] 中顯示的 Azure 資料表中篩選資料，您可以建構篩選字串並在篩選欄位中輸入它。 篩選條件字串語法由 WCF Data Services 定義，類似於 SQL WHERE 子句，但會透過 HTTP 要求傳送至表格服務。 [資料表設計工具]  會為您處理適當的編碼，因此，若要篩選所需的屬性值，您只需要在篩選欄位中輸入屬性名稱、比較運算子、準則值和 (選擇性) 布林運算子。 您不需要像透過 [儲存體服務 REST API 參考](http://go.microsoft.com/fwlink/p/?LinkId=400447)建構 URL 來查詢資料表一樣包含 $filter 查詢選項。
 
-hello WCF Data Services 根據 hello[開放式資料通訊協定](http://go.microsoft.com/fwlink/p/?LinkId=214805)(OData)。 如需詳細資訊，在 hello 篩選系統查詢選項 (**$filter**)，請參閱 hello [OData URI 轉換規格](http://go.microsoft.com/fwlink/p/?LinkId=214806)。
+WCF Data Services 以 [開放式資料通訊協定](http://go.microsoft.com/fwlink/p/?LinkId=214805) (OData) 為基礎。 如需篩選系統查詢選項 (**$filter**) 的詳細資訊，請參閱 [OData URI 轉換規格](http://go.microsoft.com/fwlink/p/?LinkId=214806)。
 
 ## <a name="comparison-operators"></a>比較運算子
-hello 邏輯支援下列運算子的所有屬性類型：
+所有屬性類型都支援下列邏輯運算子：
 
 | 邏輯運算子 | 說明 | 篩選字串範例 |
 | --- | --- | --- |
 | eq |等於 |City eq 'Redmond' |
 | gt |大於 |Price gt 20 |
-| ge |大於或等於太|Price ge 10 |
+| ge |大於或等於 |Price ge 10 |
 | lt |小於 |Price lt 20 |
 | le |小於或等於 |Price le 100 |
 | ne |不等於 |City ne 'London' |
@@ -41,16 +41,16 @@ hello 邏輯支援下列運算子的所有屬性類型：
 | 或 |或 |Price le 3.5 or Price gt 200 |
 | 否 |否 |not isAvailable |
 
-建構篩選字串時，hello 下列規則很重要：
+建構篩選字串時，下列規則很重要：
 
-* 使用 hello 邏輯運算子 toocompare 屬性 tooa 值。 請注意，它不可能 toocompare 屬性 tooa 動態值。hello 運算式的一端必須是常數。
-* Hello 篩選字串的所有部分都都區分大小寫的。
-* hello hello 常值必須是相同的資料類型作為 hello 篩選 tooreturn 有效結果的順序中的 hello 屬性。 如需支援的屬性類型的詳細資訊，請參閱[了解 hello 表格服務資料模型](http://go.microsoft.com/fwlink/p/?LinkId=400448)。
+* 使用邏輯運算子來比較屬性與值。 請注意，無法比較屬性與動態值。運算式的一端必須是常數。
+* 篩選字串的所有部分都區分大小寫。
+* 常數和屬性必須是相同的資料類型，篩選才能傳回有效的結果。 如需支援的屬性類型的詳細資訊，請參閱 [了解表格服務資料模型](http://go.microsoft.com/fwlink/p/?LinkId=400448)。
 
 ## <a name="filtering-on-string-properties"></a>篩選字串屬性
-當您篩選字串屬性時，請使用單引號括住 hello 字串常數。
+當您篩選字串屬性時，請用單引號括住字串常數。
 
-hello hello 在下列範例會篩選**PartitionKey**和**RowKey**屬性，其他的非索引鍵屬性也可以加入 toohello 篩選字串：
+下列範例會篩選 **PartitionKey** 和 **RowKey** 屬性。額外的非索引鍵屬性也可以加入至篩選字串：
 
     PartitionKey eq 'Partition1' and RowKey eq '00001'
 
@@ -58,39 +58,39 @@ hello hello 在下列範例會篩選**PartitionKey**和**RowKey**屬性，其他
 
     (PartitionKey eq 'Partition1') and (RowKey eq '00001')
 
-請注意，hello 表格服務不支援萬用字元查詢中，不支援在 hello 資料表設計工具是。 不過，您可以執行比對的方式在 hello 想要的首碼使用比較運算子的前置詞。 hello 下列範例會傳回包含以 hello 字母 'A' 開頭的姓氏屬性的實體：
+請注意，表格服務不支援萬用字元查詢，在 [資料表設計工具] 中也不支援。 不過，您可以在所需的前置詞上使用比較運算子，以執行前置詞比對。 下列範例會傳回 LastName 屬性開頭為字母 'A' 的實體：
 
     LastName ge 'A' and LastName lt 'B'
 
 ## <a name="filtering-on-numeric-properties"></a>篩選數值屬性
-toofilter 整數或浮點數，指定不加引號的 hello 數字。
+若要篩選整數或浮點數，指定數值且不加引號。
 
 這個範例會傳回與 Age 屬性的值大於 30 的所有實體：
 
     Age gt 30
 
-這個範例會傳回具有 AmountDue 屬性且屬性值的所有實體小於或等於 too100.25:
+這個範例會傳回與 AmountDue 屬性的值小於或等於 100.25 的所有實體：
 
     AmountDue le 100.25
 
 ## <a name="filtering-on-boolean-properties"></a>篩選布林值屬性
-toofilter 布林值，指定**true**或**false**不需要引號。
+若要篩選布林值，請指定 **true** 或 **false** 且不加引號。
 
-hello 下列範例會傳回所有實體 hello IsActive 屬性設定的位置太**true**:
+下列範例會傳回 IsActive 屬性設定為 **true**的所有實體：
 
     IsActive eq true
 
-您也可以撰寫此篩選條件運算式，不含 hello 邏輯運算子。 在下列範例的 hello，hello 表格服務也會傳回所有實體所在 IsActive **true**:
+您也可以不加邏輯運算子來撰寫這個篩選運算式。 在下列範例中，表格服務也會傳回 IsActive 為 **true**的所有實體：
 
     IsActive
 
-IsActive 所在位置為 false，您可以使用的所有實體不都 hello 的 tooreturn 運算子：
+若要傳回 IsActive 為 false 的所有實體，您可以使用 not 運算子：
 
     not IsActive
 
 ## <a name="filtering-on-datetime-properties"></a>篩選 DateTime 屬性
-toofilter 針對 DateTime 值，指定 hello **datetime**關鍵字，後面接著以單引號 hello 日期/時間常數。 中所述，hello 日期/時間常數必須是 UTC 組合格式，[格式化 DateTime 屬性值](http://go.microsoft.com/fwlink/p/?LinkId=400449)。
+若要 DateTime 值，請指定 **datetime** 關鍵字，後面加上以單引號括住的日期/時間常數。 日期/時間常數必須使用 UTC 組合格式，如 [格式化 DateTime 屬性值](http://go.microsoft.com/fwlink/p/?LinkId=400449)所述。
 
-下列範例中的 hello 傳回實體其中 hello CustomerSince 屬性等於 tooJuly 10，2008年:
+下列範例會傳回 CustomerSince 屬性等於 2008 年 7 月 10 日的實體：
 
     CustomerSince eq datetime'2008-07-10T00:00:00Z'

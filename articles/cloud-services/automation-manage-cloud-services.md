@@ -1,6 +1,6 @@
 ---
-title: "Azure 雲端服務使用 Azure 自動化 aaaManage |Microsoft 文件"
-description: "深入了解如何 hello Azure 自動化服務可以使用的 toomanage 大規模的 Azure 雲端服務。"
+title: "使用 Azure 自動化管理 Azure 雲端服務 | Microsoft Docs"
+description: "了解如何使用 Azure 自動化服務大規模地管理 Azure 雲端服務。"
 services: cloud-services, automation
 documentationcenter: 
 author: jodoglevy
@@ -14,32 +14,32 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/20/2016
 ms.author: timlt
-ms.openlocfilehash: 8e920fb94955466bfec71cc332444f5f0ee497a7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6b5acac1b8647c324988c316cd5602b3dba98a1d
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="managing-azure-cloud-services-using-azure-automation"></a>使用 Azure 自動化管理 Azure 雲端服務
-本指南將介紹 toohello Azure 自動化服務，而且您可以如何使用的 toosimplify 管理您的 Azure 雲端服務。
+本指南將為您介紹 Azure 自動化服務，以及如何使用它來簡化您的 Azure 雲端服務管理。
 
 ## <a name="what-is-azure-automation"></a>什麼是 Azure 自動化？
-[Azure 自動化](https://azure.microsoft.com/services/automation/) 是一項 Azure 服務，可經由程序自動化簡化雲端管理。 使用 Azure 自動化，長時間執行、 手動、 容易發生錯誤，並經常重複的工作可以自動化的 tooincrease 可靠性、 效率與時間 toovalue 為您的組織。
+[Azure 自動化](https://azure.microsoft.com/services/automation/) 是一項 Azure 服務，可經由程序自動化簡化雲端管理。 透過 Azure 自動化，長時間執行、手動、容易發生錯誤和經常重複的工作都可以自動化，以提高可靠性、效率，並為您的組織縮短創造價值時程。
 
-Azure 自動化提供高度可靠、 高可用性的工作流程執行引擎隨著組織成長而擴充 toomeet 您的需求。 在 Azure 自動化中，程序可透過手動方式、經由協力廠商系統，或依照排程的間隔啟動，讓工作精準地在需要時執行。
+Azure 自動化提供非常可靠且高度可用的工作流程執行引擎，可隨著組織的成長根據您的需求進行調整。 在 Azure 自動化中，程序可透過手動方式、經由協力廠商系統，或依照排程的間隔啟動，讓工作精準地在需要時執行。
 
-降低操作費用並釋出 IT / DevOps 人員 toofocus 移動您的雲端管理工作 toobe 商務價值的工作自動執行的 Azure 自動化。
+將您的雲端管理工作交由「Azure 自動化」自動執行，以降低營運負擔並釋出 IT/開發維運人力，使其專注於能夠為企業創造價值的工作上。
 
 ## <a name="how-can-azure-automation-help-manage-azure-cloud-services"></a>Azure 自動化為何有助於管理 Azure 雲端服務？
-Azure 雲端服務可以使用 hello 中可用的 hello PowerShell cmdlet 來管理 Azure 自動化中[Azure PowerShell 工具](https://msdn.microsoft.com/library/azure/jj156055.aspx)。 Azure 自動化有超出 hello 方塊中，這些雲端服務 PowerShell cmdlet 可用，以便您可以執行您的雲端服務管理工作，hello 服務內的所有。 您也可以跨 Azure 服務和第 3 個合作對象系統配對這些 cmdlet 在 Azure 自動化中利用 hello 適用於其他 Azure 服務、 tooautomate 複雜工作的 cmdlet。
+Azure 雲端服務可透過 [Azure PowerShell 工具](https://msdn.microsoft.com/library/azure/jj156055.aspx)中提供的 PowerShell Cmdlet，在 Azure 自動化中受到管理。 Azure 自動化的這些雲端服務 PowerShell Cmdlet 都是內建的，以便您在服務內執行所有雲端服務管理工作。 您也可以將 Azure 自動化中的這些 Cmdlet 與其他 Azure 服務的 Cmdlet 搭配，以透過 Azure 服務和協力廠商系統自動執行複雜的工作。
 
-某些範例使用的 Azure 自動化 toomanage Azure 雲端服務包括：
+某些範例使用 Azure 自動化來管理 Azure 雲端服務，包括︰
 
 * [每當 Azure Blob 儲存體中更新 cscfg 或 cspkg 時，即連續部署雲端服務](https://gallery.technet.microsoft.com/scriptcenter/Continuous-Deployment-of-A-eeebf3a6)
 * [以平行方式重新啟動雲端服務執行個體，一次升級一個網域](https://gallery.technet.microsoft.com/scriptcenter/Reboot-Cloud-Service-PaaS-b337a06d)
 
 ## <a name="next-steps"></a>後續步驟
-既然您已經學會 hello 的 Azure 自動化，而且可以如何使用的 toomanage Azure 雲端服務的基本概念，請遵循這些連結 toolearn 深入了解 Azure 自動化。
+了解 Azure 自動化的基本概念以及如何用它來管理 Azure 雲端服務之後，請參考下列連結，以深入了解 Azure 自動化。
 
 * [Azure 自動化概觀](../automation/automation-intro.md)
 * [我的第一個 Runbook](../automation/automation-first-runbook-graphical.md)

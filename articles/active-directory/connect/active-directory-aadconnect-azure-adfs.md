@@ -1,7 +1,7 @@
 ---
-title: "在 Azure 中的 Directory Federation Services aaaActive |Microsoft 文件"
-description: "本文件中，您將學習如何 toodeploy AD FS 在 Azure 中的高可用性。"
-keywords: "部署在 azure 中的 AD FS 部署 azure adfs、 azure adfs、 azure ad fs、 部署 adfs、 部署 ad fs，在 azure 中的 adfs、 部署在 azure 中的 adfs、 部署 AD FS 在 azure、 adfs azure、 簡介 tooAD FS、 Azure、 在 Azure 中，AD FS iaas，ADFS，移動 adfs tooazure"
+title: "Azure 中的 Active Directory Federation Services | Microsoft Docs"
+description: "在本文件中，您將了解如何在 Azure 中部署 AD FS 以獲得高可用性。"
+keywords: "在 azure 中部署 AD FS, 部署 azure adfs, azure adfs, azure ad fs, 部署 adfs, 部署 ad fs, azure 中的 adfs, 在 azure 中部署 adfs, 在 azure 中部署 AD FS, adfs azure, AD FS 簡介, Azure, Azure 中的 AD FS, iaas, ADFS, 將 adfs 移至 azure"
 services: active-directory
 documentationcenter: 
 author: anandyadavmsft
@@ -16,103 +16,103 @@ ms.topic: get-started-article
 ms.date: 07/17/2017
 ms.author: anandy; billmath
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 2c39271f7569b9ce395dce2f53f5ba5a4897b132
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: ddd29a1230286de8999175498ee793f3b3ea24e2
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="deploying-active-directory-federation-services-in-azure"></a>在 Azure 中部署 Active Directory 同盟服務
-AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功能。 Azure AD 的同盟，或 O365 可讓的使用者 tooauthenticate 使用內部部署認證，並存取雲端中的所有資源。 如此一來，它變得很重要 toohave 高可用性的 AD FS 基礎結構 tooensure 存取 tooresources 這兩個內部部署和 hello 雲端中。 Azure 中部署 AD FS 可協助達到所需要的最小的投入時間的 hello 高可用性。
+AD FS 提供簡化、安全的身分識別同盟和 Web 單一登入 (SSO) 功能。 與 Azure AD 或 O365 同盟可讓使用者使用內部部署認證進行驗證，並存取雲端中的所有資源。 如此一來，就一定要有高可用性的 AD FS 基礎結構，以確保能夠存取內部部署和雲端中的資源。 在 Azure 中部署 AD FS 有助於達成執行最低限度的工作所需要的高可用性。
 在 Azure 中部署 AD FS 有幾項優點，以下列出其中幾點︰
 
-* **高可用性**-確定 hello Azure 可用性設定組的強大功能與高可用性的基礎結構。
-* **輕鬆 tooScale** – 需要更多的效能？ 輕鬆地移轉在 Azure 中的幾個點擊 toomore 功能強大的機器
-* **跨地理備援性**– 具有 Azure 地理備援您可以確保您的基礎結構是高可用性，跨 hello 球體
-* **輕鬆 tooManage** – 高度簡化的管理選項，在 Azure 入口網站，管理您的基礎結構就非常簡單容易造成困擾 
+* **高可用性** – 憑借 Azure 可用性設定組的能力，您可以確保高可用性的基礎結構。
+* **容易調整** – 需要更多效能？ 只要在 Azure 中按幾下，就能輕鬆地移轉至更強大的機器
+* **跨異地備援** – 使用 Azure 異地備援，您可以確保基礎結構在全球各地均具有高可用性
+* **容易管理** – 透過 Azure 入口網站中極簡化的管理選項，基礎結構管理起來既容易又省事 
 
 ## <a name="design-principles"></a>設計原則
 ![部署設計](./media/active-directory-aadconnect-azure-adfs/deployment.png)
 
-hello 上圖顯示 hello 建議部署在 Azure AD FS 基礎結構的基本拓樸 toostart。 hello 背後的 hello 原則 hello 拓撲的各種元件如下：
+上圖顯示建議用來在 Azure 中部署 AD FS 基礎結構的基本拓撲。 以下列出拓撲的各個元件背後的原理︰
 
-* **DC/ADFS 伺服器**︰如果您的使用者人數少於 1,000 名，可以直接在網域控制站上安裝 AD FS 角色。 若不想讓任何 hello 網域控制站上的效能影響，或如果您有超過 1,000 個使用者，然後將部署在不同伺服器上的 AD FS。
-* **WAP 伺服器**– 它是必要 toodeploy Web 應用程式 Proxy 伺服器，以便使用者可以連線到的 AD FS 時不 hello 公司網路也 hello。
-* **DMZ**: hello Web 應用程式 Proxy 伺服器將會放置於 hello DMZ 和 hello 周邊網路與 hello 內部子網路之間允許只有 TCP/443 存取。
-* **負載平衡器**: tooensure 的 AD FS 和 Web 應用程式 Proxy 伺服器的高可用性，建議使用 AD FS 伺服器和 Azure 負載平衡器的內部負載平衡器的 Web 應用程式 Proxy 伺服器。
-* **可用性設定組**: tooprovide 備援 tooyour AD FS 部署，建議您分組類似的工作負載的可用性設定組中的兩個或多個虛擬機器。 這項組態可以確保在規劃或未規劃的維護事件發生期間，至少有一部虛擬機器可以使用。
-* **儲存體帳戶**： 建議 toohave 兩個儲存體帳戶。 具有單一儲存體帳戶可能會導致 toocreation 的單一失敗點，而且可能會導致 hello 部署 toobecome hello 儲存體帳戶會關閉不太可能案例中無法使用。 兩個儲存體帳戶則有助於讓每條故障路線有一個相關聯的儲存體帳戶。
-* **網路隔離**︰請將 Web 應用程式 Proxy 伺服器部署在不同的 DMZ 網路。 您可以將一個虛擬網路分割成兩個子網路，然後再部署隔離的子網路中的 hello Web 應用程式 Proxy 伺服器。 您只可以 hello 網路安全性設定群組的每個子網路，並允許 hello 兩個子網路所需的溝通。 下面會提供每種部署案例的其他詳細資料
+* **DC/ADFS 伺服器**︰如果您的使用者人數少於 1,000 名，可以直接在網域控制站上安裝 AD FS 角色。 如果不想影響網域控制站的效能，或者使用者人數超過 1,000 名，則請在不同伺服器部署 AD FS。
+* **WAP 伺服器** ︰一定要部署 Web 應用程式 Proxy 伺服器，才能讓不在公司網路內的使用者也可以連線到 AD FS。
+* **DMZ**︰Web 應用程式 Proxy 伺服器將會置於 DMZ，而且 DMZ 與內部子網路之間只允許進行 TCP/443 存取。
+* **負載平衡器**︰為了確保 AD FS 和 Web 應用程式 Proxy 伺服器具有高可用性，建議您針對 AD FS 伺服器使用內部負載平衡器，針對 Web 應用程式 Proxy 伺服器使用 Azure Load Balancer。
+* **可用性設定組**︰為了提供 AD FS 部署備援，建議您將工作負載類似的兩個以上的虛擬機器分在同一個可用性設定組。 這項組態可以確保在規劃或未規劃的維護事件發生期間，至少有一部虛擬機器可以使用。
+* **儲存體帳戶**︰建議您擁有兩個儲存體帳戶。 只擁有一個儲存體帳戶可能會產生單一失敗點，而且如果儲存體帳戶失效 (雖然不太可能發生)，則會無法使用部署。 兩個儲存體帳戶則有助於讓每條故障路線有一個相關聯的儲存體帳戶。
+* **網路隔離**︰請將 Web 應用程式 Proxy 伺服器部署在不同的 DMZ 網路。 您可以將一個虛擬網路分割成兩個子網路，然後在隔離的子網路部署 Web 應用程式 Proxy 伺服器。 您可以簡單地設定每個子網路的網路安全性群組設定，並只允許兩個子網路之間進行必要的通訊。 下面會提供每種部署案例的其他詳細資料
 
-## <a name="steps-toodeploy-ad-fs-in-azure"></a>步驟 toodeploy 在 Azure 中的 AD FS
-此章節大綱 hello 指南 toodeploy hello 以下所述的 hello 步驟所述在 Azure 中的 AD FS 基礎結構。
+## <a name="steps-to-deploy-ad-fs-in-azure"></a>在 Azure 中部署 AD FS 的步驟
+本節所述步驟會概述在 Azure 中部署如下所示的 AD FS 基礎結構的指南。
 
-### <a name="1-deploying-hello-network"></a>1.部署的 hello 網路
-如上所述，您可以在單一虛擬網路中建立兩個子網路，或是建立兩個完全不同的虛擬網路 (VNet)。 本文內容著重於部署單一虛擬網路，再將它分成兩個子網路。 這是目前比較簡單的方式，因為兩個個別的 Vnet 需要 VNet tooVNet 閘道進行通訊。
+### <a name="1-deploying-the-network"></a>1.部署網路
+如上所述，您可以在單一虛擬網路中建立兩個子網路，或是建立兩個完全不同的虛擬網路 (VNet)。 本文內容著重於部署單一虛擬網路，再將它分成兩個子網路。 就目前來說，這個方法較為簡單，因為如果是兩個不同的 VNet，就必須要有 VNet 對 VNet 閘道才能進行通訊。
 
 **1.1 建立虛擬網路**
 
 ![建立虛擬網路](./media/active-directory-aadconnect-azure-adfs/deploynetwork1.png)
 
-Hello Azure 入口網站，在選取的虛擬網路，而且您可以部署 hello 虛擬網路和立即以只要按一下的一個子網路。 INT 子網路也有定義，而且可供立即 Vm toobe 加入。
-hello 下一個步驟是 tooadd 另一個子網路 toohello 網路，也就是 hello 周邊網路的子網路。 toocreate hello 周邊網路的子網路，只需
+在 Azure 入口網站中選取虛擬網路，然後只需要按一下就可以立即部署虛擬網路和一個子網路。 INT 子網路也會定義好，立即可供要新增的 VM 使用。
+下一個步驟是在網路中新增另一個子網路，也就是 DMZ 子網路。 為了建立 DMS 子網路，請直接
 
-* 選取新建立的 hello 網路
-* 在 hello 內容中，選取 子網路
-* 在 hello 子網路 面板中，按一下 hello 加入按鈕
-* 提供 hello 子網路名稱和位址空間資訊 toocreate hello 子網路
+* 選取新建立的網路
+* 在屬性中選取子網路
+* 在子網路面板中，按一下新增按鈕
+* 提供用來建立子網路的子網路名稱和位址空間資訊
 
 ![子網路](./media/active-directory-aadconnect-azure-adfs/deploynetwork2.png)
 
 ![子網路 DMZ](./media/active-directory-aadconnect-azure-adfs/deploynetwork3.png)
 
-**1.2.建立 hello 網路安全性群組**
+**1.2.建立網路安全性群組**
 
-網路安全性群組 (NSG) 包含存取控制清單 (ACL) 規則，允許或拒絕網路流量 tooyour 虛擬網路中的 VM 執行個體的清單。 NSG 可與子網路或該子網路內的個別 VM 執行個體相關聯。 NSG 與子網路產生關聯時，hello ACL 規則適用於 tooall hello VM 執行個體中子網路。
-基於本指南的 hello 目的，我們將建立兩個 Nsg： 分別指派給內部網路以及周邊網路。 其各自的標籤為 NSG_INT 和 NSG_DMZ。
+網路安全性群組 (NSG) 包含存取控制清單 (ACL) 規則的清單，可允許或拒絕虛擬網路中 VM 執行個體的網路流量。 NSG 可與子網路或該子網路內的個別 VM 執行個體相關聯。 當 NSG 與子網路相關聯時，ACL 規則便會套用至該子網路中的所有 VM 執行個體。
+為了進行本指南，我們會建立兩個 NSG︰分別提供給內部網路和 DMZ 使用。 其各自的標籤為 NSG_INT 和 NSG_DMZ。
 
 ![建立 NSG](./media/active-directory-aadconnect-azure-adfs/creatensg1.png)
 
-NSG 建立的 hello 之後, 會有 0 輸入和 0 輸出規則。 一旦 hello 角色 hello 個別伺服器上的安裝且正常運作，然後 hello 輸入和輸出規則才能進行相應的 toohello 所需的安全性層級。
+建立好 NSG 之後，其輸入和輸出規則皆為 0。 一旦各自伺服器上的角色安裝好並正常運作，就可以根據所需的安全性層級建立輸入和輸出規則。
 
 ![初始化 NSG](./media/active-directory-aadconnect-azure-adfs/nsgint1.png)
 
-建立 hello Nsg 之後，建立與子網路關聯 NSG_INT INT 和 NSG_DMZ 與周邊網路的子網路。 下面提供了範例螢幕擷取畫面︰
+建立好所有 NSG 之後，請建立 NSG_INT 與子網路 INT 的關聯，以及 NSG_DMZ 與子網路 DMS 的關聯。 下面提供了範例螢幕擷取畫面︰
 
 ![NSG 設定](./media/active-directory-aadconnect-azure-adfs/nsgconfigure1.png)
 
-* 按一下 子網路的子網路 tooopen hello 面板上
-* 選取以 hello NSG hello 子網路 tooassociate 
+* 按一下 [子網路] 以開啟子網路的面板
+* 選取要與 NSG 關聯的子網路 
 
-完成設定後，子網路的 hello 面板看起來應該像下面：
+完成設定後，[子網路] 面板看起來應該會像下圖︰
 
 ![NSG 之後的子網路](./media/active-directory-aadconnect-azure-adfs/nsgconfigure2.png)
 
-**1.3.建立 tooon 內部部署連線**
+**1.3.建立與內部部署的連線**
 
-我們需要連接 tooon 內部部署的順序 toodeploy hello 網域控制站 (DC) 在 azure 中。 Azure 提供各種連線選項 tooconnect 您在內部部署基礎結構 tooyour Azure 基礎結構。
+我們必須要連線至內部部署，才能在 Azure 中部署網域控制站 (DC)。 Azure 提供了各種連線選項，供您將內部部署基礎結構連接到 Azure 基礎結構。
 
 * 點對站
 * 虛擬網路站對站
 * ExpressRoute
 
-建議 toouse ExpressRoute。 ExpressRoute 可讓您在 Azure 資料中心和內部部署或共置環境中的基礎結構之間建立私人連接。 ExpressRoute 連線不會經過 hello 公用網際網路。 它們提供更多的可靠性、 速度、 延遲更少和較高的安全性比一般連線透過網際網路 hello。
-雖然建議 toouse ExpressRoute，您可以選擇最適合貴組織的任何連線方法。 深入了解 ExpressRoute 和 hello toolearn 各種連線選項，使用 ExpressRoute，讀取[ExpressRoute 技術概觀](https://aka.ms/Azure/ExpressRoute)。
+建議您使用 ExpressRoute。 ExpressRoute 可讓您在 Azure 資料中心和內部部署或共置環境中的基礎結構之間建立私人連接。 ExpressRoute 連線不會經過公用網際網路。 相較於透過網際網路的一般連線，其可提供更為可靠、速度更快、延遲更低且安全性更高的網際網路連線。
+雖然建議的是使用 ExpressRoute，您也可以選擇任何最適合貴組織的連線方法。 若要深入了解 ExpressRoute 以及使用 ExpressRoute 的各種連線選項，請閱讀 [ExpressRoute 技術概觀](https://aka.ms/Azure/ExpressRoute)。
 
 ### <a name="2-create-storage-accounts"></a>2.建立儲存體帳戶
-順序 toomaintain 高可用性和避免依賴單一儲存體帳戶，您可以建立兩個儲存體帳戶。 每個可用性設定組中的 hello 機器分成兩個群組，然後指派每個群組個別的儲存體帳戶。
+為了維持高可用性，並避免依賴單一儲存體帳戶，您可以建立兩個儲存體帳戶。 將每個可用性設定組中的機器分成兩個群組，然後為每個群組指派不同的儲存體帳戶。
 
 ![建立儲存體帳戶](./media/active-directory-aadconnect-azure-adfs/storageaccount1.png)
 
 ### <a name="3-create-availability-sets"></a>3.建立可用性設定組
-針對每個角色 （DC/AD FS 和 WAP），建立可用性設定組包含 2 機器每個在 hello 最小。 這有助於讓每個角色達到更高的可用性。 建立 hello 可用性設定組，而是在 hello 下列重要 toodecide:
+針對每個角色 (DC/AD FS 和 WAP) 建立可用性設定組，讓每個可用性設定組至少包含 2 部機器。 這有助於讓每個角色達到更高的可用性。 在建立可用性設定組時，必須要決定下列項目︰
 
-* **故障網域**： 中的虛擬機器 hello 相同容錯網域共用相同電源和實體網路交換器 hello。 建議最少準備 2 個容錯網域。 hello 預設值為 3，您可以讓它保持原狀針對此部署的 hello 用途
-* **更新網域**： 屬於的 toohello 更新期間一起重新相同更新網域的機器。 您想 toohave 最小值為 2 的更新網域。 hello 預設值為 5，您可以讓它保持原狀針對此部署的 hello 用途
+* **容錯網域**︰相同容錯網域中的虛擬機器會共用相同的電源和實體網路交換器。 建議最少準備 2 個容錯網域。 預設值為 3 個，在進行此部署時，您可以讓此設定保持原本的預設值。
+* **更新網域**︰在更新期間，屬於相同更新網域的機器會一起重新啟動。 您至少需要 2 個更新網域。 預設值為 5 個，在進行此部署時，您可以讓此設定保持原本的預設值。
 
-![可用性集合](./media/active-directory-aadconnect-azure-adfs/availabilityset1.png)
+![可用性設定組](./media/active-directory-aadconnect-azure-adfs/availabilityset1.png)
 
-建立 hello 下列可用性設定組
+建立下列可用性設定組
 
 | 可用性設定組 | 角色 | 容錯網域 | 更新網域 |
 |:---:|:---:|:---:|:--- |
@@ -120,7 +120,7 @@ NSG 建立的 hello 之後, 會有 0 輸入和 0 輸出規則。 一旦 hello �
 | contosowapset |WAP |3 |5 |
 
 ### <a name="4-deploy-virtual-machines"></a>4.部署虛擬機器
-hello 下一個步驟是 toodeploy 會裝載基礎結構中的 hello 不同角色的虛擬機器。 每個可用性設定組中建議至少要有兩部機器。 建立 hello 基本部署的四個虛擬機器。
+下一個步驟是部署虛擬機器，在基礎結構中裝載不同角色。 每個可用性設定組中建議至少要有兩部機器。 基本部署需要建立四部虛擬機器。
 
 | 機器 | 角色 | 子網路 | 可用性設定組 | 儲存體帳戶 | IP 位址 |
 |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -129,116 +129,116 @@ hello 下一個步驟是 toodeploy 會裝載基礎結構中的 hello 不同角�
 | contosowap1 |WAP |DMZ |contosowapset |contososac1 |靜態 |
 | contosowap2 |WAP |DMZ |contosowapset |contososac2 |靜態 |
 
-您可能已注意到我們還未指定 NSG。 這是因為 azure 可讓您使用 NSG hello 子網路層級。 然後，您可以使用個別的 NSG 相關聯是 hello 子網路，否則 hello NIC 物件 hello 控制機器網路流量。 如需詳細資訊，請閱讀 [什麼是網路安全性群組 (NSG)](https://aka.ms/Azure/NSG)。
-如果您要管理 hello DNS，建議使用靜態 IP 位址。 您可以使用 Azure DNS，並改為在 hello 網域的 DNS 記錄，請參閱其 Azure Fqdn toohello 新機器。
-虛擬機器窗格看起來應該像下面 hello 部署完成之後：
+您可能已注意到我們還未指定 NSG。 這是因為 Azure 可讓您在子網路層級使用 NSG。 然後，您可以使用與子網路或 NIC 物件相關聯的個別 NSG 來控制機器的網路流量。 如需詳細資訊，請閱讀 [什麼是網路安全性群組 (NSG)](https://aka.ms/Azure/NSG)。
+如果您要管理 DNS，建議使用靜態 IP 位址。 您可以使用 Azure DNS，並改為在網域的 DNS 記錄中依機器的 Azure FQDN 查閱新的機器。
+部署完成之後，虛擬機器的窗格看起來應該會像下圖︰
 
 ![虛擬機器已部署](./media/active-directory-aadconnect-azure-adfs/virtualmachinesdeployed_noadfs.png)
 
-### <a name="5-configuring-hello-domain-controller--ad-fs-servers"></a>5.設定 hello 網域控制站 / AD FS 伺服器
- 在訂單 tooauthenticate 任何內送要求，AD FS 需要 toocontact hello 網域控制站。 toosave hello 昂貴的路線，從 Azure tooon 內部部署 DC 驗證，建議 toodeploy hello Azure 中的網域控制站的複本。 在訂單 tooattain 高可用性，建議您 toocreate 至少 2 的網域控制站的可用性設定組。
+### <a name="5-configuring-the-domain-controller--ad-fs-servers"></a>5.設定網域控制站/AD FS 伺服器
+ 為了驗證連入要求，AD FS 必須連絡網域控制站。 為了節省進行驗證時從 Azure 連線到內部部署 DC 的昂貴成本，建議您在 Azure 中部署網域控制站的複本。 為了達到高可用性，建議您建立至少包含 2 個網域控制站的可用性設定組。
 
 | 網域控制站 | 角色 | 儲存體帳戶 |
 |:---:|:---:|:---:|
 | contosodc1 |複本 |contososac1 |
 | contosodc2 |複本 |contososac2 |
 
-* 將 hello 兩部伺服器升級為複本網域控制站與 DNS
-* 設定 hello AD FS 伺服器安裝使用 hello 伺服器管理員的 hello AD FS 角色。
+* 使用 DNS 將兩部伺服器升階為複本網域控制站
+* 使用伺服器管理員安裝 AD FS 角色來設定 AD FS 伺服器。
 
 ### <a name="6-deploying-internal-load-balancer-ilb"></a>6.部署內部負載平衡器 (ILB)
-**6.1.建立 hello ILB**
+**6.1.建立 ILB**
 
-toodeploy ILB，在 hello Azure 入口網站並按一下選取的負載平衡器加 （+）。
+若要部署 ILB，請在 Azure 入口網站選取負載平衡器，然後按一下新增 (+)。
 
 > [!NOTE]
-> 如果您沒有看到**負載平衡器**程式功能表中，按一下**瀏覽**hello 在左下方的 hello 入口網站和捲動，直到您看到**負載平衡器**。  然後按一下 hello 黃色星號 tooadd 它 tooyour 功能表。 現在選取 hello 新增負載平衡器圖示 tooopen hello 面板 toobegin 組態的 hello 負載平衡器。
+> 如果在功能表中看不到 [負載平衡器]，請按一下入口網站左下角的 [瀏覽]，並向下捲動到看到 [負載平衡器] 為止。  接著，按一下黃色星號即可將它新增至功能表。 現在，請選取新的負載平衡器圖示以開啟面板，開始設定負載平衡器。
 > 
 > 
 
 ![瀏覽負載平衡器](./media/active-directory-aadconnect-azure-adfs/browseloadbalancer.png)
 
-* **名稱**： 授與任何適合的名稱 toohello 負載平衡器
-* **配置**： 因為此負載平衡器將會放在 hello AD FS 伺服器前面，而是內部網路連線，請選取 「 內部 」
-* **虛擬網路**： 選擇您要在其中部署 AD FS 的 hello 虛擬網路
-* **子網路**： 選擇這裡 hello 內部的子網路
+* **名稱**︰將負載平衡器命名為適合的名稱
+* **配置**︰由於此負載平衡器將放置在 AD FS 伺服器前面，目的是用來進行內部網路連線，因此請選取 [內部]
+* **虛擬網路**︰選擇要在其中部署 AD FS 的虛擬網路
+* **子網路**︰在此選擇內部子網路
 * **IP 位址指派**：靜態
 
 ![內部負載平衡器](./media/active-directory-aadconnect-azure-adfs/ilbdeployment1.png)
 
-按一下 之後建立和部署 hello ILB，您應該會看到它的負載平衡器的 hello 清單中：
+按一下建立並部署 ILB 之後，您應該就會在負載平衡器清單中看到它︰
 
 ![ILB 之後的負載平衡器](./media/active-directory-aadconnect-azure-adfs/ilbdeployment2.png)
 
-下一個步驟是 tooconfigure hello 後端集區和 hello 後端探查。
+下一個步驟是設定後端集區和後端探查。
 
 **6.2.設定 ILB 後端集區**
 
-選取新建立的 ILB hello 負載平衡器面板中的 hello。 它會開啟 hello 設定面板。 
+在 [負載平衡器] 面板中選取新建立的 ILB。 這會開啟 [設定] 面板。 
 
-1. 選取從 hello 設定面板的後端集區
-2. Hello 中加入 後端集區面板，請按一下 新增虛擬機器
+1. 在 [設定] 面板中選取後端集區
+2. 在 [新增後端集區] 面板中，按一下 [新增虛擬機器]
 3. 此時您會看到一個面板供您選擇可用性設定組
-4. 選擇 AD FS hello 可用性設定組
+4. 選擇 AD FS 可用性設定組
 
 ![設定 ILB 後端集區](./media/active-directory-aadconnect-azure-adfs/ilbdeployment3.png)
 
 **6.3.設定探查**
 
-在 hello ILB 設定面板中，選取 探查。
+在 ILB 的 [設定] 面板中，選取 [探查]。
 
 1. 按一下 [新增]
-2. 提供探查的詳細資料 a. **名稱**︰探查名稱 b. **通訊協定**：TCP c. **連接埠**：443 (HTTPS) d. **間隔**: 5 （預設值）-這是 ILB 將在其中探查 hello 後端集區 e 中的 hello 機器 hello 間隔。 **狀況不良閾值限制**: 2 （預設 val ue） – 這是連續探查失敗之後 ILB 會宣告機器 hello 後端集區無回應，並會停止傳送流量 tooit hello 臨界值。
+2. 提供探查的詳細資料 a. **名稱**︰探查名稱 b. **通訊協定**：TCP c. **連接埠**：443 (HTTPS) d. **間隔**：5 (預設值) – 這是 ILB 在後端集區中探查機器的間隔 e. **狀況不良臨界值限制**：2 (預設值) – 這是連續探查失敗臨界值，達到此臨界值之後，ILB 就會將後端集區中的機器宣告為沒有回應，並停止對它傳送流量。
 
 ![設定 ILB 探查](./media/active-directory-aadconnect-azure-adfs/ilbdeployment4.png)
 
 **6.4.建立負載平衡規則**
 
-順序 tooeffectively 平衡 hello 流量應負載平衡規則與設定 hello ILB。 在訂單 toocreate 負載平衡規則 
+為了有效平衡流量，應該為 ILB 設定負載平衡規則。 若要建立負載平衡規則， 
 
-1. 選取負載平衡規則和 hello hello ILB 設定面板
-2. 按一下 加入在 hello 負載平衡規則面板
-3. Hello 新增負載平衡規則面板。 **名稱**： 提供 hello 規則 b 的名稱。 **通訊協定**︰選取 [TCP] c. **連接埠**：443 d. **後端連接埠**：443 e. **後端集區**： 選取您建立 hello AD FS 叢集舊版 f 的 hello 集區。 **探查**： 稍早建立的 AD FS 伺服器選取 hello 探查
+1. 在 ILB 的 [設定] 面板中選取 [負載平衡規則]
+2. 按一下 [負載平衡規則] 面板中的 [新增]
+3. 在 [新增負載平衡規則] 面板中 a. **名稱**︰提供規則名稱 b. **通訊協定**︰選取 [TCP] c. **連接埠**：443 d. **後端連接埠**：443 e. **後端集區**︰選取稍早為 AD FS 叢集建立的集區 f. **探查**︰選取稍早為 AD FS 伺服器建立的探查
 
 ![設定 ILB 平衡規則](./media/active-directory-aadconnect-azure-adfs/ilbdeployment5.png)
 
 **6.5.更新 ILB 的 DNS**
 
-請 tooyour DNS 伺服器，並建立 hello ILB CNAME。 hello CNAME 應 hello federation service 與 hello 指向 hello ILB toohello IP 位址的 IP 位址。 如果 hello ILB DIP 位址是 10.3.0.8，且已安裝的 hello 同盟服務的範例為 fs.contoso.com，然後建立指向 too10.3.0.8 fs.contoso.com 的 CNAME。
-這會確保所有 fs.contoso.com 最後會在 hello ILB 有關的通訊，而且也適當地路由都傳送。
+移至 DNS 伺服器，為 ILB 建立 CNAME。 CNAME 應適用於 IP 位址指向 ILB 的 IP 位址的同盟服務。 例如，如果 ILB DIP 位址是 10.3.0.8，而所安裝的同盟服務是 fs.contoso.com，則請為指向 10.3.0.8 的 fs.contoso.com 建立 CNAME。
+這可確保所有與 fs.contoso.com 有關的通訊都在 ILB 結束，並且會受到適當路由處理。
 
-### <a name="7-configuring-hello-web-application-proxy-server"></a>7.設定 hello Web Application Proxy 伺服器
-**7.1.設定 hello Web 應用程式 Proxy 伺服器 tooreach AD FS 伺服器**
+### <a name="7-configuring-the-web-application-proxy-server"></a>7.設定 Web 應用程式 Proxy 伺服器
+**7.1.設定 Web 應用程式 Proxy 伺服器以連線到 AD FS 伺服器**
 
-中的 Web 應用程式 Proxy 伺服器後方 hello ILB 能夠 tooreach hello AD FS 伺服器的順序 tooensure，建立 hello ILB 的 hello %systemroot%\system32\drivers\etc\hosts 中的記錄。 請注意，hello 辨別的名稱 (DN) 應該 hello federation service 名稱，例如 fs.contoso.com。而且 hello IP 項目應該 hello ILB 的 IP 位址 (10.3.0.8 hello 範例所示)。
+為了確保 Web 應用程式 Proxy 伺服器能夠連線到 ILB 背後的 AD FS 伺服器，請在 %systemroot%\system32\drivers\etc\hosts 建立 ILB 的記錄。 請注意，辨別名稱 (DN) 應該是同盟服務名稱，例如 fs.contoso.com。 而且 IP 項目應該是 ILB 的 IP 位址 (如範例中的 10.3.0.8) 的項目。
 
-**7.2.安裝 hello Web 應用程式 Proxy 角色**
+**7.2.安裝 Web 應用程式 Proxy 角色**
 
-確定的 Web 應用程式 Proxy 伺服器後方 ILB 能夠 tooreach hello AD FS 伺服器之後，您接下來可以安裝 hello Web 應用程式 Proxy 伺服器。 Web 應用程式 Proxy 伺服器不是聯結的 toohello 網域。 Hello Web 應用程式 Proxy 角色安裝 hello 兩個 Web 應用程式 Proxy 伺服器上，選取 hello 遠端存取角色。 hello 伺服器管理員 會引導您 toocomplete hello WAP 安裝。
-如需有關如何閱讀 toodeploy WAP，[安裝及設定 Web Application Proxy 伺服器 hello](https://technet.microsoft.com/library/dn383662.aspx)。
+在確定 Web 應用程式 Proxy 伺服器能夠連線到 ILB 背後的 AD FS 伺服器之後，您可以接著安裝 Web 應用程式 Proxy 伺服器。 Web 應用程式 Proxy 伺服器不可加入網域。 請選取「遠端存取」角色，將 Web 應用程式 Proxy 角色安裝在兩個 Web 應用程式 Proxy 伺服器上。 伺服器管理員會引導您完成 WAP 安裝。
+如需如何部署 WAP 的詳細資訊，請閱讀 [安裝和設定 Web 應用程式 Proxy 伺服器](https://technet.microsoft.com/library/dn383662.aspx)。
 
-### <a name="8--deploying-hello-internet-facing-public-load-balancer"></a>8.部署 hello 網際網路對向的 (Public) 負載平衡器
+### <a name="8--deploying-the-internet-facing-public-load-balancer"></a>8.部署網際網路對向 (公用) 負載平衡器
 **8.1.建立網際網路對向 (公用) 負載平衡器**
 
-在 hello Azure 入口網站，選取負載平衡器，然後按一下新增。 在 [hello 建立負載平衡器] 面板中，輸入下列資訊的 hello
+在 Azure 入口網站中選取 [負載平衡器]，然後按一下 [新增]。 在 [建立負載平衡器] 面板中，輸入下列資訊
 
-1. **名稱**: hello 負載平衡器的名稱
+1. **名稱**︰負載平衡器的名稱
 2. **配置**︰公用 – 此選項會告知 Azure，此負載平衡器需要公用位址。
 3. **IP 位址**︰建立新的 IP 位址 (動態)
 
 ![網際網路對向負載平衡器](./media/active-directory-aadconnect-azure-adfs/elbdeployment1.png)
 
-部署之後，hello 負載平衡器會出現在 hello 負載平衡器清單。
+部署之後，負載平衡器就會出現在 [負載平衡器] 清單中。
 
 ![負載平衡器清單](./media/active-directory-aadconnect-azure-adfs/elbdeployment2.png)
 
-**8.2.指派 DNS 標籤 toohello 公用 IP**
+**8.2.對公用 IP 指派 DNS 標籤**
 
-按一下新建立的 hello hello 負載平衡器組態的 hello 面板上的面板 toobring 在負載平衡器項目。 請遵循以下步驟 tooconfigure hello DNS 標籤 hello 公用 ip:
+在 [負載平衡器] 面板中按一下新建立的負載平衡器項目，以顯示組態的面板。 遵循下列步驟來設定公用 IP 的 DNS 標籤︰
 
-1. 按一下 hello 公用 IP 位址。 這會開啟 hello 公用 ip 的 hello 面板和它的設定
+1. 按一下 [公用 IP 位址]。 這會開啟公用 IP 與其設定的面板
 2. 按一下 [組態]
-3. 提供 DNS 標籤。 這會成為 hello 公用 DNS 標籤，您可以從任何地方，例如 contosofs.westus.cloudapp.azure.com 存取。您可以新增項目在 hello 外部 DNS hello 同盟服務 （例如 fs.contoso.com) 解析 toohello DNS 標籤 hello 外部負載平衡器 (contosofs.westus.cloudapp.azure.com)。
+3. 提供 DNS 標籤。 這會成為您可以從任何地方存取的公用 DNS 標籤，例如 contosofs.westus.cloudapp.azure.com。 您可以在外部 DNS 中新增用於同盟服務的項目 (例如 fs.contoso.com)，以解析為外部負載平衡器的 DNS 標籤 (contosofs.westus.cloudapp.azure.com)。
 
 ![設定網際網路對向負載平衡器](./media/active-directory-aadconnect-azure-adfs/elbdeployment3.png) 
 
@@ -246,42 +246,42 @@ toodeploy ILB，在 hello Azure 入口網站並按一下選取的負載平衡器
 
 **8.3.設定網際網路對向 (公用) 負載平衡器的後端集區** 
 
-相同的步驟與建立 hello 內部負載平衡器，遵循 hello hello 可用性為網際網路對向的 (Public) 負載平衡器的 tooconfigure hello 後端集區設定 hello WAP 伺服器。 例如，contosowapset。
+遵循和建立內部負載平衡器相同的步驟，將網際網路對向 (公用) 負載平衡器的後端集區設定為 WAP 伺服器的可用性設定組。 例如，contosowapset。
 
 ![設定網際網路對向負載平衡器的後端集區](./media/active-directory-aadconnect-azure-adfs/elbdeployment5.png)
 
 **8.4.設定探查**
 
-請遵循相同步驟如所示設定 hello 內部負載平衡器 tooconfigure hello 探查 WAP 伺服器 hello 後端集區的 hello。
+遵循和設定內部負載平衡器相同的步驟來設定 WAP 伺服器後端集區的探查。
 
 ![設定網際網路對向負載平衡器的探查](./media/active-directory-aadconnect-azure-adfs/elbdeployment6.png)
 
 **8.5.建立負載平衡規則**
 
-請遵循相同的步驟 ILB tooconfigure hello 負載平衡規則為 TCP 443 hello。
+遵循和 ILB 中相同的步驟來設定 TCP 443 的負載平衡規則。
 
 ![設定網際網路對向負載平衡器的平衡規則](./media/active-directory-aadconnect-azure-adfs/elbdeployment7.png)
 
-### <a name="9-securing-hello-network"></a>9.保護 hello 網路
-**9.1.保護 hello 內部子網路**
+### <a name="9-securing-the-network"></a>9.保護網路
+**9.1.保護內部子網路**
 
-整體來說，您需要下列規則 tooefficiently 保護您的內部子網路 （依 hello 順序如下所示） 的 hello
+整體來說，您需要下列規則來有效率地保護內部子網路 (依如下所示順序)
 
 | 規則 | 說明 | Flow |
 |:--- |:--- |:---:|
-| AllowHTTPSFromDMZ |允許從 DMZ hello HTTPS 通訊 |輸入 |
-| DenyInternetOutbound |沒有存取 toointernet |輸出 |
+| AllowHTTPSFromDMZ |允許來自 DMZ 的 HTTPS 通訊 |輸入 |
+| DenyInternetOutbound |不得存取網際網路 |輸出 |
 
 ![INT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsg_int.png)
 
 [註解]: <> (![INT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsgintinbound.png)) [註解]: <> (![INT 存取規則 (輸出)](./media/active-directory-aadconnect-azure-adfs/nsgintoutbound.png))
 
-**9.2.保護 hello 周邊網路子網路**
+**9.2.保護 DMZ 子網路**
 
 | 規則 | 說明 | Flow |
 |:--- |:--- |:---:|
-| AllowHTTPSFromInternet |從網際網路 toohello DMZ 允許 HTTPS |輸入 |
-| DenyInternetOutbound |HTTPS toointernet 以外的項目遭到封鎖 |輸出 |
+| AllowHTTPSFromInternet |允許從網際網路到 DMZ 的 HTTPS |輸入 |
+| DenyInternetOutbound |HTTPS 以外流向網際網路的任何流量都會遭到封鎖 |輸出 |
 
 ![EXT 存取規則 (輸入)](./media/active-directory-aadconnect-azure-adfs/nsg_dmz.png)
 
@@ -292,13 +292,13 @@ toodeploy ILB，在 hello Azure 入口網站並按一下選取的負載平衡器
 > 
 > 
 
-### <a name="10-test-hello-ad-fs-sign-in"></a>10.測試 hello AD FS 登入
-hello 最簡單方式是的 tootest AD FS 會使用 hello IdpInitiatedSignon.aspx 頁面。 中，它是必要的 tooenable 順序 toobe 無法 toodo hello IdpInitiatedSignOn hello AD FS 屬性上。 請遵循以下 tooverify 的 hello 步驟 AD FS 安裝
+### <a name="10-test-the-ad-fs-sign-in"></a>10.測試 AD FS 登入
+要測試 AD FS，最簡單的方法是使用 IdpInitiatedSignon.aspx 網頁。 為了能夠執行此作業，必須在 AD FS 屬性上啟用 IdpInitiatedSignOn。 請遵循下列步驟來確認 AD FS 設定
 
-1. 執行 hello 以下 cmdlet hello AD FS 伺服器上，使用 PowerShell、 tooset 它 tooenabled。
+1. 使用 PowerShell 在 AD FS 伺服器上執行以下 Cmdlet，將它設定為啟用。
    Set-AdfsProperties -EnableIdPInitiatedSignonPage $true 
 2. 從任何外部電腦存取 https://adfs.thecloudadvocate.com/adfs/ls/IdpInitiatedSignon.aspx  
-3. 您應該會看到 hello AD FS 網頁類似下面的：
+3. 您應該會看到如下圖的 AD FS 網頁︰
 
 ![測試登入網頁](./media/active-directory-aadconnect-azure-adfs/test1.png)
 
@@ -307,39 +307,39 @@ hello 最簡單方式是的 tootest AD FS 會使用 hello IdpInitiatedSignon.asp
 ![測試成功](./media/active-directory-aadconnect-azure-adfs/test2.png)
 
 ## <a name="template-for-deploying-ad-fs-in-azure"></a>在 Azure 中部署 AD FS 的範本
-hello 範本部署 6 電腦安裝程式，2 個網域控制站，AD FS 和 WAP。
+此範本回部署含 6 部電腦的安裝，其中 2 部分別用於網域控制站 (AD FS 和 WAP)。
 
 [Azure 部署範本中的 AD FS](https://github.com/paulomarquesc/adfs-6vms-regular-template-based)
 
-您可以使用現有的虛擬網路，或在部署此範本時建立新的 VNET。 以下列出各種不同的參數可用來自訂 hello 部署 hello hello 部署程序中的 hello 參數的使用方式描述 hello。 
+您可以使用現有的虛擬網路，或在部署此範本時建立新的 VNET。 可用於自訂部署的各種參數如下所列 (包含在部署過程中使用的參數說明)。 
 
 | 參數 | 說明 |
 |:--- |:--- |
-| 位置 |hello 區域 toodeploy hello 資源到例如美東。 |
-| StorageAccountType |hello 建立儲存體帳戶的 hello 型別 |
+| 位置 |要部署資源的區域，例如美國東部。 |
+| StorageAccountType |建立的儲存體帳戶類型 |
 | VirtualNetworkUsage |指出將建立新的虛擬網路，或使用現有的虛擬網路 |
-| virtualNetworkName |hello 虛擬網路 tooCreate，強制在現有或新的虛擬網路使用方式的 hello 名稱 |
-| VirtualNetworkResourceGroupName |指定 hello hello hello 現有的虛擬網路所在的資源群組名稱。 當使用現有的虛擬網路，這會變成必要的參數以便 hello 部署可以尋找 hello 識別碼 hello 現有的虛擬網路 |
-| VirtualNetworkAddressRange |hello 位址範圍的 hello 新的 VNET，如果建立新的虛擬網路的必要項 |
-| InternalSubnetName |hello hello 內部子網路名稱，強制在兩個虛擬網路使用方式選項 （新的或現有的） |
-| InternalSubnetAddressRange |hello hello 內部子網路，其中包含 hello 網域控制站和 ADFS 伺服器，強制性，如果建立新的虛擬網路的位址範圍。 |
-| DMZSubnetAddressRange |hello hello 周邊網路的子網路，其中包含 hello Windows 應用程式 proxy 伺服器，當建立新的虛擬網路的位址範圍。 |
-| DMZSubnetName |hello hello 內部子網路名稱，強制在兩個虛擬網路使用方式選項 （新的或現有的）。 |
-| ADDC01NICIPAddress |hello 內部 IP 位址的 hello 第一個網域控制站，此 IP 位址將會以靜態方式指派 toohello DC，且必須是 hello 內部子網路內的有效 ip 位址 |
-| ADDC02NICIPAddress |hello 內部 IP 位址的 hello 第二個網域控制站，此 IP 位址將會以靜態方式指派 toohello DC，且必須是 hello 內部子網路內的有效 ip 位址 |
-| ADFS01NICIPAddress |hello 內部 IP 位址第一部 ADFS 伺服器 hello，此 IP 位址將會以靜態方式指派 toohello ADFS 伺服器，而且必須 hello 內部子網路內的有效 ip 位址 |
-| ADFS02NICIPAddress |hello 內部 IP 位址的第二個 ADFS 伺服器 hello，此 IP 位址將會以靜態方式指派 toohello ADFS 伺服器，而且必須 hello 內部子網路內的有效 ip 位址 |
-| WAP01NICIPAddress |hello 內部 IP 位址第一部 WAP 伺服器 hello，此 IP 位址將會以靜態方式指派 toohello WAP 伺服器，而且必須 hello 周邊網路子網路內的有效 ip 位址 |
-| WAP02NICIPAddress |hello 內部 IP 位址的第二個 WAP 伺服器 hello，此 IP 位址將會以靜態方式指派 toohello WAP 伺服器也必須是有效的 ip 位址 hello 周邊網路子網路內 |
-| ADFSLoadBalancerPrivateIPAddress |hello ADFS 的 hello 內部 IP 位址的負載平衡器，此 IP 位址將會以靜態方式指派 toohello 負載平衡器，且必須是 hello 內部子網路內的有效 ip 位址 |
+| virtualNetworkName |要建立的虛擬網路名稱 (使用現有或新的虛擬網路時的必要參數) |
+| VirtualNetworkResourceGroupName |指定現有虛擬網路所在的資源群組名稱。 使用現有虛擬網路時，這會變成必要參數，以便部署找到現有虛擬網路的識別碼 |
+| VirtualNetworkAddressRange |新 VNET 的位址範圍 (如果建立新的虛擬網路，則為必要參數) |
+| InternalSubnetName |內部子網路的名稱 (使用現有或新的虛擬網路時的必要參數) |
+| InternalSubnetAddressRange |內部子網路的位址範圍，其包含網域控制站和 ADFS 伺服器 (如果建立新的虛擬網路，則為必要參數) |
+| DMZSubnetAddressRange |dmz 子網路的位址範圍，其包含 Windows 應用程式 Proxy 伺服器 (如果建立新的虛擬網路，則為必要參數) |
+| DMZSubnetName |內部子網路的名稱 (使用現有或新的虛擬網路時的必要參數)。 |
+| ADDC01NICIPAddress |第一個網域控制站的內部 IP 位址，此 IP 位址會以靜態方式指派給 DC，而且必須是內部子網路內的有效 ip 位址 |
+| ADDC02NICIPAddress |第二個網域控制站的內部 IP 位址，此 IP 位址會以靜態方式指派給 DC，而且必須是內部子網路內的有效 ip 位址 |
+| ADFS01NICIPAddress |第一個 ADFS 伺服器的內部 IP 位址，此 IP 位址會以靜態方式指派給 ADFS 伺服器，而且必須是內部子網路內的有效 ip 位址 |
+| ADFS02NICIPAddress |第二個 ADFS 伺服器的內部 IP 位址，此 IP 位址會以靜態方式指派給 ADFS 伺服器，而且必須是內部子網路內的有效 ip 位址 |
+| WAP01NICIPAddress |第一個 WAP 伺服器的內部 IP 位址，此 IP 位址會以靜態方式指派給 WAP 伺服器，而且必須是 WAP 子網路內的有效 ip 位址 |
+| WAP02NICIPAddress |第二個 WAP 伺服器的內部 IP 位址，此 IP 位址會以靜態方式指派給 WAP 伺服器，而且必須是 WAP 子網路內的有效 ip 位址 |
+| ADFSLoadBalancerPrivateIPAddress |ADFS 負載平衡器的內部 IP 位址，此 IP 位址會以靜態方式指派給負載平衡器，而且必須是 WAP 子網路內的有效 ip 位址 |
 | ADDCVMNamePrefix |網域控制站的虛擬機器名稱前置詞 |
 | ADFSVMNamePrefix |ADFS 伺服器的虛擬機器名稱前置詞 |
 | WAPVMNamePrefix |WAP 伺服器的虛擬機器名稱前置詞 |
-| ADDCVMSize |hello 的 hello 網域控制站的 vm 大小 |
-| ADFSVMSize |hello ADFS 伺服器 hello vm 大小 |
-| WAPVMSize |hello 的 hello WAP 伺服器的 vm 大小 |
-| AdminUserName |hello 名稱 hello hello 虛擬機器的本機系統管理員 |
-| AdminPassword |hello hello 虛擬機器的 hello 本機系統管理員帳戶密碼 |
+| ADDCVMSize |網域控制站的 VM 大小 |
+| ADFSVMSize |ADFS 伺服器的 VM 大小 |
+| WAPVMSize |WAP 伺服器的 VM 大小 |
+| AdminUserName |虛擬機器的本機系統管理員名稱 |
+| AdminPassword |虛擬機器的本機系統管理員帳戶密碼 |
 
 ## <a name="additional-resources"></a>其他資源
 * [可用性設定組](https://aka.ms/Azure/Availability) 

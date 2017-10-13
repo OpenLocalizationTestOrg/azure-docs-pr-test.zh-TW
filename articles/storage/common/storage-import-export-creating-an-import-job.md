@@ -1,6 +1,6 @@
 ---
-title: "匯入工作的 Azure 匯入/匯出 aaaCreate |Microsoft 文件"
-description: "深入了解如何 toocreate hello Microsoft Azure 匯入/匯出服務的匯入。"
+title: "建立 Azure 匯入/匯出的匯入作業 | Microsoft Docs"
+description: "了解如何建立 Microsoft Azure 匯入/匯出服務的匯入。"
 author: muralikk
 manager: syadav
 editor: syadav
@@ -14,96 +14,96 @@ ms.devlang: na
 ms.topic: article
 ms.date: 01/23/2017
 ms.author: muralikk
-ms.openlocfilehash: da974c33a3688bb5e2412c8bfcbeca704096c2fc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d373d2a0e601f2796719fc5efb8761f276ab24d9
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="creating-an-import-job-for-hello-azure-importexport-service"></a>建立 hello Azure 匯入/匯出服務的匯入工作
+# <a name="creating-an-import-job-for-the-azure-importexport-service"></a>建立 Azure 匯入/匯出服務的匯入作業
 
-建立使用 hello REST API 的 hello Microsoft Azure 匯入/匯出服務匯入工作包括下列步驟的 hello:
+使用 REST API 建立 Microsoft Azure 匯入/匯出服務的匯入作業包含下列步驟︰
 
--   準備磁碟機以 hello Azure 匯入/匯出工具。
+-   利用 Azure 匯入/匯出工具來準備磁碟機。
 
--   取得 hello 位置 toowhich tooship hello 磁碟機。
+-   取得要寄送磁碟機的位置。
 
--   建立 hello 匯入工作。
+-   建立匯入作業。
 
--   傳送嗨光碟機 tooMicrosoft 透過支援的貨運服務。
+-   透過支援的貨運服務將磁碟機寄送給 Microsoft。
 
--   使用 傳送詳細資料的 hello 更新 hello 匯入作業。
+-   使用出貨詳細資料更新匯入工作。
 
- 請參閱[使用 hello Microsoft Azure 匯入/匯出服務 tooTransfer 資料 tooBlob 儲存體](storage-import-export-service.md)概觀 hello 匯入/匯出服務和教學課程示範如何 toouse hello [Azure 入口網站](https://portal.azure.com/)toocreate 及管理匯入和匯出工作。
+ 請參閱[使用 Microsoft Azure 匯入/匯出服務將資料移轉至 Blob 儲存體](storage-import-export-service.md)以取得匯入/匯出服務概觀及示範如何使用 [Azure 入口網站](https://portal.azure.com/)建立和管理匯入與匯出作業的教學課程。
 
-## <a name="preparing-drives-with-hello-azure-importexport-tool"></a>使用 Azure 匯入/匯出工具 hello 準備磁碟機
+## <a name="preparing-drives-with-the-azure-importexport-tool"></a>準備具有 Azure 匯入/匯出工具的磁碟機
 
-匯入工作的 hello 步驟 tooprepare 磁碟機是 hello 相同您要建立 hello jobvia hello 入口網站或透過 hello REST API。
+無論您是透過入口網站或透過 REST API 建立作業，準備匯入作業的磁碟機步驟都相同。
 
-以下是磁碟機準備的簡要概觀。 請參閱 toohello [Azure 匯入 ExportTool 參考](storage-import-export-tool-how-to-v1.md)如需完整指示。 您可以下載 Azure 匯入/匯出工具 hello[這裡](http://go.microsoft.com/fwlink/?LinkID=301900)。
+以下是磁碟機準備的簡要概觀。 請參閱 [Azure 匯入匯出工具參考](storage-import-export-tool-how-to-v1.md)以取得完整指示。 您可以在[這裡](http://go.microsoft.com/fwlink/?LinkID=301900)下載 Azure 匯入/匯出工具。
 
 準備您的磁碟機包含︰
 
--   用來識別 hello 資料 toobe 匯入。
+-   識別要匯入的資料。
 
--   識別 Windows Azure 儲存體中的 hello 目的地 blob。
+-   在 Windows Azure 儲存體中識別目的地 blob。
 
--   在使用 hello Azure 匯入/匯出工具 toocopy 資料 tooone 或多個硬碟。
+-   使用 Azure 匯入/匯出工具，將資料複製到一或多個硬碟。
 
- 已準備好為其 hello Azure 匯入/匯出工具也會針對每個 hello 磁碟機產生資訊清單檔案。 資訊清單檔案包含︰
+ Azure 匯入/匯出工具也會在備妥時，針對每個磁碟機產生資訊清單檔案。 資訊清單檔案包含︰
 
--   列舉所有要上傳並從這些檔案 tooblobs hello 對應的 hello 檔案中。
+-   適用於上傳和從這些檔案對應至 blob 的所有檔案之列舉型別。
 
--   每個檔案的 hello 區段的總和檢查碼。
+-   每個檔案區段的總和檢查碼。
 
--   Hello 與每個 blob 的中繼資料和屬性 tooassociate 的相關資訊。
+-   與每個 blob 相關聯的中繼資料及內容的相關資訊。
 
--   列出的 hello 動作 tootake hello 正在上傳的 blob 有相同的名稱，為 hello 容器中現有的 blob。 可能的選項包括： a） 檔案，覆寫 hello blob hello、 b） 保留 hello 現有 blob 和略過上傳 hello 檔案、 c） 新增後置詞 toohello 名稱，使它不會使用其他檔案衝突。
+-   如果要上傳的 blob 與容器中現有的 blob 具有相同名稱時，要採取的動作清單。 可能的選項包括︰a) 以 blob 覆寫檔案、b) 保留現有的 blob 並略過上傳檔案、c) 在名稱後面附加尾碼，使它不會與其他檔案衝突。
 
 ## <a name="obtaining-your-shipping-location"></a>取得寄送位置
 
-在建立匯入工作之前，您需要 tooobtain 寄送地點名稱和地址的呼叫 hello[列出位置](/rest/api/storageimportexport/listlocations)作業。 `List Locations` 會傳回位置及其郵寄地址的清單。 您可以從 hello 傳回清單中選取位置並寄送您的硬碟機 toothat 地址。 您也可以使用 hello`Get Location`作業 tooobtain hello 直接傳送的特定位置的位址。
+在建立匯入作業之前，您需要藉由呼叫 [List Locations](/rest/api/storageimportexport/listlocations) 作業來取得寄送位置名稱和地址。 `List Locations` 會傳回位置及其郵寄地址的清單。 您可以從傳回的清單中選取位置，並將您的硬碟寄送至該地址。 您也可以使用 `Get Location` 作業來直接取得特定位置的寄送地址。
 
- 請遵循以下 tooobtain hello 傳送位置 hello 步驟：
+ 請遵循下列步驟來取得寄送位置︰
 
--   識別 hello hello 位置的儲存體帳戶名稱。 這個值可以找到 hello**位置**hello 儲存體帳戶的欄位**儀表板**hello Azure 入口網站或使用 hello 服務管理 API 作業的查詢中[取得儲存體帳戶屬性](/rest/api/storagerp/storageaccounts#StorageAccounts_GetProperties)。
+-   識別儲存體帳戶位置的名稱。 您可以在 Azure 入口網站中儲存體帳戶「儀表板」上的 [位置] 欄位下找到此值，或使用服務管理 API 作業[取得儲存體帳戶屬性](/rest/api/storagerp/storageaccounts#StorageAccounts_GetProperties)來查詢此值。
 
--   擷取可用 tooprocess hello 位置這個儲存體帳戶呼叫 hello`Get Location`作業。
+-   藉由呼叫 `Get Location` 作業來擷取可用來處理此儲存體帳戶的位置。
 
--   如果 hello `AlternateLocations` hello 位置包含 hello 位置本身，則無妨 toouse 這個位置。 否則，呼叫 hello`Get Location`使用其中一個 hello 替代位置，然後再次的作業。 維護可能暫時關閉 hello 原始位置。
+-   如果位置的 `AlternateLocations` 屬性包含位置本身，則可以使用此位置。 否則，使用其中一個替代位置再次呼叫 `Get Location` 作業。 原始位置可能暫時關閉進行維護。
 
-## <a name="creating-hello-import-job"></a>建立 hello 匯入工作
-toocreate hello 匯入工作，呼叫 hello [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate)作業。 您需要下列資訊 tooprovide hello:
+## <a name="creating-the-import-job"></a>建立匯入作業
+若要建立匯入作業，請呼叫 [Put Job](/rest/api/storageimportexport/jobs#Jobs_CreateOrUpdate) 作業。 您必須提供下列資訊：
 
--   Hello 工作的名稱。
+-   作業的名稱。
 
--   hello 儲存體帳戶名稱。
+-   儲存體帳戶名稱。
 
--   hello 傳送 hello 上一個步驟中取得的位置名稱。
+-   從上一個步驟中取得的寄送位置名稱。
 
 -   作業類型 (匯入)。
 
--   hello 傳回位址 hello 匯入作業完成之後，傳送 hello 磁碟機。
+-   在匯入作業完成之後要傳送磁碟機的傳回位址。
 
--   hello hello 作業中的磁碟機清單。 每個磁碟機，您必須加入 hello 下列 hello 磁碟機準備步驟期間取得的資訊：
+-   在作業中的磁碟機清單。 針對每個磁碟機，您必須包含下列磁碟機準備步驟期間取得的資訊︰
 
-    -   hello 磁碟機識別碼
+    -   磁碟機識別碼
 
-    -   hello BitLocker 金鑰
+    -   BitLocker 金鑰
 
-    -   hello hello 硬碟機上的資訊清單檔案相對路徑
+    -   硬碟上的資訊清單檔案相對路徑
 
-    -   hello Base16 編碼資訊清單檔案的 MD5 雜湊
+    -   Base16 編碼資訊清單檔案 MD5 雜湊
 
 ## <a name="shipping-your-drives"></a>寄送您的磁碟機
-您必須提供您取自 hello 先前步驟中，您的磁碟機 toohello 地址，而且您必須提供 hello 匯入/匯出服務以 hello 追蹤 hello 封裝的數目。
+您必須將磁碟機寄送到從上一個步驟取得的地址，且您必須提供具有包裹追蹤號碼的匯入/匯出服務。
 
 > [!NOTE]
 >  您必須透過支援的貨運服務公司 (會提供您的包裹追蹤號碼) 寄送您的磁碟機。
 
-## <a name="updating-hello-import-job-with-your-shipping-information"></a>使用 出貨資訊更新 hello 匯入作業
-取得追蹤號碼之後，請呼叫 hello [Update Job Properties](/api/storageimportexport/jobs#Jobs_Update)作業 tooupdate hello 傳送貨運公司名稱、 hello hello 作業的追蹤號碼與退貨 hello 承運業者帳戶號碼。 您可以選擇指定磁碟機和出貨日期以及 hello 的 hello 數目。
+## <a name="updating-the-import-job-with-your-shipping-information"></a>使用出貨資料更新匯入作業
+在您取得追蹤號碼之後，請呼叫 [Update Job Properties](/api/storageimportexport/jobs#Jobs_Update) 作業以更新貨運公司名稱、作業的追蹤號碼和退貨的貨運公司帳戶號碼。 您可以選擇性指定磁碟機數目及寄送日期。
 
 ## <a name="next-steps"></a>後續步驟
 
-* [使用 hello 匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)
+* [使用匯入/匯出服務 REST API](storage-import-export-using-the-rest-api.md)

@@ -1,5 +1,5 @@
 ---
-title: "Azure Active Directory B2C： 了解 hello 入門組件的自訂原則 |Microsoft 文件"
+title: "Azure Active Directory B2C：了解入門套件的自訂原則 | Microsoft Docs"
 description: "Azure Active Directory B2C 自訂原則的主題"
 services: active-directory-b2c
 documentationcenter: 
@@ -14,89 +14,89 @@ ms.topic: article
 ms.devlang: na
 ms.date: 04/25/2017
 ms.author: joroja
-ms.openlocfilehash: 3484e8cc6fa6a9d57c2aa14c0cc9616065892d10
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9847bcfcc139a769847678c1cca6a8b9c3a30e93
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="understanding-hello-custom-policies-of-hello-azure-ad-b2c-custom-policy-starter-pack"></a>了解 hello hello Azure AD B2C 自訂原則入門組件的自訂原則
+# <a name="understanding-the-custom-policies-of-the-azure-ad-b2c-custom-policy-starter-pack"></a>了解 Azure AD B2C 自訂原則入門套件的自訂原則
 
-此區段會列出所有 hello 核心項目所隨附 hello hello B2C_1A_base 原則**入門套件**和，可用來撰寫您自己的原則，透過的 hello hello 繼承*B2C_1A_base_擴充功能原則*。
+本節會列出**入門套件**隨附之 B2C_1A_base 原則的所有核心元素，此原則也可用來透過繼承 B2C_1A_base_extensions 原則來撰寫您自己的原則。
 
-因此，它多特別著重於 hello 已經定義過了宣告類型、 宣告轉換、 內容定義、 宣告提供者與他們技術下列設定檔，而 hello 核心使用者皆。
+因此，本節會特別著重在已定義的宣告類型、宣告轉換、內容定義、宣告提供者與其技術設定檔，以及核心的使用者旅程。
 
 > [!IMPORTANT]
-> Microsoft 不做任何明示明示或默示，以下提供尊重 toohello 資訊。 任何時候 (GA 當下、之前或之後) 皆有可能導入變更。
+> Microsoft 對於以下所提供的資訊不做任何明示或暗示的保證。 任何時候 (GA 當下、之前或之後) 皆有可能導入變更。
 
-您自己的原則和 hello B2C_1A_base_extensions 原則可以覆寫這些定義，並視需要提供額外的擴充此父原則。
+您自己的原則和 B2C_1A_base_extensions 原則都可以覆寫這些定義，並視需要提供其他定義來擴充此父系原則。
 
-hello hello 核心項目*B2C_1A_base 原則*是宣告類型、 宣告轉換和內容的定義。 這些項目可以很容易遭受 hello 與您自己以及的原則中所參考的 toobe *B2C_1A_base_extensions 原則*。
+B2C_1A_base 原則的核心元素是宣告類型、宣告轉換及內容定義。 您可以很容易地在您自己的原則和 B2C_1A_base_extensions 原則中參考這些元素。
 
 ## <a name="claims-schemas"></a>宣告結構描述
 
 此宣告結構描述分為三個部分︰
 
-1.  第一個區段會列出所需的 hello 使用者皆 toowork 正確 hello 最小宣告。
-2.  第二個區段列出 hello 所需的查詢字串參數的宣告，和其他特殊參數 toobe 傳遞 tooother 宣告提供者，特別是 login.microsoftonline.com 進行驗證。 **請勿修改這些宣告**。
-3.  和第三個區段會列出任何額外的選擇性宣告可收集來自 hello 使用者最後 hello 目錄中儲存並登入期間傳送權杖中。 本節中，可以加入新宣告型別 toobe hello 使用者從收集及/或傳送嗨權杖中。
+1.  第一個部分會列出所需的最小宣告，以便使用者旅程能正常運作。
+2.  第二個部分會列出所需的宣告，以便查詢字串參數和其他特殊參數能傳遞至其他宣告提供者，尤其是 login.microsoftonline.com 以便進行驗證。 **請勿修改這些宣告**。
+3.  最後，第三個部分會列出其他任何選擇性宣告，這些宣告可從使用者收集而來、儲存在目錄中，以及在登入期間於權杖中傳送。 要從使用者收集而來和/或要在權杖中傳送的新宣告類型可以新增到這個部分。
 
 > [!IMPORTANT]
-> hello 宣告結構描述包含某些宣告，例如密碼和使用者名稱的限制。 hello 信任架構 (TF) 原則會視為其他宣告提供者中的 Azure AD 和其所有的限制會在 hello premium 原則和模型化。 原則可以修改的 tooadd 更多的限制，或其他宣告提供者用於認證存放裝置，將有它自己的限制。
+> 對於某些宣告 (例如密碼和使用者名稱)，宣告結構描述會含有限制。 信任架構 (TF) 原則會將 Azure AD 視為其他宣告提供者，此原則的所有限制會在進階原則中模型化。 原則經過修改後即可新增更多限制，或使用另一個宣告提供者來儲存認證，但該提供者會有它自己的限制。
 
-hello 可用宣告類型如下所示。
+以下列出可用的宣告類型。
 
-### <a name="claims-that-are-required-for-hello-user-journeys"></a>所需的 hello 使用者皆宣告
+### <a name="claims-that-are-required-for-the-user-journeys"></a>使用者旅程所需的宣告
 
-hello 下列宣告所需的使用者皆 toowork 正確：
+需要有下列宣告才能讓使用者旅程正常運作︰
 
 | 宣告類型 | 說明 |
 |-------------|-------------|
 | UserId | 使用者名稱 |
 | signInName | 登入名稱 |
-| tenantId | 在 Azure AD B2C Premium hello 使用者物件的租用戶識別碼 (ID) |
-| objectId | 在 Azure AD B2C Premium hello 使用者物件的物件識別碼 (ID) |
+| tenantId | Azure AD B2C 進階版中使用者物件的租用戶識別碼 (ID) |
+| objectId | Azure AD B2C 進階版中使用者物件的物件識別碼 (ID) |
 | *password* | 密碼 |
 | newPassword | |
 | reenterPassword | |
-| passwordPolicies | Azure AD B2C Premium toodetermine 密碼強度、 到期和其他內容所使用的密碼原則。 |
+| passwordPolicies | Azure AD B2C 進階版用來決定密碼強度、到期日等規定的密碼原則。 |
 | *sub* | |
 | alternativeSecurityId | |
 | identityProvider | |
 | displayName | |
 | strongAuthenticationPhoneNumber | 使用者的電話號碼 |
 | Verified.strongAuthenticationPhoneNumber | |
-| email | 可以使用的 toocontact hello 使用者的電子郵件地址 |
-| signInNamesInfo.emailAddress | 可用在 toosign hello 使用者的電子郵件地址。 |
-| otherMails | 可以使用的 toocontact hello 使用者的電子郵件地址 |
-| userPrincipalName | Hello Azure AD B2C Premium 中所儲存的使用者名稱 |
+| email | 可用來連絡使用者的電子郵件地址 |
+| signInNamesInfo.emailAddress | 使用者可用來登入的電子郵件地址 |
+| otherMails | 可用來連絡使用者的電子郵件地址 |
+| userPrincipalName | Azure AD B2C 進階版中所儲存的使用者名稱 |
 | upnUserName | 用來建立使用者主體名稱的使用者名稱 |
-| mailNickName | 使用者的郵件 nick 名稱儲存在 Azure AD B2C Premium hello |
+| mailNickName | Azure AD B2C 進階版中所儲存的使用者郵件別名 |
 | newUser | |
-| executed-SelfAsserted-Input | 指定屬性是否已收集來自 hello 使用者宣告 |
-| executed-PhoneFactor-Input | 指定新的電話號碼是否收集來自 hello 使用者宣告 |
-| authenticationSource | 指定是否 hello 使用者已驗證在社交身分識別提供者、 login.microsoftonline.com 或本機帳戶 |
+| executed-SelfAsserted-Input | 此宣告會指出屬性是否收集自使用者 |
+| executed-PhoneFactor-Input | 此宣告會指出新的電話號碼是否收集自使用者 |
+| authenticationSource | 指出使用者是在社交識別提供者、login.microsoftonline.com 還是本機帳戶進行驗證的 |
 
 ### <a name="claims-required-for-query-string-parameters-and-other-special-parameters"></a>查詢字串參數和其他特殊參數所需的宣告
 
-hello 下列宣告是特殊的參數 （包括某些查詢字串參數） tooother 宣告提供者上的必要的 toopass:
+必須有下列宣告才能將特殊參數 (包括某些查詢字串參數) 傳遞給其他宣告提供者︰
 
 | 宣告類型 | 說明 |
 |-------------|-------------|
-| nux | 特殊的本機帳戶驗證 toologin.microsoftonline.com 傳遞的參數 |
-| nca | 特殊的本機帳戶驗證 toologin.microsoftonline.com 傳遞的參數 |
-| prompt | 特殊的本機帳戶驗證 toologin.microsoftonline.com 傳遞的參數 |
-| mkt | 特殊的本機帳戶驗證 toologin.microsoftonline.com 傳遞的參數 |
-| lc | 特殊的本機帳戶驗證 toologin.microsoftonline.com 傳遞的參數 |
-| grant_type | 特殊的本機帳戶驗證 toologin.microsoftonline.com 傳遞的參數 |
-| scope | 特殊的本機帳戶驗證 toologin.microsoftonline.com 傳遞的參數 |
-| client_id | 特殊的本機帳戶驗證 toologin.microsoftonline.com 傳遞的參數 |
-| objectIdFromSession | 已擷取 hello 預設工作階段管理提供者 tooindicate hello 物件識別碼，所提供的參數，從 SSO 工作階段 |
-| isActiveMFASession | 參數所提供 hello MFA 工作階段管理 tooindicate hello 使用者具有作用中的 MFA 工作階段 |
+| nux | 傳遞給本機帳戶以向 login.microsoftonline.com 進行驗證的特殊參數 |
+| nca | 傳遞給本機帳戶以向 login.microsoftonline.com 進行驗證的特殊參數 |
+| prompt | 傳遞給本機帳戶以向 login.microsoftonline.com 進行驗證的特殊參數 |
+| mkt | 傳遞給本機帳戶以向 login.microsoftonline.com 進行驗證的特殊參數 |
+| lc | 傳遞給本機帳戶以向 login.microsoftonline.com 進行驗證的特殊參數 |
+| grant_type | 傳遞給本機帳戶以向 login.microsoftonline.com 進行驗證的特殊參數 |
+| scope | 傳遞給本機帳戶以向 login.microsoftonline.com 進行驗證的特殊參數 |
+| client_id | 傳遞給本機帳戶以向 login.microsoftonline.com 進行驗證的特殊參數 |
+| objectIdFromSession | 預設工作階段管理提供者所提供的參數，用以指出物件識別碼是從 SSO 工作階段擷取來的 |
+| isActiveMFASession | MFA 工作階段管理所提供的參數，用以指出使用者具有作用中的 MFA 工作階段 |
 
 ### <a name="additional-optional-claims-that-can-be-collected"></a>其他可以收集的 (選擇性) 宣告
 
-hello 下列宣告會從 hello 使用者收集的其他宣告儲存在 hello 目錄中，並傳送嗨權杖中。 如之前所述，新增額外宣告可以是 toothis 清單。
+下列宣告是可以從使用者收集而來、儲存在目錄中，以及在權杖中傳送的其他宣告。 如先前所述，您可以將其他宣告新增至此清單。
 
 | 宣告類型 | 說明 |
 |-------------|-------------|
@@ -106,7 +106,7 @@ hello 下列宣告會從 hello 使用者收集的其他宣告儲存在 hello 目
 
 ## <a name="claim-transformations"></a>宣告轉換
 
-hello 可用宣告轉換如下所示。
+以下列出可用的宣告轉換。
 
 | 宣告轉換 | 說明 |
 |----------------------|-------------|
@@ -119,7 +119,7 @@ hello 可用宣告轉換如下所示。
 
 ## <a name="content-definitions"></a>內容定義
 
-本章節描述 hello hello 中已經宣告過的內容定義*B2C_1A_base*原則。 這些內容的定義是很容易遭受 toobe 參考、 覆寫時，及/或擴充視需要在您的原則也如同 hello *B2C_1A_base_extensions*原則。
+本節說明 B2C_1A_base 原則中已經宣告的內容定義。 您可以視需要輕易地在您自己的原則和 B2C_1A_base_extensions 原則中，參考、覆寫和/或擴充這些內容定義。
 
 | 宣告提供者 | 說明 |
 |-----------------|-------------|
@@ -136,7 +136,7 @@ hello 可用宣告轉換如下所示。
 
 ## <a name="technical-profiles"></a>技術設定檔
 
-本章節描述 hello 技術設定檔已宣告每個宣告提供者在 hello *B2C_1A_base*原則。 這些技術的設定檔是很容易遭受 toobe 進一步參考、 覆寫時，及/或擴充視需要在您的原則也如同 hello *B2C_1A_base_extensions*原則。
+本節說明 B2C_1A_base 原則中每個宣告提供者已經宣告的技術設定檔。 您可以視需要輕易地在您自己的原則和 B2C_1A_base_extensions 原則中，進一步參考、覆寫和/或擴充這些技術設定檔。
 
 ### <a name="technical-profiles-for-facebook"></a>Facebook 的技術設定檔
 
@@ -162,7 +162,7 @@ hello 可用宣告轉換如下所示。
 
 | 技術設定檔 | 說明 |
 |-------------------|-------------|
-| AAD-Common | 所包含的設定檔技術 hello 其他 AAD xxx 技術的設定檔 |
+| AAD-Common | 其他 AAD-xxx 技術設定檔所包含的技術設定檔 |
 | AAD-UserWriteUsingAlternativeSecurityId | 社交登入的技術設定檔 |
 | AAD-UserReadUsingAlternativeSecurityId | 社交登入的技術設定檔 |
 | AAD-UserReadUsingAlternativeSecurityId-NoError | 社交登入的技術設定檔 |
@@ -171,7 +171,7 @@ hello 可用宣告轉換如下所示。
 | AAD-UserWriteProfileUsingObjectId | 可供使用 objectId 來更新使用者記錄的技術設定檔 |
 | AAD-UserWritePhoneNumberUsingObjectId | 可供使用 objectId 來更新使用者記錄的技術設定檔 |
 | AAD-UserWritePasswordUsingObjectId | 可供使用 objectId 來更新使用者記錄的技術設定檔 |
-| AAD-UserReadUsingObjectId | 技術的設定檔是使用的 tooread 後，資料會驗證使用者 |
+| AAD-UserReadUsingObjectId | 此技術設定檔可用來在驗證使用者後讀取資料 |
 
 ### <a name="technical-profiles-for-self-asserted"></a>自我判斷提示的技術設定檔
 
@@ -192,13 +192,13 @@ hello 可用宣告轉換如下所示。
 |-------------------|-------------|
 | SM-Noop | |
 | SM-AAD | |
-| SM-SocialSignup | 設定檔名稱是正在登之間使用的 toodisambiguate AAD 工作階段設定和登入 |
+| SM-SocialSignup | 設定檔名稱將會用來區分註冊與登入的 AAD 工作階段 |
 | SM-SocialLogin | |
 | SM-MFA | |
 
 ### <a name="technical-profiles-for-trustframework-policy-engine-technicalprofiles"></a>Trustframework 原則引擎 TechnicalProfiles 的技術設定檔
 
-目前，沒有技術的設定檔定義 hello **Trustframework 原則引擎 TechnicalProfiles**宣告提供者。
+**Trustframework 原則引擎 TechnicalProfiles** 宣告提供者目前沒有已定義的技術設定檔。
 
 ### <a name="technical-profiles-for-token-issuer"></a>權杖簽發者的技術設定檔
 
@@ -208,7 +208,7 @@ hello 可用宣告轉換如下所示。
 
 ## <a name="user-journeys"></a>使用者旅程
 
-本章節描述 hello hello 中已經宣告過的使用者皆*B2C_1A_base*原則。 這些使用者皆會受到 toobe 進一步參考、 覆寫時，及/或擴充視需要在您的原則也如同 hello *B2C_1A_base_extensions*原則。
+本節說明 B2C_1A_base 原則中已經宣告的使用者旅程。 您可以視需要輕易地在您自己的原則和 B2C_1A_base_extensions 原則中，進一步參考、覆寫和/或擴充這些使用者旅程。
 
 | 使用者旅程 | 說明 |
 |--------------|-------------|

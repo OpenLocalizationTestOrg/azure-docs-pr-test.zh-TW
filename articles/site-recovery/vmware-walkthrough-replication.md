@@ -1,6 +1,6 @@
 ---
-title: "VMware VM 複寫 tooAzure 與 Azure Site Recovery 的複寫原則 aaaSet |Microsoft 文件"
-description: "摘要說明複寫 VMware Vm tooAzure 儲存體時，需要建立複寫原則 tooset hello 步驟"
+title: "使用 Azure Site Recovery 針對 VMware VM 到 Azure 的複寫設定複寫原則 | Microsoft Docs"
+description: "摘要說明將 VMware VM 複寫至 Azure 儲存體時設定複寫原則所需的步驟"
 services: site-recovery
 documentationcenter: 
 author: rayne-wiselman
@@ -14,19 +14,19 @@ ms.devlang: na
 ms.topic: article
 ms.date: 06/27/2017
 ms.author: raynew
-ms.openlocfilehash: 12870f3f98a4dd412221b817581403cd4bf7a76d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3c4b7ad16e6a03fb605447def18f7475d502fdd1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="step-9-set-up-a-replication-policy-for-vmware-vm-replication-tooazure"></a>步驟 9： 設定 VMware VM 複寫 tooAzure 的複寫原則
+# <a name="step-9-set-up-a-replication-policy-for-vmware-vm-replication-to-azure"></a>步驟 9：針對 VMware VM 到 Azure 的複寫設定複寫原則
 
 
-本文說明如何建立複寫原則，當您要複寫使用 hello 的 VMware Vm tooAzure tooset [Azure Site Recovery](site-recovery-overview.md) hello Azure 入口網站中的服務。
+本文說明在 Azure 入口網站中使用 [Azure Site Recovery](site-recovery-overview.md) 服務將 VMware VM 複寫至 Azure 時，如何設定複寫原則。
 
 
-在本文中，或在 hello hello 下方張貼意見或疑問[Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
+請在本文下方或 [Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)上張貼意見或問題。
 
 
 ## <a name="configure-a-policy"></a>設定原則
@@ -34,15 +34,15 @@ ms.lasthandoff: 10/06/2017
 在開始之前，請透過影片快速建立概念︰
 > [!VIDEO https://channel9.msdn.com/Series/Azure-Site-Recovery/VMware-to-Azure-with-ASR-Video2-vCenter-Server-Discovery-and-Replication-Policy/player]
 
-1. toocreate 新的複寫原則，請按一下**Site Recovery 基礎結構** > **複寫原則** > **+ 複寫原則**。
+1. 若要建立新的複寫原則，請按一下 [Site Recovery 基礎結構] > [複寫原則] > [+複寫原則]。
 2. 在 [建立複寫原則]中，指定原則名稱。
-3. 在**RPO 臨界值**，指定 hello RPO 上限。 這個值指定資料復原點的建立頻率。 連續複寫超過此限制時會產生警示。
-4. 在**復原點保留**，指定時間長度 （以小時為單位） hello 保留週期是每個復原點。 複寫的 Vm 就能復原 tooany 點視窗中的。 向上 too24 小時保留支援機器複寫 toopremium 儲存體和標準儲存體 72 小時的時間。
-5. 在 [應用程式一致快照頻率] 中，指定建立包含應用程式一致快照之復原點的頻率 (以分鐘為單位)。 按一下**確定**toocreate hello 原則。
+3. 在 [RPO 臨界值] 中，指定 RPO 限制。 這個值指定資料復原點的建立頻率。 連續複寫超過此限制時會產生警示。
+4. 在 [復原點保留] 中，指定每個復原點的保留週期長度 (以小時為單位)。 複寫的 VM 可以還原至一個週期內的任何時間點。 複寫至進階儲存體的電腦支援最長保留 24 小時，標準儲存體則是 72 小時。
+5. 在 [應用程式一致快照頻率] 中，指定建立包含應用程式一致快照之復原點的頻率 (以分鐘為單位)。 按一下 [確定]  以建立原則。
 
     ![複寫原則](./media/vmware-walkthrough-replication/gs-replication2.png)
-8. 當您建立新的原則會自動對 hello 組態伺服器與其相關。 依預設會自動建立容錯回復的比對原則。 例如，如果 hello 複寫原則是**rep 原則**hello 容錯回復原則將會**容錯原則 rep 回復**。 從 Azure 起始容錯回復時才會使用此原則。
+8. 當您建立新的原則時，該原則會自動與組態伺服器產生關聯。 依預設會自動建立容錯回復的比對原則。 例如，如果複寫原則是 **rep-policy**，容錯回復原則便會是 **rep-policy-failback**。 從 Azure 起始容錯回復時才會使用此原則。
 
 ## <a name="next-steps"></a>後續步驟
 
-跳過[步驟 10： 安裝 hello 行動服務](vmware-walkthrough-install-mobility.md)
+移至[步驟 10：安裝行動服務](vmware-walkthrough-install-mobility.md)

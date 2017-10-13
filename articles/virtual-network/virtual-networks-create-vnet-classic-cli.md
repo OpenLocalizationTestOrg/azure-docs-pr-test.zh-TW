@@ -1,6 +1,6 @@
 ---
-title: "虛擬網路使用 Azure CLI aaaCreate |Microsoft 文件"
-description: "了解如何 toocreate 的虛擬網路使用 Azure CLI 在 ARM |資源管理員。"
+title: "使用 Azure CLI 建立虛擬網路 | Microsoft Docs"
+description: "了解如何在 ARM 中使用 Azure CLI 建立虛擬網路 |資源管理員。"
 services: virtual-network
 documentationcenter: 
 author: jimdial
@@ -15,20 +15,20 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 03/15/2016
 ms.author: jdial
-ms.openlocfilehash: 6aeffdd6f2239bf6d96a165f608c0f4ada8a0aa7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 457b5a39e3b23497b59558659d7098481aca1e6b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="create-a-virtual-network-classic-by-using-hello-azure-cli"></a>使用 Azure CLI hello，建立虛擬網路 （傳統）
+# <a name="create-a-virtual-network-classic-by-using-the-azure-cli"></a>使用 Azure CLI 建立虛擬網路 (傳統)
 [!INCLUDE [virtual-networks-create-vnet-selectors-classic-include](../../includes/virtual-networks-create-vnet-selectors-classic-include.md)]
 
 [!INCLUDE [virtual-networks-create-vnet-intro](../../includes/virtual-networks-create-vnet-intro-include.md)]
 
 [!INCLUDE [azure-arm-classic-important-include](../../includes/azure-arm-classic-important-include.md)]
 
-本文件涵蓋使用 hello 傳統部署模型建立 VNet。 您也可以[hello Resource Manager 部署模型中建立虛擬網路，使用 Azure CLI hello](virtual-networks-create-vnet-arm-cli.md)。
+本文件說明如何使用傳統部署模型建立 VNet。 您也可以 [使用 Azure CLI 在資源管理員部署模型中建立虛擬網路](virtual-networks-create-vnet-arm-cli.md)。
 
 [!INCLUDE [virtual-networks-create-vnet-scenario-include](../../includes/virtual-networks-create-vnet-scenario-include.md)]
 

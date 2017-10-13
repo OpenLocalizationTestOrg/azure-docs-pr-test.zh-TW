@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中的 Windows VM 上 MongoDB aaaInstall |Microsoft 文件"
-description: "了解如何在執行 Windows Server 2012 R2 的 Azure VM 上 MongoDB tooinstall 建立 hello Resource Manager 部署模型。"
+title: "在 Azure 中 Windows 上安裝 MongoDB | Microsoft Docs"
+description: "了解如何在 Azure VM (執行以 Resource Manager 部署範本建立的 Windows Server 2012 R2) 上安裝 MongoDB。"
 services: virtual-machines-windows
 documentationcenter: 
 author: iainfoulds
@@ -14,110 +14,110 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/11/2017
 ms.author: iainfou
-ms.openlocfilehash: becd2c607d098e2bc806139e03f2c42f1f01f6f8
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: db1a550b9273925b304fe4280f2a1b0e115f856d
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="install-and-configure-mongodb-on-a-windows-vm-in-azure"></a>在 Azure 中的 Windows VM 上安裝及設定 MongoDB
 [MongoDB](http://www.mongodb.org) 是受歡迎的高效能開放原始碼 NoSQL 資料庫。 這篇文章會逐步引導您安裝和設定 Azure 中 Windows Server 2012 R2 虛擬機器 (VM) 上的 MongoDB。 您也可以[在 Azure 中的 Linux VM 上安裝 MongoDB](../linux/install-mongodb.md)。
 
 ## <a name="prerequisites"></a>必要條件
-在安裝和設定 MongoDB 之前，您需要 toocreate VM，在理想情況下，加入資料磁碟 tooit。 請參閱下列文章 toocreate VM hello，並加入資料磁碟：
+在安裝及設定 MongoDB 之前，您必須建立 VM，並且最好將資料磁碟新增至其中。 請參閱下列文章，以建立 VM 並且新增資料磁碟︰
 
-* 建立 Windows Server VM 使用[hello Azure 入口網站](quick-create-portal.md)或[Azure PowerShell](quick-create-powershell.md)。
-* 附加資料磁碟 tooa Windows Server VM 使用[hello Azure 入口網站](attach-managed-disk-portal.md)或[Azure PowerShell](attach-disk-ps.md)。
+* 使用 [Azure 入口網站](quick-create-portal.md)或 [Azure PowerShell](quick-create-powershell.md) 建立 Windows Server VM。
+* 使用 [Azure 入口網站](attach-managed-disk-portal.md)或 [Azure PowerShell](attach-disk-ps.md)將資料磁碟連結到 Windows Server VM。
 
-安裝和設定 MongoDB，toobegin[登入 Windows Server VM tooyour](connect-logon.md)使用遠端桌面。
+若要開始安裝和設定 MongoDB，請使用遠端桌面[登入您的 Windows Server VM](connect-logon.md)。
 
 ## <a name="install-mongodb"></a>安裝 MongoDB
 > [!IMPORTANT]
-> MongoDB 安全性功能，例如驗證和 IP 位址繫結，均非預設為已啟用。 部署 MongoDB tooa 生產環境之前，應該啟用安全性功能。 如需詳細資訊，請參閱 [MongoDB 安全性和驗證](http://www.mongodb.org/display/DOCS/Security+and+Authentication)。
+> MongoDB 安全性功能，例如驗證和 IP 位址繫結，均非預設為已啟用。 安全性功能應該在將 MongoDB 部署到生產環境前加以啟用。 如需詳細資訊，請參閱 [MongoDB 安全性和驗證](http://www.mongodb.org/display/DOCS/Security+and+Authentication)。
 
 
-1. 您已連接 tooyour 使用遠端桌面的 VM 之後，開啟 Internet Explorer 從 hello**啟動**hello VM 上的功能表。
+1. 使用遠端桌面連線到 VM 之後，請從 VM 上的 [開始] 功能表開啟 Internet Explorer。
 2. Internet Explorer 第一次開啟時，選取 [使用建議的安全性、隱私權與相容性設定]，然後按一下 [確定]。
-3. 預設會啟用 Internet Explorer 增強式安全性設定。 新增允許的站台 hello MongoDB 網站 toohello 清單：
+3. 預設會啟用 Internet Explorer 增強式安全性設定。 將 MongoDB 網站新增至允許的網站清單︰
    
-   * 選取 hello**工具**hello 右上角的圖示。
-   * 在**網際網路選項**，選取 hello**安全性**索引標籤，然後選取 hello**信任的網站**圖示。
-   * 按一下 hello**網站** 按鈕。 新增*https://\*。 mongodb.org* toohello 份受信任的網站和 hello 然後關閉對話方塊。
+   * 選取右上方的 [工具] 圖示。
+   * 在 [網際網路選項] 中，選取 [安全性] 索引標籤，然後選取 [受信任的網站] 圖示。
+   * 按一下 [網站] 按鈕。 將 *https://\*.mongodb.org* 新增至受信任的網站清單，然後關閉對話方塊。
      
      ![設定 Internet Explorer 安全性設定](./media/install-mongodb/configure-internet-explorer-security.png)
-4. 瀏覽 toohello [MongoDB-下載](http://www.mongodb.org/downloads)頁面 (http://www.mongodb.org/downloads)。
-5. 如有需要選取 hello **Community 伺服器**版本，然後選取 hello 最新目前穩定版本及更新版本的 Windows Server 2008 R2 64 位元。 toodownload hello 安裝程式中，按一下**下載 (msi)**。
+4. 瀏覽至 [MongoDB - 下載](http://www.mongodb.org/downloads)頁面 (http://www.mongodb.org/downloads)。
+5. 如果需要，選取 **Community Server** 版本，然後選取目前最新的穩定版本 Windows Server 2008 R2 64 位元和更新版本。 若要下載安裝程式，請按一下 [下載 (msi)]。
    
     ![下載 MongoDB 安裝程式](./media/install-mongodb/download-mongodb.png)
    
-    Hello 下載完成之後，請執行 hello 安裝程式。
-6. 閱讀並接受 hello 授權合約。 當系統提示時，選取 [完整] 安裝。
-7. Hello 最後一個畫面上，按一下**安裝**。
+    下載完成之後，請執行安裝程式。
+6. 閱讀並接受授權合約。 當系統提示時，選取 [完整] 安裝。
+7. 在最後畫面上，按一下 [安裝]。
 
-## <a name="configure-hello-vm-and-mongodb"></a>設定 hello VM 和 MongoDB
-1. hello MongoDB 安裝程式不會更新 hello 路徑變數。 沒有 hello MongoDB `bin` path 變數中的位置，您需要 toospecify hello 完整路徑每次使用 MongoDB 的可執行檔。 tooadd hello 位置 tooyour path 變數：
+## <a name="configure-the-vm-and-mongodb"></a>設定 VM 和 MongoDB
+1. 路徑變數不會被 MongoDB 安裝程式更新。 在您的路徑變數中沒有 MongoDB `bin` 位置，您必須在每次使用 MongoDB 可執行檔時指定完整路徑。 若要將位置新增至路徑變數︰
    
-   * 以滑鼠右鍵按一下 hello**啟動**功能表，然後選取**系統**。
-   * 按一下 進階系統設定，然後按一下環境變數。
-   * 在 系統變數 底下，選取 路徑，然後按一下編輯。
+   * 使用滑鼠右鍵按一下 [開始] 功能表，然後選取 [系統]。
+   * 按一下 [進階系統設定]，然後按一下 [環境變數]。
+   * 在 [系統變數] 底下，選取 [路徑]，然後按一下 [編輯]。
      
      ![設定路徑變數](./media/install-mongodb/configure-path-variables.png)
      
-     新增 hello 路徑 tooyour MongoDB`bin`資料夾。 MongoDB 通常安裝在 C:\Program Files\MongoDB。 請確認 VM 上的 hello 安裝路徑。 hello 下列範例會將 hello 預設 MongoDB 安裝位置 toohello`PATH`變數：
+     將路徑新增至您的 MongoDB `bin` 資料夾。 MongoDB 通常安裝在 C:\Program Files\MongoDB。 請確認您的 VM 上的安裝路徑。 下列範例會將預設 MongoDB 安裝位置新增至 `PATH` 變數︰
      
      ```
      ;C:\Program Files\MongoDB\Server\3.2\bin
      ```
      
      > [!NOTE]
-     > 要確定 tooadd hello 開頭的分號 (`;`) 您要新增位置 tooyour tooindicate`PATH`變數。
+     > 請務必新增開頭分號 (`;`) 來指出您要將位置新增至 `PATH` 變數。
 
-2. 在資料磁碟上建立 MongoDB 資料和記錄檔目錄。 從 hello**啟動**功能表上，選取**命令提示字元**。 下列範例中的 hello f： 磁碟機上建立 hello 目錄
+2. 在資料磁碟上建立 MongoDB 資料和記錄檔目錄。 在 [開始] 功能表中，選取 [命令提示字元]。 下列範例會在磁碟機 F: 上建立目錄
    
     ```
     mkdir F:\MongoData
     mkdir F:\MongoLogs
     ```
-3. 以下列命令，調整 hello 路徑 tooyour 資料 hello 開頭 MongoDB 執行個體，並據以記錄目錄：
+3. 以下列命令啟動 MongoDB 執行個體，並且據以調整您的資料和記錄檔目錄︰
    
     ```
     mongod --dbpath F:\MongoData\ --logpath F:\MongoLogs\mongolog.log
     ```
    
-    它可能需要幾分鐘 MongoDB tooallocate hello 日誌檔案，並開始接聽連接。 所有的記錄訊息會導向的 toohello *F:\MongoLogs\mongolog.log*檔案做為`mongod.exe`啟動伺服器，並配置日誌檔案。
+    MongoDB 可能需要花費數分鐘來配置日誌檔案，並開始接聽連線。 在 `mongod.exe` 伺服器啟動和配置日誌檔案時，所有記錄訊息都會傳送至 *F:\MongoLogs\mongolog.log* 檔案。
    
    > [!NOTE]
-   > hello 命令提示字元會保持專注在此工作上 MongoDB 執行個體正在執行時。 將保留 hello 命令提示字元視窗開啟 toocontinue 執行 MongoDB。 或者，安裝 MongoDB 作為服務，hello 下一個步驟中所述。
+   > 當您的 MongoDB 執行個體正在執行時，命令提示字元會專注於這項工作。 保持命令提示字元視窗開啟以繼續執行 MongoDB。 或者，安裝 MongoDB 做為服務，如下一個步驟所述。
 
-4. 為了更強固的 MongoDB 經驗，安裝 hello`mongod.exe`做為服務。 建立服務，即表示您不需要 tooleave 執行每的次想 toouse MongoDB 的命令提示字元。 建立 hello 服務，如下所示，據此調整 hello 路徑 tooyour 資料與記錄目錄：
+4. 為了更穩固的 MongoDB 體驗，請安裝 `mongod.exe` 做為服務。 建立服務表示您不需要在每次想要使用 MongoDB 時都保持命令提示字元執行。 如下所示建立服務，據以調整您的資料和記錄檔目錄的路徑︰
    
     ```
     mongod --dbpath F:\MongoData\ --logpath F:\MongoLogs\mongolog.log `
         --logappend  --install
     ```
    
-    hello 前述的命令會建立稱為 MongoDB，「 Mongo DB 」 的描述。 也會指定下列參數的 hello:
+    上述命令會建立一個名為 MongoDB 的服務，其說明為 "Mongo DB"。 同時指定下列參數：
    
-   * hello`--dbpath`選項會指定 hello hello 資料目錄位置。
-   * hello`--logpath`選項必須是使用的 toospecify 記錄檔，因為 hello 執行中的服務並沒有命令視窗 toodisplay 輸出。
-   * hello`--logappend`選項會指定 hello 服務重新啟動導致輸出 tooappend toohello 現有記錄檔。
+   * `--dbpath` 選項指出資料目錄的位置。
+   * `--logpath` 選項必須用來指定記錄檔，因為執行中的服務沒有命令視窗可以顯示輸出。
+   * `--logappend` 選項指出重新啟動服務會導致輸出附加在現有的記錄檔案中。
    
-   toostart hello MongoDB 服務，請執行下列命令的 hello:
+   若要啟動 MongoDB 服務，請執行下列命令︰
    
     ```
     net start MongoDB
     ```
    
-    如需建立 hello MongoDB 服務的詳細資訊，請參閱[設定 Windows 服務的 MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#mongodb-as-a-windows-service)。
+    如需建立 MongoDB 服務的詳細資訊，請參閱[設定 MongoDB 的 Windows 服務](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/#mongodb-as-a-windows-service)。
 
-## <a name="test-hello-mongodb-instance"></a>測試 hello MongoDB 執行個體
-當 MongoDB 執行為單一執行個體或安裝為服務，您現在可以開始建立和使用您的資料庫。 toostart hello MongoDB 系統管理命令介面開啟另一個 [命令提示字元] 視窗，從 hello**啟動**功能表上，並輸入下列命令的 hello:
+## <a name="test-the-mongodb-instance"></a>測試 MongoDB 執行個體
+當 MongoDB 執行為單一執行個體或安裝為服務，您現在可以開始建立和使用您的資料庫。 要啟動 MongoDB 管理殼層，請從 [開始] 功能表中開啟另一個命令提示字元視窗，並輸入下列命令：
 
 ```
 mongo  
 ```
 
-您可以列出 hello 資料庫以 hello`db`命令。 插入一些資料，如下所示︰
+您可以使用 `db` 命令列出資料庫。 插入一些資料，如下所示︰
 
 ```
 db.foo.insert( { a : 1 } )
@@ -129,20 +129,20 @@ db.foo.insert( { a : 1 } )
 db.foo.find()
 ```
 
-hello 輸出是 toohello 類似下列範例程式碼：
+輸出類似於下列範例：
 
 ```
 { "_id" : "ObjectId("57f6a86cee873a6232d74842"), "a" : 1 }
 ```
 
-結束 hello`mongo`主控台，如下所示：
+結束 `mongo` 主控台，如下所示︰
 
 ```
 exit
 ```
 
 ## <a name="configure-firewall-and-network-security-group-rules"></a>設定防火牆和網路安全性群組規則
-既然 MongoDB 已安裝且正在執行，連接埠 Windows 防火牆中開啟讓您可以從遠端連線 tooMongoDB。 toocreate 新增輸入的規則 tooallow TCP 連接埠 27017，開啟系統管理的 PowerShell 提示字元，並輸入下列命令的 hello:
+現在，MongoDB 已安裝並正在執行，在 Windows 防火牆中開啟一個連接埠，才能遠端連線至 MongoDB。 若要建立新的輸入規則以允許 TCP 連接埠 27017，開啟系統管理 PowerShell 提示字元並輸入下列命令︰
 
 ```powerahell
 New-NetFirewallRule `
@@ -153,14 +153,14 @@ New-NetFirewallRule `
     -Action Allow
 ```
 
-您也可以建立 hello 規則使用 hello**具有進階安全性的 Windows 防火牆**圖形化管理工具。 建立新的輸入的規則 tooallow TCP 埠 27017。
+您也可以使用**具有進階安全性的 Windows 防火牆** 圖形化管理工具來建立規則。 建立新的輸入規則以允許 TCP 連接埠 27017。
 
-如有需要建立網路安全性群組規則 tooallow 存取 tooMongoDB 從外部 hello 現有的 Azure 虛擬網路子網路。 您可以建立 hello 網路安全性群組規則使用 hello [Azure 入口網站](nsg-quickstart-portal.md)或[Azure PowerShell](nsg-quickstart-powershell.md)。 如同 hello Windows 防火牆規則，允許 TCP 連接埠 27017 toohello 的 MongoDB VM 的虛擬網路介面。
+如有需要，建立網路安全性群組規則以允許從現有 Azure 虛擬網路子網路外部存取 MongoDB。 您可以使用 [Azure 入口網站](nsg-quickstart-portal.md) 或 [Azure PowerShell](nsg-quickstart-powershell.md) 來建立網路安全性群組規則。 如同 Windows 防火牆規則，允許 TCP 連接埠 27017 連接至 MongoDB VM 的虛擬網路介面。
 
 > [!NOTE]
-> TCP 連接埠 27017 是使用 MongoDB hello 預設通訊埠。 您可以變更此連接埠使用 hello`--port`參數啟動時`mongod.exe`以手動方式或從服務。 如果您變更 hello 連接埠，請確定 tooupdate hello Windows 防火牆和網路安全性群組規則 hello 先前步驟中。
+> TCP 連接埠 27017 是 MongoDB 使用的預設連接埠。 您可以在手動啟動或從服務啟動 `mongod.exe` 時，使用 `--port` 參數變更此連接埠。 如果您變更連接埠，請確定在先前步驟中更新 Windows 防火牆和網路安全性群組規則。
 
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您學到如何 tooinstall 和設定 Windows VM 上 MongoDB。 您現在可以存取 MongoDB 上您的 Windows VM，藉由下列進階主題 hello 中的 hello [MongoDB 文件](https://docs.mongodb.com/manual/)。
+在本教學課程中，您了解如何在 Windows VM 上安裝及設定 MongoDB。 您現在可以遵循 [MongoDB 文件](https://docs.mongodb.com/manual/) 中的進階主題，以便存取 Windows VM 上的 MongoDB。
 

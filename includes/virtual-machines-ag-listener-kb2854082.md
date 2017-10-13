@@ -1,13 +1,13 @@
-接下來，如果 hello 叢集上的任何伺服器執行 Windows Server 2008 R2 或 Windows Server 2012，您必須確認該 hello hotfix [KB2854082](http://support.microsoft.com/kb/2854082)安裝在每一個 hello 在內部部署伺服器或 Azure Vm 的 hello 叢集的一部分。 任何伺服器或 VM 若是位於 hello 叢集中，但不是在 hello 可用性群組中，也應該安裝這個 hotfix。
+接下來，如果叢集上的任何伺服器正在執行 Windows Server 2008 R2 或 Windows Server 2012，您必須確認在屬於叢集一部分的每台內部部署伺服器或 Azure VM 上安裝了 Hotfix [KB2854082](http://support.microsoft.com/kb/2854082) 。 在叢集不在的可用性群組中的任何伺服器或 VM，也應該安裝這個 Hotfix。
 
-Hello 遠端桌面工作階段中每個 hello 叢集節點，下載[KB2854082](http://support.microsoft.com/kb/2854082) tooa 本機目錄。 然後，依序在每個叢集節點上安裝 hello hotfix。 如果 hello 叢集服務目前在 hello 叢集節點上執行，hello 伺服器也會在 hello hello hotfix 安裝結束時會重新啟動。
+在每個叢集節點的遠端桌面工作階段中，下載 [KB2854082](http://support.microsoft.com/kb/2854082) 至本機目錄。 然後，依序在每個叢集節點上安裝 Hotfix。 如果叢集服務目前在叢集節點上執行，伺服器會在 Hotfix 安裝結束時重新啟動。
 
 > [!WARNING]
-> 停止 hello 叢集服務或重新啟動伺服器 hello 會影響叢集和 hello availability group，hello 仲裁健全狀況，而且它可能會導致您的叢集 toogo 離線。 toomaintain hello 高可用性的叢集安裝期間，請確認：
+> 停止叢集服務或重新啟動伺服器會影響叢集和可用性群組的仲裁健全狀況，而且可能造成叢集離線。 若要在安裝期間維護叢集的高可用性，請確定：
 > 
-> * hello 叢集處於最佳仲裁健全狀況。 
-> * 在任何節點上安裝 hello hotfix 之前，所有叢集節點都都在線上。
-> * Hello 叢集中任一其他節點上安裝 hello hotfix 之前，允許 hello hotfix 安裝 toorun toocompletion 上一個節點，包括完整重新啟動伺服器 hello。
+> * 叢集處於最佳仲裁健康狀態。 
+> * 在任何節點上安裝 Hotfix 之前，所有叢集節點都在線上。
+> * 在叢集中的任何其他節點上安裝 Hotfix 之前，允許 Hotfix 安裝在一個節點上執行到完成為止，包括完整重新啟動伺服器。
 > 
 > 
 

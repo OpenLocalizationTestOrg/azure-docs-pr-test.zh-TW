@@ -1,6 +1,6 @@
 ---
-title: "aaaGet 開始使用 Azure IoT Hub 裝置雙 (.NET/.NET) |Microsoft 文件"
-description: "如何 toouse Azure IoT Hub 裝置雙 tooadd 標記，然後再使用 IoT 中樞查詢。 您可以使用 hello Azure IoT 裝置 SDK for.NET tooimplement hello 模擬的裝置的應用程式與 hello.NET tooimplement 加入 hello 標記，並執行 hello IoT 中樞查詢中的服務應用程式的 Azure IoT 服務 SDK。"
+title: "開始使用 Azure IoT 中樞裝置對應項 (.NET/.NET) | Microsoft Docs"
+description: "如何使用 Azure IoT 中樞裝置對應項來新增標籤，然後使用 IoT 中樞查詢。 您可以使用適用於 .NET 的 Azure IoT 裝置 SDK，實作模擬的裝置應用程式，也可以使用適用於 .NET 的 Azure IoT 服務 SDK，實作服務應用程式，以新增標籤和執行 IoT 中樞查詢。"
 services: iot-hub
 documentationcenter: node
 author: dsk-2015
@@ -14,27 +14,27 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 05/15/2017
 ms.author: dkshir
-ms.openlocfilehash: 7fa73ac896c44e79c6522d252cd1515bd6e7bb2b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6073d594117e69676b753a1e3af25fffa3583a2b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-device-twins-netnet"></a>開始使用裝置對應項 (.NET/.NET)
 [!INCLUDE [iot-hub-selector-twin-get-started](../../includes/iot-hub-selector-twin-get-started.md)]
 
-在本教學課程的 hello 結束時，您將擁有這些.NET 主控台應用程式：
+在本教學課程結尾，您將會有下列 .NET 主控台應用程式：
 
-* **CreateDeviceIdentity**，.NET 應用程式會建立裝置身分識別和相關聯的安全性金鑰 tooconnect 應用程式模擬的裝置。
+* **CreateDeviceIdentity**，這是 .NET 應用程式，可建立裝置識別與相關聯的安全性金鑰，來連線到您的模擬裝置應用程式。
 * **AddTagsAndQuery**，這是 .NET 後端應用程式，可新增標籤和查詢裝置對應項。
-* **ReportConnectivity**，.NET 裝置應用程式會模擬 tooyour IoT 中樞連線以稍早建立的 hello 裝置身分識別的裝置，並回報其連線的情況。
+* **ReportConnectivity**，這是會模擬裝置的 .NET 裝置應用程式，此裝置會以稍早建立的裝置識別連線到您的 IoT 中樞，並報告其連線狀況。
 
 > [!NOTE]
-> hello 文章[Azure IoT Sdk] [ lnk-hub-sdks]提供 hello Azure IoT Sdk 的相關資訊，您可以使用 toobuild 裝置與後端應用程式。
+> [Azure IoT SDK][lnk-hub-sdks] 一文提供可用來建置裝置和後端應用程式之 Azure IoT SDK 的相關資訊。
 > 
 > 
 
-toocomplete 需要 hello 下列本教學課程：
+若要完成此教學課程，您需要下列項目：
 
 * Visual Studio 2015 或 Visual Studio 2017。
 * 使用中的 Azure 帳戶。 (如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。)
@@ -43,26 +43,26 @@ toocomplete 需要 hello 下列本教學課程：
 
 [!INCLUDE [iot-hub-get-started-create-device-identity-portal](../../includes/iot-hub-get-started-create-device-identity-portal.md)]
 
-如果您想 toocreate hello 裝置身分識別以程式設計方式相反地，讀取 hello 對應的章節 hello[連接您使用適用於.NET 的模擬的裝置 tooyour IoT 中樞][ lnk-device-identity-csharp]發行項。
+如果您想要改為以程式設計方式建立裝置識別，請閱讀[使用 .NET 將您的模擬裝置連線至 IoT 中樞][lnk-device-identity-csharp]一文中的對應章節。
 
-## <a name="create-hello-service-app"></a>建立 hello 服務應用程式
-在本節中，您建立.NET 主控台應用程式 （使用 C#） 加入位置的中繼資料 toohello 裝置兩個相關聯**myDeviceId**。 接著，它查詢 hello 裝置雙 US，儲存在選取位於 hello hello 裝置 hello IoT 中樞中，然後 hello 所報告的行動電話通訊的連接。
+## <a name="create-the-service-app"></a>建立服務應用程式
+在本節中，您將 (使用 C#) 建立一個 .NET 主控台應用程式，此應用程式會將位置中繼資料新增至與 **myDeviceId** 相關聯的裝置對應項。 接著，它會選取位於美國的裝置來查詢儲存在 IoT 中樞的裝置對應項，再查詢會報告行動電話連線的對應項。
 
-1. 在 Visual Studio 中，將 Visual C# Windows 傳統桌面專案 toohello 目前方案使用 hello**主控台應用程式**專案範本。 名稱 hello 專案**AddTagsAndQuery**。
+1. 在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。 將專案命名為 **AddTagsAndQuery**。
    
     ![新的 Visual C# Windows 傳統桌面專案][img-createapp]
-1. 在 [方案總管] 中，以滑鼠右鍵按一下 hello **AddTagsAndQuery**專案，然後再按一下**管理 NuGet 封裝...**.
-1. 在 hello **NuGet 套件管理員**視窗中，選取**瀏覽**並搜尋**microsoft.azure.devices**。 選取**安裝**tooinstall hello **Microsoft.Azure.Devices**封裝，並接受使用規定 hello。 此程序下載、 安裝，並新增參考 toohello [Azure IoT 服務 SDK] [ lnk-nuget-service-sdk] NuGet 封裝和其相依性。
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 **AddTagsAndQuery** 專案，然後按一下 [管理 NuGet 套件...]。
+1. 在 [NuGet 套件管理員] 視窗中，選取 [瀏覽]，並搜尋 **microsoft.azure.devices**。 選取 [安裝] 來安裝 **Microsoft.Azure.Devices** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 服務 SDK][lnk-nuget-service-sdk] NuGet 套件與其相依項目，並加入對它的參考。
    
-    ![NuGet 封裝管理員視窗][img-servicenuget]
-1. 新增下列 hello`using`在 hello hello 最上方的陳述式**Program.cs**檔案：
+    ![NuGet 套件管理員視窗][img-servicenuget]
+1. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices;
-1. 新增下列欄位 toohello hello**程式**類別。 取代 hello hello 中樞在 hello 上一節中所建立的 IoT 中樞連接字串中的 hello 預留位置的值。
+1. 將下列欄位新增到 **Program** 類別。 將預留位置的值替換為您在上一節中為中樞所建立的 IoT 中樞連接字串。
    
         static RegistryManager registryManager;
         static string connectionString = "{iot hub connection string}";
-1. 新增下列方法 toohello hello**程式**類別：
+1. 將下列方法加入至 **Program** 類別：
    
         public static async Task AddTagsAndQuery()
         {
@@ -87,54 +87,54 @@ toocomplete 需要 hello 下列本教學課程：
             Console.WriteLine("Devices in Redmond43 using cellular network: {0}", string.Join(", ", twinsInRedmond43UsingCellular.Select(t => t.DeviceId)));
         }
    
-    hello **RegistryManager**類別會公開與裝置雙 hello 服務從所有 hello 方法 toointeract 必要。 hello 先前的程式碼會先初始化 hello **registryManager**物件，然後擷取 hello 的裝置兩個**myDeviceId**，且最後 hello 預期位置資訊會以更新其標籤。
+    **RegistryManager** 類別會公開從服務來與裝置對應項進行互動時所需的所有方法。 先前的程式碼會先初始化 **registryManager** 物件，然後擷取 **myDeviceId** 的裝置對應項，最後會以所需的位置資訊來更新其標籤。
    
-    在更新之後，它會執行兩個查詢： hello 會先選取只 hello 裝置雙的裝置位於 hello **Redmond43**工廠和 hello 第二個精簡 hello 查詢 tooselect 只有 hello 裝置也會透過連接行動電話通訊網路。
+    在更新後，它會執行兩個查詢：第一個只選取位於 **Redmond43** 工廠的裝置對應項，第二個會修改查詢，只選取也透過行動電話網路來連接的裝置。
    
-    請注意該 hello 先前的程式碼，當它建立 hello**查詢**物件，指定傳回的文件的最大數目。 hello**查詢**物件包含**HasMoreResults**布林值屬性，您可以使用 tooinvoke hello **GetNextAsTwinAsync**方法多次 tooretrieve 所有結果。 有一個稱為 **GetNextAsJson** 的方法適用於不是裝置對應項的結果，例如彙總查詢的結果。
-1. 最後，加入下列行 toohello hello **Main**方法：
+    請注意，先前的程式碼在建立 **查詢** 物件時，指定傳回的最大文件數。 **query** 物件包含 **HasMoreResults** 布林值屬性，可用來多次叫用 **GetNextAsTwinAsync** 方法以擷取所有結果。 有一個稱為 **GetNextAsJson** 的方法適用於不是裝置對應項的結果，例如彙總查詢的結果。
+1. 最後，將下列幾行加入至 **Main** 方法：
    
         registryManager = RegistryManager.CreateFromConnectionString(connectionString);
         AddTagsAndQuery().Wait();
-        Console.WriteLine("Press Enter tooexit.");
+        Console.WriteLine("Press Enter to exit.");
         Console.ReadLine();
 
-1. 在 hello 方案總管 中，開啟 hello**設定啟始專案...** ，請確定 hello**動作**如**AddTagsAndQuery**專案是**啟動**。 建置 hello 方案。
-1. 執行此應用程式，以滑鼠右鍵按一下 hello **AddTagsAndQuery**專案，並選取**偵錯**，後面接著**開始新執行個體**。 您應該會看到一個裝置 hello 結果中的 hello 查詢要求的所有裝置都位於**Redmond43**和無限制 hello 的 hello 查詢結果 toodevices 使用行動電話通訊網路。
+1. 在 [方案總管] 中，開啟 [設定起始專案...]，並確定 **AddTagsAndQuery** 專案的 [動作] 是 [啟動]。 建置方案。
+1. 以滑鼠右鍵按一下 **AddTagsAndQuery** 專案，並選取 [偵錯]，後面接著 [開始新執行個體] 來執行此應用程式。 如果是查詢所有位於 **Redmond43** 中的裝置，您在結果中會看到一個裝置，而如果查詢將結果限於使用行動電話網路的裝置，則您不會看到任何裝置。
    
     ![視窗中的查詢結果][img-addtagapp]
 
-Hello 下一節，您將建立報告 hello 連線資訊裝置應用程式，並變更 hello hello 前一節中的 hello 查詢的結果。
+在下一節，您將建立一個裝置應用程式，以報告連線資訊並變更上一節的查詢結果。
 
-## <a name="create-hello-device-app"></a>建立 hello 裝置應用程式
-在本節中，您會建立.NET 主控台應用程式連接成 tooyour 中樞**myDeviceId**，，然後更新其已連線使用行動電話通訊網路的報告的屬性 toocontain hello 資訊。
+## <a name="create-the-device-app"></a>建立裝置應用程式
+在本節中，您將建立一個 .NET 主控台應用程式，此應用程式會以 **myDeviceId** 來連線到您的中樞，然後更新其回報屬性，以包含資訊來指出目前使用行動電話通訊網路來連線。
 
-1. 在 Visual Studio 中，將 Visual C# Windows 傳統桌面專案 toohello 目前方案使用 hello**主控台應用程式**專案範本。 名稱 hello 專案**ReportConnectivity**。
+1. 在 Visual Studio 中，使用 [主控台應用程式] 專案範本，將 Visual C# Windows 傳統桌面專案新增至目前的方案。 將專案命名為 **ReportConnectivity**。
    
     ![新的 Visual C# Windows 傳統裝置應用程式][img-createdeviceapp]
     
-1. 在 [方案總管] 中，以滑鼠右鍵按一下 hello **ReportConnectivity**專案，然後再按一下**管理 NuGet 封裝...**.
-1. 在 hello **NuGet 套件管理員**視窗中，選取**瀏覽**並搜尋**microsoft.azure.devices.client**。 選取**安裝**tooinstall hello **Microsoft.Azure.Devices.Client**封裝，並接受使用規定 hello。 此程序下載、 安裝，並新增參考 toohello [Azure IoT 裝置 SDK] [ lnk-nuget-client-sdk] NuGet 封裝和其相依性。
+1. 在方案總管中，以滑鼠右鍵按一下 **ReportConnectivity** 專案，然後按一下 [管理 NuGet 套件...]。
+1. 在 [NuGet 套件管理員] 視窗中，選取 [瀏覽]，並搜尋 **microsoft.azure.devices.client**。 選取 [安裝] 來安裝 **Microsoft.Azure.Devices.Client** 套件，並接受使用規定。 此程序會下載及安裝 [Azure IoT 裝置 SDK][lnk-nuget-client-sdk] NuGet 套件與其相依項目，並新增對它的參考。
    
     ![NuGet 套件管理員視窗用戶端應用程式][img-clientnuget]
-1. 新增下列 hello`using`在 hello hello 最上方的陳述式**Program.cs**檔案：
+1. 在 **Program.cs** 檔案開頭處新增下列 `using` 陳述式：
    
         using Microsoft.Azure.Devices.Client;
         using Microsoft.Azure.Devices.Shared;
         using Newtonsoft.Json;
 
-1. 新增下列欄位 toohello hello**程式**類別。 取代您記下 hello 前一節中的 hello 裝置連接字串中的 hello 預留位置的值。
+1. 將下列欄位新增到 **Program** 類別。 將預留位置的值取代為您在上一節中所記下的裝置連接字串。
    
         static string DeviceConnectionString = "HostName=<yourIotHubName>.azure-devices.net;DeviceId=<yourIotDeviceName>;SharedAccessKey=<yourIotDeviceAccessKey>";
         static DeviceClient Client = null;
 
-1. 新增下列方法 toohello hello**程式**類別：
+1. 將下列方法加入至 **Program** 類別：
 
        public static async void InitClient()
         {
             try
             {
-                Console.WriteLine("Connecting toohub");
+                Console.WriteLine("Connecting to hub");
                 Client = DeviceClient.CreateFromConnectionString(DeviceConnectionString, TransportType.Mqtt);
                 Console.WriteLine("Retrieving twin");
                 await Client.GetTwinAsync();
@@ -146,9 +146,9 @@ Hello 下一節，您將建立報告 hello 連線資訊裝置應用程式，並�
             }
         }
 
-    hello**用戶端**物件會公開您需要將裝置從 hello 裝置的雙具備 toointeract 所有 hello 方法。 hello，如上所示的程式碼初始化 hello**用戶端**物件，然後按一下 擷取的 hello 裝置兩個**myDeviceId**。
+    **Client** 物件會公開從裝置來與裝置對應項進行互動時所需的所有方法。 以上所示的程式碼會初始化**用戶端**物件，然後擷取 **myDeviceId** 的裝置對應項。
 
-1. 新增下列方法 toohello hello**程式**類別：
+1. 將下列方法加入至 **Program** 類別：
    
         public static async void ReportConnectivity()
         {
@@ -170,9 +170,9 @@ Hello 下一節，您將建立報告 hello 連線資訊裝置應用程式，並�
             }
         }
 
-   hello 上方更新程式碼**myDeviceId**的報告與 hello 連線資訊的屬性。
+   上述程式碼會將 **myDeviceId** 的回報屬性更新為連線資訊。
 
-1. 最後，加入下列行 toohello hello **Main**方法：
+1. 最後，將下列幾行加入至 **Main** 方法：
    
        try
        {
@@ -184,27 +184,27 @@ Hello 下一節，您將建立報告 hello 連線資訊裝置應用程式，並�
             Console.WriteLine();
             Console.WriteLine("Error in sample: {0}", ex.Message);
        }
-       Console.WriteLine("Press Enter tooexit.");
+       Console.WriteLine("Press Enter to exit.");
        Console.ReadLine();
 
-1. 在 hello 方案總管 中，開啟 hello**設定啟始專案...** ，請確定 hello**動作**如**ReportConnectivity**專案是**啟動**。 建置 hello 方案。
-1. 執行此應用程式，以滑鼠右鍵按一下 hello **ReportConnectivity**專案，並選取**偵錯**，後面接著**開始新執行個體**。 您應該看到它取得 hello 的兩個資訊，然後將傳送做為連線*報告屬性*。
+1. 在方案總管中，開啟 [設定起始專案...]，並確定 **ReportConnectivity** 專案的 [動作] 是 [啟動]。 建置方案。
+1. 以滑鼠右鍵按一下 **ReportConnectivity** 專案，並選取 [偵錯]，後面接著 [開始新執行個體] 來執行此應用程式。 您應該會看到它取得對應項資訊，然後傳送連線作為「回報屬性」。
    
-    ![執行裝置的應用程式 tooreport 連線能力][img-rundeviceapp]
+    ![執行裝置應用程式以回報連線][img-rundeviceapp]
     
     
-1. 既然 hello 裝置報告其連線資訊時，它應該會出現在這兩個查詢。 執行 hello.NET **AddTagsAndQuery**應用程式 toorun hello 查詢一次。 這次，**myDeviceId** 應該會出現在這兩個查詢結果中。
+1. 現在，裝置已回報其連線資訊，它應該會出現在這兩個查詢中。 執行 .NET **AddTagsAndQuery** 應用程式，以再次執行查詢。 這次，**myDeviceId** 應該會出現在這兩個查詢結果中。
    
     ![已成功回報裝置連線][img-tagappsuccess]
 
 ## <a name="next-steps"></a>後續步驟
-在本教學課程中，您在 hello Azure 入口網站中設定新的 IoT 中樞，並接著 hello IoT 中樞的身分識別登錄中建立裝置身分識別。 您標記為加入裝置中繼資料，從後端應用程式，並在 hello 裝置兩個撰寫模擬的裝置的應用程式 tooreport 裝置連線資訊。 您也學到如何 tooquery 這項資訊使用 hello 類似 SQL 的 IoT 中樞查詢語言。
+在此教學課程中，您在 Azure 入口網站中設定了新的 IoT 中樞，然後在 IoT 中樞的身分識別登錄中建立了裝置身分識別。 您已從後端應用程式將裝置中繼資料新增為標籤，並撰寫模擬裝置應用程式來報告裝置對應項中的裝置連線資訊。 您也了解如何使 類似 SQL 的 IoT 中樞查詢語言來查詢此資訊。
 
-下列資源 toolearn 如何使用 hello 至：
+使用下列資源來了解如何：
 
-* 從以 hello 的裝置將遙測傳送[開始使用 IoT 中樞][ lnk-iothub-getstarted]教學課程中，
-* 設定裝置使用兩個裝置所需的屬性以 hello[使用想要的話屬性 tooconfigure 裝置][ lnk-twin-how-to-configure]教學課程中，
-* 控制以互動方式 （例如開啟風扇從使用者控制的應用程式） 的裝置以 hello[使用直接的方法][ lnk-methods-tutorial]教學課程。
+* 從裝置傳送遙測，請參閱[開始使用 IoT 中樞][lnk-iothub-getstarted]教學課程，
+* 使用裝置對應項的所需屬性來設定裝置，請參閱[使用所需的屬性來設定裝置][lnk-twin-how-to-configure]教學課程，
+* 以互動方式控制裝置 (例如，從使用者控制的應用程式開啟風扇)，請參閱[使用直接方法][lnk-methods-tutorial]教學課程。
 
 <!-- images -->
 [img-servicenuget]: media/iot-hub-csharp-csharp-twin-getstarted/servicesdknuget.png

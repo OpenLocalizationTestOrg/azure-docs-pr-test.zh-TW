@@ -1,6 +1,6 @@
 ---
-title: "aaaHow tooScale Azure Redis 快取 |Microsoft 文件"
-description: "了解如何 tooscale Azure Redis 快取執行個體"
+title: "如何調整 Azure Redis 快取 | Microsoft Docs"
+description: "了解如何調整 Azure Redis 快取執行個體"
 services: redis-cache
 documentationcenter: 
 author: steved0x
@@ -14,77 +14,77 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/11/2017
 ms.author: sdanie
-ms.openlocfilehash: 8d7c015a539f872913056392aa080bf3f445bd03
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 91b3580491a1e3504a3891b66606a9bd18c0638f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="how-tooscale-azure-redis-cache"></a>如何 tooScale Azure Redis 快取
-Azure Redis 快取都有不同的快取提供項目，提供有彈性地 hello 選擇的快取大小和功能。 建立快取之後，您可以調整 hello 大小和 hello 定價層的 hello 快取，應用程式的 hello 需求變更時。 本文章將示範如何 tooscale hello Azure 入口網站以及使用您的快取工具，例如 Azure PowerShell 和 Azure CLI。
+# <a name="how-to-scale-azure-redis-cache"></a>如何調整 Azure Redis 快取
+Azure Redis 快取都有不同的快取提供項目，以提供選擇快取大小和功能的彈性。 建立快取之後，如果您應用程式的需求改變，您可以調整快取的大小和定價層。 本文說明如何在 Azure 入口網站中使用 Azure PowerShell 和 Azure CLI 之類的工具來調整快取。
 
-## <a name="when-tooscale"></a>當 tooscale
-您可以使用 hello[監視](cache-how-to-monitor.md)功能 Azure Redis 快取 toomonitor hello 健全狀況和效能的快取，以及協助您判斷何時 tooscale hello 快取。 
+## <a name="when-to-scale"></a>調整時機
+您可以使用 Azure Redis 快取的[監視](cache-how-to-monitor.md)功能來監視快取的健康狀態和效能，以及協助判斷何時要調整快取。 
 
-您可以監視 hello 下列度量 toohelp 判斷您是否需要 tooscale。
+您可以監視下列度量，以協助判斷是否需要調整。
 
 * Redis 伺服器負載
 * 記憶體使用量
 * 網路頻寬
 * CPU 使用率
 
-如果您判斷您的快取不再符合您的應用程式需求，您可以調整 tooa 放大或縮小快取定價層，最適合您的應用程式。 如需判斷這些快取定價層 toouse 的詳細資訊，請參閱[何種 Redis 快取提供項目和大小應該使用](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)。
+如果您判斷快取不再符合您應用程式的需求，則可以調整為適合您應用程式的較大或較小快取定價層。 如需判斷要使用之快取定價層的詳細資訊，請參閱 [我應該使用哪些 Redis 快取提供項目和大小](cache-faq.md#what-redis-cache-offering-and-size-should-i-use)。
 
 ## <a name="scale-a-cache"></a>調整快取
-tooscale 快取、[瀏覽 toohello 快取](cache-configure.md#configure-redis-cache-settings)在 hello [Azure 入口網站](https://portal.azure.com)按一下**標尺**從 hello**資源功能表**。
+若要調整快取，在 [Azure 入口網站](https://portal.azure.com)中[瀏覽至快取](cache-configure.md#configure-redis-cache-settings)，然後按一下 **[資源]** 功能表中的 **[調整]**。
 
 ![調整](./media/cache-how-to-scale/redis-cache-scale-menu.png)
 
-選取 hello 預期定價層從 hello**選取定價層**刀鋒視窗，然後按一下**選取**。
+從 [選取定價層] 刀鋒視窗中選取想要的定價層，然後按一下 [選取]。
 
 ![定價層 ][redis-cache-pricing-tier-blade]
 
 
-您可以調整 tooa 不同定價層與 hello 下列限制：
+您可以調整具有下列限制的不同定價層：
 
-* 您無法調整從較高定價層 tooa 較低的定價層。
-  * 您無法從延展**Premium**快取下 tooa**標準**或**基本**快取。
-  * 您無法從延展**標準**快取下 tooa**基本**快取。
-* 您可以調整從**基本**快取 tooa**標準**快取，但是您無法變更在 hello hello 大小相同的時間。 如果您需要不同的大小，您可以執行後續的縮放作業 toohello 預期大小。
-* 您無法從延展**基本**快取直接 tooa **Premium**快取。 您必須從延展**基本**太**標準**一個縮放作業，然後從**標準**太**Premium**中後續的縮放比例作業。
-* 您無法從較大的向下 toohello 延展**C0 250 MB**大小。
+* 您無法從較高的定價層調整至較低的定價層。
+  * 您無法從**進階**快取向下調整至**標準**或**基本**快取。
+  * 您無法從**標準**快取向下調整到**基本**快取。
+* 您可以從**基本**快取調整到**標準**快取，但您無法同時變更大小。 如果您需要不同的大小，您可以進行後續調整作業，調整到您需要的大小。
+* 您無法直接從**基本**快取調整至**進階**快取。 您必須在單一調整作業中從**基本**調整至**標準**，然後在後續的調整作業中從**標準**調整至**進階**。
+* 您無法從較大的大小向下調整至 **C0 (250 MB)** 的大小。
  
-雖然 hello 快取調整新定價層，toohello**調整**狀態會顯示在 hello **Redis 快取**刀鋒視窗。
+快取調整為新的定價層時，[正在調整] 狀態會顯示在 [Redis 快取] 刀鋒視窗中。
 
 ![調整大小][redis-cache-scaling]
 
-調整完畢後，請從 hello 狀態變更**調整**太**執行**。
+調整完成時，狀態會從 [正在調整] 變更為 [執行中]。
 
-## <a name="how-tooautomate-a-scaling-operation"></a>如何 tooautomate 縮放作業
-在加法 tooscaling 中的快取執行個體 hello Azure 入口網站，您可以調整使用 PowerShell cmdlet，Azure CLI，並使用 hello Microsoft Azure 管理程式庫 (MAML)。 
+## <a name="how-to-automate-a-scaling-operation"></a>如何自動化調整作業
+除了在 Azure 入口網站中調整快取執行個體之外，您還可以使用 PowerShell Cmdlet、Azure CLI 以及使用 Microsoft Azure 管理庫 (MAML) 進行調整。 
 
 * [使用 PowerShell 進行調整](#scale-using-powershell)
 * [使用 Azure CLI 進行調整](#scale-using-azure-cli)
 * [使用 MAML 進行調整](#scale-using-maml)
 
 ### <a name="scale-using-powershell"></a>使用 PowerShell 進行調整
-您可以藉由使用 hello 調整您的 Azure Redis 快取執行個體，使用 PowerShell[組 AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634518.aspx) cmdlet 時 hello `Size`， `Sku`，或`ShardCount`修改屬性。 hello 下列範例示範如何 tooscale 快取命名`myCache`tooa 2.5 GB 的快取。 
+修改 `Size`、`Sku`，或 `ShardCount` 屬性時，您可以使用 [Set-AzureRmRedisCache](https://msdn.microsoft.com/library/azure/mt634518.aspx) Cmdlet 搭配 PowerShell 來調整您的 Azure Redis 快取執行個體。 下列範例示範如何將名為 `myCache` 的快取調整為 2.5 GB 快取。 
 
     Set-AzureRmRedisCache -ResourceGroupName myGroup -Name myCache -Size 2.5GB
 
-如需有關使用 PowerShell 縮放比例的詳細資訊，請參閱[tooscale Redis 快取使用 Powershell](cache-howto-manage-redis-cache-powershell.md#scale)。
+如需有關如何使用 PowerShell 進行調整的詳細資訊，請參閱 [使用 Powershell 調整 Redis 快取](cache-howto-manage-redis-cache-powershell.md#scale)。
 
 ### <a name="scale-using-azure-cli"></a>使用 Azure CLI 進行調整
-tooscale 您的 Azure Redis 快取執行個體，使用 Azure CLI 呼叫 hello`azure rediscache set`命令，並傳入 hello 預期組態變更，包括新的大小、 sku 或根據 hello 的叢集大小所需之縮放作業。
+若要使用 Azure CLI 調整您的 Azure Redis 快取執行個體，請呼叫 `azure rediscache set` 命令並傳入所需的設定變更，其中包括新的大小、SKU 或叢集大小，視所需的調整作業而定。
 
 如需有關如何使用 Azure CLI 進行調整的詳細資訊，請參閱 [變更現有 Redis 快取的設定](cache-manage-cli.md#scale)。
 
 ### <a name="scale-using-maml"></a>使用 MAML 進行調整
-tooscale 您的 Azure Redis 快取執行個體使用 hello [Microsoft Azure 管理程式庫 (MAML)](http://azure.microsoft.com/updates/management-libraries-for-net-release-announcement/)，呼叫 hello`IRedisOperations.CreateOrUpdate`方法並傳入 hello hello 新大小`RedisProperties.SKU.Capacity`。
+若要使用 [Microsoft Azure 管理庫 (MAML)](http://azure.microsoft.com/updates/management-libraries-for-net-release-announcement/) 來調整您的 Azure Redis 快取執行個體，請呼叫 `IRedisOperations.CreateOrUpdate` 方法並傳入 `RedisProperties.SKU.Capacity` 的新大小。
 
     static void Main(string[] args)
     {
-        // For instructions on getting hello access token, see
+        // For instructions on getting the access token, see
         // https://azure.microsoft.com/documentation/articles/cache-configure/#access-keys
         string token = GetAuthorizationHeader();
 
@@ -93,20 +93,20 @@ tooscale 您的 Azure Redis 快取執行個體使用 hello [Microsoft Azure 管�
         RedisManagementClient client = new RedisManagementClient(creds);
         var redisProperties = new RedisProperties();
 
-        // tooscale, set a new size for hello redisSKUCapacity parameter.
+        // To scale, set a new size for the redisSKUCapacity parameter.
         redisProperties.Sku = new Sku(redisSKUName,redisSKUFamily,redisSKUCapacity);
         redisProperties.RedisVersion = redisVersion;
         var redisParams = new RedisCreateOrUpdateParameters(redisProperties, redisCacheRegion);
         client.Redis.CreateOrUpdate(resourceGroupName,cacheName, redisParams);
     }
 
-如需詳細資訊，請參閱 hello[管理 Redis 快取使用 MAML](https://github.com/rustd/RedisSamples/tree/master/ManageCacheUsingMAML)範例。
+如需詳細資訊，請參閱 [使用 MAML 管理 Redis 快取](https://github.com/rustd/RedisSamples/tree/master/ManageCacheUsingMAML) 範例。
 
 ## <a name="scaling-faq"></a>調整常見問題集
-hello 下列清單包含 Azure Redis 快取縮放的相關常見問題的解答 toocommonly。
+下列清單包含 Azure Redis 快取調整常見問題的解答。
 
 * [可以向上調整為 Premium 快取，或在其中調整、向下調整嗎？](#can-i-scale-to-from-or-within-a-premium-cache)
-* [縮放之後，我必須 toochange 快取名稱或存取金鑰嗎？](#after-scaling-do-i-have-to-change-my-cache-name-or-access-keys)
+* [調整之後，是否必須變更我的快取名稱或存取金鑰？](#after-scaling-do-i-have-to-change-my-cache-name-or-access-keys)
 * [調整運作方式如何？](#how-does-scaling-work)
 * [我是否會在調整期間遺失快取中的資料？](#will-i-lose-data-from-my-cache-during-scaling)
 * [我的自訂資料庫設定在調整期間會受到影響嗎？](#is-my-custom-databases-setting-affected-during-scaling)
@@ -116,56 +116,56 @@ hello 下列清單包含 Azure Redis 快取縮放的相關常見問題的解答 
 * [如何分辨調整何時完成？](#how-can-i-tell-when-scaling-is-complete)
 
 ### <a name="can-i-scale-to-from-or-within-a-premium-cache"></a>可以向上調整為 Premium 快取，或在其中調整、向下調整嗎？
-* 您無法從延展**Premium**快取下 tooa**基本**或**標準**定價層。
-* 您可以從其中一個調整**Premium**定價層 tooanother 快取。
-* 您無法從延展**基本**快取直接 tooa **Premium**快取。 您必須先從延展**基本**太**標準**一個縮放作業，然後從**標準**太**Premium**中後續調整大小作業。
-* 如果您啟用叢集建立時您**Premium**快取中，您可以[變更 hello 叢集大小](cache-how-to-premium-clustering.md#cluster-size)。 如果在建立快取時未啟用叢集，之後便無法設定叢集。
+* 您無法從**進階**快取向下調整至**基本**或**標準**定價層。
+* 您可以將一個 **進階** 快取定價層調整為另一個定價層。
+* 您無法直接從**基本**快取調整至**進階**快取。 您必須先在單一調整作業中從**基本**調整至**標準**，然後在後續的調整作業中從**標準**調整至**進階**。
+* 如果在建立 **進階** 快取時已啟用叢集，您可以 [變更叢集大小](cache-how-to-premium-clustering.md#cluster-size)。 如果在建立快取時未啟用叢集，之後便無法設定叢集。
   
-  如需詳細資訊，請參閱[如何 tooconfigure Premium Azure Redis 快取叢集](cache-how-to-premium-clustering.md)。
+  如需詳細資訊，請參閱 [如何設定進階 Azure Redis 快取的叢集](cache-how-to-premium-clustering.md)。
 
-### <a name="after-scaling-do-i-have-toochange-my-cache-name-or-access-keys"></a>縮放之後，我必須 toochange 快取名稱或存取金鑰嗎？
+### <a name="after-scaling-do-i-have-to-change-my-cache-name-or-access-keys"></a>調整之後，是否必須變更我的快取名稱或存取金鑰？
 否，在調整作業期間，您的快取名稱和金鑰不會變更。
 
 ### <a name="how-does-scaling-work"></a>調整運作方式如何？
-* 當**基本**快取調整 tooa 不同的大小，它會關閉，而且新的快取已佈建使用 hello 新大小。 在此期間，hello 快取無法使用且 hello 快取中的所有資料都都會遺失。
-* 當**基本**快取是縮放的 tooa**標準**快取中，複本快取已佈建，且從 hello 主要快取 toohello 複本快取 hello 資料複製。 hello 快取 hello 調整處理程序期間會保持可用。
-* 當**標準**快取是縮放的 tooa 不同大小或 tooa **Premium**快取，其中一個 hello 複本會關閉並重新佈建 toohello 新大小和 hello 透過傳送資料，然後按一下 其他 hello複本執行容錯移轉之前重新佈建、 在其中一個 hello 快取節點失敗時，就會發生類似 toohello 程序。
+* **基本** 快取在調整為不同的大小時會關閉，並會使用新的大小佈建新的快取。 在此期間，快取無法使用，而且快取中的所有資料都會遺失。
+* **基本**快取在調整為**標準**快取時，會佈建複本快取，且會從主要快取將資料複製到複本快取。 調整程序期間仍可使用快取。
+* 當**標準**快取調整為不同的大小或**進階**快取時，會關閉其中一個複本，並會將其重新佈建為新的大小並傳輸資料，然後另一個複本會先執行容錯移轉，再進行重新佈建，這與其中一個快取節點失敗期間發生的程序類似。
 
 ### <a name="will-i-lose-data-from-my-cache-during-scaling"></a>我是否會在調整期間遺失快取中的資料？
-* 當**基本**快取是縮放的 tooa 新大小，所有資料都會遺失而且 hello 快取期間無法使用 hello 調整大小作業。
-* 當**基本**快取是縮放的 tooa**標準**快取，hello hello 快取中的資料時通常會保留。
-* 當**標準**快取是縮放的 tooa 較大的大小或階層，或**Premium**快取調整通常會保留 tooa 較大的大小，所有資料。 當調整**標準**或**Premium**向 tooa 較小，資料的快取可能會取決於多少資料可在 hello 快取中遺失時它就更能調整的相關 toohello 新大小。 如果向下擴充時，會遺失資料，索引鍵中收回使用 hello [allkeys lru](http://redis.io/topics/lru-cache)收回原則。 
+* **基本** 快取調整為新的大小時，會遺失所有資料，且無法在調整作業期間使用快取。
+* **基本**快取調整為**標準**快取時，通常會保留快取中的資料。
+* 當**標準**快取調整為較大的大小或層，或者**進階**快取調整為較大的大小時，通常會保留所有資料。 當**標準**或**進階**快取向下調整為較小大小時，根據調整時快取中與新大小相關的資料量，資料可能會遺失。 如果縮小時遺失資料，則會使用 [allkeys-lru](http://redis.io/topics/lru-cache) 收回原則來收回金鑰。 
 
 ### <a name="is-my-custom-databases-setting-affected-during-scaling"></a>我的自訂資料庫設定在調整期間會受到影響嗎？
-某些定價層會具有不同[資料庫限制](cache-configure.md#databases)，因此有一些考量當向下調整如果您設定自訂值的 hello`databases`快取建立期間設定。
+某些定價層具有不同的[資料庫限制](cache-configure.md#databases)，因此，在向下調整時，如果您在快取建立期間為 `databases` 設定設定了自訂值，則有一些考量。
 
-* 當調整 tooa 定價層低於`databases`與 hello 目前層的限制：
-  * 如果您使用 hello 預設數目`databases`此為 16 個所有定價層，會遺失任何資料。
-  * 如果您使用自訂的數字的`databases`落在 hello 限制範圍內則會擴充，hello 層 toowhich 這`databases`設定會保留下來，並不會遺失資料。
-  * 如果您使用自訂的數字的`databases`超過 hello hello 新階層，限制 hello`databases`設定值為 hello 新階層的降低的 toohello 限制，並且在 hello 移除資料庫中的所有資料都都會遺失。
-* 當調整 tooa 相同或更高定價層與 hello`databases`限制 hello 目前層高於您`databases`設定會保留下來，並不會遺失資料。
+* 調整為較現有階層具有較低 `databases` 限制的定價層時：
+  * 如果您使用預設數字 `databases`，即所有定價層為 16，則不會遺失資料。
+  * 如果您要使用的自訂數字 `databases`，落在您要調整之階層限制範圍內，則會保留此 `databases` 設定，並且不會遺失資料。
+  * 如果您要使用的自訂數字 `databases`，超出新階層的限制，則會將 `databases` 設定降低至新階層的限制，而且在已移除的資料庫中的所有資料都會遺失。
+* 調整為較現有階層具有具有相同或更高 `databases` 限制的定價層時，會保留您的 `databases` 設定，而且不會遺失資料。
 
 請注意，標準和進階快取有 99.9% SLA 的可用性時，則資料遺失沒有 SLA。
 
 ### <a name="will-my-cache-be-available-during-scaling"></a>是否可以在調整期間使用我的快取？
-* **標準**和**Premium** hello 調整大小作業期間仍可快取。
-* **基本**快取離線期間是調整作業 tooa 不同大小、 但仍可從擴充時**基本**太**標準**。
+* **標準**與**進階**快取在調整作業期間會保持可用。
+* **基本**快取在調整為不同大小的作業期間為離線，但是從**基本**調整為**標準**時仍可使用快取。
 
 ### <a name="operations-that-are-not-supported"></a>不支援的作業
-* 您無法調整從較高定價層 tooa 較低的定價層。
-  * 您無法從延展**Premium**快取下 tooa**標準**或**基本**快取。
-  * 您無法從延展**標準**快取下 tooa**基本**快取。
-* 您可以調整從**基本**快取 tooa**標準**快取，但是您無法變更在 hello hello 大小相同的時間。 如果您需要不同的大小，您可以執行後續的縮放作業 toohello 預期大小。
-* 您無法從延展**基本**快取直接 tooa **Premium**快取。 您必須先從延展**基本**太**標準**一個縮放作業，然後從**標準**太**Premium**中後續調整大小作業。
-* 您無法從較大的向下 toohello 延展**C0 250 MB**大小。
+* 您無法從較高的定價層調整至較低的定價層。
+  * 您無法從**進階**快取向下調整至**標準**或**基本**快取。
+  * 您無法從**標準**快取向下調整到**基本**快取。
+* 您可以從**基本**快取調整到**標準**快取，但您無法同時變更大小。 如果您需要不同的大小，您可以進行後續調整作業，調整到您需要的大小。
+* 您無法直接從**基本**快取調整至**進階**快取。 您必須先在單一調整作業中從**基本**調整至**標準**，然後在後續的調整作業中從**標準**調整至**進階**。
+* 您無法從較大的大小向下調整至 **C0 (250 MB)** 的大小。
 
-如果縮放作業失敗，hello 服務將會嘗試 toorevert hello 作業和 hello 快取將會還原 toohello 原始大小。
+如果調整作業失敗，服務會嘗試還原作業，而且快取會還原成原始大小。
 
 ### <a name="how-long-does-scaling-take"></a>調整需要多長的時間？
-縮放比例會採用約 20 分鐘，視資料量是 hello 快取中。
+根據快取中的資料量，調整大約需要 20 分鐘。
 
 ### <a name="how-can-i-tell-when-scaling-is-complete"></a>如何分辨調整何時完成？
-在 hello Azure 入口網站中，您可以看到 hello 調整大小作業正在進行中。 調整完畢後，請 hello hello 快取變更狀態太**執行**。
+在 Azure 入口網站中，您可以看到調整作業進行中。 調整完成時，快取的狀態會變更為 [執行中] 。
 
 <!-- IMAGES -->
 

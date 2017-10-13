@@ -1,6 +1,6 @@
 ---
-title: "在 Azure Mobile Engagement aaaUse Emoji 表情符號"
-description: "如何在您的推播通知 toouse Emoji 表情符號"
+title: "在 Azure Mobile Engagement 內使用 Emoji 表情符號"
+description: "如何在推播通知內使用 Emoji 表情符號"
 services: mobile-engagement
 documentationcenter: mobile
 author: piyushjo
@@ -14,28 +14,28 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/19/2016
 ms.author: piyushjo
-ms.openlocfilehash: 63bfc59ef472e9fe9aa28b5ac8761017b9250e0f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: bbb7ce5e95b229a7505c5e97b6866d5a302a1d27
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="use-emoji-emoticon-within-push-notifications"></a>在推播通知內使用 Emoji 表情符號
 只要幾個簡單步驟，您就可以在推播通知中加入 Emoji 表情符號： 
 
-1. 首先，您需要 toofind hello Emoji 想 toosend hello 訊息中。 請確定該 hello Emoji 您選取將支援 hello 目標裝置，因為裝置製造花費一些時間 tooadd 新核准的 Emojis toohello 裝置平台。 
-2. 在**Windows** -您可以瀏覽 toothis[連結](http://apps.timwhitlock.info/emoji/tables/unicode)和複製 hello 'Native' 圖示。
+1. 首先您需要尋找要在訊息中傳送的 Emoji。 請確定您要選取的 Emoji 可受目標裝置支援，因為裝置製造商需要一些時間才能將新核准的 Emoji 新增至裝置平台。 
+2. 在 **Windows** 上 - 您可以瀏覽這個 [連結](http://apps.timwhitlock.info/emoji/tables/unicode) ，並複製 'Native' 圖示。
    
     ![][7] 
-3. 在**Mac** -您可以找到 hello Emojis 字典應用程式，[編輯]-> [Emoji & 符號。
+3. 在 **Mac** 上 - 您可以在字典應用程式中的 [編輯] -> [表情與符號] 中找到表情符號。
    
     ![][6] 
-4. 現在，移 toohello**到達**hello hello Azure Mobile Engagement 入口網站上的索引標籤。 選取您的推播通知 （宣告、 投票等等） hello 類型。 對於此範例，我們選擇公告推播。
-5. 指定 hello 通知 hello 不同欄位，直到您到達 hello 通知的 hello 文字。 這就是您加入 Emoji 表情符號的位置。 您可以選擇 tooput 在 hello 標題、 hello 訊息，或兩者。 您將需要 toodrag 和拖放或複製 hello Emoji 發現從上述的 hello 位置。 
+4. 現在，請移至 Azure Mobile Engagement 入口網站的 [觸達]  索引標籤。 選取您的推播通知類型 (通知、投票等等)。 對於此範例，我們選擇公告推播。
+5. 指定通知的不同欄位，直到您到達通知的文字。 這就是您加入 Emoji 表情符號的位置。 您可以選擇將它放在標題、訊息或兩者中。 您必須拖放或複製您從上述位置找到的表情符號。 
    
     ![][1]
-6. 完成 hello hello 通知其他欄位，並將其儲存。 
-7. 當您執行測試或啟動 hello 公告時您會看到一則通知 hello 表情符號所指定。   
+6. 完成通知的其他欄位，然後儲存。 
+7. 當您執行測試或啟動公告時，您會看到具有指定表情符號的通知。   
    
     ![][3] ![][4] ![][5]
 

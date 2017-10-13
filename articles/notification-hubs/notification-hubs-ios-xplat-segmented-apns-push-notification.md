@@ -1,6 +1,6 @@
 ---
-title: "aaaNotification 中樞中斷新聞教學課程-iOS"
-description: "深入了解如何 toouse Azure Service Bus 通知中樞 toosend 重大消息通知 tooiOS 裝置。"
+title: "通知中樞重大消息教學課程 - iOS"
+description: "了解如何使用 Azure 服務匯流排通知中樞將本地化重大新聞通知傳送至 iOS 裝置。"
 services: notification-hubs
 documentationcenter: ios
 author: ysxu
@@ -14,38 +14,38 @@ ms.devlang: objective-c
 ms.topic: article
 ms.date: 06/29/2016
 ms.author: yuaxu
-ms.openlocfilehash: 763b80b5ffed238b351d95bd3d6a96cb914f53cd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dc47250db6fb3a2853dae24e02bda236154d93fb
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="use-notification-hubs-toosend-breaking-news"></a>使用通知中樞 toosend 最新消息
+# <a name="use-notification-hubs-to-send-breaking-news"></a>使用通知中心傳送即時新聞
 [!INCLUDE [notification-hubs-selector-breaking-news](../../includes/notification-hubs-selector-breaking-news.md)]
 
-## <a name="overview"></a>概觀
-本主題說明如何 toouse Azure 通知中樞 toobroadcast 重大消息通知 tooan iOS 應用程式。 完成時，您將會是能 tooregister 中斷您感興趣的新聞分類，並且接收只有那些類別目錄的推播通知。 這個案例是許多應用程式的常見模式，通知其中有傳送 toobe toogroups 的先前尚未宣告欄位，例如 RSS 讀取器、 應用程式等的音樂迷感興趣的使用者。
+## <a name="overview"></a>Overview
+本主題將說明如何使用 Azure 通知中心，將即時新聞通知廣播至 iOS 應用程式。 完成時，您便能夠註冊您所感興趣的即時新聞類別，並僅接收這些類別的推播通知。 此情況是許多應用程式的共同模式，這些應用程式必須將通知傳送給先前宣告對通知有興趣的使用者群組，例如，RSS 閱讀程式、供樂迷使用的應用程式等等。
 
-啟用廣播的案例包括下列一個或多個*標記*時建立 hello 通知中樞的註冊。 當通知傳送 tooa 標記時，所有已註冊的裝置 hello 標記會收到 hello 通知。 標記是只是字串，因為它們不需要預先佈建 toobe。 如需標記的詳細資訊，請參閱太[通知中樞路由和標記運算式](notification-hubs-tags-segment-push-message.md)。
+在通知中樞內建立註冊時，您可以透過包含一或多個 *tags* 來啟用廣播案例。 當標籤收到通知時，所有已註冊此標籤的裝置都會收到通知。 由於標籤只是簡單的字串而已，您無需預先佈建標籤。 如需標籤的詳細資訊，請參閱 [通知中樞路由與標記運算式](notification-hubs-tags-segment-push-message.md)。
 
 ## <a name="prerequisites"></a>必要條件
-本主題是根據您在建立 hello 應用程式[開始使用通知中樞][get-started]。 開始本教學課程之前，您必須已完成[開始使用通知中樞][get-started]。
+本主題會以您在[開始使用通知中樞][get-started]中所建立的應用程式為基礎。 開始本教學課程之前，您必須已完成[開始使用通知中樞][get-started]。
 
-## <a name="add-category-selection-toohello-app"></a>加入類別目錄選取 toohello 應用程式
-hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓 hello 使用者 tooselect 類別 tooregister。 使用者選取的 hello 類別會儲存在 hello 裝置。 Hello 應用程式啟動時，裝置註冊會建立您的通知中樞與 hello 選取類別目錄中，為標記。
+## <a name="add-category-selection-to-the-app"></a>在應用程式中新增類別選項
+第一個步驟是在您現有的腳本上新增 UI 元素，以便使用者選取要註冊的類別。 使用者所選取的類別會儲存在裝置上。 啟動應用程式時，您的通知中心內會建立以所選取類別作為標籤的裝置註冊。
 
-1. 在您 MainStoryboard_iPhone.storyboard 加入 hello hello 物件程式庫中的下列元件：
+1. 在您的 MainStoryboard_iPhone.storyboard 中，從物件程式庫新增下列元件：
    
    * 具有「即時新聞」文字的標籤，
    * 具有「世界」、「政治」、「商業」、「技術」、「科學」、「體育」等類別文字的標籤，
-   * 六個參數，其中每個類別，設定每個交換器**狀態**toobe**關閉**預設。
+   * 六個參數 (一個類別一個)，預設會將每個參數 [狀態] 設為 [關閉]。
    * 一個標示為「訂閱」的按鈕
      
      您的腳本應如下所示：
      
      ![][3]
-2. 在 hello 助理編輯器中，建立所有 hello 交換器插座，並呼叫它們"WorldSwitch"，"PoliticsSwitch"、"BusinessSwitch"、"TechnologySwitch"、"ScienceSwitch"、"SportsSwitch"
-3. 為名為「訂閱」的按鈕建立「動作」。 您 ViewController.h 應該包含 hello 下列：
+2. 在輔助編輯器中，建立所有參數的出口，並將其命名為 "WorldSwitch"、"PoliticsSwitch"、"BusinessSwitch"、"TechnologySwitch"、"ScienceSwitch"、"SportsSwitch"
+3. 為名為「訂閱」的按鈕建立「動作」。 您的 ViewController.h 應該包含下列內容：
    
         @property (weak, nonatomic) IBOutlet UISwitch *WorldSwitch;
         @property (weak, nonatomic) IBOutlet UISwitch *PoliticsSwitch;
@@ -55,7 +55,7 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
         @property (weak, nonatomic) IBOutlet UISwitch *SportsSwitch;
    
         - (IBAction)subscribe:(id)sender;
-4. 建立稱為 `Notifications` 的新 **Cocoa Touch 類別**。 複製下列程式碼 hello 檔案 Notifications.h hello 介面區段中的 hello:
+4. 建立稱為 `Notifications` 的新 **Cocoa Touch 類別**。 在 Notifications.h 的介面區段中複製下列程式碼：
    
         @property NSData* deviceToken;
    
@@ -67,10 +67,10 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
         - (NSSet*)retrieveCategories;
    
         - (void)subscribeWithCategories:(NSSet*)categories completion:(void (^)(NSError *))completion;
-5. 加入下列匯入指示詞 tooNotifications.m hello:
+5. 在 Notifications.m 中新增下列 import 指示詞：
    
         #import <WindowsAzureMessaging/WindowsAzureMessaging.h>
-6. 複製下列程式碼 hello 檔案 Notifications.m hello 實作區段中的 hello。
+6. 複製 Notifications.m 檔案實作區段中的下列程式碼：
    
         SBNotificationHub* hub;
    
@@ -111,34 +111,34 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
 
 
 
-    這個類別會使用本機儲存體 toostore 並擷取此裝置將會收到的新聞 hello 類別。 此外，它包含使用這些類別的方法 tooregister[範本](notification-hubs-templates-cross-platform-push-messages.md)註冊。
+    此類別會使用本機儲存體來儲存和擷取此裝置將接收的新聞類別。 此外，它也包含使用 [範本](notification-hubs-templates-cross-platform-push-messages.md) 註冊來註冊這些類別的方法。
 
-1. 在 hello h 檔案，如 Notifications.h 新增匯入陳述式，並加入 hello 通知類別的執行個體的屬性：
+1. 在 AppDelegate.h 檔案中，新增 Notifications.h 的匯入陳述式，並新增 Notifications 類別執行個體的屬性：
    
         #import "Notifications.h"
    
         @property (nonatomic) Notifications* notifications;
-2. 在 hello **didFinishLaunchingWithOptions** d 中的方法在 hello 方法 hello 開頭加入 hello 程式碼 tooinitialize hello 通知執行個體。  
+2. 在 AppDelegate.m 的 **didFinishLaunchingWithOptions** 方法中，於方法的開頭處加入程式碼來初始化通知執行個體。  
    
-    `HUBNAME`和`HUBLISTENACCESS`（定義於 hubinfo.h） 應該已經有 hello`<hub name>`和`<connection string with listen access>`預留位置將取代通知中樞名稱和 hello 的連接字串*DefaultListenSharedAccessSignature*您稍早取得
+    `HUBNAME` 與 `HUBLISTENACCESS` (定義於 hubinfo.h 中) 的 `<hub name>` 及 `<connection string with listen access>` 預留位置，應已用稍早取得之 *DefaultListenSharedAccessSignature* 的通知中樞名稱與連接字串所取代。
    
         self.notifications = [[Notifications alloc] initWithConnectionString:HUBLISTENACCESS HubName:HUBNAME];
    
    > [!NOTE]
-   > 發佈的用戶端應用程式的認證不是一般安全的因為您只應該與用戶端應用程式來散發 hello 接聽 」 存取權的索引鍵。 接聽存取啟用通知，但現有的註冊您的應用程式 tooregister 無法修改，而且無法傳送通知。 hello 完整的存取金鑰會用於傳送通知和變更現有註冊的受保護的後端服務。
+   > 因為隨用戶端應用程式散佈的憑證通常不安全，您應只將接聽存取權的金鑰隨用戶端應用程式散佈。 您的應用程式可透過接聽存取權來註冊通知，但無法修改現有的註冊或無法傳送通知。 在安全的後端服務中，會使用完整存取金鑰來傳送通知和變更現有的註冊。
    > 
    > 
-3. 在 hello **didRegisterForRemoteNotificationsWithDeviceToken** d 中的方法取代下列程式碼 toopass hello 裝置權杖 toohello 通知類別 hello hello hello 方法中的程式碼。 hello 通知類別將會執行 hello 註冊與 hello 分類通知。 如果 hello 使用者變更選取類別目錄項目，我們會呼叫 hello`subscribeWithCategories`中回應 toohello 方法**訂閱**按鈕 tooupdate 它們。
+3. 在 AppDelegate.m 的 **didRegisterForRemoteNotificationsWithDeviceToken** 方法中，使用下列程式碼來取代方法中的程式碼，以將裝置權杖傳遞給 notifications 類別。 Notifications 類別將會執行使用類別註冊通知。 如果使用者變更類別選取項目，我們會呼叫 `subscribeWithCategories` 方法以回應 [訂閱] 按鈕來進行更新。
    
    > [!NOTE]
-   > 因為 hello hello Apple Push Notification Service (APNS) 所指派的裝置權杖可以隨時可能發生的您應該註冊通知經常 tooavoid 通知失敗。 每次該 hello 應用程式啟動時，這個範例會註冊通知。 針對經常執行的應用程式，一天一次以上，您可以可能略過註冊 toopreserve 頻寬如果少於一天，已經過 hello 先前的登錄。
+   > 由於 Apple 推播通知服務 (APNS) 所指派的裝置權杖可能隨時會變更，因此您應經常註冊通知以避免通知失敗。 此範例會在應用程式每次啟動時註冊通知。 若是經常執行 (一天多次) 的應用程式，如果距離上次註冊的時間不到一天，則您可能可以略過註冊以保留頻寬。
    > 
    > 
    
         self.notifications.deviceToken = deviceToken;
    
-        // Retrieves hello categories from local storage and requests a registration for these categories
-        // each time hello app starts and performs a registration.
+        // Retrieves the categories from local storage and requests a registration for these categories
+        // each time the app starts and performs a registration.
    
         NSSet* categories = [self.notifications retrieveCategories];
         [self.notifications subscribeWithCategories:categories completion:^(NSError* error) {
@@ -147,9 +147,9 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
             }
         }];
 
-    請注意，此時應該沒有其他程式碼中 hello **didRegisterForRemoteNotificationsWithDeviceToken**方法。
+    請注意， **didRegisterForRemoteNotificationsWithDeviceToken** 方法中此時不應有其他程式碼。
 
-1. hello 下列方法應該是已經存在於 d 完成 hello[開始使用通知中樞][ get-started]教學課程。  否則，請予以新增。
+1. 下列方法應該已經存在於 d 無法完成[開始使用通知中樞][ get-started]教學課程。  否則，請予以新增。
    
     -(void) MessageBox:(NSString *) 標題訊息:(NSString *) messageText {
    
@@ -160,8 +160,8 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
    
    * (void) 的應用程式:(UIApplication *) 應用程式 didReceiveRemoteNotification: (NSDictionary *) 使用者資訊 {NSLog (@"%@"，所以);  [自我 MessageBox:@"Notification 」 的訊息: [[使用者資訊 objectForKey:@"aps]"valueForKey:@"alert"]]。}
    
-   這個方法會處理透過顯示簡單 hello 應用程式執行時收到通知**UIAlert**。
-2. 在 ViewController.m，加入下列程式碼到 hello h 和複製 hello 匯入陳述式產生的 XCode**訂閱**方法。 此程式碼會更新 hello 通知註冊 toouse hello 新分類標記 hello 使用者已選擇 hello 使用者介面中。
+   此方法會顯示簡易 **UIAlert**，以處理應用程式執行時接收到的通知。
+2. 在 ViewController.m 中，新增 AppDelegate.h 的匯入陳述式，並將下列程式碼複製到 XCode 產生的 **訂閱** 方法中。 此程式碼將更新通知註冊，以使用使用者在使用者介面中選擇的新類別標記。
    
        ```
        #import "Notifications.h"
@@ -186,10 +186,10 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
            }
        }];
    
-   這個方法會建立**NSMutableArray**的類別，並使用 hello**通知**hello 本機儲存體和暫存器 hello 相對應的標記與您的通知中樞中的類別 toostore hello 清單。 類別目錄會變更時，重新建立 hello 註冊 hello 新類別。
-3. 中 ViewController.m，加入下列程式碼中 hello hello **viewDidLoad** hello 先前儲存的類別為基礎的方法 tooset hello 使用者介面。
+   此方法會建立類別的 **NSMutableArray**，並使用 **Notifications** 類別在本機儲存體中儲存清單，並在您的通知中樞註冊對應標籤。 變更類別時，系統會使用新類別重新建立註冊。
+3. 在 ViewController.m 中，於 **viewDidLoad** 方法中新增下列程式碼，以根據先前儲存的類別來設定使用者介面。
 
-        // This updates hello UI on startup based on hello status of previously saved categories.
+        // This updates the UI on startup based on the status of previously saved categories.
 
         Notifications* notifications = [(AppDelegate*)[[UIApplication sharedApplication]delegate] notifications];
 
@@ -204,17 +204,17 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
 
 
 
-每次 hello 應用程式啟動時 hello 應用程式現在可以在 hello 裝置使用的本機儲存體 tooregister hello 通知中樞與儲存一組類別目錄。  hello 使用者可以在執行階段類別 hello 選取範圍，然後按一下 hello**訂閱**方法 tooupdate hello 註冊 hello 裝置。 接下來，您將更新直接 hello 應用程式本身的重大消息 hello 應用程式 toosend hello。
+應用程式現在可以在裝置本機儲存體中儲存一組類別，以用來在每次應用程式啟動時於通知中樞註冊。  使用者可以在執行階段變更選取的類別，然後按一下 [訂閱]  方法來更新裝置的註冊。 接下來，您將更新應用程式，以直接在應用程式本身傳送即時新聞通知。
 
 ## <a name="optional-sending-tagged-notifications"></a>(選擇性) 傳送加註標記的通知
-如果您沒有存取 tooVisual Studio，則可以略過 toohello 下一節，並從 hello 應用程式本身傳送通知。 您也可以從 hello 傳送嗨適當範本通知[Azure 傳統入口網站]使用通知中樞的 hello 偵錯 索引標籤。 
+如果您無法存取 Visual Studio，可以跳到下一節，並從應用程式本身傳送通知。 您也可以使用通知中樞的 [偵錯] 索引標籤，從 [Azure 傳統入口網站] 傳送正確的範本通知。 
 
 [!INCLUDE [notification-hubs-send-categories-template](../../includes/notification-hubs-send-categories-template.md)]
 
-## <a name="optional-send-notifications-from-hello-device"></a>（選擇性）從 hello 裝置傳送通知
-通常會由後端服務傳送通知，但您可以傳送重大消息直接從 hello 應用程式。 toodo 這我們將會更新 hello`SendNotificationRESTAPI`我們 hello 中定義的方法[開始使用通知中樞][ get-started]教學課程。
+## <a name="optional-send-notifications-from-the-device"></a>(選擇性) 從裝置傳送通知
+通知通常會由後端服務傳送，但您可直接從應用程式傳送即時新聞通知。 若要這樣做會更新，`SendNotificationRESTAPI`我們中定義的方法[開始使用通知中樞][ get-started]教學課程。
 
-1. 在 ViewController.m 更新 hello`SendNotificationRESTAPI`做的方法會依循，以便接受 hello 類別標記的參數，並傳送嗨適當[範本](notification-hubs-templates-cross-platform-push-messages.md)通知。
+1. 在 ViewController.m 中，如下更新 `SendNotificationRESTAPI` 方法，使其接受類別標記的參數，並傳送正確的 [範本](notification-hubs-templates-cross-platform-push-messages.md) 通知。
    
         - (void)SendNotificationRESTAPI:(NSString*)categoryTag
         {
@@ -223,18 +223,18 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
    
             NSString *json;
    
-            // Construct hello messages REST endpoint
+            // Construct the messages REST endpoint
             NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@/messages/%@", HubEndpoint,
                                                HUBNAME, API_VERSION]];
    
-            // Generated hello token toobe used in hello authorization header.
+            // Generated the token to be used in the authorization header.
             NSString* authorizationToken = [self generateSasToken:[url absoluteString]];
    
-            //Create hello request tooadd hello template notification message toohello hub
+            //Create the request to add the template notification message to the hub
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
             [request setHTTPMethod:@"POST"];
    
-            // Add hello category as a tag
+            // Add the category as a tag
             [request setValue:categoryTag forHTTPHeaderField:@"ServiceBusNotification-Tags"];
    
             // Template notification
@@ -247,13 +247,13 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
             // JSON Content-Type
             [request setValue:@"application/json;charset=utf-8" forHTTPHeaderField:@"Content-Type"];
    
-            //Authenticate hello notification message POST request with hello SaS token
+            //Authenticate the notification message POST request with the SaS token
             [request setValue:authorizationToken forHTTPHeaderField:@"Authorization"];
    
-            //Add hello notification message body
+            //Add the notification message body
             [request setHTTPBody:[json dataUsingEncoding:NSUTF8StringEncoding]];
    
-            // Send hello REST request
+            // Send the REST request
             NSURLSessionDataTask* dataTask = [session dataTaskWithRequest:request
                        completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                {
@@ -272,7 +272,7 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
    
             [dataTask resume];
         }
-2. 在 ViewController.m 更新 hello**傳送通知**hello 後面的程式碼所示的動作。 因此，它會傳送 hello 通知個別使用每個標記，並傳送 toomultiple 平台。
+2. 在 ViewController.m 中，更新 [傳送通知]  動作 (如下列程式碼所示)。 因此，它將使用每個標記個別傳送通知，並傳送至多個平台。
 
         - (IBAction)SendNotificationMessage:(id)sender
         {
@@ -281,7 +281,7 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
             NSArray* categories = [NSArray arrayWithObjects: @"World", @"Politics", @"Business",
                                     @"Technology", @"Science", @"Sports", nil];
 
-            // Lets send hello message as breaking news for each category tooWNS, GCM, and APNS
+            // Lets send the message as breaking news for each category to WNS, GCM, and APNS
             // using a template.
             for(NSString* category in categories)
             {
@@ -293,23 +293,23 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
 
 1. 重新建置專案，並確定您沒有建置錯誤。
 
-## <a name="run-hello-app-and-generate-notifications"></a>執行 hello 應用程式，並產生通知
-1. 按 hello 執行按鈕 toobuild hello 專案，並啟動 hello 應用程式。 選取一些重大消息選項 toosubscribe tooand，然後按下 hello**訂閱** 按鈕。 您應該會看到對話方塊，表示已訂閱通知的 hello。
+## <a name="run-the-app-and-generate-notifications"></a>執行應用程式並產生通知
+1. 按 [執行] 按鈕，以建置專案並啟動應用程式。 選取要訂閱的一些即時新聞選項，然後按 [訂閱]  按鈕。 您應該會看到一個對話方塊，表示已訂閱通知。
    
     ![][1]
    
-    當您選擇**訂閱**、 標記成 hello 應用程式將選取的 hello 類別和從 hello 通知中樞要求新的裝置註冊 hello 選取標記。
-2. 輸入傳送重大消息然後按下 hello 訊息 toobe**傳送通知** 按鈕。 或者，執行 hello.NET 主控台應用程式 toogenerate 通知。
+    當您選擇 [訂閱] 時，應用程式會將選取的類別轉換成標籤，並在通知中心內為選取的標籤要求新裝置註冊。
+2. 輸入要以即時新聞形式傳送的訊息，然後按下 [傳送通知]  按鈕。 或者，執行.NET 主控台應用程式來產生通知。
    
     ![][2]
-3. 每個訂閱的裝置 toobreaking 新聞會接收您傳送的 hello 重大新聞通知。
+3. 每個訂閱即時新聞的裝置都會收到您剛剛傳送的即時新聞通知。
 
 ## <a name="next-steps"></a>後續步驟
-在此教學課程中我們學到如何 toobroadcast 依類別目錄中最新消息。 完成下列其中一個 hello 下列反白顯示其他進階的通知中心案例的教學課程，請考慮：
+在本教學課程中，我們了解到如何按類別廣播即時新聞。 請考慮完成下列其中一個強調其他進階通知中心案例的教學課程：
 
-* **[使用通知中樞 toobroadcast 當地語系化重大消息]**
+* **[使用通知中樞廣播已當地語系化的即時新聞]**
   
-    了解如何傳送 tooenable 新聞應用程式的重大 tooexpand hello 當地語系化通知。
+    了解如何擴充即時新聞應用程式，以啟用傳送已當地語系化的通知。
 
 <!-- Images. -->
 [1]: ./media/notification-hubs-ios-send-breaking-news/notification-hub-breakingnews-subscribed.png
@@ -325,10 +325,10 @@ hello 第一個步驟是 tooadd hello UI 項目 tooyour 現有分鏡腳本可讓
 
 <!-- URLs. -->
 [How To: Service Bus Notification Hubs (iOS Apps)]: http://msdn.microsoft.com/library/jj927168.aspx
-[使用通知中樞 toobroadcast 當地語系化重大消息]: notification-hubs-ios-xplat-localized-apns-push-notification.md
+[使用通知中樞廣播已當地語系化的即時新聞]: notification-hubs-ios-xplat-localized-apns-push-notification.md
 [Mobile Service]: /develop/mobile/tutorials/get-started
 [Notify users with Notification Hubs]: notification-hubs-aspnet-backend-ios-notify-users.md
 [Notification Hubs Guidance]: http://msdn.microsoft.com/library/dn530749.aspx
-[Notification Hubs How-toofor iOS]: http://msdn.microsoft.com/library/jj927168.aspx
+[Notification Hubs How-To for iOS]: http://msdn.microsoft.com/library/jj927168.aspx
 [get-started]: /manage/services/notification-hubs/get-started-notification-hubs-ios/
 [Azure 傳統入口網站]: https://manage.windowsazure.com

@@ -1,5 +1,5 @@
 ---
-title: "aaaAzure AD Windows 市集開始使用 |Microsoft 文件"
+title: "開始使用 Azure AD Windows 市集 | Microsoft Docs"
 description: "建置與 Azure AD 整合來進行登入的 Windows 市集應用程式，並使用 OAuth 呼叫受 Azure AD 保護的 API。"
 services: active-directory
 documentationcenter: windows
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 09/16/2016
 ms.author: jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: 1d12c7b928bc0e94fb823f8db4a09ff416205e2d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6b5189dc06d7f8b0ed4426944948b904feba847e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="integrate-azure-ad-with-windows-store-apps"></a>將 Azure AD 與 Windows 市集應用程式整合
 [!INCLUDE [active-directory-devquickstarts-switcher](../../../includes/active-directory-devquickstarts-switcher.md)]
@@ -29,65 +29,65 @@ ms.lasthandoff: 10/06/2017
 > [!NOTE]
 > Visual Studio 2017 不支援 Windows Store 8.1 和舊版專案。  如需詳細資訊，請參閱 [Visual Studio 2017 平台目標及相容性](https://www.visualstudio.com/en-us/productinfo/vs2017-compatibility-vs)。
 
-如果您正在開發 hello Windows 市集應用程式，Azure Active Directory (Azure AD)，使其簡單又直接 tooauthenticate 您的使用者使用其 Active Directory 帳戶。 藉由整合與 Azure AD，應用程式可以安全地使用任何 web 應用程式開發介面中受到 Azure AD，例如 Office 365 Api hello 或 hello Azure API。
+如果您要開發 Windows 市集應用程式，Azure Active Directory (Azure AD) 可讓您簡單又直接地以 Active Directory 帳戶驗證您的使用者。 透過與 Azure AD 整合，應用程式便可安全地使用任何受 Azure AD 保護的 Web API，例如 Office 365 API 或 Azure API。
 
-針對 Windows 市集桌面應用程式需要 tooaccess 受保護的資源，Azure AD 提供 hello Active Directory 驗證程式庫 (ADAL)。 hello 的 ADAL 的唯一目的是 toomake 輕鬆 hello 應用程式 tooget 存取權杖。 toodemonstrate 多麼容易的是，本文將說明如何 toobuild DirectorySearcher Windows 市集應用程式的：
+針對需要存取受保護資源的 Windows 市集傳統型應用程式，Azure AD 提供了「Active Directory 驗證程式庫」(ADAL)。 ADAL 的唯一目的是要讓應用程式能夠容易取得存取權杖。 為了示範有多麼容易，本文將說明如何建置能夠執行下列操作的 DirectorySearcher Windows 市集應用程式︰
 
-* 取得存取權杖來呼叫 hello Azure AD Graph API 使用 hello [OAuth 2.0 驗證通訊協定](https://msdn.microsoft.com/library/azure/dn645545.aspx)。
+* 使用 [OAuth 2.0 驗證通訊協定](https://msdn.microsoft.com/library/azure/dn645545.aspx)來取得呼叫 Azure AD Graph API 的存取權杖。
 * 搜尋目錄以尋找具有指定使用者主體名稱 (UPN) 的使用者。
 * 將使用者登出。
 
 ## <a name="before-you-get-started"></a>開始之前
-* 下載 hello[基本架構專案](https://github.com/AzureADQuickStarts/NativeClient-WindowsStore/archive/skeleton.zip)，或下載 hello[完成的範例](https://github.com/AzureADQuickStarts/NativeClient-WindowsStore/archive/complete.zip)。 每一個下載項目都是 Visual Studio 2015 解決方案。
-* 您也需要哪些 toocreate 使用者和註冊 hello 應用程式中的 Azure AD 租用戶。 如果您還沒有租用戶，[深入了解如何 tooget 一個](active-directory-howto-tenant.md)。
+* 下載[基本架構專案](https://github.com/AzureADQuickStarts/NativeClient-WindowsStore/archive/skeleton.zip)或下載[完整的範例](https://github.com/AzureADQuickStarts/NativeClient-WindowsStore/archive/complete.zip)。 每一個下載項目都是 Visual Studio 2015 解決方案。
+* 您還需要一個可供建立使用者及註冊應用程式的 Azure AD 租用戶。 如果您還沒有租用戶， [了解如何取得租用戶](active-directory-howto-tenant.md)。
 
-當您準備好時，後續 hello 程序在 hello 接下來三個區段。
+當您準備就緒時，請依照接下來三個小節的程序操作。
 
-## <a name="step-1-register-hello-directorysearcher-app"></a>步驟 1： 註冊 hello DirectorySearcher 應用程式
-tooenable hello 應用程式 tooget 語彙基元，您必須先 tooregister 在您的 Azure AD 租用戶，並授與權限 tooaccess hello Azure AD Graph API。 方式如下：
+## <a name="step-1-register-the-directorysearcher-app"></a>步驟 1：註冊 DirectorySearcher 應用程式
+若要讓應用程式能夠取得權杖，您必須先在 Azure AD 租用戶中註冊該應用程式，然後授與它存取 Azure AD Graph API 的權限。 方式如下：
 
-1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
-2. Hello 頂端列上，按一下您的帳戶。 然後，在 hello**目錄**清單中，選取 hello Active Directory 租用戶想 tooregister hello 應用程式。
-3. 按一下**更服務**在 hello 左的窗格，然後選取  **Azure Active Directory**。
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
+2. 在頂端列中，按一下您的帳戶。 然後，在 [目錄] 清單下，選取您要註冊應用程式的 Active Directory 租用戶。
+3. 按一下左側窗格中的 [更多服務]，然後選取 [Azure Active Directory]。
 4. 按一下 [應用程式註冊]，然後選取 [新增]。
-5. 請遵循 hello 提示 toocreate**原生用戶端應用程式**。
-  * **名稱**描述 hello 應用程式 toousers。
-  * **重新導向 URI**是配置和字串的組合，Azure AD 使用 tooreturn 權杖回應。 暫時先輸入一個預留位置值 (例如 **http://DirectorySearcher**)。 您稍後將取代 hello 值。
-6. Hello 註冊完成之後，Azure AD 會指派給 hello 應用程式是唯一的應用程式識別碼。 複製在 hello hello 值**應用程式**索引標籤上，因為您將需要更新版本。
-7. 在 hello**設定**頁面上，選取**必要的使用權限**，然後選取**新增**。
-8. Hello **Azure Active Directory**應用程式中，選取**Microsoft Graph**為 hello 應用程式開發介面。
-9. 在下**委派的權限**，新增 hello **hello 登入的使用者身分存取 hello 目錄**權限。 如此可讓 hello 應用程式 tooquery hello Graph API 的使用者。
+5. 依照提示操作來建立「原生用戶端應用程式」。
+  * [名稱] 可向使用者描述該應用程式。
+  * [重新導向 URI] 是配置與字串的組合，Azure AD 會用它來傳回權杖回應。 暫時先輸入一個預留位置值 (例如 **http://DirectorySearcher**)。 您稍後將會取代此值。
+6. 完成註冊之後，Azure AD 會為應用程式指派一個唯一的應用程式識別碼。 複製 [應用程式] 索引標籤上的值，因為稍後將會需要它。
+7. 在 [設定] 頁面上，選取 [必要權限]，然後選取 [新增]。
+8. 針對 **Azure Active Directory** 應用程式，選取 [Microsoft Graph] 作為 API。
+9. 在 [委派的權限] 下，新增 [以登入使用者的身分存取目錄] 權限。 這麼做可讓應用程式查詢使用者的 Graph API。
 
 ## <a name="step-2-install-and-configure-adal"></a>步驟 2：安裝及設定 ADAL
-既然您在 Azure AD 中已有應用程式，您現在便可安裝 ADAL，並撰寫身分識別相關程式碼。 tooenable ADAL toocommunicate 與 Azure AD，不妨 hello 應用程式註冊的一些資訊。
+既然您在 Azure AD 中已有應用程式，您現在便可安裝 ADAL，並撰寫身分識別相關程式碼。 若要讓 ADAL 與 Azure AD 進行通訊，請提供它一些應用程式註冊相關資訊。
 
-1. 使用 Package Manager Console hello 新增 ADAL toohello DirectorySearcher 專案。
+1. 藉由使用「套件管理器主控台」，將 ADAL 新增到 DirectorySearcher 專案中。
 
     ```
     PM> Install-Package Microsoft.IdentityModel.Clients.ActiveDirectory
     ```
 
-2. 在 hello DirectorySearcher 專案中，開啟 MainPage.xaml.cs。
-3. Hello 中的 hello 值取代為**組態值**區域與您輸入 hello Azure 入口網站中的 hello 值。 您的程式碼是指 toothese 值，每當它會使用 ADAL。
-  * hello*租用戶*hello 網域，您的 Azure AD 租用戶 (例如 contoso.onmicrosoft.com)。
-  * hello *clientId* hello hello 應用程式，您所複製 hello 入口網站的用戶端識別碼。
-4. 您現在會針對 Windows 市集應用程式需要 toodiscover hello 回呼 URI。 在 hello 中這一行設定中斷點`MainPage`方法：
+2. 在 DirectorySearcher 專案中，開啟 MainPage.xaml.cs。
+3. 使用您在 Azure 入口網站中輸入的值來取代 [組態值] 區域中的值。 每當您的程式碼使用 ADAL 時，都會參考這些值。
+  * *tenant* 是您 Azure AD 租用戶的網域 (例如 contoso.onmicrosoft.com)。
+  * *clientId* 是您從入口網站複製的應用程式用戶端識別碼。
+4. 您現在必須找出 Windows 市集應用程式的回呼 URI。 在 `MainPage` 方法的這一行上設定中斷點：
     ```
     redirectURI = Windows.Security.Authentication.Web.WebAuthenticationBroker.GetCurrentApplicationCallbackUri();
     ```
-5. 建置 hello 方案，並確認封裝的所有參考都會都還原。 如果遺漏任何套件，請開啟 hello NuGet 封裝管理員，並加以還原。
-6. 執行 hello 應用程式，並將複製的 hello 值`redirectUri`hello 中斷點叫用時。 hello 值看起來應該類似下列 hello:
+5. 建置方案，確認已還原所有封裝參考。 如果遺失任何封裝，請開啟「NuGet 封裝管理員」，然後將它們還原。
+6. 執行應用程式，然後在到達中斷點時複製 `redirectUri` 的值。 該值應該看起來如下：
 
     ```
     ms-app://s-1-15-2-1352796503-54529114-405753024-3540103335-3203256200-511895534-1429095407/
     ```
 
-7. 在 [hello**設定**hello Azure 入口網站中的 hello 應用程式] 索引標籤加入**RedirectUri**以 hello 上述值。  
+7. 回到 Azure 入口網站中應用程式的 [設定] 索引標籤上，新增具有上述值的 **RedirectUri**。  
 
-## <a name="step-3-use-adal-tooget-tokens-from-azure-ad"></a>從 Azure AD 的步驟 3： 使用 ADAL tooget 語彙基元
-hello ADAL 背後的基本原則是，每當 hello 應用程式需要存取權杖，它只會呼叫`authContext.AcquireToken(…)`，ADAL 沒有 hello rest 和。  
+## <a name="step-3-use-adal-to-get-tokens-from-azure-ad"></a>步驟 3：使用 ADAL 從 Azure AD 取得權杖
+ADAL 背後的基本原則就是每當應用程式需要存取權杖時，只要呼叫 `authContext.AcquireToken(…)`，ADAL 就會執行其餘動作。  
 
-1. 初始化 hello 應用程式`AuthenticationContext`，這是 hello 的 ADAL 的主要類別。 這個動作會傳遞 ADAL hello 座標與 Azure AD toocommunicate 地告訴它如何 toocache 語彙基元。
+1. 將應用程式的 `AuthenticationContext` (亦即 ADAL 的主要類別) 初始化。 此動作會將 ADAL 與 Azure AD 通訊所需的座標傳遞給 ADAL，並告訴它如何快取權杖。
 
     ```C#
     public MainPage()
@@ -98,7 +98,7 @@ hello ADAL 背後的基本原則是，每當 hello 應用程式需要存取權�
     }
     ```
 
-2. 找出 hello`Search(...)`方法，當使用者按一下 hello 叫用**搜尋**hello 應用程式的 UI 上的按鈕。 這個方法可以讓的使用者的 UPN 開頭指定搜尋詞彙的 hello get 要求 Azure AD Graph API toohello tooquery。 tooquery hello Graph API hello 要求中包含存取權杖**授權**標頭。 這就是 ADAL 的切入點。
+2. 找出 `Search(...)` 方法，這是在使用者按一下應用程式 UI 上的 [搜尋] 按鈕時所叫用的方法。 這個方法會對 Azure AD Graph API 發出 get 要求，以查詢是否有 UPN 開頭為指定搜尋詞彙的使用者。 若要查詢 Graph API，請將存取權杖包含在該要求的 **Authorization** 標頭中。 這就是 ADAL 的切入點。
 
     ```C#
     private async void Search(object sender, RoutedEventArgs e)
@@ -113,33 +113,33 @@ hello ADAL 背後的基本原則是，每當 hello 應用程式需要存取權�
         {
             if (ex.ErrorCode != "authentication_canceled")
             {
-                ShowAuthError(string.Format("If hello error continues, please contact your administrator.\n\nError: {0}\n\nError Description:\n\n{1}", ex.ErrorCode, ex.Message));
+                ShowAuthError(string.Format("If the error continues, please contact your administrator.\n\nError: {0}\n\nError Description:\n\n{1}", ex.ErrorCode, ex.Message));
             }
             return;
         }
         ...
     }
     ```
-    當 hello 應用程式藉由呼叫要求語彙基元`AcquireTokenAsync(...)`，ADAL 會嘗試 tooreturn 語彙基元不要求 hello 使用者認證。 如果 ADAL 會判斷該 hello 使用者需要 toosign tooget 語彙基元中的，它會顯示登入對話方塊中，會收集 hello 使用者的認證，而且在驗證成功後，傳回的語彙基元。 如果 ADAL 因故無法 tooreturn 語彙基元，hello *AuthenticationResult*是錯誤的狀態。
-3. 現在它是您剛擷取時間 toouse hello 存取權杖。 此外在 hello`Search(...)`方法，附加 hello Graph API 中 hello 取得要求的語彙基元 toohello**授權**標頭：
+    當應用程式透過呼叫 `AcquireTokenAsync(...)` 來要求權杖時，ADAL 會嘗試在不向使用者要求認證的情況下傳回權杖。 如果 ADAL 判斷使用者必須登入才能取得權杖，就會顯示登入對話方塊、收集使用者的認證，然後在驗證成功後傳回權杖。 如果 ADAL 因任何原因而無法傳回權杖，*AuthenticationResult* 狀態就會是錯誤。
+3. 現在可以開始使用您剛才取得的存取權杖。 此外，請在 `Search(...)` 方法中，將該權杖附加至 Graph API get 要求的 **Authorization** 標頭：
 
     ```C#
-    // Add hello access token toohello Authorization header of hello call toohello Graph API, and call hello Graph API.
+    // Add the access token to the Authorization header of the call to the Graph API, and call the Graph API.
     httpClient.DefaultRequestHeaders.Authorization = new HttpCredentialsHeaderValue("Bearer", result.AccessToken);
 
     ```
-4. 您可以使用 hello`AuthenticationResult`物件 toodisplay hello 應用程式，例如 hello 使用者的識別碼中的 hello 使用者資訊：
+4. 您可以使用 `AuthenticationResult` 物件以在應用程式中顯示使用者的相關資訊，例如使用者的識別碼：
 
     ```C#
-    // Update hello page UI toorepresent hello signed-in user
+    // Update the page UI to represent the signed-in user
     ActiveUser.Text = result.UserInfo.DisplayableId;
     ```
-5. 您也可以使用 ADAL toosign hello 應用程式外的使用者。 當 hello 使用者按一下 hello**登出**按鈕，請確定該 hello 下一個呼叫太`AcquireTokenAsync(...)`顯示登入的檢視。 使用 ADAL，此動作非常簡單，只要清除 hello 權杖快取的：
+5. 您也可以使用 ADAL 將使用者登出應用程式。 當使用者按一下 [登出] 按鈕時，請確保下次呼叫 `AcquireTokenAsync(...)` 時會顯示登入檢視。 使用 ADAL 時，此動作就像清除權杖快取一樣簡單：
 
     ```C#
     private void SignOut()
     {
-        // Clear session state from hello token cache.
+        // Clear session state from the token cache.
         authContext.TokenCache.Clear();
 
         ...
@@ -147,18 +147,18 @@ hello ADAL 背後的基本原則是，每當 hello 應用程式需要存取權�
     ```
 
 ## <a name="whats-next"></a>後續步驟
-現在，您會有可運作的 Windows 市集應用程式可以驗證使用者，安全地呼叫 web Api 使用 OAuth 2.0，並取得 hello 使用者的基本資訊。
+您現在已擁有一個能夠運作的 Windows 市集應用程式，它可以驗證使用者、使用 OAuth 2.0 來安全地呼叫 Web API，以及取得使用者的相關基本資訊。
 
-如果您沒有已填入您的租用戶與使用者，現在是 hello 時間 toodo 因此。
-1. 執行 DirectorySearcher 應用程式，然後使用其中一個 hello 使用者登入。
+如果您尚未在租用戶中填入使用者，現在便可以這麼做。
+1. 執行 DirectorySearcher 應用程式，然後使用其中一個使用者來登入。
 2. 根據 UPN 搜尋其他使用者。
-3. 關閉 hello 應用程式，並重新執行它。 請注意如何 hello 使用者工作階段會保持不變。
-4. 以滑鼠右鍵按一下 toodisplay hello 下方列，登出，再以其他使用者身分登入。
+3. 關閉應用程式，然後重新執行它。 請注意，使用者工作階段會維持不變。
+4. 透過按一下滑鼠右鍵以顯示底部列來登出，然後以其他使用者身分重新登入。
 
-ADAL 可讓您輕鬆 tooincorporate 所有 hello 應用程式到這些一般身分識別功能。 它會負責所有 hello dirty 工作，例如快取管理、 OAuth 通訊協定支援，呈現 hello 使用者與登入 UI，並重新整理過期語彙基元。 您需要 tooknow 單一 API 呼叫`authContext.AcquireToken*(…)`。
+ADAL 可讓您輕鬆地將所有這些常見的身分識別功能納入應用程式中。 它會為您處理所有麻煩的工作，包括快取管理、OAuth 通訊協定支援、向使用者顯示登入 UI，以及重新整理過期權杖。 您只需要知道單一 API 呼叫 `authContext.AcquireToken*(…)`。
 
-如需參考，下載 hello[完成的範例](https://github.com/AzureADQuickStarts/NativeClient-WindowsStore/archive/complete.zip)（不含您的組態值）。
+如需參考資料，請下載[完整的範例](https://github.com/AzureADQuickStarts/NativeClient-WindowsStore/archive/complete.zip) (不含您的組態值)。
 
-您現在可以移動 tooadditional 身分識別案例。 例如，嘗試[使用 Azure AD 來保護 .NET Web API](active-directory-devquickstarts-webapi-dotnet.md)。
+您現在可以繼續其他身分識別案例。 例如，嘗試[使用 Azure AD 來保護 .NET Web API](active-directory-devquickstarts-webapi-dotnet.md)。
 
 [!INCLUDE [active-directory-devquickstarts-additional-resources](../../../includes/active-directory-devquickstarts-additional-resources.md)]

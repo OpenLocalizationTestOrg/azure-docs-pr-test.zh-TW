@@ -1,6 +1,6 @@
 ---
-title: "aaaUse Azure 媒體編碼器標準 tooauto-產生的位元速率階梯 |Microsoft 文件"
-description: "本主題說明如何 toouse 媒體編碼器標準 (MES) tooauto-產生的位元速率階梯根據 hello 輸入的解析度和位元速率。 永遠不會超過 hello 輸入的解析度和位元速率。 比方說，如果 hello 輸入是 720p 3Mbps，輸出會在最佳情況下，保持 720p 及速率低於 3Mbps 會啟動。"
+title: "使用 Azure 媒體編碼器標準自動產生位元速率階梯 | Microsoft Docs"
+description: "本主題說明如何使用媒體編碼器標準 (MES) 根據輸入解析度和位元速率自動產生位元速率階梯。 永遠不會超過輸入解析度和位元速率。 例如，如果輸入是 720p 3Mbps，則輸出會維持在最多 720p，且速率啟動低於 3Mbps。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,40 +14,40 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: 5437f54ac28c42ddd4f9d1986549d6da6261c5da
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b5616aa9f8b15ab576d914fbae89a56f64c27f4a
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-#  <a name="use-azure-media-encoder-standard-tooauto-generate-a-bitrate-ladder"></a>使用 Azure 媒體編碼器標準 tooauto-產生的位元速率階梯
+#  <a name="use-azure-media-encoder-standard-to-auto-generate-a-bitrate-ladder"></a>使用 Azure 媒體編碼器標準自動產生位元速率階梯
 
 ## <a name="overview"></a>概觀
 
-本主題說明如何 toouse 媒體編碼器標準 (MES) tooauto-產生根據 hello 輸入的解析度和位元速率位元速率階梯 （位元速率高解析度組）。 hello 自動產生的預設值絕對不會超過輸入 hello 解析度和位元速率。 比方說，如果 hello 輸入是 720p 3Mbps，輸出會在最佳情況下，保持 720p 及速率低於 3Mbps 會啟動。
+本主題說明如何使用媒體編碼器標準 (MES) 根據解析度和位元速率自動產生輸入位元速率階梯 (位元速率解析組)。 自動產生的預設值絕對不會超過輸入解析度和位元速率。 例如，如果輸入是 720p 3Mbps，則輸出會維持在最多 720p，且速率啟動低於 3Mbps。
 
 ### <a name="encoding-for-streaming-only"></a>只針對串流編碼
 
-如果您的目的是 tooencode 您的來源視訊僅適用於資料流，則您應該使用 「 彈性資料流 」 的 hello 會預設建立編碼工作時。 當使用 hello**彈性資料流**預設，hello MES 編碼器會以聰明的方式限制在位元速率階梯。 不過，您將無法編碼的成本，因為 hello 服務會決定多少層 toouse 何種解析度可以 toocontrol hello。 您可以看到的輸出層 MES 所產生的結果以 hello 編碼範例**彈性資料流**預設 hello 本主題結尾處。 hello 輸出資產會包含 MP4 檔案，其中音訊和視訊不為交錯。
+如果您打算只針對串流編碼來源視訊，則您在建立編碼工作時，應該使用 "Adaptive Streaming" (彈性資料流) 預設值。 當使用 **Adaptive Streaming** (彈性資料流) 預設值時，MES 編碼器會智慧地覆蓋位元速率階梯。 不過，您將無法控制編碼成本，因為服務會決定要使用多少層以及哪種解析度。 由於本主題結尾使用 **Adaptive Streaming** (彈性資料流) 進行編碼的結果，您可以看到 MES 產生的輸出層範例。 輸出資產將包含 MP4 檔案，其中的音訊和視訊為非交錯格式。
 
 ### <a name="encoding-for-streaming-and-progressive-download"></a>針對串流和漸進式下載編碼
 
-如果您的目的是 tooencode tooproduce MP4 檔案進行漸進式下載，以及資料流，則您應該使用 「 內容自動調整多重位元速率 MP4"hello 來源視訊會預設建立編碼工作時。 當使用 hello**內容自動調整的多個位元速率 MP4**預設，hello MES 編碼器將會套用的 hello 相同編碼的邏輯與上面，但是 hello 輸出資產就會包含 MP4 檔案的音訊和視訊會交錯。 您可以使用其中一個 MP4 檔案 （例如，hello 最大位元速率版） 為漸進式下載檔案。
+如果您打算針對串流以及漸進式下載要產生的 MP4 檔案編碼，則您在建立編碼工作時，應該使用 "Content Adaptive Multiple Bitrate MP4" (內容自適性多位元速率 MP4) 預設值。 使用 **Content Adaptive Multiple Bitrate MP4** (內容自適性多位元速率 MP4) 預設值時，MES 編碼器將會套用與先前相同的編碼邏輯，但現在輸出資產會包含 MP4 檔案，其中的音訊和視訊為交錯格式。 您可以使用這些 MP4 檔案的其中一個 (例如最高位元速率的版本) 作為漸進式下載檔案。
 
 ## <a id="encoding_with_dotnet"></a>使用媒體服務 .NET SDK 進行編碼
 
-hello，下列程式碼範例會使用 Media Services.NET SDK tooperform hello 下列工作：
+下列程式碼範例使用媒體服務 .NET SDK 執行下列工作：
 
 - 建立編碼工作。
-- 取得參考 toohello 媒體編碼器標準編碼器。
-- 加入的編碼工作 toohello 工作，並指定 toouse hello**彈性資料流**預設。 
-- 建立會包含 hello 編碼資產的輸出資產。
-- 加入事件處理常式 toocheck hello 工作進度。
-- 送出 hello 作業。
+- 取得對 Media Encoder Standard 編碼器的參考
+- 將編碼工作新增至作業，並指定使用**彈性資料流**預設值。 
+- 建立將包含已編碼資產的輸出資產。
+- 加入事件處理常式來檢查工作進度。
+- 提交作業。
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
 
-設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。 
+設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。 
 
 #### <a name="example"></a>範例
 
@@ -61,7 +61,7 @@ hello，下列程式碼範例會使用 Media Services.NET SDK tooperform hello �
     {
         class Program
         {
-        // Read values from hello App.config file.
+        // Read values from the App.config file.
         private static readonly string _AADTenantDomain =
         ConfigurationManager.AppSettings["AADTenantDomain"];
         private static readonly string _RESTAPIEndpoint =
@@ -80,7 +80,7 @@ hello，下列程式碼範例會使用 Media Services.NET SDK tooperform hello �
             // Get an uploaded asset.
             var asset = _context.Assets.FirstOrDefault();
 
-            // Encode and generate hello output using hello "Adaptive Streaming" preset.
+            // Encode and generate the output using the "Adaptive Streaming" preset.
             EncodeToAdaptiveBitrateMP4Set(asset);
 
             Console.ReadLine();
@@ -91,8 +91,8 @@ hello，下列程式碼範例會使用 Media Services.NET SDK tooperform hello �
             // Declare a new job.
             IJob job = _context.Jobs.Create("Media Encoder Standard Job");
 
-            // Get a media processor reference, and pass tooit hello name of hello 
-            // processor toouse for hello specific task.
+            // Get a media processor reference, and pass to it the name of the 
+            // processor to use for the specific task.
             IMediaProcessor processor = GetLatestMediaProcessorByName("Media Encoder Standard");
 
             // Create a task
@@ -101,11 +101,11 @@ hello，下列程式碼範例會使用 Media Services.NET SDK tooperform hello �
             "Adaptive Streaming",
             TaskOptions.None);
 
-            // Specify hello input asset toobe encoded.
+            // Specify the input asset to be encoded.
             task.InputAssets.Add(asset);
-            // Add an output asset toocontain hello results of hello job. 
+            // Add an output asset to contain the results of the job. 
             // This output is specified as AssetCreationOptions.None, which 
-            // means hello output asset is not encrypted. 
+            // means the output asset is not encrypted. 
             task.OutputAssets.AddNew("Output asset",
             AssetCreationOptions.None);
 
@@ -159,7 +159,7 @@ hello，下列程式碼範例會使用 Media Services.NET SDK tooperform hello �
 
 ## <a id="output"></a>輸出
 
-此區段會顯示三個範例的輸出層 MES 所產生的結果以 hello 編碼**彈性資料流**預設。 
+由於編碼與**彈性資料流**預設值，本區段會顯示 MES 所產生的輸出層範例。 
 
 ### <a name="example-1"></a>範例 1
 高度 "1080" 和畫面播放速率 "29.970" 的來源會產生 6 個視訊層︰

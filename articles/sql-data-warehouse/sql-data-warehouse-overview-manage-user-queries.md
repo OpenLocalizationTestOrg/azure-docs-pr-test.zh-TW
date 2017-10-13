@@ -1,6 +1,6 @@
 ---
-title: "在 Azure SQL 資料倉儲 aaaMonitor 使用者查詢 |Microsoft 文件"
-description: "Hello 考量、 最佳做法及監視使用者在 Azure SQL 資料倉儲中的查詢工作的概觀"
+title: "在 Azure SQL 資料倉儲中監視使用者查詢 | Microsoft Docs"
+description: "監視 Azure SQL 資料倉儲中使用者查詢之考量、最佳做法及工作的概觀。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: sqlmojo
@@ -15,22 +15,22 @@ ms.workload: data-services
 ms.custom: performance
 ms.date: 10/31/2016
 ms.author: joeyong;barbkess
-ms.openlocfilehash: 67639e81b04635452e1ed844fe2d7245aa96a4fe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 65509a65c2b34553822cc02d7a7fa5a614adc57f
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="monitor-user-queries-in-azure-sql-data-warehouse"></a>監視 Azure SQL 資料倉儲中的使用者查詢
-Hello 考量、 最佳做法及監視 SQL 資料倉儲中的使用者查詢工作的概觀。
+監視 SQL 資料倉儲中使用者查詢之考量、最佳做法及工作的概觀。
 
 | 類別 | 工作或考量 | 說明 |
 |:--- |:--- |:--- |
 | 效能變慢 |尋找長時間執行的使用者查詢 |[尋找長時間執行的查詢][Find long-running queries] |
-| 並行 |指派並行資源 toouser 查詢 |[並行和工作負載管理][Concurrency and workload management] |
+| 並行 |指派並行資源給使用者查詢 |[並行和工作負載管理][Concurrency and workload management] |
 
 ## <a name="next-steps"></a>後續步驟
-如需管理秘訣，前端透過 toohello[管理概觀][Management overview]。
+如需更多管理祕訣，請移至[管理概觀][Management overview]。
 
 <!--Image references-->
 

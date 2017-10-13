@@ -1,6 +1,6 @@
 ---
-title: "aaaExpand 虛擬硬碟在 Azure 中的 Linux VM 上 |Microsoft 文件"
-description: "了解如何 tooexpand 虛擬硬碟與 Linux VM 上 hello Azure CLI 2.0"
+title: "在 Azure 中擴充 Linux VM 上的虛擬硬碟 | Microsoft Docs"
+description: "了解如何使用 Azure CLI 2.0 擴充 Linux VM 上的虛擬硬碟"
 services: virtual-machines-linux
 documentationcenter: 
 author: iainfoulds
@@ -14,35 +14,35 @@ ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 ms.date: 08/21/2017
 ms.author: iainfou
-ms.openlocfilehash: 7c09a682cb4322c027e57667640e8f1f8e6612f2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b82cc0473c003da767ee230ab485c69b233977d1
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="how-tooexpand-virtual-hard-disks-on-a-linux-vm-with-hello-azure-cli"></a>如何 tooexpand 虛擬硬碟與 Linux VM 上 hello Azure CLI
-hello hello 作業系統 (OS) 的預設虛擬硬碟大小通常是 30 GB 在 Azure 中 Linux 虛擬機器 (VM) 上。 您可以[加入資料磁碟](add-disk.md)tooprovide 額外的儲存空間，但是您可能希望 tooexpand 的現有資料磁碟。 這篇文章說明 tooexpand 針對 Linux VM 以 hello Azure CLI 2.0 所管理的磁碟。 您也可以展開與 hello hello unmanaged OS 磁碟[Azure CLI 1.0](expand-disks-nodejs.md)。
+# <a name="how-to-expand-virtual-hard-disks-on-a-linux-vm-with-the-azure-cli"></a>如何使用 Azure CLI 擴充 Linux VM 上的虛擬硬碟
+在 Azure 中，Linux 虛擬機器 (VM) 上作業系統 (OS) 的預設虛擬硬碟大小通常是 30 GB。 您可以[新增資料磁碟](add-disk.md)來提供更多儲存空間，但您也可能想要擴充既有的資料磁碟。 本文將詳細說明如何使用 Azure CLI 2.0 來擴充 Linux VM 的受控磁碟。 您也可以使用 [Azure CLI 1.0](expand-disks-nodejs.md) 來擴充非受控的 OS 磁碟。
 
 > [!WARNING]
 > 在執行磁碟調整大小作業前，務必備份資料。 如需詳細資訊，請參閱[在 Azure 中備份 Linux 虛擬機器](tutorial-backup-vms.md)。
 
 ## <a name="expand-disk"></a>擴充磁碟
-請確定您擁有 hello 最新[Azure CLI 2.0](/cli/azure/install-az-cli2)安裝並登入 tooan Azure 帳戶使用[az 登入](/cli/azure/#login)。
+請確定您已安裝最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) 並使用 [az login](/cli/azure/#login) 登入 Azure 帳戶。
 
 本文需要 Azure 中存有一個虛擬機器，且該虛擬機器至少掛載一個已備妥使用的資料磁碟。 如果您還沒有可使用的虛擬機器，請參閱[建立並準備掛載有資料磁碟的虛擬機器](tutorial-manage-disks.md#create-and-attach-disks)。
 
-Hello 在下列範例中，會取代您自己的值範例參數名稱。 範例參數名稱包含 myResourceGroup 與 myVM。
+在下列範例中，請以您自己的值取代範例參數名稱。 範例參數名稱包含 myResourceGroup 與 myVM。
 
-1. 虛擬硬碟上的作業無法執行以 hello VM 執行。 使用 [az vm deallocate](/cli/azure/vm#deallocate) 解除配置您的 VM。 hello 下列範例會取消配置 hello 名為 VM *myVM* hello 資源群組中名為*myResourceGroup*:
+1. 當 VM 正在執行時，無法對虛擬硬碟執行作業。 使用 [az vm deallocate](/cli/azure/vm#deallocate) 解除配置您的 VM。 下列範例會解除配置名為 myResourceGroup 資源群組中名為 myVM 的 VM：
 
     ```azurecli
     az vm deallocate --resource-group myResourceGroup --name myVM
     ```
 
     > [!NOTE]
-    > `az vm stop`不會釋放 hello 計算資源。 toorelease 計算資源，請使用`az vm deallocate`。 必須解除配置 hello VM tooexpand hello 虛擬硬碟。
+    > `az vm stop` 不會釋放計算資源。 若要釋放計算資源，請使用 `az vm deallocate`。 必須解除配置 VM，才能擴充虛擬硬碟。
 
-2. 使用 [az disk list](/cli/azure/disk#list) 來檢視資源群組中的受控磁碟清單。 hello 下列範例顯示的受管理的磁碟清單 hello 資源群組中名為*myResourceGroup*:
+2. 使用 [az disk list](/cli/azure/disk#list) 來檢視資源群組中的受控磁碟清單。 下列範例會顯示名為 myResourceGroup 之資源群組中的受控磁碟清單：
 
     ```azurecli
     az disk list \
@@ -51,7 +51,7 @@ Hello 在下列範例中，會取代您自己的值範例參數名稱。 範例�
         --output table
     ```
 
-    展開所需的磁碟 hello 與[az 磁碟更新](/cli/azure/disk#update)。 hello 下列範例會展開 hello 受管理的磁碟，名為*myDataDisk* toobe *200*Gb 大小：
+    使用 [az disk update](/cli/azure/disk#update) 擴充所需的磁碟。 下列範例會將名為 myDataDisk 的受控磁碟大小擴充為 200 GB：
 
     ```azurecli
     az disk update \
@@ -61,40 +61,40 @@ Hello 在下列範例中，會取代您自己的值範例參數名稱。 範例�
     ```
 
     > [!NOTE]
-    > 當您展開受管理的磁碟時，更新的 hello 大小會是對應的 toohello 最接近的受管理的磁碟大小。 Hello 受管理的可用磁碟大小與層級的資料表，請參閱[Azure 受管理磁碟概觀-定價和計費](../windows/managed-disks-overview.md#pricing-and-billing)。
+    > 當您擴充受控磁碟時，更新的大小會對應至最接近的受控磁碟大小。 如需可用受控磁碟大小和階層的表格，請參閱 [Azure 受控磁碟概觀 - 價格和計費](../windows/managed-disks-overview.md#pricing-and-billing)。
 
-3. 使用 [az vm create](/cli/azure/vm#start) 啟動 VM。 下列範例開始 hello hello 名為 VM *myVM* hello 資源群組中名為*myResourceGroup*:
+3. 使用 [az vm create](/cli/azure/vm#start) 啟動 VM。 下列範例會啟動名為 myResourceGroup 資源群組中名為 myVM 的 VM：
 
     ```azurecli
     az vm start --resource-group myResourceGroup --name myVM
     ```
 
-4. SSH tooyour VM 與 hello 適當的認證。 您可以取得具有您 VM 的 hello 公用 IP 位址[az vm 顯示](/cli/azure/vm#show):
+4. 使用適當的認證以 SSH 登入 VM。 您可以使用 [az vm show](/cli/azure/vm#show) 取得虛擬機器的 IP 位址：
 
     ```azurecli
     az vm show --resource-group myResourceGroup --name myVM -d --query [publicIps] --o tsv
     ```
 
-5. toouse hello 展開磁碟時，您需要 tooexpand hello 基礎磁碟分割及檔案系統。
+5. 若要使用展開的硬碟，您需要展開硬碟下的分割區與檔案系統。
 
-    a. 如果已掛上，取消掛接 hello 磁碟：
+    a. 若磁碟已掛載，則卸載磁碟：
 
     ```bash
     sudo umount /dev/sdc1
     ```
 
-    b. 使用`parted`tooview 磁碟資訊並調整大小 hello 磁碟分割：
+    b. 使用 `parted` 來檢視磁碟資訊與調整分割區大小：
 
     ```bash
     sudo parted /dev/sdc
     ```
 
-    檢視與 hello 現有磁碟分割配置的相關資訊`print`。 hello 輸出類似 toohello 之後，範例中，會顯示 hello 基礎磁碟的大小是 215 Gb:
+    使用 `print` 來檢視既有磁碟分割配置的資訊。 輸出結果會類似於以下範例，範例中顯示分割區下的磁碟大小為 215 Gb：
 
     ```bash
     GNU Parted 3.2
     Using /dev/sdc1
-    Welcome tooGNU Parted! Type 'help' tooview a list of commands.
+    Welcome to GNU Parted! Type 'help' to view a list of commands.
     (parted) print
     Model: Unknown Msft Virtual Disk (scsi)
     Disk /dev/sdc1: 215GB
@@ -106,7 +106,7 @@ Hello 在下列範例中，會取代您自己的值範例參數名稱。 範例�
         1      0.00B  107GB  107GB  ext4
     ```
 
-    c. 展開的資料分割 hello 和`resizepart`。 輸入 hello 分割區編號， *1*，和 hello 新資料分割的大小：
+    c. 使用 `resizepart` 來展開分割區。 輸入分割區編號 *1* 以及新分割區的大小：
 
     ```bash
     (parted) resizepart
@@ -114,27 +114,27 @@ Hello 在下列範例中，會取代您自己的值範例參數名稱。 範例�
     End?  [107GB]? 215GB
     ```
 
-    d. tooexit，輸入`quit`
+    d. 若要結束，請輸入 `quit`
 
-5. Hello 調整大小的磁碟分割，以確認與 hello 分割區一致性`e2fsck`:
+5. 分割區調整大小後，使用 `e2fsck` 來確認分割區的一致性：
 
     ```bash
     sudo e2fsck -f /dev/sdc1
     ```
 
-6. 現在調整與 hello filesystem `resize2fs`:
+6. 使用 `resize2fs` 來調整檔案系統大小：
 
     ```bash
     sudo resize2fs /dev/sdc1
     ```
 
-7. 掛接 hello 分割 toohello 預期的位置，例如`/datadrive`:
+7. 將分割區掛載至所需位置，像是 `/datadrive`：
 
     ```bash
     sudo mount /dev/sdc1 /datadrive
     ```
 
-8. tooverify hello 作業系統磁碟大小已經過調整，請使用`df -h`。 下列範例輸出的 hello 顯示 hello 資料磁碟機， */開發/sdc1*，現在為 200 GB:
+8. 若要確認 OS 磁碟已調整大小，請使用 `df -h`。 下列輸出範例顯示資料磁碟 (*/dev/sdc1*) 現在是 200 GB：
 
     ```bash
     Filesystem      Size   Used  Avail Use% Mounted on
@@ -142,4 +142,4 @@ Hello 在下列範例中，會取代您自己的值範例參數名稱。 範例�
     ```
 
 ## <a name="next-steps"></a>後續步驟
-如果您需要額外的存放裝置，您也[新增資料磁碟 tooa Linux VM](add-disk.md)。 如需磁碟加密的詳細資訊，請參閱[使用 Linux VM 上的加密磁碟 hello Azure CLI](encrypt-disks.md)。
+如果您需要更多儲存空間，您也可以[將資料磁碟新增至 Linux VM](add-disk.md)。 如需磁碟加密的詳細資訊，請參閱[使用 Azure CLI 將 Linux VM 上的磁碟加密](encrypt-disks.md)。

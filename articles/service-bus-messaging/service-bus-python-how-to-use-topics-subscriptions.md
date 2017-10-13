@@ -1,6 +1,6 @@
 ---
-title: "使用 Python aaaHow toouse Azure 服務匯流排主題 |Microsoft 文件"
-description: "深入了解如何 toouse Azure 服務匯流排主題和訂閱來自 Python。"
+title: "如何搭配 Python 使用 Azure 服務匯流排主題 | Microsoft Docs"
+description: "了解如何從 Python 使用 Azure 服務匯流排主題和訂用帳戶。"
 services: service-bus-messaging
 documentationcenter: python
 author: sethmanheim
@@ -14,31 +14,31 @@ ms.devlang: python
 ms.topic: article
 ms.date: 08/10/2017
 ms.author: sethm
-ms.openlocfilehash: 1171cbe8061bb3d73e2ce92ecc0cf45afae37054
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 15269f9728e9dc45e6436e53b1859f76d4a7a0c9
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="how-toouse-service-bus-topics-and-subscriptions-with-python"></a>如何 toouse Service Bus 主題和訂閱使用 Python
+# <a name="how-to-use-service-bus-topics-and-subscriptions-with-python"></a>如何透過 Python 使用服務匯流排主題和訂用帳戶
 
 [!INCLUDE [service-bus-selector-topics](../../includes/service-bus-selector-topics.md)]
 
-本文說明如何 toouse Service Bus 主題和訂閱。 hello 範例撰寫的 Python 和使用 hello [Azure Python SDK 封裝][Azure Python package]。 hello 涵蓋案例包括**建立主題和訂閱**，**建立訂用帳戶篩選**，**傳送訊息 tooa 主題**，**接收從訂用帳戶的郵件**，和**主題和訂用帳戶刪除**。 如需主題和訂閱的詳細資訊，請參閱 hello[接下來的步驟](#next-steps)> 一節。
+本文說明如何使用服務匯流排主題和訂用帳戶。 相關範例是以 Python 撰寫，並且使用 [Azure Python SDK 套件][Azure Python package]。 涵蓋的案例包括**建立主題和訂用帳戶**、**建立訂用帳戶篩選器**、**傳送訊息至主題**、**接收訂用帳戶的訊息**，以及**刪除主題和訂用帳戶**。 如需主題和訂用帳戶的詳細資訊，請參閱[後續步驟](#next-steps)一節。
 
 [!INCLUDE [howto-service-bus-topics](../../includes/howto-service-bus-topics.md)]
 
 > [!NOTE] 
-> 如果您需要 tooinstall Python 或 hello [Azure Python 封裝][Azure Python package]，請參閱 hello [Python 安裝指南](../python-how-to-install.md)。
+> 如果您需要安裝 Python 或 [Azure Python 套件][Azure Python package]，請參閱 [Python 安裝指南](../python-how-to-install.md)。
 
 ## <a name="create-a-topic"></a>建立主題
-hello **ServiceBusService**物件可讓您 toowork 與主題。 加入要在其中任何 Python 檔案 tooprogrammatically 存取服務匯流排的 hello 頂端附近的 hello 下列：
+**ServiceBusService** 物件可讓您使用主題。 將下列內容新增至您想要在其中以程式設計方式存取服務匯流排之任何 Python 檔案內的頂端附近：
 
 ```python
 from azure.servicebus import ServiceBusService, Message, Topic, Rule, DEFAULT_RULE_NAME
 ```
 
-hello 下列程式碼會建立**ServiceBusService**物件。 請使用真實的命名空間、共用存取簽章 (SAS) 金鑰名稱和金鑰值來取代 `mynamespace`、`sharedaccesskeyname` 和 `sharedaccesskey`。
+下列程式碼將建立 **ServiceBusService** 物件。 請使用真實的命名空間、共用存取簽章 (SAS) 金鑰名稱和金鑰值來取代 `mynamespace`、`sharedaccesskeyname` 和 `sharedaccesskey`。
 
 ```python
 bus_service = ServiceBusService(
@@ -47,13 +47,13 @@ bus_service = ServiceBusService(
     shared_access_key_value='sharedaccesskey')
 ```
 
-您可以從 hello 取得 hello 值 hello SAS 金鑰名稱和值[Azure 入口網站][Azure portal]。
+您可以從 [Azure 入口網站][Azure portal]取得 SAS 金鑰名稱和值的值。
 
 ```python
 bus_service.create_topic('mytopic')
 ```
 
-hello`create_topic`方法也支援其他選項，可讓您 toooverride 預設主題設定，例如訊息時間 toolive 或最大主題大小。 hello 下列範例會設定 hello 最大主題大小 too5 GB，而時間 toolive (TTL) 值為 1 分鐘：
+`create_topic` 方法也支援其他選項，而可讓您覆寫訊息存留時間或主題大小上限等預設主題設定。 下列範例會將主題大小上限設為 5 GB，並將存留時間 (TTL) 的值設為 1 分鐘：
 
 ```python
 topic_options = Topic()
@@ -64,33 +64,33 @@ bus_service.create_topic('mytopic', topic_options)
 ```
 
 ## <a name="create-subscriptions"></a>建立訂用帳戶
-訂用帳戶 tootopics 也會建立以 hello **ServiceBusService**物件。 訂用帳戶命名，而且可以有選擇性篩選器，以限制 hello 組傳遞 toohello 訂用帳戶的虛擬佇列的訊息。
+**ServiceBusService** 物件也能用來建立主題的訂用帳戶。 訂閱是具名的，它們能擁有選用的篩選器，以限制傳遞至訂閱之虛擬佇列的訊息集合。
 
 > [!NOTE]
-> 訂閱是持續性，而且將會繼續 tooexist 直到任一它們，或 hello 主題 toowhich 它們所訂用，則會刪除。
+> 訂用帳戶是持續性的，它們會持續存在，直到本身或它們訂閱的主題遭到刪除為止。
 > 
 > 
 
-### <a name="create-a-subscription-with-hello-default-matchall-filter"></a>建立訂用帳戶與 hello 預設 (MatchAll) 篩選器
-hello **MatchAll**是 hello 預設篩選器時所用新的訂用帳戶建立時指定任何篩選條件。 當 hello **MatchAll**篩選時，所有的訊息已發行的 toohello 主題置於 hello 訂用帳戶的虛擬佇列。 hello 下列範例會建立名為訂用帳戶`AllMessages`和使用 hello 預設**MatchAll**篩選器。
+### <a name="create-a-subscription-with-the-default-matchall-filter"></a>使用預設 (MatchAll) 篩選器建立訂用帳戶
+如果在建立新的訂用帳戶時沒有指定篩選器，**MatchAll** 篩選器就會是預設使用的篩選器。 使用 **MatchAll** 篩選器時，所有發佈至主題的訊息都會被置於訂用帳戶的虛擬佇列中。 下列範例將建立名為 `AllMessages` 的訂用帳戶，並使用預設的 **MatchAll** 篩選條件。
 
 ```python
 bus_service.create_subscription('mytopic', 'AllMessages')
 ```
 
 ### <a name="create-subscriptions-with-filters"></a>使用篩選器建立訂用帳戶
-您也可以定義可讓您 toospecify tooa 主題應該會顯示特定主題的訂用帳戶內傳送的訊息篩選器。
+您也可以定義篩選器，讓您指定傳送至主題的哪些訊息應顯示在特定主題訂用帳戶中。
 
-hello 最有彈性的訂用帳戶支援的篩選器的類型是**SqlFilter**，它會實作 SQL92 的子集。 SQL 篩選操作的已發行的 toohello 主題 hello 訊息 hello 屬性。 如需可以搭配 SQL 篩選的 hello 運算式的詳細資訊，請參閱 hello [SqlFilter.SqlExpression] [ SqlFilter.SqlExpression]語法。
+在訂用帳戶支援的篩選器中，實作 SQL92 子集的 **SqlFilter** 是最具彈性的類型。 SQL 篩選器會對發佈至主題之訊息的屬性運作。 如需可與 SQL 篩選器搭配使用的運算式詳細資訊，請參閱 [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 語法。
 
-您可以加入篩選 tooa 訂用帳戶使用 hello**建立\_規則**方法 hello **ServiceBusService**物件。 這個方法可讓您 tooadd 新篩選 tooan 現有訂用帳戶。
+您可以使用 **ServiceBusService** 物件的 **create\_rule** 方法將篩選器新增至訂用帳戶。 此方法可讓您將篩選器新增至現有的訂用帳戶中。
 
 > [!NOTE]
-> 因為 hello 預設篩選器會自動套用 tooall 新訂用帳戶，您必須先移除 hello 預設篩選器或 hello **MatchAll**將會覆寫任何其他您可以指定的篩選器。 您可以藉由使用 hello 移除 hello 預設規則`delete_rule`方法 hello **ServiceBusService**物件。
+> 由於預設篩選器會自動套用至所有新的訂用帳戶，因此您必須先移除預設篩選器，否則 **MatchAll** 將會覆寫您指定的任何其他篩選器。 您可以使用 **ServiceBusService** 物件的 `delete_rule` 方法移除預設規則。
 > 
 > 
 
-hello 下列範例會建立名為訂用帳戶`HighMessages`與**SqlFilter**只選取自訂的訊息`messagenumber`大於 3 的屬性：
+以下範例將建立名為 `HighMessages` 的訂用帳戶，而且所含的 **SqlFilter** 只會選取自訂 `messagenumber` 屬性大於 3 的訊息：
 
 ```python
 bus_service.create_subscription('mytopic', 'HighMessages')
@@ -103,7 +103,7 @@ bus_service.create_rule('mytopic', 'HighMessages', 'HighMessageFilter', rule)
 bus_service.delete_rule('mytopic', 'HighMessages', DEFAULT_RULE_NAME)
 ```
 
-同樣地，hello 下列範例會建立名為訂用帳戶`LowMessages`與**SqlFilter**只選取有訊息`messagenumber`屬性小於或等於 too3:
+同樣地，下列範例將建立名為 `LowMessages` 的訂用帳戶，而且所含的 **SqlFilter** 只會選取 `messagenumber` 屬性小於或等於 3 的訊息：
 
 ```python
 bus_service.create_subscription('mytopic', 'LowMessages')
@@ -116,12 +116,12 @@ bus_service.create_rule('mytopic', 'LowMessages', 'LowMessageFilter', rule)
 bus_service.delete_rule('mytopic', 'LowMessages', DEFAULT_RULE_NAME)
 ```
 
-現在，當訊息傳送太`mytopic`它永遠傳遞訂閱 tooreceivers toohello **AllMessages**主題訂用帳戶，並選擇性地傳遞的 tooreceivers 訂閱 toohello **HighMessages**和**LowMessages**主題訂用帳戶 （取決於 hello 訊息內容）。
+現在當訊息傳送到 `mytopic` 時，一律會將該訊息傳遞到已訂閱 **AllMessages** 主題訂用帳戶的接收者，並選擇性地將它傳遞到已訂閱 **HighMessages** 和 **LowMessages** 主題訂用帳戶的接收者 (視訊息內容而定)。
 
-## <a name="send-messages-tooa-topic"></a>傳送訊息 tooa 主題
-toosend 訊息 tooa Service Bus 主題，您的應用程式必須使用 hello`send_topic_message`方法 hello **ServiceBusService**物件。
+## <a name="send-messages-to-a-topic"></a>傳送訊息至主題
+若要將訊息傳送至服務匯流排主題，應用程式必須使用 **ServiceBusService** 物件的 `send_topic_message` 方法。
 
-hello 下列範例會示範如何 toosend 五個測試訊息太`mytopic`。 請注意該 hello `messagenumber` hello hello 迴圈反覆運算上的每個訊息的屬性值而有所不同 （這會決定哪些訂閱接收該）：
+下列範例說明如何將五個測試訊息傳送至 `mytopic`。 請注意，迴圈反覆運算上每個訊息的 `messagenumber` 屬性值會有變化 (這可判斷接收訊息的訂用帳戶為何)：
 
 ```python
 for i in range(5):
@@ -129,21 +129,21 @@ for i in range(5):
     bus_service.send_topic_message('mytopic', msg)
 ```
 
-服務匯流排主題支援 hello 訊息大小上限為 256KB[標準層](service-bus-premium-messaging.md)和 1 MB 的 hello [Premium 層](service-bus-premium-messaging.md)。 hello 標頭，其中包括 hello 標準和自訂應用程式屬性，可以有 64 KB 的大小上限。 訊息保留在主題中的 hello 數目沒有限制，但是在 hello hello 訊息主題所持有的大小總計沒有端點。 此主題大小會在建立時定義，上限是 5 GB。 如需有關配額的詳細資訊，請參閱[服務匯流排配額][Service Bus quotas]。
+服務匯流排主題支援的訊息大小上限：在[標準層](service-bus-premium-messaging.md)中為 256 KB 以及在[進階層](service-bus-premium-messaging.md)中為 1 MB。 標頭 (包含標準和自訂應用程式屬性) 可以容納 64 KB 的大小上限。 主題中所保存的訊息數目沒有限制，但主題所保存的訊息大小總計會有最高限制。 此主題大小會在建立時定義，上限是 5 GB。 如需有關配額的詳細資訊，請參閱[服務匯流排配額][Service Bus quotas]。
 
 ## <a name="receive-messages-from-a-subscription"></a>自訂用帳戶接收訊息
-訊息會從訂用帳戶使用 hello 接收`receive_subscription_message`方法上 hello **ServiceBusService**物件：
+對於 **ServiceBusService** 物件使用 `receive_subscription_message` 方法即可從佇列接收訊息：
 
 ```python
 msg = bus_service.receive_subscription_message('mytopic', 'LowMessages', peek_lock=False)
 print(msg.body)
 ```
 
-在讀取時從 hello 訂用帳戶刪除訊息 hello 參數`peek_lock`設定得**False**。 您可以讀取 （查看），並鎖定 hello 訊息，而不刪除它所設定的 hello 參數從 hello 佇列`peek_lock`太**True**。
+將 `peek_lock` 參數設為 **False** 時，則當讀取訊息後，訊息便會從訂用帳戶中刪除。 您可以將參數 `peek_lock` 設為 **True**，來讀取 (查看) 並鎖定訊息，避免系統從佇列刪除訊息。
 
-hello 行為的讀取和刪除 hello 訊息，因為 hello 的一部分接收作業是 hello 最簡單的模型，並最適合用於應用程式可以容許不處理中失敗的 hello 事件訊息的案例。 toounderstand，假設在哪一個 hello 取用者問題 hello 接收要求，而後再處理它。 服務匯流排將已經標示為正在使用，然後當 hello 應用程式重新啟動並開始取用訊息一次的 hello 訊息，因為它將會遺失已的 hello 訊息取用先前 toohello 損毀。
+隨著接收作業讀取及刪除訊息之行為是最簡單的模型，且最適合可容許在發生失敗時不處理訊息的應用程式案例。 若要了解這一點，請考慮取用者發出接收要求，接著系統在處理此要求之前當機的案例。 因為服務匯流排會將訊息標示為已取用，當應用程式重新啟動並開始重新取用訊息時，它將會遺漏當機前已取用的訊息。
 
-如果 hello`peek_lock`參數設定太**True**，hello 接收作業會變成兩個階段，使其不容許遺失訊息的可能 toosupport 應用程式。 服務匯流排收到要求時，它會尋找下一個訊息 toobe hello 耗用鎖定，tooprevent 其他消費者接收該，然後再將它傳 toohello 應用程式。 Hello 應用程式完成處理 hello 訊息 （或可靠地儲存以供未來處理後），它就會完成 hello hello 第二個階段藉由呼叫接收處理序`delete`方法上 hello**訊息**物件。 hello`delete`方法標示為正在使用的 hello 訊息，並移除 hello 訂用帳戶。
+如果您將 `peek_lock` 參數設為 **True**，接收會變成兩階段作業，因此可以支援無法容許遺漏訊息的應用程式。 當服務匯流排收到要求時，它會尋找要取用的下一個訊息、將其鎖定以防止其他取用者接收此訊息，然後將它傳回應用程式。 在應用程式完成訊息處理 (或可靠地儲存此訊息以供未來處理) 之後，它會在 **Message** 物件上呼叫 `delete` 方法，以完成接收程序的第二個階段。 `delete` 方法會將訊息標示為已取用，並將其從訂用帳戶中移除。
 
 ```python
 msg = bus_service.receive_subscription_message('mytopic', 'LowMessages', peek_lock=True)
@@ -152,28 +152,28 @@ print(msg.body)
 msg.delete()
 ```
 
-## <a name="how-toohandle-application-crashes-and-unreadable-messages"></a>Toohandle 應用程式的當機，而且無法讀取訊息
-服務匯流排提供的功能 toohelp 適宜地自行復原發生錯誤的應用程式或處理訊息的問題。 如果接收者應用程式無法 tooprocess hello 訊息基於某些原因，則它可以呼叫 hello`unlock`方法上 hello**訊息**物件。 這將導致 hello 訂用帳戶內的服務匯流排 toounlock hello 訊息，並讓它使用 toobe 收到試一次，請藉由 hello 取用應用程式，或由另一個使用的應用程式相同。
+## <a name="how-to-handle-application-crashes-and-unreadable-messages"></a>如何處理應用程式當機與無法讀取的訊息
+服務匯流排提供一種功能，可協助您從應用程式的錯誤或處理訊息的問題中順利復原。 如果接收者應用程式因為某些原因無法處理訊息，它可以在 **Message** 物件上呼叫 `unlock` 方法。 這將導致服務匯流排將訂用帳戶中的訊息解除鎖定，讓此訊息可以被相同取用應用程式或其他取用應用程式重新接收。
 
-另外還有 hello 訂閱內鎖定的訊息相關聯的逾時，如果 hello 應用程式失敗 tooprocess hello 訊息之前 hello 鎖定逾時到期 （例如，如果 hello 應用程式當機），然後服務匯流排解除鎖定 hello 訊息自動並使其成為可用 toobe 再度接收。
+與在訂閱內鎖定訊息相關的還有逾時，如果應用程式無法在鎖定逾時到期之前處理訊息 (例如，如果應用程式當機)，則服務匯流排會自動解除鎖定訊息，並讓訊息可以被重新接收。
 
-在 hello hello 應用程式的事件損毀之後處理 hello 訊息，但之前 hello`delete`呼叫方法時，則 hello 訊息將會是已重新傳遞的 toohello 應用程式，重新啟動時。 這通常稱為*至少一旦處理*，也就是將至少一次處理每則訊息，但可能在某些情況下 hello 傳遞相同的訊息。 如果 hello 案例無法容許重複處理，應用程式開發人員應該加入額外的邏輯 tootheir 應用程式 toohandle 重複的訊息傳遞。 這通常用來達成 hello **MessageId** hello 訊息，將會維持所有傳遞嘗試的屬性。
+如果應用程式在處理訊息之後，尚未呼叫 `delete` 方法時當機，則會在應用程式重新啟動時將訊息重新傳遞給該應用程式。 這通常稱為*至少處理一次*，也就是說，每個訊息至少會被處理一次，但在特定狀況下，可能會重新傳遞相同訊息。 如果案例無法容許重複處理，則應用程式開發人員應在其應用程式中加入其他邏輯，以處理重複的訊息傳遞。 通常您可使用訊息的 **MessageId** 屬性來達到此目的，該屬性將在各個傳遞嘗試中會保持不變。
 
 ## <a name="delete-topics-and-subscriptions"></a>刪除主題和訂用帳戶
-主題和訂閱持續性，而且必須明確刪除透過 hello [Azure 入口網站][ Azure portal]或以程式設計的方式。 hello 下列範例顯示如何命名 toodelete hello 主題`mytopic`:
+主題和訂用帳戶是持續性的，您必須透過 [Azure 入口網站][Azure portal]或以程式設計方式明確地刪除它們。 下列範例示範如何刪除名為 `mytopic` 的主題：
 
 ```python
 bus_service.delete_topic('mytopic')
 ```
 
-刪除的主題也會刪除任何訂用帳戶註冊的 hello 主題。 您也可以個別刪除訂用帳戶。 hello 下列程式碼會示範如何 toodelete 訂用帳戶命名`HighMessages`從 hello`mytopic`主題：
+刪除主題也將會刪除對主題註冊的任何訂用帳戶。 您也可以個別刪除訂用帳戶。 下列程式碼示範如何從 `mytopic` 主題刪除名為 `HighMessages` 的訂用帳戶：
 
 ```python
 bus_service.delete_subscription('mytopic', 'HighMessages')
 ```
 
 ## <a name="next-steps"></a>後續步驟
-現在，您學到的 Service Bus 主題 hello 基本概念，請遵循這些連結 toolearn 更多。
+了解基本的服務匯流排主題之後，請參考下列連結以取得更多資訊。
 
 * 請參閱[佇列、主題和訂用帳戶][Queues, topics, and subscriptions]。
 * [SqlFilter.SqlExpression][SqlFilter.SqlExpression] 的參考資料。

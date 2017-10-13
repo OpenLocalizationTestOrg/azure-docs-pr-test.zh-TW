@@ -1,6 +1,6 @@
 ---
-title: "活動記錄檔警示中使用的 aaaUnderstand hello webhook 結構描述 |Microsoft 文件"
-description: "深入了解 hello hello 活動記錄檔警示啟動時張貼 tooa webhook URL 的 JSON 結構描述。"
+title: "了解活動記錄警示中使用的 Webhook 結構描述 | Microsoft Docs"
+description: "深入了解活動記錄警示啟動時，張貼至 Webhook URL 的 JSON 結構描述。"
 author: johnkemnetz
 manager: orenr
 editor: 
@@ -14,24 +14,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/31/2017
 ms.author: johnkem
-ms.openlocfilehash: 75562e0589222d3e392ea73eacfd7414a422d115
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 75c71bcd16573d4f4dd3377c623aa9b414aa3906
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="webhooks-for-azure-activity-log-alerts"></a>Azure 活動記錄警示的 Webhook
-Hello 定義的動作群組的一部分，您可以設定 webhook 端點 tooreceive 活動記錄檔警示通知。 使用 webhook，您可以路由傳送這些通知 tooother 系統以進行後置處理或自訂動作。 本文說明哪些 hello 的內容看起來像 hello HTTP POST tooa webhook。
+在定義動作群組的過程中，您可以設定 Webhook 端點以接收活動記錄警示通知。 您可以使用 Webhook 將這些通知路由到其他系統，以進行後置處理或自訂動作。 本文會說明 HTTP POST 至 Webhook 的承載資料樣貌。
 
-如需有關活動記錄檔警示的詳細資訊，請參閱如何太[建立 Azure 活動記錄檔警示](monitoring-activity-log-alerts.md)。
+如需有關活動記錄警示的詳細資訊，請參閱如何[建立 Azure 活動記錄警示](monitoring-activity-log-alerts.md)。
 
-動作群組的相關資訊，請參閱如何太[建立動作群組](monitoring-action-groups.md)。
+如需有關動作群組的資訊，請參閱如何[建立動作群組](monitoring-action-groups.md)。
 
-## <a name="authenticate-hello-webhook"></a>驗證 hello webhook
-hello webhook 進行驗證，可以選擇使用權杖為基礎的授權。 hello 的 webhook URI 便可以 token 的識別碼，例如`https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`。
+## <a name="authenticate-the-webhook"></a>驗證 Webhook
+Webhook 可以選擇使用以權杖作為基礎的授權來進行驗證。 Webhook URI 是以權杖識別碼儲存，例如，`https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`。
 
 ## <a name="payload-schema"></a>承載結構描述
-hello POST 作業中所包含的 hello JSON 承載不同根據 hello 裝載 data.context.activityLog.eventSource 欄位上。
+POST 作業中所包含的 JSON 承載，會根據承載的 data.context.activityLog.eventSource 欄位而有所不同。
 
 ###<a name="common"></a>一般
 ```json
@@ -122,41 +122,41 @@ hello POST 作業中所包含的 hello JSON 承載不同根據 hello 裝載 data
 
 如需服務健康狀態通知活動記錄警示的特定結構描述詳細資料，請參閱[服務健康狀態通知](monitoring-service-notifications.md)。
 
-所有其他活動記錄警示的特定結構描述資訊，請參閱[hello Azure 活動記錄檔的概觀](monitoring-overview-activity-logs.md)。
+如需了解所有其他活動記錄警示的特定結構詳細資料，請參閱 [Azure 活動記錄的概觀](monitoring-overview-activity-logs.md)。
 
 | 元素名稱 | 說明 |
 | --- | --- |
-| status |用於度量警示。 一定會設定太 「 啟動 」 的活動記錄檔的警示。 |
-| context |Hello 事件的內容。 |
-| resourceProviderName |hello 資源提供者的 hello 影響資源。 |
+| status |用於度量警示。 針對活動記錄警示，一律設為「啟動」。 |
+| context |事件的內容。 |
+| resourceProviderName |受影響資源的資源提供者。 |
 | conditionType |一律為「事件」。 |
-| 名稱 |Hello 警示規則的名稱。 |
-| id |Hello 警示的資源識別碼。 |
-| 說明 |建立 hello 警示時設定警示的描述。 |
+| 名稱 |警示規則的名稱。 |
+| id |警示的資源識別碼。 |
+| 說明 |建立警示時，會設定警示描述。 |
 | subscriptionId |Azure 訂用帳戶識別碼。 |
-| timestamp |Hello 處理 hello 要求的 Azure 服務所產生的 hello 事件的時間。 |
-| resourceId |資源識別碼 hello 影響資源。 |
-| resourceGroupName |Hello hello 資源群組名稱會影響資源。 |
-| 屬性 |一組`<Key, Value>`組 (也就是`Dictionary<String, String>`)，包括有關 hello 事件的詳細資料。 |
-| 事件 |包含有關 hello 事件中繼資料的項目。 |
-| 授權 |hello hello 事件的角色型存取控制內容。 這些屬性通常包含 hello 動作、 hello 角色和 hello 範圍。 |
-| category |Hello 事件類別目錄。 支援值包括「管理」、「警示」、「安全性」、「ServiceHealth」和「建議」。 |
-| 呼叫者 |執行 hello 作業、 UPN 宣告或 SPN 宣告根據可用性的 hello 使用者的電子郵件地址。 特定系統呼叫可為 Null。 |
-| correlationId |通常是字串格式的 GUID。 具有相互關聯識別碼的事件屬於 toohello 相同較大的動作，通常會共用的相互關聯識別碼。 |
-| eventDescription |Hello 事件的靜態文字描述。 |
-| eventDataId |Hello 事件的唯一識別碼。 |
-| eventSource |名稱 hello Azure 服務或基礎結構產生的 hello 事件。 |
-| httpRequest |hello 要求通常包括 hello clientRequestId、 clientIpAddress 和 HTTP 方法 (例如 PUT)。 |
-| 層級 |Hello 下列值之一： 嚴重、 錯誤、 警告、 資訊和詳細資訊。 |
-| operationId |通常是在對應 toosingle 作業 hello 事件之間共用的 GUID。 |
-| operationName |Hello 作業的名稱。 |
-| 屬性 |Hello 事件的屬性。 |
-| status |字串。 Hello 作業的狀態。 常見的值包括︰「已啟動」、「進行中」、「成功」、「失敗」、「使用中」和「已解決」。 |
-| 子狀態 |通常包含對應 REST 呼叫 hello hello HTTP 狀態碼。 它也可以包含其他描述子狀態的字串。 常見子狀態的值包括：確定 (HTTP 狀態碼︰200)，已建立 (HTTP 狀態碼︰201)、接受 (HTTP 狀態碼︰202)、沒有內容 (HTTP 狀態碼︰204)、不正確的要求 (HTTP 狀態碼︰400)、找不到 (HTTP 狀態碼︰404)，衝突 (HTTP 狀態碼︰409)、內部伺服器錯誤 (HTTP 狀態碼︰500)、服務無法使用 (HTTP 狀態碼︰503) 和閘道逾時 (HTTP 狀態碼︰504)。 |
+| timestamp |處理要求的 Azure 服務產生事件的時間。 |
+| resourceId |受影響資源的資源識別碼。 |
+| resourceGroupName |受影響資源的資源群組的名稱。 |
+| 屬性 |一組包含事件相關詳細資料的`<Key, Value>`配對 (也就是 `Dictionary<String, String>`)。 |
+| 事件 |包含事件相關中繼資料的元素。 |
+| 授權 |事件的角色型存取控制屬性。 這些屬性通常包括動作、角色和範圍。 |
+| category |事件的類別。 支援值包括「管理」、「警示」、「安全性」、「ServiceHealth」和「建議」。 |
+| 呼叫者 |已執行作業的使用者的電子郵件地址，根據可用性的 UPN 宣告或 SPN 宣告。 特定系統呼叫可為 Null。 |
+| correlationId |通常是字串格式的 GUID。 具有屬於同一個較大動作的 correlationId 的事件，且通常會共用 correlationId。 |
+| eventDescription |事件的靜態文字描述。 |
+| eventDataId |事件的唯一識別碼。 |
+| eventSource |產生事件的 Azure 服務或基礎結構的名稱。 |
+| httpRequest |要求通常包括 “clientRequestId”、“clientIpAddress” 和 HTTP “method” (例如 PUT)。 |
+| 層級 |下列其中一個值：「重大」、「錯誤」、「警告」、「資訊」和「詳細資訊」。 |
+| operationId |通常是對應至單一作業的事件之間共用的 GUID。 |
+| operationName |作業名稱。 |
+| 屬性 |事件的屬性。 |
+| status |字串。 作業的狀態。 常見的值包括︰「已啟動」、「進行中」、「成功」、「失敗」、「使用中」和「已解決」。 |
+| 子狀態 |通常包含對應 REST 呼叫的 HTTP 狀態碼。 它也可以包含其他描述子狀態的字串。 常見子狀態的值包括：確定 (HTTP 狀態碼︰200)，已建立 (HTTP 狀態碼︰201)、接受 (HTTP 狀態碼︰202)、沒有內容 (HTTP 狀態碼︰204)、不正確的要求 (HTTP 狀態碼︰400)、找不到 (HTTP 狀態碼︰404)，衝突 (HTTP 狀態碼︰409)、內部伺服器錯誤 (HTTP 狀態碼︰500)、服務無法使用 (HTTP 狀態碼︰503) 和閘道逾時 (HTTP 狀態碼︰504)。 |
 
 ## <a name="next-steps"></a>後續步驟
-* [深入了解 hello 活動記錄檔](monitoring-overview-activity-logs.md)。
+* [深入了解活動記錄](monitoring-overview-activity-logs.md)。
 * [對 Azure 警示執行 Azure 自動化指令碼 (Runbook)](http://go.microsoft.com/fwlink/?LinkId=627081)。
-* [使用邏輯應用程式 toosend Twilio 透過 SMS 從 Azure 警示](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)。 這個範例適用於度量的警示，但可以修改的 toowork 與活動記錄警示。
-* [使用邏輯應用程式 toosend Slack 訊息從 Azure 警示](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)。 這個範例適用於度量的警示，但可以修改的 toowork 與活動記錄警示。
-* [使用從 Azure 警示佇列的訊息 tooan Azure 邏輯應用程式 toosend](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)。 這個範例適用於度量的警示，但可以修改的 toowork 與活動記錄警示。
+* [使用邏輯應用程式透過 Twilio 從 Azure 警示傳送 SMS](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)。 此範例適用於計量警示，但經過修改後即可用於活動記錄警示。
+* [使用邏輯應用程式從 Azure 警示傳送 Slack 訊息](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)。 此範例適用於計量警示，但經過修改後即可用於活動記錄警示。
+* [使用邏輯應用程式從 Azure 警示將訊息傳送到 Azure 佇列](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)。 此範例適用於計量警示，但經過修改後即可用於活動記錄警示。

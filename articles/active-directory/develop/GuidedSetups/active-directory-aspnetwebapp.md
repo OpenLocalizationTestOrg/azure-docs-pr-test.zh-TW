@@ -1,5 +1,5 @@
 ---
-title: "使用者入門 aaaAzure AD v2 ASP.NET web 伺服器 |Microsoft 文件"
+title: "Azure AD v2 ASP.NET Web 伺服器快速入門 | Microsoft Docs"
 description: "使用 OpenID Connect 標準，搭配傳統網頁瀏覽器型應用程式，在 ASP.NET 方案上實作 Microsoft 登入"
 services: active-directory
 documentationcenter: dev-center-name
@@ -15,11 +15,11 @@ ms.workload: identity
 ms.date: 07/05/2017
 ms.author: andret
 ms.custom: aaddev
-ms.openlocfilehash: aae729b4e086d6770648af4708a58f840d2dbb9d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 7a97cc9d1f13034de41f55399442061fbb4873c2
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 [!INCLUDE [1. Introduction](active-directory-serversidewebapp-aspnetwebappowin-introduction.md)]
 [!INCLUDE [2. Setup](active-directory-serversidewebapp-aspnetwebappowin-setup.md)]

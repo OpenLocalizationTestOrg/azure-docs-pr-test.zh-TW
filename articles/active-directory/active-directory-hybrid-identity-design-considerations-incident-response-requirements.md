@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure Active Directory 混合式身分識別設計考量-判斷事件 rResponse 需求 |Microsoft 文件"
-description: "決定監視和報告功能 hello 混合式身分識別解決方案，可以利用 IT tootake 動作 tooidentify 並減輕潛在威脅"
+title: "Azure Active Directory 混合式身分識別設計考量 - 判斷事件回應需求 | Microsoft Docs"
+description: "判斷混合式身分識別解決方案的監視和報告功能，讓 IT 可用來採取動作以識別和減緩潛在威脅。"
 documentationcenter: 
 services: active-directory
 author: billmath
@@ -14,49 +14,49 @@ ms.tgt_pltfrm: na
 ms.workload: identity
 ms.date: 07/18/2017
 ms.author: billmath
-ms.openlocfilehash: 7084096f318ef461e8331fb6edde1b77d4108466
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 536071ec61d093af243bfd42faa6bb404172fb8e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="determine-incident-response-requirements-for-your-hybrid-identity-solution"></a>判斷混合式身分識別解決方案的事件回應需求
-大型或中型組織最有可能會有[安全性事件回應](https://technet.microsoft.com/library/cc700825.aspx)位置 toohelp IT 在執行動作據以 toohello 層級的事件。 hello 身分識別管理系統是 hello 事件回應程序中的重要元件，因為它可以是使用的 toohelp 識別執行特定動作對 hello 的目標人員。 hello 混合式身分識別解決方案必須能夠 tooprovide 監視和報告功能，可以利用 IT tootake 動作 tooidentify 並降低潛在的威脅。 一般事件回應計劃中，您必須遵循階段 hello 計劃的 hello:
+中大型組織最可能具備適當的 [安全性事件回應](https://technet.microsoft.com/library/cc700825.aspx) ，可協助 IT 根據事件層級來採取動作。 身分識別管理系統是事件回應程序中的重要元件，因為它可以用來協助識別對目標執行特定動作的人員。 混合式身分識別解決方案必須能夠提供監視和報告功能，讓 IT 可用來採取動作以識別和減緩潛在威脅。 在一般事件回應計畫中，您可以將計畫分為下列階段：
 
 1. 初步評估。
 2. 事件傳達的訊息。
 3. 損毀控制與風險降低。
 4. 識別是否遭到入侵及嚴重性。
 5. 保留證據。
-6. 通知 tooappropriate 合作對象。
+6. 通知適當的合作對象。
 7. 系統修復。
 8. 文件。
 9. 損毀和成本評估。
 10. 修訂程序和計畫。
 
-決定其 hello 識別期間洩露和嚴重性階段，它將會需要 tooidentify hello 系統已遭入侵，已存取，並判斷 hello 區分這些檔案的檔案。 混合式身分識別系統應該能夠 toofulfill 這些需求 tooassist 您識別 hello 使用者做這些變更。 
+在識別遭到入侵及嚴重性階段期間，必須識別已遭入侵的系統、已遭存取的檔案，並判斷這些檔案的敏感度。 您的混合式身分識別系統應該能夠滿足這些需求，來協助您識別進行這些變更的使用者。 
 
 ## <a name="monitoring-and-reporting"></a>監視和報告
-也可協助多次 hello 識別系統中初始評估階段主要如果 hello 系統具有內建稽核與報告功能。 在初始評估 hello，IT 系統管理員必須能夠 tooidentify 可疑的活動，或 hello 系統應該能夠 tootrigger 自動根據預先設定的工作。 許多活動可能表示可能的攻擊，但是在其他情況下，設定不良的系統可能會導致 tooa 誤判數目入侵偵測系統中。 
+主要是如果系統已內建稽核和報告功能，身分識別系統也可以在初步評估階段多次提供協助。 在初步評估期間，IT 系統管理員必須能夠識別可疑的活動，或者系統應該能夠根據預先設定的工作自動觸發它。 有許多活動可代表潛在的攻擊，但在其他情況下，設定不良的系統可能會在入侵偵測系統中導致誤報數目。 
 
-應該協助 IT 系統管理員 」 tooidentify hello 身分識別管理系統，並報告這些可疑的活動。 通常可藉由監視所有系統並具備可強調顯示潛在威脅的報告功能，來滿足這些技術需求。 使用 hello 問題下方 toohelp 設計時考量事件回應需求您混合式身分識別解決方案：
+身分識別管理系統應該能協助 IT 系統管理員來識別及報告這些可疑的活動。 通常可藉由監視所有系統並具備可強調顯示潛在威脅的報告功能，來滿足這些技術需求。 在考量事件回應需求時，請使用下列問題來協助您設計混合式身分識別解決方案：
 
 * 貴公司擁有適當的安全性事件回應嗎？
-  * 如果是，會 hello 目前身分識別管理系統使用 hello 程序的一部分嗎？
-* 您的公司需要 tooidentify 可疑登入嘗試從使用者跨不同裝置嗎？
-* 您的公司是否需要 toodetect 潛在盜用的使用者的認證？
-* 您的公司是否需要 tooaudit 使用者的存取和動作？
-* 當使用者重設其密碼時，貴公司需要 tooknow？
+  * 如果是，目前的身分識別管理系統可用來做為程序的一部分嗎？
+* 貴公司需要識別使用者在不同裝置上嘗試進行的單一登入嗎？
+* 貴公司需要偵測可能入侵的使用者認證嗎？
+* 貴公司需要稽核使用者的存取和動作嗎？
+* 貴公司需要知道使用者何時重設密碼嗎？
 
 ## <a name="policy-enforcement"></a>強制執行原則
-在損毀控制項和風險降低階段，請務必 tooquickly 減少受到攻擊的 hello 實際和潛在影響。 此時所採取的動作可讓 hello 次要和主要的一個宣告之間的差異。 hello 確切的反應取決於您的組織和您所面對的 hello 攻擊的 hello 性質。 如果 hello 初始評估結束帳戶已遭到洩露，您將需要 tooenforce 原則 tooblock 此帳戶。 這是一個範例中，將內容運用 hello 身分識別管理系統。 使用以下 toohelp 納入考量原則的會實施 tooreact tooan 進行中的事件時，設計您的混合式身分識別解決方案的 hello 問題：
+在損毀控制和風險降低階段期間，最重要的是快速降低攻擊的實際和潛在影響。 此時您所採取的動作可以在次要和主要之間產生差異。 確切的回應將取決於您的組織和您面對攻擊的性質。 如果最初評估歸納出帳戶已遭到入侵，則您必須強制執行原則來封鎖這個帳戶。 這只是運用身分識別管理系統的其中一個範例。 在考量如何強制執行原則以回應即將發生的事件時，請使用下列問題來協助您設計混合式身分識別解決方案：
 
-* 您的公司有原則位置 tooblock 使用者從網路存取 hello 中如有必要？
-  * 如果是，不會 hello 目前方案整合 hello 混合式身分識別管理系統，必須進行 tooadopt 嗎？
-* 您的公司需要 tooenforce 條件式存取位於隔離的使用者嗎？ 
+* 貴公司具備適當的原則，可視需要封鎖使用者存取網路嗎？
+  * 如果是，目前的解決方案能夠與您即將採用的混合式身分識別管理系統整合嗎？
+* 貴公司是否需要針對隔離的使用者強制執行條件式存取？ 
 
 > [!NOTE]
-> 請確定每個答案 tootake 附註，並了解 hello 回應 hello 背後的基本原理。 [定義的資料保護策略](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md)將介紹可用 hello 選項以及每個選項的優點/缺點。  回答這些問題之後，您就能選取最適合業務需求的選項。
+> 請確定會記下每個答案，並了解答案背後的原理。 [定義資料保護策略](active-directory-hybrid-identity-design-considerations-data-protection-strategy.md) 將介紹可用選項，以及每個選項的優點/缺點。  回答這些問題之後，您就能選取最適合業務需求的選項。
 > 
 > 
 

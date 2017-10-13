@@ -1,6 +1,6 @@
 ---
-title: "aaaWhat 是 Azure SQL 資料倉儲？ | Microsoft Docs"
-description: "企業級分散式資料庫，可處理資料量高達 PB 的關聯式與非關聯式資料。 它是 hello 業界第一個雲端資料倉儲與成長、 壓縮及暫停以秒為單位。"
+title: "什麼是 Azure SQL 資料倉儲？ | Microsoft Docs"
+description: "企業級分散式資料庫，可處理資料量高達 PB 的關聯式與非關聯式資料。 它是業界首見能在幾秒內增加、縮減和暫停的雲端資料倉儲。"
 services: sql-data-warehouse
 documentationcenter: NA
 author: jrowlandjones
@@ -15,28 +15,28 @@ ms.workload: data-services
 ms.custom: overview
 ms.date: 2/28/2017
 ms.author: jrj;barbkess
-ms.openlocfilehash: 5fefe40879230f123c2e4a90b9c20a35779cf711
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 575c49f83c8845edcea984459f3907490c62d269
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="what-is-azure-sql-data-warehouse"></a>什麼是 Azure SQL 資料倉儲？
 Azure SQL 資料倉儲是一種巨量平行處理 (MPP) 以雲端為基礎、相應放大的關聯式資料庫，可處理大量的資料。 
 
 SQL 資料倉儲：
 
-* Azure 的雲端擴充功能結合 hello SQL Server 關聯式資料庫。 
+* 結合 SQL Server 關聯式資料庫與 Azure 雲端相應放大功能。 
 * 從計算減少儲存體。
 * 啟用增加、減少、暫停或繼續計算。 
-* 整合跨 hello Azure 平台。
+* 跨 Azure 平台間整合。
 * 利用 SQL Server Transact-SQL (T-SQL) 和工具。
 * 遵守各種法律和商務安全性需求，例如 SOC 和 ISO。
 
-本文說明 hello 的 SQL 資料倉儲的重要功能。
+本文說明 SQL 資料倉儲的重要功能。
 
 ## <a name="massively-parallel-processing-architecture"></a>巨量平行處理架構
-SQL 資料倉儲是大量平行處理 (MPP) 分散式資料庫系統。 Hello 幕後 SQL 資料倉儲會將您的資料分散到許多無共用存放裝置和處理單位。 hello 資料會儲存在 Premium 本機備援儲存體的圖層，在其之上動態連結的運算節點執行查詢。 SQL 資料倉儲會採用 「 分割和征服 」 的方法 toorunning 載入和複雜查詢。 接收最佳化散發，，然後傳遞其工作 tooCompute 節點 toodo 以平行方式為控制節點要求。
+SQL 資料倉儲是大量平行處理 (MPP) 分散式資料庫系統。 在幕後，SQL 資料倉儲會將您的資料分散於多個不共用的儲存和處理單元。 資料會儲存在進階本地備援儲存體層級，在其頂端動態連結的計算節點會執行查詢。 SQL 資料倉儲可以採用「分治法」來執行載入和複雜的查詢。 要求是由控制節點接收、針對分佈最佳化，然後傳遞至計算節點來平行執行其工作。
 
 使用減少的儲存體和計算，SQL 資料倉儲可以︰
 
@@ -45,57 +45,57 @@ SQL 資料倉儲是大量平行處理 (MPP) 分散式資料庫系統。 Hello �
 * 暫停計算容量，同時讓資料保持不變，只需要支付儲存體的費用。
 * 在營運時間期間繼續計算容量。
 
-hello 下列圖表顯示 hello 架構中更多詳細資料。
+下圖更詳細說明此架構。
 
 ![SQL 資料倉儲架構][1]
 
-**控制節點：** hello 控制節點管理及最佳化查詢。 它是 hello 前端與所有應用程式與連線互動的。 在 SQL 資料倉儲、 hello 控制節點由 SQL Database 連接 tooit 看起來並替 hello 相同。 在 hello 介面 hello 控制節點會協調所有 hello 資料移動和所需的計算 toorun 對分散式資料的平行查詢。 當您提交 T-SQL 查詢 tooSQL 資料倉儲時，hello 控制節點會將其轉換為每個平行的計算節點執行的個別查詢。
+**控制節點︰** 控制節點會管理及最佳化查詢。 它是與所有應用程式與連接互動的前端。 在 SQL 資料倉儲中，控制節點採用 SQL Database 計算，而且連接它時的外觀及操作方式相同。 控制節點會暗中協調對分散式資料執行平行查詢所需的所有資料移動和計算。 當您將 TSQL 查詢提交到 SQL 資料倉儲時，控制節點會將其轉換為會在每個計算節點上平行執行的個別查詢。
 
-**計算節點：** hello 計算節點做為 SQL 資料倉儲背後的 hello 電源。 它們是儲存資料和處理查詢的 SQL Database。 當您新增資料時，SQL 資料倉儲會發佈 hello 列 tooyour 計算節點。 hello 計算節點是在您的資料執行 hello 平行查詢的 hello 工作者。 經過處理後，傳遞 hello 結果後 toohello 控制節點。 toofinish hello 查詢 hello 控制節點的彙總 hello 結果，並傳回 hello 最終結果。
+**計算節點︰** 計算節點是 SQL 資料倉儲背後的動力。 它們是儲存資料和處理查詢的 SQL Database。 當您新增資料時，SQL 資料倉儲會將資料列分散到各個計算節點。 計算節點是會對您的資料執行平行查詢的背景工作角色。 經過處理後，它們會將結果傳回控制節點。 為了完成查詢，控制節點會彙總結果並傳回最終的結果。
 
-**儲存體：** 您的資料會儲存在 Azure Blob 儲存體中。 計算節點互動與您的資料，當它們撰寫，並直接讀取從 blob 儲存體 tooand。 因為 Azure 儲存體擴充以透明且大幅，可以執行 SQL 資料倉儲 hello 相同。 計算和儲存體各自獨立，所以 SQL 資料倉儲可以自動調整儲存體，與計算分開調整，反之亦然。 Azure Blob 儲存體也完全提供容錯功能，並簡化 hello 備份和還原程序。
+**儲存體：** 您的資料會儲存在 Azure Blob 儲存體中。 當計算節點與您的資料互動時，它們會直接從 Blob 儲存體來回寫入和讀取。 由於 Azure 儲存體可大幅地明確擴充，SQL 資料倉儲同樣也可以。 計算和儲存體各自獨立，所以 SQL 資料倉儲可以自動調整儲存體，與計算分開調整，反之亦然。 Azure Blob 儲存體也是完全容錯，並可簡化備份和還原程序。
 
-**資料移動服務：**資料移動服務 (DMS) hello 節點之間移動資料。 DMS 提供 hello 計算節點存取 toodata 他們需要聯結和彙總。 DMS 不是 Azure 服務。 它會連同 SQL 資料庫執行 hello 的所有節點的 Windows 服務。 DMS 是背景處理序，無法直接互動。 不過，您可以查看查詢計劃 toosee DMS 作業發生時，因為資料移動是必要的 toorun 每個查詢，以平行方式。
+**資料移動服務︰** 資料移動服務 (DMS) 可在節點之間移動資料。 DMS 可讓計算節點存取聯結和彙總所需的資料。 DMS 不是 Azure 服務。 它是一項在所有節點上與 SQL Database 並排執行的 Windows 服務。 DMS 是背景處理序，無法直接互動。 不過，您可以查閱查詢計劃以查看 DMS 作業的發生時機，因為資料移動必須平行執行每項查詢。
 
 ## <a name="optimized-for-data-warehouse-workloads"></a>已針對資料倉儲工作負載最佳化
-hello MPP 方法是由數個資料倉儲特定的效能最佳化，包括輔助：
+MPP 方法由許多資料倉儲特定效能最佳化輔助，包括：
 
-* 一項分散式查詢最佳化工具和一組複雜的統計資料。 使用上資訊的資料大小與散發，hello 服務所能 toooptimize 查詢評估特定分散式的查詢作業的 hello 成本。
-* 進階的演算法與技術整合到 hello 資料在為必要 tooperform hello 查詢運算資源之間移動處理序 tooefficiently 移動資料。 這些資料移動作業內建的而且所有最佳化 toohello Data Movement Service 會自動都發生。
-* 預設的叢集 **資料行存放** 區索引。 藉由使用資料行為基礎的存放裝置，SQL 資料倉儲會取得平均 5 x 壓縮提升傳統的資料列導向儲存，並向上 too10x 或多個查詢的效能提升。 分析查詢需要 tooscan 大量的資料列使用更好資料行存放區索引。
+* 一項分散式查詢最佳化工具和一組複雜的統計資料。 使用資料大小和散發的資訊，服務就能夠藉由評估特定分散式查詢作業的成本來最佳化查詢。
+* 整合到資料移動程序中的進階演算法和技術，能夠視需要在計算資源之間有效率地移動資料以執行查詢。 這些資料移動作業均為內建，且資料移動服務的所有最佳化都會自動進行。
+* 預設的叢集 **資料行存放** 區索引。 與傳統的資料列導向儲存體相比，使用資料行儲存體的 SQL 資料倉儲最多可讓壓縮平均提升 5 倍，查詢效能提升 10 倍以上。 需要掃描大量資料列的分析查詢更適合使用資料行存放區索引。
 
 
 ## <a name="predictable-and-scalable-performance-with-data-warehouse-units"></a>可預測且可調整的效能與資料倉儲單位
-SQL 資料倉儲是使用與 SQL Database 類似的技術建置，表示使用者對於分析查詢可以預期一致且可預測的效能。 使用者應以線性方式預期 toosee 效能小數位數，因為它們加法或減法計算節點。 資料倉儲單位 (Dwu) 被以資源 tooyour SQL 資料倉儲的配置。 Dwu 調整為基礎的資源，例如 CPU、 記憶體配置 tooyour SQL 資料倉儲的 IOPS 的量值。 增加 hello Dwu 數目會增加資源和效能。 具體而言，DWU 有助於確保：
+SQL 資料倉儲是使用與 SQL Database 類似的技術建置，表示使用者對於分析查詢可以預期一致且可預測的效能。 當使用者新增或減去計算節點時，他們應該會看到以線性方式調整的效能。 SQL 資料倉儲的資源配置是使用資料倉儲單位 (DWU) 測量。 DWU 是配置給 SQL 資料倉儲的基礎資源 (例如 CPU、記憶體、IOPS) 的量值。 增加 DWU 數目可增加資源和效能。 具體而言，DWU 有助於確保：
 
-* 您就可以 tooscale 資料倉儲，而不需擔心 hello 基礎硬體或軟體。
-* 您可以預測效能改進 DWU 層級變更資料倉儲的 hello 計算之前。
-* hello 相關的硬體與軟體執行個體可以變更或移動而不影響工作負載效能。
-* Microsoft 加以改善而不會影響您的工作負載的 hello 效能基礎架構的 hello 服務的 hello。
-* Microsoft 可快速改進效能在 SQL 資料倉儲中，是可擴充的方式，效果 hello 系統的平均。
+* 您可以調整您的資料倉儲，而不必擔心基礎硬體或軟體。
+* 您可以在變更資料倉儲的計算之前，預測 DWU 層級的效能改進程度。
+* 可以變更或移動您的執行個體的基礎硬體與軟體，而不會影響工作負載效能。
+* Microsoft 可以改善服務的基礎架構，而不會影響工作負載的效能。
+* Microsoft 可以快速提升 SQL 資料倉儲的效能，以可調整及平均影響系統的方式執行這項操作。
 
-資料倉儲單位會提供包含三個度量的量值，而這些度量與資料倉儲工作負載效能高度相互關聯。 hello 下列主要工作負載度量以線性方式與 hello Dwu 的小數位數。
+資料倉儲單位會提供包含三個度量的量值，而這些度量與資料倉儲工作負載效能高度相互關聯。 下列主要工作負載度量以線性方式調整 DWU。
 
 **掃描/彙總**：標準資料倉儲查詢，該查詢會掃描大量資料列，然後執行複雜的彙總。 這是 I/O 和 CPU 密集作業。
 
-**載入：** hello 服務 hello 能力 tooingest 資料。 使用來自 Azure 儲存體 Blob 或 Azure Data Lake 的 PolyBase 時的負載效能最佳。 此計量為設計的 toostress 網路和 CPU 方面的 hello 服務。
+**負載**將資料擷取至服務的能力。 使用來自 Azure 儲存體 Blob 或 Azure Data Lake 的 PolyBase 時的負載效能最佳。 這項度量是設計來對服務的網路和 CPU 層面給予壓力。
 
-**為選取 (CTAS) 中建立資料表：** CTAS 測量 hello 能力 toocopy 資料表。 這牽涉到從儲存體，分散 hello 應用裝置 hello 節點和再次寫入 toostorage 讀取資料。 這是 CPU、IO 和網路密集作業。
+**Create Table As Select (CTAS)** ：CTAS 會測量複製資料表的能力。 這牽涉到從儲存體讀取資料、跨應用裝置的節點散發，以及重新寫入至儲存體。 這是 CPU、IO 和網路密集作業。
 
 ## <a name="built-on-sql-server"></a>建置在 SQL Server 上
-SQL 資料倉儲根據 hello SQL Server 關聯式資料庫引擎，並包含許多預期可從企業資料倉儲的 hello 功能。 如果您已經知道 T-SQL，很容易 tootransfer 您知識 tooSQL 資料倉儲。 您是否進階或剛開始使用，開始有助於 hello 範例 hello 文件。 整體來說，您可以將之視為 hello 方式，我們已建構的 SQL 資料倉儲的 hello 語言項目，如下所示：
+SQL 資料倉儲以 SQL Server 關聯式資料庫引擎為基礎，且包含企業資料倉儲的許多功能。 如果您已經熟悉 T-SQL，則可輕鬆地將您的知識傳輸到 SQL 資料倉儲。 無論您是進階或新手使用者，文件範例都能夠協助您開始著手。 整體來說，您可以考慮我們建構 SQL 資料倉儲的語言元素的方式，如下所示：
 
 * SQL 資料倉儲會將 T-SQL 語法用於許多作業。 並且支援一組廣泛的傳統 SQL 建構，例如預存程序、使用者定義函式、資料表資料分割、索引和定序。
 * SQL 資料倉儲也包含各種較新的 SQL Server 功能，包括叢集**資料行存放區**索引、PolyBase 整合和資料稽核 (完整的威脅評估)。
-* 某些 T-SQL 語言項目，較不常用資料倉儲工作負載，或較新 tooSQL 伺服器，可能無法目前可用。 如需詳細資訊，請參閱 hello[移轉文件][Migration documentation]。
+* 較不常用於資料倉儲工作負載或是比 SQL Server 還新的特定 TSQL 語言元素目前可能無法使用。 如需詳細資訊，請參閱[移轉文件][Migration documentation]。
 
-Hello TRANSACT-SQL 和 SQL Server、 SQL 資料倉儲、 SQL Database 和 Analytics Platform System 之間的功能共通性，您可以開發符合資料需求的解決方案。 您可以決定其中 tookeep 您的資料，根據效能、 安全性，和小數位數的需求，以及視不同系統之間傳輸資料。
+透過 SQL Server、SQL 資料倉儲、SQL Database 和「分析平台系統」之間的 Transact-SQL 與功能共通性，您能夠開發符合您資料需求的解決方案。 您可以根據效能、安全性和調整需求，決定儲存資料的位置，然後視需要在不同系統之間傳輸資料。
 
 ## <a name="data-protection"></a>資料保護
-SQL 資料倉儲會將所有資料儲存在 Azure Premium 本地備援儲存體中。 多份同步 hello 資料會保留在 hello 本機資料中心 tooguarantee 透明資料保護針對當地語系化的故障。 此外，SQL 資料倉儲會使用 Azure 儲存體快照集，定期自動備份作用中 (未暫停) 的資料庫。 toolearn 更多有關如何備份與還原如何運作，請參閱 hello[備份和還原的概觀][Backup and restore overview]。
+SQL 資料倉儲會將所有資料儲存在 Azure Premium 本地備援儲存體中。 並在當地資料中心維護多份資料的同步複本，確保當地語系化失敗時能夠提供透明的資料保護。 此外，SQL 資料倉儲會使用 Azure 儲存體快照集，定期自動備份作用中 (未暫停) 的資料庫。 若要深入了解備份和還原的運作方式，請參閱[備份與還原概觀][Backup and restore overview]。
 
 ## <a name="integrated-with-microsoft-tools"></a>與 Microsoft 工具整合
-SQL 資料倉儲也會整合許多 hello 工具該使用者可能很熟悉的 SQL Server。 這些工具包括：
+SQL 資料倉儲也整合了許多 SQL Server 使用者可能很熟悉的工具。 這些工具包括：
 
 **傳統的 SQL Server 工具** ：SQL 資料倉儲會與 SQL Server Analysis Services、Integration Services 和 Reporting Services 完整整合。
 
@@ -104,17 +104,17 @@ SQL 資料倉儲也會整合許多 hello 工具該使用者可能很熟悉的 SQ
 **協力廠商工具**：許多協力廠商工具提供者與 SQL 資料倉儲整合的工具都已經過認證。 如需完整清單，請參閱 [SQL 資料倉儲解決方案合作夥伴][SQL Data Warehouse solution partners]。
 
 ## <a name="hybrid-data-sources-scenarios"></a>混合式資料來源案例
-Polybase 可讓您 tooleverage 您使用熟悉的 T-SQL 命令的不同來源的資料。 Polybase 可讓您保留在 Azure Blob 儲存體，如同它是正規資料表 tooquery 非關聯式資料。 使用 Polybase tooquery 非關聯式資料或 tooimport 非關聯式資料到 SQL 資料倉儲。
+Polybase 可讓您透過使用熟悉的 T-SQL 命令來運用不同來源的資料。 Polybase 讓查詢 Azure Blob 儲存體中的非關聯式資料就像查詢一般資料表般容易。 使用 Polybase 即可查詢非關聯式資料，或將非關聯式資料匯入 SQL 資料倉儲。
 
-* PolyBase 會使用外部資料表 tooaccess 非關聯式資料。 hello 資料表定義會儲存在 SQL 資料倉儲中，您可以使用 SQL 存取和工具與您存取標準的關聯式資料。
-* 在其整合中無從得知 Polybase。 它會公開 hello 相同的功能，它支援的功能 tooall hello 來源。 Polybase 所讀取的 hello 資料可以是以各種格式，包括分隔的檔案或 ORC 檔案。
-* PolyBase 可使用的 tooaccess blob 儲存體，也會被當做使用儲存體 HDInsight 叢集。 這可讓您存取 toohello 關聯式與非關聯式工具相同的資料。
+* PolyBase 使用外部資料表存取非關聯式資料。 資料表定義會儲存在 SQL 資料倉儲中，您可以像存取一般關聯式資料一樣，使用 SQL 和工具進行存取。
+* 在其整合中無從得知 Polybase。 它會為其支援的所有來源提供相同的功能。 Polybase 可讀取各種格式的資料，包括分隔檔案或 ORC 檔案。
+* PolyBase 可用來存取 Blob 儲存體，該儲存體也用來做為 HDInsight 叢集的儲存體。 這可讓您使用關聯式與非關聯式工具，以最新的方式存取相同的資料。
 
 ## <a name="sla"></a>SLA
-SQL 資料倉儲提供產品層級的服務等級協定 (SLA) 做為 Microsoft Online Services SLA 的一部分。 如需詳細資訊，請參閱 [SQL 資料倉儲的 SLA][SLA for SQL Data Warehouse]。 如需所有其他產品的 SLA 資訊，您可以造訪 hello[服務等級協定]Azure 頁面上，或下載 hello[大量授權][ Volume Licensing]頁面。 
+SQL 資料倉儲提供產品層級的服務等級協定 (SLA) 做為 Microsoft Online Services SLA 的一部分。 如需詳細資訊，請參閱 [SQL 資料倉儲的 SLA][SLA for SQL Data Warehouse]。 如需關於所有其他產品的 SLA 資訊，您可以造訪[服務等級協定] Azure 頁面，或在[大量授權][Volume Licensing]頁面上下載。 
 
 ## <a name="next-steps"></a>後續步驟
-既然您稍微了解 SQL 資料倉儲，了解如何 tooquickly[建立 SQL 資料倉儲][ create a SQL Data Warehouse]和[範例資料載入][load sample data]。 如果您是新 tooAzure，您可能會發現 hello [Azure 詞彙][ Azure glossary]遇到新的術語很有幫助。 或者，也可以看一下其中一些其他 SQL 資料倉儲資源。  
+現在您已稍微了解 SQL 資料倉儲，請了解如何快速[建立 SQL 資料倉儲][create a SQL Data Warehouse]和[載入範例資料][load sample data]。 如果您不熟悉 Azure，您可能會發現 [Azure 詞彙][Azure glossary]在您遇到新術語時很有幫助。 或者，也可以看一下其中一些其他 SQL 資料倉儲資源。  
 
 * [客戶成功案例]
 * [部落格]

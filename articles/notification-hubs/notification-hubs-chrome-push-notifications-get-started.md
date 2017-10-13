@@ -1,6 +1,6 @@
 ---
-title: "aaaSend 推播通知 tooChrome 應用程式與 Azure 通知中心 |Microsoft 文件"
-description: "了解如何 toouse Azure 通知中樞 toosend 推播通知 tooa Chrome 應用程式。"
+title: "使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式 | Microsoft Docs"
+description: "了解如何使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式。"
 services: notification-hubs
 keywords: "行動推播通知,推播通知,推播通知,chrome 推播通知"
 documentationcenter: 
@@ -15,79 +15,79 @@ ms.devlang: JavaScript
 ms.topic: hero-article
 ms.date: 10/03/2016
 ms.author: yuaxu
-ms.openlocfilehash: 7dec8ab02622563bc3730a2e96820da8932d22f3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 600b1b7e5f3987c9a0acc33b7049f7118442b931
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="send-push-notifications-toochrome-apps-with-azure-notification-hubs"></a>傳送推播通知 tooChrome 應用程式與 Azure 通知中心
+# <a name="send-push-notifications-to-chrome-apps-with-azure-notification-hubs"></a>使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式
 [!INCLUDE [notification-hubs-selector-get-started](../../includes/notification-hubs-selector-get-started.md)]
 
-本主題說明如何 toouse Azure 通知中樞 toosend 推播通知 tooa Chrome 應用程式，將會顯示 hello 內容 hello Google Chrome 瀏覽器中。 在本教學課程中，我們將建立可使用 [Google 雲端通訊 (GCM)](https://developers.google.com/cloud-messaging/)接收推播通知的 Chrome 應用程式。 
+本主題說明如何使用 Azure 通知中樞將推播通知傳送至 Chrome 應用程式，以顯示於 Google Chrome 瀏覽器的內容中。 在本教學課程中，我們將建立可使用 [Google 雲端通訊 (GCM)](https://developers.google.com/cloud-messaging/)接收推播通知的 Chrome 應用程式。 
 
 > [!NOTE]
-> toocomplete 本教學課程中，您必須擁有有效的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%notification-hubs-chrome-get-started%2F)。
+> 若要完成此教學課程，您必須具備有效的 Azure 帳戶。 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資料，請參閱 [Azure 免費試用](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A0E0E5C02&amp;returnurl=http%3A%2F%2Fazure.microsoft.com%2Fen-us%2Fdocumentation%2Farticles%notification-hubs-chrome-get-started%2F)。
 > 
 > 
 
-hello 教學課程將引導您完成這些基本步驟 tooenable 推播通知：
+本教學課程將逐步引導您完成下列啟用推播通知的基本步驟：
 
 * [啟用 Google Cloud Messaging](#register)
 * [設定您的通知中樞](#configure-hub)
-* [連接您的應用程式 Chrome toohello 的通知中樞](#connect-app)
-* [傳送推播通知 tooyour Chrome 應用程式](#send)
+* [將您的 Chrome 應用程式連接到通知中樞](#connect-app)
+* [傳送推播通知給您的 Chrome 應用程式](#send)
 * [其他功能與能力](#next-steps)
 
 > [!NOTE]
-> Chrome 應用程式的推播通知不是泛型的瀏覽器中通知--它們是特定 toohello 瀏覽器擴充性模型 (請參閱[Chrome 應用程式的概觀]如需詳細資訊)。 此外 toohello 桌面瀏覽器 Chrome 應用程式 （Android 和 iOS） 的行動裝置上透過執行 Apache Cordova。 請參閱[行動裝置上的 Chrome 應用程式]toolearn 更多。
+> Chrome 應用程式的推播通知不是一般的瀏覽器中通知，而是瀏覽器擴充性模型所特有 (如需詳細資訊，請參閱 [Chrome 應用程式概觀] )。 Chrome 應用程式除了在桌面瀏覽器中執行外，也可透過 Apache Cordova 在行動裝置 (Android 和 iOS) 上執行。 若要深入了解，請參閱 [行動裝置上的 Chrome 應用程式] 。
 > 
 > 
 
-因為設定 GCM 和 Azure 通知中心是適用於 Android 的相同 tooconfiguring [Google Cloud Messaging chrome]已被取代，hello 相同 GCM 現在支援 Android 裝置和 Chrome 的執行個體。
+設定 GCM 和 Azure 通知中樞的程序與 Android 的設定程序相同，因為 [Google Cloud Messaging for Chrome] 已停用，而相同的 GCM 現在可同時支援 Android 裝置和 Chrome 執行個體。
 
 ## <a id="register"></a>啟用 Google Cloud Messaging
-1. 瀏覽 toohello [Google 雲端主控台]網站，使用您的 Google 帳戶認證登入，然後按一下hello**建立專案** 按鈕。 提供適當**專案名稱**，然後按一下hello**建立** 按鈕。
+1. 瀏覽至 [Google 雲端主控台]網站，並使用 Google 帳戶認證登入，然後按一下 **[建立專案]** 按鈕。 提供適當的 [專案名稱]，然後按一下 [建立] 按鈕。
    
        ![Google Cloud Console - Create Project][1]
-2. 請記下 hello**專案編號**上 hello**專案**hello 專案您剛才建立的頁面。 您會使用這個 hello **GCM 寄件者識別碼**hello Chrome 應用程式 tooregister GCM 使用中。
+2. 在 [專案] 頁面上，記下您剛才建立之專案的 [專案編號]。 您將以此編號做為 Chrome 應用程式中的 [GCM 寄件者識別碼]  ，向 GCM 註冊。
    
        ![Google Cloud Console - Project Number][2]
-3. Hello 左窗格中，按一下  **Api & auth**，然後向下捲動並按一下 hello 切換 tooenable**適用於 Android 的 Google Cloud Messaging**。 您不需要 tooenable **Google Cloud Messaging chrome**。
+3. 在左窗格中按一下 [API 與驗證]，然後向下捲動並按一下切換開關，以啟用 [Google Cloud Messaging for Android]。 您不需要啟用 Google Cloud Messaging for Chrome 。
    
        ![Google Cloud Console - Server Key][3]
-4. 在 hello 左窗格中，按一下 **認證** > **建立新的金鑰** > **伺服器金鑰** > **建立**.
+4. 在左窗格中，按一下 [認證] > [建立新的金鑰] > [伺服器金鑰] > [建立]。
    
        ![Google Cloud Console - Credentials][4]
-5. 請記下 hello 伺服器**API 金鑰**。 您會設定此通知中樞的 下一步，tooenable 中它 toosend 推播通知 tooGCM。
+5. 記下伺服器的 [API 金鑰] 。 您後續將會在通知中樞裡設定此金鑰，讓它能夠將推播通知傳送至 GCM。
    
        ![Google Cloud Console - API Key][5]
 
 ## <a id="configure-hub"></a>設定您的通知中樞
 [!INCLUDE [notification-hubs-portal-create-new-hub](../../includes/notification-hubs-portal-create-new-hub.md)]
 
-&emsp;&emsp;6.   在 hello**設定**刀鋒視窗中，選取**Notification Services**然後**Google (GCM)**。 輸入 hello API 金鑰，並儲存。
+&emsp;&emsp;6.   在 [設定] 刀鋒視窗中，選取 [通知服務]，然後選取 [Google (GCM)]。 輸入 API 金鑰並儲存。
 
 &emsp;&emsp;![Azure 通知中樞 - Google (GCM)](./media/notification-hubs-android-get-started/notification-hubs-gcm-api.png)
 
-## <a id="connect-app"></a>連接您的應用程式 Chrome toohello 的通知中樞
-您的通知中樞現在是設定的 toowork 與 GCM，而且您擁有 hello 的連接字串 tooregister 應用程式 tooboth 接收和傳送推播通知。 LK
+## <a id="connect-app"></a>將您的 Chrome 應用程式連接到通知中樞
+現在已將您的通知中樞設定成使用 GCM，而且您已擁有可用來註冊應用程式以接收和傳送推播通知的連接字串。 LK
 
 ### <a name="create-a-new-chrome-app"></a>建立新的 Chrome 應用程式
-以下的 hello 範例根據 hello [Chrome 應用程式 GCM 範例]使用 hello 建議的方式 toocreate Chrome 應用程式。 我們將會反白顯示 hello 步驟特別相關的 tooAzure 通知中樞。 
+下列範例以 [Chrome 應用程式 GCM 範例] 為基礎，並使用建議的方式建立 Chrome 應用程式。 我們將加強說明 Azure 通知中樞的相關具體步驟。 
 
 > [!NOTE]
-> 我們建議您從這個 Chrome 應用程式下載 hello 來源[Chrome 應用程式通知中樞範例]。
+> 我們建議您從 [Chrome 應用程式通知中樞範例]下載此 Chrome 應用程式的原始碼。
 > 
 > 
 
-JavaScript 中，透過建立 hello Chrome 應用程式，您可以使用任何慣用的文字編輯器來建立它。 此 Chrome 應用程式如下所示。
+Chrome 應用程式是透過 JavaScript 建立的，您可以使用任何慣用的文字編輯器加以建立。 此 Chrome 應用程式如下所示。
 
 ![Google Chrome 應用程式][15]
 
-1. 建立資料夾，並將其命名為 `ChromePushApp`。 當然，hello 名稱是任意-如果您將檔案命名不同的項目，請確定您所需的 hello 程式碼區段中的 hello 路徑來取代。
-2. 下載 hello [crypto js 程式庫]hello hello 第二個步驟中所建立的資料夾中。 此程式庫資料夾將包含兩個子資料夾：`components` 和 `rollups`。
-3. 建立 `manifest.json` 檔案。 所有 Chrome 應用程式都都由資訊清單檔案，其中包含 hello 應用程式中繼資料和最重要的是，所有已授與權限 toohello 應用程式時 hello 使用者進行安裝。
+1. 建立資料夾，並將其命名為 `ChromePushApp`。 當然，您不一定要取為這個名稱，但如果您將其命名為不同名稱，請務必要替換掉必要程式碼片段中的路徑。
+2. 在第二個步驟建立的資料夾中，下載 [crypto-js 程式庫] 。 此程式庫資料夾將包含兩個子資料夾：`components` 和 `rollups`。
+3. 建立 `manifest.json` 檔案。 所有 Chrome 應用程式都會受到包含應用程式中繼資料的資訊清單檔案，以及最重要的是，使用者安裝應用程式時授與應用程式的所有權限所支援。
    
         {
           "name": "NH-GCM Notifications",
@@ -103,11 +103,11 @@ JavaScript 中，透過建立 hello Chrome 應用程式，您可以使用任何�
           "icons": { "128": "gcm_128.png" }
         }
    
-    請注意 hello`permissions`元素，其指定此 Chrome 應用程式將會從 GCM 可以 tooreceive 推播通知。 它也必須指定 hello 而 hello Chrome 應用程式將於其中進行 REST 呼叫 tooregister Azure 通知中樞 URI。
-    我們的範例應用程式也會使用的圖示檔`gcm_128.png`，您會發現在 hello 來源 hello 原始 GCM 範例中會重複使用。 您可以替換符合 hello 任何映像[圖示準則](https://developer.chrome.com/apps/manifest/icons)。
-4. 建立一個叫做檔案`background.js`以下列程式碼的 hello:
+    請留意 `permissions` 元素，它會指定此 Chrome 應用程式能夠從 GCM 接收推播通知。 它也必須指定 Azure 通知中樞 URI，其中 Chrome 應用程式將呼叫 REST 以進行註冊。
+    我們的範例應用程式也會使用圖示檔案 `gcm_128.png`，您會在取自原始 GCM 範例的重複使用原始碼中發現此檔案。 您可以用此圖示檔案來替換任何符合 [圖示準則](https://developer.chrome.com/apps/manifest/icons)的影像。
+4. 建立名為 `background.js` 的檔案並加入下列程式碼：
    
-        // Returns a new notification ID used in hello notification.
+        // Returns a new notification ID used in the notification.
         function getNotificationId() {
           var id = Math.floor(Math.random() * 9007199254740992) + 1;
           return id.toString();
@@ -117,7 +117,7 @@ JavaScript 中，透過建立 hello Chrome 應用程式，您可以使用任何�
           // A message is an object with a data property that
           // consists of key-value pairs.
    
-          // Concatenate all key-value pairs tooform a display string.
+          // Concatenate all key-value pairs to form a display string.
           var messageString = "";
           for (var key in message.data) {
             if (messageString != "")
@@ -126,7 +126,7 @@ JavaScript 中，透過建立 hello Chrome 應用程式，您可以使用任何�
           }
           console.log("Message received: " + messageString);
    
-          // Pop up a notification tooshow hello GCM message.
+          // Pop up a notification to show the GCM message.
           chrome.notifications.create(getNotificationId(), {
             title: 'GCM Message',
             iconUrl: 'gcm_128.png',
@@ -155,15 +155,15 @@ JavaScript 中，透過建立 hello Chrome 應用程式，您可以使用任何�
         // Set up a listener for GCM message event.
         chrome.gcm.onMessage.addListener(messageReceived);
    
-        // Set up listeners tootrigger hello first-time registration.
+        // Set up listeners to trigger the first-time registration.
         chrome.runtime.onInstalled.addListener(firstTimeRegistration);
         chrome.runtime.onStartup.addListener(firstTimeRegistration);
    
-    這是快顯 hello Chrome 應用程式視窗 HTML 的 hello 檔案 (**register.html**)，並且定義 hello 處理常式**messageReceived** toohandle hello 傳入推播通知。
-5. 建立一個叫做檔案`register.html`-這會定義 hello hello Chrome 應用程式的 UI。 
+    這是快顯 Chrome 應用程式視窗 HTML (**register.html**) 的檔案，且該檔案也會定義處理常式 **messageReceived** 來處理內送的推播通知。
+5. 建立名為 `register.html` 的檔案，此檔案會定義 Chrome 應用程式的 UI。 
    
    > [!NOTE]
-   > 此範例使用 **CryptoJS v3.1.2**。 如果您已經下載 hello 文件庫的另一個版本，請確定您正確替代 hello 中的 hello 版本`src`路徑。
+   > 此範例使用 **CryptoJS v3.1.2**。 如果您下載了另一個版本的程式庫，請務必要正確替換 `src` 路徑中的版本。
    > 
    > 
    
@@ -199,7 +199,7 @@ JavaScript 中，透過建立 hello Chrome 應用程式，您可以使用任何�
         </body>
    
         </html>
-6. 建立一個叫做檔案`register.js`與 hello 的下列程式碼。 此檔案會指定 hello 指令碼後置`register.html`。 Chrome 應用程式不允許內嵌執行，因此您 ui 有 toocreate 個別備份指令碼。
+6. 使用下列程式碼，建立名為 `register.js` 的檔案。 此檔案會指定 `register.html`後面的指令碼。 Chrome 應用程式並不允許內嵌執行，因此您必須為 UI 建立個別的備份指令碼。
    
         var registrationId = "";
         var hubName        = "", connectionString = "";
@@ -224,7 +224,7 @@ JavaScript 中，透過建立 hello Chrome 應用程式，您可以使用任何�
           var senderId = document.getElementById("senderId").value.trim();
           chrome.gcm.register([senderId], registerCallback);
    
-          // Prevent register button from being clicked again before hello registration finishes.
+          // Prevent register button from being clicked again before the registration finishes.
           document.getElementById("registerWithGCM").disabled = true;
         }
    
@@ -233,7 +233,7 @@ JavaScript 中，透過建立 hello Chrome 應用程式，您可以使用任何�
           document.getElementById("registerWithGCM").disabled = false;
    
           if (chrome.runtime.lastError) {
-            // When hello registration fails, handle hello error and retry the
+            // When the registration fails, handle the error and retry the
             // registration later.
             updateLog("Registration failed: " + chrome.runtime.lastError.message);
             return;
@@ -242,7 +242,7 @@ JavaScript 中，透過建立 hello Chrome 應用程式，您可以使用任何�
           updateLog("Registration with GCM succeeded.");
           document.getElementById("registerWithNH").disabled = false;
    
-          // Mark that hello first-time registration is done.
+          // Mark that the first-time registration is done.
           chrome.storage.local.set({registered: true});
         }
    
@@ -310,7 +310,7 @@ JavaScript 中，透過建立 hello Chrome 應用程式，您可以使用任何�
               "</content>" +
           "</entry>";
    
-          // Update hello payload with hello registration ID obtained earlier.
+          // Update the payload with the registration ID obtained earlier.
           registrationPayload = registrationPayload.replace("{GCMRegistrationId}", registrationId);
    
           var url = originalUri + "/registrations/?api-version=2014-09";
@@ -346,38 +346,38 @@ JavaScript 中，透過建立 hello Chrome 應用程式，您可以使用任何�
           }
         }
    
-    上述指令碼的 hello 具有下列索引鍵參數的 hello:
+    上述指令碼具有下列重要參數：
    
-   * **window.onload** hello UI 上定義的 hello 兩個按鈕的 hello 按鈕 click 事件。 其中一個登錄 GCM，並 hello 其他使用 GCM tooregister 與 Azure 通知中心註冊後，會傳回的 hello 註冊 ID。
-   * **updateLog**是 hello 函式，讓我們 toohandle 簡單的記錄功能。
-   * **registerWithGCM** hello 第一個按鈕 click 處理常式，使得 hello`chrome.gcm.register`呼叫 tooGCM tooregister hello 目前 Chrome 應用程式的執行個體。
-   * **registerCallback**是 hello hello GCM 註冊呼叫傳回時被呼叫的回呼函式。
-   * **registerWithNH** hello 第二個按鈕 click 處理常式，以使用通知中樞註冊。 它會取得`hubName`和`connectionString`（hello 使用者已指定） 和美工 hello 通知中樞註冊 REST API 呼叫。
-   * **splitConnectionString**和**generateSaSToken**是代表 hello 的 SaS 權杖的建立程序必須用於所有 REST API 呼叫的 JavaScript 實作的協助程式。 如需詳細資訊，請參閱 [一般概念](http://msdn.microsoft.com/library/dn495627.aspx)。
-   * **sendNHRegistrationRequest** hello 函式，讓 HTTP REST 呼叫 tooAzure 通知中樞。
-   * **registrationPayload**定義 hello 註冊 XML 裝載。 如需詳細資訊，請參閱 [建立註冊 NH REST API]。 我們會以我們收到來自 GCM 更新中的 hello 註冊 ID。
-   * **用戶端**的執行個體**XMLHttpRequest** ，我們會使用 toomake hello HTTP POST 要求。 請注意，我們會更新 hello`Authorization`具有標頭`sasToken`。 成功完成此呼叫後，即會向 Azure 通知中樞註冊此 Chrome 應用程式執行個體。
+   * **window.onload** 會在 UI 上定義兩個按鈕的按鈕點擊事件。 其中一個向 GCM 註冊，另一個使用向 GCM 註冊後所傳回的註冊識別碼來向 Azure 通知中樞註冊。
+   * **updateLog** 是可讓我們處理簡單記錄功能的函式。
+   * **registerWithGCM** 是第一個按鈕點擊處理常式，可向 GCM 進行 `chrome.gcm.register` 呼叫，以註冊目前的 Chrome 應用程式執行個體。
+   * **registerCallback** 是回呼函數，會在 GCM 註冊呼叫傳回時受到呼叫。
+   * **registerWithNH** 是第二個按鈕點擊處理常式，會向通知中樞進行註冊。 它會取得使用者已指定的 `hubName` 和 `connectionString`，並製作通知中樞註冊 REST API 呼叫。
+   * **splitConnectionString** 和 **generateSaSToken** 是代表 SaS 權杖建立程序之 JavaScript 實作的協助程式，其必須用於所有 REST API 呼叫中。 如需詳細資訊，請參閱 [一般概念](http://msdn.microsoft.com/library/dn495627.aspx)。
+   * **sendNHRegistrationRequest** 是對 Azure 通知中樞發出 HTTP REST 呼叫的函式。
+   * **registrationPayload** 會定義註冊 XML 裝載。 如需詳細資訊，請參閱 [建立註冊 NH REST API]。 我們會以接收自 GCM 的項目來更新其中的註冊識別碼。
+   * **client** 是我們用來發出 HTTP POST 要求的 **XMLHttpRequest** 執行個體。 請注意，我們會使用 `sasToken` 更新 `Authorization` 標頭。 成功完成此呼叫後，即會向 Azure 通知中樞註冊此 Chrome 應用程式執行個體。
 
-hello 這個專案的整個資料夾結構看起來應該像這樣： ![Google Chrome 應用程式的資料夾結構][21]
+此專案的整體資料夾結構應該會與下圖類似︰![Google Chrome 應用程式 - 資料夾結構][21]
 
 ### <a name="set-up-and-test-your-chrome-app"></a>設定和測試 Chrome 應用程式
 1. 開啟 Chrome 瀏覽器。 開啟 [Chrome 擴充功能]，並啟用 [開發人員模式]。
    
        ![Google Chrome - Enable Developer Mode][16]
-2. 按一下**解除封裝的擴充功能載入**並瀏覽 toohello 資料夾建立 hello 檔案的位置。 您也可以使用 hello **Chrome 應用程式 （& s) 延伸模組的開發人員工具**。 此工具是 Chrome 中的應用程式本身 （從 hello Chrome Web Store 安裝），並提供進階偵錯功能 Chrome 應用程式開發。
+2. 按一下 [載入未封裝的擴充功能]，並瀏覽至您在其中建立檔案的資料夾。 您也可以選擇性地使用 **Chrome Apps & Extensions Developer Tool**。 此工具本身為 Chrome 應用程式 (從 Chrome 線上應用程式商店進行安裝)，且提供 Chrome 應用程式開發進階偵錯功能。
    
        ![Google Chrome - Load Unpacked Extension][17]
-3. 如果沒有發生任何錯誤，建立 hello Chrome 應用程式，您會看到顯示 Chrome 應用程式。
+3. 如果該 Chrome 應用程式在建立時未發生任何錯誤，則您將會看見該應用程式顯示。
    
        ![Google Chrome - Chrome App Display][18]
-4. 輸入 hello**專案編號**，則您稍早取得從 hello **Google 雲端主控台**為 hello 寄件者識別碼，然後按一下**GCM 註冊**。 您必須查看 hello 訊息**GCM 成功的註冊。**
+4. 輸入您先前從 **Google 雲端主控台** 取得的 **[專案編號]**，做為寄件者識別碼，然後按一下 **[向 GCM 註冊]**。 您必須看見 **Registration with GCM succeeded.** 訊息。
    
        ![Google Chrome - Chrome App Customization][19]
-5. 輸入您**通知中樞名稱**和 hello **DefaultListenSharedAccessSignature**您取得的較舊版本，hello 網站，然後按一下**向 Azure 通知中樞**. 您必須查看 hello 訊息**通知中樞註冊成功 ！** 而且識別碼 hello hello 註冊回應，其中包含 hello Azure 通知中樞註冊詳細資料。
+5. 輸入您先前從 Azure 傳統入口網站取得的 [通知中樞名稱] 和 [DefaultListenSharedAccessSignature]，然後按一下 [向 Azure 通知中樞註冊]。 您必須看見 **Registration with GCM succeeded.** 訊息 和註冊回應的詳細資料，其中包含 Azure 通知中樞註冊識別碼。
    
        ![Google Chrome - Specify Notification Hub Details][20]  
 
-## <a name="send"></a>傳送通知 tooyour Chrome 應用程式
+## <a name="send"></a>傳送通知給您的 Chrome 應用程式
 為了進行測試，我們會使用 .NET 主控台應用程式傳送 Chrome 推播通知。 
 
 > [!NOTE]
@@ -385,17 +385,17 @@ hello 這個專案的整個資料夾結構看起來應該像這樣： ![Google C
 > 
 > 
 
-1. 在 Visual Studio 中，從 hello**檔案**功能表上，選取**新增**然後**專案**。 在 Visual C# 下方，按一下 Windows 和 主控台應用程式，然後按一下確定。  這會建立新的主控台應用程式專案。
-2. 從 hello**工具**功能表上，按一下 **程式庫套件管理員**然後**Package Manager Console**。 這會顯示 hello Package Manager Console。
-3. 在 hello 主控台視窗中，執行下列命令的 hello:
+1. 在 Visual Studio 的 [檔案] 功能表中，選取 [新增]，然後選取 [專案]。 在 [Visual C#] 下方，按一下 [Windows] 和 [主控台應用程式]，然後按一下 [確定]。  這會建立新的主控台應用程式專案。
+2. 在 [工具] 功能表中，依序按一下 [程式庫套件管理員] 和 [套件管理器主控台]。 這會顯示 [Package Manager Console]。
+3. 在主控台視窗中，執行下列命令：
    
         Install-Package Microsoft.Azure.NotificationHubs
    
-       This adds a reference toohello Azure Service Bus SDK with hello <a href="http://nuget.org/packages/  WindowsAzure.ServiceBus/">WindowsAzure.ServiceBus NuGet package</a>.
-4. 開啟`Program.cs`並加入下列 hello`using`陳述式：
+       This adds a reference to the Azure Service Bus SDK with the <a href="http://nuget.org/packages/  WindowsAzure.ServiceBus/">WindowsAzure.ServiceBus NuGet package</a>.
+4. 開啟 `Program.cs` 並新增下列 `using` 陳述式：
    
         using Microsoft.Azure.NotificationHubs;
-5. 在 hello`Program`類別中，新增下列方法 hello:
+5. 在 `Program` 類別中，新增下列方法：
    
         private static async void SendNotificationAsync()
         {
@@ -404,35 +404,35 @@ hello 這個專案的整個資料夾結構看起來應該像這樣： ![Google C
             await hub.SendGcmNativeNotificationAsync(message);
         }
    
-       Make sure tooreplace hello `<hub name>` placeholder with hello name of hello notification hub that appears in hello [portal](https://portal.azure.com) in your Notification Hub blade. Also, replace hello connection string placeholder with hello connection string called `DefaultFullSharedAccessSignature` that you obtained in hello notification hub configuration section.
+       Make sure to replace the `<hub name>` placeholder with the name of the notification hub that appears in the [portal](https://portal.azure.com) in your Notification Hub blade. Also, replace the connection string placeholder with the connection string called `DefaultFullSharedAccessSignature` that you obtained in the notification hub configuration section.
    
    > [!NOTE]
-   > 請確定您使用連接字串 hello**完整**不存取**接聽**存取。 hello**接聽**存取連接字串不授與權限 toosend 推播通知。
+   > 請確定您使用的連接字串具有 [完整] 存取權，而非 [接聽] 存取權。 [接聽]  存取權連接字串未授與傳送推播通知的權限。
    > 
    > 
-6. 新增 hello 下列呼叫 hello`Main`方法：
+6. 在 `Main` 方法中新增下列呼叫︰
    
          SendNotificationAsync();
          Console.ReadLine();
-7. 請確定 Chrome 正在執行，並執行 hello 主控台應用程式。
-8. 您應該會看見 hello 下列顯桌面上的通知。
+7. 確定 Chrome 正在執行，並執行主控台應用程式。
+8. 您應該會在桌面上看見下列通知快顯視窗。
    
        ![Google Chrome - Notification][13]
-9. 您也可以查看您的通知 （在 Windows) 使用 hello 工作列中的 hello Chrome 通知視窗 Chrome 正在執行時。
+9. 當 Chrome 執行時，您也可以使用工作列 (在 Windows 中) 內的 [Chrome 通知] 視窗來查看所有的通知。
    
        ![Google Chrome - Notifications List][14]
 
 > [!NOTE]
-> 您不需要 toohave hello Chrome 應用程式執行中或在 hello 瀏覽器中開啟 （但必須執行 hello Chrome 瀏覽器本身）。 您也可以取得您的通知的彙總的檢視 hello Chrome 通知視窗中。
+> 您不需要執行 Chrome 應用程式，也不需要在瀏覽器中開啟 (但 Chrome 瀏覽器本身必須為執行狀態)。 您也可以在 [Chrome 通知] 視窗中整合檢視您所有的通知。
 > 
 > 
 
 ## <a name="next-steps"> </a>後續步驟
 請在 [通知中樞概觀]中進一步了解通知中樞。
 
-tootarget 特定使用者，請參閱 toohello [Azure 通知中樞通知使用者]教學課程。 
+若要針對特定使用者，請參閱 [Azure 通知中樞通知使用者] 教學課程。 
 
-如果您希望 toosegment 使用者感興趣的群組，您可以依照 hello [Azure 通知中心最新消息]教學課程。
+如果您想要按興趣群組分隔使用者，可按照 [Azure 通知中樞即時新聞] 教學課程的指示進行。
 
 <!-- Images. -->
 [1]: ./media/notification-hubs-chrome-get-started/GoogleConsoleCreateProject.PNG
@@ -462,13 +462,13 @@ tootarget 特定使用者，請參閱 toohello [Azure 通知中樞通知使用�
 [Google 雲端主控台]: http://cloud.google.com/console
 [Azure Classic Portal]: https://manage.windowsazure.com/
 [通知中樞概觀]: notification-hubs-push-notification-overview.md
-[Chrome 應用程式的概觀]: https://developer.chrome.com/apps/about_apps
+[Chrome 應用程式概觀]: https://developer.chrome.com/apps/about_apps
 [Chrome 應用程式 GCM 範例]: https://github.com/GoogleChrome/chrome-app-samples/tree/master/samples/gcm-notifications
 [Installable Web Apps]: https://developers.google.com/chrome/apps/docs/
 [行動裝置上的 Chrome 應用程式]: https://developer.chrome.com/apps/chrome_apps_on_mobile
 [建立註冊 NH REST API]: http://msdn.microsoft.com/library/azure/dn223265.aspx
-[crypto js 程式庫]: http://code.google.com/p/crypto-js/
+[crypto-js 程式庫]: http://code.google.com/p/crypto-js/
 [GCM with Chrome Apps]: https://developer.chrome.com/apps/cloudMessaging
-[Google Cloud Messaging chrome]: https://developer.chrome.com/apps/cloudMessagingV1
+[Google Cloud Messaging for Chrome]: https://developer.chrome.com/apps/cloudMessagingV1
 [Azure 通知中樞通知使用者]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
-[Azure 通知中心最新消息]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
+[Azure 通知中樞即時新聞]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md

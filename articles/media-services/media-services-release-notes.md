@@ -1,5 +1,5 @@
 ---
-title: "aaaMedia 服務版本資訊 |Microsoft 文件"
+title: "媒體服務版本資訊 | Microsoft Docs"
 description: "媒體服務版本資訊"
 services: media-services
 documentationcenter: 
@@ -14,17 +14,17 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/20/2017
 ms.author: juliako
-ms.openlocfilehash: c365b1133987267173ec858298c4c6de62744946
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 202cd5441401a91736a55ccba095fa08dc95aa26
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="azure-media-services-release-notes"></a>Azure 媒體服務版本資訊
 這些版本資訊彙總了舊版的變更和已知問題。
 
 > [!NOTE]
-> 我們想 toohear 從我們的客戶，並專注於修正影響您的問題。 tooreport 問題或提出問題，請張貼在 hello [Azure 媒體服務 MSDN 論壇]。
+> 我們想要收到客戶的意見，並專注於修正會影響您的問題。 若要回報問題或提問，請在 [Azure 媒體服務 MSDN 論壇]中貼文。
 > 
 > 
 
@@ -32,77 +32,77 @@ ms.lasthandoff: 10/06/2017
 ### <a id="general_issues"></a>媒體服務一般問題
 | 問題 | 說明 |
 | --- | --- |
-| Hello REST API 中，不會提供數個常見的 HTTP 標頭。 |如果您開發使用 hello REST API 的媒體服務應用程式，您會發現一些常見的 HTTP 標頭欄位 (包括用戶端要求識別碼，要求識別碼，並傳回用戶端的要求 ID) 不支援。 在未來的更新中，將會加入 hello 標頭。 |
-| 不允許 percent-encoding。 |Media Services 使用 hello hello IAssetFile.Name 屬性值，當建置 Url 的 hello 串流處理內容 (例如，http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters。)基於這個理由，不允許 percent-encoding。 hello hello 值**名稱**屬性不能有 hello 下列任何一項[百分比編碼的保留字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters): ！ *' （);: @& = + $，/？ %# []"。 此外，只能有一個 ‘.’ hello 檔案名稱副檔名。 |
-| hello ListBlobs 方法屬於 hello Azure 儲存體 SDK 版本 3.x 會失敗。 |媒體服務會產生 SAS Url 根據 hello [2012年-02-12](https://docs.microsoft.com/rest/api/storageservices/Version-2012-02-12)版本。 如果您想 toouse Azure 儲存體 SDK toolist blob 的 blob 容器中，使用 hello [CloudBlobContainer.ListBlobs](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.blob.cloudblobcontainer.listblobs.aspx)方法屬於 Azure 儲存體 SDK 版本 2.x。 hello ListBlobs 方法屬於 hello Azure 儲存體 SDK 版本 3.x 將會失敗。 |
-| 媒體服務節流機制會限制應用程式而言過多要求 toohello 服務 hello 資源使用的狀況。 hello 服務可能傳回 hello 服務無法使用 (503) HTTP 狀態碼。 |如需詳細資訊，請參閱 hello 中的 hello 503 HTTP 狀態碼 hello 描述[Azure 媒體服務錯誤碼](media-services-encoding-error-codes.md)主題。 |
-| 當查詢實體，就會限制為 1000年因為公用 REST v2 限制查詢結果 too1000 結果一次傳回的實體。 |您需要 toouse**略過**和**採取**(.NET) /**頂端**(REST) 中所述[.NET 本例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[這個 REST API範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)。 |
-| 某些用戶端可以來自跨 hello Smooth Streaming 資訊清單中的重複標記問題。 |如需詳細資訊，請參閱 [本節](media-services-deliver-content-overview.md#known-issues) 。 |
-| Azure 媒體服務 .NET SDK 物件無法序列化，因此無法與 Azure 快取搭配運作。 |如果您嘗試 tooserialize hello SDK AssetCollection 物件 tooadd 它 tooAzure 快取，例外狀況就會擲回。 |
-| 編碼工作失敗，並顯示訊息字串「階段︰DownloadFile。 代碼：System.NullReferenceException」。 |tooupload 輸入視訊檔案 tooan 輸入資產，並提交一個或多個編碼工作的輸入資產，而不需要進一步修改輸入資產的 hello 一般編碼工作流程。 不過，如果您修改 hello 輸入資產 （例如藉由加入/刪除/重新命名檔案內 hello 資產），則後續的工作可能會因 DownloadFile 錯誤。 hello 因應措施是 toodelete hello 輸入資產，並重新上傳輸入檔案 tooa 新資產。 |
+| 有幾個常用的 HTTP 標頭未提供於 REST API 中。 |如果您使用 REST API 開發媒體服務應用程式，您會發現有些常用的 HTTP 標頭欄位 (包括 CLIENT-REQUEST-ID、REQUEST-ID 和 RETURN-CLIENT-REQUEST-ID) 不受支援。 這些標頭將在未來的更新中加入。 |
+| 不允許 percent-encoding。 |建置串流內容的 URL (例如，http://{AMSAccount}.origin.mediaservices.windows.net/{GUID}/{IAssetFile.Name}/streamingParameters) 時，媒體服務會使用 IAssetFile.Name 屬性的值。基於這個理由，不允許 percent-encoding。 **Name** 屬性的值不能有下列任何[百分比編碼保留字元](http://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#[]"。 此外，只能有一個 ‘.’ 在檔案名稱的副檔名。 |
+| 屬於 Azure Storage SDK 3.x 版的 ListBlobs 方法無法運作。 |媒體服務會根據 [2012-02-12](https://docs.microsoft.com/rest/api/storageservices/Version-2012-02-12) 版本產生 SAS URL。 如果您要使用 Azure Storage SDK 列出 Blob 容器中的 Blob，請使用屬於 Azure Storage SDK 2.x 版的 [CloudBlobContainer.ListBlobs](http://msdn.microsoft.com/library/microsoft.windowsazure.storage.blob.cloudblobcontainer.listblobs.aspx) 方法。 屬於 Azure Storage SDK 3.x 版的 ListBlobs 方法將會失敗。 |
+| 媒體服務節流機制會針對向服務發出過多要求的應用程式限制資源使用量。 服務可能會傳回「服務無法使用 (503)」HTTP 狀態碼。 |如需詳細資訊，請參閱 [Azure 媒體服務錯誤碼](media-services-encoding-error-codes.md) 主題中 503 HTTP 狀態碼的說明。 |
+| 查詢項目時，有一次最多傳回 1000 個實體的限制，因為公用 REST v2 有 1000 個查詢結果數目的限制。 |您需要使用 **Skip** 和 **Take** (.NET)/ **top** (REST)，如[此 .NET 範例](media-services-dotnet-manage-entities.md#enumerating-through-large-collections-of-entities)和[此 REST API 範例](media-services-rest-manage-entities.md#enumerating-through-large-collections-of-entities)中所述。 |
+| 某些用戶端在 Smooth Streaming 資訊清單中可能會遇到重複標記問題。 |如需詳細資訊，請參閱 [本節](media-services-deliver-content-overview.md#known-issues) 。 |
+| Azure 媒體服務 .NET SDK 物件無法序列化，因此無法與 Azure 快取搭配運作。 |如果您嘗試序列化 SDK AssetCollection 物件以將其新增至 Azure 快取，將會擲回例外狀況。 |
+| 編碼工作失敗，並顯示訊息字串「階段︰DownloadFile。 代碼：System.NullReferenceException」。 |典型的編碼工作流程是將輸入視訊檔案上傳至輸入資產，然後提交該輸入資產的一個或多個編碼工作，而不需要進一步修改該輸入資產。 不過，如果您修改輸入資產 (例如新增/刪除/重新命名資產內的檔案)，後續的工作可能會失敗並伴隨「DownloadFile」錯誤。 解決方法是刪除輸入資產，然後將輸入檔案重新上傳到新的資產。 |
 
 ## <a id="rest_version_history"></a>REST API 版本歷程記錄
-如需 hello 媒體服務 REST API 版本歷程記錄資訊，請參閱[Azure 媒體服務 REST API 參考]。
+如需媒體服務 REST API 版本歷程記錄的相關資訊，請參閱 [Azure 媒體服務 REST API 參考]。
 
 ## <a name="june-2017-release"></a>2017 年 6 月版本
 
 媒體服務現在支援 [Azure Active Directory (Azure AD) 型驗證](media-services-use-aad-auth-to-access-ams-api.md)。
 
 > [!IMPORTANT]
-> 目前，Media Services 支援 hello Azure 存取控制服務驗證模型。 不過，存取控制授權將在 2018 年 6 月 1 日被取代。 我們建議您儘速移轉 toohello Azure AD 驗證模型。
+> 目前，媒體服務支援 Azure 存取控制服務驗證模型。 不過，存取控制授權將在 2018 年 6 月 1 日被取代。 建議您儘速移轉至 Azure AD 驗證模型。
 
 ## <a name="march-2017-release"></a>2017 年 3 月版本
 
-您現在可以使用 Azure 媒體標準太[自動產生的位元速率階梯](media-services-autogen-bitrate-ladder-with-mes.md)藉由指定 hello 「 彈性資料流 」 的預設字串建立編碼工作時。 「 自動調整串流處理 」 是 hello 建議的預設，如果您想 tooencode 視訊串流處理媒體服務。 如果您需要的編碼方式的預設的 toocustomize 您特定案例，您可以開始使用[這些](media-services-mes-presets-overview.md)預設值。
+您現在可以使用 Azure 媒體標準來[自動產生位元速率階梯](media-services-autogen-bitrate-ladder-with-mes.md)，方法是在建立編碼工作時指定「彈性資料流」預設字串。 如果您想要將視訊編碼以使用媒體服務進行串流處理，則「彈性資料流」為建議預設。 如果您需要自訂特定案例的編碼預設，您可以開始使用[這些](media-services-mes-presets-overview.md)預設。
 
-您現在可以使用標準 Azure 媒體或媒體編碼器高階工作流程太[建立編碼工作，會產生 fMP4 區塊](media-services-generate-fmp4-chunks.md)。 
+您現在可以使用 Azure 媒體標準或媒體編碼器高階工作流程來[建立會產生 fMP4 區塊的編碼工作](media-services-generate-fmp4-chunks.md)。 
 
 
 ## <a name="febuary-2017-release"></a>2017 年 2 月版本
 
-啟動年 4 月 1，2017，超過 90 天您帳戶中的任何工作記錄將會自動刪除，以及其相關聯的工作記錄，即使 hello 的總記錄數低於 hello 配額上限。 如果您需要 tooarchive hello 作業/工作資訊時，您可以使用所述的 hello 碼[這裡](media-services-dotnet-manage-entities.md)。
+從 2017 年 4 月 1 日起，您的帳戶中任何超過 90 天的作業記錄以及其相關工作記錄都會自動刪除，即使記錄總數低於配額上限亦然。 如果您需要封存作業/工作資訊，您可以使用[這裡](media-services-dotnet-manage-entities.md)所述的程式碼。
 
 ## <a name="january-2017-release"></a>2017 年 1 月版本
 
-在 「 Microsoft Azure 媒體服務 」 (AMS)**串流端點**表示串流服務，以便可以將內容直接 tooa 用戶端播放器應用程式或 tooa 內容傳遞網路 (CDN) 進行進一步的發佈。 媒體服務也提供順暢的 Azure CDN 整合。 hello StreamingEndpoint 服務的輸出資料流可以是資產的即時資料流、 隨選，或您，Media Services 帳戶中的漸進式下載的視訊。 每個「Azure 媒體服務」帳戶皆包含一個預設的 StreamingEndpoint。 Hello 帳戶下，可以建立其他的 Streamingendpoint。 StreamingEndpoint 有 1.0 和 2.0 兩個版本。 從 2017 年 1 月 10 日開始，所有新建立的 AMS 帳戶都會包含 2.0 版**預設** StreamingEndpoint。 其他串流端點，您將加入 toothis 帳戶也會是 2.0 版。 這項變更不會影響現有帳戶 hello;現有的 Streamingendpoint 將 1.0 版，而且可以升級的 tooversion 2.0。 隨著這項變更，將會有行為、計費及功能變更 (如需詳細資訊，請參閱[這個](media-services-streaming-endpoints-overview.md)主題)。
+在「Microsoft Azure 媒體服務」(AMS) 中，「串流端點」代表可以直接將內容傳遞給用戶端播放程式應用程式，或傳遞給「內容傳遞網路」(CDN) 以進行進一步散發的串流服務。 媒體服務也提供順暢的 Azure CDN 整合。 來自 StreamingEndpoint 服務的輸出資料流可以是即時資料流、隨選視訊，也可以是媒體服務帳戶中漸進式的資產下載。 每個「Azure 媒體服務」帳戶皆包含一個預設的 StreamingEndpoint。 您可以在該帳戶下建立額外的 StreamingEndpoint。 StreamingEndpoint 有 1.0 和 2.0 兩個版本。 從 2017 年 1 月 10 日開始，所有新建立的 AMS 帳戶都會包含 2.0 版**預設** StreamingEndpoint。 您新增到此帳戶的額外串流端點也將會是 2.0 版。 這項變更不會影響現有的帳戶，現有的 StreamingEndpoint 會是 1.0 版並可升級到 2.0 版。 隨著這項變更，將會有行為、計費及功能變更 (如需詳細資訊，請參閱[這個](media-services-streaming-endpoints-overview.md)主題)。
 
-Azure Media Services 此外，從 hello 2.15 版開始，加入下列屬性 toohello 串流端點實體 hello: **CdnProvider**， **CdnProfile**， **FreeTrialEndTime**， **StreamingEndpointVersion**。 如需這些屬性的詳細概觀，請參閱[這裡](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint)。 
+此外，從 2.15 版開始，「Azure 媒體服務」還在「串流端點」實體新增了下列屬性：**CdnProvider**、**CdnProfile**、**FreeTrialEndTime**、**StreamingEndpointVersion**。 如需這些屬性的詳細概觀，請參閱[這裡](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint)。 
 
 ## <a name="december-2016-release"></a>2016 年 12 月版本
 
-Azure 媒體服務現在可讓您的服務 tooaccess 遙測/度量資料。 hello AMS 目前版本可讓您即時通道，StreamingEndpoint，收集遙測資料和即時封存實體。 如需詳細資訊，請參閱 [這個](media-services-telemetry-overview.md) 主題。
+「Azure 媒體服務」現在可讓您存取其服務的遙測/計量資料。 目前的 AMS 版本可讓您收集直播 Channel、StreamingEndpoint 及即時 Archive 實體的遙測資料。 如需詳細資訊，請參閱 [這個](media-services-telemetry-overview.md) 主題。
 
 ## <a id="july_changes16"></a>2016 年 7 月版本
-### <a name="updates-toomanifest-file-ism-generated-by-encoding-tasks"></a>更新 toomanifest 檔案 (*。ISM) 產生的編碼工作
-Hello 編碼工作提交的 tooMedia 編碼器標準或 Azure 媒體編碼程式編碼的工作時，會產生[串流資訊清單檔案](media-services-deliver-content-overview.md)(*.ism) 檔案中 hello 輸出資產。 Hello 最新服務版本中，已更新此資料流的資訊清單檔案的 hello 語法。
+### <a name="updates-to-manifest-file-ism-generated-by-encoding-tasks"></a>編碼工作產生之資訊清單檔案 (*.ISM) 更新
+將編碼工作提交到 Media Encoder Standard 或 Azure 媒體編碼器時，編碼工作會在輸出資產中產生 [串流資訊清單檔案](media-services-deliver-content-overview.md) (*.ism)。 在最新的服務版本中，我們已更新此串流資訊清單檔案的語法。
 
 > [!NOTE]
-> hello 的 hello 串流資訊清單 (.ism) 檔案的語法已保留供內部使用，且主體 toochange 在未來的版本。 請不要修改或操作 hello 這個檔案的內容。
+> 串流資訊清單 (.ism) 檔案的語法保留供內部使用，在未來的版本中也可能會變更。 請勿修改或操作這個檔案的內容。
 > 
 > 
 
-### <a name="a-new-client-manifest-ismc-file-is-generated-in-hello-output-asset-when-an-encoding-task-outputs-one-or-more-mp4-files"></a>新的用戶端資訊清單 (*。Hello 中產生 ISMC) 檔案的編碼工作會輸出一或多個 MP4 檔案時，將輸出資產
-Hello 工作完成的編碼方式，會產生一個以上的 MP4 檔案之後, 開始 hello 最新版本更新服務，hello 輸出資產也會包含資料流的用戶端資訊清單 (*.ismc) 檔案。 hello.ismc 檔案可協助改善 hello 效能動態串流。 
+### <a name="a-new-client-manifest-ismc-file-is-generated-in-the-output-asset-when-an-encoding-task-outputs-one-or-more-mp4-files"></a>當編碼工作輸出一或多個 MP4 檔案時，會在輸出資產中產生新的用戶端資訊清單 (*.ISMC) 檔案
+從最新的服務版本開始，當產生一或多個 MP4 檔案的編碼工作完成後，輸出資產也會包含一個串流用戶端資訊清單 (*.ismc) 檔案。 .Ismc 檔案有助於改善動態串流的效能。 
 
 > [!NOTE]
-> hello 用戶端資訊清單 (.ismc) 檔案的 hello 語法已保留供內部使用，且主體 toochange 在未來的版本。 請不要修改或操作 hello 這個檔案的內容。
+> 用戶端資訊清單 (.ism) 檔案的語法保留供內部使用，在未來的版本中也可能會變更。 請勿修改或操作這個檔案的內容。
 > 
 > 
 
 如需詳細資訊，請參閱 [此部落格](https://blogs.msdn.microsoft.com/randomnumber/2016/07/08/encoder-changes-within-azure-media-services-now-create-ismc-file/) 。
 
 ### <a name="known-issues"></a>已知問題
-某些用戶端可以來自跨 hello Smooth Streaming 資訊清單中的重複標記問題。 如需詳細資訊，請參閱 [本節](media-services-deliver-content-overview.md#known-issues) 。
+某些用戶端在 Smooth Streaming 資訊清單中可能會遇到重複標記問題。 如需詳細資訊，請參閱 [本節](media-services-deliver-content-overview.md#known-issues) 。
 
 ## <a id="apr_changes16"></a>2016 年 4 月版本
 ### <a name="azure-media-analytics"></a>Azure 媒體分析
 Azure 媒體服務引進了 Azure 媒體分析，提供功能強大的視訊智慧。 如需詳細資訊，請參閱 [Azure 媒體服務分析概觀](media-services-analytics-overview.md)。
 
 ### <a name="apple-fairplay-preview"></a>Apple FairPlay (預覽)
-Azure 媒體服務現在使用 Apple FairPlay 內容可讓您 toodynamically 加密您 HTTP Live Streaming (HLS)。 您也可以使用 AMS 授權傳遞服務 toodeliver FairPlay 授權 tooclients。 如需詳細資訊，請參閱[使用 Azure Media Services tooStream Apple FairPlay 保護 HLS 內容](media-services-protect-hls-with-fairplay.md)。
+Azure 媒體服務現在能讓您透過 Apple FairPlay 來動態加密您的 HTTP 即時串流 (HLS) 內容。 您也可以使用 AMS 授權傳遞服務，將 FairPlay 授權傳遞給用戶端。 如需詳細資訊，請參閱 [使用 Azure 媒體服務串流以 Apple FairPlay 保護的 HLS 內容 ](media-services-protect-hls-with-fairplay.md)。
 
 ## <a id="feb_changes16"></a>2016 年 2 月版本
-Azure Media Services SDK for.NET (3.5.3) hello 最新版本包含 Widevine 相關的錯誤修復。 hello 問題是： AssetDeliveryPolicy 無法重複用於多個以 Widevine 加密的資產。 為這個 bug 修正 hello 一部分在下列屬性已加入 toohello SDK: **WidevineBaseLicenseAcquisitionUrl**。
+Azure Media Services SDK for .NET (3.5.3) 的最新版本包含 Widevine 相關的錯誤修正。 問題是：AssetDeliveryPolicy 無法重複用於多個以 Widevine 加密的資產。 在此錯誤修正中，已將下列屬性新增至 SDK： **WidevineBaseLicenseAcquisitionUrl**。
 
     Dictionary<AssetDeliveryPolicyConfigurationKey, string> assetDeliveryPolicyConfiguration =
         new Dictionary<AssetDeliveryPolicyConfigurationKey, string>
@@ -112,48 +112,48 @@ Azure Media Services SDK for.NET (3.5.3) hello 最新版本包含 Widevine 相�
     };
 
 ## <a id="jan_changes_16"></a>2016 年 1 月版本
-編碼保留單元重新命名 tooreduce 混淆編碼器的名稱。
+編碼保留單元已重新命名，以減少和編碼器名稱混淆。
 
-hello Basic、 Standard 和 Premium 的編碼保留的單元會重新命名的 tooS1，S2 和 S3 分別保留單位。  使用基本編碼 Ru 現今的客戶會看到 hello 在 Azure 入口網站 （和標籤 hello bill），S1 時標準，而且 Premium 會分別看到 hello 標籤 S2 和 S3。 
+基本、標準和高階編碼保留單元已分別重新命名為 S1、S2 和 S3 保留單元。  目前使用基本編碼保留單元的客戶在 Azure 入口網站 (和帳單中) 將會看到 S1 的標籤，標準和高階的客戶將分別看到 S2 和 S3 的標籤。 
 
 ## <a id="dec_changes_15"></a>2015 年 12 月版本
 
 ### <a name="azure-media-encoder-deprecation-announcement"></a>Azure 媒體編碼器淘汰通知
 
-Azure 媒體編碼程式會啟動大約 12 個月的媒體編碼器 Standard hello 版本中被取代。
+Azure 媒體編碼器會從媒體編碼器標準發行起大約 12 個月內開始被取代。
 
 ### <a name="azure-sdk-for-php"></a>Azure SDK for PHP
-hello Azure SDK 小組發行新版的 hello [Azure SDK for PHP](http://github.com/Azure/azure-sdk-for-php)套件，其中包含 Microsoft Azure 媒體服務的更新和新功能。 特別是，hello Azure Media Services SDK for PHP，現在支援最新 hello[內容保護](media-services-content-protection-overview.md)功能： 動態加密使用 AES 和 DRM （PlayReady 和 Widevine） 逾時或無限制的語彙基元。 它也支援調整 [編碼單位](media-services-dotnet-encoding-units.md)大小。
+Azure SDK 小組已發佈新版的 [Azure SDK for PHP](http://github.com/Azure/azure-sdk-for-php) 套件，其中包含 Microsoft Azure 媒體服務的更新與新功能。 特別是 Azure Media Services SDK for PHP 現在支援最新的 [內容保護](media-services-content-protection-overview.md) 功能：在有和沒有權杖限制的情況下使用 AES 和 DRM (PlayReady 與 Widevine) 動態加密。 它也支援調整 [編碼單位](media-services-dotnet-encoding-units.md)大小。
 
 如需詳細資訊，請參閱：
 
-* hello [Microsoft Azure Media Services SDK for PHP](http://southworks.com/blog/2015/12/09/new-microsoft-azure-media-services-sdk-for-php-release-available-with-new-features-and-samples/)部落格。
-* hello 下列[程式碼範例](http://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices)toohelp 可讓您快速入門：
-  * **vodworkflow_aes.php**： 這是 PHP 檔案，其中顯示如何 toouse aes-128 動態加密和金鑰傳遞服務。 它根據所述的 hello.NET 範例[這](media-services-protect-with-aes128.md)發行項。
-  * **vodworkflow_aes.php**： 這是 PHP 檔案，其中顯示如何 toouse PlayReady 動態加密和授權傳遞服務。 它根據所述的 hello.NET 範例[這](media-services-protect-with-drm.md)發行項。
-  * **scale_encoding_units.php**： 這是示範如何 tooscale 編碼保留單元的 PHP 檔案。
+* [Microsoft Azure Media Services SDK for PHP](http://southworks.com/blog/2015/12/09/new-microsoft-azure-media-services-sdk-for-php-release-available-with-new-features-and-samples/) 部落格。
+* 以下 [程式碼範例](http://github.com/Azure/azure-sdk-for-php/tree/master/examples/MediaServices) 可協助您快速上手：
+  * **vodworkflow_aes.php**：這是一個 PHP 檔案，說明如何使用 AES-128 動態加密和金鑰傳遞服務。 它是以 [此](media-services-protect-with-aes128.md) 文章中說明的 .NET 範例為依據。
+  * **vodworkflow_aes.php**：這是一個 PHP 檔案，說明如何使用 PlayReady 動態加密和授權傳遞服務。 它是以 [此](media-services-protect-with-drm.md) 文章中說明的 .NET 範例為依據。
+  * **scale_encoding_units.php**：這是一個 PHP 檔案，說明如何調編碼保留單元大小。
 
 ## <a id="nov_changes_15"></a>2015 年 11 月版本
-Azure 媒體服務現在提供 hello 雲端中的 Google Widevine 授權傳遞服務。 如需詳細資訊，請參閱太[此公告部落格](https://azure.microsoft.com/blog/announcing-google-widevine-license-delivery-services-public-preview-in-azure-media-services/)。 同時也參閱[本教學課程](media-services-protect-with-drm.md)和 [GitHub 儲存機制](http://github.com/Azure-Samples/media-services-dotnet-dynamic-encryption-with-drm)。 
+Azure 媒體服務現在在雲端提供 Google Widevine 授權傳遞服務。 如需詳細資訊，請閱讀 [本公告部落格](https://azure.microsoft.com/blog/announcing-google-widevine-license-delivery-services-public-preview-in-azure-media-services/)。 同時也參閱[本教學課程](media-services-protect-with-drm.md)和 [GitHub 儲存機制](http://github.com/Azure-Samples/media-services-dotnet-dynamic-encryption-with-drm)。 
 
 請注意，Azure 媒體服務所提供的 Widevine 授權傳遞服務為預覽狀態。 如需詳細資訊，請參閱 [此部落格](https://azure.microsoft.com/blog/announcing-google-widevine-license-delivery-services-public-preview-in-azure-media-services/)。
 
 ## <a id="oct_changes_15"></a>2015 年 10 月版本
-Azure 媒體服務 (AMS) 現在是即時中下列資料中心的 hello： 巴西南部、 印度西部、 印度南部及印度中部。 現在您可以使用 Azure 入口網站 hello 太[建立媒體服務帳戶](media-services-portal-create-account.md)並執行各種工作所述[這裡](https://azure.microsoft.com/documentation/services/media-services/)。 不過，這些資料中心不會啟用即時編碼。 此外，並非所有類型的編碼保留單元都可用於這些資料中心。
+Azure 媒體服務 (AMS) 現在也在下列資料中心推出：巴西南部、印度西部、印度南部和印度中部。 您現在可以使用 Azure 入口網站來[建立媒體服務帳戶](media-services-portal-create-account.md)，以及執行[這裡](https://azure.microsoft.com/documentation/services/media-services/)所述的各種工作。 不過，這些資料中心不會啟用即時編碼。 此外，並非所有類型的編碼保留單元都可用於這些資料中心。
 
 * 巴西南部：只可以使用標準和基本編碼保留單元
 * 印度西部、印度南部和印度中部：只可以使用基本編碼保留單元
 
 ## <a id="september_changes_15"></a>2015 年 9 月版本
-* 現在提供 hello 能力 tooprotect AMS Video-On-Demand (VOD) 和 Widevine 模組化 DRM 技術的即時資料流。 您可以使用下列傳遞 Widevine 授權傳遞服務夥伴 toohelp hello: [Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/)， [EZDRM](http://ezdrm.com/)， [castLabs](http://castlabs.com/company/partners/azure/)。 如需詳細資訊，請參閱 [此部落格](https://azure.microsoft.com/blog/azure-media-services-adds-google-widevine-packaging-for-delivering-multi-drm-stream/)。
+* AMS 現在提供以 Widevine Modular DRM 技術，保護點播視訊 (VOD) 和即時資料流的能力。 您可以使用下列傳遞服務合作夥伴來協助您傳遞 Widevine 授權：[Axinom](http://www.axinom.com/press/ibc-axinom-drm-6/)、[EZDRM](http://ezdrm.com/)、[castLabs](http://castlabs.com/company/partners/azure/)。 如需詳細資訊，請參閱 [此部落格](https://azure.microsoft.com/blog/azure-media-services-adds-google-widevine-packaging-for-delivering-multi-drm-stream/)。
   
-    您可以使用[AMS.NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) （起 hello 版本 3.5.1） 或 REST API tooconfigure 您 AssetDeliveryConfiguration toouse Widevine。  
+    您可以使用 [AMS .NET SDK](https://www.nuget.org/packages/windowsazure.mediaservices/) (從版本 3.5.1 開始) 或 REST API 來設定 AssetDeliveryConfiguration 以使用 Widevine。  
 * AMS 已新增對 Apple ProRes 影片的支援。 您現在可以上傳使用 Apple ProRes 或其他轉碼器的 QuickTime 來源視訊檔案。 如需詳細資訊，請參閱 [此部落格](https://azure.microsoft.com/blog/announcing-support-for-apple-prores-videos-in-azure-media-services/)。
-* 您現在可以使用標準的媒體編碼器 toodo 子裁剪和即時封存 」 擷取。 如需詳細資訊，請參閱 [此部落格](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/)。
-* 進行下列篩選更新 hello: 
+* 您現在可以使用 Media Encoder Standard 進行字幕裁剪和即時封存解壓縮。 如需詳細資訊，請參閱 [此部落格](https://azure.microsoft.com/blog/sub-clipping-and-live-archive-extraction-with-media-encoder-standard/)。
+* 進行了下列篩選更新： 
   
-  * 您現在可以使用 Apple HTTP Live Streaming (HLS) 格式搭配僅限音訊的篩選條件。 這項更新可讓您 tooremove 純音訊播放軌藉由指定 (僅限音訊 = false) hello URL 中。
-  * 時定義為您資產的篩選器，您現在可以將單一 URL 中的多個 (最新 too3) 篩選器的能力 toocombine。
+  * 您現在可以使用 Apple HTTP Live Streaming (HLS) 格式搭配僅限音訊的篩選條件。 這項更新可讓您在 URL 中指定 (audio-only=false) 來移除僅限音訊的曲目。
+  * 在定義您的資產篩選條件時，現在您可以結合多個 (最多 3 個) 篩選器到單一 URL 中。
     
     如需詳細資訊，請參閱 [此](https://azure.microsoft.com/blog/azure-media-services-release-dynamic-manifest-composition-remove-hls-audio-only-track-and-hls-i-frame-track-support/) 部落格。
 * AMS 現在支援 HLS v4 的 I-Frames。 I-Frames 支援最佳化向前快轉和倒轉的作業。 根據預設，所有 HLS v4 輸出都包含 I-Frames 播放清單 (EXT-X-I-FRAME-STREAM-INF)。
@@ -169,33 +169,33 @@ Azure 媒體服務 (AMS) 現在是即時中下列資料中心的 hello： 巴西
   * [部落格文章](https://azure.microsoft.com/blog/2015/08/13/azure-media-player-update-with-multi-audio-stream-support/)
 
 ## <a id="july_changes_15"></a>2015 年 7 月版本
-* 宣告媒體編碼器 Standard hello 一般的可用性。 如需詳細資訊，請參閱 [此部落格文章](https://azure.microsoft.com/blog/2015/07/16/announcing-the-general-availability-of-media-encoder-standard/)。
+* 宣布 Media Encoder Standard 的一般可用性。 如需詳細資訊，請參閱 [此部落格文章](https://azure.microsoft.com/blog/2015/07/16/announcing-the-general-availability-of-media-encoder-standard/)。
   
-    Media Encoder Standard 使用 [本節](http://go.microsoft.com/fwlink/?LinkId=618336) 描述的預設值。 請注意，當針對 4k 編碼，請使用預設值，您應該取得 hello **Premium**保留單位類型。 如需詳細資訊，請參閱[如何 tooScale 編碼](media-services-scale-media-processing-overview.md)。
+    Media Encoder Standard 使用 [本節](http://go.microsoft.com/fwlink/?LinkId=618336) 描述的預設值。 請注意，使用 4k 編碼的預設值時，您應該取得 **進階** 保留單元類型。 如需詳細資訊，請參閱 [如何調整編碼](media-services-scale-media-processing-overview.md)。
 * 直播即時字幕與 Azure 媒體服務和播放器。 如需詳細資訊，請參閱[此部落格文章](https://azure.microsoft.com/blog/2015/07/08/live-real-time-captions-with-azure-media-services-and-player/)
 
 ### <a name="media-services-net-sdk-updates"></a>媒體服務 .NET SDK 更新
-Azure 媒體服務 .NET SDK 現在是版本 3.4.0.0。 在此版本中加入下列功能的 hello:  
+Azure 媒體服務 .NET SDK 現在是版本 3.4.0.0。 此版本中加入了下列功能：  
 
 * 即時封存的實作支援。 請注意，您無法下載包含即時封存的資產。
 * 動態篩選的實作支援。
-* 可讓使用者 tookeep 儲存體容器刪除資產時的實作的功能。
-* Bug 修正相關 tooretry 通道中的原則。
+* 實作功能，可讓使用者在刪除資產時保留儲存體容器的。
+* 通道中重試原則的相關 Bug 修正。
 * 已啟用的 **Media Encoder Premium 工作流程**。
 
 ## <a id="june_changes_15"></a>2015 年 6 月版本
 ### <a name="media-services-net-sdk-updates"></a>媒體服務 .NET SDK 更新
-Azure 媒體服務 .NET SDK 現在是版本 3.3.0.0。 在此版本中加入下列功能的 hello:  
+Azure 媒體服務 .NET SDK 現在是版本 3.3.0.0。 此版本中加入了下列功能：  
 
 * 支援 OpenId Connect 探索規格
 * 支援處理識別提供者端的金鑰變換 
 
-如果您使用識別提供者會公開 OpenID Connect 探索文件 (下列提供者是否為 hello: Azure Active Directory、 Google、 Salesforce)，您可以指示 Azure Media Services tooobtain 簽章驗證的 JWT 權杖的金鑰OpenID 連線探索規格。 
+如果您使用的身分識別提供者會公開 OpenID Connect 探索文件 (如同下列提供者：Azure Active Directory、Google、Salesforce)，您可以指示 Azure 媒體服務從 OpenID Connect 探索規格取得 JWT 權杖驗證的簽署金鑰。 
 
-如需詳細資訊，請參閱[使用 Json Web 金鑰從 OpenID Connect 探索規格 toowork 使用 JWT 權杖中 Azure Media Services 驗證](http://gtrifonov.com/2015/06/07/using-json-web-keys-from-openid-connect-discovery-spec-to-work-with-jwt-token-authentication-in-azure-media-services/)。
+如需詳細資訊，請參閱 [在 Azure 媒體服務中使用 OpenID Connect 探索規格的 Json Web 金鑰來處理 JWT 權杖驗證](http://gtrifonov.com/2015/06/07/using-json-web-keys-from-openid-connect-discovery-spec-to-work-with-jwt-token-authentication-in-azure-media-services/)。
 
 ## <a id="may_changes_15"></a>2015 年 5 月版本
-發表 hello 下列新功能：
+發表下列新功能：
 
 * [使用媒體服務進行即時編碼的預覽功能](media-services-manage-live-encoder-enabled-channels.md)
 * [動態資訊清單](media-services-dynamic-manifest-overview.md)
@@ -204,7 +204,7 @@ Azure 媒體服務 .NET SDK 現在是版本 3.3.0.0。 在此版本中加入下�
 ## <a id="april_changes_15"></a>2015 年 4 月版本
 ### <a name="general-media-services-updates"></a>一般媒體服務更新
 * [發表 Azure Media Player](https://azure.microsoft.com/blog/2015/04/15/announcing-azure-media-player/)。
-* 從媒體服務 REST 2.10，設定的 tooingest RTMP 通訊協定通道會建立主要和次要內嵌 Url。 如需詳細資訊，請參閱 [通道擷取組態](media-services-live-streaming-with-onprem-encoders.md#channel_input)
+* 從媒體服務 REST 2.10 開始，設定為擷取 RTMP 通訊協定的通道，會和主要與次要擷取 URL 一起建立。 如需詳細資訊，請參閱 [通道擷取組態](media-services-live-streaming-with-onprem-encoders.md#channel_input)
 * Azure 媒體索引器更新
 * 支援西班牙文語言
 * 新的組態 xml 格式
@@ -214,21 +214,21 @@ Azure 媒體服務 .NET SDK 現在是版本 3.3.0.0。 在此版本中加入下�
 ### <a name="media-services-net-sdk-updates"></a>媒體服務 .NET SDK 更新
 Azure 媒體服務 .NET SDK 現在是版本 3.2.0.0。
 
-hello 以下是一些 hello 客戶對向的更新：
+以下是一些屬於客戶面向的更新：
 
-* **中斷變更**： 變更**TokenRestrictionTemplate.Issuer**和**TokenRestrictionTemplate.Audience** toobe 是字串型別。
-* 更新相關 toocreating 自訂的重試原則。
-* Bug 修正相關 toouploading/下載檔案。
-* hello **MediaServicesCredentials**類別現在會接受針對主要和次要存取控制端點 tooauthenticate。
+* **重大變更**：已將 **TokenRestrictionTemplate.Issuer** 和 **TokenRestrictionTemplate.Audience** 變更為字串類型。
+* 與建立自訂重試原則相關的更新。
+* 與上傳/下載檔案相關的錯誤修正。
+* **MediaServicesCredentials** 類別現在接受主要和次要存取控制端點做為驗證對象。
 
 ## <a id="march_changes_15"></a>2015 年 3 月版本
 ### <a name="general-media-services-updates"></a>一般媒體服務更新
-* 媒體服務也提供 Azure CDN 整合。 toosupport hello 整合，hello **CdnEnabled**屬性已新增過**StreamingEndpoint**。  **CdnEnabled** 可以與 REST API 搭配使用 (如需詳細資訊，請參閱 [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint))。  從版本 3.1.0.2 開始，**CdnEnabled** 可以與 .NET SDK 搭配使用 (如需詳細資訊，請參閱 [StreamingEndpoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.istreamingendpoint\(v=azure.10\).aspx))。
+* 媒體服務也提供 Azure CDN 整合。 為了支援整合，已將 **CdnEnabled** 屬性加入至 **StreamingEndpoint**。  **CdnEnabled** 可以與 REST API 搭配使用 (如需詳細資訊，請參閱 [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint))。  從版本 3.1.0.2 開始，**CdnEnabled** 可以與 .NET SDK 搭配使用 (如需詳細資訊，請參閱 [StreamingEndpoint](https://msdn.microsoft.com/library/azure/microsoft.windowsazure.mediaservices.client.istreamingendpoint\(v=azure.10\).aspx))。
 * 發表 **媒體編碼器高階工作流程**。 如需詳細資訊，請參閱 [介紹 Azure 媒體服務中的高階編碼](https://azure.microsoft.com/blog/2015/03/05/introducing-premium-encoding-in-azure-media-services/)(英文)。
 
 ## <a id="february_changes_15"></a>2015 年 2 月版本
 ### <a name="general-media-services-updates"></a>一般媒體服務更新
-媒體服務 REST API 目前的版本為 2.9。 從這個版本開始，您可以啟用 hello 與資料流端點的 Azure CDN 整合。 如需詳細資訊，請參閱 [StreamingEndpoint](https://msdn.microsoft.com/library/dn783468.aspx)。
+媒體服務 REST API 目前的版本為 2.9。 從此版本開始，Azure CDN 整合就可以應用到串流端點。 如需詳細資訊，請參閱 [StreamingEndpoint](https://msdn.microsoft.com/library/dn783468.aspx)。
 
 ## <a id="january_changes_15"></a>2015 年 1 月版本
 ### <a name="general-media-services-updates"></a>一般媒體服務更新
@@ -237,83 +237,83 @@ hello 以下是一些 hello 客戶對向的更新：
 ### <a name="media-services-net-sdk-updates"></a>媒體服務 .NET SDK 更新
 Azure 媒體服務 .NET SDK 現在是版本 3.1.0.1。
 
-此版本會標示 hello 預設 Microsoft.WindowsAzure.MediaServices.Client.ContentKeyAuthorization.TokenRestrictionTemplate 建構函式為已過時。 hello 新建構函式會採用 TokenType 做為引數。
+此版本中將預設 Microsoft.WindowsAzure.MediaServices.Client.ContentKeyAuthorization.TokenRestrictionTemplate 建構函式標示為過時。 新的建構函式會接受 TokenType 做為引數。
 
     TokenRestrictionTemplate template = new TokenRestrictionTemplate(TokenType.SWT);
 
 
 ## <a id="december_changes_14"></a>2014 年 12 月版本
 ### <a name="general-media-services-updates"></a>一般媒體服務更新
-* 某些更新和新功能已新增 toohello Azure Indexer 媒體處理器。 如需詳細資訊，請參閱 [Azure 媒體索引器 1.1.6.7 的版本資訊](https://azure.microsoft.com/blog/2014/12/03/azure-media-indexer-version-1-1-6-7-release-notes/)(英文)。
-* 已加入新的 REST API，可讓您編碼保留的單位 tooupdate:[與其餘 EncodingReservedUnitType](https://docs.microsoft.com/rest/api/media/operations/encodingreservedunittype)。
+* 部分更新和新功能已加入到 Azure Media Indexer 處理器。 如需詳細資訊，請參閱 [Azure 媒體索引器 1.1.6.7 的版本資訊](https://azure.microsoft.com/blog/2014/12/03/azure-media-indexer-version-1-1-6-7-release-notes/)(英文)。
+* 加入了新的 REST API，讓您可以更新編碼保留單元： [EncodingReservedUnitType 與 REST](https://docs.microsoft.com/rest/api/media/operations/encodingreservedunittype)。
 * 已加入金鑰傳遞服務的 CORS 支援。
 * 已完成查詢授權原則選項的效能改進。
-* 在中國的資料中心，hello[金鑰傳遞 URL](https://docs.microsoft.com/rest/api/media/operations/contentkey#get_delivery_service_url)現在是每個客戶 （就像在其他資料中心）。
-* 已加入 HLS 自動目標持續時間。 在執行即時資料流時，會一律動態封裝 HLS。 根據預設，媒體服務會自動計算 HLS 區段封裝比率 (FragmentsPerSegment) 根據 hello 主要畫面格間隔 (KeyFrameInterval)，也稱為 tooas 圖片群組 – 接收來自即時編碼程式 hello 的 GOP。 如需詳細資訊，請參閱 [使用 Azure 媒體服務即時資料流]。
+* 在中國資料中心， [金鑰傳遞 URL](https://docs.microsoft.com/rest/api/media/operations/contentkey#get_delivery_service_url) 現在是針對每位客戶 (就像其他資料中心)。
+* 已加入 HLS 自動目標持續時間。 在執行即時資料流時，會一律動態封裝 HLS。 依預設，媒體服務會根據從即時編碼器收到的主要畫面格間隔 (KeyFrameInterval，也稱為圖片群組 – GOP)，自動計算 HLS 區段封裝比例 (FragmentsPerSegment) 。 如需詳細資訊，請參閱 [使用 Azure 媒體服務即時資料流]。
 
 ### <a name="media-services-net-sdk-updates"></a>媒體服務 .NET SDK 更新
 * [Azure 媒體服務 .NET SDK](http://www.nuget.org/packages/windowsazure.mediaservices/) 現在是版本 3.1.0.0。
-* 升級 hello.Net SDK 相依性 too.NET 4.5 Framework。
-* 加入新的 API，可讓您 tooupdate 編碼保留的單位。 如需詳細資訊，請參閱 [使用.NET 更新保留單元類型和增加編碼 RU](media-services-dotnet-encoding-units.md)。
+* 將 .Net SDK 相依性升級至 .NET 4.5 Framework。
+* 已加入新的 API，可讓您更新編碼保留單元。 如需詳細資訊，請參閱 [使用.NET 更新保留單元類型和增加編碼 RU](media-services-dotnet-encoding-units.md)。
 * 已加入權杖驗證的 JWT (JSON Web 權杖) 支援。 如需詳細資訊，請參閱 [Azure 媒體服務和動態加密中的 JWT 權杖驗證](http://www.gtrifonov.com/2015/01/03/jwt-token-authentication-in-azure-media-services-and-dynamic-encryption/)(英文)。
-* 加入的相對位移 BeginDate 和 ExpirationDate hello PlayReady 授權範本中。
+* 已在 PlayReady 授權範本中加入 BeginDate 和 ExpirationDate 的相對位移。
 
 ## <a id="november_changes_14"></a>2014 年 11 月版本
-* 媒體服務現在可讓您即時 Smooth Streaming (FMP4) 內容的 tooingest 透過 SSL 連線。 tooingest over SSL，請確定 tooupdate hello 內嵌 URL tooHTTPS。  請注意，目前 AMS 不支援使用 SSL 搭配自訂網域。  如需即時資料流的詳細資訊，請參閱[使用 Azure 媒體服務即時資料流]。
+* 媒體服務現在可讓您透過 SSL 連線擷取即時的 Smooth Streaming (FMP4) 內容。 若要透過 SSL 擷取，請務必將擷取 URL 更新為 HTTPS。  請注意，目前 AMS 不支援使用 SSL 搭配自訂網域。  如需即時資料流的詳細資訊，請參閱[使用 Azure 媒體服務即時資料流]。
 * 目前您無法透過 SSL 連線內嵌 RTMP 即時資料流。
-* 如果 hello 串流的端點，您可以從中傳遞內容建立在 2014 年 9 月 10 日之後，您只可以串流 over SSL。 如果您的串流 Url 根據串流端點建立年 9 月 10 日以後的 hello，hello URL 包含"streaming.mediaservices.windows.net 」 （hello 新格式）。 包含"origin.mediaservices.windows.net 」 （hello 舊格式） 的串流 Url 不支援 SSL。 如果您的 URL 的 hello 舊格式，而且要透過 SSL，toobe 無法 toostream[建立新的串流端點](media-services-portal-manage-streaming-endpoints.md)。 使用根據新端點 toostream 將內容串流透過 SSL 的 hello 建立 Url。
+* 只有當您傳遞內容的來源串流端點是在 2014 年 9 月 10 日之後建立時，才能透過 SSL 串流。 如果您的串流 URL 是根據 9 月 10 日之後建立的串流端點，則 URL 會包含 "streaming.mediaservices.windows.net" (新格式)。 包含 "origin.mediaservices.windows.net" (舊格式) 的串流 URL 不支援 SSL。 如果您的 URL 是舊格式，而且您希望能夠透過 SSL 串流，請[建立新的串流端點](media-services-portal-manage-streaming-endpoints.md)。 使用根據新的串流端點建立的 URL，透過 SSL 串流處理內容。
 
 ## <a id="october_changes_14"></a>2014 年 10 月版本
 ### <a id="new_encoder_release"></a>Media Services Encoder 版本
-發表新版的 Media Services Azure 媒體編碼器 hello。 Hello 與最新的 Azure 媒體編碼程式，您只需要付費針對輸出 Gb，但是否則 hello 新的編碼器是與 hello 先前編碼器相容的功能。 如需詳細資訊，請參閱 [行動服務定價詳細資料])。
+發表新版的 Media Services Azure Media Encoder。 使用最新的 Azure Media Encoder 時，您只需要為輸出 GB 付費，除此之外，新編碼器也與舊編碼器的功能相容。 如需詳細資訊，請參閱 [行動服務定價詳細資料])。
 
 ### <a id="oct_sdk"></a>媒體服務 .NET SDK
 Media Services SDK for .NET 延伸目前的版本為 2.0.0.3。
 
 Media Services SDK for .NET 目前的版本為 3.0.0.8。
 
-進行下列變更 hello:
+做了下列變更：
 
 * 重試原則類別中的重整。
-* 新增使用者代理程式字串 toohttp 要求標頭。
+* 將使用者代理字串加入至 http 要求標頭。
 * 新增 nuget 還原建置步驟。
-* 修正案例測試 toouse x509 憑證從儲存機制。
+* 修正案例測試，以使用來自儲存機制的 x509 憑證。
 * 更新通道和串流結束時，驗證設定。
 
-### <a name="new-github-repository-toohost-media-services-samples"></a>新的 GitHub 儲存機制 toohost 媒體服務範例
+### <a name="new-github-repository-to-host-media-services-samples"></a>新的 GitHub 儲存機制，以主控媒體服務範例
 範例位於 [Azure 媒體服務範例 GitHub 儲存機制](https://github.com/Azure/Azure-Media-Services-Samples)。
 
 ## <a id="september_changes_14"></a>2014 年 9 月版本
-媒體服務 REST 中繼資料目前的版本為 2.7。 如需最新 REST 更新 hello 的詳細資訊，請參閱[Azure 媒體服務 REST API 參考]。
+媒體服務 REST 中繼資料目前的版本為 2.7。 如需最新 REST 更新的詳細資訊，請參閱 [Azure 媒體服務 REST API 參考]。
 
 Media Services SDK for .NET 目前的版本為 3.0.0.7。
 
 ### <a id="sept_14_breaking_changes"></a>重大變更
-* **原始**太已重新命名[StreamingEndpoint]。
-* Hello 預設行為時使用 hello 變更**Azure 入口網站**tooencode 後發行 MP4 檔案。
+* **原始來源** 已重新命名為 [CustomHostNames]。
+* 使用「Azure 入口網站」來編碼並發行 MP4 檔案時的預設行為已變更。
 
-先前，當使用 hello Azure 傳統入口網站 toopublish 單一檔案 MP4 視訊資產 SAS URL 就會建立 (SAS Url 可讓您 toodownload hello 視訊從 blob 儲存體）。 目前，使用 hello Azure 傳統入口網站 tooencode 然後發行單一檔案 MP4 視訊資產時，hello 產生 URL 點 tooan Azure 媒體服務串流端點。  這項變更不會影響直接上傳的 tooMedia Services，並且發行，但不由 Azure Media Services 編碼的 MP4 視訊。
+過去，在使用 Azure 傳統入口網站發佈單一檔案 MP4 視訊資產時，會建立 SAS URL (SAS URL 可讓您從 Blob 儲存體下載視訊)。 現在，當您使用 Azure 傳統入口網站編碼並發佈單一檔案 MP4 視訊資產時，產生的 URL 會指向 Azure 媒體服務串流端點。  這項變更並不會影響未由 Azure 媒體服務編碼、而直接上傳至媒體服務並發佈的 MP4 視訊。
 
-目前，您有下列兩個選項 toosolve hello 問題 hello。
+現在，您有下列兩個選項可以解決問題。
 
-* 啟用資料流處理單位，並使用動態封裝 toostream hello.mp4 資產為 smooth streaming 展示檔。
-* 建立 SAS url toodownload （或逐漸播放） hello.mp4。 如需有關如何 toocreate SAS 定位器，請參閱[傳遞內容]。
+* 啟用串流單元，並使用動態封裝功能將 .mp4 資產串流處理為 Smooth Streaming 簡報。
+* 建立 SAS URL 以下載 (或累進播放) .mp4。 如需如何建立 SAS 定位器的詳細資訊，請參閱 [傳遞內容]。
 
 ### <a id="sept_14_GA_changes"></a>GA 版本中的新功能/案例
 * **索引器媒體處理器**。 如需詳細資訊，請參閱 [使用 Azure 媒體索引器編製媒體檔案的索引]。
-* hello [StreamingEndpoint]實體現在可讓您 tooadd （主機） 的自訂網域名稱。
+* [CustomHostNames] 實體現在可讓您新增自訂網域 (主機) 名稱。
   
-    自訂網域名稱 toobe，做為 hello Media Services 串流端點名稱，您需要 tooadd 自訂主機名稱 tooyour 串流端點。 使用 hello Media Services REST Api 或.NET SDK tooadd 自訂主機名稱。
+    對於要作為媒體服務串流端點名稱的自訂網域名稱，您必須將自訂主機名稱新增至您的串流端點。 請使用媒體服務 REST API 或 .NET SDK 來新增自訂主機名稱。
   
-    hello 下列考量適用於：
+    您必須考量下列事項：
   
-  * 您必須擁有 hello hello 自訂網域名稱擁有權。
-  * hello hello 網域名稱擁有權必須經過 Azure 媒體服務。 toovalidate hello 網域建立 CName 對應<MediaServicesAccountId>。<parent domain> tooverifydns。 < mediaservices-dns 區域的 >。 
-  * 您必須建立另一個 CName 對應 hello 自訂主機名稱 (例如，sports.contoso.com) tooyour 媒體服務 StreamingEndpont 的主機名稱 (例如，amstest.streaming.mediaservices.windows.net)。
+  * 您必須具有自訂網域名稱的擁有權。
+  * 網域名稱的擁有權必須通過 Azure 媒體服務的驗證。 若要驗證網域，請建立對應 <MediaServicesAccountId>.<parent domain> 的 CName。 到 verifydns.<mediaservices-dns-zone>。 
+  * 您必須建立另一個 CName，將自訂主機名稱 (例如，sports.contoso.com) 對應到您的媒體服務 StreamingEndpont 主機名稱 (例如，amstest.streaming.mediaservices.windows.net)。
 
-    如需詳細資訊，請參閱 hello **CustomHostNames**屬性在 hello [StreamingEndpoint]主題。
+    如需詳細資訊，請參閱 **StreamingEndpoint** 主題中的 [CustomHostNames] 屬性。
 
-### <a id="sept_14_preview_changes"></a>新功能/案例屬於 hello 公開預覽版本
+### <a id="sept_14_preview_changes"></a>公用預覽版本中的新功能/案例
 * 即時資料流預覽。 如需詳細資訊，請參閱 [使用 Azure 媒體服務即時資料流]。
 * 金鑰傳遞服務。 如需詳細資訊，請參閱 [使用 AES-128 動態加密和金鑰傳遞服務]。
 * AES 動態加密。 如需詳細資訊，請參閱 [使用 AES-128 動態加密和金鑰傳遞服務]。
@@ -323,22 +323,22 @@ Media Services SDK for .NET 目前的版本為 3.0.0.7。
 * 串流儲存體加密資產。 如需詳細資訊，請參閱 [串流儲存體加密內容]。
 
 ## <a id="august_changes_14"></a>2014 年 8 月版本
-當您編碼資產時，hello 編碼作業完成時產生輸出資產。 在此版本之前，Azure Media Services Encoder 會產生輸出資產的相關中繼資料。 從這個版本 hello 編碼器也會產生有關輸入資產的中繼資料。 如需詳細資訊，請參閱 hello[輸入中繼資料]和[輸出中繼資料]主題。
+當您為資產編碼時，在完成編碼工作時將會產生輸出資產。 在此版本之前，Azure Media Services Encoder 會產生輸出資產的相關中繼資料。 自此版本開始，編碼程式會同時產生輸入資產的相關中繼資料。 如需詳細資訊，請參閱[輸入中繼資料]和[輸出中繼資料]主題。
 
 ## <a id="july_changes_14"></a>2014 年 7 月版本
-hello 遵循 bug 修正進行 hello Azure 媒體服務封裝程式及加密程式：
+Azure Media Services Packager 和 Encryptor 完成了下列錯誤修正：
 
-* 唯一的音訊播放時多工傳輸即時封存資產 tooHTTP 即時資料流-此問題已修正並立即播放音訊與視訊。
-* 當封裝資產 tooHTTP 即時資料流與 AES 128 位元信封加密，hello 封裝資料流無法播放在 Android 裝置上 – 已修正這個 bug 並 hello 封裝資料流支援 HTTP 即時資料流的 Android 裝置上播放。
+* 將即時封存資產多工轉換為 HTTP 即時資料流時，只會播放音訊 – 此問題已獲得修正，現在已會同時播放音訊和視訊。
+* 將資產封裝為 HTTP 即時資料流和 AES 128 位元信封加密時，封裝的串流無法在 Android 裝置上播放 – 此問題已獲得修正，封裝的串流已可在支援 HTTP 即時資料流的 Android 裝置上播放。
 
 ## <a id="may_changes_14"></a>2014 年 5 月版本
 ### <a id="may_14_changes"></a>一般媒體服務更新
-您現在可以使用[動態封裝]toostream HTTP Live Streaming (HLS) v3。 toostream HLS v3，新增下列格式 toohello 原始定位器路徑 hello: *.ism/manifest(format=m3u8-aapl-v3)。 如需詳細資訊，請參閱 [Nick Drouin 的部落格]。
+您現在可以使用 [動態封裝] 來串流處理 HTTP 即時資料流 (HLS) v3。 若要串流處理 HLS v3，請將下列格式新增至原始定位器路徑：* .ism/manifest(format=m3u8-aapl-v3)。 如需詳細資訊，請參閱 [Nick Drouin 的部落格]。
 
-動態封裝現在也支援根據使用 PlayReady 靜態加密的 Smooth Streaming，來傳遞使用 PlayReady 加密的 HLS (v3 和 v4)。 如需詳細資訊請參閱 tooencrypt Smooth Streaming with PlayReady，[以 PlayReady 保護 Smooth Stream]。
+動態封裝現在也支援根據使用 PlayReady 靜態加密的 Smooth Streaming，來傳遞使用 PlayReady 加密的 HLS (v3 和 v4)。 如需如何使用 PlayReady 為 Smooth Streaming 加密的相關資訊，請參閱 [使用 PlayReady 保護 Smooth Stream]。
 
 ### <a name="may_14_donnet_changes"></a>媒體服務 .NET SDK 更新
-hello 媒體服務.NET SDK 3.0.0.5 版本包含下列增強功能的 hello:
+媒體服務 .NET SDK 3.0.0.5 版包含以下改良：
 
 * 上傳/下載媒體資產的速度和恢復能力優於以往。
 * 重試邏輯和暫時性例外狀況處理已有改善： 
@@ -346,28 +346,28 @@ hello 媒體服務.NET SDK 3.0.0.5 版本包含下列增強功能的 hello:
   * 因查詢、儲存變更、上傳或下載檔案而造成的例外狀況，在暫時性錯誤偵測和重試邏輯方面已有改善。 
   * 當 Web 例外狀況出現時 (例如，在 ACS 權杖要求期間)，您會發現嚴重錯誤現在的失效速度已變快。
 
-如需詳細資訊，請參閱[hello Media Services SDK for.NET 中的重試邏輯]。
+如需詳細資訊，請參閱 [Media Services SDK for .NET 中的重試邏輯]。
 
 ## <a id="april_changes_14"></a>2014 年 4 月編碼器版本
 ### <a name="april_14_enocer_changes"></a>Media Services Encoder 更新
-* 使用 Grass Valley 總部/HQX 轉碼器壓縮新增擷取 AVI 檔案使用 hello Grass Valley 進行 EDIUS 非線性編輯器，撰寫其中 hello 視訊是輕量的支援。 如需詳細資訊，請參閱[Grass Valley 宣佈進行 EDIUS 7 串流透過 hello 雲端]。
-* 指定 hello hello hello Media 編碼器所產生的檔案命名慣例新增的支援。 如需詳細資訊，請參閱 [控制 Media Service Encoder 輸出檔案名稱]。
+* 已新增對使用 Grass Valley EDIUS 非線性編輯器撰寫的 AVI 檔案進行擷取的支援；其中的視訊會使用 Grass Valley HQ/HQX 轉碼器略為壓縮。 如需詳細資訊，請參閱 [Grass Valley 發表透過雲端的 EDIUS 7 Streaming]。
+* 新增了為 Media Encoder 所產生的檔案指定命名慣例的支援。 如需詳細資訊，請參閱 [控制 Media Service Encoder 輸出檔案名稱]。
 * 新增了視訊和 (或) 音訊重疊的支援。 如需詳細資訊，請參閱 [建立重疊]。
 * 新增了結合多個視訊片段的支援。 如需詳細資訊，請參閱 [結合視訊片段]。
-* 修正的 bug 相關 tootranscoding 的 mp4 hello 音訊已編碼與 mpeg-1 Audio layer 3 (aka MP3)。
+* 修正了與 MP4 相關的轉碼；其中，音訊是使用 MPEG-1 Audio Layer 3 (aka MP3) 編碼的。
 
 ## <a id="jan_feb_changes_14"></a>2014 年 1/2 月版本
 ### <a name="jan_fab_14_donnet_changes"></a>Azure 媒體服務 .NET SDK 3.0.0.1、3.0.0.2 和 3.0.0.3
-3.0.0.1 和 3.0.0.2 中的 hello 變更包括：
+3.0.0.1 和 3.0.0.2 中的變更包括：
 
-* 已修正的問題相關 toousage LINQ 查詢使用 OrderBy 陳述式。
-* 將 [GitHub] 中的測試方案分成單元測試和案例測試。
+* 修正了使用 OrderBy 陳述式進行 LINQ 查詢的用法相關問題。
+* 將 [Github] 中的測試方案分成單元測試和案例測試。
 
-如需 hello 變更的詳細資訊，請參閱： [Azure 媒體服務.NET SDK 3.0.0.1 和 3.0.0.2 版本]。
+如需關於變更的詳細資料，請參閱： [Azure 媒體服務 .NET SDK 3.0.0.1 和 3.0.0.2 版本]。
 
-在 3.0.0.3 中進行下列變更 hello:
+3.0.0.3 中做了下列變更：
 
-* 升級 Azure 儲存體相依性 toouse 版本 3.0.3.0。 
+* 已升級 Azure 儲存體相依性而使用 3.0.3.0 版。 
 * 已修正 3中貼文。0中貼文。*中貼文。* 版的回溯相容性問題。 
 
 ## <a id="december_changes_13"></a>2013 年 12 月版本
@@ -377,20 +377,20 @@ hello 媒體服務.NET SDK 3.0.0.5 版本包含下列增強功能的 hello:
 > 
 > 
 
-hello 最新版 hello Media Services SDK 現在是 3.0.0.0。 您可以從 Nuget 下載 hello 最新的封裝，或取得 hello 位元[GitHub]。
+媒體服務 SDK 目前的最新版本為 3.0.0.0。 您可以從 Nuget 下載最新套件，或從 [Github]取得。
 
-從 hello Media Services SDK 版本 3.0.0.0 開始，您可以重複使用 hello [Azure Active Directory 存取控制服務 (ACS)]語彙基元。 如需詳細資訊，請參閱 hello 」 重複使用存取控制服務權杖 」 一節中 hello[連接 hello Media Services SDK for.NET tooMedia 服務]主題。
+從媒體服務 SDK 3.0.0.0 版開始，您可以重複使用 [Azure Active Directory 存取控制服務 (ACS)] 權杖。 如需詳細資訊，請參閱 [使用 Media Services SDK for .NET 連接到媒體服務] 主題中的「重複使用存取控制服務權杖」一節。
 
 ### <a name="dec_13_donnet_ext_changes"></a>Azure 媒體服務 .NET SDK 延伸模組 2.0.0.0
-hello Azure Media Services.NET SDK Extensions 是一組延伸方法和協助程式功能，能夠簡化您的程式碼，並使其更容易 toodevelop 透過 Azure Media Services。 您可以取得 hello 從最新的 bits [Azure Media Services.NET SDK Extensions]。
+Azure 媒體服務 .NET SDK 延伸是一組延伸方法和協助程式函數，可簡化您的程式碼以及使用 Azure 媒體服務進行開發的工作。 您可以從 [Azure 媒體服務 .NET SDK 延伸]取得最新版本。
 
 ## <a id="november_changes_13"></a>2013 年 11 月版本
 ### <a name="nov_13_donnet_changes"></a>Azure 媒體服務 .NET SDK 變更
-從這個版本開始，hello Media Services SDK for.NET 會處理呼叫 toohello 媒體服務 REST API 層時可能發生的暫時性失敗錯誤。
+自此版本起，Media Services SDK for .NET 已可處理在呼叫媒體服務 REST API 層時可能發生的暫時性錯誤。
 
 ## <a id="august_changes_13"></a>2013 年 8 月版本
 ### <a name="aug_13_powershell_changes"></a>Azure SDK 工具中包含的媒體服務 PowerShell Cmdlet
-現在包含下列媒體服務 PowerShell cmdlet 的 hello [azure sdk 工具]。
+[azure-sdk-tools]中現在包含下列媒體服務 PowerShell Cmdlet。
 
 * Get-AzureMediaServices 
   
@@ -407,14 +407,14 @@ hello Azure Media Services.NET SDK Extensions 是一組延伸方法和協助程�
 
 ## <a id="june_changes_13"></a>2013 年 6 月版本
 ### <a name="june_13_general_changes"></a>Azure 媒體服務變更
-這一節所提到的 hello 變更都是包含在 hello 年 6 月的 2013年媒體服務版本的更新。
+本節說明的變更是 2013 年 6 月媒體服務版本所包含的更新。
 
-* 能力 toolink 多個儲存體帳戶 tooa Media Service 帳戶。 
+* 能夠將多個儲存體帳戶連結至媒體服務帳戶。 
   
     StorageAccount
   
     Asset.StorageAccountName 和 Asset.StorageAccount
-* 能力 tooupdate Job.Priority。 
+* 能夠更新 Job.Priority。 
 * 實體和屬性的相關通知： 
   
     JobNotificationSubscription
@@ -426,92 +426,92 @@ hello Azure Media Services.NET SDK Extensions 是一組延伸方法和協助程�
 * Locator.Name 
 
 ### <a name="june_13_dotnet_changes"></a>Azure 媒體服務 .NET SDK 變更
-hello 下列變更會包含在 2013 年 6 月的媒體服務 SDK 版本。 hello 最新的媒體服務 SDK 是可在 GitHub 上取得。
+2013 年 6 月媒體服務 SDK 版本包含下列變更。 GitHub 提供的最新媒體服務 SDK。
 
-* 啟動與 hello 版本 2.3.0.0，hello Media Services SDK 支援連結多個儲存體帳戶 tooa Media Services 帳戶。 hello 下列 Api 支援這項功能：
+* 自 2.3.0.0 版起，媒體服務 SDK 已可支援將多個儲存體帳戶連結至媒體服務帳戶的作業。 支援此功能的 API 如下：
   
-    hello IStorageAccount 型別。
+    IStorageAccount 類型。
   
-    hello Microsoft.WindowsAzure.MediaServices.Client.CloudMediaContext.StorageAccounts 屬性。
+    Microsoft.WindowsAzure.MediaServices.Client.CloudMediaContext.StorageAccounts 屬性。
   
-    hello StorageAccount 屬性。
+    StorageAccount 屬性。
   
-    hello StorageAccountName 屬性。
+    StorageAccountName 屬性。
   
     如需詳細資訊，請參閱 [管理多個儲存體帳戶間的媒體服務資產]。
-* API 的相關通知。 開頭 hello 版本 2.2.0.0 開始，您有 hello 能力 toolisten tooAzure 佇列儲存體通知。 如需詳細資訊，請參閱 [處理媒體服務工作通知]。
+* API 的相關通知。 自 2.2.0.0 版起，您已能夠聽取 Azure 佇列儲存體通知。 如需詳細資訊，請參閱 [處理媒體服務工作通知]。
   
-    hello Microsoft.WindowsAzure.MediaServices.Client.IJob.JobNotificationSubscriptions 屬性。
+    Microsoft.WindowsAzure.MediaServices.Client.IJob.JobNotificationSubscriptions 屬性。
   
-    hello Microsoft.WindowsAzure.MediaServices.Client.INotificationEndPoint 型別。
+    Microsoft.WindowsAzure.MediaServices.Client.INotificationEndPoint 類型。
   
-    hello Microsoft.WindowsAzure.MediaServices.Client.IJobNotificationSubscription 型別。
+    Microsoft.WindowsAzure.MediaServices.Client.IJobNotificationSubscription 類型。
   
-    hello Microsoft.WindowsAzure.MediaServices.Client.NotificationEndPointCollection 型別。
+    Microsoft.WindowsAzure.MediaServices.Client.NotificationEndPointCollection 類型。
   
-    hello Microsoft.WindowsAzure.MediaServices.Client.NotificationEndPointType 型別。
+    Microsoft.WindowsAzure.MediaServices.Client.NotificationEndPointType 類型。
   
-    hello Microsoft.WindowsAzure.MediaServices.Client.NotificationJobState 型別。
-* 在 hello Azure 儲存體用戶端 SDK 2.0 (Microsoft.WindowsAzure.StorageClient.dll) 上的相依性。
+    Microsoft.WindowsAzure.MediaServices.Client.NotificationJobState 類型。
+* 對 Azure Storage Client SDK 2.0 (Microsoft.WindowsAzure.StorageClient.dll) 的相依性。
 * 對 OData 5.5 (Microsoft.Data.OData.dll) 的相依性。
 
 ## <a id="december_changes_12"></a>2012 年 12 月版本
 ### <a name="dec_12_dotnet_changes"></a>Azure 媒體服務 .NET SDK 變更
 * Intellisense：針對許多類型新增了遺漏的 Intellisense 文件。
-* Microsoft.Practices.TransientFaultHandling.Core： 已修正下列問題其中 hello SDK 仍然有此組件的相依性 tooan 舊版本。 hello SDK 現在這個組件的參考版本 5.1.1209.1。
+* Microsoft.Practices.TransientFaultHandling.Core：修正了 SDK 對此組件的舊版仍有相依性的問題。 SDK 現已參考此組件的 5.1.1209.1 版。
 
-發現的 hello 年 11 月 2012 SDK 問題修正：
+修正在 2012 年 11 月 SDK 中發現的問題：
 
 * IAsset.Locators.Count：現在，當所有定位器刪除後，此計數已會正確地在新的 IAsset 介面上報告。
 * IAssetFile.ContentFileSize：現在，當 IAssetFile.Upload(filepath) 完成上傳後，會正確設定此值。
 * IAssetFile.ContentFileSize：現已可在建立資產檔案後設定此屬性。 此檔案過去是唯讀的。
-* Iassetfile.upload （filepath）： 已修正的問題，此同步上傳方法所擲回下列錯誤上, 傳多個檔案 toohello 資產時的 hello。 hello 錯誤為 「 伺服器無法 tooauthenticate hello 要求。 請確定 hello 的授權標頭的值格式正確並包含 hello 簽章 」。
+* IAssetFile.Upload(filepath)：已修正此同步上傳方法在將多個檔案上傳至資產時會擲回以下錯誤的問題。 此錯誤為「伺服器無法驗證要求。 請確定授權標頭的值 (包括簽章在內) 格式正確。」
 * IAssetFile.UploadAsync：已修正無法同時上傳超過 5 個檔案的問題。
-* IAssetFile.UploadProgressChanged: Hello SDK 現在提供這個事件。
+* IAssetFile.UploadProgressChanged：此事件現在由 SDK 提供。
 * IAssetFile.DownloadAsync(string, BlobTransferClient, ILocator, CancellationToken)：現在提供此方法多載。
 * IAssetFile.DownloadAsync：已修正無法同時下載超過 5 個檔案的問題。
-* IAssetFile.Delete()： 修正的問題，其中呼叫 delete 可能會擲回例外狀況如果 hello IAssetFile 已上不傳任何檔案。
-* 作業： 已修正下列問題其中鏈結 「 MP4 tooSmooth 資料流工作 」 與 「 PlayReady 保護 」 工作使用工作範本也不會建立任何工作完全。
-* EncryptionUtils.GetCertificateFromStore()： 這個方法將不再擲回的 null 參考例外狀況，因為 tooa 失敗尋找 hello 憑證認證設定問題。
+* IAssetFile.Delete()：已修正若未上傳任何用於 IAssetFile 的檔案，呼叫刪除時可能會擲回例外狀況的問題。
+* 工作：已修正在使用工作範本鏈結「MP4 to Smooth Streams 工作」與「PlayReady Protection 工作」時不會建立任何工作的問題。
+* EncryptionUtils.GetCertificateFromStore()：此方法已不會再因為無法根據憑證組態問題找到憑證，而擲回 Null 參考例外狀況。
 
 ## <a id="november_changes_12"></a>2012 年 11 月版本
-hello 這一節所述的變更已包含在 hello 年 11 月 2012 （版本 2.0.0.0） 的更新 SDK。 這些變更可能需要針對 hello 2012 年 6 月預覽 SDK 版本 toobe 修改或重新撰寫撰寫任何程式碼。
+本節說明的變更是 2012 年 11 月 (2.0.0.0 版) SDK 所包含的更新。 進行這些變更時，可能必須修改或重寫為 2012 年 6 月預覽 SDK 版本撰寫的程式碼。
 
 * Assets
   
-    Iasset.create （assetname） 是 hello 只資產建立函式。 IAsset.Create 不再上傳檔案做為 hello 方法呼叫的一部分。 請使用 IAssetFile 進行上傳。
+    IAsset.Create(assetName) 是唯一的資產建立函數。 IAsset.Create 已不會在方法呼叫期間上傳檔案。 請使用 IAssetFile 進行上傳。
   
-    已從 Services SDK hello 移除 hello IAsset.Publish 方法和 hello AssetState.Publish 列舉值。 任何依存於此值的程式碼都必須重寫。
+    IAsset.Publish 方法和 AssetState.Publish 列舉值已從服務 SDK 中移除。 任何依存於此值的程式碼都必須重寫。
 * FileInfo
   
     此類別已移除，並由 IAssetFile 取代。
   
     IAssetFiles
   
-    IAssetFile 已取代 FileInfo，且具有不同的行為。 toouse，具現化 hello IAssetFiles 物件，後面接著檔案上傳使用 hello Media Services SDK 或 hello Azure 儲存體 SDK。 可以使用下列 iassetfile.upload hello:
+    IAssetFile 已取代 FileInfo，且具有不同的行為。 若要加以使用，請具現化 IAssetFiles 物件，然後使用媒體服務 SDK 或 Azure 儲存體 SDK 進行檔案上傳。 您可以使用下列 IAssetFile.Upload 多載：
   
-  * Iassetfile.upload （filepath）： 同步方法會封鎖 hello 執行緒，而且只有在上傳一個檔案時，才建議。
-  * IAssetFile.UploadAsync(filePath, blobTransferClient, locator, cancellationToken)：非同步方法。 這是慣用的 hello 上傳機制。 
+  * IAssetFile.Upload(filePath)：會封鎖執行緒的同步方法，建議僅在上傳單一檔案時使用。
+  * IAssetFile.UploadAsync(filePath, blobTransferClient, locator, cancellationToken)：非同步方法。 這是一般常用的上傳機制。 
     
-    已知的 bug： 使用 hello cancellationToken 確實會取消 hello 上傳。不過，hello 工作 hello 取消狀態可以是任何數目的狀態。 您必須正確捕捉並處理例外狀況。
+    已知錯誤：使用 cancellationToken 會取消上傳。不過，工作的取消狀態可以是許多狀態的任何一種。 您必須正確捕捉並處理例外狀況。
 * 定位器
   
-    已移除 hello 原生指定版本。 hello SAS 特定內容。已被取代，或由 GA 移除，將會標示 Locators.CreateSasLocator （asset、 accessPolicy） 請參閱 hello 定位器區段下的新功能更新的行為。
+    原始來源的特定版本已移除。 SAS 特定 context.Locators.CreateSasLocator(asset, accessPolicy) 將標示為已被取代，或由 GA 移除。 請參閱＜新功能＞底下的＜定位器＞一節，以瞭解更新後的行為。
 
 ## <a id="june_changes_12"></a>2012 年 6 月預覽版本
-hello 下列功能是 hello 的一項新 hello 年 11 月版 SDK。
+以下是 SDK 的 11 月版本中包含的新功能。
 
 * 刪除實體
   
-    IAsset、 IAssetFile、 Locator、 IAccessPolicy 和 Contentkey 物件目前已在 hello 物件層級，也就是 IObject.Delete()，而不需要在 hello cloudmediacontext.objcollection.delete （objinstance） 的集合中刪除。
+    IAsset、IAssetFile、ILocator、IAccessPolicy、IContentKey 物件現已會在物件層級上刪除 (即 IObject.Delete())，而無須在「集合」中刪除 (即 cloudMediaContext.ObjCollection.Delete(objInstance))。
 * 定位器
   
-    定位器必須立即使用建立 hello CreateLocator 方法，並使用 hello LocatorType.SAS 或 LocatorType.OnDemandOrigin 列舉值為 hello 定位器指定類型的引數中，您想 toocreate。
+    定位器現在必須使用 CreateLocator 方法來建立，並使用 LocatorType.SAS 或 LocatorType.OnDemandOrigin 列舉值作為您要建立之特定定位器類型的引數。
   
-    已加入新屬性 tooLocators toomake 它更容易 tooobtain 可用內容的 Uri。 這次的定位器是提供未來第三方擴充性是 tooprovide 更大的彈性和增加的便利媒體用戶端應用程式。
+    定位器已新增新的屬性，以便取得您的內容可使用的 URI。 定位器的這項重新設計旨在為日後的協力廠商擴充能力提供更大的彈性，以及提高媒體用戶端應用程式的易用性。
 * 非同步方法支援
   
-    Tooall 方法已加入非同步支援。
+    所有方法皆已新增非同步支援。
 
 ## <a name="media-services-learning-paths"></a>媒體服務學習路徑
 [!INCLUDE [media-services-learning-paths-include](../../includes/media-services-learning-paths-include.md)]
@@ -531,7 +531,7 @@ hello 下列功能是 hello 的一項新 hello 年 11 月版 SDK。
 [輸出中繼資料]: http://msdn.microsoft.com/library/azure/dn783217.aspx
 [傳遞內容]: http://msdn.microsoft.com/library/azure/hh973618.aspx
 [使用 Azure 媒體索引器編製媒體檔案的索引]: http://msdn.microsoft.com/library/azure/dn783455.aspx
-[StreamingEndpoint]: http://msdn.microsoft.com/library/azure/dn783468.aspx
+[CustomHostNames]: http://msdn.microsoft.com/library/azure/dn783468.aspx
 [使用 Azure 媒體服務即時資料流]: http://msdn.microsoft.com/library/azure/dn783466.aspx
 [使用 AES-128 動態加密和金鑰傳遞服務]: http://msdn.microsoft.com/library/azure/dn783457.aspx
 [使用 PlayReady 動態加密和授權傳遞服務]: http://msdn.microsoft.com/library/azure/dn783467.aspx
@@ -541,18 +541,18 @@ hello 下列功能是 hello 的一項新 hello 年 11 月版 SDK。
 [Azure portal]: https://manage.windowsazure.com
 [動態封裝]: http://msdn.microsoft.com/library/azure/jj889436.aspx
 [Nick Drouin 的部落格]: http://blog-ndrouin.azurewebsites.net/hls-v3-new-old-thing/
-[以 PlayReady 保護 Smooth Stream]: http://msdn.microsoft.com/library/azure/dn189154.aspx
-[hello Media Services SDK for.NET 中的重試邏輯]: http://msdn.microsoft.com/library/azure/dn745650.aspx
-[Grass Valley 宣佈進行 EDIUS 7 串流透過 hello 雲端]: http://www.streamingmedia.com/Producer/Articles/ReadArticle.aspx?ArticleID=96351&utm_source=dlvr.it&utm_medium=twitter
+[使用 PlayReady 保護 Smooth Stream]: http://msdn.microsoft.com/library/azure/dn189154.aspx
+[Media Services SDK for .NET 中的重試邏輯]: http://msdn.microsoft.com/library/azure/dn745650.aspx
+[Grass Valley 發表透過雲端的 EDIUS 7 Streaming]: http://www.streamingmedia.com/Producer/Articles/ReadArticle.aspx?ArticleID=96351&utm_source=dlvr.it&utm_medium=twitter
 [控制 Media Service Encoder 輸出檔案名稱]: http://msdn.microsoft.com/library/azure/dn303341.aspx
 [建立重疊]: http://msdn.microsoft.com/library/azure/dn640496.aspx
 [結合視訊片段]: http://msdn.microsoft.com/library/azure/dn640504.aspx
-[Azure 媒體服務.NET SDK 3.0.0.1 和 3.0.0.2 版本]: http://www.gtrifonov.com/2014/02/07/windows-azure-media-services-.net-sdk-3.0.0.2-release/
+[Azure 媒體服務 .NET SDK 3.0.0.1 和 3.0.0.2 版本]: http://www.gtrifonov.com/2014/02/07/windows-azure-media-services-.net-sdk-3.0.0.2-release/
 [Azure Active Directory 存取控制服務 (ACS)]: http://msdn.microsoft.com/library/hh147631.aspx
-[連接 hello Media Services SDK for.NET tooMedia 服務]: http://msdn.microsoft.com/library/azure/jj129571.aspx
-[Azure Media Services.NET SDK Extensions]: https://github.com/Azure/azure-sdk-for-media-services-extensions/tree/dev
-[azure sdk 工具]: https://github.com/Azure/azure-sdk-tools
-[GitHub]: https://github.com/Azure/azure-sdk-for-media-services
+[使用 Media Services SDK for .NET 連接到媒體服務]: http://msdn.microsoft.com/library/azure/jj129571.aspx
+[Azure 媒體服務 .NET SDK 延伸]: https://github.com/Azure/azure-sdk-for-media-services-extensions/tree/dev
+[azure-sdk-tools]: https://github.com/Azure/azure-sdk-tools
+[Github]: https://github.com/Azure/azure-sdk-for-media-services
 [管理多個儲存體帳戶間的媒體服務資產]: http://msdn.microsoft.com/library/azure/dn271889.aspx
 [處理媒體服務工作通知]: http://msdn.microsoft.com/library/azure/dn261241.aspx
 

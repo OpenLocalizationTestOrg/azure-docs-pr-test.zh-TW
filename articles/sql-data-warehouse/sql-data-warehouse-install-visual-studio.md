@@ -1,5 +1,5 @@
 ---
-title: "aaaInstall Visual Studio 和 SQL 資料倉儲的 SSDT |Microsoft 文件"
+title: "安裝適用於 SQL 資料倉儲的 Visual Studio 和 SSDT | Microsoft Docs"
 description: "安裝適用於 Azure SQL 資料倉儲的 Visual Studio 和 SQL Server Development Tools (SSDT)"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,16 +15,16 @@ ms.workload: data-services
 ms.custom: connect
 ms.date: 03/30/2017
 ms.author: anvang;barbkess
-ms.openlocfilehash: cf49c13d5cab598ed127f5702c04168b62ede0dc
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: f7023b78c241a7bc8014276cd0bfa455165b42cc
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="install-visual-studio-and-ssdt-for-sql-data-warehouse"></a>安裝適用於 SQL 資料倉儲的 Visual Studio 和 SSDT
-SQL 資料倉儲的 toodevelop 應用程式，我們建議使用 hello 最新版本的 SQL Server Data Tools (SSDT) 中的 hello 最新版本的 Visual Studio。  Visual Studio 2013 Update 5 搭配 SSDT 也支援回溯相容性。  
+若要開發 SQL 資料倉儲的應用程式，建議使用最新版本的 Visual Studio，搭配最新版本的 SQL Server Data Tools (SSDT)。  Visual Studio 2013 Update 5 搭配 SSDT 也支援回溯相容性。  
 
-有了 SSDT 使用 Visual Studio 可讓您 toouse hello SQL Server 物件總管 toovisually 瀏覽資料表、 檢視、 預存程序和更多您的 SQL 資料倉儲中的物件，以及執行查詢。
+搭配使用 Visual Studio 和 SSDT 可讓您使用 SQL Server 物件總管，經由視覺化方式瀏覽資料表、檢視、預存程序和 SQL 資料倉儲中的其他許多物件，以及執行查詢。
 
 > [!NOTE]
 > SQL 資料倉儲尚未支援 Visual Studio 資料庫專案。  此功能將會加入未來的版本中。
@@ -32,21 +32,21 @@ SQL 資料倉儲的 toodevelop 應用程式，我們建議使用 hello 最新版
 > 
 
 ## <a name="step-1-install-visual-studio"></a>步驟 1：安裝 Visual Studio
-請遵循這些連結 toodownload 及安裝 Visual Studio。 如果您已安裝 Visual Studio 2013 或更新版本，您可以略過 tooStep 2，則安裝 SSDT。
+遵循下列連結來下載並安裝 Visual Studio。 如果已安裝 Visual Studio 2013 或更新版本，可以跳至步驟 2 安裝 SSDT。
 
 1. [下載 Visual Studio][]。
-2. 請遵循 hello[安裝 Visual Studio] [ Installing Visual Studio]引導 MSDN 上，並選擇 hello 預設設定。
+2. 依照 MSDN 上的[安裝 Visual Studio][Installing Visual Studio] 指南並選擇預設組態。
 
 ## <a name="step-2-install-ssdt"></a>步驟 2：安裝 SSDT
-tooinstall SSDT for Visual Studio 只會檢查 SSDT 更新從 Visual Studio 中遵循下列步驟。
+若要安裝適用於 Visual Studio 的 SSDT，只需依照下列步驟，從 Visual Studio 檢查 SSDT 更新。
 
 1. 在 Visual Studio 中，按一下 [工具] / [擴充功能和更新] / [更新]。
 2. 選取 [產品更新]，然後尋找 [適用於資料庫工具的 Microsoft SQL Server 更新]
 
-如果找不到更新，您應該有 hello 安裝最新版本。  tooconfirm SSDT 安裝後，按一下**協助** / **關於 Microsoft Visual Studio** hello 清單中尋找 SQL Server Data Tools。  hello 最新版本的 SSDT 是 14.0.60525.0。  如果 hello 選項 tooinstall 不從 Visual Studio 中，或者您可以瀏覽 hello [SSDT 下載][ SSDT Download] toodownload 頁面上，並手動安裝 SSDT。
+如果找不到更新，表示您應該已安裝最新版本。  若要確認已安裝 SSDT，請按一下 [說明] / [關於 Microsoft Visual Studio]，然後在清單中尋找 SQL Server Data Tools。  SSDT 的最新版本是 14.0.60525.0。  如果無法在 Visual Studio 中使用安裝選項，或者您也可以瀏覽 [SSDT 下載][SSDT Download]頁面，手動下載和安裝 SSDT。
 
 ## <a name="next-steps"></a>後續步驟
-現在您有 hello 最新版本的 SSDT，您就可以準備太[連接][ connect] tooyour SQL 資料倉儲。
+既然有了最新版本的 SSDT，您可以開始 [連接][connect]到 SQL 資料倉儲。
 
 <!--Anchors-->
 

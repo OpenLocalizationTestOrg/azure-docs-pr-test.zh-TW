@@ -1,5 +1,5 @@
 ---
-title: "SQL 資料倉儲中的 aaaPartitioning 資料表 |Microsoft 文件"
+title: "在 SQL 資料倉儲中分割資料表 | Microsoft Docs"
 description: "開始在 Azure SQL 資料倉儲中分割資料表。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,11 +15,11 @@ ms.workload: data-services
 ms.custom: tables
 ms.date: 10/31/2016
 ms.author: shigu;barbkess
-ms.openlocfilehash: aa63c51562f3e6f83063320860b195e135a721e1
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3edfd34d368228be32afef48688739639a3b03ed
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="partitioning-tables-in-sql-data-warehouse"></a>在 SQL 資料倉儲中分割資料表
 > [!div class="op_single_selector"]
@@ -33,28 +33,28 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-所有 SQL 資料倉儲資料表類型都支援資料分割；包括叢集資料行存放區、叢集索引和堆積。  所有散發類型也也支援資料分割，包括散發的雜湊或循環配置資源。  資料分割可讓您 toodivide 您較小的群組的資料，以及在大部分情況下，資料分割的資料便已完成的日期資料行。
+所有 SQL 資料倉儲資料表類型都支援資料分割；包括叢集資料行存放區、叢集索引和堆積。  所有散發類型也也支援資料分割，包括散發的雜湊或循環配置資源。  資料分割可讓您將資料分成較小的資料群組，而在大部分情況下，會在日期資料行上進行資料分割。
 
 ## <a name="benefits-of-partitioning"></a>資料分割的優點
-資料分割可以提升資料維護和查詢效能。  其優點兩個或其中一個是取決於如何載入資料，以及是否 hello 相同的資料行可以使用這兩種用途，因為資料分割只能在一個資料行上。
+資料分割可以提升資料維護和查詢效能。  其具備上述兩個優點，還是只有一個優點，取決於資料的載入方式，以及相同的資料行是否可用於這兩個目的，因為資料分割只能在一個資料行上進行。
 
-### <a name="benefits-tooloads"></a>優點 tooloads
-hello SQL 資料倉儲中資料分割的主要優點是改善 hello 效率與效能載入使用的分割區刪除的資料、 切換和合併。  在大部分情況下，資料分割的日期資料行緊密繫結 toohello 順序 hello 資料是載入的 toohello 資料庫。  其中一個 hello 使用它 hello 避免交易記錄的資料分割 toomaintain 資料的最大的優勢。  雖然只要插入、 更新或刪除資料可以 hello 最直接的方法，以極小的思考和投入時間，而使用您在載入程序分割可以大幅改善效能。
+### <a name="benefits-to-loads"></a>載入的優點
+SQL 資料倉儲中資料分割的主要優點是藉由使用分割區刪除、切換和合併，來改善資料載入的效率與效能。  在大部分情況下，會依照與資料載入到資料庫的順序密切相關的日期資料行分割資料。  使用資料分割來維護資料的最大優點之一是避免記錄交易。  雖然插入、更新或刪除資料可能是最直接的方法，但只要付出一些關心和努力，在載入處理期間使用資料分割可以大幅改善效能。
 
-切換資料分割可以使用的 tooquickly 移除或取代資料表區段。  例如，銷售事實資料表可能過去 36 個月包含 hello 是只有資料。  在每個月的 hello 結尾，hello 早月份的銷售資料的資料表中刪除了 hello。  無法刪除此資料，會使用 delete 陳述式 toodelete hello 資料 hello 最舊的月份。  不過，刪除大量的資料列逐列與 delete 陳述式可以花很長的時間，以及建立大型交易發生錯誤時，可能需要很長的時間 toorollback hello 風險。  更接近最佳的方法是 toosimply 卸除 hello 最舊的磁碟分割的資料。  刪除 hello 個別資料列，需要數小時，刪除整個磁碟分割可能需要為秒鐘。
+切換分割區可用於快速移除或取得資料表的某個區段。  例如，銷售事實資料表可能僅包含過去 36 個月的資料。  在每個月月底，便會從資料表刪除最舊月份的銷售資料。  使用 delete 陳述式來刪除最舊月份的資料，即可刪除此資料。  不過，使用 delete 陳述式逐列刪除大量資料可能需要很長的時間，而且會產生大型交易的風險，如果發生錯誤，則可能需要很長的時間來復原。  比較理想的方法是直接卸除最舊的資料磁碟分割。  刪除個別的資料列需要數小時的時間，而刪除整個磁碟分割可能只要數秒。
 
-### <a name="benefits-tooqueries"></a>優點 tooqueries
-資料分割也可以使用的 tooimprove 查詢效能。  如果查詢的資料分割的資料行上套用篩選器，這可能會限制 hello 掃描 tooonly hello 限定可能遠 hello 資料子集，避免完整資料表掃描的資料分割。  與 hello 的叢集資料行存放區索引的簡介，hello 述詞刪除效能優勢會較不會很有用，但在某些情況下可能會有好處 tooqueries。  比方說，hello 銷售事實資料表為資料分割到 36 個月使用 hello 銷售日期欄位，然後在 hello 銷售日期篩選的查詢可以略過不符合 hello 篩選條件的資料分割中的搜尋。
+### <a name="benefits-to-queries"></a>查詢的優點
+資料分割也可用來改善查詢效能。  如果查詢在資料分割資料行上套用篩選，這可能會讓掃描僅限於合格的資料分割 (這可能是較小部分的資料)，進而避免掃描整個資料表。  引進叢集資料行存放區索引後，述詞消除效能優勢比較沒有幫助，但在某些情況下，對查詢有所益處。  例如，如果使用銷售日期欄位將銷售事實資料表分割成 36 個月，以銷售日期進行篩選的查詢便可略過不符合篩選條件的分割區。
 
 ## <a name="partition-sizing-guidance"></a>磁碟分割大小調整指引
-資料分割時可以使用的 tooimprove 效能某些案例中，建立具有資料表**太多**資料分割會降低效能，在某些情況下。  叢集資料行存放區資料表尤其堪慮。  針對資料分割 toobe 很有幫助，很重要的 toounderstand 時的資料分割 toocreate toouse 分割與 hello 數目。  那里已為 toohow 沒有硬式快速規則多個資料分割太多，這取決於您的資料而多少資料分割會載入 toosimultaneously。  但是為一般的經驗法則，將加入 10s too100s 的資料分割，而不是 1000年。
+雖然資料分割可用來改善某些案例的效能，但是在某些情況下，建立具有 **太多** 資料分割的資料表可能會降低效能。  叢集資料行存放區資料表尤其堪慮。  若要讓資料分割有所助益，務必要了解使用資料分割的時機，以及要建立的分割區數目。  多少資料分割才算太多並無硬性規定，這取決於您的資料以及您同時載入多少資料分割。  但依照一般經驗法則，考慮加入 10 到 100 個分割區，而不是 1000 個。
 
-建立資料分割上時**叢集資料行存放區**很重要 tooconsider 多少資料列會讓每個分割區資料表。  為了讓叢集資料行存放區資料表達到最佳壓縮和效能，每個散發與分割區都需要至少 100 萬個資料列。  建立分割區之前，SQL 資料倉儲已將每個資料表分割成 60 個分散式資料庫。  任何資料分割加入的 tooa 資料表是另外建立 hello 幕後 toohello 分佈。  如果 hello 銷售事實資料表包含 36 的每月資料分割，而且假設 SQL 資料倉儲具有 60 分佈，然後 hello 銷售事實資料表應該包含每個月，60 萬個資料列或 2.1 10 億個資料列，當所有月份已都擴展時，請使用此範例中。  如果資料表包含比 hello 建議的每個資料分割的資料列的最小數目，大幅減少資料列時，請考慮使用較少的資料分割中的每個資料分割的資料列順序 toomake 增加 hello 數目。  另請參閱 hello[索引][ Index]發行項，其中包含您可以執行的叢集資料行存放區索引的 SQL 資料倉儲 tooassess hello 品質的查詢。
+在 **叢集資料行存放區** 資料表上建立資料分割時，請務必考慮每個資料分割中將放入多少資料列。  為了讓叢集資料行存放區資料表達到最佳壓縮和效能，每個散發與分割區都需要至少 100 萬個資料列。  建立分割區之前，SQL 資料倉儲已將每個資料表分割成 60 個分散式資料庫。  除了散發以外，任何加入至資料表的資料分割都是在幕後建立。  依據此範例，如果銷售事實資料表包含 36 個月的分割區，並假設 SQL 資料倉儲有 60 個散發，則銷售事實資料表每個月應包含 6 千萬個資料列，或是在填入所有月份時包含 21 億個資料列。  如果資料表包含的資料列遠少於每個分割區建議的最小資料列數，請考慮使用較少的分割區，以增加每個分割區的資料列數目。  另請參閱[索引][Index]一文，其中包含可在 SQL 資料倉儲執行的查詢，以評估叢集資料行存放區索引的品質。
 
 ## <a name="syntax-difference-from-sql-server"></a>與 SQL Server 的語法差異
-SQL 資料倉儲引進與 SQL Server 稍有不同的簡化分割定義。  資料分割函式和配置不會如同在 SQL Server 中一樣，使用於 SQL 資料倉儲。  相反地，您只需要 toodo 是識別資料分割的資料行和 hello 邊界點。  雖然資料分割的 hello 語法稍有不同 SQL Server，hello 基本概念是 hello 相同。  SQL Server 和 SQL 資料倉儲支援每個資料表一個分割資料行，它可以是遠距資料分割。  toolearn 進一步了解資料分割，請參閱[Partitioned Tables and Indexes][Partitioned Tables and Indexes]。
+SQL 資料倉儲引進與 SQL Server 稍有不同的簡化分割定義。  資料分割函式和配置不會如同在 SQL Server 中一樣，使用於 SQL 資料倉儲。  相反地，您只需要識別已分割的資料行和邊界點。  雖然資料分割的語法與 SQL Server 稍有不同，但基本概念是一樣的。  SQL Server 和 SQL 資料倉儲支援每個資料表一個分割資料行，它可以是遠距資料分割。  若要深入了解資料分割，請參閱[分割資料表和索引][Partitioned Tables and Indexes]。
 
-下列範例中的資料分割的 SQL 資料倉儲的 hello [CREATE TABLE] [ CREATE TABLE]陳述式中，資料分割 hello OrderDateKey 資料行上的 hello FactInternetSales 資料表：
+SQL 資料倉儲分割 [CREATE TABLE][CREATE TABLE] 陳述式的以下範例，會依據 OrderDateKey 資料行分割 FactInternetSales 資料表︰
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales]
@@ -81,12 +81,12 @@ WITH
 ```
 
 ## <a name="migrating-partitioning-from-sql-server"></a>從 SQL Server 移轉資料分割
-SQL Server toomigrate 只分割定義 tooSQL 資料倉儲：
+若要將 SQL Server 分割定義移轉至 SQL 資料倉儲，只需：
 
-* 消除 hello SQL Server[分割區配置][partition scheme]。
-* 新增 hello[資料分割函數][ partition function]定義 tooyour 建立資料表。
+* 刪除 SQL Server [資料分割配置][partition scheme]。
+* 將[資料分割函式][partition function]定義新增至您的 CREATE TABLE。
 
-如果您從 SQL Server 執行個體 hello 以下 SQL 移轉資料分割的資料表可協助您在每個資料分割中的資料列的 toointerrogate hello 數目。  請注意，如果 hello 相同資料分割的資料粒度上使用 SQL 資料倉儲，每個資料分割的資料列的 hello 數目將會降低，因數為 60。  
+如果您從 SQL Server 執行個體移轉分割資料表，下面的 SQL 可協助您詢問每個分割區中的資料列數目。  請記住，如果 SQL 資料倉儲上使用相同的資料分割資料細微性，則每個分割區的資料列數目會依 60 的倍數減少。  
 
 ```sql
 -- Partition information for a SQL Server Database
@@ -123,9 +123,9 @@ GROUP BY    s.[name]
 ```
 
 ## <a name="workload-management"></a>工作負載管理
-是一個 toohello 資料表資料分割決策的最後一段考量 toofactor[工作負載管理][workload management]。  主要 hello 管理的記憶體和並行存取 SQL 資料倉儲中的工作負載管理。  在 SQL 資料倉儲 hello 配置 tooeach 發佈在查詢執行期間的最大記憶體是管的資源類別。  在理想情況下您的資料分割將調整大小 in consideration of hello 記憶體需求，建立叢集資料行存放區索引的其他因素。  配置更多記憶體給叢集資料行存放區索引時，即可獲得極大的好處。  因此，您將會重建分割區索引的 tooensure 尚未用完的記憶體。 增加 hello 數量記憶體可用 tooyour 查詢可藉由切換從 hello 預設角色、 smallrc、 tooone 的 hello 其他角色，例如 largerc。
+要納入資料表分割決策的最後一項資訊是[工作負載管理][workload management]。  SQL 資料倉儲中的工作負載管理主要是記憶體和並行存取管理。  在 SQL 資料倉儲中，資源類別會控管在查詢執行期間配置給每個散發的最大記憶體。  在理想的情況下，會考量建置叢集資料行存放區索引的記憶體需求等其他因素，以調整您的分割大小。  配置更多記憶體給叢集資料行存放區索引時，即可獲得極大的好處。  因此，您會想要確定重建分割索引不會耗盡記憶體。 從預設角色 smallrc 切換到其他角色 (例如 largerc)，即可增加您的查詢可用的記憶體數量。
 
-Hello 配置的記憶體，每個發佈的詳細資訊，請查詢 hello 資源管理員動態管理檢視。 事實上，記憶體授權會早於下列 hello 圖形。 不過，這會提供指導方針，以便在針對資料管理作業調整分割大小時使用。  請嘗試 tooavoid 調整大小超出 hello hello 超大型資源類別所提供的記憶體授與資料分割。 如果分割區超出本圖風險 hello 反過來 tooless 最佳壓縮的記憶體不足壓力。
+查詢資源管理員動態管理檢視，即可取得每個散發的記憶體配置資訊。 事實上，記憶體授與會小於下列數據。 不過，這會提供指導方針，以便在針對資料管理作業調整分割大小時使用。  盡量避免將分割大小調整超過超大型資源類別所提供的記憶體授與。 如果分割成長超過此數據，您就會冒著記憶體壓力的風險，進而導致比較不理想的壓縮。
 
 ```sql
 SELECT  rp.[name]                                AS [pool_name]
@@ -144,12 +144,12 @@ AND     rp.[name]    = 'SloDWPool'
 ```
 
 ## <a name="partition-switching"></a>分割切換
-SQL 資料倉儲支援資料分割、合併和切換。 這些函式的每一個都是使用 hello excuted [ALTER TABLE] [ ALTER TABLE]陳述式。
+SQL 資料倉儲支援資料分割、合併和切換。 這些功能是使用 [ALTER TABLE][ALTER TABLE] 陳述式執行。
 
-您必須確定 hello 資料分割將對齊其各自的界限上，且符合 hello 資料表定義的兩個資料表之間的 tooswitch 分割區。 Check 條件約束沒有 tooenforce hello 資料表 hello 來源資料表中的值範圍必須包含 hello 相同為 hello 目標資料表資料分割界限。 如果這不是 hello 案例，則會失敗 hello 資料分割切換，將不會同步 hello 分割區中繼資料。
+若要切換兩個資料表間的分割，您必須確定分割對齊其各自的界限，而且資料表定義相符。 檢查條件約束不適用於強制資料表中的值範圍，來源資料表必須包含與目標資料表相同的分割界限。 如果情況不是如此，則分割切換將會失敗，因為分割中繼資料不會同步處理。
 
-### <a name="how-toosplit-a-partition-that-contains-data"></a>如何 toosplit 包含資料的磁碟分割
-hello 最有效率的方法 toosplit 已經包含資料的資料分割是 toouse`CTAS`陳述式。 如果 hello 資料分割的資料表的叢集資料行存放區則 hello 資料表資料分割必須是空白之前可以分割。
+### <a name="how-to-split-a-partition-that-contains-data"></a>如何分割包含資料的分割
+使用 `CTAS` 陳述式是分割已含資料之分割的最有效方法。 如果分割資料表是叢集式資料行存放區，則資料表分割必須空的，才可加以分割。
 
 下列範例顯示每個分割包含一個資料列的分割資料行存放區資料表：
 
@@ -185,11 +185,11 @@ CREATE STATISTICS Stat_dbo_FactInternetSales_OrderDateKey ON dbo.FactInternetSal
 ```
 
 > [!NOTE]
-> 建立 hello 統計資料物件，我們確定該資料表的中繼資料更精確。 如果我們省略了建立統計資料，SQL 資料倉儲將會使用預設值。 如需統計資料的詳細資訊，請檢閱[統計資料][statistics]。
+> 藉由建立統計資料物件，我們確定資料表中繼資料更加精確。 如果我們省略了建立統計資料，SQL 資料倉儲將會使用預設值。 如需統計資料的詳細資訊，請檢閱[統計資料][statistics]。
 > 
 > 
 
-我們可以在使用 hello hello 資料列計數查詢`sys.partitions`目錄檢視：
+我們可以接著使用 `sys.partitions` 目錄檢視，查詢資料列計數：
 
 ```sql
 SELECT  QUOTENAME(s.[name])+'.'+QUOTENAME(t.[name]) as Table_name
@@ -206,15 +206,15 @@ WHERE t.[name] = 'FactInternetSales'
 ;
 ```
 
-如果我們嘗試 toosplit 此資料表，我們會收到錯誤：
+如果我們嘗試分割此資料表，我們會收到錯誤：
 
 ```sql
 ALTER TABLE FactInternetSales SPLIT RANGE (20010101);
 ```
 
-Msg 35346，層級 15，狀態 1，行 44 分割子句的 ALTER PARTITION 陳述式失敗，因為不是空的 hello 磁碟分割。  Hello 資料表上存在的資料行存放區索引時，可以在分割只有空的資料分割。 請考慮停用後再發出 hello ALTER PARTITION 陳述式，再重建 hello 資料行存放區索引，ALTER PARTITION 完成後的 hello 資料行存放區索引。
+訊息 35346、層級 15、狀態 1、行 44：ALTER PARTITION 陳述式的 SPLIT 子句失敗，因為分割不是空的。  只有在資料表上存在資料行存放區索引時，才可以分割空的分割。 請考慮在發出 ALTER PARTITION 陳述式前停用資料行存放區索引，然後在 ALTER PARTITION 完成後重建資料行存放區索引。
 
-不過，我們可以使用`CTAS`toocreate 新的資料表 toohold 我們的資料。
+不過，我們可以使用 `CTAS` 建立新資料表以保存資料。
 
 ```sql
 CREATE TABLE dbo.FactInternetSales_20000101
@@ -232,15 +232,15 @@ WHERE   1=2
 ;
 ```
 
-允許參數為 hello 資料分割界限對齊。 這會導致 hello 來源資料表具有空的分割區，我們接下來可以分割。
+分割界限已對齊，所以允許切換。 這會讓來源資料表有空白分割可供我們接著分割。
 
 ```sql
-ALTER TABLE FactInternetSales SWITCH PARTITION 2 too FactInternetSales_20000101 PARTITION 2;
+ALTER TABLE FactInternetSales SWITCH PARTITION 2 TO  FactInternetSales_20000101 PARTITION 2;
 
 ALTER TABLE FactInternetSales SPLIT RANGE (20010101);
 ```
 
-剩下 toodo 是我們資料 toohello 新資料分割界限使用的 tooalign `CTAS` toohello 主資料表中切換資料
+接下來只需使用 `CTAS` 將我們的資料對齊新的分割界限，並將我們的資料切換回到主資料表
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales_20000101_20010101]
@@ -258,19 +258,19 @@ WHERE   [OrderDateKey] >= 20000101
 AND     [OrderDateKey] <  20010101
 ;
 
-ALTER TABLE dbo.FactInternetSales_20000101_20010101 SWITCH PARTITION 2 toodbo.FactInternetSales PARTITION 2;
+ALTER TABLE dbo.FactInternetSales_20000101_20010101 SWITCH PARTITION 2 TO dbo.FactInternetSales PARTITION 2;
 ```
 
-當您完成 hello hello 資料移動是個不錯的主意 toorefresh hello 統計資料在 hello 目標資料表 tooensure 它們正確地反映 hello hello 中的資料及其個別資料分割的新發佈：
+完成資料移動後，最好能重新整理目標資料表上的統計資料，確保統計資料可在其各自的分割中精確地反映出資料的新散發：
 
 ```sql
 UPDATE STATISTICS [dbo].[FactInternetSales];
 ```
 
 ### <a name="table-partitioning-source-control"></a>資料表分割原始檔控制
-tooavoid 從您的資料表定義**rusting**在您的原始檔控制系統中，您可能想 tooconsider hello 遵循方法：
+若要避免您的資料表定義在您的原始檔控制系統中 **失效** ，您可以考慮下列方法：
 
-1. 建立 hello 資料表為資料分割資料表，但不會有資料分割值
+1. 將資料表建立為分割資料表，但沒有分割值
 
 ```sql
 CREATE TABLE [dbo].[FactInternetSales]
@@ -294,10 +294,10 @@ WITH
 ;
 ```
 
-1. `SPLIT`hello 資料表 hello 部署程序的一部分：
+1. `SPLIT` 資料表：
 
 ```sql
--- Create a table containing hello partition boundaries
+-- Create a table containing the partition boundaries
 
 CREATE TABLE #partitions
 WITH
@@ -321,7 +321,7 @@ FROM    (
         ) a
 ;
 
--- Iterate over hello partition boundaries and split hello table
+-- Iterate over the partition boundaries and split the table
 
 DECLARE @c INT = (SELECT COUNT(*) FROM #partitions)
 ,       @i INT = 1                                 --iterator for while loop
@@ -347,10 +347,10 @@ END
 DROP TABLE #partitions;
 ```
 
-這個方法 hello 與原始檔控制中的程式碼保持不變，而 hello 資料分割的界限值允許 toobe 動態;經過一段時間發展與 hello 倉儲。
+利用這種方法，原始檔控制中的程式碼會保持靜態，並允許動態的分割界限值；隨著時間與倉儲一起發展。
 
 ## <a name="next-steps"></a>後續步驟
-toolearn 詳細資訊，請參閱 hello 文件上[資料表概觀][Overview]，[資料表資料類型][Data Types]，[散發資料表][ Distribute]，[的資料表建立索引][Index]，[維護資料表統計資料][ Statistics]和[暫存資料表][Temporary]。  若要深入了解最佳作法，請參閱 [SQL Data 資料倉儲最佳作法][SQL Data Warehouse Best Practices]。
+若要深入了解，請參閱[資料表概觀][Overview]、[資料表資料類型][Data Types]、[散發資料表][Distribute]、[編製資料表的索引][Index]、[維護資料表統計資料][Statistics]和[暫存資料表][Temporary]等文章。  若要深入了解最佳作法，請參閱 [SQL Data 資料倉儲最佳作法][SQL Data Warehouse Best Practices]。
 
 <!--Image references-->
 

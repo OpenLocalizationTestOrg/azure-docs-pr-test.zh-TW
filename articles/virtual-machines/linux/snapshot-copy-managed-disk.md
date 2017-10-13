@@ -1,6 +1,6 @@
 ---
-title: "Azure 受管理備份磁碟上的 aaaCopy |Microsoft 文件"
-description: "了解如何 toocreate 回最新或疑難排解磁碟 Azure 受管理磁碟 toouse 一份問題。"
+title: "複製 Azure 受控磁碟作為備份 | Microsoft Docs"
+description: "了解如何建立 Azure 受控磁碟的複本作為備份，或用於針對磁碟問題進行疑難排解。"
 documentationcenter: 
 author: squillace
 manager: timlt
@@ -13,33 +13,33 @@ ms.devlang: azurecli
 ms.topic: article
 ms.date: 2/6/2017
 ms.author: rasquill
-ms.openlocfilehash: 41b91c2d68eb5be9c493a66be5f7d085a70450d0
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c91367ef11c9d531bebac7c069d2df586607ec29
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-a-copy-of-a-vhd-stored-as-an-azure-managed-disk-by-using-managed-snapshots"></a>使用受控快照集建立 VHD 的複本並儲存為 Azure 受控磁碟
-取得備份的受管理磁碟的快照或從 hello 快照集建立受管理磁碟並將它附加 tooa 測試虛擬機器 tootroubleshoot。 受控快照集是 VM 受控磁碟的完整時間點複本。 它會建立 VHD 的唯讀複本，而且根據預設儲存為標準受控磁碟。 
+建立受控磁碟的快照集作為備份，或從快照集建立受控磁碟並將它附加至測試虛擬機器進行疑難排解。 受控快照集是 VM 受控磁碟的完整時間點複本。 它會建立 VHD 的唯讀複本，而且根據預設儲存為標準受控磁碟。 
 
-如需價格的詳細資訊，請參閱 [Azure 儲存體價格](https://azure.microsoft.com/pricing/details/managed-disks/)。 <!--Add link tootopic or blog post that explains managed disks. -->
+如需價格的詳細資訊，請參閱 [Azure 儲存體價格](https://azure.microsoft.com/pricing/details/managed-disks/)。 <!--Add link to topic or blog post that explains managed disks. -->
 
-使用 Azure 入口網站或 hello Azure CLI 2.0 tootake 任一 hello hello 受管理磁碟的快照集。
+使用 Azure 入口網站或 Azure CLI 2.0 製作受控磁碟的快照集。
 
-## <a name="use-azure-cli-20-tootake-a-snapshot"></a>使用 Azure CLI 2.0 tootake 快照集
+## <a name="use-azure-cli-20-to-take-a-snapshot"></a>使用 Azure CLI 2.0 製作快照集
 
 > [!NOTE] 
-> hello 下列範例要求 hello Azure CLI 2.0 安裝並登入您的 Azure 帳戶。
+> 下列範例需要安裝 Azure CLI 2.0 並登入您的 Azure 帳戶。
 
-hello 下列步驟顯示如何 tooobtain 並採取快照集的受管理的作業系統磁碟使用 hello`az snapshot create`命令與 hello`--source-disk`參數。 hello 下列範例假設有呼叫 VM`myVM`建立的受管理的作業系統磁碟在 hello`myResourceGroup`資源群組。
+下列步驟說明如何使用 `az snapshot create` 命令搭配 `--source-disk` 參數，取得及製作受控 OS 磁碟的快照集。 下列範例假設有一個名為 `myVM` 的 VM，該 VM 是使用 `myResourceGroup` 資源群組中的受控 OS 磁碟加以建立。
 
 ```azure-cli
-# take hello disk id with which toocreate a snapshot
+# take the disk id with which to create a snapshot
 osDiskId=$(az vm show -g myResourceGroup -n myVM --query "storageProfile.osDisk.managedDisk.id" -o tsv)
 az snapshot create -g myResourceGroup --source "$osDiskId" --name osDisk-backup
 ```
 
-hello 輸出應該看起來像這樣：
+輸出應如下所示︰
 
 ```json
 {
@@ -66,18 +66,18 @@ hello 輸出應該看起來像這樣：
 }
 ```
 
-## <a name="use-azure-portal-tootake-a-snapshot"></a>使用 Azure 入口網站 tootake 快照集 
+## <a name="use-azure-portal-to-take-a-snapshot"></a>使用 Azure 入口網站建立快照集 
 
-1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
-2. 從開始 hello 左上方，按一下**新增**並搜尋**快照**。
-3. 在 hello 快照刀鋒視窗中，按一下 **建立**。
-4. 輸入**名稱**hello 快照集。
-5. 選取現有[資源群組](../../azure-resource-manager/resource-group-overview.md#resource-groups)或新的型別 hello 名稱。 
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
+2. 從左上方開始，按一下 [新增]並搜尋**快照集**。
+3. 在 [快照集] 刀鋒視窗中，按一下 [建立]。
+4. 輸入快照集的 [名稱]。
+5. 選取現有的[資源群組](../../azure-resource-manager/resource-group-overview.md#resource-groups)，或輸入新群組的名稱。 
 6. 選取 Azure 資料中心的 [位置]。  
-7. 如**來源磁碟**，選取 hello toosnapshot 管理的磁碟。
-8. 選取 hello**帳戶類型**toouse toostore hello 快照集。 除非需要儲存在高效能磁碟上，否則建議選取 **Standard_LRS**。
+7. 在 [來源磁碟] 中，選取要建立快照集的受控磁碟。
+8. 選取用來儲存快照集的 [帳戶類型]。 除非需要儲存在高效能磁碟上，否則建議選取 **Standard_LRS**。
 9. 按一下 [建立] 。
 
-如果您規劃 toouse hello 快照 toocreate 受管理的磁碟，並將它附加 toobe 高執行所需的 VM，使用 hello 參數`--sku Premium_LRS`以 hello`az snapshot create`命令。 這會建立 hello 快照集，使它儲存為 Premium 管理磁碟。 進階受控磁碟的效能比較好，因為它們是固態硬碟 (SSD)，但成本高於標準磁碟 (HDD)。
+如果您打算使用快照集來建立受控磁碟，並將它附加至必須是高效能的 VM，請使用 `--sku Premium_LRS` 參數搭配 `az snapshot create` 命令。 這麼做建立的快照集會儲存為進階受控磁碟。 進階受控磁碟的效能比較好，因為它們是固態硬碟 (SSD)，但成本高於標準磁碟 (HDD)。
 
 

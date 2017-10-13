@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate 您在 Azure DevTest 實驗室的實驗室中的第一個 VM |Microsoft 文件"
-description: "深入了解如何 toocreate Azure DevTest 實驗室中的實驗室中的第一個虛擬機器"
+title: "在 Azure DevTest Labs 的實驗室中建立您的第一個 VM | Microsoft Docs"
+description: "了解如何在 Azure DevTest Labs 的實驗室中建立您的第一個虛擬機器"
 services: devtest-lab,virtual-machines
 documentationcenter: na
 author: tomarcher
@@ -14,42 +14,42 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/24/2017
 ms.author: tarcher
-ms.openlocfilehash: 4c3257efca9be6fdd190eaac1db731464e07fcfd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: aa6b60b799e1e98815cf288d5612f98cd77cc00e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-your-first-vm-in-a-lab-in-azure-devtest-labs"></a>在 Azure DevTest Labs 的實驗室中建立您的第一個 VM
 
-當您一開始存取 DevTest Labs，並想 toocreate 第一個 VM 時，您將可能會使用進行預先載入[基底 marketplace 映像](devtest-lab-configure-marketplace-images.md)。 在稍後，您也可以從能夠 toochoose[自訂映像和公式](devtest-lab-add-vm.md)時建立多個 Vm。 
+當您首次存取 DevTest Labs 並想要建立您的第一個 VM 時，您很有可能會透過預先載入的[基底 Marketplace 映像](devtest-lab-configure-marketplace-images.md)來完成。 您在稍後建立更多 VM 時，也可以在[自訂映像和公式](devtest-lab-add-vm.md)之間做出選擇。 
 
-本教學課程中引導您使用 Azure 入口網站 tooadd hello DevTest Labs 中的第一個 VM tooa 實驗室。
+本教學課程會逐步引導您使用 Azure 入口網站，在 DevTest Labs 中將您的第一個 VM 新增至實驗室。
 
-## <a name="steps-tooadd-your-first-vm-tooa-lab-in-azure-devtest-labs"></a>步驟 tooadd Azure DevTest Labs 中的第一個 VM tooa 實驗室
-1. 登入 toohello [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
-1. 選取**更服務**，然後選取**DevTest Labs**從 hello 清單。
-1. 從 hello 清單的實驗室中，選取您想在其中 toocreate hello VM hello 實驗室。  
-1. 在 hello 實驗室**概觀**刀鋒視窗中，選取**+ 加**。  
+## <a name="steps-to-add-your-first-vm-to-a-lab-in-azure-devtest-labs"></a>在 Azure DevTest Labs 中將您的第一個 VM 新增至實驗室的步驟
+1. 登入 [Azure 入口網站](http://go.microsoft.com/fwlink/p/?LinkID=525040)。
+1. 選取 [更多服務]，然後從清單中選取 [DevTest Labs]。
+1. 從實驗室清單中，選取您想要在其中建立 VM 的實驗室。  
+1. 在實驗室的 [概觀] 刀鋒視窗中，選取 [+ 新增]。  
 
     ![加入 VM 按鈕](./media/devtest-lab-add-vm/devtestlab-home-blade-add-vm.png)
 
-1. 在 hello**選擇基底**刀鋒視窗中，選取 marketplace 映像的 hello VM。
-1. 在 hello**虛擬機器**刀鋒視窗中，輸入 hello 新的虛擬機器的名稱在 hello**虛擬機器名稱**文字方塊。
+1. 在 [選擇基底] 刀鋒視窗上，選取 VM 的 Marketplace 映像。
+1. 在 [虛擬機器] 刀鋒視窗的 [虛擬機器名稱] 文字方塊中，輸入新虛擬機器的名稱。
 
     ![實驗室 VM 刀鋒視窗](./media/devtest-lab-add-vm/devtestlab-lab-add-first-vm.png)
 
-1. 輸入**使用者名**，授與 hello 虛擬機器上的系統管理員權限。  
-1. 標示的 hello 文字欄位中輸入密碼**輸入值**。
-1. hello**虛擬機器磁碟類型**會決定哪些儲存磁碟類型可供 hello hello 實驗室中的虛擬機器。
-1. 選取**虛擬機器大小**和選取 hello 的其中一個預先定義的指定 hello 處理器核心、 RAM 大小，以及 hello VM toocreate hello 硬碟大小的項目。
-1. 選取**成品**和-從成品-hello 清單選取，然後設定您想 tooadd toohello 基底映像的 hello 成品。
-    **注意：**若您是新 tooDevTest 實驗室或設定成品，請參閱 toohello[加入現有的成品 tooa VM](./devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm)區段，然後再在完成時，返回此處。
-1. 選取**建立**tooadd hello 指定 VM toohello 實驗室。
+1. 輸入**使用者名稱**，此名稱會被授與虛擬機器上的系統管理員權限。  
+1. 在標示為 [輸入值] 的文字欄位中輸入密碼。
+1. [虛擬機器磁碟類型] 會決定實驗室中的虛擬機器所允許的儲存磁碟類型。
+1. 選取 [虛擬機器大小]  ，然後選取其中一個預先定義的項目，這些項目可以指定處理器核心、RAM 大小，以及要建立的 VM 的硬碟大小。
+1. 選取 [構件]，然後從構件清單中，選取並設定您想要新增到基本映像中的構件。
+    **附註：**如果您對 DevTest Labs 或設定構件並不熟悉，請參閱[將現有的構件加入至 VM](./devtest-lab-add-vm.md#add-an-existing-artifact-to-a-vm) 一節，完成該節之後再返回此處。
+1. 選取 [建立]  ，將指定的 VM 加入實驗室。
 
-   hello 實驗室刀鋒視窗會顯示 hello 狀態的 hello VM 建立-第一次為**建立**，然後為**執行**之後 hello VM 已啟動。
+   實驗室刀鋒視窗會顯示 VM 的建立狀態，其狀態會先是 [正在建立]，在啟動該 VM 之後才會變成 [正在執行]。
 
 ## <a name="next-steps"></a>後續步驟
-* 一次 hello 在建立 VM，您可以連接 toohello VM 選取**連接**hello VM 刀鋒視窗上。
-* 簽出[加入 VM tooa 實驗室](devtest-lab-add-vm.md)如需將後續的 Vm 加入您的實驗室中的更完整資訊。
-* 瀏覽 hello [DevTest Labs Azure 資源管理員的快速入門範本庫](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)。
+* 一旦建立 VM 之後，您可以選取 VM 刀鋒視窗上的 [連接]  來連接至 VM。
+* 查看[對實驗室新增 VM](devtest-lab-add-vm.md) 以取得在實驗室中新增後續 VM 的完整資訊。
+* 瀏覽 [DevTest Labs Azure Resource Manager 快速入門範本資源庫 (英文)](https://github.com/Azure/azure-devtestlab/tree/master/ARMTemplates)。

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure 入口網站的 aaaTroubleshoot Azure Data Lake Analytics 作業 |Microsoft 文件"
-description: "了解如何 toouse hello Azure 入口網站 tootroubleshoot Data Lake Analytics 工作。 "
+title: "使用 Azure 入口網站疑難排解 Azure Data Lake Analytics作業 | Microsoft Docs"
+description: "了解如何使用 Azure 入口網站疑難排解資料湖分析作業。 "
 services: data-lake-analytics
 documentationcenter: 
 author: saveenr
@@ -14,20 +14,20 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 12/05/2016
 ms.author: edmaca
-ms.openlocfilehash: e810d56bab8f1a8254721ec9906bb6a4508dc22a
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b9c7453cc0a94f70d0098ed83e5f127832065a62
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="troubleshoot-azure-data-lake-analytics-jobs-using-azure-portal"></a>使用 Azure 入口網站疑難排解 Azure 資料湖分析作業
-了解如何 toouse hello Azure 入口網站 tootroubleshoot Data Lake Analytics 工作。
+了解如何使用 Azure 入口網站疑難排解資料湖分析作業。
 
-在本教學課程中，您會安裝遺失的來源檔案問題，並使用 hello Azure 入口網站 tootroubleshoot hello 問題。
+在本教學課程中，將會建立一個來源檔案遺失的問題，並使用 Azure 入口網站疑難排解問題。
 
 ## <a name="submit-a-data-lake-analytics-job"></a>提交資料湖分析作業
 
-送出 hello 遵循 U-SQL 作業：
+提交下列 U-SQL 作業：
 
 ```
 @searchlog =
@@ -42,38 +42,38 @@ ms.lasthandoff: 10/06/2017
    USING Extractors.Tsv();
 
 OUTPUT @searchlog   
-   too"/output/SearchLog-from-adls.csv"
+   TO "/output/SearchLog-from-adls.csv"
    USING Outputters.Csv();
 ```
     
-hello hello 指令碼中定義的原始程式檔是**/Samples/Data/SearchLog.tsv1**，應該是**/Samples/Data/SearchLog.tsv**。
+指令碼中定義的來源檔案是 **/Samples/Data/SearchLog.tsv1**，此處應為 **/Samples/Data/SearchLog.tsv**。
 
 
-## <a name="troubleshoot-hello-job"></a>疑難排解 hello 作業
+## <a name="troubleshoot-the-job"></a>疑難排解作業
 
-**toosee 所有 hello 工作**
+**查看所有工作**
 
-1. 從 hello Azure 入口網站，按一下  **Microsoft Azure** hello 左上角。
-2. 按一下 hello 磚使用 Data Lake Analytics 帳戶名稱。  hello 工作摘要會顯示在 hello**作業管理**磚。
+1. 在 Azure 入口網站中，按一下左上角的 [ **Microsoft Azure** ]。
+2. 按一下具有您資料湖分析帳戶名稱的磚。  工作摘要隨即顯示在 [ **工作管理** ] 磚上。
 
     ![Azure 資料湖分析作業管理](./media/data-lake-analytics-monitor-and-troubleshoot-tutorial/data-lake-analytics-job-management.png)
 
-    hello 作業管理可讓您一目瞭然 hello 作業狀態。 請注意失敗的工作。
-3. 按一下 hello**作業管理**磚 toosee hello 作業。 hello 作業分為**執行**，**排入佇列**，和**結束**。 您應該會看到您失敗的作業在 hello**結束**> 一節。 應該就能 hello 清單中的第一個。 當您有大量的工作時，您可以按一下**篩選**toohelp 您 toolocate 作業。
+    [工作管理可] 讓您對工作的狀態一目瞭然。 請注意失敗的工作。
+3. 按一下 [ **工作管理** ] 磚以檢視工作。 工作分類成 [執行中]、[已排入序列] 和 [結束]。 您應該會在 [ **結束** ] 區段中看到失敗的工作。 該工作應該列在清單中的首位。 如果有很多工作，您可以按一下 [ **篩選** ] 來協助您找出工作。
 
     ![Azure 資料湖分析篩選作業](./media/data-lake-analytics-monitor-and-troubleshoot-tutorial/data-lake-analytics-filter-jobs.png)
-4. 按一下 hello hello 清單 tooopen hello 工作詳細資料中的新刀鋒視窗從失敗的作業：
+4. 按一下清單中的失敗工作，會以新的刀鋒視窗開啟工作詳細資料：
 
     ![Azure 資料湖分析失敗作業](./media/data-lake-analytics-monitor-and-troubleshoot-tutorial/data-lake-analytics-failed-job.png)
 
-    請注意 hello**重新提交** 按鈕。 修正 hello 問題之後，您可以重新提交 hello 作業。
-5. 按一下反白顯示的部分從 hello 上一個螢幕擷取畫面 tooopen hello 錯誤詳細資料。  您會看到類似下面的畫面：
+    請注意 [ **重新提交** ] 按鈕。 修正問題之後，您可以重新提交工作。
+5. 按一下前一個螢幕擷取畫面中反白顯示的部分，開啟錯誤詳細資料。  您會看到類似下面的畫面：
 
     ![Azure 資料湖分析失敗作業詳細資料](./media/data-lake-analytics-monitor-and-troubleshoot-tutorial/data-lake-analytics-failed-job-details.png)
 
-    它會告訴您找不到 hello 來源資料夾。
+    它會告訴您找不到來源資料夾。
 6. 按一下 [ **重複的指令碼**]。
-7. 更新 hello **FROM**路徑 toohello 下列：
+7. 將 **FROM** 路徑更新成下方路徑：
 
     "/Samples/Data/SearchLog.tsv"
 8. 按一下 [ **提交作業**]。

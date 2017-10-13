@@ -1,6 +1,6 @@
 ---
-title: "aaaXEvent 信號緩衝區對 SQL 資料庫的程式碼 |Microsoft 文件"
-description: "提供使用 Azure SQL Database 中的 hello 信號緩衝區目標來進行簡單，且快速的 TRANSACT-SQL 程式碼範例。"
+title: "SQL Database 的 XEvent 信號緩衝區程式碼 | Microsoft Docs"
+description: "提供 Transact-SQL 程式碼範例，可在 Azure SQL Database 中輕鬆又快速使用信號緩衝區目標。"
 services: sql-database
 documentationcenter: 
 author: MightyPen
@@ -16,33 +16,33 @@ ms.devlang: na
 ms.topic: article
 ms.date: 02/03/2017
 ms.author: genemi
-ms.openlocfilehash: 21df748d9999d6837d2b5bbe4a3f47fb351b4633
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 6fbefe151901ac3b15d93712422878fc4d6206f1
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="ring-buffer-target-code-for-extended-events-in-sql-database"></a>SQL Database 中擴充事件的信號緩衝區目標程式碼
 
 [!INCLUDE [sql-database-xevents-selectors-1-include](../../includes/sql-database-xevents-selectors-1-include.md)]
 
-您想完整程式碼範例 hello 最簡單快速的方式 toocapture 和報表資訊的擴充的事件在測試期間。 hello 擴充的事件資料的最簡單的目標為 hello[信號緩衝區目標](http://msdn.microsoft.com/library/ff878182.aspx)。
+您想要完整的程式碼範例以最簡單快速的方式在測試期間擷取和報告擴充事件的資訊。 擴充事件資料最簡單的目標是 [信號緩衝區目標](http://msdn.microsoft.com/library/ff878182.aspx)。
 
 本主題提供會執行下列動作的 Transact-SQL 程式碼範例：
 
-1. 建立包含的資料表與資料 toodemonstrate。
+1. 使用資料建立要示範的資料表。
 2. 建立現有擴充事件的工作階段，名稱為 **sqlserver.sql_statement_starting**。
    
-   * hello 事件是否包含特定更新字串的有限的 tooSQL 陳述式： **LIKE '%更新 tabEmployee %' 陳述式**。
-   * 也就是選擇 toosend hello 輸出類型信號緩衝區 hello 事件 tooa 目標**package0.ring_buffer**。
-3. 啟動 hello 事件工作階段。
+   * 此事件僅限於包含特定 Update 字串的 SQL 陳述式： **statement LIKE '%UPDATE tabEmployee%'**。
+   * 選擇要將事件的輸出傳送給信號緩衝區類型的目標，名稱為 **package0.ring_buffer**。
+3. 啟動事件工作階段。
 4. 發出幾個簡單的 SQL UPDATE 陳述式。
-5. 發出的 SQL SELECT 陳述式 tooretrieve 事件輸出 hello 信號緩衝區。
+5. 發出 SQL SELECT 陳述式擷取信號緩衝區的事件輸出。
    
    * **sys.dm_xe_database_session_targets** 和其他動態管理檢視 (DMV) 會聯結在一起。
-6. 停止 hello 事件工作階段。
-7. 卸除 hello 信號緩衝區目標，toorelease 及其資源。
-8. 卸除 hello 事件工作階段和 hello 示範資料表。
+6. 停止事件工作階段。
+7. 卸除信號緩衝區目標以釋放其資源。
+8. 卸除事件工作階段和示範資料表。
 
 ## <a name="prerequisites"></a>必要條件
 
@@ -51,14 +51,14 @@ ms.lasthandoff: 10/06/2017
   
   * 您可以選擇性快速[建立 **AdventureWorksLT** 示範資料庫](sql-database-get-started.md)。
 * SQL Server Management Studio (ssms.exe)，最好是最新的每月更新版本。 
-  您可以下載從 hello 最新 ssms.exe:
+  您可以從下列位置下載最新的 ssms.exe：
   
   * 名稱為 [下載 SQL Server Management Studio](http://msdn.microsoft.com/library/mt238290.aspx)的主題。
-  * [直接連結 toohello 下載。](http://go.microsoft.com/fwlink/?linkid=616025)
+  * [下載的直接連結。](http://go.microsoft.com/fwlink/?linkid=616025)
 
 ## <a name="code-sample"></a>程式碼範例
 
-非常稍微修改，與 hello 下列信號緩衝區的程式碼範例可以執行 Azure SQL Database 或 Microsoft SQL Server 上。 hello 差異在於使用在步驟 5 中的 hello FROM 子句中的 hello 節點 '（_d）' hello 某些動態管理檢視 (Dmv)，名稱中的 hello 存在。 例如：
+只要稍加修改，就可以在 Azure SQL Database 或 Microsoft SQL Server 上執行下列信號緩衝區的程式碼範例。 不同之處在於有些動態管理檢視 (DMV) (步驟 5 的 FROM 子句中所使用) 的名稱中有 '_database' ()。 例如：
 
 * sys.dm_xe**_database**_session_targets
 * sys.dm_xe_session_targets
@@ -220,13 +220,13 @@ GO
 
 ## <a name="ring-buffer-contents"></a>信號緩衝區內容
 
-我們使用 ssms.exe toorun hello 程式碼範例。
+我們使用了 ssms.exe 來執行程式碼範例。
 
-tooview hello 結果，我們在下按下 hello 儲存格 hello 資料行標頭**target_data_XML**。
+為了檢視結果，我們按了 **target_data_XML** 資料欄標題下的儲存格。
 
-之後您 hello [結果] 窗格中按一下 hello 資料格底下 hello 資料行標頭**target_data_XML**。 按一下 [在 ssms.exe 中的 hello hello 結果資料格的內容已顯示，以 XML 中建立另一個檔案] 索引標籤。
+然後在結果窗格中，我們按了 **target_data_XML** 資料欄標題下的儲存格。 這個點按動作在 ssms.exe 中以 XML 格式建立了另一個檔案索引標籤，其中顯示了結果儲存格的內容。
 
-hello 輸出所示 hello 區塊後面。 它看起來很長，但其實只是兩個 **<event>** 元素。
+輸出如下列區塊所示。 它看起來很長，但其實只是兩個 **<event>** 元素。
 
 &nbsp;
 
@@ -320,7 +320,7 @@ SELECT 'AFTER__Updates', EmployeeKudosCount, * FROM tabEmployee;
 
 #### <a name="release-resources-held-by-your-ring-buffer"></a>釋放信號緩衝區佔用的資源
 
-當您完成使用信號緩衝區中時，您可以將它移除，並釋放其資源發出**ALTER**像 hello 面這樣：
+當您處理完信號緩衝區時，可以發出 **ALTER** 將它移除並釋放其資源，如下所示：
 
 ```sql
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
@@ -330,7 +330,7 @@ GO
 ```
 
 
-hello 定義的事件工作階段已更新，但不是會卸除。 稍後您可以加入 hello 信號緩衝區 tooyour 事件工作階段的另一個執行個體：
+事件工作階段的定義會更新，但不會卸除。 稍後您可以將信號緩衝區的另一個執行個體加入事件工作階段：
 
 ```sql
 ALTER EVENT SESSION eventsession_gm_azuresqldb51
@@ -345,11 +345,11 @@ ALTER EVENT SESSION eventsession_gm_azuresqldb51
 
 ## <a name="more-information"></a>詳細資訊
 
-是 hello Azure SQL database 的擴充事件的主要主題：
+Azure SQL Database 上擴充事件的主要主題是：
 
 * [SQL Database 中的擴充事件考量](sql-database-xevent-db-diff-from-svr.md)，對比 Azure SQL Database 與 Microsoft SQL Server 之間擴充事件的不同層面。
 
-使用下列連結查看 hello 在擴充事件的其他程式碼範例主題。 不過，您必須定期檢查任何範例 toosee 是否 hello 範例以 Microsoft SQL Server 與 Azure SQL Database 為目標。 然後您可以決定是否需要的 toorun hello 範例次要變更。
+下列連結提供擴充事件的其他程式碼範例主題。 不過，您必須定期檢查所有範例以查看範例是否適用於 Microsoft SQL Server 與 Azure SQL Database。 然後您可以決定是否需要稍加變更來執行範例。
 
 * Azure SQL Database 的程式碼範例： [SQL Database 中擴充事件的事件檔案目標程式碼](sql-database-xevent-code-event-file.md)
 
@@ -357,5 +357,5 @@ ALTER EVENT SESSION eventsession_gm_azuresqldb51
 ('lock_acquired' event.)
 
 - Code sample for SQL Server: [Determine Which Queries Are Holding Locks](http://msdn.microsoft.com/library/bb677357.aspx)
-- Code sample for SQL Server: [Find hello Objects That Have hello Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
+- Code sample for SQL Server: [Find the Objects That Have the Most Locks Taken on Them](http://msdn.microsoft.com/library/bb630355.aspx)
 -->

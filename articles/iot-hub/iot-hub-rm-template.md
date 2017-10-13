@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate Azure IoT 中樞使用的範本 (.NET) |Microsoft 文件"
-description: "如何 toouse Azure Resource Manager 範本 toocreate IoT 中樞與 C# 程式。"
+title: "使用範本建立 Azure IoT 中樞 (.NET) | Microsoft Docs"
+description: "如何在 C# 程式中使用 Azure Resource Manager 範本建立 IoT 中樞。"
 services: iot-hub
 documentationcenter: .net
 author: dominicbetts
@@ -14,22 +14,22 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/08/2017
 ms.author: dobett
-ms.openlocfilehash: 6140deff3553701f994502fd4a60178f874e27cf
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 0f197a28e0c51b06d0b47a03c29fe1fde0c6b78d
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="create-an-iot-hub-using-azure-resource-manager-template-net"></a>使用 Azure Resource Manager 範本建立 IoT 中樞 (.NET)
 
 [!INCLUDE [iot-hub-resource-manager-selector](../../includes/iot-hub-resource-manager-selector.md)]
 
-您可以使用 Azure Resource Manager toocreate，並以程式設計方式管理 Azure IoT 中樞。 本教學課程示範如何 toouse Azure Resource Manager 範本 toocreate C# 程式從 IoT 中樞。
+您可以使用 Azure 資源管理員，以程式設計方式建立和管理 Azure IoT 中樞。 本教學課程示範如何使用 Azure Resource Manager 範本從 C# 程式建立 IoT 中樞。
 
 > [!NOTE]
-> Azure 有兩種不同的部署模型可建立和處理資源：[Azure Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。  本文件涵蓋使用 hello Azure Resource Manager 部署模型。
+> Azure 有兩種不同的部署模型可建立和處理資源：[Azure Resource Manager 和傳統](../azure-resource-manager/resource-manager-deployment-model.md)。  本文涵蓋使用 Azure Resource Manager 部署模型的部分。
 
-toocomplete 本教學課程中，您需要遵循的 hello:
+若要完成此教學課程，您需要下列項目：
 
 * Visual Studio 2015 或 Visual Studio 2017。
 * 使用中的 Azure 帳戶。 <br/>如果您沒有帳戶，只需要幾分鐘的時間就可以建立[免費帳戶][lnk-free-trial]。
@@ -40,15 +40,15 @@ toocomplete 本教學課程中，您需要遵循的 hello:
 
 ## <a name="prepare-your-visual-studio-project"></a>準備 Visual Studio 專案
 
-1. 在 Visual Studio 中，建立 Visual C# Windows 傳統桌面專案使用 hello**主控台應用程式 (.NET Framework)**專案範本。 名稱 hello 專案**CreateIoTHub**。
+1. 在 Visual Studio 中，使用 [主控台應用程式 (.NET Framework)] 專案範本，建立 Visual C# Windows 傳統桌面專案。 將專案命名為 **CreateIoTHub**。
 
-2. 在方案總管中，於專案上按一下滑鼠右鍵，然後按一下管理 NuGet 封裝 。
+2. 在方案總管中，於專案上按一下滑鼠右鍵，然後按一下 [管理 NuGet 封裝] 。
 
-3. 在 [NuGet 封裝管理員] 中，檢查**包含發行前版本**，在 hello**瀏覽**頁面搜尋**Microsoft.Azure.Management.ResourceManager**。 選取 hello 封裝，按一下**安裝**，請在**檢閱變更**按一下**確定**，然後按一下 **我接受**tooaccept hello 授權。
+3. 在 NuGet 套件管理員中，勾選 [包含發行前版本]，然後在 [瀏覽] 頁面上搜尋 **Microsoft.Azure.Management.ResourceManager**。 選取套件，按一下 [安裝]，在 [檢閱變更] 中按一下 [確定]，然後按一下 [我接受] 來接受授權。
 
-4. 在 NuGet 套件管理員中，搜尋 **Microsoft.IdentityModel.Clients.ActiveDirectory**。  按一下**安裝**，請在**檢閱變更**按一下**確定**，然後按一下 **我接受**tooaccept hello 授權。
+4. 在 NuGet 套件管理員中，搜尋 **Microsoft.IdentityModel.Clients.ActiveDirectory**。  按一下 [安裝]，在 [檢閱變更] 中按一下 [確定]，然後按一下 [我接受] 來接受授權。
 
-5. 在 Program.cs 中，取代現有的 hello**使用**陳述式，以下列程式碼的 hello:
+5. 在 Program.cs 中，以下列程式碼取代現有的 **using** 陳述式：
 
     ```csharp
     using System;
@@ -58,7 +58,7 @@ toocomplete 本教學課程中，您需要遵循的 hello:
     using Microsoft.Rest;
     ```
 
-6. 在 Program.cs 中，加入下列取代 hello 預留位置值的靜態變數的 hello。 您先前已在本教學課程中記下 **ApplicationId**、**SubscriptionId**、**TenantId** 及 **Password**。 **您的 Azure 儲存體帳戶名稱**是 hello hello Azure 儲存體帳戶名稱，其中儲存您的 Azure 資源管理員範本檔案。 **資源群組名稱**hello hello 建立 hello IoT 中樞時所使用的資源群組名稱。 hello 名稱可以是現有或新資源群組。 **部署名稱**是 hello 部署的名稱，例如**Deployment_01**。
+6. 在 Program.cs 中，以下列靜態變數取代預留位置值。 您先前已在本教學課程中記下 **ApplicationId**、**SubscriptionId**、**TenantId** 及 **Password**。 **儲存體帳戶名稱**是您儲存 Azure Resource Manager 範本檔案之「Azure 儲存體」帳戶的名稱。 **資源群組名稱**是您建立 IoT 中樞時所使用之資源群組的名稱。 名稱可以是預先存在或新的資源群組。 **部署名稱**是部署的名稱，例如 **Deployment_01**。
 
     ```csharp
     static string applicationId = "{Your ApplicationId}";
@@ -72,13 +72,13 @@ toocomplete 本教學課程中，您需要遵循的 hello:
 
 [!INCLUDE [iot-hub-get-access-token](../../includes/iot-hub-get-access-token.md)]
 
-## <a name="submit-a-template-toocreate-an-iot-hub"></a>送出範本 toocreate IoT 中樞
+## <a name="submit-a-template-to-create-an-iot-hub"></a>提交範本，以建立 IoT 中樞
 
-使用資源群組中的 JSON 範本和參數檔案 toocreate IoT 中樞。 您也可以使用 Azure Resource Manager 範本 toomake 變更 tooan 現有 IoT 中樞。
+使用 JSON 範本和參數檔案，在資源群組中建立 IoT 中樞。 您也可以使用 Azure Resource Manager 範本來對現有的 IoT 中樞進行變更。
 
-1. 在 方案總管 中，於專案上按一下滑鼠右鍵，按一下 加入，然後按一下新增項目。 加入名為的 JSON 檔案**template.json** tooyour 專案。
+1. 在 [方案總管] 中，於專案上按一下滑鼠右鍵，按一下 [加入]，然後按一下 [新增項目]。 將名為 **template.json** 的 JSON 檔案新增到專案中。
 
-2. 標準的 IoT 中樞 toohello tooadd**美國東部**區域中，取代 hello 內容**template.json**以 hello 下列資源定義。 針對 hello 目前支援 IoT 中樞的區域清單，請參閱[Azure 狀態][lnk-status]:
+2. 若要將標準 IoT 中樞新增到**美國東部**區域，請以下列資源定義取代 **template.json** 的內容。 如需目前支援「IoT 中樞」的區域清單，請參閱 [Azure 狀態][lnk-status]：
 
     ```json
     {
@@ -114,9 +114,9 @@ toocomplete 本教學課程中，您需要遵循的 hello:
     }
     ```
 
-3. 在 方案總管 中，於專案上按一下滑鼠右鍵，按一下 加入，然後按一下新增項目。 加入名為的 JSON 檔案**parameters.json** tooyour 專案。
+3. 在 [方案總管] 中，於專案上按一下滑鼠右鍵，按一下 [加入]，然後按一下 [新增項目]。 將名為 **parameters.json** 的 JSON 檔案新增到專案中。
 
-4. 取代 hello 內容**parameters.json**以下列這類設定 hello 新的 IoT 中樞名稱的參數資訊的 hello **{縮寫} mynewiothub**。 hello IoT 中樞名稱必須是全域唯一的因此它應該包含您的名稱或縮寫：
+4. 使用下列參數資訊來取代 **parameters.json** 的內容，此參數資訊會設定新 IoT 中樞的名稱，例如 **{your initials}mynewiothub**。 IoT 中樞名稱必須是全域唯一的，因此應該包含您的名稱或縮寫：
 
     ```json
     {
@@ -129,15 +129,15 @@ toocomplete 本教學課程中，您需要遵循的 hello:
     ```
   [!INCLUDE [iot-hub-pii-note-naming-hub](../../includes/iot-hub-pii-note-naming-hub.md)]
 
-5. 在**伺服器總管**、 連接 tooyour Azure 訂用帳戶，並在您的 Azure 儲存體帳戶會建立稱為容器**範本**。 在 hello**屬性**面板、 組 hello**公用讀取權限**hello 的權限**範本**容器太**Blob**。
+5. 在 [伺服器總管] 中，連接到您的 Azure 訂用帳戶，然後在您的「Azure 儲存體」帳戶中建立名為 **templates** 的容器。 在 [屬性] 面板中，將 **templates** 容器的 [公用讀取存取] 權限設定為 [Blob]。
 
-6. 在**伺服器總管**，以滑鼠右鍵按一下 hello**範本**容器，然後按一下**檢視 Blob 容器**。 按一下 hello**上傳 Blob**按鈕、 選取 hello 兩個檔案， **parameters.json**和**templates.json**，然後按一下**開啟**tooupload hello JSON 檔案 toohello**範本**容器。 hello 的 hello blob 包含 hello JSON 資料的 Url 是：
+6. 在 [伺服器總管] 中，於 [templates] 容器上按一下滑鼠右鍵，然後按一下 [檢視 Blob 容器]。 按一下 [上傳 Blob] 按鈕，選取 **parameters.json** 和 **templates.json** 這兩個檔案，然後按一下 [開啟]，將 JSON 檔案上傳至 **templates** 容器。 包含 JSON 資料的 blob 的 URL 如下：
 
     ```csharp
     https://{Your storage account name}.blob.core.windows.net/templates/parameters.json
     https://{Your storage account name}.blob.core.windows.net/templates/template.json
     ```
-7. 加入下列方法 tooProgram.cs hello:
+7. 將下列方法新增至 Program.cs：
 
     ```csharp
     static void CreateIoTHub(ResourceManagementClient client)
@@ -146,7 +146,7 @@ toocomplete 本教學課程中，您需要遵循的 hello:
     }
     ```
 
-8. 新增下列程式碼 toohello hello **CreateIoTHub**方法 toosubmit hello 範本和參數檔案 toohello Azure 資源管理員：
+8. 將下列程式碼加入 **CreateIoTHub** 方法，以提交範本和參數檔案給 Azure Resource Manager：
 
     ```csharp
     var createResponse = client.Deployments.CreateOrUpdate(
@@ -169,7 +169,7 @@ toocomplete 本教學課程中，您需要遵循的 hello:
         });
     ```
 
-9. 新增下列程式碼 toohello hello **CreateIoTHub**顯示 hello 狀態和 hello hello 新的 IoT 中樞的方法：
+9. 將下列程式碼加入 **CreateIoTHub** 方法，以顯示新的 IoT 中樞的狀態和金鑰：
 
     ```csharp
     string state = createResponse.Properties.ProvisioningState;
@@ -177,16 +177,16 @@ toocomplete 本教學課程中，您需要遵循的 hello:
 
     if (state != "Succeeded")
     {
-      Console.WriteLine("Failed toocreate iothub");
+      Console.WriteLine("Failed to create iothub");
     }
     Console.WriteLine(createResponse.Properties.Outputs);
     ```
 
-## <a name="complete-and-run-hello-application"></a>完成並執行 hello 應用程式
+## <a name="complete-and-run-the-application"></a>完成並執行應用程式
 
-您現在可以完成 hello 應用程式呼叫 hello **CreateIoTHub**方法再進行建置和執行它。
+在建置和執行應用程式之前，您現在可以呼叫 **CreateIoTHub** 方法來完成應用程式。
 
-1. 新增下列程式碼 toohello 結尾 hello hello **Main**方法：
+1. 在 **Main** 方法的結尾加入下列程式碼：
 
     ```csharp
     CreateIoTHub(client);
@@ -195,25 +195,25 @@ toocomplete 本教學課程中，您需要遵循的 hello:
 
 2. 按一下 [建置]，然後按一下 [建置方案]。 更正所有錯誤。
 
-3. 按一下**偵錯**然後**開始偵錯**toorun hello 應用程式。 可能需要幾分鐘的時間 hello 部署 toorun。
+3. 按一下 [偵錯]，然後按一下 [開始偵錯] 以執行應用程式。 可能需要數分鐘的時間，部署才會開始執行。
 
-4. 您的應用程式加入的 tooverify hello IoT 中樞，請瀏覽 hello [Azure 入口網站][ lnk-azure-portal]並檢視您資源的清單。 或者，使用 hello **Get AzureRmResource** PowerShell cmdlet。
+4. 若要確認您的應用程式已新增新的 IoT 中樞，請前往 [Azure 入口網站][ lnk-azure-portal]並檢視您的資源清單。 或者，使用 **Get-AzureRmResource** PowerShell Cmdlet。
 
 > [!NOTE]
-> 此範例應用程式會加入您付費的「S1 標準 IoT 中樞」。 您可以刪除透過 hello hello IoT 中樞[Azure 入口網站][ lnk-azure-portal]或使用 hello**移除 AzureRmResource** PowerShell 指令程式完成時。
+> 此範例應用程式會加入您付費的「S1 標準 IoT 中樞」。 您可透過 [Azure 入口網站][lnk-azure-portal]刪除此 IoT 中樞，或在完成時，使用 **Remove-AzureRmResource** PowerShell Cmdlet。
 
 ## <a name="next-steps"></a>後續步驟
-現在您已經部署 IoT 中樞與 C# 程式使用 Azure Resource Manager 範本，您可以進一步 tooexplore:
+現在您已經使用 Azure Resource Manager 範本和 C# 程式部署 IoT 中樞，可以進一步探索：
 
-* 閱讀有關 hello hello 功能[IoT 中樞資源提供者 REST API][lnk-rest-api]。
-* 讀取[Azure 資源管理員概觀][ lnk-azure-rm-overview] toolearn 更多關於 hello 功能的 Azure 資源管理員。
+* 閱讀 [IoT 中樞資源提供者 REST API][lnk-rest-api] 功能的相關資訊。
+* 如需 Azure Resource Manager 功能的詳細資訊，請參閱 [Azure Resource Manager 概觀][lnk-azure-rm-overview]。
 
-進一步了解開發的 IoT 中樞 toolearn，請參閱下列文章的 hello:
+若要深入了解如何開發 IoT 中樞，請參閱以下文章︰
 
-* [簡介 tooC SDK][lnk-c-sdk]
+* [C SDK 簡介][lnk-c-sdk]
 * [Azure IoT SDK][lnk-sdks]
 
-toofurther 瀏覽的 IoT 中樞的 hello 功能，請參閱：
+若要進一步探索 IoT 中樞的功能，請參閱︰
 
 * [使用 Azure IoT Edge 來模擬裝置][lnk-iotedge]
 

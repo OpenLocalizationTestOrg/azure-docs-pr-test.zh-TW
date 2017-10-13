@@ -1,6 +1,6 @@
 ---
-title: "aaaInserting 廣告 hello 用戶端 |Microsoft 文件"
-description: "本主題說明如何在 tooinsert 廣告 hello 用戶端。"
+title: "在用戶端插入廣告 | Microsoft Docs"
+description: "本主題說明如何在用戶端上插入廣告。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,14 +14,14 @@ ms.devlang: na
 ms.topic: article
 ms.date: 09/26/2016
 ms.author: juliako
-ms.openlocfilehash: e6eab4aa92918ad734db8ac3a4e7818d02ed7fe4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 52ba731f88c630830560e3cf8406ba2e9613c8a5
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="inserting-ads-on-hello-client-side"></a>插入廣告 hello 用戶端
-本主題包含有關如何 tooinsert 各類型廣告 hello 用戶端。
+# <a name="inserting-ads-on-the-client-side"></a>在用戶端插入廣告
+本主題包含如何在用戶端上插入各種類型廣告的相關資訊。
 
 如需了解即時串流視訊的隱藏式字幕和廣告支援，請參閱 [隱藏式字幕支援和廣告插入標準](media-services-live-streaming-with-onprem-encoders.md#cc_and_ads)。
 
@@ -31,15 +31,15 @@ ms.lasthandoff: 10/06/2017
 > 
 
 ## <a id="insert_ads_into_media"></a>將廣告插入您的媒體
-Azure Media Services 提供廣告插入 hello Windows 媒體平台的支援： 播放器架構。 具備廣告支援的播放器架構都適用於 Windows 8、Silverlight、Windows Phone 8 和 iOS 裝置。 每個播放器架構包含範例程式碼，為您示範如何 tooimplement 播放器應用程式。有三種不同的媒體： 清單插入的廣告。
+Azure 媒體服務允許透過 Windows Media 平台插入廣告：Player Framework。 具備廣告支援的播放器架構都適用於 Windows 8、Silverlight、Windows Phone 8 和 iOS 裝置。 每一個播放器架構都有範例程式碼，教您如何實作播放器應用程式。目前有三種不同的廣告可以插入 media:list 中：
 
-* **線性**– 完整框架廣告暫停 hello 主要影片。
-* **非線性**– hello 主要影片播放時顯示的重疊廣告，通常標誌或其他靜態影像用來放置 hello 播放程式內。
-* **附屬**– 之外 hello 播放程式會顯示的廣告。
+* **線性** – 可暫停主要影片的完整框架廣告。
+* **非線性** – 播放被當做主要影片而顯示的疊加廣告，通常是播放器中的標誌或其他靜態影像。
+* **隨播** – 顯示在播放器之外的廣告。
 
-廣告可以放在任何時間點 hello 主要影片的時間線。 您必須告知 hello player tooplay 當 hello ad，以及哪些廣告 tooplay。 使用一組標準的 XML 格式檔案即可搞定：Video Ad Service Template (VAST)、Digital Video Multiple Ad Playlist (VMAP)、Media Abstract Sequencing Template (MAST) 以及 Digital Video Player Ad Interface Definition (VPAID)。 VAST 檔案會指定哪些廣告 toodisplay。 VMAP 檔案會指定何時 tooplay 各種廣告及包含 VAST XML。 MAST 檔案是另一個方式 toosequence 廣告也可包含 VAST XML。 VPAID 檔案會定義 hello 影片播放器與 hello 廣告或廣告伺服器之間的介面。
+廣告可以放在主要影片時間軸的任何時間點。 您必須告訴播放器何時播放廣告以及要播放哪些廣告。 使用一組標準的 XML 格式檔案即可搞定：Video Ad Service Template (VAST)、Digital Video Multiple Ad Playlist (VMAP)、Media Abstract Sequencing Template (MAST) 以及 Digital Video Player Ad Interface Definition (VPAID)。 VAST 檔案會指定要顯示的廣告。 VMAP 檔案會指定何時播放各種廣告而且包含 VAST XML。 MAST 檔案是另一種廣告排序的方法，而且也包含 VAST XML。 VPAID 檔案會定義影片播放器廣告和廣告或廣告伺服器之間的介面。
 
-每個播放器架構的運作方式不同，而且分別涵蓋於各自的主題。 本主題將說明 hello 所使用的基本機制 tooinsert 廣告。影片播放器應用程式會從廣告伺服器要求廣告。 hello ad 伺服器可以回應在數種方式：
+每個播放器架構的運作方式不同，而且分別涵蓋於各自的主題。 本主題將說明用來插入廣告的基本機制。視訊播放器應用程式會從廣告伺服器要求廣告。 廣告伺服器可以使用數種方法回應：
 
 * 傳回 VAST 檔案
 * 傳回 VMAP 檔案 (有內嵌 VAST)
@@ -47,7 +47,7 @@ Azure Media Services 提供廣告插入 hello Windows 媒體平台的支援： �
 * 傳回 VAST 檔案 (有 VPAID 廣告)
 
 ### <a name="using-a-video-ad-service-template-vast-file"></a>使用 Video Ad Service Template (VAST) 檔案
-VAST 檔案會指定哪些廣告或廣告 toodisplay。 hello 下列 XML 是線性廣告的 VAST 檔案範例：
+VAST 檔案會指定要顯示的廣告。 下列 XML 是線性廣告的 VAST 檔案範例：
 
     <VAST version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="oxml.xsd">
       <Ad id="115571748">
@@ -91,9 +91,9 @@ VAST 檔案會指定哪些廣告或廣告 toodisplay。 hello 下列 XML 是線�
       </Ad>
     </VAST>
 
-hello 線性廣告描述 hello <**線性**> 項目。 它會指定 hello ad hello 持續時間、 追蹤事件、 點選連結、 點選追蹤和一些**MediaFile**項目。 指定追蹤事件在 hello <**TrackingEvents**> 項目，並允許廣告伺服器 tootrack 檢視 hello ad 時所發生的各種事件。 在此情況下 hello 開始、 中點，完成，然後展開會在追蹤事件。 顯示 hello ad 時，就會發生 hello 開始事件。 hello 中間點事件發生時至少已經檢視 50%的 hello 廣告時間軸。 hello 廣告執行 toohello 結束時，就會發生 hello 完成事件。 hello 展開事件發生於 hello 使用者展開視訊播放程式 toofull 囉 」 畫面。 點選連結所指定的 <**點選連結**> 內的項目 <**VideoClicks**> 項目，並指定 URI tooa 資源 toodisplay hello 使用者按一下 hello ad 上時。 點選追蹤中指定 <**點選追蹤**> 項目，也在 hello <**VideoClicks**> 項目，並指定追蹤資源 hello player toorequest hello 使用者按一下時在 hello ad.hello <**MediaFile**> 項目會指定廣告以特定編碼方式的相關資訊。 當有多個 <**MediaFile**> 項目，hello 視訊播放程式可以選擇 hello 最佳編碼方式 hello 平台。 
+線性廣告是利用 <**Linear**> 元素來說明。 它會指定廣告的持續時間、追蹤事件、點選連結、點選追蹤，以及許多 **MediaFile** 元素。 追蹤事件是在 <**TrackingEvents**> 元素中指定，並允許廣告伺服器追蹤在檢視廣告時所發生的各種事件。 在此案例中會追蹤開始、中間點、完成及展開事件。 當顯示廣告時，就會發生開始事件。 當至少已經檢視 50% 的廣告時間軸時，就會發生中間點事件。 當廣告播放到結尾時，就會發生完成事件。 當使用者將視訊播放器展開至全螢幕時，就會發生展開事件。 點選連結是以 <**VideoClicks**> 元素內的 <**ClickThrough**> 元素指定，並指定當使用者按一下廣告時要顯示資源的 URI。 點選追蹤是在 <**ClickTracking**> 元素 (同樣位於 <**VideoClicks**> 元素內) 中指定，並指定在使用者按一下廣告時播放器要求的追蹤資源。<**MediaFile**> 元素會指定廣告特定編碼的相關資訊。 若有一個以上的 <**MediaFile**> 元素，視訊播放器就可以選擇最適合平台的編碼。 
 
-線性廣告可以依照指定的順序顯示。 toodo，請加入更多<Ad>元素 toohello VAST 檔案，並指定 hello 順序使用 hello 順序屬性。 hello 下列範例將說明這點：
+線性廣告可以依照指定的順序顯示。 若要這樣做，請將其他 <Ad> 元素加入至 VAST 檔案，並使用順序屬性指定順序。 下列範例會加以說明：
 
     <VAST version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="oxml.xsd">
       <Ad id="1" sequence="0">
@@ -138,7 +138,7 @@ hello 線性廣告描述 hello <**線性**> 項目。 它會指定 hello ad hell
       </Ad>
     </VAST>
 
-非線性廣告也是在 <Creative> 元素中指定。 下列範例所示的 hello<Creative>元素，可描述非線性廣告。
+非線性廣告也是在 <Creative> 元素中指定。 下列範例顯示 <Creative> 元素，該元素會說明非線性廣告。
 
     <Creative id="video" sequence="1" AdID="">
       <NonLinearAds>
@@ -154,20 +154,20 @@ hello 線性廣告描述 hello <**線性**> 項目。 它會指定 hello ad hell
     </Creative>
 
 
-hello <**NonLinearAds**> 項目可以包含一或多個 <**非線性**> 項目，其中每一個都可以描述非線性廣告。 hello <**非線性**> 項目會指定 hello hello 非線性廣告的資源。 hello 資源可以是 <**StaticResouce**>、 <**IFrameResource**>，或 <**HTMLResouce**>。 <**StaticResource**> 描述非 HTML 資源，並定義指定 hello 資源的顯示方式的 creativeType 屬性：
+<**NonLinearAds**> 元素可以包含一或多個 <**NonLinear**> 元素，其中每一個元素都可說明一個非線性廣告。 <**NonLinear**> 元素會指定非線性廣告的資源。 資源可以是 <**StaticResouce**>、<**IFrameResource**> 或 <**HTMLResouce**>。 <**StaticResource**> 說明非 HTML 資源，並且定義 creativeType 屬性，該屬性會指定資源的顯示方式：
 
-Image/gif、 image/jpeg、 image/png – hello 資源會顯示在 HTML <**img**> 標記。
+image/gif、image/jpeg、image/png – 資源在 HTML <**img**> 標記中顯示。
 
-應用程式/x-javascript – hello 資源會顯示在 HTML <**指令碼**> 標記。
+Application/x-javascript – 資源在 HTML <**script**> 標籤中顯示。
 
-應用程式/x shockwave-快閃記憶體 – hello 資源會顯示在 Flash player。
+Application/x-shockwave-flash – 資源在 Flash Player 中顯示。
 
-**IFrameResource** 說明可在 IFrame 中顯示的 HTML 資源。 **HTMLResource** 說明可插入網頁的 HTML 程式碼片段。 **TrackingEvents**指定追蹤事件和 hello URI toorequest hello 事件發生時。 在此範例 hello 會追蹤 acceptInvitation 和 collapse 事件。 如需有關 hello **NonLinearAds**元素和其子系，請參閱 IAB.NET/VAST。 請注意該 hello **TrackingEvents**項目是位於 hello **NonLinearAds**項目，而不是 hello**非線性**項目。
+**IFrameResource** 說明可在 IFrame 中顯示的 HTML 資源。 **HTMLResource** 說明可插入網頁的 HTML 程式碼片段。 **TrackingEvents** 指定追蹤事件以及當發生事件時要求的 URI。 在此範例中，會追蹤 acceptInvitation 和 collapse 事件。 如需有關 **NonLinearAds** 元素和其子系的詳細資訊，請參閱 IAB.NET/VAST。 請注意，**TrackingEvents** 元素位於 **NonLinearAds** 元素內，而不是 **NonLinear** 元素中。
 
-隨播廣告會在 <CompanionAds> 元素內定義。 hello<CompanionAds>項目可以包含一或多個<Companion>項目。 每個<Companion>項目描述隨播廣告，而且只能包含<StaticResource>， <IFrameResource>，或<HTMLResource>其指定在 hello 方式如所示的非線性廣告相同。 VAST 檔案可以包含多個隨播廣告，而且 hello 播放器應用程式可以選擇最適合 ad toodisplay hello。 如需 VAST 的詳細資訊，請參閱 [VAST 3.0](http://www.iab.net/media/file/VASTv3.0.pdf)。
+隨播廣告會在 <CompanionAds> 元素內定義。 <CompanionAds> 元素可以包含一或多個 <Companion> 元素。 每個 <Companion> 元素都會說明隨播廣告，而且可以包含 <StaticResource>、<IFrameResource> 或 <HTMLResource>，其指定方式與非線性廣告相同。 VAST 檔案可以包含多個隨播廣告，而且播放器應用程式可以選擇要顯示的最適當廣告。 如需 VAST 的詳細資訊，請參閱 [VAST 3.0](http://www.iab.net/media/file/VASTv3.0.pdf)。
 
 ### <a name="using-a-digital-video-multiple-ad-playlist-vmap-file"></a>使用 Digital Video Multiple Ad Playlist (VMAP) 檔案
-VMAP 檔案可讓您 toospecify 時插播廣告、 每個中斷的時間、 內中斷，可以顯示多少廣告和廣告類型可能會中斷期間顯示。 依照 VMAP 檔案範例會定義單一廣告插播的 hello:
+VMAP 檔案可讓您指定何時插播廣告、每個插播多久、插播中可以顯示多少廣告，以及插播期間可以顯示哪些類型的廣告。 範例 VMAP 檔案中的下列項目會定義單一廣告插播：
 
     <vmap:VMAP xmlns:vmap="http://www.iab.net/vmap-1.0" version="1.0">
       <vmap:AdBreak breakType="linear" breakId="mypre" timeOffset="start">
@@ -216,34 +216,34 @@ VMAP 檔案可讓您 toospecify 時插播廣告、 每個中斷的時間、 內�
       </vmap:AdBreak>
     </vmap:VMAP>
 
-VMAP 檔案開頭為 <VMAP> 元素，包含一或多個 <AdBreak> 元素，每個元素都會定義廣告插播。 每個廣告插播都會指定插播類型、插播 ID 和時間位移。 hello breakType 屬性指定 hello hello 插播期間可以播放的廣告類型： 線性、 非線性或顯示。 顯示廣告對應 tooVAST 隨播廣告。 在逗號 (無空格) 分隔的清單中可以指定一個以上的廣告類型。 hello breakID 是廣告 hello 的選擇性識別碼。 hello timeOffset 會指定何時應該顯示 hello ad。 您可以在 hello 下列方式的其中一個指定：
+VMAP 檔案開頭為 <VMAP> 元素，包含一或多個 <AdBreak> 元素，每個元素都會定義廣告插播。 每個廣告插播都會指定插播類型、插播 ID 和時間位移。 breakType 屬性會指定插播期間可以播放的廣告類型：線性、非線性或顯示。 顯示廣告會對應到 VAST 隨播廣告。 在逗號 (無空格) 分隔的清單中可以指定一個以上的廣告類型。 breakID 是廣告的選擇性識別碼。 timeOffset 會指定何時應該顯示廣告。 可以利用下列方式之一來指定：
 
-1. 時間 – hh: mm: 或 hh:mm:ss.mmm 的格式，其中.mmm 為毫秒。 hello 這個屬性的值會指定從 hello 影片時間軸 toohello hello 廣告插播開頭 hello 開頭的 hello 時間。
-2. 百分比 – 以 n %格式，其中 n 是 hello 影片時間軸 tooplay hello 百分比之前播放 hello ad
-3. 開始/結束 – 指定廣告應該在之前或之後顯示 hello 視訊顯示
-4. 位置 – 指定 hello 的廣告插播的順序，未知，例如即時串流的 hello 廣告插播的 hello 逾時。 指定的每個廣告插播的 hello 順序 hello #n 格式，其中 n 是 1 或更大的整數。 1 表示應該播放廣告 hello 在 hello 第一個機會，2 表示 hello 應該播放廣告在 hello 第二個機會，依此類推。
+1. 時間 – hh: mm: 或 hh:mm:ss.mmm 的格式，其中.mmm 為毫秒。 這個屬性的值會指定從視訊時間軸開始到廣告插播開始的時間。
+2. 百分比 – n% 格式，其中 n 是視訊時間軸在播放廣告之前播放的百分比
+3. 開始/結束 – 指定廣告應該在視訊顯示之前或之後顯示
+4. 位置 – 指定當廣告插播的時機為未知時 (例如即時串流)，廣告插播的順序。 每個廣告插播的順序是以 #n 格式指定，其中 n 是大於或等於 1 的整數。 1 表示廣告應該在第一個機會時播放，2 表示廣告應該在第二個機會時播放，依此類推。
 
-在 hello <**AdBreak**> 有項目可以是其中一個 <**AdSource**> 項目。 hello <**AdSource**> 項目包含下列屬性的 hello:
+在 <**AdBreak**> 元素內可以有一個 <**AdSource**> 元素。 <**AdSource**> 元素包含下列屬性：
 
-1. Id – 指定 hello 廣告來源的識別碼
-2. allowMultipleAds – 指定在 hello 廣告插播期間是否可以顯示多個廣告的布林值
-3. followRedirects – 選擇性的布林值，指定是否 hello 影片播放器應該接受廣告回應內重新導向
+1. Id – 指定廣告來源的識別碼
+2. allowMultipleAds – 布林值，指定在廣告插播期間是否可以顯示多個廣告
+3. followRedirects – 選用布林值，指定視訊播放器是否應該接受廣告回應內的重新導向
 
-hello <**AdSource**> 項目會提供 hello 播放程式內嵌廣告回應或參考 tooan 廣告回應。 它可以包含下列項目 hello 的其中一個：
+<**AdSource**> 元素會提供播放器內嵌廣告回應或廣告回應的參考。 可以包含下列其中一個元素：
 
-* <VASTAdData>表示 VAST 廣告回應內嵌在 hello VMAP 檔案
+* <VASTAdData> 表示 VAST 廣告回應內嵌在 VMAP 檔案
 * <AdTagURI> 從另一個系統參考廣告回應的 URI
 * <CustomAdData> -表示非 VAST 回應的任意字串
 
-在這個範例中，內嵌廣告回應是以 <VASTAdData> 元素指定，該元素包含 VAST 廣告回應。 如需有關 hello 其他項目，請參閱[VMAP](http://www.iab.net/guidelines/508676/digitalvideo/vsuite/vmap)。
+在這個範例中，內嵌廣告回應是以 <VASTAdData> 元素指定，該元素包含 VAST 廣告回應。 如需其他元素的詳細資訊，請參閱 [VMAP](http://www.iab.net/guidelines/508676/digitalvideo/vsuite/vmap)。
 
-hello <**AdBreak**> 項目也可以包含一個 <**TrackingEvents**> 項目。 hello <**TrackingEvents**> 元素可讓您 tootrack hello 開頭或結尾廣告插播或 hello 廣告插播期間是否發生錯誤。 hello <**TrackingEvents**> 元素包含一或多個 <**追蹤**> 項目，其中每個指定的追蹤事件和追蹤 URI。 hello 可能的追蹤事件如下：
+<**AdBreak**> 元素也可以包含一個 <**TrackingEvents**> 元素。 <**TrackingEvents**> 元素可讓您追蹤廣告插播的開頭或結束，或廣告插播期間是否發生錯誤。 <**TrackingEvents**> 元素包含一或多個 <**Tracking**> 元素，每個元素會指定追蹤事件和追蹤 URI。 可能的追蹤事件如下：
 
-1. breakStart – 追蹤廣告插播的 hello 開頭
-2. breakEnd – 追蹤廣告插播的 hello 完成
-3. error – 追蹤 hello 廣告插播期間發生錯誤
+1. breakStart – 追蹤廣告插播的開始
+2. breakEnd – 追蹤廣告插播的完成
+3. error – 追蹤廣告插播期間發生的錯誤
 
-hello 下列範例會示範指定追蹤事件的 VMAP 檔案
+下列範例顯示會指定追蹤事件的 VMAP 檔案
 
     <vmap:VMAP xmlns:vmap="http://www.iab.net/vmap-1.0" version="1.0">
       <vmap:AdBreak breakType="linear" breakId="mypre" timeOffset="start">
@@ -266,10 +266,10 @@ hello 下列範例會示範指定追蹤事件的 VMAP 檔案
       </vmap:AdBreak>
     </vmap:VMAP>
 
-如需有關 hello <**TrackingEvents**> 元素和其子系，請參閱 http://iab.org/VMAP.pdf
+如需 <**TrackingEvents**> 元素及其子系的詳細資訊，請參閱 http://iab.org/VMAP.pdf
 
 ### <a name="using-a-media-abstract-sequencing-template-mast-file"></a>使用 Media Abstract Sequencing Template (MAST) 檔案
-MAST 檔案可讓您定義何時顯示廣告的 toospecify 觸發程序。 hello 以下是範例 MAST 檔案，其中包含觸發程序前廣告、 片中廣告和片尾廣告。
+MAST 檔案可讓您指定觸發程序，定義何時顯示廣告。 以下是範例 MAST 檔案，其中包含片頭廣告、片中廣告和片尾廣告的觸發程序。
 
     <MAST xsi:schemaLocation="http://openvideoplayer.sf.net/mast http://openvideoplayer.sf.net/mast/mast.xsd" xmlns="http://openvideoplayer.sf.net/mast" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       <triggers>
@@ -290,7 +290,7 @@ MAST 檔案可讓您定義何時顯示廣告的 toospecify 觸發程序。 hello
           </startConditions>
           <endConditions>
             <condition type="event" name="OnItemEnd"/>
-            <!--This 'resets' hello trigger for hello next clip-->
+            <!--This 'resets' the trigger for the next clip-->
           </endConditions>
           <sources>
             <source uri="http://smf.blob.core.windows.net/samples/win8/ads/vast_linear.xml" format="vast">
@@ -314,16 +314,16 @@ MAST 檔案可讓您定義何時顯示廣告的 toospecify 觸發程序。 hello
 
 
 
-MAST 檔案開頭為 **MAST** 元素，其中包含一個 **triggers** 元素。 hello<triggers>元素包含一或多個**觸發程序**項目會定義何時應該播放廣告。 
+MAST 檔案開頭為 **MAST** 元素，其中包含一個 **triggers** 元素。 <triggers> 元素包含一或多個 **trigger** 元素，定義何時應該播放廣告。 
 
-hello**觸發程序**元素包含**startConditions**指定廣告應該在何時開始 tooplay 項目。 hello **startConditions**元素包含一或多個<condition>項目。 當每個<condition>評估的 tootrue 觸發程序，起始或撤銷根據 hello<condition>內含**startConditions**或**endConditions**項目分別。 當多個<condition>項目都存在，則會視為隱含 OR，評估 tootrue 任何條件會導致 hello 觸發程序 tooinitiate。 <condition> 元素可以為巢狀。 當子<condition>都有預設項目，則會視為隱含 AND，所有條件必須都評估為 hello 觸發程序 tooinitiate tootrue。 hello<condition>元素包含下列屬性可定義 hello 條件 hello: 
+**trigger** 元素包含 **startConditions** 元素，定義何時應該開始播放廣告。 **startConditions** 元素包含一或多個 <condition> 元素。 當每個 <condition> 評估為 true 時，會起始或撤銷觸發程序，取決於 <condition> 是分別內含於 **startConditions** 或 **endConditions** 元素。 當多個 <condition> 元素都存在時，則會視為隱含 OR，任何評估為 true 的條件都會導致起始觸發程序。 <condition> 元素可以為巢狀。 當預設子系 <condition> 元素時，它們會被視為隱含 AND，所有條件必須評估為 true，才會起始觸發程序。 <condition> 元素包含會定義條件的下列屬性： 
 
-1. **型別**– 指定條件、 事件或屬性的 hello 類型
-2. **名稱**– hello hello 屬性或事件 toobe 評估期間使用的名稱
-3. **值**– hello 會針對評估屬性的值
-4. **運算子**– 評估期間 hello 作業 toouse: EQ （等於）、 NEQ （不等於）、 GTR (greater)、 GEQ （大於或等於）、 LT （小於）、 LEQ （小於或等於）、 MOD （模數）
+1. **type** – 指定條件、事件或屬性的類型
+2. **name** – 要在評估期間使用之屬性或事件的名稱
+3. **value** – 屬性將會針對其進行評估的值
+4. **operator** – 要在評估期間使用的運算：EQ (等於)、NEQ (不等於)、GTR (大於)、GEQ (大於或等於)、LT (小於)、LEQ (小於或等於)、MOD (模數)
 
-**endConditions** 也會包含 <condition> 元素。 當條件評估 tootrue hello 觸發程序是 reset.hello<trigger>項目也包含<sources>包含一或多個項目<source>項目。 hello<source>元素會定義 hello URI toohello 廣告回應 hello 廣告回應的類型。 在這個範例 URI 會指定 tooa VAST 回應。 
+**endConditions** 也會包含 <condition> 元素。 當條件評估為 true 時，會重設觸發程序。<trigger> 元素也包含 <sources> 元素，該元素包含一或多個 <source> 元素。 <source> 元素定義廣告回應的 URI 與廣告回應的類型。 在此範例中，會對 VAST 回應指定 URI。 
 
     <trigger id="postroll" description="postroll"  >
       <startConditions>
@@ -338,39 +338,39 @@ hello**觸發程序**元素包含**startConditions**指定廣告應該在何時�
 
 
 ### <a name="using-video-player-ad-interface-definition-vpaid"></a>使用 Video Player-Ad Interface Definition (VPAID)
-VPAID 是啟用可執行的廣告單元 toocommunicate 與視訊播放程式的 API。 如此可提供高度互動性與體驗。 hello 廣告可以回應 hello 檢視器所採取的 tooactions 與 hello 使用者可以互動 hello ad。 例如廣告可能會顯示按鈕，好讓 hello 使用者 tooview hello 廣告的加長版或更多的資訊。 hello 視訊播放程式必須支援 VPAID API hello 和 hello 可執行的廣告必須實作 hello API。 當播放程式從廣告伺服器 hello 伺服器要求廣告回應可能會包含 VPAID 廣告的 VAST 回應。
+VPAID 是 API，用於啟用可執行廣告單元，以便與視訊播放器通訊。 如此可提供高度互動性與體驗。 使用者可以與廣告互動，而且廣告可以回應檢視者採取的動作。 例如，廣告可能會顯示按鈕，讓使用者檢視更多詳細資訊或廣告的加長版。 視訊播放器必須支援 VPAID API，可執行廣告必須實作 API。 當播放器向廣告伺服器要求廣告時，該伺服器可能會以包含 VPAID 廣告的 VAST 回應進行回應。
 
-必須在如 Adobe Flash™ 或可以在網頁瀏覽器中執行的 JavaScript 執行階段環境中執行的程式碼中建立可執行廣告。 Ad 伺服器會傳回包含 VPAID 廣告的 VAST 回應 hello hello hello 中 apiFramework 屬性的值<MediaFile>項目必須為"VPAID"。 這個屬性會指定該 hello 包含 ad 是可執行的 VPAID 廣告。 hello type 屬性必須設定 hello toohello MIME 類型可執行檔，例如 「 應用程式/x shockwave-快閃記憶體"或"應用程式/x-javascript"。 hello 下列 XML 程式碼片段示範 hello<MediaFile>包含可執行的 VPAID 廣告的 VAST 回應中的項目。 
+必須在如 Adobe Flash™ 或可以在網頁瀏覽器中執行的 JavaScript 執行階段環境中執行的程式碼中建立可執行廣告。 當廣告伺服器傳回包含 VPAID 廣告的 VAST 回應時，<MediaFile> 元素中屬性 apiFramework 的值必須是 "VPAID"。 這個屬性會指定包含的廣告是 VPAID 可執行廣告。 類型屬性必須設定為可執行的 MIME 類型，例如 “application/x-shockwave-flash” 或 “application/x-javascript”。 下列 XML 程式碼片段顯示來自包含 VPAID 可執行廣告之 VAST 回應的 <MediaFile> 元素。 
 
     <MediaFiles>
        <MediaFile id="1" delivery="progressive" type=”application/x-shockwaveflash”
                   width=”640” height=”480” apiFramework=”VPAID”>
-           <!-- CDATA wrapped URI tooexecutable ad -->
+           <!-- CDATA wrapped URI to executable ad -->
        </MediaFile>
     </MediaFiles>
 
 
-可執行的廣告可以使用 hello 初始化<AdParameters>hello 內的項目<Linear>或<NonLinear>VAST 回應中的項目。 如需有關 hello<AdParameters>項目，請參閱[VAST 3.0](http://www.iab.net/media/file/VASTv3.0.pdf)。 如需 hello VPAID API 的詳細資訊，請參閱[VPAID 2.0](http://www.iab.net/media/file/VPAID_2.0_Final_04-10-2012.pdf)。
+可以使用 VAST 回應中 <Linear> 或 <NonLinear> 元素內的 <AdParameters> 元素，初始化可執行廣告。 如需 <AdParameters> 元素的詳細資訊，請參閱 [VAST 3.0](http://www.iab.net/media/file/VASTv3.0.pdf)。 如需 VPAID API 的詳細資訊，請參閱 [VPAID 2.0](http://www.iab.net/media/file/VPAID_2.0_Final_04-10-2012.pdf)。
 
 ## <a name="implementing-a-windows-or-windows-phone-8-player-with-ad-support"></a>實作包含廣告支援的 Windows 或 Windows Phone 8 播放器
-hello Microsoft 媒體平台： Player Framework for Windows 8 和 Windows Phone 8 包含範例應用程式可為您示範如何使用影片播放器應用程式的 tooimplement hello 架構的集合。 您可以下載從 hello 播放器架構和 hello 範例[Player Framework for Windows 8 和 Windows Phone 8](https://playerframework.codeplex.com)。
+Microsoft 媒體平台：Player Framework for Windows 8 和 Windows Phone 8 包含範例應用程式集合，為您示範如何使用架構實作視訊播放器應用程式。 您可以從 [適用於Windows 8 和 Windows Phone 8 的 Player Framework](https://playerframework.codeplex.com)下載 Player Framework 和範例。
 
-當您開啟 hello Microsoft.PlayerFramework.Xaml.Samples 方案時您會看到 hello 專案中資料夾的數目。 hello Advertising 資料夾包含 hello 範例程式碼相關 toocreating 包含廣告支援的視訊播放程式。 內部 hello Advertising 資料夾是 XAML/cs 檔案數目每哪一個節目如何以不同方式 tooinsert 廣告。 hello 下列清單描述每個：
+當您開啟 Microsoft.PlayerFramework.Xaml.Samples 方案時，您會在專案內看到許多資料夾。 Advertising 資料夾包含與建立具有廣告支援的視訊播放器相關的範例程式碼。 在 Advertising 資料夾內有許多 XAML/cs 檔案，每個檔案都會顯示如何以不同方式插入廣告。 下列清單分別說明：
 
-* AdPodPage.xaml 顯示如何 toodisplay ad pod。
-* AdSchedulingPage.xaml 顯示如何 tooschedule 廣告。
-* FreeWheelPage.xaml 顯示 toouse hello FreeWheel 外掛程式 tooschedule 廣告的方式。
-* MastPage.xaml 顯示如何使用 MAST 檔案 tooschedule 廣告。
-* ProgrammaticAdPage.xaml 顯示如何 tooprogrammatically 在影片中排程廣告。
-* ScheduleClipPage.xaml 顯示如何 tooschedule ad 不使用 VAST 檔案。
-* VastLinearCompanionPage.xaml 顯示如何 tooinsert 線性和隨播廣告。
-* VastNonLinearPage.xaml 顯示如何 tooinsert 非線性廣告。
-* VmapPage.xaml 顯示如何使用 VMAP 檔案 toospecify 廣告。
+* AdPodPage.xaml 示範如何顯示廣告組合。
+* AdSchedulingPage.xaml 示範如何排程廣告。
+* FreeWheelPage.xaml 示範如何使用 FreeWheel 外掛程式排程廣告。
+* MastPage.xaml 示範如何使用 MAST 檔案排程廣告。
+* ProgrammaticAdPage.xaml 示範如何以程式設計方式在視訊中排程廣告。
+* ScheduleClipPage.xaml 示範如何在沒有 VAST 檔案的情況下排程廣告。
+* VastLinearCompanionPage.xaml 示範如何插入線性和隨播廣告。
+* VastNonLinearPage.xaml 示範如何插入非線性廣告。
+* VmapPage.xaml 示範如何使用 VMAP 檔案指定廣告。
 
-每個範例會使用 hello 播放器架構所定義的 hello MediaPlayer 類別。 大部分的範例會使用加入各種廣告回應格式支援的外掛程式。 hello ProgrammaticAdPage 範例以程式設計方式互動的 MediaPlayer 例項。
+每個範例會使用 Player Framework 定義的 MediaPlayer 類別。 大部分的範例會使用加入各種廣告回應格式支援的外掛程式。 ProgrammaticAdPage 範例以程式設計方式與 MediaPlayer 執行個體互動。
 
 ### <a name="adpodpage-sample"></a>AdPodPage 範例
-這個範例會使用 hello AdSchedulerPlugin toodefine 時 toodisplay 廣告。 在此範例中，片中廣告是排程的 toobe 5 秒鐘之後播放。 從廣告伺服器傳回的 VAST 檔案中指定 hello ad pod （廣告 toodisplay 順序群組）。 hello URI toohello VAST 檔案會指定在 hello<RemoteAdSource>項目。
+此範例會使用 AdSchedulerPlugin 來定義何時顯示廣告。 在此範例中，片中廣告排定在 5 秒鐘之後播放。 廣告組合 (依序顯示的廣告群組) 是在從廣告伺服器傳回的 VAST 檔案中指定。 VAST 檔案的 URI 是在 <RemoteAdSource> 元素中指定。
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
 
@@ -390,10 +390,10 @@ hello Microsoft 媒體平台： Player Framework for Windows 8 和 Windows Phone
         </mmppf:MediaPlayer.Plugins>
     </mmppf:MediaPlayer>
 
-如需 hello AdSchedulerPlugin 的詳細資訊，請參閱[hello Windows 8 和 Windows Phone 8 播放器架構中進行通告](http://playerframework.codeplex.com/wikipage?title=Advertising&referringTitle=Windows%208%20Player%20Documentation)
+如需 AdSchedulerPlugin 的詳細資訊，請參閱 [Windows 8 和 Windows Phone 8 上 Player Framework 中的廣告](http://playerframework.codeplex.com/wikipage?title=Advertising&referringTitle=Windows%208%20Player%20Documentation)
 
 ### <a name="adschedulingpage"></a>AdSchedulingPage
-此範例也會使用 hello AdSchedulerPlugin。 它會排程三個廣告，片頭廣告、片中廣告和片尾廣告。 每個 ad 指定的 hello URI toohello VAST<RemoteAdSource>項目。
+此範例也會使用 AdSchedulerPlugin。 它會排程三個廣告，片頭廣告、片中廣告和片尾廣告。 每個廣告的 VAST 的 URI 是在 <RemoteAdSource> 元素中指定。
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -426,7 +426,7 @@ hello Microsoft 媒體平台： Player Framework for Windows 8 和 Windows Phone
 
 
 ### <a name="freewheelpage"></a>FreeWheelPage
-這個範例會使用 hello FreeWheelPlugin 指定指定的 URI 指定廣告內容以及廣告排程資訊該點 tooa SmartXML 檔案的來源屬性。
+此範例使用 FreeWheelPlugin，它會指定來源屬性，指定指向 SmartXML 檔案的 URI，該檔案會指定廣告內容以及廣告排程資訊。
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -436,7 +436,7 @@ hello Microsoft 媒體平台： Player Framework for Windows 8 和 Windows Phone
             </mmppf:MediaPlayer>
 
 ### <a name="mastpage"></a>MastPage
-這個範例會使用 hello MastSchedulerPlugin，可讓您 toouse MAST 檔案。 hello Source 屬性會指定 hello hello MAST 檔案位置。
+這個範例會使用可讓您使用 MAST 檔案的 MastSchedulerPlugin。 來源屬性會指定 MAST 檔案的位置。
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -446,11 +446,11 @@ hello Microsoft 媒體平台： Player Framework for Windows 8 和 Windows Phone
             </mmppf:MediaPlayer>
 
 ### <a name="programmaticadpage"></a>ProgrammaticAdPage
-此範例以程式設計的方式會與 hello MediaPlayer 互動。 hello ProgrammaticAdPage.xaml 檔案會具現化 hello MediaPlayer:
+此範例以程式設計方式與 MediaPlayer 互動。 ProgrammaticAdPage.xaml 檔案會具現化 MediaPlayer：
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4"/>
 
-hello ProgrammaticAdPage.xaml.cs 檔案會建立 AdHandlerPlugin、 廣告應該顯示，並將其載入 RemoteAdSource 指定 URI tooa VAST 檔案，並再播放 hello MarkerReached 事件的處理常式時，加入 TimelineMarker toospecifyhello ad。
+ProgrammaticAdPage.xaml.cs 檔案會建立 AdHandlerPlugin，加入 TimelineMarker 以指定廣告何時應該顯示，然後加入 MarkerReached 事件的處理常式，它會載入指定 VAST 檔案之 URI 的 RemoteAdSource，然後播放廣告 。
 
     public sealed partial class ProgrammaticAdPage : Microsoft.PlayerFramework.Samples.Common.LayoutAwarePage
         {
@@ -481,7 +481,7 @@ hello ProgrammaticAdPage.xaml.cs 檔案會建立 AdHandlerPlugin、 廣告應該
             }
 
 ### <a name="scheduleclippage"></a>ScheduleClipPage
-這個範例會指定包含 hello 廣告的.wmv 檔案來使用 hello AdSchedulerPlugin tooschedule 片中廣告。
+此範例會使用 AdSchedulerPlugin，藉由指定包含廣告的 .wmv 檔案來排程片中廣告。
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.cloudapp.net/html5/media/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -505,7 +505,7 @@ hello ProgrammaticAdPage.xaml.cs 檔案會建立 AdHandlerPlugin、 廣告應該
             </mmppf:MediaPlayer>
 
 ### <a name="vastlinearcompanionpage"></a>VastLinearCompanionPage
-此範例說明如何 toouse 會 hello AdSchedulerPlugin tooschedule 片中的線性廣告與隨播廣告。 hello<RemoteAdSource>項目會指定 hello hello VAST 檔案位置。
+這個範例說明如何使用 AdSchedulerPlugin 來排程具有隨播廣告的片中線性廣告。 <RemoteAdSource> 元素會指定 VAST 檔案的位置。
 
     <mmppf:MediaPlayer Grid.Row="1"  x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -525,7 +525,7 @@ hello ProgrammaticAdPage.xaml.cs 檔案會建立 AdHandlerPlugin、 廣告應該
             </mmppf:MediaPlayer>
 
 ### <a name="vastlinearnonlinearpage"></a>VastLinearNonLinearPage
-這個範例會使用 hello AdSchedulerPlugin tooschedule 線性與非線性廣告。 hello VAST 檔案位置指定 hello<RemoteAdSource>項目。
+此範例會使用 AdSchedulerPlugin 來排程線性和非線性廣告。 VAST 檔案位置是以 <RemoteAdSource> 元素指定。
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -545,7 +545,7 @@ hello ProgrammaticAdPage.xaml.cs 檔案會建立 AdHandlerPlugin、 廣告應該
             </mmppf:MediaPlayer>
 
 ### <a name="vmappage"></a>VMAPPage
-此範例使用使用 VMAP 檔案 hello VmapSchedulerPlugin tooschedule 廣告。 hello hello Source 屬性中指定 hello URI toohello VMAP 檔案<VmapSchedulerPlugin>項目。
+此範例會使用 VmapSchedulerPlugin 排程使用 VMAP 檔案的廣告。 VMAP 檔案的 URI 是在 <VmapSchedulerPlugin> 元素的 Source 屬性中指定。
 
     <mmppf:MediaPlayer x:Name="player" Source="http://smf.blob.core.windows.net/samples/videos/bigbuck.mp4">
                 <mmppf:MediaPlayer.Plugins>
@@ -555,13 +555,13 @@ hello ProgrammaticAdPage.xaml.cs 檔案會建立 AdHandlerPlugin、 廣告應該
             </mmppf:MediaPlayer>
 
 ## <a name="implementing-an-ios-video-player-with-ad-support"></a>實作具有廣告支援的 iOS 視訊播放器
-hello Microsoft 媒體平台： 適用於 iOS 的播放器架構包含範例應用程式可為您示範如何使用影片播放器應用程式的 tooimplement hello 架構的集合。 您可以下載從 hello 播放器架構和 hello 範例[Azure Media Player Framework](https://github.com/Azure/azure-media-player-framework)。 hello github 頁面有 Wiki，包含上 hello 播放器架構和簡介 toohello 播放器範例的其他資訊的連結 tooa: [Azure 媒體播放器 Wiki](https://github.com/Azure/azure-media-player-framework/wiki/How-to-use-Azure-media-player-framework)。
+Microsoft 媒體平台：Player Framework for iOS 包含範例應用程式集合，為您示範如何使用架構實作視訊播放器應用程式。 您可以從 [Azure Media Player Framework](https://github.com/Azure/azure-media-player-framework)下載 Player Framework 和範例。 此 github 頁面具有連接至 Wiki 的連結，該連結包含 Player Framework 的其他資訊和播放器範例的簡介： [Azure Media Player Wiki](https://github.com/Azure/azure-media-player-framework/wiki/How-to-use-Azure-media-player-framework)。
 
 ### <a name="scheduling-ads-with-vmap"></a>使用 VMAP 排程廣告
-hello 下列範例會示範如何使用 VMAP 檔案 tooschedule 廣告。
+下列範例示範如何使用 VMAP 檔案排程廣告。
 
-    // How tooschedule an Ad using VMAP.
-    //First download hello VMAP manifest
+    // How to schedule an Ad using VMAP.
+    //First download the VMAP manifest
 
     if (![framework.adResolver downloadManifest:&manifest withURL:[NSURL URLWithString:@"http://portalvhdsq3m25bf47d15c.blob.core.windows.net/vast/PlayerTestVMAP.xml"]])
             {
@@ -569,7 +569,7 @@ hello 下列範例會示範如何使用 VMAP 檔案 tooschedule 廣告。
             }
             else
             {
-                // Schedule a list of ads using hello downloaded VMAP manifest
+                // Schedule a list of ads using the downloaded VMAP manifest
                 if (![framework scheduleVMAPWithManifest:manifest])
                 {
                     [self logFrameworkError];
@@ -577,17 +577,17 @@ hello 下列範例會示範如何使用 VMAP 檔案 tooschedule 廣告。
             }
 
 ### <a name="scheduling-ads-with-vast"></a>使用 VAST 排程廣告
-hello 以下範例將示範如何 tooschedule 晚期繫結的 VAST 廣告。
+下列範例示範如何排程晚期繫結 VAST 廣告。
 
-    //Example:3 How tooschedule a late binding VAST ad.
-    // set hello start time for hello ad
+    //Example:3 How to schedule a late binding VAST ad.
+    // set the start time for the ad
     adLinearTime.startTime = 13;
     adLinearTime.duration = 0;
-    // Specify hello URI of hello VAST file
+    // Specify the URI of the VAST file
     NSString *vastAd1=@"http://portalvhdsq3m25bf47d15c.blob.core.windows.net/vast/PlayerTestVAST.xml";
     // Create an AdInfo object
      AdInfo *vastAdInfo1 = [[[AdInfo alloc] init] autorelease];
-    // set URL tooVAST file
+    // set URL to VAST file
     vastAdInfo1.clipURL = [NSURL URLWithString:vastAd1];
     // set running time of ad
     vastAdInfo1.mediaTime = [[[MediaTime alloc] init] autorelease];
@@ -604,8 +604,8 @@ hello 以下範例將示範如何 tooschedule 晚期繫結的 VAST 廣告。
         [self logFrameworkError];
     }
 
-   hello 以下範例將示範如何 tooschedule 早期繫結的 VAST 廣告。
-早期繫結 VAST 廣告 //Download hello VAST 檔案範例： 4 排程 (！ [framework.adResolver downloadManifest： 資訊清單和 withURL: [NSURL URLWithString: @"http://portalvhdsq3m25bf47d15c.blob.core.windows.net/vast/PlayerTestVAST.xml"]]) {[自我 logFrameworkError];} else {adLinearTime.startTime = 7。adLinearTime.duration = 0;
+   下列範例示範如何排程早期繫結 VAST 廣告。
+//Example:4 Schedule an early binding VAST ad //Download the VAST file if (![framework.adResolver downloadManifest:&manifest withURL:[NSURL URLWithString:@"http://portalvhdsq3m25bf47d15c.blob.core.windows.net/vast/PlayerTestVAST.xml"]]) { [self logFrameworkError]; } else { adLinearTime.startTime = 7; adLinearTime.duration = 0;
 
         // Create AdInfo instance
         AdInfo *vastAdInfo2 = [[[AdInfo alloc] init] autorelease];
@@ -621,9 +621,9 @@ hello 以下範例將示範如何 tooschedule 晚期繫結的 VAST 廣告。
         }
     }
 
-hello 以下範例將示範如何 tooinsert ad 使用粗略剪下編輯 (R)
+下列範例示範如何使用粗略剪裁編輯 (RCE) 插入廣告
 
-    //Example:1 How toouse RCE.
+    //Example:1 How to use RCE.
     // specify manifest for ad content
     NSString *secondContent=@"http://wamsblureg001orig-hs.cloudapp.net/6651424c-a9d1-419b-895c-6993f0f48a26/The%20making%20of%20Microsoft%20Surface-m3u8-aapl.ism/Manifest(format=m3u8-aapl)";
 
@@ -637,18 +637,18 @@ hello 以下範例將示範如何 tooinsert ad 使用粗略剪下編輯 (R)
         [self logFrameworkError];
     }
 
-hello 下列範例顯示如何 tooschedule ad pod。
+下列範例示範如何排程廣告組合。
 
     //Example:5 Schedule an ad Pod.
     // Set start time for ad
     adLinearTime.startTime = 23;
     adLinearTime.duration = 0;
 
-    // Specify URL toocontent
+    // Specify URL to content
     NSString *adpodSt1=@"https://portalvhdsq3m25bf47d15c.blob.core.windows.net/asset-e47b43fd-05dc-4587-ac87-5916439ad07f/Windows%208_%20Cliffjumpers.mp4?st=2012-11-28T16%3A31%3A57Z&se=2014-11-28T16%3A31%3A57Z&sr=c&si=2a6dbb1e-f906-4187-a3d3-7e517192cbd0&sig=qrXYZBekqlbbYKqwovxzaVZNLv9cgyINgMazSCbdrfU%3D";
     // Create an AdInfo instance
     AdInfo *adpodInfo1 = [[[AdInfo alloc] init] autorelease];
-    // set URI tooad content
+    // set URI to ad content
     adpodInfo1.clipURL = [NSURL URLWithString:adpodSt1];
     // Set ad running time
     adpodInfo1.mediaTime = [[[MediaTime alloc] init] autorelease];
@@ -665,10 +665,10 @@ hello 下列範例顯示如何 tooschedule ad pod。
         [self logFrameworkError];
     }
 
-下列範例會示範如何 hello tooschedule 非重複性片中廣告。 不論任何搜尋 hello 檢視器會執行之後，非重複性廣告只會播放。
+下列範例示範如何排程非固定片中廣告。 不論檢視者執行任何搜尋，非固定廣告只會播放一次。
 
     //Example:6 Schedule a single non sticky mid roll Ad
-    // specify URL toocontent
+    // specify URL to content
     NSString *oneTimeAd=@"http://wamsblureg001orig-hs.cloudapp.net/5389c0c5-340f-48d7-90bc-0aab664e5f02/Windows%208_%20You%20and%20Me%20Together-m3u8-aapl.ism/Manifest(format=m3u8-aapl)";
 
     // create an AdInfo instance
@@ -692,13 +692,13 @@ hello 下列範例顯示如何 tooschedule ad pod。
         [self logFrameworkError];
     }
 
-下列範例會示範如何 hello tooschedule 重複性片中廣告。 重複性廣告會顯示 hello 指定 hello 影片時間軸上的點已達到每個時間。
+下列範例示範如何排程固定片中廣告。 固定廣告會在每次到達視訊時間軸上的指定點時顯示。
 
     //Example:7 Schedule a single sticky mid roll Ad
     NSString *stickyAd=@"http://wamsblureg001orig-hs.cloudapp.net/2e4e7d1f-b72a-4994-a406-810c796fc4fc/The%20Surface%20Movement-m3u8-aapl.ism/Manifest(format=m3u8-aapl)";
     // create AdInfo instance
     AdInfo *stickyAdInfo = [[[AdInfo alloc] init] autorelease];
-    // set URI tooad
+    // set URI to ad
     stickyAdInfo.clipURL = [NSURL URLWithString:stickyAd];
     stickyAdInfo.mediaTime = [[[MediaTime alloc] init] autorelease];
     stickyAdInfo.mediaTime.clipBeginMediaTime = 0;
@@ -717,7 +717,7 @@ hello 下列範例顯示如何 tooschedule ad pod。
     }
 
 
-hello 以下範例將示範如何 tooschedule 片尾廣告。
+下列範例示範如何排程片尾廣告。
 
     //Example:8 Schedule Post Roll Ad
     NSString *postAdURLString=@"http://wamsblureg001orig-hs.cloudapp.net/aa152d7f-3c54-487b-ba07-a58e0e33280b/wp-m3u8-aapl.ism/Manifest(format=m3u8-aapl)";
@@ -737,7 +737,7 @@ hello 以下範例將示範如何 tooschedule 片尾廣告。
         [self logFrameworkError];
     }
 
-hello 以下範例將示範如何 tooschedule 前廣告。
+下列範例示範如何排程片頭廣告。
 
     //Example:9 Schedule Pre Roll Ad
     NSString *adURLString = @"http://wamsblureg001orig-hs.cloudapp.net/2e4e7d1f-b72a-4994-a406-810c796fc4fc/The%20Surface%20Movement-m3u8-aapl.ism/Manifest(format=m3u8-aapl)";
@@ -757,7 +757,7 @@ hello 以下範例將示範如何 tooschedule 前廣告。
         [self logFrameworkError];
     }
 
-hello 下列範例顯示如何 tooschedule 中間彙重疊廣告。
+下列範例示範如何排程片中重疊廣告。
 
     // Example10: Schedule a Mid Roll overlay Ad
     NSString *adURLString = @"https://portalvhdsq3m25bf47d15c.blob.core.windows.net/asset-e47b43fd-05dc-4587-ac87-5916439ad07f/Windows%208_%20Cliffjumpers.mp4?st=2012-11-28T16%3A31%3A57Z&se=2014-11-28T16%3A31%3A57Z&sr=c&si=2a6dbb1e-f906-4187-a3d3-7e517192cbd0&sig=qrXYZBekqlbbYKqwovxzaVZNLv9cgyINgMazSCbdrfU%3D";

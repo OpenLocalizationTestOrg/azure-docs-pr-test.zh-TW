@@ -1,6 +1,6 @@
 ---
-title: "透過在 Xamarin iOS 行動應用程式驗證 aaaGet 已啟動"
-description: "深入了解如何 toouse 行動應用程式 tooauthenticate 使用者透過不同的身分識別提供者，包括 AAD、 Google、 Facebook、 Twitter 和 Microsoft 的 Xamarin iOS 應用程式。"
+title: "開始在 Xamarin iOS 中使用行動應用程式的驗證"
+description: "了解如何使用行動應用程式透過眾多識別提供者驗證 Xamarin iOS 應用程式使用者，包括 AAD、Google、Facebook、Twitter 和 Microsoft。"
 services: app-service\mobile
 documentationcenter: xamarin
 author: ggailey777
@@ -14,56 +14,56 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/05/2017
 ms.author: glenga
-ms.openlocfilehash: 6458e9651b03df61c86b88b11953792e04bfa5b2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 454b2df5a9bf8cfba93befea54370957ab044d95
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="add-authentication-tooyour-xamarinios-app"></a>新增驗證 tooyour Xamarin.iOS 應用程式
+# <a name="add-authentication-to-your-xamarinios-app"></a>將驗證新增至 Xamarin.iOS 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
-本主題說明如何 tooauthenticate 的 App Service 行動應用程式從用戶端應用程式的使用者。 在本教學課程中，您可以新增使用身分識別提供者支援的應用程式服務的驗證 toohello Xamarin.iOS 快速入門專案。 正在成功驗證和授權您的行動應用程式之後，會顯示 hello 使用者識別碼的值，而且您必須能夠 tooaccess 限制資料表的資料。
+本主題說明如何從用戶端應用程式驗證 App Service 行動應用程式的使用者。 在本教學課程中，您將使用 App Service 支援的身分識別提供者，將驗證新增至 Xamarin.iOS 快速入門專案。 由行動應用程式成功驗證並授權之後，就會顯示使用者識別碼值，而您也將可以存取受限制的資料庫資料。
 
-您必須先完成 hello 教學課程[建立 Xamarin.iOS 應用程式]。 如果您不要使用 hello 下載快速入門的伺服器專案，您必須新增 hello 驗證擴充功能封裝 tooyour 專案。 如需伺服器擴充功能封裝的詳細資訊，請參閱[Azure 行動應用程式使用 hello.NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
+您必須先完成 [建立 Xamarin.iOS 應用程式]教學課程。 如果您不要使用下載的快速入門伺服器專案，必須將驗證擴充套件新增至您的專案。 如需伺服器擴充套件的詳細資訊，請參閱 [使用 Azure 行動應用程式的 .NET 後端伺服器 SDK](app-service-mobile-dotnet-backend-how-to-use-server-sdk.md)。
 
 ## <a name="register-your-app-for-authentication-and-configure-app-services"></a>註冊應用程式進行驗證，並設定應用程式服務
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
-## <a name="add-your-app-toohello-allowed-external-redirect-urls"></a>新增您的應用程式 toohello 允許外部重新導向 Url
+## <a name="add-your-app-to-the-allowed-external-redirect-urls"></a>將您的應用程式新增至允許的外部重新導向 URL
 
-安全的驗證會要求您為應用程式定義新的 URL 配置。 Hello 驗證程序完成之後，這可讓 hello 驗證系統 tooredirect 後 tooyour 應用程式。 在本教學課程中，我們使用 hello URL 配置_appname_整個。 不過，您可以使用任何您選擇的 URL 結構描述。 它應該是唯一的 tooyour 行動應用程式。 hello 伺服器端 tooenable hello 重新導向：
+安全的驗證會要求您為應用程式定義新的 URL 配置。 這讓驗證系統能夠在驗證程序完成之後，重新導向回到您的應用程式。 我們會在這整個教學課程中使用 URL 配置 appname。 不過，您可以使用任何您選擇的 URL 結構描述。 它對於您的行動應用程式而言應該是唯一的。 在伺服器端啟用重新導向：
 
-1. 在 hello [Azure 入口網站]，選取您的應用程式服務。
+1. 在 [Azure 入口網站] 中，選取您的 App Service。
 
-2. 按一下 hello**驗證 / 授權**功能表選項。
+2. 按一下 [驗證/授權] 功能表選項。
 
-3. 在 [hello**允許外部重新導向 Url**，輸入`url_scheme_of_your_app://easyauth.callback`。  hello **url_scheme_of_your_app**這個字串中為 [行動應用程式的 hello URL 配置。  它必須遵循通訊協定的標準 URL 規格 (只使用字母和數字，並以字母為開頭)。  請記下您選擇將會需要 tooadjust hello 在幾個位置的 URL 配置您的行動應用程式程式碼的 hello 字串。
+3. 在 [允許的外部重新導向 URL] 中，輸入 `url_scheme_of_your_app://easyauth.callback`。  此字串中的 **url_scheme_of_your_app** 是您行動應用程式的 URL 配置。  它必須遵循通訊協定的標準 URL 規格 (只使用字母和數字，並以字母為開頭)。  請記下您選擇的字串，因為您將需要在數個位置中使用該 URL 配置來調整您的行動應用程式程式碼。
 
 4. 按一下 [確定] 。
 
 5. 按一下 [儲存] 。
 
-## <a name="restrict-permissions-tooauthenticated-users"></a>限制 tooauthenticated 使用者權限
+## <a name="restrict-permissions-to-authenticated-users"></a>限制只有通過驗證的使用者具有權限
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-&nbsp;&nbsp;4. 在 Visual Studio 或 Xamarin Studio，請裝置或模擬器上執行 hello 用戶端專案。 請確認 hello 應用程式啟動之後，會引發未處理的例外狀況並顯示狀態碼 401 （未經授權）。 hello 失敗是 hello 偵錯工具的記錄的 toohello 主控台。 因此在 Visual Studio 中，您應該會看到 hello [輸出] 視窗中的 hello 失敗。
+&nbsp;&nbsp;4. 在 Visual Studio 或 Xamarin Studio 中，在裝置或模擬器上執行用戶端專案。 確認在應用程式啟動後，發生狀態代碼 401 (未經授權) 的未處理例外狀況。 失敗都會記錄到偵錯工具主控台。 因此在 Visual Studio 中，您應該會在 [輸出] 視窗中看到失敗。
 
-&nbsp;&nbsp;此未授權的失敗不會因為 hello 應用程式嘗試 tooaccess 未經驗證的使用者身分行動裝置應用程式後端。 hello *TodoItem*資料表現在需要驗證。
+&nbsp;&nbsp;應用程式嘗試以未經驗證的使用者身分存取您的行動應用程式後端，因此發生此未經授權的失敗。 *TodoItem* 資料表現在需要驗證。
 
-接下來，您將更新從 hello 行動裝置應用程式後端 hello 用戶端應用程式 toorequest 資源與已驗證的使用者。
+接下來，您將會更新用戶端應用程式，利用已驗證的使用者身分來要求行動應用程式後端的資源。
 
-## <a name="add-authentication-toohello-app"></a>新增驗證 toohello 應用程式
-在本節中，您將修改 hello 應用程式 toodisplay 登入畫面之前顯示的資料。 Hello 應用程式啟動時，它將無法不連線 tooyour 應用程式服務，並不會顯示任何資料。 Hello 第一次後該 hello 使用者執行 hello 重新整理鍵筆勢，會顯示 hello 登入畫面。成功的登入之後 hello todo 項目的清單隨即出現。
+## <a name="add-authentication-to-the-app"></a>將驗證新增至應用程式
+在本節中您將修改應用程式，以先顯示登入畫面再顯示資料。 應用程式在啟動時將不會連接到您的應用程式服務，且不會顯示任何資料。 在使用者第一次執行重新整理動作後，登入畫面將會出現；在成功登入後，將會顯示 todo 項目清單。
 
-1. 在 hello 用戶端專案中，開啟 [hello 檔案**QSTodoService.cs**並加入 hello 下列 using 陳述式和`MobileServiceUser`與存取子 toohello QSTodoService 類別：
+1. 在用戶端專案中開啟檔案 **QSTodoService.cs**，將下列 using 陳述式和具有存取子的 `MobileServiceUser`新增至 QSTodoService 類別：
  
         using UIKit;
        
         // Logged in user
         private MobileServiceUser user;
         public MobileServiceUser User { get { return user; } }
-2. 將名為的新方法加入**驗證**太**QSTodoService**以 hello 下列定義：
+2. 使用下列定義，將名為 **Authenticate** 的新方法新增至 **QSTodoService**：
 
         public async Task Authenticate(UIViewController view)
         {
@@ -78,9 +78,9 @@ ms.lasthandoff: 10/06/2017
             }
         }
 
-    >[AZURE.NOTE] 如果您使用 Facebook 以外的身分識別提供者，變更 hello 值太傳遞**LoginAsync** tooone hello 以下的上方： _MicrosoftAccount_， _Twitter_，_Google_，或_WindowsAzureActiveDirectory_。
+    >[AZURE.NOTE] 如果您使用的身分識別提供者不是 Facebook，請將傳給上述 **LoginAsync** 的值變更為下列其中一個：MicrosoftAccount、Twitter、Google 或 WindowsAzureActiveDirectory。
 
-3. 開啟 **QSTodoListViewController.cs**。 修改 hello 方法定義**ViewDidLoad**太移除 hello 呼叫**RefreshAsync()**接近 hello 結束：
+3. 開啟 **QSTodoListViewController.cs**。 修改 **ViewDidLoad** 的方法定義，移除結尾附近的 **RefreshAsync()** 呼叫：
    
         public override async void ViewDidLoad ()
         {
@@ -93,10 +93,10 @@ ms.lasthandoff: 10/06/2017
                 await RefreshAsync();
             }
    
-            // Comment out hello call tooRefreshAsync
+            // Comment out the call to RefreshAsync
             // await RefreshAsync();
         }
-4. 修改 hello 方法**RefreshAsync** tooauthenticate 如果 hello**使用者**屬性為 null。 加入下列程式碼頂端 hello hello 方法定義的 hello:
+4. 修改方法 **RefreshAsync**，以驗證 **User** 屬性是否為 null。 在方法定義最上方新增下列程式碼：
    
         // start of RefreshAsync method
         if (todoService.User == null) {
@@ -107,7 +107,7 @@ ms.lasthandoff: 10/06/2017
             }
         }
         // rest of RefreshAsync method
-5. 開啟**d**，新增下列方法 hello:
+5. 開啟 **AppDelegate.cs**，新增下列方法：
 
         public static Func<NSUrl, bool> ResumeWithURL;
 
@@ -115,10 +115,10 @@ ms.lasthandoff: 10/06/2017
         {
             return ResumeWithURL != null && ResumeWithURL(url);
         }
-6. 開啟**Info.plist**檔案中，瀏覽過**URL 類型**在 hello**進階**> 一節。 現在設定 hello**識別碼**和 hello **URL 配置**URL 類型和按一下**加入 URL 類型**。 **URL 配置**應該為您的 {url_scheme_of_your_app} hello 相同。
-7. 在 Visual Studio 或 Xamarin Studio 中連接 tooyour Xamarin 組建主機在您 Mac 上，執行 hello 裝置或模擬器為目標的用戶端專案。 請確認該 hello 應用程式會顯示任何資料。
+6. 開啟 **Info.plist** 檔案，瀏覽至 [進階] 區段中的 [URL 類型]。 立即設定 URL 類型的 [識別碼] 和 [URL 配置]，然後按一下 [新增 URL 類型]。 [URL 配置] 應該與您的 {url_scheme_of_your_app} 相同。
+7. 在 Visual Studio 或連線到您 Mac 上之 Xamarin 建置主機的 Xamarin Studio 中，以裝置或模擬器為目標執行用戶端專案。 確認應用程式未顯示資料。
    
-    Hello 清單中的項目，這會導致 hello 登入畫面 tooappear，藉以執行 hello 重新整理筆勢。 一旦您已經輸入有效的認證，hello 應用程式將會顯示 hello todo 項目的清單，而且您可以更新 toohello 資料。
+    將項目清單往下拉以執行重新整理動作，這會使登入畫面出現。 在您成功輸入有效認證後，應用程式將會顯示 todo 項目清單，且您可以對資料進行更新。
 
 <!-- URLs. -->
 [Submit an app page]: http://go.microsoft.com/fwlink/p/?LinkID=266582

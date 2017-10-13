@@ -1,6 +1,6 @@
 ---
-title: "aaaAzure IoT 裝置管理與 iot 中樞總管 |Microsoft 文件"
-description: "使用 hello iot 中樞總管 CLI 工具對於 Azure IoT 中心裝置管理，並且包含 hello 直接的方法與 hello 兩個所需的內容管理選項。"
+title: "透過 iothub-explorer 進行 Azure IoT 裝置管理 | Microsoft Docs"
+description: "使用 iothub-explorer CLI 工具進行 Azure IoT 中樞裝置管理，採用直接方法和對應項所需的屬性管理選項。"
 services: iot-hub
 documentationcenter: 
 author: shizn
@@ -15,11 +15,11 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 07/12/2017
 ms.author: xshi
-ms.openlocfilehash: e0a5e6120db5c4fb12f7f8b605a56e0e4aad9217
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5b7a5057bdfb5920fbb5759bed1f5561cfa1d7e0
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="use-iothub-explorer-for-azure-iot-hub-device-management"></a>使用 iothub-explorer 進行 Azure IoT 中樞裝置管理
 
@@ -27,21 +27,21 @@ ms.lasthandoff: 10/06/2017
 
 [!INCLUDE [iot-hub-get-started-note](../../includes/iot-hub-get-started-note.md)]
 
-[iot 中樞總管](https://github.com/azure/iothub-explorer)是 CLI 工具，您在主機電腦 toomanage 裝置身分識別執行您的 IoT 中樞登錄中。 它提供的管理選項，您可以使用 tooperform 各種工作。
+[iothub-explorer](https://github.com/azure/iothub-explorer) 是您在主機電腦上執行的 CLI 工具，用來管理您的 IoT 中樞登錄中的裝置身分識別。 它隨附的管理選項可供您用來執行各種工作。
 
 | 管理選項          | Task                                                                                                                            |
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| 直接方法             | 使裝置，例如啟動或停止傳送訊息，或重新啟動裝置 hello 做。                                        |
-| 對應項的所需屬性    | 將裝置放入特定狀態，例如設定 LED toogreen 或設定 hello 遙測傳送間隔 too30 分鐘數。         |
-| 對應項的報告屬性   | 取得 hello 報告裝置的狀態。 例如，hello 裝置報告 LED 閃爍不停現在 hello。                                    |
-| 對應項標記                  | Hello 雲端中儲存裝置專屬的中繼資料。 例如，hello 販賣的部署位置。                         |
-| 雲端到裝置的訊息   | 傳送通知 tooa 裝置。 比方說，「 是很有可能 toorain 今天。 別忘了 toobring 概括性。 」              |
-| 裝置對應項查詢        | 查詢所有裝置雙 tooretrieve 具有任意的條件，例如識別 hello 裝置可供使用。 |
+| 直接方法             | 使裝置執行動作，例如啟動或停止傳送訊息，或是將裝置重新開機。                                        |
+| 對應項的所需屬性    | 讓裝置進入特定狀態，例如將 LED 設定為綠色，或將遙測傳送間隔設定為 30 分鐘。         |
+| 對應項的報告屬性   | 取得裝置的報告狀態。 例如，裝置會回報 LED 現在正閃爍不停。                                    |
+| 對應項標記                  | 在雲端儲存裝置特定的中繼資料。 例如，販賣機的部署位置。                         |
+| 雲端到裝置的訊息   | 將通知傳送至裝置。 例如，「今天很可能會下雨。 別忘了帶傘。」              |
+| 裝置對應項查詢        | 查詢所有裝置對應項以擷取具有任意條件的這些裝置，例如識別可供使用的裝置。 |
 
-如需詳細 hello 差異的說明和使用這些選項的指引，請參閱[裝置到雲端通訊指引](iot-hub-devguide-d2c-guidance.md)和[雲端到裝置通訊指引](iot-hub-devguide-c2d-guidance.md)。
+如需差異的詳細說明和使用這些選項的相關指引，請參閱[裝置對雲端通訊指引](iot-hub-devguide-d2c-guidance.md)和[雲端對裝置通訊指引](iot-hub-devguide-c2d-guidance.md)。
 
 > [!NOTE]
-> 「裝置對應項」是存放裝置狀態資訊 (中繼資料、組態和條件) 的 JSON 文件。 IoT 中樞保存每個裝置連接 tooit 裝置兩個。 如需裝置對應項的詳細資訊，請參閱[開始使用裝置對應項](iot-hub-node-node-twin-getstarted.md)。
+> 「裝置對應項」是存放裝置狀態資訊 (中繼資料、組態和條件) 的 JSON 文件。 IoT 中樞會為其連線的每個裝置保存裝置對應項。 如需裝置對應項的詳細資訊，請參閱[開始使用裝置對應項](iot-hub-node-node-twin-getstarted.md)。
 
 ## <a name="what-you-learn"></a>您學到什麼
 
@@ -53,16 +53,16 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="what-you-need"></a>您需要什麼
 
-- 教學課程[設定您的裝置](iot-hub-raspberry-pi-kit-node-get-started.md)完成其中涵蓋了 hello 下列需求：
+- 完成涵蓋下列需求的[設定裝置](iot-hub-raspberry-pi-kit-node-get-started.md)教學課程︰
   - 有效的 Azure 訂用帳戶。
   - 位於您訂用帳戶中的 Azure IoT 中樞。
-  - 用戶端應用程式所傳送訊息 tooyour Azure IoT 中樞。
-- 請確定您的裝置正在執行與本教學課程期間 hello 用戶端應用程式。
+  - 將訊息傳送到您 Azure IoT 中樞的用戶端應用程式。
+- 請確定在本教學課程期間，您的裝置是和用戶端應用程式一起執行。
 - iothub-explorer，在開發電腦上[安裝 iothub-explorer](https://github.com/azure/iothub-explorer)。
 
-## <a name="connect-tooyour-iot-hub"></a>連接 tooyour IoT 中樞
+## <a name="connect-to-your-iot-hub"></a>連線至您的 IoT 中樞
 
-執行下列命令的 hello 連線 tooyour IoT 中樞：
+執行下列命令來連線至 IoT 中樞：
 
 ```bash
 iothub-explorer login <your IoT hub connection string>
@@ -70,13 +70,13 @@ iothub-explorer login <your IoT hub connection string>
 
 ## <a name="use-iothub-explorer-with-direct-methods"></a>使用 iothub-explorer 搭配直接方法
 
-叫用 hello `start` hello 裝置應用程式 toosend 訊息 tooyour IoT 中樞中執行下列命令的 hello 方法：
+透過執行下列命令，在裝置應用程式中叫用 `start` 方法，將訊息傳送至您的 IoT 中樞：
 
 ```bash
 iothub-explorer device-method <your device Id> start
 ```
 
-叫用 hello `stop` hello 裝置應用程式 toostop 傳送的方法藉由執行下列命令的 hello 訊息 tooyour IoT 中樞：
+透過執行下列命令，在裝置應用程式中叫用 `stop` 方法，停止將訊息傳送至您的 IoT 中樞：
 
 ```bash
 iothub-explorer device-method <your device Id> stop
@@ -84,7 +84,7 @@ iothub-explorer device-method <your device Id> stop
 
 ## <a name="use-iothub-explorer-with-twins-desired-properties"></a>使用 iothub-explorer 搭配對應項所需的屬性
 
-設定所需的屬性間隔 = 3000 藉由執行下列命令的 hello:
+透過執行下列命令，設定需要的屬性間隔 = 3000：
 
 ```bash
 iothub-explorer update-twin <your device id> {\"properties\":{\"desired\":{\"interval\":3000}}}
@@ -94,23 +94,23 @@ iothub-explorer update-twin <your device id> {\"properties\":{\"desired\":{\"int
 
 ## <a name="use-iothub-explorer-with-twins-reported-properties"></a>使用 iothub-explorer 搭配對應項的報告屬性
 
-取得 hello 報告的屬性，藉由執行 hello hello 裝置的下列命令：
+執行下列命令來取得裝置的報告屬性：
 
 ```bash
 iothub-explorer get-twin <your device id>
 ```
 
-Hello 屬性的其中一個是 $metadata。 $lastUpdated 會顯示 hello 最後一次此裝置傳送或接收訊息。
+其中一個屬性是 $metadata.$lastUpdated，它會顯示此裝置上一次傳送或接收訊息的時間。
 
 ## <a name="use-iothub-explorer-with-twins-tags"></a>使用 iothub-explorer 搭配對應項標記
 
-藉由執行下列命令的 hello 顯示 hello 標記與 hello 裝置的內容：
+執行下列命令來顯示裝置的標記和屬性：
 
 ```bash
 iothub-explorer get-twin <your device id>
 ```
 
-新增欄位角色執行下列命令的 hello = 溫度和溼度 toohello 裝置：
+執行下列命令來將欄位 role = temperature&humidity 新增至裝置：
 
 ```bash
 iothub-explorer update-twin <your device id> "{\"tags\":{\"role\":\"temperature&humidity\"}}"
@@ -119,23 +119,23 @@ iothub-explorer update-twin <your device id> "{\"tags\":{\"role\":\"temperature&
 
 ## <a name="use-iothub-explorer-with-cloud-to-device-messages"></a>對雲端到裝置的訊息使用 iothub-explorer
 
-將"Hello World"訊息 toohello 裝置傳送藉由執行下列命令的 hello:
+執行下列命令來將 "Hello World" 訊息傳送到裝置：
 
 ```bash
 iothub-explorer send <device-id> "Hello World"
 ```
 
-請參閱[使用 iot 中樞總管 toosend 和接收訊息，您的裝置與 IoT 中樞之間](iot-hub-explorer-cloud-device-messaging.md)真實案例中使用此命令。
+如需使用此命令的真實案例，請參閱[使用 iothub-explorer 在裝置與 IoT 中樞之間傳送及接收訊息](iot-hub-explorer-cloud-device-messaging.md)。
 
 ## <a name="use-iothub-explorer-with-device-twins-queries"></a>使用 iothub-explorer 搭配裝置對應項查詢
 
-查詢與角色的標籤裝置 = '溫度和溼度'，藉由執行下列命令的 hello:
+藉由執行下列命令，查詢具有標記 role = 'temperature&humidity' 的裝置：
 
 ```bash
 iothub-explorer query-twin "SELECT * FROM devices WHERE tags.role = 'temperature&humidity'"
 ```
 
-查詢以外的角色有標記的所有裝置 = '溫度和溼度'，藉由執行下列命令的 hello:
+藉由執行下列命令，查詢具有標記 role = 'temperature&humidity' 以外的所有裝置：
 
 ```bash
 iothub-explorer query-twin "SELECT * FROM devices WHERE tags.role != 'temperature&humidity'"
@@ -143,6 +143,6 @@ iothub-explorer query-twin "SELECT * FROM devices WHERE tags.role != 'temperatur
 
 ## <a name="next-steps"></a>後續步驟
 
-您所學到如何 toouse iot 中樞-總管 中有各種不同的管理選項。
+您已學到如何使用 iothub-explorer 搭配各種管理選項。
 
 [!INCLUDE [iot-hub-get-started-next-steps](../../includes/iot-hub-get-started-next-steps.md)]

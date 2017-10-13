@@ -1,6 +1,6 @@
 ---
-title: "使用砲象兵和 HDInsight (SSH)-Azure aaaGenerate 建議 |Microsoft 文件"
-description: "了解如何 toouse hello Apache 砲象兵機器學習服務文件庫 toogenerate 影片建議與 HDInsight (Hadoop)。"
+title: "使用 Mahout 和 HDInsight 產生推薦 (SSH) - Azure | Microsoft Docs"
+description: "了解如何搭配 HDInsight (Hadoop) 使用 Apache Mahout 機器學習庫來產生電影推薦。"
 services: hdinsight
 documentationcenter: 
 author: Blackmist
@@ -16,52 +16,52 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/15/2017
 ms.author: larryfr
-ms.openlocfilehash: fedac9ceb4268f8421bce4623a5ad271041b8b3d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 28450d72f19a5467d88bc787d11f6c37c5afbf9a
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="generate-movie-recommendations-by-using-apache-mahout-with-linux-based-hadoop-in-hdinsight-ssh"></a>在 HDInsight 中搭配使用 Apache Mahout 和以 Linux 為基礎的 Hadoop 來產生電影推薦 (SSH)
 
 [!INCLUDE [mahout-selector](../../includes/hdinsight-selector-mahout.md)]
 
-深入了解如何 toouse hello [Apache 砲象兵](http://mahout.apache.org)Azure HDInsight toogenerate 影片建議的機器學習程式庫。
+了解如何使用搭配 Azure HDInsight 的 [Apache Mahout](http://mahout.apache.org) 機器學習庫產生電影推薦。
 
-Mahout 是 Apache Hadoop 的[機器學習服務][ml]程式庫。 Mahout 包含可處理資料的演算法，例如篩選、分類和叢集化。 在本文中，您可以使用建議引擎 toogenerate 影片建議過您的朋友的電影為基礎的。
+Mahout 是 Apache Hadoop 的[機器學習服務][ml]程式庫。 Mahout 包含可處理資料的演算法，例如篩選、分類和叢集化。 在本文中，您會使用推薦引擎，以根據朋友看過的電影來產生電影推薦。
 
 ## <a name="prerequisites"></a>必要條件
 
 * 以 Linux 為基礎的 HDInsight 叢集。 如需有關建立叢集的資訊，請參閱[開始在 HDInsight 中使用以 Linux 為基礎的 Hadoop][getstarted]。
 
 > [!IMPORTANT]
-> Linux 為 hello 僅作業系統 HDInsight 3.4 或更新版本上使用。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
+> Linux 是唯一使用於 HDInsight 3.4 版或更新版本的作業系統。 如需詳細資訊，請參閱 [Windows 上的 HDInsight 淘汰](hdinsight-component-versioning.md#hdinsight-windows-retirement)。
 
-* SSH 用戶端。 如需詳細資訊，請參閱 hello[搭配使用 SSH 和 HDInsight](hdinsight-hadoop-linux-use-ssh-unix.md)文件。
+* SSH 用戶端。 如需詳細資訊，請參閱[搭配 HDInsight 使用 SSH](hdinsight-hadoop-linux-use-ssh-unix.md) 文件。
 
 ## <a name="mahout-versioning"></a>Mahout 版本控制
 
-更多的砲象兵 HDInsight 中的 hello 版本的詳細資訊，請參閱[HDInsight 版本和 Hadoop 元件](hdinsight-component-versioning.md)。
+如需 HDInsight 中 Mahout 版本的詳細資訊，請參閱 [HDInsight 版本和 Hadoop 元件](hdinsight-component-versioning.md)。
 
 ## <a name="recommendations"></a>了解推薦
 
-建議引擎所提供的砲象兵 hello 函式的其中一個。 此引擎會接受資料格式的 hello `userID`， `itemId`，和`prefValue`(hello hello 項目喜好設定)。 砲象兵接著就可以執行共同分析 toodetermine:*使用者擁有的喜好設定項目也有這些喜好設定的其他項目*。 砲象兵接著會判斷使用者與類似項目參考，它可以是使用的 toomake 建議。
+Mahout 提供的其中一項功能是推薦引擎。 這個引擎接受 `userID`、`itemId` 和 `prefValue` (項目的喜好設定) 格式的資料。 Mahout 接著可以執行共生分析判斷出： *偏好某項目的使用者同時也偏好其他這些項目*。 接著 Mahout 會以偏好的類似項目判斷使用者，並以此做出推薦。
 
-hello 下列工作流程是使用電影資料的簡化的範例：
+以下工作流程是一個使用電影資料的簡化範例：
 
-* **共同**: Joe、 Alice 和所有按讚的 Bob*星狀戰爭*，*回 Empire 攻擊 hello*，和*傳回 hello Jedi*。 砲象兵決定使用者類似任何這些影片像 hello 其他兩個。
+* **共生**：Joe、Alice 和 Bob 都喜歡*《星際大戰》*、*《帝國大反擊》*和*《絕地大反攻》*。 Mahout 將判斷喜歡上述任何一部電影的使用者，也會喜歡另外兩部電影。
 
-* **共同**: Bob 和 Alice 也喜歡*hello 虛設項目威脅*， *hello 複製程式碼的攻擊*，和*的 hello Sith 復仇*。 砲象兵決定使用者喜歡 hello 先前的三個影片也喜歡這些三個影片。
+* **共生**：Bob 和 Alice 同時也喜歡*《威脅潛伏》*、*《複製人全面進攻》*和*《西斯大帝的復仇》*。 Mahout 將判斷喜歡前三部電影的使用者，也會喜歡這三部電影。
 
-* **相似度建議**： 因為 Joe 喜歡 hello 前三個影片、 砲象兵查看電影的其他項目具有相似的偏好喜歡，但 Joe 不保存 （喜歡/評等）。 砲象兵在此情況下，建議*hello 虛設項目威脅*， *hello 複製程式碼的攻擊*，和*的 hello Sith 復仇*。
+* **相似性推薦**：因為 Joe 喜歡前三部電影，Mahout 會查看具有相似偏好的其他使用者所喜歡但 Joe 還沒看過 (喜歡/評價) 的電影。 在此情況下，Mahout 將會推薦*《威脅潛伏》*、*《複製人全面進攻》*和*《西斯大帝的復仇》*。
 
-### <a name="understanding-hello-data"></a>了解 hello 資料
+### <a name="understanding-the-data"></a>了解資料
 
 [GroupLens 研究][movielens]提供 Mahout 相容格式的電影評價資料，相當方便。 您可在位於 `/HdiSamples/HdiSamples/MahoutMovieData`的叢集預設儲存體取得這份資料。
 
-有兩個檔案 `moviedb.txt` 和 `user-ratings.txt`。 在分析期間，使用 hello 使用者 ratings.txt 檔案，而 moviedb.txt 顯示 hello hello 分析結果時，使用的 tooprovide 使用者易記文字資訊。
+有兩個檔案 `moviedb.txt` 和 `user-ratings.txt`。 分析期間使用的是 user-ratings.txt 檔案，moviedb.txt 則是在顯示分析結果時用來提供使用者易懂的文字資訊。
 
-hello 使用者 ratings.txt 中包含的資料都有一個結構的`userID`， `movieID`， `userRating`，和`timestamp`，它會告訴我們每位使用者如何高評等為電影。 Hello 資料的範例如下：
+user-ratings.txt 內包含的資料具有 `userID`、`movieID`、`userRating` 和 `timestamp` 結構，可告訴我們每位使用者對於影片的評價為何。 以下是資料範例：
 
     196    242    3    881250949
     186    302    3    891717742
@@ -69,50 +69,50 @@ hello 使用者 ratings.txt 中包含的資料都有一個結構的`userID`， `
     244    51    2    880606923
     166    346    1    886397596
 
-## <a name="run-hello-analysis"></a>執行 hello 分析
+## <a name="run-the-analysis"></a>執行分析
 
-從 SSH 連線 toohello 叢集中，使用下列命令 toorun hello 建議工作 hello:
+經由叢集的 SSH 連線，使用下列命令來執行推薦工作：
 
 ```bash
 mahout recommenditembased -s SIMILARITY_COOCCURRENCE -i /HdiSamples/HdiSamples/MahoutMovieData/user-ratings.txt -o /example/data/mahoutout --tempDir /temp/mahouttemp
 ```
 
 > [!NOTE]
-> hello 作業可能需要幾分鐘的時間 toocomplete，並可能會執行多個 MapReduce 作業。
+> 此工作可能需要幾分鐘的時間才能完成，並可能執行多項 MapReduce 工作。
 
-## <a name="view-hello-output"></a>檢視 hello 輸出
+## <a name="view-the-output"></a>檢視輸出
 
-1. Hello 作業完成之後，請使用下列命令 tooview hello 產生輸出的 hello:
+1. 工作完成後，使用以下命令來檢視所產生的輸出：
 
     ```bash
     hdfs dfs -text /example/data/mahoutout/part-r-00000
     ```
 
-    hello 輸出會出現，如下所示：
+    輸出看起來會像下面這樣：
 
         1    [234:5.0,347:5.0,237:5.0,47:5.0,282:5.0,275:5.0,88:5.0,515:5.0,514:5.0,121:5.0]
         2    [282:5.0,210:5.0,237:5.0,234:5.0,347:5.0,121:5.0,258:5.0,515:5.0,462:5.0,79:5.0]
         3    [284:5.0,285:4.828125,508:4.7543354,845:4.75,319:4.705128,124:4.7045455,150:4.6938777,311:4.6769233,248:4.65625,272:4.649266]
         4    [690:5.0,12:5.0,234:5.0,275:5.0,121:5.0,255:5.0,237:5.0,895:5.0,282:5.0,117:5.0]
 
-    hello 第一個資料行是 hello `userID`。 hello 中包含的值 '[' 和']' 是`movieId`:`recommendationScore`。
+    第一欄是 `userID`。 '[' 和 ']' 中包含的值是 `movieId`:`recommendationScore`。
 
-2. 您可以於 hello 建議使用 hello 輸出，以及 hello moviedb.txt，tooprovide 的詳細資訊。 首先，我們需要在本機上使用下列命令的 hello toocopy hello 檔案：
+2. 您可以使用輸出和 moviedb.txt，來顯示更多建議的相關資訊。 首先，我們需要使用下列命令將檔案複製到本機上︰
 
     ```bash
     hdfs dfs -get /example/data/mahoutout/part-r-00000 recommendations.txt
     hdfs dfs -get /HdiSamples/HdiSamples/MahoutMovieData/* .
     ```
 
-    此命令複製 hello 輸出資料 tooa 檔名為**recommendations.txt** hello 目前目錄，連同 hello 電影資料檔案中。
+    這個命令會將輸出資料和影片資料檔一起複製到目前目錄中名為 **recommendations.txt** 的檔案中。
 
-3. 使用下列命令 toocreate 查閱 hello 建議輸出中的 hello 資料的電影名稱的 Python 指令碼的 hello:
+3. 使用下列命令來建立 Python 指令碼，該指令碼會在建議輸出資料中查閱影片名稱：
 
     ```bash
     nano show_recommendations.py
     ```
 
-    當 hello 編輯器開啟時，使用 hello hello hello 檔案內容為下列文字：
+    開啟編輯器時，請使用下列文字做為檔案的內容：
 
    ```python
    #!/usr/bin/env python
@@ -166,43 +166,43 @@ mahout recommenditembased -s SIMILARITY_COOCCURRENCE -i /HdiSamples/HdiSamples/M
    print "------------------------"
    ```
 
-    按**Ctrl X**， **Y**，最後再**Enter** toosave hello 資料。
+    按下 **CTRL-X**、**Y**，最後再按 **Enter** 鍵儲存資料。
 
-4. 執行 hello Python 指令碼。 hello 下列命令假設您已下載的所有 hello 檔案 hello 目錄中：
+4. 執行 Python 指令碼。 以下命令假設您已在所有檔案的下載目錄中︰
 
     ```bash
     python show_recommendations.py 4 user-ratings.txt moviedb.txt recommendations.txt
     ```
 
-    此命令會在產生的使用者識別碼 4 hello 建議。
+    此命令會查看為使用者 ID 4 所產生的建議。
 
-    * hello**使用者 ratings.txt**檔案是使用的 tooretrieve 電影已評等。
+    * **user-ratings.txt** 檔案可用來擷取已評分的影片。
 
-    * hello **moviedb.txt**檔案是使用的 tooretrieve hello hello 電影名稱。
+    * **moviedb.txt** 檔案用來擷取影片名稱。
 
-    * hello **recommendations.txt**是使用的 tooretrieve hello 影片建議，此使用者。
+    * **recommendations.txt** 用來擷取這位使用者的電影建議。
 
-     hello 輸出此命令為類似 toohello 下列文字：
+     此命令的輸出類似下列文字︰
 
-        Tibet (1997)，在七個年份分數 = 5.0 印第安納州 Jones 和 hello 最後聖戰 (1989)，分數 = 5.0 Jaws (1975)，分數 = 5.0 意義上與 Sensibility (1995 年) 分數 = 5.0 獨立性天 (ID4) (1996 年) 分數 = 5.0 我最好的朋友婚禮 (1997)，分數 = 5.0 Jerry Maguire (1996年)，分數 = 5.0 Scream 2 (1997 年) 分數 = 5.0 時間 tooKill，(1996 年) 分數 = 5.0
+        Seven Years in Tibet (1997), score=5.0   Indiana Jones and the Last Crusade (1989), score=5.0   Jaws (1975), score=5.0   Sense and Sensibility (1995), score=5.0   Independence Day (ID4) (1996), score=5.0   My Best Friend's Wedding (1997), score=5.0   Jerry Maguire (1996), score=5.0   Scream 2 (1997), score=5.0   Time to Kill, A (1996), score=5.0
 
 ## <a name="delete-temporary-data"></a>刪除暫存資料
 
-砲象兵作業不會移除處理 hello 作業時建立的暫存資料。 hello `--tempDir` hello 範例作業 tooisolate hello 暫存檔中指定參數為輕鬆刪除一個特定路徑。 tooremove hello 暫存檔案，請使用下列命令的 hello:
+Mahout 工作不會移除處理工作時所建立的暫存資料。 範例工作中指定 `--tempDir` 參數將暫存檔隔離到特定路徑中以方便刪除。 若要移除暫存檔案，請使用下列命令：
 
 ```bash
 hdfs dfs -rm -f -r /temp/mahouttemp
 ```
 
 > [!WARNING]
-> 若要再次 toorun hello 命令，您也必須刪除 hello 輸出目錄。 使用下列 toodelete hello 這個目錄：
+> 如果您要再次執行該命令，您必須也刪除輸出目錄。 使用以下命令刪除此目錄：
 >
 > `hdfs dfs -rm -f -r /example/data/mahoutout`
 
 
 ## <a name="next-steps"></a>後續步驟
 
-既然您已經學會如何 toouse 砲象兵，探索 HDInsight 上的資料搭配使用的其他方式：
+您現在已了解如何使用 Mahout，請繼續探索在 HDInsight 上使用資料的其他方法：
 
 * [搭配 HDInsight 使用 Hive](hdinsight-use-hive.md)
 * [搭配 HDInsight 使用 Pig](hdinsight-use-pig.md)

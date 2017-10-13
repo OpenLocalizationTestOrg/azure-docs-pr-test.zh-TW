@@ -1,5 +1,5 @@
 ---
-title: "aaaGet Azure 入口網站中開始使用 Azure 排程器 |Microsoft 文件"
+title: "開始在 Azure 入口網站中使用 Azure 排程器 | Microsoft Docs"
 description: "開始在 Azure 入口網站中使用 Azure 排程器"
 services: scheduler
 documentationcenter: .NET
@@ -14,33 +14,33 @@ ms.devlang: dotnet
 ms.topic: hero-article
 ms.date: 08/10/2016
 ms.author: deli
-ms.openlocfilehash: 58255c0ad19da65932f8b1d36cb8fef1ff6e651b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 3861ee121ed1c4d086ea81640e84d924d7d17ea1
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="get-started-with-azure-scheduler-in-azure-portal"></a>開始在 Azure 入口網站中使用 Azure 排程器
-它是 Azure 排程器中的簡單 toocreate 排程工作。 在此教學課程中，您將學習如何 toocreate 作業。 您也將學習排程器的監視和管理功能。
+在 Azure 排程器中建立排程作業很簡單。 在本教學課程中，您將了解如何建立作業。 您也將學習排程器的監視和管理功能。
 
 ## <a name="create-a-job"></a>建立工作
-1. 登入太[Azure 入口網站](https://portal.azure.com/)。  
-2. 按一下**+ 新增**> 類型*排程器*hello [搜尋] 方塊中 > 選取**排程器**結果中 > 按一下**建立**。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。  
+2. 按一下 [+新增] > 在搜尋方塊中輸入*排程器* > 在結果中選取 [排程器] > 按一下 [建立]。
    
     ![][marketplace-create]
-3. 讓我們使用 GET 要求建立只要點擊 http://www.microsoft.com/ 的工作。 在 hello**排程器工作**畫面上，輸入下列資訊的 hello:
+3. 讓我們使用 GET 要求建立只要點擊 http://www.microsoft.com/ 的工作。 在 [排程器作業]  畫面中，輸入下列資訊：
    
    1. **名稱：** `getmicrosoft`  
    2. **訂用帳戶：** 您的 Azure 訂用帳戶   
    3. **作業集合：**選取現有的作業集合，或按一下 [建立新項目] > 輸入名稱。
-4. 接下來，在**動作設定**，定義 hello 下列值：
+4. 接下來，在 [動作設定] 中，定義下列值：
    
    1. **動作類型：** ` HTTP`  
    2. **方法：** `GET`  
    3. **URL：** ` http://www.microsoft.com`  
       
       ![][action-settings]
-5. 最後，讓我們定義排程。 hello 作業可定義為一次性工作，但我們挑選週期性排程：
+5. 最後，讓我們定義排程。 作業可以定義為一次性的工作，但我們挑選週期性排程：
    
    1. **週期**：`Recurring`
    2. **開始**：今天的日期
@@ -51,7 +51,7 @@ ms.lasthandoff: 10/06/2017
 6. 按一下 [建立] 
 
 ## <a name="manage-and-monitor-jobs"></a>管理和監視作業
-一旦建立工作時，它會出現在 hello 主要的 Azure 儀表板。 按一下 hello 工作及新視窗隨即開啟並 hello 下列索引標籤：
+建立作業之後，它會出現在主要 Azure 儀表板。 按一下作業，即會開啟新視窗並顯示下列索引標籤：
 
 1. 屬性  
 2. 動作設定  
@@ -62,34 +62,34 @@ ms.lasthandoff: 10/06/2017
    ![][job-overview]
 
 ### <a name="properties"></a>屬性
-唯讀屬性說明 hello 排程器工作的 hello 管理中繼資料。
+這些唯讀屬性說明排程器作業的管理中繼資料。
 
    ![][job-properties]
 
 ### <a name="action-settings"></a>動作設定
-按一下 上一 hello 的工作**作業**螢幕可讓您工作的 tooconfigure。 這可讓您設定進階的設定，如果您沒有 hello 中進行設定快速建立精靈。
+按一下 [作業]  畫面中的作業，可讓您設定該作業。 如果您沒有在快速建立精靈中進行進階設定，這可讓您設定它們。
 
-對於所有的動作類型，您可以變更 hello 重試原則和 hello 錯誤動作。
+對於所有的動作類型，您可以變更重試原則和錯誤動作。
 
-對於 HTTP 和 HTTPS 工作動作類型，您可以變更 hello 方法 tooany 允許 HTTP 指令動詞。 您也可以新增、 刪除或變更 hello 標頭和基本驗證資訊。
+對於 HTTP 和 HTTPS 工作動作類型，您可能會將方法變更為任何允許的 HTTP 動詞。 您也可以新增、刪除或變更標頭和基本驗證資訊。
 
-對於儲存體佇列動作類型，您可以變更 hello 儲存體帳戶、 佇列名稱、 SAS 權杖和主體。
+對於儲存體佇列動作類型，您可能變更儲存體帳戶、佇列名稱、SAS 權杖和主體。
 
-服務匯流排動作類型，您可以變更 hello 命名空間、 主題/佇列路徑、 驗證設定、 傳輸類型、 訊息屬性和訊息內文。
+對於服務匯流排動作類型，您可以變更命名空間、主題/佇列路徑、驗證設定、傳輸類型、訊息屬性和訊息本文。
 
    ![][job-action-settings]
 
 ### <a name="schedule"></a>排程
-這可讓您重新設定 hello 排程，如果您想要建立 hello toochange hello 排程快速建立精靈。
+如果您想要變更您在快速建立精靈中建立的排程，這可讓您重新設定排程。
 
-這是有機會 toobuild[複雜的排程與您的工作中的進階循環](scheduler-advanced-complexity.md)
+這是 [在作業中建置複雜的排程和進階週期](scheduler-advanced-complexity.md)
 
-您可以變更 hello 開始日期和時間、 週期性排程和 hello 結束日期和時間 （如果 hello 週期性工作。）
+您可以變更開始日期和時間、週期排程，以及結束日期和時間 (如果工作重複發生。)
 
    ![][job-schedule]
 
 ### <a name="history"></a>歷程記錄
-hello**記錄**索引標籤會顯示 hello 選取作業的 hello 系統中的選定的度量的每項工作執行。 這些度量會提供有關您的排程器 hello 健全狀況的即時值：
+[歷程記錄]  索引標籤為選取的作業顯示系統中每次執行作業時選取的度量。 這些度量提供有關排程器健全狀況的即時值：
 
 1. 狀態  
 2. 詳細資料  
@@ -100,12 +100,12 @@ hello**記錄**索引標籤會顯示 hello 選取作業的 hello 系統中的選
    
    ![][job-history]
 
-您可以按一下執行 tooview 其**詳細歷程記錄**，包括 hello 每個執行完整的回應。 此對話方塊也可讓您 toocopy hello 回應 toohello 剪貼簿。
+您可以按一下執行來檢視 [記錄詳細資料] ，包括每次執行的完整回應。 此對話方塊也可讓您將回應複製到剪貼簿。
 
    ![][job-history-details]
 
 ### <a name="users"></a>使用者
-Azure 角色型存取控制 (RBAC) 可以對 Azure 排程器進行更細緻的存取權管理。 如何 toouse hello 使用者 索引標籤，請參閱太 toolearn[所有存取控制](../active-directory/role-based-access-control-configure.md)
+Azure 角色型存取控制 (RBAC) 可以對 Azure 排程器進行更細緻的存取權管理。 若要了解如何使用 [使用者] 索引標籤，請參閱 [Azure 角色型存取控制](../active-directory/role-based-access-control-configure.md)
 
 ## <a name="see-also"></a>另請參閱
  [排程器是什麼？](scheduler-intro.md)
@@ -114,7 +114,7 @@ Azure 角色型存取控制 (RBAC) 可以對 Azure 排程器進行更細緻的�
 
  [Azure 排程器的計劃和計費](scheduler-plans-billing.md)
 
- [排程 toobuild 複雜的方式與進階循環使用 Azure 排程器](scheduler-advanced-complexity.md)
+ [如何使用 Azure 排程器建立複雜的排程和進階週期](scheduler-advanced-complexity.md)
 
  [排程器 REST API 參考](https://msdn.microsoft.com/library/mt629143)
 

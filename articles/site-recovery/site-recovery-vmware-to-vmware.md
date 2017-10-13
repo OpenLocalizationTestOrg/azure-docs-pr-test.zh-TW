@@ -1,6 +1,6 @@
 ---
-title: "aaaReplicate VMware Vm 或實體伺服器 tooanother 網站 （傳統 Azure 入口網站） |Microsoft 文件"
-description: "使用發行項 tooreplicate VMware Vm 或 Windows/Linux 實體伺服器 tooa 此次要站台與 Azure Site Recovery。"
+title: "將 VMware VM 或實體伺服器複寫到其他站台 (傳統 Azure 入口網站) | Microsoft Docs"
+description: "使用這篇文章以使用 Azure Site Recovery，將 VMware VM 或 Windows/Linux 實體伺服器複寫至次要網站。"
 services: site-recovery
 documentationcenter: 
 author: nsoneji
@@ -14,13 +14,13 @@ ms.devlang: na
 ms.topic: article
 ms.date: 08/11/2017
 ms.author: nisoneji
-ms.openlocfilehash: 5789ca07f0aa15cf194615fd33103dac930d7b7f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 01a6f35fe61290f8c7275c34273d66956a53d3f9
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
-# <a name="replicate-on-premises-vmware-virtual-machines-or-physical-servers-tooa-secondary-site-in-hello-classic-azure-portal"></a>複寫在內部部署 VMware 虛擬機器或實體伺服器 tooa 次要站台 hello 傳統 Azure 入口網站中
+# <a name="replicate-on-premises-vmware-virtual-machines-or-physical-servers-to-a-secondary-site-in-the-classic-azure-portal"></a>在傳統 Azure 入口網站中，將內部部署 VMware 虛擬機器或實體伺服器複寫到次要站台
 
 ## <a name="overview"></a>概觀
 Azure Site Recovery 中的 InMage Scout 可提供內部部署 VMware 網站之間的即時複寫。 InMage Scout 包含在 Azure Site Recovery 服務訂用帳戶中。 
@@ -29,22 +29,22 @@ Azure Site Recovery 中的 InMage Scout 可提供內部部署 VMware 網站之�
 **Azure 帳戶**：您將需要一個 [Microsoft Azure](https://azure.microsoft.com/) 帳戶。 您可以從 [免費試用](https://azure.microsoft.com/pricing/free-trial/)開始。 [深入了解](https://azure.microsoft.com/pricing/details/site-recovery/) Site Recovery 價格。
 
 ## <a name="step-1-create-a-vault"></a>步驟 1：建立保存庫
-1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 按一下 [新增] > [管理] > [備份和 Site Recovery (OMS)]。 或者，您也可以按一下 [瀏覽] > [復原服務保存庫] > [加入]。
-3. 在**名稱**指定易記名稱 tooidentify hello 保存庫。 如果您有多個訂用帳戶，請選取其中一個。
-4. 在「資源群組」中，建立新的資源群組，或選取現有的資源群組。 指定 Azure 區域 toocomplete 必要欄位。
-5. 在**位置**，選取 hello hello 保存庫的地理區域。 支援的 toocheck 區域，請參閱[Azure 站台復原定價](https://azure.microsoft.com/pricing/details/site-recovery/)。
-6. 如果您想從儀表板 hello tooquickly 存取 hello 保存庫按一下 Pin toodashboard，，然後按一下建立。
-7. hello 新的保存庫會出現在 hello 儀表板 > 所有資源，並在 hello 主要復原服務保存庫刀鋒視窗。
+3. 在 [名稱]  中，指定保存庫的易記識別名稱。 如果您有多個訂用帳戶，請選取其中一個。
+4. 在「資源群組」中，建立新的資源群組，或選取現有的資源群組。 指定 Azure 區域來完成所需的欄位。
+5. 在 [位置] 中，選取保存庫的地理區域。 若要查看支援的地區，請參閱 [Azure Site Recovery 定價](https://azure.microsoft.com/pricing/details/site-recovery/)。
+6. 如果您想要從「儀表板」快速存取保存庫，請按一下 [釘選到儀表板]，然後按一下 [建立]。
+7. 新的保存庫會出現在 [儀表板] > [所有資源] 上，以及主要 [復原服務保存庫] 刀鋒視窗上。
 
-## <a name="step-2-configure-hello-vault-and-download-inmage-scout-components"></a>步驟 2： 設定 hello 保存庫，並下載 InMage Scout 元件
-1. Hello 復原服務保存庫刀鋒視窗中選取您的保存庫並按一下 [設定]。
+## <a name="step-2-configure-the-vault-and-download-inmage-scout-components"></a>步驟 2：設定保存庫並下載 InMage Scout 元件
+1. 在 [復原服務保存庫] 刀鋒視窗中選取您的保存庫，然後按一下 [設定]。
 2. 在 [設定] > [快速入門] 中，按一下 [Site Recovery] > [步驟 1︰準備基礎結構] > [保護目標]。
-3. 在**保護目標**選取 toorecovery 站台，並選取 [是] 與 VMware vSphere Hypervisor。 然後按一下 [確定]。
-4. 在**Scout 安裝**，按一下 下載 toodownload InMage Scout 8.0.1 GA 軟體和登錄機碼。 所有 hello hello 安裝程式檔案都需要位於 hello 下載的.zip 檔案中的元件。
+3. 在 [保護目標] 中選取 [到復原站台]，然後選取 [是，使用 VMware vSphere Hypervisor]。 然後按一下 [確定]。
+4. 在 [Scout 設定] 中，按一下 [下載] 以下載 InMage Scout 8.0.1 GA 軟體和註冊金鑰。 所有必要元件的安裝程式檔案都在下載的 .zip 檔中。
 
 ## <a name="step-3-install-component-updates"></a>步驟 3：安裝元件更新
-最新閱讀 hello[更新](#updates)。 您將安裝在伺服器上的 hello 更新檔案中順序的 hello:
+深入了解最新的 [更新](#updates)。 您將會依下列順序在伺服器上安裝更新檔案：
 
 1. RX 伺服器 (如果有的話)
 2. 設定伺服器
@@ -53,9 +53,9 @@ Azure Site Recovery 中的 InMage Scout 可提供內部部署 VMware 網站之�
 5. vContinuum 伺服器
 6. 來源伺服器 (Windows 和 Linux 伺服器)
 
-安裝 hello 更新，如下所示：
+安裝更新，如下所示：
 
-1. 下載 hello[更新](https://aka.ms/asr-scout-update5).zip 檔案。 此.zip 檔案包含下列檔案的 hello:
+1. 下載 [update](https://aka.ms/asr-scout-update5) .zip 檔案。 此 ++zip 檔案包含下列檔案：
 
    * RX_8.0.4.0_GA_Update_4_8725872_16Sep16.tar.gz
    * CX_Windows_8.0.4.0_GA_Update_4_8725865_14Sep16.exe
@@ -63,19 +63,19 @@ Azure Site Recovery 中的 InMage Scout 可提供內部部署 VMware 網站之�
    * UA_RHEL6-64_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz
    * vCon_Windows_8.0.5.0_GA_Update_5_11525767_20Apr17.exe
    * 適用於 RHEL5、OL5、OL6、SUSE 10、SUSE 11 的 UA update4 位元：UA_<Linux OS>_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz
-2. Hello.zip 檔案解壓縮。<br>
-3. **Hello RX server**： 複製**RX_8.0.4.0_GA_Update_4_8725872_16Sep16.tar.gz** toohello RX 伺服器並將它解壓縮。 在 hello 擷取資料夾中，執行**/安裝**。<br>
-4. **Hello 組態伺服器/處理序伺服器**： 複製**CX_Windows_8.0.4.0_GA_Update_4_8725865_14Sep16.exe** toohello 組態伺服器和處理序伺服器。 按兩下 toorun 它。<br>
-5. **Hello Windows 主要目標伺服器**: tooupdate hello 整合代理程式，複製**UA_Windows_8.0.5.0_GA_Update_5_11525802_20Apr17.exe** toohello 主要目標伺服器。 按兩下該 toorun 它。 如果來源不會更新直到 Update4 請注意，hello 統一的代理程式也是適用的 toohello 來源伺服器。 您應該它 hello 來源伺服器上安裝以及，稍後在此清單中所述。<br>
-6. **Hello vContinuum 伺服器**： 複製**vCon_Windows_8.0.5.0_GA_Update_5_11525767_20Apr17.exe** toohello vContinuum 伺服器。  請確定您已經關閉 hello vContinuum 精靈。 按兩下 hello 檔案 toorun 它。<br>
-7. **Hello Linux 主要目標伺服器**: tooupdate hello 整合代理程式，複製**UA_RHEL6 64_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz** toohello 主要目標伺服器，並將它解壓縮。 在 hello 擷取資料夾中，執行**/安裝**。<br>
-8. **Hello Windows 來源伺服器**： 如果來源已經存在於 update4 不需要更新 5 tooinstall 來源上的代理程式。 如果小於 update4 時，會套用 hello update 5 代理程式。
-tooupdate hello 整合代理程式，複製**UA_Windows_8.0.5.0_GA_Update_5_11525802_20Apr17.exe** toohello 來源伺服器。 按兩下該 toorun 它。 <br>
-9. **Hello Linux 來源伺服器**: tooupdate hello 統一的代理程式、 將複製對應 UA 檔案 toohello Linux 伺服器的版本，並將它解壓縮。 在 hello 擷取資料夾中，執行**/安裝**。  範例： RHEL 6.7 64 位元伺服器上，複製**UA_RHEL6 64_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz** toohello 伺服器並將它解壓縮。 在 hello 擷取資料夾中，執行**/安裝**。
+2. 解壓縮 .zip 檔。<br>
+3. **針對 RX 伺服器**：將 **RX_8.0.4.0_GA_Update_4_8725872_16Sep16.tar.gz** 複製到 RX 伺服器並將其解壓縮。 在解壓縮的資料夾中執行 **/Install**。<br>
+4. **針對設定伺服器/處理伺服器**：將 **CX_Windows_8.0.4.0_GA_Update_4_8725865_14Sep16.exe** 複製到設定伺服器和處理伺服器。 連按兩下加以執行。<br>
+5. **針對 Windows 主要目標伺服器**：若要更新整合代理程式，請將 **UA_Windows_8.0.5.0_GA_Update_5_11525802_20Apr17.exe** 複製到主要目標伺服器。 連按兩下加以執行。 請注意，如果來源一直未更新到 Update 4，整合代理程式也適用於來源伺服器。 您也應該將其安裝在來源伺服器上，如本清單稍後所述。<br>
+6. **針對 vContinuum 伺服器**：將 **vCon_Windows_8.0.5.0_GA_Update_5_11525767_20Apr17.exe** 複製到 vContinuum 伺服器。  確定您已經關閉 vContinuum 精靈。 連按兩下檔案加以執行。<br>
+7. **針對 Linux 主要目標伺服器**：若要更新整合代理程式，請將 **UA_RHEL6-64_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz** 複製到主要目標伺服器並將它解壓縮。 在解壓縮的資料夾中執行 **/Install**。<br>
+8. **針對 Windows 來源伺服器**︰如果來源已經是 Update 4，則不需要在來源上安裝 Update 5 代理程式。 如果低於 Update 4，請套用 Update 5 代理程式。
+若要更新整合代理程式，請將 **UA_Windows_8.0.5.0_GA_Update_5_11525802_20Apr17.exe** 複製到來源伺服器。 連按兩下加以執行。 <br>
+9. **針對 Linux 來源伺服器**：若要更新整合代理程式，請將對應的 UA 檔案版本複製到 Linux 伺服器並將它解壓縮。 在解壓縮的資料夾中執行 **/Install**。  範例：針對 RHEL 6.7 64 位元伺服器，請將 **UA_RHEL6-64_8.0.4.0_GA_Update_4_9035261_26Sep16.tar.gz** 複製到伺服器並將它解壓縮。 在解壓縮的資料夾中執行 **/Install**。
 
 ## <a name="step-4-set-up-replication"></a>步驟 4：設定複寫
-1. 站台設定 hello 來源和目標 VMware 之間的複寫。
-2. 如需指引，使用 hello 產品 hello 下載 InMage Scout 文件。 或者，您可以存取 hello 文件集如下：
+1. 設定來源與目標 VMware 網站之間的複寫。
+2. 如需指引，請使用隨產品下載的 InMage Scout 文件。 或者，您可以存取下列文件：
 
    * [版本資訊](https://aka.ms/asr-scout-release-notes)
    * [相容性矩陣](https://aka.ms/asr-scout-cm)
@@ -85,8 +85,8 @@ tooupdate hello 整合代理程式，複製**UA_Windows_8.0.5.0_GA_Update_5_1152
 
 ## <a name="updates"></a>更新
 ### <a name="azure-site-recovery-scout-801-update-5"></a>Azure Site Recovery Scout 8.0.1 Update 5
-Scout Update 5 是累積更新， 它有所有的 hello 修正的 update1，直到 update4 和下列新的 bug 修正和增強功能。
-從 ASR Scout update4 tooupdate5 新增的修正程式是特定 tooMaster 目標以及 vContinuum 元件。 如果所有的來源伺服器，主要目標、 設定伺服器、 處理序伺服器和 RX 中已存在的 ASR Scout update4 然後您 tooapply 需要更新 5 只能在主要目標伺服器上。 
+Scout Update 5 是累積更新， 包含 Update 1 到 Update 4 的所有修正及下列新的錯誤修正和增強功能。
+從 ASR Scout Update 4 更新至 Update 5 所新增的修正程式是針對主要目標和 vContinuum 元件。 如果您的所有來源伺服器，主要目標、設定伺服器、處理序伺服器和 RX 已是 ASR Scout Update 4，您只需要在主要目標伺服器上套用 Update 5。 
 
 **新平台支援**
 * SUSE Linux Enterprise Server 11 Service Pack 4 (SP4)
@@ -98,26 +98,26 @@ Scout Update 5 是累積更新， 它有所有的 hello 修正的 update1，直�
 **錯誤修正和增強功能**
 
 * 增加 Windows 叢集支援的可靠性
-    * 某些 hello P2V MSCS 叢集磁碟變成固定-有時 RAW 復原之後
-    * 因為 toodisk 次序不相符而 Fixed-P2V MSCS 叢集的復原失敗
+    * 已修正 - 有時候某些 P2V MSCS 叢集磁碟會在復原後變 RAW
+    * 已修正 - P2V MSCS 叢集的復原因為磁碟順序不符而失敗
     * 已修正 - MSCS 叢集新增磁碟作業因磁碟大小不相符而失敗
     * 已修正 - 來源 MSCS 叢集與 RDM LUN 對應整備檢查在大小確認步驟失敗
-    * 因為 tooSCSI 不相符問題而失敗 Fixed-單一節點叢集的保護 
-    * 如果目標叢集磁碟存在，就會失敗 Fixed-重新保護的 hello P2V Windows 叢集伺服器。 
+    * 已修正 - 因為 SCSI 不符的問題，單一節點叢集保護失敗 
+    * 已修正 - 如果有目標叢集磁碟，重新保護 P2V Windows 叢集伺服器會失敗。 
     
-* 在容錯回復保護期間如果選取的 MT 不在 hello 相同 ESXi 伺服器為 hello 的受保護來源電腦 （在正向保護），然後 vContinuum 收到 hello 錯誤 MT 容錯回復復原期間，且後續的復原作業會失敗。
+* 在容錯回復保護期間，如果選取的 MT 不是在和受保護來源機器相同的 ESXi 伺服器上 (在正向保護中)，vContinuum 會在容錯回復復原期間挑出錯誤的 MT，之後的復原作業便會失敗。
 
 > [!NOTE]
 > 
-> * P2V 叢集修正上層為一些適用 tooonly 全新受到 ASR Scout update5 這些實體 MSCS 叢集中。 在 hello tooavail hello 叢集修正已受保護的 P2V MSCS 叢集使用舊的更新，toofollow hello 升級步驟 12 hello > 一節所述，您需要升級受保護的 P2V MSCS 叢集 tooScout Update5 [ASR Scout 版本附註](https://aka.ms/asr-scout-release-notes)。
+> * 上述 P2V 叢集修正僅適用於剛以 ASR Scout Update 5 加以保護的實體 MSCS 叢集。 如果要讓叢集修正也能用在已經以較舊更新保護的 P2V MSCS 叢集，您必須遵循 [ASR Scout 版本資訊](https://aka.ms/asr-scout-release-notes) 第 12 節＜升級受保護的搜索 Update5 P2V MSCS 叢集＞所述的升級步驟。
 > 
-> * 重新保護實體 MSCS 叢集的可重複使用現有的目標磁碟僅如果次 hello 的重新保護相同的磁碟集正在 hello 叢集節點時最初受保護的每個使用中的 hello。 如果沒有，則手動步驟 12 的區段中所述[ASR Scout 版本資訊](https://aka.ms/asr-scout-release-notes)太移動 hello 目標端磁碟 toohello 正確的資料存放區路徑 toore 使用它們時再重新啟用保護。 如果您未遵循的升級步驟重新保護 P2V 模式中的 hello MSCS 叢集就會在 hello 目標 ESXi 伺服器上建立新的磁碟。 您需要從 hello 資料存放區的 toomanually 刪除 hello 舊磁碟。
+> * 重新保護時，只有當在每個叢集節點上使用中的幾個磁碟與最初受保護時相同，重新保護實體 MSCS 叢集才可以重複使用現有的目標磁碟。 如果沒有，可使用 [ASR Scout 版本資訊](https://aka.ms/asr-scout-release-notes)第 12 節中所述的手動步驟，將目標端磁碟移至正確的資料存放區路徑，以便在重新保護時重複使用它們。 如果未遵循升級步驟重新保護 P2V 模式中的 MSCS 叢集，則會在目標 ESXi 伺服器上建立新的磁碟。 您必須手動刪除資料存放區中的舊磁碟。
 > 
-> * 每當來源 SLES11 或 SLES11 與服務組件的任何伺服器重新開機後依正常程序，則其中一個應該手動標示 hello**根**就不會通知 CX UI 中的磁碟複寫配對的重新同步處理。 如果您沒有 ' 標記 hello 根磁碟重新同步處理，您可能會看到資料完整性 (DI) 問題。
+> * 每當來源 SLES11 或 SLES11 與任何 Service Pack 伺服器一起正常重新開機時，皆應手動標記**根**磁碟複寫組以利重新同步處理，因為在 CX UI 中不會標注標。 如果您沒有「標示」重新同步處理的根磁碟，可能會遇到資料完整性 (DI) 問題。
 > 
 
 ### <a name="azure-site-recovery-scout-801-update-4"></a>Azure Site Recovery Scout 8.0.1 Update 4
-Scout Update 4 是累積更新。 它有所有的 hello 修正的 update1，直到 update3 和下列新的 bug 修正和增強功能。
+Scout Update 4 是累積更新。 它包含 update1 到 update 3 的所有修正及下列新的錯誤修正和增強功能。
 
 **新平台支援**
 
@@ -135,98 +135,98 @@ Scout Update 4 是累積更新。 它有所有的 hello 修正的 update1，直�
 
 **錯誤修正和增強功能**
 
-* 改善的關機處理下列 Linux 作業系統和複製品 tooprevent 不想要重新同步處理的問題。
+* 提升下列 Linux OS 和複製項的關機處理，以防止多餘的重新同步處理問題。
   * Red Hat Enterprise Linux (RHEL) 6.x
   * Oracle Linux (OL) 6.x
-* 適用於 Linux，限制 toohello 本機使用者整合的代理程式安裝目錄中的權限現在是完整的資料夾存取。
+* 針對 Linux，現在僅限本機使用者可以擁有整合代理程式安裝目錄中的完整資料夾存取權限。
 * 在 Windows 上，在負載繁重的分散式應用程式 (例如 SQL 和 Share Point 叢集) 上發出通用分散式一致性書籤時的逾時問題。
 * 在 CX 基底安裝程式中新增記錄相關的修正。
-* VMware vCLI 6.0 下載連結加入 tooWindows 主要目標的基底安裝程式。
+* 在「Windows 主要目標」基底安裝程式中新增 VMware vCLI 6.0 下載連結。
 * 針對容錯移轉與 DR 演練期間的網路設定變更，新增更多檢查和記錄。
-* 不報告的 toohello CX 有時保留資訊。  
+* 有時不會向 CX 回報保留資訊。  
 * 針對實體叢集，當發生來源磁碟區壓縮時，透過 vContinuum 精靈執行的磁碟區調整大小作業會失敗。
-* 叢集失敗，發生錯誤 「 無法 toofind hello 磁碟簽章 」 的保護時的叢集磁碟是 PRDM 磁碟。
+* 當叢集磁碟是 PRDM 磁碟時，叢集保護會因發生「找不到磁碟簽章」錯誤而失敗。
 * cxps 傳輸伺服器會因發生超出範圍例外狀況而當機。
 * 現在在 vContinuum 精靈的推送安裝頁面中可以調整伺服器名稱和 IP 資料行的大小。
 * RX API 增強功能
   * 提供 5 個最新可用的共同一致性點 (僅限 [保證] 標記)。
-  * 提供所有的容量與可用空間詳細資料 hello 受保護的裝置。
+  * 為所有受保護的裝置提供容量和可用空間詳細資料。
   * 提供來源伺服器上的 Scout 驅動程式狀態。
 
 > [!NOTE]
 > * **InMage_Scout_Standard_8.0.1_GA.zip** 基底套件現在包含已更新的 CX 基底安裝程式 **InMage_CX_8.0.1.0_Windows_GA_26Feb2015_release.exe**  和「Windows 主要目標」基底安裝程式 **InMage_Scout_vContinuum_MT_8.0.1.0_Windows_GA_26Feb2015_release.exe**。 針對所有新的安裝，請使用新的 CX 和「Windows 主要目標」GA 位元。
 > * Update 4 可以直接在 8.0.1 GA 上套用。
-> * 它們 hello 系統上套用之後，無法回復 hello 組態伺服器和接收更新。
+> * 一旦在系統上套用設定伺服器和 RX 更新便無法回復。
 >
 >
 
 ### <a name="azure-site-recovery-scout-801-update-3"></a>Azure Site Recovery Scout 8.0.1 Update 3
-Update 3 包含 hello 下列 bug 修正和增強功能：
+Update 3 包含下列錯誤修正和增強功能：
 
-* hello 組態伺服器和 RX 失敗 tooregister toohello Site Recovery 保存庫，當它們 hello proxy 後方。
-* hello hello 復原點目標 (RPO) 的時數不符合並未更新 hello 健康情況報告中。
-* hello 組態伺服器未同步處理與 RX hello ESX 硬體詳細資料] 或 [網路詳細資料包含任何 utf-8 字元時。
-* Windows Server 2008 R2 網域控制站失敗 tooboot 之後復原。
+* 設定伺服器和 RX 位於 Proxy 後方時無法向 Site Recovery 保存庫註冊。
+* 健全狀況報告中未更新不符合復原點目標 (RPO) 的時數。
+* 當 ESX 硬體詳細資料或網路詳細資料包含任何UTF-8 字元時，設定伺服器不會與 RX 同步處理。
+* Windows Server 2008 R2 網域控制站無法在復原後啟動。
 * 離線同步處理未如預期般運作。
-* 虛擬機器 (VM) 容錯移轉之後，複寫組刪除一直顯示 hello CX UI 段長時間，而且使用者無法完成 hello 容錯回復或繼續作業。
-* 已經過最佳化由 hello 一致性的快照集作業的整體 toohelp 減少應用程式像是 SQL 用戶端中斷連接。
-* hello 一致性工具 (VACP.exe) 的 hello 效能已改善藉由減少所需的 Windows 上建立快照集 hello 記憶體使用量。
-* hello 推入安裝服務當機，當 hello 密碼大於 16 個字元。
-* vContinuum 無法檢查及 hello 認證變更時，輸入新的 vCenter 認證提示。
-* On Linux，hello 主要目標快取管理員 (cachemgr) 不從會導致複寫組節流 hello 處理序伺服器下載檔案。
-* 當 hello 實體的容錯移轉叢集 (MSCS) 磁碟順序是不相同 hello hello 的所有節點上時，複寫未設定某些 hello 叢集磁碟區。
-  <br/>請注意該 hello 叢集中需要重新保護 toobe tootake 利用此修正程式。  
-* SMTP 功能無法如預期般從 Scout 7.1 tooScout 8.0.1 升級 RX 後運作。
-* 詳細的統計資料已經 hello 記錄檔中加入的 hello 回復作業 tootrack hello 時間花 toocomplete 它。
-* 已加入的 hello 來源伺服器上的 Linux 作業系統的支援：
+* 在虛擬機器 (VM) 容錯移轉後，複寫配對刪除因為時間太長而在 CX UI 中停滯，且使用者無法完成容錯回復或繼續作業。
+* 一致性作業完成的整體快照作業已進行最佳化，有助於減少應用程式中斷連接 SQL 用戶端等。
+* 降低在 Windows 上建立快照所需的記憶體使用量，改善一致性工具 (VACP.exe) 的效能。
+* 密碼超過 16 個字元時，推送安裝服務會當機。
+* vContinuum 不會在認證變更時檢查和提示輸入新的 vCenter 認證。
+* 在 Linux 上，主要目標快取管理員 (cachemgr) 並未從處理序伺服器下載檔案，導致發生複寫配對節流。
+* 當所有節點上的實體容錯移轉叢集 (MSCS) 磁碟順序不同時，某些叢集磁碟區不會設定複寫。
+  <br/>請注意，必須要重新保護叢集才能利用此修正程式。  
+* 在 RX 從 Scout 7.1 升級至 Scout 8.0.1 之後，SMTP 功能並未如預期般運作。
+* 已在記錄檔中加入更多統計資料，以便復原作業追蹤完成此作業所需的時間。
+* 已加入來源伺服器上 Linux 作業系統的支援：
   * Red Hat Enterprise Linux (RHEL) 6 Update 7
   * CentOS 6 Update 7
-* hello CX 和 RX UI 現在可以顯示 hello 通知 hello 配對，便會進入點陣圖模式。
-* hello 下列安全性問題修正已加入 RX 中：
+* CX 和 RX UI 現在可以針對進入點陣圖模式的配對顯示通知。
+* RX 中已加入下列安全性修正：
 
 | **問題描述** | **實作程序** |
 | --- | --- |
-| 透過竄改參數略過授權 |限制的存取 toonon 適用的使用者。 |
-| 跨網站偽造要求 |實作的 hello 頁面語彙基元概念，隨機產生的每個頁面。 <br/>利用這項實作，您將會看到： <li> 只有單一登入執行個體的 hello 相同的使用者。</li><li>頁面重新整理無法運作-它將會重新導向 toohello 儀表板。</li> |
-| 惡意檔案上傳 |限制的檔案 toocertain 擴充功能。 允許的副檔名︰7z、aiff、asf、avi、bmp、csv、doc、docx、fla、flv、gif、gz、gzip、jpeg、jpg、log、mid、mov、mp3、mp4、mpc、mpeg、mpg、ods、odt、pdf、png、ppt、pptx、pxd、qt、ram、rar、rm、rmi、rmvb、rtf、sdc、sitd、swf、sxc、sxw、tar、tgz、tif、tiff、txt、vsd、wav、wma、wmv、xls、xlsx、xml、zip。 |
+| 透過竄改參數略過授權 |對不適用使用者的存取權限制。 |
+| 跨網站偽造要求 |實作針對每一頁隨機產生的頁面權杖概念。 <br/>利用這項實作，您將會看到： <li> 相同使用者只有一個單一登入執行個體。</li><li>頁面重新整理無法運作，而會重新導向到儀表板。</li> |
+| 惡意檔案上傳 |將檔案限制於特定副檔名。 允許的副檔名︰7z、aiff、asf、avi、bmp、csv、doc、docx、fla、flv、gif、gz、gzip、jpeg、jpg、log、mid、mov、mp3、mp4、mpc、mpeg、mpg、ods、odt、pdf、png、ppt、pptx、pxd、qt、ram、rar、rm、rmi、rmvb、rtf、sdc、sitd、swf、sxc、sxw、tar、tgz、tif、tiff、txt、vsd、wav、wma、wmv、xls、xlsx、xml、zip。 |
 | 持續性跨網站指令碼 |加入輸入驗證。 |
 
 > [!NOTE]
-> * 所有的 Site Recovery 更新都是累計的。 Update 3 已更新 1 和 Update 2 中的所有 hello 修正。 Update 3 可以直接套用於 8.0.1 GA。
-> * 它們 hello 系統上套用之後，無法回復 hello 組態伺服器和接收更新。
+> * 所有的 Site Recovery 更新都是累計的。 Update3 有 Update1 和 Update2 的所有修正。 Update 3 可以直接套用於 8.0.1 GA。
+> * 一旦在系統上套用設定伺服器和 RX 更新便無法回復。
 >
 >
 
 ### <a name="azure-site-recovery-scout-801-update-2-update-03dec15"></a>Azure Site Recovery Scout 8.0.1 Update 2 (Update 03Dec15)
 Update 2 中的修正包括：
 
-* **設定伺服器**: hello 31 天的免費計量功能無法運作，所預期會在 hello 組態伺服器已登錄在站台復原問題的修正程式。
-* **統一的代理程式**: hello 更新正在伺服器上未安裝 hello 主要目標在從 8.0 版 too8.0.1 升級時所導致的更新 1 中問題的修正程式。
+* **設定伺服器**：修正當設定伺服器登錄在 Site Recovery 時，會阻止 31 天免費計量功能正常運作的問題。
+* **整合代理程式**：修正 Update 1 中導致 8.0 版升級至 8.0.1 版之後，更新未安裝在主要目標伺服器上的問題。
 
 ### <a name="azure-site-recovery-scout-801-update-1"></a>Azure Site Recovery Scout 8.0.1 Update 1
-Update 1 包含 hello 下列 bug 修正和新功能：
+Update 1 包含下列錯誤修正和新功能：
 
-* 每個伺服器執行個體享有 31 天的免費保護。 這可讓您 tootest 功能或設定的概念證明。
-  * Hello 在伺服器上，包括容錯移轉和容錯回復，所有作業都是免費的 hello 第 31 天內，從站台復原 Scout 先受保護伺服器的 hello 時間算起。
-  * 從 hello 32nd 一天開始，每個受保護的伺服器會收費速率 hello 標準執行個體的 Azure Site Recovery 保護 tooa 客戶擁有站台。
-  * 在任何時候，目前計費的受保護伺服器的 hello 數目是 hello Azure Site Recovery 保存庫的 hello 儀表板頁面上所提供。
+* 每個伺服器執行個體享有 31 天的免費保護。 這可讓您測試功能或設定概念證明。
+  * 從使用 Site Recovery Scout 第一次保護伺服器的時間開始計算的前 31 天，伺服器上的所有作業 (包括容錯移轉和容錯回復) 都是免費的。
+  * 從第 32 天起，每個受保護的伺服器都會依照標準執行個體費率，向客戶擁有的網站收取 Azure Site Recovery 保護費用。
+  * 在 Azure Site Recovery 保存庫的 [儀表板] 頁面上，隨時可取得目前計費的受保護伺服器數目。
 * 加入對 vSphere 命令列介面 (vCLI) 5.5 Update 2 的支援。
-* 新增 hello 來源伺服器上的 Linux 作業系統的支援：
+* 已加入來源伺服器上 Linux 作業系統的支援：
   * RHEL 6 Update 6
   * RHEL 5 Update 11
   * CentOS 6 Update 6
   * CentOS 5 Update 11
-* Bug 修正 tooaddress hello 下列問題：
-  * 保存庫註冊失敗 hello 組態伺服器或 RX 伺服器。
+* 用以處理下列問題的錯誤修正：
+  * 設定伺服器或 RX 伺服器的保存庫註冊失敗。
   * 當叢集虛擬機器在恢復期間重新受到保護，叢集磁碟區就不會如預期般出現。
-  * 容錯回復失敗時 hello 主要目標伺服器裝載在不同的 ESXi 伺服器 hello 在內部部署生產環境的虛擬機器上。
-  * 升級 too8.0.1，這會影響保護及操作時，會變更組態檔的權限。
-  * hello 重新同步處理臨界值並不執行如預期般，這會導致 tooinconsistent 複寫行為。
-  * hello RPO 設定不會正確出現在 hello 組態伺服器介面。 未壓縮的 hello 資料值不正確地顯示 hello 壓縮值。
-  * hello 移除作業並不會如預期般在 hello vContinuum 精靈中，刪除並複寫不會遭到刪除從 hello 組態伺服器介面。
-  * 在 hello vContinuum 精靈 hello 磁碟自動未選取，當您按一下**詳細資料**MSCS 虛擬機器的保護期間的 hello 磁碟檢視中。
-  * Hello 實體對虛擬 (P2V) 案例中，在所需的 HP 服務，例如 CIMnotify 和 CqMgHost，不會移動的 toomanual 中虛擬機器復原。 這會導致額外的開機時間。
-  * Hello 主要目標伺服器上有超過 26 個磁碟時，就會失敗 Linux 虛擬機器保護。
+  * 當主要目標伺服器裝載於與內部部署實際執行虛擬機器不同的 ESXi 伺服器時，容錯回復會失敗。
+  * 升級至 8.0.1 時，組態檔案權限會變更，進而影響保護和作業。
+  * 不會如預期般強制執行重新同步臨界值，因而導致不一致的複寫行為。
+  * RPO 設定並未正確地顯示在設定伺服器介面中。 未壓縮的資料值未正確地顯示壓縮的值。
+  * 未如預期在 vContinuum 精靈中刪除移除作業，而且未從設定伺服器介面中刪除複寫作業。
+  * 在 vContinuum 精靈中，在 MSCS 虛擬機器的保護期間，按一下磁碟檢視中的 [詳細資料]  ，磁碟會自動取消選取。
+  * 在實體到虛擬 (P2V) 案例期間，必要的 HP 服務 (例如 CIMnotify、CqMgHost) 不會移至虛擬機器復原中的 [手動]。 這會導致額外的開機時間。
+  * 主要目標伺服器上有超過 26 個磁碟時，Linux 虛擬機器的保護就會失敗。
 
 ## <a name="next-steps"></a>後續步驟
-張貼 hello 有任何問題[Azure 復原服務論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)。
+若有任何問題，請造訪 [Azure Recovery Services 論壇](https://social.msdn.microsoft.com/forums/azure/home?forum=hypervrecovmgr)(英文)。

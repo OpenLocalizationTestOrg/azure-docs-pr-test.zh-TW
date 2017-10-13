@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中的 aaaNetwork 安全性群組 |Microsoft 文件"
-description: "了解如何 tooisolate 和控制流量虛擬網路使用網路安全性群組在 Azure 中使用分散式的 hello 防火牆內。"
+title: "Azure 中的網路安全性群組 | Microsoft Docs"
+description: "深入了解如何在 Azure 中使用分散式防火牆和網路安全性群組，來隔離及控制虛擬網路中的流量流程。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -14,68 +14,68 @@ ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 ms.date: 02/11/2016
 ms.author: jdial
-ms.openlocfilehash: 3528ce833dab17977327c3c9ae0e78316e5e6a05
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: fac6ee69b5f0377e0515ac9abeb28788cbef9b79
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="filter-network-traffic-with-network-security-groups"></a>使用網路安全性群組來篩選網路流量
 
-網路安全性群組 (NSG) 包含可允許或拒絕網路流量 tooresources 連接 tooAzure 虛擬網路 (VNet) 安全性規則的清單。 Nsg 可以是相關聯的 toosubnets，個別 Vm （傳統），或個別的網路介面 (NIC) 附加 tooVMs （資源管理員）。 當 NSG 相關聯的 tooa 子網路，hello 規則適用於 tooall 資源連線的 toohello 子網路。 流量可以進一步限制也關聯 NSG tooa VM 或 nic。
+網路安全性群組 (NSG) 包含安全性規則的清單，可允許或拒絕已連線至 Azure 虛擬網路 (VNet) 之資源的網路流量。 NSG 可以與子網路、個別 VM (傳統) 或已連結至 VM (Resource Manager) 的個別網路介面 (NIC) 建立關聯。 當 NSG 與子網路相關聯時，系統會將規則套用至已連線至子網路的所有資源。 建立 NSG 與 VM 或 NIC 的關聯也可以進一步限制流量。
 
 > [!NOTE]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文將說明如何使用這兩個模型，但 Microsoft 建議的最新的部署使用 hello 資源管理員的模型。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文將說明如何使用這兩個模型，但 Microsoft 建議大多數新的部署請使用 Resource Manager 模型。
 
 ## <a name="nsg-resource"></a>NSG 資源
-Nsg 包含下列屬性的 hello:
+NSG 包含下列屬性：
 
 | 屬性 | 說明 | 條件約束 | 考量 |
 | --- | --- | --- | --- |
-| 名稱 |Hello NSG 的名稱 |必須是唯一 hello 區域內。<br/>可以包含字母、數字、底線、句號和連字號。<br/>必須以字母或數字開頭。<br/>必須以字母、數字或底線結尾。<br/>不能超過 80 個字元。 |因為您可能需要數個 Nsg toocreate，請確定您擁有可讓您 Nsg 輕鬆 tooidentify hello 函式命名慣例。 |
-| 區域 |Azure[區域](https://azure.microsoft.com/regions)hello NSG 建立的位置。 |Nsg 只能是關聯的 tooresources 內 hello hello NSG 與相同的區域。 |每個區域，可以有多少 Nsg 相關 toolearn 讀取 hello [Azure 限制](../azure-subscription-service-limits.md#virtual-networking-limits-classic)發行項。|
-| 資源群組 |hello[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)NSG 存在於 hello。 |雖然 NSG 存在於資源群組中，可能很關聯的 tooresources 在資源群組中，只要 hello 資源屬於 hello 與 hello NSG 的相同 Azure 區域。 |資源群組在一起，因為部署單位的多個資源都使用的 toomanage。<br/>您可以考慮分組 hello NSG 與它相關聯的資源。 |
-| 規則 |定義允許或拒絕流量的輸入或輸出規則。 | |請參閱 hello [NSG 規則](#Nsg-rules)本文一節。 |
+| 名稱 |NSG 的名稱 |必須是區域內唯一的。<br/>可以包含字母、數字、底線、句號和連字號。<br/>必須以字母或數字開頭。<br/>必須以字母、數字或底線結尾。<br/>不能超過 80 個字元。 |因為您可能需要建立數個 NSG，請確定您的命名慣例可讓您輕鬆識別 NSG 的功能。 |
+| 區域 |在其中建立 NSG 的 [Azure 區域](https://azure.microsoft.com/regions)。 |NSG 只能與 NSG 相同區域內的資源相關聯。 |若要了解每個區域可以有多少個 NSM ，請閱讀 [Azure 限制](../azure-subscription-service-limits.md#virtual-networking-limits-classic)一文。|
+| 資源群組 |NSG 所在的[資源群組](../azure-resource-manager/resource-group-overview.md#resource-groups)。 |雖然 NSG 存在於資源群組中，它可以與任何資源群組中的資源相關聯，只要資源是與 NSG 相同的 Azure 區域的一部分。 |資源群組用來以部署單位的形式一起管理多個資源。<br/>您可以考慮將 NSG 其相關聯的資源群組在一起。 |
+| 規則 |定義允許或拒絕流量的輸入或輸出規則。 | |請參閱本文的 [NSG 規則](#Nsg-rules)一節。 |
 
 > [!NOTE]
-> 以端點為基礎的 Acl 和網路安全性上不支援群組 hello 相同的 VM 執行個體。 如果您想 toouse NSG，且已備妥端點 ACL，請先移除 hello 端點 ACL。 toolearn tooremove ACL，如何讀取 hello[管理存取控制清單 (Acl) 的 PowerShell，透過端點](virtual-networks-acl-powershell.md)發行項。
+> 端點式 ACL 和網路安全性群組，不支援用於相同的 VM 執行個體。 如果您想要使用 NSG 且已經擁有就地端點 ACL，請先移除端點 ACL。 若要了解如何移除 ACL，請閱讀[使用 PowerShell 管理端點的存取控制清單 (ACL)](virtual-networks-acl-powershell.md) 一文。
 > 
 
 ### <a name="nsg-rules"></a>NSG 規則
-NSG 規則包含下列屬性的 hello:
+NSG 規則包含下列屬性：
 
 | 屬性 | 說明 | 條件約束 | 考量 |
 | --- | --- | --- | --- |
-| **名稱** |Hello 規則的名稱。 |必須是唯一 hello 區域內。<br/>可以包含字母、數字、底線、句號和連字號。<br/>必須以字母或數字開頭。<br/>必須以字母、數字或底線結尾。<br/>不能超過 80 個字元。 |您可能有數個 NSG 中的規則，因此請確定您遵循命名慣例，可讓您 tooidentify hello 函式的規則。 |
-| **通訊協定** |通訊協定 toomatch hello 規則。 |TCP、UDP 或 * |使用 * 因為通訊協定包含 ICMP （東西流量），做為以及 UDP 和 TCP，而且可能會減少您需要的規則的 hello 數目。<br/>在 hello 相同時，使用 * 可能是過於廣泛的方法，因此建議您使用 * 只在必要時。 |
-| **來源連接埠範圍** |來源連接埠範圍 toomatch hello 規則。 |單一連接埠號碼從 1 too65535，連接埠範圍 (範例： 1-65535)，或 * （適用於所有連接埠）。 |來源連接埠可以是暫時的。 除非您的用戶端程式是使用特定連接埠，否則在大部分情況下請使用 *。<br/>儘可能 tooavoid hello 需要多個規則，再試一次 toouse 連接埠範圍。<br/>多個連接埠或連接埠範圍不可使用逗號分組。 |
-| **目的地連接埠範圍** |目的地連接埠範圍 toomatch hello 規則。 |單一連接埠號碼從 1 too65535，連接埠範圍 (範例： 1-65535)，或\*（適用於所有連接埠）。 |儘可能 tooavoid hello 需要多個規則，再試一次 toouse 連接埠範圍。<br/>多個連接埠或連接埠範圍不可使用逗號分組。 |
-| **來源位址首碼** |來源位址前置詞或標記 toomatch hello 規則。 |單一 IP 位址 (例如：10.10.10.10)、IP 子網路 (例如：192.168.1.0/24)、[預設標籤](#default-tags)或 * (用於所有位址)。 |請考慮使用範圍的預設標記和 * tooreduce hello 的規則數目。 |
-| **Destination address prefix** |目的地位址前置詞或標記 toomatch hello 規則。 | 單一 IP 位址 (例如：10.10.10.10)、IP 子網路 (例如：192.168.1.0/24)、[預設標籤](#default-tags)或 * (用於所有位址)。 |請考慮使用範圍的預設標記和 * tooreduce hello 的規則數目。 |
-| **Direction** |Hello 規則的流量 toomatch 的方向。 |輸入或輸出。 |輸入和輸出規則會根據方向分別處理。 |
-| **優先順序** |Hello 依優先順序會檢查規則。 一旦套用規則，就不會再測試規則是否符合。 | 100 和 4096 之間的數字。 | 請考慮建立您可能會在建立 hello 未來跳躍新規則的每個規則 tooleave 空間 100 的優先權規則。 |
-| **Access** |類型存取 tooapply hello 規則會比對。 | 允許或拒絕。 | 請記住，如果允許規則中找不到封包，hello 封包會卸除。 |
+| **名稱** |規則的名稱。 |必須是區域內唯一的。<br/>可以包含字母、數字、底線、句號和連字號。<br/>必須以字母或數字開頭。<br/>必須以字母、數字或底線結尾。<br/>不能超過 80 個字元。 |在 NSG 內可以有數個規則，因此請確定您遵循可讓您識別規則的功能的命名慣例。 |
+| **通訊協定** |規則要符合的通訊協定。 |TCP、UDP 或 * |使用 * 做為通訊協定包含 ICMP (僅東西流量)，以及 UDP 和 TCP，而且可能會降低您需要的規則數目。<br/>同時，使用 * 可能會是過於廣泛的方法，因此建議您只有在必要時使用 *。 |
+| **來源連接埠範圍** |規則要符合的來源連接埠範圍。 |1 到 65535 的單一連接埠號碼、連接埠範圍 (例如：1-65535)，或 * (所有連接埠)。 |來源連接埠可以是暫時的。 除非您的用戶端程式是使用特定連接埠，否則在大部分情況下請使用 *。<br/>請嘗試儘可能使用連接埠範圍以避免需要多個規則。<br/>多個連接埠或連接埠範圍不可使用逗號分組。 |
+| **目的地連接埠範圍** |規則要符合的目的地連接埠範圍。 |1 到 65535 的單一連接埠號碼、連接埠範圍 (例如：1-65535)，或 \* (所有連接埠)。 |請嘗試儘可能使用連接埠範圍以避免需要多個規則。<br/>多個連接埠或連接埠範圍不可使用逗號分組。 |
+| **來源位址首碼** |規則要符合的來源位址首碼或標籤。 |單一 IP 位址 (例如：10.10.10.10)、IP 子網路 (例如：192.168.1.0/24)、[預設標籤](#default-tags)或 * (用於所有位址)。 |考慮使用範圍、預設標籤和 * 以降低規則的數量。 |
+| **Destination address prefix** |規則要符合的目的地位址首碼或標籤。 | 單一 IP 位址 (例如：10.10.10.10)、IP 子網路 (例如：192.168.1.0/24)、[預設標籤](#default-tags)或 * (用於所有位址)。 |考慮使用範圍、預設標籤和 * 以降低規則的數量。 |
+| **Direction** |規則要符合的流量方向。 |輸入或輸出。 |輸入和輸出規則會根據方向分別處理。 |
+| **優先順序** |系統會依照規則優先順序檢查規則。 一旦套用規則，就不會再測試規則是否符合。 | 100 和 4096 之間的數字。 | 考慮為每個規則建立 100 的跳躍優先順序，以保留空間給您未來可能建立的新規則。 |
+| **Access** |如果規則符合，要套用的存取類型。 | 允許或拒絕。 | 請注意，如果找不到封包的允許規則，則會捨棄封包。 |
 
-NSG 包含兩組規則：輸入和輸出。 hello 優先順序規則必須是每一組唯一的。 
+NSG 包含兩組規則：輸入和輸出。 規則的優先順序在每一個集合中必須是唯一的。 
 
 ![NSG 規則處理](./media/virtual-network-nsg-overview/figure3.png) 
 
-hello 如上圖所示 NSG 規則的處理方式。
+上圖顯示 NSG 規則的處理方式。
 
 ### <a name="default-tags"></a>預設標籤
-預設標記是系統提供的識別項 tooaddress 分類的 IP 位址。 您可以使用預設標記中 hello**來源位址首碼**和**目的地位址首碼**任何規則的屬性。 有三個您可使用的預設標籤：
+預設標籤是系統提供的識別項，用來解決 IP 位址的類別。 您可以在任何規則的**來源位址首碼**和**目的地位址首碼**屬性使用預設標籤。 有三個您可使用的預設標籤：
 
-* **VirtualNetwork** （資源管理員） (**VIRTUAL_NETWORK**的傳統): 此標記包含 hello 虛擬網路位址空間 （在 Azure 中定義的 CIDR 範圍），針對所有連線在內部部署位址空間，以及連接Azure Vnet （區域網路）。
-* **AzureLoadBalancer** (Resource Manager) (適用於傳統部署的 **AZURE_LOADBALANCER**)：這個標籤代表 Azure 基礎結構的負載平衡器。 hello 標記會轉譯的 tooan 源自 Azure 的健全狀況探查位置的 Azure 資料中心 IP。
-* **網際網路**（資源管理員） (**網際網路**的傳統): 此標記代表位於 hello 虛擬網路外可經由公用網際網路的 hello IP 位址空間。 hello 範圍包括 hello [Azure 所擁有的公用 IP 空間](https://www.microsoft.com/download/details.aspx?id=41653)。
+* **VirtualNetwork** (Resource Manager) (適用於傳統部署的 **VIRTUAL_NETWORK**)：這個標籤包含虛擬網路位址空間 (在 Azure 中定義的 CIDR 範圍)、所有已連線的內部部署位址空間以及已連線的 Azure VNet (區域網路)。
+* **AzureLoadBalancer** (Resource Manager) (適用於傳統部署的 **AZURE_LOADBALANCER**)：這個標籤代表 Azure 基礎結構的負載平衡器。 此標籤會轉譯成做為 Azure 健康狀態探查來源的 Azure 資料中心 IP。
+* **Internet** (Resource Manager) (適用於傳統部署的 **INTERNET**)：這個標籤代表虛擬網路以外且可以透過公用網際網路進行存取的 IP 位址空間。 此範圍也包括 [Azure 擁有的公用 IP 空間](https://www.microsoft.com/download/details.aspx?id=41653)。
 
 ### <a name="default-rules"></a>預設規則
-所有 NSG 都包含一組預設規則。 無法刪除 hello 預設規則，但它們指派 hello 最低優先權，因為它們會覆寫由您所建立的 hello 規則。 
+所有 NSG 都包含一組預設規則。 預設規則無法刪除，但因為其會指派為最低優先權，因此可以由您所建立的規則覆寫預設規則。 
 
-hello 預設規則允許及不允許流量，如下所示：
+預設規則可允許及不允許流量，如下所示︰
 - 虛擬網路中的流量起始和結束同時允許輸入和輸出方向。
 - **網際網路︰**允許輸出流量，但會封鎖輸入流量。
-- **負載平衡器：**允許 Azure 負載平衡器 tooprobe hello 和健康狀態的 Vm 角色執行個體。 如果您不使用負載平衡的集合，則可以覆寫此規則。
+- **負載平衡器︰**允許 Azure 的負載平衡器探查 VM 和角色執行個體的健康狀態。 如果您不使用負載平衡的集合，則可以覆寫此規則。
 
 **輸入預設規則**
 
@@ -94,32 +94,32 @@ hello 預設規則允許及不允許流量，如下所示：
 | DenyAllOutBound | 65500 | * | * | * | * | * | 拒絕 |
 
 ## <a name="associating-nsgs"></a>建立 NSG 關聯
-您可以將關聯 NSG tooVMs、 的 Nic 和子網路，視您使用，，如下所示的 hello 部署模型而定：
+視您使用的部署模型而定，您可以將 NSG 與 VM、NIC 和子網路建立關聯，如下所示：
 
-* **VM （僅傳統）：**套用安全性規則 tooall 流量，從中 hello VM。 
-* **NIC （資源管理員）：**套用安全性規則 tooall 流量，從中 hello NIC hello NSG 與其相關聯。 在多個 NIC VM 中，您可以套用不同的 （或相同 hello） NSG tooeach NIC 個別。 
-* **子網路 （「 資源管理員 」 和 「 傳統 」）：**安全性規則套用至 azure 或從任何資源 tooany 流量連接 toohello VNet。
+* **VM (僅限傳統)：**安全性規則會套用至 VM 的所有流量 (雙向)。 
+* **NIC (僅限 Resource Manager)：**安全性規則會套用至 NSG 相關聯之 NIC 的所有流量 (雙向)。 在多重 NIC 的 VM 中，您可以將不同 (或相同) 的 NSG 個別套用至每個 NIC。 
+* **子網路 (Resource Manager 和傳統)：**安全性規則會套用至連線至 VNet 之任何資源的任何流量 (雙向)。
 
-您可以將不同 Nsg tooa VM （或 NIC，視 hello 部署模型而定） 與 hello NIC 或 VM 連線到子網路。 安全性規則套用的 toohello 流量 hello 中的每個 NSG 中的優先順序，依下列順序：
+您可以將不同的 NSG 與 VM (或 NIC，依部署模型而定) 進行關聯，也可與 NIC 或 VM 連線的子網域進行關聯。 安全性規則會依每個 NSG 中的優先順序，以下列順序套用到流量：
 
 - **輸入流量**
 
-  1. **NSG 套用 toosubnet:** hello 封包的 nsg 關聯的子網路具有比對的規則 toodeny 流量，如果卸除。
+  1. **NSG 套用至子網路：**如果子網路 NSG 有拒絕流量的相符規則，封包會遭到捨棄。
 
-  2. **NSG 套用 tooNIC** （資源管理員） 或 VM （傳統）： 如果 VM\NIC NSG 具有相符的規則，拒絕的流量，封包，會卸除 hello VM\NIC，即使 NSG 的子網路具有相符的規則，允許流量。
+  2. **NSG 套用至 NIC** (Resource Manager) 或 VM (傳統)：如果 VM\NIC NSG 有拒絕流量的相符規則，封包會在 VM\NIC 遭到捨棄，即使子網路 NSG 有允許流量的相符規則。
 
 - **輸出流量**
 
-  1. **NSG 套用 tooNIC** （資源管理員） 或 VM （傳統）： 如果 VM\NIC NSG 有相符的規則，拒絕的流量，就會捨棄封包。
+  1. **NSG 套用至 NIC** (Resource Manager) 或 VM (傳統)：如果 VM\NIC NSG 有拒絕流量的相符規則，封包會遭到捨棄。
 
-  2. **NSG 套用 toosubnet:**如果 NSG 的子網路具有相符的規則，拒絕的流量，封包被丟棄，即使 VM\NIC NSG 具有相符的規則，允許流量。
+  2. **NSG 套用至子網路：**如果子網路 NSG 有拒絕流量的相符規則，封包會遭到捨棄，即使 VM\NIC NSG 有允許流量的相符規則。
 
 > [!NOTE]
-> 雖然您可以只將單一 NSG tooa 子網路、 VM 或 NIC;您可以將關聯 hello 相同 NSG tooas 許多資源，您的需要。
+> 雖然您只能將單一 NSG 與子網路、VM 或 NIC 建立關聯，但您可以盡量將同一個 NSG 與許多您想要的資源建立關聯。
 >
 
 ## <a name="implementation"></a>實作
-您可以實作 Nsg hello 資源管理員或使用下列工具 hello 傳統部署模型中：
+您可以使用下列工具，在 Resource Manager 或傳統部署模型中實作 NSG：
 
 | 部署工具 | 傳統 | Resource Manager |
 | --- | --- | --- |
@@ -130,65 +130,65 @@ hello 預設規則允許及不允許流量，如下所示：
 | Azure Resource Manager 範本   | 否  | [是](virtual-networks-create-nsg-arm-template.md) |
 
 ## <a name="planning"></a>規劃
-在實作之前 Nsg，您需要 tooanswer hello 下列問題：
+實作 NSG 之前，您需要回答下列問題：
 
-1. 您想從 toofilter 流量 tooor 什麼類型的資源？ 您可以取得各種資源，例如 NIC (Resource Manager)、VM (傳統)、雲端服務、應用程式服務環境和 VM 擴展集。 
-2. 是您想要從連接中的現有 Vnet toosubnets toofilter 流量的 hello 資源嗎？
+1. 您要篩選何種資源類型的流量 (雙向)？ 您可以取得各種資源，例如 NIC (Resource Manager)、VM (傳統)、雲端服務、應用程式服務環境和 VM 擴展集。 
+2. 您想要篩選的資源流量是往返於連線至現有 VNet 中的子網路嗎？
 
-規劃 Azure 中的網路安全性的詳細資訊，請參閱 hello[雲端服務和網路安全性](../best-practices-network-security.md)發行項。 
+如需 Azure 中的網路安全性規劃的詳細資訊，請閱讀[雲端服務和網路安全性](../best-practices-network-security.md)一文。 
 
 ## <a name="design-considerations"></a>設計考量
-一旦您知道 hello 答案 toohello 問題中 hello[規劃](#Planning)區段中，檢閱下列各節定義 Nsg 之前的 hello:
+一旦您知道[規劃](#Planning)一節中問題的答案，在定義您的 NSG 之前，請檢閱下列章節：
 
 ### <a name="limits"></a>限制
-您可以在訂用帳戶的 Nsg 的 toohello 數目和每個 NSG 的規則數目沒有限制。 深入了解 hello 限制、 讀取 hello toolearn [Azure 限制](../azure-subscription-service-limits.md#networking-limits)發行項。
+您可以在訂用帳戶中擁有的 NSG 數目和每個 NSG 的規則數目有一些限制。 若要深入了解限制，請參閱 [Azure 限制](../azure-subscription-service-limits.md#networking-limits)文章。
 
 ### <a name="vnet-and-subnet-design"></a>VNet 和子網路的設計
-Nsg 可以套用的 toosubnets，因為您可以透過您的資源群組的子網路，並套用 Nsg toosubnets 降低 hello Nsg 的數目。  如果您決定 tooapply Nsg toosubnets，您可能會發現，現有的 Vnet 子網路，您有不使用定義及 Nsg 記住。 您可能需要 toodefine 新的 Vnet 和子網路 toosupport NSG 設計和部署您新資源 tooyour 新的子網路。 接著，您無法定義現有的資源 toohello 新的子網路移轉策略 toomove。 
+由於 NSG 可以套用至子網路，依子網路群組您的資源並將 NSG 套用至子網路，即可減少 NSG 的數量。  如果您決定將 NSG 套用至子網路，可能會發現您擁有的現有 VNet 與子網路未使用 記憶中的 NSG 定義。 您可能需要定義新 VNet 和子網路以支援 NSG 設計，並將新資源部署至新的子網路。 然後您就可以定義移轉策略，將現有的資源移至新的子網路。 
 
 ### <a name="special-rules"></a>特殊規則
-如果您封鎖 hello 下列規則所允許的流量，您的基礎結構無法與 Azure 的基本服務：
+如果您封鎖這些規則允許的流量，您的基礎結構便無法與基本 Azure 服務進行通訊：
 
-* **Hello 主機節點的虛擬 IP:**基本基礎結構服務，例如 DHCP、 DNS 及狀況監控透過提供 hello 虛擬化主機 IP 位址 168.63.129.16。 這個公用 IP 位址所屬 tooMicrosoft 且 hello 唯一虛擬化的 IP 位址在所有區域用於此目的。 此 IP 位址對應 toohello 實體 IP 位址 hello server 電腦 （主機節點） 的裝載 hello VM。 hello 主機節點做為 hello DHCP 轉送、 hello DNS 遞迴解析程式，以及 hello 探查來源 hello 負載平衡器健全狀況探查與 hello 機器健全狀況探查。 通訊 toothis IP 位址不是攻擊。
-* **授權 (金鑰管理服務)**：在 VM 中執行的 Windows 映像必須獲得授權。 tooensure 授權，要求會傳送 toohello 金鑰管理服務主機伺服器可處理這類查詢。 hello 要求是透過輸出連接埠 1688年。
+* **主機節點的虛擬 IP：** 基本的基礎結構服務，例如 DHCP、DNS 和健康狀態監控是透過虛擬化主機 IP 位址 168.63.129.16 所提供。 這個公用 IP 位址屬於 Microsoft，而且是針對此目的唯一用於所有區域的虛擬 IP。 此 IP 位址會對應至伺服器電腦的實體 IP 位址 (主機節點)，該伺服器用來主控 VM。 主機節點的作用如同 DHCP 轉送、DNS 遞迴解析程式，以及負載平衡器健康狀態探查和電腦健康狀態探查的探查來源。 此 IP 位址的通訊並不是攻擊。
+* **授權 (金鑰管理服務)**：在 VM 中執行的 Windows 映像必須獲得授權。 若要確保授權，授權要求會傳送至處理此類查詢的金鑰管理服務主機伺服器。 此要求是透過連接埠 1688 輸出。
 
 ### <a name="icmp-traffic"></a>ICMP 流量
-hello 目前的 NSG 規則只允許通訊協定*TCP*或*UDP*。 *ICMP*沒有特定的標記。 不過，允許 ICMP 流量是 VNet 中的 hello AllowVNetInBound 預設規則，以允許從任何連接埠和通訊協定 hello VNet 內的流量 tooand。
+目前的 NSG 規則僅可用於通訊協定 TCP 或 UDP。 *ICMP*沒有特定的標記。 不過，系統會藉由 AllowVNetInBound 預設規則來允許 VNet 內的 ICMP 流量，該規則會允許 VNet 內任何連接埠和通訊協定的流量 (雙向)。
 
 ### <a name="subnets"></a>子網路
-* 請考慮您的工作負載需要的階層的 hello 數目。 每一層可以使用子網路，與套用的 NSG toohello 子網路隔離。 
-* 如果您需要 tooimplement 子網路的 VPN 閘道或 ExpressRoute 循環時，請勿**不**套用 NSG toothat 子網路。 如果您這麼做，跨 VNet 或跨單位連線將會失敗。 
-* 如果您需要 tooimplement 網路虛擬應用裝置 (NVA)，連接 hello NVA tooits 自己的子網路，然後從 hello NVA 建立使用者定義的路由 (UDR) tooand。 您可以實作的子網路層級 NSG toofilter 流量進出此子網路。 深入了解 UDRs，讀取 hello toolearn[使用者定義的路由](virtual-networks-udr-overview.md)發行項。
+* 請考慮您的工作負載所需要的階層數目。 每個層級可以使用子網路與套用至子網路的 NSG 來隔離。 
+* 如果您需要為 VPN 閘道或 ExpressRoute 線路實作子網路，請**不要**將 NSG 套用至該子網路。 如果您這麼做，跨 VNet 或跨單位連線將會失敗。 
+* 如果您需要實作網路虛擬應用裝置 (NVA)，請將 NVA 與自己的子網路連線，並建立 NVA 的雙向使用者定義路由 (UDR)。 您可以實作子網路層級 NSG，以篩選流入和流出此子網路的流量。 若要深入了解 UDR，請閱讀[使用者定義的路由](virtual-networks-udr-overview.md)一文。
 
 ### <a name="load-balancers"></a>負載平衡器
-* 請考慮 hello 負載平衡和網路位址轉譯 (NAT) 規則，每個工作負載所使用的每個負載平衡器。 NAT 規則都包含 Nic （資源管理員） 或 Vm/雲端服務角色執行個體 （傳統） 的繫結的 tooa 後端集區。 請考慮建立 NSG 針對每個後端集區中，允許只會透過實作 hello 負載平衡器中的 hello 規則對應的流量。 建立每個後端集區 NSG，可以保證會同時篩選直接 （而非透過 hello 負載平衡器），傳 toohello 後端集區的流量。
-* 在傳統的部署中，您會建立對應的 Vm 或角色執行個體上的負載平衡器 tooports 上的連接埠的端點。 您也可以透過 Resource Manager 建立自己個別對外公開的負載平衡器。 hello hello VM 中的實際通訊埠或角色執行個體，不在負載平衡器所公開的 hello 連接埠的連入流量的 hello 目的地連接埠。 hello 來源連接埠和位址 hello 連接 toohello VM 位於連接埠和位址 hello hello 網際網路中的遠端電腦，而不 hello 連接埠和 hello 負載平衡器所公開的位址。
-* 當您建立內部負載平衡器 (ILB) 通過的 Nsg toofilter 流量時，hello 來源連接埠和位址範圍套用為 hello 原始電腦，不 hello 負載平衡器。 hello 目的地連接埠和位址範圍是 hello 目的地電腦，不 hello 負載平衡器。
+* 針對每個工作負載所使用的每個負載平衡器，考慮負載平衡和網路位址轉譯 (NAT) 規則。 NAT 規則會繫結至包含 NIC (Resource Manager) 或 VM/雲端服務角色執行個體 (傳統) 的後端集區。 請考慮為每個後端集區建立 NSG，僅允許透過負載平衡器中實作的規則對應的流量。 為每個後端集區建立 NSG 可保證直接進入後端集區 (而不會透過負載平衡器) 傳遞的流量也會受到篩選。
+* 在傳統部署中，您會建立端點，該端點可將負載平衡器上的連接埠對應至您的 VM 或角色執行個體上的連接埠。 您也可以透過 Resource Manager 建立自己個別對外公開的負載平衡器。 連入流量的目的地連接埠是 VM 或角色執行個體中的實際通訊埠，而不是負載平衡器所公開的連接埠。 連線至 VM 的來源連接埠和位址是在網際網路中遠端電腦上的連接埠和位址，而不是負載平衡器所公開的連接埠和位址。
+* 當您建立 NSG 來篩選透過內部負載平衡器 (ILB) 的流量時，套用的來源連接埠和位址範圍是來自原始電腦，而不是負載平衡器。 目的地連接埠和位址範圍屬於目的地電腦，而不是負載平衡器。
 
 ### <a name="other"></a>其他
-* 以端點為基礎的存取控制清單 (ACL) 和 Nsg hello 上不支援相同的 VM 執行個體。 如果您想 toouse NSG，且已備妥端點 ACL，請先移除 hello 端點 ACL。 如需有關資訊 tooremove 端點 ACL，請參閱 hello[管理端點 Acl](virtual-networks-acl-powershell.md)發行項。
-* 資源管理員 中，您可以使用 NSG 相關聯 tooa NIC 的 Vm 與每個 NIC 為基礎的多個 Nic tooenable 管理 （遠端存取）。 唯一 Nsg tooeach NIC 建立關聯可讓 Nic 的流量類型分隔。
-* 類似 toohello 的負載平衡器、 篩選來自其他 Vnet 流量時，您必須使用 hello 來源位址範圍的 hello 遠端電腦時，不會 hello 連接 hello Vnet 的閘道。
-* 許多 Azure 服務不能連接的 tooVNets。 如果一項 Azure 資源無法連線的 tooa VNet，您無法使用 NSG toofilter 流量 toohello 資源。  Hello 服務可以連線的 tooa VNet 是否使用 toodetermine 讀取 hello 文件以 hello 服務。
+* 不支援將端點式存取控制清單 (ACL) 和 NSG 用於相同的 VM 執行個體。 如果您想要使用 NSG 且已經擁有就地端點 ACL，請先移除端點 ACL。 如需如何移除端點 ACL 的詳細資訊，請參閱[管理端點 ACL](virtual-networks-acl-powershell.md)一文。
+* 在 Resource Manager 中，您可以對具有多個 NIC 的 VM 使用與 NIC 相關聯的 NSG，根據每個 NIC 啟用管理 (遠端存取)。 建立唯一 NSG 與每個 NIC 的關聯可以區隔所有 NIC 的流量類型。
+* 與使用負載平衡器類似，篩選來自其他 VNet 的流量時，您必須使用遠端電腦的來源位址範圍，而不是連接 VNet 的閘道。
+* 許多 Azure 服務無法連線至 VNet。 如果 Azure 資源未連線至 VNet，您便無法使用 NSG 來篩選對資源的流量。  閱讀您所使用的服務文件，以判斷服務是否可以連線到 VNet。
 
 ## <a name="sample-deployment"></a>部署範例
-tooillustrate hello 應用程式的此篇文章中的 hello 資訊，請考慮 hello 下列圖片所示的兩層式應用程式的常見的案例：
+為了說明本文中的資訊應用，請考慮下圖所示之雙層應用程式的常見案例：
 
 ![NSG](./media/virtual-network-nsg-overview/figure1.png)
 
-Hello 圖表所示，hello *Web1*和*Web2* Vm 會連線的 toohello*前端*子網路和 hello *DB1*和*DB2* Vm 會連線的 toohello*後端*子網路。  這兩個子網路屬於 hello *TestVNet* VNet。 hello 應用程式元件每個執行的 Azure VM 連接 tooa VNet 內。 hello 案例具有下列需求的 hello:
+如圖表所示，Web1 和 Web2 VM 連線至 FrontEnd 子網路，而 DB1 和 DB2 VM 連線至 BackEnd 子網路。  這兩個子網路屬於 *TestVNet* VNet。 每個在 Azure VM 中執行的應用程式元件都會連線至 VNet。 此案例具有下列需求︰
 
-1. 分隔的 hello WEB 和 DB 伺服器之間的流量。
-2. 負載平衡規則從 hello 負載平衡器 tooall web 伺服器連接埠 80 上的轉送流量。
-3. 負載平衡器 NAT 規則轉送流量進入 hello 負載平衡器上的連接埠 50001 tooport 3389，hello WEB1 VM 上。
-4. 沒有存取 toohello 前端或後端 Vm 從 hello 網際網路，除了需求 2 和 3。
-5. 從 hello WEB 或 DB 伺服器沒有傳出網際網路存取。
-6. 從 hello FrontEnd 子網路的存取為 allowed tooport 3389 的任何 web 伺服器。
-7. 從 hello FrontEnd 子網路的存取為 allowed tooport 3389 任何 DB 伺服器。
-8. 從 hello FrontEnd 子網路的存取為 allowed tooport 1433 的所有資料庫伺服器。
+1. 間隔 WEB 與 DB 伺服器之間的流量。
+2. 負載平衡規則會將來自負載平衡器的流量轉送至所有 Web 伺服器的連接埠 80。
+3. 負載平衡器 NAT 規則會將進入通訊埠 50001 上負載平衡器的流量轉送至 WEB1 VM 上的連接埠 3389。
+4. 無法從網際網路存取前端或後端 VM，但要求 2 和 3 除外。
+5. 沒有來自 WEB 或 DB 伺服器的輸出網際網路存取。
+6. 允許從前端子網路存取任何 Web 伺服器的連接埠 3389。
+7. 允許從前端子網路存取任何 DB 伺服器的連接埠 3389。
+8. 允許從前端子網路存取所有 DB 伺服器的連接埠 1433。
 9. 區隔 DB 伺服器中不同 NIC 上的管理流量 (連接埠 3389) 和資料庫流量 (1433)。
 
-需求 1-6 （除了需求 3 和 4） 是所有的局部的 toosubnet 空格。 hello 下列 Nsg 符合 hello 先前的需求降至最低所需的 Nsg 的 hello 數目：
+需求 1-6 (需求 3 和 4 除外) 均限制在子網路空間。 下列 NSG 符合先前的需求，同時將所需的 NSG 數目降至最低︰
 
 ### <a name="frontend"></a>FrontEnd
 **輸入規則**
@@ -218,7 +218,7 @@ Hello 圖表所示，hello *Web1*和*Web2* Vm 會連線的 toohello*前端*子�
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Deny-Internet-All | 拒絕 | 100 | * | * | Internet | * | * |
 
-下列 Nsg 會建立並關聯 tooNICs hello 遵循 Vm 中的 hello:
+建立下列 NSG 並與下列 VM 中的 NIC 產生關聯︰
 
 ### <a name="web1"></a>WEB1
 **輸入規則**
@@ -229,7 +229,7 @@ Hello 圖表所示，hello *Web1*和*Web2* Vm 會連線的 toohello*前端*子�
 | Allow-Inbound-HTTP-Internet | 允許 | 200 | Internet | * | * | 80 | TCP |
 
 > [!NOTE]
-> hello hello 一個規則的來源位址範圍是**網際網路**，不 hello 虛擬 IP 位址的 hello 負載平衡器。 hello 來源連接埠是 *、 不 500001。 針對負載平衡器 NAT 規則不會 hello 與 NSG 安全性規則相同。 NSG 安全性規則都相關的 toohello 原始來源和最終目的地的流量，**不**hello hello 兩者之間的負載平衡器。 
+> 前一個規則的來源位址範圍是**網際網路**，而不是負載平衡器的虛擬 IP 位址。 來源連接埠是 *，而不是 500001。 負載平衡器的 NAT 規則與 NSG 全性規則不同。 NSG 安全性規則永遠與流量的原始來源和最終目的地相關，而**不是**兩者之間的負載平衡器。 
 > 
 > 
 
@@ -255,7 +255,7 @@ Hello 圖表所示，hello *Web1*和*Web2* Vm 會連線的 toohello*前端*子�
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | Allow-Inbound-SQL-Front-end | 允許 | 100 | 192.168.1.0/24 | * | * | 1433 | TCP |
 
-由於某些 hello Nsg 相關聯的 tooindividual Nic，hello 規則是部署透過資源管理員的資源。 視子網路與 NIC 的關聯方式而定，會結合兩者的規則。 
+因為某些 NSG 與個別的 NIC 關聯，所以這些規則適用於透過 Resource Manager 部署的資源。 視子網路與 NIC 的關聯方式而定，會結合兩者的規則。 
 
 ## <a name="next-steps"></a>後續步驟
 * [部署 NSG (Resource Manager)](virtual-networks-create-nsg-arm-pportal.md)。

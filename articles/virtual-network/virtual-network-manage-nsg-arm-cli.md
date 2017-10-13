@@ -1,6 +1,6 @@
 ---
-title: "aaaManage 網路安全性群組-Azure CLI 2.0 |Microsoft 文件"
-description: "了解如何使用將 toomanage 網路安全性群組 hello Azure 命令列介面 (CLI) 2.0。"
+title: "管理網路安全性群組 - Azure CLI 2.0 | Microsoft Docs"
+description: "了解如何使用 Azure 命令列介面 (CLI) 2.0 管理網路安全性群組。"
 services: virtual-network
 documentationcenter: na
 author: jimdial
@@ -16,38 +16,38 @@ ms.workload: infrastructure-services
 ms.date: 02/21/2017
 ms.author: jdial
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a3036b465e1e4049cba00e5e13ce1b479a2301d3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 11ec0d3d9e33c06d4c0a164f7fba5dd5cca73872
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
-# <a name="manage-network-security-groups-using-hello-azure-cli-20"></a>管理使用 hello Azure CLI 2.0 的網路安全性群組
+# <a name="manage-network-security-groups-using-the-azure-cli-20"></a>使用 Azure CLI 2.0 管理網路安全性群組
 
 [!INCLUDE [virtual-network-manage-arm-selectors-include.md](../../includes/virtual-network-manage-nsg-arm-selectors-include.md)]
 
-## <a name="cli-versions-toocomplete-hello-task"></a>CLI 版本 toocomplete hello 工作 
+## <a name="cli-versions-to-complete-the-task"></a>用以完成工作的 CLI 版本 
 
-您可以完成 hello 工作使用其中一種 hello 遵循 CLI 版本： 
+您可以使用下列其中一個 CLI 版本來完成工作︰ 
 
-- [Azure CLI 1.0](virtual-network-manage-nsg-cli-nodejs.md) – 我們 CLI hello 傳統和資源管理部署模型 
-- [Azure CLI 2.0](#View-existing-NSGs) -hello 資源管理部署模型 （即本文） 我們下一個層代 CLI
+- [Azure CLI 1.0](virtual-network-manage-nsg-cli-nodejs.md) – 適用於傳統和資源管理部署模型的 CLI 
+- [Azure CLI 2.0](#View-existing-NSGs) - 適用於資源管理部署模型的新一代 CLI (本文章)
 
 
 [!INCLUDE [virtual-network-manage-nsg-intro-include.md](../../includes/virtual-network-manage-nsg-intro-include.md)]
 
 > [!NOTE]
-> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文說明如何使用 hello Resource Manager 部署模型，Microsoft 建議您針對大部分新的部署，而不是 hello 傳統部署模型。
+> Azure 建立和處理資源的部署模型有二種：[Resource Manager 和傳統](../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用 Resource Manager 部署模型，Microsoft 建議大部分的新部署使用此模型，而不是傳統部署模型。
 > 
 
 [!INCLUDE [virtual-network-manage-nsg-arm-scenario-include.md](../../includes/virtual-network-manage-nsg-arm-scenario-include.md)]
 
-## <a name="prerequisite"></a>必要條件
-如果您尚未，安裝並設定最新的 hello [Azure CLI 2.0](/cli/azure/install-az-cli2) tooan Azure 帳戶使用登入和[az 登入](/cli/azure/#login)。 
+## <a name="prerequisite"></a>先決條件
+安裝及設定最新的 [Azure CLI 2.0](/cli/azure/install-az-cli2) (若您尚未這麼做)，並使用 [az login](/cli/azure/#login) 來登入 Azure 帳戶。 
 
 
 ## <a name="view-existing-nsgs"></a>檢視現有的 NSG
-tooview hello 清單 Nsg 在特定的資源群組中，執行 hello [az 網路 nsg 清單](/cli/azure/network/nsg#list)命令搭配`-o table`輸出格式：
+若要檢視特定資源群組中的 NSG 清單，請使用 `-o table` 輸出格式執行 [az network nsg list](/cli/azure/network/nsg#list) 命令︰
 
 ```azurecli
 az network nsg list -g RG-NSG -o table
@@ -61,7 +61,7 @@ az network nsg list -g RG-NSG -o table
     centralus   NSG-FrontEnd  Succeeded            RG-NSG           <guid>
 
 ## <a name="list-all-rules-for-an-nsg"></a>列出 NSG 的所有規則
-名為 NSG tooview hello 規則**NSG 前端**中執行的 hello [az 網路 nsg 顯示](/cli/azure/network/nsg#show)命令使用[JMESPATH 查詢篩選器](/cli/azure/query-az-cli2)和 hello`-o table`輸出格式：
+若要檢視名為 **NSG-FrontEnd** 之 NSG 的規則，請使用 [JMESPATH 查詢篩選](/cli/azure/query-az-cli2)和 `-o table` 輸出格式執行 [az network nsg show](/cli/azure/network/nsg#show) 命令︰
 
 ```azurecli
     az network nsg show \
@@ -78,24 +78,24 @@ az network nsg list -g RG-NSG -o table
     AllowVnetInBound               Allow inbound traffic from all VMs in VNET              Allow     Inbound      *                VirtualNetwork    *               VirtualNetwork
     AllowAzureLoadBalancerInBound  Allow inbound traffic from azure load balancer          Allow     Inbound      *                *                 *               AzureLoadBalancer
     DenyAllInBound                 Deny all inbound traffic                                Deny      Inbound      *                *                 *               *
-    AllowVnetOutBound              Allow outbound traffic from all VMs tooall VMs in VNET  Allow     Outbound     *                VirtualNetwork    *               VirtualNetwork
-    AllowInternetOutBound          Allow outbound traffic from all VMs tooInternet         Allow     Outbound     *                Internet          *               *
+    AllowVnetOutBound              Allow outbound traffic from all VMs to all VMs in VNET  Allow     Outbound     *                VirtualNetwork    *               VirtualNetwork
+    AllowInternetOutBound          Allow outbound traffic from all VMs to Internet         Allow     Outbound     *                Internet          *               *
     DenyAllOutBound                Deny all outbound traffic                               Deny      Outbound     *                *                 *               *
     rdp-rule                                                                               Allow     Inbound      3389             *                 *               Internet
     web-rule                                                                               Allow     Inbound      80               *                 *               Internet
 > [!NOTE]
-> 您也可以使用[az 網路 nsg 規則清單](/cli/azure/network/nsg/rule#list)toolist 只有 hello 自訂規則從 NSG。
+> 您也可以使用 [az network nsg rule list](/cli/azure/network/nsg/rule#list) 來僅列出 NSG 中的自訂規則。
 >
 
 ## <a name="view-nsg-associations"></a>檢視 NSG 關聯
 
-tooview 哪些資源 hello **NSG 前端**NSG 為關聯，請執行 hello`az network nsg show`命令如下所示。 
+若要檢視與 **NSG-FrontEnd** NSG 相關聯的資源，請執行 `az network nsg show` 命令，如下所示。 
 
 ```azurecli
 az network nsg show -g RG-NSG -n nsg-frontend --query '[subnets,networkInterfaces]'
 ```
 
-尋找 hello **networkInterfaces**和**子網路**屬性如下所示：
+尋找 **networkInterfaces** 和 **subnets** 屬性，如下所示︰
 
 ```json
 [
@@ -117,17 +117,17 @@ az network nsg show -g RG-NSG -n nsg-frontend --query '[subnets,networkInterface
 ]
 ```
 
-在 hello 上述範例中，不是 NSG hello 關聯 tooany 網路介面 (Nic)，而且它是相關聯的 tooa 名為的子網路**前端**。
+在上述範例中，NSG 沒有與任何網路介面 (NIC) 相關聯，而是與名稱為 **FrontEnd**的子網路相關聯。
 
 ## <a name="add-a-rule"></a>新增規則
-規則，允許 tooadd**輸入**流量 tooport **443**從任何機器 toohello **NSG 前端**NSG，輸入下列命令的 hello:
+若要將規則新增至 **NSG-FrontEnd** NSG，以允許來自任何電腦的**輸入**流量流向連接埠 **443**，請輸入下列命令：
 
 ```azurecli
 az network nsg rule create  \
 --resource-group RG-NSG \
 --nsg-name NSG-FrontEnd  \
 --name allow-https \
---description "Allow access tooport 443 for HTTPS" \
+--description "Allow access to port 443 for HTTPS" \
 --access Allow \
 --protocol Tcp  \
 --direction Inbound \
@@ -143,7 +143,7 @@ az network nsg rule create  \
 ```json
 {
   "access": "Allow",
-  "description": "Allow access tooport 443 for HTTPS",
+  "description": "Allow access to port 443 for HTTPS",
   "destinationAddressPrefix": "*",
   "destinationPortRange": "443",
   "direction": "Inbound",
@@ -160,7 +160,7 @@ az network nsg rule create  \
 ```
 
 ## <a name="change-a-rule"></a>變更規則
-建立上述 tooallow toochange hello 規則輸入流量從 hello**網際網路**僅執行 hello [az 網路 nsg 規則更新](/cli/azure/network/nsg/rule#update)命令：
+若要變更以上所建立的規則，僅允許來自**網際網路**的輸入流量，請執行 [az network nsg rule update](/cli/azure/network/nsg/rule#update) 命令：
 
 ```azurecli
 az network nsg rule update \
@@ -175,7 +175,7 @@ az network nsg rule update \
 ```json
 {
 "access": "Allow",
-"description": "Allow access tooport 443 for HTTPS",
+"description": "Allow access to port 443 for HTTPS",
 "destinationAddressPrefix": "*",
 "destinationPortRange": "443",
 "direction": "Inbound",
@@ -192,7 +192,7 @@ az network nsg rule update \
 ```
 
 ## <a name="delete-a-rule"></a>刪除規則
-toodelete hello 建立規則，執行下列命令的 hello:
+若要刪除以上所建立的規則，請執行下列命令：
 
 ```azurecli
 az network nsg rule delete \
@@ -202,8 +202,8 @@ az network nsg rule delete \
 ```
 
 
-## <a name="associate-an-nsg-tooa-nic"></a>關聯 NSG tooa NIC
-tooassociate hello **NSG 前端**NSG toohello **TestNICWeb1** NIC，使用 hello [az 網路 nic 更新](/cli/azure/network/nic#update)命令：
+## <a name="associate-an-nsg-to-a-nic"></a>建立 NSG 與 NIC 的關聯
+若要建立 **NSG-FrontEnd** NSG 與 **TestNICWeb1** NIC 的關聯，請使用 [az network nic update](/cli/azure/network/nic#update) 命令：
 
 ```azurecli
 az network nic update \
@@ -286,16 +286,16 @@ az network nic update \
 
 ## <a name="dissociate-an-nsg-from-a-nic"></a>中斷 NSG 與 NIC 的關聯
 
-toodissociate hello **NSG 前端**hello 從 NSG **TestNICWeb1** NIC，執行 hello [az 網路 nsg 規則更新](/cli/azure/network/nsg/rule#update)命令一次，但取代 hello `--network-security-group`引數與空字串 (`""`)。
+若要取消 **NSG-FrontEnd** NSG 與 **TestNICWeb1** NIC 的關聯，請再次執行 [az network nsg rule update](/cli/azure/network/nsg/rule#update) 命令，但以空白字串 (`""`) 取代 `--network-security-group` 引數。
 
 ```azurecli
 az network nic update --resource-group RG-NSG --name TestNICWeb3 --network-security-group ""
 ```
 
-在 hello 輸出 hello `networkSecurityGroup` toonull 設定機碼。
+在輸出中，`networkSecurityGroup` 機碼設為 null。
 
 ## <a name="dissociate-an-nsg-from-a-subnet"></a>中斷 NSG 與子網路的關聯
-toodissociate hello **NSG 前端**hello 從 NSG**前端**子網路，再次執行 hello [az 網路 nsg 規則更新](/cli/azure/network/nsg/rule#update)命令一次，但取代 hello `--network-security-group`引數與空字串 (`""`)。
+若要取消 **NSG-FrontEnd** NSG 與 **FrontEnd** 子網路的關聯，請再次執行 [az network nsg rule update](/cli/azure/network/nsg/rule#update) 命令，但以空白字串 (`""`) 取代 `--network-security-group` 引數。
 
 ```azurecli
 az network vnet subnet update \
@@ -305,10 +305,10 @@ az network vnet subnet update \
 --network-security-group ""
 ```
 
-在 hello 輸出 hello `networkSecurityGroup` toonull 設定機碼。
+在輸出中，`networkSecurityGroup` 機碼設為 null。
 
-## <a name="associate-an-nsg-tooa-subnet"></a>NSG tooa 子網路建立關聯
-tooassociate hello **NSG 前端**NSG toohello**前端**子網路同樣地，執行下列命令的 hello:
+## <a name="associate-an-nsg-to-a-subnet"></a>建立 NSG 至子網路的關聯
+若要重新建立 **NSG-FrontEnd** NSG 與 **FrontEnd** 子網路的關聯，請執行下列命令：
 
 ```azurecli
 az network vnet subnet update \
@@ -318,7 +318,7 @@ az network vnet subnet update \
 --network-security-group NSG-FrontEnd
 ```
 
-在 hello 輸出 hello`networkSecurityGroup`金鑰都有類似的 hello 值的項目：
+在輸出中，`networkSecurityGroup` 機碼的值類似︰
 
 ```json
 "networkSecurityGroup": {
@@ -339,12 +339,12 @@ az network vnet subnet update \
   ```
 
 ## <a name="delete-an-nsg"></a>刪除 NSG
-如果它不是相關聯 tooany 資源，您只能刪除 NSG。 toodelete NSG 關聯，請遵循下列 hello 步驟。
+您只能刪除與任何資源沒有關聯的 NSG。 若要刪除 NSG，請依照下列步驟進行。
 
-1. toocheck hello 資源相關聯 tooan NSG，執行 hello`azure network nsg show`中所示[檢視 Nsg 關聯](#View-NSGs-associations)。
-2. 如果 hello NSG 相關聯的 tooany Nic，請執行 hello`azure network nic set`中所示[中斷 NIC 的 NSG 關聯](#Dissociate-an-NSG-from-a-NIC)的每個 nic。 
-3. 如果 hello NSG 相關聯的 tooany 子網路，請執行 hello`azure network vnet subnet set`中所示[中斷關聯子網路的 NSG](#Dissociate-an-NSG-from-a-subnet)每個子網路。
-4. toodelete hello NSG，執行下列命令的 hello:
+1. 若要檢查與 NSG 相關聯的資源，請執行 `azure network nsg show` ，如 [檢視 NSG 關聯](#View-NSGs-associations)中所示。
+2. 如果 NSG 與任何 NIC 相關聯，為每個 NIC 執行 `azure network nic set` ，如 [中斷 NSG 與 NIC 的關聯](#Dissociate-an-NSG-from-a-NIC) 中所示。 
+3. 如果 NSG 與任何子網路相關聯，為每個子網路執行 `azure network vnet subnet set` ，如 [中斷 NSG 與子網路的關聯](#Dissociate-an-NSG-from-a-subnet) 中所示。
+4. 若要刪除 NSG，請執行下列命令︰
 
     ```azurecli
     az network nsg delete --resource-group RG-NSG --name NSG-FrontEnd

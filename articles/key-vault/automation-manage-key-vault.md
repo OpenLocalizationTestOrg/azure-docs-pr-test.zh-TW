@@ -1,6 +1,6 @@
 ---
-title: "Azure 金鑰保存庫使用 Azure 自動化 aaaManage |Microsoft 文件"
-description: "深入了解如何 hello Azure 自動化服務可以使用的 toomanage Azure 金鑰保存庫。"
+title: "使用 Azure 自動化管理 Azure 金鑰保存庫 | Microsoft Docs"
+description: "了解如何使用 Azure 自動化服務來管理 Azure 金鑰保存庫。"
 services: Key-Vault, automation
 documentationcenter: 
 author: mgoedtel
@@ -14,26 +14,26 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/29/2016
 ms.author: magoedte;csand
-ms.openlocfilehash: 7f46ecc1206a96e8aeb1d086285461cb5b205472
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: dee39662472fe54776b591977f2b1ecb39d15b00
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="managing-azure-key-vault-using-azure-automation"></a>使用 Azure 自動化管理 Azure 金鑰保存庫
-本指南將介紹 toohello Azure 自動化服務，而且可以如何使用的 toosimplify 管理您的金鑰和 Azure 金鑰保存庫中的密碼。
+本指南將為您介紹 Azure 自動化服務，以及如何使用它來簡化管理 Azure 金鑰保存庫中的金鑰和密碼。
 
 ## <a name="what-is-azure-automation"></a>什麼是 Azure 自動化？
-[Azure 自動化](../automation/automation-intro.md) 是一項 Azure 服務，可經由程序自動化和所要的狀態組態簡化雲端管理。 使用 Azure 自動化，自動化的 tooincrease 可靠性、 效率與時間 toovalue 為您的組織可能會手動、 重複、 長時間執行，而且容易產生錯誤的工作。
+[Azure 自動化](../automation/automation-intro.md) 是一項 Azure 服務，可經由程序自動化和所要的狀態組態簡化雲端管理。 使用 Azure 自動化，可以自動執行手動、重複、長時間執行及容易出錯的工作，以提高您的組織的可靠性、效率和時間價值。
 
-Azure 自動化會提供您的需求調整 toomeet 的非常可靠、 高可用性的工作流程執行引擎。 在 Azure 自動化中，程序可透過手動方式、經由協力廠商系統，或依照排程的間隔啟動，讓工作精準地在需要時執行。
+Azure 自動化提供高度可靠、高度可用的工作流程執行引擎，可加以調整以符合您的需求。 在 Azure 自動化中，可以手動方式、由協力廠商系統或依排定的間隔開始執行程序，讓工作只發生在必要時刻。
 
-降低操作費用並釋出 IT 和 DevOps 人員 toofocus 移動您的雲端管理工作 toobe 商務價值的工作自動執行的 Azure 自動化。
+將您的雲端管理工作交由「Azure 自動化」自動執行，以減少營運負擔並釋出 IT 和開發維運人力，使其專注於能夠為企業創造價值的工作上。
 
 ## <a name="how-can-azure-automation-help-manage-azure-key-vault"></a>Azure 自動化如何協助管理 Azure 金鑰保存庫？
-金鑰保存庫可以使用來管理 Azure 自動化中 hello [AzureRM 金鑰保存庫 cmdlet](https://www.powershellgallery.com/packages/AzureRM.KeyVault/1.1.4)和[傳統 Azure 金鑰保存庫 cmdlet](https://msdn.microsoft.com/library/azure/dn868052.aspx)。 管理傳統金鑰保存庫可自動在 Azure 自動化中的 hello Azure 模組，您可以匯入 hello [AzureRM KeyVault 模組](https://www.powershellgallery.com/packages/AzureRM.KeyVault/1.1.4)到 Azure 自動化中，以便您可以執行許多您金鑰保存庫的管理hello 服務內的工作。 您也可以跨 Azure 服務和第 3 個合作對象系統配對這些 cmdlet 在 Azure 自動化中利用 hello 適用於其他 Azure 服務、 tooautomate 複雜工作的 cmdlet。
+您可以使用 [AzureRM 金鑰保存庫 Cmdlet](https://www.powershellgallery.com/packages/AzureRM.KeyVault/1.1.4) 和 [Azure 傳統金鑰保存庫 Cmdlet](https://msdn.microsoft.com/library/azure/dn868052.aspx)，在 Azure 自動化中管理金鑰保存庫。 管理傳統金鑰保存庫的 Azure 模組會自動出現在 Azure 自動化中供您使用，而且您可以將 [AzureRM-KeyVault 模組](https://www.powershellgallery.com/packages/AzureRM.KeyVault/1.1.4) 匯入 Azure 自動化，以便在服務中執行許多金鑰保存庫管理工作。 您也可以將 Azure 自動化中的這些 Cmdlet 與其他 Azure 服務的 Cmdlet 搭配，以透過 Azure 服務和協力廠商系統自動執行複雜的工作。
 
-Hello Azure 金鑰保存庫 cmdlet，您可以執行這些工作和其他項目： 
+使用 Azure 金鑰保存庫 Cmdlet，您可以執行以下工作和其他工作︰ 
 
 * 建立和設定金鑰保存庫
 * 建立或匯入金鑰
@@ -42,14 +42,14 @@ Hello Azure 金鑰保存庫 cmdlet，您可以執行這些工作和其他項目�
 * 取得金鑰或密碼
 * 刪除金鑰或密碼
 
-以下是使用 PowerShell toomanage 金鑰保存庫的一些範例：  
+以下是使用 PowerShell 來管理金鑰保存庫的一些範例︰  
 
 * [Azure 金鑰保存庫 - 逐步解說](https://blogs.technet.microsoft.com/kv/2015/06/02/azure-key-vault-step-by-step)
 * [設定 Azure 金鑰保存庫](https://www.simple-talk.com/cloud/platform-as-a-service/setting-up-and-configuring-an-azure-key-vault)
 
 ## <a name="next-steps"></a>後續步驟
-既然您已經學會 hello 的 Azure 自動化，而且可以如何使用的 toomanage Azure 金鑰保存庫的基本概念，請遵循這些連結 toolearn 深入了解 Azure 自動化。
+了解 Azure 自動化的基本概念以及如何用它來管理 Azure 金鑰保存庫之後，請參考下列連結，以深入了解 Azure 自動化。
 
-* 請參閱 hello Azure 自動化[入門教學課程](../automation/automation-first-runbook-graphical.md)。
-* 請參閱 hello [Azure 金鑰保存庫的 PowerShell 指令碼](https://gallery.technet.microsoft.com/scriptcenter/site/search?query=azure%20key%20vault&f%5B0%5D.Value=azure%20key%20vault&f%5B0%5D.Type=SearchText&ac=5)。
+* 請參閱 Azure 自動化 [快速入門教學課程](../automation/automation-first-runbook-graphical.md)。
+* 請參閱 [Azure 金鑰保存庫 PowerShell 指令碼](https://gallery.technet.microsoft.com/scriptcenter/site/search?query=azure%20key%20vault&f%5B0%5D.Value=azure%20key%20vault&f%5B0%5D.Type=SearchText&ac=5)。
 

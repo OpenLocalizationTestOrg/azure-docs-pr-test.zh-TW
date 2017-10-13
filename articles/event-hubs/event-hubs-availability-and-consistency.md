@@ -1,6 +1,6 @@
 ---
-title: "aaaAvailability 和 Azure 事件中心的一致性 |Microsoft 文件"
-description: "Tooprovide hello 最大數量可用性以及與 Azure 事件中心使用一致的分割區。"
+title: "Azure 事件中樞的可用性和一致性 | Microsoft Docs"
+description: "如何使用分割區，以便透過 Azure 事件中樞提供最大數量的可用性和一致性。"
 services: event-hubs
 documentationcenter: na
 author: sethmanheim
@@ -14,41 +14,41 @@ ms.tgt_pltfrm: na
 ms.workload: na
 ms.date: 08/15/2017
 ms.author: sethm
-ms.openlocfilehash: a8ededaae1589830da21cb8910ca694d2d628bd2
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 681a9d1636d547492f6f827461c6b2494b918778
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="availability-and-consistency-in-event-hubs"></a>事件中樞的可用性和一致性
 
 ## <a name="overview"></a>概觀
-Azure 事件中心採用[分割模型](event-hubs-features.md#partitions)tooimprove 可用性和平行處理單一事件中心內。 例如，如果事件中心有四個資料分割，而且這些資料分割的其中一個會從負載平衡作業中的一部伺服器 tooanother 移，您仍可以傳送及接收來自其他三個資料分割。 此外，讓多個資料分割可讓您 toohave 更多的並行讀取器處理您的資料，改善您的彙總輸送量。 了解的資料分割和排序分散式系統中的 hello 含意是解決方案設計的重要層面。
+「Azure 事件中樞」會使用[資料分割模型](event-hubs-features.md#partitions)，來提升單一事件中樞內的可用性與平行處理。 例如，如果事件中樞有四個分割區，而其中一個分割區在負載平衡作業中從一部伺服器移到另一部伺服器，則您仍可從其他三個分割區進行傳送及接收。 此外，擁有更多分割區可讓您使用更多並行讀取器來處理資料，進而改善您的彙總輸送量。 了解分散式系統中分割和排序的含意是解決方案設計的重要層面。
 
-toohelp 說明 hello 排序與可用性之間的取捨，請參閱 hello [CAP 理論](https://en.wikipedia.org/wiki/CAP_theorem)，也稱為 Brewer 的理論。 此理論討論之間的一致性、 可用性和資料分割容錯的 hello 選擇。
+為了協助說明排序和可用性之間的權衡取捨，請參閱 [CAP 理論](https://en.wikipedia.org/wiki/CAP_theorem) (英文)，也稱為 Brewer 的理論。 這個理論討論一致性、可用性及分割區容錯之間的選擇。
 
 Brewer 的理論會定義一致性和可用性，如下所示：
-* 分割容錯： hello 處理資料，即使在磁碟分割失敗，就會發生資料處理系統 toocontinue 的能力。
+* 分割區容錯：即使發生分割區失敗，資料處理系統還是能夠繼續處理資料。
 * 可用性：非失敗節點會在合理的時間 (不含錯誤或逾時) 內傳回合理的回應。
-* ： 讀取保證一致性 tooreturn hello 最新的寫入給定的用戶端。
+* 一致性：保證讀取會傳回指定用戶端的最新寫入。
 
 ## <a name="partition-tolerance"></a>分割區容錯
-「事件中樞」是建置在已分割的資料模型上。 您可以在安裝期間，在事件中樞設定 hello 資料分割數目，但是您之後無法變更此值。 由於您必須使用事件中心使用資料分割，您將 toomake 決策，以可用性和一致性應用程式。
+「事件中樞」是建置在已分割的資料模型上。 您可以在安裝時設定事件中樞中的分割區數目，但之後即無法變更此值。 由於您必須將分割區與事件中樞搭配使用，因此必須決定應用程式相關的可用性和一致性。
 
 ## <a name="availability"></a>Availability
-hello 最簡單的方式 tooget 入門事件中心是 toouse hello 預設行為。 如果您建立新`EventHubClient`物件，並使用 hello`Send`方法，您的事件會自動發佈事件中樞中的資料分割之間。 此行為可讓您 hello 最大的時間。
+開始使用事件中樞的最簡單方式是使用預設行為。 如果您建立新的 `EventHubClient` 物件並使用 `Send` 方法，系統就會在事件中樞的分割區之間自動分配事件。 此行為可讓運作時間達到最長。
 
-需要 hello 最大執行時間的使用案例，此模型是慣用的。
+針對需要最長運作時間的使用案例，建議使用此模型。
 
 ## <a name="consistency"></a>一致性
-在某些情況下，hello 的事件排序可能很重要。 例如，您可以您的後端系統 tooprocess update 命令之前刪除命令。 在本例中，您可以在事件上設定 hello 資料分割索引鍵，或使用`PartitionSender`物件 tooonly 傳送事件 tooa 特定資料分割。 這樣可以確保，當這些事件會讀取來自 hello 磁碟分割，它們會讀取順序。
+在某些案例中，事件的順序可能相當重要。 例如，您可能想要讓後端系統在刪除命令之前先處理更新命令。 在此情況下，您可以在事件上設定分割區索引鍵，或使用 `PartitionSender` 物件只將事件傳送到特定的分割區。 這麼做可確保在從分割區讀取這些事件時，會依序讀取它們。
 
-此設定，請注意，如果您要傳送的 hello 特定資料分割 toowhich 無法使用時，您會收到錯誤回應。 為的比較點，如果您不需要同質 tooa 單一資料分割，hello 事件中心服務會傳送您事件 toohello 下一個可用的磁碟分割。
+使用這個組態時，請記住，如果作為您傳送目的地的特定分割區無法使用，您將會收到錯誤回應。 相較之下，如果您不傾向使用單一分割區，「事件中樞」服務就會將事件傳送至下一個可用的分割區。
 
-一個可能的解決方案 tooensure 排序，同時也執行時間，盡量將 tooaggregate 事件做為您的事件處理應用程式的一部分。 這個 hello 最簡單的方式 tooaccomplish 是 toostamp 自訂的序號屬性與事件。 下列程式碼的 hello 顯示範例：
+有一個既可確保排序又可讓運作時間達到最長的可能解決方案，就是在您的事件處理應用程式中彙總事件。 達到此目的的最簡單方式，就是為您的事件標上自訂序號屬性戳記。 下列程式碼顯示一個範例：
 
 ```csharp
-// Get hello latest sequence number from your application
+// Get the latest sequence number from your application
 var sequenceNumber = GetNextSequenceNumber();
 // Create a new EventData object by encoding a string as a byte array
 var data = new EventData(Encoding.UTF8.GetBytes("This is my message..."));
@@ -58,10 +58,10 @@ data.Properties.Add("SequenceNumber", sequenceNumber);
 await eventHubClient.SendAsync(data);
 ```
 
-這個範例事件中樞，以傳送您的事件 tooone hello 可用的資料分割，並從您的應用程式設定 hello 對應序號。 此解決方案需要狀態 toobe 保持為您處理的應用程式，但可讓您的寄件者比較可能 toobe 可用的端點。
+這個範例會將事件傳送到事件中樞的其中一個可用分割區，然後從您的應用程式設定對應的序號。 這個解決方案會要求您的處理應用程式保留狀態，但會為您的傳送者提供一個更可能可供使用的端點。
 
 ## <a name="next-steps"></a>後續步驟
-您可以進一步了解事件中心瀏覽下列連結查看 hello:
+您可以造訪下列連結以深入了解事件中樞︰
 
 * [事件中樞服務概觀](event-hubs-what-is-event-hubs.md)
 * [建立事件中樞](event-hubs-create.md)

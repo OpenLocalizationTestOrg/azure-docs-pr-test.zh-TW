@@ -1,5 +1,5 @@
 ---
-title: "aaaScheduler PowerShell 指令程式參考"
+title: "排程器 PowerShell Cmdlet 參考"
 description: "排程器 PowerShell Cmdlet 參考"
 services: scheduler
 documentationcenter: .NET
@@ -14,16 +14,16 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 08/18/2016
 ms.author: deli
-ms.openlocfilehash: a2b23bcd3e4493ffba1dbf21fbb87818be7c01e5
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 141919ab4506b3de4c4a69670dcf54c60ee6409c
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="scheduler-powershell-cmdlets-reference"></a>排程器 PowerShell Cmdlet 參考
-下表的 hello 說明和連結 toohello 參考頁面的每個 Azure 排程器中的 hello 主要 cmdlet。
+下表說明並連結至 Azure 排程器中每個主要 Cmdlet 的參考頁面。
 
-tooinstall Azure PowerShell，將它與您 Azure 訂用帳戶產生關聯，請參閱[如何 tooinstall 和設定 Azure PowerShell](/powershell/azure/overview)。 
+若要安裝 Azure PowerShell，並將它與 Azure 訂用帳戶建立關聯，請參閱 [如何安裝和設定 Azure PowerShell](/powershell/azure/overview)。 
 
 如需 [Azure Resource Manager Cmdlet](/powershell/azure/overview) 的詳細資訊，請參閱[搭配使用 Azure PowerShell 與 Azure Resource Manager](../powershell-azure-resource-manager.md)。
 
@@ -47,7 +47,7 @@ tooinstall Azure PowerShell，將它與您 Azure 訂用帳戶產生關聯，請�
 | [Set-AzureRmSchedulerServiceBusTopicJob](/powershell/module/azurerm.scheduler/set-azurermschedulerservicebustopicjob) |修改服務匯流排主題工作。 |
 | [Set-AzureRmSchedulerStorageQueueJob](/powershell/module/azurerm.scheduler/set-azurermschedulerstoragequeuejob) |修改儲存體佇列工作。 |
 
-如需詳細資訊，您可以執行任何 hello 下列 cmdlet: 
+如需更多詳細資訊，您可以執行下列任何 Cmdlet： 
 
 ```
 Get-Help <cmdlet name> -Detailed
@@ -64,7 +64,7 @@ Get-Help <cmdlet name> -Full
 
  [Azure 排程器概念、術語及實體階層](scheduler-concepts-terms.md)
 
- [開始在 hello Azure 入口網站中使用排程器](scheduler-get-started-portal.md)
+ [在 Azure 入口網站中開始使用排程器](scheduler-get-started-portal.md)
 
  [Azure 排程器的計劃和計費](scheduler-plans-billing.md)
 

@@ -1,6 +1,6 @@
 ---
-title: "aaaCreate hello Azure 入口網站中的 SQL 資料倉儲 |Microsoft 文件"
-description: "了解如何 toocreate Azure SQL 資料倉儲中的 hello Azure 入口網站"
+title: "在 Azure 入口網站中建立 SQL 資料倉儲 | Microsoft Docs"
+description: "了解如何在 Azure 入口網站中建立 Azure SQL 資料倉儲"
 services: sql-data-warehouse
 documentationcenter: NA
 author: hirokib
@@ -16,11 +16,11 @@ ms.workload: data-services
 ms.custom: create
 ms.date: 10/31/2016
 ms.author: elbutter;barbkess
-ms.openlocfilehash: f5be6e3f2936e3af9d099854a468f8ce66fd8fbe
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 24ed2d8bad3090e378acf2a42fb909dee0a8517b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="create-an-azure-sql-data-warehouse"></a>建立 Azure SQL 資料倉儲
 > [!div class="op_single_selector"]
@@ -30,13 +30,13 @@ ms.lasthandoff: 10/06/2017
 >
 >
 
-本教學課程使用 hello Azure 入口網站 toocreate 包含 AdventureWorksDW 範例資料庫的 SQL 資料倉儲。
+本教學課程使用 Azure 入口網站來建立包含 AdventureWorksDW 範例資料庫的 SQL 資料倉儲。
 
 ## <a name="prerequisites"></a>必要條件
-tooget 開始，您需要：
+若要開始，您需要：
 
-* **Azure 帳戶**： 瀏覽[Azure 免費試用][ Azure Free Trial]或[MSDN Azure 信用額度][ MSDN Azure Credits] toocreate 帳戶。
-* **Azure SQL server**： 請參閱[以 hello Azure 入口網站建立 Azure SQL database] [ Create an Azure SQL database in hello Azure portal]如需詳細資訊。
+* **Azure 帳戶**︰請瀏覽 [Azure 免費試用][Azure Free Trial]或 [MSDN Azure 點數][MSDN Azure Credits]以建立帳戶。
+* **Azure SQL Server**︰如需詳細資訊，請參閱[使用 Azure 入口網站建立 Azure SQL Database][Create an Azure SQL database in the Azure portal]。
 
 > [!NOTE]
 > 建立 SQL 資料倉儲可能會導致新的可計費服務。  如需詳細資訊，請參閱 [SQL 資料倉儲價格][SQL Data Warehouse pricing]。
@@ -44,46 +44,46 @@ tooget 開始，您需要：
 >
 
 ## <a name="create-a-sql-data-warehouse"></a>建立 SQL 資料倉儲
-1. 登入 toohello [Azure 入口網站](https://portal.azure.com)。
+1. 登入 [Azure 入口網站](https://portal.azure.com)。
 2. 按一下 [+ 新增] > [資料庫] > [SQL 資料倉儲]。
 
     ![建立](./media/sql-data-warehouse-get-started-provision/create-sample.gif)
-3. 在 hello **SQL 資料倉儲**刀鋒視窗中，填入 hello 所需資訊，然後按 建立 5d toocreate。
+3. 在 [SQL 資料倉儲]  刀鋒視窗中，填入所需的資訊，然後按 [建立] 來建立。
 
     ![建立資料庫](./media/sql-data-warehouse-get-started-provision/create-database.png)
 
    * **伺服器**︰我們建議您先選取您的伺服器。  
-   * **資料庫名稱**: hello 為使用的 tooreference hello SQL 資料倉儲的名稱。  它必須是唯一的 toohello 伺服器。
-   * **效能**：我們建議從 400 [DWU][DWU] 開始。 您可以移動保留的 hello 滑桿 toohello，或以滑鼠右鍵 tooadjust hello 效能資料倉儲或小數位數的向上或向下建立之後。  toolearn 深入了解 dwu 調整，請參閱我們的文件上[調整](sql-data-warehouse-manage-compute-overview.md)或我們[定價頁面][SQL Data Warehouse pricing]。
-   * **訂用帳戶**： 選取 hello[訂用帳戶]，將付款人此 SQL 資料倉儲。
-   * **資源群組**:[資源群組][ Resource group]所設計的容器 toohelp 管理 Azure 資源的集合。 深入了解[資源群組](../azure-resource-manager/resource-group-overview.md)。
-   * **選取來源**：按一下 [選取來源] > [範例]。 Azure 會自動填入 hello**選取範例**AdventureWorksDW 的選項。
+   * **資料庫名稱**︰用來參考 SQL 資料倉儲的名稱。  對伺服器而言，它必須是唯一的。
+   * **效能**：我們建議從 400 [DWU][DWU] 開始。 您可以將滑桿向左邊或向右移動，以調整資料倉儲的效能，在建立之後相應增加或相應減少。  若要深入了解 DWU，請參閱[調整](sql-data-warehouse-manage-compute-overview.md)相關文件或我們的[價格頁面][SQL Data Warehouse pricing]。
+   * **訂用帳戶**：選取此 SQL 資料倉儲將會計費的 [訂用帳戶] 。
+   * **資源群組**：[資源群組][Resource group]是為了協助您管理 Azure 資源集合而設計的容器。 深入了解[資源群組](../azure-resource-manager/resource-group-overview.md)。
+   * **選取來源**：按一下 [選取來源] > [範例]。 Azure 會自動將 AdventureWorksDW 填入 [選取範例]  選項。
 
    > [!NOTE]
-   > hello SQL 資料倉儲的預設定序為 SQL_Latin1_General_CP1_CI_AS。 如果需要不同的定序， [T-SQL] [ T-SQL]可以是使用的 toocreate hello 資料庫具有不同的定序。
+   > SQL 資料倉儲的預設定序為 SQL_Latin1_General_CP1_CI_AS。 如果需要不同的定序，可以使用 [T-SQL][T-SQL] 來建立具有不同定序的資料庫。
    >
    >
 
-1. 按一下**建立**toocreate SQL 資料倉儲。
-2. 等候幾分鐘的時間。 準備您的資料倉儲時，您應該傳回 toohello [Azure 入口網站](https://portal.azure.com)。 您可以尋找您的 SQL 資料倉儲儀表板上，列在您的 SQL 資料庫，或在 hello 資源群組，您使用 toocreate 它。
+1. 按一下 [建立]  來建立您的 SQL 資料倉儲。
+2. 等候幾分鐘的時間。 當您的資料倉儲準備就緒時，您應該會返回 [Azure 入口網站](https://portal.azure.com)。 您可以在儀表板上尋找您的 SQL 資料倉儲，其列在您的 SQL 資料庫之下，或在您用來建立它的資源群組中。
 
     ![入口網站檢視](./media/sql-data-warehouse-get-started-provision/database-portal-view.png)
 
 [!INCLUDE [SQL Database create server](../../includes/sql-database-create-new-server-firewall-portal.md)]
 
 ## <a name="next-steps"></a>後續步驟
-現在您已經建立 SQL 資料倉儲，您就可以準備太[連接](sql-data-warehouse-connect-overview.md)並開始查詢。
+既然您已建立 SQL 資料倉儲，您已準備好 [連接](sql-data-warehouse-connect-overview.md) 和開始查詢。
 
-tooload 資料到 SQL 資料倉儲，請參閱 hello[載入概觀](sql-data-warehouse-overview-load.md)。
+若要將資料載入 SQL 資料倉儲，請參閱 [載入概觀](sql-data-warehouse-overview-load.md)。
 
-如果您嘗試 toomigrate 現有的資料庫 tooSQL 資料倉儲時，請參閱 hello[移轉概觀](sql-data-warehouse-overview-migrate.md)或使用[移轉公用程式](sql-data-warehouse-migrate-migration-utility.md)。
+如果您嘗試將現有的資料庫移轉至 SQL 資料倉儲，請參閱[移轉概觀](sql-data-warehouse-overview-migrate.md)或使用[移轉公用程式](sql-data-warehouse-migrate-migration-utility.md)。
 
 也可以使用 Transact-SQL 來設定防火牆規則。 如需詳細資訊，請參閱 [sp_set_firewall_rule][sp_set_firewall_rule] 和 [sp_set_database_firewall_rule][sp_set_database_firewall_rule]。
 
-它也是很好的想法 toolook 在 hello[最佳做法][Best practices]。
+查看我們的[最佳作法][Best practices]也是不錯的辦法。
 
 <!--Article references-->
-[Create an Azure SQL database in hello Azure portal]: ../sql-database/sql-database-get-started.md
+[Create an Azure SQL database in the Azure portal]: ../sql-database/sql-database-get-started.md
 [Create an Azure SQL database with PowerShell]: ../sql-database/sql-database-create-and-configure-database-powershell
 [resource groups]: ../azure-resource-manager/resource-group-template-deploy-portal.md
 [Best practices]: sql-data-warehouse-best-practices.md

@@ -1,6 +1,6 @@
 ---
-title: "使用 Azure Java SDK 的 Azure Data Lake Analytics aaaManage |Microsoft 文件"
-description: "使用 Azure Data Lake Analytics Java SDK toodevelop 應用程式"
+title: "使用 Azure Java SDK 管理 Azure Data Lake Analytics | Microsoft Docs"
+description: "使用 Azure Data Lake Analytics Java SDK 來開發應用程式"
 services: data-lake-analytics
 documentationcenter: 
 author: matt1883
@@ -14,11 +14,11 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 ms.date: 06/18/2017
 ms.author: saveenr
-ms.openlocfilehash: 79e5fa1bacd5fd65072a1c3c480482a8e51d94b6
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 8a0c1c7aab89f3bb62d0eb9f42e8ac65309d617e
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
 # <a name="manage--azure-data-lake-analytics-using-java-sdk"></a>使用 Java SDK 管理 Azure Data Lake Analytics
 
@@ -26,17 +26,17 @@ ms.lasthandoff: 10/06/2017
 
 ## <a name="prerequisites"></a>必要條件
 * **Java Development Kit (JDK) 8** (使用 Java 1.8 版)。
-* **IntelliJ** 或其他合適的 Java 開發環境。 這份文件中的 hello 指示使用 IntelliJ。
-* 建立 Azure Active Directory (AAD) 應用程式，並擷取其**用戶端識別碼**、**租用戶識別碼**和**金鑰**。 如需 AAD 應用程式與指示如何 tooget 用戶端識別碼，請參閱[建立 Active Directory 應用程式和服務主體使用入口網站](../azure-resource-manager/resource-group-create-service-principal-portal.md)。 hello Reply URI，而且索引鍵，從 hello 入口網站一旦建立 hello 應用程式及產生金鑰。
+* **IntelliJ** 或其他合適的 Java 開發環境。 本文件中的指示使用 IntelliJ。
+* 建立 Azure Active Directory (AAD) 應用程式，並擷取其**用戶端識別碼**、**租用戶識別碼**和**金鑰**。 如需了解 AAD 應用程式，以及如何取得用戶端識別碼的指示，請參閱 [使用入口網站建立 Active Directory 應用程式和服務主體](../azure-resource-manager/resource-group-create-service-principal-portal.md)。 建立應用程式並產生金鑰後，可以從入口網站取得回覆 URI 和金鑰。
 
 ## <a name="authenticating-using-azure-active-directory"></a>使用 Azure Active Directory 進行驗證
 
-下列程式碼片段提供程式碼的程式碼的 hello**非互動式**驗證，其中 hello 應用程式提供它自己的認證。
+下列程式碼片段提供**非互動式**驗證的程式碼，其中應用程式會提供它自己的認證。
 
 ## <a name="create-a-java-application"></a>建立 Java 應用程式
-1. 開啟 IntelliJ 並建立 Java 專案中使用 hello**命令列應用程式**範本。
-2. 左側 hello 螢幕 hello 專案上按一下滑鼠右鍵，然後按一下**新增架構支援**。 選擇 [Maven] 並按一下 [確定]。
-3. 開啟新建立的 hello **"pom.xml"**檔案，然後加入下列程式碼片段的文字之間 hello hello  **\</version >**標記和 hello  **\< /專案 >**標記：
+1. 開啟 IntelliJ，並使用 [命令列應用程式] 範本建立 Java 專案。
+2. 在畫面左側的專案上按一下滑鼠右鍵，然後按一下 [新增架構支援] 。 選擇 [Maven] 並按一下 [確定]。
+3. 開啟新建立的 **"pom.xml"** 檔案，並在 **\</version>** 標記和 **\<</project>** 標記之間新增下列一小段文字︰
 
 ```
 <repositories>
@@ -89,9 +89,9 @@ ms.lasthandoff: 10/06/2017
 </dependencies>
 ```
 
-跳過**檔案 > 設定 > 建置 > 執行 > 部署**。 選取 [建置工具] > [Maven] > [匯入]。 然後勾選 [自動匯入 Maven 專案] 。
+移至 [檔案] > [設定] > [建置] > [執行] > [部署]。 選取 [建置工具] > [Maven] > [匯入]。 然後勾選 [自動匯入 Maven 專案] 。
 
-開啟`Main.java`和取代 hello 現有程式碼區塊 hello 與下列程式碼片段：
+開啟 `Main.java`，並以下列程式碼片段取代現有的程式碼區塊：
 
 ```
 package com.company;
@@ -175,10 +175,10 @@ public class Main {
         WaitForNewline("File created.", "Submitting a job.");
 
         // ----------------------------------------
-        // Submit a job tooData Lake Analytics
+        // Submit a job to Data Lake Analytics
         // ----------------------------------------
 
-string script = "@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extractors.Csv(); OUTPUT @input too@\"/output1.csv\" USING Outputters.Csv();", "testJob";
+string script = "@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extractors.Csv(); OUTPUT @input TO @\"/output1.csv\" USING Outputters.Csv();", "testJob";
         UUID jobId = SubmitJobByScript(script);
         WaitForNewline("Job submitted.", "Getting job status.");
 
@@ -201,13 +201,13 @@ string script = "@input =  EXTRACT Data string FROM \"/input1.csv\" USING Extrac
 }
 ```
 
-提供 hello 參數的值叫出 hello 程式碼片段：
+提供在程式碼片段中呼叫之參數的值：
 * `localFolderPath`
 * `_adlaAccountName`
 * `_adlsAccountName`
 * `_resourceGroupName`
 
-Hello 預留位置取代為：
+取代下列各項的預留位置：
 * `CLIENT-ID`,
 * `CLIENT-SECRET`,
 * `TENANT-ID`
@@ -239,7 +239,7 @@ public static void WaitForNewline(String reason, String nextAction)
     if (nextAction == null)
         nextAction = "";
 
-    System.out.println(reason + "\r\nPress ENTER toocontinue...");
+    System.out.println(reason + "\r\nPress ENTER to continue...");
     try{System.in.read();}
     catch(Exception e){}
 
@@ -379,6 +379,6 @@ public static String GetJobStatus(UUID jobId) throws IOException, CloudException
 
 ## <a name="next-steps"></a>後續步驟
 
-* toolearn U-SQL，請參閱[開始使用 Azure 資料湖分析 U-SQL 語言](data-lake-analytics-u-sql-get-started.md)，和[U SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
+* 若要了解 U-SQL，請參閱[開始使用 Azure Data Lake Analytics U-SQL 語言](data-lake-analytics-u-sql-get-started.md)和 [U-SQL 語言參考](http://go.microsoft.com/fwlink/?LinkId=691348)。
 * 針對管理工作，請參閱 [使用 Azure 入口網站管理 Azure Data Lake Analytics](data-lake-analytics-manage-use-portal.md)。
-* tooget 的概觀的 Data Lake Analytics，請參閱[Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。
+* 若要取得 Data Lake Analytics 概觀，請參閱 [Azure Data Lake Analytics 概觀](data-lake-analytics-overview.md)。

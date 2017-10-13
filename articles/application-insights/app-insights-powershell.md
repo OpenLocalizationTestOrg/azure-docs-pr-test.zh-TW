@@ -1,5 +1,5 @@
 ---
-title: "使用 PowerShell 的 Azure Application Insights aaaAutomate |Microsoft 文件"
+title: "使用 PowerShell 將 Azure Application Insights 自動化 | Microsoft Docs"
 description: "在 PowerShell 中使用 Azure Resource Manager 範本自動建立資源、警示及可用性測試。"
 services: application-insights
 documentationcenter: 
@@ -13,24 +13,24 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/02/2017
 ms.author: bwren
-ms.openlocfilehash: ebd336eafba58a690a0e8ffbd1c74f7e93dbb682
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 88dbb9515300f847789bc889911cdeff5f5bdb53
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 #  <a name="create-application-insights-resources-using-powershell"></a>使用 PowerShell 建立 Application Insights 資源
-本文將告訴您如何 tooautomate hello 建立和更新[Application Insights](app-insights-overview.md)使用 Azure 資源管理以自動執行的資源。 例如，您可能建置程序中這麼做。 Hello 基本的 Application Insights 資源，以及您可以建立[可用性 web 測試](app-insights-monitor-web-app-availability.md)、 安裝[警示](app-insights-alerts.md)，將的 hello[定價配置](app-insights-pricing.md)，並建立其他 Azure資源。
+本文說明如何使用 Azure 資源管理，自動將 [Application Insights](app-insights-overview.md) 資源的建立和更新自動化。 例如，您可能建置程序中這麼做。 除了基本的 Application Insights 資源外，您可以建立[可用性 Web 測試](app-insights-monitor-web-app-availability.md)、設定[警示](app-insights-alerts.md)、設定[價格配置](app-insights-pricing.md)和建立其他 Azure 資源。
 
-hello 這些資源是 JSON 範本的索引鍵 toocreating [Azure Resource Manager](../azure-resource-manager/powershell-azure-resource-manager.md)。 簡而言之，hello 程序是： 下載 hello JSON 定義現有的資源;某些值，例如名稱; 參數化然後再執行 hello 範本，每當您想要 toocreate 新的資源。 您可以封裝在一起的多項資源、 toocreate 中其中一個移-例如、 可用性測試、 警示與連續匯出的存放裝置的應用程式監視。 有的 hello 參數化，這裡，我們將說明一些微妙 toosome。
+建立這些資源的關鍵是 [Azure 資源管理員](../azure-resource-manager/powershell-azure-resource-manager.md)適用的 JSON 範本。 簡單地說，此程序是：下載現有資源的 JSON 定義；參數化某些值 (例如名稱)；然後每當您想建立新的資源時再執行範本。 您可以一起封裝幾項資源一次全部建立，例如一個包含可用性測試、警示和連續匯出儲存體的應用程式監視器。 部分參數化有一些微妙之處，我們會在這裡說明。
 
 ## <a name="one-time-setup"></a>單次設定
 若您未曾將 PowerShell 與 Azure 訂用帳戶搭配使用：
 
-Hello toorun hello 指令碼所在的電腦上安裝 hello Azure Powershell 模組：
+在您要執行指令碼的電腦上安裝 Azure Powershell 模組：
 
-1. 安裝 [Microsoft Web Platform Installer (v5 或更高版本)](http://www.microsoft.com/web/downloads/platform.aspx)。
-2. 使用 tooinstall Microsoft Azure Powershell。
+1. 安裝 [Microsoft Web Platform Installer (v5 或更新版本)](http://www.microsoft.com/web/downloads/platform.aspx)。
+2. 請使用它來安裝 Microsoft Azure Powershell。
 
 ## <a name="create-an-azure-resource-manager-template"></a>建立 Azure Resource Manager 範本
 建立新的 .json 檔案 - 在此範例中稱為 `template1.json` 。 將此內容複製到其中：
@@ -43,7 +43,7 @@ Hello toorun hello 指令碼所在的電腦上安裝 hello Azure Powershell 模�
             "appName": {
                 "type": "string",
                 "metadata": {
-                    "description": "Enter hello application name."
+                    "description": "Enter the application name."
                 }
             },
             "appType": {
@@ -56,7 +56,7 @@ Hello toorun hello 指令碼所在的電腦上安裝 hello Azure Powershell 模�
                     "other"
                 ],
                 "metadata": {
-                    "description": "Enter hello application type."
+                    "description": "Enter the application type."
                 }
             },
             "appLocation": {
@@ -69,7 +69,7 @@ Hello toorun hello 指令碼所在的電腦上安裝 hello Azure Powershell 模�
                     "North Europe"
                 ],
                 "metadata": {
-                    "description": "Enter hello application location."
+                    "description": "Enter the application location."
                 }
             },
             "priceCode": {
@@ -95,7 +95,7 @@ Hello toorun hello 指令碼所在的電腦上安裝 hello Azure Powershell 模�
                 "type": "int",
                 "defaultValue": 24,
                 "metadata": {
-                    "description": "Enter daily quota reset hour in UTC (0 too23). Values outside hello range will get a random reset hour."
+                    "description": "Enter daily quota reset hour in UTC (0 to 23). Values outside the range will get a random reset hour."
                 }
             },
             "warningThreshold": {
@@ -104,7 +104,7 @@ Hello toorun hello 指令碼所在的電腦上安裝 hello Azure Powershell 模�
                 "minValue": 1,
                 "maxValue": 100,
                 "metadata": {
-                    "description": "Enter hello % value of daily quota after which warning mail toobe sent. "
+                    "description": "Enter the % value of daily quota after which warning mail to be sent. "
                 }
             }
         },
@@ -153,7 +153,7 @@ Hello toorun hello 指令碼所在的電腦上安裝 hello Azure Powershell 模�
 
 
 ## <a name="create-application-insights-resources"></a>建立 Application Insights 資源
-1. 在 PowerShell 中，登入 tooAzure:
+1. 在 PowerShell 中，登入 Azure：
    
     `Login-AzureRmAccount`
 2. 執行如下命令：
@@ -166,14 +166,14 @@ Hello toorun hello 指令碼所在的電腦上安裝 hello Azure Powershell 模�
 
     ``` 
    
-   * `-ResourceGroupName`是您想要 toocreate hello 新資源的 hello 群組。
-   * `-TemplateFile`必須先 hello 自訂參數。
-   * `-appName`hello 資源 toocreate hello 名稱。
+   * `-ResourceGroupName` 是您要在其中建立新資源的群組。
+   * `-TemplateFile` 必須出現在自訂參數之前。
+   * `-appName` 是要建立的資源的名稱。
 
-您可以加入其他參數-hello 範本 hello 參數區段中找到其描述。
+您可以新增其他參數 - 可在範本的參數區段中找到其描述。
 
-## <a name="tooget-hello-instrumentation-key"></a>tooget hello 檢測金鑰
-建立應用程式資源之後, 您會想 hello 檢測金鑰： 
+## <a name="to-get-the-instrumentation-key"></a>取得檢測金鑰
+建立應用程式資源之後，您會想要檢測金鑰： 
 
 ```PS
     $resource = Find-AzureRmResource -ResourceNameEquals "<YOUR APP NAME>" -ResourceType "Microsoft.Insights/components"
@@ -183,11 +183,11 @@ Hello toorun hello 指令碼所在的電腦上安裝 hello Azure Powershell 模�
 
 
 <a id="price"></a>
-## <a name="set-hello-price-plan"></a>設定 hello 價格計劃
+## <a name="set-the-price-plan"></a>設定價格方案
 
-您可以設定 hello[價格計劃](app-insights-pricing.md)。
+您可以設定[價格方案](app-insights-pricing.md)。
 
-toocreate hello 企業價格計劃，使用上述的 hello 範本的應用程式資源：
+若要使用企業價格計劃建立應用程式資源，請使用上述的範本︰
 
 ```PS
         New-AzureRmResourceGroupDeployment -ResourceGroupName Fabrikam `
@@ -201,16 +201,16 @@ toocreate hello 企業價格計劃，使用上述的 hello 範本的應用程式
 |1|基本|
 |2|Enterprise|
 
-* 如果您只想 toouse hello 預設基本價格計劃，您可以省略 hello CurrentBillingFeatures 資源從 hello 範本。
-* 如果在建立 hello 元件資源之後，您會想 toochange hello 價格計劃，您可以使用省略 hello"microsoft.insights/components"資源的範本。 此外，省略 hello`dependsOn`從 hello 計費資源節點。 
+* 如果您只想要使用預設基本價格方案，您可以從範本中省略 CurrentBillingFeatures 資源。
+* 如果您想在建立元件資源之後變更價格方案，可以使用省略 "microsoft.insights/components" 資源的範本。 此外，也從計費資源省略 `dependsOn` 節點。 
 
-tooverify hello 更新的價格計劃，看看 hello 瀏覽器中的 hello [功能 + 定價] 刀鋒視窗。 **重新整理 hello 瀏覽器檢視**toomake 確定您看到 hello 最新狀態。
+若要驗證更新的價格方案，請在瀏覽器中查看 [功能與定價] 刀鋒視窗。 「重新整理瀏覽器檢視」以確保您看到的是最新的狀態。
 
 
 
 ## <a name="add-a-metric-alert"></a>新增度量警示
 
-總的度量的警示，在 hello tooset 相同時間為您的應用程式資源，類似到 hello 範本檔案的合併程式碼：
+若要與您的應用程式資源同時設定度量警示，請將類似的程式碼合併至範本檔案︰
 
 ```JSON
 {
@@ -236,7 +236,7 @@ tooverify hello 更新的價格計劃，看看 hello 瀏覽器中的 hello [功�
       "type": "Microsoft.Insights/alertrules",
       "apiVersion": "2014-04-01",
       "location": "[parameters('appLocation')]",
-      // Ensure this resource is created after hello app resource:
+      // Ensure this resource is created after the app resource:
       "dependsOn": [
         "[resourceId('Microsoft.Insights/components', parameters('appName'))]"
       ],
@@ -272,22 +272,22 @@ tooverify hello 更新的價格計劃，看看 hello 瀏覽器中的 hello [功�
 }
 ```
 
-當您叫用 hello 範本時，您可以選擇性地加入這個參數：
+當您叫用範本時，您可以選擇性地新增此參數︰
 
     `-responseTime 2`
 
 您當然可以參數化其他欄位。 
 
-toofind 出 hello 型別名稱和組態詳細資料的其他警示的規則，以手動方式建立規則，然後檢查它在[Azure Resource Manager](https://resources.azure.com/)。 
+若要尋找其他警示規則的類型名稱和組態詳細資料，請以手動方式建立規則，然後在 [Azure Resource Manager](https://resources.azure.com/) 檢查。 
 
 
 ## <a name="add-an-availability-test"></a>新增可用性測試
 
-這個範例是 ping 測試 (tootest 單一頁面)。  
+這個範例是 ping 測試 (以測試單一網頁)。  
 
-**有兩個部分**可用性測試中： hello 測試本身，並通知您失敗的 hello 警示。
+可用性測試中**有兩個部分**︰測試本身，以及通知您失敗的警示。
 
-合併 hello 成 hello 範本檔建立 hello 應用程式，下列程式碼。
+將下列程式碼合併至建立應用程式的範本檔案。
 
 ```JSON
 {
@@ -301,13 +301,13 @@ toofind 出 hello 型別名稱和組態詳細資料的其他警示的規則，�
     },
     resources: { ... // existing resources here ...
     { //
-      // Availability test: part 1 configures hello test
+      // Availability test: part 1 configures the test
       //
       "name": "[variables('pingTestName')]",
       "type": "Microsoft.Insights/webtests",
       "apiVersion": "2014-04-01",
       "location": "[parameters('appLocation')]",
-      // Ensure this is created after hello app resource:
+      // Ensure this is created after the app resource:
       "dependsOn": [
         "[resourceId('Microsoft.Insights/components', parameters('appName'))]"
       ],
@@ -334,7 +334,7 @@ toofind 出 hello 型別名稱和組態詳細資料的其他警示的規則，�
           }
         ],
         "Configuration": {
-          "WebTest": "[concat('<WebTest   Name=\"', variables('pingTestName'), '\"   Enabled=\"True\"         CssProjectStructure=\"\"    CssIteration=\"\"  Timeout=\"120\"  WorkItemIds=\"\"         xmlns=\"http://microsoft.com/schemas/VisualStudio/TeamTest/2010\"         Description=\"\"  CredentialUserName=\"\"  CredentialPassword=\"\"         PreAuthenticate=\"True\"  Proxy=\"default\"  StopOnError=\"False\"         RecordedResultFile=\"\"  ResultsLocale=\"\">  <Items>  <Request Method=\"GET\"    Version=\"1.1\"  Url=\"', parameters('Url'),   '\" ThinkTime=\"0\"  Timeout=\"300\" ParseDependentRequests=\"True\"         FollowRedirects=\"True\" RecordResult=\"True\" Cache=\"False\"         ResponseTimeGoal=\"0\"  Encoding=\"utf-8\"  ExpectedHttpStatusCode=\"200\"         ExpectedResponseUrl=\"\" ReportingName=\"\" IgnoreHttpStatusCode=\"False\" />        </Items>  <ValidationRules> <ValidationRule  Classname=\"Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleFindText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\" DisplayName=\"Find Text\"         Description=\"Verifies hello existence of hello specified text in hello response.\"         Level=\"High\"  ExectuionOrder=\"BeforeDependents\">  <RuleParameters>        <RuleParameter Name=\"FindText\" Value=\"',   parameters('pingText'), '\" />  <RuleParameter Name=\"IgnoreCase\" Value=\"False\" />  <RuleParameter Name=\"UseRegularExpression\" Value=\"False\" />  <RuleParameter Name=\"PassIfTextFound\" Value=\"True\" />  </RuleParameters> </ValidationRule>  </ValidationRules>  </WebTest>')]"
+          "WebTest": "[concat('<WebTest   Name=\"', variables('pingTestName'), '\"   Enabled=\"True\"         CssProjectStructure=\"\"    CssIteration=\"\"  Timeout=\"120\"  WorkItemIds=\"\"         xmlns=\"http://microsoft.com/schemas/VisualStudio/TeamTest/2010\"         Description=\"\"  CredentialUserName=\"\"  CredentialPassword=\"\"         PreAuthenticate=\"True\"  Proxy=\"default\"  StopOnError=\"False\"         RecordedResultFile=\"\"  ResultsLocale=\"\">  <Items>  <Request Method=\"GET\"    Version=\"1.1\"  Url=\"', parameters('Url'),   '\" ThinkTime=\"0\"  Timeout=\"300\" ParseDependentRequests=\"True\"         FollowRedirects=\"True\" RecordResult=\"True\" Cache=\"False\"         ResponseTimeGoal=\"0\"  Encoding=\"utf-8\"  ExpectedHttpStatusCode=\"200\"         ExpectedResponseUrl=\"\" ReportingName=\"\" IgnoreHttpStatusCode=\"False\" />        </Items>  <ValidationRules> <ValidationRule  Classname=\"Microsoft.VisualStudio.TestTools.WebTesting.Rules.ValidationRuleFindText, Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a\" DisplayName=\"Find Text\"         Description=\"Verifies the existence of the specified text in the response.\"         Level=\"High\"  ExectuionOrder=\"BeforeDependents\">  <RuleParameters>        <RuleParameter Name=\"FindText\" Value=\"',   parameters('pingText'), '\" />  <RuleParameter Name=\"IgnoreCase\" Value=\"False\" />  <RuleParameter Name=\"UseRegularExpression\" Value=\"False\" />  <RuleParameter Name=\"PassIfTextFound\" Value=\"True\" />  </RuleParameters> </ValidationRule>  </ValidationRules>  </WebTest>')]"
         },
         "SyntheticMonitorId": "[variables('pingTestName')]"
       }
@@ -342,7 +342,7 @@ toofind 出 hello 型別名稱和組態詳細資料的其他警示的規則，�
 
     {
       //
-      // Availability test: part 2, hello alert rule
+      // Availability test: part 2, the alert rule
       //
       "name": "[variables('pingAlertRuleName')]",
       "type": "Microsoft.Insights/alertrules",
@@ -384,39 +384,39 @@ toofind 出 hello 型別名稱和組態詳細資料的其他警示的規則，�
 }
 ```
 
-toodiscover hello 代碼的其他測試的位置或 tooautomate hello 建立更複雜的 web 測試，手動建立範例，然後再參數化 hello 程式碼，從[Azure Resource Manager](https://resources.azure.com/)。
+若要探索其他測試位置的程式碼，或自動建立更複雜的 web 測試，請手動建立範例，然後從 [Azure Resource Manager](https://resources.azure.com/) 參數化程式碼。
 
 ## <a name="add-more-resources"></a>新增其他資源
 
-tooautomate hello 建立任何其他資源的任何範例手動建立，然後複製並從其程式碼的參數化[Azure Resource Manager](https://resources.azure.com/)。 
+若要自動建立任何類型的任何其他資源，手動建立範例，然後從 [Azure Resource Manager](https://resources.azure.com/) 複製並參數化其程式碼。 
 
-1. 開啟 [Azure 資源管理員](https://resources.azure.com/)。 向下導覽`subscriptions/resourceGroups/<your resource group>/providers/Microsoft.Insights/components`，tooyour 應用程式資源。 
+1. 開啟 [Azure 資源管理員](https://resources.azure.com/)。 向下導覽 `subscriptions/resourceGroups/<your resource group>/providers/Microsoft.Insights/components` 直到應用程式資源。 
    
     ![Azure 資源總管中的瀏覽](./media/app-insights-powershell/01.png)
    
-    *元件*是 hello 基本的顯示應用程式的 Application Insights 資源。 Hello 相關警示的規則和可用性 web 測試有不同的資源。
-2. 複製 hello JSON 的 hello 元件到 hello 適當位置中`template1.json`。
+    *元件* 是用來顯示應用程式的基本 Application Insights 資源。 相關聯的警示規則和可用性 Web 測試有個別的資源。
+2. 將元件的 JSON 複製到 `template1.json`的適當位置。
 3. 刪除這些屬性：
    
    * `id`
    * `InstrumentationKey`
    * `CreationDate`
    * `TenantId`
-4. 開啟 hello webtests 和 alertrules 區段，並將 hello JSON 的個別項目複製到您的範本。 (不要複製 hello webtests 或 alertrules 節點： 移至其下的 hello 項目。)
+4. 開啟 webtests 和 alertrules 區段，將個別項目的 JSON 複製到您的範本。 (請勿從 webtests 或 alertrules 節點複製：移到其下的項目。)
    
-    每個 web 測試有相關聯的警示規則，因此您需要這些 toocopy。
+    每個 Web 測試都有一個關聯的警示規則，您必須同時複製這兩者。
    
     您也可以包含計量的警示。 [計量名稱](app-insights-powershell-alerts.md#metric-names)。
 5. 在每個資源中插入下面這行：
    
     `"apiVersion": "2015-05-01",`
 
-### <a name="parameterize-hello-template"></a>參數化 hello 範本
-現在您有使用參數 tooreplace hello 特定名稱。 太[參數化的範本](../azure-resource-manager/resource-group-authoring-templates.md)，撰寫運算式使用[組協助程式函式](../azure-resource-manager/resource-group-template-functions.md)。 
+### <a name="parameterize-the-template"></a>參數化範本
+現在您必須以參數取代特定的名稱。 若要[參數化範本](../azure-resource-manager/resource-group-authoring-templates.md)，您要使用[一組協助程式函式](../azure-resource-manager/resource-group-template-functions.md)撰寫表示式。 
 
-您無法將參數化字串的部分，因此，使用`concat()`toobuild 字串。
+您無法將參數化字串的一部分，因此請使用 `concat()` 建置字串。
 
-以下是範例 hello 替代項目中，您會想 toomake。 每個替換各出現數次。 您的範本中可能需要其他替換。 這些範例會使用頂端的 hello 範本 hello hello 參數和我們所定義的變數。
+以下是您會想要進行的替換的範例。 每個替換各出現數次。 您的範本中可能需要其他替換。 這些範例使用我們在範本頂端定義的參數和變數。
 
 | find | 取代為 |
 | --- | --- |
@@ -429,13 +429,13 @@ tooautomate hello 建立任何其他資源的任何範例手動建立，然後�
 | `"myappname"` (小寫) |`"[toLower(parameters('appName'))]"` |
 | `"<WebTest Name=\"myWebTest\" ...`<br/>` Url=\"http://fabrikam.com/home\" ...>"` |`[concat('<WebTest Name=\"',` <br/> `parameters('webTestName'),` <br/> `'\" ... Url=\"', parameters('Url'),` <br/> `'\"...>')]"`<br/>刪除 Guid 和識別碼。 |
 
-### <a name="set-dependencies-between-hello-resources"></a>設定 hello 資源之間的相依性
-Azure 應該設定嚴格的順序中的 hello 資源。 toomake 確定安裝程式完成之前 hello 接下來，新增相依性幾行：
+### <a name="set-dependencies-between-the-resources"></a>設定資源間的相依性
+Azure 應以嚴格的順序設定資源。 為確保一項設定完成後再開始下一項設定，請加入相依性命令行：
 
-* 在 hello 可用性測試資源：
+* 在可用性測試資源中︰
   
     `"dependsOn": ["[resourceId('Microsoft.Insights/components', parameters('appName'))]"],`
-* 在可用性測試資源 hello 警示：
+* 可用性測試的警示資源中︰
   
     `"dependsOn": ["[resourceId('Microsoft.Insights/webtests', variables('testName'))]"],`
 
@@ -447,7 +447,7 @@ Azure 應該設定嚴格的順序中的 hello 資源。 toomake 確定安裝程�
 * [建立 Application Insights 資源](app-insights-powershell-script-create-resource.md) - 快速方法 (不使用範本)
 * [設定警示](app-insights-powershell-alerts.md)
 * [建立 Web 測試](https://azure.microsoft.com/blog/creating-a-web-test-alert-programmatically-with-application-insights/)
-* [傳送 Azure 診斷 tooApplication Insights](app-insights-powershell-azure-diagnostics.md)
-* [部署從 GitHub tooAzure](http://blogs.msdn.com/b/webdev/archive/2015/09/16/deploy-to-azure-from-github-with-application-insights.aspx)
+* [將 Azure 診斷傳送至 Application Insights](app-insights-powershell-azure-diagnostics.md)
+* [從 GitHub 部署至 Azure (英文)](http://blogs.msdn.com/b/webdev/archive/2015/09/16/deploy-to-azure-from-github-with-application-insights.aspx)
 * [建立版本附註](https://github.com/Microsoft/ApplicationInsights-Home/blob/master/API/CreateReleaseAnnotation.ps1)
 

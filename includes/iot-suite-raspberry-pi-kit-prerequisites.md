@@ -1,22 +1,22 @@
 ## <a name="prerequisites"></a>必要條件
 
-toocomplete 本教學課程中，您需要使用中的 Azure 訂用帳戶。
+若要完成此教學課程，您需要一個有效的 Azure 訂用帳戶。
 
 > [!NOTE]
 > 如果您沒有帳戶，只需要幾分鐘的時間就可以建立免費試用帳戶。 如需詳細資訊，請參閱 [Azure 免費試用][lnk-free-trial]。
 
 ### <a name="required-software"></a>必要的軟體
 
-需要 SSH 用戶端上您 tooremotely 存取 hello 命令列 hello 覆盆子 Pi 您桌面的電腦 tooenable。
+您需要透過桌上型電腦上的 SSH 用戶端，才能從遠端存取 Raspberry Pi 上的命令列。
 
 - Windows 不包含 SSH 用戶端。 我們建議使用 [PuTTY](http://www.putty.org/)。
-- 多數 Linux 散發套件和 Mac OS 包含 hello 命令列 SSH 公用程式。 如需詳細資訊，請參閱[使用 Linux 或 Mac OS 的 SSH](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md)。
+- 大部分的 Linux 散發套件和 Mac OS 都包含命令列 SSH 公用程式。 如需詳細資訊，請參閱[使用 Linux 或 Mac OS 的 SSH](https://www.raspberrypi.org/documentation/remote-access/ssh/unix.md)。
 
 ### <a name="required-hardware"></a>必要的硬體
 
-桌上型電腦 tooenable 您 tooconnect 遠端 toohello 命令列上 hello 覆盆子 Pi。
+一部桌上型電腦，可讓您從遠端連線到 Raspberry Pi 上的命令列。
 
-[適用於 Raspberry Pi 3 的 Microsoft IoT 入門套件][lnk-starter-kits]或對等的元件。 本教學課程使用下列項目從 hello 套件 hello:
+[適用於 Raspberry Pi 3 的 Microsoft IoT 入門套件][lnk-starter-kits]或對等的元件。 本教學課程會使用套件中的下列項目：
 
 - Raspberry Pi 3
 - MicroSD 卡 (具有 NOOBS)

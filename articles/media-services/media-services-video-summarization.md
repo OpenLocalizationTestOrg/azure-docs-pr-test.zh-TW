@@ -1,6 +1,6 @@
 ---
-title: "aaaUse Azure Media 視訊縮圖 tooCreate 視訊摘要 |Microsoft 文件"
-description: "視訊摘要可以協助您建立的較長的視訊摘要會自動從 hello 來源視訊中選取感興趣的程式碼片段。 當您想 tooprovide 哪些 tooexpect 長的視訊中的快速概觀，這非常有用。"
+title: "使用 Azure 媒體影片縮圖建立視訊摘要 | Microsoft Docs"
+description: "視訊摘要可自動選取來源視訊的有趣片段，協助您建立較長視訊的摘要。 針對片長較長的視訊，如果您想要提供精彩內容的快速概觀，這非常有用。"
 services: media-services
 documentationcenter: 
 author: juliako
@@ -14,26 +14,26 @@ ms.devlang: dotnet
 ms.topic: article
 ms.date: 07/18/2017
 ms.author: milanga;juliako;
-ms.openlocfilehash: 0a8f0bba6c12a948b940114fe4937e675688a8c7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5d5afdaf22ffea8f3b77a154acb5d0a8dda74405
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="use-azure-media-video-thumbnails-toocreate-a-video-summarization"></a>使用 Azure Media 視訊縮圖 tooCreate 視訊摘要
-## <a name="overview"></a>概觀
-hello **Azure Media 視訊縮圖**媒體處理器 (MP) 可讓您 toocreate 的視訊，會很有用的 toocustomers 只想 toopreview 長的視訊摘要的摘要。 例如，客戶可能會想 toosee 簡短"摘要視訊"當他們將滑鼠停留在縮圖。 修改 hello 參數**Azure Media 視訊縮圖**透過組態預先設定，您可以使用 hello 管理組件的功能強大的次的偵測和串連技術 tooalgorithmically 產生描述性 subclip。  
+# <a name="use-azure-media-video-thumbnails-to-create-a-video-summarization"></a>使用 Azure 媒體視訊縮圖建立視訊摘要
+## <a name="overview"></a>Overview
+**Azure 媒體視訊縮圖** 媒體處理器 (MP) 可讓您建立視訊的摘要；當視訊較長而客戶只想預覽摘要時，就非常實用。 例如，客戶可能會想在將滑鼠移至縮圖上時，查看簡短的「視訊摘要」。 透過設定預設值，調整 **Azure 媒體視訊縮圖** 的參數，您即可使用 MP 強大的拍攝偵測和串連技術，以演算法來產生描述性的子剪輯。  
 
-hello **Azure Media 視訊縮圖**MP 目前為預覽狀態。
+**Azure 媒體視訊縮圖** MP 目前為預覽功能。
 
-本主題詳細說明有關**Azure Media 視訊縮圖**，並示範如何 toouse 使用 Media Services SDK for.NET。
+本主題提供有關 **Azure 媒體視訊縮圖**的詳細資訊，並示範如何搭配適用於 .NET 的媒體服務 SDK 來使用它。
 
 ## <a name="limitations"></a>限制
 
-在某些情況下，如果您的視訊不組成不同場景，hello 輸出只會單一擷取畫面。
+在某些情況下，如果您的視訊並未包含不同場景，則輸出將只是單一擷取畫面。
 
 ## <a name="video-summary-example"></a>視訊摘要範例
-以下是何種 hello Azure Media 視訊縮圖媒體處理器可以執行的一些範例：
+以下是 Azure 媒體視訊縮圖媒體處理器可以執行的一些範例：
 
 ### <a name="original-video"></a>原始視訊
 [原始視訊](http://ampdemo.azureedge.net/azuremediaplayer.html?url=https%3A%2F%2Fnimbuscdn-nimbuspm.streaming.mediaservices.windows.net%2Faed33834-ec2d-4788-88b5-a4505b3d032c%2FMicrosoft%27s%20HoloLens%20Live%20Demonstration.ism%2Fmanifest)
@@ -42,26 +42,26 @@ hello **Azure Media 視訊縮圖**MP 目前為預覽狀態。
 [視訊縮圖的結果](http://ampdemo.azureedge.net/azuremediaplayer.html?url=http%3A%2F%2Fnimbuscdn-nimbuspm.streaming.mediaservices.windows.net%2Ff5c91052-4232-41d4-b531-062e07b6a9ae%2FHololens%2520Demo_VideoThumbnails_MotionThumbnail.mp4)
 
 ## <a name="task-configuration-preset"></a>工作設定 (預設)
-以 **Azure 媒體視訊縮圖**建立視訊縮圖工作時，您必須指定設定預設值。 使用下列基本的 JSON 組態 hello 建立 hello 上述縮圖的範例：
+以 **Azure 媒體視訊縮圖**建立視訊縮圖工作時，您必須指定設定預設值。 上述縮圖是使用下列基本 JSON 組態建立的範例︰
 
     {"version":"1.0"}
 
-目前，您可以變更下列參數的 hello:
+目前，您可以變更下列參數：
 
 | 參數 | 說明 |
 | --- | --- |
-| outputAudio |指定 hello 結果視訊包含任何音訊。 <br/>允許的值為 True 或 False。 預設值是 True。 |
-| fadeInFadeOut |指定是否會淡出轉換之間 hello 個別影片縮圖會使用。  <br/>允許的值為 True 或 False。  預設值是 True。 |
-| maxMotionThumbnailDurationInSecs |應該指定多久 hello 整個結果視訊的整數。  預設值取決於原始視訊的持續時間。 |
+| outputAudio |指定結果視訊是否要包含任何音訊。 <br/>允許的值為 True 或 False。 預設值是 True。 |
+| fadeInFadeOut |指定不同的動作縮圖之間是否要使用淡化轉換。  <br/>允許的值為 True 或 False。  預設值是 True。 |
+| maxMotionThumbnailDurationInSecs |整數，指定整個結果視訊的片長。  預設值取決於原始視訊的持續時間。 |
 
-hello 以下表格說明 hello 預設持續時間，當**maxMotionThumbnailInSecs**未使用。
+下表說明未使用 **maxMotionThumbnailInSecs** 時的預設持續時間。
 
 |  |  |  |
 | --- | --- | --- | --- | --- |
 | 視訊持續時間 |d < 3 分鐘 |3 分鐘 < d < 15 分鐘 |
 | 縮圖持續時間 |15 秒 (2-3 個場景) |30 秒 (3-5 個場景) |
 
-hello 下列 JSON 設定可用的參數。
+下列 JSON 會設定可用的參數。
 
     {
         "version": "1.0",
@@ -74,10 +74,10 @@ hello 下列 JSON 設定可用的參數。
 
 ## <a name="net-sample-code"></a>.NET 範例程式碼
 
-hello 以下程式顯示如何：
+下列程式將示範如何：
 
-1. 建立資產，並將媒體檔案上傳到 hello 資產。
-2. 建立工作，以根據組態檔包含下列 json 的預設 hello 視訊縮圖工作。 
+1. 建立資產並將媒體檔案上傳到資產。
+2. 根據包含下列 JSON 預設值的組態檔案，建立執行視訊縮圖工作的工作。 
    
         {                
             "version": "1.0",
@@ -87,11 +87,11 @@ hello 以下程式顯示如何：
                 "fadeInFadeOut": "false"
             }
         }
-3. 下載 hello 輸出檔案。 
+3. 下載輸出檔案。 
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>建立和設定 Visual Studio 專案
 
-設定您的開發環境，並填入 hello 與連接資訊的 app.config 檔案中所述[與.NET 的 Media Services 開發](media-services-dotnet-how-to-use.md)。 
+設定您的開發環境並在 app.config 檔案中填入連線資訊，如[使用 .NET 進行 Media Services 開發](media-services-dotnet-how-to-use.md)中所述。 
 
 #### <a name="example"></a>範例
 
@@ -107,7 +107,7 @@ hello 以下程式顯示如何：
     {
         class Program
         {
-            // Read values from hello App.config file.
+            // Read values from the App.config file.
             private static readonly string _AADTenantDomain =
                 ConfigurationManager.AppSettings["AADTenantDomain"];
             private static readonly string _RESTAPIEndpoint =
@@ -124,17 +124,17 @@ hello 以下程式顯示如何：
                 _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
 
 
-                // Run hello thumbnail job.
+                // Run the thumbnail job.
                 var asset = RunVideoThumbnailJob(@"C:\supportFiles\VideoThumbnail\BigBuckBunny.mp4",
                                             @"C:\supportFiles\VideoThumbnail\config.json");
 
-                // Download hello job output asset.
+                // Download the job output asset.
                 DownloadAsset(asset, @"C:\supportFiles\VideoThumbnail\Output");
             }
 
             static IAsset RunVideoThumbnailJob(string inputMediaFilePath, string configurationFile)
             {
-                // Create an asset and upload hello input media file toostorage.
+                // Create an asset and upload the input media file to storage.
                 IAsset asset = CreateAssetAndUploadSingleFile(inputMediaFilePath,
                     "My Video Thumbnail Input Asset",
                     AssetCreationOptions.None);
@@ -142,38 +142,38 @@ hello 以下程式顯示如何：
                 // Declare a new job.
                 IJob job = _context.Jobs.Create("My Video Thumbnail Job");
 
-                // Get a reference tooAzure Media Video Thumbnails.
+                // Get a reference to Azure Media Video Thumbnails.
                 string MediaProcessorName = "Azure Media Video Thumbnails";
 
                 var processor = GetLatestMediaProcessorByName(MediaProcessorName);
 
-                // Read configuration from hello specified file.
+                // Read configuration from the specified file.
                 string configuration = File.ReadAllText(configurationFile);
 
-                // Create a task with hello encoding details, using a string preset.
+                // Create a task with the encoding details, using a string preset.
                 ITask task = job.Tasks.AddNew("My Video Thumbnail Task",
                     processor,
                     configuration,
                     TaskOptions.None);
 
-                // Specify hello input asset.
+                // Specify the input asset.
                 task.InputAssets.Add(asset);
 
-                // Add an output asset toocontain hello results of hello job.
+                // Add an output asset to contain the results of the job.
                 task.OutputAssets.AddNew("My Video Thumbnail Output Asset", AssetCreationOptions.None);
 
-                // Use hello following event handler toocheck job progress.  
+                // Use the following event handler to check job progress.  
                 job.StateChanged += new EventHandler<JobStateChangedEventArgs>(StateChanged);
 
-                // Launch hello job.
+                // Launch the job.
                 job.Submit();
 
-                // Check job execution and wait for job toofinish.
+                // Check job execution and wait for job to finish.
                 Task progressJobTask = job.GetExecutionProgressTask(CancellationToken.None);
 
                 progressJobTask.Wait();
 
-                // If job state is Error, hello event handling
+                // If job state is Error, the event handling
                 // method for job progress should log errors.  Here we check
                 // for error state and exit if needed.
                 if (job.State == JobState.Error)

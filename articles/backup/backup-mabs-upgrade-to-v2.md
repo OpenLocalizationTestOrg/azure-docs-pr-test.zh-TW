@@ -1,6 +1,6 @@
 ---
-title: "Azure 備份伺服器 v2 aaaInstall |Microsoft 文件"
-description: "Azure 備份伺服器 v2 可提供您經過強化的備份功能，讓您保護 VM、檔案和資料夾以及工作負載等項目。 深入了解如何 tooinstall 或升級 tooAzure 備份伺服器 v2。"
+title: "安裝 Azure 備份伺服器 v2 | Microsoft Docs"
+description: "Azure 備份伺服器 v2 可提供您經過強化的備份功能，讓您保護 VM、檔案和資料夾以及工作負載等項目。 了解如何安裝或升級為 Azure 備份伺服器 v2。"
 services: backup
 documentationcenter: 
 author: markgalioto
@@ -14,71 +14,71 @@ ms.devlang: na
 ms.topic: article
 ms.date: 05/15/2017
 ms.author: masaran;markgal
-ms.openlocfilehash: 5b1699dadd3a173f1c0ef91a1a600bc5e12f20ad
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 1bbb16afef7940933b4c3ae23873f212770137e0
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="install-azure-backup-server-v2"></a>安裝 Azure 備份伺服器 v2
 
 Azure 備份伺服器可協助保護您的虛擬機器 (VM)、工作負載以及檔案和資料夾等項目。 Azure 備份伺服器 v2 是以 Azure 備份伺服器 v1 作為建置基礎，並可提供您 v1 所沒有的新功能。 如需 v1 和 v2 的功能比較，請參閱 [Azure 備份伺服器保護對照表](backup-mabs-protection-matrix.md)。 
 
-hello 備份伺服器 v2 中的其他功能，包括備份伺服器 v1 升級。 不過，並非一定要有備份伺服器 v1 才能安裝備份伺服器 v2。 如果您要從備份伺服器 v1 tooBackup 伺服器 v2 tooupgrade，安裝備份伺服器 v2 hello 備份伺服器保護伺服器上。 您現有的備份伺服器設定會保持不變。
+備份伺服器 v2 中新增的功能是備份伺服器 v1 的升級。 不過，並非一定要有備份伺服器 v1 才能安裝備份伺服器 v2。 如果您想要從備份伺服器 v1 升級為備份伺服器 v2，請在備份伺服器保護伺服器上安裝備份伺服器 v2。 您現有的備份伺服器設定會保持不變。
 
-您可以在 Windows Server 2012 R2 或 Windows Server 2016 上安裝備份伺服器 v2。 tootake 使用新的功能類似 System Center 2016 的資料保護管理員現代化備份存放裝置，您必須安裝 Windows Server 2016 上的備份伺服器 v2。 升級 tooor 安裝 v2 備份伺服器之前，請閱讀 hello[安裝必要條件](https://docs.microsoft.com/system-center/dpm/install-dpm#setup-prerequisites)。
+您可以在 Windows Server 2012 R2 或 Windows Server 2016 上安裝備份伺服器 v2。 若要利用新功能 (例如 System Center 2016 Data Protection Manager 的新式備份儲存體)，您必須在 Windows Server 2016 上安裝備份伺服器 v2。 在安裝或升級為備份伺服器 v2 之前，請先閱讀[安裝必要條件](https://docs.microsoft.com/system-center/dpm/install-dpm#setup-prerequisites)。
 
 > [!NOTE]
-> Azure 備份伺服器具有 hello 相同程式碼基底為 System Center Data Protection Manager。 備份伺服器 v1 相等 tooData Protection Manager 2012 R2 中，並備份伺服器 v2 是對等 tooData Protection Manager 2016。 這篇文章偶爾會參考 hello Data Protection Manager 文件。
+> Azure 備份伺服器具有和 System Center Data Protection Manager 一樣的程式碼基底。 備份伺服器 v1 相當於 Data Protection Manager 2012 R2，備份伺服器 v2 則相當於 Data Protection Manager 2016。 本文偶爾會參考 Data Protection Manager 文件。
 >
 >
 
-## <a name="upgrade-backup-server-toov2"></a>升級備份伺服器 toov2
-從備份伺服器 v1 tooBackup 伺服器 v2 tooupgrade 請確定您的安裝具有所需的 hello 更新：
+## <a name="upgrade-backup-server-to-v2"></a>將備份伺服器升級為 v2
+若要從備份伺服器 v1 升級為備份伺服器 v2，請確定您的安裝具有所需更新：
 
-- [Hello 保護代理程式更新](backup-mabs-upgrade-to-v2.md#update-the-dpm-protection-agent)hello 上受保護的伺服器。
-- 升級 Windows Server 2012 R2 tooWindows Server 2016。
+- 在受保護的伺服器上[更新保護代理程式](backup-mabs-upgrade-to-v2.md#update-the-dpm-protection-agent)。
+- 將 Windows Server 2012 R2 升級為 Windows Server 2016。
 - 在所有生產伺服器上升級 Azure 備份伺服器遠端系統管理員。
-- 確定備份設定 toocontinue 不需要重新啟動您的實際伺服器。
+- 確定備份已設定為繼續執行而不要重新啟動生產伺服器。
 
 
 ### <a name="upgrade-steps-for-backup-server-v2"></a>備份伺服器 v2 的升級步驟
 
-1. 在 hello Download Center[下載 hello 升級安裝程式](https://go.microsoft.com/fwlink/?LinkId=626082)。
+1. 在下載中心[下載升級安裝程式](https://go.microsoft.com/fwlink/?LinkId=626082)。
 
-2. 擷取 hello 安裝精靈之後，請確定**執行 setup.exe**已選取，然後選取**完成**。
+2. 在將設定精靈解壓縮之後，先確定您已選取 [執行 setup.exe]，再選取 [完成]。
 
   ![設定安裝程式 - 執行設定](./media/backup-mabs-upgrade-to-v2/run-setup.png)
 
-3. 在 hello Microsoft Azure 備份伺服器精靈 在**安裝**，選取**Microsoft Azure 備份伺服器**。
+3. 在 Microsoft Azure 備份伺服器精靈的 [安裝] 底下，選取 [Microsoft Azure 備份伺服器]。
 
   ![設定安裝程式 - 選取安裝](./media/backup-mabs-upgrade-to-v2/mabs-installer-s1.png)
 
-4. 在 hello ** 褖畫惎**頁面上，檢閱 hello 警告，然後選取**下一步**。
+4. 在 [歡迎使用] 頁面上檢閱警告，然後選取 [下一步]。
 
   ![設定安裝程式 - [歡迎使用] 頁面](./media/backup-mabs-upgrade-to-v2/mabs-installer-s2.png)
 
-5. hello 安裝精靈會執行必要條件檢查 toomake 確定可以升級您的環境。 在 hello **Prerequisite Checks**頁面上，選取**檢查**。
+5. 設定精靈會執行必要條件檢查以確定您的環境是否可以升級。 在 [必要條件檢查] 頁面上，選取 [檢查]。
 
   ![設定安裝程式 - [必要條件檢查] 頁面](./media/backup-mabs-upgrade-to-v2/mabs-installer-s3-perform-checks.png)
 
-6. 您的環境必須通過 hello 必要條件檢查。 如果您的環境未通過 hello 檢查，請注意 hello 問題並加以修正。 然後，選取 [再檢查一次]。 您傳遞 hello 必要條件檢查之後，請選取**下一步**。
+6. 您的環境必須通過必要條件檢查。 如果您的環境未通過檢查，請記下所發生的問題，並加以修正。 然後，選取 [再檢查一次]。 通過必要條件檢查之後，選取 [下一步]。
 
   ![設定安裝程式 - [再檢查一次] 按鈕](./media/backup-mabs-upgrade-to-v2/mabs-installer-s4-pass-checks.png)
 
-7. 在 hello **SQL 設定**頁面上，選取您的 SQL 安裝的 hello 相關選項，然後選取**檢查並安裝**。
+7. 在 [SQL 設定] 頁面上，選取 SQL 安裝的相關選項，然後選取 [檢查並安裝]。
 
   ![設定安裝程式 - [SQL 設定] 頁面](./media/backup-mabs-upgrade-to-v2/mabs-installer-s5-sql-settings.png)
 
-  hello 檢查可能需要幾分鐘的時間。 當 hello 檢查是否已完成，請選取**下一步**。
+  檢查可能需要幾分鐘的時間。 檢查完畢後，選取 [下一步]。
 
   ![設定安裝程式 - [SQL 設定] 的 [檢查並安裝] 按鈕](./media/backup-mabs-upgrade-to-v2/mabs-installer-s5a-check-and fix-settings.png)
 
-8. 在 hello**安裝設定**頁面上，進行備份伺服器安裝所在的任何變更 toohello 位置或 toohello 可用位置。 選取 [下一步] 。
+8. 在 [安裝設定] 頁面上，對備份伺服器安裝所在的位置或臨時位置進行任何變更。 選取 [下一步] 。
 
   ![設定安裝程式 - [安裝設定] 頁面](./media/backup-mabs-upgrade-to-v2/mabs-installer-s6-installation-settings.png)
 
-9. toofinish hello 安裝精靈中，選取**完成**。
+9. 若要完成設定精靈，請選取 [完成]。
 
   ![設定安裝程式 - 完成](./media/backup-mabs-upgrade-to-v2/run-setup.png)
 
@@ -86,38 +86,38 @@ hello 備份伺服器 v2 中的其他功能，包括備份伺服器 v1 升級。
 
 ## <a name="add-storage-for-modern-backup-storage"></a>為新式備份儲存體新增儲存體
 
-tooimprove 備份儲存體效率，備份伺服器 v2 加入磁碟區的支援。 和備份伺服器 v1 一樣，備份伺服器 v2 也支援磁碟。
+為了提升備份儲存體效率，備份伺服器 v2 新增了磁碟區支援。 和備份伺服器 v1 一樣，備份伺服器 v2 也支援磁碟。
 
 ### <a name="add-volumes-and-disks"></a>新增磁碟區和磁碟
-如果您在 Windows Server 2016 上執行備份伺服器 v2，您可以使用磁碟區 toostore 備份資料。 磁碟區可節省儲存空間並提高備份速度。 因為磁碟區是新 tooBackup 伺服器，您必須將其加入。 
+如果您在 Windows Server 2016 上執行備份伺服器 v2，您可以使用磁碟區來儲存備份資料。 磁碟區可節省儲存空間並提高備份速度。 磁碟區是備份伺服器的新功能，因此您必須新增磁碟區。 
 
-當您新增的磁碟區 tooBackup 伺服器時，您可以提供 hello 磁碟區的好記名稱。 按一下 hello**易記名稱**資料行要 tooname 的 hello 磁碟區。 如有必要，您可以稍後變更 hello 名稱。 您也可以使用 PowerShell tooadd 或變更磁碟區的好記名稱。
+當您在備份伺服器中新增磁碟區時，您可以讓磁碟區有個好記的名稱。 對您想要命名的磁碟區按一下 [易記名稱] 資料行。 如有必要，您可於稍後變更名稱。 您也可以使用 PowerShell 來新增或變更磁碟區的易記名稱。
 
-tooadd hello 系統管理員主控台中的磁碟區：
+若要在管理員主控台中新增磁碟區：
 
-1. 在 hello Azure 備份伺服器系統管理員主控台中，選取 **管理** > **磁碟儲存體** > **新增**。
+1. 在 Azure 備份伺服器管理員主控台中，選取 [管理] > [磁碟儲存體] > [新增]。
 
-    ![開啟 hello 加入磁碟儲存體精靈](./media//backup-mabs-upgrade-to-v2/open-add-disk-storage-wizard.png)
+    ![開啟「新增磁碟儲存體」精靈](./media//backup-mabs-upgrade-to-v2/open-add-disk-storage-wizard.png)
 
-    這會開啟 hello 加入磁碟儲存體精靈。
+    這會開啟「新增磁碟儲存體」精靈。
 
-2. 在 hello**加入磁碟儲存體**] 頁面的 hello**可用的磁碟區**，選取 [磁碟區，然後選取**新增**。
-3. 在 hello**選取磁碟區**方塊、 輸入 hello 磁碟區的好記名稱，然後選取**確定**。
+2. 在 [新增磁碟儲存體] 頁面上，於 [可用磁碟區] 方塊中選取磁碟區，然後選取 [新增]。
+3. 在 [已選取的磁碟區] 方塊中，為磁碟區輸入易記名稱，然後選取 [確定]。
 
       ![新增磁碟儲存體精靈 - 新增磁碟區](./media/backup-mabs-upgrade-to-v2/add-volume.png)
 
-  如果您想 tooadd 磁碟，hello 磁碟必須屬於 tooa 保護群組具有傳統存放裝置。 這些磁碟僅能用於這些保護群組。 備份伺服器並沒有有舊版保護的來源，如果未列出 hello 磁碟。
+  如果您想要新增磁碟，該磁碟必須屬於具有舊式儲存體的保護群組。 這些磁碟僅能用於這些保護群組。 如果備份伺服器所擁有的來源並沒有舊式保護功能，則磁碟不會列出。
 
-  如需新增磁碟的詳細資訊，請參閱[新增磁碟 tooincrease 傳統儲存體](http://docs.microsoft.com/system-center/dpm/upgrade-to-dpm-2016#adding-disks-to-increase-legacy-storage)。 您不能對磁碟賦予易記名稱。
+  如需新增磁碟的詳細資訊，請參閱[新增磁碟以增加舊式儲存體](http://docs.microsoft.com/system-center/dpm/upgrade-to-dpm-2016#adding-disks-to-increase-legacy-storage)。 您不能對磁碟賦予易記名稱。
 
 
-### <a name="assign-workloads-toovolumes"></a>指定工作負載 toovolumes
+### <a name="assign-workloads-to-volumes"></a>將工作負載指派給磁碟區
 
-備份伺服器，在您指定的工作負載指派 toowhich 磁碟區。 例如，您可以設定昂貴支援大量輸入/輸出作業每個第二個 (IOPS) toostore 唯一需要的工作負載高容量頻繁備份的磁碟區。 舉例來說，具有交易記錄的 SQL Server。
+在備份伺服器中，您會指定要將哪些工作負載指派給哪些磁碟區。 例如，您可以將支援大量每秒輸入/輸出作業 (IOPS) 的高度耗費資源磁碟區，設定為僅儲存需要頻繁且大量備份的工作負載。 舉例來說，具有交易記錄的 SQL Server。
 
 #### <a name="update-dpmdiskstorage"></a>Update-DPMDiskStorage
 
-備份伺服器 hello 存放集區中的磁碟區 tooupdate hello 屬性，請使用 PowerShell 指令程式更新 DPMDiskStorage hello。
+若要更新備份伺服器儲存集區磁碟區的屬性，請使用 PowerShell Cmdlet Update-DPMDiskStorage。
 
 語法：
 
@@ -127,151 +127,151 @@ tooadd hello 系統管理員主控台中的磁碟區：
 Update-DPMDiskStorage [-Volume] <Volume> [[-FriendlyName] <String> ] [[-DatasourceType] <VolumeTag[]> ] [-Confirm] [-WhatIf] [ <CommonParameters>]
 ```
 
-使用 PowerShell 進行的所有變更會都反映在 hello UI。
+您使用 PowerShell 所進行的變更都會反映在 UI 中。
 
 
 ## <a name="protect-data-sources"></a>保護資料來源
-toobegin 保護資料來源，建立保護群組。 hello 遵循步驟反白顯示變更或新增 toohello 新保護群組精靈。
+若要開始保護資料來源，請建立保護群組。 下列步驟會特別指出「新增保護群組」精靈中有變更或新增的地方。
 
-toocreate 保護群組：
+若要建立保護群組：
 
-1. 在 hello 備份伺服器系統管理員主控台中，選取 **保護**。
+1. 在備份伺服器管理員主控台中選取 [保護]。
 
-2. 在 hello 工具功能區中，選取 **新增**。
+2. 在工具功能區中選取 [新增]。
 
-    這會開啟 hello 建立新保護群組精靈。
+    這會開啟「建立新保護群組」精靈。
 
   ![建立新保護群組精靈](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-1.png)
 
-3. 在 hello ** 褖畫惎**頁面上，選取**下一步**。
-4. 在 hello**選取保護群組類型**頁面上，選取您想 toocreate，，然後選取保護群組的 hello 類型**下一步**。
+3. 在 [歡迎] 頁面上，選取 [下一步]。
+4. 在 [選取保護群組類型] 頁面上，選取您要建立的保護群組類型，然後選取 [下一步]。
 
   ![[選取保護群組類型] 頁面](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-2.png)
 
-5. 在 hello**選擇群組成員** 頁面的 hello**可用成員**窗格中，保護代理程式會列出與 hello 成員。 針對此範例中，選取 磁碟區 D:\ 和 E:\ 並將其新增 toohello**選取的成員**窗格。 選取 [下一步] 。
+5. [選取群組成員] 頁面上的 [可用成員] 窗格中會列出具有保護代理程式的成員。 在此範例中，選取磁碟區 D:\ 和 E:\，並將其新增至 [已選取的成員] 窗格。 選取 [下一步] 。
 
   ![[選取群組成員] 頁面](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-3.png)
 
-6. 在 [hello**選擇資料保護方式**頁面上，輸入**保護群組名稱**選取 hello 保護方式，，然後選取**下一步]**。 如果您想要短期保護，您必須選取 hello**磁碟**備份方法。
+6. 在 [選取資料保護方式] 頁面上輸入**保護群組名稱**，選取保護方式，然後選取 [下一步]。 如果您想要短期保護，則必須選取 [磁碟] 備份方式。
 
   ![[選取資料保護方式] 頁面](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-4.png)
 
-7. 在 hello**指定短期目標**頁面上，選取 hello 詳細資料**保留範圍**和**同步處理頻率**。 然後，選取 [下一步]。 （選擇性） toochange hello 排程復原點時所建立，請選取**修改**。
+7. 在 [指定短期目標] 頁面上，選取 [保留範圍] 和 [同步處理頻率] 的詳細資料。 然後，選取 [下一步]。 (選擇性) 若要變更復原點的擷取排程，請選取 [修改]。
 
   ![[指定短期目標] 頁面](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-5.png)
 
-8. 在 hello**檢閱磁碟儲存體配置**頁面檢閱有關 hello 您選取的資料來源的詳細資料、 大小和 hello 空間 toobe 佈建的值，並 hello 目標儲存體磁碟區。
+8. 在 [檢閱磁碟儲存體配置] 頁面上，檢閱您所選取之資料來源的詳細資料、其大小，以及要佈建的空間值和目標儲存體磁碟區。
 
   ![[檢閱磁碟儲存體配置] 頁面](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-6.png)
 
-  存放磁碟區依據 hello （使用 PowerShell 設定） 的工作負載磁碟區配置和 hello 可用的存放裝置。 您可以變更 hello 存放磁碟區 hello 下拉式選單中選取其他磁碟區。 如果您變更 hello 值**目標儲存體**，hello 值**可用的磁碟儲存體**tooreflect 值底下會動態變更**可用空間**和**Underprovisioned 空間**。
+  儲存體磁碟區是以工作負載磁碟區配置 (使用 PowerShell 來設定) 和可用儲存體為基礎。 您可以在下拉式功能表中選取其他磁碟區來變更儲存體磁碟區。 如果您變更 [目標儲存體] 的值，[可用磁碟儲存體] 的值會動態變更，以反映 [可用空間] 和 [佈建不足的空間] 底下的值。
 
-  Hello 資料來源成長為已規劃，hello 值 hello **Underprovisioned 空間**中的資料行**可用的磁碟儲存體**反映 hello 額外的存放裝置所需的數量。 使用您的儲存體需要 smooth 備份此值 toohelp 計劃。 Hello 值為零中, 有任何儲存體可能造成的問題 hello 可預見未來。 Hello 值為非零的數字，如果您沒有足夠的儲存空間配置 （根據您保護原則 hello 資料大小和受保護的成員）。
+  如果資料來源按計劃成長，[可用磁碟儲存體] 中的 [佈建不足的空間] 資料行的值會反映另外需要的儲存體數量。 請使用此值來協助規劃您的儲存需求，以便順利進行備份。 如果值為零，則在可預見的未來將不可能發生任何儲存問題。 如果值為零以外的數字，則表示所配置的儲存體不足 (根據您的保護原則和受保護成員的資料大小)。
 
   ![配置不足的磁碟儲存體](./media/backup-mabs-upgrade-to-v2/create-a-protection-group-7.png)
 
-   建立保護群組、 完整 hello 精靈 toofinish。
+   若要完成保護群組的建立，請完成精靈。
 
-## <a name="migrate-legacy-storage-toomodern-backup-storage"></a>移轉舊版的儲存體 tooModern 備份儲存體
-Tooor 安裝備份伺服器 v2 和升級 hello 作業系統 tooWindows Server 2016 的升級之後，更新您的保護群組 toouse 現代的備份儲存體。 根據預設，系統不會變更保護群組。 他們可以繼續 toofunction 它們一開始所設定。 
+## <a name="migrate-legacy-storage-to-modern-backup-storage"></a>將舊式儲存體移轉至新式備份儲存體
+在安裝或升級為備份伺服器 v2，並將作業系統升級為 Windows Server 2016 之後，請將您的保護群組更新為使用新式備份儲存體。 根據預設，系統不會變更保護群組。 保護群組會繼續依照一開始的設定方式運作。 
 
-更新保護群組 toouse 現代的備份儲存體是選擇性的。 tooupdate hello 保護群組時，使用 hello 的所有資料來源停止保護保留資料選項。 然後，加入 hello 資料來源 tooa 新的保護群組。
+您可以選擇是否將保護群組更新為使用新式備份儲存體。 若要更新保護群組，請使用保留資料選項來停止保護所有資料來源。 然後，將資料來源新增至新的保護群組。
 
-1. 在 hello 系統管理員主控台中，選取 hello**保護**功能。 在 hello**保護群組成員**清單中，以滑鼠右鍵按一下 hello 成員，然後選取**停止保護成員**。
+1. 在管理員主控台中選取 [保護] 功能。 在 [保護群組成員] 清單中，以滑鼠右鍵按一下成員，然後選取 [停止保護成員]。
 
   ![停止保護成員](http://docs.microsoft.com/system-center/dpm/media/upgrade-to-dpm-2016/dpm-2016-stop-protection1.png)
 
-2. 在 [hello**從群組移除**] 對話方塊中，檢閱 hello 使用磁碟空間和 hello 可用空間 hello 存放集區。 hello 預設值為 hello 磁碟上的 tooleave hello 復原點，而且允許這些 tooexpire 每個關聯的保留原則。 按一下 [確定] 。
+2. 在 [從群組中移除] 對話方塊中，檢閱儲存集區中已使用的磁碟空間和可用空間。 預設值是讓復原點留在磁碟上，並讓復原點按照所關聯的保留原則來到期。 按一下 [確定] 。
 
-  如果您想 tooimmediately 傳回 hello 使用磁碟空間 toohello 可用儲存集區，選取 hello**刪除磁碟上的複本**與成員相關的核取方塊 toodelete hello 備份資料 （和復原點）。
+  如果您想要立即將已使用的磁碟空間歸還給可用的儲存集區，請選取 [刪除磁碟上的複本] 核取方塊，以刪除與該成員相關聯的備份資料 (與復原點)。
 
   ![[從群組中移除] 對話方塊](http://docs.microsoft.com/system-center/dpm/media/upgrade-to-dpm-2016/dpm-2016-retain-data.png)
 
-3. 建立使用新式備份儲存體的保護群組。 包含 hello 未受保護資料來源。
+3. 建立使用新式備份儲存體的保護群組。 納入未受保護的資料來源。
 
 
-## <a name="add-disks-tooincrease-legacy-storage"></a>新增磁碟 tooincrease 傳統存放裝置
+## <a name="add-disks-to-increase-legacy-storage"></a>新增磁碟以增加舊式儲存體
 
-如果您想 toouse 傳統存放裝置，且備份伺服器，您可能需要 tooadd 磁碟 tooincrease 傳統儲存體。 
+如果您想要在備份伺服器中使用舊式儲存體，您可能需要新增磁碟以增加舊式儲存體。 
 
-tooadd 磁碟儲存體：
+若要新增磁碟儲存體：
 
-1. 在 hello 系統管理員主控台中，選取 **管理** > **磁碟儲存體** > **新增**。
+1. 在管理員主控台中，選取 [管理] > [磁碟儲存體] > [新增]。
 
     ![[新增磁碟儲存體] 對話方塊](http://docs.microsoft.com/system-center/dpm/media/upgrade-to-dpm-2016/dpm-2016-add-disk-storage.png)
 
-4. 在 hello**加入磁碟儲存體**對話方塊中，選取**新增磁碟**。
+4. 在 [新增磁碟儲存體] 對話方塊中選取 [新增磁碟]。
 
-5. Hello 在清單中可用的磁碟，請選取您想要選取 tooadd 的 hello 磁碟**新增**，然後選取**確定**。
+5. 在可用磁碟清單中選取您要新增的磁碟，選取 [新增]，然後選取 [確定]。
 
-## <a name="update-hello-data-protection-manager-protection-agent"></a>更新 hello Data Protection Manager 保護代理程式
+## <a name="update-the-data-protection-manager-protection-agent"></a>升級 Data Protection Manager 保護代理程式
 
-備份伺服器使用 hello System Center Data Protection Manager 保護代理程式更新。 如果您要升級保護代理程式未連接的 toohello 網路，您無法使用 hello 資料保護 Manager 系統管理員主控台 toocomplete 連接的代理程式升級。 您必須先升級非作用中網域環境中的 hello 保護代理程式。 連接的 toohello 網路 hello 用戶端電腦之前，資料保護 Manager 系統管理員主控台會顯示該 hello 保護代理程式更新的 hello 已暫止。
+備份伺服器會使用 System Center Data Protection Manager 保護代理程式來進行更新。 如果您要升級的保護代理程式未連線到網路，您將無法使用 Data Protection Manager 管理員主控台來完成已連線代理程式的升級。 您必須在非作用中的網域環境升級保護代理程式。 在用戶端電腦連線到網路之前，Data Protection Manager 管理員主控台會顯示保護代理程式更新受到擱置。
 
-hello 下列各節說明如何 tooupdate 連線的用戶端電腦和未連接的用戶端電腦的保護代理程式。
+下列幾節會說明如何更新已連線用戶端電腦和未連線用戶端電腦的保護代理程式。
 
 ### <a name="update-a-protection-agent-for-a-connected-client-computer"></a>更新已連線用戶端電腦的保護代理程式
 
-1. 在 hello 備份伺服器系統管理員主控台中，選取 **管理** > **代理程式**。
+1. 在備份伺服器管理員主控台中選取 [管理] > [代理程式]。
 
-2. Hello 顯示窗格中，選取您要為其 tooupdate hello 保護代理程式的 hello 用戶端電腦。
+2. 在顯示窗格中，選取您要更新保護代理程式的用戶端電腦。
 
   > [!NOTE]
-  > hello**代理程式更新**欄位指出當保護代理程式更新為適用於每個受保護的電腦。 在 hello**動作**窗格中，hello**更新**動作可用，只會選取受保護的電腦，並更新可供使用。
+  > [代理程式更新] 資料行會在各個受保護的電腦可以進行保護代理程式更新時予以指出。 在 [動作] 窗格中，只有當您已選取受保護的電腦且其可供更新時，才可使用 [更新] 動作。
   >
   >
 
-3. tooinstall 更新保護代理程式選取 hello 在電腦上，在 hello**動作**窗格中，選取**更新**。
+3. 若要在選取的電腦上安裝已更新的保護代理程式，請在 [動作] 窗格中選取 [更新]。
 
 ### <a name="update-a-protection-agent-on-a-client-computer-that-is-not-connected"></a>在未連線用戶端電腦上更新保護代理程式
 
-1. 在 hello 備份伺服器系統管理員主控台中，選取 **管理** > **代理程式**。
+1. 在備份伺服器管理員主控台中選取 [管理] > [代理程式]。
 
-2. Hello 顯示窗格中，選取您要為其 tooupdate hello 保護代理程式的 hello 用戶端電腦。
+2. 在顯示窗格中，選取您要更新保護代理程式的用戶端電腦。
 
   > [!NOTE]
-   > hello**代理程式更新**欄位指出當保護代理程式更新為適用於每個受保護的電腦。 在 hello**動作**窗格中，hello**更新**動作時，無法使用選取的受保護的電腦，除非有可用的更新。
+   > [代理程式更新] 資料行會在各個受保護的電腦可以進行保護代理程式更新時予以指出。 在 [動作] 窗格中，除非已選取的受保護電腦可供更新，否則您無法使用 [更新] 動作。
   >
   >
 
-3. tooinstall 更新保護代理程式選取 hello 在電腦上，選取**更新**。
+3. 若要在選取的電腦上安裝已更新的保護代理程式，請選取 [更新]。
 
-4. Hello 電腦是連線的 toohello 網路之前，不是用戶端電腦已連接 toohello 網路，hello**代理程式狀態**資料行會顯示狀態為**更新擱置**。
+4. 對於未連線到網路的用戶端電腦，除非該電腦連線到網路，否則 [代理程式狀態] 資料行會顯示 [更新擱置中] 的狀態。
 
-  用戶端電腦是連線的 toohello 網路之後，hello**代理程式更新**hello 用戶端電腦的資料行會顯示狀態為**更新**。
+  在用戶端電腦連線到網路之後，用戶端電腦的 [代理程式更新] 資料行會顯示 [更新中] 狀態。
   
-### <a name="move-legacy-protection-groups-from-old-version-and-sync-hello-new-version-with-azure"></a>移動從舊的版本，以及與 Azure 同步 hello 新版本的舊版保護群組
+### <a name="move-legacy-protection-groups-from-old-version-and-sync-the-new-version-with-azure"></a>將舊版保護群組從舊版本中移出，並透過 Azure 同步處理新版本
 
-一旦 Azure 備份伺服器和 hello 作業系統會同時更新，您就準備好 tooprotect 新的資料來源使用現代的備份儲存體。 不過已受保護的資料來源將會繼續 toobe hello 舊版中受保護的方式與 Azure 備份伺服器 中，但是所有新的保護將會使用現代的備份存放裝置。
+一旦更新 Azure 備份伺服器與 OS，您就可以使用新式備份儲存體來保護新的資料來源。 不過，已受保護的資料來源會繼續在舊版中受到保護 (如同在 Azure 備份伺服器中一樣)，但所有新的保護將使用新式備份儲存體。
 
-下列步驟是 toomigrate 資料來源從保護 tooModern 備份儲存體的傳統模式。
+下列步驟會將資料來源從傳統的保護模式移轉到新式備份儲存體。
 
-• 新增 hello 新磁碟區 toohello DPM 存放集區，並視需要指派易記名稱和資料來源的標記。
-• 在舊版模式下，停止保護 hello 資料來源和 「 保留受保護的資料 」 的每個資料來源。  這允許在移轉之後復原舊的復原點。
+• 將新磁碟區新增到 DPM 儲存集區，並視需要指派易記的名稱和資料來源標籤。
+• 對於傳統模式下的每個資料來源，停止資料來源保護並「保留受保護的資料」。  這允許在移轉之後復原舊的復原點。
 
-• 建立新的 PG，然後選取 hello toobe 使用新格式儲存的資料來源。
-• DPM 將執行從 hello 舊版備份儲存體複本複製到 hello 本機現代的備份存放磁碟區。
+• 建立新的 PG，然後選取要使用新格式儲存的資料來源。
+• DPM 將在本機執行從舊版備份儲存體到新式備份儲存體磁碟區的複本複製。
 注意：這會被視為復原後作業 • 所有新的同步處理和復原點則會儲存在新式備份儲存體中。
-將出剪除 • 舊的復原點，視為過期，而且最後釋出 hello 磁碟空間。
-• 從 hello 舊的存放裝置 hello 磁碟中刪除所有與 hello 傳統的磁碟區之後可以從 Azure 的備份與 hello 系統中移除。
-• 進行 hello Azure DPMDB 的備份。
+• 舊的復原點將在過期時剪除，最終會釋出磁碟空間。
+• 從舊儲存體中刪除所有舊式磁碟區後，就可以從 Azure 備份和系統中移除磁碟。
+• 進行 Azure DPMDB 的備份。
 
-第 2 部分:-重要的項目 > hello 新伺服器將需要 toobe 為 hello 原始的 Azure 備份伺服器名稱相同。 如果您想 toouse 舊的存放集區和 DPMDB tooretain 復原點-必須有 DPMDB 備份，因為它必須 toobe 還原，您無法變更 hello hello 新的 Azure 備份伺服器名稱
+第 2 部分︰重要事項 -> 新伺服器的名稱必須與原始 Azure 備份伺服器相同。 如果您想要使用舊的儲存集區和 DPMDB 來保留復原點，則無法變更新 Azure 備份伺服器的名稱 - 必須具有 DPMDB 備份，因為必須將它還原
 
-1) 關機 hello 原始的 Azure 備份伺服器，或起飛 hello 網路。
-2) 重設 active directory 中的 hello 機器帳戶。
-3) 安裝 Server 2016 新電腦上以及其 hello hello 原始的 Azure 備份伺服器機器名稱相同的名稱。
-4) 加入 hello 網域
+1) 關閉原始 Azure 備份伺服器，或讓它離線。
+2) 在 Active Directory 中重設電腦帳戶。
+3) 在新機器上安裝 Server 2016 並將它命名為與原始 Azure 備份伺服器相同的電腦名稱。
+4) 加入網域
 5) 安裝 Azure 備份伺服器 V2 (從舊伺服器中移出 DPM 儲存集區並匯入)
-6) 還原取自第 2 部分結束 DPMDB hello
-7) 將 hello 存放裝置連接從 hello 原始備份伺服器 toohello 新伺服器。
-8) 從 SQL 還原 hello DPMDB
-9) 新的伺服器 cd tooMicrosoft Azure 備份的系統管理員命令列安裝位置和 bin 資料夾
+6) 還原取自第 2 部分結尾的 DPMDB
+7) 將原始備份伺服器的儲存體連結到新伺服器。
+8) 從 SQL 還原 DPMDB
+9) 從新伺服器上的系統管理員命令列，切換至 Microsoft Azure 備份安裝位置和 bin 資料夾
 
 路徑範例：C:\windows\system32>cd "c:\Program Files\Microsoft Azure Backup\DPM\DPM\bin\
-tooAzure 備份執行 DPMSYNC-SYNC
+至 Azure 備份 執行 DPMSYNC -SYNC
 
-10) 執行 DPMSYNC-SYNC 附註如果加入了新磁碟 toohello DPM 存放集區而不需要移動 hello 舊的然後執行 DPMSYNC-Reallocatereplica
+10) 執行 DPMSYNC -SYNC 注意 如果您已將「新」磁碟新增至 DPM 儲存集區，而非移動就磁碟，則執行 DPMSYNC -Reallocatereplica
 
 ## <a name="new-powershell-cmdlets-in-v2"></a>v2 中的新 PowerShell Cmdlet
 
@@ -281,9 +281,9 @@ tooAzure 備份執行 DPMSYNC-SYNC
 
 ## <a name="next-steps"></a>後續步驟
 
-深入了解如何 tooprepare 您的伺服器或開始進行保護工作負載：
+了解如何準備您的伺服器或開始保護工作負載：
 - [準備備份伺服器工作負載](backup-azure-microsoft-azure-backup.md)
-- [使用 VMware 伺服器的備份伺服器 tooback](backup-azure-backup-server-vmware.md)
-- [使用 SQL server 備份伺服器 tooback](backup-azure-sql-mabs.md)
+- [使用備份伺服器來備份 VMware 伺服器](backup-azure-backup-server-vmware.md)
+- [使用備份伺服器來備份 SQL Server](backup-azure-sql-mabs.md)
 - [在備份伺服器中使用新式備份儲存體](backup-mabs-add-storage.md)
 

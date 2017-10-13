@@ -1,5 +1,5 @@
 ---
-title: "aaaError （& s) 例外狀況處理-Azure 邏輯應用程式 |Microsoft 文件"
+title: "錯誤和例外狀況處理 - Azure Logic Apps | Microsoft Docs"
 description: "Azure Logic Apps 中的錯誤和例外狀況處理模式"
 services: logic-apps
 documentationcenter: .net,nodejs,java
@@ -14,21 +14,21 @@ ms.tgt_pltfrm: na
 ms.workload: integration
 ms.date: 10/18/2016
 ms.author: LADocs; jehollan
-ms.openlocfilehash: 326a252310c8dfb154e583f91c9421675e448d1f
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 9af2f71b3d288cc6f4e271d0915545d43a1249bc
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="handle-errors-and-exceptions-in-azure-logic-apps"></a>處理 Azure Logic Apps 中的錯誤和例外狀況
 
-Azure 邏輯應用程式提供豐富的工具和模式 toohelp 您確定您的整合是強固且彈性地防止失敗。 任何整合架構其中 hello 挑戰，可確保確定 tooappropriately 控制代碼的停機時間，或從相依系統問題。 邏輯應用程式會處理錯誤的第一級的體驗，讓您 hello 需 tooact 上例外狀況和錯誤在工作流程中的工具。
+Azure Logic Apps 提供了豐富的工具和模式，以協助確保您的整合穩固且具有彈性，不怕故障。 任何整合架構都會帶來挑戰，讓您難以確定是否可適當地處理相依系統的停機或問題。 Logic Apps 讓處理錯誤成為一種頂級享受，賦予您所需工具來處理工作流程內的例外狀況和錯誤。
 
 ## <a name="retry-policies"></a>重試原則
 
-重試原則是 hello 最基本的例外狀況和錯誤處理的類型。 如果初始的要求已逾時或失敗 (429 會導致任何要求或 5xx 回應)，此原則會定義 hello 動作是否應該重試。 根據預設，所有動作會在 20 秒的間隔內另外再試 4 次。 因此，如果收到 hello 第一個要求`500 Internal Server Error`20 秒的回應，hello 工作流程引擎暫停，並嘗試再次 hello 要求。 如果所有重試之後, hello 回應仍是例外狀況或失敗，hello 工作流程會繼續和標記 hello 做為動作狀態`Failed`。
+重試原則是最基本的例外狀況和錯誤處理類型。 如果初始要求逾時或失敗 (任何造成 429 或 5xx 回應的要求)，此原則會定義是否應該重試動作。 根據預設，所有動作會在 20 秒的間隔內另外再試 4 次。 因此，如果第一個要求收到 `500 Internal Server Error` 回應，工作流程引擎就會暫停 20 秒，然後再一次嘗試要求。 如果在經過所有重試後回應仍是例外狀況或失敗，工作流程會繼續，並將動作狀態標示為 `Failed`。
 
-您可以設定的重試原則在 hello**輸入**特定動作。 例如，您可以設定重試原則 tootry 4 次最多 1 小時間隔。 如需輸入屬性的完整詳細資料，請參閱[工作流程動作與觸發程序][retryPolicyMSDN]。
+您可以在特定動作的**輸入**中設定重試原則。 例如，您可以設定重試原則，以在 1 小時的間隔內嘗試多達 4 次。 如需輸入屬性的完整詳細資料，請參閱[工作流程動作與觸發程序][retryPolicyMSDN]。
 
 ```json
 "retryPolicy" : {
@@ -38,7 +38,7 @@ Azure 邏輯應用程式提供豐富的工具和模式 toohelp 您確定您的�
     }
 ```
 
-如果您想要您 HTTP 動作 tooretry 4 次，並等候 10 分鐘後，每個嘗試之間，您可以使用下列定義 hello:
+如果您想要 HTTP 動作重試 4 次，並在每次嘗試之間等候 10 分鐘，您會使用下列定義︰
 
 ```json
 "HTTP": 
@@ -57,11 +57,11 @@ Azure 邏輯應用程式提供豐富的工具和模式 toohelp 您確定您的�
 }
 ```
 
-如需有關支援語法的詳細資訊，請參閱 hello[重試原則工作流程動作和觸發程序 」 一節][retryPolicyMSDN]。
+如需受支援語法的詳細資訊，請參閱[工作流程動作和觸發程序中的 retry-policy 區段][retryPolicyMSDN]。
 
-## <a name="catch-failures-with-hello-runafter-property"></a>攔截 hello RunAfter 屬性的失敗
+## <a name="catch-failures-with-the-runafter-property"></a>使用 RunAfter 屬性來擷取失敗
 
-邏輯應用程式的每個動作宣告 hello 動作啟動，例如工作流程中排序 hello 步驟前必須完成的動作。 在 hello 動作定義中，這種排序稱為 hello`runAfter`屬性。 這個屬性是物件，描述哪些動作和動作狀態執行 hello 動作。 根據預設，所有的動作，透過 hello 邏輯應用程式的設計工具加入設定太`runAfter`如果 hello hello 上一個步驟前一個步驟`Succeeded`。 不過，您可以自訂此值 toofire 動作當上一個動作都有`Failed`， `Skipped`，或一組可能的這些值。 如果您想 tooadd 項目 tooa 指定 Service Bus 主題的特定動作之後`Insert_Row`失敗，您可以使用下列的 hello`runAfter`組態：
+每個邏輯應用程式動作都會宣告要讓此動作啟動必須先完成哪些動作，就像是將工作流程中的步驟排序。 在動作定義中，此排序稱為 `runAfter` 屬性。 此屬性是會說明哪些動作和動作狀態會執行此動作的物件。 根據預設，所有透過邏輯應用程式設計工具新增的動作都會設定為如果上一個步驟 `Succeeded`，則在上一個步驟之後執行 (`runAfter`)。 不過，您可以自訂此值，以在先前的動作是 `Failed`、`Skipped` 或這兩個值的可能組合時引發動作。 如果您想要在特定動作 `Insert_Row` 失敗之後於指定的服務匯流排主題新增項目，您可以使用下列 `runAfter` 組態︰
 
 ```json
 "Send_message": {
@@ -89,7 +89,7 @@ Azure 邏輯應用程式提供豐富的工具和模式 toohelp 您確定您的�
 }
 ```
 
-請注意 hello`runAfter`屬性如果 hello 設定 toofire`Insert_Row`動作`Failed`。 如果 hello 動作狀態是 toorun hello 動作`Succeeded`， `Failed`，或`Skipped`，使用下列語法：
+請注意，`runAfter` 屬性會設定為在 `Insert_Row` 動作是 `Failed` 時引發。 若要在動作狀態是 `Succeeded`、`Failed` 或 `Skipped` 時執行動作，請使用此語法︰
 
 ```json
 "runAfter": {
@@ -100,21 +100,21 @@ Azure 邏輯應用程式提供豐富的工具和模式 toohelp 您確定您的�
 ```
 
 > [!TIP]
-> 前一個動作失敗之後所執行並順利完成的動作會標示為 `Succeeded`。 這意味著如果您已成功在工作流程時，攔截所有失敗 hello 執行本身標示為`Succeeded`。
+> 前一個動作失敗之後所執行並順利完成的動作會標示為 `Succeeded`。 此行為表示如果您成功擷取到工作流程中的所有失敗，該次執行本身會標示為 `Succeeded`。
 
-## <a name="scopes-and-results-tooevaluate-actions"></a>範圍和結果 tooevaluate 動作
+## <a name="scopes-and-results-to-evaluate-actions"></a>用以評估動作的範圍和結果
 
-您可以在個別的動作之後執行的 toohow 類似，您可以也動作組成群組內[範圍](../logic-apps/logic-apps-loops-and-scopes.md)，其做為動作的邏輯群組。 領域都是適合用來組織您的邏輯應用程式的動作，以及用於在領域的 hello 狀態上執行彙總的評估。 在範圍中的所有動作都完成後，請 hello 範圍本身會接收狀態。 hello 領域狀態決定以 hello 做為測試回合的相同準則。 如果執行分支中的 hello 最後一個動作是`Failed`或`Aborted`，hello 狀態是`Failed`。
+和您可以在個別動作之後進行的執行方式類似，您也可以將多個動作群組到某個[範圍](../logic-apps/logic-apps-loops-and-scopes.md)內，其可做為這些動作的邏輯群組。 範圍適合用來組織邏輯應用程式動作，以及用來對某一範圍的狀態執行彙總評估。 範圍本身會在範圍中的所有動作都已完成之後收到狀態。 範圍狀態會由執行時的相同條件來決定。 如果執行分支中的最後一個動作是 `Failed` 或 `Aborted`，狀態會是 `Failed`。
 
-toofire hello 範圍內發生任何失敗的特定動作，您可以使用`runAfter`範圍標示為`Failed`。 如果*任何*hello 範圍中的動作失敗、 執行之後的範圍可讓您建立單一動作 toocatch 失敗。
+若要針對範圍內發生的任何失敗引發特定動作，您可以搭配標示為 `Failed` 的範圍使用 `runAfter`。 若範圍內的「任何」動作失敗，在範圍失敗之後執行可讓您建立一項動作以擷取失敗。
 
-### <a name="getting-hello-context-of-failures-with-results"></a>取得 hello 內容失敗，將結果
+### <a name="getting-the-context-of-failures-with-results"></a>透過結果取得失敗的內容
 
-雖然攔截失敗從範圍非常有用，您可能也想內容 toohelp 您了解確切的動作失敗，任何錯誤或已傳回狀態碼。 hello`@result()`工作流程函式提供有關 hello 結果的範圍中的所有動作內容。
+雖然從範圍擷取失敗很實用，但您可能也想要取得內容以協助您了解實際上有哪些動作失敗，以及所傳回的任何錯誤或狀態碼。 `@result()` 工作流程函式會提供有關範圍內所有動作結果的內容。
 
-`@result()`接受單一參數，領域名稱，並傳回所有 hello 動作會從該範圍內的陣列。 這些動作物件包含相同屬性，hello hello`@actions()`輸出物件，包括動作的開始時間、 動作的結束時間、 動作狀態、 輸入動作、 動作相互關聯識別碼和動作。 toosend 內容中無法在範圍內的任何動作，您可以輕易地配對`@result()`函式與`runAfter`。
+`@result()` 採用單一參數、範圍名稱，並且會傳回該範圍內產生之所有動作的陣列。 這些動作物件包含和 `@actions()` 物件相同的屬性，包括動作開始時間、動作結束時間、動作狀態、動作輸入、動作相互關聯識別碼和動作輸出。 若要傳送在範圍內失敗之任何動作的內容，您可以輕易地配對 `@result()` 函式與 `runAfter`。
 
-tooexecute 動作*每個*範圍中的動作，`Failed`結果 tooactions 篩選 hello 陣列失敗，您所能配對`@result()`與**[篩選陣列](../connectors/connectors-native-query.md)**動作和 **[ForEach](../logic-apps/logic-apps-loops-and-scopes.md)** 迴圈。 您可以使用 hello 篩選的結果的陣列，並使用 hello 每個失敗執行的動作**ForEach**迴圈。 以下是範例，後面接著 hello 範圍內傳送 HTTP POST 要求與 hello 回應主體失敗的任何動作的詳細說明`My_Scope`。
+若要對範圍中 `Failed` 的 For each 動作執行動作，篩選失敗動作的結果陣列，您可以配對 `@result()` 與**[篩選陣列](../connectors/connectors-native-query.md)**動作和 **[ForEach](../logic-apps/logic-apps-loops-and-scopes.md)** 迴圈。 您可以取得篩選後的結果陣列，並使用 **ForEach** 迴圈對每個失敗執行動作。 以下範例 (隨後並有詳細說明) 會傳送 HTTP POST 要求，其中含有任何在範圍 `My_Scope` 內失敗之動作的回應本文。
 
 ```json
 "Filter_array": {
@@ -155,22 +155,22 @@ tooexecute 動作*每個*範圍中的動作，`Failed`結果 tooactions 篩選 h
 }
 ```
 
-以下是會發生什麼情況的詳細逐步解說 toodescribe:
+以下是說明整個情形的詳細逐步解說︰
 
-1. tooget hello 結果內的所有動作`My_Scope`，hello**篩選陣列**動作篩選條件`@result('My_Scope')`。
+1. 若要取得 `My_Scope` 內所有動作的結果，**篩選陣列**動作會篩選 `@result('My_Scope')`。
 
-2. hello 條件**篩選陣列**可以是任何`@result()`也有狀態相等的項目`Failed`。 這種狀況篩選 hello 陣列的所有動作結果`My_Scope`tooan 陣列只含失敗的動作結果。
+2. **篩選陣列**的條件是狀態等於 `Failed` 的任何 `@result()` 項目。 此條件會將具有 `My_Scope` 之所有動作結果的陣列，篩選為只剩失敗動作結果的陣列。
 
-3. 執行**每個**動作 hello**篩選陣列**輸出。 此步驟會對之前篩選的每個失敗動作結果執行動作。
+3. 對**篩選後陣列**的輸出執行 **For Each** 動作。 此步驟會對之前篩選的每個失敗動作結果執行動作。
 
-    如果在 hello 範圍內的單一動作失敗、 hello hello 中的動作`foreach`只執行一次。 
+    如果範圍中的單一動作失敗，`foreach` 中的動作只會執行一次。 
     許多失敗動作會對每個失敗造成一個動作。
 
-4. HTTP POST 傳送嗨`foreach`回應主體的項目或`@item()['outputs']['body']`。 hello`@result()`項目 圖形是 hello 相同為 hello`@actions()`圖形，並可以剖析 hello 相同的方式。
+4. 在 `foreach` 項目的回應本文上傳送 HTTP POST，或傳送 `@item()['outputs']['body']`。 `@result()` 項目圖形和 `@actions()` 圖形相同，並可透過相同方式剖析。
 
-5. 包含兩個具有 hello 失敗的動作名稱的自訂標頭`@item()['name']`hello 失敗執行的用戶端追蹤 ID `@item()['clientTrackingId']`。
+5. 包含兩個具有失敗動作名稱 `@item()['name']` 和失敗執行用戶端追蹤識別碼 `@item()['clientTrackingId']` 的自訂標頭。
 
-如需參考，以下是在單一範例`@result()`項目，顯示 hello `name`， `body`，和`clientTrackingId`剖析的 hello 前一個範例中的屬性。 在 `foreach` 之外，`@result()` 會傳回這些物件的陣列。
+供您參考，以下範例是單一 `@result()` 項目，會顯示前一個範例中剖析的 `name`、`body` 和 `clientTrackingId` 屬性。 在 `foreach` 之外，`@result()` 會傳回這些物件的陣列。
 
 ```json
 {
@@ -202,18 +202,18 @@ tooexecute 動作*每個*範圍中的動作，`Failed`結果 tooactions 篩選 h
 }
 ```
 
-tooperform 不同的例外狀況處理模式，您可以使用先前顯示的 hello 運算式。 您可能會選擇 tooexecute 單一的例外狀況處理可接受 hello 整個篩選的陣列失敗次數、 hello 範圍外的動作，並移除 hello `foreach`。 您也可以包含其他有用的屬性，從 hello`@result()`先前所示的回應。
+若要執行不同的例外狀況處理模式，您可以使用上述運算式。 您可以選擇在範圍之外執行單一的例外狀況處理動作，以接受整個篩選後的失敗陣列並移除 `foreach`。 您也可以包含上述 `@result()` 回應中的其他有用屬性。
 
 ## <a name="azure-diagnostics-and-telemetry"></a>Azure 診斷和遙測
 
-hello 先前模式很好的方法 toohandle 錯誤和例外狀況，在執行中，但您也可以識別並回應 tooerrors 執行本身的 hello 與無關。 
-[Azure 診斷](../logic-apps/logic-apps-monitor-your-logic-apps.md)提供簡單的方式 toosend，所有的工作流程 （包括所有執行和動作的狀態） 的事件 tooan Azure 儲存體帳戶或 Azure 事件中心。 tooevaluate 執行狀態，您可以監視 hello 記錄檔和度量，或將它們發佈至任何您偏好的監視工具。 其中一個可能的選項是 toostream 所有 hello 事件至 Azure 事件中心透過[Stream Analytics](https://azure.microsoft.com/services/stream-analytics/)。 在 Stream Analytics 中，您可以撰寫任何異常、 平均值或失敗關閉的即時查詢從 hello 診斷記錄檔。 串流分析可輕鬆地輸出 tooother 資料來源，例如佇列、 主題、 SQL、 Azure Cosmos DB、 和 Power BI。
+上述模式非常適合處理執行內的錯誤和例外狀況，但您也可以識別和回應與執行本身無關的錯誤。 
+[Azure 診斷](../logic-apps/logic-apps-monitor-your-logic-apps.md) 提供了簡單的方法讓您將所有工作流程事件 (包括所有執行和動作狀態) 傳送至 Azure 儲存體帳戶或 Azure 事件中樞。 若要評估執行狀態，您可以監視記錄和度量，或將它們發佈至您偏好使用的任何監視工具。 其中一個可能的選項是透過 Azure 事件中樞將所有事件串流到 [串流分析](https://azure.microsoft.com/services/stream-analytics/)。 在串流分析中，您可以將診斷記錄中任何異常、平均或失敗的即時查詢取消。 串流分析可以輕鬆地輸出至其他資料來源，例如佇列、主題、SQL、Azure Cosmos DB 和 Power BI。
 
 ## <a name="next-steps"></a>後續步驟
 
 * [看看客戶如何使用 Azure Logic Apps 建置錯誤處理](../logic-apps/logic-apps-scenario-error-and-exception-handling.md)
 * [尋找其他 Logic Apps 範例和案例](../logic-apps/logic-apps-examples-and-scenarios.md)
-* [了解 toocreate 自動化部署邏輯應用程式的方式](../logic-apps/logic-apps-create-deploy-template.md)
+* [了解如何建立邏輯應用程式的自動化部署](../logic-apps/logic-apps-create-deploy-template.md)
 * [使用 Visual Studio 建置和部署邏輯應用程式](logic-apps-deploy-from-vs.md)
 
 <!-- References -->

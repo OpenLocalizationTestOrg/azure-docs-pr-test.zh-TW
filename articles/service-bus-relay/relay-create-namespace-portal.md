@@ -1,6 +1,6 @@
 ---
-title: "命名空間的類型轉送使用的 aaaCreate hello Azure 入口網站 |Microsoft 文件"
-description: "如何使用轉送命名空間的 toocreate hello Azure 入口網站。"
+title: "使用 Azure 入口網站來建立轉送類型的命名空間 | Microsoft Docs"
+description: "如何使用 Azure 入口網站建立轉送命名空間。"
 services: service-bus-relay
 documentationcenter: .net
 author: sethmanheim
@@ -14,19 +14,19 @@ ms.tgt_pltfrm: multiple
 ms.workload: na
 ms.date: 08/23/2017
 ms.author: sethm
-ms.openlocfilehash: ab3abedbe63aa2d806ffd3a0db7e4aa3c99c4b0d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 27cc817fd4fc2d88b0b7d87f99d58795a6b8b864
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
-# <a name="create-a-relay-namespace-using-hello-azure-portal"></a>建立轉送命名空間使用 hello Azure 入口網站
-命名空間是所有 Azure 轉送元件的共同容器。 多個轉送可以位於單一命名空間，而且命名空間通常會作為應用程式容器。 沒有目前有兩種不同方式 toocreate 轉送命名空間。
+# <a name="create-a-relay-namespace-using-the-azure-portal"></a>使用 Azure 入口網站建立轉送命名空間
+命名空間是所有 Azure 轉送元件的共同容器。 多個轉送可以位於單一命名空間，而且命名空間通常會作為應用程式容器。 目前有 2 個不同的方式可建立轉送命名空間。
 
 1. Azure 入口網站 (本文)
 2. [Azure Resource Manager](../azure-resource-manager/resource-group-overview.md) 範本
 
-## <a name="create-a-namespace-in-hello-azure-portal"></a>在 hello Azure 入口網站中建立命名空間
+## <a name="create-a-namespace-in-the-azure-portal"></a>在 Azure 入口網站中建立命名空間
 
 [!INCLUDE [relay-create-namespace-portal](../../includes/relay-create-namespace-portal.md)]
 

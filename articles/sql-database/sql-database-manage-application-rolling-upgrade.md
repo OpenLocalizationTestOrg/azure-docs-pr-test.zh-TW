@@ -1,6 +1,6 @@
 ---
-title: "aaaRolling 應用程式升級 Azure SQL Database |Microsoft 文件"
-description: "深入了解如何 toouse Azure SQL Database 的地理複寫 toosupport 線上升級您的雲端應用程式。"
+title: "輪流應用程式升級 - Azure SQL Database | Microsoft Docs"
+description: "了解如何使用 Azure SQL Database 異地複寫以支援雲端應用程式的線上升級。"
 services: sql-database
 documentationcenter: 
 author: anosov1960
@@ -15,127 +15,127 @@ ms.tgt_pltfrm: NA
 ms.workload: NA
 ms.date: 07/16/2016
 ms.author: sashan
-ms.openlocfilehash: 18c56300916d129bff141624cc5c416b500408d4
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 4b59c8aa3dea3e8fba692ab66420295a09210d3b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="managing-rolling-upgrades-of-cloud-applications-using-sql-database-active-geo-replication"></a>使用 SQL Database 主動式異地複寫管理雲端應用程式的輪流升級
 > [!NOTE]
 > [作用中異地複寫](sql-database-geo-replication-overview.md)現在可供所有層中的所有資料庫使用。
 > 
 
-深入了解如何 toouse[地理複寫](sql-database-geo-replication-overview.md)中 SQL Database tooenable 輪流升級的雲端應用程式。 因為升級是干擾性作業，它應該是您商務持續性規劃與設計的一部分。 在本文探討兩個不同的方法，來協調 hello 的升級程序，並討論 hello 優點和缺點的每個選項。 基於本文章的 hello 我們會使用當做其資料層的 web 站台連線的 tooa 單一資料庫所組成的簡單應用程式。 我們的目標是 tooupgrade 1 上的版本而不會大幅影響 hello 應用程式 tooversion 2 hello 使用者體驗。 
+了解如何使用 SQL Database 中的[異地複寫](sql-database-geo-replication-overview.md)來啟用雲端應用程式的輪流升級。 因為升級是干擾性作業，它應該是您商務持續性規劃與設計的一部分。 在本文中，我們將探討兩種不同的升級程序協調方法，並討論每個選項的優點和取捨。 基於本文的目的，我們將使用簡單的應用程式，它是由連線到單一資料庫作為其資料層的網站所組成。 我們的目標是將應用程式的版本 1 升級到版本 2，而不對使用者體驗造成顯著的影響。 
 
-評估 hello 升級選項時，您應該考慮下列因素的 hello:
+評估升級選項時，您應該考慮下列因素：
 
-* 升級期間對應用程式可用性的影響。 多久 hello 應用程式函式可能會限制或降級。
-* 能力 tooroll 備份，以防升級失敗。
-* Hello 應用程式不相關的重大錯誤 hello 升級期間發生的弱點。
-* 總金額成本。  這包括額外的備援性和 hello hello 升級程序所用的暫存元件的遞增成本。 
+* 升級期間對應用程式可用性的影響。 應用程式功能可能受到限制或降級多久時間。
+* 防止萬一升級失敗的復原功能。
+* 升級期間發生不相關的重大失敗時，應用程式的弱點。
+* 總金額成本。  這包括額外備援以及升級程序所使用之暫時性元件的累加成本。 
 
 ## <a name="upgrading-applications-that-rely-on-database-backups-for-disaster-recovery"></a>升級依賴資料庫備份以進行災害復原的應用程式
-如果您的應用程式依賴自動資料庫備份，並針對嚴重損壞修復使用異地還原，則通常是部署的 tooa 單一 Azure 區域。 在此情況下 hello 升級程序牽涉到建立備份的所有應用程式元件部署參與 hello 升級。 您會利用 Azure Traffic Manager (WATM) 與 hello 容錯移轉設定檔 toominimize hello 使用者中斷。  hello 下列圖表說明 hello 操作環境之前 toohello 升級程序。 hello 端點<i>contoso 1.azurewebsites.net</i>表示需要升級 toobe hello 應用程式的生產環境位置。 tooenable hello 能力 tooroll 回 hello 升級，您需要建立階段插槽 hello 應用程式的完整同步處理複本。 hello 下列步驟是必要的 tooprepare hello hello 升級應用程式：
+如果您的應用程式依賴自動資料庫備份，並針對災害復原使用異地復原，則它通常是部署到單一 Azure 區域。 在此案例中，升級程序涉及建立升級中相關的所有應用程式元件的備份部署。 若要對使用者的干擾降到最低，您要利用 Azure 流量管理員 (WATM) 與容錯移轉設定檔。  下圖說明升級程序之前的作業環境。 端點 <i>contoso-1.azurewebsites.net</i> 代表需要升級之應用程式的生產位置。 若要啟用復原升級的功能，您必須建立含有應用程式完整同步之複本的預備位置。 準備升級應用程式需要執行下列步驟：
 
-1. 建立 hello 升級階段位置。 建立次要資料庫 (1)，並部署相同網站中 hello toodo 相同 Azure 區域。 如果在完成植入處理程序的 hello，監視 hello 次要 toosee。
+1. 為升級建立預備位置。 若要這樣做，請建立次要資料庫 (1) 並在相同的 Azure 區域中部署相同的網站。 監視次要資料庫，查看植入程序是否完成。
 2. 在 WATM 中建立容錯移轉設定檔，<i>contoso-1.azurewebsites.net</i> 作為線上端點，<i>contoso-2.azurewebsites.net</i> 作為離線端點。 
 
 > [!NOTE]
-> 請注意 hello 準備步驟並不會影響 hello hello 生產位置中的應用程式，它可以在完整存取權限模式下運作。
+> 請注意，準備步驟不會影響生產位置中的應用程式，且它可以在完整存取模式下運作。
 >  
 
 ![SQL Database「異地複寫」組態。 雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-1.png)
 
-Hello 準備步驟完成 hello 應用程式已準備好 hello 實際升級。 hello 下列圖表說明 hello 升級程序中所包含的 hello 步驟。 
+一旦準備步驟完成後，應用程式就已準備好實際升級。 下圖說明升級程序相關的步驟。 
 
-1. Hello 主要資料庫設定 hello 生產位置 tooread-僅限模式中 (3)。 這樣會保證該 hello hello 應用程式 (V1) 的實際執行個體將因此防止 hello hello V1 與 V2 資料庫執行個體之間的資料不一致的 hello 升級期間維持唯讀狀態。  
-2. 中斷連線 hello 次要資料庫使用 hello 計劃的終止模式 (4)。 它會建立 hello 主要資料庫完全同步處理獨立複本。 此資料庫將會升級。
-3. 開啟 hello tooread 寫模式，主要資料庫，並執行 hello 階段插槽 (5) 中的 hello 升級指令碼。     
+1. 將生產位置中的主要資料庫設定為唯讀模式 (3)。 這樣會保證應用程式的生產執行個體 (V1) 在升級期間會保持唯讀，藉此防止 V1 與 V2 資料庫執行個體間的資料分歧。  
+2. 使用規劃的終止模式 (4) 中斷次要資料庫的連線。 它會建立完整同步的主要資料庫獨立複本。 此資料庫將會升級。
+3. 在預備位置 (5) 中將主要資料庫切換為讀寫模式，然後執行升級指令碼。     
 
 ![SQL Database 異地複寫組態。 雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-2.png)
 
-如果已成功完成 hello 升級現在您已經準備就緒 tooswitch hello 終端使用者接移 toohello 複製 hello 應用程式。 它現在會變成 hello hello 應用程式的生產環境位置。  這牽涉到在 hello 下列圖表所示的幾個步驟。
+如果升級順利完成，您現在已準備好將使用者切換至應用程式的預備複本。 它現在將會成為應用程式的生產位置。  這涉及一些步驟，如下圖所示。
 
-1. 太切換 hello WATM 設定檔中的 hello 線上端點<i>contoso 2.azurewebsites.net</i>，hello 網站 (6) 的點 toohello V2 版本。 現在已成為 hello 生產位置以 hello V2 應用程式，且 hello 使用者流量導向的 tooit。  
-2. 如果您不再需要 hello V1 應用程式元件，因此您可以安全地移除 (7)。   
+1. 將 WATM 設定檔中的線上端點切換為 <i>contoso-2.azurewebsites.net</i>，它會指向 V2 版本的網站 (6)。 它現在已成為含有 V2 應用程式的生產位置，而且使用者流量會導向至它。  
+2. 如果您不再需要 V1 應用程式元件，您可以安全地移除它們 (7)。   
 
 ![SQL Database 異地複寫組態。 雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-3.png)
 
-是否 hello 升級程序不成功，例如因為 tooan hello 升級指令碼中的錯誤 hello 階段位置應視為入侵。 tooroll 回 hello 應用程式 toohello 升級前狀態您只需還原 hello hello 生產位置 toofull access 中的應用程式。 hello 下圖會顯示 hello 所需的步驟。    
+如果升級程序失敗 (例如升級指令碼中發生錯誤)，可能要將預備位置視為遭到危害。 若要將應用程式復原到升級前狀態，您只需將生產位置中的應用程式還原至完整存取。 下圖顯示相關的步驟。    
 
-1. 設定 hello 資料庫複製 tooread 寫入模式 (8)。 這將會還原 hello 完整 V1 hello 生產位置中的功能。
-2. 執行 hello 根本原因分析，並移除 hello 階段插槽 (9) 中的 hello 危害元件。 
+1. 將資料庫複本設定為讀寫模式 (8)。 這會還原生產位置中完整的 V1 功能。
+2. 執行根本原因分析，然後移除預備位置 (9) 中遭到危害的元件。 
 
-此時 hello 應用程式可完整運作，並可以重複 hello 升級步驟。
+此時應用程式已經可以完全運作，並且可以重複升級步驟。
 
 > [!NOTE]
-> hello 復原則不需要變更 WATM 設定檔中的因為它已經點太<i>contoso 1.azurewebsites.net</i>為 hello 主動端點。
+> 復原不需要變更 WATM 設定檔，因為它已經指向 <i>contoso-1.azurewebsites.net</i> 作為作用中端點。
 > 
 > 
 
 ![SQL Database 異地複寫組態。 雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option1-4.png)
 
-hello 金鑰**利用**這個選項是您可以升級的應用程式在單一區域，使用一組簡單的步驟。 hello 貨幣成本 hello 升級為較低。 主要的 hello**權衡取捨**是，如果 hello 升級 hello 復原 toohello 升級前狀態期間發生嚴重失敗將會包含不同的區域和還原 hello 資料庫中的 hello 應用程式重新部署使用地理還原的備份。 此程序將產生顯著的停機時間。   
+這個選項的重要**優點**是您可以使用一組簡單步驟升級單一區域中的應用程式。 升級的金額成本相對較低。 主要的 **取捨** 是如果在升級期間發生嚴重失敗，復原到升級前狀態會需要將不同區域的應用程式重新部署，並使用異地復原從備份還原資料庫。 此程序將產生顯著的停機時間。   
 
 ## <a name="upgrading-applications-that-rely-on-database-geo-replication-for-disaster-recovery"></a>升級依賴資料庫異地複寫來進行災害復原的應用程式
-如果您的應用程式會利用業務續航力的地理複寫，則部署的 tooat 至少兩個不同的區域與主要區域中作用中的部署和備份區域中的待命部署。 此外 toohello 因素先前所述，hello 升級程序必須保證：
+如果您的應用程式利用異地複寫來提供商務持續性，則它至少會部署到兩個不同區域，其中作用中部署會在「主要」區域，而待命部署則會在「備份」區域。 除了先前提到的因素之外，升級程序也必須保證：
 
-* hello 應用程式隨時 hello 升級程序期間保持受保護的嚴重失敗
-* hello hello 應用程式的地理備援元件會升級以平行方式與 hello 作用中的元件
+* 升級程序期間，應用程式隨時受到保護以防嚴重失敗。
+* 應用程式的異地備援元件會與作用中元件以平行方式升級
 
-tooachieve 這些目標，您會利用 Azure Traffic Manager (WATM) 使用 hello 容錯移轉設定檔與一個使用中，三個的備份端點。  hello 下列圖表說明 hello 操作環境之前 toohello 升級程序。 hello 網站<i>contoso 1.azurewebsites.net</i>和<i>contoso dr.azurewebsites.net</i>完整地理備援代表 hello 應用程式的生產環境位置。 tooenable hello 能力 tooroll 回 hello 升級，您需要建立階段插槽 hello 應用程式的完整同步處理複本。 您需要 tooensure hello 應用程式可以快速地復原以防 hello 升級程序期間發生嚴重失敗，因為 hello 階段位置需要 toobe 異地備援以及。 hello 下列步驟是必要的 tooprepare hello hello 升級應用程式：
+若要達成這些目標，您要利用 Azure 流量管理員 (WATM)，使用含有一個作用中端點以及三個備份端點的容錯移轉設定檔。  下圖說明升級程序之前的作業環境。 網站 <i>contoso-1.azurewebsites.net</i> 和 <i>contoso-dr.azurewebsites.net</i> 代表具有完整異地備援之應用程式的生產位置。 若要啟用復原升級的功能，您必須建立含有應用程式完整同步之複本的預備位置。 因為您必須確保應用程式可以快速復原，以防在升級程序期間發生嚴重失敗，因此預備位置也需要異地備援。 準備升級應用程式需要執行下列步驟：
 
-1. 建立 hello 升級階段位置。 建立次要資料庫 (1) 和部署的 hello hello 網站的相同複本的 toodo 相同 Azure 區域。 如果在完成植入處理程序的 hello，監視 hello 次要 toosee。
-2. 建立 hello 階段插槽中的異地備援的次要資料庫，藉由地理複寫 hello 次要資料庫 toohello 備份區域 （稱為 「 串連地理複寫 」）。 請監視 hello 備份次要 toosee hello 植入處理程序是否已完成 (3)。
-3. 建立 hello 備份區域中的 hello 網站上的待命副本，並連結到 toohello 地理備援次要資料庫 (4)。  
-4. 新增 hello 其他端點<i>contoso 2.azurewebsites.net</i>和<i>contoso 3.azurewebsites.net</i> toohello 容錯移轉設定檔中 WATM 為離線的端點 (5)。 
+1. 為升級建立預備位置。 若要這樣做，請建立次要資料庫 (1) 並在相同的 Azure 區域中部署相同的網站複本。 監視次要資料庫，查看植入程序是否完成。
+2. 將次要資料庫異地複寫至備份區域 (這裡稱為「鏈結異地複寫」)，在預備位置建立異地備援次要資料庫。 監視備份次要資料庫，查看植入程序是否完成 (3)。
+3. 在備份區域中建立網站待命複本，然後將它連結至異地備援次要資料庫 (4)。  
+4. 將額外的端點 <i>contoso-2.azurewebsites.net</i> 和 <i>contoso-3.azurewebsites.net</i> 新增到 WATM 中的容錯移轉設定檔作為離線端點 (5)。 
 
 > [!NOTE]
-> 請注意 hello 準備步驟並不會影響 hello hello 生產位置中的應用程式，它可以在完整存取權限模式下運作。
+> 請注意，準備步驟不會影響生產位置中的應用程式，且它可以在完整存取模式下運作。
 > 
 > 
 
 ![SQL Database 異地複寫組態。 雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-1.png)
 
-一旦 hello 準備步驟完成時，就有一個 hello 階段位置可供 hello 升級。 hello 下列圖表說明 hello 升級步驟。
+一旦準備步驟完成後，預備位置就準備好升級。 下圖說明升級步驟。
 
-1. Hello 主要資料庫設定 hello 生產位置 tooread-僅限模式中 (6)。 這樣會保證該 hello hello 應用程式 (V1) 的實際執行個體將因此防止 hello hello V1 與 V2 資料庫執行個體之間的資料不一致的 hello 升級期間維持唯讀狀態。  
-2. 中斷連接次要資料庫的 hello hello 中相同的區域使用 hello 計劃的終止模式 (7)。 它會建立完全同步處理的獨立 hello 主要資料庫，就會自動變成 hello 終止後的主要副本。 此資料庫將會升級。
-3. 在 hello 階段插槽 tooread 寫入模式下開啟 hello 主要資料庫，並執行 hello 升級指令碼 (8)。    
+1. 將生產位置中的主要資料庫設定為唯讀模式 (6)。 這樣會保證應用程式的生產執行個體 (V1) 在升級期間會保持唯讀，藉此防止 V1 與 V2 資料庫執行個體間的資料分歧。  
+2. 使用規劃的終止模式 (7) 中斷相同區域內次要資料庫的連線。 它會建立主要資料庫完整同步的獨立複本，它會在終止後自動成為主要資料庫。 此資料庫將會升級。
+3. 將預備位置中的主要資料庫切換為讀寫模式，然後執行升級指令碼 (8)。    
 
 ![SQL Database 異地複寫組態。 雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-2.png)
 
-如果已成功完成 hello 升級現在您已經準備就緒 tooswitch hello 使用者 toohello V2 hello 應用程式版本。 hello 下列圖表說明 hello 所需的步驟。
+如果升級順利完成，您現在已準備好將使用者切換至應用程式的 V2 版本。 下圖說明相關步驟。
 
-1. 太切換 hello WATM 設定檔中的 hello 作用中端點<i>contoso 2.azurewebsites.net</i>，現在點 toohello V2 hello 網站 (9) 版本。 它現在成為生產位置以 hello V2 應用程式，且使用者流量導向的 tooit。 
-2. 如果您不再需要 hello V1 應用程式，這樣您就可以安全地移除它 （10 和 11）。  
+1. 將 WATM 設定檔中的作用中端點切換為 <i>contoso-2.azurewebsites.net</i>，它現在會指向 V2 版本的網站 (9)。 它現在已成為 V2 應用程式的生產位置，而且使用者流量會導向至它。 
+2. 如果您不再需要 V1 應用程式，您可以安全地移除它 (10 和 11)。  
 
 ![SQL Database 異地複寫組態。 雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-3.png)
 
-是否 hello 升級程序不成功，例如因為 tooan hello 升級指令碼中的錯誤 hello 階段位置應視為入侵。 tooroll 回 hello 應用程式 toohello 升級前狀態您只需還原 toousing hello 應用程式具有完整存取權的 hello 生產位置中。 hello 下圖會顯示 hello 所需的步驟。    
+如果升級程序失敗 (例如升級指令碼中發生錯誤)，可能要將預備位置視為遭到危害。 若要將應用程式復原到升級前狀態，您只需以完整存取使用生產位置中的應用程式即可復原。 下圖顯示相關的步驟。    
 
-1. 設定 hello hello 生產位置 tooread 寫入模式 (12) 的主要資料庫複本。 這將會還原 hello 完整 V1 hello 生產位置中的功能。
-2. 執行 hello 根本原因分析，並移除 hello 階段插槽 （13 與 14） 中的 hello 危害元件。 
+1. 將生產位置中的主要資料庫複本設定為讀寫模式 (12)。 這會還原生產位置中完整的 V1 功能。
+2. 執行根本原因分析，然後移除預備位置 (13 和 14) 中遭到危害的元件。 
 
-此時 hello 應用程式可完整運作，並可以重複 hello 升級步驟。
+此時應用程式已經可以完全運作，並且可以重複升級步驟。
 
 > [!NOTE]
-> hello 復原則不需要變更 WATM 設定檔中的因為它已經點太<i>contoso 1.azurewebsites.net</i>為 hello 主動端點。
+> 復原不需要變更 WATM 設定檔，因為它已經指向 <i>contoso-1.azurewebsites.net</i> 作為作用中端點。
 > 
 > 
 
 ![SQL Database 異地複寫組態。 雲端災害復原。](media/sql-database-manage-application-rolling-upgrade/Option2-4.png)
 
-hello 金鑰**利用**這個選項時，您可以升級 hello 應用程式和其異地備援複本，以平行方式而不會危害您的業務續航力 hello 升級期間。 主要的 hello**權衡取捨**是它需要的每個應用程式元件的雙重備援性，因此造成 貨幣成本較高。 它也涉及更複雜的工作流程。 
+這個選項的重要 **優點** 是您可以以平行方式升級應用程式及其異地備援複本，而不會在升級期間危及商務持續性。 主要的 **取捨** 是它需要每個應用程式元件的雙重備援，因此會產生較高的金額成本。 它也涉及更複雜的工作流程。 
 
 ## <a name="summary"></a>摘要
-hello 兩個升級方法 hello 文章所述的相同複雜性和 hello 貨幣成本，但它們都著重於最小化 hello 時間 hello 終端使用者限制為只能在 tooread 上執行的操作。 直接由 hello hello 升級指令碼期間定義該時間。 它不依賴 hello 資料庫大小、 hello 服務層您選擇 hello 網站組態，您無法輕鬆地控制其他因素。 這是因為所有的 hello 準備步驟彼此分離時 hello 升級步驟可以完成而不會影響 hello 實際執行應用程式。 hello 效率 hello 升級指令碼是 hello 決定在升級期間的 hello 使用者體驗的關鍵因素。 因此可以改善 hello 最佳方式是集中建立盡可能有效率 hello 升級指令碼工作。  
+本文中所描述的兩種升級方法有不同的複雜度與金額成本，但它們都著重於將使用者受限為唯讀作業的時間降到最低。 該時間由升級指令碼的期間直接定義。 時間不會取決於資料庫大小、您選擇的服務層，以及網站設定和其他您無法輕鬆控制的因素。 這是因為所有的準備步驟與升級步驟分離，並且不需影響實際執行應用程式即可完成。 升級指令的效率是決定升級期間使用者的體驗的重要因素。 因此您改進效率的最佳方式，是把工作焦點放在盡可能提高升級指令碼的效率。  
 
 ## <a name="next-steps"></a>後續步驟
 * 如需商務持續性概觀和案例，請參閱 [商務持續性概觀](sql-database-business-continuity.md)。
-* toolearn 有關自動化 Azure SQL Database 備份，請參閱[SQL 資料庫自動備份](sql-database-automated-backups.md)。
-* toolearn 有關使用自動的備份進行復原，請參閱[從自動備份中還原資料庫](sql-database-recovery-using-backups.md)。
-* toolearn 有關更快速的復原選項，請參閱[作用中地理複寫](sql-database-geo-replication-overview.md)。
+* 若要了解 Azure SQL Database 自動備份，請參閱 [SQL Database 自動備份](sql-database-automated-backups.md)。
+* 若要了解如何使用自動備份進行復原，請參閱[從自動備份還原資料庫](sql-database-recovery-using-backups.md)。
+* 若要了解更快速的復原選項，請參閱[主動式異地複寫](sql-database-geo-replication-overview.md)。
 
 

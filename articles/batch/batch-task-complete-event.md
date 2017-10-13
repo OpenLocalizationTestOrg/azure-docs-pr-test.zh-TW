@@ -1,5 +1,5 @@
 ---
-title: "aaa\"Azure 批次工作完成事件 |Microsoft 文件 」"
+title: "Azure Batch 工作完成事件 | Microsoft Docs"
 description: "Batch 工作完成事件的參考。"
 services: batch
 author: tamram
@@ -12,18 +12,18 @@ ms.tgt_pltfrm: vm-windows
 ms.workload: big-compute
 ms.date: 04/20/2017
 ms.author: tamram
-ms.openlocfilehash: c126bf897071c008be3d24190cf77bba5878b807
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 015adf7dbc47c29a78df4e4889b2ee1ddcccdd8e
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="task-complete-event"></a>工作完成事件
 
- 工作完成後，不論 hello 結束代碼，就會發出此事件。 這個事件可以是工作中，使用的 toodetermine hello 期間 hello 工作執行的所在位置，以及是否已重試。
+ 工作完成時就會發出此事件，無論結束代碼為何。 此事件可用來判斷工作的持續時間、工作執行的位置，以及是否已重試工作。
 
 
- hello 下列範例顯示 hello 主體的工作完成事件。
+ 下列範例顯示工作完成事件內文。
 
 ```
 {
@@ -53,40 +53,40 @@ ms.lasthandoff: 10/06/2017
 
 |元素名稱|類型|注意事項|
 |------------------|----------|-----------|
-|jobId|String|hello hello 作業包含 hello 工作識別碼。|
-|id|String|hello hello 工作識別碼。|
-|taskType|String|hello hello 工作類型。 可以是 'JobManager'，表示這是作業管理員工作，或是 'User'，表示不是作業管理員工作。 對於作業準備工作、作業發行工作或開始工作。不會發出此事件。|
-|systemTaskVersion|Int32|這是在工作上的 hello 內部重試計數器。 在內部 hello 批次服務可以重試工作 tooaccount 暫時性的問題。 這些問題可以包含內部排程錯誤或嘗試 toorecover 從運算節點處於錯誤狀態。|
-|[nodeInfo](#nodeInfo)|複雜類型|包含 hello 計算節點的 hello 工作已執行的相關資訊。|
-|[multiInstanceSettings](#multiInstanceSettings)|複雜類型|指定該 hello 工作是多個執行個體工作需要多個計算節點。  請參閱 [multiInstanceSettings](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-task) (英文) 以取得詳細資訊。|
-|[constraints](#constraints)|複雜類型|套用 toothis 工作 hello 執行條件約束。|
-|[executionInfo](#executionInfo)|複雜類型|包含有關 hello hello 工作執行資訊。|
+|jobId|String|包含工作的作業識別碼。|
+|id|String|工作識別碼。|
+|taskType|String|工作類型。 可以是 'JobManager'，表示這是作業管理員工作，或是 'User'，表示不是作業管理員工作。 對於作業準備工作、作業發行工作或開始工作。不會發出此事件。|
+|systemTaskVersion|Int32|這是作業上的內部重試計數器。 Batch 服務可在內部重試工作，以處理暫時性問題。 這些問題包含內部排程錯誤，或嘗試從不正常狀態的計算節點復原。|
+|[nodeInfo](#nodeInfo)|複雜類型|包含工作執行所在計算節點的相關資訊。|
+|[multiInstanceSettings](#multiInstanceSettings)|複雜類型|指定工作為需要多個計算節點的多重執行個體工作。  請參閱 [multiInstanceSettings](https://docs.microsoft.com/rest/api/batchservice/get-information-about-a-task) (英文) 以取得詳細資訊。|
+|[constraints](#constraints)|複雜類型|套用至此工作的執行限制。|
+|[executionInfo](#executionInfo)|複雜類型|包含執行工作的相關資訊。|
 
 ###  <a name="nodeInfo"></a> nodeInfo
 
 |元素名稱|類型|注意事項|
 |------------------|----------|-----------|
-|poolId|String|hello hello 集區的 hello 工作已執行識別碼。|
-|nodeId|String|hello hello 節點的 hello 工作已執行識別碼。|
+|poolId|String|工作執行所在集區的識別碼。|
+|nodeId|String|工作執行所在節點的識別碼。|
 
 ###  <a name="multiInstanceSettings"></a> multiInstanceSettings
 
 |元素名稱|類型|注意事項|
 |------------------|----------|-----------|
-|numberOfInstances|Int32|hello hello 工作所需的運算節點數目。|
+|numberOfInstances|Int32|工作需要的計算節點數目。|
 
 ###  <a name="constraints"></a> constraints
 
 |元素名稱|類型|注意事項|
 |------------------|----------|-----------|
-|maxTaskRetryCount|Int32|hello hello 工作可能會重試的次數上限。 如果它的結束代碼是非零值 hello 批次服務會重試工作。<br /><br /> 請注意，這個值會特別控制 hello 重試次數。 hello 批次服務將嘗試 hello 工作一次，並重試可能向上 toothis 限制。 例如，如果 hello 最大重試計數為 3，批次會嘗試向上 too4 時間 （一個初始再試一次和重試 3 次） 的工作。<br /><br /> 如果 hello 最大重試計數為 0，hello 批次服務不會重試工作。<br /><br /> 如果 hello 重試次數上限為-1，hello 批次服務將重試無限制的工作。<br /><br /> hello 預設值為 0 （無重試）。|
+|maxTaskRetryCount|Int32|工作重試次數上限。 如果工作的結束代碼不是零，Batch 服務會重試工作。<br /><br /> 請注意，這個值會特別控制重試次數。 Batch 服務會嘗試工作一次，然後可一直重試直到達此限制。 例如，如果重試計數上限為 3，則 Batch 可嘗試工作最多 4 次 (一次首次嘗試，3 次重試)。<br /><br /> 如果重試計數上限為 0，則 Batch 服務不會重試工作。<br /><br /> 如果重試計數上限為 -1，則 Batch 服務會無限制地重試工作。<br /><br /> 預設值為 0 (不重試)。|
 
 ###  <a name="executionInfo"></a> executionInfo
 
 |元素名稱|類型|注意事項|
 |------------------|----------|-----------|
-|startTime|DateTime|hello 開始執行的 hello 工作時間。 「 執行中 」 對應 toohello**執行**狀態，因此如果 hello 工作指定資源檔或應用程式封裝，然後 hello 開始時間就會反映 hello 啟動下載或部署這些哪個 hello 工作時間。  如果已重新啟動或重試 hello 工作，這是的 hello 最近一次在哪個 hello 工作開始執行。|
-|EndTime|DateTime|hello hello 任務完成時間。|
-|exitCode|Int32|hello hello 工作的結束代碼。|
-|retryCount|Int32|hello hello 工作已 hello 批次服務重試次數。 它會結束，則為非零結束代碼，向上 toohello 指定 MaxTaskRetryCount 重試 hello 工作。|
-|requeueCount|Int32|hello 的 hello 導致使用者要求 hello 工作排 hello 批次服務的次數。<br /><br /> 當 hello 使用者移除節點從集區 （調整大小或壓縮 hello 共用） 或 hello 作業時已停用，hello 使用者可以指定執行工作 hello 節點上執行排入佇列。 這個計數會追蹤多少次已排入佇列 hello 工作基於這些理由。|
+|startTime|DateTime|工作開始執行的時間。 「執行」與 **running** 狀態對應，因此如果工作會指定資源檔或應用程式套件，則開始時間會反映工作開始下載或部署下載項目的時間。  如果已重新啟動或重試工作，則這是最近一次工作開始執行的時間。|
+|EndTime|DateTime|工作完成的時間。|
+|exitCode|Int32|工作的結束代碼。|
+|retryCount|Int32|Batch 服務已重試工作的次數。 如果工作結束時的結束代碼不是零，便會重試工作，直到次數達指定的 MaxTaskRetryCount。|
+|requeueCount|Int32|Batch 服務因為使用者要求而將工作重新排入佇列的次數。<br /><br /> 當使用者將節點從集區中移除 (透過調整集區大小或將集區縮小)，或當作業正停用時，使用者可指定將節點上的執行中工作重新排入佇列以執行。 此計數會追蹤因為這些理由而將工作重新排入佇列的次數。|

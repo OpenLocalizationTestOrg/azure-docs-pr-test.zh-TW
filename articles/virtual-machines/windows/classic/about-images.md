@@ -1,5 +1,5 @@
 ---
-title: "aaaAbout 映像的 Windows 虛擬機器 |Microsoft 文件"
+title: "關於 Windows 虛擬機器的映像 | Microsoft Docs"
 description: "了解如何將映像與 Azure 中的 Windows 虛擬機器搭配使用。"
 services: virtual-machines-windows
 documentationcenter: 
@@ -15,35 +15,35 @@ ms.devlang: na
 ms.topic: article
 ms.date: 03/20/2017
 ms.author: cynthn
-ms.openlocfilehash: c7cfa1d018a5e99d5b68f559ec9ae1f14e4dec8b
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: d421cee0becabdf81d865036d0c98b12b077152b
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="about-images-for-windows-virtual-machines"></a>關於 Windows 虛擬機器的映像
 > [!IMPORTANT]
-> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文件涵蓋使用 hello 傳統部署模型。 Microsoft 建議最新的部署使用 hello 資源管理員的模型。 如需尋找與 hello 資源管理員模型中使用映像相關資訊，請參閱[這裡](../../virtual-machines-windows-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+> Azure 建立和處理資源的部署模型有二種： [資源管理員和傳統](../../../resource-manager-deployment-model.md)。 本文涵蓋之內容包括使用傳統部署模型。 Microsoft 建議讓大部分的新部署使用資源管理員模式。 如需在 Resource Manager 模型中尋找和使用映像的詳細資訊，請參閱[這裡](../../virtual-machines-windows-cli-ps-findimage.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 [!INCLUDE [virtual-machines-common-classic-about-images](../../../../includes/virtual-machines-common-classic-about-images.md)]
 
 ## <a name="working-with-images"></a>使用映像
 
-您可以使用 hello Azure PowerShell 模組和 hello Azure 入口網站 toomanage hello 映像可用 tooyour Azure 訂用帳戶。 hello Azure PowerShell 模組可提供更多的命令選項，以便您查出到底是什麼 toosee 或執行。 hello Azure 入口網站提供的 GUI 許多 hello 日常系統管理工作。
+您可以使用 Azure PowerShell 模組和 Azure 入口網站，來管理 Azure 訂用帳戶可使用的映像。 Azure PowerShell 模組提供更多命令選項，讓您可以準確地指出想要查看或執行的項目。 Azure 入口網站提供一個 GUI，供許多日常系統管理工作使用。
 
-以下是一些使用 hello Azure PowerShell 模組的範例。
+以下是一些使用 Azure PowerShell 模組的範例。
 
-* **取得所有映像**:`Get-AzureVMImage`傳回所有可用在您目前的訂用帳戶中的 hello 映像的清單： 您的映像和 Azure 或協力廠商所提供。 hello 產生清單可能是大。 hello 下一個範例顯示如何 tooget 較短的清單。
+* **取得所有映像**：`Get-AzureVMImage` 會傳回您目前訂用帳戶中可用的所有映像清單︰您的映像和 Azure 或協力廠商所提供的映像。 產生的清單可能很長。 下面的範例示範如何取得較短的清單。
 * **取得映像系列**：`Get-AzureVMImage | select ImageFamily`顯示字串 **ImageFamily** 屬性以取得映像系列清單。
 * **取得特定系列中的所有映像**：`Get-AzureVMImage | Where-Object {$_.ImageFamily -eq $family}`
-* **尋找 VM 映像**:`Get-AzureVMImage | where {(gm –InputObject $_ -Name DataDiskConfigurations) -ne $null} | Select -Property Label, ImageName`這個指令程式的運作方式是篩選 hello DataDiskConfiguration 屬性只適用於 tooVM 映像。 此範例也會篩選 hello 輸出 tooonly hello 標籤和映像名稱。
+* **尋找 VM 映像**：`Get-AzureVMImage | where {(gm –InputObject $_ -Name DataDiskConfigurations) -ne $null} | Select -Property Label, ImageName` 這個 Cmdlet 運作的方式是篩選 DataDiskConfiguration 屬性，僅適用於 VM 映像。 此範例也會篩選輸出並僅列出標籤和映像名稱。
 * **儲存一般化映像**：`Save-AzureVMImage –ServiceName "myServiceName" –Name "MyVMtoCapture" –OSState "Generalized" –ImageName "MyVmImage" –ImageLabel "This is my generalized image"`
 * **儲存特殊化映像**：`Save-AzureVMImage –ServiceName "mySvc2" –Name "MyVMToCapture2" –ImageName "myFirstVMImageSP" –OSState "Specialized" -Verbose`
 
   > [!TIP]
-  > hello OSState 參數是必要的 toocreate VM 映像，其中包含 hello 作業系統磁碟，並連接資料磁碟。 如果您不使用 hello 參數，hello cmdlet 會建立 OS 映像。 hello hello 參數值會指出 hello 映像為一般化或特殊化，根據 hello 作業系統磁碟是否已準備好要重複使用。
+  > 需要使用 OSState 參數，才能建立 VM 映像，其中包含作業系統磁碟和連接的資料磁碟。 如果您不使用參數，Cmdlet 就會建立 OS 映像。 根據作業系統磁碟是否準備為重複使用，參數的值會表示是否要將映像一般化或特殊化。
 
 * **删除映像**：`Remove-AzureVMImage –ImageName "MyOldVmImage"`
 
 ## <a name="next-steps"></a>後續步驟
-您也可以[建立一部使用 hello Azure 入口網站的 Windows 電腦](tutorial.md)。
+您也可以[使用 Azure 入口網站來建立 Windows 機器](tutorial.md)。

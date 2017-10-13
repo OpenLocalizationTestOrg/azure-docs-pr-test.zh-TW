@@ -1,6 +1,6 @@
 ---
-title: "行動應用程式與 Apache Cordova aaaAdd 驗證 |Microsoft 文件"
-description: "深入了解如何在您的 Apache Cordova 應用程式透過不同的身分識別提供者，包括 Google、 Facebook、 Twitter 和 Microsoft Azure App Service tooauthenticate 使用者 toouse 行動應用程式。"
+title: "使用 Mobile Apps 在 Apache Cordova 上新增驗證 | Microsoft Docs"
+description: "了解如何在 Azure App Service 中使用 Mobile Apps，透過眾多識別提供者驗證 Apache Cordova 應用程式使用者，包括 Google、Facebook、Twitter 和 Microsoft。"
 services: app-service\mobile
 documentationcenter: javascript
 author: ggailey777
@@ -14,37 +14,37 @@ ms.devlang: javascript
 ms.topic: article
 ms.date: 10/30/2016
 ms.author: glenga
-ms.openlocfilehash: 61a05c5ac67fd0f0bc4c9d6920954a9b464a0a8d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: b7362b7f26859de541f792e714502851d74c98e5
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="add-authentication-tooyour-apache-cordova-app"></a>新增驗證 tooyour Apache Cordova 應用程式
+# <a name="add-authentication-to-your-apache-cordova-app"></a>新增驗證至您的 Apache Cordova 應用程式
 [!INCLUDE [app-service-mobile-selector-get-started-users](../../includes/app-service-mobile-selector-get-started-users.md)]
 
-## <a name="summary"></a>摘要
-在本教學課程中，您可以將驗證 toohello todolist 快速入門專案上使用支援的身分識別提供者的 Apache Cordova。 本教學課程根據 hello[開始使用行動應用程式]教學課程中，您必須先完成。
+## <a name="summary"></a>Summary
+在本教學課程中，您可以使用支援的身分識別提供者，將驗證加入 Apache Cordova 上的 TodoList 快速入門專案。 本教學課程以 [開始使用 Mobile Apps] 為基礎，您必須先完成該教學課程。
 
-## <a name="register"></a>註冊您的應用程式進行驗證並設定 hello 應用程式服務
+## <a name="register"></a>註冊應用程式進行驗證，並設定應用程式服務
 [!INCLUDE [app-service-mobile-register-authentication](../../includes/app-service-mobile-register-authentication.md)]
 
 [觀看示範類似步驟的影片](https://channel9.msdn.com/series/Azure-connected-services-with-Cordova/Azure-connected-services-task-8-Azure-authentication)
 
-## <a name="permissions"></a>限制 tooauthenticated 使用者權限
+## <a name="permissions"></a>限制只有通過驗證的使用者具有權限
 [!INCLUDE [app-service-mobile-restrict-permissions-dotnet-backend](../../includes/app-service-mobile-restrict-permissions-dotnet-backend.md)]
 
-現在，您可以確認已停用該匿名存取 tooyour 後端。 在 Visual Studio 中：
+現在，您可以驗證是否已停用後端的匿名存取。 在 Visual Studio 中：
 
-* 開啟 hello 時完成 hello 教學課程所建立的專案[開始使用行動應用程式]。
-* 執行您的應用程式在 hello **Google Android 模擬器**。
-* 請確認 hello 應用程式啟動之後，會顯示非預期的連線失敗。
+* 開啟您完成[開始使用 Mobile Apps] 教學課程時所建立的專案。
+* 在 **Google Android 模擬器**中執行應用程式。
+* 應用程式啟動後，確認有顯示「非預期的連接失敗」。
 
-接下來，從 hello 行動裝置應用程式後端要求的資源之前更新 hello tooauthenticate 的應用程式使用者。
+接下來，將應用程式更新為在使用者從行動應用程式後端要求資源之前，先驗證使用者。
 
-## <a name="add-authentication"></a>新增驗證 toohello 應用程式
-1. 開啟您的專案中**Visual Studio**，然後開啟 hello`www/index.html`檔案進行編輯。
-2. 找出 hello `Content-Security-Policy` hello 標頭區段中的中繼標籤。  新增 hello OAuth 主機 toohello 允許來源清單。
+## <a name="add-authentication"></a>將驗證新增至應用程式
+1. 在 **Visual Studio** 中開啟您的專案，然後開啟 `www/index.html` 檔案進行編輯。
+2. 找出 head 區段中的 `Content-Security-Policy` 中繼標籤。  將 OAuth 主機新增至允許的來源清單。
 
    | 提供者 | SDK 提供者名稱 | OAuth 主機 |
    |:--- |:--- |:--- |
@@ -59,13 +59,13 @@ ms.lasthandoff: 10/06/2017
         <meta http-equiv="Content-Security-Policy" content="default-src 'self'
             data: gap: https://login.microsoftonline.com https://yourapp.azurewebsites.net; style-src 'self'">
 
-    取代`https://login.microsoftonline.com`與 hello OAuth host hello 上述資料表。  如需 hello meta 標記，內容安全性原則的詳細資訊，請參閱 hello[內容安全性原則文件]。
+    使用上表中的 OAuth 主機取代 `https://login.microsoftonline.com`。  如需 content-security-policy 中繼標籤的詳細資訊，請參閱 [Content-Security-Policy 文件]。
 
     在適當的行動裝置上使用時，某些驗證提供者不需要變更 Content-Security-Policy。  例如，在 Android 裝置上使用 Google 驗證時不需要 Content-Security-Policy 變更。
 
-3. 開啟 hello`www/js/index.js`檔案進行編輯，找出 hello`onDeviceReady()`方法，並在建立 hello 用戶端程式碼會加入下列程式碼的 hello:
+3. 開啟 `www/js/index.js` 檔案進行編輯，找出 `onDeviceReady()` 方法，並在用戶端建立程式碼底下新增下列程式碼：
 
-        // Login toohello service
+        // Login to the service
         client.login('SDK_Provider_Name')
             .then(function () {
 
@@ -74,10 +74,10 @@ ms.lasthandoff: 10/06/2017
                 // Create a table reference
                 todoItemTable = client.getTable('todoitem');
 
-                // Refresh hello todoItems
+                // Refresh the todoItems
                 refreshDisplay();
 
-                // Wire up hello UI Event Handler for hello Add Item
+                // Wire up the UI Event Handler for the Add Item
                 $('#add-item').submit(addItemHandler);
                 $('#refresh').on('click', refreshDisplay);
 
@@ -85,18 +85,18 @@ ms.lasthandoff: 10/06/2017
 
             }, handleError);
 
-    此程式碼取代 hello 的現有程式碼會建立 hello 資料表參考，並重新整理 hello UI。
+    此程式碼會取代現有用於建立資料表參考和重新整理 UI 的程式碼。
 
-    hello login() 方法開頭 hello 提供者的驗證。 hello login() 方法是傳回 JavaScript 承諾 async 函式。  hello rest 的 hello 初始化置於 hello 承諾回應，使它不會執行直到 hello login() 方法完成為止。
+    login () 方法會開始向提供者驗證。 login() 方法是會傳回 JavaScript Promise 的非同步函式。  初始化作業的其餘部分會置於承諾回應中，如此就不會在 login() 方法完成之前執行。
 
-4. 在您剛才加入的 hello 程式碼，取代`SDK_Provider_Name`與 hello 登入提供者名稱。 例如，針對 Azure Active Directory，請使用 `client.login('aad')`。
-5. 執行專案。  當 hello 專案已完成初始化時，您的應用程式會顯示 hello 選擇驗證提供者的 hello OAuth 登入頁面。
+4. 在您剛才加入的程式碼中，使用您的登入提供者名稱取代 `SDK_Provider_Name` 。 例如，針對 Azure Active Directory，請使用 `client.login('aad')`。
+5. 執行專案。  當專案完成初始化時，您的應用程式會針對選擇的驗證提供者顯示 OAuth 登入頁面。
 
 ## <a name="next-steps"></a>後續步驟
 * 深入了解 Azure App Service [驗證相關資訊] 。
-* 藉由新增繼續 hello 教學課程[推播通知]tooyour Apache Cordova 應用程式。
+* 將 [推播通知] 新增至 Apache Cordova 應用程式，以繼續本教學課程。
 
-了解如何 toouse hello Sdk。
+了解如何使用 SDK。
 
 * [Apache Cordova SDK]
 * [ASP.NET Server SDK]

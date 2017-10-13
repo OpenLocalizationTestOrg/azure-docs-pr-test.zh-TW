@@ -1,5 +1,5 @@
 ---
-title: "SQL 資料倉儲中的 aaaConcurrency 和工作負載管理 |Microsoft 文件"
+title: "SQL 資料倉儲中的並行存取和工作負載管理 | Microsoft Docs"
 description: "了解 Azure SQL 資料倉儲中的並行存取和工作負載管理以開發解決方案。"
 services: sql-data-warehouse
 documentationcenter: NA
@@ -15,24 +15,24 @@ ms.workload: data-services
 ms.custom: performance
 ms.date: 08/23/2017
 ms.author: joeyong;barbkess;kavithaj
-ms.openlocfilehash: 7f7e77aa687760252aed16573b609817ed9111c3
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: eaf2d43286dbaa52ada1430fbb7ce1e37f41c0d4
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="concurrency-and-workload-management-in-sql-data-warehouse"></a>SQL 資料倉儲中的並行存取和工作負載管理
-Microsoft Azure SQL 資料倉儲大規模 toodeliver 可預測的效能可協助您控制並行層級和資源配置，例如記憶體和 CPU 優先順序。 本文介紹 toohello 概念的並行存取，以及工作負載的管理，說明已實作這兩種功能，以及如何控制這些資料倉儲中。 支援多使用者環境的預定的 toohelp SQL 資料倉儲工作負載管理。 它並不適用於多租用戶工作負載。
+為了大規模傳遞可預測的效能，Microsoft Azure SQL 資料倉儲可協助您控制並行存取層級和資源配置，例如記憶體和 CPU 優先順序。 本文介紹並行存取和工作負載管理的概念；說明如何實作這兩種功能，以及如何在資料倉儲中控制它們。 SQL 資料倉儲工作負載管理的目的，是要幫助您支援多使用者環境。 它並不適用於多租用戶工作負載。
 
 ## <a name="concurrency-limits"></a>並行存取限制
-SQL 資料倉儲可讓向上 too1，024 並行連線。 這 1,024 個連線全都可以並行提交查詢。 不過，SQL 資料倉儲 toooptimize 輸送量可能排入佇列，每個查詢所接收的最小記憶體授與某些查詢 tooensure。 佇列會在查詢執行時發生。 佇列的查詢時可以提高的並行到達限制，SQL 資料倉儲總輸送量，方法是確保作用中的查詢取得存取 toocritically 所需的記憶體資源。  
+SQL 資料倉儲最多允許 1,024 個並行存取連線。 這 1,024 個連線全都可以並行提交查詢。 不過，為達到最佳輸送量，SQL 資料倉儲可能會將某些查詢排入佇列，以確保每個查詢能夠獲得最少的記憶體授與。 佇列會在查詢執行時發生。 藉由在到達並行存取限制時將查詢排入佇列，SQL 資料倉儲就可透過確保作用中查詢能夠取得急需的記憶體資源存取權，來增加總輸送量。  
 
-並行存取限制受到兩個概念所控制：「並行查詢」和「並行存取插槽」。 針對查詢 tooexecute，它必須在 hello 查詢並行限制和 hello 並行位置配置內執行。
+並行存取限制受到兩個概念所控制：「並行查詢」和「並行存取插槽」。 若要執行查詢，它必須在查詢並行限制和並行存取插槽配置內執行。
 
-* 並行的查詢是執行在 hello 相同的 hello 查詢時間。 SQL 資料倉儲支援 too32 hello 較大的 DWU 大小上的並行查詢。
-* 並行存取插槽是根據 DWU 所配置。 每 100 個 DWU 提供 4 個並行存取插槽。 例如，DW100 會配置 4 個並行存取插槽，而 DW1000 會配置 40 個。 每個查詢取用一或多個並行 [插槽]，相依於 hello[資源類別](#resource-classes)的 hello 查詢。 Hello smallrc 資源類別中執行的查詢取用一個並行存取的位置。 較高資源類別中執行的查詢會使用更多的並行存取插槽。
+* 並行查詢是在同一時間執行的查詢。 「SQL 資料倉儲」在較大的 DWU 大小上最多可支援 32 個並行查詢。
+* 並行存取插槽是根據 DWU 所配置。 每 100 個 DWU 提供 4 個並行存取插槽。 例如，DW100 會配置 4 個並行存取插槽，而 DW1000 會配置 40 個。 根據查詢的 [資源類別](#resource-classes) 而定，每個查詢會使用一或多個並行存取插槽。 smallrc 資源類別中執行的查詢會使用一個並行存取插槽。 較高資源類別中執行的查詢會使用更多的並行存取插槽。
 
-hello 以下表格說明 hello 限制的並行查詢和在 hello 並行插槽各種 DWU 大小。
+下表說明在不同的 DWU 大小，並行查詢和並行存取插槽的限制。
 
 ### <a name="concurrency-limits"></a>並行存取限制
 | DWU | 並行查詢上限 | 配置的並行存取插槽 |
@@ -50,21 +50,21 @@ hello 以下表格說明 hello 限制的並行查詢和在 hello 並行插槽各
 | DW3000 |32 |120 |
 | DW6000 |32 |240 |
 
-當符合以上其中一個臨界值時，新的查詢將以先進先出順序排入佇列和執行。  完成查詢與 hello 查詢和插槽數目低於 hello 限制時，會發行排入佇列的查詢。 
+當符合以上其中一個臨界值時，新的查詢將以先進先出順序排入佇列和執行。  當一個查詢完成，而查詢與插槽數目低於限制時，就會釋放已排入佇列的查詢。 
 
 > [!NOTE]  
-> *選取*以獨佔方式在執行的查詢動態管理檢視 (Dmv)，或目錄檢視都未受到任何 hello 並行存取限制。 您可以監視 hello 系統，無論 hello 在其上執行的查詢數目。
+> 只針對動態管理檢視 (DMV) 或目錄檢視執行的 SELECT 查詢不受任何並行存取限制所控管。 不論在系統上執行的查詢數目多寡，您都可監視該系統。
 > 
 > 
 
 ## <a name="resource-classes"></a>資源類別
-資源類別可協助您控制記憶體配置和給定 tooa 查詢的 CPU 循環。 您可以指派兩種類型的資料庫角色的 hello 表單中的資源類別 tooa 使用者。 兩種類型的資源類別，如下所示為 hello:
-1. 動態資源類別 (**smallrc，mediumrc，largerc，xlargerc**) 配置的記憶體，根據 hello 以變數目前的 DWU。 這表示當您向上擴充 tooa 較大的 DWU，查詢會自動取得更多記憶體。 
-2. 靜態資源類別 (**staticrc10，staticrc20，staticrc30，staticrc40，staticrc50，staticrc60，staticrc70，staticrc80**) 配置 hello 相同數量的記憶體，不論 hello 目前的 DWU (前提是 hello DWU 本身有足夠的記憶體）。 這表示在較大的 DWU 中，您將可以在每個資源類別中同時執行更多查詢。
+資源類別可協助您控制指定給查詢的記憶體配置以及 CPU 週期。 您可以利用資料庫角色的形式對使用者指派兩種資源類別。 這兩種資源類別如下所示：
+1. 動態資源類別 (**smallrc、mediumrc、largerc、xlargerc**) 會根據目前的 DWU 來配置數量不一的記憶體。 這表示當您相應增加為較大的 DWU 時，您的查詢會自動獲得更多記憶體。 
+2. 靜態資源類別 (**staticrc10、staticrc20、staticrc30、staticrc40、staticrc50、staticrc60、staticrc70、staticrc80**) 則一律會配置相同數量的記憶體，不論目前的 DWU 有多大 (前提是 DWU 本身有足夠的記憶體)。 這表示在較大的 DWU 中，您將可以在每個資源類別中同時執行更多查詢。
 
-採用 **smallrc** 和 **staticrc10** 的使用者會獲得較小量的記憶體，且可利用較高的並行存取能力。 相反地，使用者指派太**xlargerc**或**staticrc80**有大量的記憶體，並因此更少的查詢可以同時執行。
+採用 **smallrc** 和 **staticrc10** 的使用者會獲得較小量的記憶體，且可利用較高的並行存取能力。 相反地，指派給 **xlargerc** 或 **staticrc80** 的使用者會獲得大量的記憶體，因此可並行執行的查詢較少。
 
-根據預設，每個使用者都 hello 小型資源類別的成員**smallrc**。 hello 程序`sp_addrolemember`是使用 tooincrease hello 資源類別，和`sp_droprolemember`是使用 toodecrease hello 資源類別。 例如，此命令將會增加 hello 資源類別的 loaduser 太**largerc**:
+根據預設，每位使用者都是小型資源類別 **smallrc** 的成員。 `sp_addrolemember` 程序可用來增加資源類別，`sp_droprolemember` 則可用來減少資源類別。 例如，此命令會將 loaduser 的資源類別增加為 **largerc**︰
 
 ```sql
 EXEC sp_addrolemember 'largerc', 'loaduser'
@@ -73,24 +73,24 @@ EXEC sp_addrolemember 'largerc', 'loaduser'
 
 ### <a name="queries-that-do-not-honor-resource-classes"></a>不採用資源類別的查詢
 
-有幾種查詢類別不會因較大的記憶體配置而受益。 hello 系統會忽略其資源類別配置，並一律改為在 hello 小型資源類別中執行這些查詢。 如果在 hello 小型資源類別中永遠執行這些查詢，可以執行並行位置有不足的壓力，而且它們不會使用比所需的多個位置。 如需詳細資訊，請參閱 [資源類別例外狀況](#query-exceptions-to-concurrency-limits) 。
+有幾種查詢類別不會因較大的記憶體配置而受益。 系統會忽略它們的資源類別配置，並一律改為在小型資源類別中執行這些查詢。 如果這些查詢一律會在小型資源類別中執行，它們就能在並行存取插槽有壓力時執行，而且只會取用所需的插槽。 如需詳細資訊，請參閱 [資源類別例外狀況](#query-exceptions-to-concurrency-limits) 。
 
 ## <a name="details-on-resource-class-assignment"></a>資源類別指派的詳細資料
 
 
 資源類別的其他詳細資料︰
 
-* *更改角色*需要的權限的使用者 toochange hello 資源類別。
-* 雖然您可以新增使用者 tooone 或多個 hello 較高的資源類別，動態資源類別的優先順序高於靜態資源類別。 也就是說，如果使用者被指派 tooboth **mediumrc**（動態） 和**staticrc80**（靜態） **mediumrc**是 hello 資源類別，才會被接受。
- * 當使用者獲指派 toomore 比特定的資源類別類型 （多個動態資源類別或多個靜態資源類別） 中的一項資源類別時，被採用 hello 最高的資源類別。 也就是如果 tooboth mediumrc 與 largerc，則指派給使用者，被適用於高資源類別 hello (largerc)。 如果使用者獲指派 tooboth **staticrc20**和**statirc80**， **staticrc80**會接受。
-* 無法變更 hello 系統管理使用者的 hello 資源類別。
+*  權限，才能變更使用者的資源類別。
+* 雖然您可以將使用者新增至一或多個較高的資源類別，但動態資源類別的優先順序高於靜態資源類別。 也就是說，如果您將使用者同時指派給 **mediumrc** (動態) 和 **staticrc80** (靜態)，則系統會採用 **mediumrc** 資源類別。
+ * 當您將使用者指派給特定資源類別類型中的多個資源類別 (多個動態資源類別或多個靜態資源類別) 時，系統會採用最高的資源類別。 也就是說，如果您將使用者同時指派給 mediumrc 和 largerc，則系統會採用較高的資源類別 (largerc)。 而且，如果您將使用者指派給 **staticrc20** 和 **statirc80**，系統會採用 **staticrc80**。
+* 無法變更系統管理使用者的資源類別。
 
 如需詳細範例，請參閱 [變更使用者資源類別的範例](#changing-user-resource-class-example)。
 
 ## <a name="memory-allocation"></a>記憶體配置
-有優缺點 tooincreasing 使用者的資源類別。 增加使用者的資源類別，提供其查詢存取 toomore 記憶體，這可能表示查詢執行的速度。  不過，較高的資源類別也會減少 hello 可以執行的並行查詢數目。 這是 hello 配置大量記憶體 tooa 單一查詢，或允許其他查詢，也需要記憶體配置，同時 toorun 之間的取捨。 一位使用者指定高配置記憶體的查詢，如果其他使用者將不會存取 toothat 相同記憶體 toorun 查詢。
+提升使用者的資源類別有利有弊。 提升使用者的資源類別可讓查詢存取更多記憶體，這表示查詢可能執行得更快。  不過，較高的資源類別也會減少可以執行的並行查詢數目。 應該將大量記憶體配置給單一查詢，還是允許其他也需要配置記憶體的查詢並行執行，需要在這兩者之間進行取捨。 如果為某一位使用者提供高記憶體配置進行查詢，則其他使用者將無法存取該相同記憶體來執行查詢。
 
-下表中的 hello 對應 hello 記憶體配置 tooeach 發佈 DWU 和資源的類別。
+下表依 DWU 和資源類別來對應所配置的記憶體與每個散發套件。
 
 ### <a name="memory-allocations-per-distribution-for-dynamic-resource-classes-mb"></a>每個散發套件的動態資源類別 (MB) 記憶體配置
 | DWU | smallrc | mediumrc | largerc | xlargerc |
@@ -108,7 +108,7 @@ EXEC sp_addrolemember 'largerc', 'loaduser'
 | DW3000 |100 |1,600 |3,200 |6,400 |
 | DW6000 |100 |3,200 |6,400 |12,800 |
 
-下表中的 hello 對應 hello 記憶體配置 tooeach 發佈 DWU 和靜態資源類別。 請注意 hello 較高的資源類別具有其記憶體減少 toohonor hello 全域 DWU 限制。
+下表依 DWU 和靜態資源類別來對應所配置的記憶體與每個散發套件。 請注意，較高的資源類別會縮減其記憶體，以採用全域的 DWU 限制。
 
 ### <a name="memory-allocations-per-distribution-for-static-resource-classes-mb"></a>每個散發套件的靜態資源類別 (MB) 記憶體配置
 | DWU | staticrc10 | staticrc20 | staticrc30 | staticrc40 | staticrc50 | staticrc60 | staticrc70 | staticrc80 |
@@ -126,7 +126,7 @@ EXEC sp_addrolemember 'largerc', 'loaduser'
 | DW3000 |100 |200 |400 |800 |1,600 |3,200 |6,400 |6,400 |
 | DW6000 |100 |200 |400 |800 |1,600 |3,200 |6,400 |12,800 |
 
-從上述資料表的 hello，您可以看到在 hello DW2000 上執行的查詢**xlargerc**資源類別必須存取 too6，400 MB 的記憶體內的每個 hello 60 分散式資料庫。  SQL 資料倉儲中有 60 個散發套件。 因此，toocalculate hello 總記憶體配置指定的資源類別中的查詢時，值以上的 hello 應該乘以 60。
+從上表中，可知在 DW2000 上以 **xlargerc** 資源類別執行的查詢，可在 60 個分散式資料庫內各取得 6,400 MB 的記憶體。  SQL 資料倉儲中有 60 個散發套件。 因此，若要計算給定資源類別中某個查詢的總記憶體配置，上述的值應該乘以 60。
 
 ### <a name="memory-allocations-system-wide-gb"></a>全系統記憶體配置 (GB)
 | DWU | smallrc | mediumrc | largerc | xlargerc |
@@ -144,12 +144,12 @@ EXEC sp_addrolemember 'largerc', 'loaduser'
 | DW3000 |6 |94 |188 |375 |
 | DW6000 |6 |188 |375 |750 |
 
-從這個資料表的全系統記憶體配置中，您可以看到上 DW2000 hello xlargerc 資源類別中執行查詢配置 375 gb 的記憶體總計 (6,400 MB * 60 分佈 / 1024 tooconvert tooGB) 上的 SQL 資料倉儲的 hello 全部內容。
+從以上的系統整體記憶體配置表格中，可知以 xlargerc 資源類別於 DW2000 上執行的查詢，會在整個 SQL 資料倉儲配置總共 375 GB 的記憶體 (6,400 MB * 60 個散發套件 / 1,024 以轉換為 GB)。
 
-hello 相同計算套用 toostatic 資源類別。
+靜態資源類別的計算方式也是這樣。
  
 ## <a name="concurrency-slot-consumption"></a>並行存取插槽耗用量  
-SQL 資料倉儲會授與更多的記憶體 tooqueries 較高的資源類別中執行。 記憶體是固定的資源。  因此，hello 更多的記憶體配置每個查詢，可以在執行較少的並行查詢的 hello。 hello 表 reiterates 所有 hello hello 並行的 DWU 可用的插槽與每個資源類別所耗用的 hello 插槽數目會顯示在單一檢視中的上一個概念。  
+針對在更高資源類別中執行的查詢，SQL 資料倉儲會授與更多記憶體。 記憶體是固定的資源。  因此，配置給每個查詢的記憶體越多，可執行的並行查詢就越少。 下表會以單一檢視重述上述所有概念，其中顯示 DWU 可用的並行存取插槽數目和每個資源類別所取用的插槽數目。  
 
 ### <a name="allocation-and-consumption-of-concurrency-slots-for-dynamic-resource-classes"></a>動態資源類別並行存取插槽的配置和耗用量  
 | DWU | 並行查詢上限 | 配置的並行存取插槽 | Smallrc 所使用的插槽 | Mediumrc 所使用的插槽 | Largerc 所使用的插槽 | Xlargerc 所使用的插槽 |
@@ -183,50 +183,50 @@ SQL 資料倉儲會授與更多的記憶體 tooqueries 較高的資源類別中�
 | DW3000 | 32| 120| 1| 2| 4| 8| 16| 32| 64| 64|
 | DW6000 | 32| 240| 1| 2| 4| 8| 16| 32| 64| 128|
 
-從上述表格中，您會看到以 DW1000 身分執行的 SQL 資料倉儲，配置最多 32 個並行查詢，以及總數 40 個的並行存取插槽。 如果所有的使用者都以 smallrc 執行，將允許 32 個並行查詢，因為每個查詢會取用 1 個並行存取插槽。 如果執行 mediumrc DW1000 上的所有使用者、 每個查詢則會配置 800 MB 散發 47 GB 的記憶體總計配置每個查詢，每並行就是限制的 too5 使用者 (40 並行插槽 / 每位使用者 mediumrc 插槽 8)。
+從上述表格中，您會看到以 DW1000 身分執行的 SQL 資料倉儲，配置最多 32 個並行查詢，以及總數 40 個的並行存取插槽。 如果所有的使用者都以 smallrc 執行，將允許 32 個並行查詢，因為每個查詢會取用 1 個並行存取插槽。 如果 DW1000 上的所有使用者都是在 mediumrc 中執行，則會針對每個散發套件為各個查詢各配置 800 MB，每個查詢的總記憶體配置為 47 GB，且將並行存取限制為 5 位使用者 (40 個並行存取插槽 / 每位 mediumrc 使用者 8 個插槽)。
 
 ## <a name="selecting-proper-resource-class"></a>選取適當的資源類別  
-最好的作法是 toopermanently 指派使用者 tooa 資源類別，而不是變更其資源類別。 例如，載入 tooclustered 資料行存放區資料表建立高品質索引配置更多的記憶體時。 tooensure 負載存取 toohigher 記憶體、 建立使用者，特別是用於載入資料和永久指派此使用者 tooa 高資源類別。
-有幾個最佳作法 toofollow 這裡。 如上所述，SQL DW 支援兩種資源類別類型：靜態資源類別和動態資源類別。
+理想的作法是將使用者永久指派給資源類別，而不是變更他們的資源類別。 例如，在配置了更多記憶體時，叢集資料行存放區資料表的載入會建立更高品質的索引。 若要確保載入可以取得更高的記憶體，請建立特別用來載入資料的使用者，並將使用者永久指派給較高的資源類別。
+以下是幾種可供採用的最佳做法。 如上所述，SQL DW 支援兩種資源類別類型：靜態資源類別和動態資源類別。
 ### <a name="loading-best-practices"></a>載入的最佳做法
-1.  如果 hello 期望載入一般資料量，靜態資源類別是不錯的選擇。 更新版本中，當向上 tooget 更多計算能力、 hello 資料倉儲將無法 toorun 更多的並行查詢-現成的因為 hello 負載使用者不會耗用更多記憶體。
-2.  如果 hello 期望在某些情況下更大的負載，動態資源類別是不錯的選擇。 更新版本中，當向上 tooget 更多計算能力，hello 負載使用者會收到更多的記憶體--現成的因此允許 hello 負載 tooperform 更快。
+1.  如果預期的載入具有一般數量的資料，則靜態資源類別是不錯的選擇。 之後當您相應增加系統以獲得更多運算能力時，資料倉儲將能夠立即執行更多的並行查詢，因為載入使用者不會耗用更多的記憶體。
+2.  如果在某些情況下預期會有更大的載入，則動態資源類別是不錯的選擇。 之後當您相應增加系統以獲得更多運算能力時，載入使用者會獲得更多立即可用的記憶體，因此可讓載入提高執行速度。
 
-hello 所需的記憶體 tooprocess 載入有效率地取決於 hello 性質 hello 資料表載入和處理資料的 hello 數量。 比方說，CCI 資料表將資料載入要求一些記憶體 toolet CCI 資料列群組達到牽動。 如需詳細資訊，請參閱 hello 資料行存放區索引資料載入指引。
+若要有效率地處理載入，所需的記憶體取決於所載入之資料表的性質和所處理的資料量。 例如，將資料載入到 CCI 資料表需要使用一些記憶體，來讓 CCI 資料列群組達到最適化。 如需詳細資訊，請參閱「資料行存放區索引 - 資料載入」指引。
 
-最佳做法，我們建議您 toouse 至少 200 MB 的記憶體載入。
+我們會建議您採用的最佳做法是，至少提供 200 MB 的記憶體供載入使用。
 
 ### <a name="querying-best-practices"></a>查詢的最佳做法
-查詢會因其複雜性而有不同的需求。 增加每個查詢的記憶體，或增加 hello 並行是這兩個有效的方式 tooaugment 根據 hello 查詢需求的整體輸送量。
-1.  如果 hello 期望規則、 複雜的查詢 (例如，toogenerate 每日及每週的報表)，但是不需要 tootake 並行優點，動態資源類別是不錯的選擇。 如果 hello 系統有多個資料 tooprocess，向上擴充 hello 資料倉儲將會因此自動提供更多記憶體 toohello 使用者執行 hello 查詢。
-2.  如果 hello 期望變數或 diurnal 並行模式 (例如透過 web UI 廣泛存取如果會查詢 hello 資料庫)，靜態資源類別是不錯的選擇。 稍後，當 toodata 倉儲向上擴充，hello hello 靜態資源類別相關聯的使用者會自動是無法 toorun 更多的並行查詢。
+查詢會因其複雜性而有不同的需求。 視查詢需求而定，增加每個查詢的記憶體或增加並行存取能力都能有效地增加整體的輸送量。
+1.  如果預期進行的是定期的複雜查詢 (例如，要產生每日及每週報告)，而且不需要利用並行存取能力，則動態資源類別是不錯的選擇。 如果系統要處理的資料變多，相應增加資料倉儲會因此自動提供更多的記憶體供執行查詢的使用者使用。
+2.  如果預期進行的是變動或日常的並行存取模式 (例如，如果透過可供廣泛存取的 Web UI 來查詢資料庫)，則靜態資源類別是不錯的選擇。 之後當您相應增加資料倉儲時，與靜態資源類別相關聯的使用者就能夠自動執行更多的並行查詢。
 
-它相依於許多因素，例如 hello 少量資料的查詢，hello hello 資料表結構描述，以及各種聯結、 選取項目，與群組述詞的性質為非簡單式，根據您的查詢 hello 需求選取適當的記憶體授與。 一般的觀點而言，配置更多記憶體可讓查詢 toocomplete 較快，但是會減少 hello 整體的並行存取。 如果您不在意並行存取能力，則可以放心地超額配置記憶體。 您可能需要 toofine 微調輸送量，嘗試的資源類別的各種類別。
+根據查詢需求來選取要授與的適當記憶體並不容易，因為這取決於許多因素，例如所查詢的資料量、資料表結構描述的性質，以及各種聯結、選取和群組述詞。 一般來說，配置更多的記憶體會讓查詢更快完成，但會減少整體的並行存取能力。 如果您不在意並行存取能力，則可以放心地超額配置記憶體。 若要微調輸送量，您可能需要嘗試不同的資源類別組合。
 
-您可以使用 hello 下列預存程序 toofigure 出並行存取，以及記憶體授與每個資源類別，為給定 SLO 和 hello 最接近最佳資源類別的記憶體密集 CCI 非資料分割 CCI 資料表作業在指定的資源類別：
+您可以使用下列預存程序，找出在給定 SLO 時要對每個資源類別授與的並行存取能力和記憶體，以及在給定資源類別時最適合非分割 CCI 資料表上的記憶體密集 CCI 作業使用的最接近資源類別：
 
 #### <a name="description"></a>Description:  
-以下是 hello 用途，此預存程序：  
-1. toohelp 出每個資源類別，在給定的 SLO 的並行存取，以及記憶體授與使用者數。 使用者需要 tooprovide NULL 的結構描述和 tablename 這個 hello 下面範例所示。  
-2. toohelp 使用者找出 hello 最接近最佳資源類別 hello 記憶體 intensed CCI 作業 （負載，複製資料表時，會重建索引等） 指定的資源類別的非資料分割 CCI 資料表上。 hello 預存程序會使用這個資料表的結構描述 toofind 出 hello 所需的記憶體授與。
+以下是此預存程序的用途：  
+1. 協助使用者找出在給定 SLO 時，要對每個資源類別授與的並行存取能力和記憶體。 為此，使用者必須同時為結構描述和 tablename 提供 NULL，如下列範例所示。  
+2. 協助使用者找出在給定資源類別時，最適合非分割 CCI 資料表上的記憶體密集 CCI 作業 (載入、複製資料表、重建索引等) 使用的最接近資源類別。 此預存程序會使用資料表結構描述來找出為此所需授與的記憶體。
 
 #### <a name="dependencies--restrictions"></a>相依性及限制：
-- 這個預存程序不是設計的 toocalculate cci 分割資料表的記憶體需求。    
-- 這個預存程序不接受的 CTAS/INSERT SELECT hello SELECT 部分的記憶體需求納入考量，並假設它 toobe 簡單的選取。
-- 這個預存程序會使用暫存資料表，因此這可用 hello 工作階段中建立此預存程序所在。    
-- 這個預存程序取決於 hello 目前供應項目 （例如硬體組態、 DMS 組態），如果變更了，然後此預存程序就無法正確運作。  
+- 此預存程序並非設計來計算分割 CCI 資料表的記憶體需求。    
+- 此預存程序不會針對 CTAS/INSERT-SELECT 的 SELECT 部分考慮記憶體需求，而是會假設它是簡單的 SELECT。
+- 此預存程序會使用暫存資料表，因此可用於此預存程序建立所在的工作階段。    
+- 此預存程序仰賴目前的供應項目 (例如，硬體組態、DMS 組態)，如果其中有任何變更，此預存程序就無法正確運作。  
 - 此預存程序仰賴目前提供的並行存取限制，如果限制有任何變更，此預存程序就無法正確運作。  
 - 此預存程序仰賴現有的資源類別供應項目，如果其中有任何變更，此預存程序就無法正確運作。  
 
 >  [!NOTE]  
->  如果您在使用所提供的參數來執行預存程序後沒有取得輸出，則可能有兩種情況。 <br />1.DW 參數包含無效的 SLO 值 <br />2.沒有符合 CCI 作業的資源類別 (若已提供資料表名稱)。 <br />例如，在 DW100，最高可用的記憶體授與為 400 MB 和寬型資料表結構描述是否足以 toocross hello 需求為 400 MB。
+>  如果您在使用所提供的參數來執行預存程序後沒有取得輸出，則可能有兩種情況。 <br />1.DW 參數包含無效的 SLO 值 <br />2.沒有符合 CCI 作業的資源類別 (若已提供資料表名稱)。 <br />例如，在 DW100 時，可供授與的最高記憶體為 400 MB，但資料表結構描述的寬度卻足以跨過 400 MB 的需求。
       
 #### <a name="usage-example"></a>使用範例：
 語法：  
 `EXEC dbo.prc_workload_management_by_DWU @DWU VARCHAR(7), @SCHEMA_NAME VARCHAR(128), @TABLE_NAME VARCHAR(128)`  
-1. @DWU:請提供 NULL 參數 tooextract hello hello 資料倉儲資料庫從目前的 DWU，或提供任何支援的 DWU hello 'DW100' 形式
-2. @SCHEMA_NAME:提供 hello 資料表的結構描述名稱
-3. @TABLE_NAME:提供 hello 感興趣的資料表名稱
+1. @DWU: 提供 NULL 參數以從資料倉儲資料庫擷取目前的 DWU，或是以 'DW100' 的形式提供任何受支援的 DWU
+2. @SCHEMA_NAME: 提供資料表的結構描述名稱
+3. @TABLE_NAME: 提供相關的資料表名稱
 
 執行此預存程序的範例：  
 ```sql  
@@ -236,10 +236,10 @@ EXEC dbo.prc_workload_management_by_DWU 'DW6000', NULL, NULL;
 EXEC dbo.prc_workload_management_by_DWU NULL, NULL, NULL;  
 ```
 
-無法建立 Table1 hello 上述範例中使用，如下所示：  
+上述範例中使用的 Table1 會以如下方式建立：  
 `CREATE TABLE Table1 (a int, b varchar(50), c decimal (18,10), d char(10), e varbinary(15), f float, g datetime, h date);`
 
-#### <a name="heres-hello-stored-procedure-definition"></a>以下是 hello 預存程序定義：
+#### <a name="heres-the-stored-procedure-definition"></a>以下是預存程序定義：
 ```sql  
 -------------------------------------------------------------------------------
 -- Dropping prc_workload_management_by_DWU procedure if it exists.
@@ -259,7 +259,7 @@ CREATE PROCEDURE dbo.prc_workload_management_by_DWU
 AS
 IF @DWU IS NULL
 BEGIN
--- Selecting proper DWU for hello current DB if not specified.
+-- Selecting proper DWU for the current DB if not specified.
 SET @DWU = (
   SELECT 'DW'+CAST(COUNT(*)*100 AS VARCHAR(10))
   FROM sys.dm_pdw_nodes
@@ -271,7 +271,7 @@ SET @DWU_NUM = CAST (SUBSTRING(@DWU, 3, LEN(@DWU)-2) AS INT)
 
 -- Raise error if either schema name or table name is supplied but not both them supplied
 --IF ((@SCHEMA_NAME IS NOT NULL AND @TABLE_NAME IS NULL) OR (@TABLE_NAME IS NULL AND @SCHEMA_NAME IS NOT NULL))
---     RAISEERROR('User need toosupply either both Schema Name and Table Name or none of them')
+--     RAISEERROR('User need to supply either both Schema Name and Table Name or none of them')
        
 -- Dropping temp table if exists.
 IF OBJECT_ID('tempdb..#ref') IS NOT NULL
@@ -279,7 +279,7 @@ BEGIN
   DROP TABLE #ref;
 END
 
--- Creating ref. temptable (CTAS) toohold mapping info.
+-- Creating ref. temptable (CTAS) to hold mapping info.
 -- CREATE TABLE #ref
 CREATE TABLE #ref
 WITH (DISTRIBUTION = ROUND_ROBIN)
@@ -316,7 +316,7 @@ AS
   UNION ALL
     SELECT 'DW6000', 32, 240, 1, 32, 64, 128, 1, 2, 4, 8, 16, 32, 64, 128
 )
--- Creating workload mapping tootheir corresponding slot consumption and default memory grant.
+-- Creating workload mapping to their corresponding slot consumption and default memory grant.
 ,map
 AS
 (
@@ -554,11 +554,11 @@ GO
 ```
 
 ## <a name="query-importance"></a>查詢的重要性
-SQL 資料倉儲使用工作負載群組來實作資源類別。 有八個 hello 跨各種 DWU 大小控制 hello 行為 hello 資源類別的工作負載群組的總計。 對於任何 DWU，SQL 資料倉儲會使用僅有四個 hello 八個工作負載群組。 這使得意義，因為每個工作負載群組指派的四個資源類別 tooone: smallrc mediumrc，largerc，或 xlargerc。 hello 的了解 hello 工作負載群組重要性是其中部分工作負載群組會設定 toohigher*重要性*。 重要性可用於 CPU 排程。 以高重要性執行的查詢會取得比中度重要性的查詢高三倍的 CPU 週期。 因此，並行存取插槽對應也會判斷 CPU 優先順序。 當查詢取用 16 個以上的插槽時，就會以高重要性執行。
+SQL 資料倉儲使用工作負載群組來實作資源類別。 共有八個工作負載群組，它們可跨各種 DWU 大小控制資源類別的行為。 對於任何 DWU，SQL 資料倉儲只會使用這八個工作負載群組的其中四個。 這很合理，因為每個工作負載群組都會指派給四個資源類別之一：smallrc、mediumrc、largerc 或 xlargerc。 了解這些工作負載群組的重要性在於其中某些工作負載群組會設定為較高的「重要性」 。 重要性可用於 CPU 排程。 以高重要性執行的查詢會取得比中度重要性的查詢高三倍的 CPU 週期。 因此，並行存取插槽對應也會判斷 CPU 優先順序。 當查詢取用 16 個以上的插槽時，就會以高重要性執行。
 
-hello 下表顯示每個工作負載群組的 hello 重要性對應。
+下表是每個工作負載群組的重要性對應。
 
-### <a name="workload-group-mappings-tooconcurrency-slots-and-importance"></a>工作負載群組對應 tooconcurrency 位置和重要性
+### <a name="workload-group-mappings-to-concurrency-slots-and-importance"></a>工作負載群組與並行存取插槽數目和重要性的對應
 | 工作負載群組 | 並行存取插槽對應 | MB / 散發套件 | 重要性對應 |
 |:--- |:---:|:---:|:--- |
 | SloDWGroupC00 |1 |100 |中型 |
@@ -570,9 +570,9 @@ hello 下表顯示每個工作負載群組的 hello 重要性對應。
 | SloDWGroupC06 |64 |6,400 |高 |
 | SloDWGroupC07 |128 |12,800 |高 |
 
-從 hello**配置和耗用量的並行插槽**圖表中，您可以看到，DW500 1、 4、 8 或 16 的並行存取位置 smallrc、 mediumrc、 largerc，和 xlargerc，分別使用。 您可以在 hello 上述圖表 toofind hello 重要性，針對每個資源類別中查詢這些值。
+從 **並行存取插槽的配置和耗用量** 圖表中，您可以看到 DW500 針對 smallrc、mediumrc、largerc 和 xlargerc，分別使用了 1、4、8 或 16 個並行存取插槽。 您可以在上述圖表中查看這些值，以了解每個資源類別的重要性。
 
-### <a name="dw500-mapping-of-resource-classes-tooimportance"></a>資源類別 tooimportance 的 DW500 對應
+### <a name="dw500-mapping-of-resource-classes-to-importance"></a>重要性與資源類別的 DW500 對應
 | 資源類別 | 工作負載群組 | 已使用的並行存取插槽 | MB / 散發套件 | 重要性 |
 |:--- |:--- |:---:|:---:|:--- |
 | smallrc |SloDWGroupC00 |1 |100 |中型 |
@@ -588,7 +588,7 @@ hello 下表顯示每個工作負載群組的 hello 重要性對應。
 | staticrc70 |SloDWGroupC03 |16 |1,600 |高 |
 | staticrc80 |SloDWGroupC03 |16 |1,600 |高 |
 
-您可以使用 hello 疑難排解時，下列 DMV 查詢 toolook 在 hello 檢視方塊的 hello 資源管理員，或 tooanalyze hello 工作負載群組的作用中和歷史使用量詳細的記憶體資源配置中的 hello 差異。
+您可以使用下列 DMV 查詢，從資源管理員的觀點詳細查看記憶體資源配置的差異，或在進行疑難排解時，分析工作負載群組的作用中和歷史使用量。
 
 ```sql
 WITH rg
@@ -637,9 +637,9 @@ ORDER BY
 ```
 
 ## <a name="queries-that-honor-concurrency-limits"></a>採用並行存取限制的查詢
-大多數查詢都受到資源類別控管。 這些查詢都必須容納在 hello 並行查詢和並行位置臨界值內。 使用者無法選擇 tooexclude 查詢從 hello 並行存取模型中的插槽。
+大多數查詢都受到資源類別控管。 這些查詢必須同時符合並行查詢和並行存取插槽臨界值。 使用者無法選擇從並行存取插槽模型中排除查詢。
 
-tooreiterate，hello 下列陳述式，採用資源類別：
+再次提醒您，下列陳述式會採用資源類別：
 
 * INSERT-SELECT
 * UPDATE
@@ -652,12 +652,12 @@ tooreiterate，hello 下列陳述式，採用資源類別：
 * CREATE CLUSTERED COLUMNSTORE INDEX
 * CREATE TABLE AS SELECT (CTAS)
 * 載入資料
-* Hello 資料移動服務 (DMS) 所進行的資料移動作業
+* 資料移動服務 (DMS) 進行的資料移動作業
 
-## <a name="query-exceptions-tooconcurrency-limits"></a>查詢例外狀況 tooconcurrency 限制
-某些查詢不接受 hello 資源指派給類別 toowhich hello 使用者。 當 hello 特定命令所需的記憶體資源不足，通常是因為 hello 命令是中繼資料的作業時，對這些例外狀況 toohello 並行存取限制。 這些例外狀況 hello 目標是 tooavoid 較大的記憶體配置將永遠不需要的查詢。 在這些情況下，不論 hello 實際資源類別一律會使用小型資源類別 (smallrc) hello 預設指派 toohello 使用者。 例如， `CREATE LOGIN` 一律會在 smallrc 中執行。 hello 所需資源 toofulfill 這項作業都是很低，因此不會有意義 tooinclude hello 查詢 hello 並行存取模型中的插槽中。  這些查詢也不會受到 hello 32 使用者並行存取限制，無限的數量的這些查詢可以執行 toohello 工作階段限制為 1,024 工作階段設定。
+## <a name="query-exceptions-to-concurrency-limits"></a>並行存取限制查詢例外狀況
+部分查詢不支援使用者受指派的資源類別。 這些並行存取限制例外狀況是在某特定命令所需的記憶體資源過低時才會發生，通常是因為該命令為中繼資料作業。 這些例外狀況的目標是，避免將較大的記憶體配置給永遠不需要那麼多記憶體的查詢。 在這些情況下，一律會使用預設小型資源類別 (smallrc)，而不考慮指派給使用者的實際資源類別。 例如， `CREATE LOGIN` 一律會在 smallrc 中執行。 完成此作業所需的資源非常少，因此沒必要將查詢納入並行存取插槽模型中。  這些查詢也不會受到 32 個使用者並行存取限制，不限數目的這些查詢可以執行的工作階段上限為 1,024 個工作階段。
 
-hello 下列陳述式不接受資源類別：
+下列陳述式未採用資源類別：
 
 * CREATE 或 DROP TABLE
 * ALTER TABLE ...SWITCH、SPLIT 或 MERGE PARTITION
@@ -683,7 +683,7 @@ Removed as these two are not confirmed / supported under SQLDW
 -->
 
 ##  <a name="changing-user-resource-class-example"></a> 變更使用者資源類別的範例
-1. **建立登入：**開啟連接 tooyour**主要**上 hello 裝載您的 SQL 資料倉儲資料庫的 SQL server 資料庫並執行下列命令的 hello。
+1. **建立登入：**開啟 SQL Server 上裝載 SQL 資料倉儲資料庫的**主要**資料庫的連接，然後執行下列命令。
    
     ```sql
     CREATE LOGIN newperson WITH PASSWORD = 'mypassword';
@@ -691,37 +691,37 @@ Removed as these two are not confirmed / supported under SQLDW
     ```
    
    > [!NOTE]
-   > Azure SQL 資料倉儲使用者 hello master 資料庫中是個不錯的主意 toocreate 使用者。 在 master 中建立使用者，可讓使用者 toologin 使用 SSMS 等工具，而不指定資料庫名稱。  它也可讓它們 toouse hello 物件總管 中 tooview SQL server 的所有資料庫。  如需有關建立和管理使用者的詳細資料，請參閱[保護 SQL 資料倉儲中的資料庫][Secure a database in SQL Data Warehouse]。
+   > 在主要資料庫中建立一個使用者做為 Azure SQL 資料倉儲使用者是不錯的主意。 在主要資料庫中建立使用者，使用者就能使用類似 SSMS 的工具登入而不用指定資料庫名稱。  它也可讓使用者使用物件總管來檢視 SQL Server 上的所有資料庫。  如需有關建立和管理使用者的詳細資料，請參閱[保護 SQL 資料倉儲中的資料庫][Secure a database in SQL Data Warehouse]。
    > 
    > 
-2. **建立 SQL 資料倉儲的使用者：**開啟連接 toohello **SQL 資料倉儲**資料庫並執行下列命令的 hello。
+2. **建立 SQL 資料倉儲使用者︰**開啟 **SQL 資料倉儲**資料庫的連接，然後執行下列命令。
    
     ```sql
     CREATE USER newperson FOR LOGIN newperson;
     ```
-3. **授與權限：**下列範例授與 hello`CONTROL`上 hello **SQL 資料倉儲**資料庫。 `CONTROL`在 hello 資料庫層級是 hello db_owner SQL Server 中的對等。
+3. **授與權限︰**下列範例會授與 **SQL 資料倉儲** 資料庫上的 `CONTROL`。 資料庫層級的 `CONTROL`相當於 SQL Server 中的 db_owner。
    
     ```sql
-    GRANT CONTROL ON DATABASE::MySQLDW toonewperson;
+    GRANT CONTROL ON DATABASE::MySQLDW to newperson;
     ```
-4. **增加資源類別：**使用 hello 下列查詢會 tooadd 使用者 tooa 較高的工作負載管理角色。
+4. **增加資源類別︰** 使用下列查詢，將使用者加入至更高的工作負載管理角色。
    
     ```sql
     EXEC sp_addrolemember 'largerc', 'newperson'
     ```
-5. **減少資源類別：**使用 hello 下列查詢會 tooremove 工作負載管理角色的使用者。
+5. **減少資源類別︰** 使用下列查詢，從工作負載管理角色移除使用者。
    
     ```sql
     EXEC sp_droprolemember 'largerc', 'newperson';
     ```
    
    > [!NOTE]
-   > 不可能 tooremove smallrc 的使用者。
+   > 您無法從 smallrc 移除使用者。
    > 
    > 
 
 ## <a name="queued-query-detection-and-other-dmvs"></a>已排入佇列的查詢偵測和其他 DMV
-您可以使用 hello`sys.dm_pdw_exec_requests`並行佇列中等待的 DMV tooidentify 查詢。 正在等待並行存取插槽的查詢狀態為 **暫停**。
+您可以使用 `sys.dm_pdw_exec_requests` DMV，來識別正在並行存取佇列中等候的查詢。 正在等待並行存取插槽的查詢狀態為 **暫停**。
 
 ```sql
 SELECT      r.[request_id]                 AS Request_ID
@@ -742,7 +742,7 @@ WHERE   ro.[type_desc]      = 'DATABASE_ROLE'
 AND     ro.[is_fixed_role]  = 0;
 ```
 
-hello，下列查詢會顯示每個使用者指派給角色。
+下列查詢會顯示每位使用者指派給哪些角色。
 
 ```sql
 SELECT     r.name AS role_principal_name
@@ -753,14 +753,14 @@ JOIN    sys.database_principals AS m            ON rm.member_principal_id    = m
 WHERE    r.name IN ('mediumrc','largerc', 'xlargerc');
 ```
 
-SQL 資料倉儲具有 hello 下列等候類型：
+SQL 資料倉儲具有下列等候類型：
 
-* **LocalQueriesConcurrencyResourceType**： 坐 hello 並行插槽 framework 外部的查詢。 DMV 查詢及 `SELECT @@VERSION` 這類的系統函數是本機查詢的範例。
-* **UserConcurrencyResourceType**： 坐在 hello 並行處理插槽架構內的查詢。 針對使用者資料表的查詢代表會使用此資源類型的範例。
+* **LocalQueriesConcurrencyResourceType**：位於並行存取插槽架構外部的查詢。 DMV 查詢及 `SELECT @@VERSION` 這類的系統函數是本機查詢的範例。
+* **UserConcurrencyResourceType**：位於並行存取插槽架構內部的查詢。 針對使用者資料表的查詢代表會使用此資源類型的範例。
 * **DmsConcurrencyResourceType**：資料移動作業所產生的等候。
-* **BackupConcurrencyResourceType**：此等候指出正在備份資料庫。 hello 這個資源類型的最大值為 1。 如果已經在 hello 要求多個備份相同的時間，其他人會排入佇列的 hello。
+* **BackupConcurrencyResourceType**：此等候指出正在備份資料庫。 此資源類型的最大值為 1。 如果在同一時間要求多個備份，其他備份將會排入佇列。
 
-hello `sys.dm_pdw_waits` DMV 可以是使用的 toosee 要求正在等候的資源。
+`sys.dm_pdw_waits` DMV 可用來查看要求正在等待哪些資源。
 
 ```sql
 SELECT  w.[wait_id]
@@ -796,7 +796,7 @@ JOIN    sys.dm_pdw_exec_requests r  ON w.[request_id] = r.[request_id]
 WHERE    w.[session_id] <> SESSION_ID();
 ```
 
-hello `sys.dm_pdw_resource_waits` DMV 顯示只有 hello 資源等候由給定的查詢。 資源等候時間僅會測量等候所提供的資源 toobe hello 時間，因為相對於的 toosignal 等候時間，這就是 hello 時間花費 hello 基礎 SQL 伺服器 tooschedule hello 查詢到 hello CPU。
+`sys.dm_pdw_resource_waits` DMV 只會顯示等待指定查詢取用的資源。 資源等候時間只會測量等候提供資源的時間，與訊號等候時間相反，後者是基礎 SQL Server 將查詢排程到 CPU 所需的時間。
 
 ```sql
 SELECT  [session_id]
@@ -814,7 +814,7 @@ FROM    sys.dm_pdw_resource_waits
 WHERE    [session_id] <> SESSION_ID();
 ```
 
-hello `sys.dm_pdw_wait_stats` DMV 可用來等候的歷史趨勢分析。
+`sys.dm_pdw_wait_stats` DMV 可用於針對等候項目進行歷史趨勢分析。
 
 ```sql
 SELECT    w.[pdw_node_id]
@@ -828,13 +828,13 @@ FROM    sys.dm_pdw_wait_stats w;
 ```
 
 ## <a name="next-steps"></a>後續步驟
-如需管理資料庫使用者和安全性的詳細資訊，請參閱[保護 SQL 資料倉儲中的資料庫][Secure a database in SQL Data Warehouse]。 如何在較大的資源類別的詳細資訊，可改進叢集資料行存放區索引的品質，請參閱[重建索引 tooimprove 區段品質]。
+如需管理資料庫使用者和安全性的詳細資訊，請參閱[保護 SQL 資料倉儲中的資料庫][Secure a database in SQL Data Warehouse]。 如需較大資源類別如何改善叢集資料行存放區索引品質的詳細資訊，請參閱 [重建索引以提升區段品質]。
 
 <!--Image references-->
 
 <!--Article references-->
 [Secure a database in SQL Data Warehouse]: ./sql-data-warehouse-overview-manage-security.md
-[重建索引 tooimprove 區段品質]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
+[重建索引以提升區段品質]: ./sql-data-warehouse-tables-index.md#rebuilding-indexes-to-improve-segment-quality
 [Secure a database in SQL Data Warehouse]: ./sql-data-warehouse-overview-manage-security.md
 
 <!--MSDN references-->

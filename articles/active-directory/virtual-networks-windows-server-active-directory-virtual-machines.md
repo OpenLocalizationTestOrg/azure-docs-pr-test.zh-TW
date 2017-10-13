@@ -1,5 +1,5 @@
 ---
-title: "aaaWindows Server Azure Vm 上的 Active Directory |Microsoft 文件"
+title: "Azure VM 上的 Windows Server Active Directory | Microsoft Docs"
 description: "您可以在 Azure 虛擬機器上執行 Windows Server Active Directory 網域服務 (AD DS) 或 Active Directory 同盟服務 (AD FS)。"
 services: active-directory
 documentationcenter: 
@@ -14,22 +14,22 @@ ms.devlang: na
 ms.topic: article
 ms.date: 04/06/2017
 ms.author: joflore
-ms.openlocfilehash: 0a8f408b6b772caa2322c2533a57217ddb67b568
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 928de285e126a7f62ee075d1c02688bf8f388cb7
+ms.sourcegitcommit: 50e23e8d3b1148ae2d36dad3167936b4e52c8a23
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/18/2017
 ---
 # <a name="windows-server-active-directory-on-azure-vms"></a>Azure VM 上的 Windows Server Active Directory
-本導覽主題包含有關連結 tooother 主題 toodeploy Windows Server Active Directory 網域服務 (AD DS) 或 Active Directory Federation Services (AD FS) 在 Azure 虛擬機器 (VM) 上的。
+本導覽主題包含有關如何在 Azure 虛擬機器 (VM) 上部署 Windows Server Active Directory 網域服務 (AD DS) 或 Active Directory 同盟服務 (AD FS) 之其他主題的連結。
 
 ## <a name="conceptual-guidelines"></a>概念性指導方針
 * [在 Azure 虛擬機器上部署 Windows Server Active Directory 的指導方針](https://msdn.microsoft.com/library/azure/jj156090.aspx)
 
 ## <a name="video"></a>影片
-* [新的 Active Directory tooinstall Azure 的虛擬網路上的樹系](http://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/How-to-install-a-new-Active-Directory-forest-on-an-Azure-virtual-network)
+* [如何在 Azure 虛擬網路上安裝新的 Active Directory 樹系](http://channel9.msdn.com/Series/Microsoft-Azure-Tutorials/How-to-install-a-new-Active-Directory-forest-on-an-Azure-virtual-network)
 
-## <a name="how-tooarticles"></a>如何 tooarticles
+## <a name="how-to-articles"></a>做法文章
 * [在 Azure 虛擬網路上安裝新的 Active Directory 樹系](active-directory-new-forest-virtual-machine.md)
 * [在 Azure 虛擬網路中安裝複本 Active Directory 網域控制站](active-directory-install-replica-active-directory-domain-controller.md)
 

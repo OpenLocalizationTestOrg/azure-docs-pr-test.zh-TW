@@ -1,6 +1,6 @@
 ---
-title: "在 hello 頁面上的 aaaLinks 不適用於應用程式 Proxy 應用程式 |Microsoft 文件"
-description: "如何 tootroubleshoot 問題上您有與 Azure AD 整合的應用程式 Proxy 應用程式中斷連結"
+title: "頁面上的連結對 Application Proxy 應用程式沒有作用 | Microsoft Docs"
+description: "如何為已與 Azure AD 整合之 Application Proxy 應用程式上的中斷連結問題疑難排解"
 services: active-directory
 documentationcenter: 
 author: ajamess
@@ -13,36 +13,36 @@ ms.devlang: na
 ms.topic: article
 ms.date: 07/11/2017
 ms.author: asteen
-ms.openlocfilehash: 77c1e22d27c7a6436d8e57e105037c2328180481
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 83c4261fab0498541591c01f9bb692b396c7b751
+ms.sourcegitcommit: 02e69c4a9d17645633357fe3d46677c2ff22c85a
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/03/2017
 ---
-# <a name="links-on-hello-page-dont-work-for-an-application-proxy-application"></a>在 hello 頁面上的連結無法運作的應用程式 Proxy 應用程式
+# <a name="links-on-the-page-dont-work-for-an-application-proxy-application"></a>頁面上的連結對 Application Proxy 應用程式沒有作用
 
-本文將協助您 tootroubleshoot 為什麼您的 Azure Active Directory 應用程式 Proxy 應用程式的連結無法正確運作。
+這篇文章可協助您為 Azure Active Directory Application Proxy 應用程式上的連結無法正常運作疑難排解。
 
 ## <a name="overview"></a>概觀 
-之後發行的應用程式 Proxy 應用程式，工作預設會在 hello 應用程式會包含在 hello 連結 toodestinations hello 只將連結發佈根 URL。 hello 應用程式中的 hello 連結並非正在運作，hello hello 應用程式內部 URL 可能不包含所有 hello 目的地 hello 應用程式內的連結。
+發佈 Application Proxy 應用程式後，只有預設在該應用程式中運作的連結才是已發佈根目錄 URL 內所包含目的地的連結。 該應用程式內的連結未運作，應用程式的內部 URL 或許未包含應用程式內連結的所有目的地。
 
-**為何這有關係？** 當按下應用程式中的連結，以做為其中一個內部 URL，在應用程式 Proxy 會嘗試 tooresolve hello URL hello 相同應用程式，或以做為外部使用的 URL。 如果 hello 連結指向不在 tooan 內部 URL hello 相同應用程式中，不屬於 tooeither 的這些值區，導致找不到的錯誤。
+**為何這有關係？** 當按一下應用程式中的連結時，Application Proxy 會嘗試將 URL 解析為相同應用程式內的內部 URL，或解析為外部可用的 URL。 如果連結指向的內部 URL 不在相同應用程式內，則該連結不屬於這些貯體，並會造成此找不到錯誤。
 
 ## <a name="ways-you-can-resolve-broken-links"></a>中斷連結的解決方式
 
-有三種方式 tooresolve 此問題。 hello 以下幾個選擇是列在增加的複雜性。
+有三種方法可以解決此問題。 以下依複雜度遞增方式列出解決方法。
 
-1.  請確定 hello 內部 URL 是包含所有 hello 相關連結 hello 應用程式的根目錄。 這可讓所有連結 toobe 解析為發佈的內容內 hello 相同應用程式。
+1.  請確定內部 URL 是包含該應用程式所有相關連結的根目錄。 這可讓所有的連結解析為在相同應用程式內發佈的內容。
 
-    如果您變更 hello 內部 URL，但不想 toochange hello 登陸頁面的使用者，變更 hello 首頁 URL toohello 先前發行的內部 URL。 作法是前往太"Azure Active Directory-"&gt;應用程式註冊-&gt;選取 hello 應用程式-&gt;屬性。 在這個內容索引標籤中，您會看到 hello 欄位 「 首頁 URL 」，您可以調整 toobe hello 預期登陸頁面。
+    如果您變更內部 URL，但不想要變更使用者的登陸頁面，請將首頁 URL 變更為先前發佈的內部 URL。 這可透過執行 [Azure Active Directory] -&gt; [應用程式登錄] -&gt; 選取該應用程式 -&gt; [屬性] 完成。 在此屬性索引標籤中會看到 [首頁 URL] 欄位，您可將此欄位調整至所需的登陸頁面。
 
-2.  如果您的應用程式使用完整的網域名稱 (Fqdn)，使用[自訂網域](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains)toopublish 應用程式。 這項功能可讓您同時在內部使用，相同的 URL toobe 和外部的 hello。
+2.  如果您的應用程式使用完整的網域名稱 (FQDN)，請使用[自訂網域](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains)發佈您的應用程式。 這項功能可讓內部與外部使用相同的 URL。
 
-    此選項可確保您的應用程式中的 hello 連結是透過應用程式 Proxy 可外部存取，因為 hello 應用程式 toointernal Url 中的 hello 連結也會辨識外部。 請注意，所有的連結仍然需要 toobelong tooa 發行應用程式。 不過，使用此選項 hello 連結不需要 toobelong toohello 相同的應用程式，而且可以隸屬 toomultiple 應用程式。
+    此選項可確保外部可透過 Application Proxy 存取您應用程式中的連結，因為外部也能辨識應用程式內對內部 URL 的連結。 請注意，所有的連結仍然必須屬於已發佈的應用程式。 不過有了此選項，連結不必屬於相同應用程式，而且可以屬於多個應用程式。
 
-3.  如果這些選項都不可行時，您將執行 URL 轉譯/重寫的新功能的 hello 預覽。 使用此選項時，內部 Url 或 hello HTML 主體的應用程式中存在的連結會轉譯，或 「 對應 」，toohello 發佈外部應用程式 Proxy Url。 這只適用於 hello HTML 或 CSS 中的連結，這無法協助如果透過 JS 產生您的連結。 
+3.  如果這些選項皆不可行，您可以加入執行轉譯/重新撰寫 URL 的新功能預覽。 透過此選項，存在於您應用程式 HTML 內文中的內部 URL 或連結會被轉譯或「對應」至已發佈的外部 App Proxy URL。 此選項僅適用於 HTML 語法或 CSS 中的連結，如果您的連結是透過 JS 產生，則沒有幫助。 
 
-如此一來，我們強烈建議使用 hello[自訂網域](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains)盡可能方案。 如果您想 toojoin hello 預覽，電子郵件傳送< aadapfeedback@microsoft.com >與 hello applicationId(s)。
+因此，我們強烈建議使用[自訂網域](https://docs.microsoft.com/azure/active-directory/active-directory-application-proxy-custom-domains)解決方案 (若適用的話)。 如果您想要加入預覽，請將含 applicationId 的電子郵件傳送至 <aadapfeedback@microsoft.com>。
 
 ## <a name="next-steps"></a>後續步驟
 [使用現有的內部部署 Proxy 伺服器](application-proxy-working-with-proxy-servers.md)

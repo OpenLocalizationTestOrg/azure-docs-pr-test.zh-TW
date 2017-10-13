@@ -1,6 +1,6 @@
 ---
-title: "HDInsight toocustomize 叢集 Azure 中的 R aaaUse |Microsoft 文件"
-description: "深入了解如何使用 tooinstall R 指令碼動作，並使用 R 的 HDInsight 叢集上。"
+title: "在 HDInsight 中使用 R 來自訂叢集 - Azure | Microsoft Docs"
+description: "了解如何使用指令碼動作安裝 R，以及在 HDInsight 叢集上使用 R。"
 services: hdinsight
 documentationcenter: 
 tags: azure-portal
@@ -16,17 +16,17 @@ ms.topic: article
 ms.date: 05/25/2017
 ms.author: jgao
 ROBOTS: NOINDEX
-ms.openlocfilehash: bf5adf2e18dc43a743b29fd1567fad731b9c3ab7
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 5b9b793d49217acd9f0c6c518596a7afb5600d69
+ms.sourcegitcommit: f537befafb079256fba0529ee554c034d73f36b0
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 07/11/2017
 ---
 # <a name="install-and-use-r-on-hdinsight-hadoop-clusters"></a>在 HDInsight Hadoop 叢集上安裝和使用 R
 
-了解如何 toocustomize Windows HDInsight 叢集以使用指令碼動作的 R 和 toouse R HDInsight 上的叢集。 hello [HDInsight 供應項目](https://azure.microsoft.com/pricing/details/hdinsight/)包含 R 伺服器做為您的 HDInsight 叢集的一部分。 這可讓 R 指令碼 toouse MapReduce 和 Spark toorun 分散式計算。 如需詳細資訊，請參閱[開始使用 HDInsight 上的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)。 如需搭配以 Linux 為基礎的叢集使用 R 的詳細資訊，請參閱[在 HDInsight Hadoop 叢集上安裝和使用 R (Linux)](hdinsight-hadoop-r-scripts-linux.md)。
+了解如何使用指令碼動作來以 R 自訂以 Windows 為基礎的 HDInsight 叢集，以及如何在 HDInsight 叢集上使用 R。 [HDInsight 供應項目](https://azure.microsoft.com/pricing/details/hdinsight/)包括隨附於 HDInsight 叢集的 R 伺服器。 這可讓 R 指令碼使用 MapReduce 和 Spark 來執行分散式計算。 如需詳細資訊，請參閱[開始使用 HDInsight 上的 R 伺服器](hdinsight-hadoop-r-server-get-started.md)。 如需搭配以 Linux 為基礎的叢集使用 R 的詳細資訊，請參閱[在 HDInsight Hadoop 叢集上安裝和使用 R (Linux)](hdinsight-hadoop-r-scripts-linux.md)。
 
-您也可以使用「指令碼動作」，在 Azure HDInsight 的任一類型的叢集 (Hadoop、Storm、HBase、Spark) 上安裝 R。 範例指令碼 tooinstall R 在 HDInsight 叢集上的都可從唯讀的 Azure 儲存體 blob [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1)。
+您也可以使用「指令碼動作」，在 Azure HDInsight 的任一類型的叢集 (Hadoop、Storm、HBase、Spark) 上安裝 R。 您可以從一個唯讀的 Azure 儲存體 Blob 取得在 HDInsight 叢集上安裝 R 的範例指令碼，網址為 [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1)。
 
 **相關文章**
 
@@ -36,45 +36,45 @@ ms.lasthandoff: 10/06/2017
 * [開發 HDInsight 的指令碼動作指令碼](hdinsight-hadoop-script-actions.md)
 
 ## <a name="what-is-r"></a>什麼是 R？
-hello <a href="http://www.r-project.org/" target="_blank">for Statistical Computing 的 R 專案</a>是開放原始碼語言和統計計算環境。 R 提供數百個內建的統計函數及它自己的程式設計語言，此語言結合了函數型和物件導向程式設計的層面。 它也提供廣泛的圖形功能。 R 是 hello 慣用的程式設計環境最專業統計學家也不斷和科學家在各種不同的欄位。
+<a href="http://www.r-project.org/" target="_blank">R Project for Statistical Computing</a> 是一個用於統計計算的開放原始碼語言和環境。 R 提供數百個內建的統計函數及它自己的程式設計語言，此語言結合了函數型和物件導向程式設計的層面。 它也提供廣泛的圖形功能。 R 是各種不同廣泛領域中，大多數專業統計人員和科學家慣用的程式設計環境。
 
 R 與 Azure Blob 儲存體 (WASB) 相容，因此便可在 HDInsight 上使用 R 來處理儲存在該處的資料。  
 
 ## <a name="install-r"></a>安裝 R
-A[範例指令碼](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1)tooinstall R 在 HDInsight 叢集上的可從 Azure 儲存體中的 blob 唯讀狀態。 本節提供有關如何 toouse hello 建立 hello 叢集使用 hello Azure 入口網站時的範例指令碼的指示。
+您可以從 Azure 儲存體中的唯讀 Blob，取得用以在 HDInsight 叢集上安裝 R 的[範例指令碼](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1)。 本節提供有關如何在使用 Azure 入口網站建立叢集時使用範例指令碼的指示。
 
 > [!NOTE]
-> HDInsight 叢集版本 3.1 被引進 hello 範例指令碼。 如需 HDInsight 叢集版本的詳細資訊，請參閱 [HDInsight 叢集版本](hdinsight-component-versioning.md)。
+> 範例指令碼是在 HDInsight 叢集版本 3.1 中所推出。 如需 HDInsight 叢集版本的詳細資訊，請參閱 [HDInsight 叢集版本](hdinsight-component-versioning.md)。
 >
 >
 
-1. 當您從 hello 入口網站中建立的 HDInsight 叢集時，按一下 **選擇性組態**，然後按一下**指令碼動作**。
-2. 在 hello**指令碼動作**頁面上，輸入下列值的 hello:
+1. 當您從入口網站建立 HDInsight 叢集時，請按一下 [選擇性組態]，然後按一下 [指令碼動作]。
+2. 在 [指令碼動作] 頁面上，輸入下列值：
 
-    ![使用指令碼動作 toocustomize 叢集](./media/hdinsight-hadoop-r-scripts/hdi-r-script-action.png "使用指令碼動作 toocustomize 叢集")
+    ![使用指令碼動作以自訂叢集](./media/hdinsight-hadoop-r-scripts/hdi-r-script-action.png "使用指令碼動作以自訂叢集")
 
     <table border='1'>
         <tr><th>屬性</th><th>值</th></tr>
         <tr><td>名稱</td>
-            <td>為指定名稱 hello 指令碼動作，例如<b>安裝 R</b>。</td></tr>
+            <td>指定指令碼動作的名稱，例如<b>安裝 R</b>。</td></tr>
         <tr><td>指令碼 URI</td>
-            <td>指定 hello URI toohello 指令碼，例如，會叫用的 toocustomize hello 叢集中， <i>https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1</i></td></tr>
+            <td>指定為了自訂叢集所叫用之指令碼的 URI，例如 <i>https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1</i></td></tr>
         <tr><td>節點類型</td>
-            <td>指定 hello hello 自訂指令碼執行所在的節點。 您可以選擇 [所有節點]<b></b>、[僅限前端節點]<b></b> 或 [僅限背景工作節點]<b></b>。
+            <td>指定執行自訂指令碼的節點。 您可以選擇 [所有節點]<b></b>、[僅限前端節點]<b></b> 或 [僅限背景工作節點]<b></b>。
         <tr><td>參數</td>
-            <td>指定 hello 參數，如果 hello 指令碼所需。 不過，hello 指令碼 tooinstall R 不需要任何參數，因此您可以讓此處空白。</td></tr>
+            <td>如果指令碼要求，請指定參數。 不過，用來安裝 R 的指令碼不需要任何參數，因此可以將此欄位留白。</td></tr>
     </table>
 
-    您可以在 hello 叢集上新增多個指令碼動作 tooinstall 多個元件。 加入 hello 指令碼之後，按一下來建立 hello 叢集 hello 核取記號 toostart。
+    您可以加入一個以上的指令碼動作，以在叢集上安裝多個元件。 加入指令碼之後，請按一下核取記號以開始建立叢集。
 
-您也可以使用 Azure PowerShell 或 hello HDInsight.NET SDK，在 HDInsight 上使用 hello 指令碼 tooinstall R。 此文章稍後會提供這些程序的指示。
+您也可以使用 Azure PowerShell 或 HDInsight .NET SDK，使用指令碼在 HDInsight 上安裝 R。 此文章稍後會提供這些程序的指示。
 
 ## <a name="run-r-scripts"></a>執行 R 指令碼
-本章節描述 toorun R 指令碼的 hello Hadoop 與 HDInsight 叢集的方式。
+本節說明如何使用 HDInsight 在 Hadoop 叢集上執行 R 指令碼。
 
-1. **建立遠端桌面連線 toohello 叢集**: hello 入口網站，從 R 安裝，以建立 hello 叢集啟用遠端桌面，然後連接 toohello 叢集。 如需指示，請參閱[連接使用 RDP tooHDInsight 叢集](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)。
-2. **開啟 hello R 主控台**: hello R 安裝會將桌面上 hello hello 前端節點的連結 toohello R 主控台。 按一下以 tooopen hello R 主控台。
-3. **執行 hello R 指令碼**: hello R 指令碼可以直接從 hello R 主控台執行貼上它，選取它，並按 ENTER 鍵。 以下是簡單的範例指令碼會產生 hello 數字 1 too100，然後將其乘以 2。
+1. **建立與叢集的遠端桌面連線**：從入口網站，針對您所建立且已安裝 R 的叢集啟用遠端桌面，然後連線到叢集。 如需指示，請參閱[使用 RDP 連接至 HDInsight 叢集](hdinsight-administer-use-management-portal.md#connect-to-clusters-using-rdp)。
+2. **開啟 R 主控台**：R 安裝會在前端節點的桌面上放置 R 主控台的連結。 按一下該連結以開啟 R 主控台。
+3. **執行 R 指令碼**：您可以透過貼上、選取然後按 Enter 的方式，直接從 R 主控台執行 R 指令碼。 以下是一個簡單的範例指令碼，此指令碼會產生數字 1 到 100，然後將它們乘以 2。
 
         library(rmr2)
         library(rhdfs)
@@ -82,7 +82,7 @@ A[範例指令碼](https://hdiconfigactions.blob.core.windows.net/rconfigactionv
         calc = mapreduce(input = ints, map = function(k, v) cbind(v, 2*v))
         from.dfs(calc)
 
-hello 前兩行呼叫 hello RHadoop 文件庫以 r 安裝的 hello 最後一行沖印 hello 結果 toohello 主控台。 hello 輸出應該看起來像這樣：
+前兩行會呼叫與 R 一起安裝的 RHadoop 程式庫。最後一行會將結果列印到主控台。 輸出看起來應該會像下面這樣：
 
     [1,]  1 2
     [2,]  2 4
@@ -95,10 +95,10 @@ hello 前兩行呼叫 hello RHadoop 文件庫以 r 安裝的 hello 最後一行�
 
 
 ## <a name="install-r-using-aure-powershell"></a>使用 Azure PowerShell 安裝 R
-請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell)。  hello 範例會示範如何使用 Azure PowerShell 的 Spark tooinstall。 您需要 toocustomize hello 指令碼 toouse [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1)。
+請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell)。  此範例示範如何使用 Azure PowerShell 安裝 Spark。 您需要自訂指令碼以使用 [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1)。
 
 ## <a name="install-r-using-net-sdk"></a>使用 .NET SDK 安裝 R
-請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell)。 hello 範例會示範如何 tooinstall Spark 使用 hello.NET SDK。 您需要 toocustomize hello 指令碼 toouse [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps11)。
+請參閱[使用指令碼動作來自訂 HDInsight 叢集](hdinsight-hadoop-customize-cluster.md#call-scripts-using-azure-powershell)。 此範例示範如何使用 .NET SDK 安裝 Spark。 您需要自訂指令碼以使用 [https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps1](https://hdiconfigactions.blob.core.windows.net/rconfigactionv02/r-installer-v02.ps11)。
 
 ## <a name="see-also"></a>另請參閱
 * [在 HDInsight Hadoop 叢集上安裝和使用 R (Linux)](hdinsight-hadoop-r-scripts-linux.md)

@@ -1,6 +1,6 @@
 ---
-title: "開始使用 Visual Studio MVC 專案中的 Azure AD aaaGet |Microsoft 文件"
-description: "Tooget 啟動連接 tooor 建立 Azure AD 使用 Visual Studio 之後，在 MVC 專案中使用 Azure Active Directory 已連接服務"
+title: "開始在 Visual Studio MVC 專案中使用 Azure AD | Microsoft Docs"
+description: "使用 Visual Studio 已連接服務連接 Azure AD 或建立 Azure AD 後，如何在 MVC 專案中開始使用 Azure Active Directory"
 services: active-directory
 documentationcenter: 
 author: kraigb
@@ -15,11 +15,11 @@ ms.topic: article
 ms.date: 03/01/2017
 ms.author: kraigb
 ms.custom: aaddev
-ms.openlocfilehash: 807824dd6e4e57e443f8a7322cf2e5326384316d
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: c4d49cfc9887e422b3eaed2b96348c99eca48881
+ms.sourcegitcommit: 18ad9bc049589c8e44ed277f8f43dcaa483f3339
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 08/29/2017
 ---
 # <a name="getting-started-with-azure-active-directory-and-visual-studio-connected-services-mvc-projects"></a>開始使用 Azure Active Directory 和 Visual Studio 已連接服務 (MVC 專案)
 > [!div class="op_single_selector"]
@@ -28,11 +28,11 @@ ms.lasthandoff: 10/06/2017
 > 
 > 
 
-## <a name="requiring-authentication-tooaccess-controllers"></a>需要驗證 tooaccess 控制站
-在您的專案中的所有控制站已裝飾以 hello**授權**屬性。 此屬性需要驗證才能存取這些控制站的 hello 使用者 toobe。 以匿名方式，存取 tooallow hello 控制器 toobe 從 hello 控制器移除這個屬性。 如果您想 tooset hello 權限，在更細微的層級，套用 hello 屬性 tooeach 方法，會要求授權，而不是套用它 toohello 控制器類別。
+## <a name="requiring-authentication-to-access-controllers"></a>存取控制器之前需要驗證
+專案中的所有控制器都加上 **Authorize** 屬性做裝飾。 此屬性要求使用者必須經過驗證，才能存取這些控制器。 若要允許以匿名方式存取控制器，請從控制器中移除此屬性。 如果您要以更精確地設定權限，請將此屬性套用至每一個需要授權的方法，而非套用至控制器類別。
 
 ## <a name="adding-signin--signout-controls"></a>加入 SignIn / SignOut 控制項
-tooadd hello 登入/登出控制 tooyour 檢視，您可以使用 hello **_LoginPartial.cshtml**部分檢視 tooadd hello 功能 tooone 的檢視。 以下是範例的 hello 功能加入的 toohello 標準**_Layout.cshtml**檢視。 （請注意 hello hello div 類別導覽列摺疊中的最後一個項目）：
+若要將 SignIn/SignOut 控制項新增至檢視，您可以使用 **_LoginPartial.cshtml** 部分檢視，將此功能新增至您的其中一個檢視。 以下是新增至標準 **_Layout.cshtml** 檢視的功能範例。 (請注意 div 中具有類別 navbar-collapse 的最後一個元素)：
 
 <pre>
     &lt;!DOCTYPE html&gt; 
