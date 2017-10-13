@@ -1,6 +1,6 @@
 ---
-title: "測試 Azure 堆疊中的 VM aaaCreate |Microsoft 文件"
-description: "深入了解如何 tooprovision 測試 Azure 雲端操作員的堆疊中的 VM。"
+title: "在 Azure Stack 中建立測試 VM | Microsoft Docs"
+description: "了解如何在 Azure Stack 中，以雲端操作員的身分佈建測試 VM。"
 services: azure-stack
 documentationcenter: 
 author: ErikjeMS
@@ -12,31 +12,34 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: get-started-article
-ms.date: 7/21/2017
+ms.date: 9/25/2017
 ms.author: erikje
-ms.openlocfilehash: 9633cc20852e16283ad4522da78971133028efdd
-ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.openlocfilehash: 233cf4df53af6a49e5fe4c5d51e112d8196a7530
+ms.sourcegitcommit: 90e2cced6a773b1b52f999ba73cd8877305d270b
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/06/2017
+ms.lasthandoff: 10/13/2017
 ---
 # <a name="create-a-test-virtual-machine-in-azure-stack"></a>在 Azure Stack 中建立測試虛擬機器
-雲端操作員，您可以建立測試虛擬機器 toovalidate Azure 堆疊部署。
+
+適用於：Azure Stack 開發套件
+
+身為 Azure Stack 操作員，您可以建立測試虛擬機器來驗證 [Azure Stack](azure-stack-poc.md) 開發人員套件部署。
 
 > [!NOTE]
-> 您可以佈建虛擬機器之前，您必須[新增 hello Windows Server 2016 Evaluation 映像 toohello Azure 堆疊 marketplace](azure-stack-add-default-image.md)。
+> 佈建虛擬機器之前，您必須[將 Windows Server 2016 評估版映像新增至 Azure Stack 市集](azure-stack-add-default-image.md)。
 > 
 > 
 
 ## <a name="create-a-virtual-machine"></a>建立虛擬機器
-1. Hello Azure 堆疊開發套件在主機上，[登入](azure-stack-connect-azure-stack.md)toohello 管理員入口網站 (`https://adminportal.local.azurestack.external`)，然後按一下**新增** > **計算** > **評估版的 Windows Server 2016 資料中心** > **建立**。  
-2. 在 hello**基本概念**刀鋒視窗中，輸入**名稱**，**使用者名稱**，和**密碼**。 選擇 [訂用帳戶] 。 建立 資源群組，或選取現有的資源群組，然後按一下確定。  
-3. 在 hello**大小選擇 「**刀鋒視窗中，按一下**標準 A1**，然後按一下**選取**。  
-4. 在 hello**設定**刀鋒視窗中，接受 hello 預設值，並按一下**確定**
-5. 在 hello**摘要**刀鋒視窗中，按一下 **確定**toocreate hello 虛擬機器。  
-6. toosee 新的虛擬機器，按一下 **所有資源**，然後搜尋 hello 虛擬機器，然後按一下其名稱。
+1. 在 Azure Stack 開發套件主機上，[登入](azure-stack-connect-azure-stack.md)系統管理員入口網站 (`https://adminportal.local.azurestack.external`)，然後按一下新增 > [計算] > [Windows Server 2016 Datacenter 評估版] > [建立]。  
+2. 在 [基本] 刀鋒視窗中，輸入 [名稱]、[使用者名稱] 與 [密碼]。 選擇 [訂用帳戶] 。 建立 資源群組，或選取現有的資源群組，然後按一下確定。  
+3. 在 [選擇大小] 刀鋒視窗中，按一下 [A1 標準]，再按一下 [選取]。  
+4. 在 [設定] 刀鋒視窗中，接受預設值並按一下 [確定]
+5. 在 [摘要] 刀鋒視窗中，按一下 [確定]，以建立虛擬機器。  
+6. 若要查看您的新虛擬機器，請按一下 [所有資源]，然後搜尋虛擬機器並按一下其名稱。
     ![](media/azure-stack-provision-vm/image06.png)
 
 
 ## <a name="next-steps"></a>後續步驟
-[使用 Azure 堆疊中的 hello 系統管理員和使用者入口網站](azure-stack-manage-portals.md)
+[使用 Azure Stack 中系統管理員和使用者的入口網站](azure-stack-manage-portals.md)
