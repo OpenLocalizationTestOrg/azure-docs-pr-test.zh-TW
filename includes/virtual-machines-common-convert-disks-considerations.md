@@ -1,0 +1,10 @@
+
+* <span data-ttu-id="a62b4-101">轉換需要重新啟動 VM，因此請在預先存在的維護期間排定 VM 移轉。</span><span class="sxs-lookup"><span data-stu-id="a62b4-101">The conversion requires a restart of the VM, so schedule the migration of your VMs during a pre-existing maintenance window.</span></span> 
+
+* <span data-ttu-id="a62b4-102">轉換是無法復原的。</span><span class="sxs-lookup"><span data-stu-id="a62b4-102">The conversion is not reversible.</span></span> 
+
+* <span data-ttu-id="a62b4-103">請務必先進行轉換測試。</span><span class="sxs-lookup"><span data-stu-id="a62b4-103">Be sure to test the conversion.</span></span> <span data-ttu-id="a62b4-104">在生產環境中執行移轉之前，請先移轉測試虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="a62b4-104">Migrate a test virtual machine before you perform the migration in production.</span></span>
+
+* <span data-ttu-id="a62b4-105">在轉換期間，您會解除配置 VM。</span><span class="sxs-lookup"><span data-stu-id="a62b4-105">During the conversion, you deallocate the VM.</span></span> <span data-ttu-id="a62b4-106">在轉換後啟動 VM 時，VM 會接收新的 IP 位址。</span><span class="sxs-lookup"><span data-stu-id="a62b4-106">The VM receives a new IP address when it is started after the conversion.</span></span> <span data-ttu-id="a62b4-107">如有必要，您可以對 VM [指派靜態 IP 位址](../articles/virtual-network/virtual-network-ip-addresses-overview-arm.md)。</span><span class="sxs-lookup"><span data-stu-id="a62b4-107">If needed, you can [assign a static IP address](../articles/virtual-network/virtual-network-ip-addresses-overview-arm.md) to the VM.</span></span>
+
+* <span data-ttu-id="a62b4-108">VM 在傳換前使用的原始 VHD 和儲存體帳戶不會遭到刪除。</span><span class="sxs-lookup"><span data-stu-id="a62b4-108">The original VHDs and the storage account used by the VM before conversion are not deleted.</span></span> <span data-ttu-id="a62b4-109">這些項目會繼續產生費用。</span><span class="sxs-lookup"><span data-stu-id="a62b4-109">They continue to incur charges.</span></span> <span data-ttu-id="a62b4-110">若要避免為這些成果支付費用，請在確認轉換完成之後，刪除原始的 VHD Blob。</span><span class="sxs-lookup"><span data-stu-id="a62b4-110">To avoid being billed for these artifacts, delete the original VHD blobs after you verify that the conversion is complete.</span></span>

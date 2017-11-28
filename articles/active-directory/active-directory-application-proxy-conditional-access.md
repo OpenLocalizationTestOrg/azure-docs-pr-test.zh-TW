@@ -1,0 +1,73 @@
+---
+title: "aaaConditional 存取 tooon 內部部署應用程式的 Azure AD |Microsoft 文件"
+description: "涵蓋應用程式的條件式存取 tooset 您如何發行 toobe 從遠端使用存取 Azure AD Application Proxy。"
+services: active-directory
+documentationcenter: 
+author: kgremban
+manager: femila
+ms.assetid: 2e97722b-eb4e-4078-b607-9fed210d8a0f
+ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 07/23/2017
+ms.author: kgremban
+ms.reviewer: harshja
+ms.custom: it-pro; oldportal
+ms.openlocfilehash: 7bed25dd4ba17941e77d8c4b2b9ba4edcf0cf597
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/06/2017
+---
+# <a name="working-with-conditional-access-in-azure-ad-application-proxy"></a><span data-ttu-id="ce518-103">使用 Azure AD 應用程式 Proxy 中的條件式存取</span><span class="sxs-lookup"><span data-stu-id="ce518-103">Working with conditional access in Azure AD Application Proxy</span></span>
+
+>[!NOTE]
+><span data-ttu-id="ce518-104">本文適用於 toohello Azure 傳統入口網站，其已遭到淘汰。</span><span class="sxs-lookup"><span data-stu-id="ce518-104">This article applies toohello Azure classic portal, which is being retired.</span></span> <span data-ttu-id="ce518-105">我們建議您改用 hello [Azure 入口網站](https://portal.azure.com)。</span><span class="sxs-lookup"><span data-stu-id="ce518-105">We recommend that you use hello [Azure portal](https://portal.azure.com).</span></span> <span data-ttu-id="ce518-106">Hello Azure 入口網站，在應用程式的應用程式 Proxy hello 相同的條件式存取功能任何其他 SaaS 應用程式。</span><span class="sxs-lookup"><span data-stu-id="ce518-106">In hello Azure portal, Application Proxy apps have hello same conditional access features as any other SaaS app.</span></span> <span data-ttu-id="ce518-107">toolearn 進一步了解條件式存取，請參閱[開始使用 Azure Active Directory 中的條件式存取](active-directory-conditional-access-azure-portal-get-started.md)。</span><span class="sxs-lookup"><span data-stu-id="ce518-107">toolearn more about conditional access, see [Get started with conditional access in Azure Active Directory](active-directory-conditional-access-azure-portal-get-started.md).</span></span>
+
+<span data-ttu-id="ce518-108">您可以設定存取規則 toogrant 條件式存取 tooapplications 應用程式 Proxy 發行。</span><span class="sxs-lookup"><span data-stu-id="ce518-108">You can configure access rules toogrant conditional access tooapplications published using Application Proxy.</span></span> <span data-ttu-id="ce518-109">這可讓您：</span><span class="sxs-lookup"><span data-stu-id="ce518-109">This enables you to:</span></span>
+
+* <span data-ttu-id="ce518-110">要求各應用程式的多重要素驗證</span><span class="sxs-lookup"><span data-stu-id="ce518-110">Require multi-factor authentication per application</span></span>
+* <span data-ttu-id="ce518-111">只在使用者不在公司時要求多重要素驗證</span><span class="sxs-lookup"><span data-stu-id="ce518-111">Require multi-factor authentication only when users are not at work</span></span>
+* <span data-ttu-id="ce518-112">禁止使用者存取不在工作的 hello 應用程式</span><span class="sxs-lookup"><span data-stu-id="ce518-112">Block users from accessing hello application when they are not at work</span></span>
+
+<span data-ttu-id="ce518-113">這些規則可以套用的 tooall 使用者和群組或只 toospecific 使用者和群組。</span><span class="sxs-lookup"><span data-stu-id="ce518-113">These rules can be applied tooall users and groups or only toospecific users and groups.</span></span> <span data-ttu-id="ce518-114">根據預設 hello 規則適用於 tooall 使用者擁有存取 toohello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="ce518-114">By default hello rule applies tooall users who have access toohello application.</span></span> <span data-ttu-id="ce518-115">不過 hello 規則也可以限制的 toousers 屬於指定之安全性群組的成員。</span><span class="sxs-lookup"><span data-stu-id="ce518-115">However hello rule can also be restricted toousers that are members of specified security groups.</span></span>  
+
+<span data-ttu-id="ce518-116">當使用者存取使用 OAuth 2.0、OpenID Connect、SAML 或 WS-同盟的同盟應用程式時，就會評估存取規則。</span><span class="sxs-lookup"><span data-stu-id="ce518-116">Access rules are evaluated when a user accesses a federated application that uses OAuth 2.0, OpenID Connect, SAML, or WS-Federation.</span></span> <span data-ttu-id="ce518-117">此外，存取規則會評估使用 OAuth 2.0 和 OpenID Connect，重新整理權杖時使用的 tooacquire 存取權杖。</span><span class="sxs-lookup"><span data-stu-id="ce518-117">In addition, access rules are evaluated with OAuth 2.0 and OpenID Connect when a refresh token is used tooacquire an access token.</span></span>
+
+## <a name="conditional-access-prerequisites"></a><span data-ttu-id="ce518-118">條件式存取的先決條件</span><span class="sxs-lookup"><span data-stu-id="ce518-118">Conditional access prerequisites</span></span>
+* <span data-ttu-id="ce518-119">訂用帳戶 tooAzure Active Directory Premium</span><span class="sxs-lookup"><span data-stu-id="ce518-119">Subscription tooAzure Active Directory Premium</span></span>
+* <span data-ttu-id="ce518-120">同盟或受管理的 Azure Active Directory 租用戶</span><span class="sxs-lookup"><span data-stu-id="ce518-120">A federated or managed Azure Active Directory tenant</span></span>
+* <span data-ttu-id="ce518-121">同盟租用戶需要 Multi-Factor Authentication (MFA)</span><span class="sxs-lookup"><span data-stu-id="ce518-121">Federated tenants require multi-factor authentication (MFA)</span></span>  
+    ![設定存取規則 - 要求 Multi-Factor Authentication](./media/active-directory-application-proxy-conditional-access/application-proxy-conditional-access.png)
+
+## <a name="configure-per-application-multi-factor-authentication"></a><span data-ttu-id="ce518-123">設定每個應用程式的 Multi-Factor Authentication</span><span class="sxs-lookup"><span data-stu-id="ce518-123">Configure per-application multi-factor authentication</span></span>
+1. <span data-ttu-id="ce518-124">登入為系統管理員可以在 hello Azure 傳統入口網站。</span><span class="sxs-lookup"><span data-stu-id="ce518-124">Sign in as an administrator in hello Azure classic portal.</span></span>
+2. <span data-ttu-id="ce518-125">請 tooActive 目錄並選取您想在其中 tooenable 應用程式 Proxy 的 hello 目錄。</span><span class="sxs-lookup"><span data-stu-id="ce518-125">Go tooActive Directory and select hello directory in which you want tooenable Application Proxy.</span></span>
+3. <span data-ttu-id="ce518-126">按一下**應用程式**和捲動 toohello**存取規則**> 一節。</span><span class="sxs-lookup"><span data-stu-id="ce518-126">Click **Applications** and scroll down toohello **Access Rules** section.</span></span> <span data-ttu-id="ce518-127">hello 存取規則區段只出現在應用程式 Proxy 發行應用程式，使用同盟的驗證。</span><span class="sxs-lookup"><span data-stu-id="ce518-127">hello access rules section only appears for applications published using Application Proxy that use federated authentication.</span></span>
+4. <span data-ttu-id="ce518-128">選取以啟用 hello 規則**啟用存取規則**太**上**。</span><span class="sxs-lookup"><span data-stu-id="ce518-128">Enable hello rule by selecting **Enable Access Rules** too**On**.</span></span>
+5. <span data-ttu-id="ce518-129">指定 hello 使用者和群組 toowhom hello 套用規則。</span><span class="sxs-lookup"><span data-stu-id="ce518-129">Specify hello users and groups toowhom hello rules apply.</span></span> <span data-ttu-id="ce518-130">使用 hello**加入群組**按鈕 tooselect toowhich hello 存取規則套用的一或多個群組。</span><span class="sxs-lookup"><span data-stu-id="ce518-130">Use hello **Add Group** button tooselect one or more groups toowhich hello access rule applies.</span></span> <span data-ttu-id="ce518-131">此對話方塊也可以使用的 tooremove 選取群組。</span><span class="sxs-lookup"><span data-stu-id="ce518-131">This dialog can also be used tooremove selected groups.</span></span>  <span data-ttu-id="ce518-132">僅適用於使用者隸屬的 hello 指定 tooone hello 存取規則選取的 tooapply toogroups hello 規則時，會強制執行安全性的群組。</span><span class="sxs-lookup"><span data-stu-id="ce518-132">When hello rules are selected tooapply toogroups, hello access rules are enforced only for users that belong tooone of hello specified security groups.</span></span>  
+
+   * <span data-ttu-id="ce518-133">tooexplicitly 排除安全性的群組 hello 規則檢查**除了**並指定一個或多個群組。</span><span class="sxs-lookup"><span data-stu-id="ce518-133">tooexplicitly exclude security groups from hello rule, check **Except** and specify one or more groups.</span></span> <span data-ttu-id="ce518-134">Hello，除了清單中成員的使用者不是群組的必要的 tooperform 多重要素驗證。</span><span class="sxs-lookup"><span data-stu-id="ce518-134">Users who are members of a group in hello Except list are not required tooperform multi-factor authentication.</span></span>  
+   * <span data-ttu-id="ce518-135">如果使用者已設定為使用 hello 每位使用者的多重要素驗證功能，這項設定會優先於 hello 應用程式多因素驗證規則。</span><span class="sxs-lookup"><span data-stu-id="ce518-135">If a user was configured using hello per-user multi-factor authentication feature, this setting takes precedence over hello application multi-factor authentication rules.</span></span> <span data-ttu-id="ce518-136">已設定的每個使用者的多重要素驗證的使用者是必要的 tooperform 多重要素驗證，即使它們有 hello 應用程式的多因素驗證規則的豁免。</span><span class="sxs-lookup"><span data-stu-id="ce518-136">A user who has been configured for per-user multi-factor authentication is required tooperform multi-factor authentication even if they have been exempted from hello application's multi-factor authentication rules.</span></span> <span data-ttu-id="ce518-137">深入了解 [多重要素驗證和每個使用者設定](../multi-factor-authentication/multi-factor-authentication.md)。</span><span class="sxs-lookup"><span data-stu-id="ce518-137">Learn more about [multi-factor authentication and per-user settings](../multi-factor-authentication/multi-factor-authentication.md).</span></span>
+6. <span data-ttu-id="ce518-138">選取您想 tooset hello 存取規則：</span><span class="sxs-lookup"><span data-stu-id="ce518-138">Select hello access rule you want tooset:</span></span>
+
+   * <span data-ttu-id="ce518-139">**需要多重要素驗證**: toowhom 存取規則套用的使用者都是必要的 toocomplete 多重要素驗證之前存取 hello 應用 toowhich hello 規則適用於。</span><span class="sxs-lookup"><span data-stu-id="ce518-139">**Require Multi-factor authentication**: Users toowhom access rules apply are required toocomplete multi-factor authentication before accessing hello application toowhich hello rule applies.</span></span>
+   * <span data-ttu-id="ce518-140">**需要多重要素驗證，不在工作時**： 嘗試從受信任的 IP 位址的 tooaccess hello 應用程式的使用者並不會需要的 tooperform 多重要素驗證。</span><span class="sxs-lookup"><span data-stu-id="ce518-140">**Require Multi-factor authentication when not at work**: Users trying tooaccess hello application from a trusted IP address will not be required tooperform multi-factor authentication.</span></span> <span data-ttu-id="ce518-141">hello 受信任的 IP 位址範圍可以設定 hello 多因素驗證設定 頁面上。</span><span class="sxs-lookup"><span data-stu-id="ce518-141">hello trusted IP address ranges can be configured on hello multi-factor authentication settings page.</span></span>
+   * <span data-ttu-id="ce518-142">**封鎖存取不在工作時**： 嘗試 tooaccess hello 應用程式從您的公司網路外部的使用者並不會無法 tooaccess hello 應用程式。</span><span class="sxs-lookup"><span data-stu-id="ce518-142">**Block access when not at work**: Users trying tooaccess hello application from outside your corporate network will not be able tooaccess hello application.</span></span>
+
+## <a name="configuring-mfa-for-federation-services"></a><span data-ttu-id="ce518-143">設定同盟服務的 MFA</span><span class="sxs-lookup"><span data-stu-id="ce518-143">Configuring MFA for federation services</span></span>
+<span data-ttu-id="ce518-144">同盟租用戶，multi-factor authentication (MFA) 可能會執行由 Azure Active Directory 或 hello 在內部部署 AD FS 伺服器。</span><span class="sxs-lookup"><span data-stu-id="ce518-144">For federated tenants, multi-factor authentication (MFA) may be performed by Azure Active Directory or by hello on-premises AD FS server.</span></span> <span data-ttu-id="ce518-145">根據預設，MFA 會發生在 Azure Active Directory 所裝載的任何頁面上。</span><span class="sxs-lookup"><span data-stu-id="ce518-145">By default, MFA occurs on any page hosted by Azure Active Directory.</span></span> <span data-ttu-id="ce518-146">tooconfigure MFA 內部，執行 Windows PowerShell，並使用 hello – SupportsMFA 屬性 tooset hello Azure AD 模組。</span><span class="sxs-lookup"><span data-stu-id="ce518-146">tooconfigure MFA on-premises, run Windows PowerShell and use hello –SupportsMFA property tooset hello Azure AD module.</span></span>
+
+<span data-ttu-id="ce518-147">hello 下列範例示範如何 tooenable 內部部署 MFA 使用 hello [Set-msoldomainfederationsettings cmdlet](https://msdn.microsoft.com/library/azure/dn194088.aspx) hello contoso.com 租用戶上：`Set-MsolDomainFederationSettings -DomainName contoso.com -SupportsMFA $true `</span><span class="sxs-lookup"><span data-stu-id="ce518-147">hello following example shows how tooenable on-premises MFA by using hello [Set-MsolDomainFederationSettings cmdlet](https://msdn.microsoft.com/library/azure/dn194088.aspx) on hello contoso.com tenant: `Set-MsolDomainFederationSettings -DomainName contoso.com -SupportsMFA $true `</span></span>
+
+<span data-ttu-id="ce518-148">在加法 toosetting 此旗標，hello 同盟租用戶 AD FS 執行個體必須設定 tooperform multi-factor authentication。</span><span class="sxs-lookup"><span data-stu-id="ce518-148">In addition toosetting this flag, hello federated tenant AD FS instance must be configured tooperform multi-factor authentication.</span></span> <span data-ttu-id="ce518-149">請依照指示 hello [Microsoft Azure 多重要素驗證在內部部署](../multi-factor-authentication/multi-factor-authentication-get-started-server.md)。</span><span class="sxs-lookup"><span data-stu-id="ce518-149">Follow hello instructions for [deploying Microsoft Azure multi-factor authentication on-premises](../multi-factor-authentication/multi-factor-authentication-get-started-server.md).</span></span>
+
+## <a name="see-also"></a><span data-ttu-id="ce518-150">另請參閱</span><span class="sxs-lookup"><span data-stu-id="ce518-150">See also</span></span>
+* [<span data-ttu-id="ce518-151">使用宣告感知應用程式</span><span class="sxs-lookup"><span data-stu-id="ce518-151">Working with claims aware applications</span></span>](active-directory-application-proxy-claims-aware-apps.md)
+* [<span data-ttu-id="ce518-152">使用應用程式 Proxy 發行應用程式</span><span class="sxs-lookup"><span data-stu-id="ce518-152">Publish applications with Application Proxy</span></span>](active-directory-application-proxy-publish.md)
+* [<span data-ttu-id="ce518-153">啟用單一登入</span><span class="sxs-lookup"><span data-stu-id="ce518-153">Enable single-sign on</span></span>](active-directory-application-proxy-sso-using-kcd.md)
+* [<span data-ttu-id="ce518-154">使用您自己的網域名稱發行應用程式</span><span class="sxs-lookup"><span data-stu-id="ce518-154">Publish applications using your own domain name</span></span>](active-directory-application-proxy-custom-domains.md)
+
+<span data-ttu-id="ce518-155">如 hello 最新消息和更新，請參閱 hello[應用程式 Proxy 部落格](http://blogs.technet.com/b/applicationproxyblog/)</span><span class="sxs-lookup"><span data-stu-id="ce518-155">For hello latest news and updates, check out hello [Application Proxy blog](http://blogs.technet.com/b/applicationproxyblog/)</span></span>

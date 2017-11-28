@@ -1,0 +1,8 @@
+<span data-ttu-id="b3315-101">[App Service 方案](../articles/app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md)會指定用來裝載應用程式的 Web 伺服器陣列位置、大小和功能。</span><span class="sxs-lookup"><span data-stu-id="b3315-101">An [App Service plan](../articles/app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md) specifies the location, size, and features of the web server farm that hosts your app.</span></span> <span data-ttu-id="b3315-102">在裝載多個應用程式時，您可以將 Web 應用程式設定為共用單一 App Service 方案來節省開支。</span><span class="sxs-lookup"><span data-stu-id="b3315-102">You can save money when hosting multiple apps by configuring the web apps to share a single App Service plan.</span></span>
+
+<span data-ttu-id="b3315-103">App Service 方案可定義：</span><span class="sxs-lookup"><span data-stu-id="b3315-103">App Service plans define:</span></span>
+
+* <span data-ttu-id="b3315-104">區域 (例如︰北歐、美國東部或東南亞)</span><span class="sxs-lookup"><span data-stu-id="b3315-104">Region (for example: North Europe, East US, or Southeast Asia)</span></span>
+* <span data-ttu-id="b3315-105">執行個體大小 (小型、中型或大型)</span><span class="sxs-lookup"><span data-stu-id="b3315-105">Instance size (small, medium, or large)</span></span>
+* <span data-ttu-id="b3315-106">級別計數 (1 到 20 個執行個體)</span><span class="sxs-lookup"><span data-stu-id="b3315-106">Scale count (1 to 20 instances)</span></span>
+* <span data-ttu-id="b3315-107">SKU (免費、共用、基本、標準或進階)</span><span class="sxs-lookup"><span data-stu-id="b3315-107">SKU (Free, Shared, Basic, Standard, or Premium)</span></span>

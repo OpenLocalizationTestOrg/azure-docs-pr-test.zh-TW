@@ -1,0 +1,7 @@
+* [<span data-ttu-id="8b452-101">將應用程式部署至 Azure App Service</span><span class="sxs-lookup"><span data-stu-id="8b452-101">Deploying an app to Azure App Service</span></span>](../articles/app-service-web/web-sites-deploy.md)
+* [<span data-ttu-id="8b452-102">設定原始檔控制和連續整合</span><span class="sxs-lookup"><span data-stu-id="8b452-102">Configuring source control and continuous integration</span></span>](../articles/app-service-web/app-service-continuous-deployment.md)
+* [<span data-ttu-id="8b452-103">預備部署的部署位置</span><span class="sxs-lookup"><span data-stu-id="8b452-103">Staging deployments with deployment slots</span></span>](../articles/app-service-web/web-sites-staged-publishing.md)
+* [<span data-ttu-id="8b452-104">發行與角色型存取控制 (RBAC)</span><span class="sxs-lookup"><span data-stu-id="8b452-104">Publishing and Role Based Access Control (RBAC)</span></span>](https://azure.microsoft.com/blog/rbac-and-azure-websites-publishing/)
+
+## <a name="videos"></a><span data-ttu-id="8b452-105">影片</span><span class="sxs-lookup"><span data-stu-id="8b452-105">Videos</span></span>
+* [<span data-ttu-id="8b452-106">自動化發行管理的部署工作流程</span><span class="sxs-lookup"><span data-stu-id="8b452-106">Automating the deployment workflow for release management</span></span>](https://azure.microsoft.com/resources/videos/azurecon-2015-manage-code-changes-to-web-apps-using-the-devops-features-of-azure-app-service-and-visual-studio-release-management/)

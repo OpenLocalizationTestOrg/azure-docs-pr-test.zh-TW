@@ -1,0 +1,57 @@
+---
+title: "aaaOMSManagement 解決方案的最佳作法 |Microsoft 文件"
+description: 
+services: operations-management-suite
+documentationcenter: 
+author: bwren
+manager: carmonm
+editor: tysonn
+ms.assetid: 1915e204-ba7e-431b-9718-9eb6b4213ad8
+ms.service: operations-management-suite
+ms.devlang: na
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 04/27/2017
+ms.author: bwren
+ms.openlocfilehash: 08cf1c101e301d24fb5c2bf4bc02a978e508a198
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/06/2017
+---
+# <a name="best-practices-for-creating-management-solutions-in-operations-management-suite-oms-preview"></a><span data-ttu-id="cbe35-102">在 Operations Management Suite (OMS) 中建立管理解決方案的最佳作法 (預覽)</span><span class="sxs-lookup"><span data-stu-id="cbe35-102">Best practices for creating management solutions in Operations Management Suite (OMS) (Preview)</span></span>
+> [!NOTE]
+> <span data-ttu-id="cbe35-103">這是在 OMS 中建立管理解決方案 (目前處於預覽狀態) 的預備文件。</span><span class="sxs-lookup"><span data-stu-id="cbe35-103">This is preliminary documentation for creating management solutions in OMS which are currently in preview.</span></span> <span data-ttu-id="cbe35-104">如下所述的任何結構描述是主體 toochange。</span><span class="sxs-lookup"><span data-stu-id="cbe35-104">Any schema described below is subject toochange.</span></span>  
+
+<span data-ttu-id="cbe35-105">本文提供在 Operations Management Suite (OMS) 中[建立管理解決方案檔](operations-management-suite-solutions-solution-file.md)的最佳作法。</span><span class="sxs-lookup"><span data-stu-id="cbe35-105">This article provides best practices for [creating a management solution file](operations-management-suite-solutions-solution-file.md) in Operations Management Suite (OMS).</span></span>  <span data-ttu-id="cbe35-106">本資訊會在識別出其他最佳作法時更新。</span><span class="sxs-lookup"><span data-stu-id="cbe35-106">This information will be updated as additional best practices are identified.</span></span>
+
+## <a name="data-sources"></a><span data-ttu-id="cbe35-107">資料來源</span><span class="sxs-lookup"><span data-stu-id="cbe35-107">Data sources</span></span>
+- <span data-ttu-id="cbe35-108">資料來源可以[使用 Resource Manager 範本設定](../log-analytics/log-analytics-template-workspace-configuration.md)，但不應該將資源來源包含在解決方案檔中。</span><span class="sxs-lookup"><span data-stu-id="cbe35-108">Data sources can be [configured with a Resource Manager template](../log-analytics/log-analytics-template-workspace-configuration.md), but they should not be included in a solution file.</span></span>  <span data-ttu-id="cbe35-109">hello 原因是，設定資料來源目前不是具有等冪性，這表示您的方案無法覆寫 hello 使用者的工作區中現有的組態。</span><span class="sxs-lookup"><span data-stu-id="cbe35-109">hello reason is that configuring data sources is not currently idempotent meaning that your solution could overwrite existing configuration in hello user's workspace.</span></span><br><br><span data-ttu-id="cbe35-110">比方說，解決方案可能需要從 hello 應用程式事件記錄檔的警告和錯誤事件。</span><span class="sxs-lookup"><span data-stu-id="cbe35-110">For example, your solution may require Warning and Error events from hello Application event log.</span></span>  <span data-ttu-id="cbe35-111">如果這樣做為資料來源中指定您的方案，您可能會如果 hello 使用者具有這設定其工作區中移除資訊事件。</span><span class="sxs-lookup"><span data-stu-id="cbe35-111">If you specify this as a data source in your solution, you risk removing Information events if hello user had this configured in their workspace.</span></span>  <span data-ttu-id="cbe35-112">如果您包含所有事件，然後您可能會收集 hello 使用者的工作區中的過多的資訊事件。</span><span class="sxs-lookup"><span data-stu-id="cbe35-112">If you included all events, then you may be collecting excessive Information events in hello user's workspace.</span></span>
+
+- <span data-ttu-id="cbe35-113">如果您的方案需要從其中一個 hello 標準的資料來源的資料，然後您應該定義此做為必要條件。</span><span class="sxs-lookup"><span data-stu-id="cbe35-113">If your solution requires data from one of hello standard data sources, then you should define this as a prerequisite.</span></span>  <span data-ttu-id="cbe35-114">狀態文件中的 hello 客戶必須 hello 資料來源上設定自己。</span><span class="sxs-lookup"><span data-stu-id="cbe35-114">State in documentation that hello customer must configure hello data source on their own.</span></span>  
+- <span data-ttu-id="cbe35-115">新增[資料流量的驗證](../log-analytics/log-analytics-view-designer-tiles.md)tooany 檢視在您的方案 tooinstruct hello 使用者在資料來源上設定必要的資料 toobe 該需要 toobe 訊息收集。</span><span class="sxs-lookup"><span data-stu-id="cbe35-115">Add a [Data Flow Verification](../log-analytics/log-analytics-view-designer-tiles.md) message tooany views in your solution tooinstruct hello user on data sources that need toobe configured for required data toobe collected.</span></span>  <span data-ttu-id="cbe35-116">找不到必要的資料時，此訊息會顯示 hello 檢視的 hello 磚上。</span><span class="sxs-lookup"><span data-stu-id="cbe35-116">This message is displayed on hello tile of hello view when required data is not found.</span></span>
+
+
+## <a name="runbooks"></a><span data-ttu-id="cbe35-117">Runbook</span><span class="sxs-lookup"><span data-stu-id="cbe35-117">Runbooks</span></span>
+- <span data-ttu-id="cbe35-118">新增[自動化排程](../automation/automation-schedules.md)每個 runbook 需要定期 toorun 您方案中。</span><span class="sxs-lookup"><span data-stu-id="cbe35-118">Add an [Automation schedule](../automation/automation-schedules.md) for each runbook in your solution that needs toorun on a schedule.</span></span>
+- <span data-ttu-id="cbe35-119">包含 hello [IngestionAPI 模組](https://www.powershellgallery.com/packages/OMSIngestionAPI/1.5)中您撰寫資料 toohello 記錄分析儲存機制的 runbook 所使用的方案 toobe。</span><span class="sxs-lookup"><span data-stu-id="cbe35-119">Include hello [IngestionAPI module](https://www.powershellgallery.com/packages/OMSIngestionAPI/1.5) in your solution toobe used by runbooks writing data toohello Log Analytics repository.</span></span>  <span data-ttu-id="cbe35-120">設定 hello 方案太[參考](operations-management-suite-solutions-solution-file.md#solution-resource)讓它保持如果 hello 方案中移除此資源。</span><span class="sxs-lookup"><span data-stu-id="cbe35-120">Configure hello solution too[reference](operations-management-suite-solutions-solution-file.md#solution-resource) this resource so that it remains if hello solution is removed.</span></span>  <span data-ttu-id="cbe35-121">這可讓多個方案 tooshare hello 模組。</span><span class="sxs-lookup"><span data-stu-id="cbe35-121">This allows multiple solutions tooshare hello module.</span></span>
+- <span data-ttu-id="cbe35-122">使用[自動化變數](../automation/automation-schedules.md)tooprovide 值的使用者可能會稍後想 toochange toohello 方案。</span><span class="sxs-lookup"><span data-stu-id="cbe35-122">Use [Automation variables](../automation/automation-schedules.md) tooprovide values toohello solution that users may want toochange later.</span></span>  <span data-ttu-id="cbe35-123">即使 hello 方案設定的 toocontain hello 變數，仍可以變更它的值。</span><span class="sxs-lookup"><span data-stu-id="cbe35-123">Even if hello solution is configured toocontain hello variable, it's value can still be changed.</span></span>
+
+## <a name="views"></a><span data-ttu-id="cbe35-124">Views</span><span class="sxs-lookup"><span data-stu-id="cbe35-124">Views</span></span>
+- <span data-ttu-id="cbe35-125">所有的解決方案應該包含顯示 hello 使用者入口網站中的單一檢視。</span><span class="sxs-lookup"><span data-stu-id="cbe35-125">All solutions should include a single view that is displayed in hello user's portal.</span></span>  <span data-ttu-id="cbe35-126">hello 檢視可以包含多個[視覺效果部分](../log-analytics/log-analytics-view-designer-parts.md)tooillustrate 不同的資料集。</span><span class="sxs-lookup"><span data-stu-id="cbe35-126">hello view can contain multiple [visualization parts](../log-analytics/log-analytics-view-designer-parts.md) tooillustrate different sets of data.</span></span>
+- <span data-ttu-id="cbe35-127">新增[資料流量的驗證](../log-analytics/log-analytics-view-designer-tiles.md)tooany 檢視在您的方案 tooinstruct hello 使用者在資料來源上設定必要的資料 toobe 該需要 toobe 訊息收集。</span><span class="sxs-lookup"><span data-stu-id="cbe35-127">Add a [Data Flow Verification](../log-analytics/log-analytics-view-designer-tiles.md) message tooany views in your solution tooinstruct hello user on data sources that need toobe configured for required data toobe collected.</span></span>
+- <span data-ttu-id="cbe35-128">設定 hello 方案太[包含](operations-management-suite-solutions-solution-file.md#solution-resource)hello 檢視，如此就會移除如果 hello 方案中移除。</span><span class="sxs-lookup"><span data-stu-id="cbe35-128">Configure hello solution too[contain](operations-management-suite-solutions-solution-file.md#solution-resource) hello view so that it's removed if hello solution is removed.</span></span>
+
+## <a name="alerts"></a><span data-ttu-id="cbe35-129">Alerts</span><span class="sxs-lookup"><span data-stu-id="cbe35-129">Alerts</span></span>
+- <span data-ttu-id="cbe35-130">當做 hello 方案檔中的參數定義 hello 收件者清單，讓安裝 hello 方案時，hello 使用者可以定義它們。</span><span class="sxs-lookup"><span data-stu-id="cbe35-130">Define hello recipients list as a parameter in hello solution file so hello user can define them when they install hello solution.</span></span>
+- <span data-ttu-id="cbe35-131">設定 hello 方案太[參考](operations-management-suite-solutions-solution-file.md#solution-resource)警示規則，讓該使用者可以變更其組態。</span><span class="sxs-lookup"><span data-stu-id="cbe35-131">Configure hello solution too[reference](operations-management-suite-solutions-solution-file.md#solution-resource) alert rules so that user's can change their configuration.</span></span>  <span data-ttu-id="cbe35-132">它們可能會想 toomake 變更，例如修改 hello 收件者清單中，變更 hello hello 警示的閾值或停用 hello 警示規則。</span><span class="sxs-lookup"><span data-stu-id="cbe35-132">They may want toomake changes such as modifying hello recipient list, changing hello threshold of hello alert, or disabling hello alert rule.</span></span> 
+
+
+## <a name="next-steps"></a><span data-ttu-id="cbe35-133">後續步驟</span><span class="sxs-lookup"><span data-stu-id="cbe35-133">Next steps</span></span>
+* <span data-ttu-id="cbe35-134">逐步解說 hello 基本程序[設計和建立管理方案](operations-management-suite-solutions-creating.md)。</span><span class="sxs-lookup"><span data-stu-id="cbe35-134">Walk through hello basic process of [designing and building a management solution](operations-management-suite-solutions-creating.md).</span></span>
+* <span data-ttu-id="cbe35-135">了解如何太[建立的方案檔](operations-management-suite-solutions-solution-file.md)。</span><span class="sxs-lookup"><span data-stu-id="cbe35-135">Learn how too[create a solution file](operations-management-suite-solutions-solution-file.md).</span></span>
+* <span data-ttu-id="cbe35-136">[新增已儲存的搜尋和警示](operations-management-suite-solutions-resources-searches-alerts.md)tooyour 管理解決方案。</span><span class="sxs-lookup"><span data-stu-id="cbe35-136">[Add saved searches and alerts](operations-management-suite-solutions-resources-searches-alerts.md) tooyour management solution.</span></span>
+* <span data-ttu-id="cbe35-137">[加入檢視](operations-management-suite-solutions-resources-views.md)tooyour 管理解決方案。</span><span class="sxs-lookup"><span data-stu-id="cbe35-137">[Add views](operations-management-suite-solutions-resources-views.md) tooyour management solution.</span></span>
+* <span data-ttu-id="cbe35-138">[將自動化 runbook 及其他資源新增](operations-management-suite-solutions-resources-automation.md)tooyour 管理解決方案。</span><span class="sxs-lookup"><span data-stu-id="cbe35-138">[Add Automation runbooks and other resources](operations-management-suite-solutions-resources-automation.md) tooyour management solution.</span></span>
+

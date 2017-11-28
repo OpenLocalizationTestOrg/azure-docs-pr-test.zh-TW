@@ -1,0 +1,23 @@
+## <a name="customize-and-extend-the-device-management-actions"></a><span data-ttu-id="ad648-101">自訂及延伸裝置管理動作</span><span class="sxs-lookup"><span data-stu-id="ad648-101">Customize and extend the device management actions</span></span>
+
+<span data-ttu-id="ad648-102">您的 IoT 解決方案可以透過使用裝置對應項和雲端到裝置方法基元，擴充一組已定義的裝置管理模式或啟用自訂模式。</span><span class="sxs-lookup"><span data-stu-id="ad648-102">Your IoT solutions can expand the defined set of device management patterns or enable custom patterns by using the device twin and cloud-to-device method primitives.</span></span> <span data-ttu-id="ad648-103">其他裝置管理動作範例還包括恢復出廠預設值、韌體更新、軟體更新、電源管理、網路和連線管理，以及資料加密。</span><span class="sxs-lookup"><span data-stu-id="ad648-103">Other examples of device management actions include factory reset, firmware update, software update, power management, network and connectivity management, and data encryption.</span></span>
+
+## <a name="device-maintenance-windows"></a><span data-ttu-id="ad648-104">裝置維護期間</span><span class="sxs-lookup"><span data-stu-id="ad648-104">Device maintenance windows</span></span>
+
+<span data-ttu-id="ad648-105">一般而言，您會設定讓裝置在產生最短中斷和停機時間的時機執行動作。</span><span class="sxs-lookup"><span data-stu-id="ad648-105">Typically, you configure devices to perform actions at a time that minimizes interruptions and downtime.</span></span> <span data-ttu-id="ad648-106">裝置維護期間是用來定義裝置組態更新時機的常用模式。</span><span class="sxs-lookup"><span data-stu-id="ad648-106">Device maintenance windows are a commonly used pattern to define the time when a device should update its configuration.</span></span> <span data-ttu-id="ad648-107">您的後端解決方案可以使用所需的裝置對應項 (twin) 屬性，在您的裝置上定義可啟用維護期間的原則並啟用該原則。</span><span class="sxs-lookup"><span data-stu-id="ad648-107">Your back-end solutions can use the desired properties of the device twin to define and activate a policy on your device that enables a maintenance window.</span></span> <span data-ttu-id="ad648-108">當裝置收到維護期間原則時，它可以使用回報的裝置對應項 (twin) 屬性來回報原則的狀態。</span><span class="sxs-lookup"><span data-stu-id="ad648-108">When a device receives the maintenance window policy, it can use the reported property of the device twin to report the status of the policy.</span></span> <span data-ttu-id="ad648-109">接著，後端 App 便可使用裝置對應項 (twin) 查詢來證明是否符合裝置及每個原則的規定。</span><span class="sxs-lookup"><span data-stu-id="ad648-109">The back-end app can then use device twin queries to attest to compliance of devices and each policy.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="ad648-110">後續步驟</span><span class="sxs-lookup"><span data-stu-id="ad648-110">Next steps</span></span>
+
+<span data-ttu-id="ad648-111">在本教學課程中，您已使用直接方法在裝置上觸發遠端重新開機。</span><span class="sxs-lookup"><span data-stu-id="ad648-111">In this tutorial, you used a direct method to trigger a remote reboot on a device.</span></span> <span data-ttu-id="ad648-112">您已使用報告屬性來從裝置回報上次重新開機時間，以及查詢裝置對應項來從雲端探索裝置的上次重新開機時間。</span><span class="sxs-lookup"><span data-stu-id="ad648-112">You used the reported properties to report the last reboot time from the device, and queried the device twin to discover the last reboot time of the device from the cloud.</span></span>
+
+<span data-ttu-id="ad648-113">若要繼續開始使用「IoT 中樞」和裝置管理模式 (例如遠端無線韌體更新)，請參閱︰</span><span class="sxs-lookup"><span data-stu-id="ad648-113">To continue getting started with IoT Hub and device management patterns such as remote over the air firmware update, see:</span></span>
+
+<span data-ttu-id="ad648-114">[教學課程：如何進行韌體更新][lnk-fwupdate]</span><span class="sxs-lookup"><span data-stu-id="ad648-114">[Tutorial: How to do a firmware update][lnk-fwupdate]</span></span>
+
+<span data-ttu-id="ad648-115">若要了解如何擴充您的 IoT 解決方案以及在多個裝置上排程方法呼叫，請參閱[排程及廣播作業][lnk-tutorial-jobs]教學課程。</span><span class="sxs-lookup"><span data-stu-id="ad648-115">To learn how to extend your IoT solution and schedule method calls on multiple devices, see the [Schedule and broadcast jobs][lnk-tutorial-jobs] tutorial.</span></span>
+
+<span data-ttu-id="ad648-116">若要繼續開始使用 IoT 中樞，請參閱[開始使用 IoT Edge][lnk-iot-edge]。</span><span class="sxs-lookup"><span data-stu-id="ad648-116">To continue getting started with IoT Hub, see [Getting started with IoT Edge][lnk-iot-edge].</span></span>
+
+[lnk-fwupdate]: ../articles/iot-hub/iot-hub-node-node-firmware-update.md
+[lnk-tutorial-jobs]: ../articles/iot-hub/iot-hub-node-node-schedule-jobs.md
+[lnk-iot-edge]: ../articles/iot-hub/iot-hub-linux-iot-edge-get-started.md

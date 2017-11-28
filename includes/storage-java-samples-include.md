@@ -1,0 +1,10 @@
+## <a name="java-sample-code-repositories"></a><span data-ttu-id="86439-101">Java 範例程式碼儲存機制</span><span class="sxs-lookup"><span data-stu-id="86439-101">Java sample code repositories</span></span>
+
+<span data-ttu-id="86439-102">以下是 Azure 儲存體 Java 用戶端程式庫所有範例儲存機制的清單。</span><span class="sxs-lookup"><span data-stu-id="86439-102">Here is a list of all our sample repositories for the Azure Storage Java client library.</span></span>
+
+* [<span data-ttu-id="86439-103">開始使用儲存體 - 在 Java 中管理儲存體帳戶</span><span class="sxs-lookup"><span data-stu-id="86439-103">Getting Started with Storage - Manage Storage Account in Java</span></span>](https://azure.microsoft.com/resources/samples/storage-java-manage-storage-accounts/)
+* [<span data-ttu-id="86439-104">開始使用 Java 中的 Azure Blob 服務</span><span class="sxs-lookup"><span data-stu-id="86439-104">Getting Started with Azure Blob Service in Java</span></span>](https://azure.microsoft.com/resources/samples/storage-blob-java-getting-started/)
+* [<span data-ttu-id="86439-105">開始使用 Java 中的 Azure 檔案服務</span><span class="sxs-lookup"><span data-stu-id="86439-105">Getting Started with Azure File Service in Java</span></span>](https://azure.microsoft.com/resources/samples/storage-file-java-getting-started/)
+* [<span data-ttu-id="86439-106">開始使用 Java 中的 Azure 佇列服務</span><span class="sxs-lookup"><span data-stu-id="86439-106">Getting Started with Azure Queue Service in Java</span></span>](https://azure.microsoft.com/resources/samples/storage-queue-java-getting-started/)
+* [<span data-ttu-id="86439-107">開始使用 Java 中的 Azure 表格服務</span><span class="sxs-lookup"><span data-stu-id="86439-107">Getting Started with Azure Table Service in Java</span></span>](https://azure.microsoft.com/resources/samples/storage-table-java-getting-started/)
+* [<span data-ttu-id="86439-108">儲存體 Java 用戶端程式庫範例</span><span class="sxs-lookup"><span data-stu-id="86439-108">Storage Java Client Library Samples</span></span>](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage)

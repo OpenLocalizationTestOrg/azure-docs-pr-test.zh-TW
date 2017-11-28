@@ -1,0 +1,14 @@
+### <a name="prerequisites"></a><span data-ttu-id="9573c-101">必要條件</span><span class="sxs-lookup"><span data-stu-id="9573c-101">Prerequisites</span></span>
+* <span data-ttu-id="9573c-102">[SendGrid](https://www.SendGrid.com/) 帳戶</span><span class="sxs-lookup"><span data-stu-id="9573c-102">A [SendGrid](https://www.SendGrid.com/) account</span></span> 
+
+<span data-ttu-id="9573c-103">您必須先授與邏輯應用程式連接到 SendGrid 帳戶的權限，之後才能在邏輯應用程式中使用您的 SendGrid 帳戶。</span><span class="sxs-lookup"><span data-stu-id="9573c-103">Before you can use your SendGrid account in a Logic app, you must authorize the Logic app to connect to your SendGrid account.</span></span> <span data-ttu-id="9573c-104">所幸，您可以使用 Azure 入口網站在邏輯應用程式內輕易達成這項作業。</span><span class="sxs-lookup"><span data-stu-id="9573c-104">Fortunately, you can do this easily from within your Logic app on the Azure Portal.</span></span> 
+
+<span data-ttu-id="9573c-105">若要授與邏輯應用程式連接到 SendGrid 帳戶的權限，其步驟如下：</span><span class="sxs-lookup"><span data-stu-id="9573c-105">Here are the steps to authorize your Logic app to connect to your SendGrid account:</span></span>
+
+1. <span data-ttu-id="9573c-106">若要建立 SendGrid 連線，請在邏輯應用程式設計工具中，選取下拉式清單的 [顯示 Microsoft Managed API]，然後在搜尋方塊中輸入「SendGrid」。</span><span class="sxs-lookup"><span data-stu-id="9573c-106">To create a connection to SendGrid, in the Logic app designer, select **Show Microsoft managed APIs** in the drop down list then enter *SendGrid* in the search box.</span></span> <span data-ttu-id="9573c-107">選取您要使用的觸發程序或動作：</span><span class="sxs-lookup"><span data-stu-id="9573c-107">Select the trigger or action you'll like to use:</span></span>  
+   <span data-ttu-id="9573c-108">![SendGrid 步驟 1](./media/connectors-create-api-sendgrid/sendgrid-1.png)</span><span class="sxs-lookup"><span data-stu-id="9573c-108">![SendGrid step 1](./media/connectors-create-api-sendgrid/sendgrid-1.png)</span></span>
+2. <span data-ttu-id="9573c-109">如果您之前尚未建立任何 SendGrid 連線，系統會提示您提供 SendGrid 認證。</span><span class="sxs-lookup"><span data-stu-id="9573c-109">If you haven't created any connections to SendGrid before, you'll get prompted to provide your SendGrid credentials.</span></span> <span data-ttu-id="9573c-110">這些認證會用來授與邏輯應用程式連接並存取 SendGrid 帳戶資料的權限：</span><span class="sxs-lookup"><span data-stu-id="9573c-110">These credentials will be used to authorize your Logic app to connect to, and access your SendGrid account's data:</span></span>  
+   ![SendGrid 步驟 2](./media/connectors-create-api-sendgrid/sendgrid-2.png)
+3. <span data-ttu-id="9573c-112">請注意，此時已建立連接，您現可進行邏輯應用程式中的其他步驟：</span><span class="sxs-lookup"><span data-stu-id="9573c-112">Notice the connection has been created and you are now free to proceed with the other steps in your Logic app:</span></span>  
+   ![SendGrid 步驟 3](./media/connectors-create-api-sendgrid/sendgrid-3.png)   
+

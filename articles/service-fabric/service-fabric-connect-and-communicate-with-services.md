@@ -1,0 +1,195 @@
+---
+title: "aaaConnect 並與 Azure Service Fabric 服務 |Microsoft 文件"
+description: "了解如何 tooresolve，連線，並與服務的網狀架構中的服務通訊。"
+services: service-fabric
+documentationcenter: .net
+author: vturecek
+manager: timlt
+editor: msfussell
+ms.assetid: 7d1052ec-2c9f-443d-8b99-b75c97266e6c
+ms.service: service-fabric
+ms.devlang: dotnet
+ms.topic: article
+ms.tgt_pltfrm: NA
+ms.workload: NA
+ms.date: 5/9/2017
+ms.author: vturecek
+ms.openlocfilehash: b8b374a71d4c5d21f48a560a3a8c81b357fe418d
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/06/2017
+---
+# <a name="connect-and-communicate-with-services-in-service-fabric"></a><span data-ttu-id="a062c-103">連接至 Service Fabric 中的服務並與其進行通訊</span><span class="sxs-lookup"><span data-stu-id="a062c-103">Connect and communicate with services in Service Fabric</span></span>
+<span data-ttu-id="a062c-104">在 Service Fabric 中，服務會在 Service Fabric 叢集中的某處執行，通常是分散到多個 VM。</span><span class="sxs-lookup"><span data-stu-id="a062c-104">In Service Fabric, a service runs somewhere in a Service Fabric cluster, typically distributed across multiple VMs.</span></span> <span data-ttu-id="a062c-105">可以移動它從同一個地方 tooanother hello 服務擁有者，或自動 Service Fabric。</span><span class="sxs-lookup"><span data-stu-id="a062c-105">It can be moved from one place tooanother, either by hello service owner, or automatically by Service Fabric.</span></span> <span data-ttu-id="a062c-106">服務不是靜態繫結的 tooa 特定電腦或位址。</span><span class="sxs-lookup"><span data-stu-id="a062c-106">Services are not statically tied tooa particular machine or address.</span></span>
+
+<span data-ttu-id="a062c-107">Service Fabric 應用程式通常是由許多不同的服務組成，每一個服務用來執行特定的工作。</span><span class="sxs-lookup"><span data-stu-id="a062c-107">A Service Fabric application is generally composed of many different services, where each service performs a specialized task.</span></span> <span data-ttu-id="a062c-108">完整的函式，例如轉譯的 web 應用程式的不同部分時，可能會與彼此 tooform 通訊這些服務。</span><span class="sxs-lookup"><span data-stu-id="a062c-108">These services may communicate with each other tooform a complete function, such as rendering different parts of a web application.</span></span> <span data-ttu-id="a062c-109">也有一些用戶端連接 tooand 的應用程式與服務通訊。</span><span class="sxs-lookup"><span data-stu-id="a062c-109">There are also client applications that connect tooand communicate with services.</span></span> <span data-ttu-id="a062c-110">本文將討論如何 tooset 和服務網狀架構中的服務之間的通訊。</span><span class="sxs-lookup"><span data-stu-id="a062c-110">This document discusses how tooset up communication with and between your services in Service Fabric.</span></span>
+
+<span data-ttu-id="a062c-111">這段 Microsoft Virtual Academy 影片也會討論服務通訊︰<center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=iYFCk76yC_6706218965"></span><span class="sxs-lookup"><span data-stu-id="a062c-111">This Microsoft Virtual Academy video also discusses service communication: <center><a target="_blank" href="https://mva.microsoft.com/en-US/training-courses/building-microservices-applications-on-azure-service-fabric-16747?l=iYFCk76yC_6706218965"></span></span>  
+<img src="./media/service-fabric-connect-and-communicate-with-services/CommunicationVid.png" WIDTH="360" HEIGHT="244">  
+</a></center>
+
+## <a name="bring-your-own-protocol"></a><span data-ttu-id="a062c-112">引進您自己的通訊協定</span><span class="sxs-lookup"><span data-stu-id="a062c-112">Bring your own protocol</span></span>
+<span data-ttu-id="a062c-113">Service Fabric 幫助您管理您的服務的 hello 生命週期，但不會決定有關您的服務所執行的作業。</span><span class="sxs-lookup"><span data-stu-id="a062c-113">Service Fabric helps manage hello lifecycle of your services but it does not make decisions about what your services do.</span></span> <span data-ttu-id="a062c-114">這包含通訊：</span><span class="sxs-lookup"><span data-stu-id="a062c-114">This includes communication.</span></span> <span data-ttu-id="a062c-115">服務網狀架構，您的服務端點的連入要求的機會 tooset，開啟您的服務使用的任何通訊協定或通訊堆疊的需求。</span><span class="sxs-lookup"><span data-stu-id="a062c-115">When your service is opened by Service Fabric, that's your service's opportunity tooset up an endpoint for incoming requests, using whatever protocol or communication stack you want.</span></span> <span data-ttu-id="a062c-116">您的服務會接聽一般 **IP:port** 位址，使用任何定址配置，例如 URI。</span><span class="sxs-lookup"><span data-stu-id="a062c-116">Your service will listen on a normal **IP:port** address using any addressing scheme, such as a URI.</span></span> <span data-ttu-id="a062c-117">多個服務執行個體或複本可能會共用主控件程序，在此情況下它們將會需要不同連接埠 toouse 或使用連接埠共用機制，例如 windows hello http.sys 核心驅動程式。</span><span class="sxs-lookup"><span data-stu-id="a062c-117">Multiple service instances or replicas may share a host process, in which case they will either need toouse different ports or use a port-sharing mechanism, such as hello http.sys kernel driver in Windows.</span></span> <span data-ttu-id="a062c-118">在任一情況下，主機處理序中的每個服務執行個體或複本必須可以唯一定址。</span><span class="sxs-lookup"><span data-stu-id="a062c-118">In either case, each service instance or replica in a host process must be uniquely addressable.</span></span>
+
+![服務端點][1]
+
+## <a name="service-discovery-and-resolution"></a><span data-ttu-id="a062c-120">服務探索和解析</span><span class="sxs-lookup"><span data-stu-id="a062c-120">Service discovery and resolution</span></span>
+<span data-ttu-id="a062c-121">在分散式系統中，服務可能會從一部機器 tooanother 隨著時間而移。</span><span class="sxs-lookup"><span data-stu-id="a062c-121">In a distributed system, services may move from one machine tooanother over time.</span></span> <span data-ttu-id="a062c-122">發生這種情形的原因有很多，包括資源平衡、升級、容錯移轉或向外延展。這表示服務端點位址變更為 hello 服務移 toonodes 具有不同的 IP 位址，並可能會在不同的連接埠上開啟如果 hello 服務會使用動態選取的連接埠。</span><span class="sxs-lookup"><span data-stu-id="a062c-122">This can happen for various reasons, including resource balancing, upgrades, failovers, or scale-out. This means service endpoint addresses change as hello service moves toonodes with different IP addresses, and may open on different ports if hello service uses a dynamically selected port.</span></span>
+
+![服務的分佈][7]
+
+<span data-ttu-id="a062c-124">Service Fabric 提供探索和解決方式呼叫服務 hello 命名服務。</span><span class="sxs-lookup"><span data-stu-id="a062c-124">Service Fabric provides a discovery and resolution service called hello Naming Service.</span></span> <span data-ttu-id="a062c-125">hello 命名服務會維護對應的資料表命名為服務執行個體 toohello 它們接聽的端點位址。</span><span class="sxs-lookup"><span data-stu-id="a062c-125">hello Naming Service maintains a table that maps named service instances toohello endpoint addresses they listen on.</span></span> <span data-ttu-id="a062c-126">Service Fabric 中的所有已命名服務執行個體，皆如 URI 擁有唯一的名稱，例如， `"fabric:/MyApplication/MyService"`。</span><span class="sxs-lookup"><span data-stu-id="a062c-126">All named service instances in Service Fabric have unique names represented as URIs, for example, `"fabric:/MyApplication/MyService"`.</span></span> <span data-ttu-id="a062c-127">hello hello 服務名稱不會隨 hello hello 服務存留期間變更，就只有 hello 端點位址，可以變更服務移動時。</span><span class="sxs-lookup"><span data-stu-id="a062c-127">hello name of hello service does not change over hello lifetime of hello service, it's only hello endpoint addresses that can change when services move.</span></span> <span data-ttu-id="a062c-128">這是類似 toowebsites 有常數的 Url，但可能會在其中變更 hello IP 位址。</span><span class="sxs-lookup"><span data-stu-id="a062c-128">This is analogous toowebsites that have constant URLs but where hello IP address may change.</span></span> <span data-ttu-id="a062c-129">可解決網站 Url tooIP 位址，hello 網站上的類似 tooDNS Service Fabric 服務名稱 tootheir 端點位址，對應的註冊機構。</span><span class="sxs-lookup"><span data-stu-id="a062c-129">And similar tooDNS on hello web, which resolves website URLs tooIP addresses, Service Fabric has a registrar that maps service names tootheir endpoint address.</span></span>
+
+![服務端點][2]
+
+<span data-ttu-id="a062c-131">解決和連接 tooservices 牽涉到下列步驟執行，在迴圈中的 hello:</span><span class="sxs-lookup"><span data-stu-id="a062c-131">Resolving and connecting tooservices involves hello following steps run in a loop:</span></span>
+
+* <span data-ttu-id="a062c-132">**解決**: 服務已從發行的 Get hello 端點 hello 命名服務。</span><span class="sxs-lookup"><span data-stu-id="a062c-132">**Resolve**: Get hello endpoint that a service has published from hello Naming Service.</span></span>
+* <span data-ttu-id="a062c-133">**連接**： 透過 toohello 服務指定任何通訊協定就會使用該端點上的。</span><span class="sxs-lookup"><span data-stu-id="a062c-133">**Connect**: Connect toohello service over whatever protocol it uses on that endpoint.</span></span>
+* <span data-ttu-id="a062c-134">**重試**： 連接嘗試可能會失敗的原因，例如，如果 hello 服務已移動，因為 hello 最後一個時間 hello 端點位址已解決任何數目。</span><span class="sxs-lookup"><span data-stu-id="a062c-134">**Retry**: A connection attempt may fail for any number of reasons, for example if hello service has moved since hello last time hello endpoint address was resolved.</span></span> <span data-ttu-id="a062c-135">在此情況下，hello 之前解決並連接步驟需要 toobe 重試，而且這個循環會重複進行直到 hello 連線成功。</span><span class="sxs-lookup"><span data-stu-id="a062c-135">In that case, hello preceding resolve and connect steps need toobe retried, and this cycle is repeated until hello connection succeeds.</span></span>
+
+## <a name="connecting-tooother-services"></a><span data-ttu-id="a062c-136">Tooother 服務連線</span><span class="sxs-lookup"><span data-stu-id="a062c-136">Connecting tooother services</span></span>
+<span data-ttu-id="a062c-137">服務連接 tooeach 其他叢集內通常可以直接存取的其他服務的 hello 端點由於 hello 叢集中的節點位於 hello 相同的區域網路。</span><span class="sxs-lookup"><span data-stu-id="a062c-137">Services connecting tooeach other inside a cluster generally can directly access hello endpoints of other services because hello nodes in a cluster are on hello same local network.</span></span> <span data-ttu-id="a062c-138">toomake 更容易 tooconnect 服務之間，Service Fabric 提供使用的其他服務 hello 命名服務。</span><span class="sxs-lookup"><span data-stu-id="a062c-138">toomake is easier tooconnect between services, Service Fabric provides additional services that use hello Naming Service.</span></span> <span data-ttu-id="a062c-139">DNS 服務和反向 proxy 服務。</span><span class="sxs-lookup"><span data-stu-id="a062c-139">A DNS service and a reverse proxy service.</span></span>
+
+
+### <a name="dns-service"></a><span data-ttu-id="a062c-140">DNS 服務</span><span class="sxs-lookup"><span data-stu-id="a062c-140">DNS service</span></span>
+<span data-ttu-id="a062c-141">因為許多服務，特別是容器化服務，可以有現有的 URL 名稱，所以無法 tooresolve 這些使用 hello 標準 DNS 通訊協定 （而非 hello 命名服務通訊協定），是很方便，尤其是在應用程式 「 提起和 shift 」案例。</span><span class="sxs-lookup"><span data-stu-id="a062c-141">Since many services, especially containerized services, can have an existing URL name, being able tooresolve these using hello standard DNS protocol (rather than hello Naming Service protocol) is very convenient, especially in application "lift and shift" scenarios.</span></span> <span data-ttu-id="a062c-142">這正是哪些 hello DNS 服務會。</span><span class="sxs-lookup"><span data-stu-id="a062c-142">This is exactly what hello DNS service does.</span></span> <span data-ttu-id="a062c-143">它可讓您 toomap DNS 名稱 tooa 服務名稱，並因此解決端點 IP 位址。</span><span class="sxs-lookup"><span data-stu-id="a062c-143">It enables you toomap DNS names tooa service name and hence resolve endpoint IP addresses.</span></span> 
+
+<span data-ttu-id="a062c-144">中所顯示的 hello 與下列圖表中，hello hello Service Fabric 叢集中執行的 DNS 服務對應然後 hello 命名服務 tooreturn hello 端點位址 tooconnect 至來解析 DNS 名稱 tooservice 名稱。</span><span class="sxs-lookup"><span data-stu-id="a062c-144">As shown in hello following diagram, hello DNS service, running in hello Service Fabric cluster, maps DNS names tooservice names which are then resolved by hello Naming Service tooreturn hello endpoint addresses tooconnect to.</span></span> <span data-ttu-id="a062c-145">hello hello 服務的 DNS 名稱是在建立 hello 時提供。</span><span class="sxs-lookup"><span data-stu-id="a062c-145">hello DNS name for hello service is provided at hello time of creation.</span></span> 
+
+![服務端點][9]
+
+<span data-ttu-id="a062c-147">如需有關如何查看 toouse hello DNS 服務[DNS 服務在 Azure Service Fabric](service-fabric-dnsservice.md)發行項。</span><span class="sxs-lookup"><span data-stu-id="a062c-147">For more details on how toouse hello DNS service see [DNS service in Azure Service Fabric](service-fabric-dnsservice.md) article.</span></span>
+
+### <a name="reverse-proxy-service"></a><span data-ttu-id="a062c-148">反向 Proxy服務</span><span class="sxs-lookup"><span data-stu-id="a062c-148">Reverse proxy service</span></span>
+<span data-ttu-id="a062c-149">服務會公開包括 HTTPS 的 HTTP 端點的 hello 叢集中的 hello 反向 proxy 位址。</span><span class="sxs-lookup"><span data-stu-id="a062c-149">hello reverse proxy addresses services in hello cluster that exposes HTTP endpoints including HTTPS.</span></span> <span data-ttu-id="a062c-150">hello 反向 proxy 大幅簡化呼叫其他服務和其方法，讓特定 URI 格式和連接控制代碼 hello 解決，，所需的一項服務 toocommunicate 與另一個使用的重試步驟 hello 命名服務。</span><span class="sxs-lookup"><span data-stu-id="a062c-150">hello reverse proxy greatly simplifies calling other services and their methods by having a specific URI format and handles hello resolve, connect, retry steps required for one service toocommunicate with another using hello Naming Serivce.</span></span> <span data-ttu-id="a062c-151">換句話說，它會隱藏 hello 從您的命名服務藉由這只要呼叫 URL 呼叫其他服務時。</span><span class="sxs-lookup"><span data-stu-id="a062c-151">In other words, it hides hello Naming Service from you when calling other services by making this as simple as calling a URL.</span></span>
+
+![服務端點][10]
+
+<span data-ttu-id="a062c-153">如需如何 toouse hello 反向 proxy 服務的詳細資訊，請參閱[反向 proxy，在 Azure Service Fabric](service-fabric-reverseproxy.md)發行項。</span><span class="sxs-lookup"><span data-stu-id="a062c-153">For more details on how toouse hello reverse proxy service see [Reverse proxy in Azure Service Fabric](service-fabric-reverseproxy.md) article.</span></span>
+
+## <a name="connections-from-external-clients"></a><span data-ttu-id="a062c-154">從外部用戶端連接</span><span class="sxs-lookup"><span data-stu-id="a062c-154">Connections from external clients</span></span>
+<span data-ttu-id="a062c-155">服務連接 tooeach 其他叢集內通常可以直接存取的其他服務的 hello 端點由於 hello 叢集中的節點位於 hello 相同的區域網路。</span><span class="sxs-lookup"><span data-stu-id="a062c-155">Services connecting tooeach other inside a cluster generally can directly access hello endpoints of other services because hello nodes in a cluster are on hello same local network.</span></span> <span data-ttu-id="a062c-156">但是，在相同的環境中，叢集可能會位於負載平衡器後方，該負載平衡器會透過有限制的一組連接埠路由傳送外部輸入流量。</span><span class="sxs-lookup"><span data-stu-id="a062c-156">In some environments, however, a cluster may be behind a load balancer that routes external ingress traffic through a limited set of ports.</span></span> <span data-ttu-id="a062c-157">在這些情況下，仍可以與對方進行通訊及解析的地址使用 hello 命名服務，但額外的步驟必須採用的 tooallow 外部用戶端 tooconnect tooservices 服務。</span><span class="sxs-lookup"><span data-stu-id="a062c-157">In these cases, services can still communicate with each other and resolve addresses using hello Naming Service, but extra steps must be taken tooallow external clients tooconnect tooservices.</span></span>
+
+## <a name="service-fabric-in-azure"></a><span data-ttu-id="a062c-158">Azure 中的 Service Fabric</span><span class="sxs-lookup"><span data-stu-id="a062c-158">Service Fabric in Azure</span></span>
+<span data-ttu-id="a062c-159">Azure 中的 Service Fabric 叢集位於 Azure 負載平衡器後方。</span><span class="sxs-lookup"><span data-stu-id="a062c-159">A Service Fabric cluster in Azure is placed behind an Azure Load Balancer.</span></span> <span data-ttu-id="a062c-160">所有外部流量 toohello 叢集必須經過 hello 負載平衡器。</span><span class="sxs-lookup"><span data-stu-id="a062c-160">All external traffic toohello cluster must pass through hello load balancer.</span></span> <span data-ttu-id="a062c-161">hello 負載平衡器會自動轉送流量輸入隨機指定的連接埠 tooa*節點*具有相同的通訊埠開啟的 hello。</span><span class="sxs-lookup"><span data-stu-id="a062c-161">hello load balancer will automatically forward traffic inbound on a given port tooa random *node* that has hello same port open.</span></span> <span data-ttu-id="a062c-162">hello Azure 負載平衡器只知道在 hello 上開啟的連接埠*節點*，並不知道有關由個別的連接埠開啟*服務*。</span><span class="sxs-lookup"><span data-stu-id="a062c-162">hello Azure Load Balancer only knows about ports open on hello *nodes*, it does not know about ports open by individual *services*.</span></span>
+
+![Azure 負載平衡器和 Service Fabric 拓撲][3]
+
+<span data-ttu-id="a062c-164">例如，在連接埠上順序 tooaccept 外部流量**80**，必須設定下列項目 hello:</span><span class="sxs-lookup"><span data-stu-id="a062c-164">For example, in order tooaccept external traffic on port **80**, hello following things must be configured:</span></span>
+
+1. <span data-ttu-id="a062c-165">寫入在連接埠 80 上接聽的服務。</span><span class="sxs-lookup"><span data-stu-id="a062c-165">Write a service that listens on port 80.</span></span> <span data-ttu-id="a062c-166">在 hello 服務 ServiceManifest.xml 中設定連接埠 80，接聽程式中開啟 hello 服務，例如自我裝載的 web 伺服器。</span><span class="sxs-lookup"><span data-stu-id="a062c-166">Configure port 80 in hello service's ServiceManifest.xml and open a listener in hello service, for example, a self-hosted web server.</span></span>
+
+    ```xml
+    <Resources>
+        <Endpoints>
+            <Endpoint Name="WebEndpoint" Protocol="http" Port="80" />
+        </Endpoints>
+    </Resources>
+    ```
+    ```csharp
+        class HttpCommunicationListener : ICommunicationListener
+        {
+            ...
+
+            public Task<string> OpenAsync(CancellationToken cancellationToken)
+            {
+                EndpointResourceDescription endpoint =
+                    serviceContext.CodePackageActivationContext.GetEndpoint("WebEndpoint");
+
+                string uriPrefix = $"{endpoint.Protocol}://+:{endpoint.Port}/myapp/";
+
+                this.httpListener = new HttpListener();
+                this.httpListener.Prefixes.Add(uriPrefix);
+                this.httpListener.Start();
+
+                string publishUri = uriPrefix.Replace("+", FabricRuntime.GetNodeContext().IPAddressOrFQDN);
+                return Task.FromResult(publishUri);
+            }
+
+            ...
+        }
+
+        class WebService : StatelessService
+        {
+            ...
+
+            protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
+            {
+                return new[] { new ServiceInstanceListener(context => new HttpCommunicationListener(context))};
+            }
+
+            ...
+        }
+    ```
+    ```java
+        class HttpCommunicationlistener implements CommunicationListener {
+            ...
+
+            @Override
+            public CompletableFuture<String> openAsync(CancellationToken arg0) {
+                EndpointResourceDescription endpoint =
+                    this.serviceContext.getCodePackageActivationContext().getEndpoint("WebEndpoint");
+                try {
+                    HttpServer server = com.sun.net.httpserver.HttpServer.create(new InetSocketAddress(endpoint.getPort()), 0);
+                    server.start();
+
+                    String publishUri = String.format("http://%s:%d/",
+                        this.serviceContext.getNodeContext().getIpAddressOrFQDN(), endpoint.getPort());
+                    return CompletableFuture.completedFuture(publishUri);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+
+            ...
+        }
+
+        class WebService extends StatelessService {
+            ...
+
+            @Override
+            protected List<ServiceInstanceListener> createServiceInstanceListeners() {
+                <ServiceInstanceListener> listeners = new ArrayList<ServiceInstanceListener>();
+                listeners.add(new ServiceInstanceListener((context) -> new HttpCommunicationlistener(context)));
+                return listeners;       
+            }
+
+            ...
+        }
+    ```
+2. <span data-ttu-id="a062c-167">在 Azure 中建立 Service Fabric 叢集，並指定連接埠**80**作為自訂端點連接埠將主控 hello 服務的 hello 節點型別。</span><span class="sxs-lookup"><span data-stu-id="a062c-167">Create a Service Fabric Cluster in Azure and specify port **80** as a custom endpoint port for hello node type that will host hello service.</span></span> <span data-ttu-id="a062c-168">如果您有一個以上的節點型別時，您可以設定*位置條件約束*hello 服務 tooensure 它只會執行具有開啟的 hello 自訂端點連接埠的 hello 節點型別的上。</span><span class="sxs-lookup"><span data-stu-id="a062c-168">If you have more than one node type, you can set up a *placement constraint* on hello service tooensure it only runs on hello node type that has hello custom endpoint port opened.</span></span>
+
+    ![開啟節點類型上的連接埠][4]
+3. <span data-ttu-id="a062c-170">一旦建立 hello 叢集之後，設定 hello Azure 負載平衡器的連接埠 80 上的 hello 叢集資源群組 tooforward 流量。</span><span class="sxs-lookup"><span data-stu-id="a062c-170">Once hello cluster has been created, configure hello Azure Load Balancer in hello cluster's Resource Group tooforward traffic on port 80.</span></span> <span data-ttu-id="a062c-171">在建立叢集，以透過 hello Azure 入口網站時，這會自動設定每一個已設定的自訂端點連接埠。</span><span class="sxs-lookup"><span data-stu-id="a062c-171">When creating a cluster through hello Azure portal, this is set up automatically for each custom endpoint port that was configured.</span></span>
+
+    ![轉送流量在 hello Azure 負載平衡器][5]
+4. <span data-ttu-id="a062c-173">是否 hello Azure 負載平衡器使用探查 toodetermine 或不 toosend 流量 tooa 特定節點。</span><span class="sxs-lookup"><span data-stu-id="a062c-173">hello Azure Load Balancer uses a probe toodetermine whether or not toosend traffic tooa particular node.</span></span> <span data-ttu-id="a062c-174">hello 探查定期檢查正在回應 hello 節點每個節點 toodetermine 上的端點。</span><span class="sxs-lookup"><span data-stu-id="a062c-174">hello probe periodically checks an endpoint on each node toodetermine whether or not hello node is responding.</span></span> <span data-ttu-id="a062c-175">如果 hello 探查失敗 tooreceive 回應設定的次數之後，hello 負載平衡器會停止傳送流量 toothat 節點。</span><span class="sxs-lookup"><span data-stu-id="a062c-175">If hello probe fails tooreceive a response after a configured number of times, hello load balancer stops sending traffic toothat node.</span></span> <span data-ttu-id="a062c-176">建立叢集，以透過 hello Azure 入口網站，探查會自動設定每一個已設定的自訂端點連接埠。</span><span class="sxs-lookup"><span data-stu-id="a062c-176">When creating a cluster through hello Azure portal, a probe is automatically set up for each custom endpoint port that was configured.</span></span>
+
+    ![轉送流量在 hello Azure 負載平衡器][8]
+
+<span data-ttu-id="a062c-178">它是 hello Azure 負載平衡器與 hello 探查只知道 hello 的重要 tooremember*節點*，不 hello*服務*hello 節點上執行。</span><span class="sxs-lookup"><span data-stu-id="a062c-178">It's important tooremember that hello Azure Load Balancer and hello probe only know about hello *nodes*, not hello *services* running on hello nodes.</span></span> <span data-ttu-id="a062c-179">hello Azure 負載平衡器仍會一律傳送回應 toohello 探查的流量 toonodes，所以必須特別小心 tooensure 可用的服務可以 toorespond toohello 探查 hello 節點上。</span><span class="sxs-lookup"><span data-stu-id="a062c-179">hello Azure Load Balancer will always send traffic toonodes that respond toohello probe, so care must be taken tooensure services are available on hello nodes that are able toorespond toohello probe.</span></span>
+
+## <a name="reliable-services-built-in-communication-api-options"></a><span data-ttu-id="a062c-180">Reliable Services：內建的通訊 API 選項</span><span class="sxs-lookup"><span data-stu-id="a062c-180">Reliable Services: Built-in communication API options</span></span>
+<span data-ttu-id="a062c-181">hello 可靠的服務架構隨附數個預先建立的通訊選項。</span><span class="sxs-lookup"><span data-stu-id="a062c-181">hello Reliable Services framework ships with several pre-built communication options.</span></span> <span data-ttu-id="a062c-182">其中一個最適合您的 hello 決策取決於 hello 所選擇的程式設計模型、 hello 通訊架構及程式設計語言撰寫您的服務中的 hello hello。</span><span class="sxs-lookup"><span data-stu-id="a062c-182">hello decision about which one will work best for you depends on hello choice of hello programming model, hello communication framework, and hello programming language that your services are written in.</span></span>
+
+* <span data-ttu-id="a062c-183">**沒有任何特定的通訊協定：**如果您不需要特定的通訊架構選擇，但您想 tooget 項目啟動並執行快速，則 hello 理想的選項是[服務遠端處理](service-fabric-reliable-services-communication-remoting.md)，可讓可靠的服務和 Reliable Actors 強型別遠端程序呼叫。</span><span class="sxs-lookup"><span data-stu-id="a062c-183">**No specific protocol:**  If you don't have a particular choice of communication framework, but you want tooget something up and running quickly, then hello ideal option for you is [service remoting](service-fabric-reliable-services-communication-remoting.md), which allows strongly-typed remote procedure calls for Reliable Services and Reliable Actors.</span></span> <span data-ttu-id="a062c-184">這是 hello 最簡單且最快方式 tooget 啟動服務通訊。</span><span class="sxs-lookup"><span data-stu-id="a062c-184">This is hello easiest and fastest way tooget started with service communication.</span></span> <span data-ttu-id="a062c-185">遠端服務會處理服務位址、連接、重試和錯誤處理的解析。</span><span class="sxs-lookup"><span data-stu-id="a062c-185">Service remoting handles resolution of service addresses, connection, retry, and error handling.</span></span> <span data-ttu-id="a062c-186">這同時適用 C# 和 Java 應用程式。</span><span class="sxs-lookup"><span data-stu-id="a062c-186">This is available for both C# and Java applications.</span></span>
+* <span data-ttu-id="a062c-187">**HTTP**︰對於無從驗證語言的通訊，HTTP 提供業界標準的選擇，具有工具與許多不同語言的 HTTP 伺服器，都受到 Service Fabric 的支援。</span><span class="sxs-lookup"><span data-stu-id="a062c-187">**HTTP**: For language-agnostic communication, HTTP provides an industry-standard choice with tools and HTTP servers available in many different languages, all supported by Service Fabric.</span></span> <span data-ttu-id="a062c-188">服務可以使用任何可用的 HTTP 堆疊，包括 C# 應用程式適用的 [ASP.NET Web API](service-fabric-reliable-services-communication-webapi.md)。</span><span class="sxs-lookup"><span data-stu-id="a062c-188">Services can use any HTTP stack available, including [ASP.NET Web API](service-fabric-reliable-services-communication-webapi.md) for C# applications.</span></span> <span data-ttu-id="a062c-189">在 C# 撰寫的用戶端可以利用 hello`ICommunicationClient`和`ServicePartitionClient`類別，而 for Java，請使用 hello`CommunicationClient`和`FabricServicePartitionClient`類別， [service 解析、 HTTP 連接和重試迴圈](service-fabric-reliable-services-communication.md)。</span><span class="sxs-lookup"><span data-stu-id="a062c-189">Clients written in C# can leverage hello `ICommunicationClient` and `ServicePartitionClient` classes, whereas for Java, use hello `CommunicationClient` and `FabricServicePartitionClient` classes, [for service resolution, HTTP connections, and retry loops](service-fabric-reliable-services-communication.md).</span></span>
+* <span data-ttu-id="a062c-190">**WCF**： 如果您有現有程式碼使用 WCF 與您通訊的架構，則您可以使用 hello `WcfCommunicationListener` hello 伺服器端和`WcfCommunicationClient`和`ServicePartitionClient`hello 用戶端類別。</span><span class="sxs-lookup"><span data-stu-id="a062c-190">**WCF**: If you have existing code that uses WCF as your communication framework, then you can use hello `WcfCommunicationListener` for hello server side and `WcfCommunicationClient` and `ServicePartitionClient` classes for hello client.</span></span> <span data-ttu-id="a062c-191">不過，這只適用以 Windows 為基礎的叢集上的 C# 應用程式。</span><span class="sxs-lookup"><span data-stu-id="a062c-191">This however is only available for C# applications on Windows based clusters.</span></span> <span data-ttu-id="a062c-192">如需詳細資訊，請參閱這篇文章關於[WCF 為基礎的 hello 通訊堆疊實作](service-fabric-reliable-services-communication-wcf.md)。</span><span class="sxs-lookup"><span data-stu-id="a062c-192">For more details, see this article about [WCF-based implementation of hello communication stack](service-fabric-reliable-services-communication-wcf.md).</span></span>
+
+## <a name="using-custom-protocols-and-other-communication-frameworks"></a><span data-ttu-id="a062c-193">使用自訂通訊協定以及其他通訊架構</span><span class="sxs-lookup"><span data-stu-id="a062c-193">Using custom protocols and other communication frameworks</span></span>
+<span data-ttu-id="a062c-194">服務可以使用任何通訊協定或架構進行通訊，無論是透過 TCP 通訊端的自訂二進位通訊協定，或透過 [Azure 事件中樞](https://azure.microsoft.com/services/event-hubs/)或 [Azure IoT 中樞](https://azure.microsoft.com/services/iot-hub/)的串流事件。</span><span class="sxs-lookup"><span data-stu-id="a062c-194">Services can use any protocol or framework for communication, whether its a custom binary protocol over TCP sockets, or streaming events through [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/) or [Azure IoT Hub](https://azure.microsoft.com/services/iot-hub/).</span></span> <span data-ttu-id="a062c-195">Service Fabric 提供通訊應用程式開發介面中所有 hello 運作 toodiscover 並連接時，您可以插入您的通訊堆疊，從您區隔。</span><span class="sxs-lookup"><span data-stu-id="a062c-195">Service Fabric provides communication APIs that you can plug your communication stack into, while all hello work toodiscover and connect is abstracted from you.</span></span> <span data-ttu-id="a062c-196">請參閱本文有關 hello[可靠的服務通訊模型](service-fabric-reliable-services-communication.md)如需詳細資訊。</span><span class="sxs-lookup"><span data-stu-id="a062c-196">See this article about hello [Reliable Service communication model](service-fabric-reliable-services-communication.md) for more details.</span></span>
+
+## <a name="next-steps"></a><span data-ttu-id="a062c-197">後續步驟</span><span class="sxs-lookup"><span data-stu-id="a062c-197">Next steps</span></span>
+<span data-ttu-id="a062c-198">了解 hello 概念與應用程式開發介面提供 hello[可靠的服務通訊模型](service-fabric-reliable-services-communication.md)，然後快速開始使用[服務遠端處理](service-fabric-reliable-services-communication-remoting.md)或如何移深入 toolearn toowrite通訊接聽程式使用[與 OWIN 自我裝載的 Web API](service-fabric-reliable-services-communication-webapi.md)。</span><span class="sxs-lookup"><span data-stu-id="a062c-198">Learn more about hello concepts and APIs available in hello [Reliable Services communication model](service-fabric-reliable-services-communication.md), then get started quickly with [service remoting](service-fabric-reliable-services-communication-remoting.md) or go in-depth toolearn how toowrite a communication listener using [Web API with OWIN self-host](service-fabric-reliable-services-communication-webapi.md).</span></span>
+
+[1]: ./media/service-fabric-connect-and-communicate-with-services/serviceendpoints.png
+[2]: ./media/service-fabric-connect-and-communicate-with-services/namingservice.png
+[3]: ./media/service-fabric-connect-and-communicate-with-services/loadbalancertopology.png
+[4]: ./media/service-fabric-connect-and-communicate-with-services/nodeport.png
+[5]: ./media/service-fabric-connect-and-communicate-with-services/loadbalancerport.png
+[7]: ./media/service-fabric-connect-and-communicate-with-services/distributedservices.png
+[8]: ./media/service-fabric-connect-and-communicate-with-services/loadbalancerprobe.png
+[9]: ./media/service-fabric-connect-and-communicate-with-services/dns.png
+[10]: ./media/service-fabric-reverseproxy/internal-communication.png

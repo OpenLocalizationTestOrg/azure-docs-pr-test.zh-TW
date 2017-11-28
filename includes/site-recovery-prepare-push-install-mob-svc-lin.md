@@ -1,0 +1,22 @@
+### <a name="prepare-for-a-push-installation-on-a-linux-server"></a><span data-ttu-id="bfa71-101">準備在 Linux 伺服器上推送安裝</span><span class="sxs-lookup"><span data-stu-id="bfa71-101">Prepare for a push installation on a Linux server</span></span>
+
+1. <span data-ttu-id="bfa71-102">確定 Linux 電腦與處理序伺服器之間有網路連線。</span><span class="sxs-lookup"><span data-stu-id="bfa71-102">Ensure that there’s network connectivity between the Linux computer and the process server.</span></span>
+2. <span data-ttu-id="bfa71-103">建立可供處理序伺服器存取電腦的帳戶。</span><span class="sxs-lookup"><span data-stu-id="bfa71-103">Create an account that the process server can use to access the computer.</span></span> <span data-ttu-id="bfa71-104">帳戶應該是來源 Linux 伺服器上的**根**使用者。</span><span class="sxs-lookup"><span data-stu-id="bfa71-104">The account should be a **root** user on the source Linux server.</span></span> <span data-ttu-id="bfa71-105">(此帳戶僅適用於推送安裝和更新)。</span><span class="sxs-lookup"><span data-stu-id="bfa71-105">(Use this account only for the push installation and for updates.)</span></span>
+3. <span data-ttu-id="bfa71-106">檢查來源 Linux 伺服器上的 /etc/hosts 檔案，該檔案具有將本機主機名稱對應到所有網路介面卡相關聯之 IP 位址的項目。</span><span class="sxs-lookup"><span data-stu-id="bfa71-106">Check that the /etc/hosts file on the source Linux server has entries that map the local hostname to IP addresses associated with all network adapters.</span></span>
+4. <span data-ttu-id="bfa71-107">在您要複寫的電腦上安裝最新的 openssh、openssh-server 和 openssl 套件。</span><span class="sxs-lookup"><span data-stu-id="bfa71-107">Install the latest openssh, openssh-server, and openssl packages on the computer that you want to replicate.</span></span>
+5. <span data-ttu-id="bfa71-108">請確定安全殼層 (SSH) 已啟用且正在連接埠 22 上執行。</span><span class="sxs-lookup"><span data-stu-id="bfa71-108">Ensure that Secure Shell (SSH) is enabled and running on port 22.</span></span>
+6. <span data-ttu-id="bfa71-109">在 sshd_config 檔案中啟用 SFTP 子系統與密碼驗證：</span><span class="sxs-lookup"><span data-stu-id="bfa71-109">Enable SFTP subsystem and password authentication in the sshd_config file:</span></span>
+  1.  <span data-ttu-id="bfa71-110">以 **root** 的身分登入。</span><span class="sxs-lookup"><span data-stu-id="bfa71-110">Sign in as **root**.</span></span>
+  2.  <span data-ttu-id="bfa71-111">在 /etc/ssh/sshd_config 檔案中，尋找以 **PasswordAuthentication** 開頭的行。</span><span class="sxs-lookup"><span data-stu-id="bfa71-111">In the file /etc/ssh/sshd_config file, find the line that begins with **PasswordAuthentication**.</span></span>
+  3.  <span data-ttu-id="bfa71-112">取消該行的註解並將值變更為 **yes**。</span><span class="sxs-lookup"><span data-stu-id="bfa71-112">Uncomment the line and change the value to **yes**.</span></span>
+  4.  <span data-ttu-id="bfa71-113">尋找以 **Subsystem** 為開頭的行並取消其註解。</span><span class="sxs-lookup"><span data-stu-id="bfa71-113">Find the line that begins with **Subsystem** and uncomment the line.</span></span>
+
+     ![Linux](./media/site-recovery-prepare-push-install-mob-svc-lin/mobility2.png)
+  5. <span data-ttu-id="bfa71-115">重新啟動 **sshd** 服務。</span><span class="sxs-lookup"><span data-stu-id="bfa71-115">Restart the **sshd** service.</span></span>
+
+7. <span data-ttu-id="bfa71-116">新增您在 CSPSConfigtool 中建立的帳戶。</span><span class="sxs-lookup"><span data-stu-id="bfa71-116">Add the account that you created in CSPSConfigtool.</span></span>
+    1.  <span data-ttu-id="bfa71-117">登入您的組態伺服器。</span><span class="sxs-lookup"><span data-stu-id="bfa71-117">Sign in to your configuration server.</span></span>
+    2.  <span data-ttu-id="bfa71-118">開啟 **cspsconfigtool.exe**。</span><span class="sxs-lookup"><span data-stu-id="bfa71-118">Open **cspsconfigtool.exe**.</span></span> <span data-ttu-id="bfa71-119">(它會是桌面上可用的捷徑，位於 %ProgramData%\home\svsystems\bin 資料夾中。)</span><span class="sxs-lookup"><span data-stu-id="bfa71-119">(It's available as a shortcut on the desktop and in the %ProgramData%\home\svsystems\bin folder.)</span></span>
+    3.  <span data-ttu-id="bfa71-120">在 [管理帳戶] 索引標籤中，按一下 [新增帳戶]。</span><span class="sxs-lookup"><span data-stu-id="bfa71-120">On the **Manage Accounts** tab, click **Add Account**.</span></span>
+    4.  <span data-ttu-id="bfa71-121">加入您所建立的帳戶。</span><span class="sxs-lookup"><span data-stu-id="bfa71-121">Add the account you created.</span></span> 
+    5.  <span data-ttu-id="bfa71-122">輸入您為電腦啟用複寫時使用的認證。</span><span class="sxs-lookup"><span data-stu-id="bfa71-122">Enter the credentials you use when you enable replication for a computer.</span></span>

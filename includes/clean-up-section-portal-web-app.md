@@ -1,0 +1,7 @@
+## <a name="clean-up-resources"></a><span data-ttu-id="4977a-101">清除資源</span><span class="sxs-lookup"><span data-stu-id="4977a-101">Clean up resources</span></span>
+
+<span data-ttu-id="4977a-102">在前述步驟中，您在資源群組中建立了 Azure 資源。</span><span class="sxs-lookup"><span data-stu-id="4977a-102">In the preceding steps, you created Azure resources in a resource group.</span></span> <span data-ttu-id="4977a-103">如果您認為未來不需要這些資源，可以用刪除資源群組的方式將它們刪除。</span><span class="sxs-lookup"><span data-stu-id="4977a-103">If you don't expect to need these resources in the future, you can delete them by deleting the resource group.</span></span>
+ 
+1. <span data-ttu-id="4977a-104">從 Azure 入口網站中的 Web 應用程式**概觀**頁面，選取**資源群組**底下的 **myResourceGroup** 連結。</span><span class="sxs-lookup"><span data-stu-id="4977a-104">From your web app's **Overview** page in the Azure portal, select the **myResourceGroup** link under **Resource group**.</span></span>
+2. <span data-ttu-id="4977a-105">在 [資源群組] 頁面上，確定所列出的資源是您想要刪除的項目。</span><span class="sxs-lookup"><span data-stu-id="4977a-105">On the resource group page, make sure that the listed resources are the ones you want to delete.</span></span>
+3. <span data-ttu-id="4977a-106">選取 [刪除]，在文字方塊中輸入 **myResourceGroup**，然後再選取 [刪除]。</span><span class="sxs-lookup"><span data-stu-id="4977a-106">Select **Delete**, type **myResourceGroup** in the text box, and then select **Delete**.</span></span>

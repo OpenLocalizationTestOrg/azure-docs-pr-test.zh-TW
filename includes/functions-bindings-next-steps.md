@@ -1,0 +1,2 @@
+<span data-ttu-id="27e52-101">如需 Azure Functions 之其他繫結和觸發程序的資訊，請參閱 [Azure Functions 觸發程序和繫結開發人員參考](../articles/azure-functions/functions-triggers-bindings.md)。</span><span class="sxs-lookup"><span data-stu-id="27e52-101">For information about other bindings and triggers for Azure Functions, see [Azure Functions triggers and bindings developer reference](../articles/azure-functions/functions-triggers-bindings.md).</span></span>
+

@@ -1,0 +1,58 @@
+---
+title: "aaaConfiguring 和使用 hello 儲存體模擬器與 Visual Studio |Microsoft 文件"
+description: "設定和使用 Visual Studio 中的 hello 儲存體模擬器"
+services: visual-studio-online
+documentationcenter: na
+author: kraigb
+manager: ghogen
+editor: 
+ms.assetid: c8e7996f-6027-4762-806e-614b93131867
+ms.service: storage
+ms.devlang: multiple
+ms.topic: article
+ms.tgt_pltfrm: na
+ms.workload: na
+ms.date: 8/17/2017
+ms.author: kraigb
+ms.openlocfilehash: d590f21146c86bcb7bfa6b6164b92c6df5938d5b
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/06/2017
+---
+# <a name="configuring-and-using-hello-storage-emulator-with-visual-studio"></a><span data-ttu-id="eb620-103">設定和使用 Visual Studio 中的 hello 儲存體模擬器</span><span class="sxs-lookup"><span data-stu-id="eb620-103">Configuring and Using hello Storage Emulator with Visual Studio</span></span>
+[!INCLUDE [storage-try-azure-tools](../includes/storage-try-azure-tools.md)]
+
+## <a name="overview"></a><span data-ttu-id="eb620-104">概觀</span><span class="sxs-lookup"><span data-stu-id="eb620-104">Overview</span></span>
+<span data-ttu-id="eb620-105">hello Azure SDK 開發環境，包括 hello 儲存體模擬器，模擬 hello Blob、 佇列和資料表儲存體服務在本機開發電腦上可用在 Azure 中的公用程式。</span><span class="sxs-lookup"><span data-stu-id="eb620-105">hello Azure SDK development environment includes hello storage emulator, a utility that simulates hello Blob, Queue, and Table storage services available in Azure on your local development machine.</span></span> <span data-ttu-id="eb620-106">如果您是建立雲端服務採用 hello Azure 儲存體服務，或撰寫任何外部的應用程式呼叫 hello 儲存體服務，您可以測試您的程式碼，在本機憑藉 hello 儲存體模擬器。</span><span class="sxs-lookup"><span data-stu-id="eb620-106">If you are building a cloud service that employs hello Azure storage services, or writing any external application that calls hello storage services, you can test your code locally against hello storage emulator.</span></span> <span data-ttu-id="eb620-107">hello Azure Tools for Microsoft Visual Studio 會將 hello 儲存體模擬器的管理整合到 Visual Studio。</span><span class="sxs-lookup"><span data-stu-id="eb620-107">hello Azure Tools for Microsoft Visual Studio integrate management of hello storage emulator into Visual Studio.</span></span> <span data-ttu-id="eb620-108">hello Azure Tools 會初始化 hello 儲存體模擬器資料庫第一次使用、 啟動 hello 儲存體模擬器服務，當您執行或偵錯您的程式碼，從 Visual Studio，並提供唯讀存取 toohello 儲存體模擬器資料可經由 hello Azure 儲存體總管。</span><span class="sxs-lookup"><span data-stu-id="eb620-108">hello Azure Tools initialize hello storage emulator database on first use, starts hello storage emulator service when you run or debug your code from Visual Studio, and provides read-only access toohello storage emulator data via hello Azure Storage Explorer.</span></span>
+
+<span data-ttu-id="eb620-109">詳細資訊，在 hello 儲存體模擬器，包括系統需求和自訂組態指示，請參閱[使用 hello Azure 儲存體模擬器進行開發和測試](storage/common/storage-use-emulator.md)。</span><span class="sxs-lookup"><span data-stu-id="eb620-109">For detailed information on hello storage emulator, including system requirements and custom configuration instructions, see [Use hello Azure Storage Emulator for Development and Testing](storage/common/storage-use-emulator.md).</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="eb620-110">有一些功能 hello 儲存體模擬器模擬和 hello Azure 儲存體服務之間的差異。</span><span class="sxs-lookup"><span data-stu-id="eb620-110">There are some differences in functionality between hello storage emulator simulation and hello Azure storage services.</span></span> <span data-ttu-id="eb620-111">請參閱[之間的差異 hello 儲存體模擬器和 Azure 儲存體服務](storage/common/storage-use-emulator.md)hello hello 特定差異的資訊的 Azure SDK 文件中。</span><span class="sxs-lookup"><span data-stu-id="eb620-111">See [Differences Between hello Storage Emulator and Azure Storage Services](storage/common/storage-use-emulator.md) in hello Azure SDK documentation for information on hello specific differences.</span></span>
+> 
+> 
+
+## <a name="configuring-a-connection-string-for-hello-storage-emulator"></a><span data-ttu-id="eb620-112">Hello 儲存體模擬器設定連接字串</span><span class="sxs-lookup"><span data-stu-id="eb620-112">Configuring a connection string for hello storage emulator</span></span>
+<span data-ttu-id="eb620-113">tooaccess hello 從角色中的程式碼的儲存體模擬器，您會想 tooconfigure 連接字串該點 toohello 儲存體模擬器，並稍後可以變更的 toopoint tooan Azure 儲存體帳戶。</span><span class="sxs-lookup"><span data-stu-id="eb620-113">tooaccess hello storage emulator from code within a role, you will want tooconfigure a connection string that points toohello storage emulator and that can later be changed toopoint tooan Azure storage account.</span></span> <span data-ttu-id="eb620-114">連接字串會是您的角色可以在執行階段 tooconnect tooa 儲存體帳戶讀取的組態設定。</span><span class="sxs-lookup"><span data-stu-id="eb620-114">A connection string is a configuration setting that your role can read at runtime tooconnect tooa storage account.</span></span> <span data-ttu-id="eb620-115">如需有關如何 toocreate 的連接字串，請參閱[設定 hello Azure 應用程式](https://msdn.microsoft.com/library/azure/2da5d6ce-f74d-45a9-bf6b-b3a60c5ef74e#BK_SettingsPage)。</span><span class="sxs-lookup"><span data-stu-id="eb620-115">For more information about how toocreate connection strings, see [Configuring hello Azure Application](https://msdn.microsoft.com/library/azure/2da5d6ce-f74d-45a9-bf6b-b3a60c5ef74e#BK_SettingsPage).</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="eb620-116">您可以從您的程式碼傳回參考 toohello 儲存體模擬器帳戶使用 hello **DevelopmentStorageAccount**屬性。</span><span class="sxs-lookup"><span data-stu-id="eb620-116">You can return a reference toohello storage emulator account from your code by using hello **DevelopmentStorageAccount** property.</span></span> <span data-ttu-id="eb620-117">如果您想要 tooaccess hello 從您的程式碼的儲存體模擬器，而如果您計劃 toopublish 應用程式 tooAzure，您將需要 Azure 儲存體帳戶連接字串 tooaccess toocreate 並修改程式碼 toouse 這種方法運作正常，發行之前，連接字串。</span><span class="sxs-lookup"><span data-stu-id="eb620-117">This approach works correctly if you want tooaccess hello storage emulator from your code, but if you plan toopublish your application tooAzure, you will need toocreate a connection string tooaccess your Azure storage account and modify your code toouse that connection string before you publish it.</span></span> <span data-ttu-id="eb620-118">如果您經常之間切換 hello 儲存體模擬器帳戶和 Azure 儲存體帳戶，連接字串將可以簡化這個程序。</span><span class="sxs-lookup"><span data-stu-id="eb620-118">If you are switching between hello storage emulator account and an Azure storage account frequently, a connection string will simplify this process.</span></span>
+> 
+> 
+
+## <a name="initializing-and-running-hello-storage-emulator"></a><span data-ttu-id="eb620-119">初始化及執行 hello 儲存體模擬器</span><span class="sxs-lookup"><span data-stu-id="eb620-119">Initializing and running hello storage emulator</span></span>
+<span data-ttu-id="eb620-120">您可以指定，當您執行或偵錯在 Visual Studio 服務時，Visual Studio 會自動啟動 hello 儲存體模擬器。</span><span class="sxs-lookup"><span data-stu-id="eb620-120">You can specify that when you run or debug your service in Visual Studio, Visual Studio automatically launches hello storage emulator.</span></span> <span data-ttu-id="eb620-121">在 方案總管 中，開啟 hello 的捷徑功能表您**Azure**專案，選擇**屬性**。</span><span class="sxs-lookup"><span data-stu-id="eb620-121">In Solution Explorer, open hello shortcut menu for your **Azure** project and choose **Properties**.</span></span> <span data-ttu-id="eb620-122">在 hello**開發**索引標籤上，在 hello**啟動 Azure 儲存體模擬器**清單中，選擇**True** （如果尚未設定 toothat 值）。</span><span class="sxs-lookup"><span data-stu-id="eb620-122">On hello **Development** tab, in hello **Start Azure Storage Emulator** list, choose **True** (if it isn't already set toothat value).</span></span>
+
+<span data-ttu-id="eb620-123">hello 第一次您執行或偵錯在 Visual Studio 中的 hello 儲存體模擬器服務會啟動初始化處理程序。</span><span class="sxs-lookup"><span data-stu-id="eb620-123">hello first time you run or debug your service from Visual Studio, hello storage emulator launches an initialization process.</span></span> <span data-ttu-id="eb620-124">此程序會保留 hello 儲存體模擬器的本機連接埠，並建立 hello 儲存體模擬器資料庫。</span><span class="sxs-lookup"><span data-stu-id="eb620-124">This process reserves local ports for hello storage emulator and creates hello storage emulator database.</span></span> <span data-ttu-id="eb620-125">完成後，此程序不需要 toorun 再次除非 hello 儲存體模擬器資料庫遭刪除。</span><span class="sxs-lookup"><span data-stu-id="eb620-125">Once complete, this process does not need toorun again unless hello storage emulator database is deleted.</span></span>
+
+> [!NOTE]
+> <span data-ttu-id="eb620-126">從 hello Azure Tools 的 hello 2012 年 6 月版本開始，hello 儲存體模擬器執行，依預設，在 SQL Express LocalDB。</span><span class="sxs-lookup"><span data-stu-id="eb620-126">Starting with hello June 2012 release of hello Azure Tools, hello storage emulator runs, by default, in SQL Express LocalDB.</span></span> <span data-ttu-id="eb620-127">在舊版的 hello Azure Tools，hello 儲存體模擬器則是針對預設執行個體的 SQL Express 2005 或 2008，您必須安裝之前您可以安裝 hello Azure SDK。</span><span class="sxs-lookup"><span data-stu-id="eb620-127">In earlier releases of hello Azure Tools, hello storage emulator runs against a default instance of SQL Express 2005 or 2008, which you must install before you can install hello Azure SDK.</span></span> <span data-ttu-id="eb620-128">您也可以執行 hello 針對具名執行個體的 SQL Express 或具名或預設的 Microsoft SQL Server 的執行個體的儲存體模擬器。</span><span class="sxs-lookup"><span data-stu-id="eb620-128">You can also run hello storage emulator against a named instance of SQL Express or a named or default instance of Microsoft SQL Server.</span></span> <span data-ttu-id="eb620-129">如果您需要 tooconfigure hello 儲存體模擬器 toorun 針對 hello 預設執行個體以外的執行個體，請參閱[使用 hello Azure 儲存體模擬器進行開發和測試](storage/common/storage-use-emulator.md)。</span><span class="sxs-lookup"><span data-stu-id="eb620-129">If you need tooconfigure hello storage emulator toorun against an instance other than hello default instance, see [Use hello Azure Storage Emulator for Development and Testing](storage/common/storage-use-emulator.md).</span></span>
+> 
+> 
+
+<span data-ttu-id="eb620-130">hello 儲存體模擬器提供 hello 本機儲存體服務的使用者介面 tooview hello 狀態和 toostart，停止和重新設定它們。</span><span class="sxs-lookup"><span data-stu-id="eb620-130">hello storage emulator provides a user interface tooview hello status of hello local storage services and toostart, stop, and reset them.</span></span> <span data-ttu-id="eb620-131">一旦啟動 hello 儲存體模擬器服務，您可以顯示 hello 使用者介面，或啟動或停止 hello 服務以 hello 通知區域圖示，以滑鼠右鍵按一下 hello hello Windows 工作列中的 Microsoft Azure 模擬器。</span><span class="sxs-lookup"><span data-stu-id="eb620-131">Once hello storage emulator service has been started, you can display hello user interface or start or stop hello service by right-clicking hello notification area icon for hello Microsoft Azure Emulator in hello Windows taskbar.</span></span>
+
+## <a name="viewing-storage-emulator-data-in-server-explorer"></a><span data-ttu-id="eb620-132">在 [伺服器總管] 中檢視儲存體模擬器資料</span><span class="sxs-lookup"><span data-stu-id="eb620-132">Viewing storage emulator data in Server Explorer</span></span>
+<span data-ttu-id="eb620-133">在伺服器總管 中的 hello Azure 儲存體節點可讓您 tooview 資料和變更設定，blob 和資料表資料儲存體帳戶，包括在 hello 儲存體模擬器。</span><span class="sxs-lookup"><span data-stu-id="eb620-133">hello Azure Storage node in Server Explorer enables you tooview data and change settings for blob and table data in your storage accounts, including hello storage emulator.</span></span> <span data-ttu-id="eb620-134">如需詳細資訊，請參閱[使用儲存體總管管理 Azure Blob 儲存體資源 (預覽)](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs)。</span><span class="sxs-lookup"><span data-stu-id="eb620-134">See [Manage Azure Blob Storage resources with Storage Explorer (Preview)](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs) for more information.</span></span>
+

@@ -1,0 +1,86 @@
+---
+title: "aaaOperations Management Suite (OMS) 架構 |Microsoft 文件"
+description: "Microsoft Operations Management Suite (OMS) 是 Microsoft 的雲端型 IT 管理解決方案，可協助您管理並保護內部部署和雲端基礎結構。  這份文件識別包含在 OMS 中的 hello 不同服務，並提供連結 tootheir 詳細內容。"
+services: operations-management-suite
+documentationcenter: 
+author: bwren
+manager: jwhit
+editor: tysonn
+ms.assetid: 40e41686-7e35-4d85-bbe8-edbcb295a534
+ms.service: operations-management-suite
+ms.devlang: na
+ms.topic: get-started-article
+ms.tgt_pltfrm: na
+ms.workload: infrastructure-services
+ms.date: 04/11/2017
+ms.author: bwren
+ms.openlocfilehash: fa3227aa9c19219009ebe363b7fd2d6565cec59c
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/06/2017
+---
+# <a name="oms-architecture"></a><span data-ttu-id="fc425-104">OMS 架構</span><span class="sxs-lookup"><span data-stu-id="fc425-104">OMS architecture</span></span>
+<span data-ttu-id="fc425-105">[Operations Management Suite (OMS)](https://azure.microsoft.com/documentation/services/operations-management-suite/) 是管理內部部署和雲端環境的雲端型服務集合。</span><span class="sxs-lookup"><span data-stu-id="fc425-105">[Operations Management Suite (OMS)](https://azure.microsoft.com/documentation/services/operations-management-suite/) is a collection of cloud-based services for managing your on-premises and cloud environments.</span></span>  <span data-ttu-id="fc425-106">本文說明 hello 不同內部部署和雲端元件 OMS，及其高階的雲端運算架構。</span><span class="sxs-lookup"><span data-stu-id="fc425-106">This article describes hello different on-premises and cloud components of OMS and their high level cloud computing architecture.</span></span>  <span data-ttu-id="fc425-107">您可以針對每個服務，以取得詳細資料，請參閱 toohello 文件。</span><span class="sxs-lookup"><span data-stu-id="fc425-107">You can refer toohello documentation for each service for further details.</span></span>
+
+## <a name="log-analytics"></a><span data-ttu-id="fc425-108">Log Analytics</span><span class="sxs-lookup"><span data-stu-id="fc425-108">Log Analytics</span></span>
+<span data-ttu-id="fc425-109">所收集的所有資料[記錄分析](https://azure.microsoft.com/documentation/services/log-analytics/)儲存在裝載於 Azure hello OMS 儲存機制。</span><span class="sxs-lookup"><span data-stu-id="fc425-109">All data collected by [Log Analytics](https://azure.microsoft.com/documentation/services/log-analytics/) is stored in hello OMS repository which is hosted in Azure.</span></span>  <span data-ttu-id="fc425-110">連線的來源產生資料收集到 hello OMS 儲存機制。</span><span class="sxs-lookup"><span data-stu-id="fc425-110">Connected Sources generate data collected into hello OMS repository.</span></span>  <span data-ttu-id="fc425-111">目前支援三種類型的已連接來源。</span><span class="sxs-lookup"><span data-stu-id="fc425-111">There are currently three types of connected sources supported.</span></span>
+
+* <span data-ttu-id="fc425-112">上安裝代理程式[Windows](../log-analytics/log-analytics-windows-agents.md)或[Linux](../log-analytics/log-analytics-linux-agents.md)電腦直接連線 tooOMS。</span><span class="sxs-lookup"><span data-stu-id="fc425-112">An agent installed on a [Windows](../log-analytics/log-analytics-windows-agents.md) or [Linux](../log-analytics/log-analytics-linux-agents.md) computer connected directly tooOMS.</span></span>
+* <span data-ttu-id="fc425-113">System Center Operations Manager (SCOM) 管理群組[連接 tooLog 分析](../log-analytics/log-analytics-om-agents.md)。</span><span class="sxs-lookup"><span data-stu-id="fc425-113">A System Center Operations Manager (SCOM) management group [connected tooLog Analytics](../log-analytics/log-analytics-om-agents.md) .</span></span>  <span data-ttu-id="fc425-114">SCOM 代理程式仍持續與管理伺服器轉送事件和效能資料 tooLog 分析 toocommunicate。</span><span class="sxs-lookup"><span data-stu-id="fc425-114">SCOM agents continue toocommunicate with management servers which forward events and performance data tooLog Analytics.</span></span>
+* <span data-ttu-id="fc425-115">[Azure 儲存體帳戶](../log-analytics/log-analytics-azure-storage.md)，收集 Azure 背景工作角色、Web 角色或虛擬機器中的 [Azure Diagnostics](../cloud-services/cloud-services-dotnet-diagnostics.md) 資料。</span><span class="sxs-lookup"><span data-stu-id="fc425-115">An [Azure storage account](../log-analytics/log-analytics-azure-storage.md) that collects [Azure Diagnostics](../cloud-services/cloud-services-dotnet-diagnostics.md) data from a worker role, web role, or virtual machine in Azure.</span></span>
+
+<span data-ttu-id="fc425-116">資料來源定義 hello 記錄分析會從已連線的來源，包括事件記錄檔和效能計數器收集的資料。</span><span class="sxs-lookup"><span data-stu-id="fc425-116">Data sources define hello data that Log Analytics collects from connected sources including event logs and performance counters.</span></span>  <span data-ttu-id="fc425-117">加入功能 tooOMS 解決方案，並可輕鬆地加入 tooyour 工作區中的 hello [OMS 解決方案資源庫](../log-analytics/log-analytics-add-solutions.md)。</span><span class="sxs-lookup"><span data-stu-id="fc425-117">Solutions add functionality tooOMS and can easily be added tooyour workspace from hello [OMS Solutions Gallery](../log-analytics/log-analytics-add-solutions.md).</span></span>  <span data-ttu-id="fc425-118">某些解決方案可能需要從 SCOM 代理程式直接連接 tooLog 分析，而有些則可能需要安裝其他代理程式 toobe。</span><span class="sxs-lookup"><span data-stu-id="fc425-118">Some solutions may require a direct connection tooLog Analytics from SCOM agents while others may require an additional agent toobe installed.</span></span>
+
+<span data-ttu-id="fc425-119">記錄分析具有 web 入口網站，您可以使用 toomanage OMS 資源、 加入和設定 OMS 解決方案，並檢視及分析 hello OMS 儲存機制中的資料。</span><span class="sxs-lookup"><span data-stu-id="fc425-119">Log Analytics has a web-based portal that you can use toomanage OMS resources, add and configure OMS solutions, and view and analyze data in hello OMS repository.</span></span>
+
+![Log Analytics 高階架構](media/operations-management-suite-architecture/log-analytics.png)
+
+## <a name="azure-automation"></a><span data-ttu-id="fc425-121">Azure 自動化</span><span class="sxs-lookup"><span data-stu-id="fc425-121">Azure Automation</span></span>
+<span data-ttu-id="fc425-122">[Azure 自動化 runbook](http://azure.microsoft.com/documentation/services/automation) hello Azure 雲端中執行的而且可以存取位於 Azure 中其他雲端服務，或從可存取的資源 hello 公用網際網路。</span><span class="sxs-lookup"><span data-stu-id="fc425-122">[Azure Automation runbooks](http://azure.microsoft.com/documentation/services/automation) are executed in hello Azure cloud and can access resources that are in Azure, in other cloud services, or accessible from hello public Internet.</span></span>  <span data-ttu-id="fc425-123">您也可以使用[Hybrid Runbook Worker](../automation/automation-hybrid-runbook-worker.md) 指定本機資料中心的內部部署電腦，讓 Runbook 可以存取本機資源。</span><span class="sxs-lookup"><span data-stu-id="fc425-123">You can also designate on-premises machines in your local data center using [Hybrid Runbook Worker](../automation/automation-hybrid-runbook-worker.md) so that runbooks can access local resources.</span></span>
+
+<span data-ttu-id="fc425-124">[DSC 設定](../automation/automation-dsc-overview.md)儲存在 Azure 自動化可直接套用的 tooAzure 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="fc425-124">[DSC configurations](../automation/automation-dsc-overview.md) stored in Azure Automation can be directly applied tooAzure virtual machines.</span></span>  <span data-ttu-id="fc425-125">其他實體和虛擬機器可以從 hello Azure Automation DSC 提取伺服器要求組態。</span><span class="sxs-lookup"><span data-stu-id="fc425-125">Other physical and virtual machines can request configurations from hello Azure Automation DSC pull server.</span></span>
+
+<span data-ttu-id="fc425-126">Azure 自動化有一項 OMS 解決方案，會顯示統計資料，並連結 toolaunch hello Azure 入口網站進行任何作業。</span><span class="sxs-lookup"><span data-stu-id="fc425-126">Azure Automation has an OMS solution that displays statistics and links toolaunch hello Azure portal for any operations.</span></span>
+
+![Azure 自動化高階架構](media/operations-management-suite-architecture/automation.png)
+
+## <a name="azure-backup"></a><span data-ttu-id="fc425-128">Azure 備份</span><span class="sxs-lookup"><span data-stu-id="fc425-128">Azure Backup</span></span>
+<span data-ttu-id="fc425-129">[Azure 備份](http://azure.microsoft.com/documentation/services/backup) 中的受保護資料儲存在位於特定地理區域的備份保存庫中。</span><span class="sxs-lookup"><span data-stu-id="fc425-129">Protected data in [Azure Backup](http://azure.microsoft.com/documentation/services/backup) is stored in a backup vault located in a particular geographic region.</span></span>  <span data-ttu-id="fc425-130">hello 資料會複寫在 hello 相同的區域，並根據 hello 保存庫類型，也可能供進一步備援複寫的 tooanother 區域。</span><span class="sxs-lookup"><span data-stu-id="fc425-130">hello data is replicated within hello same region and, depending on hello type of vault, may also be replicated tooanother region for further redundancy.</span></span>
+
+<span data-ttu-id="fc425-131">Azure 備份有三種基本案例。</span><span class="sxs-lookup"><span data-stu-id="fc425-131">Azure Backup has three fundamental scenarios.</span></span>
+
+* <span data-ttu-id="fc425-132">具有 Azure 備份代理程式的 Windows 電腦。</span><span class="sxs-lookup"><span data-stu-id="fc425-132">Windows machine with Azure Backup agent.</span></span>  <span data-ttu-id="fc425-133">這可讓您 toobackup 檔案和資料夾從任何 Windows server 或用戶端直接 tooyour Azure 備份保存庫。</span><span class="sxs-lookup"><span data-stu-id="fc425-133">This allows you toobackup files and folders from any Windows server or client directly tooyour Azure backup vault.</span></span>  
+* <span data-ttu-id="fc425-134">System Center Data Protection Manager (DPM) 或 Microsoft Azure 備份伺服器。</span><span class="sxs-lookup"><span data-stu-id="fc425-134">System Center Data Protection Manager (DPM) or Microsoft Azure Backup Server.</span></span> <span data-ttu-id="fc425-135">這可讓您 tooleverage DPM 或 Microsoft Azure 備份伺服器 toobackup 檔案和資料夾此外 tooapplication 工作負載，例如 SQL 和 SharePoint toolocal 儲存體，然後複寫 tooyour Azure 備份保存庫。</span><span class="sxs-lookup"><span data-stu-id="fc425-135">This allows you tooleverage DPM or Microsoft Azure Backup Server toobackup files and folders in addition tooapplication workloads such as SQL and SharePoint toolocal storage and then replicate tooyour Azure backup vault.</span></span>
+* <span data-ttu-id="fc425-136">Azure 虛擬機器擴充功能。</span><span class="sxs-lookup"><span data-stu-id="fc425-136">Azure Virtual Machine Extensions.</span></span>  <span data-ttu-id="fc425-137">這可讓您 toobackup Azure 虛擬機器 tooyour Azure 備份保存庫。</span><span class="sxs-lookup"><span data-stu-id="fc425-137">This allows you toobackup Azure virtual machines tooyour Azure backup vault.</span></span>
+
+<span data-ttu-id="fc425-138">Azure 備份有一項 OMS 解決方案，會顯示統計資料，並連結 toolaunch hello Azure 入口網站進行任何作業。</span><span class="sxs-lookup"><span data-stu-id="fc425-138">Azure Backup has an OMS solution that displays statistics and links toolaunch hello Azure portal for any operations.</span></span>
+
+![Azure 備份高階架構](media/operations-management-suite-architecture/backup.png)
+
+## <a name="azure-site-recovery"></a><span data-ttu-id="fc425-140">Azure Site Recovery</span><span class="sxs-lookup"><span data-stu-id="fc425-140">Azure Site Recovery</span></span>
+<span data-ttu-id="fc425-141">[Azure Site Recovery](http://azure.microsoft.com/documentation/services/site-recovery) 可協調虛擬機器和實體伺服器的複寫、容錯移轉和容錯回復。</span><span class="sxs-lookup"><span data-stu-id="fc425-141">[Azure Site Recovery](http://azure.microsoft.com/documentation/services/site-recovery) orchestrates replication, failover, and failback of virtual machines and physical servers.</span></span> <span data-ttu-id="fc425-142">HYPER-V 主機、 VMware hypervisor 與主要和次要資料中心內的實體伺服器或 hello 資料中心與 Azure 儲存體之間交換複寫資料。</span><span class="sxs-lookup"><span data-stu-id="fc425-142">Replication data is exchanged between Hyper-V hosts, VMware hypervisors, and physical servers in primary and secondary datacenters, or between hello datacenter and Azure storage.</span></span>  <span data-ttu-id="fc425-143">Site Recovery 會將元資料儲存到位於特定地理 Azure 區域的保存庫中。</span><span class="sxs-lookup"><span data-stu-id="fc425-143">Site Recovery stores metadata in vaults located in a particular geographic Azure region.</span></span> <span data-ttu-id="fc425-144">不會儲存複寫的資料 hello Site Recovery 服務。</span><span class="sxs-lookup"><span data-stu-id="fc425-144">No replicated data is stored by hello Site Recovery service.</span></span>
+
+<span data-ttu-id="fc425-145">Azure Site Recovery 有三種基本複寫案例。</span><span class="sxs-lookup"><span data-stu-id="fc425-145">Azure Site Recovery has three fundamental replication scenarios.</span></span>
+
+<span data-ttu-id="fc425-146">**Hyper-V 虛擬機器的複寫**</span><span class="sxs-lookup"><span data-stu-id="fc425-146">**Replication of Hyper-V virtual machines**</span></span>
+
+* <span data-ttu-id="fc425-147">如果 VMM 雲端中管理 HYPER-V 虛擬機器，您就可以複寫 tooa 次要資料中心或 tooAzure 儲存體。</span><span class="sxs-lookup"><span data-stu-id="fc425-147">If Hyper-V virtual machines are managed in VMM clouds, you can replicate tooa secondary data center or tooAzure storage.</span></span>  <span data-ttu-id="fc425-148">複寫 tooAzure 是透過安全的網際網路連線。</span><span class="sxs-lookup"><span data-stu-id="fc425-148">Replication tooAzure is over a secure internet connection.</span></span>  <span data-ttu-id="fc425-149">複寫 tooa 次要資料中心是透過 hello LAN。</span><span class="sxs-lookup"><span data-stu-id="fc425-149">Replication tooa secondary datacenter is over hello LAN.</span></span>
+* <span data-ttu-id="fc425-150">若為 HYPER-V 虛擬機器不由 VMM 管理，您只能複寫 tooAzure 儲存體。</span><span class="sxs-lookup"><span data-stu-id="fc425-150">If Hyper-V virtual machines aren’t managed by VMM, you can replicate tooAzure storage only.</span></span>  <span data-ttu-id="fc425-151">複寫 tooAzure 是透過安全的網際網路連線。</span><span class="sxs-lookup"><span data-stu-id="fc425-151">Replication tooAzure is over a secure internet connection.</span></span>
+
+<span data-ttu-id="fc425-152">**VMWare 虛擬機器的複寫**</span><span class="sxs-lookup"><span data-stu-id="fc425-152">**Replication of VMWare virtual machines**</span></span>
+
+* <span data-ttu-id="fc425-153">您可以將 VMware 虛擬機器 tooa 次要資料中心執行 VMware 或 tooAzure 儲存體的複寫。</span><span class="sxs-lookup"><span data-stu-id="fc425-153">You can replicate VMware virtual machines tooa secondary datacenter running VMware or tooAzure storage.</span></span>  <span data-ttu-id="fc425-154">透過站對站 VPN、 Azure ExpressRoute 或是安全的網際網路連線，就會發生複寫 tooAzure。</span><span class="sxs-lookup"><span data-stu-id="fc425-154">Replication tooAzure can occur over a site-to-site VPN or Azure ExpressRoute or over a secure Internet connection.</span></span> <span data-ttu-id="fc425-155">複寫 tooa 次要資料中心發生 hello InMage Scout 資料通道。</span><span class="sxs-lookup"><span data-stu-id="fc425-155">Replication tooa secondary datacenter occurs over hello InMage Scout data channel.</span></span>
+
+<span data-ttu-id="fc425-156">**實體 Windows 和 Linux 伺服器的複寫**</span><span class="sxs-lookup"><span data-stu-id="fc425-156">**Replication of physical Windows and Linux servers**</span></span> 
+
+* <span data-ttu-id="fc425-157">您可以將實體伺服器 tooa 次要資料中心或 tooAzure 儲存體的複寫。</span><span class="sxs-lookup"><span data-stu-id="fc425-157">You can replicate physical servers tooa secondary datacenter or tooAzure storage.</span></span> <span data-ttu-id="fc425-158">透過站對站 VPN、 Azure ExpressRoute 或是安全的網際網路連線，就會發生複寫 tooAzure。</span><span class="sxs-lookup"><span data-stu-id="fc425-158">Replication tooAzure can occur over a site-to-site VPN or Azure ExpressRoute or over a secure Internet connection.</span></span> <span data-ttu-id="fc425-159">複寫 tooa 次要資料中心發生 hello InMage Scout 資料通道。</span><span class="sxs-lookup"><span data-stu-id="fc425-159">Replication tooa secondary datacenter occurs over hello InMage Scout data channel.</span></span>  <span data-ttu-id="fc425-160">Azure Site Recovery 有一項 OMS 解決方案會顯示統計資料，但是您必須使用 hello Azure 入口網站進行任何作業。</span><span class="sxs-lookup"><span data-stu-id="fc425-160">Azure Site Recovery has an OMS solution that displays some statistics, but you must use hello Azure portal for any operations.</span></span>
+
+![Azure Site Recovery 高階架構](media/operations-management-suite-architecture/site-recovery.png)
+
+## <a name="next-steps"></a><span data-ttu-id="fc425-162">後續步驟</span><span class="sxs-lookup"><span data-stu-id="fc425-162">Next steps</span></span>
+* <span data-ttu-id="fc425-163">了解 [Log Analytics](http://azure.microsoft.com/documentation/services/log-analytics)。</span><span class="sxs-lookup"><span data-stu-id="fc425-163">Learn about [Log Analytics](http://azure.microsoft.com/documentation/services/log-analytics).</span></span>
+* <span data-ttu-id="fc425-164">了解 [Azure 自動化](https://azure.microsoft.com/documentation/services/automation)。</span><span class="sxs-lookup"><span data-stu-id="fc425-164">Learn about [Azure Automation](https://azure.microsoft.com/documentation/services/automation).</span></span>
+* <span data-ttu-id="fc425-165">了解 [Azure 備份](http://azure.microsoft.com/documentation/services/backup)。</span><span class="sxs-lookup"><span data-stu-id="fc425-165">Learn about [Azure Backup](http://azure.microsoft.com/documentation/services/backup).</span></span>
+* <span data-ttu-id="fc425-166">了解 [Azure Site Recovery](http://azure.microsoft.com/documentation/services/site-recovery)。</span><span class="sxs-lookup"><span data-stu-id="fc425-166">Learn about [Azure Site Recovery](http://azure.microsoft.com/documentation/services/site-recovery).</span></span>
+

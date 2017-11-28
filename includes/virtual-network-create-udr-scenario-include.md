@@ -1,0 +1,14 @@
+## <a name="scenario"></a><span data-ttu-id="00ea7-101">案例</span><span class="sxs-lookup"><span data-stu-id="00ea7-101">Scenario</span></span>
+<span data-ttu-id="00ea7-102">為了更清楚說明如何建立 UDR，此文件會使用下列案例。</span><span class="sxs-lookup"><span data-stu-id="00ea7-102">To better illustrate how to create UDRs, this document will use the scenario below.</span></span>
+
+![影像說明](./media/virtual-network-create-udr-scenario-include/figure1.png)
+
+<span data-ttu-id="00ea7-104">在此案例中，您將針對「前端子網路」建立一個 UDR，並針對「後端子網路」建立另一個 UDR ，如下所述：</span><span class="sxs-lookup"><span data-stu-id="00ea7-104">In this scenario you will create one UDR for the *Front end subnet* and another UDR for the *Back end subnet* , as described below:</span></span> 
+
+* <span data-ttu-id="00ea7-105">**UDR-FrontEnd**。</span><span class="sxs-lookup"><span data-stu-id="00ea7-105">**UDR-FrontEnd**.</span></span> <span data-ttu-id="00ea7-106">前端 UDR 將套用到「前端」  子網路且包含一個路由：</span><span class="sxs-lookup"><span data-stu-id="00ea7-106">The front end UDR will be applied to the *FrontEnd* subnet, and contain one route:</span></span>    
+  * <span data-ttu-id="00ea7-107">**RouteToBackend**。</span><span class="sxs-lookup"><span data-stu-id="00ea7-107">**RouteToBackend**.</span></span> <span data-ttu-id="00ea7-108">這個路由會將流向後端子網路的所有流量傳送到 **FW1** 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="00ea7-108">This route will send all traffic to the back end subnet to the **FW1** virtual machine.</span></span>
+* <span data-ttu-id="00ea7-109">**UDR-BackEnd**。</span><span class="sxs-lookup"><span data-stu-id="00ea7-109">**UDR-BackEnd**.</span></span> <span data-ttu-id="00ea7-110">後端 UDR 將套用到 *後端* 子網路，且包含一個路由：</span><span class="sxs-lookup"><span data-stu-id="00ea7-110">The back end UDR will be applied to the *BackEnd* subnet, and contain one route:</span></span>    
+  * <span data-ttu-id="00ea7-111">**RouteToFrontend**。</span><span class="sxs-lookup"><span data-stu-id="00ea7-111">**RouteToFrontend**.</span></span> <span data-ttu-id="00ea7-112">這個路由會將流向前端子網路的所有流量傳送到 **FW1** 虛擬機器。</span><span class="sxs-lookup"><span data-stu-id="00ea7-112">This route will send all traffic to the front end subnet to the **FW1** virtual machine.</span></span>
+
+<span data-ttu-id="00ea7-113">這些路由的組合將可確保目的地是從某一個子網路流向另一個子網路的所有流量將會路由至 **FW1** 虛擬機器，此虛擬機器是用來做為虛擬應用裝置。</span><span class="sxs-lookup"><span data-stu-id="00ea7-113">The combination of these routes will ensure that all traffic destined from one subnet to another will be routed to the **FW1** virtual machine, which is being used as a virtual appliance.</span></span> <span data-ttu-id="00ea7-114">您也需要針對該 VM 開啟 IP 轉送，以確保它可以接收目的地為其他 VM 的流量。</span><span class="sxs-lookup"><span data-stu-id="00ea7-114">You also need to turn on IP forwarding for that VM, to ensure it can receive traffic destined to other VMs.</span></span>
+

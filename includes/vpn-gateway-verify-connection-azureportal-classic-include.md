@@ -1,0 +1,13 @@
+<span data-ttu-id="8a4d8-101">在 Azure 入口網站中，您可以瀏覽至連線，以檢視傳統 VNet VPN 閘道的連線狀態。</span><span class="sxs-lookup"><span data-stu-id="8a4d8-101">In the Azure portal, you can view the connection status for a classic VNet VPN Gateway by navigating to the connection.</span></span> <span data-ttu-id="8a4d8-102">下列步驟顯示瀏覽至連線並進行驗證的其中一種方式。</span><span class="sxs-lookup"><span data-stu-id="8a4d8-102">The following steps show one way to navigate to your connection and verify.</span></span>
+
+1. <span data-ttu-id="8a4d8-103">在 [Azure 入口網站](http://portal.azure.com)中，按一下 [所有資源]並瀏覽至您的傳統虛擬網路。</span><span class="sxs-lookup"><span data-stu-id="8a4d8-103">In the [Azure portal](http://portal.azure.com), click **All resources** and navigate to your classic virtual network.</span></span>
+2. <span data-ttu-id="8a4d8-104">在虛擬網路刀鋒視窗上，按一下 [概觀] 以存取刀鋒視窗的 [VPN 連線] 區段。</span><span class="sxs-lookup"><span data-stu-id="8a4d8-104">On the virtual network blade, click **Overview** to access the **VPN connections** section of the blade.</span></span>
+3. <span data-ttu-id="8a4d8-105">在 VPN 連線圖片上，按一下網站。</span><span class="sxs-lookup"><span data-stu-id="8a4d8-105">On the VPN connections graphic, click the site.</span></span>
+
+    <span data-ttu-id="8a4d8-106">![本機網站](./media/vpn-gateway-verify-connection-azureportal-classic/localsitename.png "本機網站")</span><span class="sxs-lookup"><span data-stu-id="8a4d8-106">![Local site](./media/vpn-gateway-verify-connection-azureportal-classic/localsitename.png "local site")</span></span>
+4. <span data-ttu-id="8a4d8-107">在 [站對站 VPN 連線] 刀鋒視窗上，檢視您的網站相關資訊。</span><span class="sxs-lookup"><span data-stu-id="8a4d8-107">On the **Site-to-site VPN connections** blade, view the information about your site.</span></span>
+
+    <span data-ttu-id="8a4d8-108">![連線狀態](./media/vpn-gateway-verify-connection-azureportal-classic/siteconnectstatus.png "連線狀態")</span><span class="sxs-lookup"><span data-stu-id="8a4d8-108">![Connection status](./media/vpn-gateway-verify-connection-azureportal-classic/siteconnectstatus.png "Connection status")</span></span>
+5. <span data-ttu-id="8a4d8-109">若要檢視連線的詳細資訊，請按一下連線名稱以開啟 [站對站 VPN 連線] 刀鋒視窗。</span><span class="sxs-lookup"><span data-stu-id="8a4d8-109">To view more information about the connection, click the name of the connection to open the **Site-to-site VPN Connection** blade.</span></span>
+
+    <span data-ttu-id="8a4d8-110">![連線狀態詳細資訊](./media/vpn-gateway-verify-connection-azureportal-classic/connections4.png "連線狀態詳細資訊")</span><span class="sxs-lookup"><span data-stu-id="8a4d8-110">![Connection status more](./media/vpn-gateway-verify-connection-azureportal-classic/connections4.png "Connection status more info")</span></span>

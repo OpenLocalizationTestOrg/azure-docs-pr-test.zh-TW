@@ -1,0 +1,15 @@
+1. <span data-ttu-id="c089f-101">按一下 [連接]  建立並下載 [遠端桌面通訊協定] 檔案 (.rdp file)。</span><span class="sxs-lookup"><span data-stu-id="c089f-101">Clicking **Connect** creates and downloads a Remote Desktop Protocol file (.rdp file).</span></span> <span data-ttu-id="c089f-102">按一下 [開啟]  使用這個檔案。</span><span class="sxs-lookup"><span data-stu-id="c089f-102">Click **Open** to use this file.</span></span>
+2. <span data-ttu-id="c089f-103">您會收到警告，表示 .rdp 來自未知的發行者。</span><span class="sxs-lookup"><span data-stu-id="c089f-103">You will get a warning that the .rdp is from an unknown publisher.</span></span> <span data-ttu-id="c089f-104">這是正常現象。</span><span class="sxs-lookup"><span data-stu-id="c089f-104">This is normal.</span></span> <span data-ttu-id="c089f-105">在 [遠端桌面] 視窗中按一下 [連接]  以繼續。</span><span class="sxs-lookup"><span data-stu-id="c089f-105">In the Remote Desktop window, click **Connect** to continue.</span></span>
+   
+    ![未知發行者相關警告的螢幕擷取畫面。](./media/virtual-machines-log-on-win-server/rdp-warn.png)
+3. <span data-ttu-id="c089f-107">在 [Windows 安全性] 視窗中，輸入虛擬機器上帳戶的認證，然後按一下 [確定]。</span><span class="sxs-lookup"><span data-stu-id="c089f-107">In the **Windows Security** window, type the credentials for an account on the virtual machine and then click **OK**.</span></span>
+   
+     <span data-ttu-id="c089f-108">**本機帳戶** - 這通常是您在建立虛擬機器時所指定的本機帳戶使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="c089f-108">**Local account** - this is usually the local account user name and password that you specified when you created the virtual machine.</span></span> <span data-ttu-id="c089f-109">在此案例中，虛擬機器的名稱是網域，而它的輸入格式為 *vmname*&#92;*username*。</span><span class="sxs-lookup"><span data-stu-id="c089f-109">In this case, the domain is the name of the virtual machine and it is entered as *vmname*&#92;*username*.</span></span>  
+   
+    <span data-ttu-id="c089f-110">**已加入網域的 VM** - 如果 VM 屬於網域，請輸入 *Domain*&#92;*Username* 格式的使用者名稱。</span><span class="sxs-lookup"><span data-stu-id="c089f-110">**Domain joined VM** - if the VM belongs to a domain, enter the user name in the format *Domain*&#92;*Username*.</span></span> <span data-ttu-id="c089f-111">此帳戶也必須屬於系統管理員群組，或者已授與遠端存取 VM 的權限。</span><span class="sxs-lookup"><span data-stu-id="c089f-111">The account also needs to either be in the Administrators group or have been granted remote access privileges to the VM.</span></span>
+   
+    <span data-ttu-id="c089f-112">**網域控制站** - 如果 VM 是網域控制站，請輸入該網域的網域系統管理員帳戶的使用者名稱和密碼。</span><span class="sxs-lookup"><span data-stu-id="c089f-112">**Domain controller** - if the VM is a domain controller, type the user name and password of a domain administrator account for that domain.</span></span>
+4. <span data-ttu-id="c089f-113">按一下 [是]  來確認虛擬機器的身分識別，並完成登入。</span><span class="sxs-lookup"><span data-stu-id="c089f-113">Click **Yes** to verify the identity of the virtual machine and finish logging on.</span></span>
+   
+   ![顯示驗證 VM 身分識別相關訊息的螢幕擷取畫面。](./media/virtual-machines-log-on-win-server/cert-warning.png)
+

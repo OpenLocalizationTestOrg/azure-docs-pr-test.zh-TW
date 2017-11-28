@@ -1,0 +1,8 @@
+<!--alkohli 02/21/2017 cloud appliance security-->
+
+<span data-ttu-id="5e901-101">使用 StorSimple 雲端設備時，請留意下列安全性考量：</span><span class="sxs-lookup"><span data-stu-id="5e901-101">Keep the following security considerations in mind when you use the StorSimple Cloud Appliance:</span></span>
+
+* <span data-ttu-id="5e901-102">雲端設備會透過您的 Microsoft Azure 訂用帳戶受到保護。</span><span class="sxs-lookup"><span data-stu-id="5e901-102">The cloud appliance is secured through your Microsoft Azure subscription.</span></span> <span data-ttu-id="5e901-103">這表示，如果您使用的是雲端設備，而您的 Azure 訂用帳戶遭到洩漏，則儲存在雲端設備上的資料也會受到影響。</span><span class="sxs-lookup"><span data-stu-id="5e901-103">This means that if you are using the cloud appliance and your Azure subscription is compromised, the data stored on your cloud appliance is also susceptible.</span></span>
+* <span data-ttu-id="5e901-104">用來對儲存在 StorSimple 中的資料加密的憑證公開金鑰，會安全地在 Azure 入口網站中供人使用，而私密金鑰則會保留在 StorSimple 雲端設備中。</span><span class="sxs-lookup"><span data-stu-id="5e901-104">The public key of the certificate used to encrypt data stored in StorSimple is securely made available to the Azure portal, and the private key is retained with the StorSimple Cloud Appliance.</span></span> <span data-ttu-id="5e901-105">在 StorSimple 雲端設備上，公開和私密金鑰都會儲存於 Azure 中。</span><span class="sxs-lookup"><span data-stu-id="5e901-105">On the StorSimple Cloud Appliance, both the public and private keys are stored in Azure.</span></span>
+* <span data-ttu-id="5e901-106">雲端設備會裝載於 Microsoft Azure 資料中心。</span><span class="sxs-lookup"><span data-stu-id="5e901-106">The cloud appliance is hosted in the Microsoft Azure datacenter.</span></span>
+

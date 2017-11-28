@@ -1,0 +1,111 @@
+---
+title: "在 Azure 度量的警示上 aaaConfigure webhook |Microsoft 文件"
+description: "重設 Azure 警示 tooother 非 Azure 系統的路徑。"
+author: johnkemnetz
+manager: carmonm
+editor: 
+services: monitoring-and-diagnostics
+documentationcenter: monitoring-and-diagnostics
+ms.assetid: 8b3ae540-1d19-4f3d-a635-376042f8a5bb
+ms.service: monitoring-and-diagnostics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 04/03/2017
+ms.author: johnkem
+ms.openlocfilehash: bc4153ccdcff41c5b9d3c081e59a1bf260d8a283
+ms.sourcegitcommit: 523283cc1b3c37c428e77850964dc1c33742c5f0
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 10/06/2017
+---
+# <a name="configure-a-webhook-on-an-azure-metric-alert"></a><span data-ttu-id="6ebe3-103">針對 Azure 度量警示設定 Webhook</span><span class="sxs-lookup"><span data-stu-id="6ebe3-103">Configure a webhook on an Azure metric alert</span></span>
+<span data-ttu-id="6ebe3-104">Webhook 可讓您 tooroute Azure 警示通知 tooother 系統後置處理或自訂動作。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-104">Webhooks allow you tooroute an Azure alert notification tooother systems for post-processing or custom actions.</span></span> <span data-ttu-id="6ebe3-105">您可以使用 webhook 警示 tooroute 它 tooservices 傳送 SMS，記錄錯誤、 通知聊天/傳訊服務，透過小組或執行任意數目的其他動作。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-105">You can use a webhook on an alert tooroute it tooservices that send SMS, log bugs, notify a team via chat/messaging services, or do any number of other actions.</span></span> <span data-ttu-id="6ebe3-106">本文說明如何 tooset Azure 度量警示和 hello HTTP POST tooa webhook 哪些 hello 內容看起來像 webhook。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-106">This article describes how tooset a webhook on an Azure metric alert and what hello payload for hello HTTP POST tooa webhook looks like.</span></span> <span data-ttu-id="6ebe3-107">如需 hello 安裝程式與 Azure 活動記錄檔警示 （警示的事件） 的結構描述資訊[請改為參閱此頁面](insights-auditlog-to-webhook-email.md)。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-107">For information on hello setup and schema for an Azure Activity Log alert (alert on events), [see this page instead](insights-auditlog-to-webhook-email.md).</span></span>
+
+<span data-ttu-id="6ebe3-108">Azure 警示 HTTP POST hello 警示內容以 JSON 格式，結構描述定義下面 tooa webhook 建立 hello 警示時，您所提供的 URI。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-108">Azure alerts HTTP POST hello alert contents in JSON format, schema defined below, tooa webhook URI that you provide when creating hello alert.</span></span> <span data-ttu-id="6ebe3-109">此 URI 必須是有效的 HTTP 或 HTTPS 端點。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-109">This URI must be a valid HTTP or HTTPS endpoint.</span></span> <span data-ttu-id="6ebe3-110">當警示啟動時，Azure 會針對每個要求張貼一個項目。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-110">Azure posts one entry per request when an alert is activated.</span></span>
+
+## <a name="configuring-webhooks-via-hello-portal"></a><span data-ttu-id="6ebe3-111">設定 webhook 透過 hello 入口網站</span><span class="sxs-lookup"><span data-stu-id="6ebe3-111">Configuring webhooks via hello portal</span></span>
+<span data-ttu-id="6ebe3-112">您可以新增或更新在 hello hello Create/Update 警示畫面中的 hello webhook URI[入口網站](https://portal.azure.com/)。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-112">You can add or update hello webhook URI in hello Create/Update Alerts screen in hello [portal](https://portal.azure.com/).</span></span>
+
+![新增警示規則](./media/insights-webhooks-alerts/Alertwebhook.png)
+
+<span data-ttu-id="6ebe3-114">您也可以設定警示 toopost tooa webhook URI 使用 hello [Azure PowerShell Cmdlet](insights-powershell-samples.md#create-metric-alerts)，[跨平台 CLI](insights-cli-samples.md#work-with-alerts)，或[Azure 監視 REST API](https://msdn.microsoft.com/library/azure/dn933805.aspx)。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-114">You can also configure an alert toopost tooa webhook URI using hello [Azure PowerShell Cmdlets](insights-powershell-samples.md#create-metric-alerts), [Cross-Platform CLI](insights-cli-samples.md#work-with-alerts), or [Azure Monitor REST API](https://msdn.microsoft.com/library/azure/dn933805.aspx).</span></span>
+
+## <a name="authenticating-hello-webhook"></a><span data-ttu-id="6ebe3-115">驗證 hello webhook</span><span class="sxs-lookup"><span data-stu-id="6ebe3-115">Authenticating hello webhook</span></span>
+<span data-ttu-id="6ebe3-116">hello webhook 可以使用語彙基元為基礎的授權來進行驗證。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-116">hello webhook can authenticate using token-based authorization.</span></span> <span data-ttu-id="6ebe3-117">hello webhook URI 會儲存權杖的識別碼，例如。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-117">hello webhook URI is saved with a token ID, eg.</span></span> `https://mysamplealert/webcallback?tokenid=sometokenid&someparameter=somevalue`
+
+## <a name="payload-schema"></a><span data-ttu-id="6ebe3-118">承載結構描述</span><span class="sxs-lookup"><span data-stu-id="6ebe3-118">Payload schema</span></span>
+<span data-ttu-id="6ebe3-119">hello POST 作業包含下列 JSON 裝載和結構描述都以標準為基礎的警示 hello。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-119">hello POST operation contains hello following JSON payload and schema for all metric-based alerts.</span></span>
+
+```JSON
+{
+"status": "Activated",
+"context": {
+            "timestamp": "2015-08-14T22:26:41.9975398Z",
+            "id": "/subscriptions/s1/resourceGroups/useast/providers/microsoft.insights/alertrules/ruleName1",
+            "name": "ruleName1",
+            "description": "some description",
+            "conditionType": "Metric",
+            "condition": {
+                        "metricName": "Requests",
+                        "metricUnit": "Count",
+                        "metricValue": "10",
+                        "threshold": "10",
+                        "windowSize": "15",
+                        "timeAggregation": "Average",
+                        "operator": "GreaterThanOrEqual"
+                },
+            "subscriptionId": "s1",
+            "resourceGroupName": "useast",                                
+            "resourceName": "mysite1",
+            "resourceType": "microsoft.foo/sites",
+            "resourceId": "/subscriptions/s1/resourceGroups/useast/providers/microsoft.foo/sites/mysite1",
+            "resourceRegion": "centralus",
+            "portalLink": "https://portal.azure.com/#resource/subscriptions/s1/resourceGroups/useast/providers/microsoft.foo/sites/mysite1"
+},
+"properties": {
+              "key1": "value1",
+              "key2": "value2"
+              }
+}
+```
+
+
+| <span data-ttu-id="6ebe3-120">欄位</span><span class="sxs-lookup"><span data-stu-id="6ebe3-120">Field</span></span> | <span data-ttu-id="6ebe3-121">強制</span><span class="sxs-lookup"><span data-stu-id="6ebe3-121">Mandatory</span></span> | <span data-ttu-id="6ebe3-122">一組固定值</span><span class="sxs-lookup"><span data-stu-id="6ebe3-122">Fixed Set of Values</span></span> | <span data-ttu-id="6ebe3-123">注意事項</span><span class="sxs-lookup"><span data-stu-id="6ebe3-123">Notes</span></span> |
+|:--- |:--- |:--- |:--- |
+| <span data-ttu-id="6ebe3-124">status</span><span class="sxs-lookup"><span data-stu-id="6ebe3-124">status</span></span> |<span data-ttu-id="6ebe3-125">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-125">Y</span></span> |<span data-ttu-id="6ebe3-126">“Activated”、“Resolved”</span><span class="sxs-lookup"><span data-stu-id="6ebe3-126">“Activated”, “Resolved”</span></span> |<span data-ttu-id="6ebe3-127">Hello 警示 hello 條件根據您設定的狀態。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-127">Status for hello alert based off of hello conditions you have set.</span></span> |
+| <span data-ttu-id="6ebe3-128">context</span><span class="sxs-lookup"><span data-stu-id="6ebe3-128">context</span></span> |<span data-ttu-id="6ebe3-129">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-129">Y</span></span> | |<span data-ttu-id="6ebe3-130">hello 警示內容。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-130">hello alert context.</span></span> |
+| <span data-ttu-id="6ebe3-131">timestamp</span><span class="sxs-lookup"><span data-stu-id="6ebe3-131">timestamp</span></span> |<span data-ttu-id="6ebe3-132">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-132">Y</span></span> | |<span data-ttu-id="6ebe3-133">hello 時間在哪一個 hello 觸發警示。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-133">hello time at which hello alert was triggered.</span></span> |
+| <span data-ttu-id="6ebe3-134">id</span><span class="sxs-lookup"><span data-stu-id="6ebe3-134">id</span></span> |<span data-ttu-id="6ebe3-135">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-135">Y</span></span> | |<span data-ttu-id="6ebe3-136">每個警示規則都有唯一的識別碼。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-136">Every alert rule has a unique id.</span></span> |
+| <span data-ttu-id="6ebe3-137">名稱</span><span class="sxs-lookup"><span data-stu-id="6ebe3-137">name</span></span> |<span data-ttu-id="6ebe3-138">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-138">Y</span></span> | |<span data-ttu-id="6ebe3-139">hello 警示名稱。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-139">hello alert name.</span></span> |
+| <span data-ttu-id="6ebe3-140">說明</span><span class="sxs-lookup"><span data-stu-id="6ebe3-140">description</span></span> |<span data-ttu-id="6ebe3-141">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-141">Y</span></span> | |<span data-ttu-id="6ebe3-142">Hello 警示的描述。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-142">Description of hello alert.</span></span> |
+| <span data-ttu-id="6ebe3-143">conditionType</span><span class="sxs-lookup"><span data-stu-id="6ebe3-143">conditionType</span></span> |<span data-ttu-id="6ebe3-144">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-144">Y</span></span> |<span data-ttu-id="6ebe3-145">“Metric”、“Event”</span><span class="sxs-lookup"><span data-stu-id="6ebe3-145">“Metric”, “Event”</span></span> |<span data-ttu-id="6ebe3-146">支援兩種類型的警示。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-146">Two types of alerts are supported.</span></span> <span data-ttu-id="6ebe3-147">其中一個根據度量的條件和 hello 其他 hello 活動記錄檔中的事件為基礎。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-147">One based on a metric condition and hello other based on an event in hello Activity Log.</span></span> <span data-ttu-id="6ebe3-148">如果 hello 警示根據度量或事件，請使用此值 toocheck。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-148">Use this value toocheck if hello alert is based on metric or event.</span></span> |
+| <span data-ttu-id="6ebe3-149">condition</span><span class="sxs-lookup"><span data-stu-id="6ebe3-149">condition</span></span> |<span data-ttu-id="6ebe3-150">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-150">Y</span></span> | |<span data-ttu-id="6ebe3-151">hello 特定欄位的 toocheck hello conditionType 為基礎。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-151">hello specific fields toocheck for based on hello conditionType.</span></span> |
+| <span data-ttu-id="6ebe3-152">metricName</span><span class="sxs-lookup"><span data-stu-id="6ebe3-152">metricName</span></span> |<span data-ttu-id="6ebe3-153">用於計量警示</span><span class="sxs-lookup"><span data-stu-id="6ebe3-153">for Metric alerts</span></span> | |<span data-ttu-id="6ebe3-154">監視 hello hello 度量定義哪些 hello 規則名稱。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-154">hello name of hello metric that defines what hello rule monitors.</span></span> |
+| <span data-ttu-id="6ebe3-155">metricUnit</span><span class="sxs-lookup"><span data-stu-id="6ebe3-155">metricUnit</span></span> |<span data-ttu-id="6ebe3-156">用於計量警示</span><span class="sxs-lookup"><span data-stu-id="6ebe3-156">for Metric alerts</span></span> |<span data-ttu-id="6ebe3-157">"Bytes"、"BytesPerSecond"、"Count"、"CountPerSecond"、"Percent"、"Seconds"</span><span class="sxs-lookup"><span data-stu-id="6ebe3-157">"Bytes", "BytesPerSecond", "Count", "CountPerSecond", "Percent", "Seconds"</span></span> |<span data-ttu-id="6ebe3-158">hello hello 標準中允許的單位。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-158">hello unit allowed in hello metric.</span></span> <span data-ttu-id="6ebe3-159">[允許的值在此列出](https://msdn.microsoft.com/library/microsoft.azure.insights.models.unit.aspx)。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-159">[Allowed values are listed here](https://msdn.microsoft.com/library/microsoft.azure.insights.models.unit.aspx).</span></span> |
+| <span data-ttu-id="6ebe3-160">metricValue</span><span class="sxs-lookup"><span data-stu-id="6ebe3-160">metricValue</span></span> |<span data-ttu-id="6ebe3-161">用於計量警示</span><span class="sxs-lookup"><span data-stu-id="6ebe3-161">for Metric alerts</span></span> | |<span data-ttu-id="6ebe3-162">hello 度量資訊會造成 hello 警示 hello 實際值。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-162">hello actual value of hello metric that caused hello alert.</span></span> |
+| <span data-ttu-id="6ebe3-163">threshold</span><span class="sxs-lookup"><span data-stu-id="6ebe3-163">threshold</span></span> |<span data-ttu-id="6ebe3-164">用於計量警示</span><span class="sxs-lookup"><span data-stu-id="6ebe3-164">for Metric alerts</span></span> | |<span data-ttu-id="6ebe3-165">hello 臨界值在哪一個 hello 啟動警示。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-165">hello threshold value at which hello alert is activated.</span></span> |
+| <span data-ttu-id="6ebe3-166">windowSize</span><span class="sxs-lookup"><span data-stu-id="6ebe3-166">windowSize</span></span> |<span data-ttu-id="6ebe3-167">用於計量警示</span><span class="sxs-lookup"><span data-stu-id="6ebe3-167">for Metric alerts</span></span> | |<span data-ttu-id="6ebe3-168">hello 期間，使用的 toomonitor hello 臨界值為基礎的警示活動的時間。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-168">hello period of time that is used toomonitor alert activity based on hello threshold.</span></span> <span data-ttu-id="6ebe3-169">必須介於 5 分鐘到 1 天之間。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-169">Must be between 5 minutes and 1 day.</span></span> <span data-ttu-id="6ebe3-170">ISO 8601 持續時間格式。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-170">ISO 8601 duration format.</span></span> |
+| <span data-ttu-id="6ebe3-171">timeAggregation</span><span class="sxs-lookup"><span data-stu-id="6ebe3-171">timeAggregation</span></span> |<span data-ttu-id="6ebe3-172">用於計量警示</span><span class="sxs-lookup"><span data-stu-id="6ebe3-172">for Metric alerts</span></span> |<span data-ttu-id="6ebe3-173">"Average"、"Last"、"Maximum"、"Minimum"、"None"、"Total"</span><span class="sxs-lookup"><span data-stu-id="6ebe3-173">"Average", "Last", "Maximum", "Minimum", "None", "Total"</span></span> |<span data-ttu-id="6ebe3-174">如何收集 hello 資料應該隨著時間結合。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-174">How hello data that is collected should be combined over time.</span></span> <span data-ttu-id="6ebe3-175">hello 預設值是 Average。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-175">hello default value is Average.</span></span> <span data-ttu-id="6ebe3-176">[允許的值在此列出](https://msdn.microsoft.com/library/microsoft.azure.insights.models.aggregationtype.aspx)。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-176">[Allowed values are listed here](https://msdn.microsoft.com/library/microsoft.azure.insights.models.aggregationtype.aspx).</span></span> |
+| <span data-ttu-id="6ebe3-177">operator</span><span class="sxs-lookup"><span data-stu-id="6ebe3-177">operator</span></span> |<span data-ttu-id="6ebe3-178">用於計量警示</span><span class="sxs-lookup"><span data-stu-id="6ebe3-178">for Metric alerts</span></span> | |<span data-ttu-id="6ebe3-179">hello 運算子使用 toocompare hello 目前度量資料 toohello 設定的閾值。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-179">hello operator used toocompare hello current metric data toohello set threshold.</span></span> |
+| <span data-ttu-id="6ebe3-180">subscriptionId</span><span class="sxs-lookup"><span data-stu-id="6ebe3-180">subscriptionId</span></span> |<span data-ttu-id="6ebe3-181">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-181">Y</span></span> | |<span data-ttu-id="6ebe3-182">Azure 訂用帳戶識別碼。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-182">Azure subscription ID.</span></span> |
+| <span data-ttu-id="6ebe3-183">resourceGroupName</span><span class="sxs-lookup"><span data-stu-id="6ebe3-183">resourceGroupName</span></span> |<span data-ttu-id="6ebe3-184">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-184">Y</span></span> | |<span data-ttu-id="6ebe3-185">Hello hello 資源群組名稱會影響資源。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-185">Name of hello resource group for hello impacted resource.</span></span> |
+| <span data-ttu-id="6ebe3-186">resourceName</span><span class="sxs-lookup"><span data-stu-id="6ebe3-186">resourceName</span></span> |<span data-ttu-id="6ebe3-187">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-187">Y</span></span> | |<span data-ttu-id="6ebe3-188">資源名稱的 hello 影響資源。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-188">Resource name of hello impacted resource.</span></span> |
+| <span data-ttu-id="6ebe3-189">resourceType</span><span class="sxs-lookup"><span data-stu-id="6ebe3-189">resourceType</span></span> |<span data-ttu-id="6ebe3-190">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-190">Y</span></span> | |<span data-ttu-id="6ebe3-191">資源類型的 hello 影響資源。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-191">Resource type of hello impacted resource.</span></span> |
+| <span data-ttu-id="6ebe3-192">resourceId</span><span class="sxs-lookup"><span data-stu-id="6ebe3-192">resourceId</span></span> |<span data-ttu-id="6ebe3-193">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-193">Y</span></span> | |<span data-ttu-id="6ebe3-194">資源識別碼 hello 影響資源。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-194">Resource ID of hello impacted resource.</span></span> |
+| <span data-ttu-id="6ebe3-195">resourceRegion</span><span class="sxs-lookup"><span data-stu-id="6ebe3-195">resourceRegion</span></span> |<span data-ttu-id="6ebe3-196">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-196">Y</span></span> | |<span data-ttu-id="6ebe3-197">區域或位置的 hello 影響資源。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-197">Region or location of hello impacted resource.</span></span> |
+| <span data-ttu-id="6ebe3-198">portalLink</span><span class="sxs-lookup"><span data-stu-id="6ebe3-198">portalLink</span></span> |<span data-ttu-id="6ebe3-199">Y</span><span class="sxs-lookup"><span data-stu-id="6ebe3-199">Y</span></span> | |<span data-ttu-id="6ebe3-200">直接連結 toohello 入口網站資源摘要 頁面。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-200">Direct link toohello portal resource summary page.</span></span> |
+| <span data-ttu-id="6ebe3-201">屬性</span><span class="sxs-lookup"><span data-stu-id="6ebe3-201">properties</span></span> |<span data-ttu-id="6ebe3-202">N</span><span class="sxs-lookup"><span data-stu-id="6ebe3-202">N</span></span> |<span data-ttu-id="6ebe3-203">選用</span><span class="sxs-lookup"><span data-stu-id="6ebe3-203">Optional</span></span> |<span data-ttu-id="6ebe3-204">一組`<Key, Value>`組 (也就是`Dictionary<String, String>`)，包括有關 hello 事件的詳細資料。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-204">Set of `<Key, Value>` pairs (i.e. `Dictionary<String, String>`) that includes details about hello event.</span></span> <span data-ttu-id="6ebe3-205">hello 屬性欄位是選擇性的。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-205">hello properties field is optional.</span></span> <span data-ttu-id="6ebe3-206">自訂 UI 或邏輯為基礎的應用程式的工作流程中，使用者可以輸入可以透過 hello 裝載傳遞的索引鍵/值。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-206">In a custom UI or Logic app-based workflow, users can enter key/values that can be passed via hello payload.</span></span> <span data-ttu-id="6ebe3-207">hello 替代方式 toopass 自訂屬性後 toohello webhook 是透過 hello webhook uri 本身 （做為查詢參數）</span><span class="sxs-lookup"><span data-stu-id="6ebe3-207">hello alternate way toopass custom properties back toohello webhook is via hello webhook uri itself (as query parameters)</span></span> |
+
+> [!NOTE]
+> <span data-ttu-id="6ebe3-208">hello 屬性欄位只能設定使用 hello [Azure 監視 REST API](https://msdn.microsoft.com/library/azure/dn933805.aspx)。</span><span class="sxs-lookup"><span data-stu-id="6ebe3-208">hello properties field can only be set using hello [Azure Monitor REST API](https://msdn.microsoft.com/library/azure/dn933805.aspx).</span></span>
+>
+>
+
+## <a name="next-steps"></a><span data-ttu-id="6ebe3-209">後續步驟</span><span class="sxs-lookup"><span data-stu-id="6ebe3-209">Next steps</span></span>
+* <span data-ttu-id="6ebe3-210">深入了解 Azure 警示 」 和 「 hello 視訊中的 webhook[與 PagerDuty 整合 Azure 警示](http://go.microsoft.com/fwlink/?LinkId=627080)</span><span class="sxs-lookup"><span data-stu-id="6ebe3-210">Learn more about Azure alerts and webhooks in hello video [Integrate Azure Alerts with PagerDuty](http://go.microsoft.com/fwlink/?LinkId=627080)</span></span>
+* [<span data-ttu-id="6ebe3-211">對 Azure 警示執行 Azure 自動化指令碼 (Runbook)</span><span class="sxs-lookup"><span data-stu-id="6ebe3-211">Execute Azure Automation scripts (Runbooks) on Azure alerts</span></span>](http://go.microsoft.com/fwlink/?LinkId=627081)
+* [<span data-ttu-id="6ebe3-212">使用邏輯應用程式 toosend Twilio 透過 SMS 從 Azure 警示</span><span class="sxs-lookup"><span data-stu-id="6ebe3-212">Use Logic App toosend an SMS via Twilio from an Azure alert</span></span>](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)
+* [<span data-ttu-id="6ebe3-213">使用邏輯應用程式 toosend Slack 從 Azure 警示訊息</span><span class="sxs-lookup"><span data-stu-id="6ebe3-213">Use Logic App toosend a Slack message from an Azure alert</span></span>](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)
+* [<span data-ttu-id="6ebe3-214">使用邏輯應用程式 toosend 從 Azure 警示訊息 tooan Azure 佇列</span><span class="sxs-lookup"><span data-stu-id="6ebe3-214">Use Logic App toosend a message tooan Azure Queue from an Azure alert</span></span>](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)
