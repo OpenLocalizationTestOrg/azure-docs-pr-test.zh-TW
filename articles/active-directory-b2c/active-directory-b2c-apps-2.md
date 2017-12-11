@@ -14,13 +14,14 @@ ms.devlang: na
 ms.topic: hero-article
 ms.date: 12/06/2016
 ms.author: dastrock
-ms.openlocfilehash: 51001feb17ae99d3bd391a9f980d514e07f97099
-ms.sourcegitcommit: dfd6f46af588d4cd9b7a11a026dd66612ce37a4e
+ms.openlocfilehash: 6dd3864fb8f08e92231e04c5b1ed546760ec3526
+ms.sourcegitcommit: 70b1af4ad0b53009cb30aadc54e9609134aa0d72
 ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 12/08/2017
+ms.lasthandoff: 12/11/2017
 ---
 # <a name="azure-active-directory-b2c-types-of-applications"></a>Azure Active Directory B2C：應用程式類型
+變更線條 prehandoff 中進行檔案。
 Azure Active Directory (Azure AD) B2C 支援各種現代應用程式架構的驗證。 全部都以業界標準通訊協定 [OAuth 2.0](active-directory-b2c-reference-protocols.md) 或 [OpenID Connect](active-directory-b2c-reference-protocols.md) 為基礎。 此文件簡要描述您可以建置的應用程式類型，不涉及您慣用的語言或平台。 在您 [開始建立應用程式](active-directory-b2c-overview.md#get-started)之前，也可協助您先了解一些高階案例。
 
 ## <a name="the-basics"></a>基本概念
