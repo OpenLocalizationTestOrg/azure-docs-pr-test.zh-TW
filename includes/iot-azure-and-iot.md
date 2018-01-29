@@ -1,63 +1,70 @@
 
-# <a name="azure-and-internet-of-things"></a>Azure 和物聯網
+# <a name="azure-and-the-internet-of-things"></a>Azure 和物聯網
 
-歡迎使用 tooMicrosoft Azure 和 hello 物聯網 (IoT)。 本文介紹描述 hello 共同的特性，您可能會使用 Azure 服務來部署的 IoT 解決方案的 IoT 解決方案架構。 IoT 解決方案都需要保護，可能編號 hello 百萬和解決方案的後端中的裝置之間的雙向通訊。 比方說，解決方案的後端可能會使用自動化、 預測分析 toouncover insights 從您的裝置到雲端的事件資料流。
-
-當您使用 Azure 服務實作此 IoT 解決方案架構時，Azure IoT 中樞是其中的重要建置組塊。 IoT 套件可針對特定的 IoT 案例端對端地完整實作這個架構。 例如：
-
-* hello*遠端監視*解決方案可讓您的裝置，例如 vending 機器 toomonitor hello 狀態。
-* hello*預測性維護*解決方案可協助您的裝置，例如在遠端的提取站台和 tooavoid 排程之外的停機時間幫浦 tooanticipate 維護需求。
-* hello*連接的工廠*方案可協助您 tooconnect 和監視您工業的裝置。
+歡迎使用 Microsoft Azure 與物聯網 (IoT)。 本文將說明雲端 IoT 解決方案的共同特性。 IoT 解決方案需要裝置 (可能數以百萬計) 與解決方案後端之間有安全、雙向的通訊。 例如，解決方案可能會使用自動化的預測性分析，以從裝置到雲端的事件串流中發掘出有用見解。
 
 ## <a name="iot-solution-architecture"></a>IoT 解決方案架構
 
-hello 下列圖表顯示一個典型的 IoT 解決方案架構。 hello 圖表不包含任何特定的 Azure 服務的 hello 名稱，但描述泛型的 IoT 解決方案架構中的 hello 重要元素。 在這種架構，IoT 裝置收集他們傳送 tooa 雲端閘道的資料。 hello 雲端閘道 hello 資料可讓資料傳送 tooother 特定業務應用程式或透過儀表板或其他簡報裝置 toohuman 運算子其他後端服務進行處理。
+下圖顯示典型 IoT 解決方案架構的重要元素。 此圖表與不限定於特定實作詳細資料 (如所使用的 Azure 服務和裝置作業系統)。 在此架構中，IoT 裝置會收集其傳送到雲端閘道的資料。 雲端閘道可讓資料供其他後端服務處理。 這些後端服務可以將資料提供給：
+
+* 其他企業營運應用程式。
+* 操作人員 (透過儀表板或其他簡報裝置)。
 
 ![IoT 解決方案架構][img-solution-architecture]
 
 > [!NOTE]
-> IoT 架構的深入討論，請參閱 hello [Microsoft Azure IoT 參考架構][lnk-refarch]。
+> 如需 IoT 架構的深入討論，請參閱 [Microsoft Azure IoT 參考架構][lnk-refarch]。
 
 ### <a name="device-connectivity"></a>裝置連線能力
 
-在此 IoT 解決方案架構中，裝置會傳送遙測，例如從提取的站台、 儲存體的 tooa 雲端端點的感應器讀數和處理。 在預測性維護案例中，當特定幫浦需要維護 hello 方案後端時，可能會使用感應器資料 toodetermine hello 資料流。 裝置也可以接收和回應 toocloud 到裝置訊息從雲端端點讀取訊息。 比方說，hello 預測性維護實例 hello 解決方案後端可能會傳送訊息 tooother 幫浦中提取站 toobegin 重設路徑操作流程維護到期之前的 hello toostart。 此程序可確保無法她到達時立即開始 hello 維護工程師。
+在 IoT 解決方案架構中，裝置通常會將遙測傳送至雲端進行儲存和處理。 例如，在預測性維護案例中，解決方案後端可能會使用感應器資料流，來判斷特定幫浦何時需要維護。 裝置也可以透過讀取來自雲端端點的訊息，以接收和回應雲端到裝置訊息。 在某些例子中，解決方案後端可能會傳送訊息給幫浦站的其他幫浦，以在維護應開始之前先重新路由流量。 此程序可確保維護工程師一到場時即可開始工作。
 
-其中一個 hello 面對 IoT 專案最大的挑戰是如何 tooreliably 安全地連線裝置 toohello 方案後端。 IoT 裝置做為比較的 tooother 用戶端，例如瀏覽器和行動裝置應用程式具有不同的特性。 IoT 裝置：
+安全、可靠的裝置連線通常是 IoT 方案中的最大挑戰。 這是因為相較於其他用戶端 (例如瀏覽器和行動應用程式)，IoT 裝置有不同的特性。 具體來說，IoT 裝置有以下特性：
 
-* 通常是無人操作的嵌入式系統。
+* 通常是無人操作的嵌入式系統 (不同於手機)。
 * 可以部署於實體存取成本昂貴的遠端位置。
-* 只能透過 hello 方案後端連線。 沒有任何其他方式 toointeract 與 hello 裝置。
+* 可能只能透過解決方案後端來存取。 沒有其他方式可與裝置互動。
 * 能力和/或處理資源可能都有限。
 * 網路連線能力可能不穩定、緩慢或昂貴。
-* 可能需要 toouse 專用、 自訂或業界特定的應用程式通訊協定。
+* 可能需要使用專屬、自訂或業界特定的應用程式通訊協定。
 * 可以使用一組大型常見的硬體和軟體平台來建立。
 
-除了上述 toohello 需求，任何 IoT 解決方案必須也提供小數位數、 安全性和可靠性。 hello 產生的連線需求是困難且耗時 tooimplement 使用傳統的技術，例如 web 容器和傳訊代理程式。 Azure IoT 中樞與 hello Azure IoT 裝置 Sdk 讓您更輕鬆 tooimplement 解決方案符合這些需求。
+除了上述限制，IoT 解決方案還必須是可擴充、安全和可靠的。
 
-裝置可直接聯繫雲端閘道端點，或如果 hello 裝置無法使用任何 hello hello 雲端閘道支援的通訊協定，它可在透過中繼的閘道連線。 例如，hello [Azure IoT 通訊協定閘道][ lnk-protocol-gateway]可以執行轉換的通訊協定，如果裝置無法使用的任何 hello IoT 中心支援的通訊協定。
+根據不同通訊協定和網路可用性，裝置可以與雲端直接通訊或透過中繼閘道通訊。 IoT 架構通常會是這兩種通訊模式的混合。
 
 ### <a name="data-processing-and-analytics"></a>資料處理和分析
 
-Hello 雲端中的 IoT 解決方案後端大部分都是 hello 資料處理的例如篩選和彙總遙測和 tooother 服務路由傳送。 hello IoT 解決方案後端：
+在最新的 IoT 解決方案中，資料處理可以在雲端或裝置端進行。 裝置端處理指的是「邊緣運算」。 選擇資料處理位置的決定因素如下：
 
-* 從您的裝置接收大規模的遙測，並決定如何 tooprocess 及儲存該資料。 
-* 可讓您從 hello 雲端 toospecific 裝置 toosend 命令。
-* Tooprovision 裝置和 toocontrol 哪些裝置允許 tooconnect tooyour 基礎結構，提供可讓您的裝置註冊功能。
-* 可讓您 tootrack hello 您裝置的狀態，並監視其活動。
+* 網路條件。 如果裝置與雲端之間的頻寬有限，就需要進行更多邊緣處理。
+* 回應時間。 如果要在裝置上執行幾乎需要即時處理的動作，可能比較適合在裝置本身中處理回應。 例如，機器人手臂需要在發生緊急狀況時停止。
+* 法規環境。 某些資料無法傳送至雲端。
 
-Hello 預測性維護案例中，hello 方案後端儲存歷程記錄的遙測資料。 hello 方案後端可以使用此資料 toouse tooidentify 模式 」，表示要維護到期日特定幫浦。
+一般來說，邊緣和雲端中的資料處理皆包含下列功能：
 
-IoT 解決方案可以包含自動意見反應迴圈。 比方說，就可以從特定裝置 hello 溫度高於一般的作業系統層級的遙測識別 hello 方案後端中的分析模組。 hello 方案就可以傳送命令 toohello 裝置，指示它 tootake 矯正措施。
+* 接收大規模來自裝置的遙測資料，並判斷如何處理與儲存該資料。
+* 分析遙測資料並提供見解 (即時或事後)。
+* 將命令從雲端或閘道裝置傳送到特定裝置。
+
+此外，IoT 雲端後端應提供：
+
+* 裝置註冊功能，讓您可以：
+    * 佈建裝置。
+    * 控制哪些裝置可連接到您的基礎結構。
+* 可讓您控制裝置狀態並監視其活動的裝置管理。
+
+例如，在預測性維護案例中，雲端後端會儲存歷史遙測資料。 解決方案會使用此資料來識別特定幫浦上的潛在異常行為，以免真的發生問題。 使用資料分析，雲端後端就可以識別預防性解決方案要將命令傳回裝置，並採取矯正措施。 此程序會在裝置與雲端間產生自動回應迴圈，大幅提升解決方案的效率。
 
 ### <a name="presentation-and-business-connectivity"></a>簡報及商務連線
 
-hello 展示和商業連線的層級可讓一般使用者，以 hello 的 IoT 解決方案 toointeract 和 hello 裝置。 它可讓使用者 tooview，並分析 hello 資料收集從他們的裝置。 這些檢視可以採用 hello 形式的儀表板或 BI 報表可以顯示兩個歷程記錄資料，或接近即時的資料。 比方說，操作員可以檢查特定幫浦的站台的 hello 狀態，並查看 hello 系統所發出的任何警示。 此圖層也可讓與現有的特定業務應用程式 tootie 的 hello IoT 解決方案後端整合到企業的商務程序或工作流程。 例如，hello 預測性維護方案可以整合排程系統該書籍工程師 toovisit 幫浦的站台時 hello 方案識別需要維護幫浦。
-
-![IoT 解決方案儀表板][img-dashboard]
+簡報及商務連線層可讓終端使用者與 IoT 解決方案及裝置互動。 其讓使用者能夠檢視和分析從他們的裝置所收集的資料。 這些檢視可以採用儀表板或 BI 報表的格式，以顯示歷程記錄資料及/或接近即時的資料。 例如，操作員可確認特定幫浦站的狀態，並查看系統產生的任何警示。 此層也可整合 IoT 解決方案與現有企業營運應用程式，以連結企業商務程序或工作流程。 比方說，預測性維護解決方案可整合排程系統，以在解決方案識別出需要維護的幫浦時，預約工程師到幫浦站檢查。
 
 [img-solution-architecture]: ./media/iot-azure-and-iot/iot-reference-architecture.png
 [img-dashboard]: ./media/iot-azure-and-iot/iot-suite.png
 
+[lnk-iot-hub]: ../articles/iot-hub/iot-hub-what-is-iot-hub.md
+[lnk-iot-suite]: ../articles/iot-suite/iot-suite-overview.md
 [lnk-machinelearning]: http://azure.microsoft.com/documentation/services/machine-learning/
 [Azure IoT Suite]: http://azure.microsoft.com/solutions/iot
 [lnk-protocol-gateway]:  ../articles/iot-hub/iot-hub-protocol-gateway.md

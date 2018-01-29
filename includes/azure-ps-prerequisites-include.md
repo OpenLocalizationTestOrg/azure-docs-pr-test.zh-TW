@@ -1,6 +1,6 @@
-## <a name="prerequisite-install-hello-azure-powershell-module"></a>必要條件： 安裝 hello Azure PowerShell 模組
+## <a name="prerequisite-install-the-azure-powershell-module"></a>必要條件：安裝 Azure PowerShell 模組
 
-tooperform hello 步驟在本文中，您需要太[tooinstall 和設定 Azure PowerShell](/powershell/azureps-cmdlets-docs)並遵循 hello 指示所有 hello 方式 toohello 結束 toosign 至 Azure，然後選取您的訂用帳戶。
+若要執行本文中的步驟，您需要[安裝和設定 Azure PowerShell 模組](/powershell/azureps-cmdlets-docs)。 請務必完成所有的指示。 安裝完成之後，請登入 Azure 並選取您的訂用帳戶。
 
 > [!NOTE]
-> 如果您沒有 Azure 帳戶，就需要申請一個。 請 [在此處註冊免費試用](../articles/active-directory/sign-up-organization.md)。
+> 您需有 Azure 帳戶，才能完成這些步驟。 如果您沒有 Azure 帳戶，您可以註冊 [免費試用](../articles/active-directory/sign-up-organization.md)。

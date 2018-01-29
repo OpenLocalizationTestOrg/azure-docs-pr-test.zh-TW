@@ -1,10 +1,10 @@
-# <a name="platform-supported-migration-of-iaas-resources-from-classic-tooazure-resource-manager"></a>平台支援移轉從傳統 tooAzure 資源管理員的 IaaS 資源
-在本文中，我們將描述我們如何啟用作為 hello 傳統 tooResource 管理員部署模型的服務 (IaaS) 資源的基礎結構。 您可以進一步了解 [Azure Resource Manager 功能和優點](../articles/azure-resource-manager/resource-group-overview.md)。 我們將詳細說明如何 tooconnect 資源從 hello 兩種部署模型，同時存在於訂用帳戶使用虛擬網路站台對站台閘道。
+# <a name="platform-supported-migration-of-iaas-resources-from-classic-to-azure-resource-manager"></a>平台支援的 IaaS 資源移轉 (從傳統移轉至 Azure Resource Manager)
+本文說明如何將基礎結構即服務 (IaaS) 資源從「傳統」部署模型移轉至 Resource Manager 部署模型。 您可以進一步了解 [Azure Resource Manager 功能和優點](../articles/azure-resource-manager/resource-group-overview.md)。 我們會詳細說明如何使用虛擬網路站對站閘道，將您訂用帳戶中並存之兩個部署模型的資源連接在一起。
 
 ## <a name="goal-for-migration"></a>移轉目標
-Resource Manager 除了可讓您透過範本部署複雜的應用程式之外，還可使用 VM 擴充功能來設定虛擬機器，並且納入了存取管理和標記功能。 Azure Resource Manager 還將虛擬機器的可調整、平行部署納入可用性設定組中。 hello 新部署模型也獨立提供運算、 網路和儲存體的生命週期的管理。 最後，有的焦點是根據預設，虛擬機器的虛擬網路中的 hello 強制使用啟用安全性。
+Resource Manager 除了可讓您透過範本部署複雜的應用程式之外，還可使用 VM 擴充功能來設定虛擬機器，並且納入了存取管理和標記功能。 Azure Resource Manager 還將虛擬機器的可調整、平行部署納入可用性設定組中。 新部署模型也針對計算、網路及儲存體個別提供生命週期管理功能。 最後，將焦點放在藉由在虛擬網路中強制使用虛擬機器的方式，預設啟用安全性。
 
-Hello 傳統部署模型的幾乎所有 hello 功能都支援計算、 網路和儲存在 Azure 資源管理員。 toobenefit hello 新功能 Azure 資源管理員中，您可以移轉現有的部署從 hello 傳統部署模型。
+在 Azure Resource Manager 之下，針對來自傳統部署模型的幾乎所有功能，都有提供計算、網路及儲存體支援。 若要享有 Azure Resource Manager 新功能的好處，您可以從「傳統」部署模型移轉現有的部署。
 
 ## <a name="supported-resources-for-migration"></a>支援移轉的資源
 移轉期間支援這些傳統 IaaS 資源
@@ -15,13 +15,13 @@ Hello 傳統部署模型的幾乎所有 hello 功能都支援計算、 網路和
 * 儲存體帳戶
 * 虛擬網路
 * VPN 閘道
-* 快速路由閘道_(hello 在相同訂用帳戶與虛擬網路只)_
+* Express Route 閘道 _(僅與虛擬網路位於相同的訂用帳戶中)_
 * 網路安全性群組 
 * 路由表 
 * 保留的 IP 
 
 ## <a name="supported-scopes-of-migration"></a>支援的移轉範圍
-有 4 個不同的方式 toocomplete 移轉運算、 網路和儲存體資源。 它們是： 
+有 4 種不同方式可完成計算、網路和儲存體資源移轉。 它們是： 
 
 * 移轉 (不在虛擬網路中的) 虛擬機器
 * 移轉 (虛擬網路中的) 虛擬機器
@@ -29,76 +29,76 @@ Hello 傳統部署模型的幾乎所有 hello 功能都支援計算、 網路和
 * 未連結的資源 (網路安全性群組、路由表和保留的 IP)
 
 ### <a name="migration-of-virtual-machines-not-in-a-virtual-network"></a>移轉 (不在虛擬網路中的) 虛擬機器
-在 hello Resource Manager 部署模型，安全性會強制執行您的應用程式預設。 所有 Vm 都需要 toobe hello 資源管理員模型中的虛擬網路中。 hello Azure 平台會重新啟動 (`Stop`， `Deallocate`，和`Start`) hello Vm hello 移轉的一部分。 針對 hello hello 虛擬機器的虛擬網路將移轉到，您會有兩個選項：
+在 Resource Manager 部署模型中，預設會針對應用程式強制執行安全性。 在 Resource Manager 模型中，所有 VM 都必須在虛擬網路內。 Azure 平台會在移轉過程中將 VM 重新啟動 (`Stop`、`Deallocate` 及 `Start`)。 您有兩個選項可將虛擬機器將移轉至虛擬網路︰
 
-* 您可以要求 hello 平台 toocreate 新的虛擬網路，並將 hello 虛擬機器移轉到新的虛擬網路 hello。
-* 您可以將 hello 虛擬機器移轉到現有的虛擬網路中資源管理員。
+* 您可以要求平台建立新的虛擬網路，然後將虛擬機器移轉到新的虛擬網路。
+* 您也可以將虛擬機器移轉到 Resource Manager 中的現有虛擬網路。
 
 > [!NOTE]
-> 在此移轉範圍內，同時 hello 管理平面作業，並針對一段時間 hello 移轉期間可能不允許 hello 資料平面作業。
+> 在此移轉範圍內，移轉期間可能會有一段時間不允許進行管理平面和資料平面作業。
 >
 >
 
 ### <a name="migration-of-virtual-machines-in-a-virtual-network"></a>移轉 (虛擬網路中的) 虛擬機器
-對於大部分的 VM 設定，只有 hello 中繼資料 hello 傳統和資源管理員部署模型之間移轉。 hello hello 基礎 Vm 正在執行相同的硬體，在相同網路，然後與 hello 相同的 hello 儲存體。 針對一段時間 hello 移轉期間可能不允許 hello 管理平面作業。 不過，hello 資料平面會繼續 toowork。 也就是 Vm （傳統） 之上執行的應用程式不會造成停機時間 hello 移轉期間。
+就大多數 VM 組態而言，只有中繼資料會在「傳統」部署模型與 Resource Manager 部署模型之間移轉。 基礎 VM 會在相同硬體、相同網路上，使用相同的儲存體來執行。 進行移轉時，可能會有某一段時間不允許進行管理平面作業。 不過，資料平面會繼續運作。 也就是說，在 VM (傳統) 上執行的應用程式不會在移轉期間造成停機時間。
 
-目前不支援 hello 的設定。 如果未來的 hello 加入支援，某些 Vm 在此設定可能會產生停機時間 （請透過 [停止]，解除配置，並重新啟動 VM 作業）。
+目前不支援下列組態。 如果未來新增支援，則此組態中的某些 VM 可能會造成停機時間 (將會經歷停止、解除配置及重新啟動 VM 的作業)。
 
 * 您在單一雲端服務中有多個可用性設定組。
 * 您在單一雲端服務中有一或多個可用性設定組，以及不在可用性設定組中的 VM。
 
 > [!NOTE]
-> 在此移轉範圍內，hello 管理平面可能不允許一段 hello 移轉期間的時間。 針對先前所述的某些組態，將會發生資料平面停機時間。
+> 在此移轉範圍內，移轉期間可能會有一段時間不允許進行管理平面作業。 針對先前所述的某些組態，將會發生資料平面停機時間。
 >
 >
 
 ### <a name="storage-accounts-migration"></a>儲存體帳戶移轉
-tooallow 順暢的移轉，您可以在傳統的儲存體帳戶中部署資源管理員 Vm。 透過這項功能，您就可以移轉計算和網路資源，且應該不受儲存體帳戶限制。 一旦移轉透過您的虛擬機器和虛擬網路，您需要 toomigrate 透過儲存體帳戶 toocomplete hello 遷移程序。
+為了讓移轉順暢進行，您可以在傳統儲存體帳戶中部署 Resource Manager VM。 透過這項功能，您就可以移轉計算和網路資源，且應該不受儲存體帳戶限制。 將「虛擬機器」和「虛擬網路」移轉過去之後，您必須將儲存體帳戶移轉過去，才能完成移轉程序。
 
 > [!NOTE]
-> hello Resource Manager 部署模型沒有 hello 概念傳統映像和磁碟。 Hello 儲存體帳戶是移轉、 傳統映像和磁碟中不會顯示 hello Resource Manager 堆疊但 hello 備份 Vhd 維持不變 hello 儲存體帳戶。
+> Resource Manager 部署模型並沒有「傳統」映像和磁碟的概念。 移轉儲存體帳戶時，「傳統」映像和磁碟不會顯示在 Resource Manager 堆疊中，但是作為基礎的 VHD 會繼續留在儲存體帳戶中。
 >
 >
 
 ### <a name="unattached-resources-network-security-groups-route-tables--reserved-ips"></a>未連結的資源 (網路安全性群組、路由表和保留的 IP)
-網路安全性群組、 路由表與保留 Ip 未附加的 tooany 虛擬機器和虛擬網路都能單獨移轉。
+可以獨立移轉未連結至任何虛擬機器和虛擬網路的網路安全性群組、路由表和保留的 IP。
 
 <br>
 
 ## <a name="unsupported-features-and-configurations"></a>不支援的功能和組態
-我們目前不支援某些功能和組態。 hello 下列各節說明我們的建議解決它們。
+我們目前不支援某些功能和組態。 下列各節說明我們對這些功能和組態的相關建議。
 
 ### <a name="unsupported-features"></a>不支援的功能
-目前不支援下列功能的 hello。 您可以選擇性地移除這些設定，移轉 hello Vm，然後再重新啟用 hello Resource Manager 部署模型中的 hello 設定。
+目前不支援下列功能。 您可以視需要移除這些設定、移轉 VM，然後再於 Resource Manager 部署模型中重新啟用這些設定。
 
 | 資源提供者 | 功能 | 建議 |
 | --- | --- | --- |
-| 計算 |未關聯的虛擬機器磁碟。 | 移轉 hello 儲存體帳戶時，將取得移轉 hello 背後這些磁碟的 VHD blob |
-| 計算 |虛擬機器映像。 | 移轉 hello 儲存體帳戶時，將取得移轉 hello 背後這些磁碟的 VHD blob |
-| 網路 |端點 ACL。 | 移除端點 ACL，然後重試移轉。 |
-| 網路 |具有 ExpressRoute 閘道和 VPN 閘道的虛擬網路  | 在開始移轉之前移除 hello VPN 閘道，然後在移轉完成之後重新建立 hello VPN 閘道。 深入了解 [ExpressRoute 移轉](../articles/expressroute/expressroute-migration-classic-resource-manager.md)。|
-| 網路 |具有授權連結的 ExpressRoute  | 移除 hello ExpressRoute 電路 toovirtaul 網路連線在開始移轉之前，並完成移轉之後，再重新建立 hello 連線。 深入了解 [ExpressRoute 移轉](../articles/expressroute/expressroute-migration-classic-resource-manager.md)。 |
-| 網路 |應用程式閘道 | 在開始移轉之前移除 hello 應用程式閘道，然後重新建立 hello 應用程式閘道後，移轉即完成。 |
-| 網路 |使用 VNet 對等互連的虛擬網路。 | 移轉虛擬網路 tooResource 管理員 中，然後對等。 深入了解 [VNet 對等互連](../articles/virtual-network/virtual-network-peering-overview.md)。 | 
+| 計算 | 未關聯的虛擬機器磁碟。 | 移轉儲存體帳戶時，將會移轉這些磁碟背後的 VHD blob |
+| 計算 | 虛擬機器映像。 | 移轉儲存體帳戶時，將會移轉這些磁碟背後的 VHD blob |
+| 網路 | 端點 ACL。 | 移除端點 ACL，然後重試移轉。 |
+| 網路 | 應用程式閘道 | 在開始移轉前移除應用程式閘道，然後在移轉完成後重新建立應用程式閘道。 |
+| 網路 | 使用 VNet 對等互連的虛擬網路。 | 將虛擬網路移轉至 Resource Manager，然後對等互連。 深入了解 [VNet 對等互連](../articles/virtual-network/virtual-network-peering-overview.md)。 | 
 
 ### <a name="unsupported-configurations"></a>不支援的組態
-目前不支援 hello 的設定。
+目前不支援下列組態。
 
 | 服務 | 組態 | 建議 |
 | --- | --- | --- |
-| Resource Manager |傳統資源的「角色型存取控制」(RBAC) |因為在移轉後修改 hello hello 資源的 URI 時，建議您計劃移轉之後需要 toohappen hello RBAC 原則更新。 |
-| 計算 |與 VM 關聯的多個子網路 |更新 hello 子網路組態 tooreference 唯一子網路。 |
-| 計算 |屬於 tooa 虛擬網路，但沒有指派的明確子網路的虛擬機器 |您可以選擇性地刪除 hello VM。 |
-| 計算 |具有警示、自動調整原則的虛擬機器 |hello 移轉閒內通過，並卸除這些設定。 強烈建議您不要 hello 移轉之前，評估您的環境。 或者，您可以重新設定 hello 警示設定後，移轉即完成。 |
-| 計算 |XML VM 擴充功能 (BGInfo 1.*、Visual Studio Debugger、Web Deploy 及遠端偵錯) |不支援此做法。 建議您從 hello toocontinue 移轉虛擬機器中移除這些擴充功能，或它們皆會予以捨棄自動 hello 移轉程序期間。 |
-| 計算 |使用進階儲存體進行開機診斷 |停用 hello Vm 的開機診斷功能，再繼續進行移轉。 Hello 移轉完成後，您可以重新啟用 hello Resource Manager 堆疊中的開機診斷。 此外，應該將用於快照和序列記錄檔的 Blob 刪除，這樣您就不再需要支付這些 Blob 的費用。 |
-| 計算 |包含 Web 角色/背景工作角色的雲端服務 |目前不支援。 |
-| 網路 |包含虛擬機器和 Web 角色/背景工作角色的虛擬網路 |目前不支援。 |
+| Resource Manager |傳統資源的「角色型存取控制」(RBAC) |由於資源的 URI 在移轉後會經過修改，因此建議您規劃需要在移轉後進行的 RBAC 原則更新。 |
+| 計算 |與 VM 關聯的多個子網路 |將子網路組態更新為只參考子網路。 |
+| 計算 |隸屬於虛擬網路但未獲指派明確子網路的虛擬機器。 |您可以選擇刪除此 VM。 |
+| 計算 |具有警示、自動調整原則的虛擬機器 |移轉會進行到完成，但會捨棄這些設定。 強烈建議您在執行移轉前先評估您的環境。 或者，您也可以在移轉完成之後重新設定警示設定。 |
+| 計算 |XML VM 擴充功能 (BGInfo 1.*、Visual Studio Debugger、Web Deploy 及遠端偵錯) |不支援此做法。 建議您從虛擬機器中移除這些擴充功能以繼續進行移轉，否則系統會在移轉過程中自動卸除它們。 |
+| 計算 |使用進階儲存體進行開機診斷 |先停用 VM 的「開機診斷」功能，再繼續進行移轉。 您可以在移轉完成之後，於 Resource Manager 堆疊中重新啟用開機診斷。 此外，應該將用於快照和序列記錄檔的 Blob 刪除，這樣您就不再需要支付這些 Blob 的費用。 |
+| 計算 | 包含 Web 角色/背景工作角色的雲端服務 | 目前不支援。 |
+| 計算 | 包含一個以上可用性設定組或多個可用性設定組的雲端服務。 |目前不支援。 請先將虛擬機器移至相同可用性設定組，然後再移轉。 |
+| 計算 | 具 Azure 資訊安全中心擴充功能的 VM | 「Azure 資訊安全中心」會自動在「虛擬機器」上安裝擴充功能，以監視其安全性並引發警示。 如果已在訂用帳戶上啟用「Azure 資訊安全中心」原則，通常就會自動安裝這些擴充功能。 若要移轉虛擬機器，請停用訂用帳戶上的資訊安全中心原則，這將會從虛擬機器移除資訊安全中心監視擴充功能。 |
+| 計算 | 具備份或快照集擴充功能的 VM | 這些擴充功能都安裝在使用 Azure 備份功能設定的虛擬機器上。 若要移轉這些虛擬機器，請遵循[這裡](https://docs.microsoft.com/azure/virtual-machines/windows/migration-classic-resource-manager-faq#vault)的指引。  |
+| 網路 |包含虛擬機器和 Web 角色/背景工作角色的虛擬網路 |目前不支援。 請先將 Web/背景工作角色移至他們自己的虛擬網路，然後再移轉。 在移轉傳統虛擬網路之後，移轉的 Azure Resource Manager 虛擬網路可以和傳統虛擬網路對等互連，達到類似之前的組態。|
+| 網路 | 傳統 ExpressRoute 線路 |目前不支援。 在開始 IaaS 移轉之前，需要將這些線路移轉至 Azure Resource Manager。 若要深入了解這部分，請參閱[將 ExpressRoute 線路從傳統部署模型移至 Resource Manager 部署模型](../articles/expressroute/expressroute-move.md)。|
 | Azure App Service |包含 App Service 環境的虛擬網路 |目前不支援。 |
 | Azure HDInsight |包含 HDInsight 服務的虛擬網路 |目前不支援。 |
 | Microsoft Dynamics 週期服務 |包含「Dynamics 週期服務」所管理之虛擬機器的虛擬網路 |目前不支援。 |
 | Azure AD 網域服務 |包含 Azure AD 網域服務的虛擬網路 |目前不支援。 |
 | Azure RemoteApp |包含 Azure RemoteApp 部署的虛擬網路 |目前不支援。 |
-| Azure API 管理 |包含 Azure API 管理部署的虛擬網路 |目前不支援。 toomigrate hello IaaS VNET，請變更 hello hello 沒有停機時間作業 API 管理部署的 VNET。 |
-| 計算 |與 VNET 搭配使用的「Azure 資訊安全中心」擴充功能，其中該 VNET 具有與內部部署 DNS 伺服器搭配使用的 VPN 閘道傳輸連線或 ExpressRoute 閘道 |Azure 資訊安全中心會自動安裝擴充功能上的虛擬機器 toomonitor 它們的安全性，並引發警示。 這些延伸通常取得自動安裝 hello Azure 資訊安全中心原則啟用 hello 訂用帳戶。 目前不支援 ExpressRoute 閘道移轉，且具有傳輸連線的 VPN 閘道會失去內部部署存取。 刪除 ExpressRoute 閘道或移轉的 VPN 閘道與傳輸連線會導致網際網路存取 tooVM 儲存體帳戶 toobe 繼續進行認可 hello 移轉時遺失。 因為無法填入 hello 客體代理程式狀態的 blob 發生此情況時，將不會繼續 hello 移轉。 建議 toodisable hello 訂用帳戶的 Azure 資訊安全中心原則過去 3 小時內，再繼續移轉。 |
-
+| Azure API 管理 |包含 Azure API 管理部署的虛擬網路 |目前不支援。 若要移轉 IaaS VNET，請變更屬於無停機作業的 API 管理部署的 VNET。 |

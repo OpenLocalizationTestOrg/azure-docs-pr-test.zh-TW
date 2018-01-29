@@ -1,40 +1,40 @@
-## <a name="view-device-telemetry-in-hello-dashboard"></a>Hello 儀表板中檢視裝置遙測
-在遠端監視解決方案可讓您 tooview hello 遙測您的裝置傳送 tooIoT 中樞 hello hello 儀表板。
+## <a name="view-device-telemetry"></a>檢視裝置遙測資料
 
-1. 在瀏覽器中傳回 toohello 遠端監視方案儀表板，按一下 **裝置**在 hello 左側面板 toonavigate toohello**裝置清單**。
-2. 在 hello**裝置清單**，您應該會看到您的裝置 hello 狀態是**執行**。 如果沒有，請按一下**啟用裝置**在 hello**裝置詳細資料**面板。
-   
-    ![檢視裝置狀態][18]
-3. 按一下**儀表板**tooreturn toohello 儀表板中，選取您的裝置在 hello**裝置 tooView**下拉式 tooview 其遙測。 來自 hello 範例應用程式的 hello 遙測是 50 個單位的內部溫度、 55 單位外部溫度和溼度的 50 個單位。
-   
-    ![檢視裝置遙測資料][img-telemetry]
+您可以在解決方案中，檢視從您 [裝置] 頁面上之裝置所傳送的遙測。
 
-## <a name="invoke-a-method-on-your-device"></a>在裝置上叫用方法
-hello 遠端監視解決方案中的 hello 儀表板可讓您透過 IoT 中樞裝置上的 tooinvoke 方法。 比方說，在遠端監視解決方案的 hello 您可以叫用方法 toosimulate 重新開機裝置。
+1. 在 [裝置] 頁面上選取裝置清單中佈建的裝置。 面板會顯示您裝置的相關資訊，包括裝置遙測繪圖：
 
-1. Hello 遠端監視方案儀表板中，按一下 **裝置**在 hello 左側面板 toonavigate toohello**裝置清單**。
-2. 按一下**裝置識別碼**裝置 hello**裝置清單**。
-3. 在 hello**裝置詳細資料** 面板中，按一下 **方法**。
-   
-    ![裝置方法][13]
-4. 在 hello**方法**下拉式清單中，選取**InitiateFirmwareUpdate**，然後在**FWPACKAGEURI**輸入空的 URL。 按一下**叫用方法**toocall hello 方法 hello 裝置上的。
-   
-    ![叫用裝置方法][14]
-   
+    ![請參閱裝置詳細資料](media/iot-suite-visualize-connecting/devicesdetail.png)
 
-5. 您會看到 hello 主控台 hello 裝置處理 hello 方法時，執行您裝置的程式碼中的訊息。 hello 方法結果的 hello hello 方案入口網站新增 toohello 歷程記錄：
+1. 選擇 [壓力] 以變更遙測顯示器：
 
-    ![檢視方法歷程記錄][img-method-history]
+    ![檢視壓力遙測](media/iot-suite-visualize-connecting/devicespressure.png)
+
+1. 若要檢視有關您裝置的診斷資訊，請向下捲動至 [診斷]：
+
+    ![檢視裝置診斷](media/iot-suite-visualize-connecting/devicesdiagnostics.png)
+
+## <a name="act-on-your-device"></a>在裝置上採取行動
+
+若要在您的裝置上叫用方法，請使用遠端監視解決方案中的 [裝置] 頁面。 例如，在遠端監視解決方案中，**Chiller** 裝置會實作 **Reboot** 方法。
+
+1. 選擇 [裝置] 以瀏覽至解決方案中的 [裝置] 頁面。
+
+1. 在 [裝置] 頁面上選取裝置清單中佈建的裝置：
+
+    ![選取您的實體裝置](media/iot-suite-visualize-connecting/devicesselect.png)
+
+1. 若要顯示您可以在裝置上呼叫的方法清單，選擇 [排程]。 若要排程可在多個裝置上執行的方法，您可以在清單中選取多個裝置。 [排程] 面板會顯示所有您選取之裝置的通用方法。
+
+1. 選擇 [重新開機]，將作業名稱設定為 **RebootPhysicalChiller**，然後選擇 [套用]：
+
+    ![排程重新開機](media/iot-suite-visualize-connecting/deviceschedule.png)
+
+1. 當裝置處理該方法時，會在執行裝置程式碼的主控台中顯示訊息。
+
+> [!NOTE]
+> 若要在解決方案中追蹤作業的狀態，請選擇 [檢視]。
 
 ## <a name="next-steps"></a>後續步驟
-hello 文章[預先設定的自訂方案][ lnk-customize]描述一些您可以擴充此範例的方法。 可能的延伸模組包括使用真實的感應器和實作其他命令。
 
-您可以進一步了解 hello [hello azureiotsuite.com 網站的權限][lnk-permissions]。
-
-[13]: ./media/iot-suite-visualize-connecting/suite4.png
-[14]: ./media/iot-suite-visualize-connecting/suite7-1.png
-[18]: ./media/iot-suite-visualize-connecting/suite10.png
-[img-telemetry]: ./media/iot-suite-visualize-connecting/telemetry.png
-[img-method-history]: ./media/iot-suite-visualize-connecting/history.png
-[lnk-customize]: ../articles/iot-suite/iot-suite-guidance-on-customizing-preconfigured-solutions.md
-[lnk-permissions]: ../articles/iot-suite/iot-suite-permissions.md
+[自訂遠端監視預先設定解決方案](../articles/iot-suite/iot-suite-remote-monitoring-customize.md)文章中說明一些自訂預先設定解決方案的方法。

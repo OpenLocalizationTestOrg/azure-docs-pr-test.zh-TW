@@ -1,18 +1,22 @@
-您現在可以使用 hello Azure 入口網站 toocreate 資料庫中的 hello 資料總管工具和集合。 
+您現在可以在 Azure 入口網站中使用 [資料總管] 工具，建立資料庫和集合。 
 
-1. 在 hello Azure 入口網站，在 hello 左側瀏覽功能表中，按一下 **資料總管 （預覽）**。 
+1. 按一下 [資料總管] > [新增集合]。 
+    
+    [新增集合] 區域會顯示在最右邊，您可能需要向右捲動才能看到它。
 
-2. 在 hello**資料總管 （預覽）**刀鋒視窗中，按一下 **新集合**，然後提供下列資訊的 hello:
+    ![Azure 入口網站資料總管，新增集合刀鋒視窗](./media/cosmos-db-create-collection/azure-cosmosdb-data-explorer.png)
 
-    ![hello Azure 入口網站的資料總管刀鋒伺服器](./media/cosmos-db-create-collection/azure-cosmosdb-data-explorer.png)
+2. 在 [新增集合] 頁面上，輸入新集合的設定。
 
     設定|建議的值|說明
     ---|---|---
-    資料庫識別碼|工作|hello 新的資料庫名稱。 資料庫名稱必須包含從 1 到 255 個字元，且不能包含 /、\\、#、? 或尾端空格。
-    集合識別碼|項目|hello 名稱為新的集合的。 集合名稱有 hello 相同字元的需求，資料庫識別碼。
-    儲存體容量| 固定 (10 GB)|使用 hello 預設值。 此值為 hello hello 資料庫儲存容量。
-    Throughput|400 RU|使用 hello 預設值。 如果您想要 tooreduce 延遲，您可以向上延展 hello 輸送量更新版本。
-    資料分割索引鍵|/類別|資料分割索引鍵平均散發資料 tooeach 磁碟分割。 選取 hello 正確的資料分割索引鍵，請務必在建立高效能的集合。 詳細資訊，請參閱 toolearn[設計資料分割](../articles/cosmos-db/partition-data.md#designing-for-partitioning)。    
-3. 您已經完成 hello 表單之後，請按一下**確定**。
+    資料庫識別碼|工作|輸入 *Tasks* 作為新資料庫的名稱。 資料庫名稱必須包含從 1 到 255 個字元，且不能包含 /、\\、#、? 或尾端空格。
+    集合識別碼|項目|輸入 *Items* 作為新集合的名稱。 集合識別碼與資料庫名稱具有相同的字元需求。
+    儲存體容量| 固定 (10 GB)|將值變更為 [固定 (10 GB)]。 此值是資料庫的儲存體容量。
+    Throughput|400 RU|將輸送量變更為每秒 400 個要求單位 (RU/秒)。 儲存體容量必須設為 [固定 (10 GB)]，才能將輸送量設為 400 RU/秒。 如果您想要降低延遲，稍後可以相應增加輸送量。 
+    
+    按一下 [SERVICEPRINCIPAL] 。
 
-資料檔案總管會顯示 hello 新資料庫與集合。 
+    [資料總管] 會顯示新的資料庫和集合。
+
+    ![Azure 入口網站 [資料總管]，顯示新的資料庫和集合](./media/cosmos-db-create-collection/azure-cosmos-db-new-collection.png)

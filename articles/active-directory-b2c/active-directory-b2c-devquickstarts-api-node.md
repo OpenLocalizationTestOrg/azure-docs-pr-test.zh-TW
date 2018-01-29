@@ -4,7 +4,7 @@ description: "如何建置可接受來自 B2C 租用戶之權杖的 Node.js Web 
 services: active-directory-b2c
 documentationcenter: 
 author: dstrockis
-manager: mbaldwin
+manager: mtillman
 editor: 
 ms.assetid: fc2b9af8-fbda-44e0-962a-8b963449106a
 ms.service: active-directory-b2c
@@ -14,11 +14,11 @@ ms.devlang: javascript
 ms.topic: hero-article
 ms.date: 01/07/2017
 ms.author: xerners
-ms.openlocfilehash: 6480be75c314ede1b786e959a79c0385dd2edea8
-ms.sourcegitcommit: 73f159cdbc122ffe42f3e1f7a3de05f77b6a4725
-ms.translationtype: MT
+ms.openlocfilehash: 3a0249f2f7dfd76d89cbf497376f53fe06c250c3
+ms.sourcegitcommit: 68aec76e471d677fd9a6333dc60ed098d1072cfc
+ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 11/28/2017
+ms.lasthandoff: 12/18/2017
 ---
 # <a name="azure-ad-b2c-secure-a-web-api-by-using-nodejs"></a>Azure AD B2C：使用 Node.js 保護 Web API 安全
 <!-- TODO [AZURE.INCLUDE [active-directory-b2c-devquickstarts-web-switcher](../../includes/active-directory-b2c-devquickstarts-web-switcher.md)]-->
@@ -35,7 +35,7 @@ ms.lasthandoff: 11/28/2017
 若要執行此範例，您需要：
 
 1. 向 Azure AD 註冊應用程式。
-2. 設定您的應用程式來使用 Passport 的 `azure-ad-passport` 外掛程式。
+2. 設定您的應用程式來使用 Passport 的 `passport-azure-ad` 外掛程式。
 3. 設定用戶端應用程式呼叫「待辦事項清單」Web API。
 
 ## <a name="get-an-azure-ad-b2c-directory"></a>取得 Azure AD B2C 目錄
@@ -48,8 +48,6 @@ ms.lasthandoff: 11/28/2017
 * 在 [回覆 URL] 中輸入 `http://localhost/TodoListService`。 這是此程式碼範例的預設 URL。
 * 為您的應用程式建立 **應用程式密碼** ，並複製起來。 您稍後需要此資料。 請注意，這個值在使用之前必須經過 [XML 逸出](https://www.w3.org/TR/2006/REC-xml11-20060816/#dt-escape) 。
 * 複製指派給您的應用程式的 **應用程式識別碼** 。 您稍後需要此資料。
-
-[!INCLUDE [active-directory-b2c-devquickstarts-v2-apps](../../includes/active-directory-b2c-devquickstarts-v2-apps.md)]
 
 ## <a name="create-your-policies"></a>建立您的原則
 在 Azure AD B2C 中，每個使用者體驗皆是由某個 [原則](active-directory-b2c-reference-policies.md)所定義。 此應用程式包含兩種身分識別體驗：註冊和登入。 您必須為每個類型建立一個原則，如 [原則參考文章](active-directory-b2c-reference-policies.md#create-a-sign-up-policy)所述。  建立您的三個原則時，請務必：

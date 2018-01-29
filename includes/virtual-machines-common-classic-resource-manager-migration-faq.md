@@ -1,66 +1,66 @@
-# <a name="frequently-asked-questions-about-classic-tooazure-resource-manager-migration"></a>關於傳統 tooAzure 資源管理員移轉的常見問題集
+# <a name="frequently-asked-questions-about-classic-to-azure-resource-manager-migration"></a>傳統至 Azure Resource Manager 移轉的常見問題
 
 ## <a name="does-this-migration-plan-affect-any-of-my-existing-services-or-applications-that-run-on-azure-virtual-machines"></a>此移轉計劃是否會影響任何在 Azure 虛擬機器上執行的現有服務或應用程式？ 
 
-否。 hello Vm （傳統） 是中的正式運作的完整支援的服務。 您可以繼續 toouse 這些資源 tooexpand 洁 Microsoft Azure 上的。
+編號 VM (傳統) 是在全面可用性方面完全受支援的服務。 您可以繼續使用這些資源以擴展您在 Microsoft Azure 上的使用量。
 
-## <a name="what-happens-toomy-vms-if-i-dont-plan-on-migrating-in-hello-near-future"></a>如果我不打算在 hello 附近未來移轉會怎樣 toomy Vm？ 
+## <a name="what-happens-to-my-vms-if-i-dont-plan-on-migrating-in-the-near-future"></a>如果我最近沒有移轉的打算，我的 VM 會出現什麼狀況？ 
 
-我們不會淘汰 hello 現有傳統 Api 和資源的模型。 我們想要 toomake 移轉更容易使用，請考慮 hello 進階 hello Resource Manager 部署模型中可用的功能。 我們強烈建議您檢閱[hello 拉大距離的某些](../articles/azure-resource-manager/resource-manager-deployment-model.md)是的 IaaS 資源管理員 」 底下的一部分。
+我們並未要淘汰現有的傳統 API 和資源模型。 我們想要將 Resource Manager 部署模型所提供的進階功能納入考量，讓移轉變簡單。 強烈建議您檢閱 Resource Manager 下 IaaS 所包含的 [一些進展](../articles/azure-resource-manager/resource-manager-deployment-model.md) 。
 
 ## <a name="what-does-this-migration-plan-mean-for-my-existing-tooling"></a>對於我現有的工具來說，此移轉計劃有何意義？ 
 
-更新工具 toohello Resource Manager 部署模型是一種您的移轉計劃中有針對 tooaccount hello 最重要變更。
+將您的工具更新為 Resource Manager 部署模型，是您在移轉計畫中必須說明的最重要變更之一。
 
-## <a name="how-long-will-hello-management-plane-downtime-be"></a>保留時間長度將 hello 管理平面停機時間？ 
+## <a name="how-long-will-the-management-plane-downtime-be"></a>管理平面的停機時間會持續多久？ 
 
-Hello 要移轉的資源數目而定。 較小的部署 （數十 Vm），hello 整個移轉花費時間不超過一小時。 對於大規模的部署 （數百個 Vm），hello 移轉可能需要幾小時的時間。
+依您所移轉的資源數目而定。 就較小型部署 (幾十個 VM) 而言，整個移轉作業應該不會超過一小時。 如果是大規模部署 (數百個 VM)，則移轉可能需要花費幾個小時。
 
 ## <a name="can-i-roll-back-after-my-migrating-resources-are-committed-in-resource-manager"></a>在 Resource Manager 中認可移轉中的資源之後，是否還可以回復？ 
 
-只要 hello 資源位於 hello 備妥狀態，您可以中止移轉。 Hello 資源已成功移轉到 hello 認可作業之後，不支援復原。
+只要資源處於已準備就緒狀態，您就可以中止移轉。 透過認可作業成功移轉資源之後，即不支援復原。
 
-## <a name="can-i-roll-back-my-migration-if-hello-commit-operation-fails"></a>可以復原我移轉如果 hello 認可作業失敗？ 
+## <a name="can-i-roll-back-my-migration-if-the-commit-operation-fails"></a>如果認可作業失敗，是否可以將移轉復原？ 
 
-如果 hello 認可作業失敗，無法中止移轉。 所有移轉作業，包括 hello 認可作業，都是等冪。 因此，建議您重試 hello 一小段時間後的作業。 如果您仍然要面對錯誤，建立支援票證或以 hello ClassicIaaSMigration 標記建立論壇文章我們[VM 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=WAVirtualMachinesforWindows)。
+如果認可作業失敗，就無法中止移轉。 所有移轉作業 (包括認可作業) 都是等冪的。 因此，建議您稍後再重試作業。 如果仍然遇到錯誤，請建立支援票證，或是在我們的 [VM 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=WAVirtualMachinesforWindows)上建立一篇標籤為 ClassicIaaSMigration 的論壇文章。
 
-## <a name="do-i-have-toobuy-another-express-route-circuit-if-i-have-toouse-iaas-under-resource-manager"></a>我是否必須 toobuy 另一個快速路由迴路如果我有 toouse IaaS 在資源管理員？ 
+## <a name="do-i-have-to-buy-another-express-route-circuit-if-i-have-to-use-iaas-under-resource-manager"></a>如果我必須使用 Resource Manager 下的 IaaS，是否必須購買另一條 ExpressRoute 線路？ 
 
-否。 我們最近啟用[hello 傳統 toohello Resource Manager 部署模型中移動的 ExpressRoute 電路](../articles/expressroute/expressroute-move.md)。 如果您已經有您不需要指定 toobuy 新的 ExpressRoute 電路。
+編號 我們最近啟用了[將 ExpressRoute 線路從傳統部署模型移至 Resource Manager 部署模型](../articles/expressroute/expressroute-move.md)的功能。 如果您已有 ExpressRoute 線路，就不需要購買新線路。
 
 ## <a name="what-if-i-had-configured-role-based-access-control-policies-for-my-classic-iaas-resources"></a>如果我已為傳統 IaaS 資源設定角色型存取控制原則，該怎麼辦？ 
 
-在移轉期間，hello 資源轉換從傳統 tooResource 管理員。 因此我們建議您計劃移轉之後需要 toohappen hello RBAC 原則更新。
+在移轉期間，資源會從傳統轉換至 Resource Manager。 因此，建議您規劃需要在移轉後進行的 RBAC 原則更新。
 
-## <a name="i-backed-up-my-classic-vms-in-a-backup-vault-can-i-migrate-my-vms-from-classic-mode-tooresource-manager-mode-and-protect-them-in-a-recovery-services-vault"></a>我已在備份保存庫中備份我的傳統 VM。 我的 Vm 將從傳統模式 tooResource 管理員模式移轉和復原服務保存庫來保護它們？ 
+## <a name="i-backed-up-my-classic-vms-in-a-backup-vault-can-i-migrate-my-vms-from-classic-mode-to-resource-manager-mode-and-protect-them-in-a-recovery-services-vault"></a>我已在備份保存庫中備份我的傳統 VM。 我可以將我的 VM 從傳統模式移轉至 Resource Manager 模式，並在復原服務保存庫中保護它們嗎？
 
-當您移動 hello VM 從傳統 tooResource 管理員模式下，傳統備份保存庫中的 VM 復原點不自動移轉 tooa 復原服務保存庫。 請遵循這些步驟 tootransfer 您 VM 的備份：
+當您將 VM 從傳統模式移至 Resource Manager 模式時，備份保存庫中的<a name="vault">傳統</a> VM 復原點不會自動移轉至復原服務保存庫。 請遵循下列步驟來傳輸您的 VM 備份：
 
-1. 在 hello 備份保存庫中，移 toohello**受保護項目**索引標籤並選取 hello VM。 按一下[停止保護](../articles/backup/backup-azure-manage-vms-classic.md#stop-protecting-virtual-machines)。 讓 [刪除相關聯的備份資料] 選項保持 [未核取] 狀態。
-2. 刪除 hello VM hello 快照集備份/擴充功能。
-3. 從傳統模式 tooResource 管理員模式移轉 hello 虛擬機器。 請確定 hello 儲存體和網路資訊也是對應的 toohello 虛擬機器移轉 tooResource 管理員模式。
-4. 建立復原服務保存庫和設定虛擬機器使用的備份在 hello 移轉**備份**在保存庫儀表板頂端的動作。 詳細資訊，在備份 VM tooa 復原服務保存庫，請參閱 hello 文章[保護與復原服務保存庫的 Azure Vm](../articles/backup/backup-azure-vms-first-look-arm.md)。
+1. 在備份保存庫中，移至 [受保護的項目] 索引標籤，然後選取 VM。 按一下[停止保護](../articles/backup/backup-azure-manage-vms.md#stop-protecting-virtual-machines)。 讓 [刪除相關聯的備份資料] 選項保持 [未核取] 狀態。
+2. 從 VM 中刪除備份/快照集擴充功能。
+3. 將虛擬機器從傳統模式移轉至 Resource Manager 模式。 確定虛擬機器對應的儲存體和網路資訊也會移轉至 Resource Manager 模式。
+4. 建立復原服務保存庫，並使用保存庫儀表板上方的 [備份] 動作，在移轉的虛擬機器上設定備份。 如需將 VM 備份至復原服務保存庫的詳細資訊，請參閱[使用復原服務保存庫保護 Azure VM](../articles/backup/backup-azure-vms-first-look-arm.md) 文章。
 
-## <a name="can-i-validate-my-subscription-or-resources-toosee-if-theyre-capable-of-migration"></a>可以我確認我的訂用帳戶或資源 toosee 如果它們能夠移轉？ 
+## <a name="can-i-validate-my-subscription-or-resources-to-see-if-theyre-capable-of-migration"></a>我是否可以驗證訂用帳戶或資源，以查看是否能夠移轉它們？ 
 
-是。 在 hello 平台支援的移轉選項，hello 準備進行移轉的第一個步驟是 toovalidate hello 資源可移轉。 萬一 hello 驗證作業將會失敗，您會收到 hello 移轉無法完成所有 hello 原因的訊息。
+可以。 在平台支援的移轉選項中，為移轉做準備的第一個步驟就是驗證資源是否能夠進行移轉。 如果驗證作業失敗，您將會收到無法完成移轉的所有原因相關訊息。
 
-## <a name="what-happens-if-i-run-into-a-quota-error-while-preparing-hello-iaas-resources-for-migration"></a>如果我執行到配額錯誤移轉準備 hello IaaS 資源會怎樣？ 
+## <a name="what-happens-if-i-run-into-a-quota-error-while-preparing-the-iaas-resources-for-migration"></a>如果我在準備要移轉的 IaaS 資源時遇到配額錯誤，會發生什麼事？ 
 
-我們建議您中止您的移轉，並再登入您所在的移轉 hello Vm 的 hello 地區的 支援要求 tooincrease hello 配額。 Hello 配額要求核准後，您可以啟動一次執行 hello 移轉步驟。
+建議您中止移轉，然後登錄支援要求，以在您要移轉 VM 的區域中增加配額。 在配額要求獲得核准之後，您便可以開始重新執行移轉步驟。
 
 ## <a name="how-do-i-report-an-issue"></a>如何回報問題？ 
 
-張貼您的問題與疑問移轉 tooour [VM 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=WAVirtualMachinesforWindows)，與 hello 關鍵字 ClassicIaaSMigration。 建議您將所有問題都張貼在此論壇上。 如果您有支援合約時，您  褖畫惎 toolog 支援票證。
+請在我們的 [VM 論壇](https://social.msdn.microsoft.com/Forums/azure/home?forum=WAVirtualMachinesforWindows)上，使用關鍵字 ClassicIaaSMigration 來張貼有關移轉的問題和疑惑。 建議您將所有問題都張貼在此論壇上。 如果您持有支援合約，也歡迎您登錄支援票證。
 
-## <a name="what-if-i-dont-like-hello-names-of-hello-resources-that-hello-platform-chose-during-migration"></a>如果我不想要的 hello 平台的 hello 資源的 hello 名稱在移轉期間選擇？ 
+## <a name="what-if-i-dont-like-the-names-of-the-resources-that-the-platform-chose-during-migration"></a>如果我不喜歡平台在移轉期間選擇的資源名稱，該怎麼辦？ 
 
-在移轉期間，仍會保留您明確地提供名稱 hello 傳統部署模型中的所有 hello 資源。 在某些情況下，則會建立新的資源。 例如︰會為每個 VM 建立一個網路介面。 我們目前不支援在移轉期間建立這些新資源的 hello 能力 toocontrol hello 名稱。 記錄這項功能在 hello 您投票[Azure 的意見反應論壇](http://feedback.azure.com)。
+您在傳統部署模型中明確提供名稱的所有資源，在移轉期間都會獲得保留。 在某些情況下，則會建立新的資源。 例如︰會為每個 VM 建立一個網路介面。 我們目前不支援控制這些在移轉期間建立的新資源名稱。 請在 [Azure 意見反應論壇](http://feedback.azure.com)上針對這項功能進行投票。
 
 ## <a name="can-i-migrate-expressroute-circuits-used-across-subscriptions-with-authorization-links"></a>可以透過授權連結移轉跨訂用帳戶使用的 ExpressRoute 線路嗎？ 
 
-無法在不停機的情況下，自動移轉使用跨訂用帳戶授權連結的 ExpressRoute 線路。 我們提供使用手動步驟移轉這些項目的指引。 請參閱[移轉 ExpressRoute 電路和相關聯的虛擬網路與 hello 傳統 toohello Resource Manager 部署模型](../articles/expressroute/expressroute-migration-classic-resource-manager.md)步驟的詳細資訊。
+無法在不停機的情況下，自動移轉使用跨訂用帳戶授權連結的 ExpressRoute 線路。 我們提供使用手動步驟移轉這些項目的指引。 如需相關步驟和詳細資訊，請參閱[將 ExpressRoute 線路和相關聯的虛擬網路從傳統部署模型移轉至 Resource Manager 部署模型](../articles/expressroute/expressroute-migration-classic-resource-manager.md)。
 
-## <a name="i-got-a-message-vm-is-reporting-hello-overall-agent-status-as-not-ready-hence-hello-vm-cannot-be-migrated-ensure-that-hello-vm-agent-is-reporting-overall-agent-status-as-ready-or-vm-contains-extension-whose-status-is-not-being-reported-from-hello-vm-hence-this-vm-cannot-be-migrated-"></a>我收到一則訊息*」 VM 報告 hello 整體的代理程式狀態為未就緒。因此，無法移轉 hello VM。確定該 hello VM 代理程式報告為已備妥的整體代理程式狀態 」*或 *"VM 包含其狀態不從 hello VM 所報告的副檔名。 因此，無法移轉此 VM。」 *
+## <a name="i-got-the-message-vm-is-reporting-the-overall-agent-status-as-not-ready-hence-the-vm-cannot-be-migrated-ensure-that-the-vm-agent-is-reporting-overall-agent-status-as-ready-or-vm-contains-extension-whose-status-is-not-being-reported-from-the-vm-hence-this-vm-cannot-be-migrated"></a>我收到訊息*「VM 將整體代理程式狀態回報為『未就緒』。因此，無法移轉 VM。請確定 VM 代理程式將整體代理程式狀態回報為『就緒』」*，或*「VM 包含 VM 未回報其狀態的擴充功能。因此，無法移轉此 VM。」*
 
-Hello VM 沒有傳出連線 toohello 時，會收到此訊息網際網路。 hello VM 代理程式會使用輸出連線 tooreach hello Azure 儲存體帳戶，每隔五分鐘更新 hello 代理程式狀態。
+當 VM 無法連出到網際網路時，就會收到此訊息。 VM 代理程式會使用連出連線來連接到 Azure 儲存體帳戶，來每隔 5 分鐘更新一次代理程式狀態。

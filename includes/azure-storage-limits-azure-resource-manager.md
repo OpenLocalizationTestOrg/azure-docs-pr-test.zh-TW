@@ -1,4 +1,4 @@
-僅使用 hello Azure 資源管理員和 Azure 資源群組時，將套用下列限制的 hello。
+僅在使用 Azure Resource Manager 執行管理作業時，才會套用下列限制。
 
 | 資源 | 預設限制 |
 | --- | --- |

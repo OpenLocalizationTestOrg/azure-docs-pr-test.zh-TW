@@ -1,19 +1,19 @@
-當您不再需要的資料磁碟附加的 tooa 虛擬機器 (VM) 時，您可以輕易地中斷。 當您從中斷連接磁碟 hello VM 時，hello 磁碟不是從儲存體移除它。 若要再次 toouse hello 現有資料 hello 磁碟上的，您可以將它重新附加 toohello 相同的 VM 或另一個。  
+當您不再需要某個連結至虛擬機器 (VM) 的資料磁碟時，可以輕鬆將它中斷連結。 當您從 VM 中斷連結磁碟時，磁碟不會從儲存體中移除。 如果您想要再次使用磁碟上現有的資料，您可以將磁碟重新連結至相同 VM 或其他 VM。  
 
 > [!NOTE]
-> Azure 中的 VM 使用不同類型的磁碟 - 作業系統磁碟、本機暫存磁碟，以及選擇性的資料磁碟。 如需詳細資訊，請參閱[有關虛擬機器的磁碟和 VHD](../articles/virtual-machines/linux/about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 除非您也可以刪除 hello VM，您無法卸離作業系統磁碟。
+> Azure 中的 VM 使用不同類型的磁碟 - 作業系統磁碟、本機暫存磁碟，以及選擇性的資料磁碟。 如需詳細資訊，請參閱[有關虛擬機器的磁碟和 VHD](../articles/virtual-machines/linux/about-disks-and-vhds.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)。 您無法將作業系統磁碟中斷連結，除非您同時刪除 VM。
 
-## <a name="find-hello-disk"></a>找不到 hello 磁碟
-您可以卸離來自 VM 的磁碟必須先 toofind 出 hello 識別碼 hello 磁碟 toobe 卸離的 LUN 編號。 toodo，請遵循下列步驟：
+## <a name="find-the-disk"></a>尋找磁碟
+您必須先找出 LUN 編號 (要中斷連結之磁碟的識別碼)，才能將磁碟與 VM 中斷連結。 若要這樣做，請遵循下列步驟：
 
-1. 開啟 Azure CLI 和[連接 tooyour Azure 訂用帳戶](../articles/xplat-cli-connect.md)。 確定處於 Azure 服務管理模式 (`azure config mode asm`)。
-2. 找出哪些磁碟在附加的 tooyour VM。 hello 下列範例會列出 hello 名為 VM 磁碟`myVM`:
+1. 開啟 Azure CLI 並 [連接至您的 Azure 訂用帳戶](/cli/azure/authenticate-azure-cli)。 確定處於 Azure 服務管理模式 (`azure config mode asm`)。
+2. 找出哪些磁碟已連結至您的 VM。 下列範例會列出名為 `myVM` 的 VM 的磁碟：
 
     ```azurecli
     azure vm disk list myVM
     ```
 
-    hello 輸出是 toohello 類似下列範例程式碼：
+    輸出類似於下列範例：
 
     ```azurecli
     * Fetching disk images
@@ -26,12 +26,12 @@
       info:    vm disk list command OK
     ```
 
-3. 請注意 hello LUN 或 hello**邏輯單元編號**想 toodetach hello 磁碟。
+3. 請記下您要卸離之磁碟的 LUN 或 **邏輯單元編號** 。
 
-## <a name="remove-operating-system-references-toohello-disk"></a>移除作業系統參考 toohello 磁碟
-卸離 hello 磁碟中的 hello Linux 客體之前, 您應該確定 hello 磁碟上的所有磁碟分割不在使用中。 請確定該 hello 作業系統不會嘗試 tooremount 它們之後重新開機。 下列步驟復原可能時所建立的 hello 組態[附加](../articles/virtual-machines/linux/classic/attach-disk.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)hello 磁碟。
+## <a name="remove-operating-system-references-to-the-disk"></a>移除磁碟的作業系統參考
+在從 Linux 客體中斷連結磁碟之前，您應該先確定磁碟上的所有磁碟分割都不在使用中。 請確定作業系統沒有在重新開機之後嘗試重新掛接它們。 下列步驟可復原您在[附加](../articles/virtual-machines/linux/classic/attach-disk-classic.md?toc=%2fazure%2fvirtual-machines%2flinux%2fclassic%2ftoc.json)磁碟時可能建立的組態。
 
-1. 使用 hello`lsscsi`命令 toodiscover hello 磁碟識別碼。 您可透過 `yum install lsscsi` (Red Hat 式散發) 或 `apt-get install lsscsi`(Debian 式散發) 來安裝 `lsscsi`。 您可以找到您要使用的 LUN 編號 hello 尋找 hello 磁碟識別碼。 hello hello tuple 中每個資料列中的最後一個號碼為 hello LUN。 在下列範例從 hello `lsscsi`，LUN 0 太對應  */開發/sdc*
+1. 使用 `lsscsi` 命令來找出磁碟識別碼。 您可透過 `yum install lsscsi` (Red Hat 式散發) 或 `apt-get install lsscsi`(Debian 式散發) 來安裝 `lsscsi`。 您可以使用 LUN 編號找到要尋找的磁碟識別碼。 在每個資料列的 Tuple 中，最後一個數字即為 LUN。 在下列範例從 `lsscsi`，LUN 0 對應至 /dev/sdc
 
     ```bash
     [1:0:0:0]    cd/dvd  Msft     Virtual CD/ROM   1.0   /dev/sr0
@@ -40,7 +40,7 @@
     [5:0:0:0]    disk    Msft     Virtual Disk     1.0   /dev/sdc
     ```
 
-2. 使用`fdisk -l <disk>`toodiscover hello 磁碟分割與 hello 磁碟 toobe 卸離相關聯。 hello 下列範例顯示 hello 輸出`/dev/sdc`:
+2. 使用 `fdisk -l <disk>` 探索與要卸離之磁碟相關聯的分割區。 下列範例顯示 `/dev/sdc`的輸出：
 
     ```bash
     Disk /dev/sdc: 1098.4 GB, 1098437885952 bytes, 2145386496 sectors
@@ -54,13 +54,13 @@
     /dev/sdc1            2048  2145386495  1072692224   83  Linux
     ```
 
-3. 取消掛接 hello 磁碟列出每個資料分割。 hello 下例取消掛接`/dev/sdc1`:
+3. 取消掛接每個列出的磁碟分割區。 下列範例會卸載 `/dev/sdc1`：
 
     ```bash
     sudo umount /dev/sdc1
     ```
 
-4. 使用 hello`blkid`命令 toodiscovery hello Uuid 之所有資料分割。 hello 輸出是 toohello 類似下列範例程式碼：
+4. 使用 `blkid` 命令來探索所有分割區的 UUID。 輸出類似於下列範例：
 
     ```bash
     /dev/sda1: UUID="11111111-1b1b-1c1c-1d1d-1e1e1e1e1e1e" TYPE="ext4"
@@ -68,7 +68,7 @@
     /dev/sdc1: UUID="33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e" TYPE="ext4"
     ```
 
-5. 移除項目在 hello **/etc/hosts fstab**與 hello 裝置路徑或 Uuid hello 磁碟 toobe 卸離的所有資料分割相關聯的檔案。  此範例中的項目可能是︰
+5. 移除 **/etc/fstab** 檔案 (與裝置路徑或要卸離之磁碟的所有分割區的 UUID 相關聯) 中的項目。  此範例中的項目可能是︰
 
     ```sh  
    UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults   1   2
@@ -80,23 +80,23 @@
    /dev/sdc1   /datadrive   ext4   defaults   1   2
    ```
 
-## <a name="detach-hello-disk"></a>卸離 hello 磁碟
-您找出 hello LUN 數目 hello 磁碟和移除的 hello 作業系統參考之後，您便準備好 toodetach 它：
+## <a name="detach-the-disk"></a>卸離磁碟
+找出磁碟的 LUN 編號並移除作業系統參考之後，您可以開始卸離磁碟︰
 
-1. 從卸離 hello 選取的磁碟 hello 虛擬機器執行 hello 命令`azure vm disk detach
-   <virtual-machine-name> <LUN>`。 hello 下列範例會卸離 LUN `0` hello 名為 VM 從`myVM`:
+1. 執行命令 `azure vm disk detach
+   <virtual-machine-name> <LUN>`，從虛擬機器卸離選取的磁碟。 下列範例會從名為 `myVM` 的 VM 卸離 LUN `0`：
    
     ```azurecli
     azure vm disk detach myVM 0
     ```
 
-2. 您可以檢查是否 hello 磁碟已卸離執行`azure vm disk list`一次。 下列範例會檢查 hello hello 名為 VM `myVM`:
+2. 您可以再次執行 `azure vm disk list`，檢查是否已卸離磁碟。 下列範例會檢查名為 `myVM` 的 VM：
    
     ```azurecli
     azure vm disk list myVM
     ```
 
-    hello 輸出類似 toohello 之後，範例中，會顯示 hello 資料磁碟已不再連接：
+    輸出會類似下列範例，其中顯示資料磁碟再也無法附加︰
 
     ```azurecli
     info:    Executing command vm disk list
@@ -110,5 +110,5 @@
      info:    vm disk list command OK
     ```
 
-hello 卸離磁碟留在儲存體，但已不再附加的 tooa 虛擬機器。
+卸離的磁碟仍留在儲存體中，但不再連接至虛擬機器。
 

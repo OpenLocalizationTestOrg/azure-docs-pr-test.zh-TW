@@ -4,20 +4,20 @@
 <a id="attachempty"></a>
 
 ## <a name="attach-an-empty-disk"></a>連接空的磁碟
-1. 開啟 Azure CLI 1.0 和[連接 tooyour Azure 訂用帳戶](../articles/xplat-cli-connect.md)。 確定處於 Azure 服務管理模式 (`azure config mode asm`)。
-2. 輸入`azure vm disk attach-new`toocreate 並附加新的磁碟，hello 下列範例所示。 取代*myVM* hello 同名的 Linux 虛擬機器，並指定 hello hello 磁碟大小以 gb 為單位是*100 GB*在此範例中：
+1. 開啟 Azure CLI 1.0，並[連接到您的 Azure 訂用帳戶](/cli/azure/authenticate-azure-cli)。 確定處於 Azure 服務管理模式 (`azure config mode asm`)。
+2. 輸入 `azure vm disk attach-new` 建立並連接新的磁碟，如下列範例所示。 將 *myVM* 取代為 Linux 虛擬機器的名稱，並指定磁碟大小 (GB) (在此範例中為 100 GB)：
 
     ```azurecli
     azure vm disk attach-new myVM 100
     ```
 
-3. Hello 資料磁碟會建立並附加之後，它會列在 hello 輸出`azure vm disk list <virtual-machine-name>`hello 下列範例所示：
+3. 資料磁碟在建立並連接之後，就會列在 `azure vm disk list <virtual-machine-name>` 的輸出中，如下列範例所示：
    
     ```azurecli
     azure vm disk list TestVM
     ```
 
-    hello 輸出是 toohello 類似下列範例程式碼：
+    輸出類似於下列範例：
 
     ```bash
     info:    Executing command vm disk list
@@ -37,14 +37,14 @@
 ## <a name="attach-an-existing-disk"></a>連接現有磁碟
 連接現有磁碟要求您在儲存體帳戶中需要有可用的 .vhd。
 
-1. 開啟 Azure CLI 1.0 和[連接 tooyour Azure 訂用帳戶](../articles/xplat-cli-connect.md)。 確定處於 Azure 服務管理模式 (`azure config mode asm`)。
-2. 檢查是否 hello tooattach 已經是您想要的 VHD 上傳 tooyour Azure 訂用帳戶：
+1. 開啟 Azure CLI 1.0，並[連接到您的 Azure 訂用帳戶](/cli/azure/authenticate-azure-cli)。 確定處於 Azure 服務管理模式 (`azure config mode asm`)。
+2. 檢查您想要附加的 VHD 是否已上傳至 Azure 訂用帳戶：
    
     ```azurecli
     azure vm disk list
     ```
 
-    hello 輸出是 toohello 類似下列範例程式碼：
+    輸出類似於下列範例：
 
     ```azurecli
      info:    Executing command vm disk list
@@ -58,13 +58,13 @@
      info:    vm disk list command OK
     ```
 
-3. 如果找不到 hello 磁碟 toouse，可能會使用上傳本機的 VHD tooyour 訂用帳戶`azure vm disk create`或`azure vm disk upload`。 舉例來說，`disk create`會如 hello 下列範例所示：
+3. 如果找不到您想要使用的磁碟，您可以使用 `azure vm disk create` 或 `azure vm disk upload` 將本機 VHD 上傳至您的訂用帳戶。 `disk create` 範例如下：
    
     ```azurecli
     azure vm disk create myVhd .\TempDisk\test.VHD -l "East US" -o Linux
     ```
 
-    hello 輸出是 toohello 類似下列範例程式碼：
+    輸出類似於下列範例：
 
     ```azurecli
     info:    Executing command vm disk create
@@ -78,23 +78,23 @@
     info:    vm disk create command OK
     ```
    
-   您也可以使用`azure vm disk upload`tooupload VHD tooa 特定儲存體帳戶。 閱讀有關 hello 命令 toomanage 您 Azure 虛擬機器的資料磁碟[在這裡](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)。
+   您也可以使用 `azure vm disk upload` ，將 VHD 上傳至特定的儲存體帳戶。 在[這裡](https://docs.microsoft.com/cli/azure/get-started-with-az-cli2)閱讀管理 Azure 虛擬機器資料磁碟之命令的詳細資訊。
 
-4. 現在您附加 hello 預期 VHD tooyour 虛擬機器：
+4. 現在，您可以將所需的 VHD 連接到您的虛擬機器︰
    
     ```azurecli
     azure vm disk attach myVM myVhd
     ```
    
-   請確定 tooreplace *myVM* hello 名稱，為您的虛擬機器和*myVHD*與您想要的 VHD。
+   請務必將 *myVM* 取代為您的虛擬機器名稱，並將 *myVHD* 取代為您所需的 VHD。
 
-5. 您可以確認 hello 磁碟是虛擬機器附加的 toohello `azure vm disk list <virtual-machine-name>`:
+5. 您可以使用 `azure vm disk list <virtual-machine-name>`，確認磁碟是否已連接到虛擬機器：
    
     ```azurecli
     azure vm disk list myVM
     ```
 
-    hello 輸出是 toohello 類似下列範例程式碼：
+    輸出類似於下列範例：
 
     ```azurecli
      info:    Executing command vm disk list
@@ -111,7 +111,7 @@
     ```
 
 > [!NOTE]
-> 新增資料磁碟之後，您將需要 toolog toohello 虛擬機器上的，並因此 hello 虛擬機器可以使用 hello 磁碟儲存體初始化 hello 磁碟 （請參閱下列 hello 步驟的詳細資訊 toodo 如何初始化 hello 磁碟上）。
+> 新增資料磁碟之後，您必須登入虛擬機器並初始化磁碟，這樣虛擬機器才能使用該磁碟來進行儲存 (如需如何初始化磁碟的詳細資訊，請參閱下列步驟)。
 > 
 > 
 

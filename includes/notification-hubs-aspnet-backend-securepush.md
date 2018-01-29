@@ -1,6 +1,6 @@
 ## <a name="webapi-project"></a>WebAPI 專案
-1. 在 Visual Studio 中，開啟 hello **AppBackend** hello 中建立的專案**通知使用者**教學課程。
-2. 在 Notifications.cs，取代 hello 整個**通知**以下列程式碼的 hello 的類別。 為確定 tooreplace hello 預留位置使用的連接字串 （具有完整權限） 您的通知中樞和 hello 中樞名稱。 您可以取得這些值從 hello [Azure 傳統入口網站](http://manage.windowsazure.com)。 此模組現在代表 hello 不同安全通知會傳送。 在完整的實作中，hello 通知將會儲存在資料庫中。為了簡單起見，在此情況下我們將其儲存在記憶體中。
+1. 在 Visual Studio 中，開啟您在 [通知使用者] 教學課程中所建立的 **AppBackend** 專案。
+2. 在 Notifications.cs 中，使用下列程式碼來取代整個 **Notifications** 類別。 請確定使用通知中樞的連接字串 (包含完整存取權) 和中樞名稱來取代預留位置。 您可以取得這些值從[Azure 入口網站](http://portal.azure.com)。 此模組現會顯示即將傳送的不同安全通知。 在完整的實作中，通知會儲存在資料庫中。為了本案例的方便起見，我們會將通知儲存在記憶體中。
    
         public class Notification
         {
@@ -40,7 +40,7 @@
             }
         }
 
-1. 在 NotificationsController.cs，取代 hello hello 內的程式碼**NotificationsController**以下列程式碼的 hello 類別定義。 這個元件會安全地實作 hello 裝置 tooretrieve hello 通知的方式，而且也提供安全的推播 tooyour 裝置方式 （基於本教學課程的 hello 目的） tootrigger。 請注意，當傳送嗨通知 toohello 通知中樞，我們只傳送原始通知 hello 識別碼 hello 通知 （以及任何實際的訊息）：
+1. 在 NotificationsController.cs 中，使用下列程式碼來取代 **NotificationsController** 類別定義內的程式碼。 此元件會實作一個可供裝置以安全的方式擷取通知的方法，它還提供一個可觸發安全推送至裝置的方法 (依照本教學課程的目的)。 請注意，將通知傳送至通知中樞時，我們只會傳送包含通知 ID 的原始通知 (而非實際訊息)。
    
        public NotificationsController()
        {
@@ -75,8 +75,8 @@
         }
 
 
-請注意該 hello`Post`方法現在不會傳送快顯通知。 它會傳送包含只 hello 通知識別碼，以及不含任何機密內容的未經處理通知。 此外，請確定 toocomment hello 傳送嗨平台，您沒有在您的通知中樞上設定的認證，將會導致錯誤的作業。
+請注意 `Post` 方法目前不會傳送快顯通知。 它會傳送只包含通知 ID 且非任何敏感內容的原始通知。 另外，針對您未在通知中樞上設定其認證的平台，請務必為傳送作業加上註解，因為他們將會導致錯誤。
 
-1. 現在我們將會重新部署此應用程式 tooan Azure 網站順序 toomake 中的所有的裝置可以存取它。 以滑鼠右鍵按一下 hello **AppBackend**專案，然後選取**發行**。
-2. 選取 Azure 網站作為您的發行目標。 登入您的 Azure 帳戶並選取現有或新網站，並記下 hello**目的地 URL**屬性在 hello**連接** 索引標籤。我們將 toothis URL 做為您*後端端點*稍後在本教學課程。 按一下 [發行] 。
+1. 為了可以從所有裝置存取此應用程式，我們現在可以將它重新部署到 Azure 網站。 以滑鼠右鍵按一下 **AppBackend** 專案，然後選取 [發佈]。
+2. 選取 Azure 網站作為您的發行目標。 使用您的 Azure 帳戶登入，並選取現有或新的網站，記下 [連線] 索引標籤中的 [目的地 URL] 屬性。我們後續將在本教學課程中參考此 URL 作為您的 *後端端點* 。 按一下 [發行] 。
 

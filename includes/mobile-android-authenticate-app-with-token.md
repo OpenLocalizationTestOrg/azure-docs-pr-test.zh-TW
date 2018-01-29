@@ -1,84 +1,105 @@
 
-hello 之前的範例顯示的標準登入，這需要 hello 用戶端 toocontact 這兩個 hello 身分識別提供者和 hello 後端 Azure 服務每次啟動 hello 應用程式。 這個方法沒有效率，而且如果許多客戶嘗試 toostart 您的應用程式同時，您可以讓使用方式相關的問題。 更好的方法是 toocache hello 授權權杖傳回 hello Azure 服務，並再試一次 toouse 這第一次使用之前在根據提供者的登入。
+先前範例所示範的標準登入，在每次應用程式啟動時，皆需要用戶端連絡身分識別提供者和後端 Azure 服務。 此方法效率低，而且如果有許多客戶嘗試同時啟動應用程式，則可能會發生與使用量相關的問題。 更好的方法就是快取 Azure 服務傳回的授權權杖，然後嘗試在使用提供者形式登入前先使用此方法。
 
 > [!NOTE]
-> 您可以在 hello 後端 Azure 服務，不論您是否使用用戶端管理或服務管理驗證所發出的 hello 權杖快取。 本教學課程使用服務管理驗證。
+> 無論您使用用戶端管理或服務管理驗證，皆可以快取後端 Azure 服務發行的權杖。 本教學課程使用服務管理驗證。
 >
 >
 
-1. 開啟 hello ToDoActivity.java 檔案並加入下列 import 陳述式的 hello:
+1. 開啟 ToDoActivity.java 檔案，並新增下列 import 陳述式：
 
-        import android.content.Context;
-        import android.content.SharedPreferences;
-        import android.content.SharedPreferences.Editor;
-2. 新增下列成員 toohello hello`ToDoActivity`類別。
+    ```java
+    import android.content.Context;
+    import android.content.SharedPreferences;
+    import android.content.SharedPreferences.Editor;
+    ```
 
-        public static final String SHAREDPREFFILE = "temp";    
-        public static final String USERIDPREF = "uid";    
-        public static final String TOKENPREF = "tkn";    
-3. 在 hello ToDoActivity.java 檔案中，加入下列定義 hello hello`cacheUserToken`方法。
+2. 在 `ToDoActivity` 類別中新增下列成員：
 
-        private void cacheUserToken(MobileServiceUser user)
-        {
-            SharedPreferences prefs = getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
-            Editor editor = prefs.edit();
-            editor.putString(USERIDPREF, user.getUserId());
-            editor.putString(TOKENPREF, user.getAuthenticationToken());
-            editor.commit();
-        }    
+    ```java
+    public static final String SHAREDPREFFILE = "temp";
+    public static final String USERIDPREF = "uid";
+    public static final String TOKENPREF = "tkn";
+    ```
 
-    這個方法會標示為 私人喜好設定檔案中儲存 hello 使用者識別碼和語彙基元。 這應該保護存取 toohello 快取，因此 hello 裝置上的其他應用程式沒有存取 toohello 語彙基元。 hello 喜好設定為沙箱化 hello 應用程式。 不過，如果有人取得存取 toohello 裝置時，很可能就會獲得存取 toohello 權杖快取透過其他方式。
+3. 在 ToDoActivity.java 檔案中，新增下列 `cacheUserToken` 方法的定義。
+
+    ```java
+    private void cacheUserToken(MobileServiceUser user)
+    {
+        SharedPreferences prefs = getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
+        Editor editor = prefs.edit();
+        editor.putString(USERIDPREF, user.getUserId());
+        editor.putString(TOKENPREF, user.getAuthenticationToken());
+        editor.commit();
+    }
+    ```
+
+    此方法將使用者識別碼和權杖儲存在標示為私人的慣用檔案中。 這可以保護快取的存取，如此一來裝置上的其他應用程式將無法存取權杖。 應用程式的喜好設定已沙箱化。 不過，如果有人取得裝置的存取權，他們有可能也可以透過其他方法取得權杖快取的存取權。
 
    > [!NOTE]
-   > 如果語彙基元存取 tooyour 資料會被視為高度敏感，而且其他人可能會獲得存取 toohello 裝置，您可以進一步保護加密，hello 語彙基元。 不過，完全安全的解決方案已超出此教學課程中，hello 範圍和安全性需求而定。
+   > 如果使用權杖存取的資料十分敏感，而且有人可能可以取得裝置存取權，那麼您可以使用加密來進一步保護權杖。 不過，完整的安全解決方案已超過本教學課程範圍，而且也須視您的安全性需求而定。
    >
    >
-4. 在 hello ToDoActivity.java 檔案中，加入下列定義 hello hello`loadUserTokenCache`方法。
 
-        private boolean loadUserTokenCache(MobileServiceClient client)
+4. 在 ToDoActivity.java 檔案中，新增下列 `loadUserTokenCache` 方法的定義。
+
+    ```java
+    private boolean loadUserTokenCache(MobileServiceClient client)
+    {
+        SharedPreferences prefs = getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
+        String userId = prefs.getString(USERIDPREF, null);
+        if (userId == null)
+            return false;
+        String token = prefs.getString(TOKENPREF, null);
+        if (token == null)
+            return false;
+
+        MobileServiceUser user = new MobileServiceUser(userId);
+        user.setAuthenticationToken(token);
+        client.setCurrentUser(user);
+
+        return true;
+    }
+    ```
+
+5. 在 *ToDoActivity.java* 檔案中，將 `authenticate` 和 `onActivityResult` 方法以使用權杖快取的下列各項取代。 如果您想要使用 Google 以外的帳戶，請變更登入提供者。
+
+    ```java
+    private void authenticate() {
+        // We first try to load a token cache if one exists.
+        if (loadUserTokenCache(mClient))
         {
-            SharedPreferences prefs = getSharedPreferences(SHAREDPREFFILE, Context.MODE_PRIVATE);
-            String userId = prefs.getString(USERIDPREF, null);
-            if (userId == null)
-                return false;
-            String token = prefs.getString(TOKENPREF, null);
-            if (token == null)
-                return false;
-
-            MobileServiceUser user = new MobileServiceUser(userId);
-            user.setAuthenticationToken(token);
-            client.setCurrentUser(user);
-
-            return true;
+            createTable();
         }
-5. 在 hello *ToDoActivity.java*檔案中，取代 hello`authenticate`以下列方法，會使用權杖快取的 hello 方法。 如果您想 toouse Google 以外的帳戶，請變更 hello 登入提供者。
+        // If we failed to load a token cache, login and create a token cache
+        else
+        {
+            // Login using the Google provider.
+            mClient.login(MobileServiceAuthenticationProvider.Google, "{url_scheme_of_your_app}", GOOGLE_LOGIN_REQUEST_CODE);
+        }
+    }
 
-        private void authenticate() {
-            // We first try tooload a token cache if one exists.
-            if (loadUserTokenCache(mClient))
-            {
-                createTable();
-            }
-            // If we failed tooload a token cache, login and create a token cache
-            else
-            {
-                // Login using hello Google provider.    
-                ListenableFuture<MobileServiceUser> mLogin = mClient.login(MobileServiceAuthenticationProvider.Google);
-
-                Futures.addCallback(mLogin, new FutureCallback<MobileServiceUser>() {
-                    @Override
-                    public void onFailure(Throwable exc) {
-                        createAndShowDialog("You must log in. Login Required", "Error");
-                    }           
-                    @Override
-                    public void onSuccess(MobileServiceUser user) {
-                        createAndShowDialog(String.format(
-                                "You are now logged in - %1$2s",
-                                user.getUserId()), "Success");
-                        cacheUserToken(mClient.getCurrentUser());
-                        createTable();    
-                    }
-                });
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // When request completes
+        if (resultCode == RESULT_OK) {
+            // Check the request code matches the one we send in the login request
+            if (requestCode == GOOGLE_LOGIN_REQUEST_CODE) {
+                MobileServiceActivityResult result = mClient.onActivityResult(data);
+                if (result.isLoggedIn()) {
+                    // login succeeded
+                    createAndShowDialog(String.format("You are now logged in - %1$2s", mClient.getCurrentUser().getUserId()), "Success");
+                    cacheUserToken(mClient.getCurrentUser());
+                    createTable();
+                } else {
+                    // login failed, check the error message
+                    String errorMessage = result.getErrorMessage();
+                    createAndShowDialog(errorMessage, "Error");
+                }
             }
         }
-6. 建置 hello 應用程式和測試驗證使用有效的帳戶。 至少執行 2 次此動作。 期間第一次執行的 hello，您應該會收到提示 toosign 中的，並建立 hello 權杖快取。 在這之後，每次執行會嘗試驗證的 tooload hello 權杖快取。 您不應該在需要的 toosign。
+    }
+    ```
+
+6. 使用有效的帳戶建置應用程式，並且測試驗證。 至少執行 2 次此動作。 第一次執行時，您應該會收到提示，要求您登入並建立權杖快取。 之後，每次執行會嘗試載入權杖快取來進行驗證。 您應該不需要登入。

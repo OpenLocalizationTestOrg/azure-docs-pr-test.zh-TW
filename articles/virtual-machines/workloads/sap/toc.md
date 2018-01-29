@@ -1,0 +1,56 @@
+# 概觀
+## [開始使用](get-started.md)
+## [認證](sap-certifications.md)
+# SAP HANA on Azure (大型執行個體)
+## [概觀和架構](hana-overview-architecture.md)
+## [基礎結構和連線能力](hana-overview-infrastructure-connectivity.md)
+## [安裝 SAP HANA](hana-installation.md)
+## [高可用性和災害復原](hana-overview-high-availability-disaster-recovery.md)
+## [疑難排解和監視](troubleshooting-monitoring.md)
+## 作法
+### [使用 STONITH 進行 HA 設定](ha-setup-with-stonith.md)
+### [類型 II SKU 的 OS 備份](os-backup-type-ii-skus.md)
+# Azure 虛擬機器上的 SAP HANA
+## [單一執行個體 SAP HANA 安裝](hana-get-started.md)
+## [S/4 HANA or BW/4 HANA SAP CAL 部署指南](cal-s4h.md)
+## [Azure 上的 SAP HANA 作業指南](hana-vm-operations.md)
+## [Azure VM 中的 SAP HANA 高可用性](sap-hana-high-availability.md)
+## [SAP HANA 備份概觀](sap-hana-backup-guide.md)
+## [SAP HANA 檔案層級備份](sap-hana-backup-file-level.md)
+## [SAP HANA 儲存體快照備份](sap-hana-backup-storage-snapshots.md)
+# Azure 虛擬機器上的 SAP NetWeaver
+## [SAP IDES on Windows/SQL Server SAP CAL 部署指南](cal-ides-erp6-erp7-sp3-sql.md)
+## [Azure Linux VM 上的 SAP NetWeaver](suse-quickstart.md)
+## [在 Azure 上規劃並實作 SAP NetWeaver](planning-guide.md)
+## Windows 和 Linux 上的高可用性 (HA)
+### [概觀](sap-high-availability-guide-start.md)
+### 高可用性架構
+#### [HA 架構和案例](sap-high-availability-architecture-scenarios.md)
+#### [更高的可用性架構和案例](sap-higher-availability-architecture-scenarios.md)
+#### [HA on Windows 和適用於 (A)SCS 執行個體的共用磁碟](sap-high-availability-guide-wsfc-shared-disk.md)
+#### [HA on Windows 和適用於 (A)SCS 執行個體的檔案共用](sap-high-availability-guide-wsfc-file-share.md)
+#### [適用於 (A)SCS 執行個體的 HA on SUSE Linux](high-availability-guide-suse.md)
+### Azure 基礎結構準備
+#### [Windows 和適用於 (A)SCS 執行個體的共用磁碟](sap-high-availability-infrastructure-wsfc-shared-disk.md)
+#### [Windows 和適用於 (A)SCS 執行個體的檔案共用](sap-high-availability-infrastructure-wsfc-file-share.md)
+#### [SUSE Linux 和適用於 (A)SCS 執行個體](high-availability-guide-suse.md)
+### SAP 安裝
+#### [Windows 和適用於 (A)SCS 執行個體的共用磁碟](sap-high-availability-installation-wsfc-shared-disk.md)
+#### [Windows 和適用於 (A)SCS 執行個體的檔案共用](sap-high-availability-installation-wsfc-file-share.md)
+#### [SUSE Linux 和適用於 (A)SCS 執行個體](high-availability-guide-suse.md)
+### SAP 多重安全性識別碼
+#### [Windows 和適用於 (A)SCS 執行個體的共用磁碟](sap-ascs-ha-multi-sid-wsfc-shared-disk.md)
+#### [Windows 和適用於 (A)SCS 執行個體的檔案共用](sap-ascs-ha-multi-sid-wsfc-file-share.md)
+## [部署指南](deployment-guide.md)
+## [DBMS 部署指南](dbms-guide.md)
+## [適用於 SAP 災害復原的 Azure Site Recovery](../../../site-recovery/site-recovery-workload.md#protect-sap)
+# AAD SAP 身分識別整合及單一登入
+## [與 SAP 雲端整合](../../../active-directory/active-directory-saas-sap-customer-cloud-tutorial.md?toc=%2fazure%2fvirtual-machines%2fworkloads%2fsap%2ftoc.json)
+## [AAD 與 SAP 雲端平台身分識別驗證整合](../../../active-directory/active-directory-saas-sap-hana-cloud-platform-identity-authentication-tutorial.md?toc=%2fazure%2fvirtual-machines%2fworkloads%2fsap%2ftoc.json)
+## [透過 SAP 雲端平台設定單一登入](../../../active-directory/active-directory-saas-sap-hana-cloud-platform-tutorial.md?toc=%2fazure%2fvirtual-machines%2fworkloads%2fsap%2ftoc.json)
+## [AAD 與 SAP NetWeaver 整合](../../../active-directory/active-directory-saas-sap-netweaver-tutorial.md?toc=%2fazure%2fvirtual-machines%2fworkloads%2fsap%2ftoc.json)
+## [AAD 與 SAP Business ByDesign 整合](../../../active-directory/active-directory-saas-sapbusinessbydesign-tutorial.md?toc=%2fazure%2fvirtual-machines%2fworkloads%2fsap%2ftoc.json)
+## [AAD 與 SAP HANA DBMS 整合](../../../active-directory/active-directory-saas-saphana-tutorial.md?toc=%2fazure%2fvirtual-machines%2fworkloads%2fsap%2ftoc.json)
+##[SAP Fiori Launchpad SAML 單一登入與 Azure AD](https://blogs.sap.com/2017/02/20/your-s4hana-environment-part-7-fiori-launchpad-saml-single-sing-on-with-azure-ad)
+# 資源
+## [Azure 藍圖](https://azure.microsoft.com/roadmap/)

@@ -1,7 +1,11 @@
-現在，您的應用程式已啟動並執行，您會想 tooensure 商務持續性和監看式使用者存取 tooensure 高可用性。 您可以使用 hello Azure 入口網站 tooreview hello 可用性、 延遲、 輸送量和一致性的集合。 
+在 Azure 入口網站監視您帳戶中資源的輸送量、儲存體、可用性、延遲和一致性。 讓我們快速查看這些計量。 
 
-每個 hello 與相關聯的圖形[Azure Cosmos 資料庫服務等級協定 (Sla)](https://azure.microsoft.com/support/legal/sla/documentdb/)提供顯示 hello 配額一條線必要 toomeet hello SLA 與實際的使用方式，讓您清楚檢視到您的資料庫效能。 Hello 入口網站中也包含其他度量，例如儲存體使用量和每分鐘的要求數目。
+1. 按一下導覽功能表中的 [計量]。
 
-* 在 hello Azure 入口網站，在 hello 左窗格中，底下**監視**，按一下 **度量**。
+   ![Azure 入口網站中的計量](./media/cosmos-db-tutorial-review-slas/metrics.png)
 
-   ![具有範例資料的待辦事項應用程式](./media/cosmos-db-tutorial-review-slas/azure-cosmosdb-portal-metrics-slas.png)
+2. 逐一按一下每個索引標籤，讓您明白 Azure Cosmos DB 提供的計量。 
+
+    與 [Azure Cosmos DB 服務等級協定 (SLA)](https://azure.microsoft.com/support/legal/sla/cosmos-db/) 相關聯的每個圖表都會提供一行，顯示是否已違反任一個 SLA。 Azure Cosmos DB 可讓您使用此計量套件透明監視 SlA。 
+
+   ![Azure Cosmos DB 計量套件](./media/cosmos-db-tutorial-review-slas/metrics-suite.png)

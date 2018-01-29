@@ -1,38 +1,57 @@
-## <a name="create-hello-webapi-project"></a>建立 hello WebAPI 專案
-Hello 以下各節中建立新的 ASP.NET WebAPI 後端，而且會有三個主要用途：
+## <a name="create-the-webapi-project"></a>建立 WebAPI 專案
+下面幾節討論如何建立新的 ASP.NET WebAPI 後端。 此程序有三個主要用途：
 
-1. **驗證用戶端**： 更新 tooauthenticate 用戶端要求和關聯的 hello 與 hello 要求的使用者，將會加入訊息處理常式。
-2. **用戶端通知註冊**： 之後，您將加入新的用戶端裝置 tooreceive 通知註冊控制器 toohandle。 hello 已驗證的使用者名稱會自動加入做為 toohello 註冊[標記](https://msdn.microsoft.com/library/azure/dn530749.aspx)。
-3. **傳送通知 tooClients**： 更新版本中，您也會加入控制器 tooprovide 方法，讓使用者 tootrigger 安全發送 toodevices 和與 hello 標籤相關聯的用戶端。 
+* **驗證用戶端**：您稍後可新增訊息處理常式，以驗證用戶端要求並將使用者與要求產生關聯。
 
-hello 下列步驟顯示如何 toocreate hello 新的 ASP.NET WebAPI 後端： 
+* **使用 WebAPI 後端註冊通知**：您可新增一個控制器來處理新的註冊，以便用戶端裝置接收通知。 經過驗證的使用者名稱會自動新增至註冊作為 [標記](https://msdn.microsoft.com/library/azure/dn530749.aspx)。
+
+* **傳送通知給用戶端**：您也可新增一個控制器，以便使用者對與標記相關聯的裝置和用戶端觸發安全的推播。 
+
+執行下列作業，建立新的 ASP.NET WebAPI 後端： 
 
 > [!IMPORTANT]
-> 如果您使用 Visual Studio 2015 或更早版本，再開始本教學課程，請確定您已安裝的 NuGet 套件管理員 hello hello 最新版本。 toocheck 啟動 Visual Studio。 從 hello**工具**功能表上，按一下 **擴充功能和更新**。 搜尋**NuGet 套件管理員**您版本的 Visual Studio 中，並確定您擁有 hello 最新版本。 如果沒有，請解除安裝，然後再重新安裝 hello NuGet 套件管理員。
-> 
-> ![][B4]
-> 
+> 如果您使用 Visual Studio 2015 或更新版本，在開始本教學課程之前，請確定您已安裝適用於 Visual Studio 的最新版 NuGet 套件管理員。 
+>
+>若要檢查版本，請啟動 Visual Studio。 在 [工具] 功能表上，選取 [擴充功能和更新]。 搜尋您的 Visual Studio 版本中的 **NuGet Package Manager**，然後確定您已安裝最新版本。 如果您的版本不是最新版本，請將它解除安裝，然後重新安裝 NuGet 套件管理員。
+ 
+![][B4]
+
 > [!NOTE]
-> 請確定您已安裝 Visual Studio hello [Azure SDK](https://azure.microsoft.com/downloads/)網站部署。
+> 確定您已安裝 Visual Studio [Azure SDK](https://azure.microsoft.com/downloads/) 以供網站部署。
 > 
 > 
 
-1. 啟動 Visual Studio 或 Visual Studio Express。 按一下**伺服器總管**並登入 tooyour Azure 帳戶。 Visual Studio 將會需要您登入 toocreate hello 網站資源，在您的帳戶。
-2. 在 Visual Studio 中，按一下 **檔案**，然後按一下**新增**，然後**專案**，依序展開**範本**， **Visual C#**，然後按一下 **Web**和**ASP.NET Web 應用程式**，型別 hello 名稱**AppBackend**，然後按一下**確定**。 
-   
-    ![][B1]
-3. 在 hello**新增 ASP.NET 專案** 對話方塊中，按一下**Web API**，然後按一下**確定**。
-   
-    ![][B2]
-4. 在 [hello**設定的 Microsoft Azure Web 應用程式**] 對話方塊中，選擇訂用帳戶，和**App Service 方案**您已經建立。 您也可以選擇**建立新的應用程式服務方案**建立一個從 hello 對話方塊。 在此教學課程中您不需要資料庫。 一旦您已選取您的應用程式服務方案中，按一下 **確定**toocreate hello 專案。
-   
-    ![][B5]
+1. 啟動 Visual Studio 或 Visual Studio Express。 
 
-## <a name="authenticating-clients-toohello-webapi-backend"></a>驗證用戶端 toohello WebAPI 後端
-在本節中，您將建立新的訊息處理常式類別，名為**AuthenticationTestHandler** hello 新的後端。 這個類別衍生自[DelegatingHandler](https://msdn.microsoft.com/library/system.net.http.delegatinghandler.aspx)並加入做為訊息處理常式，所以它可以處理傳入 hello 後端的所有要求。 
+2. 選取 [伺服器總管] ，然後登入您的 Azure 帳戶。 若要在您的帳戶上建立網站資源，您必須登入。
 
-1. 在 方案總管 中，以滑鼠右鍵按一下 hello **AppBackend**專案中，按一下 **新增**，然後按一下 **類別**。 Hello 新類別命名**AuthenticationTestHandler.cs**，然後按一下**新增**toogenerate hello 類別。 這個類別會使用的 tooauthenticate 使用者使用*基本驗證*為了簡單起見。 請注意，您的應用程式可以使用任何驗證結構描述。
-2. 在 AuthenticationTestHandler.cs，加入 hello 下列`using`陳述式：
+3. 在 Visual Studio 中，選取 [檔案] > [新增] > [專案]，依序展開 [範本] 和 [Visual C#]，然後選取 [Web] 和 [ASP.NET Web 應用程式]。
+
+4. 在 [名稱] 方塊中，輸入 **AppBackend**，然後選取 [確定]。 
+   
+    ![[新增專案] 視窗][B1]
+
+5. 在 [新增 ASP.NET 專案] 視窗中，選取 [Web API] 核取方塊，然後選取 [確定]。
+   
+    ![[新增 ASP.NET 專案] 視窗][B2]
+
+6. 在 [設定 Microsoft Azure Web 應用程式] 視窗中，選取訂用帳戶，然後在 [App Service 方案] 清單中，執行下列其中一項：
+
+    * 選取您已建立的 App Service 方案。 
+    * 選取 [建立新的 App Service 方案]，然後建立一個新方案。 
+    
+  在此教學課程中您不需要資料庫。 在您選取 App Service 方案之後，選取 [確定]  來建立專案。
+   
+    ![[定 Microsoft Azure Web 應用程式] 視窗][B5]
+
+## <a name="authenticate-clients-to-the-webapi-back-end"></a>向 WebAPI 後端驗證用戶端
+在本節中，您會為新的後端建立名為 **AuthenticationTestHandler** 新訊息處理常式類別。 這個類別衍生自 [DelegatingHandler](https://msdn.microsoft.com/library/system.net.http.delegatinghandler.aspx) 並新增為訊息處理常式，以便處理進入後端的所有要求。 
+
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 [AppBackend] 專案，然後依序選取 [新增] 和 [類別]。 
+ 
+2. 將新類別命名為 **AuthenticationTestHandler.cs**，然後選取 [新增] 以產生類別。 為了簡單起見，此類別使用「基本驗證」來驗證使用者。 您的應用程式可以使用任何驗證結構描述。
+
+3. 在 AuthenticationTestHandler.cs 中，加入下列 `using` 陳述式：
    
         using System.Net.Http;
         using System.Threading;
@@ -41,19 +60,24 @@ hello 下列步驟顯示如何 toocreate hello 新的 ASP.NET WebAPI 後端：
         using System.Text;
         using System.Threading.Tasks;
 
-3. 在 AuthenticationTestHandler.cs，取代 hello`AuthenticationTestHandler`以下列程式碼的 hello 類別定義。 
+4. 在 AuthenticationTestHandler.cs 中，以下列程式碼取代 `AuthenticationTestHandler` 類別定義： 
    
-    Hello 下列三個條件都成立時，這個處理常式會授權 hello 要求：
+    下列三個條件都成立時，此處理常式將授權要求：
    
-   * hello 要求包含*授權*標頭。 
-   * hello 要求使用*基本*驗證。 
-   * hello 使用者名稱字串 hello 密碼會是與字串 hello 相同的字串。
+   * 要求包含「授權」標頭。 
+   * 要求使用 *基本* 驗證。 
+   * 使用者名稱字串和密碼字串是相同的字串。
      
-     否則，將會拒絕 hello 要求。 這不是真正的驗證和授權方法。 這只是本教學課程中一個非常簡單的範例。
+  否則，將會拒絕此要求。 這不是真正的驗證和授權方法。 這只是本教學課程中一個非常簡單的範例。
      
-     如果 hello 要求訊息已驗證，及授權的 hello `AuthenticationTestHandler`，hello 基本驗證的使用者將會附加的 toohello 目前要求上 hello [HttpContext](https://msdn.microsoft.com/library/system.web.httpcontext.current.aspx)。 Hello HttpContext 中的使用者資訊將供另一個控制站 (RegisterController) 更新 tooadd[標記](https://msdn.microsoft.com/library/azure/dn530749.aspx)toohello 通知註冊要求。
+  如果要求訊息已經由 `AuthenticationTestHandler` 驗證及授權，則基本驗證使用者會附加至 [HttpContext](https://msdn.microsoft.com/library/system.web.httpcontext.current.aspx) 上的目前要求。 稍後另一個控制器 (RegisterController) 會使用 HttpContext 中的使用者資訊，將 [標記](https://msdn.microsoft.com/library/azure/dn530749.aspx) 新增至通知註冊要求。
      
-       public class AuthenticationTestHandler : DelegatingHandler   {       protected override Task<HttpResponseMessage> SendAsync(       HttpRequestMessage request, CancellationToken cancellationToken)       {           var authorizationHeader = request.Headers.GetValues("Authorization").First();
+       public class AuthenticationTestHandler : DelegatingHandler
+       {
+           protected override Task<HttpResponseMessage> SendAsync(
+           HttpRequestMessage request, CancellationToken cancellationToken)
+           {
+               var authorizationHeader = request.Headers.GetValues("Authorization").First();
      
                if (authorizationHeader != null && authorizationHeader
                    .StartsWith("Basic ", StringComparison.InvariantCultureIgnoreCase))
@@ -67,7 +91,7 @@ hello 下列步驟顯示如何 toocreate hello 新的 ASP.NET WebAPI 後端：
      
                    if (verifyUserAndPwd(user, password))
                    {
-                       // Attach hello new principal object toohello current HttpContext object
+                       // Attach the new principal object to the current HttpContext object
                        HttpContext.Current.User =
                            new GenericPrincipal(new GenericIdentity(user), new string[0]);
                        System.Threading.Thread.CurrentPrincipal =
@@ -96,29 +120,35 @@ hello 下列步驟顯示如何 toocreate hello 新的 ASP.NET WebAPI 後端：
        }
      
      > [!NOTE]
-     > **安全性注意事項**: hello`AuthenticationTestHandler`類別不提供，則為 true 的驗證。 它是使用唯一 toomimic 基本驗證，並不安全。 您必須在生產應用程式和服務中實作安全的驗證機制。                
+     > 安全性注意事項：`AuthenticationTestHandler` 類別未提供真正的驗證。 它僅可用於模仿基本驗證而且並不安全。 您必須在生產應用程式和服務中實作安全的驗證機制。                
      > 
      > 
-4. 新增下列程式碼結尾 hello hello hello`Register`方法在 hello **App_Start/WebApiConfig.cs**類別 tooregister hello 訊息處理常式：
+5. 若要註冊訊息處理常式，請在 **App_Start/WebApiConfig.cs** 類別中 `Register` 方法的結尾新增下列程式碼：
    
         config.MessageHandlers.Add(new AuthenticationTestHandler());
-5. 儲存您的變更。
 
-## <a name="registering-for-notifications-using-hello-webapi-backend"></a>註冊使用 hello WebAPI 後端的通知
-在本節中，我們將新的控制器 toohello WebAPI 後端 toohandle 要求 tooregister 使用者和裝置 hello 用戶端程式庫使用通知中樞的通知。 hello 控制器會加入使用者標記 hello 使用者通過驗證，並附加 toohello HttpContext 由 hello `AuthenticationTestHandler`。 hello 標記將會有 hello 字串格式， `"username:<actual username>"`。
+6. 儲存您的變更。
 
-1. 在 [方案總管] 中，以滑鼠右鍵按一下 hello **AppBackend**專案，然後按一下**管理 NuGet 封裝**。
-2. 在 hello 左側，按一下 **線上**，並搜尋**Microsoft.Azure.NotificationHubs**在 hello**搜尋**方塊。
-3. 在 hello 結果清單中，按一下  **Microsoft Azure 通知中樞**，然後按一下**安裝**。 完成 hello 安裝，然後關閉 hello NuGet 封裝管理員 視窗。
+## <a name="register-for-notifications-by-using-the-webapi-back-end"></a>使用 WebAPI 後端註冊通知
+在本節中，您會將新的控制器新增至 WebAPI 後端來處理要求，以使用通知中樞的用戶端程式庫為使用者和裝置註冊通知。 控制器會對已由 `AuthenticationTestHandler` 驗證並附加至 HttpContext 的使用者，新增使用者標記。 此標記會有以下字串格式： `"username:<actual username>"`。
+
+1. 在 [方案總管] 中，以滑鼠右鍵按一下 [AppBackend] 專案，然後選取 [管理 NuGet 套件]。
+
+2. 在左窗格中，選取 [線上]，然後在 [搜尋] 方塊中輸入 **Microsoft.Azure.NotificationHubs**。
+
+3. 選取結果清單中的 [Microsoft Azure 通知中樞]，然後選取 [安裝]。 請完成安裝，然後關閉 [NuGet Package Manager] 視窗。
    
-    這會將參考 toohello Azure 通知中樞 SDK 使用 hello <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification 集線器 NuGet 封裝</a>。
-4. 現在，我們將建立新的類別檔案，表示與通知中樞用 toosend 通知 hello 連接。 在 hello 方案總管 中，以滑鼠右鍵按一下 hello**模型**資料夾中，按一下**新增**，然後按一下 **類別**。 Hello 新類別命名**Notifications.cs**，然後按一下 **新增**toogenerate hello 類別。 
+    此動作會使用 <a href="http://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/">Microsoft.Azure.Notification Hubs NuGet 套件</a>來新增對 Azure 通知中樞 SDK 的參考。
+
+4. 建立新的類別檔案，代表與用來傳送通知的通知中樞間的連線。 在 [方案總管] 中，以滑鼠右鍵按一下 **Models** 資料夾，選取 [新增]，然後選取 [類別]。 將新類別命名為 **Notifications.cs**，然後選取 [新增] 以產生類別。 
    
-    ![][B6]
-5. 在 Notifications.cs，加入 hello 下列`using`在 hello hello 檔案最上方的陳述式：
+    ![[新增項目] 視窗][B6]
+
+5. 在 Notifications.cs 中，將下列 `using` 陳述式新增在檔案頂端：
    
         using Microsoft.Azure.NotificationHubs;
-6. 取代 hello`Notifications`類別 hello 下列定義，請確定 tooreplace hello 兩預留位置取代 hello 連接字串 （具有完整權限） 您的通知中樞，和 hello 中樞名稱 (可在[Azure 傳統入口網站](http://manage.windowsazure.com)):
+
+6. 取代`Notifications`類別定義為下列程式碼，並取代為您的通知中樞和中樞名稱 （具有完整權限） 連接字串的兩個預留位置 (位於[Azure 入口網站](http://portal.azure.com)):
    
         public class Notifications
         {
@@ -131,19 +161,25 @@ hello 下列步驟顯示如何 toocreate hello 新的 ASP.NET WebAPI 後端：
                                                                              "<hub name>");
             }
         }
-7. 接下來我們將建立名為 **RegisterController** 的新控制器。 在 方案總管 中，以滑鼠右鍵按一下 hello**控制器**資料夾，然後按一下 **新增**，然後按一下 **控制器**。 按一下 hello **Web API 2 控制器-空白**項目，然後再按一下**新增**。 Hello 新類別命名**RegisterController**，然後按一下**新增**再次 toogenerate hello 控制站。
+7. 接下來，建立名為 **RegisterController** 的新控制器。 在 [方案總管] 中，以滑鼠右鍵按一下 **Controllers** 資料夾，選取 [新增]，然後選取 [控制器]。 
+
+8. 選取 [Web API 2 控制器 - 空的]，然後選取 [新增]。
    
-    ![][B7]
+    ![[新增 Scaffold] 視窗][B7]
    
-    ![][B8]
-8. 在 RegisterController.cs，加入 hello 下列`using`陳述式：
+9. 在 [控制器名稱] 方塊中，輸入 **RegisterController** 為新的類別命名，然後選取 [新增]。
+
+    ![[新增控制器] 視窗][B8]
+
+10. 在 RegisterController.cs 中，加入下列 `using` 陳述式：
    
         using Microsoft.Azure.NotificationHubs;
         using Microsoft.Azure.NotificationHubs.Messaging;
         using AppBackend.Models;
         using System.Threading.Tasks;
         using System.Web;
-9. 新增下列程式碼內 hello hello`RegisterController`類別定義。 請注意，在這段程式碼中，我們將加入使用者標記，這是 hello 使用者附加 toohello HttpContext。 hello 使用者通過驗證，並附加 toohello HttpContext hello 訊息篩選器，我們加入， `AuthenticationTestHandler`。 您也可以加入 hello 使用者的選用檢查 tooverify 具有權限的 hello tooregister 要求標記。
+
+11. 在 `RegisterController` 類別定義中加入下列程式碼。 請注意，在此程式碼中，我們會為已附加至 HttpContext 的使用者新增使用者標記。 我們新增的訊息篩選器 `AuthenticationTestHandler` 會驗證此使用者並附加至 HttpContext。 您也可以新增選擇性檢查，以驗證使用者是否有權註冊所要求的標籤。
    
         private NotificationHubClient hub;
    
@@ -190,7 +226,7 @@ hello 下列步驟顯示如何 toocreate hello 新的 ASP.NET WebAPI 後端：
         }
    
         // PUT api/register/5
-        // This creates or updates a registration (with provided channelURI) at hello specified id
+        // This creates or updates a registration (with provided channelURI) at the specified id
         public async Task<HttpResponseMessage> Put(string id, DeviceRegistration deviceUpdate)
         {
             RegistrationDescription registration = null;
@@ -215,7 +251,7 @@ hello 下列步驟顯示如何 toocreate hello 新的 ASP.NET WebAPI 後端：
             registration.RegistrationId = id;
             var username = HttpContext.Current.User.Identity.Name;
    
-            // add check if user is allowed tooadd these tags
+            // add check if user is allowed to add these tags
             registration.Tags = new HashSet<string>(deviceUpdate.Tags);
             registration.Tags.Add("username:" + username);
    
@@ -248,22 +284,24 @@ hello 下列步驟顯示如何 toocreate hello 新的 ASP.NET WebAPI 後端：
                     throw new HttpRequestException(HttpStatusCode.Gone.ToString());
             }
         }
-10. 儲存您的變更。
+12. 儲存您的變更。
 
-## <a name="sending-notifications-from-hello-webapi-backend"></a>從 hello WebAPI 後端傳送通知
-本節中，您會加入新的控制站可公開方法，讓用戶端裝置 toosend hello hello ASP.NET WebAPI 後端中使用 Azure 通知中心服務管理程式庫的使用者名稱標記為基礎的通知。
+## <a name="send-notifications-from-the-webapi-back-end"></a>從 WebAPI 後端傳送通知
+在本節中，您會新增控制器，以便用戶端裝置傳送通知。 此通知是以使用者名稱標記為基礎，其使用 ASP.NET WebAPI 後端中的 Azure 通知中樞服務管理程式庫。
 
-1. 建立另一個名為 **NotificationsController**的新控制器。 建立 hello 相同的方式建立 hello **RegisterController** hello 前一節。
-2. 在 NotificationsController.cs，加入 hello 下列`using`陳述式：
+1. 以您在上一節中建立 **RegisterController** 的相同方式，建立另一個名為 **NotificationsController**的新控制器。
+
+2. 在 NotificationsController.cs 中，加入下列 `using` 陳述式：
    
         using AppBackend.Models;
         using System.Threading.Tasks;
         using System.Web;
-3. 新增下列方法 toohello hello **NotificationsController**類別。
+
+3. 在 **NotificationsController** 類別中新增下列方法：
    
-    此程式碼傳送 hello 平台通知服務 (PNS) 為基礎的通知類型`pns`參數。 hello 值`to_tag`為使用的 tooset hello *username*標記的 hello 訊息。 此標記必須符合作用中通知中樞註冊的使用者名稱標記。 hello 通知訊息是取自 hello hello POST 要求主體，而且 hello 目標 PNS 格式化。 
+    此程式碼會傳送以平台通知服務 (PNS) `pns` 參數為基礎的通知類型。 `to_tag` 的值用來設定訊息上的 *username* 標記。 此標記必須符合作用中通知中樞註冊的使用者名稱標記。 通知訊息是取自 POST 要求主體，並針對目標 PNS 格式化。 
    
-    Hello 平台通知服務 (PNS) 支援的裝置使用 tooreceive 通知，根據不同的通知使用不同格式支援。 例如在 Windows 裝置上，您可以搭配 WNS 使用不受其他 PNS 直接支援的 [快顯通知](https://msdn.microsoft.com/library/windows/apps/br230849.aspx) 。 因此您的後端 hello PNS 的裝置必須受支援的通知至 tooformat hello 通知您計劃 toosupport。 然後使用 hello 適當的傳送應用程式開發介面上 hello [NotificationHubClient 類別](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.notificationhubclient_methods.aspx)
+    視您的支援裝置用來接收通知的 PNS 而言，可支援各種格式的通知。 例如在 Windows 裝置上，您可以搭配 WNS 使用不受其他 PNS 直接支援的[快顯通知](https://msdn.microsoft.com/library/windows/apps/br230849.aspx)。 在這類情況下，您的後端必須針對您打算支援的裝置 PNS，將通知格式化為支援的通知。 然後在 [NotificationHubClient 類別](https://msdn.microsoft.com/library/azure/microsoft.azure.notificationhubs.notificationhubclient_methods.aspx) 上使用適當的傳送 API。
    
         public async Task<HttpResponseMessage> Post(string pns, [FromBody]string message, string to_tag)
         {
@@ -306,20 +344,30 @@ hello 下列步驟顯示如何 toocreate hello 新的 ASP.NET WebAPI 後端：
    
             return Request.CreateResponse(ret);
         }
-4. 按**F5** toorun hello 應用程式和 tooensure hello 工作的準確性為止。 hello 應用程式應該啟動網頁瀏覽器，並顯示 hello ASP.NET 首頁。 
 
-## <a name="publish-hello-new-webapi-backend"></a>發行 hello 新 WebAPI 後端
-1. 現在我們將部署此應用程式 tooan Azure 網站順序 toomake 中的所有的裝置可以存取它。 以滑鼠右鍵按一下 hello **AppBackend**專案，然後選取**發行**。
-2. 選取 [Microsoft Azure App Service] 作為發佈目標，然後按一下 [發佈]。 這會開啟 hello 建立應用程式服務 對話方塊可幫助您在 Azure 中建立所有 hello 所需的 Azure 資源 toorun hello ASP.NET web 應用程式。
+4. 若要執行應用程式並確保工作到目前為止的準確性，請選取 **F5** 鍵。 應用程式會開啟網頁瀏覽器並顯示於 ASP.NET 首頁上。 
 
-    ![][B15]
-3. 在 [hello**建立 App Service** ] 對話方塊中，選取您的 Azure 帳戶。 按一下 [變更類型] 並選取 [Web 應用程式]。 保留 hello **Web 應用程式名稱**給定的並選取 hello**訂用帳戶**，**資源群組**，和**App Service 方案**。  按一下 [建立] 。
+## <a name="publish-the-new-webapi-back-end"></a>發佈新的 WebAPI 後端
+接下來，您可將應用程式部署到 Azure 網站，讓它得以從所有裝置存取。 
 
-4. 請記下 hello**網站 URL**屬性在 hello**摘要**> 一節。 我們將 toothis URL 做為您*後端端點*稍後在本教學課程。 按一下 [發行] 。
+1. 以滑鼠右鍵按一下 **AppBackend** 專案，然後選取 [發佈]。
 
-5. Hello 精靈完成後，其所發行 hello ASP.NET web 應用程式 tooAzure，然後啟動 hello hello 預設瀏覽器中的應用程式。  您的應用程式將可在 Azure App Service 中檢視。
+2. 選取 [Microsoft Azure App Service] 作為發佈目標，然後選取 [發佈]。  
+    [建立 App Service] 視窗隨即開啟。 您可以在此建立在 Azure 中執行 ASP.NET Web 應用程式所需的所有 Azure 資源。
 
-hello URL 會使用您稍早，指定與 hello 格式 http://<app_name>.azurewebsites.net hello web 應用程式名稱。
+    ![[Microsoft Azure App Service] 圖格][B15]
+
+3. 在 [建立 App Service] 視窗中，選取您的 Azure 帳戶。 選取 [變更類型] > [Web 應用程式]。 保留預設 [Web 應用程式名稱]，然後選取 [訂用帳戶]、[資源群組] 和 [App Service 方案]。 
+
+4. 選取 [建立] 。
+
+5. 記下 [摘要] 區段中的 [網站 URL] 屬性。 此 URL 是您在本教學課程中稍後使用的「後端端點」。 
+
+6. 選取 [發佈] 。
+
+精靈完成後，它會將 ASP.NET Web 應用程式發佈至 Azure，然後在預設瀏覽器中開啟應用程式。  您的應用程式可在 Azure App Service 中檢視。
+
+URL 會使用您稍早指定的 Web 應用程式名稱，其格式為 http://<app_name>.azurewebsites.net。
 
 [B1]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-secure-push1.png
 [B2]: ./media/notification-hubs-aspnet-backend-notifyusers/notification-hubs-secure-push2.png

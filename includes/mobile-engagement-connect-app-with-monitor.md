@@ -1,11 +1,11 @@
-此區段會顯示您如何 tooconnect 使用 hello Mobile Engagement 應用程式 toohello Mobile Engagement 後的端的即時監視功能。 
+本節說明如何使用 Mobile Engagement 的即時監視功能將您的 app 連線至 Mobile Engagement 後端。 
 
-1. 在您**Azure Mobile Engagement**帳戶，請確定您選取您想 toomonitor 和管理 「 hello 」 應用程式在 hello **Mobile Engagement**入口網站。 瀏覽 tooyour Mobile Engagement 入口網站，依序按一下 hello **Engage** hello 底部的按鈕。 
+1. 在您的 **Azure Mobile Engagement** 帳戶中，確定您選取的是要在 **Mobile Engagement** 入口網站中監視和管理的應用程式。 按一下底部的 [Engage]  按鈕瀏覽至 Mobile Engagement 入口網站。 
    
-     ![](./media/mobile-engagement-connect-app-with-monitor/engage-button.png)
-2. 您將登陸在 hello Mobile Engagement 入口網站。 如果未選取 hello 監視 索引標籤，按一下 hello**監視器**。
-3. hello 監視器就會準備 tooshow 您即時，就會開始您的應用程式的任何裝置。
-4. 立即啟動您的 App。 您應該會看到 hello 監視器中的一個工作階段有您整合正確表示您的應用程式現在連接 toohello Mobile Engagement 後端和傳送資料 tooit。  
+     ![](./media/mobile-engagement-create-app-in-portal-new/engage-button.png)
+2. 您將在 Mobile Engagement 入口網站登陸。 如果未選取 [監視] 索引標籤，按一下 [監視] 。
+3. 監視器可以即時顯示將會啟動您 App 的任何裝置。
+4. 立即啟動您的 App。 如果您的整合正確，應該會在監視器中看到一個工作階段，這表示您的 App 現在已連線到 Mobile Engagement 後端，並對其傳送資料。  
    
      ![](./media/mobile-engagement-connect-app-with-monitor/monitor.png)
 

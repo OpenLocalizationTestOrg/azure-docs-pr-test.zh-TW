@@ -1,42 +1,42 @@
-## <a name="download-install-and-register-hello-azure-backup-agent"></a>下載、 安裝及註冊 hello Azure 備份代理程式
-應該在每個資料和應用程式的備份可讓您 Windows 電腦 （Windows Server、 Windows 用戶端、 System Center Data Protection Manager 伺服器或 Azure 備份伺服器的電腦） 上安裝代理程式建立 hello Azure 備份保存庫之後tooAzure。
+## <a name="download-install-and-register-the-azure-backup-agent"></a>下載、安裝和註冊 Azure 備份代理程式
+建立復原服務保存庫之後，請在您用來將資料備份至 Azure 的每部 Windows 電腦 (Windows Server、Windows 用戶端、System Center Data Protection Manager 伺服器，或 Azure 備份伺服器電腦) 上安裝備份代理程式。
 
-1. 登入 toohello[管理入口網站](https://manage.windowsazure.com/)
-2. 按一下**復原服務**，然後選取您想要與伺服器 tooregister hello 備份保存庫。 該備份保存庫的 hello 快速入門頁面隨即出現。
-   
-    ![快速入門](./media/backup-install-agent/quickstart.png)
-3. 在 hello 快速入門] 頁面上，按一下 [hello**適用於 Windows Server 或 System Center Data Protection Manager 或 Windows 用戶端**選項在**下載代理程式**。 按一下**儲存**toocopy 它 toohello 本機電腦。
+1. 在 [Azure 入口網站](https://ms.portal.azure.com/)中開啟訂用帳戶。
+2. 在左側功能表中，選取 [所有服務]，然後在服務清單中鍵入**復原服務**。 按一下 [復原服務保存庫] 。
+
+   ![開啟復原服務保存庫](../articles/backup/media/tutorial-backup-windows-server-to-azure/full-browser-open-rs-vault_2.png)
+3. 在 [快速啟動] 頁面上，按一下 [下載代理程式] 下方的 [適用於 Windows Server 或 System Center Data Protection Manager 或 Windows 用戶端] 選項。 按一下 [ **儲存** ] 將其複製到本機電腦。
    
     ![儲存代理程式](./media/backup-install-agent/agent.png)
-4. Hello 代理程式安裝之後，按兩下 MARSAgentInstaller.exe toolaunch hello 安裝 hello Azure Backup agent。 選擇 hello 安裝資料夾和 hello 代理程式所需的臨時資料夾。 指定的 hello 快取位置必須有可用空間可供至少 5%的 hello 備份資料。
-5. 如果您使用 proxy 伺服器 tooconnect toohello 網際網路 hello **Proxy 組態**畫面上，輸入 hello proxy 伺服器的詳細資料。 如果您使用驗證的 proxy，請在此畫面輸入 hello 使用者名稱與密碼詳細資料。
-6. hello Azure 備份代理程式會安裝 Windows PowerShell 和.NET Framework 4.5 （如果它尚未提供） toocomplete hello 安裝。
-7. Hello 代理程式安裝之後，按一下 hello**繼續 tooRegistration**按鈕 toocontinue 與 hello 的工作流程。
+4. 代理程式安裝之後，按兩下 MARSAgentInstaller.exe 可啟動 Azure 備份代理程式的安裝。 選擇安裝資料夾和代理程式所需要的暫存資料夾。 指定的快取位置中，至少應有 5% 的備份資料作為可用空間。
+5. 若您使用 Proxy 伺服器連接至網際網路，請在 [ **Proxy 組態** ] 畫面上，輸入 Proxy 伺服器詳細資料。 若您使用已驗證的 Proxy，請在此畫面中輸入使用者名稱和密碼的詳細資料。
+6. Azure 備份代理程式會安裝 .NET Framework 4.5 和 Windows PowerShell (若尚未安裝) 來完成安裝。
+7. 安裝代理程式之後，按一下 [ **前往註冊** ] 按鈕以繼續與工作流程。
    
    ![註冊](./media/backup-install-agent/register.png)
-8. 在 [hello 保存庫認證] 畫面上，瀏覽 tooand 選取 hello 保存庫認證檔案先前已下載。
+8. 在 [保存庫認證] 畫面中，選取已下載的保存庫認證檔案。
    
     ![保存庫認證](./media/backup-install-agent/vc.png)
    
-    hello 保存庫認證檔案無效，只 48 小時 （下載後，從 hello 入口網站）。 如果您遇到此畫面 （例如 「 保存庫認證檔案提供的已到期 」） 中的任何錯誤時，登入 toohello Azure 入口網站並下載 hello 保存庫認證一次的檔案。
+    保存庫認證檔僅於 48 小時內有效 (從入口網站下載後起算)。 如果您在此畫面中遇到任何錯誤 (例如「提供的保存庫認證檔已過期」)，請登入 Azure 入口網站，並再次下載保存庫認證檔。
    
-    確定該 hello 保存庫認證檔案可用在 hello 安裝應用程式可以存取的位置。 如果您遇到存取相關的錯誤，請複製 hello 保存庫認證檔案在這部機器 tooa 暫存位置，然後重試 hello 作業。
+    請確定安裝應用程式可以存取保存庫認證檔案。 如果您遇到存取權相關的錯誤，請將保存庫認證檔複製到本機電腦上的暫存位置，並重試作業。
    
-    如果您遇到無效的保存庫認證錯誤 （例如 「 無效的保存庫認證提供 」） hello 檔案可能已損毀或不具有 hello 最新的認證與服務相關聯 hello 復原。 Hello 作業之後從 hello 入口網站下載新的保存庫認證檔案重試一次。 如果 hello 使用者在 hello，通常會發生這個錯誤**下載保存庫認證**hello 中快速且連續的 Azure 入口網站中的選項。 在此情況下，只有 hello 第二個保存庫認證檔案無效。
-9. 在 [hello**加密設定**] 畫面上，您可以產生複雜密碼，或提供複雜密碼 （最少 16 個字元）。 請記住 toosave hello 複雜密碼，在安全的位置。
+    如果您遇到無效的保存庫認證錯誤 (例如「提供的保存庫認證無效」)，可能是保存庫認證檔案損毀，或沒有與復原服務相關聯的最新認證。 從入口網站下載新的保存庫認證檔後重試作業。 當使用者在 Azure 入口網站中連續快速地按 [下載保存庫認證] 選項時，通常會看到此錯誤。 在此情況下，只有第二個保存庫認證檔是有效的。
+9. 在 [ **加密設定** ] 畫面中，您可以產生複雜密碼或提供複雜密碼 (最少 16 個字元)。 請記得將複雜密碼存放在安全的位置。
    
     ![加密](./media/backup-install-agent/encryption.png)
    
    > [!WARNING]
-   > 如果 hello 已遺失或忘記複雜密碼。Microsoft 無法協助您復原 hello 備份資料。 hello 終端使用者擁有 hello 加密複雜密碼，且 Microsoft 不會顯示出來 hello hello 終端使用者所使用的複雜密碼。 請視需要執行復原作業時，請在安全的位置儲存 hello 檔案。
+   > 如果遺失或忘記複雜密碼，Microsoft 將無法協助您復原備份資料。 加密複雜密碼為使用者所有，Microsoft 將不會看到使用者所使用的複雜密碼。 請將檔案儲存在安全的位置，因為在復原作業期間需要該檔案。
    > 
    > 
-10. 一旦您按一下 hello**完成**按鈕，hello 電腦註冊成功 toohello 保存庫，您現在已準備好 toostart tooMicrosoft Azure 備份。
-11. 使用 Microsoft Azure 備份獨立時，您就可以修改 hello 設定指定 hello 註冊工作流程期間按一下 hello**變更屬性**hello Azure 備份 mmc 嵌入式管理單元中的選項。
+10. 一旦您按一下 [ **完成** ] 按鈕，電腦即成功註冊至保存庫，且現在您已準備好開始備份至 Microsoft Azure。
+11. 使用 Microsoft Azure 備份單機版時，您可按一下 Azure 備份 MMC 嵌入式管理單元中的 [變更屬性] 選項，來修改註冊工作流程期間所指定的設定。
     
     ![變更屬性](./media/backup-install-agent/change.png)
     
-    或者，當使用 Data Protection Manager，您可以修改 hello 設定指定 hello 註冊工作流程期間按一下 hello**設定**選項選取**線上**下 hello**管理** 索引標籤。
+    或者，使用 Data Protection Manager 時，您可以修改註冊工作流程期間所指定的設定，方法是選取 [管理] 索引標籤下的 [線上]，接著按一下 [設定] 選項。
     
     ![設定 Azure 備份](./media/backup-install-agent/configure.png)
 

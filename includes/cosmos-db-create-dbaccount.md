@@ -1,31 +1,27 @@
-1. 在新視窗中，登入 toohello [Azure 入口網站](https://portal.azure.com/)。
-2. Hello 左窗格中，按一下 **新增**，按一下 **資料庫**，然後在**Azure Cosmos DB**，按一下 **建立**。
+1. 在新的瀏覽器視窗中，登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 按一下 [新增] > [資料庫] > [Azure Cosmos DB]。
    
-   ![hello Azure 入口網站的資料庫窗格](./media/cosmos-db-create-dbaccount/create-nosql-db-databases-json-tutorial-1.png)
+   ![Azure 入口網站資料庫窗格](./media/cosmos-db-create-dbaccount/create-nosql-db-databases-json-tutorial-1.png)
 
-3. 在 hello**新帳戶**刀鋒視窗中，指定您想要用於此 Azure Cosmos DB 帳戶的 hello 組態。 
-
-    在使用 Azure Cosmos DB 時，您可以選擇下列四種程式設計模型的其中一種︰Gremlin (圖形)、MongoDB、SQL (DocumentDB) 和資料表 (索引鍵-值)，目前各自需要個別的帳戶。
-    
-    在這個快速入門文章中我們 hello DocumentDB API 進行程式設計，因此請選擇**SQL (DocumentDB)**填寫 hello 表單。 如果您有用於社交媒體應用程式的圖形資料、索引鍵/值 (資料表) 資料，或從 MongoDB 應用程式移轉而來的資料，請了解 Azure Cosmos DB 可以提供高度可用、全域分散式的資料庫服務平台來供您所有的任務關鍵性應用程式使用。
-
-    完成 hello 欄位上 hello**新帳戶**刀鋒視窗中，您的值使用 hello 下列指南-螢幕擷取畫面中的 hello 資訊可能會與 hello 螢幕擷取畫面中的 hello 值不同。
+3. 在 [新增帳戶] 頁面中，輸入新的 Azure Cosmos DB 帳戶的設定。 
  
-    ![hello 新帳戶刀鋒視窗 Azure Cosmos DB](./media/cosmos-db-create-dbaccount/create-nosql-db-databases-json-tutorial-2.png)
-
     設定|建議的值|說明
     ---|---|---
-    ID|唯一值|可識別此 Azure Cosmos DB 帳戶的唯一名稱。 因為*documents.azure.com*是附加的 toohello 您提供 toocreate URI，使用但可辨識的唯一識別碼的識別碼。 hello 識別碼只能包含小寫字母、 數字和 hello 連字號 （-） 字元，而且它必須包含 3 too50 字元。
-    API|SQL (DocumentDB)|我們進行程式設計的 hello [DocumentDB API](../articles/documentdb/documentdb-introduction.md)本文稍後。|
-    訂用帳戶|*您的訂用帳戶*|hello 的 toouse 此 Azure Cosmos DB 帳戶的 Azure 訂用帳戶。 
-    資源群組|*相同的值做為識別碼 hello*|hello 新資源群組名稱為您的帳戶的。 為了簡單起見，您可以使用名稱相同的 hello 做為您的識別碼。 
-    位置|*hello 區域最接近 tooyour 使用者*|hello 地理位置在哪一個 toohost Azure Cosmos DB 帳戶。 選擇最接近它們 hello 最快的存取 toohello 資料 tooyour 使用者 toogive hello 位置。
-4. 按一下**建立**toocreate hello 帳戶。
-5. Hello 頂端工具列上，按一下 hello**通知**圖示![hello 通知圖示](./media/cosmos-db-create-dbaccount/notification-icon.png)toomonitor hello 部署程序。
+    ID|*輸入唯一名稱*|輸入唯一名稱來識別此 Azure Cosmos DB 帳戶。 因為 documents.azure.com 會附加到您所提供的識別碼以建立 URI，請使用可供辨識的唯一識別碼。<br><br>識別碼只能包含小寫字母、數字及連字號 (-) 字元，且必須包含 3 到 50 個字元。
+    API|SQL|API 會決定要建立的帳戶類型。 Azure Cosmos DB 會提供五個 API，以符合應用程式的需求︰SQL (文件資料庫)、Gremlin (圖形資料庫)、MongoDB (文件資料庫)、Azure 資料表及 Cassandra，目前各自需要個別的帳戶。 <br><br>選取**SQL**因為本快速入門中，您要建立可供查詢使用 SQL 語法且可存取 SQL API 以文件資料庫。<br><br>[深入了解 SQL API](../articles/cosmos-db/documentdb-introduction.md)|
+    訂用帳戶|*您的訂用帳戶*|選取您要用於此 Azure Cosmos DB 帳戶的 Azure 訂用帳戶。 
+    資源群組|新建<br><br>*然後輸入上面識別碼中所提供的同一個唯一名稱*|選取 [新建]，然後為您的帳戶輸入新的資源群組名稱。 為求簡化，您可以使用和識別碼相同的名稱。 
+    位置|*選取最接近使用者的區域*|選取用來主控 Azure Cosmos DB 帳戶的地理位置。 使用最接近使用者的位置，以便他們能以最快速度存取資料。
+    啟用異地備援| 保留空白 | 這會在第二個 (配對) 區域建立資料庫的複本。 將此項保留空白。  
+    釘選到儀表板 | 選取 | 選取此方塊，以便將新的資料庫帳戶新增至入口網站儀表板以方便存取。
 
-    ![hello Azure 入口網站的 [通知] 窗格](./media/cosmos-db-create-dbaccount-graph/azure-documentdb-nosql-notification.png)
+    接著，按一下 [建立]。
 
-6.  當 hello 通知視窗表示 hello 部署成功，請關閉 hello 通知視窗和新的帳戶開啟 hello 從 hello**所有資源**hello 儀表板上的磚。 
+    ![Azure Cosmos DB 的新帳戶刀鋒視窗](./media/cosmos-db-create-dbaccount/create-nosql-db-databases-json-tutorial-2.png)
 
-    ![hello hello 磚的所有資源在 DocumentDB 帳戶](./media/cosmos-db-create-dbaccount/all-resources.png)
- 
+4. 建立帳戶需要幾分鐘的時間。 在建立帳戶期間，入口網站會在右側顯示 [部署 Azure Cosmos DB] 圖格，您可能需要在儀表板上向右捲動以查看圖格。 另外在畫面頂端附近還會顯示一個進度列。 您可以查看任何進度區域。 
+
+    ![Azure 入口網站的 [通知] 窗格](./media/cosmos-db-create-dbaccount/deploying-cosmos-db.png)
+
+    一旦建立帳戶後，[恭喜您！已建立 Azure Cosmos DB 帳戶] 頁面隨即顯示。 
+

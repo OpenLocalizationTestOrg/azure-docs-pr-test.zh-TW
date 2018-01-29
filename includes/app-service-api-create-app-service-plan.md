@@ -1,14 +1,14 @@
-建立應用程式服務方案以 hello [az 應用程式服務方案建立](/cli/azure/appservice/plan#create)命令。
+使用 [az appservice plan create](/cli/azure/appservice/plan?view=azure-cli-latest#az_appservice_plan_create) 命令來建立 App Service 方案。
 
 [!INCLUDE [app-service-plan](app-service-plan.md)]
 
-hello 下列範例會建立名為 App Service 方案`myAppServicePlan`在 hello**免費**定價層：
+下列範例會在**免費**定價層中建立名為 `myAppServicePlan` 的 App Service 方案。
 
 ```azurecli-interactive
 az appservice plan create --name myAppServicePlan --resource-group myResourceGroup --sku FREE
 ```
 
-Hello 應用程式服務方案建立後，hello Azure CLI 顯示資訊的類似 toohello 下列範例：
+建立 App Service 方案後，Azure CLI 會顯示類似下列範例的資訊：
 
 ```json
 { 

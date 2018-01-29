@@ -1,102 +1,101 @@
-## <a name="log-in-toohello-azure-portal"></a>登入 toohello Azure 入口網站
+## <a name="log-in-to-the-azure-portal"></a>登入 Azure 入口網站
 
-登入 toohello [Azure 入口網站](https://portal.azure.com/)。
+登入 [Azure 入口網站](https://portal.azure.com/)。
 
-## <a name="create-a-blank-sql-database-using-hello-azure-portal"></a>建立空白的 SQL database 使用 hello Azure 入口網站
+## <a name="create-a-blank-sql-database"></a>建立空白 SQL Database
 
-Azure SQL Database 會使用一組定義的[計算和儲存體資源](../articles/sql-database/sql-database-service-tiers.md)建立。 hello 資料庫內建立[Azure 資源群組](../articles/azure-resource-manager/resource-group-overview.md)和[Azure SQL Database 邏輯伺服器](../articles/sql-database/sql-database-features.md)。 
+Azure SQL Database 會使用一組定義的[計算和儲存體資源](../articles/sql-database/sql-database-service-tiers.md)建立。 此資料庫建立於 [Azure 資源群組](../articles/azure-resource-manager/resource-group-overview.md)和 [Azure SQL Database 邏輯伺服器](../articles/sql-database/sql-database-features.md)內。 
 
-請遵循這些步驟 toocreate 空白的 SQL 資料庫。 
+遵循以下步驟來建立空白 SQL 資料庫。 
 
-1. 按一下 hello**新增**hello 的左上角 hello Azure 入口網站上找到的按鈕。
+1. 按一下 Azure 入口網站左上角的 [新增] 按鈕。
 
-2. 選取**資料庫**從 hello**新增**頁面上，並選取**SQL Database**從 hello**資料庫**頁面。 
+2. 從 [新增] 頁面中選取 [資料庫]，然後在 [新增] 頁面的 [SQL Database] 下選取 [建立]。
 
    ![建立空白資料庫](../articles/sql-database/media/sql-database-design-first-database/create-empty-database.png)
 
-3. 填寫 hello SQL Database 表單以下列資訊，hello hello 前面影像所示：   
+3. 使用下列資訊填寫 SQL Database 表單，如上圖所示︰   
 
-   | 設定 | 建議的值 | 說明 |
-   | --------| --------------- | ----------- | 
+   | 設定       | 建議的值 | 描述 | 
+   | ------------ | ------------------ | ------------------------------------------------- | 
    | **資料庫名稱** | mySampleDatabase | 如需有效的資料庫名稱，請參閱[資料庫識別碼](https://docs.microsoft.com/sql/relational-databases/databases/database-identifiers)。 | 
    | **訂用帳戶** | 您的訂用帳戶  | 如需訂用帳戶的詳細資訊，請參閱[訂用帳戶](https://account.windowsazure.com/Subscriptions)。 |
    | **資源群組** | myResourceGroup | 如需有效的資源群組名稱，請參閱[命名規則和限制](https://docs.microsoft.com/azure/architecture/best-practices/naming-conventions)。 |
    | **選取來源** | 空白資料庫 | 指定應建立空白資料庫。 |
-   ||||
 
-4. 按一下**伺服器**toocreate 及設定新的伺服器，為您新的資料庫。 填寫 hello**表單的新伺服器**以 hello 下列資訊： 
+4. 按一下 [伺服器] 為您的新資料庫建立及設定新的伺服器。 在**新伺服器表單**表單中填寫下列資訊︰ 
 
-   | 設定 | 建議的值 | 說明 |
-   | --------| --------------- | ----------- | 
-   | **伺服器名稱** | 任何全域唯一名稱。 | 如需有效的伺服器名稱，請參閱[命名規則和限制](https://docs.microsoft.com/azure/architecture/best-practices/naming-conventions)。 | 
-   | **伺服器管理員登入** | 任何有效名稱。 | 如需有效的登入名稱，請參閱[資料庫識別碼](https://docs.microsoft.com/sql/relational-databases/databases/database-identifiers)。|
-   | **密碼** | 任何有效密碼。 | 您的密碼必須至少為八個字元，且必須包含下列類別目錄的 hello 的其中三種字元： 大寫字母、 小寫字元、 數字和非英數字元。 |
-   | **位置** | 任何有效位置。 | 如需區域的相關資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/)。 |
-   ||||
+   | 設定       | 建議的值 | 描述 | 
+   | ------------ | ------------------ | ------------------------------------------------- | 
+   | **伺服器名稱** | 任何全域唯一名稱 | 如需有效的伺服器名稱，請參閱[命名規則和限制](https://docs.microsoft.com/azure/architecture/best-practices/naming-conventions)。 | 
+   | **伺服器管理員登入** | 任何有效名稱 | 如需有效的登入名稱，請參閱[資料庫識別碼](https://docs.microsoft.com/sql/relational-databases/databases/database-identifiers)。|
+   | **密碼** | 任何有效密碼 | 您的密碼至少要有 8 個字元，而且必須包含下列幾種字元的其中三種︰大寫字元、小寫字元、數字和非英數字元。 |
+   | <bpt id="p1">**</bpt>Location<ept id="p1">**</ept> | 任何有效位置 | 如需區域的相關資訊，請參閱 [Azure 區域](https://azure.microsoft.com/regions/)。 |
 
    ![建立資料庫伺服器](../articles/sql-database/media/sql-database-design-first-database/create-database-server.png)
 
 5. 按一下 [選取] 。
 
-6. 按一下**定價層**toospecify hello 服務層和效能層級的新資料庫。 針對此快速入門，選取 [20 DTUs (20 個 DTU)] 和 [250] GB 儲存體。
+6. 按一下 [定價層] 可指定服務層、DTU 數目和儲存體數量。 瀏覽 DTU 數量的選項，以及可供您每個服務層使用的儲存體。 
+
+7. 在此教學課程中，選取 [標準] 服務層，然後使用滑桿選取 **100 DTU (S3)** 和 **400** GB 的儲存體。
 
    ![建立資料庫-s1](../articles/sql-database/media/sql-database-design-first-database/create-empty-database-pricing-tier.png)
 
-7. 按一下 [Apply (套用)] 。  
-
-8. 選取**定序**hello （適用於此教學課程中，使用 hello 預設值） 的空白資料庫。 如需定序的詳細資訊，請參閱[定序](https://docs.microsoft.com/sql/t-sql/statements/collations)。
-
-9. 按一下**建立**tooprovision hello 資料庫。 提供有關分鐘半 toocomplete 採用。 
-
-10. 在 [hello] 工具列上按一下**通知**toomonitor hello 部署程序。
-
-   ![通知](../articles/sql-database/media/sql-database-get-started-portal/notification.png)
-
-## <a name="create-a-server-level-firewall-rule-using-hello-azure-portal"></a>建立使用 hello Azure 入口網站的伺服器層級防火牆規則
-
-hello SQL Database 服務會在 hello 伺服器層級建立防火牆。 一開始 hello 防火牆會阻止外部工具和應用程式從 toohello 伺服器或 tooany hello 伺服器上的資料庫連接。 之後建立 tooopen 特定 IP 位址的防火牆規則允許的連線。 請遵循這些步驟 toocreate [SQL Database 伺服器層級防火牆規則](../articles/sql-database/sql-database-firewall-configure.md)用戶端的 IP 位址和 tooenable hello SQL Database 防火牆的 IP 位址僅透過外部連線能力。 
-
-
-> [!NOTE]
-> Azure SQL Database 會透過連接埠 1433 通訊。 只有在您的網路的 hello 防火牆允許經由連接埠 1433年傳出流量之後，您可以連接 tooSQL 資料庫。
-
-
-1. Hello 部署完成之後，請按一下**SQL 資料庫**從 hello 左側功能表，然後按一下**mySampleDatabase**上 hello **SQL 資料庫**頁面。 hello 概觀 頁面的資料庫會開啟，顯示您 hello 完全符合規定的伺服器名稱 (例如**mynewserver20170313.database.windows.net**)，並提供進一步組態的選項。 將這個完整伺服器名稱複製起來，以供稍後使用。
+8. 若要使用 [附加元件儲存體] 選項，請接受預覽條款。 
 
    > [!IMPORTANT]
-   > 您需要此完整的伺服器名稱 tooconnect tooyour 伺服器和其後續的快速入門中的資料庫。
+   > \* 大於內含儲存體數量的儲存體大小尚在預覽中，而且會產生額外成本。 如需詳細資訊，請參閱 [SQL Database 定價](https://azure.microsoft.com/pricing/details/sql-database/)。 
+   >
+   >\* 在進階層中，超過 1 TB 的儲存體目前在下列區域為可用狀態：澳大利亞東部、澳大利亞東南部、加拿大中部、加拿大東部、法國中部、德國中部、日本東部、韓國中部、美國中南部、東南亞、美國東部 2、美國西部、美國維吉尼亞州政府及西歐。 請參閱 [P11-P15 目前限制](../articles/sql-database/sql-database-resource-limits.md#single-database-limitations-of-p11-and-p15-when-the-maximum-size-greater-than-1-tb)。  
    > 
+
+9. 在選取伺服器層、DTU 數目和儲存體數量之後，按一下 [套用]。  
+
+10. 為空白資料庫選取**定序** (此教學課程中使用預設值)。 如需定序的詳細資訊，請參閱[定序](https://docs.microsoft.com/sql/t-sql/statements/collations)。
+
+11. 按一下 [建立] 即可佈建資料庫。 佈建完成所需時間約 1.5 分。 
+
+12. 在工具列上，按一下 [通知] 以監視部署程序。
+    
+     ![通知](../articles/sql-database/media/sql-database-get-started-portal/notification.png)
+
+## <a name="create-a-server-level-firewall-rule"></a>建立伺服器層級防火牆規則
+
+SQL Database 服務會在伺服器層級建立防火牆，防止外部應用程式和工具連線到伺服器或伺服器上的任何資料庫，除非建立防火牆規則以針對特定的 IP 位址開啟防火牆。 請遵循下列步驟來為您用戶端的 IP 位址建立 [SQL Database 伺服器層級防火牆規則](../articles/sql-database/sql-database-firewall-configure.md)，並讓外部連線僅能夠穿過您 IP 位址的 SQL Database 防火牆。 
+
+> [!NOTE]
+> SQL Database 會透過連接埠 1433 通訊。 如果您嘗試從公司網路進行連線，您網路的防火牆可能不允許透過連接埠 1433 的輸出流量。 若情況如此，除非 IT 部門開啟連接埠 1433，否則您無法連線至 Azure SQL Database 伺服器。
+>
+
+1. 部署完成之後，按一下左側功能表中的 [SQL Database]，然後按一下 [SQL Database] 頁面上的 [mySampleDatabase]。 資料庫的 [概觀] 頁面隨即開啟，其中會顯示完整伺服器名稱 (例如 **mynewserver20170824.database.windows.net**)，並提供進一步的組態選項。 
+
+2. 在後續的快速入門中，請複製此完整伺服器名稱，才能用來連線到伺服器及其資料庫。 
 
    ![伺服器名稱](../articles/sql-database/media/sql-database-get-started-portal/server-name.png) 
 
-2. 按一下**設定伺服器防火牆**hello 工具列 hello 如上圖所示。 hello**防火牆設定**hello SQL 資料庫伺服器 頁面隨即開啟。 
+3. 在工具列上按一下 [設定伺服器防火牆]。 SQL Database 伺服器的 [防火牆設定] 頁面隨即開啟。 
 
    ![伺服器防火牆規則](../articles/sql-database/media/sql-database-get-started-portal/server-firewall-rule.png) 
 
+4. 按一下工具列上的 [新增用戶端 IP]，將目前的 IP 位址新增至新的防火牆規則。 防火牆規則可以針對單一 IP 位址或 IP 位址範圍開啟連接埠 1433。
 
-3. 按一下**新增用戶端 IP** hello 工具列 tooadd 上目前的 IP 位址 tooa 新防火牆規則。 防火牆規則可以針對單一 IP 位址或 IP 位址範圍開啟連接埠 1433。
+5. 按一下 [檔案] 。 系統便會為目前的 IP 位址建立伺服器層級防火牆規則，以便在邏輯伺服器上開啟連接埠 1433。
 
-4. 按一下 [儲存] 。 為開啟通訊埠 1433 hello 邏輯伺服器上的目前的 IP 位址建立伺服器層級防火牆規則。
+6. 依序按一下 [確定]，然後關閉 [防火牆設定] 頁面。
 
-   ![設定伺服器防火牆規則](../articles/sql-database/media/sql-database-get-started-portal/server-firewall-rule-set.png) 
-
-4. 按一下**確定**，然後關閉 hello**防火牆設定**頁面。
-
-您現在可以使用工具，例如 SQL Server Management Studio (SSMS) 連接 toohello Azure SQL Database 伺服器和資料庫。 hello 連接是來自此 IP 位址，並使用先前建立的 hello 伺服器系統管理員帳戶。
+您現在可以利用 SQL Server Management Studio 或選擇的其他工具，使用先前建立的伺服器管理帳戶從這個 IP 位址連線至 SQL Database 伺服器及其資料庫。
 
 
 > [!IMPORTANT]
-> 根據預設，透過 hello SQL Database 防火牆會啟用所有 Azure 服務。 按一下**OFF**上所有的 Azure 服務的這個頁面 toodisable。
+> 根據預設，已對所有 Azure 服務啟用透過 SQL Database 防火牆存取。 按一下此頁面上的 [關閉] 即可對所有 Azure 服務停用。
 
+## <a name="sql-server-connection-information"></a>SQL Server 連線資訊
 
-## <a name="get-connection-string-values-using-hello-azure-portal"></a>取得使用 hello Azure 入口網站的連接字串值
+在 Azure 入口網站中取得 Azure SQL Database 伺服器的完整伺服器名稱。 透過 SQL Server Management Studio，您可使用此完整伺服器名稱連接到您的伺服器。
 
-取得 hello Azure 入口網站中的 hello Azure SQL Database 伺服器的完整的伺服器名稱。 您使用 hello 完整的伺服器名稱 tooconnect tooyour 伺服器使用 SQL Server Management Studio。
+1. 登入 [Azure 入口網站](https://portal.azure.com/)。
+2. 從左側功能表中選取 [SQL Database]，按一下 [SQL Database]頁面上您的資料庫。 
+3. 在 Azure 入口網站中您資料庫的 [基本資訊] 窗格中，找到後複製 [伺服器名稱]。
 
-1. 登入 toohello [Azure 入口網站](https://portal.azure.com/)。
-
-2. 選取**SQL 資料庫**從 hello 左側功能表中，按一下您的資料庫上 hello **SQL 資料庫**頁面。 
-
-3. 在 [hello **Essentials** hello Azure 入口網站頁面，為您的資料庫中] 窗格找到並複製 hello**伺服器名稱**。
-
-   ![連線資訊](../articles/sql-database/media/sql-database-get-started-portal/server-name.png) 
+   ![連線資訊](../articles/sql-database/media/sql-database-get-started-portal/server-name.png)

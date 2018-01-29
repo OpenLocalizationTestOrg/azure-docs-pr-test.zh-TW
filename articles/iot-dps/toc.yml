@@ -1,0 +1,127 @@
+- name: Azure IoT 中樞裝置佈建服務文件
+  href: index.yml
+- name: 概觀
+  items:
+    - name: 關於裝置佈建
+      href: about-iot-dps.md
+- name: 快速入門
+  expanded: true
+  items:
+    - name: 設定自動佈建
+      href: quick-setup-auto-provision.md
+    - name: 建立模擬裝置
+      items:
+        - name: TPM
+          items:
+            - name: C
+              href: quick-create-simulated-device.md
+            - name: Java
+              href: quick-create-simulated-device-tpm-java.md
+            - name: 'C#'
+              href: quick-create-simulated-device-tpm-csharp.md
+            - name: Python
+              href: quick-create-simulated-device-tpm-python.md
+        - name: X.509
+          items:
+            - name: C
+              href: quick-create-simulated-device-x509.md
+            - name: Java
+              href: quick-create-simulated-device-x509-java.md
+            - name: 'C#'
+              href: quick-create-simulated-device-x509-csharp.md
+            - name: Python
+              href: quick-create-simulated-device-x509-python.md
+    - name: 註冊裝置
+      items:
+        - name: TPM
+          items:
+            - name: Java
+              href: quick-enroll-device-tpm-java.md
+            - name: Node.js
+              href: quick-enroll-device-tpm-node.md
+        - name: X.509
+          items:
+            - name: Java
+              href: quick-enroll-device-x509-java.md
+            - name: Node.js
+              href: quick-enroll-device-x509-node.md
+- name: 教學課程
+  items:
+    - name: 1 - 設定雲端資源
+      href: tutorial-set-up-cloud.md
+    - name: 2 - 設定裝置
+      href: tutorial-set-up-device.md
+    - name: 3 - 將裝置佈建至 IoT 中樞
+      items:
+        - name: C
+          href: tutorial-provision-device-to-hub.md
+        - name: 'C#'
+          href: tutorial-net-provision-device-to-hub.md
+    - name: 4 - 將裝置佈建至多個中樞
+      href: tutorial-provision-multiple-hubs.md
+    - name: 5 - 佈建群組註冊項目
+      href: tutorial-group-enrollments.md
+- name: 概念
+  items:
+    - name: 裝置概念
+      href: concepts-device.md
+    - name: 服務概念
+      href: concepts-service.md
+    - name: 安全性概念
+      href: concepts-security.md
+- name: 使用說明指南
+  items:
+    - name: 管理裝置註冊
+      items:
+        - name: 透過 Azure 入口網站管理裝置註冊
+          href: how-to-manage-enrollments.md
+        - name: 透過服務 SDK 管理裝置註冊
+          href: how-to-manage-enrollments-sdks.md
+    - name: 撤銷裝置存取
+      href: how-to-revoke-device-access-portal.md
+    - name: 解除佈建裝置
+      href: how-to-unprovision-devices.md
+    - name: 使用 HSM 與 SDK
+      href: use-hsm-with-sdk.md
+    - name: 控制佈建服務的存取
+      href: how-to-control-access.md
+    - name: 使用 Azure CLI 來管理裝置佈建服務
+      href: how-to-manage-dps-with-cli.md
+    - name: 使用 SDK 工具進行開發
+      href: how-to-use-sdk-tools.md
+- name: 參考
+  items:
+    - name: REST
+      href: /rest/api/iot-dps
+- name: 資源
+  items:
+    - name: Azure IoT 中樞
+      href: 'https://azure.microsoft.com/services/iot-hub/'
+    - name: Azure IoT 認證裝置目錄
+      href: 'https://catalog.azureiotsuite.com/'
+    - name: Azure IoT 開發人員中心
+      href: 'https://azure.microsoft.com/develop/iot/'
+    - name: Azure 藍圖
+      href: 'https://azure.microsoft.com/roadmap/?category=internet-of-things'
+    - name: Device Explorer 工具
+      href: 'https://github.com/Azure/azure-iot-sdk-csharp/tree/master/tools/DeviceExplorer'
+    - name: iothub-diagnostics 工具
+      href: 'https://github.com/Azure/iothub-diagnostics'
+    - name: iothub-explorer 工具
+      href: 'https://github.com/Azure/iothub-explorer'
+    - name: 學習路徑
+      href: 'https://azure.microsoft.com/documentation/learning-paths/iot-hub/'
+    - name: MSDN 論壇
+      href: 'https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureiothub'
+    - name: 價格
+      href: 'https://azure.microsoft.com/pricing/details/iot-hub/'
+    - name: 定價計算機
+      href: 'https://azure.microsoft.com/pricing/calculator/'
+    - name: 服務更新
+      href: 'https://azure.microsoft.com/updates/?product=iot-hub'
+    - name: 堆疊溢位
+      href: 'http://stackoverflow.com/questions/tagged/azure-iot-hub'
+    - name: 技術案例研究
+      href: 'https://microsoft.github.io/techcasestudies/#technology=IoT&sortBy=featured'
+    - name: 影片
+      href: 'https://azure.microsoft.com/documentation/videos/index/?services=iot-hub'

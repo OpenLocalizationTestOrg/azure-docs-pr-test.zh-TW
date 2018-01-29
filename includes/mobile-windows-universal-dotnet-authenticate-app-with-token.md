@@ -1,25 +1,25 @@
 
-1. 在 hello MainPage.xaml.cs 專案檔中加入 hello 下列**使用**陳述式：
+1. 在 MainPage.xaml.cs 專案檔中，新增下列 **using** 陳述式：
    
         using System.Linq;        
         using Windows.Security.Credentials;
-2. 取代 hello **AuthenticateAsync**方法，以下列程式碼的 hello:
+2. 使用下列程式碼來取代 **AuthenticateAsync** 方法：
    
         private async System.Threading.Tasks.Task<bool> AuthenticateAsync()
         {
             string message;
             bool success = false;
    
-            // This sample uses hello Facebook provider.
+            // This sample uses the Facebook provider.
             var provider = MobileServiceAuthenticationProvider.Facebook;
    
-            // Use hello PasswordVault toosecurely store and access credentials.
+            // Use the PasswordVault to securely store and access credentials.
             PasswordVault vault = new PasswordVault();
             PasswordCredential credential = null;
    
             try
             {
-                // Try tooget an existing credential from hello vault.
+                // Try to get an existing credential from the vault.
                 credential = vault.FindAllByResource(provider.ToString()).FirstOrDefault();
             }
             catch (Exception)
@@ -29,15 +29,15 @@
    
             if (credential != null)
             {
-                // Create a user from hello stored credentials.
+                // Create a user from the stored credentials.
                 user = new MobileServiceUser(credential.UserName);
                 credential.RetrievePassword();
                 user.MobileServiceAuthenticationToken = credential.Password;
    
-                // Set hello user from hello stored credentials.
+                // Set the user from the stored credentials.
                 App.MobileService.CurrentUser = user;
    
-                // Consider adding a check toodetermine if hello token is 
+                // Consider adding a check to determine if the token is 
                 // expired, as shown in this post: http://aka.ms/jww5vp.
    
                 success = true;
@@ -47,11 +47,11 @@
             {
                 try
                 {
-                    // Login with hello identity provider.
+                    // Login with the identity provider.
                     user = await App.MobileService
-                        .LoginAsync(provider);
+                        .LoginAsync(provider, "{url_scheme_of_your_app}");
    
-                    // Create and store hello user credentials.
+                    // Create and store the user credentials.
                     credential = new PasswordCredential(provider.ToString(),
                         user.UserId, user.MobileServiceAuthenticationToken);
                     vault.Add(credential);
@@ -72,13 +72,13 @@
             return success;
         }
    
-    在這個版本的**AuthenticateAsync**，hello 應用程式會嘗試 toouse 認證儲存在 hello **PasswordVault** tooaccess hello 服務。 如果沒有儲存任何認證，也會執行一般登入。
+    在這個版本的 **AuthenticateAsync** 中，應用程式會嘗試使用已儲存於 **PasswordVault** 中的認證來存取服務。 如果沒有儲存任何認證，也會執行一般登入。
    
    > [!NOTE]
-   > 可能過期的快取的權杖，以及權杖的到期日也可能發生在驗證後 hello 應用程式正在使用中。 如何 toodetermine 如果權杖已過期，請參閱的 toolearn[檢查是否有過期的驗證語彙基元](http://aka.ms/jww5vp)。 方案 toohandling 授權錯誤相關的 tooexpiring 語彙基元，請參閱文章 hello[管理 SDK 的快取和處理 Azure Mobile Services 中的過期語彙基元](http://blogs.msdn.com/b/carlosfigueira/archive/2014/03/13/caching-and-handling-expired-tokens-in-azure-mobile-services-managed-sdk.aspx)。 
+   > 快取權杖可能會過期，且權杖也可能會在應用程式使用期間經驗證之後到期。 若要瞭解如何判斷權杖是否過期，請參閱 [檢查是否有過期的驗證權杖](http://aka.ms/jww5vp)(英文)。 如需處理與權杖到期相關之授權錯誤的方案，請參閱下列文章： [在 Azure 行動服務管理的 SDK 中快取和處理到期的權杖](http://blogs.msdn.com/b/carlosfigueira/archive/2014/03/13/caching-and-handling-expired-tokens-in-azure-mobile-services-managed-sdk.aspx)(英文)。 
    > 
    > 
-3. 重新啟動兩次 hello 應用程式。
+3. 重新啟動應用程式兩次。
    
-    請注意，在 hello 第一次啟動時，使用 hello 提供者登入一次是必要的。 不過，快取的 hello 認證會用在 hello 第二個重新啟動，而且登入則會略過。 
+    請注意，第一次啟動時，需要再次使用該提供者登入。 不過，在第二次重新啟動時，可以使用快取的認證，並略過登入。 
 

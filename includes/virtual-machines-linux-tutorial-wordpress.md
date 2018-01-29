@@ -1,14 +1,14 @@
 ## <a name="install-wordpress"></a>安裝 WordPress
 
-如果您想要 tootry 程式堆疊，安裝範例應用程式。 例如，下列步驟的 hello 安裝 hello 開放原始碼[WordPress](https://wordpress.org/)平台 toocreate 網站和部落格。 包含其他工作負載 tootry [Drupal](http://www.drupal.org)和[Moodle](https://moodle.org/)。 
+如果您想要嘗試您的堆疊，請安裝範例應用程式。 例如，下列步驟可安裝開放原始碼 [WordPress](https://wordpress.org/) 平台以建立網站和部落格。 其他可嘗試的工作負載包括 [Drupal](http://www.drupal.org) 和 [Moodle](https://moodle.org/)。 
 
-此 WordPress 設定用於概念證明。 如需詳細資訊和實際執行安裝的設定，請參閱 hello [WordPress 文件](https://codex.wordpress.org/Main_Page)。 
+此 WordPress 設定只適用於概念證明。 若要在生產環境中使用建議的安全性設定安裝最新的 WordPress，請參閱 [WordPress 文件](https://codex.wordpress.org/Main_Page)。 
 
 
 
-### <a name="install-hello-wordpress-package"></a>安裝 hello WordPress 套件
+### <a name="install-the-wordpress-package"></a>安裝 WordPress 套件
 
-執行下列命令的 hello:
+執行以下命令：
 
 ```bash
 sudo apt install wordpress
@@ -16,12 +16,43 @@ sudo apt install wordpress
 
 ### <a name="configure-wordpress"></a>設定 WordPress
 
-設定 WordPress toouse MySQL 和 PHP。 執行下列命令 tooopen hello 您選擇的文字編輯器，並建立 hello 檔案`/etc/wordpress/config-localhost.php`:
+將 WordPress 設定為使用 MySQL 和 PHP。
+
+在工作目錄中，建立文字檔 `wordpress.sql` 以設定 WordPress 的 MySQL 資料庫： 
+
+```bash
+sudo sensible-editor wordpress.sql
+```
+
+新增下列命令，以您選擇的資料庫密碼替代 *yourPassword* (其他值維持不變)。 如果您先前已設定 MySQL 安全性原則來驗證密碼強度，請確定此密碼符合強度需求。 儲存檔案。
+
+```sql
+CREATE DATABASE wordpress;
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
+ON wordpress.*
+TO wordpress@localhost
+IDENTIFIED BY 'yourPassword';
+FLUSH PRIVILEGES;
+```
+
+執行下列命令來建立資料庫：
+
+```bash
+cat wordpress.sql | sudo mysql --defaults-extra-file=/etc/mysql/debian.cnf
+```
+
+`wordpress.sql` 檔案中包含資料庫認證，因此請在使用下列命令後將其刪除：
+
+```bash
+sudo rm wordpress.sql
+```
+
+若要設定 PHP，請執行下列命令來開啟您選擇的文字編輯器，並建立 `/etc/wordpress/config-localhost.php` 檔案：
 
 ```bash
 sudo sensible-editor /etc/wordpress/config-localhost.php
 ```
-下列幾行 toohello 檔，以取代為您資料庫的密碼複本 hello *yourPassword* （保持不變的其他值）。 然後儲存 hello 檔案。
+將下列幾行複製到檔案，以您的 WordPress 資料庫密碼替代 *yourPassword* (其他值維持不變)。 然後儲存檔案。
 
 ```php
 <?php
@@ -33,33 +64,8 @@ define('WP_CONTENT_DIR', '/usr/share/wordpress/wp-content');
 ?>
 ```
 
-工作目錄中建立文字檔`wordpress.sql`tooconfigure hello WordPress 資料庫： 
 
-```bash
-sudo sensible-editor wordpress.sql
-```
-
-新增下列命令，以取代您的資料庫密碼為 hello *yourPassword* （保持不變的其他值）。 然後儲存 hello 檔案。
-
-```sql
-CREATE DATABASE wordpress;
-GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER
-ON wordpress.*
-toowordpress@localhost
-IDENTIFIED BY 'yourPassword';
-FLUSH PRIVILEGES;
-```
-
-
-執行下列命令 toocreate hello 資料庫 hello:
-
-```bash
-cat wordpress.sql | sudo mysql --defaults-extra-file=/etc/mysql/debian.cnf
-```
-
-Hello 命令完成之後，刪除 hello 檔案`wordpress.sql`。
-
-移動 hello WordPress 安裝 toohello web 伺服器文件根目錄：
+將 WordPress 安裝移至 Web 伺服器文件根目錄：
 
 ```bash
 sudo ln -s /usr/share/wordpress /var/www/html/wordpress
@@ -67,6 +73,6 @@ sudo ln -s /usr/share/wordpress /var/www/html/wordpress
 sudo mv /etc/wordpress/config-localhost.php /etc/wordpress/config-default.php
 ```
 
-現在您可以完成 hello WordPress 設定，並發佈 hello 平台上。 開啟瀏覽器並移過`http://yourPublicIPAddress/wordpress`。 取代您的 VM hello 公用 IP 位址。 它看起來應該類似 toothis 映像。
+您現在即可完成 WordPress 設定並且在平台上發佈。 現在開啟瀏覽器並前往 `http://yourPublicIPAddress/wordpress`。 替換為您 VM 的公用 IP 位址。 該頁面看起來應該類似下圖。
 
 ![WordPress 安裝頁面](./media/virtual-machines-linux-tutorial-wordpress/wordpressstartpage.png)

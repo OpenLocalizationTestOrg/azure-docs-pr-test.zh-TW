@@ -6,4 +6,4 @@
 > * [Ruby](active-directory-b2c-devquickstarts-graph-ruby.md)
 > 
 > 
-測試測試 2
+

@@ -1,0 +1,182 @@
+---
+title: "Azure 診斷記錄檔資料流事件中心 |Microsoft 文件"
+description: "了解如何將串流處理至事件中心的 Azure 診斷記錄檔。"
+author: johnkemnetz
+manager: orenr
+editor: 
+services: monitoring-and-diagnostics
+documentationcenter: monitoring-and-diagnostics
+ms.assetid: 42bc4845-c564-4568-b72d-0614591ebd80
+ms.service: monitoring-and-diagnostics
+ms.workload: na
+ms.tgt_pltfrm: na
+ms.devlang: na
+ms.topic: article
+ms.date: 12/22/2017
+ms.author: johnkem
+ms.openlocfilehash: bcb9fcb2371217e7082d96ddbba4a095e6d9a00f
+ms.sourcegitcommit: a648f9d7a502bfbab4cd89c9e25aa03d1a0c412b
+ms.translationtype: MT
+ms.contentlocale: zh-TW
+ms.lasthandoff: 12/22/2017
+---
+# <a name="stream-azure-diagnostic-logs-to-an-event-hub"></a>資料流 Azure 診斷記錄到事件中心
+**[Azure 診斷的記錄檔](monitoring-overview-of-diagnostic-logs.md)**可以使用內建的 「 匯出至事件中心 」 選項，在入口網站，或藉由啟用的診斷設定透過 Azure 事件中樞授權規則識別碼的任何應用程式的幾近即時資料流處理PowerShell Cmdlet 或 Azure CLI。
+
+## <a name="what-you-can-do-with-diagnostics-logs-and-event-hubs"></a>您可以使用診斷記錄和事件中樞執行的項目
+這裡有一些您可以使用診斷日誌串流功能的方法：
+
+* **資料流至第 3 個合作對象記錄與遙測系統記錄檔**– 傳送至單一事件中樞管道記錄資料，第三方 SIEM 或記錄檔分析工具診斷記錄的所有資料流。
+* **將「最忙碌路徑」串流至 PowerBI 以檢視服務健全狀況** – 您可以使用事件中樞、串流分析和 PowerBI，輕鬆快速地將診斷資料轉換為 Azure 服務上的深入解析。 [此文件文章提供絕佳概觀，說明如何設定事件中樞、使用串流分析處理資料，以及使用 PowerBI 作為輸出](../stream-analytics/stream-analytics-power-bi-dashboard.md)。 以下是設定診斷記錄的一些祕訣︰
+  
+  * 當您勾選入口網站中的選項，或透過 PowerShell 進行啟用時，就會自動建立診斷記錄類別的事件中樞，因此您需要選取命名空間中名稱開頭為 **insights-** 的事件中樞。
+  * 下列 SQL 程式碼是您可以使用的範例串流分析查詢，能將所有記錄資料剖析至 PowerBI 表格：
+
+    ```sql
+    SELECT
+    records.ArrayValue.[Properties you want to track]
+    INTO
+    [OutputSourceName – the PowerBI source]
+    FROM
+    [InputSourceName] AS e
+    CROSS APPLY GetArrayElements(e.records) AS records
+    ```
+
+* **建置自訂遙測及記錄平台** – 如果您已有自建遙測平台或正好在考慮建置一個，事件中樞所具備的高度可調整的發佈訂閱特質可讓您靈活擷取診斷記錄檔。 [請參閱此處的 Dan Rosanova 指南，以在全球級別的遙測平台中使用事件中樞](https://azure.microsoft.com/documentation/videos/build-2015-designing-and-sizing-a-global-scale-telemetry-platform-on-azure-event-Hubs/)。
+
+## <a name="enable-streaming-of-diagnostic-logs"></a>啟用診斷記錄的串流
+您可以透過入口網站或使用 [Azure 監視器 REST API](https://docs.microsoft.com/rest/api/monitor/servicediagnosticsettings)，啟用以程式控制方式對診斷記錄進行串流的功能。 無論如何，您所建立的診斷設定可讓您指定事件中樞命名空間，以及記錄類別和您需要傳送至命名空間的計量。 針對您所啟用的每個記錄類別，會在命名空間中建立事件中樞。 診斷**記錄類別**是一種資源可以收集的記錄類型。
+
+> [!WARNING]
+> 啟用和串流來自計算資源 (例如，VM 或 Service Fabric) 的診斷記錄 [需要一組不同的步驟](../event-hubs/event-hubs-streaming-azure-diags-data.md)。
+> 
+> 
+
+要發出記錄檔，只要將設定設定的使用者有適當 RBAC 存取這兩個訂用帳戶的資源在相同訂用帳戶中沒有事件中樞命名空間。
+
+## <a name="stream-diagnostic-logs-using-the-portal"></a>使用入口網站串流診斷記錄
+1. 在入口網站中，瀏覽至 Azure 監視器，然後按一下 [診斷設定]
+
+    ![Azure 監視器的監視區段](media/monitoring-stream-diagnostic-logs-to-event-hubs/diagnostic-settings-blade.png)
+
+2. 選擇性地依資源群組或資源類型篩選清單，然後按一下您要設定診斷設定的資源。
+
+3. 如果您選取的資源上沒有任何設定，系統會提示您建立設定。 按一下「開啟診斷」。
+
+   ![新增診斷設定 - 無現有的設定](media/monitoring-stream-diagnostic-logs-to-event-hubs/diagnostic-settings-none.png)
+
+   如果資源上已有設定，您將會看此資源上已設定的設定清單。 按一下「新增診斷設定」。
+
+   ![新增診斷設定 - 現有的設定](media/monitoring-stream-diagnostic-logs-to-event-hubs/diagnostic-settings-multiple.png)
+
+3. 為設定提供名稱並核取 [串流至事件中樞] 方塊，然後選取 [事件中樞命名空間]。
+   
+   ![新增診斷設定 - 現有的設定](media/monitoring-stream-diagnostic-logs-to-event-hubs/diagnostic-settings-configure.png)
+    
+   選取的命名空間將會是事件中樞的建立所在 (如果這是您第一次的串流診斷記錄) 或串流處理的目的地 (如果已存在將該記錄檔分類串流至此命名空間的資源)，而原則會定義串流機制擁有的權限。 目前，將事件串流到中樞需要管理、傳送和接聽的權限。 您可以在入口網站的 [設定] 索引標籤下，為您的命名空間建立或修改事件中樞命名空間共用存取原則。 若要更新其中一個診斷設定，用戶端必須擁有事件中樞授權規則的 ListKey 權限。 您也可以指定事件中樞名稱。 如果您指定的事件中樞的名稱，該事件中心，而不是每個記錄類別的新建立的事件中樞會路由傳送記錄檔。
+
+4. 按一下 [檔案] 。
+
+在幾分鐘之後, 新的設定會出現在此資源，設定的清單，並診斷記錄檔資料流傳送至該事件中心一旦產生新的事件資料。
+
+### <a name="via-powershell-cmdlets"></a>透過 PowerShell Cmdlet
+若要透過 [Azure PowerShell Cmdlet](insights-powershell-samples.md) 啟用串流功能，您可以使用 `Set-AzureRmDiagnosticSetting` Cmdlet 搭配下列參數︰
+
+```powershell
+Set-AzureRmDiagnosticSetting -ResourceId [your resource ID] -ServiceBusRuleId [your Service Bus rule ID] -Enabled $true
+```
+
+服務匯流排規則識別碼是此格式的字串︰`{Service Bus resource ID}/authorizationrules/{key name}`，例如，`/subscriptions/{subscription ID}/resourceGroups/Default-ServiceBus-WestUS/providers/Microsoft.ServiceBus/namespaces/{Service Bus namespace}/authorizationrules/RootManageSharedAccessKey`。 您目前無法選取特定的事件中樞名稱使用 PowerShell。
+
+### <a name="via-azure-cli"></a>透過 Azure CLI
+若要透過 [Azure CLI](insights-cli-samples.md) 啟用串流功能，您可以使用如下的 `insights diagnostic set` 命令︰
+
+```azurecli
+azure insights diagnostic set --resourceId <resourceID> --serviceBusRuleId <serviceBusRuleID> --enabled true
+```
+
+如 PowerShell Cmdlet 所述，對服務匯流排規則識別碼使用相同的格式。 您目前無法選取使用 Azure CLI 特定事件中樞名稱。
+
+## <a name="how-do-i-consume-the-log-data-from-event-hubs"></a>我要如何透過事件中樞取用記錄檔資料？
+此處是來自事件中樞的範例輸出資料：
+
+```json
+{
+    "records": [
+        {
+            "time": "2016-07-15T18:00:22.6235064Z",
+            "workflowId": "/SUBSCRIPTIONS/DF602C9C-7AA0-407D-A6FB-EB20C8BD1192/RESOURCEGROUPS/JOHNKEMTEST/PROVIDERS/MICROSOFT.LOGIC/WORKFLOWS/JOHNKEMTESTLA",
+            "resourceId": "/SUBSCRIPTIONS/DF602C9C-7AA0-407D-A6FB-EB20C8BD1192/RESOURCEGROUPS/JOHNKEMTEST/PROVIDERS/MICROSOFT.LOGIC/WORKFLOWS/JOHNKEMTESTLA/RUNS/08587330013509921957/ACTIONS/SEND_EMAIL",
+            "category": "WorkflowRuntime",
+            "level": "Error",
+            "operationName": "Microsoft.Logic/workflows/workflowActionCompleted",
+            "properties": {
+                "$schema": "2016-04-01-preview",
+                "startTime": "2016-07-15T17:58:55.048482Z",
+                "endTime": "2016-07-15T18:00:22.4109204Z",
+                "status": "Failed",
+                "code": "BadGateway",
+                "resource": {
+                    "subscriptionId": "df602c9c-7aa0-407d-a6fb-eb20c8bd1192",
+                    "resourceGroupName": "JohnKemTest",
+                    "workflowId": "243aac67fe904cf195d4a28297803785",
+                    "workflowName": "JohnKemTestLA",
+                    "runId": "08587330013509921957",
+                    "location": "westus",
+                    "actionName": "Send_email"
+                },
+                "correlation": {
+                    "actionTrackingId": "29a9862f-969b-4c70-90c4-dfbdc814e413",
+                    "clientTrackingId": "08587330013509921958"
+                }
+            }
+        },
+        {
+            "time": "2016-07-15T18:01:15.7532989Z",
+            "workflowId": "/SUBSCRIPTIONS/DF602C9C-7AA0-407D-A6FB-EB20C8BD1192/RESOURCEGROUPS/JOHNKEMTEST/PROVIDERS/MICROSOFT.LOGIC/WORKFLOWS/JOHNKEMTESTLA",
+            "resourceId": "/SUBSCRIPTIONS/DF602C9C-7AA0-407D-A6FB-EB20C8BD1192/RESOURCEGROUPS/JOHNKEMTEST/PROVIDERS/MICROSOFT.LOGIC/WORKFLOWS/JOHNKEMTESTLA/RUNS/08587330012106702630/ACTIONS/SEND_EMAIL",
+            "category": "WorkflowRuntime",
+            "level": "Information",
+            "operationName": "Microsoft.Logic/workflows/workflowActionStarted",
+            "properties": {
+                "$schema": "2016-04-01-preview",
+                "startTime": "2016-07-15T18:01:15.5828115Z",
+                "status": "Running",
+                "resource": {
+                    "subscriptionId": "df602c9c-7aa0-407d-a6fb-eb20c8bd1192",
+                    "resourceGroupName": "JohnKemTest",
+                    "workflowId": "243aac67fe904cf195d4a28297803785",
+                    "workflowName": "JohnKemTestLA",
+                    "runId": "08587330012106702630",
+                    "location": "westus",
+                    "actionName": "Send_email"
+                },
+                "correlation": {
+                    "actionTrackingId": "042fb72c-7bd4-439e-89eb-3cf4409d429e",
+                    "clientTrackingId": "08587330012106702632"
+                }
+            }
+        }
+    ]
+}
+```
+
+| 元素名稱 | 說明 |
+| --- | --- |
+| 記錄數 |此承載中的所有記錄事件的陣列。 |
+| 分析 |事件發生的時間。 |
+| category |此事件的記錄檔分類。 |
+| ResourceId |產生此事件之資源的資源識別碼。 |
+| operationName |作業名稱。 |
+| 層級 |選用。 表示記錄事件層級。 |
+| properties |事件的屬性。 |
+
+您可以在[這裡](monitoring-overview-of-diagnostic-logs.md)檢視支援串流至事件中樞的所有資源提供者清單。
+
+## <a name="stream-data-from-compute-resources"></a>從計算資源中串流資料
+您也可以使用 Windows Azure 診斷代理程式，從計算資源中串流診斷記錄。 [請參閱本文章](../event-hubs/event-hubs-streaming-azure-diags-data.md)了解如何設定。
+
+## <a name="next-steps"></a>後續步驟
+* [深入了解 Azure 診斷記錄檔](monitoring-overview-of-diagnostic-logs.md)
+* [開始使用事件中心](../event-hubs/event-hubs-csharp-ephcs-getstarted.md)
+
