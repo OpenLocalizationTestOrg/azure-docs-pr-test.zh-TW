@@ -14,16 +14,16 @@ ms.topic: tutorial
 ms.date: 10/11/2017
 ms.author: routlaw
 ms.openlocfilehash: 5b0b51504478cc0d501a89760ccd60808a69ccbd
-ms.sourcegitcommit: b979d446ccbe0224109f71b3948d6235eb04a967
-ms.translationtype: HT
+ms.sourcegitcommit: 694e40a193980dea1e2f945471071f11030d5641
+ms.translationtype: MT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 10/25/2017
+ms.lasthandoff: 01/29/2018
 ---
 # <a name="install-the-elastic-stack-on-an-azure-vm"></a>在 Azure VM 上安裝彈性堆疊
 
 本文將逐步引導您了解如何在 Azure 中的 Ubuntu VM 上部署 [Elasticsearch](https://www.elastic.co/products/elasticsearch) \(英文\)、[Logstash](https://www.elastic.co/products/logstash) \(英文\) 和 [Kibana](https://www.elastic.co/products/kibana) \(英文\)。 若要查看運作中的彈性堆疊，您可以選擇性地連接到 Kibana，然後處理一些記錄資料的範例。 
 
-在本教學課程中，您了解如何：
+在本教學課程中，您將了解如何：
 
 > [!div class="checklist"]
 > * 在 Azure 資源群組中建立 Ubuntu VM
@@ -52,7 +52,7 @@ az group create --name myResourceGroup --location eastus
 
 使用 [az vm create](/cli/azure/vm#create) 命令來建立 VM。 
 
-下列範例會建立名為 myVM 的 VM，並建立 SSH 金鑰 (如果它們不存在於預設金鑰位置)。 若要使用一組特定金鑰，請使用 `--ssh-key-value` 選項。  
+下列範例會建立名為 myVM 的 VM，並建立 SSH 金鑰 (如果它們不存在於預設金鑰位置)。 若要使用特定的一组密钥，请使用 `--ssh-key-value` 选项。  
 
 ```azurecli-interactive 
 az vm create \
