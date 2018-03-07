@@ -1,21 +1,12 @@
 
-## <a name="launch-azure-cloud-shell"></a><span data-ttu-id="fb97e-101">啟動 Azure Cloud Shell</span><span class="sxs-lookup"><span data-stu-id="fb97e-101">Launch Azure Cloud Shell</span></span>
+## <a name="launch-azure-cloud-shell"></a><span data-ttu-id="87a8c-101">啟動 Azure Cloud Shell</span><span class="sxs-lookup"><span data-stu-id="87a8c-101">Launch Azure Cloud Shell</span></span>
 
-<span data-ttu-id="fb97e-102">hello Azure 雲端殼層是免費的 Bash 殼層，您可以直接在 hello Azure 入口網站中執行。</span><span class="sxs-lookup"><span data-stu-id="fb97e-102">hello Azure Cloud Shell is a free Bash shell that you can run directly within hello Azure portal.</span></span> <span data-ttu-id="fb97e-103">它有的 hello Azure CLI 預先安裝和設定 toouse 與您的帳戶。</span><span class="sxs-lookup"><span data-stu-id="fb97e-103">It has hello Azure CLI preinstalled and configured toouse with your account.</span></span> <span data-ttu-id="fb97e-104">按一下 hello**雲端殼層**hello 右上方的 hello 中的 hello 功能表上的按鈕[Azure 入口網站](https://portal.azure.com)。</span><span class="sxs-lookup"><span data-stu-id="fb97e-104">Click hello **Cloud Shell** button on hello menu in hello upper-right of hello [Azure portal](https://portal.azure.com).</span></span>
+<span data-ttu-id="87a8c-102">Azure Cloud Shell 是免費的互動式 Shell，可讓您用來執行本文中的步驟。</span><span class="sxs-lookup"><span data-stu-id="87a8c-102">The Azure Cloud Shell is a free interactive shell that you can use to run the steps in this article.</span></span> <span data-ttu-id="87a8c-103">它具有預先安裝和設定的共用 Azure 工具，可與您的帳戶搭配使用。</span><span class="sxs-lookup"><span data-stu-id="87a8c-103">It has common Azure tools preinstalled and configured to use with your account.</span></span> <span data-ttu-id="87a8c-104">只要按一下 [複製] 即可複製程式碼，將它貼到 Cloud Shell 中，然後按 enter 鍵加以執行。</span><span class="sxs-lookup"><span data-stu-id="87a8c-104">Just click the **Copy** to copy the code, paste it into the Cloud Shell, and then press enter to run it.</span></span>  <span data-ttu-id="87a8c-105">以下有幾種啟動 Cloud Shell 的方式：</span><span class="sxs-lookup"><span data-stu-id="87a8c-105">There are a few ways to launch the Cloud Shell:</span></span>
 
-<span data-ttu-id="fb97e-105">[![Cloud Shell](./media/cloud-shell-try-it/cloud-shell-menu.png)](https://portal.azure.com)</span><span class="sxs-lookup"><span data-stu-id="fb97e-105">[![Cloud Shell](./media/cloud-shell-try-it/cloud-shell-menu.png)](https://portal.azure.com)</span></span>
-
-<span data-ttu-id="fb97e-106">hello 按鈕會啟動，您可以使用本主題中的 hello 的所有步驟的 toorun 互動式殼層：</span><span class="sxs-lookup"><span data-stu-id="fb97e-106">hello button launches an interactive shell that you can use toorun all of hello steps in this topic:</span></span>
-
-<span data-ttu-id="fb97e-107">[![螢幕擷取畫面顯示 hello hello 入口網站中的雲端殼層視窗](./media/cloud-shell-try-it/cloud-shell-safari.png)](https://portal.azure.com)</span><span class="sxs-lookup"><span data-stu-id="fb97e-107">[![Screenshot showing hello Cloud Shell window in hello portal](./media/cloud-shell-try-it/cloud-shell-safari.png)](https://portal.azure.com)</span></span>
-
-
-
-
-
-
-
-
-
-
+|  |   |
+|-----------------------------------------------|---|
+| <span data-ttu-id="87a8c-106">按一下程式碼區塊右上角的 [試試看]。</span><span class="sxs-lookup"><span data-stu-id="87a8c-106">Click **Try It** in the upper right corner of a code block.</span></span> | ![本文中的 Cloud Shell](./media/cloud-shell-try-it/cli-try-it.png) |
+| <span data-ttu-id="87a8c-108">在您的瀏覽器中開啟 Cloud Shell。</span><span class="sxs-lookup"><span data-stu-id="87a8c-108">Open Cloud Shell in your browser.</span></span> | <span data-ttu-id="87a8c-109">[![https://shell.azure.com/bash](./media/cloud-shell-try-it/launchcloudshell.png)](https://shell.azure.com/bash)</span><span class="sxs-lookup"><span data-stu-id="87a8c-109">[![https://shell.azure.com/bash](./media/cloud-shell-try-it/launchcloudshell.png)](https://shell.azure.com/bash)</span></span> |
+| <span data-ttu-id="87a8c-110">按一下 [Azure 入口網站](https://portal.azure.com) 右上方功能表上的 [Cloud Shell] 按鈕。</span><span class="sxs-lookup"><span data-stu-id="87a8c-110">Click the **Cloud Shell** button on the menu in the upper right of the [Azure portal](https://portal.azure.com).</span></span> |    ![入口網站中的 Cloud Shell](./media/cloud-shell-try-it/cloud-shell-menu.png) |
+|  |  |
 
