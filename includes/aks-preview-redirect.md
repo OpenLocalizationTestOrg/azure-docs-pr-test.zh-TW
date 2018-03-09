@@ -1,0 +1,4 @@
+> [!WARNING]
+> <span data-ttu-id="6669f-101">您正在檢視 Azure Container Service 的舊版文件。</span><span class="sxs-lookup"><span data-stu-id="6669f-101">You are viewing documentation for the old version of the Azure Container Service.</span></span> <span data-ttu-id="6669f-102">[Azure Container Service (AKS)](../articles/aks/intro-kubernetes.md) 已更新，針對 Azure 上的 Kubernetes 新增新的部署選項、增強管理功能，以及更提高成本效益。</span><span class="sxs-lookup"><span data-stu-id="6669f-102">[Azure Container Service (AKS)](../articles/aks/intro-kubernetes.md) is being updated to add new deployment options, enhanced management capabilities, and cost benefit to Kubernetes on Azure.</span></span> <span data-ttu-id="6669f-103">若要開始使用這些預覽功能，請瀏覽 [AKS 文件](../articles/aks/intro-kubernetes.md)。</span><span class="sxs-lookup"><span data-stu-id="6669f-103">Visit the [AKS documentation](../articles/aks/intro-kubernetes.md) to start working with these preview features.</span></span>   
+>
+>
