@@ -1,6 +1,6 @@
 ---
-title: "在 Azure 中的開發虛擬機器上部署 ElasticSearch"
-description: "教學課程 - 在 Azure 中的開發 Linux VM 上安裝彈性堆疊"
+title: 在 Azure 中的開發虛擬機器上部署 ElasticSearch
+description: 教學課程 - 在 Azure 中的開發 Linux VM 上安裝彈性堆疊
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: rloutlaw
