@@ -1,6 +1,6 @@
 ---
-title: "常見問題集 - Azure Active Directory B2C"
-description: "Azure Active Directory B2C 常見問題集 (FAQ)"
+title: 常見問題集 - Azure Active Directory B2C
+description: Azure Active Directory B2C 常見問題集 (FAQ)
 services: active-directory-b2c
 author: PatAltimore
 manager: mtillman
@@ -14,10 +14,10 @@ ms.topic: article
 ms.date: 08/16/2017
 ms.author: saeeda
 ms.openlocfilehash: 38f33f2a5d0bba4686cfeef121f2087326e1897d
-ms.sourcegitcommit: 176c575aea7602682afd6214880aad0be6167c52
+ms.sourcegitcommit: 694e40a193980dea1e2f945471071f11030d5641
 ms.translationtype: HT
 ms.contentlocale: zh-TW
-ms.lasthandoff: 01/09/2018
+ms.lasthandoff: 01/29/2018
 ---
 # <a name="azure-ad-b2c-frequently-asked-questions-faq"></a>Azure AD B2C：常見問題集 (FAQ) 
 此頁面會回答有關 Azure Active Directory (Azure AD) B2C 的常見問題。 請隨時回來查看最新消息。
