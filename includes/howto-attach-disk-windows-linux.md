@@ -38,7 +38,7 @@
 
 3. 按一下命令列上的 [連結現有項目]。
 
-    ![連接資料磁碟](./media/howto-attach-disk-windows-linux/menudisksattachexisting.png)
+    ![連結資料磁碟](./media/howto-attach-disk-windows-linux/menudisksattachexisting.png)
 
 4. 按一下 [位置]。 隨即會顯示可用的儲存體帳戶。 接下來，從所列帳戶中選取適當的儲存體帳戶。
 
