@@ -1,5 +1,0 @@
-### <a name="need-some-help"></a><span data-ttu-id="24d62-101">需要協助嗎？</span><span class="sxs-lookup"><span data-stu-id="24d62-101">Need some help?</span></span>
-<span data-ttu-id="24d62-102">Azure 論壇張貼在 hello 的問題。</span><span class="sxs-lookup"><span data-stu-id="24d62-102">Post questions in hello Azure forums.</span></span><span data-ttu-id="24d62-103"> - [請造訪 MSDN](http://go.microsoft.com/fwlink/?LinkId=780719)</span><span class="sxs-lookup"><span data-stu-id="24d62-103"> - [Visit MSDN](http://go.microsoft.com/fwlink/?LinkId=780719)</span></span>
-
-<span data-ttu-id="24d62-104">標記與 hello 關鍵字問題`azure-functions`。</span><span class="sxs-lookup"><span data-stu-id="24d62-104">Tag questions with hello keyword `azure-functions`.</span></span><span data-ttu-id="24d62-105"> - [請瀏覽堆疊溢位](http://stackoverflow.com/questions/tagged/azure-functions)</span><span class="sxs-lookup"><span data-stu-id="24d62-105"> - [Visit Stack Overflow](http://stackoverflow.com/questions/tagged/azure-functions)</span></span>
-

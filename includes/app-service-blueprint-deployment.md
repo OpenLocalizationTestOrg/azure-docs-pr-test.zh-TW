@@ -1,7 +1,0 @@
-* [<span data-ttu-id="e0370-101">部署應用程式 tooAzure 應用程式服務</span><span class="sxs-lookup"><span data-stu-id="e0370-101">Deploying an app tooAzure App Service</span></span>](../articles/app-service-web/web-sites-deploy.md)
-* [<span data-ttu-id="e0370-102">設定原始檔控制和連續整合</span><span class="sxs-lookup"><span data-stu-id="e0370-102">Configuring source control and continuous integration</span></span>](../articles/app-service-web/app-service-continuous-deployment.md)
-* [<span data-ttu-id="e0370-103">預備部署的部署位置</span><span class="sxs-lookup"><span data-stu-id="e0370-103">Staging deployments with deployment slots</span></span>](../articles/app-service-web/web-sites-staged-publishing.md)
-* [<span data-ttu-id="e0370-104">發行與角色型存取控制 (RBAC)</span><span class="sxs-lookup"><span data-stu-id="e0370-104">Publishing and Role Based Access Control (RBAC)</span></span>](https://azure.microsoft.com/blog/rbac-and-azure-websites-publishing/)
-
-## <a name="videos"></a><span data-ttu-id="e0370-105">影片</span><span class="sxs-lookup"><span data-stu-id="e0370-105">Videos</span></span>
-* [<span data-ttu-id="e0370-106">Release management 自動化 hello 部署工作流程</span><span class="sxs-lookup"><span data-stu-id="e0370-106">Automating hello deployment workflow for release management</span></span>](https://azure.microsoft.com/resources/videos/azurecon-2015-manage-code-changes-to-web-apps-using-the-devops-features-of-azure-app-service-and-visual-studio-release-management/)
